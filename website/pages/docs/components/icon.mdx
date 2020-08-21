@@ -7,12 +7,14 @@ image: "components/icon.svg"
 import ComponentLinks from "../../../src/components/component-links"
 import IconsList from "../../../src/components/icons-list"
 
-By default, Chakra UI comes with a [set of basic interface icons](#all-icons).
-`Icon` component renders `svg` element and can be styled using `themeKey:`
-`"Icon"`. To add any custom icons, [follow this guide](#adding-custom-icons).
+Chakra provides multiple ways to use icons in your project:
 
-> 🚨 Avoid passing `onClick` handlers to the `Icon` component. Need a clickable
-> icon, use [IconButton](/components/icon-button) instead.
+- [Using the official Chakra UI icon library](#using-the-official-chakra-ui-icons-library)
+- [Using a third-party icon library](#using-a-third-party-icon-library)
+- [Creating your own icons](#creating-your-own-icons)
+
+> 🚨 Avoid passing `onClick` handlers to icon components. If you need a
+> clickable icon, use the [IconButton](/docs/form/icon-button) instead.
 
 <ComponentLinks
   github={{ url: "#" }}
@@ -22,99 +24,98 @@ By default, Chakra UI comes with a [set of basic interface icons](#all-icons).
 
 <carbon-ad></carbon-ad>
 
-## Import
+## Using the official Chakra UI icons library
 
-```js
-import { Icon } from "@chakra-ui/core"
-import { PhoneIcon } from "@chakra-ui/icons"
+Chakra maintains an official library of icons for you to use in your project!
+
+### Installation
+
+```bash
+npm i @chakra-ui/icons@next
+
+# or
+
+yarn add @chakra-ui/icons@next
 ```
 
-## Usage
+### Usage
 
-Use an icon by directly importing it with its respective name as mentioned in
-[next section](#all-icons). By default, Icon component inherits `fontSize` and
-`color` of its parent.
+Import the icons from `@chakra-ui/icons` and style them with
+[style props](/docs/features/style-props).
 
-```jsx
-<HStack>
-  {/* Default size is 1em => 16px */}
-  <PhoneIcon />
+```jsx live=false
+import {PhoneIcon, AddIcon, WarningIcon} from '@chakra-ui/icons'
 
-  {/* Use the `boxSize` prop to change the icon size */}
-  <CheckCircleIcon boxSize="24px" />
+// The default icon size is 1em (16px)
+<PhoneIcon />
 
-  {/* Use the `color` prop to change the icon color */}
-  <WarningIcon boxSize="32px" color="red.500" />
-</HStack>
+// Use the `boxSize` prop to change the icon size
+<AddIcon boxSize={6} />
+
+// Use the `color` prop to change the icon color
+<WarningIcon boxSize={8} color="red.500" />
 ```
 
 ### All Icons
 
-Here's the list of default icons that comes with Chakra UI with their respective
-`name`. These icons should be imported from `@chakra-ui/icons`
+Below is a list of all of the icons in the library, along with the corresponding
+component names:
 
-<IconsList />
+<Box mt={5}>
+  <IconsList />
+</Box>
 
-## Using an Icon library
+## Using a third-party icon library
 
-Using icons from a popular icon library like
-[react-icons](https://react-icons.github.io/react-icons/) just renders the
-`svg`,
+Chakra makes it easy to use third-party icon libraries like
+[`react-icons`](https://react-icons.github.io/react-icons/).
+
+### Import
 
 ```jsx live=false
-import { MdSettings } from "react-icons/md"
-
-<MdSettings />
-
-<MdSettings fontSize="24px" color="teal" />
+import { Icon } from "@chakra-ui/core"
 ```
 
-**Problem:**
+### Usage
 
-- Using `ref` doesn't get forwarded automatically. This may report a React error
-  in console about passing `ref` to a function component.
-
-- Custom styling with `style props` using `theme` value or `themeKey` may not be
-  possible.
+Wrap your third-party icon of choice with the `Icon` component using the `as`
+prop and style them using [style props](/docs/features/style-props).
 
 ```jsx
 <HStack>
-  {/* Works when passing general style props with CSS values  */}
-  <MdSettings size="24px" color="teal" />
+  {/* The default icon size is 1em (16px) */}
+  <Icon as={MdSettings} />
 
-  {/* Fails when passing style props with theme key */}
-  <MdSettings boxSize="32px" color="teal.500" />
+  {/* Use the `boxSize` prop to change the icon size */}
+  <Icon as={FaGitlab} boxSize={6} />
+
+  {/* Use the `color` prop to change the icon color */}
+  <Icon as={AiFillAliwangwang} boxSize={8} color="red.500" />
 </HStack>
 ```
 
-**Solution:**
+## Creating your own icons
 
-Instead pass them to `Icon` component using `as` prop to utilize theming with
-proper ref forwarding and much more.
+Chakra provides two methods for creating your own icons:
+
+- the [Icon component](#creating-icons-using-the-icon-component)
+- the [createIcon function](#creating-icons-using-the-createicon-function)
+
+They can be imported from `@chakra-ui/core`:
 
 ```jsx live=false
-// 1. import the icon from "react-icons"
-import { MdSettings } from "react-icons/md"
-
-// 2. Use the `as` prop to render the icon
-<Icon as={MdSettings} />
-
-// 3. Then pass all props to style the icon
-<Icon as={MdSettings} boxSize="32px" color="teal.500" />
+import { Icon, createIcon } from "@chakra-ui/core"
 ```
 
-**Working example:**
+Both `Icon` and `createIcon` enable you to style the icon using
+[style props](/docs/features/style-props).
+
+### Creating icons using the `Icon` component
+
+The `Icon` component renders as an `svg` element.
 
 ```jsx
-<Icon as={MdSettings} boxSize="32px" color="teal.500" />
-```
-
-## Adding custom icons
-
-Instead of using `Icon` component to render custom icons like this everytime,
-
-```jsx
-<Icon viewBox="0 0 200 200">
+<Icon viewBox="0 0 200 200" color="red.500">
   <path
     fill="currentColor"
     d="M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0"
@@ -122,15 +123,48 @@ Instead of using `Icon` component to render custom icons like this everytime,
 </Icon>
 ```
 
-Create custom icons using the `createIcon` utility and use them everywhere,
+This enables you to define your own custom icon components:
+
+```jsx live=false
+const CircleIcon = (props) => (
+  <Icon viewBox="0 0 200 200" {...props}>
+    <path
+      fill="currentColor"
+      d="M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0"
+    />
+  </Icon>
+)
+```
+
+And style them with style props:
+
+```jsx
+<HStack>
+  {/* The default icon size is 1em (16px) */}
+  <CircleIcon />
+
+  {/* Use the `boxSize` prop to change the icon size */}
+  <CircleIcon boxSize={6} />
+
+  {/* Use the `color` prop to change the icon color */}
+  <CircleIcon boxSize={8} color="red.500" />
+</HStack>
+```
+
+### Creating icons using the `createIcon` function
+
+The `createIcon` function is a convenience wrapper around the process of
+generating icons with `Icon`, allowing you to achieve the same functionality
+with less effort.
 
 ```jsx live=false
 import { createIcon } from "@chakra-ui/icon"
 
-// Using `path`
+// using `path`
 export const UpDownIcon = createIcon({
   displayName: "UpDownIcon",
   viewBox: "0 0 200 200",
+  // path can also be an array of elements, if you have multiple paths, lines, shapes, etc.
   path: (
     <path
       fill="currentColor"
@@ -139,7 +173,7 @@ export const UpDownIcon = createIcon({
   ),
 })
 
-// OR Using `pathDefinition` directly
+// OR using the `d` value of a path (the path definition) directly
 
 export const UpDownIcon = createIcon({
   displayName: "UpDownIcon",
@@ -148,19 +182,16 @@ export const UpDownIcon = createIcon({
 })
 ```
 
-Before generating custom icons do the following:
+### Tips for generating your own icons
 
 - Export icons as `svg` from [Figma](https://www.figma.com/),
   [Sketch](https://www.sketch.com/), etc.
 - Use a tool like [SvgOmg](https://jakearchibald.github.io/svgomg/) to reduce
   the size and minify the markup.
-- Use `createIcon` to create an icon as shown above.
-
-Start using the icons right away. There is no need to update theme files.
 
 ## Fallback Icon
 
-When path is not provided, `Icon` component renders the `fallbackIcon`
+When `children` is not provided, the `Icon` component renders a fallback icon.
 
 ```jsx
 <Icon />
@@ -168,7 +199,7 @@ When path is not provided, `Icon` component renders the `fallbackIcon`
 
 ## Props
 
-### Icon Props
+### `Icon` props
 
 | Name        | Type                  | Default        | Description                                                                         |
 | ----------- | --------------------- | -------------- | ----------------------------------------------------------------------------------- |
@@ -179,11 +210,11 @@ When path is not provided, `Icon` component renders the `fallbackIcon`
 | `role`      | `presentation`, `img` | `presentation` | The html role of the icon.                                                          |
 | `children`  | `React.ReactNode`     |                | The Path or Group of the icon                                                       |
 
-## createIcon Options
+## `createIcon` options
 
-| Name          | Type              | Default     | Description                              |
-| ------------- | ----------------- | ----------- | ---------------------------------------- |
-| `viewBox`     | `string`          | `0 0 24 24` | The viewBox of the icon.                 |
-| `d`           | `string`          |             | The pathDefinition of the icon.          |
-| `path`        | `React.ReactNode` |             | The Path or Group of the icon            |
-| `displayName` | `string`          |             | The display name useful in the dev tools |
+| Name          | Type                                  | Default     | Description                              |
+| ------------- | ------------------------------------- | ----------- | ---------------------------------------- |
+| `viewBox`     | `string`                              | `0 0 24 24` | The viewBox of the icon.                 |
+| `d`           | `string`                              |             | The pathDefinition of the icon.          |
+| `path`        | `React.ReactNode | React.ReactNode[]` |             | The Path or Group of the icon            |
+| `displayName` | `string`                              |             | The display name useful in the dev tools |
