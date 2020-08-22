@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { render } from "@chakra-ui/test-utils"
+import { render, screen } from "@chakra-ui/test-utils"
 import { createStandaloneToast } from "../src"
 import theme from "@chakra-ui/theme"
 
@@ -21,7 +21,7 @@ test("Standalone toast renders correctly", async () => {
     return null
   }
 
-  const screen = render(<ToastContainer />)
+  render(<ToastContainer />)
 
   const allByTitle = await screen.findAllByText(title)
   const allByDescription = await screen.findAllByText(description)
