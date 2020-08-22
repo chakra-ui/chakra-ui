@@ -265,13 +265,13 @@ const theme = {
 #### Bug Fixes
 
 - Color mode now persists correctly when you refresh the page. All you need to
-  do is add `InitializeColorMode` script as the first child of `body`.
+  do is add `ColorModeScript` script as the first child of `body`.
 
   Here's how to add it for Next.js:
 
 ```jsx live=false
 // pages/_document.js
-import { InitializeColorMode } from "@chakra-ui/core"
+import { ColorModeScript } from "@chakra-ui/core"
 
 export default class Document extends NextDocument {
   static async getInitialProps(ctx) {
@@ -285,7 +285,7 @@ export default class Document extends NextDocument {
         <Head />
         <body>
           {/* 👇 Here's the script */}
-          <InitializeColorMode />
+          <ColorModeScript />
           <Main />
           <NextScript />
         </body>
@@ -300,13 +300,13 @@ Here's how to add it for Gatsby:
 ```jsx live=false
 // gatsby-ssr.js
 export const onRenderBody = ({ setPreBodyComponents }) => {
-  setPreBodyComponents([<InitializeColorMode key="chakra-ui-no-flash" />])
+  setPreBodyComponents([<ColorModeScript key="chakra-ui-no-flash" />])
 }
 ```
 
 You can also install the
 [`gatsby-plugin-chakra-ui`](https://www.npmjs.com/package/gatsby-plugin-chakra-ui)
-package which automatically configures `InitializeColorMode` along with
+package which automatically configures `ColorModeScript` along with
 `ChakraProvider`.
 
 ### Editable
@@ -355,11 +355,10 @@ import { createIcon, MoonIcon, SunIcon } from "@chakra-ui/icons"
 ### Icon Button
 
 - We've unified the usage of all icon props to only accept a React element.
-  Update all icon names used in `icon` to the equivalent icon
-  React element.
+  Update all icon names used in `icon` to the equivalent icon React element.
 
-> Replacement logic: If `icon` is `email`, then replace it with
-> `<EmailIcon/>` from Chakra.
+> Replacement logic: If `icon` is `email`, then replace it with `<EmailIcon/>`
+> from Chakra.
 
 ```diff
 import { PhoneIcon } from "@chakra-ui/core"
@@ -495,9 +494,9 @@ Due to accessibility reasons, we've deprecated the `isDisabled` prop for `Link`.
 - Deprecated the `isFullWidth` prop. The `Radio` takes up the width of the
   parent by default.
 
-- Deprecated the `RadioButton` component. Use the `useRadio` hook to create custom
-  radio buttons.
-  Learn more about [creating custom radio buttons](/docs/form/radio#custom-radio-buttons).
+- Deprecated the `RadioButton` component. Use the `useRadio` hook to create
+  custom radio buttons. Learn more about
+  [creating custom radio buttons](/docs/form/radio#custom-radio-buttons).
 
 - The `useRadio` hook is exported with state and focus management logic for use
   in creating tailor-made radio component for your application
@@ -507,8 +506,9 @@ Due to accessibility reasons, we've deprecated the `isDisabled` prop for `Link`.
 - Deprecated the `isFullWidth` prop. The `RadioGroup` takes up the width of the
   parent by default.
 
-- Deprecated the `RadioButtonGroup` component. Use the `useRadioGroup` hook to control a group of custom radio buttons.
-  Learn more about [creating custom radio buttons](/docs/form/radio#custom-radio-buttons).
+- Deprecated the `RadioButtonGroup` component. Use the `useRadioGroup` hook to
+  control a group of custom radio buttons. Learn more about
+  [creating custom radio buttons](/docs/form/radio#custom-radio-buttons).
 
 - To allow for better Radio group layout, the `RadioGroup` component no longer
   supports every style prop. You can only pass `size`, `variant`, and

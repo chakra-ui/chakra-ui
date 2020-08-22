@@ -21,7 +21,7 @@ function setColorModeVar(initialValue: ColorMode | "system") {
 }
 
 interface InitialColorModeProps {
-  initialValue?: ColorMode
+  defaultMode?: ColorMode
 }
 
 /**
@@ -30,8 +30,8 @@ interface InitialColorModeProps {
  *
  * This is particular useful for SSR in Gatsby or Next.js
  */
-export const InitializeColorMode = (props: InitialColorModeProps) => {
-  const { initialValue = "light" } = props
-  const __html = `(${String(setColorModeVar)})(\"${initialValue}\")`
+export const ColorModeScript = (props: InitialColorModeProps) => {
+  const { defaultMode = "light" } = props
+  const __html = `(${String(setColorModeVar)})(\"${defaultMode}\")`
   return <script dangerouslySetInnerHTML={{ __html }} />
 }

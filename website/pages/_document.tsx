@@ -1,7 +1,7 @@
 import React from "react"
 import NextDocument, { Html, Head, Main, NextScript } from "next/document"
 import GAScript from "analytics/ga-script"
-import { InitializeColorMode } from "@chakra-ui/core"
+import { ColorModeScript } from "@chakra-ui/core"
 
 class Document extends NextDocument {
   static async getInitialProps(ctx) {
@@ -14,7 +14,7 @@ class Document extends NextDocument {
       <Html lang="en">
         <Head />
         <body>
-          <InitializeColorMode />
+          <ColorModeScript />
           <Main />
           <NextScript />
           <GAScript />
