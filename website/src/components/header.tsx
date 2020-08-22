@@ -55,21 +55,21 @@ function HeaderContent() {
   return (
     <>
       <Flex w="100%" h="100%" px="6" align="center" justify="space-between">
-        <Flex align="center">
-          <NextLink href="/" passHref>
-            <chakra.a display="block" aria-label="Chakra UI, Back to homepage">
-              <Logo />
-            </chakra.a>
-          </NextLink>
-          <HStack
-            as="nav"
-            spacing="4"
-            ml="24px"
-            display={{ base: "none", md: "flex" }}
-          >
-            <NavLink href="/docs/getting-started">Docs</NavLink>
-            <NavLink href="/guides/integrations/with-cra">Guides</NavLink>
-            <NavLink href="/blog">Blog</NavLink>
+      <Flex align="center">
+        <NextLink href="/" passHref>
+          <chakra.a display="block" aria-label="Chakra UI, Back to homepage">
+            <Logo />
+          </chakra.a>
+        </NextLink>
+        <HStack
+          as="nav"
+          spacing="4"
+          ml="24px"
+          display={{ base: "none", md: "flex" }}
+        >
+          <NavLink href="/docs/getting-started">Docs</NavLink>
+          <NavLink href="/guides/integrations/with-cra">Guides</NavLink>
+          <NavLink href="/blog">Blog</NavLink>
           <NavLink href="/team">Team</NavLink>
           </HStack>
         </Flex>
