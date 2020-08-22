@@ -3256,13 +3256,13 @@
   resolved "https://registry.yarnpkg.com/@reach/observe-rect/-/observe-rect-1.2.0.tgz#d7a6013b8aafcc64c778a0ccb83355a11204d3b2"
   integrity sha512-Ba7HmkFgfQxZqqaeIWWkNK0rEhpxVQHIoVyW1YDSkGsGIXzcaW4deC8B0pZrNSSyLTdIk7y+5olKt5+g0GmFIQ==
 
-"@reach/rect@0.10.5":
-  version "0.10.5"
-  resolved "https://registry.yarnpkg.com/@reach/rect/-/rect-0.10.5.tgz#ba68722f155b146c6790e7d10a97dca1fd7ab14e"
-  integrity sha512-JBKs2HniYecq5zLO6UFReX28SUBPM3n0aizdNgHuvwZmDcTfNV4jsuJYQLqJ+FbCQsrSHkBxKZqWpfGXY9bUEg==
+"@reach/rect@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@reach/rect/-/rect-0.11.0.tgz#8550378785c0dbc1d35313de4188d11718598d5b"
+  integrity sha512-67QJffkYZByMBs4BFiB5Ep++MG76Xt1/NfmE55Hjfh62rrxcYTIGTRwGnpwCHVMR0fYvmzNIC3+vSh4hJ3ocxg==
   dependencies:
     "@reach/observe-rect" "1.2.0"
-    "@reach/utils" "0.10.5"
+    "@reach/utils" "0.11.0"
     prop-types "^15.7.2"
     tslib "^2.0.0"
 
@@ -3280,6 +3280,15 @@
   version "0.10.5"
   resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.10.5.tgz#fbac944d29565f6dd7abd0e1b13950e99b1e470b"
   integrity sha512-5E/xxQnUbmpI/LrufBAOXjunl96DnqX6B4zC2MO2KH/dRzLug5gM5VuOwV26egsp0jvsSPxojwciOhS43px3qw==
+  dependencies:
+    "@types/warning" "^3.0.0"
+    tslib "^2.0.0"
+    warning "^4.0.3"
+
+"@reach/utils@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.11.0.tgz#09ad5e1f42b498253df8a6a4c99ccd0ab2d85464"
+  integrity sha512-A7Ofr1Biq4vUeTBYhbZ/YiLq1B/lEObbEoR2UiuQqCO1r093N95hZNcKqfFwpkRScjD87uob3wSYYGxvq9y/+w==
   dependencies:
     "@types/warning" "^3.0.0"
     tslib "^2.0.0"
