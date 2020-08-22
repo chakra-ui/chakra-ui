@@ -69,7 +69,8 @@ function HeaderContent() {
           >
             <NavLink href="/docs/getting-started">Docs</NavLink>
             <NavLink href="/guides/integrations/with-cra">Guides</NavLink>
-            <NavLink href="/team">Team</NavLink>
+            <NavLink href="/blog">Blog</NavLink>
+          <NavLink href="/team">Team</NavLink>
           </HStack>
         </Flex>
 

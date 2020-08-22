@@ -25,6 +25,7 @@
     "next-mdx-enhanced": "^5.0.0",
     "next-seo": "^4.17.0",
     "prism-react-renderer": "^1.1.1",
+    "raw-loader": "^4.0.1",
     "react-icons": "^3.11.0",
     "react-live": "^2.2.3",
     "remark": "^13.0.0",
