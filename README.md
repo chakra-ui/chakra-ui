@@ -109,10 +109,10 @@ To start using the components, please follow these steps:
    to remove all browser styling.
 
 ```jsx
-import { ThemeProvider, CSSReset } from "@chakra-ui/core".
+import { ThemeProvider, CSSReset } from "@chakra-ui/core"
 
 // Do this at the root of your application
-function App({ children }){
+function App({ children }) {
   return (
     <ThemeProvider>
       <CSSReset />
@@ -120,7 +120,6 @@ function App({ children }){
     </ThemeProvider>
   )
 }
-
 ```
 
 Optionally, you can wrap your application with the `ColorModeProvider` so you
@@ -322,6 +321,7 @@ Thanks goes to these wonderful people
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
