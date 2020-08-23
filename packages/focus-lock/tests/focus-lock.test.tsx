@@ -17,8 +17,6 @@ test("focuses an element on render", () => {
   expect(input).toHaveFocus()
 })
 
-// placeholder test until we figure out how to deal with react-focus-lock
-// being
 it("passes a11y test", async () => {
   await testA11y(
     <FocusLock>
