@@ -27,7 +27,7 @@
     "@testing-library/jest-dom": "5.11.3",
     "@testing-library/react": "10.4.9",
     "@testing-library/react-hooks": "3.4.1",
-    "@testing-library/user-event": "12.1.1",
+    "@testing-library/user-event": "12.1.2",
     "@types/jest-axe": "3.5.0",
     "jest-axe": "3.5.0",
     "react-test-renderer": "16.13.1"
