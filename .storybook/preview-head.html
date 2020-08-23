@@ -3,7 +3,16 @@
     const mql = window.matchMedia("(prefers-color-scheme: dark)")
     const systemPreference = mql.matches ? "dark" : "light"
 
-    const persistedPreference = localStorage.getItem("chakra-ui-color-mode")
+    let persistedPreference
+
+    try {
+      persistedPreference = localStorage.getItem("chakra-ui-color-mode")
+    } catch (error) {
+      console.log(
+        "Chakra UI: localStorage is not available. Color mode persistence might not work as expected",
+      )
+    }
+
     const isInStorage = typeof persistedPreference === "string"
 
     let colorMode
@@ -14,7 +23,9 @@
       colorMode = initialValue === "system" ? systemPreference : initialValue
     }
 
-    const root = document.documentElement
-    root.style.setProperty("--chakra-ui-color-mode", colorMode)
+    if (colorMode) {
+      const root = document.documentElement
+      root.style.setProperty("--chakra-ui-color-mode", colorMode)
+    }
   })("light")
 </script>

@@ -1,5 +1,6 @@
 import { noop, __DEV__, isBrowser } from "@chakra-ui/utils"
 import * as React from "react"
+import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 
 export type ColorMode = "light" | "dark"
 
@@ -35,8 +36,8 @@ export const ColorModeProvider: React.FC = (props) => {
   const { children } = props
   const [colorMode, rawSetColorMode] = React.useState<ColorMode>()
 
-  React.useEffect(() => {
-    const root = window.document.documentElement
+  useSafeLayoutEffect(() => {
+    const root = document.documentElement
     const mode = root.style.getPropertyValue(
       "--chakra-ui-color-mode",
     ) as ColorMode
@@ -51,7 +52,7 @@ export const ColorModeProvider: React.FC = (props) => {
 
   const ctx = React.useMemo(() => {
     const setColorMode = (mode: ColorMode) => {
-      const root = window.document.documentElement
+      const root = document.documentElement
       root.style.setProperty("--chakra-ui-color-mode", mode)
       localStorage.setItem("chakra-ui-color-mode", mode)
       rawSetColorMode(mode)

@@ -1,14 +1,25 @@
 import * as React from "react"
 import { ColorMode } from "./color-mode-provider"
 
-function setColorModeVar(initialValue: ColorMode | "system") {
+type Mode = ColorMode | "system" | undefined
+
+function setColorModeVar(initialValue: Mode) {
   const mql = window.matchMedia("(prefers-color-scheme: dark)")
   const systemPreference = mql.matches ? "dark" : "light"
 
-  const persistedPreference = localStorage.getItem("chakra-ui-color-mode")
+  let persistedPreference: Mode
+
+  try {
+    persistedPreference = localStorage.getItem("chakra-ui-color-mode") as Mode
+  } catch (error) {
+    console.log(
+      "Chakra UI: localStorage is not available. Color mode persistence might not work as expected",
+    )
+  }
+
   const isInStorage = typeof persistedPreference === "string"
 
-  let colorMode
+  let colorMode: Mode
 
   if (isInStorage) {
     colorMode = persistedPreference
@@ -16,12 +27,14 @@ function setColorModeVar(initialValue: ColorMode | "system") {
     colorMode = initialValue === "system" ? systemPreference : initialValue
   }
 
-  const root = document.documentElement
-  root.style.setProperty("--chakra-ui-color-mode", colorMode)
+  if (colorMode) {
+    const root = document.documentElement
+    root.style.setProperty("--chakra-ui-color-mode", colorMode)
+  }
 }
 
-interface InitialColorModeProps {
-  defaultMode?: ColorMode
+interface ColorModeScriptProps {
+  defaultColorMode?: ColorMode
 }
 
 /**
@@ -30,8 +43,8 @@ interface InitialColorModeProps {
  *
  * This is particular useful for SSR in Gatsby or Next.js
  */
-export const ColorModeScript = (props: InitialColorModeProps) => {
-  const { defaultMode = "light" } = props
-  const __html = `(${String(setColorModeVar)})(\"${defaultMode}\")`
+export const ColorModeScript = (props: ColorModeScriptProps) => {
+  const { defaultColorMode = "light" } = props
+  const __html = `(${String(setColorModeVar)})(\"${defaultColorMode}\")`
   return <script dangerouslySetInnerHTML={{ __html }} />
 }
