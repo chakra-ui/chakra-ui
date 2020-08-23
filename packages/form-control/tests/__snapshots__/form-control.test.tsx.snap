@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<FormControl /> renders correctly in default state 1`] = `
+exports[`renders correctly in default state 1`] = `
 <DocumentFragment>
   .emotion-3 {
   width: 100%;
@@ -65,7 +65,7 @@ exports[`<FormControl /> renders correctly in default state 1`] = `
 </DocumentFragment>
 `;
 
-exports[`<FormControl /> renders correctly when invalid 1`] = `
+exports[`renders correctly when invalid 1`] = `
 <DocumentFragment>
   .emotion-5 {
   width: 100%;
@@ -177,7 +177,7 @@ exports[`<FormControl /> renders correctly when invalid 1`] = `
 </DocumentFragment>
 `;
 
-exports[`<FormControl /> renders correctly when required 1`] = `
+exports[`renders correctly when required 1`] = `
 <DocumentFragment>
   .emotion-4 {
   width: 100%;

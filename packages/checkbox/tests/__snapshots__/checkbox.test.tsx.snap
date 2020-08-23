@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Checkbox /> Checkbox renders correctly 1`] = `
+exports[`Checkbox renders correctly 1`] = `
 <DocumentFragment>
   .emotion-3 {
   cursor: pointer;
@@ -202,7 +202,7 @@ exports[`<Checkbox /> Checkbox renders correctly 1`] = `
 </DocumentFragment>
 `;
 
-exports[`<Checkbox /> matches snapshot  1`] = `
+exports[`matches snapshot  1`] = `
 <DocumentFragment>
   .emotion-2 {
   cursor: pointer;

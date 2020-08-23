@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Icon /> renders a third-party icon correctly 1`] = `
+exports[`renders a third-party icon correctly 1`] = `
 <DocumentFragment>
   .emotion-0 {
   display: inline-block;
@@ -31,7 +31,7 @@ exports[`<Icon /> renders a third-party icon correctly 1`] = `
 </DocumentFragment>
 `;
 
-exports[`<Icon /> renders correctly 1`] = `
+exports[`renders correctly 1`] = `
 <DocumentFragment>
   .emotion-0 {
   vertical-align: middle;

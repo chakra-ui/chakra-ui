@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Collapse /> renders correctly 1`] = `
+exports[`renders correctly 1`] = `
 <DocumentFragment>
   .emotion-1 {
   -webkit-transition: height 0.2s ease,opacity 0.2s ease-in-out,-webkit-transform 0.2s ease-in-out;

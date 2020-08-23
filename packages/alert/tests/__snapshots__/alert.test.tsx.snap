@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Alert /> matches snapshot 1`] = `
+exports[`matches snapshot 1`] = `
 <DocumentFragment>
   .emotion-4 {
   width: 100%;

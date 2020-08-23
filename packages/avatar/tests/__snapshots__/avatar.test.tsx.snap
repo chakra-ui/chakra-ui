@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Avatar /> matches snapshot 1`] = `
+exports[`matches snapshot 1`] = `
 <DocumentFragment>
   .emotion-0 {
   border-radius: 9999px;
@@ -54,7 +54,7 @@ exports[`<Avatar /> matches snapshot 1`] = `
 </DocumentFragment>
 `;
 
-exports[`<Avatar /> matches snapshot with AvatarBadge 1`] = `
+exports[`matches snapshot with AvatarBadge 1`] = `
 <DocumentFragment>
   .emotion-1 {
   border-radius: 9999px;
