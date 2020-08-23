@@ -113,7 +113,13 @@ export interface GridOptions {
 }
 
 export interface GridColumnProps extends BoxProps {
+  /**
+   * The number of columns the grid item should `span`.
+   */
   span?: ResponsiveValue<number | "auto">
+  /**
+   * The column number the grid item should start.
+   */
   start?: ResponsiveValue<number | "auto">
 }
 

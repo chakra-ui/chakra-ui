@@ -11,8 +11,17 @@ import {
 import { __DEV__, cx } from "@chakra-ui/utils"
 
 export interface TextProps extends PropsOf<typeof chakra.p>, ThemingProps {
+  /**
+   * The CSS `text-align` property
+   */
   align?: SystemProps["textAlign"]
+  /**
+   * The CSS `text-decoration` property
+   */
   decoration?: SystemProps["textDecoration"]
+  /**
+   * The CSS `text-transform` property
+   */
   casing?: SystemProps["textTransform"]
 }
 
