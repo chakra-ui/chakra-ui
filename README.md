@@ -316,6 +316,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/hy2k"><img src="https://avatars3.githubusercontent.com/u/17329720?v=4" width="64px;" alt=""/><br /><sub><b>hy2k</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=hy2k" title="Code">💻</a></td>
     <td align="center"><a href="https://loud.gg"><img src="https://avatars0.githubusercontent.com/u/5843816?v=4" width="64px;" alt=""/><br /><sub><b>Pierre Ortega</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=PierreAndreis" title="Code">💻</a></td>
     <td align="center"><a href="https://keremciu.github.io/"><img src="https://avatars0.githubusercontent.com/u/1593488?v=4" width="64px;" alt=""/><br /><sub><b>Kerem Sevencan</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=keremciu" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/harveyhalwin"><img src="https://avatars2.githubusercontent.com/u/41739034?v=4" width="64px;" alt=""/><br /><sub><b>harveyhalwin</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=harveyhalwin" title="Documentation">📖</a></td>
   </tr>
 </table>
 
