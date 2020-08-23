@@ -154,6 +154,14 @@ export const pseudoSelectors = {
    */
   _odd: "&:nth-of-type(odd)",
   /**
+   * Styles for CSS Selector `&:only-of-type`
+   */
+  _onlyOfType: "&:only-of-type",
+  /**
+   * Styles for CSS Selector `&:only-child`
+   */
+  _onlyChild: "&:only-child",
+  /**
    * Styles for CSS Selector `&:first-of-type`
    */
   _first: "&:first-of-type",
