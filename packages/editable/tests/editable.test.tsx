@@ -5,6 +5,7 @@ import {
   fireEvent,
   screen,
   testA11y,
+  waitFor,
 } from "@chakra-ui/test-utils"
 import { Editable, EditableInput, EditablePreview } from "../src"
 
@@ -190,10 +191,9 @@ describe("<Editable />", () => {
         <EditableInput data-testid="input" />
       </Editable>,
     )
-
     // preview and input have aria-disabled when `Editable` is disabled
-    expect(preview).toHaveAttribute("aria-disabled", "true")
-    expect(input).toHaveAttribute("aria-disabled", "true")
+    expect(preview).toHaveAttribute("aria-disabled", "true"),
+      expect(input).toHaveAttribute("aria-disabled", "true")
   })
 
   test("can submit on blur", () => {

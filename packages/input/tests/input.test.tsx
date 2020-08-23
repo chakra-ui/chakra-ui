@@ -16,15 +16,13 @@ describe("<Input />", () => {
   })
 
   test("passes a11y test", async () => {
-    await testA11y(
-      <Input />,
-      {},
-      {
+    await testA11y(<Input />, {
+      axeOptions: {
         rules: {
           label: { enabled: false },
         },
       },
-    )
+    })
   })
 
   test("addons render correctly", () => {

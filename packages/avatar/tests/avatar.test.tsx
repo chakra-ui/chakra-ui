@@ -9,7 +9,13 @@ describe("<Avatar />", () => {
   })
 
   it("passes a11y test", async () => {
-    await testA11y(<Avatar />)
+    await testA11y(<Avatar />, {
+      axeOptions: {
+        rules: {
+          "svg-img-alt": { enabled: false },
+        },
+      },
+    })
   })
 
   test("matches snapshot with AvatarBadge", () => {
@@ -26,6 +32,13 @@ describe("<Avatar />", () => {
       <Avatar>
         <AvatarBadge />
       </Avatar>,
+      {
+        axeOptions: {
+          rules: {
+            "svg-img-alt": { enabled: false },
+          },
+        },
+      },
     )
   })
 

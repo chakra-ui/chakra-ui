@@ -115,7 +115,7 @@ test("does not fire onClick on disabled MenuItem", () => {
   )
 
   const span = screen.getByText("Delivery")
-  const button = span.parentNode
+  const button = span.parentNode!
 
   fireEvent.click(button)
 
@@ -140,7 +140,7 @@ test.skip("allows focusing disabled MenuItems given isFocusable", async () => {
   )
 
   const span = screen.getByText("Delivery")
-  const button = span.parentNode
+  const button = span.parentNode!
 
   fireEvent.click(button)
 

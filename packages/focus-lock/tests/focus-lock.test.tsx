@@ -27,12 +27,13 @@ describe("<FocusLock />", () => {
         <button type="button">button 2</button>
         <button type="button">button 3</button>
       </FocusLock>,
-      {},
       {
-        rules: {
-          // react-focus-lock is not compliant here or rather,
-          // it is a valid use case of tabindex
-          tabindex: { enabled: false },
+        axeOptions: {
+          rules: {
+            // react-focus-lock is not compliant here or rather,
+            // it is a valid use case of tabindex
+            tabindex: { enabled: false },
+          },
         },
       },
     )

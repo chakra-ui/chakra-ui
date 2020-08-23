@@ -1,12 +1,6 @@
 import * as React from "react"
 
-import {
-  render,
-  testA11y,
-  screen,
-  waitFor,
-  fireEvent,
-} from "@chakra-ui/test-utils"
+import { render, testA11y, screen } from "@chakra-ui/test-utils"
 import {
   AlertDialog,
   AlertDialogBody,

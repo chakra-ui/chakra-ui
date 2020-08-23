@@ -5,12 +5,12 @@ import { Button, ButtonGroup } from "../src"
 
 describe("<Button />", () => {
   test("matches snapshot", () => {
-    const { asFragment } = render(<Button />)
+    const { asFragment } = render(<Button>test</Button>)
     expect(asFragment()).toMatchSnapshot()
   })
 
   it("passes a11y test", async () => {
-    await testA11y(<Button />)
+    await testA11y(<Button>test</Button>)
   })
 
   test("matches snapshot with icons", () => {
