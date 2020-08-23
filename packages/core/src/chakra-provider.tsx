@@ -28,12 +28,13 @@ export interface ChakraProviderProps extends Partial<ThemeProviderProps> {
  */
 export const ChakraProvider = (props: ChakraProviderProps) => {
   const { children, resetCSS, portalZIndex, theme = defaultTheme } = props
+
   return (
     <ThemeProvider theme={theme}>
       <ColorModeProvider>
         {resetCSS && <CSSReset />}
         <GlobalStyle />
-        {portalZIndex !== null ? (
+        {portalZIndex ? (
           <PortalManager zIndex={portalZIndex}>{children}</PortalManager>
         ) : (
           children
