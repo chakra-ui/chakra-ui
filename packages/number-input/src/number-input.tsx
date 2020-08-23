@@ -71,20 +71,20 @@ export interface NumberInputProps
 export const NumberInput = forwardRef<NumberInputProps, "div">(
   function NumberInput(props, ref) {
     const styles = useMultiStyleConfig("NumberInput", props)
-    const inputProps = omitThemingProps(props)
+    const ownProps = omitThemingProps(props)
 
-    const { htmlProps, ...context } = useNumberInput(inputProps)
-    const _context = React.useMemo(() => context, [context])
+    const { htmlProps, ...context } = useNumberInput(ownProps)
+    const ctx = React.useMemo(() => context, [context])
 
     return (
-      <NumberInputProvider value={_context}>
+      <NumberInputProvider value={ctx}>
         <StylesProvider value={styles}>
           <chakra.div
             ref={ref}
             {...htmlProps}
             __css={{
               position: "relative",
-              zIndex: 0
+              zIndex: 0,
             }}
           />
         </StylesProvider>

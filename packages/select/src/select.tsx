@@ -107,7 +107,7 @@ export const Select = forwardRef<SelectProps, "select">(function Select(
     ...rest
   } = omitThemingProps(props)
 
-  const [layoutProps, otherProps] = split(rest, layoutPropNames as string[])
+  const [layoutProps, otherProps] = split(rest, layoutPropNames as any[])
 
   const rootStyles = {
     width: "100%",

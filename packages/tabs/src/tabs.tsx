@@ -50,9 +50,9 @@ export interface TabsProps
  */
 export const Tabs = forwardRef<TabsProps, "div">(function Tabs(props, ref) {
   const styles = useMultiStyleConfig("Tabs", props)
-  const { children, className, ...otherProps } = omitThemingProps(props)
+  const { children, className, ...rest } = omitThemingProps(props)
 
-  const { htmlProps, ...ctx } = useTabs(otherProps)
+  const { htmlProps, ...ctx } = useTabs(rest)
   const context = React.useMemo(() => ctx, [ctx])
 
   return (

@@ -61,8 +61,8 @@ export const Editable = forwardRef<EditableProps, "div">(function Editable(
 ) {
   const styles = useMultiStyleConfig("Editable", props)
 
-  const realProps = omitThemingProps(props)
-  const { htmlProps, ...context } = useEditable(realProps)
+  const ownProps = omitThemingProps(props)
+  const { htmlProps, ...context } = useEditable(ownProps)
 
   const { isEditing, onSubmit, onCancel, onEdit } = context
 

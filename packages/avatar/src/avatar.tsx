@@ -51,7 +51,7 @@ interface AvatarOptions {
   /**
    * Function called when image failed to load
    */
-  onError?(): void
+  onError?: () => void
   /**
    * The default avatar used as fallback when `name`, and `src`
    * is not specified.
@@ -60,7 +60,7 @@ interface AvatarOptions {
   /**
    * Function to get the initials to display
    */
-  getInitials?(name?: string): string
+  getInitials?: (name: string) => string
 }
 
 export interface AvatarBadgeProps extends PropsOf<typeof chakra.div> {}
@@ -217,10 +217,11 @@ if (__DEV__) {
   Avatar.displayName = "Avatar"
 }
 
-type AvatarImageProps = Pick<
-  AvatarProps,
-  "src" | "onError" | "name" | "getInitials" | "borderRadius" | "icon"
->
+interface AvatarImageProps
+  extends Pick<
+    AvatarProps,
+    "src" | "onError" | "name" | "getInitials" | "borderRadius" | "icon"
+  > {}
 
 const AvatarImage: React.FC<AvatarImageProps> = ({
   src,

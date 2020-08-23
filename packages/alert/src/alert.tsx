@@ -1,6 +1,7 @@
 import {
   chakra,
   forwardRef,
+  omitThemingProps,
   PropsOf,
   StylesProvider,
   ThemingProps,
@@ -47,7 +48,7 @@ export interface AlertProps
  * page, feature or action
  */
 export const Alert = forwardRef<AlertProps, "div">(function Alert(props, ref) {
-  const { status = "info", ...rest } = props
+  const { status = "info", ...rest } = omitThemingProps(props)
   const { colorScheme } = STATUSES[status]
 
   const styles = useMultiStyleConfig("Alert", { ...props, colorScheme })

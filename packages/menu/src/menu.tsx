@@ -42,9 +42,9 @@ export interface MenuProps extends UseMenuProps, ThemingProps {
  */
 export const Menu: React.FC<MenuProps> = (props) => {
   const styles = useMultiStyleConfig("Menu", props)
-  const realProps = omitThemingProps(props)
+  const ownProps = omitThemingProps(props)
 
-  const ctx = useMenu(realProps)
+  const ctx = useMenu(ownProps)
   const context = React.useMemo(() => ctx, [ctx])
 
   return (

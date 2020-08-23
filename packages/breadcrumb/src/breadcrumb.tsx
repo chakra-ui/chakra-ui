@@ -174,7 +174,7 @@ export interface BreadcrumbProps
 export const Breadcrumb = forwardRef<BreadcrumbProps, "nav">(
   function Breadcrumb(props, ref) {
     const styles = useMultiStyleConfig("Breadcrumb", props)
-    const realProps = omitThemingProps(props)
+    const ownProps = omitThemingProps(props)
 
     const {
       children,
@@ -182,7 +182,7 @@ export const Breadcrumb = forwardRef<BreadcrumbProps, "nav">(
       separator = "/",
       className,
       ...rest
-    } = realProps
+    } = ownProps
 
     const validChildren = getValidChildren(children)
     const count = validChildren.length
