@@ -1,6 +1,13 @@
 import * as React from "react"
-import { chakra, PropsOf, SystemProps, forwardRef } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
+import {
+  chakra,
+  PropsOf,
+  SystemProps,
+  forwardRef,
+  ResponsiveValue,
+} from "@chakra-ui/system"
+import { mapResponsive, __DEV__ } from "@chakra-ui/utils"
+import { BoxProps } from "./box"
 
 export interface GridProps extends PropsOf<typeof chakra.div>, GridOptions {}
 
@@ -104,3 +111,25 @@ export interface GridOptions {
    */
   row?: SystemProps["gridRow"]
 }
+
+export interface GridColumnProps extends BoxProps {
+  span?: ResponsiveValue<number | "auto">
+  start?: ResponsiveValue<number | "auto">
+}
+
+export const GridColumn = forwardRef<GridColumnProps, "div">(
+  function GridColumn(props, ref) {
+    const { span, start, ...rest } = props
+    const gridColumn = mapResponsive(span, (v) =>
+      v === "auto" ? "auto" : `span ${v}/span ${v}`,
+    )
+    return (
+      <chakra.div
+        ref={ref}
+        gridColumn={gridColumn}
+        gridColumnStart={start}
+        {...rest}
+      />
+    )
+  },
+)
