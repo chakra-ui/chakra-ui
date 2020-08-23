@@ -126,4 +126,4 @@ module.exports = withMdx({
       }
     },
   },
-})(/* your normal nextjs config */)
+})({ target: "serverless" })

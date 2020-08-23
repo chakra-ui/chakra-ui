@@ -25,7 +25,7 @@ const App = ({ Component, pageProps }) => {
         <meta name="theme-color" content="#319795" />
         <script async defer src="https://buttons.github.io/buttons.js" />
       </Head>
-      <ChakraProvider resetCSS theme={theme} portalConfig={{ zIndex: 40 }}>
+      <ChakraProvider resetCSS theme={theme} portalZIndex={40}>
         <DefaultSeo {...siteConfig.seo} />
         <MDXProvider components={{ ...chakraComponents, ...MDXComponents }}>
           <Component {...pageProps} />

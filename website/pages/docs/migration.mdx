@@ -76,10 +76,6 @@ Swap out `ThemeProvider` with `ChakraProvider` to make setup cleaner.
   components
 - **GlobalStyle**: Provides the global styles defined in `theme.styles.global`
   to your application.
-- **StorageManager**: Manages color mode persistence. Chakra exports
-  `localStorageManager` (CSR) and `cookieStorageManager` (SSR) for this purpose.
-  By default, `localStorageManager` is used.
-  [Learn more about storage managers](/docs/features/color-mode#changing-the-storagemanager-for-server-side-rendering-ssr-apps).
 
 Optionally via prop:
 
@@ -239,30 +235,6 @@ errors, and reduces unused icons bloating your app.**
 > using `SimpleGrid` or made to wrap automatically using `Wrap`.
 
 ### ColorMode
-
-You can now set the initial color mode you want your application to start with.
-Set `theme.config.initialColorMode` to `light` or `dark`
-
-```jsx live=false
-const theme = {
-  config: {
-    initialColorMode: "dark",
-  },
-}
-```
-
-You can now update the color mode based on your user's device preference. Set
-`theme.config.useSystemColorMode` to `true` or `false`
-
-```jsx live=false
-const theme = {
-  config: {
-    useSystemColorMode: true,
-  },
-}
-```
-
-#### Bug Fixes
 
 - Color mode now persists correctly when you refresh the page. All you need to
   do is add `ColorModeScript` script as the first child of `body`.
