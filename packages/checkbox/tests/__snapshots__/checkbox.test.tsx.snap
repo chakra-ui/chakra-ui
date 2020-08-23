@@ -2,182 +2,6 @@
 
 exports[`Checkbox renders correctly 1`] = `
 <DocumentFragment>
-  .emotion-2 {
-  cursor: pointer;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  vertical-align: top;
-  position: relative;
-}
-
-.emotion-2[disabled],
-.emotion-2[disabled]:focus,
-.emotion-2[disabled]:hover,
-.emotion-2[aria-disabled=true],
-.emotion-2[aria-disabled=true]:focus,
-.emotion-2[aria-disabled=true]:hover,
-.emotion-2[data-disabled],
-.emotion-2[data-disabled]:focus,
-.emotion-2[data-disabled]:hover {
-  cursor: not-allowed;
-}
-
-.emotion-1 {
-  width: 1rem;
-  -webkit-transition: box-shadow 250ms;
-  transition: box-shadow 250ms;
-  border: 2px solid;
-  border-radius: 0.125rem;
-  border-color: inherit;
-  color: #FFFFFF;
-  height: 1rem;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  vertical-align: top;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-}
-
-.emotion-1[aria-checked=true],
-.emotion-1[data-checked] {
-  background: #3182CE;
-  border-color: #3182CE;
-  color: #FFFFFF;
-}
-
-.emotion-1[aria-checked=true]:hover,
-.emotion-1[data-checked]:hover,
-.emotion-1[aria-checked=true][data-hover],
-.emotion-1[data-checked][data-hover] {
-  background: #2A69AC;
-  border-color: #2A69AC;
-}
-
-.emotion-1[aria-checked=true][disabled],
-.emotion-1[data-checked][disabled],
-.emotion-1[aria-checked=true][disabled]:focus,
-.emotion-1[data-checked][disabled]:focus,
-.emotion-1[aria-checked=true][disabled]:hover,
-.emotion-1[data-checked][disabled]:hover,
-.emotion-1[aria-checked=true][aria-disabled=true],
-.emotion-1[data-checked][aria-disabled=true],
-.emotion-1[aria-checked=true][aria-disabled=true]:focus,
-.emotion-1[data-checked][aria-disabled=true]:focus,
-.emotion-1[aria-checked=true][aria-disabled=true]:hover,
-.emotion-1[data-checked][aria-disabled=true]:hover,
-.emotion-1[aria-checked=true][data-disabled],
-.emotion-1[data-checked][data-disabled],
-.emotion-1[aria-checked=true][data-disabled]:focus,
-.emotion-1[data-checked][data-disabled]:focus,
-.emotion-1[aria-checked=true][data-disabled]:hover,
-.emotion-1[data-checked][data-disabled]:hover {
-  border-color: #E2E8F0;
-  background: #E2E8F0;
-  color: #718096;
-}
-
-.emotion-1:indeterminate,
-.emotion-1[aria-checked=mixed],
-.emotion-1[data-indeterminate] {
-  background: #3182CE;
-  border-color: #3182CE;
-  color: #FFFFFF;
-}
-
-.emotion-1[disabled],
-.emotion-1[disabled]:focus,
-.emotion-1[disabled]:hover,
-.emotion-1[aria-disabled=true],
-.emotion-1[aria-disabled=true]:focus,
-.emotion-1[aria-disabled=true]:hover,
-.emotion-1[data-disabled],
-.emotion-1[data-disabled]:focus,
-.emotion-1[data-disabled]:hover {
-  background: #EDF2F7;
-  border-color: #EDF2F7;
-}
-
-.emotion-1:focus,
-.emotion-1[data-focus] {
-  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
-}
-
-.emotion-1[aria-invalid=true],
-.emotion-1[data-invalid] {
-  border-color: #E53E3E;
-}
-
-.emotion-0 {
-  opacity: 0;
-  -webkit-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-  -webkit-transition: -webkit-transform 200ms;
-  -webkit-transition: transform 200ms;
-  transition: transform 200ms;
-  font-size: 0.625rem;
-  vertical-align: middle;
-  display: inline-block;
-  line-height: 1em;
-  color: currentColor;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  width: 1em;
-  height: 1em;
-}
-
-<label
-    class="chakra-checkbox emotion-2"
-  >
-    <input
-      class="chakra-checkbox__input"
-      style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
-      type="checkbox"
-      value=""
-    />
-    <div
-      aria-hidden="true"
-      class="chakra-checkbox__control emotion-1"
-    >
-      <svg
-        class="chakra-icon emotion-0"
-        focusable="false"
-        viewBox="0 0 24 24"
-      >
-        <polygon
-          fill="currentColor"
-          points="9 21 1 13 4 10 9 15 21 3 24 6 9 21"
-        />
-      </svg>
-    </div>
-  </label>
-</DocumentFragment>
-`;
-
-exports[`Checkbox renders correctly 2`] = `
-<DocumentFragment>
   .emotion-3 {
   cursor: pointer;
   display: -webkit-inline-box;
@@ -373,6 +197,182 @@ exports[`Checkbox renders correctly 2`] = `
       class="chakra-checkbox__label emotion-2"
     >
       This is custom checkbox
+    </div>
+  </label>
+</DocumentFragment>
+`;
+
+exports[`matches snapshot  1`] = `
+<DocumentFragment>
+  .emotion-2 {
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  vertical-align: top;
+  position: relative;
+}
+
+.emotion-2[disabled],
+.emotion-2[disabled]:focus,
+.emotion-2[disabled]:hover,
+.emotion-2[aria-disabled=true],
+.emotion-2[aria-disabled=true]:focus,
+.emotion-2[aria-disabled=true]:hover,
+.emotion-2[data-disabled],
+.emotion-2[data-disabled]:focus,
+.emotion-2[data-disabled]:hover {
+  cursor: not-allowed;
+}
+
+.emotion-1 {
+  width: 1rem;
+  -webkit-transition: box-shadow 250ms;
+  transition: box-shadow 250ms;
+  border: 2px solid;
+  border-radius: 0.125rem;
+  border-color: inherit;
+  color: #FFFFFF;
+  height: 1rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  vertical-align: top;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-1[aria-checked=true],
+.emotion-1[data-checked] {
+  background: #3182CE;
+  border-color: #3182CE;
+  color: #FFFFFF;
+}
+
+.emotion-1[aria-checked=true]:hover,
+.emotion-1[data-checked]:hover,
+.emotion-1[aria-checked=true][data-hover],
+.emotion-1[data-checked][data-hover] {
+  background: #2A69AC;
+  border-color: #2A69AC;
+}
+
+.emotion-1[aria-checked=true][disabled],
+.emotion-1[data-checked][disabled],
+.emotion-1[aria-checked=true][disabled]:focus,
+.emotion-1[data-checked][disabled]:focus,
+.emotion-1[aria-checked=true][disabled]:hover,
+.emotion-1[data-checked][disabled]:hover,
+.emotion-1[aria-checked=true][aria-disabled=true],
+.emotion-1[data-checked][aria-disabled=true],
+.emotion-1[aria-checked=true][aria-disabled=true]:focus,
+.emotion-1[data-checked][aria-disabled=true]:focus,
+.emotion-1[aria-checked=true][aria-disabled=true]:hover,
+.emotion-1[data-checked][aria-disabled=true]:hover,
+.emotion-1[aria-checked=true][data-disabled],
+.emotion-1[data-checked][data-disabled],
+.emotion-1[aria-checked=true][data-disabled]:focus,
+.emotion-1[data-checked][data-disabled]:focus,
+.emotion-1[aria-checked=true][data-disabled]:hover,
+.emotion-1[data-checked][data-disabled]:hover {
+  border-color: #E2E8F0;
+  background: #E2E8F0;
+  color: #718096;
+}
+
+.emotion-1:indeterminate,
+.emotion-1[aria-checked=mixed],
+.emotion-1[data-indeterminate] {
+  background: #3182CE;
+  border-color: #3182CE;
+  color: #FFFFFF;
+}
+
+.emotion-1[disabled],
+.emotion-1[disabled]:focus,
+.emotion-1[disabled]:hover,
+.emotion-1[aria-disabled=true],
+.emotion-1[aria-disabled=true]:focus,
+.emotion-1[aria-disabled=true]:hover,
+.emotion-1[data-disabled],
+.emotion-1[data-disabled]:focus,
+.emotion-1[data-disabled]:hover {
+  background: #EDF2F7;
+  border-color: #EDF2F7;
+}
+
+.emotion-1:focus,
+.emotion-1[data-focus] {
+  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+}
+
+.emotion-1[aria-invalid=true],
+.emotion-1[data-invalid] {
+  border-color: #E53E3E;
+}
+
+.emotion-0 {
+  opacity: 0;
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+  -webkit-transition: -webkit-transform 200ms;
+  -webkit-transition: transform 200ms;
+  transition: transform 200ms;
+  font-size: 0.625rem;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1em;
+  color: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+}
+
+<label
+    class="chakra-checkbox emotion-2"
+  >
+    <input
+      class="chakra-checkbox__input"
+      style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+      type="checkbox"
+      value=""
+    />
+    <div
+      aria-hidden="true"
+      class="chakra-checkbox__control emotion-1"
+    >
+      <svg
+        class="chakra-icon emotion-0"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <polygon
+          fill="currentColor"
+          points="9 21 1 13 4 10 9 15 21 3 24 6 9 21"
+        />
+      </svg>
     </div>
   </label>
 </DocumentFragment>

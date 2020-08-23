@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button renders correctly 1`] = `
+exports[`matches snapshot 1`] = `
 <DocumentFragment>
   .emotion-0 {
   display: -webkit-inline-box;
@@ -72,11 +72,13 @@ exports[`Button renders correctly 1`] = `
 <button
     class="chakra-button emotion-0"
     type="button"
-  />
+  >
+    test
+  </button>
 </DocumentFragment>
 `;
 
-exports[`Button renders with icons 1`] = `
+exports[`matches snapshot with icons 1`] = `
 <DocumentFragment>
   .emotion-6 {
   display: -webkit-inline-box;

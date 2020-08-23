@@ -1,35 +1,43 @@
-import { render } from "@chakra-ui/test-utils"
+import { render, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Box, Badge } from "../src"
 
-describe("Box", () => {
-  test("should render box correctly", () => {
-    const tools = render(<Box>This is box</Box>)
-    expect(tools.asFragment()).toMatchSnapshot()
+describe("<Box />", () => {
+  test("renders box correctly", () => {
+    const { asFragment } = render(<Box>This is box</Box>)
+    expect(asFragment()).toMatchSnapshot()
+  })
+
+  it("passes a11y test", async () => {
+    await testA11y(<Box>this is a box</Box>)
   })
 
   test("as - prop works correctly", () => {
-    const tools = render(
+    const { asFragment } = render(
       <Box as="a" href="www.google.com">
         This is box
       </Box>,
     )
-    expect(tools.asFragment()).toMatchSnapshot()
+    expect(asFragment()).toMatchSnapshot()
   })
 })
 
-describe("Badge", () => {
-  test("should render with default theming", () => {
-    const tools = render(<Badge>Badge</Badge>)
-    expect(tools.asFragment()).toMatchSnapshot()
+describe("<Badge />", () => {
+  test("renders with default theming", () => {
+    const { asFragment } = render(<Badge>Badge</Badge>)
+    expect(asFragment()).toMatchSnapshot()
   })
 
-  test("override the theming props", () => {
-    const tools = render(
+  it("passes a11y test", async () => {
+    await testA11y(<Badge>this is a badge</Badge>)
+  })
+
+  test("overrides the theming props", () => {
+    const { asFragment } = render(
       <Badge variant="outline" colorScheme="pink">
         Badge
       </Badge>,
     )
-    expect(tools.asFragment()).toMatchSnapshot()
+    expect(asFragment()).toMatchSnapshot()
   })
 })

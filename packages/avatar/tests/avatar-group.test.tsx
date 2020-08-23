@@ -1,8 +1,8 @@
 import * as React from "react"
-import { render } from "@chakra-ui/test-utils"
+import { render, testA11y, screen } from "@chakra-ui/test-utils"
 import { Avatar, AvatarGroup } from "../src"
 
-test("AvatarGroup renders correctly", () => {
+test("matches snapshot", () => {
   const tools = render(
     <AvatarGroup>
       <Avatar />
@@ -11,8 +11,23 @@ test("AvatarGroup renders correctly", () => {
   expect(tools.asFragment()).toMatchSnapshot()
 })
 
+it("passes a11y test", async () => {
+  await testA11y(
+    <AvatarGroup>
+      <Avatar />
+    </AvatarGroup>,
+    {
+      axeOptions: {
+        rules: {
+          "svg-img-alt": { enabled: false },
+        },
+      },
+    },
+  )
+})
+
 test("renders a number avatar showing count of truncated avatars", () => {
-  const tools = render(
+  render(
     <AvatarGroup max={2}>
       <Avatar />
       <Avatar />
@@ -21,7 +36,7 @@ test("renders a number avatar showing count of truncated avatars", () => {
       <Avatar />
     </AvatarGroup>,
   )
-  const moreLabel = tools.getByText("+3")
+  const moreLabel = screen.getByText("+3")
   expect(moreLabel).toBeInTheDocument()
 })
 
