@@ -342,6 +342,62 @@ import { Box, Text } from "@chakra-ui/core"
 | `textShadow` | `text-shadow` | `shadows`   |
 | `boxShadow`  | `box-shadow`  | `shadows`   |
 
+### Pseudo
+
+```jsx live=false
+import { Button } from '@chakra-ui/core'
+
+// :hover style
+<Button colorScheme="teal" _hover={{
+  background: "white",
+  color: "teal.500"
+}}>
+  Hover me
+</Button>
+```
+
+| Prop            | CSS Property                                                            | Theme Field |
+| --------------- | ----------------------------------------------------------------------- | ----------- |
+| `_hover`        | `:hover`,<br/>`[data-hover]`                                            | none        |
+| `_active`       | `:active`,<br/>`[data-active]`                                          | none        |
+| `_focus`        | `:focus`,<br/>`[data-focus]`                                            | none        |
+| `_highlighted`  | `[data-highlighted]`                                                    | none        |
+| `_focusWithin`  | `:focus-within`                                                         | none        |
+| `_focusVisible` | `:focus-visible`                                                        | none        |
+| `_disabled`     | `[disabled]`,<br/>`[aria-disabled=true]`,<br/>`[data-disabled]`         | none        |
+| `_readOnly`     | `[aria-readonly=true]`,<br/>`[readonly]`, <br/>`[data-readonly]`        | none        |
+| `_before`       | `::before`                                                              | none        |
+| `_after`        | `::after`                                                               | none        |
+| `_empty`        | `:empty`                                                                | none        |
+| `_expanded`     | `[aria-expanded=true]`,<br/>`[data-expanded]`                           | none        |
+| `_checked`      | `[aria-checked=true]`,<br/>`[data-checked]`                             | none        |
+| `_grabbed`      | `[aria-grabbed=true]`,<br/>`[data-grabbed]`                             | none        |
+| `_pressed`      | `[aria-pressed=true]`,<br/>`[data-pressed]`                             | none        |
+| `_invalid`      | `[aria-invalid=true]`,<br/>`[data-invalid]`                             | none        |
+| `_valid`        | `[data-valid]`,<br/>`[data-state=valid]`                                | none        |
+| `_loading`      | `[data-loading]`,<br/>`[aria-busy=true]`                                | none        |
+| `_selected`     | `[aria-selected=true]`,<br/>`[data-selected]`                           | none        |
+| `_hidden`       | `[hidden]`,<br/>`[data-hidden]`                                         | none        |
+| `_autofill`     | `:-webkit-autofill`                                                     | none        |
+| `_even`         | `:nth-of-type(even)`                                                    | none        |
+| `_odd`          | `:nth-of-type(odd)`                                                     | none        |
+| `_first`        | `:first-of-type`                                                        | none        |
+| `_last`         | `:last-of-type`                                                         | none        |
+| `_notFirst`     | `:not(:first-of-type)`                                                  | none        |
+| `_notLast`      | `:not(:last-of-type)`                                                   | none        |
+| `_visited`      | `:visited`                                                              | none        |
+| `_activeLink`   | `[aria-current=page]`                                                   | none        |
+| `_indeterminate`| `:indeterminate`,<br/>`[aria-checked=mixed]`,<br/>`[data-indeterminate]`| none        |
+| `_groupHover`   | ``                                                                      | none        |
+| `_groupFocus`   | ``                                                                      | none        |
+| `_groupActive`  | ``                                                                      | none        |
+| `_groupDisabled`| ``                                                                      | none        |
+| `_groupInvalid` | ``                                                                      | none        |
+| `_groupChecked` | ``                                                                      | none        |
+| `_placeholder`  | `::placeholder`                                                         | none        |
+| `_fullScreen`   | `:fullscreen`                                                           | none        |
+| `_selection`    | `::selection`                                                           | none        |
+
 ### Other Props
 
 Asides all the common style props listed above, all component will accept the
