@@ -167,7 +167,7 @@ test("handles preview and input callbacks", () => {
   fireEvent.keyDown(input, { key: "Escape" })
   expect(onKeyDown).toHaveBeenCalled()
 
-  expect(input).toHaveAttribute("hidden")
+  expect(input).not.toBeVisible()
 })
 
 test("has the proper aria attributes", () => {
@@ -191,18 +191,20 @@ test("has the proper aria attributes", () => {
     </Editable>,
   )
   // preview and input have aria-disabled when `Editable` is disabled
-  expect(preview).toHaveAttribute("aria-disabled", "true"),
-    expect(input).toHaveAttribute("aria-disabled", "true")
+  expect(preview).toHaveAttribute("aria-disabled", "true")
+  expect(input).toHaveAttribute("aria-disabled", "true")
 })
 
 test("can submit on blur", () => {
   const onSubmit = jest.fn()
+
   render(
     <Editable submitOnBlur onSubmit={onSubmit} defaultValue="testing">
       <EditablePreview data-testid="preview" />
       <EditableInput data-testid="input" />
     </Editable>,
   )
+
   const input = screen.getByTestId("input")
 
   fireEvent.blur(input)

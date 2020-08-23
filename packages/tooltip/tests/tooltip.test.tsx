@@ -1,4 +1,4 @@
-import { act, axe, fireEvent, render, screen } from "@chakra-ui/test-utils"
+import { act, testA11y, fireEvent, render, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Tooltip } from "../src"
 
@@ -36,9 +36,7 @@ test("should have no violations", async () => {
 
   const tooltip = screen.queryByRole("tooltip") as HTMLElement
 
-  axe(tooltip).then((res) => {
-    expect(res).toHaveNoViolations()
-  })
+  await testA11y(tooltip)
 })
 
 test("shows on mouseover and closes on mouseout", async () => {

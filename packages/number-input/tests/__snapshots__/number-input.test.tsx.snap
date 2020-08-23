@@ -9,6 +9,7 @@ exports[`should render correctly 1`] = `
   </label>
   .emotion-4 {
   position: relative;
+  z-index: 0;
 }
 
 .emotion-0 {
@@ -188,5 +189,8 @@ exports[`should render correctly 1`] = `
       </div>
     </div>
   </div>
+  <div
+    class="chakra-portal-manager"
+  />
 </DocumentFragment>
 `;
