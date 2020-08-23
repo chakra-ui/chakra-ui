@@ -178,7 +178,7 @@
     "fs-utils": "0.7.0",
     "husky": "4.2.5",
     "inquirer": "7.3.3",
-    "jest": "26.4.1",
+    "jest": "26.4.2",
     "jest-emotion": "10.0.32",
     "jest-environment-jsdom": "26.3.0",
     "lerna": "3.22.1",
