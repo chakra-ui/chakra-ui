@@ -11,13 +11,7 @@ export interface ThemingProps {
   styleConfig?: Dict
 }
 
-interface ValidHTMLProps {
-  htmlWidth?: string | number
-  htmlHeight?: string | number
-  htmlSize?: string | number
-}
-
-export interface ChakraProps extends SystemProps, ValidHTMLProps {
+export interface ChakraProps extends SystemProps {
   /**
    * apply layer styles defined in `theme.layerStyles`
    */

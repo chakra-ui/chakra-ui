@@ -7,14 +7,11 @@ import { memoize } from "@chakra-ui/utils"
  */
 const allPropNames = [
   ...propNames,
-  "htmlWidth",
-  "htmlHeight",
   "textStyle",
   "layerStyle",
   "apply",
   "isTruncated",
   "noOfLines",
-  "htmlSize",
   "focusBorderColor",
   "errorBorderColor",
   "as",
@@ -23,9 +20,20 @@ const allPropNames = [
   "sx",
 ]
 
+/**
+ * htmlWidth and htmlHeight is used in the <Image />
+ * component to support the native `width` and `height` attributes
+ *
+ * https://github.com/chakra-ui/chakra-ui/issues/149
+ */
+const validHTMLProps = ["htmlWidth", "htmlHeight", "htmlSize"]
+
 function createShouldForwardProp(props: any) {
   const regex = new RegExp(`^(${props.join("|")})$`)
-  return memoize((prop: string) => !regex.test(prop))
+  return memoize((prop: string) => {
+    if (validHTMLProps.includes(prop)) return true
+    return !regex.test(prop)
+  })
 }
 
 export const shouldForwardProp = createShouldForwardProp(allPropNames)

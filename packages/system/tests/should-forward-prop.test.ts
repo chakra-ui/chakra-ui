@@ -8,13 +8,7 @@ describe("does not forward styled-system props", () => {
 })
 
 describe("does not forward reserved internal props", () => {
-  const internalPropNames = [
-    "htmlWidth",
-    "htmlHeight",
-    "htmlSize",
-    "__css",
-    "sx",
-  ]
+  const internalPropNames = ["__css", "sx"]
 
   test.each(internalPropNames)("%s", (propName) => {
     expect(shouldForwardProp(propName)).toBe(false)
