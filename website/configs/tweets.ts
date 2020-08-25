@@ -50,7 +50,7 @@ const tweets = [
               Last but not least, proudly made in 🇳🇬&nbsp; by @thesegunadebayo!`,
     handle: "@rauchg",
     name: "Guillermo Rauch ▲",
-    date: "Sep 5, 2020",
+    date: "Sep 5, 2019",
     image:
       "https://pbs.twimg.com/profile_images/1029230542716264448/LgLb--Of_200x200.jpg",
     url: "https://twitter.com/rauchg/status/1169632334389248000",
