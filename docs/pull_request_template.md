@@ -1,4 +1,4 @@
-<!-- Please refer to our contributing documentation for any questions on submitting a pull request, or let us know here if you need any help: https://ionicframework.com/docs/building/contributing -->
+<!-- Please refer to our contributing documentation for any questions on submitting a pull request, or let us know here if you need any help: https://github.com/chakra-ui/chakra-ui/blob/develop/CONTRIBUTING.md --> 
 
 ## Pull request checklist
 
@@ -44,7 +44,7 @@ Issue Number: N/A
 <!-- If this introduces a breaking change, please describe the impact and migration path for existing applications below. -->
 
 
-## Other information<!-- Please refer to our contributing documentation for any questions on submitting a pull request, or let us know here if you need any help: https://ionicframework.com/docs/building/contributing -->
+## Other information<!-- Please refer to our contributing documentation for any questions on submitting a pull request, or let us know here if you need any help: https://github.com/chakra-ui/chakra-ui -->
 2
 ​
 3
