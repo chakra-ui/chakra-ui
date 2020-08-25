@@ -13,7 +13,12 @@ import {
   Stack,
   chakra,
   Center,
+  SimpleGrid,
+  BoxProps,
+  Img,
 } from "@chakra-ui/core"
+import fs from "fs"
+import path from "path"
 import { DiGithubBadge } from "react-icons/di"
 import { MdAccessibility, MdPalette, MdGrain } from "react-icons/md"
 import { IoMdMoon } from "react-icons/io"
@@ -33,6 +38,7 @@ import { chunk } from "@chakra-ui/utils"
 import LogoMark from "components/logo-mark"
 import Header from "components/header"
 import DiscordStrip from "components/discord-strip"
+import { FiDownload, FiGithub, FiUsers } from "react-icons/fi"
 
 const Feature = ({ title, icon, children, ...props }) => {
   return (
@@ -85,7 +91,39 @@ const sampleCode = `
 </Box>
 `
 
-const HomePage = () => {
+type StatBoxProps = BoxProps & {
+  icon?: React.ElementType
+  title: string
+  description: string
+}
+
+const StatBox = (props: StatBoxProps) => {
+  const { icon: StatIcon, title, description, ...rest } = props
+  return (
+    <Flex
+      direction="column"
+      align={{ base: "center", md: "flex-start" }}
+      pl={{ base: 0, md: "8" }}
+      borderLeft="2px solid"
+      borderLeftColor="yellow.200"
+      {...rest}
+    >
+      <Box
+        fontSize={{ base: "4rem", md: "6.75rem" }}
+        lineHeight="1em"
+        mb="20px"
+      >
+        {title}
+      </Box>
+      <Stack isInline align="center">
+        <StatIcon size="24px" />
+        <Text>{description}</Text>
+      </Stack>
+    </Flex>
+  )
+}
+
+const HomePage = ({ members }) => {
   return (
     <>
       <SEO
@@ -94,7 +132,7 @@ const HomePage = () => {
       />
       <Header />
       <Box mb={20}>
-        <Box as="section" pt={40} pb={24}>
+        <Box as="section" pt="12rem" pb="6rem">
           <Container>
             <Box maxW="760px" mx="auto" textAlign="center">
               <chakra.h1
@@ -213,7 +251,7 @@ const HomePage = () => {
                 fontWeight="bold"
                 letterSpacing="tight"
                 lineHeight="1.24"
-                fontSize="2.75rem"
+                fontSize={{ base: "2.75rem", md: "3.5rem" }}
                 mb="5"
               >
                 An experience you'd expect from a design system.
@@ -251,6 +289,76 @@ const HomePage = () => {
                 need.
               </Feature>
             </Grid>
+          </Container>
+        </Box>
+
+        <Box as="section" bg="teal.500">
+          <Container py="7.5rem" maxW="1280px" color="white">
+            <Box maxW="760px" mx="auto" textAlign="center" mb="56px">
+              <chakra.h1
+                fontWeight="bold"
+                letterSpacing="tight"
+                lineHeight="1.24"
+                fontSize={{ base: "2.75rem", md: "3.5rem" }}
+                mb="5"
+              >
+                Chakra is growing quickly
+              </chakra.h1>
+              <chakra.p opacity={0.7} fontSize="lg">
+                We're dedicated to improving the experience and performance of
+                Chakra UI
+              </chakra.p>
+            </Box>
+            <SimpleGrid
+              columns={{ base: 1, md: 2 }}
+              maxW="880px"
+              mx="auto"
+              spacing="4rem"
+              px={{ md: 12 }}
+            >
+              <StatBox
+                icon={FiDownload}
+                title="140k"
+                description="Downloads per month"
+              />
+              <StatBox
+                icon={FiGithub}
+                title="9.9k"
+                description="Github stars"
+              />
+              <StatBox
+                icon={FiUsers}
+                title="6"
+                description="Core contributors"
+              />
+              <StatBox
+                icon={FaDiscord}
+                title="200+"
+                description="Discord members"
+              />
+            </SimpleGrid>
+
+            <Box mt="5rem" textAlign="center">
+              <chakra.p
+                textTransform="uppercase"
+                fontSize="sm"
+                letterSpacing="widest"
+                fontWeight="bold"
+                mb="48px"
+              >
+                Chakra Heros 🥇
+              </chakra.p>
+              <Wrap spacing="4" justify="center" maxW="660px" mx="auto">
+                {members.map((i) => (
+                  <Img
+                    key={i.login}
+                    htmlWidth="80px"
+                    rounded="full"
+                    src={i.avatar_url}
+                  />
+                ))}
+              </Wrap>
+            </Box>
           </Container>
         </Box>
 
@@ -380,6 +488,31 @@ const HomePage = () => {
       </Box>
     </>
   )
+}
+
+export async function getStaticProps() {
+  /**
+   * Read the profile/bio of each member from `.all-membersrc` file
+   * to avoid overfetching from Github
+   */
+  const membersRcPath = path.resolve("..", ".all-membersrc")
+  const { members } = JSON.parse(fs.readFileSync(membersRcPath, "utf-8"))
+
+  /**
+   * Read contributors from `.all-contributorsrc` file
+   * to avoid overfetching from Github
+   */
+  const contributorsRcPath = path.resolve("..", ".all-contributorsrc")
+  const { contributors } = JSON.parse(
+    fs.readFileSync(contributorsRcPath, "utf-8"),
+  )
+
+  return {
+    props: {
+      members,
+      contributors,
+    },
+  }
 }
 
 export default HomePage

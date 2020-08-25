@@ -10,7 +10,6 @@ import {
   Wrap,
 } from "@chakra-ui/core"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
-import { Octokit } from "@octokit/rest"
 import Header from "components/header"
 import SEO from "components/seo"
 import fs from "fs"
