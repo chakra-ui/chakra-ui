@@ -44,7 +44,7 @@ export const ColorModeProvider: React.FC = (props) => {
     rawSetColorMode(mode)
   }, [])
 
-  React.useEffect(() => {
+  useSafeLayoutEffect(() => {
     const dark = colorMode === "dark"
     body.classList.add(dark ? classNames.dark : classNames.light)
     body.classList.remove(dark ? classNames.light : classNames.dark)
