@@ -3,6 +3,7 @@ import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { useColorModeValue, useToken } from "@chakra-ui/system"
 import {
   callAllHandlers,
+  Focusable,
   HTMLProps,
   mergeRefs,
   PropGetter,
@@ -36,7 +37,7 @@ export interface UsePopoverProps {
   /**
    * The `ref` of the element that should receive focus when the popover opens.
    */
-  initialFocusRef?: RefObject<any>
+  initialFocusRef?: RefObject<Focusable>
   /**
    * If `true`, focus will be returned to the element that triggers the popover
    * when it closes
