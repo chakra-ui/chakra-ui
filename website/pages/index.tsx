@@ -11,9 +11,11 @@ import {
   Heading,
   Icon,
   Img,
+  LightMode,
   SimpleGrid,
   Stack,
   Text,
+  useColorModeValue,
   Wrap,
 } from "@chakra-ui/core"
 import { chunk } from "@chakra-ui/utils"
@@ -39,7 +41,13 @@ import { MdAccessibility, MdGrain, MdPalette } from "react-icons/md"
 
 const Feature = ({ title, icon, children, ...props }) => {
   return (
-    <Box bg="white" rounded="12px" shadow="base" p="40px" {...props}>
+    <Box
+      bg={useColorModeValue("white", "gray.800")}
+      rounded="12px"
+      shadow="base"
+      p="40px"
+      {...props}
+    >
       <Flex
         rounded="full"
         w="12"
@@ -93,6 +101,7 @@ const StatBox = (props: StatBoxProps) => {
 }
 
 const HomePage = ({ members, sponsors }) => {
+  const logoBg = useColorModeValue("transparent", "gray.700")
   return (
     <>
       <SEO
@@ -113,7 +122,10 @@ const HomePage = ({ members, sponsors }) => {
                 lineHeight="1.2"
               >
                 Build accessible React apps
-                <Box as="span" color="teal.500">
+                <Box
+                  as="span"
+                  color={useColorModeValue("teal.500", "teal.300")}
+                >
                   {" "}
                   with speed
                 </Box>
@@ -165,7 +177,12 @@ const HomePage = ({ members, sponsors }) => {
 
         <Box as="section" pt="48px" pb="32px">
           <Container textAlign="center">
-            <chakra.p textStyle="caps" color="teal.500" mb="48px">
+            <chakra.p
+              fontWeight="500"
+              textStyle="caps"
+              color={useColorModeValue("teal.500", "teal.300")}
+              mb="48px"
+            >
               Trusted in Production By
             </chakra.p>
             <Wrap
@@ -173,18 +190,20 @@ const HomePage = ({ members, sponsors }) => {
               mx="auto"
               justify="center"
               align="center"
-              spacing="50px"
+              spacing="24px"
             >
               {users.map((user) => {
                 const hasLogo = user.image.includes(".")
                 if (hasLogo) {
                   return (
-                    <chakra.img
-                      key={user.image}
-                      h="24px"
-                      w="auto"
-                      src={user.image}
-                    />
+                    <Box bg="white" p="5" rounded="md">
+                      <chakra.img
+                        key={user.image}
+                        h="24px"
+                        w="auto"
+                        src={user.image}
+                      />
+                    </Box>
                   )
                 }
                 return null
@@ -192,9 +211,9 @@ const HomePage = ({ members, sponsors }) => {
               <Box
                 p="4"
                 border="1px dashed"
-                borderColor="teal.200"
+                borderColor={useColorModeValue("teal.200", "teal.500")}
+                bg={useColorModeValue("teal.50", "whiteAlpha.200")}
                 rounded="md"
-                bg="teal.50"
               >
                 <Box as="span" mr="1" role="img">
                   💖
@@ -204,8 +223,6 @@ const HomePage = ({ members, sponsors }) => {
             </Wrap>
           </Container>
         </Box>
-
-        {/* <Divider /> */}
 
         <Box as="section">
           <Container py="80px">
@@ -245,7 +262,11 @@ const HomePage = ({ members, sponsors }) => {
           </Container>
         </Box>
 
-        <Box as="section" pt="240px" bg="gray.50">
+        <Box
+          as="section"
+          pt="240px"
+          bg={useColorModeValue("gray.50", "gray.900")}
+        >
           <Container py="120px" maxW="1280px">
             <Box maxW="760px" mx="auto" textAlign="center" mb="56px">
               <chakra.h2 textStyle="heading" mb="5">
@@ -408,17 +429,19 @@ const HomePage = ({ members, sponsors }) => {
                   <Text opacity={0.7}>Sponsor the Chakra UI maintainers</Text>
                 </Box>
               </Stack>
-              <Button
-                w={{ base: "100%", md: "auto" }}
-                alignSelf="center"
-                as="a"
-                minW="7rem"
-                colorScheme="teal"
-                href="https://opencollective.com/chakra-ui"
-                target="_blank"
-              >
-                Sponsor
-              </Button>
+              <LightMode>
+                <Button
+                  w={{ base: "100%", md: "auto" }}
+                  alignSelf="center"
+                  as="a"
+                  minW="7rem"
+                  colorScheme="teal"
+                  href="https://opencollective.com/chakra-ui"
+                  target="_blank"
+                >
+                  Sponsor
+                </Button>
+              </LightMode>
             </Stack>
 
             <Stack
@@ -457,17 +480,19 @@ const HomePage = ({ members, sponsors }) => {
                   <Text opacity={0.7}>Sponsor the creator, Segun Adebayo</Text>
                 </Box>
               </Stack>
-              <Button
-                w={{ base: "100%", md: "auto" }}
-                alignSelf="center"
-                as="a"
-                minW="7rem"
-                colorScheme="teal"
-                href="https://www.patreon.com/segunadebayo"
-                target="_blank"
-              >
-                Sponsor
-              </Button>
+              <LightMode>
+                <Button
+                  w={{ base: "100%", md: "auto" }}
+                  alignSelf="center"
+                  as="a"
+                  minW="7rem"
+                  colorScheme="teal"
+                  href="https://www.patreon.com/segunadebayo"
+                  target="_blank"
+                >
+                  Sponsor
+                </Button>
+              </LightMode>
             </Stack>
 
             <Box maxW="600px" mx="auto" textAlign="center">
@@ -515,13 +540,13 @@ const HomePage = ({ members, sponsors }) => {
           </Container>
         </Box>
 
-        <Box bg="gray.50">
+        <Box>
           <Container py="120px" maxW="800px" mx="auto" textAlign="center">
             <Flex direction="column" align="center">
               <Center rounded="full" w="100px" h="100px" bg="teal.400">
                 <LogoMark w="80%" color="white" />
               </Center>
-              <Box maxW="600px" mx="Auto">
+              <Box maxW="600px" mx="auto">
                 <chakra.h2 textStyle="heading-2" mt="6" mb="6">
                   Get started with Chakra today.
                 </chakra.h2>
@@ -546,7 +571,7 @@ const HomePage = ({ members, sponsors }) => {
         </Box>
 
         <Box
-          bg="yellow.200"
+          bg={useColorModeValue("teal.50", "#81e6d91c")}
           bgImage="url(/audio-bar.svg)"
           bgPos="bottom center"
           bgSize="120px"
