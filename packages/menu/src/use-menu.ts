@@ -275,7 +275,7 @@ export function useMenuList(props: UseMenuListProps) {
     hidden: !isOpen,
     "aria-orientation": "vertical" as React.AriaAttributes["aria-orientation"],
     "data-placement": placement,
-    style: { ...props.style, ...popper.style },
+    style: { ...popper.style, ...props.style },
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
   }
 }
