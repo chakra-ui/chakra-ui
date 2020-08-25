@@ -1,44 +1,46 @@
-import * as React from "react"
-import NextLink from "next/link"
+import * as Chakra from "@chakra-ui/core"
 import {
   Box,
-  Heading,
-  Text,
+  BoxProps,
   Button,
-  Grid,
+  Center,
+  chakra,
+  Circle,
   Divider,
   Flex,
-  Wrap,
+  Grid,
+  Heading,
   Icon,
-  Stack,
-  chakra,
-  Center,
-  SimpleGrid,
-  BoxProps,
   Img,
+  SimpleGrid,
+  Stack,
+  Text,
+  TextProps,
+  Wrap,
 } from "@chakra-ui/core"
-import fs from "fs"
-import path from "path"
-import { DiGithubBadge } from "react-icons/di"
-import { MdAccessibility, MdPalette, MdGrain } from "react-icons/md"
-import { IoMdMoon } from "react-icons/io"
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live"
-import theme from "prism-react-renderer/themes/nightOwl"
-import * as Chakra from "@chakra-ui/core"
-import * as ReactMdIcons from "react-icons/md"
-import Container from "components/container"
-import { Footer } from "components/footer"
-import SEO from "components/seo"
+import { chunk } from "@chakra-ui/utils"
 import users from "chakra-users"
-import { AiFillThunderbolt } from "react-icons/ai"
-import { FaArrowRight, FaDiscord } from "react-icons/fa"
+import Container from "components/container"
+import DiscordStrip from "components/discord-strip"
+import { Footer } from "components/footer"
+import Header from "components/header"
+import LogoMark from "components/logo-mark"
+import SEO from "components/seo"
 import TweetCard from "components/tweet-card"
 import tweets from "configs/tweets"
-import { chunk } from "@chakra-ui/utils"
-import LogoMark from "components/logo-mark"
-import Header from "components/header"
-import DiscordStrip from "components/discord-strip"
+import fs from "fs"
+import NextLink from "next/link"
+import path from "path"
+import theme from "prism-react-renderer/themes/nightOwl"
+import * as React from "react"
+import { AiFillThunderbolt } from "react-icons/ai"
+import { DiGithubBadge } from "react-icons/di"
+import { FaArrowRight, FaDiscord } from "react-icons/fa"
 import { FiDownload, FiGithub, FiUsers } from "react-icons/fi"
+import { IoMdMoon } from "react-icons/io"
+import * as ReactMdIcons from "react-icons/md"
+import { MdAccessibility, MdGrain, MdPalette } from "react-icons/md"
+import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live"
 
 const Feature = ({ title, icon, children, ...props }) => {
   return (
@@ -123,7 +125,17 @@ const StatBox = (props: StatBoxProps) => {
   )
 }
 
-const HomePage = ({ members }) => {
+const AllCapsText = (props: TextProps) => (
+  <Text
+    textTransform="uppercase"
+    fontSize="sm"
+    letterSpacing="widest"
+    fontWeight="bold"
+    {...props}
+  />
+)
+
+const HomePage = ({ members, sponsors }) => {
   return (
     <>
       <SEO
@@ -195,16 +207,9 @@ const HomePage = ({ members }) => {
 
         <Box as="section" pt="48px" pb="72px">
           <Container textAlign="center">
-            <chakra.p
-              textTransform="uppercase"
-              fontSize="sm"
-              letterSpacing="widest"
-              fontWeight="medium"
-              color="teal.500"
-              mb="48px"
-            >
+            <AllCapsText color="teal.500" mb="48px">
               Trusted in Production By
-            </chakra.p>
+            </AllCapsText>
             <Wrap
               maxW="800px"
               mx="auto"
@@ -333,21 +338,13 @@ const HomePage = ({ members }) => {
               />
               <StatBox
                 icon={FaDiscord}
-                title="200+"
+                title="450+"
                 description="Discord members"
               />
             </SimpleGrid>
 
             <Box mt="5rem" textAlign="center">
-              <chakra.p
-                textTransform="uppercase"
-                fontSize="sm"
-                letterSpacing="widest"
-                fontWeight="bold"
-                mb="48px"
-              >
-                Chakra Heros 🥇
-              </chakra.p>
+              <AllCapsText mb="48px">Chakra Heros 🥇</AllCapsText>
               <Wrap spacing="4" justify="center" maxW="660px" mx="auto">
                 {members.map((i) => (
                   <Img
@@ -391,7 +388,163 @@ const HomePage = ({ members }) => {
           </Container>
         </Box>
 
-        <Divider />
+        <Box bg="teal.500">
+          <Container py="120px" maxW="1200px" px="32px" color="white">
+            <Box maxW="560px" mx="auto" textAlign="center" mb="56px">
+              <chakra.h1
+                textAlign="center"
+                fontWeight="bold"
+                letterSpacing="tight"
+                fontSize="2.75rem"
+                mb="4"
+              >
+                Support Chakra UI 💖
+              </chakra.h1>
+              <Text opacity={0.7} lineHeight="taller">
+                Our maintainers devote their time, effort, and heart to ensure
+                Chakra UI keeps getting better. Show some love By donating to
+                our collective 🙏
+              </Text>
+            </Box>
+
+            <Stack
+              direction={{ base: "column", md: "row" }}
+              spacing="6"
+              maxW="600px"
+              mx="auto"
+              bg="white"
+              color="gray.800"
+              shadow="md"
+              rounded="lg"
+              p="6"
+            >
+              <Stack flex="1" isInline spacing="6" pr={{ base: 0, md: "4" }}>
+                <Icon h="40px" w="40px" viewBox="0 0 32 32">
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M29.1531 6.8877C30.948 9.47379 31.9999 12.614 31.9999 16.0003C31.9999 19.3866 30.948 22.5271 29.1531 25.1129L25.0085 20.9684C25.8225 19.4957 26.2858 17.8019 26.2858 16.0003C26.2858 14.1987 25.8225 12.5052 25.0085 11.0325L29.1531 6.8877Z"
+                    fill="#8FC7FF"
+                  />
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M25.1126 2.84685L20.9678 6.99138C19.4951 6.17745 17.8016 5.71417 16 5.71417C10.3194 5.71417 5.71418 10.3194 5.71418 16C5.71418 21.6806 10.3194 26.2858 16 26.2858C17.8016 26.2858 19.4951 25.8226 20.9678 25.0086L25.1126 29.1532C22.5265 30.948 19.3863 32 16 32C7.16352 32 0 24.8365 0 16C0 7.16351 7.16352 0 16 0C19.3863 0 22.5265 1.05197 25.1126 2.84685Z"
+                    fill="#297EFF"
+                  />
+                </Icon>
+                <Box flex="1">
+                  <Text fontSize="lg" fontWeight="bold" mt="-1">
+                    Open Collective
+                  </Text>
+                  <Text opacity={0.7}>Sponsor the Chakra UI maintainers</Text>
+                </Box>
+              </Stack>
+              <Button
+                w={{ base: "100%", md: "auto" }}
+                alignSelf="center"
+                as="a"
+                minW="7rem"
+                colorScheme="teal"
+                href="https://opencollective.com/chakra-ui"
+                target="_blank"
+              >
+                Sponsor
+              </Button>
+            </Stack>
+
+            <Stack
+              direction={{ base: "column", md: "row" }}
+              maxW="600px"
+              mt="6"
+              mx="auto"
+              bg="white"
+              color="gray.800"
+              shadow="md"
+              rounded="lg"
+              p="6"
+            >
+              <Stack flex="1" isInline spacing="6" pr={{ base: 0, md: "4" }}>
+                <Icon w="40px" h="40px" viewBox="0 0 569 546">
+                  <g>
+                    <circle
+                      cx="362.589996"
+                      cy="204.589996"
+                      r="204.589996"
+                      fill="#f96854"
+                    />
+                    <rect
+                      fill="#052d49"
+                      height="545.799988"
+                      width="100"
+                      x="0"
+                      y="0"
+                    />
+                  </g>
+                </Icon>
+                <Box flex="1">
+                  <Text fontSize="lg" fontWeight="bold" mt="-1">
+                    Patreon
+                  </Text>
+                  <Text opacity={0.7}>Sponsor the creator, Segun Adebayo</Text>
+                </Box>
+              </Stack>
+              <Button
+                w={{ base: "100%", md: "auto" }}
+                alignSelf="center"
+                as="a"
+                minW="7rem"
+                colorScheme="teal"
+                href="https://www.patreon.com/segunadebayo"
+                target="_blank"
+              >
+                Sponsor
+              </Button>
+            </Stack>
+
+            <Box maxW="600px" mx="auto" textAlign="center">
+              <AllCapsText mb="8" mt="4rem">
+                Organization Sponsors 🏦
+              </AllCapsText>
+              <Wrap justify="center">
+                {sponsors.company.map((i) => (
+                  <Circle
+                    as="a"
+                    href={i.website}
+                    target="_blank"
+                    size="80px"
+                    bg="white"
+                    shadow="lg"
+                  >
+                    <Img
+                      rounded="full"
+                      w="56px"
+                      h="56px"
+                      key={i.MemberId}
+                      src={i.image}
+                    />
+                  </Circle>
+                ))}
+              </Wrap>
+
+              <AllCapsText mb="8" mt="4rem">
+                Individual Sponsors 🥇
+              </AllCapsText>
+              <Wrap justify="center">
+                {sponsors.individual.map((i) => (
+                  <Img
+                    rounded="full"
+                    w="40px"
+                    h="40px"
+                    objectFit="cover"
+                    key={i.MemberId}
+                    src={i.image}
+                  />
+                ))}
+              </Wrap>
+            </Box>
+          </Container>
+        </Box>
 
         <Box bg="gray.50">
           <Container py="120px" maxW="800px" mx="auto" textAlign="center">
@@ -399,21 +552,23 @@ const HomePage = ({ members }) => {
               <Center rounded="full" w="100px" h="100px" bg="teal.400">
                 <LogoMark w="80%" color="white" />
               </Center>
-              <chakra.h1
-                textAlign="center"
-                fontWeight="bold"
-                letterSpacing="tight"
-                lineHeight="1.24"
-                fontSize="2.75rem"
-                mt="6"
-                mb="6"
-              >
-                Get started with Chakra today.
-              </chakra.h1>
-              <Text mb="40px" fontSize="lg" opacity={0.7}>
-                Chakra keeps everyone aligned and working without friction.
-                Engineers and designers using the same language.
-              </Text>
+              <Box maxW="600px" mx="Auto">
+                <chakra.h1
+                  textAlign="center"
+                  fontWeight="bold"
+                  letterSpacing="tight"
+                  lineHeight="1.24"
+                  fontSize="2.75rem"
+                  mt="6"
+                  mb="6"
+                >
+                  Get started with Chakra today.
+                </chakra.h1>
+                <Text mb="40px" fontSize="lg" opacity={0.7}>
+                  Chakra keeps everyone aligned and working without friction.
+                  Engineers and designers using the same language.
+                </Text>
+              </Box>
               <Button
                 h="4rem"
                 px="40px"
@@ -507,10 +662,23 @@ export async function getStaticProps() {
     fs.readFileSync(contributorsRcPath, "utf-8"),
   )
 
+  const res = await fetch(
+    "https://opencollective.com/chakra-ui/members/all.json",
+  )
+  const sponsors = await res.json()
+  const individualSponsors = sponsors.filter(
+    (i) => i.type === "USER" && i.image != null,
+  )
+  const companySponsors = sponsors.filter((i) => i.type === "ORGANIZATION")
+
   return {
     props: {
       members,
       contributors,
+      sponsors: {
+        individual: individualSponsors,
+        company: companySponsors,
+      },
     },
   }
 }
