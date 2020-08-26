@@ -245,7 +245,7 @@ const HomePage = ({ members, sponsors, tweets }) => {
               <Box
                 as="iframe"
                 tabIndex={-1}
-                src="https://codesandbox.io/embed/chakra-home-page-xqt3d?fontsize=12&hidenavigation=1&theme=dark"
+                src="https://codesandbox.io/embed/chakra-home-page-xqt3d?codemirror=1&fontsize=12&hidenavigation=1&theme=dark"
                 style={{
                   width: "100%",
                   background: "white",
