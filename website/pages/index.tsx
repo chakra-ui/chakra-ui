@@ -200,6 +200,7 @@ const HomePage = ({ members, sponsors, tweets }) => {
                     <Box bg="white" p="5" rounded="md">
                       <chakra.img
                         key={user.image}
+                        alt={user.name}
                         h="24px"
                         w="auto"
                         src={user.image}
@@ -352,7 +353,7 @@ const HomePage = ({ members, sponsors, tweets }) => {
 
             <Box mt="5rem" textAlign="center">
               <chakra.p mb="48px" textStyle="caps">
-                Chakra Heros 🥇
+                Chakra Heroes 🥇
               </chakra.p>
               <Wrap spacing="4" justify="center" maxW="660px" mx="auto">
                 {members.map((i) => (
@@ -360,6 +361,7 @@ const HomePage = ({ members, sponsors, tweets }) => {
                     key={i.login}
                     htmlWidth="80px"
                     rounded="full"
+                    alt={i.name}
                     src={i.avatar_url}
                     loading="lazy"
                   />
@@ -517,6 +519,7 @@ const HomePage = ({ members, sponsors, tweets }) => {
                       rounded="full"
                       w="56px"
                       h="56px"
+                      alt={i.name}
                       key={i.MemberId}
                       src={i.image}
                     />
@@ -534,6 +537,7 @@ const HomePage = ({ members, sponsors, tweets }) => {
                     w="40px"
                     h="40px"
                     objectFit="cover"
+                    alt={i.name}
                     key={i.MemberId}
                     src={i.image}
                   />
