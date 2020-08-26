@@ -60,7 +60,7 @@ const Feature = ({ title, icon, children, ...props }) => {
       >
         <Icon fontSize="24px" color="white" as={icon} />
       </Flex>
-      <Heading as="h5" size="md" fontWeight="semibold" mt="1em" mb="0.5em">
+      <Heading as="h3" size="md" fontWeight="semibold" mt="1em" mb="0.5em">
         {title}
       </Heading>
       <Text fontSize="lg" opacity={0.7}>
@@ -181,7 +181,7 @@ const HomePage = ({ members, sponsors, tweets }) => {
             <chakra.p
               fontWeight="500"
               textStyle="caps"
-              color={useColorModeValue("teal.500", "teal.300")}
+              color={useColorModeValue("teal.600", "teal.300")}
               mb="48px"
             >
               Trusted in Production By
@@ -259,7 +259,7 @@ const HomePage = ({ members, sponsors, tweets }) => {
                 shadow="2xl"
                 title="dazzling-swanson-wne32"
                 allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-                sandbox="allow-autoplay allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+                sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
               />
             </Box>
           </Container>
