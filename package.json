@@ -184,7 +184,7 @@
     "jest-environment-jsdom": "26.3.0",
     "lerna": "3.22.1",
     "lerna-changelog": "1.0.1",
-    "lint-staged": "10.2.11",
+    "lint-staged": "10.2.13",
     "listr": "0.14.3",
     "ncp": "2.0.0",
     "nodemon": "2.0.4",
