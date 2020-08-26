@@ -87,10 +87,10 @@ prop and style them using [style props](/docs/features/style-props).
   <Icon as={MdSettings} />
 
   {/* Use the `boxSize` prop to change the icon size */}
-  <Icon as={FaGitlab} boxSize={6} />
+  <Icon as={MdReceipt} boxSize={6} />
 
   {/* Use the `color` prop to change the icon color */}
-  <Icon as={AiFillAliwangwang} boxSize={8} color="red.500" />
+  <Icon as={MdGroupWork} boxSize={8} color="red.500" />
 </HStack>
 ```
 
@@ -212,9 +212,9 @@ When `children` is not provided, the `Icon` component renders a fallback icon.
 
 ## `createIcon` options
 
-| Name          | Type                                  | Default     | Description                              |
-| ------------- | ------------------------------------- | ----------- | ---------------------------------------- |
-| `viewBox`     | `string`                              | `0 0 24 24` | The viewBox of the icon.                 |
-| `d`           | `string`                              |             | The pathDefinition of the icon.          |
-| `path`        | `React.ReactNode | React.ReactNode[]` |             | The Path or Group of the icon            |
-| `displayName` | `string`                              |             | The display name useful in the dev tools |
+| Name          | Type             | Default            | Description                              |
+| ------------- | ---------------- | ------------------ | ---------------------------------------- |
+| `viewBox`     | `string`         | `0 0 24 24`        | The viewBox of the icon.                 |
+| `d`           | `string`         |                    | The pathDefinition of the icon.          |
+| `path`        | `React.ReactNode | React.ReactNode[]` |                                          | The Path or Group of the icon |
+| `displayName` | `string`         |                    | The display name useful in the dev tools |
