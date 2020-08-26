@@ -111,17 +111,12 @@ const customTheme = {
       },
     },
     code: {
-      color: "purple.500",
       rounded: "sm",
       px: "1",
       fontSize: "0.875em",
       py: "2px",
       whiteSpace: "nowrap",
       lineHeight: "normal",
-      bg: "gray.50",
-      "blockquote &": {
-        bg: "transparent",
-      },
     },
   },
 }

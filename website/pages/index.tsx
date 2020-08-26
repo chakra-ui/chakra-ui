@@ -42,7 +42,7 @@ import { MdAccessibility, MdGrain, MdPalette } from "react-icons/md"
 const Feature = ({ title, icon, children, ...props }) => {
   return (
     <Box
-      bg={useColorModeValue("white", "gray.800")}
+      bg={useColorModeValue("white", "gray.700")}
       rounded="12px"
       shadow="base"
       p="40px"
@@ -101,7 +101,6 @@ const StatBox = (props: StatBoxProps) => {
 }
 
 const HomePage = ({ members, sponsors }) => {
-  const logoBg = useColorModeValue("transparent", "gray.700")
   return (
     <>
       <SEO

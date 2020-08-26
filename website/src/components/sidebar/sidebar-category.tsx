@@ -1,4 +1,4 @@
-import { Icon, chakra } from "@chakra-ui/core"
+import { Icon, chakra, useColorModeValue } from "@chakra-ui/core"
 import { useRef, useState, useEffect, ReactNode, RefObject } from "react"
 
 type SidebarCategoryProps = {
@@ -72,7 +72,7 @@ function SidebarCategory(props: SidebarCategoryProps) {
         alignItems="center"
         justifyContent="space-between"
         userSelect="none"
-        color="gray.700"
+        color={useColorModeValue("gray.700", "inherit")}
         onClick={onClick}
         _hover={{
           color: "gray.800",
@@ -94,7 +94,7 @@ function SidebarCategory(props: SidebarCategoryProps) {
       <chakra.div
         hidden={!toggle}
         borderLeft="1px solid"
-        borderColor="gray.200"
+        borderColor={useColorModeValue("gray.200", "whiteAlpha.200")}
         mt="16px"
         pl="5"
         overflow="hidden"
