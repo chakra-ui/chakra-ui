@@ -28,7 +28,7 @@ import Header from "components/header"
 import LogoMark from "components/logo-mark"
 import SEO from "components/seo"
 import TweetCard from "components/tweet-card"
-import tweets from "configs/tweets"
+import tweetsConfig from "configs/tweets"
 import fs from "fs"
 import NextLink from "next/link"
 import path from "path"
@@ -102,7 +102,7 @@ const StatBox = (props: StatBoxProps) => {
   )
 }
 
-const HomePage = ({ members, sponsors }) => {
+const HomePage = ({ members, sponsors, tweets }) => {
   return (
     <>
       <SEO
@@ -361,6 +361,7 @@ const HomePage = ({ members, sponsors }) => {
                     htmlWidth="80px"
                     rounded="full"
                     src={i.avatar_url}
+                    loading="lazy"
                   />
                 ))}
               </Wrap>
@@ -376,7 +377,7 @@ const HomePage = ({ members, sponsors }) => {
             <SimpleGrid spacing="32px" columns={{ base: 1, md: 3 }}>
               {chunk(tweets, 3).map((tweetList, idx) => (
                 <Stack spacing="6" key={idx}>
-                  {tweetList.map((tweet, idx) => (
+                  {tweetList.map((tweet: any, idx) => (
                     <TweetCard key={idx} {...tweet} />
                   ))}
                 </Stack>
@@ -654,7 +655,6 @@ export async function getStaticProps() {
   const individualAvatarsCache = new AvatarCache({
     outputDirectory: avatarsDir,
     width: 40,
-    compress: true,
   })
   const individualSponsors = await Promise.all(
     individuals.map(async (individual) => {
@@ -685,10 +685,28 @@ export async function getStaticProps() {
     }),
   )
 
+  const tweetAvatarsCache = new AvatarCache({
+    outputDirectory: avatarsDir,
+    width: 50,
+  })
+  const tweets = await Promise.all(
+    tweetsConfig.map(async (tweet) => {
+      const filename = await tweetAvatarsCache.urlToFile(
+        tweet.image,
+        tweet.handle,
+      )
+      return {
+        ...tweet,
+        image: `/avatars/${filename}`,
+      }
+    }),
+  )
+
   return {
     props: {
       members,
       contributors,
+      tweets,
       sponsors: {
         individual: individualSponsors,
         company: companySponsors,
