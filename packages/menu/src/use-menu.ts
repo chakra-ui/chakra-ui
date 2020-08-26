@@ -272,7 +272,9 @@ export function useMenuList(props: UseMenuListProps) {
     tabIndex: -1,
     role: "menu",
     id: menuId,
-    hidden: !isOpen,
+    ...(isOpen
+      ? { opacity: 1, pointerEvents: "auto" }
+      : { opacity: 0, pointerEvents: "none" }),
     "aria-orientation": "vertical" as React.AriaAttributes["aria-orientation"],
     "data-placement": placement,
     style: { ...popper.style, ...props.style },
@@ -376,6 +378,7 @@ export function useMenuItem(props: UseMenuItemProps) {
     focusedIndex,
     closeOnSelect,
     onClose,
+    isOpen,
     menuRef,
   } = menu
 
@@ -431,7 +434,7 @@ export function useMenuItem(props: UseMenuItemProps) {
         focus(ref.current)
       }
     } else {
-      if (document.activeElement !== menuRef.current) {
+      if (document.activeElement !== menuRef.current && isOpen) {
         menuRef.current?.focus()
       }
     }
