@@ -2,10 +2,17 @@
   "name": "@chakra-ui/docs",
   "version": "1.0.0-rc.2",
   "private": true,
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "test": "jest",
+    "analyze": "ANALYZE=true next build"
+  },
   "dependencies": {
     "@chakra-ui/core": "1.0.0-rc.2",
-    "@chakra-ui/utils": "1.0.0-rc.2",
     "@chakra-ui/theme-tools": "1.0.0-rc.2",
+    "@chakra-ui/utils": "1.0.0-rc.2",
     "@docusaurus/utils": "2.0.0-alpha.61",
     "@mdx-js/react": "1.6.16",
     "@octokit/rest": "18.0.3",
@@ -30,10 +37,8 @@
     "remark-unwrap-images": "2.0.0",
     "to-vfile": "6.1.0"
   },
-  "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start",
-    "test": "jest"
+  "devDependencies": {
+    "@next/bundle-analyzer": "9.5.1",
+    "next-compose-plugins": "2.2.0"
   }
 }
