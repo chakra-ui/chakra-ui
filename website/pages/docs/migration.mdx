@@ -1,6 +1,6 @@
 ---
-title: Upgrading from v0.x to v1.0
-description: A simple guide to upgrade your existing Chakra UI projects to v1.0
+title: Upgrading from v0.x to v1.x
+description: How to upgrade your existing Chakra UI projects to v1.0
 ---
 
 A simple guide to upgrade your existing Chakra UI projects to v1.0.
@@ -8,9 +8,9 @@ A simple guide to upgrade your existing Chakra UI projects to v1.0.
 Chakra UI v1.0 is focused on improving the ideas and concepts from 0.x to make
 even easier to create, theme and extend components.
 
-While there's quite a number of new exciting Features we've added, we focused on
-making Chakra UI a stable base to build your own design systems on, so that you
-can feel more confident using Chakra UI in production.
+While there's quite a number of new features we've added, we focused on making
+Chakra UI a stable base to build your own design systems on top of. In the end,
+we want make you feel more confident using Chakra UI in production.
 
 ---
 
@@ -20,27 +20,30 @@ can feel more confident using Chakra UI in production.
 style components and their modifiers (sizes, variants, and color scheme) from
 your theme.
 
-**Color mode improvement:** We've fixed the bugs related to Color mode and it's
-now easy to persist color mode, set initial color mode, and lock specific
-components to a certain color mode.
+**Color mode improvement:** We've fixed the bugs related to Color mode and made
+it possible to persist color mode, set initial color mode, and lock specific
+components to a certain color mode. **It's not 100% perfect yet, but we've made
+good progress.**
 
 **Better TypeScript support:** This means all components have very good
 TypeScript support and most low-level components like `Box`, `Flex` will support
 the `as` prop and types will be extracted properly.
 
-**Theme-aware css prop:** Just like `theme-ui`, we've added a `sx` prop you can
-use to add theme-aware styles.
+**Theme-aware sx prop:** Just like `theme-ui`, we've added support for the `sx`
+prop to help you add theme-aware styles directly on any Chakra component. This
+is useful if you're not a fan of style props, and prefer passing all styles in
+one object.
 
-**Deprecated PseudoBox:** We've removed PseudoBox and merged all it's props with
-`Box` so you can use pseudo style props, like `_hover`, `_active` in all
-components.
+**Deprecated PseudoBox:** We've removed `PseudoBox` and merged all it's props
+with `Box` so you can use pseudo style props, like `_hover`, `_active` in any
+Chakra components.
 
 ---
 
 ## Upgrade steps
 
 Here's a list of steps to take in order to migrate your project safely. Don't
-worry if your styles aren't exactly the same—this is to be expected.
+worry if your styles aren't exactly the same — this is to be expected.
 
 ### 1. Update your dependencies
 
@@ -81,7 +84,7 @@ Optionally via prop:
 
 - **CSSReset**: To add the recommended `CSSReset`, pass `resetCSS` prop.
 - **PortalManager:** Manages portals and nested portals without using `z-index`
-  in your application. Simply pass `portalConfig={{ zIndex: number }}`.
+  in your application. Pass the `portalZIndex` prop.
 
 ```diff
 -  <ThemeProvider theme={theme}>
@@ -351,15 +354,15 @@ respectively.
 
 ### Image
 
-Resolved SSR issue with Next.js
+Resolved SSR issue with Next.js. If you still run into issues, we recommend
+using the `Img` component which is a regular `img` tag with support for Chakra
+props.
 
 ### Input
 
 - When using `InputAddon`, you no longer need to pass border radius properties
   to the `Input`. `InputGroup` will intelligently detect the addon and apply the
   necessary border to the input.
-
-- Input now uses `paddingY` instead of `height` for its block height.
 
 ### Link
 
