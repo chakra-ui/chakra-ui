@@ -17,6 +17,7 @@ function TweetCard(props: TweetCardProps) {
       as="a"
       href={url}
       target="_blank"
+      rel="noopener"
       display="flex"
       rounded="lg"
       p="5"

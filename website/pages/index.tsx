@@ -442,6 +442,7 @@ const HomePage = ({ members, sponsors, tweets }) => {
                   minW="7rem"
                   colorScheme="teal"
                   href="https://opencollective.com/chakra-ui"
+                  rel="noopener"
                   target="_blank"
                 >
                   Sponsor
@@ -493,6 +494,7 @@ const HomePage = ({ members, sponsors, tweets }) => {
                   minW="7rem"
                   colorScheme="teal"
                   href="https://www.patreon.com/segunadebayo"
+                  rel="noopener"
                   target="_blank"
                 >
                   Sponsor
@@ -511,6 +513,7 @@ const HomePage = ({ members, sponsors, tweets }) => {
                     as="a"
                     href={i.website}
                     target="_blank"
+                    rel="noopener"
                     size="80px"
                     bg="white"
                     shadow="lg"
