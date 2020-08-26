@@ -1,18 +1,17 @@
-import PageContainer from "components/docs-container"
-import docs from "configs/docs-sidebar"
-import guides from "configs/guides-sidebar"
-import React from "react"
+import * as React from "react"
+import PageContainer from "components/page-container"
+import dynamic from "next/dynamic"
+
+const MDXLayout = dynamic(() => import("layouts/mdx"))
 
 const defaultLayout = (frontmatter) => ({ children }) => {
-  const routes = frontmatter.slug.startsWith("/guides")
-    ? guides.routes
-    : docs.routes
+  const { slug } = frontmatter
 
-  return (
-    <PageContainer sidebarRoutes={routes} frontmatter={frontmatter}>
-      {children}
-    </PageContainer>
-  )
+  if (slug.startsWith("/guides") || slug.startsWith("/docs")) {
+    return <MDXLayout frontmatter={frontmatter}>{children}</MDXLayout>
+  }
+
+  return <PageContainer frontmatter={frontmatter}>{children}</PageContainer>
 }
 
 export default defaultLayout

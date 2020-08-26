@@ -1,21 +1,25 @@
+import * as React from "react"
+import dynamic from "next/dynamic"
 import { Box, Flex, chakra } from "@chakra-ui/core"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
 import EditPageLink from "components/edit-page-button"
 import Footer from "components/footer"
 import Header from "components/header"
-import Pagination from "components/pagination"
 import Container from "components/container"
 import SEO from "components/seo"
-import Sidebar from "components/sidebar/sidebar"
-import React from "react"
-import { findRouteByPath, removeFromLast } from "utils/find-route-by-path"
-import { getRouteContext } from "utils/get-route-context"
 
-const DocsContainer = ({ frontmatter, sidebarRoutes: routes, children }) => {
-  const { title, description, slug, editUrl } = frontmatter
-
-  const route = findRouteByPath(removeFromLast(slug, "#"), routes)
-  const { prevRoute, nextRoute } = getRouteContext(route, routes)
+const PageContainer = ({
+  frontmatter,
+  children,
+  sidebar,
+  pagination,
+}: {
+  frontmatter: any
+  children: React.ReactNode
+  sidebar?: any
+  pagination?: any
+}) => {
+  const { title, description, editUrl } = frontmatter
 
   return (
     <>
@@ -24,7 +28,7 @@ const DocsContainer = ({ frontmatter, sidebarRoutes: routes, children }) => {
       <Header />
       <Container>
         <Flex>
-          <Sidebar routes={routes} />
+          {sidebar || null}
           <div style={{ flex: 1 }}>
             <SkipNavContent />
             <Box pt={3} px={5} mt="4.5rem" mx="auto" maxW="48rem" minH="80vh">
@@ -33,7 +37,7 @@ const DocsContainer = ({ frontmatter, sidebarRoutes: routes, children }) => {
               </Box>
               {children}
               <Box mt="40px">{editUrl && <EditPageLink href={editUrl} />}</Box>
-              <Pagination next={nextRoute} previous={prevRoute} />
+              {pagination || null}
             </Box>
             <Footer />
           </div>
@@ -43,4 +47,4 @@ const DocsContainer = ({ frontmatter, sidebarRoutes: routes, children }) => {
   )
 }
 
-export default DocsContainer
+export default PageContainer

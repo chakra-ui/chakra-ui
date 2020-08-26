@@ -1,9 +1,6 @@
 import { ChakraProvider } from "@chakra-ui/core"
-import * as chakraComponents from "@chakra-ui/core"
 import theme from "theme"
-import { MDXProvider } from "@mdx-js/react"
 import { trackPageview } from "analytics/track-event"
-import MDXComponents from "components/mdx-components"
 import { DefaultSeo } from "next-seo"
 import Head from "next/head"
 import Router from "next/router"
@@ -27,9 +24,7 @@ const App = ({ Component, pageProps }) => {
       </Head>
       <ChakraProvider resetCSS theme={theme} portalZIndex={40}>
         <DefaultSeo {...siteConfig.seo} />
-        <MDXProvider components={{ ...chakraComponents, ...MDXComponents }}>
-          <Component {...pageProps} />
-        </MDXProvider>
+        <Component {...pageProps} />
       </ChakraProvider>
     </>
   )
