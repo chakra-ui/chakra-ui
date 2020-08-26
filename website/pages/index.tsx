@@ -19,6 +19,7 @@ import {
   Wrap,
 } from "@chakra-ui/core"
 import { chunk } from "@chakra-ui/utils"
+import mkdirp from "mkdirp"
 import users from "chakra-users"
 import Container from "components/container"
 import DiscordStrip from "components/discord-strip"
@@ -38,6 +39,7 @@ import { FaArrowRight, FaDiscord, FaMicrophone } from "react-icons/fa"
 import { FiDownload, FiGithub, FiUsers } from "react-icons/fi"
 import { IoMdMoon } from "react-icons/io"
 import { MdAccessibility, MdGrain, MdPalette } from "react-icons/md"
+import AvatarCache from "utils/avatar-cache"
 
 const Feature = ({ title, icon, children, ...props }) => {
   return (
@@ -641,10 +643,47 @@ export async function getStaticProps() {
     "https://opencollective.com/chakra-ui/members/all.json",
   )
   const sponsors = await res.json()
-  const individualSponsors = sponsors.filter(
+  const individuals = sponsors.filter(
     (i) => i.type === "USER" && i.image != null,
   )
-  const companySponsors = sponsors.filter((i) => i.type === "ORGANIZATION")
+  const companies = sponsors.filter((i) => i.type === "ORGANIZATION")
+
+  const avatarsDir = "public/avatars"
+  await mkdirp(avatarsDir)
+
+  const individualAvatarsCache = new AvatarCache({
+    outputDirectory: avatarsDir,
+    width: 40,
+    compress: true,
+  })
+  const individualSponsors = await Promise.all(
+    individuals.map(async (individual) => {
+      const filename = await individualAvatarsCache.urlToFile(
+        individual.image,
+        individual.MemberId,
+      )
+      return {
+        ...individual,
+        image: `/avatars/${filename}`,
+      }
+    }),
+  )
+
+  const companyAvatarsCache = new AvatarCache({
+    outputDirectory: avatarsDir,
+  })
+  const companySponsors = await Promise.all(
+    companies.map(async (company) => {
+      const filename = await companyAvatarsCache.urlToFile(
+        company.image,
+        company.MemberId,
+      )
+      return {
+        ...company,
+        image: `/avatars/${filename}`,
+      }
+    }),
+  )
 
   return {
     props: {

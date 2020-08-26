@@ -19,6 +19,9 @@
     "date-fns": "2.15.0",
     "docsearch.js": "2.6.3",
     "formik": "2.1.5",
+    "imagemin": "^7.0.1",
+    "imagemin-jpegtran": "^7.0.0",
+    "mkdirp": "^1.0.4",
     "next": "9.5.1",
     "next-mdx-enhanced": "3.1.0",
     "next-seo": "4.7.3",
@@ -35,10 +38,13 @@
     "remark-slug": "6.0.0",
     "remark-toc": "7.0.0",
     "remark-unwrap-images": "2.0.0",
+    "sharp": "^0.26.0",
     "to-vfile": "6.1.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "9.5.1",
+    "@types/imagemin": "^7.0.0",
+    "@types/sharp": "^0.25.1",
     "next-compose-plugins": "2.2.0"
   }
 }
