@@ -2,18 +2,25 @@
   "name": "@chakra-ui/docs",
   "version": "1.0.0-rc.2",
   "private": true,
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "test": "jest",
+    "analyze": "ANALYZE=true next build"
+  },
   "dependencies": {
     "@chakra-ui/core": "1.0.0-rc.2",
-    "@chakra-ui/utils": "1.0.0-rc.2",
     "@chakra-ui/theme-tools": "1.0.0-rc.2",
+    "@chakra-ui/utils": "1.0.0-rc.2",
     "@docusaurus/utils": "2.0.0-alpha.61",
     "@mdx-js/react": "1.6.16",
     "@octokit/rest": "18.0.3",
     "date-fns": "2.15.0",
     "docsearch.js": "2.6.3",
     "formik": "2.1.5",
-    "next": "9.5.1",
-    "next-mdx-enhanced": "3.1.0",
+    "next": "9.5.2",
+    "next-mdx-enhanced": "4.0.0",
     "next-seo": "4.7.3",
     "prism-react-renderer": "1.1.1",
     "react-helmet": "6.1.0",
@@ -30,10 +37,9 @@
     "remark-unwrap-images": "2.0.0",
     "to-vfile": "6.1.0"
   },
-  "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start",
-    "test": "jest"
+  "devDependencies": {
+    "@next/bundle-analyzer": "9.5.1",
+    "@types/sharp": "^0.25.1",
+    "next-compose-plugins": "2.2.0"
   }
 }

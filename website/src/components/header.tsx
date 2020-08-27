@@ -64,7 +64,7 @@ const HeaderContent = () => {
       <Flex maxW="720px" align="center" color="gray.400">
         <VersionSwitcher />
         <HStack spacing="5">
-          <Link isExternal href={siteConfig.repo.url}>
+          <Link isExternal aria-label="GitHub" href={siteConfig.repo.url}>
             <Icon
               as={GithubIcon}
               transition="color 0.2s"
@@ -73,7 +73,7 @@ const HeaderContent = () => {
               _hover={{ color: "gray.600" }}
             />
           </Link>
-          <Link isExternal href={siteConfig.discord.url}>
+          <Link isExternal aria-label="Discord" href={siteConfig.discord.url}>
             <Icon
               as={DiscordIcon}
               transition="color 0.2s"

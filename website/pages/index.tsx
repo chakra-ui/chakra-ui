@@ -27,7 +27,7 @@ import Header from "components/header"
 import LogoMark from "components/logo-mark"
 import SEO from "components/seo"
 import TweetCard from "components/tweet-card"
-import tweets from "configs/tweets"
+import { tweets } from "configs/tweets.json"
 import fs from "fs"
 import NextLink from "next/link"
 import path from "path"
@@ -58,7 +58,7 @@ const Feature = ({ title, icon, children, ...props }) => {
       >
         <Icon fontSize="24px" color="white" as={icon} />
       </Flex>
-      <Heading as="h5" size="md" fontWeight="semibold" mt="1em" mb="0.5em">
+      <Heading as="h3" size="md" fontWeight="semibold" mt="1em" mb="0.5em">
         {title}
       </Heading>
       <Text fontSize="lg" opacity={0.7}>
@@ -179,7 +179,7 @@ const HomePage = ({ members, sponsors }) => {
             <chakra.p
               fontWeight="500"
               textStyle="caps"
-              color={useColorModeValue("teal.500", "teal.300")}
+              color={useColorModeValue("teal.600", "teal.300")}
               mb="48px"
             >
               Trusted in Production By
@@ -198,6 +198,7 @@ const HomePage = ({ members, sponsors }) => {
                     <Box bg="white" p="5" rounded="md">
                       <chakra.img
                         key={user.image}
+                        alt={user.name}
                         h="24px"
                         w="auto"
                         src={user.image}
@@ -241,7 +242,8 @@ const HomePage = ({ members, sponsors }) => {
             >
               <Box
                 as="iframe"
-                src="https://codesandbox.io/embed/chakra-home-page-xqt3d?fontsize=12&hidenavigation=1&theme=dark"
+                tabIndex={-1}
+                src="https://codesandbox.io/embed/chakra-home-page-xqt3d?codemirror=1&fontsize=12&hidenavigation=1&theme=dark"
                 style={{
                   width: "100%",
                   background: "white",
@@ -255,7 +257,7 @@ const HomePage = ({ members, sponsors }) => {
                 shadow="2xl"
                 title="dazzling-swanson-wne32"
                 allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-                sandbox="allow-autoplay allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+                sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
               />
             </Box>
           </Container>
@@ -349,7 +351,7 @@ const HomePage = ({ members, sponsors }) => {
 
             <Box mt="5rem" textAlign="center">
               <chakra.p mb="48px" textStyle="caps">
-                Chakra Heros 🥇
+                Chakra Heroes 🥇
               </chakra.p>
               <Wrap spacing="4" justify="center" maxW="660px" mx="auto">
                 {members.map((i) => (
@@ -357,7 +359,9 @@ const HomePage = ({ members, sponsors }) => {
                     key={i.login}
                     htmlWidth="80px"
                     rounded="full"
+                    alt={i.name}
                     src={i.avatar_url}
+                    loading="lazy"
                   />
                 ))}
               </Wrap>
@@ -373,7 +377,7 @@ const HomePage = ({ members, sponsors }) => {
             <SimpleGrid spacing="32px" columns={{ base: 1, md: 3 }}>
               {chunk(tweets, 3).map((tweetList, idx) => (
                 <Stack spacing="6" key={idx}>
-                  {tweetList.map((tweet, idx) => (
+                  {tweetList.map((tweet: any, idx) => (
                     <TweetCard key={idx} {...tweet} />
                   ))}
                 </Stack>
@@ -436,6 +440,7 @@ const HomePage = ({ members, sponsors }) => {
                   minW="7rem"
                   colorScheme="teal"
                   href="https://opencollective.com/chakra-ui"
+                  rel="noopener"
                   target="_blank"
                 >
                   Sponsor
@@ -487,6 +492,7 @@ const HomePage = ({ members, sponsors }) => {
                   minW="7rem"
                   colorScheme="teal"
                   href="https://www.patreon.com/segunadebayo"
+                  rel="noopener"
                   target="_blank"
                 >
                   Sponsor
@@ -499,12 +505,13 @@ const HomePage = ({ members, sponsors }) => {
                 Organization Sponsors 🏦
               </chakra.p>
               <Wrap justify="center">
-                {sponsors.company.map((i) => (
+                {sponsors.companies.map((i) => (
                   <Circle
                     key={i.MemberId}
                     as="a"
                     href={i.website}
                     target="_blank"
+                    rel="noopener"
                     size="80px"
                     bg="white"
                     shadow="lg"
@@ -513,6 +520,7 @@ const HomePage = ({ members, sponsors }) => {
                       rounded="full"
                       w="56px"
                       h="56px"
+                      alt={i.name}
                       key={i.MemberId}
                       src={i.image}
                     />
@@ -524,12 +532,13 @@ const HomePage = ({ members, sponsors }) => {
                 Individual Sponsors 🥇
               </chakra.p>
               <Wrap justify="center">
-                {sponsors.individual.map((i) => (
+                {sponsors.individuals.map((i) => (
                   <Img
                     rounded="full"
                     w="40px"
                     h="40px"
                     objectFit="cover"
+                    alt={i.name}
                     key={i.MemberId}
                     src={i.image}
                   />
@@ -636,23 +645,17 @@ export async function getStaticProps() {
     fs.readFileSync(contributorsRcPath, "utf-8"),
   )
 
-  const res = await fetch(
-    "https://opencollective.com/chakra-ui/members/all.json",
-  )
-  const sponsors = await res.json()
-  const individualSponsors = sponsors.filter(
-    (i) => i.type === "USER" && i.image != null,
-  )
-  const companySponsors = sponsors.filter((i) => i.type === "ORGANIZATION")
+  /**
+   * Read the information for each sponsor from `.all-sponsorsrc` file
+   */
+  const sponsorsRcPath = path.resolve("..", ".all-sponsorsrc")
+  const sponsors = JSON.parse(fs.readFileSync(sponsorsRcPath, "utf-8"))
 
   return {
     props: {
       members,
       contributors,
-      sponsors: {
-        individual: individualSponsors,
-        company: companySponsors,
-      },
+      sponsors,
     },
   }
 }
