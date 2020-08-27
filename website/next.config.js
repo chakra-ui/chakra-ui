@@ -109,7 +109,6 @@ const mdxConfig = {
   remarkPlugins: [
     require("remark-autolink-headings"),
     require("remark-emoji"),
-    require("remark-footnotes"),
     require("remark-images"),
     require("remark-slug"),
     require("remark-toc"),
