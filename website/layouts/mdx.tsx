@@ -10,7 +10,7 @@ import { getRouteContext } from "utils/get-route-context"
 import Sidebar from "components/sidebar/sidebar"
 import Pagination from "components/pagination"
 
-const MDXLayout = ({ frontmatter, children }) => {
+export default function MDXLayout({ frontmatter, children }) {
   const { slug } = frontmatter
 
   const config = slug.startsWith("/guides") ? guidesSidebar : docsSidebar
@@ -36,5 +36,3 @@ const MDXLayout = ({ frontmatter, children }) => {
     </MDXProvider>
   )
 }
-
-export default MDXLayout

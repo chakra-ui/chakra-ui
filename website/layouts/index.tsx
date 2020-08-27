@@ -4,14 +4,12 @@ import dynamic from "next/dynamic"
 
 const MDXLayout = dynamic(() => import("layouts/mdx"))
 
-const defaultLayout = (frontmatter) => ({ children }) => {
-  const { slug } = frontmatter
+export default function DefaultLayout({ children, frontMatter }) {
+  const { slug } = frontMatter
 
   if (slug.startsWith("/guides") || slug.startsWith("/docs")) {
-    return <MDXLayout frontmatter={frontmatter}>{children}</MDXLayout>
+    return <MDXLayout frontmatter={frontMatter}>{children}</MDXLayout>
   }
 
-  return <PageContainer frontmatter={frontmatter}>{children}</PageContainer>
+  return <PageContainer frontmatter={frontMatter}>{children}</PageContainer>
 }
-
-export default defaultLayout

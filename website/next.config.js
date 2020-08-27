@@ -96,6 +96,10 @@ const defaultConfig = {
       externals: [...config.externals, "sharp"],
     }
   },
+  experimental: {
+    optimizeFonts: true,
+    optimizeImages: true,
+  },
 }
 
 const mdxConfig = {
