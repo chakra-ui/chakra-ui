@@ -4,6 +4,12 @@ import sharp from "sharp"
 import imagemin from "imagemin"
 import imageminJpegtran from "imagemin-jpegtran"
 
+/**
+ * This module was inspired by Zach Leatherman's `avatar-local-cache` library.
+ * Check out https://github.com/zachleat/avatar-local-cache for a similar,
+ * pre-packaged solution.
+ */
+
 export interface AvatarCacheOptions {
   /** The path to write the images to. */
   outputDirectory: string
