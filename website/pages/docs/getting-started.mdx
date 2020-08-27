@@ -53,8 +53,9 @@ If you need to customize the default chakra theme to match your design
 requirements, you can extend the `theme` from `@chakra-ui/core`.
 
 ```jsx live=false
-// 1. Import the theme
+// 1. Import the theme and merge util
 import { theme } from "@chakra-ui/core"
+import { merge } from "@chakra-ui/utils"
 
 // 2. Extend the theme to include custom colors, fonts, etc.
 const customTheme = merge(theme, {
