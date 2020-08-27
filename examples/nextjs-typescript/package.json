@@ -28,7 +28,7 @@
     "typescript": "3.9.7",
     "url-loader": "^4.1.0",
     "@chakra-ui/core": "1.0.0-next.6",
-    "next": "9.5.1",
+    "next": "9.5.2",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
