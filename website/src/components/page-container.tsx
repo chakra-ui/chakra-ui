@@ -1,5 +1,4 @@
 import * as React from "react"
-import dynamic from "next/dynamic"
 import { Box, Flex, chakra } from "@chakra-ui/core"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
 import EditPageLink from "components/edit-page-button"
