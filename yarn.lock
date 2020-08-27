@@ -137,7 +137,7 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/core@7.11.4":
+"@babel/core@7.11.4", "@babel/core@7.x", "@babel/core@^7.1.0", "@babel/core@^7.1.6", "@babel/core@^7.4.5", "@babel/core@^7.7.5", "@babel/core@^7.9.0", "@babel/core@^7.9.6":
   version "7.11.4"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.11.4.tgz#4301dfdfafa01eeb97f1896c5501a3f0655d4229"
   integrity sha512-5deljj5HlqRXN+5oJTY7Zs37iH3z3b++KjiKtIsJy1NrjOOVSEaJHEetLBhyu0aQOSNNZ/0IuEAan9GzRuDXHg==
@@ -197,28 +197,6 @@
     gensync "^1.0.0-beta.1"
     json5 "^2.1.2"
     lodash "^4.17.13"
-    resolve "^1.3.2"
-    semver "^5.4.1"
-    source-map "^0.5.0"
-
-"@babel/core@^7.1.0", "@babel/core@^7.1.6", "@babel/core@^7.4.5", "@babel/core@^7.7.5", "@babel/core@^7.9.0", "@babel/core@^7.9.6":
-  version "7.11.1"
-  resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.11.1.tgz#2c55b604e73a40dc21b0e52650b11c65cf276643"
-  integrity sha512-XqF7F6FWQdKGGWAzGELL+aCO1p+lRY5Tj5/tbT3St1G8NaH70jhhDIKknIZaDans0OQBG5wRAldROLHSt44BgQ==
-  dependencies:
-    "@babel/code-frame" "^7.10.4"
-    "@babel/generator" "^7.11.0"
-    "@babel/helper-module-transforms" "^7.11.0"
-    "@babel/helpers" "^7.10.4"
-    "@babel/parser" "^7.11.1"
-    "@babel/template" "^7.10.4"
-    "@babel/traverse" "^7.11.0"
-    "@babel/types" "^7.11.0"
-    convert-source-map "^1.7.0"
-    debug "^4.1.0"
-    gensync "^1.0.0-beta.1"
-    json5 "^2.1.2"
-    lodash "^4.17.19"
     resolve "^1.3.2"
     semver "^5.4.1"
     source-map "^0.5.0"
@@ -467,7 +445,7 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.1.0", "@babel/parser@^7.1.6", "@babel/parser@^7.10.4", "@babel/parser@^7.10.5", "@babel/parser@^7.11.0", "@babel/parser@^7.11.1", "@babel/parser@^7.4.3", "@babel/parser@^7.7.0", "@babel/parser@^7.7.7", "@babel/parser@^7.9.0":
+"@babel/parser@^7.1.0", "@babel/parser@^7.1.6", "@babel/parser@^7.10.4", "@babel/parser@^7.10.5", "@babel/parser@^7.11.0", "@babel/parser@^7.4.3", "@babel/parser@^7.7.0", "@babel/parser@^7.7.7", "@babel/parser@^7.9.0":
   version "7.11.3"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.11.3.tgz#9e1eae46738bcd08e23e867bab43e7b95299a8f9"
   integrity sha512-REo8xv7+sDxkKvoxEywIdsNFiZLybwdI7hcT5uEPyQrSMB4YQ973BfC9OOrD/81MaIjh6UxdulIQXkjmiH3PcA==
@@ -2946,7 +2924,7 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
-"@mdx-js/loader@^1.6.1":
+"@mdx-js/loader@^1.6.16":
   version "1.6.16"
   resolved "https://registry.yarnpkg.com/@mdx-js/loader/-/loader-1.6.16.tgz#5a9c3b0ab41885cd2df85bcf360644ca63e44e88"
   integrity sha512-jYIAav17lXmEvweO6bzbsqY9mRTm49UeXXSZPAB81uCX8j91Pgi50Z0NnEN777yQEgGm2Z5PMtnJdxGFQIAjJQ==
@@ -10524,7 +10502,7 @@ fs-extra@^7.0.0:
     jsonfile "^4.0.0"
     universalify "^0.1.0"
 
-fs-extra@^9.0.0:
+fs-extra@^9.0.0, fs-extra@^9.0.1:
   version "9.0.1"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-9.0.1.tgz#910da0062437ba4c39fedd863f1675ccfefcb9fc"
   integrity sha512-h2iAoN838FqAFJY2/qVpzFXy+EBxfVE220PalAqQLDVsFOHLJrZvut5puAbCdNv6WJk+B8ihI+k0c7JK5erwqQ==
@@ -10888,7 +10866,7 @@ glob@^5.0.15:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@^7.0.0, glob@^7.0.3, glob@^7.1.1, glob@^7.1.2, glob@^7.1.3, glob@^7.1.4, glob@^7.1.6:
+glob@^7.0.0, glob@^7.0.3, glob@^7.1.1, glob@^7.1.2, glob@^7.1.3, glob@^7.1.4, glob@^7.1.5, glob@^7.1.6:
   version "7.1.6"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.6.tgz#141f33b81a7c2492e125594307480c46679278a6"
   integrity sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==
@@ -15171,18 +15149,19 @@ neo-async@^2.5.0, neo-async@^2.6.0, neo-async@^2.6.1:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-next-mdx-enhanced@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/next-mdx-enhanced/-/next-mdx-enhanced-3.1.0.tgz#b0470010f20589c2dabcd67e4f7d7dfbda40d52d"
-  integrity sha512-o8I+pieavTa6ohmT/ZXf7A9OgP4xi7KWQ3nlHxSdjffqOCsBIuNgYd52lEdD8jbrfTtM/mCG4sBrp4FHsS/QjA==
+next-mdx-enhanced@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/next-mdx-enhanced/-/next-mdx-enhanced-4.0.0.tgz#aafd8c1c351dccd8198150d6e82fdea60b4aab0f"
+  integrity sha512-mHhSR8tDgCLF3Qyo2sVNZijA2Ibr+RCsYtiEtkQOzoD+ExrSxDQ1yDpFxVgWpfZit/bMz1qZ3FmvH5ECsIuXjg==
   dependencies:
-    "@mdx-js/loader" "^1.6.1"
+    "@babel/core" "7.x"
+    "@mdx-js/loader" "^1.6.16"
     debug "^4.1.1"
-    fs-extra "^9.0.0"
+    fs-extra "^9.0.1"
     glob "^7.1.6"
     gray-matter "^4.0.2"
     loader-utils "^2.0.0"
-    prebuild-webpack-plugin "1.1.0"
+    prebuild-webpack-plugin "1.1.1"
     stringify-object "^3.3.0"
 
 next-seo@4.7.3:
@@ -17179,13 +17158,13 @@ prebuild-install@^5.3.3:
     tunnel-agent "^0.6.0"
     which-pm-runs "^1.0.0"
 
-prebuild-webpack-plugin@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/prebuild-webpack-plugin/-/prebuild-webpack-plugin-1.1.0.tgz#6f6c75b5fdaf9a57f598a3a39c29c80a255d84ec"
-  integrity sha512-/IdXyCP+7Ij/5ndsKsySTTlwsijwx8cafuU8BOisUiVIMsVjsZniJH/PiThBFG1vU1HI+/+pBwgQSIJ/GkZ7kA==
+prebuild-webpack-plugin@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/prebuild-webpack-plugin/-/prebuild-webpack-plugin-1.1.1.tgz#8857853738d22409e93d4b8af4148b9700465218"
+  integrity sha512-H5/VnSl7KZm3NCGj1+8BrBHu0Bn9xzLREdpeE4TRYyp4t4qFnYPExzozk2sfD/CLJRGIuyOFrXbXgJJ4ETdz/g==
   dependencies:
     debug "^4.1.1"
-    glob "^7.1.4"
+    glob "^7.1.5"
     minimatch "^3.0.4"
 
 prelude-ls@^1.2.1:
