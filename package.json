@@ -197,7 +197,7 @@
     "ncp": "2.0.0",
     "node-fetch": "^2.6.0",
     "nodemon": "2.0.4",
-    "prettier": "2.1.0",
+    "prettier": "2.1.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-icons": "3.11.0",
