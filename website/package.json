@@ -15,7 +15,7 @@
     "@chakra-ui/utils": "1.0.0-rc.2",
     "@docusaurus/utils": "2.0.0-alpha.61",
     "@mdx-js/react": "1.6.16",
-    "@octokit/rest": "18.0.3",
+    "@octokit/rest": "18.0.4",
     "date-fns": "2.15.0",
     "docsearch.js": "2.6.3",
     "formik": "2.1.5",
