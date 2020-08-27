@@ -19,7 +19,7 @@ export interface AvatarCacheOptions {
   compress?: boolean
 }
 
-class AvatarCache {
+export class AvatarCache {
   outputDirectory: string
   width: number
   compress: boolean

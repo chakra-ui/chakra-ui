@@ -11,7 +11,8 @@ interface TweetCardProps {
 }
 
 function TweetCard(props: TweetCardProps) {
-  const { name, image, handle, date, content, url } = props
+  const { name, handle, date, content, url } = props
+  const image = `/avatars/${handle}.jpg`
   return (
     <Box
       as="a"

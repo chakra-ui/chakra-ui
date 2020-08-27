@@ -19,7 +19,6 @@ import {
   Wrap,
 } from "@chakra-ui/core"
 import { chunk } from "@chakra-ui/utils"
-import mkdirp from "mkdirp"
 import users from "chakra-users"
 import Container from "components/container"
 import DiscordStrip from "components/discord-strip"
@@ -28,7 +27,7 @@ import Header from "components/header"
 import LogoMark from "components/logo-mark"
 import SEO from "components/seo"
 import TweetCard from "components/tweet-card"
-import tweetsConfig from "configs/tweets"
+import { tweets } from "configs/tweets.json"
 import fs from "fs"
 import NextLink from "next/link"
 import path from "path"
@@ -39,7 +38,6 @@ import { FaArrowRight, FaDiscord, FaMicrophone } from "react-icons/fa"
 import { FiDownload, FiGithub, FiUsers } from "react-icons/fi"
 import { IoMdMoon } from "react-icons/io"
 import { MdAccessibility, MdGrain, MdPalette } from "react-icons/md"
-import AvatarCache from "utils/avatar-cache"
 
 const Feature = ({ title, icon, children, ...props }) => {
   return (
@@ -102,7 +100,7 @@ const StatBox = (props: StatBoxProps) => {
   )
 }
 
-const HomePage = ({ members, sponsors, tweets }) => {
+const HomePage = ({ members, sponsors }) => {
   return (
     <>
       <SEO
@@ -507,7 +505,7 @@ const HomePage = ({ members, sponsors, tweets }) => {
                 Organization Sponsors 🏦
               </chakra.p>
               <Wrap justify="center">
-                {sponsors.company.map((i) => (
+                {sponsors.companies.map((i) => (
                   <Circle
                     key={i.MemberId}
                     as="a"
@@ -534,7 +532,7 @@ const HomePage = ({ members, sponsors, tweets }) => {
                 Individual Sponsors 🥇
               </chakra.p>
               <Wrap justify="center">
-                {sponsors.individual.map((i) => (
+                {sponsors.individuals.map((i) => (
                   <Img
                     rounded="full"
                     w="40px"
@@ -647,77 +645,17 @@ export async function getStaticProps() {
     fs.readFileSync(contributorsRcPath, "utf-8"),
   )
 
-  const res = await fetch(
-    "https://opencollective.com/chakra-ui/members/all.json",
-  )
-  const sponsors = await res.json()
-  const individuals = sponsors.filter(
-    (i) => i.type === "USER" && i.image != null,
-  )
-  const companies = sponsors.filter((i) => i.type === "ORGANIZATION")
-
-  const avatarsDir = "public/avatars"
-  await mkdirp(avatarsDir)
-
-  const individualAvatarsCache = new AvatarCache({
-    outputDirectory: avatarsDir,
-    width: 40,
-  })
-  const individualSponsors = await Promise.all(
-    individuals.map(async (individual) => {
-      const filename = await individualAvatarsCache.urlToFile(
-        individual.image,
-        individual.MemberId,
-      )
-      return {
-        ...individual,
-        image: `/avatars/${filename}`,
-      }
-    }),
-  )
-
-  const companyAvatarsCache = new AvatarCache({
-    outputDirectory: avatarsDir,
-  })
-  const companySponsors = await Promise.all(
-    companies.map(async (company) => {
-      const filename = await companyAvatarsCache.urlToFile(
-        company.image,
-        company.MemberId,
-      )
-      return {
-        ...company,
-        image: `/avatars/${filename}`,
-      }
-    }),
-  )
-
-  const tweetAvatarsCache = new AvatarCache({
-    outputDirectory: avatarsDir,
-    width: 50,
-  })
-  const tweets = await Promise.all(
-    tweetsConfig.map(async (tweet) => {
-      const filename = await tweetAvatarsCache.urlToFile(
-        tweet.image,
-        tweet.handle,
-      )
-      return {
-        ...tweet,
-        image: `/avatars/${filename}`,
-      }
-    }),
-  )
+  /**
+   * Read the information for each sponsor from `.all-sponsorsrc` file
+   */
+  const sponsorsRcPath = path.resolve("..", ".all-sponsorsrc")
+  const sponsors = JSON.parse(fs.readFileSync(sponsorsRcPath, "utf-8"))
 
   return {
     props: {
       members,
       contributors,
-      tweets,
-      sponsors: {
-        individual: individualSponsors,
-        company: companySponsors,
-      },
+      sponsors,
     },
   }
 }
