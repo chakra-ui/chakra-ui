@@ -275,6 +275,7 @@ export function useMenuList(props: UseMenuListProps) {
     ...(isOpen
       ? { opacity: 1, pointerEvents: "auto" }
       : { opacity: 0, pointerEvents: "none" }),
+    "aria-hidden": isOpen ? false : true,
     "aria-orientation": "vertical" as React.AriaAttributes["aria-orientation"],
     "data-placement": placement,
     style: { ...popper.style, ...props.style },
