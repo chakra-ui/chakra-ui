@@ -145,7 +145,7 @@
     "@storybook/addon-actions": "6.0.19",
     "@storybook/addon-knobs": "6.0.19",
     "@storybook/cli": "6.0.19",
-    "@storybook/react": "6.0.19",
+    "@storybook/react": "6.0.20",
     "@types/imagemin": "^7.0.0",
     "@types/imagemin-jpegtran": "^5.0.0",
     "@types/jest": "26.0.10",
