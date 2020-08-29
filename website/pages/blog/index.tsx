@@ -3,7 +3,7 @@ import SEO from "components/seo"
 import Header from "components/header"
 import { Box, Heading, Stack } from "@chakra-ui/core"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
-import { BlogPostCard } from "components/BlogPostCard"
+import { BlogPostCard } from "components/blog-post-card"
 import { getBlogPosts } from "utils/get-blog-posts"
 
 type ThenArg<T> = T extends PromiseLike<infer U> ? U : T
