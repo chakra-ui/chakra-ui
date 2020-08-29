@@ -142,7 +142,7 @@ exports[`Progress renders correctly 1`] = `
   height: 100%;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  background: #3182CE;
+  background: #3182ce;
 }
 
 .emotion-3 {
@@ -153,15 +153,15 @@ exports[`Progress renders correctly 1`] = `
 }
 
 .emotion-3 color {
-  50: #EBF8FF;
-  100: #CEEDFF;
-  200: #90CDF4;
-  300: #63B3ED;
-  400: #4299E1;
-  500: #3182CE;
-  600: #2A69AC;
-  700: #1E4E8C;
-  800: #153E75;
+  50: #ebf8ff;
+  100: #bee3f8;
+  200: #90cdf4;
+  300: #63b3ed;
+  400: #4299e1;
+  500: #3182ce;
+  600: #2b6cb0;
+  700: #2c5282;
+  800: #2a4365;
   900: #1A365D;
 }
 
@@ -171,7 +171,7 @@ exports[`Progress renders correctly 1`] = `
   transition: all 0.3s;
   background-image: linear-gradient( 45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent );
   background-size: 1rem 1rem;
-  background: #3182CE;
+  background: #3182ce;
 }
 
 .emotion-5 {
@@ -200,7 +200,7 @@ exports[`Progress renders correctly 1`] = `
   transition: all 0.3s;
   background-image: linear-gradient( 45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent );
   background-size: 1rem 1rem;
-  background: #3182CE;
+  background: #3182ce;
   -webkit-animation: animation-0 1s linear infinite;
   animation: animation-0 1s linear infinite;
 }
