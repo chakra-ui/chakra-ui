@@ -61,8 +61,8 @@ exports[`Checkbox renders correctly 1`] = `
 
 .emotion-1[aria-checked=true],
 .emotion-1[data-checked] {
-  background: #3182CE;
-  border-color: #3182CE;
+  background: #3182ce;
+  border-color: #3182ce;
   color: #FFFFFF;
 }
 
@@ -70,8 +70,8 @@ exports[`Checkbox renders correctly 1`] = `
 .emotion-1[data-checked]:hover,
 .emotion-1[aria-checked=true][data-hover],
 .emotion-1[data-checked][data-hover] {
-  background: #2A69AC;
-  border-color: #2A69AC;
+  background: #2b6cb0;
+  border-color: #2b6cb0;
 }
 
 .emotion-1[aria-checked=true][disabled],
@@ -100,8 +100,8 @@ exports[`Checkbox renders correctly 1`] = `
 .emotion-1:indeterminate,
 .emotion-1[aria-checked=mixed],
 .emotion-1[data-indeterminate] {
-  background: #3182CE;
-  border-color: #3182CE;
+  background: #3182ce;
+  border-color: #3182ce;
   color: #FFFFFF;
 }
 
@@ -263,8 +263,8 @@ exports[`matches snapshot  1`] = `
 
 .emotion-1[aria-checked=true],
 .emotion-1[data-checked] {
-  background: #3182CE;
-  border-color: #3182CE;
+  background: #3182ce;
+  border-color: #3182ce;
   color: #FFFFFF;
 }
 
@@ -272,8 +272,8 @@ exports[`matches snapshot  1`] = `
 .emotion-1[data-checked]:hover,
 .emotion-1[aria-checked=true][data-hover],
 .emotion-1[data-checked][data-hover] {
-  background: #2A69AC;
-  border-color: #2A69AC;
+  background: #2b6cb0;
+  border-color: #2b6cb0;
 }
 
 .emotion-1[aria-checked=true][disabled],
@@ -302,8 +302,8 @@ exports[`matches snapshot  1`] = `
 .emotion-1:indeterminate,
 .emotion-1[aria-checked=mixed],
 .emotion-1[data-indeterminate] {
-  background: #3182CE;
-  border-color: #3182CE;
+  background: #3182ce;
+  border-color: #3182ce;
   color: #FFFFFF;
 }
 

@@ -66,8 +66,8 @@ exports[`Select renders correctly 1`] = `
 .emotion-0:focus,
 .emotion-0[data-focus] {
   z-index: unset;
-  border-color: #3182CE;
-  box-shadow: 0 0 0 1px #3182CE;
+  border-color: #3182ce;
+  box-shadow: 0 0 0 1px #3182ce;
 }
 
 .emotion-0[aria-invalid=true],

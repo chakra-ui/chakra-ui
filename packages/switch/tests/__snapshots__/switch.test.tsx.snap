@@ -51,7 +51,7 @@ exports[`Switch renders correctly 1`] = `
 
 .emotion-1[aria-checked=true],
 .emotion-1[data-checked] {
-  background: #3182CE;
+  background: #3182ce;
 }
 
 .emotion-0 {
