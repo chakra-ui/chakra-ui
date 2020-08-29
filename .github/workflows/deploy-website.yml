@@ -78,13 +78,11 @@ jobs:
         id: lighthouseCheck
         with:
           # See https://github.com/marketplace/actions/lighthouse-check#inputs for all options
-          accessToken: ${{ secrets.GITHUB_TOKEN }}
           # Used to upload artifacts.
           outputDirectory: /tmp/lighthouse-artifacts
           # Run LightHouse against "mobile", "desktop", or "all" devices
           emulatedFormFactor: all
           urls: ${{ env.VERCEL_DEPLOYMENT_URL }}
-          prCommentEnabled: true
 
       # Upload HTML report create by lighthouse
       - name: Upload artifacts
