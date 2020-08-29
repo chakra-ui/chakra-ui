@@ -1,4 +1,4 @@
-import { Select, SelectProps } from "@chakra-ui/core"
+import { Select, SelectProps, useColorModeValue } from "@chakra-ui/core"
 import React from "react"
 
 function VersionSwitcher(props: SelectProps) {
@@ -8,7 +8,7 @@ function VersionSwitcher(props: SelectProps) {
       variant="unstyled"
       maxW="88px"
       fontWeight="semibold"
-      color="gray.600"
+      color={useColorModeValue("gray.600", "whiteAlpha.600")}
       defaultValue="chakra-ui.com"
       aria-label="Documentation version picker"
       onChange={(e) => {

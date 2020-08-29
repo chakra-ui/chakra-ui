@@ -54,7 +54,7 @@ const sidebar = {
           open: true,
           routes: [
             {
-              title: "Modify Components",
+              title: "Modify Theme",
               path: "/docs/theming/modify",
             },
             {

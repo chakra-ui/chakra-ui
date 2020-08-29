@@ -22,8 +22,8 @@ Base styles are simplest, and contain just the CSS-in-JS properties themselves:
 ```js
 {
   baseStyle: {
-    fontFamily: 'body',
-    fontSize: [3, null, 4],
+    fontFamily: "body",
+    fontSize: "16px",
     // ...
   }
 }
@@ -44,22 +44,22 @@ We'll go over how to implement modifier styles later.
 ### Single-part vs. multi-part components
 
 Most components we build today are either single-part components (e.g. Button,
-Badge) or multi-parts components (e.g. Tabs, Menu, Modal).
+Badge) or multi-part components (e.g. Tabs, Menu, Modal).
 
-A single-part component is a component that is just a container around a single
-child. For example, the `<Button>` component produces a single parent HTML
-element around itself:
+**A single-part component** is a component that represents a single element. For
+example, the `<Button>` component renders a `<button>` HTML element:
 
 ```jsx live=false
-// This component exposes only itself (<Button>)
+// This component renders only one element (<button>)
 <Button>My button</Button>
 ```
 
-A multi-part component is a component that has nested children. For example, the
-`<Tabs>` component exposes itself, but also various child components:
+**A multi-part component** is a component that has nested children. For example,
+the `<Tabs>` component renders a wrapper component and other related child
+components:
 
 ```jsx live=false
-// This component exposes itself (<Tabs>) and multiple child components:
+// This component renders a wrapper (<Tabs>) and has multiple child components:
 // <TabList>, <Tab>, <TabPanels>, and <TabPabel>
 <Tabs>
   <TabList>
@@ -75,10 +75,11 @@ A multi-part component is a component that has nested children. For example, the
 
 The first step in creating a custom component is to create a file to export the
 style object. This object, as stated earlier, will contain all the base styles
-and modifier styles for the component. We will then import that style object
-into the global theme. If you haven't set up a global `theme.js` (or `theme.ts`)
-file yet, we suggest you read the documentation for
-[modifying existing components](/docs/theming/modify) first.
+and modifier styles for the component.
+
+We will then import that style object into the global theme. If you haven't set
+up a global `theme.js` (or `theme.ts`) file yet, we suggest you read the
+documentation for [modifying existing components](/docs/theming/modify) first.
 
 To style single-part components, you'll need to define your style object. It
 will always have the exact same structure:
@@ -195,7 +196,7 @@ such:
 ```jsx live=false
 export default {
   // Defining what the "parts" of the multi-part component are
-  parts: {},
+  parts: [],
   // Styles for the base style
   baseStyle: {},
   // Styles for the size variations
@@ -213,10 +214,7 @@ here's the theoretical example of a custom menu component:
 ```jsx live=false
 // theme/components/my-custom-menu.js
 export default {
-  parts: {
-    menu: "the menu container",
-    item: "each individual menu item",
-  },
+  parts: ["menu", "item"],
   baseStyle: {
     menu: {
       flexDirection: "column",
@@ -269,7 +267,6 @@ export const MyCustomMenu = (props) => {
 export const MyCustomMenuItem = (props) => {
   // Read computed styles from styles provider, and consume the `item` styles
   const styles = useStyles()
-
   return <Box sx={styles.item} {...props} />
 }
 ```
