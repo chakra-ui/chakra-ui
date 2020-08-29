@@ -177,8 +177,8 @@ test("has the proper aria attributes", () => {
       <EditableInput data-testid="input" />
     </Editable>,
   )
-  const preview = screen.getByTestId("preview")
-  const input = screen.getByTestId("input")
+  let preview = screen.getByTestId("preview")
+  let input = screen.getByTestId("input")
 
   // preview and input do not have aria-disabled when `Editable` is not disabled
   expect(preview).not.toHaveAttribute("aria-disabled")
@@ -190,6 +190,10 @@ test("has the proper aria attributes", () => {
       <EditableInput data-testid="input" />
     </Editable>,
   )
+
+  preview = screen.getByTestId("preview")
+  input = screen.getByTestId("input")
+
   // preview and input have aria-disabled when `Editable` is disabled
   expect(preview).toHaveAttribute("aria-disabled", "true")
   expect(input).toHaveAttribute("aria-disabled", "true")
