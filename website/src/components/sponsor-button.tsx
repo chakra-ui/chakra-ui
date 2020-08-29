@@ -5,7 +5,7 @@ import siteConfig from "configs/site-config"
 
 const SponsorButton = (props) => (
   <Box
-    display={{ base: "none", md: "flex" }}
+    display="inline-flex"
     alignItems="center"
     as="a"
     href={siteConfig.openCollective.url}

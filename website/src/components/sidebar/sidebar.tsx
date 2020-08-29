@@ -5,7 +5,7 @@ import SidebarCategory from "./sidebar-category"
 import SidebarLink from "./sidebar-link"
 // import Search from "components/algolia-search"
 
-const Sidebar = ({ routes }: any) => {
+const Sidebar = ({ routes, ...props }: any) => {
   const { pathname } = useRouter()
   const ref = React.useRef<HTMLDivElement>(null)
 
@@ -24,6 +24,7 @@ const Sidebar = ({ routes }: any) => {
       flexShrink={0}
       h="calc(((100vh - 1.5rem) - 64px) - 42px);"
       display={{ base: "none", md: "block" }}
+      {...props}
     >
       {/* <Search /> */}
       {routes.map((c1, idx) => {

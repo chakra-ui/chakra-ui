@@ -3,7 +3,7 @@ import NextLink from "next/link"
 import { useRouter } from "next/router"
 import React from "react"
 
-const StyledLink = React.forwardRef(
+export const StyledLink = React.forwardRef(
   (props: PropsOf<typeof chakra.a>, ref: React.Ref<any>) => {
     const hoverColor = useColorModeValue("gray.900", "whiteAlpha.900")
     const activeColor = useColorModeValue("teal.500", "teal.200")
@@ -17,6 +17,7 @@ const StyledLink = React.forwardRef(
         transition="all 0.2s"
         _hover={{
           color: hoverColor,
+          textDecoration: "none",
         }}
         _activeLink={{
           color: activeColor,
