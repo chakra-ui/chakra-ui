@@ -47,3 +47,59 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.ORG_ID }}
           vercel-project-id: ${{ secrets.PROJECT_ID }}
+
+  # Run Lighthouse reports
+  # based on https://github.com/UnlyEd/next-right-now/blob/v2-mst-aptd-gcms-lcz-sty/.github/workflows/deploy-zeit-production.yml#L95
+  run-lighthouse-tests:
+    name: Run LightHouse
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - uses: actions/checkout@master
+      - name: Resolving deployment url from Vercel
+        # The following workflow is:
+        #  - getting the most recent production deployment data
+        #  - then extract the url (in Node.js it corresponds as `response.deployments[0].url`)
+        #  - and then we remove the `"` character to pre-format url
+        # We need to set env the url for next step
+        run: |
+          apt update -y >/dev/null && apt install -y jq >/dev/null
+          VERCEL_DEPLOYMENT=`curl -H 'Accept: application/json' -H 'Content-Type: application/json' -H 'Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}' "https://api.zeit.co/v5/now/deployments?limit=1&teamId=${{ secrets.ORG_ID }}" | jq '.deployments [0].url' | tr -d \"`
+          echo "::set-env name=VERCEL_DEPLOYMENT_URL::https://$VERCEL_DEPLOYMENT"
+        env:
+          # Passing github's secret to the worker
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      # In order to store reports and then upload it, we need to create the folder before any tests
+      - name: Create temporary folder for artifacts storage
+        run: mkdir /tmp/lighthouse-artifacts
+
+      - name: Run Lighthouse
+        uses: foo-software/lighthouse-check-action@master
+        id: lighthouseCheck
+        with:
+          # See https://github.com/marketplace/actions/lighthouse-check#inputs for all options
+          accessToken: ${{ secrets.GITHUB_TOKEN }}
+          # Used to upload artifacts.
+          outputDirectory: /tmp/lighthouse-artifacts
+          # Run LightHouse against "mobile", "desktop", or "all" devices
+          emulatedFormFactor: all
+          urls: ${{ env.VERCEL_DEPLOYMENT_URL }}
+          prCommentEnabled: true
+
+      # Upload HTML report create by lighthouse
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: Lighthouse reports
+          path: /tmp/lighthouse-artifacts
+
+      - name: Handle Lighthouse Check results
+        uses: foo-software/lighthouse-check-status-action@master
+        with:
+          lighthouseCheckResults:
+            ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
+          minAccessibilityScore: "90"
+          minBestPracticesScore: "90"
+          minPerformanceScore: "90"
+          minProgressiveWebAppScore: "90"
+          minSeoScore: "90"
