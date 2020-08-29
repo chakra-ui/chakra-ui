@@ -19,14 +19,14 @@ import useRouteChanged from "hooks/use-route-changed"
 import siteConfig from "configs/site-config"
 import SponsorButton from "./sponsor-button"
 import NavLink from "./header-nav-link"
-import { useSidebarRoutesContext } from "hooks/useRoutesContext"
+import { SidebarRoutesContext } from "src/contexts/SidebarRoutesContext"
 import Sidebar from "components/sidebar/sidebar"
 import { DiscordIcon, GithubIcon } from "./icons"
 
 const MobileNav = () => {
   const { isOpen, onToggle, onClose } = useDisclosure()
   useRouteChanged(onClose)
-  const { sidebarRoutes } = useSidebarRoutesContext()
+  const sidebarRoutes = React.useContext(SidebarRoutesContext)
 
   return (
     <>

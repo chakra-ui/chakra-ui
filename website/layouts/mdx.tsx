@@ -9,7 +9,7 @@ import { findRouteByPath, removeFromLast } from "utils/find-route-by-path"
 import { getRouteContext } from "utils/get-route-context"
 import Sidebar from "components/sidebar/sidebar"
 import Pagination from "components/pagination"
-import { SidebarRoutesProvider } from "hooks/useRoutesContext"
+import { SidebarRoutesContext } from "src/contexts/SidebarRoutesContext"
 
 export default function MDXLayout({ frontmatter, children }) {
   const { slug } = frontmatter
@@ -22,7 +22,7 @@ export default function MDXLayout({ frontmatter, children }) {
 
   return (
     <MDXProvider components={{ ...chakraComponents, ...MDXComponents }}>
-      <SidebarRoutesProvider routes={routes}>
+      <SidebarRoutesContext.Provider value={routes}>
         <PageContainer
           frontmatter={frontmatter}
           sidebar={<Sidebar routes={routes} />}
@@ -35,7 +35,7 @@ export default function MDXLayout({ frontmatter, children }) {
         >
           {children}
         </PageContainer>
-      </SidebarRoutesProvider>
+      </SidebarRoutesContext.Provider>
     </MDXProvider>
   )
 }
