@@ -118,15 +118,21 @@
     }
   },
   "changelog": {
-    "repo": "https://github.com/chakra-ui/chakra-ui",
+    "repo": "chakra-ui/chakra-ui",
     "labels": {
-      "Type: Breaking Change": "🔨 Breaking Changes",
-      "Type: Bug": "🐛 Bugfixes",
-      "Type: Documentation": "📝 Documentation",
-      "Type: Feature": "🚀 Features",
-      "Type: Enhancement": "✨ Enhancements",
-      "Type: Housekeeping": "🏡 Housekeeping"
-    }
+      "Breaking Change 🔨": "🔨 Breaking Changes",
+      "Type: Feature 🚀": "🚀 Features",
+      "Topic: Component API ⚙️": "⚙️ Component API",
+      "Topic: Accessibility (A11y) ♿️": "♿ Accessibility",
+      "Type: Bug 🐛": "🐛 Bugfixes",
+      "Topic: TypeScript 🤠": "🤠 Types",
+      "Topic: Documentation 📚": "📝 Documentation"
+    },
+    "ignoreCommitters": [
+      "dependabot",
+      "allcontributors"
+    ],
+    "cacheDir": ".changelog"
   },
   "devDependencies": {
     "@babel/cli": "7.10.5",
