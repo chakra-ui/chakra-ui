@@ -1,12 +1,12 @@
 import * as React from "react"
 import {
-  useColorModeValue,
   Box,
   Heading,
   HStack,
-  Text,
-  VStack,
   Tag,
+  Text,
+  useColorModeValue,
+  VStack,
 } from "@chakra-ui/core"
 import format from "date-fns/format"
 import parseISO from "date-fns/parseISO"
