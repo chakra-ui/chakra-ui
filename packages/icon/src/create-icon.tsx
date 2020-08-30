@@ -1,7 +1,7 @@
-import React from "react"
+import * as React from "react"
 import { Icon, IconProps } from "./icon"
 import { __DEV__ } from "@chakra-ui/utils"
-import { forwardRef } from "@chakra-ui/system"
+import { forwardRef, PropsOf } from "@chakra-ui/system"
 
 interface CreateIconOptions {
   /**
@@ -12,7 +12,7 @@ interface CreateIconOptions {
   /**
    * The `svg` path or group element
    */
-  path?: React.ReactElement
+  path?: React.ReactElement | React.ReactElement[]
   /**
    * If the has a single path, simply copy the path's `d` attribute
    */
@@ -21,6 +21,10 @@ interface CreateIconOptions {
    * The display name useful in the dev tools
    */
   displayName?: string
+  /**
+   * Default props automatically passed to the component; overwriteable
+   */
+  defaultProps?: PropsOf<typeof Icon>
 }
 
 export function createIcon(options: CreateIconOptions) {
@@ -29,11 +33,12 @@ export function createIcon(options: CreateIconOptions) {
     d: pathDefinition,
     path,
     displayName,
+    defaultProps = {},
   } = options
 
   const Comp = forwardRef<IconProps, "svg">((props, ref) => {
     return (
-      <Icon ref={ref} viewBox={viewBox} {...props}>
+      <Icon ref={ref} viewBox={viewBox} {...defaultProps} {...props}>
         {path ?? <path fill="currentColor" d={pathDefinition} />}
       </Icon>
     )

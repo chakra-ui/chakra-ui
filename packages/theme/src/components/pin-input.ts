@@ -1,38 +1,44 @@
-import { styleConfig } from "@chakra-ui/theme-tools"
-import input from "./input"
+import Input from "./input"
+type Dict = Record<string, any>
 
-const pinInput = styleConfig({
-  baseStyle: {
-    ...input.baseStyle?.field,
-    textAlign: "center",
-  },
-  sizes: {
-    lg: {
-      fontSize: "lg",
-      w: 12,
-      h: 12,
-      borderRadius: "md",
-    },
-    md: {
-      fontSize: "md",
-      w: 10,
-      h: 10,
-      borderRadius: "md",
-    },
-    sm: {
-      fontSize: "sm",
-      w: 8,
-      h: 8,
-      borderRadius: "sm",
-    },
-  },
-  variants: {
-    outline: (props) => input.variants?.outline(props)?.field ?? {},
-    flushed: (props) => input.variants?.flushed(props)?.field ?? {},
-    filled: (props) => input.variants?.filled(props).field ?? {},
-    unstyled: input.variants?.unstyled.field,
-  },
-  defaultProps: input.defaultProps,
-})
+const baseStyle = {
+  ...Input.baseStyle.field,
+  textAlign: "center",
+}
 
-export default pinInput
+const sizes = {
+  lg: {
+    fontSize: "lg",
+    w: 12,
+    h: 12,
+    borderRadius: "md",
+  },
+  md: {
+    fontSize: "md",
+    w: 10,
+    h: 10,
+    borderRadius: "md",
+  },
+  sm: {
+    fontSize: "sm",
+    w: 8,
+    h: 8,
+    borderRadius: "sm",
+  },
+}
+
+const variants = {
+  outline: (props: Dict) => Input.variants.outline(props).field,
+  flushed: (props: Dict) => Input.variants.flushed(props).field,
+  filled: (props: Dict) => Input.variants.filled(props).field,
+  unstyled: Input.variants.unstyled.field,
+}
+
+const defaultProps = Input.defaultProps
+
+export default {
+  baseStyle,
+  sizes,
+  variants,
+  defaultProps,
+}

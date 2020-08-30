@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Icon, IconProps } from "@chakra-ui/icon"
+import { omit } from "@chakra-ui/utils"
 
 export interface CheckboxIconProps extends IconProps {
   isChecked?: boolean
@@ -14,8 +15,9 @@ export interface CheckboxIconProps extends IconProps {
  */
 export const CheckboxIcon: React.FC<CheckboxIconProps> = (props) => {
   const { isIndeterminate } = props
+  const iconProps = omit(props, ["isChecked", "isIndeterminate"])
   return (
-    <Icon {...props}>
+    <Icon {...iconProps}>
       {isIndeterminate ? (
         <rect fill="currentColor" height="4" width="20" x="2" y="10" />
       ) : (

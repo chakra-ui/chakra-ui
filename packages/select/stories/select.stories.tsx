@@ -135,6 +135,7 @@ export const FocusAndErrorColors = () => (
 export const OverrideStyles = () => (
   <Select
     color="white"
+    height="60px"
     borderColor="tomato"
     bg="tomato"
     placeholder="Woohoo! A new background color!"

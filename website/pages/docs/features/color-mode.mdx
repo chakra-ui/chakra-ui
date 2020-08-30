@@ -2,7 +2,6 @@
 title: "Color Mode"
 package: "@chakra-ui/color-mode"
 description: Working with color mode (light and dark mode) in Chakra UI
-order: 4
 ---
 
 When you use the `ChakraProvider` at the root of your app, you can automatically
@@ -12,8 +11,8 @@ By default, most of Chakra's component are dark mode compatible. To handle color
 mode manually in your application, use the `useColorMode` or `useColorModeValue`
 hooks.
 
-> **Tip:** Chakra stores the color mode in `localStorage` and uses a class name
-> strategy to ensure the color mode is persistent.
+> **Tip:** Chakra stores the color mode in `localStorage` and uses CSS variables
+> to ensure the color mode is persistent.
 
 ## useColorMode
 
@@ -110,71 +109,49 @@ function Example() {
 Starting from v1.0, you can now set default color mode or use default OS color
 mode.
 
-### Setting initial mode
+To support this, pass the `initialValue` prop to `ColorModeScript` component and
+set it's value to `light`, `dark` or `system`.
 
-Sometimes, you want you app to start with light or dark mode by default. To
-support this, add `theme.config.initialColorMode` to the theme and set it's
-value to "light" or "dark".
+By default the initial color mode is `light`. All you need to do is add
+`ColorModeScript` script as the first child of `body`.
 
-```jsx live=false
-const theme = {
-  config: {
-    initialColorMode: "dark", // "light" | "dark"
-  },
-}
-```
+### With Next.js
 
-### Using system color mode
-
-In some scenarios, you might want your app to adapt to the user's OS color mode
-preference. To support this, add `theme.config.useSystemColorMode`.
-
-This also updates the color mode whenever user changes this preference from
-their OS.
+Here's how to add it for Next.js:
 
 ```jsx live=false
-const theme = {
-  config: {
-    useSystemColorMode: true,
-  },
-}
-```
+// pages/_document.js
+import { ColorModeScript } from "@chakra-ui/core"
 
-## Changing the storageManager for server side rendering (SSR) apps
+export default class Document extends NextDocument {
+  static async getInitialProps(ctx) {
+    const initialProps = await NextDocument.getInitialProps(ctx)
+    return { ...initialProps }
+  }
 
-By default the current color mode is persisted in local storage. Unfortunately
-this can cause a flash between light and dark modes during initial page load for
-apps that server side render. This flash is caused because local storage isn't
-accessible on the server. The default storageManager can be swapped out to use
-cookies instead of local storage. Below is an example of using the 
-`cookieStorageManager` in a Next.js app.
-
-```jsx live=false
-import { ChakraProvider, cookieStorageManager } from "@chakra-ui/core"
-import theme from "@chakra-ui/theme"
-
-const App = ({ Component, pageProps, cookies }) => {
-  return (
-    <ChakraProvider
-      resetCSS
-      theme={theme}
-      storageManager={cookieStorageManager(cookies)}
-    >
-      <Component {...pageProps} />
-    </ChakraProvider>
-  )
-}
-
-App.getInitialProps = async ({ ctx }) => {
-  return {
-    cookies: ctx.req.headers.cookie,
+  render() {
+    return (
+      <Html>
+        <Head />
+        <body>
+          {/* 👇 Here's the script */}
+          <ColorModeScript defaultMode="light" />
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
   }
 }
-
-export default App
 ```
 
+### With Gatsby
 
-> Please notice that using `App.getInitialProps` [has optimization implications](https://nextjs.org/docs/api-reference/data-fetching/getInitialProps).
-> If you're using Next.js 9.3 or newer, it is heavily recommended to use
-> `getServerSideProps` on a per page basis via your own abstraction.
+```jsx live=false
+// gatsby-ssr.js
+export const onRenderBody = ({ setPreBodyComponents }) => {
+  setPreBodyComponents([
+    <ColorModeScript defaultMode="light" key="chakra-ui-no-flash" />,
+  ])
+}
+```

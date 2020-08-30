@@ -1,5 +1,5 @@
 import * as React from "react"
-import { render } from "@chakra-ui/test-utils"
+import { render, testA11y, screen } from "@chakra-ui/test-utils"
 import {
   Input,
   InputGroup,
@@ -9,12 +9,22 @@ import {
   InputRightElement,
 } from "../src"
 
-test("Input renders correctly", () => {
+test("renders correctly", () => {
   const { asFragment } = render(<Input />)
   expect(asFragment()).toMatchSnapshot()
 })
 
-test("Input addons render correctly", () => {
+test("passes a11y test", async () => {
+  await testA11y(<Input />, {
+    axeOptions: {
+      rules: {
+        label: { enabled: false },
+      },
+    },
+  })
+})
+
+test("addons render correctly", () => {
   const { asFragment } = render(
     <InputGroup>
       <InputLeftAddon>https://</InputLeftAddon>
@@ -41,22 +51,19 @@ test("Elements inside input render correctly", () => {
 })
 
 test("Invalid input renders correctly", () => {
-  const { getByTestId } = render(<Input isInvalid data-testid="input" />)
-  const input = getByTestId("input")
+  render(<Input isInvalid />)
 
-  expect(input).toHaveAttribute("aria-invalid", "true")
+  expect(screen.getByRole("textbox")).toHaveAttribute("aria-invalid", "true")
 })
 
 test("Disabled input renders correctly", () => {
-  const { getByTestId } = render(<Input isDisabled data-testid="input" />)
-  const input = getByTestId("input")
+  render(<Input isDisabled />)
 
-  expect(input).toHaveAttribute("disabled")
+  expect(screen.getByRole("textbox")).toHaveAttribute("disabled")
 })
 
 test("Readonly input renders correctly", () => {
-  const { getByTestId } = render(<Input isReadOnly data-testid="input" />)
-  const input = getByTestId("input")
+  render(<Input isReadOnly />)
 
-  expect(input).toHaveAttribute("aria-readonly", "true")
+  expect(screen.getByRole("textbox")).toHaveAttribute("aria-readonly", "true")
 })

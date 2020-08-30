@@ -3,7 +3,28 @@ import { omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useImage, UseImageProps } from "./use-image"
 
-interface ImageOptions {
+interface NativeImageOptions {
+  /**
+   * The native HTML `width` attribute to the passed to the `img`
+   */
+  htmlWidth?: string | number
+  /**
+   * The native HTML `height` attribute to the passed to the `img`
+   */
+  htmlHeight?: string | number
+}
+
+interface NativeImageProps extends PropsOf<"img">, NativeImageOptions {}
+
+const NativeImage = React.forwardRef(function NativeImage(
+  props: NativeImageProps,
+  ref: React.Ref<any>,
+) {
+  const { htmlWidth, htmlHeight, ...rest } = props
+  return <img width={htmlWidth} height={htmlHeight} ref={ref} {...rest} />
+})
+
+interface ImageOptions extends NativeImageOptions {
   /**
    * Fallback image `src` to show if image is loading or image fails.
    *
@@ -14,14 +35,6 @@ interface ImageOptions {
    * Fallback element to show if image is loading or image fails.
    */
   fallback?: React.ReactElement
-  /**
-   * The native HTML `width` attribute to the passed to the `img`
-   */
-  htmlWidth?: string | number
-  /**
-   * The native HTML `height` attribute to the passed to the `img`
-   */
-  htmlHeight?: string | number
   /**
    * Defines loading strategy
    */
@@ -93,6 +106,7 @@ export const Image = forwardRef<ImageProps, "img">(function Image(props, ref) {
 
     return (
       <chakra.img
+        as={NativeImage}
         className="chakra-image__placeholder"
         src={fallbackSrc}
         {...shared}
@@ -102,11 +116,31 @@ export const Image = forwardRef<ImageProps, "img">(function Image(props, ref) {
 
   return (
     <chakra.img
+      as={NativeImage}
       src={src}
       crossOrigin={crossOrigin}
       loading={loading}
       className="chakra-image"
       {...shared}
+    />
+  )
+})
+
+export interface ImgProps
+  extends PropsOf<typeof chakra.img>,
+    NativeImageOptions {}
+
+/**
+ * Fallback component for most SSR users who want to use the native `img` with
+ * support for chakra props
+ */
+export const Img = forwardRef<ImgProps, "img">(function Img(props, ref) {
+  return (
+    <chakra.img
+      ref={ref}
+      as={NativeImage}
+      className="chakra-image"
+      {...props}
     />
   )
 })

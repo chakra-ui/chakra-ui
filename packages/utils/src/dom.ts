@@ -3,9 +3,13 @@ import * as React from "react"
 
 let _window: Window | undefined = undefined
 
-// Note: Accessing "window" in IE11 is somewhat expensive, and calling "typeof window"
-// hits a memory leak, whereas aliasing it and calling "typeof _window" does not.
-// Caching the window value at the file scope lets us minimize the impact.
+/**
+ * Note: Accessing "window" in IE11 is somewhat expensive, and calling "typeof window"
+ * hits a memory leak, whereas aliasing it and calling "typeof _window" does not.
+ * Caching the window value at the file scope lets us minimize the impact.
+ *
+ * @see IE11 Memory Leak Issue https://github.com/microsoft/fluentui/pull/9010#issuecomment-490768427
+ */
 try {
   _window = window
 } catch (e) {

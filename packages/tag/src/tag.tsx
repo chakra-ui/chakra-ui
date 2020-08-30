@@ -21,7 +21,7 @@ export interface TagProps extends PropsOf<typeof chakra.span>, ThemingProps {}
  */
 export const Tag = forwardRef<TagProps, "span">(function Tag(props, ref) {
   const styles = useMultiStyleConfig("Tag", props)
-  const _props = omitThemingProps(props)
+  const ownProps = omitThemingProps(props)
 
   const containerStyles = {
     display: "inline-flex",
@@ -33,7 +33,7 @@ export const Tag = forwardRef<TagProps, "span">(function Tag(props, ref) {
 
   return (
     <StylesProvider value={styles}>
-      <chakra.span ref={ref} {..._props} __css={containerStyles} />
+      <chakra.span ref={ref} {...ownProps} __css={containerStyles} />
     </StylesProvider>
   )
 })

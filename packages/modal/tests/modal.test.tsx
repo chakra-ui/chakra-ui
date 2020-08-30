@@ -1,5 +1,11 @@
 import * as React from "react"
-import { render, fireEvent, axe, press, wait } from "@chakra-ui/test-utils"
+import {
+  render,
+  fireEvent,
+  testA11y,
+  press,
+  waitFor,
+} from "@chakra-ui/test-utils"
 import { PortalManager } from "@chakra-ui/portal"
 import {
   Modal,
@@ -31,7 +37,7 @@ test("should render correctly", () => {
 })
 
 test("should have no accessibility violations", async () => {
-  const tools = renderWithPortal(
+  const { container } = renderWithPortal(
     <Modal isOpen onClose={jest.fn()}>
       <ModalOverlay>
         <ModalContent>
@@ -44,8 +50,7 @@ test("should have no accessibility violations", async () => {
     </Modal>,
   )
 
-  const result = await axe(tools.container)
-  expect(result).toHaveNoViolations()
+  await testA11y(container)
 })
 
 test("should have the proper 'aria' attributes", () => {
@@ -205,5 +210,5 @@ test("should return focus to button when closed", async () => {
   fireEvent.click(tools.getByTestId("close"))
 
   // wait for button to be focused
-  await wait(() => expect(button).toHaveFocus())
+  await waitFor(() => expect(button).toHaveFocus())
 })

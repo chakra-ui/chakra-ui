@@ -39,14 +39,15 @@ type RenderProps = Pick<
 interface BaseEditableProps
   extends Omit<
     PropsOf<typeof chakra.div>,
-    "onChange" | "value" | "defaultValue"
+    "onChange" | "value" | "defaultValue" | "onSubmit"
   > {}
 
-export type EditableProps = UseEditableProps &
-  BaseEditableProps &
-  ThemingProps & {
-    children?: ReactNodeOrRenderProp<RenderProps>
-  }
+export interface EditableProps
+  extends UseEditableProps,
+    BaseEditableProps,
+    ThemingProps {
+  children?: ReactNodeOrRenderProp<RenderProps>
+}
 
 /**
  * Editable
@@ -60,8 +61,8 @@ export const Editable = forwardRef<EditableProps, "div">(function Editable(
 ) {
   const styles = useMultiStyleConfig("Editable", props)
 
-  const realProps = omitThemingProps(props)
-  const { htmlProps, ...context } = useEditable(realProps)
+  const ownProps = omitThemingProps(props)
+  const { htmlProps, ...context } = useEditable(ownProps)
 
   const { isEditing, onSubmit, onCancel, onEdit } = context
 

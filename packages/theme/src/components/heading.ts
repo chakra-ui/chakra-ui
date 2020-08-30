@@ -1,28 +1,30 @@
-import { styleConfig } from "@chakra-ui/theme-tools"
+const baseStyle = {
+  fontFamily: "heading",
+  lineHeight: "shorter",
+  fontWeight: "bold",
+}
 
-const heading = styleConfig({
-  baseStyle: {
-    fontFamily: "heading",
-    lineHeight: "shorter",
-    fontWeight: "bold",
+const sizes = {
+  "2xl": {
+    fontSize: ["4xl", null, "5xl"],
   },
-  sizes: {
-    "2xl": {
-      fontSize: ["4xl", null, "5xl"],
-    },
-    xl: {
-      fontSize: ["3xl", null, "4xl"],
-    },
-    lg: {
-      fontSize: ["2xl", null, "3xl"],
-    },
-    md: { fontSize: "xl" },
-    sm: { fontSize: "md" },
-    xs: { fontSize: "sm" },
+  xl: {
+    fontSize: ["3xl", null, "4xl"],
   },
-  defaultProps: {
-    size: "xl",
+  lg: {
+    fontSize: ["2xl", null, "3xl"],
   },
-})
+  md: { fontSize: "xl" },
+  sm: { fontSize: "md" },
+  xs: { fontSize: "sm" },
+}
 
-export default heading
+const defaultProps = {
+  size: "xl",
+}
+
+export default {
+  baseStyle,
+  sizes,
+  defaultProps,
+}

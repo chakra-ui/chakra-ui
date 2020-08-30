@@ -10,7 +10,7 @@ import {
   useStyles,
 } from "@chakra-ui/system"
 import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
-import React, { cloneElement } from "react"
+import * as React from "react"
 
 export interface BreadcrumbSeparatorProps extends PropsOf<typeof chakra.div> {
   spacing?: SystemProps["mx"]
@@ -109,13 +109,13 @@ export const BreadcrumbItem = forwardRef<BreadcrumbItemProps, "li">(
 
     const clones = validChildren.map((child) => {
       if (child.type === BreadcrumbLink) {
-        return cloneElement(child, {
+        return React.cloneElement(child, {
           isCurrentPage,
         })
       }
 
       if (child.type === BreadcrumbSeparator) {
-        return cloneElement(child, {
+        return React.cloneElement(child, {
           spacing,
           children: child.props.children || separator,
         })
@@ -174,7 +174,7 @@ export interface BreadcrumbProps
 export const Breadcrumb = forwardRef<BreadcrumbProps, "nav">(
   function Breadcrumb(props, ref) {
     const styles = useMultiStyleConfig("Breadcrumb", props)
-    const realProps = omitThemingProps(props)
+    const ownProps = omitThemingProps(props)
 
     const {
       children,
@@ -182,13 +182,13 @@ export const Breadcrumb = forwardRef<BreadcrumbProps, "nav">(
       separator = "/",
       className,
       ...rest
-    } = realProps
+    } = ownProps
 
     const validChildren = getValidChildren(children)
     const count = validChildren.length
 
     const clones = validChildren.map((child, index) =>
-      cloneElement(child, {
+      React.cloneElement(child, {
         separator,
         spacing,
         isLastChild: count === index + 1,

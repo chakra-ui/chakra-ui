@@ -130,6 +130,7 @@ function useProvider(props: FormControlContext) {
 
 export interface FormControlProps
   extends PropsOf<typeof chakra.div>,
+    ThemingProps,
     FormControlContext {}
 
 /**
@@ -142,8 +143,8 @@ export interface FormControlProps
 export const FormControl = forwardRef<FormControlProps, "div">(
   function FormControl(props, ref) {
     const styles = useMultiStyleConfig("Form", props)
-    const rest = omitThemingProps(props)
-    const { htmlProps, ...context } = useProvider(rest)
+    const ownProps = omitThemingProps(props)
+    const { htmlProps, ...context } = useProvider(ownProps)
 
     const _className = cx("chakra-form-control", props.className)
 

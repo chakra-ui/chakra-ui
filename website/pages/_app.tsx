@@ -1,8 +1,6 @@
 import { ChakraProvider } from "@chakra-ui/core"
 import theme from "theme"
-import { MDXProvider } from "@mdx-js/react"
 import { trackPageview } from "analytics/track-event"
-import MDXComponents from "components/mdx-components"
 import { DefaultSeo } from "next-seo"
 import Head from "next/head"
 import Router from "next/router"
@@ -21,15 +19,89 @@ const App = ({ Component, pageProps }) => {
         <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <link rel="icon" type="image/png" sizes="96x96" href="/favicon.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://static.cloudflareinsights.com" />
         <meta name="theme-color" content="#319795" />
-        <script async defer src="https://buttons.github.io/buttons.js" />
       </Head>
-      <ChakraProvider resetCSS theme={theme} portalConfig={{ zIndex: 40 }}>
+      <ChakraProvider resetCSS theme={theme} portalZIndex={40}>
         <DefaultSeo {...siteConfig.seo} />
-        <MDXProvider components={MDXComponents}>
-          <Component {...pageProps} />
-        </MDXProvider>
+        <Component {...pageProps} />
       </ChakraProvider>
+      <style jsx global>
+        {`
+          @font-face {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 100;
+            font-display: block;
+            src: url(/fonts/Inter.woff2) format("woff2");
+          }
+
+          @font-face {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 200;
+            font-display: block;
+            src: url(/fonts/Inter.woff2) format("woff2");
+          }
+
+          @font-face {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 300;
+            font-display: block;
+            src: url(/fonts/Inter.woff2) format("woff2");
+          }
+
+          @font-face {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(/fonts/Inter.woff2) format("woff2");
+          }
+
+          @font-face {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 500;
+            font-display: block;
+            src: url(/fonts/Inter.woff2) format("woff2");
+          }
+
+          @font-face {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 600;
+            font-display: block;
+            src: url(/fonts/Inter.woff2) format("woff2");
+          }
+
+          @font-face {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 700;
+            font-display: block;
+            src: url(/fonts/Inter.woff2) format("woff2");
+          }
+
+          @font-face {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 800;
+            font-display: block;
+            src: url(/fonts/Inter.woff2) format("woff2");
+          }
+
+          @font-face {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 900;
+            font-display: block;
+            src: url(/fonts/Inter.woff2) format("woff2");
+          }
+        `}
+      </style>
     </>
   )
 }

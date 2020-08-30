@@ -1,45 +1,31 @@
-<script data-id="chakra-ui-no-flash">
-  ;(function () {
-    window.addEventListener("DOMContentLoaded", function (e) {
-      var storageKey = "chakra-ui-color-mode"
-      var classNameDark = "chakra-ui-dark"
-      var classNameLight = "chakra-ui-light"
+<script>
+  ;(function setColorModeVar(initialValue) {
+    const mql = window.matchMedia("(prefers-color-scheme: dark)")
+    const systemPreference = mql.matches ? "dark" : "light"
 
-      function setClassOnDocumentBody(darkMode) {
-        document.body.classList.add(darkMode ? classNameDark : classNameLight)
-        document.body.classList.remove(
-          darkMode ? classNameLight : classNameDark,
-        )
-      }
+    let persistedPreference
 
-      var preferDarkQuery = "(prefers-color-scheme: dark)"
-      var mql = window.matchMedia(preferDarkQuery)
-      var supportsColorSchemeQuery = mql.media === preferDarkQuery
-      var localStorageValue = null
-
-      try {
-        localStorageValue = localStorage.getItem(storageKey)
-      } catch (err) {}
-
-      var exist = localStorageValue !== null
-      if (exist) {
-        localStorageValue = JSON.parse(localStorageValue)
-      }
-    // Determine the source of truth
-    if (exist) {
-      // source of truth from localStorage
-      setClassOnDocumentBody(localStorageValue === "dark")
-    } else if (supportsColorSchemeQuery) {
-      // source of truth from system
-      setClassOnDocumentBody(mql.matches)
-      localStorage.setItem(storageKey, mql.matches ? "dark" : "light")
-    } else {
-      // source of truth from document.body
-      var isDarkMode = document.body.classList.contains(classNameDark)
-      localStorage.setItem(
-        storageKey,
-        JSON.stringify(isDarkMode ? "dark" : "light"),
+    try {
+      persistedPreference = localStorage.getItem("chakra-ui-color-mode")
+    } catch (error) {
+      console.log(
+        "Chakra UI: localStorage is not available. Color mode persistence might not work as expected",
       )
     }
-  })()
+
+    const isInStorage = typeof persistedPreference === "string"
+
+    let colorMode
+
+    if (isInStorage) {
+      colorMode = persistedPreference
+    } else {
+      colorMode = initialValue === "system" ? systemPreference : initialValue
+    }
+
+    if (colorMode) {
+      const root = document.documentElement
+      root.style.setProperty("--chakra-ui-color-mode", colorMode)
+    }
+  })("light")
 </script>

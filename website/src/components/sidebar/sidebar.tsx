@@ -23,6 +23,7 @@ const Sidebar = ({ routes }: any) => {
       className="sidebar-content"
       flexShrink={0}
       h="calc(((100vh - 1.5rem) - 64px) - 42px);"
+      display={{ base: "none", md: "block" }}
     >
       {/* <Search /> */}
       {routes.map((c1, idx) => {

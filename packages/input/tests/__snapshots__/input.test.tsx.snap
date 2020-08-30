@@ -32,7 +32,7 @@ exports[`Elements inside input render correctly 1`] = `
   justify-content: center;
   position: absolute;
   top: 0;
-  z-index: 2;
+  z-index: 1;
 }
 
 .emotion-1 {
@@ -85,8 +85,9 @@ exports[`Elements inside input render correctly 1`] = `
 
 .emotion-1:focus,
 .emotion-1[data-focus] {
-  border-color: #3182CE;
-  box-shadow: 0 0 0 1px #3182CE;
+  z-index: 1;
+  border-color: #3182ce;
+  box-shadow: 0 0 0 1px #3182ce;
 }
 
 .emotion-1[aria-invalid=true],
@@ -116,7 +117,7 @@ exports[`Elements inside input render correctly 1`] = `
   justify-content: center;
   position: absolute;
   top: 0;
-  z-index: 2;
+  z-index: 1;
 }
 
 <div
@@ -143,7 +144,7 @@ exports[`Elements inside input render correctly 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Input addons render correctly 1`] = `
+exports[`addons render correctly 1`] = `
 <DocumentFragment>
   .emotion-3 {
   width: 100%;
@@ -235,8 +236,9 @@ exports[`Input addons render correctly 1`] = `
 
 .emotion-1:focus,
 .emotion-1[data-focus] {
-  border-color: #3182CE;
-  box-shadow: 0 0 0 1px #3182CE;
+  z-index: 1;
+  border-color: #3182ce;
+  box-shadow: 0 0 0 1px #3182ce;
 }
 
 .emotion-1[aria-invalid=true],
@@ -293,7 +295,7 @@ exports[`Input addons render correctly 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Input renders correctly 1`] = `
+exports[`renders correctly 1`] = `
 <DocumentFragment>
   .emotion-0 {
   width: 100%;
@@ -344,8 +346,9 @@ exports[`Input renders correctly 1`] = `
 
 .emotion-0:focus,
 .emotion-0[data-focus] {
-  border-color: #3182CE;
-  box-shadow: 0 0 0 1px #3182CE;
+  z-index: 1;
+  border-color: #3182ce;
+  box-shadow: 0 0 0 1px #3182ce;
 }
 
 .emotion-0[aria-invalid=true],

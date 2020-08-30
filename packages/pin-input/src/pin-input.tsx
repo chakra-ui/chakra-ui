@@ -43,8 +43,8 @@ export interface PinInputProps
 export const PinInput: React.FC<PinInputProps> = (props) => {
   const styles = useStyleConfig("PinInput", props)
 
-  const { children, ...otherProps } = omitThemingProps(props)
-  const context = usePinInput(otherProps)
+  const { children, ...rest } = omitThemingProps(props)
+  const context = usePinInput(rest)
 
   const clones = getValidChildren(children).map((child) => {
     return React.cloneElement(child, { __css: styles })

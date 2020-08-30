@@ -1,73 +1,62 @@
-import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
+import { mode } from "@chakra-ui/theme-tools"
 
-const modal = multiStyleConfig({
-  parts: {
-    overlay: "the modal overlay",
-    content: "the modal content wrapper",
-    header: "the modal content header",
-    body: "the modal main content area",
-    footer: "the modal footer action",
-  },
+const parts = ["overlay", "content", "header", "body", "footer"]
 
-  baseStyle: function (props) {
-    const { isCentered, scrollBehavior } = props
+type Dict = Record<string, any>
 
-    return {
-      overlay: {
-        bg: "blackAlpha.600",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: isCentered ? "center" : "flex-start",
-        overflow: scrollBehavior === "inside" ? "hidden" : "auto",
-      },
+function baseStyleOverlay(props: Dict) {
+  const { isCentered, scrollBehavior } = props
 
-      content: {
-        borderRadius: "md",
-        bg: mode("white", "gray.700")(props),
-        color: "inherit",
-        my: "3.75rem",
-        maxH: scrollBehavior === "inside" ? "calc(100vh - 7.5rem)" : undefined,
-        boxShadow: mode("lg", "dark-lg")(props),
-      },
+  return {
+    bg: "blackAlpha.600",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: isCentered ? "center" : "flex-start",
+    overflow: scrollBehavior === "inside" ? "hidden" : "auto",
+  }
+}
 
-      header: {
-        px: 6,
-        py: 4,
-        fontSize: "xl",
-        fontWeight: "semibold",
-      },
+function baseStyleContent(props: Dict) {
+  const { scrollBehavior } = props
 
-      body: {
-        px: 6,
-        py: 2,
-        flex: 1,
-        overflow: scrollBehavior === "inside" ? "auto" : undefined,
-      },
+  return {
+    borderRadius: "md",
+    bg: mode("white", "gray.700")(props),
+    color: "inherit",
+    my: "3.75rem",
+    maxH: scrollBehavior === "inside" ? "calc(100vh - 7.5rem)" : undefined,
+    boxShadow: mode("lg", "dark-lg")(props),
+  }
+}
 
-      footer: {
-        px: 6,
-        py: 4,
-      },
-    }
-  },
+const baseStyleHeader = {
+  px: 6,
+  py: 4,
+  fontSize: "xl",
+  fontWeight: "semibold",
+}
 
-  sizes: {
-    xs: getSize("xs"),
-    sm: getSize("sm"),
-    md: getSize("md"),
-    lg: getSize("lg"),
-    xl: getSize("xl"),
-    "2xl": getSize("2xl"),
-    "3xl": getSize("3xl"),
-    "4xl": getSize("4xl"),
-    "5xl": getSize("5xl"),
-    "6xl": getSize("6xl"),
-    full: getSize("full"),
-  },
+function baseStyleBody(props: Dict) {
+  const { scrollBehavior } = props
+  return {
+    px: 6,
+    py: 2,
+    flex: 1,
+    overflow: scrollBehavior === "inside" ? "auto" : undefined,
+  }
+}
 
-  defaultProps: {
-    size: "md",
-  },
+const baseStyleFooter = {
+  px: 6,
+  py: 4,
+}
+
+const baseStyle = (props: Dict) => ({
+  overlay: baseStyleOverlay(props),
+  content: baseStyleContent(props),
+  header: baseStyleHeader,
+  body: baseStyleBody(props),
+  footer: baseStyleFooter,
 })
 
 /**
@@ -84,4 +73,27 @@ function getSize(value: string) {
   }
 }
 
-export default modal
+const sizes = {
+  xs: getSize("xs"),
+  sm: getSize("sm"),
+  md: getSize("md"),
+  lg: getSize("lg"),
+  xl: getSize("xl"),
+  "2xl": getSize("2xl"),
+  "3xl": getSize("3xl"),
+  "4xl": getSize("4xl"),
+  "5xl": getSize("5xl"),
+  "6xl": getSize("6xl"),
+  full: getSize("full"),
+}
+
+const defaultProps = {
+  size: "md",
+}
+
+export default {
+  parts,
+  baseStyle,
+  sizes,
+  defaultProps,
+}

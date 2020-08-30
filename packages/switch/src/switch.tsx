@@ -20,9 +20,9 @@ export interface SwitchProps
 export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
   const styles = useMultiStyleConfig("Switch", props)
 
-  const realProps = omitThemingProps(props)
+  const ownProps = omitThemingProps(props)
   const { state, getInputProps, getCheckboxProps, htmlProps } = useCheckbox(
-    realProps,
+    ownProps,
   )
 
   const inputProps = getInputProps({}, ref)

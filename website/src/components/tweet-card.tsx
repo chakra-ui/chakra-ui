@@ -1,4 +1,4 @@
-import { Avatar, Box } from "@chakra-ui/core"
+import { Avatar, Box, useColorModeValue } from "@chakra-ui/core"
 import * as React from "react"
 
 interface TweetCardProps {
@@ -11,16 +11,19 @@ interface TweetCardProps {
 }
 
 function TweetCard(props: TweetCardProps) {
-  const { name, image, handle, date, content, url } = props
+  const { name, handle, date, content, url } = props
+  const image = `/avatars/${handle}.jpg`
   return (
     <Box
       as="a"
       href={url}
       target="_blank"
+      rel="noopener"
       display="flex"
       rounded="lg"
       p="5"
       mb="4"
+      bg={useColorModeValue("white", "gray.700")}
       shadow="base"
     >
       <Avatar mr="16px" size="sm" src={image} name={name} />

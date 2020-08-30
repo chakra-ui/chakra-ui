@@ -1,5 +1,5 @@
 import * as React from "react"
-import { render, fireEvent } from "@chakra-ui/test-utils"
+import { render, fireEvent, screen, testA11y } from "@chakra-ui/test-utils"
 import { FocusLock } from "../src"
 
 test("focuses an element on render", () => {
@@ -12,9 +12,28 @@ test("focuses an element on render", () => {
       </FocusLock>
     )
   }
-  const utils = render(<Component />)
-  const input = utils.getByTestId("input")
+  render(<Component />)
+  const input = screen.getByTestId("input")
   expect(input).toHaveFocus()
+})
+
+it("passes a11y test", async () => {
+  await testA11y(
+    <FocusLock>
+      <button type="button">button 1</button>
+      <button type="button">button 2</button>
+      <button type="button">button 3</button>
+    </FocusLock>,
+    {
+      axeOptions: {
+        rules: {
+          // react-focus-lock is not compliant here or rather,
+          // it is a valid use case of tabindex
+          tabindex: { enabled: false },
+        },
+      },
+    },
+  )
 })
 
 test("focuses initialFocusRef on render", () => {
@@ -28,8 +47,8 @@ test("focuses initialFocusRef on render", () => {
       </FocusLock>
     )
   }
-  const utils = render(<Component />)
-  const input = utils.getByTestId("input")
+  render(<Component />)
+  const input = screen.getByTestId("input")
   expect(input).toHaveFocus()
 })
 
@@ -50,8 +69,8 @@ test("focuses finalFocusRef on unmount", () => {
       </div>
     )
   }
-  const utils = render(<Component />)
-  const button = utils.getByTestId("button")
+  render(<Component />)
+  const button = screen.getByTestId("button")
 
   // not focused while focus lock is displayed
   expect(button).not.toHaveFocus()

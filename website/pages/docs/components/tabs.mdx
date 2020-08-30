@@ -310,6 +310,31 @@ tab by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.
 </Tabs>
 ```
 
+### Lazily mounting tab panels
+
+By default, the `Tabs` component renders all tabs content to the DOM, meaning that invisible tabs are still rendered but are hidden by styles.
+
+If you want to defer rendering of each tab until that tab is selected, you can use the `isLazy` prop. This is useful if your tabs require heavy performance, or make network calls on mount that should only happen when the component is displayed.
+
+```jsx
+<Tabs isLazy>
+  <TabList>
+    <Tab>One</Tab>
+    <Tab>Two</Tab>
+  </TabList>
+  <TabPanels>
+    {/* initially mounted */}
+    <TabPanel>
+      <p>one!</p>
+    </TabPanel>
+    {/* initially not mounted */}
+    <TabPanel>
+      <p>two!</p>
+    </TabPanel>
+  </TabPanels>
+</Tabs>
+```
+
 ### Controlled Tabs
 
 Like form inputs, a tab's state can be controlled. Make sure to include an

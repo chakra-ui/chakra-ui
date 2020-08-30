@@ -19,6 +19,8 @@ const config: Config = {
   gridRow: true,
   gridAutoFlow: true,
   gridAutoColumns: true,
+  gridColumnStart: true,
+  gridColumnEnd: true,
   gridAutoRows: true,
   gridTemplateColumns: true,
   gridTemplateRows: true,
@@ -43,6 +45,14 @@ export interface GridProps {
    * The CSS `grid-row-gap` property
    */
   gridRowGap?: ResponsiveValue<CSS.Property.GridRowGap<Length>>
+  /**
+   * The CSS `grid-column` property
+   */
+  gridColumnStart?: ResponsiveValue<CSS.Property.GridColumnStart>
+  /**
+   * The CSS `grid-column` property
+   */
+  gridColumnEnd?: ResponsiveValue<CSS.Property.GridColumnEnd>
   /**
    * The CSS `grid-column` property
    */

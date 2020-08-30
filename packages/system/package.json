@@ -51,7 +51,7 @@
     "@chakra-ui/color-mode": "1.0.0-rc.2",
     "@chakra-ui/styled-system": "1.0.0-rc.2",
     "@chakra-ui/utils": "1.0.0-rc.2",
-    "@emotion/core": "10.0.28",
+    "@emotion/core": "10.0.35",
     "@emotion/styled": "10.0.27",
     "react-fast-compare": "3.2.0"
   },

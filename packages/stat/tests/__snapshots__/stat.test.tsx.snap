@@ -29,6 +29,8 @@ exports[`Stat renders correctly 1`] = `
   vertical-align: baseline;
   font-weight: 600;
   font-size: 1.5rem;
+  font-feature-settings: pnum;
+  font-variant-numeric: proportional-nums;
 }
 
 .emotion-4 {
