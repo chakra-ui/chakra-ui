@@ -1,3 +1,7 @@
+const path = require("path")
+
+const setup = path.join(__dirname, "jest.setup.js")
+
 module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
