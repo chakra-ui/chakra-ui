@@ -212,7 +212,7 @@ const defaultConfig = {
       {
         source: "/controlbox",
         // MISSING
-        destination: undefined,
+        destination: "/docs/layout/box",
         permanent: true,
       },
       {
@@ -227,8 +227,7 @@ const defaultConfig = {
       },
       {
         source: "/editable",
-        // MISSING
-        destination: undefined,
+        destination: "/docs/form/editable",
         permanent: true,
       },
       {
@@ -258,8 +257,7 @@ const defaultConfig = {
       },
       {
         source: "/iconbutton",
-        // MISSING
-        destination: undefined,
+        destination: "/docs/form/icon-button",
         permanent: true,
       },
       {
