@@ -1,0 +1,84 @@
+---
+title: Chakra UI + Next.js
+description: Adding Chakra UI Components to Next.js sites
+tags: ["next.js", "next", "websites", "ssr", "ssg"]
+author: Mzaien
+---
+
+Chakra UI is a great UI library to get your Next.js website up and running fast
+and accessibly. The setup is slightly different than other projects, however the
+API usage seen in the rest of the docs is the same!
+
+**The way to setup Chakra with Next.js shown in this Guide:**
+
+- [Chakra v1.0](##Chakra-one)
+- [Chakra v0.8](##Chakra0.8)
+
+## Chakra-one
+
+With Chakra v1.0 being released there is couple of changes, you do not need to
+install @emotion/core just chakra and its co-libraries like theme & icons if you
+want to use the defaults can be done with the following command:
+
+```zsh
+npm i @chakra-ui/core @chakra-ui/theme @chakra-ui/icons
+
+# or
+
+yarn add @chakra-ui/core @chakra-ui/theme @chakra-ui/icons
+```
+
+After installation, you'll need to add Chakra providers
+
+### Chakra providers
+
+Chakra exposes some context providers to give your website context of the theme,
+and color mode.
+
+In Next, inside the pages folder of your project is `_app.js`
+
+```js live=false
+import { ChakraProvider, CSSReset } from "@chakra-ui/core"
+import theme from "@chakra-ui/theme"
+function MyApp({ Component, pageProps }) {
+  return (
+    <ChakraProvider theme={theme}>
+      <CSSReset />
+      <Component {...pageProps} />
+    </ChakraProvider>
+  )
+}
+
+export default MyApp
+```
+
+## Chakra0.8
+
+If you're still working on v0.8, the providers will be a bit different as seen
+below.
+
+In Next, inside the pages folder of your project is `_app.js`
+
+```zsh
+npm i @emotion/core @emotion/styled emotion-theming
+
+# or
+
+yarn add @emotion/core @emotion/styled emotion-themings
+```
+
+### Chakra providers
+
+```jsx live=false
+import { ThemeProvider, CSSReset } from "@chakra-ui/core"
+function MyApp({ Component, pageProps }) {
+  return (
+    <ThemeProvider>
+      <CSSReset />
+      <Component {...pageProps} />
+    </ThemeProvider>
+  )
+}
+
+export default MyApp
+```
