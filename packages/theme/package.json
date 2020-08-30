@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/theme",
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0-rc.3",
   "description": "The default theme for chakra components",
   "keywords": [
     "theme",
@@ -44,12 +44,12 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/theme-tools": "1.0.0-rc.2"
+    "@chakra-ui/theme-tools": "1.0.0-rc.3"
   },
   "peerDependencies": {
     "@chakra-ui/system": "1.0.0-rc.2"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.0.0-rc.2"
+    "@chakra-ui/system": "1.0.0-rc.3"
   }
 }
