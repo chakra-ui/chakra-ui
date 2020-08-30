@@ -13,6 +13,12 @@ import { Tooltip } from "../src"
 const buttonLabel = "Hover me"
 const tooltipLabel = "tooltip label"
 
+beforeAll(() => {
+  jest.unmock("@chakra-ui/hooks")
+  const hooks = require("@chakra-ui/hooks")
+  hooks.useId = (id?: any) => id || "REACT-ID"
+})
+
 const DummyComponent = (props: Omit<TooltipProps, "children">) => (
   <Tooltip label={tooltipLabel} {...props}>
     <button>{buttonLabel}</button>
