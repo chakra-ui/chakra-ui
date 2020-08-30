@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/theme-tools",
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0-rc.3",
   "description": "Set of helpers that makes theming and styling easier",
   "keywords": [
     "theme",
@@ -44,7 +44,7 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.0.0-rc.2",
+    "@chakra-ui/utils": "1.0.0-rc.3",
     "@types/tinycolor2": "1.4.2",
     "tinycolor2": "1.4.1"
   },
@@ -52,6 +52,6 @@
     "@chakra-ui/system": "1.0.0-rc.2"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.0.0-rc.2"
+    "@chakra-ui/system": "1.0.0-rc.3"
   }
 }

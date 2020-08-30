@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/live-region",
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0-rc.3",
   "description": "Aria live region for React components",
   "keywords": [
     "aria",
