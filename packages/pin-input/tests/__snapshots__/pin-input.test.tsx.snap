@@ -5,7 +5,7 @@ exports[`PinInput renders correctly 1`] = `
   <input
     aria-label="Please enter your pin code"
     autocomplete="not-allowed"
-    id="pin-input-1-0"
+    id="pin-input-2-0"
     inputmode="numeric"
     placeholder="○"
     value=""
@@ -13,7 +13,7 @@ exports[`PinInput renders correctly 1`] = `
   <input
     aria-label="Please enter your pin code"
     autocomplete="not-allowed"
-    id="pin-input-1-1"
+    id="pin-input-2-1"
     inputmode="numeric"
     placeholder="○"
     value=""
@@ -21,7 +21,7 @@ exports[`PinInput renders correctly 1`] = `
   <input
     aria-label="Please enter your pin code"
     autocomplete="not-allowed"
-    id="pin-input-1-2"
+    id="pin-input-2-2"
     inputmode="numeric"
     placeholder="○"
     value=""
@@ -29,7 +29,7 @@ exports[`PinInput renders correctly 1`] = `
   <input
     aria-label="Please enter your pin code"
     autocomplete="not-allowed"
-    id="pin-input-1-3"
+    id="pin-input-2-3"
     inputmode="numeric"
     placeholder="○"
     value=""
