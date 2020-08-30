@@ -1166,6 +1166,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "andrewgarrison",
+      "name": "Andrew Garrison",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/11062725?v=4",
+      "profile": "http://atgarrison.com",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
