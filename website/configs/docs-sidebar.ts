@@ -132,6 +132,10 @@ const sidebar = {
               path: "/docs/form/form-control",
             },
             {
+              title: "Icon Button",
+              path: "/docs/form/icon-button",
+            },
+            {
               title: "Input",
               path: "/docs/form/input",
             },
