@@ -1,12 +1,12 @@
 import * as React from "react"
 import {
-  useColorModeValue,
   Box,
   Heading,
   HStack,
-  Text,
-  VStack,
   Tag,
+  Text,
+  useColorModeValue,
+  VStack,
 } from "@chakra-ui/core"
 import format from "date-fns/format"
 import parseISO from "date-fns/parseISO"
@@ -51,7 +51,7 @@ export const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
     >
       <header>
         <Heading as="h2" size="md">
-          <Link href={`blog/${post.slug}`}>
+          <Link href={post.slug}>
             <Box as="a" __css={breakoutLinkStyle} tabIndex={0} cursor="pointer">
               {post.title}
             </Box>
