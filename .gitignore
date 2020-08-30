@@ -1,3 +1,9 @@
+# local changelog cache (lerna-changelog)
+.changelog/
+
+# website public/ folder (temporary; copied to root for docs:build and vercel compat)
+public/
+
 node_modules/
 lerna-debug.log
 npm-debug.log
