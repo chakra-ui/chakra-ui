@@ -18,10 +18,13 @@ happen.
 **Link to minimal reproduction** Please provide a codesandbox link or GitHub
 repo with a minimal reproduction of the issue.
 
+<!-- Please use one of the following official CodeSandbox templates:
+
 - JavaScript CodeSandbox template:
   https://codesandbox.io/s/github/chakra-ui/codesandbox-react-js-template/tree/master
 - TypeScript CodeSandbox template:
   https://codesandbox.io/s/github/chakra-ui/codesandbox-react-ts-template/tree/master
+-->
 
 **Steps to Reproduce** Clear and concise reproduction instructions are important
 for us to be able to triage your issue in a timely manner.
