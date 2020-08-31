@@ -43,8 +43,8 @@ reference properly.
 ```tsx live=false
 import { forwardRef, Box, BoxProps } from "@chakra-ui/core"
 
-const MyBox = forwardRef<BoxProps, "div">((props, ref) => (
-  <Box ref={ref} {...props} />
+const Card = forwardRef<BoxProps, "div">((props, ref) => (
+  <Box px="4" py="5" rounded="sm" shadow="lg" ref={ref} {...props} />
 ))
 ```
 
@@ -64,7 +64,9 @@ import { ChakraComponent, Box, BoxProps } from "@chakra-ui/core"
 
 type DivComponent = ChakraComponent<"div", {}>
 
-const MyBox = ((props: BoxProps) => <Box {...props} />) as DivComponent
+const Card = ((props: BoxProps) => (
+  <Box px="4" py="5" rounded="sm" shadow="lg" {...props} />
+)) as DivComponent
 ```
 
 ## Option 3: Use the `chakra` factory function
@@ -79,8 +81,14 @@ component type.
 ```tsx live=false
 import { chakra } from "@chakra-ui/core"
 
-const MyBox = chakra("div", {
-  baseStyle: {}, // attach style props
+const Card = chakra("div", {
+  // attach style props
+  baseStyle: {
+    px: "4",
+    py: "5",
+    rounded: "sm",
+    shadow: "lg",
+  },
 })
 ```
 
