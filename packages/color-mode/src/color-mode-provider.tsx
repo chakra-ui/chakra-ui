@@ -69,12 +69,7 @@ export const ColorModeProvider: React.FC = (props) => {
     }
   }, [colorMode, rawSetColorMode])
 
-  const [mounted, setMounted] = React.useState(false)
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  const shouldRef = React.useRef(false)
+  const shouldRunRef = React.useRef(false)
 
   React.useEffect(() => {
     if (!window.hasOwnProperty("matchMedia")) return
@@ -82,10 +77,10 @@ export const ColorModeProvider: React.FC = (props) => {
     const mq = window.matchMedia("(prefers-color-scheme: dark)")
 
     const listener = () => {
-      if (shouldRef.current) {
+      if (shouldRunRef.current) {
         ctx.setColorMode(!!mq.matches ? "dark" : "light")
       }
-      shouldRef.current = true
+      shouldRunRef.current = true
     }
 
     listener()
@@ -99,9 +94,7 @@ export const ColorModeProvider: React.FC = (props) => {
 
   return (
     <ColorModeContext.Provider value={ctx}>
-      <div style={{ visibility: mounted ? "visible" : "hidden" }}>
-        {children}
-      </div>
+      {children}
     </ColorModeContext.Provider>
   )
 }

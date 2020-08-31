@@ -6,6 +6,7 @@ const styles: Styles = {
       fontFamily: "body",
       color: mode("gray.800", "whiteAlpha.900")(props),
       bg: mode("white", "gray.800")(props),
+      transition: "background-color 0.2s",
       lineHeight: "base",
     },
     "*::placeholder": {

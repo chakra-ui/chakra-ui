@@ -195,7 +195,7 @@ const HomePage = ({ members, sponsors }) => {
                 .filter((user) => user.image.includes("."))
                 .map((user) => {
                   return (
-                    <Box bg="white" p="5" rounded="md">
+                    <Box key={user.name} bg="white" p="5" rounded="md">
                       <chakra.img
                         key={user.image}
                         alt={user.name}
