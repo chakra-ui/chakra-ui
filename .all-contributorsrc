@@ -1184,6 +1184,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "dwightwatson",
+      "name": "Dwight Watson",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1100408?v=4",
+      "profile": "https://www.dwightwatson.com",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
