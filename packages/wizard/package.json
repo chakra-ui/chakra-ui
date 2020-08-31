@@ -51,6 +51,8 @@
   },
   "dependencies": {
     "@types/lodash.throttle": "^4.1.6",
-    "lodash.throttle": "^4.1.1"
+    "lodash.throttle": "^4.1.1",
+    "@chakra-ui/icons": "^1.0.0-next.6",
+    "@chakra-ui/transition": "^1.0.0-next.6"
   }
 }

@@ -2,10 +2,6 @@ import { CheckIcon } from "@chakra-ui/icons"
 import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
 import { Transition } from "@chakra-ui/transition"
 import * as React from "react"
-import {
-  ResponsiveArray,
-  ResponsiveObject,
-} from "../../styled-system/src/utils/types"
 
 export type WizardStepLabelProps = PropsOf<typeof chakra.div> & {
   index: number
@@ -13,11 +9,7 @@ export type WizardStepLabelProps = PropsOf<typeof chakra.div> & {
   isCurrentStep?: boolean
   completedIcon?: React.ComponentType<any>
   activeBgColor?: SystemProps["bgColor"]
-  activeColor?:
-    | string
-    | (string & ResponsiveArray<string>)
-    | (string & ResponsiveObject<string>)
-    | undefined
+  activeColor?: SystemProps["color"]
   inactiveBgColor?: SystemProps["bgColor"]
   inactiveColor?: SystemProps["color"]
 }
