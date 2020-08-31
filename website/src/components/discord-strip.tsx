@@ -35,11 +35,13 @@ function DiscordStrip(props: BoxProps) {
           <chakra.button
             width={{ base: "100%", md: "auto" }}
             mt={{ base: "6", md: 0 }}
+            color="gray.800"
             as="a"
             justifyContent="center"
             display="inline-flex"
             alignItems="center"
             href="https://discord.gg/dQHfcWF"
+            rel="noopener"
             target="_blank"
             fontWeight="bold"
             shadow="md"

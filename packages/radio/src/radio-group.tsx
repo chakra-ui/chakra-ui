@@ -1,4 +1,4 @@
-import { ThemingProps, chakra, GetProps, forwardRef } from "@chakra-ui/system"
+import { ThemingProps, chakra, PropsOf, forwardRef } from "@chakra-ui/system"
 import { createContext, __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
 import {
@@ -23,7 +23,7 @@ export { useRadioGroupContext }
 export interface RadioGroupProps
   extends UseRadioGroupProps,
     Omit<
-      GetProps<typeof chakra.div>,
+      PropsOf<typeof chakra.div>,
       "onChange" | "value" | "defaultValue" | "children"
     >,
     Omit<ThemingProps, "orientation"> {

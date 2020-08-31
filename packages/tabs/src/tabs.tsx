@@ -1,7 +1,7 @@
 import {
   chakra,
   forwardRef,
-  GetProps,
+  PropsOf,
   omitThemingProps,
   StylesProvider,
   ThemingProps,
@@ -9,7 +9,7 @@ import {
   useStyles,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import React, { ReactNode, useMemo } from "react"
+import * as React from "react"
 import {
   TabsProvider,
   useTab,
@@ -19,7 +19,6 @@ import {
   UseTabOptions,
   useTabPanel,
   useTabPanels,
-  UseTabProps,
   useTabs,
   UseTabsProps,
 } from "./use-tabs"
@@ -38,9 +37,9 @@ interface TabsOptions {
 export interface TabsProps
   extends UseTabsProps,
     ThemingProps,
-    GetProps<typeof chakra.div>,
+    Omit<PropsOf<typeof chakra.div>, "onChange">,
     TabsOptions {
-  children: ReactNode
+  children: React.ReactNode
 }
 
 /**
@@ -51,10 +50,10 @@ export interface TabsProps
  */
 export const Tabs = forwardRef<TabsProps, "div">(function Tabs(props, ref) {
   const styles = useMultiStyleConfig("Tabs", props)
-  const { children, className, ...otherProps } = omitThemingProps(props)
+  const { children, className, ...rest } = omitThemingProps(props)
 
-  const { htmlProps, ...ctx } = useTabs(otherProps)
-  const context = useMemo(() => ctx, [ctx])
+  const { htmlProps, ...ctx } = useTabs(rest)
+  const context = React.useMemo(() => ctx, [ctx])
 
   return (
     <TabsProvider value={context}>
@@ -77,7 +76,7 @@ if (__DEV__) {
 
 export interface TabProps
   extends UseTabOptions,
-    GetProps<typeof chakra.button> {}
+    PropsOf<typeof chakra.button> {}
 
 /**
  * Tab button used to activate a specific tab panel. It renders a `button`,
@@ -110,7 +109,7 @@ if (__DEV__) {
 
 export interface TabListProps
   extends UseTabListProps,
-    Omit<GetProps<typeof chakra.div>, "onKeyDown" | "ref"> {}
+    Omit<PropsOf<typeof chakra.div>, "onKeyDown" | "ref"> {}
 
 /**
  * TabList is used to manage a list of tab buttons. It renders a `div` by default,
@@ -141,7 +140,7 @@ if (__DEV__) {
   TabList.displayName = "TabList"
 }
 
-export interface TabPanelProps extends GetProps<typeof chakra.div> {}
+export interface TabPanelProps extends PropsOf<typeof chakra.div> {}
 
 /**
  * TabPanel
@@ -167,7 +166,7 @@ if (__DEV__) {
   TabPanel.displayName = "TabPanel"
 }
 
-export interface TabPanelsProps extends GetProps<typeof chakra.div> {}
+export interface TabPanelsProps extends PropsOf<typeof chakra.div> {}
 
 /**
  * TabPanel
@@ -195,7 +194,7 @@ if (__DEV__) {
   TabPanels.displayName = "TabPanels"
 }
 
-export interface TabIndicatorProps extends GetProps<typeof chakra.div> {}
+export interface TabIndicatorProps extends PropsOf<typeof chakra.div> {}
 
 /**
  * TabIndicator

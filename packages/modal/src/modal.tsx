@@ -4,20 +4,20 @@ import { Portal, PortalProps } from "@chakra-ui/portal"
 import {
   chakra,
   forwardRef,
-  GetProps,
+  PropsOf,
   ThemingProps,
   useMultiStyleConfig,
   StylesProvider,
   useStyles,
 } from "@chakra-ui/system"
 import { callAllHandlers, cx, __DEV__ } from "@chakra-ui/utils"
-import React, { ReactNode, useEffect } from "react"
+import * as React from "react"
 import { RemoveScroll } from "react-remove-scroll"
 import { ModalContextProvider, useModalContext } from "./context"
 import { useModal, UseModalProps } from "./use-modal"
 
 export interface ModalProps extends UseModalProps, ThemingProps {
-  children?: ReactNode
+  children?: React.ReactNode
   /**
    *  If `true`, the modal will be centered on screen.
    * @default false
@@ -77,7 +77,7 @@ if (__DEV__) {
   Modal.displayName = "Modal"
 }
 
-export interface ModalContentProps extends GetProps<typeof chakra.section> {}
+export interface ModalContentProps extends PropsOf<typeof chakra.section> {}
 
 /**
  * ModalContent
@@ -119,7 +119,7 @@ if (__DEV__) {
   ModalContent.displayName = "ModalContent"
 }
 
-export interface ModalOverlayProps extends GetProps<typeof chakra.div> {}
+export interface ModalOverlayProps extends PropsOf<typeof chakra.div> {}
 
 /**
  * ModalOverlay
@@ -187,7 +187,7 @@ if (__DEV__) {
   ModalOverlay.displayName = "ModalOverlay"
 }
 
-export interface ModalHeaderProps extends GetProps<typeof chakra.header> {}
+export interface ModalHeaderProps extends PropsOf<typeof chakra.header> {}
 
 /**
  * ModalHeader
@@ -206,7 +206,7 @@ export const ModalHeader = forwardRef<ModalHeaderProps, "header">(
      * Notify us if this component was rendered or used
      * so we can append `aria-labelledby` automatically
      */
-    useEffect(() => {
+    React.useEffect(() => {
       setHeaderMounted(true)
       return () => setHeaderMounted(false)
     }, [setHeaderMounted])
@@ -233,7 +233,7 @@ if (__DEV__) {
   ModalHeader.displayName = "ModalHeader"
 }
 
-export interface ModalBodyProps extends GetProps<typeof chakra.div> {}
+export interface ModalBodyProps extends PropsOf<typeof chakra.div> {}
 
 /**
  * ModalBody
@@ -253,7 +253,7 @@ export const ModalBody = forwardRef<ModalBodyProps, "div">(function ModalBody(
    * Notify us if this component was rendered or used
    * so we can append `aria-describedby` automatically
    */
-  useEffect(() => {
+  React.useEffect(() => {
     setBodyMounted(true)
     return () => setBodyMounted(false)
   }, [setBodyMounted])
@@ -276,6 +276,8 @@ if (__DEV__) {
   ModalBody.displayName = "ModalBody"
 }
 
+export interface ModalFooterProps extends PropsOf<typeof chakra.footer> {}
+
 /**
  * ModalFooter
  *
@@ -283,24 +285,27 @@ if (__DEV__) {
  *
  * @see Docs https://chakra-ui.com/components/modal
  */
-export const ModalFooter: React.FC<GetProps<typeof chakra.footer>> = (
-  props,
-) => {
-  const styles = useStyles()
-  return (
-    <chakra.footer
-      {...props}
-      __css={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "flex-end",
-        flex: 0,
-        ...styles.footer,
-      }}
-      className={cx("chakra-modal__footer", props.className)}
-    />
-  )
-}
+export const ModalFooter = forwardRef<ModalFooterProps, "footer">(
+  function ModalFooter(props, ref) {
+    const { className, ...rest } = props
+    const _className = cx("chakra-modal__footer", className)
+    const styles = useStyles()
+    return (
+      <chakra.footer
+        ref={ref}
+        {...rest}
+        __css={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          flex: 0,
+          ...styles.footer,
+        }}
+        className={_className}
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   ModalFooter.displayName = "ModalFooter"

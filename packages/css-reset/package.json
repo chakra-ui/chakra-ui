@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/css-reset",
-  "version": "1.0.0-rc.0",
+  "version": "1.0.0-rc.3",
   "description": "CSS reset component for Chakra UI",
   "keywords": [
     "theme",
@@ -44,10 +44,8 @@
     "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
     "lint:types": "tsc --noEmit"
   },
-  "devDependencies": {
-    "@emotion/core": "10.0.28"
-  },
   "peerDependencies": {
+    "@emotion/core": "10.0.35",
     "react": "16.x"
   }
 }

@@ -2,7 +2,7 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  GetProps,
+  PropsOf,
   SystemProps,
   ThemingProps,
   useMultiStyleConfig,
@@ -37,13 +37,18 @@ const StyledContainer = chakra("label", {
   },
 })
 
-type StyledControlProps = Omit<
-  GetProps<typeof StyledControl>,
-  "size" | "checked" | "defaultChecked" | "onChange" | "onBlur" | "value" | "as"
->
+type Omitted =
+  | "size"
+  | "checked"
+  | "defaultChecked"
+  | "onChange"
+  | "onBlur"
+  | "value"
+
+type StyledControlProps = Omit<PropsOf<typeof StyledControl>, Omitted>
 
 type BaseCheckboxProps = Pick<
-  GetProps<"input">,
+  PropsOf<"input">,
   "onBlur" | "checked" | "defaultChecked"
 >
 
@@ -73,10 +78,10 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
 ) {
   const group = useCheckboxGroupContext()
 
-  const merged = { ...group, ...props }
-  const styles = useMultiStyleConfig("Checkbox", merged)
-  const ownProps = omitThemingProps(merged)
+  const mergedProps = { ...group, ...props } as CheckboxProps
+  const styles = useMultiStyleConfig("Checkbox", mergedProps)
 
+  const ownProps = omitThemingProps(mergedProps)
   const { spacing = "0.5rem", className, children, ...rest } = ownProps
 
   let isChecked = ownProps.isChecked
@@ -111,7 +116,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
     opacity: state.isChecked || state.isIndeterminate ? 1 : 0,
     transform:
       state.isChecked || state.isIndeterminate ? "scale(1)" : "scale(0.95)",
-    transition: "opacity 200ms, transform 250ms",
+    transition: "transform 200ms",
     ...styles.icon,
   }
 

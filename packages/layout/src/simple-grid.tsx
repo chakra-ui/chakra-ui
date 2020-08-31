@@ -26,7 +26,7 @@ interface SimpleGridOptions {
   spacingY?: GridProps["gridGap"]
 }
 
-export type SimpleGridProps = GridProps & SimpleGridOptions
+export interface SimpleGridProps extends GridProps, SimpleGridOptions {}
 
 /**
  * SimpleGrid

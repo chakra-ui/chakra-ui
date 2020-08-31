@@ -1,6 +1,6 @@
 import {
   chakra,
-  GetProps,
+  PropsOf,
   useStyleConfig,
   omitThemingProps,
   ThemingProps,
@@ -9,21 +9,14 @@ import {
 import * as React from "react"
 import { __DEV__, cx } from "@chakra-ui/utils"
 
-interface LinkOptions {
+export interface LinkProps extends PropsOf<typeof chakra.a>, ThemingProps {
   /**
    *  If `true`, the link will open in new tab
    */
   isExternal?: boolean
 }
 
-export interface LinkProps
-  extends GetProps<typeof chakra.a>,
-    LinkOptions,
-    ThemingProps {}
-
 /**
- * Link
- *
  * Links are accessible elements used primarily for navigation.
  *
  * It integrates well with other routing libraries like

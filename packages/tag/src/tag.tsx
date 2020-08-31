@@ -2,7 +2,7 @@ import * as React from "react"
 import {
   chakra,
   forwardRef,
-  GetProps,
+  PropsOf,
   ThemingProps,
   useMultiStyleConfig,
   StylesProvider,
@@ -12,7 +12,7 @@ import {
 import { Icon, IconProps } from "@chakra-ui/icon"
 import { __DEV__ } from "@chakra-ui/utils"
 
-export interface TagProps extends GetProps<typeof chakra.span>, ThemingProps {}
+export interface TagProps extends PropsOf<typeof chakra.span>, ThemingProps {}
 
 /**
  * The tag component is used to label or categorize UI elements.
@@ -21,7 +21,7 @@ export interface TagProps extends GetProps<typeof chakra.span>, ThemingProps {}
  */
 export const Tag = forwardRef<TagProps, "span">(function Tag(props, ref) {
   const styles = useMultiStyleConfig("Tag", props)
-  const _props = omitThemingProps(props)
+  const ownProps = omitThemingProps(props)
 
   const containerStyles = {
     display: "inline-flex",
@@ -33,7 +33,7 @@ export const Tag = forwardRef<TagProps, "span">(function Tag(props, ref) {
 
   return (
     <StylesProvider value={styles}>
-      <chakra.span ref={ref} {..._props} __css={containerStyles} />
+      <chakra.span ref={ref} {...ownProps} __css={containerStyles} />
     </StylesProvider>
   )
 })
@@ -42,28 +42,37 @@ if (__DEV__) {
   Tag.displayName = "Tag"
 }
 
-export interface TagLabelProps extends GetProps<typeof chakra.span> {}
+export interface TagLabelProps extends PropsOf<typeof chakra.span> {}
 
-export const TagLabel: React.FC<TagLabelProps> = (props) => {
+export const TagLabel = forwardRef<TagLabelProps, "span">(function TagLabel(
+  props,
+  ref,
+) {
   const styles = useStyles()
-  return <chakra.span isTruncated {...props} __css={styles.label} />
-}
+  return <chakra.span ref={ref} isTruncated {...props} __css={styles.label} />
+})
 
 if (__DEV__) {
   TagLabel.displayName = "TagLabel"
 }
 
-export const TagLeftIcon: React.FC<IconProps> = (props) => (
-  <Icon verticalAlign="top" mr="0.5rem" {...props} />
-)
+export const TagLeftIcon = forwardRef<IconProps, "svg">(function TagLeftIcon(
+  props,
+  ref,
+) {
+  return <Icon ref={ref} verticalAlign="top" mr="0.5rem" {...props} />
+})
 
 if (__DEV__) {
   TagLeftIcon.displayName = "TagLeftIcon"
 }
 
-export const TagRightIcon: React.FC<IconProps> = (props) => (
-  <Icon verticalAlign="top" ml="0.5rem" {...props} />
-)
+export const TagRightIcon = forwardRef<IconProps, "svg">(function TagRightIcon(
+  props,
+  ref,
+) {
+  return <Icon ref={ref} verticalAlign="top" ml="0.5rem" {...props} />
+})
 
 if (__DEV__) {
   TagRightIcon.displayName = "TagRightIcon"
@@ -83,7 +92,7 @@ if (__DEV__) {
 }
 
 export interface TagCloseButtonProps
-  extends Omit<GetProps<typeof chakra.button>, "disabled"> {
+  extends Omit<PropsOf<typeof chakra.button>, "disabled"> {
   isDisabled?: boolean
 }
 

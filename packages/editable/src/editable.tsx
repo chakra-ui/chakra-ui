@@ -1,7 +1,7 @@
 import {
   chakra,
   forwardRef,
-  GetProps,
+  PropsOf,
   omitThemingProps,
   StylesProvider,
   SystemStyleObject,
@@ -38,15 +38,16 @@ type RenderProps = Pick<
 
 interface BaseEditableProps
   extends Omit<
-    GetProps<typeof chakra.div>,
-    "onChange" | "as" | "value" | "children" | "defaultValue"
+    PropsOf<typeof chakra.div>,
+    "onChange" | "value" | "defaultValue" | "onSubmit"
   > {}
 
-export type EditableProps = UseEditableProps &
-  BaseEditableProps &
-  ThemingProps & {
-    children?: ReactNodeOrRenderProp<RenderProps>
-  }
+export interface EditableProps
+  extends UseEditableProps,
+    BaseEditableProps,
+    ThemingProps {
+  children?: ReactNodeOrRenderProp<RenderProps>
+}
 
 /**
  * Editable
@@ -60,8 +61,8 @@ export const Editable = forwardRef<EditableProps, "div">(function Editable(
 ) {
   const styles = useMultiStyleConfig("Editable", props)
 
-  const realProps = omitThemingProps(props)
-  const { htmlProps, ...context } = useEditable(realProps)
+  const ownProps = omitThemingProps(props)
+  const { htmlProps, ...context } = useEditable(ownProps)
 
   const { isEditing, onSubmit, onCancel, onEdit } = context
 
@@ -101,7 +102,7 @@ const commonStyles: SystemStyleObject = {
   bg: "transparent",
 }
 
-export interface EditablePreviewProps extends GetProps<typeof chakra.div> {}
+export interface EditablePreviewProps extends PropsOf<typeof chakra.div> {}
 
 /**
  * EditablePreview
@@ -135,7 +136,7 @@ if (__DEV__) {
   EditablePreview.displayName = "EditablePreview"
 }
 
-export interface EditableInputProps extends GetProps<typeof chakra.input> {}
+export interface EditableInputProps extends PropsOf<typeof chakra.input> {}
 
 /**
  * EditableInput

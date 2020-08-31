@@ -1,6 +1,6 @@
 import {
   chakra,
-  GetProps,
+  PropsOf,
   keyframes,
   useStyleConfig,
   ThemingProps,
@@ -55,7 +55,7 @@ const StyledSkeleton = chakra("div", {
 export type ISkeleton = SkeletonOptions
 
 export interface SkeletonProps
-  extends GetProps<typeof StyledSkeleton>,
+  extends PropsOf<typeof StyledSkeleton>,
     SkeletonOptions,
     ThemingProps {}
 

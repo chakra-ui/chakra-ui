@@ -1,14 +1,9 @@
 import * as React from "react"
-import { ChakraProvider, CSSReset, cookieStorageManager } from "@chakra-ui/core"
-import theme from "@chakra-ui/theme"
+import { ChakraProvider, cookieStorageManager } from "@chakra-ui/core"
 
 const App = ({ Component, pageProps, cookies }) => {
   return (
-    <ChakraProvider
-      theme={theme}
-      storageManager={cookieStorageManager(cookies)}
-    >
-      <CSSReset />
+    <ChakraProvider resetCSS storageManager={cookieStorageManager(cookies)}>
       <Component {...pageProps} />
     </ChakraProvider>
   )

@@ -1,5 +1,3 @@
-import CSSReset from "@chakra-ui/css-reset"
-import theme from "@chakra-ui/theme"
 import {
   ChakraProvider,
   useColorMode,
@@ -8,10 +6,8 @@ import {
   IconButton,
 } from "@chakra-ui/core"
 import { FaMoon, FaSun } from "react-icons/fa"
-import { addDecorator } from "@storybook/react"
 import * as React from "react"
 import { withPerformance } from "storybook-addon-performance"
-import { withA11y } from "@storybook/addon-a11y"
 
 const ColorModeToggleBar = () => {
   const { toggleColorMode } = useColorMode()
@@ -35,8 +31,7 @@ const ColorModeToggleBar = () => {
 }
 
 const withChakra = (StoryFn: Function) => (
-  <ChakraProvider theme={theme}>
-    <CSSReset />
+  <ChakraProvider resetCSS>
     <div id="story-wrapper" style={{ minHeight: "100vh" }}>
       <ColorModeToggleBar />
       <StoryFn />
@@ -44,6 +39,4 @@ const withChakra = (StoryFn: Function) => (
   </ChakraProvider>
 )
 
-addDecorator(withChakra)
-addDecorator(withPerformance)
-addDecorator(withA11y)
+export const decorators = [withChakra, withPerformance]

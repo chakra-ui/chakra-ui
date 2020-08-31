@@ -1,6 +1,6 @@
 import { Flex } from "@chakra-ui/core"
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { chakra, GetProps } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/system"
 import { Transition } from "@chakra-ui/transition"
 import { BoxModel, getBox } from "@chakra-ui/utils"
 import throttle from "lodash.throttle"
@@ -12,7 +12,7 @@ import WizardStepLabel from "./wizard-step-label"
 //   activeStep: number
 // }
 
-export type WizardProps = GetProps<typeof chakra.div> & {
+export type WizardProps = PropsOf<typeof chakra.div> & {
   activeStep: number
   orientation?: "vertical" | "horizontal"
 }

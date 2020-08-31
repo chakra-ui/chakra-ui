@@ -509,7 +509,7 @@ export function useSlider(props: UseSliderProps) {
     state: {
       value,
       isFocused,
-      isDragging: isDragging,
+      isDragging,
     },
     actions,
     getRootProps: (props: Dict = {}, ref: Ref<any> = null) => ({

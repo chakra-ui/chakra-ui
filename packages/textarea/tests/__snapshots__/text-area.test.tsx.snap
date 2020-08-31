@@ -55,8 +55,9 @@ exports[`Textarea renders correctly 1`] = `
 
 .emotion-0:focus,
 .emotion-0[data-focus] {
-  border-color: #3182CE;
-  box-shadow: 0 0 0 1px #3182CE;
+  z-index: 1;
+  border-color: #3182ce;
+  box-shadow: 0 0 0 1px #3182ce;
 }
 
 .emotion-0[aria-invalid=true],

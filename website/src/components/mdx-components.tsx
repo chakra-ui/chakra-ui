@@ -1,4 +1,4 @@
-import { Box, chakra, Kbd, useColorModeValue } from "@chakra-ui/core"
+import { Alert, Box, chakra, Kbd, useColorModeValue } from "@chakra-ui/core"
 import React from "react"
 import CarbonAd from "./carbon-ad"
 import CodeBlock from "./codeblock/codeblock"
@@ -69,6 +69,14 @@ const LinkedHeading = (props) => (
   </chakra.h2>
 )
 
+const InlineCode = (props: any) => (
+  <chakra.code
+    apply="mdx.code"
+    color={useColorModeValue("purple.500", "purple.200")}
+    {...props}
+  />
+)
+
 const MDXComponents = {
   h1: (props) => <chakra.h1 apply="mdx.h1" {...props} />,
   h2: (props) => <LinkedHeading apply="mdx.h2" {...props} />,
@@ -76,7 +84,7 @@ const MDXComponents = {
   h4: (props) => <LinkedHeading as="h4" apply="mdx.h4" {...props} />,
   hr: (props) => <chakra.hr apply="mdx.hr" {...props} />,
   strong: (props) => <Box as="strong" fontWeight="semibold" {...props} />,
-  inlineCode: (props) => <chakra.code apply="mdx.code" {...props} />,
+  inlineCode: InlineCode,
   code: CodeBlock,
   pre: Pre,
   kbd: Kbd,
@@ -90,7 +98,16 @@ const MDXComponents = {
   ol: (props) => <chakra.ol apply="mdx.ul" {...props} />,
   li: (props) => <chakra.li pb="4px" {...props} />,
   blockquote: (props) => (
-    <chakra.div apply="mdx.blockquote" as="blockquote" {...props} />
+    <Alert
+      mt="4"
+      role="none"
+      status="warning"
+      variant="left-accent"
+      as="blockquote"
+      rounded="4px"
+      my="1.5rem"
+      {...props}
+    />
   ),
   "carbon-ad": CarbonAd,
 }

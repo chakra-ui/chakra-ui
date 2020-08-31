@@ -1,31 +1,38 @@
 import * as React from "react"
-import { render, userEvent, fireEvent } from "@chakra-ui/test-utils"
+import {
+  render,
+  userEvent,
+  fireEvent,
+  screen,
+  testA11y,
+  waitFor,
+} from "@chakra-ui/test-utils"
 import { Editable, EditableInput, EditablePreview } from "../src"
 
-test("should match snapshot", () => {
-  const tools = render(
+test("matches snapshot", () => {
+  const { asFragment } = render(
     <Editable defaultValue="testing">
       <EditablePreview data-testid="preview" />
       <EditableInput data-testid="input" />
     </Editable>,
   )
 
-  expect(tools.asFragment()).toMatchSnapshot()
-})
+  expect(asFragment()).toMatchSnapshot()
 
-test("should render properly", () => {
-  const tools = render(
-    <Editable defaultValue="testing">
-      <EditablePreview data-testid="preview" />
-      <EditableInput data-testid="input" />
-    </Editable>,
-  )
-
-  const preview = tools.getByTestId("preview")
-  const input = tools.getByTestId("input")
+  const preview = screen.getByTestId("preview")
+  const input = screen.getByTestId("input")
 
   expect(input).toHaveAttribute("hidden")
   expect(preview).toHaveTextContent("testing")
+})
+
+it("passes a11y test", async () => {
+  await testA11y(
+    <Editable defaultValue="testing">
+      <EditablePreview data-testid="preview" />
+      <EditableInput data-testid="input" />
+    </Editable>,
+  )
 })
 
 test("uncontrolled: handles callbacks correctly", async () => {
@@ -34,7 +41,7 @@ test("uncontrolled: handles callbacks correctly", async () => {
   const onSubmit = jest.fn()
   const onEdit = jest.fn()
 
-  const tools = render(
+  render(
     <Editable
       onChange={onChange}
       onCancel={onCancel}
@@ -46,8 +53,8 @@ test("uncontrolled: handles callbacks correctly", async () => {
       <EditableInput data-testid="input" />
     </Editable>,
   )
-  const preview = tools.getByTestId("preview")
-  const input = tools.getByTestId("input")
+  const preview = screen.getByTestId("preview")
+  const input = screen.getByTestId("input")
 
   // calls `onEdit` when preview is focused
   fireEvent.focus(preview)
@@ -97,9 +104,9 @@ test("controlled: handles callbacks correctly", () => {
     )
   }
 
-  const tools = render(<Component />)
-  const preview = tools.getByTestId("preview")
-  const input = tools.getByTestId("input")
+  render(<Component />)
+  const preview = screen.getByTestId("preview")
+  const input = screen.getByTestId("input")
 
   // calls `onEdit` when preview is focused
   fireEvent.focus(preview)
@@ -134,7 +141,7 @@ test("handles preview and input callbacks", () => {
   const onChange = jest.fn()
   const onKeyDown = jest.fn()
 
-  const tools = render(
+  render(
     <Editable defaultValue="Hello ">
       <EditablePreview onFocus={onFocus} data-testid="preview" />
       <EditableInput
@@ -145,8 +152,8 @@ test("handles preview and input callbacks", () => {
       />
     </Editable>,
   )
-  const preview = tools.getByTestId("preview")
-  const input = tools.getByTestId("input")
+  const preview = screen.getByTestId("preview")
+  const input = screen.getByTestId("input")
 
   // calls `onFocus` when preview is focused
   fireEvent.focus(preview)
@@ -160,29 +167,32 @@ test("handles preview and input callbacks", () => {
   fireEvent.keyDown(input, { key: "Escape" })
   expect(onKeyDown).toHaveBeenCalled()
 
-  expect(input).toHaveAttribute("hidden")
+  expect(input).not.toBeVisible()
 })
 
 test("has the proper aria attributes", () => {
-  const tools = render(
+  const { rerender } = render(
     <Editable defaultValue="">
       <EditablePreview data-testid="preview" />
       <EditableInput data-testid="input" />
     </Editable>,
   )
-  const preview = tools.getByTestId("preview")
-  const input = tools.getByTestId("input")
+  let preview = screen.getByTestId("preview")
+  let input = screen.getByTestId("input")
 
   // preview and input do not have aria-disabled when `Editable` is not disabled
   expect(preview).not.toHaveAttribute("aria-disabled")
   expect(input).not.toHaveAttribute("aria-disabled")
 
-  tools.rerender(
+  rerender(
     <Editable isDisabled defaultValue="">
       <EditablePreview data-testid="preview" />
       <EditableInput data-testid="input" />
     </Editable>,
   )
+
+  preview = screen.getByTestId("preview")
+  input = screen.getByTestId("input")
 
   // preview and input have aria-disabled when `Editable` is disabled
   expect(preview).toHaveAttribute("aria-disabled", "true")
@@ -191,13 +201,15 @@ test("has the proper aria attributes", () => {
 
 test("can submit on blur", () => {
   const onSubmit = jest.fn()
-  const tools = render(
+
+  render(
     <Editable submitOnBlur onSubmit={onSubmit} defaultValue="testing">
       <EditablePreview data-testid="preview" />
       <EditableInput data-testid="input" />
     </Editable>,
   )
-  const input = tools.getByTestId("input")
+
+  const input = screen.getByTestId("input")
 
   fireEvent.blur(input)
   expect(onSubmit).toHaveBeenCalledWith("testing")

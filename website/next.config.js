@@ -1,4 +1,8 @@
+const withPlugins = require("next-compose-plugins")
 const withMdx = require("next-mdx-enhanced")
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+})
 const path = require("path")
 const execa = require("execa")
 const fromUnixTime = require("date-fns/fromUnixTime")
@@ -31,7 +35,8 @@ async function getUserData(username) {
   }
 }
 
-const EDIT_URL = "https://github.com/chakra-ui/chakra-ui/edit/develop/website"
+const EDIT_URL =
+  "https://github.com/chakra-ui/chakra-ui/edit/develop/website/pages"
 
 /**
  * Gets the last edited timestamp and author from git
@@ -48,11 +53,13 @@ async function getLastEdited(filePath) {
       "log",
       "-1",
       "--format=%ct, %an",
+      "--follow",
+      "--",
       filePath,
     ])
     return getTimestampAndAuthor(stdout)
   } catch (error) {
-    console.error(error)
+    // console.error(error)
   }
 }
 
@@ -81,14 +88,27 @@ function fileToPath(str) {
   return addLeadingSlash(str.replace(".mdx", ""))
 }
 
-module.exports = withMdx({
+const defaultConfig = {
+  target: "serverless",
+  webpack: (config) => {
+    return {
+      ...config,
+      externals: [...config.externals, "sharp"],
+    }
+  },
+  experimental: {
+    optimizeFonts: true,
+    optimizeImages: true,
+  },
+}
+
+const mdxConfig = {
   layoutPath: "layouts",
   defaultLayout: true,
   fileExtensions: ["mdx"],
   remarkPlugins: [
     require("remark-autolink-headings"),
     require("remark-emoji"),
-    require("remark-footnotes"),
     require("remark-images"),
     require("remark-slug"),
     require("remark-toc"),
@@ -106,7 +126,7 @@ module.exports = withMdx({
       const lastEdited = await getLastEdited(filePath)
 
       // get the edit url
-      const editUrl = getEditUrl(path.join(mdxPath), EDIT_URL)
+      const editUrl = getEditUrl(mdxPath, EDIT_URL)
 
       // get the slug
       const slug = fileToPath(mdxPath)
@@ -123,4 +143,9 @@ module.exports = withMdx({
       }
     },
   },
-})(/* your normal nextjs config */)
+}
+
+module.exports = withPlugins(
+  [withBundleAnalyzer, withMdx(mdxConfig)],
+  defaultConfig,
+)

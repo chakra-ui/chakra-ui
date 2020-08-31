@@ -1,7 +1,7 @@
 import {
   chakra,
   css,
-  GetProps,
+  PropsOf,
   SystemProps,
   useTheme,
   forwardRef,
@@ -9,7 +9,7 @@ import {
 import { getValidChildren, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface WrapProps extends GetProps<typeof chakra.div> {
+export interface WrapProps extends PropsOf<typeof chakra.div> {
   /**
    * The space between the each child (even if it wraps)
    */

@@ -304,10 +304,58 @@ function VerticallyCenter() {
 }
 ```
 
-### Using custom transitions
+### Adding transitions
 
-The `Modal` component comes with simple fade transition, but you can edit this
-by updating the modal transitions defined in the theme.
+The `Modal` doesn't come with any transitions by default so you can manage this
+yourself. Chakra exports four transition components (`Fade`, `ScaleFade`, `Slide`, and `SlideFade`) to
+provide simple transitions.
+
+> When adding transitions, kindly pay attention to the `timeout` for the overlay
+> and content transitions. In this example, `Fade` transitions slower than the
+> `SlideFade` for it to work correctly.
+
+```jsx
+function TransitionExample() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const cancelRef = React.useRef()
+
+  return (
+    <>
+      <Button onClick={onOpen}>Open Modal</Button>
+      <Fade timeout={300} in={isOpen}>
+        {(styles) => (
+          <Modal
+            leastDestructiveRef={cancelRef}
+            onClose={onClose}
+            isOpen={true}
+            isCentered
+          >
+            <ModalOverlay style={styles}>
+              <SlideFade timeout={150} in={isOpen} unmountOnExit={false}>
+                {(styles) => (
+                  <ModalContent style={styles}>
+                    <ModalHeader>Modal Title</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                      <Lorem count={2} />
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button colorScheme="blue" mr={3} onClick={onClose}>
+                        Close
+                      </Button>
+                      <Button variant="ghost">Secondary Action</Button>
+                    </ModalFooter>
+                  </ModalContent>
+                )}
+              </SlideFade>
+            </ModalOverlay>
+          </Modal>
+        )}
+      </Fade>
+    </>
+  )
+}
+```
 
 ### Modal overflow behavior
 
@@ -455,7 +503,7 @@ To prevent focus trapping, pass `trapFocus` and set it's value to `false`.
 | onClose             | `(event, reason) => void` |           | Callback invoked to close the modal.                                                                                                |
 | isCentered          | `boolean`                 |           | If `true`, the `Modal` will be centered on screen                                                                                   |
 | initialFocusRef     | `React.Ref`               |           | The least destructive action to get focus when dialog is open                                                                       |
-| finalFocusRef       | `React.Ref`               |           | The least destructive action to get focus when dialog is open                                                                       |
+| finalFocusRef       | `React.Ref`               |           | The least destructive action to get focus when dialog is closed                                                                       |
 | blockScrollOnMount  | `boolean`                 | `true`    | If `true`, scrolling will be disabled on the `body` when the modal opens.                                                           |
 | useInert            | `boolean`                 | `true`    | A11y: If `true`, the siblings of the `Modal` will have `aria-hidden` set to `true` so that screen readers can only see the `Modal`. |
 | children            | `React.ReactNode`         |           | The content of the modal.                                                                                                           |

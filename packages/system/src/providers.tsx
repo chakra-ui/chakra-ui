@@ -1,17 +1,13 @@
-import {
-  ColorModeProvider,
-  useColorMode,
-  StorageManager,
-} from "@chakra-ui/color-mode"
+import { useColorMode } from "@chakra-ui/color-mode"
 import { css, SystemStyleObject } from "@chakra-ui/styled-system"
 import { createContext, Dict, get, merge, runIfFn } from "@chakra-ui/utils"
-import { PortalManager, PortalManagerProps } from "@chakra-ui/portal"
-import { CSSReset } from "@chakra-ui/css-reset"
 import { Global, Interpolation, ThemeContext } from "@emotion/core"
 import * as React from "react"
 
 export interface ThemeProviderProps {
-  children?: React.ReactNode
+  /**
+   * The theme to use for your application
+   */
   theme: Dict
 }
 
@@ -40,40 +36,6 @@ export function useTheme<T extends object = Dict>() {
   return theme
 }
 
-export type ChakraProviderProps = ThemeProviderProps & {
-  storageManager?: StorageManager
-  portalConfig?: Omit<PortalManagerProps, "children">
-  resetCSS?: boolean
-}
-
-export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
-  const { theme, children, storageManager, resetCSS, portalConfig } = props
-
-  if (!theme) {
-    throw Error("ChakraProvider: the `theme` prop is required")
-  }
-
-  return (
-    <ThemeProvider theme={theme}>
-      <ColorModeProvider
-        defaultValue={theme?.config?.initialColorMode}
-        useSystemColorMode={theme?.config?.useInitialColorMode}
-        storageManager={storageManager}
-      >
-        <GlobalStyle />
-        {resetCSS && <CSSReset />}
-        {portalConfig ? (
-          <PortalManager zIndex={portalConfig?.zIndex}>
-            {children}
-          </PortalManager>
-        ) : (
-          children
-        )}
-      </ColorModeProvider>
-    </ThemeProvider>
-  )
-}
-
 const [StylesProvider, useStyles] = createContext<Dict<SystemStyleObject>>({
   name: "StylesContext",
   errorMessage:
@@ -82,15 +44,19 @@ const [StylesProvider, useStyles] = createContext<Dict<SystemStyleObject>>({
 
 export { StylesProvider, useStyles }
 
+/**
+ * Applies styles defined in `theme.styles.global` globally
+ * using emotion's `Global` component
+ */
 export const GlobalStyle = () => {
   const { colorMode } = useColorMode()
   return (
     <Global
       styles={(theme) => {
         const styleObjectOrFn = get(theme, "styles.global")
-        const bodyStyles = runIfFn(styleObjectOrFn, { theme, colorMode })
-        if (!bodyStyles) return
-        const styles = css({ body: bodyStyles })(theme)
+        const globalStyles = runIfFn(styleObjectOrFn, { theme, colorMode })
+        if (!globalStyles) return
+        const styles = css(globalStyles)(theme)
         return styles as Interpolation
       }}
     />

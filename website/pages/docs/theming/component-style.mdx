@@ -1,0 +1,347 @@
+---
+title: Component Style
+description: How to create and theme custom components.
+---
+
+Writing component styles in a way that is easy to maintain over the life of a
+growing and changing project is a challenging task.
+
+To solve this, we came up with the idea of style configuration or `styleConfig`.
+This is a consistent theming API that makes component styling easy to understand
+and maintain.
+
+## Base styles and Modifier styles
+
+Most component style consists of **base or default styles** and **modifier
+styles** that alter its size or visual style based on some properties or state.
+
+Common modifier styles includes:
+
+- **Size:** A component can have different sizes (e.g. small, medium, large)
+- **Variant:** A component can have different visual styles (e.g. outline,
+  solid, ghost)
+- **Color scheme:** For a given variant, a component can have different color
+  schemes (e.g. an outline button with a red color scheme)
+- **Color mode:** A component can change its visual styles based on color mode
+  (e.g. light or dark).
+
+### Single part and multipart components
+
+Most components we build today are either single part components (e.g. Button,
+Badge) or multipart components (e.g. Tabs, Menu, Modal).
+
+**A single part component** is a component that returns a single element. For
+example, the `<Button>` component renders a `<button>` HTML element:
+
+```jsx live=false
+// This component renders only one element (<button>)
+<Button>My button</Button>
+```
+
+**A multipart component** is a component that has multiple parts, and require
+these parts to work correctly. This commonly referred to as a composite
+component.
+
+For example, a `Tabs` component consists of `TabList`, `Tab`, `TabPanels`, and
+`TabPanel`. Styling this component as a whole might require styling each
+component part.
+
+```jsx live=false
+<Tabs>
+  <TabList>
+    <Tab>Tab 1</Tab>
+    <Tab>Tab 2</Tab>
+  </TabList>
+  <TabPanels>
+    <TabPanel>Tab 1</TabPanel>
+    <TabPanel>Tab 2</TabPanel>
+  </TabPanels>
+</Tabs>
+```
+
+## Styling single part components
+
+The basic API for styling a single part component is:
+
+```jsx live=false
+export default {
+  // Styles for the base style
+  baseStyle: {},
+  // Styles for the size variations
+  sizes: {},
+  // Styles for the visual style variations
+  variants: {},
+  // The default `size` or `variant` values
+  defaultProps: {},
+}
+```
+
+Let's say we want to create a custom button component following the design spec
+below.
+
+<Img mt="10" mb="12" height="180px" src="/button-spec.png" />
+
+Here's a contrived implementation of the design:
+
+```jsx live=false
+const Button = {
+  // The styles all button have in common
+  baseStyle: {
+    fontWeight: "bold",
+    textTransform: "uppercase",
+  },
+  // Two sizes: sm and md
+  sizes: {
+    sm: {
+      fontSize: "12px",
+      padding: "16px",
+    },
+    md: {
+      fontSize: "16px",
+      padding: "24px",
+    },
+  },
+  // Two variants: outline and solid
+  variants: {
+    outline: {
+      border: "2px solid",
+      borderColor: "green.500",
+    },
+    solid: {
+      bg: "green.500",
+      color: "white",
+    },
+  },
+  // The default size and variant values
+  defaultProps: {
+    size: "md",
+    variant: "outline",
+  },
+}
+```
+
+Make sense? Next, we'll update the theme to include this new component style.
+
+```jsx live=false
+import { extendTheme } from "@chakra-ui/core"
+
+const theme = extendTheme({
+  components: {
+    Button,
+  },
+})
+```
+
+### Consuming style config
+
+Now that the button's style configuration is hooked into the theme, we can
+consume within any component using `useStyleConfig` hook.
+
+### useStyleConfig API
+
+```jsx live=false
+const styles = useStyleConfig(themeKey, props)
+```
+
+#### Paramaters
+
+- `themeKey`: the key in `theme.components` that points to the desired
+  styleConfig.
+- `props`: the options object used to compute the component styles. It typically
+  consists of the `size`, `variant`, and `colorScheme`
+
+#### Return Value
+
+The computed styles for the component based on `props` passed. If no `props` is
+passed, the `defaultProps` defined in the style config will be used.
+
+```jsx live=false
+// 1. Import useStyleConfig
+import { useStyleConfig } from "@chakra-ui/core"
+
+function Button(props) {
+  const { size, variant, ...rest } = props
+
+  // 2. Reference `Button` stored in `theme.components`
+  const styles = useStyleConfig("Button", { size, variant })
+
+  // 3. Pass the computed styles into the `sx` prop
+  return <Box as="button" sx={styles} {...rest} />
+}
+```
+
+And lastly - the fun part - let's use our custom button component anywhere in
+our app:
+
+```jsx live=false
+// 1. Using the default props defined in style config
+function Usage() {
+  return <Button>Click me</Button>
+}
+
+// 2. Overriding the default
+function Usage() {
+  return (
+    <Button size="sm" variant="solid">
+      Click me
+    </Button>
+  )
+}
+```
+
+## Styling multipart components
+
+This is very similar to styling single part components with a few differences
+you need to be aware of.
+
+- Given that multipart refers to a component with multiple parts, you'll need to
+  define the parts in a `part` key in the style config.
+- You'll need to provide styles for each `part` for `baseStyle`, `sizes`, and
+  `variants`.
+
+Here's what the style config for multipart components looks like:
+
+```jsx live=false
+export default {
+  // The parts of the component
+  parts: [],
+  // The base styles for each part
+  baseStyle: {},
+  // The size styles for each part
+  sizes: {},
+  // The variant styles for each part
+  variants: {},
+  // The default `size` or `variant` values
+  defaultProps: {},
+}
+```
+
+For example, here's what the style configurations for a custom menu component
+looks like:
+
+```jsx live=false
+const Menu = {
+  parts: ["menu", "item"],
+  baseStyle: {
+    menu: {
+      boxShadow: "lg",
+      rounded: "lg",
+      flexDirection: "column",
+      py: "2",
+    },
+    item: {
+      fontWeight: "medium",
+      lineHeight: "normal",
+      color: "gray.600",
+    },
+  },
+  sizes: {
+    sm: {
+      item: {
+        fontSize: "0.75rem",
+        px: 2,
+        py: 1,
+      },
+    },
+    md: {
+      item: {
+        fontSize: "0.875rem",
+        px: 3,
+        py: 2,
+      },
+    },
+  },
+  defaultProps: {
+    size: "md",
+  },
+}
+```
+
+Next, we'll update the theme object to included this new component style.
+
+```jsx live=false
+import { extendTheme } from "@chakra-ui/core"
+
+const theme = extendTheme({
+  components: {
+    Menu,
+  },
+})
+```
+
+### Consuming multipart style config
+
+Now that the style config is hooked into the theme, we can consume within any
+component using `useMultiStyleConfig` hook.
+
+We can also mount the computed styles on a specialized context provider called
+`StylesProvider`. These styles will now be available to other sub-components. To
+read from the context, use the `useStyles` hook.
+
+### useMultiStyleConfig API
+
+```jsx live=false
+const styles = useMultiStyleConfig(themeKey, props)
+```
+
+#### Paramaters
+
+- `themeKey`: the key in `theme.components` that points to the desired
+  styleConfig.
+- `props`: an option of the options for the computing the final styles. It
+  typically consists of the `size`, `variant`, and `colorScheme`
+
+#### Return Values
+
+The computed styles for each component part based on `size`, or `variant`. If
+none of these were passed, the `defaultProps` defined in the styleConfig will be
+used.
+
+```jsx live=false
+// 1. Import the components and hook
+import { StylesProvider, useMultiStyleConfig, useStyles } from "@chakra-ui/core"
+
+function Menu(props) {
+  const { size, variant, children, ...rest } = props
+
+  // 2. Consume the `useMultiStyleConfig` hook
+  const styles = useMultiStyleConfig("Menu", { size, variant })
+
+  return (
+    <Flex sx={styles.menu} {...rest}>
+      {/* 3. Mount the computed styles on `StylesProvider` */}
+      <StylesProvider value={styles}>{children}</StylesProvider>
+    </Flex>
+  )
+}
+
+function MenuItem(props) {
+  // 4. Read computed `item` styles from styles provider
+  const styles = useStyles()
+  return <Box as="button" sx={styles.item} {...props} />
+}
+```
+
+That's it! We can use our newly created multipart component in our application:
+
+```jsx live=false
+// 1. Using the default props defined in style config
+function Usage() {
+  return (
+    <Menu>
+      <MenuItem>Awesome</MenuItem>
+      <MenuItem>Sauce</MenuItem>
+    </Menu>
+  )
+}
+
+// 2. Overriding the default
+function Usage() {
+  return (
+    <Menu size="sm">
+      <MenuItem>Awesome</MenuItem>
+      <MenuItem>Sauce</MenuItem>
+    </Menu>
+  )
+}
+```

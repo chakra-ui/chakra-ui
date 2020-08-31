@@ -1,6 +1,6 @@
 import {
   chakra,
-  GetProps,
+  PropsOf,
   ThemingProps,
   useMultiStyleConfig,
   omitThemingProps,
@@ -26,7 +26,7 @@ export { SliderProvider, useSliderContext }
 export interface SliderProps
   extends UseSliderProps,
     ThemingProps,
-    Omit<GetProps<typeof chakra.div>, "size" | "defaultValue"> {}
+    Omit<PropsOf<typeof chakra.div>, "size" | "defaultValue" | "onChange"> {}
 
 /**
  * The Slider is used to allow users to make selections from a range of values.
@@ -76,7 +76,7 @@ if (__DEV__) {
 
 ///////////////////////////////////////////////////////////////////////////
 
-export interface SliderThumbProps extends GetProps<typeof chakra.div> {}
+export interface SliderThumbProps extends PropsOf<typeof chakra.div> {}
 
 /**
  * Slider component that acts as the handle used to select predefined
@@ -114,7 +114,7 @@ if (__DEV__) {
 
 ///////////////////////////////////////////////////////////////////////////
 
-export interface SliderTrackProps extends GetProps<typeof chakra.div> {}
+export interface SliderTrackProps extends PropsOf<typeof chakra.div> {}
 
 export const SliderTrack = forwardRef<SliderTrackProps, "div">(
   function SliderTrack(props, ref) {
@@ -144,7 +144,7 @@ if (__DEV__) {
 
 ///////////////////////////////////////////////////////////////////////////
 
-export type SliderInnerTrackProps = GetProps<typeof chakra.div>
+export type SliderInnerTrackProps = PropsOf<typeof chakra.div>
 
 export const SliderFilledTrack: React.FC<SliderInnerTrackProps> = (props) => {
   const { getInnerTrackProps } = useSliderContext()
@@ -173,7 +173,7 @@ if (__DEV__) {
 
 ///////////////////////////////////////////////////////////////////////////
 
-export interface SliderMarkProps extends GetProps<typeof chakra.div> {
+export interface SliderMarkProps extends PropsOf<typeof chakra.div> {
   value: number
 }
 

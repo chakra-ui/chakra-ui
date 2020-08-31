@@ -1,7 +1,7 @@
 import { TriangleDownIcon, TriangleUpIcon } from "./icons"
 import {
   chakra,
-  GetProps,
+  PropsOf,
   forwardRef,
   StylesProvider,
   useStyles,
@@ -54,7 +54,7 @@ export interface NumberInputProps
     ThemingProps,
     InputOptions,
     Omit<
-      GetProps<typeof chakra.div>,
+      PropsOf<typeof chakra.div>,
       "onChange" | "as" | "children" | "value" | "defaultValue"
     > {}
 
@@ -71,18 +71,21 @@ export interface NumberInputProps
 export const NumberInput = forwardRef<NumberInputProps, "div">(
   function NumberInput(props, ref) {
     const styles = useMultiStyleConfig("NumberInput", props)
-    const inputProps = omitThemingProps(props)
+    const ownProps = omitThemingProps(props)
 
-    const { htmlProps, ...context } = useNumberInput(inputProps)
-    const _context = React.useMemo(() => context, [context])
+    const { htmlProps, ...context } = useNumberInput(ownProps)
+    const ctx = React.useMemo(() => context, [context])
 
     return (
-      <NumberInputProvider value={_context}>
+      <NumberInputProvider value={ctx}>
         <StylesProvider value={styles}>
           <chakra.div
             ref={ref}
             {...htmlProps}
-            __css={{ position: "relative" }}
+            __css={{
+              position: "relative",
+              zIndex: 0,
+            }}
           />
         </StylesProvider>
       </NumberInputProvider>
@@ -94,7 +97,7 @@ if (__DEV__) {
   NumberInput.displayName = "NumberInput"
 }
 
-export interface NumberInputStepperProps extends GetProps<typeof chakra.div> {}
+export interface NumberInputStepperProps extends PropsOf<typeof chakra.div> {}
 
 /**
  * NumberInputStepper
@@ -134,7 +137,7 @@ if (__DEV__) {
   NumberInputStepper.displayName = "NumberInputStepper"
 }
 
-export interface NumberInputFieldProps extends GetProps<typeof chakra.input> {}
+export interface NumberInputFieldProps extends PropsOf<typeof chakra.input> {}
 
 /**
  * NumberInputField
@@ -183,7 +186,7 @@ export const StyledStepper = chakra("div", {
 })
 
 export interface NumberDecrementStepperProps
-  extends GetProps<typeof StyledStepper> {}
+  extends PropsOf<typeof StyledStepper> {}
 
 /**
  * NumberDecrementStepper
@@ -212,7 +215,7 @@ if (__DEV__) {
 }
 
 export interface NumberIncrementStepperProps
-  extends GetProps<typeof StyledStepper> {}
+  extends PropsOf<typeof StyledStepper> {}
 
 /**
  * NumberIncrementStepper

@@ -23,7 +23,52 @@ export default {
   ],
 }
 
-export const basic = () => <Button colorScheme="green">Button</Button>
+export const basic = () => (
+  <>
+    <Button colorScheme="gray">Button</Button>
+    <Button colorScheme="red">Button</Button>
+    <Button colorScheme="green">Button</Button>
+    <Button colorScheme="blue">Button</Button>
+    <Button colorScheme="teal">Button</Button>
+    <Button colorScheme="pink">Button</Button>
+    <Button colorScheme="purple">Button</Button>
+    <Button colorScheme="cyan">Button</Button>
+    <Button colorScheme="orange">Button</Button>
+    <Button colorScheme="yellow">Button</Button>
+  </>
+)
+
+export const outlines = () => (
+  <>
+    <Button variant="outline" colorScheme="red">
+      Button
+    </Button>
+    <Button variant="outline" colorScheme="green">
+      Button
+    </Button>
+    <Button variant="outline" colorScheme="blue">
+      Button
+    </Button>
+    <Button variant="outline" colorScheme="teal">
+      Button
+    </Button>
+    <Button variant="outline" colorScheme="pink">
+      Button
+    </Button>
+    <Button variant="outline" colorScheme="purple">
+      Button
+    </Button>
+    <Button variant="outline" colorScheme="cyan">
+      Button
+    </Button>
+    <Button variant="outline" colorScheme="orange">
+      Button
+    </Button>
+    <Button variant="outline" colorScheme="yellow">
+      Button
+    </Button>
+  </>
+)
 
 export const withVariants = () => (
   <HStack spacing="24px">

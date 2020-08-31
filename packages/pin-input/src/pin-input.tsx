@@ -1,6 +1,6 @@
 import {
   chakra,
-  GetProps,
+  PropsOf,
   ThemingProps,
   useStyleConfig,
   forwardRef,
@@ -43,8 +43,8 @@ export interface PinInputProps
 export const PinInput: React.FC<PinInputProps> = (props) => {
   const styles = useStyleConfig("PinInput", props)
 
-  const { children, ...otherProps } = omitThemingProps(props)
-  const context = usePinInput(otherProps)
+  const { children, ...rest } = omitThemingProps(props)
+  const context = usePinInput(rest)
 
   const clones = getValidChildren(children).map((child) => {
     return React.cloneElement(child, { __css: styles })
@@ -57,7 +57,7 @@ if (__DEV__) {
   PinInput.displayName = "PinInput"
 }
 
-export interface PinInputFieldProps extends GetProps<typeof chakra.input> {}
+export interface PinInputFieldProps extends PropsOf<typeof chakra.input> {}
 
 export const PinInputField = forwardRef<PinInputFieldProps, "input">(
   function PinInputField(props, ref) {

@@ -1,7 +1,7 @@
 import {
   chakra,
   forwardRef,
-  GetProps,
+  PropsOf,
   omitThemingProps,
   StylesProvider,
   SystemProps,
@@ -10,9 +10,9 @@ import {
   useStyles,
 } from "@chakra-ui/system"
 import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
-import React, { cloneElement } from "react"
+import * as React from "react"
 
-export interface BreadcrumbSeparatorProps extends GetProps<typeof chakra.div> {
+export interface BreadcrumbSeparatorProps extends PropsOf<typeof chakra.div> {
   spacing?: SystemProps["mx"]
 }
 
@@ -44,13 +44,9 @@ if (__DEV__) {
   BreadcrumbSeparator.displayName = "BreadcrumbSeparator"
 }
 
-interface LinkOptions {
+export interface BreadcrumbLinkProps extends PropsOf<typeof chakra.a> {
   isCurrentPage?: boolean
 }
-
-export interface BreadcrumbLinkProps
-  extends GetProps<typeof chakra.a>,
-    LinkOptions {}
 
 /**
  * Breadcrumb link.
@@ -89,7 +85,7 @@ interface BreadcrumbItemOptions extends BreadcrumbOptions {
 
 export interface BreadcrumbItemProps
   extends BreadcrumbItemOptions,
-    GetProps<typeof chakra.li> {}
+    PropsOf<typeof chakra.li> {}
 
 /**
  * BreadcrumbItem is used to group a breadcrumb link.
@@ -113,13 +109,13 @@ export const BreadcrumbItem = forwardRef<BreadcrumbItemProps, "li">(
 
     const clones = validChildren.map((child) => {
       if (child.type === BreadcrumbLink) {
-        return cloneElement(child, {
+        return React.cloneElement(child, {
           isCurrentPage,
         })
       }
 
       if (child.type === BreadcrumbSeparator) {
-        return cloneElement(child, {
+        return React.cloneElement(child, {
           spacing,
           children: child.props.children || separator,
         })
@@ -165,7 +161,7 @@ export interface BreadcrumbOptions {
 }
 
 export interface BreadcrumbProps
-  extends GetProps<typeof chakra.nav>,
+  extends PropsOf<typeof chakra.nav>,
     BreadcrumbOptions,
     ThemingProps {}
 
@@ -178,7 +174,7 @@ export interface BreadcrumbProps
 export const Breadcrumb = forwardRef<BreadcrumbProps, "nav">(
   function Breadcrumb(props, ref) {
     const styles = useMultiStyleConfig("Breadcrumb", props)
-    const realProps = omitThemingProps(props)
+    const ownProps = omitThemingProps(props)
 
     const {
       children,
@@ -186,13 +182,13 @@ export const Breadcrumb = forwardRef<BreadcrumbProps, "nav">(
       separator = "/",
       className,
       ...rest
-    } = realProps
+    } = ownProps
 
     const validChildren = getValidChildren(children)
     const count = validChildren.length
 
     const clones = validChildren.map((child, index) =>
-      cloneElement(child, {
+      React.cloneElement(child, {
         separator,
         spacing,
         isLastChild: count === index + 1,

@@ -21,7 +21,6 @@ import {
   MenuTransition,
 } from "../src"
 import { Button } from "@chakra-ui/button"
-import { Avatar } from "@chakra-ui/avatar"
 
 const words = [
   "About Visual Studio Code",
@@ -115,6 +114,73 @@ export const WithDisabledButFocusableItem = () => (
   </Menu>
 )
 
+export const WithTogglableMenuItems = () => {
+  const [items, setItems] = React.useState<
+    {
+      content: React.ReactNode
+      icon: React.ReactElement
+      isDisabled?: boolean
+      command?: string
+    }[]
+  >([
+    {
+      content: "Search",
+      icon: <FaSearch />,
+      isDisabled: true,
+      command: "⌥T",
+    },
+    {
+      content: "Delivery",
+      icon: <FaUndoAlt />,
+    },
+    {
+      content: "Unlink",
+      icon: <FaUnlink />,
+      isDisabled: true,
+    },
+  ])
+
+  return (
+    <>
+      <Button
+        onClick={() => {
+          return setItems([
+            {
+              content: "Search",
+              icon: <FaSearch />,
+              isDisabled: false,
+              command: "⌥T",
+            },
+            {
+              content: "Delivery",
+              icon: <FaUndoAlt />,
+            },
+            {
+              content: "Unlink",
+              icon: <FaUnlink />,
+              isDisabled: true,
+            },
+          ])
+        }}
+      >
+        Enable Search
+      </Button>
+      <Menu>
+        <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
+          Open menu
+        </MenuButton>
+        <MenuList>
+          {items.map(({ content, icon, isDisabled, command }, index) => (
+            <MenuItem isDisabled={isDisabled} icon={icon} command={command}>
+              {content}
+            </MenuItem>
+          ))}
+        </MenuList>
+      </Menu>
+    </>
+  )
+}
+
 export const WithPortal = () => (
   <Menu>
     <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
@@ -178,7 +244,7 @@ export const withMenuRadio = () => (
 
       <MenuDivider />
 
-      <MenuOptionGroup defaultValue="val1" title="Order" type="radio">
+      <MenuOptionGroup defaultValue="val-1" title="Order" type="radio">
         <MenuItemOption value="val-1">Option 1</MenuItemOption>
         <MenuItemOption value="val-2">Option 2</MenuItemOption>
       </MenuOptionGroup>
@@ -304,3 +370,25 @@ export const SplitButton = () => (
     </Menu>
   </chakra.div>
 )
+
+export const WithinForm = () => {
+  return (
+    <form>
+      <fieldset>
+        <legend>regular MenuList with MenuItems</legend>
+        <Menu>
+          <MenuButton as={Button}>do something</MenuButton>
+          <MenuList>
+            <MenuItem>Download</MenuItem>
+            <MenuItem>Create a Copy</MenuItem>
+            <MenuItem>Mark as Draft</MenuItem>
+            <MenuItem>Delete</MenuItem>
+            <MenuItem as="a" href="#">
+              Attend a Workshop
+            </MenuItem>
+          </MenuList>
+        </Menu>
+      </fieldset>
+    </form>
+  )
+}

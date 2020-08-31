@@ -1,14 +1,15 @@
 import {
   chakra,
   forwardRef,
-  GetProps,
+  omitThemingProps,
+  PropsOf,
   StylesProvider,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
 } from "@chakra-ui/system"
 import { createContext, cx } from "@chakra-ui/utils"
-import React from "react"
+import * as React from "react"
 import { CheckIcon, InfoIcon, WarningIcon } from "./icons"
 
 const STATUSES = {
@@ -38,18 +39,16 @@ interface AlertOptions {
 }
 
 export interface AlertProps
-  extends GetProps<typeof chakra.div>,
+  extends PropsOf<typeof chakra.div>,
     AlertOptions,
     ThemingProps {}
 
 /**
- * Alert
- *
- * React component used to communicate the state or status of a
+ * Alert is used to communicate the state or status of a
  * page, feature or action
  */
 export const Alert = forwardRef<AlertProps, "div">(function Alert(props, ref) {
-  const { status = "info", ...rest } = props
+  const { status = "info", ...rest } = omitThemingProps(props)
   const { colorScheme } = STATUSES[status]
 
   const styles = useMultiStyleConfig("Alert", { ...props, colorScheme })
@@ -77,7 +76,7 @@ export const Alert = forwardRef<AlertProps, "div">(function Alert(props, ref) {
   )
 })
 
-export interface AlertTitleProps extends GetProps<typeof chakra.div> {}
+export interface AlertTitleProps extends PropsOf<typeof chakra.div> {}
 
 export const AlertTitle = forwardRef<AlertTitleProps, "div">(
   function AlertTitle(props, ref) {
@@ -93,7 +92,7 @@ export const AlertTitle = forwardRef<AlertTitleProps, "div">(
   },
 )
 
-export interface AlertDescriptionProps extends GetProps<typeof chakra.div> {}
+export interface AlertDescriptionProps extends PropsOf<typeof chakra.div> {}
 
 export const AlertDescription = forwardRef<AlertDescriptionProps, "div">(
   function AlertDescription(props, ref) {
@@ -114,7 +113,7 @@ export const AlertDescription = forwardRef<AlertDescriptionProps, "div">(
   },
 )
 
-export interface AlertIconProps extends GetProps<typeof chakra.span> {}
+export interface AlertIconProps extends PropsOf<typeof chakra.span> {}
 
 export const AlertIcon: React.FC<AlertIconProps> = (props) => {
   const { status } = useAlertContext()

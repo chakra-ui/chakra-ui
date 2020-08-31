@@ -59,7 +59,7 @@ export const colorSchemes = () => (
 
 export const withLeftIcon = () => (
   <Tag colorScheme="cyan">
-    <TagLeftIcon boxSize="12px" as={AddIcon} />
+    <TagLeftIcon w="12px" h="12px" as={AddIcon} />
     <TagLabel>Green</TagLabel>
   </Tag>
 )
@@ -68,7 +68,7 @@ export const withRightIcon = () => (
   <>
     <Tag colorScheme="cyan">
       <TagLabel>Green</TagLabel>
-      <TagRightIcon boxSize="12px" as={AddIcon} />
+      <TagRightIcon w="12px" h="12px" as={AddIcon} />
     </Tag>
 
     <Tag variant="solid" colorScheme="teal">

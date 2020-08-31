@@ -1,8 +1,15 @@
 import * as React from "react"
-import { chakra, GetProps, ChakraProps, forwardRef } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
+import {
+  chakra,
+  PropsOf,
+  SystemProps,
+  forwardRef,
+  ResponsiveValue,
+} from "@chakra-ui/system"
+import { mapResponsive, __DEV__ } from "@chakra-ui/utils"
+import { BoxProps } from "./box"
 
-export interface GridProps extends GetProps<typeof chakra.div>, GridOptions {}
+export interface GridProps extends PropsOf<typeof chakra.div>, GridOptions {}
 
 /**
  * React component used to create grid layouts.
@@ -58,49 +65,77 @@ export interface GridOptions {
   /**
    * Short hand prop for `gridTemplateColumns`
    */
-  templateColumns?: ChakraProps["gridTemplateColumns"]
+  templateColumns?: SystemProps["gridTemplateColumns"]
   /**
    * Short hand prop for `gridGap`
    */
-  gap?: ChakraProps["gridGap"]
+  gap?: SystemProps["gridGap"]
   /**
    * Short hand prop for `gridRowGap`
    */
-  rowGap?: ChakraProps["gridRowGap"]
+  rowGap?: SystemProps["gridRowGap"]
   /**
    * Short hand prop for `gridColumnGap`
    */
-  columnGap?: ChakraProps["gridColumnGap"]
+  columnGap?: SystemProps["gridColumnGap"]
   /**
    * Short hand prop for `gridAutoFlow`
    */
-  autoFlow?: ChakraProps["gridAutoFlow"]
+  autoFlow?: SystemProps["gridAutoFlow"]
   /**
    * Short hand prop for `gridAutoRows`
    */
-  autoRows?: ChakraProps["gridAutoRows"]
+  autoRows?: SystemProps["gridAutoRows"]
   /**
    * Short hand prop for `gridAutoColumns`
    */
-  autoColumns?: ChakraProps["gridAutoColumns"]
+  autoColumns?: SystemProps["gridAutoColumns"]
   /**
    * Short hand prop for `gridTemplateRows`
    */
-  templateRows?: ChakraProps["gridTemplateRows"]
+  templateRows?: SystemProps["gridTemplateRows"]
   /**
    * Short hand prop for `gridTemplateAreas`
    */
-  templateAreas?: ChakraProps["gridTemplateAreas"]
+  templateAreas?: SystemProps["gridTemplateAreas"]
   /**
    * Short hand prop for `gridArea`
    */
-  area?: ChakraProps["gridArea"]
+  area?: SystemProps["gridArea"]
   /**
    * Short hand prop for `gridColumn`
    */
-  column?: ChakraProps["gridColumn"]
+  column?: SystemProps["gridColumn"]
   /**
    * Short hand prop for `gridRow`
    */
-  row?: ChakraProps["gridRow"]
+  row?: SystemProps["gridRow"]
 }
+
+export interface GridColumnProps extends BoxProps {
+  /**
+   * The number of columns the grid item should `span`.
+   */
+  span?: ResponsiveValue<number | "auto">
+  /**
+   * The column number the grid item should start.
+   */
+  start?: ResponsiveValue<number | "auto">
+}
+
+export const GridColumn = forwardRef<GridColumnProps, "div">(
+  function GridColumn(props, ref) {
+    const { span, start, ...rest } = props
+    const gridColumn = mapResponsive(span, (v) =>
+      v === "auto" ? "auto" : `span ${v}/span ${v}`,
+    )
+    return (
+      <chakra.div
+        ref={ref}
+        gridColumn={gridColumn}
+        gridColumnStart={start}
+        {...rest}
+      />
+    )
+  },
+)

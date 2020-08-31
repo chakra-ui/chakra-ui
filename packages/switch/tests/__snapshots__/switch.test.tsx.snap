@@ -51,7 +51,7 @@ exports[`Switch renders correctly 1`] = `
 
 .emotion-1[aria-checked=true],
 .emotion-1[data-checked] {
-  background: #3182CE;
+  background: #3182ce;
 }
 
 .emotion-0 {
@@ -83,14 +83,14 @@ exports[`Switch renders correctly 1`] = `
       type="checkbox"
       value=""
     />
-    <div
+    <span
       aria-hidden="true"
       class="chakra-switch__track emotion-1"
     >
-      <div
+      <span
         class="chakra-switch__thumb emotion-0"
       />
-    </div>
+    </span>
   </label>
 </DocumentFragment>
 `;

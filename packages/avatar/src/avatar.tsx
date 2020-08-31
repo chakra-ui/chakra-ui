@@ -2,7 +2,7 @@ import { useImage } from "@chakra-ui/image"
 import {
   chakra,
   omitThemingProps,
-  GetProps,
+  PropsOf,
   StylesProvider,
   SystemProps,
   ThemingProps,
@@ -12,7 +12,7 @@ import {
   forwardRef,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import React, { cloneElement, ReactElement, ReactNode } from "react"
+import * as React from "react"
 
 interface AvatarOptions {
   /**
@@ -35,7 +35,7 @@ interface AvatarOptions {
   /**
    * The badge at the bottom right corner of the avatar.
    */
-  children?: ReactNode
+  children?: React.ReactNode
   /**
    * The image url of the `Avatar`
    */
@@ -51,19 +51,19 @@ interface AvatarOptions {
   /**
    * Function called when image failed to load
    */
-  onError?(): void
+  onError?: () => void
   /**
    * The default avatar used as fallback when `name`, and `src`
    * is not specified.
    */
-  icon?: ReactElement
+  icon?: React.ReactElement
   /**
    * Function to get the initials to display
    */
-  getInitials?(name?: string): string
+  getInitials?: (name: string) => string
 }
 
-export interface AvatarBadgeProps extends GetProps<typeof chakra.div> {}
+export interface AvatarBadgeProps extends PropsOf<typeof chakra.div> {}
 
 /**
  * AvatarBadge used to show extra badge to the top-right
@@ -104,14 +104,14 @@ function initials(name: string) {
     : firstName.charAt(0)
 }
 
-interface InitialsProps
-  extends GetProps<typeof chakra.div>,
+interface AvatarNameProps
+  extends PropsOf<typeof chakra.div>,
     Pick<AvatarOptions, "name" | "getInitials"> {}
 
 /**
  * The avatar name container
  */
-const Initials: React.FC<InitialsProps> = (props) => {
+const AvatarName: React.FC<AvatarNameProps> = (props) => {
   const { name, getInitials, ...rest } = props
   const styles = useStyles()
 
@@ -126,7 +126,7 @@ const Initials: React.FC<InitialsProps> = (props) => {
  * Fallback avatar react component.
  * This should be a generic svg used to represent an avatar
  */
-const DefaultIcon: React.FC<GetProps<"svg">> = (props) => {
+const DefaultIcon: React.FC<PropsOf<"svg">> = (props) => {
   return (
     <svg
       viewBox="0 0 128 128"
@@ -158,7 +158,7 @@ export const baseStyle: SystemStyleObject = {
 }
 
 export interface AvatarProps
-  extends Omit<GetProps<typeof chakra.span>, "onError">,
+  extends Omit<PropsOf<typeof chakra.span>, "onError">,
     AvatarOptions,
     ThemingProps {}
 
@@ -217,10 +217,11 @@ if (__DEV__) {
   Avatar.displayName = "Avatar"
 }
 
-type AvatarImageProps = Pick<
-  AvatarProps,
-  "src" | "onError" | "name" | "getInitials" | "borderRadius" | "icon"
->
+interface AvatarImageProps
+  extends Pick<
+    AvatarProps,
+    "src" | "onError" | "name" | "getInitials" | "borderRadius" | "icon"
+  > {}
 
 const AvatarImage: React.FC<AvatarImageProps> = ({
   src,
@@ -248,13 +249,13 @@ const AvatarImage: React.FC<AvatarImageProps> = ({
 
   if (showFallback) {
     return name ? (
-      <Initials
+      <AvatarName
         className="chakra-avatar__initials"
         getInitials={getInitials}
         name={name}
       />
     ) : (
-      cloneElement(icon, { role: "img" })
+      React.cloneElement(icon, { role: "img" })
     )
   }
 
