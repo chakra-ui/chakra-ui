@@ -1175,6 +1175,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "carlosvini",
+      "name": "Carlos Rodrigues",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/4670443?v=4",
+      "profile": "https://carlosvini.github.io/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
