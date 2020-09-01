@@ -5,7 +5,13 @@ import {
   PropGetter,
   StringOrNumber,
 } from "@chakra-ui/utils"
-import { ChangeEvent, useCallback, useRef, useState } from "react"
+import {
+  ChangeEvent,
+  useCallback,
+  useRef,
+  useState,
+  InputHTMLAttributes,
+} from "react"
 
 type EventOrValue = ChangeEvent<HTMLInputElement> | StringOrNumber
 
@@ -105,10 +111,15 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     role: "radiogroup",
   })
 
-  const getRadioProps: PropGetter<
+  type RadioPropGetter = PropGetter<
     HTMLInputElement,
-    { onChange?: (e: EventOrValue) => void; value?: any }
-  > = (props = {}, ref = null) => {
+    { onChange?: (e: EventOrValue) => void } & Omit<
+      InputHTMLAttributes<HTMLInputElement>,
+      "onChange"
+    >
+  >
+
+  const getRadioProps: RadioPropGetter = (props = {}, ref = null) => {
     const checkedKey = isNative ? "checked" : "isChecked"
     return {
       ...props,
