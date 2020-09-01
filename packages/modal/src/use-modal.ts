@@ -1,14 +1,13 @@
 import { useIds } from "@chakra-ui/hooks"
-import { callAllHandlers, Dict, mergeRefs } from "@chakra-ui/utils"
-import { Undo, hideOthers } from "aria-hidden"
+import { callAllHandlers, mergeRefs, PropGetter } from "@chakra-ui/utils"
+import { hideOthers, Undo } from "aria-hidden"
 import {
   KeyboardEvent,
-  useCallback,
-  Ref,
-  RefObject,
   MouseEvent,
-  useRef,
+  RefObject,
+  useCallback,
   useEffect,
+  useRef,
   useState,
 } from "react"
 import { manager, useModalManager } from "./modal-manager"
@@ -194,12 +193,12 @@ export function useModal(props: UseModalProps) {
   const [headerMounted, setHeaderMounted] = useState(false)
   const [bodyMounted, setBodyMounted] = useState(false)
 
-  const getContentProps = useCallback(
-    (props: Dict = {}, ref: Ref<any>) => ({
+  const getContentProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
+      role: "dialog",
       ...props,
       ref: mergeRefs(ref, dialogRef),
       id: dialogId,
-      role: props.role || "dialog",
       tabIndex: -1,
       "aria-modal": true,
       "aria-labelledby": headerMounted ? headerId : undefined,
@@ -211,8 +210,8 @@ export function useModal(props: UseModalProps) {
     [bodyId, bodyMounted, dialogId, headerId, headerMounted],
   )
 
-  const getOverlayProps = useCallback(
-    (props: Dict = {}, ref: Ref<any>) => ({
+  const getOverlayProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
       ...props,
       ref: mergeRefs(ref, overlayRef),
       onClick: callAllHandlers(props.onClick, onOverlayClick),

@@ -153,7 +153,8 @@ export interface NumberInputFieldProps extends PropsOf<typeof chakra.input> {}
 export const NumberInputField = forwardRef<NumberInputFieldProps, "input">(
   function NumberInputField(props, ref) {
     const { getInputProps } = useNumberInputContext()
-    const input = getInputProps({ ...props, ref })
+
+    const input = getInputProps(props, ref)
     const styles = useStyles()
 
     return (
@@ -201,7 +202,7 @@ export const NumberDecrementStepper = forwardRef<
 >(function NumberDecrementStepper(props, ref) {
   const styles = useStyles()
   const { getDecrementButtonProps } = useNumberInputContext()
-  const decrement = getDecrementButtonProps({ ...props, ref })
+  const decrement = getDecrementButtonProps(props, ref)
 
   return (
     <StyledStepper {...decrement} __css={styles.stepper}>
@@ -229,7 +230,7 @@ export const NumberIncrementStepper = forwardRef<
   "div"
 >(function NumberIncrementStepper(props, ref) {
   const { getIncrementButtonProps } = useNumberInputContext()
-  const increment = getIncrementButtonProps({ ...props, ref })
+  const increment = getIncrementButtonProps(props, ref)
   const styles = useStyles()
 
   return (

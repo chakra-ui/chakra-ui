@@ -1,5 +1,10 @@
 import { useControllableProp, useId } from "@chakra-ui/hooks"
-import { isInputEvent, StringOrNumber, Dict, mergeRefs } from "@chakra-ui/utils"
+import {
+  isInputEvent,
+  mergeRefs,
+  PropGetter,
+  StringOrNumber,
+} from "@chakra-ui/utils"
 import { ChangeEvent, useCallback, useRef, useState } from "react"
 
 type EventOrValue = ChangeEvent<HTMLInputElement> | StringOrNumber
@@ -94,22 +99,29 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     [onChangeProp, isControlled],
   )
 
-  return {
-    getRootProps: (props: Dict = {}, _ref: React.Ref<any> = null) => ({
+  const getRootProps: PropGetter = (props = {}, forwardedRef = null) => ({
+    ...props,
+    ref: mergeRefs(forwardedRef, ref),
+    role: "radiogroup",
+  })
+
+  const getRadioProps: PropGetter<
+    HTMLInputElement,
+    { onChange?: (e: EventOrValue) => void; value?: any }
+  > = (props = {}, ref = null) => {
+    const checkedKey = isNative ? "checked" : "isChecked"
+    return {
       ...props,
-      ref: mergeRefs(_ref, ref),
-      role: "radiogroup",
-    }),
-    getRadioProps: (props: Dict = {}, ref: React.Ref<any> = null) => {
-      const checkedKey = isNative ? "checked" : "isChecked"
-      return {
-        ...props,
-        ref,
-        name,
-        [checkedKey]: props.value === value,
-        onChange,
-      }
-    },
+      ref,
+      name,
+      [checkedKey]: props.value === value,
+      onChange,
+    }
+  }
+
+  return {
+    getRootProps,
+    getRadioProps,
     name,
     ref,
     focus,

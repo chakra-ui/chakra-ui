@@ -22,7 +22,7 @@ export interface UsePopperProps {
   modifiers?: Modifier<any, any>[]
 }
 
-export function usePopper(props: UsePopperProps) {
+export function usePopper(props: UsePopperProps = {}) {
   const {
     placement: initialPlacement = "bottom",
     offset: offsetProp,

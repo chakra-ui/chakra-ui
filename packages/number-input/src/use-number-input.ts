@@ -11,6 +11,7 @@ import {
   minSafeInteger,
   maxSafeInteger,
   isBrowser,
+  PropGetter,
 } from "@chakra-ui/utils"
 import {
   useCallback,
@@ -265,7 +266,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
   }, [focusInputOnChange])
 
   const spinUp = useCallback(
-    (event: MouseEvent) => {
+    (event: any) => {
       event.preventDefault()
       spinner.up()
       focusInput()
@@ -274,7 +275,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
   )
 
   const spinDown = useCallback(
-    (event: MouseEvent) => {
+    (event: any) => {
       event.preventDefault()
       spinner.down()
       focusInput()
@@ -287,9 +288,10 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       ? "onTouchStart"
       : "onMouseDown"
 
-  const getIncrementButtonProps = useCallback(
-    (props: Dict = {}) => ({
+  const getIncrementButtonProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
       ...props,
+      ref,
       role: "button",
       tabIndex: -1,
       [pointerDown]: callAllHandlers(props[pointerDown], spinUp),
@@ -302,9 +304,10 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     [pointerDown, counter.isAtMax, keepWithinRange, spinUp, spinner.stop],
   )
 
-  const getDecrementButtonProps = useCallback(
-    (props: Dict = {}) => ({
+  const getDecrementButtonProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
       ...props,
+      ref,
       role: "button",
       tabIndex: -1,
       [pointerDown]: callAllHandlers(props[pointerDown], spinDown),
@@ -319,11 +322,11 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
   type InputMode = InputHTMLAttributes<any>["inputMode"]
 
-  const getInputProps = useCallback(
-    (props: Dict = {}) => ({
+  const getInputProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
       ...props,
       id,
-      ref: mergeRefs(inputRef, props.ref),
+      ref: mergeRefs(inputRef, ref),
       value: counter.value,
       role: "spinbutton",
       type: "text",
