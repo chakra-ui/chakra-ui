@@ -130,12 +130,12 @@ export const Progress: React.FC<ProgressProps> = (props) => {
     ...rest
   } = omitThemingProps(props)
 
+  const isIndeterminate = isUndefined(value)
+  
   const styles = useMultiStyleConfig("Progress", {
     ...props,
-    isIndeterminate: isUndefined(value),
+    isIndeterminate,
   })
-
-  const isIndeterminate = isUndefined(value)
 
   const stripAnimation = { animation: `${stripe} 1s linear infinite` }
 
