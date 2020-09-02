@@ -10,13 +10,64 @@ import {
   StylesProvider,
   useStyles,
 } from "@chakra-ui/system"
-import { callAllHandlers, cx, __DEV__ } from "@chakra-ui/utils"
+import { callAllHandlers, cx, __DEV__, createContext } from "@chakra-ui/utils"
 import * as React from "react"
 import { RemoveScroll } from "react-remove-scroll"
-import { ModalContextProvider, useModalContext } from "./context"
-import { useModal, UseModalProps } from "./use-modal"
+import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
 
-export interface ModalProps extends UseModalProps, ThemingProps {
+interface ModalOptions {
+  /**
+   * If `false`, focus lock will be disabled completely.
+   *
+   * This is useful in situations where you still need to interact with
+   * other surrounding elements.
+   *
+   * 🚨Warning: We don't recommend doing this because it hurts the
+   * accessbility of the modal, based on WAI-ARIA specifications.
+   *
+   * @default true
+   */
+  trapFocus?: boolean
+  /**
+   * If `true`, the modal will autofocus the first enabled and interative
+   * element within the `ModalContent`
+   *
+   * @default true
+   */
+  autoFocus?: boolean
+  /**
+   * The `ref` of element to receive focus when the modal opens.
+   */
+  initialFocusRef?: React.RefObject<HTMLElement>
+  /**
+   * The `ref` of element to receive focus when the modal closes.
+   */
+  finalFocusRef?: React.RefObject<HTMLElement>
+  /**
+   * If `true`, the modal will return focus to the element that triggered it when it closes.
+   * @default true
+   */
+  returnFocusOnClose?: boolean
+  /**
+   * If `true`, scrolling will be disabled on the `body` when the modal opens.
+   *  @default true
+   */
+  blockScrollOnMount?: boolean
+  /**
+   * Handle zoom/pinch gestures on iOS devices when scroll locking is enabled.
+   * Defaults to `false`.
+   */
+  allowPinchZoom?: boolean
+  /**
+   * If `true`, a `padding-right` will be applied to the body element
+   * that's equal to the width of the scrollbar.
+   *
+   * This can help prevent some unpleasant flickering effect
+   * and content adjustment when the modal opens
+   */
+  preserveScrollBarGap?: boolean
+}
+export interface ModalProps extends UseModalProps, ModalOptions, ThemingProps {
   children?: React.ReactNode
   /**
    *  If `true`, the modal will be centered on screen.
@@ -39,6 +90,17 @@ export interface ModalProps extends UseModalProps, ThemingProps {
   getContainer?: PortalProps["getContainer"]
 }
 
+interface ModalContext extends ModalOptions, UseModalReturn {}
+
+const [ModalContextProvider, useModalContext] = createContext<ModalContext>({
+  strict: true,
+  name: "ModalContext",
+  errorMessage:
+    "useModalContext: `context` is undefined. Seems you forgot to wrap modal components in `<Modal />`",
+})
+
+export { ModalContextProvider, useModalContext }
+
 /**
  * Modal
  *
@@ -48,15 +110,38 @@ export interface ModalProps extends UseModalProps, ThemingProps {
  * It doesn't render any DOM node.
  */
 export const Modal: React.FC<ModalProps> = (props) => {
-  const { getContainer, children } = props
+  const {
+    getContainer,
+    children,
+    autoFocus,
+    trapFocus,
+    initialFocusRef,
+    finalFocusRef,
+    returnFocusOnClose,
+    blockScrollOnMount,
+    allowPinchZoom,
+    preserveScrollBarGap,
+  } = props
 
   const styles = useMultiStyleConfig("Modal", props)
   const modal = useModal(props)
 
-  if (!modal.isOpen) return null
+  const context = {
+    ...modal,
+    autoFocus,
+    trapFocus,
+    initialFocusRef,
+    finalFocusRef,
+    returnFocusOnClose,
+    blockScrollOnMount,
+    allowPinchZoom,
+    preserveScrollBarGap,
+  }
+
+  if (!context.isOpen) return null
 
   return (
-    <ModalContextProvider value={modal}>
+    <ModalContextProvider value={context}>
       <Portal getContainer={getContainer}>
         <StylesProvider value={styles}>{children}</StylesProvider>
       </Portal>
@@ -143,6 +228,7 @@ export const ModalOverlay = forwardRef<ModalOverlayProps, "div">(
       allowPinchZoom,
       finalFocusRef,
       returnFocusOnClose,
+      preserveScrollBarGap,
     } = useModalContext()
 
     const overlay = getOverlayProps(rest, ref)
@@ -160,6 +246,7 @@ export const ModalOverlay = forwardRef<ModalOverlayProps, "div">(
         contentRef={dialogRef}
       >
         <RemoveScroll
+          removeScrollBar={!preserveScrollBarGap}
           allowPinchZoom={allowPinchZoom}
           enabled={blockScrollOnMount}
         >

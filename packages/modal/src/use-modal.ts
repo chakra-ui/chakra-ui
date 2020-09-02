@@ -52,48 +52,6 @@ export interface UseModalProps {
    *  @default true
    */
   useInert?: boolean
-  /**
-   * If `false`, focus lock will be disabled completely.
-   *
-   * This is useful in situations where you still need to interact with
-   * other surrounding elements.
-   *
-   * 🚨Warning: We don't recommend doing this because it hurts the
-   * accessbility of the modal, based on WAI-ARIA specifications.
-   *
-   * @default true
-   */
-  trapFocus?: boolean
-  /**
-   * If `true`, the modal will autofocus the first enabled and interative
-   * element within the `ModalContent`
-   *
-   * @default true
-   */
-  autoFocus?: boolean
-  /**
-   * The `ref` of element to receive focus when the modal opens.
-   */
-  initialFocusRef?: RefObject<HTMLElement>
-  /**
-   * The `ref` of element to receive focus when the modal closes.
-   */
-  finalFocusRef?: RefObject<HTMLElement>
-  /**
-   * If `true`, the modal will return focus to the element that triggered it when it closes.
-   * @default true
-   */
-  returnFocusOnClose?: boolean
-  /**
-   * If `true`, scrolling will be disabled on the `body` when the modal opens.
-   *  @default true
-   */
-  blockScrollOnMount?: boolean
-  /**
-   * Handle zoom/pinch gestures on iOS devices when scroll locking is enabled.
-   * Defaults to `false`.
-   */
-  allowPinchZoom?: boolean
 }
 
 /**
@@ -112,13 +70,6 @@ export function useModal(props: UseModalProps) {
     useInert = true,
     onOverlayClick: onOverlayClickProp,
     onEsc,
-    autoFocus,
-    trapFocus,
-    initialFocusRef,
-    finalFocusRef,
-    returnFocusOnClose,
-    blockScrollOnMount,
-    allowPinchZoom,
   } = props
 
   const dialogRef = useRef<HTMLElement>(null)
@@ -224,19 +175,12 @@ export function useModal(props: UseModalProps) {
   return {
     isOpen,
     onClose,
-    autoFocus,
-    trapFocus,
-    initialFocusRef,
-    finalFocusRef,
-    returnFocusOnClose,
     headerId,
     bodyId,
     setBodyMounted,
     setHeaderMounted,
     dialogRef,
     overlayRef,
-    blockScrollOnMount,
-    allowPinchZoom,
     getContentProps,
     getOverlayProps,
   }
