@@ -23,18 +23,6 @@ const Input: React.FC<InputProps> = forwardRef<InputProps, "input">(
   },
 )
 
-test("renders correctly in default state", () => {
-  const { asFragment } = render(
-    <FormControl id="name">
-      <FormLabel>Name</FormLabel>
-      <Input placeholder="Name" />
-      <FormHelperText>Enter your name please!</FormHelperText>
-      <FormErrorMessage>Your name is invalid</FormErrorMessage>
-    </FormControl>,
-  )
-  expect(asFragment()).toMatchSnapshot()
-})
-
 it("passes a11y test in default state", async () => {
   await testA11y(
     <FormControl id="name">
@@ -44,18 +32,6 @@ it("passes a11y test in default state", async () => {
       <FormErrorMessage>Your name is invalid</FormErrorMessage>
     </FormControl>,
   )
-})
-
-test("renders correctly when required", () => {
-  const { asFragment } = render(
-    <FormControl id="name" isRequired>
-      <FormLabel>Name</FormLabel>
-      <Input placeholder="Name" />
-      <FormHelperText>Enter your name please!</FormHelperText>
-      <FormErrorMessage>Your name is invalid</FormErrorMessage>
-    </FormControl>,
-  )
-  expect(asFragment()).toMatchSnapshot()
 })
 
 it("passes a11y test in when required", async () => {
@@ -69,20 +45,6 @@ it("passes a11y test in when required", async () => {
   )
 })
 
-test("renders correctly when invalid", () => {
-  const { asFragment } = render(
-    <FormControl id="name" isInvalid>
-      <FormLabel>Name</FormLabel>
-      <RequiredIndicator />
-      <Input placeholder="Name" />
-      <FormHelperText>Enter your name please!</FormHelperText>
-      <FormErrorIcon />
-      <FormErrorMessage>Your name is invalid</FormErrorMessage>
-    </FormControl>,
-  )
-  expect(asFragment()).toMatchSnapshot()
-})
-
 it("passes a11y test in when invalid", async () => {
   await testA11y(
     <FormControl id="name" isInvalid>
@@ -92,6 +54,67 @@ it("passes a11y test in when invalid", async () => {
       <FormErrorMessage>Your name is invalid</FormErrorMessage>
     </FormControl>,
   )
+})
+
+test("only displays error icon and message when invalid", () => {
+  const { rerender } = render(
+    <FormControl id="name" isInvalid>
+      <FormLabel>Name</FormLabel>
+      <RequiredIndicator />
+      <Input placeholder="Name" />
+      <FormHelperText>Enter your name please!</FormHelperText>
+      <FormErrorIcon data-testid="icon" />
+      <FormErrorMessage data-testid="message">
+        Your name is invalid
+      </FormErrorMessage>
+    </FormControl>,
+  )
+
+  expect(screen.getByTestId("icon")).toBeVisible()
+  expect(screen.getByTestId("message")).toBeVisible()
+
+  rerender(
+    <FormControl id="name">
+      <FormLabel>Name</FormLabel>
+      <RequiredIndicator />
+      <Input placeholder="Name" />
+      <FormHelperText>Enter your name please!</FormHelperText>
+      <FormErrorIcon data-testid="icon" />
+      <FormErrorMessage data-testid="message">
+        Your name is invalid
+      </FormErrorMessage>
+    </FormControl>,
+  )
+
+  expect(screen.queryByTestId("icon")).not.toBeInTheDocument()
+  expect(screen.queryByTestId("message")).not.toBeInTheDocument()
+})
+
+test("only displays required indicator when required", () => {
+  const { rerender } = render(
+    <FormControl id="name" isRequired>
+      <FormLabel>Name</FormLabel>
+      <Input placeholder="Name" />
+      <FormHelperText>Enter your name please!</FormHelperText>
+      <FormErrorMessage>Your name is invalid</FormErrorMessage>
+    </FormControl>,
+  )
+
+  const indicator = screen.getByRole("presentation", { hidden: true })
+
+  expect(indicator).toBeVisible()
+  expect(indicator).toHaveTextContent("*")
+
+  rerender(
+    <FormControl id="name">
+      <FormLabel>Name</FormLabel>
+      <Input placeholder="Name" />
+      <FormHelperText>Enter your name please!</FormHelperText>
+      <FormErrorMessage>Your name is invalid</FormErrorMessage>
+    </FormControl>,
+  )
+
+  expect(screen.queryByRole("presentation")).not.toBeInTheDocument()
 })
 
 test("useFormControl calls provided input callbacks", () => {

@@ -19,24 +19,8 @@ const DummyComponent = (props: Omit<TooltipProps, "children">) => (
   </Tooltip>
 )
 
-test("matches snapshot", () => {
-  const { asFragment } = render(<DummyComponent />)
-
-  expect(asFragment()).toMatchSnapshot()
-})
-
-test("matches snapshot when hovererd", async () => {
-  const { asFragment } = render(<DummyComponent />)
-
-  fireEvent.mouseOver(screen.getByText(buttonLabel))
-
-  await screen.findByRole("tooltip")
-
-  expect(asFragment()).toMatchSnapshot()
-})
-
 test("passes a11y test when hovered", async () => {
-  const { asFragment } = render(<DummyComponent />)
+  render(<DummyComponent />)
 
   fireEvent.mouseOver(screen.getByText(buttonLabel))
 
@@ -46,7 +30,7 @@ test("passes a11y test when hovered", async () => {
 })
 
 test("shows on mouseover and closes on mouseout", async () => {
-  const { asFragment } = render(<DummyComponent />)
+  render(<DummyComponent />)
 
   act(() => {
     fireEvent.mouseOver(screen.getByText(buttonLabel))
@@ -54,7 +38,6 @@ test("shows on mouseover and closes on mouseout", async () => {
 
   await screen.findByRole("tooltip")
 
-  expect(asFragment()).toMatchSnapshot()
   expect(screen.getByText(buttonLabel)).toBeInTheDocument()
   expect(screen.getByRole("tooltip")).toBeInTheDocument()
 
@@ -81,7 +64,7 @@ test("should not show on mouseover if isDisabled is true", async () => {
 })
 
 test("should show on mouseover if isDisabled has a falsy value", async () => {
-  const { asFragment } = render(<DummyComponent isDisabled={false} />)
+  render(<DummyComponent isDisabled={false} />)
 
   act(() => {
     fireEvent.mouseOver(screen.getByText(buttonLabel))
@@ -89,6 +72,5 @@ test("should show on mouseover if isDisabled has a falsy value", async () => {
 
   await screen.findByRole("tooltip")
 
-  expect(asFragment()).toMatchSnapshot()
   expect(screen.getByText(buttonLabel)).toBeInTheDocument()
 })

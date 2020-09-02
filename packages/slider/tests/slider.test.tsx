@@ -2,19 +2,6 @@ import { press, render, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from "../src"
 
-test("matches snapshot", async () => {
-  const { asFragment } = render(
-    <Slider aria-label="slider-1" colorScheme="red">
-      <SliderTrack>
-        <SliderFilledTrack />
-      </SliderTrack>
-      <SliderThumb />
-    </Slider>,
-  )
-
-  expect(asFragment()).toMatchSnapshot()
-})
-
 test("passes a11y test", async () => {
   await testA11y(
     <Slider aria-label="slider-1" colorScheme="red">

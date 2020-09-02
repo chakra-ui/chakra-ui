@@ -22,18 +22,6 @@ jest.mock("@chakra-ui/collapse", () => {
   return { Collapse }
 })
 
-test("matches snapshot", () => {
-  const { asFragment } = render(
-    <Accordion>
-      <AccordionItem>
-        <AccordionButton>Section 1 title</AccordionButton>
-        <AccordionPanel>Panel 1</AccordionPanel>
-      </AccordionItem>
-    </Accordion>,
-  )
-  expect(asFragment()).toMatchSnapshot()
-})
-
 it("passes a11y test", async () => {
   await testA11y(
     <Accordion>
