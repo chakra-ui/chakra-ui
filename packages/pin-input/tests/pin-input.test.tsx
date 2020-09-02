@@ -23,24 +23,6 @@ const Component = (props: UsePinInputProps = {}) => {
   )
 }
 
-test("PinInput renders correctly", () => {
-  const Component = () => {
-    const context = usePinInput()
-
-    return (
-      <PinInputProvider value={context}>
-        <Input />
-        <Input />
-        <Input />
-        <Input />
-      </PinInputProvider>
-    )
-  }
-  const { asFragment } = render(<Component />)
-
-  expect(asFragment()).toMatchSnapshot()
-})
-
 test("has the proper aria attributes", () => {
   const utils = render(<Component />)
 
