@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question
+    url: https://github.com/chakra-ui/chakra-ui/discussions
+    about: Ask questions and discuss topics with other community members
+  - name: Chat with other community members
+    url: https://discord.gg/dQHfcWF
+    about: The official Chakra UI Discord community

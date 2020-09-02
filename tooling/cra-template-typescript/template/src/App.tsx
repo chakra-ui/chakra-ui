@@ -15,13 +15,7 @@ import { Logo } from "./Logo"
 export const App = () => (
   <ChakraProvider resetCSS theme={theme}>
     <Box textAlign="center" fontSize="xl">
-      <Grid
-        minH="100vh"
-        p={3}
-        direction="column"
-        align="center"
-        justify="center"
-      >
+      <Grid minH="100vh" p={3}>
         <ColorModeSwitcher justifySelf="flex-end" />
         <VStack spacing={8}>
           <Logo h="40vmin" pointerEvents="none" />
