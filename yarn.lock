@@ -9761,9 +9761,9 @@ eslint-plugin-import@2.20.1:
     resolve "^1.12.0"
 
 eslint-plugin-jest-dom@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest-dom/-/eslint-plugin-jest-dom-3.2.0.tgz#b8bb1a5c85e90bca67e4a2ce16879c10f9512b49"
-  integrity sha512-dj54YPyxsJ7ha+RedUuNa/nQKdmwot4/Vf84niRFlnwiUBpVzlf0VgUpfyFCZd8U78FrvKUtDB+xD2ysMu6awQ==
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest-dom/-/eslint-plugin-jest-dom-3.2.2.tgz#d343b820093e382002177445e53a9a3868c0980e"
+  integrity sha512-e92SJEC/KPbQyMd9on0CbwDQxCHjiBVVe8dwzDqp0tjvVQWB9FXGTq9EZcFhJdsLPuXdZOWkU9DIcDT5DUTCXw==
   dependencies:
     "@babel/runtime" "^7.9.6"
     requireindex "^1.2.0"
