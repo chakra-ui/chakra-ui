@@ -11,7 +11,7 @@ exports[`matches snapshot 1`] = `
 exports[`matches snapshot when hovererd 1`] = `
 <DocumentFragment>
   <button
-    aria-describedby="tooltip-6"
+    aria-describedby="tooltip-8"
   >
     Hover me
   </button>
@@ -31,7 +31,7 @@ exports[`should show on mouseover if isDisabled has a falsy value 1`] = `
 exports[`shows on mouseover and closes on mouseout 1`] = `
 <DocumentFragment>
   <button
-    aria-describedby="tooltip-6"
+    aria-describedby="tooltip-8"
   >
     Hover me
   </button>
