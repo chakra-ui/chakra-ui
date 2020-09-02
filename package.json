@@ -21,7 +21,6 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "license": "MIT",
   "scripts": {
-    "lint:types": "lerna exec --parallel \"tsc --noEmit\"",
     "contrib:add": "all-contributors add",
     "contrib:gen": "all-contributors generate",
     "prestart": "yarn && yarn bootstrap",
@@ -31,6 +30,7 @@
     "build": "lerna run build --ignore @chakra-ui/test-utils --no-private --stream",
     "test": "lerna run test --no-private --stream",
     "lint": "lerna run lint --no-private --stream",
+    "lint:types": "lerna exec --parallel \"tsc --noEmit\"",
     "storybook": "start-storybook -p 6006",
     "clean": "lerna clean --yes && rm -rf node_modules",
     "bootstrap": "lerna bootstrap --use-workspaces",
