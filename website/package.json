@@ -16,10 +16,10 @@
     "@docusaurus/utils": "^2.0.0-alpha.62",
     "@mdx-js/react": "^1.6.16",
     "@octokit/rest": "^18.0.4",
-    "date-fns": "^2.16.0",
+    "date-fns": "^2.16.1",
     "docsearch.js": "^2.6.3",
     "formik": "^2.1.5",
-    "next": "^9.5.2",
+    "next": "^9.5.3",
     "next-mdx-enhanced": "^4.0.0",
     "next-seo": "^4.7.3",
     "prism-react-renderer": "^1.1.1",
@@ -36,7 +36,7 @@
     "remark-unwrap-images": "^2.0.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^9.5.1",
+    "@next/bundle-analyzer": "^9.5.3",
     "@types/sharp": "^0.25.1",
     "next-compose-plugins": "^2.2.0"
   }
