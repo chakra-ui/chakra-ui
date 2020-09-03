@@ -67,7 +67,7 @@ exports[`renders correctly in default state 1`] = `
 
 exports[`renders correctly when invalid 1`] = `
 <DocumentFragment>
-  .emotion-5 {
+  .emotion-4 {
   width: 100%;
   position: relative;
 }
@@ -97,13 +97,6 @@ exports[`renders correctly when invalid 1`] = `
 }
 
 .emotion-2 {
-  margin-top: 0.5rem;
-  color: #718096;
-  line-height: normal;
-  font-size: 0.875rem;
-}
-
-.emotion-3 {
   margin-right: 0.5em;
   vertical-align: middle;
   display: inline-block;
@@ -116,7 +109,7 @@ exports[`renders correctly when invalid 1`] = `
   height: 1em;
 }
 
-.emotion-4 {
+.emotion-3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -131,7 +124,7 @@ exports[`renders correctly when invalid 1`] = `
 }
 
 <div
-    class="chakra-form-control emotion-5"
+    class="chakra-form-control emotion-4"
     role="group"
   >
     <label
@@ -143,21 +136,15 @@ exports[`renders correctly when invalid 1`] = `
       Name
     </label>
     <input
-      aria-describedby="name-feedback name-helptext"
+      aria-describedby="name-feedback"
       aria-invalid="true"
       class="emotion-1"
       id="name"
       placeholder="Name"
     />
-    <div
-      class="chakra-form__helper-text emotion-2"
-      id="name-helptext"
-    >
-      Enter your name please!
-    </div>
     <svg
       aria-hidden="true"
-      class="chakra-icon chakra-form__error-icon emotion-3"
+      class="chakra-icon chakra-form__error-icon emotion-2"
       focusable="false"
       viewBox="0 0 24 24"
     >
@@ -168,7 +155,7 @@ exports[`renders correctly when invalid 1`] = `
     </svg>
     <div
       aria-live="polite"
-      class="chakra-form__error-message emotion-4"
+      class="chakra-form__error-message emotion-3"
       id="name-feedback"
     >
       Your name is invalid
