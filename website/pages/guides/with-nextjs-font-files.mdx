@@ -117,24 +117,6 @@ Now you're ready to use the default Chakra UI components with your custom fonts.
 Even better, your `theme.js` file is ready for any other
 overrides/customizations (like colors) you might want to use.
 
-## What about Google Fonts?
-
-All the steps above work for Google Fonts, except in your `font-imports.js`
-file, you can greatly simplify and put the appropriate `@import` command from
-the **Embed** tab:
-
-```js
-export default `
-    @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-  `
-```
-
-Make sure to match the `font-family` declaration in your `theme.js` file to what
-Google fonts specifies, for example, `font-family: 'Balsamiq Sans', cursive;`
-for the above import.
-
-That's it!
-
 > ### Note:
 >
 > This may not be the most efficient or lazy-load or Lighthouse winningest-way
