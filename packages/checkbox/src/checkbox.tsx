@@ -62,6 +62,14 @@ export interface CheckboxProps
    * @default 0.5rem
    */
   spacing?: SystemProps["marginLeft"]
+  /**
+   * The color of the checkbox icon when checked or indeterminate
+   */
+  iconColor?: string
+  /**
+   * The size of the checkbox icon when checked or indeterminate
+   */
+  iconSize?: string | number
 }
 
 /**
@@ -82,7 +90,14 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
   const styles = useMultiStyleConfig("Checkbox", mergedProps)
 
   const ownProps = omitThemingProps(mergedProps)
-  const { spacing = "0.5rem", className, children, ...rest } = ownProps
+  const {
+    spacing = "0.5rem",
+    className,
+    children,
+    iconColor,
+    iconSize,
+    ...rest
+  } = ownProps
 
   let isChecked = ownProps.isChecked
   if (group?.value && ownProps.value) {
@@ -117,6 +132,8 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
     transform:
       state.isChecked || state.isIndeterminate ? "scale(1)" : "scale(0.95)",
     transition: "transform 200ms",
+    fontSize: iconSize,
+    color: iconColor,
     ...styles.icon,
   }
 
