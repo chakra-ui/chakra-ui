@@ -90,7 +90,6 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     isDisabled,
     getAriaValueText,
     isInvalid,
-    onChange: onChangeProp,
     id,
     ...htmlProps
   } = props
