@@ -1212,6 +1212,15 @@
         "projectManagement",
         "bug"
       ]
+    },
+    {
+      "login": "joserocha3",
+      "name": "Pablo Rocha",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/11415340?v=4",
+      "profile": "https://pablorocha.me",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
