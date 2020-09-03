@@ -355,7 +355,8 @@ const HomePage = ({ members, sponsors }) => {
                 {members.map((i) => (
                   <Img
                     key={i.login}
-                    htmlWidth="80px"
+                    width="80px"
+                    height="80px"
                     rounded="full"
                     alt={i.name}
                     src={i.avatar_url}
