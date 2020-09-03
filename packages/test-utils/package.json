@@ -29,7 +29,7 @@
     "@testing-library/react-hooks": "3.4.1",
     "@testing-library/user-event": "12.1.3",
     "@types/jest-axe": "3.5.0",
-    "jest-axe": "3.5.0",
+    "jest-axe": "4.0.0",
     "react-test-renderer": "16.13.1"
   },
   "peerDependencies": {
