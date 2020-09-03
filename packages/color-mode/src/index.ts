@@ -1,2 +1,3 @@
 export * from "./color-mode-provider"
-export * from "./color-mode-script"
+export type { ColorModeOptions } from "./use-color-mode-state"
+export * from "./storage-manager"
