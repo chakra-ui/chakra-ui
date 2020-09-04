@@ -222,7 +222,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    * @see https://www.w3.org/TR/wai-aria-practices-1.1/#wai-aria-roles-states-and-properties-18
    * @see https://www.w3.org/TR/wai-aria-1.1/#aria-valuetext
    */
-  const ariaValueText = getAriaValueText?.(counter.value)
+  const ariaValueText = getAriaValueText?.(counter.value) ?? counter.value
 
   /**
    * Function that clamps the input's value on blur
