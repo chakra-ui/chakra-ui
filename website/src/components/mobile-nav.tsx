@@ -5,7 +5,6 @@ import {
   DrawerContent,
   DrawerOverlay,
   IconButton,
-  Box,
   useDisclosure,
   HStack,
   Link,
@@ -31,7 +30,7 @@ const MobileNav = () => {
   return (
     <>
       <IconButton
-        display={{ sm: "inline-flex", md: "none" }}
+        display={{ base: "inline-flex", md: "none" }}
         aria-label="Open menu"
         fontSize="20px"
         variant="ghost"
