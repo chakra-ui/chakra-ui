@@ -311,7 +311,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       role: "button",
       tabIndex: -1,
       [pointerDown]: callAllHandlers(props[pointerDown], spinDown),
-      onMouseLeave: callAllHandlers(props.onMouseUp, spinner.stop),
+      onMouseLeave: callAllHandlers(props.onMouseLeave, spinner.stop),
       onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
       onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
       disabled: keepWithinRange && counter.isAtMin,
