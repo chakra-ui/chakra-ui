@@ -129,6 +129,13 @@ exports[`Checkbox renders correctly 1`] = `
 }
 
 .emotion-0 {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  line-height: 1em;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
   opacity: 0;
   -webkit-transform: scale(0.95);
   -ms-transform: scale(0.95);
@@ -138,14 +145,6 @@ exports[`Checkbox renders correctly 1`] = `
   transition: transform 200ms;
   font-size: 0.625rem;
   vertical-align: middle;
-  display: inline-block;
-  line-height: 1em;
-  color: currentColor;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  width: 1em;
-  height: 1em;
 }
 
 .emotion-2 {
@@ -331,6 +330,13 @@ exports[`matches snapshot  1`] = `
 }
 
 .emotion-0 {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  line-height: 1em;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
   opacity: 0;
   -webkit-transform: scale(0.95);
   -ms-transform: scale(0.95);
@@ -340,14 +346,6 @@ exports[`matches snapshot  1`] = `
   transition: transform 200ms;
   font-size: 0.625rem;
   vertical-align: middle;
-  display: inline-block;
-  line-height: 1em;
-  color: currentColor;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  width: 1em;
-  height: 1em;
 }
 
 <label
