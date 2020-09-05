@@ -17,7 +17,7 @@ export function extendTheme<T extends Theme | Record<string, any>>(
       }
     }
 
-    // fallback to default behavior
+    // fallback to default behaviour
     return undefined
   }
 
