@@ -13,7 +13,7 @@ export function extendTheme<T extends Theme | Record<string, any>>(
           ? overrideThunk(...args)
           : overrideThunk
 
-        return mergeWith(sourceValue, overrideValue, customizer)
+        return mergeWith({}, sourceValue, overrideValue, customizer)
       }
     }
 
@@ -21,5 +21,5 @@ export function extendTheme<T extends Theme | Record<string, any>>(
     return undefined
   }
 
-  return mergeWith(defaultTheme, overrides, customizer)
+  return mergeWith({}, defaultTheme, overrides, customizer)
 }
