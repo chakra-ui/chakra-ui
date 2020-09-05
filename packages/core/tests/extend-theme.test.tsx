@@ -1,5 +1,5 @@
 import * as React from "react"
-import { extendTheme } from "./extend-theme"
+import { extendTheme } from "../src/extend-theme"
 
 describe("extendTheme", () => {
   it("should override a color", () => {
