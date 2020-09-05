@@ -37,8 +37,10 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
+    "@types/lodash.merge": "4.6.6",
     "@types/lodash.mergewith": "4.6.6",
     "css-box-model": "1.2.1",
+    "lodash.merge": "4.6.2",
     "lodash.mergewith": "4.6.2",
     "memoize-one": "5.1.1"
   },
