@@ -1,8 +1,5 @@
 import * as React from "react"
 import { extendTheme } from "./extend-theme"
-import { render } from "@chakra-ui/test-utils"
-import { ChakraProvider } from "./chakra-provider"
-import { Button } from "@chakra-ui/button"
 
 describe("extendTheme", () => {
   it("should override a color", () => {
@@ -68,30 +65,5 @@ describe("extendTheme", () => {
 
     // should have more properties from the default theme
     expect(Object.keys(solidStyles).length).toBeGreaterThan(1)
-  })
-
-  it("should render with a extended theme", () => {
-    const testColor = "papayawhip"
-    const override = {
-      components: {
-        Button: {
-          variants: {
-            solid: () => ({
-              bg: testColor,
-            }),
-          },
-        },
-      },
-    }
-
-    const customTheme = extendTheme(override)
-
-    expect(() =>
-      render(
-        <ChakraProvider theme={customTheme}>
-          <Button variant="solid">I have a fancy color</Button>
-        </ChakraProvider>,
-      ),
-    ).not.toThrow()
   })
 })
