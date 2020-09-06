@@ -37,8 +37,9 @@ export const queries = {
   light: "(prefers-color-scheme: light)",
   dark: "(prefers-color-scheme: dark)",
 }
-export const lightQuery = "(prefers-color-scheme: light)"
-export const darkQuery = "(prefers-color-scheme: dark)"
+
+export const lightQuery = queries.light
+export const darkQuery = queries.dark
 
 export function getColorScheme() {
   const isDark = getMediaQuery(queries.dark)
@@ -51,7 +52,7 @@ export function getColorScheme() {
  */
 export function addListener(fn: Function) {
   if (!("matchMedia" in window)) {
-    return undefined
+    return noop
   }
 
   const mediaQueryList = window.matchMedia(queries.dark)

@@ -6,7 +6,7 @@ import {
   getColorScheme,
   syncBodyClassName,
 } from "./color-mode.utils"
-import { StorageManager, localStorageManager } from "./storage-manager"
+import { StorageManager } from "./storage-manager"
 
 /**
  * Syncs the classname of the `<body />` based on the
@@ -34,10 +34,8 @@ function useSyncBodyClass(mode: string) {
 function useSyncSystemColorMode(fn: Function, enabled: boolean) {
   const callback = useLatestRef(fn)
   React.useEffect(() => {
-    if (!enabled) return
-    const removeListener = addListener(callback.current)
-    return () => {
-      removeListener?.()
+    if (enabled) {
+      return addListener(callback.current)
     }
   }, [callback, enabled])
 }
@@ -48,21 +46,19 @@ export interface ColorModeOptions {
 }
 
 interface useColorModeStateOptions extends ColorModeOptions {
-  storageManager?: StorageManager
+  storageManager: StorageManager
 }
 
 /**
  * React hook that sets up the localStorage, body className,
  * and reads from system preference
  */
-export function useColorModeState(options: useColorModeStateOptions = {}) {
-  const {
-    storageManager = localStorageManager,
-    useSystemColorMode,
-    initialColorMode,
-  } = options
+export function useColorModeState(options: useColorModeStateOptions) {
+  const { storageManager, useSystemColorMode, initialColorMode } = options
 
-  const [mode, setMode] = React.useState<ColorMode>(initialColorMode || "light")
+  const [mode, setMode] = React.useState<ColorMode>(initialColorMode ?? "light")
+
+  const toggleColorMode = () => setMode(mode === "light" ? "dark" : "light")
 
   useSyncBodyClass(mode)
   useSyncSystemColorMode(setMode, !!useSystemColorMode)
@@ -70,17 +66,18 @@ export function useColorModeState(options: useColorModeStateOptions = {}) {
   React.useEffect(() => {
     const stored = storageManager.get()
 
-    // given no persisted value
-    if (!stored) {
-      // and should use system
-      if (useSystemColorMode) {
-        setMode(getColorScheme)
-      }
-      // given a persisted value that deviates from the inital value
-    } else if (stored !== mode) {
-      setMode(stored)
+    const detectedMode = stored
+      ? // given a previous value, use that
+        stored
+      : // if should detect, use that
+      useSystemColorMode
+      ? getColorScheme()
+      : // else no change necessary
+        undefined
+
+    if (detectedMode) {
+      setMode(detectedMode)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storageManager, useSystemColorMode])
 
   React.useEffect(() => {
@@ -89,5 +86,8 @@ export function useColorModeState(options: useColorModeStateOptions = {}) {
     }
   }, [mode, storageManager])
 
-  return [mode, setMode] as const
+  return {
+    mode,
+    toggleColorMode,
+  }
 }
