@@ -14,7 +14,7 @@ export const Chakra = ({ children, cookies = "" }) => {
 export const getServerSideProps = ({ req }) => {
   return {
     props: {
-      cookies: req.headers.cookie,
+      cookies: req.headers.cookie ?? "",
     },
   }
 }
