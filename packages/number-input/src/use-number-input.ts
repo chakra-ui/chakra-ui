@@ -101,6 +101,11 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     pattern = "[0-9]*(.[0-9]+)?",
     inputMode = "decimal",
     id,
+    /**
+     * These props are destructured to ensure `htmlProps` resolves to the correct type
+     */
+    onChange: onChangeProp,
+    precision,
     ...htmlProps
   } = props
 
