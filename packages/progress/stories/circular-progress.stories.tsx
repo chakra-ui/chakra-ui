@@ -17,14 +17,8 @@ export const basic = () => (
   <CircularProgress trackColor="gray.200" size="120px" value={20} />
 )
 
-/**
- * Pass the `size` prop to change the size of the circular progress component
- */
 export const withSize = () => <CircularProgress size="120px" value={60} />
 
-/**
- * Pass the `thickness` prop to change the thickness of the circular progress.
- */
 export const withThickness = () => (
   <CircularProgress size="120px" value={60} thickness="3px" />
 )
@@ -35,15 +29,12 @@ export const withLabel = () => (
   </CircularProgress>
 )
 
-/**
- * Pass the `value` prop as `undefined` to put the circular progress
- * component in the indeterminate state
- */
 export const circularIndeterminate = () => (
   <CircularProgress
     capIsRound
     trackColor="transparent"
     size="50px"
-    value={undefined}
+    isIndeterminate
+    value={3}
   />
 )

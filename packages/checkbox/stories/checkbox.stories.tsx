@@ -25,6 +25,10 @@ export const Readonly = () => <Checkbox isReadOnly children="Readonly" />
 
 export const Invalid = () => <Checkbox isInvalid children="Invalid" />
 
+export const WithIconColor = () => (
+  <Checkbox iconColor="yellow.400">I love chakra</Checkbox>
+)
+
 export const withColorScheme = () => {
   return (
     <Stack>

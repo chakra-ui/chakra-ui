@@ -68,7 +68,10 @@ interface FormControlContext extends FormControlOptions {
   id?: string
 }
 
-type ControlContext = Omit<ReturnType<typeof useProvider>, "htmlProps">
+type ControlContext = Omit<
+  ReturnType<typeof useFormControlProvider>,
+  "htmlProps"
+>
 
 const [FormControlProvider, useFormControlContext] = createContext<
   ControlContext
@@ -79,7 +82,7 @@ const [FormControlProvider, useFormControlContext] = createContext<
 
 export { useFormControlContext }
 
-function useProvider(props: FormControlContext) {
+function useFormControlProvider(props: FormControlContext) {
   const {
     id: idProp,
     isRequired,
@@ -144,7 +147,7 @@ export const FormControl = forwardRef<FormControlProps, "div">(
   function FormControl(props, ref) {
     const styles = useMultiStyleConfig("Form", props)
     const ownProps = omitThemingProps(props)
-    const { htmlProps, ...context } = useProvider(ownProps)
+    const { htmlProps, ...context } = useFormControlProvider(ownProps)
 
     const _className = cx("chakra-form-control", props.className)
 

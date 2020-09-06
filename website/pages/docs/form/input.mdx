@@ -91,15 +91,27 @@ In some scenarios, you might need to add an icon or button inside the input
 component. Chakra UI exports `InputLeftElement` and `InputRightElement` to help
 with this use case.
 
+If the left or right is an icon or text, you can Users can pass
+`pointerEvents="none"` to `InputLeftElement` or `InputRightElement` to ensure
+that clicking on them focused the input.
+
 ```jsx
 <Stack spacing={4}>
   <InputGroup>
-    <InputLeftElement children={<PhoneIcon color="gray.300" />} />
+    <InputLeftElement
+      pointerEvents="none"
+      children={<PhoneIcon color="gray.300" />}
+    />
     <Input type="phone" placeholder="Phone number" />
   </InputGroup>
 
   <InputGroup>
-    <InputLeftElement color="gray.300" fontSize="1.2em" children="$" />
+    <InputLeftElement
+      pointerEvents="none"
+      color="gray.300"
+      fontSize="1.2em"
+      children="$"
+    />
     <Input placeholder="Enter amount" />
     <InputRightElement children={<CheckIcon color="green.500" />} />
   </InputGroup>

@@ -69,7 +69,7 @@ export const ColorModeProvider: React.FC = (props) => {
     }
   }, [colorMode, rawSetColorMode])
 
-  const mounted = React.useRef(false)
+  const shouldRunRef = React.useRef(false)
 
   React.useEffect(() => {
     if (!window.hasOwnProperty("matchMedia")) return
@@ -77,10 +77,10 @@ export const ColorModeProvider: React.FC = (props) => {
     const mq = window.matchMedia("(prefers-color-scheme: dark)")
 
     const listener = () => {
-      if (mounted.current) {
+      if (shouldRunRef.current) {
         ctx.setColorMode(!!mq.matches ? "dark" : "light")
       }
-      mounted.current = true
+      shouldRunRef.current = true
     }
 
     listener()
@@ -92,7 +92,11 @@ export const ColorModeProvider: React.FC = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return <ColorModeContext.Provider value={ctx} children={children} />
+  return (
+    <ColorModeContext.Provider value={ctx}>
+      {children}
+    </ColorModeContext.Provider>
+  )
 }
 
 if (__DEV__) {

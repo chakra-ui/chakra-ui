@@ -1,12 +1,8 @@
-const path = require("path")
-
-const setup = path.join(__dirname, "jest.setup.js")
-
 module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
   collectCoverageFrom: ["tests/**/*.{ts,tsx,js,jsx}"],
   transform: { ".(ts|tsx)$": "ts-jest/dist" },
   transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
-  setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect", setup],
+  setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
 }

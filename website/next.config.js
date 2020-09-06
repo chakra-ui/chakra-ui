@@ -100,6 +100,7 @@ const defaultConfig = {
     optimizeFonts: true,
     optimizeImages: true,
   },
+  redirects: require("./next-redirect"),
 }
 
 const mdxConfig = {

@@ -1175,6 +1175,52 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "carlosvini",
+      "name": "Carlos Rodrigues",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/4670443?v=4",
+      "profile": "https://carlosvini.github.io/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "dwightwatson",
+      "name": "Dwight Watson",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1100408?v=4",
+      "profile": "https://www.dwightwatson.com",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "ChasinHues",
+      "name": "ChasinHues",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/13565648?v=4",
+      "profile": "https://github.com/ChasinHues",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "nahuel",
+      "name": "Nahuel Greco",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/15200?v=4",
+      "profile": "https://github.com/nahuel",
+      "contributions": [
+        "projectManagement",
+        "bug"
+      ]
+    },
+    {
+      "login": "joserocha3",
+      "name": "Pablo Rocha",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/11415340?v=4",
+      "profile": "https://pablorocha.me",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,

@@ -13,7 +13,7 @@ const StyledElement = chakra("div", {
     justifyContent: "center",
     position: "absolute",
     top: "0",
-    zIndex: 1,
+    zIndex: 2,
   },
 })
 

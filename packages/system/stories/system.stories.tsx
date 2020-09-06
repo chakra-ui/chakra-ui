@@ -1,5 +1,12 @@
 /**@jsx jsx */
-import { chakra, jsx, ThemeProvider } from "../src"
+import {
+  chakra,
+  jsx,
+  ThemeProvider,
+  PropsOf,
+  useProps,
+  ThemingProps,
+} from "../src"
 import theme from "@chakra-ui/theme"
 import { motion } from "framer-motion"
 
@@ -24,35 +31,6 @@ export const WithFramerMotion = () => (
   />
 )
 
-/**
- * Just like theme-ui, you can use the `cx` prop to style
- * regular jsx elements.
- *
- * PS: This requires the jsx pragma at the top of your file
- */
-export const SxProp = () => (
-  <h1
-    sx={{
-      color: "red.100",
-      transition: "all 0.3s",
-      padding: "30px",
-      _hover: {
-        color: "red.300",
-      },
-      _active: {
-        color: "red.400",
-      },
-    }}
-  >
-    This is a heading
-  </h1>
-)
-
-/**
- * All chakra's component can use the `apply` prop.
- * It's used to pull styles from `theme.styles` and
- * apply it to any element
- */
 export const ApplyProp = () => (
   <chakra.p>
     This is a paragraph, but apply styles from{" "}
@@ -97,3 +75,24 @@ export const withTextStyles = () => (
     </chakra.h1>
   </ThemeProvider>
 )
+
+const Comp = (props: PropsOf<typeof chakra.div> & ThemingProps) => {
+  const res = useProps("Badge", props)
+  return <chakra.div {...res.props} __css={res.styles} />
+}
+
+export const WithUseProps = () => {
+  return (
+    <Comp
+      bg="green.500"
+      d="inline-block"
+      color="white"
+      textTransform="lowercase"
+      onClick={() => {
+        console.log("welcome home")
+      }}
+    >
+      Welcome home
+    </Comp>
+  )
+}

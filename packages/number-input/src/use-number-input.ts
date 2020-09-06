@@ -11,6 +11,7 @@ import {
   minSafeInteger,
   maxSafeInteger,
   isBrowser,
+  PropGetter,
 } from "@chakra-ui/utils"
 import {
   useCallback,
@@ -89,7 +90,6 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     isDisabled,
     getAriaValueText,
     isInvalid,
-    onChange: onChangeProp,
     id,
     ...htmlProps
   } = props
@@ -221,7 +221,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    * @see https://www.w3.org/TR/wai-aria-practices-1.1/#wai-aria-roles-states-and-properties-18
    * @see https://www.w3.org/TR/wai-aria-1.1/#aria-valuetext
    */
-  const ariaValueText = getAriaValueText?.(counter.value)
+  const ariaValueText = getAriaValueText?.(counter.value) ?? counter.value
 
   /**
    * Function that clamps the input's value on blur
@@ -265,7 +265,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
   }, [focusInputOnChange])
 
   const spinUp = useCallback(
-    (event: MouseEvent) => {
+    (event: any) => {
       event.preventDefault()
       spinner.up()
       focusInput()
@@ -274,7 +274,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
   )
 
   const spinDown = useCallback(
-    (event: MouseEvent) => {
+    (event: any) => {
       event.preventDefault()
       spinner.down()
       focusInput()
@@ -287,9 +287,10 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       ? "onTouchStart"
       : "onMouseDown"
 
-  const getIncrementButtonProps = useCallback(
-    (props: Dict = {}) => ({
+  const getIncrementButtonProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
       ...props,
+      ref,
       role: "button",
       tabIndex: -1,
       [pointerDown]: callAllHandlers(props[pointerDown], spinUp),
@@ -302,13 +303,14 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     [pointerDown, counter.isAtMax, keepWithinRange, spinUp, spinner.stop],
   )
 
-  const getDecrementButtonProps = useCallback(
-    (props: Dict = {}) => ({
+  const getDecrementButtonProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
       ...props,
+      ref,
       role: "button",
       tabIndex: -1,
       [pointerDown]: callAllHandlers(props[pointerDown], spinDown),
-      onMouseLeave: callAllHandlers(props.onMouseUp, spinner.stop),
+      onMouseLeave: callAllHandlers(props.onMouseLeave, spinner.stop),
       onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
       onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
       disabled: keepWithinRange && counter.isAtMin,
@@ -319,11 +321,11 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
   type InputMode = InputHTMLAttributes<any>["inputMode"]
 
-  const getInputProps = useCallback(
-    (props: Dict = {}) => ({
+  const getInputProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
       ...props,
       id,
-      ref: mergeRefs(inputRef, props.ref),
+      ref: mergeRefs(inputRef, ref),
       value: counter.value,
       role: "spinbutton",
       type: "text",

@@ -10,6 +10,7 @@ function baseStyleOverlay(props: Dict) {
   return {
     bg: "blackAlpha.600",
     display: "flex",
+    zIndex: "overlay",
     justifyContent: "center",
     alignItems: isCentered ? "center" : "flex-start",
     overflow: scrollBehavior === "inside" ? "hidden" : "auto",
@@ -24,6 +25,7 @@ function baseStyleContent(props: Dict) {
     bg: mode("white", "gray.700")(props),
     color: "inherit",
     my: "3.75rem",
+    zIndex: "modal",
     maxH: scrollBehavior === "inside" ? "calc(100vh - 7.5rem)" : undefined,
     boxShadow: mode("lg", "dark-lg")(props),
   }

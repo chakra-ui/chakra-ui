@@ -6,8 +6,7 @@ import {
   ThemeProvider,
   GlobalStyle,
 } from "@chakra-ui/system"
-import defaultTheme, { Theme } from "@chakra-ui/theme"
-import { merge } from "@chakra-ui/utils"
+import defaultTheme from "@chakra-ui/theme"
 import * as React from "react"
 
 export interface ChakraProviderProps extends Partial<ThemeProviderProps> {
@@ -43,10 +42,4 @@ export const ChakraProvider = (props: ChakraProviderProps) => {
       </ColorModeProvider>
     </ThemeProvider>
   )
-}
-
-export function extendTheme<T extends Theme | Record<string, any>>(
-  overrides: T,
-) {
-  return merge(defaultTheme, overrides)
 }
