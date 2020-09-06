@@ -6,7 +6,7 @@ form fields accessible by default.
 
 - **FormControl** - the top level component that provides context.
 - **FormLabel** - the visible form control label.
-- **FormHelperText** - the from control's assistive text that guides the user.
+- **FormHelperText** - the form control's assistive text that guides the user.
   If added, it hides when there's an error in the field.
 - **FormErrorMessage** - the form control's error feedback. If there's a help
   text visible when the control is invalid, it replaces the help text, to
