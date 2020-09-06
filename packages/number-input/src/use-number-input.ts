@@ -5,6 +5,7 @@ import {
   callAllHandlers,
   focus,
   isBrowser,
+  isNull,
   maxSafeInteger,
   mergeRefs,
   minSafeInteger,
@@ -239,7 +240,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    */
   const _getAriaValueText = () => {
     const text = getAriaValueText?.(counter.value)
-    if (text != null) {
+    if (!isNull(text)) {
       return text
     }
 
