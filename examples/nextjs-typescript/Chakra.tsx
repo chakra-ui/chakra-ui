@@ -24,7 +24,7 @@ export function getServerSideProps({
 }: GetServerSidePropsContext): ServerSideProps<{ cookies?: string }> {
   return {
     props: {
-      cookies: req.headers.cookie,
+      cookies: req.headers.cookie ?? "",
     },
   }
 }
