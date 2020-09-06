@@ -99,7 +99,6 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     isDisabled,
     getAriaValueText,
     isInvalid,
-    onChange: onChangeProp,
     pattern = "[0-9]*(.[0-9]+)?",
     inputMode = "decimal",
     id,
