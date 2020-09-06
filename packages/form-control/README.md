@@ -50,7 +50,7 @@ component to be fully accessible.
   // automatically gets `id` and `aria-*` properties
   <Input placeholder="Enter your first name..." />
   // automatically gets `id` and hides if `isInvalid` is passed to `FormControl`
-  <FormHelpText>Keep your first name short</FormHelpText>
+  <FormHelperText>Keep your first name short</FormHelperText>
   // automatically gets `id` and shows if `isInvalid` is passed to `FormControl`
   <FormErrorMessage>First name is invalid</FormErrorMessage>
 </FormControl>
