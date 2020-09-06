@@ -120,7 +120,6 @@ function variantFilled(props: Record<string, any>) {
         cursor: "not-allowed",
       },
       _focus: {
-        // bg: "transparent",
         borderColor: getColor(theme, fc),
       },
       _invalid: {
