@@ -264,16 +264,22 @@ export const FormHelperText = forwardRef<HelpTextProps, "div">(
     const field = useFormControlContext()
     const styles = useStyles()
 
-    if (field?.isInvalid) return null
-
     /**
      * Notify the field context when the help text is rendered on
      * screen, so we can apply the correct `aria-describedby` to the field (e.g. input, textarea)
      */
     useSafeLayoutEffect(() => {
+      if (field?.isInvalid) {
+        return
+      }
+
       field?.setHasHelpText.on()
       return () => field?.setHasHelpText.off()
     }, [])
+
+    if (field?.isInvalid) {
+      return null
+    }
 
     const _className = cx("chakra-form__helper-text", props.className)
 
