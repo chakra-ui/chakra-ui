@@ -2,7 +2,7 @@ import { noop, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { ColorMode } from "./color-mode.utils"
 import { useColorModeState } from "./use-color-mode-state"
-import { StorageManager } from "./storage-manager"
+import { localStorageManager, StorageManager } from "./storage-manager"
 
 export type { ColorMode }
 
@@ -46,28 +46,23 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     children,
     useSystemColorMode = false,
     defaultValue = "light",
-    storageManager,
+    storageManager = localStorageManager,
   } = props
 
-  const config = {
+  const { mode, toggleColorMode } = useColorModeState({
     useSystemColorMode,
     initialColorMode: defaultValue,
     storageManager,
-  }
+  })
 
-  const [colorMode, setColorMode] = useColorModeState(config)
-  const toggleColorMode = () =>
-    setColorMode(colorMode === "light" ? "dark" : "light")
-
-  const context = { colorMode, toggleColorMode }
-
-  const controlledContext = {
-    colorMode: value as ColorMode,
-    toggleColorMode: noop,
+  const context = {
+    colorMode: value ?? mode,
+    // presence of `value` indicates a controlled context
+    toggleColorMode: value ? noop : toggleColorMode,
   }
 
   return (
-    <ColorModeContext.Provider value={value ? controlledContext : context}>
+    <ColorModeContext.Provider value={context}>
       {children}
     </ColorModeContext.Provider>
   )

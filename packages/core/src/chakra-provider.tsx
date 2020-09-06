@@ -25,7 +25,7 @@ export interface ChakraProviderProps {
    * If `true`, `CSSReset` component will be mounted to help
    * you reset browser styles
    *
-   * @default false
+   * @default undefined
    */
   resetCSS?: boolean
   /**
@@ -55,7 +55,7 @@ export const ChakraProvider = (props: ChakraProviderProps) => {
       <ColorModeProvider
         storageManager={storageManager}
         defaultValue={theme.config?.initialColorMode}
-        useSystemColorMode={theme.config?.useInitialColorMode}
+        useSystemColorMode={theme.config?.useSystemColorMode}
       >
         {resetCSS && <CSSReset />}
         <GlobalStyle />
