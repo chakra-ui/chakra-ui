@@ -212,6 +212,12 @@ export interface UseMenuListProps
 export function useMenuList(props: UseMenuListProps) {
   const menu = useMenuContext()
 
+  if (!menu) {
+    throw new Error(
+      `useMenuContext: context is undefined. Seems you forgot the component within <Menu>`,
+    )
+  }
+
   const {
     focusedIndex,
     setFocusedIndex,
@@ -543,6 +549,15 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps) {
   const validChildren = getValidChildren(children)
 
   const clones = validChildren.map((child) => {
+    /**
+     * We've added an internal `id` to each `MenuItemOption`,
+     * let's use that for type-checking.
+     *
+     * We can't rely on displayName or the element's type since
+     * they can be changed by the user.
+     */
+    if ((child.type as any).id !== "MenuItemOption") return child
+
     const onClick = (event: MouseEvent) => {
       handleChange(child.props.value)
       child.props.onClick?.(event)
