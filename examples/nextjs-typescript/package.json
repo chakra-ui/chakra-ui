@@ -16,13 +16,13 @@
     "@chakra-ui/theme-tools": "1.0.0-rc.3",
     "@types/faker": "^4.1.12",
     "faker": "^5.1.0",
-    "next": "^9.5.3",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-icons": "^3.11.0"
+    "next": "9.5.3",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-icons": "3.11.0"
   },
   "devDependencies": {
-    "@chakra-ui/core": "1.0.0-next.6",
+    "@chakra-ui/core": "1.0.0-rc.3",
     "@types/node": "^14.6.3",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
