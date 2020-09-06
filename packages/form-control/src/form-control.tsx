@@ -264,6 +264,8 @@ export const FormHelperText = forwardRef<HelpTextProps, "div">(
     const field = useFormControlContext()
     const styles = useStyles()
 
+    if (field?.isInvalid) return null
+
     /**
      * Notify the field context when the help text is rendered on
      * screen, so we can apply the correct `aria-describedby` to the field (e.g. input, textarea)
