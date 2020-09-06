@@ -53,12 +53,11 @@ If you need to customize the default chakra theme to match your design
 requirements, you can extend the `theme` from `@chakra-ui/core`.
 
 ```jsx live=false
-// 1. Import the theme and merge util
-import { theme } from "@chakra-ui/core"
-import { merge } from "@chakra-ui/utils"
+// 1. Import the extendTheme util - it will merge with the default theme
+import { extendTheme } from "@chakra-ui/core"
 
 // 2. Extend the theme to include custom colors, fonts, etc.
-const customTheme = merge(theme, {
+const colors = {
   colors: {
     brand: {
       900: "#1a365d",
@@ -66,7 +65,9 @@ const customTheme = merge(theme, {
       700: "#2a69ac",
     },
   },
-})
+}
+
+const customTheme = extendTheme({ colors })
 
 // 3. Pass the `theme` prop to the `ChakraProvider`
 function App() {
@@ -77,6 +78,15 @@ function App() {
   )
 }
 ```
+
+### Props
+
+| Name           | Type             | Default               | Description                           |
+| -------------- | ---------------- | --------------------- | ------------------------------------- |
+| resetCSS       | `boolean`        | `false`               | automatically includes `<CSSReset />` |
+| theme          | `Theme`          | `@chakra-ui/theme`    | optional custom theme                 |
+| storageManager | `StorageManager` | `localStorageManager` | the storage to persist the theme in   |
+| portalZIndex   | `number`         | `undefined`           | common z-index to use for `Portal`    |
 
 That's it, you're good to go!
 
