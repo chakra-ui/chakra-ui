@@ -109,49 +109,112 @@ function Example() {
 Starting from v1.0, you can now set default color mode or use default OS color
 mode.
 
-To support this, pass the `initialValue` prop to `ColorModeScript` component and
-set it's value to `light`, `dark` or `system`.
+By default, the color mode will be `light`.
 
-By default the initial color mode is `light`. All you need to do is add
-`ColorModeScript` script as the first child of `body`.
-
-### With Next.js
-
-Here's how to add it for Next.js:
+To support this, extend the default theme with a `config` key matching
+`ColorModeOptions`:
 
 ```jsx live=false
-// pages/_document.js
-import { ColorModeScript } from "@chakra-ui/core"
+// 1. import `ChakraProvider` component and `extendTheme`
+import { extendTheme, ChakraProvider } from "@chakra-ui/core"
 
-export default class Document extends NextDocument {
-  static async getInitialProps(ctx) {
-    const initialProps = await NextDocument.getInitialProps(ctx)
-    return { ...initialProps }
-  }
+// 2. declare your configuration
+const config = {
+  useSystemColorMode: false,
+  initialColorMode: "light",
+}
 
-  render() {
-    return (
-      <Html>
-        <Head />
-        <body>
-          {/* 👇 Here's the script */}
-          <ColorModeScript initialValue="light" />
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
-  }
+// 3. extend the theme
+const customTheme = extendTheme({ config })
+
+function App() {
+  return (
+    // 4. pass to `ChakraProvider` as usual
+    <ChakraProvider theme={customtheme} resetCSS>
+      <h1>Example</h1>
+    </ChakraProvider>
+  )
 }
 ```
 
-### With Gatsby
+## Add StorageManager (Optional)
+
+For server-side rendered sites, e.g. in Next.js, you may want to know the color
+preference of a user upfront so you can avoid rendering the initial color mode
+and then changing it during hydration (so-called `flashing`).
+
+If you don't use SSR or don't care about this, you don't need to pass anything.
+Chakra will use `localStorageManager` by default.
+
+Here's how to do this in Next 9.3 or newer:
 
 ```jsx live=false
-// gatsby-ssr.js
-export const onRenderBody = ({ setPreBodyComponents }) => {
-  setPreBodyComponents([
-    <ColorModeScript defaultMode="light" key="chakra-ui-no-flash" />,
-  ])
+// create a reusable wrapper as demonstrated in the examples
+
+// e.g. Chakra.js
+
+// 1. import `ChakraProvider` component and `cookieStorageManager`
+import { ChakraProvider, cookieStorageManager } from "@chakra-ui/core"
+
+export function Chakra({ cookies, children }) {
+  // 2. Pass `storageManager` prop accepting `cookies` via props
+  return (
+    <ChakraProvider resetCSS storageManager={cookieStorageManager(cookies)}>
+      {children}
+    </ChakraProvider>
+  )
+}
+
+// also export a reusable function getServerSideProps
+export function getServerSideProps({ req }) {
+  return {
+    props: {
+      // first time users will not have any cookies and you may not return
+      // undefined here, hence ?? is necessary
+      cookies: req.headers.cookie ?? "",
+    },
+  }
+}
+
+// e.g index.js
+
+// import your wrapper component setting up chakra
+import { Chakra } from "./Chakra"
+
+export default function Index({ cookies }) {
+  return (
+    <Chakra cookies={cookies}>
+      <h1>Example</h1>
+    </Chakra>
+  )
+}
+
+// export the reusable `getServerSideProps` function
+export { getServerSideProps } from "./Chakra"
+```
+
+Important: if you're using `Next.js 9.3` or newer, the Next.js team recommends
+avoiding `getInitialProps`. The following example is for Next 9.2 or older!
+
+```jsx live=false
+// _app.js / _app.tsx
+
+import { ChakraProvider, cookieStorageManager } from "@chakra-ui/core"
+
+export default function App({ cookies }) {
+  // 2. Use at the root of your app and pass `storageManager` prop
+  return (
+    <ChakraProvider resetCSS storageManager={cookieStorageManager(cookies)}>
+      <h1>Example</h1>
+    </ChakraProvider>
+  )
+}
+
+App.getInitialProps = ({ req }) => {
+  return {
+    // first time users will not have any cookies and you may not return
+    // undefined here, hence ?? is necessary
+    cookies: req.headers.cookie ?? "",
+  }
 }
 ```
