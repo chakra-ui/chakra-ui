@@ -27,7 +27,7 @@ exports[`Select renders correctly 1`] = `
   border-radius: 0.25rem;
   border: 1px solid;
   border-color: inherit;
-  background: #FFFFFF;
+  background: inherit;
   padding-right: 2rem;
 }
 

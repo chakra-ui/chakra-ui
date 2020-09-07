@@ -50,7 +50,7 @@ exports[`Elements inside input render correctly 1`] = `
   border-radius: 0.25rem;
   border: 1px solid;
   border-color: inherit;
-  background: #FFFFFF;
+  background: inherit;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
 }
@@ -199,7 +199,7 @@ exports[`addons render correctly 1`] = `
   border-radius: 0.25rem;
   border: 1px solid;
   border-color: inherit;
-  background: #FFFFFF;
+  background: inherit;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-top-right-radius: 0;
@@ -313,7 +313,7 @@ exports[`renders correctly 1`] = `
   border-radius: 0.25rem;
   border: 1px solid;
   border-color: inherit;
-  background: #FFFFFF;
+  background: inherit;
 }
 
 .emotion-0:hover,
