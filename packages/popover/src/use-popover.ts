@@ -1,17 +1,15 @@
 import { useBoolean, useDisclosure, useIds } from "@chakra-ui/hooks"
 import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { useColorModeValue, useToken } from "@chakra-ui/system"
-import { callAllHandlers, Dict, mergeRefs } from "@chakra-ui/utils"
 import {
-  useRef,
-  RefObject,
-  useCallback,
-  useEffect,
-  Ref,
-  KeyboardEvent,
-} from "react"
-import { useFocusOnHide, useFocusOnShow } from "./popover.utils"
+  callAllHandlers,
+  HTMLProps,
+  mergeRefs,
+  PropGetter,
+} from "@chakra-ui/utils"
 import { useInteractOutside } from "@react-aria/interactions"
+import { RefObject, useCallback, useEffect, useRef } from "react"
+import { useFocusOnHide, useFocusOnShow } from "./popover.utils"
 
 const TRIGGER_TYPE = {
   click: "click",
@@ -184,16 +182,16 @@ export function usePopover(props: UsePopoverProps = {}) {
     },
   })
 
-  const getPopoverProps = useCallback(
-    (props: Dict = {}, ref: Ref<any> = null) => {
-      const popoverProps: Dict = {
+  const getPopoverProps: PropGetter = useCallback(
+    (props = {}, ref = null) => {
+      const popoverProps: HTMLProps = {
         ...props,
         children: isLazy ? (isOpen ? props.children : null) : props.children,
         id: popoverId,
         tabIndex: -1,
         hidden: !isOpen,
         role: "dialog",
-        onKeyDown: callAllHandlers(props.onKeyDown, (event: KeyboardEvent) => {
+        onKeyDown: callAllHandlers(props.onKeyDown, (event) => {
           if (closeOnEsc && event.key === "Escape") {
             onClose()
           }
@@ -234,8 +232,8 @@ export function usePopover(props: UsePopoverProps = {}) {
     ],
   )
 
-  const getArrowProps = useCallback(
-    (props: Dict = {}, ref: Ref<any> = null) => ({
+  const getArrowProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
       ...props,
       ref: mergeRefs(arrow.ref, ref),
       style: {
@@ -249,9 +247,9 @@ export function usePopover(props: UsePopoverProps = {}) {
   const openTimeout = useRef<number>()
   const closeTimeout = useRef<number>()
 
-  const getTriggerProps = useCallback(
-    (props: Dict = {}, ref: Ref<any> = null) => {
-      const triggerProps: Dict = {
+  const getTriggerProps: PropGetter = useCallback(
+    (props = {}, ref = null) => {
+      const triggerProps: HTMLProps = {
         ...props,
         id: triggerId,
         ref: mergeRefs(triggerRef, reference.ref, ref),
@@ -278,14 +276,11 @@ export function usePopover(props: UsePopoverProps = {}) {
          * Any content that shows on hover or focus must be dismissible.
          * This case pressing `Escape` will dismiss the popover
          */
-        triggerProps.onKeyDown = callAllHandlers(
-          props.onKeyDown,
-          (event: KeyboardEvent) => {
-            if (event.key === "Escape") {
-              onClose()
-            }
-          },
-        )
+        triggerProps.onKeyDown = callAllHandlers(props.onKeyDown, (event) => {
+          if (event.key === "Escape") {
+            onClose()
+          }
+        })
 
         triggerProps.onMouseEnter = callAllHandlers(props.onMouseEnter, () => {
           isHoveringRef.current = true

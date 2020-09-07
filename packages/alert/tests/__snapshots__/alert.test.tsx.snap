@@ -30,13 +30,13 @@ exports[`matches snapshot 1`] = `
 }
 
 .emotion-0 {
-  vertical-align: middle;
   display: inline-block;
   line-height: 1em;
-  color: currentColor;
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+  color: currentColor;
+  vertical-align: middle;
   width: 100%;
   height: 100%;
 }

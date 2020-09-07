@@ -96,7 +96,7 @@ export const SliderThumb = forwardRef<SliderThumbProps, "div">(
       ...styles.thumb,
     }
 
-    const thumbProps = getThumbProps(props)
+    const thumbProps = getThumbProps(props, ref)
 
     return (
       <chakra.div
@@ -126,7 +126,7 @@ export const SliderTrack = forwardRef<SliderTrackProps, "div">(
       ...styles.track,
     }
 
-    const trackProps = getTrackProps(props)
+    const trackProps = getTrackProps(props, ref)
 
     return (
       <chakra.div
@@ -144,28 +144,30 @@ if (__DEV__) {
 
 ///////////////////////////////////////////////////////////////////////////
 
-export type SliderInnerTrackProps = PropsOf<typeof chakra.div>
+export interface SliderInnerTrackProps extends PropsOf<typeof chakra.div> {}
 
-export const SliderFilledTrack: React.FC<SliderInnerTrackProps> = (props) => {
-  const { getInnerTrackProps } = useSliderContext()
+export const SliderFilledTrack = forwardRef<SliderInnerTrackProps, "div">(
+  function SliderFilledTrack(props, ref) {
+    const { getInnerTrackProps } = useSliderContext()
 
-  const styles = useStyles()
-  const trackStyles = {
-    width: "inherit",
-    height: "inherit",
-    ...styles.filledTrack,
-  }
+    const styles = useStyles()
+    const trackStyles = {
+      width: "inherit",
+      height: "inherit",
+      ...styles.filledTrack,
+    }
 
-  const trackProps = getInnerTrackProps(props)
+    const trackProps = getInnerTrackProps(props, ref)
 
-  return (
-    <chakra.div
-      {...trackProps}
-      className="chakra-slider__filled-track"
-      __css={trackStyles}
-    />
-  )
-}
+    return (
+      <chakra.div
+        {...trackProps}
+        className="chakra-slider__filled-track"
+        __css={trackStyles}
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   SliderFilledTrack.displayName = "SliderFilledTrack"
@@ -183,16 +185,18 @@ export interface SliderMarkProps extends PropsOf<typeof chakra.div> {
  *
  * @see Docs https://chakra-ui.com/components/slider
  */
-export const SliderMark: React.FC<SliderMarkProps> = (props) => {
-  const { getMarkerProps } = useSliderContext()
-  const markProps = getMarkerProps(props)
-  return (
-    <chakra.div
-      {...markProps}
-      className={cx("chakra-slider__marker", props.className)}
-    />
-  )
-}
+export const SliderMark = forwardRef<SliderMarkProps, "div">(
+  function SliderMark(props, ref) {
+    const { getMarkerProps } = useSliderContext()
+    const markProps = getMarkerProps(props, ref)
+    return (
+      <chakra.div
+        {...markProps}
+        className={cx("chakra-slider__marker", props.className)}
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   SliderMark.displayName = "SliderMark"

@@ -68,10 +68,10 @@ function variantOutline(props: Record<string, any>) {
   return {
     field: {
       border: "1px solid",
-      borderColor: mode("inherit", "whiteAlpha.50")(props),
-      bg: mode("white", "whiteAlpha.100")(props),
+      borderColor: "inherit",
+      bg: "inherit",
       _hover: {
-        borderColor: mode("gray.300", "whiteAlpha.200")(props),
+        borderColor: mode("gray.300", "whiteAlpha.400")(props),
       },
       _readOnly: {
         boxShadow: "none !important",
@@ -120,7 +120,6 @@ function variantFilled(props: Record<string, any>) {
         cursor: "not-allowed",
       },
       _focus: {
-        bg: "transparent",
         borderColor: getColor(theme, fc),
       },
       _invalid: {
@@ -141,7 +140,7 @@ function variantFlushed(props: Record<string, any>) {
 
   return {
     field: {
-      borderBottom: "2px solid",
+      borderBottom: "1px solid",
       borderColor: "inherit",
       borderRadius: 0,
       paddingX: 0,
@@ -152,6 +151,7 @@ function variantFlushed(props: Record<string, any>) {
       },
       _focus: {
         borderColor: getColor(theme, fc),
+        boxShadow: `0px 1px 0px 0px ${getColor(theme, fc)}`,
       },
       _invalid: {
         borderColor: getColor(theme, ec),

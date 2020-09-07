@@ -40,7 +40,7 @@ test("Progress: has the proper aria, data, and role attributes", () => {
   expect(progress).not.toHaveAttribute("aria-valuetext")
 
   // rerender as indeterminate
-  utils.rerender(<Progress color="green" size="sm" value={undefined} />)
+  utils.rerender(<Progress color="green" size="sm" isIndeterminate />)
 
   progress = utils.getByRole("progressbar")
 
@@ -66,7 +66,7 @@ test("CircularProgress: has the proper aria, data, and role attributes", () => {
   expect(progress).toHaveAttribute("aria-valuetext", "value")
 
   // rerender as indeterminate
-  utils.rerender(<CircularProgress {...props} value={undefined} />)
+  utils.rerender(<CircularProgress {...props} isIndeterminate />)
 
   progress = utils.getByRole("progressbar")
 

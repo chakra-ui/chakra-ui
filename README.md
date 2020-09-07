@@ -320,10 +320,18 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://benyou.me"><img src="https://avatars3.githubusercontent.com/u/31636863?v=4" width="64px;" alt=""/><br /><sub><b>Mansour benyoucef</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=benyou1969" title="Documentation">📖</a></td>
     <td align="center"><a href="http://atgarrison.com"><img src="https://avatars1.githubusercontent.com/u/11062725?v=4" width="64px;" alt=""/><br /><sub><b>Andrew Garrison</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=andrewgarrison" title="Documentation">📖</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://carlosvini.github.io/"><img src="https://avatars2.githubusercontent.com/u/4670443?v=4" width="64px;" alt=""/><br /><sub><b>Carlos Rodrigues</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=carlosvini" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://www.dwightwatson.com"><img src="https://avatars3.githubusercontent.com/u/1100408?v=4" width="64px;" alt=""/><br /><sub><b>Dwight Watson</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=dwightwatson" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/ChasinHues"><img src="https://avatars1.githubusercontent.com/u/13565648?v=4" width="64px;" alt=""/><br /><sub><b>ChasinHues</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=ChasinHues" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/nahuel"><img src="https://avatars0.githubusercontent.com/u/15200?v=4" width="64px;" alt=""/><br /><sub><b>Nahuel Greco</b></sub></a><br /><a href="#projectManagement-nahuel" title="Project Management">📆</a> <a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Anahuel" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://pablorocha.me"><img src="https://avatars1.githubusercontent.com/u/11415340?v=4" width="64px;" alt=""/><br /><sub><b>Pablo Rocha</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=joserocha3" title="Documentation">📖</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):

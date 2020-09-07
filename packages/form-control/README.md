@@ -1,17 +1,17 @@
 # @chakra-ui/form-control
 
-Form Control component is used to manange form controls such input fields,
+Form Control component is used to manage form controls such input fields,
 checkbox and radio buttons. It provides components and context that make your
 form fields accessible by default.
 
-- **FormControl** - the top level component that provides context
-- **FormLabel** - the visible form control label
-- **FormHelperText** - the from control's assistive text that guides the user.
+- **FormControl** - the top level component that provides context.
+- **FormLabel** - the visible form control label.
+- **FormHelperText** - the form control's assistive text that guides the user.
   If added, it hides when there's an error in the field.
 - **FormErrorMessage** - the form control's error feedback. If there's a help
   text visible when the control is invalid, it replaces the help text, to
-  prevent content shift
-- **FormErrorIcon** - an icon that indicates the error state for colorbind
+  prevent content shift.
+- **FormErrorIcon** - an icon that indicates the error state for colorblind
   users.
 
 ## Installation
@@ -50,7 +50,7 @@ component to be fully accessible.
   // automatically gets `id` and `aria-*` properties
   <Input placeholder="Enter your first name..." />
   // automatically gets `id` and hides if `isInvalid` is passed to `FormControl`
-  <FormHelpText>Keep your first name short</FormHelpText>
+  <FormHelperText>Keep your first name short</FormHelperText>
   // automatically gets `id` and shows if `isInvalid` is passed to `FormControl`
   <FormErrorMessage>First name is invalid</FormErrorMessage>
 </FormControl>
@@ -77,13 +77,13 @@ component to be fully accessible.
 
 - If `isInvalid` is passed to the `FormControl`, it notifies the `Input` and
   adds `data-invalid` to the `FormLabel` so you can change the styles of the
-  label
+  label.
 
 - If `isDisabled` is passed to the `FormControl`, it makes the `Input` disabled,
   and adds `data-disabled` to the `FormLabel` so you can change the styles of
-  the label
+  the label.
 
-## Changing the requried indicator
+## Changing the required indicator
 
 To change the required indicator beside the `FormLabel`, simply pass the
 `indicator` prop and set it to your custom indicator components.

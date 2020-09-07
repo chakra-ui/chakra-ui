@@ -112,19 +112,18 @@ function FormikExample() {
           actions.setSubmitting(false)
         }, 1000)
       }}
-      render={(props) => (
-        <form onSubmit={props.handleSubmit}>
-          <Field
-            name="name"
-            validate={validateName}
-            render={({ field, form }) => (
+    >
+      {(props) => (
+        <Form>
+          <Field name="name" validate={validateName}>
+            {({ field, form }) => (
               <FormControl isInvalid={form.errors.name && form.touched.name}>
                 <FormLabel htmlFor="name">First name</FormLabel>
                 <Input {...field} id="name" placeholder="name" />
                 <FormErrorMessage>{form.errors.name}</FormErrorMessage>
               </FormControl>
             )}
-          />
+          </Field>
           <Button
             mt={4}
             colorScheme="teal"
@@ -133,9 +132,9 @@ function FormikExample() {
           >
             Submit
           </Button>
-        </form>
+        </Form>
       )}
-    />
+    </Formik>
   )
 }
 ```

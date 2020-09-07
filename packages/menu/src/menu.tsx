@@ -274,6 +274,8 @@ export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
   },
 )
 
+MenuItemOption.id = "MenuItemOption"
+
 if (__DEV__) {
   MenuItemOption.displayName = "MenuItemOption"
 }
@@ -295,16 +297,19 @@ if (__DEV__) {
 
 //////////////////////////////////////////////////////////////////////////
 
-export interface MenuGroupProps extends PropsOf<typeof chakra.p> {}
+export interface MenuGroupProps extends PropsOf<typeof chakra.div> {}
 
-export const MenuGroup: React.FC<MenuGroupProps> = (props) => {
+export const MenuGroup = forwardRef<MenuGroupProps, "div">(function MenuGroup(
+  props,
+  ref,
+) {
   const { title, children, className, ...rest } = props
 
   const _className = cx("chakra-menu__group__title", className)
   const styles = useStyles()
 
   return (
-    <chakra.div className="chakra-menu__group" role="group">
+    <chakra.div ref={ref} className="chakra-menu__group" role="group">
       {title && (
         <chakra.p className={_className} {...rest} __css={styles.groupTitle}>
           {title}
@@ -313,7 +318,7 @@ export const MenuGroup: React.FC<MenuGroupProps> = (props) => {
       {children}
     </chakra.div>
   )
-}
+})
 
 if (__DEV__) {
   MenuGroup.displayName = "MenuGroup"
@@ -321,16 +326,21 @@ if (__DEV__) {
 
 //////////////////////////////////////////////////////////////////////////
 
-export const MenuCommand: React.FC<PropsOf<typeof chakra.span>> = (props) => {
-  const styles = useStyles()
-  return (
-    <chakra.span
-      {...props}
-      __css={styles.command}
-      className="chakra-menu__command"
-    />
-  )
-}
+export interface MenuCommandProps extends PropsOf<typeof chakra.span> {}
+
+export const MenuCommand = forwardRef<MenuCommandProps, "span">(
+  function MenuCommand(props, ref) {
+    const styles = useStyles()
+    return (
+      <chakra.span
+        ref={ref}
+        {...props}
+        __css={styles.command}
+        className="chakra-menu__command"
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   MenuCommand.displayName = "MenuCommand"

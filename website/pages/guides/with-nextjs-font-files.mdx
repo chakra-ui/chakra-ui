@@ -1,0 +1,125 @@
+---
+title: How to add font files to Chakra and Next.js
+description:
+  A guide for bringing custom font files to your Chakra UI project running on
+  Next.js
+tags: ["fonts", "import fonts", "@font-face", "next-js", "self-hosted fonts"]
+author: notbrett
+---
+
+## Why add font files?
+
+The design team has made (or was given) a custom font in font files, such as
+`woff`, `woff2`, and `eot`. It is not hosted through a cloud provider (Google
+Fonts, Typography.com, Typekit, etc). We need to take the font files we have and
+bundle them with our Next.js app to make sure the end-user sees our beautiful
+design.
+
+## Put font files in `public` folder
+
+For Next.js (and possibly Create-React-App), place your font files in your
+`public` folder. Optionally, inside the `public` folder, put the font files in a
+`fonts` folder. This is mostly the keep things tidy.
+
+Now that our font files are in the public folder, Next.js should have access to
+them when we deploy (much like our favicons).
+
+## Override Chakra theme fonts
+
+For ease of use, I am going to override the default theme in Chakra. At the same
+folder level as `public`, create a new folder called `styles`. Inside `styles`,
+create a `theme.js` or `theme.ts` file. Inside `theme.js`, export your overrides
+using this template:
+
+```js
+export default {
+  fonts: {
+    body: "'My Body Font', sans-serif",
+    heading: "'My Heading Font', sans-serif",
+    mono: "'My Monospaced Font', monospace",
+  },
+}
+```
+
+It would be a good idea to include a _native_ font stack for fallbacks between
+"My \* Font" and the ultra generic `sans-serif` or `serif`. Feel free to remove
+any options you do not need (like mono) if you don't have a custom font to use.
+
+## Import fonts from `public` folder
+
+We need to bring our custom fonts from the `public` folder and put them where
+Chakra can find them. Inside your `styles` folder, create another `js/ts` file
+called `font-imports`. We're putting our `@font-face` imports in here to keep
+our `_app.js` easier to read. Also, depending on how many fonts you have, this
+part could get long. Better to have it in it's own file. In your
+`font-imports.js` file, use this template and replace it with the names of your
+font files:
+
+```js
+export default `
+    @font-face {
+      font-family: 'My Body Font';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url(fonts/MyBodyRegular.woff2) format('woff2');
+      url(fonts/MyBodyRegular.woff) format('woff');
+      url(fonts/MyBodyRegular.eot) format('eot');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'My Heading Font';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url(fonts/MyHeadingItalic.woff2) format('woff2');
+      url(fonts/MyHeadingItalic.woff) format('woff');
+      url(fonts/MyHeadingItalic.eot) format('eot');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+  `
+```
+
+Keep in mind, you will need to do an `@font-face` object for every font variant.
+For example, if the Heading font has `regular`, `italic`, `bold`, and
+`bolditalic`, you will need four declarations with the appropriate `font-style`,
+`font-weight`, and `src` attributes updated appropriately. The good news is you
+only have to do this once. As to what is going on in `unicode-range`, I do not
+entirely know. It came from
+[this github issue](https://github.com/chakra-ui/chakra-ui/issues/1791). It does
+not appear to cause any harm. If you experience bad mojo, submit a PR and we can
+revise this guide.
+
+## Add theme and fonts to `<ChakraProvider>` in `_app.js`
+
+Everything is in place to add to the default of Chakra and impact our app. If
+it's not there already, create an `_app.js` or `_app.ts` file in the `pages`
+folder. Use this as a template to get going:
+
+```jsx
+import { ChakraProvider, Global, extendTheme } from "@chakra-ui/core"
+import myTheme from "styles/theme"
+import fonts from "styles/font-imports"
+
+const theme = extendTheme(myTheme)
+
+export default function App({ Component, pageProps }) {
+  return (
+    <ChakraProvider resetCSS theme={theme}>
+      <Global styles={fonts} />
+      <Component {...pageProps} />
+    </ChakraProvider>
+  )
+}
+```
+
+Now you're ready to use the default Chakra UI components with your custom fonts.
+Even better, your `theme.js` file is ready for any other
+overrides/customizations (like colors) you might want to use.
+
+> ### Note:
+>
+> This may not be the most efficient or lazy-load or Lighthouse winningest-way
+> to get custom fonts into your Next.js app. I welcome any improvements or
+> cautions you may have! Please submit a PR if you discover better methods or
+> have workarounds for problems you may encounter.

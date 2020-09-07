@@ -1,24 +1,19 @@
 import { useCounter, UseCounterProps } from "@chakra-ui/counter"
 import { useBoolean } from "@chakra-ui/hooks"
 import {
-  callAllHandlers,
-  Dict,
-  focus,
-  mergeRefs,
-  normalizeEventKey,
-  StringOrNumber,
   ariaAttr,
-  minSafeInteger,
-  maxSafeInteger,
+  callAllHandlers,
+  focus,
   isBrowser,
+  isNull,
+  maxSafeInteger,
+  mergeRefs,
+  minSafeInteger,
+  normalizeEventKey,
+  PropGetter,
+  StringOrNumber,
 } from "@chakra-ui/utils"
-import {
-  useCallback,
-  useRef,
-  InputHTMLAttributes,
-  ChangeEvent,
-  KeyboardEvent,
-} from "react"
+import { ChangeEvent, KeyboardEvent, useCallback, useRef } from "react"
 import { useSpinner } from "./use-spinner"
 import {
   isFloatingPointNumericCharacter,
@@ -64,6 +59,21 @@ export interface UseNumberInputProps extends UseCounterProps {
    * The `id` to use for the number input field.
    */
   id?: string
+  /**
+   * The pattern used to check the <input> element's value against on form submission.
+   *
+   * @default
+   * "[0-9]*(.[0-9]+)?"
+   */
+  pattern?: React.InputHTMLAttributes<any>["pattern"]
+  /**
+   * Hints at the type of data that might be entered by the user. It also determines
+   * the type of keyboard shown to the user on mobile devices
+   *
+   * @default
+   * "decimal"
+   */
+  inputMode?: React.InputHTMLAttributes<any>["inputMode"]
 }
 
 /**
@@ -89,8 +99,14 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     isDisabled,
     getAriaValueText,
     isInvalid,
-    onChange: onChangeProp,
+    pattern = "[0-9]*(.[0-9]+)?",
+    inputMode = "decimal",
     id,
+    /**
+     * These props are destructured to ensure `htmlProps` resolves to the correct type
+     */
+    onChange: onChangeProp,
+    precision,
     ...htmlProps
   } = props
 
@@ -221,7 +237,18 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    * @see https://www.w3.org/TR/wai-aria-practices-1.1/#wai-aria-roles-states-and-properties-18
    * @see https://www.w3.org/TR/wai-aria-1.1/#aria-valuetext
    */
-  const ariaValueText = getAriaValueText?.(counter.value)
+  const _getAriaValueText = () => {
+    const text = getAriaValueText?.(counter.value)
+    if (!isNull(text)) {
+      return text
+    }
+
+    const defaultText = counter.value.toString()
+    // empty string is an invalid ARIA attribute value
+    return !defaultText ? undefined : defaultText
+  }
+
+  const ariaValueText = _getAriaValueText()
 
   /**
    * Function that clamps the input's value on blur
@@ -265,7 +292,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
   }, [focusInputOnChange])
 
   const spinUp = useCallback(
-    (event: MouseEvent) => {
+    (event: any) => {
       event.preventDefault()
       spinner.up()
       focusInput()
@@ -274,7 +301,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
   )
 
   const spinDown = useCallback(
-    (event: MouseEvent) => {
+    (event: any) => {
       event.preventDefault()
       spinner.down()
       focusInput()
@@ -287,9 +314,10 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       ? "onTouchStart"
       : "onMouseDown"
 
-  const getIncrementButtonProps = useCallback(
-    (props: Dict = {}) => ({
+  const getIncrementButtonProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
       ...props,
+      ref,
       role: "button",
       tabIndex: -1,
       [pointerDown]: callAllHandlers(props[pointerDown], spinUp),
@@ -302,13 +330,14 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     [pointerDown, counter.isAtMax, keepWithinRange, spinUp, spinner.stop],
   )
 
-  const getDecrementButtonProps = useCallback(
-    (props: Dict = {}) => ({
+  const getDecrementButtonProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
       ...props,
+      ref,
       role: "button",
       tabIndex: -1,
       [pointerDown]: callAllHandlers(props[pointerDown], spinDown),
-      onMouseLeave: callAllHandlers(props.onMouseUp, spinner.stop),
+      onMouseLeave: callAllHandlers(props.onMouseLeave, spinner.stop),
       onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
       onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
       disabled: keepWithinRange && counter.isAtMin,
@@ -317,18 +346,16 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     [pointerDown, counter.isAtMin, keepWithinRange, spinDown, spinner.stop],
   )
 
-  type InputMode = InputHTMLAttributes<any>["inputMode"]
-
-  const getInputProps = useCallback(
-    (props: Dict = {}) => ({
+  const getInputProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
       ...props,
       id,
-      ref: mergeRefs(inputRef, props.ref),
+      ref: mergeRefs(inputRef, ref),
       value: counter.value,
       role: "spinbutton",
       type: "text",
-      inputMode: "numeric" as InputMode,
-      pattern: "[0-9]*",
+      inputMode,
+      pattern,
       "aria-valuemin": min,
       "aria-valuemax": max,
       "aria-disabled": isDisabled,
@@ -347,6 +374,8 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       onBlur: callAllHandlers(props.onBlur, onBlur),
     }),
     [
+      inputMode,
+      pattern,
       ariaValueText,
       counter.isOutOfRange,
       counter.value,

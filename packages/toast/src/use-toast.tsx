@@ -6,7 +6,12 @@ import {
 } from "@chakra-ui/alert"
 import type { AlertStatus } from "@chakra-ui/alert"
 import { CloseButton } from "@chakra-ui/close-button"
-import { chakra, ThemeProvider, useTheme } from "@chakra-ui/system"
+import {
+  chakra,
+  ThemeProvider,
+  useTheme,
+  ColorModeProvider,
+} from "@chakra-ui/system"
 import { isFunction, merge } from "@chakra-ui/utils"
 import * as React from "react"
 import { toast } from "./toast.class"
@@ -122,11 +127,13 @@ export function useToast() {
 
       const Message: React.FC<RenderProps> = (props) => (
         <ThemeProvider theme={theme}>
-          {isFunction(render) ? (
-            render(props)
-          ) : (
-            <Toast {...{ ...props, ...opts }} />
-          )}
+          <ColorModeProvider>
+            {isFunction(render) ? (
+              render(props)
+            ) : (
+              <Toast {...{ ...props, ...opts }} />
+            )}
+          </ColorModeProvider>
         </ThemeProvider>
       )
 

@@ -3,15 +3,15 @@
 exports[`accepts a single path 1`] = `
 <DocumentFragment>
   .emotion-0 {
-  vertical-align: middle;
+  width: 1em;
+  height: 1em;
   display: inline-block;
   line-height: 1em;
-  color: currentColor;
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  width: 1em;
-  height: 1em;
+  color: currentColor;
+  vertical-align: middle;
 }
 
 <svg
@@ -30,15 +30,15 @@ exports[`accepts a single path 1`] = `
 exports[`accepts multiple paths 1`] = `
 <DocumentFragment>
   .emotion-0 {
-  vertical-align: middle;
+  width: 1em;
+  height: 1em;
   display: inline-block;
   line-height: 1em;
-  color: currentColor;
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  width: 1em;
-  height: 1em;
+  color: currentColor;
+  vertical-align: middle;
 }
 
 <svg
@@ -84,15 +84,15 @@ exports[`accepts multiple paths 1`] = `
 exports[`forwards d attribute onto a path element 1`] = `
 <DocumentFragment>
   .emotion-0 {
-  vertical-align: middle;
+  width: 1em;
+  height: 1em;
   display: inline-block;
   line-height: 1em;
-  color: currentColor;
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  width: 1em;
-  height: 1em;
+  color: currentColor;
+  vertical-align: middle;
 }
 
 <svg
@@ -111,15 +111,15 @@ exports[`forwards d attribute onto a path element 1`] = `
 exports[`forwards default props 1`] = `
 <DocumentFragment>
   .emotion-0 {
-  vertical-align: middle;
+  width: 1em;
+  height: 1em;
   display: inline-block;
   line-height: 1em;
-  color: currentColor;
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  width: 1em;
-  height: 1em;
+  color: currentColor;
+  vertical-align: middle;
   fill: none;
 }
 

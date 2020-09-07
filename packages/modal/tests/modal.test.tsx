@@ -20,22 +20,6 @@ import {
 const renderWithPortal = (ui: React.ReactElement) =>
   render(<PortalManager>{ui}</PortalManager>)
 
-test("should render correctly", () => {
-  const tools = renderWithPortal(
-    <Modal isOpen onClose={jest.fn()}>
-      <ModalOverlay>
-        <ModalContent>
-          <ModalHeader>Modal header</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>Modal body</ModalBody>
-          <ModalFooter>Modal footer</ModalFooter>
-        </ModalContent>
-      </ModalOverlay>
-    </Modal>,
-  )
-  expect(tools.asFragment()).toMatchSnapshot()
-})
-
 test("should have no accessibility violations", async () => {
   const { container } = renderWithPortal(
     <Modal isOpen onClose={jest.fn()}>

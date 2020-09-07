@@ -1,4 +1,5 @@
 export * from "./chakra-provider"
+export * from "./extend-theme"
 export * from "@chakra-ui/accordion"
 export * from "@chakra-ui/alert"
 export * from "@chakra-ui/avatar"

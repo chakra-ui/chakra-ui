@@ -128,6 +128,10 @@ const sidebar = {
               path: "/docs/form/checkbox",
             },
             {
+              title: "Editable",
+              path: "/docs/form/editable",
+            },
+            {
               title: "Form Control",
               path: "/docs/form/form-control",
             },

@@ -44,6 +44,11 @@ export interface ChakraProps extends SystemProps {
    * @private
    */
   __css?: SystemStyleObject
+  /**
+   * Used to pass theme-aware style props.
+   * NB: This is the public API for user-land
+   */
+  sx?: SystemStyleObject
 }
 
 export type As = React.ElementType<any>

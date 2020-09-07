@@ -191,11 +191,11 @@ const HomePage = ({ members, sponsors }) => {
               align="center"
               spacing="24px"
             >
-              {users.map((user) => {
-                const hasLogo = user.image.includes(".")
-                if (hasLogo) {
+              {users
+                .filter((user) => user.image.includes("."))
+                .map((user) => {
                   return (
-                    <Box bg="white" p="5" rounded="md">
+                    <Box key={user.name} bg="white" p="5" rounded="md">
                       <chakra.img
                         key={user.image}
                         alt={user.name}
@@ -205,9 +205,7 @@ const HomePage = ({ members, sponsors }) => {
                       />
                     </Box>
                   )
-                }
-                return null
-              })}
+                })}
               <Box
                 p="4"
                 border="1px dashed"
@@ -357,7 +355,8 @@ const HomePage = ({ members, sponsors }) => {
                 {members.map((i) => (
                   <Img
                     key={i.login}
-                    htmlWidth="80px"
+                    width="80px"
+                    height="80px"
                     rounded="full"
                     alt={i.name}
                     src={i.avatar_url}

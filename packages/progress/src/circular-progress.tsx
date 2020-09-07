@@ -82,6 +82,11 @@ interface CircularProgressOptions {
    * A function that returns the desired valueText to use in place of the value
    */
   getValueText?(value: number, percent: number): string
+  /**
+   * If `true`, the progress will be indeterminate and the `value`
+   * prop will be ignored
+   */
+  isIndeterminate?: boolean
 }
 
 export interface CircularProgressProps
@@ -109,6 +114,7 @@ export const CircularProgress: React.FC<CircularProgressProps> = (props) => {
     thickness = "10px",
     color = "#0078d4",
     trackColor = "#edebe9",
+    isIndeterminate,
     ...rest
   } = props
 
@@ -118,11 +124,10 @@ export const CircularProgress: React.FC<CircularProgressProps> = (props) => {
     value,
     valueText,
     getValueText,
+    isIndeterminate,
   })
 
-  const isIndeterminate = progress.isIndeterminate
-
-  const determinant = progress.isIndeterminate
+  const determinant = isIndeterminate
     ? undefined
     : (progress.percent ?? 0) * 2.64
 

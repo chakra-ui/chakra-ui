@@ -1,7 +1,7 @@
 import { useDisclosure, useEventListener, useId } from "@chakra-ui/hooks"
 import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
-import { callAllHandlers, Dict, mergeRefs } from "@chakra-ui/utils"
-import { Ref, useCallback, useEffect, useRef } from "react"
+import { callAllHandlers, mergeRefs, PropGetter } from "@chakra-ui/utils"
+import { useCallback, useEffect, useRef } from "react"
 
 export interface UseTooltipProps {
   /**
@@ -142,8 +142,8 @@ export function useTooltip(props: UseTooltipProps = {}) {
     }
   }, [])
 
-  const getTriggerProps = useCallback(
-    (props: Dict = {}, ref: Ref<any> = null) => ({
+  const getTriggerProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
       ...props,
       ref: mergeRefs(ref, triggerRef),
       onMouseLeave: callAllHandlers(props.onMouseLeave, closeWithDelay),
@@ -165,8 +165,8 @@ export function useTooltip(props: UseTooltipProps = {}) {
     ],
   )
 
-  const getTooltipProps = useCallback(
-    (props: Dict = {}, ref: Ref<any> = null) => ({
+  const getTooltipProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
       ...htmlProps,
       ...props,
       id: tooltipId,
@@ -180,8 +180,8 @@ export function useTooltip(props: UseTooltipProps = {}) {
     [htmlProps, popper.popper.ref, popper.popper.style, tooltipId],
   )
 
-  const getArrowProps = useCallback(
-    (props: Dict = {}, ref: Ref<any> = null) => ({
+  const getArrowProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
       ...props,
       ref: mergeRefs(ref, popper.arrow.ref),
       style: { ...props.style, ...popper.arrow.style },

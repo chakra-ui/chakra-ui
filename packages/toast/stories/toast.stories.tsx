@@ -1,7 +1,8 @@
 import * as React from "react"
 import useToast from "../src"
 import { Button } from "@chakra-ui/button"
-import { chakra } from "@chakra-ui/system"
+import { chakra, useColorMode } from "@chakra-ui/system"
+import { Alert } from "@chakra-ui/alert"
 
 export default {
   title: "Toast",
@@ -155,6 +156,27 @@ export const AllSides = () => {
       >
         Trigger
       </button>
+    </>
+  )
+}
+
+export const ColorModeBug = () => {
+  const toast = useToast()
+  const { toggleColorMode } = useColorMode()
+  return (
+    <>
+      <Button
+        onClick={() =>
+          toast({
+            render() {
+              return <Alert>test</Alert>
+            },
+          })
+        }
+      >
+        Click me!
+      </Button>
+      <Button onClick={() => toggleColorMode()}>Toggle Mode</Button>
     </>
   )
 }

@@ -197,13 +197,13 @@ export const AccordionPanel = forwardRef<AccordionPanelProps, "div">(
     const { getPanelProps, isOpen } = useAccordionItemContext()
 
     // remove `hidden` prop, 'coz we're using height animation
-    const { hidden, ...panelProps } = getPanelProps({ ...props, ref }) as Dict
+    const panelProps = getPanelProps(props, ref)
 
     const _className = cx("chakra-accordion__panel", props.className)
     const styles = useStyles()
 
-    if (reduceMotion == true) {
-      panelProps.hidden = hidden
+    if (!reduceMotion) {
+      delete panelProps.hidden
     }
 
     const child = (
@@ -215,7 +215,7 @@ export const AccordionPanel = forwardRef<AccordionPanelProps, "div">(
       />
     )
 
-    if (reduceMotion == false) {
+    if (!reduceMotion) {
       return <Collapse isOpen={isOpen}>{child}</Collapse>
     }
 

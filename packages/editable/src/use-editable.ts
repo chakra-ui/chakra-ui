@@ -1,14 +1,13 @@
 import { useControllableState, useUpdateEffect } from "@chakra-ui/hooks"
 import {
+  ariaAttr,
   callAllHandlers,
   createOnKeyDown,
-  Dict,
   isEmpty,
   mergeRefs,
-  ariaAttr,
+  PropGetter,
 } from "@chakra-ui/utils"
-import { useState, useCallback, ChangeEvent, useRef, Ref } from "react"
-import { PropsOf } from "@chakra-ui/system"
+import { ChangeEvent, useCallback, useRef, useState } from "react"
 
 export interface UseEditableProps {
   /**
@@ -179,6 +178,53 @@ export function useEditable(props: UseEditableProps = {}) {
     }
   }, [submitOnBlur, onSubmit])
 
+  const getPreviewProps: PropGetter = (props = {}, ref = null) => ({
+    ...props,
+    ref: mergeRefs(ref, previewRef),
+    children: isValueEmpty ? placeholder : value,
+    hidden: isEditing,
+    "aria-disabled": ariaAttr(isDisabled),
+    tabIndex: getTabIndex(),
+    onFocus: callAllHandlers(props.onFocus, onEdit),
+  })
+
+  const getInputProps: PropGetter = (props = {}, ref = null) => ({
+    ...props,
+    hidden: !isEditing,
+    placeholder,
+    ref: mergeRefs(ref, inputRef),
+    disabled: isDisabled,
+    "aria-disabled": ariaAttr(isDisabled),
+    value,
+    onBlur: callAllHandlers(props.onBlur, onBlur),
+    onChange: callAllHandlers(props.onChange, onChange),
+    onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+  })
+
+  const getEditButtonProps: PropGetter = (props = {}, ref = null) => ({
+    "aria-label": "Edit",
+    ...props,
+    type: "button",
+    onClick: callAllHandlers(props.onClick, onEdit),
+    ref: mergeRefs(ref, editButtonRef),
+  })
+
+  const getSubmitButtonProps: PropGetter = (props = {}, ref = null) => ({
+    ...props,
+    "aria-label": "Submit",
+    ref,
+    type: "button",
+    onClick: callAllHandlers(props.onClick, onSubmit),
+  })
+
+  const getCancelButtonProps: PropGetter = (props = {}, ref = null) => ({
+    "aria-label": "Cancel",
+    ...props,
+    ref,
+    type: "button",
+    onClick: callAllHandlers(props.onClick, onCancel),
+  })
+
   return {
     isEditing,
     isDisabled,
@@ -187,57 +233,11 @@ export function useEditable(props: UseEditableProps = {}) {
     onEdit,
     onCancel,
     onSubmit,
-    getPreviewProps: (props: Dict = {}, ref: Ref<any> = null) => ({
-      ...props,
-      ref: mergeRefs(ref, previewRef),
-      children: isValueEmpty ? placeholder : value,
-      hidden: isEditing,
-      "aria-disabled": ariaAttr(isDisabled),
-      tabIndex: getTabIndex(),
-      onFocus: callAllHandlers(props.onFocus, onEdit),
-    }),
-    getInputProps: (props: Dict = {}, ref: Ref<any> = null) => ({
-      ...props,
-      hidden: !isEditing,
-      placeholder,
-      ref: mergeRefs(ref, inputRef),
-      disabled: isDisabled,
-      "aria-disabled": ariaAttr(isDisabled),
-      value,
-      onBlur: callAllHandlers(props.onBlur, onBlur),
-      onChange: callAllHandlers(props.onChange, onChange),
-      onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-    }),
-    getEditButtonProps: (
-      props: Dict = {},
-      ref: Ref<any> = null,
-    ): PropsOf<"button"> => ({
-      "aria-label": "Edit",
-      ...props,
-      type: "button",
-      onClick: callAllHandlers(props.onClick, onEdit),
-      ref: mergeRefs(ref, editButtonRef),
-    }),
-    getSubmitButtonProps: (
-      props: Dict = {},
-      ref: Ref<any> = null,
-    ): PropsOf<"button"> => ({
-      "aria-label": "Submit",
-      ...props,
-      ref,
-      type: "button",
-      onClick: callAllHandlers(props.onClick, onSubmit),
-    }),
-    getCancelButtonProps: (
-      props: Dict = {},
-      ref: Ref<any> = null,
-    ): PropsOf<"button"> => ({
-      "aria-label": "Cancel",
-      ...props,
-      ref,
-      type: "button",
-      onClick: callAllHandlers(props.onClick, onCancel),
-    }),
+    getPreviewProps,
+    getInputProps,
+    getEditButtonProps,
+    getSubmitButtonProps,
+    getCancelButtonProps,
     htmlProps,
   }
 }

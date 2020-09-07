@@ -22,6 +22,7 @@ import {
   roundValueToStep,
   valueToPercent,
   isRightClick,
+  PropGetter,
 } from "@chakra-ui/utils"
 import {
   Ref,
@@ -505,6 +506,112 @@ export function useSlider(props: UseSliderProps) {
     rootRef.current,
   )
 
+  const getRootProps: PropGetter = (props = {}, ref = null) => ({
+    ...props,
+    ...htmlProps,
+    ref: mergeRefs(ref, rootRef),
+    tabIndex: -1,
+    "aria-disabled": ariaAttr(isDisabled),
+    "data-focused": dataAttr(isFocused),
+    style: {
+      ...props.style,
+      ...rootStyle,
+    },
+  })
+
+  const getTrackProps: PropGetter = (props = {}, ref = null) => ({
+    ...props,
+    ref: mergeRefs(ref, trackRef),
+    id: trackId,
+    "data-disabled": dataAttr(isDisabled),
+    style: {
+      ...props.style,
+      ...trackStyle,
+    },
+  })
+
+  const getInnerTrackProps: PropGetter = (props = {}, ref = null) => ({
+    ...props,
+    ref,
+    style: {
+      ...props.style,
+      ...innerTrackStyle,
+    },
+  })
+
+  const getThumbProps: PropGetter = (props = {}, ref = null) => ({
+    ...props,
+    ref: mergeRefs(ref, thumbRef),
+    role: "slider",
+    tabIndex: 0,
+    id: thumbId,
+    "data-active": dataAttr(isDragging),
+    "aria-valuetext": valueText,
+    "aria-valuemin": min,
+    "aria-valuemax": max,
+    "aria-valuenow": value,
+    "aria-orientation": orientation,
+    "aria-disabled": ariaAttr(isDisabled),
+    "aria-readonly": ariaAttr(isReadOnly),
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabel ? undefined : ariaLabelledBy,
+    style: {
+      ...props.style,
+      ...thumbStyle,
+    },
+    onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+    onFocus: callAllHandlers(props.onFocus, setFocused.on),
+    onBlur: callAllHandlers(props.onBlur, setFocused.off),
+  })
+
+  const getMarkerProps: PropGetter<any, { value?: any }> = (
+    props = {},
+    ref = null,
+  ) => {
+    const isInRange = !(props.value < min || props.value > max)
+    const isHighlighted = value >= props.value
+    const markerPercent = valueToPercent(props.value, min, max)
+
+    const markerStyle: React.CSSProperties = {
+      position: "absolute",
+      pointerEvents: "none",
+      ...orient({
+        orientation,
+        vertical: {
+          bottom: isReversed ? `${100 - markerPercent}%` : `${markerPercent}%`,
+        },
+        horizontal: {
+          left: isReversed ? `${100 - markerPercent}%` : `${markerPercent}%`,
+        },
+      }),
+    }
+
+    return {
+      ...props,
+      ref,
+      role: "presentation",
+      "aria-hidden": true,
+      "data-disabled": dataAttr(isDisabled),
+      "data-invalid": dataAttr(!isInRange),
+      "data-highlighted": dataAttr(isHighlighted),
+      style: {
+        ...props.style,
+        ...markerStyle,
+      },
+    }
+  }
+
+  const getInputProps: PropGetter<HTMLInputElement> = (
+    props = {},
+    ref = null,
+  ) => ({
+    ...props,
+    ref,
+    type: "hidden",
+    value,
+    name,
+  })
+
   return {
     state: {
       value,
@@ -512,102 +619,12 @@ export function useSlider(props: UseSliderProps) {
       isDragging,
     },
     actions,
-    getRootProps: (props: Dict = {}, ref: Ref<any> = null) => ({
-      ...props,
-      ...htmlProps,
-      ref: mergeRefs(ref, rootRef),
-      tabIndex: -1,
-      "aria-disabled": ariaAttr(isDisabled),
-      "data-focused": dataAttr(isFocused),
-      style: {
-        ...props.style,
-        ...rootStyle,
-      },
-    }),
-    getTrackProps: (props: Dict = {}, ref: Ref<any> = null) => ({
-      ...props,
-      ref: mergeRefs(ref, trackRef),
-      id: trackId,
-      "data-disabled": dataAttr(isDisabled),
-      style: {
-        ...props.style,
-        ...trackStyle,
-      },
-    }),
-    getInnerTrackProps: (props: Dict = {}, ref: Ref<any> = null) => ({
-      ...props,
-      ref,
-      style: {
-        ...props.style,
-        ...innerTrackStyle,
-      },
-    }),
-    getThumbProps: (props: Dict = {}, ref: Ref<any> = null) => ({
-      ...props,
-      ref: mergeRefs(ref, thumbRef),
-      role: "slider",
-      tabIndex: 0,
-      id: thumbId,
-      "data-active": dataAttr(isDragging),
-      "aria-valuetext": valueText,
-      "aria-valuemin": min,
-      "aria-valuemax": max,
-      "aria-valuenow": value,
-      "aria-orientation": orientation,
-      "aria-disabled": ariaAttr(isDisabled),
-      "aria-readonly": ariaAttr(isReadOnly),
-      "aria-label": ariaLabel,
-      "aria-labelledby": ariaLabel ? undefined : ariaLabelledBy,
-      style: {
-        ...props.style,
-        ...thumbStyle,
-      },
-      onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-      onFocus: callAllHandlers(props.onFocus, setFocused.on),
-      onBlur: callAllHandlers(props.onBlur, setFocused.off),
-    }),
-    getMarkerProps: (props: Dict = {}, ref: Ref<any> = null) => {
-      const isInRange = !(props.value < min || props.value > max)
-      const isHighlighted = value >= props.value
-      const markerPercent = valueToPercent(props.value, min, max)
-
-      const markerStyle: React.CSSProperties = {
-        position: "absolute",
-        pointerEvents: "none",
-        ...orient({
-          orientation,
-          vertical: {
-            bottom: isReversed
-              ? `${100 - markerPercent}%`
-              : `${markerPercent}%`,
-          },
-          horizontal: {
-            left: isReversed ? `${100 - markerPercent}%` : `${markerPercent}%`,
-          },
-        }),
-      }
-
-      return {
-        ...props,
-        ref,
-        role: "presentation",
-        "aria-hidden": true,
-        "data-disabled": dataAttr(isDisabled),
-        "data-invalid": dataAttr(!isInRange),
-        "data-highlighted": dataAttr(isHighlighted),
-        style: {
-          ...props.style,
-          ...markerStyle,
-        },
-      }
-    },
-    getInputProps: (props: Dict = {}, ref: Ref<any>) => ({
-      ...props,
-      ref,
-      type: "hidden",
-      value,
-      name,
-    }),
+    getRootProps,
+    getTrackProps,
+    getInnerTrackProps,
+    getThumbProps,
+    getMarkerProps,
+    getInputProps,
   }
 }
 

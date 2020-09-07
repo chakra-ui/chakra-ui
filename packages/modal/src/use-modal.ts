@@ -1,14 +1,13 @@
 import { useIds } from "@chakra-ui/hooks"
-import { callAllHandlers, Dict, mergeRefs } from "@chakra-ui/utils"
-import { Undo, hideOthers } from "aria-hidden"
+import { callAllHandlers, mergeRefs, PropGetter } from "@chakra-ui/utils"
+import { hideOthers, Undo } from "aria-hidden"
 import {
   KeyboardEvent,
-  useCallback,
-  Ref,
-  RefObject,
   MouseEvent,
-  useRef,
+  RefObject,
+  useCallback,
   useEffect,
+  useRef,
   useState,
 } from "react"
 import { manager, useModalManager } from "./modal-manager"
@@ -53,48 +52,6 @@ export interface UseModalProps {
    *  @default true
    */
   useInert?: boolean
-  /**
-   * If `false`, focus lock will be disabled completely.
-   *
-   * This is useful in situations where you still need to interact with
-   * other surrounding elements.
-   *
-   * 🚨Warning: We don't recommend doing this because it hurts the
-   * accessbility of the modal, based on WAI-ARIA specifications.
-   *
-   * @default true
-   */
-  trapFocus?: boolean
-  /**
-   * If `true`, the modal will autofocus the first enabled and interative
-   * element within the `ModalContent`
-   *
-   * @default true
-   */
-  autoFocus?: boolean
-  /**
-   * The `ref` of element to receive focus when the modal opens.
-   */
-  initialFocusRef?: RefObject<HTMLElement>
-  /**
-   * The `ref` of element to receive focus when the modal closes.
-   */
-  finalFocusRef?: RefObject<HTMLElement>
-  /**
-   * If `true`, the modal will return focus to the element that triggered it when it closes.
-   * @default true
-   */
-  returnFocusOnClose?: boolean
-  /**
-   * If `true`, scrolling will be disabled on the `body` when the modal opens.
-   *  @default true
-   */
-  blockScrollOnMount?: boolean
-  /**
-   * Handle zoom/pinch gestures on iOS devices when scroll locking is enabled.
-   * Defaults to `false`.
-   */
-  allowPinchZoom?: boolean
 }
 
 /**
@@ -113,13 +70,6 @@ export function useModal(props: UseModalProps) {
     useInert = true,
     onOverlayClick: onOverlayClickProp,
     onEsc,
-    autoFocus,
-    trapFocus,
-    initialFocusRef,
-    finalFocusRef,
-    returnFocusOnClose,
-    blockScrollOnMount,
-    allowPinchZoom,
   } = props
 
   const dialogRef = useRef<HTMLElement>(null)
@@ -194,12 +144,12 @@ export function useModal(props: UseModalProps) {
   const [headerMounted, setHeaderMounted] = useState(false)
   const [bodyMounted, setBodyMounted] = useState(false)
 
-  const getContentProps = useCallback(
-    (props: Dict = {}, ref: Ref<any>) => ({
+  const getContentProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
+      role: "dialog",
       ...props,
       ref: mergeRefs(ref, dialogRef),
       id: dialogId,
-      role: props.role || "dialog",
       tabIndex: -1,
       "aria-modal": true,
       "aria-labelledby": headerMounted ? headerId : undefined,
@@ -211,8 +161,8 @@ export function useModal(props: UseModalProps) {
     [bodyId, bodyMounted, dialogId, headerId, headerMounted],
   )
 
-  const getOverlayProps = useCallback(
-    (props: Dict = {}, ref: Ref<any>) => ({
+  const getOverlayProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
       ...props,
       ref: mergeRefs(ref, overlayRef),
       onClick: callAllHandlers(props.onClick, onOverlayClick),
@@ -225,19 +175,12 @@ export function useModal(props: UseModalProps) {
   return {
     isOpen,
     onClose,
-    autoFocus,
-    trapFocus,
-    initialFocusRef,
-    finalFocusRef,
-    returnFocusOnClose,
     headerId,
     bodyId,
     setBodyMounted,
     setHeaderMounted,
     dialogRef,
     overlayRef,
-    blockScrollOnMount,
-    allowPinchZoom,
     getContentProps,
     getOverlayProps,
   }
