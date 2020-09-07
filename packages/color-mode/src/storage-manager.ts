@@ -1,4 +1,3 @@
-import { Color } from "sharp"
 import { ColorMode } from "./color-mode.utils"
 
 const hasLocalStorage = typeof Storage !== "undefined"
