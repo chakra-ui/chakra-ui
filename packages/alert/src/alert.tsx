@@ -55,7 +55,7 @@ export const Alert = forwardRef<AlertProps, "div">(function Alert(props, ref) {
   const alertStyles = {
     width: "100%",
     display: "flex",
-    alignItems: "center",
+    alignItems: "flex-start",
     position: "relative",
     overflow: "hidden",
     ...styles.container,
@@ -81,12 +81,17 @@ export interface AlertTitleProps extends PropsOf<typeof chakra.div> {}
 export const AlertTitle = forwardRef<AlertTitleProps, "div">(
   function AlertTitle(props, ref) {
     const styles = useStyles()
+    const titleStyles = {
+      display: "inline-block",
+      ...styles.title,
+    }
+
     return (
       <chakra.div
         ref={ref}
         {...props}
         className={cx("chakra-alert__title", props.className)}
-        __css={styles.title}
+        __css={titleStyles}
       />
     )
   },
@@ -98,7 +103,7 @@ export const AlertDescription = forwardRef<AlertDescriptionProps, "div">(
   function AlertDescription(props, ref) {
     const styles = useStyles()
     const descriptionStyles = {
-      display: "inline-block",
+      display: "inline",
       ...styles.description,
     }
 
