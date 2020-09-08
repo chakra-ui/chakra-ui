@@ -9,6 +9,7 @@ import { findRouteByPath, removeFromLast } from "utils/find-route-by-path"
 import { getRouteContext } from "utils/get-route-context"
 import Sidebar from "components/sidebar/sidebar"
 import Pagination from "components/pagination"
+import { Chakra } from "components/chakra"
 
 export default function MDXLayout({ frontmatter, children }) {
   const { slug } = frontmatter
@@ -20,19 +21,21 @@ export default function MDXLayout({ frontmatter, children }) {
   const routeContext = getRouteContext(route, routes)
 
   return (
-    <MDXProvider components={{ ...chakraComponents, ...MDXComponents }}>
-      <PageContainer
-        frontmatter={frontmatter}
-        sidebar={<Sidebar routes={routes} />}
-        pagination={
-          <Pagination
-            next={routeContext.nextRoute}
-            previous={routeContext.prevRoute}
-          />
-        }
-      >
-        {children}
-      </PageContainer>
-    </MDXProvider>
+    <Chakra>
+      <MDXProvider components={{ ...chakraComponents, ...MDXComponents }}>
+        <PageContainer
+          frontmatter={frontmatter}
+          sidebar={<Sidebar routes={routes} />}
+          pagination={
+            <Pagination
+              next={routeContext.nextRoute}
+              previous={routeContext.prevRoute}
+            />
+          }
+        >
+          {children}
+        </PageContainer>
+      </MDXProvider>
+    </Chakra>
   )
 }

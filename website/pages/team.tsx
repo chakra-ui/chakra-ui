@@ -13,6 +13,7 @@ import {
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
 import Container from "components/container"
 import Header from "components/header"
+import { Chakra } from "components/chakra"
 import SEO from "components/seo"
 import fs from "fs"
 import path from "path"
@@ -74,14 +75,14 @@ function Member({ member }) {
   )
 }
 
-function Team({ members, contributors }) {
+function Team({ members, contributors, cookies }) {
   const memberLogins = members.map(({ login }) => login)
   const contributorsWithoutTeam = contributors.filter(
     ({ login }) => !memberLogins.includes(login),
   )
 
   return (
-    <>
+    <Chakra cookies={cookies}>
       <SEO
         title="Chakra UI Team and Contributors"
         description="List of team members and contributors that make the Chakra UI project possible"
@@ -166,7 +167,7 @@ function Team({ members, contributors }) {
           </Stack>
         </Container>
       </Box>
-    </>
+    </Chakra>
   )
 }
 
@@ -179,7 +180,7 @@ const sortMembers = (a, b) => {
   return a.login.localeCompare(b.login, "en")
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps({ req }) {
   /**
    * Read the profile/bio of each member from `.all-membersrc` file
    * to avoid overfetching from Github
@@ -201,6 +202,7 @@ export async function getStaticProps() {
     props: {
       members: members.filter((m) => !filters.includes(m.login)),
       contributors,
+      cookies: req.headers.cookie ?? "",
     },
   }
 }

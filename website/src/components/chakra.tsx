@@ -1,5 +1,6 @@
 import { ChakraProvider, cookieStorageManager } from "@chakra-ui/core"
 import { GetServerSidePropsContext } from "next"
+import theme from "theme"
 
 interface ChakraProps {
   cookies?: string
@@ -10,9 +11,11 @@ export const Chakra = ({ children, cookies }: ChakraProps) => {
   return (
     <ChakraProvider
       resetCSS
+      theme={theme}
       storageManager={
         typeof cookies === "string" ? cookieStorageManager(cookies) : undefined
       }
+      portalZIndex={40}
     >
       {children}
     </ChakraProvider>

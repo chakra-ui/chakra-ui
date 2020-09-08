@@ -20,6 +20,7 @@ import {
 } from "@chakra-ui/core"
 import { chunk } from "@chakra-ui/utils"
 import users from "chakra-users"
+import { Chakra } from "components/chakra"
 import Container from "components/container"
 import DiscordStrip from "components/discord-strip"
 import { Footer } from "components/footer"
@@ -100,9 +101,9 @@ const StatBox = (props: StatBoxProps) => {
   )
 }
 
-const HomePage = ({ members, sponsors }) => {
+const HomePage = ({ members, sponsors, cookies }) => {
   return (
-    <>
+    <Chakra cookies={cookies}>
       <SEO
         title="Chakra UI - A simple, modular and accessible component library that gives you the building blocks you need to build your React applications."
         description="Simple, Modular and Accessible UI Components for your React Applications. Built with Styled System"
@@ -623,11 +624,11 @@ const HomePage = ({ members, sponsors }) => {
 
         <Footer />
       </Box>
-    </>
+    </Chakra>
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps({ req }) {
   /**
    * Read the profile/bio of each member from `.all-membersrc` file
    * to avoid overfetching from Github
@@ -656,6 +657,7 @@ export async function getStaticProps() {
       members: members.filter((m) => !filters.includes(m.login)),
       contributors,
       sponsors,
+      cookies: req.headers.cookie ?? "",
     },
   }
 }
