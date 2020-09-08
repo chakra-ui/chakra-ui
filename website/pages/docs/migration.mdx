@@ -81,13 +81,13 @@ Swap out `ThemeProvider` with `ChakraProvider` to make setup cleaner.
 
 Optionally via prop:
 
-- **CSSReset**: To add the recommended `CSSReset`, pass `resetCSS` prop.
+- **CSSReset**: To omit the recommended `CSSReset`, pass `resetCSS={false}`.
 - **PortalManager:** Manages portals and nested portals without using `z-index`
   in your application. Pass the `portalZIndex` prop.
 
 ```diff
 -  <ThemeProvider theme={theme}>
-+    <ChakraProvider resetCSS theme={theme}>
++    <ChakraProvider theme={theme}>
 -     <CSSReset />
       <App />
 +    </ChakraProvider>
@@ -268,9 +268,8 @@ errors, and reduces unused icons bloating your app.**
 import { ColorModeScript } from "@chakra-ui/core"
 
 export default class Document extends NextDocument {
-  static async getInitialProps(ctx) {
-    const initialProps = await NextDocument.getInitialProps(ctx)
-    return { ...initialProps }
+  static getInitialProps(ctx) {
+    return NextDocument.getInitialProps(ctx)
   }
 
   render() {

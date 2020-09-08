@@ -21,8 +21,7 @@ yarn add @chakra-ui/core@next
 ## Setup Provider
 
 For Chakra UI to work correctly, you need to setup the `ChakraProvider` at the
-root of your application. You also add browser css reset styles by passing the
-`resetCSS` prop.
+root of your application.
 
 Go to the root of your application, and do this:
 
@@ -33,9 +32,9 @@ import * as React from "react"
 import { ChakraProvider } from "@chakra-ui/core"
 
 function App() {
-  // 2. Use at the root of your app and pass `resetCSS` prop
+  // 2. Use at the root of your app
   return (
-    <ChakraProvider resetCSS>
+    <ChakraProvider>
       <App />
     </ChakraProvider>
   )
@@ -72,7 +71,7 @@ const customTheme = extendTheme({ colors })
 // 3. Pass the `theme` prop to the `ChakraProvider`
 function App() {
   return (
-    <ChakraProvider resetCSS theme={customTheme}>
+    <ChakraProvider theme={customTheme}>
       <App />
     </ChakraProvider>
   )
@@ -81,12 +80,12 @@ function App() {
 
 ### Props
 
-| Name           | Type             | Default               | Description                           |
-| -------------- | ---------------- | --------------------- | ------------------------------------- |
-| resetCSS       | `boolean`        | `false`               | automatically includes `<CSSReset />` |
-| theme          | `Theme`          | `@chakra-ui/theme`    | optional custom theme                 |
-| storageManager | `StorageManager` | `localStorageManager` | the storage to persist the theme in   |
-| portalZIndex   | `number`         | `undefined`           | common z-index to use for `Portal`    |
+| Name            | Type      | Default            | Description                                      |
+| --------------- | --------- | ------------------ | ------------------------------------------------ |
+| resetCSS        | `boolean` | `true`             | automatically includes `<CSSReset />`            |
+| theme           | `Theme`   | `@chakra-ui/theme` | optional custom theme                            |
+| colorModeCookie | `string`  | `undefined`        | cookies to detect the color mode preference with |
+| portalZIndex    | `number`  | `undefined`        | common z-index to use for `Portal`               |
 
 That's it, you're good to go!
 
