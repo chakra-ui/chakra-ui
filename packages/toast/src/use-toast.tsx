@@ -79,20 +79,19 @@ const Toast: React.FC<any> = (props) => {
       status={status}
       variant={variant}
       id={id}
-      textAlign="left"
-      boxShadow="lg"
-      borderRadius="md"
       alignItems="start"
+      borderRadius="md"
+      boxShadow="lg"
       margin={2}
       paddingRight={8}
+      textAlign="left"
+      width="auto"
     >
       <AlertIcon />
       <chakra.div flex="1">
         {title && <AlertTitle>{title}</AlertTitle>}
         {description && (
-          <AlertDescription marginTop="px" lineHeight="short">
-            {description}
-          </AlertDescription>
+          <AlertDescription display="block">{description}</AlertDescription>
         )}
       </chakra.div>
       {isClosable && (
@@ -100,8 +99,8 @@ const Toast: React.FC<any> = (props) => {
           size="sm"
           onClick={onClose}
           position="absolute"
-          right="4px"
-          top="4px"
+          right={1}
+          top={1}
         />
       )}
     </Alert>
