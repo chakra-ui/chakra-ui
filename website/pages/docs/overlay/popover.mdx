@@ -395,8 +395,8 @@ possible placement values.
 - Hitting the `Esc` key while the popover is open and focus is within the
   `PopoverContent`, will close the popover. If you set `closeOnEsc` to `false`,
   it will not close.
-- Clicking outside or blurring out of the `PopoverContent` closes the popover.
-  If you set `closeOnBlur` to `false`, it will not close.
+- Clicking outside of the `PopoverContent` closes the popover. If you set
+  `closeOnBlur` to `false`, it will not close.
 
 ### ARIA Attributes
 
@@ -428,7 +428,7 @@ possible placement values.
 | `trigger`            | `hover`, `click`                                               | `click`  | The interaction that triggers the popover.                                                                                                                                                                                 |
 | `placement`          | `PopperJS.placement`                                           | `bottom` | The placement of the popover.                                                                                                                                                                                              |
 | `returnFocusOnClose` | `boolean`                                                      | `true`   | If `true`, the popover will return focus to the trigger when it closes                                                                                                                                                     |
-| `closeOnBlur`        | `boolean`                                                      | `true`   | If `true`, the popover will close when you blur out it by clicking outside or tabbing out                                                                                                                                  |
+| `closeOnBlur`        | `boolean`                                                      | `true`   | If `true`, the popover will close when you blur out it by clicking outside                                                                                                                                                 |
 | `closeOnEsc`         | `boolean`                                                      | `true`   | If `true`, close the popover when the `esc` key is pressed                                                                                                                                                                 |
 | `children`           | `React.ReactNode`, `(props: InternalState) => React.ReactNode` |          | The children of the popover                                                                                                                                                                                                |
 | `gutter`             | `number`                                                       | `4`      | The gap (in pixels) to apply between the popover and the target. Used by `popper.js`                                                                                                                                       |

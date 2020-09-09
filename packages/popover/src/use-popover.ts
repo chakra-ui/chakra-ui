@@ -58,7 +58,7 @@ export interface UsePopoverProps {
   placement?: Placement
   /**
    * If `true`, the popover will close when you blur out it by
-   * clicking outside or tabbing out
+   * clicking outside.
    */
   closeOnBlur?: boolean
   /**
