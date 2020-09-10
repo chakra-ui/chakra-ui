@@ -68,9 +68,7 @@ exports[`should render nested portal 1`] = `
 `;
 
 exports[`should render portal 1`] = `
-<body
-  class="chakra-ui-light"
->
+<body>
   <div
     id="chakra-toast-portal"
   >
