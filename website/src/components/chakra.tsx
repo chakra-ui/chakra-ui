@@ -1,18 +1,43 @@
-import { ChakraProvider } from "@chakra-ui/core"
+import {
+  ChakraProvider,
+  cookieStorageManager,
+  localStorageManager,
+} from "@chakra-ui/core"
 import { GetServerSidePropsContext } from "next"
 import theme from "theme"
 
-interface ChakraProps {
+type WithCookies = {
   cookies?: string
-  children: React.ReactNode
 }
 
-export const Chakra = ({ children, cookies }: ChakraProps) => {
-  return (
-    <ChakraProvider theme={theme} colorModeCookie={cookies} portalZIndex={40}>
-      {children}
-    </ChakraProvider>
-  )
+/**
+ * higher order component for pages
+ */
+export function withChakra<P = {}>(
+  WrappedComponent: React.FunctionComponent<P>,
+) {
+  const C = ({ cookies, ...rest }: WithCookies & P) => {
+    return (
+      <ChakraProvider
+        theme={theme}
+        colorModeManager={
+          typeof cookies === "string"
+            ? cookieStorageManager(cookies)
+            : localStorageManager
+        }
+        portalZIndex={40}
+      >
+        <WrappedComponent {...(rest as P)} />
+      </ChakraProvider>
+    )
+  }
+
+  C.displayName = `withChakra(${
+    WrappedComponent.displayName || WrappedComponent.name || "Unknown"
+  })`
+  C.WrappedComponent = WrappedComponent
+
+  return C
 }
 
 export type ServerSideProps<T> = { props: T } | Promise<{ props: T }>

@@ -20,7 +20,7 @@ import {
 } from "@chakra-ui/core"
 import { chunk } from "@chakra-ui/utils"
 import users from "chakra-users"
-import { Chakra } from "components/chakra"
+import { withChakra } from "components/chakra"
 import Container from "components/container"
 import DiscordStrip from "components/discord-strip"
 import { Footer } from "components/footer"
@@ -39,6 +39,7 @@ import { FaArrowRight, FaDiscord, FaMicrophone } from "react-icons/fa"
 import { FiDownload, FiGithub, FiUsers } from "react-icons/fi"
 import { IoMdMoon } from "react-icons/io"
 import { MdAccessibility, MdGrain, MdPalette } from "react-icons/md"
+import type { Member, Sponsor } from "src/types/github"
 
 const Feature = ({ title, icon, children, ...props }) => {
   return (
@@ -101,9 +102,17 @@ const StatBox = (props: StatBoxProps) => {
   )
 }
 
-const HomePage = ({ members, sponsors, cookies }) => {
+interface HomePageProps {
+  members: Member[]
+  sponsors: {
+    companies: Sponsor[]
+    individuals: Sponsor[]
+  }
+}
+
+const HomePage = ({ members, sponsors }: HomePageProps) => {
   return (
-    <Chakra cookies={cookies}>
+    <>
       <SEO
         title="Chakra UI - A simple, modular and accessible component library that gives you the building blocks you need to build your React applications."
         description="Simple, Modular and Accessible UI Components for your React Applications. Built with Styled System"
@@ -624,7 +633,7 @@ const HomePage = ({ members, sponsors, cookies }) => {
 
         <Footer />
       </Box>
-    </Chakra>
+    </>
   )
 }
 
@@ -662,4 +671,4 @@ export async function getServerSideProps({ req }) {
   }
 }
 
-export default HomePage
+export default withChakra<HomePageProps>(HomePage)
