@@ -6,6 +6,7 @@ export const storageKey = "chakra-ui-color-mode"
 export interface StorageManager {
   get(init?: ColorMode): ColorMode | undefined
   set(value: ColorMode): void
+  type: "cookie" | "localStorage"
 }
 
 /**
@@ -26,6 +27,7 @@ export const localStorageManager: StorageManager = {
       window.localStorage.setItem(storageKey, value)
     }
   },
+  type: "localStorage",
 }
 
 /**
@@ -44,4 +46,5 @@ export const cookieStorageManager = (cookies = ""): StorageManager => ({
   set(value) {
     document.cookie = `${storageKey}=${value}; max-age=31536000; path=/`
   },
+  type: "cookie",
 })
