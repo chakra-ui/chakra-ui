@@ -137,14 +137,14 @@ function App() {
 }
 ```
 
-## Add colorModeCookie (Optional)
+## Add colorModeManager (Optional)
 
 For server-side rendered sites, e.g. in Next.js, you may want to know the color
 preference of a user upfront so you can avoid rendering the initial color mode
 and then changing it during hydration (so-called `flashing`).
 
 If you don't use SSR or don't care about this, you don't need to pass anything.
-Chakra will use `localStorage` by default.
+Chakra will use `localStorageManager` by default.
 
 Here's how to do this in Next 9.3 or newer:
 
@@ -154,11 +154,25 @@ Here's how to do this in Next 9.3 or newer:
 // e.g. Chakra.js
 
 // 1. import `ChakraProvider` component
-import { ChakraProvider } from "@chakra-ui/core"
+import {
+  ChakraProvider,
+  cookieStorageManager,
+  localStorageManager,
+} from "@chakra-ui/core"
 
 export function Chakra({ cookies, children }) {
-  // 2. Pass `colorModeCookie` prop - it finds the relevant cookie on its own
-  return <ChakraProvider colorModeCookie={cookies}>{children}</ChakraProvider>
+  // 2. Pass `colorModeManager` prop
+  return (
+    <ChakraProvider
+      colorModeManager={
+        typeof cookies === "string"
+          ? cookieStorageManager(cookies)
+          : localStorageManager
+      }
+    >
+      {children}
+    </ChakraProvider>
+  )
 }
 
 // also export a reusable function getServerSideProps
@@ -195,12 +209,22 @@ avoiding `getInitialProps`. The following example is for Next 9.2 or older!
 ```jsx live=false
 // _app.js / _app.tsx
 
-import { ChakraProvider } from "@chakra-ui/core"
+import {
+  ChakraProvider,
+  cookieStorageManager,
+  localStorageManager,
+} from "@chakra-ui/core"
 
 export default function App({ cookies }) {
-  // 2. Pass `colorModeCookie` prop - it finds the relevant cookie on its own
+  // 2. Pass `colorModeManager` prop - it finds the relevant cookie on its own
   return (
-    <ChakraProvider colorModeCookie={cookies}>
+    <ChakraProvider
+      colorModeManager={
+        typeof cookies === "string"
+          ? cookieStorageManager(cookies)
+          : localStorageManager
+      }
+    >
       <h1>Example</h1>
     </ChakraProvider>
   )

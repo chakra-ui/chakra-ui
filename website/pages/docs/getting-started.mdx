@@ -80,12 +80,12 @@ function App() {
 
 ### Props
 
-| Name            | Type      | Default            | Description                                      |
-| --------------- | --------- | ------------------ | ------------------------------------------------ |
-| resetCSS        | `boolean` | `true`             | automatically includes `<CSSReset />`            |
-| theme           | `Theme`   | `@chakra-ui/theme` | optional custom theme                            |
-| colorModeCookie | `string`  | `undefined`        | cookies to detect the color mode preference with |
-| portalZIndex    | `number`  | `undefined`        | common z-index to use for `Portal`               |
+| Name             | Type             | Default               | Description                                         |
+| ---------------- | ---------------- | --------------------- | --------------------------------------------------- |
+| resetCSS         | `boolean`        | `true`                | automatically includes `<CSSReset />`               |
+| theme            | `Theme`          | `@chakra-ui/theme`    | optional custom theme                               |
+| colorModeManager | `StorageManager` | `localStorageManager` | manager to persist a users color mode preference in |
+| portalZIndex     | `number`         | `undefined`           | common z-index to use for `Portal`                  |
 
 That's it, you're good to go!
 
