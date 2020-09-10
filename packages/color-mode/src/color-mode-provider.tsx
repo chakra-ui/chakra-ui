@@ -2,7 +2,7 @@ import { noop, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { ColorMode } from "./color-mode.utils"
 import { useColorModeState } from "./use-color-mode-state"
-import { cookieStorageManager, localStorageManager } from "./storage-manager"
+import { localStorageManager, StorageManager } from "./storage-manager"
 
 export type { ColorMode }
 
@@ -33,7 +33,7 @@ export interface ColorModeProviderProps {
   children?: React.ReactNode
   useSystemColorMode?: boolean
   defaultValue?: ColorMode
-  cookie?: string
+  colorModeManager?: StorageManager
 }
 
 /**
@@ -46,21 +46,13 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     children,
     useSystemColorMode = false,
     defaultValue = "light",
-    cookie,
+    colorModeManager = localStorageManager,
   } = props
-
-  const storageManager = React.useMemo(
-    () =>
-      typeof cookie === "string"
-        ? cookieStorageManager(cookie)
-        : localStorageManager,
-    [cookie],
-  )
 
   const { mode, toggleColorMode } = useColorModeState({
     useSystemColorMode,
     initialColorMode: defaultValue,
-    storageManager,
+    colorModeManager,
   })
 
   const context = {

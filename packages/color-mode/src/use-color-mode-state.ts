@@ -46,7 +46,7 @@ export interface ColorModeOptions {
 }
 
 interface useColorModeStateOptions extends ColorModeOptions {
-  storageManager: StorageManager
+  colorModeManager: StorageManager
 }
 
 /**
@@ -54,7 +54,7 @@ interface useColorModeStateOptions extends ColorModeOptions {
  * and reads from system preference
  */
 export function useColorModeState(options: useColorModeStateOptions) {
-  const { storageManager, useSystemColorMode, initialColorMode } = options
+  const { colorModeManager, useSystemColorMode, initialColorMode } = options
 
   const [mode, setMode] = React.useState<ColorMode>(initialColorMode ?? "light")
 
@@ -64,7 +64,7 @@ export function useColorModeState(options: useColorModeStateOptions) {
   useSyncSystemColorMode(setMode, !!useSystemColorMode)
 
   React.useEffect(() => {
-    const stored = storageManager.get()
+    const stored = colorModeManager.get()
 
     const detectedMode = stored
       ? // given a previous value, use that
@@ -78,13 +78,13 @@ export function useColorModeState(options: useColorModeStateOptions) {
     if (detectedMode) {
       setMode(detectedMode)
     }
-  }, [storageManager, useSystemColorMode])
+  }, [colorModeManager, useSystemColorMode])
 
   React.useEffect(() => {
     if (mode) {
-      storageManager.set(mode)
+      colorModeManager.set(mode)
     }
-  }, [mode, storageManager])
+  }, [mode, colorModeManager])
 
   return {
     mode,

@@ -29,13 +29,14 @@ export interface ChakraProviderProps {
    */
   resetCSS?: boolean
   /**
-   * cookies to extract the theme preference from.
+   * manager to persist a users color mode preference in
    *
    * omit if you don't render server-side
+   * for SSR: choose `cookieStorageManager`
    *
    * @default localStorageManager
    */
-  colorModeCookie?: ColorModeProviderProps["cookie"]
+  colorModeManager?: ColorModeProviderProps["colorModeManager"]
   children?: React.ReactNode
 }
 
@@ -46,7 +47,7 @@ export interface ChakraProviderProps {
 export const ChakraProvider = (props: ChakraProviderProps) => {
   const {
     children,
-    colorModeCookie,
+    colorModeManager,
     portalZIndex,
     resetCSS = true,
     theme = defaultTheme,
@@ -55,7 +56,7 @@ export const ChakraProvider = (props: ChakraProviderProps) => {
   return (
     <ThemeProvider theme={theme}>
       <ColorModeProvider
-        cookie={colorModeCookie}
+        colorModeManager={colorModeManager}
         defaultValue={theme.config?.initialColorMode}
         useSystemColorMode={theme.config?.useSystemColorMode}
       >
