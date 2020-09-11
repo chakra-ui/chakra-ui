@@ -1,4 +1,5 @@
 import { useLatestRef } from "@chakra-ui/hooks"
+import { isBrowser } from "@chakra-ui/utils"
 import * as React from "react"
 import {
   addListener,
@@ -67,7 +68,7 @@ export function useColorModeState(options: useColorModeStateOptions) {
       return stored
     }
 
-    if (useSystemColorMode) {
+    if (useSystemColorMode && isBrowser) {
       return getColorScheme()
     }
 
