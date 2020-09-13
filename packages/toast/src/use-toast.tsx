@@ -173,11 +173,15 @@ export function createStandaloneToast({
       ...opts,
       message: (props) => (
         <ThemeProvider theme={theme}>
-          {isFunction(render) ? (
-            render(props)
-          ) : (
-            <Toast {...{ ...props, ...opts }} />
-          )}
+          <ColorModeContext.Provider
+            value={{ colorMode, setColorMode, toggleColorMode }}
+          >
+            {isFunction(render) ? (
+              render(props)
+            ) : (
+              <Toast {...{ ...props, ...opts }} />
+            )}
+          </ColorModeContext.Provider>
         </ThemeProvider>
       ),
     })
