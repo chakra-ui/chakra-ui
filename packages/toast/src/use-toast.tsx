@@ -18,6 +18,7 @@ import { isFunction, noop } from "@chakra-ui/utils"
 import defaultTheme from "@chakra-ui/theme"
 import { toast } from "./toast.class"
 import { RenderProps, ToastId, ToastOptions } from "./toast.types"
+import { PropsWithChildren } from "react"
 
 export interface UseToastOptions {
   /**
@@ -136,24 +137,28 @@ export function createStandaloneToast({
   toggleColorMode = defaultStandaloneParam.toggleColorMode,
   setColorMode = defaultStandaloneParam.setColorMode,
 }: CreateStandAloneToastParam = defaultStandaloneParam) {
+  const renderWithProviders = (
+    props: PropsWithChildren<RenderProps>,
+    options: UseToastOptions,
+  ) => (
+    <ThemeProvider theme={theme}>
+      <ColorModeContext.Provider
+        value={{ colorMode, setColorMode, toggleColorMode }}
+      >
+        {isFunction(options.render) ? (
+          options.render(props)
+        ) : (
+          <Toast {...props} {...options} />
+        )}
+      </ColorModeContext.Provider>
+    </ThemeProvider>
+  )
+
   const toastImpl = function (options: UseToastOptions) {
-    const { render } = options
-
-    const Message: React.FC<RenderProps> = (props) => (
-      <ThemeProvider theme={theme}>
-        <ColorModeContext.Provider
-          value={{ colorMode, setColorMode, toggleColorMode }}
-        >
-          {isFunction(render) ? (
-            render(props)
-          ) : (
-            <Toast {...{ ...props, ...opts }} />
-          )}
-        </ColorModeContext.Provider>
-      </ThemeProvider>
-    )
-
     const opts = { ...defaults, ...options }
+
+    const Message: React.FC<RenderProps> = (props) =>
+      renderWithProviders(props, opts)
 
     return toast.notify(Message, opts)
   }
@@ -171,19 +176,7 @@ export function createStandaloneToast({
 
     toast.update(id, {
       ...opts,
-      message: (props) => (
-        <ThemeProvider theme={theme}>
-          <ColorModeContext.Provider
-            value={{ colorMode, setColorMode, toggleColorMode }}
-          >
-            {isFunction(render) ? (
-              render(props)
-            ) : (
-              <Toast {...{ ...props, ...opts }} />
-            )}
-          </ColorModeContext.Provider>
-        </ThemeProvider>
-      ),
+      message: (props) => renderWithProviders(props, opts),
     })
   }
 
