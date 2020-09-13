@@ -141,6 +141,45 @@ only one prop to manage this, you can rename it to `boxSize`.
 +    </Box>
 ```
 
+### 7. Update theme breakpoints
+
+**You may safely skip this if you didn't customize your breakpoints.**
+
+To provide easier extensibility and typesafety, breakpoints now need to be an
+object:
+
+```diff
++ import { createBreakpoints, extendTheme } from "@chakra-ui/core"
+
+
++ const breakpoints = createBreakpoints({
++   sm: "30em",
++   md: "48em",
++   lg: "62em",
++   xl: "80em",
++ })
+
+
+const overrides = {
+- breakpoints: ["30em", "48em", "62em", "80em"]
++ breakpoints,
+}
+
++ const customTheme = extendTheme(overrides)
+```
+
+**Please note that unless you plan overriding all components, `sm` to `xl` are
+required.**
+
+You may of course add for example `xxl` or other breakpoints in between -
+`createBreakpoints` will sort in ascending order. It is adviseable to not mix
+css units.
+
+> **Reason:** Previously, breakpoints on a theme had to be an array with your
+> breakpoints in ascending order which made it hard to reference which value was
+> correlating to `md` etc. On top, you had to manually manipulate the array by
+> defining properties on it, which was often overlooked and not typesafe.
+
 ---
 
 ## Component Updates
