@@ -2,11 +2,8 @@ import foundations from "./foundations"
 import components from "./components"
 import styles from "./styles"
 
-export {
-  Breakpoints,
-  BaseBreakpointConfig,
-  createBreakpoints,
-} from "@chakra-ui/theme-tools"
+export type { Breakpoints, BaseBreakpointConfig } from "@chakra-ui/theme-tools"
+export { createBreakpoints } from "@chakra-ui/theme-tools"
 
 export const theme = {
   ...foundations,
