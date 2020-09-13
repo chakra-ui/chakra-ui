@@ -97,6 +97,7 @@ export const styleResolver: StyleResolver = ({ baseStyle }) => (props) => {
    * within `objectAssign` determines how styles are overriden.
    */
   const finalStyles = objectAssign(
+    {},
     __css,
     baseStyle,
     { apply },
