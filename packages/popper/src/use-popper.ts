@@ -18,6 +18,11 @@ export interface UsePopperProps {
   flip?: boolean
   arrowSize?: number
   arrowShadowColor?: string
+  /**
+   * The distance of the arrow to its next border (numeric)
+   * E.g. arrowPadding = borderRadius * 2
+   */
+  arrowPadding?: number
   eventsEnabled?: boolean
   modifiers?: Modifier<any, any>[]
 }
@@ -31,6 +36,7 @@ export function usePopper(props: UsePopperProps = {}) {
     forceUpdate = true,
     flip = true,
     arrowSize = 10,
+    arrowPadding,
     arrowShadowColor,
     gutter = arrowSize,
     eventsEnabled = true,
@@ -97,7 +103,10 @@ export function usePopper(props: UsePopperProps = {}) {
           {
             name: "arrow",
             enabled: Boolean(arrowRef.current),
-            options: { element: arrowRef.current },
+            options: {
+              element: arrowRef.current,
+              padding: arrowPadding,
+            },
           },
           {
             name: "updateState",
@@ -128,6 +137,7 @@ export function usePopper(props: UsePopperProps = {}) {
     offset,
     preventOverflow,
     eventsEnabled,
+    arrowPadding,
   ])
 
   useSafeLayoutEffect(() => {

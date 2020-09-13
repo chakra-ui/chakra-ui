@@ -231,3 +231,45 @@ export const withDefaultIsOpenProp = () => (
     </button>
   </Tooltip>
 )
+
+export const withAllPlacements = () => {
+  const allPlacements = [
+    "top",
+    "bottom",
+    "right",
+    "left",
+    "top-start",
+    "top-end",
+    "bottom-start",
+    "bottom-end",
+    "right-start",
+    "right-end",
+    "left-start",
+    "left-end",
+    "auto",
+    "auto-start",
+    "auto-end",
+  ] as const
+
+  return (
+    <>
+      {allPlacements.map((placement) => (
+        <Tooltip
+          key={placement}
+          hasArrow
+          isOpen
+          placement={placement}
+          label={placement}
+        >
+          <div
+            style={{
+              background: "#f0f0f0",
+              marginBottom: "5rem",
+              height: "3rem",
+            }}
+          />
+        </Tooltip>
+      ))}
+    </>
+  )
+}
