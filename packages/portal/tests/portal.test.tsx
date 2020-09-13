@@ -22,7 +22,7 @@ test("should render nested portal", () => {
     </PortalManager>,
   )
 
-  expect(tools.baseElement).toMatchSnapshot()
+  expect(tools.asFragment()).toMatchSnapshot()
 
   const portals = Array.from(
     tools.baseElement.querySelectorAll(".chakra-portal"),
