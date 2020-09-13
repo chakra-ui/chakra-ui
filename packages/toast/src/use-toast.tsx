@@ -118,7 +118,7 @@ const defaults = {
  * to show toasts in an application.
  */
 export function useToast() {
-  const { theme, colorMode, toggleColorMode } = useChakra()
+  const { theme, ...colorMode } = useChakra()
 
   return React.useMemo(() => {
     const toastImpl = function (options: UseToastOptions) {
@@ -126,7 +126,7 @@ export function useToast() {
 
       const Message: React.FC<RenderProps> = (props) => (
         <ThemeProvider theme={theme}>
-          <ColorModeContext.Provider value={{ colorMode, toggleColorMode }}>
+          <ColorModeContext.Provider value={colorMode}>
             {isFunction(render) ? (
               render(props)
             ) : (
@@ -169,7 +169,7 @@ export function useToast() {
     toastImpl.isActive = toast.isActive
 
     return toastImpl
-  }, [colorMode, theme, toggleColorMode])
+  }, [colorMode, theme])
 }
 
 export default useToast

@@ -45,14 +45,13 @@ exports[`Elements inside input render correctly 1`] = `
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   font-size: 1rem;
-  padding-left: 1rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
   height: 2.5rem;
   border-radius: 0.25rem;
   border: 1px solid;
   border-color: inherit;
   background: inherit;
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
 }
 
 .emotion-1:hover,
@@ -194,7 +193,6 @@ exports[`addons render correctly 1`] = `
   transition: all 0.2s;
   font-size: 1rem;
   padding-left: 1rem;
-  padding-right: 1rem;
   height: 2.5rem;
   border-radius: 0.25rem;
   border: 1px solid;

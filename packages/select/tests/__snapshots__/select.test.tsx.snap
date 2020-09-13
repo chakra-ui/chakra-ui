@@ -23,12 +23,12 @@ exports[`Select renders correctly 1`] = `
   line-height: normal;
   font-size: 1rem;
   padding-left: 1rem;
+  padding-right: 2rem;
   height: 2.5rem;
   border-radius: 0.25rem;
   border: 1px solid;
   border-color: inherit;
   background: inherit;
-  padding-right: 2rem;
 }
 
 .emotion-0 > option {
@@ -77,7 +77,6 @@ exports[`Select renders correctly 1`] = `
 }
 
 .emotion-1 {
-  color: currentColor;
   font-size: 1.25rem;
   position: absolute;
   display: -webkit-inline-box;
