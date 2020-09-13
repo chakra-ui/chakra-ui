@@ -44,7 +44,7 @@ test("should render in a different node", () => {
     </PortalManager>,
   )
 
-  expect(tools.baseElement).toMatchSnapshot()
+  expect(tools.asFragment()).toMatchSnapshot()
 
   const parent = screen.getByTestId("parent")
 
@@ -70,7 +70,7 @@ test("should render into a custom container", () => {
 
   const tools = render(<Custom />)
 
-  expect(tools.baseElement).toMatchSnapshot()
+  expect(tools.asFragment()).toMatchSnapshot()
 
   const heading = tools.getByTestId("heading")
   const container = tools.getByTestId("container")

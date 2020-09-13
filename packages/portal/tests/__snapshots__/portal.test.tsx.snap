@@ -1,115 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render in a different node 1`] = `
-<body
-  class="chakra-ui-light"
->
+<DocumentFragment>
   <div
-    id="chakra-toast-portal"
+    data-testid="parent"
   >
-    <span
-      id="chakra-toast-manager-top"
-      style="position: fixed; z-index: 5500; pointer-events: none; margin: 0px auto; text-align: center; top: 0px; right: 0px; left: 0px;"
-    />
-    <span
-      id="chakra-toast-manager-top-left"
-      style="position: fixed; z-index: 5500; pointer-events: none; top: 0px; left: 0px;"
-    />
-    <span
-      id="chakra-toast-manager-top-right"
-      style="position: fixed; z-index: 5500; pointer-events: none; top: 0px; right: 0px;"
-    />
-    <span
-      id="chakra-toast-manager-bottom-left"
-      style="position: fixed; z-index: 5500; pointer-events: none; bottom: 0px; left: 0px;"
-    />
-    <span
-      id="chakra-toast-manager-bottom"
-      style="position: fixed; z-index: 5500; pointer-events: none; margin: 0px auto; text-align: center; bottom: 0px; right: 0px; left: 0px;"
-    />
-    <span
-      id="chakra-toast-manager-bottom-right"
-      style="position: fixed; z-index: 5500; pointer-events: none; bottom: 0px; right: 0px;"
-    />
+    <h1
+      data-testid="child-1"
+    >
+      Foo
+    </h1>
   </div>
-  <div>
+  <div
+    class="chakra-portal-manager"
+  >
     <div
-      data-testid="parent"
+      class="chakra-portal"
     >
       <h1
-        data-testid="child-1"
+        data-testid="child-2"
       >
         Foo
       </h1>
     </div>
-    <div
-      class="chakra-portal-manager"
-    >
-      <div
-        class="chakra-portal"
-      >
-        <h1
-          data-testid="child-2"
-        >
-          Foo
-        </h1>
-      </div>
-    </div>
   </div>
-</body>
+</DocumentFragment>
 `;
 
 exports[`should render into a custom container 1`] = `
-<body
-  class="chakra-ui-light"
->
+<DocumentFragment>
   <div
-    id="chakra-toast-portal"
+    data-testid="container"
   >
-    <span
-      id="chakra-toast-manager-top"
-      style="position: fixed; z-index: 5500; pointer-events: none; margin: 0px auto; text-align: center; top: 0px; right: 0px; left: 0px;"
-    />
-    <span
-      id="chakra-toast-manager-top-left"
-      style="position: fixed; z-index: 5500; pointer-events: none; top: 0px; left: 0px;"
-    />
-    <span
-      id="chakra-toast-manager-top-right"
-      style="position: fixed; z-index: 5500; pointer-events: none; top: 0px; right: 0px;"
-    />
-    <span
-      id="chakra-toast-manager-bottom-left"
-      style="position: fixed; z-index: 5500; pointer-events: none; bottom: 0px; left: 0px;"
-    />
-    <span
-      id="chakra-toast-manager-bottom"
-      style="position: fixed; z-index: 5500; pointer-events: none; margin: 0px auto; text-align: center; bottom: 0px; right: 0px; left: 0px;"
-    />
-    <span
-      id="chakra-toast-manager-bottom-right"
-      style="position: fixed; z-index: 5500; pointer-events: none; bottom: 0px; right: 0px;"
-    />
-  </div>
-  <div>
     <div
-      data-testid="container"
+      class="chakra-portal"
     >
-      <div
-        class="chakra-portal"
+      <h1
+        data-testid="heading"
       >
-        <h1
-          data-testid="heading"
-        >
-          Hello world
-        </h1>
-      </div>
+        Hello world
+      </h1>
     </div>
-    <div
-      class="chakra-portal-manager"
-    />
   </div>
-</body>
+  <div
+    class="chakra-portal-manager"
+  />
+</DocumentFragment>
 `;
 
 exports[`should render nested portal 1`] = `
@@ -132,7 +68,9 @@ exports[`should render nested portal 1`] = `
 `;
 
 exports[`should render portal 1`] = `
-<body>
+<body
+  class="chakra-ui-light"
+>
   <div
     id="chakra-toast-portal"
   >
