@@ -223,9 +223,9 @@ Components.
 
 ```js
 import { createStandaloneToast } from "@chakra-ui/core"
-import theme from "@chakra-ui/theme"
 
-const toast = createStandaloneToast({ theme })
+const toast = createStandaloneToast()
+// const customToast = createStandaloeToast({ theme: yourCustomTheme })
 
 toast({
   title: "An error occurred.",
