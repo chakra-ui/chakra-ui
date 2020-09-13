@@ -1,21 +1,21 @@
+import type { AlertStatus } from "@chakra-ui/alert"
 import {
   Alert,
   AlertDescription,
   AlertIcon,
   AlertTitle,
 } from "@chakra-ui/alert"
-import type { AlertStatus } from "@chakra-ui/alert"
 import { CloseButton } from "@chakra-ui/close-button"
 import {
   chakra,
+  ColorModeContext,
   ThemeProvider,
-  useTheme,
-  ColorModeProvider,
+  useChakra,
 } from "@chakra-ui/system"
 import { isFunction, merge } from "@chakra-ui/utils"
 import * as React from "react"
 import { toast } from "./toast.class"
-import { RenderProps, ToastOptions, ToastId } from "./toast.types"
+import { RenderProps, ToastId, ToastOptions } from "./toast.types"
 
 export interface UseToastOptions {
   /**
@@ -118,7 +118,7 @@ const defaults = {
  * to show toasts in an application.
  */
 export function useToast() {
-  const theme = useTheme()
+  const { theme, colorMode, toggleColorMode } = useChakra()
 
   return React.useMemo(() => {
     const toastImpl = function (options: UseToastOptions) {
@@ -126,13 +126,13 @@ export function useToast() {
 
       const Message: React.FC<RenderProps> = (props) => (
         <ThemeProvider theme={theme}>
-          <ColorModeProvider>
+          <ColorModeContext.Provider value={{ colorMode, toggleColorMode }}>
             {isFunction(render) ? (
               render(props)
             ) : (
               <Toast {...{ ...props, ...opts }} />
             )}
-          </ColorModeProvider>
+          </ColorModeContext.Provider>
         </ThemeProvider>
       )
 
@@ -169,7 +169,7 @@ export function useToast() {
     toastImpl.isActive = toast.isActive
 
     return toastImpl
-  }, [theme])
+  }, [colorMode, theme, toggleColorMode])
 }
 
 export default useToast
