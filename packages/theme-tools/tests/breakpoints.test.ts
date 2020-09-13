@@ -1,4 +1,4 @@
-import { createBreakpoints } from "../src"
+import { createBreakpoints, BaseBreakpointConfig } from "../src"
 
 const defaultBreakpoints = {
   sm: "30em",
@@ -15,7 +15,7 @@ describe("createBreakpoints", () => {
   test("sorts by value size", () => {
     const reversedDefaults = Object.fromEntries(
       Object.entries(defaultBreakpoints).reverse(),
-    )
+    ) as BaseBreakpointConfig
 
     const expectedResult = createBreakpoints(defaultBreakpoints)
 
