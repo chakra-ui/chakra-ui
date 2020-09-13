@@ -1,3 +1,4 @@
+import * as React from "react"
 import type { AlertStatus } from "@chakra-ui/alert"
 import {
   Alert,
@@ -13,8 +14,8 @@ import {
   useChakra,
   ColorMode,
 } from "@chakra-ui/system"
-import { Dict, isFunction, noop } from "@chakra-ui/utils"
-import * as React from "react"
+import { isFunction, noop } from "@chakra-ui/utils"
+import defaultTheme from "@chakra-ui/theme"
 import { toast } from "./toast.class"
 import { RenderProps, ToastId, ToastOptions } from "./toast.types"
 
@@ -114,20 +115,27 @@ const defaults = {
   variant: "solid",
 } as const
 
-export type CreateStandAloneToastParam<T extends object = Dict> = {
-  theme: T
-  setColorMode?: (value: ColorMode) => void
-} & Partial<ReturnType<typeof useChakra>>
+export type CreateStandAloneToastParam = Partial<
+  {
+    setColorMode: (value: ColorMode) => void
+  } & ReturnType<typeof useChakra>
+>
 
+export const defaultStandaloneParam: Required<CreateStandAloneToastParam> = {
+  theme: defaultTheme,
+  colorMode: "light",
+  toggleColorMode: noop,
+  setColorMode: noop,
+}
 /**
  * Create a toast from outside of React Components
  */
-export function createStandaloneToast<Theme extends object = Dict>({
-  theme,
-  colorMode = "light",
-  toggleColorMode = noop,
-  setColorMode = noop,
-}: CreateStandAloneToastParam<Theme>) {
+export function createStandaloneToast({
+  theme = defaultStandaloneParam.theme,
+  colorMode = defaultStandaloneParam.colorMode,
+  toggleColorMode = defaultStandaloneParam.toggleColorMode,
+  setColorMode = defaultStandaloneParam.setColorMode,
+}: CreateStandAloneToastParam = defaultStandaloneParam) {
   const toastImpl = function (options: UseToastOptions) {
     const { render } = options
 

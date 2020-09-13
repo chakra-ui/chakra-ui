@@ -1,10 +1,9 @@
 import React from "react"
 import { screen } from "@chakra-ui/test-utils"
 import { createStandaloneToast } from "../src"
-import theme from "@chakra-ui/theme"
 
 test("Standalone toast renders correctly", async () => {
-  const toast = createStandaloneToast({ theme })
+  const toast = createStandaloneToast()
   const title = "Yay!"
   const description = "Something awesome happened"
 
