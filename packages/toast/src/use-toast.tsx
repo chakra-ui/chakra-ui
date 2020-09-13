@@ -11,12 +11,12 @@ import {
   ColorModeContext,
   ThemeProvider,
   useChakra,
+  ColorMode,
 } from "@chakra-ui/system"
 import { Dict, isFunction, noop } from "@chakra-ui/utils"
 import * as React from "react"
 import { toast } from "./toast.class"
 import { RenderProps, ToastId, ToastOptions } from "./toast.types"
-import { ColorMode } from "@chakra-ui/color-mode"
 
 export interface UseToastOptions {
   /**
