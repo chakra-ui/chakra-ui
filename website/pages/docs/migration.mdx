@@ -145,8 +145,8 @@ only one prop to manage this, you can rename it to `boxSize`.
 
 **You may safely skip this if you didn't customize your breakpoints.**
 
-To provide easier extensibility and typesafety, breakpoints now need to be an
-object:
+To provide easier extensibility and typesafety, breakpoints should now be
+created through `createBreakpoints` by passing an object:
 
 ```diff
 + import { createBreakpoints, extendTheme } from "@chakra-ui/core"
