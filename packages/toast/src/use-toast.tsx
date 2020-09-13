@@ -12,10 +12,11 @@ import {
   ThemeProvider,
   useChakra,
 } from "@chakra-ui/system"
-import { Dict, isFunction } from "@chakra-ui/utils"
+import { Dict, isFunction, noop } from "@chakra-ui/utils"
 import * as React from "react"
 import { toast } from "./toast.class"
 import { RenderProps, ToastId, ToastOptions } from "./toast.types"
+import { ColorMode } from "@chakra-ui/color-mode"
 
 export interface UseToastOptions {
   /**
@@ -113,21 +114,34 @@ const defaults = {
   variant: "solid",
 } as const
 
+export type CreateStandAloneToastParam<T extends object = Dict> = {
+  theme: T
+  setColorMode?: (value: ColorMode) => void
+} & Partial<ReturnType<typeof useChakra>>
+
 /**
  * Create a toast from outside of React Components
  */
-export function createStandaloneToast<T extends object = Dict>(theme: T) {
-  return React.useMemo(() => {
-    const toastImpl = function (options: UseToastOptions) {
-      const { render } = options
+export function createStandaloneToast<Theme extends object = Dict>({
+  theme,
+  colorMode = "light",
+  toggleColorMode = noop,
+  setColorMode = noop,
+}: CreateStandAloneToastParam<Theme>) {
+  const toastImpl = function (options: UseToastOptions) {
+    const { render } = options
 
     const Message: React.FC<RenderProps> = (props) => (
       <ThemeProvider theme={theme}>
-        <ColorModeContext.Provider value={{ colorMode, toggleColorMode }}>{isFunction(render) ? (
-          render(props)
-        ) : (
-          <Toast {...{ ...props, ...opts }} />
-        )}</ColorModeContext.Provider>
+        <ColorModeContext.Provider
+          value={{ colorMode, setColorMode, toggleColorMode }}
+        >
+          {isFunction(render) ? (
+            render(props)
+          ) : (
+            <Toast {...{ ...props, ...opts }} />
+          )}
+        </ColorModeContext.Provider>
       </ThemeProvider>
     )
 
@@ -172,8 +186,10 @@ export function createStandaloneToast<T extends object = Dict>(theme: T) {
  */
 export function useToast() {
   const { theme, colorMode, toggleColorMode } = useChakra()
-
-  return React.useMemo(() => createStandaloneToast(theme), [colorMode, theme, toggleColorMode])
+  return React.useMemo(
+    () => createStandaloneToast({ theme, colorMode, toggleColorMode }),
+    [theme, colorMode, toggleColorMode],
+  )
 }
 
 export default useToast

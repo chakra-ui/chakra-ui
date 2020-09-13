@@ -218,13 +218,14 @@ function PositionExample() {
 
 ## Standalone
 
-Use `createStandaloneToast` to create toasts from outside of your React Components.
+Use `createStandaloneToast` to create toasts from outside of your React
+Components.
 
 ```js
 import { createStandaloneToast } from "@chakra-ui/core"
 import theme from "@chakra-ui/theme"
 
-const toast = createStandaloneToast(theme)
+const toast = createStandaloneToast({ theme })
 
 toast({
   title: "An error occurred.",

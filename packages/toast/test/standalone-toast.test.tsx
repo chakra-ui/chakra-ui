@@ -4,7 +4,7 @@ import { createStandaloneToast } from "../src"
 import theme from "@chakra-ui/theme"
 
 test("Standalone toast renders correctly", async () => {
-  const toast = createStandaloneToast(theme)
+  const toast = createStandaloneToast({ theme })
   const title = "Yay!"
   const description = "Something awesome happened"
 
