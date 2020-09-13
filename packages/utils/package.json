@@ -41,6 +41,8 @@
     "@types/lodash.mergewith": "4.6.6",
     "css-box-model": "1.2.1",
     "lodash.merge": "4.6.2",
+    "object-assign": "4.1.1",
+    "@types/object-assign": "4.0.30",
     "lodash.mergewith": "4.6.2",
     "memoize-one": "5.1.1"
   },

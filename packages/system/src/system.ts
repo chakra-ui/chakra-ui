@@ -1,56 +1,139 @@
-import { systemProps, css } from "@chakra-ui/styled-system"
-import createStyled from "@emotion/styled"
-import { As, ChakraComponent } from "./system.types"
 import {
-  pseudoProps,
-  truncateProp,
-  extraProps,
-  domElements,
-  DOMElements,
-  cast,
-} from "./system.utils"
+  css,
+  propNames,
+  ResponsiveValue,
+  SystemProps,
+  SystemStyleObject,
+} from "@chakra-ui/styled-system"
+import { get, objectFilter, objectAssign, Dict } from "@chakra-ui/utils"
+import createStyled, {
+  CSSObject,
+  FunctionInterpolation,
+  Interpolation,
+} from "@emotion/styled"
 import { shouldForwardProp } from "./should-forward-prop"
-import { Dict } from "@chakra-ui/utils"
+import { As, ChakraComponent } from "./system.types"
+import { domElements, DOMElements } from "./system.utils"
 
-interface Options {
-  shouldForwardProp?(prop: string): boolean
-  label?: string
-  baseStyle?: any
+/**
+ * Convert propNames array to object to faster lookup perf
+ */
+const stylePropNames = propNames.reduce(function (keymirror, key) {
+  if (typeof key != "object" && typeof key != "function") keymirror[key] = key
+  return keymirror
+}, {})
+
+interface StyleResolverProps extends SystemProps {
+  __css?: SystemStyleObject
+  sx?: SystemStyleObject
+  theme: Dict
+  css?: CSSObject
+  noOfLines?: ResponsiveValue<number>
+  isTruncated?: boolean
+  layerStyle?: string
+  textStyle?: string
+  apply?: ResponsiveValue<string>
 }
 
-const sxProp = cast((props: any) => css(props.sx)(props.theme))
-const cssProp = (props: any) => props.css
+type StyleResolver = (params: {
+  baseStyle?: SystemStyleObject
+}) => FunctionInterpolation<StyleResolverProps>
 
-const __css = cast((props: Dict) => {
-  const result = {} as Dict
-  for (const key in props.__css) {
-    const exists = key in props
-    if (!exists || props[key] == null) {
-      result[key] = props.__css[key]
+/**
+ * Style resolver function that manages how style props are merged
+ * in combination with other possible ways of defining styles.
+ *
+ * For example, take a component defined this way:
+ * ```jsx
+ * <Box fontSize="24px" sx={{ fontSize: "40px" }}></Box>
+ * ```
+ *
+ * We want to manage the priority of the styles properly to prevent unwanted
+ * behaviors. Right now, the `sx` prop has the highest priority so the resolved
+ * fontSize will be `40px`
+ */
+export const styleResolver: StyleResolver = ({ baseStyle }) => (props) => {
+  const {
+    theme,
+    layerStyle,
+    textStyle,
+    apply,
+    noOfLines,
+    isTruncated,
+    css: cssProp,
+    __css,
+    sx,
+    ...rest
+  } = props
+
+  const _layerStyle = get(theme, `layerStyles.${layerStyle}`, {})
+  const _textStyle = get(theme, `textStyles.${textStyle}`, {})
+
+  // filter out props that aren't style props
+  const styleProps = objectFilter(rest, (_, prop) => prop in stylePropNames)
+
+  let truncateStyle: any = {}
+
+  if (noOfLines != null) {
+    truncateStyle = {
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      display: "-webkit-box",
+      WebkitBoxOrient: "vertical",
+      WebkitLineClamp: noOfLines,
+    }
+  } else {
+    if (isTruncated) {
+      truncateStyle = {
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
+      }
     }
   }
-  return css(result)(props.theme)
-})
 
-const base = cast((baseStyle: any) => (props: any) =>
-  css(baseStyle)(props.theme),
-)
-
-export function styled<T extends As, P = {}>(component: T, options?: Options) {
-  const { baseStyle, ...styledOptions } = options || {}
-  return createStyled(component as any, {
-    ...styledOptions,
-    shouldForwardProp,
-  })(
+  /**
+   * The computed, theme-aware style object. The other of the properties
+   * within `objectAssign` determines how styles are overriden.
+   */
+  const finalStyles = objectAssign(
     __css,
-    base(baseStyle),
-    cast(extraProps),
-    cast(truncateProp),
-    cast(systemProps),
-    cast(pseudoProps),
-    sxProp,
-    cast(cssProp),
-  ) as ChakraComponent<T, P>
+    baseStyle,
+    { apply },
+    _layerStyle,
+    _textStyle,
+    truncateStyle,
+    styleProps,
+    sx,
+  )
+
+  // Converts theme-aware style object to real css object
+  const computedCSS = css(finalStyles)(props.theme)
+
+  // Merge the computed css object with styles in css prop
+  const cssObject = objectAssign(computedCSS, cssProp)
+
+  return cssObject as Interpolation<StyleResolverProps>
+}
+
+interface StyledOptions {
+  shouldForwardProp?(prop: string): boolean
+  label?: string
+  baseStyle?: SystemStyleObject
+}
+
+export function styled<T extends As, P = {}>(
+  component: T,
+  options?: StyledOptions,
+) {
+  const { baseStyle, ...styledOptions } = options ?? {}
+  const opts = { ...styledOptions, shouldForwardProp }
+
+  const _styled = createStyled(component as React.ComponentType<any>, opts)
+  const interpolation = styleResolver({ baseStyle })
+  const StyledComponent = _styled(interpolation)
+
+  return StyledComponent as ChakraComponent<T, P>
 }
 
 type ChakraJSXElements = {
@@ -58,7 +141,10 @@ type ChakraJSXElements = {
 }
 
 type CreateChakraComponent = {
-  <T extends As, P = {}>(component: T, options?: Options): ChakraComponent<T, P>
+  <T extends As, P = {}>(
+    component: T,
+    options?: StyledOptions,
+  ): ChakraComponent<T, P>
 }
 
 export const chakra = (styled as unknown) as CreateChakraComponent &

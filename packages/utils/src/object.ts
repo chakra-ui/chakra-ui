@@ -1,6 +1,7 @@
 import { Omit, Dict } from "./types"
 import merge from "lodash.merge"
 import mergeWith from "lodash.mergewith"
+import assign from "object-assign"
 
 export function omit<T extends Dict, K extends keyof T>(object: T, keys: K[]) {
   const result: Dict = {}
@@ -69,17 +70,33 @@ export function getWithDefault(path: any, scale: any) {
   return get(scale, path, path)
 }
 
-export { merge, mergeWith }
+type FilterFn<T> = (value: any, key: string, object: T) => boolean
 
-export function filterUndefined(object: Dict) {
-  const result = { ...object }
-  for (const key in result) {
-    if (result[key] == null) {
-      delete result[key]
+/**
+ * Returns the items of an object that meet the condition specified in a callback function.
+ *
+ * @param object the object to loop through
+ * @param fn The filter function
+ */
+export function objectFilter<T extends Dict>(object: T, fn: FilterFn<T>) {
+  const result: Dict = {}
+
+  for (const key in object) {
+    const value = object[key]
+    const shouldPass = fn(value, key, object)
+
+    if (shouldPass) {
+      result[key] = value
     }
   }
+
   return result
 }
 
+export const filterUndefined = (object: Dict) =>
+  objectFilter(object, (val) => val !== null)
+
 export const objectKeys = <T extends Dict>(obj: T) =>
   (Object.keys(obj) as unknown) as (keyof T)[]
+
+export { merge, mergeWith, assign as objectAssign }
