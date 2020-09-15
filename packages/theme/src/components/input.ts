@@ -16,7 +16,7 @@ const size = {
   lg: {
     fontSize: "lg",
     pl: 4,
-    paddingRight: 4,
+    pr: 4,
     h: 12,
     borderRadius: "md",
   },
@@ -24,7 +24,7 @@ const size = {
   md: {
     fontSize: "md",
     pl: 4,
-    paddingRight: 4,
+    pr: 4,
     h: 10,
     borderRadius: "md",
   },
@@ -32,7 +32,7 @@ const size = {
   sm: {
     fontSize: "sm",
     pl: 3,
-    paddingRight: 3,
+    pr: 3,
     h: 8,
     borderRadius: "sm",
   },
@@ -141,10 +141,10 @@ function variantFlushed(props: Record<string, any>) {
 
   return {
     field: {
-      borderBottom: "1px solid",
-      borderColor: "inherit",
+      borderBottom: "1px solid inherit",
       borderRadius: 0,
-      paddingX: 0,
+      pl: 0,
+      pr: 0,
       bg: "transparent",
       _readOnly: {
         boxShadow: "none !important",
@@ -171,12 +171,14 @@ function variantFlushed(props: Record<string, any>) {
 const variantUnstyled = {
   field: {
     bg: "transparent",
-    paddingX: 0,
+    pl: 0,
+    pr: 0,
     height: "auto",
   },
   addon: {
     bg: "transparent",
-    paddingX: 0,
+    pl: 0,
+    pr: 0,
     height: "auto",
   },
 }

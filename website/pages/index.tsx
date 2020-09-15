@@ -649,10 +649,11 @@ export async function getStaticProps() {
    */
   const sponsorsRcPath = path.resolve("..", ".all-sponsorsrc")
   const sponsors = JSON.parse(fs.readFileSync(sponsorsRcPath, "utf-8"))
+  const filters = ["christiannwamba"]
 
   return {
     props: {
-      members,
+      members: members.filter((m) => !filters.includes(m.login)),
       contributors,
       sponsors,
     },

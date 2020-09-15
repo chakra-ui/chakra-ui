@@ -1,14 +1,16 @@
 import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
 import {
   chakra,
+  css,
+  forwardRef,
   layoutPropNames,
   omitThemingProps,
   PropsOf,
-  useMultiStyleConfig,
   ThemingProps,
-  forwardRef,
+  useMultiStyleConfig,
+  useTheme,
 } from "@chakra-ui/system"
-import { cx, split, __DEV__, merge } from "@chakra-ui/utils"
+import { cx, merge, split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"
@@ -28,7 +30,6 @@ export const SelectField = forwardRef<SelectFieldProps, "select">(
       <chakra.select
         {...select}
         ref={ref}
-        paddingRight="2rem"
         className={cx("chakra-select", className)}
       >
         {placeholder && <option value="">{placeholder}</option>}
@@ -116,7 +117,10 @@ export const Select = forwardRef<SelectProps, "select">(function Select(
     color,
   }
 
-  const fieldStyles = merge({}, styles.field, { _focus: { zIndex: "unset" } })
+  const fieldStyles = merge({}, styles.field, {
+    pr: "2rem",
+    _focus: { zIndex: "unset" },
+  })
 
   return (
     <chakra.div

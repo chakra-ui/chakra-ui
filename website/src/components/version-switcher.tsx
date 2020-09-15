@@ -16,8 +16,8 @@ function VersionSwitcher(props: SelectProps) {
       }}
       {...props}
     >
-      <option value="chakra-ui.com">v1.0</option>
-      <option value="v0.chakra-ui.com">v0.8</option>
+      <option value="next.chakra-ui.com">v1.0</option>
+      <option value="chakra-ui.com">v0.8</option>
     </Select>
   )
 }

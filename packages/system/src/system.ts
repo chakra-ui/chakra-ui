@@ -5,7 +5,13 @@ import {
   SystemProps,
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
-import { get, objectFilter, objectAssign, Dict } from "@chakra-ui/utils"
+import {
+  get,
+  objectFilter,
+  objectAssign,
+  Dict,
+  isFunction,
+} from "@chakra-ui/utils"
 import createStyled, {
   CSSObject,
   FunctionInterpolation,
@@ -112,7 +118,10 @@ export const styleResolver: StyleResolver = ({ baseStyle }) => (props) => {
   const computedCSS = css(finalStyles)(props.theme)
 
   // Merge the computed css object with styles in css prop
-  const cssObject = objectAssign(computedCSS, cssProp)
+  const cssObject = objectAssign(
+    computedCSS,
+    isFunction(cssProp) ? cssProp(theme) : cssProp,
+  )
 
   return cssObject as Interpolation<StyleResolverProps>
 }
