@@ -224,9 +224,9 @@ const HomePage = ({ members, sponsors }) => {
 
         <Box as="section">
           <Container py="80px">
-            <Box mx="auto" maxW="480px" mb="3em" textAlign="center">
-              <chakra.h2 textStyle="heading-2">Less code. More speed</chakra.h2>
-              <Text opacity={0.7} fontSize="lg" mt="3">
+            <Box mb="3em" textAlign="center">
+              <chakra.h2 textStyle="heading">Less code. More speed</chakra.h2>
+              <Text opacity={0.7} fontSize="lg" mt="3" mx="auto" maxW="600px">
                 Spend less time writing UI code and more time building a great
                 experience for your customers.
               </Text>
