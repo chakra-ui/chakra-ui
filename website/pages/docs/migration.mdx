@@ -121,6 +121,26 @@ only one prop to manage this, you can rename it to `boxSize`.
 > in some components (e.g. Button), it means the visual size and in others (e.g
 > Box), it means **width and height**.
 
+### 6. Replace PseudoBox elements
+
+`PseudoBox` is now deprecated and its props can now be directly applied to
+`Box`. Replace all `PseudoBox` components with `Box`.
+
+```diff
+-   <PseudoBox
++   <Box
+    >
+-    <PseudoBox
++     <Box
+        _hover={{ fontWeight: 'semibold' }}
+        _groupHover={{ color: 'tomato' }}
+      >
+-      </PseudoBox>
++      </Box>
+-    </PseudoBox>
++    </Box>
+```
+
 ---
 
 ## Component Updates
