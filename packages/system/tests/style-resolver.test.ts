@@ -99,11 +99,15 @@ test("should override padding correctly", () => {
       color: "green.300",
     },
     paddingRight: 3,
+    mr: "5",
+    bg: "pinkish",
   })
 
   expect(result).toMatchInlineSnapshot(`
     Object {
+      "background": "pinkish",
       "color": "#68D391",
+      "marginRight": "1.25rem",
       "paddingLeft": "1rem",
       "paddingRight": "0.75rem",
     }

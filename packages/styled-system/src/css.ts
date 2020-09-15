@@ -31,6 +31,15 @@ const responsive = (styles: any) => (theme?: any) => {
     let value = runIfFn(styles[key], theme ?? {})
     if (value == null) continue
 
+    /**
+     * @todo
+     * Use breakpoints from the theme to check value is breakpoint-like
+     * instead of using our hard-coded breakpoints.
+     *
+     * @tip
+     * `isResponsiveObjectLike` takes a second arg called `breakpointsArr`,
+     * you can simply pass the keys in `theme.breakpoints`
+     */
     value = isResponsiveObjectLike(value) ? objectToArrayNotation(value) : value
 
     if (!isArray(value)) {
@@ -69,10 +78,9 @@ export const css = (args: StyleObjectOrFn = {}) => (
 
   for (const k in styles) {
     const x = styles[k]
-    const key = k in pseudoSelectors ? pseudoSelectors[k] : k
-
     const val = runIfFn(x, theme)
 
+    const key = k in pseudoSelectors ? pseudoSelectors[k] : k
     const config = (parser.config as Dict)[key]
 
     if (key === "apply") {
@@ -90,8 +98,8 @@ export const css = (args: StyleObjectOrFn = {}) => (
     const value = config?.transform?.(val, scale) ?? get(scale, val, val)
 
     if (config?.properties) {
-      for (const p of config?.properties) {
-        computedStyles[p] = value
+      for (const property of config?.properties) {
+        computedStyles[property] = value
       }
       continue
     }

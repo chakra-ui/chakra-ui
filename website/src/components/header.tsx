@@ -58,6 +58,7 @@ const HeaderContent = () => {
           <NavLink href="/docs/getting-started">Docs</NavLink>
           <NavLink href="/guides/integrations/with-cra">Guides</NavLink>
           <NavLink href="/team">Team</NavLink>
+          <NavLink href="/enterprise-support"> Support</NavLink>
         </HStack>
       </Flex>
 
