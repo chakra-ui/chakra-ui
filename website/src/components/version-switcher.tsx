@@ -6,7 +6,6 @@ function VersionSwitcher(props: SelectProps) {
     <Select
       mr="1rem"
       variant="unstyled"
-      maxW="88px"
       fontWeight="semibold"
       color={useColorModeValue("gray.600", "whiteAlpha.600")}
       defaultValue="next.chakra-ui.com"
