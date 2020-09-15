@@ -49,7 +49,7 @@ import { Box } from "@chakra-ui/core"
 ### Color and background color
 
 ```jsx live=false
-import { Box } from "@chakra-ui/core";
+import { Box } from "@chakra-ui/core"
 
 // picks up a nested color value using dot notation
 // => `theme.colors.gray[50]`
@@ -75,7 +75,7 @@ import { Box } from "@chakra-ui/core";
 ### Typography
 
 ```jsx live=false
-import { Text } from "@chakra-ui/core";
+import { Text } from "@chakra-ui/core"
 
 // font-size of `theme.fontSizes.md`
 <Text fontSize="md" />
@@ -105,13 +105,16 @@ import { Text } from "@chakra-ui/core";
 ### Layout, width and height
 
 ```jsx live=false
-import { Box } from "@chakra-ui/core";
+import { Box } from "@chakra-ui/core"
 
 // verbose
-<Box width="100%" height={32} />;
+<Box width="100%" height={32} />
 
 // shorthand
-<Box w="100%" h="32px" />;
+<Box w="100%" h="32px" />
+
+// use theme sizing
+<Box boxSize="sm" />
 
 // width `50%`
 <Box w={1/2} />
@@ -348,7 +351,7 @@ import { Box, Text } from "@chakra-ui/core"
 import { Button } from "@chakra-ui/core"
 
 // :hover style
-;<Button
+<Button
   colorScheme="teal"
   _hover={{
     background: "white",
@@ -357,6 +360,15 @@ import { Button } from "@chakra-ui/core"
 >
   Hover me
 </Button>
+
+// apply :hover over parent element
+<Box>
+  <Box
+    _hover={{ fontWeight: 'semibold' }}
+    _groupHover={{ color: 'tomato' }}
+  >
+  </Box>
+</Box>
 ```
 
 | Prop             | CSS Property                                                             | Theme Field |
