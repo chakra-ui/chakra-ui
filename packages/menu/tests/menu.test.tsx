@@ -3,6 +3,7 @@ import {
   testA11y,
   fireEvent,
   screen,
+  act,
   waitFor,
 } from "@chakra-ui/test-utils"
 import { Portal } from "@chakra-ui/portal"
@@ -328,4 +329,72 @@ test("exposes internal state as render prop", () => {
   fireEvent.click(button)
 
   expect(screen.getByText("Close")).toBeInTheDocument()
+})
+
+const CompWithTwoMenus: React.FC<{
+  onItemClick: () => void
+  onClose: () => void
+  onBtnClick: () => void
+}> = (props) => {
+  const [active, setActive] = React.useState<string | undefined>(undefined)
+
+  return (
+    <>
+      <Menu isOpen={active === "1"}>
+        <MenuButton onClick={props.onBtnClick} as={Button}>
+          No 1
+        </MenuButton>
+        <MenuList>
+          <MenuItem onClick={props.onItemClick}>1–A</MenuItem>
+        </MenuList>
+      </Menu>
+      <Menu
+        isOpen={active === "2"}
+        onClose={() => {
+          setActive(undefined)
+          props.onClose()
+        }}
+      >
+        <MenuButton as={Button}>No 2</MenuButton>
+        <MenuList>
+          <MenuItem>2–A</MenuItem>
+        </MenuList>
+      </Menu>
+    </>
+  )
+}
+
+test("onClose doesn't affect the state of other menus", async () => {
+  const onClose = jest.fn()
+  const onItemClick = jest.fn()
+  const onBtnClick = jest.fn()
+
+  render(
+    <CompWithTwoMenus
+      onItemClick={onItemClick}
+      onClose={onClose}
+      onBtnClick={onBtnClick}
+    />,
+  )
+
+  const firstMenuButton = screen.getByText("No 1")
+  fireEvent.click(firstMenuButton.parentElement!)
+  await waitFor(
+    () =>
+      screen.getByText("No 1").parentElement!.getAttribute("aria-expanded") ===
+      "true",
+  )
+
+  const firstMenuItem = screen.getByText("1–A")
+  act(() => {
+    fireEvent.focus(firstMenuItem)
+    fireEvent.click(firstMenuItem)
+  })
+
+  expect(onClose).not.toBeCalled()
+  expect(onItemClick).toBeCalled()
+  expect(onBtnClick).toBeCalledTimes(1)
+  expect(
+    screen.getByText("No 1").parentElement!.getAttribute("aria-expanded"),
+  ).toBe("false")
 })
