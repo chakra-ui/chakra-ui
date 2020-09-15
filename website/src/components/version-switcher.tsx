@@ -9,7 +9,7 @@ function VersionSwitcher(props: SelectProps) {
       maxW="88px"
       fontWeight="semibold"
       color={useColorModeValue("gray.600", "whiteAlpha.600")}
-      defaultValue="chakra-ui.com"
+      defaultValue="next.chakra-ui.com"
       aria-label="Documentation version picker"
       onChange={(e) => {
         window.location.href = e.target.value
