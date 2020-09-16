@@ -1231,6 +1231,15 @@
         "code",
         "design"
       ]
+    },
+    {
+      "login": "frontendwizard",
+      "name": "Juliano Farias",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1124448?v=4",
+      "profile": "http://frontendwizard.dev",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
