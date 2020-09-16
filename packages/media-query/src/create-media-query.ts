@@ -1,16 +1,13 @@
-import { isNumber } from "@chakra-ui/utils"
+import { isNumber, isCustomBreakpoint } from "@chakra-ui/utils"
 import calculateMeasurement from "calculate-measurement"
-import type { Breakpoints } from "@chakra-ui/theme"
 
-function createMediaQueries(breakpoints: Breakpoints): MediaQuery[] {
+function createMediaQueries(breakpoints: string[]): MediaQuery[] {
   /**
    * Get the non-number breakpoint keys from the provided breakpoints
    *
    * reverse to begin with the largest
    */
-  const keys = Object.keys(breakpoints)
-    .filter((key) => Number.isNaN(Number.parseInt(key)))
-    .reverse()
+  const keys = Object.keys(breakpoints).filter(isCustomBreakpoint).reverse()
 
   /**
    * create a min-max media query string
