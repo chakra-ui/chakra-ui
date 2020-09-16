@@ -12,23 +12,50 @@ import { pseudoSelectors } from "./pseudo"
 import { parser } from "./parser"
 import { StyleObjectOrFn, CSSObject } from "./css.types"
 
-const defaultBreakpoints = ["40em", "52em", "64em"]
+const getCustomBreakpoints = (breakpoints: string[]) =>
+  Object.entries(breakpoints)
+    .filter(([key]) => Number.isNaN(Number.parseInt(key)))
+    .map((arr) => arr[1])
 
-function getBreakpoints(theme: any) {
-  const breakpoints = theme?.breakpoints ?? defaultBreakpoints
-  return breakpoints as string[]
+interface Cache {
+  breakpoints: string[]
+  customBreakpoints: ReturnType<typeof getCustomBreakpoints>
+  mediaQueries: (string | null)[]
 }
 
-const responsive = (styles: any) => (theme?: any) => {
+const cache: Cache = {
+  breakpoints: [],
+  customBreakpoints: [],
+  mediaQueries: [],
+}
+
+const responsive = (styles: any) => (theme: Dict = {}) => {
   const computedStyles: any = {}
-  const breakpoints = getBreakpoints(theme)
-  const mediaQueries = [
-    null,
-    ...breakpoints.map((n) => `@media screen and (min-width: ${n})`),
-  ]
+
+  // caching here reduces execution time by factor 4-6
+  const isCached = cache.breakpoints === theme.breakpoints
+  const breakpoints = isCached
+    ? cache.customBreakpoints
+    : getCustomBreakpoints(theme.breakpoints)
+
+  const mediaQueries = isCached
+    ? cache.mediaQueries
+    : [
+        null,
+        ...breakpoints.map(
+          (n: string) => `@media screen and (min-width: ${n})`,
+        ),
+      ]
+
+  if (!isCached) {
+    cache.breakpoints = theme.breakpoints
+    cache.customBreakpoints = breakpoints
+    cache.mediaQueries = mediaQueries
+  }
 
   for (const key in styles) {
-    let value = runIfFn(styles[key], theme ?? {})
+    let value = runIfFn(styles[key], theme)
+
     if (value == null) continue
 
     /**
@@ -98,7 +125,7 @@ export const css = (args: StyleObjectOrFn = {}) => (
     const value = config?.transform?.(val, scale) ?? get(scale, val, val)
 
     if (config?.properties) {
-      for (const property of config?.properties) {
+      for (const property of config.properties) {
         computedStyles[property] = value
       }
       continue
