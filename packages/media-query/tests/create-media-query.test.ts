@@ -33,5 +33,11 @@ test("creates media queries for each named breakpoint", () => {
       minWidth: "100px",
       query: "(min-width: 100px) and (max-width: 199.99px)",
     },
+    {
+      breakpoint: "base",
+      maxWidth: "100px",
+      minWidth: "0px",
+      query: "(min-width: 0px) and (max-width: 99.99px)",
+    },
   ])
 })
