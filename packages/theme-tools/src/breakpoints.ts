@@ -5,16 +5,17 @@ export interface BaseBreakpointConfig extends Record<string, string> {
   xl: string
 }
 
-export type Breakpoints<T = BaseBreakpointConfig> = string[] & T
+export type Breakpoints<T = BaseBreakpointConfig> = string[] & WithBase<T>
+export type WithBase<T> = T & { base: "0em" }
 
 export const createBreakpoints = <T extends BaseBreakpointConfig>(
   config: T,
 ): Breakpoints<T> => {
   const sorted = Object.fromEntries(
-    Object.entries(config).sort((a, b) =>
+    Object.entries({ base: "0em", ...config }).sort((a, b) =>
       parseInt(a[1]) > parseInt(b[1]) ? 1 : -1,
     ),
-  ) as T
+  ) as WithBase<T>
 
   return Object.assign(Object.values(sorted), sorted)
 }
