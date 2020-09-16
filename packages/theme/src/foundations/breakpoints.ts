@@ -1,15 +1,13 @@
+import { createBreakpoints } from "@chakra-ui/theme-tools"
+
 /**
  * Breakpoints for responsive design
  */
-const breakpoints: any = ["30em", "48em", "62em", "80em"]
-
-/**
- * This is needed for object responsive breakpoints to work.
- * At the moment, we require the keys to be `sm`, `md`, `lg` and `xl`
- */
-breakpoints.sm = breakpoints[0]
-breakpoints.md = breakpoints[1]
-breakpoints.lg = breakpoints[2]
-breakpoints.xl = breakpoints[3]
+const breakpoints = createBreakpoints({
+  sm: "30em",
+  md: "48em",
+  lg: "62em",
+  xl: "80em",
+})
 
 export default breakpoints

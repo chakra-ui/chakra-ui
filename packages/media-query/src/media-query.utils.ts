@@ -3,16 +3,18 @@ import { breakpoints } from "@chakra-ui/utils"
 export function getClosestValue(values: any, breakpoint: string) {
   let index = Object.keys(values).indexOf(breakpoint)
 
-  if (index !== -1) return values[breakpoint]
+  if (index !== -1) {
+    return values[breakpoint]
+  }
 
   let stopIndex = breakpoints.indexOf(breakpoint)
-  let hasFound = false
 
-  while (stopIndex >= 0 && !hasFound) {
+  while (stopIndex >= 0) {
     const key = breakpoints[stopIndex]
+
     if (values[key] != null) {
       index = stopIndex
-      hasFound = true
+      break
     }
     stopIndex--
   }
@@ -21,6 +23,4 @@ export function getClosestValue(values: any, breakpoint: string) {
     const key = breakpoints[index]
     return values[key]
   }
-
-  return undefined
 }

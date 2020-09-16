@@ -146,3 +146,13 @@ export function getNextItemFromSearch<T>(
   // a decent fallback to the currentItem
   return currentItem
 }
+
+/**
+ * since breakpoints are defined as custom properties on an array, you may
+ * `Object.keys(theme.breakpoints)` to retrieve both regular numeric indices
+ * and custom breakpoints as string.
+ *
+ * This function returns true given a custom array property.
+ */
+export const isCustomBreakpoint = (maybeBreakpoint: string) =>
+  Number.isNaN(Number.parseInt(maybeBreakpoint))

@@ -1,9 +1,12 @@
 import { css } from "../src/css"
+import { createBreakpoints } from "@chakra-ui/theme-tools"
 
-const breakpoints: any = ["40em", "52em", "64em"]
-breakpoints.sm = breakpoints[0]
-breakpoints.md = breakpoints[1]
-breakpoints.lg = breakpoints[2]
+const breakpoints = createBreakpoints({
+  sm: "40em",
+  md: "52em",
+  lg: "64em",
+  xl: "80em",
+})
 
 const theme = {
   breakpoints,
@@ -275,10 +278,17 @@ test("padding shorthand does not collide with nested p selector", () => {
 })
 
 test("ignores array values longer than breakpoints", () => {
+  // intentionally not using createBreakpoints here
+  // because you cant just slice off it
+  const customBreakpoints: any = ["0em", "32em", "40em"]
+  customBreakpoints.base = customBreakpoints[0]
+  customBreakpoints.sm = customBreakpoints[1]
+  customBreakpoints.lg = customBreakpoints[2]
+
   const result = css({
     width: [32, 64, 128, 256, 512],
   })({
-    breakpoints: ["32em", "40em"],
+    breakpoints: customBreakpoints,
   })
   expect(result).toEqual({
     width: 32,
