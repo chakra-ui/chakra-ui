@@ -7,67 +7,100 @@ import {
   objectToArrayNotation,
   runIfFn,
   merge,
+  isCustomBreakpoint,
 } from "@chakra-ui/utils"
 import { pseudoSelectors } from "./pseudo"
 import { parser } from "./parser"
 import { StyleObjectOrFn, CSSObject } from "./css.types"
 
-const getCustomBreakpoints = (breakpoints: string[]) =>
-  Object.entries(breakpoints)
-    .filter(([key]) => Number.isNaN(Number.parseInt(key)))
-    .map((arr) => arr[1])
-
 interface Cache {
+  themeBreakpoints: string[]
   breakpoints: string[]
-  customBreakpoints: ReturnType<typeof getCustomBreakpoints>
+  breakpointValues: string[]
   mediaQueries: (string | null)[]
 }
 
 const cache: Cache = {
+  themeBreakpoints: [],
   breakpoints: [],
-  customBreakpoints: [],
+  breakpointValues: [],
   mediaQueries: [],
 }
 
-const responsive = (styles: any) => (theme: Dict = {}) => {
+interface BreakpointValueObj {
+  /**
+   * left side of a breakpoint object, the name, e.g. sm
+   */
+  breakpoints: string[]
+  /**
+   * right side of a breakpoint object, the size, e.g. 4
+   */
+  breakpointValues: string[]
+}
+
+/**
+ *
+ */
+const calculateBreakpointAndMediaQueries = (
+  themeBreakpoints: string[] = [],
+) => {
+  // caching here reduces execution time by factor 4-6x
+  const isCached = cache.themeBreakpoints === themeBreakpoints
+
+  if (isCached) {
+    return cache
+  }
+
+  const { breakpoints, breakpointValues } = Object.entries(themeBreakpoints)
+    .filter(([key]) => isCustomBreakpoint(key))
+    .reduce<BreakpointValueObj>(
+      (carry, [breakpoint, value]) => {
+        carry.breakpoints.push(breakpoint)
+        carry.breakpointValues.push(value)
+
+        return carry
+      },
+      {
+        breakpoints: [],
+        breakpointValues: [],
+      },
+    )
+
+  const mediaQueries = [
+    null,
+    ...breakpointValues
+      .map((bp) => `@media screen and (min-width: ${bp})`)
+      .slice(1),
+  ]
+
+  cache.themeBreakpoints = themeBreakpoints
+  cache.mediaQueries = mediaQueries
+  cache.breakpointValues = breakpointValues
+  cache.breakpoints = breakpoints
+
+  return {
+    breakpoints,
+    mediaQueries,
+  }
+}
+
+const responsive = (styles: any) => (theme: Dict) => {
   const computedStyles: any = {}
 
-  // caching here reduces execution time by factor 4-6
-  const isCached = cache.breakpoints === theme.breakpoints
-  const breakpoints = isCached
-    ? cache.customBreakpoints
-    : getCustomBreakpoints(theme.breakpoints)
-
-  const mediaQueries = isCached
-    ? cache.mediaQueries
-    : [
-        null,
-        ...breakpoints.map(
-          (n: string) => `@media screen and (min-width: ${n})`,
-        ),
-      ]
-
-  if (!isCached) {
-    cache.breakpoints = theme.breakpoints
-    cache.customBreakpoints = breakpoints
-    cache.mediaQueries = mediaQueries
-  }
+  const { breakpoints, mediaQueries } = calculateBreakpointAndMediaQueries(
+    theme.breakpoints,
+  )
 
   for (const key in styles) {
     let value = runIfFn(styles[key], theme)
 
-    if (value == null) continue
+    if (value == null) {
+      continue
+    }
 
-    /**
-     * @todo
-     * Use breakpoints from the theme to check value is breakpoint-like
-     * instead of using our hard-coded breakpoints.
-     *
-     * @tip
-     * `isResponsiveObjectLike` takes a second arg called `breakpointsArr`,
-     * you can simply pass the keys in `theme.breakpoints`
-     */
-    value = isResponsiveObjectLike(value) ? objectToArrayNotation(value) : value
+    value = isResponsiveObjectLike(value, breakpoints)
+      ? objectToArrayNotation(value, breakpoints)
+      : value
 
     if (!isArray(value)) {
       computedStyles[key] = value
@@ -78,12 +111,18 @@ const responsive = (styles: any) => (theme: Dict = {}) => {
 
     for (let index = 0; index < queries; index++) {
       const media = mediaQueries[index]
+
       if (!media) {
         computedStyles[key] = value[index]
         continue
       }
+
       computedStyles[media] = computedStyles[media] || {}
-      if (value[index] == null) continue
+
+      if (value[index] == null) {
+        continue
+      }
+
       computedStyles[media][key] = value[index]
     }
   }
@@ -132,7 +171,7 @@ export const css = (args: StyleObjectOrFn = {}) => (
     }
 
     if (config?.property) {
-      computedStyles[config?.property] = value
+      computedStyles[config.property] = value
       continue
     }
 
