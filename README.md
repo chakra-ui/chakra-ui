@@ -329,6 +329,9 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://dlarimer.com"><img src="https://avatars1.githubusercontent.com/u/180438?v=4" width="64px;" alt=""/><br /><sub><b>Dustin Larimer</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=dustinlarimer" title="Code">💻</a> <a href="#design-dustinlarimer" title="Design">🎨</a></td>
     <td align="center"><a href="http://frontendwizard.dev"><img src="https://avatars1.githubusercontent.com/u/1124448?v=4" width="64px;" alt=""/><br /><sub><b>Juliano Farias</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=frontendwizard" title="Documentation">📖</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://joebell.co.uk"><img src="https://avatars3.githubusercontent.com/u/7349341?v=4" width="64px;" alt=""/><br /><sub><b>Joe Bell</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Ajoe-bell" title="Bug reports">🐛</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
