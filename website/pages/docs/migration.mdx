@@ -650,6 +650,15 @@ yarn add focus-visible
 import "focus-visible/dist/focus-visible"
 ```
 
+### Hooks
+- `useDisclosure` now accepts `object` instead of `boolean` as initial values
+
+```diff
+- const { isOpen, onToggle } = useDisclosure(true);
++ const { isOpen, onToggle } = useDisclosure({isOpen: true});
+```
+
+
 **That's it! Welcome to Chakra UI v1.**
 
 > If you still experience issues after migrating, feel free to create an issue
