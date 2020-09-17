@@ -81,7 +81,7 @@ export const UnorderedList = forwardRef<ListProps, "ul">(function UnorderedList(
 ) {
   const { as, ...rest } = props
   return (
-    <List ref={ref} as="ul" styleType="bullet" marginLeft="1em" {...rest} />
+    <List ref={ref} as="ul" styleType="initial" marginLeft="1em" {...rest} />
   )
 })
 
