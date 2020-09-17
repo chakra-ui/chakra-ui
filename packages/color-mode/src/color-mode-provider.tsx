@@ -137,7 +137,7 @@ if (__DEV__) {
  * const Icon = useColorModeValue(MoonIcon, SunIcon)
  * ```
  */
-export function useColorModeValue(light: any, dark: any) {
+export function useColorModeValue<LIGHT, DARK>(light: LIGHT, dark: DARK) {
   const { colorMode } = useColorMode()
   return colorMode === "dark" ? dark : light
 }
