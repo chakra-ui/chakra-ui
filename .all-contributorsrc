@@ -1240,6 +1240,24 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "joe-bell",
+      "name": "Joe Bell",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/7349341?v=4",
+      "profile": "https://joebell.co.uk",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "hpohlmeyer",
+      "name": "Henning Pohlmeyer",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/6564077?v=4",
+      "profile": "https://henningpohlmeyer.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
