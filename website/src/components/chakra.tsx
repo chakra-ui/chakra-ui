@@ -10,6 +10,27 @@ type WithCookies = {
   cookies?: string
 }
 
+const determineColorModeManager = (cookies?: string) => {
+  const isBrowser = typeof window !== "undefined"
+  const isServer = typeof cookies !== "undefined"
+
+  const actualCookies = isServer
+    ? cookies
+    : isBrowser
+    ? document.cookie
+    : undefined
+
+  console.log({
+    isBrowser,
+    isServer,
+    actualCookies,
+  })
+
+  return actualCookies
+    ? cookieStorageManager(actualCookies)
+    : localStorageManager
+}
+
 /**
  * higher order component for pages
  */
@@ -20,11 +41,7 @@ export function withChakra<P = {}>(
     return (
       <ChakraProvider
         theme={theme}
-        colorModeManager={
-          typeof cookies === "string"
-            ? cookieStorageManager(cookies)
-            : localStorageManager
-        }
+        colorModeManager={determineColorModeManager(cookies)}
         portalZIndex={40}
       >
         <WrappedComponent {...(rest as P)} />
