@@ -331,6 +331,7 @@ Thanks goes to these wonderful people
   </tr>
   <tr>
     <td align="center"><a href="https://joebell.co.uk"><img src="https://avatars3.githubusercontent.com/u/7349341?v=4" width="64px;" alt=""/><br /><sub><b>Joe Bell</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Ajoe-bell" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://henningpohlmeyer.com"><img src="https://avatars0.githubusercontent.com/u/6564077?v=4" width="64px;" alt=""/><br /><sub><b>Henning Pohlmeyer</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=hpohlmeyer" title="Code">💻</a></td>
   </tr>
 </table>
 
