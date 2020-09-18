@@ -127,6 +127,7 @@ export function useMenu(props: UseMenuProps) {
     ref: menuRef,
     onInteractOutside: (event) => {
       if (
+        isOpen &&
         closeOnBlur &&
         !buttonRef.current?.contains(event.target as HTMLElement)
       ) {

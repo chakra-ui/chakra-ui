@@ -205,7 +205,10 @@ tabs. If you intend to control the tabs programmatically, use this with the
 
 ```jsx
 function Example() {
-  const colors = ["red.50", "teal.50", "blue.50"]
+  const colors = useColorModeValue(
+    ["red.50", "teal.50", "blue.50"],
+    ["red.900", "teal.900", "blue.900"],
+  )
   const [tabIndex, setTabIndex] = React.useState(0)
   const bg = colors[tabIndex]
   return (

@@ -1,15 +1,15 @@
 import { useImage } from "@chakra-ui/image"
 import {
   chakra,
+  forwardRef,
   omitThemingProps,
   PropsOf,
   StylesProvider,
   SystemProps,
+  SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
-  SystemStyleObject,
-  forwardRef,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -181,6 +181,7 @@ export const Avatar = forwardRef<AvatarProps, "span">(function Avatar(
     getInitials = initials,
     icon = <DefaultIcon />,
     children,
+    borderColor,
     ...rest
   } = omitThemingProps(props)
 
@@ -189,6 +190,10 @@ export const Avatar = forwardRef<AvatarProps, "span">(function Avatar(
     borderWidth: showBorder ? "2px" : undefined,
     ...baseStyle,
     ...styles.container,
+  }
+
+  if (borderColor) {
+    avatarStyles.borderColor = borderColor
   }
 
   return (

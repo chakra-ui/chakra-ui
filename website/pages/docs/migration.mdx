@@ -121,6 +121,65 @@ only one prop to manage this, you can rename it to `boxSize`.
 > in some components (e.g. Button), it means the visual size and in others (e.g
 > Box), it means **width and height**.
 
+### 6. Replace PseudoBox elements
+
+`PseudoBox` is now deprecated and its props can now be directly applied to
+`Box`. Replace all `PseudoBox` components with `Box`.
+
+```diff
+-   <PseudoBox
++   <Box
+    >
+-    <PseudoBox
++     <Box
+        _hover={{ fontWeight: 'semibold' }}
+        _groupHover={{ color: 'tomato' }}
+      >
+-      </PseudoBox>
++      </Box>
+-    </PseudoBox>
++    </Box>
+```
+
+### 7. Update theme breakpoints
+
+**You may safely skip this if you didn't customize your breakpoints.**
+
+To provide easier extensibility and typesafety, breakpoints should now be
+created through `createBreakpoints` by passing an object:
+
+```diff
++ import { createBreakpoints, extendTheme } from "@chakra-ui/core"
+
+
++ const breakpoints = createBreakpoints({
++   sm: "30em",
++   md: "48em",
++   lg: "62em",
++   xl: "80em",
++ })
+
+
+const overrides = {
+- breakpoints: ["30em", "48em", "62em", "80em"]
++ breakpoints,
+}
+
++ const customTheme = extendTheme(overrides)
+```
+
+**Please note that unless you plan overriding all components, `sm` to `xl` are
+required.**
+
+You may of course add for example `xxl` or other breakpoints in between -
+`createBreakpoints` will sort in ascending order. It is adviseable to not mix
+css units.
+
+> **Reason:** Previously, breakpoints on a theme had to be an array with your
+> breakpoints in ascending order which made it hard to reference which value was
+> correlating to `md` etc. On top, you had to manually manipulate the array by
+> defining properties on it, which was often overlooked and not typesafe.
+
 ---
 
 ## Component Updates
@@ -590,6 +649,15 @@ yarn add focus-visible
 # at the root of your application
 import "focus-visible/dist/focus-visible"
 ```
+
+### Hooks
+- `useDisclosure` now accepts `object` instead of `boolean` as initial values
+
+```diff
+- const { isOpen, onToggle } = useDisclosure(true);
++ const { isOpen, onToggle } = useDisclosure({isOpen: true});
+```
+
 
 **That's it! Welcome to Chakra UI v1.**
 

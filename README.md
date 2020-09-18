@@ -326,6 +326,12 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/ChasinHues"><img src="https://avatars1.githubusercontent.com/u/13565648?v=4" width="64px;" alt=""/><br /><sub><b>ChasinHues</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=ChasinHues" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/nahuel"><img src="https://avatars0.githubusercontent.com/u/15200?v=4" width="64px;" alt=""/><br /><sub><b>Nahuel Greco</b></sub></a><br /><a href="#projectManagement-nahuel" title="Project Management">📆</a> <a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Anahuel" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://pablorocha.me"><img src="https://avatars1.githubusercontent.com/u/11415340?v=4" width="64px;" alt=""/><br /><sub><b>Pablo Rocha</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=joserocha3" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://dlarimer.com"><img src="https://avatars1.githubusercontent.com/u/180438?v=4" width="64px;" alt=""/><br /><sub><b>Dustin Larimer</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=dustinlarimer" title="Code">💻</a> <a href="#design-dustinlarimer" title="Design">🎨</a></td>
+    <td align="center"><a href="http://frontendwizard.dev"><img src="https://avatars1.githubusercontent.com/u/1124448?v=4" width="64px;" alt=""/><br /><sub><b>Juliano Farias</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=frontendwizard" title="Documentation">📖</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://joebell.co.uk"><img src="https://avatars3.githubusercontent.com/u/7349341?v=4" width="64px;" alt=""/><br /><sub><b>Joe Bell</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Ajoe-bell" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://henningpohlmeyer.com"><img src="https://avatars0.githubusercontent.com/u/6564077?v=4" width="64px;" alt=""/><br /><sub><b>Henning Pohlmeyer</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=hpohlmeyer" title="Code">💻</a></td>
   </tr>
 </table>
 

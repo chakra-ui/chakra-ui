@@ -102,7 +102,7 @@ export const MenuButton = forwardRef<MenuButtonProps, "button">(
         <chakra.span
           __css={{
             pointerEvents: "none",
-            flex: "1",
+            flex: "1 1 auto",
           }}
         >
           {props.children}

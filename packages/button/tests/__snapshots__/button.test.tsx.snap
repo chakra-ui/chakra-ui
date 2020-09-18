@@ -329,8 +329,6 @@ exports[`shows spinner and loading text if isLoading and loadingText 1`] = `
   color: currentColor;
   -webkit-animation: animation-0 0.45s linear infinite;
   animation: animation-0 0.45s linear infinite;
-  width: 1.5rem;
-  height: 1.5rem;
   width: 1em;
   height: 1em;
 }
@@ -496,8 +494,6 @@ exports[`shows spinner if isLoading 1`] = `
   color: currentColor;
   -webkit-animation: animation-0 0.45s linear infinite;
   animation: animation-0 0.45s linear infinite;
-  width: 1.5rem;
-  height: 1.5rem;
   width: 1em;
   height: 1em;
 }

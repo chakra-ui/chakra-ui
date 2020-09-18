@@ -15,9 +15,9 @@ import { ThemingProps } from "./system.types"
 import { omitThemingProps } from "./system.utils"
 
 export function useChakra<T extends Dict = Dict>() {
-  const { colorMode, toggleColorMode } = useColorMode()
+  const colorModeResult = useColorMode()
   const theme = useTheme() as T
-  return { colorMode, toggleColorMode, theme }
+  return { ...colorModeResult, theme }
 }
 
 export function useToken(

@@ -16,8 +16,8 @@ export const wrapRootElement = (
   return (
     <ThemeProvider theme={theme}>
       <ModeProvider>
-        <GlobalStyle />
         {isResettingCSS && <CSSReset />}
+        <GlobalStyle />
         <PortalManager zIndex={portalZIndex}>{element}</PortalManager>
       </ModeProvider>
     </ThemeProvider>

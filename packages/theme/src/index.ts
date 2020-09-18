@@ -11,6 +11,9 @@ const config: ColorModeOptions = {
   initialColorMode: "light",
 }
 
+export type { Breakpoints, BaseBreakpointConfig } from "@chakra-ui/theme-tools"
+export { createBreakpoints } from "@chakra-ui/theme-tools"
+
 export const theme = {
   ...foundations,
   components,

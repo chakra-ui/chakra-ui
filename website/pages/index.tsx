@@ -224,9 +224,9 @@ const HomePage = ({ members, sponsors }) => {
 
         <Box as="section">
           <Container py="80px">
-            <Box mx="auto" maxW="480px" mb="3em" textAlign="center">
-              <chakra.h2 textStyle="heading-2">Less code. More speed</chakra.h2>
-              <Text opacity={0.7} fontSize="lg" mt="3">
+            <Box mb="3em" textAlign="center">
+              <chakra.h2 textStyle="heading">Less code. More speed</chakra.h2>
+              <Text opacity={0.7} fontSize="lg" mt="3" mx="auto" maxW="600px">
                 Spend less time writing UI code and more time building a great
                 experience for your customers.
               </Text>
@@ -649,10 +649,11 @@ export async function getStaticProps() {
    */
   const sponsorsRcPath = path.resolve("..", ".all-sponsorsrc")
   const sponsors = JSON.parse(fs.readFileSync(sponsorsRcPath, "utf-8"))
+  const filters = ["christiannwamba"]
 
   return {
     props: {
-      members,
+      members: members.filter((m) => !filters.includes(m.login)),
       contributors,
       sponsors,
     },

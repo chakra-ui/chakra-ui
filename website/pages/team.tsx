@@ -1,6 +1,7 @@
 import {
   Avatar,
   Box,
+  chakra,
   Heading,
   Icon,
   Link,
@@ -10,6 +11,7 @@ import {
   Wrap,
 } from "@chakra-ui/core"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
+import Container from "components/container"
 import Header from "components/header"
 import SEO from "components/seo"
 import fs from "fs"
@@ -18,7 +20,14 @@ import * as React from "react"
 import { IoIosGlobe, IoLogoGithub, IoLogoTwitter } from "react-icons/io"
 
 const SocialLink = ({ icon, href }) => (
-  <Link display="inline-block" href={href} isExternal>
+  <Link
+    display="inline-flex"
+    alignItems="center"
+    justifyContent="center"
+    rounded="full"
+    href={href}
+    isExternal
+  >
     <Icon
       as={icon}
       transition="all 0.2s"
@@ -48,7 +57,7 @@ function Member({ member }) {
             {name}
           </Text>
 
-          <Stack direction="row" spacing={2}>
+          <Stack isInline align="center" spacing={2}>
             <SocialLink href={url} icon={IoLogoGithub} />
             {twitterUsername && (
               <SocialLink
@@ -82,29 +91,26 @@ function Team({ members, contributors }) {
 
       <Box mt="120px" mb="60px">
         <SkipNavContent />
-        <Box
-          w="full"
-          px="1rem"
-          py="80px"
-          pb="12"
-          pt="3"
-          mx="auto"
-          maxW="1280px"
-        >
-          <Heading as="h1" size="xl" mb="5">
+        <Container py="80px" textAlign="center">
+          <chakra.h1
+            color="teal.400"
+            textStyle="heading"
+            mb="5"
+            fontWeight="semibold"
+          >
             Chakra UI Team &amp; Contributors
-          </Heading>
-          <Text maxW="60ch">
+          </chakra.h1>
+          <Text maxW="60ch" mx="auto" fontSize="lg">
             The people listed on this page have contributed time, effort, and
             thought to Chakra UI. Without them, this project would not be
             possible.
           </Text>
-        </Box>
+        </Container>
 
-        <Box w="full" px="1rem" pb="12" pt="3" mx="auto" maxW="1280px">
+        <Container>
           <Stack spacing={8}>
-            <Heading size="md">Core Team</Heading>
-            <SimpleGrid columns={[1, 1, 2]} spacing="40px">
+            <Heading size="lg">Core Team 🤝</Heading>
+            <SimpleGrid columns={[1, 1, 2]} spacing="40px" pt="3">
               {members.map((member) => (
                 <Member key={member.login} member={member} />
               ))}
@@ -112,17 +118,27 @@ function Team({ members, contributors }) {
           </Stack>
 
           <Stack py="48px" spacing={8}>
-            <Heading size="md">Our Sponsors</Heading>
+            <Heading size="lg">Our Sponsors 💰</Heading>
             <Box mt="8">
-              <Text fontWeight="bold" mb="4">
-                Individual Sponsors
+              <Text
+                textStyle="caps"
+                mb="4"
+                textTransform="uppercase"
+                opacity="0.7"
+              >
+                Individuals
               </Text>
               <a href="https://opencollective.com/chakra-ui">
                 <img src="https://opencollective.com/chakra-ui/individuals.svg?width=890" />
               </a>
             </Box>
             <Box>
-              <Text fontWeight="bold" mb="4">
+              <Text
+                textStyle="caps"
+                mb="4"
+                textTransform="uppercase"
+                opacity="0.7"
+              >
                 Organizations
               </Text>
               <Wrap>
@@ -141,14 +157,14 @@ function Team({ members, contributors }) {
           </Stack>
 
           <Stack spacing={8} mt="100px">
-            <Heading size="md">Project Contributors</Heading>
+            <Heading size="lg">Project Contributors 💖</Heading>
             <Wrap spacing="3">
               {contributorsWithoutTeam.map((contributor) => (
                 <Avatar key={contributor.login} src={contributor.avatar_url} />
               ))}
             </Wrap>
           </Stack>
-        </Box>
+        </Container>
       </Box>
     </>
   )
@@ -179,10 +195,11 @@ export async function getStaticProps() {
   const { contributors } = JSON.parse(
     fs.readFileSync(contributorsRcPath, "utf-8"),
   )
+  const filters = ["christiannwamba"]
 
   return {
     props: {
-      members,
+      members: members.filter((m) => !filters.includes(m.login)),
       contributors,
     },
   }

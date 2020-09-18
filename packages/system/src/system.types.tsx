@@ -56,7 +56,9 @@ export type As = React.ElementType<any>
 /**
  * Extract the props of a React element or component
  */
-export type PropsOf<T extends As> = React.ComponentProps<T>
+export type PropsOf<T extends As> = React.ComponentProps<T> & {
+  as?: string | React.ComponentType<any>
+}
 
 export type WithChakra<P> = P & ChakraProps
 

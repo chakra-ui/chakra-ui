@@ -353,11 +353,10 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
 
 ### MenuItemOption Props
 
-| Name         | Type                      | Description                                             |
-| ------------ | ------------------------- | ------------------------------------------------------- |
-| isDisabled   | `boolean`                 | If `true`, the menu item will be disabled               |
-| children     | `React.ReactNode`         | The content of the option item                          |
-| value        | `StringOrNumber`          | Used to add roles `menuitemradio` or `menuitemcheckbox` |
-| type         | `radio`, `checkbox`       | The initial value of the option item                    |
-| onMouseLeave | `React.MouseEventHandler` | The value of the option item                            |
-| onMouseEnter | `React.MouseEventHandler` | Function called when selection changes                  |
+MenuItemOption extends `Box` so you can pass all box props in addition to these:
+
+| Name       | Type                | Description                                                           |
+| ---------- | ------------------- | --------------------------------------------------------------------- |
+| isDisabled | `boolean`           | If `true`, the option item will be disabled                           |
+| value      | `StringOrNumber`    | The value of the option item                                          |
+| type       | `radio`, `checkbox` | Used to add `menuitemradio` or `menuitemcheckbox` roles to the option |

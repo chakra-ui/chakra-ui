@@ -37,11 +37,30 @@ export const LeftAccent = () => (
 )
 
 export const TopAccent = () => (
-  <Alert variant="top-accent" mx="auto" alignItems="start">
+  <Alert
+    variant="top-accent"
+    mx="auto"
+    alignItems="flex-start"
+    pt="3"
+    rounded="md"
+  >
     <AlertIcon />
     <chakra.div flex="1">
-      <AlertTitle>Holy Smokes</AlertTitle>
+      <AlertTitle display="block" mr="2">
+        Holy Smokes
+      </AlertTitle>
       <AlertDescription>Something just happened!</AlertDescription>
     </chakra.div>
   </Alert>
 )
+
+export const DocsExample = () => {
+  return (
+    <div>
+      <Alert status="error">
+        <AlertIcon />
+        There was an error processing your request
+      </Alert>
+    </div>
+  )
+}

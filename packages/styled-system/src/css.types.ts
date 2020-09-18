@@ -110,7 +110,7 @@ export interface ApplyPropStyles {
   /**
    * Apply theme-aware style objects in `theme`
    */
-  apply?: string
+  apply?: ResponsiveValue<string>
 }
 
 type PseudoStyles = {

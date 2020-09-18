@@ -95,7 +95,7 @@ export interface StackProps extends PropsOf<typeof chakra.div>, StackOptions {}
 export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
   const {
     isInline,
-    direction = isInline ? "row" : "column",
+    direction,
     align,
     justify,
     spacing = "0.5rem",
@@ -106,6 +106,8 @@ export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
     shouldWrapChildren,
     ...rest
   } = props
+
+  const _direction = isInline ? "row" : direction ?? "column"
 
   /**
    * If we ever run into SSR issues with this, check this post to find a fix for it:
@@ -121,11 +123,11 @@ export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
   }
 
   const styles = {
-    flexDirection: direction,
-    [selector]: mapResponsive(direction, (value) => directionStyles[value]),
+    flexDirection: _direction,
+    [selector]: mapResponsive(_direction, (value) => directionStyles[value]),
   }
 
-  const dividerStyles = mapResponsive(direction, (value) => {
+  const dividerStyles = mapResponsive(_direction, (value) => {
     if (value.includes("row")) {
       return {
         mx: spacing,
@@ -173,11 +175,6 @@ export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
         )
       })
 
-  const sx = (theme: Dict) => {
-    if (hasDivider) return undefined
-    return css({ [selector]: styles[selector] })(theme)
-  }
-
   const _className = cx("chakra-stack", className)
 
   return (
@@ -189,7 +186,7 @@ export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
       flexDirection={styles.flexDirection}
       flexWrap={wrap}
       className={_className}
-      css={sx as any}
+      __css={hasDivider ? {} : { [selector]: styles[selector] }}
       {...rest}
     >
       {clones}

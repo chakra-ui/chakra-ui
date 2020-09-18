@@ -81,6 +81,7 @@ export interface AlertTitleProps extends PropsOf<typeof chakra.div> {}
 export const AlertTitle = forwardRef<AlertTitleProps, "div">(
   function AlertTitle(props, ref) {
     const styles = useStyles()
+
     return (
       <chakra.div
         ref={ref}
@@ -98,7 +99,7 @@ export const AlertDescription = forwardRef<AlertDescriptionProps, "div">(
   function AlertDescription(props, ref) {
     const styles = useStyles()
     const descriptionStyles = {
-      display: "inline-block",
+      display: "inline",
       ...styles.description,
     }
 
