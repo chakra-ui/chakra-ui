@@ -33,7 +33,7 @@ export interface ColorModeProviderProps {
   children?: React.ReactNode
   useSystemColorMode?: boolean
   defaultValue?: ColorMode
-  storageManager?: StorageManager
+  colorModeManager?: StorageManager
 }
 
 /**
@@ -46,13 +46,13 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     children,
     useSystemColorMode = false,
     defaultValue = "light",
-    storageManager = localStorageManager,
+    colorModeManager = localStorageManager,
   } = props
 
   const { mode, toggleColorMode } = useColorModeState({
     useSystemColorMode,
     initialColorMode: defaultValue,
-    storageManager,
+    colorModeManager,
   })
 
   const context = {

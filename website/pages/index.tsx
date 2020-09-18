@@ -20,6 +20,7 @@ import {
 } from "@chakra-ui/core"
 import { chunk } from "@chakra-ui/utils"
 import users from "chakra-users"
+import { withChakra } from "components/chakra"
 import Container from "components/container"
 import DiscordStrip from "components/discord-strip"
 import { Footer } from "components/footer"
@@ -38,6 +39,7 @@ import { FaArrowRight, FaDiscord, FaMicrophone } from "react-icons/fa"
 import { FiDownload, FiGithub, FiUsers } from "react-icons/fi"
 import { IoMdMoon } from "react-icons/io"
 import { MdAccessibility, MdGrain, MdPalette } from "react-icons/md"
+import type { Member, Sponsor } from "src/types/github"
 
 const Feature = ({ title, icon, children, ...props }) => {
   return (
@@ -100,7 +102,15 @@ const StatBox = (props: StatBoxProps) => {
   )
 }
 
-const HomePage = ({ members, sponsors }) => {
+interface HomePageProps {
+  members: Member[]
+  sponsors: {
+    companies: Sponsor[]
+    individuals: Sponsor[]
+  }
+}
+
+const HomePage = ({ members, sponsors }: HomePageProps) => {
   return (
     <>
       <SEO
@@ -627,7 +637,7 @@ const HomePage = ({ members, sponsors }) => {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps({ req }) {
   /**
    * Read the profile/bio of each member from `.all-membersrc` file
    * to avoid overfetching from Github
@@ -656,8 +666,9 @@ export async function getStaticProps() {
       members: members.filter((m) => !filters.includes(m.login)),
       contributors,
       sponsors,
+      cookies: req.headers.cookie ?? "",
     },
   }
 }
 
-export default HomePage
+export default withChakra<HomePageProps>(HomePage)

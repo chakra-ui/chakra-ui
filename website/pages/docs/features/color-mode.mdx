@@ -130,14 +130,22 @@ const customTheme = extendTheme({ config })
 function App() {
   return (
     // 4. pass to `ChakraProvider` as usual
+<<<<<<< HEAD
     <ChakraProvider theme={customtheme} resetCSS>
+=======
+    <ChakraProvider theme={customtheme}>
+>>>>>>> c30d7b88c3fa02bc176e6df79c4bfa5effaa136b
       <h1>Example</h1>
     </ChakraProvider>
   )
 }
 ```
 
+<<<<<<< HEAD
 ## Add StorageManager (Optional)
+=======
+## Add colorModeManager (Optional)
+>>>>>>> c30d7b88c3fa02bc176e6df79c4bfa5effaa136b
 
 For server-side rendered sites, e.g. in Next.js, you may want to know the color
 preference of a user upfront so you can avoid rendering the initial color mode
@@ -153,6 +161,7 @@ Here's how to do this in Next 9.3 or newer:
 
 // e.g. Chakra.js
 
+<<<<<<< HEAD
 // 1. import `ChakraProvider` component and `cookieStorageManager`
 import { ChakraProvider, cookieStorageManager } from "@chakra-ui/core"
 
@@ -160,6 +169,25 @@ export function Chakra({ cookies, children }) {
   // 2. Pass `storageManager` prop accepting `cookies` via props
   return (
     <ChakraProvider resetCSS storageManager={cookieStorageManager(cookies)}>
+=======
+// 1. import `ChakraProvider` component
+import {
+  ChakraProvider,
+  cookieStorageManager,
+  localStorageManager,
+} from "@chakra-ui/core"
+
+export function Chakra({ cookies, children }) {
+  // 2. Pass `colorModeManager` prop
+  return (
+    <ChakraProvider
+      colorModeManager={
+        typeof cookies === "string"
+          ? cookieStorageManager(cookies)
+          : localStorageManager
+      }
+    >
+>>>>>>> c30d7b88c3fa02bc176e6df79c4bfa5effaa136b
       {children}
     </ChakraProvider>
   )
@@ -199,12 +227,31 @@ avoiding `getInitialProps`. The following example is for Next 9.2 or older!
 ```jsx live=false
 // _app.js / _app.tsx
 
+<<<<<<< HEAD
 import { ChakraProvider, cookieStorageManager } from "@chakra-ui/core"
 
 export default function App({ cookies }) {
   // 2. Use at the root of your app and pass `storageManager` prop
   return (
     <ChakraProvider resetCSS storageManager={cookieStorageManager(cookies)}>
+=======
+import {
+  ChakraProvider,
+  cookieStorageManager,
+  localStorageManager,
+} from "@chakra-ui/core"
+
+export default function App({ cookies }) {
+  // 2. Pass `colorModeManager` prop - it finds the relevant cookie on its own
+  return (
+    <ChakraProvider
+      colorModeManager={
+        typeof cookies === "string"
+          ? cookieStorageManager(cookies)
+          : localStorageManager
+      }
+    >
+>>>>>>> c30d7b88c3fa02bc176e6df79c4bfa5effaa136b
       <h1>Example</h1>
     </ChakraProvider>
   )

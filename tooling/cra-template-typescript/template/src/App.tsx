@@ -7,13 +7,13 @@ import {
   VStack,
   Code,
   Grid,
+  theme,
 } from "@chakra-ui/core"
-import theme from "@chakra-ui/theme"
 import { ColorModeSwitcher } from "./ColorModeSwitcher"
 import { Logo } from "./Logo"
 
 export const App = () => (
-  <ChakraProvider resetCSS theme={theme}>
+  <ChakraProvider theme={theme}>
     <Box textAlign="center" fontSize="xl">
       <Grid minH="100vh" p={3}>
         <ColorModeSwitcher justifySelf="flex-end" />

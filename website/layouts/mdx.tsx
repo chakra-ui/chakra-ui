@@ -9,8 +9,9 @@ import { findRouteByPath, removeFromLast } from "utils/find-route-by-path"
 import { getRouteContext } from "utils/get-route-context"
 import Sidebar from "components/sidebar/sidebar"
 import Pagination from "components/pagination"
+import { withChakra } from "components/chakra"
 
-export default function MDXLayout({ frontmatter, children }) {
+function MDXLayout({ frontmatter, children }) {
   const { slug } = frontmatter
 
   const config = slug.startsWith("/guides") ? guidesSidebar : docsSidebar
@@ -36,3 +37,5 @@ export default function MDXLayout({ frontmatter, children }) {
     </MDXProvider>
   )
 }
+
+export default withChakra(MDXLayout)

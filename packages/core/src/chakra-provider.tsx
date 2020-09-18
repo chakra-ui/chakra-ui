@@ -25,15 +25,18 @@ export interface ChakraProviderProps {
    * If `true`, `CSSReset` component will be mounted to help
    * you reset browser styles
    *
-   * @default undefined
+   * @default true
    */
   resetCSS?: boolean
   /**
-   * the storage to persist the theme in
+   * manager to persist a users color mode preference in
+   *
+   * omit if you don't render server-side
+   * for SSR: choose `cookieStorageManager`
    *
    * @default localStorageManager
    */
-  storageManager?: ColorModeProviderProps["storageManager"]
+  colorModeManager?: ColorModeProviderProps["colorModeManager"]
   children?: React.ReactNode
 }
 
@@ -44,16 +47,16 @@ export interface ChakraProviderProps {
 export const ChakraProvider = (props: ChakraProviderProps) => {
   const {
     children,
-    resetCSS,
+    colorModeManager,
     portalZIndex,
+    resetCSS = true,
     theme = defaultTheme,
-    storageManager,
   } = props
 
   return (
     <ThemeProvider theme={theme}>
       <ColorModeProvider
-        storageManager={storageManager}
+        colorModeManager={colorModeManager}
         defaultValue={theme.config?.initialColorMode}
         useSystemColorMode={theme.config?.useSystemColorMode}
       >

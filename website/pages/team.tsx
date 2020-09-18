@@ -13,11 +13,13 @@ import {
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
 import Container from "components/container"
 import Header from "components/header"
+import { withChakra } from "components/chakra"
 import SEO from "components/seo"
 import fs from "fs"
 import path from "path"
 import * as React from "react"
 import { IoIosGlobe, IoLogoGithub, IoLogoTwitter } from "react-icons/io"
+import { Contributor, Member as IMember } from "src/types/github"
 
 const SocialLink = ({ icon, href }) => (
   <Link
@@ -38,7 +40,7 @@ const SocialLink = ({ icon, href }) => (
   </Link>
 )
 
-function Member({ member }) {
+function Member({ member }: { member: IMember }) {
   const {
     avatar_url: avatarUrl,
     bio,
@@ -74,7 +76,12 @@ function Member({ member }) {
   )
 }
 
-function Team({ members, contributors }) {
+interface TeamProps {
+  members: IMember[]
+  contributors: Contributor[]
+}
+
+function Team({ members, contributors }: TeamProps) {
   const memberLogins = members.map(({ login }) => login)
   const contributorsWithoutTeam = contributors.filter(
     ({ login }) => !memberLogins.includes(login),
@@ -179,7 +186,7 @@ const sortMembers = (a, b) => {
   return a.login.localeCompare(b.login, "en")
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps({ req }) {
   /**
    * Read the profile/bio of each member from `.all-membersrc` file
    * to avoid overfetching from Github
@@ -201,8 +208,9 @@ export async function getStaticProps() {
     props: {
       members: members.filter((m) => !filters.includes(m.login)),
       contributors,
+      cookies: req.headers.cookie ?? "",
     },
   }
 }
 
-export default Team
+export default withChakra<TeamProps>(Team)

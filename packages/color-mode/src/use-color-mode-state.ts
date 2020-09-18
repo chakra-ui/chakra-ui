@@ -1,4 +1,5 @@
 import { useLatestRef } from "@chakra-ui/hooks"
+import { isBrowser } from "@chakra-ui/utils"
 import * as React from "react"
 import {
   addListener,
@@ -46,7 +47,7 @@ export interface ColorModeOptions {
 }
 
 interface useColorModeStateOptions extends ColorModeOptions {
-  storageManager: StorageManager
+  colorModeManager: StorageManager
 }
 
 /**
@@ -54,9 +55,25 @@ interface useColorModeStateOptions extends ColorModeOptions {
  * and reads from system preference
  */
 export function useColorModeState(options: useColorModeStateOptions) {
-  const { storageManager, useSystemColorMode, initialColorMode } = options
+  const { colorModeManager, useSystemColorMode, initialColorMode } = options
 
-  const [mode, setMode] = React.useState<ColorMode>(initialColorMode ?? "light")
+  const [mode, setMode] = React.useState<ColorMode>(() => {
+    // only attempt to retrieve if we're on the server. else this will
+    // result in a hydration mismatch warning and result in partially invalid
+    // visuals
+    const stored =
+      colorModeManager.type === "cookie" ? colorModeManager.get() : undefined
+
+    if (stored) {
+      return stored
+    }
+
+    if (useSystemColorMode && isBrowser) {
+      return getColorScheme()
+    }
+
+    return initialColorMode ?? "light"
+  })
 
   const toggleColorMode = () => setMode(mode === "light" ? "dark" : "light")
 
@@ -64,27 +81,24 @@ export function useColorModeState(options: useColorModeStateOptions) {
   useSyncSystemColorMode(setMode, !!useSystemColorMode)
 
   React.useEffect(() => {
-    const stored = storageManager.get()
+    // since we cannot initially retrieve localStorage to due above mentioned
+    // reasons, do so after hydration
+    if (colorModeManager.type === "localStorage") {
+      const stored = colorModeManager.get()
 
-    const detectedMode = stored
-      ? // given a previous value, use that
-        stored
-      : // if should detect, use that
-      useSystemColorMode
-      ? getColorScheme()
-      : // else no change necessary
-        undefined
-
-    if (detectedMode) {
-      setMode(detectedMode)
+      if (stored && stored !== mode) {
+        setMode(stored)
+      }
     }
-  }, [storageManager, useSystemColorMode])
+    // omitted to prevent infinite render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [colorModeManager])
 
   React.useEffect(() => {
     if (mode) {
-      storageManager.set(mode)
+      colorModeManager.set(mode)
     }
-  }, [mode, storageManager])
+  }, [mode, colorModeManager])
 
   return {
     mode,

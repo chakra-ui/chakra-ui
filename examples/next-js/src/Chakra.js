@@ -1,10 +1,17 @@
-import { ChakraProvider, cookieStorageManager } from "@chakra-ui/core"
+import {
+  ChakraProvider,
+  cookieStorageManager,
+  localStorageManager,
+} from "@chakra-ui/core"
 
-export const Chakra = ({ children, cookies = "" }) => {
+export const Chakra = ({ children, cookies }) => {
   return (
     <ChakraProvider
-      resetCSS
-      storageManager={cookies ? cookieStorageManager(cookies) : undefined}
+      colorModeManager={
+        typeof cookies === "string"
+          ? cookieStorageManager(cookies)
+          : localStorageManager
+      }
     >
       {children}
     </ChakraProvider>
