@@ -16,11 +16,10 @@ function setScript() {
 }
 
 /**
- * Script to add to the root of your application to help prevent
- * flash of color mode that can happen during page load.
- *
- * This is particular useful for SSG in Gatsby or Next.js
+ * Script to add to the root of your application when using localStorage,
+ * to help prevent flash of color mode that can happen during page load.
  */
-export const ColorModeScript = () => (
-  <script dangerouslySetInnerHTML={{ __html: `(${String(setScript)})()` }} />
-)
+export const ColorModeScript = () => {
+  const __html = `(${String(setScript)})()`
+  return <script dangerouslySetInnerHTML={{ __html }} />
+}

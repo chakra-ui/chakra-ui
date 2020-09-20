@@ -39,11 +39,7 @@ export function withChakra<P = {}>(
 ) {
   const C = ({ cookies, ...rest }: WithCookies & P) => {
     return (
-      <ChakraProvider
-        theme={theme}
-        colorModeManager={determineColorModeManager(cookies)}
-        portalZIndex={40}
-      >
+      <ChakraProvider theme={theme} portalZIndex={40}>
         <WrappedComponent {...(rest as P)} />
       </ChakraProvider>
     )

@@ -13,7 +13,6 @@ import {
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
 import Container from "components/container"
 import Header from "components/header"
-import { withChakra } from "components/chakra"
 import SEO from "components/seo"
 import fs from "fs"
 import path from "path"
@@ -213,4 +212,4 @@ export async function getServerSideProps({ req }) {
   }
 }
 
-export default withChakra<TeamProps>(Team)
+export default Team

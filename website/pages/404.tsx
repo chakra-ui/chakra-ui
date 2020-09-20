@@ -1,6 +1,5 @@
-import React from "react"
 import SEO from "components/seo"
-import { withChakra } from "components/chakra"
+import React from "react"
 
 const NotFoundPage = () => (
   <>
@@ -10,4 +9,4 @@ const NotFoundPage = () => (
   </>
 )
 
-export default withChakra(NotFoundPage)
+export default NotFoundPage

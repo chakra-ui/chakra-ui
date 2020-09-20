@@ -20,7 +20,6 @@ import {
 } from "@chakra-ui/core"
 import { chunk } from "@chakra-ui/utils"
 import users from "chakra-users"
-import { withChakra } from "components/chakra"
 import Container from "components/container"
 import DiscordStrip from "components/discord-strip"
 import { Footer } from "components/footer"
@@ -671,4 +670,4 @@ export async function getServerSideProps({ req }) {
   }
 }
 
-export default withChakra<HomePageProps>(HomePage)
+export default HomePage

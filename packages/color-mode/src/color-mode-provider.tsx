@@ -1,5 +1,6 @@
 import { isBrowser, noop, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
+import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import {
   addListener,
   ColorMode,
@@ -18,6 +19,7 @@ export interface ColorModeOptions {
 interface ColorModeContextType {
   colorMode: ColorMode
   toggleColorMode: () => void
+  setColorMode: (value: any) => void
 }
 
 export const ColorModeContext = React.createContext({} as ColorModeContextType)
@@ -76,7 +78,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     return defaultValue ?? "light"
   })
 
-  React.useEffect(() => {
+  useSafeLayoutEffect(() => {
     /**
      * Since we cannot initially retrieve localStorage to due above mentioned
      * reasons, do so after hydration
@@ -90,9 +92,9 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     }
     // omitted to prevent infinite render
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [colorModeManager])
+  }, [])
 
-  React.useEffect(() => {
+  useSafeLayoutEffect(() => {
     syncBodyClassName(colorMode === "dark")
   }, [colorMode])
 
@@ -120,6 +122,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   const context = {
     colorMode: value ?? colorMode,
     toggleColorMode: value ? noop : toggleColorMode,
+    setColorMode: value ? noop : setColorMode,
   }
 
   return (
@@ -138,7 +141,7 @@ if (__DEV__) {
  */
 export const DarkMode: React.FC = (props) => (
   <ColorModeContext.Provider
-    value={{ colorMode: "dark", toggleColorMode: noop }}
+    value={{ colorMode: "dark", toggleColorMode: noop, setColorMode: noop }}
     {...props}
   />
 )
@@ -152,7 +155,7 @@ if (__DEV__) {
  */
 export const LightMode: React.FC = (props) => (
   <ColorModeContext.Provider
-    value={{ colorMode: "light", toggleColorMode: noop }}
+    value={{ colorMode: "light", toggleColorMode: noop, setColorMode: noop }}
     {...props}
   />
 )

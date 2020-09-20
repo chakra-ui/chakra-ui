@@ -1,15 +1,14 @@
-import * as React from "react"
 import * as chakraComponents from "@chakra-ui/core"
 import { MDXProvider } from "@mdx-js/react"
 import MDXComponents from "components/mdx-components"
 import PageContainer from "components/page-container"
-import guidesSidebar from "configs/guides-sidebar"
+import Pagination from "components/pagination"
+import Sidebar from "components/sidebar/sidebar"
 import docsSidebar from "configs/docs-sidebar"
+import guidesSidebar from "configs/guides-sidebar"
+import * as React from "react"
 import { findRouteByPath, removeFromLast } from "utils/find-route-by-path"
 import { getRouteContext } from "utils/get-route-context"
-import Sidebar from "components/sidebar/sidebar"
-import Pagination from "components/pagination"
-import { withChakra } from "components/chakra"
 
 function MDXLayout({ frontmatter, children }) {
   const { slug } = frontmatter
@@ -38,4 +37,4 @@ function MDXLayout({ frontmatter, children }) {
   )
 }
 
-export default withChakra(MDXLayout)
+export default MDXLayout
