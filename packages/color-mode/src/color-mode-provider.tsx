@@ -1,6 +1,5 @@
 import { isBrowser, noop, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import {
   addListener,
   ColorMode,
@@ -61,24 +60,26 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     colorModeManager = localStorageManager,
   } = props
 
-  const [colorMode, rawSetColorMode] = React.useState<ColorMode>(() => {
-    /**
-     * Only attempt to retrieve if we're on the server. else this will
-     * result in a hydration mismatch warning and result in partially invalid visuals
-     */
-    const stored =
-      colorModeManager.type === "cookie" ? colorModeManager.get() : undefined
+  const [colorMode, rawSetColorMode] = React.useState<ColorMode | undefined>(
+    () => {
+      /**
+       * Only attempt to retrieve if we're on the server. else this will
+       * result in a hydration mismatch warning and result in partially invalid visuals
+       */
+      const stored =
+        colorModeManager.type === "cookie" ? colorModeManager.get() : undefined
 
-    if (stored) return stored
+      if (stored) return stored
 
-    if (isBrowser && useSystemColorMode) {
-      return getColorScheme()
-    }
+      if (isBrowser && useSystemColorMode) {
+        return getColorScheme()
+      }
 
-    return defaultValue ?? "light"
-  })
+      return undefined
+    },
+  )
 
-  useSafeLayoutEffect(() => {
+  React.useEffect(() => {
     /**
      * Since we cannot initially retrieve localStorage to due above mentioned
      * reasons, do so after hydration
@@ -94,7 +95,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useSafeLayoutEffect(() => {
+  React.useEffect(() => {
     syncBodyClassName(colorMode === "dark")
   }, [colorMode])
 
@@ -120,7 +121,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
 
   // presence of `value` indicates a controlled context
   const context = {
-    colorMode: value ?? colorMode,
+    colorMode: (value ?? colorMode) as ColorMode,
     toggleColorMode: value ? noop : toggleColorMode,
     setColorMode: value ? noop : setColorMode,
   }
