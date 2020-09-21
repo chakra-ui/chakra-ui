@@ -155,6 +155,23 @@ export const WithLoading = () => (
   </Stack>
 )
 
+export const withDisabled = () => (
+  <HStack spacing="24px">
+    <Button isDisabled colorScheme="teal" variant="solid">
+      Button
+    </Button>
+    <Button isDisabled colorScheme="teal" variant="outline">
+      Button
+    </Button>
+    <Button isDisabled colorScheme="teal" variant="ghost">
+      Button
+    </Button>
+    <Button isDisabled colorScheme="teal" variant="link">
+      Button
+    </Button>
+  </HStack>
+)
+
 export const customComposition = () => (
   <Button
     size="md"
