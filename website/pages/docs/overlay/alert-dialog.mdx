@@ -54,7 +54,7 @@ to prevent users from accidentally confirming the destructive action.
 
 ```jsx
 function AlertDialogExample() {
-  const [isOpen, setIsOpen] = React.useState()
+  const [isOpen, setIsOpen] = React.useState(false)
   const onClose = () => setIsOpen(false)
   const cancelRef = React.useRef()
 
