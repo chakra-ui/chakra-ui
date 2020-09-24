@@ -41,7 +41,7 @@ export interface UsePopoverProps {
    * If `true`, focus will be returned to the element that triggers the popover
    * when it closes
    */
-  returnFocus?: boolean
+  returnFocusOnClose?: boolean
   /**
    * If `true`, focus will be transferred to the first interactive element
    * when the popover opens
@@ -114,7 +114,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     gutter,
     id,
     arrowSize,
-    returnFocus = true,
+    returnFocusOnClose = true,
     autoFocus = true,
     arrowShadowColor,
     modifiers,
@@ -156,7 +156,7 @@ export function usePopover(props: UsePopoverProps = {}) {
   })
 
   useFocusOnHide(popoverRef, {
-    autoFocus: returnFocus,
+    autoFocus: returnFocusOnClose,
     visible: isOpen,
     focusRef: triggerRef,
     trigger,

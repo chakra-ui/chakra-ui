@@ -584,13 +584,6 @@ Due to accessibility reasons, we've deprecated the `isDisabled` prop for `Link`.
 </Slider>
 ```
 
-### Popover
-
-- `returnFocusOnClose` has been changed to `returnFocus` for conciseness.
-
-- `autoFocus` prop to allow users to control whether the popover should
-  automatically receive focus when it opens.
-
 ### Switch
 
 Rename the `color` prop to `colorScheme`
@@ -650,13 +643,13 @@ import "focus-visible/dist/focus-visible"
 ```
 
 ### Hooks
+
 - `useDisclosure` now accepts `object` instead of `boolean` as initial values
 
 ```diff
 - const { isOpen, onToggle } = useDisclosure(true);
 + const { isOpen, onToggle } = useDisclosure({defaultIsOpen: true});
 ```
-
 
 **That's it! Welcome to Chakra UI v1.**
 
