@@ -57,8 +57,7 @@ export const ChakraProvider = (props: ChakraProviderProps) => {
     <ThemeProvider theme={theme}>
       <ColorModeProvider
         colorModeManager={colorModeManager}
-        defaultValue={theme.config?.initialColorMode}
-        useSystemColorMode={theme.config?.useSystemColorMode}
+        useSystemColorMode={!!theme.config?.useSystemColorMode}
       >
         {resetCSS && <CSSReset />}
         <GlobalStyle />
