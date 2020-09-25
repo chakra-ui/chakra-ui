@@ -2,10 +2,11 @@ import React, { StrictMode } from "react"
 import { render } from "react-dom"
 import App from "./App"
 import * as serviceWorker from "./serviceWorker"
-import { ChakraProvider } from "@chakra-ui/core"
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/core"
 
 render(
   <StrictMode>
+    <ColorModeScript />
     <ChakraProvider>
       <App />
     </ChakraProvider>
