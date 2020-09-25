@@ -245,7 +245,6 @@ export function useTabList<P extends UseTabListProps>(props: P) {
 
       if (action) {
         event.preventDefault()
-        event.stopPropagation()
         action(event)
       }
     },

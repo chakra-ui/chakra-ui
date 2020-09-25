@@ -1,6 +1,5 @@
-import { Booleanish } from "./types"
+import { Booleanish, EventKeys } from "./types"
 import * as React from "react"
-import { EventKeys } from "./keydown"
 
 let _window: Window | undefined = undefined
 

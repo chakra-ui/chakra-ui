@@ -171,7 +171,6 @@ export function useEditable(props: UseEditableProps = {}) {
       const action = keyMap[eventKey]
       if (action) {
         event.preventDefault()
-        event.stopPropagation()
         action(event)
       }
     },

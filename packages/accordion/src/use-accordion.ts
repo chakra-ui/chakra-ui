@@ -253,7 +253,6 @@ export function useAccordionItem(props: UseAccordionItemProps) {
 
       if (action) {
         event.preventDefault()
-        event.stopPropagation()
         action(event)
       }
     },

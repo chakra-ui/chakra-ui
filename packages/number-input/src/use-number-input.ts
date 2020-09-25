@@ -3,6 +3,7 @@ import { useBoolean } from "@chakra-ui/hooks"
 import {
   ariaAttr,
   callAllHandlers,
+  EventKeyMap,
   focus,
   isBrowser,
   isNull,
@@ -200,25 +201,18 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
       const eventKey = normalizeEventKey(event)
 
-      switch (eventKey) {
-        case "ArrowUp":
-          event.preventDefault()
-          increment(stepFactor)
-          break
-        case "ArrowDown":
-          event.preventDefault()
-          decrement(stepFactor)
-          break
-        case "Home":
-          event.preventDefault()
-          updateFn(min)
-          break
-        case "End":
-          event.preventDefault()
-          updateFn(max)
-          break
-        default:
-          break
+      const keyMap: EventKeyMap = {
+        ArrowUp: () => increment(stepFactor),
+        ArrowDown: () => decrement(stepFactor),
+        Home: () => updateFn(min),
+        End: () => updateFn(max),
+      }
+
+      const action = keyMap[eventKey]
+
+      if (action) {
+        event.preventDefault()
+        action(event)
       }
     },
     [updateFn, decrement, increment, max, min, stepProp],

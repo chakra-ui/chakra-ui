@@ -13,7 +13,6 @@ import {
   addItem,
   callAllHandlers,
   createContext,
-  createOnKeyDown,
   cx,
   dataAttr,
   EventKeyMap,
@@ -30,12 +29,12 @@ import {
 } from "@chakra-ui/utils"
 import { useInteractOutside } from "@react-aria/interactions"
 import React, {
-  useCallback,
-  useState,
-  HTMLAttributes,
-  useRef,
   cloneElement,
+  HTMLAttributes,
   MouseEvent,
+  useCallback,
+  useRef,
+  useState,
 } from "react"
 
 const [MenuProvider, useMenuContext] = createContext<UseMenuReturn>({
@@ -242,36 +241,50 @@ export function useMenuList(props: UseMenuListProps) {
     preventDefault: (event) => event.key !== " ",
   })
 
-  const onKeyDown = createOnKeyDown({
-    onKeyDown: onCharacterPress((character) => {
-      /**
-       * Typeahead: Based on current character pressed,
-       * find the next item to be selected
-       */
-      const nextItem = getNextItemFromSearch(
-        descendants,
-        character,
-        (node) => node.element?.textContent || "",
-        descendants[focusedIndex],
-      )
-
-      if (nextItem) {
-        const index = descendants.indexOf(nextItem)
-        setFocusedIndex(index)
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      const eventKey = normalizeEventKey(event)
+      const keyMap: EventKeyMap = {
+        Escape: onClose,
+        ArrowDown: () => {
+          const nextIndex = getNextIndex(focusedIndex, descendants.length)
+          setFocusedIndex(nextIndex)
+        },
+        ArrowUp: () => {
+          const prevIndex = getPrevIndex(focusedIndex, descendants.length)
+          setFocusedIndex(prevIndex)
+        },
       }
-    }),
-    keyMap: {
-      Escape: onClose,
-      ArrowDown: () => {
-        const nextIndex = getNextIndex(focusedIndex, descendants.length)
-        setFocusedIndex(nextIndex)
-      },
-      ArrowUp: () => {
-        const prevIndex = getPrevIndex(focusedIndex, descendants.length)
-        setFocusedIndex(prevIndex)
-      },
+
+      const action = keyMap[eventKey]
+
+      if (action) {
+        event.preventDefault()
+        action(event)
+      } else {
+        const action = onCharacterPress((character) => {
+          /**
+           * Typeahead: Based on current character pressed,
+           * find the next item to be selected
+           */
+          const nextItem = getNextItemFromSearch(
+            descendants,
+            character,
+            (node) => node.element?.textContent || "",
+            descendants[focusedIndex],
+          )
+
+          if (nextItem) {
+            const index = descendants.indexOf(nextItem)
+            setFocusedIndex(index)
+          }
+        })
+
+        action(event)
+      }
     },
-  })
+    [descendants, focusedIndex, onCharacterPress, onClose, setFocusedIndex],
+  )
 
   return {
     ...props,

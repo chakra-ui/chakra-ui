@@ -1,9 +1,9 @@
 import { chakra, PropsOf, forwardRef, PropsWithAs } from "@chakra-ui/system"
-import { SafeMerge } from "@chakra-ui/utils"
+import { Merge } from "@chakra-ui/utils"
 import * as React from "react"
 import { UseClickableProps, useClickable } from "../src"
 
-export type ClickableProps = SafeMerge<
+export type ClickableProps = Merge<
   UseClickableProps,
   PropsWithAs<typeof chakra.button, {}>
 >
