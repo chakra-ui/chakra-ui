@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/drawer",
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0-rc.4",
   "description": "React component the renders a Drawer from the edges of the screen",
   "keywords": [
     "drawer",
@@ -50,12 +50,12 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/modal": "1.0.0-rc.3",
-    "@chakra-ui/transition": "1.0.0-rc.3",
-    "@chakra-ui/utils": "1.0.0-rc.3"
+    "@chakra-ui/modal": "1.0.0-rc.4",
+    "@chakra-ui/transition": "1.0.0-rc.4",
+    "@chakra-ui/utils": "1.0.0-rc.4"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.0.0-rc.3"
+    "@chakra-ui/system": "1.0.0-rc.4"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=1.0.0-rc.3",
