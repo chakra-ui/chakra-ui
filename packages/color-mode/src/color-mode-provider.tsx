@@ -46,6 +46,11 @@ export interface ColorModeProviderProps {
   colorModeManager?: StorageManager
 }
 
+const setRootProperty = (mode: ColorMode) => {
+  const root = document.documentElement
+  root.style.setProperty("--chakra-ui-color-mode", mode)
+}
+
 /**
  * Provides context for the color mode based on config in `theme`
  * Returns the color mode and function to toggle the color mode
@@ -61,7 +66,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   const [colorMode, rawSetColorMode] = React.useState<ColorMode | undefined>(
     () => {
       /**
-       * Only attempt to retrieve if we're on the server. else this will result
+       * Only attempt to retrieve if we're on the server. Else this will result
        * in a hydration mismatch warning and partially invalid visuals
        */
       if (colorModeManager.type === "cookie") {
@@ -98,13 +103,15 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   }, [colorModeManager.type])
 
   React.useEffect(() => {
-    syncBodyClassName(colorMode === "dark")
+    const isDark = colorMode === "dark"
+
+    syncBodyClassName(isDark)
+    setRootProperty(isDark ? "dark" : "light")
   }, [colorMode])
 
   const setColorMode = React.useCallback(
     (value: ColorMode) => {
-      const root = document.documentElement
-      root.style.setProperty("--chakra-ui-color-mode", value)
+      setRootProperty(value)
       colorModeManager.set(value)
       rawSetColorMode(value)
     },
