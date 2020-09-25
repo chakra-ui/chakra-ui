@@ -60,6 +60,7 @@ export interface UseTooltipProps {
    * If `true`, the tooltip will not be shown on any trigger
    */
   isDisabled?: boolean
+  gutter?: UsePopperProps["gutter"]
 }
 
 export function useTooltip(props: UseTooltipProps = {}) {
@@ -77,6 +78,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     arrowSize = 10,
     modifiers,
     isDisabled,
+    gutter,
     ...htmlProps
   } = props
 
@@ -92,6 +94,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     placement,
     arrowSize,
     modifiers,
+    gutter,
   })
 
   const tooltipId = useId(id, "tooltip")
