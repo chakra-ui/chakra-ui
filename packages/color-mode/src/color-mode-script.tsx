@@ -34,7 +34,7 @@ function setScript(initialValue: Mode) {
 }
 
 interface ColorModeScriptProps {
-  defaultColorMode?: ColorMode
+  initialColorMode?: ColorMode
 }
 
 /**
@@ -42,7 +42,7 @@ interface ColorModeScriptProps {
  * to help prevent flash of color mode that can happen during page load.
  */
 export const ColorModeScript = (props: ColorModeScriptProps) => {
-  const { defaultColorMode = "light" } = props
-  const __html = `(${String(setScript)})(\"${defaultColorMode}\")`
+  const { initialColorMode = "light" } = props
+  const __html = `(${String(setScript)})(\"${initialColorMode}\")`
   return <script dangerouslySetInnerHTML={{ __html }} />
 }
