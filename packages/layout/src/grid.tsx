@@ -6,7 +6,7 @@ import {
   forwardRef,
   ResponsiveValue,
 } from "@chakra-ui/system"
-import { mapResponsive, __DEV__ } from "@chakra-ui/utils"
+import { filterUndefined, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import { BoxProps } from "./box"
 
 export interface GridProps extends PropsOf<typeof chakra.div>, GridOptions {}
@@ -36,25 +36,23 @@ export const Grid = forwardRef<GridProps, "div">(function Grid(props, ref) {
     ...rest
   } = props
 
-  return (
-    <chakra.div
-      ref={ref}
-      display="grid"
-      gridArea={area}
-      gridTemplateAreas={templateAreas}
-      gridGap={gap}
-      gridRowGap={rowGap}
-      gridColumnGap={columnGap}
-      gridAutoColumns={autoColumns}
-      gridColumn={column}
-      gridRow={row}
-      gridAutoFlow={autoFlow}
-      gridAutoRows={autoRows}
-      gridTemplateRows={templateRows}
-      gridTemplateColumns={templateColumns}
-      {...rest}
-    />
-  )
+  const styles = filterUndefined({
+    display: "grid",
+    gridArea: area,
+    gridTemplateAreas: templateAreas,
+    gridGap: gap,
+    gridRowGap: rowGap,
+    gridColumnGap: columnGap,
+    gridAutoColumns: autoColumns,
+    gridColumn: column,
+    gridRow: row,
+    gridAutoFlow: autoFlow,
+    gridAutoRows: autoRows,
+    gridTemplateRows: templateRows,
+    gridTemplateColumns: templateColumns,
+  })
+
+  return <chakra.div ref={ref} __css={styles} {...rest} />
 })
 
 if (__DEV__) {
@@ -126,16 +124,16 @@ export interface GridColumnProps extends BoxProps {
 export const GridColumn = forwardRef<GridColumnProps, "div">(
   function GridColumn(props, ref) {
     const { span, start, ...rest } = props
-    const gridColumn = mapResponsive(span, (v) =>
-      v === "auto" ? "auto" : `span ${v}/span ${v}`,
+
+    const gridColumn = mapResponsive(span, (value) =>
+      value === "auto" ? "auto" : `span ${value}/span ${value}`,
     )
-    return (
-      <chakra.div
-        ref={ref}
-        gridColumn={gridColumn}
-        gridColumnStart={start}
-        {...rest}
-      />
-    )
+
+    const styles = filterUndefined({
+      gridColumn: gridColumn,
+      gridColumnStart: start,
+    })
+
+    return <chakra.div ref={ref} __css={styles} {...rest} />
   },
 )

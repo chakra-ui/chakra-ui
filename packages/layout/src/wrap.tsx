@@ -1,10 +1,10 @@
 import {
   chakra,
   css,
+  forwardRef,
   PropsOf,
   SystemProps,
   useTheme,
-  forwardRef,
 } from "@chakra-ui/system"
 import { getValidChildren, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -68,22 +68,20 @@ export const Wrap = forwardRef<WrapProps, "div">(function Wrap(props, ref) {
     </chakra.li>
   ))
 
+  const styles = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: justify,
+    alignItems: align,
+    flexDirection: direction,
+    listStyleType: "none",
+    padding: "0",
+    margin: groupSpacing,
+  }
+
   return (
     <chakra.div ref={ref} {...rest}>
-      <chakra.ul
-        __css={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: justify,
-          alignItems: align,
-          flexDirection: direction,
-          listStyleType: "none",
-          padding: "0",
-          margin: groupSpacing,
-        }}
-      >
-        {clones}
-      </chakra.ul>
+      <chakra.ul __css={styles}>{clones}</chakra.ul>
     </chakra.div>
   )
 })
