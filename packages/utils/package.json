@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/utils",
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0-rc.4",
   "description": "Common utilties and types for Chakra UI",
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -39,12 +39,12 @@
   "dependencies": {
     "@types/lodash.merge": "4.6.6",
     "@types/lodash.mergewith": "4.6.6",
+    "@types/object-assign": "4.0.30",
     "css-box-model": "1.2.1",
     "lodash.merge": "4.6.2",
-    "object-assign": "4.1.1",
-    "@types/object-assign": "4.0.30",
     "lodash.mergewith": "4.6.2",
-    "memoize-one": "5.1.1"
+    "memoize-one": "5.1.1",
+    "object-assign": "4.1.1"
   },
   "peerDependencies": {
     "react": "16.x"

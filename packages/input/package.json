@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/input",
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0-rc.4",
   "description": "A React component for input text field",
   "keywords": [
     "react",
@@ -47,11 +47,11 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/form-control": "1.0.0-rc.3",
-    "@chakra-ui/utils": "1.0.0-rc.3"
+    "@chakra-ui/form-control": "1.0.0-rc.4",
+    "@chakra-ui/utils": "1.0.0-rc.4"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.0.0-rc.3"
+    "@chakra-ui/system": "1.0.0-rc.4"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=1.0.0-rc.3",
