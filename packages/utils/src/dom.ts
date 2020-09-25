@@ -1,5 +1,6 @@
 import { Booleanish } from "./types"
 import * as React from "react"
+import { EventKeys } from "./keydown"
 
 let _window: Window | undefined = undefined
 
@@ -47,7 +48,9 @@ export function normalizeEventKey(event: React.KeyboardEvent) {
   const isArrowKey =
     keyCode >= 37 && keyCode <= 40 && key.indexOf("Arrow") !== 0
 
-  return isArrowKey ? `Arrow${key}` : key
+  const eventKey = isArrowKey ? `Arrow${key}` : key
+
+  return eventKey as EventKeys
 }
 
 export const dataAttr = (condition: boolean | undefined) =>

@@ -4,11 +4,12 @@ import {
   addItem,
   callAllHandlers,
   createContext,
-  createOnKeyDown,
+  EventKeyMap,
   getNextIndex,
   getPrevIndex,
   isArray,
   mergeRefs,
+  normalizeEventKey,
   PropGetter,
   removeItem,
 } from "@chakra-ui/utils"
@@ -222,31 +223,42 @@ export function useAccordionItem(props: UseAccordionItemProps) {
 
   /**
    * Manage keyboard navigation between accordion items.
-   * `createOnKeyDown` makes it easy to write actions
-   * for each event key
    */
-  const onKeyDown = createOnKeyDown({
-    keyMap: {
-      ArrowDown: () => {
-        const nextIndex = getNextIndex(index, descendants.length)
-        const nextAccordion = descendants[nextIndex]
-        nextAccordion?.element?.focus()
-      },
-      ArrowUp: () => {
-        const prevIndex = getPrevIndex(index, descendants.length)
-        const prevAccordion = descendants[prevIndex]
-        prevAccordion?.element?.focus()
-      },
-      Home: () => {
-        const firstAccordion = descendants[0]
-        firstAccordion?.element?.focus()
-      },
-      End: () => {
-        const lastAccordion = descendants[descendants.length - 1]
-        lastAccordion?.element?.focus()
-      },
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      const eventKey = normalizeEventKey(event)
+
+      const keyMap: EventKeyMap = {
+        ArrowDown: () => {
+          const nextIndex = getNextIndex(index, descendants.length)
+          const nextAccordion = descendants[nextIndex]
+          nextAccordion?.element?.focus()
+        },
+        ArrowUp: () => {
+          const prevIndex = getPrevIndex(index, descendants.length)
+          const prevAccordion = descendants[prevIndex]
+          prevAccordion?.element?.focus()
+        },
+        Home: () => {
+          const firstAccordion = descendants[0]
+          firstAccordion?.element?.focus()
+        },
+        End: () => {
+          const lastAccordion = descendants[descendants.length - 1]
+          lastAccordion?.element?.focus()
+        },
+      }
+
+      const action = keyMap[eventKey]
+
+      if (action) {
+        event.preventDefault()
+        event.stopPropagation()
+        action(event)
+      }
     },
-  })
+    [descendants, index],
+  )
 
   /**
    * Since each accordion item's button still remains tabbable, let's

@@ -2,9 +2,10 @@ import { useControllableState, useUpdateEffect } from "@chakra-ui/hooks"
 import {
   ariaAttr,
   callAllHandlers,
-  createOnKeyDown,
+  EventKeyMap,
   isEmpty,
   mergeRefs,
+  normalizeEventKey,
   PropGetter,
 } from "@chakra-ui/utils"
 import { ChangeEvent, useCallback, useRef, useState } from "react"
@@ -154,16 +155,28 @@ export function useEditable(props: UseEditableProps = {}) {
     [setValue],
   )
 
-  const onKeyDown = createOnKeyDown({
-    keyMap: {
-      Escape: onCancel,
-      Enter: (event) => {
-        if (!event.shiftKey && !event.metaKey) {
-          onSubmit()
-        }
-      },
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      const eventKey = normalizeEventKey(event)
+
+      const keyMap: EventKeyMap = {
+        Escape: onCancel,
+        Enter: (event) => {
+          if (!event.shiftKey && !event.metaKey) {
+            onSubmit()
+          }
+        },
+      }
+
+      const action = keyMap[eventKey]
+      if (action) {
+        event.preventDefault()
+        event.stopPropagation()
+        action(event)
+      }
     },
-  })
+    [onCancel, onSubmit],
+  )
 
   const isValueEmpty = isEmpty(value)
 

@@ -7,24 +7,26 @@ import {
 } from "@chakra-ui/hooks"
 import {
   callAllHandlers,
-  createOnKeyDown,
+  createContext,
   Dict,
+  EventKeyMap,
   getValidChildren,
   isUndefined,
   mergeRefs,
-  createContext,
+  normalizeEventKey,
 } from "@chakra-ui/utils"
 import {
-  cloneElement,
-  useState,
-  useRef,
-  useEffect,
-  ReactNode,
-  ReactElement,
-  KeyboardEventHandler,
   ButtonHTMLAttributes,
-  Ref,
+  cloneElement,
   CSSProperties,
+  KeyboardEventHandler,
+  ReactElement,
+  ReactNode,
+  Ref,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
 } from "react"
 
 export interface UseTabsProps {
@@ -208,42 +210,47 @@ export function useTabList<P extends UseTabListProps>(props: P) {
   /**
    * Function to update the selected tab index
    */
-  const setIndex = (index: number) => {
-    const tab = enabledDomContext.descendants[index]
-    if (tab?.element) {
-      tab.element.focus()
-      setFocusedIndex(index)
-    }
-  }
-
-  // Helper functions for keyboard navigation
-  const nextTab = () => {
-    const nextIndex = (focusedIndex + 1) % count
-    setIndex(nextIndex)
-  }
-
-  const prevTab = () => {
-    const prevIndex = (focusedIndex - 1 + count) % count
-    setIndex(prevIndex)
-  }
-
-  const firstTab = () => setIndex(0)
-
-  const lastTab = () => setIndex(count - 1)
-
-  const isHorizontal = orientation === "horizontal"
-  const isVertical = orientation === "vertical"
-
-  const onKeyDown = createOnKeyDown({
-    keyMap: {
-      ArrowRight: () => isHorizontal && nextTab(),
-      ArrowLeft: () => isHorizontal && prevTab(),
-      ArrowDown: () => isVertical && nextTab(),
-      ArrowUp: () => isVertical && prevTab(),
-      Home: () => firstTab(),
-      End: () => lastTab(),
+  const setIndex = useCallback(
+    (index: number) => {
+      const tab = enabledDomContext.descendants[index]
+      if (tab?.element) {
+        tab.element.focus()
+        setFocusedIndex(index)
+      }
     },
-  })
+    [enabledDomContext.descendants, setFocusedIndex],
+  )
+
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      const nextTab = () => setIndex((focusedIndex + 1) % count)
+      const prevTab = () => setIndex((focusedIndex - 1 + count) % count)
+      const firstTab = () => setIndex(0)
+      const lastTab = () => setIndex(count - 1)
+
+      const isHorizontal = orientation === "horizontal"
+      const isVertical = orientation === "vertical"
+
+      const eventKey = normalizeEventKey(event)
+      const keyMap: EventKeyMap = {
+        ArrowRight: () => isHorizontal && nextTab(),
+        ArrowLeft: () => isHorizontal && prevTab(),
+        ArrowDown: () => isVertical && nextTab(),
+        ArrowUp: () => isVertical && prevTab(),
+        Home: firstTab,
+        End: lastTab,
+      }
+
+      const action = keyMap[eventKey]
+
+      if (action) {
+        event.preventDefault()
+        event.stopPropagation()
+        action(event)
+      }
+    },
+    [count, focusedIndex, orientation, setIndex],
+  )
 
   return {
     ...props,

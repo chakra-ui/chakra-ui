@@ -74,6 +74,10 @@ export interface UseNumberInputProps extends UseCounterProps {
    * "decimal"
    */
   inputMode?: React.InputHTMLAttributes<any>["inputMode"]
+  /**
+   * If `true`, the input's value will change based on mouse wheel
+   */
+  allowMouseWheel?: boolean
 }
 
 /**
@@ -101,6 +105,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     isInvalid,
     pattern = "[0-9]*(.[0-9]+)?",
     inputMode = "decimal",
+    allowMouseWheel,
     id,
     /**
      * These props are destructured to ensure `htmlProps` resolves to the correct type
@@ -219,7 +224,9 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     [updateFn, decrement, increment, max, min, stepProp],
   )
 
-  const getStepFactor = (event: KeyboardEvent) => {
+  const getStepFactor = <E extends React.KeyboardEvent | React.WheelEvent>(
+    event: E,
+  ) => {
     let ratio = 1
     if (event.metaKey || event.ctrlKey) {
       ratio = 0.1
@@ -314,6 +321,24 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       ? "onTouchStart"
       : "onMouseDown"
 
+  const onWheel = useCallback(
+    (event: React.WheelEvent) => {
+      if (!allowMouseWheel) return
+
+      event.preventDefault()
+      event.stopPropagation()
+      const stepFactor = getStepFactor(event) * stepProp
+      const direction = Math.sign(event.deltaY)
+
+      if (direction === -1) {
+        increment(stepFactor)
+      } else if (direction === 1) {
+        decrement(stepFactor)
+      }
+    },
+    [increment, decrement, stepProp, allowMouseWheel],
+  )
+
   const getIncrementButtonProps: PropGetter = useCallback(
     (props = {}, ref = null) => ({
       ...props,
@@ -372,6 +397,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
       onFocus: callAllHandlers(props.onFocus, setFocused.on),
       onBlur: callAllHandlers(props.onBlur, onBlur),
+      onWheel: callAllHandlers(props.onWheel, onWheel),
     }),
     [
       inputMode,
@@ -389,6 +415,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       onBlur,
       onChange,
       onKeyDown,
+      onWheel,
       setFocused.on,
     ],
   )

@@ -16,6 +16,7 @@ import {
   createOnKeyDown,
   cx,
   dataAttr,
+  EventKeyMap,
   focus,
   getNextIndex,
   getNextItemFromSearch,
@@ -24,6 +25,7 @@ import {
   isArray,
   isString,
   mergeRefs,
+  normalizeEventKey,
   removeItem,
 } from "@chakra-ui/utils"
 import { useInteractOutside } from "@react-aria/interactions"
@@ -338,13 +340,25 @@ export function useMenuButton(props: UseMenuButtonProps) {
     }
   }, [autoSelect, isOpen, onClose, openAndFocusFirstItem, openAndFocusMenu])
 
-  const onKeyDown = createOnKeyDown({
-    keyMap: {
-      Enter: openAndFocusFirstItem,
-      ArrowDown: openAndFocusFirstItem,
-      ArrowUp: openAndFocusLastItem,
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      const eventKey = normalizeEventKey(event)
+      const keyMap: EventKeyMap = {
+        Enter: openAndFocusFirstItem,
+        ArrowDown: openAndFocusFirstItem,
+        ArrowUp: openAndFocusLastItem,
+      }
+
+      const action = keyMap[eventKey]
+
+      if (action) {
+        event.preventDefault()
+        event.stopPropagation()
+        action(event)
+      }
     },
-  })
+    [openAndFocusFirstItem, openAndFocusLastItem],
+  )
 
   return {
     ...props,

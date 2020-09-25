@@ -5,7 +5,7 @@ import * as React from "react"
 import { runIfFn } from "./function"
 import { normalizeEventKey } from "./dom"
 
-type EventKeys =
+export type EventKeys =
   | "ArrowDown"
   | "ArrowUp"
   | "ArrowLeft"
@@ -25,12 +25,11 @@ type EventKeys =
   | " "
   | "Shift"
 
-type KeyMapReturn = (event: React.KeyboardEvent) => any
-type KeyMap = Partial<Record<EventKeys, KeyMapReturn>>
+export type EventKeyMap = Partial<Record<EventKeys, React.KeyboardEventHandler>>
 
 export interface CreateOnKeyDownOptions {
-  keyMap?: KeyMap
-  onKey?: (event: React.KeyboardEvent) => any
+  keyMap?: EventKeyMap
+  onKey?: (event: React.KeyboardEvent) => void
   preventDefault?: boolean | ((event: React.KeyboardEvent) => boolean)
   stopPropagation?: boolean | ((event: React.KeyboardEvent) => boolean)
   onKeyDown?: (event: React.KeyboardEvent) => void
