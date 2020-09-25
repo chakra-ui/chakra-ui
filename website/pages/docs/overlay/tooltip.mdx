@@ -32,8 +32,11 @@ import { Tooltip } from "@chakra-ui/core"
 
 ## Usage
 
-If the `children` of Tooltip is a string, we wrap with in a `span` with
+If the `children` of Tooltip is a `string`, we wrap with in a `span` with
 `tabIndex` set to `0`, to ensure it meets the accessibility requirements.
+
+> Note 🚨: If the Tooltip is wrapped in a functional component. Ensure you
+> `forwardRef` to this component.
 
 ```jsx
 <Tooltip label="Hey, I'm here!" aria-label="A tooltip">
