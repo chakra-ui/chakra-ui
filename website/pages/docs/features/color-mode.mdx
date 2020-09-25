@@ -118,7 +118,7 @@ To support this, extend the default theme with a `config` key matching
 // 1. import `ChakraProvider` component and `extendTheme`
 import { extendTheme, ChakraProvider } from "@chakra-ui/core"
 
-// 2. declare your configuration
+// 2. declare your configuration, these are the defaults
 const config = {
   useSystemColorMode: false,
   initialColorMode: "light",
@@ -130,22 +130,80 @@ const customTheme = extendTheme({ config })
 function App() {
   return (
     // 4. pass to `ChakraProvider` as usual
-<<<<<<< HEAD
-    <ChakraProvider theme={customtheme} resetCSS>
-=======
     <ChakraProvider theme={customtheme}>
->>>>>>> c30d7b88c3fa02bc176e6df79c4bfa5effaa136b
       <h1>Example</h1>
     </ChakraProvider>
   )
 }
 ```
 
-<<<<<<< HEAD
-## Add StorageManager (Optional)
-=======
+[Learn more about customizing your theme.](/docs/theming/customize-theme)
+
+## Add ColorModeScript
+
+Add the `ColorModeScript` to allow Chakra to determine the initial `ColorMode`
+without weird visual glitches.
+
+**create-react-app and similar**
+
+```jsx live=false
+// index.js
+import ReactDOM from "react-dom"
+import App from "./App"
+
+ReactDOM.render(
+  <>
+    {/* 👇 Here's the script */}
+    <ColorModeScript initialColorMode="light" />
+    <App />
+  </>,
+  document.getElementById("root"),
+)
+```
+
+**With Next.js**
+
+```jsx live=false
+// adjust your pages/_document.js
+import { ColorModeScript } from "@chakra-ui/core"
+
+export default class Document extends NextDocument {
+  static getInitialProps(ctx) {
+    return NextDocument.getInitialProps(ctx)
+  }
+
+  render() {
+    return (
+      <Html>
+        <Head />
+        <body>
+          {/* 👇 Here's the script */}
+          <ColorModeScript initialColorMode="light" />
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
+  }
+}
+```
+
+**With Gatsby**
+
+```jsx live=false
+// gatsby-ssr.js
+export const onRenderBody = ({ setPreBodyComponents }) => {
+  setPreBodyComponents([
+    <ColorModeScript initialColorMode="light" key="chakra-ui-no-flash" />,
+  ])
+}
+```
+
+> **Important**: If you customize your `initialColorMode` to be `dark`, import
+> your custom theme here and reference
+> `initialColorMode={customTheme.config.initialColorMode}` to keep it in sync.
+
 ## Add colorModeManager (Optional)
->>>>>>> c30d7b88c3fa02bc176e6df79c4bfa5effaa136b
 
 For server-side rendered sites, e.g. in Next.js, you may want to know the color
 preference of a user upfront so you can avoid rendering the initial color mode
@@ -154,23 +212,13 @@ and then changing it during hydration (so-called `flashing`).
 If you don't use SSR or don't care about this, you don't need to pass anything.
 Chakra will use `localStorageManager` by default.
 
-Here's how to do this in Next 9.3 or newer:
+Here's how to do this in Next.js 9.3 or newer:
+
+1. Create a reusable wrapper as demonstrated in the examples:
 
 ```jsx live=false
-// create a reusable wrapper as demonstrated in the examples
-
-// e.g. Chakra.js
-
-<<<<<<< HEAD
-// 1. import `ChakraProvider` component and `cookieStorageManager`
-import { ChakraProvider, cookieStorageManager } from "@chakra-ui/core"
-
-export function Chakra({ cookies, children }) {
-  // 2. Pass `storageManager` prop accepting `cookies` via props
-  return (
-    <ChakraProvider resetCSS storageManager={cookieStorageManager(cookies)}>
-=======
-// 1. import `ChakraProvider` component
+// e.g. src/Chakra.js
+// a) import `ChakraProvider` component as well as the storageManagers
 import {
   ChakraProvider,
   cookieStorageManager,
@@ -178,16 +226,13 @@ import {
 } from "@chakra-ui/core"
 
 export function Chakra({ cookies, children }) {
-  // 2. Pass `colorModeManager` prop
+  // b) Pass `colorModeManager` prop
+  const colorModeManager = cookies
+    ? cookieStorageManager(cookies)
+    : localStorageManager
+
   return (
-    <ChakraProvider
-      colorModeManager={
-        typeof cookies === "string"
-          ? cookieStorageManager(cookies)
-          : localStorageManager
-      }
-    >
->>>>>>> c30d7b88c3fa02bc176e6df79c4bfa5effaa136b
+    <ChakraProvider colorModeManager={colorModeManager}>
       {children}
     </ChakraProvider>
   )
@@ -203,10 +248,12 @@ export function getServerSideProps({ req }) {
     },
   }
 }
+```
 
-// e.g index.js
+2. Import your wrapper component setting up Chakra:
 
-// import your wrapper component setting up chakra
+```jsx live=false
+// e.g pages/index.js
 import { Chakra } from "./Chakra"
 
 export default function Index({ cookies }) {
@@ -217,24 +264,16 @@ export default function Index({ cookies }) {
   )
 }
 
-// export the reusable `getServerSideProps` function
+// re-export the reusable `getServerSideProps` function
 export { getServerSideProps } from "./Chakra"
 ```
 
-Important: if you're using `Next.js 9.3` or newer, the Next.js team recommends
-avoiding `getInitialProps`. The following example is for Next 9.2 or older!
+> **Important:** if you're using `Next.js 9.3` or newer, the Next.js team
+> recommends avoiding `getInitialProps`. The following example is for Next 9.2
+> or older!
 
 ```jsx live=false
-// _app.js / _app.tsx
-
-<<<<<<< HEAD
-import { ChakraProvider, cookieStorageManager } from "@chakra-ui/core"
-
-export default function App({ cookies }) {
-  // 2. Use at the root of your app and pass `storageManager` prop
-  return (
-    <ChakraProvider resetCSS storageManager={cookieStorageManager(cookies)}>
-=======
+// pages/_app.js
 import {
   ChakraProvider,
   cookieStorageManager,
@@ -251,7 +290,6 @@ export default function App({ cookies }) {
           : localStorageManager
       }
     >
->>>>>>> c30d7b88c3fa02bc176e6df79c4bfa5effaa136b
       <h1>Example</h1>
     </ChakraProvider>
   )

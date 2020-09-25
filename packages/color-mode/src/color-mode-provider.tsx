@@ -42,8 +42,13 @@ export const useColorMode = () => {
 export interface ColorModeProviderProps {
   value?: ColorMode
   children?: React.ReactNode
-  useSystemColorMode?: boolean
+  options: ColorModeOptions
   colorModeManager?: StorageManager
+}
+
+const setRootProperty = (mode: ColorMode) => {
+  const root = document.documentElement
+  root.style.setProperty("--chakra-ui-color-mode", mode)
 }
 
 /**
@@ -54,53 +59,59 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   const {
     value,
     children,
-    useSystemColorMode,
+    options: { useSystemColorMode, initialColorMode },
     colorModeManager = localStorageManager,
   } = props
 
   const [colorMode, rawSetColorMode] = React.useState<ColorMode | undefined>(
     () => {
       /**
-       * Only attempt to retrieve if we're on the server. else this will
-       * result in a hydration mismatch warning and result in partially invalid visuals
+       * Only attempt to retrieve if we're on the server. Else this will result
+       * in a hydration mismatch warning and partially invalid visuals
        */
-      const stored =
-        colorModeManager.type === "cookie" ? colorModeManager.get() : undefined
-
-      if (stored) return stored
+      if (colorModeManager.type === "cookie") {
+        // use `initialColorMode` here to be theme-aware
+        return colorModeManager.get(initialColorMode)
+      }
 
       if (isBrowser && useSystemColorMode) {
         return getColorScheme()
       }
 
-      return undefined
+      /**
+       * fallback safely to:
+       * - custom theme.config.initialColorMode
+       * - undefined, will be taken care of in useEffect
+       */
+      return initialColorMode
     },
   )
 
   React.useEffect(() => {
     /**
      * Since we cannot initially retrieve localStorage to due above mentioned
-     * reasons, do so after hydration
+     * reasons, do so after hydration.
      */
     if (colorModeManager.type === "localStorage") {
       const root = document.documentElement
       const mode = root.style.getPropertyValue(
         "--chakra-ui-color-mode",
       ) as ColorMode
+
       rawSetColorMode(mode)
     }
-    // omitted to prevent infinite render
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [colorModeManager.type])
 
   React.useEffect(() => {
-    syncBodyClassName(colorMode === "dark")
+    const isDark = colorMode === "dark"
+
+    syncBodyClassName(isDark)
+    setRootProperty(isDark ? "dark" : "light")
   }, [colorMode])
 
   const setColorMode = React.useCallback(
     (value: ColorMode) => {
-      const root = document.documentElement
-      root.style.setProperty("--chakra-ui-color-mode", value)
+      setRootProperty(value)
       colorModeManager.set(value)
       rawSetColorMode(value)
     },

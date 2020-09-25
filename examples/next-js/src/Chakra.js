@@ -8,9 +8,7 @@ export const Chakra = ({ children, cookies }) => {
   return (
     <ChakraProvider
       colorModeManager={
-        typeof cookies === "string"
-          ? cookieStorageManager(cookies)
-          : localStorageManager
+        cookies ? cookieStorageManager(cookies) : localStorageManager
       }
     >
       {children}
