@@ -82,7 +82,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
      * Since we cannot initially retrieve localStorage to due above mentioned
      * reasons, do so after hydration
      */
-    if (colorModeManager.type === "localStorage") {
+    if (colorModeManager.type === "localStorage" || !colorMode) {
       const root = document.documentElement
       const mode = root.style.getPropertyValue(
         "--chakra-ui-color-mode",
