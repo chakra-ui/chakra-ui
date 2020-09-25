@@ -28,7 +28,7 @@ Please check the type of change your PR introduces:
 
 <!-- Please describe the current behavior that you are modifying, or link to a relevant issue. -->
 
-Issue Number: N/A
+Fixes: [ISSUE NUMBER]
 
 ## What is the new behavior?
 
