@@ -185,7 +185,7 @@ const sortMembers = (a, b) => {
   return a.login.localeCompare(b.login, "en")
 }
 
-export async function getServerSideProps({ req }) {
+export async function getStaticProps() {
   /**
    * Read the profile/bio of each member from `.all-membersrc` file
    * to avoid overfetching from Github
@@ -207,7 +207,6 @@ export async function getServerSideProps({ req }) {
     props: {
       members: members.filter((m) => !filters.includes(m.login)),
       contributors,
-      cookies: req.headers.cookie ?? "",
     },
   }
 }
