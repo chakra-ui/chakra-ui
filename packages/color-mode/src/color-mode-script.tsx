@@ -34,7 +34,7 @@ function setScript(initialValue: Mode) {
 }
 
 interface ColorModeScriptProps {
-  initialColorMode?: ColorMode
+  initialColorMode?: Mode
 }
 
 /**
