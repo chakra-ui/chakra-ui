@@ -1,17 +1,17 @@
 import {
   Dict,
-  get,
   isArray,
+  isCustomBreakpoint,
   isObject,
   isResponsiveObjectLike,
+  memoizedGet as get,
+  merge,
   objectToArrayNotation,
   runIfFn,
-  merge,
-  isCustomBreakpoint,
 } from "@chakra-ui/utils"
-import { pseudoSelectors } from "./pseudo"
+import { CSSObject, StyleObjectOrFn } from "./css.types"
 import { parser } from "./parser"
-import { StyleObjectOrFn, CSSObject } from "./css.types"
+import { pseudoSelectors } from "./pseudo"
 
 interface Cache {
   themeBreakpoints: string[]

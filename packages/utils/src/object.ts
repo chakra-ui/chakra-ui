@@ -1,3 +1,4 @@
+import memoizeOne from "memoize-one"
 import type { Omit, Dict } from "./types"
 export { default as merge } from "lodash.merge"
 export { default as mergeWith } from "lodash.mergewith"
@@ -58,6 +59,9 @@ export function get(
   }
   return obj === undefined ? fallback : obj
 }
+
+// Just a memoized version of `get`
+export const memoizedGet = memoizeOne(get)
 
 /**
  * Get value from deeply nested object, based on path

@@ -1,5 +1,10 @@
 import { SystemStyleObject, useTheme } from "@chakra-ui/system"
-import { Dict, get, runIfFn, createContext } from "@chakra-ui/utils"
+import {
+  Dict,
+  memoizedGet as get,
+  runIfFn,
+  createContext,
+} from "@chakra-ui/utils"
 import * as React from "react"
 import { TransitionConfig, transitionConfigToCSS } from "./transition-config"
 

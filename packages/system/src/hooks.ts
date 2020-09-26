@@ -3,7 +3,7 @@ import { SystemStyleObject } from "@chakra-ui/styled-system"
 import {
   Dict,
   filterUndefined,
-  get,
+  memoizedGet as get,
   merge,
   runIfFn,
   StringOrNumber,
