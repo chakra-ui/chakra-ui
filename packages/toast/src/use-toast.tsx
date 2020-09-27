@@ -190,11 +190,17 @@ export function createStandaloneToast({
  * to show toasts in an application.
  */
 export function useToast() {
-  const { theme, ...colorMode } = useChakra()
-  return React.useMemo(() => createStandaloneToast({ theme, ...colorMode }), [
-    theme,
-    colorMode,
-  ])
+  const { theme, setColorMode, toggleColorMode, colorMode } = useChakra()
+  return React.useMemo(
+    () =>
+      createStandaloneToast({
+        theme,
+        colorMode,
+        setColorMode,
+        toggleColorMode,
+      }),
+    [theme, setColorMode, toggleColorMode, colorMode],
+  )
 }
 
 export default useToast
