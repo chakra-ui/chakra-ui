@@ -201,6 +201,211 @@ exports[`Checkbox renders correctly 1`] = `
 </DocumentFragment>
 `;
 
+exports[`accepts custom icon 1`] = `
+<DocumentFragment>
+  .emotion-3 {
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  vertical-align: top;
+  position: relative;
+}
+
+.emotion-3[disabled],
+.emotion-3[disabled]:focus,
+.emotion-3[disabled]:hover,
+.emotion-3[aria-disabled=true],
+.emotion-3[aria-disabled=true]:focus,
+.emotion-3[aria-disabled=true]:hover,
+.emotion-3[data-disabled],
+.emotion-3[data-disabled]:focus,
+.emotion-3[data-disabled]:hover {
+  cursor: not-allowed;
+}
+
+.emotion-1 {
+  width: 1rem;
+  -webkit-transition: box-shadow 250ms;
+  transition: box-shadow 250ms;
+  border: 2px solid;
+  border-radius: 0.125rem;
+  border-color: inherit;
+  color: #FFFFFF;
+  height: 1rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  vertical-align: top;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-1[aria-checked=true],
+.emotion-1[data-checked] {
+  background: #3182ce;
+  border-color: #3182ce;
+  color: #FFFFFF;
+}
+
+.emotion-1[aria-checked=true]:hover,
+.emotion-1[data-checked]:hover,
+.emotion-1[aria-checked=true][data-hover],
+.emotion-1[data-checked][data-hover] {
+  background: #2b6cb0;
+  border-color: #2b6cb0;
+}
+
+.emotion-1[aria-checked=true][disabled],
+.emotion-1[data-checked][disabled],
+.emotion-1[aria-checked=true][disabled]:focus,
+.emotion-1[data-checked][disabled]:focus,
+.emotion-1[aria-checked=true][disabled]:hover,
+.emotion-1[data-checked][disabled]:hover,
+.emotion-1[aria-checked=true][aria-disabled=true],
+.emotion-1[data-checked][aria-disabled=true],
+.emotion-1[aria-checked=true][aria-disabled=true]:focus,
+.emotion-1[data-checked][aria-disabled=true]:focus,
+.emotion-1[aria-checked=true][aria-disabled=true]:hover,
+.emotion-1[data-checked][aria-disabled=true]:hover,
+.emotion-1[aria-checked=true][data-disabled],
+.emotion-1[data-checked][data-disabled],
+.emotion-1[aria-checked=true][data-disabled]:focus,
+.emotion-1[data-checked][data-disabled]:focus,
+.emotion-1[aria-checked=true][data-disabled]:hover,
+.emotion-1[data-checked][data-disabled]:hover {
+  border-color: #E2E8F0;
+  background: #E2E8F0;
+  color: #718096;
+}
+
+.emotion-1:indeterminate,
+.emotion-1[aria-checked=mixed],
+.emotion-1[data-indeterminate] {
+  background: #3182ce;
+  border-color: #3182ce;
+  color: #FFFFFF;
+}
+
+.emotion-1[disabled],
+.emotion-1[disabled]:focus,
+.emotion-1[disabled]:hover,
+.emotion-1[aria-disabled=true],
+.emotion-1[aria-disabled=true]:focus,
+.emotion-1[aria-disabled=true]:hover,
+.emotion-1[data-disabled],
+.emotion-1[data-disabled]:focus,
+.emotion-1[data-disabled]:hover {
+  background: #EDF2F7;
+  border-color: #EDF2F7;
+}
+
+.emotion-1:focus,
+.emotion-1[data-focus] {
+  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+}
+
+.emotion-1[aria-invalid=true],
+.emotion-1[data-invalid] {
+  border-color: #E53E3E;
+}
+
+.emotion-2 {
+  margin-left: 0.5rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 1rem;
+}
+
+.emotion-2[disabled],
+.emotion-2[disabled]:focus,
+.emotion-2[disabled]:hover,
+.emotion-2[aria-disabled=true],
+.emotion-2[aria-disabled=true]:focus,
+.emotion-2[aria-disabled=true]:hover,
+.emotion-2[data-disabled],
+.emotion-2[data-disabled]:focus,
+.emotion-2[data-disabled]:hover {
+  opacity: 0.4;
+}
+
+.emotion-0 {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  line-height: 1em;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  opacity: 1;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: -webkit-transform 200ms;
+  -webkit-transition: transform 200ms;
+  transition: transform 200ms;
+  font-size: 0.625rem;
+  vertical-align: middle;
+}
+
+<label
+    class="chakra-checkbox emotion-3"
+  >
+    <input
+      checked=""
+      class="chakra-checkbox__input"
+      style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+      type="checkbox"
+      value=""
+    />
+    <div
+      aria-hidden="true"
+      class="chakra-checkbox__control emotion-1"
+      data-checked=""
+    >
+      <svg
+        class="chakra-icon emotion-0"
+        data-testid="custom-icon"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
+      class="chakra-checkbox__label emotion-2"
+      data-checked=""
+    >
+      hello world
+    </div>
+  </label>
+</DocumentFragment>
+`;
+
 exports[`matches snapshot  1`] = `
 <DocumentFragment>
   .emotion-2 {

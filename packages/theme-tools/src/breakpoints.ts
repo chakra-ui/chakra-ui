@@ -1,3 +1,5 @@
+import { fromEntries } from "@chakra-ui/utils"
+
 export interface BaseBreakpointConfig extends Record<string, string> {
   sm: string
   md: string
@@ -11,11 +13,11 @@ export type WithBase<T> = T & { base: "0em" }
 export const createBreakpoints = <T extends BaseBreakpointConfig>(
   config: T,
 ): Breakpoints<T> => {
-  const sorted = Object.fromEntries(
+  const sorted = fromEntries<WithBase<T>>(
     Object.entries({ base: "0em", ...config }).sort((a, b) =>
       parseInt(a[1]) > parseInt(b[1]) ? 1 : -1,
     ),
-  ) as WithBase<T>
+  )
 
   return Object.assign(Object.values(sorted), sorted)
 }

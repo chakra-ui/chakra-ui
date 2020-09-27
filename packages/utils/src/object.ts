@@ -102,3 +102,12 @@ export const filterUndefined = (object: Dict) =>
 
 export const objectKeys = <T extends Dict>(obj: T) =>
   (Object.keys(obj) as unknown) as (keyof T)[]
+
+/**
+ * Object.entries polyfill for Nodev10 compatibility
+ */
+export const fromEntries = <T extends unknown>(entries: [string, any][]) =>
+  entries.reduce((carry, [key, value]) => {
+    carry[key] = value
+    return carry
+  }, {}) as T

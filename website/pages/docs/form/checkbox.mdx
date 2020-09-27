@@ -125,19 +125,82 @@ function IndeterminateExample() {
         isChecked={allChecked}
         isIndeterminate={isIndeterminate}
         onChange={(e) => setCheckedItems([e.target.checked, e.target.checked])}
-        children="Parent Checkbox"
-      />
+      >
+        Parent Checkbox
+      </Checkbox>
       <Stack pl={6} mt={1} spacing={1}>
         <Checkbox
           isChecked={checkedItems[0]}
           onChange={(e) => setCheckedItems([e.target.checked, checkedItems[1]])}
-          children="Child Checkbox 1"
-        />
+        >
+          Child Checkbox 1
+        </Checkbox>
         <Checkbox
           isChecked={checkedItems[1]}
           onChange={(e) => setCheckedItems([checkedItems[0], e.target.checked])}
-          children="Child Checkbox 2"
-        />
+        >
+          Child Checkbox 2
+        </Checkbox>
+      </Stack>
+    </>
+  )
+}
+```
+
+### Icon
+
+```jsx
+function WithCustomIconExample() {
+  const [checkedItems, setCheckedItems] = React.useState([false, false])
+
+  const allChecked = checkedItems.every(Boolean)
+  const isIndeterminate = checkedItems.some(Boolean) && !allChecked
+
+  function CustomIcon(props) {
+    const { isIndeterminate, ...rest } = props
+
+    const d = isIndeterminate
+      ? "M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm0,19a1.5,1.5,0,1,1,1.5-1.5A1.5,1.5,0,0,1,12,19Zm1.6-6.08a1,1,0,0,0-.6.917,1,1,0,1,1-2,0,3,3,0,0,1,1.8-2.75A2,2,0,1,0,10,9.255a1,1,0,1,1-2,0,4,4,0,1,1,5.6,3.666Z"
+      : "M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"
+
+    return (
+      <Icon viewBox="0 0 24 24" {...rest}>
+        <path fill="currentColor" d={d} />
+      </Icon>
+    )
+  }
+
+  return (
+    <>
+      <Heading mb="4">Default</Heading>
+      <Checkbox icon={<CustomIcon />} colorScheme="red">
+        Hello world
+      </Checkbox>
+
+      <Divider mb="2" mt="2" />
+
+      <Heading mb="4">Indeterminate</Heading>
+      <Checkbox
+        isChecked={allChecked}
+        isIndeterminate={isIndeterminate}
+        onChange={(e) => setCheckedItems([e.target.checked, e.target.checked])}
+        icon={<CustomIcon />}
+      >
+        Parent Checkbox
+      </Checkbox>
+      <Stack ml="6" mt="2" align="start">
+        <Checkbox
+          isChecked={checkedItems[0]}
+          onChange={(e) => setCheckedItems([e.target.checked, checkedItems[1]])}
+        >
+          Child Checkbox 1
+        </Checkbox>
+        <Checkbox
+          isChecked={checkedItems[1]}
+          onChange={(e) => setCheckedItems([checkedItems[0], e.target.checked])}
+        >
+          Child Checkbox 2
+        </Checkbox>
       </Stack>
     </>
   )
@@ -171,25 +234,26 @@ creating tailor-made checkbox group component for your application
 
 ### Checkbox Props
 
-| Name             | Type                 | Default | Description                                                                                                              |
-| ---------------- | -------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
-| id               | `string`             |         | The id assigned to input field                                                                                           |
-| name             | `string`             |         | The name of the input field in a checkbox (Useful for form submission)                                                   |
-| value            | `string` or `number` |         | The value to be used in the checkbox input. This is the value that will be returned on form submission.                  |
-| colorScheme      | `string`             |         | The color of the checkbox when it's checked. This should be one of the color keys in the theme (e.g."green", "red")      |
-| defaultIsChecked | `boolean`            |         | If `true`, the checkbox will be initially checked.                                                                       |
-| isChecked        | `boolean`            |         | If `true`, the checkbox will be checked. You'll need to pass `onChange` to update it's value (since it's now controlled) |
-| isIndeterminate  | `boolean`            |         | If `true`, the checkbox will be indeterminate. This only affects the icon shown inside checkbox                          |
-| isFullWidth      | `boolean`            |         | If `true`, the checkbox should take up the full width of the parent.                                                     |
-| size             | `sm`, `md`, `lg`     | `md`    | The size (width and height) of the checkbox                                                                              |
-| isDisabled       | `boolean`            |         | If `true`, the checkbox will be disabled                                                                                 |
-| isInvalid        | `boolean`            |         | If `true`, the checkbox is marked as invalid. Changes style of unchecked state.                                          |
-| children         | `React.ReactNode`    |         | The children of the checkbox.                                                                                            |
-| onChange         | `function`           |         | Function called when the state of the checkbox changes.                                                                  |
-| onBlur           | `function`           |         | Function called when you blur out of the checkbox.                                                                       |
-| onFocus          | `function`           |         | Function called when the checkbox receive focus.                                                                         |
-| aria-label       | `string`             |         | An accessible label for the checkbox in event there's no visible label or `children` passed                              |
-| aria-labelledby  | `string`             |         | Id that points to the label for the checkbox in event no `children` was passed                                           |
+| Name             | Type                 | Default        | Description                                                                                                              |
+| ---------------- | -------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| id               | `string`             |                | The id assigned to input field                                                                                           |
+| name             | `string`             |                | The name of the input field in a checkbox (Useful for form submission)                                                   |
+| value            | `string` or `number` |                | The value to be used in the checkbox input. This is the value that will be returned on form submission.                  |
+| colorScheme      | `string`             |                | The color of the checkbox when it's checked. This should be one of the color keys in the theme (e.g."green", "red")      |
+| defaultIsChecked | `boolean`            |                | If `true`, the checkbox will be initially checked.                                                                       |
+| isChecked        | `boolean`            |                | If `true`, the checkbox will be checked. You'll need to pass `onChange` to update it's value (since it's now controlled) |
+| isIndeterminate  | `boolean`            |                | If `true`, the checkbox will be indeterminate. This only affects the icon shown inside checkbox                          |
+| isFullWidth      | `boolean`            |                | If `true`, the checkbox should take up the full width of the parent.                                                     |
+| size             | `sm`, `md`, `lg`     | `md`           | The size (width and height) of the checkbox                                                                              |
+| isDisabled       | `boolean`            |                | If `true`, the checkbox will be disabled                                                                                 |
+| icon             | `ReactElement`       | `CheckboxIcon` | If given, will use this icon instead of the default                                                                      |
+| isInvalid        | `boolean`            |                | If `true`, the checkbox is marked as invalid. Changes style of unchecked state.                                          |
+| children         | `React.ReactNode`    |                | The children of the checkbox.                                                                                            |
+| onChange         | `function`           |                | Function called when the state of the checkbox changes.                                                                  |
+| onBlur           | `function`           |                | Function called when you blur out of the checkbox.                                                                       |
+| onFocus          | `function`           |                | Function called when the checkbox receive focus.                                                                         |
+| aria-label       | `string`             |                | An accessible label for the checkbox in event there's no visible label or `children` passed                              |
+| aria-labelledby  | `string`             |                | Id that points to the label for the checkbox in event no `children` was passed                                           |
 
 ### CheckboxGroup Props
 
