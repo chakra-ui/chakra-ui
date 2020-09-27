@@ -62,9 +62,9 @@ export function addListener(fn: Function) {
   }
 
   listener()
-  mediaQueryList.addEventListener("change", listener)
+  mediaQueryList.addListener(listener)
 
   return () => {
-    mediaQueryList.removeEventListener("change", listener)
+    mediaQueryList.removeListener(listener)
   }
 }
