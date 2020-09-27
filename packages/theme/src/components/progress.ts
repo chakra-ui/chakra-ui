@@ -24,7 +24,7 @@ function filledStyle(props: Dict) {
 
   return {
     ...(addStripe && stripeStyle),
-    ...(isIndeterminate ? { bgImage: gradient } : { bg }),
+    ...(isIndeterminate ? { bgImage: gradient } : { bgColor: bg }),
   }
 }
 
