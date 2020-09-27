@@ -10,7 +10,7 @@ import {
 import { cx, Omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useCheckboxGroupContext } from "./checkbox-group"
-import { CheckboxIcon } from "./checkbox.icon"
+import { CheckboxIcon, CheckboxIconProps } from "./checkbox.icon"
 import { useCheckbox, UseCheckboxProps } from "./use-checkbox"
 
 const StyledControl = chakra("div", {
@@ -70,6 +70,12 @@ export interface CheckboxProps
    * The size of the checkbox icon when checked or indeterminate
    */
   iconSize?: string | number
+  /**
+   * The checked icon to use
+   *
+   * @default CheckboxIcon
+   */
+  icon?: React.ReactElement
 }
 
 /**
@@ -96,6 +102,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
     children,
     iconColor,
     iconSize,
+    icon: Icon = <CheckboxIcon />,
     ...rest
   } = ownProps
 
@@ -137,6 +144,11 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
     ...styles.icon,
   }
 
+  const icon = React.cloneElement(Icon, {
+    __css: iconStyles,
+    isIndeterminate: state.isIndeterminate,
+  })
+
   return (
     <StyledContainer
       __css={styles.container}
@@ -150,22 +162,19 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
         className="chakra-checkbox__control"
         {...checkboxProps}
       >
-        <CheckboxIcon
-          __css={iconStyles}
-          isChecked={state.isChecked}
-          isIndeterminate={state.isIndeterminate}
-        />
+        {icon}
       </StyledControl>
       {children && (
         <chakra.div
           className="chakra-checkbox__label"
           {...labelProps}
-          children={children}
           __css={{
             ml: spacing,
             ...styles.label,
           }}
-        />
+        >
+          {children}
+        </chakra.div>
       )}
     </StyledContainer>
   )
