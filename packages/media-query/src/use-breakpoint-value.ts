@@ -19,11 +19,12 @@ export function useBreakpointValue<T = any>(values: Record<string, T> | T[]) {
   }
 
   const obj = isArray(values)
-    ? Object.fromEntries(
-        Object.entries(
-          arrayToObjectNotation(values, breakpoints),
-        ).map(([_, value]) => [value, value]),
-      )
+    ? Object.entries(arrayToObjectNotation(values, breakpoints))
+        .map(([_, value]) => [value, value])
+        .reduce((carry, [key, value]) => {
+          carry[key] = value
+          return carry
+        }, {})
     : values
 
   const closest = getClosestValue(obj, breakpoint)
