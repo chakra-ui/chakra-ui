@@ -3,6 +3,150 @@ title: "Comparison"
 description: "What makes Chakra UI different from other UI libraries"
 ---
 
-Here's a Comparison between Chakra UI and popular UI or CSS Frameworks:
+When building a product, website, or application, it's a common question to
+consider the design system or component library to use to help you ship quality
+products fast, and deliver value to your customers in a way that scales with
+your team.
 
-// TODO
+Here's a comparison between Chakra UI and other popular UI or CSS frameworks
+like Theme UI, Tailwind CSS, and Material UI help you make the best decision.
+
+> This comparison strives to be as accurate and as unbiased as possible. If you
+> use any of these libraries and feel the information could be improved, feel
+> free to suggest changes (with notes or evidence of claims) using the "Edit
+> this page on Github" link at the bottom of this page.
+
+## How's Chakra different from Tailwind CSS?
+
+### Overview 🚩
+
+**Tailwind CSS**: CSS Framework that provides atomic CSS classes to help you
+**style** components, leaving you to handle lots of other things like
+accessibility, component composition, keyboard navigation, style overrides, etc.
+
+**Chakra UI**: A library of carefully created React components that comes with
+all the styling benefits of Tailwind and takes care of all the details.
+
+### Learning Curve 🌀
+
+**Tailwind CSS:** If you come from a bootstrap or bulma CSS background, you
+might find it easy to pick up Tailwind. However, from a `styled-components` or
+`emotion` background, the learning curve can be rather steep.
+
+**Chakra UI**: Comes with a very intuitive, CSS-like, and prop based model of
+styling components, making it easy to learn. The components name and prop names
+are also very easy to understand.
+
+### Responsive Styles 📱
+
+**Tailwind CSS**: Authoring responsive styles in tailwind requires a combination
+of pseudo-classes. This can get rather lengthy as your project grows. The API:
+`<img class="w-16 md:w-32 lg:w-48" src="...">`
+
+**Chakra UI**: Authoring responsive styles in a very easy and intuitive. You can
+use either the array or object notation.
+
+The API:
+
+- Array syntax: `<Img w={[16, 32, 48]} src="...">`
+- Object syntax: `<Img w={{ base: 16, md: 32, lg: 48 }} src="..." />`
+
+### Style Overrides 💫
+
+In most applications, its a common challenge to want to override styles for a
+specific context to match design requirements.
+
+**Tailwind CSS**: Given that Tailwind is a CSS utility framework, you might need
+to do figure out the best way to override specific classNames, or write custom
+CSS.
+
+**Chakra UI**: Given that Chakra UI styles are prop-based, overrides is as easy
+as passing a prop.
+
+### Accessibility ♿️
+
+As mentioned earlier, Tailwind CSS is simply a CSS framework similar to
+Bootstrap or Bulma CSS. This leaves to handle semantic html structure, meeting
+the WAI-ARIA requirements, keyboard navigation, etc.
+
+Chakra provides the convenience of Tailwind and all these benefits out the box.
+
+### Dark Mode 🌜
+
+**Tailwind CSS**: Not supported.
+
+**Chakra UI**: All components are light and dark mode compatible. You can also
+author your own light and dark mode experience across your application.
+
+## How's Chakra different from Theme UI?
+
+- Chakra UI was heavily inspired by Theme UI and follows the system UI
+  specifications.
+- Chakra UI provide more components, improved styling API, accessibility, and
+  intuive component APIs than Theme UI.
+- Think of Chakra as a more robust version of Theme UI that leverages the full
+  power of `styled-system` to provide better component styles and theming.
+
+## How's Chakra different from Material UI?
+
+// TO DO (Feel free to submit a PR)
+
+## How's Chakra different from Ant Design?
+
+// TO DO (Feel free to submit a PR)
+
+## The Runtime Trade-off ⚠️
+
+Since Chakra UI uses CSS-in-JS under the hood (`emotion` + `styled system`),
+this flexibility comes with a small price to pay when it comes to runtime. This
+runtime footprint is caused by style computations by `styled-system`, and
+className generation by `emotion`.
+
+If your app deals with high, frequently changing data that is performance
+sensitive, you might notice this footprint as your app grows.
+
+We recommend you compare with alternatives before making the decision to use
+Chakra, however, for most small or medium data-driven applications, we think
+Chakra UI is a perfect.
+
+## The Community 💖
+
+My favourite thing about Chakra UI is the community around it. Despite it still
+being small for now, it's growing daily and, everyone is so helpful and we keep
+striving for ways to improve Chakra UI's speed, performance and developer
+experience.
+
+## Community Remarks 💬
+
+"When I'm pitching Chakra, my main selling point is that Chakra makes it easier
+to customize components to be entirely your own. MUI has a distinctly "material"
+look that is difficult to get rid of even if you want to. Chakra strikes a
+balance of look nice out of the box and can morph into anything"
+
+**— Vynlar**
+[(View Quote)](https://github.com/chakra-ui/chakra-ui/issues/1421#issuecomment-664423035)
+
+"When we were in the process of choosing a component library, like most others
+that found Chakra, we were looking for something that did a lot of the heavy
+lifting for us whilst being as unopinionated as possible. This was a big reason
+that ruled most of the big players out (MUI, Ant). These big players are
+awesome, don't get me wrong, but because they come with their own design
+languages, you're kinda stuck with their look.
+
+Then there were a bunch of other medium/small players, such as variations of
+Bootstrap in React. Among other small issues, these libraries generally don't
+have large hyper-active communities.
+
+Then, I found Chakra.
+
+- ✅ A wide range of well-thought components.
+- ✅ Unopinionated. Chakra gives you the tools to easily make your components
+  look the way you want.
+- ✅ Built with accessibility in mind! You mean I don't have to worry about that
+  anymore!?
+- ✅ Amazing community, lead by a great team. ❤️
+
+I feel like Chakra is becoming a movement, and I'm excited for it."
+
+**— ChasinHues**
+[(View Quote)](https://github.com/chakra-ui/chakra-ui/issues/1421#issuecomment-692369895)
