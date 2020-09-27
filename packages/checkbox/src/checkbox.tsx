@@ -10,7 +10,7 @@ import {
 import { cx, Omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useCheckboxGroupContext } from "./checkbox-group"
-import { CheckboxIcon, CheckboxIconProps } from "./checkbox.icon"
+import { CheckboxIcon } from "./checkbox.icon"
 import { useCheckbox, UseCheckboxProps } from "./use-checkbox"
 
 const StyledControl = chakra("div", {
