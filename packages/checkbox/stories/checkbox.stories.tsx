@@ -1,7 +1,7 @@
 import * as React from "react"
 import { useCheckbox, CheckboxGroup, Checkbox } from "../src"
 import { Stack, Container, Heading, Divider } from "@chakra-ui/layout"
-import { AddIcon, Icon } from "@chakra-ui/icons"
+import { Icon } from "@chakra-ui/icon"
 import { CheckboxIconProps } from "../src/checkbox.icon"
 
 export default {
