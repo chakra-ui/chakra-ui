@@ -36,7 +36,7 @@ export const Grid = forwardRef<GridProps, "div">(function Grid(props, ref) {
     ...rest
   } = props
 
-  const styles = filterUndefined({
+  const styles = {
     display: "grid",
     gridArea: area,
     gridTemplateAreas: templateAreas,
@@ -50,7 +50,7 @@ export const Grid = forwardRef<GridProps, "div">(function Grid(props, ref) {
     gridAutoRows: autoRows,
     gridTemplateRows: templateRows,
     gridTemplateColumns: templateColumns,
-  })
+  }
 
   return <chakra.div ref={ref} __css={styles} {...rest} />
 })

@@ -46,7 +46,7 @@ export interface FlexProps extends PropsOf<typeof chakra.div>, FlexOptions {}
 export const Flex = forwardRef<FlexProps, "div">(function Flex(props, ref) {
   const { direction, align, justify, wrap, basis, grow, ...rest } = props
 
-  const styles = filterUndefined({
+  const styles = {
     display: "flex",
     flexDirection: direction,
     alignItems: align,
@@ -54,7 +54,7 @@ export const Flex = forwardRef<FlexProps, "div">(function Flex(props, ref) {
     flexWrap: wrap,
     flexBasis: basis,
     flexGrow: grow,
-  })
+  }
 
   return <chakra.div ref={ref} __css={styles} {...rest} />
 })
