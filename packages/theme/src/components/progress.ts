@@ -11,12 +11,12 @@ function filledStyle(props: Dict) {
     generateStripe("1rem", "rgba(0,0,0,0.1)"),
   )(props)
 
-  const bg = mode(`${c}.500`, `${c}.200`)(props)
+  const bgColor = mode(`${c}.500`, `${c}.200`)(props)
 
   const gradient = `linear-gradient(
     to right,
     transparent 0%,
-    ${getColor(t, bg)} 50%,
+    ${getColor(t, bgColor)} 50%,
     transparent 100%
   )`
 
@@ -24,7 +24,7 @@ function filledStyle(props: Dict) {
 
   return {
     ...(addStripe && stripeStyle),
-    ...(isIndeterminate ? { bgImage: gradient } : { bgColor: bg }),
+    ...(isIndeterminate ? { bgImage: gradient } : { bgColor }),
   }
 }
 
