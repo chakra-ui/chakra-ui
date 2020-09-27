@@ -1,6 +1,8 @@
 import * as React from "react"
 import { useCheckbox, CheckboxGroup, Checkbox } from "../src"
-import { Stack, Container } from "@chakra-ui/layout"
+import { Stack, Container, Heading, Divider } from "@chakra-ui/layout"
+import { Icon } from "@chakra-ui/icon"
+import { CheckboxIconProps } from "../src/checkbox.icon"
 
 export default {
   title: "Checkbox",
@@ -35,6 +37,59 @@ export const withColorScheme = () => {
       <Checkbox defaultIsChecked colorScheme="red" children="Hello world" />
       <Checkbox defaultIsChecked children="Hello world" />
     </Stack>
+  )
+}
+
+const CustomIcon = (props: CheckboxIconProps) => {
+  const { isIndeterminate, ...rest } = props
+
+  const d = isIndeterminate
+    ? "M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm0,19a1.5,1.5,0,1,1,1.5-1.5A1.5,1.5,0,0,1,12,19Zm1.6-6.08a1,1,0,0,0-.6.917,1,1,0,1,1-2,0,3,3,0,0,1,1.8-2.75A2,2,0,1,0,10,9.255a1,1,0,1,1-2,0,4,4,0,1,1,5.6,3.666Z"
+    : "M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"
+
+  return (
+    <Icon viewBox="0 0 24 24" {...rest}>
+      <path fill="currentColor" d={d} />
+    </Icon>
+  )
+}
+
+export const WithCustomIcon = () => {
+  const [checkedItems, setCheckedItems] = React.useState([false, false])
+
+  const allChecked = checkedItems.every(Boolean)
+  const isIndeterminate = checkedItems.some(Boolean) && !allChecked
+
+  return (
+    <>
+      <Heading>Default </Heading>
+      <Checkbox icon={<CustomIcon />} colorScheme="red">
+        Hello world
+      </Checkbox>
+
+      <Divider />
+
+      <Heading>Indeterminate</Heading>
+      <Checkbox
+        isChecked={allChecked}
+        isIndeterminate={isIndeterminate}
+        onChange={(e) => setCheckedItems([e.target.checked, e.target.checked])}
+        children="Parent Checkbox"
+        icon={<CustomIcon />}
+      />
+      <Stack ml="6" mt="2" align="start">
+        <Checkbox
+          isChecked={checkedItems[0]}
+          onChange={(e) => setCheckedItems([e.target.checked, checkedItems[1]])}
+          children="Child Checkbox 1"
+        />
+        <Checkbox
+          isChecked={checkedItems[1]}
+          onChange={(e) => setCheckedItems([checkedItems[0], e.target.checked])}
+          children="Child Checkbox 2"
+        />
+      </Stack>
+    </>
   )
 }
 
