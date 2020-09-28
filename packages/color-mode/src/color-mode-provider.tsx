@@ -101,7 +101,6 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
 
   const setColorMode = React.useCallback(
     (value: ColorMode) => {
-      root.set(value)
       colorModeManager.set(value)
       rawSetColorMode(value)
     },
