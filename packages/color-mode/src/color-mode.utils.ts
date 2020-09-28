@@ -68,3 +68,15 @@ export function addListener(fn: Function) {
     mediaQueryList.removeListener(listener)
   }
 }
+
+export const root = {
+  get: () =>
+    document.documentElement.style.getPropertyValue(
+      "--chakra-ui-color-mode",
+    ) as ColorMode,
+  set: (mode: ColorMode) => {
+    if (isBrowser) {
+      document.documentElement.style.setProperty("--chakra-ui-color-mode", mode)
+    }
+  },
+}
