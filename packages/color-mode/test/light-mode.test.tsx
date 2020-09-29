@@ -4,8 +4,8 @@ import { LightMode } from "../src/color-mode-provider"
 import { DummyComponent, getColorModeButton } from "./utils"
 import userEvent from "@testing-library/user-event"
 
-describe("<DarkMode />", () => {
-  test("is always dark", () => {
+describe("<LightMode />", () => {
+  test("is always light", () => {
     render(
       <LightMode>
         <DummyComponent />
