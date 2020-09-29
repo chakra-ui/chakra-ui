@@ -68,8 +68,8 @@ export function useBreakpoint(defaultBreakpoint?: string) {
         update(mediaQuery, breakpoint)
       }
 
-      // add media query-listender
-      mediaQuery.addEventListener("change", handleChange)
+      // add media query-listener
+      mediaQuery.addListener(handleChange)
 
       // push the media query list handleChange
       // so we can use it to remove Listener
@@ -77,7 +77,7 @@ export function useBreakpoint(defaultBreakpoint?: string) {
 
       return () => {
         // clean up 1
-        mediaQuery.removeEventListener("change", handleChange)
+        mediaQuery.removeListener(handleChange)
       }
     })
 
