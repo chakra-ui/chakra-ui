@@ -73,7 +73,7 @@ export const Footer = () => (
     </Text>
     <Stack mt={4} direction="row" spacing="12px" justify="center">
       {links.map((link) => (
-        <FooterLink key={link.url} {...link} />
+        <FooterLink key={link.href} {...link} />
       ))}
     </Stack>
   </Box>
