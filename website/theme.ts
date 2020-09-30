@@ -1,25 +1,22 @@
-import { theme } from "@chakra-ui/core"
-import { runIfFn, merge } from "@chakra-ui/utils"
+import { extendTheme } from "@chakra-ui/core"
 import { mode } from "@chakra-ui/theme-tools"
 
-const customTheme = {
-  ...theme,
+const customTheme = extendTheme({
   styles: {
-    global: (props) =>
-      merge(runIfFn(theme.styles.global, props), {
-        body: {
-          color: mode("gray.700", "whiteAlpha.900")(props),
-          fontFamily: "Inter, sans-serif",
-          ".deleted": {
-            color: "#ff8383 !important",
-            fontStyle: "normal !important",
-          },
-          ".inserted": {
-            color: "#b5f4a5 !important",
-            fontStyle: "normal !important",
-          },
+    global: (props) => ({
+      body: {
+        color: mode("gray.700", "whiteAlpha.900")(props),
+        fontFamily: "Inter, sans-serif",
+        ".deleted": {
+          color: "#ff8383 !important",
+          fontStyle: "normal !important",
         },
-      }),
+        ".inserted": {
+          color: "#b5f4a5 !important",
+          fontStyle: "normal !important",
+        },
+      },
+    }),
   },
   textStyles: {
     heading: {
@@ -122,6 +119,6 @@ const customTheme = {
       lineHeight: "normal",
     },
   },
-}
+})
 
 export default customTheme
