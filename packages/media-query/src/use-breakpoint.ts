@@ -84,7 +84,7 @@ export function useBreakpoint(defaultBreakpoint?: string) {
     return () => {
       // clean up 2: for safety
       listeners.forEach(({ mediaQuery, handleChange }) => {
-        mediaQuery.removeEventListener("change", handleChange)
+        mediaQuery.removeListener(handleChange)
       })
       listeners.clear()
     }
