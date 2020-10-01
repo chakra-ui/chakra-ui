@@ -1,7 +1,6 @@
 import * as React from "react"
 import { isBrowser } from "@chakra-ui/utils"
 
-const isSupported = (api: string) => isBrowser && api in window
 const useSafeLayoutEffect = isBrowser ? React.useLayoutEffect : React.useEffect
 
 /**
@@ -9,14 +8,15 @@ const useSafeLayoutEffect = isBrowser ? React.useLayoutEffect : React.useEffect
  *
  * @param query the media query to match
  */
-export function useMediaQuery(query: string) {
-  const [matches, setMatches] = React.useState(() => {
-    if (!isSupported("matchMedia")) return false
-    return !!window.matchMedia(query).matches
-  })
+export function useMediaQuery(query: string): boolean {
+  const isSupported = isBrowser && "matchMedia" in window
+
+  const [matches, setMatches] = React.useState(
+    isSupported ? !!window.matchMedia(query).matches : false,
+  )
 
   useSafeLayoutEffect(() => {
-    if (!isSupported("matchMedia")) return
+    if (!isSupported) return
 
     const mediaQueryList = window.matchMedia(query)
     const listener = () => setMatches(!!mediaQueryList.matches)
@@ -30,5 +30,5 @@ export function useMediaQuery(query: string) {
     }
   }, [query])
 
-  return [matches, setMatches] as const
+  return matches
 }

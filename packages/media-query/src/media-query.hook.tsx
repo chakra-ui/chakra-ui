@@ -3,9 +3,8 @@ import { useMediaQuery } from "./use-media-query"
 /**
  * React hook used to get the user's animation preference.
  */
-export function useAnimationPreference() {
-  const isReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)")
-  return !isReducedMotion
+export function usePrefersReducedMotion() {
+  return useMediaQuery("(prefers-reduced-motion: reduce)")
 }
 
 /**
