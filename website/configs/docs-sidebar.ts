@@ -195,6 +195,10 @@ const sidebar = {
               path: "/docs/hooks/use-disclosure",
             },
             {
+              title: "useMediaQuery",
+              path: "/docs/hooks/use-media-query",
+            },
+            {
               title: "useTheme",
               path: "/docs/hooks/use-theme",
             },
