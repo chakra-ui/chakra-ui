@@ -1,0 +1,52 @@
+---
+title: usePrefersReducedMotion
+package: "@chakra-ui/hooks"
+description: "React hook to detect animation preference"
+---
+
+`usePrefersReducedMotion` is a custom hook to help detecting the users motion
+preference.
+
+[Learn more about the API and its backgrounds.](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion)
+
+## Import
+
+```js
+import { usePrefersReducedMotion } from "@chakra-ui/core"
+```
+
+## Return value
+
+The `usePrefersReducedMotion` hook returns a boolean, indicating whether the
+user prefers reduced motion.
+
+> Keep in mind this API relies on the users browser support of
+> `window.matchMedia` and will always return `false` if it is not supported or
+> does not exist (e.g. during serverside rendering).
+
+## Usage
+
+```jsx live=false
+import {
+  Image,
+  ImageProps,
+  keyframes,
+  usePrefersReducedMotion,
+} from "@chakra-ui/core"
+import logo from "./logo.svg"
+
+const spin = keyframes`
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+`
+
+function Example() {
+  const prefersReducedMotion = usePrefersReducedMotion()
+
+  const animation = prefersReducedMotion
+    ? undefined
+    : `${spin} infinite 20s linear`
+
+  return <Image animation={animation} src={logo} {...props} />
+}
+```

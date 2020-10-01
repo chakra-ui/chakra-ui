@@ -198,6 +198,10 @@ const sidebar = {
               title: "useTheme",
               path: "/docs/hooks/use-theme",
             },
+            {
+              title: "usePrefersReducedMotion",
+              path: "/docs/hooks/use-prefers-reduced-motion",
+            },
           ],
         },
         {
