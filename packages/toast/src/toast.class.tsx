@@ -48,20 +48,15 @@ class Toaster {
     this.isToastActive = methods.isActive
   }
 
-  notify = (message: ToastMessage, options: Partial<ToastOptions> = {}) => {
-    return this.createToast ? this.createToast(message, options) : undefined
-  }
+  notify = (message: ToastMessage, options: Partial<ToastOptions> = {}) =>
+    this.createToast?.(message, options)
 
   close = (id: ToastId) => {
-    if (this.closeToast) {
-      this.closeToast(id)
-    }
+    this.closeToast?.(id)
   }
 
   closeAll = () => {
-    if (this.removeAll) {
-      this.removeAll()
-    }
+    this.removeAll?.()
   }
 
   update = (id: ToastId, options: Partial<ToastOptions> = {}) => {
@@ -70,8 +65,7 @@ class Toaster {
     window.scrollBy({ top: -10 })
   }
 
-  isActive = (id: ToastId) =>
-    this.isToastActive ? this.isToastActive(id) : undefined
+  isActive = (id: ToastId) => this.isToastActive?.(id)
 }
 
 export const toast = new Toaster()
