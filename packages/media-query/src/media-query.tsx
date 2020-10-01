@@ -17,7 +17,7 @@ interface VisibilityProps {
  */
 const Visibility: React.FC<VisibilityProps> = (props) => {
   const { breakpoint, hide, children } = props
-  const show = useMediaQuery(breakpoint)
+  const [show] = useMediaQuery(breakpoint)
   const isVisible = hide ? !show : show
 
   const rendered = isVisible ? children : null
