@@ -199,9 +199,9 @@ component.
 
 ### Lazily mounting MenuItem
 
-By default, the `Menu` component renders all `MenuItem` to the DOM, meaning that invisible menu items are still rendered but are hidden by styles.
+By default, the `Menu` component renders all children of "MenuList" to the DOM, meaning that invisible menu items are still rendered but are hidden by styles.
 
-If you want to defer rendering of each menu item until that menu is open, you can use the `isLazy` prop. This is useful if your menus require heavy performance, or make network calls on mount that should only happen when the component is displayed.
+If you want to defer rendering of each children of "MenuList" until that menu is open, you can use the `isLazy` prop. This is useful if your menus require heavy performance, or make network calls on mount that should only happen when the component is displayed.
 
 ```jsx live=false
 <Menu isLazy>
@@ -324,15 +324,15 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
 
 ### Menu Props
 
-| Name          | Type                 | Default | Description                                                  |
-| ------------- | -------------------- | ------- | ------------------------------------------------------------ |
-| children      | `React.ReactNode`    |         | The children of the menu must be `MenuButton` and `MenuList` |
-| isOpen        | `boolean`            |         | If `true`, the menu will be opened                           |
-| autoSelect    | `boolean`            | `true`  | The menu will select the first enabled item when it opens    |
-| closeOnBlur   | `boolean`            | `true`  | If `true`, the menu will close on outside click or blur      |
-| closeOnSelect | `boolean`            | `true`  | If `true`, the menu will close on menu item select           |
-| placement     | `PopperJS.placement` |         | The placement of the `MenuList`                              |
-| isLazy        | `boolean`            |         | If `true`, the MenuItem will render until the menu is open.  |
+| Name          | Type                 | Default | Description                                                           |
+| ------------- | -------------------- | ------- | --------------------------------------------------------------------- |
+| children      | `React.ReactNode`    |         | The children of the menu must be `MenuButton` and `MenuList`          |
+| isOpen        | `boolean`            |         | If `true`, the menu will be opened                                    |
+| autoSelect    | `boolean`            | `true`  | The menu will select the first enabled item when it opens             |
+| closeOnBlur   | `boolean`            | `true`  | If `true`, the menu will close on outside click or blur               |
+| closeOnSelect | `boolean`            | `true`  | If `true`, the menu will close on menu item select                    |
+| placement     | `PopperJS.placement` |         | The placement of the `MenuList`                                       |
+| isLazy        | `boolean`            |         | If `true`, children of "MenuList" will render until the menu is open. |
 
 ### MenuButton Props
 
