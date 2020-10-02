@@ -1286,6 +1286,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "adrianoresende",
+      "name": "Adriano Resende",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/798755?v=4",
+      "profile": "http://www.adrianoresende.com.br",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
