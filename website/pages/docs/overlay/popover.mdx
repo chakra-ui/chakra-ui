@@ -375,12 +375,14 @@ possible placement values.
 
 ### Lazily mounting Popover
 
-By default, the `Popover` component renders popover content to the DOM, 
-meaning that invisible popover contents are still rendered but are hidden by styles.
+By default, the `Popover` component renders children of `PopoverContent` to the
+DOM, meaning that invisible popover contents are still rendered but are hidden
+by styles.
 
-If you want to defer rendering of popover content until that Popover is opened, 
-you can use the `isLazy` prop. This is useful if your popover content require heavy performance, 
-or make network calls on mount that should only happen when the component is displayed.
+If you want to defer rendering of popover content until that `Popover` is
+opened, you can use the `isLazy` prop. This is useful if your `PopoverContent`
+needs to be extra performant, or make network calls on mount that should only
+happen when the component is displayed.
 
 ```jsx
 <Popover isLazy>
@@ -398,7 +400,6 @@ or make network calls on mount that should only happen when the component is dis
   </PopoverContent>
 </Popover>
 ```
-
 
 ## Accessiblity
 
@@ -462,7 +463,7 @@ or make network calls on mount that should only happen when the component is dis
 | `usePortal`          | `boolean`                                                      | `false`  | If `true` the popover is displayed with a `Portal`. Rendering content inside a Portal allows the popover content to escape the physical bounds of its parent while still being positioned correctly relative to its target |
 | `onOpen`             | `() => void`                                                   |          | Callback fired when the popover opens                                                                                                                                                                                      |
 | `onClose`            | `() => void`                                                   |          | Callback fired when the popover closes                                                                                                                                                                                     |
-| `isLazy`             | `boolean`                                                      |          | If `true`, the ppover content will render until the popover is open.                                                                                                                                                       |
+| `isLazy`             | `boolean`                                                      |          | If `true`, the popover content will render until the popover is open.                                                                                                                                                      |
 
 ### Other Props
 
