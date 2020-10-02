@@ -336,6 +336,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/lazandrei19"><img src="https://avatars1.githubusercontent.com/u/3816519?v=4" width="64px;" alt=""/><br /><sub><b>Andrei Lazarescu</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=lazandrei19" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/jrrmt"><img src="https://avatars3.githubusercontent.com/u/44125?v=4" width="64px;" alt=""/><br /><sub><b>José Teixeira</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Ajrrmt" title="Bug reports">🐛</a></td>
     <td align="center"><a href="http://www.adrianoresende.com.br"><img src="https://avatars1.githubusercontent.com/u/798755?v=4" width="64px;" alt=""/><br /><sub><b>Adriano Resende</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=adrianoresende" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://victorwpbastos.github.io"><img src="https://avatars3.githubusercontent.com/u/1017515?v=4" width="64px;" alt=""/><br /><sub><b>Victor Bastos</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=victorwpbastos" title="Documentation">📖</a></td>
   </tr>
 </table>
 
