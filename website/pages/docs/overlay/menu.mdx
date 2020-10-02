@@ -197,6 +197,31 @@ component.
 </Menu>
 ```
 
+### Lazily mounting MenuItem
+
+By default, the `Menu` component renders all `MenuItem` to the DOM, meaning that invisible menu items are still rendered but are hidden by styles.
+
+If you want to defer rendering of each menu item until that menu is open, you can use the `isLazy` prop. This is useful if your menus require heavy performance, or make network calls on mount that should only happen when the component is displayed.
+
+```jsx live=false
+<Menu isLazy>
+  <MenuButton size="sm" colorScheme="teal">
+    Open menu
+  </MenuButton>
+  <MenuList>
+    {/* initially mounted */}
+    <MenuItem>Menu 1</MenuItem>
+    {/* initially mounted */}
+    <MenuItem>New Window</MenuItem>
+    {/* initially mounted */}
+    <MenuItem>Open Closed Tab</MenuItem>
+    {/* initially mounted */}
+    <MenuItem>Open File</MenuItem>
+    </MenuList>
+  <MenuList>
+</Menu>
+```
+
 ### Rendering menu in a portal
 
 To render menus in a portal, import the `Portal` component and wrap the
@@ -307,6 +332,7 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
 | closeOnBlur   | `boolean`            | `true`  | If `true`, the menu will close on outside click or blur      |
 | closeOnSelect | `boolean`            | `true`  | If `true`, the menu will close on menu item select           |
 | placement     | `PopperJS.placement` |         | The placement of the `MenuList`                              |
+| isLazy        | `boolean`            |         | If `true`, the MenuItem will render until the menu is open.  |
 
 ### MenuButton Props
 
