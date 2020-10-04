@@ -141,7 +141,8 @@ function variantFlushed(props: Record<string, any>) {
 
   return {
     field: {
-      borderBottom: "1px solid inherit",
+      borderBottom: "1px solid",
+      borderColor: "inherit",
       borderRadius: 0,
       pl: 0,
       pr: 0,
