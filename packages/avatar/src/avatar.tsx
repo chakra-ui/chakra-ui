@@ -1,4 +1,4 @@
-import { useImage } from "@chakra-ui/image"
+import { useImage, ImageProps } from "@chakra-ui/image"
 import {
   chakra,
   forwardRef,
@@ -229,16 +229,8 @@ if (__DEV__) {
 }
 
 interface AvatarImageProps
-  extends Pick<
-    AvatarProps,
-    | "src"
-    | "onError"
-    | "name"
-    | "getInitials"
-    | "borderRadius"
-    | "icon"
-    | "loading"
-  > {}
+  extends ImageProps,
+    Pick<AvatarProps, "getInitials" | "borderRadius" | "icon" | "name"> {}
 
 const AvatarImage: React.FC<AvatarImageProps> = ({
   src,
