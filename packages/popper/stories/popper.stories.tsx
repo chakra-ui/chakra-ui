@@ -9,7 +9,7 @@ export default {
 export const Basic = () => {
   const disclosure = useDisclosure({ defaultIsOpen: true })
 
-  const { popper, reference, arrow } = usePopper({
+  const { popper, reference, arrow, transformOrigin } = usePopper({
     placement: "right-start",
     matchWidth: true,
   })
@@ -33,6 +33,7 @@ export const Basic = () => {
           background: "red",
           padding: 15,
           borderRadius: 6,
+          transformOrigin,
         }}
       >
         Popper
