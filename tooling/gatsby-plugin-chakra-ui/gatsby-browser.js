@@ -12,14 +12,20 @@ export const wrapRootElement = (
   { element },
   { isResettingCSS = true, isUsingColorMode = true, portalZIndex = 40 },
 ) => {
-  const ModeProvider = isUsingColorMode ? ColorModeProvider : React.Fragment
+  const content = (
+    <>
+      {isResettingCSS && <CSSReset />}
+      <GlobalStyle />
+      <PortalManager zIndex={portalZIndex}>{element}</PortalManager>
+    </>
+  )
   return (
     <ThemeProvider theme={theme}>
-      <ModeProvider>
-        {isResettingCSS && <CSSReset />}
-        <GlobalStyle />
-        <PortalManager zIndex={portalZIndex}>{element}</PortalManager>
-      </ModeProvider>
+      {isUsingColorMode ? (
+        <ColorModeProvider options={theme.config}>{content}</ColorModeProvider>
+      ) : (
+        content
+      )}
     </ThemeProvider>
   )
 }
