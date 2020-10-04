@@ -1,8 +1,7 @@
-import type { Placement } from "@popperjs/core"
-import { Modifier } from "@popperjs/core"
-import { createElement, CSSProperties, useCallback, useState } from "react"
+import type { Placement, Modifier } from "@popperjs/core"
+import * as React from "react"
 import { usePopper as useBasePopper } from "react-popper"
-import { getBoxShadow, toTransformOrigin } from "./popper.utils"
+import { getArrowStyles, getBoxShadow, toTransformOrigin } from "./popper.utils"
 
 export type { Placement }
 
@@ -30,84 +29,102 @@ export function usePopper(props: UsePopperProps = {}) {
     offset,
     arrowShadowColor,
     matchWidth,
-    modifiers,
+    modifiers = [],
   } = props
 
-  const [referenceNode, setReferenceNode] = useState<HTMLButtonElement | null>(
+  const [
+    referenceNode,
+    setReferenceNode,
+  ] = React.useState<HTMLButtonElement | null>(null)
+  const [popperNode, setPopperNode] = React.useState<HTMLDivElement | null>(
     null,
   )
-  const [popperNode, setPopperNode] = useState<HTMLDivElement | null>(null)
-  const [arrowNode, setArrowNode] = useState<HTMLDivElement | null>(null)
+  const [arrowNode, setArrowNode] = React.useState<HTMLDivElement | null>(null)
 
-  const popperJS = useBasePopper(referenceNode, popperNode, {
-    placement,
-    strategy: fixed ? "fixed" : "absolute",
-    modifiers: [
+  /**
+   * recommended via popper docs
+   * @see https://popper.js.org/react-popper/v2/faq/#why-i-get-render-loop-whenever-i-put-a-function-inside-the-popper-configuration
+   */
+  const customMofidiers = React.useMemo<Modifier<string, unknown>[]>(
+    () => [
+      // @see https://popper.js.org/docs/v2/modifiers/offset/
+      // @ts-expect-error popper typings always expect `fn` & `phase`
       {
         name: "offset",
         options: {
           offset: offset ?? [0, gutter],
         },
+        phase: "main",
       },
+      // @see https://popper.js.org/docs/v2/modifiers/prevent-overflow/
+      // @ts-expect-error popper typings always expect `fn` & `phase`
       {
-        name: "flip",
-        enabled: flip,
-        options: { padding: 8 },
+        name: "preventOverflow",
+        enabled: !!preventOverflow,
+        phase: "main",
       },
+      // @see https://popper.js.org/docs/v2/modifiers/arrow/
+      // @ts-expect-error popper typings always expect `fn` & `phase`
       {
         name: "arrow",
         enabled: !!arrowNode,
         options: { element: arrowNode },
+        phase: "main",
       },
+      // @see https://popper.js.org/docs/v2/modifiers/flip/
+      // @ts-expect-error popper typings always expect `fn` & `phase`
       {
-        name: "preventOverflow",
-        enabled: !!preventOverflow,
+        name: "flip",
+        enabled: flip,
+        options: {
+          padding: 8,
+        },
+        phase: "main",
       },
       {
         name: "matchWidth",
         enabled: !!matchWidth,
         phase: "beforeWrite",
         requires: ["computeStyles"],
-        fn: useCallback(({ state }) => {
+        fn: ({ state }) => {
           state.styles.popper.width = `${state.rects.reference.width}px`
-        }, []),
-        //@ts-expect-error
-        effect: useCallback(({ state }) => {
+        },
+        effect: ({ state }) => () => {
           const reference = state.elements.reference as HTMLElement
+
           state.elements.popper.style.width = `${reference.offsetWidth}px`
-        }, []),
+        },
       },
       {
         name: "applyArrowHide",
         enabled: true,
         phase: "write",
-        fn: useCallback(({ state }) => {
+        fn: ({ state }) => {
           const { arrow } = state.elements
+
           if (arrow) {
-            const hide = (state.modifiersData.arrow as any).centerOffset !== 0
-            arrow.style.visibility = hide ? "hidden" : "visible"
+            const shouldHide = state.modifiersData.arrow?.centerOffset !== 0
+            arrow.style.visibility = shouldHide ? "hidden" : "visible"
           }
-        }, []),
+        },
       },
-      ...(modifiers ?? []),
     ],
+    [arrowNode, flip, preventOverflow, offset, gutter, matchWidth],
+  )
+
+  const popperJS = useBasePopper(referenceNode, popperNode, {
+    placement,
+    strategy: fixed ? "fixed" : "absolute",
+    modifiers: customMofidiers.concat(modifiers),
   })
 
   const _placement = popperJS.state?.placement ?? placement
 
-  const arrowStyles: CSSProperties = {
-    ...popperJS.styles.arrow,
-    width: arrowSize,
-    height: arrowSize,
-    zIndex: -1,
-  }
-
-  const offsetAdjust = arrowSize / 2
-
-  if (_placement.startsWith("top")) arrowStyles.bottom = -offsetAdjust
-  if (_placement.startsWith("bottom")) arrowStyles.top = -offsetAdjust
-  if (_placement.startsWith("left")) arrowStyles.right = -offsetAdjust
-  if (_placement.startsWith("right")) arrowStyles.left = -offsetAdjust
+  const arrowStyles = getArrowStyles({
+    placement: _placement,
+    popperArrowStyles: popperJS.styles.arrow,
+    arrowSize,
+  })
 
   return {
     state: popperJS.state,
@@ -132,17 +149,15 @@ export function usePopper(props: UsePopperProps = {}) {
        * NB: To change the background, we'll rely on `color` prop since
        * we use `currentColor` as the background color.
        */
-      children: createElement("div", {
+      children: React.createElement("div", {
         style: {
           background: "currentColor",
           boxShadow: arrowShadowColor
             ? getBoxShadow(_placement, arrowShadowColor)
             : undefined,
-          position: "absolute",
           zIndex: -1,
           width: "100%",
           height: "100%",
-          transform: "rotate(45deg)",
         },
       }),
     },
