@@ -115,15 +115,13 @@ export function usePopper(props: UsePopperProps = {}) {
 
   return {
     state: popperJS.state,
+    transformOrigin: toTransformOrigin(_placement),
     reference: {
       ref: setReferenceNode,
     },
     popper: {
       ref: setPopperNode,
-      style: {
-        ...popperJS.styles?.popper,
-        transformOrigin: toTransformOrigin(_placement),
-      },
+      style: popperJS.styles?.popper,
       ...popperJS.attributes.popper,
     },
     arrow: {
