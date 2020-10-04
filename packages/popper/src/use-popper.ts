@@ -59,10 +59,6 @@ export function usePopper(props: UsePopperProps = {}) {
         enabled: !!arrowNode,
         options: { element: arrowNode },
       },
-      // {
-      //   name: "computeStyles",
-      //   options: { gpuAcceleration: false },
-      // },
       {
         name: "preventOverflow",
         enabled: !!preventOverflow,
