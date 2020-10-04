@@ -1,4 +1,4 @@
-import { useImage } from "@chakra-ui/image"
+import { useImage, ImageProps } from "@chakra-ui/image"
 import {
   chakra,
   forwardRef,
@@ -44,6 +44,10 @@ interface AvatarOptions {
    * List of sources to use for different screen resolutions
    */
   srcSet?: string
+  /**
+   * Defines loading strategy
+   */
+  loading?: "eager" | "lazy"
   /**
    * The border color of the avatar
    */
@@ -180,6 +184,7 @@ export const Avatar = forwardRef<AvatarProps, "span">(function Avatar(
     onError,
     getInitials = initials,
     icon = <DefaultIcon />,
+    loading,
     children,
     borderColor,
     ...rest
@@ -206,6 +211,7 @@ export const Avatar = forwardRef<AvatarProps, "span">(function Avatar(
       <StylesProvider value={styles}>
         <AvatarImage
           src={src}
+          loading={loading}
           onError={onError}
           getInitials={getInitials}
           name={name}
@@ -223,10 +229,8 @@ if (__DEV__) {
 }
 
 interface AvatarImageProps
-  extends Pick<
-    AvatarProps,
-    "src" | "onError" | "name" | "getInitials" | "borderRadius" | "icon"
-  > {}
+  extends ImageProps,
+    Pick<AvatarProps, "getInitials" | "borderRadius" | "icon" | "name"> {}
 
 const AvatarImage: React.FC<AvatarImageProps> = ({
   src,
@@ -234,6 +238,7 @@ const AvatarImage: React.FC<AvatarImageProps> = ({
   getInitials,
   name,
   borderRadius,
+  loading,
   icon = <DefaultIcon />,
 }) => {
   /**
@@ -272,6 +277,7 @@ const AvatarImage: React.FC<AvatarImageProps> = ({
       src={src}
       alt={name}
       className="chakra-avatar__img"
+      loading={loading}
       __css={{
         width: "100%",
         height: "100%",
