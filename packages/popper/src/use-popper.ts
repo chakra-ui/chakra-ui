@@ -127,7 +127,10 @@ export function usePopper(props: UsePopperProps = {}) {
       /**
        * This is used to mimic css `&::before` pseudo element
        * so users won't need to use `css` or `css-in-js` to get arrow
-       * positioned correctly
+       * positioned correctly.
+       *
+       * NB: To change the background, we'll rely on `color` prop since
+       * we use `currentColor` as the background color.
        */
       children: createElement("div", {
         style: {
