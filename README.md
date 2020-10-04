@@ -338,6 +338,9 @@ Thanks goes to these wonderful people
     <td align="center"><a href="http://www.adrianoresende.com.br"><img src="https://avatars1.githubusercontent.com/u/798755?v=4" width="64px;" alt=""/><br /><sub><b>Adriano Resende</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=adrianoresende" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/Zaynex"><img src="https://avatars0.githubusercontent.com/u/13745971?v=4" width="64px;" alt=""/><br /><sub><b>Vincent</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=Zaynex" title="Documentation">📖</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="http://www.candiceczech.com"><img src="https://avatars0.githubusercontent.com/u/25373313?v=4" width="64px;" alt=""/><br /><sub><b>Candice</b></sub></a><br /><a href="#design-candicecz" title="Design">🎨</a> <a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Acandicecz" title="Bug reports">🐛</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
