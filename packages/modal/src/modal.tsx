@@ -385,7 +385,6 @@ export const ModalFooter = forwardRef<ModalFooterProps, "footer">(
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",
-          flex: 0,
           ...styles.footer,
         }}
         className={_className}
