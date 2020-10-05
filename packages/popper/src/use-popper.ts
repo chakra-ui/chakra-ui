@@ -25,9 +25,9 @@ export function usePopper(props: UsePopperProps = {}) {
     fixed = false,
     flip = true,
     arrowSize = 8,
+    arrowShadowColor,
     gutter = 8,
     offset,
-    arrowShadowColor,
     matchWidth,
     modifiers = [],
   } = props
@@ -45,10 +45,9 @@ export function usePopper(props: UsePopperProps = {}) {
    * recommended via popper docs
    * @see https://popper.js.org/react-popper/v2/faq/#why-i-get-render-loop-whenever-i-put-a-function-inside-the-popper-configuration
    */
-  const customMofidiers = React.useMemo<Modifier<string, unknown>[]>(
+  const customMofidiers = React.useMemo<Partial<Modifier<any, unknown>>[]>(
     () => [
       // @see https://popper.js.org/docs/v2/modifiers/offset/
-      // @ts-expect-error popper typings always expect `fn` & `phase`
       {
         name: "offset",
         options: {
@@ -57,22 +56,19 @@ export function usePopper(props: UsePopperProps = {}) {
         phase: "main",
       },
       // @see https://popper.js.org/docs/v2/modifiers/prevent-overflow/
-      // @ts-expect-error popper typings always expect `fn` & `phase`
       {
         name: "preventOverflow",
         enabled: !!preventOverflow,
         phase: "main",
       },
       // @see https://popper.js.org/docs/v2/modifiers/arrow/
-      // @ts-expect-error popper typings always expect `fn` & `phase`
       {
         name: "arrow",
         enabled: !!arrowNode,
-        options: { element: arrowNode },
+        options: { element: arrowNode, padding: 4 },
         phase: "main",
       },
       // @see https://popper.js.org/docs/v2/modifiers/flip/
-      // @ts-expect-error popper typings always expect `fn` & `phase`
       {
         name: "flip",
         enabled: flip,
@@ -91,7 +87,6 @@ export function usePopper(props: UsePopperProps = {}) {
         },
         effect: ({ state }) => () => {
           const reference = state.elements.reference as HTMLElement
-
           state.elements.popper.style.width = `${reference.offsetWidth}px`
         },
       },
@@ -99,12 +94,14 @@ export function usePopper(props: UsePopperProps = {}) {
         name: "applyArrowHide",
         enabled: true,
         phase: "write",
-        fn: ({ state }) => {
+        fn({ state }) {
           const { arrow } = state.elements
-
           if (arrow) {
-            const shouldHide = state.modifiersData.arrow?.centerOffset !== 0
-            arrow.style.visibility = shouldHide ? "hidden" : "visible"
+            if (state.modifiersData.arrow?.centerOffset !== 0) {
+              arrow.setAttribute("data-hide", "")
+            } else {
+              arrow.removeAttribute("data-hide")
+            }
           }
         },
       },
@@ -151,6 +148,7 @@ export function usePopper(props: UsePopperProps = {}) {
        */
       children: React.createElement("div", {
         style: {
+          position: "absolute",
           background: "currentColor",
           boxShadow: arrowShadowColor
             ? getBoxShadow(_placement, arrowShadowColor)
@@ -158,6 +156,7 @@ export function usePopper(props: UsePopperProps = {}) {
           zIndex: -1,
           width: "100%",
           height: "100%",
+          transform: "rotate(45deg)",
         },
       }),
     },

@@ -22,27 +22,29 @@ const HookTooltip = ({ children }: any) => {
     getTooltipProps,
     getArrowProps,
     isOpen,
-  } = useTooltip({ openDelay: 100 })
+  } = useTooltip({
+    openDelay: 100,
+    arrowSize: 8,
+    placement: "bottom-start",
+    // isOpen: true,
+  })
 
   const trigger = getTriggerProps()
-  const tooltip = getTooltipProps()
-  const arrow = getArrowProps({ style: { background: "inherit" } })
+  const tooltip = getTooltipProps({
+    style: {
+      background: "tomato",
+      color: "white",
+      border: "none",
+      borderRadius: "4px",
+      padding: "0.5em 1em",
+    },
+  })
+  const arrow = getArrowProps({ style: { color: "tomato" } })
 
   return (
     <>
       <button {...trigger}>Hover me</button>
-      <div
-        hidden={!isOpen}
-        {...tooltip}
-        style={{
-          ...tooltip.style,
-          background: "tomato",
-          color: "white",
-          border: "none",
-          borderRadius: "4px",
-          padding: "0.5em 1em",
-        }}
-      >
+      <div hidden={!isOpen} {...tooltip}>
         {children}
         <div {...arrow} />
       </div>
@@ -217,7 +219,7 @@ export const withDisabledButton = () => (
 )
 
 export const withIsOpenProp = () => (
-  <Tooltip label="Hello world" isOpen={true}>
+  <Tooltip label="Hello world" isOpen={true} hasArrow>
     <button style={{ fontSize: 25, pointerEvents: "all" }} disabled>
       Can't Touch This
     </button>

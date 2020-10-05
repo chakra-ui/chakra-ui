@@ -40,36 +40,28 @@ const transformEnum = {
 export const toTransformOrigin = (placement: Placement) =>
   transformEnum[placement]
 
-interface ArrowStyleArguments {
+interface GetArrowStyleOptions {
   arrowSize: number
   popperArrowStyles: CSSProperties
   placement: Placement
 }
 
-export const getArrowStyles = ({
-  arrowSize,
-  popperArrowStyles = {},
-  placement,
-}: ArrowStyleArguments): CSSProperties => {
-  const offsetAdjust = -(arrowSize / 2)
+export const getArrowStyles = (options: GetArrowStyleOptions) => {
+  const { arrowSize, popperArrowStyles = {}, placement } = options
 
-  const bottom = placement.startsWith("top") ? offsetAdjust : undefined
-  const top = placement.startsWith("bottom") ? offsetAdjust : undefined
-  const left = placement.startsWith("right") ? offsetAdjust : undefined
-  const right = placement.startsWith("left") ? offsetAdjust : undefined
-
-  return {
+  const styles: CSSProperties = {
     ...popperArrowStyles,
-    zIndex: -1,
     width: arrowSize,
     height: arrowSize,
-    // necessary for the correct angle of the arrow
-    transform: [popperArrowStyles.transform, "rotate(45deg)"]
-      .filter(Boolean)
-      .join(" "),
-    bottom,
-    top,
-    left,
-    right,
+    zIndex: -1,
   }
+
+  const offsetAdjust = -(arrowSize / 2)
+
+  if (placement.startsWith("top")) styles.bottom = offsetAdjust
+  if (placement.startsWith("bottom")) styles.top = offsetAdjust
+  if (placement.startsWith("left")) styles.right = offsetAdjust
+  if (placement.startsWith("right")) styles.left = offsetAdjust
+
+  return styles
 }
