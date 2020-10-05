@@ -1,0 +1,21 @@
+tasks:
+  - name: Docs
+    init: |
+      yarn boot
+      yarn docs:build
+      gp sync-done boot
+    command: yarn docs:start
+  - name: Storybook
+    init: gp sync-await boot
+    command: yarn storybook
+    openMode: split-right
+
+ports:
+  - port: 3000
+    onOpen: open-preview
+  - port: 6006
+    onOpen: open-preview
+
+vscode:
+  extensions:
+    - esbenp.prettier-vscode@5.7.1:4Zx39KyQMoIz7x94PSmDmQ==

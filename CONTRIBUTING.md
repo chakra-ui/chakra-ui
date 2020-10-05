@@ -44,6 +44,12 @@ cd chakra-ui
 > If you run into any issues during this step, kindly reach out to the Chakra UI
 > React team here: https://discord.gg/dQHfcWF
 
+## Online one-click setup
+
+You can use [Gitpod](https://www.gitpod.io/) (an Online Open Source VS Code-like IDE which is free for Open Source) for working on issues and making PRs to this project. With a single click it will automatically clone this repo, install all the dependencies and start storybook and dev server for docs so that you can start hacking around straight away without any friction.
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/from-referrer/)
+
 ## Development
 
 To improve our development process, we've setup a couple of systems. Chakra UI
