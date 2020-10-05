@@ -172,8 +172,8 @@ export const WithModal = () => {
     <div>
       <button onClick={() => setShowDialog(true)}>Show Dialog</button>
       <Modal isOpen={showDialog} onClose={() => setShowDialog(false)}>
-        <ModalOverlay>
-          <ModalContent height="300px">
+        <ModalOverlay style={{ zIndex: 0 }}>
+          <ModalContent style={{ zIndex: 1 }} height="300px">
             <div>
               <button onClick={() => setShowDialog(false)}>Close Dialog</button>
               <Tooltip label="Notifications">
