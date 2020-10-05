@@ -211,6 +211,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
                         h="24px"
                         w="auto"
                         src={user.image}
+                        loading="lazy"
                       />
                     </Box>
                   )
@@ -531,6 +532,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
                       alt={i.name}
                       key={i.MemberId}
                       src={i.image}
+                      loading="lazy"
                     />
                   </Circle>
                 ))}
@@ -549,6 +551,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
                     alt={i.name}
                     key={i.MemberId}
                     src={i.image}
+                    loading="lazy"
                   />
                 ))}
               </Wrap>
