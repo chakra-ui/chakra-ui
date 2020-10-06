@@ -1,13 +1,11 @@
 import { ToastPosition, ToastOptions, ToastState, ToastId } from "./toast.types"
-import { objectKeys } from "@chakra-ui/utils"
 
 /**
  * Given an array of toasts for a specific position.
  * It returns the toast that matches the `id` passed
  */
-export function findById(arr: ToastOptions[], id: ToastId) {
-  return arr.find((toast) => toast.id === id)
-}
+export const findById = (arr: ToastOptions[], id: ToastId) =>
+  arr.find((toast) => toast.id === id)
 
 /**
  * Given the toast manager state, finds the toast that matches
@@ -30,47 +28,29 @@ export function findToast(toasts: ToastState, id: ToastId) {
  * Given the toast manager state, finds the position of the toast that
  * matches the `id`
  */
-export function getToastPosition(toasts: ToastState, id: ToastId) {
-  let position: ToastPosition | undefined
-
-  objectKeys(toasts).forEach((pos) => {
-    const found = findById(toasts[pos], id)
-    if (found) position = pos
-  })
-
-  return position
-}
+export const getToastPosition = (toasts: ToastState, id: ToastId) =>
+  Object.values(toasts)
+    .flat()
+    .find((toast) => toast.id === id)?.position
 
 /**
  * Given the toast manager state, checks if a specific toast is
  * still in the state, which means it's still visible on screen.
  */
-export function isVisible(toasts: ToastState, id: ToastId) {
-  let found: any
-
-  Object.values(toasts).forEach((toasts) => {
-    found = toasts.find((toast) => toast.id === id)
-  })
-
-  return !!found
-}
+export const isVisible = (toasts: ToastState, id: ToastId) =>
+  !!getToastPosition(toasts, id)
 
 /**
  * Get's the styles to be applied to a toast's container
  * based on it's position in the manager
  */
-export function getToastStyle(position: ToastPosition) {
-  const style: React.CSSProperties = {
+export function getToastStyle(position: ToastPosition): React.CSSProperties {
+  const isRighty = position.includes("right")
+  const isLefty = position.includes("left")
+
+  return {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
+    alignItems: isRighty ? "flex-end" : isLefty ? "flex-start" : "center",
   }
-
-  if (position.includes("right")) {
-    style.alignItems = "flex-end"
-  } else if (position.includes("left")) {
-    style.alignItems = "flex-start"
-  }
-
-  return style
 }

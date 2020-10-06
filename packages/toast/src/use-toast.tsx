@@ -12,7 +12,7 @@ import {
   ThemeProvider,
   useChakra,
 } from "@chakra-ui/system"
-import { isFunction, merge } from "@chakra-ui/utils"
+import { isFunction } from "@chakra-ui/utils"
 import * as React from "react"
 import { toast } from "./toast.class"
 import { RenderProps, ToastId, ToastOptions } from "./toast.types"
@@ -136,7 +136,7 @@ export function useToast() {
         </ThemeProvider>
       )
 
-      const opts = merge({}, defaults, options)
+      const opts = { ...defaults, ...options }
 
       return toast.notify(Message, opts)
     }
@@ -150,7 +150,7 @@ export function useToast() {
 
       if (!id) return
 
-      const opts = merge({}, defaults, rest) as any
+      const opts = { ...defaults, ...rest }
 
       toast.update(id, {
         ...opts,

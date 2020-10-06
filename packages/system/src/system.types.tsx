@@ -38,7 +38,7 @@ export interface ChakraProps extends SystemProps {
   /**
    * Used to truncate text at a specific number of lines
    */
-  noOfLines?: number
+  noOfLines?: number[]
   /**
    * Used for internal css management
    * @private

@@ -1324,6 +1324,15 @@
         "design",
         "bug"
       ]
+    },
+    {
+      "login": "baumandm",
+      "name": "Dave Bauman",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/3084806?v=4",
+      "profile": "http://davebauman.io",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,

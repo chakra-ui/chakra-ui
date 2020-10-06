@@ -54,10 +54,12 @@ const StyledSkeleton = chakra("div", {
 
 export type ISkeleton = SkeletonOptions
 
+type OmitNoOfLines<T> = Omit<T, "noOfLines">
+
 export interface SkeletonProps
-  extends PropsOf<typeof StyledSkeleton>,
+  extends OmitNoOfLines<PropsOf<typeof StyledSkeleton>>,
     SkeletonOptions,
-    ThemingProps {}
+    OmitNoOfLines<ThemingProps> {}
 
 const fade = keyframes({
   from: { opacity: 0 },
