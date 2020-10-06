@@ -6,7 +6,12 @@ import { useCallback, useEffect, useRef } from "react"
 export interface UseTooltipProps
   extends Pick<
     UsePopperProps,
-    "arrowSize" | "modifiers" | "gutter" | "offset" | "arrowShadowColor"
+    | "arrowSize"
+    | "modifiers"
+    | "gutter"
+    | "offset"
+    | "arrowShadowColor"
+    | "arrowPadding"
   > {
   /**
    * Delay (in ms) before showing the tooltip
@@ -68,6 +73,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     defaultIsOpen,
     arrowSize = 10,
     arrowShadowColor,
+    arrowPadding,
     modifiers,
     isDisabled,
     gutter,
@@ -86,6 +92,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     placement,
     arrowSize,
     arrowShadowColor,
+    arrowPadding,
     modifiers,
     gutter,
     offset,
