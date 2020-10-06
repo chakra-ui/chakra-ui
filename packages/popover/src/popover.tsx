@@ -1,13 +1,14 @@
 import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
 import {
   chakra,
+  forwardRef,
   omitThemingProps,
   PropsOf,
   StylesProvider,
+  SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
-  forwardRef,
 } from "@chakra-ui/system"
 import {
   createContext,
@@ -91,7 +92,7 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
     const popoverProps = getPopoverProps(props, ref)
 
     const styles = useStyles()
-    const contentStyles = {
+    const contentStyles: SystemStyleObject = {
       position: "relative",
       display: "flex",
       flexDirection: "column",
@@ -219,21 +220,20 @@ if (__DEV__) {
 export interface PopoverArrowProps extends PropsOf<typeof chakra.div> {}
 
 export const PopoverArrow: React.FC<PopoverArrowProps> = (props) => {
-  const { getArrowProps } = usePopoverContext()
-  const arrowProps = getArrowProps(props)
-
+  const { getArrowProps, getArrowWrapperProps } = usePopoverContext()
   const styles = useStyles()
-  const arrowStyles = {
-    bg: "inherit",
-    ...styles.arrow,
-  }
 
   return (
     <chakra.div
-      {...arrowProps}
-      className={cx("chakra-popover__arrow", props.className)}
-      __css={arrowStyles}
-    />
+      {...getArrowWrapperProps()}
+      className={cx("chakra-popover__arrow-wrapper", props.className)}
+    >
+      <chakra.div
+        className={cx("chakra-popover__arrow", props.className)}
+        {...getArrowProps(props)}
+        __css={styles.arrow}
+      />
+    </chakra.div>
   )
 }
 
