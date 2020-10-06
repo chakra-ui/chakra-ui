@@ -7,9 +7,7 @@ import * as React from "react"
 import { ToastOptions } from "./toast.types"
 import { getToastStyle } from "./toast.utils"
 
-export interface ToastProps extends ToastOptions {
-  requestClose?: boolean
-}
+export interface ToastProps extends ToastOptions {}
 
 export const Toast: React.FC<ToastProps> = (props) => {
   const {
