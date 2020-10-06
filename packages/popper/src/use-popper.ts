@@ -14,8 +14,13 @@ export interface UsePopperProps {
   fixed?: boolean
   flip?: boolean
   arrowSize?: number
-  matchWidth?: boolean
   arrowShadowColor?: string
+  /**
+   * The distance of the arrow to its next border (numeric)
+   * E.g. arrowPadding = borderRadius * 2
+   */
+  arrowPadding?: number
+  matchWidth?: boolean
   modifiers?: Modifier<string, any>[]
 }
 
@@ -28,6 +33,7 @@ export function usePopper(props: UsePopperProps = {}) {
     arrowSize = 8,
     arrowShadowColor,
     gutter = 8,
+    arrowPadding = 4,
     offset,
     matchWidth,
     modifiers = [],
@@ -66,7 +72,7 @@ export function usePopper(props: UsePopperProps = {}) {
       {
         name: "arrow",
         enabled: !!arrowNode,
-        options: { element: arrowNode, padding: 4 },
+        options: { element: arrowNode, padding: arrowPadding },
         phase: "main",
       },
       // @see https://popper.js.org/docs/v2/modifiers/flip/
@@ -107,7 +113,15 @@ export function usePopper(props: UsePopperProps = {}) {
         },
       },
     ],
-    [arrowNode, flip, preventOverflow, offset, gutter, matchWidth],
+    [
+      arrowNode,
+      arrowPadding,
+      flip,
+      preventOverflow,
+      offset,
+      gutter,
+      matchWidth,
+    ],
   )
 
   const popperJS = useBasePopper(referenceNode, popperNode, {
