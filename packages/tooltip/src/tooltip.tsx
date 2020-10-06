@@ -67,10 +67,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
     ...rest
   } = ownProps
 
-  if (bg) {
-    //@ts-expect-error
-    styles.bg = bg
-  }
+  if (bg) styles.bg = bg
 
   const tooltip = useTooltip(rest)
 
@@ -133,8 +130,8 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
                 <chakra.div
                   className="chakra-toolip__arrow"
                   {...tooltip.getArrowProps()}
-                  __css={{ color: styles.bg }}
-                ></chakra.div>
+                  __css={{ bg: styles.bg }}
+                />
               </chakra.div>
             )}
           </chakra.div>
