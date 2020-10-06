@@ -1,19 +1,4 @@
-import { getOppositePosition, getArrowStyles } from "../src/popper.utils"
-
-describe("getOppositePosition", () => {
-  test.each`
-    direction   | opposite
-    ${"top"}    | ${"bottom"}
-    ${"bottom"} | ${"top"}
-    ${"right"}  | ${"left"}
-    ${"left"}   | ${"right"}
-  `(
-    `opposite position of $direction is $opposite`,
-    ({ direction, opposite }) => {
-      expect(getOppositePosition(direction)).toBe(opposite)
-    },
-  )
-})
+import { getArrowStyles } from "../src/popper.utils"
 
 describe("getArrowStyles", () => {
   const arrowSize = 4
@@ -27,9 +12,13 @@ describe("getArrowStyles", () => {
   test("Placement: auto", () => {
     const expected = {}
 
-    expect(getArrowStyles("auto", arrowSize)).toEqual(expected)
-    expect(getArrowStyles("auto-start", arrowSize)).toEqual(expected)
-    expect(getArrowStyles("auto-end", arrowSize)).toEqual(expected)
+    expect(getArrowStyles({ placement: "auto", arrowSize })).toEqual(expected)
+    expect(getArrowStyles({ placement: "auto-start", arrowSize })).toEqual(
+      expected,
+    )
+    expect(getArrowStyles({ placement: "auto-end", arrowSize })).toEqual(
+      expected,
+    )
   })
 
   test("Placement: top", () => {
@@ -38,9 +27,13 @@ describe("getArrowStyles", () => {
       bottom: "-2px",
     }
 
-    expect(getArrowStyles("top", arrowSize)).toEqual(expected)
-    expect(getArrowStyles("top-start", arrowSize)).toEqual(expected)
-    expect(getArrowStyles("top-end", arrowSize)).toEqual(expected)
+    expect(getArrowStyles({ placement: "top", arrowSize })).toEqual(expected)
+    expect(getArrowStyles({ placement: "top-start", arrowSize })).toEqual(
+      expected,
+    )
+    expect(getArrowStyles({ placement: "top-end", arrowSize })).toEqual(
+      expected,
+    )
   })
 
   test("Placement: bottom", () => {
@@ -49,9 +42,13 @@ describe("getArrowStyles", () => {
       top: "-2px",
     }
 
-    expect(getArrowStyles("bottom", arrowSize)).toEqual(expected)
-    expect(getArrowStyles("bottom-start", arrowSize)).toEqual(expected)
-    expect(getArrowStyles("bottom-end", arrowSize)).toEqual(expected)
+    expect(getArrowStyles({ placement: "bottom", arrowSize })).toEqual(expected)
+    expect(getArrowStyles({ placement: "bottom-start", arrowSize })).toEqual(
+      expected,
+    )
+    expect(getArrowStyles({ placement: "bottom-end", arrowSize })).toEqual(
+      expected,
+    )
   })
 
   test("Placement: right", () => {
@@ -60,9 +57,13 @@ describe("getArrowStyles", () => {
       left: "-2px",
     }
 
-    expect(getArrowStyles("right", arrowSize)).toEqual(expected)
-    expect(getArrowStyles("right-start", arrowSize)).toEqual(expected)
-    expect(getArrowStyles("right-end", arrowSize)).toEqual(expected)
+    expect(getArrowStyles({ placement: "right", arrowSize })).toEqual(expected)
+    expect(getArrowStyles({ placement: "right-start", arrowSize })).toEqual(
+      expected,
+    )
+    expect(getArrowStyles({ placement: "right-end", arrowSize })).toEqual(
+      expected,
+    )
   })
 
   test("Placement: left", () => {
@@ -71,8 +72,12 @@ describe("getArrowStyles", () => {
       right: "-2px",
     }
 
-    expect(getArrowStyles("left", arrowSize)).toEqual(expected)
-    expect(getArrowStyles("left-start", arrowSize)).toEqual(expected)
-    expect(getArrowStyles("left-end", arrowSize)).toEqual(expected)
+    expect(getArrowStyles({ placement: "left", arrowSize })).toEqual(expected)
+    expect(getArrowStyles({ placement: "left-start", arrowSize })).toEqual(
+      expected,
+    )
+    expect(getArrowStyles({ placement: "left-end", arrowSize })).toEqual(
+      expected,
+    )
   })
 })

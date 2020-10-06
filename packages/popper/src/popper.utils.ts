@@ -44,7 +44,7 @@ export const toTransformOrigin = (placement: Placement) =>
 
 interface GetArrowStyleOptions {
   arrowSize: number
-  popperArrowStyles: CSSProperties
+  popperArrowStyles?: CSSProperties
   placement: Placement
 }
 
