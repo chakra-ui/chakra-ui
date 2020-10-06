@@ -1333,6 +1333,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "TimKolberger",
+      "name": "TimKolberger",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/16899513?v=4",
+      "profile": "https://github.com/TimKolberger",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
