@@ -1,8 +1,8 @@
 Thanks for showing interest to contribute to Chakra UI 💖, you rock!
 
 When it comes to open source, there are different ways you can contribute, all
-of which are valuable. Here's few guidelines that should help you as you prepare
-your contribution.
+of which are valuable. Here's a few guidelines that should help you as you
+prepare your contribution.
 
 - [Setup](#setup)
 - [Development](#development)
@@ -23,7 +23,7 @@ your contribution.
 
 ## Setup
 
-The following steps will get you setup to contribute changes to this repo:
+The following steps will get you set up to contribute changes to this repo:
 
 1. Fork the repo (click the <kbd>Fork</kbd> button at the top right of
    [this page](https://github.com/chakra-ui/chakra-ui))
@@ -31,7 +31,7 @@ The following steps will get you setup to contribute changes to this repo:
 2. Clone your fork locally
 
 ```sh
-# in a terminal, cd to parent directory where you want your clone to be, then
+# in a terminal, cd to the parent directory where you want your clone to be, then
 git clone https://github.com/<your_github_username>/chakra-ui.git
 
 cd chakra-ui
@@ -46,7 +46,7 @@ cd chakra-ui
 
 ## Development
 
-To improve our development process, we've setup a couple of systems. Chakra UI
+To improve our development process, we've set up a couple of systems. Chakra UI
 uses a monorepo structure, this means each component is it's own package and can
 use consumed independently.
 
@@ -197,7 +197,7 @@ All commits that fix bugs or add features need a test.
 ## Want to write a blog post or tutorial
 
 That would be amazing! Reach out to the core team here:
-https://discord.gg/dQHfcWF. We would love to support you anyway we can.
+https://discord.gg/dQHfcWF. We would love to support you any way we can.
 
 ## Want to help improve the docs?
 
