@@ -8,8 +8,8 @@ and the triage process itself.
 Triage is the process by which we manage community input coming into our
 repository. Whether it's a feature request, a bug report, a pull request, or
 something else entirely, each item requires direct attention from an
-organization member to parse and understand what it is the user expects of the
-library or is trying to accomplish.
+organization member in order to parse and understand what it is the user expects
+of the library or is trying to accomplish.
 
 Users with the "triage" role are granted permissions to manage issues and pull
 requests, which includes adding labels and milestones, opening and closing
