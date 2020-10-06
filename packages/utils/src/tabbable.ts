@@ -68,10 +68,12 @@ export function isTabbable(element: Element) {
   )
 }
 
-const isActiveElement = (element: Focusable) =>
+const isActiveElement = (element: FocusableElement) =>
   document.activeElement === (element as any)
 
-function isInputElement(element: Focusable): element is HTMLInputElement {
+function isInputElement(
+  element: FocusableElement,
+): element is HTMLInputElement {
   return (
     isHTMLElement(element) &&
     element.tagName.toLowerCase() === "input" &&
@@ -79,7 +81,7 @@ function isInputElement(element: Focusable): element is HTMLInputElement {
   )
 }
 
-export interface Focusable {
+export interface FocusableElement {
   focus(options?: FocusOptions): void
 }
 
@@ -87,7 +89,7 @@ interface FocusProps extends FocusOptions {
   isActive?: typeof isActiveElement
 }
 
-export function focus(element: Focusable, options: FocusProps = {}) {
+export function focus(element: FocusableElement, options: FocusProps = {}) {
   const { isActive = isActiveElement, preventScroll } = options
 
   if (isActive(element)) return -1

@@ -15,7 +15,7 @@ import {
   cx,
   __DEV__,
   createContext,
-  Focusable,
+  FocusableElement,
 } from "@chakra-ui/utils"
 import * as React from "react"
 import { RemoveScroll } from "react-remove-scroll"
@@ -44,11 +44,11 @@ interface ModalOptions {
   /**
    * The `ref` of element to receive focus when the modal opens.
    */
-  initialFocusRef?: React.RefObject<Focusable>
+  initialFocusRef?: React.RefObject<FocusableElement>
   /**
    * The `ref` of element to receive focus when the modal closes.
    */
-  finalFocusRef?: React.RefObject<Focusable>
+  finalFocusRef?: React.RefObject<FocusableElement>
   /**
    * If `true`, the modal will return focus to the element that triggered it when it closes.
    * @default true

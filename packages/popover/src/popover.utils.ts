@@ -2,13 +2,13 @@ import { useUpdateEffect, useEventListener } from "@chakra-ui/hooks"
 import {
   focus,
   getFirstTabbableIn,
-  Focusable,
+  FocusableElement,
   isFocusable,
 } from "@chakra-ui/utils"
 import { RefObject, useRef } from "react"
 
 export interface UseFocusOnHideOptions {
-  focusRef: RefObject<Focusable>
+  focusRef: RefObject<FocusableElement>
   autoFocus?: boolean
   visible?: boolean
   trigger?: "hover" | "click"
@@ -73,7 +73,7 @@ export function useFocusOnHide(
 interface UseFocusOnShowOptions {
   autoFocus?: boolean
   visible?: boolean
-  focusRef?: RefObject<Focusable>
+  focusRef?: RefObject<FocusableElement>
   trigger?: "hover" | "click"
 }
 
