@@ -1,6 +1,6 @@
 Thanks for showing interesting in Chakra triage! This document serves as an
 overview of the triage team for our repository. It covers topics such as the
-importance of triage in an open source project, the goals of the triage team,
+importance of triage in an open-source project, the goals of the triage team,
 and the triage process itself.
 
 # 🕵️‍️ What is triage?
@@ -21,7 +21,7 @@ maintains Chakra's growth.
 # 🥇 Why is triage important?
 
 Along with writing code and documentation, triage is one of the most important
-parts of an open source project.
+parts of an open-source project.
 
 ## 🗣 User engagement
 
@@ -29,8 +29,8 @@ Our users are our project's lifeblood. They come from many different backgrounds
 and situations, and have many different issues and needs.
 
 Engaging with them as fellow humans, demonstrating their importance to us by
-responding to them in a timely fashion, and helping them to accomplish their
-goals is one of the most important tasks we have as an organization.
+responding to them in a timely fashion, and helping them accomplish their goals
+are some of the most important tasks we have as an organization.
 
 The triage team plays a huge part in this. By being the direct face of the
 organization in managing issues and pull requests, team members have a unique
@@ -44,7 +44,7 @@ outside of Chakra, so contributor time is one of the most important resources we
 have available to us.
 
 As a growing project with an ever-larger number of users,
-[Chakra receives a large volume issues and pull requests each week](https://github.com/chakra-ui/chakra-ui/pulse).
+[Chakra receives a large volume of issues and pull requests each week](https://github.com/chakra-ui/chakra-ui/pulse).
 Each of these needs to be addressed in some way, and addressing them takes time.
 Given enough issues and pull requests, a contributor could dedicate all of their
 time to managing these alone. Trust me, I know from experience.
@@ -56,7 +56,7 @@ documentation.
 ## 🏎 Velocity
 
 To keep the development and documentation processes running smoothly, it's
-important that each piece of input from the community is groomed, labelled,
+important that each piece of input from the community is groomed, labeled,
 assigned a level of effort and importance, attached to a version milestone, and
 possibly assigned to a specific individual or project.
 
@@ -79,7 +79,7 @@ the project.
 
 Pull requests linked to corresponding issues allow users to see the work that
 has been done on an issue. Linking to other issues and discussions provides
-users with context around the problems we face and direction we're heading.
+users with context around the problems we face and the direction we're heading.
 Guiding users to the documentation helps them learn.
 
 # ✨ Goals

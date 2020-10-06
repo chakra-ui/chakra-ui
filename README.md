@@ -20,8 +20,8 @@
 </p>
 <br />
 
-Chakra UI provides a set of accessible, reusable and composable React components
-that make it super easy to create websites and apps.
+Chakra UI provides a set of accessible, reusable, and composable React
+components that make it super easy to create websites and apps.
 
 ## Looking for the documentation? 📝
 
@@ -36,8 +36,8 @@ Latest version (pre-release) => https://next.chakra-ui.com
   [Learn more](https://chakra-ui.com/style-props)
 - Flexible & composable: Chakra UI components are built on top of a React UI
   Primitive for endless composability.
-- Accessible. Chakra UI components follows the WAI-ARIA guidelines
-  specifications and have the right `aria-*` attributes.
+- Accessible. Chakra UI components follow the WAI-ARIA guidelines specifications
+  and have the right `aria-*` attributes.
 - Dark Mode 😍: Most components in Chakra UI are dark mode compatible.
 
 ## Support Chakra UI 💖
@@ -123,7 +123,7 @@ function App({ children }) {
 ```
 
 Optionally, you can wrap your application with the `ColorModeProvider` so you
-can toggle beween light and dark mode within your app.
+can toggle between light and dark mode within your app.
 
 2. Now you can start using components like so!:
 
@@ -348,6 +348,7 @@ Thanks goes to these wonderful people
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
