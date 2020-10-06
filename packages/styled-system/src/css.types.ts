@@ -100,6 +100,7 @@ interface AllSystemCSSProperties
 
 export type SystemCSSProperties = {
   [K in keyof AllSystemCSSProperties]:
+    | string
     | ResponsiveValue<AllSystemCSSProperties[K]>
     | ((theme: any) => ResponsiveValue<AllSystemCSSProperties[K]>)
     | SystemStyleObject
