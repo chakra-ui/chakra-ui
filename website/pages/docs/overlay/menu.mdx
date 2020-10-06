@@ -197,6 +197,35 @@ component.
 </Menu>
 ```
 
+### Lazily mounting MenuItem
+
+By default, the `Menu` component renders all children of `MenuList` to the DOM,
+meaning that invisible menu items are still rendered but are hidden by styles.
+
+If you want to defer rendering of each children of `MenuList` until that menu is
+open, you can use the `isLazy` prop. This is useful if your `Menu` needs to be
+extra performant, or make network calls on mount that should only happen when
+the component is displayed.
+
+```jsx live=false
+<Menu isLazy>
+  <MenuButton size="sm" colorScheme="teal">
+    Open menu
+  </MenuButton>
+  <MenuList>
+    {/* initially mounted */}
+    <MenuItem>Menu 1</MenuItem>
+    {/* initially mounted */}
+    <MenuItem>New Window</MenuItem>
+    {/* initially mounted */}
+    <MenuItem>Open Closed Tab</MenuItem>
+    {/* initially mounted */}
+    <MenuItem>Open File</MenuItem>
+    </MenuList>
+  <MenuList>
+</Menu>
+```
+
 ### Rendering menu in a portal
 
 To render menus in a portal, import the `Portal` component and wrap the
@@ -299,14 +328,15 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
 
 ### Menu Props
 
-| Name          | Type                 | Default | Description                                                  |
-| ------------- | -------------------- | ------- | ------------------------------------------------------------ |
-| children      | `React.ReactNode`    |         | The children of the menu must be `MenuButton` and `MenuList` |
-| isOpen        | `boolean`            |         | If `true`, the menu will be opened                           |
-| autoSelect    | `boolean`            | `true`  | The menu will select the first enabled item when it opens    |
-| closeOnBlur   | `boolean`            | `true`  | If `true`, the menu will close on outside click or blur      |
-| closeOnSelect | `boolean`            | `true`  | If `true`, the menu will close on menu item select           |
-| placement     | `PopperJS.placement` |         | The placement of the `MenuList`                              |
+| Name          | Type                 | Default | Description                                                                 |
+| ------------- | -------------------- | ------- | --------------------------------------------------------------------------- |
+| children      | `React.ReactNode`    |         | The children of the menu must be `MenuButton` and `MenuList`                |
+| isOpen        | `boolean`            |         | If `true`, the menu will be opened                                          |
+| autoSelect    | `boolean`            | `true`  | The menu will select the first enabled item when it opens                   |
+| closeOnBlur   | `boolean`            | `true`  | If `true`, the menu will close on outside click or blur                     |
+| closeOnSelect | `boolean`            | `true`  | If `true`, the menu will close on menu item select                          |
+| placement     | `PopperJS.placement` |         | The placement of the `MenuList`                                             |
+| isLazy        | `boolean`            |         | If `true`, children of `MenuList` will not render until the menu is opened. |
 
 ### MenuButton Props
 
@@ -353,11 +383,10 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
 
 ### MenuItemOption Props
 
-| Name         | Type                      | Description                                             |
-| ------------ | ------------------------- | ------------------------------------------------------- |
-| isDisabled   | `boolean`                 | If `true`, the menu item will be disabled               |
-| children     | `React.ReactNode`         | The content of the option item                          |
-| value        | `StringOrNumber`          | Used to add roles `menuitemradio` or `menuitemcheckbox` |
-| type         | `radio`, `checkbox`       | The initial value of the option item                    |
-| onMouseLeave | `React.MouseEventHandler` | The value of the option item                            |
-| onMouseEnter | `React.MouseEventHandler` | Function called when selection changes                  |
+MenuItemOption extends `Box` so you can pass all box props in addition to these:
+
+| Name       | Type                | Description                                                           |
+| ---------- | ------------------- | --------------------------------------------------------------------- |
+| isDisabled | `boolean`           | If `true`, the option item will be disabled                           |
+| value      | `StringOrNumber`    | The value of the option item                                          |
+| type       | `radio`, `checkbox` | Used to add `menuitemradio` or `menuitemcheckbox` roles to the option |

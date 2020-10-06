@@ -79,6 +79,48 @@ function Example() {
 }
 ```
 
+## Closing Toasts
+
+Toasts can be closed imperatively, individually (via the `close` instance
+method) or all together (via the `closeAll` instance method).
+
+```jsx
+function Example() {
+  const toast = useToast()
+  const toastIdRef = React.useRef()
+
+  function close() {
+    if (toastIdRef.current) {
+      toast.close(toastIdRef.current)
+    }
+  }
+
+  function closeAll() {
+    toast.closeAll()
+  }
+
+  function addToast() {
+    toastIdRef.current = toast({ description: "some text" })
+  }
+
+  return (
+    <Stack isInline spacing={2}>
+      <Button onClick={addToast} type="button">
+        Toast
+      </Button>
+
+      <Button onClick={close} type="button" variant="outline">
+        Close last toast
+      </Button>
+
+      <Button onClick={closeAll} type="button" variant="outline">
+        Close all toasts
+      </Button>
+    </Stack>
+  )
+}
+```
+
 ## Success
 
 ```jsx

@@ -3,7 +3,7 @@ import { ColorMode } from "./color-mode-provider"
 
 type Mode = ColorMode | "system" | undefined
 
-function setColorModeVar(initialValue: Mode) {
+function setScript(initialValue: Mode) {
   const mql = window.matchMedia("(prefers-color-scheme: dark)")
   const systemPreference = mql.matches ? "dark" : "light"
 
@@ -34,17 +34,15 @@ function setColorModeVar(initialValue: Mode) {
 }
 
 interface ColorModeScriptProps {
-  defaultColorMode?: ColorMode
+  initialColorMode?: Mode
 }
 
 /**
- * Script to add to the root of your application to help prevent
- * flash of color mode that can happen during page load.
- *
- * This is particular useful for SSR in Gatsby or Next.js
+ * Script to add to the root of your application when using localStorage,
+ * to help prevent flash of color mode that can happen during page load.
  */
 export const ColorModeScript = (props: ColorModeScriptProps) => {
-  const { defaultColorMode = "light" } = props
-  const __html = `(${String(setColorModeVar)})(\"${defaultColorMode}\")`
+  const { initialColorMode = "light" } = props
+  const __html = `(${String(setScript)})('${initialColorMode}')`
   return <script dangerouslySetInnerHTML={{ __html }} />
 }

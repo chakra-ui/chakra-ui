@@ -38,12 +38,17 @@ export interface ChakraProps extends SystemProps {
   /**
    * Used to truncate text at a specific number of lines
    */
-  noOfLines?: number
+  noOfLines?: number[]
   /**
    * Used for internal css management
    * @private
    */
   __css?: SystemStyleObject
+  /**
+   * Used to pass theme-aware style props.
+   * NB: This is the public API for user-land
+   */
+  sx?: SystemStyleObject
 }
 
 export type As = React.ElementType<any>
@@ -51,7 +56,9 @@ export type As = React.ElementType<any>
 /**
  * Extract the props of a React element or component
  */
-export type PropsOf<T extends As> = React.ComponentProps<T>
+export type PropsOf<T extends As> = React.ComponentProps<T> & {
+  as?: string | React.ComponentType<any>
+}
 
 export type WithChakra<P> = P & ChakraProps
 

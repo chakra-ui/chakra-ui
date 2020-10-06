@@ -1,19 +1,12 @@
-import {
-  Box,
-  BoxProps,
-  chakra,
-  Container,
-  Flex,
-  Heading,
-  Text,
-} from "@chakra-ui/core"
+import { Box, BoxProps, chakra, Flex, Heading, Text } from "@chakra-ui/core"
 import * as React from "react"
 import { FaDiscord } from "react-icons/fa"
+import Container from "./container"
 
 function DiscordStrip(props: BoxProps) {
   return (
     <Box bg="#7289DA" {...props}>
-      <Container maxW="1000px" py="8">
+      <Container py="8">
         <Flex
           direction={{ base: "column", md: "row" }}
           align="center"

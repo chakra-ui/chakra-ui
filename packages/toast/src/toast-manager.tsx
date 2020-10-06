@@ -76,6 +76,8 @@ export class ToastManager extends React.Component<Props, State> {
     const { position, id } = toast
 
     this.setState((prevToasts) => {
+      const isTop = position.includes("top")
+
       /**
        * - If the toast is positioned at the top edges, the
        * recent toast stacks on top of the other toasts.
@@ -83,13 +85,13 @@ export class ToastManager extends React.Component<Props, State> {
        * - If the toast is positioned at the bottom edges, the recent
        * toast stacks below the other toasts.
        */
-      const isTop = position.includes("top")
+      const toasts = isTop
+        ? [toast, ...prevToasts[position]]
+        : [...prevToasts[position], toast]
 
       return {
         ...prevToasts,
-        [position]: isTop
-          ? [toast, ...prevToasts[position]]
-          : [...prevToasts[position], toast],
+        [position]: toasts,
       }
     })
 
@@ -120,10 +122,26 @@ export class ToastManager extends React.Component<Props, State> {
    * Close all toasts at once
    */
   closeAll = () => {
-    objectKeys(this.state).forEach((position) => {
-      this.state[position].forEach((toast) => {
-        this.closeToast(toast.id)
-      })
+    // only one setState here for perf reasons
+    // instead of spamming this.closeToast
+    this.setState((prev) => {
+      const positions: ToastPosition[] = [
+        "bottom",
+        "bottom-right",
+        "bottom-left",
+        "top",
+        "top-left",
+        "top-right",
+      ]
+
+      return positions.reduce((carry, position) => {
+        carry[position] = prev[position].map((toast) => ({
+          ...toast,
+          requestClose: true,
+        }))
+
+        return carry
+      }, {})
     })
   }
 
@@ -143,30 +161,33 @@ export class ToastManager extends React.Component<Props, State> {
       onCloseComplete: options.onCloseComplete,
       onRequestRemove: () => this.removeToast(String(id), position),
       status: options.status,
+      requestClose: false,
     }
   }
 
   /**
-   * Requests to close a toast based on it's id and position
+   * Requests to close a toast based on its id and position
    */
   closeToast = (id: ToastId) => {
     this.setState((prevState) => {
       const position = getToastPosition(prevState, id)
 
-      if (!position) return prevState
+      if (!position) {
+        return prevState
+      }
 
       return {
         ...prevState,
         [position]: prevState[position].map((toast) => ({
           ...toast,
-          requestClose: toast.id == id,
+          requestClose: toast.id == id ? true : toast.requestClose,
         })),
       }
     })
   }
 
   /**
-   * Delete a toast record at it's position
+   * Delete a toast record at its position
    */
   removeToast = (id: ToastId, position: ToastPosition) => {
     this.setState((prevState) => {
@@ -185,35 +206,28 @@ export class ToastManager extends React.Component<Props, State> {
   /**
    * Compute the style of a toast based on it's position
    */
-  getStyle = (position: ToastPosition) => {
-    const style: React.CSSProperties = {
+  getStyle = (position: ToastPosition): React.CSSProperties => {
+    const isTopOrBottom = position === "top" || position === "bottom"
+
+    const margin = isTopOrBottom ? "0 auto" : undefined
+    const textAlign = isTopOrBottom ? "center" : undefined
+
+    const top = position.includes("top") ? 0 : undefined
+    const bottom = position.includes("bottom") ? 0 : undefined
+    const right = !position.includes("left") ? 0 : undefined
+    const left = !position.includes("right") ? 0 : undefined
+
+    return {
       position: "fixed",
       zIndex: 5500,
       pointerEvents: "none",
+      margin,
+      textAlign,
+      top,
+      bottom,
+      right,
+      left,
     }
-
-    if (position === "top" || position === "bottom") {
-      style.margin = "0 auto"
-      style.textAlign = "center"
-    }
-
-    if (position.includes("top")) {
-      style.top = 0
-    }
-
-    if (position.includes("bottom")) {
-      style.bottom = 0
-    }
-
-    if (!position.includes("left")) {
-      style.right = 0
-    }
-
-    if (!position.includes("right")) {
-      style.left = 0
-    }
-
-    return style
   }
 
   render() {

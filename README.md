@@ -20,8 +20,8 @@
 </p>
 <br />
 
-Chakra UI provides a set of accessible, reusable and composable React components
-that make it super easy to create websites and apps.
+Chakra UI provides a set of accessible, reusable, and composable React
+components that make it super easy to create websites and apps.
 
 ## Looking for the documentation? 📝
 
@@ -36,8 +36,8 @@ Latest version (pre-release) => https://next.chakra-ui.com
   [Learn more](https://chakra-ui.com/style-props)
 - Flexible & composable: Chakra UI components are built on top of a React UI
   Primitive for endless composability.
-- Accessible. Chakra UI components follows the WAI-ARIA guidelines
-  specifications and have the right `aria-*` attributes.
+- Accessible. Chakra UI components follow the WAI-ARIA guidelines specifications
+  and have the right `aria-*` attributes.
 - Dark Mode 😍: Most components in Chakra UI are dark mode compatible.
 
 ## Support Chakra UI 💖
@@ -123,7 +123,7 @@ function App({ children }) {
 ```
 
 Optionally, you can wrap your application with the `ColorModeProvider` so you
-can toggle beween light and dark mode within your app.
+can toggle between light and dark mode within your app.
 
 2. Now you can start using components like so!:
 
@@ -198,7 +198,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="http://jessachandler.com"><img src="https://avatars3.githubusercontent.com/u/7316730?v=4" width="64px;" alt=""/><br /><sub><b>jess</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=monkeywithacupcake" title="Documentation">📖</a> <a href="#fundingFinding-monkeywithacupcake" title="Funding Finding">🔍</a></td>
     <td align="center"><a href="http://fiveninedeveloper.000webhostapp.com"><img src="https://avatars2.githubusercontent.com/u/24798364?v=4" width="64px;" alt=""/><br /><sub><b>Ayelegun Kayode Michael</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=Billmike" title="Code">💻</a></td>
     <td align="center"><a href="http://talwilliams.com"><img src="https://avatars3.githubusercontent.com/u/76711?v=4" width="64px;" alt=""/><br /><sub><b>Tal Williams</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=xtalx" title="Code">💻</a></td>
-    <td align="center"><a href="https://trevorblades.com"><img src="https://avatars0.githubusercontent.com/u/1216917?v=4" width="64px;" alt=""/><br /><sub><b>Trevor Blades</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=trevorblades" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=trevorblades" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://trevorblades.com"><img src="https://avatars0.githubusercontent.com/u/1216917?v=4" width="64px;" alt=""/><br /><sub><b>Trevor Blades</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=trevorblades" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=trevorblades" title="Documentation">📖</a> <a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Atrevorblades" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/gordlea"><img src="https://avatars0.githubusercontent.com/u/782154?v=4" width="64px;" alt=""/><br /><sub><b>Gord Lea</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=gordlea" title="Code">💻</a></td>
     <td align="center"><a href="https://aggelos.dev"><img src="https://avatars1.githubusercontent.com/u/10436045?v=4" width="64px;" alt=""/><br /><sub><b>Aggelos Arvanitakis</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=3nvi" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/DouglasGabr"><img src="https://avatars2.githubusercontent.com/u/21958179?v=4" width="64px;" alt=""/><br /><sub><b>Douglas Gabriel</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=DouglasGabr" title="Code">💻</a></td>
@@ -216,7 +216,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://pablosz.tech"><img src="https://avatars3.githubusercontent.com/u/8672915?v=4" width="64px;" alt=""/><br /><sub><b>Pablo Saez</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=PabloSzx" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/nejcr"><img src="https://avatars1.githubusercontent.com/u/17861648?v=4" width="64px;" alt=""/><br /><sub><b>Nejc Ravnik</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=nejcr" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/mr-wildcard"><img src="https://avatars1.githubusercontent.com/u/6979207?v=4" width="64px;" alt=""/><br /><sub><b>Julien Viala</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=mr-wildcard" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/sebqq"><img src="https://avatars1.githubusercontent.com/u/33039909?v=4" width="64px;" alt=""/><br /><sub><b>Sebastian Trebunak</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=sebqq" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/sebqq"><img src="https://avatars1.githubusercontent.com/u/33039909?v=4" width="64px;" alt=""/><br /><sub><b>Sebastian Trebunak</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=sebqq" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=sebqq" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/sarcastron"><img src="https://avatars0.githubusercontent.com/u/2415228?v=4" width="64px;" alt=""/><br /><sub><b>Adam Plante</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=sarcastron" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/luciorubeens"><img src="https://avatars0.githubusercontent.com/u/4539235?v=4" width="64px;" alt=""/><br /><sub><b>Lúcio Rubens</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=luciorubeens" title="Code">💻</a></td>
     <td align="center"><a href="http://jasonmiazga.com"><img src="https://avatars2.githubusercontent.com/u/181441?v=4" width="64px;" alt=""/><br /><sub><b>Jason Miazga</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=jmiazga" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=jmiazga" title="Documentation">📖</a></td>
@@ -326,11 +326,29 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/ChasinHues"><img src="https://avatars1.githubusercontent.com/u/13565648?v=4" width="64px;" alt=""/><br /><sub><b>ChasinHues</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=ChasinHues" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/nahuel"><img src="https://avatars0.githubusercontent.com/u/15200?v=4" width="64px;" alt=""/><br /><sub><b>Nahuel Greco</b></sub></a><br /><a href="#projectManagement-nahuel" title="Project Management">📆</a> <a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Anahuel" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://pablorocha.me"><img src="https://avatars1.githubusercontent.com/u/11415340?v=4" width="64px;" alt=""/><br /><sub><b>Pablo Rocha</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=joserocha3" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://dlarimer.com"><img src="https://avatars1.githubusercontent.com/u/180438?v=4" width="64px;" alt=""/><br /><sub><b>Dustin Larimer</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=dustinlarimer" title="Code">💻</a> <a href="#design-dustinlarimer" title="Design">🎨</a></td>
+    <td align="center"><a href="http://frontendwizard.dev"><img src="https://avatars1.githubusercontent.com/u/1124448?v=4" width="64px;" alt=""/><br /><sub><b>Juliano Farias</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=frontendwizard" title="Documentation">📖</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://joebell.co.uk"><img src="https://avatars3.githubusercontent.com/u/7349341?v=4" width="64px;" alt=""/><br /><sub><b>Joe Bell</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Ajoe-bell" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://henningpohlmeyer.com"><img src="https://avatars0.githubusercontent.com/u/6564077?v=4" width="64px;" alt=""/><br /><sub><b>Henning Pohlmeyer</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=hpohlmeyer" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/sivertschou"><img src="https://avatars3.githubusercontent.com/u/31168035?v=4" width="64px;" alt=""/><br /><sub><b>Sivert Schou Olsen</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=sivertschou" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/lazandrei19"><img src="https://avatars1.githubusercontent.com/u/3816519?v=4" width="64px;" alt=""/><br /><sub><b>Andrei Lazarescu</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=lazandrei19" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/jrrmt"><img src="https://avatars3.githubusercontent.com/u/44125?v=4" width="64px;" alt=""/><br /><sub><b>José Teixeira</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Ajrrmt" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="http://www.adrianoresende.com.br"><img src="https://avatars1.githubusercontent.com/u/798755?v=4" width="64px;" alt=""/><br /><sub><b>Adriano Resende</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=adrianoresende" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://victorwpbastos.github.io"><img src="https://avatars3.githubusercontent.com/u/1017515?v=4" width="64px;" alt=""/><br /><sub><b>Victor Bastos</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=victorwpbastos" title="Documentation">📖</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/Zaynex"><img src="https://avatars0.githubusercontent.com/u/13745971?v=4" width="64px;" alt=""/><br /><sub><b>Vincent</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=Zaynex" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://www.candiceczech.com"><img src="https://avatars0.githubusercontent.com/u/25373313?v=4" width="64px;" alt=""/><br /><sub><b>Candice</b></sub></a><br /><a href="#design-candicecz" title="Design">🎨</a> <a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Acandicecz" title="Bug reports">🐛</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=candicecz" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://davebauman.io"><img src="https://avatars3.githubusercontent.com/u/3084806?v=4" width="64px;" alt=""/><br /><sub><b>Dave Bauman</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=baumandm" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/TimKolberger"><img src="https://avatars2.githubusercontent.com/u/16899513?v=4" width="64px;" alt=""/><br /><sub><b>TimKolberger</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3ATimKolberger" title="Bug reports">🐛</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=TimKolberger" title="Documentation">📖</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):

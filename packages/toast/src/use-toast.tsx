@@ -1,16 +1,21 @@
+import type { AlertStatus } from "@chakra-ui/alert"
 import {
   Alert,
   AlertDescription,
   AlertIcon,
   AlertTitle,
 } from "@chakra-ui/alert"
-import type { AlertStatus } from "@chakra-ui/alert"
 import { CloseButton } from "@chakra-ui/close-button"
-import { chakra, ThemeProvider, useTheme } from "@chakra-ui/system"
-import { isFunction, merge } from "@chakra-ui/utils"
+import {
+  chakra,
+  ColorModeContext,
+  ThemeProvider,
+  useChakra,
+} from "@chakra-ui/system"
+import { isFunction } from "@chakra-ui/utils"
 import * as React from "react"
 import { toast } from "./toast.class"
-import { RenderProps, ToastOptions, ToastId } from "./toast.types"
+import { RenderProps, ToastId, ToastOptions } from "./toast.types"
 
 export interface UseToastOptions {
   /**
@@ -74,20 +79,19 @@ const Toast: React.FC<any> = (props) => {
       status={status}
       variant={variant}
       id={id}
-      textAlign="left"
-      boxShadow="lg"
-      borderRadius="md"
       alignItems="start"
+      borderRadius="md"
+      boxShadow="lg"
       margin={2}
       paddingRight={8}
+      textAlign="left"
+      width="auto"
     >
       <AlertIcon />
       <chakra.div flex="1">
         {title && <AlertTitle>{title}</AlertTitle>}
         {description && (
-          <AlertDescription marginTop="px" lineHeight="short">
-            {description}
-          </AlertDescription>
+          <AlertDescription display="block">{description}</AlertDescription>
         )}
       </chakra.div>
       {isClosable && (
@@ -95,8 +99,8 @@ const Toast: React.FC<any> = (props) => {
           size="sm"
           onClick={onClose}
           position="absolute"
-          right="4px"
-          top="4px"
+          right={1}
+          top={1}
         />
       )}
     </Alert>
@@ -114,7 +118,7 @@ const defaults = {
  * to show toasts in an application.
  */
 export function useToast() {
-  const theme = useTheme()
+  const { theme, ...colorMode } = useChakra()
 
   return React.useMemo(() => {
     const toastImpl = function (options: UseToastOptions) {
@@ -122,15 +126,17 @@ export function useToast() {
 
       const Message: React.FC<RenderProps> = (props) => (
         <ThemeProvider theme={theme}>
-          {isFunction(render) ? (
-            render(props)
-          ) : (
-            <Toast {...{ ...props, ...opts }} />
-          )}
+          <ColorModeContext.Provider value={colorMode}>
+            {isFunction(render) ? (
+              render(props)
+            ) : (
+              <Toast {...{ ...props, ...opts }} />
+            )}
+          </ColorModeContext.Provider>
         </ThemeProvider>
       )
 
-      const opts = merge({}, defaults, options)
+      const opts = { ...defaults, ...options }
 
       return toast.notify(Message, opts)
     }
@@ -144,7 +150,7 @@ export function useToast() {
 
       if (!id) return
 
-      const opts = merge({}, defaults, rest) as any
+      const opts = { ...defaults, ...rest }
 
       toast.update(id, {
         ...opts,
@@ -163,7 +169,7 @@ export function useToast() {
     toastImpl.isActive = toast.isActive
 
     return toastImpl
-  }, [theme])
+  }, [colorMode, theme])
 }
 
 export default useToast

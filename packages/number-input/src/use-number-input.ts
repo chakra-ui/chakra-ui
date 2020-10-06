@@ -1,25 +1,20 @@
 import { useCounter, UseCounterProps } from "@chakra-ui/counter"
 import { useBoolean } from "@chakra-ui/hooks"
 import {
-  callAllHandlers,
-  Dict,
-  focus,
-  mergeRefs,
-  normalizeEventKey,
-  StringOrNumber,
   ariaAttr,
-  minSafeInteger,
-  maxSafeInteger,
+  callAllHandlers,
+  EventKeyMap,
+  focus,
   isBrowser,
+  isNull,
+  maxSafeInteger,
+  mergeRefs,
+  minSafeInteger,
+  normalizeEventKey,
   PropGetter,
+  StringOrNumber,
 } from "@chakra-ui/utils"
-import {
-  useCallback,
-  useRef,
-  InputHTMLAttributes,
-  ChangeEvent,
-  KeyboardEvent,
-} from "react"
+import { ChangeEvent, KeyboardEvent, useCallback, useRef } from "react"
 import { useSpinner } from "./use-spinner"
 import {
   isFloatingPointNumericCharacter,
@@ -65,6 +60,25 @@ export interface UseNumberInputProps extends UseCounterProps {
    * The `id` to use for the number input field.
    */
   id?: string
+  /**
+   * The pattern used to check the <input> element's value against on form submission.
+   *
+   * @default
+   * "[0-9]*(.[0-9]+)?"
+   */
+  pattern?: React.InputHTMLAttributes<any>["pattern"]
+  /**
+   * Hints at the type of data that might be entered by the user. It also determines
+   * the type of keyboard shown to the user on mobile devices
+   *
+   * @default
+   * "decimal"
+   */
+  inputMode?: React.InputHTMLAttributes<any>["inputMode"]
+  /**
+   * If `true`, the input's value will change based on mouse wheel
+   */
+  allowMouseWheel?: boolean
 }
 
 /**
@@ -90,8 +104,15 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     isDisabled,
     getAriaValueText,
     isInvalid,
-    onChange: onChangeProp,
+    pattern = "[0-9]*(.[0-9]+)?",
+    inputMode = "decimal",
+    allowMouseWheel,
     id,
+    /**
+     * These props are destructured to ensure `htmlProps` resolves to the correct type
+     */
+    onChange: onChangeProp,
+    precision,
     ...htmlProps
   } = props
 
@@ -180,31 +201,26 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
       const eventKey = normalizeEventKey(event)
 
-      switch (eventKey) {
-        case "ArrowUp":
-          event.preventDefault()
-          increment(stepFactor)
-          break
-        case "ArrowDown":
-          event.preventDefault()
-          decrement(stepFactor)
-          break
-        case "Home":
-          event.preventDefault()
-          updateFn(min)
-          break
-        case "End":
-          event.preventDefault()
-          updateFn(max)
-          break
-        default:
-          break
+      const keyMap: EventKeyMap = {
+        ArrowUp: () => increment(stepFactor),
+        ArrowDown: () => decrement(stepFactor),
+        Home: () => updateFn(min),
+        End: () => updateFn(max),
+      }
+
+      const action = keyMap[eventKey]
+
+      if (action) {
+        event.preventDefault()
+        action(event)
       }
     },
     [updateFn, decrement, increment, max, min, stepProp],
   )
 
-  const getStepFactor = (event: KeyboardEvent) => {
+  const getStepFactor = <E extends React.KeyboardEvent | React.WheelEvent>(
+    event: E,
+  ) => {
     let ratio = 1
     if (event.metaKey || event.ctrlKey) {
       ratio = 0.1
@@ -222,7 +238,18 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    * @see https://www.w3.org/TR/wai-aria-practices-1.1/#wai-aria-roles-states-and-properties-18
    * @see https://www.w3.org/TR/wai-aria-1.1/#aria-valuetext
    */
-  const ariaValueText = getAriaValueText?.(counter.value)
+  const _getAriaValueText = () => {
+    const text = getAriaValueText?.(counter.value)
+    if (!isNull(text)) {
+      return text
+    }
+
+    const defaultText = counter.value.toString()
+    // empty string is an invalid ARIA attribute value
+    return !defaultText ? undefined : defaultText
+  }
+
+  const ariaValueText = _getAriaValueText()
 
   /**
    * Function that clamps the input's value on blur
@@ -288,6 +315,24 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       ? "onTouchStart"
       : "onMouseDown"
 
+  const onWheel = useCallback(
+    (event: React.WheelEvent) => {
+      if (!allowMouseWheel) return
+
+      event.preventDefault()
+      event.stopPropagation()
+      const stepFactor = getStepFactor(event) * stepProp
+      const direction = Math.sign(event.deltaY)
+
+      if (direction === -1) {
+        increment(stepFactor)
+      } else if (direction === 1) {
+        decrement(stepFactor)
+      }
+    },
+    [increment, decrement, stepProp, allowMouseWheel],
+  )
+
   const getIncrementButtonProps: PropGetter = useCallback(
     (props = {}, ref = null) => ({
       ...props,
@@ -311,7 +356,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       role: "button",
       tabIndex: -1,
       [pointerDown]: callAllHandlers(props[pointerDown], spinDown),
-      onMouseLeave: callAllHandlers(props.onMouseUp, spinner.stop),
+      onMouseLeave: callAllHandlers(props.onMouseLeave, spinner.stop),
       onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
       onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
       disabled: keepWithinRange && counter.isAtMin,
@@ -319,8 +364,6 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     }),
     [pointerDown, counter.isAtMin, keepWithinRange, spinDown, spinner.stop],
   )
-
-  type InputMode = InputHTMLAttributes<any>["inputMode"]
 
   const getInputProps: PropGetter = useCallback(
     (props = {}, ref = null) => ({
@@ -330,8 +373,8 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       value: counter.value,
       role: "spinbutton",
       type: "text",
-      inputMode: "numeric" as InputMode,
-      pattern: "[0-9]*",
+      inputMode,
+      pattern,
       "aria-valuemin": min,
       "aria-valuemax": max,
       "aria-disabled": isDisabled,
@@ -348,8 +391,11 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
       onFocus: callAllHandlers(props.onFocus, setFocused.on),
       onBlur: callAllHandlers(props.onBlur, onBlur),
+      onWheel: callAllHandlers(props.onWheel, onWheel),
     }),
     [
+      inputMode,
+      pattern,
       ariaValueText,
       counter.isOutOfRange,
       counter.value,
@@ -363,6 +409,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       onBlur,
       onChange,
       onKeyDown,
+      onWheel,
       setFocused.on,
     ],
   )

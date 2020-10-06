@@ -1,12 +1,13 @@
 import {
   chakra,
+  forwardRef,
   layoutPropNames,
+  omitThemingProps,
   PropsOf,
   SystemProps,
+  SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  forwardRef,
-  omitThemingProps,
 } from "@chakra-ui/system"
 import { split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -99,7 +100,7 @@ export const Radio = forwardRef<RadioProps, "input">(function Radio(
     ...styles.control,
   }
 
-  const labelStyles = {
+  const labelStyles: SystemStyleObject = {
     userSelect: "none",
     ml: spacing,
     ...styles.label,

@@ -1,7 +1,7 @@
 import { useMediaQuery } from "./use-media-query"
 import * as React from "react"
 import { useTheme } from "@chakra-ui/system"
-import { Dict, get, __DEV__ } from "@chakra-ui/utils"
+import { Dict, memoizedGet as get, __DEV__ } from "@chakra-ui/utils"
 
 interface VisibilityProps {
   breakpoint: string

@@ -10,12 +10,16 @@ const baseStyle = {
   },
   title: {
     fontWeight: "bold",
-    lineHeight: "normal",
+    lineHeight: 6,
+    mr: 2,
+  },
+  description: {
+    lineHeight: 6,
   },
   icon: {
     mr: 3,
     w: 5,
-    h: 5,
+    h: 6,
   },
 }
 

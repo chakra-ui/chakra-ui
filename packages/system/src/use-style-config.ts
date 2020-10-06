@@ -1,5 +1,11 @@
 import { SystemStyleObject } from "@chakra-ui/styled-system"
-import { filterUndefined, get, merge, runIfFn } from "@chakra-ui/utils"
+import {
+  filterUndefined,
+  memoizedGet as get,
+  merge,
+  runIfFn,
+  omit,
+} from "@chakra-ui/utils"
 import { useMemo, useRef } from "react"
 import isEqual from "react-fast-compare"
 import { useChakra } from "./hooks"
@@ -27,7 +33,7 @@ export function useStyleConfig(themeKey: any, props: any, opts: any) {
   const mergedProps = merge(
     { theme, colorMode },
     styleConfig?.defaultProps ?? {},
-    filterUndefined(rest),
+    filterUndefined(omit(rest, ["children"])),
   )
 
   /**

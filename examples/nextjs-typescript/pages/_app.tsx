@@ -1,14 +1,12 @@
-import { ChakraProvider, CSSReset } from "@chakra-ui/core"
-import theme from "@chakra-ui/theme"
-
-function App(props: any) {
-  const { Component, pageProps } = props
-  return (
-    <ChakraProvider theme={theme}>
-      <CSSReset />
-      <Component {...pageProps} />
-    </ChakraProvider>
-  )
+export interface AppRenderProps {
+  pageProps: object
+  err?: Error
+  Component: NextComponentType<NextPageContext, AppRenderProps, object>
+  router: NextRouter
 }
+import type { NextComponentType, NextPageContext } from "next"
+import type { NextRouter } from "next/router"
 
-export default App
+export default function App({ Component, pageProps }: AppRenderProps) {
+  return <Component {...pageProps} />
+}

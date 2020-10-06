@@ -172,10 +172,7 @@ test("has the proper aria attributes", async () => {
   expect(input).toHaveAttribute("aria-invalid", "true")
   expect(input).toHaveAttribute("aria-required", "true")
   expect(input).toHaveAttribute("aria-readonly", "true")
-  expect(input).toHaveAttribute(
-    "aria-describedby",
-    "name-feedback name-helptext",
-  )
+  expect(input).toHaveAttribute("aria-describedby", "name-feedback")
   expect(indicator).toHaveAttribute("aria-hidden")
   expect(errorMessage).toHaveAttribute("aria-live", "polite")
 })

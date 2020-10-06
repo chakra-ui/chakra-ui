@@ -68,7 +68,7 @@ export function useBreakpoint(defaultBreakpoint?: string) {
         update(mediaQuery, breakpoint)
       }
 
-      // add media query-listender
+      // add media query-listener
       mediaQuery.addListener(handleChange)
 
       // push the media query list handleChange
@@ -90,5 +90,5 @@ export function useBreakpoint(defaultBreakpoint?: string) {
     }
   }, [mediaQueries, breakpoints, update])
 
-  return currentBreakpoint?.breakpoint
+  return current
 }

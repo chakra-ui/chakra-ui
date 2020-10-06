@@ -1,7 +1,6 @@
 import * as React from "react"
 import { isBrowser } from "@chakra-ui/utils"
 
-const isSupported = (api: string) => isBrowser && api in window
 const useSafeLayoutEffect = isBrowser ? React.useLayoutEffect : React.useEffect
 
 /**
@@ -9,26 +8,40 @@ const useSafeLayoutEffect = isBrowser ? React.useLayoutEffect : React.useEffect
  *
  * @param query the media query to match
  */
-export function useMediaQuery(query: string) {
-  const [matches, setMatches] = React.useState(() => {
-    if (!isSupported("matchMedia")) return false
-    return !!window.matchMedia(query).matches
-  })
+export function useMediaQuery(query: string | string[]): boolean[] {
+  const queries = Array.isArray(query) ? query : [query]
+  const isSupported = isBrowser && "matchMedia" in window
+
+  const [matches, setMatches] = React.useState(
+    queries.map((query) => (isSupported ? !!window.matchMedia(query) : false)),
+  )
 
   useSafeLayoutEffect(() => {
-    if (!isSupported("matchMedia")) return
+    if (!isSupported) {
+      return
+    }
 
-    const mediaQueryList = window.matchMedia(query)
-    const listener = () => setMatches(!!mediaQueryList.matches)
+    const mediaQueryList = queries.map((query) => window.matchMedia(query))
 
-    mediaQueryList.addListener(listener)
+    const listenerList = mediaQueryList.map((mediaQuery, index) => {
+      const listener = () =>
+        setMatches((prev) =>
+          prev.map((prevValue, idx) =>
+            index === idx ? !!mediaQuery.matches : prevValue,
+          ),
+        )
 
-    listener()
+      mediaQuery.addListener(listener)
+
+      return listener
+    })
 
     return () => {
-      mediaQueryList.removeListener(listener)
+      mediaQueryList.forEach((mediaQuery, index) => {
+        mediaQuery.removeListener(listenerList[index])
+      })
     }
   }, [query])
 
-  return [matches, setMatches] as const
+  return matches
 }

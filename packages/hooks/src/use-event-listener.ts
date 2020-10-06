@@ -1,8 +1,6 @@
 import * as React from "react"
-import { isBrowser, FunctionArguments } from "@chakra-ui/utils"
+import { isBrowser } from "@chakra-ui/utils"
 import { useLatestRef } from "./use-latest-ref"
-
-type AddEventListener = FunctionArguments<typeof document.addEventListener>
 
 /**
  * React hook to manage browser event listeners
@@ -16,7 +14,7 @@ export function useEventListener(
   event: keyof WindowEventMap,
   handler: (event: any) => void,
   doc: Document | null = isBrowser ? document : null,
-  options?: AddEventListener[2],
+  options?: boolean | AddEventListenerOptions,
 ) {
   const savedHandler = useLatestRef(handler)
 

@@ -1,4 +1,9 @@
-import { chakra, forwardRef, PropsOf } from "@chakra-ui/system"
+import {
+  chakra,
+  forwardRef,
+  PropsOf,
+  SystemStyleObject,
+} from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -21,7 +26,7 @@ const fallbackIcon = {
   viewBox: "0 0 24 24",
 }
 
-export interface IconProps extends PropsOf<typeof chakra.svg> {}
+export interface IconProps extends Partial<PropsOf<typeof chakra.svg>> {}
 
 export const Icon = forwardRef<IconProps, "svg">(function Icon(props, ref) {
   const {
@@ -37,7 +42,7 @@ export const Icon = forwardRef<IconProps, "svg">(function Icon(props, ref) {
 
   const _className = cx("chakra-icon", className)
 
-  const styles = {
+  const styles: SystemStyleObject = {
     w: "1em",
     h: "1em",
     display: "inline-block",

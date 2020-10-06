@@ -26,7 +26,7 @@ function TweetCard(props: TweetCardProps) {
       bg={useColorModeValue("white", "gray.700")}
       shadow="base"
     >
-      <Avatar mr="16px" size="sm" src={image} name={name} />
+      <Avatar mr="16px" size="sm" src={image} name={name} loading="lazy" />
       <Box fontSize="sm">
         <p>
           {name}{" "}

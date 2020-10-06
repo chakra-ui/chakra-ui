@@ -13,6 +13,7 @@ import {
   Container,
 } from "@chakra-ui/core"
 import Head from "next/head"
+import { Chakra } from "../src/Chakra"
 
 function Switcher() {
   const { toggleColorMode: toggleMode } = useColorMode()
@@ -35,45 +36,49 @@ const InputGrouper = () => {
   )
 }
 
-const Home = () => (
-  <Container>
-    <Head>
-      <title>Create Next App</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+const Home = ({ cookies }) => (
+  <Chakra cookies={cookies}>
+    <Container>
+      <Head>
+        <title>Create Next App</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-    <main>
-      <chakra.div fontSize="20px">Welcome to chakra</chakra.div>
-      <Image
-        src="https://bit.ly/sage-adebayo"
-        fallbackSrc="https://via.placeholder.com/240"
-        fit="cover"
-        width="400px"
-        height="300px"
-      />
+      <main>
+        <chakra.div fontSize="20px">Welcome to chakra</chakra.div>
+        <Image
+          src="https://bit.ly/sage-adebayo"
+          fallbackSrc="https://via.placeholder.com/240"
+          fit="cover"
+          width="400px"
+          height="300px"
+        />
 
-      <chakra.div bg="gray.800" padding={4}>
-        <DarkMode>
-          <Button colorScheme="green">Welcome</Button>
-        </DarkMode>
-      </chakra.div>
+        <chakra.div bg="gray.800" padding={4}>
+          <DarkMode>
+            <Button colorScheme="green">Welcome</Button>
+          </DarkMode>
+        </chakra.div>
 
-      <InputGroup>
-        <InputLeftElement children={"+234"} />
-        <Input type="phone" placeholder="Phone number" />
-      </InputGroup>
+        <InputGroup>
+          <InputLeftElement children={"+234"} />
+          <Input type="phone" placeholder="Phone number" />
+        </InputGroup>
 
-      <InputGrouper />
+        <InputGrouper />
 
-      <Switcher />
+        <Switcher />
 
-      <Stack direction="row" spacing="40px">
-        <div>Welcome home</div>
-        <div>Welcome home</div>
-        <div>Welcome home</div>
-      </Stack>
-    </main>
-  </Container>
+        <Stack direction="row" spacing="40px">
+          <div>Welcome home</div>
+          <div>Welcome home</div>
+          <div>Welcome home</div>
+        </Stack>
+      </main>
+    </Container>
+  </Chakra>
 )
 
 export default Home
+
+export { getServerSideProps } from "../src/Chakra"

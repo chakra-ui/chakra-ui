@@ -110,3 +110,11 @@ export const WithContent = () => (
     />
   </Stack>
 )
+
+export const WrappingChildren = () => (
+  <Stack shouldWrapChildren>
+    <Box>foo</Box>
+    <Box>bar</Box>
+    <Box>baz</Box>
+  </Stack>
+)

@@ -13,9 +13,8 @@ import {
   addItem,
   callAllHandlers,
   createContext,
-  createOnKeyDown,
-  cx,
   dataAttr,
+  EventKeyMap,
   focus,
   getNextIndex,
   getNextItemFromSearch,
@@ -23,17 +22,17 @@ import {
   getValidChildren,
   isArray,
   isString,
-  mergeRefs,
+  normalizeEventKey,
   removeItem,
 } from "@chakra-ui/utils"
 import { useInteractOutside } from "@react-aria/interactions"
 import React, {
-  useCallback,
-  useState,
-  HTMLAttributes,
-  useRef,
   cloneElement,
+  HTMLAttributes,
   MouseEvent,
+  useCallback,
+  useRef,
+  useState,
 } from "react"
 
 const [MenuProvider, useMenuContext] = createContext<UseMenuReturn>({
@@ -127,6 +126,7 @@ export function useMenu(props: UseMenuProps) {
     ref: menuRef,
     onInteractOutside: (event) => {
       if (
+        isOpen &&
         closeOnBlur &&
         !buttonRef.current?.contains(event.target as HTMLElement)
       ) {
@@ -138,10 +138,9 @@ export function useMenu(props: UseMenuProps) {
   /**
    * Add some popper.js for dynamic positioning
    */
-  const { placement, popper, reference } = usePopper({
+  const popper = usePopper({
     placement: placementProp,
     fixed,
-    forceUpdate: isOpen,
     gutter,
     preventOverflow,
     modifiers,
@@ -176,8 +175,6 @@ export function useMenu(props: UseMenuProps) {
   return {
     domContext,
     popper,
-    placement,
-    reference,
     buttonId,
     menuId,
     orientation: "vertical",
@@ -212,6 +209,12 @@ export interface UseMenuListProps
 export function useMenuList(props: UseMenuListProps) {
   const menu = useMenuContext()
 
+  if (!menu) {
+    throw new Error(
+      `useMenuContext: context is undefined. Seems you forgot the component within <Menu>`,
+    )
+  }
+
   const {
     focusedIndex,
     setFocusedIndex,
@@ -220,7 +223,6 @@ export function useMenuList(props: UseMenuListProps) {
     onClose,
     popper,
     menuId,
-    placement,
     domContext: { descendants },
     isLazy,
   } = menu
@@ -233,51 +235,65 @@ export function useMenuList(props: UseMenuListProps) {
     preventDefault: (event) => event.key !== " ",
   })
 
-  const onKeyDown = createOnKeyDown({
-    onKeyDown: onCharacterPress((character) => {
-      /**
-       * Typeahead: Based on current character pressed,
-       * find the next item to be selected
-       */
-      const nextItem = getNextItemFromSearch(
-        descendants,
-        character,
-        (node) => node.element?.textContent || "",
-        descendants[focusedIndex],
-      )
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      const eventKey = normalizeEventKey(event)
 
-      if (nextItem) {
-        const index = descendants.indexOf(nextItem)
-        setFocusedIndex(index)
+      const keyMap: EventKeyMap = {
+        Escape: onClose,
+        ArrowDown: () => {
+          const nextIndex = getNextIndex(focusedIndex, descendants.length)
+          setFocusedIndex(nextIndex)
+        },
+        ArrowUp: () => {
+          const prevIndex = getPrevIndex(focusedIndex, descendants.length)
+          setFocusedIndex(prevIndex)
+        },
       }
-    }),
-    keyMap: {
-      Escape: onClose,
-      ArrowDown: () => {
-        const nextIndex = getNextIndex(focusedIndex, descendants.length)
-        setFocusedIndex(nextIndex)
-      },
-      ArrowUp: () => {
-        const prevIndex = getPrevIndex(focusedIndex, descendants.length)
-        setFocusedIndex(prevIndex)
-      },
-    },
-  })
 
-  return {
+      const navigationHandler = keyMap[eventKey]
+
+      if (navigationHandler) {
+        event.preventDefault()
+        navigationHandler(event)
+        return
+      }
+
+      const characterHandler = onCharacterPress((character) => {
+        /**
+         * Typeahead: Based on current character pressed,
+         * find the next item to be selected
+         */
+        const nextItem = getNextItemFromSearch(
+          descendants,
+          character,
+          (node) => node.element?.textContent || "",
+          descendants[focusedIndex],
+        )
+
+        if (nextItem) {
+          const index = descendants.indexOf(nextItem)
+          setFocusedIndex(index)
+        }
+      })
+
+      characterHandler(event)
+    },
+    [descendants, focusedIndex, onCharacterPress, onClose, setFocusedIndex],
+  )
+
+  const menulistProps: any = {
     ...props,
     children: !isLazy || isOpen ? props.children : null,
-    className: cx("chakra-menu__menu-list", props.className),
-    ref: mergeRefs(menuRef, popper.ref),
     tabIndex: -1,
     role: "menu",
     id: menuId,
-    hidden: !isOpen,
+    style: { visibility: isOpen ? "visible" : "hidden" },
     "aria-orientation": "vertical" as React.AriaAttributes["aria-orientation"],
-    "data-placement": placement,
-    style: { ...popper.style, ...props.style },
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
   }
+
+  return popper.getPopperProps(menulistProps, menuRef)
 }
 
 /**
@@ -301,6 +317,7 @@ export function useMenuButton(props: UseMenuButtonProps) {
     onClose,
     autoSelect,
     menuRef,
+    popper,
     domContext: { descendants },
   } = menu
 
@@ -331,18 +348,28 @@ export function useMenuButton(props: UseMenuButtonProps) {
     }
   }, [autoSelect, isOpen, onClose, openAndFocusFirstItem, openAndFocusMenu])
 
-  const onKeyDown = createOnKeyDown({
-    keyMap: {
-      Enter: openAndFocusFirstItem,
-      ArrowDown: openAndFocusFirstItem,
-      ArrowUp: openAndFocusLastItem,
-    },
-  })
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      const eventKey = normalizeEventKey(event)
+      const keyMap: EventKeyMap = {
+        Enter: openAndFocusFirstItem,
+        ArrowDown: openAndFocusFirstItem,
+        ArrowUp: openAndFocusLastItem,
+      }
 
-  return {
+      const action = keyMap[eventKey]
+
+      if (action) {
+        event.preventDefault()
+        event.stopPropagation()
+        action(event)
+      }
+    },
+    [openAndFocusFirstItem, openAndFocusLastItem],
+  )
+
+  const buttonProps = {
     ...props,
-    ref: mergeRefs(menu.buttonRef, menu.reference.ref),
-    className: cx("chakra-menu__menu-button", props.className),
     id: menu.buttonId,
     "data-active": dataAttr(menu.isOpen),
     "aria-expanded": menu.isOpen,
@@ -351,6 +378,8 @@ export function useMenuButton(props: UseMenuButtonProps) {
     onClick: callAllHandlers(props.onClick, onClick),
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
   }
+
+  return popper.getReferenceProps(buttonProps, menu.buttonRef)
 }
 
 export interface UseMenuItemProps
@@ -450,7 +479,6 @@ export function useMenuItem(props: UseMenuItemProps) {
   return {
     ...htmlProps,
     ...tabbable,
-    className: cx("chakra-menu__menuitem", htmlProps.className),
     id,
     role: "menuitem",
     tabIndex: isFocused ? 0 : -1,
@@ -488,7 +516,6 @@ export function useMenuOption(props: UseMenuOptionProps) {
   return {
     ...rest,
     ...ownProps,
-    className: cx("chakra-menu__menuitem-option", rest.className),
     role: `menuitem${type}`,
     "aria-checked": isChecked as React.AriaAttributes["aria-checked"],
   }
@@ -500,7 +527,6 @@ export interface UseMenuOptionGroupProps {
   type?: "radio" | "checkbox"
   onChange?: (value: string | string[]) => void
   children?: React.ReactNode
-  className?: string
 }
 
 export function useMenuOptionGroup(props: UseMenuOptionGroupProps) {
@@ -543,6 +569,15 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps) {
   const validChildren = getValidChildren(children)
 
   const clones = validChildren.map((child) => {
+    /**
+     * We've added an internal `id` to each `MenuItemOption`,
+     * let's use that for type-checking.
+     *
+     * We can't rely on displayName or the element's type since
+     * they can be changed by the user.
+     */
+    if ((child.type as any).id !== "MenuItemOption") return child
+
     const onClick = (event: MouseEvent) => {
       handleChange(child.props.value)
       child.props.onClick?.(event)
@@ -562,7 +597,6 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps) {
 
   return {
     ...htmlProps,
-    className: cx("chakra-menu__option-group", htmlProps.className),
     children: clones,
   }
 }

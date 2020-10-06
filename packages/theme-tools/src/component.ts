@@ -1,7 +1,7 @@
 import { SystemStyleObject } from "@chakra-ui/system"
 import { Dict, runIfFn } from "@chakra-ui/utils"
 
-interface GlobalStyleProps {
+export interface GlobalStyleProps {
   colorScheme: string
   colorMode: "light" | "dark"
   theme: Dict

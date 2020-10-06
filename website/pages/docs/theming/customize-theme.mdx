@@ -54,7 +54,8 @@ It's important to understand this so you can override any component style
 effectively.
 
 > You're not limited to the component styles that Chakra providers, you can also
-> create your custom component styles. [Learn more](/docs/theming/create).
+> create your custom component styles.
+> [Learn more](/docs/theming/component-style).
 
 ### Customizing single components
 
@@ -104,9 +105,13 @@ const theme = extendTheme({
       // 3. We can add a new visual variant
       variants: {
         "with-shadow": {
-          bg: "red.400"
+          bg: "red.400",
           boxShadow: "0 0 2px 2px #efdfde",
         },
+        // 4. We can override existing variants
+        solid: (props) => ({
+          bg: "red.400",
+        }),
       },
     },
   },
@@ -137,7 +142,8 @@ styles can be a style object or a function that returns a style object.
 
 ```jsx live=false
 // theme.js
-import { extendTheme, mode } from "@chakra-ui/theme"
+import { extendTheme } from "@chakra-ui/theme"
+import { mode } from "@chakra-ui/theme-tools"
 
 // Version 1: Using objects
 const theme = extendTheme({
@@ -173,10 +179,6 @@ const overrides = extendTheme({
   },
 })
 ```
-
-> WARNING: If you do use a function in a style override, you will NOT inherit
-> the existing styles like you will with an object. `extendTheme` will only
-> merge style objects, not functions
 
 ## Scaling out your project
 
@@ -230,5 +232,5 @@ best suggestion on how to write style overrides and organize your custom theme.
 
 ---
 
-[In the next section](/docs/theming/create), we'll show some examples of how to
-create custom component styles and use them in your components!
+[In the next section](/docs/theming/component-style), we'll show some examples
+of how to create custom component styles and use them in your components!

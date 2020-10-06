@@ -8,10 +8,10 @@ import {
 import {
   cx,
   Dict,
-  get,
   mapResponsive,
   __DEV__,
   filterUndefined,
+  memoizedGet as get,
 } from "@chakra-ui/utils"
 import * as React from "react"
 

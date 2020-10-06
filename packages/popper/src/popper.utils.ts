@@ -1,45 +1,9 @@
+import type { CSSProperties } from "react"
 import { Placement } from "@popperjs/core"
 
-const oppositeDirections = {
-  top: "bottom",
-  bottom: "top",
-  right: "left",
-  left: "right",
-}
+export function getBoxShadow(placement: Placement, color?: string) {
+  if (!color) return undefined
 
-type Direction = keyof typeof oppositeDirections
-
-export const getOppositePosition = (position: Direction) =>
-  oppositeDirections[position]
-
-const splitPlacement = (placement: Placement) =>
-  placement.split("-") as Direction[]
-
-export function getArrowStyles(
-  placement: Placement | undefined,
-  arrowSize: number,
-  arrowShadowColor?: string,
-): React.CSSProperties {
-  if (typeof placement !== "string") return {}
-
-  const [position] = splitPlacement(placement)
-  const oppositePosition = getOppositePosition(position)
-
-  if (!oppositePosition) return {}
-
-  return {
-    [oppositePosition]: `-${arrowSize / 2}px`,
-    width: arrowSize,
-    height: arrowSize,
-    position: "absolute",
-    transform: "rotate(45deg)",
-    boxShadow: arrowShadowColor
-      ? getBoxShadow(placement, arrowShadowColor)
-      : undefined,
-  }
-}
-
-export function getBoxShadow(placement: Placement, color: string) {
   if (placement.includes("top")) {
     return `2px 2px 2px 0 ${color}`
   }
@@ -77,3 +41,29 @@ const transformEnum = {
 
 export const toTransformOrigin = (placement: Placement) =>
   transformEnum[placement]
+
+interface GetArrowStyleOptions {
+  arrowSize: number
+  popperArrowStyles?: CSSProperties
+  placement: Placement
+}
+
+export const getArrowStyles = (options: GetArrowStyleOptions) => {
+  const { arrowSize, popperArrowStyles = {}, placement } = options
+
+  const styles: CSSProperties = {
+    ...popperArrowStyles,
+    width: arrowSize,
+    height: arrowSize,
+    zIndex: -1,
+  }
+
+  const offsetAdjust = -(arrowSize / 2)
+
+  if (placement.startsWith("top")) styles.bottom = offsetAdjust
+  if (placement.startsWith("bottom")) styles.top = offsetAdjust
+  if (placement.startsWith("left")) styles.right = offsetAdjust
+  if (placement.startsWith("right")) styles.left = offsetAdjust
+
+  return styles
+}
