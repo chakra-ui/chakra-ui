@@ -63,8 +63,14 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
     shouldWrapChildren,
     "aria-label": ariaLabel,
     hasArrow,
+    bg,
     ...rest
   } = ownProps
+
+  if (bg) {
+    //@ts-expect-error
+    styles.bg = bg
+  }
 
   const {
     isOpen,
@@ -124,7 +130,8 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
               <chakra.div
                 className="chakra-tooltip__arrow"
                 {...arrowProps}
-                __css={{ bg: "inherit" }}
+                //@ts-expect-error
+                __css={{ color: styles.bg }}
               />
             )}
           </chakra.div>

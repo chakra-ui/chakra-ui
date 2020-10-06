@@ -71,20 +71,16 @@ export function Example() {
   }
 
   // 4. Consume the `usePopper` hook
-  const { popper, reference, arrow, transformOrigin } = usePopper({
+  const { getPopperProps, getReferenceProps, getArrowProps } = usePopper({
     placement: "bottom-start",
   })
 
   return (
     <>
-      <button {...reference} onClick={onToggle}>
-        Toggle
-      </button>
-      {/* 5. Attach popper to this div */}
+      <button {...getReferenceProps({ onClick: onToggle })}>Toggle</button>
       <div {...popper}>
         <AnimatePresence>
           {isOpen && (
-            {/* 6. Add transition to `motion.div` */}
             <motion.div
               transition={{
                 type: "spring",
@@ -102,7 +98,13 @@ export function Example() {
               }}
             >
               Testing
-              <div {...arrow} style={{ ...arrow.style, color: "red" }} />
+              <div
+                {...getArrowProps({
+                  style: {
+                    background: "red",
+                  },
+                })}
+              />
             </motion.div>
           )}
         </AnimatePresence>
@@ -111,3 +113,6 @@ export function Example() {
   )
 }
 ```
+
+> When not rendering the popper conditionally, we recommend using
+> `visibility: hidden` instead of `hidden` or `display: none`

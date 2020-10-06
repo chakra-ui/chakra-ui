@@ -10,37 +10,44 @@ export default {
 export const Basic = () => {
   const { isOpen, onToggle } = useDisclosure()
 
-  const { popper, reference, arrow, transformOrigin } = usePopper({
+  const {
+    getReferenceProps,
+    getPopperProps,
+    getArrowProps,
+    transformOrigin,
+  } = usePopper({
     placement: "bottom-start",
     matchWidth: true,
   })
 
   return (
     <>
-      <button onClick={onToggle} style={{ margin: 400 }} {...reference}>
+      <button
+        {...getReferenceProps({
+          style: { margin: 400 },
+          onClick: onToggle,
+        })}
+      >
         Reference Tooltip Trigger
       </button>
 
       {isOpen && (
         <div
-          {...popper}
-          style={{
-            ...popper.style,
-            width: 250,
-            background: "red",
-            padding: 15,
-            borderRadius: 6,
-            transformOrigin,
-            // visibility: disclosure.isOpen ? "visible" : "hidden",
-          }}
+          {...getPopperProps({
+            style: {
+              width: 250,
+              background: "red",
+              padding: 15,
+              borderRadius: 6,
+              transformOrigin,
+            },
+          })}
         >
           Popper
           <div
-            {...arrow}
-            style={{
-              ...arrow.style,
-              color: "red",
-            }}
+            {...getArrowProps({
+              style: { background: "red" },
+            })}
           />
         </div>
       )}
@@ -51,7 +58,12 @@ export const Basic = () => {
 export const WithTransition = () => {
   const { isOpen, onToggle } = useDisclosure()
 
-  const { popper, reference, arrow, transformOrigin } = usePopper({
+  const {
+    getPopperProps,
+    getReferenceProps,
+    getArrowProps,
+    transformOrigin,
+  } = usePopper({
     placement: "bottom-start",
   })
 
@@ -64,16 +76,20 @@ export const WithTransition = () => {
 
   return (
     <>
-      <button {...reference} onClick={onToggle}>
+      <button
+        {...getReferenceProps({
+          onClick: onToggle,
+        })}
+      >
         Toggle
       </button>
-      <div {...popper}>
+      <div {...getPopperProps()}>
         <AnimatePresence>
           {isOpen && (
             <motion.div
               transition={{
-                type: "spring",
-                duration: 0.3,
+                duration: 0.15,
+                easings: "easeInOut",
               }}
               variants={slide}
               initial="exit"
@@ -87,7 +103,7 @@ export const WithTransition = () => {
               }}
             >
               Testing
-              <div {...arrow} style={{ ...arrow.style, color: bg }} />
+              <div {...getArrowProps({ style: { background: bg } })} />
             </motion.div>
           )}
         </AnimatePresence>

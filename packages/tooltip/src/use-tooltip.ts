@@ -172,6 +172,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     isOpen,
     show: openWithDelay,
     hide: closeWithDelay,
+    transformOrigin: popper.transformOrigin,
     placement: popper.placement,
     getTriggerProps,
     getTooltipProps,

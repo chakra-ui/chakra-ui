@@ -1,4 +1,5 @@
-import type { Placement, Modifier } from "@popperjs/core"
+import { mergeRefs, PropGetter } from "@chakra-ui/utils"
+import type { Modifier, Placement } from "@popperjs/core"
 import * as React from "react"
 import { usePopper as useBasePopper } from "react-popper"
 import { getArrowStyles, getBoxShadow, toTransformOrigin } from "./popper.utils"
@@ -123,43 +124,56 @@ export function usePopper(props: UsePopperProps = {}) {
     arrowSize,
   })
 
-  return {
-    state: popperJS.state,
-    transformOrigin: toTransformOrigin(_placement),
-    reference: {
-      ref: setReferenceNode,
-    },
-    popper: {
-      ref: setPopperNode,
-      style: popperJS.styles?.popper,
+  const getReferenceProps: PropGetter = (props = {}, _ref = null) => {
+    return {
+      ...props,
+      ref: mergeRefs(setReferenceNode, _ref),
+    }
+  }
+
+  const getPopperProps: PropGetter = (props = {}, _ref = null) => {
+    return {
+      ...props,
       ...popperJS.attributes.popper,
-    },
-    arrow: {
+      ref: mergeRefs(setPopperNode, _ref),
+      style: { ...props.style, ...popperJS.styles?.popper },
+    }
+  }
+
+  const getArrowProps: PropGetter = (props = {}, _ref = null) => {
+    const { style, ...rest } = props
+    return {
+      ...rest,
       ...popperJS.attributes.arrow,
-      ref: setArrowNode,
+      ref: mergeRefs(setArrowNode, _ref),
       style: arrowStyles,
       /**
        * This is used to mimic css `&::before` pseudo element
        * so users won't need to use `css` or `css-in-js` to get arrow
        * positioned correctly.
-       *
-       * NB: To change the background, we'll rely on `color` prop since
-       * we use `currentColor` as the background color.
        */
       children: React.createElement("div", {
         style: {
-          position: "absolute",
-          background: "currentColor",
           boxShadow: arrowShadowColor
             ? getBoxShadow(_placement, arrowShadowColor)
             : undefined,
+          ...style,
+          position: "absolute",
           zIndex: -1,
           width: "100%",
           height: "100%",
           transform: "rotate(45deg)",
         },
       }),
-    },
+    }
+  }
+
+  return {
+    transformOrigin: toTransformOrigin(_placement),
+    getReferenceProps,
+    getPopperProps,
+    getArrowProps,
+    state: popperJS.state,
     forceUpdate: popperJS.forceUpdate,
     update: popperJS.update,
     placement: _placement,
