@@ -1,6 +1,6 @@
 import * as React from "react"
 import { getProgressProps, rotate, spin } from "./progress.utils"
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf, SystemStyleObject } from "@chakra-ui/system"
 import { isUndefined, __DEV__, StringOrNumber } from "@chakra-ui/utils"
 
 interface CircleProps extends PropsOf<typeof chakra.circle> {}
@@ -145,7 +145,7 @@ export const CircularProgress: React.FC<CircularProgressProps> = (props) => {
         transition: `stroke-dasharray 0.6s ease 0s, stroke 0.6s ease`,
       }
 
-  const rootStyles = {
+  const rootStyles: SystemStyleObject = {
     display: "inline-block",
     position: "relative",
     verticalAlign: "middle",

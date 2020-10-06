@@ -1,4 +1,10 @@
-import { chakra, forwardRef, PropsOf, useStyles } from "@chakra-ui/system"
+import {
+  chakra,
+  forwardRef,
+  PropsOf,
+  SystemStyleObject,
+  useStyles,
+} from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -26,7 +32,7 @@ const InputElement = forwardRef<InputElementProps, "div">(function InputElement(
   const styles = useStyles()
   const input: any = styles.field
 
-  const elementStyles = {
+  const elementStyles: SystemStyleObject = {
     [placement]: "0",
     width: input?.height ?? input?.h,
     height: input?.height ?? input?.h,

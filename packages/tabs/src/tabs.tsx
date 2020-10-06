@@ -1,14 +1,15 @@
 import {
   chakra,
   forwardRef,
-  PropsOf,
   omitThemingProps,
+  PropsOf,
   StylesProvider,
+  SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
 } from "@chakra-ui/system"
-import { cx, __DEV__, omit } from "@chakra-ui/utils"
+import { cx, omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import {
   TabsProvider,
@@ -88,7 +89,7 @@ export const Tab = forwardRef<TabProps, "button">(function Tab(props, ref) {
   const styles = useStyles()
   const tabProps = useTab({ ...props, ref })
 
-  const tabStyles = {
+  const tabStyles: SystemStyleObject = {
     outline: "0",
     display: "flex",
     alignItems: "center",
@@ -124,7 +125,8 @@ export const TabList = forwardRef<TabListProps, "div">(function TabList(
   const tablistProps = useTabList({ ...props, ref })
 
   const styles = useStyles()
-  const tablistStyles = {
+
+  const tablistStyles: SystemStyleObject = {
     display: "flex",
     ...styles.tablist,
   }
