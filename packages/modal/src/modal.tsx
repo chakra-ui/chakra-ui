@@ -10,7 +10,13 @@ import {
   StylesProvider,
   useStyles,
 } from "@chakra-ui/system"
-import { callAllHandlers, cx, __DEV__, createContext } from "@chakra-ui/utils"
+import {
+  callAllHandlers,
+  cx,
+  __DEV__,
+  createContext,
+  Focusable,
+} from "@chakra-ui/utils"
 import * as React from "react"
 import { RemoveScroll } from "react-remove-scroll"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
@@ -38,11 +44,11 @@ interface ModalOptions {
   /**
    * The `ref` of element to receive focus when the modal opens.
    */
-  initialFocusRef?: React.RefObject<HTMLElement>
+  initialFocusRef?: React.RefObject<Focusable>
   /**
    * The `ref` of element to receive focus when the modal closes.
    */
-  finalFocusRef?: React.RefObject<HTMLElement>
+  finalFocusRef?: React.RefObject<Focusable>
   /**
    * If `true`, the modal will return focus to the element that triggered it when it closes.
    * @default true
