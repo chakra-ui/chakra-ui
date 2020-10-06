@@ -1,16 +1,17 @@
-import * as React from "react"
+import { Icon, IconProps } from "@chakra-ui/icon"
 import {
   chakra,
   forwardRef,
+  omitThemingProps,
   PropsOf,
+  StylesProvider,
+  SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  StylesProvider,
-  omitThemingProps,
   useStyles,
 } from "@chakra-ui/system"
-import { Icon, IconProps } from "@chakra-ui/icon"
 import { __DEV__ } from "@chakra-ui/utils"
+import * as React from "react"
 
 export interface TagProps extends PropsOf<typeof chakra.span>, ThemingProps {}
 
@@ -23,7 +24,7 @@ export const Tag = forwardRef<TagProps, "span">(function Tag(props, ref) {
   const styles = useMultiStyleConfig("Tag", props)
   const ownProps = omitThemingProps(props)
 
-  const containerStyles = {
+  const containerStyles: SystemStyleObject = {
     display: "inline-flex",
     verticalAlign: "top",
     alignItems: "center",
@@ -104,7 +105,8 @@ export const TagCloseButton: React.FC<TagCloseButtonProps> = (props) => {
   const { isDisabled, children = <TagCloseIcon />, ...rest } = props
 
   const styles = useStyles()
-  const btnStyles = {
+
+  const btnStyles: SystemStyleObject = {
     display: "flex",
     alignItems: "center",
     outline: "0",

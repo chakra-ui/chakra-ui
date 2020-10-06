@@ -1,170 +1,179 @@
+import { mergeRefs, PropGetter } from "@chakra-ui/utils"
+import type { Modifier, Placement } from "@popperjs/core"
 import * as React from "react"
-import { Instance, createPopper, Modifier } from "@popperjs/core"
-import type { Placement } from "@popperjs/core"
-import { getArrowStyles, toTransformOrigin } from "./popper.utils"
-
-const isBrowser = typeof window !== "undefined"
-const useSafeLayoutEffect = isBrowser ? React.useLayoutEffect : React.useEffect
+import { usePopper as useBasePopper } from "react-popper"
+import { getArrowStyles, getBoxShadow, toTransformOrigin } from "./popper.utils"
 
 export type { Placement }
 
 export interface UsePopperProps {
   gutter?: number
   placement?: Placement
-  offset?: number
+  offset?: [number, number]
   preventOverflow?: boolean
   fixed?: boolean
-  forceUpdate?: boolean
   flip?: boolean
   arrowSize?: number
+  matchWidth?: boolean
   arrowShadowColor?: string
-  eventsEnabled?: boolean
-  modifiers?: Modifier<any, any>[]
+  modifiers?: Modifier<string, any>[]
 }
 
 export function usePopper(props: UsePopperProps = {}) {
   const {
-    placement: initialPlacement = "bottom",
-    offset: offsetProp,
+    placement = "bottom",
     preventOverflow = true,
     fixed = false,
-    forceUpdate = true,
     flip = true,
-    arrowSize = 10,
+    arrowSize = 8,
     arrowShadowColor,
-    gutter = arrowSize,
-    eventsEnabled = true,
-    modifiers,
+    gutter = 8,
+    offset,
+    matchWidth,
+    modifiers = [],
   } = props
 
-  const popper = React.useRef<Instance | null>(null)
-  const referenceRef = React.useRef<HTMLButtonElement>(null)
-  const popoverRef = React.useRef<HTMLDivElement>(null)
-  const arrowRef = React.useRef<HTMLDivElement>(null)
-
-  const [originalPlacement, place] = React.useState(initialPlacement)
-  const [placement, setPlacement] = React.useState(initialPlacement)
-  const [offset] = React.useState(offsetProp || [0, gutter])
-  const [popoverStyles, setPopoverStyles] = React.useState<React.CSSProperties>(
-    {},
+  const [
+    referenceNode,
+    setReferenceNode,
+  ] = React.useState<HTMLButtonElement | null>(null)
+  const [popperNode, setPopperNode] = React.useState<HTMLDivElement | null>(
+    null,
   )
-  const [arrowStyles, setArrowStyles] = React.useState<React.CSSProperties>({})
+  const [arrowNode, setArrowNode] = React.useState<HTMLDivElement | null>(null)
 
-  const update = React.useCallback(() => {
-    if (popper.current) {
-      popper.current.forceUpdate()
-      return true
+  /**
+   * recommended via popper docs
+   * @see https://popper.js.org/react-popper/v2/faq/#why-i-get-render-loop-whenever-i-put-a-function-inside-the-popper-configuration
+   */
+  const customMofidiers = React.useMemo<Partial<Modifier<any, unknown>>[]>(
+    () => [
+      // @see https://popper.js.org/docs/v2/modifiers/offset/
+      {
+        name: "offset",
+        options: {
+          offset: offset ?? [0, gutter],
+        },
+        phase: "main",
+      },
+      // @see https://popper.js.org/docs/v2/modifiers/prevent-overflow/
+      {
+        name: "preventOverflow",
+        enabled: !!preventOverflow,
+        phase: "main",
+      },
+      // @see https://popper.js.org/docs/v2/modifiers/arrow/
+      {
+        name: "arrow",
+        enabled: !!arrowNode,
+        options: { element: arrowNode, padding: 4 },
+        phase: "main",
+      },
+      // @see https://popper.js.org/docs/v2/modifiers/flip/
+      {
+        name: "flip",
+        enabled: flip,
+        options: {
+          padding: 8,
+        },
+        phase: "main",
+      },
+      {
+        name: "matchWidth",
+        enabled: !!matchWidth,
+        phase: "beforeWrite",
+        requires: ["computeStyles"],
+        fn: ({ state }) => {
+          state.styles.popper.width = `${state.rects.reference.width}px`
+        },
+        effect: ({ state }) => () => {
+          const reference = state.elements.reference as HTMLElement
+          state.elements.popper.style.width = `${reference.offsetWidth}px`
+        },
+      },
+      {
+        name: "applyArrowHide",
+        enabled: true,
+        phase: "write",
+        fn({ state }) {
+          const { arrow } = state.elements
+          if (arrow) {
+            if (state.modifiersData.arrow?.centerOffset !== 0) {
+              arrow.setAttribute("data-hide", "")
+            } else {
+              arrow.removeAttribute("data-hide")
+            }
+          }
+        },
+      },
+    ],
+    [arrowNode, flip, preventOverflow, offset, gutter, matchWidth],
+  )
+
+  const popperJS = useBasePopper(referenceNode, popperNode, {
+    placement,
+    strategy: fixed ? "fixed" : "absolute",
+    modifiers: customMofidiers.concat(modifiers),
+  })
+
+  const _placement = popperJS.state?.placement ?? placement
+
+  const arrowStyles = getArrowStyles({
+    placement: _placement,
+    popperArrowStyles: popperJS.styles.arrow,
+    arrowSize,
+  })
+
+  const getReferenceProps: PropGetter = (props = {}, _ref = null) => {
+    return {
+      ...props,
+      ref: mergeRefs(setReferenceNode, _ref),
     }
-    return false
-  }, [])
+  }
 
-  const modifiersOverride = modifiers ?? []
-
-  useSafeLayoutEffect(() => {
-    if (referenceRef.current && popoverRef.current) {
-      popper.current = createPopper(referenceRef.current, popoverRef.current, {
-        placement: originalPlacement,
-        strategy: fixed ? "fixed" : "absolute",
-        modifiers: [
-          {
-            name: "eventListeners",
-            enabled: eventsEnabled,
-          },
-          {
-            name: "applyStyles",
-            enabled: false,
-          },
-          {
-            name: "flip",
-            enabled: flip,
-            options: { padding: 8 },
-          },
-          {
-            name: "computeStyles",
-            options: { gpuAcceleration: false, adaptive: false },
-          },
-          {
-            name: "offset",
-            options: { offset },
-          },
-          {
-            name: "preventOverflow",
-            enabled: preventOverflow,
-            options: {
-              tetherOffset: () => arrowRef.current?.clientWidth || 0,
-            },
-          },
-          {
-            name: "arrow",
-            enabled: Boolean(arrowRef.current),
-            options: { element: arrowRef.current },
-          },
-          {
-            name: "updateState",
-            phase: "write",
-            enabled: true,
-            fn({ state }) {
-              setPlacement(state.placement)
-              setPopoverStyles(state.styles.popper as React.CSSProperties)
-              setArrowStyles(state.styles.arrow as React.CSSProperties)
-            },
-          },
-          ...modifiersOverride,
-        ],
-      })
+  const getPopperProps: PropGetter = (props = {}, _ref = null) => {
+    return {
+      ...props,
+      ...popperJS.attributes.popper,
+      ref: mergeRefs(setPopperNode, _ref),
+      style: { ...props.style, ...popperJS.styles?.popper },
     }
-    return () => {
-      if (popper.current) {
-        popper.current.destroy()
-        popper.current = null
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    originalPlacement,
-    fixed,
-    forceUpdate,
-    flip,
-    offset,
-    preventOverflow,
-    eventsEnabled,
-  ])
+  }
 
-  useSafeLayoutEffect(() => {
-    const id = requestAnimationFrame(() => {
-      if (forceUpdate) {
-        popper.current?.forceUpdate()
-      }
-    })
-    return () => {
-      cancelAnimationFrame(id)
+  const getArrowWrapperProps: PropGetter = (props = {}, _ref = null) => {
+    return {
+      ...props,
+      ...popperJS.attributes.arrow,
+      ref: mergeRefs(setArrowNode, _ref),
+      style: { ...props.style, ...arrowStyles },
     }
-  }, [forceUpdate])
+  }
 
-  const computedArrowStyles: React.CSSProperties = {
-    ...arrowStyles,
-    ...getArrowStyles(placement, arrowSize, arrowShadowColor),
+  const getArrowProps: PropGetter = (props = {}, _ref = null) => {
+    return {
+      ...props,
+      style: {
+        boxShadow: getBoxShadow(_placement, arrowShadowColor),
+        ...props.style,
+        position: "absolute",
+        zIndex: -1,
+        width: "100%",
+        height: "100%",
+        transform: "rotate(45deg)",
+      },
+    }
   }
 
   return {
-    popperInstance: popper.current,
-    reference: {
-      ref: referenceRef,
-    },
-    popper: {
-      ref: popoverRef,
-      style: {
-        ...popoverStyles,
-        transformOrigin: toTransformOrigin(placement),
-      },
-    },
-    arrow: {
-      ref: arrowRef,
-      style: computedArrowStyles,
-    },
-    update,
-    placement,
-    place,
+    transformOrigin: toTransformOrigin(_placement),
+    getReferenceProps,
+    getPopperProps,
+    getArrowWrapperProps,
+    getArrowProps,
+    state: popperJS.state,
+    forceUpdate: popperJS.forceUpdate,
+    update: popperJS.update,
+    placement: _placement,
   }
 }
 

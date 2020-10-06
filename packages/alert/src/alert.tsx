@@ -4,6 +4,7 @@ import {
   omitThemingProps,
   PropsOf,
   StylesProvider,
+  SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
@@ -52,7 +53,8 @@ export const Alert = forwardRef<AlertProps, "div">(function Alert(props, ref) {
   const { colorScheme } = STATUSES[status]
 
   const styles = useMultiStyleConfig("Alert", { ...props, colorScheme })
-  const alertStyles = {
+
+  const alertStyles: SystemStyleObject = {
     width: "100%",
     display: "flex",
     alignItems: "center",
@@ -98,7 +100,7 @@ export interface AlertDescriptionProps extends PropsOf<typeof chakra.div> {}
 export const AlertDescription = forwardRef<AlertDescriptionProps, "div">(
   function AlertDescription(props, ref) {
     const styles = useStyles()
-    const descriptionStyles = {
+    const descriptionStyles: SystemStyleObject = {
       display: "inline",
       ...styles.description,
     }

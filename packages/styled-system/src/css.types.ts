@@ -120,11 +120,8 @@ type PseudoStyles = {
 }
 
 export type SystemStyleObject =
-  | SystemCSSProperties
-  | CSSPseudoStyles
-  | CSSSelectorStyles
-  | ApplyPropStyles
-  | PseudoStyles
+  | (SystemCSSProperties & CSSPseudoStyles & ApplyPropStyles & PseudoStyles)
+  | (SystemCSSProperties & CSSSelectorStyles)
 
 export type StyleObjectOrFn =
   | SystemStyleObject

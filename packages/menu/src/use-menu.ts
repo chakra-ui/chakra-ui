@@ -13,7 +13,6 @@ import {
   addItem,
   callAllHandlers,
   createContext,
-  cx,
   dataAttr,
   EventKeyMap,
   focus,
@@ -23,7 +22,6 @@ import {
   getValidChildren,
   isArray,
   isString,
-  mergeRefs,
   normalizeEventKey,
   removeItem,
 } from "@chakra-ui/utils"
@@ -140,10 +138,9 @@ export function useMenu(props: UseMenuProps) {
   /**
    * Add some popper.js for dynamic positioning
    */
-  const { placement, popper, reference } = usePopper({
+  const popper = usePopper({
     placement: placementProp,
     fixed,
-    forceUpdate: isOpen,
     gutter,
     preventOverflow,
     modifiers,
@@ -178,8 +175,6 @@ export function useMenu(props: UseMenuProps) {
   return {
     domContext,
     popper,
-    placement,
-    reference,
     buttonId,
     menuId,
     orientation: "vertical",
@@ -228,7 +223,6 @@ export function useMenuList(props: UseMenuListProps) {
     onClose,
     popper,
     menuId,
-    placement,
     domContext: { descendants },
     isLazy,
   } = menu
@@ -244,6 +238,7 @@ export function useMenuList(props: UseMenuListProps) {
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
       const eventKey = normalizeEventKey(event)
+
       const keyMap: EventKeyMap = {
         Escape: onClose,
         ArrowDown: () => {
@@ -256,50 +251,49 @@ export function useMenuList(props: UseMenuListProps) {
         },
       }
 
-      const action = keyMap[eventKey]
+      const navigationHandler = keyMap[eventKey]
 
-      if (action) {
+      if (navigationHandler) {
         event.preventDefault()
-        action(event)
-      } else {
-        const action = onCharacterPress((character) => {
-          /**
-           * Typeahead: Based on current character pressed,
-           * find the next item to be selected
-           */
-          const nextItem = getNextItemFromSearch(
-            descendants,
-            character,
-            (node) => node.element?.textContent || "",
-            descendants[focusedIndex],
-          )
-
-          if (nextItem) {
-            const index = descendants.indexOf(nextItem)
-            setFocusedIndex(index)
-          }
-        })
-
-        action(event)
+        navigationHandler(event)
+        return
       }
+
+      const characterHandler = onCharacterPress((character) => {
+        /**
+         * Typeahead: Based on current character pressed,
+         * find the next item to be selected
+         */
+        const nextItem = getNextItemFromSearch(
+          descendants,
+          character,
+          (node) => node.element?.textContent || "",
+          descendants[focusedIndex],
+        )
+
+        if (nextItem) {
+          const index = descendants.indexOf(nextItem)
+          setFocusedIndex(index)
+        }
+      })
+
+      characterHandler(event)
     },
     [descendants, focusedIndex, onCharacterPress, onClose, setFocusedIndex],
   )
 
-  return {
+  const menulistProps: any = {
     ...props,
     children: !isLazy || isOpen ? props.children : null,
-    className: cx("chakra-menu__menu-list", props.className),
-    ref: mergeRefs(menuRef, popper.ref),
     tabIndex: -1,
     role: "menu",
     id: menuId,
-    hidden: !isOpen,
+    style: { visibility: isOpen ? "visible" : "hidden" },
     "aria-orientation": "vertical" as React.AriaAttributes["aria-orientation"],
-    "data-placement": placement,
-    style: { ...popper.style, ...props.style },
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
   }
+
+  return popper.getPopperProps(menulistProps, menuRef)
 }
 
 /**
@@ -323,6 +317,7 @@ export function useMenuButton(props: UseMenuButtonProps) {
     onClose,
     autoSelect,
     menuRef,
+    popper,
     domContext: { descendants },
   } = menu
 
@@ -373,10 +368,8 @@ export function useMenuButton(props: UseMenuButtonProps) {
     [openAndFocusFirstItem, openAndFocusLastItem],
   )
 
-  return {
+  const buttonProps = {
     ...props,
-    ref: mergeRefs(menu.buttonRef, menu.reference.ref),
-    className: cx("chakra-menu__menu-button", props.className),
     id: menu.buttonId,
     "data-active": dataAttr(menu.isOpen),
     "aria-expanded": menu.isOpen,
@@ -385,6 +378,8 @@ export function useMenuButton(props: UseMenuButtonProps) {
     onClick: callAllHandlers(props.onClick, onClick),
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
   }
+
+  return popper.getReferenceProps(buttonProps, menu.buttonRef)
 }
 
 export interface UseMenuItemProps
@@ -484,7 +479,6 @@ export function useMenuItem(props: UseMenuItemProps) {
   return {
     ...htmlProps,
     ...tabbable,
-    className: cx("chakra-menu__menuitem", htmlProps.className),
     id,
     role: "menuitem",
     tabIndex: isFocused ? 0 : -1,
@@ -522,7 +516,6 @@ export function useMenuOption(props: UseMenuOptionProps) {
   return {
     ...rest,
     ...ownProps,
-    className: cx("chakra-menu__menuitem-option", rest.className),
     role: `menuitem${type}`,
     "aria-checked": isChecked as React.AriaAttributes["aria-checked"],
   }
@@ -534,7 +527,6 @@ export interface UseMenuOptionGroupProps {
   type?: "radio" | "checkbox"
   onChange?: (value: string | string[]) => void
   children?: React.ReactNode
-  className?: string
 }
 
 export function useMenuOptionGroup(props: UseMenuOptionGroupProps) {
@@ -605,7 +597,6 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps) {
 
   return {
     ...htmlProps,
-    className: cx("chakra-menu__option-group", htmlProps.className),
     children: clones,
   }
 }

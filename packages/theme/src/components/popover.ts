@@ -1,6 +1,6 @@
 import { mode } from "@chakra-ui/theme-tools"
 
-const parts = ["content", "header", "body", "footer"]
+const parts = ["content", "header", "body", "footer", "arrow"]
 
 function baseStyleContent(props: Record<string, any>) {
   return {
@@ -16,6 +16,12 @@ function baseStyleContent(props: Record<string, any>) {
       outline: 0,
       boxShadow: "outline",
     },
+  }
+}
+
+function baseStyleArrow(props: Record<string, any>) {
+  return {
+    bg: mode("white", "gray.700")(props),
   }
 }
 
@@ -42,6 +48,7 @@ const baseStyle = function (props: Record<string, any>) {
     header: baseStyleHeader,
     body: baseStyleBody,
     footer: baseStyleFooter,
+    arrow: baseStyleArrow(props),
   }
 }
 

@@ -4,6 +4,7 @@ import {
   forwardRef,
   PropsOf,
   SystemProps,
+  SystemStyleObject,
   useTheme,
 } from "@chakra-ui/system"
 import { getValidChildren, mapResponsive, __DEV__ } from "@chakra-ui/utils"
@@ -68,7 +69,7 @@ export const Wrap = forwardRef<WrapProps, "div">(function Wrap(props, ref) {
     </chakra.li>
   ))
 
-  const styles = {
+  const styles: SystemStyleObject = {
     display: "flex",
     flexWrap: "wrap",
     justifyContent: justify,
