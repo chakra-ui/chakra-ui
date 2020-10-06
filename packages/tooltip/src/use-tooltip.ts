@@ -172,8 +172,8 @@ export function useTooltip(props: UseTooltipProps = {}) {
     getTooltipProps,
     transformOrigin: popper.transformOrigin,
     placement: popper.placement,
+    getArrowWrapperProps: popper.getArrowWrapperProps,
     getArrowProps: popper.getArrowProps,
-    getArrowInnerProps: popper.getArrowInnerProps,
   }
 }
 

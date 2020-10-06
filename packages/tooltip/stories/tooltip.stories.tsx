@@ -21,38 +21,32 @@ const HookTooltip = ({ children }: any) => {
     getTriggerProps,
     getTooltipProps,
     getArrowProps,
+    getArrowWrapperProps,
     isOpen,
   } = useTooltip({
     openDelay: 100,
     arrowSize: 8,
     placement: "bottom",
-    // isOpen: true,
   })
-
-  const trigger = getTriggerProps()
-  const tooltip = getTooltipProps({
-    style: {
-      background: "tomato",
-      color: "white",
-      border: "none",
-      borderRadius: "4px",
-      padding: "0.5em 1em",
-    },
-  })
-  const arrow = getArrowProps({ style: { color: "tomato" } })
 
   return (
     <>
-      <button {...trigger}>Hover me</button>
+      <button {...getTriggerProps()}>Hover me</button>
       <div
-        {...tooltip}
-        style={{
-          ...tooltip.style,
-          visibility: isOpen ? "visible" : "hidden",
-        }}
+        {...getTooltipProps({
+          style: {
+            background: "tomato",
+            color: "white",
+            borderRadius: "4px",
+            padding: "0.5em 1em",
+            visibility: isOpen ? "visible" : "hidden",
+          },
+        })}
       >
         {children}
-        <div {...arrow} />
+        <div {...getArrowWrapperProps()}>
+          <div {...getArrowProps({ style: { background: "tomato" } })} />
+        </div>
       </div>
     </>
   )
@@ -72,19 +66,16 @@ export const WithTransition = () => {
     getTriggerProps,
     getTooltipProps,
     getArrowProps,
+    getArrowWrapperProps,
     isOpen,
     transformOrigin,
   } = useTooltip({
     openDelay: 100,
   })
 
-  const trigger = getTriggerProps()
-  const tooltip = getTooltipProps()
-  const arrow = getArrowProps({ style: { color: "tomato" } })
-
   return (
     <>
-      <button {...trigger}>Hover me</button>
+      <button {...getTriggerProps()}>Hover me</button>
       <AnimatePresence>
         {isOpen && (
           <Portal>
@@ -92,7 +83,7 @@ export const WithTransition = () => {
               initial="exit"
               animate="enter"
               exit="exit"
-              {...(tooltip as any)}
+              {...(getTooltipProps() as any)}
             >
               <motion.div
                 transition={{
@@ -113,7 +104,11 @@ export const WithTransition = () => {
                 }}
               >
                 Fade! This is tooltip
-                <div {...arrow} />
+                <div {...getArrowWrapperProps()}>
+                  <div
+                    {...getArrowProps({ style: { background: "tomato" } })}
+                  />
+                </div>
               </motion.div>
             </motion.div>
           </Portal>
