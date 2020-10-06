@@ -98,7 +98,11 @@ export const MenuButton = forwardRef<MenuButtonProps, "button">(
     const Wrapper = Comp || StyledMenuButton
 
     return (
-      <Wrapper {...ownProps} ref={ownRef}>
+      <Wrapper
+        {...ownProps}
+        className={cx("chakra-menu__menu-button", props.className)}
+        ref={ownRef}
+      >
         <chakra.span
           __css={{
             pointerEvents: "none",
@@ -124,12 +128,13 @@ export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
   props,
   ref,
 ) {
-  const menulist = useMenuList(props)
+  const ownProps = useMenuList(props)
   const styles = useStyles()
   return (
     <chakra.div
-      {...menulist}
-      ref={mergeRefs(menulist.ref, ref)}
+      {...ownProps}
+      ref={mergeRefs(ownProps.ref, ref)}
+      className={cx("chakra-menu__menu-list", ownProps.className)}
       __css={{
         outline: 0,
         ...styles.list,
@@ -223,7 +228,11 @@ export const MenuItem = forwardRef<MenuItemProps, "button">(function MenuItem(
   )
 
   return (
-    <StyledMenuItem {...ownProps} ref={ownRef}>
+    <StyledMenuItem
+      {...ownProps}
+      className={cx("chakra-menu__menuitem", ownProps.className)}
+      ref={ownRef}
+    >
       {icon && <MenuIcon fontSize="0.8em" mr={iconSpacing} children={icon} />}
       {_children}
       {command && <MenuCommand children={command} />}
@@ -255,18 +264,22 @@ const CheckIcon: React.FC<PropsOf<"svg">> = (props) => (
 
 export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
   function MenuItemOption(props, ref) {
-    const { icon, iconSpacing = "0.75rem", ...htmlProps } = props
+    const { icon, iconSpacing = "0.75rem", ...rest } = props
 
-    const ownProps = useMenuOption(htmlProps)
+    const ownProps = useMenuOption(rest)
     const ownRef = mergeRefs(ownProps.ref, ref)
 
     return (
-      <StyledMenuItem {...ownProps} ref={ownRef}>
+      <StyledMenuItem
+        {...ownProps}
+        ref={ownRef}
+        className={cx("chakra-menu__menuitem-option", rest.className)}
+      >
         <MenuIcon
           fontSize="0.8em"
           children={icon || <CheckIcon />}
           mr={iconSpacing}
-          visibility={props.isChecked ? "visible" : "hidden"}
+          opacity={props.isChecked ? 1 : 0}
         />
         <chakra.span flex="1">{ownProps.children}</chakra.span>
       </StyledMenuItem>
@@ -288,7 +301,14 @@ export interface MenuOptionGroupProps
 
 export const MenuOptionGroup: React.FC<MenuOptionGroupProps> = (props) => {
   const { children, ...rest } = useMenuOptionGroup(props)
-  return <MenuGroup title={props.title} children={children} {...rest} />
+  return (
+    <MenuGroup
+      title={props.title}
+      children={children}
+      {...rest}
+      className={cx("chakra-menu__option-group", props.className)}
+    />
+  )
 }
 
 if (__DEV__) {
