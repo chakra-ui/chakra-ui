@@ -13,6 +13,7 @@ export const Basic = () => {
   const {
     getReferenceProps,
     getPopperProps,
+    getArrowWrapperProps,
     getArrowProps,
     transformOrigin,
   } = usePopper({
@@ -44,11 +45,9 @@ export const Basic = () => {
           })}
         >
           Popper
-          <div
-            {...getArrowProps({
-              style: { background: "red" },
-            })}
-          />
+          <div {...getArrowWrapperProps()}>
+            <div {...getArrowProps({ style: { background: "red" } })} />
+          </div>
         </div>
       )}
     </>
@@ -61,6 +60,7 @@ export const WithTransition = () => {
   const {
     getPopperProps,
     getReferenceProps,
+    getArrowWrapperProps,
     getArrowProps,
     transformOrigin,
   } = usePopper({
@@ -103,7 +103,9 @@ export const WithTransition = () => {
               }}
             >
               Testing
-              <div {...getArrowProps({ style: { background: bg } })} />
+              <div {...getArrowWrapperProps()}>
+                <div {...getArrowProps({ style: { background: bg } })} />
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

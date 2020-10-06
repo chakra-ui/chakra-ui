@@ -1,7 +1,9 @@
 import type { CSSProperties } from "react"
 import { Placement } from "@popperjs/core"
 
-export function getBoxShadow(placement: Placement, color: string) {
+export function getBoxShadow(placement: Placement, color?: string) {
+  if (!color) return undefined
+
   if (placement.includes("top")) {
     return `2px 2px 2px 0 ${color}`
   }

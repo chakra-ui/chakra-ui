@@ -140,31 +140,27 @@ export function usePopper(props: UsePopperProps = {}) {
     }
   }
 
-  const getArrowProps: PropGetter = (props = {}, _ref = null) => {
-    const { style, ...rest } = props
+  const getArrowWrapperProps: PropGetter = (props = {}, _ref = null) => {
     return {
-      ...rest,
+      ...props,
       ...popperJS.attributes.arrow,
       ref: mergeRefs(setArrowNode, _ref),
-      style: arrowStyles,
-      /**
-       * This is used to mimic css `&::before` pseudo element
-       * so users won't need to use `css` or `css-in-js` to get arrow
-       * positioned correctly.
-       */
-      children: React.createElement("div", {
-        style: {
-          boxShadow: arrowShadowColor
-            ? getBoxShadow(_placement, arrowShadowColor)
-            : undefined,
-          ...style,
-          position: "absolute",
-          zIndex: -1,
-          width: "100%",
-          height: "100%",
-          transform: "rotate(45deg)",
-        },
-      }),
+      style: { ...props.style, ...arrowStyles },
+    }
+  }
+
+  const getArrowProps: PropGetter = (props = {}, _ref = null) => {
+    return {
+      ...props,
+      style: {
+        boxShadow: getBoxShadow(_placement, arrowShadowColor),
+        ...props.style,
+        position: "absolute",
+        zIndex: -1,
+        width: "100%",
+        height: "100%",
+        transform: "rotate(45deg)",
+      },
     }
   }
 
@@ -172,6 +168,7 @@ export function usePopper(props: UsePopperProps = {}) {
     transformOrigin: toTransformOrigin(_placement),
     getReferenceProps,
     getPopperProps,
+    getArrowWrapperProps,
     getArrowProps,
     state: popperJS.state,
     forceUpdate: popperJS.forceUpdate,
