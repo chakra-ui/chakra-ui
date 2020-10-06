@@ -29,8 +29,10 @@ export function syncBodyClassName(isDark: boolean) {
  */
 function getMediaQuery(query: string) {
   const mediaQueryList = window.matchMedia?.(query)
-  const matches = !!mediaQueryList.media === mediaQueryList.matches
-  return matches
+  if (!mediaQueryList) {
+    return undefined
+  }
+  return !!mediaQueryList.media === mediaQueryList.matches
 }
 
 export const queries = {
@@ -41,8 +43,8 @@ export const queries = {
 export const lightQuery = queries.light
 export const darkQuery = queries.dark
 
-export function getColorScheme() {
-  const isDark = getMediaQuery(queries.dark)
+export function getColorScheme(fallback?: ColorMode) {
+  const isDark = getMediaQuery(queries.dark) ?? fallback === "dark"
   return isDark ? "dark" : "light"
 }
 
