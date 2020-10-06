@@ -5,26 +5,13 @@ describe("getArrowStyles", () => {
   const baseExpected = {
     width: 4,
     height: 4,
-    position: "absolute",
-    transform: "rotate(45deg)",
   }
-
-  test("Placement: auto", () => {
-    const expected = {}
-
-    expect(getArrowStyles({ placement: "auto", arrowSize })).toEqual(expected)
-    expect(getArrowStyles({ placement: "auto-start", arrowSize })).toEqual(
-      expected,
-    )
-    expect(getArrowStyles({ placement: "auto-end", arrowSize })).toEqual(
-      expected,
-    )
-  })
 
   test("Placement: top", () => {
     const expected = {
       ...baseExpected,
-      bottom: "-2px",
+      bottom: -2,
+      zIndex: -1,
     }
 
     expect(getArrowStyles({ placement: "top", arrowSize })).toEqual(expected)
@@ -39,7 +26,8 @@ describe("getArrowStyles", () => {
   test("Placement: bottom", () => {
     const expected = {
       ...baseExpected,
-      top: "-2px",
+      top: -2,
+      zIndex: -1,
     }
 
     expect(getArrowStyles({ placement: "bottom", arrowSize })).toEqual(expected)
@@ -54,7 +42,8 @@ describe("getArrowStyles", () => {
   test("Placement: right", () => {
     const expected = {
       ...baseExpected,
-      left: "-2px",
+      left: -2,
+      zIndex: -1,
     }
 
     expect(getArrowStyles({ placement: "right", arrowSize })).toEqual(expected)
@@ -69,7 +58,8 @@ describe("getArrowStyles", () => {
   test("Placement: left", () => {
     const expected = {
       ...baseExpected,
-      right: "-2px",
+      right: -2,
+      zIndex: -1,
     }
 
     expect(getArrowStyles({ placement: "left", arrowSize })).toEqual(expected)
