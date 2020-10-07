@@ -1,3 +1,4 @@
+import * as React from "react"
 import type { AlertStatus } from "@chakra-ui/alert"
 import {
   Alert,
@@ -11,11 +12,13 @@ import {
   ColorModeContext,
   ThemeProvider,
   useChakra,
+  ColorMode,
 } from "@chakra-ui/system"
-import { isFunction } from "@chakra-ui/utils"
-import * as React from "react"
+import { isFunction, noop } from "@chakra-ui/utils"
+import defaultTheme from "@chakra-ui/theme"
 import { toast } from "./toast.class"
 import { RenderProps, ToastId, ToastOptions } from "./toast.types"
+import { PropsWithChildren } from "react"
 
 export interface UseToastOptions {
   /**
@@ -113,63 +116,91 @@ const defaults = {
   variant: "solid",
 } as const
 
+export type CreateStandAloneToastParam = Partial<
+  {
+    setColorMode: (value: ColorMode) => void
+  } & ReturnType<typeof useChakra>
+>
+
+export const defaultStandaloneParam: Required<CreateStandAloneToastParam> = {
+  theme: defaultTheme,
+  colorMode: "light",
+  toggleColorMode: noop,
+  setColorMode: noop,
+}
+/**
+ * Create a toast from outside of React Components
+ */
+export function createStandaloneToast({
+  theme = defaultStandaloneParam.theme,
+  colorMode = defaultStandaloneParam.colorMode,
+  toggleColorMode = defaultStandaloneParam.toggleColorMode,
+  setColorMode = defaultStandaloneParam.setColorMode,
+}: CreateStandAloneToastParam = defaultStandaloneParam) {
+  const renderWithProviders = (
+    props: PropsWithChildren<RenderProps>,
+    options: UseToastOptions,
+  ) => (
+    <ThemeProvider theme={theme}>
+      <ColorModeContext.Provider
+        value={{ colorMode, setColorMode, toggleColorMode }}
+      >
+        {isFunction(options.render) ? (
+          options.render(props)
+        ) : (
+          <Toast {...props} {...options} />
+        )}
+      </ColorModeContext.Provider>
+    </ThemeProvider>
+  )
+
+  const toastImpl = function (options: UseToastOptions) {
+    const opts = { ...defaults, ...options }
+
+    const Message: React.FC<RenderProps> = (props) =>
+      renderWithProviders(props, opts)
+
+    return toast.notify(Message, opts)
+  }
+
+  toastImpl.close = toast.close
+  toastImpl.closeAll = toast.closeAll
+
+  // toasts can only be updated if they have a valid id
+  toastImpl.update = (id: ToastId, options: Omit<UseToastOptions, "id">) => {
+    const { render, ...rest } = options
+
+    if (!id) return
+
+    const opts = { ...defaults, ...rest }
+
+    toast.update(id, {
+      ...opts,
+      message: (props) => renderWithProviders(props, opts),
+    })
+  }
+
+  toastImpl.isActive = toast.isActive
+
+  return toastImpl
+}
+
 /**
  * React hook used to create a function that can be used
  * to show toasts in an application.
  */
 export function useToast() {
-  const { theme, ...colorMode } = useChakra()
-
-  return React.useMemo(() => {
-    const toastImpl = function (options: UseToastOptions) {
-      const { render } = options
-
-      const Message: React.FC<RenderProps> = (props) => (
-        <ThemeProvider theme={theme}>
-          <ColorModeContext.Provider value={colorMode}>
-            {isFunction(render) ? (
-              render(props)
-            ) : (
-              <Toast {...{ ...props, ...opts }} />
-            )}
-          </ColorModeContext.Provider>
-        </ThemeProvider>
-      )
-
-      const opts = { ...defaults, ...options }
-
-      return toast.notify(Message, opts)
-    }
-
-    toastImpl.close = toast.close
-    toastImpl.closeAll = toast.closeAll
-
-    // toasts can only be updated if they have a valid id
-    toastImpl.update = (id: ToastId, options: Omit<UseToastOptions, "id">) => {
-      const { render, ...rest } = options
-
-      if (!id) return
-
-      const opts = { ...defaults, ...rest }
-
-      toast.update(id, {
-        ...opts,
-        message: (props) => (
-          <ThemeProvider theme={theme}>
-            {isFunction(render) ? (
-              render(props)
-            ) : (
-              <Toast {...{ ...props, ...opts }} />
-            )}
-          </ThemeProvider>
-        ),
-      })
-    }
-
-    toastImpl.isActive = toast.isActive
-
-    return toastImpl
-  }, [colorMode, theme])
+  const { theme, setColorMode, toggleColorMode, colorMode } = useChakra()
+  return React.useMemo(
+    () =>
+      createStandaloneToast({
+        theme,
+        colorMode,
+        setColorMode,
+        toggleColorMode,
+      }),
+    [theme, setColorMode, toggleColorMode, colorMode],
+  )
 }
 
 export default useToast
