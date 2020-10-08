@@ -13,7 +13,7 @@ import {
   PropGetter,
   removeItem,
 } from "@chakra-ui/utils"
-import { useCallback, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import * as warn from "./warning"
 
 export type ExpandedIndex = number | number[]
@@ -73,6 +73,15 @@ export function useAccordion(props: UseAccordionProps) {
    * use the down/up arrow to navigate.
    */
   const [focusedIndex, setFocusedIndex] = useState(-1)
+
+  /**
+   * Reset focused index when accordion unmounts
+   */
+  useEffect(() => {
+    return () => {
+      setFocusedIndex(-1)
+    }
+  }, [])
 
   /**
    * Hook that manages the controlled and un-controlled state
