@@ -1,18 +1,11 @@
 import {
   chakra,
-  css,
+  forwardRef,
   PropsOf,
   ResponsiveValue,
   SystemProps,
-  forwardRef,
 } from "@chakra-ui/system"
-import {
-  cx,
-  Dict,
-  getValidChildren,
-  mapResponsive,
-  __DEV__,
-} from "@chakra-ui/utils"
+import { cx, getValidChildren, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
 export type StackDirection = ResponsiveValue<
