@@ -96,6 +96,9 @@ function Example() {
   }
 
   function closeAll() {
+    // you may optionally pass an object of positions to exclusively close
+    // keeping other positions opened
+    // e.g. `{ positions: ['bottom'] }`
     toast.closeAll()
   }
 

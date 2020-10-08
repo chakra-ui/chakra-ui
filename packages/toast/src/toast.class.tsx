@@ -1,17 +1,22 @@
 import { isBrowser } from "@chakra-ui/utils"
 import * as React from "react"
 import { render } from "react-dom"
-import { Methods, ToastManager } from "./toast-manager"
-import { ToastId, ToastMessage, ToastOptions } from "./toast.types"
+import { ToastMethods, ToastManager } from "./toast-manager"
+import type {
+  CloseAllToastsOptions,
+  ToastId,
+  ToastMessage,
+  ToastOptions,
+} from "./toast.types"
 
 const portalId = "chakra-toast-portal"
 
 class Toaster {
-  private createToast?: Methods["notify"]
-  private removeAll?: Methods["closeAll"]
-  private closeToast?: Methods["close"]
-  private updateToast?: Methods["update"]
-  private isToastActive?: Methods["isActive"]
+  private createToast?: ToastMethods["notify"]
+  private removeAll?: ToastMethods["closeAll"]
+  private closeToast?: ToastMethods["close"]
+  private updateToast?: ToastMethods["update"]
+  private isToastActive?: ToastMethods["isActive"]
 
   /**
    * Initialize the manager and mount it in the DOM
@@ -40,7 +45,7 @@ class Toaster {
     render(<ToastManager notify={this.bindFunctions} />, portal)
   }
 
-  private bindFunctions = (methods: Methods) => {
+  private bindFunctions = (methods: ToastMethods) => {
     this.createToast = methods.notify
     this.removeAll = methods.closeAll
     this.closeToast = methods.close
@@ -55,8 +60,8 @@ class Toaster {
     this.closeToast?.(id)
   }
 
-  closeAll = () => {
-    this.removeAll?.()
+  closeAll = (options: CloseAllToastsOptions) => {
+    this.removeAll?.(options)
   }
 
   update = (id: ToastId, options: Partial<ToastOptions> = {}) => {
