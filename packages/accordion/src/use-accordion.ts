@@ -76,12 +76,13 @@ export function useAccordion(props: UseAccordionProps) {
 
   /**
    * Reset focused index when accordion unmounts
+   * or descendants change
    */
   useEffect(() => {
     return () => {
       setFocusedIndex(-1)
     }
-  }, [])
+  }, [domContext.descendants])
 
   /**
    * Hook that manages the controlled and un-controlled state
