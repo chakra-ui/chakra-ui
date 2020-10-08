@@ -60,7 +60,7 @@ class Toaster {
     this.closeToast?.(id)
   }
 
-  closeAll = (options: CloseAllToastsOptions) => {
+  closeAll = (options?: CloseAllToastsOptions) => {
     this.removeAll?.(options)
   }
 
