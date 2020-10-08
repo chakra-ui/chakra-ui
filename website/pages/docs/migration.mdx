@@ -50,9 +50,13 @@ Chakra no longer requires `@emotion/core`, `@emotion/styled` and
 `emotion-theming` peer dependencies. If you're not using these libraries in your
 code, you can safely remove them and update Chakra UI to v1.
 
+You'll need also install `framer-motion`. We use this to manage animations and
+transitions within our components.
+
 ```diff
 "dependencies": {
   "@chakra-ui/core": "next",
+  "framer-motion": "latest",
 -  "@emotion/core": "10.x",
 -  "@emotion/styled": "10.X",
 -  "emotion-theming": "10.x"
@@ -86,8 +90,8 @@ Optionally via prop:
   in your application. Pass the `portalZIndex` prop.
 
 ```diff
--  <ThemeProvider theme={theme}>
-+    <ChakraProvider theme={theme}>
+-  <ThemeProvider>
++    <ChakraProvider>
 -     <CSSReset />
       <App />
 +    </ChakraProvider>
