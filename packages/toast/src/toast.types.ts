@@ -70,3 +70,5 @@ export type ToastState = { [K in ToastPosition]: ToastOptions[] }
 export type Status = "default" | "success" | "error" | "warning" | "info"
 
 export type UpdateFn = (val: ToastState) => void
+
+export type CloseAllToastsOptions = { positions?: ToastPosition[] }

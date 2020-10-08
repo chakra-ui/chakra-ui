@@ -1,5 +1,5 @@
 import * as React from "react"
-import useToast from "../src"
+import useToast from "../src/use-toast"
 import { Button, ButtonGroup } from "@chakra-ui/button"
 import { chakra, useColorMode } from "@chakra-ui/system"
 import { Alert } from "@chakra-ui/alert"
@@ -180,6 +180,38 @@ export const ColorModeBug = () => {
         Click me!
       </Button>
       <Button onClick={() => toggleColorMode()}>Toggle Mode</Button>
+    </>
+  )
+}
+
+export const CloseAllTopLeftToasts = () => {
+  const toast = useToast()
+
+  const positions = [
+    "top-left",
+    "top",
+    "top-right",
+    "bottom-left",
+    "bottom",
+    "bottom-right",
+  ] as const
+
+  return (
+    <>
+      <Button
+        onClick={() => {
+          positions.forEach((position) => {
+            toast({ position, title: p })
+          })
+        }}
+      >
+        Trigger
+      </Button>
+
+      <hr />
+      <Button onClick={() => toast.closeAll({ positions: ["top-left"] })}>
+        close all top-left
+      </Button>
     </>
   )
 }
