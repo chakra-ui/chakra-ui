@@ -1344,6 +1344,15 @@
         "bug",
         "doc"
       ]
+    },
+    {
+      "login": "waptik",
+      "name": "Stephane Mensah",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1687551?v=4",
+      "profile": "https://twitter.com/_waptik",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
