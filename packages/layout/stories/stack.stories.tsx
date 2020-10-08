@@ -118,3 +118,23 @@ export const WrappingChildren = () => (
     <Box>baz</Box>
   </Stack>
 )
+
+export const StackBug_2119 = () => (
+  <Stack
+    direction={{ base: "column", md: "row" }}
+    divider={
+      <StackDivider borderColor={{ base: "gray.100", md: "gray.900" }} />
+    }
+    spacing={4}
+  >
+    <Box h="40px" bg="yellow.200">
+      1
+    </Box>
+    <Box h="40px" bg="tomato">
+      2
+    </Box>
+    <Box h="40px" bg="pink.100">
+      3
+    </Box>
+  </Stack>
+)

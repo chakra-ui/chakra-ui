@@ -57,19 +57,22 @@ interface StackOptions {
 
 export interface StackDividerProps extends PropsOf<typeof chakra.div> {}
 
-export const StackDivider: React.FC<StackDividerProps> = (props) => (
-  <chakra.div
-    className="chakra-stack__item"
-    __css={{
-      borderWidth: 0,
-      alignSelf: "stretch",
-      borderColor: "inherit",
-      width: "auto",
-      height: "auto",
-    }}
-    {...props}
-  />
-)
+export const StackDivider: React.FC<StackDividerProps> = (props) => {
+  return (
+    <chakra.div
+      className="chakra-stack__divider"
+      {...props}
+      __css={{
+        ...props["__css"],
+        borderWidth: 0,
+        alignSelf: "stretch",
+        borderColor: "inherit",
+        width: "auto",
+        height: "auto",
+      }}
+    />
+  )
+}
 
 export const StackItem: React.FC<PropsOf<typeof chakra.div>> = (props) => (
   <chakra.div
@@ -164,7 +167,7 @@ export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
         const cloneDivider = isLast
           ? null
           : React.cloneElement(divider as any, {
-              css: css({ "&": dividerStyles }),
+              __css: { "&": dividerStyles },
             })
 
         return (
