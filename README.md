@@ -343,12 +343,12 @@ Thanks goes to these wonderful people
     <td align="center"><a href="http://www.candiceczech.com"><img src="https://avatars0.githubusercontent.com/u/25373313?v=4" width="64px;" alt=""/><br /><sub><b>Candice</b></sub></a><br /><a href="#design-candicecz" title="Design">🎨</a> <a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Acandicecz" title="Bug reports">🐛</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=candicecz" title="Documentation">📖</a></td>
     <td align="center"><a href="http://davebauman.io"><img src="https://avatars3.githubusercontent.com/u/3084806?v=4" width="64px;" alt=""/><br /><sub><b>Dave Bauman</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=baumandm" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/TimKolberger"><img src="https://avatars2.githubusercontent.com/u/16899513?v=4" width="64px;" alt=""/><br /><sub><b>TimKolberger</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3ATimKolberger" title="Bug reports">🐛</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=TimKolberger" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://twitter.com/_waptik"><img src="https://avatars1.githubusercontent.com/u/1687551?v=4" width="64px;" alt=""/><br /><sub><b>Stephane Mensah</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Awaptik" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
