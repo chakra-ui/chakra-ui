@@ -1353,6 +1353,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "iskanderbroere",
+      "name": "iskanderbroere",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/25477294?v=4",
+      "profile": "https://github.com/iskanderbroere",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
