@@ -210,7 +210,9 @@ function WithCustomIconExample() {
 ### CheckboxGroup
 
 Chakra exports a `CheckboxGroup` component to help manage the checked state of
-its children.
+its children `Checkbox` components and conveniently pass a few shared style
+props to each. See the props table at the bottom of this page for a list of the
+shared styling props.
 
 ```jsx
 <CheckboxGroup colorScheme="green" defaultValue={["naruto", "kakashi"]}>
@@ -257,15 +259,21 @@ creating tailor-made checkbox group component for your application
 
 ### CheckboxGroup Props
 
-CheckboxGroup composes `Box` so you can pass all `Box` props.
+| Name         | Type                                       | Default | Description                                                              |
+| ------------ | ------------------------------------------ | ------- | ------------------------------------------------------------------------ |
+| value        | `Array<Checkbox["value"]>`                 |         | The value of the checkbox group                                          |
+| defaultValue | `Array<Checkbox["value"]>`                 |         | The initial value of the checkbox group                                  |
+| onChange     | `(values: Array<Checkbox["value"]>): void` |         | The callback fired when any children `Checkbox` is checked or unchecked. |
+| children     | `React.ReactNode`                          |         | The content of the checkbox group.                                       |
 
-| Name         | Type                                       | Default | Description                                                                                                         |
-| ------------ | ------------------------------------------ | ------- | ------------------------------------------------------------------------------------------------------------------- |
-| id           | `string`                                   |         | The id of the checkbox group.                                                                                       |
-| value        | `Array<Checkbox["value"]>`                 |         | The value of the checkbox group                                                                                     |
-| defaultValue | `Array<Checkbox["value"]>`                 |         | The initial value of the checkbox group                                                                             |
-| colorScheme  | `string`                                   |         | The color of the checkbox when it's checked. This should be one of the color keys in the theme (e.g."green", "red") |
-| onChange     | `(values: Array<Checkbox["value"]>): void` |         | The callback fired when any children Checkbox is checked or unchecked                                               |
-| children     | `React.ReactNode`                          |         | The content of the checkbox group. Must be the `Checkbox` component                                                 |
-| spacing      | `StyledSystem.MarginProps`                 | `8px`   | The space between each checkbox                                                                                     |
-| size         | `sm`, `md`, `lg`                           | `md`    | The size of the checkbox, it's forwarded to all children checkbox.                                                  |
+#### Shared Style Props
+
+The following style props can be set on `CheckboxGroup` and they will be
+forwarded to all children `Checkbox` components.
+
+| Name        | Type              | Default | Description                                                                                                          |
+| ----------- | ----------------- | ------- | -------------------------------------------------------------------------------------------------------------------- |
+| colorScheme | `string`          |         | The color of the checkbox when it's checked. This should be one of the color keys in the theme (e.g."green", "red"). |
+| children    | `React.ReactNode` |         | The content of the checkbox group.                                                                                   |
+| size        | `sm`, `md`, `lg`  | `md`    | The size of the checkbox.                                                                                            |
+| variant     | `string`          |         | The `variant` of the checkbox.                                                                                       |
