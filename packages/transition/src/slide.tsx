@@ -1,6 +1,41 @@
 import * as React from "react"
 import { __DEV__ } from "@chakra-ui/utils"
 import { Transition, TransitionProps } from "./transition"
+import { motion, Variants } from "framer-motion"
+
+export type SlideDirection = "left" | "right" | "bottom" | "top"
+
+const offset = {
+  bottom: { y: "100%" },
+  top: { y: "-100%" },
+  left: { x: "-100%" },
+  right: { x: "100%" },
+}
+
+export const slideVariants: Variants = {
+  hide: (props) => {
+    const directionProps = offset[props.direction]
+    return {
+      ...directionProps,
+      transition: {
+        duration: 0.2,
+        easings: "linear",
+      },
+    }
+  },
+  show: (props) => {
+    const directionProps = offset[props.direction]
+    const [dir] = Object.keys(directionProps)
+    return {
+      [dir]: 0,
+      transition: {
+        type: "spring",
+        damping: 25,
+        stiffness: 180,
+      },
+    }
+  },
+}
 
 type Placement = "left" | "right" | "bottom" | "top"
 
@@ -43,62 +78,8 @@ function createBaseStyle(placement: Placement) {
   }
 }
 
-const getTransformStyle = (placement: Placement, value: string) => {
-  let axis = ""
-  if (placement === "left" || placement === "right") axis = "X"
-  if (placement === "top" || placement === "bottom") axis = "Y"
-  return `translate${axis}(${value})`
+export const Slide = (props) => {
+  return <motion.div />
 }
 
-function getTransitionStyles(placement: Placement) {
-  const offset = {
-    bottom: "100%",
-    top: "-100%",
-    left: "-100%",
-    right: "100%",
-  }
-
-  return {
-    init: {
-      transform: getTransformStyle(placement, offset[placement]),
-    },
-    entered: { transform: getTransformStyle(placement, "0%") },
-    exiting: {
-      transform: getTransformStyle(placement, offset[placement]),
-    },
-  }
-}
-
-export type SlideProps = Omit<TransitionProps, "styles" | "timeout"> & {
-  /** The direction to slide drawer from */
-  placement?: Placement
-  /** The transition timeout */
-  timeout?: number
-}
-
-export const Slide: React.FC<SlideProps> = (props) => {
-  const { placement = "left", timeout = 150, children, ...rest } = props
-
-  const styles = getTransitionStyles(placement)
-
-  const positionStyles: React.CSSProperties = {
-    position: "fixed",
-    willChange: "transform",
-    ...createBaseStyle(placement),
-  }
-
-  return (
-    <Transition
-      styles={styles}
-      transition={`opacity ${timeout}ms cubic-bezier(0, 0, 0.2, 1), transform ${timeout}ms cubic-bezier(0, 0, 0.2, 1)`}
-      timeout={{ enter: 0, exit: timeout }}
-      {...rest}
-    >
-      {(styles) => children({ ...positionStyles, ...styles })}
-    </Transition>
-  )
-}
-
-if (__DEV__) {
-  Slide.displayName = "Slide"
-}
+Slide.displayName = "Slide"
