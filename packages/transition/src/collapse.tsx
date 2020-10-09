@@ -4,7 +4,7 @@ import * as React from "react"
 
 export type MotionVariants<T extends string> = Record<T, Variant>
 
-export const collapseVariants: MotionVariants<"open" | "collapsed"> = {
+export const collapseMotionVariants: MotionVariants<"open" | "collapsed"> = {
   collapsed: (props: CollapseOptions) => ({
     opacity: parseInt(props.startingHeight as string, 10) > 0 ? 1 : 0,
     height: props.startingHeight,
@@ -21,7 +21,7 @@ export const collapseVariants: MotionVariants<"open" | "collapsed"> = {
 }
 
 export interface CollapseOptions {
-  unMountOnExit?: boolean
+  unmountOnExit?: boolean
   /**
    * If `true`, the content will be visible
    */
@@ -37,7 +37,7 @@ export interface CollapseOptions {
   /**
    * The custom framer-motion variants to use
    */
-  motionConfig?: MotionVariants<"open" | "collapsed">
+  motionVariants?: MotionVariants<"open" | "collapsed">
 }
 
 interface CollapseProps extends PropsOf<typeof motion.div>, CollapseOptions {}
@@ -45,27 +45,27 @@ interface CollapseProps extends PropsOf<typeof motion.div>, CollapseOptions {}
 export const Collapse = forwardRef<CollapseProps, "div">((props, ref) => {
   const {
     isOpen,
-    unMountOnExit,
+    unmountOnExit,
     startingHeight = 0,
     endingHeight = "auto",
-    motionConfig,
+    motionVariants,
     style,
     ...rest
   } = props
 
   /**
-   * Warn 🚨: `startingHeight` and `unMountOnExit` are mutually exclusive
+   * Warn 🚨: `startingHeight` and `unmountOnExit` are mutually exclusive
    *
    * If you specify a starting height, the collapsed needs to be mounted
    * for the height to take effect.
    */
-  if (startingHeight > 0 && unMountOnExit) {
+  if (startingHeight > 0 && unmountOnExit) {
     console.warn(
-      `startingHeight and unMountOnExit are mutually exclusive. You can't use them together`,
+      `startingHeight and unmountOnExit are mutually exclusive. You can't use them together`,
     )
   }
 
-  const shouldExpand = unMountOnExit ? isOpen && unMountOnExit : true
+  const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
 
   return (
     <AnimatePresence initial={false} custom={{ startingHeight, endingHeight }}>
@@ -73,10 +73,10 @@ export const Collapse = forwardRef<CollapseProps, "div">((props, ref) => {
         <motion.div
           ref={ref}
           initial="collapsed"
-          animate={isOpen || unMountOnExit ? "open" : "collapsed"}
+          animate={isOpen || unmountOnExit ? "open" : "collapsed"}
           exit="collapsed"
           {...rest}
-          variants={motionConfig ?? collapseVariants}
+          variants={motionVariants ?? collapseMotionVariants}
           style={{ overflow: "hidden", ...style }}
           custom={{ startingHeight, endingHeight }}
         />

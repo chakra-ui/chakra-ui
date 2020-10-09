@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ScaleFade, SlideFade, Fade, Slide } from "../src"
+import { Slide } from "../src"
 
 export default {
   title: "Transition",
@@ -29,57 +29,57 @@ function Modal(props: DivProps) {
   )
 }
 
-export function ScaleFadeExample() {
-  const [isOpen, setIsOpen] = React.useState(true)
-  return (
-    <>
-      <button onClick={() => setIsOpen((p) => !p)}>Click Me</button>
-      <ScaleFade in={isOpen}>
-        {(styles) => (
-          <Modal
-            style={{
-              ...styles,
-              transform: styles.transform
-                ? `${modalStyles.transform} ${styles.transform}`
-                : `${modalStyles.transform}`,
-            }}
-          />
-        )}
-      </ScaleFade>
-    </>
-  )
-}
+// export function ScaleFadeExample() {
+//   const [isOpen, setIsOpen] = React.useState(true)
+//   return (
+//     <>
+//       <button onClick={() => setIsOpen((p) => !p)}>Click Me</button>
+//       <ScaleFade in={isOpen}>
+//         {(styles) => (
+//           <Modal
+//             style={{
+//               ...styles,
+//               transform: styles.transform
+//                 ? `${modalStyles.transform} ${styles.transform}`
+//                 : `${modalStyles.transform}`,
+//             }}
+//           />
+//         )}
+//       </ScaleFade>
+//     </>
+//   )
+// }
 
-export function SlideFadeExample() {
-  const [isOpen, setIsOpen] = React.useState(true)
-  return (
-    <>
-      <button onClick={() => setIsOpen((p) => !p)}>Click Me</button>
-      <SlideFade in={isOpen}>
-        {(styles) => (
-          <Modal
-            style={{
-              ...styles,
-              transform: styles.transform
-                ? `${modalStyles.transform} ${styles.transform}`
-                : `${modalStyles.transform}`,
-            }}
-          />
-        )}
-      </SlideFade>
-    </>
-  )
-}
+// export function SlideFadeExample() {
+//   const [isOpen, setIsOpen] = React.useState(true)
+//   return (
+//     <>
+//       <button onClick={() => setIsOpen((p) => !p)}>Click Me</button>
+//       <SlideFade in={isOpen}>
+//         {(styles) => (
+//           <Modal
+//             style={{
+//               ...styles,
+//               transform: styles.transform
+//                 ? `${modalStyles.transform} ${styles.transform}`
+//                 : `${modalStyles.transform}`,
+//             }}
+//           />
+//         )}
+//       </SlideFade>
+//     </>
+//   )
+// }
 
-export function FadeExample() {
-  const [isOpen, setIsOpen] = React.useState(true)
-  return (
-    <>
-      <button onClick={() => setIsOpen((p) => !p)}>Click Me</button>
-      <Fade in={isOpen}>{(styles) => <Modal style={styles} />}</Fade>
-    </>
-  )
-}
+// export function FadeExample() {
+//   const [isOpen, setIsOpen] = React.useState(true)
+//   return (
+//     <>
+//       <button onClick={() => setIsOpen((p) => !p)}>Click Me</button>
+//       <Fade in={isOpen}>{(styles) => <Modal style={styles} />}</Fade>
+//     </>
+//   )
+// }
 
 function Drawer(props: DivProps) {
   return (
