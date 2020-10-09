@@ -1,8 +1,7 @@
-import * as React from "react"
-import { useCheckbox, CheckboxGroup, Checkbox } from "../src"
-import { Stack, Container, Heading, Divider } from "@chakra-ui/layout"
 import { Icon } from "@chakra-ui/icon"
-import { CheckboxIconProps } from "../src/checkbox.icon"
+import { Container, Divider, Heading, Stack } from "@chakra-ui/layout"
+import * as React from "react"
+import { Checkbox, CheckboxGroup, useCheckbox } from "../src"
 
 export default {
   title: "Checkbox",
@@ -19,7 +18,7 @@ export const CheckboxWithHooks = () => {
   )
 }
 
-export const Basic = () => <Checkbox colorScheme="green">Hello</Checkbox>
+export const Basic = () => <Checkbox colorScheme="red">Hello</Checkbox>
 
 export const Disabled = () => <Checkbox isDisabled children="Disabled" />
 

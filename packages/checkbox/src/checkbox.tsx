@@ -11,7 +11,7 @@ import {
 import { cx, Omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useCheckboxGroupContext } from "./checkbox-group"
-import { CheckboxIcon } from "./checkbox.icon"
+import { CheckboxIcon } from "./checkbox-icon"
 import { useCheckbox, UseCheckboxProps } from "./use-checkbox"
 
 const StyledControl = chakra("div", {
@@ -145,9 +145,10 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
     ...styles.icon,
   }
 
-  const icon = React.cloneElement(Icon, {
+  const clonedIcon = React.cloneElement(Icon, {
     __css: iconStyles,
     isIndeterminate: state.isIndeterminate,
+    isChecked: state.isChecked,
   })
 
   return (
@@ -163,7 +164,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
         className="chakra-checkbox__control"
         {...checkboxProps}
       >
-        {icon}
+        {clonedIcon}
       </StyledControl>
       {children && (
         <chakra.div

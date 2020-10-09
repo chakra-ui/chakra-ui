@@ -1,6 +1,4 @@
-import { TransitionConfig } from "../transition-config"
-
-export const fade: TransitionConfig = {
+export const fade = {
   timeout: 120,
   transition: {
     easing: "ease-in-out",

@@ -78,7 +78,7 @@ function createBaseStyle(placement: Placement) {
   }
 }
 
-export const Slide = (props) => {
+export const Slide = (props: any) => {
   return <motion.div />
 }
 
