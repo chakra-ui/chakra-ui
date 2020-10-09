@@ -1,4 +1,4 @@
-import { SystemProps, SystemStyleObject } from "@chakra-ui/styled-system"
+import { SystemProps, SystemStyleObject, ResponsiveValue } from "@chakra-ui/styled-system"
 import { Dict } from "@chakra-ui/utils"
 import * as React from "react"
 import { ComponentWithAs } from "./forward-ref"
@@ -38,7 +38,7 @@ export interface ChakraProps extends SystemProps {
   /**
    * Used to truncate text at a specific number of lines
    */
-  noOfLines?: number[]
+  noOfLines?: ResponsiveValue<number>
   /**
    * Used for internal css management
    * @private
