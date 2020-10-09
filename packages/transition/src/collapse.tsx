@@ -2,8 +2,7 @@ import { forwardRef, PropsOf } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { AnimatePresence, motion, Variant } from "framer-motion"
 import * as React from "react"
-
-export type MotionVariants<T extends string> = Record<T, Variant>
+import { MotionVariants } from "./__utils"
 
 export const collapseMotionVariants: MotionVariants<"open" | "collapsed"> = {
   collapsed: (props: CollapseOptions) => ({

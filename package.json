@@ -85,7 +85,6 @@
     "progress": "yarn workspace @chakra-ui/progress",
     "form": "yarn workspace @chakra-ui/form-control",
     "input": "yarn workspace @chakra-ui/input",
-    "collapse": "yarn workspace @chakra-ui/collapse",
     "stat": "yarn workspace @chakra-ui/stat",
     "toast": "yarn workspace @chakra-ui/toast",
     "close-button": "yarn workspace @chakra-ui/close-button",
@@ -222,6 +221,8 @@
     "storybook-addon-performance": "^0.12.0",
     "ts-jest": "^26.4.1",
     "ts-node": "^9.0.0",
-    "typescript": "^4.0.3"
+    "typescript": "^4.0.3",
+    "react-transition-group": "4.4.1",
+    "@types/react-transition-group": "^4.4.0"
   }
 }
