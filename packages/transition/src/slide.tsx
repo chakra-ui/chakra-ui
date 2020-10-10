@@ -85,7 +85,7 @@ export interface SlideOptions {
   in?: boolean
 }
 
-interface SlideProps
+export interface SlideProps
   extends React.ComponentProps<typeof motion.div>,
     SlideOptions {}
 

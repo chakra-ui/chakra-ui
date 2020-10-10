@@ -3,8 +3,8 @@ import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
 import { MotionVariants } from "./__utils"
 
-export const ScaleFadeMotionVariants: MotionVariants<"enter" | "exit"> = {
-  exit: (props: ScaleFadeOptions) => ({
+export const scaleFadeMotionVariants: MotionVariants<"enter" | "exit"> = {
+  exit: (props) => ({
     opacity: 0,
     ...(props.reverse
       ? { scale: props.initialScale }
@@ -24,7 +24,42 @@ export const ScaleFadeMotionVariants: MotionVariants<"enter" | "exit"> = {
   },
 }
 
-export interface ScaleFadeOptions {
+export interface ScaleFadeMotionProps
+  extends React.ComponentProps<typeof motion.div> {
+  /**
+   * The offset on the horizontal or `x` axis
+   */
+  initialScale?: number
+  /**
+   * If `true`, the element will transition back to exit state
+   */
+  reverse?: boolean
+}
+
+export const ScaleFadeMotion = React.forwardRef<
+  HTMLDivElement,
+  ScaleFadeMotionProps
+>(function ScaleFadeMotion(props, ref) {
+  const { initialScale, reverse, ...rest } = props
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="exit"
+      animate="enter"
+      exit="exit"
+      variants={scaleFadeMotionVariants}
+      custom={{ initialScale, reverse }}
+      {...rest}
+    />
+  )
+})
+
+if (__DEV__) {
+  ScaleFadeMotion.displayName = "ScaleFadeMotion"
+}
+
+export interface ScaleFadeProps extends ScaleFadeMotionProps {
   /**
    * If `true`, the collapse will unmount when `isOpen={false}` and animation is done
    */
@@ -33,16 +68,7 @@ export interface ScaleFadeOptions {
    * If `true`, the content will slide in
    */
   in?: boolean
-  /**
-   * The offset on the horizontal or `x` axis
-   */
-  initialScale?: number
-  reverse?: boolean
 }
-
-interface ScaleFadeProps
-  extends React.ComponentProps<typeof motion.div>,
-    ScaleFadeOptions {}
 
 export const ScaleFade = React.forwardRef<HTMLDivElement, ScaleFadeProps>(
   function ScaleFade(props, ref) {
@@ -50,8 +76,8 @@ export const ScaleFade = React.forwardRef<HTMLDivElement, ScaleFadeProps>(
       unmountOnExit,
       in: isOpen,
       reverse = true,
-      className,
       initialScale = 0.95,
+      className,
       ...rest
     } = props
 
@@ -60,14 +86,12 @@ export const ScaleFade = React.forwardRef<HTMLDivElement, ScaleFadeProps>(
     return (
       <AnimatePresence custom={{ initialScale, reverse }}>
         {shouldExpand && (
-          <motion.div
+          <ScaleFadeMotion
             ref={ref}
-            initial="exit"
             className={cx("chakra-offset-slide", className)}
             animate={isOpen || unmountOnExit ? "enter" : "exit"}
-            exit="exit"
-            variants={ScaleFadeMotionVariants}
-            custom={{ initialScale, reverse }}
+            reverse={reverse}
+            initialScale={initialScale}
             {...rest}
           />
         )}

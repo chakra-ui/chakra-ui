@@ -5,23 +5,25 @@ import {
   chakra,
   forwardRef,
   PropsOf,
+  StylesProvider,
+  SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  StylesProvider,
   useStyles,
 } from "@chakra-ui/system"
+import { SlideFadeMotion } from "@chakra-ui/transition"
+import { FadeMotion, ScaleFadeMotion } from "@chakra-ui/transition"
 import {
   callAllHandlers,
-  cx,
-  __DEV__,
   createContext,
+  cx,
   FocusableElement,
+  __DEV__,
 } from "@chakra-ui/utils"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, usePresence } from "framer-motion"
 import * as React from "react"
 import { RemoveScroll } from "react-remove-scroll"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
-import { ScaleFade, Fade } from "@chakra-ui/transition"
 
 interface ModalOptions {
   /**
@@ -30,7 +32,7 @@ interface ModalOptions {
    * This is useful in situations where you still need to interact with
    * other surrounding elements.
    *
-   * 🚨Warning: We don't recommend doing this because it hurts the
+   * 🚨 Warning: We don't recommend doing this because it hurts the
    * accessbility of the modal, based on WAI-ARIA specifications.
    *
    * @default true
@@ -76,7 +78,7 @@ interface ModalOptions {
   preserveScrollBarGap?: boolean
 }
 export interface ModalProps extends UseModalProps, ModalOptions, ThemingProps {
-  children?: React.ReactNode
+  children: React.ReactNode
   /**
    *  If `true`, the modal will be centered on screen.
    * @default false
@@ -112,7 +114,7 @@ export { ModalContextProvider, useModalContext }
  * Modal component provides context, theming, and accessibility properties
  * to its sub-components. It doesn't render any DOM node.
  */
-export const Modal: React.FC<ModalProps> = (props) => {
+export function Modal(props: ModalProps) {
   const {
     getContainer,
     children,
@@ -169,12 +171,11 @@ if (__DEV__) {
 
 export interface ModalContentProps extends PropsOf<typeof chakra.section> {}
 
-const MotionSection = chakra(motion.section)
+const ScaleFade = chakra(ScaleFadeMotion)
+const SlideFade = chakra(SlideFadeMotion)
 
 /**
- * ModalContent
- *
- * React component used to group modal's content. It has all the
+ * ModalContent is used to group modal's content. It has all the
  * necessary `aria-*` properties to indicate that it's a modal modal
  */
 export const ModalContent = forwardRef<ModalContentProps, "section">(
@@ -183,43 +184,49 @@ export const ModalContent = forwardRef<ModalContentProps, "section">(
 
     const { getDialogProps, getDialogContainerProps } = useModalContext()
 
-    const content = getDialogProps(rest, ref)
+    const dialogProps = getDialogProps(rest, ref) as any
+    const containerProps = getDialogContainerProps()
+
     const _className = cx("chakra-modal__content", className)
 
     const styles = useStyles()
 
+    const dialogStyles: SystemStyleObject = {
+      display: "flex",
+      flexDirection: "column",
+      position: "relative",
+      width: "100%",
+      outline: 0,
+      ...styles.dialog,
+    }
+
+    const dialogContainerStyles: SystemStyleObject = {
+      display: "flex",
+      width: "100vw",
+      height: "100vh",
+      position: "fixed",
+      left: 0,
+      top: 0,
+      ...styles.dialogContainer,
+    }
+
     return (
       <chakra.div
-        {...getDialogContainerProps()}
-        className={_className}
-        __css={{
-          display: "flex",
-          width: "100vw",
-          height: "100vh",
-          position: "fixed",
-          left: 0,
-          top: 0,
-          ...styles.dialogContainer,
-        }}
+        {...containerProps}
+        className="chakra-modal__content-container"
+        __css={dialogContainerStyles}
       >
-        <ModalFocusOn>
-          <MotionSection
-            {...variants.defaultProps}
-            variants={variants.content}
+        <ModalScope>
+          <SlideFade
+            reverse
+            offsetY={8}
             className={_className}
-            {...(content as any)}
-            __css={{
-              display: "flex",
-              flexDirection: "column",
-              position: "relative",
-              width: "100%",
-              outline: 0,
-              ...styles.dialog,
-            }}
+            {...dialogProps}
+            __css={dialogStyles}
           >
             {children}
-          </MotionSection>
-        </ModalFocusOn>
+          </SlideFade>
+        </ModalScope>
       </chakra.div>
     )
   },
@@ -229,11 +236,11 @@ if (__DEV__) {
   ModalContent.displayName = "ModalContent"
 }
 
-interface ModalFocusOnProps {
+interface ModalScopeProps {
   children: React.ReactElement
 }
 
-export function ModalFocusOn(props: ModalFocusOnProps) {
+export function ModalScope(props: ModalScopeProps) {
   const {
     autoFocus,
     trapFocus,
@@ -245,6 +252,14 @@ export function ModalFocusOn(props: ModalFocusOnProps) {
     returnFocusOnClose,
     preserveScrollBarGap,
   } = useModalContext()
+
+  const [isPresent, safeToRemove] = usePresence()
+
+  React.useEffect(() => {
+    if (!isPresent && safeToRemove) {
+      setTimeout(safeToRemove)
+    }
+  }, [isPresent])
 
   return (
     <FocusLock
@@ -267,37 +282,33 @@ export function ModalFocusOn(props: ModalFocusOnProps) {
   )
 }
 
-const MotionDiv = chakra(motion.div)
+const Fade = chakra(FadeMotion)
 
-export interface ModalOverlayProps extends PropsOf<typeof MotionDiv> {}
+export interface ModalOverlayProps extends PropsOf<typeof Fade> {}
 
 /**
- * ModalOverlay
- *
- * React component that renders a backdrop behind the modal. It's
+ * ModalOverlay renders a backdrop behind the modal. It's
  * also used as a wrapper for the modal content for better positioning.
  *
  * @see Docs https://chakra-ui.com/components/modal
  */
 export const ModalOverlay = forwardRef<ModalOverlayProps, "div">(
   function ModalOverlay(props, ref) {
+    const { className, ...rest } = props
+    const _className = cx("chakra-modal__overlay", className)
+
     const styles = useStyles()
+    const overlayStyle: SystemStyleObject = {
+      pos: "fixed",
+      left: "0",
+      top: "0",
+      w: "100vw",
+      h: "100vh",
+      ...styles.overlay,
+    }
+
     return (
-      <MotionDiv
-        {...variants.defaultProps}
-        variants={variants.overlay}
-        __css={{
-          pos: "fixed",
-          left: "0",
-          top: "0",
-          w: "100vw",
-          h: "100vh",
-          ...styles.overlay,
-        }}
-        ref={ref}
-        {...(props as any)}
-        className={cx("chakra-modal__overlay", props.className)}
-      />
+      <Fade __css={overlayStyle} ref={ref} className={_className} {...rest} />
     )
   },
 )
@@ -331,7 +342,12 @@ export const ModalHeader = forwardRef<ModalHeaderProps, "header">(
     }, [setHeaderMounted])
 
     const _className = cx("chakra-modal__header", className)
+
     const styles = useStyles()
+    const headerStyles: SystemStyleObject = {
+      flex: 0,
+      ...styles.header,
+    }
 
     return (
       <chakra.header
@@ -339,10 +355,7 @@ export const ModalHeader = forwardRef<ModalHeaderProps, "header">(
         className={_className}
         id={headerId}
         {...rest}
-        __css={{
-          flex: 0,
-          ...styles.header,
-        }}
+        __css={headerStyles}
       />
     )
   },
@@ -398,28 +411,28 @@ if (__DEV__) {
 export interface ModalFooterProps extends PropsOf<typeof chakra.footer> {}
 
 /**
- * ModalFooter
- *
- * React component that houses the action buttons of the modal.
- *
+ * ModalFooter houses the action buttons of the modal.
  * @see Docs https://chakra-ui.com/components/modal
  */
 export const ModalFooter = forwardRef<ModalFooterProps, "footer">(
   function ModalFooter(props, ref) {
     const { className, ...rest } = props
     const _className = cx("chakra-modal__footer", className)
+
     const styles = useStyles()
+    const footerStyles: SystemStyleObject = {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-end",
+      flex: 0,
+      ...styles.footer,
+    }
+
     return (
       <chakra.footer
         ref={ref}
         {...rest}
-        __css={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-end",
-          flex: 0,
-          ...styles.footer,
-        }}
+        __css={footerStyles}
         className={_className}
       />
     )
@@ -431,11 +444,10 @@ if (__DEV__) {
 }
 
 /**
- * ModalCloseButton
+ * ModalCloseButton is used closes the modal.
  *
- * React component used closes the modal. You don't need
- * to pass the `onClick` to it, it's reads the `onClose` action from the
- * modal context.
+ * You don't need to pass the `onClick` to it, it's reads the
+ * `onClose` action from the modal context.
  */
 export const ModalCloseButton = forwardRef<CloseButtonProps, "button">(
   function ModalCloseButton(props, ref) {

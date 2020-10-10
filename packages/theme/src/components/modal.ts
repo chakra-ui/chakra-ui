@@ -81,10 +81,7 @@ function getSize(value: string) {
   if (value === "full") {
     return { dialog: { maxW: "100vw", h: "100vh" } }
   }
-
-  return {
-    dialog: { maxW: value },
-  }
+  return { dialog: { maxW: value } }
 }
 
 const sizes = {

@@ -19,9 +19,33 @@ export interface FadeOptions {
   in?: boolean
 }
 
-interface FadeProps
-  extends React.ComponentProps<typeof motion.div>,
-    FadeOptions {}
+export interface FadeMotionProps
+  extends React.ComponentProps<typeof motion.div> {}
+
+export const FadeMotion = React.forwardRef<HTMLDivElement, FadeMotionProps>(
+  function FadeMotion(props, ref) {
+    return (
+      <motion.div
+        ref={ref}
+        initial="exit"
+        animate="enter"
+        exit="exit"
+        variants={fadeMotionVariants}
+        transition={{
+          duration: 0.225,
+          ease: [0.4, 0, 0.2, 1],
+        }}
+        {...props}
+      />
+    )
+  },
+)
+
+if (__DEV__) {
+  FadeMotion.displayName = "FadeMotion"
+}
+
+export interface FadeProps extends FadeMotionProps, FadeOptions {}
 
 export const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(
   props,
@@ -33,14 +57,10 @@ export const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(
   return (
     <AnimatePresence>
       {shouldExpand && (
-        <motion.div
+        <FadeMotion
           ref={ref}
-          initial="exit"
-          transition={{ duration: 0.225, ease: [0.4, 0, 0.2, 1] }}
           className={cx("chakra-fade", className)}
           animate={isOpen || unmountOnExit ? "enter" : "exit"}
-          exit="exit"
-          variants={fadeMotionVariants}
           {...rest}
         />
       )}

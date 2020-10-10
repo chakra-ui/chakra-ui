@@ -96,7 +96,6 @@
     "test-utils": "yarn workspace @chakra-ui/test-utils",
     "system": "yarn workspace @chakra-ui/system",
     "color-mode": "yarn workspace @chakra-ui/color-mode",
-    "drawer": "yarn workspace @chakra-ui/drawer",
     "textarea": "yarn workspace @chakra-ui/textarea",
     "image": "yarn workspace @chakra-ui/image",
     "select": "yarn workspace @chakra-ui/select",
