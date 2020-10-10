@@ -1,18 +1,18 @@
 import { forwardRef, PropsOf } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
-import { AnimatePresence, motion, Variant } from "framer-motion"
+import { cx, warn, __DEV__ } from "@chakra-ui/utils"
+import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
 import { MotionVariants } from "./__utils"
 
-export const collapseMotionVariants: MotionVariants<"open" | "collapsed"> = {
-  collapsed: (props: CollapseOptions) => ({
+export const collapseMotionVariants: MotionVariants<"expand" | "collapse"> = {
+  collapse: (props: CollapseOptions) => ({
     ...(props.animateOpacity && {
       opacity: parseInt(props.startingHeight as string, 10) > 0 ? 1 : 0,
     }),
     height: props.startingHeight,
     transition: { duration: 0.15 },
   }),
-  open: (props: CollapseOptions) => ({
+  expand: (props: CollapseOptions) => ({
     ...(props.animateOpacity && {
       opacity: 1,
     }),
@@ -34,7 +34,7 @@ export interface CollapseOptions {
    */
   unmountOnExit?: boolean
   /**
-   * If `true`, the content will be visible
+   * If `true`, the content will be expanded
    */
   isOpen?: boolean
   /**
@@ -87,7 +87,7 @@ export const Collapse = forwardRef<CollapseProps, "div">((props, ref) => {
    * for the height to take effect.
    */
   if (startingHeight > 0 && unmountOnExit) {
-    console.warn(
+    warn(
       `startingHeight and unmountOnExit are mutually exclusive. You can't use them together`,
     )
   }
@@ -107,9 +107,9 @@ export const Collapse = forwardRef<CollapseProps, "div">((props, ref) => {
             onAnimationComplete?.()
           }}
           className={cx("chakra-collapse", className)}
-          initial="collapsed"
-          animate={isOpen || unmountOnExit ? "open" : "collapsed"}
-          exit="collapsed"
+          initial="collapse"
+          animate={isOpen || unmountOnExit ? "expand" : "collapse"}
+          exit="collapse"
           {...rest}
           variants={motionVariants ?? collapseMotionVariants}
           style={{ overflow: "hidden", ...style }}

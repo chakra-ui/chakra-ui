@@ -1,33 +1,66 @@
+import { forwardRef, PropsOf } from "@chakra-ui/system"
+import { cx, __DEV__ } from "@chakra-ui/utils"
+import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
-import { __DEV__ } from "@chakra-ui/utils"
-import { Transition, TransitionProps } from "./transition"
-import { motion, Variants } from "framer-motion"
+import { MotionVariants } from "./__utils"
 
-export type SlideDirection = "left" | "right" | "bottom" | "top"
+export type SlideDirection = keyof typeof offset
 
 const offset = {
-  bottom: { y: "100%" },
-  top: { y: "-100%" },
-  left: { x: "-100%" },
-  right: { x: "100%" },
+  bottom: {
+    motion: { y: "100%" },
+    baseStyle: {
+      maxWidth: "100vw",
+      bottom: 0,
+      left: 0,
+      right: 0,
+    },
+  },
+  top: {
+    motion: { y: "-100%" },
+    baseStyle: {
+      maxWidth: "100vw",
+      top: 0,
+      left: 0,
+      right: 0,
+    },
+  },
+  left: {
+    motion: { x: "-100%" },
+    baseStyle: {
+      width: "100%",
+      height: "100vh",
+      left: 0,
+      top: 0,
+    },
+  },
+  right: {
+    motion: { x: "100%" },
+    baseStyle: {
+      width: "100%",
+      right: 0,
+      top: 0,
+      height: "100vh",
+    },
+  },
 }
 
-export const slideVariants: Variants = {
-  hide: (props) => {
-    const directionProps = offset[props.direction]
+export const slideMotionVariants: MotionVariants<"show" | "hide"> = {
+  hide: (direction: string) => {
+    const { motion } = offset[direction] ?? {}
     return {
-      ...directionProps,
+      ...motion,
       transition: {
         duration: 0.2,
-        easings: "linear",
+        easings: "easeInOut",
       },
     }
   },
-  show: (props) => {
-    const directionProps = offset[props.direction]
-    const [dir] = Object.keys(directionProps)
+  show: (direction: string) => {
+    const { motion } = offset[direction] ?? {}
+    const [axis] = motion ? Object.keys(motion) : ["x"]
     return {
-      [dir]: 0,
+      [axis]: 0,
       transition: {
         type: "spring",
         damping: 25,
@@ -37,49 +70,60 @@ export const slideVariants: Variants = {
   },
 }
 
-type Placement = "left" | "right" | "bottom" | "top"
-
-function createBaseStyle(placement: Placement) {
-  switch (placement) {
-    case "bottom": {
-      return {
-        maxWidth: "100vw",
-        bottom: 0,
-        left: 0,
-        right: 0,
-      }
-    }
-    case "top": {
-      return {
-        maxWidth: "100vw",
-        top: 0,
-        left: 0,
-        right: 0,
-      }
-    }
-    case "left": {
-      return {
-        width: "100%",
-        height: "100vh",
-        left: 0,
-        top: 0,
-      }
-    }
-    case "right": {
-      return {
-        width: "100%",
-        right: 0,
-        top: 0,
-        height: "100vh",
-      }
-    }
-    default:
-      break
-  }
+export interface SlideOptions {
+  /**
+   * If `true`, the collapse will unmount when `isOpen={false}` and animation is done
+   */
+  unmountOnExit?: boolean
+  /**
+   * The direction to slide from
+   * @default "right"
+   */
+  direction?: SlideDirection
+  /**
+   * If `true`, the content will slide in
+   */
+  isOpen?: boolean
 }
 
-export const Slide = (props: any) => {
-  return <motion.div />
-}
+type SlideProps = PropsOf<typeof motion.div> & SlideOptions
 
-Slide.displayName = "Slide"
+export const Slide = forwardRef<SlideProps, "div">((props, ref) => {
+  const {
+    direction = "right",
+    style,
+    unmountOnExit,
+    isOpen,
+    className,
+    ...rest
+  } = props
+
+  const { baseStyle } = offset[direction] ?? {}
+  const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
+
+  return (
+    <AnimatePresence custom={direction}>
+      {shouldExpand && (
+        <motion.div
+          ref={ref}
+          initial="hide"
+          className={cx("chakra-slide", className)}
+          animate={isOpen || unmountOnExit ? "show" : "hide"}
+          exit="hide"
+          custom={direction}
+          variants={slideMotionVariants}
+          style={{
+            position: "fixed",
+            ...baseStyle,
+            ...style,
+          }}
+          {...rest}
+        />
+      )}
+    </AnimatePresence>
+  )
+})
+
+if (__DEV__) {
+  Slide.displayName = "Slide"
+}
