@@ -4,9 +4,9 @@ import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
 import { MotionVariants } from "./__utils"
 
-export type SlideDirection = keyof typeof offset
+export type SlideDirection = keyof typeof directionEnum
 
-const offset = {
+const directionEnum = {
   bottom: {
     motion: { y: "100%" },
     baseStyle: {
@@ -45,19 +45,19 @@ const offset = {
   },
 }
 
-export const slideMotionVariants: MotionVariants<"show" | "hide"> = {
-  hide: (direction: string) => {
-    const { motion } = offset[direction] ?? {}
+export const slideMotionVariants: MotionVariants<"enter" | "exit"> = {
+  exit: (direction: string) => {
+    const { motion } = directionEnum[direction] ?? {}
     return {
       ...motion,
       transition: {
-        duration: 0.2,
+        duration: 0.15,
         easings: "easeInOut",
       },
     }
   },
-  show: (direction: string) => {
-    const { motion } = offset[direction] ?? {}
+  enter: (direction: string) => {
+    const { motion } = directionEnum[direction] ?? {}
     const [axis] = motion ? Object.keys(motion) : ["x"]
     return {
       [axis]: 0,
@@ -83,22 +83,22 @@ export interface SlideOptions {
   /**
    * If `true`, the content will slide in
    */
-  isOpen?: boolean
+  in?: boolean
 }
 
-type SlideProps = PropsOf<typeof motion.div> & SlideOptions
+interface SlideProps extends PropsOf<typeof motion.div>, SlideOptions {}
 
 export const Slide = forwardRef<SlideProps, "div">((props, ref) => {
   const {
     direction = "right",
     style,
     unmountOnExit,
-    isOpen,
+    in: isOpen,
     className,
     ...rest
   } = props
 
-  const { baseStyle } = offset[direction] ?? {}
+  const { baseStyle } = directionEnum[direction] ?? {}
   const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
 
   return (
@@ -106,10 +106,10 @@ export const Slide = forwardRef<SlideProps, "div">((props, ref) => {
       {shouldExpand && (
         <motion.div
           ref={ref}
-          initial="hide"
+          initial="exit"
           className={cx("chakra-slide", className)}
-          animate={isOpen || unmountOnExit ? "show" : "hide"}
-          exit="hide"
+          animate={isOpen || unmountOnExit ? "enter" : "exit"}
+          exit="exit"
           custom={direction}
           variants={slideMotionVariants}
           style={{

@@ -4,15 +4,15 @@ import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
 import { MotionVariants } from "./__utils"
 
-export const collapseMotionVariants: MotionVariants<"expand" | "collapse"> = {
-  collapse: (props: CollapseOptions) => ({
+export const collapseMotionVariants: MotionVariants<"enter" | "exit"> = {
+  exit: (props: CollapseOptions) => ({
     ...(props.animateOpacity && {
       opacity: parseInt(props.startingHeight as string, 10) > 0 ? 1 : 0,
     }),
     height: props.startingHeight,
     transition: { duration: 0.15 },
   }),
-  expand: (props: CollapseOptions) => ({
+  enter: (props: CollapseOptions) => ({
     ...(props.animateOpacity && {
       opacity: 1,
     }),
@@ -30,13 +30,13 @@ export interface CollapseOptions {
    */
   animateOpacity?: boolean
   /**
-   * If `true`, the collapse will unmount when `isOpen={false}` and animation is done
+   * If `true`, the collapse will unmount when `in={false}` and animation is done
    */
   unmountOnExit?: boolean
   /**
    * If `true`, the content will be expanded
    */
-  isOpen?: boolean
+  in?: boolean
   /**
    * The height you want the content in it's collapsed state. Set to `0` by default
    */
@@ -59,7 +59,7 @@ export interface CollapseProps
 
 export const Collapse = forwardRef<CollapseProps, "div">((props, ref) => {
   const {
-    isOpen,
+    in: isOpen,
     unmountOnExit,
     animateOpacity = true,
     startingHeight = 0,
@@ -107,9 +107,9 @@ export const Collapse = forwardRef<CollapseProps, "div">((props, ref) => {
             onAnimationComplete?.()
           }}
           className={cx("chakra-collapse", className)}
-          initial="collapse"
-          animate={isOpen || unmountOnExit ? "expand" : "collapse"}
-          exit="collapse"
+          initial="exit"
+          animate={isOpen || unmountOnExit ? "enter" : "exit"}
+          exit="exit"
           {...rest}
           variants={motionVariants ?? collapseMotionVariants}
           style={{ overflow: "hidden", ...style }}

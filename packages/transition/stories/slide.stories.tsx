@@ -7,7 +7,7 @@ export default {
 }
 
 const SlideExample = (props: any) => {
-  const [open, { toggle }] = useBoolean(true)
+  const [open, { toggle }] = useBoolean(false)
   return (
     <>
       <button onClick={toggle}>Toggle Slide</button>
@@ -17,7 +17,7 @@ const SlideExample = (props: any) => {
           background: "red",
           padding: 30,
         }}
-        isOpen={open}
+        in={open}
         {...props}
       >
         Lorem Ipsum is simply dummy text of the printing and typesetting

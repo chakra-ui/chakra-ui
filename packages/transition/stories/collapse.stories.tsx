@@ -11,7 +11,7 @@ const CollapseExample = (props: CollapseOptions) => {
   return (
     <>
       <button onClick={toggle}>Toggle Accordion</button>
-      <Collapse isOpen={open} {...props}>
+      <Collapse in={open} {...props}>
         <div
           style={{
             background: "red",
