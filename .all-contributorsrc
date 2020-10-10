@@ -1362,6 +1362,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "dsumer",
+      "name": "Dominik Sumer",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/4418879?v=4",
+      "profile": "http://dominik.sumer.dev",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
