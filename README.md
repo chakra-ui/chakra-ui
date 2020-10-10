@@ -345,6 +345,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/TimKolberger"><img src="https://avatars2.githubusercontent.com/u/16899513?v=4" width="64px;" alt=""/><br /><sub><b>TimKolberger</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3ATimKolberger" title="Bug reports">🐛</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=TimKolberger" title="Documentation">📖</a></td>
     <td align="center"><a href="https://twitter.com/_waptik"><img src="https://avatars1.githubusercontent.com/u/1687551?v=4" width="64px;" alt=""/><br /><sub><b>Stephane Mensah</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Awaptik" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/iskanderbroere"><img src="https://avatars2.githubusercontent.com/u/25477294?v=4" width="64px;" alt=""/><br /><sub><b>iskanderbroere</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=iskanderbroere" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://dominik.sumer.dev"><img src="https://avatars3.githubusercontent.com/u/4418879?v=4" width="64px;" alt=""/><br /><sub><b>Dominik Sumer</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=dsumer" title="Code">💻</a></td>
   </tr>
 </table>
 
