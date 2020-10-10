@@ -1,6 +1,5 @@
 import memoizeOne from "memoize-one"
 import type { Omit, Dict } from "./types"
-export { default as merge } from "lodash.merge"
 export { default as mergeWith } from "lodash.mergewith"
 export { default as objectAssign } from "object-assign"
 

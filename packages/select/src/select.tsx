@@ -9,7 +9,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx, merge, split, __DEV__ } from "@chakra-ui/utils"
+import { cx, mergeWith, split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"
@@ -126,7 +126,7 @@ export const Select = forwardRef<SelectProps, "select">(function Select(
     color,
   }
 
-  const fieldStyles: SystemStyleObject = merge({}, styles.field, {
+  const fieldStyles: SystemStyleObject = mergeWith({}, styles.field, {
     pr: "2rem",
     _focus: { zIndex: "unset" },
   })

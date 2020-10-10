@@ -7,7 +7,7 @@ import {
   forwardRef,
   ThemingProps,
 } from "@chakra-ui/system"
-import { __DEV__, merge } from "@chakra-ui/utils"
+import { __DEV__, mergeWith } from "@chakra-ui/utils"
 import * as React from "react"
 
 export interface SkipNavLinkProps
@@ -42,7 +42,7 @@ export const SkipNavLink = forwardRef<SkipNavLinkProps, "a">(
     const styles = useStyleConfig("SkipLink", props)
     const { id = fallbackId, ...rest } = omitThemingProps(props)
 
-    const linkStyles = merge({}, baseStyle, styles)
+    const linkStyles = mergeWith({}, baseStyle, styles)
 
     return <chakra.a {...rest} ref={ref} href={`#${id}`} __css={linkStyles} />
   },
