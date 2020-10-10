@@ -48,12 +48,8 @@
   "dependencies": {
     "@chakra-ui/utils": "1.0.0-rc.5"
   },
-  "devDependencies": {
-    "@chakra-ui/system": "1.0.0-rc.5"
-  },
   "peerDependencies": {
-    "@chakra-ui/system": ">=1.0.0-rc.3",
-    "framer-motion": "2.7.9",
+    "framer-motion": "2.x",
     "react": "16.x"
   }
 }

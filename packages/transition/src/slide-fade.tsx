@@ -1,4 +1,3 @@
-import { forwardRef, PropsOf } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
@@ -56,42 +55,46 @@ export interface SlideFadeOptions {
   reverse?: boolean
 }
 
-interface SlideFadeProps extends PropsOf<typeof motion.div>, SlideFadeOptions {}
+interface SlideFadeProps
+  extends React.ComponentProps<typeof motion.div>,
+    SlideFadeOptions {}
 
-export const SlideFade = forwardRef<SlideFadeProps, "div">((props, ref) => {
-  const {
-    unmountOnExit,
-    in: isOpen,
-    reverse = true,
-    className,
-    offsetX = 0,
-    offsetY = 8,
-    ...rest
-  } = props
+export const SlideFade = React.forwardRef<HTMLDivElement, SlideFadeProps>(
+  function SlideFade(props, ref) {
+    const {
+      unmountOnExit,
+      in: isOpen,
+      reverse = true,
+      className,
+      offsetX = 0,
+      offsetY = 8,
+      ...rest
+    } = props
 
-  const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
+    const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
 
-  return (
-    <AnimatePresence custom={{ offsetX, offsetY, reverse }}>
-      {shouldExpand && (
-        <motion.div
-          ref={ref}
-          initial="initial"
-          className={cx("chakra-offset-slide", className)}
-          transition={{
-            duration: 0.15,
-            ease: [0, 0, 0.4, 1],
-          }}
-          animate={isOpen || unmountOnExit ? "enter" : "exit"}
-          exit="exit"
-          variants={slideFadeMotionVariants}
-          custom={{ offsetX, offsetY, reverse }}
-          {...rest}
-        />
-      )}
-    </AnimatePresence>
-  )
-})
+    return (
+      <AnimatePresence custom={{ offsetX, offsetY, reverse }}>
+        {shouldExpand && (
+          <motion.div
+            ref={ref}
+            initial="initial"
+            className={cx("chakra-offset-slide", className)}
+            transition={{
+              duration: 0.15,
+              ease: [0, 0, 0.4, 1],
+            }}
+            animate={isOpen || unmountOnExit ? "enter" : "exit"}
+            exit="exit"
+            variants={slideFadeMotionVariants}
+            custom={{ offsetX, offsetY, reverse }}
+            {...rest}
+          />
+        )}
+      </AnimatePresence>
+    )
+  },
+)
 
 if (__DEV__) {
   SlideFade.displayName = "SlideFade"

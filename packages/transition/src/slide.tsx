@@ -1,4 +1,3 @@
-import { forwardRef, PropsOf } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
@@ -86,43 +85,47 @@ export interface SlideOptions {
   in?: boolean
 }
 
-interface SlideProps extends PropsOf<typeof motion.div>, SlideOptions {}
+interface SlideProps
+  extends React.ComponentProps<typeof motion.div>,
+    SlideOptions {}
 
-export const Slide = forwardRef<SlideProps, "div">((props, ref) => {
-  const {
-    direction = "right",
-    style,
-    unmountOnExit,
-    in: isOpen,
-    className,
-    ...rest
-  } = props
+export const Slide = React.forwardRef<HTMLDivElement, SlideProps>(
+  function Slide(props, ref) {
+    const {
+      direction = "right",
+      style,
+      unmountOnExit,
+      in: isOpen,
+      className,
+      ...rest
+    } = props
 
-  const { baseStyle } = directionEnum[direction] ?? {}
-  const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
+    const { baseStyle } = directionEnum[direction] ?? {}
+    const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
 
-  return (
-    <AnimatePresence custom={direction}>
-      {shouldExpand && (
-        <motion.div
-          ref={ref}
-          initial="exit"
-          className={cx("chakra-slide", className)}
-          animate={isOpen || unmountOnExit ? "enter" : "exit"}
-          exit="exit"
-          custom={direction}
-          variants={slideMotionVariants}
-          style={{
-            position: "fixed",
-            ...baseStyle,
-            ...style,
-          }}
-          {...rest}
-        />
-      )}
-    </AnimatePresence>
-  )
-})
+    return (
+      <AnimatePresence custom={direction}>
+        {shouldExpand && (
+          <motion.div
+            ref={ref}
+            initial="exit"
+            className={cx("chakra-slide", className)}
+            animate={isOpen || unmountOnExit ? "enter" : "exit"}
+            exit="exit"
+            custom={direction}
+            variants={slideMotionVariants}
+            style={{
+              position: "fixed",
+              ...baseStyle,
+              ...style,
+            }}
+            {...rest}
+          />
+        )}
+      </AnimatePresence>
+    )
+  },
+)
 
 if (__DEV__) {
   Slide.displayName = "Slide"

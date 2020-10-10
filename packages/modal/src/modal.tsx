@@ -21,6 +21,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
 import { RemoveScroll } from "react-remove-scroll"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
+import { ScaleFade, Fade } from "@chakra-ui/transition"
 
 interface ModalOptions {
   /**
@@ -167,36 +168,6 @@ if (__DEV__) {
 }
 
 export interface ModalContentProps extends PropsOf<typeof chakra.section> {}
-
-const variants = {
-  defaultProps: {
-    initial: "hide",
-    animate: "show",
-    exit: "hide",
-  },
-  overlay: {
-    hide: { opacity: 0 },
-    show: {
-      opacity: 0.85,
-      transition: { duration: 0.2 },
-    },
-  },
-  content: {
-    hide: {
-      scale: 0.95,
-      opacity: 0,
-      transition: { duration: 0.1 },
-    },
-    show: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        duration: 0.25,
-        easings: "easeInOut",
-      },
-    },
-  },
-}
 
 const MotionSection = chakra(motion.section)
 

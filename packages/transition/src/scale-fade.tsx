@@ -1,4 +1,3 @@
-import { forwardRef, PropsOf } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
@@ -41,37 +40,41 @@ export interface ScaleFadeOptions {
   reverse?: boolean
 }
 
-interface ScaleFadeProps extends PropsOf<typeof motion.div>, ScaleFadeOptions {}
+interface ScaleFadeProps
+  extends React.ComponentProps<typeof motion.div>,
+    ScaleFadeOptions {}
 
-export const ScaleFade = forwardRef<ScaleFadeProps, "div">((props, ref) => {
-  const {
-    unmountOnExit,
-    in: isOpen,
-    reverse = true,
-    className,
-    initialScale = 0.95,
-    ...rest
-  } = props
+export const ScaleFade = React.forwardRef<HTMLDivElement, ScaleFadeProps>(
+  function ScaleFade(props, ref) {
+    const {
+      unmountOnExit,
+      in: isOpen,
+      reverse = true,
+      className,
+      initialScale = 0.95,
+      ...rest
+    } = props
 
-  const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
+    const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
 
-  return (
-    <AnimatePresence custom={{ initialScale, reverse }}>
-      {shouldExpand && (
-        <motion.div
-          ref={ref}
-          initial="exit"
-          className={cx("chakra-offset-slide", className)}
-          animate={isOpen || unmountOnExit ? "enter" : "exit"}
-          exit="exit"
-          variants={ScaleFadeMotionVariants}
-          custom={{ initialScale, reverse }}
-          {...rest}
-        />
-      )}
-    </AnimatePresence>
-  )
-})
+    return (
+      <AnimatePresence custom={{ initialScale, reverse }}>
+        {shouldExpand && (
+          <motion.div
+            ref={ref}
+            initial="exit"
+            className={cx("chakra-offset-slide", className)}
+            animate={isOpen || unmountOnExit ? "enter" : "exit"}
+            exit="exit"
+            variants={ScaleFadeMotionVariants}
+            custom={{ initialScale, reverse }}
+            {...rest}
+          />
+        )}
+      </AnimatePresence>
+    )
+  },
+)
 
 if (__DEV__) {
   ScaleFade.displayName = "ScaleFade"

@@ -1,4 +1,3 @@
-import { forwardRef, PropsOf } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
@@ -20,9 +19,14 @@ export interface FadeOptions {
   in?: boolean
 }
 
-interface FadeProps extends PropsOf<typeof motion.div>, FadeOptions {}
+interface FadeProps
+  extends React.ComponentProps<typeof motion.div>,
+    FadeOptions {}
 
-export const Fade = forwardRef<FadeProps, "div">((props, ref) => {
+export const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(
+  props,
+  ref,
+) {
   const { unmountOnExit, in: isOpen, className, ...rest } = props
   const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
 

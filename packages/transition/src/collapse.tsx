@@ -1,4 +1,3 @@
-import { forwardRef, PropsOf } from "@chakra-ui/system"
 import { cx, warn, __DEV__ } from "@chakra-ui/utils"
 import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
@@ -54,71 +53,73 @@ export interface CollapseOptions {
 export type ICollapse = CollapseProps
 
 export interface CollapseProps
-  extends PropsOf<typeof motion.div>,
+  extends React.ComponentProps<typeof motion.div>,
     CollapseOptions {}
 
-export const Collapse = forwardRef<CollapseProps, "div">((props, ref) => {
-  const {
-    in: isOpen,
-    unmountOnExit,
-    animateOpacity = true,
-    startingHeight = 0,
-    endingHeight = "auto",
-    motionVariants,
-    style,
-    className,
-    onAnimationComplete,
-    ...rest
-  } = props
+export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
+  function Collapse(props, ref) {
+    const {
+      in: isOpen,
+      unmountOnExit,
+      animateOpacity = true,
+      startingHeight = 0,
+      endingHeight = "auto",
+      motionVariants,
+      style,
+      className,
+      onAnimationComplete,
+      ...rest
+    } = props
 
-  const [ariaHidden, setAriaHidden] = React.useState(() => {
-    // If it's open by default, no need to apply `aria-hidden`
-    if (isOpen) return false
-    // If startingHeight > 0, then content is partially visible
-    if (parseInt(props.startingHeight as string, 10) > 0) return false
-    // Else, the content is hidden
-    return true
-  })
+    const [ariaHidden, setAriaHidden] = React.useState(() => {
+      // If it's open by default, no need to apply `aria-hidden`
+      if (isOpen) return false
+      // If startingHeight > 0, then content is partially visible
+      if (parseInt(props.startingHeight as string, 10) > 0) return false
+      // Else, the content is hidden
+      return true
+    })
 
-  /**
-   * Warn 🚨: `startingHeight` and `unmountOnExit` are mutually exclusive
-   *
-   * If you specify a starting height, the collapsed needs to be mounted
-   * for the height to take effect.
-   */
-  if (startingHeight > 0 && unmountOnExit) {
-    warn(
-      `startingHeight and unmountOnExit are mutually exclusive. You can't use them together`,
+    /**
+     * Warn 🚨: `startingHeight` and `unmountOnExit` are mutually exclusive
+     *
+     * If you specify a starting height, the collapsed needs to be mounted
+     * for the height to take effect.
+     */
+    if (startingHeight > 0 && unmountOnExit) {
+      warn(
+        `startingHeight and unmountOnExit are mutually exclusive. You can't use them together`,
+      )
+    }
+
+    const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
+
+    const variantProps = { startingHeight, endingHeight, animateOpacity }
+
+    return (
+      <AnimatePresence initial={false} custom={variantProps}>
+        {shouldExpand && (
+          <motion.div
+            ref={ref}
+            aria-hidden={ariaHidden ? "true" : undefined}
+            onAnimationComplete={() => {
+              setAriaHidden((c) => !c)
+              onAnimationComplete?.()
+            }}
+            className={cx("chakra-collapse", className)}
+            initial="exit"
+            animate={isOpen || unmountOnExit ? "enter" : "exit"}
+            exit="exit"
+            {...rest}
+            variants={motionVariants ?? collapseMotionVariants}
+            style={{ overflow: "hidden", ...style }}
+            custom={variantProps}
+          />
+        )}
+      </AnimatePresence>
     )
-  }
-
-  const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
-
-  const variantProps = { startingHeight, endingHeight, animateOpacity }
-
-  return (
-    <AnimatePresence initial={false} custom={variantProps}>
-      {shouldExpand && (
-        <motion.div
-          ref={ref}
-          aria-hidden={ariaHidden ? "true" : undefined}
-          onAnimationComplete={() => {
-            setAriaHidden((c) => !c)
-            onAnimationComplete?.()
-          }}
-          className={cx("chakra-collapse", className)}
-          initial="exit"
-          animate={isOpen || unmountOnExit ? "enter" : "exit"}
-          exit="exit"
-          {...rest}
-          variants={motionVariants ?? collapseMotionVariants}
-          style={{ overflow: "hidden", ...style }}
-          custom={variantProps}
-        />
-      )}
-    </AnimatePresence>
-  )
-})
+  },
+)
 
 if (__DEV__) {
   Collapse.displayName = "Collapse"
