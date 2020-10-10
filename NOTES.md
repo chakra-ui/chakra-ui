@@ -2,10 +2,18 @@ Stat
 
 - Support `animate` prop, so the number can animate in on-mount
 
-Stack
+ListTransition
 
-- Support `animate` prop, so the items in the stack can animate automatically by
-  leveraging `staggerChildren` in framer-motion
+- Stack can animate automatically by leveraging `staggerChildren` in
+  framer-motion.
+
+```jsx
+<ListTransition motion="scale" childMotion="scale-fade">
+  <div>Welcome</div>
+  <div>Welcome</div>
+  <div>Welcome</div>
+</ListTransition>
+```
 
 Tabs
 
