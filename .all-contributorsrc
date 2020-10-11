@@ -1371,6 +1371,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Strajk",
+      "name": "Pavel 'Strajk' Dolecek",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/697301?v=4",
+      "profile": "http://www.strajk.me",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
