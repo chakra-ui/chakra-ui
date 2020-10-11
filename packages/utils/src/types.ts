@@ -1,14 +1,8 @@
-import * as React from "react"
-
-export type Merge<T1, T2> = Omit<T1, Extract<keyof T1, keyof T2>> & T2
-
-export type SafeMerge<T, P> = P & Omit<T, keyof P>
+export type Merge<T, P> = P & Omit<T, keyof P>
 
 export type UnionStringArray<T extends Readonly<string[]>> = T[number]
 
 export type Omit<T, K> = Pick<T, Exclude<keyof T, K>>
-
-export type As<P = any> = React.ElementType<P>
 
 export type LiteralUnion<T extends U, U extends any = string> =
   | T
@@ -30,8 +24,37 @@ export type ReactNodeOrRenderProp<P> =
 
 export type Booleanish = boolean | "true" | "false"
 
-export type ObjectOrArray<T, K extends keyof any = keyof any> =
-  | T[]
-  | Record<K, T>
-
 export type StringOrNumber = string | number
+
+export type HTMLProps<T = any> = Omit<
+  React.HTMLAttributes<T>,
+  "color" | "width" | "height"
+> &
+  React.RefAttributes<T>
+
+export type PropGetter<T extends HTMLElement = any, P = {}> = (
+  props?: Merge<HTMLProps<T>, P>,
+  ref?: React.Ref<any> | React.RefObject<any>,
+) => Merge<HTMLProps<T>, P>
+
+export type EventKeys =
+  | "ArrowDown"
+  | "ArrowUp"
+  | "ArrowLeft"
+  | "ArrowRight"
+  | "Enter"
+  | "Space"
+  | "Tab"
+  | "Backspace"
+  | "Control"
+  | "Meta"
+  | "Home"
+  | "End"
+  | "PageDown"
+  | "PageUp"
+  | "Delete"
+  | "Escape"
+  | " "
+  | "Shift"
+
+export type EventKeyMap = Partial<Record<EventKeys, React.KeyboardEventHandler>>

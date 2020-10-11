@@ -392,3 +392,21 @@ export const WithinForm = () => {
     </form>
   )
 }
+
+export const GroupWithDivider = () => {
+  return (
+    <Menu>
+      <MenuButton>Welcome</MenuButton>
+      <MenuList>
+        <MenuOptionGroup type="radio">
+          <MenuItemOption value="A">A</MenuItemOption>
+          <MenuItemOption value="B">B</MenuItemOption>
+          <MenuItemOption value="C">C</MenuItemOption>
+          <MenuDivider />
+          <MenuItemOption value="D">D</MenuItemOption>
+          <MenuItemOption value="E">E</MenuItemOption>
+        </MenuOptionGroup>
+      </MenuList>
+    </Menu>
+  )
+}

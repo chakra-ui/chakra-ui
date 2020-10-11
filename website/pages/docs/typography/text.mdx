@@ -54,6 +54,27 @@ width of the viewport or `maxWidth` prop.
 </Text>
 ```
 
+Likewise, if you'd like to truncate the text after a specific number of lines,
+pass the `noOfLines` prop and set it to the desired no of lines.
+
+> Pro Tip 💡: You can also apply `noOfLines` responsively.
+
+```jsx live=false
+// Basic version
+<Text noOfLines={2}>
+  "The quick brown fox jumps over the lazy dog" is an English-language pangram—a
+  sentence that contains all of the letters of the English alphabet. Owing to
+  its existence, Chakra was created.
+</Text>
+
+// Responsive version
+<Text noOfLines={[1, 2, 3]}>
+   "The quick brown fox jumps over the lazy dog" is an English-language pangram—a
+  sentence that contains all of the letters of the English alphabet. Owing to
+  its existence, Chakra was created.
+</Text>
+```
+
 ### Override style
 
 You can change the entire style of the text via props. For example, to change

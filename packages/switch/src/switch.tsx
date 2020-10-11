@@ -1,11 +1,12 @@
 import { useCheckbox, UseCheckboxProps } from "@chakra-ui/checkbox"
 import {
   chakra,
-  PropsOf,
-  useMultiStyleConfig,
-  omitThemingProps,
-  ThemingProps,
   forwardRef,
+  omitThemingProps,
+  PropsOf,
+  SystemStyleObject,
+  ThemingProps,
+  useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -28,13 +29,13 @@ export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
   const inputProps = getInputProps({}, ref)
   const checkboxProps = getCheckboxProps()
 
-  const labelStyles = {
+  const labelStyles: SystemStyleObject = {
     display: "inline-block",
     verticalAlign: "middle",
     lineHeight: "normal",
   }
 
-  const trackStyles = {
+  const trackStyles: SystemStyleObject = {
     display: "inline-flex",
     flexShrink: 0,
     justifyContent: "flex-start",

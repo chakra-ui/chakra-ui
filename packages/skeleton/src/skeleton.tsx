@@ -8,6 +8,7 @@ import {
   omitThemingProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
+import { useBreakpointValue } from "@chakra-ui/media-query";
 import * as React from "react"
 
 export interface SkeletonOptions {
@@ -114,28 +115,33 @@ function range(count: number) {
 }
 
 export interface SkeletonTextProps extends SkeletonProps {
-  noOfLines?: number
   spacing?: SkeletonProps["margin"]
   skeletonHeight?: SkeletonProps["height"]
   startColor?: SkeletonProps["startColor"]
   endColor?: SkeletonProps["endColor"]
+  isLoaded?: SkeletonProps["isLoaded"]
 }
+
+const defaultNoOfLines = 3;
 
 export const SkeletonText: React.FC<SkeletonTextProps> = (props) => {
   const {
-    noOfLines = 3,
+    noOfLines = defaultNoOfLines,
     spacing = "0.5rem",
     skeletonHeight = "0.5rem",
     className,
     startColor,
     endColor,
+    isLoaded,
+    children,
     ...rest
   } = props
 
-  const numbers = range(noOfLines)
+  const noOfLinesValue = useBreakpointValue(typeof noOfLines === 'number' ? [noOfLines] : noOfLines) || defaultNoOfLines;
+  const numbers = range(noOfLinesValue)
 
   const getWidth = (index: number) => {
-    if (noOfLines > 1) {
+    if (noOfLinesValue > 1) {
       return index === numbers.length ? "80%" : "100%"
     }
     return "100%"
@@ -145,16 +151,19 @@ export const SkeletonText: React.FC<SkeletonTextProps> = (props) => {
 
   return (
     <chakra.div className={_className} {...rest}>
-      {numbers.map((number) => (
-        <Skeleton
-          key={number}
-          height={skeletonHeight}
-          mb={number === numbers.length ? "0" : spacing}
-          width={getWidth(number)}
-          startColor={startColor}
-          endColor={endColor}
-        />
-      ))}
+      {isLoaded
+        ? children
+        : numbers.map((number) => (
+            <Skeleton
+              key={numbers.length.toString() + number}
+              height={skeletonHeight}
+              mb={number === numbers.length ? "0" : spacing}
+              width={getWidth(number)}
+              startColor={startColor}
+              endColor={endColor}
+              isLoaded={isLoaded}
+            />
+          ))}
     </chakra.div>
   )
 }

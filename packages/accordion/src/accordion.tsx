@@ -3,21 +3,21 @@ import { Icon, IconProps } from "@chakra-ui/icon"
 import {
   chakra,
   forwardRef,
-  PropsOf,
   omitThemingProps,
+  PropsOf,
   StylesProvider,
+  SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
 } from "@chakra-ui/system"
 import {
-  cx,
   createContext,
+  cx,
   Omit,
   ReactNodeOrRenderProp,
   runIfFn,
   __DEV__,
-  Dict,
 } from "@chakra-ui/utils"
 import * as React from "react"
 import {
@@ -160,7 +160,7 @@ export const AccordionButton = forwardRef<AccordionButtonProps, "button">(
     const buttonProps = getButtonProps(props, ref)
 
     const styles = useStyles()
-    const buttonStyles = {
+    const buttonStyles: SystemStyleObject = {
       display: "flex",
       alignItems: "center",
       width: "100%",
@@ -197,13 +197,13 @@ export const AccordionPanel = forwardRef<AccordionPanelProps, "div">(
     const { getPanelProps, isOpen } = useAccordionItemContext()
 
     // remove `hidden` prop, 'coz we're using height animation
-    const { hidden, ...panelProps } = getPanelProps({ ...props, ref }) as Dict
+    const panelProps = getPanelProps(props, ref)
 
     const _className = cx("chakra-accordion__panel", props.className)
     const styles = useStyles()
 
-    if (reduceMotion == true) {
-      panelProps.hidden = hidden
+    if (!reduceMotion) {
+      delete panelProps.hidden
     }
 
     const child = (
@@ -215,7 +215,7 @@ export const AccordionPanel = forwardRef<AccordionPanelProps, "div">(
       />
     )
 
-    if (reduceMotion == false) {
+    if (!reduceMotion) {
       return <Collapse isOpen={isOpen}>{child}</Collapse>
     }
 
@@ -235,7 +235,7 @@ export const AccordionIcon: React.FC<IconProps> = (props) => {
   const { isOpen, isDisabled } = useAccordionItemContext()
   const { reduceMotion } = useAccordionContext()
 
-  const iconStyles = {
+  const iconStyles: SystemStyleObject = {
     fontSize: "1.25em",
     opacity: isDisabled ? 0.4 : 1,
     transform: isOpen ? "rotate(-180deg)" : undefined,

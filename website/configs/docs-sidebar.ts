@@ -128,8 +128,16 @@ const sidebar = {
               path: "/docs/form/checkbox",
             },
             {
+              title: "Editable",
+              path: "/docs/form/editable",
+            },
+            {
               title: "Form Control",
               path: "/docs/form/form-control",
+            },
+            {
+              title: "Icon Button",
+              path: "/docs/form/icon-button",
             },
             {
               title: "Input",
@@ -187,8 +195,16 @@ const sidebar = {
               path: "/docs/hooks/use-disclosure",
             },
             {
+              title: "useMediaQuery",
+              path: "/docs/hooks/use-media-query",
+            },
+            {
               title: "useTheme",
               path: "/docs/hooks/use-theme",
+            },
+            {
+              title: "usePrefersReducedMotion",
+              path: "/docs/hooks/use-prefers-reduced-motion",
             },
           ],
         },

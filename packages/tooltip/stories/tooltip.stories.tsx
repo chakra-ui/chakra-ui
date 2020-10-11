@@ -1,9 +1,9 @@
+import { Modal, ModalContent, ModalOverlay } from "@chakra-ui/modal"
+import { Portal } from "@chakra-ui/portal"
 import { chakra } from "@chakra-ui/system"
+import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
 import { Tooltip, useTooltip } from "../src"
-import { Transition } from "@chakra-ui/transition"
-import { Portal } from "@chakra-ui/portal"
-import { Modal, ModalContent, ModalOverlay } from "@chakra-ui/modal"
 
 export default {
   title: "Tooltip",
@@ -21,30 +21,32 @@ const HookTooltip = ({ children }: any) => {
     getTriggerProps,
     getTooltipProps,
     getArrowProps,
+    getArrowWrapperProps,
     isOpen,
-  } = useTooltip({ openDelay: 100 })
-
-  const trigger = getTriggerProps()
-  const tooltip = getTooltipProps()
-  const arrow = getArrowProps({ style: { background: "inherit" } })
+  } = useTooltip({
+    openDelay: 100,
+    arrowSize: 8,
+    placement: "bottom",
+  })
 
   return (
     <>
-      <button {...trigger}>Hover me</button>
+      <button {...getTriggerProps()}>Hover me</button>
       <div
-        hidden={!isOpen}
-        {...tooltip}
-        style={{
-          ...tooltip.style,
-          background: "tomato",
-          color: "white",
-          border: "none",
-          borderRadius: "4px",
-          padding: "0.5em 1em",
-        }}
+        {...getTooltipProps({
+          style: {
+            background: "tomato",
+            color: "white",
+            borderRadius: "4px",
+            padding: "0.5em 1em",
+            visibility: isOpen ? "visible" : "hidden",
+          },
+        })}
       >
         {children}
-        <div {...arrow} />
+        <div {...getArrowWrapperProps()}>
+          <div {...getArrowProps({ style: { background: "tomato" } })} />
+        </div>
       </div>
     </>
   )
@@ -59,70 +61,62 @@ export const MultipleTooltips = () => (
   </>
 )
 
-const TransitionTooltip = ({ children }: any) => {
+export const WithTransition = () => {
   const {
     getTriggerProps,
     getTooltipProps,
     getArrowProps,
+    getArrowWrapperProps,
     isOpen,
-  } = useTooltip({ openDelay: 50 })
-
-  const trigger = getTriggerProps()
-  const tooltip = getTooltipProps()
-  const arrow = getArrowProps({ style: { background: "inherit" } })
+    transformOrigin,
+  } = useTooltip({
+    openDelay: 100,
+  })
 
   return (
     <>
-      <button {...trigger}>Hover me</button>
-      <Transition
-        in={isOpen}
-        timeout={100}
-        styles={{
-          init: {
-            opacity: 0,
-            transform: `scale(0.9)`,
-          },
-          entered: {
-            opacity: 1,
-            transform: `scale(1)`,
-          },
-          exiting: {
-            opacity: 0,
-            transform: `scale(0.9)`,
-          },
-        }}
-      >
-        {(styles) => (
+      <button {...getTriggerProps()}>Hover me</button>
+      <AnimatePresence>
+        {isOpen && (
           <Portal>
-            <div
-              {...tooltip}
-              style={{
-                ...tooltip.style,
-                background: "tomato",
-                color: "white",
-                border: "none",
-                borderRadius: "4px",
-                padding: "0.5em 1em",
-                ...styles,
-              }}
+            <motion.div
+              initial="exit"
+              animate="enter"
+              exit="exit"
+              {...(getTooltipProps() as any)}
             >
-              {children}
-              <div {...arrow} />
-            </div>
+              <motion.div
+                transition={{
+                  duration: 0.12,
+                  ease: [0.4, 0, 0.2, 1],
+                  bounce: 0.5,
+                }}
+                variants={{
+                  exit: { scale: 0.9, opacity: 0 },
+                  enter: { scale: 1, opacity: 1 },
+                }}
+                style={{
+                  transformOrigin,
+                  background: "tomato",
+                  color: "white",
+                  borderRadius: "4px",
+                  padding: "0.5em 1em",
+                }}
+              >
+                Fade! This is tooltip
+                <div {...getArrowWrapperProps()}>
+                  <div
+                    {...getArrowProps({ style: { background: "tomato" } })}
+                  />
+                </div>
+              </motion.div>
+            </motion.div>
           </Portal>
         )}
-      </Transition>
+      </AnimatePresence>
     </>
   )
 }
-
-export const WithTransition = () => (
-  <>
-    <TransitionTooltip>Fade! This is tooltip </TransitionTooltip>
-    <span style={{ margin: 0 }} />
-    <TransitionTooltip>Fade! This is tooltip </TransitionTooltip>
-  </>
-)
 
 export const withButton = () => (
   <Tooltip label="This is a chakra tooltip" placement="bottom" hasArrow>
@@ -193,7 +187,11 @@ export const WithModal = () => {
               </Tooltip>
 
               <div style={{ float: "right" }}>
-                <Tooltip label="Notifications" aria-label="3 Notifications">
+                <Tooltip
+                  isOpen
+                  label="Notifications"
+                  aria-label="3 Notifications"
+                >
                   <button style={{ fontSize: 25 }}>
                     <span>🔔</span>
                     <span>3</span>
@@ -217,7 +215,7 @@ export const withDisabledButton = () => (
 )
 
 export const withIsOpenProp = () => (
-  <Tooltip label="Hello world" isOpen={true}>
+  <Tooltip label="Hello world" isOpen={true} hasArrow>
     <button style={{ fontSize: 25, pointerEvents: "all" }} disabled>
       Can't Touch This
     </button>

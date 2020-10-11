@@ -20,22 +20,22 @@ const links = [
   {
     icon: DiGithubBadge,
     label: "GitHub",
-    url: "https://github.com/segunadebayo",
+    href: "https://github.com/segunadebayo",
   },
   {
     icon: IoLogoTwitter,
     label: "Twitter",
-    url: "https://twitter.com/thesegunadebayo",
+    href: "https://twitter.com/thesegunadebayo",
   },
   {
     icon: IoLogoLinkedin,
     label: "LinkedIn",
-    url: "https://linkedin.com/in/thesegunadebayo/",
+    href: "https://linkedin.com/in/thesegunadebayo/",
   },
   {
     icon: MdEmail,
     label: "Email",
-    url: "mailto:sage@adebayosegun.com",
+    href: "mailto:sage@adebayosegun.com",
   },
 ]
 
@@ -73,7 +73,7 @@ export const Footer = () => (
     </Text>
     <Stack mt={4} direction="row" spacing="12px" justify="center">
       {links.map((link) => (
-        <FooterLink key={link.url} {...link} />
+        <FooterLink key={link.href} {...link} />
       ))}
     </Stack>
   </Box>

@@ -53,33 +53,29 @@ exports[`Stat renders correctly 1`] = `
 }
 
 .emotion-3 {
-  margin-right: 0.25rem;
   width: 14px;
   height: 14px;
-  vertical-align: middle;
   display: inline-block;
   line-height: 1em;
-  color: #48BB78;
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  width: 1em;
-  height: 1em;
+  color: #48BB78;
+  margin-right: 0.25rem;
+  vertical-align: middle;
 }
 
 .emotion-9 {
-  margin-right: 0.25rem;
   width: 14px;
   height: 14px;
-  vertical-align: middle;
   display: inline-block;
   line-height: 1em;
-  color: #F56565;
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  width: 1em;
-  height: 1em;
+  color: #F56565;
+  margin-right: 0.25rem;
+  vertical-align: middle;
 }
 
 <div

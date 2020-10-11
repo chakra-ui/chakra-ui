@@ -1,17 +1,16 @@
 import { useBoolean, useDisclosure, useIds } from "@chakra-ui/hooks"
 import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { useColorModeValue, useToken } from "@chakra-ui/system"
-import { callAllHandlers, Dict, mergeRefs } from "@chakra-ui/utils"
 import {
-  useRef,
-  RefObject,
-  useCallback,
-  useEffect,
-  Ref,
-  KeyboardEvent,
-} from "react"
-import { useFocusOnHide, useFocusOnShow } from "./popover.utils"
+  callAllHandlers,
+  FocusableElement,
+  HTMLProps,
+  mergeRefs,
+  PropGetter,
+} from "@chakra-ui/utils"
 import { useInteractOutside } from "@react-aria/interactions"
+import { RefObject, useCallback, useEffect, useRef } from "react"
+import { useFocusOnHide, useFocusOnShow } from "./popover.utils"
 
 const TRIGGER_TYPE = {
   click: "click",
@@ -38,12 +37,12 @@ export interface UsePopoverProps {
   /**
    * The `ref` of the element that should receive focus when the popover opens.
    */
-  initialFocusRef?: RefObject<any>
+  initialFocusRef?: RefObject<FocusableElement>
   /**
    * If `true`, focus will be returned to the element that triggers the popover
    * when it closes
    */
-  returnFocus?: boolean
+  returnFocusOnClose?: boolean
   /**
    * If `true`, focus will be transferred to the first interactive element
    * when the popover opens
@@ -116,7 +115,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     gutter,
     id,
     arrowSize,
-    returnFocus = true,
+    returnFocusOnClose = true,
     autoFocus = true,
     arrowShadowColor,
     modifiers,
@@ -148,17 +147,16 @@ export function usePopover(props: UsePopoverProps = {}) {
   const shadowColor = arrowShadowColor ?? fallbackShadowColor
   const arrowColor = useToken("colors", shadowColor, arrowShadowColor)
 
-  const { popper, reference, arrow } = usePopper({
+  const popper = usePopper({
     placement: placementProp,
     gutter,
-    forceUpdate: isOpen,
     arrowSize,
     arrowShadowColor: arrowColor,
     modifiers,
   })
 
   useFocusOnHide(popoverRef, {
-    autoFocus: returnFocus,
+    autoFocus: returnFocusOnClose,
     visible: isOpen,
     focusRef: triggerRef,
     trigger,
@@ -184,22 +182,18 @@ export function usePopover(props: UsePopoverProps = {}) {
     },
   })
 
-  const getPopoverProps = useCallback(
-    (props: Dict = {}, ref: Ref<any> = null) => {
-      const popoverProps: Dict = {
+  const getPopoverProps: PropGetter = useCallback(
+    (props = {}, _ref = null) => {
+      const popoverProps: HTMLProps = {
         ...props,
         children: isLazy ? (isOpen ? props.children : null) : props.children,
         id: popoverId,
         tabIndex: -1,
-        hidden: !isOpen,
+        style: { visibility: isOpen ? "visible" : "hidden" },
         role: "dialog",
-        onKeyDown: callAllHandlers(props.onKeyDown, (event: KeyboardEvent) => {
-          if (closeOnEsc && event.key === "Escape") {
-            onClose()
-          }
+        onKeyDown: callAllHandlers(props.onKeyDown, (event) => {
+          if (closeOnEsc && event.key === "Escape") onClose()
         }),
-        ref: mergeRefs(popoverRef, popper.ref, ref),
-        style: { ...props.style, ...popper.style },
         "aria-labelledby": hasHeader ? headerId : undefined,
         "aria-describedby": hasBody ? bodyId : undefined,
       }
@@ -215,46 +209,32 @@ export function usePopover(props: UsePopoverProps = {}) {
         })
       }
 
-      return popoverProps
+      return popper.getPopperProps(popoverProps, mergeRefs(popoverRef, _ref))
     },
     [
-      popoverId,
-      isOpen,
       isLazy,
-      popper.ref,
-      popper.style,
+      isOpen,
+      popoverId,
       hasHeader,
       headerId,
       hasBody,
       bodyId,
       trigger,
+      popper,
       closeOnEsc,
       onClose,
       closeDelay,
     ],
   )
 
-  const getArrowProps = useCallback(
-    (props: Dict = {}, ref: Ref<any> = null) => ({
-      ...props,
-      ref: mergeRefs(arrow.ref, ref),
-      style: {
-        ...props.style,
-        ...arrow.style,
-      },
-    }),
-    [arrow.ref, arrow.style],
-  )
-
   const openTimeout = useRef<number>()
   const closeTimeout = useRef<number>()
 
-  const getTriggerProps = useCallback(
-    (props: Dict = {}, ref: Ref<any> = null) => {
-      const triggerProps: Dict = {
+  const getTriggerProps: PropGetter = useCallback(
+    (props = {}, _ref = null) => {
+      const triggerProps: HTMLProps = {
         ...props,
         id: triggerId,
-        ref: mergeRefs(triggerRef, reference.ref, ref),
         "aria-haspopup": "dialog",
         "aria-expanded": isOpen,
         "aria-controls": popoverId,
@@ -278,14 +258,11 @@ export function usePopover(props: UsePopoverProps = {}) {
          * Any content that shows on hover or focus must be dismissible.
          * This case pressing `Escape` will dismiss the popover
          */
-        triggerProps.onKeyDown = callAllHandlers(
-          props.onKeyDown,
-          (event: KeyboardEvent) => {
-            if (event.key === "Escape") {
-              onClose()
-            }
-          },
-        )
+        triggerProps.onKeyDown = callAllHandlers(props.onKeyDown, (event) => {
+          if (event.key === "Escape") {
+            onClose()
+          }
+        })
 
         triggerProps.onMouseEnter = callAllHandlers(props.onMouseEnter, () => {
           isHoveringRef.current = true
@@ -308,31 +285,26 @@ export function usePopover(props: UsePopoverProps = {}) {
         })
       }
 
-      return triggerProps
+      return popper.getReferenceProps(triggerProps, mergeRefs(triggerRef, _ref))
     },
     [
-      openDelay,
-      closeDelay,
-      isOpen,
-      onToggle,
-      popoverId,
-      reference.ref,
       triggerId,
+      isOpen,
+      popoverId,
       trigger,
+      popper,
+      onToggle,
       onOpen,
       onClose,
+      openDelay,
+      closeDelay,
     ],
   )
 
   useEffect(() => {
     return () => {
-      if (openTimeout.current) {
-        clearTimeout(openTimeout.current)
-      }
-
-      if (closeTimeout.current) {
-        clearTimeout(closeTimeout.current)
-      }
+      if (openTimeout.current) clearTimeout(openTimeout.current)
+      if (closeTimeout.current) clearTimeout(closeTimeout.current)
     }
   }, [])
 
@@ -345,7 +317,8 @@ export function usePopover(props: UsePopoverProps = {}) {
     bodyId,
     hasBody,
     setHasBody,
-    getArrowProps,
+    getArrowProps: popper.getArrowProps,
+    getArrowWrapperProps: popper.getArrowWrapperProps,
     getTriggerProps,
     getPopoverProps,
   }

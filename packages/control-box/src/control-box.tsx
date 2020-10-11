@@ -59,7 +59,7 @@ export const ControlBox: React.FC<ControlBoxProps> = (props) => {
         alignItems: "center",
         justifyContent: "center",
         transition: "all 120ms",
-        flexShrink: "0",
+        flexShrink: 0,
         [focus]: _focus,
         [hover]: _hover,
         [disabled]: _disabled,

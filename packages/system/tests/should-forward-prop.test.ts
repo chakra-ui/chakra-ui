@@ -20,15 +20,7 @@ test('forwards "children" prop', () => {
 })
 
 describe("forwards other random props", () => {
-  const randomPropNames = [
-    "0hello",
-    "1goodbye",
-    "upside-down",
-    "inside-out",
-    "liberty",
-    "equality",
-    "fraternity",
-  ]
+  const randomPropNames = ["to", "passHref", "maxItems", "strict"]
 
   test.each(randomPropNames)("%s", (propName) => {
     expect(shouldForwardProp(propName)).toBe(true)

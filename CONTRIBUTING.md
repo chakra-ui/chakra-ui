@@ -1,8 +1,8 @@
 Thanks for showing interest to contribute to Chakra UI 💖, you rock!
 
 When it comes to open source, there are different ways you can contribute, all
-of which are valuable. Here's few guidelines that should help you as you prepare
-your contribution.
+of which are valuable. Here's a few guidelines that should help you as you
+prepare your contribution.
 
 - [Setup](#setup)
 - [Development](#development)
@@ -23,7 +23,7 @@ your contribution.
 
 ## Setup
 
-The following steps will get you setup to contribute changes to this repo:
+The following steps will get you set up to contribute changes to this repo:
 
 1. Fork the repo (click the <kbd>Fork</kbd> button at the top right of
    [this page](https://github.com/chakra-ui/chakra-ui))
@@ -31,7 +31,7 @@ The following steps will get you setup to contribute changes to this repo:
 2. Clone your fork locally
 
 ```sh
-# in a terminal, cd to parent directory where you want your clone to be, then
+# in a terminal, cd to the parent directory where you want your clone to be, then
 git clone https://github.com/<your_github_username>/chakra-ui.git
 
 cd chakra-ui
@@ -46,7 +46,7 @@ cd chakra-ui
 
 ## Development
 
-To improve our development process, we've setup a couple of systems. Chakra UI
+To improve our development process, we've set up a couple of systems. Chakra UI
 uses a monorepo structure, this means each component is it's own package and can
 use consumed independently.
 
@@ -67,28 +67,28 @@ use consumed independently.
 cross-component development and builds all components.
 
 **`yarn bootstrap`**: bootstraps the entire project and symlinks all
-dependencies for cross-component development
+dependencies for cross-component development.
 
 **`yarn storybook`**: starts storybook server and loads stories in files that
-ends with `.stories.tsx`
+end with `.stories.tsx`.
 
-**`yarn docs:start`**: run the documentation site locally
+**`yarn docs:start`**: run the documentation site locally.
 
-**`yarn build`**: run build for all component packages
+**`yarn build`**: run build for all component packages.
 
-**`yarn test`**: run test for all component packages
+**`yarn test`**: run test for all component packages.
 
-**`yarn release`**: publish changed packages
+**`yarn release`**: publish changed packages.
 
 **`yarn [package] <cmd>`**: Run a command on the specific package you're working
-on. You can run `build`, `test`, `lint` commands
+on. You can run `build`, `test`, `lint` commands.
 
 #### Package Aliasing and Yarn Workspace
 
 Since we're using lerna monorepo + yarn workspaces by default, this enables us
-to run commands within component package directly from the root.
+to run commands within component packages directly from the root.
 
-Each component is named this way `@chakra-ui/[component]`. Let's say we want to
+Each component is named this way: `@chakra-ui/[component]`. Let's say we want to
 build the checkbox component. Here's how to do it:
 
 ```bash
@@ -100,7 +100,7 @@ lerna run build --scope @chakra-ui/button
 ```
 
 **Shortcut:** To make this shorter and more convenient, we've added an alias for
-each component in the root `package.json`. Now you can simple do:
+each component in the root `package.json`. Now you can simply do:
 
 ```bash
 # to build
@@ -130,7 +130,8 @@ Build components in isolation with Storybook using `yarn storybook`.
 ## Think you found a bug?
 
 Please conform to the issue template and provide a clear path to reproduction
-with a code example. The best way to show a bug is by sending a CodeSandbox link
+with a code example. The best way to show a bug is by sending a CodeSandbox
+link.
 
 You may wish to use our starters to help you get going:
 
@@ -140,7 +141,7 @@ You may wish to use our starters to help you get going:
 ## Proposing new or changed API?
 
 Please provide thoughtful comments and some sample API code. Proposals that
-don't line up with our roadmap or doesn't have a thoughtful explanation will be
+don't line up with our roadmap or don't have a thoughtful explanation will be
 closed.
 
 ## Making a Pull Request?
@@ -196,7 +197,7 @@ All commits that fix bugs or add features need a test.
 ## Want to write a blog post or tutorial
 
 That would be amazing! Reach out to the core team here:
-https://discord.gg/dQHfcWF. We would love to support you anyway we can.
+https://discord.gg/dQHfcWF. We would love to support you any way we can.
 
 ## Want to help improve the docs?
 

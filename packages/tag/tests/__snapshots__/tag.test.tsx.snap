@@ -127,15 +127,15 @@ exports[`Tag with close button renders correctly 1`] = `
 }
 
 .emotion-1 {
-  vertical-align: inherit;
+  width: 1em;
+  height: 1em;
   display: inline-block;
   line-height: 1em;
-  color: currentColor;
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  width: 1em;
-  height: 1em;
+  color: currentColor;
+  vertical-align: inherit;
 }
 
 <span
@@ -253,27 +253,27 @@ exports[`Tag with left icon renders correctly 1`] = `
 }
 
 .emotion-2 {
-  vertical-align: inherit;
+  width: 1em;
+  height: 1em;
   display: inline-block;
   line-height: 1em;
-  color: currentColor;
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  width: 1em;
-  height: 1em;
+  color: currentColor;
+  vertical-align: inherit;
 }
 
 .emotion-0 {
-  vertical-align: top;
+  width: 1em;
+  height: 1em;
   display: inline-block;
   line-height: 1em;
-  color: currentColor;
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  width: 1em;
-  height: 1em;
+  color: currentColor;
+  vertical-align: top;
   margin-right: 0.5rem;
 }
 

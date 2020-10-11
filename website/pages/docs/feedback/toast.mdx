@@ -79,6 +79,51 @@ function Example() {
 }
 ```
 
+## Closing Toasts
+
+Toasts can be closed imperatively, individually (via the `close` instance
+method) or all together (via the `closeAll` instance method).
+
+```jsx
+function Example() {
+  const toast = useToast()
+  const toastIdRef = React.useRef()
+
+  function close() {
+    if (toastIdRef.current) {
+      toast.close(toastIdRef.current)
+    }
+  }
+
+  function closeAll() {
+    // you may optionally pass an object of positions to exclusively close
+    // keeping other positions opened
+    // e.g. `{ positions: ['bottom'] }`
+    toast.closeAll()
+  }
+
+  function addToast() {
+    toastIdRef.current = toast({ description: "some text" })
+  }
+
+  return (
+    <Stack isInline spacing={2}>
+      <Button onClick={addToast} type="button">
+        Toast
+      </Button>
+
+      <Button onClick={close} type="button" variant="outline">
+        Close last toast
+      </Button>
+
+      <Button onClick={closeAll} type="button" variant="outline">
+        Close all toasts
+      </Button>
+    </Stack>
+  )
+}
+```
+
 ## Success
 
 ```jsx
@@ -172,6 +217,26 @@ function PositionExample() {
     </Button>
   )
 }
+```
+
+## Standalone
+
+Use `createStandaloneToast` to create toasts from outside of your React
+Components.
+
+```js
+import { createStandaloneToast } from "@chakra-ui/core"
+
+const toast = createStandaloneToast()
+// const customToast = createStandaloeToast({ theme: yourCustomTheme })
+
+toast({
+  title: "An error occurred.",
+  description: "Unable to create user account.",
+  status: "error",
+  duration: 9000,
+  isClosable: true,
+})
 ```
 
 ## Props

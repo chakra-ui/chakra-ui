@@ -1,0 +1,98 @@
+---
+title: The as prop and Custom component
+description:
+  "How to get the as prop working properly for your custom components"
+tags: ["typescript", "polymorphic", "component"]
+author: segunadebayo
+---
+
+By default, all Chakra components work with the `as` prop. There might be some
+cases where you need to create smaller components with pre-defined styles, and
+need the `as` prop to work as well.
+
+For example, let's say you create a `Card` component with pre-defined styles
+like this:
+
+```tsx live=false
+const Card = (props: BoxProps) => (
+  <Box px="4" py="5" rounded="sm" shadow="lg" {...props} />
+)
+```
+
+and you need to need to consume this component in a way that works with the `as`
+prop, like this:
+
+```tsx live=false
+const Usage = () => <Card as="button">This is a card</Card>
+```
+
+You might run into type errors like this:
+
+```sh
+Type '{ children: string; as: string; }' is not assignable to type 'IntrinsicAttributes & BoxProps'.
+  Property 'as' does not exist on type 'IntrinsicAttributes & BoxProps'.
+```
+
+To resolve this, you have 3 options
+
+## Option 1: Using `forwardRef` from `@chakra-ui/core`
+
+This is the recommended approach as it ensures your components forwards their
+reference properly.
+
+> Note 🚨: You need to use forwardRef from chakra-ui not react.
+
+```tsx live=false
+import { forwardRef, Box, BoxProps } from "@chakra-ui/core"
+
+const Card = forwardRef<BoxProps, "div">((props, ref) => (
+  <Box px="4" py="5" rounded="sm" shadow="lg" ref={ref} {...props} />
+))
+```
+
+## Option 2: Cast the component as a `ChakraComponent`
+
+The `ChakraComponent` is a type we use internally to mark specific components as
+Chakra components rather than using `React.FC`.
+
+This is because a `ChakraComponent` comes props from the React component or
+element type, and adds chakra specific style props.
+
+`ChakraComponent` takes 2 type generic, the element type (like "div", "button",
+etc), and any custom props (like `isOpen`, `isDisabled`, etc)
+
+```tsx live=false
+import { ChakraComponent, Box, BoxProps } from "@chakra-ui/core"
+
+type DivComponent = ChakraComponent<"div", {}>
+
+const Card = ((props: BoxProps) => (
+  <Box px="4" py="5" rounded="sm" shadow="lg" {...props} />
+)) as DivComponent
+```
+
+## Option 3: Use the `chakra` factory function
+
+The Chakra factory function is still a work in progress but it can be useful in
+this case as well. It can also be used to convert a non-chakra component into a
+Chakra enabled component.
+
+What you need to do is to call the `chakra` function and pass it any element or
+component type.
+
+```tsx live=false
+import { chakra } from "@chakra-ui/core"
+
+const Card = chakra("div", {
+  // attach style props
+  baseStyle: {
+    px: "4",
+    py: "5",
+    rounded: "sm",
+    shadow: "lg",
+  },
+})
+```
+
+These are the cases you can get the `as` prop working with custom components. At
+least for now.

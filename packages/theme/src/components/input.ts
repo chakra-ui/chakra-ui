@@ -16,7 +16,7 @@ const size = {
   lg: {
     fontSize: "lg",
     pl: 4,
-    paddingRight: 4,
+    pr: 4,
     h: 12,
     borderRadius: "md",
   },
@@ -24,7 +24,7 @@ const size = {
   md: {
     fontSize: "md",
     pl: 4,
-    paddingRight: 4,
+    pr: 4,
     h: 10,
     borderRadius: "md",
   },
@@ -32,7 +32,7 @@ const size = {
   sm: {
     fontSize: "sm",
     pl: 3,
-    paddingRight: 3,
+    pr: 3,
     h: 8,
     borderRadius: "sm",
   },
@@ -68,10 +68,10 @@ function variantOutline(props: Record<string, any>) {
   return {
     field: {
       border: "1px solid",
-      borderColor: mode("inherit", "whiteAlpha.50")(props),
-      bg: mode("white", "whiteAlpha.100")(props),
+      borderColor: "inherit",
+      bg: "inherit",
       _hover: {
-        borderColor: mode("gray.300", "whiteAlpha.200")(props),
+        borderColor: mode("gray.300", "whiteAlpha.400")(props),
       },
       _readOnly: {
         boxShadow: "none !important",
@@ -141,10 +141,11 @@ function variantFlushed(props: Record<string, any>) {
 
   return {
     field: {
-      borderBottom: "2px solid",
+      borderBottom: "1px solid",
       borderColor: "inherit",
       borderRadius: 0,
-      paddingX: 0,
+      pl: 0,
+      pr: 0,
       bg: "transparent",
       _readOnly: {
         boxShadow: "none !important",
@@ -152,6 +153,7 @@ function variantFlushed(props: Record<string, any>) {
       },
       _focus: {
         borderColor: getColor(theme, fc),
+        boxShadow: `0px 1px 0px 0px ${getColor(theme, fc)}`,
       },
       _invalid: {
         borderColor: getColor(theme, ec),
@@ -170,12 +172,14 @@ function variantFlushed(props: Record<string, any>) {
 const variantUnstyled = {
   field: {
     bg: "transparent",
-    paddingX: 0,
+    pl: 0,
+    pr: 0,
     height: "auto",
   },
   addon: {
     bg: "transparent",
-    paddingX: 0,
+    pl: 0,
+    pr: 0,
     height: "auto",
   },
 }

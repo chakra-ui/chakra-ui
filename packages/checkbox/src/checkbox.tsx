@@ -4,6 +4,7 @@ import {
   omitThemingProps,
   PropsOf,
   SystemProps,
+  SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
@@ -62,6 +63,20 @@ export interface CheckboxProps
    * @default 0.5rem
    */
   spacing?: SystemProps["marginLeft"]
+  /**
+   * The color of the checkbox icon when checked or indeterminate
+   */
+  iconColor?: string
+  /**
+   * The size of the checkbox icon when checked or indeterminate
+   */
+  iconSize?: string | number
+  /**
+   * The checked icon to use
+   *
+   * @default CheckboxIcon
+   */
+  icon?: React.ReactElement
 }
 
 /**
@@ -82,7 +97,15 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
   const styles = useMultiStyleConfig("Checkbox", mergedProps)
 
   const ownProps = omitThemingProps(mergedProps)
-  const { spacing = "0.5rem", className, children, ...rest } = ownProps
+  const {
+    spacing = "0.5rem",
+    className,
+    children,
+    iconColor,
+    iconSize,
+    icon: Icon = <CheckboxIcon />,
+    ...rest
+  } = ownProps
 
   let isChecked = ownProps.isChecked
   if (group?.value && ownProps.value) {
@@ -112,13 +135,20 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
   const labelProps = getLabelProps()
   const checkboxProps = getCheckboxProps()
 
-  const iconStyles = {
+  const iconStyles: SystemStyleObject = {
     opacity: state.isChecked || state.isIndeterminate ? 1 : 0,
     transform:
       state.isChecked || state.isIndeterminate ? "scale(1)" : "scale(0.95)",
     transition: "transform 200ms",
+    fontSize: iconSize,
+    color: iconColor,
     ...styles.icon,
   }
+
+  const icon = React.cloneElement(Icon, {
+    __css: iconStyles,
+    isIndeterminate: state.isIndeterminate,
+  })
 
   return (
     <StyledContainer
@@ -133,22 +163,19 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
         className="chakra-checkbox__control"
         {...checkboxProps}
       >
-        <CheckboxIcon
-          __css={iconStyles}
-          isChecked={state.isChecked}
-          isIndeterminate={state.isIndeterminate}
-        />
+        {icon}
       </StyledControl>
       {children && (
         <chakra.div
           className="chakra-checkbox__label"
           {...labelProps}
-          children={children}
           __css={{
             ml: spacing,
             ...styles.label,
           }}
-        />
+        >
+          {children}
+        </chakra.div>
       )}
     </StyledContainer>
   )

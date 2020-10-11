@@ -11,26 +11,27 @@ import {
   ariaAttr,
   callAllHandlers,
   clampValue,
-  createOnKeyDown,
   dataAttr,
   Dict,
+  EventKeyMap,
   focus,
   getBox,
   getOwnerDocument,
+  isRightClick,
   mergeRefs,
+  normalizeEventKey,
   percentToValue,
+  PropGetter,
   roundValueToStep,
   valueToPercent,
-  isRightClick,
 } from "@chakra-ui/utils"
 import {
-  Ref,
-  useState,
-  useRef,
-  useCallback,
-  useMemo,
-  useEffect,
   CSSProperties,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
 } from "react"
 
 export interface UseSliderProps {
@@ -102,6 +103,11 @@ export interface UseSliderProps {
    */
   getAriaValueText?(value: number): string
   /**
+   * If `false`, the slider handle will not capture focus when value changes.
+   * @default true
+   */
+  focusThumbOnChange?: boolean
+  /**
    * The static string to use used for `aria-valuetext`
    */
   "aria-valuetext"?: string
@@ -148,6 +154,7 @@ export function useSlider(props: UseSliderProps) {
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
     name,
+    focusThumbOnChange = true,
     ...htmlProps
   } = props
 
@@ -274,20 +281,31 @@ export function useSlider(props: UseSliderProps) {
    * Keyboard interaction to ensure users can operate
    * the slider using only their keyboard.
    */
-  const onKeyDown = createOnKeyDown({
-    stopPropagation: true,
-    onKey: () => setEventSource("keyboard"),
-    keyMap: {
-      ArrowRight: () => actions.stepUp(),
-      ArrowUp: () => actions.stepUp(),
-      ArrowLeft: () => actions.stepDown(),
-      ArrowDown: () => actions.stepDown(),
-      PageUp: () => actions.stepUp(tenSteps),
-      PageDown: () => actions.stepDown(tenSteps),
-      Home: () => constrain(min),
-      End: () => constrain(max),
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      const eventKey = normalizeEventKey(event)
+      const keyMap: EventKeyMap = {
+        ArrowRight: () => actions.stepUp(),
+        ArrowUp: () => actions.stepUp(),
+        ArrowLeft: () => actions.stepDown(),
+        ArrowDown: () => actions.stepDown(),
+        PageUp: () => actions.stepUp(tenSteps),
+        PageDown: () => actions.stepDown(tenSteps),
+        Home: () => constrain(min),
+        End: () => constrain(max),
+      }
+
+      const action = keyMap[eventKey]
+
+      if (action) {
+        event.preventDefault()
+        event.stopPropagation()
+        setEventSource("keyboard")
+        action(event)
+      }
     },
-  })
+    [actions, constrain, max, min, tenSteps],
+  )
 
   /**
    * ARIA (Optional): To define a human readable representation of the value,
@@ -373,7 +391,7 @@ export function useSlider(props: UseSliderProps) {
   }
 
   useUpdateEffect(() => {
-    if (thumbRef.current) {
+    if (thumbRef.current && focusThumbOnChange) {
       focus(thumbRef.current)
     }
   }, [value])
@@ -505,6 +523,112 @@ export function useSlider(props: UseSliderProps) {
     rootRef.current,
   )
 
+  const getRootProps: PropGetter = (props = {}, ref = null) => ({
+    ...props,
+    ...htmlProps,
+    ref: mergeRefs(ref, rootRef),
+    tabIndex: -1,
+    "aria-disabled": ariaAttr(isDisabled),
+    "data-focused": dataAttr(isFocused),
+    style: {
+      ...props.style,
+      ...rootStyle,
+    },
+  })
+
+  const getTrackProps: PropGetter = (props = {}, ref = null) => ({
+    ...props,
+    ref: mergeRefs(ref, trackRef),
+    id: trackId,
+    "data-disabled": dataAttr(isDisabled),
+    style: {
+      ...props.style,
+      ...trackStyle,
+    },
+  })
+
+  const getInnerTrackProps: PropGetter = (props = {}, ref = null) => ({
+    ...props,
+    ref,
+    style: {
+      ...props.style,
+      ...innerTrackStyle,
+    },
+  })
+
+  const getThumbProps: PropGetter = (props = {}, ref = null) => ({
+    ...props,
+    ref: mergeRefs(ref, thumbRef),
+    role: "slider",
+    tabIndex: 0,
+    id: thumbId,
+    "data-active": dataAttr(isDragging),
+    "aria-valuetext": valueText,
+    "aria-valuemin": min,
+    "aria-valuemax": max,
+    "aria-valuenow": value,
+    "aria-orientation": orientation,
+    "aria-disabled": ariaAttr(isDisabled),
+    "aria-readonly": ariaAttr(isReadOnly),
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabel ? undefined : ariaLabelledBy,
+    style: {
+      ...props.style,
+      ...thumbStyle,
+    },
+    onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+    onFocus: callAllHandlers(props.onFocus, setFocused.on),
+    onBlur: callAllHandlers(props.onBlur, setFocused.off),
+  })
+
+  const getMarkerProps: PropGetter<any, { value?: any }> = (
+    props = {},
+    ref = null,
+  ) => {
+    const isInRange = !(props.value < min || props.value > max)
+    const isHighlighted = value >= props.value
+    const markerPercent = valueToPercent(props.value, min, max)
+
+    const markerStyle: React.CSSProperties = {
+      position: "absolute",
+      pointerEvents: "none",
+      ...orient({
+        orientation,
+        vertical: {
+          bottom: isReversed ? `${100 - markerPercent}%` : `${markerPercent}%`,
+        },
+        horizontal: {
+          left: isReversed ? `${100 - markerPercent}%` : `${markerPercent}%`,
+        },
+      }),
+    }
+
+    return {
+      ...props,
+      ref,
+      role: "presentation",
+      "aria-hidden": true,
+      "data-disabled": dataAttr(isDisabled),
+      "data-invalid": dataAttr(!isInRange),
+      "data-highlighted": dataAttr(isHighlighted),
+      style: {
+        ...props.style,
+        ...markerStyle,
+      },
+    }
+  }
+
+  const getInputProps: PropGetter<HTMLInputElement> = (
+    props = {},
+    ref = null,
+  ) => ({
+    ...props,
+    ref,
+    type: "hidden",
+    value,
+    name,
+  })
+
   return {
     state: {
       value,
@@ -512,102 +636,12 @@ export function useSlider(props: UseSliderProps) {
       isDragging,
     },
     actions,
-    getRootProps: (props: Dict = {}, ref: Ref<any> = null) => ({
-      ...props,
-      ...htmlProps,
-      ref: mergeRefs(ref, rootRef),
-      tabIndex: -1,
-      "aria-disabled": ariaAttr(isDisabled),
-      "data-focused": dataAttr(isFocused),
-      style: {
-        ...props.style,
-        ...rootStyle,
-      },
-    }),
-    getTrackProps: (props: Dict = {}, ref: Ref<any> = null) => ({
-      ...props,
-      ref: mergeRefs(ref, trackRef),
-      id: trackId,
-      "data-disabled": dataAttr(isDisabled),
-      style: {
-        ...props.style,
-        ...trackStyle,
-      },
-    }),
-    getInnerTrackProps: (props: Dict = {}, ref: Ref<any> = null) => ({
-      ...props,
-      ref,
-      style: {
-        ...props.style,
-        ...innerTrackStyle,
-      },
-    }),
-    getThumbProps: (props: Dict = {}, ref: Ref<any> = null) => ({
-      ...props,
-      ref: mergeRefs(ref, thumbRef),
-      role: "slider",
-      tabIndex: 0,
-      id: thumbId,
-      "data-active": dataAttr(isDragging),
-      "aria-valuetext": valueText,
-      "aria-valuemin": min,
-      "aria-valuemax": max,
-      "aria-valuenow": value,
-      "aria-orientation": orientation,
-      "aria-disabled": ariaAttr(isDisabled),
-      "aria-readonly": ariaAttr(isReadOnly),
-      "aria-label": ariaLabel,
-      "aria-labelledby": ariaLabel ? undefined : ariaLabelledBy,
-      style: {
-        ...props.style,
-        ...thumbStyle,
-      },
-      onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-      onFocus: callAllHandlers(props.onFocus, setFocused.on),
-      onBlur: callAllHandlers(props.onBlur, setFocused.off),
-    }),
-    getMarkerProps: (props: Dict = {}, ref: Ref<any> = null) => {
-      const isInRange = !(props.value < min || props.value > max)
-      const isHighlighted = value >= props.value
-      const markerPercent = valueToPercent(props.value, min, max)
-
-      const markerStyle: React.CSSProperties = {
-        position: "absolute",
-        pointerEvents: "none",
-        ...orient({
-          orientation,
-          vertical: {
-            bottom: isReversed
-              ? `${100 - markerPercent}%`
-              : `${markerPercent}%`,
-          },
-          horizontal: {
-            left: isReversed ? `${100 - markerPercent}%` : `${markerPercent}%`,
-          },
-        }),
-      }
-
-      return {
-        ...props,
-        ref,
-        role: "presentation",
-        "aria-hidden": true,
-        "data-disabled": dataAttr(isDisabled),
-        "data-invalid": dataAttr(!isInRange),
-        "data-highlighted": dataAttr(isHighlighted),
-        style: {
-          ...props.style,
-          ...markerStyle,
-        },
-      }
-    },
-    getInputProps: (props: Dict = {}, ref: Ref<any>) => ({
-      ...props,
-      ref,
-      type: "hidden",
-      value,
-      name,
-    }),
+    getRootProps,
+    getTrackProps,
+    getInnerTrackProps,
+    getThumbProps,
+    getMarkerProps,
+    getInputProps,
   }
 }
 
