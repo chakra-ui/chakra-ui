@@ -68,9 +68,7 @@ export function useImage(props: UseImageProps) {
     ignoreFallback,
   } = props
 
-  const [status, setStatus] = useState<Status>(() => {
-    return src ? "loading" : "pending"
-  })
+  const [status, setStatus] = useState<Status>("pending")
 
   useEffect(() => {
     setStatus(src ? "loading" : "pending")
