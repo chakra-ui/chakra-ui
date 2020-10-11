@@ -29,13 +29,13 @@ interface ModalOptions {
    * other surrounding elements.
    *
    * 🚨Warning: We don't recommend doing this because it hurts the
-   * accessbility of the modal, based on WAI-ARIA specifications.
+   * accessibility of the modal, based on WAI-ARIA specifications.
    *
    * @default true
    */
   trapFocus?: boolean
   /**
-   * If `true`, the modal will autofocus the first enabled and interative
+   * If `true`, the modal will autofocus the first enabled and interactive
    * element within the `ModalContent`
    *
    * @default true
@@ -81,7 +81,7 @@ export interface ModalProps extends UseModalProps, ModalOptions, ThemingProps {
    */
   isCentered?: boolean
   /**
-   * Where scroll behaviour should originate.
+   * Where scroll behavior should originate.
    * - If set to `inside`, scroll only occurs within the `ModalBody`.
    * - If set to `outside`, the entire `ModalContent` will scroll within the viewport.
    *
@@ -110,7 +110,7 @@ export { ModalContextProvider, useModalContext }
 /**
  * Modal
  *
- * React component that provides context, theming, and accessbility properties
+ * React component that provides context, theming, and accessibility properties
  * to all other modal components.
  *
  * It doesn't render any DOM node.

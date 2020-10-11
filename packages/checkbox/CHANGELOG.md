@@ -110,7 +110,7 @@ All notable changes to this project will be documented in this file. See
 
 ### Features
 
-- update stories for radio componet
+- update stories for radio component
   ([3effca4](https://github.com/chakra-ui/chakra-ui/commit/3effca435a04bcaa7b33d16cd20f441950fc2e3c))
 
 # Change Log
@@ -139,7 +139,7 @@ All notable changes to this project will be documented in this file. See
 
 ### Features
 
-- update stories for radio componet
+- update stories for radio component
   ([3effca4](https://github.com/chakra-ui/chakra-ui/commit/3effca435a04bcaa7b33d16cd20f441950fc2e3c))
 
 # Change Log
@@ -166,5 +166,5 @@ All notable changes to this project will be documented in this file. See
 
 ### Features
 
-- update stories for radio componet
+- update stories for radio component
   ([3effca4](https://github.com/chakra-ui/chakra-ui/commit/3effca435a04bcaa7b33d16cd20f441950fc2e3c))
