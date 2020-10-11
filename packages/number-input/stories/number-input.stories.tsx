@@ -1,9 +1,15 @@
-import { Button } from "@chakra-ui/button"
-import { Input } from "@chakra-ui/input"
-import { Stack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import Lorem from "react-lorem-component"
+import { Button } from "@chakra-ui/button"
+import { Input } from "@chakra-ui/input"
+import { Stack } from "@chakra-ui/layout"
+import {
+  FormControl,
+  FormErrorMessage,
+  FormHelperText,
+  FormLabel,
+} from "@chakra-ui/form-control"
 import {
   NumberDecrementStepper,
   NumberIncrementStepper,
@@ -186,5 +192,45 @@ export const BugFix2242 = () => {
       </NumberInput>
       <input min={-999} max={999} type="number" />
     </chakra.div>
+  )
+}
+
+function FormError(props: any) {
+  return (
+    <FormErrorMessage
+      mt="0"
+      bg="red.500"
+      color="white"
+      px="1"
+      lineHeight="1em"
+      borderRadius="sm"
+      {...props}
+    />
+  )
+}
+
+export const WithFormControl = () => {
+  const [isError, setIsError] = React.useState(false)
+
+  return (
+    <Stack align="start">
+      <FormControl id="first-name" isRequired isInvalid={isError}>
+        <chakra.div display="flex" mb="2">
+          <FormLabel mb="0" lineHeight="1em">
+            Amount
+          </FormLabel>
+          <FormError>is invalid!</FormError>
+        </chakra.div>
+        <NumberInput max={50} min={10}>
+          <NumberInputField />
+          <NumberInputStepper>
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput>
+        <FormHelperText>Keep it very short and sweet!</FormHelperText>
+      </FormControl>
+      <Button onClick={() => setIsError((s) => !s)}>Toggle Invalid</Button>
+    </Stack>
   )
 }

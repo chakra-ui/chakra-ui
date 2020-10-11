@@ -1,5 +1,6 @@
 import { useCounter, UseCounterProps } from "@chakra-ui/counter"
 import { useBoolean, useEventListener } from "@chakra-ui/hooks"
+import { useFormControl } from "@chakra-ui/form-control"
 import {
   ariaAttr,
   callAllHandlers,
@@ -373,6 +374,14 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     [pointerDown, counter.isAtMin, keepWithinRange, spinDown, spinner.stop],
   )
 
+  const {
+    "aria-invalid": formControlInvalid,
+    "aria-required": formControlRequired,
+    "aria-readonly": formControlReadOnly,
+    "aria-describedby": formControlDescribedBy,
+    disabled: formControlDisabled,
+  } = useFormControl<HTMLInputElement>({})
+
   const getInputProps: PropGetter = useCallback(
     (props = {}, ref = null) => ({
       ...props,
@@ -385,14 +394,16 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       pattern,
       "aria-valuemin": min,
       "aria-valuemax": max,
-      "aria-disabled": isDisabled,
+      "aria-disabled": isDisabled || formControlDisabled,
       "aria-valuenow": Number.isNaN(counter.valueAsNumber)
         ? undefined
         : counter.valueAsNumber,
-      "aria-invalid": isInvalid || counter.isOutOfRange,
+      "aria-invalid": isInvalid || counter.isOutOfRange || formControlInvalid,
       "aria-valuetext": ariaValueText,
-      readOnly: isReadOnly,
-      disabled: isDisabled,
+      "aria-describedby": formControlDescribedBy,
+      readOnly: isReadOnly || formControlReadOnly,
+      disabled: isDisabled || formControlDisabled,
+      required: formControlRequired,
       autoComplete: "off",
       autoCorrect: "off",
       onChange: callAllHandlers(props.onChange, onChange),
@@ -401,22 +412,27 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       onBlur: callAllHandlers(props.onBlur, onBlur),
     }),
     [
-      inputMode,
-      pattern,
-      ariaValueText,
-      counter.isOutOfRange,
+      id,
       counter.value,
       counter.valueAsNumber,
-      id,
-      isDisabled,
-      isInvalid,
-      isReadOnly,
-      max,
+      counter.isOutOfRange,
+      inputMode,
+      pattern,
       min,
-      onBlur,
+      max,
+      isDisabled,
+      formControlDisabled,
+      isInvalid,
+      formControlInvalid,
+      ariaValueText,
+      formControlDescribedBy,
+      isReadOnly,
+      formControlReadOnly,
+      formControlRequired,
       onChange,
       onKeyDown,
       setFocused.on,
+      onBlur,
     ],
   )
 
