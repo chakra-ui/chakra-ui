@@ -3057,21 +3057,6 @@
     "@reach/utils" "0.11.0"
     tslib "^2.0.0"
 
-"@reach/observe-rect@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@reach/observe-rect/-/observe-rect-1.2.0.tgz#d7a6013b8aafcc64c778a0ccb83355a11204d3b2"
-  integrity sha512-Ba7HmkFgfQxZqqaeIWWkNK0rEhpxVQHIoVyW1YDSkGsGIXzcaW4deC8B0pZrNSSyLTdIk7y+5olKt5+g0GmFIQ==
-
-"@reach/rect@0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@reach/rect/-/rect-0.11.0.tgz#8550378785c0dbc1d35313de4188d11718598d5b"
-  integrity sha512-67QJffkYZByMBs4BFiB5Ep++MG76Xt1/NfmE55Hjfh62rrxcYTIGTRwGnpwCHVMR0fYvmzNIC3+vSh4hJ3ocxg==
-  dependencies:
-    "@reach/observe-rect" "1.2.0"
-    "@reach/utils" "0.11.0"
-    prop-types "^15.7.2"
-    tslib "^2.0.0"
-
 "@reach/router@^1.2.1", "@reach/router@^1.3.3":
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/@reach/router/-/router-1.3.4.tgz#d2574b19370a70c80480ed91f3da840136d10f8c"
