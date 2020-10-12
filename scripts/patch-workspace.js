@@ -1,30 +1,31 @@
-import fs from "fs-utils"
-import shell from "shelljs"
-import editJson from "edit-json-file"
-import prettier from "prettier"
 import chalk from "chalk"
+import editJson from "edit-json-file"
+import fs from "fs-utils"
+import prettier from "prettier"
+import shell from "shelljs"
+
+import getPackageInfo from "./utils/get-package-info"
 import {
   editPackageJson,
   deletePackageJson,
   getPackageJson,
 } from "./utils/package-json"
-import getPackageInfo from "./utils/get-package-info"
 
 async function setupJestConfig(options) {
   const path = fs.resolve(options.dir, "jest.config.js")
   const jestConfig = {
-    preset: "ts-jest",
-    testEnvironment: "node",
     collectCoverageFrom: ["tests/**/*.{ts,tsx,js,jsx}"],
+    preset: "ts-jest",
+    setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
+    testEnvironment: "node",
     transform: {
       ".(ts|tsx)$": "ts-jest/dist",
     },
     transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
-    setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
   }
 
   const content = `module.exports = ${JSON.stringify(jestConfig)}`
-  const formatted = prettier.format(content, { semi: false, parser: "babel" })
+  const formatted = prettier.format(content, { parser: "babel", semi: false })
 
   fs.writeFileSync(path, formatted)
 }
@@ -41,20 +42,20 @@ function updateEntryPoints(options) {
 
 function updateScripts(options) {
   const scripts = {
-    prebuild: "rimraf dist",
-    start: "nodemon --exec yarn build --watch src",
-    "build:esm":
-      "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
+    build: "concurrently yarn:build:*",
     "build:cjs":
       "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
+    "build:esm":
+      "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
     "build:types":
       "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
-    build: "concurrently yarn:build:*",
+    lint: "concurrently yarn:lint:*",
+    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc.js",
+    "lint:types": "tsc --noEmit",
+    prebuild: "rimraf dist",
+    start: "nodemon --exec yarn build --watch src",
     test: "jest --env=jsdom --passWithNoTests",
     "test:cov": "yarn test --coverage",
-    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
-    "lint:types": "tsc --noEmit",
-    lint: "concurrently yarn:lint:*",
   }
 
   editPackageJson(options.dir, scripts, `scripts`)
@@ -64,7 +65,7 @@ function updateDevDependies(options) {
   const pkgJson = getPackageJson(options.dir)
   const devDeps = pkgJson.get("devDependencies")
 
-  if (!!devDeps) {
+  if (devDeps) {
     console.log(devDeps)
   } else {
     // bail-out
@@ -97,32 +98,32 @@ function deleteNodeModule(options) {
 async function builder(options) {
   const tasks = [
     {
-      title: "Setup jest config",
       task: () => setupJestConfig(options),
+      title: "Setup jest config",
     },
     {
-      title: "Update entry points in package.json",
       task: () => updateEntryPoints(options),
+      title: "Update entry points in package.json",
     },
     {
-      title: "Update scripts in package.json",
       task: () => updateScripts(options),
+      title: "Update scripts in package.json",
     },
     {
-      title: "Update devDependencies in package.json",
       task: async () => await updateDevDependies(options),
+      title: "Update devDependencies in package.json",
     },
     {
-      title: "update ts config",
       task: () => updateTSConfig(options),
+      title: "update ts config",
     },
     {
-      title: "bootstrap and run commands",
       task: () => bootstrap(options),
+      title: "bootstrap and run commands",
     },
     {
-      title: "delete node_modules",
       task: () => deleteNodeModule(options),
+      title: "delete node_modules",
     },
   ]
 

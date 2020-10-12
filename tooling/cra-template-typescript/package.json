@@ -30,7 +30,7 @@
   ],
   "scripts": {
     "lint": "concurrently yarn:lint:*",
-    "lint:src": "eslint template/src --ext .ts,.tsx --config ../../.eslintrc",
+    "lint:src": "eslint template/src --ext .ts,.tsx --config ../../.eslintrc.js",
     "lint:types": "tsc --noEmit"
   }
 }

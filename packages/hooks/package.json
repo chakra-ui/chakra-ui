@@ -40,7 +40,7 @@
     "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
     "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
     "test:cov": "yarn test --coverage",
-    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
+    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc.js",
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
