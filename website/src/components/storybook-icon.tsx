@@ -1,6 +1,6 @@
-import React from "react"
+import { PropsOf } from "@chakra-ui/core"
 
-const StorybookIcon = (props) => (
+export const StorybookIcon = (props: PropsOf<"svg">): JSX.Element => (
   <svg
     aria-hidden="true"
     focusable="false"
@@ -23,5 +23,3 @@ const StorybookIcon = (props) => (
     </g>
   </svg>
 )
-
-export default StorybookIcon

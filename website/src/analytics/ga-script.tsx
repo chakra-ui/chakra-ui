@@ -1,12 +1,11 @@
-import React from "react"
-
-const GAScript = () => (
+export const GAScript = (): JSX.Element => (
   <>
     <script
       async
       src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_TRACKING_ID}`}
     />
     <script
+      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{
         __html: `
             window.dataLayer = window.dataLayer || [];
@@ -18,5 +17,3 @@ const GAScript = () => (
     />
   </>
 )
-
-export default GAScript

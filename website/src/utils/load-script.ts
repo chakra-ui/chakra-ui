@@ -1,9 +1,12 @@
-function loadScript(src: string, container: HTMLElement) {
-  const script = document.createElement("script")
-  script.setAttribute("async", "")
-  script.src = src
-  container.appendChild(script)
+export function loadScript(
+  src: string,
+  container: HTMLElement,
+): HTMLScriptElement {
+  const script = Object.assign(document.createElement("script"), {
+    async: true,
+    src,
+  })
+
+  container.append(script)
   return script
 }
-
-export default loadScript

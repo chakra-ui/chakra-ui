@@ -1,7 +1,6 @@
 import { Avatar, Box, useColorModeValue } from "@chakra-ui/core"
-import * as React from "react"
 
-interface TweetCardProps {
+type TweetCardProps = {
   name: string
   image: string
   handle: string
@@ -10,7 +9,7 @@ interface TweetCardProps {
   content: string
 }
 
-function TweetCard(props: TweetCardProps) {
+export function TweetCard(props: TweetCardProps): JSX.Element {
   const { name, handle, date, content, url } = props
   const image = `/avatars/${handle}.jpg`
   return (
@@ -38,12 +37,11 @@ function TweetCard(props: TweetCardProps) {
           as="p"
           mt="2"
           dangerouslySetInnerHTML={{
-            __html: content.replace(/--/g, "<br /><br />"),
+            // eslint-disable-next-line unicorn/prefer-replace-all
+            __html: content.replace(/--/gu, "<br /><br />"),
           }}
         />
       </Box>
     </Box>
   )
 }
-
-export default TweetCard

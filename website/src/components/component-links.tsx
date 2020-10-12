@@ -1,4 +1,3 @@
-import React from "react"
 import {
   Icon,
   Text,
@@ -7,9 +6,12 @@ import {
   Link,
   useColorModeValue,
   LinkProps,
+  WrapProps,
 } from "@chakra-ui/core"
+import React from "react"
 import { FaNpm, FaGithub } from "react-icons/fa"
-import StorybookIcon from "./storybook-icon"
+
+import { StorybookIcon } from "./storybook-icon"
 
 type ComponentLinkProps = LinkProps & {
   icon: React.ElementType
@@ -32,8 +34,8 @@ function ComponentLink(props: ComponentLinkProps) {
       borderRadius="md"
       color={useColorModeValue("gray.600", "whiteAlpha.700")}
       _hover={{
-        color: useColorModeValue("gray.700", "whiteAlpha.900"),
         boxShadow: "sm",
+        color: useColorModeValue("gray.700", "whiteAlpha.900"),
         transform: "translateY(-1px)",
       }}
       {...rest}
@@ -48,7 +50,16 @@ function ComponentLink(props: ComponentLinkProps) {
   )
 }
 
-function ComponentLinks(props) {
+type ComponentLinksProps = WrapProps & {
+  github: { url: string }
+  npm: { url: string; label: string }
+  storybook: { url: string }
+}
+
+// eslint-disable-next-line import/no-default-export
+export default function ComponentLinks(
+  props: ComponentLinksProps,
+): JSX.Element {
   const { github, npm, storybook, ...rest } = props
   return (
     <Wrap mt="2rem" spacing="4" {...rest}>
@@ -81,5 +92,3 @@ function ComponentLinks(props) {
     </Wrap>
   )
 }
-
-export default ComponentLinks

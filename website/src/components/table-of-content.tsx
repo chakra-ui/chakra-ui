@@ -1,13 +1,14 @@
-import React from "react"
 import { Link, Heading, Stack, useColorModeValue } from "@chakra-ui/core"
 
-interface EntryProps {
-  item: any
+type Item = { url: string; title: string; items: Item[] }
+
+type EntryProps = {
+  item: Item
   indent?: boolean
   slug?: string
 }
 
-export const Entry: React.FC<EntryProps> = ({ item, indent, slug }) => {
+export function Entry({ item, indent, slug }: EntryProps): JSX.Element {
   const { url, title, items = [] } = item
   const color = useColorModeValue("gray.600", "whiteAlpha.600")
 
@@ -25,7 +26,17 @@ export const Entry: React.FC<EntryProps> = ({ item, indent, slug }) => {
   )
 }
 
-export const TableOfContents = ({ tableOfContents, slug }) => {
+type TableOfContentsProps = {
+  tableOfContents: {
+    items: Item[]
+  }
+  slug: string
+}
+
+export const TableOfContents = ({
+  tableOfContents,
+  slug,
+}: TableOfContentsProps): JSX.Element => {
   // skip the first depth which is just the current page's url and title
   const {
     items: [{ items = [] }],
@@ -33,7 +44,9 @@ export const TableOfContents = ({ tableOfContents, slug }) => {
 
   const color = useColorModeValue("gray.600", "whiteAlpha.700")
 
-  if (!items.length) return null
+  if (items.length === 0) {
+    return null
+  }
 
   return (
     <Stack spacing={3} position="sticky" top="0">

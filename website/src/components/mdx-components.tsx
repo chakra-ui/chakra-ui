@@ -1,17 +1,34 @@
-import { Alert, Box, chakra, Kbd, useColorModeValue } from "@chakra-ui/core"
-import React from "react"
-import CarbonAd from "./carbon-ad"
-import CodeBlock from "./codeblock/codeblock"
+import {
+  Alert,
+  CodeProps,
+  Box,
+  chakra,
+  HeadingProps,
+  Kbd,
+  PropsOf,
+  useColorModeValue,
+  BoxProps,
+  AlertProps,
+  DividerProps,
+  ListItemProps,
+  ListProps,
+  TextProps,
+} from "@chakra-ui/core"
 
-const Pre = (props) => <chakra.div my="2em" borderRadius="sm" {...props} />
+import { CarbonAd } from "./carbon-ad"
+import { CodeBlock } from "./codeblock/codeblock"
 
-const Table = (props) => (
+const Pre = (props: BoxProps): JSX.Element => (
+  <chakra.div my="2em" borderRadius="sm" {...props} />
+)
+
+const Table = (props: PropsOf<"table">): JSX.Element => (
   <chakra.div overflowX="auto">
     <chakra.table textAlign="left" mt="32px" width="full" {...props} />
   </chakra.div>
 )
 
-const THead = (props) => (
+const THead = (props: PropsOf<"th">): JSX.Element => (
   <chakra.th
     bg={useColorModeValue("gray.50", "whiteAlpha.100")}
     fontWeight="semibold"
@@ -21,7 +38,7 @@ const THead = (props) => (
   />
 )
 
-const TData = (props) => (
+const TData = (props: PropsOf<"td">): JSX.Element => (
   <chakra.td
     p={2}
     borderTopWidth="1px"
@@ -32,18 +49,18 @@ const TData = (props) => (
   />
 )
 
-const LinkedHeading = (props) => (
+const LinkedHeading = (props: HeadingProps) => (
   <chakra.h2
     css={{
       "&[id]": {
         pointerEvents: "none",
       },
       "&[id]::before": {
+        content: `""`,
         display: "block",
         height: " 6rem",
         marginTop: "-6rem",
         visibility: "hidden",
-        content: `""`,
       },
       "&[id]:hover a": { opacity: 1 },
     }}
@@ -57,7 +74,7 @@ const LinkedHeading = (props) => (
           color="teal.500"
           fontWeight="normal"
           outline="none"
-          _focus={{ opacity: 1, boxShadow: "outline" }}
+          _focus={{ boxShadow: "outline", opacity: 1 }}
           opacity={0}
           ml="0.375rem"
           href={`#${props.id}`}
@@ -69,7 +86,7 @@ const LinkedHeading = (props) => (
   </chakra.h2>
 )
 
-const InlineCode = (props: any) => (
+const InlineCode = (props: CodeProps): JSX.Element => (
   <chakra.code
     apply="mdx.code"
     color={useColorModeValue("purple.500", "purple.200")}
@@ -77,27 +94,11 @@ const InlineCode = (props: any) => (
   />
 )
 
-const MDXComponents = {
-  h1: (props) => <chakra.h1 apply="mdx.h1" {...props} />,
-  h2: (props) => <LinkedHeading apply="mdx.h2" {...props} />,
-  h3: (props) => <LinkedHeading as="h3" apply="mdx.h3" {...props} />,
-  h4: (props) => <LinkedHeading as="h4" apply="mdx.h4" {...props} />,
-  hr: (props) => <chakra.hr apply="mdx.hr" {...props} />,
-  strong: (props) => <Box as="strong" fontWeight="semibold" {...props} />,
-  inlineCode: InlineCode,
-  code: CodeBlock,
-  pre: Pre,
-  kbd: Kbd,
-  br: (props) => <Box height="24px" {...props} />,
-  table: Table,
-  th: THead,
-  td: TData,
-  a: (props) => <chakra.a apply="mdx.a" {...props} />,
-  p: (props) => <chakra.p apply="mdx.p" {...props} />,
-  ul: (props) => <chakra.ul apply="mdx.ul" {...props} />,
-  ol: (props) => <chakra.ol apply="mdx.ul" {...props} />,
-  li: (props) => <chakra.li pb="4px" {...props} />,
-  blockquote: (props) => (
+export const MDXComponents = {
+  a: (props: PropsOf<"a">): JSX.Element => (
+    <chakra.a apply="mdx.a" {...props} />
+  ),
+  blockquote: (props: AlertProps): JSX.Element => (
     <Alert
       mt="4"
       role="none"
@@ -109,7 +110,39 @@ const MDXComponents = {
       {...props}
     />
   ),
+  br: (props: BoxProps): JSX.Element => <Box height="24px" {...props} />,
   "carbon-ad": CarbonAd,
+  code: CodeBlock,
+  h1: (props: PropsOf<"h1">): JSX.Element => (
+    <chakra.h1 apply="mdx.h1" {...props} />
+  ),
+  h2: (props: HeadingProps): JSX.Element => (
+    <LinkedHeading apply="mdx.h2" {...props} />
+  ),
+  h3: (props: HeadingProps): JSX.Element => (
+    <LinkedHeading as="h3" apply="mdx.h3" {...props} />
+  ),
+  h4: (props: HeadingProps): JSX.Element => (
+    <LinkedHeading as="h4" apply="mdx.h4" {...props} />
+  ),
+  hr: (props: DividerProps): JSX.Element => (
+    <chakra.hr apply="mdx.hr" {...props} />
+  ),
+  inlineCode: InlineCode,
+  kbd: Kbd,
+  li: (props: ListItemProps): JSX.Element => <chakra.li pb="4px" {...props} />,
+  ol: (props: ListItemProps): JSX.Element => (
+    <chakra.ol apply="mdx.ul" {...props} />
+  ),
+  p: (props: TextProps): JSX.Element => <chakra.p apply="mdx.p" {...props} />,
+  pre: Pre,
+  strong: (props: BoxProps): JSX.Element => (
+    <Box as="strong" fontWeight="semibold" {...props} />
+  ),
+  table: Table,
+  td: TData,
+  th: THead,
+  ul: (props: ListProps): JSX.Element => (
+    <chakra.ul apply="mdx.ul" {...props} />
+  ),
 }
-
-export default MDXComponents

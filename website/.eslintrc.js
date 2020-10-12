@@ -6,13 +6,13 @@ const {
   createTSOverride,
 } = require("eslint-config-galex/src/overrides/typescript")
 
-const packageJson = require("./package.json")
+const packageJson = require("../package.json")
 const tsConfig = require("./tsconfig.json")
 
 const react = {
   hasReact: !!packageJson.devDependencies.react,
   isCreateReactApp: false,
-  isNext: false,
+  isNext: true,
   version: packageJson.devDependencies.react,
 }
 
@@ -23,6 +23,10 @@ const typescript = {
 }
 
 const TSOverride = createTSOverride({
+  parserOptions: {
+    project: "./tsconfig.json",
+    tsconfigRootDir: "./website",
+  },
   react,
   typescript,
 })
@@ -30,6 +34,7 @@ const TSOverride = createTSOverride({
 const reactOverride = createReactOverride({
   react,
   rules: {
+    "@next/next/no-html-link-for-pages": ["warn", "./website/pages"],
     "react/function-component-definition": "off",
   },
   typescript,
@@ -37,6 +42,7 @@ const reactOverride = createReactOverride({
 
 module.exports = createConfig({
   overrides: [reactOverride, TSOverride],
+  root: true,
   rules: {
     "import/no-namespace": "off",
   },

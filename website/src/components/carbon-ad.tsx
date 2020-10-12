@@ -1,64 +1,68 @@
 import { chakra, useColorModeValue, useTheme } from "@chakra-ui/core"
-import * as React from "react"
-import loadScript from "utils/load-script"
+import { useEffect, useRef } from "react"
+import { loadScript } from "utils/load-script"
 
-function CarbonAd() {
-  const ref = React.useRef(null)
+export function CarbonAd(): JSX.Element {
+  const ref = useRef<HTMLSpanElement | null>(null)
 
-  const theme = useTheme()
+  const {
+    colors: { gray },
+  } = useTheme()
   const bg = useColorModeValue("gray.50", "rgba(36, 70, 93, 0.32)")
 
   const carbonAd = {
-    display: "block",
-    position: "relative",
-    margin: "32px 0",
-    maxWidth: "480px",
-    minHeight: "132px",
-    borderRadius: "4px",
-    bg,
-    color: "inherit",
-    "@media (max-width: 480px)": {
-      fontSize: "0.875em",
-    },
-    a: {
-      textDecoration: "none",
-      color: "inherit",
-      "&:hover": {
-        textDecoration: "underline",
-      },
-    },
-    ".carbon-wrap": {
-      display: "flex",
-      padding: "16px",
-    },
     ".carbon-img": {
-      marginRight: "16px",
       img: {
         display: "block",
       },
+      marginRight: "16px",
+    },
+    ".carbon-poweredby": {
+      bottom: "16px",
+      color: `${gray[500] as string} !important`,
+      display: "block",
+      fontSize: "10px",
+      fontWeight: "semibold",
+      left: "162px",
+      letterSpacing: "0.2px",
+      lineHeight: 1,
+      position: "absolute",
+      textTransform: "uppercase",
     },
     ".carbon-text": {
       fontSize: "0.8rem",
       lineHeight: 1.4,
     },
-    ".carbon-poweredby": {
-      position: "absolute",
-      bottom: "16px",
-      left: "162px",
-      color: `${theme.colors.gray[500]} !important`,
-      display: "block",
-      fontSize: "10px",
-      fontWeight: "semibold",
-      textTransform: "uppercase",
-      lineHeight: 1,
-      letterSpacing: "0.2px",
+    ".carbon-wrap": {
+      display: "flex",
+      padding: "16px",
     },
+    "@media (max-width: 480px)": {
+      fontSize: "0.875em",
+    },
+    a: {
+      "&:hover": {
+        textDecoration: "underline",
+      },
+      color: "inherit",
+      textDecoration: "none",
+    },
+    bg,
+    borderRadius: "4px",
+    color: "inherit",
+    display: "block",
+    margin: "32px 0",
+    maxWidth: "480px",
+    minHeight: "132px",
+    position: "relative",
   }
 
-  React.useEffect(() => {
-    const scriptEl = document.getElementById("_carbonads_js")
+  useEffect(() => {
+    const scriptEl = document.querySelector("#_carbonads_js")
 
-    if (!ref.current || !!scriptEl) return
+    if (!ref.current || !!scriptEl) {
+      return
+    }
 
     const script = loadScript(
       "https://cdn.carbonads.com/carbon.js?serve=CE7DKK7L&placement=chakra-uicom",
@@ -69,5 +73,3 @@ function CarbonAd() {
 
   return <chakra.span ref={ref} sx={carbonAd} />
 }
-
-export default CarbonAd

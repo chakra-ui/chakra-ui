@@ -1,7 +1,7 @@
 import { Icon, IconProps } from "@chakra-ui/core"
 
 /** This component is used in the `icon.mdx` page. */
-const CircleIcon = (props: IconProps) => (
+const CircleIcon = (props: IconProps): JSX.Element => (
   <Icon viewBox="0 0 200 200" {...props}>
     <path
       fill="currentColor"
@@ -10,4 +10,5 @@ const CircleIcon = (props: IconProps) => (
   </Icon>
 )
 
+// eslint-disable-next-line import/no-default-export
 export default CircleIcon

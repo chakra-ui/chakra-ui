@@ -1,20 +1,22 @@
-import React from "react"
+import { ColorModeScript } from "@chakra-ui/core"
+import { GAScript } from "analytics/ga-script"
 import NextDocument, {
   Html,
   Head,
   Main,
   NextScript,
   DocumentContext,
+  DocumentInitialProps,
 } from "next/document"
-import GAScript from "analytics/ga-script"
-import { ColorModeScript } from "@chakra-ui/core"
 
 class Document extends NextDocument {
-  static getInitialProps(ctx: DocumentContext) {
+  public static getInitialProps(
+    ctx: DocumentContext,
+  ): Promise<DocumentInitialProps> {
     return NextDocument.getInitialProps(ctx)
   }
 
-  render() {
+  public render(): JSX.Element {
     return (
       <Html lang="en">
         <Head>
@@ -37,4 +39,5 @@ class Document extends NextDocument {
   }
 }
 
+// eslint-disable-next-line import/no-default-export
 export default Document

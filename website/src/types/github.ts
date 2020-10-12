@@ -1,4 +1,4 @@
-export interface Member {
+export type Member = {
   avatar_url: string
   bio: string
   blog: string
@@ -17,7 +17,7 @@ export type Contribution =
   | "design"
   | "ideas"
 
-export interface Contributor {
+export type Contributor = {
   avatar_url: string
   contributions: Contribution[]
   name: string
@@ -25,7 +25,7 @@ export interface Contributor {
   profile: string
 }
 
-export interface Sponsor {
+export type Sponsor = {
   MemberId: number
   comapny: null
   createdAt: string

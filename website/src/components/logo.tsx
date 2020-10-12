@@ -1,12 +1,12 @@
-import { chakra, useColorModeValue } from "@chakra-ui/core"
-import React from "react"
+import { chakra, useColorModeValue, PropsOf } from "@chakra-ui/core"
 
-const Logo = (props) => {
+// eslint-disable-next-line import/no-default-export
+export default function Logo(props: PropsOf<typeof chakra.svg>): JSX.Element {
   const fill = useColorModeValue("#2D3748", "#fff")
 
   return (
     <chakra.svg
-      height="8"
+      height={8}
       width="auto"
       viewBox="0 0 998 257"
       fill="none"
@@ -37,5 +37,3 @@ const Logo = (props) => {
     </chakra.svg>
   )
 }
-
-export default Logo

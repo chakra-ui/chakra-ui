@@ -1,8 +1,7 @@
-import * as React from "react"
 import { chakra, Icon, Stack, Link } from "@chakra-ui/core"
 import { MdEdit } from "react-icons/md"
 
-const EditPageLink: React.FC<{ href?: string }> = ({ href }) => {
+export function EditPageLink({ href }: { href?: string }): JSX.Element {
   return (
     <Link href={href} isExternal>
       <Stack
@@ -18,5 +17,3 @@ const EditPageLink: React.FC<{ href?: string }> = ({ href }) => {
     </Link>
   )
 }
-
-export default EditPageLink

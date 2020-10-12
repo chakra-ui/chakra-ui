@@ -1,10 +1,10 @@
 import { chakra, PropsOf, useColorModeValue } from "@chakra-ui/core"
 import NextLink from "next/link"
 import { useRouter } from "next/router"
-import React from "react"
+import { forwardRef } from "react"
 
-const StyledLink = React.forwardRef(
-  (props: PropsOf<typeof chakra.a>, ref: React.Ref<any>) => {
+const StyledLink = forwardRef<HTMLAnchorElement, PropsOf<typeof chakra.a>>(
+  (props, ref) => {
     const hoverColor = useColorModeValue("gray.900", "whiteAlpha.900")
     const activeColor = useColorModeValue("teal.500", "teal.200")
     const color = useColorModeValue("gray.700", "whiteAlpha.900")
@@ -33,7 +33,7 @@ type SidebarLinkProps = PropsOf<typeof chakra.div> & {
   icon?: React.ReactElement
 }
 
-const SidebarLink = (props: SidebarLinkProps) => {
+export const SidebarLink = (props: SidebarLinkProps): JSX.Element => {
   const { href, icon, children, ...rest } = props
 
   const { pathname } = useRouter()
@@ -55,5 +55,3 @@ const SidebarLink = (props: SidebarLinkProps) => {
     </chakra.div>
   )
 }
-
-export default SidebarLink

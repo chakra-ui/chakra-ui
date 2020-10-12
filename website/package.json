@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@chakra-ui/core": "1.0.0-rc.5",
+    "@chakra-ui/icons": "1.0.0-rc.5",
+    "@chakra-ui/skip-nav": "1.0.0-rc.5",
     "@chakra-ui/theme-tools": "1.0.0-rc.5",
     "@chakra-ui/utils": "1.0.0-rc.5",
     "@docusaurus/utils": "^2.0.0-alpha.62",

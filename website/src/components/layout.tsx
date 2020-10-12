@@ -1,24 +1,18 @@
-import React from "react"
-import { useRouter } from "next/router"
 import { Box } from "@chakra-ui/core"
-import { MDXProvider } from "@mdx-js/react"
-import MDXComponents from "./mdx-components"
-import SideNav from "./sidebar/sidebar"
-import Header from "./header"
-import { Footer } from "./footer"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
-import BottomNav from "./bottom-nav"
+import { MDXProvider } from "@mdx-js/react"
+import { useRouter } from "next/router"
+import { Fragment } from "react"
+import type { ReactNode } from "react"
+
+import { BottomNav } from "./bottom-nav"
+import { Footer } from "./footer"
+import { Header } from "./header"
+import { MDXComponents } from "./mdx-components"
+import { Sidebar } from "./sidebar/sidebar"
 
 const Main = (props) => (
   <Box as="main" minH="72vh" pt={8} px={5} mt="4rem" {...props} />
-)
-
-const HomeLayout = ({ children }) => (
-  <Box>
-    <Header />
-    <SkipNavContent />
-    {children}
-  </Box>
 )
 
 const DocsLayout = ({ children }) => {
@@ -26,7 +20,7 @@ const DocsLayout = ({ children }) => {
     <MDXProvider components={MDXComponents}>
       <Header />
       <Box>
-        <SideNav
+        <Sidebar
           display={["none", null, "block"]}
           maxWidth="18rem"
           width="full"
@@ -54,22 +48,22 @@ const GuidesLayout = ({ children }) => {
   )
 }
 
-function getLayout(context) {
-  switch (context) {
-    case "docs":
-      return DocsLayout
-    case "guides":
-      return GuidesLayout
-    default:
-      return HomeLayout
+const layoutMap = {
+  docs: DocsLayout,
+  guides: GuidesLayout,
+}
+
+type LayoutProps = {
+  children: ReactNode
+  pageContext: {
+    layout: string
   }
 }
 
-const Layout = ({ children, pageContext }) => {
+const Layout = ({ children, pageContext }: LayoutProps): JSX.Element => {
   const { pathname } = useRouter()
-  const Container: any = pageContext
-    ? getLayout(pageContext.layout)
-    : React.Fragment
+
+  const Container = layoutMap[pageContext?.layout] || Fragment
 
   return (
     <>
@@ -80,4 +74,5 @@ const Layout = ({ children, pageContext }) => {
   )
 }
 
+// eslint-disable-next-line import/no-default-export
 export default Layout

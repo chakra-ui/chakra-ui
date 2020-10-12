@@ -1,9 +1,9 @@
-const path = require("path")
-const execa = require("execa")
-const fromUnixTime = require("date-fns/fromUnixTime")
-const format = require("date-fns/format")
 const { getEditUrl, addLeadingSlash } = require("@docusaurus/utils")
 const { Octokit } = require("@octokit/rest")
+const format = require("date-fns/format")
+const fromUnixTime = require("date-fns/fromUnixTime")
+const execa = require("execa")
+const path = require("path")
 
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
 
@@ -31,10 +31,10 @@ async function processFrontmatter(options) {
 
   return {
     ...rest,
-    slug,
-    lastEdited,
-    editUrl,
     author: authorData,
+    editUrl,
+    lastEdited,
+    slug,
     tags,
   }
 }
@@ -43,19 +43,23 @@ async function processFrontmatter(options) {
  * Format the last edited timestamp and author from git output
  */
 function getTimestampAndAuthor(str) {
-  if (!str) return null
+  if (!str) {
+    return null
+  }
 
-  const GIT_COMMIT_TIMESTAMP_AUTHOR_REGEX = /^(\d+), (.+)$/
+  const GIT_COMMIT_TIMESTAMP_AUTHOR_REGEX = /^(\d+), (.+)$/u
   const temp = str.match(GIT_COMMIT_TIMESTAMP_AUTHOR_REGEX)
 
-  if (!temp || temp.length < 3) return null
+  if (!temp || temp.length < 3) {
+    return null
+  }
 
   const [_, timestamp, author] = temp
-  const dateStr = fromUnixTime(+timestamp)
+  const dateStr = fromUnixTime(Number(timestamp))
 
   return {
-    date: format(dateStr, "MMMM dd, yyyy"),
     author,
+    date: format(dateStr, "MMMM dd, yyyy"),
   }
 }
 
@@ -78,6 +82,7 @@ async function getLastEdited(filePath) {
     ])
     return getTimestampAndAuthor(stdout)
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error)
   }
 }
@@ -95,20 +100,20 @@ async function getGithubUserData(username) {
   } = data
 
   return {
-    login: username,
     avatarUrl,
-    githubUrl,
-    websiteUrl,
     bio,
+    githubUrl,
+    login: username,
     name,
     twitterUsername,
+    websiteUrl,
   }
 }
 
 module.exports = {
-  getTimestampAndAuthor,
   fileToPath,
-  getLastEdited,
-  processFrontmatter,
   getGithubUserData,
+  getLastEdited,
+  getTimestampAndAuthor,
+  processFrontmatter,
 }

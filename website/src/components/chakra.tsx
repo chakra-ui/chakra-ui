@@ -4,6 +4,7 @@ import {
   localStorageManager,
 } from "@chakra-ui/core"
 import { GetServerSidePropsContext } from "next"
+import type { FunctionComponent } from "react"
 import theme from "theme"
 
 type WithCookies = {
@@ -20,12 +21,6 @@ const determineColorModeManager = (cookies?: string) => {
     ? document.cookie
     : undefined
 
-  console.log({
-    isBrowser,
-    isServer,
-    actualCookies,
-  })
-
   return actualCookies
     ? cookieStorageManager(actualCookies)
     : localStorageManager
@@ -35,8 +30,8 @@ const determineColorModeManager = (cookies?: string) => {
  * higher order component for pages
  */
 export function withChakra<P = {}>(
-  WrappedComponent: React.FunctionComponent<P>,
-) {
+  WrappedComponent: FunctionComponent<P>,
+): FunctionComponent<P> {
   const C = ({ cookies, ...rest }: WithCookies & P) => {
     return (
       <ChakraProvider theme={theme} portalZIndex={40}>

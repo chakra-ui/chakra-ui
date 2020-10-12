@@ -7,14 +7,15 @@ import {
   Link,
   useColorMode,
   useColorModeValue,
+  PropsOf,
 } from "@chakra-ui/core"
-import siteConfig from "configs/site-config"
+import { siteConfig } from "configs/site-config"
 import NextLink from "next/link"
-import React from "react"
 import { FaMoon, FaSun } from "react-icons/fa"
+
 import NavLink from "./header-nav-link"
 import Logo from "./logo"
-import SponsorButton from "./sponsor-button"
+import { SponsorButton } from "./sponsor-button"
 import VersionSwitcher from "./version-switcher"
 
 const DiscordIcon = (props) => (
@@ -100,7 +101,7 @@ const HeaderContent = () => {
   )
 }
 
-const Header = (props) => {
+export function Header(props: PropsOf<"header">): JSX.Element {
   const bg = useColorModeValue("white", "gray.800")
   return (
     <chakra.header
@@ -120,5 +121,3 @@ const Header = (props) => {
     </chakra.header>
   )
 }
-
-export default Header

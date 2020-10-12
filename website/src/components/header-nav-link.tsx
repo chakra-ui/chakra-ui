@@ -1,13 +1,13 @@
-import { chakra, useColorModeValue } from "@chakra-ui/core"
+import { chakra, PropsOf, useColorModeValue } from "@chakra-ui/core"
 import NextLink from "next/link"
 import { useRouter } from "next/router"
-import React from "react"
 
-const NavLink = (props) => {
+// eslint-disable-next-line import/no-default-export
+export default function NavLink(props: PropsOf<"a">): JSX.Element {
   const { href, ...rest } = props
   const { pathname } = useRouter()
 
-  const group = href.split("/")[1]
+  const [, group] = href.split("/")
   const isActive = pathname.includes(group)
 
   return (
@@ -23,13 +23,11 @@ const NavLink = (props) => {
         fontWeight="normal"
         _hover={{ bg: useColorModeValue("gray.100", "whiteAlpha.100") }}
         _activeLink={{
-          fontWeight: "semibold",
           color: "teal.500",
+          fontWeight: "semibold",
         }}
         {...rest}
       />
     </NextLink>
   )
 }
-
-export default NavLink

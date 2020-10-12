@@ -6,11 +6,11 @@ import {
   GridProps,
   useTheme,
 } from "@chakra-ui/core"
-import React from "react"
+import type { FC } from "react"
 
 type ColorPaletteProps = FlexProps & { color?: string; name?: string }
 
-export const ColorPalette = (props: ColorPaletteProps) => {
+export const ColorPalette = (props: ColorPaletteProps): JSX.Element => {
   const { color, name, ...rest } = props
 
   const theme = useTheme()
@@ -44,7 +44,7 @@ export const ColorPalette = (props: ColorPaletteProps) => {
   )
 }
 
-export const ColorPalettes = (props: { color: string }) => {
+export const ColorPalettes = (props: { color: string }): JSX.Element[] => {
   const { color } = props
   const theme = useTheme()
   const keys = Object.keys(theme.colors[color])
@@ -58,7 +58,7 @@ export const ColorPalettes = (props: { color: string }) => {
   ))
 }
 
-export const ColorWrapper: React.FC<GridProps> = (props) => (
+export const ColorWrapper: FC<GridProps> = (props) => (
   <Grid
     mt={7}
     gap={6}

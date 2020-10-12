@@ -1,13 +1,13 @@
 import { Icon, chakra, useColorModeValue } from "@chakra-ui/core"
-import { useRef, useState, useEffect, ReactNode, RefObject } from "react"
+import { useRef, useState, useEffect, ReactNode, MutableRefObject } from "react"
 
-interface SidebarCategoryProps {
+type SidebarCategoryProps = {
   isMobile?: boolean
   title: string
   opened?: boolean
   selected?: boolean
   children: ReactNode
-  contentRef?: RefObject<any>
+  contentRef?: MutableRefObject<HTMLDivElement>
 }
 
 const Arrow = (props) => (
@@ -19,12 +19,12 @@ const Arrow = (props) => (
   </svg>
 )
 
-interface SidebarState {
+type SidebarState = {
   toggle?: boolean
   shouldScroll?: boolean
 }
 
-function SidebarCategory(props: SidebarCategoryProps) {
+export function SidebarCategory(props: SidebarCategoryProps): JSX.Element {
   const { isMobile, title, selected, opened, children, contentRef } = props
 
   const ref = useRef<HTMLDivElement | null>(null)
@@ -34,22 +34,22 @@ function SidebarCategory(props: SidebarCategoryProps) {
   })
 
   const onClick = () => {
-    setToggle({ toggle: !toggle, shouldScroll: true })
+    setToggle({ shouldScroll: true, toggle: !toggle })
   }
 
   // If a category is selected indirectly, open it. This can happen when using the search input
   useEffect(() => {
     if (selected) {
-      setToggle({ toggle: true, shouldScroll: true })
+      setToggle({ shouldScroll: true, toggle: true })
     }
   }, [selected])
 
   // Navigate to the start of the category when manually opened
   useEffect(() => {
-    if (toggle && shouldScroll && ref.current != null) {
+    if (toggle && shouldScroll && ref.current) {
       const contentEl = contentRef.current
 
-      if (toggle == true && contentEl) {
+      if (toggle && contentEl) {
         // 10 is added for better margin
         const height =
           ref.current.offsetTop - (isMobile ? 10 : contentEl.offsetTop)
@@ -103,5 +103,3 @@ function SidebarCategory(props: SidebarCategoryProps) {
     </chakra.div>
   )
 }
-
-export default SidebarCategory

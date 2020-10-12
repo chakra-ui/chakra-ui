@@ -1,7 +1,7 @@
 import { Select, SelectProps, useColorModeValue } from "@chakra-ui/core"
-import React from "react"
 
-function VersionSwitcher(props: SelectProps) {
+// eslint-disable-next-line import/no-default-export
+export default function VersionSwitcher(props: SelectProps): JSX.Element {
   return (
     <Select
       mr="1rem"
@@ -20,5 +20,3 @@ function VersionSwitcher(props: SelectProps) {
     </Select>
   )
 }
-
-export default VersionSwitcher

@@ -1,43 +1,41 @@
-const sidebar = {
+export const guidesSidebar = {
   routes: [
     {
-      title: "Guides",
       heading: true,
       routes: [
         {
-          title: "How to Create a guide",
           path: "/guides/how-to-create-a-guide",
+          title: "How to Create a guide",
         },
         {
-          title: "Portals and z-Index",
           path: "/guides/z-index",
+          title: "Portals and z-Index",
         },
         {
-          title: "The as prop",
           path: "/guides/as-prop",
+          title: "The as prop",
         },
         {
-          title: "Integrations",
-          path: "/guides/integrations",
           open: true,
+          path: "/guides/integrations",
           routes: [
             {
-              title: "Create React App",
               path: "/guides/integrations/with-cra",
+              title: "Create React App",
             },
             {
-              title: "Framer Motion",
               path: "/guides/integrations/with-framer",
+              title: "Framer Motion",
             },
             {
-              title: "React Hook Form",
               path: "/guides/integrations/with-hook-form",
+              title: "React Hook Form",
             },
           ],
+          title: "Integrations",
         },
       ],
+      title: "Guides",
     },
   ],
 }
-
-export default sidebar

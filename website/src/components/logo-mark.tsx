@@ -1,7 +1,6 @@
-import { chakra, useColorModeValue } from "@chakra-ui/core"
-import * as React from "react"
+import { chakra, PropsOf } from "@chakra-ui/core"
 
-function LogoMark(props) {
+export function LogoMark(props: PropsOf<typeof chakra.svg>): JSX.Element {
   return (
     <chakra.svg viewBox="0 0 582 582" fill="none" {...props}>
       <path
@@ -11,5 +10,3 @@ function LogoMark(props) {
     </chakra.svg>
   )
 }
-
-export default LogoMark

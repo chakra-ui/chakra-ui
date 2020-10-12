@@ -1,19 +1,26 @@
+import { ChakraProvider } from "@chakra-ui/core"
 import { trackPageview } from "analytics/track-event"
+import { FontFace } from "components/font-face"
+import { siteConfig } from "configs/site-config"
+import { NextComponentType, NextPageContext } from "next"
 import { DefaultSeo } from "next-seo"
 import Head from "next/head"
-import Router from "next/router"
-import React from "react"
-import siteConfig from "configs/site-config"
+import Router, { NextRouter } from "next/router"
 import "../src/styles/algolia.css"
-import { ChakraProvider } from "@chakra-ui/core"
-import theme from "theme"
-import FontFace from "components/font-face"
+import { customTheme } from "theme"
 
 Router.events.on("routeChangeComplete", (url) => {
   trackPageview(url)
 })
 
-const App = ({ Component, pageProps }) => {
+type AppRenderProps = {
+  pageProps: object
+  err?: Error
+  Component: NextComponentType<NextPageContext, object, object>
+  router?: NextRouter
+}
+
+const App = ({ Component, pageProps }: AppRenderProps): JSX.Element => {
   return (
     <>
       <Head>
@@ -25,7 +32,7 @@ const App = ({ Component, pageProps }) => {
         <meta name="theme-color" content="#319795" />
       </Head>
       <DefaultSeo {...siteConfig.seo} />
-      <ChakraProvider theme={theme}>
+      <ChakraProvider theme={customTheme}>
         <Component {...pageProps} />
       </ChakraProvider>
       <FontFace />
@@ -33,4 +40,5 @@ const App = ({ Component, pageProps }) => {
   )
 }
 
+// eslint-disable-next-line import/no-default-export
 export default App

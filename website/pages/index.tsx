@@ -20,18 +20,18 @@ import {
 } from "@chakra-ui/core"
 import { chunk } from "@chakra-ui/utils"
 import users from "chakra-users"
-import Container from "components/container"
-import DiscordStrip from "components/discord-strip"
+import { Container } from "components/container"
+import { DiscordStrip } from "components/discord-strip"
 import { Footer } from "components/footer"
-import Header from "components/header"
-import LogoMark from "components/logo-mark"
-import SEO from "components/seo"
-import TweetCard from "components/tweet-card"
+import { Header } from "components/header"
+import { LogoMark } from "components/logo-mark"
+import { SEO } from "components/seo"
+import { TweetCard } from "components/tweet-card"
 import { tweets } from "configs/tweets.json"
 import fs from "fs"
+import { GetStaticPropsResult } from "next"
 import NextLink from "next/link"
 import path from "path"
-import * as React from "react"
 import { AiFillThunderbolt } from "react-icons/ai"
 import { DiGithubBadge } from "react-icons/di"
 import { FaArrowRight, FaDiscord, FaMicrophone } from "react-icons/fa"
@@ -101,7 +101,7 @@ const StatBox = (props: StatBoxProps) => {
   )
 }
 
-interface HomePageProps {
+type HomePageProps = {
   members: Member[]
   sponsors: {
     companies: Sponsor[]
@@ -109,7 +109,11 @@ interface HomePageProps {
   }
 }
 
-const HomePage = ({ members, sponsors }: HomePageProps) => {
+// eslint-disable-next-line import/no-default-export
+export default function HomePage({
+  members,
+  sponsors,
+}: HomePageProps): JSX.Element {
   return (
     <>
       <SEO
@@ -123,7 +127,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
           <Container>
             <Box maxW="760px" mx="auto" textAlign="center">
               <chakra.h1
-                fontSize={{ base: "2.25rem", sm: "3rem", lg: "3.75rem" }}
+                fontSize={{ base: "2.25rem", lg: "3.75rem", sm: "3rem" }}
                 letterSpacing="tight"
                 fontWeight="bold"
                 mb="16px"
@@ -253,13 +257,13 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
                 tabIndex={-1}
                 src="https://codesandbox.io/embed/chakra-home-page-xqt3d?codemirror=1&fontsize=12&hidenavigation=1&theme=dark"
                 style={{
-                  width: "100%",
                   background: "white",
-                  height: "600px",
                   border: "0",
                   borderRadius: 8,
+                  height: "600px",
                   overflow: "hidden",
                   position: "static",
+                  width: "100%",
                   zIndex: 0,
                 }}
                 shadow="2xl"
@@ -639,7 +643,9 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
   )
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(): Promise<
+  GetStaticPropsResult<HomePageProps>
+> {
   /**
    * Read the profile/bio of each member from `.all-membersrc` file
    * to avoid overfetching from Github
@@ -651,25 +657,23 @@ export async function getStaticProps() {
    * Read contributors from `.all-contributorsrc` file
    * to avoid overfetching from Github
    */
-  const contributorsRcPath = path.resolve("..", ".all-contributorsrc")
-  const { contributors } = JSON.parse(
-    fs.readFileSync(contributorsRcPath, "utf-8"),
-  )
+  // const contributorsRcPath = path.resolve("..", ".all-contributorsrc")
+  // const { contributors } = JSON.parse(
+  //   fs.readFileSync(contributorsRcPath, "utf-8"),
+  // )
 
   /**
    * Read the information for each sponsor from `.all-sponsorsrc` file
    */
   const sponsorsRcPath = path.resolve("..", ".all-sponsorsrc")
   const sponsors = JSON.parse(fs.readFileSync(sponsorsRcPath, "utf-8"))
-  const filters = ["christiannwamba"]
+  const filters = new Set(["christiannwamba"])
 
   return {
     props: {
-      members: members.filter((m) => !filters.includes(m.login)),
-      contributors,
+      // contributors,
+      members: members.filter((m) => !filters.has(m.login)),
       sponsors,
     },
   }
 }
-
-export default HomePage

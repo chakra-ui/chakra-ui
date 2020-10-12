@@ -11,12 +11,12 @@ import {
   Wrap,
 } from "@chakra-ui/core"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
-import Container from "components/container"
-import Header from "components/header"
-import SEO from "components/seo"
+import { Container } from "components/container"
+import { Header } from "components/header"
+import { SEO } from "components/seo"
 import fs from "fs"
+import { GetStaticPropsResult } from "next"
 import path from "path"
-import * as React from "react"
 import { IoIosGlobe, IoLogoGithub, IoLogoTwitter } from "react-icons/io"
 import { Contributor, Member as IMember } from "src/types/github"
 
@@ -75,15 +75,19 @@ function Member({ member }: { member: IMember }) {
   )
 }
 
-interface TeamProps {
+type TeamProps = {
   members: IMember[]
   contributors: Contributor[]
 }
 
-function Team({ members, contributors }: TeamProps) {
-  const memberLogins = members.map(({ login }) => login)
+// eslint-disable-next-line import/no-default-export
+export default function Team({
+  members,
+  contributors,
+}: TeamProps): JSX.Element {
+  const memberLogins = new Set(members.map(({ login }) => login))
   const contributorsWithoutTeam = contributors.filter(
-    ({ login }) => !memberLogins.includes(login),
+    ({ login }) => !memberLogins.has(login),
   )
 
   return (
@@ -135,7 +139,10 @@ function Team({ members, contributors }: TeamProps) {
                 Individuals
               </Text>
               <a href="https://opencollective.com/chakra-ui">
-                <img src="https://opencollective.com/chakra-ui/individuals.svg?width=890" />
+                <img
+                  src="https://opencollective.com/chakra-ui/individuals.svg?width=890"
+                  alt="Individuals"
+                />
               </a>
             </Box>
             <Box>
@@ -150,11 +157,13 @@ function Team({ members, contributors }: TeamProps) {
               <Wrap>
                 {new Array(9).fill("").map((_, idx) => (
                   <a
+                    // eslint-disable-next-line react/no-array-index-key
                     key={idx}
                     href={`https://opencollective.com/chakra-ui/organization/${idx}/website`}
                   >
                     <img
                       src={`https://opencollective.com/chakra-ui/organization/${idx}/avatar.svg?avatarHeight=130`}
+                      alt=""
                     />
                   </a>
                 ))}
@@ -176,16 +185,22 @@ function Team({ members, contributors }: TeamProps) {
   )
 }
 
-const sortMembers = (a, b) => {
+const sortMembers = (a: IMember, b: IMember) => {
   // segun comes first!
-  if (a.login === "segunadebayo") return -1
-  if (b.login === "segunadebayo") return 1
+  if (a.login === "segunadebayo") {
+    return -1
+  }
+  if (b.login === "segunadebayo") {
+    return 1
+  }
 
   // everything else is alphabetical by login
   return a.login.localeCompare(b.login, "en")
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(): Promise<
+  GetStaticPropsResult<TeamProps>
+> {
   /**
    * Read the profile/bio of each member from `.all-membersrc` file
    * to avoid overfetching from Github
@@ -201,14 +216,12 @@ export async function getStaticProps() {
   const { contributors } = JSON.parse(
     fs.readFileSync(contributorsRcPath, "utf-8"),
   )
-  const filters = ["christiannwamba"]
+  const filters = new Set(["christiannwamba"])
 
   return {
     props: {
-      members: members.filter((m) => !filters.includes(m.login)),
       contributors,
+      members: members.filter((m) => !filters.has(m.login)),
     },
   }
 }
-
-export default Team

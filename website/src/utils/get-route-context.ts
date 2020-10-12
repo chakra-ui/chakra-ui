@@ -1,4 +1,4 @@
-export interface RouteItem {
+export type RouteItem = {
   title: string
   path?: string
   open?: boolean
@@ -6,31 +6,31 @@ export interface RouteItem {
   routes?: RouteItem[]
 }
 
-export interface Routes {
+export type Routes = {
   routes: RouteItem[]
 }
 
-export interface Page {
+export type Page = {
   id: string
   html: string
   title: string
-  toc: any
+  toc: unknown
 }
 
-export interface Post {
+export type Post = {
   slug: string
   content: string
   title: string
   date: string
   author: string
-  toc: any
+  toc: unknown
   ogImage: {
     url: string
   }
   coverImage: string
 }
 
-export interface RouteContext {
+export type RouteContext = {
   parent?: RouteItem
   prevRoute?: RouteItem
   nextRoute?: RouteItem
@@ -39,11 +39,12 @@ export interface RouteContext {
 /**
  * Returns the siblings of a specific route (that is the previous and next routes).
  */
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export function getRouteContext(
   _route: RouteItem,
   routes: RouteItem[],
   ctx: RouteContext = {},
-) {
+): RouteContext {
   if (!_route) {
     return ctx
   }
@@ -51,18 +52,23 @@ export function getRouteContext(
   const { path } = _route
   const { parent } = ctx
 
-  for (let i = 0; i < routes.length; i += 1) {
-    const route = routes[i]
-
+  for (const route of routes) {
     if (route.routes) {
       ctx.parent = route
+      // eslint-disable-next-line no-param-reassign
       ctx = getRouteContext(_route, route.routes, ctx)
 
       // If the active route and the next route was found in nested routes, return it
-      if (ctx.nextRoute) return ctx
+      if (ctx.nextRoute) {
+        return ctx
+      }
     }
-    if (!route) continue
-    if (!route.path) continue
+    if (!route) {
+      continue
+    }
+    if (!route.path) {
+      continue
+    }
 
     if (ctx.route) {
       // const isNext = parent && i === 0

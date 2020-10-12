@@ -1,7 +1,6 @@
-import SEO from "components/seo"
-import React from "react"
+import { SEO } from "components/seo"
 
-const NotFoundPage = () => (
+const NotFoundPage = (): JSX.Element => (
   <>
     <SEO title="404: Not found" description="Page not found" />
     <h1>NOT FOUND</h1>
@@ -9,4 +8,5 @@ const NotFoundPage = () => (
   </>
 )
 
+// eslint-disable-next-line import/no-default-export
 export default NotFoundPage

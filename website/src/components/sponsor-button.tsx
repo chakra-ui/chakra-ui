@@ -1,9 +1,8 @@
-import React from "react"
-import { Box, Icon } from "@chakra-ui/core"
+import { Box, BoxProps, Icon } from "@chakra-ui/core"
+import { siteConfig } from "configs/site-config"
 import { FaHeart } from "react-icons/fa"
-import siteConfig from "configs/site-config"
 
-const SponsorButton = (props) => (
+export const SponsorButton = (props: BoxProps): JSX.Element => (
   <Box
     display={{ base: "none", md: "flex" }}
     alignItems="center"
@@ -39,5 +38,3 @@ const SponsorButton = (props) => (
     </Box>
   </Box>
 )
-
-export default SponsorButton

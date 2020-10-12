@@ -1,4 +1,3 @@
-import React from "react"
 import { Grid, Flex, Text } from "@chakra-ui/core"
 import * as icons from "@chakra-ui/icons"
 
@@ -9,15 +8,15 @@ const iconList = {
   ArrowForwardIcon: icons.ArrowForwardIcon,
   ArrowLeftIcon: icons.ArrowLeftIcon,
   ArrowRightIcon: icons.ArrowRightIcon,
-  ArrowUpIcon: icons.ArrowUpIcon,
   ArrowUpDownIcon: icons.ArrowUpDownIcon,
+  ArrowUpIcon: icons.ArrowUpIcon,
   AtSignIcon: icons.AtSignIcon,
   AttachmentIcon: icons.AttachmentIcon,
   BellIcon: icons.BellIcon,
   CalendarIcon: icons.CalendarIcon,
   ChatIcon: icons.ChatIcon,
-  CheckIcon: icons.CheckIcon,
   CheckCircleIcon: icons.CheckCircleIcon,
+  CheckIcon: icons.CheckIcon,
   ChevronDownIcon: icons.ChevronDownIcon,
   ChevronLeftIcon: icons.ChevronLeftIcon,
   ChevronRightIcon: icons.ChevronRightIcon,
@@ -42,10 +41,10 @@ const iconList = {
   PlusSquareIcon: icons.PlusSquareIcon,
   QuestionIcon: icons.QuestionIcon,
   QuestionOutlineIcon: icons.QuestionOutlineIcon,
-  RepeatIcon: icons.RepeatIcon,
   RepeatClockIcon: icons.RepeatClockIcon,
-  SearchIcon: icons.SearchIcon,
+  RepeatIcon: icons.RepeatIcon,
   Search2Icon: icons.Search2Icon,
+  SearchIcon: icons.SearchIcon,
   SettingsIcon: icons.SettingsIcon,
   SmallAddIcon: icons.SmallAddIcon,
   SmallCloseIcon: icons.SmallCloseIcon,
@@ -63,15 +62,14 @@ const iconList = {
   WarningTwoIcon: icons.WarningTwoIcon,
 }
 
-const IconsList = () => {
+const IconsList = (): JSX.Element => {
   return (
     <Grid
       mt={7}
       gap={5}
       templateColumns="repeat( auto-fit, minmax(150px, 1fr) )"
     >
-      {Object.keys(iconList).map((key, i) => {
-        const Icon = iconList[key]
+      {Object.entries(iconList).map(([key, Icon], i) => {
         return (
           <Flex
             p={3}
@@ -93,4 +91,5 @@ const IconsList = () => {
   )
 }
 
+// eslint-disable-next-line import/no-default-export
 export default IconsList

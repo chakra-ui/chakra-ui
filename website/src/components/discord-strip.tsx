@@ -1,9 +1,9 @@
 import { Box, BoxProps, chakra, Flex, Heading, Text } from "@chakra-ui/core"
-import * as React from "react"
 import { FaDiscord } from "react-icons/fa"
-import Container from "./container"
 
-function DiscordStrip(props: BoxProps) {
+import { Container } from "./container"
+
+export function DiscordStrip(props: BoxProps): JSX.Element {
   return (
     <Box bg="#7289DA" {...props}>
       <Container py="8">
@@ -51,5 +51,3 @@ function DiscordStrip(props: BoxProps) {
     </Box>
   )
 }
-
-export default DiscordStrip

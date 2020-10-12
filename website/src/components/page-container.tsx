@@ -1,23 +1,29 @@
-import * as React from "react"
 import { Box, Flex, chakra } from "@chakra-ui/core"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
-import EditPageLink from "components/edit-page-button"
-import Footer from "components/footer"
-import Header from "components/header"
-import Container from "components/container"
-import SEO from "components/seo"
+import { Container } from "components/container"
+import { EditPageLink } from "components/edit-page-button"
+import { Footer } from "components/footer"
+import { Header } from "components/header"
+import { SEO } from "components/seo"
+import type { ReactNode } from "react"
 
-const PageContainer = ({
+type PageContainerProps = {
+  frontmatter: {
+    title: string
+    description: string
+    editUrl: string
+  }
+  children: React.ReactNode
+  sidebar?: ReactNode
+  pagination?: ReactNode
+}
+
+export function PageContainer({
   frontmatter,
   children,
   sidebar,
   pagination,
-}: {
-  frontmatter: any
-  children: React.ReactNode
-  sidebar?: any
-  pagination?: any
-}) => {
+}: PageContainerProps): JSX.Element {
   const { title, description, editUrl } = frontmatter
 
   return (
@@ -45,5 +51,3 @@ const PageContainer = ({
     </>
   )
 }
-
-export default PageContainer

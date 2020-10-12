@@ -1,12 +1,16 @@
-import { Box, chakra, Stack } from "@chakra-ui/core"
+import { Box, BoxProps, chakra, Stack } from "@chakra-ui/core"
 import { useRouter } from "next/router"
-import * as React from "react"
-import SidebarCategory from "./sidebar-category"
-import SidebarLink from "./sidebar-link"
+import { useRef, Fragment } from "react"
+import { RouteItem } from "utils/get-route-context"
 
-const Sidebar = ({ routes }: any) => {
+import { SidebarCategory } from "./sidebar-category"
+import { SidebarLink } from "./sidebar-link"
+
+type SidebarProps = { routes?: RouteItem[] }
+
+export const Sidebar = ({ routes = [] }: SidebarProps): JSX.Element => {
   const { pathname } = useRouter()
-  const ref = React.useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement | null>(null)
 
   return (
     <Box
@@ -25,9 +29,9 @@ const Sidebar = ({ routes }: any) => {
       display={{ base: "none", md: "block" }}
     >
       {/* <Search /> */}
-      {routes.map((c1, idx) => {
+      {routes.map((c1) => {
         return (
-          <React.Fragment key={idx}>
+          <Fragment key={c1.title}>
             {c1.heading && (
               <chakra.h4 fontSize="md" fontWeight="bold" my="1.25rem">
                 {c1.title}
@@ -64,11 +68,9 @@ const Sidebar = ({ routes }: any) => {
                 </SidebarCategory>
               )
             })}
-          </React.Fragment>
+          </Fragment>
         )
       })}
     </Box>
   )
 }
-
-export default Sidebar

@@ -1,8 +1,7 @@
-import React from "react"
 import { Box, Icon, Text, Stack, Link, chakra } from "@chakra-ui/core"
+import { DiGithubBadge } from "react-icons/di"
 import { IoLogoTwitter, IoLogoLinkedin } from "react-icons/io"
 import { MdEmail } from "react-icons/md"
-import { DiGithubBadge } from "react-icons/di"
 
 type FooterLinkProps = {
   icon?: React.ElementType
@@ -18,24 +17,24 @@ const FooterLink: React.FC<FooterLinkProps> = ({ icon, href, label }) => (
 
 const links = [
   {
+    href: "https://github.com/segunadebayo",
     icon: DiGithubBadge,
     label: "GitHub",
-    href: "https://github.com/segunadebayo",
   },
   {
+    href: "https://twitter.com/thesegunadebayo",
     icon: IoLogoTwitter,
     label: "Twitter",
-    href: "https://twitter.com/thesegunadebayo",
   },
   {
+    href: "https://linkedin.com/in/thesegunadebayo/",
     icon: IoLogoLinkedin,
     label: "LinkedIn",
-    href: "https://linkedin.com/in/thesegunadebayo/",
   },
   {
+    href: "mailto:sage@adebayosegun.com",
     icon: MdEmail,
     label: "Email",
-    href: "mailto:sage@adebayosegun.com",
   },
 ]
 
@@ -49,7 +48,7 @@ const NigeriaFlag = (props) => (
     {...props}
   >
     <g>
-      <rect x="16" y="6" fill="#E6E6E6" width="16" height="36"></rect>{" "}
+      <rect x="16" y="6" fill="#E6E6E6" width="16" height="36" />{" "}
       <path
         fill="#078754"
         d="M48,40c0,1.105-0.895,2-2,2H32V6h14c1.105,0,2,0.895,2,2V40z"
@@ -62,21 +61,22 @@ const NigeriaFlag = (props) => (
   </chakra.svg>
 )
 
-export const Footer = () => (
-  <Box as="footer" mt={12} textAlign="center">
-    <Text fontSize="sm">
-      <span>
-        Proudly made in
-        <NigeriaFlag />
-      </span>
-      <span>by Segun Adebayo</span>
-    </Text>
-    <Stack mt={4} direction="row" spacing="12px" justify="center">
-      {links.map((link) => (
-        <FooterLink key={link.href} {...link} />
-      ))}
-    </Stack>
-  </Box>
-)
-
-export default Footer
+// eslint-disable-next-line import/no-default-export
+export function Footer(): JSX.Element {
+  return (
+    <Box as="footer" mt={12} textAlign="center">
+      <Text fontSize="sm">
+        <span>
+          Proudly made in
+          <NigeriaFlag />
+        </span>
+        <span>by Segun Adebayo</span>
+      </Text>
+      <Stack mt={4} direction="row" spacing="12px" justify="center">
+        {links.map((link) => (
+          <FooterLink key={link.href} {...link} />
+        ))}
+      </Stack>
+    </Box>
+  )
+}

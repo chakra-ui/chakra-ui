@@ -1,379 +1,377 @@
-const sidebar = {
+export const docsSidebar = {
   routes: [
     {
-      title: "Documentation",
       heading: true,
       routes: [
         {
-          title: "Getting Started",
           path: "/docs/getting-started",
+          title: "Getting Started",
         },
         {
-          title: "Upgrade to v1",
           path: "/docs/migration",
+          title: "Upgrade to v1",
         },
         {
-          title: "Design Principles",
           path: "/docs/principles",
+          title: "Design Principles",
         },
         {
-          title: "Comparison",
           path: "/docs/comparison",
+          title: "Comparison",
         },
         {
-          title: "Features",
-          path: "/docs/features",
           open: true,
+          path: "/docs/features",
           routes: [
             {
-              title: "Style Props",
               path: "/docs/features/style-props",
+              title: "Style Props",
             },
             {
-              title: "Color Mode",
               path: "/docs/features/color-mode",
+              title: "Color Mode",
             },
             {
-              title: "Responsive Styles",
               path: "/docs/features/responsive-styles",
+              title: "Responsive Styles",
             },
             {
-              title: "Global Styles",
               path: "/docs/features/global-styles",
+              title: "Global Styles",
             },
             {
-              title: "Text & Layer Styles",
               path: "/docs/features/text-and-layer-styles",
+              title: "Text & Layer Styles",
             },
           ],
+          title: "Features",
         },
 
         {
-          title: "Theming",
+          open: true,
           path: "/docs/theming",
-          open: true,
           routes: [
             {
-              title: "Default Theme",
               path: "/docs/theming/theme",
+              title: "Default Theme",
             },
             {
-              title: "Customize",
               path: "/docs/theming/customize-theme",
+              title: "Customize",
             },
             {
-              title: "Component Style",
               path: "/docs/theming/component-style",
+              title: "Component Style",
             },
             {
-              title: "Advanced",
               path: "/docs/theming/advanced",
+              title: "Advanced",
             },
           ],
+          title: "Theming",
         },
         {
-          title: "Layout",
+          open: true,
           path: "/docs/layout",
-          open: true,
           routes: [
             {
-              title: "Aspect Ratio",
               path: "/docs/layout/aspect-ratio",
+              title: "Aspect Ratio",
             },
             {
-              title: "Box",
               path: "/docs/layout/box",
+              title: "Box",
             },
             {
-              title: "Center",
               path: "/docs/layout/center",
+              title: "Center",
             },
             {
-              title: "Container",
               path: "/docs/layout/container",
+              title: "Container",
             },
             {
-              title: "Flex",
               path: "/docs/layout/flex",
+              title: "Flex",
             },
             {
-              title: "Grid",
               path: "/docs/layout/grid",
+              title: "Grid",
             },
             {
-              title: "SimpleGrid",
               path: "/docs/layout/simple-grid",
+              title: "SimpleGrid",
             },
             {
-              title: "Stack",
               path: "/docs/layout/stack",
+              title: "Stack",
             },
             {
-              title: "Wrap",
               path: "/docs/layout/wrap",
+              title: "Wrap",
             },
           ],
+          title: "Layout",
         },
         {
-          title: "Form Elements",
+          open: true,
           path: "/docs/form",
-          open: true,
           routes: [
             {
-              title: "Button",
               path: "/docs/form/button",
+              title: "Button",
             },
             {
-              title: "Checkbox",
               path: "/docs/form/checkbox",
+              title: "Checkbox",
             },
             {
-              title: "Editable",
               path: "/docs/form/editable",
+              title: "Editable",
             },
             {
-              title: "Form Control",
               path: "/docs/form/form-control",
+              title: "Form Control",
             },
             {
-              title: "Icon Button",
               path: "/docs/form/icon-button",
+              title: "Icon Button",
             },
             {
-              title: "Input",
               path: "/docs/form/input",
+              title: "Input",
             },
             {
-              title: "Number Input",
               path: "/docs/form/number-input",
+              title: "Number Input",
             },
             {
-              title: "Pin Input	",
               path: "/docs/form/pin-input",
+              title: "Pin Input	",
             },
             {
-              title: "Radio",
               path: "/docs/form/radio",
+              title: "Radio",
             },
             {
-              title: "Select",
               path: "/docs/form/select",
+              title: "Select",
             },
             {
-              title: "Slider",
               path: "/docs/form/slider",
+              title: "Slider",
             },
             {
-              title: "Switch",
               path: "/docs/form/switch",
+              title: "Switch",
             },
             {
-              title: "Textarea",
               path: "/docs/form/textarea",
+              title: "Textarea",
             },
           ],
+          title: "Form Elements",
         },
         {
-          title: "Hooks",
+          open: true,
           path: "/docs/hooks",
-          open: true,
           routes: [
             {
-              title: "useBreakpointValue",
               path: "/docs/hooks/use-breakpoint-value",
+              title: "useBreakpointValue",
             },
             {
-              title: "useClipboard",
               path: "/docs/hooks/use-clipboard",
+              title: "useClipboard",
             },
             {
-              title: "useControllable",
               path: "/docs/hooks/use-controllable",
+              title: "useControllable",
             },
             {
-              title: "useDisclosure",
               path: "/docs/hooks/use-disclosure",
+              title: "useDisclosure",
             },
             {
-              title: "useMediaQuery",
               path: "/docs/hooks/use-media-query",
+              title: "useMediaQuery",
             },
             {
-              title: "useTheme",
               path: "/docs/hooks/use-theme",
+              title: "useTheme",
             },
             {
-              title: "usePrefersReducedMotion",
               path: "/docs/hooks/use-prefers-reduced-motion",
+              title: "usePrefersReducedMotion",
             },
           ],
+          title: "Hooks",
         },
         {
-          title: "Data Display",
+          open: true,
           path: "/docs/data-display",
-          open: true,
           routes: [
             {
-              title: "Avatar",
               path: "/docs/data-display/avatar",
+              title: "Avatar",
             },
             {
-              title: "Badge",
               path: "/docs/data-display/badge",
+              title: "Badge",
             },
             {
-              title: "Code",
               path: "/docs/data-display/code",
+              title: "Code",
             },
             {
-              title: "Divider",
               path: "/docs/data-display/divider",
+              title: "Divider",
             },
             {
-              title: "Image",
               path: "/docs/data-display/image",
+              title: "Image",
             },
             {
-              title: "Kbd",
               path: "/docs/data-display/kbd",
+              title: "Kbd",
             },
             {
-              title: "List",
               path: "/docs/data-display/list",
+              title: "List",
             },
             {
-              title: "Stat",
               path: "/docs/data-display/stat",
+              title: "Stat",
             },
             {
-              title: "Tag",
               path: "/docs/data-display/tag",
+              title: "Tag",
             },
           ],
+          title: "Data Display",
         },
         {
-          title: "Feedback",
+          open: true,
           path: "/docs/feedback",
-          open: true,
           routes: [
             {
-              title: "Alert",
               path: "/docs/feedback/alert",
+              title: "Alert",
             },
             {
-              title: "Circular Progress",
               path: "/docs/feedback/circular-progress",
+              title: "Circular Progress",
             },
             {
-              title: "Progress",
               path: "/docs/feedback/progress",
+              title: "Progress",
             },
             {
-              title: "Skeleton",
               path: "/docs/feedback/skeleton",
+              title: "Skeleton",
             },
             {
-              title: "Spinner",
               path: "/docs/feedback/spinner",
+              title: "Spinner",
             },
             {
-              title: "Toast",
               path: "/docs/feedback/toast",
+              title: "Toast",
             },
           ],
+          title: "Feedback",
         },
         {
-          title: "Typography",
+          open: true,
           path: "/docs/typography",
-          open: true,
           routes: [
             {
-              title: "Text",
               path: "/docs/typography/text",
+              title: "Text",
             },
             {
-              title: "Heading",
               path: "/docs/typography/heading",
+              title: "Heading",
             },
           ],
+          title: "Typography",
         },
         {
-          title: "Overlay Elements",
+          open: true,
           path: "/docs/overlay",
-          open: true,
           routes: [
             {
-              title: "Alert Dialog",
               path: "/docs/overlay/alert-dialog",
+              title: "Alert Dialog",
             },
             {
-              title: "Drawer",
               path: "/docs/overlay/drawer",
+              title: "Drawer",
             },
             {
-              title: "Menu",
               path: "/docs/overlay/menu",
+              title: "Menu",
             },
             {
-              title: "Modal",
               path: "/docs/overlay/modal",
+              title: "Modal",
             },
             {
-              title: "Popover",
               path: "/docs/overlay/popover",
+              title: "Popover",
             },
             {
-              title: "Tooltip",
               path: "/docs/overlay/tooltip",
+              title: "Tooltip",
             },
           ],
+          title: "Overlay Elements",
         },
         {
-          title: "Other Components",
-          path: "/docs/components",
           open: true,
+          path: "/docs/components",
           routes: [
             {
-              title: "Accordion",
               path: "/docs/components/accordion",
+              title: "Accordion",
             },
             {
-              title: "Breadcrumb",
               path: "/docs/components/breadcrumb",
+              title: "Breadcrumb",
             },
             {
-              title: "Close Button",
               path: "/docs/components/close-button",
+              title: "Close Button",
             },
             {
-              title: "Collapse",
               path: "/docs/components/collapse",
+              title: "Collapse",
             },
             {
-              title: "Icon",
               path: "/docs/components/icon",
+              title: "Icon",
             },
             {
-              title: "Link",
               path: "/docs/components/link",
+              title: "Link",
             },
             {
-              title: "Tabs",
               path: "/docs/components/tabs",
+              title: "Tabs",
             },
             {
-              title: "Transitions",
               path: "/docs/components/transitions",
+              title: "Transitions",
             },
             {
-              title: "Visually Hidden",
               path: "/docs/components/visually-hidden",
+              title: "Visually Hidden",
             },
           ],
+          title: "Other Components",
         },
       ],
+      title: "Documentation",
     },
   ],
 }
-
-export default sidebar

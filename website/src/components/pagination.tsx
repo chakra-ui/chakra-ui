@@ -1,9 +1,22 @@
-import { Link, SimpleGrid, Text } from "@chakra-ui/core"
+import {
+  Link,
+  SimpleGrid,
+  SimpleGridProps,
+  Text,
+  LinkProps,
+} from "@chakra-ui/core"
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons"
 import NextLink from "next/link"
-import React from "react"
+import type { ReactNode } from "react"
+import { RouteItem } from "utils/get-route-context"
 
-export const PaginationLink = (props) => {
+type PaginationLinkProps = LinkProps & {
+  href: string
+  label: string
+  children: ReactNode
+}
+
+export const PaginationLink = (props: PaginationLinkProps): JSX.Element => {
   const { label, href, children, ...rest } = props
 
   return (
@@ -27,7 +40,16 @@ export const PaginationLink = (props) => {
   )
 }
 
-export const Pagination = ({ previous, next, ...rest }) => {
+type PaginationProps = SimpleGridProps & {
+  previous: RouteItem
+  next?: RouteItem
+}
+
+export const Pagination = ({
+  previous,
+  next,
+  ...rest
+}: PaginationProps): JSX.Element => {
   return (
     <SimpleGrid
       as="nav"
@@ -66,5 +88,3 @@ export const Pagination = ({ previous, next, ...rest }) => {
     </SimpleGrid>
   )
 }
-
-export default Pagination

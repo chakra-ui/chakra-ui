@@ -7,18 +7,17 @@ import {
   Box,
   useDisclosure,
 } from "@chakra-ui/core"
-import * as React from "react"
+import { useRouteChanged } from "hooks/use-route-changed"
 import { MdDehaze } from "react-icons/md"
-import useRouteChanged from "hooks/use-route-changed"
 
-const MobileNav = () => {
+export const MobileNav = (): JSX.Element => {
   const { isOpen, onToggle, onClose } = useDisclosure()
   useRouteChanged(onClose)
 
   return (
     <>
       <IconButton
-        display={{ sm: "inline-flex", md: "none" }}
+        display={{ md: "none", sm: "inline-flex" }}
         aria-label="Open menu"
         fontSize="20px"
         variant="ghost"
@@ -37,5 +36,3 @@ const MobileNav = () => {
     </>
   )
 }
-
-export default MobileNav

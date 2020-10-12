@@ -1,9 +1,23 @@
-import * as React from "react"
-import NavLink from "./header-nav-link"
-import { Stack, Box, Text, Icon, useColorModeValue } from "@chakra-ui/core"
+import {
+  Stack,
+  Box,
+  Text,
+  Icon,
+  useColorModeValue,
+  BoxProps,
+} from "@chakra-ui/core"
+import { IconType } from "react-icons"
 import { FiUsers, FiBookOpen, FiFileText } from "react-icons/fi"
 
-export function BottomNavItem(props) {
+import NavLink from "./header-nav-link"
+
+type BottomNavItemProps = BoxProps & {
+  href: string
+  label: string
+  icon: IconType
+}
+
+export function BottomNavItem(props: BottomNavItemProps): JSX.Element {
   const { href, label, icon, ...rest } = props
   return (
     <Box {...rest}>
@@ -22,7 +36,7 @@ export function BottomNavItem(props) {
   )
 }
 
-const BottomNav = () => {
+export function BottomNav(): JSX.Element {
   const bg = useColorModeValue("white", "gray.800")
   return (
     <Stack
@@ -54,5 +68,3 @@ const BottomNav = () => {
     </Stack>
   )
 }
-
-export default BottomNav

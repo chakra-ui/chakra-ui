@@ -7,32 +7,41 @@ import {
   useClipboard,
 } from "@chakra-ui/core"
 import theme from "prism-react-renderer/themes/nightOwl"
-import React, { useState } from "react"
-import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live"
-import scope from "./react-live-scope"
+import { useState } from "react"
+import type { CSSProperties } from "react"
+import {
+  LiveEditor,
+  LiveError,
+  LivePreview,
+  LiveProvider,
+  LiveProviderProps,
+} from "react-live"
 
-export const liveEditorStyle: React.CSSProperties = {
+import { ReactLiveScope } from "./react-live-scope"
+
+export const liveEditorStyle: CSSProperties = {
+  fontFamily: "SF Mono, Menlo, monospace",
   fontSize: 14,
   overflowX: "auto",
-  fontFamily: "SF Mono, Menlo, monospace",
 }
 
-export const liveErrorStyle: React.CSSProperties = {
+export const liveErrorStyle: CSSProperties = {
+  backgroundColor: "red",
+  color: "white",
   fontFamily: "SF Mono, Menlo, monospace",
   fontSize: 14,
-  padding: "1em",
   overflowX: "auto",
-  color: "white",
-  backgroundColor: "red",
+  padding: "1em",
 }
 
 const LiveCodePreview = chakra(LivePreview, {
   baseStyle: {
+    borderRadius: "12px",
+    borderWidth: 1,
     fontFamily: "body",
     mt: 5,
     p: 3,
-    borderWidth: 1,
-    borderRadius: "12px",
+    zIndex: 1,
   },
 })
 
@@ -51,56 +60,74 @@ const CopyButton = (props: ButtonProps) => (
   />
 )
 
-const EditableNotice = (props: BoxProps) => {
-  return (
-    <Box
-      position="absolute"
-      width="full"
-      top="-1.25em"
-      roundedTop="8px"
-      bg="#011627"
-      py="2"
-      zIndex="0"
-      letterSpacing="wide"
-      color="gray.400"
-      fontSize="xs"
-      fontWeight="semibold"
-      textAlign="center"
-      textTransform="uppercase"
-      pointerEvents="none"
-      {...props}
-    >
-      Editable Example
-    </Box>
-  )
-}
+const EditableNotice = (props: BoxProps) => (
+  <Box
+    position="absolute"
+    width="full"
+    top="-1.25em"
+    roundedTop="8px"
+    bg="#011627"
+    py="2"
+    zIndex="0"
+    letterSpacing="wide"
+    color="gray.400"
+    fontSize="xs"
+    fontWeight="semibold"
+    textAlign="center"
+    textTransform="uppercase"
+    pointerEvents="none"
+    {...props}
+  >
+    Editable Example
+  </Box>
+)
 
-const CodeContainer = (props) => (
+const CodeContainer = (props: BoxProps) => (
   <Box padding="5" rounded="8px" my="8" bg="#011627" {...props} />
 )
 
-function CodeBlock(props) {
-  const { className, live = true, manual, render, children, ...rest } = props
+type CodeBlockProps = LiveProviderProps & {
+  live?: string
+  render?: Function
+  manual?: LiveProviderProps["noInline"]
+  children: string
+  mountStylesheet?: boolean
+}
+
+export function CodeBlock(props: CodeBlockProps): JSX.Element {
+  const {
+    className,
+    live = true,
+    manual,
+    render,
+    children,
+    mountStylesheet = false,
+    ...rest
+  } = props
   const [editorCode, setEditorCode] = useState(children.trim())
 
-  const language = className && className.replace(/language-/, "")
+  const language = className?.replace(
+    /language-/u,
+    "",
+  ) as LiveProviderProps["language"]
   const { hasCopied, onCopy } = useClipboard(editorCode)
 
-  const liveProviderProps = {
-    theme,
-    language,
+  const liveProviderProps: LiveProviderProps = {
     code: editorCode,
-    scope,
+    language,
     noInline: manual,
+    scope: ReactLiveScope,
+    theme,
     ...rest,
   }
 
-  const onChange = (newCode) => setEditorCode(newCode.trim())
+  const onChange = (newCode: string) => setEditorCode(newCode.trim())
 
-  if (language === "jsx" && live === true) {
+  if (language === "jsx" && live !== "false") {
     return (
+      // @ts-expect-error old typings of LiveProvider
       <LiveProvider {...liveProviderProps}>
-        <LiveCodePreview zIndex="1" />
+        <LiveCodePreview />
         <Box position="relative" zIndex="0">
           <CodeContainer>
             <LiveEditor onChange={onChange} style={liveEditorStyle} />
@@ -118,6 +145,7 @@ function CodeBlock(props) {
   if (render) {
     return (
       <div style={{ marginTop: 32 }}>
+        {/* @ts-expect-error old typings of LiveProvider */}
         <LiveProvider {...liveProviderProps}>
           <LiveCodePreview />
         </LiveProvider>
@@ -126,6 +154,7 @@ function CodeBlock(props) {
   }
 
   return (
+    // @ts-expect-error old typings of LiveProvider
     <LiveProvider disabled {...liveProviderProps}>
       <CodeContainer>
         <LiveEditor style={liveEditorStyle} />
@@ -133,9 +162,3 @@ function CodeBlock(props) {
     </LiveProvider>
   )
 }
-
-CodeBlock.defaultProps = {
-  mountStylesheet: false,
-}
-
-export default CodeBlock
