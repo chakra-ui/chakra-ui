@@ -349,6 +349,7 @@ Thanks goes to these wonderful people
   </tr>
   <tr>
     <td align="center"><a href="http://www.strajk.me"><img src="https://avatars3.githubusercontent.com/u/697301?v=4" width="64px;" alt=""/><br /><sub><b>Pavel 'Strajk' Dolecek</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=Strajk" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/keshav-bohra-17032753/"><img src="https://avatars3.githubusercontent.com/u/44581314?v=4" width="64px;" alt=""/><br /><sub><b>Keshav Bohra</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=keshav-bohr" title="Documentation">📖</a></td>
   </tr>
 </table>
 
