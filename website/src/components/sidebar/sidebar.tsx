@@ -1,4 +1,4 @@
-import { Box, BoxProps, chakra, Stack } from "@chakra-ui/core"
+import { Box, chakra, Stack } from "@chakra-ui/core"
 import { useRouter } from "next/router"
 import { useRef, Fragment } from "react"
 import { RouteItem } from "utils/get-route-context"

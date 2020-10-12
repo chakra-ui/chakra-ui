@@ -20,11 +20,7 @@ const DocsLayout = ({ children }) => {
     <MDXProvider components={MDXComponents}>
       <Header />
       <Box>
-        <Sidebar
-          display={["none", null, "block"]}
-          maxWidth="18rem"
-          width="full"
-        />
+        <Sidebar />
         <Box pl={[0, null, "18rem"]} py={2} mb={20}>
           <SkipNavContent />
           <Main>{children}</Main>

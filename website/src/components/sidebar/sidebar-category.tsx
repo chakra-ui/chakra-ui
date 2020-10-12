@@ -49,7 +49,7 @@ export function SidebarCategory(props: SidebarCategoryProps): JSX.Element {
     if (toggle && shouldScroll && ref.current) {
       const contentEl = contentRef.current
 
-      if (toggle && contentEl) {
+      if (contentEl) {
         // 10 is added for better margin
         const height =
           ref.current.offsetTop - (isMobile ? 10 : contentEl.offsetTop)
