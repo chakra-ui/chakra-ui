@@ -1,11 +1,61 @@
-import { useTimeout } from "@chakra-ui/hooks"
-import { Transition } from "@chakra-ui/transition"
+import { useTimeout, useUpdateEffect } from "@chakra-ui/hooks"
 import { isFunction, __DEV__ } from "@chakra-ui/utils"
 import ReachAlert from "@reach/alert"
-import { useRect } from "@reach/rect"
+import { motion, useIsPresent, Variants } from "framer-motion"
 import * as React from "react"
 import { ToastOptions } from "./toast.types"
 import { getToastStyle } from "./toast.utils"
+
+/**
+ * @todo After Gerrit refactors this implementation,
+ * allow users to change the toast transition direction from
+ * a `ToastProvider` component.
+ *
+ * Here's an API example:
+ *
+ * ```jsx
+ * <ToastProvider
+ *   motion={customVariants}
+ *   component={CustomToastComponent}
+ *   autoCloseTimeout={3000}
+ *   toastSpacing={32} // this will control the `margin` value applied
+ * >
+ * </ToastProvider>
+ * ```
+ */
+const toastMotionVariants: Variants = {
+  initial: (props) => {
+    const { position } = props
+
+    const dir = ["top", "bottom"].includes(position) ? "y" : "x"
+
+    let factor = ["top-right", "bottom-right"].includes(position) ? 1 : -1
+    if (position === "bottom") factor = 1
+
+    return {
+      opacity: 0,
+      [dir]: factor * 24,
+    }
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+      ease: [0.4, 0, 0.2, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.85,
+    transition: {
+      duration: 0.2,
+      ease: [0.4, 0, 1, 1],
+    },
+  },
+}
 
 export interface ToastProps extends ToastOptions {}
 
@@ -20,108 +70,62 @@ export const Toast: React.FC<ToastProps> = (props) => {
     duration = 5000,
   } = props
 
-  const ref = React.useRef<HTMLDivElement>(null)
   const [delay, setDelay] = React.useState(duration)
-  const [show, setShow] = React.useState(true)
 
-  React.useEffect(() => {
+  const isPresent = useIsPresent()
+
+  useUpdateEffect(() => {
+    if (!isPresent) {
+      onCloseComplete?.()
+    }
+  }, [isPresent])
+
+  useUpdateEffect(() => {
     setDelay(duration)
   }, [duration])
 
-  const onMouseEnter = () => {
-    setDelay(null)
-  }
-
-  const onMouseLeave = () => {
-    setDelay(duration)
-  }
-
-  const onExited = () => {
-    if (!show) {
-      onRequestRemove()
-    }
-    onCloseComplete?.()
-  }
+  const onMouseEnter = () => setDelay(null)
+  const onMouseLeave = () => setDelay(duration)
 
   const close = () => {
-    setShow(false)
+    if (isPresent) onRequestRemove()
   }
 
   React.useEffect(() => {
-    if (requestClose) {
-      setShow(false)
+    if (isPresent && requestClose) {
+      onRequestRemove()
     }
-  }, [requestClose])
+  }, [isPresent, requestClose])
 
   useTimeout(close, delay)
 
   const style = React.useMemo(() => getToastStyle(position), [position])
 
-  const rect = useRect(ref)
-  const height = rect?.height ?? 0
-
-  const isTop = position.includes("top")
-
-  /**
-   * @todo
-   *
-   * Make it possible to configure this toast transition
-   * from `theme.transitions.toast`
-   */
-  const y = isTop ? `-${height}px` : 0
-
-  const styles = {
-    init: {
-      opacity: 0,
-      height: 0,
-      transform: `translateY(${y}) scale(1)`,
-    },
-    entered: {
-      opacity: 1,
-      height,
-      transform: `translateY(0) scale(1)`,
-    },
-    exiting: {
-      opacity: 0,
-      height: 0,
-      transform: `translateY(0) scale(0.9)`,
-    },
-  }
-
   return (
-    <Transition
-      styles={styles}
-      /**
-       * We use the `easeInOutQuint` from https://easings.net/en#
-       */
-      transition="all 0.3s cubic-bezier(0.23, 1, 0.32, 1)"
-      in={show}
-      timeout={{ enter: 0, exit: 150 }}
-      onExited={onExited}
+    <motion.li
+      layout
+      className="chakra-toast"
+      variants={toastMotionVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      onHoverStart={onMouseEnter}
+      onHoverEnd={onMouseLeave}
+      custom={{ position }}
+      style={style}
     >
-      {(styles) => (
-        <div
-          data-toast=""
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
-          style={{
-            willChange: "transform, height, opacity",
-            ...style,
-            ...styles,
-          }}
-        >
-          <div
-            ref={ref}
-            data-toast-inner=""
-            style={{ pointerEvents: "auto", maxWidth: 560, minWidth: 300 }}
-          >
-            <ReachAlert>
-              {isFunction(message) ? message({ id, onClose: close }) : message}
-            </ReachAlert>
-          </div>
-        </div>
-      )}
-    </Transition>
+      <ReachAlert
+        className="chakra-toast__inner"
+        style={{
+          pointerEvents: "auto",
+          maxWidth: 560,
+          minWidth: 300,
+          margin: "0.5rem",
+        }}
+      >
+        {isFunction(message) ? message({ id, onClose: close }) : message}
+      </ReachAlert>
+    </motion.li>
   )
 }
 
