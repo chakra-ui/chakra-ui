@@ -20,7 +20,7 @@ export default {
 export const Basic = () => <Skeleton h="20px" />
 
 export const Text = () => (
-  <SkeletonText padding="20px" borderWidth="1px" borderRadius="lg" />
+  <SkeletonText padding="20px" borderWidth="1px" borderRadius="lg" noOfLines={[3, 4, 5, 6, 7]} />
 )
 
 export const AsContainer = () => (
@@ -79,10 +79,13 @@ export const WithIsLoaded = () => {
       <chakra.div h="100px" borderWidth="1px">
         Content
       </chakra.div>
-      <Skeleton w="100px" isLoaded={hasLoaded}>
+      <Skeleton w="100px" isLoaded={hasLoaded} mt={2}>
         <span>Chakra ui is cool</span>
       </Skeleton>
-      <chakra.div h="100px" borderWidth="1px">
+      <SkeletonText isLoaded={hasLoaded} mt={2}>
+        <p>Chakra ui is cool</p>
+      </SkeletonText>
+      <chakra.div h="100px" borderWidth="1px" mt={2}>
         Content
       </chakra.div>
     </chakra.div>

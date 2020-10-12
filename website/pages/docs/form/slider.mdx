@@ -77,11 +77,11 @@ customize its styles.
 </Slider>
 ```
 
-### Getting value after slide in done
+### Getting the final value when dragging the slider
 
-Added support for the `onChangeEnd` prop. Dragging the slider can trigger lots
-of updates and user might only be interested in the final result after sliding
-is complete.
+Dragging the slider can trigger lots of updates and the user might only 
+be interested in the final result after sliding is complete. You can use 
+`onChangeEnd` for this. 
 
 ```jsx live=false
 <Slider onChangeEnd={(val) => console.log(val)}>
@@ -92,6 +92,20 @@ is complete.
 </Slider>
 ```
 
+### Configure thumb focus with `focusThumbOnChange`
+
+By default `SliderThumb` will receive focus whenever `value` changes. You can 
+opt-out of this behavior by setting `focusThumbOnChange=false`.  This is 
+normally used with a "controlled" slider value.
+
+```jsx live=false
+<Slider value={value} focusThumbOnChange={false}>
+  <SliderTrack>
+    <SliderFilledTrack />
+  </SliderTrack>
+  <SliderThumb />
+</Slider>
+```
 ### useSlider
 
 We've exported the `useSlider` hook to help users manage and build custom slider

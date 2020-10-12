@@ -22,7 +22,7 @@ export function hasFocusWithin(element: Element) {
   return element.contains(document.activeElement)
 }
 
-export function isHTMLElement(element: Element): element is HTMLElement {
+export function isHTMLElement(element: any): element is HTMLElement {
   return element instanceof HTMLElement
 }
 
@@ -68,9 +68,12 @@ export function isTabbable(element: Element) {
   )
 }
 
-const isActiveElement = (element: Element) => document.activeElement === element
+const isActiveElement = (element: FocusableElement) =>
+  document.activeElement === (element as any)
 
-function isInputElement(element: HTMLElement): element is HTMLInputElement {
+function isInputElement(
+  element: FocusableElement,
+): element is HTMLInputElement {
   return (
     isHTMLElement(element) &&
     element.tagName.toLowerCase() === "input" &&
@@ -78,11 +81,15 @@ function isInputElement(element: HTMLElement): element is HTMLInputElement {
   )
 }
 
+export interface FocusableElement {
+  focus(options?: FocusOptions): void
+}
+
 interface FocusProps extends FocusOptions {
   isActive?: typeof isActiveElement
 }
 
-export function focus(element: HTMLElement, options: FocusProps = {}) {
+export function focus(element: FocusableElement, options: FocusProps = {}) {
   const { isActive = isActiveElement, preventScroll } = options
 
   if (isActive(element)) return -1

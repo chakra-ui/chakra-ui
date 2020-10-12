@@ -16,31 +16,85 @@ afterEach(() => {
 })
 
 describe("with object", () => {
-  const values = { base: "base", sm: "sm", md: "md", lg: "lg", xl: "xl" }
+  const values = {
+    base: "base",
+    sm: "sm",
+    md: "md",
+    lg: "lg",
+    xl: "xl",
+    customBreakpoint: "customBreakpoint",
+  }
 
   test("uses base value if smaller than sm", () => {
     renderWithQuery(values, queries.base)
-    expect(screen.getByText("base")).toBeInTheDocument()
+
+    Object.keys(values).forEach((key) => {
+      if (key === "base") {
+        expect(screen.getByText(key)).toBeInTheDocument()
+      } else {
+        expect(screen.queryByText(key)).not.toBeInTheDocument()
+      }
+    })
   })
 
   test("sm", () => {
     renderWithQuery(values, queries.sm)
-    expect(screen.getByText("sm")).toBeInTheDocument()
+
+    Object.keys(values).forEach((key) => {
+      if (key === "sm") {
+        expect(screen.getByText(key)).toBeInTheDocument()
+      } else {
+        expect(screen.queryByText(key)).not.toBeInTheDocument()
+      }
+    })
   })
 
   test("md", () => {
     renderWithQuery(values, queries.md)
-    expect(screen.getByText("md")).toBeInTheDocument()
+
+    Object.keys(values).forEach((key) => {
+      if (key === "md") {
+        expect(screen.getByText(key)).toBeInTheDocument()
+      } else {
+        expect(screen.queryByText(key)).not.toBeInTheDocument()
+      }
+    })
   })
 
   test("lg", () => {
     renderWithQuery(values, queries.lg)
-    expect(screen.getByText("lg")).toBeInTheDocument()
+
+    Object.keys(values).forEach((key) => {
+      if (key === "lg") {
+        expect(screen.getByText(key)).toBeInTheDocument()
+      } else {
+        expect(screen.queryByText(key)).not.toBeInTheDocument()
+      }
+    })
   })
 
   test("xl", () => {
     renderWithQuery(values, queries.xl)
-    expect(screen.getByText("xl")).toBeInTheDocument()
+
+    Object.keys(values).forEach((key) => {
+      if (key === "xl") {
+        expect(screen.getByText(key)).toBeInTheDocument()
+      } else {
+        expect(screen.queryByText(key)).not.toBeInTheDocument()
+      }
+    })
+  })
+
+  test("customBreakpoint", () => {
+    renderWithQuery(values, queries.customBreakpoint)
+
+    Object.keys(values).forEach((key) => {
+      if (key === "customBreakpoint") {
+        expect(screen.getByText(key)).toBeInTheDocument()
+      } else {
+        expect(screen.queryByText(key)).not.toBeInTheDocument()
+      }
+    })
   })
 
   test("base value is used if no breakpoint matches", () => {
@@ -51,36 +105,83 @@ describe("with object", () => {
 })
 
 describe("with array", () => {
-  const values = ["base", "sm", "md", "lg", "xl"]
+  const values = [
+    "baseValue",
+    "value2",
+    "value3",
+    "value4",
+    "anotherValue",
+    "customBreakpoint",
+  ]
 
   test("uses base value if smaller than sm", () => {
     renderWithQuery(values, queries.base)
-    expect(screen.getByText("base")).toBeInTheDocument()
+    expect(screen.getByText("baseValue")).toBeInTheDocument()
   })
 
   test("sm", () => {
     renderWithQuery(values, queries.sm)
-    expect(screen.getByText("sm")).toBeInTheDocument()
+
+    values.forEach((value) => {
+      if (value === "value2") {
+        expect(screen.getByText(value)).toBeInTheDocument()
+      } else {
+        expect(screen.queryByText(value)).not.toBeInTheDocument()
+      }
+    })
   })
 
   test("md", () => {
     renderWithQuery(values, queries.md)
-    expect(screen.getByText("md")).toBeInTheDocument()
+
+    values.forEach((value) => {
+      if (value === "value3") {
+        expect(screen.getByText(value)).toBeInTheDocument()
+      } else {
+        expect(screen.queryByText(value)).not.toBeInTheDocument()
+      }
+    })
   })
 
   test("lg", () => {
     renderWithQuery(values, queries.lg)
-    expect(screen.getByText("lg")).toBeInTheDocument()
+
+    values.forEach((value) => {
+      if (value === "value4") {
+        expect(screen.getByText(value)).toBeInTheDocument()
+      } else {
+        expect(screen.queryByText(value)).not.toBeInTheDocument()
+      }
+    })
   })
 
   test("xl", () => {
     renderWithQuery(values, queries.xl)
-    expect(screen.getByText("xl")).toBeInTheDocument()
+
+    values.forEach((value) => {
+      if (value === "anotherValue") {
+        expect(screen.getByText(value)).toBeInTheDocument()
+      } else {
+        expect(screen.queryByText(value)).not.toBeInTheDocument()
+      }
+    })
+  })
+
+  test("customBreakpoint", () => {
+    renderWithQuery(values, queries.customBreakpoint)
+
+    values.forEach((value) => {
+      if (value === "customBreakpoint") {
+        expect(screen.getByText(value)).toBeInTheDocument()
+      } else {
+        expect(screen.queryByText(value)).not.toBeInTheDocument()
+      }
+    })
   })
 
   test("uses base value if no breakpoint matches", () => {
-    renderWithQuery(["base"], queries.sm)
-    expect(screen.getByText("base")).toBeInTheDocument()
+    renderWithQuery(["baseValue"], queries.sm)
+    expect(screen.getByText("baseValue")).toBeInTheDocument()
   })
 })
 

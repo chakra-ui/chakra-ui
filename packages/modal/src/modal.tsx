@@ -10,7 +10,13 @@ import {
   StylesProvider,
   useStyles,
 } from "@chakra-ui/system"
-import { callAllHandlers, cx, __DEV__, createContext } from "@chakra-ui/utils"
+import {
+  callAllHandlers,
+  cx,
+  __DEV__,
+  createContext,
+  FocusableElement,
+} from "@chakra-ui/utils"
 import * as React from "react"
 import { RemoveScroll } from "react-remove-scroll"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
@@ -23,13 +29,13 @@ interface ModalOptions {
    * other surrounding elements.
    *
    * 🚨Warning: We don't recommend doing this because it hurts the
-   * accessbility of the modal, based on WAI-ARIA specifications.
+   * accessibility of the modal, based on WAI-ARIA specifications.
    *
    * @default true
    */
   trapFocus?: boolean
   /**
-   * If `true`, the modal will autofocus the first enabled and interative
+   * If `true`, the modal will autofocus the first enabled and interactive
    * element within the `ModalContent`
    *
    * @default true
@@ -38,11 +44,11 @@ interface ModalOptions {
   /**
    * The `ref` of element to receive focus when the modal opens.
    */
-  initialFocusRef?: React.RefObject<HTMLElement>
+  initialFocusRef?: React.RefObject<FocusableElement>
   /**
    * The `ref` of element to receive focus when the modal closes.
    */
-  finalFocusRef?: React.RefObject<HTMLElement>
+  finalFocusRef?: React.RefObject<FocusableElement>
   /**
    * If `true`, the modal will return focus to the element that triggered it when it closes.
    * @default true
@@ -75,7 +81,7 @@ export interface ModalProps extends UseModalProps, ModalOptions, ThemingProps {
    */
   isCentered?: boolean
   /**
-   * Where scroll behaviour should originate.
+   * Where scroll behavior should originate.
    * - If set to `inside`, scroll only occurs within the `ModalBody`.
    * - If set to `outside`, the entire `ModalContent` will scroll within the viewport.
    *
@@ -104,7 +110,7 @@ export { ModalContextProvider, useModalContext }
 /**
  * Modal
  *
- * React component that provides context, theming, and accessbility properties
+ * React component that provides context, theming, and accessibility properties
  * to all other modal components.
  *
  * It doesn't render any DOM node.

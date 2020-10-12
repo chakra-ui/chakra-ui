@@ -142,7 +142,8 @@ styles can be a style object or a function that returns a style object.
 
 ```jsx live=false
 // theme.js
-import { extendTheme, mode } from "@chakra-ui/theme"
+import { extendTheme } from "@chakra-ui/theme"
+import { mode } from "@chakra-ui/theme-tools"
 
 // Version 1: Using objects
 const theme = extendTheme({
@@ -178,10 +179,6 @@ const overrides = extendTheme({
   },
 })
 ```
-
-> WARNING: If you do use a function in a style override, you will NOT inherit
-> the existing styles like you will with an object. `extendTheme` will only
-> merge style objects, not functions
 
 ## Scaling out your project
 

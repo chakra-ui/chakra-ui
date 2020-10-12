@@ -29,11 +29,11 @@ export const InputGroup = forwardRef<InputGroupProps, "div">(
     validChildren.forEach((child: any) => {
       if (!styles) return
 
-      if (child.type.id === "InputLeftElement") {
+      if (input && child.type.id === "InputLeftElement") {
         stylesRef.current.paddingLeft = input.height ?? input.h
       }
 
-      if (child.type.id === "InputRightElement") {
+      if (input && child.type.id === "InputRightElement") {
         stylesRef.current.paddingRight = input.height ?? input.h
       }
 
@@ -47,8 +47,15 @@ export const InputGroup = forwardRef<InputGroupProps, "div">(
     })
 
     const clones = validChildren.map((child: any) => {
-      const theming = { size: props.size, variant: props.variant }
       const { pl, paddingLeft, pr, paddingRight } = child.props
+
+      /**
+       * Make it possible to override the size and variant from `Input`
+       */
+      const theming = {
+        size: child.props?.size || props.size,
+        variant: child.props?.variant || props.variant,
+      }
 
       return child.type.id !== "Input"
         ? React.cloneElement(child, theming)

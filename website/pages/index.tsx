@@ -38,6 +38,7 @@ import { FaArrowRight, FaDiscord, FaMicrophone } from "react-icons/fa"
 import { FiDownload, FiGithub, FiUsers } from "react-icons/fi"
 import { IoMdMoon } from "react-icons/io"
 import { MdAccessibility, MdGrain, MdPalette } from "react-icons/md"
+import type { Member, Sponsor } from "src/types/github"
 
 const Feature = ({ title, icon, children, ...props }) => {
   return (
@@ -100,7 +101,15 @@ const StatBox = (props: StatBoxProps) => {
   )
 }
 
-const HomePage = ({ members, sponsors }) => {
+interface HomePageProps {
+  members: Member[]
+  sponsors: {
+    companies: Sponsor[]
+    individuals: Sponsor[]
+  }
+}
+
+const HomePage = ({ members, sponsors }: HomePageProps) => {
   return (
     <>
       <SEO
@@ -202,6 +211,7 @@ const HomePage = ({ members, sponsors }) => {
                         h="24px"
                         w="auto"
                         src={user.image}
+                        loading="lazy"
                       />
                     </Box>
                   )
@@ -224,9 +234,9 @@ const HomePage = ({ members, sponsors }) => {
 
         <Box as="section">
           <Container py="80px">
-            <Box mx="auto" maxW="480px" mb="3em" textAlign="center">
-              <chakra.h2 textStyle="heading-2">Less code. More speed</chakra.h2>
-              <Text opacity={0.7} fontSize="lg" mt="3">
+            <Box mb="3em" textAlign="center">
+              <chakra.h2 textStyle="heading">Less code. More speed</chakra.h2>
+              <Text opacity={0.7} fontSize="lg" mt="3" mx="auto" maxW="600px">
                 Spend less time writing UI code and more time building a great
                 experience for your customers.
               </Text>
@@ -522,6 +532,7 @@ const HomePage = ({ members, sponsors }) => {
                       alt={i.name}
                       key={i.MemberId}
                       src={i.image}
+                      loading="lazy"
                     />
                   </Circle>
                 ))}
@@ -540,6 +551,7 @@ const HomePage = ({ members, sponsors }) => {
                     alt={i.name}
                     key={i.MemberId}
                     src={i.image}
+                    loading="lazy"
                   />
                 ))}
               </Wrap>
@@ -649,10 +661,11 @@ export async function getStaticProps() {
    */
   const sponsorsRcPath = path.resolve("..", ".all-sponsorsrc")
   const sponsors = JSON.parse(fs.readFileSync(sponsorsRcPath, "utf-8"))
+  const filters = ["christiannwamba"]
 
   return {
     props: {
-      members,
+      members: members.filter((m) => !filters.includes(m.login)),
       contributors,
       sponsors,
     },

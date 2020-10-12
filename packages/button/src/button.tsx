@@ -2,13 +2,14 @@ import { Spinner } from "@chakra-ui/spinner"
 import {
   chakra,
   forwardRef,
-  PropsOf,
   omitThemingProps,
+  PropsOf,
   SystemProps,
+  SystemStyleObject,
   ThemingProps,
   useStyleConfig,
 } from "@chakra-ui/system"
-import { cx, dataAttr, merge, __DEV__ } from "@chakra-ui/utils"
+import { cx, dataAttr, mergeWith, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useButtonGroup } from "./button-group"
 
@@ -91,9 +92,9 @@ export const Button = forwardRef<ButtonProps, "button">(function Button(
    *
    * So let's read the component styles and then add `zIndex` to it.
    */
-  const _focus = merge({}, styles?.["_focus"] ?? {}, { zIndex: 1 })
+  const _focus = mergeWith({}, styles?.["_focus"] ?? {}, { zIndex: 1 })
 
-  const buttonStyles = {
+  const buttonStyles: SystemStyleObject = {
     display: "inline-flex",
     appearance: "none",
     alignItems: "center",
@@ -181,7 +182,8 @@ const ButtonSpinner: React.FC<ButtonSpinnerProps> = (props) => {
   } = props
 
   const _className = cx("chakra-button__spinner", className)
-  const spinnerStyles = {
+
+  const spinnerStyles: SystemStyleObject = {
     display: "flex",
     alignItems: "center",
     position: label ? "relative" : "absolute",

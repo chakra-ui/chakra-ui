@@ -1,6 +1,12 @@
 import { useColorMode } from "@chakra-ui/color-mode"
 import { css, SystemStyleObject } from "@chakra-ui/styled-system"
-import { createContext, Dict, get, merge, runIfFn } from "@chakra-ui/utils"
+import {
+  createContext,
+  Dict,
+  memoizedGet as get,
+  mergeWith,
+  runIfFn,
+} from "@chakra-ui/utils"
 import { Global, Interpolation, ThemeContext } from "@emotion/core"
 import * as React from "react"
 
@@ -14,7 +20,7 @@ export interface ThemeProviderProps {
 export const ThemeProvider: React.FC<ThemeProviderProps> = (props) => {
   const { children, theme } = props
   const outerTheme = React.useContext(ThemeContext) as Dict
-  const mergedTheme = merge({}, outerTheme, theme)
+  const mergedTheme = mergeWith({}, outerTheme, theme)
 
   return (
     <ThemeContext.Provider value={mergedTheme}>

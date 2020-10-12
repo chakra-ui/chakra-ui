@@ -11,9 +11,8 @@ export type PropsWithAs<T extends As, P> = P &
     as?: T | As
   }
 
-type PropsOf<T extends As> = T extends React.ComponentClass<infer P>
-  ? React.PropsWithoutRef<P> & React.RefAttributes<InstanceType<T>> // @ts-expect-error
-  : React.PropsWithRef<React.ComponentProps<T>>
+//@ts-expect-error
+type PropsOf<T extends As> = React.PropsWithRef<React.ComponentProps<T>>
 
 type Merge<T, P> = P extends object ? P & Omit<T, keyof P> : T
 

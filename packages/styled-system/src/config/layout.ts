@@ -1,11 +1,11 @@
-import { get, isNumber } from "@chakra-ui/utils"
+import { get, isNumber, memoizedGet } from "@chakra-ui/utils"
 import * as CSS from "csstype"
 import { createParser, Config, system } from "@styled-system/core"
 import { Length, ResponsiveValue } from "../utils"
 
 function transform(value: any, scale: any) {
   const defaultValue = !isNumber(value) || value > 1 ? value : value * 100 + "%"
-  return get(scale, value, defaultValue)
+  return memoizedGet(scale, value, defaultValue)
 }
 
 const config: Config = {

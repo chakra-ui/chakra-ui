@@ -4,6 +4,7 @@ import {
   omitThemingProps,
   PropsOf,
   SystemProps,
+  SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
@@ -70,6 +71,12 @@ export interface CheckboxProps
    * The size of the checkbox icon when checked or indeterminate
    */
   iconSize?: string | number
+  /**
+   * The checked icon to use
+   *
+   * @default CheckboxIcon
+   */
+  icon?: React.ReactElement
 }
 
 /**
@@ -96,6 +103,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
     children,
     iconColor,
     iconSize,
+    icon: Icon = <CheckboxIcon />,
     ...rest
   } = ownProps
 
@@ -127,7 +135,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
   const labelProps = getLabelProps()
   const checkboxProps = getCheckboxProps()
 
-  const iconStyles = {
+  const iconStyles: SystemStyleObject = {
     opacity: state.isChecked || state.isIndeterminate ? 1 : 0,
     transform:
       state.isChecked || state.isIndeterminate ? "scale(1)" : "scale(0.95)",
@@ -136,6 +144,11 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
     color: iconColor,
     ...styles.icon,
   }
+
+  const icon = React.cloneElement(Icon, {
+    __css: iconStyles,
+    isIndeterminate: state.isIndeterminate,
+  })
 
   return (
     <StyledContainer
@@ -150,22 +163,19 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
         className="chakra-checkbox__control"
         {...checkboxProps}
       >
-        <CheckboxIcon
-          __css={iconStyles}
-          isChecked={state.isChecked}
-          isIndeterminate={state.isIndeterminate}
-        />
+        {icon}
       </StyledControl>
       {children && (
         <chakra.div
           className="chakra-checkbox__label"
           {...labelProps}
-          children={children}
           __css={{
             ml: spacing,
             ...styles.label,
           }}
-        />
+        >
+          {children}
+        </chakra.div>
       )}
     </StyledContainer>
   )

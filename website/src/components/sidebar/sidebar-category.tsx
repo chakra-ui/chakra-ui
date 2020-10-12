@@ -11,11 +11,10 @@ interface SidebarCategoryProps {
 }
 
 const Arrow = (props) => (
-  <svg viewBox="0 0 6 10" fill="none" {...props}>
+  <svg viewBox="0 0 5 8" fill="none" {...props}>
     <path
-      d="M1.4 8.56L4.67 5M1.4 1.23L4.66 4.7"
-      stroke="currentColor"
-      strokeLinecap="square"
+      d="M0 0.724246C0 0.111374 0.681914 -0.223425 1.13107 0.168926L4.66916 3.25957C5.11028 3.6449 5.11028 4.3551 4.66916 4.74043L1.13107 7.83107C0.681913 8.22342 0 7.88863 0 7.27575V0.724246Z"
+      fill="currentColor"
     />
   </svg>
 )
@@ -81,8 +80,7 @@ function SidebarCategory(props: SidebarCategoryProps) {
         {title}
         <Icon
           w="auto"
-          h="1em"
-          fontSize="12px"
+          h="2"
           mr="16px"
           transformOrigin="center"
           transform={toggle ? "rotate(90deg)" : undefined}

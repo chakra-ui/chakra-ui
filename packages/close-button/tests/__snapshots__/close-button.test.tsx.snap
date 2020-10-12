@@ -66,8 +66,6 @@ exports[`matches snapshot 1`] = `
   flex-shrink: 0;
   color: currentColor;
   vertical-align: middle;
-  width: 1em;
-  height: 1em;
 }
 
 <button

@@ -60,7 +60,7 @@ export const render = (
   { wrapper: Wrapper = ChildrenPassthrough, ...options }: TestOptions = {},
 ): RenderResult => {
   return RtlRender(
-    <ChakraProvider resetCSS>
+    <ChakraProvider>
       <Wrapper>{ui}</Wrapper>
     </ChakraProvider>,
     options,

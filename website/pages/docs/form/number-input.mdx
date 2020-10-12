@@ -341,6 +341,7 @@ NumberInput composes `Flex` with some additional props listed below.
 | `isInvalid`          | `boolean`                   |             | If `true`, the input will have `aria-invalid` set to `true`                                                         |
 | `isDisabled`         | `boolean`                   |             | If `true`, the input will be disabled                                                                               |
 | `keepWithinRange`    | `boolean`                   | `true`      | If `true` and you use the stepper or up/down arrow keys, the value will not exceed the `max` or go lower than `min` |
+| `allowMouseWheel`    | `boolean`                   |             | If `true`, the input's value will change based on mouse wheel                                                       |
 | `clampValueOnBlur`   | `boolean`                   | `true`      | If `true` and the value is greater than `max`, the value will be reset to `max`                                     |
 | `focusInputOnChange` | `boolean`                   | `true`      | If `true`, the input will be focused as you increment or decrement the value with the stepper                       |
 | `getAriaValueText`   | `(value: number) => string` | `true`      | It is used to set the `aria-valuetext` property of the input                                                        |

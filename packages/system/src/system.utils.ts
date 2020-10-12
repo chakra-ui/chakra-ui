@@ -1,16 +1,5 @@
-import { css, pseudoSelectors } from "@chakra-ui/styled-system"
-import {
-  get,
-  isNumber,
-  isString,
-  UnionStringArray,
-  __DEV__,
-  merge,
-  Dict,
-  omit,
-} from "@chakra-ui/utils"
+import { isString, omit, UnionStringArray, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { FunctionInterpolation } from "@emotion/core"
 import { ThemingProps } from "./system.types"
 
 /**
@@ -78,53 +67,8 @@ export const domElements = [
 
 export type DOMElements = UnionStringArray<typeof domElements>
 
-export const cast = <P = { theme: object }>(arg: any) =>
-  arg as FunctionInterpolation<P>
-
 export function omitThemingProps<T extends ThemingProps>(props: T) {
   return omit(props, ["styleConfig", "size", "variant", "colorScheme"])
-}
-
-export function pseudoProps({ theme, ...props }: any) {
-  let result = {}
-  for (const prop in props) {
-    if (prop in pseudoSelectors) {
-      const style = css({ [prop]: props[prop] })(theme)
-      result = { ...result, ...style }
-    }
-  }
-  return result
-}
-
-export function truncateProp({ isTruncated, noOfLines }: any) {
-  if (isNumber(noOfLines)) {
-    return {
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      display: "-webkit-box",
-      WebkitBoxOrient: "vertical",
-      WebkitLineClamp: noOfLines,
-    }
-  }
-
-  if (isTruncated) {
-    return {
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      whiteSpace: "nowrap",
-    }
-  }
-}
-
-export const extraProps = (props: any) => {
-  const { layerStyle, textStyle, apply, theme } = props
-  const styles = merge(
-    {},
-    get(theme, `layerStyles.${layerStyle}`, {}),
-    get(theme, `textStyles.${textStyle}`, {}),
-  ) as Dict
-
-  return css({ ...styles, apply })(theme)
 }
 
 export default function isTag(target: any) {

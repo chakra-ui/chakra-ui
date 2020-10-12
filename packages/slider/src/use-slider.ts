@@ -11,27 +11,27 @@ import {
   ariaAttr,
   callAllHandlers,
   clampValue,
-  createOnKeyDown,
   dataAttr,
   Dict,
+  EventKeyMap,
   focus,
   getBox,
   getOwnerDocument,
+  isRightClick,
   mergeRefs,
+  normalizeEventKey,
   percentToValue,
+  PropGetter,
   roundValueToStep,
   valueToPercent,
-  isRightClick,
-  PropGetter,
 } from "@chakra-ui/utils"
 import {
-  Ref,
-  useState,
-  useRef,
-  useCallback,
-  useMemo,
-  useEffect,
   CSSProperties,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
 } from "react"
 
 export interface UseSliderProps {
@@ -103,6 +103,11 @@ export interface UseSliderProps {
    */
   getAriaValueText?(value: number): string
   /**
+   * If `false`, the slider handle will not capture focus when value changes.
+   * @default true
+   */
+  focusThumbOnChange?: boolean
+  /**
    * The static string to use used for `aria-valuetext`
    */
   "aria-valuetext"?: string
@@ -149,6 +154,7 @@ export function useSlider(props: UseSliderProps) {
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
     name,
+    focusThumbOnChange = true,
     ...htmlProps
   } = props
 
@@ -275,20 +281,31 @@ export function useSlider(props: UseSliderProps) {
    * Keyboard interaction to ensure users can operate
    * the slider using only their keyboard.
    */
-  const onKeyDown = createOnKeyDown({
-    stopPropagation: true,
-    onKey: () => setEventSource("keyboard"),
-    keyMap: {
-      ArrowRight: () => actions.stepUp(),
-      ArrowUp: () => actions.stepUp(),
-      ArrowLeft: () => actions.stepDown(),
-      ArrowDown: () => actions.stepDown(),
-      PageUp: () => actions.stepUp(tenSteps),
-      PageDown: () => actions.stepDown(tenSteps),
-      Home: () => constrain(min),
-      End: () => constrain(max),
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      const eventKey = normalizeEventKey(event)
+      const keyMap: EventKeyMap = {
+        ArrowRight: () => actions.stepUp(),
+        ArrowUp: () => actions.stepUp(),
+        ArrowLeft: () => actions.stepDown(),
+        ArrowDown: () => actions.stepDown(),
+        PageUp: () => actions.stepUp(tenSteps),
+        PageDown: () => actions.stepDown(tenSteps),
+        Home: () => constrain(min),
+        End: () => constrain(max),
+      }
+
+      const action = keyMap[eventKey]
+
+      if (action) {
+        event.preventDefault()
+        event.stopPropagation()
+        setEventSource("keyboard")
+        action(event)
+      }
     },
-  })
+    [actions, constrain, max, min, tenSteps],
+  )
 
   /**
    * ARIA (Optional): To define a human readable representation of the value,
@@ -374,7 +391,7 @@ export function useSlider(props: UseSliderProps) {
   }
 
   useUpdateEffect(() => {
-    if (thumbRef.current) {
+    if (thumbRef.current && focusThumbOnChange) {
       focus(thumbRef.current)
     }
   }, [value])

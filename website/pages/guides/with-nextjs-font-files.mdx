@@ -105,7 +105,7 @@ const theme = extendTheme(myTheme)
 
 export default function App({ Component, pageProps }) {
   return (
-    <ChakraProvider resetCSS theme={theme}>
+    <ChakraProvider theme={theme}>
       <Global styles={fonts} />
       <Component {...pageProps} />
     </ChakraProvider>

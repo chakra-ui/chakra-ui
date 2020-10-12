@@ -2,7 +2,7 @@
 
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
-  .emotion-1 {
+  .emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -20,7 +20,7 @@ exports[`matches snapshot 1`] = `
   flex-direction: row-reverse;
 }
 
-.emotion-0 {
+.emotion-1 {
   border-radius: 9999px;
   border-width: 2px;
   display: -webkit-inline-box;
@@ -52,17 +52,22 @@ exports[`matches snapshot 1`] = `
   margin-right: 0;
 }
 
+.emotion-0 {
+  color: #fff;
+  width: 100%;
+  height: 100%;
+}
+
 <div
-    class="chakra-avatar__group emotion-1"
+    class="chakra-avatar__group emotion-2"
     role="group"
   >
     <span
-      class="chakra-avatar emotion-0"
+      class="chakra-avatar emotion-1"
     >
       <svg
-        color="#fff"
+        class="emotion-0"
         role="img"
-        style="width: 100%; height: 100%;"
         viewBox="0 0 128 128"
       >
         <path

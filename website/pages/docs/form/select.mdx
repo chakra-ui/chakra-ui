@@ -1,7 +1,7 @@
 ---
 title: Select
 package: "@chakra-ui/select"
-image: "components/wrap.svg"
+image: "components/select.svg"
 description:
   Select component is a component that allows users pick a value from predefined
   options.
@@ -66,14 +66,8 @@ select. Simply pass the `icon` prop.
 In case the custom icon size doesn't look right, you can pass the `iconSize`
 prop to change it.
 
-> 🚨 This feature works in v0.5.1. Kindly upgrade if you need it
-
-```jsx
-<Select
-  icon={<MdArrowDropDown />}
-  iconSize={8}
-  placeholder="Woohoo! A new icon"
-/>
+```jsx live=true
+<Select icon={<MdArrowDropDown />} placeholder="Woohoo! A new icon" />
 ```
 
 ### Overriding the styles of the Select
@@ -99,8 +93,8 @@ props, and native `select` props in addition to these:
 | ------------------ | ------------------------------------------ | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `size`             | `sm`, `md`, `lg`                           | `md`             | The visual size of the `select` element.                                                                                                                               |
 | `icon`             | `React.ReactElement`, `string`             | `<ChevronDown/>` | The icon to use in place if the `chevron-down`                                                                                                                         |
-| `iconSize`         | `BoxProps['size']`                         | `20px`           | The visual size of the icon                                                                                                                                            |
-| `iconColor`        | `BoxProps['color']`                        |                  | The color of the icon                                                                                                                                                  |
+| `iconSize`         | `BoxProps['size']`                         | `20px`           | The visual size of the default icon                                                                                                                                    |
+| `iconColor`        | `BoxProps['color']`                        |                  | The color of the default icon                                                                                                                                          |
 | `variant`          | `outline`, `unstyled`, `flushed`, `filled` | `outline`        | The variant of the select style to use.                                                                                                                                |
 | `focusBorderColor` | `string`                                   |                  | The border color when the select is focused.                                                                                                                           |
 | `errorBorderColor` | `string`                                   |                  | The border color when `isInvalid` is set to `true`.                                                                                                                    |

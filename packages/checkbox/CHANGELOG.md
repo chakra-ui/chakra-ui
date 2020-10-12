@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-rc.5 (2020-09-27)
+
+**Note:** Version bump only for package @chakra-ui/checkbox
+
+
+
+
+
+# 1.0.0-rc.4 (2020-09-25)
+
+**Note:** Version bump only for package @chakra-ui/checkbox
+
+
+
+
+
 # 1.0.0-rc.3 (2020-08-30)
 
 **Note:** Version bump only for package @chakra-ui/checkbox
@@ -94,7 +110,7 @@ All notable changes to this project will be documented in this file. See
 
 ### Features
 
-- update stories for radio componet
+- update stories for radio component
   ([3effca4](https://github.com/chakra-ui/chakra-ui/commit/3effca435a04bcaa7b33d16cd20f441950fc2e3c))
 
 # Change Log
@@ -123,7 +139,7 @@ All notable changes to this project will be documented in this file. See
 
 ### Features
 
-- update stories for radio componet
+- update stories for radio component
   ([3effca4](https://github.com/chakra-ui/chakra-ui/commit/3effca435a04bcaa7b33d16cd20f441950fc2e3c))
 
 # Change Log
@@ -150,5 +166,5 @@ All notable changes to this project will be documented in this file. See
 
 ### Features
 
-- update stories for radio componet
+- update stories for radio component
   ([3effca4](https://github.com/chakra-ui/chakra-ui/commit/3effca435a04bcaa7b33d16cd20f441950fc2e3c))
