@@ -71,3 +71,54 @@ stackable and responsive layouts.
   </Box>
 </Flex>
 ```
+
+### Flex and Spacer vs Grid vs Stack
+The `Flex` and `Spacer` components, `Grid` and `HStack` treat children of different
+widths differently. In `HStack`, the children will have equal spacing between them
+but they won't span the entire width of the container. In `Grid`, the starting points
+of the children will be equally spaced but the spaces between the children will
+be different. With `Flex` and `Spacer`, the children will span the entire width
+of the container and also have equal spacing between them.
+
+```jsx
+<Box>
+  Flex and Spacer: Full width, equal Spacing
+  <Flex>
+    <Box w="70px" h="10" bg="red.500" />
+    <Spacer />
+    <Box w="170px" h="10" bg="red.500" />
+    <Spacer />
+    <Box w="180px" h="10" bg="red.500" />
+  </Flex>
+  
+  Grid: The children start at the beginning, the 1/3 mark and 2/3 mark
+  <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+    <Box w="70px" h="10" bg="blue.500" />
+    <Box w="170px" h="10" bg="blue.500" />
+    <Box w="180px" h="10" bg="blue.500" />
+  </Grid>
+  
+  HStack: The children have equal spacing but don't span the whole container
+  <HStack spacing="24px">
+    <Box w="70px" h="10" bg="teal.500" />
+    <Box w="170px" h="10" bg="teal.500" />
+    <Box w="180px" h="10" bg="teal.500" />
+  </HStack>
+</Box>
+```
+
+A good use case for `Spacer` is to create a navbar with a signup/login button
+aligned to the right
+
+```jsx
+<Flex>
+  <Box p="2">
+    <Heading size="md">A Chakraic App</Heading>
+  </Box>
+  <Spacer />
+  <Box>
+    <Button colorScheme="teal" mr="4">Sign Up</Button>
+    <Button colorScheme="teal">Log in</Button>
+  </Box>
+</Flex>
+```
