@@ -52,5 +52,8 @@
   "peerDependencies": {
     "react": "16.x",
     "@chakra-ui/system": "1.0.0-rc.5"
+  },
+  "devDependencies": {
+    "@chakra-ui/system": "1.0.0-rc.5"
   }
 }
