@@ -7,6 +7,7 @@ import {
   HTMLProps,
   mergeRefs,
   PropGetter,
+  mergeWith,
 } from "@chakra-ui/utils"
 import { useInteractOutside } from "@react-aria/interactions"
 import { RefObject, useCallback, useEffect, useRef } from "react"
@@ -190,10 +191,6 @@ export function usePopover(props: UsePopoverProps = {}) {
         children: isLazy ? (isOpen ? props.children : null) : props.children,
         id: popoverId,
         tabIndex: -1,
-        style: {
-          ...props.style,
-          visibility: isOpen ? "visible" : "hidden",
-        },
         role: "dialog",
         onKeyDown: callAllHandlers(props.onKeyDown, (event) => {
           if (closeOnEsc && event.key === "Escape") onClose()
@@ -230,6 +227,14 @@ export function usePopover(props: UsePopoverProps = {}) {
       closeDelay,
     ],
   )
+
+  const getPopoverWrapperProps: PropGetter = (props = {}, _ref = null) =>
+    getPopperProps(
+      mergeWith(props, {
+        style: { visibility: isOpen ? "visible" : "hidden" },
+      }),
+      _ref,
+    )
 
   const openTimeout = useRef<number>()
   const closeTimeout = useRef<number>()
@@ -345,7 +350,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     transformOrigin,
     getArrowProps,
     getArrowWrapperProps,
-    getPopoverWrapperProps: getPopperProps,
+    getPopoverWrapperProps,
     getPopoverProps,
     getTriggerProps,
   }
