@@ -8,7 +8,6 @@ import {
   PopoverBody,
   PopoverArrow,
   PopoverCloseButton,
-  PopoverTransition,
 } from "../src"
 import { chakra } from "@chakra-ui/system"
 
@@ -39,18 +38,12 @@ export const simple = () => (
     <PopoverTrigger>
       <chakra.button mt="180px">Trigger</chakra.button>
     </PopoverTrigger>
-    <PopoverTransition>
-      {(sx) => (
-        <PopoverContent sx={sx}>
-          <PopoverArrow />
-          <PopoverCloseButton />
-          <PopoverHeader>Confirmation!</PopoverHeader>
-          <PopoverBody>
-            Are you sure you want to have that milkshake?
-          </PopoverBody>
-        </PopoverContent>
-      )}
-    </PopoverTransition>
+    <PopoverContent>
+      <PopoverArrow />
+      <PopoverCloseButton />
+      <PopoverHeader>Confirmation!</PopoverHeader>
+      <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
+    </PopoverContent>
   </Popover>
 )
 
