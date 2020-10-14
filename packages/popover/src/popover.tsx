@@ -17,8 +17,37 @@ import {
   runIfFn,
   __DEV__,
 } from "@chakra-ui/utils"
+import { AnimatePresence, motion, Variants } from "framer-motion"
 import * as React from "react"
 import { usePopover, UsePopoverProps, UsePopoverReturn } from "./use-popover"
+
+const scaleVariants: Variants = {
+  initial: {
+    scale: 0.8,
+    opacity: 0,
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.15,
+      easings: "easeInOut",
+    },
+  },
+  enter: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      opacity: {
+        easings: "easeOut",
+        duration: 0.2,
+      },
+      scale: {
+        duration: 0.2,
+        ease: [0.175, 0.885, 0.4, 1.1],
+      },
+    },
+  },
+}
 
 const [PopoverProvider, usePopoverContext] = createContext<UsePopoverReturn>({
   name: "PopoverContext",
@@ -82,14 +111,17 @@ if (__DEV__) {
 
 export interface PopoverContentProps extends PropsOf<typeof chakra.section> {}
 
-/**
- * PopoverContent includes all accessibility
- * requirements for a popover
- */
+const StyledSection = chakra(motion.section)
+
 export const PopoverContent = forwardRef<PopoverContentProps, "section">(
   function PopoverContent(props, ref) {
-    const { getPopoverProps } = usePopoverContext()
-    const popoverProps = getPopoverProps(props, ref)
+    const {
+      isOpen,
+      refocusPopover,
+      getPopoverProps,
+      getPopoverWrapperProps,
+      transformOrigin,
+    } = usePopoverContext()
 
     const styles = useStyles()
     const contentStyles: SystemStyleObject = {
@@ -100,11 +132,36 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
     }
 
     return (
-      <chakra.section
-        className={cx("chakra-popover__content")}
-        {...popoverProps}
-        __css={contentStyles}
-      />
+      <div
+        {...getPopoverWrapperProps({
+          style: {
+            visibility: isOpen ? "visible" : "hidden",
+          },
+        })}
+      >
+        <AnimatePresence>
+          {isOpen && (
+            <StyledSection
+              {...(getPopoverProps(
+                {
+                  ...props,
+                  style: {
+                    ...props.style,
+                    transformOrigin,
+                  },
+                },
+                ref,
+              ) as any)}
+              className={cx("chakra-popover__content")}
+              __css={contentStyles}
+              variants={scaleVariants}
+              initial="initial"
+              animate="enter"
+              exit="exit"
+            />
+          )}
+        </AnimatePresence>
+      </div>
     )
   },
 )

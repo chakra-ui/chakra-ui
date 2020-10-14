@@ -10,9 +10,9 @@ import {
 } from "@chakra-ui/utils"
 import { useInteractOutside } from "@react-aria/interactions"
 import { RefObject, useCallback, useEffect, useRef } from "react"
-import { useFocusOnHide, useFocusOnShow } from "./popover.utils"
+import { focusPopover, useFocusOnHide, useFocusOnShow } from "./popover.utils"
 
-const TRIGGER_TYPE = {
+const TRIGGER = {
   click: "click",
   hover: "hover",
 } as const
@@ -95,7 +95,7 @@ export interface UsePopoverProps {
    * `click` - means the popover will open on click or
    * press `Enter` to `Space` on keyboard
    */
-  trigger?: keyof typeof TRIGGER_TYPE
+  trigger?: keyof typeof TRIGGER
   openDelay?: number
   closeDelay?: number
   /**
@@ -119,7 +119,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     autoFocus = true,
     arrowShadowColor,
     modifiers,
-    trigger = TRIGGER_TYPE.click,
+    trigger = TRIGGER.click,
     openDelay = 200,
     closeDelay = 200,
     isLazy,
@@ -173,7 +173,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     ref: popoverRef,
     onInteractOutside: (event) => {
       if (
-        trigger === TRIGGER_TYPE.click &&
+        trigger === TRIGGER.click &&
         closeOnBlur &&
         !triggerRef.current?.contains(event.target as HTMLElement)
       ) {
@@ -186,10 +186,14 @@ export function usePopover(props: UsePopoverProps = {}) {
     (props = {}, _ref = null) => {
       const popoverProps: HTMLProps = {
         ...props,
+        ref: mergeRefs(popoverRef, _ref),
         children: isLazy ? (isOpen ? props.children : null) : props.children,
         id: popoverId,
         tabIndex: -1,
-        style: { visibility: isOpen ? "visible" : "hidden" },
+        style: {
+          ...props.style,
+          visibility: isOpen ? "visible" : "hidden",
+        },
         role: "dialog",
         onKeyDown: callAllHandlers(props.onKeyDown, (event) => {
           if (closeOnEsc && event.key === "Escape") onClose()
@@ -198,7 +202,7 @@ export function usePopover(props: UsePopoverProps = {}) {
         "aria-describedby": hasBody ? bodyId : undefined,
       }
 
-      if (trigger === TRIGGER_TYPE.hover) {
+      if (trigger === TRIGGER.hover) {
         popoverProps.role = "tooltip"
         popoverProps.onMouseEnter = callAllHandlers(props.onMouseEnter, () => {
           isHoveringRef.current = true
@@ -209,7 +213,7 @@ export function usePopover(props: UsePopoverProps = {}) {
         })
       }
 
-      return popper.getPopperProps(popoverProps, mergeRefs(popoverRef, _ref))
+      return popoverProps
     },
     [
       isLazy,
@@ -240,11 +244,11 @@ export function usePopover(props: UsePopoverProps = {}) {
         "aria-controls": popoverId,
       }
 
-      if (trigger === TRIGGER_TYPE.click) {
+      if (trigger === TRIGGER.click) {
         triggerProps.onClick = callAllHandlers(props.onClick, onToggle)
       }
 
-      if (trigger === TRIGGER_TYPE.hover) {
+      if (trigger === TRIGGER.hover) {
         /**
          * Any content that shows on pointer hover should also show on keyboard focus.
          * Consider focus and blur to be the `hover` for keyboard users.
@@ -308,6 +312,26 @@ export function usePopover(props: UsePopoverProps = {}) {
     }
   }, [])
 
+  const {
+    transformOrigin,
+    getArrowProps,
+    getArrowWrapperProps,
+    getPopperProps,
+  } = popper
+
+  /**
+   * When adding animations/transitions, the focus logic might not work as expected.
+   * We'll use this to trigger focus again.
+   */
+  const refocusPopover = () => {
+    const targetIsPopover = document.activeElement !== popoverRef.current
+    const isWithinPopover = popoverRef.current?.contains(document.activeElement)
+
+    if (isOpen && (targetIsPopover || !isWithinPopover)) {
+      focusPopover(popoverRef)
+    }
+  }
+
   return {
     isOpen,
     onClose,
@@ -317,10 +341,13 @@ export function usePopover(props: UsePopoverProps = {}) {
     bodyId,
     hasBody,
     setHasBody,
-    getArrowProps: popper.getArrowProps,
-    getArrowWrapperProps: popper.getArrowWrapperProps,
-    getTriggerProps,
+    refocusPopover,
+    transformOrigin,
+    getArrowProps,
+    getArrowWrapperProps,
+    getPopoverWrapperProps: getPopperProps,
     getPopoverProps,
+    getTriggerProps,
   }
 }
 
