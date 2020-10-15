@@ -112,7 +112,7 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
   function PopoverContent(props, ref) {
     const {
       isOpen,
-      refocusPopover,
+      refocus,
       getPopoverProps,
       getPopoverWrapperProps,
       transformOrigin,
@@ -140,7 +140,7 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
           variants={scaleVariants}
           initial={false}
           animate={isOpen ? "enter" : "exit"}
-          onAnimationComplete={refocusPopover}
+          onAnimationComplete={refocus}
         />
       </div>
     )

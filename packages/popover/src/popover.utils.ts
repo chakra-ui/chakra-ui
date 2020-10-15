@@ -113,7 +113,8 @@ export function useFocusOnShow(
     const shouldFocus = visible && autoFocus
     if (!shouldFocus) return
 
-    if (focusRef?.current) focus(focusRef.current)
-    else focusPopover(popoverRef)
+    if (focusRef?.current) {
+      focus(focusRef.current)
+    } else focusPopover(popoverRef)
   }, [visible, autoFocus, popoverRef, focusRef])
 }

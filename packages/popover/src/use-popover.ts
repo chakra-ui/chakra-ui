@@ -328,7 +328,7 @@ export function usePopover(props: UsePopoverProps = {}) {
    * When adding animations/transitions, the focus logic might not work as expected.
    * We'll use this to trigger focus again.
    */
-  const refocusPopover = () => {
+  const refocus = () => {
     const targetIsPopover = document.activeElement !== popoverRef.current
     const isWithinPopover = popoverRef.current?.contains(document.activeElement)
 
@@ -346,7 +346,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     bodyId,
     hasBody,
     setHasBody,
-    refocusPopover,
+    refocus,
     transformOrigin,
     getArrowProps,
     getArrowWrapperProps,
