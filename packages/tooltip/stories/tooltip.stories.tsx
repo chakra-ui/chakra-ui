@@ -19,6 +19,7 @@ export default {
 const HookTooltip = ({ children }: any) => {
   const {
     getTriggerProps,
+    getTooltipWrapperProps,
     getTooltipProps,
     getArrowProps,
     getArrowWrapperProps,
@@ -32,20 +33,22 @@ const HookTooltip = ({ children }: any) => {
   return (
     <>
       <button {...getTriggerProps()}>Hover me</button>
-      <div
-        {...getTooltipProps({
-          style: {
-            background: "tomato",
-            color: "white",
-            borderRadius: "4px",
-            padding: "0.5em 1em",
-            visibility: isOpen ? "visible" : "hidden",
-          },
-        })}
-      >
-        {children}
-        <div {...getArrowWrapperProps()}>
-          <div {...getArrowProps({ style: { background: "tomato" } })} />
+      <div {...getTooltipWrapperProps()}>
+        <div
+          {...getTooltipProps({
+            style: {
+              background: "tomato",
+              color: "white",
+              borderRadius: "4px",
+              padding: "0.5em 1em",
+              visibility: isOpen ? "visible" : "hidden",
+            },
+          })}
+        >
+          {children}
+          <div {...getArrowWrapperProps()}>
+            <div {...getArrowProps({ style: { background: "tomato" } })} />
+          </div>
         </div>
       </div>
     </>
@@ -64,6 +67,7 @@ export const MultipleTooltips = () => (
 export const WithTransition = () => {
   const {
     getTriggerProps,
+    getTooltipWrapperProps,
     getTooltipProps,
     getArrowProps,
     getArrowWrapperProps,
@@ -79,38 +83,40 @@ export const WithTransition = () => {
       <AnimatePresence>
         {isOpen && (
           <Portal>
-            <motion.div
-              initial="exit"
-              animate="enter"
-              exit="exit"
-              {...(getTooltipProps() as any)}
-            >
+            <div {...getTooltipWrapperProps()}>
               <motion.div
-                transition={{
-                  duration: 0.12,
-                  ease: [0.4, 0, 0.2, 1],
-                  bounce: 0.5,
-                }}
-                variants={{
-                  exit: { scale: 0.9, opacity: 0 },
-                  enter: { scale: 1, opacity: 1 },
-                }}
-                style={{
-                  transformOrigin,
-                  background: "tomato",
-                  color: "white",
-                  borderRadius: "4px",
-                  padding: "0.5em 1em",
-                }}
+                initial="exit"
+                animate="enter"
+                exit="exit"
+                {...(getTooltipProps() as any)}
               >
-                Fade! This is tooltip
-                <div {...getArrowWrapperProps()}>
-                  <div
-                    {...getArrowProps({ style: { background: "tomato" } })}
-                  />
-                </div>
+                <motion.div
+                  transition={{
+                    duration: 0.12,
+                    ease: [0.4, 0, 0.2, 1],
+                    bounce: 0.5,
+                  }}
+                  variants={{
+                    exit: { scale: 0.9, opacity: 0 },
+                    enter: { scale: 1, opacity: 1 },
+                  }}
+                  style={{
+                    transformOrigin,
+                    background: "tomato",
+                    color: "white",
+                    borderRadius: "4px",
+                    padding: "0.5em 1em",
+                  }}
+                >
+                  Fade! This is tooltip
+                  <div {...getArrowWrapperProps()}>
+                    <div
+                      {...getArrowProps({ style: { background: "tomato" } })}
+                    />
+                  </div>
+                </motion.div>
               </motion.div>
-            </motion.div>
+            </div>
           </Portal>
         )}
       </AnimatePresence>
@@ -166,41 +172,36 @@ export const WithModal = () => {
     <div>
       <button onClick={() => setShowDialog(true)}>Show Dialog</button>
       <Modal isOpen={showDialog} onClose={() => setShowDialog(false)}>
-        <ModalOverlay>
-          <ModalContent height="300px">
-            <div>
-              <button onClick={() => setShowDialog(false)}>Close Dialog</button>
-              <Tooltip label="Notifications">
-                <button style={{ fontSize: 25 }}>
-                  <span aria-hidden>🔔</span>
-                </button>
-              </Tooltip>
-              <Tooltip label="Settings">
-                <button style={{ fontSize: 25 }}>
-                  <span aria-hidden>⚙️</span>
-                </button>
-              </Tooltip>
-              <Tooltip label="Your files are safe with us">
-                <button style={{ fontSize: 25 }}>
-                  <span aria-hidden>💾</span> Save
-                </button>
-              </Tooltip>
+        <ModalOverlay />
+        <ModalContent height="300px">
+          <div>
+            <button onClick={() => setShowDialog(false)}>Close Dialog</button>
+            <Tooltip label="Notifications">
+              <button style={{ fontSize: 25 }}>
+                <span aria-hidden>🔔</span>
+              </button>
+            </Tooltip>
+            <Tooltip label="Settings">
+              <button style={{ fontSize: 25 }}>
+                <span aria-hidden>⚙️</span>
+              </button>
+            </Tooltip>
+            <Tooltip label="Your files are safe with us">
+              <button style={{ fontSize: 25 }}>
+                <span aria-hidden>💾</span> Save
+              </button>
+            </Tooltip>
 
-              <div style={{ float: "right" }}>
-                <Tooltip
-                  isOpen
-                  label="Notifications"
-                  aria-label="3 Notifications"
-                >
-                  <button style={{ fontSize: 25 }}>
-                    <span>🔔</span>
-                    <span>3</span>
-                  </button>
-                </Tooltip>
-              </div>
+            <div style={{ float: "right" }}>
+              <Tooltip label="Notifications" aria-label="3 Notifications">
+                <button style={{ fontSize: 25 }}>
+                  <span>🔔</span>
+                  <span>3</span>
+                </button>
+              </Tooltip>
             </div>
-          </ModalContent>
-        </ModalOverlay>
+          </div>
+        </ModalContent>
       </Modal>
     </div>
   )
