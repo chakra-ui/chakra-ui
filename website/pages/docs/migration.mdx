@@ -94,7 +94,7 @@ Optionally via prop:
 -  </ThemeProvider>
 ```
 
-### 4. Rename `variantColor` to `colorScheme`
+### 3. Rename `variantColor` to `colorScheme`
 
 Fire up your "Find and Replace" tool in VSCode or IntelliJ. Find `variantColor`
 and replace with `colorScheme`.
@@ -102,7 +102,7 @@ and replace with `colorScheme`.
 > **Reason:** We renamed this prop to make it easier to understand that this
 > prop represents a visual color scheme, not a css color attribute.
 
-### 5. Update layout `size` prop
+### 4. Update layout `size` prop
 
 Change `size` prop to `width` or `w` and `height`, or `h`. If you'd like to use
 only one prop to manage this, you can rename it to `boxSize`.
@@ -121,7 +121,7 @@ only one prop to manage this, you can rename it to `boxSize`.
 > in some components (e.g. Button), it means the visual size and in others (e.g
 > Box), it means **width and height**.
 
-### 6. Replace PseudoBox elements
+### 5. Replace PseudoBox elements
 
 `PseudoBox` is now deprecated and its props can now be directly applied to
 `Box`. Replace all `PseudoBox` components with `Box`.
@@ -141,7 +141,7 @@ only one prop to manage this, you can rename it to `boxSize`.
 +    </Box>
 ```
 
-### 7. Update theme breakpoints
+### 6. Update theme breakpoints
 
 **You may safely skip this if you didn't customize your breakpoints.**
 
@@ -181,7 +181,7 @@ css units.
 > correlating to `md` etc. On top, you had to manually manipulate the array by
 > defining properties on it, which was often overlooked and not typesafe.
 
-### 8. ColorModeScript (optional)
+### 7. ColorModeScript (optional)
 
 **You may safely skip this if you do not allow to change the color mode.**
 
