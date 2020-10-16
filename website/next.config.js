@@ -94,7 +94,9 @@ function fileToPath(str) {
 
 const defaultConfig = {
   target: "serverless",
-  webpack: (config) => {
+  webpack: (config, options) => {
+    withPreact(config, options)
+
     return {
       ...config,
       externals: [...config.externals, "sharp"],
@@ -106,6 +108,39 @@ const defaultConfig = {
     modern: true,
   },
   redirects: require("./next-redirect"),
+}
+
+/**
+ * replaces React with Preact in prod
+ * this reduces the bundle size by approx. 32 kB
+ */
+const withPreact = (config, options) => {
+  if (!options.dev) {
+    const splitChunks = config.optimization && config.optimization.splitChunks
+
+    if (splitChunks) {
+      const cacheGroups = splitChunks.cacheGroups
+      const test = /[\\/]node_modules[\\/](preact|preact-render-to-string|preact-context-provider)[\\/]/
+      if (cacheGroups.framework) {
+        cacheGroups.preact = {
+          ...cacheGroups.framework,
+          test,
+        }
+
+        cacheGroups.commons.name = "framework"
+      } else {
+        cacheGroups.preact = {
+          name: "commons",
+          chunks: "all",
+          test,
+        }
+      }
+    }
+
+    const aliases = config.resolve.alias || (config.resolve.alias = {})
+    aliases.react = aliases["react-dom"] = "preact/compat"
+    aliases["react-ssr-prepass"] = "preact-ssr-prepass"
+  }
 }
 
 const mdxConfig = {
