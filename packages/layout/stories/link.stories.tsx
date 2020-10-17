@@ -11,7 +11,7 @@ export default {
  * in Chakra.
  */
 export const Default = () => (
-  <Link isExternal href="google.com">
+  <Link isExternal href="https://google.com">
     This is a link
   </Link>
 )
@@ -36,7 +36,7 @@ export const WithRoutingLibrary = () => (
  * This is a link in a disabled state.
  */
 export const WithDisabledState = () => (
-  <Link isExternal href="google.com" isDisabled>
+  <Link isExternal href="https://google.com" isDisabled>
     This is a link
   </Link>
 )
