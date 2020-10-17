@@ -144,6 +144,14 @@ Reach's `Link`.
 </Link>
 ```
 
+## Disabled Link
+
+```jsx
+<Link href="https://chakra-ui.com" isExternal isDisabled>
+  Click me (disabled)
+</Link>
+```
+
 ## Props
 
 The Link component composes the `Box` component.
@@ -152,3 +160,4 @@ The Link component composes the `Box` component.
 | ------------ | ---------- | ------- | ----------------------------------------- |
 | `isExternal` | `boolean`  |         | If `true`, the link will open in new tab. |
 | `onClick`    | `function` |         | Function called when the link is clicked. |
+| `isDisabled` | `boolean`  |         | If `true`, the link will be disabled.     |

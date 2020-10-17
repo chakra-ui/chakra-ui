@@ -31,3 +31,12 @@ export const WithRoutingLibrary = () => (
     </Link>
   </BrowserRouter>
 )
+
+/**
+ * This is a link in a disabled state.
+ */
+export const WithDisabledState = () => (
+  <Link isExternal href="google.com" isDisabled>
+    This is a link
+  </Link>
+)
