@@ -7,7 +7,7 @@ import {
   forwardRef,
 } from "@chakra-ui/system"
 import * as React from "react"
-import { __DEV__, cx, isDisabled } from "@chakra-ui/utils"
+import { __DEV__, cx } from "@chakra-ui/utils"
 import { useClickable } from "@chakra-ui/clickable"
 
 export interface LinkProps extends PropsOf<typeof chakra.a>, ThemingProps {
