@@ -6,7 +6,7 @@ import { Link } from "../src"
 describe("<Link />", () => {
   it("renders link text correctly", () => {
     render(<Link href="http://example.com">Click me</Link>)
-    const link = screen.getByRole("button")
+    const link = screen.getByRole("link")
     expect(link).toHaveTextContent("Click me")
   })
 
@@ -21,13 +21,13 @@ describe("<Link />", () => {
 
     it("sets the `aria-disabled` attribute to `true` when `isDisabled` prop is `true`", () => {
       render(<Link isDisabled>Click me</Link>)
-      const link = screen.getByRole("button")
+      const link = screen.getByRole("link")
       expect(link).toHaveAttribute("aria-disabled", "true")
     })
 
     it("sets the `aria-disabled` attribute to `false` when `isDisabled` prop is `false`", () => {
       render(<Link>Click me</Link>)
-      const link = screen.getByRole("button")
+      const link = screen.getByRole("link")
       expect(link).toHaveAttribute("aria-disabled", "false")
     })
   })
@@ -35,7 +35,7 @@ describe("<Link />", () => {
   it("sets `target` attribute to `_blank` when `isExternal` prop is `true`", () => {
     render(<Link isExternal>Click me</Link>)
 
-    const link = screen.getByRole("button")
+    const link = screen.getByRole("link")
     expect(link).toHaveAttribute("target", "_blank")
   })
 
@@ -46,7 +46,7 @@ describe("<Link />", () => {
       </Link>,
     )
 
-    const link = screen.getByRole("button")
+    const link = screen.getByRole("link")
     expect(link).not.toHaveAttribute("href")
   })
 
@@ -54,7 +54,7 @@ describe("<Link />", () => {
     const handleClick = jest.fn()
     render(<Link onClick={handleClick}>Click me</Link>)
 
-    const link = screen.getByRole("button")
+    const link = screen.getByRole("link")
     fireEvent.click(link)
     expect(handleClick).toHaveBeenCalled()
   })
@@ -67,7 +67,7 @@ describe("<Link />", () => {
       </Link>,
     )
 
-    const link = screen.getByRole("button")
+    const link = screen.getByRole("link")
     fireEvent.click(link)
     expect(handleClick).not.toHaveBeenCalled()
   })
