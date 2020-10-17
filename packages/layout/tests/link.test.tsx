@@ -39,7 +39,7 @@ describe("<Link />", () => {
     expect(link).toHaveAttribute("target", "_blank")
   })
 
-  it("removes the `href` attribute when `isDisabled` prop is `true`", () => {
+  it("replaces the `href` attribute with a hashtag when `isDisabled` prop is `true`", () => {
     render(
       <Link isExternal isDisabled href="http://example.com">
         Click me
@@ -47,7 +47,7 @@ describe("<Link />", () => {
     )
 
     const link = screen.getByRole("link")
-    expect(link).not.toHaveAttribute("href")
+    expect(link).toHaveAttribute("href", "#")
   })
 
   it("calls `onClick` when the link is clicked", () => {
