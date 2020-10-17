@@ -64,7 +64,7 @@ export const Link = forwardRef<LinkProps, "a">((props, ref) => {
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
       className={cx("chakra-link", className)}
-      href={isDisabled ? undefined : href}
+      href={isDisabled ? "#" : href}
       role="link"
       {...rest}
       {...clickableProps}
