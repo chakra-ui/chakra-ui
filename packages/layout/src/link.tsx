@@ -7,13 +7,18 @@ import {
   forwardRef,
 } from "@chakra-ui/system"
 import * as React from "react"
-import { __DEV__, cx } from "@chakra-ui/utils"
+import { __DEV__, cx, isDisabled } from "@chakra-ui/utils"
+import { useClickable } from "@chakra-ui/clickable"
 
 export interface LinkProps extends PropsOf<typeof chakra.a>, ThemingProps {
   /**
    *  If `true`, the link will open in new tab
    */
   isExternal?: boolean
+  /**
+   * If `true`, the link will be disabled
+   */
+  isDisabled?: boolean
 }
 
 /**
@@ -32,15 +37,36 @@ export interface LinkProps extends PropsOf<typeof chakra.a>, ThemingProps {
  */
 export const Link = forwardRef<LinkProps, "a">((props, ref) => {
   const styles = useStyleConfig("Link", props)
-  const { className, isExternal, ...rest } = omitThemingProps(props)
+  const {
+    className,
+    isExternal,
+    isDisabled,
+    onClick,
+    onAuxClick,
+    onTouchStart,
+    onDoubleClick,
+    href,
+    ...rest
+  } = omitThemingProps(props)
+
+  const clickableProps = useClickable({
+    ref,
+    isFocusable: isDisabled,
+    isDisabled,
+    onClick,
+    onAuxClick,
+    onTouchStart,
+    onDoubleClick,
+  })
 
   return (
     <chakra.a
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
-      ref={ref}
       className={cx("chakra-link", className)}
+      href={isDisabled ? undefined : href}
       {...rest}
+      {...clickableProps}
       __css={styles}
     />
   )
