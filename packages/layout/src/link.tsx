@@ -49,7 +49,7 @@ export const Link = forwardRef<LinkProps, "a">((props, ref) => {
     ...rest
   } = omitThemingProps(props)
 
-  const clickableProps = useClickable({
+  const { role, ...clickableProps } = useClickable({
     ref,
     isFocusable: isDisabled,
     isDisabled,
@@ -65,6 +65,7 @@ export const Link = forwardRef<LinkProps, "a">((props, ref) => {
       rel={isExternal ? "noopener noreferrer" : undefined}
       className={cx("chakra-link", className)}
       href={isDisabled ? undefined : href}
+      role="link"
       {...rest}
       {...clickableProps}
       __css={styles}
