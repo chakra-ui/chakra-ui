@@ -51,7 +51,7 @@ Chakra no longer requires `@emotion/core`, `@emotion/styled` and
 code, you can safely remove them and update Chakra UI to v1.
 
 You'll need also install `framer-motion`. We use this to manage animations and
-transitions within our components.
+transitions within components.
 
 ```diff
 "dependencies": {
@@ -432,9 +432,9 @@ props.
 
 ### Input
 
-- When using `InputAddon`, you no longer need to pass border radius properties
-  to the `Input`. `InputGroup` will intelligently detect the addon and apply the
-  necessary border to the input.
+When using `InputAddon`, you no longer need to pass border radius properties to
+the `Input`. `InputGroup` will intelligently detect the addon and apply the
+necessary border to the input.
 
 ### Link
 
@@ -476,45 +476,48 @@ Due to accessibility reasons, we've deprecated the `isDisabled` prop for `Link`.
 - Removed `preserveScrollBarGap` prop. We preserve scroll bar gap by default to
   prevent any layout shift.
 
-- Wrap `ModalContent` with the `ModalOverlay` component.
-
-```diff
-// before
-<Modal>
--  <ModalOverlay />
-  <ModalContent>
-    <ModalHeader>Modal header</ModalHeader>
-    <ModalCloseButton />
-    <ModalBody>Modal body</ModalBody>
-    <ModalFooter>Modal footer</ModalFooter>
-  </ModalContent>
-</Modal>
-
-// after
-<Modal>
-+  <ModalOverlay>
-    <ModalContent>
-      <ModalHeader>Modal header</ModalHeader>
-      <ModalCloseButton />
-      <ModalBody>Modal body</ModalBody>
-      <ModalFooter>Modal footer</ModalFooter>
-    </ModalContent>
-+  </ModalOverlay>
-</Modal>
-```
-
 - Only pass `size` values defined in the components theme. Hard-coded values
   will be ignored. Update the styles in `theme.components.Modal` to reflect your
   custom values
 
 - You can now disable focus trap by passing `trapFocus={false}`
 
-- The `SlideIn` and `Scale` transition components have been replaced with the
-  `Fade`, `ScaleFade`, `Slide`, and `SlideFade` components.
+- Modal comes with preset transitions to make it easy for you. You can remove
+  any existing `Scale`, `ScaleFade` or `SlideFade` components.
+
+```jsx live=false
+// before
+<SlideIn in={isOpen}>
+  {(styles) => (
+    <Modal onClose={onClose} isOpen>
+      <ModalOverlay opacity={styles.opacity} />
+      <ModalContent pb={5} {...styles}>
+        <ModalHeader>Login now</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <Lorem count={2} />
+        </ModalBody>
+      </ModalContent>
+    </Modal>
+  )}
+</SlideIn>
+
+// after
+<Modal motionPreset="slideInBottom" onClose={onClose} isOpen={isOpen}>
+  <ModalOverlay />
+  <ModalContent pb={5}>
+    <ModalHeader>Login now</ModalHeader>
+    <ModalCloseButton />
+    <ModalBody>
+      <Lorem count={2} />
+    </ModalBody>
+  </ModalContent>
+</Modal>
+```
 
 ### Progress
 
-- Change `color` prop to `colorScheme`.
+Change `color` prop to `colorScheme`.
 
 ```diff
 - <Progress color="blue"/>
@@ -634,7 +637,7 @@ Change `variantColor` prop to `colorScheme`
 
 ### Toast
 
-- Removed `react-spring` dependency in favor of `react-transition-group`
+- Removed `react-spring` dependency in favor of `framer-motion`
 - Added support for duplicate toast prevention using `toast.isActive` method
 - Added support to programmatically close one or all toasts using `toast.close`
   or `toast.closeAll` methods
