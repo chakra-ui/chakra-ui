@@ -474,26 +474,27 @@ To prevent focus trapping, pass `trapFocus` and set it's value to `false`.
 
 ### Modal Props
 
-| Name                | Type                      | Default   | Description                                                                                                                         |
-| ------------------- | ------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| isOpen              | `boolean`                 |           | If `true`, the modal will open                                                                                                      |
-| onClose             | `(event, reason) => void` |           | Callback invoked to close the modal.                                                                                                |
-| isCentered          | `boolean`                 |           | If `true`, the `Modal` will be centered on screen                                                                                   |
-| initialFocusRef     | `React.Ref`               |           | The least destructive action to get focus when dialog is open                                                                       |
-| finalFocusRef       | `React.Ref`               |           | The least destructive action to get focus when dialog is closed                                                                     |
-| blockScrollOnMount  | `boolean`                 | `true`    | If `true`, scrolling will be disabled on the `body` when the modal opens.                                                           |
-| useInert            | `boolean`                 | `true`    | A11y: If `true`, the siblings of the `Modal` will have `aria-hidden` set to `true` so that screen readers can only see the `Modal`. |
-| children            | `React.ReactNode`         |           | The content of the modal.                                                                                                           |
-| size                | `BoxProps["maxWidth"]`    | `md`      | The size (maxWidth) of the modal.                                                                                                   |
-| scrollBehavior      | `inside`, `outside`       | `outside` | Where scroll behaviour should originate.                                                                                            |
-| closeOnOverlayClick | `boolean`                 | `true`    | If `true`, the modal will close when the overlay is clicked                                                                         |
-| returnFocusOnClose  | `boolean`                 | `true`    | If `true`, the modal will return focus to the element that triggered it when it closes.                                             |
-| closeOnEsc          | `boolean`                 | `true`    | If `true`, the modal will close when the `Esc` key is pressed                                                                       |
-| trapFocus           | `boolean`                 | `true`    | If `true`, focus trapping will be disabled                                                                                          |
-| autoFocus           | `boolean`                 | `true`    | If `true`, the modal moves focus to the first interactive element                                                                   |
-| id                  | `string`                  |           | The top-level `id` to use for the modal and it's sub-components                                                                     |
-| onOverlayClick      | `function`                |           | Function called when the overlay clicked                                                                                            |
-| onEsc               | `function`                |           | Function called when the `Esc` key is pressed                                                                                       |
+| Name                | Type                                 | Default   | Description                                                                                                                         |
+| ------------------- | ------------------------------------ | --------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| isOpen              | `boolean`                            |           | If `true`, the modal will open                                                                                                      |
+| onClose             | `function`                           |           | Callback invoked to close the modal.                                                                                                |
+| isCentered          | `boolean`                            |           | If `true`, the `Modal` will be centered on screen                                                                                   |
+| motionPreset        | `scale, slideInBottom, slideInRight` | `scale`   | The default animation or transition to apply to the modal                                                                           |
+| initialFocusRef     | `React.Ref`                          |           | The least destructive action to get focus when dialog is open                                                                       |
+| finalFocusRef       | `React.Ref`                          |           | The least destructive action to get focus when dialog is closed                                                                     |
+| blockScrollOnMount  | `boolean`                            | `true`    | If `true`, scrolling will be disabled on the `body` when the modal opens.                                                           |
+| useInert            | `boolean`                            | `true`    | A11y: If `true`, the siblings of the `Modal` will have `aria-hidden` set to `true` so that screen readers can only see the `Modal`. |
+| children            | `React.ReactNode`                    |           | The content of the modal.                                                                                                           |
+| size                | `BoxProps["maxWidth"]`               | `md`      | The size (maxWidth) of the modal.                                                                                                   |
+| scrollBehavior      | `inside`, `outside`                  | `outside` | Where scroll behaviour should originate.                                                                                            |
+| closeOnOverlayClick | `boolean`                            | `true`    | If `true`, the modal will close when the overlay is clicked                                                                         |
+| returnFocusOnClose  | `boolean`                            | `true`    | If `true`, the modal will return focus to the element that triggered it when it closes.                                             |
+| closeOnEsc          | `boolean`                            | `true`    | If `true`, the modal will close when the `Esc` key is pressed                                                                       |
+| trapFocus           | `boolean`                            | `true`    | If `true`, focus trapping will be disabled                                                                                          |
+| autoFocus           | `boolean`                            | `true`    | If `true`, the modal moves focus to the first interactive element                                                                   |
+| id                  | `string`                             |           | The top-level `id` to use for the modal and it's sub-components                                                                     |
+| onOverlayClick      | `function`                           |           | Function called when the overlay clicked                                                                                            |
+| onEsc               | `function`                           |           | Function called when the `Esc` key is pressed                                                                                       |
 
 ### Other components
 
