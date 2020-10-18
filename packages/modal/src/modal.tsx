@@ -231,12 +231,12 @@ export const ModalContent = forwardRef<ModalContentProps, "section">(
     const { motionPreset } = useModalContext()
 
     return (
-      <chakra.div
-        {...containerProps}
-        className="chakra-modal__content-container"
-        __css={dialogContainerStyles}
-      >
-        <ModalFocusScope>
+      <ModalFocusScope>
+        <chakra.div
+          {...containerProps}
+          className="chakra-modal__content-container"
+          __css={dialogContainerStyles}
+        >
           <ModalTransition
             preset={motionPreset}
             className={_className}
@@ -245,8 +245,8 @@ export const ModalContent = forwardRef<ModalContentProps, "section">(
           >
             {children}
           </ModalTransition>
-        </ModalFocusScope>
-      </chakra.div>
+        </chakra.div>
+      </ModalFocusScope>
     )
   },
 )
