@@ -35,7 +35,6 @@ const PageContainer = ({
               <PageTransition>
                 <chakra.h1 apply="mdx.h1">{title}</chakra.h1>
                 {children}
-                <Footer />
               </PageTransition>
               <Box mt="40px">{editUrl && <EditPageLink href={editUrl} />}</Box>
               {pagination || null}
