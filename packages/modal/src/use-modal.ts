@@ -98,7 +98,6 @@ export function useModal(props: UseModalProps) {
 
   const onMouseDown = useCallback((event: MouseEvent) => {
     mouseDownTarget.current = event.target
-    event.preventDefault()
   }, [])
 
   const onKeyDown = useCallback(

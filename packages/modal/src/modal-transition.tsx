@@ -3,7 +3,7 @@ import { scaleFadeConfig, slideFadeConfig } from "@chakra-ui/transition"
 import { HTMLMotionProps, motion } from "framer-motion"
 import * as React from "react"
 
-export interface ModalTransitionProps extends HTMLMotionProps<"div"> {
+export interface ModalTransitionProps extends HTMLMotionProps<any> {
   preset: "slideInBottom" | "slideInRight" | "scale"
 }
 
@@ -22,7 +22,7 @@ const transitions = {
   },
 }
 
-const Motion = chakra(motion.div)
+const Motion = chakra(motion.section)
 
 export const ModalTransition = React.forwardRef(
   (props: ModalTransitionProps, ref: React.Ref<any>) => {
