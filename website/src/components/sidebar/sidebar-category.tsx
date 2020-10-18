@@ -1,7 +1,7 @@
-import { Icon, chakra, useColorModeValue } from "@chakra-ui/core"
+import { Icon, chakra, useColorModeValue, BoxProps } from "@chakra-ui/core"
 import { useRef, useState, useEffect, ReactNode, RefObject } from "react"
 
-interface SidebarCategoryProps {
+interface SidebarCategoryProps extends BoxProps {
   isMobile?: boolean
   title: string
   opened?: boolean
@@ -25,7 +25,15 @@ interface SidebarState {
 }
 
 function SidebarCategory(props: SidebarCategoryProps) {
-  const { isMobile, title, selected, opened, children, contentRef } = props
+  const {
+    isMobile,
+    title,
+    selected,
+    opened,
+    children,
+    contentRef,
+    ...rest
+  } = props
 
   const ref = useRef<HTMLDivElement | null>(null)
 
@@ -60,7 +68,7 @@ function SidebarCategory(props: SidebarCategoryProps) {
   }, [toggle, shouldScroll, isMobile, contentRef])
 
   return (
-    <chakra.div mt="18px" ref={ref}>
+    <chakra.div mt="18px" ref={ref} {...rest}>
       <chakra.button
         width="full"
         cursor="pointer"

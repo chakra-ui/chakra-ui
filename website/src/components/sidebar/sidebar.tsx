@@ -34,36 +34,38 @@ const Sidebar = ({ routes }: any) => {
               </chakra.h4>
             )}
 
-            {c1.routes.map((c2) => {
-              if (!c2.routes) {
+            <chakra.div>
+              {c1.routes.map((c2) => {
+                if (!c2.routes) {
+                  return (
+                    <SidebarLink mt="2" key={c2.path} href={c2.path}>
+                      {c2.title}
+                    </SidebarLink>
+                  )
+                }
+
+                const selected = pathname.startsWith(c2.path)
+                const opened = selected || c2.open
+
                 return (
-                  <SidebarLink mt="3" key={c2.path} href={c2.path}>
-                    {c2.title}
-                  </SidebarLink>
+                  <SidebarCategory
+                    contentRef={ref}
+                    key={c2.path}
+                    {...c2}
+                    selected={selected}
+                    opened={opened}
+                  >
+                    <Stack spacing="2">
+                      {c2.routes.map((c3) => (
+                        <SidebarLink key={c3.path} href={c3.path}>
+                          {c3.title}
+                        </SidebarLink>
+                      ))}
+                    </Stack>
+                  </SidebarCategory>
                 )
-              }
-
-              const selected = pathname.startsWith(c2.path)
-              const opened = selected || c2.open
-
-              return (
-                <SidebarCategory
-                  contentRef={ref}
-                  key={c2.path}
-                  {...c2}
-                  selected={selected}
-                  opened={opened}
-                >
-                  <Stack spacing="3">
-                    {c2.routes.map((c3) => (
-                      <SidebarLink key={c3.path} href={c3.path}>
-                        {c3.title}
-                      </SidebarLink>
-                    ))}
-                  </Stack>
-                </SidebarCategory>
-              )
-            })}
+              })}
+            </chakra.div>
           </React.Fragment>
         )
       })}
