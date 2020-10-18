@@ -1,11 +1,11 @@
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
 import * as React from "react"
-import { MotionVariants } from "./__utils"
+import { EASINGS, MotionVariants } from "./__utils"
 
-export type SlideDirection = keyof typeof directionEnum
+export type SlideDirection = keyof typeof directions
 
-const directionEnum = {
+const directions = {
   bottom: {
     motion: { y: "100%" },
     baseStyle: {
@@ -44,19 +44,21 @@ const directionEnum = {
   },
 }
 
-export const slideMotionVariants: MotionVariants<"enter" | "exit"> = {
+type SlideVariants = MotionVariants<"enter" | "exit">
+
+const variants: SlideVariants = {
   exit: (direction: string) => {
-    const { motion } = directionEnum[direction] ?? {}
+    const { motion } = directions[direction] ?? {}
     return {
       ...motion,
       transition: {
         duration: 0.15,
-        easings: "easeInOut",
+        ease: EASINGS.easeInOut,
       },
     }
   },
   enter: (direction: string) => {
-    const { motion } = directionEnum[direction] ?? {}
+    const { motion } = directions[direction] ?? {}
     const [axis] = motion ? Object.keys(motion) : ["x"]
     return {
       [axis]: 0,
@@ -85,9 +87,7 @@ export interface SlideOptions {
   in?: boolean
 }
 
-export interface SlideProps
-  extends React.ComponentProps<typeof motion.div>,
-    SlideOptions {}
+export interface SlideProps extends HTMLMotionProps<"div">, SlideOptions {}
 
 export const Slide = React.forwardRef<HTMLDivElement, SlideProps>(
   function Slide(props, ref) {
@@ -100,7 +100,7 @@ export const Slide = React.forwardRef<HTMLDivElement, SlideProps>(
       ...rest
     } = props
 
-    const { baseStyle } = directionEnum[direction] ?? {}
+    const { baseStyle } = directions[direction] ?? {}
     const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
 
     return (
@@ -113,7 +113,7 @@ export const Slide = React.forwardRef<HTMLDivElement, SlideProps>(
             animate={isOpen || unmountOnExit ? "enter" : "exit"}
             exit="exit"
             custom={direction}
-            variants={slideMotionVariants}
+            variants={variants}
             style={{
               position: "fixed",
               ...baseStyle,

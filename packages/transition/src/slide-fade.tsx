@@ -1,18 +1,31 @@
-import { cx, __DEV__ } from "@chakra-ui/utils"
-import { AnimatePresence, motion } from "framer-motion"
+import { cx, merge, __DEV__ } from "@chakra-ui/utils"
+import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
 import * as React from "react"
-import { MotionVariants } from "./__utils"
+import { EASINGS, MotionVariants } from "./__utils"
 
-export const slideFadeMotionVariants: MotionVariants<
-  "initial" | "enter" | "exit"
-> = {
+type SlideFadeVariant = MotionVariants<"initial" | "enter" | "exit">
+
+const transitions = {
+  enter: {
+    duration: 0.2,
+    ease: EASINGS.easeOut,
+  },
+  exit: {
+    duration: 0.1,
+    ease: EASINGS.easeIn,
+  },
+}
+
+const variants: SlideFadeVariant = {
   initial: (props) => ({
     opacity: 0,
     x: props.offsetX,
     y: props.offsetY,
+    transition: transitions.exit,
   }),
   exit: (props) => ({
     opacity: 0,
+    transition: transitions.exit,
     ...(props.reverse && {
       x: props.offsetX,
       y: props.offsetY,
@@ -28,11 +41,18 @@ export const slideFadeMotionVariants: MotionVariants<
     opacity: 1,
     x: 0,
     y: 0,
+    transition: transitions.enter,
   },
 }
 
-export interface SlideFadeMotionProps
-  extends React.ComponentProps<typeof motion.div> {
+export const slideFadeConfig: HTMLMotionProps<"div"> = {
+  initial: "initial",
+  animate: "enter",
+  exit: "exit",
+  variants: variants,
+}
+
+export interface SlideFadeProps extends HTMLMotionProps<"div"> {
   /**
    * The offset on the horizontal or `x` axis
    */
@@ -46,32 +66,6 @@ export interface SlideFadeMotionProps
    * Otherwise, it'll only fade out
    */
   reverse?: boolean
-}
-
-export const SlideFadeMotion = React.forwardRef<
-  HTMLDivElement,
-  SlideFadeMotionProps
->(function SlideFadeMotion(props, ref) {
-  const { offsetX, offsetY, reverse, ...rest } = props
-
-  return (
-    <motion.div
-      ref={ref}
-      initial="initial"
-      animate="enter"
-      exit="exit"
-      transition={{
-        duration: 0.15,
-        ease: [0, 0, 0.4, 1],
-      }}
-      variants={slideFadeMotionVariants}
-      custom={{ offsetX, offsetY, reverse }}
-      {...rest}
-    />
-  )
-})
-
-export interface SlideFadeProps extends SlideFadeMotionProps {
   /**
    * If `true`, the collapse will unmount when `isOpen={false}` and animation is done
    */
@@ -95,15 +89,19 @@ export const SlideFade = React.forwardRef<HTMLDivElement, SlideFadeProps>(
     } = props
 
     const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
-    const motionProps = { offsetX, offsetY, reverse }
+
+    const custom = { offsetX, offsetY, reverse }
+    const motionProps = merge(slideFadeConfig, {
+      custom,
+      animate: isOpen || unmountOnExit ? "enter" : "exit",
+    })
 
     return (
-      <AnimatePresence custom={motionProps}>
+      <AnimatePresence custom={custom}>
         {shouldExpand && (
-          <SlideFadeMotion
+          <motion.div
             ref={ref}
             className={cx("chakra-offset-slide", className)}
-            animate={isOpen || unmountOnExit ? "enter" : "exit"}
             {...motionProps}
             {...rest}
           />

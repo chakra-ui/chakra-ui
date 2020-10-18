@@ -11,7 +11,7 @@ const parts = [
 
 const baseStyleOverlay = {
   bg: "blackAlpha.600",
-  zIndex: "overlay",
+  zIndex: "modal",
 }
 
 type Dict = Record<string, any>

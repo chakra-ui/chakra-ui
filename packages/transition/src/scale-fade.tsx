@@ -1,9 +1,11 @@
-import { cx, __DEV__ } from "@chakra-ui/utils"
-import { AnimatePresence, motion } from "framer-motion"
+import { cx, merge, __DEV__ } from "@chakra-ui/utils"
+import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
 import * as React from "react"
-import { MotionVariants } from "./__utils"
+import { EASINGS, MotionVariants } from "./__utils"
 
-export const scaleFadeMotionVariants: MotionVariants<"enter" | "exit"> = {
+type ScaleFadeVariants = MotionVariants<"enter" | "exit">
+
+const variants: ScaleFadeVariants = {
   exit: (props) => ({
     opacity: 0,
     ...(props.reverse
@@ -11,7 +13,7 @@ export const scaleFadeMotionVariants: MotionVariants<"enter" | "exit"> = {
       : { transitionEnd: { scale: props.initialScale } }),
     transition: {
       duration: 0.1,
-      easings: "easeOut",
+      ease: EASINGS.easeOut,
     },
   }),
   enter: {
@@ -19,47 +21,27 @@ export const scaleFadeMotionVariants: MotionVariants<"enter" | "exit"> = {
     scale: 1,
     transition: {
       duration: 0.25,
-      ease: [0.4, 0, 0.2, 1],
+      ease: EASINGS.easeInOut,
     },
   },
 }
 
-export interface ScaleFadeMotionProps
-  extends React.ComponentProps<typeof motion.div> {
+export const scaleFadeConfig: HTMLMotionProps<"div"> = {
+  initial: "exit",
+  animate: "enter",
+  exit: "exit",
+  variants,
+}
+
+export interface ScaleFadeProps extends HTMLMotionProps<"div"> {
   /**
-   * The offset on the horizontal or `x` axis
+   * The initial scale of the element
    */
   initialScale?: number
   /**
    * If `true`, the element will transition back to exit state
    */
   reverse?: boolean
-}
-
-export const ScaleFadeMotion = React.forwardRef<
-  HTMLDivElement,
-  ScaleFadeMotionProps
->(function ScaleFadeMotion(props, ref) {
-  const { initialScale, reverse, ...rest } = props
-
-  return (
-    <motion.div
-      ref={ref}
-      initial="exit"
-      animate="enter"
-      exit="exit"
-      variants={scaleFadeMotionVariants}
-      custom={{ initialScale, reverse }}
-      {...rest}
-    />
-  )
-})
-
-if (__DEV__) {
-  ScaleFadeMotion.displayName = "ScaleFadeMotion"
-}
-
-export interface ScaleFadeProps extends ScaleFadeMotionProps {
   /**
    * If `true`, the collapse will unmount when `isOpen={false}` and animation is done
    */
@@ -81,17 +63,21 @@ export const ScaleFade = React.forwardRef<HTMLDivElement, ScaleFadeProps>(
       ...rest
     } = props
 
-    const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
+    const show = unmountOnExit ? isOpen && unmountOnExit : true
+    const custom = { initialScale, reverse }
+
+    const motionProps = merge(scaleFadeConfig, {
+      custom,
+      animate: isOpen || unmountOnExit ? "enter" : "exit",
+    })
 
     return (
-      <AnimatePresence custom={{ initialScale, reverse }}>
-        {shouldExpand && (
-          <ScaleFadeMotion
+      <AnimatePresence custom={custom}>
+        {show && (
+          <motion.div
             ref={ref}
             className={cx("chakra-offset-slide", className)}
-            animate={isOpen || unmountOnExit ? "enter" : "exit"}
-            reverse={reverse}
-            initialScale={initialScale}
+            {...motionProps}
             {...rest}
           />
         )}

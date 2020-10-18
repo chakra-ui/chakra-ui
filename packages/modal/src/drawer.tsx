@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Slide, SlideOptions } from "@chakra-ui/transition"
-import { Modal, ModalProps, ModalScope, useModalContext } from "./modal"
+import { Modal, ModalProps, ModalFocusScope, useModalContext } from "./modal"
 import {
   chakra,
   forwardRef,
@@ -109,7 +109,7 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
         className="chakra-modal__content-container"
         __css={dialogContainerStyles}
       >
-        <ModalScope>
+        <ModalFocusScope>
           <StyleSlide
             direction={placement}
             in={isOpen}
@@ -119,7 +119,7 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
           >
             {children}
           </StyleSlide>
-        </ModalScope>
+        </ModalFocusScope>
       </chakra.div>
     )
   },

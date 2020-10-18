@@ -11,8 +11,7 @@ import {
   useMultiStyleConfig,
   useStyles,
 } from "@chakra-ui/system"
-import { SlideFadeMotion } from "@chakra-ui/transition"
-import { FadeMotion, ScaleFadeMotion } from "@chakra-ui/transition"
+import { fadeConfig } from "@chakra-ui/transition"
 import {
   callAllHandlers,
   createContext,
@@ -20,9 +19,10 @@ import {
   FocusableElement,
   __DEV__,
 } from "@chakra-ui/utils"
-import { AnimatePresence, usePresence } from "framer-motion"
+import { AnimatePresence, motion, usePresence } from "framer-motion"
 import * as React from "react"
 import { RemoveScroll } from "react-remove-scroll"
+import { ModalTransition } from "./modal-transition"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
 
 interface ModalOptions {
@@ -77,6 +77,11 @@ interface ModalOptions {
    */
   preserveScrollBarGap?: boolean
 }
+
+type ScrollBehavior = "inside" | "outside"
+
+type MotionPreset = "slideInBottom" | "slideInRight" | "scale"
+
 export interface ModalProps extends UseModalProps, ModalOptions, ThemingProps {
   children: React.ReactNode
   /**
@@ -91,15 +96,24 @@ export interface ModalProps extends UseModalProps, ModalOptions, ThemingProps {
    *
    * @default "outside"
    */
-  scrollBehavior?: "inside" | "outside"
+  scrollBehavior?: ScrollBehavior
   /**
    * Function that will be called to get the parent element
    * that the modal will be attached to.
    */
   getContainer?: PortalProps["getContainer"]
+  /**
+   * The transition that should be used for the modal
+   */
+  motionPreset?: MotionPreset
 }
 
-interface ModalContext extends ModalOptions, UseModalReturn {}
+interface ModalContext extends ModalOptions, UseModalReturn {
+  /**
+   * The transition that should be used for the modal
+   */
+  motionPreset?: MotionPreset
+}
 
 const [ModalContextProvider, useModalContext] = createContext<ModalContext>({
   strict: true,
@@ -114,7 +128,7 @@ export { ModalContextProvider, useModalContext }
  * Modal component provides context, theming, and accessibility properties
  * to its sub-components. It doesn't render any DOM node.
  */
-export function Modal(props: ModalProps) {
+export const Modal: React.FC<ModalProps> = (props) => {
   const {
     getContainer,
     children,
@@ -126,6 +140,7 @@ export function Modal(props: ModalProps) {
     blockScrollOnMount,
     allowPinchZoom,
     preserveScrollBarGap,
+    motionPreset,
   } = props
 
   const styles = useMultiStyleConfig("Modal", props)
@@ -141,6 +156,7 @@ export function Modal(props: ModalProps) {
     blockScrollOnMount,
     allowPinchZoom,
     preserveScrollBarGap,
+    motionPreset,
   }
 
   return (
@@ -163,6 +179,7 @@ Modal.defaultProps = {
   autoFocus: true,
   blockScrollOnMount: true,
   allowPinchZoom: false,
+  motionPreset: "scale",
 }
 
 if (__DEV__) {
@@ -171,7 +188,7 @@ if (__DEV__) {
 
 export interface ModalContentProps extends PropsOf<typeof chakra.section> {}
 
-const SlideFade = chakra(SlideFadeMotion)
+const Motion = chakra(motion.div)
 
 /**
  * ModalContent is used to group modal's content. It has all the
@@ -209,23 +226,24 @@ export const ModalContent = forwardRef<ModalContentProps, "section">(
       ...styles.dialogContainer,
     }
 
+    const { motionPreset } = useModalContext()
+
     return (
       <chakra.div
         {...containerProps}
         className="chakra-modal__content-container"
         __css={dialogContainerStyles}
       >
-        <ModalScope>
-          <SlideFade
-            reverse
-            offsetY={8}
+        <ModalFocusScope>
+          <ModalTransition
+            preset={motionPreset}
             className={_className}
             {...dialogProps}
             __css={dialogStyles}
           >
             {children}
-          </SlideFade>
-        </ModalScope>
+          </ModalTransition>
+        </ModalFocusScope>
       </chakra.div>
     )
   },
@@ -235,11 +253,11 @@ if (__DEV__) {
   ModalContent.displayName = "ModalContent"
 }
 
-interface ModalScopeProps {
+interface ModalFocusScopeProps {
   children: React.ReactElement
 }
 
-export function ModalScope(props: ModalScopeProps) {
+export function ModalFocusScope(props: ModalFocusScopeProps) {
   const {
     autoFocus,
     trapFocus,
@@ -281,9 +299,9 @@ export function ModalScope(props: ModalScopeProps) {
   )
 }
 
-const Fade = chakra(FadeMotion)
-
-export interface ModalOverlayProps extends PropsOf<typeof Fade> {}
+export interface ModalOverlayProps extends PropsOf<typeof Motion> {
+  children?: React.ReactNode
+}
 
 /**
  * ModalOverlay renders a backdrop behind the modal. It's
@@ -307,7 +325,13 @@ export const ModalOverlay = forwardRef<ModalOverlayProps, "div">(
     }
 
     return (
-      <Fade __css={overlayStyle} ref={ref} className={_className} {...rest} />
+      <Motion
+        {...fadeConfig}
+        __css={overlayStyle}
+        ref={ref}
+        className={_className}
+        {...(rest as any)}
+      />
     )
   },
 )

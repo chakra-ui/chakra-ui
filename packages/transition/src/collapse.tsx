@@ -1,9 +1,11 @@
 import { cx, warn, __DEV__ } from "@chakra-ui/utils"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
 import * as React from "react"
 import { MotionVariants } from "./__utils"
 
-export const collapseMotionVariants: MotionVariants<"enter" | "exit"> = {
+type CollapseVariants = MotionVariants<"enter" | "exit">
+
+const variants: CollapseVariants = {
   exit: (props: CollapseOptions) => ({
     ...(props.animateOpacity && {
       opacity: parseInt(props.startingHeight as string, 10) > 0 ? 1 : 0,
@@ -44,16 +46,12 @@ export interface CollapseOptions {
    * The height you want the content in it's expanded state. Set to `auto` by default
    */
   endingHeight?: number | string
-  /**
-   * The custom framer-motion variants to use
-   */
-  motionVariants?: MotionVariants<"open" | "collapsed">
 }
 
 export type ICollapse = CollapseProps
 
 export interface CollapseProps
-  extends React.ComponentProps<typeof motion.div>,
+  extends HTMLMotionProps<"div">,
     CollapseOptions {}
 
 export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
@@ -64,7 +62,6 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
       animateOpacity = true,
       startingHeight = 0,
       endingHeight = "auto",
-      motionVariants,
       style,
       className,
       onAnimationComplete,
@@ -94,10 +91,10 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
 
     const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
 
-    const variantProps = { startingHeight, endingHeight, animateOpacity }
+    const custom = { startingHeight, endingHeight, animateOpacity }
 
     return (
-      <AnimatePresence initial={false} custom={variantProps}>
+      <AnimatePresence initial={false} custom={custom}>
         {shouldExpand && (
           <motion.div
             ref={ref}
@@ -111,9 +108,9 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
             animate={isOpen || unmountOnExit ? "enter" : "exit"}
             exit="exit"
             {...rest}
-            variants={motionVariants ?? collapseMotionVariants}
+            variants={variants}
             style={{ overflow: "hidden", ...style }}
-            custom={variantProps}
+            custom={custom}
           />
         )}
       </AnimatePresence>

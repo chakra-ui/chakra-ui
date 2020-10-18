@@ -1,14 +1,35 @@
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
 import * as React from "react"
-import { MotionVariants } from "./__utils"
+import { EASINGS, MotionVariants } from "./__utils"
 
-export const fadeMotionVariants: MotionVariants<"enter" | "exit"> = {
-  exit: { opacity: 0 },
-  enter: { opacity: 1 },
+type FadeMotionVariant = MotionVariants<"enter" | "exit">
+
+const variants: FadeMotionVariant = {
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.1,
+      ease: EASINGS.easeOut,
+    },
+  },
+  enter: {
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+      ease: EASINGS.easeIn,
+    },
+  },
 }
 
-export interface FadeOptions {
+export const fadeConfig: HTMLMotionProps<any> = {
+  initial: "exit",
+  animate: "enter",
+  exit: "exit",
+  variants,
+}
+
+export interface FadeProps extends HTMLMotionProps<"div"> {
   /**
    * If `true`, the collapse will unmount when `isOpen={false}` and animation is done
    */
@@ -18,34 +39,6 @@ export interface FadeOptions {
    */
   in?: boolean
 }
-
-export interface FadeMotionProps
-  extends React.ComponentProps<typeof motion.div> {}
-
-export const FadeMotion = React.forwardRef<HTMLDivElement, FadeMotionProps>(
-  function FadeMotion(props, ref) {
-    return (
-      <motion.div
-        ref={ref}
-        initial="exit"
-        animate="enter"
-        exit="exit"
-        variants={fadeMotionVariants}
-        transition={{
-          duration: 0.225,
-          ease: [0.4, 0, 0.2, 1],
-        }}
-        {...props}
-      />
-    )
-  },
-)
-
-if (__DEV__) {
-  FadeMotion.displayName = "FadeMotion"
-}
-
-export interface FadeProps extends FadeMotionProps, FadeOptions {}
 
 export const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(
   props,
@@ -57,9 +50,10 @@ export const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(
   return (
     <AnimatePresence>
       {shouldExpand && (
-        <FadeMotion
+        <motion.div
           ref={ref}
           className={cx("chakra-fade", className)}
+          {...fadeConfig}
           animate={isOpen || unmountOnExit ? "enter" : "exit"}
           {...rest}
         />
