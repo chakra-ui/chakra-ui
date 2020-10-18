@@ -46,6 +46,9 @@
     "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
     "lint:types": "tsc --noEmit"
   },
+  "dependencies": {
+    "@chakra-ui/utils": "1.0.0-rc.5"
+  },
   "peerDependencies": {
     "react": "16.x"
   }

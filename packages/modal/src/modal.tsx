@@ -171,7 +171,6 @@ if (__DEV__) {
 
 export interface ModalContentProps extends PropsOf<typeof chakra.section> {}
 
-const ScaleFade = chakra(ScaleFadeMotion)
 const SlideFade = chakra(SlideFadeMotion)
 
 /**
