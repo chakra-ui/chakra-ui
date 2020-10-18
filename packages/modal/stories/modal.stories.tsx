@@ -25,12 +25,7 @@ export function BasicUsage() {
   return (
     <>
       <Button onClick={onOpen}>Open</Button>
-      <Modal
-        isOpen={isOpen}
-        onClose={onClose}
-        isCentered
-        motionPreset="slideInBottom"
-      >
+      <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton />
