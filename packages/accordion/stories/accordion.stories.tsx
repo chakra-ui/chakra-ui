@@ -8,11 +8,61 @@ import {
 } from "../src"
 import { chakra } from "@chakra-ui/system"
 import { Container } from "@chakra-ui/layout"
+import { AnimatePresence, motion } from "framer-motion"
 
 export default {
   title: "Accordion",
   decorators: [(story: Function) => <Container>{story()}</Container>],
 }
+
+const Acc = ({ i, expanded, setExpanded }) => {
+  const isOpen = i === expanded
+
+  // By using `AnimatePresence` to mount and unmount the contents, we can animate
+  // them in and out while also only rendering the contents of open accordions
+  return (
+    <>
+      <motion.header
+        initial={false}
+        animate={{ backgroundColor: isOpen ? "#FF0088" : "#0055FF" }}
+        onClick={() => setExpanded(isOpen ? false : i)}
+      >
+        Toggle
+      </motion.header>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.section
+            key="content"
+            initial="collapsed"
+            animate="open"
+            exit="collapsed"
+            variants={{
+              open: { opacity: 1, height: "auto" },
+              collapsed: { opacity: 0, height: 0 },
+            }}
+            transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
+          >
+            This approach is if you only want max one section open at a time. If
+            you want multiple sections to potentially be open simultaneously,
+            they can all be given their own `useState`.
+          </motion.section>
+        )}
+      </AnimatePresence>
+    </>
+  )
+}
+
+export const FramerExample = () => {
+  // This approach is if you only want max one section open at a time. If you want multiple
+  // sections to potentially be open simultaneously, they can all be given their own `useState`.
+  const [expanded, setExpanded] = React.useState<false | number>(0)
+
+  return accordionIds.map((i) => (
+    <Acc i={i} expanded={expanded} setExpanded={setExpanded} />
+  ))
+}
+
+const accordionIds = [0, 1, 2, 3]
 
 /**
  * By default, only one accordion can be visible
