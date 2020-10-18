@@ -1362,6 +1362,60 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "dsumer",
+      "name": "Dominik Sumer",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/4418879?v=4",
+      "profile": "http://dominik.sumer.dev",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Strajk",
+      "name": "Pavel 'Strajk' Dolecek",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/697301?v=4",
+      "profile": "http://www.strajk.me",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "keshav-bohr",
+      "name": "Keshav Bohra",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/44581314?v=4",
+      "profile": "https://www.linkedin.com/in/keshav-bohra-17032753/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "okezieuc",
+      "name": "okezieuc",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/53785400?v=4",
+      "profile": "https://github.com/okezieuc",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "claytonfaria",
+      "name": "Clayton Faria",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/65756578?v=4",
+      "profile": "https://github.com/claytonfaria",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "ellisio",
+      "name": "Andrew Ellis",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/127468?v=4",
+      "profile": "https://github.com/ellisio",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

@@ -137,6 +137,8 @@ export function useAccordion(props: UseAccordionProps) {
   }
 
   return {
+    index,
+    setIndex,
     htmlProps,
     getAccordionItemProps,
     focusedIndex,

@@ -36,6 +36,8 @@ export const List = forwardRef<ListProps, "ul">(function List(props, ref) {
 
   const validChildren = getValidChildren(children)
 
+  const selector = "& > *:not(style) ~ *:not(style)"
+
   return (
     <chakra.ul
       ref={ref}
@@ -46,13 +48,10 @@ export const List = forwardRef<ListProps, "ul">(function List(props, ref) {
        * @see https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html
        */
       role="list"
+      __css={spacing ? { [selector]: { mt: spacing } } : {}}
       {...rest}
     >
-      {validChildren.map((child, index) => {
-        const isLast = index + 1 === validChildren.length
-        if (isLast) return child
-        return spacing ? React.cloneElement(child, { mb: spacing }) : child
-      })}
+      {validChildren}
     </chakra.ul>
   )
 })

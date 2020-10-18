@@ -20,7 +20,12 @@ export default {
 export const Basic = () => <Skeleton h="20px" />
 
 export const Text = () => (
-  <SkeletonText padding="20px" borderWidth="1px" borderRadius="lg" />
+  <SkeletonText
+    padding="20px"
+    borderWidth="1px"
+    borderRadius="lg"
+    noOfLines={[3, 4, 5, 6, 7]}
+  />
 )
 
 export const AsContainer = () => (

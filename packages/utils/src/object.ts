@@ -1,6 +1,5 @@
 import memoizeOne from "memoize-one"
 import type { Omit, Dict } from "./types"
-export { default as merge } from "lodash.merge"
 export { default as mergeWith } from "lodash.mergewith"
 export { default as objectAssign } from "object-assign"
 
@@ -98,7 +97,7 @@ export function objectFilter<T extends Dict>(object: T, fn: FilterFn<T>) {
 }
 
 export const filterUndefined = (object: Dict) =>
-  objectFilter(object, (val) => val !== null)
+  objectFilter(object, (val) => val !== null && val !== undefined)
 
 export const objectKeys = <T extends Dict>(obj: T) =>
   (Object.keys(obj) as unknown) as (keyof T)[]

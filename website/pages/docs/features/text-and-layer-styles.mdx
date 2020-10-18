@@ -27,11 +27,11 @@ Properties defined in a layer style
 - Opacity
 
 ```jsx live=false
-import defaultTheme from "@chakra-ui/theme"
+// 1. Import `extendTheme`
+import { extendTheme } from "@chakra-ui/core"
 
-// 1. Define the layer styles in the theme
-const theme = {
-  ...defaultTheme,
+// 2. Extend the theme with new layer styles
+const theme = extendTheme({
   layerStyles: {
     base: {
       bg: "gray.50",
@@ -44,14 +44,14 @@ const theme = {
       borderColor: "orange.500",
     },
   },
-}
+})
 
-// 2. Consume the text styles in your components
+// 3. Consume the text styles in your components
 function Example() {
   return <Box layerStyle="selected">This is a box</Box>
 }
 
-// 3. You can also switch layer styles
+// 4. You can also switch layer styles
 function Example({ isSelected }) {
   const layerStyle = isSelected ? "selected" : "base"
   return <Box layerStyle={layerStyle}>This is a box</Box>
@@ -79,11 +79,11 @@ Properties defined in a text style
 - Text transform (uppercase, lowercase, and capitalization)
 
 ```jsx live=false
-import defaultTheme from "@chakra-ui/theme"
+// 1. Import `extendTheme`
+import { extendTheme } from "@chakra-ui/core"
 
-// 1. Define the text styles in the theme
-const theme = {
-  ...defaultTheme,
+// 2. Define the new text styles
+const theme = extendTheme({
   textStyles: {
     h1: {
       // you can also use responsive styles
@@ -99,9 +99,9 @@ const theme = {
       letterSpacing: "-1%",
     },
   },
-}
+})
 
-// 2. Consume the text styles in your components
+// 3. Consume the text styles in your component
 function Example() {
   return <Box textStyle={`h1`}>This is a box</Box>
 }

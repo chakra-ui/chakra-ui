@@ -345,11 +345,20 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/TimKolberger"><img src="https://avatars2.githubusercontent.com/u/16899513?v=4" width="64px;" alt=""/><br /><sub><b>TimKolberger</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3ATimKolberger" title="Bug reports">🐛</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=TimKolberger" title="Documentation">📖</a></td>
     <td align="center"><a href="https://twitter.com/_waptik"><img src="https://avatars1.githubusercontent.com/u/1687551?v=4" width="64px;" alt=""/><br /><sub><b>Stephane Mensah</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Awaptik" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/iskanderbroere"><img src="https://avatars2.githubusercontent.com/u/25477294?v=4" width="64px;" alt=""/><br /><sub><b>iskanderbroere</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=iskanderbroere" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://dominik.sumer.dev"><img src="https://avatars3.githubusercontent.com/u/4418879?v=4" width="64px;" alt=""/><br /><sub><b>Dominik Sumer</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=dsumer" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="http://www.strajk.me"><img src="https://avatars3.githubusercontent.com/u/697301?v=4" width="64px;" alt=""/><br /><sub><b>Pavel 'Strajk' Dolecek</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=Strajk" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/keshav-bohra-17032753/"><img src="https://avatars3.githubusercontent.com/u/44581314?v=4" width="64px;" alt=""/><br /><sub><b>Keshav Bohra</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=keshav-bohr" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/okezieuc"><img src="https://avatars3.githubusercontent.com/u/53785400?v=4" width="64px;" alt=""/><br /><sub><b>okezieuc</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=okezieuc" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/claytonfaria"><img src="https://avatars1.githubusercontent.com/u/65756578?v=4" width="64px;" alt=""/><br /><sub><b>Clayton Faria</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=claytonfaria" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/ellisio"><img src="https://avatars1.githubusercontent.com/u/127468?v=4" width="64px;" alt=""/><br /><sub><b>Andrew Ellis</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=ellisio" title="Code">💻</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):

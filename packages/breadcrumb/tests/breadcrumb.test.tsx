@@ -61,7 +61,7 @@ test("has the proper aria-attributes", () => {
   expect(screen.getAllByRole("presentation")).toHaveLength(2)
 })
 
-test("seperator can be changed", () => {
+test("separator can be changed", () => {
   render(
     <Breadcrumb separator="-">
       <BreadcrumbItem>

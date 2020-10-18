@@ -4,7 +4,7 @@ import {
   createContext,
   Dict,
   memoizedGet as get,
-  merge,
+  mergeWith,
   runIfFn,
 } from "@chakra-ui/utils"
 import { Global, Interpolation, ThemeContext } from "@emotion/core"
@@ -20,7 +20,7 @@ export interface ThemeProviderProps {
 export const ThemeProvider: React.FC<ThemeProviderProps> = (props) => {
   const { children, theme } = props
   const outerTheme = React.useContext(ThemeContext) as Dict
-  const mergedTheme = merge({}, outerTheme, theme)
+  const mergedTheme = mergeWith({}, outerTheme, theme)
 
   return (
     <ThemeContext.Provider value={mergedTheme}>

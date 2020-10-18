@@ -4,7 +4,7 @@ import {
   Dict,
   filterUndefined,
   memoizedGet as get,
-  merge,
+  mergeWith,
   runIfFn,
   StringOrNumber,
 } from "@chakra-ui/utils"
@@ -60,7 +60,7 @@ export function useProps(themeKey: string, props: Dict, isMultiPart?: boolean) {
 
   const stylesRef = useRef<Dict>({})
 
-  const mergedProps = merge({}, propsWithDefault, { theme, colorMode })
+  const mergedProps = mergeWith({}, propsWithDefault, { theme, colorMode })
 
   const memoizedStyles = useMemo(() => {
     if (styleConfig) {
@@ -76,7 +76,7 @@ export function useProps(themeKey: string, props: Dict, isMultiPart?: boolean) {
         mergedProps,
       )
 
-      const styles = merge(baseStyles, sizes, variants)
+      const styles = mergeWith(baseStyles, sizes, variants)
 
       if (styleConfig.parts) {
         for (const part of styleConfig.parts) {
