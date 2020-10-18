@@ -298,59 +298,43 @@ function VerticallyCenter() {
 }
 ```
 
-<!-- ### Adding transitions
+### Changing the transition
 
-The `Modal` doesn't come with any transitions by default so you can manage this
-yourself. Chakra exports four transition components (`Fade`, `ScaleFade`,
-`Slide`, and `SlideFade`) to provide simple transitions.
-
-> When adding transitions, kindly pay attention to the `timeout` for the overlay
-> and content transitions. In this example, `Fade` transitions slower than the
-> `SlideFade` for it to work correctly.
+The `Modal` comes with a scale transition by default but you can change it by
+passing a `motionPreset` prop, and set its value to either `slideInBottom`,
+`slideInRight`, or `scale`.
 
 ```jsx
 function TransitionExample() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const cancelRef = React.useRef()
-
   return (
     <>
       <Button onClick={onOpen}>Open Modal</Button>
-      <Fade timeout={300} in={isOpen}>
-        {(styles) => (
-          <Modal
-            leastDestructiveRef={cancelRef}
-            onClose={onClose}
-            isOpen={true}
-            isCentered
-          >
-            <ModalOverlay style={styles}>
-              <SlideFade timeout={150} in={isOpen} unmountOnExit={false}>
-                {(styles) => (
-                  <ModalContent style={styles}>
-                    <ModalHeader>Modal Title</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
-                      <Lorem count={2} />
-                    </ModalBody>
-                    <ModalFooter>
-                      <Button colorScheme="blue" mr={3} onClick={onClose}>
-                        Close
-                      </Button>
-                      <Button variant="ghost">Secondary Action</Button>
-                    </ModalFooter>
-                  </ModalContent>
-                )}
-              </SlideFade>
-            </ModalOverlay>
-          </Modal>
-        )}
-      </Fade>
+      <Modal
+        isCentered
+        onClose={onClose}
+        isOpen={isOpen}
+        motionPreset="slideInBottom"
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Lorem count={2} />
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant="ghost">Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   )
-} -->
-
-<!-- ```` -->
+}
+```
 
 ### Modal overflow behavior
 
