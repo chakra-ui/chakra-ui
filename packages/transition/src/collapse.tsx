@@ -1,7 +1,7 @@
 import { cx, warn, __DEV__ } from "@chakra-ui/utils"
 import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
 import * as React from "react"
-import { MotionVariants } from "./__utils"
+import { EASINGS, MotionVariants } from "./__utils"
 
 type CollapseVariants = MotionVariants<"enter" | "exit">
 
@@ -11,7 +11,7 @@ const variants: CollapseVariants = {
       opacity: parseInt(props.startingHeight as string, 10) > 0 ? 1 : 0,
     }),
     height: props.startingHeight,
-    transition: { duration: 0.15 },
+    transition: { duration: 0.2, ease: EASINGS.easeInOut },
   }),
   enter: (props: CollapseOptions) => ({
     ...(props.animateOpacity && {
@@ -20,7 +20,7 @@ const variants: CollapseVariants = {
     height: props.endingHeight,
     transition: {
       duration: 0.3,
-      ease: [0.04, 0.62, 0.23, 0.98],
+      ease: EASINGS.easeInOut,
     },
   }),
 }
