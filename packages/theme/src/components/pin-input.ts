@@ -1,4 +1,5 @@
 import Input from "./input"
+
 type Dict = Record<string, any>
 
 const baseStyle = {

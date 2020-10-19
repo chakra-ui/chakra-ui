@@ -97,6 +97,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
   const styles = useMultiStyleConfig("Checkbox", mergedProps)
 
   const ownProps = omitThemingProps(mergedProps)
+
   const {
     spacing = "0.5rem",
     className,
@@ -104,15 +105,17 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
     iconColor,
     iconSize,
     icon: Icon = <CheckboxIcon />,
+    isChecked: isCheckedProp,
+    onChange: onChangeProp,
     ...rest
   } = ownProps
 
-  let isChecked = ownProps.isChecked
+  let isChecked = isCheckedProp
   if (group?.value && ownProps.value) {
     isChecked = group.value.includes(ownProps.value)
   }
 
-  let onChange = ownProps.onChange
+  let onChange = onChangeProp
   if (group?.onChange && ownProps.value) {
     onChange = group.onChange
   }

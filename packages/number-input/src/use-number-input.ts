@@ -319,7 +319,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     "wheel",
     function onWheel(event) {
       const isInputFocused = document.activeElement === inputRef.current
-      if (!allowMouseWheel || !isInputFocused) return false
+      if (!allowMouseWheel || !isInputFocused) return
 
       event.preventDefault()
 
@@ -380,7 +380,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       "aria-valuemin": min,
       "aria-valuemax": max,
       "aria-disabled": isDisabled,
-      "aria-valuenow": isNaN(counter.valueAsNumber)
+      "aria-valuenow": Number.isNaN(counter.valueAsNumber)
         ? undefined
         : counter.valueAsNumber,
       "aria-invalid": isInvalid || counter.isOutOfRange,

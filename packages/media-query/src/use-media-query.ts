@@ -17,9 +17,7 @@ export function useMediaQuery(query: string | string[]): boolean[] {
   )
 
   useSafeLayoutEffect(() => {
-    if (!isSupported) {
-      return
-    }
+    if (!isSupported) return undefined
 
     const mediaQueryList = queries.map((query) => window.matchMedia(query))
 

@@ -102,7 +102,7 @@ export interface TagCloseButtonProps
  * @see Docs https://chakra-ui.com/components/tag
  */
 export const TagCloseButton: React.FC<TagCloseButtonProps> = (props) => {
-  const { isDisabled, children = <TagCloseIcon />, ...rest } = props
+  const { isDisabled, children, ...rest } = props
 
   const styles = useStyles()
 
@@ -119,9 +119,10 @@ export const TagCloseButton: React.FC<TagCloseButtonProps> = (props) => {
       {...rest}
       type="button"
       disabled={isDisabled}
-      children={children}
       __css={btnStyles}
-    />
+    >
+      {children || <TagCloseIcon />}
+    </chakra.button>
   )
 }
 

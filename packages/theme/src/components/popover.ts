@@ -42,7 +42,7 @@ const baseStyleFooter = {
   borderTopWidth: "1px",
 }
 
-const baseStyle = function (props: Record<string, any>) {
+const baseStyle = (props: Record<string, any>) => {
   return {
     content: baseStyleContent(props),
     header: baseStyleHeader,

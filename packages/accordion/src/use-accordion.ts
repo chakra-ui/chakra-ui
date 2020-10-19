@@ -8,13 +8,14 @@ import {
   getNextIndex,
   getPrevIndex,
   isArray,
+  isUndefined,
   mergeRefs,
   normalizeEventKey,
   PropGetter,
   removeItem,
+  warn,
 } from "@chakra-ui/utils"
 import { useCallback, useEffect, useRef, useState } from "react"
-import * as warn from "./warning"
 
 export type ExpandedIndex = number | number[]
 
@@ -56,8 +57,8 @@ export function useAccordion(props: UseAccordionProps) {
   } = props
 
   // validate the props and `warn` if used incorrectly
-  warn.allowMultiple(props)
-  warn.allowMultipleAndAllowToggle(props)
+  allowMultipleWarning(props)
+  allowMultipleAndAllowToggleWarning(props)
 
   /**
    * Think of this as the register to each accordion item.
@@ -91,11 +92,8 @@ export function useAccordion(props: UseAccordionProps) {
   const [index, setIndex] = useControllableState({
     value: indexProp,
     defaultValue: () => {
-      if (allowMultiple) {
-        return defaultIndex ?? []
-      } else {
-        return defaultIndex ?? -1
-      }
+      if (allowMultiple) return defaultIndex ?? []
+      return defaultIndex ?? -1
     },
     onChange,
     propsMap: {
@@ -111,12 +109,10 @@ export function useAccordion(props: UseAccordionProps) {
    * @param idx {number} The index of the child accordion item
    */
   const getAccordionItemProps = (idx: number | null) => {
-    const isOpen =
-      idx !== null
-        ? isArray(index)
-          ? index.includes(idx)
-          : index === idx
-        : false
+    let isOpen = false
+    if (idx !== null) {
+      isOpen = isArray(index) ? index.includes(idx) : index === idx
+    }
 
     const onChange = (isOpen: boolean) => {
       if (idx === null) return
@@ -124,12 +120,10 @@ export function useAccordion(props: UseAccordionProps) {
       if (allowMultiple && isArray(index)) {
         const nextState = isOpen ? addItem(index, idx) : removeItem(index, idx)
         setIndex(nextState)
-      } else {
-        if (isOpen) {
-          setIndex(idx)
-        } else if (allowToggle) {
-          setIndex(-1)
-        }
+      } else if (isOpen) {
+        setIndex(idx)
+      } else if (allowToggle) {
+        setIndex(-1)
       }
     }
 
@@ -203,7 +197,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
    */
   const [buttonId, panelId] = useIds(id, `accordion-button`, `accordion-panel`)
 
-  warn.focusableNotDisabled(props)
+  focusableNotDisabledWarning(props)
 
   /**
    * Think of this as a way to register this accordion item
@@ -331,3 +325,29 @@ export function useAccordionItem(props: UseAccordionItemProps) {
 }
 
 export type UseAccordionItemReturn = ReturnType<typeof useAccordionItem>
+
+function allowMultipleWarning(props: UseAccordionProps) {
+  const index = props.index || props.defaultIndex
+  const condition =
+    !isUndefined(index) && !isArray(index) && props.allowMultiple
+
+  warn({
+    condition: !!condition,
+    message: `If 'allowMultiple' is passed, then 'index' or 'defaultIndex' must be an array. You passed: ${typeof index},`,
+  })
+}
+
+function allowMultipleAndAllowToggleWarning(props: UseAccordionProps) {
+  warn({
+    condition: !!(props.allowMultiple && props.allowToggle),
+    message: `If 'allowMultiple' is passed, 'allowToggle' will be ignored. Either remove 'allowToggle' or 'allowMultiple' depending on whether you want multiple accordions visible or not`,
+  })
+}
+
+function focusableNotDisabledWarning(props: UseAccordionItemProps) {
+  warn({
+    condition: !!(props.isFocusable && !props.isDisabled),
+    message: `Using only 'isFocusable', this prop is reserved for situations where you pass 'isDisabled' but you still want the element to receive focus (A11y). Either remove it or pass 'isDisabled' as well.
+    `,
+  })
+}

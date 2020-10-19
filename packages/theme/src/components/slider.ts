@@ -24,7 +24,7 @@ function thumbOrientation(props: Dict) {
   })
 }
 
-const baseStyleContainer = function (props: Dict) {
+const baseStyleContainer = (props: Dict) => {
   const { orientation } = props
 
   return {

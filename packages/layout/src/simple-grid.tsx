@@ -47,7 +47,7 @@ export const SimpleGrid = forwardRef<SimpleGridProps, "div">(
       ...rest
     } = props
 
-    const templateColumns = Boolean(minChildWidth)
+    const templateColumns = minChildWidth
       ? widthToColumns(minChildWidth)
       : countToColumns(columns)
 
@@ -69,7 +69,7 @@ if (__DEV__) {
 }
 
 function toPx(n: string | number) {
-  return isNumber(n) ? n + "px" : n
+  return isNumber(n) ? `${n}px` : n
 }
 
 function widthToColumns(width: any) {

@@ -167,7 +167,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
 
   const getTooltipProps: PropGetter = (props = {}, _ref = null) => {
     const tooltipProps = {
-      ref,
+      ref: _ref,
       ...htmlProps,
       ...props,
       id: tooltipId,

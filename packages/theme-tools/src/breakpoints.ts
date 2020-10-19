@@ -15,7 +15,7 @@ export const createBreakpoints = <T extends BaseBreakpointConfig>(
 ): Breakpoints<T> => {
   const sorted = fromEntries<WithBase<T>>(
     Object.entries({ base: "0em", ...config }).sort((a, b) =>
-      parseInt(a[1]) > parseInt(b[1]) ? 1 : -1,
+      parseInt(a[1], 10) > parseInt(b[1], 10) ? 1 : -1,
     ),
   )
 

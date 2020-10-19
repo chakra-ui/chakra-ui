@@ -34,7 +34,7 @@ function createMediaQueries(breakpoints: string[]): MediaQuery[] {
  * using a combination of `min-width` and `max-width`.
  */
 function createMediaQueryString(minWidth: string, maxWidth?: string) {
-  const hasMinWidth = parseInt(minWidth) >= 0
+  const hasMinWidth = parseInt(minWidth, 10) >= 0
 
   if (!hasMinWidth && !maxWidth) {
     return ""

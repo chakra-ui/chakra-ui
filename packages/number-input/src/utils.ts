@@ -1,4 +1,4 @@
-const FLOATING_POINT_REGEX = /^[Ee0-9\+\-\.]$/
+const FLOATING_POINT_REGEX = /^[Ee0-9+\-.]$/
 
 /**
  * Determine if a character is a DOM floating point character

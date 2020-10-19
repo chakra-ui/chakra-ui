@@ -10,6 +10,7 @@ import {
   useMultiStyleConfig,
   useStyles,
 } from "@chakra-ui/system"
+import { Collapse } from "@chakra-ui/transition"
 import {
   createContext,
   cx,
@@ -28,7 +29,6 @@ import {
   UseAccordionItemReturn,
   UseAccordionProps,
 } from "./use-accordion"
-import { Collapse } from "@chakra-ui/transition"
 
 interface DivProps extends PropsOf<typeof chakra.div> {}
 

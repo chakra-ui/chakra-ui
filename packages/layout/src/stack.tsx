@@ -56,7 +56,7 @@ export const StackDivider: React.FC<StackDividerProps> = (props) => {
       className="chakra-stack__divider"
       {...props}
       __css={{
-        ...props["__css"],
+        ...props.__css,
         borderWidth: 0,
         alignSelf: "stretch",
         borderColor: "inherit",

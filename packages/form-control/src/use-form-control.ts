@@ -1,12 +1,6 @@
+import { ariaAttr, callAllHandlers, omit } from "@chakra-ui/utils"
 import { FocusEventHandler } from "react"
 import { FormControlOptions, useFormControlContext } from "./form-control"
-import {
-  ariaAttr,
-  dataAttr,
-  callAllHandlers,
-  Dict,
-  omit,
-} from "@chakra-ui/utils"
 
 export interface UseFormControlProps<T extends HTMLElement>
   extends FormControlOptions {
@@ -65,19 +59,5 @@ export function useFormControl<T extends HTMLElement>(
     "aria-describedby": ariaDescribedBy || undefined,
     onFocus: callAllHandlers(field?.onFocus, props.onFocus),
     onBlur: callAllHandlers(field?.onBlur, props.onBlur),
-  }
-}
-
-export function useFormControlLabel(props: Dict) {
-  const field = useFormControlContext()
-  return {
-    ...props,
-    "data-focus": dataAttr(field?.isFocused),
-    "data-disabled": dataAttr(field?.isDisabled),
-    "data-invalid": dataAttr(field?.isInvalid),
-    "data-loading": dataAttr(field?.isLoading),
-    "data-readonly": dataAttr(field?.isReadOnly),
-    id: props.id ?? field?.labelId,
-    htmlFor: props.htmlFor ?? field?.id,
   }
 }

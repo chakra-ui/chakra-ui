@@ -1,6 +1,6 @@
+import { chakra, forwardRef, PropsOf, SystemProps } from "@chakra-ui/system"
+import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { chakra, SystemProps, forwardRef, PropsOf } from "@chakra-ui/system"
-import { filterUndefined, __DEV__ } from "@chakra-ui/utils"
 
 export interface FlexOptions {
   /**

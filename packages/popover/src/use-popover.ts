@@ -164,14 +164,9 @@ export function usePopover(props: UsePopoverProps = {}) {
     trigger,
   })
 
-  // useFocusOnShow(popoverRef, {
-  //   autoFocus: autoFocus,
-  //   visible: isOpen,
-  //   focusRef: initialFocusRef,
-  //   trigger,
-  // })
+  const shouldAutoFocus = isOpen && autoFocus && trigger !== "hover"
 
-  useConditionalFocus(popoverRef, isOpen && trigger !== "hover", {
+  useConditionalFocus(popoverRef, shouldAutoFocus, {
     focusRef: initialFocusRef,
     preventScroll: true,
   })
@@ -194,7 +189,7 @@ export function usePopover(props: UsePopoverProps = {}) {
       const popoverProps: HTMLProps = {
         ...props,
         ref: mergeRefs(popoverRef, _ref),
-        children: isLazy ? (isOpen ? props.children : null) : props.children,
+        children: !isLazy || isOpen ? props.children : null,
         id: popoverId,
         tabIndex: -1,
         role: "dialog",

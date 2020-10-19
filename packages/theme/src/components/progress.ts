@@ -1,4 +1,5 @@
 import { generateStripe, getColor, mode } from "@chakra-ui/theme-tools"
+
 type Dict = Record<string, any>
 
 const parts = ["track", "filledTrack", "panel"]

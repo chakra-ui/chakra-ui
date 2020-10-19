@@ -43,19 +43,20 @@ export interface MenuProps extends UseMenuProps, ThemingProps {
  * to its sub-components. It doesn't render any DOM node.
  */
 export const Menu: React.FC<MenuProps> = (props) => {
+  const { children } = props
+
   const styles = useMultiStyleConfig("Menu", props)
   const ownProps = omitThemingProps(props)
 
   const ctx = useMenu(ownProps)
   const context = React.useMemo(() => ctx, [ctx])
 
+  const { isOpen, onClose } = context
+
   return (
     <MenuProvider value={context}>
       <StylesProvider value={styles}>
-        {runIfFn(props.children, {
-          isOpen: context.isOpen,
-          onClose: context.onClose,
-        })}
+        {runIfFn(children, { isOpen, onClose })}
       </StylesProvider>
     </MenuProvider>
   )
@@ -121,8 +122,6 @@ export const MenuButton = forwardRef<MenuButtonProps, "button">(
 if (__DEV__) {
   MenuButton.displayName = "MenuButton"
 }
-
-//////////////////////////////////////////////////////////////////////////
 
 export interface MenuListProps extends PropsOf<typeof chakra.div> {}
 
@@ -190,8 +189,6 @@ export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
 if (__DEV__) {
   MenuList.displayName = "MenuList"
 }
-
-//////////////////////////////////////////////////////////////////////////
 
 export interface StyledMenuItemProps extends PropsOf<typeof chakra.button> {}
 
@@ -277,9 +274,13 @@ export const MenuItem = forwardRef<MenuItemProps, "button">(function MenuItem(
       className={cx("chakra-menu__menuitem", ownProps.className)}
       ref={ownRef}
     >
-      {icon && <MenuIcon fontSize="0.8em" mr={iconSpacing} children={icon} />}
+      {icon && (
+        <MenuIcon fontSize="0.8em" mr={iconSpacing}>
+          {icon}
+        </MenuIcon>
+      )}
       {_children}
-      {command && <MenuCommand children={command} />}
+      {command && <MenuCommand>{command}</MenuCommand>}
     </StyledMenuItem>
   )
 })
@@ -287,8 +288,6 @@ export const MenuItem = forwardRef<MenuItemProps, "button">(function MenuItem(
 if (__DEV__) {
   MenuItem.displayName = "MenuItem"
 }
-
-//////////////////////////////////////////////////////////////////////////
 
 export interface MenuItemOptionProps
   extends UseMenuOptionOptions,
@@ -321,10 +320,11 @@ export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
       >
         <MenuIcon
           fontSize="0.8em"
-          children={icon || <CheckIcon />}
           mr={iconSpacing}
           opacity={props.isChecked ? 1 : 0}
-        />
+        >
+          {icon || <CheckIcon />}
+        </MenuIcon>
         <chakra.span flex="1">{ownProps.children}</chakra.span>
       </StyledMenuItem>
     )
@@ -337,20 +337,18 @@ if (__DEV__) {
   MenuItemOption.displayName = "MenuItemOption"
 }
 
-//////////////////////////////////////////////////////////////////////////
-
 export interface MenuOptionGroupProps
   extends UseMenuOptionGroupProps,
     Omit<MenuGroupProps, "value" | "defaultValue" | "onChange"> {}
 
 export const MenuOptionGroup: React.FC<MenuOptionGroupProps> = (props) => {
-  const { children, ...rest } = useMenuOptionGroup(props)
+  const { className, title, ...rest } = props
+  const ownProps = useMenuOptionGroup(rest)
   return (
     <MenuGroup
-      title={props.title}
-      children={children}
-      {...rest}
-      className={cx("chakra-menu__option-group", props.className)}
+      title={title}
+      className={cx("chakra-menu__option-group", className)}
+      {...ownProps}
     />
   )
 }
@@ -358,8 +356,6 @@ export const MenuOptionGroup: React.FC<MenuOptionGroupProps> = (props) => {
 if (__DEV__) {
   MenuOptionGroup.displayName = "MenuOptionGroup"
 }
-
-//////////////////////////////////////////////////////////////////////////
 
 export interface MenuGroupProps extends PropsOf<typeof chakra.div> {}
 
@@ -388,8 +384,6 @@ if (__DEV__) {
   MenuGroup.displayName = "MenuGroup"
 }
 
-//////////////////////////////////////////////////////////////////////////
-
 export interface MenuCommandProps extends PropsOf<typeof chakra.span> {}
 
 export const MenuCommand = forwardRef<MenuCommandProps, "span">(
@@ -409,8 +403,6 @@ export const MenuCommand = forwardRef<MenuCommandProps, "span">(
 if (__DEV__) {
   MenuCommand.displayName = "MenuCommand"
 }
-
-//////////////////////////////////////////////////////////////////////////
 
 export const MenuIcon: React.FC<PropsOf<typeof chakra.span>> = (props) => {
   const { className, children, ...rest } = props

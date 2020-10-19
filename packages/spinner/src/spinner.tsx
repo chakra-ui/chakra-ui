@@ -89,7 +89,7 @@ export const Spinner = forwardRef<SpinnerProps, "div">(function Spinner(
     borderWidth: thickness,
     borderBottomColor: emptyColor,
     borderLeftColor: emptyColor,
-    color: color,
+    color,
     animation: `${spin} ${speed} linear infinite`,
     ...styles,
   }
