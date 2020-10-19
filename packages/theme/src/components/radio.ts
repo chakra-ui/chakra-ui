@@ -23,7 +23,7 @@ function baseStyleControl(props: Record<string, any>) {
   }
 }
 
-const baseStyle = function (props: Record<string, any>) {
+const baseStyle = (props: Record<string, any>) => {
   return {
     label: Checkbox.baseStyle(props).label,
     control: baseStyleControl(props),

@@ -154,7 +154,8 @@ export class ToastManager extends React.Component<Props, State> {
    * Create properties for a new toast
    */
   createToast = (message: ToastMessage, options: CreateToastOptions) => {
-    const id = options.id ?? ++ToastManager.counter
+    ToastManager.counter += 1
+    const id = options.id ?? ToastManager.counter
 
     const position = options.position ?? "top"
 
@@ -183,7 +184,7 @@ export class ToastManager extends React.Component<Props, State> {
         ...prevState,
         [position]: prevState[position].map((toast) => ({
           ...toast,
-          requestClose: toast.id == id ? true : toast.requestClose,
+          requestClose: toast.id === id ? true : toast.requestClose,
         })),
       }
     })
@@ -196,7 +197,7 @@ export class ToastManager extends React.Component<Props, State> {
     this.setState((prevState) => {
       return {
         ...prevState,
-        [position]: prevState[position].filter((toast) => toast.id != id),
+        [position]: prevState[position].filter((toast) => toast.id !== id),
       }
     })
   }
@@ -238,7 +239,7 @@ export class ToastManager extends React.Component<Props, State> {
       return (
         <ul
           key={position}
-          id={"chakra-toast-manager-" + position}
+          id={`chakra-toast-manager-${position}`}
           style={this.getStyle(position)}
         >
           <AnimatePresence initial={false}>

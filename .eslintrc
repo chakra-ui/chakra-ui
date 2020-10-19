@@ -39,6 +39,7 @@
     "react/no-danger": "off",
     "operator-assignment": "off",
     "prefer-destructuring": "off",
+    "react/state-in-constructor": "off",
     "react/destructuring-assignment": "off",
     "@typescript-eslint/dot-notation": "off",
     "no-bitwise": "off",

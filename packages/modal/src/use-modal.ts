@@ -203,7 +203,7 @@ export function useAriaHidden(
   shouldHide: boolean,
 ) {
   useEffect(() => {
-    if (!ref.current) return
+    if (!ref.current) return undefined
 
     let undo: Undo | null = null
 

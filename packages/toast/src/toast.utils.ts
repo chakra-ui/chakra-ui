@@ -15,7 +15,7 @@ export function findToast(toasts: ToastState, id: ToastId) {
   const position = getToastPosition(toasts, id)
 
   const index = position
-    ? toasts[position].findIndex((toast) => toast.id == id)
+    ? toasts[position].findIndex((toast) => toast.id === id)
     : -1
 
   return {
@@ -48,9 +48,13 @@ export function getToastStyle(position: ToastPosition): React.CSSProperties {
   const isRighty = position.includes("right")
   const isLefty = position.includes("left")
 
+  let alignItems = "center"
+  if (isRighty) alignItems = "flex-end"
+  if (isLefty) alignItems = "flex-start"
+
   return {
     display: "flex",
     flexDirection: "column",
-    alignItems: isRighty ? "flex-end" : isLefty ? "flex-start" : "center",
+    alignItems,
   }
 }

@@ -1,6 +1,3 @@
-import * as React from "react"
-import { Slide, SlideOptions } from "@chakra-ui/transition"
-import { Modal, ModalProps, ModalFocusScope, useModalContext } from "./modal"
 import {
   chakra,
   forwardRef,
@@ -9,7 +6,10 @@ import {
   useStyles,
   useTheme,
 } from "@chakra-ui/system"
+import { Slide, SlideOptions } from "@chakra-ui/transition"
 import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
+import * as React from "react"
+import { Modal, ModalFocusScope, ModalProps, useModalContext } from "./modal"
 
 const [DrawerContextProvider, useDrawerContext] = createContext<DrawerOptions>()
 
@@ -131,8 +131,8 @@ if (__DEV__) {
 
 export {
   ModalBody as DrawerBody,
-  ModalHeader as DrawerHeader,
-  ModalFooter as DrawerFooter,
   ModalCloseButton as DrawerCloseButton,
+  ModalFooter as DrawerFooter,
+  ModalHeader as DrawerHeader,
   ModalOverlay as DrawerOverlay,
 } from "./modal"

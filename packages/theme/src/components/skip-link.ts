@@ -1,6 +1,6 @@
 import { mode } from "@chakra-ui/theme-tools"
 
-const baseStyle = function (props: Record<string, any>) {
+const baseStyle = (props: Record<string, any>) => {
   return {
     borderRadius: "md",
     fontWeight: "semibold",

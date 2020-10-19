@@ -49,7 +49,7 @@ function baseStyleFilledTrack(props: Dict) {
   }
 }
 
-const baseStyle = function (props: Dict) {
+const baseStyle = (props: Dict) => {
   return {
     label: baseStyleLabel,
     filledTrack: baseStyleFilledTrack(props),

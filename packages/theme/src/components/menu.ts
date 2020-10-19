@@ -47,7 +47,7 @@ const baseStyleCommand = {
   opacity: 0.6,
 }
 
-const baseStyle = function (props: Record<string, any>) {
+const baseStyle = (props: Record<string, any>) => {
   return {
     list: baseStyleList(props),
     item: baseStyleItem(props),
