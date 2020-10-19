@@ -1,13 +1,13 @@
-import { ResponsiveValue } from "./utils"
-import { Omit, Dict } from "@chakra-ui/utils"
-import { Pseudos } from "./pseudo"
+import { Dict, Omit } from "@chakra-ui/utils"
 import {
-  Property,
   PropertiesFallback,
+  Property,
   Pseudos as CSSPseudos,
   StandardProperties,
   SvgProperties,
 } from "csstype"
+import { Pseudos } from "./pseudo"
+import { ResponsiveValue } from "./utils"
 
 type CSS = PropertiesFallback<number | string>
 

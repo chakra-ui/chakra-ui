@@ -91,11 +91,11 @@ const responsive = (styles: any) => (theme: Dict) => {
     theme.breakpoints,
   )
 
-  for (const key in styles) {
+  Object.keys(styles).forEach((key) => {
     let value = runIfFn(styles[key], theme)
 
     if (value == null) {
-      continue
+      return
     }
 
     value = isResponsiveObjectLike(value, breakpoints)
@@ -104,28 +104,28 @@ const responsive = (styles: any) => (theme: Dict) => {
 
     if (!isArray(value)) {
       computedStyles[key] = value
-      continue
+      return
     }
 
     const queries = value.slice(0, mediaQueries.length).length
 
-    for (let index = 0; index < queries; index++) {
+    for (let index = 0; index < queries; index += 1) {
       const media = mediaQueries[index]
 
       if (!media) {
         computedStyles[key] = value[index]
-        continue
+        return
       }
 
       computedStyles[media] = computedStyles[media] || {}
 
       if (value[index] == null) {
-        continue
+        return
       }
 
       computedStyles[media][key] = value[index]
     }
-  }
+  })
 
   return computedStyles
 }
@@ -142,7 +142,7 @@ export const css = (args: StyleObjectOrFn = {}) => (
   const styleObject = runIfFn(args, theme)
   const styles = responsive(styleObject)(theme)
 
-  for (const k in styles) {
+  Object.keys(styles).forEach((k) => {
     const x = styles[k]
     const val = runIfFn(x, theme)
 
@@ -152,31 +152,31 @@ export const css = (args: StyleObjectOrFn = {}) => (
     if (key === "apply") {
       const apply = css(get(theme, val))(theme)
       computedStyles = mergeWith({}, computedStyles, apply)
-      continue
+      return
     }
 
     if (isObject(val)) {
       computedStyles[key] = css(val)(theme)
-      continue
+      return
     }
 
     const scale = get(theme, config?.scale, {})
     const value = config?.transform?.(val, scale) ?? get(scale, val, val)
 
     if (config?.properties) {
-      for (const property of config.properties) {
+      config.properties.forEach((property: string) => {
         computedStyles[property] = value
-      }
-      continue
+      })
+      return
     }
 
     if (config?.property) {
       computedStyles[config.property] = value
-      continue
+      return
     }
 
     computedStyles[key] = value
-  }
+  })
 
   return computedStyles
 }

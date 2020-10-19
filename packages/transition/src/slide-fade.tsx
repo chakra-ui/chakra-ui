@@ -49,7 +49,7 @@ export const slideFadeConfig: HTMLMotionProps<"div"> = {
   initial: "initial",
   animate: "enter",
   exit: "exit",
-  variants: variants,
+  variants,
 }
 
 export interface SlideFadeProps extends HTMLMotionProps<"div"> {

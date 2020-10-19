@@ -11,7 +11,7 @@ const getPropName = memoize((prop: string) =>
 export function parsePseudo(props: Dict) {
   const next: Dict = {}
 
-  for (const prop in props) {
+  Object.keys(props).forEach((prop) => {
     const propValue = props[prop]
     const propName = getPropName(prop)
 
@@ -20,7 +20,7 @@ export function parsePseudo(props: Dict) {
     } else {
       next[propName] = propValue
     }
-  }
+  })
 
   return next
 }

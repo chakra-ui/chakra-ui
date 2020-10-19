@@ -26,7 +26,7 @@ declare module "@styled-system/core" {
     [customStyleName: string]: ConfigStyle | boolean
   }
 
-  export interface styleFn {
+  export interface StyleFn {
     (...args: any[]): any
     config?: object
     propNames?: string[]
@@ -35,8 +35,8 @@ declare module "@styled-system/core" {
 
   export function merge(obj1: object, obj2: object): object
   export function get(obj: any, ...paths: Array<string | number>): any
-  export function createParser(config: ConfigStyle): styleFn
-  export function createStyleFunction(args: ConfigStyle): styleFn
-  export function system(styleDefinitions: Config): styleFn
-  export function compose(...parsers: styleFn[]): styleFn
+  export function createParser(config: ConfigStyle): StyleFn
+  export function createStyleFunction(args: ConfigStyle): StyleFn
+  export function system(styleDefinitions: Config): StyleFn
+  export function compose(...parsers: StyleFn[]): StyleFn
 }

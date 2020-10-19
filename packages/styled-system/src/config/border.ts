@@ -1,6 +1,6 @@
+import { Config, createParser, system } from "@styled-system/core"
 import * as CSS from "csstype"
-import { ResponsiveValue, Length } from "../utils"
-import { createParser, Config, system } from "@styled-system/core"
+import { Length, ResponsiveValue } from "../utils"
 
 /**
  * The parser configuration for common border properties
