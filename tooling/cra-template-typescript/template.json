@@ -1,7 +1,7 @@
 {
   "package": {
     "dependencies": {
-      "@chakra-ui/core": "^1.0.0@next",
+      "@chakra-ui/core": "^1.0.0-rc.5",
       "react-icons": "^3.0.0",
       "@testing-library/jest-dom": "^5.9.0",
       "@testing-library/react": "^10.2.1",

@@ -19,7 +19,7 @@ export function useEventListener<K extends keyof DocumentEventMap>(
   const savedHandler = useLatestRef(handler)
 
   React.useEffect(() => {
-    if (!doc) return
+    if (!doc) return undefined
 
     const listener = (event: any) => {
       savedHandler.current?.(event)

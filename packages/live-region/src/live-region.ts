@@ -122,5 +122,3 @@ function setup(region: HTMLElement, options: Required<LiveRegionOptions>) {
     position: "absolute",
   })
 }
-
-export default LiveRegion

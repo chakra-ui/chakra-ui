@@ -8,15 +8,18 @@ import { useLatestRef } from "./use-latest-ref"
  * @param delay the `setInterval` delay (in ms)
  */
 export function useInterval(callback: () => void, delay: number | null) {
-  const savedCallback = useLatestRef(callback)
+  const callbackRef = useLatestRef(callback)
 
   React.useEffect(() => {
-    const tick = () => {
-      savedCallback.current?.()
-    }
+    let intervalId: number | null = null
+    const tick = () => callbackRef.current?.()
     if (delay !== null) {
-      const id = setInterval(tick, delay)
-      return () => clearInterval(id)
+      intervalId = window.setInterval(tick, delay)
     }
-  }, [delay, savedCallback])
+    return () => {
+      if (intervalId) {
+        window.clearInterval(intervalId)
+      }
+    }
+  }, [delay, callbackRef])
 }

@@ -12,8 +12,8 @@ export const hasNegativeTabIndex = (element: HTMLElement) =>
 
 export function isDisabled(element: HTMLElement) {
   return (
-    Boolean(element.getAttribute("disabled")) == true ||
-    Boolean(element.getAttribute("aria-disabled")) == true
+    Boolean(element.getAttribute("disabled")) === true ||
+    Boolean(element.getAttribute("aria-disabled")) === true
   )
 }
 

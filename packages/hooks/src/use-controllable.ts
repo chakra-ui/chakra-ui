@@ -78,17 +78,17 @@ export function useControllableState<T>(props: UseControllableStateProps<T>) {
       message:
         `Warning: ${name} is changing from ${mode} to ${nextMode} component. ` +
         `Components should not switch from controlled to uncontrolled (or vice versa). ` +
-        `Use the '${propsMap["value"]}' with an '${propsMap["onChange"]}' handler. ` +
-        `If you want an uncontrolled component, remove the ${propsMap["value"]} prop and use '${propsMap["defaultValue"]}' instead. "` +
+        `Use the '${propsMap.value}' with an '${propsMap.onChange}' handler. ` +
+        `If you want an uncontrolled component, remove the ${propsMap.value} prop and use '${propsMap.defaultValue}' instead. "` +
         `More info: https://fb.me/react-controlled-components`,
     })
   }, [valueProp, isControlled, name])
 
-  const { current: _defaultValue } = React.useRef(defaultValue)
+  const { current: initialValue } = React.useRef(defaultValue)
 
   React.useEffect(() => {
     warn({
-      condition: _defaultValue !== defaultValue,
+      condition: initialValue !== defaultValue,
       message:
         `Warning: A component is changing the default value of an uncontrolled ${name} after being initialized. ` +
         `To suppress this warning opt to use a controlled ${name}.`,

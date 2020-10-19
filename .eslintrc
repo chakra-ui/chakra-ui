@@ -2,7 +2,11 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 7
+    "ecmaVersion": 10,
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "extends": [
     "plugin:import/recommended",
@@ -13,27 +17,27 @@
     "prettier/@typescript-eslint"
   ],
   "plugins": [
-    "eslint-plugin-react-hooks",
+    "react-hooks",
     "@typescript-eslint/eslint-plugin",
-    "eslint-plugin-testing-library"
+    "testing-library"
   ],
   "env": {
     "es6": true,
     "browser": true,
     "node": true
   },
-  "settings": {
-    "react": {
-      "pragma": "React",
-      "version": "detect"
-    }
-  },
   "rules": {
-    "prettier/prettier": ["error", { "singleQuote": false }],
     "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-use-before-define": "off",
     "no-param-reassign": "off",
+    "no-console": "off",
     "jsx-a11y/no-autofocus": "off",
     "react/forbid-prop-types": "off",
+    "import/prefer-default-export": "off",
+    "no-underscore-dangle": "off",
+    "no-shadow": "off",
+    "import/no-extraneous-dependencies": "off",
+    "@typescript-eslint/lines-between-class-members": "off",
     "react/jsx-filename-extension": [
       "error",
       { "extensions": [".js", ".tsx"] }
@@ -41,6 +45,7 @@
     "react/jsx-props-no-spreading": "off",
     "react/no-array-index-key": "off",
     "react/require-default-props": "off",
-    "react/sort-prop-types": "error"
+    "react/sort-prop-types": "error",
+    "react/prop-types": "off"
   }
 }

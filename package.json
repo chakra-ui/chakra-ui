@@ -179,6 +179,7 @@
     "emotion-theming": "^10.0.27",
     "yarn-deduplicate": "^3.0.0",
     "eslint": "^7.10.0",
+    "eslint-plugin-import": "^2.22.1",
     "eslint-config-prettier": "^6.12.0",
     "eslint-config-react": "^1.1.7",
     "eslint-config-airbnb-typescript": "^9.0.0",

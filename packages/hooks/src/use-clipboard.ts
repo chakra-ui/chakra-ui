@@ -16,12 +16,18 @@ export function useClipboard(text: string, timeout = 1500) {
   }, [text])
 
   useEffect(() => {
+    let timeoutId: number | null = null
+
     if (hasCopied) {
-      const id = setTimeout(() => {
+      timeoutId = window.setTimeout(() => {
         setHasCopied(false)
       }, timeout)
+    }
 
-      return () => clearTimeout(id)
+    return () => {
+      if (timeoutId) {
+        window.clearTimeout(timeoutId)
+      }
     }
   }, [timeout, hasCopied])
 
