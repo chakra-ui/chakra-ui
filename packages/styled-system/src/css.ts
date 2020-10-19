@@ -91,11 +91,11 @@ const responsive = (styles: any) => (theme: Dict) => {
     theme.breakpoints,
   )
 
-  Object.keys(styles).forEach((key) => {
+  for (const key in styles) {
     let value = runIfFn(styles[key], theme)
 
     if (value == null) {
-      return
+      continue
     }
 
     value = isResponsiveObjectLike(value, breakpoints)
@@ -104,7 +104,7 @@ const responsive = (styles: any) => (theme: Dict) => {
 
     if (!isArray(value)) {
       computedStyles[key] = value
-      return
+      continue
     }
 
     const queries = value.slice(0, mediaQueries.length).length
@@ -125,7 +125,7 @@ const responsive = (styles: any) => (theme: Dict) => {
 
       computedStyles[media][key] = value[index]
     }
-  })
+  }
 
   return computedStyles
 }
@@ -142,7 +142,7 @@ export const css = (args: StyleObjectOrFn = {}) => (
   const styleObject = runIfFn(args, theme)
   const styles = responsive(styleObject)(theme)
 
-  Object.keys(styles).forEach((k) => {
+  for (const k in styles) {
     const x = styles[k]
     const val = runIfFn(x, theme)
 
@@ -152,31 +152,31 @@ export const css = (args: StyleObjectOrFn = {}) => (
     if (key === "apply") {
       const apply = css(get(theme, val))(theme)
       computedStyles = mergeWith({}, computedStyles, apply)
-      return
+      continue
     }
 
     if (isObject(val)) {
       computedStyles[key] = css(val)(theme)
-      return
+      continue
     }
 
     const scale = get(theme, config?.scale, {})
     const value = config?.transform?.(val, scale) ?? get(scale, val, val)
 
     if (config?.properties) {
-      config.properties.forEach((property: string) => {
+      for (const property of config.properties) {
         computedStyles[property] = value
-      })
-      return
+      }
+      continue
     }
 
     if (config?.property) {
       computedStyles[config.property] = value
-      return
+      continue
     }
 
     computedStyles[key] = value
-  })
+  }
 
   return computedStyles
 }
