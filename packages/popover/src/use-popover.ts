@@ -8,6 +8,7 @@ import {
   mergeRefs,
   PropGetter,
   mergeWith,
+  focus,
 } from "@chakra-ui/utils"
 import { useInteractOutside } from "@react-aria/interactions"
 import { RefObject, useCallback, useEffect, useRef } from "react"
@@ -327,8 +328,20 @@ export function usePopover(props: UsePopoverProps = {}) {
   /**
    * When adding animations/transitions, the focus logic might not work as expected.
    * We'll use this to trigger focus again.
+   *
+   * @todo change this to use `useConditionalFocus` code form `@accessible-ui`
    */
   const refocus = () => {
+    if (isOpen && initialFocusRef?.current) {
+      focus(initialFocusRef.current)
+      return
+    }
+
+    if (!isOpen && triggerRef.current) {
+      focus(triggerRef.current)
+      return
+    }
+
     const targetIsPopover = document.activeElement !== popoverRef.current
     const isWithinPopover = popoverRef.current?.contains(document.activeElement)
 

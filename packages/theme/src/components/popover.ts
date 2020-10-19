@@ -11,7 +11,7 @@ function baseStyleContent(props: Record<string, any>) {
     boxShadow: "sm",
     w: "100%",
     maxW: "xs",
-    zIndex: "1",
+    zIndex: 10,
     _focus: {
       outline: 0,
       boxShadow: "outline",

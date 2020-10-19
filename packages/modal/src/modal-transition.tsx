@@ -10,11 +10,11 @@ export interface ModalTransitionProps extends HTMLMotionProps<any> {
 const transitions = {
   slideInBottom: {
     ...slideFadeConfig,
-    custom: { offsetY: 8, reverse: true },
+    custom: { offsetY: 16, reverse: true },
   },
   slideInRight: {
     ...slideFadeConfig,
-    custom: { offsetX: 8, reverse: true },
+    custom: { offsetX: 16, reverse: true },
   },
   scale: {
     ...scaleFadeConfig,

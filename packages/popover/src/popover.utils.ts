@@ -30,7 +30,7 @@ export function useFocusOnHide(
 
   const shouldFocus = autoFocus && !visible && trigger === "click"
 
-  const onPointerDown = (event: MouseEvent) => {
+  const onPointerDown = (event: MouseEvent | TouchEvent) => {
     if (!options.visible) return
     const target = event.target as HTMLElement
 
@@ -115,6 +115,8 @@ export function useFocusOnShow(
 
     if (focusRef?.current) {
       focus(focusRef.current)
-    } else focusPopover(popoverRef)
+    } else {
+      focusPopover(popoverRef)
+    }
   }, [visible, autoFocus, popoverRef, focusRef])
 }

@@ -192,10 +192,9 @@ const Form = ({ firstFieldRef, onCancel }) => {
 // 3. Create the Popover
 // Ensure you set `closeOnBlur` prop to false so it doesn't close on outside click
 const PopoverForm = () => {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const { onOpen, onClose, isOpen } = useDisclosure()
   const firstFieldRef = React.useRef(null)
-  const open = () => setIsOpen(true)
-  const close = () => setIsOpen(false)
+
   return (
     <>
       <Box d="inline-block" mr={3}>
@@ -204,8 +203,8 @@ const PopoverForm = () => {
       <Popover
         isOpen={isOpen}
         initialFocusRef={firstFieldRef}
-        onOpen={open}
-        onClose={close}
+        onOpen={onOpen}
+        onClose={onClose}
         placement="right"
         closeOnBlur={false}
       >
@@ -214,9 +213,9 @@ const PopoverForm = () => {
         </PopoverTrigger>
         <PopoverContent p={5}>
           <FocusLock returnFocus persistentFocus={false}>
-            <PopoverArrow bg="white" />
+            <PopoverArrow />
             <PopoverCloseButton />
-            <Form firstFieldRef={firstFieldRef} onCancel={close} />
+            <Form firstFieldRef={firstFieldRef} onCancel={onClose} />
           </FocusLock>
         </PopoverContent>
       </Popover>

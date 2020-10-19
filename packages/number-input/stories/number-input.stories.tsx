@@ -11,6 +11,7 @@ import {
 import { Stack } from "@chakra-ui/layout"
 import { Input } from "@chakra-ui/input"
 import { Button } from "@chakra-ui/button"
+import Lorem from "react-lorem-component"
 
 export default {
   title: "NumberInput",
@@ -35,16 +36,19 @@ export const HookUsage = () => {
     min: 1,
     max: 6,
     precision: 2,
+    allowMouseWheel: true,
   })
 
   return (
     <>
       <div>current: {valueAsNumber}</div>
+      <Lorem />
       <chakra.div display="flex">
         <Button {...getIncrementButtonProps()}>+</Button>
         <Input {...(getInputProps() as any)} />
         <Button {...getDecrementButtonProps()}>-</Button>
       </chakra.div>
+      <Lorem />
     </>
   )
 }

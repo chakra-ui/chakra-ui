@@ -132,7 +132,10 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
     ) as any
 
     return (
-      <div {...getPopoverWrapperProps()}>
+      <chakra.div
+        __css={{ zIndex: contentStyles.zIndex }}
+        {...getPopoverWrapperProps()}
+      >
         <StyledSection
           {...popoverProps}
           className={cx("chakra-popover__content")}
@@ -142,7 +145,7 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
           animate={isOpen ? "enter" : "exit"}
           onAnimationComplete={refocus}
         />
-      </div>
+      </chakra.div>
     )
   },
 )
