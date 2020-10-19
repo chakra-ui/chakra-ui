@@ -169,11 +169,13 @@ export const AccordionButton = forwardRef<AccordionButtonProps, "button">(
       ...styles.button,
     }
 
+    // Set the default type to "button" to prevent form submit when accordion is within a form
     return (
       <chakra.button
-        {...buttonProps}
+        type="button"
         className={cx("chakra-accordion__button", props.className)}
         __css={buttonStyles}
+        {...buttonProps}
       />
     )
   },
