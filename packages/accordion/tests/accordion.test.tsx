@@ -297,3 +297,19 @@ test("panel has role=region and aria-labelledby", () => {
   expect(panel).toHaveAttribute("aria-labelledby")
   expect(panel).toHaveAttribute("role", "region")
 })
+
+// test that accordion button should have default type="button"
+test('accordion button should have default type="button"', () => {
+  render(
+    <Accordion>
+      <AccordionItem>
+        <AccordionButton>First section</AccordionButton>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
+    </Accordion>,
+  )
+
+  const firstAccordion = screen.getByText("First section")
+
+  expect(firstAccordion).toHaveAttribute("type", "button")
+})
