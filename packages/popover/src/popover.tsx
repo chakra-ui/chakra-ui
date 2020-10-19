@@ -112,7 +112,6 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
   function PopoverContent(props, ref) {
     const {
       isOpen,
-      refocus,
       getPopoverProps,
       getPopoverWrapperProps,
       transformOrigin,
@@ -143,7 +142,6 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
           variants={scaleVariants}
           initial={false}
           animate={isOpen ? "enter" : "exit"}
-          onAnimationComplete={refocus}
         />
       </chakra.div>
     )

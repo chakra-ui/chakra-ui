@@ -1,4 +1,4 @@
-import { Box, chakra, Stack } from "@chakra-ui/core"
+import { Box, chakra, Stack, useColorModeValue } from "@chakra-ui/core"
 import { useRouter } from "next/router"
 import * as React from "react"
 import SidebarCategory from "./sidebar-category"
@@ -17,7 +17,7 @@ const Sidebar = ({ routes }: any) => {
       w="280px"
       pr="8"
       pb="8"
-      pl="1"
+      pl="3"
       overflowY="auto"
       className="sidebar-content"
       flexShrink={0}
@@ -29,43 +29,48 @@ const Sidebar = ({ routes }: any) => {
         return (
           <React.Fragment key={idx}>
             {c1.heading && (
-              <chakra.h4 fontSize="md" fontWeight="bold" my="1.25rem">
+              <chakra.h4
+                fontSize="sm"
+                fontWeight="bold"
+                my="1.25rem"
+                textTransform="uppercase"
+                letterSpacing="wider"
+                color={useColorModeValue("gray.700", "inherit")}
+              >
                 {c1.title}
               </chakra.h4>
             )}
 
-            <chakra.div>
-              {c1.routes.map((c2) => {
-                if (!c2.routes) {
-                  return (
-                    <SidebarLink mt="2" key={c2.path} href={c2.path}>
-                      {c2.title}
-                    </SidebarLink>
-                  )
-                }
-
-                const selected = pathname.startsWith(c2.path)
-                const opened = selected || c2.open
-
+            {c1.routes.map((c2) => {
+              if (!c2.routes) {
                 return (
-                  <SidebarCategory
-                    contentRef={ref}
-                    key={c2.path}
-                    {...c2}
-                    selected={selected}
-                    opened={opened}
-                  >
-                    <Stack spacing="2">
-                      {c2.routes.map((c3) => (
-                        <SidebarLink key={c3.path} href={c3.path}>
-                          {c3.title}
-                        </SidebarLink>
-                      ))}
-                    </Stack>
-                  </SidebarCategory>
+                  <SidebarLink ml="-3" mt="2" key={c2.path} href={c2.path}>
+                    {c2.title}
+                  </SidebarLink>
                 )
-              })}
-            </chakra.div>
+              }
+
+              const selected = pathname.startsWith(c2.path)
+              const opened = selected || c2.open
+
+              return (
+                <SidebarCategory
+                  contentRef={ref}
+                  key={c2.path}
+                  {...c2}
+                  selected={selected}
+                  opened={opened}
+                >
+                  <Stack>
+                    {c2.routes.map((c3) => (
+                      <SidebarLink key={c3.path} href={c3.path}>
+                        {c3.title}
+                      </SidebarLink>
+                    ))}
+                  </Stack>
+                </SidebarCategory>
+              )
+            })}
           </React.Fragment>
         )
       })}

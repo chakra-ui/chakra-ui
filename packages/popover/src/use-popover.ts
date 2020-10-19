@@ -6,13 +6,13 @@ import {
   FocusableElement,
   HTMLProps,
   mergeRefs,
-  PropGetter,
   mergeWith,
-  focus,
+  PropGetter,
 } from "@chakra-ui/utils"
 import { useInteractOutside } from "@react-aria/interactions"
 import { RefObject, useCallback, useEffect, useRef } from "react"
-import { focusPopover, useFocusOnHide, useFocusOnShow } from "./popover.utils"
+import { useFocusOnHide } from "./popover.utils"
+import useConditionalFocus from "./use-conditional-focus"
 
 const TRIGGER = {
   click: "click",
@@ -164,11 +164,16 @@ export function usePopover(props: UsePopoverProps = {}) {
     trigger,
   })
 
-  useFocusOnShow(popoverRef, {
-    autoFocus: autoFocus,
-    visible: isOpen,
+  // useFocusOnShow(popoverRef, {
+  //   autoFocus: autoFocus,
+  //   visible: isOpen,
+  //   focusRef: initialFocusRef,
+  //   trigger,
+  // })
+
+  useConditionalFocus(popoverRef, isOpen && trigger !== "hover", {
     focusRef: initialFocusRef,
-    trigger,
+    preventScroll: true,
   })
 
   useInteractOutside({
@@ -325,31 +330,6 @@ export function usePopover(props: UsePopoverProps = {}) {
     getPopperProps,
   } = popper
 
-  /**
-   * When adding animations/transitions, the focus logic might not work as expected.
-   * We'll use this to trigger focus again.
-   *
-   * @todo change this to use `useConditionalFocus` code form `@accessible-ui`
-   */
-  const refocus = () => {
-    if (isOpen && initialFocusRef?.current) {
-      focus(initialFocusRef.current)
-      return
-    }
-
-    if (!isOpen && triggerRef.current) {
-      focus(triggerRef.current)
-      return
-    }
-
-    const targetIsPopover = document.activeElement !== popoverRef.current
-    const isWithinPopover = popoverRef.current?.contains(document.activeElement)
-
-    if (isOpen && (targetIsPopover || !isWithinPopover)) {
-      focusPopover(popoverRef)
-    }
-  }
-
   return {
     isOpen,
     onClose,
@@ -359,7 +339,6 @@ export function usePopover(props: UsePopoverProps = {}) {
     bodyId,
     hasBody,
     setHasBody,
-    refocus,
     transformOrigin,
     getArrowProps,
     getArrowWrapperProps,
