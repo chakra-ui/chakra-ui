@@ -40,6 +40,7 @@
     "operator-assignment": "off",
     "prefer-destructuring": "off",
     "react/state-in-constructor": "off",
+    "no-continue": "off",
     "react/destructuring-assignment": "off",
     "@typescript-eslint/dot-notation": "off",
     "no-bitwise": "off",

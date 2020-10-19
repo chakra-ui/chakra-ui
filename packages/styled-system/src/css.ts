@@ -114,13 +114,13 @@ const responsive = (styles: any) => (theme: Dict) => {
 
       if (!media) {
         computedStyles[key] = value[index]
-        return
+        continue
       }
 
       computedStyles[media] = computedStyles[media] || {}
 
       if (value[index] == null) {
-        return
+        continue
       }
 
       computedStyles[media][key] = value[index]
