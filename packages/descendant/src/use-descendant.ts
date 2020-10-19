@@ -41,7 +41,7 @@ export function useDescendant<T extends HTMLElement, P>(
     /**
      * Don't register this descendant if it's disabled and not focusable
      */
-    if (disabled && !focusable) return
+    if (disabled && !focusable) return undefined
 
     /**
      * else, register the descendant
@@ -56,7 +56,7 @@ export function useDescendant<T extends HTMLElement, P>(
         unregister(element)
       }
     }
-    //eslint-disable-next-line
+    // eslint-disable-next-line
   }, [element, disabled, focusable, ...Object.values(rest)])
 
   const index =
@@ -72,7 +72,7 @@ export function useDescendants<T extends HTMLElement, P>() {
   const register = useCallback(({ element, ...rest }: Descendant<T, P>) => {
     if (!element) return
 
-    //@ts-ignore
+    // @ts-ignore
     setDescendants((prevDescendants) => {
       if (prevDescendants.find((item) => item.element === element) == null) {
         const index = prevDescendants.findIndex((item) => {

@@ -169,8 +169,8 @@ export function useCounter(props: UseCounterProps = {}) {
    * Common range checks
    */
   const isOutOfRange = valueAsNumber > max || valueAsNumber < min
-  const isAtMax = valueAsNumber == max
-  const isAtMin = valueAsNumber == min
+  const isAtMax = valueAsNumber === max
+  const isAtMin = valueAsNumber === min
 
   return {
     isOutOfRange,
@@ -191,7 +191,7 @@ export function useCounter(props: UseCounterProps = {}) {
 export type UseCounterReturn = ReturnType<typeof useCounter>
 
 function parse(value: StringOrNumber) {
-  return parseFloat(value.toString().replace(/[^\w\.-]+/g, ""))
+  return parseFloat(value.toString().replace(/[^\w.-]+/g, ""))
 }
 
 function getDecimalPlaces(value: number, step: number) {

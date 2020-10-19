@@ -60,7 +60,7 @@ export function addListener(fn: Function) {
   const mediaQueryList = window.matchMedia(queries.dark)
 
   const listener = () => {
-    fn(!!mediaQueryList.matches ? "dark" : "light")
+    fn(mediaQueryList.matches ? "dark" : "light")
   }
 
   listener()

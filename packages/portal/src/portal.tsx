@@ -1,8 +1,8 @@
+import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { createContext, isBrowser, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import * as ReactDOM from "react-dom"
 import { usePortalManager } from "./portal-manager"
-import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 
 type PortalContext = HTMLDivElement | null
 
@@ -119,7 +119,7 @@ export const Portal: React.FC<PortalProps> = (props) => {
     append,
   ])
 
-  const _children = manager?.zIndex ? (
+  const portalChildren = manager?.zIndex ? (
     <div
       className="chakra-portal-zIndex"
       style={{
@@ -135,11 +135,13 @@ export const Portal: React.FC<PortalProps> = (props) => {
   )
 
   if (!portal) {
-    return <React.Fragment>{_children}</React.Fragment>
+    return <>{portalChildren}</>
   }
 
   return ReactDOM.createPortal(
-    <PortalContextProvider value={portal}>{_children}</PortalContextProvider>,
+    <PortalContextProvider value={portal}>
+      {portalChildren}
+    </PortalContextProvider>,
     portal,
   )
 }

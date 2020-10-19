@@ -36,6 +36,10 @@
     "import/prefer-default-export": "off",
     "no-underscore-dangle": "off",
     "no-shadow": "off",
+    "react/no-danger": "off",
+    "no-bitwise": "off",
+    "no-redeclare": "off",
+    "@typescript-eslint/naming-convention": "off",
     "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/lines-between-class-members": "off",
     "react/jsx-filename-extension": [
