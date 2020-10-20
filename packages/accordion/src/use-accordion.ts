@@ -288,6 +288,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   const getButtonProps: PropGetter<HTMLButtonElement> = useCallback(
     (props = {}, ref = null) => ({
       ...props,
+      type: "button",
       ref: mergeRefs(buttonRef, ref),
       id: buttonId,
       disabled: !!isDisabled,
