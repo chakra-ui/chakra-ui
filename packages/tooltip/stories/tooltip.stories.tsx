@@ -215,6 +215,14 @@ export const withDisabledButton = () => (
   </Tooltip>
 )
 
+export const withWrappedDisabledButton = () => (
+  <Tooltip label="Hello world" shouldWrapChildren>
+    <button style={{ fontSize: 25, pointerEvents: "all" }} disabled>
+      Hover me
+    </button>
+  </Tooltip>
+)
+
 export const withIsOpenProp = () => (
   <Tooltip label="Hello world" isOpen={true} hasArrow>
     <button style={{ fontSize: 25, pointerEvents: "all" }} disabled>
