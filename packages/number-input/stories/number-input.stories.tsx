@@ -1,17 +1,17 @@
-import { chakra, PropsOf, useMultiStyleConfig } from "@chakra-ui/system"
+import { Button } from "@chakra-ui/button"
+import { Input } from "@chakra-ui/input"
+import { Stack } from "@chakra-ui/layout"
+import { chakra } from "@chakra-ui/system"
 import * as React from "react"
+import Lorem from "react-lorem-component"
 import {
-  useNumberInput,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  useNumberInput,
 } from "../src"
-import { Stack } from "@chakra-ui/layout"
-import { Input } from "@chakra-ui/input"
-import { Button } from "@chakra-ui/button"
-import Lorem from "react-lorem-component"
 
 export default {
   title: "NumberInput",
@@ -53,7 +53,7 @@ export const HookUsage = () => {
   )
 }
 
-const format = (val: string) => `$` + val
+const format = (val: string) => `$${val}`
 const parse = (val: string) => val.replace(/^\$/, "")
 
 export const HookWithFormatAndParse = () => {
@@ -177,3 +177,14 @@ export const inputSizes = () => (
     </NumberInput>
   </Stack>
 )
+
+export const BugFix2242 = () => {
+  return (
+    <chakra.div textAlign="center" fontSize="xl">
+      <NumberInput min={-999} max={999}>
+        <NumberInputField />
+      </NumberInput>
+      <input min={-999} max={999} type="number" />
+    </chakra.div>
+  )
+}

@@ -118,7 +118,7 @@ export function useCounter(props: UseCounterProps = {}) {
          * If `min` is set, native input, starts at the `min`.
          * Else, it starts at `step`
          */
-        next = props.min?.toString() ?? parse("0") + step
+        next = parse(step)
       } else {
         next = parse(value) + step
       }
@@ -135,7 +135,7 @@ export function useCounter(props: UseCounterProps = {}) {
 
       // Same thing here. We'll follow native implementation
       if (value === "") {
-        next = props.min?.toString() ?? parse("0") - step
+        next = parse(-step)
       } else {
         next = parse(value) - step
       }
