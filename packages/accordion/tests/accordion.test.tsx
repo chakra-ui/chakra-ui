@@ -13,9 +13,9 @@ import {
   AccordionPanel,
 } from "../src"
 
-jest.mock("@chakra-ui/collapse", () => {
-  const Collapse = jest.fn(({ children, isOpen }) => (
-    <div id="collapse-mock" hidden={!isOpen}>
+jest.mock("@chakra-ui/transition", () => {
+  const Collapse = jest.fn(({ children, in: inProp }) => (
+    <div id="collapse-mock" hidden={!inProp}>
       {children}
     </div>
   ))

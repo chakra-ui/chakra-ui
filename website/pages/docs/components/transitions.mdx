@@ -141,6 +141,10 @@ function SlideFadeEx() {
 
 ### Collapse transition
 
+The Collapse component is used to create regions of content that can
+expand/collapse with a simple animation. It helps to hide content that's not
+immediately relevant to the user.
+
 ```jsx
 function CollapseEx() {
   const { isOpen, onToggle } = useDisclosure()
@@ -160,6 +164,29 @@ function CollapseEx() {
           <Lorem count={1} />
         </Box>
       </Collapse>
+    </>
+  )
+}
+```
+
+#### Changing the startingHeight
+
+```jsx
+function Example() {
+  const [show, setShow] = React.useState(false)
+
+  const handleToggle = () => setShow(!show)
+
+  return (
+    <>
+      <Collapse startingHeight={20} isOpen={show}>
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+        labore wes anderson cred nesciunt sapiente ea proident.
+      </Collapse>
+      <Button size="sm" onClick={handleToggle} mt="1rem">
+        Show {show ? "Less" : "More"}
+      </Button>
     </>
   )
 }
@@ -197,3 +224,15 @@ The transition components extends the
 | in      | `boolean` | false   | Show the component; triggers the enter or exit states |
 | offsetX | `string`  | '20px'  | The initial offset to slide from                      |
 | offsetY | `string`  | '20px'  | The initial offset to slide from                      |
+
+### Collapse Props
+
+## Props
+
+This component doesn't have any custom props.
+
+| Name           | Type      | Description                                                                    |
+| -------------- | --------- | ------------------------------------------------------------------------------ |
+| isOpen         | `boolean` | If `true`, the content will be visible                                         |
+| animateOpacity | `boolean` | If `true`, the opacity of the content will be animated                         |
+| startingHeight | `number`  | The height you want the content in it's collapsed state. Set to `0` by default |
