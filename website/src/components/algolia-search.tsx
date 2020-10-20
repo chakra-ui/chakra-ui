@@ -1,15 +1,14 @@
-import React from "react"
-
-import { get, startsWith } from "lodash/fp"
 import {
-  Input,
-  useEventListener,
   Box,
-  InputLeftElement,
+  Input,
   InputGroup,
+  InputLeftElement,
+  useEventListener,
 } from "@chakra-ui/core"
 import { SearchIcon } from "@chakra-ui/icons"
+import { get, startsWith } from "lodash/fp"
 import { useRouter } from "next/router"
+import React from "react"
 
 const getLvl1 = get("hierarchy.lvl1")
 const startsWithCss = startsWith("css-")
@@ -29,7 +28,7 @@ function Search(props) {
   const router = useRouter()
   const ref = React.useRef<HTMLInputElement>()
 
-  const onKeyDown = (event: React.KeyboardEvent) => {
+  const onKeyDown = (event: KeyboardEvent) => {
     if (event.key === "/") {
       const activeElement = document.activeElement
       const focusWrapper = document.getElementById("gatsby-focus-wrapper")
