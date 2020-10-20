@@ -156,14 +156,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
    * React regarding the onMouseLeave polyfill.
    * @see https://github.com/facebook/react/issues/11972
    */
-  useEffect(() => {
-    if (ref.current) {
-      const tooltipElement = ref.current
-      tooltipElement.addEventListener("mouseleave", closeWithDelay)
-      return () =>
-        tooltipElement.removeEventListener("mouseleave", closeWithDelay)
-    }
-  }, [closeWithDelay])
+  useEventListener("mouseleave", closeWithDelay, ref.current)
 
   const getTriggerProps: PropGetter = (props = {}, _ref = null) => {
     const triggerProps = {
