@@ -145,10 +145,24 @@ export function useTooltip(props: UseTooltipProps = {}) {
     }
   }, [])
 
+  /**
+   * This allows for catching mouseleave events when the tooltip
+   * trigger is disabled. There's currently a known issue in
+   * React regarding the onMouseLeave polyfill.
+   * @see https://github.com/facebook/react/issues/11972
+   */
+  useEffect(() => {
+    if (ref.current) {
+      const tooltipElement = ref.current
+      tooltipElement.addEventListener("mouseleave", closeWithDelay)
+      return () =>
+        tooltipElement.removeEventListener("mouseleave", closeWithDelay)
+    }
+  }, [closeWithDelay])
+
   const getTriggerProps: PropGetter = (props = {}, _ref = null) => {
     const triggerProps = {
       ...props,
-      onMouseLeave: callAllHandlers(props.onMouseLeave, closeWithDelay),
       onMouseEnter: callAllHandlers(props.onMouseEnter, openWithDelay),
       onClick: callAllHandlers(props.onClick, onClick),
       onMouseDown: callAllHandlers(props.onMouseDown, onMouseDown),
