@@ -1,4 +1,9 @@
-import { useBoolean, useDisclosure, useIds } from "@chakra-ui/hooks"
+import {
+  useBoolean,
+  useDisclosure,
+  useIds,
+  useConditionalFocus,
+} from "@chakra-ui/hooks"
 import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { useColorModeValue, useToken } from "@chakra-ui/system"
 import {
@@ -12,7 +17,6 @@ import {
 import { useInteractOutside } from "@react-aria/interactions"
 import { RefObject, useCallback, useEffect, useRef } from "react"
 import { useFocusOnHide } from "./popover.utils"
-import useConditionalFocus from "./use-conditional-focus"
 
 const TRIGGER = {
   click: "click",
@@ -166,7 +170,8 @@ export function usePopover(props: UsePopoverProps = {}) {
 
   const shouldAutoFocus = isOpen && autoFocus && trigger !== "hover"
 
-  useConditionalFocus(popoverRef, shouldAutoFocus, {
+  useConditionalFocus(popoverRef, {
+    shouldFocus: shouldAutoFocus,
     focusRef: initialFocusRef,
     preventScroll: true,
   })

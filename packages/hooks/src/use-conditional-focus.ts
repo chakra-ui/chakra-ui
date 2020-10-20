@@ -1,13 +1,24 @@
-import { useEventListener, useLatestRef } from "@chakra-ui/hooks"
 import { focus, FocusableElement, getAllFocusable } from "@chakra-ui/utils"
 import * as React from "react"
+import { useEventListener } from "./use-event-listener"
+import { useLatestRef } from "./use-latest-ref"
 
-function useConditionalFocus<T extends HTMLElement>(
+export type UseConditionalFocusOptions = {
+  shouldFocus?: boolean
+  preventScroll?: boolean
+  focusRef?: React.RefObject<FocusableElement>
+}
+
+const defaultOptions: UseConditionalFocusOptions = {
+  preventScroll: true,
+  shouldFocus: false,
+}
+
+export function useConditionalFocus<T extends HTMLElement>(
   target: React.RefObject<T> | T,
-  shouldFocus = false,
   options = defaultOptions,
 ) {
-  const { focusRef, preventScroll } = options
+  const { focusRef, preventScroll, shouldFocus } = options
   const element = target && "current" in target ? target.current : target
 
   const onFocus = () => {
@@ -30,14 +41,3 @@ function useConditionalFocus<T extends HTMLElement>(
 
   useEventListener("transitionend", onFocus, element)
 }
-
-const defaultOptions: UseConditionalFocusOptions = {
-  preventScroll: true,
-}
-
-export type UseConditionalFocusOptions = {
-  preventScroll?: boolean
-  focusRef?: React.RefObject<FocusableElement>
-}
-
-export default useConditionalFocus
