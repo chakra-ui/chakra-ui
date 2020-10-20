@@ -38,6 +38,8 @@
     "no-shadow": "off",
     "guard-for-in": "off",
     "react/no-danger": "off",
+    "react/button-has-type": "off",
+    "react/no-unescaped-entities": "off",
     "operator-assignment": "off",
     "prefer-destructuring": "off",
     "react/state-in-constructor": "off",

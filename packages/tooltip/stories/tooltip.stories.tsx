@@ -195,7 +195,9 @@ export const WithModal = () => {
             <div style={{ float: "right" }}>
               <Tooltip label="Notifications" aria-label="3 Notifications">
                 <button style={{ fontSize: 25 }}>
-                  <span>🔔</span>
+                  <span role="img" aria-label="Bell">
+                    🔔
+                  </span>
                   <span>3</span>
                 </button>
               </Tooltip>
@@ -224,7 +226,7 @@ export const withWrappedDisabledButton = () => (
 )
 
 export const withIsOpenProp = () => (
-  <Tooltip label="Hello world" isOpen={true} hasArrow>
+  <Tooltip label="Hello world" isOpen hasArrow>
     <button style={{ fontSize: 25, pointerEvents: "all" }} disabled>
       Can't Touch This
     </button>
@@ -232,7 +234,7 @@ export const withIsOpenProp = () => (
 )
 
 export const withDefaultIsOpenProp = () => (
-  <Tooltip label="Hello world" defaultIsOpen={true}>
+  <Tooltip label="Hello world" defaultIsOpen>
     <button style={{ fontSize: 25, pointerEvents: "all" }}>
       Can't Touch This
     </button>
