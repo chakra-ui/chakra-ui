@@ -8,7 +8,7 @@ import {
   omitThemingProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import { useBreakpointValue } from "@chakra-ui/media-query";
+import { useBreakpointValue } from "@chakra-ui/media-query"
 import * as React from "react"
 
 export interface SkeletonOptions {
@@ -122,7 +122,7 @@ export interface SkeletonTextProps extends SkeletonProps {
   isLoaded?: SkeletonProps["isLoaded"]
 }
 
-const defaultNoOfLines = 3;
+const defaultNoOfLines = 3
 
 export const SkeletonText: React.FC<SkeletonTextProps> = (props) => {
   const {
@@ -137,7 +137,10 @@ export const SkeletonText: React.FC<SkeletonTextProps> = (props) => {
     ...rest
   } = props
 
-  const noOfLinesValue = useBreakpointValue(typeof noOfLines === 'number' ? [noOfLines] : noOfLines) || defaultNoOfLines;
+  const noOfLinesValue =
+    useBreakpointValue(
+      typeof noOfLines === "number" ? [noOfLines] : noOfLines,
+    ) || defaultNoOfLines
   const numbers = range(noOfLinesValue)
 
   const getWidth = (index: number) => {

@@ -109,7 +109,7 @@ const responsive = (styles: any) => (theme: Dict) => {
 
     const queries = value.slice(0, mediaQueries.length).length
 
-    for (let index = 0; index < queries; index++) {
+    for (let index = 0; index < queries; index += 1) {
       const media = mediaQueries[index]
 
       if (!media) {

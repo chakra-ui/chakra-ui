@@ -1,6 +1,7 @@
 import { mode } from "@chakra-ui/theme-tools"
+import Modal from "./modal"
 
-const parts = ["overlay", "content", "header", "body", "footer"]
+const parts = Modal.parts
 
 /**
  * Since the `maxWidth` prop references theme.sizes internally,
@@ -8,12 +9,9 @@ const parts = ["overlay", "content", "header", "body", "footer"]
  */
 function getSize(value: string) {
   if (value === "full") {
-    return { content: { maxW: "100vw", h: "100vh" } }
+    return { dialog: { maxW: "100vw", h: "100vh" } }
   }
-
-  return {
-    content: { maxW: value },
-  }
+  return { dialog: { maxW: value } }
 }
 
 const baseStyleOverlay = {
@@ -21,7 +19,13 @@ const baseStyleOverlay = {
   zIndex: "overlay",
 }
 
-function baseStyleContent(props: Record<string, any>) {
+const baseStyleDialogContainer = {
+  display: "flex",
+  zIndex: "modal",
+  justifyContent: "center",
+}
+
+function baseStyleDialog(props: Record<string, any>) {
   const { isFullHeight } = props
 
   return {
@@ -54,7 +58,8 @@ const baseStyleFooter = {
 
 const baseStyle = (props: Record<string, any>) => ({
   overlay: baseStyleOverlay,
-  content: baseStyleContent(props),
+  dialogContainer: baseStyleDialogContainer,
+  dialog: baseStyleDialog(props),
   header: baseStyleHeader,
   body: baseStyleBody,
   footer: baseStyleFooter,

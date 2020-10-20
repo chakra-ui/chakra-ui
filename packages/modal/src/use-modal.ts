@@ -115,36 +115,10 @@ export function useModal(props: UseModalProps) {
     [closeOnEsc, onClose, onEsc],
   )
 
-  const onOverlayClick = useCallback(
-    (event: MouseEvent) => {
-      event.stopPropagation()
-      /**
-       * Make sure the event starts and ends on the same DOM element.
-       *
-       * This is used to prevent the modal from closing when you
-       * start dragging from the content, and release drag outside the content.
-       *
-       * We prevent this because it's technically not a considered "click outside"
-       */
-      if (mouseDownTarget.current !== event.target) return
-
-      /**
-       * When you click on the overlay, we want to remove only the topmost modal
-       */
-      if (manager.isTopModal(dialogRef)) {
-        if (closeOnOverlayClick) {
-          onClose?.()
-        }
-        onOverlayClickProp?.()
-      }
-    },
-    [onClose, closeOnOverlayClick, onOverlayClickProp],
-  )
-
   const [headerMounted, setHeaderMounted] = useState(false)
   const [bodyMounted, setBodyMounted] = useState(false)
 
-  const getContentProps: PropGetter = useCallback(
+  const getDialogProps: PropGetter = useCallback(
     (props = {}, ref = null) => ({
       role: "dialog",
       ...props,
@@ -161,7 +135,34 @@ export function useModal(props: UseModalProps) {
     [bodyId, bodyMounted, dialogId, headerId, headerMounted],
   )
 
-  const getOverlayProps: PropGetter = useCallback(
+  const onOverlayClick = useCallback(
+    (event: MouseEvent) => {
+      event.stopPropagation()
+      /**
+       * Make sure the event starts and ends on the same DOM element.
+       *
+       * This is used to prevent the modal from closing when you
+       * start dragging from the content, and release drag outside the content.
+       *
+       * We prevent this because it's technically not a considered "click outside"
+       */
+      if (mouseDownTarget.current !== event.target) return
+
+      /**
+       * When you click on the overlay, we want to remove only the topmost modal
+       */
+      if (!manager.isTopModal(dialogRef)) return
+
+      if (closeOnOverlayClick) {
+        onClose?.()
+      }
+
+      onOverlayClickProp?.()
+    },
+    [onClose, closeOnOverlayClick, onOverlayClickProp],
+  )
+
+  const getDialogContainerProps: PropGetter = useCallback(
     (props = {}, ref = null) => ({
       ...props,
       ref: mergeRefs(ref, overlayRef),
@@ -181,8 +182,8 @@ export function useModal(props: UseModalProps) {
     setHeaderMounted,
     dialogRef,
     overlayRef,
-    getContentProps,
-    getOverlayProps,
+    getDialogProps,
+    getDialogContainerProps,
   }
 }
 
@@ -202,7 +203,7 @@ export function useAriaHidden(
   shouldHide: boolean,
 ) {
   useEffect(() => {
-    if (!ref.current) return
+    if (!ref.current) return undefined
 
     let undo: Undo | null = null
 

@@ -1,28 +1,66 @@
-import { __DEV__ } from "@chakra-ui/utils"
+import { cx, __DEV__ } from "@chakra-ui/utils"
+import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
 import * as React from "react"
-import { Transition, TransitionProps, TransitionStyles } from "./transition"
+import { EASINGS, MotionVariants } from "./__utils"
 
-export type FadeProps = Omit<TransitionProps, "styles" | "timeout"> & {
-  timeout?: number
+type FadeMotionVariant = MotionVariants<"enter" | "exit">
+
+const variants: FadeMotionVariant = {
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.1,
+      ease: EASINGS.easeOut,
+    },
+  },
+  enter: {
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+      ease: EASINGS.easeIn,
+    },
+  },
 }
 
-const styles: TransitionStyles = {
-  init: { opacity: 0 },
-  entered: { opacity: 1 },
-  exiting: { opacity: 0 },
+export const fadeConfig: HTMLMotionProps<any> = {
+  initial: "exit",
+  animate: "enter",
+  exit: "exit",
+  variants,
 }
 
-export const Fade: React.FC<FadeProps> = (props) => {
-  const { timeout = 150, ...rest } = props
+export interface FadeProps extends HTMLMotionProps<"div"> {
+  /**
+   * If `true`, the collapse will unmount when `isOpen={false}` and animation is done
+   */
+  unmountOnExit?: boolean
+  /**
+   * If `true`, the content will slide in
+   */
+  in?: boolean
+}
+
+export const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(
+  props,
+  ref,
+) {
+  const { unmountOnExit, in: isOpen, className, ...rest } = props
+  const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
+
   return (
-    <Transition
-      transition={`all ${timeout}ms cubic-bezier(0.175, 0.885, 0.320, 1.175)`}
-      styles={styles}
-      timeout={{ enter: 0, exit: timeout }}
-      {...rest}
-    />
+    <AnimatePresence>
+      {shouldExpand && (
+        <motion.div
+          ref={ref}
+          className={cx("chakra-fade", className)}
+          {...fadeConfig}
+          animate={isOpen || unmountOnExit ? "enter" : "exit"}
+          {...rest}
+        />
+      )}
+    </AnimatePresence>
   )
-}
+})
 
 if (__DEV__) {
   Fade.displayName = "Fade"

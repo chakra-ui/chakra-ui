@@ -1,7 +1,7 @@
-import { useMediaQuery } from "./use-media-query"
-import * as React from "react"
 import { useTheme } from "@chakra-ui/system"
 import { Dict, memoizedGet as get, __DEV__ } from "@chakra-ui/utils"
+import * as React from "react"
+import { useMediaQuery } from "./use-media-query"
 
 interface VisibilityProps {
   breakpoint: string
@@ -27,10 +27,11 @@ const Visibility: React.FC<VisibilityProps> = (props) => {
 export type HideProps = ShowProps
 
 export const Hide: React.FC<HideProps> = (props) => {
+  const { children } = props
   const query = useQuery(props)
   return (
-    <Visibility breakpoint={query} hide={true}>
-      {props.children}
+    <Visibility breakpoint={query} hide>
+      {children}
     </Visibility>
   )
 }
@@ -47,8 +48,9 @@ export interface ShowProps {
 }
 
 export const Show: React.FC<ShowProps> = (props) => {
+  const { children } = props
   const query = useQuery(props)
-  return <Visibility breakpoint={query}>{props.children}</Visibility>
+  return <Visibility breakpoint={query}>{children}</Visibility>
 }
 
 if (__DEV__) {
@@ -71,11 +73,13 @@ export function useQuery(props: UseQueryProps) {
   const bpBelow = getBreakpoint(theme, below)
   const bpAbove = getBreakpoint(theme, above)
 
-  const query = bpBelow
-    ? `(max-width: ${bpBelow})`
-    : bpAbove
-    ? `(min-width: ${bpAbove})`
-    : breakpoint
+  let query = breakpoint
+
+  if (bpBelow) {
+    query = `(max-width: ${bpBelow})`
+  } else if (bpAbove) {
+    query = `(min-width: ${bpAbove})`
+  }
 
   return query
 }

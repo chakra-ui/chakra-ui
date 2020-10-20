@@ -61,22 +61,21 @@ function BasicUsage() {
       <Button onClick={onOpen}>Open Modal</Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay>
-          <ModalContent>
-            <ModalHeader>Modal Title</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <Lorem count={2} />
-            </ModalBody>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Lorem count={2} />
+          </ModalBody>
 
-            <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={onClose}>
-                Close
-              </Button>
-              <Button variant="ghost">Secondary Action</Button>
-            </ModalFooter>
-          </ModalContent>
-        </ModalOverlay>
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant="ghost">Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
       </Modal>
     </>
   )
@@ -104,22 +103,21 @@ function ReturnFocus() {
         Open Modal
       </Button>
       <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay>
-          <ModalContent>
-            <ModalHeader>Modal Title</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <Lorem count={2} />
-            </ModalBody>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Lorem count={2} />
+          </ModalBody>
 
-            <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={onClose}>
-                Close
-              </Button>
-              <Button variant="ghost">Secondary Action</Button>
-            </ModalFooter>
-          </ModalContent>
-        </ModalOverlay>
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant="ghost">Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
       </Modal>
     </>
   )
@@ -141,25 +139,24 @@ function BasicUsage() {
       <Button onClick={onOpen}>Open Modal</Button>
 
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay>
-          <ModalContent>
-            <ModalHeader>Modal Title</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <Text fontWeight="bold" mb="1rem">
-                You can scroll the content behind the modal
-              </Text>
-              <Lorem count={2} />
-            </ModalBody>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text fontWeight="bold" mb="1rem">
+              You can scroll the content behind the modal
+            </Text>
+            <Lorem count={2} />
+          </ModalBody>
 
-            <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={onClose}>
-                Close
-              </Button>
-              <Button variant="ghost">Secondary Action</Button>
-            </ModalFooter>
-          </ModalContent>
-        </ModalOverlay>
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant="ghost">Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
       </Modal>
     </>
   )
@@ -202,30 +199,29 @@ function InitialFocus() {
         isOpen={isOpen}
         onClose={onClose}
       >
-        <ModalOverlay>
-          <ModalContent>
-            <ModalHeader>Create your account</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody pb={6}>
-              <FormControl>
-                <FormLabel>First name</FormLabel>
-                <Input ref={initialRef} placeholder="First name" />
-              </FormControl>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Create your account</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody pb={6}>
+            <FormControl>
+              <FormLabel>First name</FormLabel>
+              <Input ref={initialRef} placeholder="First name" />
+            </FormControl>
 
-              <FormControl mt={4}>
-                <FormLabel>Last name</FormLabel>
-                <Input placeholder="Last name" />
-              </FormControl>
-            </ModalBody>
+            <FormControl mt={4}>
+              <FormLabel>Last name</FormLabel>
+              <Input placeholder="Last name" />
+            </FormControl>
+          </ModalBody>
 
-            <ModalFooter>
-              <Button colorScheme="blue" mr={3}>
-                Save
-              </Button>
-              <Button onClick={onClose}>Cancel</Button>
-            </ModalFooter>
-          </ModalContent>
-        </ModalOverlay>
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3}>
+              Save
+            </Button>
+            <Button onClick={onClose}>Cancel</Button>
+          </ModalFooter>
+        </ModalContent>
       </Modal>
     </>
   )
@@ -246,22 +242,21 @@ function ManualClose() {
       <Button onClick={onOpen}>Open Modal</Button>
 
       <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay>
-          <ModalContent>
-            <ModalHeader>Create your account</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody pb={6}>
-              <Lorem count={2} />
-            </ModalBody>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Create your account</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody pb={6}>
+            <Lorem count={2} />
+          </ModalBody>
 
-            <ModalFooter>
-              <Button colorScheme="blue" mr={3}>
-                Save
-              </Button>
-              <Button onClick={onClose}>Cancel</Button>
-            </ModalFooter>
-          </ModalContent>
-        </ModalOverlay>
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3}>
+              Save
+            </Button>
+            <Button onClick={onClose}>Cancel</Button>
+          </ModalFooter>
+        </ModalContent>
       </Modal>
     </>
   )
@@ -286,72 +281,56 @@ function VerticallyCenter() {
       <Button onClick={onOpen}>Trigger modal</Button>
 
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
-        <ModalOverlay>
-          <ModalContent>
-            <ModalHeader>Modal Title</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <Lorem count={2} />
-            </ModalBody>
-            <ModalFooter>
-              <Button onClick={onClose}>Close</Button>
-            </ModalFooter>
-          </ModalContent>
-        </ModalOverlay>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Lorem count={2} />
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onClose}>Close</Button>
+          </ModalFooter>
+        </ModalContent>
       </Modal>
     </>
   )
 }
 ```
 
-### Adding transitions
+### Changing the transition
 
-The `Modal` doesn't come with any transitions by default so you can manage this
-yourself. Chakra exports four transition components (`Fade`, `ScaleFade`, `Slide`, and `SlideFade`) to
-provide simple transitions.
-
-> When adding transitions, kindly pay attention to the `timeout` for the overlay
-> and content transitions. In this example, `Fade` transitions slower than the
-> `SlideFade` for it to work correctly.
+The `Modal` comes with a scale transition by default but you can change it by
+passing a `motionPreset` prop, and set its value to either `slideInBottom`,
+`slideInRight`, or `scale`.
 
 ```jsx
 function TransitionExample() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const cancelRef = React.useRef()
-
   return (
     <>
       <Button onClick={onOpen}>Open Modal</Button>
-      <Fade timeout={300} in={isOpen}>
-        {(styles) => (
-          <Modal
-            leastDestructiveRef={cancelRef}
-            onClose={onClose}
-            isOpen={true}
-            isCentered
-          >
-            <ModalOverlay style={styles}>
-              <SlideFade timeout={150} in={isOpen} unmountOnExit={false}>
-                {(styles) => (
-                  <ModalContent style={styles}>
-                    <ModalHeader>Modal Title</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
-                      <Lorem count={2} />
-                    </ModalBody>
-                    <ModalFooter>
-                      <Button colorScheme="blue" mr={3} onClick={onClose}>
-                        Close
-                      </Button>
-                      <Button variant="ghost">Secondary Action</Button>
-                    </ModalFooter>
-                  </ModalContent>
-                )}
-              </SlideFade>
-            </ModalOverlay>
-          </Modal>
-        )}
-      </Fade>
+      <Modal
+        isCentered
+        onClose={onClose}
+        isOpen={isOpen}
+        motionPreset="slideInBottom"
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Lorem count={2} />
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant="ghost">Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   )
 }
@@ -391,18 +370,17 @@ function ScrollingExample() {
         isOpen={isOpen}
         scrollBehavior={scrollBehavior}
       >
-        <ModalOverlay>
-          <ModalContent>
-            <ModalHeader>Modal Title</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <Lorem size={5} />
-            </ModalBody>
-            <ModalFooter>
-              <Button onClick={onClose}>Close</Button>
-            </ModalFooter>
-          </ModalContent>
-        </ModalOverlay>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Lorem size={5} />
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onClose}>Close</Button>
+          </ModalFooter>
+        </ModalContent>
       </Modal>
     </>
   )
@@ -437,18 +415,17 @@ function SizeExample() {
       ))}
 
       <Modal onClose={onClose} size={size} isOpen={isOpen}>
-        <ModalOverlay>
-          <ModalContent>
-            <ModalHeader>Modal Title</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <Lorem count={2} />
-            </ModalBody>
-            <ModalFooter>
-              <Button onClick={onClose}>Close</Button>
-            </ModalFooter>
-          </ModalContent>
-        </ModalOverlay>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Lorem count={2} />
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onClose}>Close</Button>
+          </ModalFooter>
+        </ModalContent>
       </Modal>
     </>
   )
@@ -497,26 +474,27 @@ To prevent focus trapping, pass `trapFocus` and set it's value to `false`.
 
 ### Modal Props
 
-| Name                | Type                      | Default   | Description                                                                                                                         |
-| ------------------- | ------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| isOpen              | `boolean`                 |           | If `true`, the modal will open                                                                                                      |
-| onClose             | `(event, reason) => void` |           | Callback invoked to close the modal.                                                                                                |
-| isCentered          | `boolean`                 |           | If `true`, the `Modal` will be centered on screen                                                                                   |
-| initialFocusRef     | `React.Ref`               |           | The least destructive action to get focus when dialog is open                                                                       |
-| finalFocusRef       | `React.Ref`               |           | The least destructive action to get focus when dialog is closed                                                                       |
-| blockScrollOnMount  | `boolean`                 | `true`    | If `true`, scrolling will be disabled on the `body` when the modal opens.                                                           |
-| useInert            | `boolean`                 | `true`    | A11y: If `true`, the siblings of the `Modal` will have `aria-hidden` set to `true` so that screen readers can only see the `Modal`. |
-| children            | `React.ReactNode`         |           | The content of the modal.                                                                                                           |
-| size                | `BoxProps["maxWidth"]`    | `md`      | The size (maxWidth) of the modal.                                                                                                   |
-| scrollBehavior      | `inside`, `outside`       | `outside` | Where scroll behaviour should originate.                                                                                            |
-| closeOnOverlayClick | `boolean`                 | `true`    | If `true`, the modal will close when the overlay is clicked                                                                         |
-| returnFocusOnClose  | `boolean`                 | `true`    | If `true`, the modal will return focus to the element that triggered it when it closes.                                             |
-| closeOnEsc          | `boolean`                 | `true`    | If `true`, the modal will close when the `Esc` key is pressed                                                                       |
-| trapFocus           | `boolean`                 | `true`    | If `true`, focus trapping will be disabled                                                                                          |
-| autoFocus           | `boolean`                 | `true`    | If `true`, the modal moves focus to the first interactive element                                                                   |
-| id                  | `string`                  |           | The top-level `id` to use for the modal and it's sub-components                                                                     |
-| onOverlayClick      | `function`                |           | Function called when the overlay clicked                                                                                            |
-| onEsc               | `function`                |           | Function called when the `Esc` key is pressed                                                                                       |
+| Name                | Type                                 | Default   | Description                                                                                                                         |
+| ------------------- | ------------------------------------ | --------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| isOpen              | `boolean`                            |           | If `true`, the modal will open                                                                                                      |
+| onClose             | `function`                           |           | Callback invoked to close the modal.                                                                                                |
+| isCentered          | `boolean`                            |           | If `true`, the `Modal` will be centered on screen                                                                                   |
+| motionPreset        | `scale, slideInBottom, slideInRight` | `scale`   | The default animation or transition to apply to the modal                                                                           |
+| initialFocusRef     | `React.Ref`                          |           | The least destructive action to get focus when dialog is open                                                                       |
+| finalFocusRef       | `React.Ref`                          |           | The least destructive action to get focus when dialog is closed                                                                     |
+| blockScrollOnMount  | `boolean`                            | `true`    | If `true`, scrolling will be disabled on the `body` when the modal opens.                                                           |
+| useInert            | `boolean`                            | `true`    | A11y: If `true`, the siblings of the `Modal` will have `aria-hidden` set to `true` so that screen readers can only see the `Modal`. |
+| children            | `React.ReactNode`                    |           | The content of the modal.                                                                                                           |
+| size                | `BoxProps["maxWidth"]`               | `md`      | The size (maxWidth) of the modal.                                                                                                   |
+| scrollBehavior      | `inside`, `outside`                  | `outside` | Where scroll behaviour should originate.                                                                                            |
+| closeOnOverlayClick | `boolean`                            | `true`    | If `true`, the modal will close when the overlay is clicked                                                                         |
+| returnFocusOnClose  | `boolean`                            | `true`    | If `true`, the modal will return focus to the element that triggered it when it closes.                                             |
+| closeOnEsc          | `boolean`                            | `true`    | If `true`, the modal will close when the `Esc` key is pressed                                                                       |
+| trapFocus           | `boolean`                            | `true`    | If `true`, focus trapping will be disabled                                                                                          |
+| autoFocus           | `boolean`                            | `true`    | If `true`, the modal moves focus to the first interactive element                                                                   |
+| id                  | `string`                             |           | The top-level `id` to use for the modal and it's sub-components                                                                     |
+| onOverlayClick      | `function`                           |           | Function called when the overlay clicked                                                                                            |
+| onEsc               | `function`                           |           | Function called when the `Esc` key is pressed                                                                                       |
 
 ### Other components
 

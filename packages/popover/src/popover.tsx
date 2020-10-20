@@ -17,8 +17,32 @@ import {
   runIfFn,
   __DEV__,
 } from "@chakra-ui/utils"
+import { motion, Variants } from "framer-motion"
 import * as React from "react"
 import { usePopover, UsePopoverProps, UsePopoverReturn } from "./use-popover"
+
+const scaleVariants: Variants = {
+  exit: {
+    opacity: 0,
+    scale: 0.95,
+    transition: {
+      duration: 0.1,
+      ease: [0.4, 0, 1, 1],
+    },
+    transitionEnd: {
+      visibility: "hidden",
+    },
+  },
+  enter: {
+    visibility: "visible",
+    scale: 1,
+    opacity: 1,
+    transition: {
+      duration: 0.15,
+      ease: [0, 0, 0.2, 1],
+    },
+  },
+}
 
 const [PopoverProvider, usePopoverContext] = createContext<UsePopoverReturn>({
   name: "PopoverContext",
@@ -82,14 +106,16 @@ if (__DEV__) {
 
 export interface PopoverContentProps extends PropsOf<typeof chakra.section> {}
 
-/**
- * PopoverContent includes all accessibility
- * requirements for a popover
- */
+const StyledSection = chakra(motion.section)
+
 export const PopoverContent = forwardRef<PopoverContentProps, "section">(
   function PopoverContent(props, ref) {
-    const { getPopoverProps } = usePopoverContext()
-    const popoverProps = getPopoverProps(props, ref)
+    const {
+      isOpen,
+      getPopoverProps,
+      getPopoverWrapperProps,
+      transformOrigin,
+    } = usePopoverContext()
 
     const styles = useStyles()
     const contentStyles: SystemStyleObject = {
@@ -99,12 +125,25 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
       ...styles.content,
     }
 
+    const popoverProps = getPopoverProps(
+      { ...props, style: { ...props.style, transformOrigin } },
+      ref,
+    ) as any
+
     return (
-      <chakra.section
-        className={cx("chakra-popover__content")}
-        {...popoverProps}
-        __css={contentStyles}
-      />
+      <chakra.div
+        __css={{ zIndex: contentStyles.zIndex }}
+        {...getPopoverWrapperProps()}
+      >
+        <StyledSection
+          {...popoverProps}
+          className={cx("chakra-popover__content")}
+          __css={contentStyles}
+          variants={scaleVariants}
+          initial={false}
+          animate={isOpen ? "enter" : "exit"}
+        />
+      </chakra.div>
     )
   },
 )

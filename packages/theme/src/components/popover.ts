@@ -11,7 +11,7 @@ function baseStyleContent(props: Record<string, any>) {
     boxShadow: "sm",
     w: "100%",
     maxW: "xs",
-    zIndex: "1",
+    zIndex: 10,
     _focus: {
       outline: 0,
       boxShadow: "outline",
@@ -42,7 +42,7 @@ const baseStyleFooter = {
   borderTopWidth: "1px",
 }
 
-const baseStyle = function (props: Record<string, any>) {
+const baseStyle = (props: Record<string, any>) => {
   return {
     content: baseStyleContent(props),
     header: baseStyleHeader,

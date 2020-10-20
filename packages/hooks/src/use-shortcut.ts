@@ -6,7 +6,7 @@ import * as React from "react"
  */
 function isPrintableCharacter(event: React.KeyboardEvent) {
   const { key } = event
-  return key.length == 1 || (key.length > 1 && /[^a-zA-Z0-9]/.test(key))
+  return key.length === 1 || (key.length > 1 && /[^a-zA-Z0-9]/.test(key))
 }
 
 export interface UseShortcutProps {

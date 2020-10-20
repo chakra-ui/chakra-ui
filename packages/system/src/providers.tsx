@@ -61,7 +61,7 @@ export const GlobalStyle = () => {
       styles={(theme) => {
         const styleObjectOrFn = get(theme, "styles.global")
         const globalStyles = runIfFn(styleObjectOrFn, { theme, colorMode })
-        if (!globalStyles) return
+        if (!globalStyles) return undefined
         const styles = css(globalStyles)(theme)
         return styles as Interpolation
       }}

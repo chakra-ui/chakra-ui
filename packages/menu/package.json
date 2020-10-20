@@ -57,9 +57,11 @@
     "@react-aria/interactions": "3.2.0"
   },
   "devDependencies": {
+    "framer-motion": "2.7.5",
     "@chakra-ui/system": "1.0.0-rc.5"
   },
   "peerDependencies": {
+    "framer-motion": "2.7.5",
     "@chakra-ui/system": ">=1.0.0-rc.3",
     "react": "16.x"
   }

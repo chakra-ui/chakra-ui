@@ -46,15 +46,10 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.0.0-rc.5",
-    "@types/react-transition-group": "4.4.0",
-    "react-transition-group": "4.4.1"
-  },
-  "devDependencies": {
-    "@chakra-ui/system": "1.0.0-rc.5"
+    "@chakra-ui/utils": "1.0.0-rc.5"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">=1.0.0-rc.3",
+    "framer-motion": "2.x",
     "react": "16.x"
   }
 }

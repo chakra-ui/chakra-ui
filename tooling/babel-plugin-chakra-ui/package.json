@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "prepublish": "yarn build",
-    "lint": "eslint src",
+    "lint": "eslint --ext .js src",
     "test": "jest --passWithNoTests",
     "build": "babel src -d dist"
   },

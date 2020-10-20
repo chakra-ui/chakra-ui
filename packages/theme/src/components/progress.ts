@@ -1,4 +1,5 @@
 import { generateStripe, getColor, mode } from "@chakra-ui/theme-tools"
+
 type Dict = Record<string, any>
 
 const parts = ["track", "filledTrack", "panel"]
@@ -48,7 +49,7 @@ function baseStyleFilledTrack(props: Dict) {
   }
 }
 
-const baseStyle = function (props: Dict) {
+const baseStyle = (props: Dict) => {
   return {
     label: baseStyleLabel,
     filledTrack: baseStyleFilledTrack(props),

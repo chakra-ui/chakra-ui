@@ -56,7 +56,7 @@ export const StackDivider: React.FC<StackDividerProps> = (props) => {
       className="chakra-stack__divider"
       {...props}
       __css={{
-        ...props["__css"],
+        ...props.__css,
         borderWidth: 0,
         alignSelf: "stretch",
         borderColor: "inherit",
@@ -70,7 +70,11 @@ export const StackDivider: React.FC<StackDividerProps> = (props) => {
 export const StackItem: React.FC<PropsOf<typeof chakra.div>> = (props) => (
   <chakra.div
     className="chakra-stack__item"
-    __css={{ display: "inline-block", flex: 0 }}
+    __css={{
+      display: "inline-block",
+      flex: "0 0 auto",
+      minWidth: 0,
+    }}
     {...props}
   />
 )

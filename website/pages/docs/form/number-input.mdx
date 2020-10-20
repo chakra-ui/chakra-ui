@@ -297,6 +297,25 @@ function HookUsage() {
 }
 ```
 
+### Increment value using Mouse wheel
+
+The NumberInput component supports the ability to increment or decrement values
+using the mouse wheel events. To activate this, pass the `allowMouseWheel` prop
+
+```jsx
+function MouseWheelExample() {
+  return (
+    <NumberInput allowMouseWheel>
+      <NumberInputField />
+      <NumberInputStepper>
+        <NumberIncrementStepper />
+        <NumberDecrementStepper />
+      </NumberInputStepper>
+    </NumberInput>
+  )
+}
+```
+
 ## Accessibility
 
 ### Aria Roles

@@ -7,7 +7,7 @@ export function isNumber(value: any): value is number {
 }
 
 export const isNotNumber = (value: any) =>
-  typeof value !== "number" || isNaN(value) || !isFinite(value)
+  typeof value !== "number" || Number.isNaN(value) || !Number.isFinite(value)
 
 export function isNumeric(value: any) {
   return value != null && value - parseFloat(value) + 1 >= 0
@@ -69,4 +69,5 @@ export const isEmpty = (value: any) => {
   return false
 }
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const __DEV__ = process.env.NODE_ENV !== "production"

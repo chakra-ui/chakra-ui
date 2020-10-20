@@ -23,14 +23,13 @@ const renderWithPortal = (ui: React.ReactElement) =>
 test("should have no accessibility violations", async () => {
   const { container } = renderWithPortal(
     <Modal isOpen onClose={jest.fn()}>
-      <ModalOverlay>
-        <ModalContent>
-          <ModalHeader>Modal header</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>Modal body</ModalBody>
-          <ModalFooter>Modal footer</ModalFooter>
-        </ModalContent>
-      </ModalOverlay>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>Modal header</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>Modal body</ModalBody>
+        <ModalFooter>Modal footer</ModalFooter>
+      </ModalContent>
     </Modal>,
   )
 
@@ -40,12 +39,11 @@ test("should have no accessibility violations", async () => {
 test("should have the proper 'aria' attributes", () => {
   const tools = renderWithPortal(
     <Modal isOpen onClose={jest.fn()}>
-      <ModalOverlay>
-        <ModalContent data-testid="modal">
-          <ModalHeader>Modal header</ModalHeader>
-          <ModalBody>Modal body</ModalBody>
-        </ModalContent>
-      </ModalOverlay>
+      <ModalOverlay />
+      <ModalContent data-testid="modal">
+        <ModalHeader>Modal header</ModalHeader>
+        <ModalBody>Modal body</ModalBody>
+      </ModalContent>
     </Modal>,
   )
 
@@ -77,12 +75,11 @@ test("should fire 'onClose' callback when close button is clicked", () => {
 
   const tools = renderWithPortal(
     <Modal isOpen onClose={onClose}>
-      <ModalOverlay>
-        <ModalContent>
-          <ModalHeader>Modal header</ModalHeader>
-          <ModalCloseButton data-testid="close" />
-        </ModalContent>
-      </ModalOverlay>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>Modal header</ModalHeader>
+        <ModalCloseButton data-testid="close" />
+      </ModalContent>
     </Modal>,
   )
 
@@ -96,18 +93,19 @@ test("should fire 'onClose' callback when close button is clicked", () => {
 
 test('clicking overlay or pressing "esc" calls the onClose callback', () => {
   const onClose = jest.fn()
-  const tools = renderWithPortal(
+  renderWithPortal(
     <Modal isOpen onClose={onClose}>
-      <ModalOverlay data-testid="overlay">
-        <ModalContent>
-          <ModalHeader>Modal header</ModalHeader>
-          <ModalBody>Modal body</ModalBody>
-        </ModalContent>
-      </ModalOverlay>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>Modal header</ModalHeader>
+        <ModalBody>Modal body</ModalBody>
+      </ModalContent>
     </Modal>,
   )
 
-  const overlay = tools.getByTestId("overlay")
+  const [overlay] = Array.from(
+    document.getElementsByClassName("chakra-modal__content-container"),
+  )
 
   // Not working in tests but working in browser. I'm guessing this is due to focus-trap
   // fireEvent.click(overlay as HTMLElement)
@@ -123,20 +121,23 @@ test("focuses the initial focus ref when opened", () => {
     const inputRef = React.useRef(null)
     return (
       <>
-        <button data-testid="button" onClick={() => setIsOpen(true)}>
+        <button
+          type="button"
+          data-testid="button"
+          onClick={() => setIsOpen(true)}
+        >
           Open
         </button>
         <Modal isOpen={isOpen} initialFocusRef={inputRef} onClose={jest.fn()}>
-          <ModalOverlay>
-            <ModalContent>
-              <ModalHeader>Modal header</ModalHeader>
-              <ModalBody>
-                <input />
-                <input />
-                <input data-testid="input" ref={inputRef} />
-              </ModalBody>
-            </ModalContent>
-          </ModalOverlay>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Modal header</ModalHeader>
+            <ModalBody>
+              <input />
+              <input />
+              <input data-testid="input" ref={inputRef} />
+            </ModalBody>
+          </ModalContent>
         </Modal>
       </>
     )
@@ -161,6 +162,7 @@ test("should return focus to button when closed", async () => {
     return (
       <>
         <button
+          type="button"
           ref={buttonRef}
           data-testid="button"
           onClick={() => setIsOpen(true)}
@@ -172,13 +174,12 @@ test("should return focus to button when closed", async () => {
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
         >
-          <ModalOverlay>
-            <ModalContent>
-              <ModalHeader>Modal header</ModalHeader>
-              <ModalCloseButton data-testid="close" />
-              <ModalBody>Modal body</ModalBody>
-            </ModalContent>
-          </ModalOverlay>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Modal header</ModalHeader>
+            <ModalCloseButton data-testid="close" />
+            <ModalBody>Modal body</ModalBody>
+          </ModalContent>
         </Modal>
       </>
     )

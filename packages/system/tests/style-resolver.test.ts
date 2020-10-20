@@ -1,5 +1,5 @@
-import { styleResolver } from "../src/system"
 import theme from "@chakra-ui/theme"
+import { styleResolver } from "../src/system"
 
 const customTheme: any = {
   ...theme,

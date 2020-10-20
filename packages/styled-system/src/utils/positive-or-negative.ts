@@ -2,7 +2,7 @@ import { StringOrNumber, isString, isNumber } from "@chakra-ui/utils"
 import unit from "css-get-unit"
 
 const startsWith = (string: string, target: string) =>
-  string.slice(0, 0 + target.length) == target
+  string.slice(0, 0 + target.length) === target
 
 export function positiveOrNegative(
   value: StringOrNumber | undefined,
@@ -17,7 +17,7 @@ export function positiveOrNegative(
   if (startsWith(valueString, "-")) {
     const raw = scale[valueString.slice(1)]
     if (isString(raw)) {
-      result = "-" + raw
+      result = `-${raw}`
     } else if (isNumber(raw)) {
       result = raw * -1
     } else {
@@ -30,7 +30,7 @@ export function positiveOrNegative(
   let computedValue = result || value
   const hasUnit = unit(computedValue)
 
-  if (!hasUnit && !isNaN(Number(computedValue))) {
+  if (!hasUnit && !Number.isNaN(Number(computedValue))) {
     computedValue = Number(computedValue)
   }
 

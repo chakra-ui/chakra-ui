@@ -8,7 +8,7 @@ export function fade(startColor: string, endColor: string) {
   })
 }
 
-const baseStyle = function (props: Record<string, any>) {
+const baseStyle = (props: Record<string, any>) => {
   const defaultStartColor = mode("gray.100", "gray.800")(props)
   const defaultEndColor = mode("gray.400", "gray.600")(props)
 

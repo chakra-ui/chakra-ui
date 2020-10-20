@@ -1,4 +1,5 @@
 import { objectKeys } from "@chakra-ui/utils"
+import { AnimatePresence } from "framer-motion"
 import * as React from "react"
 import { Toast } from "./toast"
 import type {
@@ -138,13 +139,13 @@ export class ToastManager extends React.Component<Props, State> {
 
       const positionsToClose = positions ?? allPositions
 
-      return positionsToClose.reduce((carry, position) => {
-        carry[position] = prev[position].map((toast) => ({
+      return positionsToClose.reduce((acc, position) => {
+        acc[position] = prev[position].map((toast) => ({
           ...toast,
           requestClose: true,
         }))
 
-        return carry
+        return acc
       }, {})
     })
   }
@@ -153,7 +154,8 @@ export class ToastManager extends React.Component<Props, State> {
    * Create properties for a new toast
    */
   createToast = (message: ToastMessage, options: CreateToastOptions) => {
-    const id = options.id ?? ++ToastManager.counter
+    ToastManager.counter += 1
+    const id = options.id ?? ToastManager.counter
 
     const position = options.position ?? "top"
 
@@ -176,15 +178,13 @@ export class ToastManager extends React.Component<Props, State> {
     this.setState((prevState) => {
       const position = getToastPosition(prevState, id)
 
-      if (!position) {
-        return prevState
-      }
+      if (!position) return prevState
 
       return {
         ...prevState,
         [position]: prevState[position].map((toast) => ({
           ...toast,
-          requestClose: toast.id == id ? true : toast.requestClose,
+          requestClose: toast.id === id ? true : toast.requestClose,
         })),
       }
     })
@@ -197,7 +197,7 @@ export class ToastManager extends React.Component<Props, State> {
     this.setState((prevState) => {
       return {
         ...prevState,
-        [position]: prevState[position].filter((toast) => toast.id != id),
+        [position]: prevState[position].filter((toast) => toast.id !== id),
       }
     })
   }
@@ -212,9 +212,7 @@ export class ToastManager extends React.Component<Props, State> {
    */
   getStyle = (position: ToastPosition): React.CSSProperties => {
     const isTopOrBottom = position === "top" || position === "bottom"
-
     const margin = isTopOrBottom ? "0 auto" : undefined
-    const textAlign = isTopOrBottom ? "center" : undefined
 
     const top = position.includes("top") ? 0 : undefined
     const bottom = position.includes("bottom") ? 0 : undefined
@@ -225,8 +223,9 @@ export class ToastManager extends React.Component<Props, State> {
       position: "fixed",
       zIndex: 5500,
       pointerEvents: "none",
+      display: "flex",
+      flexDirection: "column",
       margin,
-      textAlign,
       top,
       bottom,
       right,
@@ -238,15 +237,17 @@ export class ToastManager extends React.Component<Props, State> {
     return objectKeys(this.state).map((position) => {
       const toasts = this.state[position]
       return (
-        <span
+        <ul
           key={position}
-          id={"chakra-toast-manager-" + position}
+          id={`chakra-toast-manager-${position}`}
           style={this.getStyle(position)}
         >
-          {toasts.map((toast) => (
-            <Toast key={toast.id} {...toast} />
-          ))}
-        </span>
+          <AnimatePresence initial={false}>
+            {toasts.map((toast) => (
+              <Toast key={toast.id} {...toast} />
+            ))}
+          </AnimatePresence>
+        </ul>
       )
     })
   }

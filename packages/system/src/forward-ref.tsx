@@ -11,7 +11,7 @@ export type PropsWithAs<T extends As, P> = P &
     as?: T | As
   }
 
-//@ts-expect-error
+// @ts-expect-error
 type PropsOf<T extends As> = React.PropsWithRef<React.ComponentProps<T>>
 
 type Merge<T, P> = P extends object ? P & Omit<T, keyof P> : T

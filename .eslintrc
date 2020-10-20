@@ -1,33 +1,63 @@
 {
+  "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "ecmaVersion": 10,
+    "project": "./tsconfig.json",
     "ecmaFeatures": {
       "jsx": true
     }
   },
-  "plugins": ["@typescript-eslint", "react-hooks"],
   "extends": [
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "airbnb-typescript",
+    "prettier",
+    "prettier/react",
+    "prettier/@typescript-eslint"
   ],
+  "plugins": [
+    "react-hooks",
+    "@typescript-eslint/eslint-plugin",
+    "testing-library"
+  ],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
   "rules": {
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/no-empty-interface": "off",
-    "@typescript-eslint/camelcase": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/ban-ts-ignore": "off",
-    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-use-before-define": "off",
-    "@typescript-eslint/no-empty-function": "off",
-    "@typescript-eslint/indent": "off",
-    "@typescript-eslint/array-callback-return": "off",
-    "@typescript-eslint/array-type": "off",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "@typescript-eslint/member-delimiter-style": "off",
-    "@typescript-eslint/no-var-requires": "off",
-    "@typescript-eslint/ban-types": "off",
-    "@typescript-eslint/ban-ts-comment": "off"
+    "no-param-reassign": "off",
+    "no-console": "off",
+    "jsx-a11y/no-autofocus": "off",
+    "react/forbid-prop-types": "off",
+    "import/prefer-default-export": "off",
+    "no-underscore-dangle": "off",
+    "no-shadow": "off",
+    "guard-for-in": "off",
+    "react/no-danger": "off",
+    "operator-assignment": "off",
+    "prefer-destructuring": "off",
+    "react/state-in-constructor": "off",
+    "no-restricted-syntax": "off",
+    "no-continue": "off",
+    "react/destructuring-assignment": "off",
+    "@typescript-eslint/dot-notation": "off",
+    "no-bitwise": "off",
+    "no-redeclare": "off",
+    "@typescript-eslint/naming-convention": "off",
+    "import/no-extraneous-dependencies": "off",
+    "@typescript-eslint/lines-between-class-members": "off",
+    "react/jsx-filename-extension": [
+      "error",
+      { "extensions": [".js", ".tsx"] }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "react/no-array-index-key": "off",
+    "react/require-default-props": "off",
+    "react/sort-prop-types": "error",
+    "react/prop-types": "off"
   }
 }

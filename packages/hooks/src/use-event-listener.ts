@@ -10,19 +10,19 @@ import { useLatestRef } from "./use-latest-ref"
  * @param doc the dom environment to execute against (defaults to `document`)
  * @param options the event listener options
  */
-export function useEventListener(
-  event: keyof WindowEventMap,
-  handler: (event: any) => void,
-  doc: Document | null = isBrowser ? document : null,
+export function useEventListener<K extends keyof DocumentEventMap>(
+  event: K,
+  handler: (event: DocumentEventMap[K]) => void,
+  doc: Document | HTMLElement | null = isBrowser ? document : null,
   options?: boolean | AddEventListenerOptions,
 ) {
   const savedHandler = useLatestRef(handler)
 
   React.useEffect(() => {
-    if (!doc) return
+    if (!doc) return undefined
 
     const listener = (event: any) => {
-      savedHandler.current(event)
+      savedHandler.current?.(event)
     }
 
     doc.addEventListener(event, listener, options)
@@ -33,6 +33,8 @@ export function useEventListener(
   }, [event, doc, options, savedHandler])
 
   return () => {
-    doc?.removeEventListener(event, savedHandler.current, options)
+    if (savedHandler.current) {
+      doc?.removeEventListener(event, savedHandler.current as any, options)
+    }
   }
 }

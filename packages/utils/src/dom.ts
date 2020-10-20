@@ -1,17 +1,17 @@
-import { Booleanish, EventKeys } from "./types"
 import * as React from "react"
+import { Booleanish, EventKeys } from "./types"
 
-let _window: Window | undefined = undefined
+let win: Window | undefined
 
 /**
  * Note: Accessing "window" in IE11 is somewhat expensive, and calling "typeof window"
- * hits a memory leak, whereas aliasing it and calling "typeof _window" does not.
+ * hits a memory leak, whereas aliasing it and calling "typeof win" does not.
  * Caching the window value at the file scope lets us minimize the impact.
  *
  * @see IE11 Memory Leak Issue https://github.com/microsoft/fluentui/pull/9010#issuecomment-490768427
  */
 try {
-  _window = window
+  win = window
 } catch (e) {
   /* no-op */
 }
@@ -21,17 +21,15 @@ try {
  * of "window", to avoid overhead and memory leaks in IE11.
  */
 export const getWindow = (node?: HTMLElement | null) =>
-  node?.ownerDocument?.defaultView ?? _window
+  node?.ownerDocument?.defaultView ?? win
 
 /**
  * Check if we can use the DOM. Useful for SSR purposes
  */
 function checkIsBrowser() {
-  const _window = getWindow()
+  const win = getWindow()
   return Boolean(
-    typeof _window !== "undefined" &&
-      _window.document &&
-      _window.document.createElement,
+    typeof win !== "undefined" && win.document && win.document.createElement,
   )
 }
 

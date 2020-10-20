@@ -1,103 +1,131 @@
+import { cx, __DEV__ } from "@chakra-ui/utils"
+import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
 import * as React from "react"
-import { __DEV__ } from "@chakra-ui/utils"
-import { Transition, TransitionProps } from "./transition"
+import { EASINGS, MotionVariants } from "./__utils"
 
-type Placement = "left" | "right" | "bottom" | "top"
+export type SlideDirection = keyof typeof directions
 
-function createBaseStyle(placement: Placement) {
-  switch (placement) {
-    case "bottom": {
-      return {
-        maxWidth: "100vw",
-        bottom: 0,
-        left: 0,
-        right: 0,
-      }
-    }
-    case "top": {
-      return {
-        maxWidth: "100vw",
-        top: 0,
-        left: 0,
-        right: 0,
-      }
-    }
-    case "left": {
-      return {
-        width: "100%",
-        height: "100vh",
-        left: 0,
-        top: 0,
-      }
-    }
-    case "right": {
-      return {
-        width: "100%",
-        right: 0,
-        top: 0,
-        height: "100vh",
-      }
-    }
-    default:
-      break
-  }
-}
-
-const getTransformStyle = (placement: Placement, value: string) => {
-  let axis = ""
-  if (placement === "left" || placement === "right") axis = "X"
-  if (placement === "top" || placement === "bottom") axis = "Y"
-  return `translate${axis}(${value})`
-}
-
-function getTransitionStyles(placement: Placement) {
-  const offset = {
-    bottom: "100%",
-    top: "-100%",
-    left: "-100%",
-    right: "100%",
-  }
-
-  return {
-    init: {
-      transform: getTransformStyle(placement, offset[placement]),
+const directions = {
+  bottom: {
+    motion: { y: "100%" },
+    baseStyle: {
+      maxWidth: "100vw",
+      bottom: 0,
+      left: 0,
+      right: 0,
     },
-    entered: { transform: getTransformStyle(placement, "0%") },
-    exiting: {
-      transform: getTransformStyle(placement, offset[placement]),
+  },
+  top: {
+    motion: { y: "-100%" },
+    baseStyle: {
+      maxWidth: "100vw",
+      top: 0,
+      left: 0,
+      right: 0,
     },
-  }
+  },
+  left: {
+    motion: { x: "-100%" },
+    baseStyle: {
+      width: "100%",
+      height: "100vh",
+      left: 0,
+      top: 0,
+    },
+  },
+  right: {
+    motion: { x: "100%" },
+    baseStyle: {
+      width: "100%",
+      right: 0,
+      top: 0,
+      height: "100vh",
+    },
+  },
 }
 
-export type SlideProps = Omit<TransitionProps, "styles" | "timeout"> & {
-  /** The direction to slide drawer from */
-  placement?: Placement
-  /** The transition timeout */
-  timeout?: number
+type SlideVariants = MotionVariants<"enter" | "exit">
+
+const variants: SlideVariants = {
+  exit: (direction: string) => {
+    const { motion } = directions[direction] ?? {}
+    return {
+      ...motion,
+      transition: {
+        duration: 0.15,
+        ease: EASINGS.easeInOut,
+      },
+    }
+  },
+  enter: (direction: string) => {
+    const { motion } = directions[direction] ?? {}
+    const [axis] = motion ? Object.keys(motion) : ["x"]
+    return {
+      [axis]: 0,
+      transition: {
+        type: "spring",
+        damping: 25,
+        stiffness: 180,
+      },
+    }
+  },
 }
 
-export const Slide: React.FC<SlideProps> = (props) => {
-  const { placement = "left", timeout = 150, children, ...rest } = props
-
-  const styles = getTransitionStyles(placement)
-
-  const positionStyles: React.CSSProperties = {
-    position: "fixed",
-    willChange: "transform",
-    ...createBaseStyle(placement),
-  }
-
-  return (
-    <Transition
-      styles={styles}
-      transition={`opacity ${timeout}ms cubic-bezier(0, 0, 0.2, 1), transform ${timeout}ms cubic-bezier(0, 0, 0.2, 1)`}
-      timeout={{ enter: 0, exit: timeout }}
-      {...rest}
-    >
-      {(styles) => children({ ...positionStyles, ...styles })}
-    </Transition>
-  )
+export interface SlideOptions {
+  /**
+   * If `true`, the collapse will unmount when `isOpen={false}` and animation is done
+   */
+  unmountOnExit?: boolean
+  /**
+   * The direction to slide from
+   * @default "right"
+   */
+  direction?: SlideDirection
+  /**
+   * If `true`, the content will slide in
+   */
+  in?: boolean
 }
+
+export interface SlideProps extends HTMLMotionProps<"div">, SlideOptions {}
+
+export const Slide = React.forwardRef<HTMLDivElement, SlideProps>(
+  function Slide(props, ref) {
+    const {
+      direction = "right",
+      style,
+      unmountOnExit,
+      in: isOpen,
+      className,
+      ...rest
+    } = props
+
+    const { baseStyle } = directions[direction] ?? {}
+    const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
+
+    return (
+      <AnimatePresence custom={direction}>
+        {shouldExpand && (
+          <motion.div
+            ref={ref}
+            initial="exit"
+            className={cx("chakra-slide", className)}
+            animate={isOpen || unmountOnExit ? "enter" : "exit"}
+            exit="exit"
+            custom={direction}
+            variants={variants}
+            style={{
+              position: "fixed",
+              ...baseStyle,
+              ...style,
+            }}
+            {...rest}
+          />
+        )}
+      </AnimatePresence>
+    )
+  },
+)
 
 if (__DEV__) {
   Slide.displayName = "Slide"

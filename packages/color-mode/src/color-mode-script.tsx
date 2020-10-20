@@ -43,6 +43,6 @@ interface ColorModeScriptProps {
  */
 export const ColorModeScript = (props: ColorModeScriptProps) => {
   const { initialColorMode = "light" } = props
-  const __html = `(${String(setScript)})('${initialColorMode}')`
-  return <script dangerouslySetInnerHTML={{ __html }} />
+  const html = `(${String(setScript)})('${initialColorMode}')`
+  return <script dangerouslySetInnerHTML={{ __html: html }} />
 }

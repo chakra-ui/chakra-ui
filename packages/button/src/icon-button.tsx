@@ -1,7 +1,7 @@
+import { forwardRef } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { Button, ButtonProps } from "./button"
-import { forwardRef } from "@chakra-ui/system"
 
 type Omitted =
   | "leftIcon"

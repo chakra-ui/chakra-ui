@@ -426,13 +426,14 @@ export function useTabIndicator(): CSSProperties {
   const [rect, setRect] = useState(() => {
     if (isHorizontal) return { left: 0, width: 0 }
     if (isVertical) return { top: 0, height: 0 }
+    return undefined
   })
 
   const [hasMeasured, setHasMeasured] = useState(false)
 
   // Update the selected tab rect when the selectedIndex changes
   useSafeLayoutEffect(() => {
-    if (isUndefined(selectedIndex)) return
+    if (isUndefined(selectedIndex)) return undefined
 
     const tab = domContext.descendants[selectedIndex]
     const tabRect = tab?.element?.getBoundingClientRect()
@@ -456,7 +457,9 @@ export function useTabIndicator(): CSSProperties {
     })
 
     return () => {
-      cancelAnimationFrame(frameId)
+      if (frameId) {
+        cancelAnimationFrame(frameId)
+      }
     }
   }, [selectedIndex, isHorizontal, isVertical, domContext.descendants])
 

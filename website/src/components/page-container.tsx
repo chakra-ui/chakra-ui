@@ -1,11 +1,12 @@
-import * as React from "react"
-import { Box, Flex, chakra } from "@chakra-ui/core"
+import { Box, chakra, Flex } from "@chakra-ui/core"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
+import Container from "components/container"
 import EditPageLink from "components/edit-page-button"
 import Footer from "components/footer"
 import Header from "components/header"
-import Container from "components/container"
 import SEO from "components/seo"
+import * as React from "react"
+import PageTransition from "./page-transition"
 
 const PageContainer = ({
   frontmatter,
@@ -31,10 +32,10 @@ const PageContainer = ({
           <div style={{ flex: 1 }}>
             <SkipNavContent />
             <Box pt={3} px={5} mt="4.5rem" mx="auto" maxW="48rem" minH="80vh">
-              <Box>
+              <PageTransition>
                 <chakra.h1 apply="mdx.h1">{title}</chakra.h1>
-              </Box>
-              {children}
+                {children}
+              </PageTransition>
               <Box mt="40px">{editUrl && <EditPageLink href={editUrl} />}</Box>
               {pagination || null}
             </Box>

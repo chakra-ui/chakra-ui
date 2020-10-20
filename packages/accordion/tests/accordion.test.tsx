@@ -13,15 +13,6 @@ import {
   AccordionPanel,
 } from "../src"
 
-jest.mock("@chakra-ui/collapse", () => {
-  const Collapse = jest.fn(({ children, isOpen }) => (
-    <div id="collapse-mock" hidden={!isOpen}>
-      {children}
-    </div>
-  ))
-  return { Collapse }
-})
-
 it("passes a11y test", async () => {
   await testA11y(
     <Accordion>

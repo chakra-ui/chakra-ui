@@ -112,8 +112,14 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   }, [colorMode, setColorMode])
 
   React.useEffect(() => {
+    let removeListener: any
     if (useSystemColorMode) {
-      return addListener(setColorMode)
+      removeListener = addListener(setColorMode)
+    }
+    return () => {
+      if (removeListener && useSystemColorMode) {
+        removeListener()
+      }
     }
   }, [setColorMode, useSystemColorMode])
 

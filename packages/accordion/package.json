@@ -51,7 +51,7 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/collapse": "1.0.0-rc.5",
+    "@chakra-ui/transition": "1.0.0-rc.5",
     "@chakra-ui/descendant": "1.0.0-rc.5",
     "@chakra-ui/hooks": "1.0.0-rc.5",
     "@chakra-ui/icon": "1.0.0-rc.5",

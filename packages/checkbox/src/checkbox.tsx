@@ -11,7 +11,7 @@ import {
 import { cx, Omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useCheckboxGroupContext } from "./checkbox-group"
-import { CheckboxIcon } from "./checkbox.icon"
+import { CheckboxIcon } from "./checkbox-icon"
 import { useCheckbox, UseCheckboxProps } from "./use-checkbox"
 
 const StyledControl = chakra("div", {
@@ -97,6 +97,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
   const styles = useMultiStyleConfig("Checkbox", mergedProps)
 
   const ownProps = omitThemingProps(mergedProps)
+
   const {
     spacing = "0.5rem",
     className,
@@ -104,15 +105,17 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
     iconColor,
     iconSize,
     icon: Icon = <CheckboxIcon />,
+    isChecked: isCheckedProp,
+    onChange: onChangeProp,
     ...rest
   } = ownProps
 
-  let isChecked = ownProps.isChecked
+  let isChecked = isCheckedProp
   if (group?.value && ownProps.value) {
     isChecked = group.value.includes(ownProps.value)
   }
 
-  let onChange = ownProps.onChange
+  let onChange = onChangeProp
   if (group?.onChange && ownProps.value) {
     onChange = group.onChange
   }
@@ -145,9 +148,10 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
     ...styles.icon,
   }
 
-  const icon = React.cloneElement(Icon, {
+  const clonedIcon = React.cloneElement(Icon, {
     __css: iconStyles,
     isIndeterminate: state.isIndeterminate,
+    isChecked: state.isChecked,
   })
 
   return (
@@ -163,7 +167,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
         className="chakra-checkbox__control"
         {...checkboxProps}
       >
-        {icon}
+        {clonedIcon}
       </StyledControl>
       {children && (
         <chakra.div

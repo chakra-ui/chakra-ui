@@ -47,7 +47,7 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
     [size, onChange, colorScheme, value, variant],
   )
 
-  return <CheckboxGroupProvider value={group} children={children} />
+  return <CheckboxGroupProvider value={group}>{children}</CheckboxGroupProvider>
 }
 
 if (__DEV__) {

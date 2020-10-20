@@ -1,102 +1,64 @@
+import { useBoolean } from "@chakra-ui/hooks"
 import * as React from "react"
-import { ScaleFade, SlideFade, Fade, Slide } from "../src"
+import { SlideFade } from "../src/slide-fade"
+import { ScaleFade } from "../src/scale-fade"
 
 export default {
-  title: "Transition",
+  title: "Transition / Offset Slide",
 }
 
-const modalStyles: React.CSSProperties = {
-  position: "fixed",
-  top: "50%",
-  left: "50%",
-  width: "50%",
-  maxWidth: "630px",
-  minWidth: "320px",
-  background: "red",
-  minHeight: 300,
-  height: "auto",
-  backfaceVisibility: "hidden",
-  transform: `translateX(-50%) translateY(-50%)`,
-}
-
-type DivProps = React.HTMLAttributes<HTMLDivElement>
-
-function Modal(props: DivProps) {
-  return (
-    <div {...props} style={{ ...modalStyles, ...props.style }}>
-      Animate me
-    </div>
-  )
-}
-
-export function ScaleFadeExample() {
-  const [isOpen, setIsOpen] = React.useState(true)
+export const slideFade = () => {
+  const [open, { toggle }] = useBoolean(false)
   return (
     <>
-      <button onClick={() => setIsOpen((p) => !p)}>Click Me</button>
-      <ScaleFade in={isOpen}>
-        {(styles) => (
-          <Modal
-            style={{
-              ...styles,
-              transform: styles.transform
-                ? `${modalStyles.transform} ${styles.transform}`
-                : `${modalStyles.transform}`,
-            }}
-          />
-        )}
-      </ScaleFade>
-    </>
-  )
-}
-
-export function SlideFadeExample() {
-  const [isOpen, setIsOpen] = React.useState(true)
-  return (
-    <>
-      <button onClick={() => setIsOpen((p) => !p)}>Click Me</button>
-      <SlideFade in={isOpen}>
-        {(styles) => (
-          <Modal
-            style={{
-              ...styles,
-              transform: styles.transform
-                ? `${modalStyles.transform} ${styles.transform}`
-                : `${modalStyles.transform}`,
-            }}
-          />
-        )}
+      <button onClick={toggle}>Toggle Slide</button>
+      <SlideFade
+        in={open}
+        offsetY={-8}
+        reverse={false}
+        style={{
+          maxWidth: 400,
+          background: "red",
+          padding: 30,
+        }}
+      >
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only five
+        centuries, but also the leap into electronic typesetting, remaining
+        essentially unchanged. It was popularised in the 1960s with the release
+        of Letraset sheets containing Lorem Ipsum passages, and more recently
+        with desktop publishing software like Aldus PageMaker including versions
+        of Lorem Ipsum.
       </SlideFade>
     </>
   )
 }
 
-export function FadeExample() {
-  const [isOpen, setIsOpen] = React.useState(true)
+export const scaleFade = () => {
+  const [open, { toggle }] = useBoolean(false)
   return (
     <>
-      <button onClick={() => setIsOpen((p) => !p)}>Click Me</button>
-      <Fade in={isOpen}>{(styles) => <Modal style={styles} />}</Fade>
-    </>
-  )
-}
-
-function Drawer(props: DivProps) {
-  return (
-    <div {...props} style={{ background: "red", ...props.style }}>
-      Animate Me
-    </div>
-  )
-}
-
-export function SlideExample() {
-  const [isOpen, setIsOpen] = React.useState(true)
-  return (
-    <>
-      <button onClick={() => setIsOpen((p) => !p)}>Click Me</button>
-      <Slide placement="bottom" in={isOpen}>
-        {(styles) => <Drawer style={styles} />}
-      </Slide>
+      <button onClick={toggle}>Toggle Scale</button>
+      <ScaleFade
+        in={open}
+        style={{
+          maxWidth: 400,
+          background: "red",
+          padding: 30,
+        }}
+      >
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only five
+        centuries, but also the leap into electronic typesetting, remaining
+        essentially unchanged. It was popularised in the 1960s with the release
+        of Letraset sheets containing Lorem Ipsum passages, and more recently
+        with desktop publishing software like Aldus PageMaker including versions
+        of Lorem Ipsum.
+      </ScaleFade>
     </>
   )
 }

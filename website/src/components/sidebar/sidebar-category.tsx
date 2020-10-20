@@ -1,7 +1,7 @@
-import { Icon, chakra, useColorModeValue } from "@chakra-ui/core"
+import { Icon, chakra, useColorModeValue, BoxProps } from "@chakra-ui/core"
 import { useRef, useState, useEffect, ReactNode, RefObject } from "react"
 
-interface SidebarCategoryProps {
+interface SidebarCategoryProps extends BoxProps {
   isMobile?: boolean
   title: string
   opened?: boolean
@@ -25,7 +25,15 @@ interface SidebarState {
 }
 
 function SidebarCategory(props: SidebarCategoryProps) {
-  const { isMobile, title, selected, opened, children, contentRef } = props
+  const {
+    isMobile,
+    title,
+    selected,
+    opened,
+    children,
+    contentRef,
+    ...rest
+  } = props
 
   const ref = useRef<HTMLDivElement | null>(null)
 
@@ -60,21 +68,23 @@ function SidebarCategory(props: SidebarCategoryProps) {
   }, [toggle, shouldScroll, isMobile, contentRef])
 
   return (
-    <chakra.div mt="18px" ref={ref}>
+    <chakra.div mt="8" ref={ref} {...rest}>
       <chakra.button
         width="full"
         cursor="pointer"
+        textTransform="uppercase"
+        letterSpacing="wider"
         style={{ outlineOffset: 4 }}
-        fontSize="sm"
-        fontWeight="semibold"
+        fontSize="xs"
+        fontWeight="bold"
         display="flex"
         alignItems="center"
         justifyContent="space-between"
         userSelect="none"
-        color={useColorModeValue("gray.700", "inherit")}
+        color={useColorModeValue("gray.500", "inherit")}
         onClick={onClick}
         _hover={{
-          color: useColorModeValue("gray.800", "inherit"),
+          color: useColorModeValue("gray.600", "inherit"),
         }}
       >
         {title}
@@ -89,15 +99,7 @@ function SidebarCategory(props: SidebarCategoryProps) {
           color="gray.400"
         />
       </chakra.button>
-      <chakra.div
-        hidden={!toggle}
-        borderLeft="1px solid"
-        borderColor={useColorModeValue("gray.200", "whiteAlpha.200")}
-        mt="16px"
-        pl="5"
-        overflow="hidden"
-        ml="1"
-      >
+      <chakra.div hidden={!toggle} mt="16px" mx="-3">
         {children}
       </chakra.div>
     </chakra.div>

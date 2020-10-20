@@ -3,13 +3,24 @@ import { fireEvent, render, waitFor } from "@chakra-ui/test-utils"
 import { usePopover } from "../src"
 
 const Component = () => {
-  const { getTriggerProps, getPopoverProps, onClose } = usePopover()
+  const {
+    getTriggerProps,
+    getPopoverProps,
+    getPopoverWrapperProps,
+    onClose,
+  } = usePopover()
 
   return (
     <div>
-      <button {...getTriggerProps()}>Open</button>
-      <div {...getPopoverProps()}>Popover content</div>
-      <button onClick={onClose}>Close</button>
+      <button type="button" {...getTriggerProps()}>
+        Open
+      </button>
+      <div {...getPopoverWrapperProps()}>
+        <div {...getPopoverProps()}>Popover content</div>
+      </div>
+      <button type="button" onClick={onClose}>
+        Close
+      </button>
     </div>
   )
 }

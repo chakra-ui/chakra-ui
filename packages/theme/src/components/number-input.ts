@@ -26,7 +26,7 @@ function baseStyleStepper(props: Record<string, any>) {
   }
 }
 
-const baseStyle = function (props: Record<string, any>) {
+const baseStyle = (props: Record<string, any>) => {
   return {
     field: baseStyleField,
     stepperGroup: baseStyleStepperGroup,

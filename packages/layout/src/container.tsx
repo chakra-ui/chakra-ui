@@ -88,12 +88,12 @@ if (__DEV__) {
 function transform(theme: Dict, props: Dict) {
   const result: SystemStyleObject = {}
 
-  for (const prop in props) {
+  Object.keys(props).forEach((prop) => {
     const propValue = props[prop]
     result[prop] = mapResponsive(propValue, (value) =>
       get(theme, `sizes.container.${value}`, value),
     )
-  }
+  })
 
   return filterUndefined(result)
 }

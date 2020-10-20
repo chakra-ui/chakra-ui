@@ -3,8 +3,8 @@ title: Transitions
 package: "@chakra-ui/transition"
 image: "components/transition.svg"
 description:
-  Chakra exports four components `Fade`, `ScaleFade`, `Slide`, and `SlideFade` to
-  provide simple transitions.
+  Chakra exports four components `Fade`, `ScaleFade`, `Slide`, and `SlideFade`
+  to provide simple transitions.
 ---
 
 import ComponentLinks from "../../../src/components/component-links"
@@ -22,13 +22,15 @@ provide simple transitions.
 
 ## Import
 
+Most transition components are made using `framer-motion`. They accept the
+following props:
+
+- Common props from framer's `motion` elements
+- `in` prop used to trigger the transition
+- `unmountOnExit` prop used to unmount the component when it's not visible.
+
 ```js
-import { 
-  Fade, 
-  ScaleFade, 
-  Slide, 
-  SlideFade 
-} from "@chakra-ui/transition"
+import { Fade, ScaleFade, Slide, SlideFade } from "@chakra-ui/transition"
 ```
 
 ## Usage
@@ -36,18 +38,23 @@ import {
 ### Fade transition
 
 ```jsx
-function FadeTransitionExample() {
+function FadeEx() {
   const { isOpen, onToggle } = useDisclosure()
 
   return (
     <>
       <Button onClick={onToggle}>Click Me</Button>
-      <Fade timeout={150} in={isOpen}>
-        {(styles) => (
-         <Box style={styles}>
-            <Lorem count={1} />
-         </Box>
-        )}
+      <Fade in={isOpen}>
+        <Box
+          p="40px"
+          color="white"
+          mt="4"
+          bg="teal.500"
+          rounded="md"
+          shadow="md"
+        >
+          Fade
+        </Box>
       </Fade>
     </>
   )
@@ -57,18 +64,23 @@ function FadeTransitionExample() {
 ### ScaleFade transition
 
 ```jsx
-function ScaleFadeTransitionExample() {
+function ScaleFadeEx() {
   const { isOpen, onToggle } = useDisclosure()
 
   return (
     <>
       <Button onClick={onToggle}>Click Me</Button>
-      <ScaleFade initialScale={0.9} timeout={150} in={isOpen}>
-        {(styles) => (
-         <Box style={styles}>
-            <Lorem count={1} />
-         </Box>
-        )}
+      <ScaleFade initialScale={0.9} in={isOpen}>
+        <Box
+          p="40px"
+          color="white"
+          mt="4"
+          bg="teal.500"
+          rounded="md"
+          shadow="md"
+        >
+          Fade
+        </Box>
       </ScaleFade>
     </>
   )
@@ -78,54 +90,103 @@ function ScaleFadeTransitionExample() {
 ### Slide transition
 
 ```jsx
-function SlideTransitionExample() {
+function SlideEx() {
   const { isOpen, onToggle } = useDisclosure()
 
   return (
     <>
       <Button onClick={onToggle}>Click Me</Button>
-      <Slide placement="bottom" timeout={150} in={isOpen}>
-        {(styles) => (
-         <Box style={{...styles, position: "static"}}>
-            <Lorem count={2} />
-         </Box>
-        )}
+      <Slide direction="bottom" in={isOpen} style={{ zIndex: 10 }}>
+        <Box
+          p="40px"
+          color="white"
+          mt="4"
+          bg="teal.500"
+          rounded="md"
+          shadow="md"
+        >
+          <Lorem count={2} />
+        </Box>
       </Slide>
     </>
   )
 }
 ```
 
-
-### SlideFade transition
+### Slide Fade transition
 
 ```jsx
-function SlideFadeTransitionExample() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+function SlideFadeEx() {
+  const { isOpen, onToggle } = useDisclosure()
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay>
-          <SlideFade initialOffset="20px" timeout={150} in={isOpen}>
-            {(styles) => (
-              <ModalContent style={styles}>
-                <ModalHeader>Modal Title</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody>
-                  <Lorem count={2} />
-                </ModalBody>
-                <ModalFooter>
-                  <Button colorScheme="blue" mr={3} onClick={onClose}>
-                    Close
-                  </Button>
-                </ModalFooter>
-              </ModalContent>
-            )}
-          </SlideFade>
-        </ModalOverlay>
-      </Modal>
+      <Button onClick={onToggle}>Click Me</Button>
+      <SlideFade in={isOpen} offsetY="20px">
+        <Box
+          p="40px"
+          color="white"
+          mt="4"
+          bg="teal.500"
+          rounded="md"
+          shadow="md"
+        >
+          <Lorem count={1} />
+        </Box>
+      </SlideFade>
+    </>
+  )
+}
+```
+
+### Collapse transition
+
+The Collapse component is used to create regions of content that can
+expand/collapse with a simple animation. It helps to hide content that's not
+immediately relevant to the user.
+
+```jsx
+function CollapseEx() {
+  const { isOpen, onToggle } = useDisclosure()
+
+  return (
+    <>
+      <Button onClick={onToggle}>Click Me</Button>
+      <Collapse in={isOpen} animateOpacity>
+        <Box
+          p="40px"
+          color="white"
+          mt="4"
+          bg="teal.500"
+          rounded="md"
+          shadow="md"
+        >
+          <Lorem count={1} />
+        </Box>
+      </Collapse>
+    </>
+  )
+}
+```
+
+#### Changing the startingHeight
+
+```jsx
+function Example() {
+  const [show, setShow] = React.useState(false)
+
+  const handleToggle = () => setShow(!show)
+
+  return (
+    <>
+      <Collapse startingHeight={20} isOpen={show}>
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+        labore wes anderson cred nesciunt sapiente ea proident.
+      </Collapse>
+      <Button size="sm" onClick={handleToggle} mt="1rem">
+        Show {show ? "Less" : "More"}
+      </Button>
     </>
   )
 }
@@ -133,35 +194,45 @@ function SlideFadeTransitionExample() {
 
 ## Props
 
-The transition components extends the [react-transition-group](https://reactcommunity.org/react-transition-group/transition) `Transition` component, so you can pass all `TransitionProps` in addition to these:
+The transition components extends the
+[framer-motion](https://www.framer.com/api/motion/component/).
 
 ### Fade Props
 
-| Name             | Type                 | Default | Description                                                                                                              |
-| ---------------- | -------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
-| in               | `boolean`            |  false  | Show the component; triggers the enter or exit states                                                                    |
-| timeout          | `number`             |  150    | The duration of the transition, in milliseconds                                                                          |
+| Name | Type      | Default | Description                                           |
+| ---- | --------- | ------- | ----------------------------------------------------- |
+| in   | `boolean` | false   | Show the component; triggers the enter or exit states |
 
 ### ScaleFade Props
 
-| Name             | Type                 | Default | Description                                                                                                              |
-| ---------------- | -------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
-| in               | `boolean`            |  false  | Show the component; triggers the enter or exit states                                                                    |
-| initialScale     | `number`             |  0.9    | The initial scale to animate from                                                                                        |
-| timeout          | `number`             |  150    | The duration of the transition, in milliseconds                                                                          |
+| Name         | Type      | Default | Description                                           |
+| ------------ | --------- | ------- | ----------------------------------------------------- |
+| in           | `boolean` | false   | Show the component; triggers the enter or exit states |
+| initialScale | `number`  | 0.9     | The initial scale to animate from                     |
 
 ### Slide Props
 
-| Name             | Type                 | Default    | Description                                                                                                              |
-| ---------------- | -------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------ |
-| in               | `boolean`            |  false     | Show the component; triggers the enter or exit states                                                                    |
-| placement        | `string`             |  'bottom'  | The direction to slide drawer from                                                                                     |
-| timeout          | `number`             |  150       | The duration of the transition, in milliseconds                                                                          |
+| Name      | Type      | Default  | Description                                           |
+| --------- | --------- | -------- | ----------------------------------------------------- |
+| in        | `boolean` | false    | Show the component; triggers the enter or exit states |
+| placement | `string`  | 'bottom' | The direction to slide drawer from                    |
 
 ### SlideFade Props
 
-| Name             | Type                 | Default | Description                                                                                                              |
-| ---------------- | -------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
-| in               | `boolean`            |  false  | Show the component; triggers the enter or exit states                                                                    |
-| initialOffset    | `string`             |  '20px' | The initial offset to slide from                                                                                     |
-| timeout          | `number`             |  150    | The duration of the transition, in milliseconds                                                                          |
+| Name    | Type      | Default | Description                                           |
+| ------- | --------- | ------- | ----------------------------------------------------- |
+| in      | `boolean` | false   | Show the component; triggers the enter or exit states |
+| offsetX | `string`  | '20px'  | The initial offset to slide from                      |
+| offsetY | `string`  | '20px'  | The initial offset to slide from                      |
+
+### Collapse Props
+
+## Props
+
+This component doesn't have any custom props.
+
+| Name           | Type      | Description                                                                    |
+| -------------- | --------- | ------------------------------------------------------------------------------ |
+| isOpen         | `boolean` | If `true`, the content will be visible                                         |
+| animateOpacity | `boolean` | If `true`, the opacity of the content will be animated                         |
+| startingHeight | `number`  | The height you want the content in it's collapsed state. Set to `0` by default |

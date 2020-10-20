@@ -3,7 +3,7 @@ import * as React from "react"
 
 export * from "./modal.stories"
 export * from "./modal.stories"
-export * from "./transition.stories"
+export * from "./drawer.stories"
 export * from "./focus-ref.stories"
 
 export default {

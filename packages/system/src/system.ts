@@ -24,8 +24,8 @@ import { domElements, DOMElements } from "./system.utils"
 /**
  * Convert propNames array to object to faster lookup perf
  */
-const stylePropNames = propNames.reduce(function (keymirror, key) {
-  if (typeof key != "object" && typeof key != "function") keymirror[key] = key
+const stylePropNames = propNames.reduce((keymirror, key) => {
+  if (typeof key !== "object" && typeof key !== "function") keymirror[key] = key
   return keymirror
 }, {})
 

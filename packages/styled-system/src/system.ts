@@ -1,22 +1,22 @@
+import { compose } from "@styled-system/core"
 import {
   background,
   border,
   color,
   flexbox,
   grid,
+  layout,
+  list,
   others,
+  outline,
   position,
   shadow,
   space,
-  typography,
-  layout,
-  outline,
   transform,
-  list,
   transition,
+  typography,
 } from "./config"
 import { pseudoPropNames } from "./pseudo"
-import { compose } from "@styled-system/core"
 
 export const systemProps = compose(
   background,

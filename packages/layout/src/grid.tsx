@@ -130,7 +130,7 @@ export const GridColumn = forwardRef<GridColumnProps, "div">(
     )
 
     const styles = filterUndefined({
-      gridColumn: gridColumn,
+      gridColumn,
       gridColumnStart: start,
     })
 

@@ -136,11 +136,10 @@ export function getNextItemFromSearch<T>(
         nextIndex = 0
       }
       return matchingItems[nextIndex]
-    } else {
-      // Else, we pick the first item in the available items
-      nextIndex = items.indexOf(matchingItems[0])
-      return items[nextIndex]
     }
+    // Else, we pick the first item in the available items
+    nextIndex = items.indexOf(matchingItems[0])
+    return items[nextIndex]
   }
 
   // a decent fallback to the currentItem
@@ -155,4 +154,4 @@ export function getNextItemFromSearch<T>(
  * This function returns true given a custom array property.
  */
 export const isCustomBreakpoint = (maybeBreakpoint: string) =>
-  Number.isNaN(Number.parseInt(maybeBreakpoint))
+  Number.isNaN(parseInt(maybeBreakpoint, 10))
