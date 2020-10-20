@@ -43,7 +43,7 @@ exports[`matches snapshot 1`] = `
   -ms-flex-negative: 0;
   flex-shrink: 0;
   background: #A0AEC0;
-  color: #FFFFFF;
+  color: #1A202C;
   border-color: #FFFFFF;
   vertical-align: top;
   width: 3rem;

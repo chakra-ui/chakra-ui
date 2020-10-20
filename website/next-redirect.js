@@ -104,7 +104,7 @@ async function redirect() {
     },
     {
       source: "/collapse",
-      destination: "/docs/components/collapse",
+      destination: "/docs/components/transition#collapse",
       permanent: true,
     },
     {

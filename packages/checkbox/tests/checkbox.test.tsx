@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import Icon from "@chakra-ui/icon"
 import {
+  fireEvent,
   render,
   renderHook,
-  fireEvent,
   screen,
   testA11y,
 } from "@chakra-ui/test-utils"
@@ -14,11 +15,9 @@ import {
   useCheckbox,
   UseCheckboxProps,
 } from "../src"
-import { CheckboxIconProps } from "../src/checkbox.icon"
 
 test("matches snapshot ", () => {
   const { asFragment } = render(<Checkbox />)
-
   expect(asFragment()).toMatchSnapshot()
 })
 
@@ -204,7 +203,7 @@ test("Controlled CheckboxGroup", () => {
 })
 
 test("accepts custom icon", () => {
-  const CustomIcon = (props: CheckboxIconProps) => {
+  const CustomIcon = (props: any) => {
     const { isIndeterminate, ...rest } = props
 
     const d = isIndeterminate
