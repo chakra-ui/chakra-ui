@@ -3,6 +3,7 @@ const parts = ["container", "button", "panel"]
 const baseStyleContainer = {
   borderTopWidth: "1px",
   borderColor: "inherit",
+  overflowAnchor: "none",
   _last: {
     borderBottomWidth: "1px",
   },
