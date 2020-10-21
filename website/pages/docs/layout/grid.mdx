@@ -20,12 +20,65 @@ comes with helpful style shorthand. It renders a `div` element.
 ## Import
 
 ```js
-import { Grid } from "@chakra-ui/core"
+import { Grid, GridItem } from "@chakra-ui/core"
 ```
 
-## Usage
+- **Grid:** The main wrapper with `display: grid`
+- **GridItem:** Used as a child of `Grid` to control the span, and start
+  positions within the grid.
 
-Using the Grid components, here are some helpful shorthand props:
+## Template columns
+
+Here's an example of using grid template columns with the `grid` component, and
+applying a `gap` or space between the grid items.
+
+```jsx
+<Grid templateColumns="repeat(5, 1fr)" gap={6}>
+  <Box w="100%" h="10" bg="blue.500" />
+  <Box w="100%" h="10" bg="blue.500" />
+  <Box w="100%" h="10" bg="blue.500" />
+  <Box w="100%" h="10" bg="blue.500" />
+  <Box w="100%" h="10" bg="blue.500" />
+</Grid>
+```
+
+## Spanning columns
+
+In some layouts, you might need certain grid items to span specific amount of
+columns instead of an even distribution. Pass the `span` prop to `GridItem`
+component to manage this distribution.
+
+```jsx
+<Grid templateColumns="repeat(5, 1fr)" gap={4}>
+  <GridItem colSpan={3} h="10" bg="tomato" />
+  <GridItem colSpan={2} h="10" bg="papayawhip" />
+  <GridItem colSpan={1} h="10" bg="papayawhip" />
+  <GridItem colSpan={4} h="10" bg="tomato" />
+</Grid>
+```
+
+## Starting and ending lines
+
+Pass the `start` and `end` prop to `GridItem` component to make an element start
+or end at the `nth` grid position.
+
+In some layouts, you might need certain grid items to span specific amount of
+columns instead of an even distribution. Pass the `span` prop to `GridItem`
+component to manage this distribution.
+
+```jsx
+<Grid templateColumns="repeat(5, 1fr)" gap={4}>
+  <GridItem colSpan={2} h="10" bg="tomato" />
+  <GridItem colStart={4} colSpan={2} h="10" bg="papayawhip" />
+</Grid>
+```
+
+## Props
+
+### Grid Props
+
+Grid composes `Box` so you can pass all the `Box` prop, and these shorthand prop
+to save you some time:
 
 | Verbose Prop          | Shorthand Prop    |
 | --------------------- | ----------------- |
@@ -42,20 +95,13 @@ Using the Grid components, here are some helpful shorthand props:
 | `gridTemplateRows`    | `templateRows`    |
 | `gridTemplateColumns` | `templateColumns` |
 
-While you can pass the verbose props, using the shorthand can save you some
-time.
+### GridItem Props
 
-```jsx
-<Grid templateColumns="repeat(5, 1fr)" gap={6}>
-  <Box w="100%" h="10" bg="blue.500" />
-  <Box w="100%" h="10" bg="blue.500" />
-  <Box w="100%" h="10" bg="blue.500" />
-  <Box w="100%" h="10" bg="blue.500" />
-  <Box w="100%" h="10" bg="blue.500" />
-</Grid>
-```
-
-## Props
-
-Grid composes `Box` so you can pass all the `Box` prop and related css grid
-props.
+| Verbose Prop      | Shorthand Prop |
+| ----------------- | -------------- |
+| `gridColumnSpan`  | `colSpan`      |
+| `gridRowSpan`     | `rowSpan`      |
+| `gridColumnStart` | `colStart`     |
+| `gridColumnEnd`   | `colEnd`       |
+| `gridRowStart`    | `rowStart`     |
+| `gridRowEnd`      | `rowEnd`       |
