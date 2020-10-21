@@ -56,10 +56,10 @@
   },
   "devDependencies": {
     "@chakra-ui/system": "1.0.0-rc.5",
-    "framer-motion": "^2.7.5"
+    "framer-motion": "^2.9.3"
   },
   "peerDependencies": {
-    "framer-motion": "^2.7.5",
+    "framer-motion": "^2.9.3",
     "@chakra-ui/system": ">=1.0.0-rc.3",
     "react": "16.x",
     "react-dom": "16.x"

@@ -10691,36 +10691,10 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-framer-motion@2.7.5:
-  version "2.7.5"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-2.7.5.tgz#3016715f8988b6a4fa4e2d326106ef054e99f7fc"
-  integrity sha512-+KMR7Qu4H38pgYLetD6ONLBGvaYv1Rh19ItFidYtlDzaC9qsdmKroBJoZlhjLv36G4CwLL2iwiGAnRVWB12cQg==
-  dependencies:
-    framesync "^4.1.0"
-    hey-listen "^1.0.8"
-    popmotion "9.0.0-rc.19"
-    style-value-types "^3.1.9"
-    tslib "^1.10.0"
-  optionalDependencies:
-    "@emotion/is-prop-valid" "^0.8.2"
-
-framer-motion@^2.7.5:
-  version "2.9.1"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-2.9.1.tgz#86713730e9503922eedcf5e1bb91a5acc30076f5"
-  integrity sha512-NjEF5u1FkCTS+zRsDWOPPCxWBUWk255WXy4d1FDCC3j6ETJzDXx0V/NUPvwhzyATHbahfX5JdsHWdRe1whNHJg==
-  dependencies:
-    framesync "^4.1.0"
-    hey-listen "^1.0.8"
-    popmotion "9.0.0-rc.20"
-    style-value-types "^3.1.9"
-    tslib "^1.10.0"
-  optionalDependencies:
-    "@emotion/is-prop-valid" "^0.8.2"
-
-framer-motion@^2.7.9:
-  version "2.7.9"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-2.7.9.tgz#52eeea6323e0500e82a6f2ada1142e60944ac679"
-  integrity sha512-rQEz9mjDLu0A6BtOFRh0T2Jg0dxtP06WKLobHLuvHWwg7LZQ/fbVKa5u4VyP5USgLnkLZEHkCHqC2XX9D5ggXw==
+framer-motion@^2.9.3:
+  version "2.9.3"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-2.9.3.tgz#dcdf62cb7f8a55cd8f536d2f3be5373ae785fd4d"
+  integrity sha512-4uoPCaSf4/TzOttJVlneKnO/A9PGdcN0YZaw372m9ejpMu8083m5AWXXENEqOBjbhOSjX2L0Vl+AYGinjcwgBg==
   dependencies:
     framesync "^4.1.0"
     hey-listen "^1.0.8"
@@ -16912,16 +16886,6 @@ polished@^3.3.1, polished@^3.4.4:
   integrity sha512-b4OViUOihwV0icb9PHmWbR+vPqaSzSAEbgLskvb7ANPATVXGiYv/TQFHQo65S53WU9i5EQ1I03YDOJW7K0bmYg==
   dependencies:
     "@babel/runtime" "^7.9.2"
-
-popmotion@9.0.0-rc.19:
-  version "9.0.0-rc.19"
-  resolved "https://registry.yarnpkg.com/popmotion/-/popmotion-9.0.0-rc.19.tgz#24b28d9d4481536da699af77841d04bc5351f1d5"
-  integrity sha512-rmXYVzkFPHZAqTgnlrif2Wiojv2qOra0IFb22Md/Uogqi7ZLPi7EoVbZzwQxoSpbeixWx8+yr4LamAXqsFj4OQ==
-  dependencies:
-    framesync "^4.1.0"
-    hey-listen "^1.0.8"
-    style-value-types "^3.1.9"
-    tslib "^1.10.0"
 
 popmotion@9.0.0-rc.20:
   version "9.0.0-rc.20"
