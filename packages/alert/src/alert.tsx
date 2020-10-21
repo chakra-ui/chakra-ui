@@ -20,7 +20,7 @@ const STATUSES = {
   error: { icon: WarningIcon, colorScheme: "red" },
 }
 
-export type AlertStatus = "info" | "warning" | "success" | "error"
+export type AlertStatus = keyof typeof STATUSES
 
 interface AlertContext {
   status: AlertStatus
