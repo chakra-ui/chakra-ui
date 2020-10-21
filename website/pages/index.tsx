@@ -342,7 +342,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               />
               <StatBox
                 icon={FiGithub}
-                title="9.9k"
+                title="11.2k"
                 description="Github stars"
               />
               <StatBox
