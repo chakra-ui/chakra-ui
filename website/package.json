@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
+    "clean": "rm -rf .next .mdx-data",
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {

@@ -200,23 +200,38 @@ export default {
   space: {
     px: "1px",
     0: "0",
+    0.5: "0.125rem",
     1: "0.25rem",
+    1.5: "0.375rem",
     2: "0.5rem",
+    2.5: "0.625rem",
     3: "0.75rem",
+    3.5: "0.875rem",
     4: "1rem",
     5: "1.25rem",
     6: "1.5rem",
+    7: "1.75rem",
     8: "2rem",
+    9: "2.25rem",
     10: "2.5rem",
     12: "3rem",
+    14: "3.5rem",
     16: "4rem",
     20: "5rem",
     24: "6rem",
+    28: "7rem",
     32: "8rem",
+    36: "9rem",
     40: "10rem",
+    44: "11rem",
     48: "12rem",
+    52: "13rem",
     56: "14rem",
+    60: "15rem",
     64: "16rem",
+    72: "18rem",
+    80: "20rem",
+    96: "24rem",
   },
 }
 ```
@@ -238,17 +253,27 @@ Tailwind CSS. The values are proportional, so 1 spacing unit is equal to
 | 4    | 1rem    | 16px   | <Box bg="pink.200" h="4" w="4"/>  |
 | 5    | 1.25rem | 20px   | <Box bg="pink.200" h="4" w="5"/>  |
 | 6    | 1.5rem  | 24px   | <Box bg="pink.200" h="4" w="6"/>  |
+| 7    | 1.75rem | 28px   | <Box bg="pink.200" h="4" w="7"/>  |
 | 8    | 2rem    | 32px   | <Box bg="pink.200" h="4" w="8"/>  |
+| 9    | 2.25rem | 36px   | <Box bg="pink.200" h="4" w="9"/>  |
 | 10   | 2.5rem  | 40px   | <Box bg="pink.200" h="4" w="10"/> |
 | 12   | 3rem    | 48px   | <Box bg="pink.200" h="4" w="12"/> |
+| 14   | 3.5rem  | 56px   | <Box bg="pink.200" h="4" w="14"/> |
 | 16   | 4rem    | 64px   | <Box bg="pink.200" h="4" w="16"/> |
 | 20   | 5rem    | 80px   | <Box bg="pink.200" h="4" w="20"/> |
 | 24   | 6rem    | 96px   | <Box bg="pink.200" h="4" w="24"/> |
+| 28   | 7rem    | 112px  | <Box bg="pink.200" h="4" w="28"/> |
 | 32   | 8rem    | 128px  | <Box bg="pink.200" h="4" w="32"/> |
+| 36   | 9rem    | 144px  | <Box bg="pink.200" h="4" w="36"/> |
 | 40   | 10rem   | 160px  | <Box bg="pink.200" h="4" w="40"/> |
+| 44   | 11rem   | 176px  | <Box bg="pink.200" h="4" w="44"/> |
 | 48   | 12rem   | 192px  | <Box bg="pink.200" h="4" w="48"/> |
 | 56   | 14rem   | 224px  | <Box bg="pink.200" h="4" w="56"/> |
+| 60   | 15rem   | 240px  | <Box bg="pink.200" h="4" w="60"/> |
 | 64   | 16rem   | 256px  | <Box bg="pink.200" h="4" w="64"/> |
+| 72   | 18rem   | 288px  | <Box bg="pink.200" h="4" w="72"/> |
+| 80   | 20rem   | 320px  | <Box bg="pink.200" h="4" w="80"/> |
+| 96   | 24rem   | 344px  | <Box bg="pink.200" h="4" w="96"/> |
 
 ## Sizes
 
@@ -280,6 +305,24 @@ export default {
 For a component like this: `<Box w={4} h={3} />` will generate an empty `div`
 with width set to `1rem` or `16px` and height set to `0.75rem` or `12px`
 
+## Border radius
+
+Chakra provides a set of smooth corner radius values
+
+```js
+export default {
+  none: "0",
+  sm: "0.125rem",
+  base: "0.25rem",
+  md: "0.375rem",
+  lg: "0.5rem",
+  xl: "0.75rem",
+  "2xl": "1rem",
+  "3xl": "1.5rem",
+  full: "9999px",
+}
+```
+
 ## z-index values
 
 We recommend trying to solve stacking issues without `z-index`. You can read our
@@ -295,6 +338,16 @@ export default {
     hide: -1,
     auto: "auto",
     base: 0,
+    docked: 10,
+    dropdown: 1000,
+    sticky: 1100,
+    banner: 1200,
+    overlay: 1300,
+    modal: 1400,
+    popover: 1500,
+    skipLink: 1600,
+    toast: 1700,
+    tooltip: 1800,
   },
 }
 ```
