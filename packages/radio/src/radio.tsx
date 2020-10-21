@@ -9,7 +9,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { split, __DEV__ } from "@chakra-ui/utils"
+import { callAll, split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useRadioGroupContext } from "./radio-group"
 import { useRadio, UseRadioProps } from "./use-radio"
@@ -64,7 +64,7 @@ export const Radio = forwardRef<RadioProps, "input">(function Radio(
 
   let onChange = onChangeProp
   if (group?.onChange && valueProp) {
-    onChange = group.onChange
+    onChange = callAll(group.onChange, onChangeProp)
   }
 
   const name = props?.name ?? group?.name
