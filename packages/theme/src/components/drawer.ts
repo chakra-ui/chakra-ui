@@ -31,6 +31,7 @@ function baseStyleDialog(props: Record<string, any>) {
   return {
     ...(isFullHeight && { height: "100vh" }),
     zIndex: "modal",
+    maxH: "100vh",
     bg: mode("white", "gray.700")(props),
     color: "inherit",
     boxShadow: mode("lg", "dark-lg")(props),

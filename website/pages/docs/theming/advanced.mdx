@@ -79,7 +79,7 @@ signature:
 ```tsx live=false
 type StyleInterpolation =
   | { [part: string]: SystemStyleObject }
-  | ((options: StyleOptions) => { [part: string]: SystemStyleObject })
+  | ((options: StyleOptions) => { [part: string]: SystemStyleObject });
 
 interface StyleOptions {
   theme: Theme
