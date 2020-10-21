@@ -113,6 +113,11 @@ export const AccordionItem = forwardRef<AccordionItemProps, "div">(
     const { htmlProps, ...context } = useAccordionItem(props)
 
     const styles = useStyles()
+    const containerStyles: SystemStyleObject = {
+      ...styles.container,
+      overflowAnchor: "none",
+    }
+
     const _context = React.useMemo(() => context, [context])
 
     return (
@@ -121,7 +126,7 @@ export const AccordionItem = forwardRef<AccordionItemProps, "div">(
           ref={ref}
           {...htmlProps}
           className={cx("chakra-accordion__item", className)}
-          __css={styles.container}
+          __css={containerStyles}
         >
           {runIfFn(children, {
             isExpanded: !!context.isOpen,
