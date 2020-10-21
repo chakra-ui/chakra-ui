@@ -8,7 +8,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx, Omit, __DEV__ } from "@chakra-ui/utils"
+import { callAll, cx, Omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useCheckboxGroupContext } from "./checkbox-group"
 import { CheckboxIcon } from "./checkbox-icon"
@@ -117,7 +117,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
 
   let onChange = onChangeProp
   if (group?.onChange && ownProps.value) {
-    onChange = group.onChange
+    onChange = callAll(group.onChange, onChangeProp)
   }
 
   const {

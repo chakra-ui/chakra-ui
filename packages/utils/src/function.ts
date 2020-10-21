@@ -1,6 +1,6 @@
 import memoize from "memoize-one"
 import { isFunction, __DEV__ } from "./assertion"
-import { FunctionArguments } from "./types"
+import { AnyFunction, FunctionArguments } from "./types"
 
 export function runIfFn<T, U>(
   valueOrFn: T | ((...fnArgs: U[]) => T),
@@ -15,7 +15,15 @@ export function callAllHandlers<T extends (event: any) => void>(
   return function func(event: FunctionArguments<T>[0]) {
     fns.some((fn) => {
       fn?.(event)
-      return event && event.defaultPrevented
+      return event?.defaultPrevented
+    })
+  }
+}
+
+export function callAll<T extends AnyFunction>(...fns: (T | undefined)[]) {
+  return function mergedFn(arg: FunctionArguments<T>[0]) {
+    fns.forEach((fn) => {
+      fn?.(arg)
     })
   }
 }

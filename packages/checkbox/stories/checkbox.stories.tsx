@@ -20,11 +20,11 @@ export const CheckboxWithHooks = () => {
 
 export const Basic = () => <Checkbox colorScheme="red">Hello</Checkbox>
 
-export const Disabled = () => <Checkbox isDisabled children="Disabled" />
+export const Disabled = () => <Checkbox isDisabled>Disabled</Checkbox>
 
-export const Readonly = () => <Checkbox isReadOnly children="Readonly" />
+export const Readonly = () => <Checkbox isReadOnly>Readonly</Checkbox>
 
-export const Invalid = () => <Checkbox isInvalid children="Invalid" />
+export const Invalid = () => <Checkbox isInvalid>Invalid</Checkbox>
 
 export const WithIconColor = () => (
   <Checkbox iconColor="yellow.400">I love chakra</Checkbox>
@@ -33,13 +33,15 @@ export const WithIconColor = () => (
 export const withColorScheme = () => {
   return (
     <Stack>
-      <Checkbox defaultIsChecked colorScheme="red" children="Hello world" />
-      <Checkbox defaultIsChecked children="Hello world" />
+      <Checkbox defaultIsChecked colorScheme="red">
+        Hello world
+      </Checkbox>
+      <Checkbox defaultIsChecked>Hello world</Checkbox>
     </Stack>
   )
 }
 
-const CustomIcon = (props: CheckboxIconProps) => {
+const CustomIcon = (props: any) => {
   const { isIndeterminate, ...rest } = props
 
   const d = isIndeterminate
@@ -73,20 +75,23 @@ export const WithCustomIcon = () => {
         isChecked={allChecked}
         isIndeterminate={isIndeterminate}
         onChange={(e) => setCheckedItems([e.target.checked, e.target.checked])}
-        children="Parent Checkbox"
         icon={<CustomIcon />}
-      />
+      >
+        Parent Checkbox
+      </Checkbox>
       <Stack ml="6" mt="2" align="start">
         <Checkbox
           isChecked={checkedItems[0]}
           onChange={(e) => setCheckedItems([e.target.checked, checkedItems[1]])}
-          children="Child Checkbox 1"
-        />
+        >
+          Child Checkbox 1
+        </Checkbox>
         <Checkbox
           isChecked={checkedItems[1]}
           onChange={(e) => setCheckedItems([checkedItems[0], e.target.checked])}
-          children="Child Checkbox 2"
-        />
+        >
+          Child Checkbox 2
+        </Checkbox>
       </Stack>
     </>
   )
@@ -116,19 +121,22 @@ export const Indeterminate = () => {
         isChecked={allChecked}
         isIndeterminate={isIndeterminate}
         onChange={(e) => setCheckedItems([e.target.checked, e.target.checked])}
-        children="Parent Checkbox"
-      />
+      >
+        Parent Checkbox
+      </Checkbox>
       <Stack ml="6" mt="2" align="start">
         <Checkbox
           isChecked={checkedItems[0]}
           onChange={(e) => setCheckedItems([e.target.checked, checkedItems[1]])}
-          children="Child Checkbox 1"
-        />
+        >
+          Child Checkbox 1
+        </Checkbox>
         <Checkbox
           isChecked={checkedItems[1]}
           onChange={(e) => setCheckedItems([checkedItems[0], e.target.checked])}
-          children="Child Checkbox 2"
-        />
+        >
+          Child Checkbox 2
+        </Checkbox>
       </Stack>
     </>
   )
