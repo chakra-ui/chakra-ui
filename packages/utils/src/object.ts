@@ -1,4 +1,3 @@
-import memoizeOne from "memoize-one"
 import type { Dict, Omit } from "./types"
 
 export { default as merge, default as mergeWith } from "lodash.mergewith"
@@ -42,8 +41,11 @@ export function split<T extends Dict, K extends keyof T>(object: T, keys: K[]) {
   return [picked, omitted] as [{ [P in K]: T[P] }, Omit<T, K>]
 }
 
+const getCache = new WeakMap()
+
 /**
- * Get value from a deeply nested object using a string path
+ * Get value from a deeply nested object using a string path.
+ * Memoizes the value.
  * @param obj - the object
  * @param path - the string path
  * @param def  - the fallback value
@@ -54,16 +56,31 @@ export function get(
   fallback?: any,
   index?: number,
 ) {
-  // @ts-ignore
-  path = (path?.split?.(".") ?? [path]) as string
-  for (index = 0; index < path.length; index += 1) {
-    obj = obj ? obj[path[index]] : undefined
-  }
-  return obj === undefined ? fallback : obj
-}
+  const key = typeof path === "string" ? path.split(".") : [path]
 
-// Just a memoized version of `get`
-export const memoizedGet = memoizeOne(get)
+  if (!getCache.has(obj)) {
+    getCache.set(obj, new Map())
+  }
+
+  const map = getCache.get(obj)
+
+  if (map.has(key)) {
+    return map.get(key)
+  }
+
+  for (index = 0; index < key.length; index += 1) {
+    if (!obj) {
+      break
+    }
+
+    obj = obj[key[index]]
+  }
+
+  const value = obj === undefined ? fallback : obj
+  map.set(key, value)
+
+  return value
+}
 
 /**
  * Get value from deeply nested object, based on path

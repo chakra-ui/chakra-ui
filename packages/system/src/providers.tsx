@@ -1,12 +1,6 @@
 import { useColorMode } from "@chakra-ui/color-mode"
 import { css, SystemStyleObject } from "@chakra-ui/styled-system"
-import {
-  createContext,
-  Dict,
-  memoizedGet as get,
-  mergeWith,
-  runIfFn,
-} from "@chakra-ui/utils"
+import { createContext, Dict, get, mergeWith, runIfFn } from "@chakra-ui/utils"
 import { Global, Interpolation, ThemeContext } from "@emotion/core"
 import * as React from "react"
 

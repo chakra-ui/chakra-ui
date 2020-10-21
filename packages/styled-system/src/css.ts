@@ -4,7 +4,7 @@ import {
   isCustomBreakpoint,
   isObject,
   isResponsiveObjectLike,
-  memoizedGet as get,
+  get,
   mergeWith,
   objectToArrayNotation,
   runIfFn,

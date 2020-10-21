@@ -6,7 +6,7 @@ import {
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
 import {
-  memoizedGet as get,
+  get,
   objectFilter,
   objectAssign,
   Dict,

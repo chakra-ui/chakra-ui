@@ -11,7 +11,7 @@ import {
   mapResponsive,
   __DEV__,
   filterUndefined,
-  memoizedGet as get,
+  get,
 } from "@chakra-ui/utils"
 import * as React from "react"
 

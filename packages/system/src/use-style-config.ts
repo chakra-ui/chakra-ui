@@ -1,7 +1,7 @@
 import { SystemStyleObject } from "@chakra-ui/styled-system"
 import {
   filterUndefined,
-  memoizedGet as get,
+  get,
   mergeWith,
   runIfFn,
   omit,

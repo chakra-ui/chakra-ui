@@ -41,7 +41,6 @@
     "@types/object-assign": "4.0.30",
     "css-box-model": "1.2.1",
     "lodash.mergewith": "4.6.2",
-    "memoize-one": "5.1.1",
     "object-assign": "4.1.1"
   },
   "peerDependencies": {
