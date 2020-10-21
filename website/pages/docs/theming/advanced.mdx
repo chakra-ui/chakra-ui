@@ -4,64 +4,96 @@ description: Documentation for making advanced modifications to themes.
 ---
 
 Now that you understand how to use Chakra UI theming API. Let's take a step
-further and see if we can adapt the button to color mode.
+further and see if we can adapt a component to color mode.
 
 When defining the styles for the `sizes` or `variants`, you can either pass a
 style object or a function that returns a style object.
 
-```tsx live=false
-type StyleInterpolation =
-  | { [part: string]: StyleObject }
-  | ((options: Options) => { [part: string]: StyleObject })
+## Single Part Component
 
-interface Options {
+For a single part component like button, badge, etc. The style configuration has
+the following signature:
+
+```tsx live=false
+type StyleInterpolation = StyleObject | ((options: StyleOptions) => StyleObject)
+
+interface StyleOptions {
   theme: Theme
   colorMode: "light" | "dark"
   colorScheme: string
 }
 
-type styleConfig = {
+interface StyleConfig {
   baseStyle: StyleInterpolation
   sizes: { [size: string]: StyleInterpolation }
   variants: { [variant: string]: StyleInterpolation }
+  defaultProps?: {
+    variant: string
+    size: string
+  }
 }
 ```
 
-## Using color mode
-
-Here's an example of how to create a simple badge that changes its background
-based on color mode.
+For example, to create a simple badge that changes its background based on color
+mode. Here's how to go about it.
 
 ```jsx live=false
-// theme.js
-import theme from "@chakra-ui/theme"
-import { mergeWith } from "@chakra-ui/utils"
+import { extendTheme, theme } from "@chakra-ui/core"
 
-const overrides = {
-  components: {
-    MyBadge: {
-      baseStyle: ({ colorMode }) => ({
-        bg: colorMode === "dark" ? "green.300" : "green.500",
-        color: colorMode === "dark" ? "gray.800" : "white",
-        textTransform: "uppercase",
-        fontWeight: "semibold",
-        letterSpacing: "0.02em",
-        padding: "4px",
-        borderRadius: "2px",
-        fontSize: "12px",
-      }),
-    },
+// 1. define component configuration
+const components = {
+  CustomBadge: {
+    baseStyle: ({ colorMode }) => ({
+      bg: colorMode === "dark" ? "green.300" : "green.500",
+      color: colorMode === "dark" ? "gray.800" : "white",
+      textTransform: "uppercase",
+      fontWeight: "semibold",
+      letterSpacing: "0.02em",
+      padding: "4px",
+      borderRadius: "2px",
+      fontSize: "12px",
+    }),
   },
 }
 
-export default mergeWith(theme, overrides)
+// 2. add it to the theme and mount on `ChakraProvider`
+const customTheme = mergeWith(theme, { components })
 
-// MyBadge.js
-function MyBadge(props) {
-  const styles = useStyleConfig("MyBadge")
-  return <Box as="span" sx={styles} {...props} />
+// 3. Use it in your components
+function CustomBadge(props) {
+  const { size, variant, ...rest } = props
+  const styles = useStyleConfig("CustomBadge", { size, variant })
+  return <Box as="span" sx={styles} {...rest} />
 }
 
-// somewhere-else.js
-render(<MyBadge>I am a custom badge</MyBadge>)
+// 4. Use the component
+render(<CustomBadge>I am a custom badge</CustomBadge>)
+```
+
+## Multipart or Composite Component
+
+When it comes to multipart components like tabs, menus, etc. that have multiple
+sub-parts, you can also style them based on the color mode. Here's the
+signature:
+
+```tsx live=false
+type StyleInterpolation =
+  | { [part: string]: SystemStyleObject }
+  | ((options: StyleOptions) => { [part: string]: SystemStyleObject })
+
+interface StyleOptions {
+  theme: Theme
+  colorMode: "light" | "dark"
+  colorScheme: string
+}
+
+interface StyleConfig {
+  baseStyle: StyleInterpolation
+  sizes: { [size: string]: StyleInterpolation }
+  variants: { [variant: string]: StyleInterpolation }
+  defaultProps?: {
+    variant: string
+    size: string
+  }
+}
 ```
