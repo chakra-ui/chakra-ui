@@ -4,6 +4,14 @@ const baseStyle = {
 }
 
 const sizes = {
+  "4xl": {
+    fontSize: ["6xl", null, "7xl"],
+    lineHeight: 1,
+  },
+  "3xl": {
+    fontSize: ["5xl", null, "6xl"],
+    lineHeight: 1,
+  },
   "2xl": {
     fontSize: ["4xl", null, "5xl"],
     lineHeight: ["2.5rem", null, "1"],
