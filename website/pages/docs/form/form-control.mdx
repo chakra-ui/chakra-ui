@@ -6,8 +6,6 @@ description:
   form elements
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
 FormControl provides context such as `isInvalid`, `isDisabled`, and `isRequired`
 to form elements.
 
@@ -67,9 +65,7 @@ By passing the `isRequired` props, the `Input` field has `aria-required` set to
 
 ```jsx
 <FormControl id="first-name" isRequired>
-  <FormLabel>
-    First name
-  </FormLabel>
+  <FormLabel>First name</FormLabel>
   <Input placeholder="First name" />
 </FormControl>
 ```

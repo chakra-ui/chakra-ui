@@ -4,8 +4,6 @@ package: "@chakra-ui/slider"
 image: "components/slider.svg"
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
 The Slider is used to allow users to make selections from a range of values.
 
 <ComponentLinks
@@ -79,9 +77,9 @@ customize its styles.
 
 ### Getting the final value when dragging the slider
 
-Dragging the slider can trigger lots of updates and the user might only 
-be interested in the final result after sliding is complete. You can use 
-`onChangeEnd` for this. 
+Dragging the slider can trigger lots of updates and the user might only be
+interested in the final result after sliding is complete. You can use
+`onChangeEnd` for this.
 
 ```jsx live=false
 <Slider onChangeEnd={(val) => console.log(val)}>
@@ -94,9 +92,9 @@ be interested in the final result after sliding is complete. You can use
 
 ### Configure thumb focus with `focusThumbOnChange`
 
-By default `SliderThumb` will receive focus whenever `value` changes. You can 
-opt-out of this behavior by setting `focusThumbOnChange=false`.  This is 
-normally used with a "controlled" slider value.
+By default `SliderThumb` will receive focus whenever `value` changes. You can
+opt-out of this behavior by setting `focusThumbOnChange=false`. This is normally
+used with a "controlled" slider value.
 
 ```jsx live=false
 <Slider value={value} focusThumbOnChange={false}>
@@ -106,6 +104,7 @@ normally used with a "controlled" slider value.
   <SliderThumb />
 </Slider>
 ```
+
 ### useSlider
 
 We've exported the `useSlider` hook to help users manage and build custom slider

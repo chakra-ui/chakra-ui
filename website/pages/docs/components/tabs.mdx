@@ -8,8 +8,6 @@ decription:
   Pattern.
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
 An accessible tabs component that provides keyboard interactions and ARIA
 attributes described in the
 [WAI-ARIA Tabs Design Pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel).
@@ -315,9 +313,13 @@ tab by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.
 
 ### Lazily mounting tab panels
 
-By default, the `Tabs` component renders all tabs content to the DOM, meaning that invisible tabs are still rendered but are hidden by styles.
+By default, the `Tabs` component renders all tabs content to the DOM, meaning
+that invisible tabs are still rendered but are hidden by styles.
 
-If you want to defer rendering of each tab until that tab is selected, you can use the `isLazy` prop. This is useful if your tabs require heavy performance, or make network calls on mount that should only happen when the component is displayed.
+If you want to defer rendering of each tab until that tab is selected, you can
+use the `isLazy` prop. This is useful if your tabs require heavy performance, or
+make network calls on mount that should only happen when the component is
+displayed.
 
 ```jsx
 <Tabs isLazy>

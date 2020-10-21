@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/core"
 import { FaNpm, FaGithub } from "react-icons/fa"
 import StorybookIcon from "./storybook-icon"
+import { useRouter } from "next/router"
 
 type ComponentLinkProps = LinkProps & {
   icon: React.ElementType
