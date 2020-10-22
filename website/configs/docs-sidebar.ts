@@ -346,10 +346,6 @@ const sidebar = {
               path: "/docs/components/close-button",
             },
             {
-              title: "Collapse",
-              path: "/docs/components/collapse",
-            },
-            {
               title: "Icon",
               path: "/docs/components/icon",
             },

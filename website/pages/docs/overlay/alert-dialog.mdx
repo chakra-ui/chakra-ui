@@ -93,15 +93,11 @@ function AlertDialogExample() {
 }
 ```
 
-### Adding transitions
+### Changing the transition
 
-The `AlertDialog` doesn't come with any transitions by default so you can manage
-this yourself. Chakra exports four transition components (`Fade`, `ScaleFade`,
-`Slide`, and `SlideFade`) to provide simple transitions.
-
-> When adding transitions, kindly pay attention to the `timeout` for the overlay
-> and content transitions. In this example, `Fade` transitions slower than the
-> `SlideFade` for it to work correctly.
+The `Modal` comes with a scale transition by default but you can change it by
+passing a `motionPreset` prop, and set its value to either `slideInBottom`,
+`slideInRight`, or `scale`.
 
 ```jsx
 function TransitionExample() {
@@ -111,39 +107,32 @@ function TransitionExample() {
   return (
     <>
       <Button onClick={onOpen}>Discard</Button>
-      <Fade timeout={300} in={isOpen}>
-        {(styles) => (
-          <AlertDialog
-            leastDestructiveRef={cancelRef}
-            onClose={onClose}
-            isOpen={true}
-            isCentered
-          >
-            <AlertDialogOverlay style={styles}>
-              <SlideFade timeout={150} in={isOpen} unmountOnExit={false}>
-                {(styles) => (
-                  <AlertDialogContent style={styles}>
-                    <AlertDialogHeader>Discard Changes?</AlertDialogHeader>
-                    <AlertDialogCloseButton />
-                    <AlertDialogBody>
-                      Are you sure you want to discard all of your notes? 44
-                      words will be deleted.
-                    </AlertDialogBody>
-                    <AlertDialogFooter>
-                      <Button ref={cancelRef} onClick={onClose}>
-                        No
-                      </Button>
-                      <Button colorScheme="red" ml={3}>
-                        Yes
-                      </Button>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                )}
-              </SlideFade>
-            </AlertDialogOverlay>
-          </AlertDialog>
-        )}
-      </Fade>
+      <AlertDialog
+        motionPreset="slideInBottom"
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+        isOpen={isOpen}
+        isCentered
+      >
+        <AlertDialogOverlay />
+
+        <AlertDialogContent>
+          <AlertDialogHeader>Discard Changes?</AlertDialogHeader>
+          <AlertDialogCloseButton />
+          <AlertDialogBody>
+            Are you sure you want to discard all of your notes? 44 words will be
+            deleted.
+          </AlertDialogBody>
+          <AlertDialogFooter>
+            <Button ref={cancelRef} onClick={onClose}>
+              No
+            </Button>
+            <Button colorScheme="red" ml={3}>
+              Yes
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   )
 }
