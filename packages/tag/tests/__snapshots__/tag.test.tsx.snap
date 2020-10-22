@@ -19,7 +19,7 @@ exports[`Tag (only) renders correctly 1`] = `
   min-height: 1.5rem;
   min-width: 1.5rem;
   font-size: 0.875rem;
-  border-radius: 0.25rem;
+  border-radius: 0.375rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   background: #EDF2F7;
@@ -58,7 +58,7 @@ exports[`Tag with close button renders correctly 1`] = `
   min-height: 1.5rem;
   min-width: 1.5rem;
   font-size: 0.875rem;
-  border-radius: 0.25rem;
+  border-radius: 0.375rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   background: #EDF2F7;
@@ -184,7 +184,7 @@ exports[`Tag with left icon renders correctly 1`] = `
   min-height: 1.5rem;
   min-width: 1.5rem;
   font-size: 0.875rem;
-  border-radius: 0.25rem;
+  border-radius: 0.375rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   background: #EDF2F7;

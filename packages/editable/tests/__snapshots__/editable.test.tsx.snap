@@ -9,7 +9,7 @@ exports[`matches snapshot 1`] = `
   font-weight: inherit;
   text-align: inherit;
   background: transparent;
-  border-radius: 0.25rem;
+  border-radius: 0.375rem;
   padding-top: 3px;
   padding-bottom: 3px;
   -webkit-transition: all 0.2s;
@@ -22,7 +22,7 @@ exports[`matches snapshot 1`] = `
   font-weight: inherit;
   text-align: inherit;
   background: transparent;
-  border-radius: 0.25rem;
+  border-radius: 0.375rem;
   padding-top: 3px;
   padding-bottom: 3px;
   -webkit-transition: all 0.2s;
