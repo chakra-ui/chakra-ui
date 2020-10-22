@@ -22,6 +22,8 @@ import {
   getValidChildren,
   isArray,
   isString,
+  merge,
+  mergeRefs,
   normalizeEventKey,
   removeItem,
 } from "@chakra-ui/utils"
@@ -191,7 +193,8 @@ export function useMenu(props: UseMenuProps) {
   }, [onOpen, setFocusedIndex, domContext.descendants])
 
   const refocus = () => {
-    if (isOpen && !menuRef.current?.contains(document.activeElement)) {
+    const hasFocus = menuRef.current?.contains(document.activeElement)
+    if (isOpen && !hasFocus) {
       const nodeToFocus = domContext.descendants[focusedIndex]?.element
       requestAnimationFrame(() => {
         nodeToFocus?.focus({ preventScroll: true })
@@ -237,7 +240,10 @@ export interface UseMenuReturn extends ReturnType<typeof useMenu> {}
 export interface UseMenuListProps
   extends Omit<HTMLAttributes<Element>, "color"> {}
 
-export function useMenuList(props: UseMenuListProps) {
+export function useMenuList(
+  props: UseMenuListProps,
+  ref: React.Ref<any> = null,
+) {
   const menu = useMenuContext()
 
   if (!menu) {
@@ -253,6 +259,7 @@ export function useMenuList(props: UseMenuListProps) {
     isOpen,
     onClose,
     menuId,
+    popper,
     domContext: { descendants },
     isLazy,
   } = menu
@@ -314,12 +321,15 @@ export function useMenuList(props: UseMenuListProps) {
 
   const menulistProps: any = {
     ...props,
-    ref: menuRef,
+    ref: mergeRefs(menuRef, ref),
     children: !isLazy || isOpen ? props.children : null,
     tabIndex: -1,
     role: "menu",
     id: menuId,
-    // style: { visibility: isOpen ? "visible" : "hidden" },
+    style: {
+      ...props.style,
+      transformOrigin: popper.transformOrigin,
+    },
     "aria-orientation": "vertical" as React.AriaAttributes["aria-orientation"],
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
   }
@@ -327,9 +337,11 @@ export function useMenuList(props: UseMenuListProps) {
   return menulistProps
 }
 
-export function useMenuListWrapper(props: any = {}) {
-  const { popper } = useMenuContext()
-  return popper.getPopperProps(props)
+export function useMenuPositioner(props: any = {}) {
+  const { popper, isOpen } = useMenuContext()
+  return merge(popper.getPopperProps(props), {
+    style: { visibility: isOpen ? "visible" : "hidden" },
+  })
 }
 
 /**

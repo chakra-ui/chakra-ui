@@ -21,7 +21,7 @@ import { motion, Variants } from "framer-motion"
 import * as React from "react"
 import { usePopover, UsePopoverProps, UsePopoverReturn } from "./use-popover"
 
-const scaleVariants: Variants = {
+const motionVariants: Variants = {
   exit: {
     opacity: 0,
     scale: 0.95,
@@ -106,15 +106,14 @@ if (__DEV__) {
 
 export interface PopoverContentProps extends PropsOf<typeof chakra.section> {}
 
-const StyledSection = chakra(motion.section)
+const Motion = chakra(motion.section)
 
 export const PopoverContent = forwardRef<PopoverContentProps, "section">(
   function PopoverContent(props, ref) {
     const {
       isOpen,
       getPopoverProps,
-      getPopoverWrapperProps,
-      transformOrigin,
+      getPopoverPositionerProps,
     } = usePopoverContext()
 
     const styles = useStyles()
@@ -125,21 +124,18 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
       ...styles.content,
     }
 
-    const popoverProps = getPopoverProps(
-      { ...props, style: { ...props.style, transformOrigin } },
-      ref,
-    ) as any
+    const popoverProps: any = getPopoverProps(props, ref)
 
     return (
       <chakra.div
         __css={{ zIndex: contentStyles.zIndex }}
-        {...getPopoverWrapperProps()}
+        {...getPopoverPositionerProps()}
       >
-        <StyledSection
+        <Motion
           {...popoverProps}
           className={cx("chakra-popover__content")}
           __css={contentStyles}
-          variants={scaleVariants}
+          variants={motionVariants}
           initial={false}
           animate={isOpen ? "enter" : "exit"}
         />
@@ -259,12 +255,12 @@ if (__DEV__) {
 export interface PopoverArrowProps extends PropsOf<typeof chakra.div> {}
 
 export const PopoverArrow: React.FC<PopoverArrowProps> = (props) => {
-  const { getArrowProps, getArrowWrapperProps } = usePopoverContext()
+  const { getArrowProps, getArrowPositionerProps } = usePopoverContext()
   const styles = useStyles()
 
   return (
     <chakra.div
-      {...getArrowWrapperProps()}
+      {...getArrowPositionerProps()}
       className={cx("chakra-popover__arrow-wrapper", props.className)}
     >
       <chakra.div

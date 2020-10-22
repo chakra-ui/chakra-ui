@@ -193,6 +193,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     (props = {}, _ref = null) => {
       const popoverProps: HTMLProps = {
         ...props,
+        style: { ...props.style, transformOrigin: popper.transformOrigin },
         ref: mergeRefs(popoverRef, _ref),
         children: !isLazy || isOpen ? props.children : null,
         id: popoverId,
@@ -234,7 +235,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     ],
   )
 
-  const getPopoverWrapperProps: PropGetter = (props = {}, _ref = null) =>
+  const getPopoverPositionerProps: PropGetter = (props = {}, _ref = null) =>
     getPopperProps(
       mergeWith(props, {
         style: { visibility: isOpen ? "visible" : "hidden" },
@@ -323,12 +324,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     }
   }, [])
 
-  const {
-    transformOrigin,
-    getArrowProps,
-    getArrowWrapperProps,
-    getPopperProps,
-  } = popper
+  const { getArrowProps, getArrowWrapperProps, getPopperProps } = popper
 
   return {
     isOpen,
@@ -339,10 +335,9 @@ export function usePopover(props: UsePopoverProps = {}) {
     bodyId,
     hasBody,
     setHasBody,
-    transformOrigin,
     getArrowProps,
-    getArrowWrapperProps,
-    getPopoverWrapperProps,
+    getArrowPositionerProps: getArrowWrapperProps,
+    getPopoverPositionerProps,
     getPopoverProps,
     getTriggerProps,
   }

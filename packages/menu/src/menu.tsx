@@ -30,7 +30,7 @@ import {
   UseMenuOptionGroupProps,
   UseMenuProps,
   UseMenuOptionOptions,
-  useMenuListWrapper,
+  useMenuPositioner,
   useMenuContext,
 } from "./use-menu"
 
@@ -125,7 +125,7 @@ if (__DEV__) {
 
 export interface MenuListProps extends PropsOf<typeof chakra.div> {}
 
-const menuMotionVariants: Variants = {
+const motionVariants: Variants = {
   enter: {
     visibility: "visible",
     opacity: 1,
@@ -148,40 +148,33 @@ const menuMotionVariants: Variants = {
   },
 }
 
+const Motion = chakra(motion.section)
+
 export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
   props,
   ref,
 ) {
-  const { isOpen, popper, refocus } = useMenuContext()
+  const { isOpen, refocus } = useMenuContext()
 
-  const ownProps = useMenuList(props)
-  const wrapperProps = useMenuListWrapper()
+  const menulistProps = useMenuList(props, ref)
+  const positionerProps = useMenuPositioner()
 
   const styles = useStyles()
+
   return (
-    <chakra.div
-      {...wrapperProps}
-      __css={{
-        zIndex: styles.list?.zIndex,
-        visibility: isOpen ? "visible" : "hidden",
-      }}
-    >
-      <motion.div
-        onAnimationStart={refocus}
-        variants={menuMotionVariants}
+    <chakra.div {...positionerProps} __css={{ zIndex: styles.list?.zIndex }}>
+      <Motion
+        {...menulistProps}
+        onUpdate={refocus}
+        className={cx("chakra-menu__menu-list", menulistProps.className)}
+        variants={motionVariants}
+        initial={false}
         animate={isOpen ? "enter" : "exit"}
-        style={{ transformOrigin: popper.transformOrigin }}
-      >
-        <chakra.div
-          ref={mergeRefs(ownProps.ref, ref)}
-          {...ownProps}
-          className={cx("chakra-menu__menu-list", ownProps.className)}
-          __css={{
-            outline: 0,
-            ...styles.list,
-          }}
-        />
-      </motion.div>
+        __css={{
+          outline: 0,
+          ...styles.list,
+        }}
+      />
     </chakra.div>
   )
 })
