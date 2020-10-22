@@ -52,6 +52,6 @@
   },
   "peerDependencies": {
     "@emotion/core": "10.0.35",
-    "react": "16.x"
+    "react": "16.x || 17.x"
   }
 }

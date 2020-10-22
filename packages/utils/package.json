@@ -50,6 +50,6 @@
     "object-assign": "4.1.1"
   },
   "peerDependencies": {
-    "react": "16.x"
+    "react": "16.x || 17.x"
   }
 }

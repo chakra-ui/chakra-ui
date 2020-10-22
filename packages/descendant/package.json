@@ -57,6 +57,6 @@
     "@chakra-ui/hooks": "1.0.0-rc.5"
   },
   "peerDependencies": {
-    "react": "16.x"
+    "react": "16.x || 17.x"
   }
 }
