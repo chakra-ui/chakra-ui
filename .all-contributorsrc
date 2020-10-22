@@ -1416,6 +1416,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "joelgallant",
+      "name": "Joel Gallant",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1429994?v=4",
+      "profile": "http://joelgallant.me",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
