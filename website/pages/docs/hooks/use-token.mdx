@@ -1,0 +1,37 @@
+---
+title: "useToken"
+package: "@chakra-ui/system"
+description: "Hook to resolve design tokens from the theme"
+---
+
+`useToken` is a custom hook to resolve design tokens from the theme
+
+## Import
+
+```js
+import { useToken } from "@chakra-ui/core"
+```
+
+## Return value
+
+The `useToken` hook retrieves whatever is in the theme at the given path(s).
+
+## Usage
+
+```jsx
+function Example() {
+  const [red100, blue200] = useToken(
+    // the key within the theme, in this case `theme.colors`
+    "colors",
+    // the subkey(s), resolving to `theme.colors.red.100`
+    ["red.100", "blue.200"],
+    // a single fallback or fallback array matching the length of the previous arg
+  )
+
+  return (
+    <Box bg={`linear-gradient(${red100}, ${blue200})`}>
+      <Text color="black">wonderful gradients</Text>
+    </Box>
+  )
+}
+```
