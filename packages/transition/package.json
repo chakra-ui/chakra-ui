@@ -50,6 +50,6 @@
   },
   "peerDependencies": {
     "framer-motion": "2.x",
-    "react": "16.x"
+    "react": "16.x || 17.x"
   }
 }
