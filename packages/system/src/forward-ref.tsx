@@ -4,14 +4,13 @@
  */
 import * as React from "react"
 
-type As = string | React.ComponentType<any>
+type As = keyof JSX.IntrinsicElements | React.ComponentType<any>
 
 export type PropsWithAs<T extends As, P> = P &
   Omit<PropsOf<T>, "as" | "color" | keyof P> & {
     as?: T | As
   }
 
-// @ts-expect-error
 type PropsOf<T extends As> = React.PropsWithRef<React.ComponentProps<T>>
 
 type Merge<T, P> = P extends object ? P & Omit<T, keyof P> : T
