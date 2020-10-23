@@ -227,7 +227,7 @@ import {
 
 export function Chakra({ cookies, children }) {
   // b) Pass `colorModeManager` prop
-  const colorModeManager = cookies
+  const colorModeManager = typeof cookies === "string"
     ? cookieStorageManager(cookies)
     : localStorageManager
 
