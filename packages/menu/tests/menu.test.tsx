@@ -8,6 +8,8 @@ import {
 } from "@chakra-ui/test-utils"
 import { Portal } from "@chakra-ui/portal"
 import * as React from "react"
+import { Button } from "@chakra-ui/button"
+import { FaSearch, FaTruck, FaUndoAlt, FaUnlink } from "react-icons/fa"
 import {
   Menu,
   MenuButton,
@@ -17,8 +19,6 @@ import {
   MenuList,
   MenuOptionGroup,
 } from "../src"
-import { Button } from "@chakra-ui/button"
-import { FaSearch, FaTruck, FaUndoAlt, FaUnlink } from "react-icons/fa"
 
 const words = [
   "About Visual Studio Code",
@@ -172,7 +172,7 @@ test("allows using a Portal to render the MenuList", async () => {
   expect(menu.previousElementSibling).not.toBe(screen.getByText("Open menu"))
 })
 
-test("MenuGroup has correct role ", () => {
+test("MenuGroup has correct role ", async () => {
   render(
     <Menu>
       <MenuButton as={Button}>Open menu</MenuButton>
@@ -193,13 +193,13 @@ test("MenuGroup has correct role ", () => {
 
   fireEvent.click(button)
 
-  expect(screen.getAllByRole("group")).toHaveLength(2)
+  await waitFor(() => expect(screen.getAllByRole("group")).toHaveLength(2))
   expect(screen.getByText("Group 1").nextElementSibling).toBe(
     screen.getByText("Share..."),
   )
 })
 
-test("MenuOptionGroup radio", () => {
+test("MenuOptionGroup radio", async () => {
   render(
     <Menu>
       <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
@@ -219,7 +219,7 @@ test("MenuOptionGroup radio", () => {
 
   fireEvent.click(button)
 
-  expect(screen.getByText("Order")).toBeInTheDocument()
+  await waitFor(() => expect(screen.getByText("Order")).toBeInTheDocument())
   expect(screen.getAllByRole("menuitemradio")).toHaveLength(2)
 })
 
@@ -246,7 +246,7 @@ test("MenuOptionGroup radio defaultValue checked", async () => {
   expect(screen.getByText("Option 1").closest("button")).toBeChecked()
 })
 
-test("MenuOptionGroup checkbox defaultValue single checked", () => {
+test("MenuOptionGroup checkbox defaultValue single checked", async () => {
   render(
     <Menu closeOnSelect={false}>
       <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
@@ -267,7 +267,7 @@ test("MenuOptionGroup checkbox defaultValue single checked", () => {
 
   fireEvent.click(button)
 
-  expect(screen.getByText("Info")).toBeInTheDocument()
+  await waitFor(() => expect(screen.getByText("Info")).toBeInTheDocument())
   expect(screen.getAllByRole("menuitemcheckbox")).toHaveLength(3)
 
   expect(screen.getByText("Email").closest("button")).toBeChecked()
@@ -309,7 +309,7 @@ test("exposes internal state as render prop", () => {
   render(
     <Menu>
       {({ isOpen }) => (
-        <React.Fragment>
+        <>
           <MenuButton as={Button}>{isOpen ? "Close" : "Open"}</MenuButton>
           <MenuList>
             <MenuItem>Download</MenuItem>
@@ -317,7 +317,7 @@ test("exposes internal state as render prop", () => {
               Create a Copy
             </MenuItem>
           </MenuList>
-        </React.Fragment>
+        </>
       )}
     </Menu>,
   )

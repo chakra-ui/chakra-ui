@@ -19,7 +19,7 @@ exports[`matches snapshot 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  border-radius: 0.25rem;
+  border-radius: 0.375rem;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   width: 32px;

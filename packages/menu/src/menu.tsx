@@ -140,7 +140,7 @@ const motionVariants: Variants = {
   },
 }
 
-const Motion = chakra(motion.section)
+const Motion = chakra(motion.div)
 
 export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
   props,
