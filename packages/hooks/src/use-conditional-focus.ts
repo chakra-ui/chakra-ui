@@ -3,7 +3,8 @@ import * as React from "react"
 import { useEventListener } from "./use-event-listener"
 import { useLatestRef } from "./use-latest-ref"
 
-export type UseConditionalFocusOptions = {
+export interface UseConditionalFocusOptions {
+  visible?: boolean
   shouldFocus?: boolean
   preventScroll?: boolean
   focusRef?: React.RefObject<FocusableElement>
@@ -18,11 +19,13 @@ export function useConditionalFocus<T extends HTMLElement>(
   target: React.RefObject<T> | T,
   options = defaultOptions,
 ) {
-  const { focusRef, preventScroll, shouldFocus } = options
+  const { focusRef, preventScroll, shouldFocus, visible } = options
   const element = target && "current" in target ? target.current : target
 
+  const autoFocus = shouldFocus && visible
+
   const onFocus = () => {
-    if (!element || !shouldFocus) return
+    if (!element || !autoFocus) return
 
     if (focusRef?.current) {
       focus(focusRef.current, { preventScroll })
@@ -37,7 +40,7 @@ export function useConditionalFocus<T extends HTMLElement>(
 
   React.useEffect(() => {
     onFocusRef.current()
-  }, [onFocusRef, shouldFocus])
+  }, [onFocusRef, autoFocus])
 
   useEventListener("transitionend", onFocus, element)
 }

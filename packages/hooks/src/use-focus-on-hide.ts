@@ -5,9 +5,8 @@ import { useUpdateEffect } from "./use-update-effect"
 
 export interface UseFocusOnHideOptions {
   focusRef: RefObject<FocusableElement>
-  autoFocus?: boolean
+  shouldFocus?: boolean
   visible?: boolean
-  trigger?: "hover" | "click"
 }
 
 /**
@@ -22,9 +21,9 @@ export function useFocusOnHide(
   options: UseFocusOnHideOptions,
 ) {
   const isFocusableRef = useRef(false)
-  const { focusRef, autoFocus, visible, trigger } = options
+  const { focusRef, shouldFocus, visible } = options
 
-  const shouldFocus = autoFocus && !visible && trigger === "click"
+  const autoFocus = shouldFocus && !visible
 
   const onPointerDown = (event: MouseEvent | TouchEvent) => {
     if (!options.visible) return
@@ -66,12 +65,9 @@ export function useFocusOnHide(
    * `options.visible` changes, not on mount
    */
   useUpdateEffect(() => {
-    if (!shouldFocus || !popoverRef.current) return
-
-    if (isFocusableRef.current) return
-
+    if (!autoFocus || !popoverRef.current || isFocusableRef.current) return
     if (focusRef.current) {
       focus(focusRef.current)
     }
-  }, [autoFocus, focusRef, visible, popoverRef, shouldFocus])
+  }, [autoFocus, focusRef, visible, popoverRef])
 }
