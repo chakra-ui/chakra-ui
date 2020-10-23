@@ -60,6 +60,7 @@
     "react/no-array-index-key": "off",
     "react/require-default-props": "off",
     "react/sort-prop-types": "error",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "@typescript-eslint/no-shadow": "off"
   }
 }

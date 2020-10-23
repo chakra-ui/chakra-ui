@@ -62,6 +62,6 @@
     "react-fast-compare": "3.2.0"
   },
   "peerDependencies": {
-    "react": "16.x"
+    "react": "16.x || 17.x"
   }
 }

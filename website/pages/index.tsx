@@ -337,12 +337,12 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
             >
               <StatBox
                 icon={FiDownload}
-                title="140k"
+                title="200k"
                 description="Downloads per month"
               />
               <StatBox
                 icon={FiGithub}
-                title="11.2k"
+                title="11.3k"
                 description="Github stars"
               />
               <StatBox
@@ -352,7 +352,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               />
               <StatBox
                 icon={FaDiscord}
-                title="450+"
+                title="900+"
                 description="Discord members"
               />
             </SimpleGrid>

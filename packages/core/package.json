@@ -80,7 +80,7 @@
     "@chakra-ui/visually-hidden": "1.0.0-rc.5"
   },
   "peerDependencies": {
-    "react": "16.x",
+    "react": "16.x || 17.x",
     "framer-motion": "^2.9.3"
   },
   "author": "Segun Adebayo <sage@adebayosegun.com>",
