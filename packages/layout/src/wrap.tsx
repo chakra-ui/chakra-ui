@@ -3,11 +3,13 @@ import {
   css,
   forwardRef,
   PropsOf,
+  StylesProvider,
   SystemProps,
   SystemStyleObject,
   useTheme,
+  useStyles,
 } from "@chakra-ui/system"
-import { getValidChildren, mapResponsive, __DEV__ } from "@chakra-ui/utils"
+import { mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
 export interface WrapProps extends PropsOf<typeof chakra.div> {
@@ -61,15 +63,7 @@ export const Wrap = forwardRef<WrapProps, "div">(function Wrap(props, ref) {
     return `calc(${margin} / 2 * -1)`
   })
 
-  const validChildren = getValidChildren(children)
-
-  const clones = validChildren.map((child, index) => (
-    <chakra.li key={index} margin={itemSpacing}>
-      {child}
-    </chakra.li>
-  ))
-
-  const styles: SystemStyleObject = {
+  const groupStyles: SystemStyleObject = {
     display: "flex",
     flexWrap: "wrap",
     justifyContent: justify,
@@ -80,13 +74,31 @@ export const Wrap = forwardRef<WrapProps, "div">(function Wrap(props, ref) {
     margin: groupSpacing,
   }
 
+  const itemStyles: SystemStyleObject = {
+    margin: itemSpacing,
+  }
+
   return (
-    <chakra.div ref={ref} {...rest}>
-      <chakra.ul __css={styles}>{clones}</chakra.ul>
-    </chakra.div>
+    <StylesProvider value={{ item: itemStyles }}>
+      <chakra.div ref={ref} {...rest}>
+        <chakra.ul __css={groupStyles}>{children}</chakra.ul>
+      </chakra.div>
+    </StylesProvider>
   )
+})
+
+export interface WrapItemProps extends PropsOf<typeof chakra.li> {}
+
+export const WrapItem = forwardRef<WrapItemProps, "li">(function WrapItem(
+  props,
+  ref,
+) {
+  const styles = useStyles()
+
+  return <chakra.li ref={ref} __css={styles.item} {...props} />
 })
 
 if (__DEV__) {
   Wrap.displayName = "Wrap"
+  WrapItem.displayName = "WrapItem"
 }
