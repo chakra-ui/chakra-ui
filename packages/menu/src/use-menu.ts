@@ -4,6 +4,7 @@ import {
   useControllableState,
   useDisclosure,
   useEventListener,
+  useFocusOnHide,
   useId,
   useIds,
   useShortcut,
@@ -162,13 +163,10 @@ export function useMenu(props: UseMenuProps) {
   useUpdateEffect(() => {
     if (!isOpen) {
       setFocusedIndex(-1)
-      if (buttonRef.current) {
-        focus(buttonRef.current, {
-          preventScroll: true,
-        })
-      }
     }
   }, [isOpen])
+
+  useFocusOnHide(menuRef, { focusRef: buttonRef, visible: isOpen })
 
   /**
    * Generate unique ids for menu's list and button
