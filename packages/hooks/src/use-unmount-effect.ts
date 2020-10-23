@@ -1,5 +1,5 @@
 import * as React from "react"
 
-export function useUnmountEffect(fn: () => void) {
-  return React.useEffect(() => () => fn(), [])
+export function useUnmountEffect(fn: () => void, deps: any[] = []) {
+  return React.useEffect(() => () => fn(), deps)
 }

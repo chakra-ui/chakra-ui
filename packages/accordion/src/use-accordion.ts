@@ -1,5 +1,10 @@
 import { useDescendant, useDescendants } from "@chakra-ui/descendant"
-import { useControllableState, useFocusEffect, useIds } from "@chakra-ui/hooks"
+import {
+  useControllableState,
+  useFocusEffect,
+  useIds,
+  useUnmountEffect,
+} from "@chakra-ui/hooks"
 import {
   addItem,
   callAllHandlers,
@@ -15,7 +20,7 @@ import {
   removeItem,
   warn,
 } from "@chakra-ui/utils"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useRef, useState } from "react"
 
 export type ExpandedIndex = number | number[]
 
@@ -79,10 +84,8 @@ export function useAccordion(props: UseAccordionProps) {
    * Reset focused index when accordion unmounts
    * or descendants change
    */
-  useEffect(() => {
-    return () => {
-      setFocusedIndex(-1)
-    }
+  useUnmountEffect(() => {
+    setFocusedIndex(-1)
   }, [domContext.descendants])
 
   /**
