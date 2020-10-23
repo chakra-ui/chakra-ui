@@ -165,11 +165,13 @@ ReactDOM.render(
 
 ```jsx live=false
 // adjust your pages/_document.js
-import { ColorModeScript } from "@chakra-ui/core"
+import { ColorModeScript } from '@chakra-ui/core';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 
-export default class Document extends NextDocument {
-  static getInitialProps(ctx) {
-    return NextDocument.getInitialProps(ctx)
+class NextDocument extends Document {
+  static async getInitialProps(ctx) {
+    const initialProps = await Document.getInitialProps(ctx);
+    return { ...initialProps };
   }
 
   render() {
@@ -177,15 +179,17 @@ export default class Document extends NextDocument {
       <Html>
         <Head />
         <body>
-          {/* 👇 Here's the script */}
-          <ColorModeScript initialColorMode="light" />
+           {/* 👇 Here's the script */}
+          <ColorModeScript initialColorMode='light' />
           <Main />
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
+
+export default NextDocument;
 ```
 
 **With Gatsby**
