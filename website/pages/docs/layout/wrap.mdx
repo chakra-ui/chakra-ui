@@ -31,18 +31,26 @@ In the example, you see that the last `Box` wrapped to the next line.
 
 ```jsx
 <Wrap>
-  <Center w="180px" h="80px" bg="red.200">
-    Box 1
-  </Center>
-  <Center w="180px" h="80px" bg="green.200">
-    Box 2
-  </Center>
-  <Center w="180px" h="80px" bg="tomato">
-    Box 3
-  </Center>
-  <Center w="180px" h="80px" bg="blue.200">
-    Box 4
-  </Center>
+  <WrapItem>
+    <Center w="180px" h="80px" bg="red.200">
+      Box 1
+    </Center>
+  </WrapItem>
+  <WrapItem>
+    <Center w="180px" h="80px" bg="green.200">
+      Box 2
+    </Center>
+  </WrapItem>
+  <WrapItem>
+    <Center w="180px" h="80px" bg="tomato">
+      Box 3
+    </Center>
+  </WrapItem>
+  <WrapItem>
+    <Center w="180px" h="80px" bg="blue.200">
+      Box 4
+    </Center>
+  </WrapItem>
 </Wrap>
 ```
 
@@ -55,21 +63,31 @@ it wraps.
 
 ```jsx
 <Wrap spacing="30px">
-  <Center w="180px" h="80px" bg="red.200">
-    Box 1
-  </Center>
-  <Center w="180px" h="80px" bg="green.200">
-    Box 2
-  </Center>
-  <Center w="180px" h="80px" bg="tomato">
-    Box 3
-  </Center>
-  <Center w="180px" h="80px" bg="blue.200">
-    Box 4
-  </Center>
-  <Center w="180px" h="80px" bg="blackAlpha.500">
-    Box 5
-  </Center>
+  <WrapItem>
+    <Center w="180px" h="80px" bg="red.200">
+      Box 1
+    </Center>
+  </WrapItem>
+  <WrapItem>
+    <Center w="180px" h="80px" bg="green.200">
+      Box 2
+    </Center>
+  </WrapItem>
+  <WrapItem>
+    <Center w="180px" h="80px" bg="tomato">
+      Box 3
+    </Center>
+  </WrapItem>
+  <WrapItem>
+    <Center w="180px" h="80px" bg="blue.200">
+      Box 4
+    </Center>
+  </WrapItem>
+  <WrapItem>
+    <Center w="180px" h="80px" bg="blackAlpha.500">
+      Box 5
+    </Center>
+  </WrapItem>
 </Wrap>
 ```
 
@@ -79,21 +97,31 @@ Pass the `align` prop to change the alignment of the child along the main axis.
 
 ```jsx
 <Wrap spacing="30px" align="center">
-  <Center w="180px" h="80px" bg="red.200">
-    Box 1
-  </Center>
-  <Center w="180px" h="40px" bg="green.200">
-    Box 2
-  </Center>
-  <Center w="120px" h="80px" bg="tomato">
-    Box 3
-  </Center>
-  <Center w="180px" h="40px" bg="blue.200">
-    Box 4
-  </Center>
-  <Center w="180px" h="80px" bg="whiteAlpha.500">
-    Box 5
-  </Center>
+  <WrapItem>
+    <Center w="180px" h="80px" bg="red.200">
+      Box 1
+    </Center>
+  </WrapItem>
+  <WrapItem>
+    <Center w="180px" h="40px" bg="green.200">
+      Box 2
+    </Center>
+  </WrapItem>
+  <WrapItem>
+    <Center w="120px" h="80px" bg="tomato">
+      Box 3
+    </Center>
+  </WrapItem>
+  <WrapItem>
+    <Center w="180px" h="40px" bg="blue.200">
+      Box 4
+    </Center>
+  </WrapItem>
+  <WrapItem>
+    <Center w="180px" h="80px" bg="blackAlpha.500">
+      Box 5
+    </Center>
+  </WrapItem>
 </Wrap>
 ```
 
@@ -102,25 +130,37 @@ axis.
 
 ```jsx
 <Wrap spacing="30px" justify="center">
-  <Center w="180px" h="80px" bg="red.200">
-    Box 1
-  </Center>
-  <Center w="180px" h="80px" bg="green.200">
-    Box 2
-  </Center>
-  <Center w="120px" h="80px" bg="tomato">
-    Box 3
-  </Center>
-  <Center w="180px" h="80px" bg="blue.200">
-    Box 4
-  </Center>
-  <Center w="180px" h="80px" bg="whiteAlpha.500">
-    Box 5
-  </Center>
+  <WrapItem>
+    <Center w="180px" h="80px" bg="red.200">
+      Box 1
+    </Center>
+  </WrapItem>
+  <WrapItem>
+    <Center w="180px" h="80px" bg="green.200">
+      Box 2
+    </Center>
+  </WrapItem>
+  <WrapItem>
+    <Center w="120px" h="80px" bg="tomato">
+      Box 3
+    </Center>
+  </WrapItem>
+  <WrapItem>
+    <Center w="180px" h="80px" bg="blue.200">
+      Box 4
+    </Center>
+  </WrapItem>
+  <WrapItem>
+    <Center w="180px" h="80px" bg="blackAlpha.500">
+      Box 5
+    </Center>
+  </WrapItem>
 </Wrap>
 ```
 
 ## Props
+
+### Wrap Props
 
 Wrap extends `Box`, so you can pass all `BoxProps` in addition to these:
 
@@ -130,3 +170,7 @@ Wrap extends `Box`, so you can pass all `BoxProps` in addition to these:
 | justify   | `FlexProps['justifyContent']`  |          | The `justify-content` value (for cross axis alignment) |
 | align     | `FlexProps['alignItems']`      |          | The `align-items` value (for main axis alignment)      |
 | direction | `FlexProps['flexDirection']`   |          | The `flex-direction` value                             |
+
+### WrapItem Props
+
+WrapItem composes the Box component.

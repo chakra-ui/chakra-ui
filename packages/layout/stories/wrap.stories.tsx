@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Badge, Wrap } from "../src"
+import { Badge, Wrap, WrapItem } from "../src"
 
 export default {
   title: "Wrap",
@@ -8,18 +8,28 @@ export default {
 export const basic = () => {
   return (
     <Wrap spacing="40px">
-      <Badge>Badge 1</Badge>
-      <Badge>Badge 2</Badge>
-      <Badge>Badge 3</Badge>
-      <Badge>Badge 4</Badge>
+      <WrapItem>
+        <Badge>Badge 1</Badge>
+      </WrapItem>
+      <WrapItem>
+        <Badge>Badge 2</Badge>
+      </WrapItem>
+      <WrapItem>
+        <Badge>Badge 3</Badge>
+      </WrapItem>
+      <WrapItem>
+        <Badge>Badge 4</Badge>
+      </WrapItem>
     </Wrap>
   )
 }
 const Placeholder = (props: any) => (
-  <div
-    style={{ height: 48, width: props.width || 48, background: "red" }}
-    {...props}
-  />
+  <WrapItem>
+    <div
+      style={{ height: 48, width: props.width || 48, background: "red" }}
+      {...props}
+    />
+  </WrapItem>
 )
 
 export const placeholder = () => {
