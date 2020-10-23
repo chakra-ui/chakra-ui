@@ -326,6 +326,10 @@ export function usePopover(props: UsePopoverProps = {}) {
 
   const { getArrowProps, getArrowWrapperProps, getPopperProps } = popper
 
+  const onTransitionEnd = () => {
+    popoverRef.current?.dispatchEvent(new Event("transitionend"))
+  }
+
   return {
     isOpen,
     onClose,
@@ -335,6 +339,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     bodyId,
     hasBody,
     setHasBody,
+    onTransitionEnd,
     getArrowProps,
     getArrowPositionerProps: getArrowWrapperProps,
     getPopoverPositionerProps,

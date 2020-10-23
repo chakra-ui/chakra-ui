@@ -154,7 +154,7 @@ export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
   props,
   ref,
 ) {
-  const { isOpen, refocus } = useMenuContext()
+  const { isOpen, onTransitionEnd } = useMenuContext()
 
   const menulistProps = useMenuList(props, ref)
   const positionerProps = useMenuPositioner()
@@ -165,7 +165,7 @@ export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
     <chakra.div {...positionerProps} __css={{ zIndex: styles.list?.zIndex }}>
       <Motion
         {...menulistProps}
-        onUpdate={refocus}
+        onUpdate={onTransitionEnd}
         className={cx("chakra-menu__menu-list", menulistProps.className)}
         variants={motionVariants}
         initial={false}

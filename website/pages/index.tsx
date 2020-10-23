@@ -574,17 +574,19 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
                   Engineers and designers using the same language.
                 </Text>
               </Box>
-              <Button
-                h="4rem"
-                px="40px"
-                fontSize="1.2rem"
-                as="a"
-                size="lg"
-                colorScheme="teal"
-                rightIcon={<FaArrowRight fontSize="0.8em" />}
-              >
-                Get Started
-              </Button>
+              <NextLink href="/docs/getting-started" passHref>
+                <Button
+                  h="4rem"
+                  px="40px"
+                  fontSize="1.2rem"
+                  as="a"
+                  size="lg"
+                  colorScheme="teal"
+                  rightIcon={<FaArrowRight fontSize="0.8em" />}
+                >
+                  Get Started
+                </Button>
+              </NextLink>
             </Flex>
           </Container>
         </Box>

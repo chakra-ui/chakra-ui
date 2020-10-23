@@ -3,6 +3,7 @@ import { useDescendant, useDescendants } from "@chakra-ui/descendant"
 import {
   useControllableState,
   useDisclosure,
+  useEventListener,
   useId,
   useIds,
   useShortcut,
@@ -176,9 +177,7 @@ export function useMenu(props: UseMenuProps) {
 
   const openAndFocusMenu = useCallback(() => {
     onOpen()
-    if (menuRef.current) {
-      focus(menuRef.current)
-    }
+    if (menuRef.current) focus(menuRef.current)
   }, [onOpen, menuRef])
 
   const openAndFocusFirstItem = useCallback(() => {
@@ -188,25 +187,38 @@ export function useMenu(props: UseMenuProps) {
 
   const openAndFocusLastItem = useCallback(() => {
     onOpen()
-    const lastIndex = domContext.descendants.length - 1
-    setFocusedIndex(lastIndex)
+    setFocusedIndex(domContext.descendants.length - 1)
   }, [onOpen, setFocusedIndex, domContext.descendants])
 
   const refocus = () => {
-    const hasFocus = menuRef.current?.contains(document.activeElement)
-    if (isOpen && !hasFocus) {
-      const nodeToFocus = domContext.descendants[focusedIndex]?.element
-      requestAnimationFrame(() => {
-        nodeToFocus?.focus({ preventScroll: true })
-      })
-    }
+    const hasFocusWithin = menuRef.current?.contains(document.activeElement)
+    const shouldRefocus = isOpen && !hasFocusWithin
+    if (!shouldRefocus) return
+    requestAnimationFrame(() => {
+      const el = domContext.descendants[focusedIndex]?.element
+      el?.focus({ preventScroll: true })
+    })
+  }
+
+  useEventListener("transitionend", refocus, menuRef.current)
+
+  const onTransitionEnd = () => {
+    /**
+     * If we use CSS for transitioning this component, there would be no
+     * need to dispatch a custom event. This is only useful for JS only
+     * motion libraries like `framer-motion` to `react-spring`.
+     *
+     * They usually provide an `onRest` or `onAnimationComplete` callback we can
+     * use to trigger the custom `transitionend` event.
+     */
+    menuRef.current?.dispatchEvent(new Event("transitionend"))
   }
 
   return {
     openAndFocusMenu,
     openAndFocusFirstItem,
     openAndFocusLastItem,
-    refocus,
+    onTransitionEnd,
     domContext,
     popper,
     buttonId,
