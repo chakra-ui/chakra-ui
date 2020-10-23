@@ -22,10 +22,26 @@ export function useChakra<T extends Dict = Dict>() {
 
 export function useToken(
   scale: string,
-  token: StringOrNumber,
-  fallback?: StringOrNumber,
+  token: StringOrNumber | StringOrNumber[],
+  fallback?: StringOrNumber | StringOrNumber[],
 ) {
   const theme = useTheme()
+
+  if (Array.isArray(token)) {
+    // eslint-disable-next-line no-nested-ternary
+    const fallbacks = Array.isArray(fallback)
+      ? fallback // use array if given
+      : fallback // if not undefined
+      ? [fallback] // make it an array
+      : [] // else empty array
+
+    return token.map((token, index) => {
+      const path = `${scale}.${token}`
+
+      return get(theme, path, fallbacks[index] ?? token)
+    })
+  }
+
   const path = `${scale}.${token}`
   return get(theme, path, fallback ?? token)
 }

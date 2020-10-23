@@ -10,4 +10,8 @@ module.exports = {
       tsConfig: "tsconfig.json",
     },
   },
+  watchPlugins: [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname",
+  ],
 }
