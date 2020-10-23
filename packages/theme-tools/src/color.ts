@@ -1,5 +1,5 @@
 import Color from "tinycolor2"
-import { get, Dict, isEmptyObject } from "@chakra-ui/utils"
+import { memoizedGet as get, Dict, isEmptyObject } from "@chakra-ui/utils"
 
 /**
  * Get the color raw value from theme

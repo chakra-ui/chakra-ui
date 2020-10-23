@@ -41,8 +41,6 @@ export function split<T extends Dict, K extends keyof T>(object: T, keys: K[]) {
   return [picked, omitted] as [{ [P in K]: T[P] }, Omit<T, K>]
 }
 
-const getCache = new WeakMap()
-
 /**
  * Get value from a deeply nested object using a string path.
  * Memoizes the value.
@@ -51,22 +49,12 @@ const getCache = new WeakMap()
  * @param def  - the fallback value
  */
 export function get(
-  obj: any,
+  obj: object,
   path: string | number,
   fallback?: any,
   index?: number,
 ) {
   const key = typeof path === "string" ? path.split(".") : [path]
-
-  if (!getCache.has(obj)) {
-    getCache.set(obj, new Map())
-  }
-
-  const map = getCache.get(obj)
-
-  if (map.has(key)) {
-    return map.get(key)
-  }
 
   for (index = 0; index < key.length; index += 1) {
     if (!obj) {
@@ -76,11 +64,47 @@ export function get(
     obj = obj[key[index]]
   }
 
-  const value = obj === undefined ? fallback : obj
-  map.set(key, value)
-
-  return value
+  return obj === undefined ? fallback : obj
 }
+
+type Handler = (
+  obj: Readonly<object>,
+  path: string | number,
+  fallback?: any,
+  index?: number,
+) => any
+
+const memoize = (fn: Handler) => {
+  const cache = new WeakMap()
+
+  const memoizedFn: Handler = (
+    obj: object,
+    path: string | number,
+    fallback?: any,
+    index?: number,
+  ) => {
+    if (!cache.has(obj)) {
+      cache.set(obj, new Map())
+    }
+
+    const map = cache.get(obj)
+    const key = typeof path === "string" ? path.split(".") : [path]
+
+    if (map.has(key)) {
+      return map.get(key)
+    }
+
+    const value = fn(obj, path, fallback, index)
+
+    map.set(key, value)
+
+    return value
+  }
+
+  return memoizedFn
+}
+
+export const memoizedGet = memoize(get)
 
 /**
  * Get value from deeply nested object, based on path

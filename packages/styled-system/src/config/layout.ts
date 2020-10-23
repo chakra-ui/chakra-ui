@@ -1,4 +1,4 @@
-import { isNumber, get } from "@chakra-ui/utils"
+import { isNumber, memoizedGet as get } from "@chakra-ui/utils"
 import { Config, createParser, system } from "@styled-system/core"
 import * as CSS from "csstype"
 import { Length, ResponsiveValue } from "../utils"
