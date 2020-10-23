@@ -251,7 +251,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               <Box
                 as="iframe"
                 tabIndex={-1}
-                src="https://codesandbox.io/embed/chakra-home-page-xqt3d?codemirror=1&fontsize=12&hidenavigation=1&theme=dark"
+                src="https://codesandbox.io/embed/homepage-s7pkh?codemirror=1&fontsize=12&hidenavigation=1&theme=dark"
                 style={{
                   width: "100%",
                   background: "white",
@@ -263,7 +263,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
                   zIndex: 0,
                 }}
                 shadow="2xl"
-                title="dazzling-swanson-wne32"
+                title="Chakra Playground"
                 allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
                 sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
               />
