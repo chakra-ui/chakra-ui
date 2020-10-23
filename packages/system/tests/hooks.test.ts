@@ -1,5 +1,5 @@
-import { useToken } from "../src"
 import { renderHook } from "@chakra-ui/test-utils"
+import { useToken } from "../src"
 import * as system from "../src/providers"
 
 const mockRed = {

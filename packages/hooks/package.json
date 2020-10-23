@@ -51,6 +51,5 @@
   },
   "peerDependencies": {
     "react": "16.x"
-  },
-  "devDependencies": {}
+  }
 }
