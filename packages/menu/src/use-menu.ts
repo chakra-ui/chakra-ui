@@ -367,7 +367,10 @@ export function useMenuPositioner(props: any = {}) {
 export interface UseMenuButtonProps
   extends Omit<HTMLAttributes<Element>, "color"> {}
 
-export function useMenuButton(props: UseMenuButtonProps) {
+export function useMenuButton(
+  props: UseMenuButtonProps,
+  externalRef: React.Ref<any> = null,
+) {
   const menu = useMenuContext()
 
   const {
@@ -420,7 +423,10 @@ export function useMenuButton(props: UseMenuButtonProps) {
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
   }
 
-  return popper.getReferenceProps(buttonProps, menu.buttonRef)
+  return popper.getReferenceProps(
+    buttonProps,
+    mergeRefs(menu.buttonRef, externalRef),
+  )
 }
 
 export interface UseMenuItemProps
@@ -429,7 +435,10 @@ export interface UseMenuItemProps
   isFocusable?: boolean
 }
 
-export function useMenuItem(props: UseMenuItemProps) {
+export function useMenuItem(
+  props: UseMenuItemProps,
+  externalRef: React.Ref<any> = null,
+) {
   const {
     onMouseOut: onMouseOutProp,
     onClick: onClickProp,
@@ -508,7 +517,7 @@ export function useMenuItem(props: UseMenuItemProps) {
     onMouseEnter,
     onMouseMove,
     onMouseLeave,
-    ref,
+    ref: mergeRefs(ref, externalRef),
     isDisabled,
     isFocusable,
   })
@@ -533,7 +542,10 @@ export interface UseMenuOptionProps
   extends UseMenuItemProps,
     UseMenuOptionOptions {}
 
-export function useMenuOption(props: UseMenuOptionProps) {
+export function useMenuOption(
+  props: UseMenuOptionProps,
+  externalRef: React.Ref<any> = null,
+) {
   const {
     onMouseOut,
     onClick,
@@ -544,15 +556,12 @@ export function useMenuOption(props: UseMenuOptionProps) {
     ...rest
   } = props
 
-  const ownProps = useMenuItem({
-    isDisabled,
-    isFocusable,
-    onClick,
-  })
+  const hookProps = { isDisabled, isFocusable, onClick }
+  const optionsProps = useMenuItem(hookProps, externalRef)
 
   return {
     ...rest,
-    ...ownProps,
+    ...optionsProps,
     role: `menuitem${type}`,
     "aria-checked": isChecked as React.AriaAttributes["aria-checked"],
   }

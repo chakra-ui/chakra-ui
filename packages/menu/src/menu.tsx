@@ -9,29 +9,23 @@ import {
   useMultiStyleConfig,
   useStyles,
 } from "@chakra-ui/system"
-import {
-  cx,
-  mergeRefs,
-  ReactNodeOrRenderProp,
-  runIfFn,
-  __DEV__,
-} from "@chakra-ui/utils"
+import { cx, ReactNodeOrRenderProp, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { motion, Variants } from "framer-motion"
 import * as React from "react"
 import {
   MenuProvider,
   useMenu,
   useMenuButton,
+  useMenuContext,
   useMenuItem,
   UseMenuItemProps,
   useMenuList,
   useMenuOption,
   useMenuOptionGroup,
   UseMenuOptionGroupProps,
-  UseMenuProps,
   UseMenuOptionOptions,
   useMenuPositioner,
-  useMenuContext,
+  UseMenuProps,
 } from "./use-menu"
 
 export interface MenuProps extends UseMenuProps, ThemingProps {
@@ -93,18 +87,16 @@ const StyledMenuButton = forwardRef<MenuButtonProps, "button">(
  */
 export const MenuButton = forwardRef<MenuButtonProps, "button">(
   function MenuButton(props, ref) {
-    const { children, as: Comp, ...otherProps } = props
+    const { children, as: As, ...rest } = props
 
-    const ownProps = useMenuButton(otherProps)
-    const ownRef = mergeRefs(ref, ownProps.ref)
+    const buttonProps = useMenuButton(rest, ref)
 
-    const Wrapper = Comp || StyledMenuButton
+    const ButtonComp = As || StyledMenuButton
 
     return (
-      <Wrapper
-        {...ownProps}
+      <ButtonComp
+        {...buttonProps}
         className={cx("chakra-menu__menu-button", props.className)}
-        ref={ownRef}
       >
         <chakra.span
           __css={{
@@ -114,7 +106,7 @@ export const MenuButton = forwardRef<MenuButtonProps, "button">(
         >
           {props.children}
         </chakra.span>
-      </Wrapper>
+      </ButtonComp>
     )
   },
 )
@@ -156,7 +148,7 @@ export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
 ) {
   const { isOpen, onTransitionEnd } = useMenuContext()
 
-  const menulistProps = useMenuList(props, ref)
+  const listProps = useMenuList(props, ref)
   const positionerProps = useMenuPositioner()
 
   const styles = useStyles()
@@ -164,9 +156,9 @@ export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
   return (
     <chakra.div {...positionerProps} __css={{ zIndex: styles.list?.zIndex }}>
       <Motion
-        {...menulistProps}
+        {...listProps}
         onUpdate={onTransitionEnd}
-        className={cx("chakra-menu__menu-list", menulistProps.className)}
+        className={cx("chakra-menu__menu-list", listProps.className)}
         variants={motionVariants}
         initial={false}
         animate={isOpen ? "enter" : "exit"}
@@ -189,9 +181,11 @@ const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
   function StyledMenuItem(props, ref) {
     const styles = useStyles()
 
-    // given another component, use its type if present
-    // else, use no type to avoid invalid html, e.g. <a type="button" />
-    // else, fall back to "button"
+    /**
+     * Given another component, use its type if present
+     * Else, use no type to avoid invalid html, e.g. <a type="button" />
+     * Else, fall back to "button"
+     */
     const type = props.as ? props.type ?? undefined : "button"
 
     return (
@@ -248,8 +242,7 @@ export const MenuItem = forwardRef<MenuItemProps, "button">(function MenuItem(
     ...otherProps
   } = props
 
-  const ownProps = useMenuItem(otherProps)
-  const ownRef = mergeRefs(ownProps.ref, ref)
+  const menuItemProps = useMenuItem(otherProps, ref)
 
   const shouldWrap = icon || command
 
@@ -263,9 +256,8 @@ export const MenuItem = forwardRef<MenuItemProps, "button">(function MenuItem(
 
   return (
     <StyledMenuItem
-      {...ownProps}
-      className={cx("chakra-menu__menuitem", ownProps.className)}
-      ref={ownRef}
+      {...menuItemProps}
+      className={cx("chakra-menu__menuitem", menuItemProps.className)}
     >
       {icon && (
         <MenuIcon fontSize="0.8em" mr={iconSpacing}>
@@ -302,13 +294,11 @@ export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
   function MenuItemOption(props, ref) {
     const { icon, iconSpacing = "0.75rem", ...rest } = props
 
-    const ownProps = useMenuOption(rest)
-    const ownRef = mergeRefs(ownProps.ref, ref)
+    const optionProps = useMenuOption(rest, ref)
 
     return (
       <StyledMenuItem
-        {...ownProps}
-        ref={ownRef}
+        {...optionProps}
         className={cx("chakra-menu__menuitem-option", rest.className)}
       >
         <MenuIcon
@@ -318,7 +308,7 @@ export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
         >
           {icon || <CheckIcon />}
         </MenuIcon>
-        <chakra.span flex="1">{ownProps.children}</chakra.span>
+        <chakra.span flex="1">{optionProps.children}</chakra.span>
       </StyledMenuItem>
     )
   },
@@ -433,20 +423,14 @@ export interface MenuDividerProps extends PropsOf<typeof chakra.hr> {}
 
 export const MenuDivider: React.FC<MenuDividerProps> = (props) => {
   const { className, ...rest } = props
-  const _className = cx("chakra-menu__divider", className)
+  const styles = useStyles()
   return (
     <chakra.hr
       role="separator"
       aria-orientation="horizontal"
-      className={_className}
+      className={cx("chakra-menu__divider", className)}
       {...rest}
-      __css={{
-        border: 0,
-        borderBottom: "1px solid",
-        borderColor: "inherit",
-        my: "0.5rem",
-        opacity: 0.6,
-      }}
+      __css={styles.divider}
     />
   )
 }
