@@ -31,7 +31,7 @@
     "test": "lerna run test --no-private --stream",
     "lint": "lerna run lint --no-private --stream",
     "lint:types": "lerna exec --parallel \"tsc --noEmit\"",
-    "storybook": "start-storybook -p 6006 --no-dll",
+    "storybook": "start-storybook -p 6006",
     "clean": "lerna clean --yes && rm -rf node_modules",
     "bootstrap": "lerna bootstrap --use-workspaces",
     "bundlesize": "bundlesize -c bundlesize.config.json",
