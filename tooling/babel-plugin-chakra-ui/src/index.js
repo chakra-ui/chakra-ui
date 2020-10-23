@@ -21,7 +21,6 @@ export default declare((api) => {
     },
   }
 })
-
 function isImported(path) {
   if (!types.isMemberExpression(path.node.callee)) {
     const callee = path.get("callee")

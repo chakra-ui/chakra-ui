@@ -16,6 +16,12 @@
   "extends": ["plugin:react/recommended", "plugin:prettier/recommended"],
   "plugins": ["react"],
   "rules": {
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
   }
 }
