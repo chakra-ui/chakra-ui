@@ -9,6 +9,7 @@ import {
   Stack,
   Text,
   Wrap,
+  WrapItem,
 } from "@chakra-ui/core"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
 import Container from "components/container"
@@ -151,14 +152,15 @@ function Team({ members, contributors }: TeamProps) {
                 </Text>
                 <Wrap>
                   {new Array(9).fill("").map((_, idx) => (
-                    <a
+                    <WrapItem
+                      as="a"
                       key={idx}
                       href={`https://opencollective.com/chakra-ui/organization/${idx}/website`}
                     >
                       <img
                         src={`https://opencollective.com/chakra-ui/organization/${idx}/avatar.svg?avatarHeight=130`}
                       />
-                    </a>
+                    </WrapItem>
                   ))}
                 </Wrap>
               </Box>
@@ -168,7 +170,8 @@ function Team({ members, contributors }: TeamProps) {
               <Heading size="lg">Project Contributors 💖</Heading>
               <Wrap spacing="3">
                 {contributorsWithoutTeam.map((contributor) => (
-                  <Avatar
+                  <WrapItem
+                    as={Avatar}
                     key={contributor.login}
                     src={contributor.avatar_url}
                   />

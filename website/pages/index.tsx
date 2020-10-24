@@ -17,6 +17,7 @@ import {
   Text,
   useColorModeValue,
   Wrap,
+  WrapItem,
 } from "@chakra-ui/core"
 import { chunk } from "@chakra-ui/utils"
 import users from "chakra-users"
@@ -202,20 +203,18 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
             >
               {users
                 .filter((user) => user.image.includes("."))
-                .map((user) => {
-                  return (
-                    <Box key={user.name} bg="white" p="5" rounded="md">
-                      <chakra.img
-                        key={user.image}
-                        alt={user.name}
-                        h="24px"
-                        w="auto"
-                        src={user.image}
-                        loading="lazy"
-                      />
-                    </Box>
-                  )
-                })}
+                .map((user) => (
+                  <WrapItem key={user.name} bg="white" p="5" rounded="md">
+                    <chakra.img
+                      key={user.image}
+                      alt={user.name}
+                      h="24px"
+                      w="auto"
+                      src={user.image}
+                      loading="lazy"
+                    />
+                  </WrapItem>
+                ))}
               <Box
                 p="4"
                 border="1px dashed"
@@ -363,7 +362,8 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               </chakra.p>
               <Wrap spacing="4" justify="center" maxW="660px" mx="auto">
                 {members.map((i) => (
-                  <Img
+                  <WrapItem
+                    as={Img}
                     key={i.login}
                     width="80px"
                     height="80px"
@@ -515,26 +515,27 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               </chakra.p>
               <Wrap justify="center">
                 {sponsors.companies.map((i) => (
-                  <Circle
-                    key={i.MemberId}
-                    as="a"
-                    href={i.website}
-                    target="_blank"
-                    rel="noopener"
-                    size="80px"
-                    bg="white"
-                    shadow="lg"
-                  >
-                    <Img
-                      rounded="full"
-                      w="56px"
-                      h="56px"
-                      alt={i.name}
-                      key={i.MemberId}
-                      src={i.image}
-                      loading="lazy"
-                    />
-                  </Circle>
+                  <WrapItem key={i.MemberId}>
+                    <Circle
+                      as="a"
+                      href={i.website}
+                      target="_blank"
+                      rel="noopener"
+                      size="80px"
+                      bg="white"
+                      shadow="lg"
+                    >
+                      <Img
+                        rounded="full"
+                        w="56px"
+                        h="56px"
+                        alt={i.name}
+                        key={i.MemberId}
+                        src={i.image}
+                        loading="lazy"
+                      />
+                    </Circle>
+                  </WrapItem>
                 ))}
               </Wrap>
 
@@ -543,7 +544,8 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               </chakra.p>
               <Wrap justify="center">
                 {sponsors.individuals.map((i) => (
-                  <Img
+                  <WrapItem
+                    as={Img}
                     rounded="full"
                     w="40px"
                     h="40px"

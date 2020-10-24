@@ -7,10 +7,10 @@ import {
   Link,
   useColorModeValue,
   LinkProps,
+  WrapItem,
 } from "@chakra-ui/core"
 import { FaNpm, FaGithub } from "react-icons/fa"
 import StorybookIcon from "./storybook-icon"
-import fs from "fs"
 
 type ComponentLinkProps = LinkProps & {
   icon: React.ElementType
@@ -53,31 +53,37 @@ function ComponentLinks(props) {
   const { github, npm, storybook, ...rest } = props
   return (
     <Wrap mt="2rem" spacing="4" {...rest}>
-      <ComponentLink
-        url={github.url}
-        icon={FaGithub}
-        iconColor={useColorModeValue("gray.600", "inherit")}
-        iconSize="1rem"
-      >
-        View source
-      </ComponentLink>
-      <ComponentLink
-        url={npm.url}
-        icon={FaNpm}
-        iconSize="2rem"
-        iconColor="red.500"
-      >
-        {npm.label}
-      </ComponentLink>
-      {storybook && (
+      <WrapItem>
         <ComponentLink
-          url={storybook.url}
-          icon={StorybookIcon}
-          iconSize="1.25rem"
-          iconColor="pink.500"
+          url={github.url}
+          icon={FaGithub}
+          iconColor={useColorModeValue("gray.600", "inherit")}
+          iconSize="1rem"
         >
-          View storybook
+          View source
         </ComponentLink>
+      </WrapItem>{" "}
+      <WrapItem>
+        <ComponentLink
+          url={npm.url}
+          icon={FaNpm}
+          iconSize="2rem"
+          iconColor="red.500"
+        >
+          {npm.label}
+        </ComponentLink>
+      </WrapItem>
+      {storybook && (
+        <WrapItem>
+          <ComponentLink
+            url={storybook.url}
+            icon={StorybookIcon}
+            iconSize="1.25rem"
+            iconColor="pink.500"
+          >
+            View storybook
+          </ComponentLink>
+        </WrapItem>
       )}
     </Wrap>
   )

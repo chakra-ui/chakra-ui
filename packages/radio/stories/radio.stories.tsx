@@ -1,8 +1,13 @@
 import * as React from "react"
-import { useRadio, Radio, useRadioGroup, RadioGroup } from "../src"
 import { chakra } from "@chakra-ui/system"
-import { Stack, Wrap, SimpleGrid, Container } from "@chakra-ui/layout"
-import { UseRadioProps } from "../src"
+import { Stack, Wrap, SimpleGrid, Container, WrapItem } from "@chakra-ui/layout"
+import {
+  useRadio,
+  Radio,
+  useRadioGroup,
+  RadioGroup,
+  UseRadioProps,
+} from "../src"
 
 export default {
   title: "Radio",
@@ -69,7 +74,9 @@ export const GroupWithWrap = () => {
     <RadioGroup onChange={console.log} defaultValue="Option 1">
       <Wrap spacing={[2, 4, 6]}>
         {range.map((num) => (
-          <Radio key={num} value={`Option ${num}`}>{`Option ${num}`}</Radio>
+          <WrapItem key={num}>
+            <Radio value={`Option ${num}`}>{`Option ${num}`}</Radio>
+          </WrapItem>
         ))}
       </Wrap>
     </RadioGroup>

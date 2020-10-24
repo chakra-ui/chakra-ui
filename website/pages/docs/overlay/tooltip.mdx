@@ -172,42 +172,61 @@ Using the `placement` prop you can adjust where your tooltip will be displayed.
 
 ```jsx
 <Wrap spacing={6}>
-  <Tooltip shouldWrapChildren label="I close on click">
-    <Button>Close on Click - true(default)</Button>
-  </Tooltip>
+  <WrapItem>
+    <Tooltip shouldWrapChildren label="I close on click">
+      <Button>Close on Click - true(default)</Button>
+    </Tooltip>
+  </WrapItem>
 
-  <Tooltip
-    shouldWrapChildren
-    label="I don't close on click"
-    closeOnClick={false}
-  >
-    <Button>Close on Click - false</Button>
-  </Tooltip>
+  <WrapItem>
+    <Tooltip
+      shouldWrapChildren
+      label="I don't close on click"
+      closeOnClick={false}
+    >
+      <Button>Close on Click - false</Button>
+    </Tooltip>
+  </WrapItem>
 
-  <Tooltip shouldWrapChildren label="I am always open" placement="top" isOpen>
-    <Button>Always Open</Button>
-  </Tooltip>
+  <WrapItem>
+    <Tooltip shouldWrapChildren label="I am always open" placement="top" isOpen>
+      <Button>Always Open</Button>
+    </Tooltip>
+  </WrapItem>
 
-  <Tooltip
-    shouldWrapChildren
-    label="I am open by default"
-    placement="left"
-    defaultIsOpen
-  >
-    <Button>Open on startup</Button>
-  </Tooltip>
+  <WrapItem>
+    <Tooltip
+      shouldWrapChildren
+      label="I am open by default"
+      placement="left"
+      defaultIsOpen
+    >
+      <Button>Open on startup</Button>
+    </Tooltip>
+  </WrapItem>
 
-  <Tooltip shouldWrapChildren label="Opened after 500ms" openDelay={500}>
-    <Button>Delay Open - 500ms</Button>
-  </Tooltip>
+  <WrapItem>
+    <Tooltip shouldWrapChildren label="Opened after 500ms" openDelay={500}>
+      <Button>Delay Open - 500ms</Button>
+    </Tooltip>
+  </WrapItem>
 
-  <Tooltip shouldWrapChildren label="Closed after 500ms" closeDelay={500}>
-    <Button>Delay Close - 500ms</Button>
-  </Tooltip>
+  <WrapItem>
+    <Tooltip shouldWrapChildren label="Closed after 500ms" closeDelay={500}>
+      <Button>Delay Close - 500ms</Button>
+    </Tooltip>
+  </WrapItem>
 
-  <Tooltip shouldWrapChildren label="I have 15px arrow" hasArrow arrowSize={15}>
-    <Button>Arrow size - 15px</Button>
-  </Tooltip>
+  <WrapItem>
+    <Tooltip
+      shouldWrapChildren
+      label="I have 15px arrow"
+      hasArrow
+      arrowSize={15}
+    >
+      <Button>Arrow size - 15px</Button>
+    </Tooltip>
+  </WrapItem>
 </Wrap>
 ```
 

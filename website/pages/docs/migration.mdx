@@ -645,6 +645,33 @@ Change `variantColor` prop to `colorScheme`
 - Added support for `onCloseComplete` prop, a callback function to run side
   effects after the toast component has closed.
 
+### Wrap
+
+- Children of `Wrap` must now be _wrapped_ in `WrapItem`. This allows easier
+  customization of children through e.g. the `sx` prop on `WrapItem`.
+
+```jsx live=false
+// before
+<Wrap spacing="30px">
+  <Center w="180px" h="80px" bg="red.200">Box 1</Center>
+  <Center w="180px" h="80px" bg="green.200">Box 2</Center>
+  <Center w="180px" h="80px" bg="tomato">Box 3</Center>
+</Wrap>
+
+// after
+<Wrap spacing="30px">
+  <WrapItem>
+    <Center w="180px" h="80px" bg="red.200">Box 1</Center>
+  </WrapItem>
+  <WrapItem>
+    <Center w="180px" h="80px" bg="green.200">Box 2</Center>
+  </WrapItem>
+  <WrapItem>
+    <Center w="180px" h="80px" bg="tomato">Box 3</Center>
+  </WrapItem>
+</Wrap>
+```
+
 ### CSS Reset
 
 - Deprecated support for `config` prop, in favor of reading global styles from
