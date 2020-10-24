@@ -133,15 +133,15 @@ interface StyledOptions {
 export function styled<T extends As, P = {}>(
   component: T,
   options?: StyledOptions,
-): ChakraComponent<T, P> {
+) {
   const { baseStyle, ...styledOptions } = options ?? {}
   const opts = { ...styledOptions, shouldForwardProp }
 
   const _styled = createStyled(component as React.ComponentType<any>, opts)
   const interpolation = styleResolver({ baseStyle })
-  const StyledComponent = _styled(interpolation)
+  const StyledComponent: any = _styled(interpolation)
 
-  return StyledComponent
+  return StyledComponent as ChakraComponent<T, P>
 }
 
 type ChakraJSXElements = {

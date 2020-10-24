@@ -22,11 +22,7 @@ import { Length } from "./utils"
 type ThemeValue<T> = T[] | Record<string, T>
 
 interface Component {
-  register?: {
-    readonly parts?: string[]
-    readonly sizes?: string[]
-    readonly variants?: string[]
-  }
+  readonly parts?: string[]
   baseStyle?: any
   variants?: any
   sizes?: any

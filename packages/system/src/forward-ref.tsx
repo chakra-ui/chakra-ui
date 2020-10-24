@@ -4,37 +4,39 @@
  */
 import * as React from "react"
 
-type As = keyof JSX.IntrinsicElements | React.ComponentType<any>
+type As = React.ElementType
 
-export type PropsWithAs<T extends As, P> = P &
-  Omit<PropsOf<T>, "as" | "color" | keyof P> & {
-    as?: T | As
-  }
+type PropsOf<T extends As> = React.ComponentProps<T>
 
-type PropsOf<T extends As> = React.PropsWithRef<React.ComponentProps<T>>
+type AddProps<P> = React.PropsWithChildren<
+  "transition" extends keyof P ? Omit<P, "transition"> : P
+>
 
-type Merge<T, P> = P extends object ? P & Omit<T, keyof P> : T
+type AddTProps<T extends As> = "color" extends keyof PropsOf<T>
+  ? Omit<PropsOf<T>, "color">
+  : PropsOf<T>
 
 export interface ComponentWithAs<T extends As, P> {
-  <TT extends As = T>(
-    props: Merge<PropsWithAs<T, P>, PropsWithAs<TT, P>>,
-  ): React.ReactElement | null
-  (props: Merge<PropsOf<T>, P>): React.ReactElement | null
+  <TT extends As>(
+    props: { as?: TT } & AddProps<P> &
+      Omit<PropsOf<TT>, keyof PropsOf<T>> &
+      AddTProps<T>,
+  ): JSX.Element
   displayName?: string
-  propTypes?: React.WeakValidationMap<Merge<PropsOf<T>, P>>
+  propTypes?: React.WeakValidationMap<AddProps<P> & AddTProps<T>>
   contextTypes?: React.ValidationMap<any>
-  defaultProps?: Partial<Merge<PropsOf<T>, P>>
+  defaultProps?: AddProps<P> & AddTProps<T> & { as?: As }
   id?: string
 }
 
 export function forwardRef<P, T extends As>(
-  comp: (
-    props: PropsWithAs<T, Omit<P, "children" | "as">>,
-    ref: React.RefObject<any>,
+  component: (
+    props: React.PropsWithChildren<P> & Omit<PropsOf<T>, keyof P | "color">,
+    ref: React.Ref<any>,
   ) => React.ReactElement | null,
 ) {
-  return (React.forwardRef(comp as any) as unknown) as ComponentWithAs<
+  return (React.forwardRef(component as any) as unknown) as ComponentWithAs<
     T,
-    Omit<P, "children" | "as">
+    P
   >
 }

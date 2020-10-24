@@ -36,6 +36,7 @@
     "import/prefer-default-export": "off",
     "no-underscore-dangle": "off",
     "no-shadow": "off",
+    "spaced-comment": "off",
     "guard-for-in": "off",
     "react/no-danger": "off",
     "react/button-has-type": "off",
