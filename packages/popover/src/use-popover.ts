@@ -1,9 +1,10 @@
 import {
   useBoolean,
-  useDisclosure,
-  useIds,
   useConditionalFocus,
+  useDisclosure,
   useFocusOnHide,
+  useIds,
+  useOutsideClick,
 } from "@chakra-ui/hooks"
 import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { useColorModeValue, useToken } from "@chakra-ui/system"
@@ -15,7 +16,6 @@ import {
   mergeWith,
   PropGetter,
 } from "@chakra-ui/utils"
-import { useInteractOutside } from "@react-aria/interactions"
 import { RefObject, useCallback, useEffect, useRef } from "react"
 
 const TRIGGER = {
@@ -173,9 +173,9 @@ export function usePopover(props: UsePopoverProps = {}) {
     shouldFocus: autoFocus && trigger !== "hover",
   })
 
-  useInteractOutside({
+  useOutsideClick({
     ref: popoverRef,
-    onInteractOutside: (event) => {
+    handler: (event) => {
       if (
         trigger === TRIGGER.click &&
         closeOnBlur &&

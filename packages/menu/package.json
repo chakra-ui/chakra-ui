@@ -59,8 +59,7 @@
     "@chakra-ui/hooks": "1.0.0-rc.5",
     "@chakra-ui/popper": "1.0.0-rc.5",
     "@chakra-ui/transition": "1.0.0-rc.5",
-    "@chakra-ui/utils": "1.0.0-rc.5",
-    "@react-aria/interactions": "3.2.0"
+    "@chakra-ui/utils": "1.0.0-rc.5"
   },
   "devDependencies": {
     "framer-motion": "^2.9.3",

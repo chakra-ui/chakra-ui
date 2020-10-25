@@ -7,6 +7,7 @@ import {
   useFocusOnHide,
   useId,
   useIds,
+  useOutsideClick,
   useShortcut,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
@@ -29,7 +30,6 @@ import {
   normalizeEventKey,
   removeItem,
 } from "@chakra-ui/utils"
-import { useInteractOutside } from "@react-aria/interactions"
 import React, {
   cloneElement,
   HTMLAttributes,
@@ -126,9 +126,9 @@ export function useMenu(props: UseMenuProps) {
   const menuRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
 
-  useInteractOutside({
+  useOutsideClick({
     ref: menuRef,
-    onInteractOutside: (event) => {
+    handler: (event) => {
       if (
         isOpen &&
         closeOnBlur &&
