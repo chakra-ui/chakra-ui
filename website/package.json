@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/docs",
-  "version": "1.0.0-rc.5",
+  "version": "1.0.0-rc.6",
   "private": true,
   "scripts": {
     "dev": "next",
@@ -11,9 +11,9 @@
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
-    "@chakra-ui/core": "1.0.0-rc.5",
-    "@chakra-ui/theme-tools": "1.0.0-rc.5",
-    "@chakra-ui/utils": "1.0.0-rc.5",
+    "@chakra-ui/core": "1.0.0-rc.6",
+    "@chakra-ui/theme-tools": "1.0.0-rc.6",
+    "@chakra-ui/utils": "1.0.0-rc.6",
     "@docusaurus/utils": "^2.0.0-alpha.62",
     "@mdx-js/react": "^1.6.19",
     "@octokit/rest": "^18.0.6",

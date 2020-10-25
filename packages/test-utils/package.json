@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/test-utils",
-  "version": "1.0.0-rc.5",
+  "version": "1.0.0-rc.6",
   "private": true,
   "description": "Testing utilities for Chakra UI's components",
   "keywords": [
@@ -23,7 +23,7 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/core": "1.0.0-rc.5",
+    "@chakra-ui/core": "1.0.0-rc.6",
     "@testing-library/jest-dom": "5.11.4",
     "@testing-library/react": "10.4.9",
     "@testing-library/react-hooks": "3.4.1",
