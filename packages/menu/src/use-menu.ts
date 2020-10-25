@@ -25,8 +25,8 @@ import {
   getValidChildren,
   isArray,
   isString,
-  merge,
   mergeRefs,
+  mergeWith,
   normalizeEventKey,
   removeItem,
 } from "@chakra-ui/utils"
@@ -287,6 +287,9 @@ export function useMenuList(
       const eventKey = normalizeEventKey(event)
 
       const keyMap: EventKeyMap = {
+        Tab: (event) => {
+          event.preventDefault()
+        },
         Escape: onClose,
         ArrowDown: () => {
           const nextIndex = getNextIndex(focusedIndex, descendants.length)
@@ -298,11 +301,11 @@ export function useMenuList(
         },
       }
 
-      const navigationHandler = keyMap[eventKey]
+      const handler = keyMap[eventKey]
 
-      if (navigationHandler) {
+      if (handler) {
         event.preventDefault()
-        navigationHandler(event)
+        handler(event)
         return
       }
 
@@ -349,7 +352,7 @@ export function useMenuList(
 
 export function useMenuPositioner(props: any = {}) {
   const { popper, isOpen } = useMenuContext()
-  return merge(popper.getPopperProps(props), {
+  return mergeWith(popper.getPopperProps(props), {
     style: { visibility: isOpen ? "visible" : "hidden" },
   })
 }

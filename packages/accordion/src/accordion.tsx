@@ -8,7 +8,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { Collapse } from "@chakra-ui/transition"
 import {
@@ -32,7 +32,7 @@ import {
 
 export interface AccordionProps
   extends UseAccordionProps,
-    Omit<WithChakraProps<"div">, keyof UseAccordionProps>,
+    Omit<HTMLChakraProps<"div">, keyof UseAccordionProps>,
     ThemingProps {
   /**
    * If `true`, height animation and transitions will be disabled.
@@ -91,7 +91,7 @@ const [AccordionItemProvider, useAccordionItemContext] = createContext<
 })
 
 export interface AccordionItemProps
-  extends Omit<WithChakraProps<"div">, keyof UseAccordionItemProps>,
+  extends Omit<HTMLChakraProps<"div">, keyof UseAccordionItemProps>,
     UseAccordionItemProps {
   children?: MaybeRenderProp<{
     isExpanded: boolean
@@ -148,7 +148,7 @@ export function useAccordionItemState() {
   return { isOpen, onClose, isDisabled, onOpen }
 }
 
-export interface AccordionButtonProps extends WithChakraProps<"button"> {}
+export interface AccordionButtonProps extends HTMLChakraProps<"button"> {}
 
 /**
  * AccordionButton is used expands and collapses an accordion item.
@@ -186,7 +186,7 @@ if (__DEV__) {
   AccordionButton.displayName = "AccordionButton"
 }
 
-export interface AccordionPanelProps extends WithChakraProps<"div"> {}
+export interface AccordionPanelProps extends HTMLChakraProps<"div"> {}
 
 /**
  * Accordion panel that holds the content for each accordion.

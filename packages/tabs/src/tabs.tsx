@@ -7,7 +7,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -38,7 +38,7 @@ interface TabsOptions {
 export interface TabsProps
   extends UseTabsProps,
     ThemingProps,
-    Omit<WithChakraProps<"div">, "onChange">,
+    Omit<HTMLChakraProps<"div">, "onChange">,
     TabsOptions {
   children: React.ReactNode
 }
@@ -77,7 +77,7 @@ if (__DEV__) {
   Tabs.displayName = "Tabs"
 }
 
-export interface TabProps extends UseTabOptions, WithChakraProps<"button"> {}
+export interface TabProps extends UseTabOptions, HTMLChakraProps<"button"> {}
 
 /**
  * Tab button used to activate a specific tab panel. It renders a `button`,
@@ -110,7 +110,7 @@ if (__DEV__) {
 
 export interface TabListProps
   extends UseTabListProps,
-    Omit<WithChakraProps<"div">, "onKeyDown" | "ref"> {}
+    Omit<HTMLChakraProps<"div">, "onKeyDown" | "ref"> {}
 
 /**
  * TabList is used to manage a list of tab buttons. It renders a `div` by default,
@@ -142,7 +142,7 @@ if (__DEV__) {
   TabList.displayName = "TabList"
 }
 
-export interface TabPanelProps extends WithChakraProps<"div"> {}
+export interface TabPanelProps extends HTMLChakraProps<"div"> {}
 
 /**
  * TabPanel
@@ -168,7 +168,7 @@ if (__DEV__) {
   TabPanel.displayName = "TabPanel"
 }
 
-export interface TabPanelsProps extends WithChakraProps<"div"> {}
+export interface TabPanelsProps extends HTMLChakraProps<"div"> {}
 
 /**
  * TabPanel
@@ -196,7 +196,7 @@ if (__DEV__) {
   TabPanels.displayName = "TabPanels"
 }
 
-export interface TabIndicatorProps extends WithChakraProps<"div"> {}
+export interface TabIndicatorProps extends HTMLChakraProps<"div"> {}
 
 /**
  * TabIndicator

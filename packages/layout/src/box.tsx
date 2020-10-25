@@ -2,12 +2,12 @@ import {
   chakra,
   forwardRef,
   SystemStyleObject,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface BoxProps extends WithChakraProps<"div"> {}
+export interface BoxProps extends HTMLChakraProps<"div"> {}
 
 /**
  * Box is the most abstract component on top of which other chakra

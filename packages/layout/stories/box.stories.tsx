@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Box, Flex, Spacer, Text, Kbd, Square, Circle } from "../src"
+import { Box, Circle, Flex, Kbd, Spacer, Square } from "../src"
 
 export default {
   title: "Box",

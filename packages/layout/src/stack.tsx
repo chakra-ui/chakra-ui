@@ -5,7 +5,7 @@ import {
   PropsOf,
   ResponsiveValue,
   SystemProps,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, getValidChildren, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -50,7 +50,7 @@ interface StackOptions {
   isInline?: boolean
 }
 
-export interface StackDividerProps extends WithChakraProps<"div"> {}
+export interface StackDividerProps extends HTMLChakraProps<"div"> {}
 
 export const StackDivider: ChakraComponent<"div"> = (props) => {
   return (

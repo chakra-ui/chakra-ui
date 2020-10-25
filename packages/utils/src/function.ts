@@ -1,4 +1,3 @@
-import memoize from "memoize-one"
 import { isFunction, __DEV__ } from "./assertion"
 import { AnyFunction, FunctionArguments } from "./types"
 
@@ -27,8 +26,6 @@ export function callAll<T extends AnyFunction>(...fns: (T | undefined)[]) {
     })
   }
 }
-
-export { memoize }
 
 export function once(fn?: Function | null) {
   let result: any

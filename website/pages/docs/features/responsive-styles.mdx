@@ -72,13 +72,16 @@ It'll generate a CSS that looks like this
 The equivalent of this style if you passed it as an object.
 
 ```js
-// First, create an alias for breakpoints
-const breakpoints = ["30em", "48em", "62em", "80em"]
-// aliases
-breakpoints.sm = breakpoints[0]
-breakpoints.md = breakpoints[1]
-breakpoints.lg = breakpoints[2]
-breakpoints.xl = breakpoints[3]
+// First, add the import for `createBreakpoints`
+import { createBreakpoints } from "@chakra-ui/theme"
+
+// Then add your custom breakpoints as key-value pairs
+const breakpoints = createBreakpoints({
+  sm: "30em",
+  md: "48em",
+  lg: "62em",
+  xl: "80em",
+})
 ```
 
 then

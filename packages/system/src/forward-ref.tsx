@@ -9,16 +9,18 @@ type As = React.ElementType
 type PropsOf<T extends As> = React.ComponentProps<T>
 
 type AddProps<P> = React.PropsWithChildren<
-  "transition" extends keyof P ? Omit<P, "transition"> : P
+  P extends { transition?: any } ? Omit<P, "transition"> : P
 >
 
-type AddTProps<T extends As> = "color" extends keyof PropsOf<T>
+type AddTProps<T extends As> = PropsOf<T> extends { color?: any }
   ? Omit<PropsOf<T>, "color">
   : PropsOf<T>
 
 export interface ComponentWithAs<T extends As, P> {
   <TT extends As>(
-    props: { as?: TT } & AddProps<P> &
+    props: { as?: TT } & (PropsOf<T> extends { transition?: any }
+      ? Omit<P, "transition">
+      : P) &
       Omit<PropsOf<TT>, keyof PropsOf<T>> &
       Omit<AddTProps<T>, keyof P>,
   ): JSX.Element

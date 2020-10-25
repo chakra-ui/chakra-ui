@@ -1,4 +1,4 @@
-import { cx, merge, __DEV__ } from "@chakra-ui/utils"
+import { cx, mergeWith, __DEV__ } from "@chakra-ui/utils"
 import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
 import * as React from "react"
 import { EASINGS, MotionVariants } from "./__utils"
@@ -91,7 +91,7 @@ export const SlideFade = React.forwardRef<HTMLDivElement, SlideFadeProps>(
     const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
 
     const custom = { offsetX, offsetY, reverse }
-    const motionProps = merge(slideFadeConfig, {
+    const motionProps = mergeWith(slideFadeConfig, {
       custom,
       animate: isOpen || unmountOnExit ? "enter" : "exit",
     })

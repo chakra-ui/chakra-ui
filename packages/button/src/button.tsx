@@ -7,7 +7,7 @@ import {
   SystemStyleObject,
   ThemingProps,
   useStyleConfig,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, dataAttr, mergeWith, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -58,7 +58,7 @@ export interface ButtonOptions {
 }
 
 export interface ButtonProps
-  extends WithChakraProps<"button">,
+  extends HTMLChakraProps<"button">,
     ButtonOptions,
     ThemingProps {}
 
@@ -148,7 +148,7 @@ if (__DEV__) {
   Button.displayName = "Button"
 }
 
-const ButtonIcon: React.FC<WithChakraProps<"span">> = (props) => {
+const ButtonIcon: React.FC<HTMLChakraProps<"span">> = (props) => {
   const { children, className, ...rest } = props
 
   const _children = React.isValidElement(children)
@@ -171,7 +171,7 @@ if (__DEV__) {
   ButtonIcon.displayName = "ButtonIcon"
 }
 
-interface ButtonSpinnerProps extends WithChakraProps<"div"> {
+interface ButtonSpinnerProps extends HTMLChakraProps<"div"> {
   label?: string
   spacing?: SystemProps["margin"]
 }

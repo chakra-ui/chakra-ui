@@ -4,12 +4,12 @@ import {
   omitThemingProps,
   ThemingProps,
   useStyleConfig,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface KbdProps extends WithChakraProps<"kbd">, ThemingProps {}
+export interface KbdProps extends HTMLChakraProps<"kbd">, ThemingProps {}
 
 /**
  * Semantic component to render a keyboard shortcut
