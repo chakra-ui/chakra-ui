@@ -439,7 +439,15 @@ export function useMenuItem(
   props: UseMenuItemProps,
   externalRef: React.Ref<any> = null,
 ) {
-  const { onClick: onClickProp, isDisabled, isFocusable, ...htmlProps } = props
+  const {
+    onMouseEnter: onMouseEnterProp,
+    onMouseMove: onMouseMoveProp,
+    onMouseLeave: onMouseLeaveProp,
+    onClick: onClickProp,
+    isDisabled,
+    isFocusable,
+    ...htmlProps
+  } = props
 
   const menu = useMenuContext()
 
@@ -465,21 +473,35 @@ export function useMenuItem(
     focusable: isFocusable,
   })
 
-  const onMouseEnter = useCallback(() => {
-    if (isDisabled) return
-    setFocusedIndex(index)
-  }, [setFocusedIndex, index, isDisabled])
+  const onMouseEnter = useCallback(
+    (event) => {
+      onMouseEnterProp?.(event)
+      if (isDisabled) return
 
-  const onMouseMove = useCallback(() => {
-    if (document.activeElement !== ref.current) {
-      onMouseEnter()
-    }
-  }, [onMouseEnter])
+      setFocusedIndex(index)
+    },
+    [setFocusedIndex, index, isDisabled],
+  )
 
-  const onMouseLeave = useCallback(() => {
-    if (isDisabled) return
-    setFocusedIndex(-1)
-  }, [setFocusedIndex, isDisabled])
+  const onMouseMove = useCallback(
+    (event) => {
+      onMouseMoveProp?.(event)
+      if (document.activeElement !== ref.current) {
+        onMouseEnter(event)
+      }
+    },
+    [onMouseEnter],
+  )
+
+  const onMouseLeave = useCallback(
+    (event) => {
+      onMouseLeaveProp?.(event)
+      if (isDisabled) return
+
+      setFocusedIndex(-1)
+    },
+    [setFocusedIndex, isDisabled],
+  )
 
   const onClick = useCallback(
     (event: MouseEvent) => {
