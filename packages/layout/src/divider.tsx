@@ -1,6 +1,6 @@
+import { chakra, forwardRef, WithChakraProps } from "@chakra-ui/system"
+import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { chakra, forwardRef, PropsOf } from "@chakra-ui/system"
-import { __DEV__, cx } from "@chakra-ui/utils"
 
 /**
  * Layout component used to visually separate content in a list or group.
@@ -43,7 +43,7 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
   )
 })
 
-export interface DividerProps extends PropsOf<typeof chakra.hr> {
+export interface DividerProps extends WithChakraProps<"div"> {
   orientation?: "horizontal" | "vertical"
 }
 

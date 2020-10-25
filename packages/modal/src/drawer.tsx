@@ -1,10 +1,10 @@
 import {
   chakra,
   forwardRef,
-  PropsOf,
   SystemStyleObject,
   useStyles,
   useTheme,
+  WithChakraProps,
 } from "@chakra-ui/system"
 import { Slide, SlideOptions } from "@chakra-ui/transition"
 import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
@@ -59,7 +59,7 @@ export function Drawer(props: DrawerProps) {
 
 const StyleSlide = chakra(Slide)
 
-export interface DrawerContentProps extends PropsOf<typeof chakra.section> {}
+export interface DrawerContentProps extends WithChakraProps<"section"> {}
 
 /**
  * ModalContent is used to group modal's content. It has all the

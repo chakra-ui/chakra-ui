@@ -1,7 +1,7 @@
 import {
+  ResponsiveValue,
   SystemProps,
   SystemStyleObject,
-  ResponsiveValue,
 } from "@chakra-ui/styled-system"
 import { Dict } from "@chakra-ui/utils"
 import * as React from "react"
@@ -55,16 +55,14 @@ export interface ChakraProps extends SystemProps {
   sx?: SystemStyleObject
 }
 
-export type As = React.ElementType<any>
+export type As = React.ElementType
 
 /**
  * Extract the props of a React element or component
  */
-export type PropsOf<T extends As> = React.ComponentProps<T> & {
-  as?: string | React.ComponentType<any>
+export type PropsOf<T extends As> = React.ComponentPropsWithoutRef<T> & {
+  as?: As
 }
 
-export type WithChakra<P> = P & ChakraProps
-
-export interface ChakraComponent<T extends As, P>
-  extends ComponentWithAs<T, WithChakra<P>> {}
+export interface ChakraComponent<T extends As, P = {}>
+  extends ComponentWithAs<T, P & ChakraProps> {}

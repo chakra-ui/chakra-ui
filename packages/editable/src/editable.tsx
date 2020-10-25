@@ -1,18 +1,18 @@
 import {
   chakra,
   forwardRef,
-  PropsOf,
   omitThemingProps,
   StylesProvider,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
+  WithChakraProps,
 } from "@chakra-ui/system"
 import {
   createContext,
   cx,
-  ReactNodeOrRenderProp,
+  MaybeRenderProp,
   runIfFn,
   __DEV__,
 } from "@chakra-ui/utils"
@@ -38,7 +38,7 @@ type RenderProps = Pick<
 
 interface BaseEditableProps
   extends Omit<
-    PropsOf<typeof chakra.div>,
+    WithChakraProps<"div">,
     "onChange" | "value" | "defaultValue" | "onSubmit"
   > {}
 
@@ -46,7 +46,7 @@ export interface EditableProps
   extends UseEditableProps,
     BaseEditableProps,
     ThemingProps {
-  children?: ReactNodeOrRenderProp<RenderProps>
+  children?: MaybeRenderProp<RenderProps>
 }
 
 /**
@@ -102,7 +102,7 @@ const commonStyles: SystemStyleObject = {
   bg: "transparent",
 }
 
-export interface EditablePreviewProps extends PropsOf<typeof chakra.div> {}
+export interface EditablePreviewProps extends WithChakraProps<"div"> {}
 
 /**
  * EditablePreview
@@ -136,7 +136,7 @@ if (__DEV__) {
   EditablePreview.displayName = "EditablePreview"
 }
 
-export interface EditableInputProps extends PropsOf<typeof chakra.input> {}
+export interface EditableInputProps extends WithChakraProps<"input"> {}
 
 /**
  * EditableInput

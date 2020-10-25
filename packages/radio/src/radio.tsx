@@ -3,22 +3,19 @@ import {
   forwardRef,
   layoutPropNames,
   omitThemingProps,
-  PropsOf,
   SystemProps,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
+  WithChakraProps,
 } from "@chakra-ui/system"
 import { callAll, split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useRadioGroupContext } from "./radio-group"
 import { useRadio, UseRadioProps } from "./use-radio"
 
-interface BaseControlProps
-  extends Omit<
-    PropsOf<typeof chakra.div>,
-    "onChange" | "defaultChecked" | "checked"
-  > {}
+type Omitted = "onChange" | "defaultChecked" | "checked"
+interface BaseControlProps extends Omit<WithChakraProps<"div">, Omitted> {}
 
 export interface RadioProps
   extends UseRadioProps,

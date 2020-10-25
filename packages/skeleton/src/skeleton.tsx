@@ -1,14 +1,14 @@
+import { useBreakpointValue } from "@chakra-ui/media-query"
 import {
   chakra,
-  PropsOf,
-  keyframes,
-  useStyleConfig,
-  ThemingProps,
   forwardRef,
+  keyframes,
   omitThemingProps,
+  ThemingProps,
+  useStyleConfig,
+  WithChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import { useBreakpointValue } from "@chakra-ui/media-query"
 import * as React from "react"
 
 export interface SkeletonOptions {
@@ -56,7 +56,7 @@ const StyledSkeleton = chakra("div", {
 export type ISkeleton = SkeletonOptions
 
 export interface SkeletonProps
-  extends PropsOf<typeof StyledSkeleton>,
+  extends WithChakraProps<"div">,
     SkeletonOptions,
     ThemingProps {}
 

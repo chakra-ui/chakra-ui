@@ -1,18 +1,32 @@
 /**@jsx jsx */
+import theme from "@chakra-ui/theme"
+import { motion } from "framer-motion"
 import {
   chakra,
   jsx,
-  ThemeProvider,
   PropsOf,
-  useProps,
+  ThemeProvider,
   ThemingProps,
+  useProps,
 } from "../src"
-import theme from "@chakra-ui/theme"
-import { motion } from "framer-motion"
 
 export default {
   title: "styled",
 }
+
+const ChakraMotionDiv = chakra(motion.div)
+
+/**
+ * Made this to test that chakra can infer types correctly from framer-motion
+ */
+const WithChakraFactory = () => (
+  <ChakraMotionDiv
+    mt="30px"
+    mb="30px"
+    transition={{ easings: "backInOut", duration: 300 }}
+    initial="testing"
+  />
+)
 
 const MotionBox = motion.custom(chakra.div)
 

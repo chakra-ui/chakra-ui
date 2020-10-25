@@ -8,6 +8,7 @@ import {
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
+  WithChakraProps,
 } from "@chakra-ui/system"
 import { cx, mergeWith, split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -15,7 +16,7 @@ import * as React from "react"
 type Omitted = "disabled" | "required" | "readOnly" | "size"
 
 export interface SelectFieldProps
-  extends Omit<PropsOf<typeof chakra.select>, Omitted> {
+  extends Omit<WithChakraProps<"select">, Omitted> {
   size?: string
   isDisabled?: boolean
 }
@@ -42,7 +43,7 @@ if (__DEV__) {
   SelectField.displayName = "SelectField"
 }
 
-interface RootProps extends Omit<PropsOf<typeof chakra.div>, "color"> {}
+interface RootProps extends Omit<WithChakraProps<"div">, "color"> {}
 
 interface SelectOptions extends FormControlOptions {
   /**
@@ -189,7 +190,7 @@ const IconWrapper = chakra("div", {
   },
 })
 
-type SelectIconProps = PropsOf<typeof IconWrapper>
+interface SelectIconProps extends WithChakraProps<"div"> {}
 
 const SelectIcon: React.FC<SelectIconProps> = (props) => {
   const { children = <DefaultIcon />, ...rest } = props

@@ -1,15 +1,15 @@
 import {
   chakra,
-  PropsOf,
-  useStyleConfig,
+  forwardRef,
   omitThemingProps,
   ThemingProps,
-  forwardRef,
+  useStyleConfig,
+  WithChakraProps,
 } from "@chakra-ui/system"
+import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { __DEV__, cx } from "@chakra-ui/utils"
 
-export interface LinkProps extends PropsOf<typeof chakra.a>, ThemingProps {
+export interface LinkProps extends WithChakraProps<"a">, ThemingProps {
   /**
    *  If `true`, the link will open in new tab
    */
@@ -30,7 +30,7 @@ export interface LinkProps extends PropsOf<typeof chakra.a>, ThemingProps {
  *
  * @see Docs https://chakra-ui.com/components/link
  */
-export const Link = forwardRef<LinkProps, "a">((props, ref) => {
+export const Link = forwardRef<LinkProps, "a">(function Link(props, ref) {
   const styles = useStyleConfig("Link", props)
   const { className, isExternal, ...rest } = omitThemingProps(props)
 

@@ -3,13 +3,14 @@ import { FocusLock } from "@chakra-ui/focus-lock"
 import { Portal, PortalProps } from "@chakra-ui/portal"
 import {
   chakra,
+  ChakraProps,
   forwardRef,
-  PropsOf,
   StylesProvider,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
+  WithChakraProps,
 } from "@chakra-ui/system"
 import { fadeConfig } from "@chakra-ui/transition"
 import {
@@ -19,7 +20,12 @@ import {
   FocusableElement,
   __DEV__,
 } from "@chakra-ui/utils"
-import { AnimatePresence, motion, usePresence } from "framer-motion"
+import {
+  AnimatePresence,
+  HTMLMotionProps,
+  motion,
+  usePresence,
+} from "framer-motion"
 import * as React from "react"
 import { RemoveScroll } from "react-remove-scroll"
 import { ModalTransition } from "./modal-transition"
@@ -188,7 +194,7 @@ if (__DEV__) {
   Modal.displayName = "Modal"
 }
 
-export interface ModalContentProps extends PropsOf<typeof chakra.section> {}
+export interface ModalContentProps extends WithChakraProps<"section"> {}
 
 const Motion = chakra(motion.div)
 
@@ -301,7 +307,9 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
   )
 }
 
-export interface ModalOverlayProps extends PropsOf<typeof Motion> {
+export interface ModalOverlayProps
+  extends Omit<HTMLMotionProps<"div">, "color">,
+    Omit<ChakraProps, "transition"> {
   children?: React.ReactNode
 }
 
@@ -332,7 +340,7 @@ export const ModalOverlay = forwardRef<ModalOverlayProps, "div">(
         __css={overlayStyle}
         ref={ref}
         className={_className}
-        {...(rest as any)}
+        {...rest}
       />
     )
   },
@@ -342,7 +350,7 @@ if (__DEV__) {
   ModalOverlay.displayName = "ModalOverlay"
 }
 
-export interface ModalHeaderProps extends PropsOf<typeof chakra.header> {}
+export interface ModalHeaderProps extends WithChakraProps<"header"> {}
 
 /**
  * ModalHeader
@@ -390,7 +398,7 @@ if (__DEV__) {
   ModalHeader.displayName = "ModalHeader"
 }
 
-export interface ModalBodyProps extends PropsOf<typeof chakra.div> {}
+export interface ModalBodyProps extends WithChakraProps<"div"> {}
 
 /**
  * ModalBody
@@ -433,7 +441,7 @@ if (__DEV__) {
   ModalBody.displayName = "ModalBody"
 }
 
-export interface ModalFooterProps extends PropsOf<typeof chakra.footer> {}
+export interface ModalFooterProps extends WithChakraProps<"footer"> {}
 
 /**
  * ModalFooter houses the action buttons of the modal.

@@ -1,10 +1,15 @@
 import Icon, { IconProps } from "@chakra-ui/icon"
-import { chakra, forwardRef, PropsOf, useStyles } from "@chakra-ui/system"
+import {
+  chakra,
+  forwardRef,
+  useStyles,
+  WithChakraProps,
+} from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useFormControlContext } from "./form-control"
 
-export interface FormErrorMessageProps extends PropsOf<typeof chakra.div> {}
+export interface FormErrorMessageProps extends WithChakraProps<"div"> {}
 
 /**
  * Used to provide feedback about an invalid input,

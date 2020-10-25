@@ -3,9 +3,9 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  PropsOf,
   ThemingProps,
   useStyleConfig,
+  WithChakraProps,
 } from "@chakra-ui/system"
 import { isString, omit, pick, __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
@@ -14,7 +14,7 @@ import * as React from "react"
 import { useTooltip, UseTooltipProps } from "./use-tooltip"
 
 export interface TooltipProps
-  extends PropsOf<typeof chakra.div>,
+  extends WithChakraProps<"div">,
     ThemingProps,
     UseTooltipProps {
   /**

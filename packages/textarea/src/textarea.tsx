@@ -1,15 +1,15 @@
 import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
 import {
   chakra,
-  PropsOf,
   forwardRef,
-  useStyleConfig,
   omitThemingProps,
-  ThemingProps,
   SystemStyleObject,
+  ThemingProps,
+  useStyleConfig,
+  WithChakraProps,
 } from "@chakra-ui/system"
+import { cx, omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { __DEV__, cx, omit } from "@chakra-ui/utils"
 
 interface TextareaOptions {
   /**
@@ -30,11 +30,9 @@ interface TextareaOptions {
   isFullWidth?: boolean
 }
 
+type Omitted = "disabled" | "required" | "readOnly"
 export interface TextareaProps
-  extends Omit<
-      PropsOf<typeof chakra.textarea>,
-      "disabled" | "required" | "readOnly"
-    >,
+  extends Omit<WithChakraProps<"textarea">, Omitted>,
     TextareaOptions,
     FormControlOptions,
     ThemingProps {}
@@ -48,9 +46,9 @@ export const Textarea = forwardRef<TextareaProps, "textarea">(function Textarea(
   ref,
 ) {
   const styles = useStyleConfig("Textarea", props)
-  const { className, rows, ...otherProps } = omitThemingProps(props)
+  const { className, rows, ...rest } = omitThemingProps(props)
 
-  const textareaProps = useFormControl<HTMLTextAreaElement>(otherProps)
+  const textareaProps = useFormControl<HTMLTextAreaElement>(rest)
 
   const omitted = [
     "h",

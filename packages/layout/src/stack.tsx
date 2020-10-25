@@ -1,9 +1,11 @@
 import {
   chakra,
+  ChakraComponent,
   forwardRef,
   PropsOf,
   ResponsiveValue,
   SystemProps,
+  WithChakraProps,
 } from "@chakra-ui/system"
 import { cx, getValidChildren, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -48,9 +50,9 @@ interface StackOptions {
   isInline?: boolean
 }
 
-export interface StackDividerProps extends PropsOf<typeof chakra.div> {}
+export interface StackDividerProps extends WithChakraProps<"div"> {}
 
-export const StackDivider: React.FC<StackDividerProps> = (props) => {
+export const StackDivider: ChakraComponent<"div"> = (props) => {
   return (
     <chakra.div
       className="chakra-stack__divider"
@@ -67,15 +69,16 @@ export const StackDivider: React.FC<StackDividerProps> = (props) => {
   )
 }
 
-export const StackItem: React.FC<PropsOf<typeof chakra.div>> = (props) => (
+export const StackItem: ChakraComponent<"div"> = (props) => (
   <chakra.div
     className="chakra-stack__item"
+    {...props}
     __css={{
       display: "inline-block",
       flex: "0 0 auto",
       minWidth: 0,
+      ...props["__css"],
     }}
-    {...props}
   />
 )
 

@@ -3,10 +3,10 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  PropsOf,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
+  WithChakraProps,
 } from "@chakra-ui/system"
 import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -15,7 +15,7 @@ type Omitted = "defaultChecked" | "checked" | "onChange"
 
 export interface SwitchProps
   extends Omit<UseCheckboxProps, "isIndeterminate">,
-    Omit<PropsOf<typeof chakra.label>, Omitted>,
+    Omit<WithChakraProps<"label">, Omitted>,
     ThemingProps {}
 
 export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
