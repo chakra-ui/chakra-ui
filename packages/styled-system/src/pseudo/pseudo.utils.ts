@@ -1,19 +1,12 @@
-import { Dict, memoize, isObject, isFunction } from "@chakra-ui/utils"
-import { pseudoSelectors, Pseudos } from "./pseudo.selector"
-
-const isPseudoProp = (prop: string): prop is keyof Pseudos =>
-  prop in pseudoSelectors
-
-const getPropName = memoize((prop: string) =>
-  isPseudoProp(prop) ? pseudoSelectors[prop] : prop,
-)
+import { Dict, isObject, isFunction } from "@chakra-ui/utils"
+import { pseudoSelectors } from "./pseudo.selector"
 
 export function parsePseudo(props: Dict) {
   const next: Dict = {}
 
   Object.keys(props).forEach((prop) => {
     const propValue = props[prop]
-    const propName = getPropName(prop)
+    const propName = prop in pseudoSelectors ? pseudoSelectors[prop] : prop
 
     if (isObject(propValue) && !isFunction(propValue)) {
       next[propName] = parsePseudo(propValue)
