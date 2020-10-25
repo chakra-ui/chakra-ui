@@ -197,7 +197,22 @@ export function usePopover(props: UsePopoverProps = {}) {
         tabIndex: -1,
         role: "dialog",
         onKeyDown: callAllHandlers(props.onKeyDown, (event) => {
-          if (closeOnEsc && event.key === "Escape") onClose()
+          if (closeOnEsc && event.key === "Escape") {
+            onClose()
+          }
+        }),
+        onBlur: callAllHandlers(props.onBlur, (event) => {
+          const element = (event.relatedTarget ??
+            document.activeElement) as HTMLElement
+
+          if (
+            isOpen &&
+            closeOnBlur &&
+            !popoverRef.current?.contains(element) &&
+            !triggerRef.current?.contains(element)
+          ) {
+            onClose()
+          }
         }),
         "aria-labelledby": hasHeader ? headerId : undefined,
         "aria-describedby": hasBody ? bodyId : undefined,

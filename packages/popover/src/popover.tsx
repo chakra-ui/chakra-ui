@@ -128,10 +128,7 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
     const popoverProps: any = getPopoverProps(props, ref)
 
     return (
-      <chakra.div
-        __css={{ zIndex: contentStyles.zIndex }}
-        {...getPopoverPositionerProps()}
-      >
+      <chakra.div __css={styles.popper} {...getPopoverPositionerProps()}>
         <Motion
           {...popoverProps}
           onUpdate={onTransitionEnd}
