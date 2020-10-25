@@ -234,7 +234,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
         <Box as="section">
           <Container py="80px">
             <Box mb="3em" textAlign="center">
-              <chakra.h2 textStyle="heading">Less code. More speed</chakra.h2>
+              <chakra.h2 textStyle="heading">Less code More speed</chakra.h2>
               <Text opacity={0.7} fontSize="lg" mt="3" mx="auto" maxW="600px">
                 Spend less time writing UI code and more time building a great
                 experience for your customers.
@@ -278,7 +278,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
           <Container py="120px" maxW="1280px">
             <Box maxW="760px" mx="auto" textAlign="center" mb="56px">
               <chakra.h2 textStyle="heading" mb="5">
-                An experience you'd expect from a design system.
+                An experience you'd expect from a design system
               </chakra.h2>
               <chakra.p opacity={0.7} fontSize="lg">
                 Opinionated and designed for daily use.
@@ -309,8 +309,8 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
                 website.
               </Feature>
               <Feature icon={FaDiscord} title="Active Community">
-                We're a team of active maintainer ready to help you whenver you
-                need.
+                We're a team of active maintainers ready to help you whenever
+                you need.
               </Feature>
             </Grid>
           </Container>
@@ -324,7 +324,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               </chakra.h2>
               <chakra.p opacity={0.7} fontSize="lg">
                 We're dedicated to improving the experience and performance of
-                Chakra UI
+                Chakra UI.
               </chakra.p>
             </Box>
             <SimpleGrid
@@ -381,7 +381,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
         <Box>
           <Container py="120px" maxW="1200px" px="32px">
             <chakra.h2 textStyle="heading-2" mb="48px">
-              Loved by product people like you
+              Loved by product people like you.
             </chakra.h2>
             <SimpleGrid spacing="32px" columns={{ base: 1, md: 3 }}>
               {chunk(tweets, 3).map((tweetList, idx) => (
@@ -569,7 +569,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               </Center>
               <Box maxW="600px" mx="auto">
                 <chakra.h2 textStyle="heading-2" mt="6" mb="6">
-                  Get started with Chakra today.
+                  Get started with Chakra today
                 </chakra.h2>
                 <Text mb="40px" fontSize="lg" opacity={0.7}>
                   Chakra keeps everyone aligned and working without friction.
