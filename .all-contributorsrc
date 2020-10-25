@@ -1435,6 +1435,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "ifeoma-imoh",
+      "name": "Ifeoma Imoh",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/60473225?v=4",
+      "profile": "https://github.com/ifeoma-imoh",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
