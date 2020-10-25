@@ -7,7 +7,7 @@ import {
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { callAll, cx, Omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -47,7 +47,7 @@ type Omitted =
   | "onBlur"
   | "value"
 
-type StyledControlProps = Omit<WithChakraProps<"div">, Omitted>
+type StyledControlProps = Omit<HTMLChakraProps<"div">, Omitted>
 
 type BaseInputProps = Pick<
   PropsOf<"input">,

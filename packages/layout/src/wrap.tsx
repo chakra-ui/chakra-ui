@@ -7,12 +7,12 @@ import {
   SystemStyleObject,
   useStyles,
   useTheme,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface WrapProps extends WithChakraProps<"div"> {
+export interface WrapProps extends HTMLChakraProps<"div"> {
   /**
    * The space between the each child (even if it wraps)
    */
@@ -91,7 +91,7 @@ if (__DEV__) {
   Wrap.displayName = "Wrap"
 }
 
-export interface WrapItemProps extends WithChakraProps<"li"> {}
+export interface WrapItemProps extends HTMLChakraProps<"li"> {}
 
 export const WrapItem = forwardRef<WrapItemProps, "li">(function WrapItem(
   props,

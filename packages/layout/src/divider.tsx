@@ -1,4 +1,4 @@
-import { chakra, forwardRef, WithChakraProps } from "@chakra-ui/system"
+import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -43,7 +43,7 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
   )
 })
 
-export interface DividerProps extends WithChakraProps<"div"> {
+export interface DividerProps extends HTMLChakraProps<"div"> {
   orientation?: "horizontal" | "vertical"
 }
 

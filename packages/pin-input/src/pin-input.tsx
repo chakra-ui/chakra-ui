@@ -4,7 +4,7 @@ import {
   omitThemingProps,
   ThemingProps,
   useStyleConfig,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -57,7 +57,7 @@ if (__DEV__) {
   PinInput.displayName = "PinInput"
 }
 
-export interface PinInputFieldProps extends WithChakraProps<"input"> {}
+export interface PinInputFieldProps extends HTMLChakraProps<"input"> {}
 
 export const PinInputField = forwardRef<PinInputFieldProps, "input">(
   function PinInputField(props, ref) {

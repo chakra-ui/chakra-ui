@@ -4,12 +4,12 @@ import {
   omitThemingProps,
   ThemingProps,
   useStyleConfig,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface HeadingProps extends WithChakraProps<"h2">, ThemingProps {}
+export interface HeadingProps extends HTMLChakraProps<"h2">, ThemingProps {}
 
 export const Heading = forwardRef<HeadingProps, "h2">(function Heading(
   props,

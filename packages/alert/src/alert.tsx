@@ -7,7 +7,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { createContext, cx } from "@chakra-ui/utils"
 import * as React from "react"
@@ -40,7 +40,7 @@ interface AlertOptions {
 }
 
 export interface AlertProps
-  extends WithChakraProps<"div">,
+  extends HTMLChakraProps<"div">,
     AlertOptions,
     ThemingProps {}
 
@@ -78,7 +78,7 @@ export const Alert = forwardRef<AlertProps, "div">(function Alert(props, ref) {
   )
 })
 
-export interface AlertTitleProps extends WithChakraProps<"div"> {}
+export interface AlertTitleProps extends HTMLChakraProps<"div"> {}
 
 export const AlertTitle = forwardRef<AlertTitleProps, "div">(
   function AlertTitle(props, ref) {
@@ -95,7 +95,7 @@ export const AlertTitle = forwardRef<AlertTitleProps, "div">(
   },
 )
 
-export interface AlertDescriptionProps extends WithChakraProps<"div"> {}
+export interface AlertDescriptionProps extends HTMLChakraProps<"div"> {}
 
 export const AlertDescription = forwardRef<AlertDescriptionProps, "div">(
   function AlertDescription(props, ref) {
@@ -116,7 +116,7 @@ export const AlertDescription = forwardRef<AlertDescriptionProps, "div">(
   },
 )
 
-export interface AlertIconProps extends WithChakraProps<"span"> {}
+export interface AlertIconProps extends HTMLChakraProps<"span"> {}
 
 export const AlertIcon: React.FC<AlertIconProps> = (props) => {
   const { status } = useAlertContext()

@@ -3,11 +3,11 @@ import {
   ChakraComponent,
   forwardRef,
   PropsOf,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import * as React from "react"
 
-export interface LinkOverlayProps extends WithChakraProps<"a"> {}
+export interface LinkOverlayProps extends HTMLChakraProps<"a"> {}
 
 export const LinkOverlay: ChakraComponent<"a"> = (props) => (
   <chakra.a
@@ -30,7 +30,7 @@ export const LinkOverlay: ChakraComponent<"a"> = (props) => (
 
 type BaseLinkProps = Pick<PropsOf<"a">, "href" | "target" | "rel">
 
-export interface LinkBoxProps extends WithChakraProps<"div">, BaseLinkProps {
+export interface LinkBoxProps extends HTMLChakraProps<"div">, BaseLinkProps {
   isExternal?: boolean
 }
 

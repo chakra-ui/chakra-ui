@@ -6,7 +6,7 @@ import {
   omitThemingProps,
   ThemingProps,
   useStyleConfig,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -56,7 +56,7 @@ const StyledSkeleton = chakra("div", {
 export type ISkeleton = SkeletonOptions
 
 export interface SkeletonProps
-  extends WithChakraProps<"div">,
+  extends HTMLChakraProps<"div">,
     SkeletonOptions,
     ThemingProps {}
 
