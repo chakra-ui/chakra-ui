@@ -20,7 +20,7 @@ export interface ComponentWithAs<T extends As, P> {
   <TT extends As>(
     props: { as?: TT } & AddProps<P> &
       Omit<PropsOf<TT>, keyof PropsOf<T>> &
-      AddTProps<T>,
+      Omit<AddTProps<T>, keyof P>,
   ): JSX.Element
   displayName?: string
   propTypes?: React.WeakValidationMap<AddProps<P> & AddTProps<T>>

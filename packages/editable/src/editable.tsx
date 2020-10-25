@@ -12,7 +12,7 @@ import {
 import {
   createContext,
   cx,
-  ReactNodeOrRenderProp,
+  MaybeRenderProp,
   runIfFn,
   __DEV__,
 } from "@chakra-ui/utils"
@@ -46,7 +46,7 @@ export interface EditableProps
   extends UseEditableProps,
     BaseEditableProps,
     ThemingProps {
-  children?: ReactNodeOrRenderProp<RenderProps>
+  children?: MaybeRenderProp<RenderProps>
 }
 
 /**

@@ -15,7 +15,7 @@ import {
   createContext,
   cx,
   Omit,
-  ReactNodeOrRenderProp,
+  MaybeRenderProp,
   runIfFn,
   __DEV__,
 } from "@chakra-ui/utils"
@@ -93,7 +93,7 @@ const [AccordionItemProvider, useAccordionItemContext] = createContext<
 export interface AccordionItemProps
   extends Omit<WithChakraProps<"div">, keyof UseAccordionItemProps>,
     UseAccordionItemProps {
-  children?: ReactNodeOrRenderProp<{
+  children?: MaybeRenderProp<{
     isExpanded: boolean
     isDisabled: boolean
   }>

@@ -13,7 +13,7 @@ import {
 import {
   createContext,
   cx,
-  ReactNodeOrRenderProp,
+  MaybeRenderProp,
   runIfFn,
   __DEV__,
 } from "@chakra-ui/utils"
@@ -57,7 +57,7 @@ export interface PopoverProps extends UsePopoverProps, ThemingProps {
    * The content of the popover. It's usually the `PopoverTrigger`,
    * and `PopoverContent`
    */
-  children?: ReactNodeOrRenderProp<{
+  children?: MaybeRenderProp<{
     isOpen: boolean
     onClose(): void
   }>

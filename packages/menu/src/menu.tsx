@@ -10,7 +10,7 @@ import {
   useStyles,
   WithChakraProps,
 } from "@chakra-ui/system"
-import { cx, ReactNodeOrRenderProp, runIfFn, __DEV__ } from "@chakra-ui/utils"
+import { cx, MaybeRenderProp, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { motion, Variants } from "framer-motion"
 import * as React from "react"
 import {
@@ -30,7 +30,7 @@ import {
 } from "./use-menu"
 
 export interface MenuProps extends UseMenuProps, ThemingProps {
-  children: ReactNodeOrRenderProp<{ isOpen: boolean; onClose(): void }>
+  children: MaybeRenderProp<{ isOpen: boolean; onClose(): void }>
 }
 
 /**

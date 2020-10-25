@@ -23,11 +23,11 @@ export interface UseImageProps {
   /**
    * A callback for when the image `src` has been loaded
    */
-  onLoad?(event: Event): void
+  onLoad?(event: React.SyntheticEvent<HTMLImageElement, Event>): void
   /**
    * A callback for when there was an error loading the image `src`
    */
-  onError?(error: string | Event): void
+  onError?(error: string | React.SyntheticEvent<HTMLImageElement, Event>): void
   /**
    * If `true`, opt out of the `fallbackSrc` logic and use as `img`
    */
@@ -40,6 +40,8 @@ export interface UseImageProps {
 }
 
 type Status = "loading" | "failed" | "pending" | "loaded"
+
+type ImageEvent = React.SyntheticEvent<HTMLImageElement, Event>
 
 /**
  * React hook that loads an image in the browser,
@@ -100,12 +102,12 @@ export function useImage(props: UseImageProps) {
     img.onload = (event) => {
       flush()
       setStatus("loaded")
-      onLoad?.(event)
+      onLoad?.((event as unknown) as ImageEvent)
     }
     img.onerror = (error) => {
       flush()
       setStatus("failed")
-      onError?.(error)
+      onError?.(error as any)
     }
 
     imageRef.current = img
