@@ -13,7 +13,9 @@ export function useMediaQuery(query: string | string[]): boolean[] {
   const isSupported = isBrowser && "matchMedia" in window
 
   const [matches, setMatches] = React.useState(
-    queries.map((query) => (isSupported ? !!window.matchMedia(query) : false)),
+    queries.map((query) =>
+      isSupported ? !!window.matchMedia(query).matches : false,
+    ),
   )
 
   useSafeLayoutEffect(() => {
