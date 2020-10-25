@@ -25,8 +25,8 @@ import {
   getValidChildren,
   isArray,
   isString,
-  merge,
   mergeRefs,
+  mergeWith,
   normalizeEventKey,
   removeItem,
 } from "@chakra-ui/utils"
@@ -352,7 +352,7 @@ export function useMenuList(
 
 export function useMenuPositioner(props: any = {}) {
   const { popper, isOpen } = useMenuContext()
-  return merge(popper.getPopperProps(props), {
+  return mergeWith(popper.getPopperProps(props), {
     style: { visibility: isOpen ? "visible" : "hidden" },
   })
 }
