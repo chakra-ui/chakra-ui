@@ -1,4 +1,4 @@
-import { forwardRef, PropsOf } from "@chakra-ui/system"
+import { forwardRef } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { Icon, IconProps } from "./icon"
@@ -24,7 +24,7 @@ interface CreateIconOptions {
   /**
    * Default props automatically passed to the component; overwriteable
    */
-  defaultProps?: PropsOf<typeof Icon>
+  defaultProps?: IconProps
 }
 
 export function createIcon(options: CreateIconOptions) {

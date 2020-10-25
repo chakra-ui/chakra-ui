@@ -1,5 +1,10 @@
-import { ThemingProps, chakra, PropsOf, forwardRef } from "@chakra-ui/system"
-import { createContext, __DEV__, cx } from "@chakra-ui/utils"
+import {
+  chakra,
+  forwardRef,
+  ThemingProps,
+  WithChakraProps,
+} from "@chakra-ui/system"
+import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import {
   useRadioGroup,
@@ -20,12 +25,10 @@ const [RadioGroupProvider, useRadioGroupContext] = createContext<
 
 export { useRadioGroupContext }
 
+type Omitted = "onChange" | "value" | "defaultValue" | "children"
 export interface RadioGroupProps
   extends UseRadioGroupProps,
-    Omit<
-      PropsOf<typeof chakra.div>,
-      "onChange" | "value" | "defaultValue" | "children"
-    >,
+    Omit<WithChakraProps<"div">, Omitted>,
     Omit<ThemingProps, "orientation"> {
   children: React.ReactNode
 }

@@ -3,11 +3,11 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  PropsOf,
   StylesProvider,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
+  WithChakraProps,
 } from "@chakra-ui/system"
 import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -129,7 +129,7 @@ function useFormControlProvider(props: FormControlContext) {
 }
 
 export interface FormControlProps
-  extends PropsOf<typeof chakra.div>,
+  extends WithChakraProps<"div">,
     ThemingProps,
     FormControlContext {}
 
@@ -171,7 +171,7 @@ if (__DEV__) {
   FormControl.displayName = "FormControl"
 }
 
-export interface HelpTextProps extends PropsOf<typeof chakra.div> {}
+export interface HelpTextProps extends WithChakraProps<"div"> {}
 
 /**
  * FormHelperText

@@ -148,7 +148,10 @@ export type HTMLChakraComponents = {
   [Tag in DOMElements]: ChakraComponent<Tag, {}>
 }
 
-export type WithChakraProps<T extends As> = Omit<PropsOf<T>, "ref"> &
+export type WithChakraProps<T extends As> = Omit<
+  PropsOf<T>,
+  T extends "svg" ? "ref" | "children" : "ref"
+> &
   ChakraProps & { as?: As }
 
 export type HTMLChakraProps = {

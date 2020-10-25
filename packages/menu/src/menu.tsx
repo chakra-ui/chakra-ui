@@ -8,6 +8,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
+  WithChakraProps,
 } from "@chakra-ui/system"
 import { cx, ReactNodeOrRenderProp, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { motion, Variants } from "framer-motion"
@@ -60,7 +61,7 @@ if (__DEV__) {
   Menu.displayName = "Menu"
 }
 
-export interface MenuButtonProps extends PropsOf<typeof chakra.button> {}
+export interface MenuButtonProps extends WithChakraProps<"button"> {}
 
 const StyledMenuButton = forwardRef<MenuButtonProps, "button">(
   function StyledMenuButton(props, ref) {
@@ -115,7 +116,7 @@ if (__DEV__) {
   MenuButton.displayName = "MenuButton"
 }
 
-export interface MenuListProps extends PropsOf<typeof chakra.div> {}
+export interface MenuListProps extends WithChakraProps<"div"> {}
 
 const motionVariants: Variants = {
   enter: {
@@ -175,7 +176,7 @@ if (__DEV__) {
   MenuList.displayName = "MenuList"
 }
 
-export interface StyledMenuItemProps extends PropsOf<typeof chakra.button> {}
+export interface StyledMenuItemProps extends WithChakraProps<"button"> {}
 
 const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
   function StyledMenuItem(props, ref) {
@@ -227,7 +228,7 @@ interface MenuItemOptions
 }
 
 export interface MenuItemProps
-  extends PropsOf<typeof chakra.button>,
+  extends WithChakraProps<"button">,
     MenuItemOptions {}
 
 export const MenuItem = forwardRef<MenuItemProps, "button">(function MenuItem(
@@ -276,7 +277,7 @@ if (__DEV__) {
 
 export interface MenuItemOptionProps
   extends UseMenuOptionOptions,
-    Omit<PropsOf<typeof StyledMenuItem>, keyof UseMenuOptionOptions> {
+    Omit<MenuItemProps, keyof UseMenuOptionOptions> {
   icon?: React.ReactElement
   iconSpacing?: SystemProps["mr"]
 }
@@ -340,7 +341,7 @@ if (__DEV__) {
   MenuOptionGroup.displayName = "MenuOptionGroup"
 }
 
-export interface MenuGroupProps extends PropsOf<typeof chakra.div> {}
+export interface MenuGroupProps extends WithChakraProps<"div"> {}
 
 export const MenuGroup = forwardRef<MenuGroupProps, "div">(function MenuGroup(
   props,
@@ -367,7 +368,7 @@ if (__DEV__) {
   MenuGroup.displayName = "MenuGroup"
 }
 
-export interface MenuCommandProps extends PropsOf<typeof chakra.span> {}
+export interface MenuCommandProps extends WithChakraProps<"span"> {}
 
 export const MenuCommand = forwardRef<MenuCommandProps, "span">(
   function MenuCommand(props, ref) {
@@ -387,7 +388,7 @@ if (__DEV__) {
   MenuCommand.displayName = "MenuCommand"
 }
 
-export const MenuIcon: React.FC<PropsOf<typeof chakra.span>> = (props) => {
+export const MenuIcon: React.FC<WithChakraProps<"span">> = (props) => {
   const { className, children, ...rest } = props
 
   const child = React.Children.only(children)
@@ -419,7 +420,7 @@ if (__DEV__) {
   MenuIcon.displayName = "MenuIcon"
 }
 
-export interface MenuDividerProps extends PropsOf<typeof chakra.hr> {}
+export interface MenuDividerProps extends WithChakraProps<"hr"> {}
 
 export const MenuDivider: React.FC<MenuDividerProps> = (props) => {
   const { className, ...rest } = props

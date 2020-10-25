@@ -2,12 +2,12 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  PropsOf,
   StylesProvider,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
+  WithChakraProps,
 } from "@chakra-ui/system"
 import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -24,10 +24,11 @@ const [SliderProvider, useSliderContext] = createContext<SliderContext>({
 
 export { SliderProvider, useSliderContext }
 
+type Omitted = "size" | "defaultValue" | "onChange"
 export interface SliderProps
   extends UseSliderProps,
     ThemingProps,
-    Omit<PropsOf<typeof chakra.div>, "size" | "defaultValue" | "onChange"> {}
+    Omit<WithChakraProps<"div">, Omitted> {}
 
 /**
  * The Slider is used to allow users to make selections from a range of values.
@@ -75,7 +76,7 @@ if (__DEV__) {
   Slider.displayName = "Slider"
 }
 
-export interface SliderThumbProps extends PropsOf<typeof chakra.div> {}
+export interface SliderThumbProps extends WithChakraProps<"div"> {}
 
 /**
  * Slider component that acts as the handle used to select predefined
@@ -112,7 +113,7 @@ if (__DEV__) {
   SliderThumb.displayName = "SliderThumb"
 }
 
-export interface SliderTrackProps extends PropsOf<typeof chakra.div> {}
+export interface SliderTrackProps extends WithChakraProps<"div"> {}
 
 export const SliderTrack = forwardRef<SliderTrackProps, "div">(
   function SliderTrack(props, ref) {
@@ -140,7 +141,7 @@ if (__DEV__) {
   SliderTrack.displayName = "SliderTrack"
 }
 
-export interface SliderInnerTrackProps extends PropsOf<typeof chakra.div> {}
+export interface SliderInnerTrackProps extends WithChakraProps<"div"> {}
 
 export const SliderFilledTrack = forwardRef<SliderInnerTrackProps, "div">(
   function SliderFilledTrack(props, ref) {
@@ -169,7 +170,7 @@ if (__DEV__) {
   SliderFilledTrack.displayName = "SliderFilledTrack"
 }
 
-export interface SliderMarkProps extends PropsOf<typeof chakra.div> {
+export interface SliderMarkProps extends WithChakraProps<"div"> {
   value: number
 }
 

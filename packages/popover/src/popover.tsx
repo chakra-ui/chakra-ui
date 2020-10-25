@@ -3,12 +3,12 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  PropsOf,
   StylesProvider,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
+  WithChakraProps,
 } from "@chakra-ui/system"
 import {
   createContext,
@@ -104,7 +104,7 @@ if (__DEV__) {
   PopoverTrigger.displayName = "PopoverTrigger"
 }
 
-export interface PopoverContentProps extends PropsOf<typeof chakra.section> {}
+export interface PopoverContentProps extends WithChakraProps<"section"> {}
 
 const Motion = chakra(motion.section)
 
@@ -150,7 +150,7 @@ if (__DEV__) {
   PopoverContent.displayName = "PopoverContent"
 }
 
-export interface PopoverHeaderProps extends PropsOf<typeof chakra.header> {}
+export interface PopoverHeaderProps extends WithChakraProps<"header"> {}
 
 /**
  * PopoverHeader is the accessible header or label
@@ -183,7 +183,7 @@ if (__DEV__) {
   PopoverHeader.displayName = "PopoverHeader"
 }
 
-export interface PopoverBodyProps extends PropsOf<typeof chakra.div> {}
+export interface PopoverBodyProps extends WithChakraProps<"div"> {}
 
 /**
  * PopoverBody is the main content area for the popover. Should contain
@@ -215,7 +215,7 @@ export const PopoverBody = forwardRef<PopoverBodyProps, "div">(
 if (__DEV__) {
   PopoverBody.displayName = "PopoverBody"
 }
-export interface PopoverFooterProps extends PropsOf<typeof chakra.footer> {}
+export interface PopoverFooterProps extends WithChakraProps<"footer"> {}
 
 export const PopoverFooter: React.FC<PopoverFooterProps> = (props) => {
   const styles = useStyles()
@@ -254,7 +254,7 @@ if (__DEV__) {
   PopoverCloseButton.displayName = "PopoverCloseButton"
 }
 
-export interface PopoverArrowProps extends PropsOf<typeof chakra.div> {}
+export interface PopoverArrowProps extends WithChakraProps<"div"> {}
 
 export const PopoverArrow: React.FC<PopoverArrowProps> = (props) => {
   const { getArrowProps, getArrowPositionerProps } = usePopoverContext()
@@ -263,7 +263,7 @@ export const PopoverArrow: React.FC<PopoverArrowProps> = (props) => {
   return (
     <chakra.div
       {...getArrowPositionerProps()}
-      className={cx("chakra-popover__arrow-wrapper", props.className)}
+      className={cx("chakra-popover__arrow-positioner", props.className)}
     >
       <chakra.div
         className={cx("chakra-popover__arrow", props.className)}

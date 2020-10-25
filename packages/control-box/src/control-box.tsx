@@ -1,4 +1,4 @@
-import { chakra, SystemStyleObject, PropsOf } from "@chakra-ui/system"
+import { chakra, SystemStyleObject, WithChakraProps } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -19,7 +19,7 @@ export interface ControlBoxOptions {
 export type IControlBox = ControlBoxOptions
 
 interface BaseControlProps
-  extends Omit<PropsOf<typeof chakra.div>, keyof ControlBoxOptions> {}
+  extends Omit<WithChakraProps<"div">, keyof ControlBoxOptions> {}
 
 export interface ControlBoxProps extends BaseControlProps, ControlBoxOptions {}
 

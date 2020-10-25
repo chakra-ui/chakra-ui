@@ -1,4 +1,10 @@
-import { chakra, PropsOf, SystemProps, forwardRef } from "@chakra-ui/system"
+import {
+  chakra,
+  PropsOf,
+  SystemProps,
+  forwardRef,
+  WithChakraProps,
+} from "@chakra-ui/system"
 import { omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useImage, UseImageProps } from "./use-image"
@@ -59,7 +65,7 @@ interface ImageOptions extends NativeImageOptions {
 
 export interface ImageProps
   extends UseImageProps,
-    Omit<PropsOf<typeof chakra.img>, keyof UseImageProps>,
+    Omit<WithChakraProps<"img">, keyof UseImageProps>,
     ImageOptions {}
 
 /**
@@ -128,9 +134,7 @@ export const Image = forwardRef<ImageProps, "img">(function Image(props, ref) {
   )
 })
 
-export interface ImgProps
-  extends PropsOf<typeof chakra.img>,
-    NativeImageOptions {}
+export interface ImgProps extends WithChakraProps<"img">, NativeImageOptions {}
 
 /**
  * Fallback component for most SSR users who want to use the native `img` with

@@ -2,11 +2,11 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  PropsOf,
   StylesProvider,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
+  WithChakraProps,
 } from "@chakra-ui/system"
 import { createContext, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -53,10 +53,7 @@ export interface NumberInputProps
   extends UseNumberInputProps,
     ThemingProps,
     InputOptions,
-    Omit<
-      PropsOf<typeof chakra.div>,
-      "onChange" | "as" | "children" | "value" | "defaultValue"
-    > {}
+    Omit<WithChakraProps<"div">, keyof UseNumberInputProps> {}
 
 /**
  * NumberInput
@@ -97,7 +94,7 @@ if (__DEV__) {
   NumberInput.displayName = "NumberInput"
 }
 
-export interface NumberInputStepperProps extends PropsOf<typeof chakra.div> {}
+export interface NumberInputStepperProps extends WithChakraProps<"div"> {}
 
 /**
  * NumberInputStepper
@@ -137,7 +134,7 @@ if (__DEV__) {
   NumberInputStepper.displayName = "NumberInputStepper"
 }
 
-export interface NumberInputFieldProps extends PropsOf<typeof chakra.input> {}
+export interface NumberInputFieldProps extends WithChakraProps<"input"> {}
 
 /**
  * NumberInputField
@@ -186,8 +183,7 @@ export const StyledStepper = chakra("div", {
   },
 })
 
-export interface NumberDecrementStepperProps
-  extends PropsOf<typeof StyledStepper> {}
+export interface NumberDecrementStepperProps extends WithChakraProps<"div"> {}
 
 /**
  * NumberDecrementStepper
@@ -215,8 +211,7 @@ if (__DEV__) {
   NumberDecrementStepper.displayName = "NumberDecrementStepper"
 }
 
-export interface NumberIncrementStepperProps
-  extends PropsOf<typeof StyledStepper> {}
+export interface NumberIncrementStepperProps extends WithChakraProps<"div"> {}
 
 /**
  * NumberIncrementStepper

@@ -3,17 +3,17 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  PropsOf,
   StylesProvider,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
+  WithChakraProps,
 } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface TagProps extends PropsOf<typeof chakra.span>, ThemingProps {}
+export interface TagProps extends WithChakraProps<"span">, ThemingProps {}
 
 /**
  * The tag component is used to label or categorize UI elements.
@@ -43,7 +43,7 @@ if (__DEV__) {
   Tag.displayName = "Tag"
 }
 
-export interface TagLabelProps extends PropsOf<typeof chakra.span> {}
+export interface TagLabelProps extends WithChakraProps<"span"> {}
 
 export const TagLabel = forwardRef<TagLabelProps, "span">(function TagLabel(
   props,
@@ -93,7 +93,7 @@ if (__DEV__) {
 }
 
 export interface TagCloseButtonProps
-  extends Omit<PropsOf<typeof chakra.button>, "disabled"> {
+  extends Omit<WithChakraProps<"button">, "disabled"> {
   isDisabled?: boolean
 }
 

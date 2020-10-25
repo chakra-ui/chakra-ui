@@ -1,18 +1,16 @@
 import {
   chakra,
-  PropsOf,
-  ThemingProps,
-  useMultiStyleConfig,
+  forwardRef,
   omitThemingProps,
   StylesProvider,
-  forwardRef,
+  ThemingProps,
+  useMultiStyleConfig,
+  WithChakraProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__, getValidChildren } from "@chakra-ui/utils"
+import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface InputGroupProps
-  extends PropsOf<typeof chakra.div>,
-    ThemingProps {}
+export interface InputGroupProps extends WithChakraProps<"div">, ThemingProps {}
 
 export const InputGroup = forwardRef<InputGroupProps, "div">(
   function InputGroup(props, ref) {
