@@ -1,3 +1,109 @@
+## 1.0.0-rc.6 (2020-10-25)
+
+#### 🚀 Features
+
+- `accordion`
+  - [#2218](https://github.com/chakra-ui/chakra-ui/pull/2218) refactor: add
+    index, setIndex to AccordionContext
+    ([@with-heart](https://github.com/with-heart))
+- `toast`
+  - [#1723](https://github.com/chakra-ui/chakra-ui/pull/1723)
+    feature(standalone-toasts): create toasts outside of react components
+    ([@TimKolberger](https://github.com/TimKolberger))
+- `focus-lock`, `modal`, `popover`, `utils`
+  - [#1805](https://github.com/chakra-ui/chakra-ui/pull/1805) feat(focus-lock):
+    relax type on focusable refs to handle non-HTMLElement refs
+    ([@santialbo](https://github.com/santialbo))
+
+#### ⚙️ Component API
+
+- `hooks`, `styled-system`, `system`, `utils`
+  - [#2228](https://github.com/chakra-ui/chakra-ui/pull/2228) Feat/use colors
+    ([@ljosberinn](https://github.com/ljosberinn))
+- `toast`
+  - [#2191](https://github.com/chakra-ui/chakra-ui/pull/2191) feat(toast): allow
+    toast.closeAll position selection
+    ([@ljosberinn](https://github.com/ljosberinn))
+- `avatar`
+  - [#2153](https://github.com/chakra-ui/chakra-ui/pull/2153) fix(avatar): add
+    loading prop for avatar ([@Zaynex](https://github.com/Zaynex))
+
+#### 🐛 Bugfixes
+
+- `utils`
+  - [#2253](https://github.com/chakra-ui/chakra-ui/pull/2253) fix(utils):
+    properly filter undefined object values
+    ([@ellisio](https://github.com/ellisio))
+- `toast`
+  - [#2132](https://github.com/chakra-ui/chakra-ui/pull/2132) fix(toast):
+    closeAll method actually closes all
+    ([@ljosberinn](https://github.com/ljosberinn))
+- `media-query`
+  - [#2139](https://github.com/chakra-ui/chakra-ui/pull/2139) Fix/use media
+    query ([@ljosberinn](https://github.com/ljosberinn))
+- `color-mode`
+  - [#2114](https://github.com/chakra-ui/chakra-ui/pull/2114) fix(colormode):
+    csr and hydration issues ([@ljosberinn](https://github.com/ljosberinn))
+
+#### 📝 Documentation
+
+- [#2262](https://github.com/chakra-ui/chakra-ui/pull/2262) docs(icons): fix
+  typo ([@claytonfaria](https://github.com/claytonfaria))
+- [#2258](https://github.com/chakra-ui/chakra-ui/pull/2258) docs: Update
+  \_groupHover parent role="group" attribute info - 1.0RC
+  ([@claytonfaria](https://github.com/claytonfaria))
+- [#2215](https://github.com/chakra-ui/chakra-ui/pull/2215) docs(list): fix
+  stylePos to stylePosition ([@Strajk](https://github.com/Strajk))
+- [#2196](https://github.com/chakra-ui/chakra-ui/pull/2196) fix: minor spelling
+  tweaks ([@iskanderbroere](https://github.com/iskanderbroere))
+- [#2193](https://github.com/chakra-ui/chakra-ui/pull/2193)
+  docs(checkbox-group): update the props table and add shared style pro…
+  ([@with-heart](https://github.com/with-heart))
+- [#2138](https://github.com/chakra-ui/chakra-ui/pull/2138) docs(breadcrumb):
+  Small correction ([@victorwpbastos](https://github.com/victorwpbastos))
+- [#2104](https://github.com/chakra-ui/chakra-ui/pull/2104) docs(accordion):
+  remove reference to AccordionItem defaultIsOpen prop
+  ([@with-heart](https://github.com/with-heart))
+
+#### Committers: 33
+
+- Adriano Resende ([@adrianoresende](https://github.com/adrianoresende))
+- Andrei Lazarescu ([@lazandrei19](https://github.com/lazandrei19))
+- Andrew Ellis ([@ellisio](https://github.com/ellisio))
+- Anurag Hazra ([@anuraghazra](https://github.com/anuraghazra))
+- Candice ([@candicecz](https://github.com/candicecz))
+- Clayton Faria ([@claytonfaria](https://github.com/claytonfaria))
+- Dave Bauman ([@baumandm](https://github.com/baumandm))
+- Dominik Sumer ([@dsumer](https://github.com/dsumer))
+- Gerrit Alex ([@ljosberinn](https://github.com/ljosberinn))
+- Gifa Eriyanto ([@gifaeriyanto](https://github.com/gifaeriyanto))
+- Ivan Dalmet ([@ivan-dalmet](https://github.com/ivan-dalmet))
+- Jaya Krishna Namburu
+  ([@JayaKrishnaNamburu](https://github.com/JayaKrishnaNamburu))
+- Joe Bell ([@joe-bell](https://github.com/joe-bell))
+- Joel Gallant ([@joelgallant](https://github.com/joelgallant))
+- Joshua Farayola ([@farayolaj](https://github.com/farayolaj))
+- José Teixeira ([@jrrmt](https://github.com/jrrmt))
+- Julian Kaindl ([@KaindlJulian](https://github.com/KaindlJulian))
+- Keshav Bohra ([@keshav-bohr](https://github.com/keshav-bohr))
+- Mark Chandler ([@with-heart](https://github.com/with-heart))
+- Matías Surdi ([@msurdi](https://github.com/msurdi))
+- Pavel 'Strajk' Dolecek ([@Strajk](https://github.com/Strajk))
+- Santi Albo ([@santialbo](https://github.com/santialbo))
+- Sebastian Trebunak ([@sebqq](https://github.com/sebqq))
+- Segun Adebayo ([@segunadebayo](https://github.com/segunadebayo))
+- Tioluwani Kolawole ([@tioluwani94](https://github.com/tioluwani94))
+- Tony Martinez ([@tonyjmartinez](https://github.com/tonyjmartinez))
+- Trevor Blades ([@trevorblades](https://github.com/trevorblades))
+- Victor Bastos ([@victorwpbastos](https://github.com/victorwpbastos))
+- Vincent ([@Zaynex](https://github.com/Zaynex))
+- [@TimKolberger](https://github.com/TimKolberger)
+- [@iskanderbroere](https://github.com/iskanderbroere)
+- [@okezieuc](https://github.com/okezieuc)
+- [@vsylvestre](https://github.com/vsylvestre)
+
+## 1.0.0-rc.5 (2020-09-27)
+
 ## 1.0.0-rc.4 (2020-09-25)
 
 #### 🚀 Features
