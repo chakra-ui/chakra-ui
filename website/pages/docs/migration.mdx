@@ -5,10 +5,10 @@ description: How to upgrade your existing Chakra UI projects to v1.0
 
 A simple guide to upgrade your existing Chakra UI projects to v1.0.
 
-Chakra UI v1.0 is focused on improving the ideas and concepts from 0.x to make
+Chakra UI v1.0 is focused on improving the ideas and concepts from 0.x to make it 
 even easier to create, theme and extend components.
 
-While there's quite a number of new features we've added, we focused on making
+While there are quite a number of new features we've added, we focused on making
 Chakra UI a stable base to build your own design systems on top of. In the end,
 we want make you feel more confident using Chakra UI in production.
 
@@ -77,9 +77,9 @@ However, you can still install this package.
 Swap out `ThemeProvider` with `ChakraProvider` to make setup cleaner.
 `ChakraProvider` adds the following providers for you automatically:
 
-- **ThemeProvider:** Provides the theming context for all components
+- **ThemeProvider:** Provides the theming context for all components.
 - **ColorModeProvider:** Provides color mode (light or dark) context to all
-  components
+  components.
 - **GlobalStyle**: Provides the global styles defined in `theme.styles.global`
   to your application.
 
@@ -182,12 +182,12 @@ css units.
 
 > **Reason:** Previously, breakpoints on a theme had to be an array with your
 > breakpoints in ascending order which made it hard to reference which value was
-> correlating to `md` etc. On top, you had to manually manipulate the array by
+> correlating to `md` etc. Also, you had to manually manipulate the array by
 > defining properties on it, which was often overlooked and not typesafe.
 
 ### 7. ColorModeScript (optional)
 
-**You may safely skip this if you do not allow to change the color mode.**
+**You can skip this if you are not already using the color mode feature.**
 
 To keep color mode settings in sync across page visits, you will need to add the
 `ColorModeScript`.
@@ -199,13 +199,13 @@ For exhaustive examples, please visit
 
 ## Component Updates
 
-We've updated the API of some components to fix bugs and improve usability,
+We've updated the API of some components to fix bugs, improve usability,
 types and accessibility.
 
 ### Accordion
 
 - Update all imports of `AccordionHeader` to `AccordionButton`. This is to
-  remove the notion that it's a header when it's actually a `button`.
+  remove the notion that it is a header when it is actually a `button`.
 
 ```diff
 - import { AccordionHeader } from "@chakra-ui/core"
@@ -234,7 +234,7 @@ out of the box when we don't. Here's how to handle this:
 
 ### AspectRatioBox
 
-- Change all imports of `AspectRatioBox` to `AspectRatio`
+- Change all imports of `AspectRatioBox` to `AspectRatio`.
 
 ```diff
 - import { AspectRatioBox } from "@chakra-ui/core"
@@ -243,7 +243,7 @@ out of the box when we don't. Here's how to handle this:
 
 ### Breadcrumb
 
-Removed support for the `addSeparator` prop
+Removed support for the `addSeparator` prop.
 
 ### Button
 
@@ -279,7 +279,7 @@ errors, and reduces unused icons bloating your app.**
 + <Checkbox colorScheme="blue">Option</Checkbox>
 ```
 
-- Deprecated the `isFullWidth` prop. `Checkbox` now takes up the width of the
+- Deprecated the `isFullWidth` prop. `Checkbox` now takes up the width of it's
   parent by default.
 
 - To allow for better checkbox group layout, the `CheckboxGroup` component no
@@ -443,7 +443,7 @@ Due to accessibility reasons, we've deprecated the `isDisabled` prop for `Link`.
 ### Stack
 
 - To reduce the API surface area, we've deprecated the `isReversed` props in
-  favor of the `direction` prop
+  favor of the `direction` prop.
 
 ```diff
 - <Stack isReversed>
@@ -453,10 +453,10 @@ Due to accessibility reasons, we've deprecated the `isDisabled` prop for `Link`.
   </Stack>
 ```
 
-- Added support for responsive `direction` and `spacing` props
+- Added support for responsive `direction` and `spacing` props.
 
 ```jsx live=false
-<Stack direction={["column", "row"]}>
+<Stack spacing={["16px", "32px"]} direction={["column", "row"]}>
   <Box />
   <Box />
 </Stack>
@@ -465,22 +465,22 @@ Due to accessibility reasons, we've deprecated the `isDisabled` prop for `Link`.
 ### Menu
 
 - All popper related props that used to be passed to `MenuList` component,
-  should now be passed to `Menu`. Reason: To support nested menus
-- The `placement` prop has moved from `MenuList` to `Menu`
+  should now be passed to `Menu`.
+- The `placement` prop has moved from `MenuList` to `Menu`.
 
 ### Modal
 
 - Removed `addAriaLabels` and `formatIds` props in favor of passing a top-level
-  `id` prop to the modal, and we'll handle the rest.
+  `id` prop to the modal.
 
 - Removed `preserveScrollBarGap` prop. We preserve scroll bar gap by default to
   prevent any layout shift.
 
 - Only pass `size` values defined in the components theme. Hard-coded values
   will be ignored. Update the styles in `theme.components.Modal` to reflect your
-  custom values
+  custom values.
 
-- You can now disable focus trap by passing `trapFocus={false}`
+- You can now disable focus trap by passing `trapFocus={false}`.
 
 - Modal comes with preset transitions to make it easy for you. You can remove
   any existing `Scale`, `ScaleFade` or `SlideFade` components.
@@ -517,7 +517,7 @@ Due to accessibility reasons, we've deprecated the `isDisabled` prop for `Link`.
 
 ### Progress
 
-Change `color` prop to `colorScheme`.
+Changed `color` prop to `colorScheme`.
 
 ```diff
 - <Progress color="blue"/>
@@ -527,12 +527,12 @@ Change `color` prop to `colorScheme`.
 ### CircularProgress
 
 - `trackColor` prop now takes a specific theme color or a valid `css` color.
-- Change the `thickness` prop to point to an actual thickness value in `px`
+- Changed the `thickness` prop to point to an actual thickness value in `px`
   (e.g. `thickness={4}`)
 
 ### Radio
 
-- Change `variantColor` prop to `colorScheme`.
+- Changed `variantColor` prop to `colorScheme`.
 
 ```diff
 - <Radio variantColor="blue">Option</Radio>
