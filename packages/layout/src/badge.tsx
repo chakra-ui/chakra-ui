@@ -1,15 +1,15 @@
-import * as React from "react"
 import {
   chakra,
-  PropsOf,
-  useStyleConfig,
+  forwardRef,
   omitThemingProps,
   ThemingProps,
-  forwardRef,
+  useStyleConfig,
+  WithChakraProps,
 } from "@chakra-ui/system"
-import { __DEV__, cx } from "@chakra-ui/utils"
+import { cx, __DEV__ } from "@chakra-ui/utils"
+import * as React from "react"
 
-export interface BadgeProps extends PropsOf<typeof chakra.span>, ThemingProps {}
+export interface BadgeProps extends WithChakraProps<"span">, ThemingProps {}
 
 /**
  * React component used to display notifications, messages, or

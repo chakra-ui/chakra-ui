@@ -1,7 +1,7 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, WithChakraProps } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 
-export interface CenterProps extends PropsOf<typeof chakra.div> {}
+export interface CenterProps extends WithChakraProps<"div"> {}
 
 /**
  * React component used to horizontally and vertically center its child.

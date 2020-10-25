@@ -1,15 +1,15 @@
 import {
   chakra,
   forwardRef,
-  PropsOf,
   omitThemingProps,
   ThemingProps,
   useStyleConfig,
+  WithChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface CodeProps extends PropsOf<typeof chakra.code>, ThemingProps {}
+export interface CodeProps extends WithChakraProps<"code">, ThemingProps {}
 
 /**
  * React component to render inline code snippets.

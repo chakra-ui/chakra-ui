@@ -1,7 +1,7 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, WithChakraProps } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 
-export interface SpacerProps extends PropsOf<typeof Spacer> {}
+export interface SpacerProps extends WithChakraProps<"div"> {}
 
 /**
  * A flexible flex spacer that expands along the major axis of its containing flex layout.

@@ -1,14 +1,14 @@
+import { Container } from "@chakra-ui/layout"
+import { chakra } from "@chakra-ui/system"
+import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
 import {
   Accordion,
   AccordionButton,
+  AccordionIcon,
   AccordionItem,
   AccordionPanel,
-  AccordionIcon,
 } from "../src"
-import { chakra } from "@chakra-ui/system"
-import { Container } from "@chakra-ui/layout"
-import { AnimatePresence, motion } from "framer-motion"
 
 export default {
   title: "Accordion",

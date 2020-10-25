@@ -3,12 +3,12 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  PropsOf,
   StylesProvider,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
+  WithChakraProps,
 } from "@chakra-ui/system"
 import { Collapse } from "@chakra-ui/transition"
 import {
@@ -30,11 +30,9 @@ import {
   UseAccordionProps,
 } from "./use-accordion"
 
-interface DivProps extends PropsOf<typeof chakra.div> {}
-
 export interface AccordionProps
   extends UseAccordionProps,
-    Omit<DivProps, keyof UseAccordionProps>,
+    Omit<WithChakraProps<"div">, keyof UseAccordionProps>,
     ThemingProps {
   /**
    * If `true`, height animation and transitions will be disabled.
@@ -50,7 +48,7 @@ export interface AccordionProps
  * @see Docs https://chakra-ui.com/components/accordion
  */
 export const Accordion = forwardRef<AccordionProps, "div">(function Accordion(
-  { children, ...props },
+  { children, reduceMotion, ...props },
   ref,
 ) {
   const styles = useMultiStyleConfig("Accordion", props)
@@ -59,8 +57,8 @@ export const Accordion = forwardRef<AccordionProps, "div">(function Accordion(
   const { htmlProps, ...context } = useAccordion(ownProps)
 
   const ctx = React.useMemo(
-    () => ({ ...context, reduceMotion: !!props.reduceMotion }),
-    [context, props.reduceMotion],
+    () => ({ ...context, reduceMotion: !!reduceMotion }),
+    [context, reduceMotion],
   )
 
   return (
@@ -93,7 +91,7 @@ const [AccordionItemProvider, useAccordionItemContext] = createContext<
 })
 
 export interface AccordionItemProps
-  extends Omit<DivProps, keyof UseAccordionItemProps>,
+  extends Omit<WithChakraProps<"div">, keyof UseAccordionItemProps>,
     UseAccordionItemProps {
   children?: ReactNodeOrRenderProp<{
     isExpanded: boolean
@@ -150,7 +148,7 @@ export function useAccordionItemState() {
   return { isOpen, onClose, isDisabled, onOpen }
 }
 
-export interface AccordionButtonProps extends PropsOf<typeof chakra.button> {}
+export interface AccordionButtonProps extends WithChakraProps<"button"> {}
 
 /**
  * AccordionButton is used expands and collapses an accordion item.
@@ -188,7 +186,7 @@ if (__DEV__) {
   AccordionButton.displayName = "AccordionButton"
 }
 
-export interface AccordionPanelProps extends DivProps {}
+export interface AccordionPanelProps extends WithChakraProps<"div"> {}
 
 /**
  * Accordion panel that holds the content for each accordion.

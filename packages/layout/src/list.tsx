@@ -1,5 +1,11 @@
 import { Icon, IconProps } from "@chakra-ui/icon"
-import { chakra, SystemProps, forwardRef, PropsOf } from "@chakra-ui/system"
+import {
+  chakra,
+  SystemProps,
+  forwardRef,
+  PropsOf,
+  WithChakraProps,
+} from "@chakra-ui/system"
 import { getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -18,7 +24,7 @@ interface ListOptions {
   spacing?: SystemProps["margin"]
 }
 
-export interface ListProps extends PropsOf<typeof chakra.ul>, ListOptions {}
+export interface ListProps extends WithChakraProps<"ul">, ListOptions {}
 
 /**
  * List is used to display list items, it renders a `<ul>` by default.
