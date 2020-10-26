@@ -169,32 +169,6 @@ the `command` prop.
 </Menu>
 ```
 
-## Adding menu transition
-
-You can add transition support for the menu by importing the `MenuTransition`
-component.
-
-> It's important to use the `sx` prop for the transitions to work properly. For
-> some reason, it doesn't work with the `style` native prop
-
-```jsx live=false
-<Menu>
-  <MenuButton size="sm" colorScheme="teal">
-    Open menu
-  </MenuButton>
-  <MenuTransition>
-    {(styles) => (
-      <MenuList sx={styles}>
-        <MenuItem command="⌘T">New Tab</MenuItem>
-        <MenuItem command="⌘N">New Window</MenuItem>
-        <MenuItem command="⌘⇧N">Open Closed Tab</MenuItem>
-        <MenuItem command="⌘O">Open File...</MenuItem>
-      </MenuList>
-    )}
-  </MenuTransition>
-</Menu>
-```
-
 ### Lazily mounting MenuItem
 
 By default, the `Menu` component renders all children of `MenuList` to the DOM,
