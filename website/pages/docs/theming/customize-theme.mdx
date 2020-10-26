@@ -5,7 +5,7 @@ description: How to modify Chakra UI's default theme
 
 By default, all Chakra components inherit values from the default theme. In some
 scenarios, you might need to customize the default theme to match your design
-requirements, you have a few different options depending on your goals.
+requirements. You have a few different options depending on your goals.
 
 - Customize the theme tokens like colors, font sizes, line heights, etc.
 - Customize the component styles, changing the base styles, sizes, or variants.
@@ -35,13 +35,13 @@ const theme = extendTheme({
   },
 })
 
-// 3. Now you can use this colors in your components
+// 3. Now you can use these colors in your components
 function Usage() {
   return <Box bg="brand.100">Welcome</Box>
 }
 ```
 
-> If you're curious what theme styles you can override, please reference the
+> If you're curious as to what theme styles you can override, please reference the
 > [default theme foundation style files](https://github.com/chakra-ui/chakra-ui/tree/master/packages/theme/src/foundations).
 
 ## Customizing component styles
@@ -53,8 +53,8 @@ sizes (`sizes`), and styles for different visual variants (`variants`).
 It's important to understand this so you can override any component style
 effectively.
 
-> You're not limited to the component styles that Chakra providers, you can also
-> create your custom component styles.
+> You're not limited to the component styles that Chakra provides, you can also
+> create your own custom component styles.
 > [Learn more](/docs/theming/component-style).
 
 ### Customizing single components
@@ -120,7 +120,7 @@ const theme = extendTheme({
 export default theme
 ```
 
-And that's it! When you use the Button from Chakra, these updates will be
+That's it! When you use the Button from Chakra, these updates will be
 automatically applied.
 
 ```jsx live=false
@@ -129,12 +129,12 @@ automatically applied.
 </Button>
 ```
 
-> If you're curious what component styles you can override, please reference the
+> If you're curious as to what component styles you can override, please reference the
 > [default component style files](https://github.com/chakra-ui/chakra-ui/tree/master/packages/theme/src/components).
 
 ### Customizing global styles
 
-Global styles are theme-aware styles you can applied to any html element
+Global styles are theme-aware styles you can apply to any html element
 globally.
 
 To add global styles, update the `theme.styles.global` key in the theme. Global
@@ -183,9 +183,9 @@ const overrides = extendTheme({
 ## Scaling out your project
 
 As your project grows in size, it's best to keep things organized. We highly
-suggest that instead of a single `theme.js` (or `theme.ts`) file, that you
-create a `/theme` folder in its place. Inside of this folder, you could have a
-directory structure that looks like such:
+suggest that instead of using a single `theme.js` (or `theme.ts`) file, you
+create a `/theme` folder in its place. Inside this folder, you could have a
+directory structure that looks like this:
 
 ```bash
 /theme
@@ -226,7 +226,7 @@ const overrides = {
 export default extendTheme(overrides)
 ```
 
-None of this is strictly required to use Chakra - but we've learned some hard
+None of these is strictly required to use Chakra - but we've learned some hard
 lessons on the "right" way and the "wrong" way to write styles. The above is our
 best suggestion on how to write style overrides and organize your custom theme.
 
