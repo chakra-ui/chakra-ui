@@ -39,7 +39,7 @@ example, the `<Button>` component renders a `<button>` HTML element:
 ```
 
 **A multipart component** is a component that has multiple parts, and require
-these parts to work correctly. This commonly referred to as a composite
+these parts to work correctly. This is commonly referred to as a composite
 component.
 
 For example, a `Tabs` component consists of `TabList`, `Tab`, `TabPanels`, and
@@ -196,7 +196,7 @@ you need to be aware of.
 
 - Given that multipart refers to a component with multiple parts, you'll need to
   define the parts in a `part` key in the style config.
-- You'll need to provide styles for each `part` for `baseStyle`, `sizes`, and
+- You'll need to provide styles for each `part`, `baseStyle`, `sizes`, and
   `variants`.
 
 Here's what the style config for multipart components looks like:
@@ -288,8 +288,8 @@ const styles = useMultiStyleConfig(themeKey, props)
 
 - `themeKey`: the key in `theme.components` that points to the desired
   styleConfig.
-- `props`: an option of the options for the computing the final styles. It
-  typically consists of the `size`, `variant`, and `colorScheme`
+- `props`: an option of the options for computing the final styles. It
+  typically consists of the `size`, `variant`, and `colorScheme`.
 
 #### Return Values
 

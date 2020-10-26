@@ -417,7 +417,7 @@ import { PhoneIcon } from "@chakra-ui/core"
 **This reduces the effort needed to use custom icons, eliminates TypeScript
 errors, and reduces unused icons bloating your app.**
 
-- Renamed `variantColor` to `colorScheme`
+- Renamed `variantColor` to `colorScheme`.
 
 ### Skeleton
 
@@ -539,7 +539,7 @@ Changed `color` prop to `colorScheme`.
 + <Radio colorScheme="blue">Option</Radio>
 ```
 
-- Deprecated the `isFullWidth` prop. The `Radio` takes up the width of the
+- Deprecated the `isFullWidth` prop. The `Radio` takes up the width of it's
   parent by default.
 
 - Deprecated the `RadioButton` component. Use the `useRadio` hook to create
@@ -604,7 +604,7 @@ Changed `color` prop to `colorScheme`.
 
 ### Switch
 
-Rename the `color` prop to `colorScheme`
+Rename the `color` prop to `colorScheme`.
 
 ```diff
 -  <Switch color="blue"/>
@@ -613,18 +613,18 @@ Rename the `color` prop to `colorScheme`
 
 ### Tabs
 
-Change `variantColor` prop to `colorScheme`
+Change `variantColor` prop to `colorScheme`.
 
 ### Tags
 
-- Change `variantColor` to `colorScheme`
+- Change `variantColor` to `colorScheme`.
 
 ```diff
 - <Tag variantColor="blue"/>
 + <Tag colorScheme="blue"/>
 ```
 
-- Added support for `isDisabled` prop on the `TagCloseButton` component
+- Added support for `isDisabled` prop on the `TagCloseButton` component.
 
 ```jsx live=false
 <Tag variant="solid" size="sm" colorScheme="cyan">
@@ -633,22 +633,21 @@ Change `variantColor` prop to `colorScheme`
 </Tag>
 ```
 
-- Default size was changed to `md` instead of `lg`
+- Default size was changed from `lg` to `md`.
 
 ### Toast
 
-- Removed `react-spring` dependency in favor of `framer-motion`
-- Added support for duplicate toast prevention using `toast.isActive` method
+- Removed `react-spring` dependency in favor of `framer-motion`.
+- Added support for duplicate toast prevention using `toast.isActive` method.
 - Added support to programmatically close one or all toasts using `toast.close`
-  or `toast.closeAll` methods
+  or `toast.closeAll` methods.
 - Added support to programmatically update a toast using `toast.update` method.
-- Added support for `onCloseComplete` prop, a callback function to run side
-  effects after the toast component has closed.
+- Added support for `onCloseComplete` prop, which is a callback function that is invoked when the toast closes.
 
 ### Wrap
 
-- Children of `Wrap` must now be _wrapped_ in `WrapItem`. This allows easier
-  customization of children through e.g. the `sx` prop on `WrapItem`.
+- Children of `Wrap` must now be _wrapped_ in `WrapItem`. This makes it easy to
+  customize the `WrapItem` using the `sx` prop.
 
 ```jsx live=false
 // before
@@ -674,14 +673,15 @@ Change `variantColor` prop to `colorScheme`
 
 ### CSS Reset
 
-- Deprecated support for `config` prop, in favor of reading global styles from
-  `theme.styles.global`
-- Added global style for `focus-visible` in event you need to remove focus
+- Removed the `config` prop, in favor of adding global styles to `theme.styles.global`.
+- Added global style for `focus-visible` package. Once installed, it removes focus
   styles for non-keyboard interactions.
 
 ```bash
-# as a dependency
 yarn add focus-visible
+# or 
+npm install focus-visible
+
 
 # at the root of your application
 import "focus-visible/dist/focus-visible"
@@ -689,14 +689,14 @@ import "focus-visible/dist/focus-visible"
 
 ### Hooks
 
-- `useDisclosure` now accepts `object` instead of `boolean` as initial values
+- `useDisclosure` now accepts `object` instead of `boolean` as initial values.
 
 ```diff
 - const { isOpen, onToggle } = useDisclosure(true);
 + const { isOpen, onToggle } = useDisclosure({defaultIsOpen: true});
 ```
 
-**That's it! Welcome to Chakra UI v1.**
+**That's it! Welcome to Chakra UI v1 🥳.**
 
 > If you still experience issues after migrating, feel free to create an issue
 > or join our Discord chat here: https://discord.gg/dQHfcWF
