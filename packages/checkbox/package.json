@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/checkbox",
-  "version": "1.0.0-rc.5",
+  "version": "1.0.0-rc.7",
   "description": "A React Checkbox component for use in forms",
   "keywords": [
     "react",
@@ -57,13 +57,13 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "1.0.0-rc.5",
-    "@chakra-ui/utils": "1.0.0-rc.5",
-    "@chakra-ui/visually-hidden": "1.0.0-rc.5"
+    "@chakra-ui/hooks": "1.0.0-rc.7",
+    "@chakra-ui/utils": "1.0.0-rc.7",
+    "@chakra-ui/visually-hidden": "1.0.0-rc.7"
   },
   "devDependencies": {
-    "framer-motion": "^2.9.3",
-    "@chakra-ui/system": "1.0.0-rc.5"
+    "@chakra-ui/system": "1.0.0-rc.7",
+    "framer-motion": "^2.9.3"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=1.0.0-rc.5",

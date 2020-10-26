@@ -1,5 +1,26 @@
 # Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 1.0.0-rc.7 (2020-10-25)
+
+**Note:** Version bump only for package @chakra-ui/checkbox
+
+
+
+
+
+# 1.0.0-rc.6 (2020-10-25)
+
+**Note:** Version bump only for package @chakra-ui/checkbox
+
+
+
+
+
+# Change Log
+
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
