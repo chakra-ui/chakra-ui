@@ -182,10 +182,18 @@ export class ToastManager extends React.Component<Props, State> {
 
       return {
         ...prevState,
-        [position]: prevState[position].map((toast) => ({
-          ...toast,
-          requestClose: toast.id === id ? true : toast.requestClose,
-        })),
+        [position]: prevState[position].map((toast) => {
+          // id may be string or number
+          // eslint-disable-next-line eqeqeq
+          if (toast.id == id) {
+            return {
+              ...toast,
+              requestClose: true,
+            }
+          }
+
+          return toast
+        }),
       }
     })
   }
@@ -194,12 +202,12 @@ export class ToastManager extends React.Component<Props, State> {
    * Delete a toast record at its position
    */
   removeToast = (id: ToastId, position: ToastPosition) => {
-    this.setState((prevState) => {
-      return {
-        ...prevState,
-        [position]: prevState[position].filter((toast) => toast.id !== id),
-      }
-    })
+    this.setState((prevState) => ({
+      ...prevState,
+      // id may be string or number
+      // eslint-disable-next-line eqeqeq
+      [position]: prevState[position].filter((toast) => toast.id != id),
+    }))
   }
 
   isVisible = (id: ToastId) => {
