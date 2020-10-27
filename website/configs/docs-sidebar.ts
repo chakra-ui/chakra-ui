@@ -173,45 +173,7 @@ const sidebar = {
             },
           ],
         },
-        {
-          title: "Hooks",
-          path: "/docs/hooks",
-          open: true,
-          routes: [
-            {
-              title: "useBreakpointValue",
-              path: "/docs/hooks/use-breakpoint-value",
-            },
-            {
-              title: "useClipboard",
-              path: "/docs/hooks/use-clipboard",
-            },
-            {
-              title: "useControllable",
-              path: "/docs/hooks/use-controllable",
-            },
-            {
-              title: "useDisclosure",
-              path: "/docs/hooks/use-disclosure",
-            },
-            {
-              title: "useMediaQuery",
-              path: "/docs/hooks/use-media-query",
-            },
-            {
-              title: "useTheme",
-              path: "/docs/hooks/use-theme",
-            },
-            {
-              title: "useToken",
-              path: "/docs/hooks/use-token",
-            },
-            {
-              title: "usePrefersReducedMotion",
-              path: "/docs/hooks/use-prefers-reduced-motion",
-            },
-          ],
-        },
+
         {
           title: "Data Display",
           path: "/docs/data-display",
@@ -368,6 +330,45 @@ const sidebar = {
             {
               title: "Visually Hidden",
               path: "/docs/components/visually-hidden",
+            },
+          ],
+        },
+        {
+          title: "Hooks",
+          path: "/docs/hooks",
+          open: true,
+          routes: [
+            {
+              title: "useBreakpointValue",
+              path: "/docs/hooks/use-breakpoint-value",
+            },
+            {
+              title: "useClipboard",
+              path: "/docs/hooks/use-clipboard",
+            },
+            {
+              title: "useControllable",
+              path: "/docs/hooks/use-controllable",
+            },
+            {
+              title: "useDisclosure",
+              path: "/docs/hooks/use-disclosure",
+            },
+            {
+              title: "useMediaQuery",
+              path: "/docs/hooks/use-media-query",
+            },
+            {
+              title: "useTheme",
+              path: "/docs/hooks/use-theme",
+            },
+            {
+              title: "useToken",
+              path: "/docs/hooks/use-token",
+            },
+            {
+              title: "usePrefersReducedMotion",
+              path: "/docs/hooks/use-prefers-reduced-motion",
             },
           ],
         },
