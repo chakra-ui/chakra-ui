@@ -6,7 +6,7 @@ description:
   It renders a `div` element.
 ---
 
-A primitive useful for grid layouts. Grid is `Box` with `display: grid` and
+A primitive useful for grid layouts. Grid is `Box` with `display: grid` and it
 comes with helpful style shorthand. It renders a `div` element.
 
 <ComponentLinks
@@ -23,7 +23,7 @@ comes with helpful style shorthand. It renders a `div` element.
 import { Grid, GridItem } from "@chakra-ui/core"
 ```
 
-- **Grid:** The main wrapper with `display: grid`
+- **Grid:** The main wrapper with `display: grid`.
 - **GridItem:** Used as a child of `Grid` to control the span, and start
   positions within the grid.
 
@@ -44,32 +44,29 @@ applying a `gap` or space between the grid items.
 
 ## Spanning columns
 
-In some layouts, you might need certain grid items to span specific amount of
-columns instead of an even distribution. Pass the `span` prop to `GridItem`
-component to manage this distribution.
+In some layouts, you may need certain grid items to span specific amount of
+columns or rows instead of an even distribution. To achieve this, you need to pass the `colSpan` prop to the `GridItem`
+component to span across columns and also pass the `rowSpan` component to span across rows. You also need to specify the `templateColumns` and `templateRows`.
 
 ```jsx
-<Grid templateColumns="repeat(5, 1fr)" gap={4}>
-  <GridItem colSpan={3} h="10" bg="tomato" />
-  <GridItem colSpan={2} h="10" bg="papayawhip" />
-  <GridItem colSpan={1} h="10" bg="papayawhip" />
-  <GridItem colSpan={4} h="10" bg="tomato" />
+<Grid h="200px" templateRows="repeat(2, 1fr)" templateColumns="repeat(5, 1fr)" gap={4}>
+  
+  <GridItem rowSpan={2} colSpan={1} bg="tomato" />
+  <GridItem colSpan={2} bg="papayawhip" />
+  <GridItem colSpan={2} bg="papayawhip" />
+  <GridItem colSpan={4} bg="tomato" />
 </Grid>
 ```
 
 ## Starting and ending lines
 
-Pass the `start` and `end` prop to `GridItem` component to make an element start
+Pass the `colStart` and `colEnd` prop to `GridItem` component to make an element start
 or end at the `nth` grid position.
-
-In some layouts, you might need certain grid items to span specific amount of
-columns instead of an even distribution. Pass the `span` prop to `GridItem`
-component to manage this distribution.
 
 ```jsx
 <Grid templateColumns="repeat(5, 1fr)" gap={4}>
   <GridItem colSpan={2} h="10" bg="tomato" />
-  <GridItem colStart={4} colSpan={2} h="10" bg="papayawhip" />
+  <GridItem colStart={4} colEnd={6}  h="10" bg="papayawhip" />
 </Grid>
 ```
 
@@ -94,6 +91,7 @@ to save you some time:
 | `gridAutoRows`        | `autoRows`        |
 | `gridTemplateRows`    | `templateRows`    |
 | `gridTemplateColumns` | `templateColumns` |
+
 
 ### GridItem Props
 
