@@ -75,15 +75,6 @@ export async function main() {
       .join("\n"),
   )
 
-  writeFileSync(
-    path.join(__dirname, "..", "esm", "index.js"),
-    indexArray
-      .map(
-        ({ displayName, filePath }) =>
-          `export * as ${displayName} from '${filePath}'`,
-      )
-      .join("\n"),
-  )
   console.info(`Processed ${componentFiles.length} files`)
 }
 
