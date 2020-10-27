@@ -40,30 +40,41 @@ export async function main() {
 
   const indexArray: { displayName: string; filePath: string }[] = []
 
+  function createUniqueName(displayName: string) {
+    const existing = indexArray.filter(
+      (prev) =>
+        String(prev.displayName).toLowerCase() === displayName.toLowerCase(),
+    )
+
+    if (!existing.length) {
+      return displayName.toLowerCase()
+    }
+
+    return `${displayName}${existing.length}`
+  }
+
   console.info(`Start processing ${componentFiles.length} files`)
-  const promises = componentFiles.map(async (file, index, all) => {
+  componentFiles.forEach((file, index, all) => {
     const absoluteFilePath = path.join(basePath, file)
     const propsDefs = parse(absoluteFilePath)
 
-    const writePromises = propsDefs.map(async (def) => {
-      const displayName = def.displayName
+    for (const def of propsDefs) {
+      const displayName = createUniqueName(def.displayName)
       const fileName = `${displayName}.json`
       const filePath = path.join(componentsDir, fileName)
       const content = JSON.stringify(def)
-      // async write causes empty files ¯\_(ツ)_/¯
+
       writeFileSync(filePath, content)
+
       indexArray.push({ displayName, filePath: `../components/${fileName}` })
+
       console.info(
         `${String(index + 1).padStart(String(all.length).length)}/${
           all.length
-        } ${file} ${fileName}`,
+        } ${file} ${fileName} ${displayName}`,
       )
-    })
-
-    return Promise.all(writePromises)
+    }
   })
-
-  await Promise.all(promises)
 
   writeFileSync(
     path.join(__dirname, "index.js"),
