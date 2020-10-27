@@ -511,21 +511,8 @@ function Example() {
 
 Tabs composes `Box` so you call pass all `Box` related props.
 
-| Name           | Type                                                                              | Default      | Description                                                                                                                      |
-| -------------- | --------------------------------------------------------------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------- |
-| `onChange`     | `(index: number) => void`                                                         |              | The callback to update the active tab index.                                                                                     |
-| `index`        | `number`                                                                          |              | The controlled index of the tabs.                                                                                                |
-| `defaultIndex` | `number`                                                                          |              | The index of the initial active tab.                                                                                             |
-| `isManual`     | `boolean`                                                                         |              | If `true`, keyboard navigation changes focus between tabs but doesn't activate it. User will have to press `Enter` to active it. |
-| `children`     | `React.ReactNode`                                                                 |              | The children of the switch.                                                                                                      |
-| `variant`      | `line`,`enclosed`,`enclosed-colored`, `soft-rounded`, `solid-rounded`, `unstyled` | `line`       | The visual style of the tab.                                                                                                     |
-| `variantColor` | `string`                                                                          |              | The primary color to use for the selected variant. Use a color key in `theme.colors`.                                            |
-| `size`         | `sm`,`md`,`lg`                                                                    | `md`         | The visual size of the tabs.                                                                                                     |
-| `orientation`  | `horizontal`,`vertical`                                                           | `horizontal` | The orientation of the tabs.                                                                                                     |
-| `isFitted`     | `boolean`                                                                         |              | If `true`, the tabs will stretch to fill the available space.                                                                    |
+<PropsTable of="Tabs" />
 
 ### Tab Props
 
-| Name         | Type      | Default | Description                          |
-| ------------ | --------- | ------- | ------------------------------------ |
-| `isDisabled` | `boolean` |         | If `true`, the tab will be disabled. |
+<PropsTable of="Tab" />

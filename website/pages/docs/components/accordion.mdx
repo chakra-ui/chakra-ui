@@ -244,33 +244,22 @@ toggle (expand or collapse) the accordion.
 
 ### Accordion Props
 
-| Name          | Type                              | Default | Description                                                                                                    |
-| ------------- | --------------------------------- | ------- | -------------------------------------------------------------------------------------------------------------- |
-| allowMultiple | `boolean`                         |         | If `true`, multiple accordion items can be expanded at once.                                                   |
-| allowToggle   | `boolean`                         |         | If `true`, any expanded accordion item can be collapsed again.                                                 |
-| index         | `NumberOrArrayOfNumber`           |         | The index(es) of the expanded accordion item                                                                   |
-| defaultIndex  | `NumberOrArrayOfNumber`           |         | The initial index(es) of the expanded accordion item. Must be an array for `allowMultiple={true}` to function. |
-| onChange      | `(NumberOrArrayOfNumber) => void` |         | The callback invoked when accordion items are expanded or collapsed.                                           |
-| children      | `ReactNode`                       |         | The content of the accordion. The children must be the `AccordionButton` and `AccordionPanel` components.      |
+<PropsTable of="Accordion" />
 
 ### AccordionItem Props
 
-| Name       | Type                                      | Default | Description                                                                                               |
-| ---------- | ----------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------- |
-| id         | `string`                                  |         | A unique `id` for the accordion item.                                                                     |
-| isDisabled | `boolean`                                 |         | If `true`, the accordion header will be disabled.                                                         |
-| children   | `ReactNode`, `(RenderProps) => ReactNode` |         | The content of the accordion. The children must be the `AccordionButton` and `AccordionPanel` components. |
-
-<br />
+<PropsTable of="AccordionItem" />
 
 ### AccordionButton Props
 
 AccordionButton renders a `button` and composes `Box`, this means you can style
 it by passing the pseudo style props `_expanded`, `_disabled`, `_hover`, etc.
 
-<br />
+<PropsTable of="AccordionButton" />
 
 ### AccordionPanel Props
 
 AccordionPanel renders a `div` and composes `Collapse` to provide the height
 animation.
+
+<PropsTable of="AccordionPanel" />
