@@ -6,7 +6,6 @@ import {
   isTabbable,
 } from "@chakra-ui/utils"
 import { RefObject } from "react"
-import { useMouseDownRef } from "./use-mouse-down-ref"
 import { useUpdateEffect } from "./use-update-effect"
 
 export interface UseFocusOnHideOptions {
@@ -39,14 +38,7 @@ export function useFocusOnHide(
   containerRef: RefObject<HTMLElement>,
   options: UseFocusOnHideOptions,
 ) {
-  const mousedownRef = useMouseDownRef(options.visible)
-  const isTargetTabbable = !isTabbable(mousedownRef.current)
-
-  const {
-    shouldFocus: shouldFocusProp = isTargetTabbable,
-    visible,
-    focusRef,
-  } = options
+  const { shouldFocus: shouldFocusProp, visible, focusRef } = options
 
   const shouldFocus = shouldFocusProp && !visible
 

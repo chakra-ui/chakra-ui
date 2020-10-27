@@ -6,7 +6,7 @@ import {
 } from "@chakra-ui/utils"
 import * as React from "react"
 import { useEventListener } from "./use-event-listener"
-import { useLatestRef } from "./use-latest-ref"
+import { useUpdateEffect } from "./use-update-effect"
 
 export interface UseFocusOnShowOptions {
   visible?: boolean
@@ -29,13 +29,10 @@ export function useFocusOnShow<T extends HTMLElement>(
 
   const autoFocus = shouldFocus && visible
 
-  const onFocus = () => {
-    if (
-      !element ||
-      !autoFocus ||
-      contains(element, document.activeElement as HTMLElement)
-    )
-      return
+  const onFocus = React.useCallback(() => {
+    if (!element || !autoFocus) return
+
+    if (contains(element, document.activeElement as HTMLElement)) return
 
     if (focusRef?.current) {
       focus(focusRef.current, { preventScroll })
@@ -45,13 +42,11 @@ export function useFocusOnShow<T extends HTMLElement>(
         focus(tabbableEls[0], { preventScroll })
       }
     }
-  }
+  }, [autoFocus, preventScroll])
 
-  const onFocusRef = useLatestRef(onFocus)
-
-  React.useEffect(() => {
-    onFocusRef.current()
-  }, [onFocusRef.current])
+  useUpdateEffect(() => {
+    onFocus()
+  }, [onFocus])
 
   useEventListener("transitionend", onFocus, element)
 }

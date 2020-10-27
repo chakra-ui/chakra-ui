@@ -161,7 +161,7 @@ export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
         {...listProps}
         /**
          * We could call this on either `onAnimationComplete` or `onUpdate`.
-         * It seems the re-focusing works better with the focus
+         * It seems the re-focusing works better with the `onUpdate`
          */
         onUpdate={onTransitionEnd}
         className={cx("chakra-menu__menu-list", listProps.className)}

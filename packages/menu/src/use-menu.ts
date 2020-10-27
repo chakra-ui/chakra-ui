@@ -3,7 +3,6 @@ import { useDescendant, useDescendants } from "@chakra-ui/descendant"
 import {
   useControllableState,
   useDisclosure,
-  useEventListener,
   useFocusOnHide,
   useId,
   useIds,
@@ -28,7 +27,6 @@ import {
   mergeRefs,
   mergeWith,
   normalizeEventKey,
-  once,
   removeItem,
 } from "@chakra-ui/utils"
 import React, {
@@ -170,6 +168,7 @@ export function useMenu(props: UseMenuProps) {
   useFocusOnHide(menuRef, {
     focusRef: buttonRef,
     visible: isOpen,
+    shouldFocus: true,
   })
 
   /**
@@ -198,31 +197,15 @@ export function useMenu(props: UseMenuProps) {
 
     if (!shouldRefocus) return
 
-    requestAnimationFrame(() => {
-      const el = domContext.descendants[focusedIndex]?.element
-      el?.focus({ preventScroll: true })
-    })
+    const el = domContext.descendants[focusedIndex]?.element
+    el?.focus({ preventScroll: true })
   }
-
-  useEventListener("transitionend", refocus, menuRef.current)
-
-  const onTransitionEnd = once(() => {
-    /**
-     * If we use CSS for transitioning this component, there would be no
-     * need to dispatch a custom event. This is only useful for JS only
-     * motion libraries like `framer-motion` to `react-spring`.
-     *
-     * They usually provide an `onRest` or `onAnimationComplete` callback we can
-     * use to trigger the custom `transitionend` event.
-     */
-    menuRef.current?.dispatchEvent(new Event("transitionend"))
-  })
 
   return {
     openAndFocusMenu,
     openAndFocusFirstItem,
     openAndFocusLastItem,
-    onTransitionEnd,
+    onTransitionEnd: refocus,
     domContext,
     popper,
     buttonId,
@@ -590,7 +573,7 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps) {
     type = "radio",
     value: valueProp,
     defaultValue,
-    onChange,
+    onChange: onChangeProp,
     ...htmlProps
   } = props
 
@@ -601,10 +584,10 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps) {
   const [value, setValue] = useControllableState({
     defaultValue: defaultValue ?? fallback,
     value: valueProp,
-    onChange,
+    onChange: onChangeProp,
   })
 
-  const handleChange = useCallback(
+  const onChange = useCallback(
     (selectedValue: string) => {
       if (type === "radio" && isString(value)) {
         setValue(selectedValue)
@@ -634,7 +617,7 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps) {
     if ((child.type as any).id !== "MenuItemOption") return child
 
     const onClick = (event: MouseEvent) => {
-      handleChange(child.props.value)
+      onChange(child.props.value)
       child.props.onClick?.(event)
     }
 
