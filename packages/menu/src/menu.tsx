@@ -9,6 +9,7 @@ import {
   useMultiStyleConfig,
   useStyles,
   HTMLChakraProps,
+  SystemStyleObject,
 } from "@chakra-ui/system"
 import { cx, MaybeRenderProp, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { motion, Variants } from "framer-motion"
@@ -158,6 +159,10 @@ export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
     <chakra.div {...positionerProps} __css={{ zIndex: styles.list?.zIndex }}>
       <Motion
         {...listProps}
+        /**
+         * We could call this on either `onAnimationComplete` or `onUpdate`.
+         * It seems the re-focusing works better with the focus
+         */
         onUpdate={onTransitionEnd}
         className={cx("chakra-menu__menu-list", listProps.className)}
         variants={motionVariants}
@@ -180,6 +185,7 @@ export interface StyledMenuItemProps extends HTMLChakraProps<"button"> {}
 
 const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
   function StyledMenuItem(props, ref) {
+    const { as, type, ...rest } = props
     const styles = useStyles()
 
     /**
@@ -187,26 +193,23 @@ const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
      * Else, use no type to avoid invalid html, e.g. <a type="button" />
      * Else, fall back to "button"
      */
-    const type = props.as ? props.type ?? undefined : "button"
+    const btnType = as ? type ?? undefined : "button"
+
+    const buttonStyles: SystemStyleObject = {
+      textDecoration: "none",
+      color: "inherit",
+      userSelect: "none",
+      display: "flex",
+      width: "100%",
+      alignItems: "center",
+      textAlign: "left",
+      flex: "0 0 auto",
+      outline: 0,
+      ...styles.item,
+    }
 
     return (
-      <chakra.button
-        ref={ref}
-        type={type}
-        {...props}
-        __css={{
-          textDecoration: "none",
-          color: "inherit",
-          userSelect: "none",
-          display: "flex",
-          width: "100%",
-          alignItems: "center",
-          textAlign: "left",
-          flex: "0 0 auto",
-          outline: 0,
-          ...styles.item,
-        }}
-      />
+      <chakra.button ref={ref} type={btnType} {...rest} __css={buttonStyles} />
     )
   },
 )
@@ -235,15 +238,9 @@ export const MenuItem = forwardRef<MenuItemProps, "button">(function MenuItem(
   props,
   ref,
 ) {
-  const {
-    icon,
-    iconSpacing = "0.75rem",
-    command,
-    children,
-    ...otherProps
-  } = props
+  const { icon, iconSpacing = "0.75rem", command, children, ...rest } = props
 
-  const menuItemProps = useMenuItem(otherProps, ref)
+  const menuItemProps = useMenuItem(rest, ref)
 
   const shouldWrap = icon || command
 

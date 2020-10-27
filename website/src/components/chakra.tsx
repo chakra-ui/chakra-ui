@@ -1,34 +1,9 @@
-import {
-  ChakraProvider,
-  cookieStorageManager,
-  localStorageManager,
-} from "@chakra-ui/core"
+import { ChakraProvider } from "@chakra-ui/core"
 import { GetServerSidePropsContext } from "next"
 import theme from "theme"
 
 type WithCookies = {
   cookies?: string
-}
-
-const determineColorModeManager = (cookies?: string) => {
-  const isBrowser = typeof window !== "undefined"
-  const isServer = typeof cookies !== "undefined"
-
-  const actualCookies = isServer
-    ? cookies
-    : isBrowser
-    ? document.cookie
-    : undefined
-
-  console.log({
-    isBrowser,
-    isServer,
-    actualCookies,
-  })
-
-  return actualCookies
-    ? cookieStorageManager(actualCookies)
-    : localStorageManager
 }
 
 /**
