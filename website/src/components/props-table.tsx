@@ -29,7 +29,7 @@ const PropsTable = ({ of }: PropsTableProps) => {
       </thead>
       <tbody>
         {entries.map(([propName, values]) => (
-          <tr>
+          <tr key={propName}>
             <MDXComponents.td>{propName}</MDXComponents.td>
             <MDXComponents.td>
               <MDXComponents.inlineCode
