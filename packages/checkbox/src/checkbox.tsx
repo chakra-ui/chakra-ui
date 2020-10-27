@@ -9,7 +9,7 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { callAll, cx, Omit, __DEV__ } from "@chakra-ui/utils"
+import { callAll, cx, Omit, __DEV__, dataAttr } from "@chakra-ui/utils"
 import * as React from "react"
 import { useCheckboxGroupContext } from "./checkbox-group"
 import { CheckboxIcon } from "./checkbox-icon"
@@ -158,7 +158,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
   return (
     <StyledContainer
       __css={styles.container}
-      data-disabled={state.isDisabled}
+      data-disabled={dataAttr(state.isDisabled)}
       className={_className}
       {...htmlProps}
     >

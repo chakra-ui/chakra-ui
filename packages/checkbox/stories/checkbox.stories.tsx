@@ -20,6 +20,12 @@ export const CheckboxWithHooks = () => {
 
 export const Basic = () => <Checkbox colorScheme="red">Hello</Checkbox>
 
+export const BasicWithDisableFalse = () => (
+  <Checkbox isDisabled={false} colorScheme="red">
+    Hello
+  </Checkbox>
+)
+
 export const Disabled = () => <Checkbox isDisabled>Disabled</Checkbox>
 
 export const Readonly = () => <Checkbox isReadOnly>Readonly</Checkbox>
