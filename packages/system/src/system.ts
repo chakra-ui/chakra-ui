@@ -150,7 +150,7 @@ export type HTMLChakraComponents = {
 
 export type HTMLChakraProps<T extends As> = Omit<
   PropsOf<T>,
-  T extends "svg" ? "ref" | "children" : "ref"
+  T extends "svg" ? "ref" | "children" | "color" : "ref" | "color"
 > &
   ChakraProps & { as?: As }
 
