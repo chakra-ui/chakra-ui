@@ -19,7 +19,7 @@ Theming with Chakra UI is based on the
 ## Colors
 
 Add a `theme.colors` object to provide colors for your project. By default these
-colors can be referenced by the `color`, `borderColor`, and `backgroundColor`,
+colors can be referenced by the `color`, `borderColor`, `backgroundColor`,
 `fill`, `stroke`, styles.
 
 We recommend adding a palette that ranges from `50` to `900`. Tools like
@@ -180,7 +180,7 @@ mobile-first (i.e. min-width) media queries, which can then be used to apply
 responsive styles.
 
 > For example, you can write `<Box fontSize={["14px", "16px"]}/>` to make the
-> fontSize will be responsive.
+> fontSize responsive.
 
 ```js
 // theme.js
@@ -278,7 +278,7 @@ Tailwind CSS. The values are proportional, so 1 spacing unit is equal to
 ## Sizes
 
 The `sizes` key allows you to customize the global sizing of components you
-build for your project. By default these spacing value can be referenced by the
+build for your project. By default these sizes value can be referenced by the
 `width`, `height`, and `maxWidth`, `minWidth`, `maxHeight`, `minHeight` styles.
 
 ```js
@@ -302,12 +302,12 @@ export default {
 }
 ```
 
-For a component like this: `<Box w={4} h={3} />` will generate an empty `div`
-with width set to `1rem` or `16px` and height set to `0.75rem` or `12px`
+A component like this: `<Box w={4} h={3} />` will generate an empty `div`
+with width set to `1rem` or `16px` and height set to `0.75rem` or `12px`.
 
 ## Border radius
 
-Chakra provides a set of smooth corner radius values
+Chakra provides a set of smooth corner radius values. 
 
 ```js
 export default {
@@ -354,6 +354,6 @@ export default {
 
 ## Configuration reference
 
-Except for breakpoints, colors, and spacing, all of the keys in the theme object
+Except for breakpoints, colors, and spacing, all the keys in the theme object
 map to one of Chakra's core theme. All of these keys can be replaced or
 extended.

@@ -6,9 +6,9 @@ description:
   It renders a `div` element.
 ---
 
-If you're like me, I tend to always check the
+If you're like me, you probably tend to check the
 [MDN docs](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) for
-anything css grid.
+anything CSS grid.
 
 <ComponentLinks
   github={{ url: "#" }}
@@ -59,7 +59,7 @@ You can also make it responsive by passing array or object values into the
 
 ### Auto-responsive grid
 
-To make the grid responsive adjust automatically without passing `columns`,
+To make the grid responsive and adjust automatically without passing `columns`,
 simply pass the `minChildWidth` prop to specify the `min-width` a child should
 have before adjusting the layout.
 
@@ -99,8 +99,8 @@ with addition of these:
 
 | Name            | Type                        | Default | Description                                                                                                                           |
 | --------------- | --------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `columns`       | `number`                    |         | The number of columns                                                                                                                 |
-| `spacing`       | `GridProps["gridGap"]`      |         | The gap between the grid items                                                                                                        |
-| `spacingX`      | `GridProps["gridGap"]`      |         | The column gap between the grid items                                                                                                 |
-| `spacingY`      | `GridProps["gridGap"]`      |         | The row gap between the grid items                                                                                                    |
+| `columns`       | `number`                    |         | The number of columns.                                                                                                                |
+| `spacing`       | `GridProps["gridGap"]`      |         | The gap between the grid items.                                                                                                      |
+| `spacingX`      | `GridProps["gridGap"]`      |         | The column gap between the grid items.                                                                                                 |
+| `spacingY`      | `GridProps["gridGap"]`      |         | The row gap between the grid item.                                                                                                   |
 | `minChildWidth` | `CSSProperties["minWidth"]` |         | The width at which child elements will break into columns. Pass a number for pixel values or a string for any other valid CSS length. |
