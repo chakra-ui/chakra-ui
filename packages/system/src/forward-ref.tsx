@@ -34,7 +34,7 @@ export interface ComponentWithAs<T extends As, P> {
 export function forwardRef<P, T extends As>(
   component: (
     props: React.PropsWithChildren<P> &
-      Omit<PropsOf<T>, keyof P | "color" | "ref">,
+      Omit<PropsOf<T>, keyof P | "color" | "ref"> & { as?: As },
     ref: React.Ref<any>,
   ) => React.ReactElement | null,
 ) {
