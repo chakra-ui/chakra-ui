@@ -27,7 +27,7 @@ const { parse } = docgen.withCustomConfig(tsConfigPath, {
 
 export async function main() {
   const tsFiles = await globAsync(
-    "@(core|accordion|breadcrumb|icon|link|tabs)/**/src/**/*.@(ts|tsx)",
+    "@(accordion|breadcrumb|icon|link|tabs)/**/src/**/*.@(ts|tsx)",
     { cwd: basePath },
   )
 
