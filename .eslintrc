@@ -43,6 +43,7 @@
     "react/no-unescaped-entities": "off",
     "operator-assignment": "off",
     "prefer-destructuring": "off",
+    "react/no-children-prop": "off",
     "react/state-in-constructor": "off",
     "no-restricted-syntax": "off",
     "no-continue": "off",
