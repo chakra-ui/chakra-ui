@@ -1,6 +1,6 @@
 import * as React from "react"
 // @ts-ignore
-import ComponentProps from "@chakra-ui/props-docs"
+import * as ComponentProps from "@chakra-ui/props-docs"
 import MDXComponents from "./mdx-components"
 import { useMemo } from "react"
 
