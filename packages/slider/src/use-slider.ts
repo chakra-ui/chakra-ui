@@ -435,7 +435,6 @@ export function useSlider(props: UseSliderProps) {
     }
 
     doc?.addEventListener("mouseup", clean)
-
     cleanUpRef.current.mouseup = () => {
       doc?.removeEventListener("mouseup", clean)
     }

@@ -174,7 +174,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
                     {...tooltip.getArrowWrapperProps()}
                   >
                     <chakra.div
-                      className="chakra-toolip__arrow"
+                      className="chakra-tooltip__arrow"
                       {...tooltip.getArrowProps()}
                       __css={{ bg: styles.bg }}
                     />
