@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/pin-input",
-  "version": "1.0.0-rc.5",
+  "version": "1.0.0-rc.7",
   "description": "A React component optimized for entering sequences of digits",
   "keywords": [
     "pin",
@@ -53,12 +53,12 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/descendant": "1.0.0-rc.5",
-    "@chakra-ui/hooks": "1.0.0-rc.5",
-    "@chakra-ui/utils": "1.0.0-rc.5"
+    "@chakra-ui/descendant": "1.0.0-rc.7",
+    "@chakra-ui/hooks": "1.0.0-rc.7",
+    "@chakra-ui/utils": "1.0.0-rc.7"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.0.0-rc.5"
+    "@chakra-ui/system": "1.0.0-rc.7"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=1.0.0-rc.5",

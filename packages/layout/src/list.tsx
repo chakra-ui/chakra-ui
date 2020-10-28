@@ -4,7 +4,7 @@ import {
   SystemProps,
   forwardRef,
   PropsOf,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -24,7 +24,7 @@ interface ListOptions {
   spacing?: SystemProps["margin"]
 }
 
-export interface ListProps extends WithChakraProps<"ul">, ListOptions {}
+export interface ListProps extends HTMLChakraProps<"ul">, ListOptions {}
 
 /**
  * List is used to display list items, it renders a `<ul>` by default.

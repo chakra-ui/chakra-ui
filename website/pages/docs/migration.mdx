@@ -5,8 +5,8 @@ description: How to upgrade your existing Chakra UI projects to v1.0
 
 A simple guide to upgrade your existing Chakra UI projects to v1.0.
 
-Chakra UI v1.0 is focused on improving the ideas and concepts from 0.x to make it 
-even easier to create, theme and extend components.
+Chakra UI v1.0 is focused on improving the ideas and concepts from 0.x to make
+it even easier to create, theme and extend components.
 
 While there are quite a number of new features we've added, we focused on making
 Chakra UI a stable base to build your own design systems on top of. In the end,
@@ -199,8 +199,8 @@ For exhaustive examples, please visit
 
 ## Component Updates
 
-We've updated the API of some components to fix bugs, improve usability,
-types and accessibility.
+We've updated the API of some components to fix bugs, improve usability, types
+and accessibility.
 
 ### Accordion
 
@@ -642,7 +642,8 @@ Change `variantColor` prop to `colorScheme`.
 - Added support to programmatically close one or all toasts using `toast.close`
   or `toast.closeAll` methods.
 - Added support to programmatically update a toast using `toast.update` method.
-- Added support for `onCloseComplete` prop, which is a callback function that is invoked when the toast closes.
+- Added support for `onCloseComplete` prop, which is a callback function that is
+  invoked when the toast closes.
 
 ### Wrap
 
@@ -671,15 +672,22 @@ Change `variantColor` prop to `colorScheme`.
 </Wrap>
 ```
 
+### Transition Components
+
+All transition components like `Collapse`, `Fade`, `SlideFade`, etc. use the
+`in` prop to trigger its transition/animation, instead of `isOpen`. Change the
+`isOpen` prop to `in`
+
 ### CSS Reset
 
-- Removed the `config` prop, in favor of adding global styles to `theme.styles.global`.
-- Added global style for `focus-visible` package. Once installed, it removes focus
-  styles for non-keyboard interactions.
+- Removed the `config` prop, in favor of adding global styles to
+  `theme.styles.global`.
+- Added global style for `focus-visible` package. Once installed, it removes
+  focus styles for non-keyboard interactions.
 
 ```bash
 yarn add focus-visible
-# or 
+# or
 npm install focus-visible
 
 

@@ -2,7 +2,7 @@ import {
   chakra,
   forwardRef,
   useStyles,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -32,7 +32,7 @@ const StyledAddon = chakra("div", {
   },
 })
 
-export interface InputAddonProps extends WithChakraProps<"div"> {
+export interface InputAddonProps extends HTMLChakraProps<"div"> {
   placement?: Placement
 }
 

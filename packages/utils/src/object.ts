@@ -1,6 +1,6 @@
 import type { Dict, Omit } from "./types"
 
-export { default as merge, default as mergeWith } from "lodash.mergewith"
+export { default as mergeWith } from "lodash.mergewith"
 export { default as objectAssign } from "object-assign"
 
 export function omit<T extends Dict, K extends keyof T>(object: T, keys: K[]) {
