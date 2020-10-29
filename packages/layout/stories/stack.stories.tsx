@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Stack, StackDivider, Box, Heading, Text } from "../src"
+import { Stack, StackDivider, Box, Heading, Text, Divider } from "../src"
 
 export default {
   title: "Stack",
@@ -12,6 +12,27 @@ export const Vertical = () => (
     <span>Woah!</span>
   </Stack>
 )
+
+export const WithCustomDivider = () => {
+  return (
+    <div>
+      <Stack spacing="12px">
+        <Box>1</Box>
+        <Box>2</Box>
+        <Box>3</Box>
+      </Stack>
+
+      <Stack
+        spacing="12px"
+        divider={<Divider sx={{ borderColor: "red.200" }} />}
+      >
+        <Box>1</Box>
+        <Box>2</Box>
+        <Box>3</Box>
+      </Stack>
+    </div>
+  )
+}
 
 export const Inline = () => (
   <Stack w="100%" bg="blue.500" direction="row">
