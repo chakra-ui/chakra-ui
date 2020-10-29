@@ -4,7 +4,7 @@ package: "@chakra-ui/hooks"
 description: React hook to handle controlled vs uncontrolled component scenarios
 ---
 
-React hook used to allow component to be
+React hook allows component have
 [controlled](https://reactjs.org/docs/forms.html#controlled-components) and
 [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) modes, and
 provide control over it's internal state.
@@ -49,7 +49,7 @@ function Example() {
 }
 ```
 
-Here's an example of an controlled state.
+Here's an example of a controlled state.
 
 ```jsx
 function Example() {
@@ -83,9 +83,9 @@ controlled or uncontrolled modes** or **when you attempt to update the
 
 | Name           | Type                                | Description                                                       |
 | -------------- | ----------------------------------- | ----------------------------------------------------------------- |
-| `value`        | `any`                               | The value to used in controlled mode                              |
-| `defaultValue` | `any`                               | The initial value to be used, in uncontrolled mode                |
-| `onChange`     | `(nextValue: any) => void`          | The callback fired when the value changes                         |
-| `shouldUpdate` | `(prev: any, next: any) => boolean` | The condition to update the state                                 |
-| `name`         | `string`                            | The component name this hook is used in                           |
+| `value`        | `any`                               | The value to be used in controlled mode.                              |
+| `defaultValue` | `any`                               | The initial value to be used, in uncontrolled mode.                |
+| `onChange`     | `(nextValue: any) => void`          | The callback fired when the value changes.                         |
+| `shouldUpdate` | `(prev: any, next: any) => boolean` | The condition to update the state.                                 |
+| `name`         | `string`                            | The component name this hook is used in.                           |
 | `propsMap`     | `object`                            | A mapping for the props to give more contextual warning messages. |
