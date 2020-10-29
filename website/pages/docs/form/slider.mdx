@@ -4,7 +4,7 @@ package: "@chakra-ui/slider"
 image: "components/slider.svg"
 ---
 
-The Slider is used to allow users to make selections from a range of values.
+The `Slider` is used to allow users to make selections from a range of values.
 
 <ComponentLinks
   github={{ url: "#" }}
@@ -22,11 +22,11 @@ or applying image filters.
 
 Chakra UI export 4 components for Slider:
 
-- **Slider**: The wrapper that provides context and functionality for all
+- **`Slider`**: The wrapper that provides context and functionality for all
   children.
-- **SliderTrack**: The empty part of the slider that shows the track.
-- **SliderFilledTrack**: The filled part of the slider.
-- **SliderThumb**: The handle that's used to change the slider value.
+- **`SliderTrack`**: The empty part of the slider that shows the track.
+- **`SliderFilledTrack`**: The filled part of the slider.
+- **`SliderThumb`**: The handle that's used to change the slider value.
 
 ```js
 import {
@@ -61,7 +61,7 @@ import {
 
 ### Customized Sliders
 
-Slider component was designed to be composed to make it easy for you to
+`Slider` component was designed to be composed to make it easy for you to
 customize its styles.
 
 ```jsx
@@ -93,7 +93,7 @@ interested in the final result after sliding is complete. You can use
 ### Configure thumb focus with `focusThumbOnChange`
 
 By default `SliderThumb` will receive focus whenever `value` changes. You can
-opt-out of this behavior by setting `focusThumbOnChange=false`. This is normally
+opt-out of this behavior by setting the value of `focusThumbOnChange` to `false`. This is normally
 used with a "controlled" slider value.
 
 ```jsx live=false
@@ -119,40 +119,40 @@ component, so you can pass all `Box` props to change it's style.
 
 | Name               | Type                       | Default | Description                                                               |
 | ------------------ | -------------------------- | ------- | ------------------------------------------------------------------------- |
-| `value`            | `number`                   |         | The value of the slider.                                                  |
-| `defaultValue`     | `number`                   |         | The initial value of the slider.                                          |
+| `value`            | `number`                   |         | The value of the `Slider`.                                                  |
+| `defaultValue`     | `number`                   |         | The initial value of the `Slider`.                                          |
 | `max`              | `number`                   |         | Standard `input` max attribute.                                           |
 | `min`              | `number`                   |         | Standard `input` min attribute.                                           |
 | `step`             | `number`                   |         | Standard `input` step attribute.                                          |
-| `onChange`         | `(value: number): void`    |         | Callback fired when the value of the slider changes.                      |
-| `onChangeEnd`      | `(value: number): void`    |         | Callback fired when the slider changes is done.                           |
-| `isReadOnly`       | `boolean`                  |         | If `true`, the slider will be in read-only mode.                          |
+| `onChange`         | `(value: number): void`    |         | Callback fired when the value of the `Slider` changes.                      |
+| `onChangeEnd`      | `(value: number): void`    |         | Callback fired when the `Slider` changes is done.                           |
+| `isReadOnly`       | `boolean`                  |         | If `true`, the `Slider` will be in read-only mode.                          |
 | `onFocus`          | `Function`                 |         | Callback fired when the thumb receives focus                              |
-| `onBlur`           | `Function`                 |         | Callback fired when the thumb is blurred                                  |
-| `onMouseDown`      | `Function                  |         |                                                                           | Callback fired when the you mousedown on any part of the slider |
+| `onBlur`           | `Function`                 |         | Callback fired when the thumb is blurred .                                 |
+| `onMouseDown`      | `Function`                 |         | Callback fired when the you mousedown on any part of the slider           |
 | `aria-label`       | `string`                   |         | The accessible label.                                                     |
-| `aria-labelledby`  | `string`                   |         | The `id` of the element that labels the sliders                           |
+| `aria-labelledby`  | `string`                   |         | The `id` of the element that labels the `Slider.                           |
 | `aria-valuetext`   | `string`                   |         | The aria-valuetext of the switch for accessibility.                       |
 | `orientation`      | `string`                   |         | The orientation of the slider, only `horizontal` is supported for now.    |
 | `getAriaValueText` | `(value: number ): string` |         | The callback to format the `aria-valuetext`.                              |
-| `size`             | `sm`, `md`, `lg`           |         | The size of the slider.                                                   |
-| `colorScheme`      | `string`                   |         | The color scheme to use for the slider. Use a color key in `theme.colors` |
-| `name`             | `string`                   |         | The name of the slider component when used in a form.                     |
-| `id`               | `string`                   |         | The id of the slider component when used in a form.                       |
-| `children`         | `React.ReactNode`          |         | The children of the slider.                                               |
-| `isReversed`       | `boolean`                  |         | If `true`, it'll reverse the direction and functionality of the slider    |
+| `size`             | `sm`, `md`, `lg`           |         | The size of the `Slider`.                                                  |
+| `colorScheme`      | `string`                   |         | The color scheme to use for the `Slider`. Use a color key in `theme.colors` |
+| `name`             | `string`                   |         | The name of the `Slider` component when used in a form.                     |
+| `id`               | `string`                   |         | The id of the `Slider` component when used in a form.                       |
+| `children`         | `React.ReactNode`          |         | The children of the `Slider`.                                               |
+| `isReversed`       | `boolean`                  |         | If `true`, it'll reverse the direction and functionality of the `Slider`.    |
 
 ### SliderThumb Props
 
-SliderThumb composes [Box](/docs/layout/box) so you can pass all Box props to
+`SliderThumb` composes [Box](/docs/layout/box) so you can pass all `Box` props to
 change it's style.
 
 ### SliderFilledTrack Props
 
-SliderFilledTrack composes [Box](/docs/layout/box) so you can pass all Box props
+`SliderFilledTrack` composes [Box](/docs/layout/box) so you can pass all `Box` props
 to change it's style.
 
 ### SliderTrack Props
 
-SliderTrack composes [Box](/docs/layout/box) so you can pass all Box props to
+`SliderTrack` composes [Box](/docs/layout/box) so you can pass all `Box` props to
 change it's style.

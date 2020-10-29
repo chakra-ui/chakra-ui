@@ -140,13 +140,13 @@ function FormikExample() {
 - We've improved the accessibility of the `FormControl` component. Here are the
   changes:
 
-  - `id` passed to the form control will be passed to the form input directly
-  - `FormLabel` will have `htmlFor` that points to the `id` of the form input
+  - `id` passed to the form control will be passed to the form input directly.
+  - `FormLabel` will have `htmlFor` that points to the `id` of the form input.
   - `FormErrorMessage` adds `aria-describedby` and `aria-invalid` pointing to
-    the form input
-  - `FormHelperText` adds/extends `aria-describedby` pointing to the form input
+    the form input.
+  - `FormHelperText` adds/extends `aria-describedby` pointing to the form input.
   - `isDisabled`, `isRequired`, `isReadOnly` props passed to `FormControl` will
-    cascade across all related components
+    cascade across all related components.
 
 - `FormLabel` is now aware of the `disabled`, `focused` and `error` state of the
   form input. This helps you style the label accordingly using the `_disabled`,
