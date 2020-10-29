@@ -113,6 +113,7 @@ export const Toast: React.FC<ToastProps> = (props) => {
       onHoverEnd={onMouseLeave}
       custom={{ position }}
       style={style}
+      data-testid="toast"
     >
       <ReachAlert
         className="chakra-toast__inner"
