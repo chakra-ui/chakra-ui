@@ -1472,6 +1472,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "margalit",
+      "name": "Sam Margalit",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/2268424?v=4",
+      "profile": "http://margalit.com.au",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
