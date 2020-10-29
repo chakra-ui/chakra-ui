@@ -5,6 +5,7 @@ import {
   useEventCallback,
   useEventListener,
   useIds,
+  useUnmountEffect,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
 import {
@@ -16,7 +17,7 @@ import {
   EventKeyMap,
   focus,
   getBox,
-  getOwnerDocument,
+  getDocument,
   isRightClick,
   mergeRefs,
   normalizeEventKey,
@@ -25,14 +26,7 @@ import {
   roundValueToStep,
   valueToPercent,
 } from "@chakra-ui/utils"
-import {
-  CSSProperties,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react"
+import { CSSProperties, useCallback, useMemo, useRef, useState } from "react"
 
 export interface UseSliderProps {
   /**
@@ -171,7 +165,6 @@ export function useSlider(props: UseSliderProps) {
     value: valueProp,
     defaultValue: defaultValue ?? getDefaultValue(min, max),
     onChange,
-    shouldUpdate: (prev, next) => prev !== next,
   })
 
   /**
@@ -421,11 +414,12 @@ export function useSlider(props: UseSliderProps) {
     prev.current = value
     onChangeStart?.(value)
 
-    const doc = getOwnerDocument(rootRef.current)
+    const doc = getDocument(rootRef.current)
 
     const run = (event: MouseEvent) => {
       const nextValue = getValueFromPointer(event)
-      if (nextValue != null && nextValue !== value) {
+
+      if (nextValue != null) {
         setEventSource("mouse")
         setValue(nextValue)
       }
@@ -433,16 +427,16 @@ export function useSlider(props: UseSliderProps) {
 
     run(event)
 
-    doc.addEventListener("mousemove", run)
+    doc?.addEventListener("mousemove", run)
 
     const clean = () => {
-      doc.removeEventListener("mousemove", run)
+      doc?.removeEventListener("mousemove", run)
       setDragging.off()
     }
 
-    doc.addEventListener("mouseup", clean)
+    doc?.addEventListener("mouseup", clean)
     cleanUpRef.current.mouseup = () => {
-      doc.removeEventListener("mouseup", clean)
+      doc?.removeEventListener("mouseup", clean)
     }
   })
 
@@ -456,12 +450,12 @@ export function useSlider(props: UseSliderProps) {
     prev.current = value
     onChangeStart?.(value)
 
-    const doc = getOwnerDocument(rootRef.current)
+    const doc = getDocument(rootRef.current)
 
     const run = (event: TouchEvent) => {
       const nextValue = getValueFromPointer(event)
 
-      if (nextValue != null && nextValue !== value) {
+      if (nextValue != null) {
         setEventSource("touch")
         setValue(nextValue)
       }
@@ -469,22 +463,22 @@ export function useSlider(props: UseSliderProps) {
 
     run(event)
 
-    doc.addEventListener("touchmove", run)
+    doc?.addEventListener("touchmove", run)
 
     const clean = () => {
-      doc.removeEventListener("touchmove", run)
+      doc?.removeEventListener("touchmove", run)
       setDragging.off()
     }
 
-    doc.addEventListener("touchend", clean)
-    doc.addEventListener("touchcancel", clean)
+    doc?.addEventListener("touchend", clean)
+    doc?.addEventListener("touchcancel", clean)
 
     cleanUpRef.current.touchend = () => {
-      doc.removeEventListener("touchend", clean)
+      doc?.removeEventListener("touchend", clean)
     }
 
     cleanUpRef.current.touchcancel = () => {
-      doc.removeEventListener("touchcancel", clean)
+      doc?.removeEventListener("touchcancel", clean)
     }
   })
 
@@ -501,14 +495,10 @@ export function useSlider(props: UseSliderProps) {
   /**
    * Ensure we clean up listeners when slider unmounts
    */
-  useEffect(() => {
-    return () => detach()
-  }, [])
+  useUnmountEffect(detach)
 
   useUpdateEffect(() => {
-    if (!isDragging) {
-      detach()
-    }
+    if (!isDragging) detach()
   }, [isDragging])
 
   cleanUpRef.current.mousedown = useEventListener(

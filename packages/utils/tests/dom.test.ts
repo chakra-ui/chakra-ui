@@ -1,7 +1,7 @@
 import {
   ariaAttr,
   dataAttr,
-  getOwnerDocument,
+  getDocument,
   getWindow,
   normalizeEventKey,
 } from "../src"
@@ -26,5 +26,5 @@ test("should return aria attribute value from boolean", () => {
 })
 
 test("should get document object", () => {
-  expect(getOwnerDocument()).toBe(document)
+  expect(getDocument()).toBe(document)
 })

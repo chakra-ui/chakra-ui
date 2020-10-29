@@ -7,8 +7,9 @@ import {
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
-import { callAll, cx, Omit, __DEV__ } from "@chakra-ui/utils"
+import { callAll, cx, Omit, __DEV__, dataAttr } from "@chakra-ui/utils"
 import * as React from "react"
 import { useCheckboxGroupContext } from "./checkbox-group"
 import { CheckboxIcon } from "./checkbox-icon"
@@ -46,16 +47,16 @@ type Omitted =
   | "onBlur"
   | "value"
 
-type StyledControlProps = Omit<PropsOf<typeof StyledControl>, Omitted>
+type StyledControlProps = Omit<HTMLChakraProps<"div">, Omitted>
 
-type BaseCheckboxProps = Pick<
+type BaseInputProps = Pick<
   PropsOf<"input">,
   "onBlur" | "checked" | "defaultChecked"
 >
 
 export interface CheckboxProps
   extends StyledControlProps,
-    BaseCheckboxProps,
+    BaseInputProps,
     ThemingProps,
     UseCheckboxProps {
   /**
@@ -157,7 +158,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
   return (
     <StyledContainer
       __css={styles.container}
-      data-disabled={state.isDisabled}
+      data-disabled={dataAttr(state.isDisabled)}
       className={_className}
       {...htmlProps}
     >

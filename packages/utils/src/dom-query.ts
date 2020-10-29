@@ -23,7 +23,7 @@ export const isRightClick = <E extends MouseEvent | React.MouseEvent>(
   event: E,
 ) => event.button !== 0
 
-export function getAllFocusable<T extends Element>(container: T) {
+export function getAllFocusable<T extends HTMLElement>(container: T) {
   const focusableEls = Array.from(
     container.querySelectorAll<T>(focusableElSelector),
   )
@@ -33,12 +33,12 @@ export function getAllFocusable<T extends Element>(container: T) {
     .filter((el) => window.getComputedStyle(el).display !== "none")
 }
 
-export function getFirstFocusable<T extends Element>(container: T) {
+export function getFirstFocusable<T extends HTMLElement>(container: T) {
   const allFocusable = getAllFocusable(container)
   return allFocusable.length ? allFocusable[0] : null
 }
 
-export function getAllTabbable<T extends Element>(
+export function getAllTabbable<T extends HTMLElement>(
   container: T,
   fallbackToFocusable?: boolean,
 ) {
@@ -57,7 +57,7 @@ export function getAllTabbable<T extends Element>(
   return allTabbable
 }
 
-export function getFirstTabbableIn<T extends Element>(
+export function getFirstTabbableIn<T extends HTMLElement>(
   container: T,
   fallbackToFocusable?: boolean,
 ): T | null {
@@ -65,7 +65,7 @@ export function getFirstTabbableIn<T extends Element>(
   return first || null
 }
 
-export function getLastTabbableIn<T extends Element>(
+export function getLastTabbableIn<T extends HTMLElement>(
   container: T,
   fallbackToFocusable?: boolean,
 ): T | null {
@@ -73,7 +73,7 @@ export function getLastTabbableIn<T extends Element>(
   return allTabbable[allTabbable.length - 1] || null
 }
 
-export function getNextTabbable<T extends Element>(
+export function getNextTabbable<T extends HTMLElement>(
   container: T,
   fallbackToFocusable?: boolean,
 ): T | null {
@@ -87,7 +87,7 @@ export function getNextTabbable<T extends Element>(
   )
 }
 
-export function getPreviousTabbable<T extends Element>(
+export function getPreviousTabbable<T extends HTMLElement>(
   container: T,
   fallbackToFocusable?: boolean,
 ): T | null {
@@ -101,7 +101,7 @@ export function getPreviousTabbable<T extends Element>(
   )
 }
 
-export function focusNextTabbable<T extends Element>(
+export function focusNextTabbable<T extends HTMLElement>(
   container: T,
   fallbackToFocusable?: boolean,
 ) {
@@ -111,7 +111,7 @@ export function focusNextTabbable<T extends Element>(
   }
 }
 
-export function focusPreviousTabbable<T extends Element>(
+export function focusPreviousTabbable<T extends HTMLElement>(
   container: T,
   fallbackToFocusable?: boolean,
 ) {
@@ -128,7 +128,7 @@ function matches(element: Element, selectors: string): boolean {
   return (element as any).webkitMatchesSelector(selectors)
 }
 
-export function closest<T extends Element>(element: T, selectors: string) {
+export function closest<T extends HTMLElement>(element: T, selectors: string) {
   if ("closest" in element) return element.closest(selectors)
   do {
     if (matches(element, selectors)) return element

@@ -1,7 +1,7 @@
 import { mergeRefs, PropGetter } from "@chakra-ui/utils"
 import type { Modifier, Placement } from "@popperjs/core"
 import * as React from "react"
-import { usePopper as useBasePopper } from "react-popper"
+import { usePopper as useBasePopper } from "./react-popper"
 import { getArrowStyles, getBoxShadow, toTransformOrigin } from "./popper.utils"
 
 export type { Placement }
@@ -124,11 +124,23 @@ export function usePopper(props: UsePopperProps = {}) {
     ],
   )
 
-  const popperJS = useBasePopper(referenceNode, popperNode, {
+  const popperJS = useBasePopper(referenceNode as any, popperNode as any, {
     placement,
     strategy: fixed ? "fixed" : "absolute",
     modifiers: customMofidiers.concat(modifiers),
   })
+
+  /**
+   * Ensure the popper will be correctly positioned with an extra update
+   */
+  React.useEffect(() => {
+    const id = requestAnimationFrame(() => {
+      popperJS.forceUpdate?.()
+    })
+    return () => {
+      cancelAnimationFrame(id)
+    }
+  }, [])
 
   const finalPlacement = popperJS.state?.placement ?? placement
 

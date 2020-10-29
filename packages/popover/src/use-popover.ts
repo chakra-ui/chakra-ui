@@ -1,9 +1,10 @@
 import {
   useBoolean,
+  useFocusOnShow,
   useDisclosure,
-  useIds,
-  useConditionalFocus,
   useFocusOnHide,
+  useIds,
+  useOutsideClick,
 } from "@chakra-ui/hooks"
 import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { useColorModeValue, useToken } from "@chakra-ui/system"
@@ -15,7 +16,6 @@ import {
   mergeWith,
   PropGetter,
 } from "@chakra-ui/utils"
-import { useInteractOutside } from "@react-aria/interactions"
 import { RefObject, useCallback, useEffect, useRef } from "react"
 
 const TRIGGER = {
@@ -164,19 +164,20 @@ export function usePopover(props: UsePopoverProps = {}) {
   useFocusOnHide(popoverRef, {
     focusRef: triggerRef,
     visible: isOpen,
-    shouldFocus: returnFocusOnClose && trigger === "click",
+    shouldFocus: returnFocusOnClose && trigger === TRIGGER.click,
   })
 
-  useConditionalFocus(popoverRef, {
+  useFocusOnShow(popoverRef, {
     visible: isOpen,
     focusRef: initialFocusRef,
-    shouldFocus: autoFocus && trigger !== "hover",
+    shouldFocus: autoFocus && trigger === TRIGGER.click,
   })
 
-  useInteractOutside({
+  useOutsideClick({
     ref: popoverRef,
-    onInteractOutside: (event) => {
+    handler: (event) => {
       if (
+        isOpen &&
         trigger === TRIGGER.click &&
         closeOnBlur &&
         !triggerRef.current?.contains(event.target as HTMLElement)
@@ -197,7 +198,22 @@ export function usePopover(props: UsePopoverProps = {}) {
         tabIndex: -1,
         role: "dialog",
         onKeyDown: callAllHandlers(props.onKeyDown, (event) => {
-          if (closeOnEsc && event.key === "Escape") onClose()
+          if (closeOnEsc && event.key === "Escape") {
+            onClose()
+          }
+        }),
+        onBlur: callAllHandlers(props.onBlur, (event) => {
+          const element = (event.relatedTarget ??
+            document.activeElement) as HTMLElement
+
+          if (
+            isOpen &&
+            closeOnBlur &&
+            !popoverRef.current?.contains(element) &&
+            !triggerRef.current?.contains(element)
+          ) {
+            onClose()
+          }
         }),
         "aria-labelledby": hasHeader ? headerId : undefined,
         "aria-describedby": hasBody ? bodyId : undefined,
@@ -328,6 +344,7 @@ export function usePopover(props: UsePopoverProps = {}) {
   }
 
   return {
+    forceUpdate: popper.forceUpdate,
     isOpen,
     onClose,
     headerId,

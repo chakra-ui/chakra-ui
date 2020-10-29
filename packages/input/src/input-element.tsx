@@ -1,14 +1,14 @@
 import {
   chakra,
   forwardRef,
-  PropsOf,
   SystemStyleObject,
   useStyles,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface InputElementProps extends PropsOf<typeof chakra.div> {
+export interface InputElementProps extends HTMLChakraProps<"div"> {
   placement?: "left" | "right"
 }
 

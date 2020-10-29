@@ -2,11 +2,11 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  PropsOf,
   SystemProps,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import {
   cx,
@@ -36,7 +36,7 @@ interface AvatarGroupOptions {
 
 export interface AvatarGroupProps
   extends AvatarGroupOptions,
-    Omit<PropsOf<typeof chakra.div>, "children">,
+    Omit<HTMLChakraProps<"div">, "children">,
     ThemingProps {}
 
 /**

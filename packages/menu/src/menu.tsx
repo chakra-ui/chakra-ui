@@ -8,8 +8,10 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
+  HTMLChakraProps,
+  SystemStyleObject,
 } from "@chakra-ui/system"
-import { cx, ReactNodeOrRenderProp, runIfFn, __DEV__ } from "@chakra-ui/utils"
+import { cx, MaybeRenderProp, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { motion, Variants } from "framer-motion"
 import * as React from "react"
 import {
@@ -29,7 +31,11 @@ import {
 } from "./use-menu"
 
 export interface MenuProps extends UseMenuProps, ThemingProps {
-  children: ReactNodeOrRenderProp<{ isOpen: boolean; onClose(): void }>
+  children: MaybeRenderProp<{
+    isOpen: boolean
+    onClose: () => void
+    forceUpdate: (() => void) | null
+  }>
 }
 
 /**
@@ -45,12 +51,12 @@ export const Menu: React.FC<MenuProps> = (props) => {
   const ctx = useMenu(ownProps)
   const context = React.useMemo(() => ctx, [ctx])
 
-  const { isOpen, onClose } = context
+  const { isOpen, onClose, forceUpdate } = context
 
   return (
     <MenuProvider value={context}>
       <StylesProvider value={styles}>
-        {runIfFn(children, { isOpen, onClose })}
+        {runIfFn(children, { isOpen, onClose, forceUpdate })}
       </StylesProvider>
     </MenuProvider>
   )
@@ -60,7 +66,7 @@ if (__DEV__) {
   Menu.displayName = "Menu"
 }
 
-export interface MenuButtonProps extends PropsOf<typeof chakra.button> {}
+export interface MenuButtonProps extends HTMLChakraProps<"button"> {}
 
 const StyledMenuButton = forwardRef<MenuButtonProps, "button">(
   function StyledMenuButton(props, ref) {
@@ -115,7 +121,7 @@ if (__DEV__) {
   MenuButton.displayName = "MenuButton"
 }
 
-export interface MenuListProps extends PropsOf<typeof chakra.div> {}
+export interface MenuListProps extends HTMLChakraProps<"div"> {}
 
 const motionVariants: Variants = {
   enter: {
@@ -157,6 +163,10 @@ export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
     <chakra.div {...positionerProps} __css={{ zIndex: styles.list?.zIndex }}>
       <Motion
         {...listProps}
+        /**
+         * We could call this on either `onAnimationComplete` or `onUpdate`.
+         * It seems the re-focusing works better with the `onUpdate`
+         */
         onUpdate={onTransitionEnd}
         className={cx("chakra-menu__menu-list", listProps.className)}
         variants={motionVariants}
@@ -175,10 +185,11 @@ if (__DEV__) {
   MenuList.displayName = "MenuList"
 }
 
-export interface StyledMenuItemProps extends PropsOf<typeof chakra.button> {}
+export interface StyledMenuItemProps extends HTMLChakraProps<"button"> {}
 
 const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
   function StyledMenuItem(props, ref) {
+    const { as, type, ...rest } = props
     const styles = useStyles()
 
     /**
@@ -186,26 +197,23 @@ const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
      * Else, use no type to avoid invalid html, e.g. <a type="button" />
      * Else, fall back to "button"
      */
-    const type = props.as ? props.type ?? undefined : "button"
+    const btnType = as ? type ?? undefined : "button"
+
+    const buttonStyles: SystemStyleObject = {
+      textDecoration: "none",
+      color: "inherit",
+      userSelect: "none",
+      display: "flex",
+      width: "100%",
+      alignItems: "center",
+      textAlign: "left",
+      flex: "0 0 auto",
+      outline: 0,
+      ...styles.item,
+    }
 
     return (
-      <chakra.button
-        ref={ref}
-        type={type}
-        {...props}
-        __css={{
-          textDecoration: "none",
-          color: "inherit",
-          userSelect: "none",
-          display: "flex",
-          width: "100%",
-          alignItems: "center",
-          textAlign: "left",
-          flex: "0 0 auto",
-          outline: 0,
-          ...styles.item,
-        }}
-      />
+      <chakra.button ref={ref} type={btnType} {...rest} __css={buttonStyles} />
     )
   },
 )
@@ -227,22 +235,16 @@ interface MenuItemOptions
 }
 
 export interface MenuItemProps
-  extends PropsOf<typeof chakra.button>,
+  extends HTMLChakraProps<"button">,
     MenuItemOptions {}
 
 export const MenuItem = forwardRef<MenuItemProps, "button">(function MenuItem(
   props,
   ref,
 ) {
-  const {
-    icon,
-    iconSpacing = "0.75rem",
-    command,
-    children,
-    ...otherProps
-  } = props
+  const { icon, iconSpacing = "0.75rem", command, children, ...rest } = props
 
-  const menuItemProps = useMenuItem(otherProps, ref)
+  const menuItemProps = useMenuItem(rest, ref)
 
   const shouldWrap = icon || command
 
@@ -276,7 +278,7 @@ if (__DEV__) {
 
 export interface MenuItemOptionProps
   extends UseMenuOptionOptions,
-    Omit<PropsOf<typeof StyledMenuItem>, keyof UseMenuOptionOptions> {
+    Omit<MenuItemProps, keyof UseMenuOptionOptions> {
   icon?: React.ReactElement
   iconSpacing?: SystemProps["mr"]
 }
@@ -340,7 +342,7 @@ if (__DEV__) {
   MenuOptionGroup.displayName = "MenuOptionGroup"
 }
 
-export interface MenuGroupProps extends PropsOf<typeof chakra.div> {}
+export interface MenuGroupProps extends HTMLChakraProps<"div"> {}
 
 export const MenuGroup = forwardRef<MenuGroupProps, "div">(function MenuGroup(
   props,
@@ -367,7 +369,7 @@ if (__DEV__) {
   MenuGroup.displayName = "MenuGroup"
 }
 
-export interface MenuCommandProps extends PropsOf<typeof chakra.span> {}
+export interface MenuCommandProps extends HTMLChakraProps<"span"> {}
 
 export const MenuCommand = forwardRef<MenuCommandProps, "span">(
   function MenuCommand(props, ref) {
@@ -387,7 +389,7 @@ if (__DEV__) {
   MenuCommand.displayName = "MenuCommand"
 }
 
-export const MenuIcon: React.FC<PropsOf<typeof chakra.span>> = (props) => {
+export const MenuIcon: React.FC<HTMLChakraProps<"span">> = (props) => {
   const { className, children, ...rest } = props
 
   const child = React.Children.only(children)
@@ -419,7 +421,7 @@ if (__DEV__) {
   MenuIcon.displayName = "MenuIcon"
 }
 
-export interface MenuDividerProps extends PropsOf<typeof chakra.hr> {}
+export interface MenuDividerProps extends HTMLChakraProps<"hr"> {}
 
 export const MenuDivider: React.FC<MenuDividerProps> = (props) => {
   const { className, ...rest } = props

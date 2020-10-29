@@ -3,17 +3,17 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  PropsOf,
   StylesProvider,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import {
   createContext,
   cx,
-  ReactNodeOrRenderProp,
+  MaybeRenderProp,
   runIfFn,
   __DEV__,
 } from "@chakra-ui/utils"
@@ -57,9 +57,10 @@ export interface PopoverProps extends UsePopoverProps, ThemingProps {
    * The content of the popover. It's usually the `PopoverTrigger`,
    * and `PopoverContent`
    */
-  children?: ReactNodeOrRenderProp<{
+  children?: MaybeRenderProp<{
     isOpen: boolean
-    onClose(): void
+    onClose: () => void
+    forceUpdate: (() => void) | null
   }>
 }
 
@@ -79,6 +80,7 @@ export const Popover: React.FC<PopoverProps> = (props) => {
         {runIfFn(children, {
           isOpen: context.isOpen,
           onClose: context.onClose,
+          forceUpdate: context.forceUpdate,
         })}
       </StylesProvider>
     </PopoverProvider>
@@ -104,7 +106,7 @@ if (__DEV__) {
   PopoverTrigger.displayName = "PopoverTrigger"
 }
 
-export interface PopoverContentProps extends PropsOf<typeof chakra.section> {}
+export interface PopoverContentProps extends HTMLChakraProps<"section"> {}
 
 const Motion = chakra(motion.section)
 
@@ -128,10 +130,7 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
     const popoverProps: any = getPopoverProps(props, ref)
 
     return (
-      <chakra.div
-        __css={{ zIndex: contentStyles.zIndex }}
-        {...getPopoverPositionerProps()}
-      >
+      <chakra.div __css={styles.popper} {...getPopoverPositionerProps()}>
         <Motion
           {...popoverProps}
           onUpdate={onTransitionEnd}
@@ -150,7 +149,7 @@ if (__DEV__) {
   PopoverContent.displayName = "PopoverContent"
 }
 
-export interface PopoverHeaderProps extends PropsOf<typeof chakra.header> {}
+export interface PopoverHeaderProps extends HTMLChakraProps<"header"> {}
 
 /**
  * PopoverHeader is the accessible header or label
@@ -183,7 +182,7 @@ if (__DEV__) {
   PopoverHeader.displayName = "PopoverHeader"
 }
 
-export interface PopoverBodyProps extends PropsOf<typeof chakra.div> {}
+export interface PopoverBodyProps extends HTMLChakraProps<"div"> {}
 
 /**
  * PopoverBody is the main content area for the popover. Should contain
@@ -215,7 +214,7 @@ export const PopoverBody = forwardRef<PopoverBodyProps, "div">(
 if (__DEV__) {
   PopoverBody.displayName = "PopoverBody"
 }
-export interface PopoverFooterProps extends PropsOf<typeof chakra.footer> {}
+export interface PopoverFooterProps extends HTMLChakraProps<"footer"> {}
 
 export const PopoverFooter: React.FC<PopoverFooterProps> = (props) => {
   const styles = useStyles()
@@ -254,7 +253,7 @@ if (__DEV__) {
   PopoverCloseButton.displayName = "PopoverCloseButton"
 }
 
-export interface PopoverArrowProps extends PropsOf<typeof chakra.div> {}
+export interface PopoverArrowProps extends HTMLChakraProps<"div"> {}
 
 export const PopoverArrow: React.FC<PopoverArrowProps> = (props) => {
   const { getArrowProps, getArrowPositionerProps } = usePopoverContext()
@@ -263,7 +262,7 @@ export const PopoverArrow: React.FC<PopoverArrowProps> = (props) => {
   return (
     <chakra.div
       {...getArrowPositionerProps()}
-      className={cx("chakra-popover__arrow-wrapper", props.className)}
+      className={cx("chakra-popover__arrow-positioner", props.className)}
     >
       <chakra.div
         className={cx("chakra-popover__arrow", props.className)}

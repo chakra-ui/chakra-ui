@@ -352,14 +352,18 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://www.linkedin.com/in/keshav-bohra-17032753/"><img src="https://avatars3.githubusercontent.com/u/44581314?v=4" width="64px;" alt=""/><br /><sub><b>Keshav Bohra</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=keshav-bohr" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/okezieuc"><img src="https://avatars3.githubusercontent.com/u/53785400?v=4" width="64px;" alt=""/><br /><sub><b>okezieuc</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=okezieuc" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/claytonfaria"><img src="https://avatars1.githubusercontent.com/u/65756578?v=4" width="64px;" alt=""/><br /><sub><b>Clayton Faria</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=claytonfaria" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://github.com/ellisio"><img src="https://avatars1.githubusercontent.com/u/127468?v=4" width="64px;" alt=""/><br /><sub><b>Andrew Ellis</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=ellisio" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/ellisio"><img src="https://avatars1.githubusercontent.com/u/127468?v=4" width="64px;" alt=""/><br /><sub><b>Andrew Ellis</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=ellisio" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Aellisio" title="Bug reports">🐛</a></td>
     <td align="center"><a href="http://joelgallant.me"><img src="https://avatars3.githubusercontent.com/u/1429994?v=4" width="64px;" alt=""/><br /><sub><b>Joel Gallant</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Ajoelgallant" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://jkrishna.dev"><img src="https://avatars0.githubusercontent.com/u/11075561?v=4" width="64px;" alt=""/><br /><sub><b>Jaya Krishna Namburu</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=JayaKrishnaNamburu" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/ifeoma-imoh"><img src="https://avatars2.githubusercontent.com/u/60473225?v=4" width="64px;" alt=""/><br /><sub><b>Ifeoma Imoh</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=ifeoma-imoh" title="Documentation">📖</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):

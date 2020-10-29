@@ -2,17 +2,17 @@ import {
   chakra,
   css,
   forwardRef,
-  PropsOf,
   StylesProvider,
   SystemProps,
   SystemStyleObject,
-  useTheme,
   useStyles,
+  useTheme,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
-import { mapResponsive, __DEV__ } from "@chakra-ui/utils"
+import { cx, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface WrapProps extends PropsOf<typeof chakra.div> {
+export interface WrapProps extends HTMLChakraProps<"div"> {
   /**
    * The space between the each child (even if it wraps)
    */
@@ -48,6 +48,7 @@ export const Wrap = forwardRef<WrapProps, "div">(function Wrap(props, ref) {
     justify,
     direction,
     align,
+    className,
     ...rest
   } = props
 
@@ -75,30 +76,44 @@ export const Wrap = forwardRef<WrapProps, "div">(function Wrap(props, ref) {
   }
 
   const itemStyles: SystemStyleObject = {
+    display: "flex",
+    alignItems: "flex-start",
     margin: itemSpacing,
   }
 
   return (
     <StylesProvider value={{ item: itemStyles }}>
-      <chakra.div ref={ref} {...rest}>
-        <chakra.ul __css={groupStyles}>{children}</chakra.ul>
+      <chakra.div ref={ref} className={cx("chakra-wrap", className)} {...rest}>
+        <chakra.ul className="chakra-wrap__list" __css={groupStyles}>
+          {children}
+        </chakra.ul>
       </chakra.div>
     </StylesProvider>
   )
 })
 
-export interface WrapItemProps extends PropsOf<typeof chakra.li> {}
+if (__DEV__) {
+  Wrap.displayName = "Wrap"
+}
+
+export interface WrapItemProps extends HTMLChakraProps<"li"> {}
 
 export const WrapItem = forwardRef<WrapItemProps, "li">(function WrapItem(
   props,
   ref,
 ) {
+  const { className, ...rest } = props
   const styles = useStyles()
-
-  return <chakra.li ref={ref} __css={styles.item} {...props} />
+  return (
+    <chakra.li
+      ref={ref}
+      __css={styles.item}
+      className={cx("chakra-wrap__listitem", className)}
+      {...rest}
+    />
+  )
 })
 
 if (__DEV__) {
-  Wrap.displayName = "Wrap"
   WrapItem.displayName = "WrapItem"
 }
