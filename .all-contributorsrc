@@ -1445,6 +1445,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "jasonadkison",
+      "name": "Jason Adkison",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/744333?v=4",
+      "profile": "https://github.com/jasonadkison",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
