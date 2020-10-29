@@ -358,12 +358,12 @@ Thanks goes to these wonderful people
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/ifeoma-imoh"><img src="https://avatars2.githubusercontent.com/u/60473225?v=4" width="64px;" alt=""/><br /><sub><b>Ifeoma Imoh</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=ifeoma-imoh" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/jasonadkison"><img src="https://avatars3.githubusercontent.com/u/744333?v=4" width="64px;" alt=""/><br /><sub><b>Jason Adkison</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Ajasonadkison" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
