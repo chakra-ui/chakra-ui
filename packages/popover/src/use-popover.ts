@@ -1,6 +1,6 @@
 import {
   useBoolean,
-  useConditionalFocus,
+  useFocusOnShow,
   useDisclosure,
   useFocusOnHide,
   useIds,
@@ -167,7 +167,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     shouldFocus: returnFocusOnClose && trigger === "click",
   })
 
-  useConditionalFocus(popoverRef, {
+  useFocusOnShow(popoverRef, {
     visible: isOpen,
     focusRef: initialFocusRef,
     shouldFocus: autoFocus && trigger !== "hover",

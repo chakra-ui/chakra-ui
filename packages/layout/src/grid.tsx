@@ -3,13 +3,13 @@ import {
   forwardRef,
   ResponsiveValue,
   SystemProps,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { filterUndefined, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { BoxProps } from "./box"
 
-export interface GridProps extends WithChakraProps<"div">, GridOptions {}
+export interface GridProps extends HTMLChakraProps<"div">, GridOptions {}
 
 /**
  * React component used to create grid layouts.

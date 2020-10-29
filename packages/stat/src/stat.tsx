@@ -7,13 +7,13 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 
-export interface StatLabelProps extends WithChakraProps<"dt"> {}
+export interface StatLabelProps extends HTMLChakraProps<"dt"> {}
 
 export const StatLabel = forwardRef<StatLabelProps, "dt">(function StatLabel(
   props,
@@ -34,7 +34,7 @@ if (__DEV__) {
   StatLabel.displayName = "StatLabel"
 }
 
-export interface StatHelpTextProps extends WithChakraProps<"p"> {}
+export interface StatHelpTextProps extends HTMLChakraProps<"p"> {}
 
 export const StatHelpText = forwardRef<StatHelpTextProps, "p">(
   function StatHelpText(props, ref) {
@@ -55,7 +55,7 @@ if (__DEV__) {
   StatHelpText.displayName = "StatHelpText"
 }
 
-export interface StatNumberProps extends WithChakraProps<"dd"> {}
+export interface StatNumberProps extends HTMLChakraProps<"dd"> {}
 
 export const StatNumber = forwardRef<StatNumberProps, "dd">(function StatNumber(
   props,
@@ -132,7 +132,7 @@ if (__DEV__) {
   StatArrow.displayName = "StatArrow"
 }
 
-export interface StatProps extends WithChakraProps<"div">, ThemingProps {}
+export interface StatProps extends HTMLChakraProps<"div">, ThemingProps {}
 
 export const Stat = forwardRef<StatProps, "div">(function Stat(props, ref) {
   const styles = useMultiStyleConfig("Stat", props)
@@ -151,7 +151,7 @@ if (__DEV__) {
   Stat.displayName = "Stat"
 }
 
-interface StatGroupProps extends WithChakraProps<"div"> {}
+interface StatGroupProps extends HTMLChakraProps<"div"> {}
 
 export const StatGroup = forwardRef<StatGroupProps, "div">(function StatGroup(
   props,

@@ -6,7 +6,7 @@ import {
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import {
   cx,
@@ -36,7 +36,7 @@ interface AvatarGroupOptions {
 
 export interface AvatarGroupProps
   extends AvatarGroupOptions,
-    Omit<WithChakraProps<"div">, "children">,
+    Omit<HTMLChakraProps<"div">, "children">,
     ThemingProps {}
 
 /**

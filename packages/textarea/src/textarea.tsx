@@ -6,7 +6,7 @@ import {
   SystemStyleObject,
   ThemingProps,
   useStyleConfig,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -32,7 +32,7 @@ interface TextareaOptions {
 
 type Omitted = "disabled" | "required" | "readOnly"
 export interface TextareaProps
-  extends Omit<WithChakraProps<"textarea">, Omitted>,
+  extends Omit<HTMLChakraProps<"textarea">, Omitted>,
     TextareaOptions,
     FormControlOptions,
     ThemingProps {}

@@ -16,7 +16,7 @@ import {
   EventKeyMap,
   focus,
   getBox,
-  getOwnerDocument,
+  getDocument,
   isRightClick,
   mergeRefs,
   normalizeEventKey,
@@ -421,7 +421,7 @@ export function useSlider(props: UseSliderProps) {
     prev.current = value
     onChangeStart?.(value)
 
-    const doc = getOwnerDocument(rootRef.current)
+    const doc = getDocument(rootRef.current)
 
     const run = (event: MouseEvent) => {
       const nextValue = getValueFromPointer(event)
@@ -433,16 +433,16 @@ export function useSlider(props: UseSliderProps) {
 
     run(event)
 
-    doc.addEventListener("mousemove", run)
+    doc?.addEventListener("mousemove", run)
 
     const clean = () => {
-      doc.removeEventListener("mousemove", run)
+      doc?.removeEventListener("mousemove", run)
       setDragging.off()
     }
 
-    doc.addEventListener("mouseup", clean)
+    doc?.addEventListener("mouseup", clean)
     cleanUpRef.current.mouseup = () => {
-      doc.removeEventListener("mouseup", clean)
+      doc?.removeEventListener("mouseup", clean)
     }
   })
 
@@ -456,7 +456,7 @@ export function useSlider(props: UseSliderProps) {
     prev.current = value
     onChangeStart?.(value)
 
-    const doc = getOwnerDocument(rootRef.current)
+    const doc = getDocument(rootRef.current)
 
     const run = (event: TouchEvent) => {
       const nextValue = getValueFromPointer(event)
@@ -469,22 +469,22 @@ export function useSlider(props: UseSliderProps) {
 
     run(event)
 
-    doc.addEventListener("touchmove", run)
+    doc?.addEventListener("touchmove", run)
 
     const clean = () => {
-      doc.removeEventListener("touchmove", run)
+      doc?.removeEventListener("touchmove", run)
       setDragging.off()
     }
 
-    doc.addEventListener("touchend", clean)
-    doc.addEventListener("touchcancel", clean)
+    doc?.addEventListener("touchend", clean)
+    doc?.addEventListener("touchcancel", clean)
 
     cleanUpRef.current.touchend = () => {
-      doc.removeEventListener("touchend", clean)
+      doc?.removeEventListener("touchend", clean)
     }
 
     cleanUpRef.current.touchcancel = () => {
-      doc.removeEventListener("touchcancel", clean)
+      doc?.removeEventListener("touchcancel", clean)
     }
   })
 

@@ -8,7 +8,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import {
   createContext,
@@ -104,7 +104,7 @@ if (__DEV__) {
   PopoverTrigger.displayName = "PopoverTrigger"
 }
 
-export interface PopoverContentProps extends WithChakraProps<"section"> {}
+export interface PopoverContentProps extends HTMLChakraProps<"section"> {}
 
 const Motion = chakra(motion.section)
 
@@ -147,7 +147,7 @@ if (__DEV__) {
   PopoverContent.displayName = "PopoverContent"
 }
 
-export interface PopoverHeaderProps extends WithChakraProps<"header"> {}
+export interface PopoverHeaderProps extends HTMLChakraProps<"header"> {}
 
 /**
  * PopoverHeader is the accessible header or label
@@ -180,7 +180,7 @@ if (__DEV__) {
   PopoverHeader.displayName = "PopoverHeader"
 }
 
-export interface PopoverBodyProps extends WithChakraProps<"div"> {}
+export interface PopoverBodyProps extends HTMLChakraProps<"div"> {}
 
 /**
  * PopoverBody is the main content area for the popover. Should contain
@@ -212,7 +212,7 @@ export const PopoverBody = forwardRef<PopoverBodyProps, "div">(
 if (__DEV__) {
   PopoverBody.displayName = "PopoverBody"
 }
-export interface PopoverFooterProps extends WithChakraProps<"footer"> {}
+export interface PopoverFooterProps extends HTMLChakraProps<"footer"> {}
 
 export const PopoverFooter: React.FC<PopoverFooterProps> = (props) => {
   const styles = useStyles()
@@ -251,7 +251,7 @@ if (__DEV__) {
   PopoverCloseButton.displayName = "PopoverCloseButton"
 }
 
-export interface PopoverArrowProps extends WithChakraProps<"div"> {}
+export interface PopoverArrowProps extends HTMLChakraProps<"div"> {}
 
 export const PopoverArrow: React.FC<PopoverArrowProps> = (props) => {
   const { getArrowProps, getArrowPositionerProps } = usePopoverContext()

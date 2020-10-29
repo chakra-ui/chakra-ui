@@ -2,7 +2,7 @@ import {
   chakra,
   forwardRef,
   SystemProps,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -38,7 +38,7 @@ export interface FlexOptions {
   shrink?: SystemProps["flexShrink"]
 }
 
-export interface FlexProps extends WithChakraProps<"div">, FlexOptions {}
+export interface FlexProps extends HTMLChakraProps<"div">, FlexOptions {}
 
 /**
  * React component used to create flexbox layouts.

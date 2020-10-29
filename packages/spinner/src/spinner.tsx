@@ -5,7 +5,7 @@ import {
   omitThemingProps,
   ThemingProps,
   useStyleConfig,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
@@ -53,7 +53,7 @@ interface SpinnerOptions {
 }
 
 export interface SpinnerProps
-  extends Omit<WithChakraProps<"div">, keyof SpinnerOptions>,
+  extends Omit<HTMLChakraProps<"div">, keyof SpinnerOptions>,
     SpinnerOptions,
     ThemingProps {}
 

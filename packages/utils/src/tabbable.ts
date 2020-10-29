@@ -1,10 +1,10 @@
 // Really great work done by Diego Haz on this one
 // https://github.com/reakit/reakit/blob/master/packages/reakit-utils/src/tabbable.ts
 
-export const hasDisplayNone = (element: Element) =>
+export const hasDisplayNone = (element: HTMLElement) =>
   window.getComputedStyle(element).display === "none"
 
-export const hasTabIndex = (element: Element) =>
+export const hasTabIndex = (element: HTMLElement) =>
   element.hasAttribute("tabindex")
 
 export const hasNegativeTabIndex = (element: HTMLElement) =>
@@ -17,7 +17,7 @@ export function isDisabled(element: HTMLElement) {
   )
 }
 
-export function hasFocusWithin(element: Element) {
+export function hasFocusWithin(element: HTMLElement) {
   if (!document.activeElement) return false
   return element.contains(document.activeElement)
 }
@@ -36,7 +36,7 @@ export function isContentEditable(element: HTMLElement) {
   return value !== "false" && value != null
 }
 
-export function isFocusable(element: Element) {
+export function isFocusable(element: HTMLElement) {
   if (!isHTMLElement(element) || isHidden(element) || isDisabled(element)) {
     return false
   }
@@ -60,7 +60,8 @@ export function isFocusable(element: Element) {
   return hasTabIndex(element)
 }
 
-export function isTabbable(element: Element) {
+export function isTabbable(element?: HTMLElement | null) {
+  if (!element) return false
   return (
     isHTMLElement(element) &&
     isFocusable(element) &&
@@ -69,7 +70,7 @@ export function isTabbable(element: Element) {
 }
 
 const isActiveElement = (element: FocusableElement) =>
-  document.activeElement === (element as any)
+  document.activeElement === (element as HTMLElement)
 
 function isInputElement(
   element: FocusableElement,

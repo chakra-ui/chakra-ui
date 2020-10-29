@@ -8,12 +8,12 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface BreadcrumbSeparatorProps extends WithChakraProps<"div"> {
+export interface BreadcrumbSeparatorProps extends HTMLChakraProps<"div"> {
   spacing?: SystemProps["mx"]
 }
 
@@ -45,7 +45,7 @@ if (__DEV__) {
   BreadcrumbSeparator.displayName = "BreadcrumbSeparator"
 }
 
-export interface BreadcrumbLinkProps extends WithChakraProps<"a"> {
+export interface BreadcrumbLinkProps extends HTMLChakraProps<"a"> {
   isCurrentPage?: boolean
 }
 
@@ -86,7 +86,7 @@ interface BreadcrumbItemOptions extends BreadcrumbOptions {
 
 export interface BreadcrumbItemProps
   extends BreadcrumbItemOptions,
-    WithChakraProps<"li"> {}
+    HTMLChakraProps<"li"> {}
 
 /**
  * BreadcrumbItem is used to group a breadcrumb link.
@@ -164,7 +164,7 @@ export interface BreadcrumbOptions {
 }
 
 export interface BreadcrumbProps
-  extends WithChakraProps<"nav">,
+  extends HTMLChakraProps<"nav">,
     BreadcrumbOptions,
     ThemingProps {}
 

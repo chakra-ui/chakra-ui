@@ -56,7 +56,16 @@ export const dataAttr = (condition: boolean | undefined) =>
 export const ariaAttr = (condition: boolean | undefined) =>
   condition ? true : undefined
 
-export const getOwnerDocument = (node?: HTMLElement) =>
-  node?.ownerDocument || document
+export const getDocument = (node?: HTMLElement | null) =>
+  (node?.ownerDocument || isBrowser ? document : null) as Document | null
 
 export const cx = (...classNames: any[]) => classNames.filter(Boolean).join(" ")
+
+export function getActiveElement(node?: HTMLElement) {
+  const doc = getDocument(node)
+  return doc?.activeElement as HTMLElement
+}
+
+export function contains(parent: HTMLElement, child: HTMLElement) {
+  return parent === child || parent.contains(child)
+}

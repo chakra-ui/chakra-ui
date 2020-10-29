@@ -3,13 +3,13 @@ import {
   chakra,
   forwardRef,
   useStyles,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useFormControlContext } from "./form-control"
 
-export interface FormErrorMessageProps extends WithChakraProps<"div"> {}
+export interface FormErrorMessageProps extends HTMLChakraProps<"div"> {}
 
 /**
  * Used to provide feedback about an invalid input,

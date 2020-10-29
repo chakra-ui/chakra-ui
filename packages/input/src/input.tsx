@@ -5,7 +5,7 @@ import {
   omitThemingProps,
   ThemingProps,
   useMultiStyleConfig,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -32,7 +32,7 @@ interface InputOptions {
 type Omitted = "disabled" | "required" | "readOnly" | "size"
 
 export interface InputProps
-  extends Omit<WithChakraProps<"input">, Omitted>,
+  extends Omit<HTMLChakraProps<"input">, Omitted>,
     InputOptions,
     ThemingProps,
     FormControlOptions {

@@ -8,7 +8,8 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
-  WithChakraProps,
+  HTMLChakraProps,
+  SystemStyleObject,
 } from "@chakra-ui/system"
 import { cx, MaybeRenderProp, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { motion, Variants } from "framer-motion"
@@ -61,7 +62,7 @@ if (__DEV__) {
   Menu.displayName = "Menu"
 }
 
-export interface MenuButtonProps extends WithChakraProps<"button"> {}
+export interface MenuButtonProps extends HTMLChakraProps<"button"> {}
 
 const StyledMenuButton = forwardRef<MenuButtonProps, "button">(
   function StyledMenuButton(props, ref) {
@@ -116,7 +117,7 @@ if (__DEV__) {
   MenuButton.displayName = "MenuButton"
 }
 
-export interface MenuListProps extends WithChakraProps<"div"> {}
+export interface MenuListProps extends HTMLChakraProps<"div"> {}
 
 const motionVariants: Variants = {
   enter: {
@@ -158,6 +159,10 @@ export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
     <chakra.div {...positionerProps} __css={{ zIndex: styles.list?.zIndex }}>
       <Motion
         {...listProps}
+        /**
+         * We could call this on either `onAnimationComplete` or `onUpdate`.
+         * It seems the re-focusing works better with the `onUpdate`
+         */
         onUpdate={onTransitionEnd}
         className={cx("chakra-menu__menu-list", listProps.className)}
         variants={motionVariants}
@@ -176,10 +181,11 @@ if (__DEV__) {
   MenuList.displayName = "MenuList"
 }
 
-export interface StyledMenuItemProps extends WithChakraProps<"button"> {}
+export interface StyledMenuItemProps extends HTMLChakraProps<"button"> {}
 
 const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
   function StyledMenuItem(props, ref) {
+    const { as, type, ...rest } = props
     const styles = useStyles()
 
     /**
@@ -187,26 +193,23 @@ const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
      * Else, use no type to avoid invalid html, e.g. <a type="button" />
      * Else, fall back to "button"
      */
-    const type = props.as ? props.type ?? undefined : "button"
+    const btnType = as ? type ?? undefined : "button"
+
+    const buttonStyles: SystemStyleObject = {
+      textDecoration: "none",
+      color: "inherit",
+      userSelect: "none",
+      display: "flex",
+      width: "100%",
+      alignItems: "center",
+      textAlign: "left",
+      flex: "0 0 auto",
+      outline: 0,
+      ...styles.item,
+    }
 
     return (
-      <chakra.button
-        ref={ref}
-        type={type}
-        {...props}
-        __css={{
-          textDecoration: "none",
-          color: "inherit",
-          userSelect: "none",
-          display: "flex",
-          width: "100%",
-          alignItems: "center",
-          textAlign: "left",
-          flex: "0 0 auto",
-          outline: 0,
-          ...styles.item,
-        }}
-      />
+      <chakra.button ref={ref} type={btnType} {...rest} __css={buttonStyles} />
     )
   },
 )
@@ -228,22 +231,16 @@ interface MenuItemOptions
 }
 
 export interface MenuItemProps
-  extends WithChakraProps<"button">,
+  extends HTMLChakraProps<"button">,
     MenuItemOptions {}
 
 export const MenuItem = forwardRef<MenuItemProps, "button">(function MenuItem(
   props,
   ref,
 ) {
-  const {
-    icon,
-    iconSpacing = "0.75rem",
-    command,
-    children,
-    ...otherProps
-  } = props
+  const { icon, iconSpacing = "0.75rem", command, children, ...rest } = props
 
-  const menuItemProps = useMenuItem(otherProps, ref)
+  const menuItemProps = useMenuItem(rest, ref)
 
   const shouldWrap = icon || command
 
@@ -341,7 +338,7 @@ if (__DEV__) {
   MenuOptionGroup.displayName = "MenuOptionGroup"
 }
 
-export interface MenuGroupProps extends WithChakraProps<"div"> {}
+export interface MenuGroupProps extends HTMLChakraProps<"div"> {}
 
 export const MenuGroup = forwardRef<MenuGroupProps, "div">(function MenuGroup(
   props,
@@ -368,7 +365,7 @@ if (__DEV__) {
   MenuGroup.displayName = "MenuGroup"
 }
 
-export interface MenuCommandProps extends WithChakraProps<"span"> {}
+export interface MenuCommandProps extends HTMLChakraProps<"span"> {}
 
 export const MenuCommand = forwardRef<MenuCommandProps, "span">(
   function MenuCommand(props, ref) {
@@ -388,7 +385,7 @@ if (__DEV__) {
   MenuCommand.displayName = "MenuCommand"
 }
 
-export const MenuIcon: React.FC<WithChakraProps<"span">> = (props) => {
+export const MenuIcon: React.FC<HTMLChakraProps<"span">> = (props) => {
   const { className, children, ...rest } = props
 
   const child = React.Children.only(children)
@@ -420,7 +417,7 @@ if (__DEV__) {
   MenuIcon.displayName = "MenuIcon"
 }
 
-export interface MenuDividerProps extends WithChakraProps<"hr"> {}
+export interface MenuDividerProps extends HTMLChakraProps<"hr"> {}
 
 export const MenuDivider: React.FC<MenuDividerProps> = (props) => {
   const { className, ...rest } = props

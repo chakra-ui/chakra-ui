@@ -4,12 +4,12 @@ import {
   SystemProps,
   SystemStyleObject,
   ThemingProps,
-  WithChakraProps,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface ButtonGroupProps extends WithChakraProps<"div">, ThemingProps {
+export interface ButtonGroupProps extends HTMLChakraProps<"div">, ThemingProps {
   /**
    * If `true`, the borderRadius of button that are direct children will be altered
    * to look flushed together
