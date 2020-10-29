@@ -134,7 +134,7 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
         <Motion
           {...popoverProps}
           onUpdate={onTransitionEnd}
-          className={cx("chakra-popover__content")}
+          className={cx("chakra-popover__content", props.className)}
           __css={contentStyles}
           variants={motionVariants}
           initial={false}
