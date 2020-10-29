@@ -44,6 +44,7 @@
     "operator-assignment": "off",
     "prefer-destructuring": "off",
     "react/no-children-prop": "off",
+    "consistent-return": "off",
     "react/state-in-constructor": "off",
     "no-restricted-syntax": "off",
     "no-continue": "off",

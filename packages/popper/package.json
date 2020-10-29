@@ -57,8 +57,9 @@
   },
   "dependencies": {
     "@chakra-ui/utils": "1.0.0-rc.7",
-    "@popperjs/core": "2.4.4",
-    "react-popper": "2.2.3"
+    "@chakra-ui/hooks": "1.0.0-rc.7",
+    "dequal": "2.0.2",
+    "@popperjs/core": "2.4.4"
   },
   "peerDependencies": {
     "react": "16.x || 17.x"
