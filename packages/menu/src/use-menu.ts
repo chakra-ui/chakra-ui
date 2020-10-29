@@ -3,6 +3,7 @@ import { useDescendant, useDescendants } from "@chakra-ui/descendant"
 import {
   useControllableState,
   useDisclosure,
+  UseDisclosureProps,
   useFocusOnHide,
   useId,
   useIds,
@@ -60,6 +61,8 @@ export interface UseMenuProps extends UsePopperProps {
   /**
    * If `true`, the menu will close when you click outside
    * the menu list
+   *
+   * @default true
    */
   closeOnBlur?: boolean
   /**
@@ -70,10 +73,6 @@ export interface UseMenuProps extends UsePopperProps {
    */
   autoSelect?: boolean
   /**
-   * The Popper.js modifiers to use
-   */
-  modifiers?: UsePopperProps["modifiers"]
-  /**
    * Performance 🚀:
    * If `true`, the MenuItem rendering will be deferred
    * until the menu is open.
@@ -82,19 +81,31 @@ export interface UseMenuProps extends UsePopperProps {
   /**
    * If `true`, the top-level menu will be opened in controlled mode
    */
-  isOpen?: boolean
+  isOpen?: UseDisclosureProps["isOpen"]
   /**
    * If `true`, the top-level menu will be opened in un-controlled mode
    */
-  defaultIsOpen?: boolean
+  defaultIsOpen?: UseDisclosureProps["defaultIsOpen"]
   /**
    * Function to be called when menu is open
    */
-  onOpen?: () => void
+  onOpen?: UseDisclosureProps["onOpen"]
   /**
    * Function to be called when menu is closed
    */
-  onClose?: () => void
+  onClose?: UseDisclosureProps["onClose"]
+  /**
+   * The placement of the `MenuList`
+   *
+   * @default "bottom-start"
+   */
+  placement?: UsePopperProps["placement"]
+  /**
+   * The strategy for positioning the `MenuList`
+   *
+   * @default true
+   */
+  fixed?: UsePopperProps["fixed"]
 }
 
 /**
@@ -109,12 +120,9 @@ export function useMenu(props: UseMenuProps) {
     closeOnSelect = true,
     closeOnBlur = true,
     autoSelect = true,
-    placement: placementProp = "bottom-start",
-    gutter,
-    fixed = true,
-    preventOverflow,
-    modifiers,
     isLazy,
+    placement = "bottom-start",
+    fixed = true,
   } = props
 
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure(props)
@@ -141,13 +149,7 @@ export function useMenu(props: UseMenuProps) {
   /**
    * Add some popper.js for dynamic positioning
    */
-  const popper = usePopper({
-    placement: placementProp,
-    fixed,
-    gutter,
-    preventOverflow,
-    modifiers,
-  })
+  const popper = usePopper({ placement, fixed, ...props })
 
   const [focusedIndex, setFocusedIndex] = useState(-1)
 
@@ -228,6 +230,79 @@ export function useMenu(props: UseMenuProps) {
 }
 
 export interface UseMenuReturn extends ReturnType<typeof useMenu> {}
+
+/**
+ * React Hook to manage a menu button.
+ *
+ * The assumption here is that the `useMenu` hook is used
+ * in a component higher up the tree, and it's return value
+ * is passed as `context` to this hook.
+ */
+
+export interface UseMenuButtonProps
+  extends Omit<HTMLAttributes<Element>, "color"> {}
+
+export function useMenuButton(
+  props: UseMenuButtonProps,
+  externalRef: React.Ref<any> = null,
+) {
+  const menu = useMenuContext()
+
+  const {
+    isOpen,
+    onClose,
+    autoSelect,
+    popper,
+    openAndFocusFirstItem,
+    openAndFocusLastItem,
+    openAndFocusMenu,
+  } = menu
+
+  const onClick = useCallback(() => {
+    if (isOpen) {
+      onClose()
+    } else {
+      const action = autoSelect ? openAndFocusFirstItem : openAndFocusMenu
+      action()
+    }
+  }, [autoSelect, isOpen, onClose, openAndFocusFirstItem, openAndFocusMenu])
+
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      const eventKey = normalizeEventKey(event)
+      const keyMap: EventKeyMap = {
+        Enter: openAndFocusFirstItem,
+        ArrowDown: openAndFocusFirstItem,
+        ArrowUp: openAndFocusLastItem,
+      }
+
+      const action = keyMap[eventKey]
+
+      if (action) {
+        event.preventDefault()
+        event.stopPropagation()
+        action(event)
+      }
+    },
+    [openAndFocusFirstItem, openAndFocusLastItem],
+  )
+
+  const buttonProps = {
+    ...props,
+    id: menu.buttonId,
+    "data-active": dataAttr(menu.isOpen),
+    "aria-expanded": menu.isOpen,
+    "aria-haspopup": "menu" as React.AriaAttributes["aria-haspopup"],
+    "aria-controls": menu.menuId,
+    onClick: callAllHandlers(props.onClick, onClick),
+    onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+  }
+
+  return popper.getReferenceProps(
+    buttonProps,
+    mergeRefs(menu.buttonRef, externalRef),
+  )
+}
 
 /**
  * React Hook to manage a menu list.
@@ -347,79 +422,6 @@ export function useMenuPositioner(props: any = {}) {
   })
 }
 
-/**
- * React Hook to manage a menu button.
- *
- * The assumption here is that the `useMenu` hook is used
- * in a component higher up the tree, and it's return value
- * is passed as `context` to this hook.
- */
-
-export interface UseMenuButtonProps
-  extends Omit<HTMLAttributes<Element>, "color"> {}
-
-export function useMenuButton(
-  props: UseMenuButtonProps,
-  externalRef: React.Ref<any> = null,
-) {
-  const menu = useMenuContext()
-
-  const {
-    isOpen,
-    onClose,
-    autoSelect,
-    popper,
-    openAndFocusFirstItem,
-    openAndFocusLastItem,
-    openAndFocusMenu,
-  } = menu
-
-  const onClick = useCallback(() => {
-    if (isOpen) {
-      onClose()
-    } else {
-      const action = autoSelect ? openAndFocusFirstItem : openAndFocusMenu
-      action()
-    }
-  }, [autoSelect, isOpen, onClose, openAndFocusFirstItem, openAndFocusMenu])
-
-  const onKeyDown = useCallback(
-    (event: React.KeyboardEvent) => {
-      const eventKey = normalizeEventKey(event)
-      const keyMap: EventKeyMap = {
-        Enter: openAndFocusFirstItem,
-        ArrowDown: openAndFocusFirstItem,
-        ArrowUp: openAndFocusLastItem,
-      }
-
-      const action = keyMap[eventKey]
-
-      if (action) {
-        event.preventDefault()
-        event.stopPropagation()
-        action(event)
-      }
-    },
-    [openAndFocusFirstItem, openAndFocusLastItem],
-  )
-
-  const buttonProps = {
-    ...props,
-    id: menu.buttonId,
-    "data-active": dataAttr(menu.isOpen),
-    "aria-expanded": menu.isOpen,
-    "aria-haspopup": "menu" as React.AriaAttributes["aria-haspopup"],
-    "aria-controls": menu.menuId,
-    onClick: callAllHandlers(props.onClick, onClick),
-    onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-  }
-
-  return popper.getReferenceProps(
-    buttonProps,
-    mergeRefs(menu.buttonRef, externalRef),
-  )
-}
-
 export interface UseMenuItemProps
   extends Omit<HTMLAttributes<Element>, "color"> {
   isDisabled?: boolean
@@ -431,7 +433,9 @@ export function useMenuItem(
   externalRef: React.Ref<any> = null,
 ) {
   const {
-    onMouseOut: onMouseOutProp,
+    onMouseEnter: onMouseEnterProp,
+    onMouseMove: onMouseMoveProp,
+    onMouseLeave: onMouseLeaveProp,
     onClick: onClickProp,
     isDisabled,
     isFocusable,
@@ -463,21 +467,35 @@ export function useMenuItem(
     focusable: isFocusable,
   })
 
-  const onMouseEnter = useCallback(() => {
-    if (isDisabled) return
-    setFocusedIndex(index)
-  }, [setFocusedIndex, index, isDisabled])
+  const onMouseEnter = useCallback(
+    (event) => {
+      onMouseEnterProp?.(event)
+      if (isDisabled) return
 
-  const onMouseMove = useCallback(() => {
-    if (document.activeElement !== ref.current) {
-      onMouseEnter()
-    }
-  }, [onMouseEnter])
+      setFocusedIndex(index)
+    },
+    [setFocusedIndex, index, isDisabled],
+  )
 
-  const onMouseLeave = useCallback(() => {
-    if (isDisabled) return
-    setFocusedIndex(-1)
-  }, [setFocusedIndex, isDisabled])
+  const onMouseMove = useCallback(
+    (event) => {
+      onMouseMoveProp?.(event)
+      if (document.activeElement !== ref.current) {
+        onMouseEnter(event)
+      }
+    },
+    [onMouseEnter],
+  )
+
+  const onMouseLeave = useCallback(
+    (event) => {
+      onMouseLeaveProp?.(event)
+      if (isDisabled) return
+
+      setFocusedIndex(-1)
+    },
+    [setFocusedIndex, isDisabled],
+  )
 
   const onClick = useCallback(
     (event: MouseEvent) => {
@@ -540,7 +558,6 @@ export function useMenuOption(
   externalRef: React.Ref<any> = null,
 ) {
   const {
-    onMouseOut,
     onClick,
     isDisabled,
     isFocusable,
