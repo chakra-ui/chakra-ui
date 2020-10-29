@@ -1454,6 +1454,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "gauthierrodaro",
+      "name": "Gauthier Rodaro",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/6961490?v=4",
+      "profile": "https://gauthierrodaro.com",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
