@@ -1,6 +1,6 @@
 import { render, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { Box, Badge } from "../src"
+import { Box, Badge, Flex } from "../src"
 
 describe("<Box />", () => {
   test("renders box correctly", () => {
@@ -38,6 +38,24 @@ describe("<Badge />", () => {
         Badge
       </Badge>,
     )
+    expect(asFragment()).toMatchSnapshot()
+  })
+})
+
+describe("<Flex />", () => {
+  test("renders all the allowed shorthand style props", () => {
+    const { asFragment } = render(
+      <Flex
+        align="stretch"
+        justify="start"
+        wrap="nowrap"
+        direction="row"
+        basis="auto"
+        grow={1}
+        shrink={0}
+      />,
+    )
+
     expect(asFragment()).toMatchSnapshot()
   })
 })
