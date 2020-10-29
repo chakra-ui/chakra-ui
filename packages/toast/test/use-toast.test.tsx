@@ -10,7 +10,7 @@ beforeEach(async () => {
   // close all toasts before each tests and wait for them to be removed
   toast.closeAll()
 
-  const toasts = screen.queryAllByTestId("toast")
+  const toasts = screen.queryAllByRole("listitem")
 
   await Promise.all(toasts.map((toasts) => waitForElementToBeRemoved(toasts)))
 })

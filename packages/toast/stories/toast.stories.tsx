@@ -1,16 +1,16 @@
 import * as React from "react"
-import useToast from "../src/use-toast"
 import { Button, ButtonGroup } from "@chakra-ui/button"
 import { chakra, useColorMode } from "@chakra-ui/system"
 import { Alert } from "@chakra-ui/alert"
+import { useToast } from "../src"
 
 export default {
   title: "Toast",
   decorators: [
     (Story: Function) => (
-      <React.Fragment>
+      <>
         <Story />
-      </React.Fragment>
+      </>
     ),
   ],
 }
@@ -234,4 +234,13 @@ export const CloseAllTopLeftToasts = () => {
       </Button>
     </>
   )
+}
+
+export const UseToastWithDefaults = () => {
+  const toast = useToast({
+    position: "top-right",
+    title: "asdf",
+  })
+
+  return <Button onClick={() => toast()}>toast</Button>
 }
