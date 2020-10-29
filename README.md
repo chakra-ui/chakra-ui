@@ -360,6 +360,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/ifeoma-imoh"><img src="https://avatars2.githubusercontent.com/u/60473225?v=4" width="64px;" alt=""/><br /><sub><b>Ifeoma Imoh</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=ifeoma-imoh" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/jasonadkison"><img src="https://avatars3.githubusercontent.com/u/744333?v=4" width="64px;" alt=""/><br /><sub><b>Jason Adkison</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Ajasonadkison" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://gauthierrodaro.com"><img src="https://avatars1.githubusercontent.com/u/6961490?v=4" width="64px;" alt=""/><br /><sub><b>Gauthier Rodaro</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Agauthierrodaro" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/tomdohnal"><img src="https://avatars2.githubusercontent.com/u/22922179?v=4" width="64px;" alt=""/><br /><sub><b>Tom Dohnal</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=tomdohnal" title="Code">💻</a></td>
   </tr>
 </table>
 
