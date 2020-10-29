@@ -244,3 +244,42 @@ export const UseToastWithDefaults = () => {
 
   return <Button onClick={() => toast()}>toast</Button>
 }
+
+export const useToastCustomRenderUpdate = () => {
+  const [id, setId] = React.useState(null)
+  const toast = useToast()
+
+  React.useEffect(() => {
+    if (id) {
+      const timeout = setTimeout(() => {
+        toast.update(id, {
+          render: () => (
+            <ButtonGroup>
+              <Button variant="outline">outline button after update</Button>
+              <Button variant="ghost">ghost button after update</Button>
+              <Button variant="link">link button after update</Button>
+            </ButtonGroup>
+          ),
+        })
+
+        setId(null)
+      }, 2000)
+
+      return () => clearTimeout(timeout)
+    }
+  }, [id])
+
+  return (
+    <Button
+      onClick={() => {
+        const id = toast({
+          render: () => <Button variant="solid">solid button initially</Button>,
+        })
+
+        setId(id)
+      }}
+    >
+      toast
+    </Button>
+  )
+}

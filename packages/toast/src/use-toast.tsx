@@ -168,11 +168,9 @@ export function createStandaloneToast({
 
   // toasts can only be updated if they have a valid id
   toastImpl.update = (id: ToastId, options: Omit<UseToastOptions, "id">) => {
-    const { render, ...rest } = options
-
     if (!id) return
 
-    const opts = { ...defaults, ...rest }
+    const opts = { ...defaultOptions, ...options }
 
     toast.update(id, {
       ...opts,
