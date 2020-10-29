@@ -189,7 +189,7 @@ export interface StyledMenuItemProps extends HTMLChakraProps<"button"> {}
 
 const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
   function StyledMenuItem(props, ref) {
-    const { as, type, ...rest } = props
+    const { type, ...rest } = props
     const styles = useStyles()
 
     /**
@@ -197,7 +197,7 @@ const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
      * Else, use no type to avoid invalid html, e.g. <a type="button" />
      * Else, fall back to "button"
      */
-    const btnType = as ? type ?? undefined : "button"
+    const btnType = rest.as ? type ?? undefined : "button"
 
     const buttonStyles: SystemStyleObject = {
       textDecoration: "none",
