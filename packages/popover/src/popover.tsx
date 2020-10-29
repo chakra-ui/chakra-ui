@@ -59,7 +59,8 @@ export interface PopoverProps extends UsePopoverProps, ThemingProps {
    */
   children?: MaybeRenderProp<{
     isOpen: boolean
-    onClose(): void
+    onClose: () => void
+    forceUpdate: (() => void) | null
   }>
 }
 
@@ -79,6 +80,7 @@ export const Popover: React.FC<PopoverProps> = (props) => {
         {runIfFn(children, {
           isOpen: context.isOpen,
           onClose: context.onClose,
+          forceUpdate: context.forceUpdate,
         })}
       </StylesProvider>
     </PopoverProvider>

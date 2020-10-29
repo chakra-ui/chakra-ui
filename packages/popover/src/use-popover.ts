@@ -344,6 +344,7 @@ export function usePopover(props: UsePopoverProps = {}) {
   }
 
   return {
+    forceUpdate: popper.forceUpdate,
     isOpen,
     onClose,
     headerId,
