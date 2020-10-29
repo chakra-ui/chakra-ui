@@ -78,12 +78,7 @@ export const Editable = forwardRef<EditableProps, "div">(function Editable(
   return (
     <EditableProvider value={context}>
       <StylesProvider value={styles}>
-        <chakra.div
-          ref={ref}
-          {...htmlProps}
-          __css={styles.container}
-          className={_className}
-        >
+        <chakra.div ref={ref} {...htmlProps} className={_className}>
           {children}
         </chakra.div>
       </StylesProvider>
