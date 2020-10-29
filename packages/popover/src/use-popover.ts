@@ -164,19 +164,20 @@ export function usePopover(props: UsePopoverProps = {}) {
   useFocusOnHide(popoverRef, {
     focusRef: triggerRef,
     visible: isOpen,
-    shouldFocus: returnFocusOnClose && trigger === "click",
+    shouldFocus: returnFocusOnClose && trigger === TRIGGER.click,
   })
 
   useFocusOnShow(popoverRef, {
     visible: isOpen,
     focusRef: initialFocusRef,
-    shouldFocus: autoFocus && trigger !== "hover",
+    shouldFocus: autoFocus && trigger === TRIGGER.click,
   })
 
   useOutsideClick({
     ref: popoverRef,
     handler: (event) => {
       if (
+        isOpen &&
         trigger === TRIGGER.click &&
         closeOnBlur &&
         !triggerRef.current?.contains(event.target as HTMLElement)
