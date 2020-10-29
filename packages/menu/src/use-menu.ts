@@ -210,6 +210,7 @@ export function useMenu(props: UseMenuProps) {
     popper,
     buttonId,
     menuId,
+    forceUpdate: popper.forceUpdate,
     orientation: "vertical",
     isOpen,
     onToggle,

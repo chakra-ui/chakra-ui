@@ -31,7 +31,11 @@ import {
 } from "./use-menu"
 
 export interface MenuProps extends UseMenuProps, ThemingProps {
-  children: MaybeRenderProp<{ isOpen: boolean; onClose(): void }>
+  children: MaybeRenderProp<{
+    isOpen: boolean
+    onClose: () => void
+    forceUpdate: (() => void) | null
+  }>
 }
 
 /**
@@ -47,12 +51,12 @@ export const Menu: React.FC<MenuProps> = (props) => {
   const ctx = useMenu(ownProps)
   const context = React.useMemo(() => ctx, [ctx])
 
-  const { isOpen, onClose } = context
+  const { isOpen, onClose, forceUpdate } = context
 
   return (
     <MenuProvider value={context}>
       <StylesProvider value={styles}>
-        {runIfFn(children, { isOpen, onClose })}
+        {runIfFn(children, { isOpen, onClose, forceUpdate })}
       </StylesProvider>
     </MenuProvider>
   )
