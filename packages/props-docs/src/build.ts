@@ -1,11 +1,20 @@
 import "regenerator-runtime/runtime"
-import * as docgen from "react-docgen-typescript"
 import glob from "glob"
 import path from "path"
 import { promisify } from "util"
-import { propNames } from "@chakra-ui/styled-system"
 import { writeFileSync } from "fs"
+import * as docgen from "react-docgen-typescript"
+import { ComponentDoc } from "react-docgen-typescript"
 import mkdirp from "mkdirp"
+import { propNames } from "@chakra-ui/styled-system"
+
+type ComponentInfo = {
+  def: ComponentDoc
+  displayName: string
+  fileName: string
+  exportName: string
+  importPath: string
+}
 
 const globAsync = promisify(glob)
 
@@ -15,94 +24,139 @@ const basePath = path.join(__dirname, "../../..")
 const componentsDir = path.join(__dirname, "..", "components")
 const tsConfigPath = path.join(basePath, "..", "tsconfig.json")
 
-const { parse } = docgen.withCustomConfig(tsConfigPath, {
-  propFilter: (prop) => {
-    const isStyledSystemProp = excludedPropNames.includes(prop.name)
-    const isHTMLElementProp =
-      prop.parent?.fileName.includes("node_modules") ?? false
-
-    return !(isStyledSystemProp || isHTMLElementProp)
-  },
-})
-
 export async function main() {
-  const tsFiles = await globAsync("core/**/src/**/*.@(ts|tsx)", {
-    cwd: basePath,
-  })
-
-  const componentFiles = tsFiles.filter(
-    (f) => !f.includes("stories") && !f.startsWith("icons/"),
-  )
+  const componentFiles = await findComponentFiles()
 
   if (componentFiles.length) {
     await mkdirp(componentsDir)
   }
 
-  const indexArray: {
-    displayName: string
-    filePath: string
-    exportName: string
-  }[] = []
+  log("Parsing files for component types...")
+  const parsedInfo = parseInfo(componentFiles)
 
-  function createUniqueName(displayName: string) {
-    const existing = indexArray.filter(
-      (prev) =>
-        String(prev.displayName).toLowerCase() === displayName.toLowerCase(),
-    )
+  log("Extracting component info...")
+  const componentInfo = extractComponentInfo(parsedInfo)
 
-    if (!existing.length) {
-      return displayName
-    }
+  log("Writing component info files...")
+  writeComponentInfoFiles(componentInfo)
 
-    return `${displayName}${existing.length}`
-  }
+  log("Writing index files...")
+  writeIndexCJS(componentInfo)
+  writeIndexESM(componentInfo)
 
-  console.info(`Start processing ${componentFiles.length} files`)
-  componentFiles.forEach((file, index, all) => {
-    const absoluteFilePath = path.join(basePath, file)
-    const propsDefs = parse(absoluteFilePath)
+  log(`Processed ${componentInfo.length} components`)
+}
 
-    for (const def of propsDefs) {
-      const exportName = createUniqueName(def.displayName)
-      const fileName = `${exportName}.json`
-      const filePath = path.join(componentsDir, fileName)
-      if (!Object.keys(def.props || {}).length) {
-        continue
-      }
+if (require.main === module) {
+  // run main function if called via cli
+  main().catch(console.error)
+}
 
-      const content = JSON.stringify(def)
-
-      writeFileSync(filePath, content)
-
-      indexArray.push({
-        displayName: def.displayName,
-        exportName,
-        filePath: `../components/${fileName}`,
-      })
-
-      console.info(
-        `${String(index + 1).padStart(String(all.length).length)}/${
-          all.length
-        } ${file} ${def.displayName}`,
-      )
-    }
+/**
+ * Find all TypeScript files which could contain component definitions
+ */
+async function findComponentFiles() {
+  const tsFiles = await globAsync("core/**/src/**/*.@(ts|tsx)", {
+    cwd: basePath,
   })
 
+  return tsFiles.filter((f) => !f.includes("stories"))
+}
+
+/**
+ * Parse files with react-doc-gen-typescript
+ */
+function parseInfo(filePaths: string[]) {
+  const { parse } = docgen.withCustomConfig(tsConfigPath, {
+    propFilter: (prop) => {
+      const isStyledSystemProp = excludedPropNames.includes(prop.name)
+      const isHTMLElementProp =
+        prop.parent?.fileName.includes("node_modules") ?? false
+
+      return !(isStyledSystemProp || isHTMLElementProp)
+    },
+  })
+
+  return filePaths.flatMap((file) => {
+    const absoluteFilePath = path.join(basePath, file)
+    return parse(absoluteFilePath)
+  })
+}
+
+/**
+ * Extract meta data of component docs
+ */
+function extractComponentInfo(docs: ComponentDoc[]) {
+  return docs.reduce((acc, def) => {
+    if (!Object.keys(def.props || {}).length) {
+      return acc
+    }
+
+    function createUniqueName(displayName: string) {
+      const existing = acc.filter(
+        (prev) =>
+          String(prev.def.displayName).toLowerCase() ===
+          displayName.toLowerCase(),
+      )
+
+      if (!existing.length) {
+        return displayName
+      }
+
+      return `${displayName}${existing.length}`
+    }
+
+    const exportName = createUniqueName(def.displayName)
+    const fileName = `${exportName}.json`
+
+    acc.push({
+      def,
+      displayName: def.displayName,
+      fileName,
+      exportName,
+      importPath: `../components/${fileName}`,
+    })
+    return acc
+  }, [] as ComponentInfo[])
+}
+
+/**
+ * Write component info as JSON to disk
+ */
+function writeComponentInfoFiles(componentInfo: ComponentInfo[]) {
+  for (const info of componentInfo) {
+    const filePath = path.join(componentsDir, info.fileName)
+    const content = JSON.stringify(info.def)
+    writeFileSync(filePath, content)
+  }
+}
+
+/**
+ * Create and write the index file in CJS format
+ */
+function writeIndexCJS(componentInfo: ComponentInfo[]) {
   const cjsIndexFilePath = path.join(__dirname, "index.js")
-  const cjsExports = indexArray.map(
-    ({ displayName, filePath }) =>
-      `module.exports['${displayName}'] = require('${filePath}')`,
+  const cjsExports = componentInfo.map(
+    ({ displayName, importPath }) =>
+      `module.exports['${displayName}'] = require('${importPath}')`,
   )
   writeFileSync(cjsIndexFilePath, cjsExports.join("\n"))
+}
 
+/**
+ * Create and write the index file in ESM format
+ */
+function writeIndexESM(componentInfo: ComponentInfo[]) {
   const esmIndexFilePath = path.join(__dirname, "..", "esm", "index.js")
-  const esmPropImports = indexArray
+
+  const esmPropImports = componentInfo
     .map(
-      ({ exportName, filePath }) =>
-        `import ${exportName}Import from '${filePath}'`,
+      ({ exportName, importPath }) =>
+        `import ${exportName}Import from '${importPath}'`,
     )
     .join("\n")
-  const esmPropExports = indexArray
+
+  const esmPropExports = componentInfo
     .map(({ exportName }) => `export const ${exportName} = ${exportName}Import`)
     .join("\n")
 
@@ -111,10 +165,8 @@ export async function main() {
     `${esmPropImports}
 ${esmPropExports}`,
   )
-
-  console.info(`Processed ${componentFiles.length} files`)
 }
 
-if (require.main === module) {
-  main().catch(console.error)
+function log(...args: unknown[]) {
+  console.info(`[props-docs]`, ...args)
 }
