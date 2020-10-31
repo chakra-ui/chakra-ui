@@ -33,16 +33,21 @@ const PropsTable = ({
   const entries = useMemo(
     () =>
       Object.entries(info.props)
-        .filter(([key]) => {
+        .filter(([propName]) => {
           if (Array.isArray(only)) {
-            return only.includes(key)
+            return only.includes(propName)
           }
           if (Array.isArray(omit)) {
-            return !omit.includes(key)
+            return !omit.includes(propName)
           }
           return true
         })
-        .sort(([a], [b]) => String(a).localeCompare(b)),
+        .sort(([a, aDef], [b, bDef]) => {
+          const aRequired = aDef.required ? 1000 : 0
+          const bRequired = bDef.required ? 1000 : 0
+          const requiredOffset = aRequired - bRequired
+          return String(a).localeCompare(b) - requiredOffset
+        }),
     [info.props, omit, only],
   )
 
@@ -52,8 +57,9 @@ const PropsTable = ({
         <tr>
           <MDXComponents.th>Name</MDXComponents.th>
           <MDXComponents.th>Type</MDXComponents.th>
-          <MDXComponents.th>Default</MDXComponents.th>
           <MDXComponents.th>Description</MDXComponents.th>
+          <MDXComponents.th>Default</MDXComponents.th>
+          <MDXComponents.th>Required</MDXComponents.th>
         </tr>
       </thead>
       <tbody>
@@ -69,16 +75,19 @@ const PropsTable = ({
                 {values.type?.name}
               </MDXComponents.inlineCode>
             </MDXComponents.td>
+            <MDXComponents.td>{values.description}</MDXComponents.td>
             <MDXComponents.td>
               <MDXComponents.inlineCode
                 whiteSpace="wrap"
                 d="inline-block"
                 lineHeight="tall"
               >
-                {values.type?.default ?? ""}
+                {values.defaultValue?.value ?? "-"}
               </MDXComponents.inlineCode>
             </MDXComponents.td>
-            <MDXComponents.td>{values.description}</MDXComponents.td>
+            <MDXComponents.td>
+              {values.required ? "required" : "-"}
+            </MDXComponents.td>
           </tr>
         ))}
       </tbody>
