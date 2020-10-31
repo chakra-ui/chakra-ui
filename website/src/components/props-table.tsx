@@ -50,6 +50,11 @@ const PropsTable = ({
     [info.props, omit, only],
   )
 
+  if (!entries.length) {
+    // this error breaks the build to notify you when there would be an empty table
+    throw new Error(`No props left to render for component ${of}`)
+  }
+
   return (
     <MDXComponents.table>
       <thead>
@@ -76,13 +81,17 @@ const PropsTable = ({
             </MDXComponents.td>
             <MDXComponents.td>{values.description}</MDXComponents.td>
             <MDXComponents.td>
-              <MDXComponents.inlineCode
-                whiteSpace="wrap"
-                d="inline-block"
-                lineHeight="tall"
-              >
-                {values.defaultValue?.value ?? "-"}
-              </MDXComponents.inlineCode>
+              {values.defaultValue?.value ? (
+                <MDXComponents.inlineCode
+                  whiteSpace="wrap"
+                  d="inline-block"
+                  lineHeight="tall"
+                >
+                  {values.defaultValue.value}
+                </MDXComponents.inlineCode>
+              ) : (
+                "-"
+              )}
             </MDXComponents.td>
             <MDXComponents.td>
               {values.required ? "required" : "-"}
