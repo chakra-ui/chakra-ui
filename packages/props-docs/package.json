@@ -35,8 +35,9 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
+    "postbuild": "node dist/cjs/build.js",
     "start": "nodemon --watch src --exec yarn build -e ts,tsx",
-    "build": "concurrently yarn:build:* && node dist/cjs/build.js",
+    "build": "concurrently yarn:build:*",
     "test": "jest --env=jsdom --passWithNoTests",
     "lint": "concurrently yarn:lint:*",
     "version": "yarn build",
@@ -49,6 +50,7 @@
   },
   "dependencies": {
     "@chakra-ui/styled-system": "^1.0.0-rc.7",
+    "@chakra-ui/core": "^1.0.0-rc.7",
     "react-docgen-typescript": "^1.20.5",
     "regenerator-runtime": "^0.13.7",
     "glob": "^7.1.6",
