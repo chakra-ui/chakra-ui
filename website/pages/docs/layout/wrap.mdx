@@ -5,7 +5,9 @@ image: "components/wrap.svg"
 description: API docs for the Wrap components in Chakra UI
 ---
 
-Wrap is a layout component that adds a defined space between its children. It 'wraps' its children automatically if there isn' not enough space to fit any child.
+Wrap is a layout component that adds a defined space between its children. It
+'wraps' its children automatically if there isn' not enough space to fit any
+child.
 
 Think of it as a smarter `flex-wrap` with `spacing` support. It works really
 well with things like dialog buttons, tags, and chips.
@@ -23,7 +25,9 @@ well with things like dialog buttons, tags, and chips.
 ```js
 import { Wrap, WrapItem } from "@chakra-ui/core"
 ```
-- **WrapItem**: WrapItem composes the `Box` component. It renders the HTML `<li>` tag in the DOM.
+
+- **WrapItem**: WrapItem composes the `Box` component. It renders the HTML
+  `<li>` tag in the DOM.
 
 ## Usage
 
@@ -164,12 +168,7 @@ axis.
 
 Wrap extends `Box`, so you can pass all `Box` props in addition to these:
 
-| Name      | Type                           | Default  | Description                                            |
-| --------- | ------------------------------ | -------- | ------------------------------------------------------ |
-| spacing   | `Responsive(string or number)` | `0.5rem` | The space between each child (even if it wraps).        |
-| justify   | `FlexProps['justifyContent']`  |          | The `justify-content` value (for cross axis alignment). |
-| align     | `FlexProps['alignItems']`      |          | The `align-items` value (for main axis alignment).    |
-| direction | `FlexProps['flexDirection']`   |          | The `flex-direction` value.                           |
+<PropsTable of="Wrap" />
 
 ### WrapItem Props
 

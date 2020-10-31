@@ -97,15 +97,4 @@ directly without client side checks.
 
 ## Props
 
-| Name             | Type               | Default | Description                                                                                                                  |
-| ---------------- | ------------------ | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `src`            | `string`           |         | The path to the image source,                                                                                                 |
-| `fallbackSrc`    | `string`           |         | In event there was an error loading the `src`, specify a fallback. In most cases, this can be an avatar or image placeholder. |
-| `alt`            | `string`           |         | The alt text that describes the image.                                                                                        |
-| `onLoad`         | `function`         |         | A callback for when the image `src` has been loaded.                                                                          |
-| `onError`        | `function`         |         | A callback for when there was an error loading the image `src`.                                                               |
-| `htmlWidth`      | `string`, `number` |         | The native HTML width attribute of the `img` element.                                                                         |
-| `htmlHeight`     | `string`, `number` |         | The native HTML height attribute of the `img` element.                                                                        |
-| `ignoreFallback` | `boolean`          |         | Opt out of the `fallbackSrc` logic and use the `Image` directly.                                                              |
-| `fit`            | `string`           |         | The CSS `object-fit` property for the image.                                                                                  |
-| `align`          | `string`           |         | The CSS `object-position` property for the image.                                                                             |
+<PropsTable of="Image" />   

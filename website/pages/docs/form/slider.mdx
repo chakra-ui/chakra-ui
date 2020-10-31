@@ -117,42 +117,25 @@ UIs.
 The `Slider` component wraps all it's children in the [Box](/docs/layout/box)
 component, so you can pass all `Box` props to change it's style.
 
-| Name               | Type                       | Default | Description                                                               |
-| ------------------ | -------------------------- | ------- | ------------------------------------------------------------------------- |
-| `value`            | `number`                   |         | The value of the `Slider`.                                                  |
-| `defaultValue`     | `number`                   |         | The initial value of the `Slider`.                                          |
-| `max`              | `number`                   |         | Standard `input` max attribute.                                           |
-| `min`              | `number`                   |         | Standard `input` min attribute.                                           |
-| `step`             | `number`                   |         | Standard `input` step attribute.                                          |
-| `onChange`         | `(value: number): void`    |         | Callback fired when the value of the `Slider` changes.                      |
-| `onChangeEnd`      | `(value: number): void`    |         | Callback fired when the `Slider` changes is done.                           |
-| `isReadOnly`       | `boolean`                  |         | If `true`, the `Slider` will be in read-only mode.                          |
-| `onFocus`          | `Function`                 |         | Callback fired when the thumb receives focus                              |
-| `onBlur`           | `Function`                 |         | Callback fired when the thumb is blurred .                                 |
-| `onMouseDown`      | `Function`                 |         | Callback fired when the you mousedown on any part of the slider           |
-| `aria-label`       | `string`                   |         | The accessible label.                                                     |
-| `aria-labelledby`  | `string`                   |         | The `id` of the element that labels the `Slider.                           |
-| `aria-valuetext`   | `string`                   |         | The aria-valuetext of the switch for accessibility.                       |
-| `orientation`      | `string`                   |         | The orientation of the slider, only `horizontal` is supported for now.    |
-| `getAriaValueText` | `(value: number ): string` |         | The callback to format the `aria-valuetext`.                              |
-| `size`             | `sm`, `md`, `lg`           |         | The size of the `Slider`.                                                  |
-| `colorScheme`      | `string`                   |         | The color scheme to use for the `Slider`. Use a color key in `theme.colors` |
-| `name`             | `string`                   |         | The name of the `Slider` component when used in a form.                     |
-| `id`               | `string`                   |         | The id of the `Slider` component when used in a form.                       |
-| `children`         | `React.ReactNode`          |         | The children of the `Slider`.                                               |
-| `isReversed`       | `boolean`                  |         | If `true`, it'll reverse the direction and functionality of the `Slider`.    |
+<PropsTable of="Slider" />
 
 ### SliderThumb Props
 
 `SliderThumb` composes [Box](/docs/layout/box) so you can pass all `Box` props to
 change it's style.
 
+<PropsTable of="SliderThumb" />
+
 ### SliderFilledTrack Props
 
 `SliderFilledTrack` composes [Box](/docs/layout/box) so you can pass all `Box` props
 to change it's style.
 
+<PropsTable of="SliderFilledTrack" />
+
 ### SliderTrack Props
 
 `SliderTrack` composes [Box](/docs/layout/box) so you can pass all `Box` props to
 change it's style.
+
+<PropsTable of="SliderTrack" />
