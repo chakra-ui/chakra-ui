@@ -26,10 +26,9 @@ const { parse } = docgen.withCustomConfig(tsConfigPath, {
 })
 
 export async function main() {
-  const tsFiles = await globAsync(
-    "@(accordion|breadcrumb|icon|link|tabs)/**/src/**/*.@(ts|tsx)",
-    { cwd: basePath },
-  )
+  const tsFiles = await globAsync("core/**/src/**/*.@(ts|tsx)", {
+    cwd: basePath,
+  })
 
   const componentFiles = tsFiles.filter(
     (f) => !f.includes("stories") && !f.startsWith("icons/"),
@@ -67,6 +66,10 @@ export async function main() {
       const exportName = createUniqueName(def.displayName)
       const fileName = `${exportName}.json`
       const filePath = path.join(componentsDir, fileName)
+      if (!Object.keys(def.props || {}).length) {
+        continue
+      }
+
       const content = JSON.stringify(def)
 
       writeFileSync(filePath, content)
