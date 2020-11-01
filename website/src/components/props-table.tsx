@@ -52,7 +52,10 @@ const PropsTable = ({
 
   if (!entries.length) {
     // this error breaks the build to notify you when there would be an empty table
-    throw new Error(`No props left to render for component ${of}`)
+    throw new Error(
+      `No props left to render for component ${of}.
+Remove the use of <PropsTable of="${of}" /> for this component in the docs.`,
+    )
   }
 
   return (
