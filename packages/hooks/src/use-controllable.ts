@@ -92,11 +92,14 @@ export function useControllableState<T>(props: UseControllableStateProps<T>) {
 
   const value = isControlled ? (valueProp as T) : valueState
 
-  const updateValue = React.useCallback((next: React.SetStateAction<T>) => {
-    const nextValue = runIfFn(next, value)
-    if (!isControlled) setValue(nextValue)
-    onChange?.(nextValue)
-  }, [])
+  const updateValue = React.useCallback(
+    (next: React.SetStateAction<T>) => {
+      const nextValue = runIfFn(next, value)
+      if (!isControlled) setValue(nextValue)
+      onChange?.(nextValue)
+    },
+    [onChange],
+  )
 
   return [value, updateValue] as [T, React.Dispatch<React.SetStateAction<T>>]
 }
