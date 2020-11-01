@@ -6,7 +6,7 @@ description:
   The Image component is used to display images with support for fallback.
 ---
 
-The Image component is used to display images.
+The `Image` component is used to display images.
 
 Image composes `Box` so you can use all the style props and add responsive
 styles as well.
@@ -79,12 +79,12 @@ prop.
 ### Improvements from v1
 
 - Added support for the `fit` prop to specify how to fit an image within its
-  dimension. It uses the `object-fit` property
+  dimension. It uses the `object-fit` property.
 
 - Added support for the `align` prop to specify how to align the image within
-  its dimension. It uses the `object-position` property
+  its dimension. It uses the `object-position` property.
 
-- Added support for custom `fallback` component
+- Added support for custom `fallback` component.
 
 ## Usage with SSR
 
@@ -92,20 +92,20 @@ prop.
 import { Img } from "@chakra-ui/core"
 ```
 
-The Img Component provides a fallback for SSR applications which uses the image
+The `Img` Component provides a fallback for SSR applications which uses the image
 directly without client side checks.
 
 ## Props
 
 | Name             | Type               | Default | Description                                                                                                                  |
 | ---------------- | ------------------ | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `src`            | `string`           |         | The path to the image source                                                                                                 |
-| `fallbackSrc`    | `string`           |         | In event there was an error loading the `src`, specify a fallback. In most cases, this can be an avatar or image placeholder |
-| `alt`            | `string`           |         | The alt text that describes the image                                                                                        |
-| `onLoad`         | `function`         |         | A callback for when the image `src` has been loaded                                                                          |
-| `onError`        | `function`         |         | A callback for when there was an error loading the image `src`                                                               |
-| `htmlWidth`      | `string`, `number` |         | The native HTML width attribute of the `img` element                                                                         |
-| `htmlHeight`     | `string`, `number` |         | The native HTML height attribute of the `img` element                                                                        |
-| `ignoreFallback` | `boolean`          |         | Opt out of the `fallbackSrc` logic and use the `Image` directly                                                              |
-| `fit`            | `string`           |         | The CSS `object-fit` property for the image                                                                                  |
-| `align`          | `string`           |         | The CSS `object-position` property for the image                                                                             |
+| `src`            | `string`           |         | The path to the image source,                                                                                                 |
+| `fallbackSrc`    | `string`           |         | In event there was an error loading the `src`, specify a fallback. In most cases, this can be an avatar or image placeholder. |
+| `alt`            | `string`           |         | The alt text that describes the image.                                                                                        |
+| `onLoad`         | `function`         |         | A callback for when the image `src` has been loaded.                                                                          |
+| `onError`        | `function`         |         | A callback for when there was an error loading the image `src`.                                                               |
+| `htmlWidth`      | `string`, `number` |         | The native HTML width attribute of the `img` element.                                                                         |
+| `htmlHeight`     | `string`, `number` |         | The native HTML height attribute of the `img` element.                                                                        |
+| `ignoreFallback` | `boolean`          |         | Opt out of the `fallbackSrc` logic and use the `Image` directly.                                                              |
+| `fit`            | `string`           |         | The CSS `object-fit` property for the image.                                                                                  |
+| `align`          | `string`           |         | The CSS `object-position` property for the image.                                                                             |
