@@ -52,7 +52,7 @@ export function usePopper(props: UsePopperProps = {}) {
    * recommended via popper docs
    * @see https://popper.js.org/react-popper/v2/faq/#why-i-get-render-loop-whenever-i-put-a-function-inside-the-popper-configuration
    */
-  const customMofidiers = React.useMemo<Partial<Modifier<any, unknown>>[]>(
+  const customModifiers = React.useMemo<Partial<Modifier<any, unknown>>[]>(
     () => [
       // @see https://popper.js.org/docs/v2/modifiers/offset/
       {
@@ -127,7 +127,7 @@ export function usePopper(props: UsePopperProps = {}) {
   const popperJS = useBasePopper(referenceNode as any, popperNode as any, {
     placement,
     strategy: fixed ? "fixed" : "absolute",
-    modifiers: customMofidiers.concat(modifiers),
+    modifiers: customModifiers.concat(modifiers),
   })
 
   /**
