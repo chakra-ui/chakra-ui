@@ -2,10 +2,10 @@ import { Portal } from "@chakra-ui/portal"
 import {
   chakra,
   forwardRef,
+  HTMLChakraProps,
   omitThemingProps,
   ThemingProps,
   useStyleConfig,
-  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { isString, omit, pick, __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
@@ -105,14 +105,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
     styles.bg = bg
   }
 
-  const {
-    isOpen,
-    getArrowProps,
-    getTooltipProps,
-    getTriggerProps,
-    getArrowWrapperProps,
-    getTooltipPositionerProps,
-  } = useTooltip(rest)
+  const tooltip = useTooltip(rest)
 
   const shouldWrap = isString(children) || shouldWrapChildren
 
@@ -120,7 +113,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
 
   if (shouldWrap) {
     trigger = (
-      <chakra.span tabIndex={0} {...getTriggerProps()}>
+      <chakra.span tabIndex={0} {...tooltip.getTriggerProps()}>
         {children}
       </chakra.span>
     )
@@ -131,12 +124,15 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
     const child = React.Children.only(children) as React.ReactElement & {
       ref?: React.Ref<any>
     }
-    trigger = React.cloneElement(child, getTriggerProps(child.props, child.ref))
+    trigger = React.cloneElement(
+      child,
+      tooltip.getTriggerProps(child.props, child.ref),
+    )
   }
 
   const hasAriaLabel = !!ariaLabel
 
-  const _tooltipProps = getTooltipProps({}, ref)
+  const _tooltipProps = tooltip.getTooltipProps({}, ref)
 
   const tooltipProps = hasAriaLabel
     ? omit(_tooltipProps, ["role", "id"])
@@ -156,10 +152,10 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
     <>
       {trigger}
       <AnimatePresence>
-        {isOpen && (
+        {tooltip.isOpen && (
           <Portal>
             <chakra.div
-              {...getTooltipPositionerProps()}
+              {...tooltip.getTooltipPositionerProps()}
               __css={{ zIndex: styles.zIndex }}
             >
               <StyledTooltip
@@ -177,11 +173,11 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
                 {hasArrow && (
                   <chakra.div
                     className="chakra-tooltip__arrow-wrapper"
-                    {...getArrowWrapperProps()}
+                    {...tooltip.getArrowWrapperProps()}
                   >
                     <chakra.div
                       className="chakra-tooltip__arrow"
-                      {...getArrowProps()}
+                      {...tooltip.getArrowProps()}
                       __css={{ bg: styles.bg }}
                     />
                   </chakra.div>

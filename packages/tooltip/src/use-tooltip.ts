@@ -153,42 +153,59 @@ export function useTooltip(props: UseTooltipProps = {}) {
    */
   useEventListener("mouseleave", closeWithDelay, ref.current)
 
-  const getTriggerProps: PropGetter = (props = {}, _ref = null) => {
-    const triggerProps = {
-      ...props,
-      onMouseEnter: callAllHandlers(props.onMouseEnter, openWithDelay),
-      onClick: callAllHandlers(props.onClick, onClick),
-      onMouseDown: callAllHandlers(props.onMouseDown, onMouseDown),
-      onFocus: callAllHandlers(props.onFocus, openWithDelay),
-      onBlur: callAllHandlers(props.onBlur, closeWithDelay),
-      "aria-describedby": isOpen ? tooltipId : undefined,
-    }
+  const getTriggerProps: PropGetter = React.useCallback(
+    (props = {}, _ref = null) => {
+      const triggerProps = {
+        ...props,
+        onMouseEnter: callAllHandlers(props.onMouseEnter, openWithDelay),
+        onClick: callAllHandlers(props.onClick, onClick),
+        onMouseDown: callAllHandlers(props.onMouseDown, onMouseDown),
+        onFocus: callAllHandlers(props.onFocus, openWithDelay),
+        onBlur: callAllHandlers(props.onBlur, closeWithDelay),
+        "aria-describedby": isOpen ? tooltipId : undefined,
+      }
 
-    return popper.getReferenceProps(triggerProps, mergeRefs(ref, _ref))
-  }
+      return popper.getReferenceProps(triggerProps, mergeRefs(ref, _ref))
+    },
+    [
+      openWithDelay,
+      closeWithDelay,
+      onMouseDown,
+      isOpen,
+      tooltipId,
+      popper.getReferenceProps,
+      onClick,
+    ],
+  )
 
-  const getTooltipProps: PropGetter = (props = {}, _ref = null) => {
-    const tooltipProps = {
-      ref: _ref,
-      ...htmlProps,
-      ...props,
-      id: tooltipId,
-      role: "tooltip",
-    }
+  const getTooltipProps: PropGetter = React.useCallback(
+    (props = {}, _ref = null) => {
+      const tooltipProps = {
+        ref: _ref,
+        ...htmlProps,
+        ...props,
+        id: tooltipId,
+        role: "tooltip",
+      }
 
-    return tooltipProps
-  }
+      return tooltipProps
+    },
+    [htmlProps, tooltipId],
+  )
 
-  const getTooltipPositionerProps: PropGetter = (props = {}, _ref = null) => {
-    const positionerProps = {
-      ...props,
-      style: {
-        ...props.style,
-        transformOrigin: popper.transformOrigin,
-      },
-    }
-    return popper.getPopperProps(positionerProps, _ref)
-  }
+  const getTooltipPositionerProps: PropGetter = React.useCallback(
+    (props = {}, _ref = null) => {
+      const positionerProps = {
+        ...props,
+        style: {
+          ...props.style,
+          transformOrigin: popper.transformOrigin,
+        },
+      }
+      return popper.getPopperProps(positionerProps, _ref)
+    },
+    [popper.getPopperProps, popper.transformOrigin],
+  )
 
   return {
     isOpen,
