@@ -77,10 +77,6 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
       return true
     })
 
-    React.useEffect(() => {
-      console.log({ ariaHidden })
-    })
-
     /**
      * Warn 🚨: `startingHeight` and `unmountOnExit` are mutually exclusive
      *
