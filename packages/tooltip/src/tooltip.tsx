@@ -101,9 +101,18 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
     ...rest
   } = ownProps
 
-  if (bg) styles.bg = bg
+  if (bg) {
+    styles.bg = bg
+  }
 
-  const tooltip = useTooltip(rest)
+  const {
+    isOpen,
+    getArrowProps,
+    getTooltipProps,
+    getTriggerProps,
+    getArrowWrapperProps,
+    getTooltipPositionerProps,
+  } = useTooltip(rest)
 
   const shouldWrap = isString(children) || shouldWrapChildren
 
@@ -111,7 +120,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
 
   if (shouldWrap) {
     trigger = (
-      <chakra.span tabIndex={0} {...tooltip.getTriggerProps()}>
+      <chakra.span tabIndex={0} {...getTriggerProps()}>
         {children}
       </chakra.span>
     )
@@ -122,15 +131,12 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
     const child = React.Children.only(children) as React.ReactElement & {
       ref?: React.Ref<any>
     }
-    trigger = React.cloneElement(
-      child,
-      tooltip.getTriggerProps(child.props, child.ref),
-    )
+    trigger = React.cloneElement(child, getTriggerProps(child.props, child.ref))
   }
 
   const hasAriaLabel = !!ariaLabel
 
-  const _tooltipProps = tooltip.getTooltipProps({}, ref)
+  const _tooltipProps = getTooltipProps({}, ref)
 
   const tooltipProps = hasAriaLabel
     ? omit(_tooltipProps, ["role", "id"])
@@ -150,10 +156,10 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
     <>
       {trigger}
       <AnimatePresence>
-        {tooltip.isOpen && (
+        {isOpen && (
           <Portal>
             <chakra.div
-              {...tooltip.getTooltipWrapperProps()}
+              {...getTooltipPositionerProps()}
               __css={{ zIndex: styles.zIndex }}
             >
               <StyledTooltip
@@ -171,11 +177,11 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
                 {hasArrow && (
                   <chakra.div
                     className="chakra-tooltip__arrow-wrapper"
-                    {...tooltip.getArrowWrapperProps()}
+                    {...getArrowWrapperProps()}
                   >
                     <chakra.div
                       className="chakra-tooltip__arrow"
-                      {...tooltip.getArrowProps()}
+                      {...getArrowProps()}
                       __css={{ bg: styles.bg }}
                     />
                   </chakra.div>

@@ -113,7 +113,9 @@ export function usePopper(
   }, [popperOptions])
 
   useSafeLayoutEffect(() => {
-    if (referenceElement == null && popperElement == null) return
+    if (referenceElement == null || popperElement == null) {
+      return
+    }
 
     const createPopper = options.createPopper || defaultCreatePopper
     const popperInstance = createPopper(
