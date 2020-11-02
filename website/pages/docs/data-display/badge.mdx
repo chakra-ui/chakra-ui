@@ -45,7 +45,7 @@ can be any **color key** that exists in `theme.colors`.
 
 ### Badge Variants
 
-Pass the variant prop and set it to either `subtle`, `solid`, or `outline` to
+Pass the `variant` prop and set it to either `subtle`, `solid`, or `outline` to
 get a different style.
 
 ```jsx
@@ -92,9 +92,9 @@ You can also change the size of the badge by passing the `fontSize` prop.
 
 ## Props
 
-The Badge component composes `Box` component so you can pass props for `Box`.
+The `Badge` component composes `Box` component so you can pass props for `Box`.
 
 | Name          | Type                         | Default  | Description                                                            |
 | ------------- | ---------------------------- | -------- | ---------------------------------------------------------------------- |
-| `variant`     | `solid`, `subtle`, `outline` | `subtle` | The style variant of the badge                                         |
-| `colorScheme` | `string`                     | `gray`   | The color scheme to use for the badge. Must be a key in `theme.colors` |
+| `variant`     | `solid`, `subtle`, `outline` | `subtle` | The style variant of the badge.                                         |
+| `colorScheme` | `string`                     | `gray`   | The color scheme to use for the badge. It must be a key in `theme.colors`. |

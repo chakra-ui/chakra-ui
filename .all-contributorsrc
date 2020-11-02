@@ -1482,6 +1482,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "mwood23",
+      "name": "Marcus Wood",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/13633613?v=4",
+      "profile": "http://marcuswood.io",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

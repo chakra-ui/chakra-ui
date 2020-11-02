@@ -362,11 +362,13 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://gauthierrodaro.com"><img src="https://avatars1.githubusercontent.com/u/6961490?v=4" width="64px;" alt=""/><br /><sub><b>Gauthier Rodaro</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Agauthierrodaro" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/tomdohnal"><img src="https://avatars2.githubusercontent.com/u/22922179?v=4" width="64px;" alt=""/><br /><sub><b>Tom Dohnal</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=tomdohnal" title="Code">💻</a></td>
     <td align="center"><a href="http://margalit.com.au"><img src="https://avatars0.githubusercontent.com/u/2268424?v=4" width="64px;" alt=""/><br /><sub><b>Sam Margalit</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Amargalit" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="http://marcuswood.io"><img src="https://avatars0.githubusercontent.com/u/13633613?v=4" width="64px;" alt=""/><br /><sub><b>Marcus Wood</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=mwood23" title="Code">💻</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
