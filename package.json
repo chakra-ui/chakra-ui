@@ -145,7 +145,7 @@
     "@babel/runtime": "^7.12.1",
     "@commitlint/cli": "^9.1.2",
     "@commitlint/config-conventional": "^9.1.2",
-    "@emotion/core": "^10.0.35",
+    "@emotion/core": "10.0.35",
     "@emotion/styled": "^10.0.27",
     "@jest/types": "^26.6.1",
     "@storybook/addon-a11y": "^6.0.27",
@@ -229,6 +229,7 @@
   },
   "resolutions": {
     "**/react": "17.0.1",
-    "**/react-dom": "17.0.1"
+    "**/react-dom": "17.0.1",
+    "**/@emotion/core": "10.0.35"
   }
 }
