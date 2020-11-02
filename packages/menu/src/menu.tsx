@@ -1,15 +1,15 @@
 import {
   chakra,
   forwardRef,
+  HTMLChakraProps,
   omitThemingProps,
   PropsOf,
   StylesProvider,
   SystemProps,
+  SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
-  HTMLChakraProps,
-  SystemStyleObject,
 } from "@chakra-ui/system"
 import { cx, MaybeRenderProp, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { motion, Variants } from "framer-motion"

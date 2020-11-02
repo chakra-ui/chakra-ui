@@ -7,8 +7,8 @@ import {
   Options as PopperOptions,
   VirtualElement,
 } from "@popperjs/core"
-import * as React from "react"
 import { dequal } from "dequal"
+import * as React from "react"
 
 type Options = Partial<PopperOptions> & {
   createPopper?: typeof defaultCreatePopper

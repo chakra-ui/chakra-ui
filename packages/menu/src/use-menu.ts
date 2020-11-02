@@ -23,6 +23,7 @@ import {
   getNextItemFromSearch,
   getPrevIndex,
   getValidChildren,
+  hasFocusWithin,
   isArray,
   isString,
   mergeRefs,
@@ -30,14 +31,7 @@ import {
   normalizeEventKey,
   removeItem,
 } from "@chakra-ui/utils"
-import React, {
-  cloneElement,
-  HTMLAttributes,
-  MouseEvent,
-  useCallback,
-  useRef,
-  useState,
-} from "react"
+import * as React from "react"
 
 const [MenuProvider, useMenuContext] = createContext<UseMenuReturn>({
   strict: false,
@@ -122,7 +116,7 @@ export function useMenu(props: UseMenuProps) {
     autoSelect = true,
     isLazy,
     placement = "bottom-start",
-    fixed = true,
+    fixed,
   } = props
 
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure(props)
@@ -130,8 +124,8 @@ export function useMenu(props: UseMenuProps) {
   /**
    * Prepare the reference to the menu and disclosure
    */
-  const menuRef = useRef<HTMLDivElement>(null)
-  const buttonRef = useRef<HTMLButtonElement>(null)
+  const menuRef = React.useRef<HTMLDivElement>(null)
+  const buttonRef = React.useRef<HTMLButtonElement>(null)
 
   useOutsideClick({
     ref: menuRef,
@@ -149,9 +143,9 @@ export function useMenu(props: UseMenuProps) {
   /**
    * Add some popper.js for dynamic positioning
    */
-  const popper = usePopper({ placement, fixed, ...props })
+  const popper = usePopper({ placement, fixed })
 
-  const [focusedIndex, setFocusedIndex] = useState(-1)
+  const [focusedIndex, setFocusedIndex] = React.useState(-1)
 
   /**
    * Context to register all menu item nodes
@@ -178,22 +172,22 @@ export function useMenu(props: UseMenuProps) {
    */
   const [buttonId, menuId] = useIds(id, `menu-button`, `menu-list`)
 
-  const openAndFocusMenu = useCallback(() => {
+  const openAndFocusMenu = React.useCallback(() => {
     onOpen()
     if (menuRef.current) focus(menuRef.current)
   }, [onOpen, menuRef])
 
-  const openAndFocusFirstItem = useCallback(() => {
+  const openAndFocusFirstItem = React.useCallback(() => {
     onOpen()
     setFocusedIndex(0)
   }, [onOpen, setFocusedIndex])
 
-  const openAndFocusLastItem = useCallback(() => {
+  const openAndFocusLastItem = React.useCallback(() => {
     onOpen()
     setFocusedIndex(domContext.descendants.length - 1)
   }, [onOpen, setFocusedIndex, domContext.descendants])
 
-  const refocus = () => {
+  const refocus = React.useCallback(() => {
     const hasFocusWithin = menuRef.current?.contains(document.activeElement)
     const shouldRefocus = isOpen && !hasFocusWithin
 
@@ -201,7 +195,7 @@ export function useMenu(props: UseMenuProps) {
 
     const el = domContext.descendants[focusedIndex]?.element
     el?.focus({ preventScroll: true })
-  }
+  }, [isOpen, hasFocusWithin, focusedIndex, domContext.descendants])
 
   return {
     openAndFocusMenu,
@@ -240,7 +234,7 @@ export interface UseMenuReturn extends ReturnType<typeof useMenu> {}
  */
 
 export interface UseMenuButtonProps
-  extends Omit<HTMLAttributes<Element>, "color"> {}
+  extends Omit<React.HTMLAttributes<Element>, "color"> {}
 
 export function useMenuButton(
   props: UseMenuButtonProps,
@@ -258,7 +252,7 @@ export function useMenuButton(
     openAndFocusMenu,
   } = menu
 
-  const onClick = useCallback(() => {
+  const onClick = React.useCallback(() => {
     if (isOpen) {
       onClose()
     } else {
@@ -267,7 +261,7 @@ export function useMenuButton(
     }
   }, [autoSelect, isOpen, onClose, openAndFocusFirstItem, openAndFocusMenu])
 
-  const onKeyDown = useCallback(
+  const onKeyDown = React.useCallback(
     (event: React.KeyboardEvent) => {
       const eventKey = normalizeEventKey(event)
       const keyMap: EventKeyMap = {
@@ -313,7 +307,7 @@ export function useMenuButton(
  */
 
 export interface UseMenuListProps
-  extends Omit<HTMLAttributes<Element>, "color"> {}
+  extends Omit<React.HTMLAttributes<Element>, "color"> {}
 
 export function useMenuList(
   props: UseMenuListProps,
@@ -323,7 +317,7 @@ export function useMenuList(
 
   if (!menu) {
     throw new Error(
-      `useMenuContext: context is undefined. Seems you forgot the component within <Menu>`,
+      `useMenuContext: context is undefined. Seems you forgot to wrap component within <Menu>`,
     )
   }
 
@@ -347,7 +341,7 @@ export function useMenuList(
     preventDefault: (event) => event.key !== " ",
   })
 
-  const onKeyDown = useCallback(
+  const onKeyDown = React.useCallback(
     (event: React.KeyboardEvent) => {
       const eventKey = normalizeEventKey(event)
 
@@ -366,11 +360,11 @@ export function useMenuList(
         },
       }
 
-      const handler = keyMap[eventKey]
+      const fn = keyMap[eventKey]
 
-      if (handler) {
+      if (fn) {
         event.preventDefault()
-        handler(event)
+        fn(event)
         return
       }
 
@@ -423,7 +417,7 @@ export function useMenuPositioner(props: any = {}) {
 }
 
 export interface UseMenuItemProps
-  extends Omit<HTMLAttributes<Element>, "color"> {
+  extends Omit<React.HTMLAttributes<Element>, "color"> {
   isDisabled?: boolean
   isFocusable?: boolean
 }
@@ -454,7 +448,7 @@ export function useMenuItem(
     isOpen,
   } = menu
 
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = React.useRef<HTMLDivElement>(null)
   const id = `menuitem-${useId()}`
 
   /**
@@ -467,7 +461,7 @@ export function useMenuItem(
     focusable: isFocusable,
   })
 
-  const onMouseEnter = useCallback(
+  const onMouseEnter = React.useCallback(
     (event) => {
       onMouseEnterProp?.(event)
       if (isDisabled) return
@@ -477,7 +471,7 @@ export function useMenuItem(
     [setFocusedIndex, index, isDisabled],
   )
 
-  const onMouseMove = useCallback(
+  const onMouseMove = React.useCallback(
     (event) => {
       onMouseMoveProp?.(event)
       if (document.activeElement !== ref.current) {
@@ -487,7 +481,7 @@ export function useMenuItem(
     [onMouseEnter],
   )
 
-  const onMouseLeave = useCallback(
+  const onMouseLeave = React.useCallback(
     (event) => {
       onMouseLeaveProp?.(event)
       if (isDisabled) return
@@ -497,8 +491,8 @@ export function useMenuItem(
     [setFocusedIndex, isDisabled],
   )
 
-  const onClick = useCallback(
-    (event: MouseEvent) => {
+  const onClick = React.useCallback(
+    (event: React.MouseEvent) => {
       onClickProp?.(event)
       /**
        * Close menu and parent menu's if `closeOnSelect` is set to `true`
@@ -605,7 +599,7 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps) {
     onChange: onChangeProp,
   })
 
-  const onChange = useCallback(
+  const onChange = React.useCallback(
     (selectedValue: string) => {
       if (type === "radio" && isString(value)) {
         setValue(selectedValue)
@@ -644,7 +638,7 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps) {
         ? child.props.value === value
         : value.includes(child.props.value)
 
-    return cloneElement(child, {
+    return React.cloneElement(child, {
       type,
       onClick,
       isChecked,
