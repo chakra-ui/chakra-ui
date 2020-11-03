@@ -13,6 +13,7 @@ function baseStyle(props: Record<string, any>) {
     boxShadow: "md",
     maxW: "320px",
     zIndex: "tooltip",
+    openDelay: 2000,
   }
 }
 

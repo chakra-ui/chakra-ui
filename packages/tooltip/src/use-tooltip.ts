@@ -1,5 +1,6 @@
 import { useDisclosure, useEventListener, useId } from "@chakra-ui/hooks"
 import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
+import { useTheme } from "@chakra-ui/system"
 import { callAllHandlers, mergeRefs, PropGetter } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -60,8 +61,13 @@ export interface UseTooltipProps
 }
 
 export function useTooltip(props: UseTooltipProps = {}) {
+  const theme = useTheme()
+  const { openDelay: defaultOpenDelay } = theme.components.Tooltip.baseStyle(
+    props,
+  )
+
   const {
-    openDelay = 0,
+    openDelay = defaultOpenDelay,
     closeDelay = 0,
     closeOnClick = true,
     closeOnMouseDown,
