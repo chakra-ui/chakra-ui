@@ -27,7 +27,7 @@ const PageContainer = ({
       <SkipNavLink zIndex={20}>Skip to Content</SkipNavLink>
       <Header />
       <Container>
-        <Flex>
+        <Box display={{ base: "block", md: "flex" }}>
           {sidebar || null}
           <div style={{ flex: 1 }}>
             <SkipNavContent />
@@ -41,7 +41,7 @@ const PageContainer = ({
             </Box>
             <Footer />
           </div>
-        </Flex>
+        </Box>
       </Container>
     </>
   )

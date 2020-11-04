@@ -120,7 +120,11 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
       <Header />
 
       <Box mb={20}>
-        <Box as="section" pt="12rem" pb="6rem">
+        <Box
+          as="section"
+          pt={{ base: "10rem", md: "12rem" }}
+          pb={{ base: "0", md: "6rem" }}
+        >
           <Container>
             <Box maxW="760px" mx="auto" textAlign="center">
               <chakra.h1
