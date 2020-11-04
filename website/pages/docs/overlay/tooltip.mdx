@@ -19,7 +19,7 @@ mouse-hover gesture or through a keyboard-hover gesture.
 
 <carbon-ad></carbon-ad>
 
-The Tooltip component follows the
+The `Tooltip` component follows the
 [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices/#tooltip) Tooltip Pattern.
 
 ## Import
@@ -75,18 +75,6 @@ cursor out of the element.
 ```jsx
 <Tooltip isDisabled>
   <SearchIcon />
-</Tooltip>
-```
-
-### Tooltip with focusable content
-
-If the children of the tooltip is a focusable element, the tooltip will show
-when you focus or hover on the element, and will hide when you blur or move
-cursor out of the element.
-
-```jsx
-<Tooltip hasArrow label="Search places" bg="red.600">
-  <Button>Button</Button>
 </Tooltip>
 ```
 
@@ -239,13 +227,13 @@ Using the `placement` prop you can adjust where your tooltip will be displayed.
 | `placement`          | `PopperJS.Placement` | `bottom` | Position the tooltip relative to the trigger element as well as surrounding elements. |
 | `hasArrow`           | `boolean`            |          | If `true` display an arrow tip on the tooltip.                                        |
 | `children`           | `React.ReactNode`    |          | The `ReactNode` to be used as the trigger of the tooltip.                             |
-| `shouldWrapChildren` | `boolean`            |          | If `true`, the tooltip will wrap the children in a `span` with `tabIndex=0`           |
+| `shouldWrapChildren` | `boolean`            |          | If `true`, the tooltip will wrap the children in a `span` with `tabIndex=0`.           |
 | `isOpen`             | `boolean`            |          | If `true`, the tooltip is shown.                                                      |
 | `defaultIsOpen`      | `boolean`            |          | If `true`, the tooltip is initially shown.                                            |
-| `openDelay`          | `number`             | `0`      | The delay in `ms` for the tooltip to show                                             |
-| `closeDelay`         | `number`             | `0`      | The delay in `ms` for the tooltip to hide                                             |
+| `openDelay`          | `number`             | `0`      | The delay in `ms` for the tooltip to show.                                             |
+| `closeDelay`         | `number`             | `0`      | The delay in `ms` for the tooltip to hide.                                             |
 | `closeOnClick`       | `boolean`            | `true`   | If `true` hide the tooltip, when the trigger is clicked.                              |
 | `onOpen`             | `function`           |          | Function called when the tooltip shows.                                               |
 | `onClose`            | `function`           |          | Function called when the tooltip hides.                                               |
 | `isDisabled`         | `boolean`            | `false`  | If `true`, the tooltip is not shown onHover, mouseOver, or other triggers.            |
-| `closeOnMouseDown`   | `boolean`            | `true`   | If `true`, the tooltip will close on mouse down                                       |
+| `closeOnMouseDown`   | `boolean`            | `true`   | If `true`, the tooltip will close on mouse down.                                       |

@@ -7,7 +7,7 @@ description:
   or action.
 ---
 
-AlertDialog component is used to interrupt the user with a mandatory
+`AlertDialog` component is used to interrupt the user with a mandatory
 confirmation or action.
 
 <ComponentLinks
@@ -43,7 +43,7 @@ import {
 
 ## Usage
 
-AlertDialog requires that you provide the `leastDestructiveRef` prop.
+`AlertDialog` requires that you provide the `leastDestructiveRef` prop.
 
 Based on
 [WAI-ARIA specifications](https://www.w3.org/TR/wai-aria-practices/#alertdialog),
@@ -140,7 +140,7 @@ function TransitionExample() {
 
 ## Accessibility
 
-- AlertDialog has role `alertdialog`, and `aria-modal` set to true.
+- `AlertDialog` has role `alertdialog`, and `aria-modal` set to true.
 - When the dialog opens, focus is automatically set to the least destructive
   element.
 - When the dialog opens, the content in the `AlertDialogHeader` and
@@ -151,10 +151,11 @@ function TransitionExample() {
 
 ## Props
 
-AlertDialog and its components compose the `Modal` component. The only exception
+`AlertDialog` and its components compose the `Modal` component. The only exception
 is that it requires a `leastDestructiveRef` which is similar to the
-`initialFocusRef` of `Modal`
+`initialFocusRef` of `Modal`.
 
 | Name                           | Type        | Default | Description                                                   |
 | ------------------------------ | ----------- | ------- | ------------------------------------------------------------- |
-| leastDestructiveRef (required) | `React.Ref` |         | The least destructive action to get focus when dialog is open |
+| leastDestructiveRef (required) | `React.Ref` |         | The least destructive action to get focus when dialog is open.
+-0  |
