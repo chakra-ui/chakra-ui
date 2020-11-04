@@ -16,7 +16,7 @@ import { getRoutes } from "layouts/mdx"
 import NextLink from "next/link"
 import { useRouter } from "next/router"
 import * as React from "react"
-import { MdDehaze } from "react-icons/md"
+import { AiOutlineMenu } from "react-icons/ai"
 import { RemoveScroll } from "react-remove-scroll"
 import Logo from "./logo"
 import { SidebarContent } from "./sidebar/sidebar"
@@ -169,7 +169,7 @@ export const MobileNavButton = React.forwardRef(
         fontSize="20px"
         color={useColorModeValue("gray.800", "inherit")}
         variant="ghost"
-        icon={<MdDehaze />}
+        icon={<AiOutlineMenu />}
         {...props}
       />
     )
