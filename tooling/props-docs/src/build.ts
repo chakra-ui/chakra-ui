@@ -20,15 +20,17 @@ const globAsync = promisify(glob)
 
 const excludedPropNames = propNames.concat(["as", "apply", "sx", "__css"])
 
-const basePath = path.join(__dirname, "../../..")
-const componentsDir = path.join(__dirname, "..", "components")
-const tsConfigPath = path.join(basePath, "..", "tsconfig.json")
+const rootDir = path.join(__dirname, "..", "..", "..", "..")
+const sourcePath = path.join(rootDir, "packages")
+const outputPath = path.join(__dirname, "..", "components")
+
+const tsConfigPath = path.join(sourcePath, "..", "tsconfig.json")
 
 export async function main() {
   const componentFiles = await findComponentFiles()
 
   if (componentFiles.length) {
-    await mkdirp(componentsDir)
+    await mkdirp(outputPath)
   }
 
   log("Parsing files for component types...")
@@ -57,7 +59,7 @@ if (require.main === module) {
  */
 async function findComponentFiles() {
   const tsFiles = await globAsync("core/**/src/**/*.@(ts|tsx)", {
-    cwd: basePath,
+    cwd: sourcePath,
   })
 
   return tsFiles.filter((f) => !f.includes("stories"))
@@ -78,7 +80,7 @@ function parseInfo(filePaths: string[]) {
   })
 
   return filePaths.flatMap((file) => {
-    const absoluteFilePath = path.join(basePath, file)
+    const absoluteFilePath = path.join(sourcePath, file)
     return parse(absoluteFilePath)
   })
 }
@@ -125,7 +127,7 @@ function extractComponentInfo(docs: ComponentDoc[]) {
  */
 function writeComponentInfoFiles(componentInfo: ComponentInfo[]) {
   for (const info of componentInfo) {
-    const filePath = path.join(componentsDir, info.fileName)
+    const filePath = path.join(outputPath, info.fileName)
     const content = JSON.stringify(info.def)
     writeFileSync(filePath, content)
   }
