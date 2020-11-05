@@ -55,6 +55,7 @@
     "@typescript-eslint/naming-convention": "off",
     "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/lines-between-class-members": "off",
+    "no-alert": "off",
     "react/jsx-filename-extension": [
       "error",
       { "extensions": [".js", ".tsx"] }
