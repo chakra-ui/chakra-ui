@@ -1,14 +1,14 @@
-import * as React from "react"
 import {
   chakra,
   forwardRef,
+  HTMLChakraProps,
   omitThemingProps,
-  PropsOf,
   ThemingProps,
   useStyleConfig,
   useStyles,
 } from "@chakra-ui/system"
 import { cx, dataAttr, Dict, __DEV__ } from "@chakra-ui/utils"
+import * as React from "react"
 import { useFormControlContext } from "./form-control"
 
 export function useFormControlLabel(props: Dict) {
@@ -26,7 +26,7 @@ export function useFormControlLabel(props: Dict) {
 }
 
 export interface FormLabelProps
-  extends PropsOf<typeof chakra.label>,
+  extends HTMLChakraProps<"label">,
     ThemingProps {}
 
 /**
@@ -68,7 +68,7 @@ if (__DEV__) {
   FormLabel.displayName = "FormLabel"
 }
 
-export interface RequiredIndicatorProps extends PropsOf<typeof chakra.span> {}
+export interface RequiredIndicatorProps extends HTMLChakraProps<"span"> {}
 
 /**
  * Used to show a "required" text or an asterisks (*) to indicate that
