@@ -7,7 +7,7 @@ import NextDocument, {
   DocumentContext,
 } from "next/document"
 import GAScript from "analytics/ga-script"
-import { ColorModeScript } from "@chakra-ui/core"
+import { ColorModeScript } from "@chakra-ui/react"
 
 class Document extends NextDocument {
   static getInitialProps(ctx: DocumentContext) {

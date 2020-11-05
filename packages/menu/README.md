@@ -25,7 +25,7 @@ import {
   MenuDivider,
   MenuOptionGroup,
   MenuItemOption,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 ```
 
 ## Usage

@@ -11,7 +11,7 @@ import {
   InputRightElement,
   Stack,
   Container,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 import Head from "next/head"
 import { Chakra } from "../src/Chakra"
 

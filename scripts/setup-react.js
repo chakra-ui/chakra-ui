@@ -4,7 +4,7 @@ import prettier from "prettier"
 import editJson from "edit-json-file"
 
 const omittedPkgs = [
-  "core",
+  "react",
   "theme",
   "preset-stripe",
   "icons",
@@ -32,15 +32,15 @@ pkgArray.forEach((pkg) => {
 
 content = prettier.format(content, { semi: false, parser: "typescript" })
 
-const coreDir = fs.resolve("packages/core/src", "index.tsx")
+const reactDir = fs.resolve("packages/react/src", "index.tsx")
 
 try {
-  fs.writeFileSync(coreDir, content)
+  fs.writeFileSync(reactDir, content)
 } catch (e) {
   console.log(e)
 }
 
-const pkgJson = editJson("packages/core/package.json")
+const pkgJson = editJson("packages/react/package.json")
 pkgJson.unset("dependencies")
 
 pkgArray.forEach((pkg) => {
@@ -50,4 +50,4 @@ pkgArray.forEach((pkg) => {
 
 pkgJson.save()
 
-shell.exec("yarn core build")
+shell.exec("yarn react build")

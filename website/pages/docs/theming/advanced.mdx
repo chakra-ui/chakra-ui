@@ -38,7 +38,7 @@ For example, to create a simple badge that changes its background based on color
 mode. Here's how to go about it.
 
 ```jsx live=false
-import { extendTheme, theme } from "@chakra-ui/core"
+import { extendTheme, theme } from "@chakra-ui/react"
 
 // 1. define component configuration
 const components = {
@@ -72,14 +72,14 @@ render(<CustomBadge>I am a custom badge</CustomBadge>)
 
 ## Multipart or Composite Component
 
-When it comes to multipart components for example tabs or menus etc, that have multiple
-sub-parts, you can also style them based on the color mode. Here's the
+When it comes to multipart components for example tabs or menus etc, that have
+multiple sub-parts, you can also style them based on the color mode. Here's the
 signature:
 
 ```tsx live=false
 type StyleInterpolation =
   | { [part: string]: SystemStyleObject }
-  | ((options: StyleOptions) => { [part: string]: SystemStyleObject });
+  | ((options: StyleOptions) => { [part: string]: SystemStyleObject })
 
 interface StyleOptions {
   theme: Theme

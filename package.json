@@ -55,7 +55,7 @@
     "docs:start": "yarn docs start",
     "dedup": "yarn-deduplicate --strategy highest yarn.lock",
     "dedup:check": "yarn-deduplicate -s fewer yarn.lock --list --fail",
-    "core": "yarn workspace @chakra-ui/core",
+    "react": "yarn workspace @chakra-ui/react",
     "icon": "yarn workspace @chakra-ui/icon",
     "hooks": "yarn workspace @chakra-ui/hooks",
     "utils": "yarn workspace @chakra-ui/utils",

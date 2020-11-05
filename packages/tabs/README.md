@@ -20,7 +20,7 @@ npm i @chakra-ui/tabs
 ## Import components
 
 ```jsx
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/core"
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
 ```
 
 ## Usage

@@ -7,7 +7,7 @@ import {
   Badge,
   Image,
   Text,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 import { Layout } from "../../components/Layout"
 import { properties } from "../../utils/sample-data"
 import { GetStaticProps, GetStaticPaths } from "next"

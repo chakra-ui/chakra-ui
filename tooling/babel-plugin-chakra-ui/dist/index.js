@@ -11,7 +11,7 @@ var _core = require("@babel/core");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const PURE_CALLS = new Map([["@chakra-ui/system", ["forwardRef", "memo"]], ["@chakra-ui/core", ["forwardRef", "memo"]]]);
+const PURE_CALLS = new Map([["@chakra-ui/system", ["forwardRef", "memo"]], ["@chakra-ui/react", ["forwardRef", "memo"]]]);
 
 var _default = (0, _helperPluginUtils.declare)(api => {
   api.assertVersion(7);

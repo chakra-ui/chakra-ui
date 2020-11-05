@@ -23,7 +23,7 @@ Chakra UI exports 3 breadcrumb related components:
 - `BreadcrumbLink`: The breadcrumb link.
 
 ```js
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/core"
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react"
 ```
 
 ## Usage

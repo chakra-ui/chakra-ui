@@ -64,12 +64,12 @@ component names:
 To use third-party icon libraries like
 [`react-icons`](https://react-icons.github.io/react-icons/), here are the steps:
 
-1. Import the `Icon` component from `@chakra-ui/core`
+1. Import the `Icon` component from `@chakra-ui/react`
 2. Pass the desired third party icon into the `as` prop
 
 ```jsx live=false
 // 1. Import
-import { Icon } from "@chakra-ui/core"
+import { Icon } from "@chakra-ui/react"
 import { MdSettings } from "react-icons/md"
 
 // 2. Use the `as` prop
@@ -100,10 +100,10 @@ Chakra provides two methods for creating your custom icons:
 - Using the [Icon](#using-the-icon-component) component
 - Using the [createIcon](#using-the-createicon-function) function
 
-They can be imported from `@chakra-ui/core`:
+They can be imported from `@chakra-ui/react`:
 
 ```jsx live=false
-import { Icon, createIcon } from "@chakra-ui/core"
+import { Icon, createIcon } from "@chakra-ui/react"
 ```
 
 Both `Icon` and `createIcon` enable you to style the icon using

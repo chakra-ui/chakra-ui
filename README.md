@@ -9,10 +9,10 @@
 <br>
 
 <p align="center">
-  <img alt="Bundle Size" src="https://badgen.net/bundlephobia/minzip/@chakra-ui/core"/>
+  <img alt="Bundle Size" src="https://badgen.net/bundlephobia/minzip/@chakra-ui/react"/>
   <img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/chakra-ui/chakra-ui.svg?logo=lgtm&logoWidth=18"/>
   <img alt="MIT License" src="https://img.shields.io/github/license/chakra-ui/chakra-ui"/>
-  <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@chakra-ui/core.svg?style=flat"/>
+  <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@chakra-ui/react.svg?style=flat"/>
   <img alt="Github Stars" src="https://badgen.net/github/stars/chakra-ui/chakra-ui" />
   <a href="https://discord.gg/yxpPm4q">
     <img alt="Discord" src="https://img.shields.io/discord/660863154703695893.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" />
@@ -89,15 +89,15 @@ link to your website.
 
 ## Installing Chakra UI
 
-To use Chakra UI components, all you need to do is install the `@chakra-ui/core`
-package and its peer dependencies:
+To use Chakra UI components, all you need to do is install the
+`@chakra-ui/react` package and its peer dependencies:
 
 ```sh
-$ yarn add @chakra-ui/core framer-motion
+$ yarn add @chakra-ui/react framer-motion
 
 # or
 
-$ npm install @chakra-ui/core framer-motion
+$ npm install @chakra-ui/react framer-motion
 ```
 
 ## Usage
@@ -105,11 +105,11 @@ $ npm install @chakra-ui/core framer-motion
 To start using the components, please follow these steps:
 
 1. Wrap your application with the `ThemeProvider` provided by
-   **@chakra-ui/core**. We recommend that you also add the `CSSReset` component
+   **@chakra-ui/react**. We recommend that you also add the `CSSReset` component
    to remove all browser styling.
 
 ```jsx
-import { ThemeProvider, CSSReset } from "@chakra-ui/core"
+import { ThemeProvider, CSSReset } from "@chakra-ui/react"
 
 // Do this at the root of your application
 function App({ children }) {
@@ -128,7 +128,7 @@ can toggle between light and dark mode within your app.
 2. Now you can start using components like so!:
 
 ```jsx
-import { Button } from "@chakra-ui/core"
+import { Button } from "@chakra-ui/react"
 
 function Example() {
   return <Button>I just consumed some ⚡️Chakra!</Button>

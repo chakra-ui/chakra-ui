@@ -8,11 +8,11 @@ Gatsby plugin for adding Chakra UI
 peer dependencies.
 
 ```sh
-npm i gatsby-plugin-chakra-ui @chakra-ui/core
+npm i gatsby-plugin-chakra-ui @chakra-ui/react
 
 # or
 
-yarn add gatsby-plugin-chakra-ui @chakra-ui/core
+yarn add gatsby-plugin-chakra-ui @chakra-ui/react
 ```
 
 ## Usage
@@ -31,7 +31,7 @@ module.exports = {
 ```jsx
 // src/pages/index.js
 import React from "react"
-import { Box, Text } from "@chakra-ui/core"
+import { Box, Text } from "@chakra-ui/react"
 
 function IndexPage() {
   return (

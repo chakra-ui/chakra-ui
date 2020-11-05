@@ -1,4 +1,4 @@
-import { ChakraProvider } from "@chakra-ui/core"
+import { ChakraProvider } from "@chakra-ui/react"
 import { GetServerSidePropsContext } from "next"
 import theme from "theme"
 

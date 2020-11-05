@@ -116,7 +116,7 @@ To support this, extend the default theme with a `config` key matching
 
 ```jsx live=false
 // 1. import `ChakraProvider` component and `extendTheme`
-import { extendTheme, ChakraProvider } from "@chakra-ui/core"
+import { extendTheme, ChakraProvider } from "@chakra-ui/react"
 
 // 2. declare your configuration, these are the defaults
 const config = {
@@ -165,7 +165,7 @@ ReactDOM.render(
 
 ```jsx live=false
 // adjust your pages/_document.js
-import { ColorModeScript } from "@chakra-ui/core"
+import { ColorModeScript } from "@chakra-ui/react"
 
 export default class Document extends NextDocument {
   static getInitialProps(ctx) {
@@ -192,8 +192,8 @@ export default class Document extends NextDocument {
 
 ```jsx live=false
 // gatsby-ssr.js
-import React from 'react'
-import { ColorModeScript } from "@chakra-ui/core"
+import React from "react"
+import { ColorModeScript } from "@chakra-ui/react"
 
 export const onRenderBody = ({ setPreBodyComponents }) => {
   setPreBodyComponents([
@@ -226,13 +226,14 @@ import {
   ChakraProvider,
   cookieStorageManager,
   localStorageManager,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 
 export function Chakra({ cookies, children }) {
   // b) Pass `colorModeManager` prop
-  const colorModeManager = typeof cookies === "string"
-    ? cookieStorageManager(cookies)
-    : localStorageManager
+  const colorModeManager =
+    typeof cookies === "string"
+      ? cookieStorageManager(cookies)
+      : localStorageManager
 
   return (
     <ChakraProvider colorModeManager={colorModeManager}>
@@ -281,7 +282,7 @@ import {
   ChakraProvider,
   cookieStorageManager,
   localStorageManager,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 
 export default function App({ cookies }) {
   // 2. Pass `colorModeManager` prop - it finds the relevant cookie on its own

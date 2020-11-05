@@ -5,7 +5,7 @@ import {
   ButtonProps,
   chakra,
   useClipboard,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 import theme from "prism-react-renderer/themes/nightOwl"
 import React, { useState } from "react"
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live"

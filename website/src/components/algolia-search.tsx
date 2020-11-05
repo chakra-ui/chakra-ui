@@ -4,7 +4,7 @@ import {
   InputGroup,
   InputLeftElement,
   useEventListener,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 import { SearchIcon } from "@chakra-ui/icons"
 import { get, startsWith } from "lodash/fp"
 import { useRouter } from "next/router"

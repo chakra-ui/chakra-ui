@@ -9,7 +9,7 @@ import {
   useColorModeValue,
   useDisclosure,
   useUpdateEffect,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 import siteConfig from "configs/site-config"
 import { useViewportScroll } from "framer-motion"
 import NextLink from "next/link"

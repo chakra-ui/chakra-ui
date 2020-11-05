@@ -41,7 +41,7 @@ Official Chakra CodeSandbox templates:
 
 - OS: [e.g. macOS, Windows]
 - Browser (if applies): [e.g. Chrome, Safari]
-- Version of @chakra-ui/core: [e.g. 1.0.0-rc.3]
+- Version of @chakra-ui/react: [e.g. 1.0.0-rc.3]
 - Version of Node.js: [e.g. 12.11.1]
 
 ## Additional context

@@ -18,7 +18,7 @@ import {
   useColorModeValue,
   Wrap,
   WrapItem,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 import { chunk } from "@chakra-ui/utils"
 import users from "chakra-users"
 import Container from "components/container"
