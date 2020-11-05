@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/icons",
-  "version": "1.0.0-rc.7",
+  "version": "1.0.0-rc.8",
   "description": "Chakra UI icons",
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -48,10 +48,10 @@
     "react": "16.x || 17.x"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.0.0-rc.7"
+    "@chakra-ui/system": "1.0.0-rc.8"
   },
   "dependencies": {
-    "@chakra-ui/icon": "1.0.0-rc.7",
+    "@chakra-ui/icon": "1.0.0-rc.8",
     "@types/react": "16.9.44"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/hooks",
-  "version": "1.0.0-rc.7",
+  "version": "1.0.0-rc.8",
   "description": "React hooks for Chakra components",
   "keywords": [
     "hooks",
@@ -50,7 +50,7 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.0.0-rc.7",
+    "@chakra-ui/utils": "1.0.0-rc.8",
     "@reach/auto-id": "0.11.0",
     "compute-scroll-into-view": "1.0.14",
     "copy-to-clipboard": "3.3.1"
