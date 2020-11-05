@@ -244,7 +244,7 @@ export const MenuItem = forwardRef<MenuItemProps, "button">(function MenuItem(
 ) {
   const { icon, iconSpacing = "0.75rem", command, children, ...rest } = props
 
-  const menuItemProps = useMenuItem(rest, ref)
+  const menuItemProps = useMenuItem(rest, ref) as MenuItemProps
 
   const shouldWrap = icon || command
 
@@ -276,13 +276,6 @@ if (__DEV__) {
   MenuItem.displayName = "MenuItem"
 }
 
-export interface MenuItemOptionProps
-  extends UseMenuOptionOptions,
-    Omit<MenuItemProps, keyof UseMenuOptionOptions> {
-  icon?: React.ReactElement
-  iconSpacing?: SystemProps["mr"]
-}
-
 const CheckIcon: React.FC<PropsOf<"svg">> = (props) => (
   <svg viewBox="0 0 14 14" width="1em" height="1em" {...props}>
     <polygon
@@ -292,11 +285,18 @@ const CheckIcon: React.FC<PropsOf<"svg">> = (props) => (
   </svg>
 )
 
+export interface MenuItemOptionProps
+  extends UseMenuOptionOptions,
+    Omit<MenuItemProps, keyof UseMenuOptionOptions> {
+  icon?: React.ReactElement
+  iconSpacing?: SystemProps["mr"]
+}
+
 export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
   function MenuItemOption(props, ref) {
     const { icon, iconSpacing = "0.75rem", ...rest } = props
 
-    const optionProps = useMenuOption(rest, ref)
+    const optionProps = useMenuOption(rest, ref) as StyledMenuItemProps
 
     return (
       <StyledMenuItem
