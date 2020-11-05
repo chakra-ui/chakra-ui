@@ -12,14 +12,17 @@ import * as React from "react"
 interface ListOptions {
   /**
    * Short hand prop for `listStyleType`
+   * @type SystemProps["listStyleType"]
    */
   styleType?: SystemProps["listStyleType"]
   /**
    * Short hand prop for `listStylePosition`
+   * @type SystemProps["listStylePosition"]
    */
   stylePosition?: SystemProps["listStylePosition"]
   /**
    * The space between each list item
+   * @type SystemProps["margin"]
    */
   spacing?: SystemProps["margin"]
 }

@@ -15,6 +15,7 @@ interface BaseButtonProps extends Omit<ButtonProps, Omitted> {}
 export interface IconButtonProps extends BaseButtonProps {
   /**
    * The icon to be used in the button.
+   * @type React.ReactElement
    */
   icon?: React.ReactElement
   /**

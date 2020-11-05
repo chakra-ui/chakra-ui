@@ -70,6 +70,7 @@ async function findComponentFiles() {
  */
 function parseInfo(filePaths: string[]) {
   const { parse } = docgen.withCustomConfig(tsConfigPath, {
+    shouldRemoveUndefinedFromOptional: true,
     propFilter: (prop) => {
       const isStyledSystemProp = excludedPropNames.includes(prop.name)
       const isHTMLElementProp =

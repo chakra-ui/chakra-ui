@@ -11,6 +11,7 @@ interface CreateIconOptions {
   viewBox?: string
   /**
    * The `svg` path or group element
+   * @type React.ReactElement | React.ReactElement[]
    */
   path?: React.ReactElement | React.ReactElement[]
   /**

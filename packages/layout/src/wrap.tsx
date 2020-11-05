@@ -15,18 +15,22 @@ import * as React from "react"
 export interface WrapProps extends HTMLChakraProps<"div"> {
   /**
    * The space between the each child (even if it wraps)
+   * @type SystemProps["margin"]
    */
   spacing?: SystemProps["margin"]
   /**
    * The `justify-content` value (for cross-axis alignment)
+   * @type SystemProps["justifyContent"]
    */
   justify?: SystemProps["justifyContent"]
   /**
    * The `align-items` value (for main axis alignment)
+   * @type SystemProps["alignItems"]
    */
   align?: SystemProps["alignItems"]
   /**
    * The `flex-direction` value
+   * @type SystemProps["flexDirection"]
    */
   direction?: SystemProps["flexDirection"]
 }

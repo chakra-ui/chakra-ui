@@ -41,18 +41,22 @@ export interface ButtonOptions {
   type?: "button" | "reset" | "submit"
   /**
    * If added, the button will show an icon before the button's label.
+   * @type React.ReactElement
    */
   leftIcon?: React.ReactElement
   /**
    * If added, the button will show an icon after the button's label.
+   * @type React.ReactElement
    */
   rightIcon?: React.ReactElement
   /**
    * The space between the button icon and label.
+   * @type SystemProps["marginRight"]
    */
   iconSpacing?: SystemProps["marginRight"]
   /**
    * Replace the spinner component when `isLoading` is set to `true`
+   * @type React.ReactElement
    */
   spinner?: React.ReactElement
 }
@@ -173,6 +177,9 @@ if (__DEV__) {
 
 interface ButtonSpinnerProps extends HTMLChakraProps<"div"> {
   label?: string
+  /**
+   * @type SystemProps["margin"]
+   */
   spacing?: SystemProps["margin"]
 }
 

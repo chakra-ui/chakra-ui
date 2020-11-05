@@ -26,6 +26,7 @@ interface AvatarGroupOptions {
   children: React.ReactNode
   /**
    * The space between the avatars in the group.
+   * @type SystemProps["margin"]
    */
   spacing?: SystemProps["margin"]
   /**
