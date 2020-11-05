@@ -18,7 +18,10 @@ export interface SwitchProps
     Omit<HTMLChakraProps<"label">, Omitted>,
     ThemingProps {}
 
-export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
+export const Switch = forwardRef<SwitchProps, "input">(function Switch(
+  props,
+  ref,
+) {
   const styles = useMultiStyleConfig("Switch", props)
 
   const ownProps = omitThemingProps(props)

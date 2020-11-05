@@ -33,6 +33,7 @@ import Tabs from "./tabs"
 import Tag from "./tag"
 import Textarea from "./textarea"
 import Tooltip from "./tooltip"
+import FormError from "./form-error"
 
 export default {
   Accordion,
@@ -70,4 +71,5 @@ export default {
   Tag,
   Textarea,
   Tooltip,
+  FormError,
 }

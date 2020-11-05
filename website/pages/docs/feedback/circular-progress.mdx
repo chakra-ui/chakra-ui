@@ -7,7 +7,7 @@ description:
   indeterminate processes.
 ---
 
-Circular Progress is used to indicates the progress for determinate and
+The CircularProgress component is used to indicate the progress for determinate and
 indeterminate processes.
 
 <ComponentLinks
@@ -37,7 +37,7 @@ import { CircularProgress, CircularProgressLabel } from "@chakra-ui/core"
 
 ### Changing the size
 
-You can add `size` prop to the progressbar to add a custom size.
+You can add `size` prop to the progress bar to add a custom size.
 
 ```jsx
 // Change the size to 120px
@@ -56,7 +56,7 @@ You can add the `thickness` prop to update the thickness of the progress ring.
 
 ### Changing the color
 
-You can add `color` prop to any progressbar to apply any color that exists in
+You can add `color` prop to any progress bar to apply any color that exists in
 the theme.
 
 ```jsx
@@ -66,7 +66,7 @@ the theme.
 ### Adding label
 
 Chakra exports a `CircularProgressLabel` to help you add a label. Pass this
-component as children and you'll be able to render the value.
+component as `children` prop and you'll be able to render the value.
 
 ```jsx
 <CircularProgress value={40} color="green.400">
@@ -85,7 +85,7 @@ Setting the progress to indeterminate means you're not able to determine the
 
 ### Accessibility
 
-- Progress has `role` set to `progressbar` to denote that it's a progress bar
+- Progress has `role` set to `progressbar` to denote that it's a progress bar.
 - Progress has `aria-valuenow` set to the percentage completion value passed to
   the component, to ensure the progress percent is visible to screen readers.
 
@@ -93,14 +93,14 @@ Setting the progress to indeterminate means you're not able to determine the
 
 | Name            | Type               | Default | Description                                                                                                      |
 | --------------- | ------------------ | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| size            | `string`           | `48px`  | The size of the circular progress in CSS units                                                                   |
-| max             | `number`           | `100`   | Maximum value defining 100% progress made (must be higher than 'min')                                            |
-| min             | `number`           | `0`     | Minimum value defining 'no progress' (must be lower than 'max')                                                  |
-| value           | `number`           |         | Current progress (must be between min/max)                                                                       |
-| isIndeterminate | `boolean`          |         | Puts the component into indeterminate state. When passed, the 'value' prop is ignored                            |
-| thickness       | `string or number` | `10px`  | The thickness of progress indicator                                                                              |
-| angle           | `number`           | `0`     | Angle to rotate progress indicator by                                                                            |
-| capIsRound      | `boolean`          |         | If `true`, the cap of the progress indicator will be rounded                                                     |
-| children        | `React.ReactNode`  |         | The content of the circular progress bar. If passed, the content will be inside and centered in the progress bar |
-| trackColor      | `string`           | `gray`  | The color name of the progress track. Use a color key in the theme object                                        |
-| color           | `string`           | `blue`  | The color of the progress indicator. Use a color key in the theme object                                         |
+| size            | `string`           | `48px`  | The size of the circular progress in CSS units.                                                                   |
+| max             | `number`           | `100`   | Maximum value defining 100% progress made (must be higher than 'min').                                            |
+| min             | `number`           | `0`     | Minimum value defining 'no progress' (must be lower than 'max').                                                  |
+| value           | `number`           |         | Current progress (must be between min/max).                                                                       |
+| isIndeterminate | `boolean`          |         | Puts the component into indeterminate state. When passed, the 'value' prop is ignored.                            |
+| thickness       | `string or number` | `10px`  | The thickness of progress indicator.                                                                              |
+| angle           | `number`           | `0`     | Angle to rotate progress indicator by.                                                                            |
+| capIsRound      | `boolean`          |         | If `true`, the cap of the progress indicator will be rounded.                                                     |
+| children        | `React.ReactNode`  |         | The content of the circular progress bar. If passed, the content will be inside and centered in the progress bar.|
+| trackColor      | `string`           | `gray`  | The color name of the progress track. Use a color key in the theme object.                                        |
+| color           | `string`           | `blue`  | The color of the progress indicator. Use a color key in the theme object.                                         |

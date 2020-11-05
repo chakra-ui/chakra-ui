@@ -173,10 +173,10 @@ The Facebook and Twitter icons in the above example are available from
 ### Grouping Buttons
 
 You can use the `Stack` or `ButtonGroup` component to group buttons. When you
-use the `ButtonGroup` component, it allows you:
+use the `ButtonGroup` component, it allows you to:
 
 - Set the `size` and `variant` of all buttons within it.
-- Add spacing between the buttons
+- Add `spacing` between the buttons.
 - Flush the buttons together by removing the border radius of the its children
   as needed.
 
@@ -187,7 +187,7 @@ use the `ButtonGroup` component, it allows you:
 </ButtonGroup>
 ```
 
-To flush the buttons, pass the `isAttached` prop
+To flush the buttons, pass the `isAttached` prop.
 
 ```jsx
 <ButtonGroup size="sm" isAttached variant="outline">
@@ -208,7 +208,7 @@ props. This means you can override any style of the Button via props.
 
 ```jsx
 // The size prop affects the height of the button
-// but I can still override it by passing a custom height
+// It can still be overriden by passing a custom height
 <Button
   size="md"
   height="48px"
@@ -265,11 +265,11 @@ are props specific to the Button component.
 
 | Name          | Type                                              | Default | Description                                                                                               |
 | ------------- | ------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------- |
-| `aria-label`  | `string`                                          |         | An accessible label for the button, useful when you render only an icon in the button                     |
-| `colorScheme` | `string`                                          | `blue`  | The color scheme of the button—one of the colors from `theme.colors`.                                     |
-| `leftIcon`    | `ReactElement`                                    |         | The left icon element to use in the button                                                                |
-| `rightIcon`   | `ReactElement`                                    |         | The right icon element to use in the button                                                               |
-| `spinner`     | `ReactElement`                                    |         | The spinner element to use when `isLoading` is set to `true`                                              |
+| `aria-label`  | `string`                                          |         | An accessible label for the button, useful when you render only an icon in the button.                     |
+| `colorScheme` | `string`                                          | `blue`  | The color scheme of the button — one of the colors from `theme.colors`.                                     |
+| `leftIcon`    | `ReactElement`                                    |         | The left icon element to use in the button.                                                               |
+| `rightIcon`   | `ReactElement`                                    |         | The right icon element to use in the button.                                                               |
+| `spinner`     | `ReactElement`                                    |         | The spinner element to use when `isLoading` is set to `true`.                                              |
 | `variant`     | `outline`, `ghost`, `unstyled` , `link` , `solid` | `solid` | The variant of the button style to use.                                                                   |
 | `isDisabled`  | `boolean`                                         |         | If `true`, the button will be disabled.                                                                   |
 | `isLoading`   | `boolean`                                         |         | If `true`, the button will show a spinner.                                                                |

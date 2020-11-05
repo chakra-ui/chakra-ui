@@ -1,4 +1,12 @@
-import { renderHook, invoke } from "@chakra-ui/test-utils"
+import React, { useState } from "react"
+import {
+  renderHook,
+  invoke,
+  render,
+  screen,
+  fireEvent,
+  userEvent,
+} from "@chakra-ui/test-utils"
 import { useControllableState } from "../src"
 
 test("should be uncontrolled when defaultValue is passed", () => {
@@ -9,7 +17,7 @@ test("should be uncontrolled when defaultValue is passed", () => {
   expect(value).toBe("testing")
 
   invoke(() => {
-    const [value, setValue] = result.current
+    const [, setValue] = result.current
     setValue("naruto")
   })
 
@@ -28,7 +36,7 @@ test("should be controlled when value is passed", () => {
   expect(value).toBe("testing")
 
   invoke(() => {
-    const [value, setValue] = result.current
+    const [, setValue] = result.current
     setValue("naruto")
   })
 
@@ -36,4 +44,48 @@ test("should be controlled when value is passed", () => {
   // we need to connect it to state for it to change
   const [next] = result.current
   expect(next).toBe("testing")
+})
+
+test("onChange does not become stale when callback is updated", async () => {
+  const Controllable = ({
+    value,
+    onChange,
+  }: {
+    value: number
+    onChange: (next: number) => void
+  }) => {
+    const [state, setState] = useControllableState({ value, onChange })
+
+    return (
+      <div>
+        <p data-testid="value">{value}</p>
+        <input
+          type="text"
+          value={state}
+          onChange={(e) => setState(Number(e.target.value))}
+        />
+      </div>
+    )
+  }
+
+  const TestComponent = () => {
+    const [value, setValue] = useState(0)
+    const onChange = (next: number) => {
+      setValue(value + next)
+    }
+
+    return <Controllable value={value} onChange={onChange} />
+  }
+
+  render(<TestComponent />)
+
+  expect(screen.getByTestId("value")).toHaveTextContent("0")
+
+  userEvent.type(screen.getByRole("textbox"), "5")
+
+  expect(await screen.findByTestId("value")).toHaveTextContent("5")
+
+  userEvent.type(screen.getByRole("textbox"), "{selectall}1")
+
+  expect(await screen.findByTestId("value")).toHaveTextContent("6")
 })

@@ -1,15 +1,15 @@
 import {
   chakra,
   forwardRef,
+  HTMLChakraProps,
   omitThemingProps,
   PropsOf,
   StylesProvider,
   SystemProps,
+  SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
-  HTMLChakraProps,
-  SystemStyleObject,
 } from "@chakra-ui/system"
 import { cx, MaybeRenderProp, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { motion, Variants } from "framer-motion"
@@ -31,7 +31,11 @@ import {
 } from "./use-menu"
 
 export interface MenuProps extends UseMenuProps, ThemingProps {
-  children: MaybeRenderProp<{ isOpen: boolean; onClose(): void }>
+  children: MaybeRenderProp<{
+    isOpen: boolean
+    onClose: () => void
+    forceUpdate: (() => void) | null
+  }>
 }
 
 /**
@@ -47,12 +51,12 @@ export const Menu: React.FC<MenuProps> = (props) => {
   const ctx = useMenu(ownProps)
   const context = React.useMemo(() => ctx, [ctx])
 
-  const { isOpen, onClose } = context
+  const { isOpen, onClose, forceUpdate } = context
 
   return (
     <MenuProvider value={context}>
       <StylesProvider value={styles}>
-        {runIfFn(children, { isOpen, onClose })}
+        {runIfFn(children, { isOpen, onClose, forceUpdate })}
       </StylesProvider>
     </MenuProvider>
   )
@@ -185,7 +189,7 @@ export interface StyledMenuItemProps extends HTMLChakraProps<"button"> {}
 
 const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
   function StyledMenuItem(props, ref) {
-    const { as, type, ...rest } = props
+    const { type, ...rest } = props
     const styles = useStyles()
 
     /**
@@ -193,7 +197,7 @@ const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
      * Else, use no type to avoid invalid html, e.g. <a type="button" />
      * Else, fall back to "button"
      */
-    const btnType = as ? type ?? undefined : "button"
+    const btnType = rest.as ? type ?? undefined : "button"
 
     const buttonStyles: SystemStyleObject = {
       textDecoration: "none",
@@ -240,7 +244,7 @@ export const MenuItem = forwardRef<MenuItemProps, "button">(function MenuItem(
 ) {
   const { icon, iconSpacing = "0.75rem", command, children, ...rest } = props
 
-  const menuItemProps = useMenuItem(rest, ref)
+  const menuItemProps = useMenuItem(rest, ref) as MenuItemProps
 
   const shouldWrap = icon || command
 
@@ -272,13 +276,6 @@ if (__DEV__) {
   MenuItem.displayName = "MenuItem"
 }
 
-export interface MenuItemOptionProps
-  extends UseMenuOptionOptions,
-    Omit<MenuItemProps, keyof UseMenuOptionOptions> {
-  icon?: React.ReactElement
-  iconSpacing?: SystemProps["mr"]
-}
-
 const CheckIcon: React.FC<PropsOf<"svg">> = (props) => (
   <svg viewBox="0 0 14 14" width="1em" height="1em" {...props}>
     <polygon
@@ -288,11 +285,18 @@ const CheckIcon: React.FC<PropsOf<"svg">> = (props) => (
   </svg>
 )
 
+export interface MenuItemOptionProps
+  extends UseMenuOptionOptions,
+    Omit<MenuItemProps, keyof UseMenuOptionOptions> {
+  icon?: React.ReactElement
+  iconSpacing?: SystemProps["mr"]
+}
+
 export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
   function MenuItemOption(props, ref) {
     const { icon, iconSpacing = "0.75rem", ...rest } = props
 
-    const optionProps = useMenuOption(rest, ref)
+    const optionProps = useMenuOption(rest, ref) as StyledMenuItemProps
 
     return (
       <StyledMenuItem

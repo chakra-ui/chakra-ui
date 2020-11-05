@@ -97,16 +97,16 @@ function CustomControlsExample() {
 
 | Name               | Type              | Default              | Description                                                                                                                               |
 | ------------------ | ----------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| value              | `string`          |                      | Text value of the controlled input                                                                                                        |
-| defaultValue       | `string`          |                      | The initial value of the Editable in both edit & preview mode                                                                             |
+| value              | `string`          |                      | Text value of the controlled input.                                                                                                       |
+| defaultValue       | `string`          |                      | The initial value of the `Editable` in both edit & preview mode                                                                             |
 | placeholder        | `string`          | `"Click to edit..."` | The placeholder text when the value is empty.                                                                                             |
-| isDisabled         | `string`          |                      | If `true`, the Editable will be disabled.                                                                                                 |
+| isDisabled         | `string`          |                      | If `true`, the `Editable` will be disabled.                                                                                                 |
 | onChange           | `func`            |                      | Callback invoked when user changes input.                                                                                                 |
 | onCancel           | `string`          |                      | Callback invoked when user cancels input with the `Esc` key. It provides the last confirmed value as argument.                            |
 | onSubmit           | `string`          |                      | Callback invoked when user confirms value with `enter` key or by blurring the input.                                                      |
 | onEdit             | `string`          |                      | Callback invoked once the user enters edit mode.                                                                                          |
 | isPreviewFocusable | `boolean`         | `true`               | If `true`, the read only view, has a `tabIndex` set to `0` so it can receive focus via the keyboard or click.                             |
-| startWithEditView  | `boolean`         |                      | If `true`, the Editable will start with edit mode by default.                                                                             |
+| startWithEditView  | `boolean`         |                      | If `true`, the `Editable` will start with edit mode by default.                                                                             |
 | submitOnBlur       | `boolean`         | `true`               | If `true`, it'll update the value onBlur and turn off the edit mode.                                                                      |
 | selectAllOnFocus   | `boolean`         | `true`               | If `true`, the input's text will be highlighted on focus.                                                                                 |
-| children           | `React.ReactNode` |                      | The content of the EditableText. Ideally only `EditablePreview` and `EditableInput` should be the children but you add other elements too |
+| children           | `React.ReactNode` |                      | The content of the EditableText. Ideally only `EditablePreview` and `EditableInput` should be the children but you add other elements too. |

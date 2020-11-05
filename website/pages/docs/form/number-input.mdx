@@ -7,7 +7,7 @@ description:
   controls for incrementing or decrementing numeric values.
 ---
 
-The NumberInput component is similar to the [Input](/docs/form/input) component,
+The `NumberInput` component is similar to the [Input](/docs/form/input) component,
 but it has controls for incrementing or decrementing numeric values.
 
 <ComponentLinks
@@ -297,8 +297,8 @@ function HookUsage() {
 
 ### Increment value using Mouse wheel
 
-The NumberInput component supports the ability to increment or decrement values
-using the mouse wheel events. To activate this, pass the `allowMouseWheel` prop
+The `NumberInput` component supports the ability to increment or decrement values
+using the mouse wheel events. To activate this, pass the `allowMouseWheel` prop.
 
 ```jsx
 function MouseWheelExample() {
@@ -347,31 +347,31 @@ NumberInput composes `Flex` with some additional props listed below.
 
 | Name                 | Type                        | Default     | Description                                                                                                         |
 | -------------------- | --------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------- |
-| `value`              | `number`                    |             | The value of the input for controlled usage. Should be less than `max` and greater than `min`                       |
-| `defaultValue`       | `number`                    |             | The initial value of the input. Should be less than `max` and greater than `min`                                    |
-| `onChange`           | `(value: number) => void`   |             | The callback fired when the value changes                                                                           |
-| `min`                | `number`                    | `-Infinity` | The maximum value of the input                                                                                      |
-| `max`                | `number`                    | `Infinity`  | The minimum value of the input                                                                                      |
-| `step`               | `number`                    | `1`         | The step used to increment or decrement the value                                                                   |
-| `precision`          | `number`                    |             | The number of decimal points used to round the value                                                                |
-| `isReadOnly`         | `boolean`                   |             | If `true`, the input will be in readonly mode                                                                       |
-| `isInvalid`          | `boolean`                   |             | If `true`, the input will have `aria-invalid` set to `true`                                                         |
-| `isDisabled`         | `boolean`                   |             | If `true`, the input will be disabled                                                                               |
-| `keepWithinRange`    | `boolean`                   | `true`      | If `true` and you use the stepper or up/down arrow keys, the value will not exceed the `max` or go lower than `min` |
-| `allowMouseWheel`    | `boolean`                   |             | If `true`, the input's value will change based on mouse wheel                                                       |
-| `clampValueOnBlur`   | `boolean`                   | `true`      | If `true` and the value is greater than `max`, the value will be reset to `max`                                     |
-| `focusInputOnChange` | `boolean`                   | `true`      | If `true`, the input will be focused as you increment or decrement the value with the stepper                       |
-| `getAriaValueText`   | `(value: number) => string` | `true`      | It is used to set the `aria-valuetext` property of the input                                                        |
+| `value`              | `number`                    |             | The value of the input for controlled usage. Should be less than `max` and greater than `min`.                       |
+| `defaultValue`       | `number`                    |             | The initial value of the input. Should be less than `max` and greater than `min`.                                    |
+| `onChange`           | `(value: number) => void`   |             | The callback fired when the value changes.                                                                          |
+| `min`                | `number`                    | `-Infinity` | The maximum value of the input.                                                                                      |
+| `max`                | `number`                    | `Infinity`  | The minimum value of the input.                                                                                      |
+| `step`               | `number`                    | `1`         | The step used to increment or decrement the value.                                                                   |
+| `precision`          | `number`                    |             | The number of decimal points used to round the value.                                                               |
+| `isReadOnly`         | `boolean`                   |             | If `true`, the input will be in readonly mode.                                                                       |
+| `isInvalid`          | `boolean`                   |             | If `true`, the input will have `aria-invalid` set to `true`.                                                         |
+| `isDisabled`         | `boolean`                   |             | If `true`, the input will be disabled.                                                                               |
+| `keepWithinRange`    | `boolean`                   | `true`      | If `true` and you use the stepper or up/down arrow keys, the value will not exceed the `max` or go lower than `min. |
+| `allowMouseWheel`    | `boolean`                   |             | If `true`, the input's value will change based on mouse wheel.                                                       |
+| `clampValueOnBlur`   | `boolean`                   | `true`      | If `true` and the value is greater than `max`, the value will be reset to `max`.                                     |
+| `focusInputOnChange` | `boolean`                   | `true`      | If `true`, the input will be focused as you increment or decrement the value with the stepper.                      |
+| `getAriaValueText`   | `(value: number) => string` | `true`      | It is used to set the `aria-valuetext` property of the input.                                                        |
 
 ### NumberInputField Props
 
-NumberInput composes `Input` so you can pass all `Input` props.
+`NumberInput` composes `Input` so you can pass all `Input` props.
 
 ### NumberInputStepper Props
 
-NumberInputStepper composes `Flex` so you can pass all `Flex` props.
+`NumberInputStepper` composes `Flex` so you can pass all `Flex` props.
 
 ### NumberDecrementStepper and NumberIncrementStepper Props
 
-NumberDecrementStepper and NumberIncrementStepper composes the `Box` props so
+`NumberDecrementStepper` and `NumberIncrementStepper` composes the `Box` props so
 you can pass all `Box` props.

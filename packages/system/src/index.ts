@@ -6,6 +6,7 @@ export {
   ThemeContext,
   Global,
   jsx,
+  ClassNames,
 } from "@emotion/core"
 export type { InterpolationWithTheme, ObjectInterpolation } from "@emotion/core"
 export * from "./hooks"

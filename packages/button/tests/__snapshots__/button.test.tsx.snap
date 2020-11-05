@@ -64,6 +64,27 @@ exports[`matches snapshot 1`] = `
   background: #E2E8F0;
 }
 
+.emotion-0:hover[disabled],
+.emotion-0[data-hover][disabled],
+.emotion-0:hover[disabled]:focus,
+.emotion-0[data-hover][disabled]:focus,
+.emotion-0:hover[disabled]:hover,
+.emotion-0[data-hover][disabled]:hover,
+.emotion-0:hover[aria-disabled=true],
+.emotion-0[data-hover][aria-disabled=true],
+.emotion-0:hover[aria-disabled=true]:focus,
+.emotion-0[data-hover][aria-disabled=true]:focus,
+.emotion-0:hover[aria-disabled=true]:hover,
+.emotion-0[data-hover][aria-disabled=true]:hover,
+.emotion-0:hover[data-disabled],
+.emotion-0[data-hover][data-disabled],
+.emotion-0:hover[data-disabled]:focus,
+.emotion-0[data-hover][data-disabled]:focus,
+.emotion-0:hover[data-disabled]:hover,
+.emotion-0[data-hover][data-disabled]:hover {
+  background: #EDF2F7;
+}
+
 .emotion-0:active,
 .emotion-0[data-active] {
   background: #CBD5E0;
@@ -152,6 +173,27 @@ exports[`matches snapshot with icons 1`] = `
 .emotion-2:hover,
 .emotion-2[data-hover] {
   background: #E2E8F0;
+}
+
+.emotion-2:hover[disabled],
+.emotion-2[data-hover][disabled],
+.emotion-2:hover[disabled]:focus,
+.emotion-2[data-hover][disabled]:focus,
+.emotion-2:hover[disabled]:hover,
+.emotion-2[data-hover][disabled]:hover,
+.emotion-2:hover[aria-disabled=true],
+.emotion-2[data-hover][aria-disabled=true],
+.emotion-2:hover[aria-disabled=true]:focus,
+.emotion-2[data-hover][aria-disabled=true]:focus,
+.emotion-2:hover[aria-disabled=true]:hover,
+.emotion-2[data-hover][aria-disabled=true]:hover,
+.emotion-2:hover[data-disabled],
+.emotion-2[data-hover][data-disabled],
+.emotion-2:hover[data-disabled]:focus,
+.emotion-2[data-hover][data-disabled]:focus,
+.emotion-2:hover[data-disabled]:hover,
+.emotion-2[data-hover][data-disabled]:hover {
+  background: #EDF2F7;
 }
 
 .emotion-2:active,
@@ -313,6 +355,27 @@ exports[`shows spinner and loading text if isLoading and loadingText 1`] = `
   background: #E2E8F0;
 }
 
+.emotion-3:hover[disabled],
+.emotion-3[data-hover][disabled],
+.emotion-3:hover[disabled]:focus,
+.emotion-3[data-hover][disabled]:focus,
+.emotion-3:hover[disabled]:hover,
+.emotion-3[data-hover][disabled]:hover,
+.emotion-3:hover[aria-disabled=true],
+.emotion-3[data-hover][aria-disabled=true],
+.emotion-3:hover[aria-disabled=true]:focus,
+.emotion-3[data-hover][aria-disabled=true]:focus,
+.emotion-3:hover[aria-disabled=true]:hover,
+.emotion-3[data-hover][aria-disabled=true]:hover,
+.emotion-3:hover[data-disabled],
+.emotion-3[data-hover][data-disabled],
+.emotion-3:hover[data-disabled]:focus,
+.emotion-3[data-hover][data-disabled]:focus,
+.emotion-3:hover[data-disabled]:hover,
+.emotion-3[data-hover][data-disabled]:hover {
+  background: #EDF2F7;
+}
+
 .emotion-3:active,
 .emotion-3[data-active] {
   background: #CBD5E0;
@@ -461,6 +524,27 @@ exports[`shows spinner if isLoading 1`] = `
 .emotion-4:hover,
 .emotion-4[data-hover] {
   background: #E2E8F0;
+}
+
+.emotion-4:hover[disabled],
+.emotion-4[data-hover][disabled],
+.emotion-4:hover[disabled]:focus,
+.emotion-4[data-hover][disabled]:focus,
+.emotion-4:hover[disabled]:hover,
+.emotion-4[data-hover][disabled]:hover,
+.emotion-4:hover[aria-disabled=true],
+.emotion-4[data-hover][aria-disabled=true],
+.emotion-4:hover[aria-disabled=true]:focus,
+.emotion-4[data-hover][aria-disabled=true]:focus,
+.emotion-4:hover[aria-disabled=true]:hover,
+.emotion-4[data-hover][aria-disabled=true]:hover,
+.emotion-4:hover[data-disabled],
+.emotion-4[data-hover][data-disabled],
+.emotion-4:hover[data-disabled]:focus,
+.emotion-4[data-hover][data-disabled]:focus,
+.emotion-4:hover[data-disabled]:hover,
+.emotion-4[data-hover][data-disabled]:hover {
+  background: #EDF2F7;
 }
 
 .emotion-4:active,

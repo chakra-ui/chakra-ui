@@ -336,34 +336,40 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
   )
 
   const getIncrementButtonProps: PropGetter = useCallback(
-    (props = {}, ref = null) => ({
-      ...props,
-      ref,
-      role: "button",
-      tabIndex: -1,
-      [pointerDown]: callAllHandlers(props[pointerDown], spinUp),
-      onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
-      onMouseLeave: callAllHandlers(props.onMouseUp, spinner.stop),
-      onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
-      disabled: keepWithinRange && counter.isAtMax,
-      "aria-disabled": ariaAttr(keepWithinRange && counter.isAtMax),
-    }),
+    (props = {}, ref = null) => {
+      const disabled = isDisabled || (keepWithinRange && counter.isAtMax)
+      return {
+        ...props,
+        ref,
+        role: "button",
+        tabIndex: -1,
+        [pointerDown]: callAllHandlers(props[pointerDown], spinUp),
+        onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
+        onMouseLeave: callAllHandlers(props.onMouseUp, spinner.stop),
+        onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
+        disabled,
+        "aria-disabled": ariaAttr(disabled),
+      }
+    },
     [pointerDown, counter.isAtMax, keepWithinRange, spinUp, spinner.stop],
   )
 
   const getDecrementButtonProps: PropGetter = useCallback(
-    (props = {}, ref = null) => ({
-      ...props,
-      ref,
-      role: "button",
-      tabIndex: -1,
-      [pointerDown]: callAllHandlers(props[pointerDown], spinDown),
-      onMouseLeave: callAllHandlers(props.onMouseLeave, spinner.stop),
-      onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
-      onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
-      disabled: keepWithinRange && counter.isAtMin,
-      "aria-disabled": ariaAttr(keepWithinRange && counter.isAtMin),
-    }),
+    (props = {}, ref = null) => {
+      const disabled = isDisabled || (keepWithinRange && counter.isAtMin)
+      return {
+        ...props,
+        ref,
+        role: "button",
+        tabIndex: -1,
+        [pointerDown]: callAllHandlers(props[pointerDown], spinDown),
+        onMouseLeave: callAllHandlers(props.onMouseLeave, spinner.stop),
+        onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
+        onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
+        disabled,
+        "aria-disabled": ariaAttr(disabled),
+      }
+    },
     [pointerDown, counter.isAtMin, keepWithinRange, spinDown, spinner.stop],
   )
 

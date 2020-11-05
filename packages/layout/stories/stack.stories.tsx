@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Stack, StackDivider, Box, Heading, Text } from "../src"
+import { Stack, StackDivider, Box, Heading, Text, Divider } from "../src"
 
 export default {
   title: "Stack",
@@ -13,11 +13,32 @@ export const Vertical = () => (
   </Stack>
 )
 
+export const WithCustomDivider = () => {
+  return (
+    <div>
+      <Stack spacing="12px">
+        <Box>1</Box>
+        <Box>2</Box>
+        <Box>3</Box>
+      </Stack>
+
+      <Stack
+        spacing="12px"
+        divider={<Divider sx={{ borderColor: "red.200" }} />}
+      >
+        <Box>1</Box>
+        <Box>2</Box>
+        <Box>3</Box>
+      </Stack>
+    </div>
+  )
+}
+
 export const Inline = () => (
   <Stack w="100%" bg="blue.500" direction="row">
-    <Box boxSize="40px" bg={"#fff"} borderRadius="full" />
-    <Box boxSize="40px" bg={"#fff"} borderRadius="full" />
-    <Box boxSize="40px" bg={"#fff"} borderRadius="full" />
+    <Box boxSize="40px" bg="white" borderRadius="full" />
+    <Box boxSize="40px" bg="white" borderRadius="full" />
+    <Box boxSize="40px" bg="white" borderRadius="full" />
   </Stack>
 )
 
@@ -39,16 +60,18 @@ export const WithResponsiveDivider = () => (
   <Stack
     mt={10}
     direction={["column", "row"]}
-    divider={<StackDivider borderColor="red.200" />}
+    divider={
+      <StackDivider borderColor={{ base: "green.500", md: "red.200" }} />
+    }
     spacing={4}
   >
-    <Box boxSize="40px" bg="yellow.200">
+    <Box flex="1" w={["100%", "40px"]} h="40px" bg="yellow.200">
       1
     </Box>
-    <Box boxSize="40px" bg="tomato">
+    <Box flex="1" w={["100%", "40px"]} h="40px" bg="tomato">
       2
     </Box>
-    <Box boxSize="40px" bg="pink.100">
+    <Box flex="1" w={["100%", "40px"]} h="40px" bg="pink.100">
       3
     </Box>
   </Stack>

@@ -4,20 +4,28 @@ import {
   forwardRef,
   useStyles,
   HTMLChakraProps,
+  useMultiStyleConfig,
+  ThemingProps,
+  omitThemingProps,
+  StylesProvider,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useFormControlContext } from "./form-control"
 
-export interface FormErrorMessageProps extends HTMLChakraProps<"div"> {}
+export interface FormErrorMessageProps
+  extends HTMLChakraProps<"div">,
+    ThemingProps {}
 
 /**
  * Used to provide feedback about an invalid input,
  * and suggest clear instrctions on how to fix it.
  */
 export const FormErrorMessage = forwardRef<FormErrorMessageProps, "div">(
-  function FormErrorMessage(props, ref) {
-    const styles = useStyles()
+  function FormErrorMessage(passedProps, ref) {
+    const styles = useMultiStyleConfig("FormError", passedProps)
+    const props = omitThemingProps(passedProps)
+
     const field = useFormControlContext()
 
     if (!field?.isInvalid) return null
@@ -25,18 +33,20 @@ export const FormErrorMessage = forwardRef<FormErrorMessageProps, "div">(
     const _className = cx("chakra-form__error-message", props.className)
 
     return (
-      <chakra.div
-        aria-live="polite"
-        ref={ref}
-        {...props}
-        __css={{
-          display: "flex",
-          alignItems: "center",
-          ...styles.errorText,
-        }}
-        className={_className}
-        id={props.id ?? field?.feedbackId}
-      />
+      <StylesProvider value={styles}>
+        <chakra.div
+          aria-live="polite"
+          ref={ref}
+          {...props}
+          __css={{
+            display: "flex",
+            alignItems: "center",
+            ...styles.text,
+          }}
+          className={_className}
+          id={props.id ?? field?.feedbackId}
+        />
+      </StylesProvider>
     )
   },
 )
@@ -63,7 +73,7 @@ export const FormErrorIcon = forwardRef<IconProps, "svg">(
         ref={ref}
         aria-hidden
         {...props}
-        __css={styles.errorIcon}
+        __css={styles.icon}
         className={_className}
       >
         <path

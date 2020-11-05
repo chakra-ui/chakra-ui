@@ -39,7 +39,7 @@ function logEvents(e: React.MouseEvent | React.KeyboardEvent | undefined) {
 }
 
 export const Basic = () => (
-  <div style={{ minHeight: 4000 }}>
+  <div style={{ minHeight: 4000, paddingTop: 500 }}>
     <Menu>
       <MenuButton
         as={Button}

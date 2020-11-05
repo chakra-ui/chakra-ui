@@ -166,6 +166,27 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     [setActive],
   )
 
+  /**
+   * Sync state with uncontrolled form libraries like `react-hook-form`.
+   *
+   * These libraries set the checked value for input fields
+   * using their refs. For the checkbox, it sets `ref.current.checked = true | false` directly.
+   *
+   * This means the `isChecked` state will get out of sync with `ref.current.checked`,
+   * even though the input validation with work, the UI will not be up to date.
+   *
+   * Let's correct that by checking and syncing the state accordingly.
+   */
+  useSafeLayoutEffect(() => {
+    if (!ref.current) return
+    const notInSync =
+      (ref.current.checked && !isChecked) || (!ref.current.checked && isChecked)
+
+    if (notInSync) {
+      setCheckedState(ref.current.checked)
+    }
+  }, [ref.current])
+
   const getCheckboxProps: PropGetter = (props = {}, forwardedRef = null) => {
     const onPressDown = (event: React.MouseEvent) => {
       // On mousedown, the input blurs and returns focus to the `body`,

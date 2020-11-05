@@ -76,6 +76,27 @@ exports[`matches snapshot 1`] = `
   background: #E2E8F0;
 }
 
+.emotion-0:hover[disabled],
+.emotion-0[data-hover][disabled],
+.emotion-0:hover[disabled]:focus,
+.emotion-0[data-hover][disabled]:focus,
+.emotion-0:hover[disabled]:hover,
+.emotion-0[data-hover][disabled]:hover,
+.emotion-0:hover[aria-disabled=true],
+.emotion-0[data-hover][aria-disabled=true],
+.emotion-0:hover[aria-disabled=true]:focus,
+.emotion-0[data-hover][aria-disabled=true]:focus,
+.emotion-0:hover[aria-disabled=true]:hover,
+.emotion-0[data-hover][aria-disabled=true]:hover,
+.emotion-0:hover[data-disabled],
+.emotion-0[data-hover][data-disabled],
+.emotion-0:hover[data-disabled]:focus,
+.emotion-0[data-hover][data-disabled]:focus,
+.emotion-0:hover[data-disabled]:hover,
+.emotion-0[data-hover][data-disabled]:hover {
+  background: #EDF2F7;
+}
+
 .emotion-0:active,
 .emotion-0[data-active] {
   background: #CBD5E0;
