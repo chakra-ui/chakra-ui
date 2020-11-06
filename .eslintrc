@@ -3,7 +3,6 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 10,
-    "project": "tsconfig.json",
     "ecmaFeatures": {
       "jsx": true
     }
@@ -66,5 +65,13 @@
     "react/sort-prop-types": "error",
     "react/prop-types": "off",
     "@typescript-eslint/no-shadow": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parserOptions": {
+        "project": ["tsconfig.json"]
+      }
+    }
+  ]
 }
