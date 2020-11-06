@@ -3,7 +3,6 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 10,
-    "project": "tsconfig.json",
     "ecmaFeatures": {
       "jsx": true
     }
@@ -43,6 +42,8 @@
     "react/no-unescaped-entities": "off",
     "operator-assignment": "off",
     "prefer-destructuring": "off",
+    "react/no-children-prop": "off",
+    "consistent-return": "off",
     "react/state-in-constructor": "off",
     "no-restricted-syntax": "off",
     "no-continue": "off",
@@ -53,6 +54,7 @@
     "@typescript-eslint/naming-convention": "off",
     "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/lines-between-class-members": "off",
+    "no-alert": "off",
     "react/jsx-filename-extension": [
       "error",
       { "extensions": [".js", ".tsx"] }
@@ -63,5 +65,13 @@
     "react/sort-prop-types": "error",
     "react/prop-types": "off",
     "@typescript-eslint/no-shadow": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parserOptions": {
+        "project": ["tsconfig.json"]
+      }
+    }
+  ]
 }

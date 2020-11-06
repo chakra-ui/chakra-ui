@@ -1,9 +1,25 @@
 import * as React from "react"
-import { useBoolean } from "@chakra-ui/hooks"
+import { useBoolean, useDisclosure } from "@chakra-ui/hooks"
 import { Collapse, CollapseOptions } from "../src/collapse"
 
 export default {
   title: "Transition / Collapse",
+}
+
+export const NestedCollapseBug = () => {
+  const { isOpen, onToggle } = useDisclosure()
+  const { isOpen: isOpen2, onToggle: onToggle2 } = useDisclosure()
+
+  return (
+    <>
+      <button onClick={onToggle}>Open 1</button>
+      <button onClick={onToggle2}>Open 2</button>
+      <Collapse in={isOpen}>
+        Collapse 1: isOpen={String(isOpen)}
+        <Collapse in={isOpen2}>Collapse 2: isOpen2={String(isOpen2)}</Collapse>
+      </Collapse>
+    </>
+  )
 }
 
 const CollapseExample = (props: CollapseOptions) => {

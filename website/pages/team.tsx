@@ -22,24 +22,26 @@ import * as React from "react"
 import { IoIosGlobe, IoLogoGithub, IoLogoTwitter } from "react-icons/io"
 import { Contributor, Member as IMember } from "src/types/github"
 
-const SocialLink = ({ icon, href }) => (
-  <Link
-    display="inline-flex"
-    alignItems="center"
-    justifyContent="center"
-    rounded="full"
-    href={href}
-    isExternal
-  >
-    <Icon
-      as={icon}
-      transition="all 0.2s"
-      _hover={{ color: "teal.600" }}
-      fontSize="xl"
-      color="teal.500"
-    />
-  </Link>
-)
+function SocialLink({ icon, href }) {
+  return (
+    <Link
+      display="inline-flex"
+      alignItems="center"
+      justifyContent="center"
+      rounded="full"
+      href={href}
+      isExternal
+    >
+      <Icon
+        as={icon}
+        transition="all 0.2s"
+        _hover={{ color: "teal.600" }}
+        fontSize="xl"
+        color="teal.500"
+      />
+    </Link>
+  )
+}
 
 function Member({ member }: { member: IMember }) {
   const {
@@ -97,7 +99,7 @@ function Team({ members, contributors }: TeamProps) {
       <SkipNavLink zIndex={20}>Skip to Content</SkipNavLink>
       <Header />
 
-      <Box mt="120px" mb="60px">
+      <Box mt={{ base: "60px", md: "120px" }} mb="60px">
         <SkipNavContent />
         <PageTransition>
           <Container py="80px" textAlign="center">
@@ -105,14 +107,13 @@ function Team({ members, contributors }: TeamProps) {
               color="teal.400"
               textStyle="heading"
               mb="5"
-              fontWeight="semibold"
+              fontWeight="bold"
             >
-              Chakra UI Team &amp; Contributors
+              Chakra UI Team
             </chakra.h1>
-            <Text maxW="60ch" mx="auto" fontSize="lg">
-              The people listed on this page have contributed time, effort, and
-              thought to Chakra UI. Without them, this project would not be
-              possible.
+            <Text maxW="56ch" mx="auto" fontSize="lg">
+              Amazing engineers who have contributed time, effort, and thought
+              to Chakra UI. Without them, this project would not be possible.
             </Text>
           </Container>
 
@@ -128,19 +129,7 @@ function Team({ members, contributors }: TeamProps) {
 
             <Stack py="48px" spacing={8}>
               <Heading size="lg">Our Sponsors 💰</Heading>
-              <Box mt="8">
-                <Text
-                  textStyle="caps"
-                  mb="4"
-                  textTransform="uppercase"
-                  opacity="0.7"
-                >
-                  Individuals
-                </Text>
-                <a href="https://opencollective.com/chakra-ui">
-                  <img src="https://opencollective.com/chakra-ui/individuals.svg?width=890" />
-                </a>
-              </Box>
+
               <Box>
                 <Text
                   textStyle="caps"
@@ -164,9 +153,22 @@ function Team({ members, contributors }: TeamProps) {
                   ))}
                 </Wrap>
               </Box>
+              <Box>
+                <Text
+                  textStyle="caps"
+                  mb="4"
+                  textTransform="uppercase"
+                  opacity="0.7"
+                >
+                  Individuals
+                </Text>
+                <a href="https://opencollective.com/chakra-ui">
+                  <img src="https://opencollective.com/chakra-ui/individuals.svg?width=890" />
+                </a>
+              </Box>
             </Stack>
 
-            <Stack spacing={8} mt="100px">
+            <Stack spacing={8} mt={{ base: "40px", md: "100px" }}>
               <Heading size="lg">Project Contributors 💖</Heading>
               <Wrap spacing="3">
                 {contributorsWithoutTeam.map((contributor) => (

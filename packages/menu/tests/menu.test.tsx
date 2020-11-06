@@ -90,10 +90,7 @@ test("sets correct aria attributes on disabled MenuItems", () => {
     </Menu>,
   )
 
-  expect(screen.getByText("Delivery").parentElement).toHaveAttribute(
-    "aria-disabled",
-    "true",
-  )
+  expect(screen.getByText("Delivery").parentElement).toBeDisabled()
 })
 
 test("does not fire onClick on disabled MenuItem", () => {

@@ -38,10 +38,12 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuGroup,
-  MenuDivider,
-  MenuOptionGroup,
   MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuIcon,
+  MenuCommand,
+  MenuDivider,
 } from "@chakra-ui/core"
 ```
 
@@ -287,76 +289,46 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
 
 - `role` is set to `button`.
 - `aria-haspopup` is set to `menu`.
-- When the menu is displayed, `MenuButton` has `aria-expanded` set to `true`.
-- `MenuButton` has `aria-controls` set to the `id` of the `MenuList`.
+- When the menu is displayed, `aria-expanded` is set to `true`.
+- `aria-controls` is set to the `id` of the `MenuList`.
 
 **For `MenuList`:**
 
-- The `MenuItem` has role `menu`.
+- `role` is set to `menu`.
+- `aria-orientation` is set to `vertical`.
+
+**For `MenuItem`:**
+
+- `role` is set to `menuitem`.
+- Gets one of these roles `menuitem`/`menuitenradio`/ `menuitemcheckbox`.
 
 ## Props
 
 ### Menu Props
 
-| Name          | Type                 | Default | Description                                                                 |
-| ------------- | -------------------- | ------- | --------------------------------------------------------------------------- |
-| children      | `React.ReactNode`    |         | The children of the menu must be `MenuButton` and `MenuList`.                |
-| isOpen        | `boolean`            |         | If `true`, the menu will be opened.                                          |
-| autoSelect    | `boolean`            | `true`  | The menu will select the first enabled item when it opens.                   |
-| closeOnBlur   | `boolean`            | `true`  | If `true`, the menu will close on outside click or blur.                     |
-| closeOnSelect | `boolean`            | `true`  | If `true`, the menu will close on menu item select.                          |
-| placement     | `PopperJS.placement` |         | The placement of the `MenuList`.                                             |
-| isLazy        | `boolean`            |         | If `true`, children of `MenuList` will not render until the menu is opened. |
+<PropsTable of="Menu" />
 
 ### MenuButton Props
 
-| Name      | Type                         |
-| --------- | ---------------------------- |
-| children  | `React.ReactNode`            |
-| onClick   | `React.MouseEventHandler`    |
-| onKeyDown | `React.KeyboardEventHandler` |
-
-### MenuList Props
-
-| Name     | Type                      | Description                                                       |
-| -------- | ------------------------- | ----------------------------------------------------------------- |
-| children | `React.ReactNode`         | The content of the `MenuList`, should be the `MenuItem` component. |
-| onClick  | `React.MouseEventHandler` | Function to be called when you click on the menu item .            |
-| onBlur   | `React.FocusEventHandler` | Function to be called when you blur out of the menu list .         |
+`MenuButton` composes [Box](/docs/layout/box) so you can pass all `Box` props to
+change it's style.
 
 ### MenuItem Props
 
-| Name       | Type                                            | Description                                               |
-| ---------- | ----------------------------------------------- | --------------------------------------------------------- |
-| isDisabled | `boolean`                                       | If `true`, the menu item will be disabled.                 |
-| onClick    | `React.MouseEventHandler`                       | Function that is called on click and enter/space keypress. |
-| onKeyDown  | `React.KeyboardEventHander`                     | Function that is called on keydown.                        |
-| role       | `menuitem`, `menuitemradio`, `menuitemcheckbox` | The ARIA role of the menuitem.                             |
+<PropsTable of="MenuItem" />
 
 ### MenuGroup Props
 
-| Name     | Type              | Description                   |
-| -------- | ----------------- | ----------------------------- |
-| children | `React.ReactNode` | The content of the menu group. |
-| title    | `string`          | The title of the menu group.   |
+`MenuGroup` composes [Box](/docs/layout/box) so you can pass all `Box` props to
+change it's style.
 
 ### MenuOptionGroup Props
 
-| Name         | Type                                          | Description                                             |
-| ------------ | --------------------------------------------- | ------------------------------------------------------- |
-| children     | `React.ReactNode`                             | The content of the option group.                         |
-| title        | `string`                                      | Title of the option group.                               |
-| type         | `radio`, `checkbox`                           | Used to add roles `menuitemradio` or `menuitemcheckbox`. |
-| defaultValue | `string`, `number`, `Array<string or number>` | The initial value of the option group.                   |
-| value        | `string`, `number`, `Array<string or number>` | The value of the option group.                           |
-| onChange     | `(value) => void`                             | Function called when selection changes.                  |
+<PropsTable of="MenuOptionGroup" />
 
 ### MenuItemOption Props
 
-MenuItemOption extends `Box` so you can pass all box props in addition to these:
+`MenuItemOption` composes [Box](/docs/layout/box) so you can pass all box props
+in addition to these:
 
-| Name       | Type                | Description                                                           |
-| ---------- | ------------------- | --------------------------------------------------------------------- |
-| isDisabled | `boolean`           | If `true`, the option item will be disabled.                           |
-| value      | `StringOrNumber`    | The value of the option item.                                          |
-| type       | `radio`, `checkbox` | Used to add `menuitemradio` or `menuitemcheckbox` roles to the option. |
+<PropsTable of="MenuItemOption" />

@@ -1,30 +1,19 @@
 import { Box, chakra, Stack, useColorModeValue } from "@chakra-ui/core"
 import { useRouter } from "next/router"
 import * as React from "react"
+import { Routes } from "utils/get-route-context"
 import SidebarCategory from "./sidebar-category"
 import SidebarLink from "./sidebar-link"
 
-const Sidebar = ({ routes }: any) => {
-  const { pathname } = useRouter()
-  const ref = React.useRef<HTMLDivElement>(null)
+export type SidebarContentProps = Routes & {
+  pathname?: string
+  contentRef?: any
+}
 
+export function SidebarContent(props: SidebarContentProps) {
+  const { routes, pathname, contentRef } = props
   return (
-    <Box
-      ref={ref}
-      as="aside"
-      pos="sticky"
-      top="6.5rem"
-      w="280px"
-      pr="8"
-      pb="8"
-      pl="3"
-      overflowY="auto"
-      className="sidebar-content"
-      flexShrink={0}
-      h="calc(((100vh - 1.5rem) - 64px) - 42px);"
-      display={{ base: "none", md: "block" }}
-    >
-      {/* <Search /> */}
+    <>
       {routes.map((c1, idx) => {
         return (
           <React.Fragment key={idx}>
@@ -55,7 +44,7 @@ const Sidebar = ({ routes }: any) => {
 
               return (
                 <SidebarCategory
-                  contentRef={ref}
+                  contentRef={contentRef}
                   key={c2.path}
                   {...c2}
                   selected={selected}
@@ -74,6 +63,32 @@ const Sidebar = ({ routes }: any) => {
           </React.Fragment>
         )
       })}
+    </>
+  )
+}
+
+const Sidebar = ({ routes }) => {
+  const { pathname } = useRouter()
+  const ref = React.useRef<HTMLDivElement>(null)
+
+  return (
+    <Box
+      ref={ref}
+      as="aside"
+      pos="sticky"
+      top="6.5rem"
+      w="280px"
+      pr="8"
+      pb="8"
+      pl="3"
+      overflowY="auto"
+      className="sidebar-content"
+      flexShrink={0}
+      h="calc(((100vh - 1.5rem) - 64px) - 42px);"
+      display={{ base: "none", md: "block" }}
+    >
+      {/* <Search /> */}
+      <SidebarContent routes={routes} pathname={pathname} contentRef={ref} />
     </Box>
   )
 }

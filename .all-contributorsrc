@@ -1343,7 +1343,8 @@
       "profile": "https://github.com/TimKolberger",
       "contributions": [
         "bug",
-        "doc"
+        "doc",
+        "code"
       ]
     },
     {
@@ -1444,6 +1445,51 @@
       "profile": "https://github.com/ifeoma-imoh",
       "contributions": [
         "doc"
+      ]
+    },
+    {
+      "login": "jasonadkison",
+      "name": "Jason Adkison",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/744333?v=4",
+      "profile": "https://github.com/jasonadkison",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "gauthierrodaro",
+      "name": "Gauthier Rodaro",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/6961490?v=4",
+      "profile": "https://gauthierrodaro.com",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "tomdohnal",
+      "name": "Tom Dohnal",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/22922179?v=4",
+      "profile": "https://github.com/tomdohnal",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "margalit",
+      "name": "Sam Margalit",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/2268424?v=4",
+      "profile": "http://margalit.com.au",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "mwood23",
+      "name": "Marcus Wood",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/13633613?v=4",
+      "profile": "http://marcuswood.io",
+      "contributions": [
+        "code"
       ]
     }
   ],

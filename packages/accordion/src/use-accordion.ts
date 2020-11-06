@@ -102,6 +102,7 @@ export function useAccordion(props: UseAccordionProps) {
     propsMap: {
       value: "index",
       defaultValue: "defaultIndex",
+      onChange: "onChange",
     },
   })
 

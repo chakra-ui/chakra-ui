@@ -72,7 +72,7 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
       // If it's open by default, no need to apply `aria-hidden`
       if (isOpen) return false
       // If startingHeight > 0, then content is partially visible
-      if (parseInt(props.startingHeight as string, 10) > 0) return false
+      if (parseInt(startingHeight as string, 10) > 0) return false
       // Else, the content is hidden
       return true
     })
@@ -89,31 +89,45 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
       )
     }
 
-    const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
-
     const custom = { startingHeight, endingHeight, animateOpacity }
 
+    const ownProps: HTMLMotionProps<"div"> & React.RefAttributes<any> = {
+      ref,
+      "aria-hidden": ariaHidden ? "true" : undefined,
+      onAnimationComplete: () => {
+        if (ariaHidden !== !isOpen) {
+          setAriaHidden(!isOpen)
+        }
+        onAnimationComplete?.()
+      },
+      className: cx("chakra-collapse", className),
+      ...rest,
+      variants,
+      style: { overflow: "hidden", ...style },
+      custom,
+    }
+
+    if (unmountOnExit) {
+      return (
+        <AnimatePresence initial={false} custom={custom}>
+          {isOpen && (
+            <motion.div
+              {...ownProps}
+              initial="exit"
+              animate="enter"
+              exit="exit"
+            />
+          )}
+        </AnimatePresence>
+      )
+    }
+
     return (
-      <AnimatePresence initial={false} custom={custom}>
-        {shouldExpand && (
-          <motion.div
-            ref={ref}
-            aria-hidden={ariaHidden ? "true" : undefined}
-            onAnimationComplete={() => {
-              setAriaHidden((c) => !c)
-              onAnimationComplete?.()
-            }}
-            className={cx("chakra-collapse", className)}
-            initial="exit"
-            animate={isOpen || unmountOnExit ? "enter" : "exit"}
-            exit="exit"
-            {...rest}
-            variants={variants}
-            style={{ overflow: "hidden", ...style }}
-            custom={custom}
-          />
-        )}
-      </AnimatePresence>
+      <motion.div
+        {...ownProps}
+        initial={false}
+        animate={isOpen ? "enter" : "exit"}
+      />
     )
   },
 )

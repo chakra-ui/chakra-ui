@@ -24,14 +24,14 @@ const customTheme = extendTheme({
       fontWeight: "bold",
       letterSpacing: "-0.015em",
       lineHeight: "1.24",
-      fontSize: { base: "2.75rem", md: "3.5rem" },
+      fontSize: { base: "2rem", md: "3.5rem" },
     },
     "heading-2": {
       textAlign: "center",
       fontWeight: "bold",
       letterSpacing: "-0.015em",
       lineHeight: "1.24",
-      fontSize: { base: "2.5rem", md: "2.75rem" },
+      fontSize: { base: "1.75rem", md: "2.75rem" },
     },
     caps: {
       textTransform: "uppercase",
@@ -52,7 +52,7 @@ const customTheme = extendTheme({
     h2: {
       mt: "4rem",
       mb: "0.5rem",
-      lineHeight: 1,
+      lineHeight: 1.3,
       fontWeight: "semibold",
       fontSize: "1.5rem",
       letterSpacing: "-.025em",
