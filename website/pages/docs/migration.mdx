@@ -72,6 +72,14 @@ Chakra moved all icons to a separate package `@chakra-ui/icons`. We recommend
 using `react-icons` in your projects considering it has a robust set of icons.
 However, you can still install this package.
 
+#### Notes on Emotion versions
+
+Emotion has a ThemeProvider, which ChakraProvider renders.  If your version in 
+node_modules are out of sync with the new Chakra version, you may get a strange
+error.  Therefore it's a good idea to delete `node_modules` as well as the 
+`package-lock.json` or `yarn.lock` when upgrading or if you get an error 
+related to `@emotion`
+
 ### 2. Update the ThemeProvider
 
 Swap out `ThemeProvider` with `ChakraProvider` to make setup cleaner.
