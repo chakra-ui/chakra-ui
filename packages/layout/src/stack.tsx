@@ -17,18 +17,22 @@ export type StackDirection = ResponsiveValue<
 interface StackOptions {
   /**
    * Shorthand for `alignItems` style prop
+   * @type SystemProps["alignItems"]
    */
   align?: SystemProps["alignItems"]
   /**
    * Shorthand for `justifyContent` style prop
+   * @type SystemProps["justifyContent"]
    */
   justify?: SystemProps["justifyContent"]
   /**
    * Shorthand for `flexWrap` style prop
+   * @type SystemProps["flexWrap"]
    */
   wrap?: SystemProps["flexWrap"]
   /**
    * The space between each stack item
+   * @type SystemProps["margin"]
    */
   spacing?: SystemProps["margin"]
   /**
@@ -37,6 +41,7 @@ interface StackOptions {
   direction?: StackDirection
   /**
    * If `true`, each stack item will show a divider
+   * @type React.ReactElement
    */
   divider?: React.ReactElement
   /**

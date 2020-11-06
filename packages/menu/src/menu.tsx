@@ -222,10 +222,12 @@ interface MenuItemOptions
   extends Pick<UseMenuItemProps, "isDisabled" | "isFocusable"> {
   /**
    * The icon to render before the menu item's label.
+   * @type React.ReactElement
    */
   icon?: React.ReactElement
   /**
    * The spacing between the icon and menu item's label
+   * @type SystemProps["mr"]
    */
   iconSpacing?: SystemProps["mr"]
   /**
@@ -288,7 +290,13 @@ const CheckIcon: React.FC<PropsOf<"svg">> = (props) => (
 export interface MenuItemOptionProps
   extends UseMenuOptionOptions,
     Omit<MenuItemProps, keyof UseMenuOptionOptions> {
+  /**
+   * @type React.ReactElement
+   */
   icon?: React.ReactElement
+  /**
+   * @type SystemProps["mr"]
+   */
   iconSpacing?: SystemProps["mr"]
 }
 

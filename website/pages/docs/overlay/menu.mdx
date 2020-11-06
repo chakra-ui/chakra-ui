@@ -306,70 +306,34 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
 
 ### Menu Props
 
-| Name          | Type                 | Default | Description                                                                  |
-| ------------- | -------------------- | ------- | ---------------------------------------------------------------------------- |
-| children      | `React.ReactNode`    |         | The children of the menu must be `MenuButton` and `MenuList`                 |
-| id            | `string`             |         | Unique id to be used by menu and it's children                               |
-| closeOnSelect | `boolean`            | `true`  | If `true`, the menu will close when a menu item is clicked                   |
-| closeOnBlur   | `boolean`            | `true`  | If `true`, the menu will close when you click outside the menu list          |
-| autoSelect    | `boolean`            | `true`  | If `true`, the first enabled menu item will be selected when the menu opens. |
-| isLazy        | `boolean`            |         | If `true`, the MenuItem rendering will be deferred until the menu is open.   |
-| isOpen        | `boolean`            |         | If `true`, the top-level menu will be opened in controlled mode              |
-| defaultIsOpen | `boolean`            |         | If `true`, the top-level menu will be opened in un-controlled mode           |
-| onOpen        | `boolean`            |         | Function to be called when menu is open                                      |
-| onClose       | `boolean`            |         | Function to be called when menu is closed                                    |
-| placement     | `PopperJS.placement` |         | The placement of the `MenuList`                                              |
-| fixed         | `PopperJS.fixed`     |         | The strategy for positioning the `MenuList`                                  |
+<PropsTable of="Menu" />
 
 ### MenuButton Props
 
-| Name      | Type                         | Description                                             |
-| --------- | ---------------------------- | ------------------------------------------------------- |
-| onClick   | `React.MouseEventHandler`    | Function to be called when you click on the menu button |
-| onKeyDown | `React.KeyboardEventHandler` | Function that is called on keydown                      |
+`MenuButton` composes [Box](/docs/layout/box) so you can pass all `Box` props to
+change it's style.
 
 ### MenuList Props
 
-| Name      | Type                         | Description                                                       |
-| --------- | ---------------------------- | ----------------------------------------------------------------- |
-| children  | `React.ReactNode`            | The content of the `MenuList`, should be the `MenuItem` component |
-| onKeyDown | `React.KeyboardEventHandler` | Function that is called on keydown                                |
+`MenuList` composes [Box](/docs/layout/box) so you can pass all `Box` props to
+change it's style.
 
 ### MenuItem Props
 
-| Name        | Type                      | Description                                                      |
-| ----------- | ------------------------- | ---------------------------------------------------------------- |
-| icon        | `React.ReactElement`      | The icon to render before the menu item's label.                 |
-| iconSpacing | `CSS.Padding`             | The spacing between the icon and menu item's label.              |
-| command     | `string`                  | Right-aligned label text content, useful for displaying hotkeys. |
-| isDisabled  | `boolean`                 | If `true`, the menu item will be disabled                        |
-| isFocusable | `boolean`                 | If `true`, the menu item will be focusable                       |
-| onClick     | `React.MouseEventHandler` | Function that is called on click and enter/space keypress        |
-
-### MenuItemOption Props
-
-MenuItemOption extends `MenuItem` so you can pass all box props in addition to
-these:
-
-| Name      | Type                | Description                                                           |
-| --------- | ------------------- | --------------------------------------------------------------------- |
-| type      | `radio`, `checkbox` | Used to add `menuitemradio` or `menuitemcheckbox` roles to the option |
-| isChecked | `boolean`           | If `true`, `aria-checked` is set to `true`                            |
+<PropsTable of="MenuItem" />
 
 ### MenuGroup Props
 
-| Name     | Type              | Description                   |
-| -------- | ----------------- | ----------------------------- |
-| children | `React.ReactNode` | The content of the menu group |
-| title    | `string`          | The title of the menu group   |
+`MenuGroup` composes [Box](/docs/layout/box) so you can pass all `Box` props to
+change it's style.
 
 ### MenuOptionGroup Props
 
-| Name         | Type                                          | Description                                             |
-| ------------ | --------------------------------------------- | ------------------------------------------------------- |
-| children     | `React.ReactNode`                             | The content of the option group                         |
-| title        | `string`                                      | Title of the option group                               |
-| type         | `radio`, `checkbox`                           | Used to add roles `menuitemradio` or `menuitemcheckbox` |
-| defaultValue | `string`, `number`, `Array<string or number>` | The initial value of the option group                   |
-| value        | `string`, `number`, `Array<string or number>` | The value of the option group                           |
-| onChange     | `(value) => void`                             | Function called when selection changes                  |
+<PropsTable of="MenuOptionGroup" />
+
+### MenuItemOption Props
+
+`MenuItemOption` composes [Box](/docs/layout/box) so you can pass all box props
+in addition to these:
+
+<PropsTable of="MenuItemOption" />

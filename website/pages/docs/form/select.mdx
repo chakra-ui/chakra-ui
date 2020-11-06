@@ -89,16 +89,4 @@ much any property. Here we'll override the background color.
 The Select component composes [Box](/docs/layout/box) so you can pass all `Box`
 props, and native `Select` props in addition to these:
 
-| Name               | Type                                       | Default          | Description                                                                                                                                                            |
-| ------------------ | ------------------------------------------ | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `size`             | `sm`, `md`, `lg`                           | `md`             | The visual size of the `select` element.                                                                                                                               |
-| `icon`             | `React.ReactElement`, `string`             | `<ChevronDown/>` | The icon to use in place of the `chevron-down`.                                                                                                                         |
-| `iconSize`         | `BoxProps['size']`                         | `20px`           | The visual size of the default icon.                                                                                                                                    |
-| `iconColor`        | `BoxProps['color']`                        |                  | The color of the default icon.                                                                                                                                          |
-| `variant`          | `outline`, `unstyled`, `flushed`, `filled` | `outline`        | The variant of the select style to use.                                                                                                                                |
-| `focusBorderColor` | `string`                                   |                  | The border color when the select is focused.                                                                                                                           |
-| `errorBorderColor` | `string`                                   |                  | The border color when `isInvalid` is set to `true`.                                                                                                                    |
-| `isDisabled`       | `boolean`                                  | `false`          | If `true`, the select will be disabled. This sets `aria-disabled=true` and you can style this state by passing `_disabled` prop.                                       |
-| `isInvalid`        | `boolean`                                  | `false`          | If `true`, the `select` will indicate an error. This sets `aria-invalid=true` and you can style this state by passing `_invalid` prop.                                 |
-| `isRequired`       | `boolean`                                  | `false`          | If `true`, the select element will be required.                                                                                                                        |
-| `rootProps`        | `BoxProps`                                 |                  | The props to pass to the wrapper of the select. The select is wrapped in a `Box` to help align the icon, if you want to pass some props to that wrapper, use this prop. |
+<PropsTable of="Select" />

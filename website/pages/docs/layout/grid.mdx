@@ -45,12 +45,18 @@ applying a `gap` or space between the grid items.
 ## Spanning columns
 
 In some layouts, you may need certain grid items to span specific amount of
-columns or rows instead of an even distribution. To achieve this, you need to pass the `colSpan` prop to the `GridItem`
-component to span across columns and also pass the `rowSpan` component to span across rows. You also need to specify the `templateColumns` and `templateRows`.
+columns or rows instead of an even distribution. To achieve this, you need to
+pass the `colSpan` prop to the `GridItem` component to span across columns and
+also pass the `rowSpan` component to span across rows. You also need to specify
+the `templateColumns` and `templateRows`.
 
 ```jsx
-<Grid h="200px" templateRows="repeat(2, 1fr)" templateColumns="repeat(5, 1fr)" gap={4}>
-  
+<Grid
+  h="200px"
+  templateRows="repeat(2, 1fr)"
+  templateColumns="repeat(5, 1fr)"
+  gap={4}
+>
   <GridItem rowSpan={2} colSpan={1} bg="tomato" />
   <GridItem colSpan={2} bg="papayawhip" />
   <GridItem colSpan={2} bg="papayawhip" />
@@ -60,13 +66,13 @@ component to span across columns and also pass the `rowSpan` component to span a
 
 ## Starting and ending lines
 
-Pass the `colStart` and `colEnd` prop to `GridItem` component to make an element start
-or end at the `nth` grid position.
+Pass the `colStart` and `colEnd` prop to `GridItem` component to make an element
+start or end at the `nth` grid position.
 
 ```jsx
 <Grid templateColumns="repeat(5, 1fr)" gap={4}>
   <GridItem colSpan={2} h="10" bg="tomato" />
-  <GridItem colStart={4} colEnd={6}  h="10" bg="papayawhip" />
+  <GridItem colStart={4} colEnd={6} h="10" bg="papayawhip" />
 </Grid>
 ```
 
@@ -77,29 +83,10 @@ or end at the `nth` grid position.
 Grid composes `Box` so you can pass all the `Box` prop, and these shorthand prop
 to save you some time:
 
-| Verbose Prop          | Shorthand Prop    |
-| --------------------- | ----------------- |
-| `gridArea`            | `area`            |
-| `gridTemplateAreas`   | `templateAreas`   |
-| `gridGap`             | `gap`             |
-| `gridRowGap`          | `rowGap`          |
-| `gridColumnGap`       | `columnGap`       |
-| `gridAutoColumns`     | `autoColumns`     |
-| `gridColumn`          | `column`          |
-| `gridRow`             | `row`             |
-| `gridAutoFlow`        | `autoFlow`        |
-| `gridAutoRows`        | `autoRows`        |
-| `gridTemplateRows`    | `templateRows`    |
-| `gridTemplateColumns` | `templateColumns` |
+## Props
 
+<PropsTable of="Grid" />
 
 ### GridItem Props
 
-| Verbose Prop      | Shorthand Prop |
-| ----------------- | -------------- |
-| `gridColumnSpan`  | `colSpan`      |
-| `gridRowSpan`     | `rowSpan`      |
-| `gridColumnStart` | `colStart`     |
-| `gridColumnEnd`   | `colEnd`       |
-| `gridRowStart`    | `rowStart`     |
-| `gridRowEnd`      | `rowEnd`       |
+<PropsTable of="GridItem" />

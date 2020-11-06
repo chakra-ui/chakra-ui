@@ -37,9 +37,9 @@ Stack components use a modified version of the
 [CSS lobotomized owl selector](https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/)
 to add spacing between it's children.
 
-Stack's primary use case is to lay items out and control the spacing between each
-item. If you have a more complicated use case, such as changing the margin on
-the last child, you can combine `Stack` and `Flex` and use
+Stack's primary use case is to lay items out and control the spacing between
+each item. If you have a more complicated use case, such as changing the margin
+on the last child, you can combine `Stack` and `Flex` and use
 `justify-content: space-between` for more control of the layout.
 
 ### Basic
@@ -178,12 +178,4 @@ render(<StackEx />)
 
 ### Props
 
-| Name                 | Type                                                   | Description                                                                                                              |
-| -------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `direction`          | `Responsive(row, column, row-reverse, column-reverse)` | The direction to stack the elements.                                                                                      |
-| `divider`            | `ReactElement`                                         | The divider element to use between elements.                                                                             |
-| `children`           | `ReactNode`                                            | The elements to be stacked.                                                                                            |
-| `spacing`            | `MarginProps`                                          | The space between each stack item. Defaults to `0.5rem`.                                                                  |
-| `align`              | `FlexProps["alignItems"]`                              | The alignment of the stack item. Similar to `align-items`.                                                                |
-| `justify`            | `FlexProps["justifyContent"]`                          | The distribution of the stack item. Similar to `justify-content`.                                                   |
-| `shouldWrapChildren` | `boolean`                                              | If `true`, the children will be wrapped in a `Box` with `display: inline-block`, and the Box will take the spacing props. |
+<PropsTable of="Stack" />

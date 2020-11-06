@@ -41,6 +41,7 @@ interface ImageOptions extends NativeImageOptions {
   fallbackSrc?: string
   /**
    * Fallback element to show if image is loading or image fails.
+   * @type React.ReactElement
    */
   fallback?: React.ReactElement
   /**
@@ -50,11 +51,13 @@ interface ImageOptions extends NativeImageOptions {
   /**
    * How the image to fit within it's bounds.
    * It maps to css `object-fit` property.
+   * @type SystemProps["objectFit"]
    */
   fit?: SystemProps["objectFit"]
   /**
    * How to align the image within its bounds.
    * It maps to css `object-position` property.
+   * @type SystemProps["objectPosition"]
    */
   align?: SystemProps["objectPosition"]
   /**

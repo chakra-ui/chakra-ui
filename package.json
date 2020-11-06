@@ -90,6 +90,7 @@
     "toast": "yarn workspace @chakra-ui/toast",
     "close-button": "yarn workspace @chakra-ui/close-button",
     "switch": "yarn workspace @chakra-ui/switch",
+    "props-docs": "yarn workspace @chakra-ui/props-docs",
     "tags": "yarn workspace @chakra-ui/tag",
     "icons": "yarn workspace @chakra-ui/icons",
     "hidden": "yarn workspace @chakra-ui/visually-hidden",

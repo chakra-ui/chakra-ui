@@ -13,14 +13,17 @@ import * as React from "react"
 export interface TextProps extends HTMLChakraProps<"p">, ThemingProps {
   /**
    * The CSS `text-align` property
+   * @type SystemProps["textAlign"]
    */
   align?: SystemProps["textAlign"]
   /**
    * The CSS `text-decoration` property
+   * @type SystemProps["textDecoration"]
    */
   decoration?: SystemProps["textDecoration"]
   /**
    * The CSS `text-transform` property
+   * @type SystemProps["textTransform"]
    */
   casing?: SystemProps["textTransform"]
 }
