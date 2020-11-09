@@ -48,8 +48,12 @@ const sizes = {
       minH: "1.25rem",
       minW: "1.25rem",
       fontSize: "xs",
-      px: 1,
-      borderRadius: "sm",
+      px: 2,
+      borderRadius: "md",
+    },
+    closeButton: {
+      mr: "-2px",
+      ml: "0.35rem",
     },
   },
   md: {
