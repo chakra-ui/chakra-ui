@@ -57,11 +57,11 @@ There are two ways you can increase the height of the progress bar:
 
 ### Progress color scheme
 
-You can add `colorScheme` prop to any progress bar to apply any color that exists
-in the `theme`.
+You can add `colorScheme` prop to any progress bar to apply any color that
+exists in the `theme`.
 
 ```jsx
-<Progress size="xs" colorScheme="pink" />
+<Progress value={20} size="xs" colorScheme="pink" />
 ```
 
 ### Animated Progress
@@ -75,8 +75,8 @@ To show an animated progress, pass the `isIndeterminate` prop.
 ## Accessibility
 
 - `Progress` has a `role` set to `progressbar` to denote that it is a progress.
-- `Progress` has `aria-valuenow` set to the percentage completion value passed to
-  the component, to ensure the progress percent is visible to screen readers.
+- `Progress` has `aria-valuenow` set to the percentage completion value passed
+  to the component, to ensure the progress percent is visible to screen readers.
 
 ## Props
 
