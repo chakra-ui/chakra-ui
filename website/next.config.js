@@ -93,16 +93,12 @@ function fileToPath(str) {
 }
 
 const defaultConfig = {
-  target: "serverless",
-  webpack: (config) => {
-    return {
-      ...config,
-      externals: [...config.externals, "sharp"],
-    }
-  },
+  webpack: (config) => ({
+    ...config,
+    externals: [...config.externals, "sharp"],
+  }),
   experimental: {
     optimizeFonts: true,
-    optimizeImages: true,
     modern: true,
   },
   redirects: require("./next-redirect"),
