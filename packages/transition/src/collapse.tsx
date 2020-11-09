@@ -39,11 +39,11 @@ export interface CollapseOptions {
    */
   in?: boolean
   /**
-   * The height you want the content in it's collapsed state. Set to `0` by default
+   * The height you want the content in its collapsed state. Set to `0` by default
    */
   startingHeight?: number | string
   /**
-   * The height you want the content in it's expanded state. Set to `auto` by default
+   * The height you want the content in its expanded state. Set to `auto` by default
    */
   endingHeight?: number | string
 }
@@ -69,7 +69,7 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
     } = props
 
     const [ariaHidden, setAriaHidden] = React.useState(() => {
-      // If it's open by default, no need to apply `aria-hidden`
+      // If it is open by default, no need to apply `aria-hidden`
       if (isOpen) return false
       // If startingHeight > 0, then content is partially visible
       if (parseInt(startingHeight as string, 10) > 0) return false

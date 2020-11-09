@@ -63,7 +63,7 @@ export interface DrawerContentProps extends HTMLChakraProps<"section"> {}
 
 /**
  * ModalContent is used to group modal's content. It has all the
- * necessary `aria-*` properties to indicate that it's a modal modal
+ * necessary `aria-*` properties to indicate that it is a modal
  */
 export const DrawerContent = forwardRef<DrawerContentProps, "section">(
   function DrawerContent(props, ref) {

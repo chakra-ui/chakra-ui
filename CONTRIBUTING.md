@@ -46,9 +46,9 @@ cd chakra-ui
 
 ## Development
 
-To improve our development process, we've set up a couple of systems. Chakra UI
-uses a monorepo structure, this means each component is it's own package and can
-use consumed independently.
+To improve our development process, we've set up tooling and systems. Chakra UI
+uses a monorepo structure and we treat each component has an independent package
+that can be consumed in isolation.
 
 ### Tooling
 
@@ -209,8 +209,8 @@ variable allows the user to avoid the limit.
 
 Visit
 https://github.com/settings/tokens/new?description=Chakra+website+development to
-create a new personal access token. Once it's created, be sure to copy the token
-string.
+create a new personal access token. After creating the token, be sure to copy
+the token string to your clipboard.
 
 You'll then run the following command in the terminal that you'll start the docs
 from:

@@ -216,7 +216,7 @@ export class ToastManager extends React.Component<Props, State> {
   }
 
   /**
-   * Compute the style of a toast based on it's position
+   * Compute the style of a toast based on its position
    */
   getStyle = (position: ToastPosition): React.CSSProperties => {
     const isTopOrBottom = position === "top" || position === "bottom"

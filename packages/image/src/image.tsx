@@ -49,7 +49,7 @@ interface ImageOptions extends NativeImageOptions {
    */
   loading?: "eager" | "lazy"
   /**
-   * How the image to fit within it's bounds.
+   * How the image to fit within its bounds.
    * It maps to css `object-fit` property.
    * @type SystemProps["objectFit"]
    */

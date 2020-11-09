@@ -59,7 +59,7 @@ export interface UseTabsProps {
  * Tabs hooks that provides all the states, and accessibility
  * helpers to keep all things working properly.
  *
- * It's returned object will be passed unto a Context Provider
+ * Its returned object will be passed unto a Context Provider
  * so all child components can read from it.
  *
  * @see Docs https://chakra-ui.com/components/useTabs
@@ -287,9 +287,9 @@ export function useTab<P extends UseTabProps>(props: P) {
 
   /**
    * Think of `useDescendant` as the function that registers tab node
-   * to the `enabledDomContext`, and returns it's index.
+   * to the `enabledDomContext`, and returns its index.
    *
-   * Tab is registered if it's enabled or focusable
+   * Tab is registered if it is enabled or focusable
    */
   const enabledIndex = useDescendant({
     disabled: Boolean(isDisabled),
@@ -354,7 +354,7 @@ export interface UseTabPanelsProps {
  * Since only one panel can be show at a time, we use `cloneElement`
  * to inject `selected` panel to each TabPanel.
  *
- * It returns a cloned version of it's children with
+ * It returns a cloned version of its children with
  * all functionality included.
  */
 export function useTabPanels<P extends UseTabPanelsProps>(props: P) {

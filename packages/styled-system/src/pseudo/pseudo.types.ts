@@ -4,7 +4,7 @@ interface ContentProp {
   /**
    * The CSS `content` property.
    *
-   * NB: Remember to wrap it's value in backticks
+   * NB: Remember to wrap its value in backticks
    * for it to work correctly.
    *
    * @example

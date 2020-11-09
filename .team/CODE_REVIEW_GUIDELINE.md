@@ -32,7 +32,7 @@ Every component package must implement the following:
 
 - Test those small functions in isolation and ensure they work as expected
 
-- TypeScript: Hook props should be named as `[hook]HookProps` and it's return
+- TypeScript: Hook props should be named as `[hook]HookProps` and its return
   type should be `[hook]HookReturn`
 
 - Ensure you add a jsDoc comment for each type definition
@@ -51,7 +51,7 @@ Every component package must implement the following:
   unto a component, then return the "remaining" props from the hook to prevent
   unnecessary destructuring
 
-- Add a `data-chakra-*` signature to all components so it's easier to spot
+- Add a `data-chakra-*` signature to all components so it is easier to spot
   chakra components anywhere online :)
 
 - Consider using prop getters as the return values for your hooks, it makes it

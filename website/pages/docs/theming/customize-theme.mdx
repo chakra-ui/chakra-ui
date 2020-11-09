@@ -41,7 +41,8 @@ function Usage() {
 }
 ```
 
-> If you're curious as to what theme styles you can override, please reference the
+> If you're curious as to what theme styles you can override, please reference
+> the
 > [default theme foundation style files](https://github.com/chakra-ui/chakra-ui/tree/master/packages/theme/src/foundations).
 
 ## Customizing component styles
@@ -50,7 +51,7 @@ Chakra has a specific approach or API for styling components. The main idea is
 most components have default or base styles (`baseStyle`), styles for different
 sizes (`sizes`), and styles for different visual variants (`variants`).
 
-It's important to understand this so you can override any component style
+It is important to understand this so you can override any component style
 effectively.
 
 > You're not limited to the component styles that Chakra provides, you can also
@@ -92,7 +93,7 @@ const theme = extendTheme({
     Button: {
       // 1. We can update the base styles
       baseStyle: {
-        fontWeight: "bold", // Normally, it's "semibold"
+        fontWeight: "bold", // Normally, it is "semibold"
       },
       // 2. We can add a new button size or extend existing
       sizes: {
@@ -129,13 +130,13 @@ automatically applied.
 </Button>
 ```
 
-> If you're curious as to what component styles you can override, please reference the
+> If you're curious as to what component styles you can override, please
+> reference the
 > [default component style files](https://github.com/chakra-ui/chakra-ui/tree/master/packages/theme/src/components).
 
 ### Customizing global styles
 
-Global styles are theme-aware styles you can apply to any html element
-globally.
+Global styles are theme-aware styles you can apply to any html element globally.
 
 To add global styles, update the `theme.styles.global` key in the theme. Global
 styles can be a style object or a function that returns a style object.
@@ -182,7 +183,7 @@ const overrides = extendTheme({
 
 ## Scaling out your project
 
-As your project grows in size, it's best to keep things organized. We highly
+As your project grows in size, it is best to keep things organized. We highly
 suggest that instead of using a single `theme.js` (or `theme.ts`) file, you
 create a `/theme` folder in its place. Inside this folder, you could have a
 directory structure that looks like this:

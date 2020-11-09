@@ -131,7 +131,7 @@ circular progress
 
 ## Accessibility
 
-- Progress has a role set to progressbar to denote that it's a progress bar
+- Progress has a role set to progressbar to denote that it is a progress bar
 - Progress has aria-valuenow set to the percentage completion value passed to
   the component, to ensure the progress percent is visible to screen readers.
 
@@ -143,8 +143,8 @@ difference.
 
 ### CircularProgress
 
-It's used to denote the progress of a determinate operation. Take for example an
-image upload operation:
+It is used to denote the progress of a determinate operation. Take for example
+an image upload operation:
 
 - Before upload begins, the upload progress is indeterminate (at this point,
   it’s just spinning),
@@ -158,7 +158,7 @@ value accessible to screenreaders.
 
 ### Spinner
 
-It's more of a “presentational” loading indicator you can use on a page or a
+It is more of a “presentational” loading indicator you can use on a page or a
 component, while it’s loading or before it renders. It doesn’t have any semantic
 meaning.
 

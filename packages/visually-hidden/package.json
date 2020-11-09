@@ -1,7 +1,7 @@
 {
   "name": "@chakra-ui/visually-hidden",
   "version": "1.0.0-rc.8",
-  "description": "A React component that visually hides it's content",
+  "description": "A React component that visually hides its content",
   "keywords": [
     "react",
     "component",

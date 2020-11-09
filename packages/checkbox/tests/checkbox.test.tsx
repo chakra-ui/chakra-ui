@@ -53,12 +53,12 @@ test("Uncontrolled - should check and uncheck", () => {
   const input = screen.getByTestId("input")
   const checkbox = screen.getByTestId("checkbox")
 
-  // click the first time, it's checked
+  // click the first time, it is checked
   fireEvent.click(input)
   expect(input).toBeChecked()
   expect(checkbox).toHaveAttribute("data-checked")
 
-  // click the second time, it's unchecked
+  // click the second time, it is unchecked
   fireEvent.click(input)
   expect(input).not.toBeChecked()
   expect(checkbox).not.toHaveAttribute("data-checked")

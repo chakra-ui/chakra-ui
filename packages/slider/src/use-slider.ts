@@ -74,7 +74,7 @@ export interface UseSliderProps {
    */
   onChange?(value: number): void
   /**
-   * The base `id` to use for the slider and it's components
+   * The base `id` to use for the slider and its components
    */
   id?: string
   /**
@@ -92,7 +92,7 @@ export interface UseSliderProps {
   isReadOnly?: boolean
   /**
    * Function that returns the `aria-valuetext` for screen readers.
-   * It's mostly used to generate a more human-readable
+   * It is mostly used to generate a more human-readable
    * representation of the value for assistive technologies
    */
   getAriaValueText?(value: number): string
@@ -122,7 +122,7 @@ type EventSource = "mouse" | "touch" | "keyboard"
 /**
  * React hook that implements an accessible range slider.
  *
- * It's an alternative to `<input type="range" />`, and returns
+ * It is an alternative to `<input type="range" />`, and returns
  * prop getters for the component parts
  *
  * @see Docs     https://chakra-ui.com/components/slider
@@ -174,7 +174,7 @@ export function useSlider(props: UseSliderProps) {
    * We use `ref` to save the functions used to remove
    * the event listeners.
    *
-   * Ideally, we'll love to use pointer-events API but it's
+   * Ideally, we'll love to use pointer-events API but it is
    * not fully supported in all browsers.
    */
   const cleanUpRef = useRef<Dict<Function>>({})
@@ -404,7 +404,7 @@ export function useSlider(props: UseSliderProps) {
 
   const onMouseDown = useEventCallback((event: MouseEvent) => {
     /**
-     * Prevent update if it's right-click
+     * Prevent update if it is right-click
      */
     if (isRightClick(event)) return
 

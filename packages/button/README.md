@@ -70,8 +70,8 @@ You can add left and right icons to the Button components.
 
 ### Button loading state
 
-Pass `isLoading` prop to the Button component to show it's loading state. You
-can optionally pass `loadingText` prop.
+Pass `isLoading` prop to the Button component to show its loading state. You can
+optionally pass `loadingText` prop.
 
 You can also use a custom spinner to render your own spinner component.
 

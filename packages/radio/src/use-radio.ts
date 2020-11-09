@@ -36,7 +36,7 @@ export interface UseRadioProps {
   value?: string | number
   /**
    * If `true`, the radio will be checked.
-   * You'll need to pass `onChange` to update it's value (since it's now controlled)
+   * You'll need to pass `onChange` to update its value (since it is now controlled)
    */
   isChecked?: boolean
   /**

@@ -135,7 +135,7 @@ test("focuses the correct tab with manual keyboard navigation", async () => {
   fireEvent.keyDown(tabList, { key: "ArrowRight", code: 39 })
 
   // selection doesn't follow focus, so the tab is not selected
-  // even if it's focused
+  // even if it is focused
   expect(tab2).toHaveFocus()
   expect(tab2).not.toHaveAttribute("aria-selected")
   expect(panel2).not.toBeVisible()

@@ -17,7 +17,7 @@ import * as React from "react"
 
 export interface ContainerProps extends HTMLChakraProps<"div"> {
   /**
-   * If `true`, container will center it's children
+   * If `true`, container will center its children
    * regardless of their width.
    */
   centerContent?: boolean
@@ -27,7 +27,7 @@ export interface ContainerProps extends HTMLChakraProps<"div"> {
  * Layout component used to wrap app or website content
  *
  * It sets `margin-left` and `margin-right` to `auto`,
- * to keep it's content centered.
+ * to keep its content centered.
  *
  * It also sets a default max-width of `60ch` (60 characters).
  */

@@ -200,7 +200,7 @@ const Motion = chakra(motion.div)
 
 /**
  * ModalContent is used to group modal's content. It has all the
- * necessary `aria-*` properties to indicate that it's a modal modal
+ * necessary `aria-*` properties to indicate that it is a modal
  */
 export const ModalContent = forwardRef<ModalContentProps, "section">(
   function ModalContent(props, ref) {
@@ -317,7 +317,7 @@ export interface ModalOverlayProps
 }
 
 /**
- * ModalOverlay renders a backdrop behind the modal. It's
+ * ModalOverlay renders a backdrop behind the modal. It is
  * also used as a wrapper for the modal content for better positioning.
  *
  * @see Docs https://chakra-ui.com/components/modal
@@ -481,7 +481,7 @@ if (__DEV__) {
 /**
  * ModalCloseButton is used closes the modal.
  *
- * You don't need to pass the `onClick` to it, it's reads the
+ * You don't need to pass the `onClick` to it, it reads the
  * `onClose` action from the modal context.
  */
 export const ModalCloseButton = forwardRef<CloseButtonProps, "button">(

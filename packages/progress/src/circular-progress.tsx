@@ -95,7 +95,7 @@ export interface CircularProgressProps
 
 /**
  * CircularProgress is used to indicate the progress of an activity.
- * It's built using `svg` and `circle` components with support for
+ * It is built using `svg` and `circle` components with support for
  * theming and `indeterminate` state
  *
  * @see Docs https://chakra-ui.com/components/progress
@@ -183,7 +183,7 @@ if (__DEV__) {
 }
 
 /**
- * CircularProgress component label. In most cases it's a numeric indicator
+ * CircularProgress component label. In most cases it is a numeric indicator
  * of the circular progress component's value
  */
 export const CircularProgressLabel = chakra("div", {

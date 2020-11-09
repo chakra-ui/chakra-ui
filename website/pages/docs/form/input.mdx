@@ -63,9 +63,9 @@ The input component comes in 4 variants: `outline`, `unstyled`, `flushed`, and
 
 ### Left and Right Addons
 
-Like bootstrap, you can add addons to the left and right of the `Input` component.
-Chakra UI exports `InputGroup`, `InputLeftAddon`, and `InputRightAddon` to help
-with this use case.
+Like bootstrap, you can add addons to the left and right of the `Input`
+component. Chakra UI exports `InputGroup`, `InputLeftAddon`, and
+`InputRightAddon` to help with this use case.
 
 ```jsx
 <Stack spacing={4}>
@@ -74,7 +74,7 @@ with this use case.
     <Input type="phone" borderLeftRadius="0" placeholder="phone number" />
   </InputGroup>
 
-  {/* If you add the size prop to `InputGroup`, it'll pass it to all it's children. */}
+  {/* If you add the size prop to `InputGroup`, it'll pass it to all its children. */}
   <InputGroup size="sm">
     <InputLeftAddon children="https://" />
     <Input borderRadius="0" placeholder="mysite" />
@@ -89,9 +89,9 @@ In some scenarios, you might need to add an icon or button inside the input
 component. Chakra UI exports `InputLeftElement` and `InputRightElement` to help
 with this use case.
 
-If the left or right is an icon or text, you can pass
-`pointerEvents="none"` to `InputLeftElement` or `InputRightElement` to ensure
-that clicking on them focused the input.
+If the left or right is an icon or text, you can pass `pointerEvents="none"` to
+`InputLeftElement` or `InputRightElement` to ensure that clicking on them
+focused the input.
 
 ```jsx
 <Stack spacing={4}>

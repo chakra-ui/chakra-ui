@@ -42,7 +42,7 @@ export { MenuProvider, useMenuContext }
 
 export interface UseMenuProps extends UsePopperProps {
   /**
-   * Unique id to be used by menu and it's children
+   * Unique id to be used by menu and its children
    */
   id?: string
   /**
@@ -106,7 +106,7 @@ export interface UseMenuProps extends UsePopperProps {
  * React Hook to manage a menu
  *
  * It provides the logic and will be used with react context
- * to propagate it's return value to all children
+ * to propagate its return value to all children
  */
 export function useMenu(props: UseMenuProps) {
   const {
@@ -229,7 +229,7 @@ export interface UseMenuReturn extends ReturnType<typeof useMenu> {}
  * React Hook to manage a menu button.
  *
  * The assumption here is that the `useMenu` hook is used
- * in a component higher up the tree, and it's return value
+ * in a component higher up the tree, and its return value
  * is passed as `context` to this hook.
  */
 
@@ -302,7 +302,7 @@ export function useMenuButton(
  * React Hook to manage a menu list.
  *
  * The assumption here is that the `useMenu` hook is used
- * in a component higher up the tree, and it's return value
+ * in a component higher up the tree, and its return value
  * is passed as `context` to this hook.
  */
 

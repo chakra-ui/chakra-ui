@@ -40,7 +40,7 @@ test("should be controlled when value is passed", () => {
     setValue("naruto")
   })
 
-  // value shouldn't change since it's controlled
+  // value shouldn't change since it is controlled
   // we need to connect it to state for it to change
   const [next] = result.current
   expect(next).toBe("testing")

@@ -31,7 +31,7 @@ prop to help you add theme-aware styles directly on any Chakra component. This
 is useful if you're not a fan of style props, and prefer passing all styles in
 one object.
 
-**Deprecated PseudoBox:** We've removed `PseudoBox` and merged all it's props
+**Deprecated PseudoBox:** We've removed `PseudoBox` and merged all its props
 with `Box` so you can use pseudo style props, like `_hover`, `_active` in any
 Chakra components.
 
@@ -220,7 +220,7 @@ and accessibility.
 ### Accordion
 
 - Update all imports of `AccordionHeader` to `AccordionButton`. This is to
-  remove the notion that it is a header when it is actually a `button`.
+  remove the notion that it is a header when it is actually a button.
 
 ```diff
 - import { AccordionHeader } from "@chakra-ui/core"
@@ -294,7 +294,7 @@ errors, and reduces unused icons bloating your app.**
 + <Checkbox colorScheme="blue">Option</Checkbox>
 ```
 
-- Deprecated the `isFullWidth` prop. `Checkbox` now takes up the width of it's
+- Deprecated the `isFullWidth` prop. `Checkbox` now takes up the width of its
   parent by default.
 
 - To allow for better checkbox group layout, the `CheckboxGroup` component no
@@ -562,7 +562,7 @@ Changed `color` prop to `colorScheme`.
 + <Radio colorScheme="blue">Option</Radio>
 ```
 
-- Deprecated the `isFullWidth` prop. The `Radio` takes up the width of it's
+- Deprecated the `isFullWidth` prop. The `Radio` takes up the width of its
   parent by default.
 
 - Deprecated the `RadioButton` component. Use the `useRadio` hook to create

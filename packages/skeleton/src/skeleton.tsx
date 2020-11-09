@@ -21,7 +21,7 @@ export interface SkeletonOptions {
    */
   endColor?: string
   /**
-   * If `true`, it'll render it's children with a nice fade transition
+   * If `true`, it'll render its children with a nice fade transition
    */
   isLoaded?: boolean
   /**

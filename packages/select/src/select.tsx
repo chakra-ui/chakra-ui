@@ -59,7 +59,7 @@ interface SelectOptions extends FormControlOptions {
    */
   errorBorderColor?: string
   /**
-   * If `true`, the select element will span the full width of it's parent
+   * If `true`, the select element will span the full width of its parent
    */
   isFullWidth?: boolean
   /**

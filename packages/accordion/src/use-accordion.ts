@@ -180,7 +180,7 @@ export interface UseAccordionItemProps {
  * useAccordionItem
  *
  * React hook that provides the open/close functionality
- * for an accordion item and it's children
+ * for an accordion item and its children
  */
 export function useAccordionItem(props: UseAccordionItemProps) {
   const { isDisabled, isFocusable, id, ...htmlProps } = props
@@ -205,7 +205,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
 
   /**
    * Think of this as a way to register this accordion item
-   * with it's parent `useAccordion`
+   * with its parent `useAccordion`
    */
   const index = useDescendant({
     element: buttonRef.current,
