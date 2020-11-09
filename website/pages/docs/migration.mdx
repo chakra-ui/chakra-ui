@@ -1,11 +1,9 @@
 ---
-title: Upgrading from v0.x to v1.x
+title: Upgrading to v1
 description: How to upgrade your existing Chakra UI projects to v1.0
 ---
 
-A simple guide to upgrade your existing Chakra UI projects to v1.0.
-
-Chakra UI v1.0 is focused on improving the ideas and concepts from 0.x to make
+Chakra UI v1.0 is focused on improving the ideas and concepts from v0.8 to make
 it even easier to create, theme and extend components.
 
 While there are quite a number of new features we've added, we focused on making
@@ -41,21 +39,28 @@ Chakra components.
 
 ## Upgrade steps
 
-Here's a list of steps to take in order to migrate your project safely. Don't
-worry if your styles aren't exactly the same — this is to be expected.
+Here's a list of steps to migrate your project to v1. Don't worry if your styles
+aren't exactly the same, this is to be expected and following these steps will
+fix it.
 
 ### 1. Update your dependencies
 
 Chakra no longer requires `@emotion/core`, `@emotion/styled` and
-`emotion-theming` peer dependencies. If you're not using these libraries in your
-code, you can safely remove them and update Chakra UI to v1.
+`emotion-theming` peer dependencies.
+
+- If you're not using these libraries in your code, you can remove them and
+  update to v1.
+
+- If you're using any of `emotion/core` or `emotion/styled`, ensure you pin the
+  versions as follows: `"@emotion/core": "10.0.35"`,
+  `"@emotion/styled": "10.0.27"`.
 
 You'll need also install `framer-motion`. We use this to manage animations and
 transitions within components.
 
 ```diff
 "dependencies": {
-  "@chakra-ui/core": "next",
+  "@chakra-ui/core": "latest",
   "framer-motion": "latest",
 -  "@emotion/core": "10.x",
 -  "@emotion/styled": "10.X",
@@ -74,11 +79,14 @@ However, you can still install this package.
 
 #### Notes on Emotion versions
 
-Emotion has a ThemeProvider, which ChakraProvider renders.  If your version in 
-node_modules are out of sync with the new Chakra version, you may get a strange
-error.  Therefore it's a good idea to delete `node_modules` as well as the 
-`package-lock.json` or `yarn.lock` when upgrading or if you get an error 
-related to `@emotion`
+Chakra UI uses emotion's `ThemeContext` to provide tokens to all components. If
+the version of `@emotion/core` in your `node_modules` is different from that
+used in Chakra, you may get a strange error or notice that most components lose
+their styles. Two ways to fix this are:
+
+- Delete `node_modules` and `package-lock.json` or `yarn.lock` after upgrading.
+- Pin the version of `@emotion/core` to `10.0.35` and `@emotion/styled` to
+  `10.0.27`.
 
 ### 2. Update the ThemeProvider
 
@@ -155,7 +163,7 @@ only one prop to manage this, you can rename it to `boxSize`.
 
 ### 6. Update theme breakpoints
 
-**You may safely skip this if you didn't customize your breakpoints.**
+**You may skip this if you didn't customize your breakpoints.**
 
 To provide easier extensibility and typesafety, breakpoints should now be
 created through `createBreakpoints` by passing an object:
@@ -197,8 +205,7 @@ css units.
 
 **You can skip this if you are not already using the color mode feature.**
 
-To keep color mode settings in sync across page visits, you will need to add the
-`ColorModeScript`.
+To keep color mode settings in sync across pages, add the `ColorModeScript`.
 
 For exhaustive examples, please visit
 [**Features > Color Mode # Add ColorModeScript**](/docs/features/color-mode#add-colormodescript).
@@ -263,7 +270,7 @@ Removed support for the `addSeparator` prop.
 > `<EmailIcon/>` from Chakra.
 
 ```diff
-import { PhoneIcon } from "@chakra-ui/core"
+import { PhoneIcon } from "@chakra-ui/icons"
 
 - <Button leftIcon="phone">Call</Button>
 + <Button leftIcon={<PhoneIcon />}>Call</Button>
@@ -371,9 +378,10 @@ prop passed to `Editable` as well as the prop in its render props.
 
 ### Icons
 
-- Basic interface icons provided by Chakra have moved to the `icons` package.
-  Replace all `<Icon name="..." />` elements imported from `core` with
-  equivalent _named_ icon React elements imported from `icons`.
+- Basic interface icons provided by Chakra have moved to the `@chakra-ui/icons`
+  package. Replace all `<Icon name="..." />` elements imported from
+  `@chakra-ui/core` with equivalent React elements imported from
+  `@chakra-ui/icons`.
 
   > Replacement logic: If `<Icon name="search" />` is used, then replace it with
   > `<SearchIcon />` from Chakra icons package.
@@ -381,6 +389,7 @@ prop passed to `Editable` as well as the prop in its render props.
 ```diff
 - import { Icon } from "@chakra-ui/core"
 - <Icon name="search" />
+
 + import { SearchIcon } from "@chakra-ui/icons"
 + <SearchIcon />
 ```
@@ -391,7 +400,8 @@ Existing icons will appear as a question mark until refactored.
   `theme` create your own icons using the `createIcon` utility:
 
 ```jsx live=false
-import { createIcon } from "@chakra-ui/icon"
+import { createIcon } from "@chakra-ui/core"
+
 export const UpDownIcon = createIcon({
   displayName: "UpDownIcon",
   viewBox: "-1 -1 9 11",
@@ -538,6 +548,11 @@ Changed `color` prop to `colorScheme`.
 - Changed the `thickness` prop to point to an actual thickness value in `px`
   (e.g. `thickness={4}`)
 
+```diff
+- <CircularProgress value={59} size="100px" thickness={0.1} />
++ <CircularProgress value={59} size="100px" thickness={10} />
+```
+
 ### Radio
 
 - Changed `variantColor` prop to `colorScheme`.
@@ -653,7 +668,7 @@ Change `variantColor` prop to `colorScheme`.
 - Added support for `onCloseComplete` prop, which is a callback function that is
   invoked when the toast closes.
 
-### Wrap
+### Wrap (for `rc` versions)
 
 - Children of `Wrap` must now be _wrapped_ in `WrapItem`. This makes it easy to
   customize the `WrapItem` using the `sx` prop.
@@ -690,8 +705,8 @@ All transition components like `Collapse`, `Fade`, `SlideFade`, etc. use the
 
 - Removed the `config` prop, in favor of adding global styles to
   `theme.styles.global`.
-- Added global style for `focus-visible` package. Once installed, it removes
-  focus styles for non-keyboard interactions.
+- If you want to remove focus for non-keyboard interactions, install the
+  `focus-visible` package.
 
 ```bash
 yarn add focus-visible

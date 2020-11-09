@@ -1,7 +1,6 @@
 import * as React from "react"
 import * as ComponentProps from "@chakra-ui/props-docs"
 import MDXComponents from "./mdx-components"
-import { useMemo } from "react"
 
 export type PropsTableProps = {
   /**
@@ -29,7 +28,7 @@ const PropsTable = ({
     return null
   }
 
-  const entries = useMemo(
+  const entries = React.useMemo(
     () =>
       Object.entries(info.props)
         .filter(([propName]) => {
