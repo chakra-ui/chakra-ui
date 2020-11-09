@@ -21,7 +21,7 @@ const baseStyleCloseButton = {
   fontSize: "18px",
   w: "1.25rem",
   h: "1.25rem",
-  borderRadius: "sm",
+  borderRadius: "full",
   ml: "0.375rem",
   mr: "-1",
   opacity: 0.5,
