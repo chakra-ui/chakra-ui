@@ -93,6 +93,7 @@ function fileToPath(str) {
 }
 
 const defaultConfig = {
+  target: "serverless",
   webpack: (config) => ({
     ...config,
     externals: [...config.externals, "sharp"],
