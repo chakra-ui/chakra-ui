@@ -36,5 +36,5 @@ export function useBreakpointValue<T = any>(
       )
     : values
 
-  return getClosestValue(obj, breakpoint)
+  return getClosestValue(obj, breakpoint, breakpoints)
 }
