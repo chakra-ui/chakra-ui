@@ -38,7 +38,7 @@ const sidebar = {
               path: "/docs/features/responsive-styles",
             },
             {
-              title: "Chakra factory",
+              title: "Chakra Factory",
               path: "/docs/features/chakra-factory",
             },
             {

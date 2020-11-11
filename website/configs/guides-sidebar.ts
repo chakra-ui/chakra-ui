@@ -9,6 +9,10 @@ const sidebar = {
           path: "/guides/how-to-create-a-guide",
         },
         {
+          title: "Component guide",
+          path: "/guides/component-guide",
+        },
+        {
           title: "Portals and z-Index",
           path: "/guides/z-index",
         },
