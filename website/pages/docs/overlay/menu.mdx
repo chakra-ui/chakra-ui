@@ -8,7 +8,7 @@ description:
 ---
 
 An accessible dropdown menu for the common dropdown menu button design pattern.
-Menu uses roving `tabIndex` for focus management.
+`Menu` uses roving `tabIndex` for focus management.
 
 <ComponentLinks
   github={{ url: "#" }}
@@ -29,8 +29,8 @@ Chakra UI exports 8 components for rendering menus:
   a `MenuList`.
 - `MenuGroup`: A wrapper to group related menu items.
 - `MenuDivider`: A visual separator for menu items and groups.
-- `MenuOptionGroup`: A wrapper for checkable menu items (radio and checkbox)
-- `MenuItemOption`: The checkable menu item, to be used with `MenuOptionGroup`
+- `MenuOptionGroup`: A wrapper for checkable menu items (radio and checkbox).
+- `MenuItemOption`: The checkable menu item, to be used with `MenuOptionGroup`.
 
 ```js
 import {
@@ -66,9 +66,9 @@ import {
 
 ### Accessing the internal state
 
-To access the internal state of the Menu, use a function as `children` (commonly
-known as a render prop). You'll get access to the internal state `isOpen` and
-method `onClose`.
+To access the internal state of the `Menu`, use a function as `children`
+(commonly known as a render prop). You'll get access to the internal state
+`isOpen` and method `onClose`.
 
 ```jsx
 <Menu>
@@ -274,10 +274,10 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
 
 | Key                | Action                                                                                                                                  |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `Enter` or `Space` | When `MenuButton` receives focus, opens the menu and places focus on the first menu item                                                |
-| `ArrowDown`        | When `MenuButton` receives focus, opens the menu and moves focus to the first menu item                                                 |
-| `ArrowUp`          | When `MenuButton` receives focus, opens the menu and moves focus to the last menu item                                                  |
-| `Escape`           | When the menu is open, closes the menu and sets focus to the `MenuButton`                                                               |
+| `Enter` or `Space` | When `MenuButton` receives focus, opens the menu and places focus on the first menu item.                                               |
+| `ArrowDown`        | When `MenuButton` receives focus, opens the menu and moves focus to the first menu item.                                                |
+| `ArrowUp`          | When `MenuButton` receives focus, opens the menu and moves focus to the last menu item.                                                 |
+| `Escape`           | When the menu is open, closes the menu and sets focus to the `MenuButton`.                                                              |
 | `Tab`              | no effect                                                                                                                               |
 | `Home`             | When the menu is open, moves focus to the first item.                                                                                   |
 | `End`              | When the menu is open, moves focus to the last item.                                                                                    |

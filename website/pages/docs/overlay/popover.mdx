@@ -17,8 +17,8 @@ clickable trigger element.
 
 <carbon-ad></carbon-ad>
 
-Popover is built on top of the [Popper.js](https://popper.js.org/) library, and
-composes the `Popper` component.
+`Popover` is built on top of the [Popper.js](https://popper.js.org/) library,
+and composes the `Popper` component.
 
 ## Import
 
@@ -48,7 +48,7 @@ import {
 
 When using this component, ensure the children passed to `PopoverTrigger` is
 focusable. Users can tab to it using their keyboard, and it can take a `ref`. It
-is critical for accessibility.
+is critical for accessiblity.
 
 > **A11y:** When Popover opens, focus is sent to `PopoverContent`. When it
 > closes, focus is returned to the trigger.
@@ -410,7 +410,7 @@ happen when the component is displayed.
 - When the popover is closed, focus returns to the trigger. If you set
   `returnFocusOnClose` to `false`, focus will not return.
 - If trigger is set to `hover`:
-  - Focusing on or mousing over the trigger will open the popover
+  - Focusing on or mousing over the trigger will open the popover.
   - Blurring or mousing out of the trigger will close the popover. If you move
     your mouse into the `PopoverContent`, it'll remain visible.
 - If trigger is set to `click`:
@@ -450,7 +450,7 @@ happen when the component is displayed.
 ### Other Props
 
 - `PopoverContent` composes `Box` and has the ability to smartly position
-  itself. Thanks to popper.js
+  itself. Thanks to popper.js.
 - `PopoverArrow`, `PopoverHeader`, `PopoverFooter` and `PopoverBody` composes
   `Box`.
 - `PopoverCloseButton` composes `Box` component.
