@@ -115,7 +115,7 @@ const sidebar = {
           ],
         },
         {
-          title: "Form Elements",
+          title: "Forms",
           path: "/docs/form",
           open: true,
           routes: [
@@ -264,7 +264,7 @@ const sidebar = {
           ],
         },
         {
-          title: "Overlay Elements",
+          title: "Overlay",
           path: "/docs/overlay",
           open: true,
           routes: [
@@ -295,7 +295,7 @@ const sidebar = {
           ],
         },
         {
-          title: "Other Components",
+          title: "Disclosure",
           path: "/docs/components",
           open: true,
           routes: [
@@ -308,6 +308,17 @@ const sidebar = {
               path: "/docs/components/breadcrumb",
             },
             {
+              title: "Tabs",
+              path: "/docs/components/tabs",
+            },
+          ],
+        },
+        {
+          title: "Other Components",
+          path: "/docs/components",
+          open: true,
+          routes: [
+            {
               title: "Close Button",
               path: "/docs/components/close-button",
             },
@@ -318,10 +329,6 @@ const sidebar = {
             {
               title: "Link",
               path: "/docs/components/link",
-            },
-            {
-              title: "Tabs",
-              path: "/docs/components/tabs",
             },
             {
               title: "Transitions",

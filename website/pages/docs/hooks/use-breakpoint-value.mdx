@@ -8,7 +8,8 @@ description:
 
 `useBreakpointValue` is a custom hook which returns the value for the current
 breakpoint from the provided responsive values object. This hook also responds
-to the window resizing and returning the appropriate value for the new window size.
+to the window resizing and returning the appropriate value for the new window
+size.
 
 The new `variant` and `size` props don't currently accept responsive values
 (specified as objects or arrays), but `useBreakpointValue` is a good way to
@@ -31,9 +32,12 @@ function Example() {
   const variant = useBreakpointValue({ base: "outline", md: "solid" })
 
   return (
-    <Button colorScheme="teal" variant={variant}>
-      Resize your window to see the button variant change
-    </Button>
+    <VStack align="flex-start">
+      <Text>Resize your window to see the button variant change</Text>
+      <Button colorScheme="teal" variant={variant}>
+        Button
+      </Button>
+    </VStack>
   )
 }
 ```
