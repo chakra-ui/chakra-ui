@@ -84,7 +84,7 @@ const IconsList = () => {
           >
             <Icon />
             <Text mt={2} fontSize="sm" textAlign="center">
-              {`<${key}/>`}
+              {key}
             </Text>
           </Flex>
         )

@@ -6,7 +6,7 @@ image: "components/icon.svg"
 
 Chakra provides multiple ways to use icons in your project:
 
-- [Using the official Chakra UI icon library](#using-the-official-chakra-ui-icons-library)
+- [Using Chakra UI icon library](#using-chakra-ui-icons)
 - [Using a third-party icon library](#using-a-third-party-icon-library)
 - [Creating your own icons](#creating-your-own-icons)
 
@@ -21,24 +21,21 @@ Chakra provides multiple ways to use icons in your project:
 
 <carbon-ad></carbon-ad>
 
-## Using the official Chakra UI icons library
+## Using Chakra UI icons
 
-Chakra maintains an official library of icons for you to use in your project!
+Chakra provides a set of commonly used interfact icons you can use in your
+project. To these icons, install `@chakra-ui/icons`, import the icon you need
+and style them.
 
 ### Installation
 
 ```bash
 npm i @chakra-ui/icons
-
 # or
-
 yarn add @chakra-ui/icons
 ```
 
 ### Usage
-
-Import the icons from `@chakra-ui/icons` and style them with
-[style props](/docs/features/style-props).
 
 ```jsx live=false
 import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
@@ -64,19 +61,24 @@ component names:
 
 ## Using a third-party icon library
 
-Chakra makes it easy to use third-party icon libraries like
-[`react-icons`](https://react-icons.github.io/react-icons/).
+To use third-party icon libraries like
+[`react-icons`](https://react-icons.github.io/react-icons/), here are the steps:
 
-### Import
+1. Import the `Icon` component from `@chakra-ui/core`
+2. Pass the desired third party icon into the `as` prop
 
 ```jsx live=false
+// 1. Import
 import { Icon } from "@chakra-ui/core"
+import { MdSettings } from "react-icons/md"
+
+// 2. Use the `as` prop
+function Example() {
+  return <Icon as={MdSettings} />
+}
 ```
 
-### Usage
-
-Wrap your third-party icon of choice with the `Icon` component using the `as`
-prop and style them using [style props](/docs/features/style-props).
+### Some Examples
 
 ```jsx
 <HStack>
@@ -84,16 +86,16 @@ prop and style them using [style props](/docs/features/style-props).
   <Icon as={MdSettings} />
 
   {/* Use the `boxSize` prop to change the icon size */}
-  <Icon as={MdReceipt} boxSize={6} />
+  <Icon as={MdReceipt} w={6} h={6} />
 
   {/* Use the `color` prop to change the icon color */}
-  <Icon as={MdGroupWork} boxSize={8} color="red.500" />
+  <Icon as={MdGroupWork} w={8} h={8} color="red.500" />
 </HStack>
 ```
 
-## Creating your own icons
+## Creating your custom icons
 
-Chakra provides two methods for creating your own icons:
+Chakra provides two methods for creating your custom icons:
 
 - Using the [Icon](#creating-icons-using-the-icon-component) component
 - Using the [createIcon](#creating-icons-using-the-createicon-function) function
@@ -107,7 +109,7 @@ import { Icon, createIcon } from "@chakra-ui/core"
 Both `Icon` and `createIcon` enable you to style the icon using
 [style props](/docs/features/style-props).
 
-### Creating icons using the `Icon` component
+### Using the `Icon` component
 
 The `Icon` component renders as an `svg` element.
 
@@ -148,7 +150,7 @@ And style them with style props:
 </HStack>
 ```
 
-### Creating icons using the `createIcon` function
+### Using the `createIcon` function
 
 The `createIcon` function is a convenience wrapper around the process of
 generating icons with `Icon`, allowing you to achieve the same functionality
