@@ -25,7 +25,7 @@ export interface TooltipProps
   /**
    * The label of the tooltip
    */
-  label?: string
+  label?: React.ReactNode
   /**
    * The accessible, human friendly label to use for
    * screen readers.
