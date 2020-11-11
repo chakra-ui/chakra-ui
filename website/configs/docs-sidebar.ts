@@ -38,6 +38,10 @@ const sidebar = {
               path: "/docs/features/responsive-styles",
             },
             {
+              title: "Chakra factory",
+              path: "/docs/features/chakra-factory",
+            },
+            {
               title: "Global Styles",
               path: "/docs/features/global-styles",
             },

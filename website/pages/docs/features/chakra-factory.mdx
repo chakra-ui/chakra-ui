@@ -1,0 +1,91 @@
+---
+title: "Chakra Factory"
+package: "@chakra-ui/system"
+description: Using the chakra factory and elements
+---
+
+Chakra factory serves as an **object of chakra enabled JSX elements**, and also
+**a function that can be used to enable custom component** receive chakra's
+style props.
+
+```bash
+import { chakra } from "@chakra-ui/core"
+```
+
+## Chakra JSX Elements
+
+Create base html elements with theme-aware style props using `chakra.<element>`
+notation. For example, if you want a plain html button with ability to pass
+chakra styles, you can write `<chakra.button />`.
+
+```jsx
+<chakra.button
+  px="3"
+  py="2"
+  bg="green.200"
+  rounded="md"
+  _hover={{ bg: "green.300" }}
+>
+  Click me
+</chakra.button>
+```
+
+This reduces the need to create custom component wrappers and name them. This
+syntax is available for common html elements. See the reference for the full
+[list of elements](https://github.com/chakra-ui/chakra-ui/blob/develop/packages/system/src/system.utils.ts#L9)
+supported.
+
+```jsx live=false
+<chakra.h1 fontSize="lg"> Heading </chakra.h1>
+```
+
+## Chakra factory function
+
+This is a function that converts **non-chakra components** or **jsx element** to
+chakra-enabled components so you can pass style props to them.
+
+Consider a package called `react-input-autoresize`, let's use the chakra factory
+function to make possible to pass style props.
+
+The function will infer the prop types from the wrapped component and also add
+chakra style props.
+
+```jsx live=false
+import { chakra } from "@chakra-ui/core"
+import Textarea from "react-input-autoresize"
+
+const AutoResizeInput = chakra(Textarea)
+
+function Example() {
+  return <AutoResizeInput bg="red.200" fontSize="12px" />
+}
+```
+
+> Considering that Chakra uses `emotion` under the hood, ensure the non-chakra
+> component accepts `className` as props for this to work correctly
+
+### Attaching styles
+
+In some instances, you might need to attach specific styles to the component
+wrapped in the chakra factory
+
+```jsx live=false
+const AutoResizeInput = chakra(AutoResizeInput, {
+  baseStyle: {
+    bg: "papayawhip",
+    color: "red.500",
+  },
+})
+```
+
+You can also use the chakra factory on jsx elements as well.
+
+```jsx live=false
+const Card = chakra("div", {
+  baseStyle: {
+    shadow: "lg",
+    rounded: "lg",
+    bg: "white",
+  },
+})
+```
