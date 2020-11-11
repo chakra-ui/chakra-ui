@@ -19,7 +19,7 @@ mouse-hover gesture or through a keyboard-hover gesture.
 
 <carbon-ad></carbon-ad>
 
-The Tooltip component follows the
+The `Tooltip` component follows the
 [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices/#tooltip) Tooltip Pattern.
 
 ## Import
@@ -75,18 +75,6 @@ cursor out of the element.
 ```jsx
 <Tooltip isDisabled>
   <SearchIcon />
-</Tooltip>
-```
-
-### Tooltip with focusable content
-
-If the children of the tooltip is a focusable element, the tooltip will show
-when you focus or hover on the element, and will hide when you blur or move
-cursor out of the element.
-
-```jsx
-<Tooltip hasArrow label="Search places" bg="red.600">
-  <Button>Button</Button>
 </Tooltip>
 ```
 
