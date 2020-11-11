@@ -112,6 +112,10 @@ const sidebar = {
               title: "Wrap",
               path: "/docs/layout/wrap",
             },
+            {
+              title: "Link",
+              path: "/docs/components/link",
+            },
           ],
         },
         {
@@ -173,16 +177,11 @@ const sidebar = {
             },
           ],
         },
-
         {
           title: "Data Display",
           path: "/docs/data-display",
           open: true,
           routes: [
-            {
-              title: "Avatar",
-              path: "/docs/data-display/avatar",
-            },
             {
               title: "Badge",
               path: "/docs/data-display/badge",
@@ -194,10 +193,6 @@ const sidebar = {
             {
               title: "Divider",
               path: "/docs/data-display/divider",
-            },
-            {
-              title: "Image",
-              path: "/docs/data-display/image",
             },
             {
               title: "Kbd",
@@ -214,6 +209,10 @@ const sidebar = {
             {
               title: "Tag",
               path: "/docs/data-display/tag",
+            },
+            {
+              title: "Close Button",
+              path: "/docs/components/close-button",
             },
           ],
         },
@@ -311,32 +310,39 @@ const sidebar = {
               title: "Tabs",
               path: "/docs/components/tabs",
             },
+            {
+              title: "Visually Hidden",
+              path: "/docs/components/visually-hidden",
+            },
           ],
         },
         {
-          title: "Other Components",
+          title: "Media & Icons",
           path: "/docs/components",
           open: true,
           routes: [
             {
-              title: "Close Button",
-              path: "/docs/components/close-button",
+              title: "Avatar",
+              path: "/docs/data-display/avatar",
             },
             {
               title: "Icon",
               path: "/docs/components/icon",
             },
             {
-              title: "Link",
-              path: "/docs/components/link",
+              title: "Image",
+              path: "/docs/data-display/image",
             },
+          ],
+        },
+        {
+          title: "Others",
+          path: "/docs/components",
+          open: true,
+          routes: [
             {
               title: "Transitions",
               path: "/docs/components/transitions",
-            },
-            {
-              title: "Visually Hidden",
-              path: "/docs/components/visually-hidden",
             },
           ],
         },

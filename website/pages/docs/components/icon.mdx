@@ -8,7 +8,7 @@ Chakra provides multiple ways to use icons in your project:
 
 - [Using Chakra UI icon library](#using-chakra-ui-icons)
 - [Using a third-party icon library](#using-a-third-party-icon-library)
-- [Creating your own icons](#creating-your-own-icons)
+- [Creating your own icons](#creating-your-custom-icons)
 
 > 🚨 Avoid passing `onClick` handlers to icon components. If you need a
 > clickable icon, use the [IconButton](/docs/form/icon-button) instead.
@@ -44,10 +44,10 @@ import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
 <PhoneIcon />
 
 // Use the `boxSize` prop to change the icon size
-<AddIcon boxSize={6} />
+<AddIcon w={6} h={6} />
 
 // Use the `color` prop to change the icon color
-<WarningIcon boxSize={8} color="red.500" />
+<WarningIcon w={8} h={8} color="red.500" />
 ```
 
 ### All Icons
@@ -97,8 +97,8 @@ function Example() {
 
 Chakra provides two methods for creating your custom icons:
 
-- Using the [Icon](#creating-icons-using-the-icon-component) component
-- Using the [createIcon](#creating-icons-using-the-createicon-function) function
+- Using the [Icon](#using-the-icon-component) component
+- Using the [createIcon](#using-the-createicon-function) function
 
 They can be imported from `@chakra-ui/core`:
 
