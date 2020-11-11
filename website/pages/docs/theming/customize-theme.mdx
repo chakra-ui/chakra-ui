@@ -4,8 +4,10 @@ description: How to modify Chakra UI's default theme
 ---
 
 By default, all Chakra components inherit values from the default theme. In some
-scenarios, you might need to customize the default theme to match your design
-requirements. You have a few different options depending on your goals.
+scenarios, you might need to customize the theme tokens to match your design
+requirements.
+
+Here are some options depending on your goals:
 
 - Customize the theme tokens like colors, font sizes, line heights, etc.
 - Customize the component styles, changing the base styles, sizes, or variants.
@@ -111,7 +113,7 @@ const theme = extendTheme({
         },
         // 4. We can override existing variants
         solid: (props) => ({
-          bg: "red.400",
+          bg: props.colorMode === "dark" ? "red.300" : "red.500",
         }),
       },
     },
@@ -189,13 +191,13 @@ create a `/theme` folder in its place. Inside this folder, you could have a
 directory structure that looks like this:
 
 ```bash
-/theme
-  - index.js  # my main theme entrypoint
-  - styles.js  # all my global style overrides
-  /foundations
-    - borders.js  # all my border overrides
-  /components
-    - button.js  # all my button overrides
+📁 theme
+  📄 index.js  # my main theme entrypoint
+  📄 styles.js  # all my global style overrides
+  📁 foundations
+    📄 borders.js  # all my border overrides
+  📁 components
+    📄 button.js  # all my button overrides
 ```
 
 This way, you can structure your main theme entrypoint file to be much cleaner,

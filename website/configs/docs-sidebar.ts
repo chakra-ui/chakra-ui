@@ -58,7 +58,7 @@ const sidebar = {
               path: "/docs/theming/theme",
             },
             {
-              title: "Customize",
+              title: "Customize Theme",
               path: "/docs/theming/customize-theme",
             },
             {

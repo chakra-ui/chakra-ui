@@ -8,7 +8,9 @@ description:
 ---
 
 Stack is a layout component that makes it easy to stack elements together and
-apply a space between them.
+apply a space between them. It uses a modified version of the
+[CSS lobotomized owl selector](https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/)
+to add spacing between its children.
 
 <ComponentLinks
   github={{ url: "#" }}
@@ -33,21 +35,9 @@ import { Stack, HStack, VStack } from "@chakra-ui/core"
 
 ## Usage
 
-Stack components use a modified version of the
-[CSS lobotomized owl selector](https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/)
-to add spacing between its children.
-
-Stack's primary use case is to lay items out and control the spacing between
-each item. If you have a more complicated use case, such as changing the margin
-on the last child, you can combine `Stack` and `Flex` and use
-`justify-content: space-between` for more control of the layout.
-
-### Basic
-
 To stack elements in horizontal or vertical direction only, use the `HStack` or
-`VStack` components.
-
-You can also use the `Stack` component as well and pass the `direction` prop.
+`VStack` components. You can also use the `Stack` component as well and pass the
+`direction` prop.
 
 ```jsx
 <HStack spacing="24px">
@@ -175,6 +165,13 @@ function StackEx() {
 
 render(<StackEx />)
 ```
+
+### Notes on Stack vs Flex
+
+Stack's primary use case is to lay items out and control the spacing between
+each item. If you have a more complicated use case, such as changing the margin
+on the last child, you can combine `Stack` and `Flex` and use
+`justify-content: space-between` for more control of the layout.
 
 ### Props
 

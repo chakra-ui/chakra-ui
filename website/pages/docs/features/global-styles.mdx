@@ -11,9 +11,9 @@ This allows you define theme-aware styles for any elements.
 ## How it works
 
 By using `ChakraProvider` at the root of your application, we automatically
-render a `GlobalStyle` component.
+render a `GlobalStyle` component. Here's what `GlobalStyle` does under the hood:
 
-- Reads the styles defined in `theme.styles.global`. This style can be a style
+- Reads the styles defined in `theme.styles.global`, this style can be a style
   object or a function that returns a style object.
 - Process the styles and pass it to emotion's `Global` component which is used
   to handle global style injection.
@@ -55,11 +55,8 @@ const theme = {
 
 ## Default styles
 
-The default Chakra theme providers some sensible global styles. Here's what it
-looks like:
-
-> The `mode(...)` function is the same as
-> `props.colorMode === "dark" ? darkMode : lightMode`
+The default Chakra theme provides sensible global styles. Here's what it looks
+like:
 
 ```js
 const styles = {
@@ -80,6 +77,9 @@ const styles = {
   }),
 }
 ```
+
+> **Note 🚨:** `mode(lightMode, darkMode)(props)` function is the same as
+> `props.colorMode === "dark" ? darkMode : lightMode`
 
 ## Styling non-Chakra elements globally
 
@@ -115,9 +115,9 @@ const theme = {
 // 3. That's it! Your app will now read and use the global styles
 ```
 
-## Custom global style examples
+## Community examples
 
-To help you better understand this concept, here are links to projects with
-custom global styles.
+To help you better understand this concept, here are links to community projects
+that use custom global styles.
 
 - [Gatsby Starter i18n](https://git.habd.as/comfusion/gatsby-starter-i18n-react-i18next/src/branch/master/src/utils/theme.tsx)
