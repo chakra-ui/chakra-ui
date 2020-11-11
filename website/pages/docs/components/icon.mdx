@@ -28,11 +28,11 @@ Chakra maintains an official library of icons for you to use in your project!
 ### Installation
 
 ```bash
-npm i @chakra-ui/icons@next
+npm i @chakra-ui/icons
 
 # or
 
-yarn add @chakra-ui/icons@next
+yarn add @chakra-ui/icons
 ```
 
 ### Usage
@@ -41,7 +41,7 @@ Import the icons from `@chakra-ui/icons` and style them with
 [style props](/docs/features/style-props).
 
 ```jsx live=false
-import {PhoneIcon, AddIcon, WarningIcon} from '@chakra-ui/icons'
+import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
 
 // The default icon size is 1em (16px)
 <PhoneIcon />
@@ -95,8 +95,8 @@ prop and style them using [style props](/docs/features/style-props).
 
 Chakra provides two methods for creating your own icons:
 
-- the [Icon component](#creating-icons-using-the-icon-component)
-- the [createIcon function](#creating-icons-using-the-createicon-function)
+- Using the [Icon](#creating-icons-using-the-icon-component) component
+- Using the [createIcon](#creating-icons-using-the-createicon-function) function
 
 They can be imported from `@chakra-ui/core`:
 
@@ -201,7 +201,7 @@ When `children` is not provided, the `Icon` component renders a fallback icon.
 | Name        | Type                  | Default        | Description                                                                         |
 | ----------- | --------------------- | -------------- | ----------------------------------------------------------------------------------- |
 | `viewBox`   | `string`              | `0 0 24 24`    | The viewBox of the icon.                                                            |
-| `boxSize`   | `string`              | `1em`          | The size of the icon.                                                               |
+| `boxSize`   | `string`              | `1em`          | The size (width and height) of the icon.                                            |
 | `color`     | `string`              | `currentColor` | The color of the icon.                                                              |
 | `focusable` | `boolean`             | `false`        | Denotes that the icon is not an interative element, and only used for presentation. |
 | `role`      | `presentation`, `img` | `presentation` | The html role of the icon.                                                          |

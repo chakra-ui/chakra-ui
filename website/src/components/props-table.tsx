@@ -65,7 +65,7 @@ Remove the use of <PropsTable of="${of}" /> for this component in the docs.`,
           <MDXComponents.th>Type</MDXComponents.th>
           <MDXComponents.th>Description</MDXComponents.th>
           <MDXComponents.th>Default</MDXComponents.th>
-          <MDXComponents.th>Required</MDXComponents.th>
+          {/* <MDXComponents.th>Required</MDXComponents.th> */}
         </tr>
       </thead>
       <tbody>
@@ -95,9 +95,9 @@ Remove the use of <PropsTable of="${of}" /> for this component in the docs.`,
                 "-"
               )}
             </MDXComponents.td>
-            <MDXComponents.td>
+            {/* <MDXComponents.td>
               {values.required ? "required" : "-"}
-            </MDXComponents.td>
+            </MDXComponents.td> */}
           </tr>
         ))}
       </tbody>
