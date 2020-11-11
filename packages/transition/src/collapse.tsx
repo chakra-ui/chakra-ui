@@ -1,3 +1,4 @@
+import { useUpdateEffect } from "@chakra-ui/hooks"
 import { cx, warn, __DEV__ } from "@chakra-ui/utils"
 import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
 import * as React from "react"
@@ -5,13 +6,19 @@ import { EASINGS, MotionVariants } from "./__utils"
 
 type CollapseVariants = MotionVariants<"enter" | "exit">
 
+const hasHeightValue = (value?: string | number) =>
+  value != null && parseInt(value.toString(), 10) > 0
+
 const variants: CollapseVariants = {
   exit: (props: CollapseOptions) => ({
     ...(props.animateOpacity && {
-      opacity: parseInt(props.startingHeight as string, 10) > 0 ? 1 : 0,
+      opacity: hasHeightValue(props.startingHeight) ? 1 : 0,
     }),
     height: props.startingHeight,
-    transition: { duration: 0.2, ease: EASINGS.easeInOut },
+    transition: {
+      height: { duration: 0.2, ease: EASINGS.ease },
+      opacity: { duration: 0.3, ease: EASINGS.ease },
+    },
   }),
   enter: (props: CollapseOptions) => ({
     ...(props.animateOpacity && {
@@ -19,8 +26,14 @@ const variants: CollapseVariants = {
     }),
     height: props.endingHeight,
     transition: {
-      duration: 0.3,
-      ease: EASINGS.easeInOut,
+      height: {
+        duration: 0.3,
+        ease: EASINGS.ease,
+      },
+      opacity: {
+        duration: 0.4,
+        ease: EASINGS.ease,
+      },
     },
   }),
 }
@@ -50,6 +63,8 @@ export interface CollapseOptions {
 
 export type ICollapse = CollapseProps
 
+type Display = React.CSSProperties["display"]
+
 export interface CollapseProps
   extends HTMLMotionProps<"div">,
     CollapseOptions {}
@@ -68,14 +83,29 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
       ...rest
     } = props
 
-    const [ariaHidden, setAriaHidden] = React.useState(() => {
+    const fromZeroHeight = startingHeight === 0
+
+    const [open, setOpen] = React.useState(!!isOpen)
+
+    const getInitialHidden = () => {
       // If it is open by default, no need to apply `aria-hidden`
       if (isOpen) return false
       // If startingHeight > 0, then content is partially visible
-      if (parseInt(startingHeight as string, 10) > 0) return false
+      if (hasHeightValue(startingHeight)) return false
       // Else, the content is hidden
       return true
+    }
+
+    const [display, setDisplay] = React.useState<Display>(() => {
+      if (!fromZeroHeight) return "block"
+      const hidden = getInitialHidden()
+      return hidden ? "block" : "none"
     })
+
+    useUpdateEffect(() => {
+      setDisplay("block")
+      setOpen(!!isOpen)
+    }, [isOpen])
 
     /**
      * Warn 🚨: `startingHeight` and `unmountOnExit` are mutually exclusive
@@ -93,10 +123,9 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
 
     const ownProps: HTMLMotionProps<"div"> & React.RefAttributes<any> = {
       ref,
-      "aria-hidden": ariaHidden ? "true" : undefined,
       onAnimationComplete: () => {
-        if (ariaHidden !== !isOpen) {
-          setAriaHidden(!isOpen)
+        if (!open && fromZeroHeight) {
+          setDisplay("none")
         }
         onAnimationComplete?.()
       },
@@ -125,8 +154,9 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
     return (
       <motion.div
         {...ownProps}
+        style={{ ...ownProps.style, display }}
         initial={false}
-        animate={isOpen ? "enter" : "exit"}
+        animate={open ? "enter" : "exit"}
       />
     )
   },
