@@ -37,7 +37,7 @@ function isValidElement(event: KeyboardEvent): boolean {
 
 /**
  * useClickable implements all the interactions of a native `button`
- * component with support for making it focusable even if it's disabled.
+ * component with support for making it focusable even if it is disabled.
  *
  * It can be used with both native button elements or other elements (like `div`).
  */
@@ -65,7 +65,7 @@ export function useClickable(props: UseClickableProps = {}) {
 
   /**
    * For custom button implementation, we'll use this to track when
-   * we mouse down on the button, to enable use style it's ":active" style
+   * we mouse down on the button, to enable use style its ":active" style
    */
   const [isPressed, setIsPressed] = React.useState(false)
 

@@ -22,7 +22,7 @@ For example, `<Radio colorScheme="blue">Option</Radio>`
 
 ### RadioGroup
 
-- `RadioGroup` no longer returns `event` from it's onChange. It only returns the
+- `RadioGroup` no longer returns `event` from its onChange. It only returns the
   `value`.
 
 ```jsx
@@ -54,7 +54,7 @@ const After = () => {
 - To allow for better layout composition, the `RadioGroup` component no longer
   manages the layout of the radio buttons.
 
-  We believe a radio group's layout should be managed 100% by the context it's
+  We believe a radio group's layout should be managed 100% by the context it is
   used it, or based on design requirements. The group can stacked (`Stack`),
   placed in a grid (`SimpleGrid`) or made to wrap automatically (`Wrap`).
 

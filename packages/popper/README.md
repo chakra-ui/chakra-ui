@@ -45,8 +45,8 @@ const { popper, reference, arrow, transformOrigin } = usePopper({
 
 ### Adding transition
 
-When add transitions to a popper component, it's usually advised to apply popper
-and transition to different elements.
+When add transitions to a popper component, it is usually advised to apply
+popper and transition to different elements.
 
 ```jsx
 // 1. Import components

@@ -50,7 +50,7 @@ export interface ProgressFilledTrackProps
  * ProgressFilledTrack (Linear)
  *
  * The progress component that visually indicates the current level of the progress bar.
- * It applies `background-color` and changes it's width.
+ * It applies `background-color` and changes its width.
  *
  * @see Docs https://chakra-ui.com/components/progress
  */
@@ -142,7 +142,7 @@ export const Progress: React.FC<ProgressProps> = (props) => {
   const stripAnimation = { animation: `${stripe} 1s linear infinite` }
 
   /**
-   * We should not use stripe if it's `indeterminate`
+   * We should not use stripe if it is `indeterminate`
    */
   const shouldAddStripe = !isIndeterminate && hasStripe
 

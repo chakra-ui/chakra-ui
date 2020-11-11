@@ -12,7 +12,7 @@ interface VisibilityProps {
 /**
  * Visibility
  *
- * React component to control the visibility of it's
+ * React component to control the visibility of its
  * children based on the current breakpoint
  */
 const Visibility: React.FC<VisibilityProps> = (props) => {

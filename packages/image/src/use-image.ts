@@ -46,7 +46,7 @@ type ImageEvent = React.SyntheticEvent<HTMLImageElement, Event>
 /**
  * React hook that loads an image in the browser,
  * and let's us know the `status` so we can show image
- * fallback if it's still `pending`
+ * fallback if it is still `pending`
  *
  * @returns the status of the image loading progress
  *

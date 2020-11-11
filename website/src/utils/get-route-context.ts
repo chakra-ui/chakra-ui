@@ -60,6 +60,8 @@ export const getRouteContext = (
   routes: RouteItem[],
 ): RouteContext => {
   let ctx = {}
+  if (!_route) return ctx
+
   const { path } = _route
   const allRoutes = getAllRoutes(routes)
 

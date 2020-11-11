@@ -124,7 +124,7 @@ function ReturnFocus() {
 
 ### Block Scrolling when Modal opens
 
-For accessibility, it's recommended to block scrolling on the main document
+For accessibility, it is recommended to block scrolling on the main document
 behind the modal. Chakra does this by default but you can set
 `blockScrollOnMount` to `false` to allow scrolling behind the modal.
 
@@ -432,7 +432,7 @@ function SizeExample() {
 
 ### Making other elements Inert
 
-When the modal is open, it's rendered within a portal and all its siblings have
+When the modal is open, it is rendered within a portal and all its siblings have
 `aria-hidden` set to `true` so the only thing screen readers see is the modal.
 To disable this behavior, set `useInert` to `false`.
 
@@ -441,10 +441,10 @@ To disable this behavior, set `useInert` to `false`.
 By default the modal, alert dialog and drawer locks the focus inside them.
 Normally this is what you want to maintain accessibility standards.
 
-**While strongly discourage this use case** due to it's accessibility impacts,
+**While strongly discourage this use case** due to the accessibility impacts,
 there are certain situations where you might not want the modal to trap focus.
 
-To prevent focus trapping, pass `trapFocus` and set it's value to `false`.
+To prevent focus trapping, pass `trapFocus` and set its value to `false`.
 
 ## Accessibility
 

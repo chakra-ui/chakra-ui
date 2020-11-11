@@ -6,7 +6,7 @@ This is a new package that forms the foundation of all chakra components.
 
 You can create chakra's enhanced components in 2 ways:
 
-1.  Use the chakra element syntax (It's the easy to avoid naming components.
+1.  Use the chakra element syntax (It is the easy to avoid naming components.
     Lol). Components create this way:
     - Provides a simple syntax that reduces the need to use the `as` prop.
     - Allow you map styles defined in `theme.styles.[element]` to

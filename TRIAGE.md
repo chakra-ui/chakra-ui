@@ -6,7 +6,7 @@ and the triage process itself.
 # 🕵️‍️ What is triage?
 
 Triage is the process by which we manage community input coming into our
-repository. Whether it's a feature request, a bug report, a pull request, or
+repository. Whether it is a feature request, a bug report, a pull request, or
 something else entirely, each item requires direct attention from an
 organization member in order to parse and understand what it is the user expects
 of the library or is trying to accomplish.
@@ -55,7 +55,7 @@ documentation.
 
 ## 🏎 Velocity
 
-To keep the development and documentation processes running smoothly, it's
+To keep the development and documentation processes running smoothly, it is
 important that each piece of input from the community is groomed, labeled,
 assigned a level of effort and importance, attached to a version milestone, and
 possibly assigned to a specific individual or project.
@@ -91,7 +91,7 @@ Guiding users to the documentation helps them learn.
 
 # 📋 Triage process
 
-This section documents the triage process. It's impossible to plan out a
+This section documents the triage process. It is impossible to plan out a
 scenario for each possible interaction, but this gives an overview of what it is
 triage team members should be doing.
 
@@ -122,7 +122,7 @@ triage team members should be doing.
 
 - if the feature already exists, point the user to the relevant docs
 - make sure the user has explained the request well enough that a maintainer can
-  determine if it's something we'd like to add to Chakra
+  determine if it is something we'd like to add to Chakra
 - if it makes sense, ask the user to provide examples of the API they imagine
   for the feature and/or examples of how the feature would be used
 

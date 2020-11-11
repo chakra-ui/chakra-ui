@@ -328,7 +328,15 @@ import { Box } from "@chakra-ui/core"
 ### Shadow
 
 ```jsx
-<SimpleGrid bg="gray.50" columns="4" spacing="8" p="10" textAlign="center" rounded="lg" color="gray.400">
+<SimpleGrid
+  bg="gray.50"
+  columns="4"
+  spacing="8"
+  p="10"
+  textAlign="center"
+  rounded="lg"
+  color="gray.400"
+>
   <Box boxShadow="xs" p="6" rounded="md" bg="white">
     xs
   </Box>
@@ -363,7 +371,7 @@ import { Box } from "@chakra-ui/core"
 ```
 
 ```jsx
-<Text textShadow="2px 2px #ff0000" boxShadow="5px 10px #999" m="6">
+<Text textShadow="1px 1px #ff0000" m="6">
   Text with shadows
 </Text>
 ```
@@ -433,12 +441,12 @@ import { Button } from "@chakra-ui/core"
 | `_visited`       | `:visited`                                                               | none        |
 | `_activeLink`    | `[aria-current=page]`                                                    | none        |
 | `_indeterminate` | `:indeterminate`,<br/>`[aria-checked=mixed]`,<br/>`[data-indeterminate]` | none        |
-| `_groupHover`    | ``                                                                       | none        |
-| `_groupFocus`    | ``                                                                       | none        |
-| `_groupActive`   | ``                                                                       | none        |
-| `_groupDisabled` | ``                                                                       | none        |
-| `_groupInvalid`  | ``                                                                       | none        |
-| `_groupChecked`  | ``                                                                       | none        |
+| `_groupHover`    | `[role=group]:hover &`, <br/> `[role=group][data-hover] &`               | none        |
+| `_groupFocus`    | `[role=group]:focus &`, <br/> `[role=group][data-focus] &`               | none        |
+| `_groupActive`   | `[role=group]:active &`, <br/> `[role=group][data-active] &`             | none        |
+| `_groupDisabled` | `[role=group]:disabled &`, <br/> `[role=group][data-disabled] &`         | none        |
+| `_groupInvalid`  | `[role=group][data-invalid] &`                                           | none        |
+| `_groupChecked`  | `[role=group][data-checked] &`                                           | none        |
 | `_placeholder`   | `::placeholder`                                                          | none        |
 | `_fullScreen`    | `:fullscreen`                                                            | none        |
 | `_selection`     | `::selection`                                                            | none        |

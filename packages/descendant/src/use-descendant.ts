@@ -39,7 +39,7 @@ export function useDescendant<T extends HTMLElement, P>(
     }
 
     /**
-     * Don't register this descendant if it's disabled and not focusable
+     * Don't register this descendant if it is disabled and not focusable
      */
     if (disabled && !focusable) return undefined
 

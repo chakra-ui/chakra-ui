@@ -54,7 +54,7 @@ export { usePopoverContext }
 
 export interface PopoverProps extends UsePopoverProps, ThemingProps {
   /**
-   * The content of the popover. It's usually the `PopoverTrigger`,
+   * The content of the popover. It is usually the `PopoverTrigger`,
    * and `PopoverContent`
    */
   children?: MaybeRenderProp<{
@@ -153,7 +153,7 @@ export interface PopoverHeaderProps extends HTMLChakraProps<"header"> {}
 
 /**
  * PopoverHeader is the accessible header or label
- * for the popover's content and it's first announced by screenreaders.
+ * for the popover's content and it is first announced by screenreaders.
  */
 export const PopoverHeader = forwardRef<PopoverHeaderProps, "header">(
   function PopoverHeader(props, ref) {

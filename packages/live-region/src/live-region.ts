@@ -13,7 +13,7 @@ export interface LiveRegionOptions {
    * to this change when it has finished whatever it is currently doing
    *
    * - If set to `assertive`: tells assistive technology to interrupt whatever
-   * it's doing and alert the user to this change immediately
+   * it is doing and alert the user to this change immediately
    *
    * @default "polite".
    */

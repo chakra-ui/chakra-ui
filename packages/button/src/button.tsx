@@ -19,7 +19,7 @@ export interface ButtonOptions {
    */
   isLoading?: boolean
   /**
-   * If `true`, the button will be styled in it's active state.
+   * If `true`, the button will be styled in its active state.
    */
   isActive?: boolean
   /**
@@ -92,7 +92,7 @@ export const Button = forwardRef<ButtonProps, "button">(function Button(
 
   /**
    * When button is used within ButtonGroup (i.e flushed with sibling buttons),
-   * it's important to add a `zIndex` when it's focused to it doesn't look funky.
+   * it is important to add a `zIndex` on focus.
    *
    * So let's read the component styles and then add `zIndex` to it.
    */

@@ -109,6 +109,7 @@ export const TagCloseButton: React.FC<TagCloseButtonProps> = (props) => {
   const btnStyles: SystemStyleObject = {
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
     outline: "0",
     transition: "all 0.2s",
     ...styles.closeButton,

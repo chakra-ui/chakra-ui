@@ -22,13 +22,13 @@ export interface RadioProps
     ThemingProps,
     BaseControlProps {
   /**
-   * The spacing between the checkbox and it's label text
+   * The spacing between the checkbox and its label text
    * @default 0.5rem
    * @type SystemProps["marginLeft"]
    */
   spacing?: SystemProps["marginLeft"]
   /**
-   * If `true`, the radio will occupy the full width of it's parent container
+   * If `true`, the radio will occupy the full width of its parent container
    */
   isFullWidth?: boolean
 }

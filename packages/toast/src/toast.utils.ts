@@ -9,7 +9,7 @@ export const findById = (arr: ToastOptions[], id: ToastId) =>
 
 /**
  * Given the toast manager state, finds the toast that matches
- * the id and return it's position and index
+ * the id and return its position and index
  */
 export function findToast(toasts: ToastState, id: ToastId) {
   const position = getToastPosition(toasts, id)
@@ -35,14 +35,14 @@ export const getToastPosition = (toasts: ToastState, id: ToastId) =>
 
 /**
  * Given the toast manager state, checks if a specific toast is
- * still in the state, which means it's still visible on screen.
+ * still in the state, which means it is still visible on screen.
  */
 export const isVisible = (toasts: ToastState, id: ToastId) =>
   !!getToastPosition(toasts, id)
 
 /**
  * Get's the styles to be applied to a toast's container
- * based on it's position in the manager
+ * based on its position in the manager
  */
 export function getToastStyle(position: ToastPosition): React.CSSProperties {
   const isRighty = position.includes("right")

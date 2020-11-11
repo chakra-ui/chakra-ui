@@ -52,7 +52,8 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.0.0-rc.8"
+    "@chakra-ui/utils": "1.0.0-rc.8",
+    "@chakra-ui/hooks": "1.0.0-rc.8"
   },
   "peerDependencies": {
     "framer-motion": "2.x",

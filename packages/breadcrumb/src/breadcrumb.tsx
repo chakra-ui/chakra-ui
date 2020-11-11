@@ -55,7 +55,7 @@ export interface BreadcrumbLinkProps extends HTMLChakraProps<"a"> {
 /**
  * Breadcrumb link.
  *
- * It renders a `span` when it's the current link. Otherwise,
+ * It renders a `span` when it matches the current link. Otherwise,
  * it renders an anchor tag.
  */
 export const BreadcrumbLink = forwardRef<BreadcrumbLinkProps, "a">(

@@ -144,7 +144,7 @@ export function useModal(props: UseModalProps) {
        * This is used to prevent the modal from closing when you
        * start dragging from the content, and release drag outside the content.
        *
-       * We prevent this because it's technically not a considered "click outside"
+       * We prevent this because it is technically not a considered "click outside"
        */
       if (mouseDownTarget.current !== event.target) return
 

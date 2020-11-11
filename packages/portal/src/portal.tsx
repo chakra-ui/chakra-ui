@@ -87,7 +87,7 @@ export const Portal: React.FC<PortalProps> = (props) => {
      * We need to know where to mount this portal, we have 4 options:
      * - If a mountRef is specified, we'll use that as the container
      * - If portal is nested, use the parent portal node as container.
-     * - If it's not nested, use the manager's node as container
+     * - If it is not nested, use the manager's node as container
      * - else use document.body as containers
      */
     const container =

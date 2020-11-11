@@ -14,6 +14,6 @@ follow the TypeScript guidelines.
 The end goal of this ensure all Chakra UI components are as strongly typed as
 possible to enable teams leverage the library.
 
-It's also important to keep types as simple as possible. Primarily we should
-avoid Generics. Generic code can be highly reusable, but that can also come with
-the greater chance of breaking things.
+It is important to keep types as simple as possible. Primarily we should avoid
+Generics. Generic code can be highly reusable, but that can also come with the
+greater chance of breaking things.

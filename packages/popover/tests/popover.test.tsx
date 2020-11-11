@@ -51,7 +51,7 @@ test("can open and close the popover", async () => {
   // open the popover
   fireEvent.click(utils.getByText(/open/i))
 
-  // close the popover (since we can click the button, we verify that it's
+  // close the popover (since we can click the button, we verify that it is
   // displayed)
   fireEvent.click(utils.getByText(/close/i))
 

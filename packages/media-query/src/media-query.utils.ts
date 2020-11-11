@@ -1,8 +1,9 @@
-import { breakpoints } from "@chakra-ui/utils"
+import { breakpoints as defaultBreakPoints } from "@chakra-ui/utils"
 
 export function getClosestValue<T = any>(
   values: Record<string, T>,
   breakpoint: string,
+  breakpoints = defaultBreakPoints,
 ) {
   let index = Object.keys(values).indexOf(breakpoint)
 

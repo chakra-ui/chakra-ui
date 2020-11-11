@@ -7,8 +7,99 @@ Chakra UI supports responsive styles out of the box. Instead of manually adding
 `@media` queries and adding nested styles throughout your code, Chakra UI allows
 you provide object and array values to add mobile-first responsive styles.
 
-> We use the `@media(min-width)` media queries to ensure values are
+> We use the `@media(min-width)` media query to ensure your interfaces are
 > mobile-first.
+
+Responsive syntax relies on the breakpoints defined in the theme object. Chakra
+UI provides default breakpoints, here's what it looks like:
+
+```js
+const breakpoints = {
+  sm: "30em",
+  md: "48em",
+  lg: "62em",
+  xl: "80em",
+}
+```
+
+To make styles responsive, you can use either the array or object syntax.
+
+## The Array syntax
+
+All style props that arrays as values for mobile-first responsive styles. This
+is recommended method.
+
+Let's say you have an `Box` with the following properties:
+
+```jsx live=false
+<Box bg="red.200" w="400px">
+  This is a box
+</Box>
+```
+
+To make the `width` or `w` responsive using the array syntax, here's what you
+need to do:
+
+```jsx live=false
+<Box bg="red.200" w={[300, 400, 560]}>
+  This is a box
+</Box>
+```
+
+To interpret array responsive values, Chakra UI converts the values defined in
+`theme.breakpoints` and sorts them in ascending order. Afterward, we map the
+values defined in the array to the breakpoints
+
+```js
+// This is the default breakpoint
+const breakpoints = { sm: "30em", md: "48em", lg: "62em", xl: "80em" }
+
+// Internally, we transform to this
+const breakpoints = ["0em", "30em", "48em", "62em", "80em"]
+```
+
+Here's how to interpret this syntax:
+
+- `300px`: From `0em` upwards
+- `400px`: From `30em` upwards
+- `500px`: From `48em` upwards
+
+> To skip certain breakpoints, you can pass `null` to any position in the array
+> to avoid generating unnecessary CSS.
+
+## The Object syntax
+
+You can also define responsive values with breakpoint aliases in an object. Any
+undefined alias key will define the base, non-responsive value.
+
+Let's say you have a `Box` that looks like this:
+
+```jsx live=false
+<Text fontSize="40px">This is a text</Text>
+```
+
+To make the `fontSize` responsive using the object syntax, here's what you need
+to do:
+
+```jsx live=false
+<Text fontSize={{ base: "24px", md: "40px", lg: "56px" }}>
+  This is responsive text
+</Text>
+```
+
+> **Remember, Chakra UI uses the min-width media query for responsive design**.
+> The breakpoints are: `sm = 30em`, `md = 48em`, `lg = 62em`, `xl = 80em`
+
+Here's how to interpret this syntax:
+
+- `base`: From `0em` upwards
+- `md`: From `48em` upwards
+- `lg`: From `62em` upwards
+
+## More Examples
+
+This works for every style prop in the theme specification, which means you can
+change the style of most properties at a given breakpoint.
 
 ```jsx live=false
 <>
@@ -37,10 +128,7 @@ you provide object and array values to add mobile-first responsive styles.
 </>
 ```
 
-This works for every style prop in the theme specification, which means you can
-change the style of most properties at a given breakpoint.
-
-## What it does
+## Under the hood
 
 This shortcut is an alternative to writing media queries out by hand. Given the
 following:
@@ -71,23 +159,38 @@ It'll generate a CSS that looks like this
 
 The equivalent of this style if you passed it as an object.
 
-```js
-// First, add the import for `createBreakpoints`
-import { createBreakpoints } from "@chakra-ui/theme"
+## Customizing Breakpoints
 
-// Then add your custom breakpoints as key-value pairs
-const breakpoints = createBreakpoints({
-  sm: "30em",
-  md: "48em",
-  lg: "62em",
-  xl: "80em",
-})
-```
+In some scenarios, you might need to define custom breakpoints for your
+application. We recommended using common aliases like `sm`, `md`, `lg`, and
+`xl`.
 
-then
+To define custom breakpoints, install `@chakra-ui/theme-tools`, and use the
+`createBreakpoints` utility we provide.
+
+> Note: Ensure the css unit of your breakpoints are the same. Use all `px` or
+> all `em`, don't mix them.
 
 ```jsx live=false
-<Box width={{ base: 1, sm: 1 / 2, md: 1 / 4 }} />
+// 1. Import the utilities
+import { extendTheme } from "@chakra-ui/core"
+import { createBreakpoints } from "@chakra-ui/theme-tools"
+
+// 2. Update the breakpoints as key-value pairs
+const breakpoints = createBreakpoints({
+  sm: "320px",
+  md: "768px",
+  lg: "960px",
+  xl: "1200px",
+})
+
+// 3. Extend the theme
+const theme = extendTheme({ breakpoints })
+
+// 4. Now you can use the custom breakpoints
+function Example() {
+  return <Box width={{ base: "100%", sm: "50%", md: "25%" }} />
+}
 ```
 
 ## Demo

@@ -192,7 +192,7 @@ export interface AccordionPanelProps extends HTMLChakraProps<"div"> {}
  * Accordion panel that holds the content for each accordion.
  * It shows and hides based on the state login from the `AccordionItem`.
  *
- * It uses the `Collapse` component to animate it's height.
+ * It uses the `Collapse` component to animate its height.
  */
 export const AccordionPanel = forwardRef<AccordionPanelProps, "div">(
   function AccordionPanel(props, ref) {

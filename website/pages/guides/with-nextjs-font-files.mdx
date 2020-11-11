@@ -49,11 +49,12 @@ any options you do not need (like mono) if you don't have a custom font to use.
 
 We need to bring our custom fonts from the `public` folder and put them where
 Chakra can find them. Inside your `styles` folder, create another `js/ts` file
-called `font-imports`. We're putting our `@font-face` imports in here to keep
-our `_app.js` easier to read. Also, depending on how many fonts you have, this
-part could get long. Better to have it in it's own file. In your
-`font-imports.js` file, use this template and replace it with the names of your
-font files:
+called `font-face`. We're putting our `@font-face` imports in here to keep our
+`_app.js` easier to read. Also, depending on how many fonts you have, this part
+could get long. Better to have it in its own file.
+
+In your `font-face.js` file, use this template and replace it with the names of
+your font files:
 
 ```js
 export default `
@@ -92,14 +93,14 @@ revise this guide.
 
 ## Add theme and fonts to `<ChakraProvider>` in `_app.js`
 
-Everything is in place to add to the default of Chakra and impact our app. If
-it's not there already, create an `_app.js` or `_app.ts` file in the `pages`
+Everything is in place to add to the default of Chakra and impact our app. If it
+is not there already, create an `_app.js` or `_app.ts` file in the `pages`
 folder. Use this as a template to get going:
 
 ```jsx
 import { ChakraProvider, Global, extendTheme } from "@chakra-ui/core"
 import myTheme from "styles/theme"
-import fonts from "styles/font-imports"
+import fonts from "styles/font-face"
 
 const theme = extendTheme(myTheme)
 

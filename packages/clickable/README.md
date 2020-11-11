@@ -1,7 +1,7 @@
 # @chakra-ui/clickable
 
 React hook that implements all the interactions of a native `button` component
-with support for making it focusable even if it's disabled.
+with support for making it focusable even if it is disabled.
 
 It can be used with both native button elements or other elements (like `div`).
 

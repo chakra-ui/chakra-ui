@@ -6,7 +6,7 @@ export default {
 }
 
 /**
- * Wrap a video in AspectRatio, and it's automatically
+ * Wrap a video in AspectRatio, and it is automatically
  * sized to the desired ratio.
  */
 export const WithVideo = () => (
@@ -20,7 +20,7 @@ export const WithVideo = () => (
 )
 
 /**
- * Wrap an image in AspectRatio, and it's automatically
+ * Wrap an image in AspectRatio, and it is automatically
  * sized to the desired ratio.
  */
 export const WithImage = () => (
@@ -33,7 +33,7 @@ export const WithImage = () => (
 )
 
 /**
- * Embed a map in AspectRatio, and it's automatically
+ * Embed a map in AspectRatio, and it is automatically
  * sized to the desired ratio.
  */
 export const WithMap = () => (
@@ -46,7 +46,7 @@ export const WithMap = () => (
 )
 
 /**
- * Embed a map in AspectRatio, and it's automatically
+ * Embed a map in AspectRatio, and it is automatically
  * sized to the desired ratio.
  */
 export const WithResponsive = () => (
@@ -61,6 +61,8 @@ export const WithResponsive = () => (
         md: "red.300",
         lg: "red.200",
       }}
-    ></Box>
+    >
+      Box
+    </Box>
   </AspectRatio>
 )

@@ -8,15 +8,13 @@ description: How to install and set up Chakra UI in your project
 Inside your React project directory, install Chakra UI by running the following:
 
 ```bash
-npm i @chakra-ui/core@next framer-motion
+npm i @chakra-ui/core framer-motion
 # or
-yarn add @chakra-ui/core@next framer-motion
+yarn add @chakra-ui/core framer-motion
 ```
 
 > For `create-react-app` installation instructions, check this
 > [CRA templates guide](/guides/integrations/with-cra).
-
-<carbon-ad></carbon-ad>
 
 ## Setup Provider
 
@@ -51,11 +49,14 @@ function App() {
 If you need to customize the default chakra theme to match your design
 requirements, you can extend the `theme` from `@chakra-ui/core`.
 
+Chakra UI provides an `extendTheme` function that deep merges the default theme
+with your customizations.
+
 ```jsx live=false
-// 1. Import the extendTheme util - it will merge with the default theme.
+// 1. Import the extendTheme function
 import { extendTheme } from "@chakra-ui/core"
 
-// 2. Extend the theme to include custom colors, fonts, etc.
+// 2. Extend the theme to include custom colors, fonts, etc
 const colors = {
   brand: {
     900: "#1a365d",
@@ -64,19 +65,19 @@ const colors = {
   },
 }
 
-const customTheme = extendTheme({ colors })
+const theme = extendTheme({ colors })
 
 // 3. Pass the `theme` prop to the `ChakraProvider`
 function App() {
   return (
-    <ChakraProvider theme={customTheme}>
+    <ChakraProvider theme={theme}>
       <App />
     </ChakraProvider>
   )
 }
 ```
 
-### Props
+### ChakraProvider Props
 
 | Name             | Type             | Default               | Description                                         |
 | ---------------- | ---------------- | --------------------- | --------------------------------------------------- |
@@ -86,6 +87,13 @@ function App() {
 | portalZIndex     | `number`         | `undefined`           | common z-index to use for `Portal`                  |
 
 That's it, you're good to go!
+
+## Optional Packages
+
+- Icons: If you want to use the icons from Chakra UI, install `@chakra-ui/icons`
+- Theme Tools: If you intend to customize components or build your own design
+  system, this package includes useful utilities. Install
+  `@chakra-ui/theme-tools`.
 
 ## Notes on TypeScript 🚨
 

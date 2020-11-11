@@ -12,6 +12,7 @@ packages/*/.next
 storybook-static
 packages/*/coverage
 packages/*/dist
+tooling/*/dist
 packages/*/node_modules
 npm-debug.log*
 packages/*/.env

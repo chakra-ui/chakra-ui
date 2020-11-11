@@ -238,7 +238,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
         <Box as="section">
           <Container py="80px">
             <Box mb="3em" textAlign="center">
-              <chakra.h2 textStyle="heading">Less code More speed</chakra.h2>
+              <chakra.h2 textStyle="heading">Less code. More speed</chakra.h2>
               <Text opacity={0.7} fontSize="lg" mt="3" mx="auto" maxW="600px">
                 Spend less time writing UI code and more time building a great
                 experience for your customers.
@@ -345,12 +345,12 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               />
               <StatBox
                 icon={FiGithub}
-                title="11.3k"
+                title="11.6k"
                 description="Github stars"
               />
               <StatBox
                 icon={FiUsers}
-                title="6"
+                title="7"
                 description="Core contributors"
               />
               <StatBox
@@ -385,7 +385,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
         <Box>
           <Container py="120px" maxW="1200px" px="32px">
             <chakra.h2 textStyle="heading-2" mb="48px">
-              Loved by product people like you.
+              Loved by product people like you
             </chakra.h2>
             <SimpleGrid spacing="32px" columns={{ base: 1, md: 3 }}>
               {chunk(tweets, 3).map((tweetList, idx) => (
@@ -405,7 +405,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               <chakra.h2 textStyle="heading-2" mb="4">
                 Support Chakra UI 💖
               </chakra.h2>
-              <Text opacity={0.7} lineHeight="taller">
+              <Text fontSize="lg" opacity={0.7}>
                 Our maintainers devote their time, effort, and heart to ensure
                 Chakra UI keeps getting better. Support us by donating to our
                 collective 🙏

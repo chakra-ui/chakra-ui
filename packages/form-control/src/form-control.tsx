@@ -36,7 +36,7 @@ export interface FormControlOptions {
    */
   isReadOnly?: boolean
   /**
-   * If `true`, the form control will be in it's `loading` state
+   * If `true`, the form control will be in its `loading` state
    */
   isLoading?: boolean
 }
@@ -100,7 +100,7 @@ function useFormControlProvider(props: FormControlContext) {
 
   /**
    * Track of when the `FormHelperText` has been rendered.
-   * We use this to append it's id the the `aria-describedby` of the `input`
+   * We use this to append its id the the `aria-describedby` of the `input`
    */
   const [hasHelpText, setHasHelpText] = useBoolean()
 

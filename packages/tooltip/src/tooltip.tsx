@@ -25,7 +25,7 @@ export interface TooltipProps
   /**
    * The label of the tooltip
    */
-  label?: string
+  label?: React.ReactNode
   /**
    * The accessible, human friendly label to use for
    * screen readers.
@@ -35,7 +35,7 @@ export interface TooltipProps
    */
   "aria-label"?: string
   /**
-   * If `true`, the tooltip will wrap it's children
+   * If `true`, the tooltip will wrap its children
    * in a `<span/>` with `tabIndex=0`
    */
   shouldWrapChildren?: boolean

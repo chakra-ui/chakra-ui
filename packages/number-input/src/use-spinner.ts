@@ -14,7 +14,7 @@ const CONTINUOUS_CHANGE_DELAY = 300
 type Action = "increment" | "decrement"
 
 /**
- * React hook used in the number input to spin it's
+ * React hook used in the number input to spin its
  * value on long press of the spin buttons
  *
  * @param increment the function to increment

@@ -381,7 +381,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       value: counter.value,
       role: "spinbutton",
       type: "text",
-      inputMode,
+      inputMode: props["inputMode"] ?? inputMode,
       pattern,
       "aria-valuemin": min,
       "aria-valuemax": max,

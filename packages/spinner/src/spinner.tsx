@@ -46,7 +46,7 @@ interface SpinnerOptions {
    */
   speed?: string
   /**
-   * For accessibility, it's important to add a fallback loading text.
+   * For accessibility, it is important to add a fallback loading text.
    * This text will be visible to screen readers.
    */
   label?: string

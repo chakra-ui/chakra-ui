@@ -21,7 +21,7 @@ export const Default = () => (
  * from the `as` prop.
  *
  * In this example, we're using Chakra Link with
- * React Router DOM and it's types are inferred
+ * React Router DOM and its types are inferred
  * correctly.
  */
 export const WithRoutingLibrary = () => (
