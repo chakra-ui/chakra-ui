@@ -10,8 +10,8 @@ import {
 } from "../src"
 
 test("Stat renders correctly", () => {
-  const { asFragment } = render(
-    <StatGroup>
+  const { findByTestId } = render(
+    <StatGroup data-testid="group">
       <Stat>
         <StatLabel>Sent</StatLabel>
         <StatNumber>345,670</StatNumber>
@@ -31,5 +31,5 @@ test("Stat renders correctly", () => {
       </Stat>
     </StatGroup>,
   )
-  expect(asFragment()).toMatchSnapshot()
+  expect(findByTestId("group")).toBeTruthy()
 })
