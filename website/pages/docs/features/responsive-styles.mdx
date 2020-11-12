@@ -19,6 +19,7 @@ const breakpoints = {
   md: "48em",
   lg: "62em",
   xl: "80em",
+  xxl: "90em",
 }
 ```
 
@@ -52,10 +53,16 @@ values defined in the array to the breakpoints
 
 ```js
 // This is the default breakpoint
-const breakpoints = { sm: "30em", md: "48em", lg: "62em", xl: "80em" }
+const breakpoints = {
+  sm: "30em",
+  md: "48em",
+  lg: "62em",
+  xl: "80em",
+  xxl: "90rem",
+}
 
 // Internally, we transform to this
-const breakpoints = ["0em", "30em", "48em", "62em", "80em"]
+const breakpoints = ["0em", "30em", "48em", "62em", "80em", "90rem"]
 ```
 
 Here's how to interpret this syntax:
@@ -88,7 +95,8 @@ to do:
 ```
 
 > **Remember, Chakra UI uses the min-width media query for responsive design**.
-> The breakpoints are: `sm = 30em`, `md = 48em`, `lg = 62em`, `xl = 80em`
+> The breakpoints are: `sm = 30em`, `md = 48em`, `lg = 62em`, `xl = 80em`,
+> `xxl = 90em`
 
 Here's how to interpret this syntax:
 
@@ -118,11 +126,11 @@ change the style of most properties at a given breakpoint.
     ]}
   />
   {/* responsive font size */}
-  <Box fontSize={["sm", "md", "lg", "xl"]}>Font Size</Box>
+  <Box fontSize={["sm", "md", "lg", "xl", "xxl"]}>Font Size</Box>
   {/* responsive margin */}
-  <Box mt={[2, 4, 6, 8]} width="full" height="24px" bg="tomato" />
+  <Box mt={[2, 4, 6, 8, 10]} width="full" height="24px" bg="tomato" />
   {/* responsive padding */}
-  <Box bg="papayawhip" p={[2, 4, 6, 8]}>
+  <Box bg="papayawhip" p={[2, 4, 6, 8, 10]}>
     Padding
   </Box>
 </>
@@ -182,6 +190,7 @@ const breakpoints = createBreakpoints({
   md: "768px",
   lg: "960px",
   xl: "1200px",
+  xxl: "1400px",
 })
 
 // 3. Extend the theme
