@@ -34,7 +34,13 @@ export interface TextProps extends HTMLChakraProps<"p">, ThemingProps {
  * @see Docs https://chakra-ui.com/components/text
  */
 export const Text = forwardRef<TextProps, "p">(function Text(props, ref) {
-  const styles = useStyleConfig("Text", props)
+  const withAliasedProps = {
+    textAlign: props.align,
+    textDecoration: props.decoration,
+    textTransform: props.casing,
+    ...props,
+  }
+  const styles = useStyleConfig("Text", withAliasedProps)
   const { className, align, decoration, casing, ...rest } = omitThemingProps(
     props,
   )
@@ -43,9 +49,6 @@ export const Text = forwardRef<TextProps, "p">(function Text(props, ref) {
     <chakra.p
       ref={ref}
       className={cx("chakra-text", props.className)}
-      textAlign={align}
-      textDecoration={decoration}
-      textTransform={casing}
       {...rest}
       __css={styles}
     />
