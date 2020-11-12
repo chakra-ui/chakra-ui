@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:mv": "next build && mv .next ../../website/.next",
     "now-build": "next build",
     "start": "next start"
   },
