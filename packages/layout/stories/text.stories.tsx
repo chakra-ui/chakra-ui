@@ -6,25 +6,32 @@ export default {
   title: "Text",
 }
 
-export const Issue2464 = () => {
-  const theme = extendTheme({
-    components: {
-      Text: {
-        variants: {
-          customCaps: {
-            textTransform: "uppercase",
-          },
+const theme = extendTheme({
+  components: {
+    Text: {
+      variants: {
+        customCaps: {
+          textTransform: "uppercase",
         },
       },
     },
-  })
+  },
+})
 
-  return (
-    <ChakraProvider theme={theme}>
-      <Text variant="customCaps">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet,
-        sapiente.
-      </Text>
-    </ChakraProvider>
-  )
-}
+// see https://github.com/chakra-ui/chakra-ui/issues/2464
+export const withVariant = () => (
+  <ChakraProvider theme={theme}>
+    <Text variant="customCaps">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, sapiente.
+    </Text>
+  </ChakraProvider>
+)
+
+// see https://github.com/chakra-ui/chakra-ui/issues/2464
+export const overrideVariant = () => (
+  <ChakraProvider theme={theme}>
+    <Text variant="customCaps" casing="lowercase">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, sapiente.
+    </Text>
+  </ChakraProvider>
+)

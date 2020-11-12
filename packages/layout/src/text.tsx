@@ -7,7 +7,7 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx, __DEV__, filterUndefined } from "@chakra-ui/utils"
 import * as React from "react"
 
 export interface TextProps extends HTMLChakraProps<"p">, ThemingProps {
@@ -34,21 +34,22 @@ export interface TextProps extends HTMLChakraProps<"p">, ThemingProps {
  * @see Docs https://chakra-ui.com/components/text
  */
 export const Text = forwardRef<TextProps, "p">(function Text(props, ref) {
-  const withAliasedProps = {
-    textAlign: props.align,
-    textDecoration: props.decoration,
-    textTransform: props.casing,
-    ...props,
-  }
-  const styles = useStyleConfig("Text", withAliasedProps)
+  const styles = useStyleConfig("Text", props)
   const { className, align, decoration, casing, ...rest } = omitThemingProps(
     props,
   )
+
+  const aliasedProps = filterUndefined({
+    textAlign: props.align,
+    textDecoration: props.decoration,
+    textTransform: props.casing,
+  })
 
   return (
     <chakra.p
       ref={ref}
       className={cx("chakra-text", props.className)}
+      {...aliasedProps}
       {...rest}
       __css={styles}
     />
