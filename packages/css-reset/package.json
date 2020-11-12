@@ -51,7 +51,7 @@
     "lint:types": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@emotion/core": "10.0.35",
-    "react": "16.x || 17.x"
+    "@emotion/react": ">=10.0.35",
+    "react": ">=16.8.6"
   }
 }

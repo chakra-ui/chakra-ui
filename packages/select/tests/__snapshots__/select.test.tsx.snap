@@ -5,7 +5,7 @@ exports[`Select renders correctly 1`] = `
   .emotion-2 {
   width: 100%;
   height: -webkit-fit-content;
-  height: -moz-fit-content;
+  height: -moz-content;
   height: fit-content;
   position: relative;
 }
@@ -16,6 +16,7 @@ exports[`Select renders correctly 1`] = `
   position: relative;
   -webkit-appearance: none;
   -moz-appearance: none;
+  -ms-appearance: none;
   appearance: none;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
@@ -31,7 +32,7 @@ exports[`Select renders correctly 1`] = `
   background: inherit;
 }
 
-.emotion-0 > option {
+.emotion-0 >option {
   background: #FFFFFF;
 }
 
@@ -43,7 +44,7 @@ exports[`Select renders correctly 1`] = `
 .emotion-0[aria-readonly=true],
 .emotion-0[readonly],
 .emotion-0[data-readonly] {
-  box-shadow: none !important;
+  box-shadow: none!important;
   -webkit-user-select: all;
   -moz-user-select: all;
   -ms-user-select: all;
@@ -90,13 +91,14 @@ exports[`Select renders correctly 1`] = `
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   right: 0.5rem;
   pointer-events: none;
   top: 50%;
   -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }

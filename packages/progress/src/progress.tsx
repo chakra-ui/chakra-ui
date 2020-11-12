@@ -1,6 +1,6 @@
 import {
   chakra,
-  ObjectInterpolation,
+  Interpolation,
   omitThemingProps,
   StylesProvider,
   SystemStyleObject,
@@ -151,7 +151,7 @@ export const Progress: React.FC<ProgressProps> = (props) => {
   /**
    * Generate styles for stripe and stripe animation
    */
-  const css: ObjectInterpolation<any> = {
+  const css: Interpolation<any> = {
     ...(shouldAnimateStripe && stripAnimation),
     ...(isIndeterminate && {
       position: "absolute",

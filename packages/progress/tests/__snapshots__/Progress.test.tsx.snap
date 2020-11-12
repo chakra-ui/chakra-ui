@@ -110,10 +110,12 @@ exports[`Progress renders correctly 1`] = `
 <DocumentFragment>
   @keyframes animation-0 {
   from {
+    -webkit-background-position: 1rem 0;
     background-position: 1rem 0;
   }
 
   to {
+    -webkit-background-position: 0 0;
     background-position: 0 0;
   }
 }
@@ -169,7 +171,17 @@ exports[`Progress renders correctly 1`] = `
   height: 100%;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  background-image: linear-gradient( 45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent );
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  -webkit-background-size: 1rem 1rem;
   background-size: 1rem 1rem;
   background-color: #3182ce;
 }
@@ -198,7 +210,17 @@ exports[`Progress renders correctly 1`] = `
   height: 100%;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  background-image: linear-gradient( 45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent );
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  -webkit-background-size: 1rem 1rem;
   background-size: 1rem 1rem;
   background-color: #3182ce;
   -webkit-animation: animation-0 1s linear infinite;

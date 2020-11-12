@@ -13,8 +13,8 @@ exports[`matches snapshot 1`] = `
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
@@ -43,17 +43,17 @@ exports[`matches snapshot 1`] = `
 
 .emotion-1:hover,
 .emotion-1[data-hover] {
-  background: rgba(0,0,0,0.06);
+  background: rgba(0, 0, 0, 0.06);
 }
 
 .emotion-1:active,
 .emotion-1[data-active] {
-  background: rgba(0,0,0,0.08);
+  background: rgba(0, 0, 0, 0.08);
 }
 
 .emotion-1:focus,
 .emotion-1[data-focus] {
-  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
 }
 
 .emotion-0 {

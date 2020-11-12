@@ -4,6 +4,7 @@ import {
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
 import { Dict } from "@chakra-ui/utils"
+import { Interpolation } from "@emotion/react"
 import * as React from "react"
 import { ComponentWithAs } from "./forward-ref"
 
@@ -53,6 +54,10 @@ export interface ChakraProps extends SystemProps {
    * NB: This is the public API for user-land
    */
   sx?: SystemStyleObject
+  /**
+   * The emotion's css style object
+   */
+  css?: Interpolation<{}>
 }
 
 export type As = React.ElementType

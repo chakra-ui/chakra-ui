@@ -7,7 +7,7 @@ import {
   mergeWith,
   runIfFn,
 } from "@chakra-ui/utils"
-import { Global, Interpolation, ThemeContext } from "@emotion/core"
+import { Global, Interpolation, ThemeContext } from "@emotion/react"
 import * as React from "react"
 
 export interface ThemeProviderProps {
@@ -63,7 +63,7 @@ export const GlobalStyle = () => {
         const globalStyles = runIfFn(styleObjectOrFn, { theme, colorMode })
         if (!globalStyles) return undefined
         const styles = css(globalStyles)(theme)
-        return styles as Interpolation
+        return styles as Interpolation<{}>
       }}
     />
   )

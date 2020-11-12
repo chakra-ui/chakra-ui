@@ -51,7 +51,7 @@ exports[`<Badge /> renders with default theming 1`] = `
 exports[`<Box /> as - prop works correctly 1`] = `
 <DocumentFragment>
   <a
-    class="css-0"
+    class="emotion-0"
     href="www.google.com"
   >
     This is box
@@ -62,7 +62,7 @@ exports[`<Box /> as - prop works correctly 1`] = `
 exports[`<Box /> renders box correctly 1`] = `
 <DocumentFragment>
   <div
-    class="css-0"
+    class="emotion-0"
   >
     This is box
   </div>
@@ -84,9 +84,10 @@ exports[`<Flex /> renders all the allowed shorthand style props 1`] = `
   -ms-flex-align: stretch;
   align-items: stretch;
   -webkit-box-pack: start;
-  -webkit-justify-content: start;
   -ms-flex-pack: start;
+  -webkit-justify-content: start;
   justify-content: start;
+  -webkit-box-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;

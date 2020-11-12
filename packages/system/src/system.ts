@@ -13,7 +13,7 @@ import {
   Dict,
   isFunction,
 } from "@chakra-ui/utils"
-import createStyled, {
+import emotionStyled, {
   CSSObject,
   FunctionInterpolation,
   Interpolation,
@@ -138,9 +138,9 @@ export function styled<T extends As, P = {}>(
   const { baseStyle, ...styledOptions } = options ?? {}
   const opts = { ...styledOptions, shouldForwardProp }
 
-  const _styled = createStyled(component as React.ComponentType<any>, opts)
-  const interpolation = styleResolver({ baseStyle })
-  const StyledComponent: any = _styled(interpolation)
+  const styledFn = emotionStyled(component as React.ComponentType<any>, opts)
+  const args = styleResolver({ baseStyle })
+  const StyledComponent: any = styledFn(args)
 
   return StyledComponent as ChakraComponent<T, P>
 }
