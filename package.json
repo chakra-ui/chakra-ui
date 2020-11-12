@@ -51,7 +51,7 @@
     "docs:build": "yarn avatars:gen && yarn docs build",
     "docs:dev": "yarn avatars:gen && yarn docs dev",
     "docs:start": "yarn docs start",
-    "dedup": "yarn-deduplicate -s fewer yarn.lock",
+    "dedup": "yarn-deduplicate --strategy highest yarn.lock",
     "dedup:check": "yarn-deduplicate -s fewer yarn.lock --list --fail",
     "core": "yarn workspace @chakra-ui/core",
     "icon": "yarn workspace @chakra-ui/icon",
@@ -146,8 +146,8 @@
     "@babel/runtime": "^7.12.1",
     "@commitlint/cli": "^9.1.2",
     "@commitlint/config-conventional": "^9.1.2",
-    "@emotion/core": "10.0.35",
-    "@emotion/styled": "^10.0.27",
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
     "@jest/types": "^26.6.1",
     "@storybook/addon-a11y": "^6.0.27",
     "@storybook/addon-actions": "^6.0.27",
@@ -169,7 +169,6 @@
     "arg": "^4.1.3",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
-    "babel-plugin-emotion": "^10.0.33",
     "bundlesize": "^0.18.0",
     "chalk": "^4.1.0",
     "commitizen": "^4.2.2",
@@ -178,7 +177,6 @@
     "cz-conventional-changelog": "^3.3.0",
     "dotenv-cli": "^3.2.0",
     "edit-json-file": "^1.5.0",
-    "emotion-theming": "^10.0.27",
     "yarn-deduplicate": "^3.0.0",
     "eslint": "^7.11.0",
     "eslint-plugin-import": "^2.22.1",
@@ -225,13 +223,10 @@
     "ts-jest": "^26.4.2",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.3",
-    "react-hook-form": "6.8.6",
-    "react-transition-group": "4.4.1",
-    "@types/react-transition-group": "^4.4.0"
+    "react-hook-form": "6.8.6"
   },
   "resolutions": {
     "**/react": "17.0.1",
-    "**/react-dom": "17.0.1",
-    "**/@emotion/core": "10.0.35"
+    "**/react-dom": "17.0.1"
   }
 }

@@ -7,8 +7,8 @@ export {
   Global,
   jsx,
   ClassNames,
-} from "@emotion/core"
-export type { InterpolationWithTheme, ObjectInterpolation } from "@emotion/core"
+} from "@emotion/react"
+export type { Interpolation } from "@emotion/react"
 export * from "./hooks"
 export * from "./system.types"
 export * from "./providers"

@@ -1,7 +1,7 @@
 import { keyframes } from "@chakra-ui/system"
 import { getColor, mode } from "@chakra-ui/theme-tools"
 
-export function fade(startColor: string, endColor: string) {
+const fade = (startColor: string, endColor: string) => {
   return keyframes({
     from: { borderColor: startColor, background: startColor },
     to: { borderColor: endColor, background: endColor },

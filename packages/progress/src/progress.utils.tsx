@@ -1,7 +1,9 @@
 import { keyframes } from "@chakra-ui/system"
 import { isFunction, valueToPercent } from "@chakra-ui/utils"
 
-export const spin = keyframes({
+type Keyframe = ReturnType<typeof keyframes>
+
+export const spin: Keyframe = keyframes({
   "0%": {
     strokeDasharray: "1, 400",
     strokeDashoffset: "0",
@@ -16,7 +18,7 @@ export const spin = keyframes({
   },
 })
 
-export const rotate = keyframes({
+export const rotate: Keyframe = keyframes({
   "0%": {
     transform: "rotate(0deg)",
   },
@@ -25,12 +27,12 @@ export const rotate = keyframes({
   },
 })
 
-export const progress = keyframes({
+export const progress: Keyframe = keyframes({
   "0%": { left: "-40%" },
   "100%": { left: "100%" },
 })
 
-export const stripe = keyframes({
+export const stripe: Keyframe = keyframes({
   from: { backgroundPosition: "1rem 0" },
   to: { backgroundPosition: "0 0" },
 })

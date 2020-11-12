@@ -4,4 +4,23 @@ module.exports = {
   typescript: {
     reactDocgen: false,
   },
+  webpackFinal: async (config) => {
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: withoutEmotion(config.resolve.alias),
+      },
+    }
+  },
+}
+
+function withoutEmotion(packages) {
+  let result = {}
+  for (key in packages) {
+    if (!/emotion/.test(key)) {
+      result[key] = packages[key]
+    }
+  }
+  return result
 }
