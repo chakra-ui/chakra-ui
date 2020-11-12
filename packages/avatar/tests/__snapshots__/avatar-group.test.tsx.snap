@@ -12,8 +12,8 @@ exports[`matches snapshot 1`] = `
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
   -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
   justify-content: flex-end;
   -webkit-flex-direction: row-reverse;
   -ms-flex-direction: row-reverse;
@@ -32,8 +32,8 @@ exports[`matches snapshot 1`] = `
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   text-align: center;
   text-transform: uppercase;

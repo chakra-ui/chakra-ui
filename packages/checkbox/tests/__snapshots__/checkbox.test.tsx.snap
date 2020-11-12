@@ -46,8 +46,8 @@ exports[`Checkbox renders correctly 1`] = `
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   vertical-align: top;
   -webkit-user-select: none;
@@ -120,7 +120,7 @@ exports[`Checkbox renders correctly 1`] = `
 
 .emotion-0:focus,
 .emotion-0[data-focus] {
-  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
 }
 
 .emotion-0[aria-invalid=true],
@@ -217,8 +217,8 @@ exports[`accepts custom icon 1`] = `
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   vertical-align: top;
   -webkit-user-select: none;
@@ -291,7 +291,7 @@ exports[`accepts custom icon 1`] = `
 
 .emotion-1:focus,
 .emotion-1[data-focus] {
-  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
 }
 
 .emotion-1[aria-invalid=true],
@@ -330,10 +330,10 @@ exports[`accepts custom icon 1`] = `
   flex-shrink: 0;
   opacity: 1;
   -webkit-transform: scale(1);
+  -moz-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
   -webkit-transition: -webkit-transform 200ms;
-  -webkit-transition: transform 200ms;
   transition: transform 200ms;
   font-size: 0.625rem;
   vertical-align: middle;
@@ -422,8 +422,8 @@ exports[`matches snapshot  1`] = `
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   vertical-align: top;
   -webkit-user-select: none;
@@ -496,7 +496,7 @@ exports[`matches snapshot  1`] = `
 
 .emotion-0:focus,
 .emotion-0[data-focus] {
-  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
 }
 
 .emotion-0[aria-invalid=true],

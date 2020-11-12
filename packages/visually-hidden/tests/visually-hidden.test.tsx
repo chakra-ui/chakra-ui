@@ -8,8 +8,7 @@ test("should render correctly", async () => {
   expect(getByText(/Click me/i)).toMatchInlineSnapshot(`
     .emotion-0 {
       border: 0px;
-      -webkit-clip: rect(0px,0px,0px,0px);
-      clip: rect(0px,0px,0px,0px);
+      clip: rect(0px, 0px, 0px, 0px);
       height: 1px;
       width: 1px;
       margin: -1px;

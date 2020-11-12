@@ -9,7 +9,7 @@ exports[`matches snapshot 1`] = `
   display: inline-flex;
 }
 
-.emotion-4 > *:not(style) ~ *:not(style) {
+.emotion-4>*:not(style)~*:not(style) {
   margin-left: 0.5rem;
 }
 
@@ -20,14 +20,15 @@ exports[`matches snapshot 1`] = `
   display: inline-flex;
   -webkit-appearance: none;
   -moz-appearance: none;
+  -ms-appearance: none;
   appearance: none;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   -webkit-transition: all 250ms;
   transition: all 250ms;
@@ -53,7 +54,7 @@ exports[`matches snapshot 1`] = `
 
 .emotion-0:focus,
 .emotion-0[data-focus] {
-  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
   z-index: 1;
 }
 

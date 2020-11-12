@@ -8,6 +8,7 @@ exports[`Textarea renders correctly 1`] = `
   position: relative;
   -webkit-appearance: none;
   -moz-appearance: none;
+  -ms-appearance: none;
   appearance: none;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
@@ -33,7 +34,7 @@ exports[`Textarea renders correctly 1`] = `
 .emotion-0[aria-readonly=true],
 .emotion-0[readonly],
 .emotion-0[data-readonly] {
-  box-shadow: none !important;
+  box-shadow: none!important;
   -webkit-user-select: all;
   -moz-user-select: all;
   -ms-user-select: all;

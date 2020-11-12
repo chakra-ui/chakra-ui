@@ -2,7 +2,9 @@
 
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
-  .emotion-0 {
+  
+
+.emotion-0 {
   cursor: text;
   display: inline-block;
   font-size: inherit;
@@ -32,7 +34,7 @@ exports[`matches snapshot 1`] = `
 
 .emotion-1:focus,
 .emotion-1[data-focus] {
-  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
 }
 
 .emotion-1::-webkit-input-placeholder {

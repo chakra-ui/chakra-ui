@@ -17,8 +17,8 @@ exports[`Switch renders correctly 1`] = `
   -ms-flex-negative: 0;
   flex-shrink: 0;
   -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
   -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
   justify-content: flex-start;
   box-sizing: content-box;
   cursor: pointer;
@@ -33,7 +33,7 @@ exports[`Switch renders correctly 1`] = `
 
 .emotion-1:focus,
 .emotion-1[data-focus] {
-  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
 }
 
 .emotion-1[disabled],
@@ -57,10 +57,10 @@ exports[`Switch renders correctly 1`] = `
 .emotion-0 {
   background: #FFFFFF;
   -webkit-transition: -webkit-transform 250ms;
-  -webkit-transition: transform 250ms;
   transition: transform 250ms;
   border-radius: 9999px;
   -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
   -ms-transform: translateX(0);
   transform: translateX(0);
   width: 1rem;
@@ -70,6 +70,7 @@ exports[`Switch renders correctly 1`] = `
 .emotion-0[aria-checked=true],
 .emotion-0[data-checked] {
   -webkit-transform: translateX(0.875rem);
+  -moz-transform: translateX(0.875rem);
   -ms-transform: translateX(0.875rem);
   transform: translateX(0.875rem);
 }

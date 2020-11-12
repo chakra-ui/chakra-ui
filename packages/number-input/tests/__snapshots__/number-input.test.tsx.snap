@@ -18,6 +18,7 @@ exports[`should render correctly 1`] = `
   position: relative;
   -webkit-appearance: none;
   -moz-appearance: none;
+  -ms-appearance: none;
   appearance: none;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
@@ -39,7 +40,7 @@ exports[`should render correctly 1`] = `
 .emotion-0[aria-readonly=true],
 .emotion-0[readonly],
 .emotion-0[data-readonly] {
-  box-shadow: none !important;
+  box-shadow: none!important;
   -webkit-user-select: all;
   -moz-user-select: all;
   -ms-user-select: all;
@@ -99,8 +100,8 @@ exports[`should render correctly 1`] = `
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   -webkit-align-items: center;
   -webkit-box-align: center;
