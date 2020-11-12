@@ -1,26 +1,26 @@
 import CSSReset from "@chakra-ui/css-reset"
-import { PortalManager, PortalManagerProps } from "@chakra-ui/portal"
+import { PortalManager } from "@chakra-ui/portal"
 import {
   ColorModeProvider,
-  ThemeProviderProps,
-  ThemeProvider,
-  GlobalStyle,
   ColorModeProviderProps,
+  GlobalStyle,
+  ThemeProvider,
 } from "@chakra-ui/system"
 import defaultTheme from "@chakra-ui/theme"
+import { Dict } from "@chakra-ui/utils"
 import * as React from "react"
 
 export interface ChakraProviderProps {
   /**
    * a theme. if omitted, uses the default theme provided by chakra
    */
-  theme?: ThemeProviderProps["theme"]
+  theme?: Dict
   /**
    * Common z-index to use for `Portal`
    *
    * @default undefined
    */
-  portalZIndex?: PortalManagerProps["zIndex"]
+  portalZIndex?: number
   /**
    * If `true`, `CSSReset` component will be mounted to help
    * you reset browser styles

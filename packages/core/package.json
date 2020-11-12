@@ -80,6 +80,8 @@
     "@chakra-ui/visually-hidden": "1.0.0-rc.8"
   },
   "peerDependencies": {
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
     "framer-motion": "^2.9.3",
     "react": "16.x || 17.x"
   },

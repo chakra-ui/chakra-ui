@@ -57,11 +57,11 @@
     "@chakra-ui/color-mode": "1.0.0-rc.8",
     "@chakra-ui/styled-system": "1.0.0-rc.8",
     "@chakra-ui/utils": "1.0.0-rc.8",
-    "@emotion/react": "^11.0.0",
-    "@emotion/styled": "^11.0.0",
     "react-fast-compare": "3.2.0"
   },
   "peerDependencies": {
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
     "react": ">=16.8.6"
   }
 }

@@ -4,30 +4,12 @@ import {
   createContext,
   Dict,
   memoizedGet as get,
-  mergeWith,
   runIfFn,
 } from "@chakra-ui/utils"
 import { Global, Interpolation, ThemeContext } from "@emotion/react"
 import * as React from "react"
 
-export interface ThemeProviderProps {
-  /**
-   * The theme to use for your application
-   */
-  theme: Dict
-}
-
-export const ThemeProvider: React.FC<ThemeProviderProps> = (props) => {
-  const { children, theme } = props
-  const outerTheme = React.useContext(ThemeContext) as Dict
-  const mergedTheme = mergeWith({}, outerTheme, theme)
-
-  return (
-    <ThemeContext.Provider value={mergedTheme}>
-      {children}
-    </ThemeContext.Provider>
-  )
-}
+export { ThemeProvider, ThemeProviderProps } from "@emotion/react"
 
 export function useTheme<T extends object = Dict>() {
   const theme = React.useContext(
