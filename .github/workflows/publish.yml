@@ -2,6 +2,8 @@ name: Publish to NPM
 
 on:
   push:
+    paths:
+      - "packages/**"
     branches:
       - master
 

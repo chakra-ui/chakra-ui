@@ -28,7 +28,7 @@
     "start": "yarn build && yarn storybook",
     "start:all": "yarn build && concurrently \"yarn docs develop\"  \"yarn storybook\" ",
     "prebuild": "yarn babel-plugin build",
-    "build": "lerna run build --ignore @chakra-ui/{test-utils,babel-plugin} --no-private --stream",
+    "build": "lerna run build --ignore @chakra-ui/test-utils --no-private --stream",
     "test": "lerna run test --no-private --stream",
     "lint": "lerna run lint --no-private --stream",
     "lint:types": "lerna exec --parallel \"tsc --noEmit\"",
