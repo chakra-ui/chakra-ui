@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/props-docs",
-  "version": "1.0.0-rc.8",
+  "version": "1.0.0",
   "description": "Extracts prop types for documentation purposes",
   "keywords": [
     "docs",
@@ -49,12 +49,12 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/styled-system": "1.0.0-rc.8",
-    "@chakra-ui/react": "1.0.0-rc.8",
-    "react-docgen-typescript": "^1.20.5",
-    "regenerator-runtime": "^0.13.7",
+    "@chakra-ui/react": "1.0.0",
+    "@chakra-ui/styled-system": "1.0.0",
     "glob": "^7.1.6",
-    "mkdirp": "^1.0.4"
+    "mkdirp": "^1.0.4",
+    "react-docgen-typescript": "^1.20.5",
+    "regenerator-runtime": "^0.13.7"
   },
   "devDependencies": {
     "@types/glob": "^7.1.3"
