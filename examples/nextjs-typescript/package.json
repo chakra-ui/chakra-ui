@@ -17,11 +17,11 @@
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
     "faker": "^5.1.0",
-    "next": "9.5.5",
+    "next": "^10.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^3.11.0",
-    "typescript": "^4.0.3"
+    "typescript": "^4.0.5"
   },
   "repository": {
     "type": "git",

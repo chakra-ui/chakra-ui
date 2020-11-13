@@ -222,7 +222,7 @@
     "storybook-addon-performance": "^0.13.0",
     "ts-jest": "^26.4.2",
     "ts-node": "^9.0.0",
-    "typescript": "^4.0.3",
+    "typescript": "^4.0.5",
     "react-hook-form": "6.8.6"
   },
   "resolutions": {
