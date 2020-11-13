@@ -82,7 +82,7 @@
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
-    "framer-motion": "^2.9.3",
+    "framer-motion": "^2.9.4",
     "react": "16.x || 17.x"
   },
   "author": "Segun Adebayo <sage@adebayosegun.com>",

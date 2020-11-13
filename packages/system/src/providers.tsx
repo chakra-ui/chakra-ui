@@ -9,7 +9,8 @@ import {
 import { Global, Interpolation, ThemeContext } from "@emotion/react"
 import * as React from "react"
 
-export { ThemeProvider, ThemeProviderProps } from "@emotion/react"
+export { ThemeProvider } from "@emotion/react"
+export type { ThemeProviderProps } from "@emotion/react"
 
 export function useTheme<T extends object = Dict>() {
   const theme = React.useContext(

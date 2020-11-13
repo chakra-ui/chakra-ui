@@ -45,29 +45,23 @@ fix it.
 
 ### 1. Update your dependencies
 
-Chakra no longer requires `@emotion/core`, `@emotion/styled` and
-`emotion-theming` peer dependencies.
-
-- If you're not using these libraries in your code, you can remove them and
-  update to v1.
-
-- If you're using any of `emotion/core` or `emotion/styled`, ensure you pin the
-  versions as follows: `"@emotion/react": "11.0.0"`,
-  `"@emotion/styled": "10.0.27"`.
-
-> `@emotion/core` was recently changed to `@emotion/react` following the v11
-> release by the emotionjs team
-
-You'll need also install `framer-motion`. We use this to manage animations and
+Install the `framer-motion` package. We use this to manage animations and
 transitions within components.
+
+Remove the `emotion-theming` package. As at emotion v11, `emotion-theming` as
+been removed and all it's functionality as been migrated to `@emotion/react`.
+
+Rename the `@emotion/core` package to `@emotion/react`. `@emotion/core` was
+recently changed to `@emotion/react` following the v11 release by the emotionjs
+team.
 
 ```diff
 "dependencies": {
-  "@chakra-ui/core": "latest",
-  "framer-motion": "latest",
--  "@emotion/core": "10.x",
--  "@emotion/styled": "10.X",
--  "emotion-theming": "10.x"
+  "@chakra-ui/core": "1.0.0",
+  "framer-motion": "2.9.5",
+  "@emotion/react": "11.0.0",
+  "@emotion/styled": "11.0.0",
+- "emotion-theming": "10.x"
 }
 ```
 
@@ -79,17 +73,6 @@ transitions within components.
 Chakra moved all icons to a separate package `@chakra-ui/icons`. We recommend
 using `react-icons` in your projects considering it has a robust set of icons.
 However, you can still install this package.
-
-#### Notes on Emotion versions
-
-Chakra UI uses emotion's `ThemeContext` to provide tokens to all components. If
-the version of `@emotion/core` in your `node_modules` is different from that
-used in Chakra, you may get a strange error or notice that most components lose
-their styles. Two ways to fix this are:
-
-- Delete `node_modules` and `package-lock.json` or `yarn.lock` after upgrading.
-- Pin the version of `@emotion/core` to `10.0.35` and `@emotion/styled` to
-  `10.0.27`.
 
 ### 2. Update the ThemeProvider
 
