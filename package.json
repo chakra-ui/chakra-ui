@@ -42,7 +42,8 @@
     "create-pkg": "node scripts/create-package.js",
     "changes": "dotenv lerna-changelog",
     "release": "lerna publish",
-    "version": "lerna publish --force-publish=*",
+    "version:v1": "lerna version 1.0.0 --force-publish=*",
+    "release:v1": "lerna publish from-package",
     "release:ci": "lerna publish -y --loglevel verbose",
     "version:next": "lerna version --force-publish=* --preid rc",
     "release:next": "lerna publish from-package --dist-tag next",
@@ -178,12 +179,11 @@
     "cz-conventional-changelog": "^3.3.0",
     "dotenv-cli": "^3.2.0",
     "edit-json-file": "^1.5.0",
-    "yarn-deduplicate": "^3.0.0",
     "eslint": "^7.11.0",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint-config-airbnb-typescript": "^12.0.0",
     "eslint-config-prettier": "^6.14.0",
     "eslint-config-react": "^1.1.7",
-    "eslint-config-airbnb-typescript": "^12.0.0",
+    "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.5",
@@ -212,6 +212,7 @@
     "prettier": "^2.1.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-hook-form": "6.8.6",
     "react-icons": "^3.11.0",
     "react-lorem-component": "^0.13.0",
     "react-router-dom": "^5.2.0",
@@ -224,10 +225,11 @@
     "ts-jest": "^26.4.2",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.5",
-    "react-hook-form": "6.8.6"
+    "yarn-deduplicate": "^3.0.0"
   },
   "resolutions": {
     "**/react": "17.0.1",
     "**/react-dom": "17.0.1"
-  }
+  },
+  "version": "1.0.0"
 }

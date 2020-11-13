@@ -39,10 +39,10 @@ jobs:
           git config --global user.email "joseshegs@gmail.com"
           git config --global user.name "Sage"
 
-      - run: yarn version:next -y
+      - run: yarn version:v1 -y
         name: Version all packages
 
-      - run: yarn release:next -y
+      - run: yarn release:v1 -y
         name: Publish new version for all packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
