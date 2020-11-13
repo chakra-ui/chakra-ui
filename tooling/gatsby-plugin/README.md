@@ -1,4 +1,4 @@
-# gatsby-plugin-chakra-ui
+# @chakra-ui/gatsby-plugin
 
 Gatsby plugin for adding Chakra UI
 
@@ -8,21 +8,21 @@ Gatsby plugin for adding Chakra UI
 peer dependencies.
 
 ```sh
-npm i gatsby-plugin-chakra-ui @chakra-ui/react
+npm i @chakra-ui/gatsby-plugin @chakra-ui/react
 
 # or
 
-yarn add gatsby-plugin-chakra-ui @chakra-ui/react
+yarn add @chakra-ui/gatsby-plugin @chakra-ui/react
 ```
 
 ## Usage
 
-1. Add `gatsby-plugin-chakra-ui` as a plugin in your Gatsby config.
+1. Add `@chakra-ui/gatsby-plugin` as a plugin in your Gatsby config.
 
 ```js
 // gatsby-config.js
 module.exports = {
-  plugins: ["gatsby-plugin-chakra-ui"],
+  plugins: ["@chakra-ui/gatsby-plugin"],
 }
 ```
 
@@ -73,7 +73,7 @@ You can disable either of these with Gatsby options:
 module.exports = {
   plugins: [
     {
-      resolve: "gatsby-plugin-chakra-ui",
+      resolve: "@chakra-ui/gatsby-plugin",
       options: {
         /**
          * @property {boolean} [isResettingCSS=true]
@@ -100,10 +100,10 @@ module.exports = {
 ## Customizing the theme
 
 To use customize the theme in your Gatsby site, you can shadow the plugin's
-`src/gatsby-plugin-chakra-ui/index.js` file with your own theme:
+`src/@chakra-ui/gatsby-plugin/index.js` file with your own theme:
 
 ```js
-// src/gatsby-plugin-chakra-ui/theme.js
+// src/@chakra-ui/gatsby-plugin/theme.js
 const theme = {}
 
 export default theme
