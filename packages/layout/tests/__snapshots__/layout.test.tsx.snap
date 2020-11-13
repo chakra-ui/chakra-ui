@@ -69,6 +69,44 @@ exports[`<Box /> renders box correctly 1`] = `
 </DocumentFragment>
 `;
 
+exports[`<Divider /> overrides the theming props 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  opacity: 0.6;
+  border: 0;
+  border-color: inherit;
+  border-style: dashed;
+  border-bottom-width: 1px;
+  width: 100%;
+}
+
+<hr
+    aria-orientation="horizontal"
+    class="chakra-divider emotion-0"
+    role="separator"
+  />
+</DocumentFragment>
+`;
+
+exports[`<Divider /> renders with default theming 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  opacity: 0.6;
+  border: 0;
+  border-color: inherit;
+  border-style: solid;
+  border-bottom-width: 1px;
+  width: 100%;
+}
+
+<hr
+    aria-orientation="horizontal"
+    class="chakra-divider emotion-0"
+    role="separator"
+  />
+</DocumentFragment>
+`;
+
 exports[`<Flex /> renders all the allowed shorthand style props 1`] = `
 <DocumentFragment>
   .emotion-0 {
