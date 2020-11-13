@@ -194,7 +194,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
                 px="6"
                 py="4"
               >
-                <Img h="72px" src="/git-nation-badge.png" />
+                <Img h="64px" src="/git-nation-badge.png" />
               </Box>
             </Center>
           </Container>
