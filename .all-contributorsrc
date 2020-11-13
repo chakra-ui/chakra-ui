@@ -1491,6 +1491,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "SpencerDuball",
+      "name": "Spencer Duball",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/22606045?v=4",
+      "profile": "https://github.com/SpencerDuball",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
