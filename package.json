@@ -107,11 +107,11 @@
     "media-query": "yarn workspace @chakra-ui/media-query",
     "skeleton": "yarn workspace @chakra-ui/skeleton",
     "skip-nav": "yarn workspace @chakra-ui/skip-nav",
-    "babel-plugin": "yarn workspace babel-plugin-chakra-ui",
+    "babel-plugin": "yarn workspace @chakra-ui/babel-plugin",
     "theme-tools": "yarn workspace @chakra-ui/theme-tools",
     "styled-system": "yarn workspace @chakra-ui/styled-system",
     "control-box": "yarn workspace @chakra-ui/control-box",
-    "gatsby-plugin": "yarn workspace gatsby-plugin-chakra-ui"
+    "gatsby-plugin": "yarn workspace @chakra-ui/gatsby-plugin"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
