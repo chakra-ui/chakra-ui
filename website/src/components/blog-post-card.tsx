@@ -7,7 +7,7 @@ import {
   Text,
   useColorModeValue,
   VStack,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 import format from "date-fns/format"
 import parseISO from "date-fns/parseISO"
 import Link from "next/link"

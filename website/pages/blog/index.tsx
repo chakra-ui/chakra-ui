@@ -1,7 +1,7 @@
 import * as React from "react"
 import SEO from "components/seo"
 import Header from "components/header"
-import { Box, Heading, Stack } from "@chakra-ui/core"
+import { Box, Heading, Stack } from "@chakra-ui/react"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
 import { BlogPostCard } from "components/blog-post-card"
 import { getBlogPosts } from "utils/get-blog-posts"
