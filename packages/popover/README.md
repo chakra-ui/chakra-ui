@@ -26,7 +26,7 @@ import {
   PopoverFooter,
   PopoverArrow,
   PopoverCloseButton,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 ```
 
 ## Basic Usage

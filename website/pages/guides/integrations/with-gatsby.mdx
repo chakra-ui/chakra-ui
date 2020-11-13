@@ -20,11 +20,11 @@ Gastby plugins make external APIs plug-and-play into your website. Installing
 can be done with the following command:
 
 ```bash
-npm i gatsby-plugin-chakra-ui @chakra-ui/core
+npm i gatsby-plugin-chakra-ui @chakra-ui/react
 
 # or
 
-yarn add gatsby-plugin-chakra-ui @chakra-ui/core
+yarn add gatsby-plugin-chakra-ui @chakra-ui/react
 ```
 
 After installation, you'll need to add `gatsby-plugin-chakra-ui` to the
@@ -77,7 +77,7 @@ two files should look like this:
 
 ```js live=false
 import React from "react"
-import { ChakraProvider, CSSReset } from "@chakra-ui/core"
+import { ChakraProvider, CSSReset } from "@chakra-ui/react"
 import customTheme from "./theme/theme"
 
 export const wrapRootElement = ({ element }) => {
@@ -102,7 +102,7 @@ below.
 
 ```jsx live=false
 import React from "react"
-import { ChakraProvider, CSSReset } from "@chakra-ui/core"
+import { ChakraProvider, CSSReset } from "@chakra-ui/react"
 import customTheme from "./theme/theme"
 
 export const wrapRootElement = ({ element }) => {

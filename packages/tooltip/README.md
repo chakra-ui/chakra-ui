@@ -16,7 +16,7 @@ npm i @chakra-ui/tooltip
 ## Import components
 
 ```js
-import { Tooltip } from "@chakra-ui/core"
+import { Tooltip } from "@chakra-ui/react"
 ```
 
 ## Usage

@@ -8,11 +8,11 @@ description: How to install and set up Chakra UI in your project
 Inside your React project directory, install Chakra UI by running the following:
 
 ```bash
-npm i @chakra-ui/core @emotion/core @emotion/styled framer-motion
+npm i @chakra-ui/react @emotion/core @emotion/styled framer-motion
 
 # or
 
-yarn add @chakra-ui/core @emotion/core @emotion/styled framer-motion
+yarn add @chakra-ui/react @emotion/core @emotion/styled framer-motion
 ```
 
 > For `create-react-app` installation instructions, check this
@@ -29,7 +29,7 @@ Go to the root of your application and do this:
 import * as React from "react"
 
 // 1. import `ChakraProvider` component
-import { ChakraProvider } from "@chakra-ui/core"
+import { ChakraProvider } from "@chakra-ui/react"
 
 function App() {
   // 2. Use at the root of your app
@@ -49,14 +49,14 @@ function App() {
 ## Add custom theme (Optional)
 
 If you need to customize the default chakra theme to match your design
-requirements, you can extend the `theme` from `@chakra-ui/core`.
+requirements, you can extend the `theme` from `@chakra-ui/react`.
 
 Chakra UI provides an `extendTheme` function that deep merges the default theme
 with your customizations.
 
 ```jsx live=false
 // 1. Import the extendTheme function
-import { extendTheme } from "@chakra-ui/core"
+import { extendTheme } from "@chakra-ui/react"
 
 // 2. Extend the theme to include custom colors, fonts, etc
 const colors = {

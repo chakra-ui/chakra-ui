@@ -4,7 +4,7 @@ import { types } from "@babel/core"
 
 const PURE_CALLS = new Map([
   ["@chakra-ui/system", ["forwardRef", "memo"]],
-  ["@chakra-ui/core", ["forwardRef", "memo"]],
+  ["@chakra-ui/react", ["forwardRef", "memo"]],
 ])
 
 export default declare((api) => {

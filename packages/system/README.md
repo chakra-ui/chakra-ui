@@ -113,7 +113,7 @@ const theme = {
 };
 
 // 2. create or import Button from chakra-ui
-import { Button } from "@chakra-ui/core"
+import { Button } from "@chakra-ui/react"
 
 // or your own button
 const Button = chakra("button", { themeKey: "Button" })

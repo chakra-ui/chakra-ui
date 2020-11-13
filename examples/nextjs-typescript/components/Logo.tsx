@@ -3,7 +3,7 @@ import {
   IconProps,
   chakra,
   usePrefersReducedMotion,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 
 const spin = keyframes`
   from { transform: rotate(0deg); }

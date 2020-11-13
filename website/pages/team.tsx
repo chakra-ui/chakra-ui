@@ -10,7 +10,7 @@ import {
   Text,
   Wrap,
   WrapItem,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
 import Container from "components/container"
 import Header from "components/header"

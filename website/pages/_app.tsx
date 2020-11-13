@@ -5,7 +5,7 @@ import Router from "next/router"
 import React from "react"
 import siteConfig from "configs/site-config"
 import "../src/styles/algolia.css"
-import { ChakraProvider } from "@chakra-ui/core"
+import { ChakraProvider } from "@chakra-ui/react"
 import theme from "theme"
 import FontFace from "components/font-face"
 

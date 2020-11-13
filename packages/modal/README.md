@@ -25,7 +25,7 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 ```
 
 ## Usage
@@ -132,7 +132,7 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 ```
 
 ## Basic usage

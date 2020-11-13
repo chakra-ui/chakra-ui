@@ -57,7 +57,7 @@ team.
 
 ```diff
 "dependencies": {
-  "@chakra-ui/core": "^1.0.0",
+  "@chakra-ui/react": "^1.0.0",
   "framer-motion": "^2.9.5",
 - "@emotion/core": "^10.0.10",
 + "@emotion/react": "^11.0.0",
@@ -156,7 +156,7 @@ To provide easier extensibility and typesafety, breakpoints should now be
 created through `createBreakpoints` by passing an object:
 
 ```diff
-+ import { extendTheme } from "@chakra-ui/core"
++ import { extendTheme } from "@chakra-ui/react"
 + import { createBreakpoints } from "@chakra-ui/theme-tools"
 
 
@@ -210,8 +210,8 @@ and accessibility.
   remove the notion that it is a header when it is actually a button.
 
 ```diff
-- import { AccordionHeader } from "@chakra-ui/core"
-+ import { AccordionButton } from "@chakra-ui/core"
+- import { AccordionHeader } from "@chakra-ui/react"
++ import { AccordionButton } from "@chakra-ui/react"
 ```
 
 > WAI-ARIA guidelines require that accordion buttons be wrapped in the
@@ -239,8 +239,8 @@ out of the box when we don't. Here's how to handle this:
 - Change all imports of `AspectRatioBox` to `AspectRatio`.
 
 ```diff
-- import { AspectRatioBox } from "@chakra-ui/core"
-+ import  { AspectRatio } from "@chakra-ui/core"
+- import { AspectRatioBox } from "@chakra-ui/react"
++ import  { AspectRatio } from "@chakra-ui/react"
 ```
 
 ### Breadcrumb
@@ -321,7 +321,7 @@ errors, and reduces unused icons bloating your app.**
 
 ```jsx live=false
 // pages/_document.js
-import { ColorModeScript } from "@chakra-ui/core"
+import { ColorModeScript } from "@chakra-ui/react"
 
 export default class Document extends NextDocument {
   static getInitialProps(ctx) {
@@ -367,14 +367,14 @@ prop passed to `Editable` as well as the prop in its render props.
 
 - Basic interface icons provided by Chakra have moved to the `@chakra-ui/icons`
   package. Replace all `<Icon name="..." />` elements imported from
-  `@chakra-ui/core` with equivalent React elements imported from
+  `@chakra-ui/react` with equivalent React elements imported from
   `@chakra-ui/icons`.
 
   > Replacement logic: If `<Icon name="search" />` is used, then replace it with
   > `<SearchIcon />` from Chakra icons package.
 
 ```diff
-- import { Icon } from "@chakra-ui/core"
+- import { Icon } from "@chakra-ui/react"
 - <Icon name="search" />
 
 + import { SearchIcon } from "@chakra-ui/icons"
@@ -387,7 +387,7 @@ Existing icons will appear as a question mark until refactored.
   `theme` create your own icons using the `createIcon` utility:
 
 ```jsx live=false
-import { createIcon } from "@chakra-ui/core"
+import { createIcon } from "@chakra-ui/react"
 
 export const UpDownIcon = createIcon({
   displayName: "UpDownIcon",
@@ -413,7 +413,7 @@ import { createIcon, MoonIcon, SunIcon } from "@chakra-ui/icons"
 > from Chakra.
 
 ```diff
-import { PhoneIcon } from "@chakra-ui/core"
+import { PhoneIcon } from "@chakra-ui/react"
 
 - <IconButton icon="phone">Call</IconButton>
 + <IconButton icon={<PhoneIcon />}>Call</IconButton>

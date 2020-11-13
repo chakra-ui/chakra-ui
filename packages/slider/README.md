@@ -24,7 +24,7 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 ```
 
 ## Usage

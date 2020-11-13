@@ -123,7 +123,7 @@ const Button = {
 Make sense? Next, we'll update the theme to include this new component style.
 
 ```jsx live=false
-import { extendTheme } from "@chakra-ui/core"
+import { extendTheme } from "@chakra-ui/react"
 
 const theme = extendTheme({
   components: {
@@ -157,7 +157,7 @@ passed, the `defaultProps` defined in the style config will be used.
 
 ```jsx live=false
 // 1. Import useStyleConfig
-import { useStyleConfig } from "@chakra-ui/core"
+import { useStyleConfig } from "@chakra-ui/react"
 
 function Button(props) {
   const { size, variant, ...rest } = props
@@ -260,7 +260,7 @@ const Menu = {
 Next, we'll update the theme object to included this new component style.
 
 ```jsx live=false
-import { extendTheme } from "@chakra-ui/core"
+import { extendTheme } from "@chakra-ui/react"
 
 const theme = extendTheme({
   components: {
@@ -288,8 +288,8 @@ const styles = useMultiStyleConfig(themeKey, props)
 
 - `themeKey`: the key in `theme.components` that points to the desired
   styleConfig.
-- `props`: an option of the options for computing the final styles. It
-  typically consists of the `size`, `variant`, and `colorScheme`.
+- `props`: an option of the options for computing the final styles. It typically
+  consists of the `size`, `variant`, and `colorScheme`.
 
 #### Return Values
 
@@ -299,7 +299,11 @@ used.
 
 ```jsx live=false
 // 1. Import the components and hook
-import { StylesProvider, useMultiStyleConfig, useStyles } from "@chakra-ui/core"
+import {
+  StylesProvider,
+  useMultiStyleConfig,
+  useStyles,
+} from "@chakra-ui/react"
 
 function Menu(props) {
   const { size, variant, children, ...rest } = props

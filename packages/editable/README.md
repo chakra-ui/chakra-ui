@@ -17,7 +17,7 @@ npm i @chakra-ui/editable
 ## Import component
 
 ```js
-import { Editable, EditableInput, EditablePreview } from "@chakra-ui/core"
+import { Editable, EditableInput, EditablePreview } from "@chakra-ui/react"
 ```
 
 ## Usage

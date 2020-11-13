@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, BoxProps, Icon } from "@chakra-ui/core"
+import { Box, BoxProps, Icon } from "@chakra-ui/react"
 import { FaHeart } from "react-icons/fa"
 import siteConfig from "configs/site-config"
 

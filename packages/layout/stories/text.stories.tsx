@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ChakraProvider, extendTheme } from "@chakra-ui/core"
+import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 import { Text } from "../src"
 
 export default {

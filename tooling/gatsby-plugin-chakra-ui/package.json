@@ -18,7 +18,7 @@
     "test": "jest --passWithNoTests"
   },
   "peerDependencies": {
-    "@chakra-ui/core": ">=1.0.0-rc.5",
+    "@chakra-ui/react": ">=1.0.0-rc.5",
     "@chakra-ui/theme": ">=1.0.0-rc.5",
     "gatsby": "^2.24.85"
   }

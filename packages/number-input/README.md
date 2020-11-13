@@ -26,7 +26,7 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 ```
 
 ## Usage

@@ -1,4 +1,4 @@
-import { Box, chakra, Stack, useColorModeValue } from "@chakra-ui/core"
+import { Box, chakra, Stack, useColorModeValue } from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import * as React from "react"
 import { Routes } from "utils/get-route-context"

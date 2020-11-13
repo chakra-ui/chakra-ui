@@ -1,4 +1,4 @@
-import { Box, chakra } from "@chakra-ui/core"
+import { Box, chakra } from "@chakra-ui/react"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
 import Container from "components/container"
 import EditPageLink from "components/edit-page-button"
