@@ -123,7 +123,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
         <Box
           as="section"
           pt={{ base: "10rem", md: "12rem" }}
-          pb={{ base: "0", md: "6rem" }}
+          pb={{ base: "0", md: "5rem" }}
         >
           <Container>
             <Box maxW="760px" mx="auto" textAlign="center">
@@ -183,10 +183,24 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
                 </Button>
               </Stack>
             </Box>
+
+            <Center>
+              <Box
+                display="inline-block"
+                mt="70px"
+                rounded="xl"
+                bg="green.50"
+                shadow="base"
+                px="6"
+                py="4"
+              >
+                <Img h="72px" src="/git-nation-badge.png" />
+              </Box>
+            </Center>
           </Container>
         </Box>
 
-        <Divider mt={16} />
+        <Divider />
 
         <Box as="section" pt="48px" pb="32px">
           <Container textAlign="center">
