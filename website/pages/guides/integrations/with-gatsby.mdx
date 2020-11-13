@@ -11,7 +11,7 @@ API usage seen in the rest of the docs is the same!
 
 **There are two ways to setup Chakra with Gatsby shown in this Guide:**
 
-- [`gatsby-plugin-chakra-ui`](#gatsby-plugin)
+- [`@chakra-ui/gatsby-plugin`](#gatsby-plugin)
 - [From scratch](#chakra-providers)
 
 ## Gatsby plugin
@@ -20,14 +20,14 @@ Gastby plugins make external APIs plug-and-play into your website. Installing
 can be done with the following command:
 
 ```bash
-npm i gatsby-plugin-chakra-ui @chakra-ui/react
+npm i @chakra-ui/gatsby-plugin @chakra-ui/react
 
 # or
 
-yarn add gatsby-plugin-chakra-ui @chakra-ui/react
+yarn add @chakra-ui/gatsby-plugin @chakra-ui/react
 ```
 
-After installation, you'll need to add `gatsby-plugin-chakra-ui` to the
+After installation, you'll need to add `@chakra-ui/gatsby-plugin` to the
 `gatsby-config.js` file.
 
 ```jsx live=false
@@ -36,7 +36,7 @@ After installation, you'll need to add `gatsby-plugin-chakra-ui` to the
 module.exports = {
   plugins: [
     {
-      resolve: "gatsby-plugin-chakra-ui",
+      resolve: "@chakra-ui/gatsby-plugin",
       options: {
         /**
          * @property {boolean} [isResettingCSS=true]
@@ -58,7 +58,7 @@ To use custom theme, you can shadow this plugin’s theme.js directory and file
 with your own theme:
 
 ```jsx live=false
-// src/gatsby-plugin-chakra-ui/theme.js
+// src/@chakra-ui/gatsby-plugin/theme.js
 const theme = {}
 
 export default theme
