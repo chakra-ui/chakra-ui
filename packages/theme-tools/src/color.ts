@@ -62,7 +62,7 @@ export const whiten = (color: string, amount: number) => (theme: Dict) => {
 /**
  * Add black to a color
  * @param color - the color in hex, rgb, or hsl
- * @param amount - the amount white to add (0-1)
+ * @param amount - the amount black to add (0-1)
  */
 export const blacken = (color: string, amount: number) => (theme: Dict) => {
   const raw = getColor(theme, color)
@@ -72,13 +72,18 @@ export const blacken = (color: string, amount: number) => (theme: Dict) => {
 /**
  * Darken a specified color
  * @param color - the color in hex, rgb, or hsl
- * @param amount - the amount white to add (0-1)
+ * @param amount - the amount to darken (0-1)
  */
 export const darken = (color: string, amount: number) => (theme: Dict) => {
   const raw = getColor(theme, color)
   return Color(raw).darken(amount).toHexString()
 }
 
+/**
+ * Lighten a specified color
+ * @param color - the color in hex, rgb, or hsl
+ * @param amount - the amount to lighten (0-1)
+ */
 export const lighten = (color: string, amount: number) => (theme: Dict) =>
   Color(getColor(theme, color)).lighten(amount).toHexString()
 
