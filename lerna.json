@@ -5,6 +5,7 @@
   "useWorkspaces": true,
   "registry": "https://registry.npmjs.org/",
   "command": {
+    "version": { "exact": true },
     "publish": {
       "conventionalCommits": true,
       "message": "chore(release): publish",
