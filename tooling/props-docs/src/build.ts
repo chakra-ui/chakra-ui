@@ -58,7 +58,7 @@ if (require.main === module) {
  * Find all TypeScript files which could contain component definitions
  */
 async function findComponentFiles() {
-  const tsFiles = await globAsync("core/**/src/**/*.@(ts|tsx)", {
+  const tsFiles = await globAsync("react/**/src/**/*.@(ts|tsx)", {
     cwd: sourcePath,
   })
 
