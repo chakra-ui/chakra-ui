@@ -31,5 +31,5 @@ directories `packages`, `tooling`, etc.
 The publish workflow has been updated to include only `yarn release` in favor of
 adding a `prerelease` script to the `package.json`.
 
-The release script is not managed by `changeset` not `lerna`, so we run
+The release script is managed by `changeset`, not `lerna`, so we run
 `changeset publish` now
