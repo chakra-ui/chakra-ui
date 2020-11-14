@@ -360,6 +360,9 @@ Thanks goes to these wonderful people
     <td align="center"><a href="http://marcuswood.io"><img src="https://avatars0.githubusercontent.com/u/13633613?v=4" width="64px;" alt=""/><br /><sub><b>Marcus Wood</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=mwood23" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/SpencerDuball"><img src="https://avatars0.githubusercontent.com/u/22606045?v=4" width="64px;" alt=""/><br /><sub><b>Spencer Duball</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=SpencerDuball" title="Documentation">📖</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://jacobarriola.com"><img src="https://avatars0.githubusercontent.com/u/1371573?v=4" width="64px;" alt=""/><br /><sub><b>Jacob Arriola</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=jacobarriola" title="Documentation">📖</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
