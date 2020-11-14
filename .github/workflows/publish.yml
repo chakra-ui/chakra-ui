@@ -33,15 +33,12 @@ jobs:
       - run: yarn install --frozen-lockfile && yarn bootstrap
         name: Install dependencies
 
-      - run: yarn build
-        name: Build all packages
-
       - name: Setup CI Git User
         run: |
           git config --global user.email "joseshegs@gmail.com"
           git config --global user.name "Sage"
 
-      - run: yarn release:ci
+      - run: yarn release
         name: Publish packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -25,3 +25,11 @@ yarn pkg accordion build
 
 This uses `manypkg run` under the hood to run specific scripts in the workspace
 directories `packages`, `tooling`, etc.
+
+## Update Github workflow
+
+The publish workflow has been updated to include only `yarn release` in favor of
+adding a `prerelease` script to the `package.json`.
+
+The release script is not managed by `changeset` not `lerna`, so we run
+`changeset publish` now
