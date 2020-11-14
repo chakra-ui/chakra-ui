@@ -63,5 +63,10 @@
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
     "react": ">=16.8.6"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "react": "^17.0.1"
   }
 }
