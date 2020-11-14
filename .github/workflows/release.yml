@@ -6,21 +6,27 @@ on:
       - "packages/**"
     branches:
       - master
+      - next
 
 jobs:
-  publish:
+  release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
       - id: yarn-cache
         name: Get Yarn cache path
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - uses: actions/checkout@v2
-
-      - uses: actions/setup-node@v1
+      - name: Checkout Repo
+        uses: actions/checkout@master
         with:
-          node-version: "12"
-          registry-url: "https://registry.npmjs.org"
+          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
+          fetch-depth: 0
+
+      - name: Setup Node.js 12.x
+        uses: actions/setup-node@master
+        with:
+          node-version: 12.x
 
       - uses: actions/cache@70655ec
         name: Load Yarn cache
@@ -30,16 +36,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - run: yarn install --frozen-lockfile && yarn bootstrap
-        name: Install dependencies
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile && yarn bootstrap
 
       - name: Setup CI Git User
         run: |
           git config --global user.email "joseshegs@gmail.com"
           git config --global user.name "Sage"
 
-      - run: yarn release
-        name: Publish packages
+      - name: Publish packages
+        uses: changesets/action@master
+        with:
+          publish: yarn release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
