@@ -363,6 +363,7 @@ Thanks goes to these wonderful people
   <tr>
     <td align="center"><a href="https://jacobarriola.com"><img src="https://avatars0.githubusercontent.com/u/1371573?v=4" width="64px;" alt=""/><br /><sub><b>Jacob Arriola</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=jacobarriola" title="Documentation">📖</a></td>
     <td align="center"><a href="https://jkenley.me"><img src="https://avatars0.githubusercontent.com/u/8725648?v=4" width="64px;" alt=""/><br /><sub><b>Kenley Jean</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=bedjiken" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://morello.dev"><img src="https://avatars0.githubusercontent.com/u/19588613?v=4" width="64px;" alt=""/><br /><sub><b>Dennis Morello</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Adennismorello" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
