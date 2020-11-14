@@ -100,7 +100,7 @@ module.exports = {
 ## Customizing the theme
 
 To use customize the theme in your Gatsby site, you can shadow the plugin's
-`src/@chakra-ui/gatsby-plugin/index.js` file with your own theme:
+`src/@chakra-ui/gatsby-plugin/theme.js` file with your own theme:
 
 ```js
 // src/@chakra-ui/gatsby-plugin/theme.js
