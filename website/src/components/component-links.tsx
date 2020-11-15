@@ -49,42 +49,58 @@ function ComponentLink(props: ComponentLinkProps) {
   )
 }
 
-function ComponentLinks(props) {
+export type ComponentLinksProps = {
+  github?: { url: string }
+  npm?: { package: string }
+  storybook?: { url: string }
+}
+function ComponentLinks(props: ComponentLinkProps) {
   const { github, npm, storybook, ...rest } = props
+
+  const githubLink = github?.url && (
+    <WrapItem>
+      <ComponentLink
+        url={github.url}
+        icon={FaGithub}
+        iconColor={useColorModeValue("gray.600", "inherit")}
+        iconSize="1rem"
+      >
+        View source
+      </ComponentLink>
+    </WrapItem>
+  )
+
+  const npmLink = npm?.package && (
+    <WrapItem>
+      <ComponentLink
+        url={`https://www.npmjs.com/package/${npm.package}`}
+        icon={FaNpm}
+        iconSize="2rem"
+        iconColor="red.500"
+      >
+        {npm.package}
+      </ComponentLink>
+    </WrapItem>
+  )
+
+  const storybookLink = storybook?.url && (
+    <WrapItem>
+      <ComponentLink
+        url={storybook.url}
+        icon={StorybookIcon}
+        iconSize="1.25rem"
+        iconColor="pink.500"
+      >
+        View storybook
+      </ComponentLink>
+    </WrapItem>
+  )
+
   return (
     <Wrap mt="2rem" spacing="4" {...rest}>
-      <WrapItem>
-        <ComponentLink
-          url={github.url}
-          icon={FaGithub}
-          iconColor={useColorModeValue("gray.600", "inherit")}
-          iconSize="1rem"
-        >
-          View source
-        </ComponentLink>
-      </WrapItem>{" "}
-      <WrapItem>
-        <ComponentLink
-          url={npm.url}
-          icon={FaNpm}
-          iconSize="2rem"
-          iconColor="red.500"
-        >
-          {npm.label}
-        </ComponentLink>
-      </WrapItem>
-      {storybook && (
-        <WrapItem>
-          <ComponentLink
-            url={storybook.url}
-            icon={StorybookIcon}
-            iconSize="1.25rem"
-            iconColor="pink.500"
-          >
-            View storybook
-          </ComponentLink>
-        </WrapItem>
-      )}
+      {githubLink}
+      {npmLink}
+      {storybookLink}
     </Wrap>
   )
 }
