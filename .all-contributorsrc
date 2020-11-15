@@ -1527,6 +1527,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "umxr",
+      "name": "Umar Gora",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/20203468?v=4",
+      "profile": "https://umarcodes.xyz/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
