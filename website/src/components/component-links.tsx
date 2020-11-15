@@ -54,7 +54,7 @@ export type ComponentLinksProps = {
   npm?: { package: string }
   storybook?: { url: string }
 }
-function ComponentLinks(props: ComponentLinkProps) {
+function ComponentLinks(props: ComponentLinksProps) {
   const { github, npm, storybook, ...rest } = props
 
   const githubLink = (github?.url || github?.package) && (
