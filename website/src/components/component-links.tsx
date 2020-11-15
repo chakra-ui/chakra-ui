@@ -50,17 +50,20 @@ function ComponentLink(props: ComponentLinkProps) {
 }
 
 export type ComponentLinksProps = {
-  github?: { url: string }
+  github?: { url?: string; package?: string }
   npm?: { package: string }
   storybook?: { url: string }
 }
 function ComponentLinks(props: ComponentLinkProps) {
   const { github, npm, storybook, ...rest } = props
 
-  const githubLink = github?.url && (
+  const githubLink = (github?.url || github?.package) && (
     <WrapItem>
       <ComponentLink
-        url={github.url}
+        url={
+          github.url ||
+          `https://github.com/chakra-ui/chakra-ui/tree/master/packages/${github.package}`
+        }
         icon={FaGithub}
         iconColor={useColorModeValue("gray.600", "inherit")}
         iconSize="1rem"
