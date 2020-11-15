@@ -137,7 +137,7 @@ function Example() {
 
 ## `create-react-app` Templates
 
-[Check out our guide](https://chakra-ui.com/guides/cra-templates) for
+[Check out our guide](https://chakra-ui.com/guides/integrations/with-cra) for
 information on how to use our official `create-react-app` templates.
 
 ## Contributing
