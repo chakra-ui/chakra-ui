@@ -104,5 +104,11 @@
   "storybook": {
     "title": "Chakra UI",
     "url": "https://chakra-ui.netlify.app"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "framer-motion": "^2.9.4",
+    "react": "^17.0.1"
   }
 }

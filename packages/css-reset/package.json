@@ -53,5 +53,9 @@
   "peerDependencies": {
     "@emotion/react": ">=10.0.35",
     "react": ">=16.8.6"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.0.0",
+    "react": "^17.0.1"
   }
 }

@@ -62,8 +62,9 @@
   },
   "devDependencies": {
     "@chakra-ui/system": "1.0.0",
-    "@chakra-ui/theme": "1.0.0-rc.5",
-    "framer-motion": "^2.9.3"
+    "framer-motion": "^2.9.4",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=1.0.0-rc.4",

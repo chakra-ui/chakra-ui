@@ -58,5 +58,9 @@
   "peerDependencies": {
     "framer-motion": "2.x",
     "react": "16.x || 17.x"
+  },
+  "devDependencies": {
+    "framer-motion": "^2.9.4",
+    "react": "^17.0.1"
   }
 }

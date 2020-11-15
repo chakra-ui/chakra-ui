@@ -70,7 +70,8 @@
   },
   "devDependencies": {
     "@chakra-ui/system": "1.0.0",
-    "framer-motion": "^2.9.3"
+    "framer-motion": "^2.9.4",
+    "react": "^17.0.1"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=1.0.0-rc.5",

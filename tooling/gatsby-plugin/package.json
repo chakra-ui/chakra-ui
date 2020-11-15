@@ -21,5 +21,10 @@
     "@chakra-ui/react": ">=1.0.0-rc.5",
     "@chakra-ui/theme": ">=1.0.0-rc.5",
     "gatsby": "^2.24.85"
+  },
+  "devDependencies": {
+    "@chakra-ui/react": "*",
+    "@chakra-ui/theme": "*",
+    "gatsby": "^2.25.3"
   }
 }
