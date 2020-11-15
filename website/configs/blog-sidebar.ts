@@ -7,8 +7,8 @@ const sidebar: Routes = {
       heading: true,
       routes: [
         {
-          heading: true,
           title: "2020",
+          path: "/blog/2020",
           open: true,
           routes: [
             {
