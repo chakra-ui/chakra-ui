@@ -18,15 +18,15 @@ jobs:
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - name: Checkout
-        uses: actions/checkout@722adc6
+        uses: actions/checkout@v1
 
       - name: Enable node
-        uses: actions/setup-node@1c5c137
+        uses: actions/setup-node@v1
         with:
           node-version: 12.x
 
       - name: Load Yarn cache
-        uses: actions/cache@70655ec
+        uses: actions/cache@v1
         with:
           path: ${{ steps.yarn-cache.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
