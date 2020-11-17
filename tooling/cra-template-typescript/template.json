@@ -2,6 +2,8 @@
   "package": {
     "dependencies": {
       "@chakra-ui/react": "^1.0.0-rc.5",
+      "@emotion/react": "^11.0.0",
+      "@emotion/styled": "^11.0.0",
       "framer-motion": "^2.9.4",
       "react-icons": "^3.0.0",
       "@testing-library/jest-dom": "^5.9.0",
