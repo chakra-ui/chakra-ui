@@ -66,7 +66,10 @@ const baseStyleFooter = {
 
 const baseStyle = (props: Dict) => ({
   overlay: baseStyleOverlay,
-  dialogContainer: baseStyleDialogContainer(props),
+  dialogContainer: {
+    ...baseStyleDialogContainer(props),
+    position: "initial",
+  },
   dialog: baseStyleDialog(props),
   header: baseStyleHeader,
   body: baseStyleBody(props),
