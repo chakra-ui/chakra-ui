@@ -180,7 +180,12 @@ export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
         const clonedDivider = React.cloneElement(divider as any, dividerStyles)
         const _divider = isLast ? null : clonedDivider
 
-        return <React.Fragment key={index}>{[_child, _divider]}</React.Fragment>
+        return (
+          <React.Fragment key={index}>
+            {_child}
+            {_divider}
+          </React.Fragment>
+        )
       })
 
   const _className = cx("chakra-stack", className)
