@@ -74,7 +74,7 @@ type Handler = (
   index?: number,
 ) => any
 
-const memoize = (fn: Handler) => {
+export const memoize = (fn: Handler) => {
   const cache = new WeakMap()
 
   const memoizedFn: Handler = (
