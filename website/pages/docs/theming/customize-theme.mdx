@@ -37,7 +37,12 @@ const theme = extendTheme({
   },
 })
 
-// 3. Now you can use these colors in your components
+// 3. Pass the new theme to `ChakraProvider`
+<ChakraProvider theme={theme}>
+  <App />
+</ChakraProvider>
+
+// 4. Now you can use these colors in your components
 function Usage() {
   return <Box bg="brand.100">Welcome</Box>
 }
