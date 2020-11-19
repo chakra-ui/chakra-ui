@@ -14,6 +14,7 @@ const config: Config = {
   objectPosition: true,
   float: true,
   willChange: true,
+  filter: true,
 }
 
 export interface OtherProps {
@@ -61,6 +62,10 @@ export interface OtherProps {
    * The CSS `will-change` property
    */
   willChange?: ResponsiveValue<CSS.Property.WillChange>
+  /**
+   * The CSS `filter` property
+   */
+  filter?: ResponsiveValue<CSS.Property.Filter>
 }
 
 export const others = system(config)
