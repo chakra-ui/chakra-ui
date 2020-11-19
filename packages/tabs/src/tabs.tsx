@@ -65,6 +65,7 @@ export const Tabs = forwardRef<TabsProps, "div">(function Tabs(props, ref) {
           className={cx("chakra-tabs", className)}
           ref={ref}
           {...rootProps}
+          __css={styles.root}
         >
           {children}
         </chakra.div>
@@ -186,6 +187,7 @@ export const TabPanels = forwardRef<TabPanelsProps, "div">(function TabPanels(
   return (
     <chakra.div
       {...panelsProps}
+      width="100%"
       ref={ref}
       className={cx("chakra-tabs__tab-panels", props.className)}
     />
