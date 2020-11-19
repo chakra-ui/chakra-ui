@@ -53,7 +53,7 @@
     "@chakra-ui/theme-tools": "1.0.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">=1.0.0-rc.5"
+    "@chakra-ui/system": ">=1.0.0"
   },
   "devDependencies": {
     "@chakra-ui/system": "1.0.0"
