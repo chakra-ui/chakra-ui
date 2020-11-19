@@ -40,11 +40,7 @@ const [MenuProvider, useMenuContext] = createContext<UseMenuReturn>({
 
 export { MenuProvider, useMenuContext }
 
-export interface UseMenuProps extends UsePopperProps {
-  /**
-   * Unique id to be used by menu and its children
-   */
-  id?: string
+export interface UseMenuProps extends UsePopperProps, UseDisclosureProps {
   /**
    * If `true`, the menu will close when a menu item is
    * clicked
@@ -72,34 +68,6 @@ export interface UseMenuProps extends UsePopperProps {
    * until the menu is open.
    */
   isLazy?: boolean
-  /**
-   * If `true`, the top-level menu will be opened in controlled mode
-   */
-  isOpen?: UseDisclosureProps["isOpen"]
-  /**
-   * If `true`, the top-level menu will be opened in un-controlled mode
-   */
-  defaultIsOpen?: UseDisclosureProps["defaultIsOpen"]
-  /**
-   * Function to be called when menu is open
-   */
-  onOpen?: UseDisclosureProps["onOpen"]
-  /**
-   * Function to be called when menu is closed
-   */
-  onClose?: UseDisclosureProps["onClose"]
-  /**
-   * The placement of the `MenuList`
-   *
-   * @default "bottom-start"
-   */
-  placement?: UsePopperProps["placement"]
-  /**
-   * The strategy for positioning the `MenuList`
-   *
-   * @default true
-   */
-  fixed?: UsePopperProps["fixed"]
 }
 
 /**
@@ -116,7 +84,6 @@ export function useMenu(props: UseMenuProps) {
     autoSelect = true,
     isLazy,
     placement = "bottom-start",
-    fixed,
   } = props
 
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure(props)
@@ -143,7 +110,7 @@ export function useMenu(props: UseMenuProps) {
   /**
    * Add some popper.js for dynamic positioning
    */
-  const popper = usePopper({ placement, fixed })
+  const popper = usePopper({ placement, ...props })
 
   const [focusedIndex, setFocusedIndex] = React.useState(-1)
 
