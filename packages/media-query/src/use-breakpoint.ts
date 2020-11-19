@@ -1,4 +1,5 @@
 import { useTheme } from "@chakra-ui/system"
+import { isBrowser } from "@chakra-ui/utils"
 import React from "react"
 import createMediaQueries from "./create-media-query"
 
@@ -31,11 +32,11 @@ export function useBreakpoint(defaultBreakpoint?: string) {
   )
 
   const [currentBreakpoint, setCurrentBreakpoint] = React.useState(() => {
-    const mediaQuery = mediaQueries.find(({ query, breakpoint }) =>
-      defaultBreakpoint
-        ? breakpoint === defaultBreakpoint
-        : window.matchMedia(query).matches,
-    )
+    const mediaQuery = mediaQueries.find(({ query, breakpoint }) => {
+      if (defaultBreakpoint) return breakpoint === defaultBreakpoint
+      if (isBrowser) return window.matchMedia(query).matches
+      return undefined
+    })
 
     if (mediaQuery) {
       const { query, ...breakpoint } = mediaQuery
