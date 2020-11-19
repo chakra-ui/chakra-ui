@@ -168,7 +168,7 @@ export const Progress: React.FC<ProgressProps> = (props) => {
   }
 
   return (
-    <chakra.div __css={trackStyles} {...rest}>
+    <chakra.div borderRadius={borderRadius} __css={trackStyles} {...rest}>
       <StylesProvider value={styles}>
         <ProgressFilledTrack
           min={min}
