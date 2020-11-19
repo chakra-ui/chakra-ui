@@ -245,6 +245,51 @@ function SizeExample() {
 }
 ```
 
+### Using a form in a Drawer
+
+If you need to put a form within the Drawer, you might need to use to form
+validation library like `react-hook-form` or `formik`. Here's the recommended
+way to do it:
+
+> Because the button is located outside the form, you can leverage its native
+> HTML `form` attrbute and refer to the `id` of the `form`.
+
+```jsx live=false
+export const App = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  return (
+    <>
+      <Button onClick={onOpen}>Open</Button>
+      <Drawer isOpen={isOpen} onClose={onClose}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>Create your account</DrawerHeader>
+
+          <DrawerBody>
+            <form
+              id="my-form"
+              onSubmit={(e) => {
+                e.preventDefault()
+                console.log("submitted")
+              }}
+            >
+              <Input name="nickname" placeholder="Type here..." />
+            </form>
+          </DrawerBody>
+
+          <DrawerFooter>
+            <Button type="submit" form="my-form">
+              Save
+            </Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    </>
+  )
+}
+```
+
 ## Accessibility
 
 - When opening the Drawer, focus is trapped inside the Drawer.
