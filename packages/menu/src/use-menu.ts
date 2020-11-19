@@ -89,11 +89,6 @@ export interface UseMenuProps extends UsePopperProps {
    */
   onClose?: UseDisclosureProps["onClose"]
   /**
-   * The gap (in pixels) to apply between the `MenuList` and the target.
-   * Used by `popper.js`
-   */
-  gutter?: UsePopperProps["gutter"]
-  /**
    * The placement of the `MenuList`
    *
    * @default "bottom-start"
@@ -105,10 +100,6 @@ export interface UseMenuProps extends UsePopperProps {
    * @default true
    */
   fixed?: UsePopperProps["fixed"]
-
-
-
-
 }
 
 /**
@@ -124,7 +115,6 @@ export function useMenu(props: UseMenuProps) {
     closeOnBlur = true,
     autoSelect = true,
     isLazy,
-    gutter,
     placement = "bottom-start",
     fixed,
   } = props
@@ -153,7 +143,7 @@ export function useMenu(props: UseMenuProps) {
   /**
    * Add some popper.js for dynamic positioning
    */
-  const popper = usePopper({ gutter, placement, fixed })
+  const popper = usePopper({ placement, fixed })
 
   const [focusedIndex, setFocusedIndex] = React.useState(-1)
 
