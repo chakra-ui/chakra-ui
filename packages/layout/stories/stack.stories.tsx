@@ -142,21 +142,31 @@ export const WrappingChildren = () => (
   </Stack>
 )
 
-export const StackBug_2119 = () => (
+export const WithResponsiveSpacingAndDirection = () => (
+  <Stack
+    spacing={["10px", "60px"]}
+    divider={<StackDivider borderColor="gray.200" />}
+    direction={["column", "row"]}
+  >
+    <Box bgColor="red.500">First</Box>
+    <Box bgColor="blue.500">Second</Box>
+    <Box bgColor="yellow.500">Third</Box>
+  </Stack>
+)
+
+export const WithCustomBorderColor = () => (
   <Stack
     direction={{ base: "column", md: "row" }}
-    divider={
-      <StackDivider borderColor={{ base: "gray.100", md: "gray.900" }} />
-    }
+    divider={<StackDivider borderColor={{ base: "gray.200", md: "red.300" }} />}
     spacing={4}
   >
-    <Box h="40px" bg="yellow.200">
+    <Box w="40px" flexShrink={0} h="40px" bg="yellow.200">
       1
     </Box>
-    <Box h="40px" bg="tomato">
+    <Box w="40px" flexShrink={0} h="40px" bg="tomato">
       2
     </Box>
-    <Box h="40px" bg="pink.100">
+    <Box w="40px" flexShrink={0} h="40px" bg="pink.100">
       3
     </Box>
   </Stack>
