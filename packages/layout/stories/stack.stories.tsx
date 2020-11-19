@@ -23,7 +23,7 @@ export const WithCustomDivider = () => {
       </Stack>
 
       <Stack
-        spacing="12px"
+        spacing="40px"
         divider={<Divider sx={{ borderColor: "red.200" }} />}
       >
         <Box>1</Box>

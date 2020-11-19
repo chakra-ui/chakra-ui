@@ -12,7 +12,7 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
   props,
   ref,
 ) {
-  const { className, orientation = "horizontal", ...rest } = props
+  const { className, orientation = "horizontal", __css, ...rest } = props
 
   const styles = {
     vertical: {
@@ -37,6 +37,7 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
         borderColor: "inherit",
         borderStyle: "solid",
         ...styles[orientation],
+        ...__css,
       }}
       className={cx("chakra-divider", props.className)}
     />

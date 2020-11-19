@@ -8,12 +8,8 @@ import {
 } from "@chakra-ui/system"
 import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import {
-  getDividerStyles,
-  getStackStyles,
-  selector,
-  StackDirection,
-} from "./stack.utils"
+import { getDividerStyles, getStackStyles, selector } from "./stack.utils"
+import type { StackDirection } from "./stack.utils"
 
 export type { StackDirection }
 
