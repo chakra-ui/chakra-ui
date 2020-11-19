@@ -52,7 +52,7 @@
   "dependencies": {
     "@chakra-ui/utils": "1.0.0",
     "@types/tinycolor2": "1.4.2",
-    "tinycolor2": "1.4.1"
+    "tinycolor2": "1.4.2"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=1.0.0-rc.5"
