@@ -32,5 +32,8 @@
     "lint": "concurrently yarn:lint:*",
     "lint:src": "eslint template/src --ext .ts,.tsx --config ../../.eslintrc",
     "lint:types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "web-vitals": "^0.2.2"
   }
 }
