@@ -98,7 +98,7 @@ export function useControllableState<T>(props: UseControllableStateProps<T>) {
       if (!isControlled) setValue(nextValue)
       onChange?.(nextValue)
     },
-    [onChange],
+    [onChange, value],
   )
 
   return [value, updateValue] as [T, React.Dispatch<React.SetStateAction<T>>]
