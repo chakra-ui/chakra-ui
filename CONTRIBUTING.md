@@ -86,14 +86,14 @@ each component in the root `package.json`. Now you can simply do:
 
 ```bash
 # to build
-yarn pkg button build
+yarn pkg tabs build
 
 # to test
-yarn pkg button test
-yarn pkg button test --watch
+yarn pkg tabs test
+yarn pkg tabs test --watch
 
 # to lint
-yarn pkg button lint
+yarn pkg tabs lint
 ```
 
 This alias is particularly useful when you're working on a specific component
