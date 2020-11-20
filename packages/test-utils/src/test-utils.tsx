@@ -110,7 +110,7 @@ type TestA11YOptions = TestOptions & { axeOptions?: RunOptions }
  * @see https://github.com/nickcolley/jest-axe#testing-react-with-react-testing-library
  */
 export const testA11y = async (
-  ui: UI | HTMLElement,
+  ui: UI | Element,
   { axeOptions, ...options }: TestA11YOptions = {},
 ) => {
   const container = React.isValidElement(ui)
