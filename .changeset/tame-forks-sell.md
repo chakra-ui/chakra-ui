@@ -2,4 +2,4 @@
 "@chakra-ui/hooks": patch
 ---
 
-fix: update value setter function in useControllable
+Fix setter function update of `value` in useControllable
