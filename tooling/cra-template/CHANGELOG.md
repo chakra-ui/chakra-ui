@@ -1,15 +1,20 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## 1.0.1
+
+### Patch Changes
+
+- [`d37ad622`](https://github.com/chakra-ui/chakra-ui/commit/d37ad622b929eead34d3a6eeb6a4d15c1c9f9286)
+  [#2553](https://github.com/chakra-ui/chakra-ui/pull/2553) Thanks
+  [@irreal](https://github.com/irreal)! - Added missing dependencies to the
+  `package.json` for Create React App templates
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # 1.0.0 (2020-11-13)
 
 **Note:** Version bump only for package @chakra-ui/cra-template
-
-
-
-
 
 # Change Log
 

@@ -1,15 +1,20 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## 1.0.1
+
+### Patch Changes
+
+- [`5c482483`](https://github.com/chakra-ui/chakra-ui/commit/5c482483ce24fc798540c9792a15e06772eae213)
+  [#2562](https://github.com/chakra-ui/chakra-ui/pull/2562) Thanks
+  [@LaurenceGGush](https://github.com/LaurenceGGush)! - Fix memory leak in
+  `utils/objects.ts`
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # 1.0.0 (2020-11-13)
 
 **Note:** Version bump only for package @chakra-ui/utils
-
-
-
-
 
 # Change Log
 

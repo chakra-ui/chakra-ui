@@ -1,15 +1,45 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## 1.0.1
+
+### Patch Changes
+
+- [`b3594802`](https://github.com/chakra-ui/chakra-ui/commit/b3594802714115c762013174badd5b838217be6f)
+  [#2522](https://github.com/chakra-ui/chakra-ui/pull/2522) Thanks
+  [@Qrymy](https://github.com/Qrymy)! - ## Stack
+
+  - Fix Stack divider keys issue
+  - Fix issue where stack with divider doesn't respond to both responsive
+    spacing and responsive direction
+
+  This wasn't working in v1 but now works 🎉
+
+  ```jsx
+  <Stack
+    spacing={["10px", "60px"]}
+    divider={<StackDivider borderColor="gray.200" />}
+    direction={["column", "row"]}
+  >
+    <Box bgColor="red.500">First</Box>
+    <Box bgColor="blue.500">Second</Box>
+    <Box bgColor="yellow.500">Third</Box>
+  </Stack>
+  ```
+
+  - Make it possible the regular `Divider` component within `Stack` by extending
+    the `__css` internal style prop
+
+- Updated dependencies
+  [[`5c482483`](https://github.com/chakra-ui/chakra-ui/commit/5c482483ce24fc798540c9792a15e06772eae213)]:
+  - @chakra-ui/utils@1.0.1
+  - @chakra-ui/icon@1.0.1
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # 1.0.0 (2020-11-13)
 
 **Note:** Version bump only for package @chakra-ui/layout
-
-
-
-
 
 # Change Log
 

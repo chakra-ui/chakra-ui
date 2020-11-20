@@ -1,15 +1,40 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## 1.1.0
+
+### Minor Changes
+
+- [`843854ec`](https://github.com/chakra-ui/chakra-ui/commit/843854ec669367623b50a598402be343866d87a8)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Update heading
+  theme to relative values for line height
+
+  - Fixed error styles for flushed input variant
+    [#2508](https://github.com/chakra-ui/chakra-ui/issues/2508)
+
+  ```jsx
+  // This shows the wrong shadow on focus. Work nows 🎉
+  <Input variant="flushed" isInvalid placeholder="Focus me" />
+  ```
+
+### Patch Changes
+
+- [`892ea2ca`](https://github.com/chakra-ui/chakra-ui/commit/892ea2ca1c02b4127f4f044df33de58cc7641f5c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Fix orientation
+  styles for Tabs when orientation prop is vertical
+  [#1187](https://github.com/chakra-ui/chakra-ui/issues/1187)
+
+  - Add support for styling the `root` tab element from theme
+    [#2548](https://github.com/chakra-ui/chakra-ui/issues/2548)
+
+- Updated dependencies []:
+  - @chakra-ui/theme-tools@1.0.1
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # 1.0.0 (2020-11-13)
 
 **Note:** Version bump only for package @chakra-ui/theme
-
-
-
-
 
 # Change Log
 
