@@ -15,6 +15,7 @@
     "@chakra-ui/react": "1.0.1",
     "@chakra-ui/theme-tools": "1.0.1",
     "@chakra-ui/utils": "1.0.1",
+    "@docsearch/react": "^1.0.0-alpha.27",
     "@docusaurus/utils": "^2.0.0-alpha.62",
     "@mdx-js/react": "^1.6.19",
     "@octokit/rest": "^18.0.9",
