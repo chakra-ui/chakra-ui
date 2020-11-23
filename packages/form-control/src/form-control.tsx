@@ -48,14 +48,6 @@ interface FormControlContext extends FormControlOptions {
    */
   label?: string
   /**
-   * The error message to be displayed when `isInvalid` is set to `true`
-   */
-  errorText?: string
-  /**
-   * The assistive text to be displayed that provides additional guidance to users
-   */
-  helperText?: string
-  /**
    * The custom `id` to use for the form control. This is passed directly to the form element (e.g, Input).
    * - The form element (e.g Input) gets the `id`
    * - The form label id: `form-label-${id}`
@@ -70,9 +62,10 @@ type ControlContext = Omit<
   "htmlProps"
 >
 
-const [FormControlProvider, useFormControlContext] = createContext<
-  ControlContext
->({
+const [
+  FormControlProvider,
+  useFormControlContext,
+] = createContext<ControlContext>({
   strict: false,
   name: "FormControlContext",
 })
