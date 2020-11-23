@@ -18,7 +18,13 @@ type ComponentInfo = {
 
 const globAsync = promisify(glob)
 
-const excludedPropNames = propNames.concat(["as", "apply", "sx", "__css"])
+const excludedPropNames = propNames.concat([
+  "as",
+  "apply",
+  "sx",
+  "__css",
+  "css",
+])
 
 const rootDir = path.join(__dirname, "..", "..", "..", "..")
 const sourcePath = path.join(rootDir, "packages")
