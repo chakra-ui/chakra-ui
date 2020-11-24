@@ -74,7 +74,7 @@ type Handler = (
   index?: number,
 ) => any
 
-const memoize = (fn: Handler) => {
+export const memoize = (fn: Handler) => {
   const cache = new WeakMap()
 
   const memoizedFn: Handler = (
@@ -88,15 +88,14 @@ const memoize = (fn: Handler) => {
     }
 
     const map = cache.get(obj)
-    const key = typeof path === "string" ? path.split(".") : [path]
 
-    if (map.has(key)) {
-      return map.get(key)
+    if (map.has(path)) {
+      return map.get(path)
     }
 
     const value = fn(obj, path, fallback, index)
 
-    map.set(key, value)
+    map.set(path, value)
 
     return value
   }

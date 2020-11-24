@@ -157,6 +157,7 @@ function variantFlushed(props: Record<string, any>) {
       },
       _invalid: {
         borderColor: getColor(theme, ec),
+        boxShadow: `0 0 0 1px ${getColor(theme, ec)}`,
       },
     },
     addon: {

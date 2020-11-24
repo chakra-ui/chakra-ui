@@ -131,7 +131,9 @@ only one prop to manage this, you can rename it to `boxSize`.
 > in some components (e.g. Button), it means the visual size and in others (e.g
 > Box), it means **width and height**.
 
-### 5. Replace PseudoBox elements
+### 5. Replace elements
+
+#### PseudoBox
 
 `PseudoBox` is now deprecated and its props can now be directly applied to
 `Box`. Replace all `PseudoBox` components with `Box`.
@@ -149,6 +151,21 @@ only one prop to manage this, you can rename it to `boxSize`.
 +      </Box>
 -    </PseudoBox>
 +    </Box>
+```
+
+#### Callout
+
+`Callout` is now deprecated and you can use an `Alert` instead.
+```diff
+-   <Callout
++   <Alert
+      mt={4}
+      w="90%"
+      bg="black"
+      variant="left-accent"
+    >
+-   </Callout>
++   </Alert>
 ```
 
 ### 6. Update theme breakpoints
@@ -349,6 +366,12 @@ export default class Document extends NextDocument {
 
 Here's how to add it for Gatsby:
 
+## Changes
+
+- The Gatsby plugin has been renamed from `gatsby-plugin-chakra-ui` to
+  `@chakra-ui/gatsby-plugin`. Please make sure to have updated this when
+  installing Chakra UI in your next Gatsby project.
+
 ```jsx live=false
 // gatsby-ssr.js
 export const onRenderBody = ({ setPreBodyComponents }) => {
@@ -357,7 +380,7 @@ export const onRenderBody = ({ setPreBodyComponents }) => {
 ```
 
 You can also install the
-[`gatsby-plugin-chakra-ui`](https://www.npmjs.com/package/gatsby-plugin-chakra-ui)
+[`@chakra-ui/gatsby-plugin`](https://www.npmjs.com/package/@chakra-ui/gatsby-plugin)
 package which automatically configures `ColorModeScript` along with
 `ChakraProvider`.
 
@@ -447,6 +470,10 @@ necessary border to the input.
 ### Link
 
 Due to accessibility reasons, we've deprecated the `isDisabled` prop for `Link`.
+
+### List
+
+Renamed `stylePos` to `stylePosition`
 
 ### Stack
 

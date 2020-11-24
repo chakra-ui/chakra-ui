@@ -29,7 +29,7 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
     borderColor,
     ...styles
   } = useStyleConfig("Divider", props)
-  const { className, orientation = "horizontal", ...rest } = omitThemingProps(props)
+  const { className, orientation = "horizontal", __css, ...rest } = omitThemingProps(props)
 
   const dividerStyles = {
     vertical: {
@@ -53,9 +53,11 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
       __css={{
         ...styles,
         border: "0",
+
         borderColor,
         borderStyle,
         ...dividerStyles[orientation],
+        ...__css,
       }}
       className={cx("chakra-divider", className)}
     />

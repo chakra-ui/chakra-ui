@@ -1491,6 +1491,51 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "SpencerDuball",
+      "name": "Spencer Duball",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/22606045?v=4",
+      "profile": "https://github.com/SpencerDuball",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "jacobarriola",
+      "name": "Jacob Arriola",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1371573?v=4",
+      "profile": "https://jacobarriola.com",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "bedjiken",
+      "name": "Kenley Jean",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/8725648?v=4",
+      "profile": "https://jkenley.me",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "dennismorello",
+      "name": "Dennis Morello",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/19588613?v=4",
+      "profile": "https://morello.dev",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "umxr",
+      "name": "Umar Gora",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/20203468?v=4",
+      "profile": "https://umarcodes.xyz/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
