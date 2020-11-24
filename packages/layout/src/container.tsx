@@ -38,13 +38,7 @@ export const Container = forwardRef<ContainerProps, "div">(function Container(
     ...rest
   } = omitThemingProps(props)
 
-  const {
-    w,
-    mx,
-    maxW,
-    px,
-    ...styles
-  } = useStyleConfig("Container", props)
+  const styles = useStyleConfig("Container", props)
 
   return (
     <chakra.div
@@ -53,10 +47,6 @@ export const Container = forwardRef<ContainerProps, "div">(function Container(
       {...rest}
       __css={{
         ...styles,
-        w: w || "100%",
-        mx: mx || "auto",
-        maxW: maxW || "60ch",
-        px: px || "1rem",
         ...(centerContent && {
           display: "flex",
           flexDirection: "column",
