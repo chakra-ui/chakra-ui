@@ -1,4 +1,11 @@
-import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
+import {
+  chakra,
+  forwardRef,
+  omitThemingProps,
+  ThemingProps,
+  useStyleConfig,
+  HTMLChakraProps,
+} from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -12,15 +19,27 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
   props,
   ref,
 ) {
-  const { className, orientation = "horizontal", __css, ...rest } = props
+  const {
+    borderLeftWidth,
+    borderBottomWidth,
+    borderTopWidth,
+    borderRightWidth,
+    borderWidth,
+    borderStyle,
+    borderColor,
+    ...styles
+  } = useStyleConfig("Divider", props)
+  const { className, orientation = "horizontal", __css, ...rest } = omitThemingProps(props)
 
-  const styles = {
+  const dividerStyles = {
     vertical: {
-      borderLeftWidth: "1px",
+      borderLeftWidth:
+        borderLeftWidth || borderRightWidth || borderWidth || "1px",
       height: "100%",
     },
     horizontal: {
-      borderBottomWidth: "1px",
+      borderBottomWidth:
+        borderBottomWidth || borderTopWidth || borderWidth || "1px",
       width: "100%",
     },
   }
@@ -32,19 +51,20 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
       aria-orientation={orientation}
       {...rest}
       __css={{
+        ...styles,
         border: "0",
-        opacity: 0.6,
-        borderColor: "inherit",
-        borderStyle: "solid",
-        ...styles[orientation],
+
+        borderColor,
+        borderStyle,
+        ...dividerStyles[orientation],
         ...__css,
       }}
-      className={cx("chakra-divider", props.className)}
+      className={cx("chakra-divider", className)}
     />
   )
 })
 
-export interface DividerProps extends HTMLChakraProps<"div"> {
+export interface DividerProps extends HTMLChakraProps<"div">, ThemingProps {
   orientation?: "horizontal" | "vertical"
 }
 

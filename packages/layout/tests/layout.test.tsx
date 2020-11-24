@@ -1,7 +1,7 @@
 import { render, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
-import { Box, Badge, Container, Flex } from "../src"
+import { Box, Badge, Container, Divider, Flex } from "../src"
 
 describe("<Box />", () => {
   test("renders box correctly", () => {
@@ -95,6 +95,18 @@ describe("<Flex />", () => {
       />,
     )
 
+    expect(asFragment()).toMatchSnapshot()
+  })
+})
+
+describe("<Divider />", () => {
+  test("renders with default theming", () => {
+    const { asFragment } = render(<Divider />)
+    expect(asFragment()).toMatchSnapshot()
+  })
+
+  test("overrides the theming props", () => {
+    const { asFragment } = render(<Divider variant="dashed" />)
     expect(asFragment()).toMatchSnapshot()
   })
 })
