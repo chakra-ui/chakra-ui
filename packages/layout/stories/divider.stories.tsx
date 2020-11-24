@@ -22,3 +22,7 @@ export const Basic = () => <Divider />
 export const Vertical = () => <Divider orientation="vertical" />
 
 export const Horizontal = () => <Divider orientation="horizontal" />
+
+export const DashedVariant = () => (
+  <Divider orientation="horizontal" variant="dashed" />
+)
