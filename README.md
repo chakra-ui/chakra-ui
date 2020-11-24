@@ -366,6 +366,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://morello.dev"><img src="https://avatars0.githubusercontent.com/u/19588613?v=4" width="64px;" alt=""/><br /><sub><b>Dennis Morello</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Adennismorello" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://umarcodes.xyz/"><img src="https://avatars2.githubusercontent.com/u/20203468?v=4" width="64px;" alt=""/><br /><sub><b>Umar Gora</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=umxr" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/Zyclotrop-j"><img src="https://avatars0.githubusercontent.com/u/4939546?v=4" width="64px;" alt=""/><br /><sub><b>Zyclotrop-j</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=Zyclotrop-j" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/milescm"><img src="https://avatars1.githubusercontent.com/u/33818414?v=4" width="64px;" alt=""/><br /><sub><b>Hong Suk Woo</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=milescm" title="Documentation">📖</a></td>
   </tr>
 </table>
 
