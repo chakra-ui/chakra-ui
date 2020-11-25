@@ -99,7 +99,7 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
     const [display, setDisplay] = React.useState<Display>(() => {
       if (!fromZeroHeight) return "block"
       const hidden = getInitialHidden()
-      return hidden ? "block" : "none"
+      return hidden ? "none" : "block"
     })
 
     useUpdateEffect(() => {
