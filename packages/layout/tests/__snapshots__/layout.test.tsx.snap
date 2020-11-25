@@ -69,6 +69,75 @@ exports[`<Box /> renders box correctly 1`] = `
 </DocumentFragment>
 `;
 
+exports[`<Container /> centerContent - prop works correctly 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 60ch;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+<div
+    class="chakra-container emotion-0"
+  >
+    This is centered container
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<Container /> renders box correctly 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 60ch;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+<div
+    class="chakra-container emotion-0"
+  >
+    This is container
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<Container /> themeing works correctly 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 60ch;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #E53E3E;
+}
+
+<div
+    class="chakra-container emotion-0"
+  >
+    This is container has a red background
+  </div>
+</DocumentFragment>
+`;
+
 exports[`<Divider /> overrides the theming props 1`] = `
 <DocumentFragment>
   .emotion-0 {
