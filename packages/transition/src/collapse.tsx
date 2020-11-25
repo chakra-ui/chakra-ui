@@ -41,10 +41,11 @@ const variants: CollapseVariants = {
 export interface CollapseOptions {
   /**
    * If `true`, the opacity of the content will be animated
+   * @default true
    */
   animateOpacity?: boolean
   /**
-   * If `true`, the collapse will unmount when `in={false}` and animation is done
+   * If `true`, the element will unmount when `in={false}` and animation is done
    */
   unmountOnExit?: boolean
   /**
@@ -52,11 +53,13 @@ export interface CollapseOptions {
    */
   in?: boolean
   /**
-   * The height you want the content in its collapsed state. Set to `0` by default
+   * The height you want the content in its collapsed state.
+   * @default 0
    */
   startingHeight?: number | string
   /**
-   * The height you want the content in its expanded state. Set to `auto` by default
+   * The height you want the content in its expanded state.
+   * @default "auto"
    */
   endingHeight?: number | string
 }
