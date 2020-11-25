@@ -55,23 +55,26 @@ export const slideFadeConfig: HTMLMotionProps<"div"> = {
 export interface SlideFadeProps extends HTMLMotionProps<"div"> {
   /**
    * The offset on the horizontal or `x` axis
+   * @default 0
    */
   offsetX?: number
   /**
    * The offset on the vertical or `y` axis
+   * @default 8
    */
   offsetY?: number
   /**
    * If `true`, the element will be transitioned back to the offset when it leaves.
    * Otherwise, it'll only fade out
+   * @default true
    */
   reverse?: boolean
   /**
-   * If `true`, the collapse will unmount when `isOpen={false}` and animation is done
+   * If `true`, the element will unmount when `in={false}` and animation is done
    */
   unmountOnExit?: boolean
   /**
-   * If `true`, the content will slide in
+   * If `true`, the content will animate in
    */
   in?: boolean
 }
