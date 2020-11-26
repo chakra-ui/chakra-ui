@@ -3,8 +3,12 @@ import {
   chakra,
   SystemProps,
   forwardRef,
-  PropsOf,
   HTMLChakraProps,
+  omitThemingProps,
+  ThemingProps,
+  useMultiStyleConfig,
+  StylesProvider,
+  useStyles,
 } from "@chakra-ui/system"
 import { getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -27,7 +31,10 @@ interface ListOptions {
   spacing?: SystemProps["margin"]
 }
 
-export interface ListProps extends HTMLChakraProps<"ul">, ListOptions {}
+export interface ListProps
+  extends HTMLChakraProps<"ul">,
+    ThemingProps,
+    ListOptions {}
 
 /**
  * List is used to display list items, it renders a `<ul>` by default.
@@ -35,33 +42,38 @@ export interface ListProps extends HTMLChakraProps<"ul">, ListOptions {}
  * @see Docs https://chakra-ui.com/components/list
  */
 export const List = forwardRef<ListProps, "ul">(function List(props, ref) {
+  const styles = useMultiStyleConfig("List", props)
   const {
     children,
     styleType = "none",
     stylePosition,
     spacing,
     ...rest
-  } = props
+  } = omitThemingProps(props)
 
   const validChildren = getValidChildren(children)
 
   const selector = "& > *:not(style) ~ *:not(style)"
 
+  const spacingStyle = spacing ? { [selector]: { mt: spacing } } : {}
+
   return (
-    <chakra.ul
-      ref={ref}
-      listStyleType={styleType}
-      listStylePosition={stylePosition}
-      /**
-       * We added this role to fix the Safari accessibility issue with list-style-type: none
-       * @see https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html
-       */
-      role="list"
-      __css={spacing ? { [selector]: { mt: spacing } } : {}}
-      {...rest}
-    >
-      {validChildren}
-    </chakra.ul>
+    <StylesProvider value={styles}>
+      <chakra.ul
+        ref={ref}
+        listStyleType={styleType}
+        listStylePosition={stylePosition}
+        /**
+         * We added this role to fix the Safari accessibility issue with list-style-type: none
+         * @see https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html
+         */
+        role="list"
+        __css={{ ...styles.container, ...spacingStyle }}
+        {...rest}
+      >
+        {validChildren}
+      </chakra.ul>
+    </StylesProvider>
   )
 })
 
@@ -97,14 +109,19 @@ if (__DEV__) {
   UnorderedList.displayName = "UnorderedList"
 }
 
-export interface ListItemProps extends PropsOf<typeof ListItem> {}
+export interface ListItemProps extends HTMLChakraProps<"li"> {}
 
 /**
  * ListItem
  *
  * Used to render a list item
  */
-export const ListItem = chakra("li")
+export const ListItem: React.FC<ListItemProps> = props => {
+  const styles = useStyles()
+  const LI = chakra("li")
+
+  return <LI {...props} __css={styles.item} />
+}
 
 if (__DEV__) {
   ListItem.displayName = "ListItem"
@@ -119,6 +136,8 @@ export const ListIcon = forwardRef<IconProps, "svg">(function ListIcon(
   props,
   ref,
 ) {
+  const styles = useStyles()
+
   return (
     <Icon
       ref={ref}
@@ -127,6 +146,7 @@ export const ListIcon = forwardRef<IconProps, "svg">(function ListIcon(
       display="inline"
       verticalAlign="text-bottom"
       {...props}
+      __css={styles.icon}
     />
   )
 })
