@@ -18,6 +18,7 @@ export const theme = {
   config,
 }
 
+export { ColorHues } from "./foundations/colors"
 export type Theme = typeof theme
 
 export default theme
