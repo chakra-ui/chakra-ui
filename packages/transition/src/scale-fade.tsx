@@ -36,6 +36,7 @@ export const scaleFadeConfig: HTMLMotionProps<"div"> = {
 export interface ScaleFadeProps extends HTMLMotionProps<"div"> {
   /**
    * The initial scale of the element
+   * @default 0.95
    */
   initialScale?: number
   /**
@@ -43,11 +44,11 @@ export interface ScaleFadeProps extends HTMLMotionProps<"div"> {
    */
   reverse?: boolean
   /**
-   * If `true`, the collapse will unmount when `isOpen={false}` and animation is done
+   * If `true`, the element will unmount when `in={false}` and animation is done
    */
   unmountOnExit?: boolean
   /**
-   * If `true`, the content will slide in
+   * Show the component; triggers the enter or exit states
    */
   in?: boolean
 }

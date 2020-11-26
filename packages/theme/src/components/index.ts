@@ -7,6 +7,8 @@ import Button from "./button"
 import Checkbox from "./checkbox"
 import CloseButton from "./close-button"
 import Code from "./code"
+import Container from "./container"
+import Divider from "./divider"
 import Drawer from "./drawer"
 import Editable from "./editable"
 import Form from "./form"
@@ -45,6 +47,8 @@ export default {
   Checkbox,
   CloseButton,
   Code,
+  Container,
+  Divider,
   Drawer,
   Editable,
   Form,

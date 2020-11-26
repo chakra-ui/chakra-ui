@@ -8,11 +8,11 @@ Gatsby plugin for adding Chakra UI
 peer dependencies.
 
 ```sh
-npm i @chakra-ui/gatsby-plugin @chakra-ui/react
+npm i @chakra-ui/gatsby-plugin @chakra-ui/react @emotion/react @emotion/styled framer-motion
 
 # or
 
-yarn add @chakra-ui/gatsby-plugin @chakra-ui/react
+yarn add @chakra-ui/gatsby-plugin @chakra-ui/react @emotion/react @emotion/styled framer-motion
 ```
 
 ## Usage

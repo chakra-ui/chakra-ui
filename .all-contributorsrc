@@ -1417,7 +1417,8 @@
       "profile": "https://github.com/ellisio",
       "contributions": [
         "code",
-        "bug"
+        "bug",
+        "doc"
       ]
     },
     {
@@ -1533,6 +1534,33 @@
       "name": "Umar Gora",
       "avatar_url": "https://avatars2.githubusercontent.com/u/20203468?v=4",
       "profile": "https://umarcodes.xyz/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "Zyclotrop-j",
+      "name": "Zyclotrop-j",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/4939546?v=4",
+      "profile": "https://github.com/Zyclotrop-j",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "milescm",
+      "name": "Hong Suk Woo",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/33818414?v=4",
+      "profile": "https://github.com/milescm",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "junhoyeo",
+      "name": "Junho Yeo",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/32605822?v=4",
+      "profile": "https://trendy-resume.now.sh/",
       "contributions": [
         "doc"
       ]
