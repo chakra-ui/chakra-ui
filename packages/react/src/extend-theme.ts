@@ -1,5 +1,6 @@
-import defaultTheme, { Theme, ColorHues } from "@chakra-ui/theme"
+import defaultTheme, { Theme } from "@chakra-ui/theme"
 import { isFunction, mergeWith } from "@chakra-ui/utils"
+import { ColorHues } from "@chakra-ui/theme/dist/types/foundations/colors"
 
 type ThemeExtensionTypeHints = {
   colors: Record<string, Partial<ColorHues> | string> // typehints for color definitions
