@@ -4,7 +4,11 @@ const baseStyleContainer = {}
 
 const baseStyleItem = {}
 
-const baseStyleIcon = {}
+const baseStyleIcon = {
+  marginRight: "0.5rem",
+  display: "inline",
+  verticalAlign: "text-bottom",
+}
 
 const baseStyle = {
   container: baseStyleContainer,

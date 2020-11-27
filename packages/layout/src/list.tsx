@@ -116,11 +116,10 @@ export interface ListItemProps extends HTMLChakraProps<"li"> {}
  *
  * Used to render a list item
  */
-export const ListItem: React.FC<ListItemProps> = props => {
+export const ListItem: React.FC<ListItemProps> = (props) => {
   const styles = useStyles()
-  const LI = chakra("li")
 
-  return <LI {...props} __css={styles.item} />
+  return <chakra.li {...props} __css={styles.item} />
 }
 
 if (__DEV__) {
@@ -138,17 +137,7 @@ export const ListIcon = forwardRef<IconProps, "svg">(function ListIcon(
 ) {
   const styles = useStyles()
 
-  return (
-    <Icon
-      ref={ref}
-      role="presentation"
-      marginRight="0.5rem"
-      display="inline"
-      verticalAlign="text-bottom"
-      {...props}
-      __css={styles.icon}
-    />
-  )
+  return <Icon ref={ref} role="presentation" {...props} __css={styles.icon} />
 })
 
 if (__DEV__) {
