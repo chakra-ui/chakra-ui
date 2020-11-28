@@ -12,6 +12,7 @@ import {
   mergeRefs,
   minSafeInteger,
   normalizeEventKey,
+  pick,
   PropGetter,
   StringOrNumber,
 } from "@chakra-ui/utils"
@@ -374,45 +375,54 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     [pointerDown, counter.isAtMin, keepWithinRange, spinDown, spinner.stop],
   )
 
-  const {
-    "aria-invalid": formControlInvalid,
-    "aria-required": formControlRequired,
-    "aria-readonly": formControlReadOnly,
-    "aria-describedby": formControlDescribedBy,
-    disabled: formControlDisabled,
-  } = useFormControl<HTMLInputElement>({})
+  const inputProps = useFormControl<HTMLInputElement>(props)
 
   const getInputProps: PropGetter = useCallback(
-    (props = {}, ref = null) => ({
-      ...props,
-      id,
-      ref: mergeRefs(inputRef, ref),
-      value: counter.value,
-      role: "spinbutton",
-      type: "text",
-      inputMode: props["inputMode"] ?? inputMode,
-      pattern,
-      "aria-valuemin": min,
-      "aria-valuemax": max,
-      "aria-disabled": isDisabled || formControlDisabled,
-      "aria-valuenow": Number.isNaN(counter.valueAsNumber)
-        ? undefined
-        : counter.valueAsNumber,
-      "aria-invalid": isInvalid || counter.isOutOfRange || formControlInvalid,
-      "aria-valuetext": ariaValueText,
-      "aria-describedby": formControlDescribedBy,
-      readOnly: isReadOnly || formControlReadOnly,
-      disabled: isDisabled || formControlDisabled,
-      required: formControlRequired,
-      autoComplete: "off",
-      autoCorrect: "off",
-      onChange: callAllHandlers(props.onChange, onChange),
-      onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-      onFocus: callAllHandlers(props.onFocus, setFocused.on),
-      onBlur: callAllHandlers(props.onBlur, onBlur),
-    }),
+    (props = {}, ref = null) => {
+      const ownProps = pick(inputProps, [
+        "id",
+        "disabled",
+        "readOnly",
+        "required",
+        "aria-invalid",
+        "aria-required",
+        "aria-readonly",
+        "aria-describedby",
+        "onFocus",
+        "onBlur",
+      ])
+
+      return {
+        ...props,
+        ...ownProps,
+        id,
+        ref: mergeRefs(inputRef, ref),
+        value: counter.value,
+        role: "spinbutton",
+        type: "text",
+        inputMode: props.inputMode ?? inputMode,
+        pattern,
+        "aria-valuemin": min,
+        "aria-valuemax": max,
+        "aria-disabled": ownProps.disabled,
+        "aria-valuenow": Number.isNaN(counter.valueAsNumber)
+          ? undefined
+          : counter.valueAsNumber,
+        "aria-invalid": ariaAttr(
+          ownProps["aria-invalid"] || counter.isOutOfRange,
+        ),
+        "aria-valuetext": ariaValueText,
+        autoComplete: "off",
+        autoCorrect: "off",
+        onChange: callAllHandlers(props.onChange, onChange),
+        onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+        onFocus: callAllHandlers(ownProps.onFocus, setFocused.on),
+        onBlur: callAllHandlers(ownProps.onBlur, onBlur),
+      }
+    },
     [
       id,
+      inputProps,
       counter.value,
       counter.valueAsNumber,
       counter.isOutOfRange,
@@ -420,15 +430,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       pattern,
       min,
       max,
-      isDisabled,
-      formControlDisabled,
-      isInvalid,
-      formControlInvalid,
       ariaValueText,
-      formControlDescribedBy,
-      isReadOnly,
-      formControlReadOnly,
-      formControlRequired,
       onChange,
       onKeyDown,
       setFocused.on,
