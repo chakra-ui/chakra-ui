@@ -95,7 +95,7 @@ export const Toast: React.FC<ToastProps> = (props) => {
     if (isPresent && requestClose) {
       onRequestRemove()
     }
-  }, [isPresent, requestClose])
+  }, [isPresent, requestClose, onRequestRemove])
 
   useTimeout(close, delay)
 

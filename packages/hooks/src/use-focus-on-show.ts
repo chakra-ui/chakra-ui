@@ -42,7 +42,7 @@ export function useFocusOnShow<T extends HTMLElement>(
         focus(tabbableEls[0], { preventScroll })
       }
     }
-  }, [autoFocus, preventScroll])
+  }, [autoFocus, preventScroll, element, focusRef])
 
   useUpdateEffect(() => {
     onFocus()
