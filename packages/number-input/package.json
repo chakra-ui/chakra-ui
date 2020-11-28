@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "@chakra-ui/counter": "1.0.1",
+    "@chakra-ui/form-control": "1.0.1",
     "@chakra-ui/hooks": "1.0.1",
     "@chakra-ui/icon": "1.0.1",
     "@chakra-ui/utils": "1.0.1"
