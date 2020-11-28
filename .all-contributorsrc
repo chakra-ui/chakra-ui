@@ -1574,6 +1574,15 @@
         "test",
         "code"
       ]
+    },
+    {
+      "login": "skauffmann",
+      "name": "Samuel Kauffmann",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1290679?v=4",
+      "profile": "https://tyneo.net/fr/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
