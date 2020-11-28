@@ -395,7 +395,6 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       return {
         ...props,
         ...ownProps,
-        id,
         ref: mergeRefs(inputRef, ref),
         value: counter.value,
         role: "spinbutton",
