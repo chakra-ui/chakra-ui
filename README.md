@@ -369,6 +369,9 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/milescm"><img src="https://avatars1.githubusercontent.com/u/33818414?v=4" width="64px;" alt=""/><br /><sub><b>Hong Suk Woo</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=milescm" title="Documentation">📖</a></td>
     <td align="center"><a href="https://trendy-resume.now.sh/"><img src="https://avatars2.githubusercontent.com/u/32605822?v=4" width="64px;" alt=""/><br /><sub><b>Junho Yeo</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=junhoyeo" title="Documentation">📖</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://silltho.github.io/"><img src="https://avatars0.githubusercontent.com/u/5812228?v=4" width="64px;" alt=""/><br /><sub><b>Thomas Siller</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=silltho" title="Tests">⚠️</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=silltho" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
