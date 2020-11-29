@@ -1564,6 +1564,25 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "silltho",
+      "name": "Thomas Siller",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/5812228?v=4",
+      "profile": "https://silltho.github.io/",
+      "contributions": [
+        "test",
+        "code"
+      ]
+    },
+    {
+      "login": "skauffmann",
+      "name": "Samuel Kauffmann",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1290679?v=4",
+      "profile": "https://tyneo.net/fr/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,

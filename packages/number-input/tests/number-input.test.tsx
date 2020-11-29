@@ -1,3 +1,4 @@
+import { FormControl, FormHelperText, FormLabel } from "@chakra-ui/form-control"
 import {
   testA11y,
   fireEvent,
@@ -5,6 +6,7 @@ import {
   renderHook,
   userEvent,
   press,
+  screen,
 } from "@chakra-ui/test-utils"
 import * as React from "react"
 import {
@@ -191,4 +193,46 @@ test("should focus input on spin", () => {
 
   // for some reason, .toHaveFocus assertion doesn't work
   // expect(tools.getByTestId("input")).toEqual(document.activeElement)
+})
+
+test("should derive values from surrounding FormControl", () => {
+  const onFocus = jest.fn()
+  const onBlur = jest.fn()
+
+  render(
+    <FormControl
+      id="input"
+      isRequired
+      isInvalid
+      isDisabled
+      isReadOnly
+      onFocus={onFocus}
+      onBlur={onBlur}
+    >
+      <FormLabel>Number</FormLabel>
+      <NumberInput data-testid="root">
+        <NumberInputField data-testid="input" />
+        <NumberInputStepper data-testid="group">
+          <NumberIncrementStepper children="+" data-testid="up-btn" />
+          <NumberDecrementStepper children="-" data-testid="down-btn" />
+        </NumberInputStepper>
+      </NumberInput>
+      <FormHelperText>Select a number</FormHelperText>
+    </FormControl>,
+  )
+
+  const input = screen.getByTestId("input")
+
+  expect(input).toHaveAttribute("id", "input")
+  expect(input).toHaveAttribute("aria-invalid", "true")
+  expect(input).toHaveAttribute("aria-required", "true")
+  expect(input).toHaveAttribute("aria-readonly", "true")
+  expect(input).toHaveAttribute("aria-invalid", "true")
+  expect(input).toHaveAttribute("aria-describedby")
+
+  fireEvent.focus(input)
+  expect(onFocus).toHaveBeenCalled()
+
+  fireEvent.blur(input)
+  expect(onBlur).toHaveBeenCalled()
 })

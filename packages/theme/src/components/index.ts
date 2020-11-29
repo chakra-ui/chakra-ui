@@ -17,6 +17,7 @@ import Heading from "./heading"
 import Input from "./input"
 import Kbd from "./kbd"
 import Link from "./link"
+import List from "./list"
 import Menu from "./menu"
 import Modal from "./modal"
 import NumberInput from "./number-input"
@@ -57,6 +58,7 @@ export default {
   Input,
   Kbd,
   Link,
+  List,
   Menu,
   Modal,
   NumberInput,
