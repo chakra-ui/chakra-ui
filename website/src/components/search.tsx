@@ -3,7 +3,15 @@ import Link from "next/link"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { DocSearchModal, useDocSearchKeyboardEvents } from "@docsearch/react"
-import { chakra, Portal } from "@chakra-ui/react"
+import {
+  chakra,
+  HStack,
+  HTMLChakraProps,
+  Kbd,
+  Portal,
+  Text,
+  VisuallyHidden,
+} from "@chakra-ui/react"
 import SearchStyle from "./search.styles"
 import { get, startsWith } from "lodash/fp"
 import _ from "lodash"
@@ -22,6 +30,80 @@ function Hit(props) {
     </Link>
   )
 }
+
+interface SearchButtonProps extends HTMLChakraProps<"button"> {
+  actionKey?: string[]
+}
+
+const SearchButton = React.forwardRef(function SearchButton(
+  props: SearchButtonProps,
+  ref: React.Ref<HTMLButtonElement>,
+) {
+  const { actionKey, ...rest } = props
+  return (
+    <chakra.button
+      flex="1"
+      maxW="400px"
+      type="button"
+      ref={ref}
+      lineHeight="1.2"
+      {...rest}
+    >
+      {actionKey && (
+        <chakra.div
+          w="100%"
+          bg="white"
+          display={{ base: "hidden", sm: "flex" }}
+          alignItems="center"
+          color="gray.400"
+          fontSize="sm"
+          py="3"
+          px="4"
+          shadow="base"
+          rounded="md"
+        >
+          <chakra.svg
+            viewBox="0 0 24 24"
+            w="16px"
+            h="16px"
+            fill="none"
+            color="gray.400"
+          >
+            <path
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </chakra.svg>
+          <HStack w="full" ml="3" spacing="4px">
+            <Text textAlign="left" flex="1">
+              Search the docs
+            </Text>
+            <HStack spacing="4px">
+              <VisuallyHidden>Press </VisuallyHidden>
+              <Kbd color="gray.500" rounded="2px">
+                <chakra.div
+                  as="abbr"
+                  title={actionKey[1]}
+                  textDecoration="none !important"
+                >
+                  {actionKey[0]}
+                </chakra.div>
+              </Kbd>
+              <VisuallyHidden> and </VisuallyHidden>
+              <Kbd color="gray.500" rounded="2px">
+                K
+              </Kbd>
+              <VisuallyHidden> to search</VisuallyHidden>
+            </HStack>
+          </HStack>
+        </chakra.div>
+      )}
+    </chakra.button>
+  )
+})
 
 export function Search() {
   const router = useRouter()
@@ -74,49 +156,11 @@ export function Search() {
         />
       </Head>
       <SearchStyle />
-      <chakra.button
-        type="button"
-        ref={searchButtonRef}
+      <SearchButton
         onClick={onOpen}
-        role="group"
-        lineHeight="1.2"
-        display="flex"
-        alignItems="center"
-      >
-        <chakra.svg width="24px" height="24px" fill="none" color="gray.400">
-          <path
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </chakra.svg>
-        <span>
-          Quick search<span className="hidden sm:inline"> for anything</span>
-        </span>
-        {actionKey && (
-          <chakra.span
-            display={{ base: "hidden", sm: "block" }}
-            color="gray.400"
-            fontSize="sm"
-            py="2"
-            px="1"
-            borderWidth="1px"
-            rounded="md"
-          >
-            <span className="sr-only">Press </span>
-            <kbd className="font-sans">
-              <abbr title={actionKey[1]} className="no-underline">
-                {actionKey[0]}
-              </abbr>
-            </kbd>
-            <span className="sr-only"> and </span>
-            <kbd className="font-sans">K</kbd>
-            <span className="sr-only"> to search</span>
-          </chakra.span>
-        )}
-      </chakra.button>
+        actionKey={actionKey}
+        ref={searchButtonRef}
+      />
       {isOpen && (
         <Portal>
           <DocSearchModal

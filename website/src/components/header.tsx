@@ -18,6 +18,7 @@ import { FaMoon, FaSun } from "react-icons/fa"
 import NavLink from "./header-nav-link"
 import Logo from "./logo"
 import { MobileNavButton, MobileNavContent } from "./mobile-nav"
+import { Search } from "./search"
 import SponsorButton from "./sponsor-button"
 import VersionSwitcher from "./version-switcher"
 
@@ -72,6 +73,8 @@ function HeaderContent() {
             <NavLink href="/team">Team</NavLink>
           </HStack>
         </Flex>
+
+        <Search />
 
         <Flex maxW="720px" align="center" color="gray.400">
           <VersionSwitcher display={{ base: "none", md: "flex" }} />
@@ -140,8 +143,8 @@ function Header(props) {
       bg={bg}
       left="0"
       right="0"
-      borderTop="6px solid"
-      borderTopColor="teal.400"
+      // borderTop="6px solid"
+      // borderTopColor="teal.400"
       width="full"
       {...props}
     >

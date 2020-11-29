@@ -2,11 +2,14 @@ import { extendTheme } from "@chakra-ui/react"
 import { mode } from "@chakra-ui/theme-tools"
 
 const customTheme = extendTheme({
+  fonts: {
+    heading: "Inter, sans-serif",
+    body: "Inter, sans-serif",
+  },
   styles: {
     global: (props) => ({
       body: {
-        color: mode("gray.700", "whiteAlpha.900")(props),
-        fontFamily: "Inter, sans-serif",
+        color: mode("black", "whiteAlpha.900")(props),
         ".deleted": {
           color: "#ff8383 !important",
           fontStyle: "normal !important",
@@ -20,6 +23,7 @@ const customTheme = extendTheme({
   },
   textStyles: {
     heading: {
+      fontFamily: "heading",
       textAlign: "center",
       fontWeight: "bold",
       letterSpacing: "-0.015em",
@@ -27,6 +31,7 @@ const customTheme = extendTheme({
       fontSize: { base: "2rem", md: "3.5rem" },
     },
     "heading-2": {
+      fontFamily: "heading",
       textAlign: "center",
       fontWeight: "bold",
       letterSpacing: "-0.015em",

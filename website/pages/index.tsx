@@ -26,7 +26,6 @@ import DiscordStrip from "components/discord-strip"
 import { Footer } from "components/footer"
 import Header from "components/header"
 import LogoMark from "components/logo-mark"
-import { Search } from "components/search"
 import SEO from "components/seo"
 import TweetCard from "components/tweet-card"
 import { tweets } from "configs/tweets.json"
@@ -126,11 +125,11 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
           pt={{ base: "10rem", md: "12rem" }}
           pb={{ base: "0", md: "5rem" }}
         >
-          <Search />
           <Container>
             <Box maxW="760px" mx="auto" textAlign="center">
               <chakra.h1
                 fontSize={{ base: "2.25rem", sm: "3rem", lg: "3.75rem" }}
+                fontFamily="heading"
                 letterSpacing="tight"
                 fontWeight="bold"
                 mb="16px"
