@@ -41,11 +41,11 @@ export interface UseToastOptions {
   /**
    * The title of the toast
    */
-  title?: string
+  title?: React.ReactNode
   /**
    * The description of the toast
    */
-  description?: string
+  description?: React.ReactNode
   /**
    * If `true`, toast will show a close button
    */
