@@ -57,12 +57,12 @@ export interface SlideFadeProps extends HTMLMotionProps<"div"> {
    * The offset on the horizontal or `x` axis
    * @default 0
    */
-  offsetX?: number | string
+  offsetX?: string
   /**
    * The offset on the vertical or `y` axis
    * @default 8
    */
-  offsetY?: number | string
+  offsetY?: string
   /**
    * If `true`, the element will be transitioned back to the offset when it leaves.
    * Otherwise, it'll only fade out
