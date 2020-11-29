@@ -128,10 +128,10 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
           <Container>
             <Box maxW="760px" mx="auto" textAlign="center">
               <chakra.h1
-                fontSize={{ base: "2.25rem", sm: "3rem", lg: "3.75rem" }}
+                fontSize={{ base: "2.25rem", sm: "3rem", lg: "4rem" }}
                 fontFamily="heading"
                 letterSpacing="tight"
-                fontWeight="bold"
+                fontWeight="800"
                 mb="16px"
                 lineHeight="1.2"
               >
@@ -195,7 +195,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
                 px="6"
                 py="4"
               >
-                <Img h="64px" src="/git-nation-badge.png" />
+                <Img h="55px" src="/git-nation-badge.png" />
               </Box>
             </Center>
           </Container>

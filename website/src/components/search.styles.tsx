@@ -55,8 +55,8 @@ const SearchStyle = () => (
         display: flex;
         flex-direction: column;
         min-height: 0;
-        border-radius: 1rem;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        border-radius: 0.75rem;
+        box-shadow: ${theme.shadows.lg};
         background: white;
       }
 

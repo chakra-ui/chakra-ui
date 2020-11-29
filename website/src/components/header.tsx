@@ -1,4 +1,5 @@
 import {
+  Box,
   chakra,
   Flex,
   HStack,
@@ -62,7 +63,7 @@ function HeaderContent() {
               <Logo />
             </chakra.a>
           </NextLink>
-          <HStack
+          {/* <HStack
             as="nav"
             spacing="4"
             ml="24px"
@@ -71,13 +72,12 @@ function HeaderContent() {
             <NavLink href="/docs/getting-started">Docs</NavLink>
             <NavLink href="/guides/integrations/with-cra">Guides</NavLink>
             <NavLink href="/team">Team</NavLink>
-          </HStack>
+          </HStack> */}
         </Flex>
 
-        <Search />
-
-        <Flex maxW="720px" align="center" color="gray.400">
-          <VersionSwitcher display={{ base: "none", md: "flex" }} />
+        <Flex w="100%" maxW="824px" align="center" color="gray.400">
+          <Search />
+          <VersionSwitcher w="64px" display={{ base: "none", md: "flex" }} />
           <HStack spacing="5" display={{ base: "none", md: "flex" }}>
             <Link isExternal aria-label="GitHub" href={siteConfig.repo.url}>
               <Icon
@@ -143,8 +143,8 @@ function Header(props) {
       bg={bg}
       left="0"
       right="0"
-      // borderTop="6px solid"
-      // borderTopColor="teal.400"
+      borderTop="6px solid"
+      borderTopColor="teal.400"
       width="full"
       {...props}
     >

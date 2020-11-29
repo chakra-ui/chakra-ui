@@ -15,6 +15,7 @@ import {
 import SearchStyle from "./search.styles"
 import { get, startsWith } from "lodash/fp"
 import _ from "lodash"
+import { SearchIcon } from "@chakra-ui/icons"
 
 const getLvl1 = get("hierarchy.lvl1")
 const startsWithCss = startsWith("css-")
@@ -43,8 +44,9 @@ const SearchButton = React.forwardRef(function SearchButton(
   return (
     <chakra.button
       flex="1"
-      maxW="400px"
+      maxW="448px"
       type="button"
+      mx="6"
       ref={ref}
       lineHeight="1.2"
       {...rest}
@@ -56,27 +58,12 @@ const SearchButton = React.forwardRef(function SearchButton(
           display={{ base: "hidden", sm: "flex" }}
           alignItems="center"
           color="gray.400"
-          fontSize="sm"
           py="3"
           px="4"
           shadow="base"
           rounded="md"
         >
-          <chakra.svg
-            viewBox="0 0 24 24"
-            w="16px"
-            h="16px"
-            fill="none"
-            color="gray.400"
-          >
-            <path
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </chakra.svg>
+          <SearchIcon />
           <HStack w="full" ml="3" spacing="4px">
             <Text textAlign="left" flex="1">
               Search the docs
@@ -164,6 +151,7 @@ export function Search() {
       {isOpen && (
         <Portal>
           <DocSearchModal
+            placeholder="Search the docs"
             initialQuery={initialQuery}
             initialScrollY={window.scrollY}
             onClose={onClose}
