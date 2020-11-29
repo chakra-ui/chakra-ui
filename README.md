@@ -372,6 +372,7 @@ Thanks goes to these wonderful people
   <tr>
     <td align="center"><a href="https://silltho.github.io/"><img src="https://avatars0.githubusercontent.com/u/5812228?v=4" width="64px;" alt=""/><br /><sub><b>Thomas Siller</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=silltho" title="Tests">⚠️</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=silltho" title="Code">💻</a></td>
     <td align="center"><a href="https://tyneo.net/fr/"><img src="https://avatars2.githubusercontent.com/u/1290679?v=4" width="64px;" alt=""/><br /><sub><b>Samuel Kauffmann</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=skauffmann" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/dodas"><img src="https://avatars0.githubusercontent.com/u/14360171?v=4" width="64px;" alt=""/><br /><sub><b>Jozef Mikuláš</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=dodas" title="Code">💻</a></td>
   </tr>
 </table>
 
