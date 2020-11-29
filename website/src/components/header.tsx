@@ -75,7 +75,13 @@ function HeaderContent() {
           </HStack> */}
         </Flex>
 
-        <Flex w="100%" maxW="824px" align="center" color="gray.400">
+        <Flex
+          justify="flex-end"
+          w="100%"
+          maxW="824px"
+          align="center"
+          color="gray.400"
+        >
           <Search />
           <VersionSwitcher w="64px" display={{ base: "none", md: "flex" }} />
           <HStack spacing="5" display={{ base: "none", md: "flex" }}>
@@ -104,7 +110,7 @@ function HeaderContent() {
             aria-label={`Switch to ${text} mode`}
             variant="ghost"
             color="current"
-            ml="3"
+            ml={{ base: "0", md: "3" }}
             onClick={toggleMode}
             icon={<SwitchIcon />}
           />

@@ -126,8 +126,10 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
           pb={{ base: "0", md: "5rem" }}
         >
           <Container>
-            <Box maxW="760px" mx="auto" textAlign="center">
+            <Box textAlign="center">
               <chakra.h1
+                maxW="680px"
+                mx="auto"
                 fontSize={{ base: "2.25rem", sm: "3rem", lg: "4rem" }}
                 fontFamily="heading"
                 letterSpacing="tight"
@@ -145,7 +147,13 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
                 </Box>
               </chakra.h1>
 
-              <Text opacity={0.7} fontSize={{ base: "lg", lg: "xl" }} mt="6">
+              <Text
+                maxW="560px"
+                mx="auto"
+                opacity={0.7}
+                fontSize={{ base: "lg", lg: "xl" }}
+                mt="6"
+              >
                 Chakra UI is a simple, modular and accessible component library
                 that gives you the building blocks you need to build your React
                 applications.

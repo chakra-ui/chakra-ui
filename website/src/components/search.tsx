@@ -43,8 +43,8 @@ const SearchButton = React.forwardRef(function SearchButton(
   const { actionKey, ...rest } = props
   return (
     <chakra.button
+      display={{ base: "none", sm: "flex" }}
       flex="1"
-      maxW="448px"
       type="button"
       mx="6"
       ref={ref}
@@ -55,6 +55,7 @@ const SearchButton = React.forwardRef(function SearchButton(
         <chakra.div
           w="100%"
           bg="white"
+          whiteSpace="nowrap"
           display={{ base: "hidden", sm: "flex" }}
           alignItems="center"
           color="gray.400"
