@@ -9,6 +9,7 @@ import {
   ModalContent,
   ModalOverlay,
   useDisclosure,
+  useEventListener,
   useUpdateEffect,
 } from "@chakra-ui/react"
 import searchData from "configs/search-meta.json"
@@ -127,6 +128,20 @@ function OmniSearch() {
     }
   }, [])
 
+  useEventListener("keydown", (event) => {
+    const isMac = /(Mac|iPhone|iPod|iPad)/i.test(navigator?.platform)
+    const hotkey = isMac ? "metaKey" : "ctrlKey"
+    if (event.key.toLowerCase() === "k" && event[hotkey]) {
+      modal.onOpen()
+    }
+  })
+
+  React.useEffect(() => {
+    if (modal.isOpen && query.length > 0) {
+      setQuery("")
+    }
+  }, [modal.isOpen])
+
   const results = React.useMemo(
     function getResults() {
       if (query.length < 2) return []
@@ -192,7 +207,7 @@ function OmniSearch() {
     <>
       <SearchButton onClick={modal.onOpen} />
       <Modal
-        closeOnOverlayClick={false}
+        // closeOnOverlayClick={false}
         scrollBehavior="inside"
         isOpen={modal.isOpen}
         onClose={modal.onClose}
