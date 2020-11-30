@@ -45,17 +45,17 @@ fix it.
 
 ### 1. Update your dependencies
 
-Install the `framer-motion` package. We use this to manage animations and
-transitions within components.
+- Install the `framer-motion` package. We use this to manage animations and
+  transitions within components.
 
-Remove the `emotion-theming` package. As at emotion v11, `emotion-theming` as
-been removed and all it's functionality as been migrated to `@emotion/react`.
+- Remove the `emotion-theming` package. As at emotion v11, `emotion-theming` as
+  been removed and all it's functionality as been migrated to `@emotion/react`.
 
-Rename the `@emotion/core` package to `@emotion/react`. `@emotion/core` was
-recently changed to `@emotion/react` following the v11 release by the emotionjs
-team.
+- Rename the `@emotion/core` package to `@emotion/react`. `@emotion/core` was
+  recently changed to `@emotion/react` following the v11 release by the
+  emotionjs team.
 
-Rename the `@chakra-ui/core` package to `@chakra-ui/react`.
+- Rename the `@chakra-ui/core` package to `@chakra-ui/react`.
 
 ```diff
 "dependencies": {
@@ -156,6 +156,7 @@ only one prop to manage this, you can rename it to `boxSize`.
 #### Callout
 
 `Callout` is now deprecated and you can use an `Alert` instead.
+
 ```diff
 -   <Callout
 +   <Alert

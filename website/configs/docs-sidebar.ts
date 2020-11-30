@@ -1,11 +1,11 @@
 const sidebar = {
   routes: [
     {
-      title: "Documentation",
+      title: "Getting Started",
       heading: true,
       routes: [
         {
-          title: "Getting Started",
+          title: "Installation",
           path: "/docs/getting-started",
         },
         {
@@ -16,10 +16,10 @@ const sidebar = {
           title: "Design Principles",
           path: "/docs/principles",
         },
-        {
-          title: "Comparison",
-          path: "/docs/comparison",
-        },
+        // {
+        //   title: "Comparison",
+        //   path: "/docs/comparison",
+        // },
         {
           title: "Features",
           path: "/docs/features",

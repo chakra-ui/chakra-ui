@@ -2,7 +2,7 @@ import { chakra, useColorModeValue } from "@chakra-ui/react"
 import React from "react"
 
 const Logo = (props) => {
-  const fill = useColorModeValue("#000", "#fff")
+  const fill = useColorModeValue("#2D3748", "#fff")
 
   return (
     <chakra.svg

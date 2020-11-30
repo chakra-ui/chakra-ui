@@ -9,7 +9,7 @@ const customTheme = extendTheme({
   styles: {
     global: (props) => ({
       body: {
-        color: mode("black", "whiteAlpha.900")(props),
+        color: mode("gray.700", "whiteAlpha.900")(props),
         ".deleted": {
           color: "#ff8383 !important",
           fontStyle: "normal !important",

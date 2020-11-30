@@ -133,7 +133,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
                 fontSize={{ base: "2.25rem", sm: "3rem", lg: "4rem" }}
                 fontFamily="heading"
                 letterSpacing="tight"
-                fontWeight="800"
+                fontWeight="bold"
                 mb="16px"
                 lineHeight="1.2"
               >

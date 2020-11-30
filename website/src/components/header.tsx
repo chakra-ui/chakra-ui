@@ -16,7 +16,6 @@ import { useViewportScroll } from "framer-motion"
 import NextLink from "next/link"
 import React from "react"
 import { FaMoon, FaSun } from "react-icons/fa"
-import NavLink from "./header-nav-link"
 import Logo from "./logo"
 import { MobileNavButton, MobileNavContent } from "./mobile-nav"
 import { Search } from "./search"
@@ -63,16 +62,6 @@ function HeaderContent() {
               <Logo />
             </chakra.a>
           </NextLink>
-          {/* <HStack
-            as="nav"
-            spacing="4"
-            ml="24px"
-            display={{ base: "none", md: "flex" }}
-          >
-            <NavLink href="/docs/getting-started">Docs</NavLink>
-            <NavLink href="/guides/integrations/with-cra">Guides</NavLink>
-            <NavLink href="/team">Team</NavLink>
-          </HStack> */}
         </Flex>
 
         <Flex

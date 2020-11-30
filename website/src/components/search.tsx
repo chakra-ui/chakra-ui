@@ -10,6 +10,7 @@ import {
   Kbd,
   Portal,
   Text,
+  useColorModeValue,
   VisuallyHidden,
 } from "@chakra-ui/react"
 import SearchStyle from "./search.styles"
@@ -43,27 +44,25 @@ const SearchButton = React.forwardRef(function SearchButton(
   const { actionKey, ...rest } = props
   return (
     <chakra.button
-      display={{ base: "none", sm: "flex" }}
       flex="1"
       type="button"
       mx="6"
       ref={ref}
       lineHeight="1.2"
+      w="100%"
+      bg={useColorModeValue("white", "gray.700")}
+      whiteSpace="nowrap"
+      display={{ base: "none", sm: "flex" }}
+      alignItems="center"
+      color="gray.400"
+      py="3"
+      px="4"
+      shadow="base"
+      rounded="md"
       {...rest}
     >
       {actionKey && (
-        <chakra.div
-          w="100%"
-          bg="white"
-          whiteSpace="nowrap"
-          display={{ base: "hidden", sm: "flex" }}
-          alignItems="center"
-          color="gray.400"
-          py="3"
-          px="4"
-          shadow="base"
-          rounded="md"
-        >
+        <>
           <SearchIcon />
           <HStack w="full" ml="3" spacing="4px">
             <Text textAlign="left" flex="1">
@@ -87,7 +86,7 @@ const SearchButton = React.forwardRef(function SearchButton(
               <VisuallyHidden> to search</VisuallyHidden>
             </HStack>
           </HStack>
-        </chakra.div>
+        </>
       )}
     </chakra.button>
   )
