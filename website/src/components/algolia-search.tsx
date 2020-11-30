@@ -64,6 +64,8 @@ export const SearchButton = React.forwardRef(function SearchButton(
       color="gray.400"
       py="3"
       px="4"
+      outline="0"
+      _focus={{ shadow: "outline" }}
       shadow="base"
       rounded="md"
       {...props}

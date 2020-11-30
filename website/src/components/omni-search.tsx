@@ -8,6 +8,7 @@ import {
   ModalBody,
   ModalContent,
   ModalOverlay,
+  useColorModeValue,
   useDisclosure,
   useEventListener,
   useUpdateEffect,
@@ -231,6 +232,7 @@ function OmniSearch() {
               maxLength={64}
               w="100%"
               h="40px"
+              bg={useColorModeValue("white", "gray.700")}
               pl="40px"
               outline="0"
               id="docsearch-input"
@@ -253,7 +255,7 @@ function OmniSearch() {
                 borderTopWidth="1px"
                 role="listbox"
                 id="docsearch-menu"
-                bg="white"
+                bg={useColorModeValue("white", "gray.700")}
               >
                 {results.map((item, index) => {
                   const selected = index === active
@@ -281,12 +283,12 @@ function OmniSearch() {
                           },
                         }}
                         key={item.id}
-                        bg="white"
                         fontSize="sm"
                         px="4"
                         py="2"
                         display="flex"
                         alignItems="center"
+                        minH="60px"
                       >
                         {isLvl1 ? (
                           <DocIcon opacity={0.3} />
