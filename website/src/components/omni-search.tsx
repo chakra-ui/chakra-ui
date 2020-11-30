@@ -207,7 +207,6 @@ function OmniSearch() {
     <>
       <SearchButton onClick={modal.onOpen} />
       <Modal
-        // closeOnOverlayClick={false}
         scrollBehavior="inside"
         isOpen={modal.isOpen}
         onClose={modal.onClose}
@@ -221,7 +220,7 @@ function OmniSearch() {
           overflow="hidden"
           top="10vh"
           bg="transparent"
-          shadow="lg"
+          shadow="search"
         >
           <Flex pos="relative" align="stretch">
             <chakra.input
