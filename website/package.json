@@ -17,7 +17,7 @@
     "@chakra-ui/utils": "1.0.1",
     "@docsearch/react": "^1.0.0-alpha.27",
     "@docusaurus/utils": "^2.0.0-alpha.69",
-    "@mdx-js/react": "^1.6.19",
+    "@mdx-js/react": "^1.6.21",
     "@octokit/rest": "^18.0.9",
     "date-fns": "^2.16.1",
     "docsearch.js": "^2.6.3",
@@ -25,26 +25,26 @@
     "formik": "^2.2.5",
     "highlight-words-core": "^1.2.2",
     "match-sorter": "^6.0.1",
-    "next": "^10.0.1",
+    "next": "^10.0.3",
     "next-mdx-enhanced": "^5.0.0",
     "next-seo": "^4.17.0",
     "prism-react-renderer": "^1.1.1",
-    "react-icons": "^3.11.0",
+    "react-icons": "^4.1.0",
     "react-live": "^2.2.3",
     "react-multi-ref": "1.0.0",
     "remark": "^13.0.0",
     "remark-autolink-headings": "^6.0.1",
     "remark-emoji": "^2.1.0",
     "remark-images": "^2.0.0",
-    "remark-mdx": "^1.6.19",
+    "remark-mdx": "^1.6.21",
     "remark-slug": "^6.0.0",
     "remark-toc": "^7.0.0",
     "remark-unwrap-images": "^2.0.0",
     "scroll-into-view-if-needed": "^2.2.26"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^9.5.5",
-    "@types/sharp": "^0.26.0",
-    "next-compose-plugins": "^2.2.0"
+    "@next/bundle-analyzer": "^10.0.3",
+    "@types/sharp": "^0.26.1",
+    "next-compose-plugins": "^2.2.1"
   }
 }

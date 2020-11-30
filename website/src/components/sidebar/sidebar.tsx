@@ -134,6 +134,7 @@ const Sidebar = ({ routes }) => {
       pr="8"
       pb="8"
       pl="3"
+      pt="8"
       overflowY="auto"
       className="sidebar-content"
       flexShrink={0}
