@@ -1,8 +1,4 @@
-import * as React from "react"
-import Link from "next/link"
-import Head from "next/head"
-import { useRouter } from "next/router"
-import { DocSearchModal, useDocSearchKeyboardEvents } from "@docsearch/react"
+import { SearchIcon } from "@chakra-ui/icons"
 import {
   chakra,
   HStack,
@@ -13,12 +9,14 @@ import {
   useColorModeValue,
   VisuallyHidden,
 } from "@chakra-ui/react"
+import { DocSearchModal, useDocSearchKeyboardEvents } from "@docsearch/react"
+import { startsWith } from "lodash/fp"
+import Head from "next/head"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import * as React from "react"
 import SearchStyle from "./search.styles"
-import { get, startsWith } from "lodash/fp"
-import _ from "lodash"
-import { SearchIcon } from "@chakra-ui/icons"
 
-const getLvl1 = get("hierarchy.lvl1")
 const startsWithCss = startsWith("css-")
 
 const ACTION_KEY_DEFAULT = ["Ctrl ", "Control"]
@@ -106,7 +104,6 @@ export function Search() {
   const [isOpen, setIsOpen] = React.useState(false)
   const searchButtonRef = React.useRef()
   const [initialQuery, setInitialQuery] = React.useState(null)
-  const [actionKey, setActionKey] = React.useState<string[]>()
 
   const onOpen = React.useCallback(() => {
     setIsOpen(true)
@@ -131,16 +128,6 @@ export function Search() {
     onInput,
     searchButtonRef,
   })
-
-  React.useEffect(() => {
-    if (typeof navigator !== "undefined") {
-      if (/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
-        setActionKey(ACTION_KEY_APPLE)
-      } else {
-        setActionKey(ACTION_KEY_DEFAULT)
-      }
-    }
-  }, [])
 
   return (
     <>
