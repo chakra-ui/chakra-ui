@@ -292,7 +292,7 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
     if (!isPresent && safeToRemove) {
       setTimeout(safeToRemove)
     }
-  }, [isPresent])
+  }, [isPresent, safeToRemove])
 
   return (
     <FocusLock

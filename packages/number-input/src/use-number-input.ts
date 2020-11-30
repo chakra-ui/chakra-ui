@@ -353,7 +353,14 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         "aria-disabled": ariaAttr(disabled),
       }
     },
-    [pointerDown, counter.isAtMax, keepWithinRange, spinUp, spinner.stop],
+    [
+      pointerDown,
+      counter.isAtMax,
+      keepWithinRange,
+      spinUp,
+      spinner.stop,
+      isDisabled,
+    ],
   )
 
   const getDecrementButtonProps: PropGetter = useCallback(
@@ -372,7 +379,14 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         "aria-disabled": ariaAttr(disabled),
       }
     },
-    [pointerDown, counter.isAtMin, keepWithinRange, spinDown, spinner.stop],
+    [
+      pointerDown,
+      counter.isAtMin,
+      keepWithinRange,
+      spinDown,
+      spinner.stop,
+      isDisabled,
+    ],
   )
 
   const inputProps = useFormControl<HTMLInputElement>(props)
@@ -420,7 +434,6 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       }
     },
     [
-      id,
       inputProps,
       counter.value,
       counter.valueAsNumber,

@@ -10,6 +10,7 @@
   "extends": [
     "plugin:import/recommended",
     "plugin:import/typescript",
+    "plugin:react-hooks/recommended",
     "airbnb-typescript",
     "prettier",
     "prettier/react",
@@ -64,7 +65,8 @@
     "react/require-default-props": "off",
     "react/sort-prop-types": "error",
     "react/prop-types": "off",
-    "@typescript-eslint/no-shadow": "off"
+    "@typescript-eslint/no-shadow": "off",
+    "react-hooks/exhaustive-deps": "error"
   },
   "overrides": [
     {
