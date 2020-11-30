@@ -16,7 +16,7 @@ export interface FormControlOptions {
   /**
    * If `true`, the form control will be required. This has 2 side effects:
    * - The `FormLabel` will show a required indicator
-   * - The form element (e.g, Input) will have `aria-requred` set to `true`
+   * - The form element (e.g, Input) will have `aria-required` set to `true`
    */
   isRequired?: boolean
   /**
