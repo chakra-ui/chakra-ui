@@ -16,7 +16,7 @@ type DeepThemeExtension<ThemeObject, TypeHints> = {
     | Omit<DeepThemeExtension<ThemeObject[Key], TypeHints>, keyof TypeHints> // recursive type clone
     | (ThemeObject[Key] extends (...args: any[]) => any
         ? Partial<ReturnType<ThemeObject[Key]>>
-        : ThemeObject[Key]) // allow function or object
+        : Partial<ThemeObject[Key]>) // allow function or object
     | Record<string, any> // escape hatch
 } &
   Partial<TypeHints>
