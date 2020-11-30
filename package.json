@@ -45,13 +45,14 @@
     "build:storybook": "build-storybook && sb extract",
     "members:gen": "ts-node scripts/all-members.ts",
     "avatars:gen": "ts-node scripts/avatars.ts",
+    "search-meta:gen": "ts-node scripts/get-search-meta.ts",
     "create-pkg": "node scripts/create-package.js",
     "prerelease": "yarn build",
     "release": "changeset publish",
     "docs": "yarn workspace @chakra-ui/docs",
     "docs:deploy": "yarn build && yarn docs:build-ci && cp -r website/public .",
     "docs:build-ci": "yarn members:gen && yarn docs:build",
-    "docs:build": "yarn avatars:gen && yarn docs build",
+    "docs:build": "yarn avatars:gen && yarn search-meta:gen && yarn docs build",
     "docs:dev": "yarn avatars:gen && yarn docs dev",
     "docs:start": "yarn docs start",
     "dedup": "yarn-deduplicate --strategy highest yarn.lock"
@@ -131,6 +132,7 @@
     "lerna": "^3.22.1",
     "lint-staged": "^10.4.2",
     "listr": "^0.14.3",
+    "markdown-toc": "^1.2.0",
     "mkdirp": "^1.0.4",
     "ncp": "^2.0.0",
     "node-fetch": "^2.6.1",
@@ -151,6 +153,7 @@
     "ts-jest": "^26.4.2",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.5",
+    "uuid": "8.3.1",
     "yarn-deduplicate": "^3.0.0"
   }
 }

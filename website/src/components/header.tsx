@@ -1,5 +1,4 @@
 import {
-  Box,
   chakra,
   Flex,
   HStack,
@@ -18,7 +17,7 @@ import React from "react"
 import { FaMoon, FaSun } from "react-icons/fa"
 import Logo from "./logo"
 import { MobileNavButton, MobileNavContent } from "./mobile-nav"
-import { Search } from "./search"
+import OmniSearch from "./omni-search"
 import SponsorButton from "./sponsor-button"
 import VersionSwitcher from "./version-switcher"
 
@@ -71,7 +70,7 @@ function HeaderContent() {
           align="center"
           color="gray.400"
         >
-          <Search />
+          <OmniSearch />
           <VersionSwitcher w="64px" display={{ base: "none", md: "flex" }} />
           <HStack spacing="5" display={{ base: "none", md: "flex" }}>
             <Link isExternal aria-label="GitHub" href={siteConfig.repo.url}>
