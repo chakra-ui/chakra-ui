@@ -18,6 +18,7 @@ const baseStyle = {
     lineHeight: 6,
   },
   icon: {
+    flexShrink: 0,
     mr: 3,
     w: 5,
     h: 6,
