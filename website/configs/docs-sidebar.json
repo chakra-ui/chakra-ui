@@ -78,6 +78,7 @@
         {
           "title": "Layout",
           "path": "/docs/layout",
+          "sort": true,
           "open": true,
           "routes": [
             {
@@ -125,6 +126,7 @@
         {
           "title": "Forms",
           "path": "/docs/form",
+          "sort": true,
           "open": true,
           "routes": [
             {
@@ -185,6 +187,7 @@
           "title": "Data Display",
           "path": "/docs/data-display",
           "open": true,
+          "sort": true,
           "routes": [
             {
               "title": "Badge",
@@ -224,6 +227,7 @@
           "title": "Feedback",
           "path": "/docs/feedback",
           "open": true,
+          "sort": true,
           "routes": [
             {
               "title": "Alert",
@@ -270,6 +274,7 @@
           "title": "Overlay",
           "path": "/docs/overlay",
           "open": true,
+          "sort": true,
           "routes": [
             {
               "title": "Alert Dialog",
@@ -301,6 +306,7 @@
           "title": "Disclosure",
           "path": "/docs/components",
           "open": true,
+          "sort": true,
           "routes": [
             {
               "title": "Accordion",
@@ -323,6 +329,7 @@
         {
           "title": "Media & Icons",
           "path": "/docs/components",
+          "sort": true,
           "open": true,
           "routes": [
             {
@@ -343,6 +350,7 @@
           "title": "Others",
           "path": "/docs/components",
           "open": true,
+          "sort": true,
           "routes": [
             {
               "title": "Transitions",
@@ -354,6 +362,7 @@
           "title": "Hooks",
           "path": "/docs/hooks",
           "open": true,
+          "sort": true,
           "routes": [
             {
               "title": "useBreakpointValue",

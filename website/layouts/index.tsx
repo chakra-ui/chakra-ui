@@ -14,9 +14,9 @@ export default function DefaultLayout({ children, frontMatter }) {
       <PageContainer frontmatter={frontMatter}>{children}</PageContainer>
     ),
   }
-  const specialLayout = Object.entries(layoutMap).find(([path, _component]) =>
+  const layout = Object.entries(layoutMap).find(([path, _component]) =>
     String(slug).startsWith(path),
   )
 
-  return specialLayout ?? layoutMap.default
+  return layout[1] ?? layoutMap.default
 }
