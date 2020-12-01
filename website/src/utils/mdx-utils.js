@@ -18,7 +18,7 @@ async function processFrontmatter(options) {
   const filePath = path.join(process.cwd(), "pages", mdxPath)
 
   // get the last edited author and date
-  const lastEdited = await getLastEdited(filePath)
+  const lastEdited = (await getLastEdited(filePath)) || null
 
   // get the edit url
   const editUrl = getEditUrl(path.join(mdxPath), baseEditUrl)

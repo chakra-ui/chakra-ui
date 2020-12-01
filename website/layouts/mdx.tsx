@@ -6,13 +6,24 @@ import Pagination from "components/pagination"
 import Sidebar from "components/sidebar/sidebar"
 import docsSidebar from "configs/docs-sidebar.json"
 import guidesSidebar from "configs/guides-sidebar.json"
+import blogSidebar from "configs/blog-sidebar.json"
 import * as React from "react"
 import { findRouteByPath, removeFromLast } from "utils/find-route-by-path"
 import { getRouteContext } from "utils/get-route-context"
 
 export function getRoutes(slug: string) {
-  const config = slug.startsWith("/guides") ? guidesSidebar : docsSidebar
-  return config.routes
+  const configMap = {
+    "/guides": guidesSidebar,
+    "/blog": blogSidebar,
+    "/docs": docsSidebar,
+  }
+
+  const [_path, sidebar] =
+    Object.entries(configMap).find(([path, _sidebar]) =>
+      slug.startsWith(path),
+    ) ?? []
+
+  return sidebar?.routes ?? []
 }
 
 function MDXLayout({ frontmatter, children }) {

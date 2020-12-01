@@ -29,7 +29,12 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
     borderColor,
     ...styles
   } = useStyleConfig("Divider", props)
-  const { className, orientation = "horizontal", __css, ...rest } = omitThemingProps(props)
+  const {
+    className,
+    orientation = "horizontal",
+    __css,
+    ...rest
+  } = omitThemingProps(props)
 
   const dividerStyles = {
     vertical: {

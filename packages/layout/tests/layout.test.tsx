@@ -51,9 +51,7 @@ describe("<Container />", () => {
 
   test("centerContent - prop works correctly", () => {
     const { asFragment } = render(
-      <Container centerContent>
-        This is centered container
-      </Container>,
+      <Container centerContent>This is centered container</Container>,
     )
     expect(asFragment()).toMatchSnapshot()
   })

@@ -14,7 +14,8 @@ import { Routes } from "utils/get-route-context"
 import SidebarCategory from "./sidebar-category"
 import SidebarLink from "./sidebar-link"
 import NextLink from "next/link"
-import { DocsIcon, GuidesIcon, TeamIcon } from "./sidebar-icons"
+import { BlogIcon, DocsIcon, GuidesIcon, TeamIcon } from "./sidebar-icons"
+import _ from "lodash"
 
 export type SidebarContentProps = Routes & {
   pathname?: string
@@ -25,10 +26,10 @@ export function SidebarContent(props: SidebarContentProps) {
   const { routes, pathname, contentRef } = props
   return (
     <>
-      {routes.map((c1, idx) => {
+      {routes.map((lvl1, idx) => {
         return (
           <React.Fragment key={idx}>
-            {c1.heading && (
+            {lvl1.heading && (
               <chakra.h4
                 fontSize="sm"
                 fontWeight="bold"
@@ -37,32 +38,36 @@ export function SidebarContent(props: SidebarContentProps) {
                 letterSpacing="wider"
                 color={useColorModeValue("gray.700", "inherit")}
               >
-                {c1.title}
+                {lvl1.title}
               </chakra.h4>
             )}
 
-            {c1.routes.map((c2) => {
-              if (!c2.routes) {
+            {lvl1.routes.map((lvl2, index) => {
+              if (!lvl2.routes) {
                 return (
-                  <SidebarLink ml="-3" mt="2" key={c2.path} href={c2.path}>
-                    {c2.title}
+                  <SidebarLink ml="-3" mt="2" key={lvl2.path} href={lvl2.path}>
+                    {lvl2.title}
                   </SidebarLink>
                 )
               }
 
-              const selected = pathname.startsWith(c2.path)
-              const opened = selected || c2.open
+              const selected = pathname.startsWith(lvl2.path)
+              const opened = selected || lvl2.open
+
+              const sortedRoutes = !!lvl2.sort
+                ? _.sortBy(lvl2.routes, (i) => i.title)
+                : lvl2.routes
 
               return (
                 <SidebarCategory
                   contentRef={contentRef}
-                  key={c2.path}
-                  {...c2}
+                  key={lvl2.path + index}
+                  title={lvl2.title}
                   selected={selected}
                   opened={opened}
                 >
                   <Stack>
-                    {c2.routes.map((c3) => (
+                    {sortedRoutes.map((c3) => (
                       <SidebarLink key={c3.path} href={c3.path}>
                         {c3.title}
                       </SidebarLink>
@@ -115,6 +120,9 @@ const MainNav = (props: BoxProps) => {
       </MainNavLink>
       <MainNavLink icon={<TeamIcon />} href="/team">
         Team
+      </MainNavLink>
+      <MainNavLink icon={<BlogIcon />} href="/blog">
+        Blog
       </MainNavLink>
     </VStack>
   )
