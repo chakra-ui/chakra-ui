@@ -1,15 +1,27 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`843854ec`](https://github.com/chakra-ui/chakra-ui/commit/843854ec669367623b50a598402be343866d87a8),
+  [`892ea2ca`](https://github.com/chakra-ui/chakra-ui/commit/892ea2ca1c02b4127f4f044df33de58cc7641f5c),
+  [`5c482483`](https://github.com/chakra-ui/chakra-ui/commit/5c482483ce24fc798540c9792a15e06772eae213),
+  [`204ff7e3`](https://github.com/chakra-ui/chakra-ui/commit/204ff7e39dd37003786194704b36069ef94d56a6)]:
+  - @chakra-ui/theme@1.1.0
+  - @chakra-ui/utils@1.0.1
+  - @chakra-ui/hooks@1.0.1
+  - @chakra-ui/alert@1.0.1
+  - @chakra-ui/close-button@1.0.1
+  - @chakra-ui/transition@1.0.1
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # 1.0.0 (2020-11-13)
 
 **Note:** Version bump only for package @chakra-ui/toast
-
-
-
-
 
 # Change Log
 

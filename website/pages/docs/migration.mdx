@@ -61,7 +61,7 @@ Rename the `@chakra-ui/core` package to `@chakra-ui/react`.
 "dependencies": {
 - "@chakra-ui/core": "^0.8.0",
 + "@chakra-ui/react": "^1.0.0",
-  "framer-motion": "^2.9.5",
+  "framer-motion": "^2.9.4",
 - "@emotion/core": "^10.0.10",
 + "@emotion/react": "^11.0.0",
   "@emotion/styled": "^11.0.0",
@@ -131,7 +131,9 @@ only one prop to manage this, you can rename it to `boxSize`.
 > in some components (e.g. Button), it means the visual size and in others (e.g
 > Box), it means **width and height**.
 
-### 5. Replace PseudoBox elements
+### 5. Replace elements
+
+#### PseudoBox
 
 `PseudoBox` is now deprecated and its props can now be directly applied to
 `Box`. Replace all `PseudoBox` components with `Box`.
@@ -149,6 +151,21 @@ only one prop to manage this, you can rename it to `boxSize`.
 +      </Box>
 -    </PseudoBox>
 +    </Box>
+```
+
+#### Callout
+
+`Callout` is now deprecated and you can use an `Alert` instead.
+```diff
+-   <Callout
++   <Alert
+      mt={4}
+      w="90%"
+      bg="black"
+      variant="left-accent"
+    >
+-   </Callout>
++   </Alert>
 ```
 
 ### 6. Update theme breakpoints
@@ -453,6 +470,10 @@ necessary border to the input.
 ### Link
 
 Due to accessibility reasons, we've deprecated the `isDisabled` prop for `Link`.
+
+### List
+
+Renamed `stylePos` to `stylePosition`
 
 ### Stack
 

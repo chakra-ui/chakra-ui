@@ -245,6 +245,7 @@ export function usePopover(props: UsePopoverProps = {}) {
       closeOnEsc,
       onClose,
       closeDelay,
+      closeOnBlur,
     ],
   )
 

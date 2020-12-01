@@ -71,7 +71,7 @@ Since we're using lerna monorepo + yarn workspaces by default, this enables us
 to run commands within component packages directly from the root.
 
 Each component is named this way: `@chakra-ui/[component]`. Let's say we want to
-build the checkbox component. Here's how to do it:
+build the button component. Here's how to do it:
 
 ```bash
 yarn workspace @chakra-ui/button build
@@ -86,14 +86,14 @@ each component in the root `package.json`. Now you can simply do:
 
 ```bash
 # to build
-yarn pkg button build
+yarn pkg tabs build
 
 # to test
-yarn pkg button test
-yarn pkg button test --watch
+yarn pkg tabs test
+yarn pkg tabs test --watch
 
 # to lint
-yarn pkg button lint
+yarn pkg tabs lint
 ```
 
 This alias is particularly useful when you're working on a specific component

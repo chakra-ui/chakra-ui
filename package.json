@@ -58,7 +58,8 @@
   },
   "resolutions": {
     "**/react": "17.0.1",
-    "**/react-dom": "17.0.1"
+    "**/react-dom": "17.0.1",
+    "@popperjs/core": "2.4.4"
   },
   "version": "1.0.0",
   "dependencies": {
@@ -77,11 +78,11 @@
     "@emotion/styled": "^11.0.0",
     "@jest/types": "^26.6.1",
     "@manypkg/cli": "^0.16.1",
-    "@storybook/addon-a11y": "^6.0.27",
-    "@storybook/addon-actions": "^6.0.27",
-    "@storybook/addon-knobs": "^6.0.27",
-    "@storybook/cli": "^6.0.27",
-    "@storybook/react": "^6.0.27",
+    "@storybook/addon-a11y": "^6.1.0",
+    "@storybook/addon-actions": "^6.1.0",
+    "@storybook/addon-knobs": "^6.1.0",
+    "@storybook/cli": "^6.1.0",
+    "@storybook/react": "^6.1.0",
     "@types/imagemin": "^7.0.0",
     "@types/imagemin-jpegtran": "^5.0.0",
     "@types/jest": "^26.0.15",
@@ -137,7 +138,7 @@
     "prettier": "^2.1.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-hook-form": "6.8.6",
+    "react-hook-form": "^6.11.3",
     "react-icons": "^3.11.0",
     "react-lorem-component": "^0.13.0",
     "react-router-dom": "^5.2.0",

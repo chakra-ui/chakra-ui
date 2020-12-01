@@ -11,7 +11,7 @@ Chakra exports four components `Fade`, `ScaleFade`, `Slide`, and `SlideFade` to
 provide simple transitions.
 
 <ComponentLinks
-  github={{ package: "transitions" }}
+  github={{ package: "transition" }}
   npm={{ package: "@chakra-ui/transition" }}
 />
 
@@ -196,40 +196,35 @@ The transition components extends the
 
 ### Fade Props
 
-| Name | Type      | Default | Description                                           |
-| ---- | --------- | ------- | ----------------------------------------------------- |
-| in   | `boolean` | false   | Show the component; triggers the enter or exit states |
+<PropsTable of="Fade" only={["in", "unmountOnExit"]} />
 
 ### ScaleFade Props
 
-| Name         | Type      | Default | Description                                           |
-| ------------ | --------- | ------- | ----------------------------------------------------- |
-| in           | `boolean` | false   | Show the component; triggers the enter or exit states |
-| initialScale | `number`  | 0.9     | The initial scale to animate from                     |
+<PropsTable
+  of="ScaleFade"
+  only={["initialScale", "reverse", "unmountOnExit", "in"]}
+/>
 
 ### Slide Props
 
-| Name      | Type      | Default  | Description                                           |
-| --------- | --------- | -------- | ----------------------------------------------------- |
-| in        | `boolean` | false    | Show the component; triggers the enter or exit states |
-| placement | `string`  | 'bottom' | The direction to slide drawer from                    |
+<PropsTable of="Slide" only={["unmountOnExit", "direction", "in"]} />
 
 ### SlideFade Props
 
-| Name    | Type      | Default | Description                                           |
-| ------- | --------- | ------- | ----------------------------------------------------- |
-| in      | `boolean` | false   | Show the component; triggers the enter or exit states |
-| offsetX | `string`  | '20px'  | The initial offset to slide from                      |
-| offsetY | `string`  | '20px'  | The initial offset to slide from                      |
+<PropsTable
+  of="SlideFade"
+  only={["offsetX", "offsetY", "reverse", "unmountOnExit", "in"]}
+/>
 
 ### Collapse Props
 
-## Props
-
-This component doesn't have any custom props.
-
-| Name           | Type      | Description                                                                   |
-| -------------- | --------- | ----------------------------------------------------------------------------- |
-| isOpen         | `boolean` | If `true`, the content will be visible                                        |
-| animateOpacity | `boolean` | If `true`, the opacity of the content will be animated                        |
-| startingHeight | `number`  | The height you want the content in its collapsed state. Set to `0` by default |
+<PropsTable
+  of="Collapse"
+  only={[
+    "animateOpacity",
+    "unmountOnExit",
+    "in",
+    "startingHeight",
+    "endingHeight",
+  ]}
+/>

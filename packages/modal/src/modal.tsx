@@ -194,7 +194,12 @@ if (__DEV__) {
   Modal.displayName = "Modal"
 }
 
-export interface ModalContentProps extends HTMLChakraProps<"section"> {}
+export interface ModalContentProps extends HTMLChakraProps<"section"> {
+  /**
+   * The props to forward to the modal's content wrapper
+   */
+  containerProps?: HTMLChakraProps<"div">
+}
 
 const Motion = chakra(motion.div)
 
@@ -204,12 +209,12 @@ const Motion = chakra(motion.div)
  */
 export const ModalContent = forwardRef<ModalContentProps, "section">(
   function ModalContent(props, ref) {
-    const { className, children, ...rest } = props
+    const { className, children, containerProps: rootProps, ...rest } = props
 
     const { getDialogProps, getDialogContainerProps } = useModalContext()
 
     const dialogProps = getDialogProps(rest, ref) as any
-    const containerProps = getDialogContainerProps()
+    const containerProps = getDialogContainerProps(rootProps)
 
     const _className = cx("chakra-modal__content", className)
 
@@ -287,7 +292,7 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
     if (!isPresent && safeToRemove) {
       setTimeout(safeToRemove)
     }
-  }, [isPresent])
+  }, [isPresent, safeToRemove])
 
   return (
     <FocusLock
@@ -491,12 +496,12 @@ export const ModalCloseButton = forwardRef<CloseButtonProps, "button">(
 
     const _className = cx("chakra-modal__close-btn", className)
 
+    const styles = useStyles()
+
     return (
       <CloseButton
         ref={ref}
-        position="absolute"
-        top="8px"
-        right="12px"
+        __css={styles.closeButton}
         className={_className}
         onClick={callAllHandlers(onClick, (event) => {
           event.stopPropagation()

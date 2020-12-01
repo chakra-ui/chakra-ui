@@ -1,6 +1,6 @@
-import * as React from "react"
-import { Tabs, TabList, Tab, TabIndicator, TabPanels, TabPanel } from "../src"
 import { chakra } from "@chakra-ui/system"
+import * as React from "react"
+import { Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs } from "../src"
 
 export default {
   title: "Tabs",
@@ -80,6 +80,23 @@ export const withIndicator = () => (
     <TabIndicator mt="-36px" zIndex={-1} height="34px" bg="green.200" />
 
     <TabPanels>
+      <TabPanel>Settings</TabPanel>
+      <TabPanel>Billings</TabPanel>
+      <TabPanel>Preferences</TabPanel>
+      <TabPanel>Shut Down</TabPanel>
+    </TabPanels>
+  </Tabs>
+)
+
+export const withVerticalTabs = () => (
+  <Tabs orientation="vertical">
+    <TabList>
+      <Tab>Settings</Tab>
+      <Tab>Billings</Tab>
+      <Tab isDisabled>Preferences</Tab>
+      <Tab>Shut Down</Tab>
+    </TabList>
+    <TabPanels bg="red.200">
       <TabPanel>Settings</TabPanel>
       <TabPanel>Billings</TabPanel>
       <TabPanel>Preferences</TabPanel>

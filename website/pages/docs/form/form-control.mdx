@@ -81,6 +81,21 @@ By passing the `isRequired` props, the `Input` field has `aria-required` set to
 </FormControl>
 ```
 
+### Number Input Example
+
+```jsx
+<FormControl id="amount">
+  <FormLabel>Amount</FormLabel>
+  <NumberInput max={50} min={10}>
+    <NumberInputField />
+    <NumberInputStepper>
+      <NumberIncrementStepper />
+      <NumberDecrementStepper />
+    </NumberInputStepper>
+  </NumberInput>
+</FormControl>
+```
+
 ### Usage with Form Libraries
 
 Form Libraries like [Formik](https://jaredpalmer.com/formik/) make it soooo easy

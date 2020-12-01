@@ -1,15 +1,20 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@1.0.1
+  - @chakra-ui/theme-tools@1.0.1
+  - @chakra-ui/icons@1.0.1
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # 1.0.0 (2020-11-13)
 
 **Note:** Version bump only for package chakra-nextjs-ts
-
-
-
-
 
 # Change Log
 

@@ -1417,7 +1417,8 @@
       "profile": "https://github.com/ellisio",
       "contributions": [
         "code",
-        "bug"
+        "bug",
+        "doc"
       ]
     },
     {
@@ -1535,6 +1536,70 @@
       "profile": "https://umarcodes.xyz/",
       "contributions": [
         "doc"
+      ]
+    },
+    {
+      "login": "Zyclotrop-j",
+      "name": "Zyclotrop-j",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/4939546?v=4",
+      "profile": "https://github.com/Zyclotrop-j",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "milescm",
+      "name": "Hong Suk Woo",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/33818414?v=4",
+      "profile": "https://github.com/milescm",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "junhoyeo",
+      "name": "Junho Yeo",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/32605822?v=4",
+      "profile": "https://trendy-resume.now.sh/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "silltho",
+      "name": "Thomas Siller",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/5812228?v=4",
+      "profile": "https://silltho.github.io/",
+      "contributions": [
+        "test",
+        "code"
+      ]
+    },
+    {
+      "login": "skauffmann",
+      "name": "Samuel Kauffmann",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1290679?v=4",
+      "profile": "https://tyneo.net/fr/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "dodas",
+      "name": "Jozef Mikuláš",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/14360171?v=4",
+      "profile": "https://github.com/dodas",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jvmazagao",
+      "name": "João Victor ",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/22477816?v=4",
+      "profile": "https://github.com/jvmazagao",
+      "contributions": [
+        "code"
       ]
     }
   ],

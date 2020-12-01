@@ -38,7 +38,7 @@ For example, to create a simple badge that changes its background based on color
 mode. Here's how to go about it.
 
 ```jsx live=false
-import { extendTheme, theme } from "@chakra-ui/react"
+import { extendTheme } from "@chakra-ui/react"
 
 // 1. define component configuration
 const components = {
@@ -56,8 +56,8 @@ const components = {
   },
 }
 
-// 2. add it to the theme and mount on `ChakraProvider`
-const customTheme = mergeWith(theme, { components })
+// 2. Call `extendTheme` and pass your custom values`
+const theme = extendTheme({ components })
 
 // 3. Use it in your components
 function CustomBadge(props) {

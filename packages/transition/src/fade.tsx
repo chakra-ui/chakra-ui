@@ -31,11 +31,11 @@ export const fadeConfig: HTMLMotionProps<any> = {
 
 export interface FadeProps extends HTMLMotionProps<"div"> {
   /**
-   * If `true`, the collapse will unmount when `isOpen={false}` and animation is done
+   * If `true`, the element will unmount when `in={false}` and animation is done
    */
   unmountOnExit?: boolean
   /**
-   * If `true`, the content will slide in
+   * Show the component; triggers the enter or exit states
    */
   in?: boolean
 }

@@ -47,15 +47,16 @@ export function usePopper(props: UsePopperProps = {}) {
     null,
   )
   const [arrowNode, setArrowNode] = React.useState<HTMLDivElement | null>(null)
-  const offset = offsetProp ?? [0, gutter]
 
   /**
    * recommended via popper docs
    * @see https://popper.js.org/react-popper/v2/faq/#why-i-get-render-loop-whenever-i-put-a-function-inside-the-popper-configuration
    */
   type Modifiers = Partial<Modifier<any, unknown>>[]
-  const customModifiers = React.useMemo<Modifiers>(
-    () => [
+  const customModifiers = React.useMemo<Modifiers>(() => {
+    const offset = offsetProp ?? [0, gutter]
+
+    return [
       // @see https://popper.js.org/docs/v2/modifiers/offset/
       {
         name: "offset",
@@ -114,17 +115,16 @@ export function usePopper(props: UsePopperProps = {}) {
           }
         },
       },
-    ],
-    [
-      arrowNode,
-      arrowPadding,
-      flip,
-      preventOverflow,
-      offset,
-      gutter,
-      matchWidth,
-    ],
-  )
+    ]
+  }, [
+    arrowNode,
+    arrowPadding,
+    flip,
+    preventOverflow,
+    offsetProp,
+    gutter,
+    matchWidth,
+  ])
 
   const popperJS = useBasePopper(referenceNode as any, popperNode as any, {
     placement,

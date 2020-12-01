@@ -59,7 +59,7 @@ export function useOutsideClick(props: UseOutsideClickOptions) {
       document.removeEventListener("touchstart", onPointerDown, true)
       document.removeEventListener("touchend", onTouchEnd, true)
     }
-  }, [handler, ref, state.ignoreEmulatedMouseEvents, state.isPointerDown])
+  }, [handler, ref, savedHandler, state])
 }
 
 function isValidEvent(event: any, ref: React.RefObject<HTMLElement>) {
