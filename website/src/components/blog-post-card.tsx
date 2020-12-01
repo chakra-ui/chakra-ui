@@ -1,17 +1,16 @@
-import * as React from "react"
 import {
   Box,
   Heading,
-  HStack,
   LinkBox,
-  Tag,
   Text,
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react"
 import format from "date-fns/format"
 import parseISO from "date-fns/parseISO"
+import _ from "lodash"
 import Link from "next/link"
+import * as React from "react"
 import { BlogPost } from "utils/get-blog-posts"
 
 export type BlogPostCardProps = {
@@ -32,40 +31,35 @@ export const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
         tabIndex={0}
         cursor="pointer"
         position="relative"
-        p={4}
-        border="1px"
-        borderColor={borderColor}
         borderRadius="md"
         alignItems="flex-start"
+        pb="3"
       >
-        <VStack align="flex-start">
-          <header>
-            <Heading as="h2" size="md">
-              {post.title}
-            </Heading>
-            <Box as="aside" fontSize="xs">
-              <Text as="span" color={secondaryColor}>
-                {readableDate}
-              </Text>
-              <Text as="span" color={secondaryColor} px={1} role="none">
-                |
-              </Text>
-              <Text as="span" color={secondaryColor}>
-                {post.readTimeMinutes} min read
-              </Text>
+        <Text fontSize="sm" color="gray.500" fontWeight="medium" mb="2">
+          {readableDate}
+        </Text>
+        <VStack align="flex-start" mb="5">
+          <Heading as="h3" size="md">
+            {post.title}
+          </Heading>
+          <Box fontSize="sm" color="gray.500" pt="2">
+            <Text as="span" mb="3">
+              {post.tags.map((t) => _.capitalize(t)).join(",")}
+            </Text>
+            <Box
+              bg="gray.100"
+              fontWeight="semibold"
+              px="2"
+              py="1"
+              ml="5"
+              as="span"
+              rounded="base"
+            >
+              {post.readTimeMinutes} min read
             </Box>
-          </header>
-          <Text _after={{ content: '"\\02026"' }}>{post.excerpt}</Text>
-          <footer>
-            <HStack as="ul" flexWrap="wrap">
-              {post.tags.map((tag) => (
-                <Tag as="li" key={tag} size="sm">
-                  {tag}
-                </Tag>
-              ))}
-            </HStack>
-          </footer>
+          </Box>
         </VStack>
+        <Text _after={{ content: '"\\02026"' }}>{post.excerpt}</Text>
       </LinkBox>
     </Link>
   )
