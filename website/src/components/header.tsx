@@ -15,9 +15,9 @@ import { useViewportScroll } from "framer-motion"
 import NextLink from "next/link"
 import React from "react"
 import { FaMoon, FaSun } from "react-icons/fa"
-import NavLink from "./header-nav-link"
 import Logo from "./logo"
 import { MobileNavButton, MobileNavContent } from "./mobile-nav"
+import OmniSearch from "./omni-search"
 import SponsorButton from "./sponsor-button"
 import VersionSwitcher from "./version-switcher"
 
@@ -55,27 +55,23 @@ function HeaderContent() {
   return (
     <>
       <Flex w="100%" h="100%" px="6" align="center" justify="space-between">
-      <Flex align="center">
-        <NextLink href="/" passHref>
-          <chakra.a display="block" aria-label="Chakra UI, Back to homepage">
-            <Logo />
-          </chakra.a>
-        </NextLink>
-        <HStack
-          as="nav"
-          spacing="4"
-          ml="24px"
-          display={{ base: "none", md: "flex" }}
-        >
-          <NavLink href="/docs/getting-started">Docs</NavLink>
-          <NavLink href="/guides/integrations/with-cra">Guides</NavLink>
-          <NavLink href="/blog">Blog</NavLink>
-          <NavLink href="/team">Team</NavLink>
-          </HStack>
+        <Flex align="center">
+          <NextLink href="/" passHref>
+            <chakra.a display="block" aria-label="Chakra UI, Back to homepage">
+              <Logo />
+            </chakra.a>
+          </NextLink>
         </Flex>
 
-        <Flex maxW="720px" align="center" color="gray.400">
-          <VersionSwitcher display={{ base: "none", md: "flex" }} />
+        <Flex
+          justify="flex-end"
+          w="100%"
+          maxW="824px"
+          align="center"
+          color="gray.400"
+        >
+          <OmniSearch />
+          <VersionSwitcher w="64px" display={{ base: "none", md: "flex" }} />
           <HStack spacing="5" display={{ base: "none", md: "flex" }}>
             <Link isExternal aria-label="GitHub" href={siteConfig.repo.url}>
               <Icon
@@ -102,7 +98,7 @@ function HeaderContent() {
             aria-label={`Switch to ${text} mode`}
             variant="ghost"
             color="current"
-            ml="3"
+            ml={{ base: "0", md: "3" }}
             onClick={toggleMode}
             icon={<SwitchIcon />}
           />

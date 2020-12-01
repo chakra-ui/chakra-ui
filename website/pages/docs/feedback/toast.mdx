@@ -11,9 +11,8 @@ seconds. The toast component is used to give feeback to users after an action
 has taken place.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/toast", url: "#" }}
+  github={{ package: "toast" }}
+  npm={{ package: "@chakra-ui/toast" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -226,7 +225,7 @@ Components.
 import { createStandaloneToast } from "@chakra-ui/react"
 
 const toast = createStandaloneToast()
-// const customToast = createStandaloeToast({ theme: yourCustomTheme })
+// const customToast = createStandaloneToast({ theme: yourCustomTheme })
 
 toast({
   title: "An error occurred.",
@@ -241,10 +240,10 @@ toast({
 
 | Name          | Type                                                                    | Default  | Description                                                          |
 | ------------- | ----------------------------------------------------------------------- | -------- | -------------------------------------------------------------------- |
-| `title`       | `boolean`                                                               |          | The title of the toast.                                              |
+| `title`       | `React.ReactNode`                                                       |          | The title of the toast.                                              |
 | `isClosable`  | `boolean`                                                               | `false`  | If `true` adds a close button to the toast.                          |
 | `onClose`     | `function`                                                              |          | Callback function to close the toast.                                |
-| `description` | `string`                                                                |          | The description of the toast.                                        |
+| `description` | `React.ReactNode`                                                       |          | The description of the toast.                                        |
 | `status`      | `default`, `success`, `error`, `warning`, `info`                        |          | The status of the toast.                                             |
 | `duration`    | `number`                                                                | `5000ms` | Duration before dismiss in milliseconds, or `null` to never dismiss. |
 | `position`    | `top`, `top-left`, `top-right`, `bottom`, `bottom-left`, `bottom-right` | `bottom` | Position the toast will popup out from.                              |

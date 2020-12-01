@@ -1,15 +1,26 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## 1.1.0
+
+### Minor Changes
+
+- [`586ce3c1`](https://github.com/chakra-ui/chakra-ui/commit/586ce3c12bb3508027c36811233c539eeeb55256)
+  [#2504](https://github.com/chakra-ui/chakra-ui/pull/2504) Thanks
+  [@Zaynex](https://github.com/Zaynex)! - - Add `filter` to styled props
+  - This makes `filter` prop available to `_groupHover` utility as well
+
+### Patch Changes
+
+- Updated dependencies
+  [[`5c482483`](https://github.com/chakra-ui/chakra-ui/commit/5c482483ce24fc798540c9792a15e06772eae213)]:
+  - @chakra-ui/utils@1.0.1
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # 1.0.0 (2020-11-13)
 
 **Note:** Version bump only for package @chakra-ui/styled-system
-
-
-
-
 
 # Change Log
 

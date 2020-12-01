@@ -23,7 +23,6 @@ import {
   getNextItemFromSearch,
   getPrevIndex,
   getValidChildren,
-  hasFocusWithin,
   isArray,
   isString,
   mergeRefs,
@@ -40,11 +39,7 @@ const [MenuProvider, useMenuContext] = createContext<UseMenuReturn>({
 
 export { MenuProvider, useMenuContext }
 
-export interface UseMenuProps extends UsePopperProps {
-  /**
-   * Unique id to be used by menu and its children
-   */
-  id?: string
+export interface UseMenuProps extends UsePopperProps, UseDisclosureProps {
   /**
    * If `true`, the menu will close when a menu item is
    * clicked
@@ -72,34 +67,6 @@ export interface UseMenuProps extends UsePopperProps {
    * until the menu is open.
    */
   isLazy?: boolean
-  /**
-   * If `true`, the top-level menu will be opened in controlled mode
-   */
-  isOpen?: UseDisclosureProps["isOpen"]
-  /**
-   * If `true`, the top-level menu will be opened in un-controlled mode
-   */
-  defaultIsOpen?: UseDisclosureProps["defaultIsOpen"]
-  /**
-   * Function to be called when menu is open
-   */
-  onOpen?: UseDisclosureProps["onOpen"]
-  /**
-   * Function to be called when menu is closed
-   */
-  onClose?: UseDisclosureProps["onClose"]
-  /**
-   * The placement of the `MenuList`
-   *
-   * @default "bottom-start"
-   */
-  placement?: UsePopperProps["placement"]
-  /**
-   * The strategy for positioning the `MenuList`
-   *
-   * @default true
-   */
-  fixed?: UsePopperProps["fixed"]
 }
 
 /**
@@ -116,7 +83,6 @@ export function useMenu(props: UseMenuProps) {
     autoSelect = true,
     isLazy,
     placement = "bottom-start",
-    fixed,
   } = props
 
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure(props)
@@ -143,7 +109,7 @@ export function useMenu(props: UseMenuProps) {
   /**
    * Add some popper.js for dynamic positioning
    */
-  const popper = usePopper({ placement, fixed })
+  const popper = usePopper({ placement, ...props })
 
   const [focusedIndex, setFocusedIndex] = React.useState(-1)
 
@@ -195,7 +161,7 @@ export function useMenu(props: UseMenuProps) {
 
     const el = domContext.descendants[focusedIndex]?.element
     el?.focus({ preventScroll: true })
-  }, [isOpen, hasFocusWithin, focusedIndex, domContext.descendants])
+  }, [isOpen, focusedIndex, domContext.descendants])
 
   return {
     openAndFocusMenu,
@@ -468,7 +434,7 @@ export function useMenuItem(
 
       setFocusedIndex(index)
     },
-    [setFocusedIndex, index, isDisabled],
+    [setFocusedIndex, index, isDisabled, onMouseEnterProp],
   )
 
   const onMouseMove = React.useCallback(
@@ -478,7 +444,7 @@ export function useMenuItem(
         onMouseEnter(event)
       }
     },
-    [onMouseEnter],
+    [onMouseEnter, onMouseMoveProp],
   )
 
   const onMouseLeave = React.useCallback(
@@ -488,7 +454,7 @@ export function useMenuItem(
 
       setFocusedIndex(-1)
     },
-    [setFocusedIndex, isDisabled],
+    [setFocusedIndex, isDisabled, onMouseLeaveProp],
   )
 
   const onClick = React.useCallback(

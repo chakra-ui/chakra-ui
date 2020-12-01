@@ -99,16 +99,19 @@ export function useClickable(props: UseClickableProps = {}) {
     [isDisabled, onClick],
   )
 
-  const onDocumentKeyUp = (e: KeyboardEvent) => {
-    if (isPressed && isValidElement(e)) {
-      e.preventDefault()
-      e.stopPropagation()
+  const onDocumentKeyUp = React.useCallback(
+    (e: KeyboardEvent) => {
+      if (isPressed && isValidElement(e)) {
+        e.preventDefault()
+        e.stopPropagation()
 
-      setIsPressed(false)
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      listeners.remove(document, "keyup", onDocumentKeyUp, false)
-    }
-  }
+        setIsPressed(false)
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        listeners.remove(document, "keyup", onDocumentKeyUp, false)
+      }
+    },
+    [isPressed, listeners],
+  )
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLElement>) => {
@@ -136,7 +139,15 @@ export function useClickable(props: UseClickableProps = {}) {
 
       listeners.add(document, "keyup", onDocumentKeyUp, false)
     },
-    [isDisabled, isButton, onKeyDown, clickOnEnter, clickOnSpace],
+    [
+      isDisabled,
+      isButton,
+      onKeyDown,
+      clickOnEnter,
+      clickOnSpace,
+      listeners,
+      onDocumentKeyUp,
+    ],
   )
 
   const handleKeyUp = React.useCallback(
@@ -160,11 +171,14 @@ export function useClickable(props: UseClickableProps = {}) {
     [clickOnSpace, isButton, isDisabled, onKeyUp],
   )
 
-  const onDocumentMouseUp = (event: MouseEvent) => {
-    if (event.button !== 0) return
-    setIsPressed(false)
-    listeners.remove(document, "mouseup", onDocumentMouseUp, false)
-  }
+  const onDocumentMouseUp = React.useCallback(
+    (event: MouseEvent) => {
+      if (event.button !== 0) return
+      setIsPressed(false)
+      listeners.remove(document, "mouseup", onDocumentMouseUp, false)
+    },
+    [listeners],
+  )
 
   const handleMouseDown = React.useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
@@ -187,7 +201,7 @@ export function useClickable(props: UseClickableProps = {}) {
 
       onMouseDown?.(event)
     },
-    [isDisabled, isButton, onMouseDown],
+    [isDisabled, isButton, onMouseDown, listeners, onDocumentMouseUp],
   )
 
   const handleMouseUp = React.useCallback(
@@ -223,7 +237,7 @@ export function useClickable(props: UseClickableProps = {}) {
       }
       onMouseLeave?.(event)
     },
-    [isPressed],
+    [isPressed, onMouseLeave],
   )
 
   const ref = mergeRefs(htmlRef, refCallback)
@@ -250,7 +264,7 @@ export function useClickable(props: UseClickableProps = {}) {
     ref,
     role: "button",
     "data-active": dataAttr(isPressed),
-    "aria-disabled": isDisabled ? "true" : undefined,
+    "aria-disabled": isDisabled ? ("true" as const) : undefined,
     tabIndex: trulyDisabled ? undefined : tabIndex,
     onClick: handleClick,
     onMouseDown: handleMouseDown,

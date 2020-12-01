@@ -1,4 +1,12 @@
-import { omit, pick, split, get, getWithDefault, filterUndefined } from "../src"
+import {
+  omit,
+  pick,
+  split,
+  get,
+  memoize,
+  getWithDefault,
+  filterUndefined,
+} from "../src/object"
 
 const object = { a: 1, b: 2, c: { d: 3 } }
 
@@ -30,4 +38,15 @@ test("should filter undefined values in object", () => {
     colorScheme: "red",
   })
   expect(result).toStrictEqual({ colorScheme: "red" })
+})
+
+test("should get memoized value on successive calls", () => {
+  const mockGet = jest.fn(() => true)
+  const memoizedMockGet = memoize(mockGet)
+
+  // run the memoized get twice
+  expect(memoizedMockGet(object, "path")).toStrictEqual(true)
+  expect(memoizedMockGet(object, "path")).toStrictEqual(true)
+  // make sure get was only called once
+  expect(mockGet).toHaveBeenCalledTimes(1)
 })

@@ -45,23 +45,23 @@ fix it.
 
 ### 1. Update your dependencies
 
-Install the `framer-motion` package. We use this to manage animations and
-transitions within components.
+- Install the `framer-motion` package. We use this to manage animations and
+  transitions within components.
 
-Remove the `emotion-theming` package. As at emotion v11, `emotion-theming` as
-been removed and all it's functionality as been migrated to `@emotion/react`.
+- Remove the `emotion-theming` package. As at emotion v11, `emotion-theming` as
+  been removed and all it's functionality as been migrated to `@emotion/react`.
 
-Rename the `@emotion/core` package to `@emotion/react`. `@emotion/core` was
-recently changed to `@emotion/react` following the v11 release by the emotionjs
-team.
+- Rename the `@emotion/core` package to `@emotion/react`. `@emotion/core` was
+  recently changed to `@emotion/react` following the v11 release by the
+  emotionjs team.
 
-Rename the `@chakra-ui/core` package to `@chakra-ui/react`.
+- Rename the `@chakra-ui/core` package to `@chakra-ui/react`.
 
 ```diff
 "dependencies": {
 - "@chakra-ui/core": "^0.8.0",
 + "@chakra-ui/react": "^1.0.0",
-  "framer-motion": "^2.9.5",
+  "framer-motion": "^2.9.4",
 - "@emotion/core": "^10.0.10",
 + "@emotion/react": "^11.0.0",
   "@emotion/styled": "^11.0.0",
@@ -131,7 +131,9 @@ only one prop to manage this, you can rename it to `boxSize`.
 > in some components (e.g. Button), it means the visual size and in others (e.g
 > Box), it means **width and height**.
 
-### 5. Replace PseudoBox elements
+### 5. Replace elements
+
+#### PseudoBox
 
 `PseudoBox` is now deprecated and its props can now be directly applied to
 `Box`. Replace all `PseudoBox` components with `Box`.
@@ -149,6 +151,22 @@ only one prop to manage this, you can rename it to `boxSize`.
 +      </Box>
 -    </PseudoBox>
 +    </Box>
+```
+
+#### Callout
+
+`Callout` is now deprecated and you can use an `Alert` instead.
+
+```diff
+-   <Callout
++   <Alert
+      mt={4}
+      w="90%"
+      bg="black"
+      variant="left-accent"
+    >
+-   </Callout>
++   </Alert>
 ```
 
 ### 6. Update theme breakpoints
@@ -349,6 +367,12 @@ export default class Document extends NextDocument {
 
 Here's how to add it for Gatsby:
 
+## Changes
+
+- The Gatsby plugin has been renamed from `gatsby-plugin-chakra-ui` to
+  `@chakra-ui/gatsby-plugin`. Please make sure to have updated this when
+  installing Chakra UI in your next Gatsby project.
+
 ```jsx live=false
 // gatsby-ssr.js
 export const onRenderBody = ({ setPreBodyComponents }) => {
@@ -447,6 +471,10 @@ necessary border to the input.
 ### Link
 
 Due to accessibility reasons, we've deprecated the `isDisabled` prop for `Link`.
+
+### List
+
+Renamed `stylePos` to `stylePosition`
 
 ### Stack
 

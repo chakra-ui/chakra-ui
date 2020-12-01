@@ -18,16 +18,13 @@ const StyledLink = React.forwardRef(function StyledLink(
       rounded="md"
       ref={ref}
       fontSize="sm"
-      fontWeight="medium"
+      fontWeight="500"
       color={useColorModeValue("gray.700", "whiteAlpha.900")}
       transition="all 0.2s"
-      _hover={{
-        bg: useColorModeValue("gray.100", "whiteAlpha.100"),
-      }}
       _activeLink={{
-        bg: useColorModeValue("teal.100", "rgba(48, 140, 122, 0.3)"),
-        color: useColorModeValue("gray.800", "teal.200"),
-        fontWeight: "semibold",
+        bg: useColorModeValue("teal.50", "rgba(48, 140, 122, 0.3)"),
+        color: useColorModeValue("teal.700", "teal.200"),
+        fontWeight: "600",
       }}
       {...rest}
     />

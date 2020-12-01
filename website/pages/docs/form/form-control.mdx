@@ -13,9 +13,8 @@ It follows the [WAI specifications](https://www.w3.org/WAI/tutorials/forms/) for
 forms.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/form-control", url: "#" }}
+  github={{ package: "form-control" }}
+  npm={{ package: "@chakra-ui/form-control" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -79,6 +78,21 @@ By passing the `isRequired` props, the `Input` field has `aria-required` set to
     <option>United Arab Emirates</option>
     <option>Nigeria</option>
   </Select>
+</FormControl>
+```
+
+### Number Input Example
+
+```jsx
+<FormControl id="amount">
+  <FormLabel>Amount</FormLabel>
+  <NumberInput max={50} min={10}>
+    <NumberInputField />
+    <NumberInputStepper>
+      <NumberIncrementStepper />
+      <NumberDecrementStepper />
+    </NumberInputStepper>
+  </NumberInput>
 </FormControl>
 ```
 

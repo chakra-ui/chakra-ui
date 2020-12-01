@@ -1,15 +1,19 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`204ff7e3`](https://github.com/chakra-ui/chakra-ui/commit/204ff7e39dd37003786194704b36069ef94d56a6)]:
+  - @chakra-ui/hooks@1.0.1
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # 1.0.0 (2020-11-13)
 
 **Note:** Version bump only for package @chakra-ui/descendant
-
-
-
-
 
 # Change Log
 

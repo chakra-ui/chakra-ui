@@ -1,15 +1,68 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`b3594802`](https://github.com/chakra-ui/chakra-ui/commit/b3594802714115c762013174badd5b838217be6f),
+  [`843854ec`](https://github.com/chakra-ui/chakra-ui/commit/843854ec669367623b50a598402be343866d87a8),
+  [`f0d03d9f`](https://github.com/chakra-ui/chakra-ui/commit/f0d03d9f6e474a1f1767643889734665c2910dc1),
+  [`892ea2ca`](https://github.com/chakra-ui/chakra-ui/commit/892ea2ca1c02b4127f4f044df33de58cc7641f5c),
+  [`5c482483`](https://github.com/chakra-ui/chakra-ui/commit/5c482483ce24fc798540c9792a15e06772eae213),
+  [`204ff7e3`](https://github.com/chakra-ui/chakra-ui/commit/204ff7e39dd37003786194704b36069ef94d56a6),
+  [`ba262ac7`](https://github.com/chakra-ui/chakra-ui/commit/ba262ac7b2e2d932bb227d4ff9181e83fbaa4149),
+  [`a1ff404b`](https://github.com/chakra-ui/chakra-ui/commit/a1ff404b12a898ab97af024391a06c34da5bc69a)]:
+  - @chakra-ui/layout@1.0.1
+  - @chakra-ui/theme@1.1.0
+  - @chakra-ui/progress@1.0.1
+  - @chakra-ui/tabs@1.0.1
+  - @chakra-ui/utils@1.0.1
+  - @chakra-ui/hooks@1.0.1
+  - @chakra-ui/modal@1.1.0
+  - @chakra-ui/media-query@1.0.1
+  - @chakra-ui/system@1.0.1
+  - @chakra-ui/toast@1.0.1
+  - @chakra-ui/accordion@1.0.1
+  - @chakra-ui/alert@1.0.1
+  - @chakra-ui/avatar@1.0.1
+  - @chakra-ui/breadcrumb@1.0.1
+  - @chakra-ui/button@1.0.1
+  - @chakra-ui/checkbox@1.0.1
+  - @chakra-ui/close-button@1.0.1
+  - @chakra-ui/control-box@1.0.1
+  - @chakra-ui/counter@1.0.1
+  - @chakra-ui/editable@1.0.1
+  - @chakra-ui/form-control@1.0.1
+  - @chakra-ui/icon@1.0.1
+  - @chakra-ui/image@1.0.1
+  - @chakra-ui/input@1.0.1
+  - @chakra-ui/live-region@1.0.1
+  - @chakra-ui/menu@1.0.1
+  - @chakra-ui/number-input@1.0.1
+  - @chakra-ui/pin-input@1.0.1
+  - @chakra-ui/popover@1.0.1
+  - @chakra-ui/popper@1.0.1
+  - @chakra-ui/portal@1.0.1
+  - @chakra-ui/radio@1.0.1
+  - @chakra-ui/select@1.0.1
+  - @chakra-ui/skeleton@1.0.1
+  - @chakra-ui/slider@1.0.1
+  - @chakra-ui/spinner@1.0.1
+  - @chakra-ui/stat@1.0.1
+  - @chakra-ui/switch@1.0.1
+  - @chakra-ui/tag@1.0.1
+  - @chakra-ui/textarea@1.0.1
+  - @chakra-ui/tooltip@1.0.1
+  - @chakra-ui/transition@1.0.1
+  - @chakra-ui/visually-hidden@1.0.1
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # 1.0.0 (2020-11-13)
 
 **Note:** Version bump only for package @chakra-ui/react
-
-
-
-
 
 # Change Log
 

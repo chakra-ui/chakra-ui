@@ -1,0 +1,21 @@
+{
+  "routes": [
+    {
+      "title": "Blog",
+      "heading": true,
+      "routes": [
+        {
+          "title": "2020",
+          "path": "/blog/2020",
+          "open": true,
+          "routes": [
+            {
+              "title": "chakra-ui v1 just landed",
+              "path": "/blog/2020/chakra-v1-just-landed"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -39,4 +39,4 @@ export const systemProps = compose(
 const layoutSystem = compose(space, layout, flexbox, grid, position)
 export const layoutPropNames = layoutSystem.propNames
 
-export const propNames = [...systemProps.propNames, ...pseudoPropNames]
+export const propNames = [...(systemProps.propNames || []), ...pseudoPropNames]

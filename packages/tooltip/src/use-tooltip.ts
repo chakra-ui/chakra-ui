@@ -173,8 +173,8 @@ export function useTooltip(props: UseTooltipProps = {}) {
       onMouseDown,
       isOpen,
       tooltipId,
-      popper.getReferenceProps,
       onClick,
+      popper,
     ],
   )
 
@@ -204,7 +204,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
       }
       return popper.getPopperProps(positionerProps, _ref)
     },
-    [popper.getPopperProps, popper.transformOrigin],
+    [popper],
   )
 
   return {

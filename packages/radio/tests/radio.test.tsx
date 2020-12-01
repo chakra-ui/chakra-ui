@@ -1,6 +1,7 @@
 import * as React from "react"
-import { render, fireEvent } from "@chakra-ui/test-utils"
-import { useRadio, UseRadioProps } from "../src"
+import { render, fireEvent, screen } from "@chakra-ui/test-utils"
+import { Radio, useRadio, UseRadioProps } from "../src"
+import { FormControl, FormHelperText, FormLabel } from "@chakra-ui/form-control"
 
 test("has proper aria and data attributes", async () => {
   const Component = (props: UseRadioProps = {}) => {
@@ -23,6 +24,7 @@ test("has proper aria and data attributes", async () => {
   expect(input).toHaveAttribute("value", "")
   expect(input).not.toBeDisabled()
   expect(input).not.toHaveAttribute("aria-required")
+  expect(input).not.toHaveAttribute("required")
   expect(input).not.toHaveAttribute("aria-invalid")
   expect(input).not.toHaveAttribute("aria-disabled")
   expect(checkbox).toHaveAttribute("aria-hidden", "true")
@@ -39,6 +41,7 @@ test("has proper aria and data attributes", async () => {
   checkbox = utils.getByTestId("checkbox")
 
   expect(input).toHaveAttribute("aria-required")
+  expect(input).toHaveAttribute("required")
   expect(input).toHaveAttribute("aria-invalid")
   expect(input).toHaveAttribute("aria-disabled")
   expect(input).toBeDisabled()
@@ -112,4 +115,40 @@ test("handles events and callbacks correctly", () => {
   fireEvent.keyUp(input, { key: " ", keyCode: 32 })
   expect(checkbox).not.toHaveAttribute("data-active")
   expect(inputProps.onKeyUp).toHaveBeenCalled()
+})
+
+test("should derive values from surrounding FormControl", () => {
+  const onFocus = jest.fn()
+  const onBlur = jest.fn()
+
+  render(
+    <FormControl
+      id="radio"
+      isRequired
+      isInvalid
+      isDisabled
+      isReadOnly
+      onFocus={onFocus}
+      onBlur={onBlur}
+    >
+      <FormLabel>Radio</FormLabel>
+      <Radio value="Chakra UI">Chakra UI</Radio>
+      <FormHelperText>Select a value</FormHelperText>
+    </FormControl>,
+  )
+
+  const radio = screen.getByRole("radio")
+
+  expect(radio).toHaveAttribute("id", "radio")
+  expect(radio).toHaveAttribute("aria-invalid", "true")
+  expect(radio).toHaveAttribute("aria-required", "true")
+  expect(radio).toHaveAttribute("aria-readonly", "true")
+  expect(radio).toHaveAttribute("aria-invalid", "true")
+  expect(radio).toHaveAttribute("aria-describedby")
+
+  fireEvent.focus(radio)
+  expect(onFocus).toHaveBeenCalled()
+
+  fireEvent.blur(radio)
+  expect(onBlur).toHaveBeenCalled()
 })
