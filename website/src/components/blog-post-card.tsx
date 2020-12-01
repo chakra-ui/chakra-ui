@@ -29,7 +29,6 @@ export const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
       <LinkBox
         as="article"
         href={post.slug}
-        breakout
         tabIndex={0}
         cursor="pointer"
         position="relative"

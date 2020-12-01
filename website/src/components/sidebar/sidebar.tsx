@@ -14,7 +14,7 @@ import { Routes } from "utils/get-route-context"
 import SidebarCategory from "./sidebar-category"
 import SidebarLink from "./sidebar-link"
 import NextLink from "next/link"
-import { DocsIcon, GuidesIcon, TeamIcon } from "./sidebar-icons"
+import { BlogIcon, DocsIcon, GuidesIcon, TeamIcon } from "./sidebar-icons"
 
 export type SidebarContentProps = Routes & {
   pathname?: string
@@ -115,6 +115,9 @@ const MainNav = (props: BoxProps) => {
       </MainNavLink>
       <MainNavLink icon={<TeamIcon />} href="/team">
         Team
+      </MainNavLink>
+      <MainNavLink icon={<BlogIcon />} href="/blog">
+        Blog
       </MainNavLink>
     </VStack>
   )

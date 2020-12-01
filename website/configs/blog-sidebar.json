@@ -1,7 +1,7 @@
 {
   "routes": [
     {
-      "title": "Blog",
+      "title": "Recent Posts",
       "heading": true,
       "routes": [
         {
@@ -10,8 +10,8 @@
           "open": true,
           "routes": [
             {
-              "title": "chakra-ui v1 just landed",
-              "path": "/blog/2020/chakra-v1-just-landed"
+              "title": "Chakra v1 is here",
+              "path": "/blog/chakra-v1-just-landed"
             }
           ]
         }
