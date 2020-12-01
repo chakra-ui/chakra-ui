@@ -19,7 +19,7 @@ import SearchStyle from "./search.styles"
 
 const startsWithCss = startsWith("css-")
 
-const ACTION_KEY_DEFAULT = ["Ctrl ", "Control"]
+const ACTION_KEY_DEFAULT = ["Ctrl", "Control"]
 const ACTION_KEY_APPLE = ["⌘", "Command"]
 
 function Hit(props) {
@@ -35,15 +35,12 @@ export const SearchButton = React.forwardRef(function SearchButton(
   props: HTMLChakraProps<"button">,
   ref: React.Ref<HTMLButtonElement>,
 ) {
-  const [actionKey, setActionKey] = React.useState<string[]>()
-
+  const [actionKey, setActionKey] = React.useState<string[]>(ACTION_KEY_APPLE)
   React.useEffect(() => {
-    if (typeof navigator !== "undefined") {
-      if (/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
-        setActionKey(ACTION_KEY_APPLE)
-      } else {
-        setActionKey(ACTION_KEY_DEFAULT)
-      }
+    if (typeof navigator === "undefined") return
+    const isMac = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)
+    if (!isMac) {
+      setActionKey(ACTION_KEY_DEFAULT)
     }
   }, [])
 
@@ -68,33 +65,29 @@ export const SearchButton = React.forwardRef(function SearchButton(
       rounded="md"
       {...props}
     >
-      {actionKey && (
-        <>
-          <SearchIcon />
-          <HStack w="full" ml="3" spacing="4px">
-            <Text textAlign="left" flex="1">
-              Search the docs
-            </Text>
-            <HStack spacing="4px">
-              <VisuallyHidden>Press </VisuallyHidden>
-              <Kbd color="gray.500" rounded="2px">
-                <chakra.div
-                  as="abbr"
-                  title={actionKey[1]}
-                  textDecoration="none !important"
-                >
-                  {actionKey[0]}
-                </chakra.div>
-              </Kbd>
-              <VisuallyHidden> and </VisuallyHidden>
-              <Kbd color="gray.500" rounded="2px">
-                K
-              </Kbd>
-              <VisuallyHidden> to search</VisuallyHidden>
-            </HStack>
-          </HStack>
-        </>
-      )}
+      <SearchIcon />
+      <HStack w="full" ml="3" spacing="4px">
+        <Text textAlign="left" flex="1">
+          Search the docs
+        </Text>
+        <HStack spacing="4px">
+          <VisuallyHidden>Press </VisuallyHidden>
+          <Kbd color="gray.500" rounded="2px">
+            <chakra.div
+              as="abbr"
+              title={actionKey[1]}
+              textDecoration="none !important"
+            >
+              {ACTION_KEY_APPLE[0]}
+            </chakra.div>
+          </Kbd>
+          <VisuallyHidden> and </VisuallyHidden>
+          <Kbd color="gray.500" rounded="2px">
+            K
+          </Kbd>
+          <VisuallyHidden> to search</VisuallyHidden>
+        </HStack>
+      </HStack>
     </chakra.button>
   )
 })
