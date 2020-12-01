@@ -23,7 +23,6 @@ import {
   getNextItemFromSearch,
   getPrevIndex,
   getValidChildren,
-  hasFocusWithin,
   isArray,
   isString,
   mergeRefs,
@@ -162,7 +161,7 @@ export function useMenu(props: UseMenuProps) {
 
     const el = domContext.descendants[focusedIndex]?.element
     el?.focus({ preventScroll: true })
-  }, [isOpen, hasFocusWithin, focusedIndex, domContext.descendants])
+  }, [isOpen, focusedIndex, domContext.descendants])
 
   return {
     openAndFocusMenu,
@@ -435,7 +434,7 @@ export function useMenuItem(
 
       setFocusedIndex(index)
     },
-    [setFocusedIndex, index, isDisabled],
+    [setFocusedIndex, index, isDisabled, onMouseEnterProp],
   )
 
   const onMouseMove = React.useCallback(
@@ -445,7 +444,7 @@ export function useMenuItem(
         onMouseEnter(event)
       }
     },
-    [onMouseEnter],
+    [onMouseEnter, onMouseMoveProp],
   )
 
   const onMouseLeave = React.useCallback(
@@ -455,7 +454,7 @@ export function useMenuItem(
 
       setFocusedIndex(-1)
     },
-    [setFocusedIndex, isDisabled],
+    [setFocusedIndex, isDisabled, onMouseLeaveProp],
   )
 
   const onClick = React.useCallback(

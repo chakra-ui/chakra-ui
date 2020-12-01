@@ -292,7 +292,7 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
     if (!isPresent && safeToRemove) {
       setTimeout(safeToRemove)
     }
-  }, [isPresent])
+  }, [isPresent, safeToRemove])
 
   return (
     <FocusLock
@@ -496,12 +496,12 @@ export const ModalCloseButton = forwardRef<CloseButtonProps, "button">(
 
     const _className = cx("chakra-modal__close-btn", className)
 
+    const styles = useStyles()
+
     return (
       <CloseButton
         ref={ref}
-        position="absolute"
-        top="8px"
-        right="12px"
+        __css={styles.closeButton}
         className={_className}
         onClick={callAllHandlers(onClick, (event) => {
           event.stopPropagation()

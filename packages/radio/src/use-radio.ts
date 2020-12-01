@@ -4,6 +4,7 @@ import {
   callAllHandlers,
   dataAttr,
   mergeRefs,
+  pick,
   PropGetter,
 } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
@@ -14,6 +15,7 @@ import {
   useRef,
   useState,
 } from "react"
+import { useFormControl } from "@chakra-ui/form-control"
 
 /**
  * @todo use the `useClickable` hook here
@@ -61,7 +63,7 @@ export interface UseRadioProps {
    */
   isInvalid?: boolean
   /**
-   * If `true`, the radio button will be invalid. This sets `aria-invalid` to `true`.
+   * If `true`, the radio button will be required. This sets `aria-invalid` to `true`.
    */
   isRequired?: boolean
   /**
@@ -99,20 +101,21 @@ export function useRadio(props: UseRadioProps = {}) {
     isCheckedState,
   )
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (isReadOnly || isDisabled) {
-      event.preventDefault()
-      return
-    }
+  const handleChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      if (isReadOnly || isDisabled) {
+        event.preventDefault()
+        return
+      }
 
-    if (!isControlled) {
-      setChecked(event.target.checked)
-    }
+      if (!isControlled) {
+        setChecked(event.target.checked)
+      }
 
-    onChange?.(event)
-  }
-
-  const trulyDisabled = isDisabled && !isFocusable
+      onChange?.(event)
+    },
+    [isControlled, isDisabled, isReadOnly, onChange],
+  )
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
@@ -132,46 +135,92 @@ export function useRadio(props: UseRadioProps = {}) {
     [setActive],
   )
 
-  const getCheckboxProps: PropGetter = (props = {}, ref = null) => ({
-    ...props,
-    ref,
-    "data-active": dataAttr(isActive),
-    "data-hover": dataAttr(isHovered),
-    "data-disabled": dataAttr(isDisabled),
-    "data-invalid": dataAttr(isInvalid),
-    "data-checked": dataAttr(isChecked),
-    "data-focus": dataAttr(isFocused),
-    "data-readonly": dataAttr(isReadOnly),
-    "aria-hidden": true,
-    onMouseDown: callAllHandlers(props.onMouseDown, setActive.on),
-    onMouseUp: callAllHandlers(props.onMouseUp, setActive.off),
-    onMouseEnter: callAllHandlers(props.onMouseEnter, setHovering.on),
-    onMouseLeave: callAllHandlers(props.onMouseLeave, setHovering.off),
-  })
+  const getCheckboxProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
+      ...props,
+      ref,
+      "data-active": dataAttr(isActive),
+      "data-hover": dataAttr(isHovered),
+      "data-disabled": dataAttr(isDisabled),
+      "data-invalid": dataAttr(isInvalid),
+      "data-checked": dataAttr(isChecked),
+      "data-focus": dataAttr(isFocused),
+      "data-readonly": dataAttr(isReadOnly),
+      "aria-hidden": true,
+      onMouseDown: callAllHandlers(props.onMouseDown, setActive.on),
+      onMouseUp: callAllHandlers(props.onMouseUp, setActive.off),
+      onMouseEnter: callAllHandlers(props.onMouseEnter, setHovering.on),
+      onMouseLeave: callAllHandlers(props.onMouseLeave, setHovering.off),
+    }),
+    [
+      isActive,
+      isHovered,
+      isDisabled,
+      isInvalid,
+      isChecked,
+      isFocused,
+      isReadOnly,
+      setActive.on,
+      setActive.off,
+      setHovering.on,
+      setHovering.off,
+    ],
+  )
 
-  const getInputProps: PropGetter<HTMLInputElement> = (
-    props = {},
-    forwardedRef = null,
-  ) => ({
-    ...props,
-    ref: mergeRefs(forwardedRef, ref),
-    type: "radio",
-    name,
-    value,
-    id,
-    onChange: callAllHandlers(props.onChange, handleChange),
-    onBlur: callAllHandlers(props.onBlur, setFocused.off),
-    onFocus: callAllHandlers(props.onFocus, setFocused.on),
-    onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-    onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
-    "aria-required": ariaAttr(isRequired),
-    checked: isChecked,
-    disabled: trulyDisabled,
-    readOnly: isReadOnly,
-    "aria-invalid": ariaAttr(isInvalid),
-    "aria-disabled": ariaAttr(isDisabled),
-    style: visuallyHiddenStyle,
-  })
+  const inputProps = useFormControl<HTMLInputElement>(props)
+
+  const getInputProps: PropGetter<HTMLInputElement> = useCallback(
+    (props = {}, forwardedRef = null) => {
+      const ownProps = pick(inputProps, [
+        "id",
+        "disabled",
+        "readOnly",
+        "required",
+        "aria-invalid",
+        "aria-required",
+        "aria-readonly",
+        "aria-describedby",
+        "onFocus",
+        "onBlur",
+      ])
+
+      const trulyDisabled = ownProps.disabled && !isFocusable
+
+      return {
+        ...props,
+        ...ownProps,
+        ref: mergeRefs(forwardedRef, ref),
+        type: "radio",
+        name,
+        value,
+        onChange: callAllHandlers(props.onChange, handleChange),
+        onBlur: callAllHandlers(ownProps.onBlur, props.onBlur, setFocused.off),
+        onFocus: callAllHandlers(
+          ownProps.onFocus,
+          props.onFocus,
+          setFocused.on,
+        ),
+        onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+        onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
+        checked: isChecked,
+        disabled: trulyDisabled,
+        "aria-disabled": ariaAttr(trulyDisabled),
+        style: visuallyHiddenStyle,
+      }
+    },
+    [
+      inputProps,
+      isFocusable,
+      name,
+      value,
+      handleChange,
+      setFocused.off,
+      setFocused.on,
+      onKeyDown,
+      onKeyUp,
+      isChecked,
+    ],
+  )
 
   const getLabelProps: PropGetter = (props = {}, ref = null) => {
     return {

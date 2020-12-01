@@ -1583,6 +1583,24 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "dodas",
+      "name": "Jozef Mikuláš",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/14360171?v=4",
+      "profile": "https://github.com/dodas",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jvmazagao",
+      "name": "João Victor ",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/22477816?v=4",
+      "profile": "https://github.com/jvmazagao",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
