@@ -59,11 +59,11 @@ export interface UseRadioProps {
    */
   isReadOnly?: boolean
   /**
-   * If `true`, the radio button will be invalid. This sets `aria-invalid` to `true`.
+   * If `true`, the radio button will be invalid. This also sets `aria-invalid` to `true`.
    */
   isInvalid?: boolean
   /**
-   * If `true`, the radio button will be required. This sets `aria-invalid` to `true`.
+   * If `true`, the radio button will be required. This also sets `aria-required` to `true`.
    */
   isRequired?: boolean
   /**
