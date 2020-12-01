@@ -101,18 +101,21 @@ export function useRadio(props: UseRadioProps = {}) {
     isCheckedState,
   )
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (isReadOnly || isDisabled) {
-      event.preventDefault()
-      return
-    }
+  const handleChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      if (isReadOnly || isDisabled) {
+        event.preventDefault()
+        return
+      }
 
-    if (!isControlled) {
-      setChecked(event.target.checked)
-    }
+      if (!isControlled) {
+        setChecked(event.target.checked)
+      }
 
-    onChange?.(event)
-  }
+      onChange?.(event)
+    },
+    [isControlled, isDisabled, isReadOnly, onChange],
+  )
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
@@ -216,7 +219,6 @@ export function useRadio(props: UseRadioProps = {}) {
       onKeyDown,
       onKeyUp,
       isChecked,
-      visuallyHiddenStyle,
     ],
   )
 
