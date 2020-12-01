@@ -18,9 +18,6 @@ export type BlogPostCardProps = {
 }
 
 export const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
-  const secondaryColor = useColorModeValue("blackAlpha.600", "whiteAlpha.600")
-  const borderColor = useColorModeValue("gray.200", "whiteAlpha.200")
-
   const readableDate = format(parseISO(post.date), "MMMM dd, yyyy")
 
   return (
