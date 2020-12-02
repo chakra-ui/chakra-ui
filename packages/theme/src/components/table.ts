@@ -32,65 +32,71 @@ const modifierNumber = {
   },
 }
 
-const simpleVariant = (props: Dict) => ({
-  th: {
-    color: mode("gray.600", "gray.400")(props),
-    textTransform: "uppercase",
-    letterSpacing: "wider",
-    fontWeight: "medium",
-    borderBottom: "1px",
-    borderColor: mode("gray.100", "gray.700")(props),
-    ...modifierNumber,
-  },
-  td: {
-    borderBottom: "1px",
-    borderColor: mode("gray.100", "gray.700")(props),
-    ...modifierNumber,
-  },
-  caption: {
-    fontWeight: "bold",
-    color: mode("gray.600", "gray.100")(props),
-  },
-  tfoot: {
-    tr: {
-      "&:last-of-type": {
-        th: {
-          borderBottomWidth: 0,
-        },
-      },
-    },
-  },
-})
+const simpleVariant = (props: Dict) => {
+  const { colorScheme: c } = props
 
-const stripedVariant = (props: Dict) => {
   return {
     th: {
-      color: mode("gray.600", "gray.400")(props),
+      color: mode(`gray.600`, `gray.400`)(props),
       textTransform: "uppercase",
       letterSpacing: "wider",
       fontWeight: "medium",
       borderBottom: "1px",
-      borderColor: mode("gray.100", "gray.700")(props),
+      borderColor: mode(`${c}.100`, `${c}.700`)(props),
       ...modifierNumber,
     },
     td: {
       borderBottom: "1px",
-      borderColor: mode("gray.100", "gray.700")(props),
+      borderColor: mode(`${c}.100`, `${c}.700`)(props),
       ...modifierNumber,
     },
     caption: {
       fontWeight: "bold",
-      color: mode("gray.600", "gray.100")(props),
+      color: mode(`gray.600`, `gray.100`)(props),
+    },
+    tfoot: {
+      tr: {
+        "&:last-of-type": {
+          th: {
+            borderBottomWidth: 0,
+          },
+        },
+      },
+    },
+  }
+}
+
+const stripedVariant = (props: Dict) => {
+  const { colorScheme: c } = props
+
+  return {
+    th: {
+      color: mode(`gray.600`, `gray.400`)(props),
+      textTransform: "uppercase",
+      letterSpacing: "wider",
+      fontWeight: "medium",
+      borderBottom: "1px",
+      borderColor: mode(`${c}.100`, `${c}.700`)(props),
+      ...modifierNumber,
+    },
+    td: {
+      borderBottom: "1px",
+      borderColor: mode(`${c}.100`, `${c}.700`)(props),
+      ...modifierNumber,
+    },
+    caption: {
+      fontWeight: "bold",
+      color: mode(`gray.600`, `gray.100`)(props),
     },
     tbody: {
       tr: {
         "&:nth-of-type(odd)": {
           "th, td": {
             borderBottomWidth: "1px",
-            borderColor: mode("gray.100", "gray.700")(props),
+            borderColor: mode(`${c}.100`, `${c}.700`)(props),
           },
           td: {
-            background: mode("gray.100", "gray.700")(props),
+            background: mode(`${c}.100`, `${c}.700`)(props),
           },
         },
       },
@@ -173,6 +179,7 @@ const sizes = {
 const defaultProps = {
   variant: "simple",
   size: "md",
+  colorScheme: "gray",
 }
 
 export default {
