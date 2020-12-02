@@ -61,6 +61,9 @@ export const Tfoot = forwardRef<TableFooterProps, "tfoot">((props, ref) => {
 })
 
 export interface TableColumnHeaderProps extends HTMLChakraProps<"th"> {
+  /**
+   * Aligns the cell content to the right
+   */
   isNumeric?: boolean
 }
 export const Th = forwardRef<TableColumnHeaderProps, "th">(
@@ -85,6 +88,9 @@ export const Tr = forwardRef<TableRowProps, "tr">((props, ref) => {
 })
 
 export interface TableCellProps extends HTMLChakraProps<"td"> {
+  /**
+   * Aligns the cell content to the right
+   */
   isNumeric?: boolean
 }
 export const Td = forwardRef<TableCellProps, "td">(

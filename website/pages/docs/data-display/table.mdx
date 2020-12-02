@@ -1,0 +1,102 @@
+---
+title: Table
+package: "@chakra-ui/table"
+image: "components/table.svg"
+description:
+  "Table component is used to display tabular data. It renders a <table> element by
+  default"
+---
+
+`Table` component is used to display tabular data. It renders a `<table>` element by
+default.
+
+<ComponentLinks
+  github={{ package: "table" }}
+  npm={{ package: "@chakra-ui/table" }}
+/>
+
+<carbon-ad />
+
+## Import
+
+```js
+import { Table, Thead, Tbody, Tr, Th, Td, TableCaption } from "@chakra-ui/react"
+```
+
+## Simple Table
+
+```jsx
+<Table>
+  <TableCaption>Imperial to metric conversion factors</TableCaption>
+  <Thead>
+    <Tr>
+      <Th>To convert</Th>
+      <Th>into</Th>
+      <Th isNumeric>multiply by</Th>
+    </Tr>
+  </Thead>
+  <Tbody>
+    <Tr>
+      <Td>inches</Td>
+      <Td>millimetres (mm)</Td>
+      <Td isNumeric>25.4</Td>
+    </Tr>
+    <Tr>
+      <Td>feet</Td>
+      <Td>centimetres (cm)</Td>
+      <Td isNumeric>30.48</Td>
+    </Tr>
+    <Tr>
+      <Td>yards</Td>
+      <Td>metres (m)</Td>
+      <Td isNumeric>0.91444</Td>
+    </Tr>
+  </Tbody>
+</Table>
+```
+
+## Striped Table
+
+```jsx
+<Table variant="striped" size="sm" colorScheme="teal">
+  <TableCaption>Imperial to metric conversion factors</TableCaption>
+  <Thead>
+    <Tr>
+      <Th>To convert</Th>
+      <Th>into</Th>
+      <Th isNumeric>multiply by</Th>
+    </Tr>
+  </Thead>
+  <Tbody>
+    <Tr>
+      <Td>inches</Td>
+      <Td>millimetres (mm)</Td>
+      <Td isNumeric>25.4</Td>
+    </Tr>
+    <Tr>
+      <Td>feet</Td>
+      <Td>centimetres (cm)</Td>
+      <Td isNumeric>30.48</Td>
+    </Tr>
+    <Tr>
+      <Td>yards</Td>
+      <Td>metres (m)</Td>
+      <Td isNumeric>0.91444</Td>
+    </Tr>
+  </Tbody>
+</Table>
+```
+
+## Props
+
+### Table
+
+<PropsTable of="Table" />
+
+### Td
+
+<PropsTable of="Td" />
+
+### Th
+
+<PropsTable of="Th" />
