@@ -3,7 +3,7 @@ import { Column, useTable } from "react-table"
 import { useMemo } from "react"
 import { Button, ButtonGroup, IconButton } from "@chakra-ui/button"
 import { StarIcon } from "@chakra-ui/icons"
-import { Table, TableCellProps, Tbody, Td, Th, Thead, Tr } from "../table"
+import { Table, TableCellProps, Tbody, Td, Th, Thead, Tr } from "../src"
 
 export default {
   title: "Table / React Table",

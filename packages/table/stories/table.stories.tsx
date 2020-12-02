@@ -8,7 +8,7 @@ import {
   Th,
   Thead,
   Tr,
-} from "../table"
+} from "../src"
 
 export default {
   title: "Table / Simple",
