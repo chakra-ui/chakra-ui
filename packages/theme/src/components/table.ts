@@ -8,6 +8,7 @@ const baseStyle = () => ({
   table: {
     fontVariantNumeric: "lining-nums tabular-nums",
     borderCollapse: "collapse",
+    width: "full",
   },
   thead: {},
   tfoot: {},
