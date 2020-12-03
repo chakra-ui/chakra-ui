@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.0.2
+
+### Patch Changes
+
+- [`58e26653`](https://github.com/chakra-ui/chakra-ui/commit/58e26653134caee1dd2caddb9014f7a90dc4eb7e)
+  [#2658](https://github.com/chakra-ui/chakra-ui/pull/2658) Thanks
+  [@jmiazga](https://github.com/jmiazga)! - This change enables `Radio` to
+  automatically derive various values from a surrounding `FormControl` if found,
+  similar to `Input` and `Select`.
+- Updated dependencies
+  [[`ff10bcec`](https://github.com/chakra-ui/chakra-ui/commit/ff10bceca5774769766eef3a6812a22f387dd58d)]:
+  - @chakra-ui/form-control@1.0.2
+
 ## 1.0.1
 
 ### Patch Changes

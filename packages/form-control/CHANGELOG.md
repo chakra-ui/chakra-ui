@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.0.2
+
+### Patch Changes
+
+- [`ff10bcec`](https://github.com/chakra-ui/chakra-ui/commit/ff10bceca5774769766eef3a6812a22f387dd58d)
+  [#2591](https://github.com/chakra-ui/chakra-ui/pull/2591) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Remove nonfunctional props
+  `errorText` and `helperText` from FormControl props type definition
+
 ## 1.0.1
 
 ### Patch Changes

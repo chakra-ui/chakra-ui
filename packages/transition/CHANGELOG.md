@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.0.2
+
+### Patch Changes
+
+- [`2416cf9a`](https://github.com/chakra-ui/chakra-ui/commit/2416cf9abe183a3a38adbccff794088d86a46341)
+  [#2618](https://github.com/chakra-ui/chakra-ui/pull/2618) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed a bug where children
+  of `<Collapse />` where not rendered if prop `in` was true on first render
+
 ## 1.0.1
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/form-control",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React component to provide validation states to form fields",
   "keywords": [
     "field",

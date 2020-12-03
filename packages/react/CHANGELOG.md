@@ -1,5 +1,41 @@
 # Change Log
 
+## 1.0.2
+
+### Patch Changes
+
+- [`cfd3b325`](https://github.com/chakra-ui/chakra-ui/commit/cfd3b32564066076529811c5350aff6be565b7a3)
+  [#2632](https://github.com/chakra-ui/chakra-ui/pull/2632) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Improve typings for
+  `extendTheme`. IntelliSense now can suggest property keys for colors and
+  existing components.
+- Updated dependencies
+  [[`e1b095cd`](https://github.com/chakra-ui/chakra-ui/commit/e1b095cdb799bb3630d3cbb7891d8c7e929db0f4),
+  [`6b527414`](https://github.com/chakra-ui/chakra-ui/commit/6b52741456f71ba4ec8cfe3e6307796d195adf5b),
+  [`28bd21d7`](https://github.com/chakra-ui/chakra-ui/commit/28bd21d793911ba56bd146dd7aaff1008a70d147),
+  [`2192be3d`](https://github.com/chakra-ui/chakra-ui/commit/2192be3db77504addffc89cbfef62fb9e884fa5d),
+  [`a36ede75`](https://github.com/chakra-ui/chakra-ui/commit/a36ede7519b7193f90e4985636a06c5d483a8a62),
+  [`ff10bcec`](https://github.com/chakra-ui/chakra-ui/commit/ff10bceca5774769766eef3a6812a22f387dd58d),
+  [`ac0af38d`](https://github.com/chakra-ui/chakra-ui/commit/ac0af38d12dc5828503e178fb94a21f252e3a62b),
+  [`c696345a`](https://github.com/chakra-ui/chakra-ui/commit/c696345a711338a23542a7b1911a33927a9ba5f1),
+  [`9fdc61d8`](https://github.com/chakra-ui/chakra-ui/commit/9fdc61d8801f6d76783b5c9f068525d4dfc28b20),
+  [`2416cf9a`](https://github.com/chakra-ui/chakra-ui/commit/2416cf9abe183a3a38adbccff794088d86a46341),
+  [`58e26653`](https://github.com/chakra-ui/chakra-ui/commit/58e26653134caee1dd2caddb9014f7a90dc4eb7e)]:
+  - @chakra-ui/number-input@1.0.2
+  - @chakra-ui/layout@1.1.0
+  - @chakra-ui/modal@1.2.0
+  - @chakra-ui/theme@1.2.0
+  - @chakra-ui/form-control@1.0.2
+  - @chakra-ui/toast@1.1.0
+  - @chakra-ui/transition@1.0.2
+  - @chakra-ui/radio@1.0.2
+  - @chakra-ui/input@1.0.2
+  - @chakra-ui/select@1.0.2
+  - @chakra-ui/textarea@1.0.2
+  - @chakra-ui/accordion@1.0.2
+  - @chakra-ui/menu@1.0.2
+  - @chakra-ui/popover@1.0.2
+
 ## 1.0.1
 
 ### Patch Changes
