@@ -1,5 +1,27 @@
 # Change Log
 
+## 1.2.0
+
+### Minor Changes
+
+- [`28bd21d7`](https://github.com/chakra-ui/chakra-ui/commit/28bd21d793911ba56bd146dd7aaff1008a70d147)
+  [#2659](https://github.com/chakra-ui/chakra-ui/pull/2659) Thanks
+  [@dodas](https://github.com/dodas)! - feat(theming): enable theming for
+  ModalCloseButton
+
+  This change enables `ModalCloseButton` to be themed as part of the `Modal`
+  component theme via the `closeButton` key.
+
+  See
+  https://chakra-ui.com/docs/theming/component-style#styling-multipart-components
+  for more information.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`2416cf9a`](https://github.com/chakra-ui/chakra-ui/commit/2416cf9abe183a3a38adbccff794088d86a46341)]:
+  - @chakra-ui/transition@1.0.2
+
 ## 1.1.0
 
 ### Minor Changes
