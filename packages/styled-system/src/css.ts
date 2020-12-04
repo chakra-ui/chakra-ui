@@ -147,7 +147,15 @@ export const css = (args: StyleObjectOrFn = {}) => (
     const val = runIfFn(x, theme)
 
     const key = k in pseudoSelectors ? pseudoSelectors[k] : k
-    const config = (parser.config as Dict)[key]
+    let config = (parser.config as Dict)[key]
+    
+    if (config === true) {
+      // shortcut definition
+      config = {
+        property: key,
+        scale: key,
+      }
+    }
 
     if (key === "apply") {
       const apply = css(get(theme, val))(theme)
