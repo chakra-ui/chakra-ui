@@ -60,6 +60,9 @@ const theme = {
   radii: {
     small: 5,
   },
+  textTransform: {
+    header: "uppercase",
+  },
 }
 
 test("returns system props styles", () => {
