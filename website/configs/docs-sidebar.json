@@ -214,6 +214,10 @@
               "path": "/docs/data-display/stat"
             },
             {
+              "title": "Table",
+              "path": "/docs/data-display/table"
+            },
+            {
               "title": "Tag",
               "path": "/docs/data-display/tag"
             },

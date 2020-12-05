@@ -23,7 +23,7 @@ export function useStyleConfig(
   opts?: { isMultiPart?: boolean },
 ): SystemStyleObject
 
-export function useStyleConfig(themeKey: any, props: any, opts: any) {
+export function useStyleConfig(themeKey: any, props: any = {}, opts: any = {}) {
   const { styleConfig: styleConfigProp, ...rest } = props
 
   const { theme, colorMode } = useChakra()

@@ -20,7 +20,14 @@ export type PropsTableProps = {
 
 const PropsTable = ({
   of,
-  omit = ["isTruncated", "layerStyle", "noOfLines", "textStyle"],
+  omit = [
+    "isTruncated",
+    "layerStyle",
+    "noOfLines",
+    "textStyle",
+    "orientation",
+    "styleConfig",
+  ],
   only,
 }: PropsTableProps) => {
   const info: { props: Record<string, any> } = ComponentProps[of]

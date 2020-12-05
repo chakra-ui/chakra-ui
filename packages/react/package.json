@@ -69,6 +69,7 @@
     "@chakra-ui/stat": "1.0.1",
     "@chakra-ui/switch": "1.0.1",
     "@chakra-ui/system": "1.0.1",
+    "@chakra-ui/table": "1.0.1",
     "@chakra-ui/tabs": "1.0.1",
     "@chakra-ui/tag": "1.0.1",
     "@chakra-ui/textarea": "1.0.2",
