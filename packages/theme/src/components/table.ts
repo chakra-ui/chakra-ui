@@ -1,11 +1,4 @@
-import {
-  getColor,
-  mode,
-  transparentize,
-  darken,
-  lighten,
-  contrast,
-} from "@chakra-ui/theme-tools"
+import { mode, darken } from "@chakra-ui/theme-tools"
 
 const parts = ["table", "thead", "tbody", "tfoot", "tr", "th", "td", "caption"]
 
@@ -99,13 +92,11 @@ const sizes = {
 }
 
 function getStriped(props: Dict) {
-  const { colorScheme, theme, stripedOrder } = props
+  const { colorScheme, stripedOrder } = props
 
   const c = colorScheme || "gray"
   const bgSchemeColor = mode(`${c}.200`, `${c}.800`)(props)
-  const bgColor = !colorScheme ? mode(`white`, `black`)(props) : bgSchemeColor
   const color = mode(`${c}.900`, `${c}.100`)(props)
-  const colorInverse = mode(`${c}.300`, `${c}.900`)(props)
 
   return {
     tbody: {

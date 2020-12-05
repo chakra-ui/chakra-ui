@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Box, Table, THead, TH, TFoot, TD, TR, TBody, Caption } from "../src"
+import { Box, Table, THead, TH, TD, TR, TBody, Caption } from "../src"
 
 export default {
   title: "Table",
