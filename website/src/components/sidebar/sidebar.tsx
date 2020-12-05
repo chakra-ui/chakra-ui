@@ -97,8 +97,10 @@ const MainNavLink = ({ href, icon, children }) => {
         fontWeight="semibold"
         transitionProperty="colors"
         transitionDuration="200ms"
-        color={active ? "gray.900" : "gray.500"}
-        _hover={{ color: "gray.900" }}
+        color={
+          active ? useColorModeValue("gray.900", "whiteAlpha.900") : "gray.500"
+        }
+        _hover={{ color: useColorModeValue("gray.900", "whiteAlpha.900") }}
       >
         <Center w="6" h="6" bg="teal.400" rounded="base" mr="3">
           {icon}
