@@ -32,6 +32,7 @@ import Slider from "./slider"
 import Spinner from "./spinner"
 import Stat from "./stat"
 import Switch from "./switch"
+import Table from "./table"
 import Tabs from "./tabs"
 import Tag from "./tag"
 import Textarea from "./textarea"
@@ -73,6 +74,7 @@ export default {
   Spinner,
   Stat,
   Switch,
+  Table,
   Tabs,
   Tag,
   Textarea,
