@@ -45,12 +45,6 @@ const baseStyleHeader = {
   fontWeight: "semibold",
 }
 
-const baseStyleCloseButton = {
-  position: "absolute",
-  top: 2,
-  right: 3,
-}
-
 const baseStyleBody = {
   px: 6,
   py: 2,
@@ -68,7 +62,6 @@ const baseStyle = (props: Record<string, any>) => ({
   dialogContainer: baseStyleDialogContainer,
   dialog: baseStyleDialog(props),
   header: baseStyleHeader,
-  closeButton: baseStyleCloseButton,
   body: baseStyleBody,
   footer: baseStyleFooter,
 })

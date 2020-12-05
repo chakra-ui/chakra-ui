@@ -38,7 +38,7 @@ export interface CloseButtonProps
 export const CloseButton = forwardRef<CloseButtonProps, "button">(
   function CloseButton(props, ref) {
     const styles = useStyleConfig("CloseButton", props)
-    const { children, isDisabled, __css, ...rest } = omitThemingProps(props)
+    const { children, isDisabled, ...rest } = omitThemingProps(props)
 
     const baseStyle: SystemStyleObject = {
       outline: 0,
@@ -57,7 +57,6 @@ export const CloseButton = forwardRef<CloseButtonProps, "button">(
         __css={{
           ...baseStyle,
           ...styles,
-          ...__css,
         }}
         {...rest}
       >
