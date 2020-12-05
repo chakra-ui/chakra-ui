@@ -18,7 +18,6 @@ import emotionStyled, {
   FunctionInterpolation,
   Interpolation,
 } from "@emotion/styled"
-import { shouldForwardProp } from "./should-forward-prop"
 import { As, ChakraComponent, ChakraProps, PropsOf } from "./system.types"
 import { domElements, DOMElements } from "./system.utils"
 
