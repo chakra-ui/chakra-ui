@@ -113,7 +113,7 @@ function getStriped(props: Dict) {
   }
 }
 
-function variantBorderless(props: Dict) {
+function variantBorderless() {
   return {
     th: {
       borderWidth: 0,
@@ -140,7 +140,7 @@ function variantBorderless(props: Dict) {
   }
 }
 
-function variantBordered(props: Dict) {
+function variantBordered() {
   const tableBorderWidth = "1px"
   const tableBoderTopWidth = "2px"
   return {
@@ -172,7 +172,7 @@ function variantBordered(props: Dict) {
   }
 }
 
-function variantNormal(props: Dict) {
+function variantNormal() {
   return {
     th: {},
     td: {},
