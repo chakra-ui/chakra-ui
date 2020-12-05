@@ -135,7 +135,7 @@ export function styled<T extends As, P = {}>(
   component: T,
   options?: StyledOptions,
 ) {
-  const { baseStyle, ...styledOptions } = options ?? {}
+  const { baseStyle, shouldForwardProp, ...styledOptions } = options ?? {}
   const opts = { ...styledOptions, shouldForwardProp }
 
   const styledFn = emotionStyled(component as React.ComponentType<any>, opts)
