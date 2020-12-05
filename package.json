@@ -45,7 +45,7 @@
     "members:gen": "ts-node scripts/all-members.ts",
     "avatars:gen": "ts-node scripts/avatars.ts",
     "search-meta:gen": "ts-node scripts/get-search-meta.ts",
-    "plop": "ts-node scripts/plopfile.ts",
+    "gen:pkg": "ts-node scripts/plopfile.ts",
     "prerelease": "yarn build",
     "release": "changeset publish",
     "docs": "yarn workspace @chakra-ui/docs",

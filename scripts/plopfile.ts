@@ -57,7 +57,7 @@ async function createPackage() {
 
 async function run() {
   await createPackage()
-  shell.exec("yarn fix:pkgs")
+  shell.exec("yarn")
 }
 
 run()
