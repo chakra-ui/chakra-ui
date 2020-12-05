@@ -207,6 +207,10 @@ const sidebar = {
               path: "/docs/data-display/list",
             },
             {
+              title: "Table",
+              path: "/docs/data-display/table",
+            },
+            {
               title: "Stat",
               path: "/docs/data-display/stat",
             },

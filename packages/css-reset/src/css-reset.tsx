@@ -234,6 +234,15 @@ export const CSSReset = () => (
         border-collapse: collapse;
       }
 
+      th {
+        text-align: inherit;
+      }
+
+      caption {
+        text-align: left;
+        caption-side: bottom;
+      }
+
       h1,
       h2,
       h3,

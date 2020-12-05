@@ -2,6 +2,7 @@ import { render, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 import { Box, Badge, Container, Divider, Flex } from "../src"
+import * as TableStories from "../stories/tables.stories"
 
 describe("<Box />", () => {
   test("renders box correctly", () => {
@@ -51,9 +52,7 @@ describe("<Container />", () => {
 
   test("centerContent - prop works correctly", () => {
     const { asFragment } = render(
-      <Container centerContent>
-        This is centered container
-      </Container>,
+      <Container centerContent>This is centered container</Container>,
     )
     expect(asFragment()).toMatchSnapshot()
   })
@@ -109,4 +108,20 @@ describe("<Divider />", () => {
     const { asFragment } = render(<Divider variant="dashed" />)
     expect(asFragment()).toMatchSnapshot()
   })
+})
+
+describe("<Table />", () => {
+  Object.entries(TableStories)
+    .filter(([key]) => key !== "default")
+    .forEach(([name, Story]) => {
+      test(`renders ${name}`, () => {
+        // @ts-ignore // it complains that the default export (filtered out in the line above) is not callable
+        const { asFragment } = render(
+          <ChakraProvider>
+            <Story />
+          </ChakraProvider>,
+        )
+        expect(asFragment()).toMatchSnapshot()
+      })
+    })
 })

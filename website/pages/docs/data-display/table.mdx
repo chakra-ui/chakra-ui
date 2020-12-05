@@ -1,0 +1,440 @@
+---
+title: Table
+package: "@chakra-ui/layout"
+image: "components/table.svg"
+description:
+  "Table is used to display tabular data. It renders a <table> element by default"
+---
+
+`Table` component is used to display tabular data. It renders a `<table>` element by
+default.
+
+<ComponentLinks
+  github={{ package: "layout" }}
+  npm={{ package: "@chakra-ui/layout" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+```js
+import {
+  Table,
+  THead,
+  TH,
+  TFoot,
+  TD,
+  TR,
+  TBody,
+  Caption
+} from "@chakra-ui/react"
+```
+
+## Default Table
+
+```jsx
+<Table>
+    <THead>
+    <TR>
+        <TH scope="col">#</TH>
+        <TH scope="col">First</TH>
+        <TH scope="col">Last</TH>
+        <TH scope="col">Handle</TH>
+    </TR>
+    </THead>
+    <TBody>
+    <TR>
+        <TH scope="row">1</TH>
+        <TD>Mark</TD>
+        <TD>Otto</TD>
+        <TD>@mdo</TD>
+    </TR>
+    <TR>
+        <TH scope="row">2</TH>
+        <TD>Jacob</TD>
+        <TD>Thornton</TD>
+        <TD>@fat</TD>
+    </TR>
+    <TR>
+        <TH scope="row">3</TH>
+        <TD>Larry</TD>
+        <TD>The Bird</TD>
+        <TD>@twitter</TD>
+    </TR>
+    </TBody>
+</Table>
+```
+
+## Striped Table
+
+```jsx
+<Table variant="striped">
+    <THead>
+    <TR>
+        <TH scope="col">#</TH>
+        <TH scope="col">First</TH>
+        <TH scope="col">Last</TH>
+        <TH scope="col">Handle</TH>
+    </TR>
+    </THead>
+    <TBody>
+    <TR>
+        <TH scope="row">1</TH>
+        <TD>Mark</TD>
+        <TD>Otto</TD>
+        <TD>@mdo</TD>
+    </TR>
+    <TR>
+        <TH scope="row">2</TH>
+        <TD>Jacob</TD>
+        <TD>Thornton</TD>
+        <TD>@fat</TD>
+    </TR>
+    <TR>
+        <TH scope="row">3</TH>
+        <TD>Larry</TD>
+        <TD>The Bird</TD>
+        <TD>@twitter</TD>
+    </TR>
+    </TBody>
+</Table>
+```
+
+## Bordered Table
+
+```jsx
+<Table variant="bordered">
+    <THead>
+    <TR>
+        <TH scope="col">#</TH>
+        <TH scope="col">First</TH>
+        <TH scope="col">Last</TH>
+        <TH scope="col">Handle</TH>
+    </TR>
+    </THead>
+    <TBody>
+    <TR>
+        <TH scope="row">1</TH>
+        <TD>Mark</TD>
+        <TD>Otto</TD>
+        <TD>@mdo</TD>
+    </TR>
+    <TR>
+        <TH scope="row">2</TH>
+        <TD>Jacob</TD>
+        <TD>Thornton</TD>
+        <TD>@fat</TD>
+    </TR>
+    <TR>
+        <TH scope="row">3</TH>
+        <TD>Larry</TD>
+        <TD>The Bird</TD>
+        <TD>@twitter</TD>
+    </TR>
+    </TBody>
+</Table>
+```
+
+## Borderless Table
+
+```jsx
+<Table variant="borderless">
+    <THead>
+    <TR>
+        <TH scope="col">#</TH>
+        <TH scope="col">First</TH>
+        <TH scope="col">Last</TH>
+        <TH scope="col">Handle</TH>
+    </TR>
+    </THead>
+    <TBody>
+    <TR>
+        <TH scope="row">1</TH>
+        <TD>Mark</TD>
+        <TD>Otto</TD>
+        <TD>@mdo</TD>
+    </TR>
+    <TR>
+        <TH scope="row">2</TH>
+        <TD>Jacob</TD>
+        <TD>Thornton</TD>
+        <TD>@fat</TD>
+    </TR>
+    <TR>
+        <TH scope="row">3</TH>
+        <TD>Larry</TD>
+        <TD>The Bird</TD>
+        <TD>@twitter</TD>
+    </TR>
+    </TBody>
+</Table>
+```
+
+## Varient overview
+
+You can combine striped and border-x variants.
+
+<Table>
+    <THead>
+        <TR>
+            <TH scope="col">Striped?</TH>
+            <TH scope="col">Normal borders</TH>
+            <TH scope="col">Full borders</TH>
+            <TH scope="col">Borderless</TH>
+        </TR>
+    </THead>
+    <TBody>
+        <TR>
+            <TH scope="row">Normal</TH>
+            <TD>normal</TD>
+            <TD>bordered</TD>
+            <TD>borderless</TD>
+        </TR>
+        <TR>
+            <TH scope="row">Striped</TH>
+            <TD>striped</TD>
+            <TD>bordered-striped</TD>
+            <TD>borderless-striped</TD>
+        </TR>
+    </TBody>
+</Table>
+
+
+## Highlight row on hover 
+
+```jsx
+<Table isHoverable>
+    <THead>
+    <TR>
+        <TH scope="col">#</TH>
+        <TH scope="col">First</TH>
+        <TH scope="col">Last</TH>
+        <TH scope="col">Handle</TH>
+    </TR>
+    </THead>
+    <TBody>
+    <TR>
+        <TH scope="row">1</TH>
+        <TD>Mark</TD>
+        <TD>Otto</TD>
+        <TD>@mdo</TD>
+    </TR>
+    <TR>
+        <TH scope="row">2</TH>
+        <TD>Jacob</TD>
+        <TD>Thornton</TD>
+        <TD>@fat</TD>
+    </TR>
+    <TR>
+        <TH scope="row">3</TH>
+        <TD>Larry</TD>
+        <TD>The Bird</TD>
+        <TD>@twitter</TD>
+    </TR>
+    </TBody>
+</Table>
+```
+
+## Responsive
+
+```jsx
+<Box maxW="200px">
+    <Table isResponsive>
+        <THead>
+        <TR>
+            <TH scope="col">#</TH>
+            <TH scope="col">First</TH>
+            <TH scope="col">Last</TH>
+            <TH scope="col">Handle</TH>
+        </TR>
+        </THead>
+        <TBody>
+        <TR>
+            <TH scope="row">1</TH>
+            <TD>Mark</TD>
+            <TD>Otto</TD>
+            <TD>@mdo</TD>
+        </TR>
+        <TR>
+            <TH scope="row">2</TH>
+            <TD>Jacob</TD>
+            <TD>Thornton</TD>
+            <TD>@fat</TD>
+        </TR>
+        <TR>
+            <TH scope="row">3</TH>
+            <TD>Larry</TD>
+            <TD>The Bird</TD>
+            <TD>@twitter</TD>
+        </TR>
+        </TBody>
+    </Table>
+</Box>
+```
+
+A responsive table will show a scrollbar its box is too small to display it in full.
+
+## Small table
+
+```jsx
+<Table size="sm">
+    <THead>
+    <TR>
+        <TH scope="col">#</TH>
+        <TH scope="col">First</TH>
+        <TH scope="col">Last</TH>
+        <TH scope="col">Handle</TH>
+    </TR>
+    </THead>
+    <TBody>
+    <TR>
+        <TH scope="row">1</TH>
+        <TD>Mark</TD>
+        <TD>Otto</TD>
+        <TD>@mdo</TD>
+    </TR>
+    <TR>
+        <TH scope="row">2</TH>
+        <TD>Jacob</TD>
+        <TD>Thornton</TD>
+        <TD>@fat</TD>
+    </TR>
+    <TR>
+        <TH scope="row">3</TH>
+        <TD>Larry</TD>
+        <TD>The Bird</TD>
+        <TD>@twitter</TD>
+    </TR>
+    </TBody>
+</Table>
+```
+
+Tables come in two size: `md` (default) and `sm`. This small view condenses the table by reducing its paddings.
+
+## Color Scheme
+
+```jsx
+<Table colorScheme="teal">
+    <THead>
+    <TR>
+        <TH scope="col">#</TH>
+        <TH scope="col">First</TH>
+        <TH scope="col">Last</TH>
+        <TH scope="col">Handle</TH>
+    </TR>
+    </THead>
+    <TBody>
+    <TR>
+        <TH scope="row">1</TH>
+        <TD>Mark</TD>
+        <TD>Otto</TD>
+        <TD>@mdo</TD>
+    </TR>
+    <TR>
+        <TH scope="row">2</TH>
+        <TD>Jacob</TD>
+        <TD>Thornton</TD>
+        <TD>@fat</TD>
+    </TR>
+    <TR>
+        <TH scope="row">3</TH>
+        <TD>Larry</TD>
+        <TD>The Bird</TD>
+        <TD>@twitter</TD>
+    </TR>
+    </TBody>
+</Table>
+```
+
+Tables support the use of `colorScheme`. Using a different `colorScheme` will color the table including borders with the theme-color of your choice.
+
+## Captions
+
+```jsx
+<Table captionSide="top">
+    <Caption>List of users</Caption>
+    <THead>
+    <TR>
+        <TH scope="col">#</TH>
+        <TH scope="col">First</TH>
+        <TH scope="col">Last</TH>
+        <TH scope="col">Handle</TH>
+    </TR>
+    </THead>
+    <TBody>
+    <TR>
+        <TH scope="row">1</TH>
+        <TD>Mark</TD>
+        <TD>Otto</TD>
+        <TD>@mdo</TD>
+    </TR>
+    <TR>
+        <TH scope="row">2</TH>
+        <TD>Jacob</TD>
+        <TD>Thornton</TD>
+        <TD>@fat</TD>
+    </TR>
+    <TR>
+        <TH scope="row">3</TH>
+        <TD>Larry</TD>
+        <TD>The Bird</TD>
+        <TD>@twitter</TD>
+    </TR>
+    </TBody>
+</Table>
+```
+
+Use `captionSide` to render the caption above or below the table.
+
+## Themeing
+
+Tables are fully themeable. The table-theme is a multipart-component-theme and consists of its parts `table`, `thead`, `tbody`, `tfoot`, `tr`, `th`, `td` and `caption`.
+See the [Multipart themeing documentation](/docs/theming/component-style#styling-multipart-components) for details.
+
+## Variety of props
+
+All props can be combined.
+
+```jsx
+<Table size="sm" colorScheme="red" variant="bordered-striped" isHoverable isResponsive>
+    <THead>
+    <TR>
+        <TH scope="col">#</TH>
+        <TH scope="col">First</TH>
+        <TH scope="col">Last</TH>
+        <TH scope="col">Handle</TH>
+    </TR>
+    </THead>
+    <TBody>
+    <TR>
+        <TH scope="row">1</TH>
+        <TD>Mark</TD>
+        <TD>Otto</TD>
+        <TD>@mdo</TD>
+    </TR>
+    <TR>
+        <TH scope="row">2</TH>
+        <TD>Jacob</TD>
+        <TD>Thornton</TD>
+        <TD>@fat</TD>
+    </TR>
+    <TR>
+        <TH scope="row">3</TH>
+        <TD>Larry</TD>
+        <TD>The Bird</TD>
+        <TD>@twitter</TD>
+    </TR>
+    </TBody>
+</Table>
+```
+
+## Props
+
+### Table Props
+
+<PropsTable of="Table" />
+
+### THead, TBody, TFoot, TR, TH, TD, Caption Props
+
+`THead`, `TH`, `TFoot`, `TD`, `TR`, `TBody` and `Caption` use plain chakra html-elements.

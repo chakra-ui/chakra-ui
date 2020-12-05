@@ -33,6 +33,7 @@ import Stat from "./stat"
 import Switch from "./switch"
 import Tabs from "./tabs"
 import Tag from "./tag"
+import Table from "./table"
 import Textarea from "./textarea"
 import Tooltip from "./tooltip"
 import FormError from "./form-error"
@@ -72,6 +73,7 @@ export default {
   Stat,
   Switch,
   Tabs,
+  Table,
   Tag,
   Textarea,
   Tooltip,

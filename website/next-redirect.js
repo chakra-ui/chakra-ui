@@ -255,6 +255,11 @@ async function redirect() {
       permanent: true,
     },
     {
+      source: "/table",
+      destination: "/docs/data-display/table",
+      permanent: true,
+    },
+    {
       source: "/tabs",
       destination: "/docs/components/tabs",
       permanent: true,
