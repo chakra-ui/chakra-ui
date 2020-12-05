@@ -17,9 +17,9 @@ type DeepThemeExtension<ThemeObject, TypeHints> = {
     | (ThemeObject[Key] extends (...args: any[]) => any
         ? Partial<ReturnType<ThemeObject[Key]>>
         : Partial<ThemeObject[Key]>) // allow function or object
-    | Record<string, any> // escape hatch
 } &
-  Partial<TypeHints>
+  Partial<TypeHints> &
+  Record<string, any> // escape hatch
 
 export type ThemeOverride = DeepThemeExtension<Theme, ThemeExtensionTypeHints>
 
