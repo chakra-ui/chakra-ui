@@ -1,5 +1,6 @@
 import { parseMarkdownFile, fileToPath, removePrefix } from "@docusaurus/utils"
 import path from "path"
+//@ts-ignore
 import toc from "markdown-toc"
 import { v4 as uuid } from "uuid"
 import shell from "shelljs"

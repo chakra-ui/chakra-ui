@@ -67,13 +67,5 @@
     "react/prop-types": "off",
     "@typescript-eslint/no-shadow": "off",
     "react-hooks/exhaustive-deps": "error"
-  },
-  "overrides": [
-    {
-      "files": ["*.ts", "*.tsx"],
-      "parserOptions": {
-        "project": ["tsconfig.json"]
-      }
-    }
-  ]
+  }
 }

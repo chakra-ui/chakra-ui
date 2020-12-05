@@ -1,10 +1,11 @@
 import { Octokit } from "@octokit/rest"
 import fs from "fs"
+import { config } from "dotenv"
 
-require("dotenv").config()
+config()
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
 
-function sortMembers(a, b) {
+function sortMembers(a: any, b: any) {
   // segun comes first!
   if (a.login === "segunadebayo") return -1
   if (b.login === "segunadebayo") return 1

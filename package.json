@@ -93,6 +93,7 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.6",
     "@types/shelljs": "^0.8.8",
+    "@types/uuid": "3.4.3",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
     "all-contributors-cli": "^6.19.0",
