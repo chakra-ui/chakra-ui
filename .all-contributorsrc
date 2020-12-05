@@ -1601,6 +1601,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "yicru",
+      "name": "yuichiro miyamae",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/37892222?v=4",
+      "profile": "https://github.com/yicru",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,

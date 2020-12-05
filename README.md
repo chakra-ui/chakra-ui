@@ -374,12 +374,12 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://tyneo.net/fr/"><img src="https://avatars2.githubusercontent.com/u/1290679?v=4" width="64px;" alt=""/><br /><sub><b>Samuel Kauffmann</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=skauffmann" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/dodas"><img src="https://avatars0.githubusercontent.com/u/14360171?v=4" width="64px;" alt=""/><br /><sub><b>Jozef Mikuláš</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=dodas" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/jvmazagao"><img src="https://avatars2.githubusercontent.com/u/22477816?v=4" width="64px;" alt=""/><br /><sub><b>João Victor </b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=jvmazagao" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/yicru"><img src="https://avatars3.githubusercontent.com/u/37892222?v=4" width="64px;" alt=""/><br /><sub><b>yuichiro miyamae</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=yicru" title="Documentation">📖</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
