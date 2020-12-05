@@ -1,5 +1,23 @@
 # Change Log
 
+## 1.0.2
+
+### Patch Changes
+
+- [`e1b095cd`](https://github.com/chakra-ui/chakra-ui/commit/e1b095cdb799bb3630d3cbb7891d8c7e929db0f4)
+  [#2217](https://github.com/chakra-ui/chakra-ui/pull/2217) Thanks
+  [@silltho](https://github.com/silltho)! - feat(number-input): uses props of
+  wrapping form-control
+
+  This change enables `NumberInput` to automatically derive various values from
+  a surrounding `FormControl` if found, similar to `Input` and `Select`.
+
+- Updated dependencies
+  [[`3b4b5e32`](https://github.com/chakra-ui/chakra-ui/commit/3b4b5e32d2baa81133daa4eb3f1be53c3c99656c),
+  [`cfd3b325`](https://github.com/chakra-ui/chakra-ui/commit/cfd3b32564066076529811c5350aff6be565b7a3)]:
+  - @chakra-ui/props-docs@1.0.2
+  - @chakra-ui/react@1.0.2
+
 ## 1.0.1
 
 ### Patch Changes

@@ -115,9 +115,9 @@ describe("<Table />", () => {
     .filter(([key]) => key !== "default")
     .forEach(([name, Story]) => {
       test(`renders ${name}`, () => {
-        // @ts-ignore // it complains that the default export (filtered out in the line above) is not callable
         const { asFragment } = render(
           <ChakraProvider>
+            {/* @ts-ignore // it complains that the default export (filtered out in the line above) is not callable */}
             <Story />
           </ChakraProvider>,
         )

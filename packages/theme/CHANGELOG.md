@@ -1,5 +1,41 @@
 # Change Log
 
+## 1.2.0
+
+### Minor Changes
+
+- [`28bd21d7`](https://github.com/chakra-ui/chakra-ui/commit/28bd21d793911ba56bd146dd7aaff1008a70d147)
+  [#2659](https://github.com/chakra-ui/chakra-ui/pull/2659) Thanks
+  [@dodas](https://github.com/dodas)! - feat(theming): enable theming for
+  ModalCloseButton
+
+  This change enables `ModalCloseButton` to be themed as part of the `Modal`
+  component theme via the `closeButton` key.
+
+  See
+  https://chakra-ui.com/docs/theming/component-style#styling-multipart-components
+  for more information.
+
+* [`2192be3d`](https://github.com/chakra-ui/chakra-ui/commit/2192be3db77504addffc89cbfef62fb9e884fa5d)
+  [#2635](https://github.com/chakra-ui/chakra-ui/pull/2635) Thanks
+  [@jmiazga](https://github.com/jmiazga)! - feat: added theming to List,
+  ListItem, and ListIcon
+
+- [`a36ede75`](https://github.com/chakra-ui/chakra-ui/commit/a36ede7519b7193f90e4985636a06c5d483a8a62)
+  [#2681](https://github.com/chakra-ui/chakra-ui/pull/2681) Thanks
+  [@dodas](https://github.com/dodas)! - This change prevent shrinking of
+  AlertIcon when using Alert with long text
+
+* [`c696345a`](https://github.com/chakra-ui/chakra-ui/commit/c696345a711338a23542a7b1911a33927a9ba5f1)
+  [#2602](https://github.com/chakra-ui/chakra-ui/pull/2602) Thanks
+  [@Zyclotrop-j](https://github.com/Zyclotrop-j)! - feat(container): add ability
+  to style container component with theme api
+
+- [`9fdc61d8`](https://github.com/chakra-ui/chakra-ui/commit/9fdc61d8801f6d76783b5c9f068525d4dfc28b20)
+  [#2478](https://github.com/chakra-ui/chakra-ui/pull/2478) Thanks
+  [@Zyclotrop-j](https://github.com/Zyclotrop-j)! - feat(divider): add ability
+  to style divider component with theme api
+
 ## 1.1.0
 
 ### Minor Changes

@@ -3,13 +3,12 @@ import {
   ChakraComponent,
   forwardRef,
   HTMLChakraProps,
-  PropsOf,
   SystemProps,
 } from "@chakra-ui/system"
 import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { getDividerStyles, getStackStyles, selector } from "./stack.utils"
 import type { StackDirection } from "./stack.utils"
+import { getDividerStyles, getStackStyles, selector } from "./stack.utils"
 
 export type { StackDirection }
 
@@ -86,7 +85,7 @@ export const StackItem: ChakraComponent<"div"> = (props) => (
   />
 )
 
-export interface StackProps extends PropsOf<typeof chakra.div>, StackOptions {}
+export interface StackProps extends HTMLChakraProps<"div">, StackOptions {}
 
 /**
  * Stacks help you easily create flexible and automatically distributed layouts

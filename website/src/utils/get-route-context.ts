@@ -3,6 +3,7 @@ export interface RouteItem {
   path?: string
   open?: boolean
   heading?: boolean
+  sort?: boolean
   routes?: RouteItem[]
 }
 

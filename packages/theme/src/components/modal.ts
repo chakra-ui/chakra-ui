@@ -5,6 +5,7 @@ const parts = [
   "dialogContainer",
   "dialog",
   "header",
+  "closeButton",
   "body",
   "footer",
 ]
@@ -49,6 +50,12 @@ const baseStyleHeader = {
   fontWeight: "semibold",
 }
 
+const baseStyleCloseButton = {
+  position: "absolute",
+  top: 2,
+  right: 3,
+}
+
 function baseStyleBody(props: Dict) {
   const { scrollBehavior } = props
   return {
@@ -69,6 +76,7 @@ const baseStyle = (props: Dict) => ({
   dialogContainer: baseStyleDialogContainer(props),
   dialog: baseStyleDialog(props),
   header: baseStyleHeader,
+  closeButton: baseStyleCloseButton,
   body: baseStyleBody(props),
   footer: baseStyleFooter,
 })

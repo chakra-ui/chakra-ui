@@ -29,6 +29,7 @@ interface EventListeners {
 
 export function useEventListeners(): EventListeners {
   const listeners = React.useRef(new Map())
+  const currentListeners = listeners.current
 
   const add = React.useCallback((el, type, listener, options) => {
     listeners.current.set(listener, { type, el, options })
@@ -42,11 +43,11 @@ export function useEventListeners(): EventListeners {
 
   React.useEffect(() => {
     return () => {
-      listeners.current.forEach((value, key) => {
+      currentListeners.forEach((value, key) => {
         remove(value.el, value.type, key, value.options)
       })
     }
-  }, [remove])
+  }, [remove, currentListeners])
 
   return { add, remove }
 }

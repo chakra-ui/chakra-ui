@@ -1,5 +1,26 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [`ac0af38d`](https://github.com/chakra-ui/chakra-ui/commit/ac0af38d12dc5828503e178fb94a21f252e3a62b)
+  [#2668](https://github.com/chakra-ui/chakra-ui/pull/2668) Thanks
+  [@raulrpearson](https://github.com/raulrpearson)! - Change toast title and
+  description types from string to React.ReactNode to allowJSX
+
+### Patch Changes
+
+- Updated dependencies
+  [[`28bd21d7`](https://github.com/chakra-ui/chakra-ui/commit/28bd21d793911ba56bd146dd7aaff1008a70d147),
+  [`2192be3d`](https://github.com/chakra-ui/chakra-ui/commit/2192be3db77504addffc89cbfef62fb9e884fa5d),
+  [`a36ede75`](https://github.com/chakra-ui/chakra-ui/commit/a36ede7519b7193f90e4985636a06c5d483a8a62),
+  [`c696345a`](https://github.com/chakra-ui/chakra-ui/commit/c696345a711338a23542a7b1911a33927a9ba5f1),
+  [`9fdc61d8`](https://github.com/chakra-ui/chakra-ui/commit/9fdc61d8801f6d76783b5c9f068525d4dfc28b20),
+  [`2416cf9a`](https://github.com/chakra-ui/chakra-ui/commit/2416cf9abe183a3a38adbccff794088d86a46341)]:
+  - @chakra-ui/theme@1.2.0
+  - @chakra-ui/transition@1.0.2
+
 ## 1.0.1
 
 ### Patch Changes

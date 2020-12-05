@@ -1,5 +1,31 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [`2192be3d`](https://github.com/chakra-ui/chakra-ui/commit/2192be3db77504addffc89cbfef62fb9e884fa5d)
+  [#2635](https://github.com/chakra-ui/chakra-ui/pull/2635) Thanks
+  [@jmiazga](https://github.com/jmiazga)! - feat: added theming to List,
+  ListItem, and ListIcon
+
+* [`c696345a`](https://github.com/chakra-ui/chakra-ui/commit/c696345a711338a23542a7b1911a33927a9ba5f1)
+  [#2602](https://github.com/chakra-ui/chakra-ui/pull/2602) Thanks
+  [@Zyclotrop-j](https://github.com/Zyclotrop-j)! - feat(container): add ability
+  to style container component with theme api
+
+- [`9fdc61d8`](https://github.com/chakra-ui/chakra-ui/commit/9fdc61d8801f6d76783b5c9f068525d4dfc28b20)
+  [#2478](https://github.com/chakra-ui/chakra-ui/pull/2478) Thanks
+  [@Zyclotrop-j](https://github.com/Zyclotrop-j)! - feat(divider): add ability
+  to style divider component with theme api
+
+### Patch Changes
+
+- [`6b527414`](https://github.com/chakra-ui/chakra-ui/commit/6b52741456f71ba4ec8cfe3e6307796d195adf5b)
+  [#2589](https://github.com/chakra-ui/chakra-ui/pull/2589) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - fix prop type interface
+  for stack
+
 ## 1.0.1
 
 ### Patch Changes

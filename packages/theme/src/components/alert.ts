@@ -2,7 +2,7 @@ import { getColor, mode, transparentize } from "@chakra-ui/theme-tools"
 
 type Dict = Record<string, any>
 
-const parts = ["container", "title", "icon"]
+const parts = ["container", "title", "description", "icon"]
 
 const baseStyle = {
   container: {
@@ -18,6 +18,7 @@ const baseStyle = {
     lineHeight: 6,
   },
   icon: {
+    flexShrink: 0,
     mr: 3,
     w: 5,
     h: 6,
