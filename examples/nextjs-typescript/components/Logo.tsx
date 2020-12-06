@@ -42,7 +42,7 @@ export const Logo = (props: IconProps) => {
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#7BCBD4" />
-          <stop offset="1" stop-color="#29C6B7" />
+          <stop offset="1" stopColor="#29C6B7" />
         </linearGradient>
       </defs>
     </chakra.svg>

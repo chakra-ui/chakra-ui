@@ -60,7 +60,7 @@
     "react": "16.x || 17.x"
   },
   "devDependencies": {
-    "framer-motion": "^2.9.4",
+    "framer-motion": "2.9.5",
     "react": "^17.0.1"
   }
 }

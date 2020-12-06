@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react"
 import Head from "next/head"
 import { Chakra } from "../src/Chakra"
+import { useState } from "react"
 
 function Switcher() {
   const { toggleColorMode: toggleMode } = useColorMode()
@@ -22,7 +23,7 @@ function Switcher() {
 }
 
 const InputGrouper = () => {
-  const [bool, setBool] = React.useState(false)
+  const [bool, setBool] = useState(false)
   return (
     <>
       <InputGroup maxWidth="400px">
