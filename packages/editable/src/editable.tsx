@@ -55,10 +55,7 @@ export interface EditableProps
  * The wrapper that provides context and logic for all editable
  * components. It renders a `div`
  */
-export const Editable = forwardRef<EditableProps, "div">(function Editable(
-  props,
-  ref,
-) {
+export const Editable = forwardRef<EditableProps, "div">((props, ref) => {
   const styles = useMultiStyleConfig("Editable", props)
 
   const ownProps = omitThemingProps(props)
@@ -105,7 +102,7 @@ export interface EditablePreviewProps extends HTMLChakraProps<"div"> {}
  * The `span` used to display the final value, in the `preview` mode
  */
 export const EditablePreview = forwardRef<EditablePreviewProps, "span">(
-  function EditablePreview(props, ref) {
+  (props, ref) => {
     const { getPreviewProps } = useEditableContext()
     const styles = useStyles()
 
@@ -139,7 +136,7 @@ export interface EditableInputProps extends HTMLChakraProps<"input"> {}
  * The input used in the `edit` mode
  */
 export const EditableInput = forwardRef<EditableInputProps, "input">(
-  function EditableInput(props, ref) {
+  (props, ref) => {
     const { getInputProps } = useEditableContext()
     const styles = useStyles()
 

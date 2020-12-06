@@ -63,10 +63,7 @@ export interface SpinnerProps
  *
  * @see Docs https://chakra-ui.com/components/spinner
  */
-export const Spinner = forwardRef<SpinnerProps, "div">(function Spinner(
-  props,
-  ref,
-) {
+export const Spinner = forwardRef<SpinnerProps, "div">((props, ref) => {
   const styles = useStyleConfig("Spinner", props)
 
   const {

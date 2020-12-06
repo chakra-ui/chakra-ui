@@ -29,7 +29,7 @@ export interface IconButtonProps extends BaseButtonProps {
 }
 
 export const IconButton = forwardRef<IconButtonProps, "button">(
-  function IconButton(props, ref) {
+  (props, ref) => {
     const { icon, children, isRound, "aria-label": ariaLabel, ...rest } = props
 
     /**

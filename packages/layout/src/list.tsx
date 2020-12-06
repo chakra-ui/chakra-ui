@@ -41,7 +41,7 @@ export interface ListProps
  *
  * @see Docs https://chakra-ui.com/components/list
  */
-export const List = forwardRef<ListProps, "ul">(function List(props, ref) {
+export const List = forwardRef<ListProps, "ul">((props, ref) => {
   const styles = useMultiStyleConfig("List", props)
   const {
     children,
@@ -81,10 +81,7 @@ if (__DEV__) {
   List.displayName = "List"
 }
 
-export const OrderedList = forwardRef<ListProps, "ol">(function OrderedList(
-  props,
-  ref,
-) {
+export const OrderedList = forwardRef<ListProps, "ol">((props, ref) => {
   const { as, ...rest } = props
   return (
     <List ref={ref} as="ol" styleType="decimal" marginLeft="1em" {...rest} />
@@ -95,10 +92,7 @@ if (__DEV__) {
   OrderedList.displayName = "OrderedList"
 }
 
-export const UnorderedList = forwardRef<ListProps, "ul">(function UnorderedList(
-  props,
-  ref,
-) {
+export const UnorderedList = forwardRef<ListProps, "ul">((props, ref) => {
   const { as, ...rest } = props
   return (
     <List ref={ref} as="ul" styleType="initial" marginLeft="1em" {...rest} />
@@ -131,10 +125,7 @@ if (__DEV__) {
  *
  * Used to render an icon beside the list item text
  */
-export const ListIcon = forwardRef<IconProps, "svg">(function ListIcon(
-  props,
-  ref,
-) {
+export const ListIcon = forwardRef<IconProps, "svg">((props, ref) => {
   const styles = useStyles()
 
   return <Icon ref={ref} role="presentation" {...props} __css={styles.icon} />

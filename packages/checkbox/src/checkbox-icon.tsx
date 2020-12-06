@@ -31,32 +31,30 @@ const CheckIcon = (props: PropsOf<typeof MotionSvg>) => (
   </MotionSvg>
 )
 
-const IndeterminateIcon = (props: PropsOf<typeof MotionSvg>) => {
-  return (
-    <MotionSvg
-      width="1.2em"
-      viewBox="0 0 24 24"
-      variants={{
-        unchecked: {
-          scaleX: 0.65,
-          opacity: 0,
+const IndeterminateIcon = (props: PropsOf<typeof MotionSvg>) => (
+  <MotionSvg
+    width="1.2em"
+    viewBox="0 0 24 24"
+    variants={{
+      unchecked: {
+        scaleX: 0.65,
+        opacity: 0,
+      },
+      checked: {
+        scaleX: 1,
+        opacity: 1,
+        transition: {
+          scaleX: { duration: 0 },
+          opacity: { duration: 0.02 },
         },
-        checked: {
-          scaleX: 1,
-          opacity: 1,
-          transition: {
-            scaleX: { duration: 0 },
-            opacity: { duration: 0.02 },
-          },
-        },
-      }}
-      style={{ stroke: "currentColor", strokeWidth: 4 }}
-      {...props}
-    >
-      <line x1="21" x2="3" y1="12" y2="12" />
-    </MotionSvg>
-  )
-}
+      },
+    }}
+    style={{ stroke: "currentColor", strokeWidth: 4 }}
+    {...props}
+  >
+    <line x1="21" x2="3" y1="12" y2="12" />
+  </MotionSvg>
+)
 
 const CheckboxTransition = ({ open, children }: any) => (
   <AnimatePresence initial={false}>

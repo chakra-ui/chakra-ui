@@ -23,7 +23,7 @@ export interface KbdProps extends HTMLChakraProps<"kbd">, ThemingProps {}
  *
  * @see Docs https://chakra-ui.com/components/kbd
  */
-export const Kbd = forwardRef<KbdProps, "kbd">(function Kbd(props, ref) {
+export const Kbd = forwardRef<KbdProps, "kbd">((props, ref) => {
   const styles = useStyleConfig("Kbd", props)
   const { className, ...rest } = omitThemingProps(props)
 

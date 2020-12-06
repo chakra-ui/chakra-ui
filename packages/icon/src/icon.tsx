@@ -30,7 +30,7 @@ export interface IconProps
   extends Omit<React.SVGAttributes<SVGElement>, keyof ChakraProps>,
     ChakraProps {}
 
-export const Icon = forwardRef<IconProps, "svg">(function Icon(props, ref) {
+export const Icon = forwardRef<IconProps, "svg">((props, ref) => {
   const {
     as: element,
     viewBox,

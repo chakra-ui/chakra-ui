@@ -47,34 +47,33 @@ export interface AccordionProps
  * It wraps all accordion items in a `div` for better grouping.
  * @see Docs https://chakra-ui.com/components/accordion
  */
-export const Accordion = forwardRef<AccordionProps, "div">(function Accordion(
-  { children, reduceMotion, ...props },
-  ref,
-) {
-  const styles = useMultiStyleConfig("Accordion", props)
-  const ownProps = omitThemingProps(props)
+export const Accordion = forwardRef<AccordionProps, "div">(
+  ({ children, reduceMotion, ...props }, ref) => {
+    const styles = useMultiStyleConfig("Accordion", props)
+    const ownProps = omitThemingProps(props)
 
-  const { htmlProps, ...context } = useAccordion(ownProps)
+    const { htmlProps, ...context } = useAccordion(ownProps)
 
-  const ctx = React.useMemo(
-    () => ({ ...context, reduceMotion: !!reduceMotion }),
-    [context, reduceMotion],
-  )
+    const ctx = React.useMemo(
+      () => ({ ...context, reduceMotion: !!reduceMotion }),
+      [context, reduceMotion],
+    )
 
-  return (
-    <AccordionProvider value={ctx}>
-      <StylesProvider value={styles}>
-        <chakra.div
-          ref={ref}
-          {...htmlProps}
-          className={cx("chakra-accordion", props.className)}
-        >
-          {children}
-        </chakra.div>
-      </StylesProvider>
-    </AccordionProvider>
-  )
-})
+    return (
+      <AccordionProvider value={ctx}>
+        <StylesProvider value={styles}>
+          <chakra.div
+            ref={ref}
+            {...htmlProps}
+            className={cx("chakra-accordion", props.className)}
+          >
+            {children}
+          </chakra.div>
+        </StylesProvider>
+      </AccordionProvider>
+    )
+  },
+)
 
 if (__DEV__) {
   Accordion.displayName = "Accordion"
@@ -82,9 +81,10 @@ if (__DEV__) {
 
 type AccordionItemContext = Omit<UseAccordionItemReturn, "htmlProps">
 
-const [AccordionItemProvider, useAccordionItemContext] = createContext<
-  AccordionItemContext
->({
+const [
+  AccordionItemProvider,
+  useAccordionItemContext,
+] = createContext<AccordionItemContext>({
   name: "AccordionItemContext",
   errorMessage:
     "useAccordionItemContext: `context` is undefined. Seems you forgot to wrap the accordion item parts in `<AccordionItem />` ",
@@ -106,7 +106,7 @@ export interface AccordionItemProps
  * It also provides context for the accordion button and panel.
  */
 export const AccordionItem = forwardRef<AccordionItemProps, "div">(
-  function AccordionItem(props, ref) {
+  (props, ref) => {
     const { children, className } = props
     const { htmlProps, ...context } = useAccordionItem(props)
 
@@ -158,7 +158,7 @@ export interface AccordionButtonProps extends HTMLChakraProps<"button"> {}
  * that is appropriate for the information architecture of the page.
  */
 export const AccordionButton = forwardRef<AccordionButtonProps, "button">(
-  function AccordionButton(props, ref) {
+  (props, ref) => {
     const { getButtonProps } = useAccordionItemContext()
     const buttonProps = getButtonProps(props, ref)
 
@@ -195,7 +195,7 @@ export interface AccordionPanelProps extends HTMLChakraProps<"div"> {}
  * It uses the `Collapse` component to animate its height.
  */
 export const AccordionPanel = forwardRef<AccordionPanelProps, "div">(
-  function AccordionPanel(props, ref) {
+  (props, ref) => {
     const { reduceMotion } = useAccordionContext()
     const { getPanelProps, isOpen } = useAccordionItemContext()
 

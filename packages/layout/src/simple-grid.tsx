@@ -36,33 +36,24 @@ export interface SimpleGridProps extends GridProps, SimpleGridOptions {}
  *
  * @see Docs https://chakra-ui.com/components/simplegrid
  */
-export const SimpleGrid = forwardRef<SimpleGridProps, "div">(
-  function SimpleGrid(props, ref) {
-    const {
-      columns,
-      spacingX,
-      spacingY,
-      spacing,
-      minChildWidth,
-      ...rest
-    } = props
+export const SimpleGrid = forwardRef<SimpleGridProps, "div">((props, ref) => {
+  const { columns, spacingX, spacingY, spacing, minChildWidth, ...rest } = props
 
-    const templateColumns = minChildWidth
-      ? widthToColumns(minChildWidth)
-      : countToColumns(columns)
+  const templateColumns = minChildWidth
+    ? widthToColumns(minChildWidth)
+    : countToColumns(columns)
 
-    return (
-      <Grid
-        ref={ref}
-        gap={spacing}
-        columnGap={spacingX}
-        rowGap={spacingY}
-        templateColumns={templateColumns}
-        {...rest}
-      />
-    )
-  },
-)
+  return (
+    <Grid
+      ref={ref}
+      gap={spacing}
+      columnGap={spacingX}
+      rowGap={spacingY}
+      templateColumns={templateColumns}
+      {...rest}
+    />
+  )
+})
 
 if (__DEV__) {
   SimpleGrid.displayName = "SimpleGrid"

@@ -49,13 +49,11 @@ function baseStyleFilledTrack(props: Dict) {
   }
 }
 
-const baseStyle = (props: Dict) => {
-  return {
-    label: baseStyleLabel,
-    filledTrack: baseStyleFilledTrack(props),
-    track: baseStyleTrack(props),
-  }
-}
+const baseStyle = (props: Dict) => ({
+  label: baseStyleLabel,
+  filledTrack: baseStyleFilledTrack(props),
+  track: baseStyleTrack(props),
+})
 
 const sizes = {
   xs: {

@@ -22,7 +22,7 @@ export interface SelectFieldProps
 }
 
 export const SelectField = forwardRef<SelectFieldProps, "select">(
-  function SelectField(props, ref) {
+  (props, ref) => {
     const { children, placeholder, className, ...rest } = props
     const ownProps = useFormControl<HTMLSelectElement>(rest)
 
@@ -99,10 +99,7 @@ export interface SelectProps
 /**
  * React component used to select one item from a list of options.
  */
-export const Select = forwardRef<SelectProps, "select">(function Select(
-  props,
-  ref,
-) {
+export const Select = forwardRef<SelectProps, "select">((props, ref) => {
   const styles = useMultiStyleConfig("Select", props)
 
   const {

@@ -40,39 +40,38 @@ export interface FormLabelProps extends HTMLChakraProps<"label">, ThemingProps {
  *
  * ♿️ Accessibility: Every form field should have a form label.
  */
-export const FormLabel = forwardRef<FormLabelProps, "label">(function FormLabel(
-  passedProps,
-  ref,
-) {
-  const styles = useStyleConfig("FormLabel", passedProps)
-  const props = omitThemingProps(passedProps)
+export const FormLabel = forwardRef<FormLabelProps, "label">(
+  (passedProps, ref) => {
+    const styles = useStyleConfig("FormLabel", passedProps)
+    const props = omitThemingProps(passedProps)
 
-  const {
-    className,
-    children,
-    requiredIndicator = <RequiredIndicator />,
-    ...rest
-  } = props
+    const {
+      className,
+      children,
+      requiredIndicator = <RequiredIndicator />,
+      ...rest
+    } = props
 
-  const ownProps = useFieldLabel(rest)
-  const field = useFormControlContext()
+    const ownProps = useFieldLabel(rest)
+    const field = useFormControlContext()
 
-  return (
-    <chakra.label
-      ref={ref}
-      className={cx("chakra-form__label", props.className)}
-      __css={{
-        display: "block",
-        textAlign: "left",
-        ...styles,
-      }}
-      {...ownProps}
-    >
-      {children}
-      {field?.isRequired ? requiredIndicator : null}
-    </chakra.label>
-  )
-})
+    return (
+      <chakra.label
+        ref={ref}
+        className={cx("chakra-form__label", props.className)}
+        __css={{
+          display: "block",
+          textAlign: "left",
+          ...styles,
+        }}
+        {...ownProps}
+      >
+        {children}
+        {field?.isRequired ? requiredIndicator : null}
+      </chakra.label>
+    )
+  },
+)
 
 if (__DEV__) {
   FormLabel.displayName = "FormLabel"
@@ -85,7 +84,7 @@ export interface RequiredIndicatorProps extends HTMLChakraProps<"span"> {}
  * a field is required.
  */
 export const RequiredIndicator = forwardRef<RequiredIndicatorProps, "span">(
-  function RequiredIndicator(props, ref) {
+  (props, ref) => {
     const { children, className, ...rest } = props
     const field = useFormControlContext()
     const styles = useStyles()

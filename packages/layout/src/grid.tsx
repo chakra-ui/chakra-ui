@@ -19,7 +19,7 @@ export interface GridProps extends HTMLChakraProps<"div">, GridOptions {}
  *
  * @see Docs https://chakra-ui.com/components/grid
  */
-export const Grid = forwardRef<GridProps, "div">(function Grid(props, ref) {
+export const Grid = forwardRef<GridProps, "div">((props, ref) => {
   const {
     area,
     templateAreas,
@@ -157,10 +157,7 @@ function spanFn(span?: ResponsiveValue<number | "auto">) {
   )
 }
 
-export const GridItem = forwardRef<GridItemProps, "div">(function GridItem(
-  props,
-  ref,
-) {
+export const GridItem = forwardRef<GridItemProps, "div">((props, ref) => {
   const {
     colSpan,
     colStart,

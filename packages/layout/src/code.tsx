@@ -16,7 +16,7 @@ export interface CodeProps extends HTMLChakraProps<"code">, ThemingProps {}
  *
  * @see Docs https://chakra-ui.com/components/code
  */
-export const Code = forwardRef<CodeProps, "code">(function Code(props, ref) {
+export const Code = forwardRef<CodeProps, "code">((props, ref) => {
   const styles = useStyleConfig("Code", props)
   const { className, ...rest } = omitThemingProps(props)
 

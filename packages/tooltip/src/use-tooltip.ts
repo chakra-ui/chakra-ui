@@ -138,12 +138,13 @@ export function useTooltip(props: UseTooltipProps = {}) {
 
   useEventListener("keydown", onKeyDown)
 
-  React.useEffect(() => {
-    return () => {
+  React.useEffect(
+    () => () => {
       clearTimeout(enterTimeout.current)
       clearTimeout(exitTimeout.current)
-    }
-  }, [])
+    },
+    [],
+  )
 
   /**
    * This allows for catching mouseleave events when the tooltip

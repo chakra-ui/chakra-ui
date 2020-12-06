@@ -68,31 +68,29 @@ if (__DEV__) {
 
 export interface MenuButtonProps extends HTMLChakraProps<"button"> {}
 
-const StyledMenuButton = forwardRef<MenuButtonProps, "button">(
-  function StyledMenuButton(props, ref) {
-    const styles = useStyles()
-    return (
-      <chakra.button
-        ref={ref}
-        {...props}
-        __css={{
-          display: "inline-flex",
-          appearance: "none",
-          alignItems: "center",
-          outline: 0,
-          transition: "all 250ms",
-          ...styles.button,
-        }}
-      />
-    )
-  },
-)
+const StyledMenuButton = forwardRef<MenuButtonProps, "button">((props, ref) => {
+  const styles = useStyles()
+  return (
+    <chakra.button
+      ref={ref}
+      {...props}
+      __css={{
+        display: "inline-flex",
+        appearance: "none",
+        alignItems: "center",
+        outline: 0,
+        transition: "all 250ms",
+        ...styles.button,
+      }}
+    />
+  )
+})
 
 /**
  * The trigger for the menu list. Must be a direct child of `Menu`.
  */
 export const MenuButton = forwardRef<MenuButtonProps, "button">(
-  function MenuButton(props, ref) {
+  (props, ref) => {
     const { children, as: As, ...rest } = props
 
     const buttonProps = useMenuButton(rest, ref)
@@ -148,10 +146,7 @@ const motionVariants: Variants = {
 
 const Motion = chakra(motion.div)
 
-export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
-  props,
-  ref,
-) {
+export const MenuList = forwardRef<MenuListProps, "div">((props, ref) => {
   const { isOpen, onTransitionEnd } = useMenuContext()
 
   const listProps = useMenuList(props, ref)
@@ -188,7 +183,7 @@ if (__DEV__) {
 export interface StyledMenuItemProps extends HTMLChakraProps<"button"> {}
 
 const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
-  function StyledMenuItem(props, ref) {
+  (props, ref) => {
     const { type, ...rest } = props
     const styles = useStyles()
 
@@ -240,10 +235,7 @@ export interface MenuItemProps
   extends HTMLChakraProps<"button">,
     MenuItemOptions {}
 
-export const MenuItem = forwardRef<MenuItemProps, "button">(function MenuItem(
-  props,
-  ref,
-) {
+export const MenuItem = forwardRef<MenuItemProps, "button">((props, ref) => {
   const { icon, iconSpacing = "0.75rem", command, children, ...rest } = props
 
   const menuItemProps = useMenuItem(rest, ref) as MenuItemProps
@@ -301,7 +293,7 @@ export interface MenuItemOptionProps
 }
 
 export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
-  function MenuItemOption(props, ref) {
+  (props, ref) => {
     const { icon, iconSpacing = "0.75rem", ...rest } = props
 
     const optionProps = useMenuOption(rest, ref) as StyledMenuItemProps
@@ -352,10 +344,7 @@ if (__DEV__) {
 
 export interface MenuGroupProps extends HTMLChakraProps<"div"> {}
 
-export const MenuGroup = forwardRef<MenuGroupProps, "div">(function MenuGroup(
-  props,
-  ref,
-) {
+export const MenuGroup = forwardRef<MenuGroupProps, "div">((props, ref) => {
   const { title, children, className, ...rest } = props
 
   const _className = cx("chakra-menu__group__title", className)
@@ -380,7 +369,7 @@ if (__DEV__) {
 export interface MenuCommandProps extends HTMLChakraProps<"span"> {}
 
 export const MenuCommand = forwardRef<MenuCommandProps, "span">(
-  function MenuCommand(props, ref) {
+  (props, ref) => {
     const styles = useStyles()
     return (
       <chakra.span

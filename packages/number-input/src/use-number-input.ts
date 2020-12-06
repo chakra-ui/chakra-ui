@@ -319,7 +319,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
   useEventListener(
     "wheel",
-    function onWheel(event) {
+    (event) => {
       const isInputFocused = document.activeElement === inputRef.current
       if (!allowMouseWheel || !isInputFocused) return
 

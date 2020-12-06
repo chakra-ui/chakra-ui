@@ -331,12 +331,13 @@ export function usePopover(props: UsePopoverProps = {}) {
     ],
   )
 
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       if (openTimeout.current) clearTimeout(openTimeout.current)
       if (closeTimeout.current) clearTimeout(closeTimeout.current)
-    }
-  }, [])
+    },
+    [],
+  )
 
   const { getArrowProps, getArrowWrapperProps, getPopperProps } = popper
 

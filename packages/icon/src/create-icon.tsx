@@ -37,13 +37,11 @@ export function createIcon(options: CreateIconOptions) {
     defaultProps = {},
   } = options
 
-  const Comp = forwardRef<IconProps, "svg">((props, ref) => {
-    return (
-      <Icon ref={ref} viewBox={viewBox} {...defaultProps} {...props}>
-        {path ?? <path fill="currentColor" d={pathDefinition} />}
-      </Icon>
-    )
-  })
+  const Comp = forwardRef<IconProps, "svg">((props, ref) => (
+    <Icon ref={ref} viewBox={viewBox} {...defaultProps} {...props}>
+      {path ?? <path fill="currentColor" d={pathDefinition} />}
+    </Icon>
+  ))
 
   if (__DEV__) {
     Comp.displayName = displayName

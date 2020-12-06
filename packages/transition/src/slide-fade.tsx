@@ -80,7 +80,7 @@ export interface SlideFadeProps extends HTMLMotionProps<"div"> {
 }
 
 export const SlideFade = React.forwardRef<HTMLDivElement, SlideFadeProps>(
-  function SlideFade(props, ref) {
+  (props, ref) => {
     const {
       unmountOnExit,
       in: isOpen,

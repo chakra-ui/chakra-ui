@@ -133,32 +133,30 @@ export interface FormControlProps
  * This is commonly used in form elements such as `input`,
  * `select`, `textarea`, etc.
  */
-export const FormControl = forwardRef<FormControlProps, "div">(
-  function FormControl(props, ref) {
-    const styles = useMultiStyleConfig("Form", props)
-    const ownProps = omitThemingProps(props)
-    const { htmlProps, ...context } = useFormControlProvider(ownProps)
+export const FormControl = forwardRef<FormControlProps, "div">((props, ref) => {
+  const styles = useMultiStyleConfig("Form", props)
+  const ownProps = omitThemingProps(props)
+  const { htmlProps, ...context } = useFormControlProvider(ownProps)
 
-    const _className = cx("chakra-form-control", props.className)
+  const _className = cx("chakra-form-control", props.className)
 
-    return (
-      <FormControlProvider value={context}>
-        <StylesProvider value={styles}>
-          <chakra.div
-            role="group"
-            ref={ref}
-            {...htmlProps}
-            className={_className}
-            __css={{
-              width: "100%",
-              position: "relative",
-            }}
-          />
-        </StylesProvider>
-      </FormControlProvider>
-    )
-  },
-)
+  return (
+    <FormControlProvider value={context}>
+      <StylesProvider value={styles}>
+        <chakra.div
+          role="group"
+          ref={ref}
+          {...htmlProps}
+          className={_className}
+          __css={{
+            width: "100%",
+            position: "relative",
+          }}
+        />
+      </StylesProvider>
+    </FormControlProvider>
+  )
+})
 
 if (__DEV__) {
   FormControl.displayName = "FormControl"
@@ -173,41 +171,39 @@ export interface HelpTextProps extends HTMLChakraProps<"div"> {}
  * about the field, such as how it will be used and what
  * types in values should be provided
  */
-export const FormHelperText = forwardRef<HelpTextProps, "div">(
-  function FormHelperText(props, ref) {
-    const field = useFormControlContext()
-    const styles = useStyles()
+export const FormHelperText = forwardRef<HelpTextProps, "div">((props, ref) => {
+  const field = useFormControlContext()
+  const styles = useStyles()
 
-    /**
-     * Notify the field context when the help text is rendered on
-     * screen, so we can apply the correct `aria-describedby` to the field (e.g. input, textarea)
-     */
-    useSafeLayoutEffect(() => {
-      if (field?.isInvalid) {
-        return undefined
-      }
-
-      field?.setHasHelpText.on()
-      return () => field?.setHasHelpText.off()
-    }, [])
-
+  /**
+   * Notify the field context when the help text is rendered on
+   * screen, so we can apply the correct `aria-describedby` to the field (e.g. input, textarea)
+   */
+  useSafeLayoutEffect(() => {
     if (field?.isInvalid) {
-      return null
+      return undefined
     }
 
-    const _className = cx("chakra-form__helper-text", props.className)
+    field?.setHasHelpText.on()
+    return () => field?.setHasHelpText.off()
+  }, [])
 
-    return (
-      <chakra.div
-        ref={ref}
-        __css={styles.helperText}
-        {...props}
-        className={_className}
-        id={props.id ?? field?.helpTextId}
-      />
-    )
-  },
-)
+  if (field?.isInvalid) {
+    return null
+  }
+
+  const _className = cx("chakra-form__helper-text", props.className)
+
+  return (
+    <chakra.div
+      ref={ref}
+      __css={styles.helperText}
+      {...props}
+      className={_className}
+      id={props.id ?? field?.helpTextId}
+    />
+  )
+})
 
 if (__DEV__) {
   FormHelperText.displayName = "FormHelperText"

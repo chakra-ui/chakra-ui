@@ -39,9 +39,7 @@ export function useShortcut(props: UseShortcutProps = {}) {
     }, timeout)
   }
 
-  React.useEffect(() => {
-    return flush
-  }, [])
+  React.useEffect(() => flush, [])
 
   type Callback = (keysSoFar: string) => void
 

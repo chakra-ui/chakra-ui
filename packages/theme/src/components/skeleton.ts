@@ -1,12 +1,11 @@
 import { keyframes } from "@chakra-ui/system"
 import { getColor, mode } from "@chakra-ui/theme-tools"
 
-const fade = (startColor: string, endColor: string) => {
-  return keyframes({
+const fade = (startColor: string, endColor: string) =>
+  keyframes({
     from: { borderColor: startColor, background: startColor },
     to: { borderColor: endColor, background: endColor },
   })
-}
 
 const baseStyle = (props: Record<string, any>) => {
   const defaultStartColor = mode("gray.100", "gray.800")(props)

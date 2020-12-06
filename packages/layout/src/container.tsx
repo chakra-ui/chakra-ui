@@ -25,10 +25,7 @@ export interface ContainerProps extends HTMLChakraProps<"div">, ThemingProps {
  *
  * It also sets a default max-width of `60ch` (60 characters).
  */
-export const Container = forwardRef<ContainerProps, "div">(function Container(
-  props,
-  ref,
-) {
+export const Container = forwardRef<ContainerProps, "div">((props, ref) => {
   const { className, centerContent, ...rest } = omitThemingProps(props)
 
   const styles = useStyleConfig("Container", props)

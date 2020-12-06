@@ -55,22 +55,20 @@ interface StackOptions {
 
 export interface StackDividerProps extends HTMLChakraProps<"div"> {}
 
-export const StackDivider: ChakraComponent<"div"> = (props) => {
-  return (
-    <chakra.div
-      className="chakra-stack__divider"
-      {...props}
-      __css={{
-        ...props["__css"],
-        borderWidth: 0,
-        alignSelf: "stretch",
-        borderColor: "inherit",
-        width: "auto",
-        height: "auto",
-      }}
-    />
-  )
-}
+export const StackDivider: ChakraComponent<"div"> = (props) => (
+  <chakra.div
+    className="chakra-stack__divider"
+    {...props}
+    __css={{
+      ...props["__css"],
+      borderWidth: 0,
+      alignSelf: "stretch",
+      borderColor: "inherit",
+      width: "auto",
+      height: "auto",
+    }}
+  />
+)
 
 export const StackItem: ChakraComponent<"div"> = (props) => (
   <chakra.div
@@ -98,7 +96,7 @@ export interface StackProps extends HTMLChakraProps<"div">, StackOptions {}
  * @see Docs https://chakra-ui.com/components/stack
  *
  */
-export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
+export const Stack = forwardRef<StackProps, "div">((props, ref) => {
   const {
     isInline,
     direction: directionProp,
@@ -180,9 +178,9 @@ if (__DEV__) {
 /**
  * A view that arranges its children in a horizontal line.
  */
-export const HStack = forwardRef<StackProps, "div">((props, ref) => {
-  return <Stack align="center" {...props} direction="row" ref={ref} />
-})
+export const HStack = forwardRef<StackProps, "div">((props, ref) => (
+  <Stack align="center" {...props} direction="row" ref={ref} />
+))
 
 if (__DEV__) {
   HStack.displayName = "HStack"
@@ -191,9 +189,9 @@ if (__DEV__) {
 /**
  * A view that arranges its children in a vertical line.
  */
-export const VStack = forwardRef<StackProps, "div">((props, ref) => {
-  return <Stack align="center" {...props} direction="column" ref={ref} />
-})
+export const VStack = forwardRef<StackProps, "div">((props, ref) => (
+  <Stack align="center" {...props} direction="column" ref={ref} />
+))
 
 if (__DEV__) {
   VStack.displayName = "VStack"

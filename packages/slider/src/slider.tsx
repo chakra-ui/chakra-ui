@@ -37,10 +37,7 @@ export interface SliderProps
  * @see Docs     https://chakra-ui.com/components/slider
  * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices/#slider
  */
-export const Slider = forwardRef<SliderProps, "div">(function Slider(
-  props,
-  ref,
-) {
+export const Slider = forwardRef<SliderProps, "div">((props, ref) => {
   const styles = useMultiStyleConfig("Slider", props)
   const realProps = omitThemingProps(props)
 
@@ -82,32 +79,30 @@ export interface SliderThumbProps extends HTMLChakraProps<"div"> {}
  * Slider component that acts as the handle used to select predefined
  * values by dragging its handle along the track
  */
-export const SliderThumb = forwardRef<SliderThumbProps, "div">(
-  function SliderThumb(props, ref) {
-    const { getThumbProps } = useSliderContext()
+export const SliderThumb = forwardRef<SliderThumbProps, "div">((props, ref) => {
+  const { getThumbProps } = useSliderContext()
 
-    const styles = useStyles()
+  const styles = useStyles()
 
-    const thumbStyles: SystemStyleObject = {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      position: "absolute",
-      outline: 0,
-      ...styles.thumb,
-    }
+  const thumbStyles: SystemStyleObject = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+    outline: 0,
+    ...styles.thumb,
+  }
 
-    const thumbProps = getThumbProps(props, ref)
+  const thumbProps = getThumbProps(props, ref)
 
-    return (
-      <chakra.div
-        {...thumbProps}
-        className={cx("chakra-slider__thumb", props.className)}
-        __css={thumbStyles}
-      />
-    )
-  },
-)
+  return (
+    <chakra.div
+      {...thumbProps}
+      className={cx("chakra-slider__thumb", props.className)}
+      __css={thumbStyles}
+    />
+  )
+})
 
 if (__DEV__) {
   SliderThumb.displayName = "SliderThumb"
@@ -115,27 +110,25 @@ if (__DEV__) {
 
 export interface SliderTrackProps extends HTMLChakraProps<"div"> {}
 
-export const SliderTrack = forwardRef<SliderTrackProps, "div">(
-  function SliderTrack(props, ref) {
-    const { getTrackProps } = useSliderContext()
+export const SliderTrack = forwardRef<SliderTrackProps, "div">((props, ref) => {
+  const { getTrackProps } = useSliderContext()
 
-    const styles = useStyles()
-    const trackStyles = {
-      overflow: "hidden",
-      ...styles.track,
-    }
+  const styles = useStyles()
+  const trackStyles = {
+    overflow: "hidden",
+    ...styles.track,
+  }
 
-    const trackProps = getTrackProps(props, ref)
+  const trackProps = getTrackProps(props, ref)
 
-    return (
-      <chakra.div
-        {...trackProps}
-        className={cx("chakra-slider__track", props.className)}
-        __css={trackStyles}
-      />
-    )
-  },
-)
+  return (
+    <chakra.div
+      {...trackProps}
+      className={cx("chakra-slider__track", props.className)}
+      __css={trackStyles}
+    />
+  )
+})
 
 if (__DEV__) {
   SliderTrack.displayName = "SliderTrack"
@@ -144,7 +137,7 @@ if (__DEV__) {
 export interface SliderInnerTrackProps extends HTMLChakraProps<"div"> {}
 
 export const SliderFilledTrack = forwardRef<SliderInnerTrackProps, "div">(
-  function SliderFilledTrack(props, ref) {
+  (props, ref) => {
     const { getInnerTrackProps } = useSliderContext()
 
     const styles = useStyles()
@@ -180,18 +173,16 @@ export interface SliderMarkProps extends HTMLChakraProps<"div"> {
  *
  * @see Docs https://chakra-ui.com/components/slider
  */
-export const SliderMark = forwardRef<SliderMarkProps, "div">(
-  function SliderMark(props, ref) {
-    const { getMarkerProps } = useSliderContext()
-    const markProps = getMarkerProps(props, ref)
-    return (
-      <chakra.div
-        {...markProps}
-        className={cx("chakra-slider__marker", props.className)}
-      />
-    )
-  },
-)
+export const SliderMark = forwardRef<SliderMarkProps, "div">((props, ref) => {
+  const { getMarkerProps } = useSliderContext()
+  const markProps = getMarkerProps(props, ref)
+  return (
+    <chakra.div
+      {...markProps}
+      className={cx("chakra-slider__marker", props.className)}
+    />
+  )
+})
 
 if (__DEV__) {
   SliderMark.displayName = "SliderMark"

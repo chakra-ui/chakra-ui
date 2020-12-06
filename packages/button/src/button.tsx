@@ -66,10 +66,7 @@ export interface ButtonProps
     ButtonOptions,
     ThemingProps {}
 
-export const Button = forwardRef<ButtonProps, "button">(function Button(
-  props,
-  ref,
-) {
+export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
   const group = useButtonGroup()
   const styles = useStyleConfig("Button", { ...group, ...props })
 

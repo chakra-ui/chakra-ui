@@ -65,10 +65,7 @@ const fade = keyframes({
   to: { opacity: 1 },
 })
 
-export const Skeleton = forwardRef<SkeletonProps, "div">(function Skeleton(
-  props,
-  ref,
-) {
+export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
   const styles = useStyleConfig("Skeleton", props)
 
   const {

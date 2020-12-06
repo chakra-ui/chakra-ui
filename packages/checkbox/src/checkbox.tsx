@@ -90,10 +90,7 @@ export interface CheckboxProps
  *
  * @see Docs https://chakra-ui.com/components/checkbox
  */
-export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
-  props,
-  ref,
-) {
+export const Checkbox = forwardRef<CheckboxProps, "input">((props, ref) => {
   const group = useCheckboxGroupContext()
 
   const mergedProps = { ...group, ...props } as CheckboxProps

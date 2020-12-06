@@ -15,10 +15,7 @@ import * as React from "react"
 
 export interface StatLabelProps extends HTMLChakraProps<"dt"> {}
 
-export const StatLabel = forwardRef<StatLabelProps, "dt">(function StatLabel(
-  props,
-  ref,
-) {
+export const StatLabel = forwardRef<StatLabelProps, "dt">((props, ref) => {
   const styles = useStyles()
   return (
     <chakra.dt
@@ -36,20 +33,18 @@ if (__DEV__) {
 
 export interface StatHelpTextProps extends HTMLChakraProps<"p"> {}
 
-export const StatHelpText = forwardRef<StatHelpTextProps, "p">(
-  function StatHelpText(props, ref) {
-    const styles = useStyles()
+export const StatHelpText = forwardRef<StatHelpTextProps, "p">((props, ref) => {
+  const styles = useStyles()
 
-    return (
-      <chakra.p
-        ref={ref}
-        {...props}
-        className={cx("chakra-stat__help-text", props.className)}
-        __css={styles.helpText}
-      />
-    )
-  },
-)
+  return (
+    <chakra.p
+      ref={ref}
+      {...props}
+      className={cx("chakra-stat__help-text", props.className)}
+      __css={styles.helpText}
+    />
+  )
+})
 
 if (__DEV__) {
   StatHelpText.displayName = "StatHelpText"
@@ -57,10 +52,7 @@ if (__DEV__) {
 
 export interface StatNumberProps extends HTMLChakraProps<"dd"> {}
 
-export const StatNumber = forwardRef<StatNumberProps, "dd">(function StatNumber(
-  props,
-  ref,
-) {
+export const StatNumber = forwardRef<StatNumberProps, "dd">((props, ref) => {
   const styles = useStyles()
   return (
     <chakra.dd
@@ -80,16 +72,14 @@ if (__DEV__) {
   StatNumber.displayName = "StatNumber"
 }
 
-export const StatDownArrow: React.FC<IconProps> = (props) => {
-  return (
-    <Icon color="red.400" {...props}>
-      <path
-        fill="currentColor"
-        d="M21,5H3C2.621,5,2.275,5.214,2.105,5.553C1.937,5.892,1.973,6.297,2.2,6.6l9,12 c0.188,0.252,0.485,0.4,0.8,0.4s0.611-0.148,0.8-0.4l9-12c0.228-0.303,0.264-0.708,0.095-1.047C21.725,5.214,21.379,5,21,5z"
-      />
-    </Icon>
-  )
-}
+export const StatDownArrow: React.FC<IconProps> = (props) => (
+  <Icon color="red.400" {...props}>
+    <path
+      fill="currentColor"
+      d="M21,5H3C2.621,5,2.275,5.214,2.105,5.553C1.937,5.892,1.973,6.297,2.2,6.6l9,12 c0.188,0.252,0.485,0.4,0.8,0.4s0.611-0.148,0.8-0.4l9-12c0.228-0.303,0.264-0.708,0.095-1.047C21.725,5.214,21.379,5,21,5z"
+    />
+  </Icon>
+)
 
 if (__DEV__) {
   StatDownArrow.displayName = "StatDownArrow"
@@ -134,7 +124,7 @@ if (__DEV__) {
 
 export interface StatProps extends HTMLChakraProps<"div">, ThemingProps {}
 
-export const Stat = forwardRef<StatProps, "div">(function Stat(props, ref) {
+export const Stat = forwardRef<StatProps, "div">((props, ref) => {
   const styles = useMultiStyleConfig("Stat", props)
   const { className, children, ...rest } = omitThemingProps(props)
 
@@ -159,25 +149,20 @@ if (__DEV__) {
 
 interface StatGroupProps extends HTMLChakraProps<"div"> {}
 
-export const StatGroup = forwardRef<StatGroupProps, "div">(function StatGroup(
-  props,
-  ref,
-) {
-  return (
-    <chakra.div
-      {...props}
-      ref={ref}
-      role="group"
-      className={cx("chakra-stat__group", props.className)}
-      __css={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-        alignItems: "flex-start",
-      }}
-    />
-  )
-})
+export const StatGroup = forwardRef<StatGroupProps, "div">((props, ref) => (
+  <chakra.div
+    {...props}
+    ref={ref}
+    role="group"
+    className={cx("chakra-stat__group", props.className)}
+    __css={{
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "space-around",
+      alignItems: "flex-start",
+    }}
+  />
+))
 
 if (__DEV__) {
   StatGroup.displayName = "StatGroup"

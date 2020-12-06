@@ -15,10 +15,7 @@ import * as React from "react"
  *
  * @see Docs https://chakra-ui.com/components/divider
  */
-export const Divider = forwardRef<DividerProps, "hr">(function Divider(
-  props,
-  ref,
-) {
+export const Divider = forwardRef<DividerProps, "hr">((props, ref) => {
   const {
     borderLeftWidth,
     borderBottomWidth,

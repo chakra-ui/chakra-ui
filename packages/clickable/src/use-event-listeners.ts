@@ -41,13 +41,14 @@ export function useEventListeners(): EventListeners {
     listeners.current.delete(listener)
   }, [])
 
-  React.useEffect(() => {
-    return () => {
+  React.useEffect(
+    () => () => {
       currentListeners.forEach((value, key) => {
         remove(value.el, value.type, key, value.options)
       })
-    }
-  }, [remove, currentListeners])
+    },
+    [remove, currentListeners],
+  )
 
   return { add, remove }
 }

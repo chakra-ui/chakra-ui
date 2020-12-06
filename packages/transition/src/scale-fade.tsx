@@ -54,7 +54,7 @@ export interface ScaleFadeProps extends HTMLMotionProps<"div"> {
 }
 
 export const ScaleFade = React.forwardRef<HTMLDivElement, ScaleFadeProps>(
-  function ScaleFade(props, ref) {
+  (props, ref) => {
     const {
       unmountOnExit,
       in: isOpen,

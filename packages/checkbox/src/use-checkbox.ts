@@ -235,17 +235,15 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     style: visuallyHiddenStyle,
   })
 
-  const getLabelProps: PropGetter = (props = {}, forwardedRef = null) => {
-    return {
-      ...props,
-      ref: forwardedRef,
-      onMouseDown: callAllHandlers(props.onMouseDown, stopEvent),
-      onTouchStart: callAllHandlers(props.onTouchStart, stopEvent),
-      "data-disabled": dataAttr(isDisabled),
-      "data-checked": dataAttr(isChecked),
-      "data-invalid": dataAttr(isInvalid),
-    }
-  }
+  const getLabelProps: PropGetter = (props = {}, forwardedRef = null) => ({
+    ...props,
+    ref: forwardedRef,
+    onMouseDown: callAllHandlers(props.onMouseDown, stopEvent),
+    onTouchStart: callAllHandlers(props.onTouchStart, stopEvent),
+    "data-disabled": dataAttr(isDisabled),
+    "data-checked": dataAttr(isChecked),
+    "data-invalid": dataAttr(isInvalid),
+  })
 
   return {
     state: {

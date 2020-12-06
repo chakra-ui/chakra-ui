@@ -20,7 +20,7 @@ export interface TagProps extends HTMLChakraProps<"span">, ThemingProps {}
  * To style the tag globally, change the styles in `theme.components.Tag`
  * @see Docs https://chakra-ui.com/components/tag
  */
-export const Tag = forwardRef<TagProps, "span">(function Tag(props, ref) {
+export const Tag = forwardRef<TagProps, "span">((props, ref) => {
   const styles = useMultiStyleConfig("Tag", props)
   const ownProps = omitThemingProps(props)
 
@@ -45,10 +45,7 @@ if (__DEV__) {
 
 export interface TagLabelProps extends HTMLChakraProps<"span"> {}
 
-export const TagLabel = forwardRef<TagLabelProps, "span">(function TagLabel(
-  props,
-  ref,
-) {
+export const TagLabel = forwardRef<TagLabelProps, "span">((props, ref) => {
   const styles = useStyles()
   return <chakra.span ref={ref} isTruncated {...props} __css={styles.label} />
 })
@@ -57,23 +54,17 @@ if (__DEV__) {
   TagLabel.displayName = "TagLabel"
 }
 
-export const TagLeftIcon = forwardRef<IconProps, "svg">(function TagLeftIcon(
-  props,
-  ref,
-) {
-  return <Icon ref={ref} verticalAlign="top" mr="0.5rem" {...props} />
-})
+export const TagLeftIcon = forwardRef<IconProps, "svg">((props, ref) => (
+  <Icon ref={ref} verticalAlign="top" mr="0.5rem" {...props} />
+))
 
 if (__DEV__) {
   TagLeftIcon.displayName = "TagLeftIcon"
 }
 
-export const TagRightIcon = forwardRef<IconProps, "svg">(function TagRightIcon(
-  props,
-  ref,
-) {
-  return <Icon ref={ref} verticalAlign="top" ml="0.5rem" {...props} />
-})
+export const TagRightIcon = forwardRef<IconProps, "svg">((props, ref) => (
+  <Icon ref={ref} verticalAlign="top" ml="0.5rem" {...props} />
+))
 
 if (__DEV__) {
   TagRightIcon.displayName = "TagRightIcon"

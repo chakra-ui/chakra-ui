@@ -41,10 +41,7 @@ export interface TextareaProps
  * Textarea is used to enter an amount of text that's longer than a single line
  * @see Docs https://chakra-ui.com/components/textarea
  */
-export const Textarea = forwardRef<TextareaProps, "textarea">(function Textarea(
-  props,
-  ref,
-) {
+export const Textarea = forwardRef<TextareaProps, "textarea">((props, ref) => {
   const styles = useStyleConfig("Textarea", props)
   const { className, rows, ...rest } = omitThemingProps(props)
 

@@ -22,9 +22,10 @@ interface NumberInputContext extends Omit<UseNumberInputReturn, "htmlProps"> {}
 /**
  * React context used to communicate between components
  */
-const [NumberInputProvider, useNumberInputContext] = createContext<
-  NumberInputContext
->({
+const [
+  NumberInputProvider,
+  useNumberInputContext,
+] = createContext<NumberInputContext>({
   name: "NumberInputContext",
   errorMessage:
     "useNumberInputContext: `context` is undefined. Seems you forgot to wrap number-input's components within <NumberInput />",
@@ -65,30 +66,28 @@ export interface NumberInputProps
  *
  * @see Docs http://chakra-ui.com/numberinput
  */
-export const NumberInput = forwardRef<NumberInputProps, "div">(
-  function NumberInput(props, ref) {
-    const styles = useMultiStyleConfig("NumberInput", props)
-    const ownProps = omitThemingProps(props)
+export const NumberInput = forwardRef<NumberInputProps, "div">((props, ref) => {
+  const styles = useMultiStyleConfig("NumberInput", props)
+  const ownProps = omitThemingProps(props)
 
-    const { htmlProps, ...context } = useNumberInput(ownProps)
-    const ctx = React.useMemo(() => context, [context])
+  const { htmlProps, ...context } = useNumberInput(ownProps)
+  const ctx = React.useMemo(() => context, [context])
 
-    return (
-      <NumberInputProvider value={ctx}>
-        <StylesProvider value={styles}>
-          <chakra.div
-            ref={ref}
-            {...htmlProps}
-            __css={{
-              position: "relative",
-              zIndex: 0,
-            }}
-          />
-        </StylesProvider>
-      </NumberInputProvider>
-    )
-  },
-)
+  return (
+    <NumberInputProvider value={ctx}>
+      <StylesProvider value={styles}>
+        <chakra.div
+          ref={ref}
+          {...htmlProps}
+          __css={{
+            position: "relative",
+            zIndex: 0,
+          }}
+        />
+      </StylesProvider>
+    </NumberInputProvider>
+  )
+})
 
 if (__DEV__) {
   NumberInput.displayName = "NumberInput"
@@ -107,7 +106,7 @@ export interface NumberInputStepperProps extends HTMLChakraProps<"div"> {}
  * @see Docs http://chakra-ui.com/components/number-input
  */
 export const NumberInputStepper = forwardRef<NumberInputStepperProps, "div">(
-  function NumberInputStepper(props, ref) {
+  (props, ref) => {
     const styles = useStyles()
     return (
       <chakra.div
@@ -148,7 +147,7 @@ export interface NumberInputFieldProps extends HTMLChakraProps<"input"> {}
  * @see Docs http://chakra-ui.com/numberinput
  */
 export const NumberInputField = forwardRef<NumberInputFieldProps, "input">(
-  function NumberInputField(props, ref) {
+  (props, ref) => {
     const { getInputProps } = useNumberInputContext()
 
     const input = getInputProps(props, ref)
@@ -195,7 +194,7 @@ export interface NumberDecrementStepperProps extends HTMLChakraProps<"div"> {}
 export const NumberDecrementStepper = forwardRef<
   NumberDecrementStepperProps,
   "div"
->(function NumberDecrementStepper(props, ref) {
+>((props, ref) => {
   const styles = useStyles()
   const { getDecrementButtonProps } = useNumberInputContext()
   const decrement = getDecrementButtonProps(props, ref)
@@ -223,7 +222,7 @@ export interface NumberIncrementStepperProps extends HTMLChakraProps<"div"> {}
 export const NumberIncrementStepper = forwardRef<
   NumberIncrementStepperProps,
   "div"
->(function NumberIncrementStepper(props, ref) {
+>((props, ref) => {
   const { getIncrementButtonProps } = useNumberInputContext()
   const increment = getIncrementButtonProps(props, ref)
   const styles = useStyles()

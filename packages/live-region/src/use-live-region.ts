@@ -4,11 +4,12 @@ import { LiveRegion, LiveRegionOptions } from "./live-region"
 export function useLiveRegion(options?: LiveRegionOptions) {
   const [liveRegion] = React.useState(() => new LiveRegion(options))
 
-  React.useEffect(() => {
-    return () => {
+  React.useEffect(
+    () => () => {
       liveRegion.destroy()
-    }
-  }, [liveRegion])
+    },
+    [liveRegion],
+  )
 
   return liveRegion
 }

@@ -222,17 +222,15 @@ export function useRadio(props: UseRadioProps = {}) {
     ],
   )
 
-  const getLabelProps: PropGetter = (props = {}, ref = null) => {
-    return {
-      ...props,
-      ref,
-      onMouseDown: callAllHandlers(props.onMouseDown, stop),
-      onTouchStart: callAllHandlers(props.onTouchStart, stop),
-      "data-disabled": dataAttr(isDisabled),
-      "data-checked": dataAttr(isChecked),
-      "data-invalid": dataAttr(isInvalid),
-    }
-  }
+  const getLabelProps: PropGetter = (props = {}, ref = null) => ({
+    ...props,
+    ref,
+    onMouseDown: callAllHandlers(props.onMouseDown, stop),
+    onTouchStart: callAllHandlers(props.onTouchStart, stop),
+    "data-disabled": dataAttr(isDisabled),
+    "data-checked": dataAttr(isChecked),
+    "data-invalid": dataAttr(isInvalid),
+  })
 
   return {
     state: {

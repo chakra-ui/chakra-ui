@@ -73,7 +73,7 @@ export interface CollapseProps
     CollapseOptions {}
 
 export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
-  function Collapse(props, ref) {
+  (props, ref) => {
     const {
       in: isOpen,
       unmountOnExit,

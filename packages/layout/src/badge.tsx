@@ -17,7 +17,7 @@ export interface BadgeProps extends HTMLChakraProps<"span">, ThemingProps {}
  *
  * @see Docs https://chakra-ui.com/components/badge
  */
-export const Badge = forwardRef<BadgeProps, "span">(function Badge(props, ref) {
+export const Badge = forwardRef<BadgeProps, "span">((props, ref) => {
   const styles = useStyleConfig("Badge", props)
   const { className, ...rest } = omitThemingProps(props)
 

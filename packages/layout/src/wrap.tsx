@@ -45,7 +45,7 @@ export interface WrapProps extends HTMLChakraProps<"div"> {
  *
  * @see Docs https://chakra-ui.com/components/wrap
  */
-export const Wrap = forwardRef<WrapProps, "div">(function Wrap(props, ref) {
+export const Wrap = forwardRef<WrapProps, "div">((props, ref) => {
   const {
     spacing = "0.5rem",
     children,
@@ -102,10 +102,7 @@ if (__DEV__) {
 
 export interface WrapItemProps extends HTMLChakraProps<"li"> {}
 
-export const WrapItem = forwardRef<WrapItemProps, "li">(function WrapItem(
-  props,
-  ref,
-) {
+export const WrapItem = forwardRef<WrapItemProps, "li">((props, ref) => {
   const { className, ...rest } = props
   const styles = useStyles()
   return (

@@ -33,7 +33,7 @@ export interface TextProps extends HTMLChakraProps<"p">, ThemingProps {
  *
  * @see Docs https://chakra-ui.com/components/text
  */
-export const Text = forwardRef<TextProps, "p">(function Text(props, ref) {
+export const Text = forwardRef<TextProps, "p">((props, ref) => {
   const styles = useStyleConfig("Text", props)
   const { className, align, decoration, casing, ...rest } = omitThemingProps(
     props,

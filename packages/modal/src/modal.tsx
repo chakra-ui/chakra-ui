@@ -208,7 +208,7 @@ const Motion = chakra(motion.div)
  * necessary `aria-*` properties to indicate that it is a modal
  */
 export const ModalContent = forwardRef<ModalContentProps, "section">(
-  function ModalContent(props, ref) {
+  (props, ref) => {
     const { className, children, containerProps: rootProps, ...rest } = props
 
     const { getDialogProps, getDialogContainerProps } = useModalContext()
@@ -328,7 +328,7 @@ export interface ModalOverlayProps
  * @see Docs https://chakra-ui.com/components/modal
  */
 export const ModalOverlay = forwardRef<ModalOverlayProps, "div">(
-  function ModalOverlay(props, ref) {
+  (props, ref) => {
     const { className, ...rest } = props
     const _className = cx("chakra-modal__overlay", className)
 
@@ -368,7 +368,7 @@ export interface ModalHeaderProps extends HTMLChakraProps<"header"> {}
  * @see Docs https://chakra-ui.com/components/modal
  */
 export const ModalHeader = forwardRef<ModalHeaderProps, "header">(
-  function ModalHeader(props, ref) {
+  (props, ref) => {
     const { className, ...rest } = props
 
     const { headerId, setHeaderMounted } = useModalContext()
@@ -415,10 +415,7 @@ export interface ModalBodyProps extends HTMLChakraProps<"div"> {}
  *
  * @see Docs https://chakra-ui.com/components/modal
  */
-export const ModalBody = forwardRef<ModalBodyProps, "div">(function ModalBody(
-  props,
-  ref,
-) {
+export const ModalBody = forwardRef<ModalBodyProps, "div">((props, ref) => {
   const { className, ...rest } = props
   const { bodyId, setBodyMounted } = useModalContext()
 
@@ -456,7 +453,7 @@ export interface ModalFooterProps extends HTMLChakraProps<"footer"> {}
  * @see Docs https://chakra-ui.com/components/modal
  */
 export const ModalFooter = forwardRef<ModalFooterProps, "footer">(
-  function ModalFooter(props, ref) {
+  (props, ref) => {
     const { className, ...rest } = props
     const _className = cx("chakra-modal__footer", className)
 
@@ -490,7 +487,7 @@ if (__DEV__) {
  * `onClose` action from the modal context.
  */
 export const ModalCloseButton = forwardRef<CloseButtonProps, "button">(
-  function ModalCloseButton(props, ref) {
+  (props, ref) => {
     const { onClick, className, ...rest } = props
     const { onClose } = useModalContext()
 

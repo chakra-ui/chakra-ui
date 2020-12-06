@@ -24,7 +24,7 @@ export interface BreadcrumbSeparatorProps extends HTMLChakraProps<"div"> {
  * React component that separates each breadcrumb link
  */
 export const BreadcrumbSeparator = forwardRef<BreadcrumbSeparatorProps, "span">(
-  function BreadcrumbSeparator(props, ref) {
+  (props, ref) => {
     const { spacing, ...rest } = props
 
     const styles = useStyles()
@@ -59,7 +59,7 @@ export interface BreadcrumbLinkProps extends HTMLChakraProps<"a"> {
  * it renders an anchor tag.
  */
 export const BreadcrumbLink = forwardRef<BreadcrumbLinkProps, "a">(
-  function BreadcrumbLink(props, ref) {
+  (props, ref) => {
     const { isCurrentPage, as, className, ...rest } = props
     const styles = useStyles()
 
@@ -98,7 +98,7 @@ export interface BreadcrumbItemProps
  * @see Docs https://chakra-ui.com/components/breadcrumbs
  */
 export const BreadcrumbItem = forwardRef<BreadcrumbItemProps, "li">(
-  function BreadcrumbItem(props, ref) {
+  (props, ref) => {
     const {
       isCurrentPage,
       separator,
@@ -179,46 +179,44 @@ export interface BreadcrumbProps
  *
  * @see Docs https://chakra-ui.com/components/breadcrumbs
  */
-export const Breadcrumb = forwardRef<BreadcrumbProps, "nav">(
-  function Breadcrumb(props, ref) {
-    const styles = useMultiStyleConfig("Breadcrumb", props)
-    const ownProps = omitThemingProps(props)
+export const Breadcrumb = forwardRef<BreadcrumbProps, "nav">((props, ref) => {
+  const styles = useMultiStyleConfig("Breadcrumb", props)
+  const ownProps = omitThemingProps(props)
 
-    const {
-      children,
-      spacing = "0.5rem",
-      separator = "/",
-      className,
-      ...rest
-    } = ownProps
+  const {
+    children,
+    spacing = "0.5rem",
+    separator = "/",
+    className,
+    ...rest
+  } = ownProps
 
-    const validChildren = getValidChildren(children)
-    const count = validChildren.length
+  const validChildren = getValidChildren(children)
+  const count = validChildren.length
 
-    const clones = validChildren.map((child, index) =>
-      React.cloneElement(child, {
-        separator,
-        spacing,
-        isLastChild: count === index + 1,
-      }),
-    )
+  const clones = validChildren.map((child, index) =>
+    React.cloneElement(child, {
+      separator,
+      spacing,
+      isLastChild: count === index + 1,
+    }),
+  )
 
-    const _className = cx("chakra-breadcrumb", className)
+  const _className = cx("chakra-breadcrumb", className)
 
-    return (
-      <chakra.nav
-        ref={ref}
-        aria-label="breadcrumb"
-        className={_className}
-        {...rest}
-      >
-        <StylesProvider value={styles}>
-          <chakra.ol className="chakra-breadcrumb__list">{clones}</chakra.ol>
-        </StylesProvider>
-      </chakra.nav>
-    )
-  },
-)
+  return (
+    <chakra.nav
+      ref={ref}
+      aria-label="breadcrumb"
+      className={_className}
+      {...rest}
+    >
+      <StylesProvider value={styles}>
+        <chakra.ol className="chakra-breadcrumb__list">{clones}</chakra.ol>
+      </StylesProvider>
+    </chakra.nav>
+  )
+})
 
 if (__DEV__) {
   Breadcrumb.displayName = "Breadcrumb"

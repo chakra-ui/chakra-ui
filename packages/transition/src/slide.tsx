@@ -90,7 +90,7 @@ export interface SlideOptions {
 export interface SlideProps extends HTMLMotionProps<"div">, SlideOptions {}
 
 export const Slide = React.forwardRef<HTMLDivElement, SlideProps>(
-  function Slide(props, ref) {
+  (props, ref) => {
     const {
       direction = "right",
       style,

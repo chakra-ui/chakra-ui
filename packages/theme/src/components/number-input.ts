@@ -26,13 +26,11 @@ function baseStyleStepper(props: Record<string, any>) {
   }
 }
 
-const baseStyle = (props: Record<string, any>) => {
-  return {
-    field: baseStyleField,
-    stepperGroup: baseStyleStepperGroup,
-    stepper: baseStyleStepper(props),
-  }
-}
+const baseStyle = (props: Record<string, any>) => ({
+  field: baseStyleField,
+  stepperGroup: baseStyleStepperGroup,
+  stepper: baseStyleStepper(props),
+})
 
 function getSize(size: "sm" | "md" | "lg") {
   const sizeStyle = Input.sizes?.[size]

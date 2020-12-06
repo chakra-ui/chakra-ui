@@ -30,7 +30,7 @@ export interface LinkProps extends HTMLChakraProps<"a">, ThemingProps {
  *
  * @see Docs https://chakra-ui.com/components/link
  */
-export const Link = forwardRef<LinkProps, "a">(function Link(props, ref) {
+export const Link = forwardRef<LinkProps, "a">((props, ref) => {
   const styles = useStyleConfig("Link", props)
   const { className, isExternal, ...rest } = omitThemingProps(props)
 

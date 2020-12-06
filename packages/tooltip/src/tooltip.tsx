@@ -84,10 +84,7 @@ const scaleVariants: Variants = {
  * @see Docs     https://chakra-ui.com/components/tooltip
  * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices/#tooltip
  */
-export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
-  props,
-  ref,
-) {
+export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
   const styles = useStyleConfig("Tooltip", props)
   const ownProps = omitThemingProps(props)
 

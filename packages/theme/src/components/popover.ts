@@ -48,16 +48,14 @@ const baseStyleFooter = {
   borderTopWidth: "1px",
 }
 
-const baseStyle = (props: Dict) => {
-  return {
-    popper: baseStylePopper,
-    content: baseStyleContent(props),
-    header: baseStyleHeader,
-    body: baseStyleBody,
-    footer: baseStyleFooter,
-    arrow: baseStyleArrow(props),
-  }
-}
+const baseStyle = (props: Dict) => ({
+  popper: baseStylePopper,
+  content: baseStyleContent(props),
+  header: baseStyleHeader,
+  body: baseStyleBody,
+  footer: baseStyleFooter,
+  arrow: baseStyleArrow(props),
+})
 
 export default {
   parts,

@@ -36,7 +36,7 @@ export interface CloseButtonProps
  * like Alerts, Toasts, Drawers and Modals.
  */
 export const CloseButton = forwardRef<CloseButtonProps, "button">(
-  function CloseButton(props, ref) {
+  (props, ref) => {
     const styles = useStyleConfig("CloseButton", props)
     const { children, isDisabled, __css, ...rest } = omitThemingProps(props)
 

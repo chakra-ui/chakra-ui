@@ -364,12 +364,12 @@ export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
 
   const validChildren = getValidChildren(props.children)
 
-  const children = validChildren.map((child, index) => {
-    return React.cloneElement(child as Child, {
+  const children = validChildren.map((child, index) =>
+    React.cloneElement(child as Child, {
       isSelected: index === selectedIndex,
       id: makeTabPanelId(id, index),
-    })
-  })
+    }),
+  )
 
   return { ...props, children }
 }

@@ -23,10 +23,7 @@ const StyledElement = chakra("div", {
   },
 })
 
-const InputElement = forwardRef<InputElementProps, "div">(function InputElement(
-  props,
-  ref,
-) {
+const InputElement = forwardRef<InputElementProps, "div">((props, ref) => {
   const { placement = "left", ...rest } = props
 
   const styles = useStyles()
@@ -51,7 +48,7 @@ if (__DEV__) {
 }
 
 export const InputLeftElement = forwardRef<InputElementProps, "div">(
-  function InputLeftElement(props, ref) {
+  (props, ref) => {
     const { className, ...rest } = props
     const _className = cx("chakra-input__left-element", className)
 
@@ -74,7 +71,7 @@ if (__DEV__) {
 }
 
 export const InputRightElement = forwardRef<InputElementProps, "div">(
-  function InputRightElement(props, ref) {
+  (props, ref) => {
     const { className, ...rest } = props
     const _className = cx("chakra-input__right-element", className)
 

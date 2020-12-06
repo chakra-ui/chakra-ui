@@ -14,9 +14,7 @@ const mockBody = {
   classList: { add: noop, remove: noop },
 }
 
-const getBody = () => {
-  return isBrowser ? document.body : mockBody
-}
+const getBody = () => (isBrowser ? document.body : mockBody)
 
 /**
  * Function to add/remove class from `body` based on color mode

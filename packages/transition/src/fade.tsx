@@ -40,27 +40,26 @@ export interface FadeProps extends HTMLMotionProps<"div"> {
   in?: boolean
 }
 
-export const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(
-  props,
-  ref,
-) {
-  const { unmountOnExit, in: isOpen, className, ...rest } = props
-  const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
+export const Fade = React.forwardRef<HTMLDivElement, FadeProps>(
+  (props, ref) => {
+    const { unmountOnExit, in: isOpen, className, ...rest } = props
+    const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
 
-  return (
-    <AnimatePresence>
-      {shouldExpand && (
-        <motion.div
-          ref={ref}
-          className={cx("chakra-fade", className)}
-          {...fadeConfig}
-          animate={isOpen || unmountOnExit ? "enter" : "exit"}
-          {...rest}
-        />
-      )}
-    </AnimatePresence>
-  )
-})
+    return (
+      <AnimatePresence>
+        {shouldExpand && (
+          <motion.div
+            ref={ref}
+            className={cx("chakra-fade", className)}
+            {...fadeConfig}
+            animate={isOpen || unmountOnExit ? "enter" : "exit"}
+            {...rest}
+          />
+        )}
+      </AnimatePresence>
+    )
+  },
+)
 
 if (__DEV__) {
   Fade.displayName = "Fade"

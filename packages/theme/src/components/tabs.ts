@@ -41,14 +41,12 @@ function baseStyleTablist(props: Dict) {
 
 const baseStyleTabpanel = { p: 4 }
 
-const baseStyle = (props: Dict) => {
-  return {
-    root: baseStyleRoot(props),
-    tab: baseStyleTab(props),
-    tablist: baseStyleTablist(props),
-    tabpanel: baseStyleTabpanel,
-  }
-}
+const baseStyle = (props: Dict) => ({
+  root: baseStyleRoot(props),
+  tab: baseStyleTab(props),
+  tablist: baseStyleTablist(props),
+  tabpanel: baseStyleTabpanel,
+})
 
 const sizes = {
   sm: {

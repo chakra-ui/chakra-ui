@@ -38,10 +38,7 @@ export interface LinkBoxProps extends HTMLChakraProps<"div">, BaseLinkProps {
  * LinkBox is used to wrap content areas within a link while ensuring semantic html
  * To learn more, @see https://github.com/chakra-ui/chakra-ui/pull/1717
  */
-export const LinkBox = forwardRef<LinkBoxProps, "div">(function LinkBox(
-  props,
-  ref,
-) {
+export const LinkBox = forwardRef<LinkBoxProps, "div">((props, ref) => {
   const { children, href, target, rel, isExternal, ...rest } = props
 
   return (

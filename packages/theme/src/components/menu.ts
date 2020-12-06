@@ -55,15 +55,13 @@ const baseStyleDivider = {
   opacity: 0.6,
 }
 
-const baseStyle = (props: Record<string, any>) => {
-  return {
-    list: baseStyleList(props),
-    item: baseStyleItem(props),
-    groupTitle: baseStyleGroupTitle,
-    command: baseStyleCommand,
-    divider: baseStyleDivider,
-  }
-}
+const baseStyle = (props: Record<string, any>) => ({
+  list: baseStyleList(props),
+  item: baseStyleItem(props),
+  groupTitle: baseStyleGroupTitle,
+  command: baseStyleCommand,
+  divider: baseStyleDivider,
+})
 
 export default {
   parts,

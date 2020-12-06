@@ -148,55 +148,47 @@ export function usePopper(props: UsePopperProps = {}) {
   })
 
   const getReferenceProps: PropGetter = React.useCallback(
-    (props = {}, _ref = null) => {
-      return {
-        ...props,
-        ref: mergeRefs(setReferenceNode, _ref),
-      }
-    },
+    (props = {}, _ref = null) => ({
+      ...props,
+      ref: mergeRefs(setReferenceNode, _ref),
+    }),
     [],
   )
 
   const getPopperProps: PropGetter = React.useCallback(
-    (props = {}, _ref = null) => {
-      return {
-        ...props,
-        ...popperJS.attributes.popper,
-        ref: mergeRefs(setPopperNode, _ref),
-        style: { ...props.style, ...popperJS.styles?.popper },
-      }
-    },
+    (props = {}, _ref = null) => ({
+      ...props,
+      ...popperJS.attributes.popper,
+      ref: mergeRefs(setPopperNode, _ref),
+      style: { ...props.style, ...popperJS.styles?.popper },
+    }),
     [popperJS.attributes, popperJS.styles],
   )
 
   const getArrowWrapperProps: PropGetter = React.useCallback(
-    (props = {}, _ref = null) => {
-      return {
-        ...props,
-        ...popperJS.attributes.arrow,
-        ref: mergeRefs(setArrowNode, _ref),
-        style: { ...props.style, ...arrowStyles },
-      }
-    },
+    (props = {}, _ref = null) => ({
+      ...props,
+      ...popperJS.attributes.arrow,
+      ref: mergeRefs(setArrowNode, _ref),
+      style: { ...props.style, ...arrowStyles },
+    }),
     [popperJS.attributes, arrowStyles],
   )
 
   const getArrowProps: PropGetter = React.useCallback(
-    (props = {}, _ref = null) => {
-      return {
-        ...props,
-        ref: _ref,
-        style: {
-          boxShadow: getBoxShadow(finalPlacement, arrowShadowColor),
-          ...props.style,
-          position: "absolute",
-          zIndex: -1,
-          width: "100%",
-          height: "100%",
-          transform: "rotate(45deg)",
-        },
-      }
-    },
+    (props = {}, _ref = null) => ({
+      ...props,
+      ref: _ref,
+      style: {
+        boxShadow: getBoxShadow(finalPlacement, arrowShadowColor),
+        ...props.style,
+        position: "absolute",
+        zIndex: -1,
+        width: "100%",
+        height: "100%",
+        transform: "rotate(45deg)",
+      },
+    }),
     [finalPlacement, arrowShadowColor],
   )
 
