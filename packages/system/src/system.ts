@@ -138,14 +138,12 @@ export function styled<T extends As, P = {}>(
   const { baseStyle, ...styledOptions } = options ?? {}
 
   const mergedShouldForwardPropFn = (prop: string) => {
-    const origShouldForward = shouldForwardPropFn(prop) // our original fn
+    const origShouldForward = shouldForwardPropFn(prop)
     if (!options?.shouldForwardProp) {
-      // no custom fn provided
       return origShouldForward
     }
 
     const optionShouldForward = options.shouldForwardProp(prop)
-    // merge results
     return optionShouldForward || origShouldForward
   }
 
