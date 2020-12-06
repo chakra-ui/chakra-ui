@@ -136,8 +136,23 @@ export function styled<T extends As, P = {}>(
   options?: StyledOptions,
 ) {
   const { baseStyle, ...styledOptions } = options ?? {}
-  const forwardProps = options?.shouldForwardProp ?? shouldForwardPropFn
-  const opts = { ...styledOptions, shouldForwardProp: forwardProps }
+
+  const mergedShouldForwardPropFn = (prop: string) => {
+    const origShouldForward = shouldForwardPropFn(prop) // our original fn
+    if (!options?.shouldForwardProp) {
+      // no custom fn provided
+      return origShouldForward
+    }
+
+    const optionShouldForward = options.shouldForwardProp(prop)
+    // merge results
+    return optionShouldForward || origShouldForward
+  }
+
+  const opts = {
+    ...styledOptions,
+    shouldForwardProp: mergedShouldForwardPropFn,
+  }
 
   const styledFn = emotionStyled(component as React.ComponentType<any>, opts)
   const args = styleResolver({ baseStyle })
