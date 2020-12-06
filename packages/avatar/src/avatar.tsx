@@ -263,7 +263,7 @@ const AvatarImage: React.FC<AvatarImageProps> = ({
    *
    * In this case, we'll show either the name avatar or default avatar
    */
-  const showFallback = !src || (src && !hasLoaded)
+  const showFallback = !src || !hasLoaded
 
   if (showFallback) {
     return name ? (

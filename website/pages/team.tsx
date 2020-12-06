@@ -187,15 +187,6 @@ function Team({ members, contributors }: TeamProps) {
   )
 }
 
-const sortMembers = (a, b) => {
-  // segun comes first!
-  if (a.login === "segunadebayo") return -1
-  if (b.login === "segunadebayo") return 1
-
-  // everything else is alphabetical by login
-  return a.login.localeCompare(b.login, "en")
-}
-
 export async function getStaticProps() {
   /**
    * Read the profile/bio of each member from `.all-membersrc` file
@@ -212,11 +203,10 @@ export async function getStaticProps() {
   const { contributors } = JSON.parse(
     fs.readFileSync(contributorsRcPath, "utf-8"),
   )
-  const filters = ["christiannwamba"]
 
   return {
     props: {
-      members: members.filter((m) => !filters.includes(m.login)),
+      members,
       contributors,
     },
   }

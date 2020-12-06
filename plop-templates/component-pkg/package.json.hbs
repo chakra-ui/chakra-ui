@@ -1,7 +1,7 @@
 {
-  "name": "name",
-  "version": "1.0.0-next.3",
-  "description": "description",
+  "name": "@chakra-ui/{{componentName}}",
+  "version": "1.0.0",
+  "description": "{{description}}",
   "keywords": [
     "theme",
     "theming",
@@ -15,6 +15,7 @@
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
+  "sideEffects": false,
   "exports": {
     ".": {
       "require": "./dist/cjs/index.js",
@@ -36,23 +37,24 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "start": "nodemon --exec yarn build --watch src",
+    "start": "nodemon --watch src --exec yarn build -e ts,tsx",
+    "build": "concurrently yarn:build:*",
+    "test": "jest --env=jsdom --passWithNoTests",
+    "lint": "concurrently yarn:lint:*",
+    "version": "yarn build",
     "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
     "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
     "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
-    "build": "concurrently yarn:build:*",
-    "test": "jest --env=jsdom --passWithNoTests",
     "test:cov": "yarn test --coverage",
     "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
-    "lint:types": "tsc --noEmit",
-    "lint": "concurrently yarn:lint:*"
+    "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.0.0-next.3",
-    "@chakra-ui/hooks": "1.0.0-next.3",
-    "@chakra-ui/system": "1.0.0-next.3"
+    "@chakra-ui/utils": "*",
+    "@chakra-ui/hooks": "*",
+    "@chakra-ui/system": "*"
   },
   "peerDependencies": {
-    "react": "16.x || 17.x"
+    "react": ">=16.8.6"
   }
 }
