@@ -18,6 +18,7 @@ import emotionStyled, {
   FunctionInterpolation,
   Interpolation,
 } from "@emotion/styled"
+import { shouldForwardProp as shouldForwardPropFn } from "./should-forward-prop"
 import { As, ChakraComponent, ChakraProps, PropsOf } from "./system.types"
 import { domElements, DOMElements } from "./system.utils"
 
@@ -135,7 +136,10 @@ export function styled<T extends As, P = {}>(
   options?: StyledOptions,
 ) {
   const { baseStyle, shouldForwardProp, ...styledOptions } = options ?? {}
-  const opts = { ...styledOptions, shouldForwardProp }
+  const forwardProps = shouldForwardProp
+    ? shouldForwardProp
+    : shouldForwardPropFn
+  const opts = { ...styledOptions, shouldForwardProp: forwardProps }
 
   const styledFn = emotionStyled(component as React.ComponentType<any>, opts)
   const args = styleResolver({ baseStyle })
