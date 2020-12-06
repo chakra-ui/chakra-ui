@@ -60,6 +60,9 @@ const theme = {
   radii: {
     small: 5,
   },
+  textTransform: {
+    header: "uppercase",
+  },
 }
 
 test("returns system props styles", () => {
@@ -128,6 +131,7 @@ test("handles all core styled system props", () => {
     bg: "secondary",
     fontFamily: "monospace",
     lineHeight: "body",
+    textTransform: "header",
   })({ theme })
   expect(result).toEqual({
     margin: 0,
@@ -143,6 +147,7 @@ test("handles all core styled system props", () => {
     fontSize: 24,
     fontWeight: 600,
     lineHeight: 1.5,
+    textTransform: "uppercase",
   })
 })
 
