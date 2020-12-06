@@ -8,10 +8,10 @@ import {
 } from "@testing-library/react"
 import * as React from "react"
 import { toHaveNoViolations, axe } from "jest-axe"
-import serializer from "jest-emotion"
+import { createSerializer } from "@emotion/jest"
 import { RunOptions } from "axe-core"
 
-expect.addSnapshotSerializer(serializer)
+expect.addSnapshotSerializer(createSerializer())
 expect.extend(toHaveNoViolations)
 
 type UI = Parameters<typeof RtlRender>[0]
@@ -58,14 +58,13 @@ export interface TestOptions extends Omit<RenderOptions, "wrapper"> {
 export const render = (
   ui: UI,
   { wrapper: Wrapper = ChildrenPassthrough, ...options }: TestOptions = {},
-): RenderResult => {
-  return RtlRender(
+): RenderResult =>
+  RtlRender(
     <ChakraProvider>
       <Wrapper>{ui}</Wrapper>
     </ChakraProvider>,
     options,
   )
-}
 
 export { RtlRender }
 export { axe }

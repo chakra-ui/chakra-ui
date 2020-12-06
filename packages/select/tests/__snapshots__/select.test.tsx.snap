@@ -2,15 +2,15 @@
 
 exports[`Select renders correctly 1`] = `
 <DocumentFragment>
-  .emotion-2 {
+  .emotion-0 {
   width: 100%;
   height: -webkit-fit-content;
-  height: -moz-content;
+  height: -moz-fit-content;
   height: fit-content;
   position: relative;
 }
 
-.emotion-0 {
+.emotion-1 {
   width: 100%;
   outline: 0;
   position: relative;
@@ -32,18 +32,18 @@ exports[`Select renders correctly 1`] = `
   background: inherit;
 }
 
-.emotion-0 >option {
+.emotion-1>option {
   background: #FFFFFF;
 }
 
-.emotion-0:hover,
-.emotion-0[data-hover] {
+.emotion-1:hover,
+.emotion-1[data-hover] {
   border-color: #CBD5E0;
 }
 
-.emotion-0[aria-readonly=true],
-.emotion-0[readonly],
-.emotion-0[data-readonly] {
+.emotion-1[aria-readonly=true],
+.emotion-1[readonly],
+.emotion-1[data-readonly] {
   box-shadow: none!important;
   -webkit-user-select: all;
   -moz-user-select: all;
@@ -51,33 +51,33 @@ exports[`Select renders correctly 1`] = `
   user-select: all;
 }
 
-.emotion-0[disabled],
-.emotion-0[disabled]:focus,
-.emotion-0[disabled]:hover,
-.emotion-0[aria-disabled=true],
-.emotion-0[aria-disabled=true]:focus,
-.emotion-0[aria-disabled=true]:hover,
-.emotion-0[data-disabled],
-.emotion-0[data-disabled]:focus,
-.emotion-0[data-disabled]:hover {
+.emotion-1[disabled],
+.emotion-1[disabled]:focus,
+.emotion-1[disabled]:hover,
+.emotion-1[aria-disabled=true],
+.emotion-1[aria-disabled=true]:focus,
+.emotion-1[aria-disabled=true]:hover,
+.emotion-1[data-disabled],
+.emotion-1[data-disabled]:focus,
+.emotion-1[data-disabled]:hover {
   opacity: 0.4;
   cursor: not-allowed;
 }
 
-.emotion-0:focus,
-.emotion-0[data-focus] {
+.emotion-1:focus,
+.emotion-1[data-focus] {
   z-index: unset;
   border-color: #3182ce;
   box-shadow: 0 0 0 1px #3182ce;
 }
 
-.emotion-0[aria-invalid=true],
-.emotion-0[data-invalid] {
+.emotion-1[aria-invalid=true],
+.emotion-1[data-invalid] {
   border-color: #E53E3E;
   box-shadow: 0 0 0 1px #E53E3E;
 }
 
-.emotion-1 {
+.emotion-2 {
   font-size: 1.25rem;
   position: absolute;
   display: -webkit-inline-box;
@@ -103,23 +103,23 @@ exports[`Select renders correctly 1`] = `
   transform: translateY(-50%);
 }
 
-.emotion-1[disabled],
-.emotion-1[disabled]:focus,
-.emotion-1[disabled]:hover,
-.emotion-1[aria-disabled=true],
-.emotion-1[aria-disabled=true]:focus,
-.emotion-1[aria-disabled=true]:hover,
-.emotion-1[data-disabled],
-.emotion-1[data-disabled]:focus,
-.emotion-1[data-disabled]:hover {
+.emotion-2[disabled],
+.emotion-2[disabled]:focus,
+.emotion-2[disabled]:hover,
+.emotion-2[aria-disabled=true],
+.emotion-2[aria-disabled=true]:focus,
+.emotion-2[aria-disabled=true]:hover,
+.emotion-2[data-disabled],
+.emotion-2[data-disabled]:focus,
+.emotion-2[data-disabled]:hover {
   opacity: 0.5;
 }
 
 <div
-    class="chakra-select__wrapper emotion-2"
+    class="chakra-select__wrapper emotion-0"
   >
     <select
-      class="chakra-select emotion-0"
+      class="chakra-select emotion-1"
     >
       <option
         value=""
@@ -143,7 +143,7 @@ exports[`Select renders correctly 1`] = `
       </option>
     </select>
     <div
-      class="chakra-select__icon-wrapper emotion-1"
+      class="chakra-select__icon-wrapper emotion-2"
     >
       <svg
         aria-hidden="true"

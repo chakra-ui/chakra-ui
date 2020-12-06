@@ -2,7 +2,7 @@
 
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
-  .emotion-4 {
+  .emotion-0 {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -32,7 +32,7 @@ exports[`matches snapshot 1`] = `
   display: inherit;
 }
 
-.emotion-0 {
+.emotion-2 {
   width: 100%;
   height: 100%;
   display: inline-block;
@@ -44,26 +44,26 @@ exports[`matches snapshot 1`] = `
   vertical-align: middle;
 }
 
-.emotion-2 {
+.emotion-3 {
   font-weight: 700;
   line-height: 1.5rem;
   margin-right: 0.5rem;
 }
 
-.emotion-3 {
+.emotion-4 {
   display: inline;
   line-height: 1.5rem;
 }
 
 <div
-    class="chakra-alert emotion-4"
+    class="chakra-alert emotion-0"
     role="alert"
   >
     <span
       class="chakra-alert__icon emotion-1"
     >
       <svg
-        class="chakra-icon emotion-0"
+        class="chakra-icon emotion-2"
         focusable="false"
         viewBox="0 0 24 24"
       >
@@ -74,12 +74,12 @@ exports[`matches snapshot 1`] = `
       </svg>
     </span>
     <div
-      class="chakra-alert__title emotion-2"
+      class="chakra-alert__title emotion-3"
     >
       Alert title
     </div>
     <div
-      class="chakra-alert__desc emotion-3"
+      class="chakra-alert__desc emotion-4"
     >
       Alert description
     </div>

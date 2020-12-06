@@ -2,7 +2,7 @@
 
 exports[`Switch renders correctly 1`] = `
 <DocumentFragment>
-  .emotion-2 {
+  .emotion-0 {
   display: inline-block;
   vertical-align: middle;
   line-height: normal;
@@ -54,7 +54,7 @@ exports[`Switch renders correctly 1`] = `
   background: #3182ce;
 }
 
-.emotion-0 {
+.emotion-2 {
   background: #FFFFFF;
   -webkit-transition: -webkit-transform 250ms;
   transition: transform 250ms;
@@ -67,8 +67,8 @@ exports[`Switch renders correctly 1`] = `
   height: 1rem;
 }
 
-.emotion-0[aria-checked=true],
-.emotion-0[data-checked] {
+.emotion-2[aria-checked=true],
+.emotion-2[data-checked] {
   -webkit-transform: translateX(0.875rem);
   -moz-transform: translateX(0.875rem);
   -ms-transform: translateX(0.875rem);
@@ -76,7 +76,7 @@ exports[`Switch renders correctly 1`] = `
 }
 
 <label
-    class="chakra-switch emotion-2"
+    class="chakra-switch emotion-0"
   >
     <input
       class="chakra-switch__input"
@@ -89,7 +89,7 @@ exports[`Switch renders correctly 1`] = `
       class="chakra-switch__track emotion-1"
     >
       <span
-        class="chakra-switch__thumb emotion-0"
+        class="chakra-switch__thumb emotion-2"
       />
     </span>
   </label>

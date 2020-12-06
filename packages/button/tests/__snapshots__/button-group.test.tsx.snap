@@ -2,18 +2,18 @@
 
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
-  .emotion-4 {
+  .emotion-0 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
-.emotion-4>*:not(style)~*:not(style) {
+.emotion-0>*:not(style)~*:not(style) {
   margin-left: 0.5rem;
 }
 
-.emotion-0 {
+.emotion-1 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -52,81 +52,81 @@ exports[`matches snapshot 1`] = `
   background: #EDF2F7;
 }
 
-.emotion-0:focus,
-.emotion-0[data-focus] {
+.emotion-1:focus,
+.emotion-1[data-focus] {
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
   z-index: 1;
 }
 
-.emotion-0[disabled],
-.emotion-0[disabled]:focus,
-.emotion-0[disabled]:hover,
-.emotion-0[aria-disabled=true],
-.emotion-0[aria-disabled=true]:focus,
-.emotion-0[aria-disabled=true]:hover,
-.emotion-0[data-disabled],
-.emotion-0[data-disabled]:focus,
-.emotion-0[data-disabled]:hover {
+.emotion-1[disabled],
+.emotion-1[disabled]:focus,
+.emotion-1[disabled]:hover,
+.emotion-1[aria-disabled=true],
+.emotion-1[aria-disabled=true]:focus,
+.emotion-1[aria-disabled=true]:hover,
+.emotion-1[data-disabled],
+.emotion-1[data-disabled]:focus,
+.emotion-1[data-disabled]:hover {
   opacity: 0.4;
   cursor: not-allowed;
   box-shadow: none;
 }
 
-.emotion-0:hover,
-.emotion-0[data-hover] {
+.emotion-1:hover,
+.emotion-1[data-hover] {
   background: #E2E8F0;
 }
 
-.emotion-0:hover[disabled],
-.emotion-0[data-hover][disabled],
-.emotion-0:hover[disabled]:focus,
-.emotion-0[data-hover][disabled]:focus,
-.emotion-0:hover[disabled]:hover,
-.emotion-0[data-hover][disabled]:hover,
-.emotion-0:hover[aria-disabled=true],
-.emotion-0[data-hover][aria-disabled=true],
-.emotion-0:hover[aria-disabled=true]:focus,
-.emotion-0[data-hover][aria-disabled=true]:focus,
-.emotion-0:hover[aria-disabled=true]:hover,
-.emotion-0[data-hover][aria-disabled=true]:hover,
-.emotion-0:hover[data-disabled],
-.emotion-0[data-hover][data-disabled],
-.emotion-0:hover[data-disabled]:focus,
-.emotion-0[data-hover][data-disabled]:focus,
-.emotion-0:hover[data-disabled]:hover,
-.emotion-0[data-hover][data-disabled]:hover {
+.emotion-1:hover[disabled],
+.emotion-1[data-hover][disabled],
+.emotion-1:hover[disabled]:focus,
+.emotion-1[data-hover][disabled]:focus,
+.emotion-1:hover[disabled]:hover,
+.emotion-1[data-hover][disabled]:hover,
+.emotion-1:hover[aria-disabled=true],
+.emotion-1[data-hover][aria-disabled=true],
+.emotion-1:hover[aria-disabled=true]:focus,
+.emotion-1[data-hover][aria-disabled=true]:focus,
+.emotion-1:hover[aria-disabled=true]:hover,
+.emotion-1[data-hover][aria-disabled=true]:hover,
+.emotion-1:hover[data-disabled],
+.emotion-1[data-hover][data-disabled],
+.emotion-1:hover[data-disabled]:focus,
+.emotion-1[data-hover][data-disabled]:focus,
+.emotion-1:hover[data-disabled]:hover,
+.emotion-1[data-hover][data-disabled]:hover {
   background: #EDF2F7;
 }
 
-.emotion-0:active,
-.emotion-0[data-active] {
+.emotion-1:active,
+.emotion-1[data-active] {
   background: #CBD5E0;
 }
 
 <div
-    class="chakra-button__group emotion-4"
+    class="chakra-button__group emotion-0"
     role="group"
   >
     <button
-      class="chakra-button emotion-0"
+      class="chakra-button emotion-1"
       type="button"
     >
       Button 1
     </button>
     <button
-      class="chakra-button emotion-0"
+      class="chakra-button emotion-1"
       type="button"
     >
       Button 2
     </button>
     <button
-      class="chakra-button emotion-0"
+      class="chakra-button emotion-1"
       type="button"
     >
       Button 3
     </button>
     <button
-      class="chakra-button emotion-0"
+      class="chakra-button emotion-1"
       type="button"
     >
       Button 4

@@ -2,7 +2,7 @@
 
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
-  .emotion-1 {
+  .emotion-0 {
   outline: 0;
   display: -webkit-box;
   display: -webkit-flex;
@@ -27,36 +27,36 @@ exports[`matches snapshot 1`] = `
   font-size: 12px;
 }
 
-.emotion-1[disabled],
-.emotion-1[disabled]:focus,
-.emotion-1[disabled]:hover,
-.emotion-1[aria-disabled=true],
-.emotion-1[aria-disabled=true]:focus,
-.emotion-1[aria-disabled=true]:hover,
-.emotion-1[data-disabled],
-.emotion-1[data-disabled]:focus,
-.emotion-1[data-disabled]:hover {
+.emotion-0[disabled],
+.emotion-0[disabled]:focus,
+.emotion-0[disabled]:hover,
+.emotion-0[aria-disabled=true],
+.emotion-0[aria-disabled=true]:focus,
+.emotion-0[aria-disabled=true]:hover,
+.emotion-0[data-disabled],
+.emotion-0[data-disabled]:focus,
+.emotion-0[data-disabled]:hover {
   opacity: 0.4;
   cursor: not-allowed;
   box-shadow: none;
 }
 
-.emotion-1:hover,
-.emotion-1[data-hover] {
+.emotion-0:hover,
+.emotion-0[data-hover] {
   background: rgba(0, 0, 0, 0.06);
 }
 
-.emotion-1:active,
-.emotion-1[data-active] {
+.emotion-0:active,
+.emotion-0[data-active] {
   background: rgba(0, 0, 0, 0.08);
 }
 
-.emotion-1:focus,
-.emotion-1[data-focus] {
+.emotion-0:focus,
+.emotion-0[data-focus] {
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
 }
 
-.emotion-0 {
+.emotion-1 {
   width: 1em;
   height: 1em;
   display: inline-block;
@@ -70,12 +70,12 @@ exports[`matches snapshot 1`] = `
 
 <button
     aria-label="Close"
-    class="emotion-1"
+    class="emotion-0"
     type="button"
   >
     <svg
       aria-hidden="true"
-      class="chakra-icon emotion-0"
+      class="chakra-icon emotion-1"
       focusable="false"
       viewBox="0 0 24 24"
     >

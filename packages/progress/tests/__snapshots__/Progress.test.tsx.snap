@@ -2,43 +2,43 @@
 
 exports[`CircularProgress renders correctly 1`] = `
 <DocumentFragment>
-  .emotion-3 {
+  .emotion-0 {
   display: inline-block;
   position: relative;
   vertical-align: middle;
   font-size: 60px;
 }
 
-.emotion-2 {
+.emotion-1 {
   width: 60px;
   height: 60px;
 }
 
-.emotion-0 {
+.emotion-2 {
   fill: transparent;
   stroke: #edebe9;
 }
 
-.emotion-1 {
+.emotion-3 {
   fill: transparent;
   stroke: #0078d4;
   -webkit-transition: stroke-dasharray 0.6s ease 0s,stroke 0.6s ease;
   transition: stroke-dasharray 0.6s ease 0s,stroke 0.6s ease;
 }
 
-.emotion-7 {
+.emotion-4 {
   display: inline-block;
   position: relative;
   vertical-align: middle;
   font-size: 120px;
 }
 
-.emotion-6 {
+.emotion-5 {
   width: 120px;
   height: 120px;
 }
 
-.emotion-4 {
+.emotion-6 {
   fill: transparent;
   stroke: transparent;
 }
@@ -48,22 +48,22 @@ exports[`CircularProgress renders correctly 1`] = `
       aria-valuemax="100"
       aria-valuemin="0"
       aria-valuenow="20"
-      class="chakra-progress emotion-3"
+      class="chakra-progress emotion-0"
       role="progressbar"
     >
       <svg
-        class="emotion-2"
+        class="emotion-1"
         viewBox="0 0 100 100"
       >
         <circle
-          class="chakra-progress__track emotion-0"
+          class="chakra-progress__track emotion-2"
           cx="50"
           cy="50"
           r="42"
           stroke-width="10px"
         />
         <circle
-          class="chakra-progress__indicator emotion-1"
+          class="chakra-progress__indicator emotion-3"
           cx="50"
           cy="50"
           r="42"
@@ -77,22 +77,22 @@ exports[`CircularProgress renders correctly 1`] = `
       aria-valuemax="100"
       aria-valuemin="0"
       aria-valuenow="60"
-      class="chakra-progress emotion-7"
+      class="chakra-progress emotion-4"
       role="progressbar"
     >
       <svg
-        class="emotion-6"
+        class="emotion-5"
         viewBox="0 0 100 100"
       >
         <circle
-          class="chakra-progress__track emotion-4"
+          class="chakra-progress__track emotion-6"
           cx="50"
           cy="50"
           r="42"
           stroke-width="10"
         />
         <circle
-          class="chakra-progress__indicator emotion-1"
+          class="chakra-progress__indicator emotion-3"
           cx="50"
           cy="50"
           r="42"
@@ -120,14 +120,14 @@ exports[`Progress renders correctly 1`] = `
   }
 }
 
-.emotion-1 {
+.emotion-0 {
   overflow: hidden;
   position: relative;
   background: #EDF2F7;
   height: 0.5rem;
 }
 
-.emotion-1 color {
+.emotion-0 color {
   50: #F0FFF4;
   100: #C6F6D5;
   200: #9AE6B4;
@@ -140,21 +140,21 @@ exports[`Progress renders correctly 1`] = `
   900: #1C4532;
 }
 
-.emotion-0 {
+.emotion-1 {
   height: 100%;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   background-color: #3182ce;
 }
 
-.emotion-3 {
+.emotion-2 {
   overflow: hidden;
   position: relative;
   background: #EDF2F7;
   height: 0.75rem;
 }
 
-.emotion-3 color {
+.emotion-2 color {
   50: #ebf8ff;
   100: #bee3f8;
   200: #90cdf4;
@@ -167,33 +167,33 @@ exports[`Progress renders correctly 1`] = `
   900: #1A365D;
 }
 
-.emotion-2 {
+.emotion-3 {
   height: 100%;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   background-image: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.15) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.15) 50%,
-    rgba(255, 255, 255, 0.15) 75%,
-    transparent 75%,
-    transparent
-  );
+      45deg,
+      rgba(255, 255, 255, 0.15) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(255, 255, 255, 0.15) 75%,
+      transparent 75%,
+      transparent
+    );
   -webkit-background-size: 1rem 1rem;
   background-size: 1rem 1rem;
   background-color: #3182ce;
 }
 
-.emotion-5 {
+.emotion-4 {
   overflow: hidden;
   position: relative;
   background: #EDF2F7;
   height: 1rem;
 }
 
-.emotion-5 color {
+.emotion-4 color {
   50: #FFFFF0;
   100: #FEFCBF;
   200: #FAF089;
@@ -206,20 +206,20 @@ exports[`Progress renders correctly 1`] = `
   900: #5F370E;
 }
 
-.emotion-4 {
+.emotion-5 {
   height: 100%;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   background-image: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.15) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.15) 50%,
-    rgba(255, 255, 255, 0.15) 75%,
-    transparent 75%,
-    transparent
-  );
+      45deg,
+      rgba(255, 255, 255, 0.15) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(255, 255, 255, 0.15) 75%,
+      transparent 75%,
+      transparent
+    );
   -webkit-background-size: 1rem 1rem;
   background-size: 1rem 1rem;
   background-color: #3182ce;
@@ -229,37 +229,37 @@ exports[`Progress renders correctly 1`] = `
 
 <div>
     <div
-      class="emotion-1"
+      class="emotion-0"
     >
       <div
         aria-valuemax="100"
         aria-valuemin="0"
         aria-valuenow="20"
-        class="emotion-0"
+        class="emotion-1"
         role="progressbar"
         style="width: 20%;"
       />
     </div>
     <div
-      class="emotion-3"
+      class="emotion-2"
     >
       <div
         aria-valuemax="100"
         aria-valuemin="0"
         aria-valuenow="40"
-        class="emotion-2"
+        class="emotion-3"
         role="progressbar"
         style="width: 40%;"
       />
     </div>
     <div
-      class="emotion-5"
+      class="emotion-4"
     >
       <div
         aria-valuemax="100"
         aria-valuemin="0"
         aria-valuenow="80"
-        class="emotion-4"
+        class="emotion-5"
         role="progressbar"
         style="width: 80%;"
       />

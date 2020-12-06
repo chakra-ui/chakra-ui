@@ -2,7 +2,7 @@
 
 exports[`Elements inside input render correctly 1`] = `
 <DocumentFragment>
-  .emotion-3 {
+  .emotion-0 {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -11,7 +11,7 @@ exports[`Elements inside input render correctly 1`] = `
   position: relative;
 }
 
-.emotion-0 {
+.emotion-1 {
   left: 0;
   width: 2.5rem;
   height: 2.5rem;
@@ -35,7 +35,7 @@ exports[`Elements inside input render correctly 1`] = `
   z-index: 2;
 }
 
-.emotion-1 {
+.emotion-2 {
   width: 100%;
   outline: 0;
   position: relative;
@@ -55,14 +55,14 @@ exports[`Elements inside input render correctly 1`] = `
   background: inherit;
 }
 
-.emotion-1:hover,
-.emotion-1[data-hover] {
+.emotion-2:hover,
+.emotion-2[data-hover] {
   border-color: #CBD5E0;
 }
 
-.emotion-1[aria-readonly=true],
-.emotion-1[readonly],
-.emotion-1[data-readonly] {
+.emotion-2[aria-readonly=true],
+.emotion-2[readonly],
+.emotion-2[data-readonly] {
   box-shadow: none!important;
   -webkit-user-select: all;
   -moz-user-select: all;
@@ -70,33 +70,33 @@ exports[`Elements inside input render correctly 1`] = `
   user-select: all;
 }
 
-.emotion-1[disabled],
-.emotion-1[disabled]:focus,
-.emotion-1[disabled]:hover,
-.emotion-1[aria-disabled=true],
-.emotion-1[aria-disabled=true]:focus,
-.emotion-1[aria-disabled=true]:hover,
-.emotion-1[data-disabled],
-.emotion-1[data-disabled]:focus,
-.emotion-1[data-disabled]:hover {
+.emotion-2[disabled],
+.emotion-2[disabled]:focus,
+.emotion-2[disabled]:hover,
+.emotion-2[aria-disabled=true],
+.emotion-2[aria-disabled=true]:focus,
+.emotion-2[aria-disabled=true]:hover,
+.emotion-2[data-disabled],
+.emotion-2[data-disabled]:focus,
+.emotion-2[data-disabled]:hover {
   opacity: 0.4;
   cursor: not-allowed;
 }
 
-.emotion-1:focus,
-.emotion-1[data-focus] {
+.emotion-2:focus,
+.emotion-2[data-focus] {
   z-index: 1;
   border-color: #3182ce;
   box-shadow: 0 0 0 1px #3182ce;
 }
 
-.emotion-1[aria-invalid=true],
-.emotion-1[data-invalid] {
+.emotion-2[aria-invalid=true],
+.emotion-2[data-invalid] {
   border-color: #E53E3E;
   box-shadow: 0 0 0 1px #E53E3E;
 }
 
-.emotion-2 {
+.emotion-3 {
   right: 0;
   width: 2.5rem;
   height: 2.5rem;
@@ -121,20 +121,20 @@ exports[`Elements inside input render correctly 1`] = `
 }
 
 <div
-    class="chakra-input__group emotion-3"
+    class="chakra-input__group emotion-0"
   >
     <div
-      class="chakra-input__left-element emotion-0"
+      class="chakra-input__left-element emotion-1"
     >
       <span>
         Hello
       </span>
     </div>
     <input
-      class="chakra-input emotion-1"
+      class="chakra-input emotion-2"
     />
     <div
-      class="chakra-input__right-element emotion-2"
+      class="chakra-input__right-element emotion-3"
     >
       <span>
         World
@@ -146,7 +146,7 @@ exports[`Elements inside input render correctly 1`] = `
 
 exports[`addons render correctly 1`] = `
 <DocumentFragment>
-  .emotion-3 {
+  .emotion-0 {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -155,7 +155,7 @@ exports[`addons render correctly 1`] = `
   position: relative;
 }
 
-.emotion-0 {
+.emotion-1 {
   font-size: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -183,7 +183,7 @@ exports[`addons render correctly 1`] = `
   white-space: nowrap;
 }
 
-.emotion-1 {
+.emotion-2 {
   width: 100%;
   outline: 0;
   position: relative;
@@ -207,14 +207,14 @@ exports[`addons render correctly 1`] = `
   border-bottom-right-radius: 0;
 }
 
-.emotion-1:hover,
-.emotion-1[data-hover] {
+.emotion-2:hover,
+.emotion-2[data-hover] {
   border-color: #CBD5E0;
 }
 
-.emotion-1[aria-readonly=true],
-.emotion-1[readonly],
-.emotion-1[data-readonly] {
+.emotion-2[aria-readonly=true],
+.emotion-2[readonly],
+.emotion-2[data-readonly] {
   box-shadow: none!important;
   -webkit-user-select: all;
   -moz-user-select: all;
@@ -222,33 +222,33 @@ exports[`addons render correctly 1`] = `
   user-select: all;
 }
 
-.emotion-1[disabled],
-.emotion-1[disabled]:focus,
-.emotion-1[disabled]:hover,
-.emotion-1[aria-disabled=true],
-.emotion-1[aria-disabled=true]:focus,
-.emotion-1[aria-disabled=true]:hover,
-.emotion-1[data-disabled],
-.emotion-1[data-disabled]:focus,
-.emotion-1[data-disabled]:hover {
+.emotion-2[disabled],
+.emotion-2[disabled]:focus,
+.emotion-2[disabled]:hover,
+.emotion-2[aria-disabled=true],
+.emotion-2[aria-disabled=true]:focus,
+.emotion-2[aria-disabled=true]:hover,
+.emotion-2[data-disabled],
+.emotion-2[data-disabled]:focus,
+.emotion-2[data-disabled]:hover {
   opacity: 0.4;
   cursor: not-allowed;
 }
 
-.emotion-1:focus,
-.emotion-1[data-focus] {
+.emotion-2:focus,
+.emotion-2[data-focus] {
   z-index: 1;
   border-color: #3182ce;
   box-shadow: 0 0 0 1px #3182ce;
 }
 
-.emotion-1[aria-invalid=true],
-.emotion-1[data-invalid] {
+.emotion-2[aria-invalid=true],
+.emotion-2[data-invalid] {
   border-color: #E53E3E;
   box-shadow: 0 0 0 1px #E53E3E;
 }
 
-.emotion-2 {
+.emotion-3 {
   font-size: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -277,18 +277,18 @@ exports[`addons render correctly 1`] = `
 }
 
 <div
-    class="chakra-input__group emotion-3"
+    class="chakra-input__group emotion-0"
   >
     <div
-      class="chakra-input__left-addon emotion-0"
+      class="chakra-input__left-addon emotion-1"
     >
       https://
     </div>
     <input
-      class="chakra-input emotion-1"
+      class="chakra-input emotion-2"
     />
     <div
-      class="chakra-input__right-addon emotion-2"
+      class="chakra-input__right-addon emotion-3"
     >
       .com
     </div>

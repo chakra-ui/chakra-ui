@@ -2,9 +2,7 @@
 
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
-  
-
-.emotion-2 {
+  .emotion-2 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -15,7 +13,7 @@ exports[`matches snapshot 1`] = `
   align-items: center;
 }
 
-.emotion-0 {
+.emotion-3 {
   -webkit-transition: all 0.15s ease-out;
   transition: all 0.15s ease-out;
   cursor: pointer;
@@ -25,40 +23,40 @@ exports[`matches snapshot 1`] = `
   color: inherit;
 }
 
-.emotion-0:hover,
-.emotion-0[data-hover] {
+.emotion-3:hover,
+.emotion-3[data-hover] {
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-0:focus,
-.emotion-0[data-focus] {
+.emotion-3:focus,
+.emotion-3[data-focus] {
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
 }
 
-.emotion-1 {
+.emotion-4 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
 
 <nav
     aria-label="breadcrumb"
-    class="chakra-breadcrumb emotion-6"
+    class="chakra-breadcrumb emotion-0"
   >
     <ol
-      class="chakra-breadcrumb__list emotion-6"
+      class="chakra-breadcrumb__list emotion-0"
     >
       <li
         class="chakra-breadcrumb__list-item emotion-2"
       >
         <a
-          class="chakra-breadcrumb__link emotion-0"
+          class="chakra-breadcrumb__link emotion-3"
           href="#"
         >
           Link 1
         </a>
         <span
-          class="emotion-1"
+          class="emotion-4"
           role="presentation"
         >
           /
@@ -68,13 +66,13 @@ exports[`matches snapshot 1`] = `
         class="chakra-breadcrumb__list-item emotion-2"
       >
         <a
-          class="chakra-breadcrumb__link emotion-0"
+          class="chakra-breadcrumb__link emotion-3"
           href="#"
         >
           Link 2
         </a>
         <span
-          class="emotion-1"
+          class="emotion-4"
           role="presentation"
         >
           /
@@ -85,7 +83,7 @@ exports[`matches snapshot 1`] = `
       >
         <span
           aria-current="page"
-          class="chakra-breadcrumb__link emotion-6"
+          class="chakra-breadcrumb__link emotion-0"
         >
           Link 3
         </span>

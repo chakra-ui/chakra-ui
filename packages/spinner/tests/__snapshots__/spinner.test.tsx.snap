@@ -18,7 +18,7 @@ exports[`Spinner renders correctly 1`] = `
   }
 }
 
-.emotion-1 {
+.emotion-0 {
   display: inline-block;
   border-color: currentColor;
   border-style: solid;
@@ -32,7 +32,7 @@ exports[`Spinner renders correctly 1`] = `
   height: 1.5rem;
 }
 
-.emotion-0 {
+.emotion-1 {
   border: 0px;
   clip: rect(0px, 0px, 0px, 0px);
   height: 1px;
@@ -45,10 +45,10 @@ exports[`Spinner renders correctly 1`] = `
 }
 
 <div
-    class="chakra-spinner emotion-1"
+    class="chakra-spinner emotion-0"
   >
     <span
-      class="emotion-0"
+      class="emotion-1"
     >
       Loading...
     </span>

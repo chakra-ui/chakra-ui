@@ -26,8 +26,6 @@ exports[`matches snapshot 1`] = `
   opacity: 0;
 }
 
-
-
 input[type=checkbox]:checked+.emotion-0>*,
 input[type=checkbox][aria-checked=mixed]+.emotion-0>* {
   opacity: 1;

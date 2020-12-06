@@ -2,9 +2,7 @@
 
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
-  
-
-.emotion-0 {
+  .emotion-1 {
   cursor: text;
   display: inline-block;
   font-size: inherit;
@@ -18,7 +16,7 @@ exports[`matches snapshot 1`] = `
   transition: all 0.2s;
 }
 
-.emotion-1 {
+.emotion-2 {
   outline: 0;
   font-size: inherit;
   font-weight: inherit;
@@ -32,39 +30,39 @@ exports[`matches snapshot 1`] = `
   width: 100%;
 }
 
-.emotion-1:focus,
-.emotion-1[data-focus] {
+.emotion-2:focus,
+.emotion-2[data-focus] {
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
 }
 
-.emotion-1::-webkit-input-placeholder {
+.emotion-2::-webkit-input-placeholder {
   opacity: 0.6;
 }
 
-.emotion-1::-moz-placeholder {
+.emotion-2::-moz-placeholder {
   opacity: 0.6;
 }
 
-.emotion-1:-ms-input-placeholder {
+.emotion-2:-ms-input-placeholder {
   opacity: 0.6;
 }
 
-.emotion-1::placeholder {
+.emotion-2::placeholder {
   opacity: 0.6;
 }
 
 <div
-    class="chakra-editable emotion-2"
+    class="chakra-editable emotion-0"
   >
     <span
-      class="chakra-editable__preview emotion-0"
+      class="chakra-editable__preview emotion-1"
       data-testid="preview"
       tabindex="0"
     >
       testing
     </span>
     <input
-      class="chakra-editable__input emotion-1"
+      class="chakra-editable__input emotion-2"
       data-testid="input"
       hidden=""
       value="testing"
