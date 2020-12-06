@@ -1,11 +1,4 @@
-import {
-  Box,
-  Heading,
-  LinkBox,
-  Text,
-  useColorModeValue,
-  VStack,
-} from "@chakra-ui/react"
+import { Box, Heading, LinkBox, Text, VStack } from "@chakra-ui/react"
 import format from "date-fns/format"
 import parseISO from "date-fns/parseISO"
 import _ from "lodash"
