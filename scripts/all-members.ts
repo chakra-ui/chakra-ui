@@ -15,31 +15,33 @@ function sortMembers(a: any, b: any) {
 }
 
 async function getMembers() {
-  const members = (await octokit.orgs.list({ org: "chakra-ui" })).data.filter(
-    Boolean,
-  )
+  const { data: members } = await octokit.orgs.listMembers({ org: "chakra-ui" })
 
   const membersData = await Promise.all(
-    members.map(async ({ login }) => {
-      const { data: member } = await octokit.users.getByUsername({
-        username: login,
+    members.map(async (member) => {
+      if (!member) {
+        return null
+      }
+
+      const { data } = await octokit.users.getByUsername({
+        username: member.login,
       })
 
       return {
-        login: member.login,
-        avatar_url: member.avatar_url,
-        url: member.html_url,
-        blog: member.blog,
-        name: member.name,
-        bio: member.bio,
-        twitter_username: member.twitter_username,
-        location: member.location,
+        login: data.login,
+        avatar_url: data.avatar_url,
+        url: data.html_url,
+        blog: data.blog,
+        name: data.name,
+        bio: data.bio,
+        twitter_username: data.twitter_username,
+        location: data.location,
       }
     }),
   )
 
-  const data = { members: membersData.sort(sortMembers) }
-  fs.writeFileSync(".all-membersrc", JSON.stringify(data, null, 2))
+  const result = { members: membersData.filter(Boolean).sort(sortMembers) }
+  fs.writeFileSync(".all-membersrc", JSON.stringify(result, null, 2))
 }
 
 try {
