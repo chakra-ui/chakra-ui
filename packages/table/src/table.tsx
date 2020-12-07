@@ -9,14 +9,11 @@ import {
   useMultiStyleConfig,
   useStyles,
 } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/utils"
+import { cx, __DEV__ } from "@chakra-ui/utils"
 
 export interface TableProps extends HTMLChakraProps<"table">, ThemingProps {}
 
-export const Table = forwardRef<TableProps, "table">(function Table(
-  props,
-  ref,
-) {
+export const Table = forwardRef<TableProps, "table">((props, ref) => {
   const styles = useMultiStyleConfig("Table", props)
   const { className, ...tableProps } = omitThemingProps(props)
 
@@ -33,6 +30,10 @@ export const Table = forwardRef<TableProps, "table">(function Table(
   )
 })
 
+if (__DEV__) {
+  Table.displayName = "Table"
+}
+
 export interface TableCaptionProps extends HTMLChakraProps<"caption"> {
   /**
    * The placement of the table caption. This sets the `caption-side` CSS attribute.
@@ -42,7 +43,7 @@ export interface TableCaptionProps extends HTMLChakraProps<"caption"> {
 }
 
 export const TableCaption = forwardRef<TableCaptionProps, "caption">(
-  function TableCaption(props, ref) {
+  (props, ref) => {
     const { placement = "bottom", ...rest } = props
     const styles = useStyles()
     return (
@@ -57,6 +58,10 @@ export const TableCaption = forwardRef<TableCaptionProps, "caption">(
     )
   },
 )
+
+if (__DEV__) {
+  TableCaption.displayName = "TableCaption"
+}
 
 export interface TableHeadProps extends HTMLChakraProps<"thead"> {}
 
