@@ -41,8 +41,8 @@ import {
 ## Usage
 
 Add `isCurrentPage` prop to the `BreadcrumbItem` that matches the current path.
-When this prop is present, the `BreadcrumbItem` doesn't have a separator, and
-the `BreadcrumbLink` has `aria-current` set to `page`.
+When this prop is present, the `BreadcrumbLink` renders
+a `span` with `aria-current` set to `page` instead of an anchor element.
 
 ```jsx
 <Breadcrumb>
