@@ -3,12 +3,12 @@ title: Table
 package: "@chakra-ui/table"
 image: "components/table.svg"
 description:
-  "Table component is used to display tabular data. It renders a <table> element by
-  default"
+  "Table component is used to organize and display data efficiently. It renders
+  a <table> element by default"
 ---
 
-`Table` component is used to display tabular data. It renders a `<table>` element by
-default.
+Tables are used to organize and display data efficiently. It renders a `<table>`
+element by default.
 
 <ComponentLinks
   github={{ package: "table" }}
@@ -23,10 +23,17 @@ default.
 import { Table, Thead, Tbody, Tr, Th, Td, TableCaption } from "@chakra-ui/react"
 ```
 
-## Simple Table
+## Table Variants
+
+The table component comes in 3 variants: `simple`, `striped`, and `unstyled`.
+The default variant is `simple`
+
+> Change the `variant` values to see the other variants.
+
+### Simple Table
 
 ```jsx
-<Table>
+<Table variant="simple">
   <TableCaption>Imperial to metric conversion factors</TableCaption>
   <Thead>
     <Tr>
@@ -55,11 +62,45 @@ import { Table, Thead, Tbody, Tr, Th, Td, TableCaption } from "@chakra-ui/react"
 </Table>
 ```
 
-## Striped Table
+### Striped Table
 
 ```jsx
-<Table variant="striped" size="sm" colorScheme="teal">
+<Table variant="striped" colorScheme="teal">
   <TableCaption>Imperial to metric conversion factors</TableCaption>
+  <Thead>
+    <Tr>
+      <Th>To convert</Th>
+      <Th>into</Th>
+      <Th isNumeric>multiply by</Th>
+    </Tr>
+  </Thead>
+  <Tbody>
+    <Tr>
+      <Td>inches</Td>
+      <Td>millimetres (mm)</Td>
+      <Td isNumeric>25.4</Td>
+    </Tr>
+    <Tr>
+      <Td>feet</Td>
+      <Td>centimetres (cm)</Td>
+      <Td isNumeric>30.48</Td>
+    </Tr>
+    <Tr>
+      <Td>yards</Td>
+      <Td>metres (m)</Td>
+      <Td isNumeric>0.91444</Td>
+    </Tr>
+  </Tbody>
+</Table>
+```
+
+## Table Sizing
+
+The table component is available in 3 sizes: `sm`, `md`, `lg`. The default size
+is `md`.
+
+```jsx
+<Table size="sm">
   <Thead>
     <Tr>
       <Th>To convert</Th>
@@ -100,3 +141,7 @@ import { Table, Thead, Tbody, Tr, Th, Td, TableCaption } from "@chakra-ui/react"
 ### Th
 
 <PropsTable of="Th" />
+
+### TableCaption
+
+<PropsTable of="TableCaption" />
