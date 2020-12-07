@@ -8,7 +8,10 @@ import {
 } from "@chakra-ui/utils"
 import * as React from "react"
 
-type InputProps = React.ComponentPropsWithRef<"input">
+type InputProps = Omit<
+  React.ComponentPropsWithRef<"input">,
+  "color" | "height" | "width"
+>
 
 export type PinInputContext = UsePinInputReturn & {
   /**
@@ -318,9 +321,10 @@ export interface UsePinInputFieldProps extends InputProps {
   ref?: React.Ref<HTMLInputElement>
 }
 
-export function usePinInputField(props: UsePinInputFieldProps = {}) {
-  const { ref: forwardedRef, ...rest } = props
-
+export function usePinInputField(
+  props: UsePinInputFieldProps = {},
+  forwardedRef: React.Ref<any>,
+) {
   const ref = React.useRef<HTMLInputElement>(null)
 
   const { domContext, getInputProps } = usePinInputContext()
@@ -331,7 +335,7 @@ export function usePinInputField(props: UsePinInputFieldProps = {}) {
   })
 
   return getInputProps({
-    ...rest,
+    ...props,
     ref: mergeRefs(ref, forwardedRef),
     index,
   })
