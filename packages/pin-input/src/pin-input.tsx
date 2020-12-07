@@ -61,7 +61,7 @@ export interface PinInputFieldProps extends HTMLChakraProps<"input"> {}
 
 export const PinInputField = forwardRef<PinInputFieldProps, "input">(
   (props, ref) => {
-    const inputProps = usePinInputField({ ref, ...props })
+    const inputProps = usePinInputField(props, ref)
     return (
       <chakra.input
         {...inputProps}
