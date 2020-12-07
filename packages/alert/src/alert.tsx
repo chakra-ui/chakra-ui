@@ -50,7 +50,7 @@ export interface AlertProps
  */
 export const Alert = forwardRef<AlertProps, "div">((props, ref) => {
   const { status = "info", ...rest } = omitThemingProps(props)
-  const { colorScheme } = STATUSES[status]
+  const colorScheme = props.colorScheme ?? STATUSES[status].colorScheme
 
   const styles = useMultiStyleConfig("Alert", { ...props, colorScheme })
 
