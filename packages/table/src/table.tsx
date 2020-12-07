@@ -13,7 +13,10 @@ import { cx } from "@chakra-ui/utils"
 
 export interface TableProps extends HTMLChakraProps<"table">, ThemingProps {}
 
-export const Table = forwardRef<TableProps, "table">((props, ref) => {
+export const Table = forwardRef<TableProps, "table">(function Table(
+  props,
+  ref,
+) {
   const styles = useMultiStyleConfig("Table", props)
   const { className, ...tableProps } = omitThemingProps(props)
 
@@ -30,33 +33,49 @@ export const Table = forwardRef<TableProps, "table">((props, ref) => {
   )
 })
 
-export interface TableCaptionProps extends HTMLChakraProps<"caption"> {}
-export const TableCaption = forwardRef<TableCaptionProps, "caption">(
-  (props, ref) => {
-    const styles = useStyles()
+export interface TableCaptionProps extends HTMLChakraProps<"caption"> {
+  /**
+   * The placement of the table caption. This sets the `caption-side` CSS attribute.
+   * @default "bottom"
+   */
+  placement?: "top" | "bottom"
+}
 
-    return <chakra.caption {...props} ref={ref} __css={styles.caption} />
+export const TableCaption = forwardRef<TableCaptionProps, "caption">(
+  function TableCaption(props, ref) {
+    const { placement = "bottom", ...rest } = props
+    const styles = useStyles()
+    return (
+      <chakra.caption
+        {...rest}
+        ref={ref}
+        __css={{
+          ...styles.caption,
+          captionSide: placement,
+        }}
+      />
+    )
   },
 )
 
 export interface TableHeadProps extends HTMLChakraProps<"thead"> {}
+
 export const Thead = forwardRef<TableHeadProps, "thead">((props, ref) => {
   const styles = useStyles()
-
   return <chakra.thead {...props} ref={ref} __css={styles.thead} />
 })
 
 export interface TableBodyProps extends HTMLChakraProps<"tbody"> {}
+
 export const Tbody = forwardRef<TableBodyProps, "tbody">((props, ref) => {
   const styles = useStyles()
-
   return <chakra.tbody {...props} ref={ref} __css={styles.tbody} />
 })
 
 export interface TableFooterProps extends HTMLChakraProps<"tfoot"> {}
+
 export const Tfoot = forwardRef<TableFooterProps, "tfoot">((props, ref) => {
   const styles = useStyles()
-
   return <chakra.tfoot {...props} ref={ref} __css={styles.tfoot} />
 })
 

@@ -4,30 +4,31 @@ const parts = ["table", "thead", "tbody", "tr", "th", "td", "caption"]
 
 type Dict = Record<string, any>
 
-const baseStyle = () => ({
+const baseStyle = {
   table: {
     fontVariantNumeric: "lining-nums tabular-nums",
     borderCollapse: "collapse",
     width: "full",
   },
-  thead: {},
-  tfoot: {},
-  tbody: {},
-  tr: {},
   th: {
     fontFamily: "heading",
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    letterSpacing: "wider",
     textAlign: "left",
   },
   td: {
     textAlign: "left",
   },
   caption: {
+    mt: 4,
     fontFamily: "heading",
     textAlign: "center",
+    fontWeight: "medium",
   },
-})
+}
 
-const modifierNumber = {
+const numericStyles = {
   "&[data-is-numeric=true]": {
     textAlign: "right",
   },
@@ -39,28 +40,22 @@ const simpleVariant = (props: Dict) => {
   return {
     th: {
       color: mode(`gray.600`, `gray.400`)(props),
-      textTransform: "uppercase",
-      letterSpacing: "wider",
-      fontWeight: "medium",
       borderBottom: "1px",
       borderColor: mode(`${c}.100`, `${c}.700`)(props),
-      ...modifierNumber,
+      ...numericStyles,
     },
     td: {
       borderBottom: "1px",
       borderColor: mode(`${c}.100`, `${c}.700`)(props),
-      ...modifierNumber,
+      ...numericStyles,
     },
     caption: {
-      fontWeight: "bold",
       color: mode(`gray.600`, `gray.100`)(props),
     },
     tfoot: {
       tr: {
         "&:last-of-type": {
-          th: {
-            borderBottomWidth: 0,
-          },
+          th: { borderBottomWidth: 0 },
         },
       },
     },
@@ -73,20 +68,16 @@ const stripedVariant = (props: Dict) => {
   return {
     th: {
       color: mode(`gray.600`, `gray.400`)(props),
-      textTransform: "uppercase",
-      letterSpacing: "wider",
-      fontWeight: "medium",
       borderBottom: "1px",
       borderColor: mode(`${c}.100`, `${c}.700`)(props),
-      ...modifierNumber,
+      ...numericStyles,
     },
     td: {
       borderBottom: "1px",
       borderColor: mode(`${c}.100`, `${c}.700`)(props),
-      ...modifierNumber,
+      ...numericStyles,
     },
     caption: {
-      fontWeight: "bold",
       color: mode(`gray.600`, `gray.100`)(props),
     },
     tbody: {
@@ -105,9 +96,7 @@ const stripedVariant = (props: Dict) => {
     tfoot: {
       tr: {
         "&:last-of-type": {
-          th: {
-            borderBottomWidth: 0,
-          },
+          th: { borderBottomWidth: 0 },
         },
       },
     },
@@ -131,6 +120,7 @@ const sizes = {
     td: {
       px: "4",
       py: "2",
+      fontSize: "sm",
       lineHeight: "4",
     },
     caption: {
