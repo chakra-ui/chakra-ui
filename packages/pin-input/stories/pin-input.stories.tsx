@@ -25,7 +25,7 @@ function Input(props: any) {
 }
 
 export function HookExample() {
-  const context = usePinInput({ autoFocus: true })
+  const context = usePinInput({ autoFocus: true, onComplete: console.log })
   return (
     <PinInputProvider value={context}>
       <Input style={style} />
