@@ -1,49 +1,56 @@
 ---
-name: Report a bug
-about: Create a bug report for the Chakra UI ecosystem
+name: Report a bug 🐛
+about: Something isn't working as expected? Here is the right place to report.
 ---
 
-# Bug report
+<!---
+Thanks for creating an issue 😄!
 
-## Describe the bug
+Please search open/closed issues before submitting. Someone
+might have asked the same thing before 😉!
+-->
 
-<!-- A clear and concise description of what the bug is. -->
+# 🐛 Bug report
 
-## To reproduce
+> Provide a brief description of the bug here
 
-<!-- Clear and concise reproduction instructions are important for us to be
-able to triage your issue in a timely manner. -->
+## 💥 Steps to reproduce
+
+> Clear and concise reproduction steps are important for us to be able to triage
+> your issue in a timely manner
 
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
 
-## Minimal reproduction
+## 💻 Link to reproduction
 
-<!-- Please provide a codesandbox link or GitHub repo with a minimal
-reproduction of the bug.
+> Please create a minimal reproduction in CodeSandbox
+>
+> - JavaScript Template:
+>   [JavaScript CodeSandbox template](https://codesandbox.io/s/github/chakra-ui/codesandbox-react-js-template/tree/master)
+>
+> - TypeScript Template:
+>   [TypeScript CodeSandbox template](https://codesandbox.io/s/github/chakra-ui/codesandbox-react-ts-template/tree/master)
 
-Official Chakra CodeSandbox templates:
-- [JavaScript CodeSandbox template](https://codesandbox.io/s/github/chakra-ui/codesandbox-react-js-template/tree/master)
-- [TypeScript CodeSandbox template](https://codesandbox.io/s/github/chakra-ui/codesandbox-react-ts-template/tree/master)
--->
+## 🧐 Expected behavior
 
-## Expected behavior
+> Tell us what you expect to happen.
 
-<!-- A clear and concise description of what you expected to happen. -->
+## 🧭 Possible Solution
 
-## Screenshots
+> Not compulsory, but suggesting a fix would be great!
 
-<!-- If applicable, add screenshots to help explain your problem. -->
+## 🌍 System information
 
-## System information
+| Software         | Version(s) |
+| ---------------- | ---------- |
+| Chakra UI        |            |
+| Browser          |            |
+| Operating System |            |
 
-- OS: [e.g. macOS, Windows]
-- Browser (if applies): [e.g. Chrome, Safari]
-- Version of @chakra-ui/react: [e.g. 1.0.0-rc.3]
-- Version of Node.js: [e.g. 12.11.1]
+## 📝 Additional information
 
-## Additional context
-
-<!-- Add any other context about the problem here. -->
+- Screenshots or code
+- Notes or link to ideas

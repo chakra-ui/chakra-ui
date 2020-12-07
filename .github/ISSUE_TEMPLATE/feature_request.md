@@ -1,22 +1,33 @@
 ---
-name: Request a feature
-about: Create a feature request for the Chakra UI ecosystem
+name: Request a feature or enhancement 🙋
+about: Want a feature to be added to Chakra UI?
 ---
 
-# Feature request
+<!---
+Thanks for filing an issue 😄!
 
-## Is your feature request related to a problem? Please describe.
+Please search open/closed issues before submitting. Someone
+might have asked the same thing before 😉!
+-->
 
-<!-- A clear and concise description of what you want and what your use case is. -->
+# 🚀 Feature request
 
-## Describe the solution you'd like
+> Please describe your request in one or two sentences.
 
-<!-- A clear and concise description of what you want to happen. -->
+## 🧱 Problem Statement / Justification
 
-## Describe alternatives you've considered
+> Please provide valid reason(s) why this should added to Chakra UI.
+>
+> If this feaure is related to a problem you've noticed. Mention it as well
 
-<!-- A clear and concise description of any alternative solutions or features you've considered. -->
+## ✅ Proposed solution or API
 
-## Additional context
+> Please provide code snippets, gists, or links to the ideal design or API
 
-<!-- Add any other context or screenshots about the feature request here. -->
+## ↩️ Alternatives
+
+> What alternative solutions have you considered before making this request?
+
+## 📝 Additional Information
+
+> What resources (links, screenshots, etc.) do you have to assist this effort?
