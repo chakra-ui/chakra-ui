@@ -19,7 +19,7 @@ function VersionSwitcher(props: SelectProps) {
       fontWeight="semibold"
       color={useColorModeValue("gray.600", "whiteAlpha.600")}
       value={v1Url}
-      aria-label="Documentation version picker"
+      aria-label="Select the Chakra UI Docs version. You're currently viewing the version 1.0 docs"
       onChange={(e) => {
         router.push(e.target.value)
       }}

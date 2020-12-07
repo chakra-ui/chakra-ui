@@ -73,7 +73,11 @@ function HeaderContent() {
           <OmniSearch />
           <VersionSwitcher w="64px" display={{ base: "none", md: "flex" }} />
           <HStack spacing="5" display={{ base: "none", md: "flex" }}>
-            <Link isExternal aria-label="GitHub" href={siteConfig.repo.url}>
+            <Link
+              isExternal
+              aria-label="Go to Chakra UI GitHub page"
+              href={siteConfig.repo.url}
+            >
               <Icon
                 as={GithubIcon}
                 transition="color 0.2s"
@@ -82,7 +86,11 @@ function HeaderContent() {
                 _hover={{ color: "gray.600" }}
               />
             </Link>
-            <Link isExternal aria-label="Discord" href={siteConfig.discord.url}>
+            <Link
+              isExternal
+              aria-label="Go to Chakra UI Discord page"
+              href={siteConfig.discord.url}
+            >
               <Icon
                 as={DiscordIcon}
                 transition="color 0.2s"

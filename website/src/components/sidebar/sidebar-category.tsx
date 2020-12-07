@@ -76,7 +76,7 @@ function SidebarCategory(props: SidebarCategoryProps) {
       >
         {title}
       </chakra.p>
-      <chakra.div hidden={!toggle} mt="16px" mx="-3">
+      <chakra.div role="group" hidden={!toggle} mt="16px" mx="-3">
         {children}
       </chakra.div>
     </chakra.div>

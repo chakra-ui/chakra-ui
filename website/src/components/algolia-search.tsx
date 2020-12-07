@@ -48,6 +48,7 @@ export const SearchButton = React.forwardRef(function SearchButton(
     <chakra.button
       flex="1"
       type="button"
+      role="search"
       mx="6"
       ref={ref}
       lineHeight="1.2"

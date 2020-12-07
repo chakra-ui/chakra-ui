@@ -66,10 +66,10 @@ export function SidebarContent(props: SidebarContentProps) {
                   selected={selected}
                   opened={opened}
                 >
-                  <Stack>
-                    {sortedRoutes.map((c3) => (
-                      <SidebarLink key={c3.path} href={c3.path}>
-                        {c3.title}
+                  <Stack as="ul">
+                    {sortedRoutes.map((lvl3) => (
+                      <SidebarLink as="li" key={lvl3.path} href={lvl3.path}>
+                        {lvl3.title}
                       </SidebarLink>
                     ))}
                   </Stack>
@@ -110,21 +110,39 @@ const MainNavLink = ({ href, icon, children }) => {
   )
 }
 
-const MainNav = (props: BoxProps) => {
+const mainNavLinks = [
+  {
+    icon: <DocsIcon />,
+    href: "/docs/getting-started",
+    label: "Docs",
+  },
+  {
+    icon: <GuidesIcon />,
+    href: "/guides/integrations/with-cra",
+    label: "Guides",
+  },
+  {
+    icon: <TeamIcon />,
+    href: "/team",
+    label: "Team",
+  },
+  {
+    icon: <BlogIcon />,
+    href: "/blog",
+    label: "Blog",
+  },
+]
+
+const MainNavLinkGroup = (props: BoxProps) => {
   return (
-    <VStack align="stretch" spacing="4" {...props}>
-      <MainNavLink icon={<DocsIcon />} href="/docs/getting-started">
-        Docs
-      </MainNavLink>
-      <MainNavLink icon={<GuidesIcon />} href="/guides/integrations/with-cra">
-        Guides
-      </MainNavLink>
-      <MainNavLink icon={<TeamIcon />} href="/team">
-        Team
-      </MainNavLink>
-      <MainNavLink icon={<BlogIcon />} href="/blog">
-        Blog
-      </MainNavLink>
+    <VStack as="ul" align="stretch" spacing="4" {...props}>
+      {mainNavLinks.map((item) => (
+        <Box as="li" key={item.label}>
+          <MainNavLink icon={item.icon} href={item.href}>
+            {item.label}
+          </MainNavLink>
+        </Box>
+      ))}
     </VStack>
   )
 }
@@ -136,10 +154,12 @@ const Sidebar = ({ routes }) => {
   return (
     <Box
       ref={ref}
-      as="aside"
+      as="nav"
+      aria-label="Main Navigation"
       pos="sticky"
       top="6.5rem"
       w="280px"
+      h="calc(((100vh - 1.5rem) - 64px) - 42px);"
       pr="8"
       pb="8"
       pl="3"
@@ -147,10 +167,9 @@ const Sidebar = ({ routes }) => {
       overflowY="auto"
       className="sidebar-content"
       flexShrink={0}
-      h="calc(((100vh - 1.5rem) - 64px) - 42px);"
       display={{ base: "none", md: "block" }}
     >
-      <MainNav mb="10" />
+      <MainNavLinkGroup mb="10" />
       <SidebarContent routes={routes} pathname={pathname} contentRef={ref} />
     </Box>
   )

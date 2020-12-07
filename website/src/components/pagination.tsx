@@ -31,7 +31,7 @@ export const Pagination = ({ previous, next, ...rest }) => {
   return (
     <SimpleGrid
       as="nav"
-      aria-label="pagination"
+      aria-label="Pagination"
       spacing="40px"
       my="64px"
       columns={2}

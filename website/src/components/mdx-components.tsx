@@ -1,4 +1,11 @@
-import { Alert, Box, chakra, Kbd, useColorModeValue } from "@chakra-ui/react"
+import {
+  Alert,
+  Box,
+  chakra,
+  HTMLChakraProps,
+  Kbd,
+  useColorModeValue,
+} from "@chakra-ui/react"
 import React from "react"
 import CarbonAd from "./carbon-ad"
 import CodeBlock from "./codeblock/codeblock"
@@ -35,40 +42,24 @@ const TData = (props) => (
   />
 )
 
-const LinkedHeading = (props) => (
-  <chakra.h2
-    css={{
-      "&[id]": {
-        pointerEvents: "none",
-      },
-      "&[id]::before": {
-        display: "block",
-        height: " 6rem",
-        marginTop: "-6rem",
-        visibility: "hidden",
-        content: `""`,
-      },
-      "&[id]:hover a": { opacity: 1 },
-    }}
-    {...props}
-  >
-    <chakra.div pointerEvents="auto">
-      {props.children}
-      {props.id && (
-        <chakra.a
-          aria-label="anchor"
-          color="teal.500"
-          fontWeight="normal"
-          outline="none"
-          _focus={{ opacity: 1, boxShadow: "outline" }}
-          opacity={0}
-          ml="0.375rem"
-          href={`#${props.id}`}
-        >
-          #
-        </chakra.a>
-      )}
-    </chakra.div>
+const LinkedHeading = (props: HTMLChakraProps<"h2">) => (
+  <chakra.h2 data-group="" css={{ scrollMarginBlock: "6.875rem" }} {...props}>
+    <span>{props.children}</span>
+    {props.id && (
+      <chakra.a
+        aria-label="anchor"
+        color="teal.500"
+        fontWeight="normal"
+        outline="none"
+        _focus={{ opacity: 1, boxShadow: "outline" }}
+        opacity={0}
+        _groupHover={{ opacity: 1 }}
+        ml="0.375rem"
+        href={`#${props.id}`}
+      >
+        #
+      </chakra.a>
+    )}
   </chakra.h2>
 )
 

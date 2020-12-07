@@ -8,6 +8,7 @@ const SponsorButton = (props: BoxProps) => (
     display={{ base: "none", md: "flex" }}
     alignItems="center"
     as="a"
+    aria-label="Sponsor Chakra UI on Open Collective"
     href={siteConfig.openCollective.url}
     target="_blank"
     rel="noopener noreferrer"
