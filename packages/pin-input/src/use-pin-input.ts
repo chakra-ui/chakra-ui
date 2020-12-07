@@ -79,17 +79,23 @@ export interface UsePinInputProps {
   /**
    * The type of values the pin-input should allow
    */
-  type?: "string" | "number"
+  type?: "alphanumeric" | "number"
+  /**
+   * If `true`, the input's value will be masked just like `type=password`
+   */
+  mask?: boolean
 }
 
 function toArray(value?: string) {
   return typeof value === "string" ? value.split("") : undefined
 }
 
-function checkValueRegex(value: string, type: "string" | "number") {
+function validate(value: string, type: UsePinInputProps["type"]) {
   const NUMERIC_REGEX = /^[0-9]+$/
-  const ALPHA_NUMERIC_REGEX = /^[a-z0-9]+$/i
-  return value.match(type === "string" ? ALPHA_NUMERIC_REGEX : NUMERIC_REGEX)
+  const ALPHA_NUMERIC_REGEX = /^[a-zA-Z0-9]+$/i
+  return value.match(
+    type === "alphanumeric" ? ALPHA_NUMERIC_REGEX : NUMERIC_REGEX,
+  )
 }
 
 export function usePinInput(props: UsePinInputProps = {}) {
@@ -105,6 +111,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
     isDisabled,
     isInvalid,
     type = "number",
+    mask,
   } = props
 
   const uuid = useId()
@@ -146,8 +153,12 @@ export function usePinInput(props: UsePinInputProps = {}) {
       nextValues[index] = value
       setValues(nextValues)
 
-      // if we're at the last input, call onComplete (no need to move focus)
-      if (index === descendants.length - 1) {
+      const isComplete =
+        value !== "" &&
+        index === descendants.length - 1 &&
+        values.every((inputValue) => inputValue !== "")
+
+      if (isComplete) {
         onComplete?.(nextValues.join(""))
       } else {
         focusNext(index)
@@ -167,11 +178,10 @@ export function usePinInput(props: UsePinInputProps = {}) {
     (value: string, eventValue: string) => {
       let nextValue = eventValue
       if (value?.length > 0) {
-        const [firstValue, secondValue] = eventValue
-        if (value[0] === firstValue) {
-          nextValue = secondValue
-        } else if (value[0] === secondValue) {
-          nextValue = firstValue
+        if (value[0] === eventValue.charAt(0)) {
+          nextValue = eventValue.charAt(1)
+        } else if (value[0] === eventValue.charAt(1)) {
+          nextValue = eventValue.charAt(0)
         }
       }
       return nextValue
@@ -182,7 +192,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
   const [focusedIndex, setFocusedIndex] = React.useState(-1)
 
   const getInputProps = React.useCallback(
-    (props: InputProps & { index: number }) => {
+    (props: InputProps & { index: number }): InputProps => {
       const { index, ...rest } = props
 
       /**
@@ -202,7 +212,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
         // in the case of an autocomplete or copy and paste
         if (eventValue.length > 2) {
           // see if we can use the string to fill out our values
-          if (checkValueRegex(eventValue, type)) {
+          if (validate(eventValue, type)) {
             // Ensure the value matches the number of inputs
             const nextValue = eventValue
               .split("")
@@ -220,7 +230,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
         }
 
         // only set if the new value is a number
-        if (checkValueRegex(nextValue, type)) {
+        if (validate(nextValue, type)) {
           setValue(nextValue, index)
         }
 
@@ -251,10 +261,12 @@ export function usePinInput(props: UsePinInputProps = {}) {
       }
 
       const hasFocus = focusedIndex === index
+      const inputType = type === "number" ? "tel" : "text"
 
       return {
         "aria-label": "Please enter your pin code",
-        inputMode: "numeric" as React.InputHTMLAttributes<any>["inputMode"],
+        inputMode: type === "number" ? "numeric" : "text",
+        type: mask ? "password" : inputType,
         ...rest,
         id: `${id}-${index}`,
         disabled: isDisabled,
@@ -274,6 +286,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
       getNextValue,
       id,
       isDisabled,
+      mask,
       isInvalid,
       manageFocus,
       onComplete,
@@ -286,21 +299,16 @@ export function usePinInput(props: UsePinInputProps = {}) {
   )
 
   return {
+    // prop getter
     getInputProps,
-    type,
+    // state
     id,
-    getNextValue,
     domContext,
-    setValue,
     values,
+    // actions
+    setValue,
     setValues,
-    setMoveFocus,
     clear,
-    onComplete,
-    placeholder,
-    manageFocus,
-    isDisabled,
-    isInvalid,
   }
 }
 
