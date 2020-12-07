@@ -13,10 +13,7 @@ import { cx } from "@chakra-ui/utils"
 
 export interface TableProps extends HTMLChakraProps<"table">, ThemingProps {}
 
-export const Table = forwardRef<TableProps, "table">(function Table(
-  props,
-  ref,
-) {
+export const Table = forwardRef<TableProps, "table">((props, ref) => {
   const styles = useMultiStyleConfig("Table", props)
   const { className, ...tableProps } = omitThemingProps(props)
 
@@ -42,7 +39,7 @@ export interface TableCaptionProps extends HTMLChakraProps<"caption"> {
 }
 
 export const TableCaption = forwardRef<TableCaptionProps, "caption">(
-  function TableCaption(props, ref) {
+  (props, ref) => {
     const { placement = "bottom", ...rest } = props
     const styles = useStyles()
     return (
