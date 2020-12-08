@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.0.2
+
+### Patch Changes
+
+- [`72bbd0db`](https://github.com/chakra-ui/chakra-ui/commit/72bbd0dbb913ba38ee2b9191d12bf73713ae4398)
+  [#2708](https://github.com/chakra-ui/chakra-ui/pull/2708) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Resolved an issue where
+  `DrawerCloseButton` was not receiving its base styles when it was passed other
+  styles through the `__css` property, breaking the button's positioning.
+
 ## 1.0.1
 
 ### Patch Changes

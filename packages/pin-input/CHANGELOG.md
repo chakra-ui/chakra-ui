@@ -1,5 +1,27 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [`f3cc344e`](https://github.com/chakra-ui/chakra-ui/commit/f3cc344e1a7dd08dc7a312e6ce039d55a80cc526)
+  [#2729](https://github.com/chakra-ui/chakra-ui/pull/2729) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Move input props logic
+  to parent hook and expose prop-getter `getInputProps`. This helps to co-locate
+  the state logic for easier debugging
+
+  - Added support for alpha-numeric and secret values.
+  - Added `type` prop which can be either `alphanumeric` or `number`
+  - Added `mask` prop to hide input value similar to `<input type='password' />`
+
+  ```jsx
+  <PinInput type="alphanumeric" mask>
+    <PinInputField />
+    <PinInputField />
+    <PinInputField />
+  </PinInput>
+  ```
+
 ## 1.0.1
 
 ### Patch Changes

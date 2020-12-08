@@ -1,5 +1,29 @@
 # Change Log
 
+## 1.0.3
+
+### Patch Changes
+
+- [`0d0ed051`](https://github.com/chakra-ui/chakra-ui/commit/0d0ed0513ac1094833f1e0294f655af122682ff4)
+  [#2707](https://github.com/chakra-ui/chakra-ui/pull/2707) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fix too narrow TypeScript
+  type for theme override
+
+- Updated dependencies
+  [[`f3cc344e`](https://github.com/chakra-ui/chakra-ui/commit/f3cc344e1a7dd08dc7a312e6ce039d55a80cc526),
+  [`72bbd0db`](https://github.com/chakra-ui/chakra-ui/commit/72bbd0dbb913ba38ee2b9191d12bf73713ae4398),
+  [`653f3dd6`](https://github.com/chakra-ui/chakra-ui/commit/653f3dd6f30a17e366c069666acbfd9eddb11936),
+  [`c73cce25`](https://github.com/chakra-ui/chakra-ui/commit/c73cce25bf986fd5b1261575ca395f731f827f53)]:
+  - @chakra-ui/pin-input@1.1.0
+  - @chakra-ui/theme@1.2.1
+  - @chakra-ui/close-button@1.0.2
+  - @chakra-ui/system@1.0.2
+  - @chakra-ui/alert@1.0.2
+  - @chakra-ui/toast@1.1.1
+  - @chakra-ui/modal@1.2.1
+  - @chakra-ui/popover@1.0.3
+  - @chakra-ui/skeleton@1.0.2
+
 ## 1.0.2
 
 ### Patch Changes

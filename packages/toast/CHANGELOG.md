@@ -1,5 +1,16 @@
 # Change Log
 
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`72bbd0db`](https://github.com/chakra-ui/chakra-ui/commit/72bbd0dbb913ba38ee2b9191d12bf73713ae4398),
+  [`c73cce25`](https://github.com/chakra-ui/chakra-ui/commit/c73cce25bf986fd5b1261575ca395f731f827f53)]:
+  - @chakra-ui/theme@1.2.1
+  - @chakra-ui/close-button@1.0.2
+  - @chakra-ui/alert@1.0.2
+
 ## 1.1.0
 
 ### Minor Changes
