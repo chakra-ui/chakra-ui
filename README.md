@@ -105,8 +105,7 @@ $ npm install @chakra-ui/react framer-motion
 To start using the components, please follow these steps:
 
 1. Wrap your application with the `ChakraProvider` provided by
-   **@chakra-ui/react**. We recommend that you also add the `CSSReset` component
-   to remove all browser styling.
+   **@chakra-ui/react**.
 
 ```jsx
 import { ChakraProvider } from "@chakra-ui/react"
@@ -380,6 +379,7 @@ Thanks goes to these wonderful people
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
