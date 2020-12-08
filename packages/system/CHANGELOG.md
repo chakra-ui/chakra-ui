@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.0.2
+
+### Patch Changes
+
+- [`653f3dd6`](https://github.com/chakra-ui/chakra-ui/commit/653f3dd6f30a17e366c069666acbfd9eddb11936)
+  [#2709](https://github.com/chakra-ui/chakra-ui/pull/2709) Thanks
+  [@with-heart](https://github.com/with-heart)! - Added default empty object
+  argument values for the `props` and `opts` arguments of `useStyleConfig`.
+- Updated dependencies
+  [[`127baa0f`](https://github.com/chakra-ui/chakra-ui/commit/127baa0f1926bf1f8ace6f46cfdc08606fe9d347)]:
+  - @chakra-ui/styled-system@1.1.1
+
 ## 1.0.1
 
 ### Patch Changes

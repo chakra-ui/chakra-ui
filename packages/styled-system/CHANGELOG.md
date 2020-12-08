@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.1.1
+
+### Patch Changes
+
+- [`127baa0f`](https://github.com/chakra-ui/chakra-ui/commit/127baa0f1926bf1f8ace6f46cfdc08606fe9d347)
+  [#2702](https://github.com/chakra-ui/chakra-ui/pull/2702) Thanks
+  [@terryyu](https://github.com/terryyu)! - fix style prop of shortcut
+  definition, closes #2700
+
 ## 1.1.0
 
 ### Minor Changes

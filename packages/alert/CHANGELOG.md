@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.0.2
+
+### Patch Changes
+
+- [`c73cce25`](https://github.com/chakra-ui/chakra-ui/commit/c73cce25bf986fd5b1261575ca395f731f827f53)
+  [#2726](https://github.com/chakra-ui/chakra-ui/pull/2726) Thanks
+  [@dodas](https://github.com/dodas)! - `Alert` now respects the `colorScheme`
+  property. You can set it to override the color scheme that is by default
+  determined by the `status` property.
+
 ## 1.0.1
 
 ### Patch Changes

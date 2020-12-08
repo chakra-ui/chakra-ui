@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.0.3
+
+### Patch Changes
+
+- [`294cf486`](https://github.com/chakra-ui/chakra-ui/commit/294cf486bf820a1b2f658b6a5ef5fbb897120f98)
+  [#2697](https://github.com/chakra-ui/chakra-ui/pull/2697) Thanks
+  [@yicru](https://github.com/yicru)! - add import section to Spinner page
+
+- Updated dependencies
+  [[`0d0ed051`](https://github.com/chakra-ui/chakra-ui/commit/0d0ed0513ac1094833f1e0294f655af122682ff4)]:
+  - @chakra-ui/react@1.0.3
+  - @chakra-ui/props-docs@1.0.3
+
 ## 1.0.2
 
 ### Patch Changes

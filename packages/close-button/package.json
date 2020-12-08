@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/close-button",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A React and Chakra UI close button component.",
   "keywords": [
     "close-button",
@@ -55,7 +55,7 @@
     "@chakra-ui/utils": "1.0.1"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.0.1",
+    "@chakra-ui/system": "1.0.2",
     "react": "^17.0.1"
   },
   "peerDependencies": {
