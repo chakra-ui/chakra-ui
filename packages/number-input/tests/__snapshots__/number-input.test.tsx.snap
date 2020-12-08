@@ -60,17 +60,17 @@ exports[`should render correctly 1`] = `
   cursor: not-allowed;
 }
 
+.emotion-1[aria-invalid=true],
+.emotion-1[data-invalid] {
+  border-color: #E53E3E;
+  box-shadow: 0 0 0 1px #E53E3E;
+}
+
 .emotion-1:focus,
 .emotion-1[data-focus] {
   z-index: 1;
   border-color: #3182ce;
   box-shadow: 0 0 0 1px #3182ce;
-}
-
-.emotion-1[aria-invalid=true],
-.emotion-1[data-invalid] {
-  border-color: #E53E3E;
-  box-shadow: 0 0 0 1px #E53E3E;
 }
 
 .emotion-2 {

@@ -83,17 +83,17 @@ exports[`Elements inside input render correctly 1`] = `
   cursor: not-allowed;
 }
 
+.emotion-2[aria-invalid=true],
+.emotion-2[data-invalid] {
+  border-color: #E53E3E;
+  box-shadow: 0 0 0 1px #E53E3E;
+}
+
 .emotion-2:focus,
 .emotion-2[data-focus] {
   z-index: 1;
   border-color: #3182ce;
   box-shadow: 0 0 0 1px #3182ce;
-}
-
-.emotion-2[aria-invalid=true],
-.emotion-2[data-invalid] {
-  border-color: #E53E3E;
-  box-shadow: 0 0 0 1px #E53E3E;
 }
 
 .emotion-3 {
@@ -235,17 +235,17 @@ exports[`addons render correctly 1`] = `
   cursor: not-allowed;
 }
 
+.emotion-2[aria-invalid=true],
+.emotion-2[data-invalid] {
+  border-color: #E53E3E;
+  box-shadow: 0 0 0 1px #E53E3E;
+}
+
 .emotion-2:focus,
 .emotion-2[data-focus] {
   z-index: 1;
   border-color: #3182ce;
   box-shadow: 0 0 0 1px #3182ce;
-}
-
-.emotion-2[aria-invalid=true],
-.emotion-2[data-invalid] {
-  border-color: #E53E3E;
-  box-shadow: 0 0 0 1px #E53E3E;
 }
 
 .emotion-3 {
@@ -346,17 +346,17 @@ exports[`renders correctly 1`] = `
   cursor: not-allowed;
 }
 
+.emotion-0[aria-invalid=true],
+.emotion-0[data-invalid] {
+  border-color: #E53E3E;
+  box-shadow: 0 0 0 1px #E53E3E;
+}
+
 .emotion-0:focus,
 .emotion-0[data-focus] {
   z-index: 1;
   border-color: #3182ce;
   box-shadow: 0 0 0 1px #3182ce;
-}
-
-.emotion-0[aria-invalid=true],
-.emotion-0[data-invalid] {
-  border-color: #E53E3E;
-  box-shadow: 0 0 0 1px #E53E3E;
 }
 
 <input
