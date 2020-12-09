@@ -624,6 +624,28 @@ Changed `color` prop to `colorScheme`.
 </RadioGroup>
 ```
 
+- The `onChange` callback now returns the selected `value` not the `event`.
+
+```jsx live=false
+const [value, setValue] = React.useState("one")
+
+// before
+<RadioGroup value={value} onChange={e => setValue(e.target.value)}>
+  <Radio value="one">One</Radio>
+  <Radio value="two">Two</Radio>
+  <Radio value="three">Three</Radio>
+</RadioGroup>
+
+// after
+<RadioGroup value={value} onChange={val => setValue(val)}>
+  <Stack direction="row">
+    <Radio value="one">One</Radio>
+    <Radio value="two">Two</Radio>
+    <Radio value="three">Three</Radio>
+  </Stack>
+</RadioGroup>
+```
+
 ## Slider
 
 - Update JSX structure: Wrap `SliderFilledTrack` with `SliderTrack`.
