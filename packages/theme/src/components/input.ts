@@ -81,14 +81,14 @@ function variantOutline(props: Record<string, any>) {
         opacity: 0.4,
         cursor: "not-allowed",
       },
+      _invalid: {
+        borderColor: getColor(theme, ec),
+        boxShadow: `0 0 0 1px ${getColor(theme, ec)}`,
+      },
       _focus: {
         zIndex: 1,
         borderColor: getColor(theme, fc),
         boxShadow: `0 0 0 1px ${getColor(theme, fc)}`,
-      },
-      _invalid: {
-        borderColor: getColor(theme, ec),
-        boxShadow: `0 0 0 1px ${getColor(theme, ec)}`,
       },
     },
     addon: {
@@ -119,12 +119,12 @@ function variantFilled(props: Record<string, any>) {
         opacity: 0.4,
         cursor: "not-allowed",
       },
+      _invalid: {
+        borderColor: getColor(theme, ec),
+      },
       _focus: {
         bg: "transparent",
         borderColor: getColor(theme, fc),
-      },
-      _invalid: {
-        borderColor: getColor(theme, ec),
       },
     },
     addon: {
@@ -151,13 +151,13 @@ function variantFlushed(props: Record<string, any>) {
         boxShadow: "none !important",
         userSelect: "all",
       },
-      _focus: {
-        borderColor: getColor(theme, fc),
-        boxShadow: `0px 1px 0px 0px ${getColor(theme, fc)}`,
-      },
       _invalid: {
         borderColor: getColor(theme, ec),
         boxShadow: `0 0 0 1px ${getColor(theme, ec)}`,
+      },
+      _focus: {
+        borderColor: getColor(theme, fc),
+        boxShadow: `0px 1px 0px 0px ${getColor(theme, fc)}`,
       },
     },
     addon: {
