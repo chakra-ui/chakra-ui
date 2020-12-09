@@ -1,6 +1,6 @@
 import { mode } from "@chakra-ui/theme-tools"
 import Input from "./input"
-import Typography from "../foundations/typography"
+import typography from "../foundations/typography"
 
 const parts = ["field", "stepper", "stepperGroup"]
 
@@ -43,7 +43,7 @@ function getSize(size: "xs" | "sm" | "md" | "lg") {
     xs: "sm",
   }
 
-  const resolvedFontSize = Typography.fontSizes[sizeStyle.field.fontSize]
+  const resolvedFontSize = typography.fontSizes[sizeStyle.field.fontSize]
 
   return {
     field: {
