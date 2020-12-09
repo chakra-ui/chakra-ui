@@ -3,43 +3,32 @@
  * the base type definitions upon which we improved on
  */
 import * as React from "react"
+import type { As } from "./system.types"
 
-type As = React.ElementType
+type OmittedProps = "transition"
 
-type PropsOf<T extends As> = React.ComponentProps<T>
+type PropsWithAs<Props = {}, Component extends As = As> = Props &
+  Omit<React.ComponentProps<Component>, "as" | keyof Props | OmittedProps> & {
+    as?: Component
+  }
 
-type AddProps<P> = React.PropsWithChildren<
-  P extends { transition?: any } ? Omit<P, "transition"> : P
->
-
-type AddTProps<T extends As> = PropsOf<T> extends { color?: any }
-  ? Omit<PropsOf<T>, "color">
-  : PropsOf<T>
-
-export interface ComponentWithAs<T extends As, P> {
-  <TT extends As>(
-    props: { as?: TT } & (PropsOf<T> extends { transition?: any }
-      ? Omit<P, "transition">
-      : P) &
-      Omit<PropsOf<TT>, keyof PropsOf<T>> &
-      Omit<AddTProps<T>, keyof P>,
+export type ComponentWithAs<Component extends As, Props> = {
+  <Component extends As>(
+    props: PropsWithAs<Props, Component> & { as?: Component },
   ): JSX.Element
+
   displayName?: string
-  propTypes?: React.WeakValidationMap<AddProps<P> & AddTProps<T>>
+  propTypes?: React.WeakValidationMap<PropsWithAs<Props, Component>>
   contextTypes?: React.ValidationMap<any>
-  defaultProps?: AddProps<P> & AddTProps<T> & { as?: As }
+  defaultProps?: Partial<PropsWithAs<Props, Component>>
   id?: string
 }
 
-export function forwardRef<P, T extends As>(
-  component: (
-    props: React.PropsWithChildren<P> &
-      Omit<PropsOf<T>, keyof P | "color" | "ref"> & { as?: As },
-    ref: React.Ref<any>,
-  ) => React.ReactElement | null,
+export function forwardRef<Props, Component extends As>(
+  component: React.ForwardRefRenderFunction<any, any>,
 ) {
-  return (React.forwardRef(component as any) as unknown) as ComponentWithAs<
-    T,
-    P
+  return (React.forwardRef(component) as unknown) as ComponentWithAs<
+    Component,
+    Props
   >
 }
