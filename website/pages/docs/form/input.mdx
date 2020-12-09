@@ -32,17 +32,19 @@ Here's a basic usage example of the `Input` component:
 
 ### Changing the size of the Input
 
-There are three sizes of an Input:
+The `Input` component comes in four sizes. The default is `md`.
 
-- `sm` (`24px`)
-- `md` (`32px`)
-- `lg` (`40px`)
+- `xs` (`24px`)
+- `sm` (`32px`)
+- `md` (`40px`)
+- `lg` (`48px`)
 
 ```jsx
 <Stack spacing={3}>
-  <Input placeholder="large size" size="lg" />
-  <Input placeholder="default size" size="md" />
+  <Input placeholder="extra small size" size="xs" />
   <Input placeholder="small size" size="sm" />
+  <Input placeholder="medium size" size="md" />
+  <Input placeholder="large size" size="lg" />
 </Stack>
 ```
 

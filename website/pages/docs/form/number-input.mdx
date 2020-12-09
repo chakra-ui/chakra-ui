@@ -182,7 +182,7 @@ the input.
 
 ```jsx
 <Stack shouldWrapChildren direction="row">
-  <NumberInput size="sm" defaultValue={15} min={10}>
+  <NumberInput size="xs" maxW={16} defaultValue={15} min={10}>
     <NumberInputField />
     <NumberInputStepper>
       <NumberIncrementStepper />
@@ -190,7 +190,7 @@ the input.
     </NumberInputStepper>
   </NumberInput>
 
-  <NumberInput size="md" defaultValue={15} min={10}>
+  <NumberInput size="sm" maxW={20} defaultValue={15} min={10}>
     <NumberInputField />
     <NumberInputStepper>
       <NumberIncrementStepper />
@@ -198,7 +198,15 @@ the input.
     </NumberInputStepper>
   </NumberInput>
 
-  <NumberInput size="lg" defaultValue={15} min={10}>
+  <NumberInput size="md" maxW={24} defaultValue={15} min={10}>
+    <NumberInputField />
+    <NumberInputStepper>
+      <NumberIncrementStepper />
+      <NumberDecrementStepper />
+    </NumberInputStepper>
+  </NumberInput>
+
+  <NumberInput size="lg" maxW={32} defaultValue={15} min={10}>
     <NumberInputField />
     <NumberInputStepper>
       <NumberIncrementStepper />

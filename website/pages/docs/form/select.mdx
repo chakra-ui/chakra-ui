@@ -33,14 +33,19 @@ Here's a basic usage of the `Select` component.
 
 ### Changing the size of the Select
 
-The`Select` component cones in three sizes : large (48px), default (40px) and
-small (32px).
+The `Select` component comes in four sizes. The default is `md`.
+
+- `xs` (`24px`)
+- `sm` (`32px`)
+- `md` (`40px`)
+- `lg` (`48px`)
 
 ```jsx
 <Stack spacing={3}>
-  <Select placeholder="large size" size="lg" />
-  <Select placeholder="default size" size="md" />
+  <Select placeholder="extra small size" size="xs" />
   <Select placeholder="small size" size="sm" />
+  <Select placeholder="medium size" size="md" />
+  <Select placeholder="large size" size="lg" />
 </Stack>
 ```
 

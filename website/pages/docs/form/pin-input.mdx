@@ -81,43 +81,48 @@ Pass the `mask` prop to `PinInput` to achieve this.
 </HStack>
 ```
 
-### Changing the size of the Input
+### Changing the size of the PinInput
 
-There are three sizes of an Input:
+The `PinInput` component comes in four sizes. The default is `md`.
 
-- `sm` (`24px`)
-- `md` (`32px`)
-- `lg` (`40px`)
+- `xs` (`24px`)
+- `sm` (`32px`)
+- `md` (`40px`)
+- `lg` (`48px`)
 
 ```jsx
 <Stack>
-  <Box>
-    <HStack>
-      <PinInput size="lg">
-        <PinInputField />
-        <PinInputField />
-        <PinInputField />
-      </PinInput>
-    </HStack>
-  </Box>
-  <Box>
-    <HStack>
-      <PinInput size="md">
-        <PinInputField />
-        <PinInputField />
-        <PinInputField />
-      </PinInput>
-    </HStack>
-  </Box>
-  <Box>
-    <HStack>
-      <PinInput size="sm">
-        <PinInputField />
-        <PinInputField />
-        <PinInputField />
-      </PinInput>
-    </HStack>
-  </Box>
+  <HStack>
+    <PinInput size="xs">
+      <PinInputField />
+      <PinInputField />
+      <PinInputField />
+    </PinInput>
+  </HStack>
+
+  <HStack>
+    <PinInput size="sm">
+      <PinInputField />
+      <PinInputField />
+      <PinInputField />
+    </PinInput>
+  </HStack>
+
+  <HStack>
+    <PinInput size="md">
+      <PinInputField />
+      <PinInputField />
+      <PinInputField />
+    </PinInput>
+  </HStack>
+
+  <HStack>
+    <PinInput size="lg">
+      <PinInputField />
+      <PinInputField />
+      <PinInputField />
+    </PinInput>
+  </HStack>
 </Stack>
 ```
 
