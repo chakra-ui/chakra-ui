@@ -28,6 +28,7 @@ import {
 } from "framer-motion"
 import * as React from "react"
 import { RemoveScroll } from "react-remove-scroll"
+import { MouseEvent } from "react"
 import { ModalTransition } from "./modal-transition"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
 
@@ -505,7 +506,7 @@ export const ModalCloseButton = forwardRef<CloseButtonProps, "button">(
         ref={ref}
         __css={styles.closeButton}
         className={_className}
-        onClick={callAllHandlers(onClick, (event) => {
+        onClick={callAllHandlers(onClick, (event: MouseEvent) => {
           event.stopPropagation()
           onClose()
         })}
