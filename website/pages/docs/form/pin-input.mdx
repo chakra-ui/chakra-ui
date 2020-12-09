@@ -31,12 +31,48 @@ import { PinInput, PinInputField } from "@chakra-ui/react"
 
 ## Usage
 
-Each input collects one number at a time. When a number is entered, focus is
-moved automatically to the next input, until all fields are filled.
+Each input collects one value (number or alphanumeric) at a time. When a value
+is entered, focus is moved automatically to the next input, until all fields are
+filled.
 
 ```jsx
 <HStack>
   <PinInput>
+    <PinInputField />
+    <PinInputField />
+    <PinInputField />
+    <PinInputField />
+  </PinInput>
+</HStack>
+```
+
+### Allowing Alphanumeric values
+
+By default, the pin input only accepts numbers. To add support for alphanumeric
+values, pass the `type` prop and set its value to either `alphanumeric` or
+`number`.
+
+```jsx
+<HStack>
+  <PinInput type="alphanumeric">
+    <PinInputField />
+    <PinInputField />
+    <PinInputField />
+    <PinInputField />
+  </PinInput>
+</HStack>
+```
+
+### Masking the pin input's value
+
+When collecting private or sensitive information using the pin input, you might
+need to mask the value entered similar to `<input type="password"/>`.
+
+Pass the `mask` prop to `PinInput` to achieve this.
+
+```jsx
+<HStack>
+  <PinInput type="alphanumeric" mask>
     <PinInputField />
     <PinInputField />
     <PinInputField />
@@ -113,7 +149,8 @@ Or even a partial defaultValue:
 
 ### Changing the placeholder
 
-If you donʼt like the default placeholder (`○`), you can change that too.
+To customize the default input placeholder (`○`), pass the `placeholder` prop
+and set it to your desired placeholder.
 
 ```jsx
 <HStack>

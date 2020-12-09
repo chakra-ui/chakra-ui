@@ -89,9 +89,7 @@ export interface UsePinInputProps {
   mask?: boolean
 }
 
-function toArray(value?: string) {
-  return typeof value === "string" ? value.split("") : undefined
-}
+const toArray = (value?: string) => value?.split("")
 
 function validate(value: string, type: UsePinInputProps["type"]) {
   const NUMERIC_REGEX = /^[0-9]+$/
