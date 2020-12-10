@@ -188,10 +188,6 @@ export const FormHelperText = forwardRef<HelpTextProps, "div">((props, ref) => {
     return () => field?.setHasHelpText.off()
   }, [])
 
-  if (field?.isInvalid) {
-    return null
-  }
-
   const _className = cx("chakra-form__helper-text", props.className)
 
   return (
