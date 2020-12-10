@@ -180,10 +180,6 @@ export const FormHelperText = forwardRef<HelpTextProps, "div">((props, ref) => {
    * screen, so we can apply the correct `aria-describedby` to the field (e.g. input, textarea)
    */
   useSafeLayoutEffect(() => {
-    if (field?.isInvalid) {
-      return undefined
-    }
-
     field?.setHasHelpText.on()
     return () => field?.setHasHelpText.off()
   }, [])
