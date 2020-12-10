@@ -1,6 +1,7 @@
 ---
 "@chakra-ui/pin-input": patch
 "@chakra-ui/number-input": patch
+"@chakra-ui/system": minor
 ---
 
 ## Pin Input
@@ -14,3 +15,8 @@
 
   We improved `useNumberInput` to sync the initial values in the `ref` passed to
   `NumberInputField` with the internal state.
+
+## System
+
+Add support for custom `shouldForwardProp` function in the `chakra` factory
+function.
