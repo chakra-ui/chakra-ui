@@ -71,7 +71,7 @@ function HeaderContent() {
           color="gray.400"
         >
           <OmniSearch />
-          <VersionSwitcher w="64px" display={{ base: "none", md: "flex" }} />
+          <VersionSwitcher w="67px" display={{ base: "none", md: "flex" }} />
           <HStack spacing="5" display={{ base: "none", md: "flex" }}>
             <Link
               isExternal
