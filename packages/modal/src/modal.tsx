@@ -1,17 +1,16 @@
 import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
 import { FocusLock, FocusLockProps } from "@chakra-ui/focus-lock"
-import { useLatestRef } from "@chakra-ui/hooks"
 import { Portal, PortalProps } from "@chakra-ui/portal"
 import {
   chakra,
   ChakraProps,
   forwardRef,
+  HTMLChakraProps,
   StylesProvider,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
-  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { fadeConfig } from "@chakra-ui/transition"
 import {
@@ -156,7 +155,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
   const styles = useMultiStyleConfig("Modal", props)
   const modal = useModal(props)
 
-  const latest = useLatestRef({
+  const context = {
     ...modal,
     autoFocus,
     trapFocus,
@@ -168,9 +167,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     preserveScrollBarGap,
     motionPreset,
     lockFocusAcrossFrames,
-  })
-
-  const context = React.useMemo(() => latest.current, [latest])
+  }
 
   return (
     <ModalContextProvider value={context}>
@@ -186,7 +183,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
 }
 
 Modal.defaultProps = {
-  lockFocusAcrossFrames: false,
+  lockFocusAcrossFrames: true,
   returnFocusOnClose: true,
   scrollBehavior: "outside",
   trapFocus: true,
