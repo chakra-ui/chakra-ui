@@ -87,6 +87,12 @@ function useFormControlProvider(props: FormControlContext) {
   const helpTextId = `${id}-helptext`
 
   /**
+   * Track of when the `FormErrorMessage` has been rendered.
+   * We use this to append its id the the `aria-describedby` of the `input`
+   */
+  const [hasFeedbackText, setHasFeedbackText] = useBoolean()
+
+  /**
    * Track of when the `FormHelperText` has been rendered.
    * We use this to append its id the the `aria-describedby` of the `input`
    */
@@ -103,6 +109,8 @@ function useFormControlProvider(props: FormControlContext) {
     isFocused: !!isFocused,
     onFocus: setFocus.on,
     onBlur: setFocus.off,
+    hasFeedbackText,
+    setHasFeedbackText,
     hasHelpText,
     setHasHelpText,
     id,
