@@ -1,6 +1,6 @@
 import { mode } from "@chakra-ui/theme-tools"
 
-const parts = ["control", "label", "description", "icon"]
+const parts = ["container", "control", "label", "description", "icon"]
 
 function baseStyleControl(props: Record<string, any>) {
   const { colorScheme: c } = props
