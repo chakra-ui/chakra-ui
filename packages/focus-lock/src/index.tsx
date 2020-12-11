@@ -44,6 +44,12 @@ export interface FocusLockProps {
    * @default `false`
    */
   persistentFocus?: boolean
+  /**
+   * Enables aggressive focus capturing within iframes.
+   * - If `true`: keep focus in the lock, no matter where lock is active
+   * - If `false`:  allows focus to move outside of iframe
+   */
+  lockFocusAcrossFrames?: boolean
 }
 
 /**
@@ -62,6 +68,7 @@ export const FocusLock: React.FC<FocusLockProps> = (props) => {
     isDisabled,
     autoFocus,
     persistentFocus,
+    lockFocusAcrossFrames,
   } = props
 
   const onActivation = React.useCallback(() => {
@@ -83,6 +90,7 @@ export const FocusLock: React.FC<FocusLockProps> = (props) => {
 
   return (
     <ReactFocusLock
+      crossFrame={lockFocusAcrossFrames}
       persistentFocus={persistentFocus}
       autoFocus={autoFocus}
       disabled={isDisabled}
