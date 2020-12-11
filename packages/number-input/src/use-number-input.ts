@@ -1,10 +1,10 @@
 import { useCounter, UseCounterProps } from "@chakra-ui/counter"
+import { useFormControl } from "@chakra-ui/form-control"
 import {
   useBoolean,
   useEventListener,
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
-import { useFormControl } from "@chakra-ui/form-control"
 import {
   ariaAttr,
   callAllHandlers,
@@ -91,6 +91,9 @@ export interface UseNumberInputProps extends UseCounterProps {
   name?: string
 }
 
+const sanitize = (value: string) =>
+  value.split("").filter(isFloatingPointNumericCharacter).join("")
+
 /**
  * React hook that implements the WAI-ARIA Spin Button widget
  * and used to create numeric input fields.
@@ -133,6 +136,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    * counter values
    */
   const counter = useCounter(props)
+
   const {
     update: updateFn,
     increment: incrementFn,
@@ -155,9 +159,9 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     if (!inputRef.current) return
     const notInSync = inputRef.current.value !== counter.value
     if (notInSync) {
-      counter.update(inputRef.current.value)
+      counter.update(sanitize(inputRef.current.value))
     }
-  }, [counter.value])
+  }, [])
 
   const isInteractive = !(isReadOnly || isDisabled)
 
@@ -193,11 +197,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    */
   const onChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      const valueString = event.target.value
-        .split("")
-        .filter(isFloatingPointNumericCharacter)
-        .join("")
-      updateFn(valueString)
+      updateFn(sanitize(event.target.value))
     },
     [updateFn],
   )
@@ -427,13 +427,13 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     (props = {}, ref = null) => ({
       name,
       inputMode,
+      type: "text",
+      pattern,
       ...props,
       ...inputProps,
       ref: mergeRefs(inputRef, ref),
       value: counter.value,
       role: "spinbutton",
-      type: "text",
-      pattern,
       "aria-valuemin": min,
       "aria-valuemax": max,
       "aria-disabled": inputProps.disabled,
