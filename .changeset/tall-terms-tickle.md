@@ -5,7 +5,7 @@
 ## 🐛 Bug Fix
 
 We've made it possible to override the `type` and `pattern` props passed to
-`NumberInputField` or `getInputProps`
+`NumberInputField` or `getInputProps`. Fixed [#2755]
 
 ```jsx
 <NumberInput>
