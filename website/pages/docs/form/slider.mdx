@@ -38,8 +38,11 @@ import {
 
 ## Usage
 
+> **Note:** We recommend adding a `aria-label` or `aria-labelledby` prop to
+> provide an accessible label for the Slider.
+
 ```jsx
-<Slider defaultValue={30}>
+<Slider aria-label="slider-ex-1" defaultValue={30}>
   <SliderTrack>
     <SliderFilledTrack />
   </SliderTrack>
@@ -47,10 +50,10 @@ import {
 </Slider>
 ```
 
-### Changing the slider color
+### Changing the slider color scheme
 
 ```jsx
-<Slider colorScheme="pink" defaultValue={30}>
+<Slider aria-label="slider-ex-2" colorScheme="pink" defaultValue={30}>
   <SliderTrack>
     <SliderFilledTrack />
   </SliderTrack>
@@ -58,10 +61,15 @@ import {
 </Slider>
 ```
 
-### Turn vertical
+### Changing the slider orientation
 
 ```jsx
-<Slider defaultValue={30} orientation="vertical" minH="32">
+<Slider
+  aria-label="slider-ex-3"
+  defaultValue={30}
+  orientation="vertical"
+  minH="32"
+>
   <SliderTrack>
     <SliderFilledTrack />
   </SliderTrack>
@@ -69,13 +77,13 @@ import {
 </Slider>
 ```
 
-### Customized Sliders
+### Customizing the Slider
 
 `Slider` component was designed to be composed to make it easy for you to
 customize its styles.
 
 ```jsx
-<Slider defaultValue={30}>
+<Slider aria-label="slider-ex-4" defaultValue={30}>
   <SliderTrack bg="red.100">
     <SliderFilledTrack bg="tomato" />
   </SliderTrack>
@@ -92,7 +100,7 @@ interested in the final result after sliding is complete. You can use
 `onChangeEnd` for this.
 
 ```jsx live=false
-<Slider onChangeEnd={(val) => console.log(val)}>
+<Slider aria-label="slider-ex-5" onChangeEnd={(val) => console.log(val)}>
   <SliderTrack>
     <SliderFilledTrack />
   </SliderTrack>
@@ -107,7 +115,7 @@ opt-out of this behavior by setting the value of `focusThumbOnChange` to
 `false`. This is normally used with a "controlled" slider value.
 
 ```jsx live=false
-<Slider value={value} focusThumbOnChange={false}>
+<Slider aria-label="slider-ex-5" value={value} focusThumbOnChange={false}>
   <SliderTrack>
     <SliderFilledTrack />
   </SliderTrack>

@@ -51,21 +51,19 @@ export function ComponentExample() {
   )
 }
 
-export const Sizes = () => {
-  return (
-    <>
-      {["sm", "md", "lg"].map((size, i) => (
-        <div key={i} style={{ marginBottom: "1rem" }}>
-          <PinInput size={size} defaultValue="234">
-            <PinInputField />
-            <PinInputField />
-            <PinInputField />
-          </PinInput>
-        </div>
-      ))}
-    </>
-  )
-}
+export const Sizes = () => (
+  <>
+    {["sm", "md", "lg"].map((size, i) => (
+      <div key={i} style={{ marginBottom: "1rem" }}>
+        <PinInput size={size} defaultValue="234">
+          <PinInputField />
+          <PinInputField />
+          <PinInputField />
+        </PinInput>
+      </div>
+    ))}
+  </>
+)
 
 export const Controlled = () => {
   const [value, setValue] = React.useState("")

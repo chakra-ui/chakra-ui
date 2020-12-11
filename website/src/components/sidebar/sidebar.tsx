@@ -1,12 +1,13 @@
 import {
   Box,
-  BoxProps,
   Center,
   chakra,
   Flex,
+  List,
+  ListItem,
+  ListProps,
   Stack,
   useColorModeValue,
-  VStack,
 } from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import * as React from "react"
@@ -133,17 +134,17 @@ const mainNavLinks = [
   },
 ]
 
-const MainNavLinkGroup = (props: BoxProps) => {
+const MainNavLinkGroup = (props: ListProps) => {
   return (
-    <VStack as="ul" align="stretch" spacing="4" {...props}>
+    <List spacing="4" styleType="none" {...props}>
       {mainNavLinks.map((item) => (
-        <Box as="li" key={item.label}>
+        <ListItem key={item.label}>
           <MainNavLink icon={item.icon} href={item.href}>
             {item.label}
           </MainNavLink>
-        </Box>
+        </ListItem>
       ))}
-    </VStack>
+    </List>
   )
 }
 

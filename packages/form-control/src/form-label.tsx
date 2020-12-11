@@ -18,7 +18,6 @@ export function useFieldLabel(props: Dict) {
     "data-focus": dataAttr(field?.isFocused),
     "data-disabled": dataAttr(field?.isDisabled),
     "data-invalid": dataAttr(field?.isInvalid),
-    "data-loading": dataAttr(field?.isLoading),
     "data-readonly": dataAttr(field?.isReadOnly),
     id: props.id ?? field?.labelId,
     htmlFor: props.htmlFor ?? field?.id,

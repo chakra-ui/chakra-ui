@@ -94,9 +94,8 @@ const toArray = (value?: string) => value?.split("")
 function validate(value: string, type: UsePinInputProps["type"]) {
   const NUMERIC_REGEX = /^[0-9]+$/
   const ALPHA_NUMERIC_REGEX = /^[a-zA-Z0-9]+$/i
-  return value.match(
-    type === "alphanumeric" ? ALPHA_NUMERIC_REGEX : NUMERIC_REGEX,
-  )
+  const regex = type === "alphanumeric" ? ALPHA_NUMERIC_REGEX : NUMERIC_REGEX
+  return regex.test(value)
 }
 
 export function usePinInput(props: UsePinInputProps = {}) {
@@ -225,17 +224,15 @@ export function usePinInput(props: UsePinInputProps = {}) {
             if (nextValue.length === descendants.length) {
               onComplete?.(nextValue.join(""))
             }
-          } else {
-            return
           }
-        }
+        } else {
+          // only set if the new value is a number
+          if (validate(nextValue, type)) {
+            setValue(nextValue, index)
+          }
 
-        // only set if the new value is a number
-        if (validate(nextValue, type)) {
-          setValue(nextValue, index)
+          setMoveFocus(true)
         }
-
-        setMoveFocus(true)
       }
 
       const onKeyDown = (event: React.KeyboardEvent) => {

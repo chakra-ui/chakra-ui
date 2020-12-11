@@ -87,6 +87,7 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
     display: "inline-flex",
     alignItems: "center",
     verticalAlign: "top",
+    ...styles.container,
   }
 
   const checkboxStyles = {
