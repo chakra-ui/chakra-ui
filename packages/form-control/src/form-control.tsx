@@ -35,10 +35,6 @@ export interface FormControlOptions {
    * If `true`, the form control will be readonly
    */
   isReadOnly?: boolean
-  /**
-   * If `true`, the form control will be in its `loading` state
-   */
-  isLoading?: boolean
 }
 
 interface FormControlContext extends FormControlOptions {
@@ -78,7 +74,6 @@ function useFormControlProvider(props: FormControlContext) {
     isRequired,
     isInvalid,
     isDisabled,
-    isLoading,
     isReadOnly,
     ...htmlProps
   } = props
@@ -103,7 +98,6 @@ function useFormControlProvider(props: FormControlContext) {
   const context = {
     isRequired: !!isRequired,
     isInvalid: !!isInvalid,
-    isLoading: !!isLoading,
     isReadOnly: !!isReadOnly,
     isDisabled: !!isDisabled,
     isFocused: !!isFocused,

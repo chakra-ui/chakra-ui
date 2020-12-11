@@ -1,6 +1,6 @@
 import Checkbox from "./checkbox"
 
-const parts = ["control", "label"]
+const parts = ["container", "control", "label"]
 
 function baseStyleControl(props: Record<string, any>) {
   const { control } = Checkbox.baseStyle(props)

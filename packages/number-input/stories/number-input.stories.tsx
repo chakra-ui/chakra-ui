@@ -4,6 +4,7 @@ import Lorem from "react-lorem-component"
 import { Button } from "@chakra-ui/button"
 import { Input } from "@chakra-ui/input"
 import { Stack } from "@chakra-ui/layout"
+import { useForm } from "react-hook-form"
 import {
   FormControl,
   FormErrorMessage,
@@ -184,14 +185,25 @@ export const inputSizes = () => (
   </Stack>
 )
 
-export const BugFix2242 = () => {
+export const WithReactHookForm = () => {
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      sales: 12,
+    },
+  })
+
+  const onSubmit = (data: any) => console.log(data)
+
   return (
-    <chakra.div textAlign="center" fontSize="xl">
-      <NumberInput min={-999} max={999}>
-        <NumberInputField />
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <NumberInput name="sales">
+        <NumberInputField ref={register} />
+        <NumberInputStepper>
+          <NumberIncrementStepper />
+          <NumberDecrementStepper />
+        </NumberInputStepper>
       </NumberInput>
-      <input min={-999} max={999} type="number" />
-    </chakra.div>
+    </form>
   )
 }
 

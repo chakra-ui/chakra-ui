@@ -1,5 +1,6 @@
 import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
-import { FocusLock } from "@chakra-ui/focus-lock"
+import { FocusLock, FocusLockProps } from "@chakra-ui/focus-lock"
+import { useLatestRef } from "@chakra-ui/hooks"
 import { Portal, PortalProps } from "@chakra-ui/portal"
 import {
   chakra,
@@ -31,7 +32,7 @@ import { RemoveScroll } from "react-remove-scroll"
 import { ModalTransition } from "./modal-transition"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
 
-interface ModalOptions {
+interface ModalOptions extends Pick<FocusLockProps, "lockFocusAcrossFrames"> {
   /**
    * If `false`, focus lock will be disabled completely.
    *
@@ -149,12 +150,13 @@ export const Modal: React.FC<ModalProps> = (props) => {
     allowPinchZoom,
     preserveScrollBarGap,
     motionPreset,
+    lockFocusAcrossFrames,
   } = props
 
   const styles = useMultiStyleConfig("Modal", props)
   const modal = useModal(props)
 
-  const context = {
+  const latest = useLatestRef({
     ...modal,
     autoFocus,
     trapFocus,
@@ -165,7 +167,10 @@ export const Modal: React.FC<ModalProps> = (props) => {
     allowPinchZoom,
     preserveScrollBarGap,
     motionPreset,
-  }
+    lockFocusAcrossFrames,
+  })
+
+  const context = React.useMemo(() => latest.current, [latest])
 
   return (
     <ModalContextProvider value={context}>
@@ -181,6 +186,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
 }
 
 Modal.defaultProps = {
+  lockFocusAcrossFrames: false,
   returnFocusOnClose: true,
   scrollBehavior: "outside",
   trapFocus: true,
@@ -284,6 +290,7 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
     finalFocusRef,
     returnFocusOnClose,
     preserveScrollBarGap,
+    lockFocusAcrossFrames,
   } = useModalContext()
 
   const [isPresent, safeToRemove] = usePresence()
@@ -302,6 +309,7 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
       finalFocusRef={finalFocusRef}
       restoreFocus={returnFocusOnClose}
       contentRef={dialogRef}
+      lockFocusAcrossFrames={lockFocusAcrossFrames}
     >
       <RemoveScroll
         removeScrollBar={!preserveScrollBarGap}
