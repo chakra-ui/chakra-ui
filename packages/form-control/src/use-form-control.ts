@@ -25,7 +25,7 @@ export function useFormControl<T extends HTMLElement>(
   const field = useFormControlContext()
   const describedBy: string[] = []
 
-  // Error message must be described first in all scenarios
+  // Error message must be described first in all scenarios.
   if (field?.hasFeedbackText) describedBy.push(field.feedbackId)
   if (field?.hasHelpText) describedBy.push(field.helpTextId)
   const ariaDescribedBy = describedBy.join(" ")

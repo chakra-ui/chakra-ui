@@ -87,18 +87,18 @@ function useFormControlProvider(props: FormControlContext) {
   const helpTextId = `${id}-helptext`
 
   /**
-   * Track of when the `FormErrorMessage` has been rendered.
-   * We use this to append its id the the `aria-describedby` of the `input`
+   * Track whether the `FormErrorMessage` has been rendered.
+   * We use this to append its id the the `aria-describedby` of the `input`.
    */
   const [hasFeedbackText, setHasFeedbackText] = useBoolean()
 
   /**
-   * Track of when the `FormHelperText` has been rendered.
-   * We use this to append its id the the `aria-describedby` of the `input`
+   * Track whether the `FormHelperText` has been rendered.
+   * We use this to append its id the the `aria-describedby` of the `input`.
    */
   const [hasHelpText, setHasHelpText] = useBoolean()
 
-  // Let's keep track of when we focus the form element (e.g, `input`)
+  // Track whether the form element (e.g, `input`) has focus.
   const [isFocused, setFocus] = useBoolean()
 
   const context = {
@@ -171,15 +171,15 @@ export interface HelpTextProps extends HTMLChakraProps<"div"> {}
  *
  * Assistive component that conveys additional guidance
  * about the field, such as how it will be used and what
- * types in values should be provided
+ * types in values should be provided.
  */
 export const FormHelperText = forwardRef<HelpTextProps, "div">((props, ref) => {
   const field = useFormControlContext()
   const styles = useStyles()
 
   /**
-   * Notify the field context when the help text is rendered on
-   * screen, so we can apply the correct `aria-describedby` to the field (e.g. input, textarea)
+   * Notify the field context when the help text is rendered on screen,
+   * so we can apply the correct `aria-describedby` to the field (e.g. input, textarea).
    */
   useSafeLayoutEffect(() => {
     field?.setHasHelpText.on()
