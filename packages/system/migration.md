@@ -74,7 +74,7 @@ const theme = {
   afterwards. Here's what I mean
 
 ```jsx
-const Motion = chakra(motion.div)
+const Motion = chakra(createDomMotionComponent("div"))
 
 // you can't use the `as` prop in the `Motion` component.
 // If you do, it won't work.

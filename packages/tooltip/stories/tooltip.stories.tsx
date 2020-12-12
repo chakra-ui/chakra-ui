@@ -1,7 +1,7 @@
 import { Modal, ModalContent, ModalOverlay } from "@chakra-ui/modal"
 import { Portal } from "@chakra-ui/portal"
 import { chakra } from "@chakra-ui/system"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, createDomMotionComponent, motion } from "framer-motion"
 import * as React from "react"
 import { Tooltip, useTooltip } from "../src"
 
@@ -55,6 +55,8 @@ const HookTooltip = ({ children }: any) => {
   )
 }
 
+const MotionDiv = createDomMotionComponent("div") as typeof motion.div
+
 export const Basic = () => <HookTooltip>This is me</HookTooltip>
 
 export const MultipleTooltips = () => (
@@ -84,13 +86,13 @@ export const WithTransition = () => {
         {isOpen && (
           <Portal>
             <div {...getTooltipPositionerProps()}>
-              <motion.div
+              <MotionDiv
                 initial="exit"
                 animate="enter"
                 exit="exit"
                 {...(getTooltipProps() as any)}
               >
-                <motion.div
+                <MotionDiv
                   transition={{
                     duration: 0.12,
                     ease: [0.4, 0, 0.2, 1],
@@ -114,8 +116,8 @@ export const WithTransition = () => {
                       {...getArrowProps({ style: { background: "tomato" } })}
                     />
                   </div>
-                </motion.div>
-              </motion.div>
+                </MotionDiv>
+              </MotionDiv>
             </div>
           </Portal>
         )}

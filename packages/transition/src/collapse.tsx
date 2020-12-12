@@ -1,10 +1,12 @@
 import { useUpdateEffect } from "@chakra-ui/hooks"
 import { cx, warn, __DEV__ } from "@chakra-ui/utils"
-import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
+import { AnimatePresence, createDomMotionComponent, HTMLMotionProps, motion } from "framer-motion"
 import * as React from "react"
 import { EASINGS, MotionVariants } from "./__utils"
 
 type CollapseVariants = MotionVariants<"enter" | "exit">
+
+const MotionDiv = createDomMotionComponent("div") as typeof motion.div
 
 const hasHeightValue = (value?: string | number) =>
   value != null && parseInt(value.toString(), 10) > 0
@@ -143,7 +145,7 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
       return (
         <AnimatePresence initial={false} custom={custom}>
           {isOpen && (
-            <motion.div
+            <MotionDiv
               {...ownProps}
               initial="exit"
               animate="enter"
@@ -155,7 +157,7 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
     }
 
     return (
-      <motion.div
+      <MotionDiv
         {...ownProps}
         style={{ ...ownProps.style, display }}
         initial={false}

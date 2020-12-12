@@ -23,8 +23,8 @@ import {
 import {
   AnimatePresence,
   HTMLMotionProps,
-  motion,
   usePresence,
+  createDomMotionComponent,
 } from "framer-motion"
 import * as React from "react"
 import { RemoveScroll } from "react-remove-scroll"
@@ -204,7 +204,7 @@ export interface ModalContentProps extends HTMLChakraProps<"section"> {
   containerProps?: HTMLChakraProps<"div">
 }
 
-const Motion = chakra(motion.div)
+const Motion = chakra(createDomMotionComponent("div"))
 
 /**
  * ModalContent is used to group modal's content. It has all the

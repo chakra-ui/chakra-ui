@@ -1,7 +1,7 @@
 import { useTimeout, useUpdateEffect } from "@chakra-ui/hooks"
 import { isFunction, __DEV__ } from "@chakra-ui/utils"
 import ReachAlert from "@reach/alert"
-import { motion, useIsPresent, Variants } from "framer-motion"
+import { createDomMotionComponent, motion, useIsPresent, Variants } from "framer-motion"
 import * as React from "react"
 import { ToastOptions } from "./toast.types"
 import { getToastStyle } from "./toast.utils"
@@ -101,8 +101,10 @@ export const Toast: React.FC<ToastProps> = (props) => {
 
   const style = React.useMemo(() => getToastStyle(position), [position])
 
+  const MotionLi = createDomMotionComponent("li") as typeof motion.li
+
   return (
-    <motion.li
+    <MotionLi
       layout
       className="chakra-toast"
       variants={toastMotionVariants}
@@ -125,7 +127,7 @@ export const Toast: React.FC<ToastProps> = (props) => {
       >
         {isFunction(message) ? message({ id, onClose: close }) : message}
       </ReachAlert>
-    </motion.li>
+    </MotionLi>
   )
 }
 

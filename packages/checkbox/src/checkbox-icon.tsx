@@ -1,8 +1,9 @@
 import { chakra, PropsOf } from "@chakra-ui/system"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, motion, createDomMotionComponent } from "framer-motion"
 import * as React from "react"
 
 const MotionSvg = motion.custom(chakra.svg)
+const MotionDiv = createDomMotionComponent("div") as typeof motion.div
 
 const CheckIcon = (props: PropsOf<typeof MotionSvg>) => (
   <MotionSvg
@@ -59,7 +60,7 @@ const IndeterminateIcon = (props: PropsOf<typeof MotionSvg>) => (
 const CheckboxTransition = ({ open, children }: any) => (
   <AnimatePresence initial={false}>
     {open && (
-      <motion.div
+      <MotionDiv
         variants={{
           unchecked: { scale: 0.5 },
           checked: { scale: 1 },
@@ -75,7 +76,7 @@ const CheckboxTransition = ({ open, children }: any) => (
         }}
       >
         {children}
-      </motion.div>
+      </MotionDiv>
     )}
   </AnimatePresence>
 )

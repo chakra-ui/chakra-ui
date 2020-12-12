@@ -1,9 +1,11 @@
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
+import { AnimatePresence, createDomMotionComponent, HTMLMotionProps, motion } from "framer-motion"
 import * as React from "react"
 import { EASINGS, MotionVariants } from "./__utils"
 
 export type SlideDirection = keyof typeof directions
+
+const MotionDiv = createDomMotionComponent("div") as typeof motion.div
 
 const directions = {
   bottom: {
@@ -106,7 +108,7 @@ export const Slide = React.forwardRef<HTMLDivElement, SlideProps>(
     return (
       <AnimatePresence custom={direction}>
         {shouldExpand && (
-          <motion.div
+          <MotionDiv
             ref={ref}
             initial="exit"
             className={cx("chakra-slide", className)}

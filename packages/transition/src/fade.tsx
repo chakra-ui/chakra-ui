@@ -1,9 +1,11 @@
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
+import { AnimatePresence, createDomMotionComponent, HTMLMotionProps, motion } from "framer-motion"
 import * as React from "react"
 import { EASINGS, MotionVariants } from "./__utils"
 
 type FadeMotionVariant = MotionVariants<"enter" | "exit">
+
+const MotionDiv = createDomMotionComponent("div") as typeof motion.div
 
 const variants: FadeMotionVariant = {
   exit: {
@@ -48,7 +50,7 @@ export const Fade = React.forwardRef<HTMLDivElement, FadeProps>(
     return (
       <AnimatePresence>
         {shouldExpand && (
-          <motion.div
+          <MotionDiv
             ref={ref}
             className={cx("chakra-fade", className)}
             {...fadeConfig}

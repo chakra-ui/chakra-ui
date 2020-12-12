@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/system"
 import { isString, omit, pick, __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
-import { AnimatePresence, motion, Variants } from "framer-motion"
+import { AnimatePresence, createDomMotionComponent, Variants } from "framer-motion"
 import * as React from "react"
 import { useTooltip, UseTooltipProps } from "./use-tooltip"
 
@@ -45,7 +45,7 @@ export interface TooltipProps
   hasArrow?: boolean
 }
 
-const StyledTooltip = chakra(motion.div)
+const StyledTooltip = chakra(createDomMotionComponent("div"))
 
 const scaleVariants: Variants = {
   exit: {

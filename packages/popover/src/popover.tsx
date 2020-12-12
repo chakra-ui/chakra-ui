@@ -17,7 +17,7 @@ import {
   runIfFn,
   __DEV__,
 } from "@chakra-ui/utils"
-import { motion, Variants } from "framer-motion"
+import { createDomMotionComponent, Variants } from "framer-motion"
 import * as React from "react"
 import { usePopover, UsePopoverProps, UsePopoverReturn } from "./use-popover"
 
@@ -108,7 +108,7 @@ if (__DEV__) {
 
 export interface PopoverContentProps extends HTMLChakraProps<"section"> {}
 
-const Motion = chakra(motion.section)
+const Motion = chakra(createDomMotionComponent("section"))
 
 export const PopoverContent = forwardRef<PopoverContentProps, "section">(
   (props, ref) => {

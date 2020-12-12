@@ -12,7 +12,7 @@ import {
   useStyles,
 } from "@chakra-ui/system"
 import { cx, MaybeRenderProp, runIfFn, __DEV__ } from "@chakra-ui/utils"
-import { motion, Variants } from "framer-motion"
+import { createDomMotionComponent, Variants } from "framer-motion"
 import * as React from "react"
 import {
   MenuProvider,
@@ -144,7 +144,7 @@ const motionVariants: Variants = {
   },
 }
 
-const Motion = chakra(motion.div)
+const Motion = chakra(createDomMotionComponent("div"))
 
 export const MenuList = forwardRef<MenuListProps, "div">((props, ref) => {
   const { isOpen, onTransitionEnd } = useMenuContext()

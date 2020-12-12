@@ -1,7 +1,9 @@
 import { useDisclosure } from "@chakra-ui/hooks"
-import { AnimatePresence, motion, Variants } from "framer-motion"
+import { AnimatePresence, motion, Variants, createDomMotionComponent } from "framer-motion"
 import * as React from "react"
 import { usePopper } from "../src"
+
+const MotionDiv = createDomMotionComponent("div") as typeof motion.div
 
 export default {
   title: "Popper",
@@ -86,7 +88,7 @@ export const WithTransition = () => {
       <div {...getPopperProps()}>
         <AnimatePresence>
           {isOpen && (
-            <motion.div
+            <MotionDiv
               transition={{
                 duration: 0.15,
                 easings: "easeInOut",
@@ -106,7 +108,7 @@ export const WithTransition = () => {
               <div {...getArrowWrapperProps()}>
                 <div {...getArrowProps({ style: { background: bg } })} />
               </div>
-            </motion.div>
+            </MotionDiv>
           )}
         </AnimatePresence>
       </div>
