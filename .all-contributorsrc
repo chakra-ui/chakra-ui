@@ -1610,6 +1610,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "gifaeriyanto",
+      "name": "Gifa Eriyanto",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/6601377?v=4",
+      "profile": "https://medium.com/@gifa.eriyanto",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
