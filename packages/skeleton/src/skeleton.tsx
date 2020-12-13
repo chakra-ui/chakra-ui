@@ -67,14 +67,13 @@ const fade = keyframes({
 
 const useIsFirstRender = () => {
   const isFirstRender = React.useRef(true)
-  
+
   React.useEffect(() => {
     isFirstRender.current = false
   }, [])
-  
+
   return isFirstRender.current
 }
-
 
 export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
   const styles = useStyleConfig("Skeleton", props)
@@ -93,7 +92,7 @@ export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
   const _className = cx("chakra-skeleton", className)
 
   if (isLoaded) {
-    const animation = isFirstRender ? null : `${fade} ${fadeDuration}s`
+    const animation = isFirstRender ? "none" : `${fade} ${fadeDuration}s`
 
     return (
       <chakra.div
