@@ -7,35 +7,36 @@ import {
   makeConfig,
 } from "../utils"
 
-const m_fn = makeConfig("space", positiveOrNegative)
-const p_fn = makeConfig("space")
+const m = makeConfig("space", positiveOrNegative)
+const p = makeConfig("space")
 
 const config: Config = {
-  margin: m_fn("margin"),
-  marginTop: m_fn("marginTop"),
-  marginBlockStart: m_fn("marginBlockStart"),
-  marginRight: m_fn("marginRight"),
-  marginInlineEnd: m_fn("marginInlineEnd"),
-  marginBottom: m_fn("marginBottom"),
-  marginBlockEnd: m_fn("marginBlockEnd"),
-  marginLeft: m_fn("marginLeft"),
-  marginInlineStart: m_fn("marginInlineStart"),
-  marginX: m_fn(["marginLeft", "marginRight"]),
-  marginInline: m_fn("marginInline"),
-  marginY: m_fn(["marginTop", "marginBottom"]),
-  marginBlock: m_fn("marginBlock"),
-  padding: p_fn("padding"),
-  paddingTop: p_fn("paddingTop"),
-  paddingBlockStart: p_fn("paddingBlockStart"),
-  paddingRight: p_fn("paddingRight"),
-  paddingBottom: p_fn("paddingBottom"),
-  paddingBlockEnd: p_fn("paddingBlockEnd"),
-  paddingLeft: p_fn("paddingLeft"),
-  paddingInlineStart: p_fn("paddingInlineStart"),
-  paddingX: p_fn(["paddingLeft", "paddingRight"]),
-  paddingInline: p_fn("paddingInline"),
-  paddingY: p_fn(["paddingTop", "paddingBottom"]),
-  paddingBlock: p_fn("paddingBlock"),
+  margin: m("margin"),
+  marginTop: m("marginTop"),
+  marginBlockStart: m("marginBlockStart"),
+  marginRight: m("marginRight"),
+  marginInlineEnd: m("marginInlineEnd"),
+  marginBottom: m("marginBottom"),
+  marginBlockEnd: m("marginBlockEnd"),
+  marginLeft: m("marginLeft"),
+  marginInlineStart: m("marginInlineStart"),
+  marginX: m(["marginLeft", "marginRight"]),
+  marginInline: m("marginInline"),
+  marginY: m(["marginTop", "marginBottom"]),
+  marginBlock: m("marginBlock"),
+  padding: p("padding"),
+  paddingTop: p("paddingTop"),
+  paddingBlockStart: p("paddingBlockStart"),
+  paddingRight: p("paddingRight"),
+  paddingBottom: p("paddingBottom"),
+  paddingBlockEnd: p("paddingBlockEnd"),
+  paddingLeft: p("paddingLeft"),
+  paddingInlineStart: p("paddingInlineStart"),
+  paddingInlineEnd: p("paddingInlineEnd"),
+  paddingX: p(["paddingLeft", "paddingRight"]),
+  paddingInline: p("paddingInline"),
+  paddingY: p(["paddingTop", "paddingBottom"]),
+  paddingBlock: p("paddingBlock"),
 }
 
 config.m = config.margin
@@ -53,6 +54,8 @@ config.my = config.marginY
 config.myBidi = config.marginBlock
 config.p = config.padding
 config.pt = config.paddingTop
+config.py = config.paddingY
+config.px = config.paddingX
 config.ptBidi = config.paddingBlockStart
 config.pb = config.paddingBottom
 config.pbBidi = config.paddingBlockEnd

@@ -148,7 +148,7 @@ export const css = (args: StyleObjectOrFn = {}) => (
 
     const key = k in pseudoSelectors ? pseudoSelectors[k] : k
     let config = (parser.config as Dict)[key]
-    
+
     if (config === true) {
       // shortcut definition
       config = {
