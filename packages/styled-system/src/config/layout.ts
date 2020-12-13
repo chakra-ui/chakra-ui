@@ -112,6 +112,7 @@ export interface LayoutProps {
    * The CSS `width` property
    */
   w?: ResponsiveValue<CSS.Property.Width<Length>>
+  inlineSize?: ResponsiveValue<CSS.Property.InlineSize<Length>>
   wBidi?: ResponsiveValue<CSS.Property.InlineSize<Length>>
   /**
    * The CSS `width` and `height` property
@@ -125,6 +126,7 @@ export interface LayoutProps {
    * The CSS `max-width` property
    */
   maxW?: ResponsiveValue<CSS.Property.MaxWidth<Length>>
+  maxInlineSize?: ResponsiveValue<CSS.Property.MaxInlineSize<Length>>
   maxWBidi?: ResponsiveValue<CSS.Property.MaxInlineSize<Length>>
   /**
    * The CSS `min-width` property
@@ -134,6 +136,7 @@ export interface LayoutProps {
    * The CSS `min-width` property
    */
   minW?: ResponsiveValue<CSS.Property.MinWidth<Length>>
+  minInlineSize?: ResponsiveValue<CSS.Property.MinInlineSize<Length>>
   minWBidi?: ResponsiveValue<CSS.Property.MinInlineSize<Length>>
   /**
    * The CSS `height` property
@@ -143,6 +146,7 @@ export interface LayoutProps {
    * The CSS `height` property
    */
   h?: ResponsiveValue<CSS.Property.Height<Length>>
+  blockSize?: ResponsiveValue<CSS.Property.BlockSize<Length>>
   hBidi?: ResponsiveValue<CSS.Property.BlockSize<Length>>
   /**
    * The CSS `max-height` property
@@ -152,6 +156,7 @@ export interface LayoutProps {
    * The CSS `max-height` property
    */
   maxH?: ResponsiveValue<CSS.Property.MaxHeight<Length>>
+  maxBlockSize?: ResponsiveValue<CSS.Property.MaxBlockSize<Length>>
   maxHBidi?: ResponsiveValue<CSS.Property.MaxBlockSize<Length>>
   /**
    * The CSS `min-height` property
@@ -161,6 +166,7 @@ export interface LayoutProps {
    * The CSS `min-height` property
    */
   minH?: ResponsiveValue<CSS.Property.MinHeight<Length>>
+  minBlockSize?: ResponsiveValue<CSS.Property.MinBlockSize<Length>>
   minHBidi?: ResponsiveValue<CSS.Property.MinBlockSize<Length>>
   /**
    * The CSS `vertical-align` property

@@ -1,52 +1,37 @@
 import { Config, createParser, system } from "@styled-system/core"
 import * as CSS from "csstype"
-import { Length, positiveOrNegative, ResponsiveValue } from "../utils"
+import {
+  Length,
+  makeConfig,
+  positiveOrNegative,
+  ResponsiveValue,
+} from "../utils"
+
+const fn = makeConfig("space", positiveOrNegative)
 
 const config: Config = {
   position: true,
-  pos: {
-    property: "position",
-  },
-  zIndex: {
-    property: "zIndex",
-    scale: "zIndices",
-  },
-  inset: {
-    properties: ["left", "top", "bottom", "right"],
-    scale: "space",
-    transform: positiveOrNegative,
-  },
-  insetX: {
-    properties: ["left", "right"],
-    scale: "space",
-    transform: positiveOrNegative,
-  },
-  insetY: {
-    properties: ["top", "bottom"],
-    scale: "space",
-    transform: positiveOrNegative,
-  },
-  top: {
-    property: "top",
-    scale: "space",
-    transform: positiveOrNegative,
-  },
-  right: {
-    property: "right",
-    scale: "space",
-    transform: positiveOrNegative,
-  },
-  bottom: {
-    property: "bottom",
-    scale: "space",
-    transform: positiveOrNegative,
-  },
-  left: {
-    property: "left",
-    scale: "space",
-    transform: positiveOrNegative,
-  },
+  pos: { property: "position" },
+  zIndex: { property: "zIndex", scale: "zIndices" },
+  inset: fn("inset"),
+  insetX: fn(["left", "right"]),
+  insetInline: fn("insetInline"),
+  insetY: fn(["top", "bottom"]),
+  insetBlock: fn("insetBlock"),
+  top: fn("top"),
+  insetBlockStart: fn("insetBlockStart"),
+  bottom: fn("bottom"),
+  insetBlockEnd: fn("insetBlockEnd"),
+  left: fn("left"),
+  insetInlineStart: fn("insetInlineStart"),
+  right: fn("right"),
+  insetInlineEnd: fn("insetInlineEnd"),
 }
+
+config.topBidi = config.insetBlockStart
+config.bottomBidi = config.insetBlockEnd
+config.leftBidi = config.insetInlineStart
+config.rightBidi = config.insetInlineEnd
 
 /**
  * Types for position CSS properties
@@ -60,18 +45,26 @@ export interface PositionProps {
    * The CSS `top` property
    */
   top?: ResponsiveValue<CSS.Property.Top<Length>>
+  insetBlockStart?: ResponsiveValue<CSS.Property.InsetBlockStart<Length>>
+  topBidi?: ResponsiveValue<CSS.Property.InsetBlockStart<Length>>
   /**
    * The CSS `right` property
    */
   right?: ResponsiveValue<CSS.Property.Right<Length>>
+  insetInlineEnd?: ResponsiveValue<CSS.Property.InsetInlineEnd<Length>>
+  rightBidi?: ResponsiveValue<CSS.Property.InsetInlineEnd<Length>>
   /**
    * The CSS `bottom` property
    */
   bottom?: ResponsiveValue<CSS.Property.Bottom<Length>>
+  insetBlockEnd?: ResponsiveValue<CSS.Property.InsetBlockEnd<Length>>
+  bottomBidi?: ResponsiveValue<CSS.Property.InsetBlockEnd<Length>>
   /**
    * The CSS `left` property
    */
   left?: ResponsiveValue<CSS.Property.Left<Length>>
+  insetInlineStart?: ResponsiveValue<CSS.Property.InsetInlineStart<Length>>
+  leftBidi?: ResponsiveValue<CSS.Property.InsetInlineStart<Length>>
   /**
    * The CSS `left`, `right`, `top`, `bottom` property
    */
@@ -92,6 +85,8 @@ export interface PositionProps {
    * The CSS `position` property
    */
   position?: ResponsiveValue<CSS.Property.Position>
+  insetInline: ResponsiveValue<CSS.Property.InsetInline>
+  insetBlock: ResponsiveValue<CSS.Property.InsetBlock>
 }
 
 export const position = system(config)

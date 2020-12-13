@@ -1,135 +1,65 @@
+import { Config, createParser, system } from "@styled-system/core"
 import * as CSS from "csstype"
-import { createParser, Config, system } from "@styled-system/core"
-import { positiveOrNegative, ResponsiveValue, Length } from "../utils"
+import {
+  Length,
+  positiveOrNegative,
+  ResponsiveValue,
+  makeConfig,
+} from "../utils"
+
+const m_fn = makeConfig("space", positiveOrNegative)
+const p_fn = makeConfig("space")
 
 const config: Config = {
-  margin: {
-    property: "margin",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  m: {
-    property: "margin",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  marginTop: {
-    property: "marginTop",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  mt: {
-    property: "marginTop",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  marginRight: {
-    property: "marginRight",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  mr: {
-    property: "marginRight",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  marginBottom: {
-    property: "marginBottom",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  mb: {
-    property: "marginBottom",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  marginLeft: {
-    property: "marginLeft",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  ml: {
-    property: "marginLeft",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  marginX: {
-    properties: ["marginLeft", "marginRight"],
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  mx: {
-    properties: ["marginLeft", "marginRight"],
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  marginY: {
-    properties: ["marginTop", "marginBottom"],
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  my: {
-    properties: ["marginTop", "marginBottom"],
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  padding: {
-    property: "padding",
-    scale: "space",
-  },
-  p: {
-    property: "padding",
-    scale: "space",
-  },
-  paddingTop: {
-    property: "paddingTop",
-    scale: "space",
-  },
-  pt: {
-    property: "paddingTop",
-    scale: "space",
-  },
-  paddingRight: {
-    property: "paddingRight",
-    scale: "space",
-  },
-  pr: {
-    property: "paddingRight",
-    scale: "space",
-  },
-  paddingBottom: {
-    property: "paddingBottom",
-    scale: "space",
-  },
-  pb: {
-    property: "paddingBottom",
-    scale: "space",
-  },
-  paddingLeft: {
-    property: "paddingLeft",
-    scale: "space",
-  },
-  pl: {
-    property: "paddingLeft",
-    scale: "space",
-  },
-  paddingX: {
-    properties: ["paddingLeft", "paddingRight"],
-    scale: "space",
-  },
-  px: {
-    properties: ["paddingLeft", "paddingRight"],
-    scale: "space",
-  },
-  paddingY: {
-    properties: ["paddingTop", "paddingBottom"],
-    scale: "space",
-  },
-  py: {
-    properties: ["paddingTop", "paddingBottom"],
-    scale: "space",
-  },
+  margin: m_fn("margin"),
+  marginTop: m_fn("marginTop"),
+  marginBlockStart: m_fn("marginBlockStart"),
+  marginRight: m_fn("marginRight"),
+  marginInlineEnd: m_fn("marginInlineEnd"),
+  marginBottom: m_fn("marginBottom"),
+  marginBlockEnd: m_fn("marginBlockEnd"),
+  marginLeft: m_fn("marginLeft"),
+  marginInlineStart: m_fn("marginInlineStart"),
+  marginX: m_fn(["marginLeft", "marginRight"]),
+  marginInline: m_fn("marginInline"),
+  marginY: m_fn(["marginTop", "marginBottom"]),
+  marginBlock: m_fn("marginBlock"),
+  padding: p_fn("padding"),
+  paddingTop: p_fn("paddingTop"),
+  paddingBlockStart: p_fn("paddingBlockStart"),
+  paddingRight: p_fn("paddingRight"),
+  paddingBottom: p_fn("paddingBottom"),
+  paddingBlockEnd: p_fn("paddingBlockEnd"),
+  paddingLeft: p_fn("paddingLeft"),
+  paddingInlineStart: p_fn("paddingInlineStart"),
+  paddingX: p_fn(["paddingLeft", "paddingRight"]),
+  paddingInline: p_fn("paddingInline"),
+  paddingY: p_fn(["paddingTop", "paddingBottom"]),
+  paddingBlock: p_fn("paddingBlock"),
 }
+
+config.m = config.margin
+config.mt = config.marginTop
+config.mtBidi = config.marginBlockStart
+config.mr = config.marginRight
+config.mrBidi = config.marginInlineEnd
+config.mb = config.marginBottom
+config.mbBidi = config.marginBlockEnd
+config.ml = config.marginLeft
+config.mlBidi = config.marginInlineStart
+config.mx = config.marginX
+config.mxBidi = config.marginInline
+config.my = config.marginY
+config.myBidi = config.marginBlock
+config.p = config.padding
+config.pt = config.paddingTop
+config.ptBidi = config.paddingBlockStart
+config.pb = config.paddingBottom
+config.pbBidi = config.paddingBlockEnd
+config.pl = config.paddingLeft
+config.plBidi = config.paddingInlineStart
+config.pr = config.paddingRight
+config.prBidi = config.paddingInlineEnd
 
 /**
  * Types for space related CSS properties
@@ -147,6 +77,8 @@ export interface SpaceProps {
    * Margin on top
    */
   mt?: ResponsiveValue<CSS.Property.Margin<Length>>
+  marginBlockStart?: ResponsiveValue<CSS.Property.MarginBlockStart<Length>>
+  mtBidi?: ResponsiveValue<CSS.Property.MarginBlockStart<Length>>
   /**
    * Margin on top
    */
@@ -155,6 +87,8 @@ export interface SpaceProps {
    * Margin on right
    */
   mr?: ResponsiveValue<CSS.Property.MarginRight<Length>>
+  marginInlineEnd?: ResponsiveValue<CSS.Property.MarginInlineEnd<Length>>
+  mrBidi?: ResponsiveValue<CSS.Property.MarginInlineEnd<Length>>
   /**
    * Margin on right
    */
@@ -163,6 +97,8 @@ export interface SpaceProps {
    * Margin on bottom
    */
   mb?: ResponsiveValue<CSS.Property.MarginBottom<Length>>
+  marginBlockEnd?: ResponsiveValue<CSS.Property.MarginBlockEnd<Length>>
+  mbBidi?: ResponsiveValue<CSS.Property.MarginBlockEnd<Length>>
   /**
    * Margin on bottom
    */
@@ -171,6 +107,8 @@ export interface SpaceProps {
    * Margin on left
    */
   ml?: ResponsiveValue<CSS.Property.MarginLeft<Length>>
+  marginInlineStart?: ResponsiveValue<CSS.Property.MarginInlineStart<Length>>
+  mlBidi?: ResponsiveValue<CSS.Property.MarginInlineStart<Length>>
   /**
    * Margin on left
    */
@@ -179,6 +117,8 @@ export interface SpaceProps {
    * Margin on left and right
    */
   mx?: ResponsiveValue<CSS.Property.Margin<Length>>
+  marginInline?: ResponsiveValue<CSS.Property.MarginInline<Length>>
+  mxBidi?: ResponsiveValue<CSS.Property.MarginInline<Length>>
   /**
    * Margin on left and right
    */
@@ -187,6 +127,8 @@ export interface SpaceProps {
    * Margin on top and bottom
    */
   my?: ResponsiveValue<CSS.Property.Margin<Length>>
+  marginBlock?: ResponsiveValue<CSS.Property.MarginBlock<Length>>
+  myBidi?: ResponsiveValue<CSS.Property.MarginBlock<Length>>
   /**
    * Margin on top and bottom
    */
@@ -203,6 +145,8 @@ export interface SpaceProps {
    * Padding on top
    */
   pt?: ResponsiveValue<CSS.Property.PaddingTop<Length>>
+  paddingBlockStart?: ResponsiveValue<CSS.Property.PaddingBlockStart<Length>>
+  ptBidi?: ResponsiveValue<CSS.Property.PaddingBlockStart<Length>>
   /**
    * Padding on top
    */
@@ -211,6 +155,8 @@ export interface SpaceProps {
    * Padding on right
    */
   pr?: ResponsiveValue<CSS.Property.PaddingRight<Length>>
+  paddingInlineEnd?: ResponsiveValue<CSS.Property.PaddingInlineEnd<Length>>
+  prBidi?: ResponsiveValue<CSS.Property.PaddingInlineEnd<Length>>
   /**
    * Padding on right
    */
@@ -219,6 +165,8 @@ export interface SpaceProps {
    * Padding on bottom
    */
   pb?: ResponsiveValue<CSS.Property.PaddingBottom<Length>>
+  paddingBlockEnd?: ResponsiveValue<CSS.Property.PaddingBlockEnd<Length>>
+  pbBidi?: ResponsiveValue<CSS.Property.PaddingBlockEnd<Length>>
   /**
    * Padding on bottom
    */
@@ -227,6 +175,8 @@ export interface SpaceProps {
    * Padding on left
    */
   pl?: ResponsiveValue<CSS.Property.PaddingLeft<Length>>
+  paddingInlineStart?: ResponsiveValue<CSS.Property.PaddingInlineStart<Length>>
+  plBidi?: ResponsiveValue<CSS.Property.PaddingInlineStart<Length>>
   /**
    * Padding on left
    */
@@ -235,6 +185,8 @@ export interface SpaceProps {
    * Padding on left and right
    */
   px?: ResponsiveValue<CSS.Property.Padding<Length>>
+  paddingInline?: ResponsiveValue<CSS.Property.PaddingInline<Length>>
+  pxBidi?: ResponsiveValue<CSS.Property.PaddingInline<Length>>
   /**
    * Padding on left and right
    */
@@ -243,6 +195,8 @@ export interface SpaceProps {
    * Padding on top and bottom
    */
   py?: ResponsiveValue<CSS.Property.Padding<Length>>
+  paddingBlock?: ResponsiveValue<CSS.Property.PaddingBlock<Length>>
+  pyBidi?: ResponsiveValue<CSS.Property.PaddingBlock<Length>>
   /**
    * Padding on top and bottom
    */

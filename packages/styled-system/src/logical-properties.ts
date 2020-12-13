@@ -15,9 +15,11 @@ const cssLogicalPropertiesMap = {
   "paddingTop|pt": "paddingBlockStart",
   "paddingBottom|pb": "paddingBlockEnd",
   "paddingLeft|pl": "paddingInlineStart",
-  "paddingRight|pr": "paddingInlineStart",
+  "paddingRight|pr": "paddingInlineEnd",
   "marginY|my": "marginBlock",
   "marginX|mx": "marginInline",
+  "paddingY|py": "paddingBlock",
+  "paddingX|px": "paddingInline",
 
   // Floating and positioning logical properties
   top: "insetBlockStart",
