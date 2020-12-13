@@ -198,7 +198,6 @@ test("has the correct data attributes", () => {
       isRequired
       isInvalid
       isDisabled
-      isLoading
       isReadOnly
     >
       <FormLabel data-testid="label">Name</FormLabel>
@@ -218,7 +217,5 @@ test("has the correct data attributes", () => {
 
   expect(label).toHaveAttribute("data-focus")
   expect(label).toHaveAttribute("data-invalid")
-
-  expect(label).toHaveAttribute("data-loading")
   expect(label).toHaveAttribute("data-readonly")
 })

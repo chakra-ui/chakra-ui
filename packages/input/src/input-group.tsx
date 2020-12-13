@@ -17,7 +17,7 @@ export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
   const { children, className, ...rest } = omitThemingProps(props)
 
   const _className = cx("chakra-input__group", className)
-  const stylesRef = React.useRef<InputGroupProps>({})
+  const groupStyles: InputGroupProps = {}
 
   const validChildren = getValidChildren(children)
 
@@ -27,19 +27,19 @@ export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
     if (!styles) return
 
     if (input && child.type.id === "InputLeftElement") {
-      stylesRef.current.paddingLeft = input.height ?? input.h
+      groupStyles.paddingLeft = input.height ?? input.h
     }
 
     if (input && child.type.id === "InputRightElement") {
-      stylesRef.current.paddingRight = input.height ?? input.h
+      groupStyles.paddingRight = input.height ?? input.h
     }
 
     if (child.type.id === "InputRightAddon") {
-      stylesRef.current.borderRightRadius = 0
+      groupStyles.borderRightRadius = 0
     }
 
     if (child.type.id === "InputLeftAddon") {
-      stylesRef.current.borderLeftRadius = 0
+      groupStyles.borderLeftRadius = 0
     }
   })
 
@@ -58,10 +58,10 @@ export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
       ? React.cloneElement(child, theming)
       : React.cloneElement(child, {
           ...theming,
-          paddingLeft: pl ?? paddingLeft ?? stylesRef.current?.paddingLeft,
-          paddingRight: pr ?? paddingRight ?? stylesRef.current?.paddingRight,
-          borderLeftRadius: stylesRef.current?.borderLeftRadius,
-          borderRightRadius: stylesRef.current?.borderRightRadius,
+          paddingLeft: pl ?? paddingLeft ?? groupStyles?.paddingLeft,
+          paddingRight: pr ?? paddingRight ?? groupStyles?.paddingRight,
+          borderLeftRadius: groupStyles?.borderLeftRadius,
+          borderRightRadius: groupStyles?.borderRightRadius,
         })
   })
 

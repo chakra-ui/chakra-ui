@@ -1,16 +1,16 @@
 import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
-import { FocusLock } from "@chakra-ui/focus-lock"
+import { FocusLock, FocusLockProps } from "@chakra-ui/focus-lock"
 import { Portal, PortalProps } from "@chakra-ui/portal"
 import {
   chakra,
   ChakraProps,
   forwardRef,
+  HTMLChakraProps,
   StylesProvider,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
-  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { fadeConfig } from "@chakra-ui/transition"
 import {
@@ -31,7 +31,7 @@ import { RemoveScroll } from "react-remove-scroll"
 import { ModalTransition } from "./modal-transition"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
 
-interface ModalOptions {
+interface ModalOptions extends Pick<FocusLockProps, "lockFocusAcrossFrames"> {
   /**
    * If `false`, focus lock will be disabled completely.
    *
@@ -149,6 +149,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     allowPinchZoom,
     preserveScrollBarGap,
     motionPreset,
+    lockFocusAcrossFrames,
   } = props
 
   const styles = useMultiStyleConfig("Modal", props)
@@ -165,6 +166,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     allowPinchZoom,
     preserveScrollBarGap,
     motionPreset,
+    lockFocusAcrossFrames,
   }
 
   return (
@@ -181,6 +183,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
 }
 
 Modal.defaultProps = {
+  lockFocusAcrossFrames: true,
   returnFocusOnClose: true,
   scrollBehavior: "outside",
   trapFocus: true,
@@ -284,6 +287,7 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
     finalFocusRef,
     returnFocusOnClose,
     preserveScrollBarGap,
+    lockFocusAcrossFrames,
   } = useModalContext()
 
   const [isPresent, safeToRemove] = usePresence()
@@ -302,6 +306,7 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
       finalFocusRef={finalFocusRef}
       restoreFocus={returnFocusOnClose}
       contentRef={dialogRef}
+      lockFocusAcrossFrames={lockFocusAcrossFrames}
     >
       <RemoveScroll
         removeScrollBar={!preserveScrollBarGap}
