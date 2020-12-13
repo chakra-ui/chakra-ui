@@ -48,6 +48,14 @@ export const WithFade = () => {
   )
 }
 
+export const WithFadeAlreadyLoaded = () => {
+  return (
+    <Skeleton isLoaded={true}>
+      <span>This should not fade in</span>
+    </Skeleton>
+  )
+}
+
 export const WithNoFade = () => {
   const [hasLoaded, setHasLoaded] = React.useState(false)
 
