@@ -26,19 +26,15 @@ const config: Config = {
     property: "borderRadius",
     scale: "radii",
   },
-  rounded: {
-    property: "borderRadius",
-    scale: "radii",
-  },
   borderTop: {
     property: "borderTop",
     scale: "borders",
   },
-  borderTopLeftRadius: {
-    property: "borderTopLeftRadius",
-    scale: "radii",
+  borderBlockStart: {
+    property: "borderBlockStart",
+    scale: "borders",
   },
-  roundedTopLeft: {
+  borderTopLeftRadius: {
     property: "borderTopLeftRadius",
     scale: "radii",
   },
@@ -46,23 +42,23 @@ const config: Config = {
     property: "borderTopRightRadius",
     scale: "radii",
   },
-  roundedTopRight: {
-    property: "borderTopRightRadius",
-    scale: "radii",
-  },
   borderRight: {
     property: "borderRight",
+    scale: "borders",
+  },
+  borderInlineEnd: {
+    property: "borderInlineEnd",
     scale: "borders",
   },
   borderBottom: {
     property: "borderBottom",
     scale: "borders",
   },
-  borderBottomLeftRadius: {
-    property: "borderBottomLeftRadius",
-    scale: "radii",
+  borderBlockEnd: {
+    property: "borderBlockEnd",
+    scale: "borders",
   },
-  roundedBottomLeft: {
+  borderBottomLeftRadius: {
     property: "borderBottomLeftRadius",
     scale: "radii",
   },
@@ -70,75 +66,128 @@ const config: Config = {
     property: "borderBottomRightRadius",
     scale: "radii",
   },
-  roundedBottomRight: {
-    property: "borderBottomRightRadius",
-    scale: "radii",
-  },
   borderLeft: {
     property: "borderLeft",
+    scale: "borders",
+  },
+  borderInlineStart: {
+    property: "borderInlineStart",
     scale: "borders",
   },
   borderX: {
     properties: ["borderLeft", "borderRight"],
     scale: "borders",
   },
+  borderInline: {
+    property: "borderInline",
+    scale: "borders",
+  },
   borderY: {
     properties: ["borderTop", "borderBottom"],
+    scale: "borders",
+  },
+  borderBlock: {
+    property: "borderBlock",
     scale: "borders",
   },
   borderTopWidth: {
     property: "borderTopWidth",
     scale: "borderWidths",
   },
+  borderBlockStartWidth: {
+    property: "borderBlockStartWidth",
+    scale: "borderWidths",
+  },
   borderTopColor: {
     property: "borderTopColor",
+    scale: "colors",
+  },
+  borderBlockStartColor: {
+    property: "borderBlockStartColor",
     scale: "colors",
   },
   borderTopStyle: {
     property: "borderTopStyle",
     scale: "borderStyles",
   },
+  borderBlockStartStyle: {
+    property: "borderBlockStartStyle",
+    scale: "borderStyles",
+  },
   borderBottomWidth: {
     property: "borderBottomWidth",
     scale: "borderWidths",
   },
+  borderBlockEndWidth: {
+    property: "borderBlockEndWidth",
+    scale: "borderWidths",
+  },
+
   borderBottomColor: {
     property: "borderBottomColor",
+    scale: "colors",
+  },
+  borderBlockEndColor: {
+    property: "borderBlockEndColor",
     scale: "colors",
   },
   borderBottomStyle: {
     property: "borderBottomStyle",
     scale: "borderStyles",
   },
+  borderBlockEndStyle: {
+    property: "borderBlockEndStyle",
+    scale: "borderStyles",
+  },
   borderLeftWidth: {
     property: "borderLeftWidth",
+    scale: "borderWidths",
+  },
+  borderInlineStartWidth: {
+    property: "borderInlineStartWidth",
     scale: "borderWidths",
   },
   borderLeftColor: {
     property: "borderLeftColor",
     scale: "colors",
   },
+  borderInlineStartColor: {
+    property: "borderInlineStartColor",
+    scale: "colors",
+  },
   borderLeftStyle: {
     property: "borderLeftStyle",
+    scale: "borderStyles",
+  },
+  borderInlineStartStyle: {
+    property: "borderInlineStartStyle",
     scale: "borderStyles",
   },
   borderRightWidth: {
     property: "borderRightWidth",
     scale: "borderWidths",
   },
+  borderInlineEndWidth: {
+    property: "borderInlineEndWidth",
+    scale: "borderWidths",
+  },
   borderRightColor: {
     property: "borderRightColor",
+    scale: "colors",
+  },
+  borderInlineEndColor: {
+    property: "borderInlineEndColor",
     scale: "colors",
   },
   borderRightStyle: {
     property: "borderRightStyle",
     scale: "borderStyles",
   },
-  borderTopRadius: {
-    properties: ["borderTopLeftRadius", "borderTopRightRadius"],
-    scale: "radii",
+  borderInlineEndStyle: {
+    property: "borderInlineEndStyle",
+    scale: "borderStyles",
   },
-  roundedTop: {
+  borderTopRadius: {
     properties: ["borderTopLeftRadius", "borderTopRightRadius"],
     scale: "radii",
   },
@@ -146,15 +195,7 @@ const config: Config = {
     properties: ["borderBottomLeftRadius", "borderBottomRightRadius"],
     scale: "radii",
   },
-  roundedBottom: {
-    properties: ["borderBottomLeftRadius", "borderBottomRightRadius"],
-    scale: "radii",
-  },
   borderLeftRadius: {
-    properties: ["borderTopLeftRadius", "borderBottomLeftRadius"],
-    scale: "radii",
-  },
-  roundedLeft: {
     properties: ["borderTopLeftRadius", "borderBottomLeftRadius"],
     scale: "radii",
   },
@@ -162,11 +203,17 @@ const config: Config = {
     properties: ["borderTopRightRadius", "borderBottomRightRadius"],
     scale: "radii",
   },
-  roundedRight: {
-    properties: ["borderTopRightRadius", "borderBottomRightRadius"],
-    scale: "radii",
-  },
 }
+
+config.rounded = config.borderRadius
+config.roundedTop = config.borderTopRadius
+config.roundedBottom = config.borderBottomRadius
+config.roundedLeft = config.borderLeftRadius
+config.roundedRight = config.borderRightRadius
+config.roundedTopLeft = config.borderTopLeftRadius
+config.roundedTopRight = config.borderTopRightRadius
+config.roundedBottomLeft = config.borderBottomLeftRadius
+config.roundedBottomRight = config.borderBottomRightRadius
 
 /**
  * The prop types for border properties listed above
@@ -200,66 +247,90 @@ export interface BorderProps {
    * The CSS `border-top` property
    */
   borderTop?: ResponsiveValue<CSS.Property.BorderTop<Length>>
+  borderBlockStart?: ResponsiveValue<CSS.Property.BorderBlockStart<Length>>
   /**
    * The CSS `border-top-width` property
    */
   borderTopWidth?: ResponsiveValue<CSS.Property.BorderWidth<Length>>
+  borderBlockStartWidth?: ResponsiveValue<
+    CSS.Property.BorderBlockStartWidth<Length>
+  >
   /**
    * The CSS `border-bottom-width` property
    */
   borderBottomWidth?: ResponsiveValue<CSS.Property.BorderWidth<Length>>
+  borderBlockEndWidth?: ResponsiveValue<
+    CSS.Property.BorderBlockEndWidth<Length>
+  >
   /**
    * The CSS `border-left-width` property
    */
   borderLeftWidth?: ResponsiveValue<CSS.Property.BorderWidth<Length>>
+  borderInlineStartWidth?: ResponsiveValue<
+    CSS.Property.BorderInlineStartWidth<Length>
+  >
   /**
    * The CSS `border-right-width` property
    */
   borderRightWidth?: ResponsiveValue<CSS.Property.BorderWidth<Length>>
+  borderInlineEndWidth?: ResponsiveValue<
+    CSS.Property.BorderInlineEndWidth<Length>
+  >
   /**
    * The CSS `border-top-style` property
    */
   borderTopStyle?: ResponsiveValue<CSS.Property.BorderTopStyle>
+  borderBlockStartStyle?: ResponsiveValue<CSS.Property.BorderBlockStartStyle>
   /**
    * The CSS `border-bottom-style` property
    */
   borderBottomStyle?: ResponsiveValue<CSS.Property.BorderBottomStyle>
+  borderBlockEndStyle?: ResponsiveValue<CSS.Property.BorderBlockEndStyle>
   /**
    * The CSS `border-left-style` property
    */
   borderLeftStyle?: ResponsiveValue<CSS.Property.BorderLeftStyle>
+  borderInlineStartStyle?: ResponsiveValue<CSS.Property.BorderInlineStartStyle>
   /**
    * The CSS `border-right-styles` property
    */
   borderRightStyle?: ResponsiveValue<CSS.Property.BorderRightStyle>
+  borderInlineEndStyle?: ResponsiveValue<CSS.Property.BorderInlineEndStyle>
   /**
    * The CSS `border-top-color` property
    */
   borderTopColor?: ResponsiveValue<CSS.Property.BorderTopColor>
+  borderBlockStartColor?: ResponsiveValue<CSS.Property.BorderBlockStartColor>
   /**
    * The CSS `border-bottom-color` property
    */
   borderBottomColor?: ResponsiveValue<CSS.Property.BorderBottomColor>
+  borderBlockEndColor?: ResponsiveValue<CSS.Property.BorderBlockEndColor>
   /**
    * The CSS `border-left-color` property
    */
   borderLeftColor?: ResponsiveValue<CSS.Property.BorderLeftColor>
+  borderInlineStartColor?: ResponsiveValue<CSS.Property.BorderInlineStartColor>
   /**
    * The CSS `border-right-color` property
    */
   borderRightColor?: ResponsiveValue<CSS.Property.BorderRightColor>
+  borderInlineEndColor?: ResponsiveValue<CSS.Property.BorderInlineEndColor>
   /**
    * The CSS `border-right` property
    */
   borderRight?: ResponsiveValue<CSS.Property.BorderRight<Length>>
+  borderInlineEnd?: ResponsiveValue<CSS.Property.BorderInlineEnd<Length>>
   /**
    * The CSS `border-bottom` property
    */
   borderBottom?: ResponsiveValue<CSS.Property.BorderBottom<Length>>
+  borderBlockEnd?: ResponsiveValue<CSS.Property.BorderBlockEnd<Length>>
   /**
    * The CSS `border-left` property
    */
   borderLeft?: ResponsiveValue<CSS.Property.BorderLeft<Length>>
+  borderInlineStart?: ResponsiveValue<CSS.Property.BorderInlineStart<Length>>
   /**
    * The CSS `border-top-radius` property
    */
@@ -328,10 +399,12 @@ export interface BorderProps {
    * The CSS `border-right` and `border-left` property
    */
   borderX?: ResponsiveValue<CSS.Property.Border<Length>>
+  borderInline?: ResponsiveValue<CSS.Property.BorderInline<Length>>
   /**
    * The CSS `border-top` and `border-bottom` property
    */
   borderY?: ResponsiveValue<CSS.Property.Border<Length>>
+  borderBlock?: ResponsiveValue<CSS.Property.BorderBlock<Length>>
 }
 
 export const border = system(config)

@@ -36,31 +36,35 @@ const cssLogicalPropertiesMap = {
   // Border logical properties
   borderY: "borderBlock",
   borderX: "borderInline",
-  borderTopWidth: "borderBlockStartWidth",
-  borderBottomWidth: "borderBlockEndWidth",
-  borderLeftWidth: "borderInlineStartWidth",
-  borderRightWidth: "borderInlineEndWidth",
-  borderTopStyle: "borderBlockStartStyle",
-  borderBottomStyle: "borderBlockEndStyle",
-  borderLeftStyle: "borderInlineStartStyle",
-  borderRightStyle: "borderInlineEndStyle",
-  borderTopColor: "borderBlockStartColor",
-  borderBottomColor: "borderBlockEndColor",
-  borderLeftColor: "borderInlineStartColor",
-  borderRightColor: "borderInlineEndColor",
+
   borderTop: "borderBlockStart",
+  borderTopWidth: "borderBlockStartWidth",
+  borderTopStyle: "borderBlockStartStyle",
+  borderTopColor: "borderBlockStartColor",
+
   borderBottom: "borderBlockEnd",
+  borderBottomWidth: "borderBlockEndWidth",
+  borderBottomStyle: "borderBlockEndStyle",
+  borderBottomColor: "borderBlockEndColor",
+
   borderLeft: "borderInlineStart",
-  borderRight: "borderInlineEndStyle",
+  borderLeftWidth: "borderInlineStartWidth",
+  borderLeftStyle: "borderInlineStartStyle",
+  borderLeftColor: "borderInlineStartColor",
+
+  borderRight: "borderInlineEnd",
+  borderRightWidth: "borderInlineEndWidth",
+  borderRightStyle: "borderInlineEndStyle",
+  borderRightColor: "borderInlineEndColor",
 }
 
 function getCSSLogicalMap() {
   const map = new Map()
   const entries = Object.entries(cssLogicalPropertiesMap)
   for (const [key, value] of entries) {
-    key.split("|").forEach((prop) => {
+    for (const prop of key.split("|")) {
       map.set(prop, value)
-    })
+    }
   }
   return map
 }
