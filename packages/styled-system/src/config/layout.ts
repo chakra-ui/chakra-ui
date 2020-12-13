@@ -14,16 +14,7 @@ const config: Config = {
     scale: "sizes",
     transform,
   },
-  w: {
-    property: "width",
-    scale: "sizes",
-    transform,
-  },
   height: {
-    property: "height",
-    scale: "sizes",
-  },
-  h: {
     property: "height",
     scale: "sizes",
   },
@@ -35,15 +26,7 @@ const config: Config = {
     property: "minWidth",
     scale: "sizes",
   },
-  minW: {
-    property: "minWidth",
-    scale: "sizes",
-  },
   minHeight: {
-    property: "minHeight",
-    scale: "sizes",
-  },
-  minH: {
     property: "minHeight",
     scale: "sizes",
   },
@@ -51,15 +34,7 @@ const config: Config = {
     property: "maxWidth",
     scale: "sizes",
   },
-  maxW: {
-    property: "maxWidth",
-    scale: "sizes",
-  },
   maxHeight: {
-    property: "maxHeight",
-    scale: "sizes",
-  },
-  maxH: {
     property: "maxHeight",
     scale: "sizes",
   },
@@ -73,6 +48,13 @@ const config: Config = {
   verticalAlign: true,
   boxSizing: true,
 }
+
+config.w = config.width
+config.h = config.height
+config.minW = config.minWidth
+config.maxW = config.maxWidth
+config.minH = config.minHeight
+config.maxH = config.maxHeight
 
 /**
  * Types for layout related CSS properties
