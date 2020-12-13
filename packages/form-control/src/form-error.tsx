@@ -1,3 +1,4 @@
+import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import Icon, { IconProps } from "@chakra-ui/icon"
 import {
   chakra,
@@ -27,6 +28,15 @@ export const FormErrorMessage = forwardRef<FormErrorMessageProps, "div">(
     const props = omitThemingProps(passedProps)
 
     const field = useFormControlContext()
+
+    /**
+     * Notify the field context when the error message is rendered on screen,
+     * so we can apply the correct `aria-describedby` to the field (e.g. input, textarea).
+     */
+    useSafeLayoutEffect(() => {
+      field?.setHasFeedbackText.on()
+      return () => field?.setHasFeedbackText.off()
+    }, [])
 
     if (!field?.isInvalid) return null
 
