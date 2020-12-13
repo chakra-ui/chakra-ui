@@ -81,17 +81,3 @@ console.log(cssLogicalMap.get("top"))
  * - transform direct `margin | m` and `padding | p` values
  * - object position
  */
-
-/**
- * Better abstraction around styled-system
- * - A property can map to a theme-aware CSS object
- *
- * spaceX="24px"
- * spaceY="20px"
- *
- * {
- *   "& > * + *": {
- *      marginTop: "24px"
- *   }
- * }
- */
