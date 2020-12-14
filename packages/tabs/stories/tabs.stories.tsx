@@ -89,7 +89,7 @@ export const withIndicator = () => (
 )
 export const withIndicatorWithinRelative = () => (
   <div style={{ position: "relative" }}>
-    <Tabs variant="unstyled" isManual>
+    <Tabs variant="unstyled" css={{ padding: "24px" }} isManual>
       <TabList>
         <Tab>Settings</Tab>
         <Tab _disabled={{ color: "gray.400" }} isDisabled>
@@ -130,7 +130,7 @@ export const withVerticalTabs = () => (
 
 export const withVerticalIndicatorWithinRelative = () => (
   <div style={{ position: "relative" }}>
-    <Tabs variant="unstyled" orientation="vertical">
+    <Tabs variant="unstyled" css={{ padding: "24px" }} orientation="vertical">
       <TabList>
         <Tab>Settings</Tab>
         <Tab>Billings</Tab>

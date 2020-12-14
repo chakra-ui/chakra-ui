@@ -10,7 +10,7 @@ import {
   HTMLChakraProps,
   ChakraProps,
 } from "@chakra-ui/system"
-import { cx, omit, __DEV__ } from "@chakra-ui/utils"
+import { cx, mergeRefs, omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import {
   TabsProvider,
@@ -37,7 +37,7 @@ interface TabsOptions {
 }
 
 export interface TabsProps
-  extends UseTabsProps,
+  extends Omit<UseTabsProps, "rootRef">,
     ThemingProps,
     Omit<HTMLChakraProps<"div">, "onChange">,
     TabsOptions {
@@ -51,10 +51,12 @@ export interface TabsProps
  * any DOM node.
  */
 export const Tabs = forwardRef<TabsProps, "div">((props, ref) => {
+  const [rootTabsElement, setRootTabsElement] = React.useState()
+
   const styles = useMultiStyleConfig("Tabs", props)
   const { children, className, ...rest } = omitThemingProps(props)
 
-  const { htmlProps, ...ctx } = useTabs(rest)
+  const { htmlProps, ...ctx } = useTabs({ ...rest, rootTabsElement })
   const context = React.useMemo(() => ctx, [ctx])
 
   const rootProps = omit(htmlProps as any, ["isFitted"])
@@ -64,12 +66,18 @@ export const Tabs = forwardRef<TabsProps, "div">((props, ref) => {
     ...styles.root,
   }
 
+  const captureElement = React.useCallback((node) => {
+    if (node !== null) {
+      setRootTabsElement(node)
+    }
+  }, [])
+
   return (
     <TabsProvider value={context}>
       <StylesProvider value={styles}>
         <chakra.div
           className={cx("chakra-tabs", className)}
-          ref={ref}
+          ref={mergeRefs(ref, captureElement)}
           {...rootProps}
           __css={rootStyles}
         >
