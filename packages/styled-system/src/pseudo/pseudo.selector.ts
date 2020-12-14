@@ -19,13 +19,11 @@ const group = {
     `${selector}:read-only &, ${selector}[aria-expanded=true] &, ${selector}[data-expanded] &`,
 }
 
-function toGroup(fn: AnyFunction) {
-  return merge(fn, "[role=group]", "[data-group]")
-}
+const toGroup = (fn: AnyFunction) =>
+  merge(fn, "[role=group]", "[data-group]", ".group")
 
-function merge(fn: AnyFunction, ...selectors: string[]) {
-  return selectors.map(fn).join(", ")
-}
+const merge = (fn: AnyFunction, ...selectors: string[]) =>
+  selectors.map(fn).join(", ")
 
 const disabled = (selector: string) =>
   `${selector}, ${selector}:focus, ${selector}:hover`
@@ -220,6 +218,11 @@ export const pseudoSelectors = {
    * Styles for CSS Selector `&::selection`
    */
   _selection: "&::selection",
+  /**
+   * Styles for CSS Selector `[dir=rtl] &`
+   * It is applied when any parent element has `dir="rtl"`
+   */
+  _rtl: "[dir=rtl] &",
 }
 
 export type Pseudos = typeof pseudoSelectors
