@@ -1,28 +1,13 @@
 import * as CSS from "csstype"
 import { createParser, Config, system } from "@styled-system/core"
-import { ResponsiveValue } from "../utils"
+import { ResponsiveValue, t } from "../utils"
 
-/**
- * The parser configuration for common border properties
- */
 const config: Config = {
-  color: {
-    property: "color",
-    scale: "colors",
-  },
-  textColor: {
-    property: "color",
-    scale: "colors",
-  },
+  color: t.colors("color"),
+  textColor: t.colors("color"),
   opacity: true,
-  fill: {
-    property: "fill",
-    scale: "colors",
-  },
-  stroke: {
-    property: "stroke",
-    scale: "colors",
-  },
+  fill: t.colors("fill"),
+  stroke: t.colors("stroke"),
 }
 
 export interface ColorProps {

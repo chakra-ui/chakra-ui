@@ -1,42 +1,34 @@
 import { Config, createParser, system } from "@styled-system/core"
 import * as CSS from "csstype"
-import {
-  Length,
-  positiveOrNegative,
-  ResponsiveValue,
-  makeConfig,
-} from "../utils"
-
-const m = makeConfig("space", positiveOrNegative)
-const p = makeConfig("space")
+import { Length, ResponsiveValue, t } from "../utils"
 
 const config: Config = {
-  margin: m("margin"),
-  marginTop: m("marginTop"),
-  marginBlockStart: m("marginBlockStart"),
-  marginRight: m("marginRight"),
-  marginInlineEnd: m("marginInlineEnd"),
-  marginBottom: m("marginBottom"),
-  marginBlockEnd: m("marginBlockEnd"),
-  marginLeft: m("marginLeft"),
-  marginInlineStart: m("marginInlineStart"),
-  marginX: m(["marginLeft", "marginRight"]),
-  marginInline: m("marginInline"),
-  marginY: m(["marginTop", "marginBottom"]),
-  marginBlock: m("marginBlock"),
-  padding: p("padding"),
-  paddingTop: p("paddingTop"),
-  paddingBlockStart: p("paddingBlockStart"),
-  paddingRight: p("paddingRight"),
-  paddingBottom: p("paddingBottom"),
-  paddingBlockEnd: p("paddingBlockEnd"),
-  paddingLeft: p("paddingLeft"),
-  paddingInlineStart: p("paddingInlineStart"),
-  paddingInlineEnd: p("paddingInlineEnd"),
-  paddingX: p(["paddingLeft", "paddingRight"]),
-  paddingInline: p("paddingInline"),
-  paddingY: p(["paddingTop", "paddingBottom"]),
-  paddingBlock: p("paddingBlock"),
+  margin: t.spaceT("margin"),
+  marginTop: t.spaceT("marginTop"),
+  marginBlockStart: t.spaceT("marginBlockStart"),
+  marginRight: t.spaceT("marginRight"),
+  marginInlineEnd: t.spaceT("marginInlineEnd"),
+  marginBottom: t.spaceT("marginBottom"),
+  marginBlockEnd: t.spaceT("marginBlockEnd"),
+  marginLeft: t.spaceT("marginLeft"),
+  marginInlineStart: t.spaceT("marginInlineStart"),
+  marginX: t.spaceT(["marginLeft", "marginRight"]),
+  marginInline: t.spaceT("marginInline"),
+  marginY: t.spaceT(["marginTop", "marginBottom"]),
+  marginBlock: t.spaceT("marginBlock"),
+  padding: t.space("padding"),
+  paddingTop: t.space("paddingTop"),
+  paddingBlockStart: t.space("paddingBlockStart"),
+  paddingRight: t.space("paddingRight"),
+  paddingBottom: t.space("paddingBottom"),
+  paddingBlockEnd: t.space("paddingBlockEnd"),
+  paddingLeft: t.space("paddingLeft"),
+  paddingInlineStart: t.space("paddingInlineStart"),
+  paddingInlineEnd: t.space("paddingInlineEnd"),
+  paddingX: t.space(["paddingLeft", "paddingRight"]),
+  paddingInline: t.space("paddingInline"),
+  paddingY: t.space(["paddingTop", "paddingBottom"]),
+  paddingBlock: t.space("paddingBlock"),
 }
 
 config.m = config.margin

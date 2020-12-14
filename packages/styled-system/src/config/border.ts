@@ -2,9 +2,6 @@ import { Config, createParser, system } from "@styled-system/core"
 import * as CSS from "csstype"
 import { Length, polyfill, ResponsiveValue, t } from "../utils"
 
-/**
- * The parser configuration for common border properties
- */
 const config: Config = {
   border: t.borders("border"),
   borderWidth: t.borderWidths("borderWidth"),

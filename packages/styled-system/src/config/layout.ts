@@ -1,71 +1,22 @@
-import { isNumber, memoizedGet as get } from "@chakra-ui/utils"
 import { Config, createParser, system } from "@styled-system/core"
 import * as CSS from "csstype"
-import { Length, ResponsiveValue } from "../utils"
-
-function transform(value: any, scale: any) {
-  const defaultValue = !isNumber(value) || value > 1 ? value : `${value * 100}%`
-  return get(scale, value, defaultValue)
-}
+import { Length, ResponsiveValue, t } from "../utils"
 
 const config: Config = {
-  width: {
-    property: "width",
-    scale: "sizes",
-    transform,
-  },
-  inlineSize: {
-    property: "inlineSize",
-    scale: "sizes",
-    transform,
-  },
-  height: {
-    property: "height",
-    scale: "sizes",
-  },
-  blockSize: {
-    property: "blockSize",
-    scale: "sizes",
-  },
-  boxSize: {
-    properties: ["width", "height"],
-    scale: "sizes",
-  },
-  minWidth: {
-    property: "minWidth",
-    scale: "sizes",
-  },
-  minInlineSize: {
-    property: "minInlineSize",
-    scale: "sizes",
-  },
-  minHeight: {
-    property: "minHeight",
-    scale: "sizes",
-  },
-  minBlockSize: {
-    property: "minBlockSize",
-    scale: "sizes",
-  },
-  maxWidth: {
-    property: "maxWidth",
-    scale: "sizes",
-  },
-  maxInlineSize: {
-    property: "maxInlineSize",
-    scale: "sizes",
-  },
-  maxHeight: {
-    property: "maxHeight",
-    scale: "sizes",
-  },
-  maxBlockSize: {
-    property: "maxBlockSize",
-    scale: "sizes",
-  },
-  d: {
-    property: "display",
-  },
+  width: t.sizesT("width"),
+  inlineSize: t.sizesT("inlineSize"),
+  height: t.sizes("height"),
+  blockSize: t.sizes("blockSize"),
+  boxSize: t.sizes(["width", "height"]),
+  minWidth: t.sizes("minWidth"),
+  minInlineSize: t.sizes("minInlineSize"),
+  minHeight: t.sizes("minHeight"),
+  minBlockSize: t.sizes("minBlockSize"),
+  maxWidth: t.sizes("maxWidth"),
+  maxInlineSize: t.sizes("maxInlineSize"),
+  maxHeight: t.sizes("maxHeight"),
+  maxBlockSize: t.sizes("maxBlockSize"),
+  d: t.prop("display"),
   overflow: true,
   overflowX: true,
   overflowY: true,

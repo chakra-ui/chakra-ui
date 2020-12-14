@@ -1,6 +1,11 @@
 import * as CSS from "csstype"
-import { createParser, Config, system } from "@styled-system/core"
+import { createParser, Config, ConfigStyle, system } from "@styled-system/core"
 import { getIsRtl, Length, ResponsiveValue } from "../utils"
+
+const floatTransform: ConfigStyle["transform"] = (value, _, props = {}) => {
+  const map = { left: "right", right: "left" }
+  return getIsRtl(props) ? map[value] : "left"
+}
 
 const config: Config = {
   animation: true,
@@ -15,10 +20,7 @@ const config: Config = {
   float: true,
   floatBidi: {
     property: "float",
-    transform: (value, _, props = {}) => {
-      const map = { left: "right", right: "left" }
-      return getIsRtl(props) ? map[value] : "left"
-    },
+    transform: floatTransform,
   },
   willChange: true,
   filter: true,

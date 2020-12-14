@@ -1,31 +1,24 @@
 import { Config, createParser, system } from "@styled-system/core"
 import * as CSS from "csstype"
-import {
-  Length,
-  makeConfig,
-  positiveOrNegative,
-  ResponsiveValue,
-} from "../utils"
-
-const fn = makeConfig("space", positiveOrNegative)
+import { Length, t, ResponsiveValue } from "../utils"
 
 const config: Config = {
   position: true,
-  pos: { property: "position" },
+  pos: t.prop("position"),
   zIndex: { property: "zIndex", scale: "zIndices" },
-  inset: fn("inset"),
-  insetX: fn(["left", "right"]),
-  insetInline: fn("insetInline"),
-  insetY: fn(["top", "bottom"]),
-  insetBlock: fn("insetBlock"),
-  top: fn("top"),
-  insetBlockStart: fn("insetBlockStart"),
-  bottom: fn("bottom"),
-  insetBlockEnd: fn("insetBlockEnd"),
-  left: fn("left"),
-  insetInlineStart: fn("insetInlineStart"),
-  right: fn("right"),
-  insetInlineEnd: fn("insetInlineEnd"),
+  inset: t.spaceT("inset"),
+  insetX: t.spaceT(["left", "right"]),
+  insetInline: t.spaceT("insetInline"),
+  insetY: t.spaceT(["top", "bottom"]),
+  insetBlock: t.spaceT("insetBlock"),
+  top: t.spaceT("top"),
+  insetBlockStart: t.spaceT("insetBlockStart"),
+  bottom: t.spaceT("bottom"),
+  insetBlockEnd: t.spaceT("insetBlockEnd"),
+  left: t.spaceT("left"),
+  insetInlineStart: t.spaceT("insetInlineStart"),
+  right: t.spaceT("right"),
+  insetInlineEnd: t.spaceT("insetInlineEnd"),
 }
 
 config.topBidi = config.insetBlockStart

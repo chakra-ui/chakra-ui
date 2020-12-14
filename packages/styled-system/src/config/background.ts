@@ -1,54 +1,26 @@
 import * as CSS from "csstype"
 import { createParser, Config, system } from "@styled-system/core"
-import { ResponsiveValue, Length } from "../utils"
+import { ResponsiveValue, Length, t } from "../utils"
 
 const config: Config = {
-  bg: {
-    property: "background",
-    scale: "colors",
-  },
-  bgColor: {
-    property: "backgroundColor",
-    scale: "colors",
-  },
-  background: {
-    property: "background",
-    scale: "colors",
-  },
-  backgroundColor: {
-    property: "backgroundColor",
-    scale: "colors",
-  },
+  bg: t.colors("background"),
+  bgColor: t.colors("backgroundColor"),
+  background: t.colors("background"),
+  backgroundColor: t.colors("backgroundColor"),
   backgroundImage: true,
   backgroundSize: true,
   backgroundPosition: true,
   backgroundRepeat: true,
   backgroundAttachment: true,
   backgroundBlendMode: true,
-  bgImage: {
-    property: "backgroundImage",
-  },
-  bgImg: {
-    property: "backgroundImage",
-  },
-  bgBlendMode: {
-    property: "backgroundBlendMode",
-  },
-  bgSize: {
-    property: "backgroundSize",
-  },
-  bgPosition: {
-    property: "backgroundPosition",
-  },
-  bgPos: {
-    property: "backgroundPosition",
-  },
-  bgRepeat: {
-    property: "backgroundRepeat",
-  },
-  bgAttachment: {
-    property: "backgroundAttachment",
-  },
+  bgImage: t.prop("backgroundImage"),
+  bgImg: t.prop("backgroundImage"),
+  bgBlendMode: t.prop("backgroundBlendMode"),
+  bgSize: t.prop("backgroundSize"),
+  bgPosition: t.prop("backgroundPosition"),
+  bgPos: t.prop("backgroundPosition"),
+  bgRepeat: t.prop("backgroundRepeat"),
+  bgAttachment: t.prop("backgroundAttachment"),
 }
 
 export interface BackgroundProps {

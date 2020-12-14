@@ -1,6 +1,7 @@
-import { getWithDefault } from "@chakra-ui/utils"
+import { get, getWithDefault, isNumber } from "@chakra-ui/utils"
 import { ConfigStyle } from "@styled-system/core"
 import * as CSS from "csstype"
+import { positiveOrNegative } from "./positive-or-negative"
 
 export * from "./positive-or-negative"
 export * from "./types"
@@ -18,6 +19,11 @@ export function makeConfig(
   }
 }
 
+function fractionalValue(value: any, scale: any) {
+  const defaultValue = !isNumber(value) || value > 1 ? value : `${value * 100}%`
+  return get(scale, value, defaultValue)
+}
+
 export const t = {
   borderWidths: makeConfig("borderWidths"),
   borderStyles: makeConfig("borderStyles"),
@@ -25,6 +31,14 @@ export const t = {
   borders: makeConfig("borders"),
   radii: makeConfig("radii"),
   space: makeConfig("space"),
+  spaceT: makeConfig("space", positiveOrNegative),
+  prop: (
+    property: keyof CSS.Properties,
+    transform?: ConfigStyle["transform"],
+  ) => ({ property, transform }),
+  sizes: makeConfig("sizes"),
+  sizesT: makeConfig("sizes", fractionalValue),
+  shadows: makeConfig("shadows"),
 }
 
 export function getIsRtl(props: any) {
@@ -34,7 +48,7 @@ export function getIsRtl(props: any) {
 
 /**
  * Polyfill for border-{start|end}-radius properties.
- * We'll remove this once it's more widely supported in browsers
+ * We'll remove this once css logical properties is supported in major browsers
  */
 export function polyfill<T extends keyof CSS.Properties>(map: {
   ltr: T | T[]
@@ -58,6 +72,7 @@ export function polyfill<T extends keyof CSS.Properties>(map: {
 
 /**
  * Credits to https://github.com/kentcdodds/rtl-css-js/blob/aaf3e9885026de11b01f3b73258f25e21b7432f7/src/internal/utils.js
+ * @todo use this for margin, padding, border-radius value transformations in rtl
  */
 function getValuesAsList(value: string) {
   return value

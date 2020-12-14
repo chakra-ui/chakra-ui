@@ -8,7 +8,7 @@ const breakpoints = createBreakpoints({
   xl: "80em",
 })
 
-test("should transform logical css properties", () => {
+test("RTL: should transform logical css properties", () => {
   const result = css({
     floatBidi: "left",
     mtBidi: "sm",
@@ -21,8 +21,7 @@ test("should transform logical css properties", () => {
       sm: 40,
     },
   })
-  expect(result).toHaveProperty("marginBlockStart")
-  expect(result.marginBlockStart).toEqual(40)
+
   expect(result).toMatchInlineSnapshot(`
     Object {
       "@media screen and (min-width: 40em)": Object {
@@ -34,6 +33,61 @@ test("should transform logical css properties", () => {
       "borderTopRightRadius": "20px",
       "float": "right",
       "marginBlockStart": 40,
+    }
+  `)
+})
+
+test("LTR: should transform logical css properties", () => {
+  const result = css({
+    floatBidi: "left",
+    mtBidi: "sm",
+    borderInlineStartRadius: ["20px", "40px"],
+    borderColor: "red",
+  })({
+    breakpoints,
+    direction: "ltr",
+    space: {
+      sm: 40,
+    },
+  })
+
+  expect(result).toMatchInlineSnapshot(`
+    Object {
+      "@media screen and (min-width: 40em)": Object {
+        "borderBottomLeftRadius": "40px",
+        "borderTopLeftRadius": "40px",
+      },
+      "borderBottomLeftRadius": "20px",
+      "borderColor": "red",
+      "borderTopLeftRadius": "20px",
+      "float": "left",
+      "marginBlockStart": 40,
+    }
+  `)
+})
+
+test("should work after refactoring. hehe", () => {
+  const result = css({
+    mx: "40px",
+    w: 0.4,
+    bg: "pinkish",
+  })({
+    breakpoints,
+    direction: "ltr",
+    space: {
+      sm: 40,
+    },
+    colors: {
+      pinkish: "#dfsdds",
+    },
+  })
+
+  expect(result).toMatchInlineSnapshot(`
+    Object {
+      "background": "#dfsdds",
+      "marginLeft": "40px",
+      "marginRight": "40px",
+      "width": "40%",
     }
   `)
 })
