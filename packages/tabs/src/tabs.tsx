@@ -10,7 +10,7 @@ import {
   HTMLChakraProps,
   ChakraProps,
 } from "@chakra-ui/system"
-import { cx, mergeRefs, omit, __DEV__ } from "@chakra-ui/utils"
+import { cx, omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import {
   TabsProvider,
