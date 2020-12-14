@@ -37,7 +37,7 @@ interface TabsOptions {
 }
 
 export interface TabsProps
-  extends Omit<UseTabsProps, "rootRef">,
+  extends Omit<UseTabsProps, "rootTabsElement">,
     ThemingProps,
     Omit<HTMLChakraProps<"div">, "onChange">,
     TabsOptions {
