@@ -8,6 +8,7 @@ import {
 import {
   ariaAttr,
   callAllHandlers,
+  closest,
   createContext,
   Dict,
   EventKeyMap,
@@ -53,10 +54,6 @@ export interface UseTabsProps {
    * until it is open.
    */
   isLazy?: boolean
-  /**
-   * The element of the root tab component
-   */
-  rootTabsElement?: HTMLElement
 }
 
 /**
@@ -76,7 +73,6 @@ export function useTabs(props: UseTabsProps) {
     isManual,
     isLazy,
     orientation = "horizontal",
-    rootTabsElement,
     ...htmlProps
   } = props
 
@@ -163,7 +159,6 @@ export function useTabs(props: UseTabsProps) {
     orientation,
     enabledDomContext,
     domContext,
-    rootTabsElement,
     htmlProps,
   }
 }
@@ -410,7 +405,7 @@ export function useTabPanel(props: Dict) {
 export function useTabIndicator(): React.CSSProperties {
   const context = useTabsContext()
 
-  const { selectedIndex, orientation, domContext, rootTabsElement } = context
+  const { selectedIndex, orientation, domContext } = context
 
   const isHorizontal = orientation === "horizontal"
   const isVertical = orientation === "vertical"
@@ -436,7 +431,6 @@ export function useTabIndicator(): React.CSSProperties {
       const { width } = tabRect
       setRect({
         left: makePosition({
-          rootTabsElement,
           descendants: domContext.descendants,
           selectedIndex,
           direction: "left",
@@ -450,7 +444,6 @@ export function useTabIndicator(): React.CSSProperties {
       const { height } = tabRect
       setRect({
         top: makePosition({
-          rootTabsElement,
           descendants: domContext.descendants,
           selectedIndex,
           direction: "top",
@@ -470,13 +463,7 @@ export function useTabIndicator(): React.CSSProperties {
         cancelAnimationFrame(id)
       }
     }
-  }, [
-    selectedIndex,
-    isHorizontal,
-    isVertical,
-    domContext.descendants,
-    rootTabsElement,
-  ])
+  }, [selectedIndex, isHorizontal, isVertical, domContext.descendants])
 
   return {
     position: "absolute",
@@ -496,33 +483,36 @@ function makeTabPanelId(id: string, index: number) {
 interface MakePositionProps {
   descendants: ReturnType<typeof useTabsContext>["domContext"]["descendants"]
   selectedIndex: number
-  rootTabsElement?: HTMLElement
   direction: "top" | "left"
 }
 
 function makePosition({
   descendants,
   selectedIndex,
-  rootTabsElement,
   direction,
 }: MakePositionProps) {
-  const positionMap = {
+  const positionDimension = {
     top: "height",
     left: "width",
   }
 
-  const firstTabRect = descendants[0]?.element?.getBoundingClientRect() || {}
-  const rootTabsRect = rootTabsElement?.getBoundingClientRect() || {}
-  const padding = firstTabRect[direction] - rootTabsRect[direction]
-
   const previousTabs = descendants.slice(0, selectedIndex)
-  return (
-    previousTabs.reduce((position, previousTab) => {
-      const rect = previousTab?.element?.getBoundingClientRect()
-      if (rect?.width) {
-        return position + rect[positionMap[direction]]
-      }
-      return position
-    }, 0) + padding
-  )
+  const previousTabsSize = previousTabs.reduce((position, previousTab) => {
+    const rect = previousTab?.element?.getBoundingClientRect()
+    if (rect?.width) {
+      return position + rect[positionDimension[direction]]
+    }
+    return position
+  }, 0)
+
+  const firstTab = descendants[0].element
+  if (firstTab) {
+    const tabsRect =
+      closest(firstTab, ".chakra-tabs")?.getBoundingClientRect() || {}
+    const firstTabRect = firstTab?.getBoundingClientRect() || {}
+    const padding = firstTabRect[direction] - tabsRect[direction]
+    return previousTabsSize + padding
+  }
+
+  return previousTabsSize
 }

@@ -37,7 +37,7 @@ interface TabsOptions {
 }
 
 export interface TabsProps
-  extends Omit<UseTabsProps, "rootTabsElement">,
+  extends UseTabsProps,
     ThemingProps,
     Omit<HTMLChakraProps<"div">, "onChange">,
     TabsOptions {
@@ -51,12 +51,10 @@ export interface TabsProps
  * any DOM node.
  */
 export const Tabs = forwardRef<TabsProps, "div">((props, ref) => {
-  const [rootTabsElement, setRootTabsElement] = React.useState()
-
   const styles = useMultiStyleConfig("Tabs", props)
   const { children, className, ...rest } = omitThemingProps(props)
 
-  const { htmlProps, ...ctx } = useTabs({ ...rest, rootTabsElement })
+  const { htmlProps, ...ctx } = useTabs(rest)
   const context = React.useMemo(() => ctx, [ctx])
 
   const rootProps = omit(htmlProps as any, ["isFitted"])
@@ -66,18 +64,12 @@ export const Tabs = forwardRef<TabsProps, "div">((props, ref) => {
     ...styles.root,
   }
 
-  const captureElement = React.useCallback((node) => {
-    if (node !== null) {
-      setRootTabsElement(node)
-    }
-  }, [])
-
   return (
     <TabsProvider value={context}>
       <StylesProvider value={styles}>
         <chakra.div
           className={cx("chakra-tabs", className)}
-          ref={mergeRefs(ref, captureElement)}
+          ref={ref}
           {...rootProps}
           __css={rootStyles}
         >
