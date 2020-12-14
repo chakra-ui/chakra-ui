@@ -427,14 +427,26 @@ export function useTabIndicator(): React.CSSProperties {
 
     // Horizontal Tab: Calculate width and left distance
     if (isHorizontal && tabRect) {
-      const { left, width } = tabRect
-      setRect({ left, width })
+      const { width } = tabRect
+      setRect({
+        left: makeHorizontalLeft({
+          descendants: domContext.descendants,
+          selectedIndex,
+        }),
+        width,
+      })
     }
 
     // Vertical Tab: Calculate height and top distance
     if (isVertical && tabRect) {
-      const { top, height } = tabRect
-      setRect({ top, height })
+      const { height } = tabRect
+      setRect({
+        top: makeVerticalTop({
+          descendants: domContext.descendants,
+          selectedIndex,
+        }),
+        height,
+      })
     }
 
     // Prevent unwanted transition from 0 to measured rect
@@ -463,4 +475,31 @@ function makeTabId(id: string, index: number) {
 
 function makeTabPanelId(id: string, index: number) {
   return `${id}--tabpanel-${index}`
+}
+
+interface MakePositionProps {
+  descendants: ReturnType<typeof useTabsContext>["domContext"]["descendants"]
+  selectedIndex: number
+}
+
+function makeHorizontalLeft({ descendants, selectedIndex }: MakePositionProps) {
+  const previousTabs = descendants.slice(0, selectedIndex)
+  return previousTabs.reduce((left, previousTab) => {
+    const rect = previousTab?.element?.getBoundingClientRect()
+    if (rect?.width) {
+      return left + rect.width
+    }
+    return left
+  }, 0)
+}
+
+function makeVerticalTop({ descendants, selectedIndex }: MakePositionProps) {
+  const previousTabs = descendants.slice(0, selectedIndex)
+  return previousTabs.reduce((top, previousTab) => {
+    const rect = previousTab?.element?.getBoundingClientRect()
+    if (rect?.height) {
+      return top + rect.height
+    }
+    return top
+  }, 0)
 }

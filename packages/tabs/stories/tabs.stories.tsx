@@ -77,7 +77,7 @@ export const withIndicator = () => (
       <Tab>Shut Down</Tab>
     </TabList>
 
-    <TabIndicator mt="-36px" zIndex={-1} height="34px" bg="green.200" />
+    <TabIndicator mt="-40px" zIndex={-1} height="40px" bg="green.200" />
 
     <TabPanels>
       <TabPanel>Settings</TabPanel>
@@ -86,6 +86,29 @@ export const withIndicator = () => (
       <TabPanel>Shut Down</TabPanel>
     </TabPanels>
   </Tabs>
+)
+export const withIndicatorWithinRelative = () => (
+  <div style={{ position: "relative" }}>
+    <Tabs variant="unstyled" isManual>
+      <TabList>
+        <Tab>Settings</Tab>
+        <Tab _disabled={{ color: "gray.400" }} isDisabled>
+          Billings
+        </Tab>
+        <Tab>Preferences</Tab>
+        <Tab>Shut Down</Tab>
+      </TabList>
+
+      <TabIndicator mt="-40px" zIndex={-1} height="40px" bg="green.200" />
+
+      <TabPanels>
+        <TabPanel>Settings</TabPanel>
+        <TabPanel>Billings</TabPanel>
+        <TabPanel>Preferences</TabPanel>
+        <TabPanel>Shut Down</TabPanel>
+      </TabPanels>
+    </Tabs>
+  </div>
 )
 
 export const withVerticalTabs = () => (
@@ -103,4 +126,26 @@ export const withVerticalTabs = () => (
       <TabPanel>Shut Down</TabPanel>
     </TabPanels>
   </Tabs>
+)
+
+export const withVerticalIndicatorWithinRelative = () => (
+  <div style={{ position: "relative" }}>
+    <Tabs variant="unstyled" orientation="vertical">
+      <TabList>
+        <Tab>Settings</Tab>
+        <Tab>Billings</Tab>
+        <Tab isDisabled>Preferences</Tab>
+        <Tab>Shut Down</Tab>
+      </TabList>
+
+      <TabIndicator zIndex={-1} width="160px" bg="green.200" />
+
+      <TabPanels bg="red.200">
+        <TabPanel>Settings</TabPanel>
+        <TabPanel>Billings</TabPanel>
+        <TabPanel>Preferences</TabPanel>
+        <TabPanel>Shut Down</TabPanel>
+      </TabPanels>
+    </Tabs>
+  </div>
 )

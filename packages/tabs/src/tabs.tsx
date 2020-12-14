@@ -8,6 +8,7 @@ import {
   useMultiStyleConfig,
   useStyles,
   HTMLChakraProps,
+  ChakraProps,
 } from "@chakra-ui/system"
 import { cx, omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -58,6 +59,11 @@ export const Tabs = forwardRef<TabsProps, "div">((props, ref) => {
 
   const rootProps = omit(htmlProps as any, ["isFitted"])
 
+  const rootStyles: ChakraProps["__css"] = {
+    position: "relative",
+    ...styles.root,
+  }
+
   return (
     <TabsProvider value={context}>
       <StylesProvider value={styles}>
@@ -65,7 +71,7 @@ export const Tabs = forwardRef<TabsProps, "div">((props, ref) => {
           className={cx("chakra-tabs", className)}
           ref={ref}
           {...rootProps}
-          __css={styles.root}
+          __css={rootStyles}
         >
           {children}
         </chakra.div>
