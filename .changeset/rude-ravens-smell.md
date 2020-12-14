@@ -1,5 +1,5 @@
 ---
-"@chakra-ui/skeleton": minor
+"@chakra-ui/skeleton": patch
 ---
 
 ## 🐛 Bug Fix
