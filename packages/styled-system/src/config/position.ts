@@ -78,8 +78,8 @@ export interface PositionProps {
    * The CSS `position` property
    */
   position?: ResponsiveValue<CSS.Property.Position>
-  insetInline: ResponsiveValue<CSS.Property.InsetInline>
-  insetBlock: ResponsiveValue<CSS.Property.InsetBlock>
+  insetInline?: ResponsiveValue<CSS.Property.InsetInline>
+  insetBlock?: ResponsiveValue<CSS.Property.InsetBlock>
 }
 
 export const position = system(config)
