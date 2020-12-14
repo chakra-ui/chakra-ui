@@ -169,7 +169,7 @@ export const css = (args: StyleObjectOrFn = {}) => (
     }
 
     const scale = get(theme, config?.scale, {})
-    const value = config?.transform?.(val, scale) ?? get(scale, val, val)
+    const value = config?.transform?.(val, scale, props) ?? get(scale, val, val)
 
     if (config?.properties) {
       for (const property of config.properties) {
@@ -179,7 +179,15 @@ export const css = (args: StyleObjectOrFn = {}) => (
     }
 
     if (config?.property) {
-      computedStyles[config.property] = value
+      /**
+       * Used for styled-system configs that map to multiple computed properties.
+       * For example, the `borderLeftRadius` computed keys based on rtl/ltr
+       */
+      if (config.property === "&") {
+        computedStyles = mergeWith({}, computedStyles, value)
+      } else {
+        computedStyles[config.property] = value
+      }
       continue
     }
 

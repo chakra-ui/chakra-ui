@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { createParser, Config, system } from "@styled-system/core"
-import { Length, ResponsiveValue } from "../utils"
+import { getIsRtl, Length, ResponsiveValue } from "../utils"
 
 const config: Config = {
   animation: true,
@@ -13,6 +13,13 @@ const config: Config = {
   objectFit: true,
   objectPosition: true,
   float: true,
+  floatBidi: {
+    property: "float",
+    transform: (value, _, props = {}) => {
+      const map = { left: "right", right: "left" }
+      return getIsRtl(props) ? map[value] : "left"
+    },
+  },
   willChange: true,
   filter: true,
 }
@@ -58,6 +65,7 @@ export interface OtherProps {
    * The CSS `float` property
    */
   float?: ResponsiveValue<CSS.Property.Float>
+  floatBidi?: ResponsiveValue<CSS.Property.Float>
   /**
    * The CSS `will-change` property
    */

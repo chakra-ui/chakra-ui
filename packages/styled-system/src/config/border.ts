@@ -1,219 +1,134 @@
 import { Config, createParser, system } from "@styled-system/core"
 import * as CSS from "csstype"
-import { Length, ResponsiveValue } from "../utils"
+import { Length, polyfill, ResponsiveValue, t } from "../utils"
 
 /**
  * The parser configuration for common border properties
  */
 const config: Config = {
-  border: {
-    property: "border",
-    scale: "borders",
-  },
-  borderWidth: {
-    property: "borderWidth",
-    scale: "borderWidths",
-  },
-  borderStyle: {
-    property: "borderStyle",
-    scale: "borderStyles",
-  },
-  borderColor: {
-    property: "borderColor",
-    scale: "colors",
-  },
-  borderRadius: {
-    property: "borderRadius",
+  border: t.borders("border"),
+  borderWidth: t.borderWidths("borderWidth"),
+  borderStyle: t.borderStyles("borderStyle"),
+  borderColor: t.colors("borderColor"),
+  borderRadius: t.radii("borderRadius"),
+  borderTop: t.borders("borderTop"),
+  borderBlockStart: t.borders("borderBlockStart"),
+  borderTopLeftRadius: t.radii("borderTopLeftRadius"),
+  borderStartStartRadius: {
+    property: "&",
     scale: "radii",
+    transform: polyfill({
+      ltr: "borderTopLeftRadius",
+      rtl: "borderTopRightRadius",
+    }),
   },
-  borderTop: {
-    property: "borderTop",
-    scale: "borders",
-  },
-  borderBlockStart: {
-    property: "borderBlockStart",
-    scale: "borders",
-  },
-  borderTopLeftRadius: {
-    property: "borderTopLeftRadius",
+  borderEndStartRadius: {
+    property: "&",
     scale: "radii",
+    transform: polyfill({
+      ltr: "borderBottomLeftRadius",
+      rtl: "borderBottomRightRadius",
+    }),
   },
-  borderTopRightRadius: {
-    property: "borderTopRightRadius",
+  borderTopRightRadius: t.radii("borderTopRightRadius"),
+  borderStartEndRadius: {
+    property: "&",
     scale: "radii",
+    transform: polyfill({
+      ltr: "borderTopRightRadius",
+      rtl: "borderTopLeftRadius",
+    }),
   },
-  borderRight: {
-    property: "borderRight",
-    scale: "borders",
-  },
-  borderInlineEnd: {
-    property: "borderInlineEnd",
-    scale: "borders",
-  },
-  borderBottom: {
-    property: "borderBottom",
-    scale: "borders",
-  },
-  borderBlockEnd: {
-    property: "borderBlockEnd",
-    scale: "borders",
-  },
-  borderBottomLeftRadius: {
-    property: "borderBottomLeftRadius",
+  borderEndEndRadius: {
+    property: "&",
     scale: "radii",
+    transform: polyfill({
+      ltr: "borderBottomRightRadius",
+      rtl: "borderBottomLeftRadius",
+    }),
   },
-  borderBottomRightRadius: {
-    property: "borderBottomRightRadius",
-    scale: "radii",
-  },
-  borderLeft: {
-    property: "borderLeft",
-    scale: "borders",
-  },
+  borderRight: t.borders("borderRight"),
+  borderInlineEnd: t.borders("borderInlineEnd"),
+  borderBottom: t.borders("borderBottom"),
+  borderBlockEnd: t.borders("borderBlockEnd"),
+  borderBottomLeftRadius: t.radii("borderBottomLeftRadius"),
+  borderBottomRightRadius: t.radii("borderBottomRightRadius"),
+  borderLeft: t.borders("borderLeft"),
   borderInlineStart: {
     property: "borderInlineStart",
     scale: "borders",
   },
-  borderX: {
-    properties: ["borderLeft", "borderRight"],
-    scale: "borders",
-  },
-  borderInline: {
-    property: "borderInline",
-    scale: "borders",
-  },
-  borderY: {
-    properties: ["borderTop", "borderBottom"],
-    scale: "borders",
-  },
-  borderBlock: {
-    property: "borderBlock",
-    scale: "borders",
-  },
-  borderTopWidth: {
-    property: "borderTopWidth",
-    scale: "borderWidths",
-  },
-  borderBlockStartWidth: {
-    property: "borderBlockStartWidth",
-    scale: "borderWidths",
-  },
-  borderTopColor: {
-    property: "borderTopColor",
-    scale: "colors",
-  },
-  borderBlockStartColor: {
-    property: "borderBlockStartColor",
-    scale: "colors",
-  },
-  borderTopStyle: {
-    property: "borderTopStyle",
-    scale: "borderStyles",
-  },
-  borderBlockStartStyle: {
-    property: "borderBlockStartStyle",
-    scale: "borderStyles",
-  },
-  borderBottomWidth: {
-    property: "borderBottomWidth",
-    scale: "borderWidths",
-  },
-  borderBlockEndWidth: {
-    property: "borderBlockEndWidth",
-    scale: "borderWidths",
-  },
-
-  borderBottomColor: {
-    property: "borderBottomColor",
-    scale: "colors",
-  },
-  borderBlockEndColor: {
-    property: "borderBlockEndColor",
-    scale: "colors",
-  },
-  borderBottomStyle: {
-    property: "borderBottomStyle",
-    scale: "borderStyles",
-  },
-  borderBlockEndStyle: {
-    property: "borderBlockEndStyle",
-    scale: "borderStyles",
-  },
-  borderLeftWidth: {
-    property: "borderLeftWidth",
-    scale: "borderWidths",
-  },
-  borderInlineStartWidth: {
-    property: "borderInlineStartWidth",
-    scale: "borderWidths",
-  },
-  borderLeftColor: {
-    property: "borderLeftColor",
-    scale: "colors",
-  },
-  borderInlineStartColor: {
-    property: "borderInlineStartColor",
-    scale: "colors",
-  },
-  borderLeftStyle: {
-    property: "borderLeftStyle",
-    scale: "borderStyles",
-  },
-  borderInlineStartStyle: {
-    property: "borderInlineStartStyle",
-    scale: "borderStyles",
-  },
-  borderRightWidth: {
-    property: "borderRightWidth",
-    scale: "borderWidths",
-  },
-  borderInlineEndWidth: {
-    property: "borderInlineEndWidth",
-    scale: "borderWidths",
-  },
-  borderRightColor: {
-    property: "borderRightColor",
-    scale: "colors",
-  },
-  borderInlineEndColor: {
-    property: "borderInlineEndColor",
-    scale: "colors",
-  },
-  borderRightStyle: {
-    property: "borderRightStyle",
-    scale: "borderStyles",
-  },
-  borderInlineEndStyle: {
-    property: "borderInlineEndStyle",
-    scale: "borderStyles",
-  },
-  borderTopRadius: {
-    properties: ["borderTopLeftRadius", "borderTopRightRadius"],
+  borderInlineStartRadius: {
     scale: "radii",
+    property: "&",
+    transform: polyfill({
+      ltr: ["borderTopLeftRadius", "borderBottomLeftRadius"],
+      rtl: ["borderTopRightRadius", "borderBottomRightRadius"],
+    }),
   },
-  borderBottomRadius: {
-    properties: ["borderBottomLeftRadius", "borderBottomRightRadius"],
+  borderInlineEndRadius: {
     scale: "radii",
+    property: "&",
+    transform: polyfill({
+      ltr: ["borderTopRightRadius", "borderBottomRightRadius"],
+      rtl: ["borderTopLeftRadius", "borderBottomLeftRadius"],
+    }),
   },
-  borderLeftRadius: {
-    properties: ["borderTopLeftRadius", "borderBottomLeftRadius"],
-    scale: "radii",
-  },
-  borderRightRadius: {
-    properties: ["borderTopRightRadius", "borderBottomRightRadius"],
-    scale: "radii",
-  },
+  borderX: t.borders(["borderLeft", "borderRight"]),
+  borderInline: t.borders("borderInline"),
+  borderY: t.borders(["borderTop", "borderBottom"]),
+  borderBlock: t.borders("borderBlock"),
+  borderTopWidth: t.borderWidths("borderTopWidth"),
+  borderBlockStartWidth: t.borderWidths("borderBlockStartWidth"),
+  borderTopColor: t.colors("borderTopColor"),
+  borderBlockStartColor: t.colors("borderBlockStartColor"),
+  borderTopStyle: t.borderStyles("borderTopStyle"),
+  borderBlockStartStyle: t.borderStyles("borderBlockStartStyle"),
+  borderBottomWidth: t.borderWidths("borderBottomWidth"),
+  borderBlockEndWidth: t.borderWidths("borderBlockEndWidth"),
+  borderBottomColor: t.colors("borderBottomColor"),
+  borderBlockEndColor: t.colors("borderBlockEndColor"),
+  borderBottomStyle: t.borderStyles("borderBottomStyle"),
+  borderBlockEndStyle: t.borderStyles("borderBlockEndStyle"),
+  borderLeftWidth: t.borderWidths("borderLeftWidth"),
+  borderInlineStartWidth: t.borderWidths("borderInlineStartWidth"),
+  borderLeftColor: t.colors("borderLeftColor"),
+  borderInlineStartColor: t.colors("borderInlineStartColor"),
+  borderLeftStyle: t.borderStyles("borderLeftStyle"),
+  borderInlineStartStyle: t.borderStyles("borderInlineStartStyle"),
+  borderRightWidth: t.borderWidths("borderRightWidth"),
+  borderInlineEndWidth: t.borderWidths("borderInlineEndWidth"),
+  borderRightColor: t.colors("borderRightColor"),
+  borderInlineEndColor: t.colors("borderInlineEndColor"),
+  borderRightStyle: t.borderStyles("borderRightStyle"),
+  borderInlineEndStyle: t.borderStyles("borderInlineEndStyle"),
+  borderTopRadius: t.radii(["borderTopLeftRadius", "borderTopRightRadius"]),
+  borderBottomRadius: t.radii([
+    "borderBottomLeftRadius",
+    "borderBottomRightRadius",
+  ]),
+  borderLeftRadius: t.radii(["borderTopLeftRadius", "borderBottomLeftRadius"]),
+  borderRightRadius: t.radii([
+    "borderTopRightRadius",
+    "borderBottomRightRadius",
+  ]),
 }
 
+config.roundedTopLeft = config.borderTopLeftRadius
+config.roundedTopLeftBidi = config.borderStartStartRadius
+config.roundedTopRight = config.borderTopRightRadius
+config.roundedTopRightBidi = config.borderStartEndRadius
+config.roundedBottomLeft = config.borderBottomLeftRadius
+config.roundedBottomLeftBidi = config.borderEndStartRadius
+config.roundedBottomRight = config.borderBottomRightRadius
+config.roundedBottomRightBidi = config.borderEndEndRadius
 config.rounded = config.borderRadius
 config.roundedTop = config.borderTopRadius
 config.roundedBottom = config.borderBottomRadius
 config.roundedLeft = config.borderLeftRadius
+config.roundedLeftBidi = config.borderInlineStartRadius
 config.roundedRight = config.borderRightRadius
-config.roundedTopLeft = config.borderTopLeftRadius
-config.roundedTopRight = config.borderTopRightRadius
-config.roundedBottomLeft = config.borderBottomLeftRadius
-config.roundedBottomRight = config.borderBottomRightRadius
+config.roundedRightBidi = config.borderInlineEndRadius
 
 /**
  * The prop types for border properties listed above
@@ -347,6 +262,8 @@ export interface BorderProps {
    * The CSS `border-right-radius` property
    */
   roundedRight?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  roundedRightBidi?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  borderInlineEndRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-bottom-radius` property
    */
@@ -363,38 +280,54 @@ export interface BorderProps {
    * The CSS `border-left-radius` property
    */
   roundedLeft?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  roundedLeftBidi?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  borderInlineStartRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-top-left-radius` property
    */
   borderTopLeftRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  borderStartStartRadius?: ResponsiveValue<
+    CSS.Property.BorderStartStartRadius<Length>
+  >
   /**
    * The CSS `border-top-left-radius` property
    */
   roundedTopLeft?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  roundedTopLeftBidi?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-top-right-radius` property
    */
   borderTopRightRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  borderStartEndRadius?: ResponsiveValue<
+    CSS.Property.BorderStartEndRadius<Length>
+  >
   /**
    * The CSS `border-top-right-radius` property
    */
   roundedTopRight?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  roundedTopRightBidi?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-bottom-left-radius` property
    */
   borderBottomLeftRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  borderEndStartRadius?: ResponsiveValue<
+    CSS.Property.BorderEndStartRadius<Length>
+  >
   /**
    * The CSS `border-bottom-left-radius` property
    */
   roundedBottomLeft?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  roundedBottomLeftBidi?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-bottom-right-radius` property
    */
   borderBottomRightRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  borderEndEndRadius?: ResponsiveValue<CSS.Property.BorderEndEndRadius<Length>>
   /**
    * The CSS `border-bottom-right-radius` property
    */
   roundedBottomRight?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  roundedBottomRightBidi?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-right` and `border-left` property
    */
@@ -408,5 +341,4 @@ export interface BorderProps {
 }
 
 export const border = system(config)
-
 export const borderParser = createParser(config)
