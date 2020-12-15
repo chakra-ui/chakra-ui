@@ -154,4 +154,4 @@ export function getNextItemFromSearch<T>(
  * This function returns true given a custom array property.
  */
 export const isCustomBreakpoint = (maybeBreakpoint: string) =>
-  Number.isNaN(parseInt(maybeBreakpoint, 10))
+  Number.isNaN(Number(maybeBreakpoint))
