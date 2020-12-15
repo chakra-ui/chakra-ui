@@ -110,11 +110,11 @@ export interface ListItemProps extends HTMLChakraProps<"li"> {}
  *
  * Used to render a list item
  */
-export const ListItem: React.FC<ListItemProps> = (props) => {
+export const ListItem = forwardRef<ListItemProps, "li">((props, ref) => {
   const styles = useStyles()
 
-  return <chakra.li {...props} __css={styles.item} />
-}
+  return <chakra.li ref={ref} {...props} __css={styles.item} />
+})
 
 if (__DEV__) {
   ListItem.displayName = "ListItem"
