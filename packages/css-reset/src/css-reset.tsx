@@ -9,9 +9,9 @@ export const CSSReset = () => (
         -webkit-text-size-adjust: 100%;
         font-family: system-ui, sans-serif;
         -webkit-font-smoothing: antialiased;
-        text-rendering: optimizeLegibility;      
-        -moz-osx-font-smoothing: grayscale; 
-        touch-action: manipulation; 
+        text-rendering: optimizeLegibility;
+        -moz-osx-font-smoothing: grayscale;
+        touch-action: manipulation;
       }
 
       body {
@@ -263,7 +263,6 @@ export const CSSReset = () => (
       embed,
       object {
         display: block;
-        vertical-align: middle;
       }
 
       img,

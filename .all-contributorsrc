@@ -1619,6 +1619,16 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "yuzima",
+      "name": "Yuzi",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6914393?v=4",
+      "profile": "https://github.com/yuzima",
+      "contributions": [
+        "test",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

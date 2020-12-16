@@ -130,6 +130,7 @@ test.each([
   ["xl", true],
   ["xxl", true],
   ["custom", true],
+  ["2xl", true],
   ["0", false],
   ["1", false],
   ["2", false],
