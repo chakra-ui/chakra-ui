@@ -21,8 +21,8 @@ const config: Config = {
   insetInlineEnd: t.spaceT("insetInlineEnd"),
 }
 
-config.start = config.insetInlineStart
-config.end = config.insetInlineEnd
+config.insetStart = config.insetInlineStart
+config.insetEnd = config.insetInlineEnd
 
 /**
  * Types for position CSS properties
@@ -47,10 +47,10 @@ export interface PositionProps {
    */
   insetInlineEnd?: ResponsiveValue<CSS.Property.InsetInlineEnd<Length>>
   /**
-   * When the direction is `ltr`, `end` is equivalent to `right`.
-   * When the direction is `rtl`, `end` is equivalent to `left`.
+   * When the direction is `ltr`, `insetEnd` is equivalent to `right`.
+   * When the direction is `rtl`, `insetEnd` is equivalent to `left`.
    */
-  end?: ResponsiveValue<CSS.Property.InsetInlineEnd<Length>>
+  insetEnd?: ResponsiveValue<CSS.Property.InsetInlineEnd<Length>>
   /**
    * The CSS `bottom` property
    */
@@ -65,7 +65,7 @@ export interface PositionProps {
    * When the direction is `start`, `end` is equivalent to `left`.
    * When the direction is `start`, `end` is equivalent to `right`.
    */
-  start?: ResponsiveValue<CSS.Property.InsetInlineStart<Length>>
+  insetStart?: ResponsiveValue<CSS.Property.InsetInlineStart<Length>>
   /**
    * The CSS `left`, `right`, `top`, `bottom` property
    */
