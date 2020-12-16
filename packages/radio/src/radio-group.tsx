@@ -26,7 +26,12 @@ const [
 
 export { useRadioGroupContext }
 
-type Omitted = "onChange" | "value" | "defaultValue" | "children"
+type Omitted =
+  | "onChange"
+  | "value"
+  | "defaultValue"
+  | "defaultChecked"
+  | "children"
 export interface RadioGroupProps
   extends UseRadioGroupProps,
     Omit<HTMLChakraProps<"div">, Omitted>,
