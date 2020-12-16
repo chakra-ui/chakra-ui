@@ -43,7 +43,7 @@ export interface WrapProps extends HTMLChakraProps<"div"> {
  * - Buttons that appear together at the end of forms
  * - Lists of tags and chips
  *
- * @see Docs https://chakra-ui.com/components/wrap
+ * @see Docs https://chakra-ui.com/docs/layout/wrap
  */
 export const Wrap = forwardRef<WrapProps, "div">((props, ref) => {
   const {

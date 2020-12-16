@@ -45,7 +45,7 @@ export interface AccordionProps
  * for all accordion items.
  *
  * It wraps all accordion items in a `div` for better grouping.
- * @see Docs https://chakra-ui.com/components/accordion
+ * @see Docs https://chakra-ui.com/docs/components/accordion
  */
 export const Accordion = forwardRef<AccordionProps, "div">(
   ({ children, reduceMotion, ...props }, ref) => {
@@ -81,10 +81,9 @@ if (__DEV__) {
 
 type AccordionItemContext = Omit<UseAccordionItemReturn, "htmlProps">
 
-const [
-  AccordionItemProvider,
-  useAccordionItemContext,
-] = createContext<AccordionItemContext>({
+const [AccordionItemProvider, useAccordionItemContext] = createContext<
+  AccordionItemContext
+>({
   name: "AccordionItemContext",
   errorMessage:
     "useAccordionItemContext: `context` is undefined. Seems you forgot to wrap the accordion item parts in `<AccordionItem />` ",

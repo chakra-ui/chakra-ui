@@ -330,7 +330,7 @@ export interface ModalOverlayProps
  * ModalOverlay renders a backdrop behind the modal. It is
  * also used as a wrapper for the modal content for better positioning.
  *
- * @see Docs https://chakra-ui.com/components/modal
+ * @see Docs https://chakra-ui.com/docs/overlay/modal
  */
 export const ModalOverlay = forwardRef<ModalOverlayProps, "div">(
   (props, ref) => {
@@ -370,7 +370,7 @@ export interface ModalHeaderProps extends HTMLChakraProps<"header"> {}
  *
  * React component that houses the title of the modal.
  *
- * @see Docs https://chakra-ui.com/components/modal
+ * @see Docs https://chakra-ui.com/docs/components/modal
  */
 export const ModalHeader = forwardRef<ModalHeaderProps, "header">(
   (props, ref) => {
@@ -418,7 +418,7 @@ export interface ModalBodyProps extends HTMLChakraProps<"div"> {}
  *
  * React component that houses the main content of the modal.
  *
- * @see Docs https://chakra-ui.com/components/modal
+ * @see Docs https://chakra-ui.com/docs/components/modal
  */
 export const ModalBody = forwardRef<ModalBodyProps, "div">((props, ref) => {
   const { className, ...rest } = props
@@ -455,7 +455,7 @@ export interface ModalFooterProps extends HTMLChakraProps<"footer"> {}
 
 /**
  * ModalFooter houses the action buttons of the modal.
- * @see Docs https://chakra-ui.com/components/modal
+ * @see Docs https://chakra-ui.com/docs/components/modal
  */
 export const ModalFooter = forwardRef<ModalFooterProps, "footer">(
   (props, ref) => {

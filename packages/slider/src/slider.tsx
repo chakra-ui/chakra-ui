@@ -34,7 +34,7 @@ export interface SliderProps
  * The Slider is used to allow users to make selections from a range of values.
  * It provides context and functionality for all slider components
  *
- * @see Docs     https://chakra-ui.com/components/slider
+ * @see Docs     https://chakra-ui.com/docs/form/slider
  * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices/#slider
  */
 export const Slider = forwardRef<SliderProps, "div">((props, ref) => {
@@ -171,7 +171,7 @@ export interface SliderMarkProps extends HTMLChakraProps<"div"> {
  * SliderMark is used to provide names for specific Slider
  * values by defining labels or markers along the track.
  *
- * @see Docs https://chakra-ui.com/components/slider
+ * @see Docs https://chakra-ui.com/docs/components/slider
  */
 export const SliderMark = forwardRef<SliderMarkProps, "div">((props, ref) => {
   const { getMarkerProps } = useSliderContext()

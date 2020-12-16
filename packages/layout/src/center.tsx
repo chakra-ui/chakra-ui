@@ -7,7 +7,7 @@ export interface CenterProps extends HTMLChakraProps<"div"> {}
  * React component used to horizontally and vertically center its child.
  * It uses the popular `display: flex` centering technique.
  *
- * @see Docs https://chakra-ui.com/components/center
+ * @see Docs https://chakra-ui.com/docs/layout/center
  */
 export const Center = chakra("div", {
   baseStyle: {

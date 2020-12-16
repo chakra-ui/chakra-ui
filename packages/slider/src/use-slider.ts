@@ -125,7 +125,7 @@ type EventSource = "mouse" | "touch" | "keyboard"
  * It is an alternative to `<input type="range" />`, and returns
  * prop getters for the component parts
  *
- * @see Docs     https://chakra-ui.com/components/slider
+ * @see Docs     https://chakra-ui.com/docs/form/slider
  * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices-1.1/#slider
  */
 export function useSlider(props: UseSliderProps) {
