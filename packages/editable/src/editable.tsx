@@ -75,7 +75,11 @@ export const Editable = forwardRef<EditableProps, "div">((props, ref) => {
   return (
     <EditableProvider value={context}>
       <StylesProvider value={styles}>
-        <chakra.div ref={ref} {...htmlProps} className={_className}>
+        <chakra.div
+          ref={ref}
+          {...(htmlProps as HTMLChakraProps<"div">)}
+          className={_className}
+        >
           {children}
         </chakra.div>
       </StylesProvider>
@@ -106,7 +110,7 @@ export const EditablePreview = forwardRef<EditablePreviewProps, "span">(
     const { getPreviewProps } = useEditableContext()
     const styles = useStyles()
 
-    const previewProps = getPreviewProps(props, ref)
+    const previewProps = getPreviewProps(props, ref) as HTMLChakraProps<"span">
     const _className = cx("chakra-editable__preview", props.className)
 
     return (
@@ -140,7 +144,7 @@ export const EditableInput = forwardRef<EditableInputProps, "input">(
     const { getInputProps } = useEditableContext()
     const styles = useStyles()
 
-    const inputProps = getInputProps(props, ref)
+    const inputProps = getInputProps(props, ref) as HTMLChakraProps<"input">
     const _className = cx("chakra-editable__input", props.className)
 
     return (

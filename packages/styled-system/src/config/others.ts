@@ -1,6 +1,11 @@
 import * as CSS from "csstype"
-import { createParser, Config, system } from "@styled-system/core"
-import { Length, ResponsiveValue } from "../utils"
+import { createParser, Config, ConfigStyle, system } from "@styled-system/core"
+import { getIsRtl, Length, ResponsiveValue } from "../utils"
+
+const floatTransform: ConfigStyle["transform"] = (value, _, props = {}) => {
+  const map = { left: "right", right: "left" }
+  return getIsRtl(props) ? map[value] : value
+}
 
 const config: Config = {
   animation: true,
@@ -12,7 +17,10 @@ const config: Config = {
   resize: true,
   objectFit: true,
   objectPosition: true,
-  float: true,
+  float: {
+    property: "float",
+    transform: floatTransform,
+  },
   willChange: true,
   filter: true,
 }

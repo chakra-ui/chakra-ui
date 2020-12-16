@@ -23,22 +23,15 @@ export function parseBorder(value: string, key = "border") {
   const borderWidthKey = `${key}Width`
   const borderColorKey = `${key}Color`
 
-  if (style) {
-    css[borderStyleKey] = style
-  }
+  if (style) css[borderStyleKey] = style
+  if (unit) css[borderWidthKey] = unit
 
-  if (unit) {
-    css[borderWidthKey] = unit
-  }
-
-  const [color] = split.filter((i) => {
-    const match = matchString(i, unitMatch) && matchString(i, styleMatch)
-    return !match && i !== style && i !== unit
+  const [color] = split.filter((val) => {
+    const match = matchString(val, unitMatch) && matchString(val, styleMatch)
+    return !match && val !== style && val !== unit
   })
 
-  if (color) {
-    css[borderColorKey] = color
-  }
+  if (color) css[borderColorKey] = color
 
   return css
 }

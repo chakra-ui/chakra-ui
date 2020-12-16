@@ -1,20 +1,11 @@
 import * as CSS from "csstype"
 import { createParser, Config, system } from "@styled-system/core"
-import { Length, ResponsiveValue } from "../utils"
+import { Length, ResponsiveValue, t } from "../utils"
 
 const config: Config = {
-  gridGap: {
-    property: "gridGap",
-    scale: "space",
-  },
-  gridColumnGap: {
-    property: "gridColumnGap",
-    scale: "space",
-  },
-  gridRowGap: {
-    property: "gridRowGap",
-    scale: "space",
-  },
+  gridGap: t.space("gridGap"),
+  gridColumnGap: t.space("gridColumnGap"),
+  gridRowGap: t.space("gridRowGap"),
   gridColumn: true,
   gridRow: true,
   gridAutoFlow: true,

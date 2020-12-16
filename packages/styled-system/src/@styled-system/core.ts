@@ -7,7 +7,7 @@ declare module "@styled-system/core" {
 
   export interface ConfigStyle {
     /** The CSS property to use in the returned style object (overridden by `properties` if present). */
-    property?: keyof CSS.Properties
+    property?: keyof CSS.Properties | (string & {})
     /**
      * An array of multiple properties (e.g. `['marginLeft', 'marginRight']`) to which this style's value will be
      * assigned (overrides `property` when present).
@@ -18,7 +18,7 @@ declare module "@styled-system/core" {
     /** A fallback scale object for when there isn't one defined in the `theme` object. */
     defaultScale?: Scale
     /** A function to transform the raw value based on the scale. */
-    transform?: (value: any, scale?: Scale) => any
+    transform?: (value: any, scale?: Scale, props?: Record<string, any>) => any
   }
 
   export interface Config {
