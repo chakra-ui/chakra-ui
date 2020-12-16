@@ -39,7 +39,7 @@ export interface ListProps
 /**
  * List is used to display list items, it renders a `<ul>` by default.
  *
- * @see Docs https://chakra-ui.com/components/list
+ * @see Docs https://chakra-ui.com/docs/data-display/list
  */
 export const List = forwardRef<ListProps, "ul">((props, ref) => {
   const styles = useMultiStyleConfig("List", props)

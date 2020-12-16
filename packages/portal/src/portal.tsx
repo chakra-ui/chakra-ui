@@ -36,8 +36,8 @@ export interface PortalProps {
  *
  * Declarative component used to render children into a DOM node
  * that exists outside the DOM hierarchy of the parent component.
- *
- * @see Docs https://chakra-ui.com/components/portal
+ * There is no document link yet
+ * @see Docs https://chakra-ui.com/docs/overlay/portal
  */
 export const Portal: React.FC<PortalProps> = (props) => {
   const { onMount, onUnmount, children, getContainer } = props

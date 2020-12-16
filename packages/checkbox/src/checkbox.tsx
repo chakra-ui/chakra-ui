@@ -88,7 +88,7 @@ export interface CheckboxProps
  * React component used in forms when a user needs to select
  * multiple values from several options.
  *
- * @see Docs https://chakra-ui.com/components/checkbox
+ * @see Docs https://chakra-ui.com/docs/form/checkbox
  */
 export const Checkbox = forwardRef<CheckboxProps, "input">((props, ref) => {
   const group = useCheckboxGroupContext()

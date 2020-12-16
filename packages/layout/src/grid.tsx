@@ -17,7 +17,7 @@ export interface GridProps extends HTMLChakraProps<"div">, GridOptions {}
  * It renders a `div` with `display: grid` and
  * comes with helpful style shorthand.
  *
- * @see Docs https://chakra-ui.com/components/grid
+ * @see Docs https://chakra-ui.com/docs/layout/grid
  */
 export const Grid = forwardRef<GridProps, "div">((props, ref) => {
   const {

@@ -52,12 +52,6 @@ export interface FocusLockProps {
   lockFocusAcrossFrames?: boolean
 }
 
-/**
- * React component to trap focus within an element or component.
- * Mostly used in Modals, Popovers, etc.
- *
- * @see Docs https://chakra-ui.com/components/focuslock
- */
 export const FocusLock: React.FC<FocusLockProps> = (props) => {
   const {
     initialFocusRef,

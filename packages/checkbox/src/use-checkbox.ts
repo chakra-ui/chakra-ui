@@ -81,7 +81,7 @@ export interface UseCheckboxProps {
  * useCheckbox that provides all the state and focus management logic
  * for a checkbox. It is consumed by the `Checkbox` component
  *
- * @see Docs https://chakra-ui.com/components/useCheckbox
+ * @see Docs https://chakra-ui.com/docs/form/checkbox#hooks
  */
 export function useCheckbox(props: UseCheckboxProps = {}) {
   const {
