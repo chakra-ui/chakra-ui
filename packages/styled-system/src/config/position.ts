@@ -21,10 +21,8 @@ const config: Config = {
   insetInlineEnd: t.spaceT("insetInlineEnd"),
 }
 
-config.topBidi = config.insetBlockStart
-config.bottomBidi = config.insetBlockEnd
-config.leftBidi = config.insetInlineStart
-config.rightBidi = config.insetInlineEnd
+config.start = config.insetInlineStart
+config.end = config.insetInlineEnd
 
 /**
  * Types for position CSS properties
@@ -39,25 +37,35 @@ export interface PositionProps {
    */
   top?: ResponsiveValue<CSS.Property.Top<Length>>
   insetBlockStart?: ResponsiveValue<CSS.Property.InsetBlockStart<Length>>
-  topBidi?: ResponsiveValue<CSS.Property.InsetBlockStart<Length>>
   /**
    * The CSS `right` property
    */
   right?: ResponsiveValue<CSS.Property.Right<Length>>
+  /**
+   * When the direction is `ltr`, `insetInlineEnd` is equivalent to `right`.
+   * When the direction is `rtl`, `insetInlineEnd` is equivalent to `left`.
+   */
   insetInlineEnd?: ResponsiveValue<CSS.Property.InsetInlineEnd<Length>>
-  rightBidi?: ResponsiveValue<CSS.Property.InsetInlineEnd<Length>>
+  /**
+   * When the direction is `ltr`, `end` is equivalent to `right`.
+   * When the direction is `rtl`, `end` is equivalent to `left`.
+   */
+  end?: ResponsiveValue<CSS.Property.InsetInlineEnd<Length>>
   /**
    * The CSS `bottom` property
    */
   bottom?: ResponsiveValue<CSS.Property.Bottom<Length>>
   insetBlockEnd?: ResponsiveValue<CSS.Property.InsetBlockEnd<Length>>
-  bottomBidi?: ResponsiveValue<CSS.Property.InsetBlockEnd<Length>>
   /**
    * The CSS `left` property
    */
   left?: ResponsiveValue<CSS.Property.Left<Length>>
   insetInlineStart?: ResponsiveValue<CSS.Property.InsetInlineStart<Length>>
-  leftBidi?: ResponsiveValue<CSS.Property.InsetInlineStart<Length>>
+  /**
+   * When the direction is `start`, `end` is equivalent to `left`.
+   * When the direction is `start`, `end` is equivalent to `right`.
+   */
+  start?: ResponsiveValue<CSS.Property.InsetInlineStart<Length>>
   /**
    * The CSS `left`, `right`, `top`, `bottom` property
    */

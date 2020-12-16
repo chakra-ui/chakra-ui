@@ -33,28 +33,26 @@ const config: Config = {
 
 config.m = config.margin
 config.mt = config.marginTop
-config.mtBidi = config.marginBlockStart
 config.mr = config.marginRight
-config.mrBidi = config.marginInlineEnd
+config.me = config.marginInlineEnd
+config.marginEnd = config.marginInlineEnd
 config.mb = config.marginBottom
-config.mbBidi = config.marginBlockEnd
 config.ml = config.marginLeft
-config.mlBidi = config.marginInlineStart
+config.ms = config.marginInlineStart
+config.marginStart = config.marginInlineStart
 config.mx = config.marginX
-config.mxBidi = config.marginInline
 config.my = config.marginY
-config.myBidi = config.marginBlock
 config.p = config.padding
 config.pt = config.paddingTop
 config.py = config.paddingY
 config.px = config.paddingX
-config.ptBidi = config.paddingBlockStart
 config.pb = config.paddingBottom
-config.pbBidi = config.paddingBlockEnd
 config.pl = config.paddingLeft
-config.plBidi = config.paddingInlineStart
+config.ps = config.paddingInlineStart
+config.paddingStart = config.paddingInlineStart
 config.pr = config.paddingRight
-config.prBidi = config.paddingInlineEnd
+config.pe = config.paddingInlineEnd
+config.paddingEnd = config.paddingInlineEnd
 
 /**
  * Types for space related CSS properties
@@ -73,7 +71,6 @@ export interface SpaceProps {
    */
   mt?: ResponsiveValue<CSS.Property.Margin<Length>>
   marginBlockStart?: ResponsiveValue<CSS.Property.MarginBlockStart<Length>>
-  mtBidi?: ResponsiveValue<CSS.Property.MarginBlockStart<Length>>
   /**
    * Margin on top
    */
@@ -82,8 +79,21 @@ export interface SpaceProps {
    * Margin on right
    */
   mr?: ResponsiveValue<CSS.Property.MarginRight<Length>>
+  /**
+   * When direction is `ltr`, `marginInlineEnd` is equivalent to `marginRight`.
+   * When direction is `rtl`, `marginInlineEnd` is equivalent to `marginLeft`.
+   */
   marginInlineEnd?: ResponsiveValue<CSS.Property.MarginInlineEnd<Length>>
-  mrBidi?: ResponsiveValue<CSS.Property.MarginInlineEnd<Length>>
+  /**
+   * When direction is `ltr`, `marginEnd` is equivalent to `marginRight`.
+   * When direction is `rtl`, `marginEnd` is equivalent to `marginLeft`.
+   */
+  marginEnd?: ResponsiveValue<CSS.Property.MarginInlineEnd<Length>>
+  /**
+   * When direction is `ltr`, `me` is equivalent to `marginRight`.
+   * When direction is `rtl`, `me` is equivalent to `marginLeft`.
+   */
+  me?: ResponsiveValue<CSS.Property.MarginInlineEnd<Length>>
   /**
    * Margin on right
    */
@@ -93,7 +103,6 @@ export interface SpaceProps {
    */
   mb?: ResponsiveValue<CSS.Property.MarginBottom<Length>>
   marginBlockEnd?: ResponsiveValue<CSS.Property.MarginBlockEnd<Length>>
-  mbBidi?: ResponsiveValue<CSS.Property.MarginBlockEnd<Length>>
   /**
    * Margin on bottom
    */
@@ -102,8 +111,21 @@ export interface SpaceProps {
    * Margin on left
    */
   ml?: ResponsiveValue<CSS.Property.MarginLeft<Length>>
+  /**
+   * When direction is `ltr`, `marginInlineStart` is equivalent to `marginLeft`.
+   * When direction is `rtl`, `marginInlineStart` is equivalent to `marginRight`.
+   */
   marginInlineStart?: ResponsiveValue<CSS.Property.MarginInlineStart<Length>>
-  mlBidi?: ResponsiveValue<CSS.Property.MarginInlineStart<Length>>
+  /**
+   * When direction is `ltr`, `marginStart` is equivalent to `marginLeft`.
+   * When direction is `rtl`, `marginStart` is equivalent to `marginRight`.
+   */
+  marginStart?: ResponsiveValue<CSS.Property.MarginInlineStart<Length>>
+  /**
+   * When direction is `ltr`, `ms` is equivalent to `marginLeft`.
+   * When direction is `rtl`, `ms` is equivalent to `marginRight`.
+   */
+  ms?: ResponsiveValue<CSS.Property.MarginInlineStart<Length>>
   /**
    * Margin on left
    */
@@ -113,7 +135,6 @@ export interface SpaceProps {
    */
   mx?: ResponsiveValue<CSS.Property.Margin<Length>>
   marginInline?: ResponsiveValue<CSS.Property.MarginInline<Length>>
-  mxBidi?: ResponsiveValue<CSS.Property.MarginInline<Length>>
   /**
    * Margin on left and right
    */
@@ -123,7 +144,6 @@ export interface SpaceProps {
    */
   my?: ResponsiveValue<CSS.Property.Margin<Length>>
   marginBlock?: ResponsiveValue<CSS.Property.MarginBlock<Length>>
-  myBidi?: ResponsiveValue<CSS.Property.MarginBlock<Length>>
   /**
    * Margin on top and bottom
    */
@@ -141,7 +161,6 @@ export interface SpaceProps {
    */
   pt?: ResponsiveValue<CSS.Property.PaddingTop<Length>>
   paddingBlockStart?: ResponsiveValue<CSS.Property.PaddingBlockStart<Length>>
-  ptBidi?: ResponsiveValue<CSS.Property.PaddingBlockStart<Length>>
   /**
    * Padding on top
    */
@@ -150,8 +169,21 @@ export interface SpaceProps {
    * Padding on right
    */
   pr?: ResponsiveValue<CSS.Property.PaddingRight<Length>>
+  /**
+   * When direction is `ltr`, `paddingInlineEnd` is equivalent to `paddingRight`.
+   * When direction is `rtl`, `paddingInlineEnd` is equivalent to `paddingLeft`.
+   */
   paddingInlineEnd?: ResponsiveValue<CSS.Property.PaddingInlineEnd<Length>>
-  prBidi?: ResponsiveValue<CSS.Property.PaddingInlineEnd<Length>>
+  /**
+   * When direction is `ltr`, `paddingEnd` is equivalent to `paddingRight`.
+   * When direction is `rtl`, `paddingEnd` is equivalent to `paddingLeft`.
+   */
+  paddingEnd?: ResponsiveValue<CSS.Property.PaddingInlineEnd<Length>>
+  /**
+   * When direction is `ltr`, `pe` is equivalent to `paddingRight`.
+   * When direction is `rtl`, `pe` is equivalent to `paddingLeft`.
+   */
+  pe?: ResponsiveValue<CSS.Property.PaddingInlineEnd<Length>>
   /**
    * Padding on right
    */
@@ -161,7 +193,6 @@ export interface SpaceProps {
    */
   pb?: ResponsiveValue<CSS.Property.PaddingBottom<Length>>
   paddingBlockEnd?: ResponsiveValue<CSS.Property.PaddingBlockEnd<Length>>
-  pbBidi?: ResponsiveValue<CSS.Property.PaddingBlockEnd<Length>>
   /**
    * Padding on bottom
    */
@@ -170,8 +201,21 @@ export interface SpaceProps {
    * Padding on left
    */
   pl?: ResponsiveValue<CSS.Property.PaddingLeft<Length>>
+  /**
+   * When direction is `ltr`, `paddingInlineStart` is equivalent to `paddingLeft`.
+   * When direction is `rtl`, `paddingInlineStart` is equivalent to `paddingRight`.
+   */
   paddingInlineStart?: ResponsiveValue<CSS.Property.PaddingInlineStart<Length>>
-  plBidi?: ResponsiveValue<CSS.Property.PaddingInlineStart<Length>>
+  /**
+   * When direction is `ltr`, `paddingStart` is equivalent to `paddingLeft`.
+   * When direction is `rtl`, `paddingStart` is equivalent to `paddingRight`.
+   */
+  paddingStart?: ResponsiveValue<CSS.Property.PaddingInlineStart<Length>>
+  /**
+   * When direction is `ltr`, `ps` is equivalent to `paddingLeft`.
+   * When direction is `rtl`, `ps` is equivalent to `paddingRight`.
+   */
+  ps?: ResponsiveValue<CSS.Property.PaddingInlineStart<Length>>
   /**
    * Padding on left
    */
@@ -181,7 +225,6 @@ export interface SpaceProps {
    */
   px?: ResponsiveValue<CSS.Property.Padding<Length>>
   paddingInline?: ResponsiveValue<CSS.Property.PaddingInline<Length>>
-  pxBidi?: ResponsiveValue<CSS.Property.PaddingInline<Length>>
   /**
    * Padding on left and right
    */
@@ -191,7 +234,6 @@ export interface SpaceProps {
    */
   py?: ResponsiveValue<CSS.Property.Padding<Length>>
   paddingBlock?: ResponsiveValue<CSS.Property.PaddingBlock<Length>>
-  pyBidi?: ResponsiveValue<CSS.Property.PaddingBlock<Length>>
   /**
    * Padding on top and bottom
    */

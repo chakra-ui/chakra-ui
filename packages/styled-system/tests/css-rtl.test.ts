@@ -10,9 +10,9 @@ const breakpoints = createBreakpoints({
 
 test("RTL: should transform logical css properties", () => {
   const result = css({
-    floatBidi: "left",
-    mtBidi: "sm",
-    roundedLeftBidi: ["20px", "40px"],
+    float: "left",
+    marginStart: "sm",
+    roundedStart: ["20px", "40px"],
     borderColor: "red",
   })({
     breakpoints,
@@ -32,23 +32,21 @@ test("RTL: should transform logical css properties", () => {
       "borderColor": "red",
       "borderTopRightRadius": "20px",
       "float": "right",
-      "marginBlockStart": 40,
+      "marginInlineStart": 40,
     }
   `)
 })
 
 test("LTR: should transform logical css properties", () => {
   const result = css({
-    floatBidi: "left",
-    mtBidi: "sm",
-    borderInlineStartRadius: ["20px", "40px"],
+    float: "left",
+    marginEnd: "sm",
+    borderStartRadius: ["20px", "40px"],
     borderColor: "red",
   })({
     breakpoints,
     direction: "ltr",
-    space: {
-      sm: 40,
-    },
+    space: { sm: 40 },
   })
 
   expect(result).toMatchInlineSnapshot(`
@@ -61,7 +59,7 @@ test("LTR: should transform logical css properties", () => {
       "borderColor": "red",
       "borderTopLeftRadius": "20px",
       "float": "left",
-      "marginBlockStart": 40,
+      "marginInlineEnd": 40,
     }
   `)
 })

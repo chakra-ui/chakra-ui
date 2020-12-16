@@ -112,20 +112,27 @@ const config: Config = {
 }
 
 config.roundedTopLeft = config.borderTopLeftRadius
-config.roundedTopLeftBidi = config.borderStartStartRadius
+config.roundedTopStart = config.borderStartStartRadius
 config.roundedTopRight = config.borderTopRightRadius
-config.roundedTopRightBidi = config.borderStartEndRadius
+config.roundedTopEnd = config.borderStartEndRadius
 config.roundedBottomLeft = config.borderBottomLeftRadius
-config.roundedBottomLeftBidi = config.borderEndStartRadius
+config.roundedBottomStart = config.borderEndStartRadius
 config.roundedBottomRight = config.borderBottomRightRadius
-config.roundedBottomRightBidi = config.borderEndEndRadius
+config.roundedBottomEnd = config.borderEndEndRadius
 config.rounded = config.borderRadius
 config.roundedTop = config.borderTopRadius
 config.roundedBottom = config.borderBottomRadius
 config.roundedLeft = config.borderLeftRadius
-config.roundedLeftBidi = config.borderInlineStartRadius
 config.roundedRight = config.borderRightRadius
-config.roundedRightBidi = config.borderInlineEndRadius
+
+config.roundedStart = config.borderInlineStartRadius
+config.borderStartRadius = config.borderInlineStartRadius
+
+config.roundedEnd = config.borderInlineEndRadius
+config.borderEndRadius = config.borderInlineEndRadius
+
+config.borderEndWidth = config.borderInlineEndWidth
+config.borderStartWidth = config.borderInlineStartWidth
 
 /**
  * The prop types for border properties listed above
@@ -259,8 +266,21 @@ export interface BorderProps {
    * The CSS `border-right-radius` property
    */
   roundedRight?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
-  roundedRightBidi?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  /**
+   * When direction is `ltr`, `roundedEnd` is equivalent to `borderRightRadius`.
+   * When direction is `rtl`, `roundedEnd` is equivalent to `borderLeftRadius`.
+   */
+  roundedEnd?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  /**
+   * When direction is `ltr`, `borderInlineEndRadius` is equivalent to `borderRightRadius`.
+   * When direction is `rtl`, `borderInlineEndRadius` is equivalent to `borderLeftRadius`.
+   */
   borderInlineEndRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  /**
+   * When direction is `ltr`, `borderEndRadius` is equivalent to `borderRightRadius`.
+   * When direction is `rtl`, `borderEndRadius` is equivalent to `borderLeftRadius`.
+   */
+  borderEndRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-bottom-radius` property
    */
@@ -277,8 +297,21 @@ export interface BorderProps {
    * The CSS `border-left-radius` property
    */
   roundedLeft?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
-  roundedLeftBidi?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  /**
+   * When direction is `ltr`, `roundedEnd` is equivalent to `borderRightRadius`.
+   * When direction is `rtl`, `roundedEnd` is equivalent to `borderLeftRadius`.
+   */
+  roundedStart?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  /**
+   * When direction is `ltr`, `borderInlineStartRadius` is equivalent to `borderLeftRadius`.
+   * When direction is `rtl`, `borderInlineStartRadius` is equivalent to `borderRightRadius`.
+   */
   borderInlineStartRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  /**
+   * When direction is `ltr`, `borderStartRadius` is equivalent to `borderLeftRadius`.
+   * When direction is `rtl`, `borderStartRadius` is equivalent to `borderRightRadius`.
+   */
+  borderStartRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-top-left-radius` property
    */
@@ -290,7 +323,7 @@ export interface BorderProps {
    * The CSS `border-top-left-radius` property
    */
   roundedTopLeft?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
-  roundedTopLeftBidi?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  roundedTopStart?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-top-right-radius` property
    */
@@ -302,7 +335,8 @@ export interface BorderProps {
    * The CSS `border-top-right-radius` property
    */
   roundedTopRight?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
-  roundedTopRightBidi?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  roundedTopEnd?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+
   /**
    * The CSS `border-bottom-left-radius` property
    */
@@ -314,7 +348,7 @@ export interface BorderProps {
    * The CSS `border-bottom-left-radius` property
    */
   roundedBottomLeft?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
-  roundedBottomLeftBidi?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  roundedBottomStart?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-bottom-right-radius` property
    */
@@ -324,7 +358,7 @@ export interface BorderProps {
    * The CSS `border-bottom-right-radius` property
    */
   roundedBottomRight?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
-  roundedBottomRightBidi?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  roundedBottomEnd?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-right` and `border-left` property
    */

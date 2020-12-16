@@ -4,7 +4,7 @@ import { getIsRtl, Length, ResponsiveValue } from "../utils"
 
 const floatTransform: ConfigStyle["transform"] = (value, _, props = {}) => {
   const map = { left: "right", right: "left" }
-  return getIsRtl(props) ? map[value] : "left"
+  return getIsRtl(props) ? map[value] : value
 }
 
 const config: Config = {
@@ -17,8 +17,7 @@ const config: Config = {
   resize: true,
   objectFit: true,
   objectPosition: true,
-  float: true,
-  floatBidi: {
+  float: {
     property: "float",
     transform: floatTransform,
   },
@@ -67,7 +66,6 @@ export interface OtherProps {
    * The CSS `float` property
    */
   float?: ResponsiveValue<CSS.Property.Float>
-  floatBidi?: ResponsiveValue<CSS.Property.Float>
   /**
    * The CSS `will-change` property
    */

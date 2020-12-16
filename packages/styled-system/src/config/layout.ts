@@ -26,22 +26,11 @@ const config: Config = {
 }
 
 config.w = config.width
-config.wBidi = config.inlineSize
-
 config.h = config.height
-config.hBidi = config.blockSize
-
 config.minW = config.minWidth
-config.minWBidi = config.minInlineSize
-
 config.maxW = config.maxWidth
-config.maxWBidi = config.maxInlineSize
-
 config.minH = config.minHeight
-config.minHBidi = config.minBlockSize
-
 config.maxH = config.maxHeight
-config.maxHBidi = config.maxBlockSize
 
 /**
  * Types for layout related CSS properties
@@ -64,7 +53,6 @@ export interface LayoutProps {
    */
   w?: ResponsiveValue<CSS.Property.Width<Length>>
   inlineSize?: ResponsiveValue<CSS.Property.InlineSize<Length>>
-  wBidi?: ResponsiveValue<CSS.Property.InlineSize<Length>>
   /**
    * The CSS `width` and `height` property
    */
@@ -78,7 +66,6 @@ export interface LayoutProps {
    */
   maxW?: ResponsiveValue<CSS.Property.MaxWidth<Length>>
   maxInlineSize?: ResponsiveValue<CSS.Property.MaxInlineSize<Length>>
-  maxWBidi?: ResponsiveValue<CSS.Property.MaxInlineSize<Length>>
   /**
    * The CSS `min-width` property
    */
@@ -88,7 +75,6 @@ export interface LayoutProps {
    */
   minW?: ResponsiveValue<CSS.Property.MinWidth<Length>>
   minInlineSize?: ResponsiveValue<CSS.Property.MinInlineSize<Length>>
-  minWBidi?: ResponsiveValue<CSS.Property.MinInlineSize<Length>>
   /**
    * The CSS `height` property
    */
@@ -98,7 +84,6 @@ export interface LayoutProps {
    */
   h?: ResponsiveValue<CSS.Property.Height<Length>>
   blockSize?: ResponsiveValue<CSS.Property.BlockSize<Length>>
-  hBidi?: ResponsiveValue<CSS.Property.BlockSize<Length>>
   /**
    * The CSS `max-height` property
    */
@@ -108,7 +93,6 @@ export interface LayoutProps {
    */
   maxH?: ResponsiveValue<CSS.Property.MaxHeight<Length>>
   maxBlockSize?: ResponsiveValue<CSS.Property.MaxBlockSize<Length>>
-  maxHBidi?: ResponsiveValue<CSS.Property.MaxBlockSize<Length>>
   /**
    * The CSS `min-height` property
    */
@@ -118,7 +102,6 @@ export interface LayoutProps {
    */
   minH?: ResponsiveValue<CSS.Property.MinHeight<Length>>
   minBlockSize?: ResponsiveValue<CSS.Property.MinBlockSize<Length>>
-  minHBidi?: ResponsiveValue<CSS.Property.MinBlockSize<Length>>
   /**
    * The CSS `vertical-align` property
    */
