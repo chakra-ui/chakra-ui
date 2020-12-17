@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.1.1
+
+### Patch Changes
+
+- [`aeb5e521`](https://github.com/chakra-ui/chakra-ui/commit/aeb5e5214970e7fd239629226dd06f6058b8c697)
+  [#2794](https://github.com/chakra-ui/chakra-ui/pull/2794) Thanks
+  [@with-heart](https://github.com/with-heart)! - Enabled ref forwarding for
+  `ListItem`
+
+- Updated dependencies
+  [[`e73878ee`](https://github.com/chakra-ui/chakra-ui/commit/e73878ee686c11d3f94ad6ac61b19ae9508d75a5)]:
+  - @chakra-ui/utils@1.0.2
+  - @chakra-ui/icon@1.0.2
+
 ## 1.1.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.0.2
+
+### Patch Changes
+
+- [`5bff79a1`](https://github.com/chakra-ui/chakra-ui/commit/5bff79a1ba6989d279fc432d5040c72cd75b392e)
+  Thanks [@jmiazga](https://github.com/jmiazga)! - Updated framer-motion
+  peerDependencies to v3
+
 ## 1.0.1
 
 ### Patch Changes
