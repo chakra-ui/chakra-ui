@@ -1,5 +1,5 @@
 import { StringOrNumber, isString, isNumber } from "@chakra-ui/utils"
-import unit from "css-get-unit"
+import unit from "./get-unit"
 
 const startsWith = (string: string, target: string) =>
   string.slice(0, 0 + target.length) === target

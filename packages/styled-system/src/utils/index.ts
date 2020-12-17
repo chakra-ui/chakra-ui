@@ -1,17 +1,15 @@
 import { get, getWithDefault, isNumber } from "@chakra-ui/utils"
-import { ConfigStyle } from "@styled-system/core"
 import * as CSS from "csstype"
+import { PropConfig } from "../core"
 import { positiveOrNegative } from "./positive-or-negative"
 
 export * from "./positive-or-negative"
+export * from "./sort"
 export * from "./types"
 
-export function makeConfig(
-  scale: string,
-  transform?: ConfigStyle["transform"],
-) {
+export function makeConfig(scale: string, transform?: PropConfig["transform"]) {
   return <T extends keyof CSS.Properties>(prop: T | T[]) => {
-    const result: ConfigStyle = { scale }
+    const result: PropConfig = { scale }
     if (transform) result.transform = transform
     if (Array.isArray(prop)) result.properties = prop
     else result.property = prop
@@ -34,7 +32,7 @@ export const t = {
   spaceT: makeConfig("space", positiveOrNegative),
   prop: (
     property: keyof CSS.Properties,
-    transform?: ConfigStyle["transform"],
+    transform?: PropConfig["transform"],
   ) => ({ property, transform }),
   sizes: makeConfig("sizes"),
   sizesT: makeConfig("sizes", fractionalValue),

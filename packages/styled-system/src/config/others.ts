@@ -1,8 +1,8 @@
 import * as CSS from "csstype"
-import { createParser, Config, ConfigStyle, system } from "@styled-system/core"
+import { Config, PropConfig, createParser, system } from "../core"
 import { getIsRtl, Length, ResponsiveValue } from "../utils"
 
-const floatTransform: ConfigStyle["transform"] = (value, _, props = {}) => {
+const floatTransform: PropConfig["transform"] = (value, _, props = {}) => {
   const map = { left: "right", right: "left" }
   return getIsRtl(props) ? map[value] : value
 }

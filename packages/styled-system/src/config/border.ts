@@ -1,5 +1,5 @@
-import { Config, createParser, system } from "@styled-system/core"
 import * as CSS from "csstype"
+import { Config, createParser, system } from "../core"
 import { Length, polyfill, ResponsiveValue, t } from "../utils"
 
 const config: Config = {

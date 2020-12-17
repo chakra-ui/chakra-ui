@@ -1,6 +1,6 @@
-import { Config, createParser, system } from "@styled-system/core"
 import * as CSS from "csstype"
-import { Length, t, ResponsiveValue } from "../utils"
+import { Config, createParser, system } from "../core"
+import { Length, ResponsiveValue, t } from "../utils"
 
 const config: Config = {
   position: true,

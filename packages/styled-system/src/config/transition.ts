@@ -1,5 +1,5 @@
-import { Config, createParser, system } from "@styled-system/core"
 import * as CSS from "csstype"
+import { Config, createParser, system } from "../core"
 import { ResponsiveValue } from "../utils"
 
 const config: Config = {
@@ -30,9 +30,7 @@ export interface TransitionProps {
   /**
    * The CSS `transition-timing-function` property
    */
-  transitionTimingFunction?: ResponsiveValue<
-    CSS.Property.TransitionTimingFunction
-  >
+  transitionTimingFunction?: ResponsiveValue<CSS.Property.TransitionTimingFunction>
   /**
    * The CSS `transition-duration` property
    */

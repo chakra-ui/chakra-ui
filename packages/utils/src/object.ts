@@ -113,7 +113,7 @@ export const memoizedGet = memoize(get)
  * @param scale - the string path or value
  */
 export function getWithDefault(path: any, scale: any) {
-  return get(scale, path, path)
+  return memoizedGet(scale, path, path)
 }
 
 type FilterFn<T> = (value: any, key: string, object: T) => boolean
