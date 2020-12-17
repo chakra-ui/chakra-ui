@@ -47,7 +47,7 @@ You can use both theme-aware color tokens or raw CSS color values.
 `<direction> <from>:<via>:<via>:<to>` - This is a gradient with multiple stops
 
 ```jsx
-<Box w="500px" h="200px" bgGradient="to-r gray.300:pink.200" />
+<Box w="500px" h="200px" bgGradient="to-r gray.300:yellow.400:pink.200" />
 ```
 
 ## The Text Gradient API
