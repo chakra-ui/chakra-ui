@@ -81,9 +81,10 @@ if (__DEV__) {
 
 type AccordionItemContext = Omit<UseAccordionItemReturn, "htmlProps">
 
-const [AccordionItemProvider, useAccordionItemContext] = createContext<
-  AccordionItemContext
->({
+const [
+  AccordionItemProvider,
+  useAccordionItemContext,
+] = createContext<AccordionItemContext>({
   name: "AccordionItemContext",
   errorMessage:
     "useAccordionItemContext: `context` is undefined. Seems you forgot to wrap the accordion item parts in `<AccordionItem />` ",
