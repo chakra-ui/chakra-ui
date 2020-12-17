@@ -1,6 +1,6 @@
 /* eslint-disable */
-export { createParser, Parser } from "./create-parser"
+export { createParser } from "./create-parser"
 export * from "./create-style-function"
 export { system, compose } from "./create-system"
 export * from "./parse-responsive"
-export { Config, PropConfig } from "./types"
+export { Config, PropConfig, Parser } from "./types"

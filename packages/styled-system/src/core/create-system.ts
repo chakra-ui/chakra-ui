@@ -1,10 +1,10 @@
 import { Properties } from "csstype"
 import merge from "lodash.mergewith"
-import { createParser, Parser } from "./create-parser"
+import { createParser } from "./create-parser"
 import { createStyleFunction } from "./create-style-function"
-import { Config } from "./types"
+import { Config, Parser, PropConfig } from "./types"
 
-export function system(configs: Config = {}) {
+export function system<T extends PropConfig | Config>(configs: T): Parser {
   const config: Config = {}
 
   Object.keys(configs).forEach((key) => {
@@ -26,11 +26,10 @@ export function system(configs: Config = {}) {
     config[key] = createStyleFunction(propConfig)
   })
 
-  const parser = createParser(config)
-  return parser
+  return createParser(config)
 }
 
-export function compose(...parsers: Parser[]) {
+export function compose(...parsers: Parser[]): Parser {
   let config: Config = {}
   parsers.forEach((parser) => {
     if (!parser || !parser.config) return

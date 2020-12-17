@@ -1,11 +1,11 @@
-import { Dict, isObject, memoizedGet as get } from "@chakra-ui/utils"
+import { Dict, memoizedGet as get } from "@chakra-ui/utils"
 import merge from "lodash.mergewith"
+import { sort } from "../utils"
 import {
   createMediaQuery,
   parseResponsiveArray,
   parseResponsiveObject,
 } from "./parse-responsive"
-import { sort } from "../utils"
 import { PropConfig } from "./types"
 
 const defaultBreakpoints = [40, 52, 64].map((n) => `${n}em`)
@@ -27,7 +27,7 @@ export function createParser(config: PropConfig) {
 
       const scale = get(theme, styleFunction.scale, styleFunction.defaults)
 
-      if (isObject(value)) {
+      if (typeof value === "object") {
         const bps =
           (!isCacheDisabled && cache.get("breakpoints")) ||
           get(theme, "breakpoints", defaultBreakpoints)
@@ -92,5 +92,3 @@ export function createParser(config: PropConfig) {
 
   return parse
 }
-
-export type Parser = ReturnType<typeof createParser>

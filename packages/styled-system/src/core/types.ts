@@ -14,6 +14,14 @@ export interface StyleFunction {
   defaults?: any
 }
 
+export interface Parser {
+  (props: Dict): Dict
+  config: PropConfig
+  propNames: string[]
+  cache: Map<string, any>
+  [k: string]: any
+}
+
 export type Scale = ObjectOrArray<number | string>
 
 export interface PropConfig {
