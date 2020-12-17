@@ -1,5 +1,33 @@
 # Change Log
 
+## 1.0.3
+
+### Patch Changes
+
+- [`40a4ab8d`](https://github.com/chakra-ui/chakra-ui/commit/40a4ab8dfcedabf290882936cae0e1523e5aa414)
+  [#2775](https://github.com/chakra-ui/chakra-ui/pull/2775) Thanks
+  [@Samic8](https://github.com/Samic8)! - ## 🐛 Bug Fix
+
+  Prevent content from fading-in on initial render when isLoaded is already true
+  (#2644)
+
+  For example, the content would appear without the fade-in animation in this
+  case:
+
+  ```jsx
+  <Skeleton isLoaded={true}>
+    <h1>My Content</h1>
+  </Skeleton>
+  ```
+
+- Updated dependencies
+  [[`730a2da1`](https://github.com/chakra-ui/chakra-ui/commit/730a2da19b652614bc051b9f80313d211b22d1de),
+  [`e73878ee`](https://github.com/chakra-ui/chakra-ui/commit/e73878ee686c11d3f94ad6ac61b19ae9508d75a5)]:
+  - @chakra-ui/system@1.1.0
+  - @chakra-ui/utils@1.0.2
+  - @chakra-ui/media-query@1.0.2
+  - @chakra-ui/hooks@1.0.2
+
 ## 1.0.2
 
 ### Patch Changes

@@ -1,5 +1,39 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [`b8df0bf4`](https://github.com/chakra-ui/chakra-ui/commit/b8df0bf44a10512658826e5ef8e3067bc45fbc4a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  controlling focus lock across frames. A typical example is when you open a
+  modal in Codesandbox, it's impossible to type in the code editor due to focus
+  lock.
+
+  `react-focus-lock` exposes a prop that prevents this from happening. We
+  updated `FocusLock` and `Modal` components to allow users opt-in or opt-out of
+  this behavior
+
+  To learn more, check out this issue
+  [#2479](https://github.com/chakra-ui/chakra-ui/issues/2479)
+
+### Patch Changes
+
+- [`123aaf59`](https://github.com/chakra-ui/chakra-ui/commit/123aaf59a60aaae269e2a305730a650a112c0975)
+  [#2754](https://github.com/chakra-ui/chakra-ui/pull/2754) Thanks
+  [@dodas](https://github.com/dodas)! - Fixed issue where `FormHelperText` was
+  not rendered when its parent `FormControl` had `isInvalid` prop set to true.
+
+* [`29c0e45e`](https://github.com/chakra-ui/chakra-ui/commit/29c0e45efb9f8f37dc2e81b56c08e2f1cedeb621)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Removed `isLoading`
+  from `FormControl` prop has it doesn't add any value at the moment. We'll
+  consider implementing this properly in the future.
+* Updated dependencies
+  [[`e73878ee`](https://github.com/chakra-ui/chakra-ui/commit/e73878ee686c11d3f94ad6ac61b19ae9508d75a5)]:
+  - @chakra-ui/utils@1.0.2
+  - @chakra-ui/icon@1.0.2
+  - @chakra-ui/hooks@1.0.2
+
 ## 1.0.2
 
 ### Patch Changes

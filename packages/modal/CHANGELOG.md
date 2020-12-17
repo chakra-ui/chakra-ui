@@ -1,5 +1,38 @@
 # Change Log
 
+## 1.3.0
+
+### Minor Changes
+
+- [`b8df0bf4`](https://github.com/chakra-ui/chakra-ui/commit/b8df0bf44a10512658826e5ef8e3067bc45fbc4a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  controlling focus lock across frames. A typical example is when you open a
+  modal in Codesandbox, it's impossible to type in the code editor due to focus
+  lock.
+
+  `react-focus-lock` exposes a prop that prevents this from happening. We
+  updated `FocusLock` and `Modal` components to allow users opt-in or opt-out of
+  this behavior
+
+  To learn more, check out this issue
+  [#2479](https://github.com/chakra-ui/chakra-ui/issues/2479)
+
+### Patch Changes
+
+- [`5bff79a1`](https://github.com/chakra-ui/chakra-ui/commit/5bff79a1ba6989d279fc432d5040c72cd75b392e)
+  Thanks [@jmiazga](https://github.com/jmiazga)! - Updated framer-motion
+  peerDependencies to v3
+
+- Updated dependencies
+  [[`5bff79a1`](https://github.com/chakra-ui/chakra-ui/commit/5bff79a1ba6989d279fc432d5040c72cd75b392e),
+  [`e73878ee`](https://github.com/chakra-ui/chakra-ui/commit/e73878ee686c11d3f94ad6ac61b19ae9508d75a5)]:
+  - @chakra-ui/transition@1.0.3
+  - @chakra-ui/utils@1.0.2
+  - @chakra-ui/close-button@1.0.3
+  - @chakra-ui/focus-lock@1.0.2
+  - @chakra-ui/hooks@1.0.2
+  - @chakra-ui/portal@1.0.2
+
 ## 1.2.1
 
 ### Patch Changes

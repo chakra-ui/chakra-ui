@@ -1,5 +1,40 @@
 # Change Log
 
+## 1.1.1
+
+### Patch Changes
+
+- [`730a2da1`](https://github.com/chakra-ui/chakra-ui/commit/730a2da19b652614bc051b9f80313d211b22d1de)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ## Pin Input
+
+  ### 🐛 Bug Fix
+
+  - Fix issue where copy-paste doesn't work for pin-input
+
+  ## Number Input
+
+  ### 🐛 Bug Fix
+
+  - Fix issue where number input doesn't work when using with form libraries
+    that use `ref` as entry point to setting initial values (e.g React hook
+    form).
+
+    We improved `useNumberInput` to sync the initial values in the `ref` passed
+    to `NumberInputField` with the internal state.
+
+  ## System
+
+  ### 🚀 Feature
+
+  Add support for custom `shouldForwardProp` function in the `chakra` factory
+  function.
+
+- Updated dependencies
+  [[`e73878ee`](https://github.com/chakra-ui/chakra-ui/commit/e73878ee686c11d3f94ad6ac61b19ae9508d75a5)]:
+  - @chakra-ui/utils@1.0.2
+  - @chakra-ui/hooks@1.0.2
+  - @chakra-ui/descendant@1.0.2
+
 ## 1.1.0
 
 ### Minor Changes

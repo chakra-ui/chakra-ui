@@ -1,5 +1,26 @@
 # Change Log
 
+## 1.2.2
+
+### Patch Changes
+
+- [`85eb4090`](https://github.com/chakra-ui/chakra-ui/commit/85eb409039640949e01f3aa7353519b19a42a53f)
+  [#2741](https://github.com/chakra-ui/chakra-ui/pull/2741) Thanks
+  [@dodas](https://github.com/dodas)! - ## 🐛 Bug Fix
+
+  Focus outline now takes precedence over "isInvalid" outline. This change
+  affects all components that extend from `Input`'s theme, such as `Select`,
+  `PinInput`, `Textarea` or `NumberInput`.
+
+* [`080a7acc`](https://github.com/chakra-ui/chakra-ui/commit/080a7accdd321123e44df082911c6250154fdbd5)
+  [#2759](https://github.com/chakra-ui/chakra-ui/pull/2759) Thanks
+  [@gifaeriyanto](https://github.com/gifaeriyanto)! - Added the `container` key
+  to the `parts` list so it is detected as part of the `Checkbox` component
+  theme types.
+
+* Updated dependencies []:
+  - @chakra-ui/theme-tools@1.0.2
+
 ## 1.2.1
 
 ### Patch Changes
