@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`5bff79a1`](https://github.com/chakra-ui/chakra-ui/commit/5bff79a1ba6989d279fc432d5040c72cd75b392e),
+  [`e73878ee`](https://github.com/chakra-ui/chakra-ui/commit/e73878ee686c11d3f94ad6ac61b19ae9508d75a5)]:
+  - @chakra-ui/transition@1.0.3
+  - @chakra-ui/utils@1.0.2
+  - @chakra-ui/icon@1.0.2
+  - @chakra-ui/hooks@1.0.2
+  - @chakra-ui/descendant@1.0.2
+
 ## 1.0.2
 
 ### Patch Changes
