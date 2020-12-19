@@ -379,6 +379,7 @@ Thanks goes to these wonderful people
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/songheewon"><img src="https://avatars1.githubusercontent.com/u/44194990?v=4" width="64px;" alt=""/><br /><sub><b>songheewon</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=songheewon" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/vipranarayan14"><img src="https://avatars2.githubusercontent.com/u/17687018?v=4" width="64px;" alt=""/><br /><sub><b>Prasanna Venkatesh T S</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=vipranarayan14" title="Documentation">📖</a></td>
   </tr>
 </table>
 
