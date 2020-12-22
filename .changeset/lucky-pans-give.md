@@ -16,9 +16,11 @@ Add gradient support to chakra style props. This PR adds to props:
 To add a gradient to a component, pass the `bgGradient` prop and set its value
 following the API below:
 
-`<direction> <from>:<to>`
+- `linear(<direction>, <from>, <to>)`
+- `radial(<from>, <to>)`
 
-The direction can be either of the following values:
+and other valid css gradient properties. For linear gradients, the direction can
+be either of the following values:
 
 ```js
 "to-t" // 'to top'
@@ -33,13 +35,13 @@ The direction can be either of the following values:
 ```
 
 ```jsx
-<Box w="500px" h="200px" bgGradient="to-r gray.300:pink.200" />
+<Box w="500px" h="200px" bgGradient="linear(to-r, gray.300, pink.200)" />
 ```
 
 You can use both theme-aware color tokens or raw CSS color values.
 
 ```jsx
-<Box w="500px" h="200px" bgGradient="to-l #7928CA:#FF0080" />
+<Box w="500px" h="200px" bgGradient="linear(to-l, #7928CA, #FF0080)" />
 ```
 
 ### Multiple Color Stops
@@ -47,7 +49,7 @@ You can use both theme-aware color tokens or raw CSS color values.
 `<direction> <from>:<via>:<via>:<to>` - This is a gradient with multiple stops
 
 ```jsx
-<Box w="500px" h="200px" bgGradient="to-r gray.300:yellow.400:pink.200" />
+<Box w="500px" h="200px" bgGradient="radial(gray.300,yellow.400,pink.200)" />
 ```
 
 ## The Text Gradient API
@@ -57,29 +59,11 @@ prop to `text`.
 
 ```jsx
 <Text
-  bgGradient="to-l #7928CA:#FF0080"
+  bgGradient="linear(to-l,#7928CA,#FF0080)"
   bgClip="text"
   fontSize="7xl"
   fontWeight="extrabold"
 >
   Welcome to Chakra UI
 </Text>
-```
-
-## Tips
-
-- We set the gradient's direction to `to right` by default so you can omit that
-  and specify just the color stops
-
-```jsx
-// omitted `to-r` direction
-<Box w="500px" h="200px" bgGradient="gray.300:pink.200" />
-```
-
-- If you pass only `from` color stop, we'll default the `to` color stop to
-  `transparent`.
-
-```jsx
-// omitted `to` color stop, we'll use rgba(255,0,0,0) or transparent
-<Box w="500px" h="200px" bgGradient="to-t gray.300" />
 ```
