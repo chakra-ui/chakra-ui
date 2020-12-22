@@ -510,7 +510,10 @@ function Example() {
 
 Tabs composes `Box` so you call pass all `Box` related props.
 
-<PropsTable of="Tabs" />
+<PropsTable
+  of="Tabs"
+  omit={["isTruncated", "layerStyle", "noOfLines", "textStyle", "styleConfig"]}
+/>
 
 ### Tab Props
 
