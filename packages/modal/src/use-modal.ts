@@ -14,7 +14,7 @@ import { manager, useModalManager } from "./modal-manager"
 
 export interface UseModalProps {
   /**
-   * If `true`, the modal when be opened.
+   * If `true`, the modal will be open.
    */
   isOpen: boolean
   /**
