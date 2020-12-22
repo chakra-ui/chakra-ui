@@ -143,6 +143,8 @@ export const SkeletonText: React.FC<SkeletonTextProps> = (props) => {
     startColor,
     endColor,
     isLoaded,
+    fadeDuration,
+    speed,
     children,
     ...rest
   } = props
@@ -164,19 +166,31 @@ export const SkeletonText: React.FC<SkeletonTextProps> = (props) => {
 
   return (
     <chakra.div className={_className} {...rest}>
-      {isLoaded
-        ? children
-        : numbers.map((number) => (
-            <Skeleton
-              key={numbers.length.toString() + number}
-              height={skeletonHeight}
-              mb={number === numbers.length ? "0" : spacing}
-              width={getWidth(number)}
-              startColor={startColor}
-              endColor={endColor}
-              isLoaded={isLoaded}
-            />
-          ))}
+      {numbers.map((number, index) => {
+        if (isLoaded && index > 0) {
+          // skip other lines
+          return null
+        }
+
+        return (
+          <Skeleton
+            key={numbers.length.toString() + number}
+            mb={number === numbers.length ? "0" : spacing}
+            width={getWidth(number)}
+            height={skeletonHeight}
+            startColor={startColor}
+            endColor={endColor}
+            isLoaded={isLoaded}
+            fadeDuration={fadeDuration}
+            speed={speed}
+          >
+            {
+              // allows animating the children
+              index === 0 ? children : undefined
+            }
+          </Skeleton>
+        )
+      })}
     </chakra.div>
   )
 }
