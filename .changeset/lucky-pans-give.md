@@ -46,7 +46,7 @@ You can use both theme-aware color tokens or raw CSS color values.
 
 ### Multiple Color Stops
 
-`<direction> <from>:<via>:<via>:<to>` - This is a gradient with multiple stops
+This is a gradient with multiple stops
 
 ```jsx
 <Box w="500px" h="200px" bgGradient="radial(gray.300,yellow.400,pink.200)" />
