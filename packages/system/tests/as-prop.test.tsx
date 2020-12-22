@@ -31,8 +31,9 @@ describe("`as` prop typings", () => {
     )
     const CustomCompWithRequired = chakra(CompWithRequired)
 
-    // TODO this should fail due missing required prop
-    const renderedCustomCompWithRequired = <CustomCompWithRequired />
+    const renderedCustomCompWithRequired = (
+      <CustomCompWithRequired thisIsARequiredProp />
+    )
 
     // make jest happy
     expect(true).toBe(true)
