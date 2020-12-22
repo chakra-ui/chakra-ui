@@ -31,12 +31,17 @@ export function parseGradient(value: string, theme: Dict) {
   const regex = /(?<type>^[a-z-A-Z]+)\((?<values>(.*?))\)/g
 
   const { type, values } = regex.exec(value)?.groups ?? {}
+
+  if (!type || !values) return value
+
   const _type = type.includes("-gradient") ? type : `${type}-gradient`
 
   const [maybeDirection, ...stops] = values
     .split(",")
     .map(trimSpace)
     .filter(Boolean)
+
+  if (stops?.length === 0) return value
 
   const direction =
     maybeDirection in directionMap

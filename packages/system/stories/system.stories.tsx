@@ -90,9 +90,13 @@ export const WithUseProps = () => (
 
 export const WithGradient = () => (
   <>
-    <chakra.div bgGradient="to-r pink.300:blue.500" w="500px" h="64px" />
+    <chakra.div
+      bgGradient="linear(to-r, pink.300, blue.500)"
+      w="500px"
+      h="64px"
+    />
     <chakra.span
-      bgGradient="to-l #7928CA:#FF0080"
+      bgGradient="linear(to-r, red.200, papayawhip)"
       bgClip="text"
       fontSize="7xl"
       fontWeight="extrabold"
