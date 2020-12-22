@@ -1,32 +1,41 @@
 /**
- * All credit goes to Chance (Reach UI), and Haz (Reakit) for creating
- * the base type definitions upon which we improved on
+ * All credit goes to Chance (Reach UI), Haz (Reakit) and (fluentui)
+ * for creating the base type definitions upon which we improved on
  */
 import * as React from "react"
-import type { As } from "./system.types"
 
-type OmittedProps = "transition"
+type OmitCommonProps<
+  Target,
+  OmitAdditionalProps extends keyof any = never
+> = Omit<Target, "transition" | "as" | "color" | OmitAdditionalProps>
 
-type PropsWithAs<Props = {}, Component extends As = As> = Props &
-  Omit<React.ComponentProps<Component>, "as" | keyof Props | OmittedProps> & {
-    as?: Component
-  }
+type Intersection<
+  SourceProps extends object = {},
+  OverrideProps extends object = {}
+> = OmitCommonProps<SourceProps, keyof OverrideProps> & OverrideProps
 
-export type ComponentWithAs<Component extends As, Props> = {
-  <Component extends As>(
-    props: PropsWithAs<Props, Component> & { as?: Component },
+export type ComponentWithAs<
+  Component extends React.ElementType,
+  Props extends object = {}
+> = {
+  <AliasedComponent extends React.ElementType>(
+    props: Intersection<React.ComponentProps<Component>, Props> &
+      Intersection<React.ComponentProps<AliasedComponent>, Props> & {
+        as?: AliasedComponent
+      },
   ): JSX.Element
 
   displayName?: string
-  propTypes?: React.WeakValidationMap<PropsWithAs<Props, Component>>
+  propTypes?: React.WeakValidationMap<any>
   contextTypes?: React.ValidationMap<any>
-  defaultProps?: Partial<PropsWithAs<Props, Component>>
+  defaultProps?: Partial<any>
   id?: string
 }
 
-export function forwardRef<Props, Component extends As>(
-  component: React.ForwardRefRenderFunction<any, any>,
-) {
+export function forwardRef<
+  Props extends object,
+  Component extends React.ElementType
+>(component: React.ForwardRefRenderFunction<any, any>) {
   return (React.forwardRef(component) as unknown) as ComponentWithAs<
     Component,
     Props

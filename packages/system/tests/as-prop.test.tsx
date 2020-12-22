@@ -1,6 +1,5 @@
 import * as React from "react"
-import { chakra } from ".."
-import { ChakraComponent } from "../src"
+import { chakra, ChakraComponent } from ".."
 
 /**
  * These tests should fail
