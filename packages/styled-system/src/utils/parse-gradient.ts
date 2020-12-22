@@ -1,4 +1,4 @@
-import { Dict, memoizedGet as get } from "@chakra-ui/utils"
+import { Dict, memoizedGet as get, isObject } from "@chakra-ui/utils"
 import { ConfigStyle } from "@styled-system/core"
 
 const directionMap = {
@@ -12,13 +12,7 @@ const directionMap = {
   "to-tl": "to top left",
 }
 
-export enum ErrorMessages {
-  INVALID_SYNTAX = "Invalid value passed to prop: `bgGradient`",
-  INVALID_DIRECTION = "Direction is not valid. Defaulting to `top right`",
-}
-
-const DEFAULT_DIR: keyof typeof directionMap = "to-r"
-export const DEFAULT_TO_COLOR = "rgba(255, 0, 0, 0)"
+const valueSet = new Set(Object.values(directionMap))
 
 const globals = [
   "none",
@@ -29,43 +23,42 @@ const globals = [
   "unset",
 ]
 
+const trimSpace = (str: string) => str.trim()
+
 export function parseGradient(value: string, theme: Dict) {
-  if (globals.includes(value)) {
-    return value
-  }
+  if (!value || globals.includes(value)) return value
 
-  const valueSplit = value.split(" ").filter(Boolean)
+  const regex = /(?<type>^[a-z-A-Z]+)\((?<values>(.*?))\)/g
 
-  if (valueSplit.length > 2) {
-    throw Error(ErrorMessages.INVALID_SYNTAX)
-  }
+  const { type, values } = regex.exec(value)?.groups ?? {}
+  const _type = type.includes("-gradient") ? type : `${type}-gradient`
 
-  let [dir, colors] = valueSplit
-
-  if (valueSplit.length === 1) {
-    colors = valueSplit[0]
-    dir = DEFAULT_DIR
-  }
-
-  let direction = directionMap[dir]
-
-  if (!direction) {
-    console.warn(ErrorMessages.INVALID_DIRECTION)
-    direction = directionMap[DEFAULT_DIR]
-  }
-
-  const colorsArr = colors
-    .split(":")
+  const [maybeDirection, ...stops] = values
+    .split(",")
+    .map(trimSpace)
     .filter(Boolean)
-    .map((color) => get(theme, `colors.${color}`, color))
 
-  if (colorsArr.length === 1) {
-    colorsArr.push(DEFAULT_TO_COLOR)
-  }
+  const direction =
+    maybeDirection in directionMap
+      ? directionMap[maybeDirection]
+      : maybeDirection
 
-  const colorsString = colorsArr.join(", ")
+  stops.unshift(direction)
 
-  return `linear-gradient(${direction}, ${colorsString})`
+  const _values = stops.map((stop) => {
+    // if stop is valid shorthand direction, return it
+    if (valueSet.has(stop)) return stop
+    // color stop could be `red.200 20%` based on css gradient spec
+    const [_color, _stop] = stop.split(" ")
+    // else, get and transform the color token or css value
+    const color = get(theme, `colors.${_color}`, _color)
+    // isObject(...) is an exception for users who use `red` instead of `red.100`
+    const result = isObject(color) ? stop : color
+
+    return _stop ? [result, _stop].join(" ") : result
+  })
+
+  return `${_type}(${_values.join(", ")})`
 }
 
 export const transformGradient: ConfigStyle["transform"] = (value, _, theme) =>

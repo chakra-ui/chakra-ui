@@ -1,71 +1,101 @@
-import { parseGradient, DEFAULT_TO_COLOR } from "../src/utils/parse-gradient"
+import { parseGradient } from "../src/utils/parse-gradient"
 
 const theme = {
   colors: {
-    green: "greenish",
-    red: "reddish",
+    green: "#006400",
+    red: "#800000",
+    pink: {
+      light: "#FFB6C1",
+      dark: "#FF1493",
+    },
   },
 }
 
-Object.assign(global.console, {
-  warn: jest.fn(),
+describe("linear gradient", () => {
+  test("should convert simple value", () => {
+    const input = "linear(to-t, red, green)"
+    const output = parseGradient(input, theme)
+    expect(output).toEqual("linear-gradient(to top, #800000, #006400)")
+  })
+
+  test("should convert value with HEX code", () => {
+    const input = "linear(to-t, #fff, #bbb)"
+    const output = parseGradient(input, theme)
+    expect(output).toEqual("linear-gradient(to top, #fff, #bbb)")
+  })
+
+  test("should convert without direction", () => {
+    const input = "linear(red,green)"
+    const output = parseGradient(input, theme)
+    expect(output).toEqual("linear-gradient(#800000, #006400)")
+  })
+
+  test("should convert with double space", () => {
+    // Oops! user added double space after direction
+    const input = "linear(to-tl,red,green)"
+    const output = parseGradient(input, theme)
+    // we clean up the extra space
+    expect(output).toEqual("linear-gradient(to top left, #800000, #006400)")
+  })
+
+  test("should not parse if value is 'none'", () => {
+    expect(parseGradient("none", theme)).toEqual("none")
+  })
+
+  test("should not parse null", () => {
+    expect(parseGradient(null, theme)).toBeNull()
+  })
+
+  test("should parse nested colors", () => {
+    expect(parseGradient("radial(to-b, pink.light, pink.dark)", theme)).toEqual(
+      "radial-gradient(to bottom, #FFB6C1, #FF1493)",
+    )
+  })
+
+  test("should parse nested colors and css value - 1", () => {
+    expect(parseGradient("radial(to-b, pink, pink.dark)", theme)).toEqual(
+      "radial-gradient(to bottom, pink, #FF1493)",
+    )
+  })
+
+  test("should parse nested colors and css value - 2", () => {
+    expect(parseGradient("radial(to-b, #bbb, pink.dark)", theme)).toEqual(
+      "radial-gradient(to bottom, #bbb, #FF1493)",
+    )
+  })
+
+  test("should parse color stop with percentage", () => {
+    expect(
+      parseGradient("radial(to-b, #bbb 15%, pink.dark 15%)", theme),
+    ).toEqual("radial-gradient(to bottom, #bbb 15%, #FF1493 15%)")
+  })
 })
 
-test("should convert simple value", () => {
-  const input = "to-t red:green"
-  const output = parseGradient(input, theme)
-  expect(output).toEqual("linear-gradient(to top, reddish, greenish)")
-})
+describe("conic gradient", () => {
+  test("basic value", () => {
+    expect(parseGradient("conic(#fff, #000)", theme)).toEqual(
+      "conic-gradient(#fff, #000)",
+    )
+  })
 
-test("should convert value with HEX code", () => {
-  const input = "to-t #fff:#bbb"
-  const output = parseGradient(input, theme)
-  expect(output).toEqual("linear-gradient(to top, #fff, #bbb)")
-})
+  test("replace color tokens", () => {
+    expect(parseGradient("conic(pink.light, #ttt)", theme)).toEqual(
+      "conic-gradient(#FFB6C1, #ttt)",
+    )
+  })
 
-test("should convert without direction", () => {
-  const input = "red:green"
-  const output = parseGradient(input, theme)
-  // we default direction to `to-r` if not passed
-  expect(output).toEqual("linear-gradient(to right, reddish, greenish)")
-})
+  test("replace color tokens - with from(...)", () => {
+    expect(parseGradient("conic(from 90deg, #fff, #000)", theme)).toEqual(
+      "conic-gradient(from 90deg, #fff, #000)",
+    )
+  })
 
-test("should convert with wrong direction", () => {
-  const input = "to-ry red:green"
-  const output = parseGradient(input, theme)
-  // we default direction to `to-r` if passed direction is wrong
-  // and we also throw a warning
-  expect(console.warn).toHaveBeenCalledWith(
-    "Direction is not valid. Defaulting to `top right`",
-  )
-  expect(output).toEqual("linear-gradient(to right, reddish, greenish)")
-})
-
-test("should convert with double space", () => {
-  // Oops! user added double space after direction
-  const input = "to-tl  red:green"
-  const output = parseGradient(input, theme)
-  // we clean up the extra space
-  expect(output).toEqual("linear-gradient(to top left, reddish, greenish)")
-})
-
-test("should throw when passed the wrong syntax", () => {
-  // Oops! Invalid syntax :(
-  const input = "to-ry testing red:green"
-  expect(() => parseGradient(input, theme)).toThrowError()
-})
-
-test("should throw when passed 1 color", () => {
-  // Oops! Invalid syntax :(
-  const input = "to-b red"
-  const output = parseGradient(input, theme)
-  // we'll add `transparent` as the `to` color by default
-  expect(output).toEqual(
-    `linear-gradient(to top left, reddish, ${DEFAULT_TO_COLOR})`,
-  )
-})
-
-test("should not parse if value is 'none'", () => {
-  const input = "none"
-  console.log(parseGradient(input, theme))
+  test("replace color tokens - with long values", () => {
+    expect(
+      parseGradient(
+        "conic(pap, yellow, lime, aqua, blue, magenta, pap)",
+        theme,
+      ),
+    ).toEqual("conic-gradient(pap, yellow, lime, aqua, blue, magenta, pap)")
+  })
 })
