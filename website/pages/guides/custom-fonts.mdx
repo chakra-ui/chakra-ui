@@ -1,0 +1,133 @@
+---
+title: Using Custom Fonts
+description: A guide for adding custom fonts to your Chakra project
+tags: ["fonts"]
+author: with-heart
+---
+
+Custom fonts can be loaded in your Chakra project using the `Global` component
+from the `@emotion/react` package and `@font-face` css rules. You can then add
+these fonts to `theme.fonts` to make use of them throughout the Chakra system.
+
+For the purposes of this guide, we'll use
+[Open Sans](https://fonts.google.com/specimen/Open+Sans) for the heading font
+and [Raleway](https://fonts.google.com/specimen/Raleway) for the body font.
+
+## Importing fonts using `@font-face`
+
+First, we'll define a `Fonts` component that sets up the `@font-face` rules in
+the `styles` prop of `Global`:
+
+```jsx live=false
+import { Global } from "@emotion/react"
+
+const Fonts = () => (
+  <Global
+    styles={`
+      /* Copied from https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Raleway&display=swap */
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/opensans/v18/mem5YaGs126MiZpBA-UN7rgOXOhpKKSTj5PW.woff2) format('woff2');
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/opensans/v18/mem5YaGs126MiZpBA-UN7rgOUuhpKKSTjw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      /* latin-ext */
+      @font-face {
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/raleway/v18/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvaorCGPrcVIT9d0c-dYA.woff) format('woff');
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/raleway/v18/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvaorCIPrcVIT9d0c8.woff) format('woff');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      `}
+  />
+)
+```
+
+## Configuring `theme` to use our fonts
+
+Next, we'll configure our `theme` to use these fonts:
+
+```jsx live=false
+import { extendTheme } from "@chakra-ui/react"
+
+const theme = extendTheme({
+  fonts: {
+    heading: "Open Sans",
+    body: "Raleway",
+  },
+})
+```
+
+## Putting it all together
+
+Now all that's left is to render `Fonts` and pass our custom `theme` to
+`ChakraProvider`:
+
+```jsx live=false
+import * as React from "react"
+import {
+  ChakraProvider,
+  extendTheme,
+  Container,
+  Stack,
+  Heading,
+  Text,
+} from "@chakra-ui/react"
+import { Fonts } from "./Fonts"
+
+const theme = extendTheme({
+  fonts: {
+    heading: "Open Sans",
+    body: "Raleway",
+  },
+})
+
+const App = () => (
+  <ChakraProvider theme={theme}>
+    <Fonts />
+    <Container>
+      <Stack>
+        <Heading>The spectacle before us was indeed sublime.</Heading>
+        <Text>
+          Apparently we had reached a great height in the atmosphere, for the
+          sky was a dead black, and the stars had ceased to twinkle. By the same
+          illusion which lifts the horizon of the sea to the level of the
+          spectator on a hillside, the sable cloud beneath was dished out, and
+          the car seemed to float in the middle of an immense dark sphere, whose
+          upper half was strewn with silver. Looking down into the dark gulf
+          below, I could see a ruddy light streaming through a rift in the
+          clouds.
+        </Text>
+      </Stack>
+    </Container>
+  </ChakraProvider>
+)
+```
+
+Check out
+[this CodeSandbox](https://codesandbox.io/s/custom-fonts-reckv?file=/src/App.tsx)
+for a working example of what we just built!
