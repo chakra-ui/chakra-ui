@@ -30,6 +30,10 @@
               "path": "/docs/features/style-props"
             },
             {
+              "title": "Gradient",
+              "path": "/docs/features/gradient"
+            },
+            {
               "title": "Color Mode",
               "path": "/docs/features/color-mode"
             },
