@@ -1,30 +1,23 @@
 # Number of days of inactivity before an issue becomes stale
-daysUntilStale: 15
+daysUntilStale: 30
 # Number of days of inactivity before a stale issue is closed
 daysUntilClose: 5
 # Issues with these labels will never be considered stale
 exemptLabels:
   - "not stale"
-  - "good first issue 👍"
-  - "good for beginners 😃"
-  - "help wanted 🆘"
   - "Priority: High 🚨"
-  - "Showcase 💖"
-  - "Topic: Reviews ⭐️💖"
-  - "Status: Assigned ➡"
-  - "Status: Work in Progress 🛠"
-  - "Type: Bug 🐛"
-  - "Type: Documentation 📚"
-  - "Type: Feature 🚀"
 # Label to use when marking an issue as stale
 staleLabel: stale
 # Comment to post when marking an issue as stale. Set to `false` to disable
 markComment: >
   Hi!
 
-  This issue hasn't seen any activity recently. We close inactive issues after 20 days to manage the volume of issues we receive.
+  This issue hasn't seen any activity recently. We close inactive issues after
+  35 days to manage the volume of issues we receive.
 
-  If we missed this issue or you want to keep it open, please reply here. That will reset the timer and allow more time for this issue to be addressed before it is closed.
+  If we missed this issue or you want to keep it open, please reply here. That
+  will reset the timer and allow more time for this issue to be addressed before
+  it is closed.
 # Comment to post when closing a stale issue. Set to `false` to disable
 closeComment: false
 unmarkComment: false
