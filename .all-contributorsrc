@@ -1656,6 +1656,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "oahmaro",
+      "name": "Osama Ahmaro",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/15835932?v=4",
+      "profile": "https://github.com/oahmaro",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
