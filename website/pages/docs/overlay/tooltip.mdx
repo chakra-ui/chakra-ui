@@ -32,8 +32,8 @@ import { Tooltip } from "@chakra-ui/react"
 If the `children` of Tooltip is a `string`, we wrap with in a `span` with
 `tabIndex` set to `0`, to ensure it meets the accessibility requirements.
 
-> Note 🚨: If the Tooltip is wrapped in a functional component. Ensure you
-> `forwardRef` to this component.
+> Note 🚨: If the `Tooltip` is wrapping a functional component, ensure that the
+> functional component accepts a `ref` using `forwardRef`.
 
 ```jsx
 <Tooltip label="Hey, I'm here!" aria-label="A tooltip">
@@ -48,6 +48,10 @@ If the `children` of Tooltip is a `string`, we wrap with in a `span` with
   <PhoneIcon />
 </Tooltip>
 ```
+
+> Note 🚨: If you're wrapping an icon from `react-icons`, you need to also wrap
+> the icon in a `span` element as
+> [`react-icons` icons do not use `forwardRef`](https://github.com/react-icons/react-icons/issues/336).
 
 ### With arrow
 
