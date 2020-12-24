@@ -1,0 +1,79 @@
+---
+title: Gradient
+description:
+  Learn how to use gradient in Chakra UI. Gradients are a way to have transition
+  between two or more colors.
+---
+
+Gradients are a way to have transition between two or more colors. Gradients can
+either be linear or radial.
+
+# How it works
+
+You can add gradient support using any of the following style props.
+
+- `bgGradient`: a shorthand, convenient style prop to apply theme-aware
+  gradients.
+- `bgClip`: a shorthand for `background-clip` CSS attribute. Useful when
+  creating text gradients.
+- `backgroundClip`: the typical `background-clip` CSS attribute. Useful when
+  creating text gradients.
+
+## The Background Gradient API
+
+To add a gradient to a component, pass the `bgGradient` prop and set its value
+following the API below:
+
+- `linear(<direction>, <from>, <to>)`
+- `radial(<from>, <to>)`
+
+```jsx
+<Box w="100%" h="200px" bgGradient="linear(to-t, green.200, pink.500)" />
+```
+
+### Customisable Colors
+
+You can use both theme-aware color tokens or raw CSS color values.
+
+```jsx
+<Box w="100%" h="200px" bgGradient="linear(to-l, #7928CA, #FF0080)" />
+```
+
+### Multiple Color Stops
+
+This is a gradient with multiple stops
+
+```jsx
+<Box w="100%" h="200px" bgGradient="radial(gray.300,yellow.400,pink.200)" />
+```
+
+Note that for linear gradients, the direction can be any of the following
+values:
+
+```js
+"to-t" // 'to top'
+"to-tr" // 'to top right'
+"to-r" // 'to right'
+"to-br" // 'to bottom right'
+"to-b" // 'to bottom'
+"to-bl" // 'to bottom left'
+"to-l" // 'to left'
+"to-tl" // 'to top left'
+
+```
+
+## The Text Gradient API
+
+To add a text gradient, pass the `bgGradient` following the API and `bgClip`
+prop to `text`.
+
+```jsx
+<Text
+  bgGradient="linear(to-l, #7928CA,#FF0080)"
+  bgClip="text"
+  fontSize="6xl"
+  fontWeight="extrabold"
+>
+  Welcome to Chakra UI
+</Text>
+```
