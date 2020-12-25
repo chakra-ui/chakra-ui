@@ -52,7 +52,7 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
     ...rest
   } = omitThemingProps(props)
 
-  let isChecked = props.isChecked || false
+  let isChecked = props.isChecked
   if (group?.value && valueProp) {
     isChecked = group.value === valueProp
   }

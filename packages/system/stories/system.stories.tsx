@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { chakra, PropsOf, ThemeProvider, ThemingProps, useProps } from "../src"
 
 export default {
-  title: "styled",
+  title: "System",
 }
 
 const MotionBox = motion.custom(chakra.div)
@@ -74,18 +74,34 @@ const Comp = (props: PropsOf<typeof chakra.div> & ThemingProps) => {
   return <chakra.div {...res.props} __css={res.styles} />
 }
 
-export const WithUseProps = () => {
-  return (
-    <Comp
-      bg="green.500"
-      d="inline-block"
-      color="white"
-      textTransform="lowercase"
-      onClick={() => {
-        console.log("welcome home")
-      }}
+export const WithUseProps = () => (
+  <Comp
+    bg="green.500"
+    d="inline-block"
+    color="white"
+    textTransform="lowercase"
+    onClick={() => {
+      console.log("welcome home")
+    }}
+  >
+    Welcome home
+  </Comp>
+)
+
+export const WithGradient = () => (
+  <>
+    <chakra.div
+      bgGradient="linear(to-r, pink.300, blue.500)"
+      w="500px"
+      h="64px"
+    />
+    <chakra.span
+      bgGradient="linear(to-r, red.200, papayawhip)"
+      bgClip="text"
+      fontSize="7xl"
+      fontWeight="extrabold"
     >
-      Welcome home
-    </Comp>
-  )
-}
+      Welcome to Chakra UI
+    </chakra.span>
+  </>
+)

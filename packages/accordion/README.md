@@ -29,7 +29,7 @@ import {
 
 ## Component:
 
-- `Accordion`: manages the global state of all opened accordionitems via
+- `Accordion`: manages the global state of all opened accordion items via
   context.
 - `AccordionItem`: manages the state for a single accordion item.
 - `AccordionButton`: the trigger to open/close an accordion item.

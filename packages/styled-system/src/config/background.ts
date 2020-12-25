@@ -1,6 +1,13 @@
 import * as CSS from "csstype"
 import { createParser, Config, system } from "../core"
 import { ResponsiveValue, Length, t } from "../utils"
+import { transformGradient } from "../utils/parse-gradient"
+
+function transformBgClip(value: string) {
+  return value === "text"
+    ? { WebkitTextFillColor: "transparent", backgroundClip: "text" }
+    : { backgroundClip: value }
+}
 
 const config: Config = {
   bg: t.colors("background"),
@@ -13,6 +20,10 @@ const config: Config = {
   backgroundRepeat: true,
   backgroundAttachment: true,
   backgroundBlendMode: true,
+  backgroundClip: {
+    property: "&",
+    transform: transformBgClip,
+  },
   bgImage: t.prop("backgroundImage"),
   bgImg: t.prop("backgroundImage"),
   bgBlendMode: t.prop("backgroundBlendMode"),
@@ -21,6 +32,14 @@ const config: Config = {
   bgPos: t.prop("backgroundPosition"),
   bgRepeat: t.prop("backgroundRepeat"),
   bgAttachment: t.prop("backgroundAttachment"),
+  bgGradient: {
+    property: "backgroundImage",
+    transform: transformGradient,
+  },
+  bgClip: {
+    property: "&",
+    transform: transformBgClip,
+  },
 }
 
 export interface BackgroundProps {
@@ -28,6 +47,14 @@ export interface BackgroundProps {
    * The CSS `background` property
    */
   bg?: ResponsiveValue<CSS.Property.Background<Length>>
+  /**
+   * The CSS `background-clip` property
+   */
+  bgClip?: ResponsiveValue<CSS.Property.BackgroundClip | "text">
+  /**
+   * The CSS `background-clip` property
+   */
+  backgroundClip?: ResponsiveValue<CSS.Property.BackgroundClip | "text">
   /**
    * The CSS `background` property
    */
@@ -44,6 +71,10 @@ export interface BackgroundProps {
    * The CSS `background-image` property
    */
   backgroundImage?: ResponsiveValue<CSS.Property.BackgroundImage>
+  /**
+   * The background-gradient shorthand
+   */
+  bgGradient?: ResponsiveValue<CSS.Property.BackgroundImage>
   /**
    * The CSS `background-blend-mode` property
    */
