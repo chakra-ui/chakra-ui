@@ -274,7 +274,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
         onFocus: callAllHandlers(rest.onFocus, onFocus),
         onBlur: callAllHandlers(rest.onBlur, onBlur),
         value: values[index] || "",
-        autoComplete: "not-allowed",
+        autoComplete: "off",
         placeholder: hasFocus ? "" : placeholder,
       }
     },
