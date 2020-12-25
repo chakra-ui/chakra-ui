@@ -1,5 +1,5 @@
 import { Dict, memoizedGet as get, isObject } from "@chakra-ui/utils"
-import { ConfigStyle } from "@styled-system/core"
+import { PropConfig } from "../core"
 
 const directionMap = {
   "to-t": "to top",
@@ -66,5 +66,5 @@ export function parseGradient(value: string | null | undefined, theme: Dict) {
   return `${_type}(${_values.join(", ")})`
 }
 
-export const transformGradient: ConfigStyle["transform"] = (value, _, theme) =>
+export const transformGradient: PropConfig["transform"] = (value, _, theme) =>
   parseGradient(value, theme ?? {})
