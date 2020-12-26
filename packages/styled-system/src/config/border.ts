@@ -111,28 +111,33 @@ const config: Config = {
   ]),
 }
 
-config.roundedTopLeft = config.borderTopLeftRadius
-config.roundedTopStart = config.borderStartStartRadius
-config.roundedTopRight = config.borderTopRightRadius
-config.roundedTopEnd = config.borderStartEndRadius
-config.roundedBottomLeft = config.borderBottomLeftRadius
-config.roundedBottomStart = config.borderEndStartRadius
-config.roundedBottomRight = config.borderBottomRightRadius
-config.roundedBottomEnd = config.borderEndEndRadius
-config.rounded = config.borderRadius
-config.roundedTop = config.borderTopRadius
-config.roundedBottom = config.borderBottomRadius
-config.roundedLeft = config.borderLeftRadius
-config.roundedRight = config.borderRightRadius
-
-config.roundedStart = config.borderInlineStartRadius
-config.borderStartRadius = config.borderInlineStartRadius
-
-config.roundedEnd = config.borderInlineEndRadius
-config.borderEndRadius = config.borderInlineEndRadius
-
-config.borderEndWidth = config.borderInlineEndWidth
-config.borderStartWidth = config.borderInlineStartWidth
+Object.assign(config, {
+  rounded: config.borderRadius,
+  roundedTopLeft: config.borderTopLeftRadius,
+  roundedTopRight: config.borderTopRightRadius,
+  roundedTopStart: config.borderStartStartRadius,
+  borderTopStartRadius: config.borderStartStartRadius,
+  roundedTopEnd: config.borderStartEndRadius,
+  borderTopEndRadius: config.borderStartEndRadius,
+  roundedBottomLeft: config.borderBottomLeftRadius,
+  roundedBottomRight: config.borderBottomRightRadius,
+  roundedBottomStart: config.borderEndStartRadius,
+  borderBottomStartRadius: config.borderEndStartRadius,
+  roundedBottomEnd: config.borderEndEndRadius,
+  borderBottomEndRadius: config.borderEndEndRadius,
+  roundedTop: config.borderTopRadius,
+  roundedBottom: config.borderBottomRadius,
+  roundedLeft: config.borderLeftRadius,
+  roundedRight: config.borderRightRadius,
+  roundedStart: config.borderInlineStartRadius,
+  roundedEnd: config.borderInlineEndRadius,
+  borderStartRadius: config.borderInlineStartRadius,
+  borderEndRadius: config.borderInlineEndRadius,
+  borderStartWidth: config.borderInlineStartWidth,
+  borderEndWidth: config.borderInlineEndWidth,
+  borderStart: config.borderInlineStart,
+  borderEnd: config.borderInlineEnd,
+})
 
 /**
  * The prop types for border properties listed above
@@ -239,6 +244,7 @@ export interface BorderProps {
    * The CSS `border-right` property
    */
   borderRight?: ResponsiveValue<CSS.Property.BorderRight<Length>>
+  borderEnd?: ResponsiveValue<CSS.Property.BorderInlineStart<Length>>
   borderInlineEnd?: ResponsiveValue<CSS.Property.BorderInlineEnd<Length>>
   /**
    * The CSS `border-bottom` property
@@ -249,6 +255,7 @@ export interface BorderProps {
    * The CSS `border-left` property
    */
   borderLeft?: ResponsiveValue<CSS.Property.BorderLeft<Length>>
+  borderStart?: ResponsiveValue<CSS.Property.BorderInlineStart<Length>>
   borderInlineStart?: ResponsiveValue<CSS.Property.BorderInlineStart<Length>>
   /**
    * The CSS `border-top-radius` property
@@ -316,6 +323,7 @@ export interface BorderProps {
    * The CSS `border-top-left-radius` property
    */
   borderTopLeftRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  borderTopStartRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   borderStartStartRadius?: ResponsiveValue<
     CSS.Property.BorderStartStartRadius<Length>
   >
@@ -328,6 +336,7 @@ export interface BorderProps {
    * The CSS `border-top-right-radius` property
    */
   borderTopRightRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  borderTopEndRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   borderStartEndRadius?: ResponsiveValue<
     CSS.Property.BorderStartEndRadius<Length>
   >
@@ -341,6 +350,7 @@ export interface BorderProps {
    * The CSS `border-bottom-left-radius` property
    */
   borderBottomLeftRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  borderBottomStartRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   borderEndStartRadius?: ResponsiveValue<
     CSS.Property.BorderEndStartRadius<Length>
   >
@@ -353,6 +363,7 @@ export interface BorderProps {
    * The CSS `border-bottom-right-radius` property
    */
   borderBottomRightRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  borderBottomEndRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   borderEndEndRadius?: ResponsiveValue<CSS.Property.BorderEndEndRadius<Length>>
   /**
    * The CSS `border-bottom-right-radius` property

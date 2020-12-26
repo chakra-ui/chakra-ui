@@ -7,7 +7,9 @@ const config: Config = {
   textShadow: t.shadows("textShadow"),
 }
 
-config.shadow = config.boxShadow
+Object.assign(config, {
+  shadow: config.boxShadow,
+})
 
 /**
  * Types for box and text shadow properties

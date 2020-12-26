@@ -21,8 +21,10 @@ const config: Config = {
   insetInlineEnd: t.spaceT("insetInlineEnd"),
 }
 
-config.insetStart = config.insetInlineStart
-config.insetEnd = config.insetInlineEnd
+Object.assign(config, {
+  insetStart: config.insetInlineStart,
+  insetEnd: config.insetInlineEnd,
+})
 
 /**
  * Types for position CSS properties

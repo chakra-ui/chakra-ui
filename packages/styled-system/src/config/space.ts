@@ -31,28 +31,30 @@ const config: Config = {
   paddingBlock: t.space("paddingBlock"),
 }
 
-config.m = config.margin
-config.mt = config.marginTop
-config.mr = config.marginRight
-config.me = config.marginInlineEnd
-config.marginEnd = config.marginInlineEnd
-config.mb = config.marginBottom
-config.ml = config.marginLeft
-config.ms = config.marginInlineStart
-config.marginStart = config.marginInlineStart
-config.mx = config.marginX
-config.my = config.marginY
-config.p = config.padding
-config.pt = config.paddingTop
-config.py = config.paddingY
-config.px = config.paddingX
-config.pb = config.paddingBottom
-config.pl = config.paddingLeft
-config.ps = config.paddingInlineStart
-config.paddingStart = config.paddingInlineStart
-config.pr = config.paddingRight
-config.pe = config.paddingInlineEnd
-config.paddingEnd = config.paddingInlineEnd
+Object.assign(config, {
+  m: config.margin,
+  mt: config.marginTop,
+  mr: config.marginRight,
+  me: config.marginInlineEnd,
+  marginEnd: config.marginInlineEnd,
+  mb: config.marginBottom,
+  ml: config.marginLeft,
+  ms: config.marginInlineStart,
+  marginStart: config.marginInlineStart,
+  mx: config.marginX,
+  my: config.marginY,
+  p: config.padding,
+  pt: config.paddingTop,
+  py: config.paddingY,
+  px: config.paddingX,
+  pb: config.paddingBottom,
+  pl: config.paddingLeft,
+  ps: config.paddingInlineStart,
+  paddingStart: config.paddingInlineStart,
+  pr: config.paddingRight,
+  pe: config.paddingInlineEnd,
+  paddingEnd: config.paddingInlineEnd,
+})
 
 /**
  * Types for space related CSS properties
