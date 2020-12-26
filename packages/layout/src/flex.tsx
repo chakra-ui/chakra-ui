@@ -59,7 +59,7 @@ export interface FlexProps extends HTMLChakraProps<"div">, FlexOptions {}
  * It renders a `div` with `display: flex` and
  * comes with helpful style shorthand.
  *
- * @see Docs https://chakra-ui.com/components/flex
+ * @see Docs https://chakra-ui.com/docs/layout/flex
  */
 export const Flex = forwardRef<FlexProps, "div">((props, ref) => {
   const {

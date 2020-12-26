@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
-import { createParser, Config, system } from "@styled-system/core"
-import { Length, ResponsiveValue } from "../utils"
+import { createParser, Config, system } from "../core"
+import { Length, ResponsiveValue, t } from "../utils"
 
 /**
  * The parser configuration for common outline properties
@@ -8,10 +8,7 @@ import { Length, ResponsiveValue } from "../utils"
 const config: Config = {
   outline: true,
   outlineOffset: true,
-  outlineColor: {
-    property: "outlineColor",
-    scale: "colors",
-  },
+  outlineColor: t.colors("outlineColor"),
 }
 
 export interface OutlineProps {

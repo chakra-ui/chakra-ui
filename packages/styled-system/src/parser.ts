@@ -1,4 +1,4 @@
-import { compose } from "@styled-system/core"
+import { compose } from "./core"
 import {
   backgroundParser,
   borderParser,

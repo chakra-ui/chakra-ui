@@ -1,5 +1,5 @@
 export * from "./config"
-export { createParser, compose } from "@styled-system/core"
+export { createParser, compose, system } from "./core"
 export * from "./pseudo"
 export * from "./css"
 export * from "./css.types"

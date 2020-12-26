@@ -30,6 +30,11 @@
               "path": "/docs/features/style-props"
             },
             {
+              "title": "Gradient",
+              "path": "/docs/features/gradient",
+              "new": true
+            },
+            {
               "title": "Color Mode",
               "path": "/docs/features/color-mode"
             },
@@ -48,6 +53,11 @@
             {
               "title": "Text & Layer Styles",
               "path": "/docs/features/text-and-layer-styles"
+            },
+            {
+              "title": "RTL Support",
+              "path": "/docs/features/rtl-support",
+              "new": true
             }
           ]
         },

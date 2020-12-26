@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.0.2
+
+### Patch Changes
+
+- [`e73878ee`](https://github.com/chakra-ui/chakra-ui/commit/e73878ee686c11d3f94ad6ac61b19ae9508d75a5)
+  [#2790](https://github.com/chakra-ui/chakra-ui/pull/2790) Thanks
+  [@yuzima](https://github.com/yuzima)! - Resolved an issue where custom
+  breakpoints prefixed with a number ("2xl") weren't detected
+
 ## 1.0.1
 
 ### Patch Changes

@@ -1,5 +1,23 @@
 # Change Log
 
+## 1.0.4
+
+### Patch Changes
+
+- [`5bff79a1`](https://github.com/chakra-ui/chakra-ui/commit/5bff79a1ba6989d279fc432d5040c72cd75b392e)
+  Thanks [@jmiazga](https://github.com/jmiazga)! - Updated framer-motion
+  peerDependencies to v3
+
+- Updated dependencies
+  [[`5bff79a1`](https://github.com/chakra-ui/chakra-ui/commit/5bff79a1ba6989d279fc432d5040c72cd75b392e),
+  [`e73878ee`](https://github.com/chakra-ui/chakra-ui/commit/e73878ee686c11d3f94ad6ac61b19ae9508d75a5)]:
+  - @chakra-ui/transition@1.0.3
+  - @chakra-ui/utils@1.0.2
+  - @chakra-ui/close-button@1.0.3
+  - @chakra-ui/hooks@1.0.2
+  - @chakra-ui/popper@1.0.2
+  - @chakra-ui/portal@1.0.2
+
 ## 1.0.3
 
 ### Patch Changes

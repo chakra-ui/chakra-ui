@@ -1610,6 +1610,61 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "gifaeriyanto",
+      "name": "Gifa Eriyanto",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/6601377?v=4",
+      "profile": "https://medium.com/@gifa.eriyanto",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "yuzima",
+      "name": "Yuzi",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6914393?v=4",
+      "profile": "https://github.com/yuzima",
+      "contributions": [
+        "test",
+        "code"
+      ]
+    },
+    {
+      "login": "songheewon",
+      "name": "songheewon",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/44194990?v=4",
+      "profile": "https://github.com/songheewon",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "vipranarayan14",
+      "name": "Prasanna Venkatesh T S",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/17687018?v=4",
+      "profile": "https://github.com/vipranarayan14",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "anthowm",
+      "name": "anthowm",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/5764698?v=4",
+      "profile": "https://github.com/anthowm",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "oahmaro",
+      "name": "Osama Ahmaro",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/15835932?v=4",
+      "profile": "https://github.com/oahmaro",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,

@@ -57,32 +57,28 @@ export function get(
   const key = typeof path === "string" ? path.split(".") : [path]
 
   for (index = 0; index < key.length; index += 1) {
-    if (!obj) {
-      break
-    }
-
+    if (!obj) break
     obj = obj[key[index]]
   }
 
   return obj === undefined ? fallback : obj
 }
 
-type Handler = (
+type Get = (
   obj: Readonly<object>,
   path: string | number,
   fallback?: any,
   index?: number,
 ) => any
 
-export const memoize = (fn: Handler) => {
+export const memoize = (fn: Get) => {
   const cache = new WeakMap()
 
-  const memoizedFn: Handler = (
-    obj: object,
-    path: string | number,
-    fallback?: any,
-    index?: number,
-  ) => {
+  const memoizedFn: Get = (obj, path, fallback, index) => {
+    if (typeof obj === "undefined") {
+      return fn(obj, path, fallback)
+    }
+
     if (!cache.has(obj)) {
       cache.set(obj, new Map())
     }
@@ -113,7 +109,7 @@ export const memoizedGet = memoize(get)
  * @param scale - the string path or value
  */
 export function getWithDefault(path: any, scale: any) {
-  return get(scale, path, path)
+  return memoizedGet(scale, path, path)
 }
 
 type FilterFn<T> = (value: any, key: string, object: T) => boolean

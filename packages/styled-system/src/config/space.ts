@@ -1,135 +1,60 @@
 import * as CSS from "csstype"
-import { createParser, Config, system } from "@styled-system/core"
-import { positiveOrNegative, ResponsiveValue, Length } from "../utils"
+import { Config, createParser, system } from "../core"
+import { Length, ResponsiveValue, t } from "../utils"
 
 const config: Config = {
-  margin: {
-    property: "margin",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  m: {
-    property: "margin",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  marginTop: {
-    property: "marginTop",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  mt: {
-    property: "marginTop",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  marginRight: {
-    property: "marginRight",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  mr: {
-    property: "marginRight",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  marginBottom: {
-    property: "marginBottom",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  mb: {
-    property: "marginBottom",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  marginLeft: {
-    property: "marginLeft",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  ml: {
-    property: "marginLeft",
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  marginX: {
-    properties: ["marginLeft", "marginRight"],
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  mx: {
-    properties: ["marginLeft", "marginRight"],
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  marginY: {
-    properties: ["marginTop", "marginBottom"],
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  my: {
-    properties: ["marginTop", "marginBottom"],
-    transform: positiveOrNegative,
-    scale: "space",
-  },
-  padding: {
-    property: "padding",
-    scale: "space",
-  },
-  p: {
-    property: "padding",
-    scale: "space",
-  },
-  paddingTop: {
-    property: "paddingTop",
-    scale: "space",
-  },
-  pt: {
-    property: "paddingTop",
-    scale: "space",
-  },
-  paddingRight: {
-    property: "paddingRight",
-    scale: "space",
-  },
-  pr: {
-    property: "paddingRight",
-    scale: "space",
-  },
-  paddingBottom: {
-    property: "paddingBottom",
-    scale: "space",
-  },
-  pb: {
-    property: "paddingBottom",
-    scale: "space",
-  },
-  paddingLeft: {
-    property: "paddingLeft",
-    scale: "space",
-  },
-  pl: {
-    property: "paddingLeft",
-    scale: "space",
-  },
-  paddingX: {
-    properties: ["paddingLeft", "paddingRight"],
-    scale: "space",
-  },
-  px: {
-    properties: ["paddingLeft", "paddingRight"],
-    scale: "space",
-  },
-  paddingY: {
-    properties: ["paddingTop", "paddingBottom"],
-    scale: "space",
-  },
-  py: {
-    properties: ["paddingTop", "paddingBottom"],
-    scale: "space",
-  },
+  margin: t.spaceT("margin"),
+  marginTop: t.spaceT("marginTop"),
+  marginBlockStart: t.spaceT("marginBlockStart"),
+  marginRight: t.spaceT("marginRight"),
+  marginInlineEnd: t.spaceT("marginInlineEnd"),
+  marginBottom: t.spaceT("marginBottom"),
+  marginBlockEnd: t.spaceT("marginBlockEnd"),
+  marginLeft: t.spaceT("marginLeft"),
+  marginInlineStart: t.spaceT("marginInlineStart"),
+  marginX: t.spaceT(["marginLeft", "marginRight"]),
+  marginInline: t.spaceT("marginInline"),
+  marginY: t.spaceT(["marginTop", "marginBottom"]),
+  marginBlock: t.spaceT("marginBlock"),
+  padding: t.space("padding"),
+  paddingTop: t.space("paddingTop"),
+  paddingBlockStart: t.space("paddingBlockStart"),
+  paddingRight: t.space("paddingRight"),
+  paddingBottom: t.space("paddingBottom"),
+  paddingBlockEnd: t.space("paddingBlockEnd"),
+  paddingLeft: t.space("paddingLeft"),
+  paddingInlineStart: t.space("paddingInlineStart"),
+  paddingInlineEnd: t.space("paddingInlineEnd"),
+  paddingX: t.space(["paddingLeft", "paddingRight"]),
+  paddingInline: t.space("paddingInline"),
+  paddingY: t.space(["paddingTop", "paddingBottom"]),
+  paddingBlock: t.space("paddingBlock"),
 }
+
+Object.assign(config, {
+  m: config.margin,
+  mt: config.marginTop,
+  mr: config.marginRight,
+  me: config.marginInlineEnd,
+  marginEnd: config.marginInlineEnd,
+  mb: config.marginBottom,
+  ml: config.marginLeft,
+  ms: config.marginInlineStart,
+  marginStart: config.marginInlineStart,
+  mx: config.marginX,
+  my: config.marginY,
+  p: config.padding,
+  pt: config.paddingTop,
+  py: config.paddingY,
+  px: config.paddingX,
+  pb: config.paddingBottom,
+  pl: config.paddingLeft,
+  ps: config.paddingInlineStart,
+  paddingStart: config.paddingInlineStart,
+  pr: config.paddingRight,
+  pe: config.paddingInlineEnd,
+  paddingEnd: config.paddingInlineEnd,
+})
 
 /**
  * Types for space related CSS properties
@@ -147,6 +72,7 @@ export interface SpaceProps {
    * Margin on top
    */
   mt?: ResponsiveValue<CSS.Property.Margin<Length>>
+  marginBlockStart?: ResponsiveValue<CSS.Property.MarginBlockStart<Length>>
   /**
    * Margin on top
    */
@@ -156,6 +82,21 @@ export interface SpaceProps {
    */
   mr?: ResponsiveValue<CSS.Property.MarginRight<Length>>
   /**
+   * When direction is `ltr`, `marginInlineEnd` is equivalent to `marginRight`.
+   * When direction is `rtl`, `marginInlineEnd` is equivalent to `marginLeft`.
+   */
+  marginInlineEnd?: ResponsiveValue<CSS.Property.MarginInlineEnd<Length>>
+  /**
+   * When direction is `ltr`, `marginEnd` is equivalent to `marginRight`.
+   * When direction is `rtl`, `marginEnd` is equivalent to `marginLeft`.
+   */
+  marginEnd?: ResponsiveValue<CSS.Property.MarginInlineEnd<Length>>
+  /**
+   * When direction is `ltr`, `me` is equivalent to `marginRight`.
+   * When direction is `rtl`, `me` is equivalent to `marginLeft`.
+   */
+  me?: ResponsiveValue<CSS.Property.MarginInlineEnd<Length>>
+  /**
    * Margin on right
    */
   marginRight?: ResponsiveValue<CSS.Property.MarginRight<Length>>
@@ -163,6 +104,7 @@ export interface SpaceProps {
    * Margin on bottom
    */
   mb?: ResponsiveValue<CSS.Property.MarginBottom<Length>>
+  marginBlockEnd?: ResponsiveValue<CSS.Property.MarginBlockEnd<Length>>
   /**
    * Margin on bottom
    */
@@ -172,6 +114,21 @@ export interface SpaceProps {
    */
   ml?: ResponsiveValue<CSS.Property.MarginLeft<Length>>
   /**
+   * When direction is `ltr`, `marginInlineStart` is equivalent to `marginLeft`.
+   * When direction is `rtl`, `marginInlineStart` is equivalent to `marginRight`.
+   */
+  marginInlineStart?: ResponsiveValue<CSS.Property.MarginInlineStart<Length>>
+  /**
+   * When direction is `ltr`, `marginStart` is equivalent to `marginLeft`.
+   * When direction is `rtl`, `marginStart` is equivalent to `marginRight`.
+   */
+  marginStart?: ResponsiveValue<CSS.Property.MarginInlineStart<Length>>
+  /**
+   * When direction is `ltr`, `ms` is equivalent to `marginLeft`.
+   * When direction is `rtl`, `ms` is equivalent to `marginRight`.
+   */
+  ms?: ResponsiveValue<CSS.Property.MarginInlineStart<Length>>
+  /**
    * Margin on left
    */
   marginLeft?: ResponsiveValue<CSS.Property.MarginLeft<Length>>
@@ -179,6 +136,7 @@ export interface SpaceProps {
    * Margin on left and right
    */
   mx?: ResponsiveValue<CSS.Property.Margin<Length>>
+  marginInline?: ResponsiveValue<CSS.Property.MarginInline<Length>>
   /**
    * Margin on left and right
    */
@@ -187,6 +145,7 @@ export interface SpaceProps {
    * Margin on top and bottom
    */
   my?: ResponsiveValue<CSS.Property.Margin<Length>>
+  marginBlock?: ResponsiveValue<CSS.Property.MarginBlock<Length>>
   /**
    * Margin on top and bottom
    */
@@ -203,6 +162,7 @@ export interface SpaceProps {
    * Padding on top
    */
   pt?: ResponsiveValue<CSS.Property.PaddingTop<Length>>
+  paddingBlockStart?: ResponsiveValue<CSS.Property.PaddingBlockStart<Length>>
   /**
    * Padding on top
    */
@@ -212,6 +172,21 @@ export interface SpaceProps {
    */
   pr?: ResponsiveValue<CSS.Property.PaddingRight<Length>>
   /**
+   * When direction is `ltr`, `paddingInlineEnd` is equivalent to `paddingRight`.
+   * When direction is `rtl`, `paddingInlineEnd` is equivalent to `paddingLeft`.
+   */
+  paddingInlineEnd?: ResponsiveValue<CSS.Property.PaddingInlineEnd<Length>>
+  /**
+   * When direction is `ltr`, `paddingEnd` is equivalent to `paddingRight`.
+   * When direction is `rtl`, `paddingEnd` is equivalent to `paddingLeft`.
+   */
+  paddingEnd?: ResponsiveValue<CSS.Property.PaddingInlineEnd<Length>>
+  /**
+   * When direction is `ltr`, `pe` is equivalent to `paddingRight`.
+   * When direction is `rtl`, `pe` is equivalent to `paddingLeft`.
+   */
+  pe?: ResponsiveValue<CSS.Property.PaddingInlineEnd<Length>>
+  /**
    * Padding on right
    */
   paddingRight?: ResponsiveValue<CSS.Property.PaddingRight<Length>>
@@ -219,6 +194,7 @@ export interface SpaceProps {
    * Padding on bottom
    */
   pb?: ResponsiveValue<CSS.Property.PaddingBottom<Length>>
+  paddingBlockEnd?: ResponsiveValue<CSS.Property.PaddingBlockEnd<Length>>
   /**
    * Padding on bottom
    */
@@ -228,6 +204,21 @@ export interface SpaceProps {
    */
   pl?: ResponsiveValue<CSS.Property.PaddingLeft<Length>>
   /**
+   * When direction is `ltr`, `paddingInlineStart` is equivalent to `paddingLeft`.
+   * When direction is `rtl`, `paddingInlineStart` is equivalent to `paddingRight`.
+   */
+  paddingInlineStart?: ResponsiveValue<CSS.Property.PaddingInlineStart<Length>>
+  /**
+   * When direction is `ltr`, `paddingStart` is equivalent to `paddingLeft`.
+   * When direction is `rtl`, `paddingStart` is equivalent to `paddingRight`.
+   */
+  paddingStart?: ResponsiveValue<CSS.Property.PaddingInlineStart<Length>>
+  /**
+   * When direction is `ltr`, `ps` is equivalent to `paddingLeft`.
+   * When direction is `rtl`, `ps` is equivalent to `paddingRight`.
+   */
+  ps?: ResponsiveValue<CSS.Property.PaddingInlineStart<Length>>
+  /**
    * Padding on left
    */
   paddingLeft?: ResponsiveValue<CSS.Property.PaddingLeft<Length>>
@@ -235,6 +226,7 @@ export interface SpaceProps {
    * Padding on left and right
    */
   px?: ResponsiveValue<CSS.Property.Padding<Length>>
+  paddingInline?: ResponsiveValue<CSS.Property.PaddingInline<Length>>
   /**
    * Padding on left and right
    */
@@ -243,6 +235,7 @@ export interface SpaceProps {
    * Padding on top and bottom
    */
   py?: ResponsiveValue<CSS.Property.Padding<Length>>
+  paddingBlock?: ResponsiveValue<CSS.Property.PaddingBlock<Length>>
   /**
    * Padding on top and bottom
    */

@@ -37,7 +37,7 @@ export interface RadioProps
  * Radio component is used in forms when a user needs to select a single value from
  * several options.
  *
- * @see Docs https://chakra-ui.com/components/radio
+ * @see Docs https://chakra-ui.com/docs/form/radio
  */
 export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
   const { onChange: onChangeProp, value: valueProp } = props
@@ -52,7 +52,7 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
     ...rest
   } = omitThemingProps(props)
 
-  let isChecked = props.isChecked || false
+  let isChecked = props.isChecked
   if (group?.value && valueProp) {
     isChecked = group.value === valueProp
   }

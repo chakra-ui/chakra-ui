@@ -9,6 +9,7 @@ import {
 import theme from "prism-react-renderer/themes/nightOwl"
 import React, { useState } from "react"
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live"
+import Highlight from "./highlight"
 import scope from "./react-live-scope"
 
 export const liveEditorStyle: React.CSSProperties = {
@@ -75,15 +76,24 @@ const EditableNotice = (props: BoxProps) => {
   )
 }
 
-const CodeContainer = (props) => (
+const CodeContainer = (props: BoxProps) => (
   <Box padding="5" rounded="8px" my="8" bg="#011627" {...props} />
 )
 
 function CodeBlock(props) {
-  const { className, live = true, manual, render, children, ...rest } = props
+  const {
+    className,
+    live = true,
+    manual,
+    render,
+    children,
+    viewlines,
+    ln,
+    ...rest
+  } = props
   const [editorCode, setEditorCode] = useState(children.trim())
 
-  const language = className && className.replace(/language-/, "")
+  const language = className?.replace(/language-/, "")
   const { hasCopied, onCopy } = useClipboard(editorCode)
 
   const liveProviderProps = {
@@ -119,18 +129,31 @@ function CodeBlock(props) {
     return (
       <div style={{ marginTop: 32 }}>
         <LiveProvider {...liveProviderProps}>
-          <LiveCodePreview />
+          <LiveCodePreview zIndex="1" />
+          <Box position="relative" zIndex="0">
+            <CopyButton onClick={onCopy}>
+              {hasCopied ? "copied" : "copy"}
+            </CopyButton>
+          </Box>
         </LiveProvider>
       </div>
     )
   }
 
   return (
-    <LiveProvider disabled {...liveProviderProps}>
-      <CodeContainer>
-        <LiveEditor style={liveEditorStyle} />
+    <Box position="relative" zIndex="0">
+      <CodeContainer px="0" overflow="hidden">
+        <Highlight
+          codeString={editorCode}
+          language={language}
+          metastring={ln}
+          showLines={viewlines}
+        />
       </CodeContainer>
-    </LiveProvider>
+      <CopyButton top="4" onClick={onCopy}>
+        {hasCopied ? "copied" : "copy"}
+      </CopyButton>
+    </Box>
   )
 }
 

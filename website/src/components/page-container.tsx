@@ -1,4 +1,4 @@
-import { Box, chakra } from "@chakra-ui/react"
+import { Badge, Box, chakra } from "@chakra-ui/react"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
 import Container from "components/container"
 import EditPageLink from "components/edit-page-button"
@@ -35,7 +35,7 @@ function PageContainer(props: PageContainerProps) {
   const { frontmatter, children, sidebar, pagination } = props
   useHeadingFocusOnRouteChange()
 
-  const { title, description, editUrl } = frontmatter
+  const { title, description, editUrl, version } = frontmatter
 
   return (
     <>
@@ -60,6 +60,11 @@ function PageContainer(props: PageContainerProps) {
                 <chakra.h1 tabIndex={-1} outline={0} apply="mdx.h1">
                   {title}
                 </chakra.h1>
+                {version && (
+                  <Badge colorScheme="teal" letterSpacing="wider">
+                    v{version}
+                  </Badge>
+                )}
                 {children}
               </PageTransition>
               <Box mt="40px">{editUrl && <EditPageLink href={editUrl} />}</Box>

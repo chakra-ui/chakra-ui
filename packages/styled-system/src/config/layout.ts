@@ -1,71 +1,22 @@
-import { isNumber, memoizedGet as get } from "@chakra-ui/utils"
-import { Config, createParser, system } from "@styled-system/core"
 import * as CSS from "csstype"
-import { Length, ResponsiveValue } from "../utils"
-
-function transform(value: any, scale: any) {
-  const defaultValue = !isNumber(value) || value > 1 ? value : `${value * 100}%`
-  return get(scale, value, defaultValue)
-}
+import { Config, createParser, system } from "../core"
+import { Length, ResponsiveValue, t } from "../utils"
 
 const config: Config = {
-  width: {
-    property: "width",
-    scale: "sizes",
-    transform,
-  },
-  w: {
-    property: "width",
-    scale: "sizes",
-    transform,
-  },
-  height: {
-    property: "height",
-    scale: "sizes",
-  },
-  h: {
-    property: "height",
-    scale: "sizes",
-  },
-  boxSize: {
-    properties: ["width", "height"],
-    scale: "sizes",
-  },
-  minWidth: {
-    property: "minWidth",
-    scale: "sizes",
-  },
-  minW: {
-    property: "minWidth",
-    scale: "sizes",
-  },
-  minHeight: {
-    property: "minHeight",
-    scale: "sizes",
-  },
-  minH: {
-    property: "minHeight",
-    scale: "sizes",
-  },
-  maxWidth: {
-    property: "maxWidth",
-    scale: "sizes",
-  },
-  maxW: {
-    property: "maxWidth",
-    scale: "sizes",
-  },
-  maxHeight: {
-    property: "maxHeight",
-    scale: "sizes",
-  },
-  maxH: {
-    property: "maxHeight",
-    scale: "sizes",
-  },
-  d: {
-    property: "display",
-  },
+  width: t.sizesT("width"),
+  inlineSize: t.sizesT("inlineSize"),
+  height: t.sizes("height"),
+  blockSize: t.sizes("blockSize"),
+  boxSize: t.sizes(["width", "height"]),
+  minWidth: t.sizes("minWidth"),
+  minInlineSize: t.sizes("minInlineSize"),
+  minHeight: t.sizes("minHeight"),
+  minBlockSize: t.sizes("minBlockSize"),
+  maxWidth: t.sizes("maxWidth"),
+  maxInlineSize: t.sizes("maxInlineSize"),
+  maxHeight: t.sizes("maxHeight"),
+  maxBlockSize: t.sizes("maxBlockSize"),
+  d: t.prop("display"),
   overflow: true,
   overflowX: true,
   overflowY: true,
@@ -73,6 +24,13 @@ const config: Config = {
   verticalAlign: true,
   boxSizing: true,
 }
+
+config.w = config.width
+config.h = config.height
+config.minW = config.minWidth
+config.maxW = config.maxWidth
+config.minH = config.minHeight
+config.maxH = config.maxHeight
 
 /**
  * Types for layout related CSS properties
@@ -94,6 +52,7 @@ export interface LayoutProps {
    * The CSS `width` property
    */
   w?: ResponsiveValue<CSS.Property.Width<Length>>
+  inlineSize?: ResponsiveValue<CSS.Property.InlineSize<Length>>
   /**
    * The CSS `width` and `height` property
    */
@@ -106,6 +65,7 @@ export interface LayoutProps {
    * The CSS `max-width` property
    */
   maxW?: ResponsiveValue<CSS.Property.MaxWidth<Length>>
+  maxInlineSize?: ResponsiveValue<CSS.Property.MaxInlineSize<Length>>
   /**
    * The CSS `min-width` property
    */
@@ -114,6 +74,7 @@ export interface LayoutProps {
    * The CSS `min-width` property
    */
   minW?: ResponsiveValue<CSS.Property.MinWidth<Length>>
+  minInlineSize?: ResponsiveValue<CSS.Property.MinInlineSize<Length>>
   /**
    * The CSS `height` property
    */
@@ -122,6 +83,7 @@ export interface LayoutProps {
    * The CSS `height` property
    */
   h?: ResponsiveValue<CSS.Property.Height<Length>>
+  blockSize?: ResponsiveValue<CSS.Property.BlockSize<Length>>
   /**
    * The CSS `max-height` property
    */
@@ -130,6 +92,7 @@ export interface LayoutProps {
    * The CSS `max-height` property
    */
   maxH?: ResponsiveValue<CSS.Property.MaxHeight<Length>>
+  maxBlockSize?: ResponsiveValue<CSS.Property.MaxBlockSize<Length>>
   /**
    * The CSS `min-height` property
    */
@@ -138,6 +101,7 @@ export interface LayoutProps {
    * The CSS `min-height` property
    */
   minH?: ResponsiveValue<CSS.Property.MinHeight<Length>>
+  minBlockSize?: ResponsiveValue<CSS.Property.MinBlockSize<Length>>
   /**
    * The CSS `vertical-align` property
    */

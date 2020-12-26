@@ -1,5 +1,57 @@
 # Change Log
 
+## 1.0.3
+
+### Patch Changes
+
+- [`730a2da1`](https://github.com/chakra-ui/chakra-ui/commit/730a2da19b652614bc051b9f80313d211b22d1de)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ## Pin Input
+
+  ### 🐛 Bug Fix
+
+  - Fix issue where copy-paste doesn't work for pin-input
+
+  ## Number Input
+
+  ### 🐛 Bug Fix
+
+  - Fix issue where number input doesn't work when using with form libraries
+    that use `ref` as entry point to setting initial values (e.g React hook
+    form).
+
+    We improved `useNumberInput` to sync the initial values in the `ref` passed
+    to `NumberInputField` with the internal state.
+
+  ## System
+
+  ### 🚀 Feature
+
+  Add support for custom `shouldForwardProp` function in the `chakra` factory
+  function.
+
+* [`d1bd91e1`](https://github.com/chakra-ui/chakra-ui/commit/d1bd91e141fba54c1094a7f60932a060fba4949a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ## 🐛 Bug Fix
+
+  We've made it possible to override the `type` and `pattern` props passed to
+  `NumberInputField` or `getInputProps`. Fixed [#2755]
+
+  ```jsx
+  <NumberInput>
+    <NumberInputField type="number" pattern="-?[0-9]*" />
+  </NumberInput>
+  ```
+
+* Updated dependencies
+  [[`b8df0bf4`](https://github.com/chakra-ui/chakra-ui/commit/b8df0bf44a10512658826e5ef8e3067bc45fbc4a),
+  [`123aaf59`](https://github.com/chakra-ui/chakra-ui/commit/123aaf59a60aaae269e2a305730a650a112c0975),
+  [`e73878ee`](https://github.com/chakra-ui/chakra-ui/commit/e73878ee686c11d3f94ad6ac61b19ae9508d75a5),
+  [`29c0e45e`](https://github.com/chakra-ui/chakra-ui/commit/29c0e45efb9f8f37dc2e81b56c08e2f1cedeb621)]:
+  - @chakra-ui/form-control@1.1.0
+  - @chakra-ui/utils@1.0.2
+  - @chakra-ui/icon@1.0.2
+  - @chakra-ui/counter@1.0.2
+  - @chakra-ui/hooks@1.0.2
+
 ## 1.0.2
 
 ### Patch Changes

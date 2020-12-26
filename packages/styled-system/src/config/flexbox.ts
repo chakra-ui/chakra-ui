@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
-import { createParser, Config, system } from "@styled-system/core"
-import { ResponsiveValue, Length } from "../utils"
+import { createParser, Config, system } from "../core"
+import { ResponsiveValue, Length, t } from "../utils"
 
 const config: Config = {
   alignItems: true,
@@ -12,16 +12,11 @@ const config: Config = {
   flex: true,
   flexGrow: true,
   flexShrink: true,
-  flexBasis: {
-    property: "flexBasis",
-    scale: "sizes",
-  },
+  flexBasis: t.sizes("flexBasis"),
   justifySelf: true,
   alignSelf: true,
   order: true,
-  flexDir: {
-    property: "flexDirection",
-  },
+  flexDir: t.prop("flexDirection"),
 }
 
 /**

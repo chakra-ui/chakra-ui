@@ -24,7 +24,7 @@ export interface AspectRatioProps
  * React component used to cropping media (videos, images and maps)
  * to a desired aspect ratio.
  *
- * @see Docs https://chakra-ui.com/components/aspect-ratio
+ * @see Docs https://chakra-ui.com/docs/layout/aspect-ratio
  */
 export const AspectRatio = forwardRef<AspectRatioProps, "div">((props, ref) => {
   const { ratio = 4 / 3, children, className, ...rest } = props

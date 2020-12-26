@@ -1,4 +1,16 @@
 import { Container } from "@chakra-ui/layout"
+import {
+  Box,
+  Button,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  useDisclosure,
+} from "@chakra-ui/react"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import {
@@ -182,21 +194,90 @@ export function Bug_2160() {
       </chakra.div>
       {displayData.length > 0 && (
         <Accordion allowToggle>
-          {displayData.map((item, i) => {
-            return (
-              <AccordionItem key={`accordion-item-${i}`}>
-                <AccordionButton>
-                  <chakra.div flex="1" textAlign="left">
-                    {item.title}
-                  </chakra.div>
-                  <AccordionIcon />
-                </AccordionButton>
-                <AccordionPanel pb={4}>{item.text}</AccordionPanel>
-              </AccordionItem>
-            )
-          })}
+          {displayData.map((item, i) => (
+            <AccordionItem key={`accordion-item-${i}`}>
+              <AccordionButton>
+                <chakra.div flex="1" textAlign="left">
+                  {item.title}
+                </chakra.div>
+                <AccordionIcon />
+              </AccordionButton>
+              <AccordionPanel pb={4}>{item.text}</AccordionPanel>
+            </AccordionItem>
+          ))}
         </Accordion>
       )}
     </chakra.div>
+  )
+}
+
+export const FocusBug = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  return (
+    <Box textAlign="center" fontSize="xl">
+      <Button colorScheme="teal" onClick={onOpen}>
+        Open
+      </Button>
+      <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="lg">
+        <DrawerOverlay>
+          <DrawerContent>
+            <DrawerCloseButton />
+            <DrawerHeader>Create your account</DrawerHeader>
+
+            <DrawerBody>
+              <Accordion allowMultiple>
+                <AccordionItem>
+                  <AccordionButton>
+                    <Box flex="1" textAlign="left">
+                      Section 1 title
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                  <AccordionPanel pb={4}>
+                    <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-1">
+                      Chakra 1
+                    </a>
+                    <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-2">
+                      Chakra 2
+                    </a>
+                    <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-3">
+                      Chakra 3
+                    </a>
+                  </AccordionPanel>
+                </AccordionItem>
+
+                <AccordionItem>
+                  <AccordionButton>
+                    <Box flex="1" textAlign="left">
+                      Section 2 title
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                  <AccordionPanel pb={4}>
+                    <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-4">
+                      Chakra 1
+                    </a>
+                    <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-5">
+                      Chakra 2
+                    </a>
+                    <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-6">
+                      Chakra 3
+                    </a>
+                  </AccordionPanel>
+                </AccordionItem>
+              </Accordion>
+            </DrawerBody>
+
+            <DrawerFooter>
+              <Button variant="outline" mr={3} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button color="blue">Save</Button>
+            </DrawerFooter>
+          </DrawerContent>
+        </DrawerOverlay>
+      </Drawer>
+    </Box>
   )
 }

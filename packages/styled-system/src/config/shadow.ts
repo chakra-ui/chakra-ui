@@ -1,21 +1,15 @@
 import * as CSS from "csstype"
-import { createParser, Config, system } from "@styled-system/core"
-import { ResponsiveValue } from "../utils"
+import { createParser, Config, system } from "../core"
+import { ResponsiveValue, t } from "../utils"
 
 const config: Config = {
-  boxShadow: {
-    property: "boxShadow",
-    scale: "shadows",
-  },
-  textShadow: {
-    property: "textShadow",
-    scale: "shadows",
-  },
-  shadow: {
-    property: "boxShadow",
-    scale: "shadows",
-  },
+  boxShadow: t.shadows("boxShadow"),
+  textShadow: t.shadows("textShadow"),
 }
+
+Object.assign(config, {
+  shadow: config.boxShadow,
+})
 
 /**
  * Types for box and text shadow properties

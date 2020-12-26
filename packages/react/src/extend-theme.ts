@@ -3,7 +3,7 @@ import { isFunction, mergeWith } from "@chakra-ui/utils"
 import { ColorHues } from "@chakra-ui/theme/dist/types/foundations/colors"
 
 type ThemeExtensionTypeHints = {
-  colors: Record<string, Partial<ColorHues> | string> // typehints for color definitions
+  colors: Record<string, Partial<ColorHues> | Record<string, string> | string> // typehints for color definitions
 }
 
 /**
@@ -26,8 +26,12 @@ export type ThemeOverride = DeepThemeExtension<Theme, ThemeExtensionTypeHints>
 /**
  * Function to override or customize the Chakra UI theme conveniently
  * @param overrides - Your custom theme object overrides
+ * @param baseTheme - theme to customize
  */
-export function extendTheme<T extends ThemeOverride>(overrides: T) {
+export function extendTheme<T extends ThemeOverride>(
+  overrides: T,
+  baseTheme: any = defaultTheme,
+) {
   function customizer(source: unknown, override: unknown) {
     if (isFunction(source)) {
       return (...args: unknown[]) => {
@@ -45,5 +49,5 @@ export function extendTheme<T extends ThemeOverride>(overrides: T) {
     return undefined
   }
 
-  return mergeWith({}, defaultTheme, overrides, customizer)
+  return mergeWith({}, baseTheme, overrides, customizer)
 }

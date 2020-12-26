@@ -16,17 +16,21 @@ export interface RadioGroupContext
   extends Pick<UseRadioGroupReturn, "onChange" | "value" | "name">,
     Omit<ThemingProps, "orientation"> {}
 
-const [
-  RadioGroupProvider,
-  useRadioGroupContext,
-] = createContext<RadioGroupContext>({
+const [RadioGroupProvider, useRadioGroupContext] = createContext<
+  RadioGroupContext
+>({
   name: "RadioGroupContext",
   strict: false,
 })
 
 export { useRadioGroupContext }
 
-type Omitted = "onChange" | "value" | "defaultValue" | "children"
+type Omitted =
+  | "onChange"
+  | "value"
+  | "defaultValue"
+  | "defaultChecked"
+  | "children"
 export interface RadioGroupProps
   extends UseRadioGroupProps,
     Omit<HTMLChakraProps<"div">, Omitted>,
@@ -38,7 +42,7 @@ export interface RadioGroupProps
  * Used for multiple radios which are bound in one group,
  * and it indicates which option is selected.
  *
- * @see Docs https://chakra-ui.com/components/radio
+ * @see Docs https://chakra-ui.com/docs/form/radio
  */
 export const RadioGroup = forwardRef<RadioGroupProps, "div">((props, ref) => {
   const { colorScheme, size, variant, children, className, ...rest } = props

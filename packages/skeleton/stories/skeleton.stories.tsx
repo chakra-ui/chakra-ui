@@ -48,6 +48,28 @@ export const WithFade = () => {
   )
 }
 
+export const WithFadeText = () => {
+  const [hasLoaded, setHasLoaded] = React.useState(false)
+
+  React.useEffect(() => {
+    setTimeout(() => setHasLoaded(true), 1000)
+  }, [])
+
+  return (
+    <SkeletonText isLoaded={hasLoaded}>
+      <span>Chakra ui is cool</span>
+    </SkeletonText>
+  )
+}
+
+export const WithFadeAlreadyLoaded = () => {
+  return (
+    <Skeleton isLoaded={true}>
+      <span>This should not fade in</span>
+    </Skeleton>
+  )
+}
+
 export const WithNoFade = () => {
   const [hasLoaded, setHasLoaded] = React.useState(false)
 

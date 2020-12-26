@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/transition",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Common transition components for Chakra UI",
   "sideEffects": false,
   "keywords": [
@@ -52,15 +52,15 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "1.0.1",
-    "@chakra-ui/utils": "1.0.1"
+    "@chakra-ui/hooks": "1.0.2",
+    "@chakra-ui/utils": "1.0.2"
   },
   "peerDependencies": {
-    "framer-motion": "2.x",
+    "framer-motion": ">=3.0.0",
     "react": "16.x || 17.x"
   },
   "devDependencies": {
-    "framer-motion": "2.9.5",
+    "framer-motion": "3.0.0",
     "react": "^17.0.1"
   }
 }

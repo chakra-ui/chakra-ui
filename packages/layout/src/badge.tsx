@@ -15,7 +15,7 @@ export interface BadgeProps extends HTMLChakraProps<"span">, ThemingProps {}
  * React component used to display notifications, messages, or
  * statuses in different shapes and sizes.
  *
- * @see Docs https://chakra-ui.com/components/badge
+ * @see Docs https://chakra-ui.com/docs/data-display/badge
  */
 export const Badge = forwardRef<BadgeProps, "span">((props, ref) => {
   const styles = useStyleConfig("Badge", props)

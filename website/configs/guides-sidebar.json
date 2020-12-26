@@ -21,6 +21,10 @@
           "path": "/guides/as-prop"
         },
         {
+          "title": "Using custom fonts",
+          "path": "/guides/custom-fonts"
+        },
+        {
           "title": "Integrations",
           "path": "/guides/integrations",
           "open": true,

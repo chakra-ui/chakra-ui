@@ -9,7 +9,7 @@ import transition from "./transition"
 import typography from "./typography"
 import zIndices from "./z-index"
 
-const theme = {
+const foundations = {
   breakpoints,
   zIndices,
   radii,
@@ -22,6 +22,7 @@ const theme = {
   transition,
 }
 
-export type Theme = typeof theme
+type FoundationsType = typeof foundations
+export interface Foundations extends FoundationsType {}
 
-export default theme
+export default foundations

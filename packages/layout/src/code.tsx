@@ -14,7 +14,7 @@ export interface CodeProps extends HTMLChakraProps<"code">, ThemingProps {}
 /**
  * React component to render inline code snippets.
  *
- * @see Docs https://chakra-ui.com/components/code
+ * @see Docs https://chakra-ui.com/docs/data-display/code
  */
 export const Code = forwardRef<CodeProps, "code">((props, ref) => {
   const styles = useStyleConfig("Code", props)
