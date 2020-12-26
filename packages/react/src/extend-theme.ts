@@ -3,7 +3,7 @@ import { isFunction, mergeWith } from "@chakra-ui/utils"
 import { ColorHues } from "@chakra-ui/theme/dist/types/foundations/colors"
 
 type ThemeExtensionTypeHints = {
-  colors: Record<string, Partial<ColorHues> | string> // typehints for color definitions
+  colors: Record<string, Partial<ColorHues> | Record<string, string> | string> // typehints for color definitions
 }
 
 /**
