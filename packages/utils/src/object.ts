@@ -1,3 +1,4 @@
+import memoize from "nano-memoize"
 import type { Dict, Omit } from "./types"
 
 export { default as mergeWith } from "lodash.mergewith"
@@ -65,42 +66,6 @@ export function get(
   }
 
   return obj === undefined ? fallback : obj
-}
-
-type Handler = (
-  obj: Readonly<object>,
-  path: string | number,
-  fallback?: any,
-  index?: number,
-) => any
-
-export const memoize = (fn: Handler) => {
-  const cache = new WeakMap()
-
-  const memoizedFn: Handler = (
-    obj: object,
-    path: string | number,
-    fallback?: any,
-    index?: number,
-  ) => {
-    if (!cache.has(obj)) {
-      cache.set(obj, new Map())
-    }
-
-    const map = cache.get(obj)
-
-    if (map.has(path)) {
-      return map.get(path)
-    }
-
-    const value = fn(obj, path, fallback, index)
-
-    map.set(path, value)
-
-    return value
-  }
-
-  return memoizedFn
 }
 
 export const memoizedGet = memoize(get)
