@@ -3,12 +3,12 @@ declare module "nano-memoize" {
     maxArgs?: number
     callTimeout?: number
     maxAge?: number
-    serializer?: function
-    equals?: function
+    serializer?: Function
+    equals?: Function
     vargs?: boolean
   }
 
-  export default function memoize<T>(
+  export default function memoize<T extends (...args: any[]) => any>(
     fn: T,
     options?: MemoizeOptions,
   ): T & { clear: () => void }
