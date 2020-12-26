@@ -117,3 +117,5 @@ export const fromEntries = <T extends unknown>(entries: [string, any][]) =>
     carry[key] = value
     return carry
   }, {}) as T
+
+export { memoize }
