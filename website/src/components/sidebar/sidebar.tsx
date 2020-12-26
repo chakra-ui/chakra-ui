@@ -170,6 +170,9 @@ const Sidebar = ({ routes }) => {
       as="nav"
       aria-label="Main Navigation"
       pos="sticky"
+      sx={{
+        overscrollBehavior: "contain",
+      }}
       top="6.5rem"
       w="280px"
       h="calc(((100vh - 1.5rem) - 64px) - 42px);"
