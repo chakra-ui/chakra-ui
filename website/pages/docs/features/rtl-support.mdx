@@ -28,7 +28,9 @@ Here's how to set it up.
 
 ```bash
 npm i stylis stylis-plugin-rtl @emotion/cache
+
 # or
+
 yarn add stylis stylis-plugin-rtl @emotion/cache
 ```
 
@@ -57,7 +59,7 @@ export function RtlProvider({ children }) {
 
 3. Add RTL provider to the application's root
 
-```jsx live=false ln={4,10-12} viewlines
+```jsx live=false ln={4,10-12}
 // pages/_app.js
 
 import { ChakraProvider } from "@chakra-ui/react"
@@ -96,7 +98,9 @@ need to add a `dir` attribute with a value of `rtl` or `ltr`. Here's what your
 In Next.js, you can achieve this by adding a `pages/_document.js` file and using
 this API:
 
-```jsx live=false
+```jsx live=false ln={11-12,15}
+// pages/_document.js
+
 import NextDocument, { Html, Head, Main, NextScript } from "next/document"
 
 class Document extends NextDocument {
@@ -137,7 +141,7 @@ function LangSwitcher() {
 
   const onClick = async () => {
     await push(pathname, { locale: nextLocale })
-    // force a reload if it work correctly.
+    // force a reload for it to work correctly.
     reload()
   }
 
@@ -166,13 +170,14 @@ Here's how to set it up:
 1. Add a `direction` key to the theme
 
 You can use the `extendTheme` function or any other preferred approach to add
-`direction` key to the theme. Then, add the custom theme to the
-`ChakraProvider`.
+`direction` key to the theme. Then, add the custom theme to `ChakraProvider`.
 
 > Due to the fact the some CSS logical properties aren't supported in all
 > browsers, we flip the styles based on the `direction` as a temporary polyfill.
 
 ```jsx live=false
+// src/components/chakra-rtl-provider.js
+
 function ChakraRTLProvider({ children }) {
   const { locale } = useRouter()
   const direction = locale === "ar" ? "rtl" : "ltr"
@@ -189,7 +194,9 @@ function ChakraRTLProvider({ children }) {
 In Next.js, you can achieve this by adding a `pages/_document.js` file and using
 this API:
 
-```jsx live=false
+```jsx live=false ln={11-12,15}
+// pages/_document.js
+
 import NextDocument, { Html, Head, Main, NextScript } from "next/document"
 
 class Document extends NextDocument {
@@ -225,13 +232,13 @@ bi-directional versions (`*-start` or `*-end`).
 For example:
 
 - Replace `paddingLeft` or `pl` prop with `paddingStart` or `ps`
-- Replace `marginRight` or `mr` prop with `marginEnd` or `me`.
+- Replace `marginRight` or `mr` prop with `marginEnd` or `me`
 - Replace `borderLeftRadius` with `borderStartRadius`
 
 Here's a list of the RTL-aware style props you can use alongside other
 [CSS logical properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Logical_Properties):
 
-| Style Props                                     | Replace with                                    | Description                               |
+| Style prop                                      | Replace with                                    | Description                               |
 | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------- |
 | `paddingLeft`, `pl`                             | `paddingStart`, `ps`                            | padding in start direction                |
 | `paddingRight`, `pr`                            | `paddingEnd`, `pe`                              | padding in end direction                  |
@@ -272,9 +279,12 @@ Asides updating the style props you use in your application, we think this is
 the best approach. In the end it's up to your team to decide which approach to
 go with.
 
-## RTL Implementation References
+## Additional resources
 
-- [Blog Post - Setup an internationalization (i18n) routing web app with Nextjs and Chakra UI](https://dev.to/ugbechike/setup-an-internationalization-i18n-routing-web-app-with-nextjs-and-chakra-ui-39f1)
+- Blog Post -
+  [Setup an i18n routing with Nextjs and Chakra UI](https://dev.to/ugbechike/setup-an-internationalization-i18n-routing-web-app-with-nextjs-and-chakra-ui-39f1)
+- MDN
+  [CSS Logical Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Logical_Properties)
 
 > If you'd like to share your RTL setup with the community, feel free to add a
 > PR that updates this section.

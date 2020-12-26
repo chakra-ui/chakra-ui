@@ -46,6 +46,7 @@ const NigeriaFlag = (props) => (
     h="16px"
     w="auto"
     viewBox="0 0 48 48"
+    verticalAlign="middle"
     {...props}
   >
     <g>

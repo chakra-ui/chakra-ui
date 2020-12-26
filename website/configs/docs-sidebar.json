@@ -31,7 +31,8 @@
             },
             {
               "title": "Gradient",
-              "path": "/docs/features/gradient"
+              "path": "/docs/features/gradient",
+              "new": true
             },
             {
               "title": "Color Mode",
@@ -55,7 +56,8 @@
             },
             {
               "title": "RTL Support",
-              "path": "/docs/features/rtl-support"
+              "path": "/docs/features/rtl-support",
+              "new": true
             }
           ]
         },

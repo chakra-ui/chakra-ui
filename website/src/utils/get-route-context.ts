@@ -5,6 +5,7 @@ export interface RouteItem {
   heading?: boolean
   sort?: boolean
   routes?: RouteItem[]
+  new?: true
 }
 
 export interface Routes {

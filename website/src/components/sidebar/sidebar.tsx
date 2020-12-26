@@ -1,4 +1,5 @@
 import {
+  Badge,
   Box,
   Center,
   chakra,
@@ -70,7 +71,18 @@ export function SidebarContent(props: SidebarContentProps) {
                   <Stack as="ul">
                     {sortedRoutes.map((lvl3) => (
                       <SidebarLink as="li" key={lvl3.path} href={lvl3.path}>
-                        {lvl3.title}
+                        <span>{lvl3.title}</span>
+                        {lvl3.new && (
+                          <Badge
+                            ml="2"
+                            lineHeight="tall"
+                            fontSize="10px"
+                            variant="solid"
+                            colorScheme="purple"
+                          >
+                            New
+                          </Badge>
+                        )}
                       </SidebarLink>
                     ))}
                   </Stack>
