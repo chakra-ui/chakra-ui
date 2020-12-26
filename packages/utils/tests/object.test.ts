@@ -41,7 +41,7 @@ test("should filter undefined values in object", () => {
 })
 
 test("should get memoized value on successive calls", () => {
-  const mockGet = jest.fn((theme: any, str: string) => true)
+  const mockGet = jest.fn(() => true)
   const memoizedMockGet = memoize(mockGet)
 
   // run the memoized get twice
