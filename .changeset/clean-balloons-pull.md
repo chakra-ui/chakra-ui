@@ -2,15 +2,14 @@
 "@chakra-ui/react": minor
 ---
 
-extendTheme: added an optional second argument `baseTheme` to customize:
+Allow `extendTheme` to accept optional second argument `baseTheme` to customize:
 
 ```jsx
-const theme = extendTheme({
-  // theme overrides
-  colors: { red: { 500: "#ff0000" } },
+const theme = extendTheme(
+  { colors: { red: { 500: "#ff0000" } } },
   // the base theme to customize with the above overrides
   yourTheme,
-})
+)
 ```
 
 If no `baseTheme` is provided, defaults to the Chakra theme.
