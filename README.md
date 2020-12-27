@@ -382,12 +382,12 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/vipranarayan14"><img src="https://avatars2.githubusercontent.com/u/17687018?v=4" width="64px;" alt=""/><br /><sub><b>Prasanna Venkatesh T S</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=vipranarayan14" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/anthowm"><img src="https://avatars3.githubusercontent.com/u/5764698?v=4" width="64px;" alt=""/><br /><sub><b>anthowm</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=anthowm" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/oahmaro"><img src="https://avatars1.githubusercontent.com/u/15835932?v=4" width="64px;" alt=""/><br /><sub><b>Osama Ahmaro</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Aoahmaro" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/dananw"><img src="https://avatars1.githubusercontent.com/u/31610272?v=4" width="64px;" alt=""/><br /><sub><b>Danan Wijaya</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=dananw" title="Documentation">📖</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
