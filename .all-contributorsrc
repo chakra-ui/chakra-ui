@@ -1674,6 +1674,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "electather",
+      "name": "electather",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/33129195?v=4",
+      "profile": "https://github.com/electather",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
