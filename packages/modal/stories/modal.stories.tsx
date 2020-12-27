@@ -152,3 +152,25 @@ export const InsideScroll = () => {
     </>
   )
 }
+
+export const AnimationDisabled = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  return (
+    <>
+      <button onClick={onOpen}>Open</button>
+      <Modal onClose={onClose} isOpen={isOpen} motionPreset="none">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Lorem size={5} />
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onClose}>Close</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  )
+}
