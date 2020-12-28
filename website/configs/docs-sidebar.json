@@ -116,6 +116,10 @@
               "path": "/docs/layout/grid"
             },
             {
+              "title": "Link",
+              "path": "/docs/components/link"
+            },
+            {
               "title": "SimpleGrid",
               "path": "/docs/layout/simple-grid"
             },
@@ -126,10 +130,6 @@
             {
               "title": "Wrap",
               "path": "/docs/layout/wrap"
-            },
-            {
-              "title": "Link",
-              "path": "/docs/components/link"
             }
           ]
         },
@@ -204,6 +204,10 @@
               "path": "/docs/data-display/badge"
             },
             {
+              "title": "Close Button",
+              "path": "/docs/components/close-button"
+            },
+            {
               "title": "Code",
               "path": "/docs/data-display/code"
             },
@@ -230,10 +234,6 @@
             {
               "title": "Tag",
               "path": "/docs/data-display/tag"
-            },
-            {
-              "title": "Close Button",
-              "path": "/docs/components/close-button"
             }
           ]
         },
@@ -399,16 +399,16 @@
               "path": "/docs/hooks/use-media-query"
             },
             {
+              "title": "usePrefersReducedMotion",
+              "path": "/docs/hooks/use-prefers-reduced-motion"
+            },
+            {
               "title": "useTheme",
               "path": "/docs/hooks/use-theme"
             },
             {
               "title": "useToken",
               "path": "/docs/hooks/use-token"
-            },
-            {
-              "title": "usePrefersReducedMotion",
-              "path": "/docs/hooks/use-prefers-reduced-motion"
             }
           ]
         }
