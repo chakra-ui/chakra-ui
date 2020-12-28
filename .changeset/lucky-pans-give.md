@@ -1,5 +1,6 @@
 ---
 "@chakra-ui/styled-system": minor
+"@chakra-ui/react": minor
 ---
 
 Add gradient support to chakra style props. This PR adds to props:
