@@ -386,6 +386,9 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/electather"><img src="https://avatars2.githubusercontent.com/u/33129195?v=4" width="64px;" alt=""/><br /><sub><b>electather</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Aelectather" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/shubham-kaushal"><img src="https://avatars3.githubusercontent.com/u/63925481?v=4" width="64px;" alt=""/><br /><sub><b>Shubham Kaushal</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=shubham-kaushal" title="Documentation">📖</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/petter"><img src="https://avatars0.githubusercontent.com/u/25374940?v=4" width="64px;" alt=""/><br /><sub><b>Petter Sæther Moen</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=petter" title="Documentation">📖</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
