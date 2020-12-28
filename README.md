@@ -384,6 +384,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/oahmaro"><img src="https://avatars1.githubusercontent.com/u/15835932?v=4" width="64px;" alt=""/><br /><sub><b>Osama Ahmaro</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Aoahmaro" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/dananw"><img src="https://avatars1.githubusercontent.com/u/31610272?v=4" width="64px;" alt=""/><br /><sub><b>Danan Wijaya</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=dananw" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/electather"><img src="https://avatars2.githubusercontent.com/u/33129195?v=4" width="64px;" alt=""/><br /><sub><b>electather</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Aelectather" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/shubham-kaushal"><img src="https://avatars3.githubusercontent.com/u/63925481?v=4" width="64px;" alt=""/><br /><sub><b>Shubham Kaushal</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=shubham-kaushal" title="Documentation">📖</a></td>
   </tr>
 </table>
 
