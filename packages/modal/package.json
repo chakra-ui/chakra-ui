@@ -69,7 +69,7 @@
     "react-remove-scroll": "2.4.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.1.0",
+    "@chakra-ui/system": "1.1.1",
     "framer-motion": "3.0.0",
     "react": "^17.0.1"
   },

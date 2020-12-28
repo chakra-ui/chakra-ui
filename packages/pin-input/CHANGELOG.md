@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.1.2
+
+### Patch Changes
+
+- [`46e24c58`](https://github.com/chakra-ui/chakra-ui/commit/46e24c5820ef2726a4fb16a190efda39fb0b075a)
+  [#2880](https://github.com/chakra-ui/chakra-ui/pull/2880) Thanks
+  [@with-heart](https://github.com/with-heart)! - Resolved an issue where
+  `PinInputField` rendered an input with `autocomplete="not-allowed"` instead of
+  `autocomplete="off"`
+
 ## 1.1.1
 
 ### Patch Changes

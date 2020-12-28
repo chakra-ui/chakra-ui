@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.0.5
+
+### Patch Changes
+
+- [`9fc0a623`](https://github.com/chakra-ui/chakra-ui/commit/9fc0a62309a0c55b8696ee78e875535e9d6d1f6a)
+  [#2868](https://github.com/chakra-ui/chakra-ui/pull/2868) Thanks
+  [@MananDesai54](https://github.com/MananDesai54)! - Update form-control docs
+
+- Updated dependencies
+  [[`6a410f77`](https://github.com/chakra-ui/chakra-ui/commit/6a410f778f534e00e01fdf0d3ce1ffdd1d7b138e),
+  [`a0e0bd9a`](https://github.com/chakra-ui/chakra-ui/commit/a0e0bd9a5d45fe08887f8df8d3eccc84951578df),
+  [`916588a5`](https://github.com/chakra-ui/chakra-ui/commit/916588a5bbb771ff3f07b0ceb160bef57cdd6a8a)]:
+  - @chakra-ui/react@1.1.0
+  - @chakra-ui/props-docs@1.0.5
+
 ## 1.0.4
 
 ### Patch Changes
