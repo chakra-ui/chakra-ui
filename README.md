@@ -388,6 +388,7 @@ Thanks goes to these wonderful people
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/petter"><img src="https://avatars0.githubusercontent.com/u/25374940?v=4" width="64px;" alt=""/><br /><sub><b>Petter Sæther Moen</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=petter" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://nygaard.dev"><img src="https://avatars3.githubusercontent.com/u/20663884?v=4" width="64px;" alt=""/><br /><sub><b>Herman Nygaard</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=HermanNygaard" title="Documentation">📖</a></td>
   </tr>
 </table>
 
