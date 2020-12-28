@@ -8,6 +8,7 @@ import {
   dataAttr,
   mergeRefs,
   PropGetter,
+  warn,
 } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import React, {
@@ -55,8 +56,14 @@ export interface UseCheckboxProps {
   isRequired?: boolean
   /**
    * If `true`, the checkbox will be initially checked.
+   * @deprecated Please use the `defaultChecked` prop, which mirrors default
+   * React checkbox behavior.
    */
   defaultIsChecked?: boolean
+  /**
+   * If `true`, the checkbox will be initially checked.
+   */
+  defaultChecked?: boolean
   /**
    * The callback invoked when the checked state of the `Checkbox` changes..
    */
@@ -86,6 +93,7 @@ export interface UseCheckboxProps {
 export function useCheckbox(props: UseCheckboxProps = {}) {
   const {
     defaultIsChecked,
+    defaultChecked = defaultIsChecked,
     isChecked: checkedProp,
     isFocusable,
     isDisabled,
@@ -106,12 +114,19 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
 
   const ref = useRef<HTMLInputElement>(null)
 
-  const [checkedState, setCheckedState] = useState(!!defaultIsChecked)
+  const [checkedState, setCheckedState] = useState(!!defaultChecked)
 
   const [isControlled, isChecked] = useControllableProp(
     checkedProp,
     checkedState,
   )
+
+  warn({
+    condition: !!defaultIsChecked,
+    message:
+      'The "defaultIsChecked" prop has been deprecated and will be removed in a future version. ' +
+      'Please use the "defaultChecked" prop instead, which mirrors default React checkbox behavior.',
+  })
 
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
