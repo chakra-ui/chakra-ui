@@ -1,6 +1,40 @@
 import * as React from "react"
-import { render, testA11y } from "@chakra-ui/test-utils"
+import { render, testA11y, waitFor } from "@chakra-ui/test-utils"
 import { Avatar, AvatarBadge } from "../src"
+
+const DELAY = 0
+const LOAD_IMAGE = "load"
+const ERROR_IMAGE = "error"
+const orignalImage = window.Image
+
+const mockImage = (loadState: string) => {
+  jest.useFakeTimers()
+  ;(window.Image as unknown) = class MockImage {
+    onload: () => void = () => {}
+    onerror: () => void = () => {}
+    src: string = ""
+    constructor() {
+      if (loadState === LOAD_IMAGE) {
+        setTimeout(() => {
+          this.onload()
+        }, DELAY)
+      }
+      if (loadState === ERROR_IMAGE) {
+        setTimeout(() => {
+          this.onerror()
+        }, DELAY)
+      }
+      return this
+    }
+  }
+}
+
+afterEach(() => {
+  jest.useRealTimers()
+})
+afterAll(() => {
+  window.Image = orignalImage
+})
 
 test("matches snapshot", () => {
   const { asFragment } = render(<Avatar />)
@@ -41,20 +75,33 @@ it("passes a11y test with AvatarBadge", async () => {
   )
 })
 
-/**
- * This was skipped because I haven't figured out
- * how to test/mock an image rendering process with jest
- */
-test.skip("renders an image", () => {
+test("renders an image", async () => {
+  mockImage(LOAD_IMAGE)
   const src = "https://bit.ly/dan-abramov"
   const name = "Dan Abramov"
-  const { container, debug } = render(<Avatar src={src} name={name} />)
+  const { container } = render(<Avatar src={src} name={name} />)
 
-  debug()
+  await waitFor(() => {
+    jest.advanceTimersByTime(DELAY)
+  })
 
   const img = container.querySelector("img")
   expect(img).toHaveAttribute("src", src)
   expect(img).toHaveAttribute("alt", name)
+})
+
+test("fires onError if image fails to load", async () => {
+  mockImage(ERROR_IMAGE)
+  const src = "https://bit.ly/dan-abramov"
+  const name = "Dan Abramov"
+  const onErrorFn = jest.fn()
+  render(<Avatar src={src} name={name} onError={onErrorFn} />)
+
+  await waitFor(() => {
+    jest.advanceTimersByTime(DELAY)
+  })
+
+  expect(onErrorFn).toHaveBeenCalledTimes(1)
 })
 
 test("renders a name avatar if no src", () => {
