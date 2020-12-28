@@ -2,4 +2,5 @@
 "@chakra-ui/skeleton": patch
 ---
 
-SkeletonText accepts fadeDuration and speed prop and animates children
+SkeletonText now accepts the props `fadeDuration` and `speed` and animates
+children, like the `Skeleton` component.
