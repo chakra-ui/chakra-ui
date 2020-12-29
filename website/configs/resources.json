@@ -1,0 +1,74 @@
+{
+  "data": [
+    {
+      "heading": "How To Integrate Chakra UI In React Application",
+      "type": "blog",
+      "author": "Sumit Kharche",
+      "description": "Learn about Chakra UI and also build a react application using Chakra UI components.",
+      "url": "https://www.c-sharpcorner.com/article/getting-started-with-chakra-ui-react/"
+    },
+    {
+      "heading": "React Forms Using Chakra UI",
+      "type": "video",
+      "author": "Karl Hadwen",
+      "description": "Learn how to build a React form using Chakra UI",
+      "url": "https://www.youtube.com/watch?v=4UIbOoySiXw"
+    },
+    {
+      "heading": "Build a Landing Page with Chakra UI",
+      "type": "blog",
+      "author": "Jim Raptis",
+      "description": "How to build a responsive landing page in React using the Chakra UI design system.",
+      "url": "https://dev.to/d__raptis/build-a-landing-page-with-chakra-ui-part-1-56gd"
+    },
+    {
+      "heading": "Chakra UI Crash Course",
+      "type": "video",
+      "author": "Mahmoud Shehata",
+      "description": "Learn how to get started with Chakra UI (v0.8)",
+      "url": "https://www.youtube.com/playlist?list=PLDIXF8nb0VG174PlQuej1su71AvR1JHoo"
+    },
+    {
+      "heading": "How to Use Chakra UI with Next.js and React",
+      "type": "blog",
+      "author": "Colby Fayock",
+      "description": "How to take advantage of the power of Chakra UI to build great web apps",
+      "url": "https://www.freecodecamp.org/news/how-to-use-chakra-ui-with-next-js-and-react/"
+    },
+    {
+      "heading": "Installing and Using Chakra UI with React",
+      "type": "blog",
+      "author": "Ashutosh Singh",
+      "description": "We will discuss how to install, import, and use components from Chakra UI",
+      "url": "https://www.pluralsight.com/guides/installing-and-using-chakra-ui-with-react"
+    },
+    {
+      "heading": "How to use Chakra UI's Default Theme",
+      "type": "video",
+      "author": "Folasade Agbaje",
+      "description": "Learn how to use Chakra UI's default theme",
+      "url": "https://www.youtube.com/watch?v=KOCAnM7HJ4U"
+    },
+    {
+      "heading": "Coding a Login Form with Chakra UI | React | Dark Theme & Light Theme",
+      "type": "video",
+      "author": "Eshwaren Manoharen",
+      "description": "Learn how to create a login form with Chakra UI",
+      "url": "https://www.youtube.com/watch?v=Rs59VBGfLP4"
+    },
+    {
+      "heading": "How to easily use Chakra UI Stack Component",
+      "type": "video",
+      "author": "Folasade Agbaje",
+      "description": "Learn how to easily use Chakra UI Stack Component",
+      "url": "https://www.youtube.com/watch?v=gTaikL689PU"
+    },
+    {
+      "heading": "Making a set of React + Chakra UI components for building landing pages",
+      "type": "video",
+      "author": "Kitze",
+      "description": "Learn how to build landing pages in React using Chakra UI components",
+      "url": "https://www.pscp.tv/thekitze/1OyJAgleVMbKb"
+    }
+  ]
+}
