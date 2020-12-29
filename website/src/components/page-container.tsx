@@ -25,7 +25,12 @@ function useHeadingFocusOnRouteChange() {
 }
 
 interface PageContainerProps {
-  frontmatter: any
+  frontmatter: {
+    title: string
+    description: string
+    editUrl: string
+    version: string
+  }
   children: React.ReactNode
   sidebar?: any
   pagination?: any
