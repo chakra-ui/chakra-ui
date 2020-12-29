@@ -368,6 +368,10 @@ export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
     React.cloneElement(child as Child, {
       isSelected: index === selectedIndex,
       id: makeTabPanelId(id, index),
+      /**
+       * Refers to the associated tab element, and also provides an accessible name to the tab panel.
+       */
+      "aria-labelledby": makeTabId(id, index),
     }),
   )
 
@@ -385,6 +389,10 @@ export function useTabPanel(props: Dict) {
   const { isLazy } = useTabsContext()
 
   return {
+    /**
+     * Puts the tabpanel in the page `Tab` sequence.
+     */
+    tabIndex: isSelected ? 0 : -1,
     ...htmlProps,
     children: !isLazy || isSelected ? props.children : null,
     role: "tabpanel",
