@@ -1701,6 +1701,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "HermanNygaard",
+      "name": "Herman Nygaard",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/20663884?v=4",
+      "profile": "https://nygaard.dev",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
