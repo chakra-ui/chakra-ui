@@ -16,7 +16,13 @@ import { Routes } from "utils/get-route-context"
 import SidebarCategory from "./sidebar-category"
 import SidebarLink from "./sidebar-link"
 import NextLink from "next/link"
-import { BlogIcon, DocsIcon, GuidesIcon, TeamIcon } from "./sidebar-icons"
+import {
+  BlogIcon,
+  DocsIcon,
+  GuidesIcon,
+  TeamIcon,
+  ResourcesIcon,
+} from "./sidebar-icons"
 import _ from "lodash"
 
 export type SidebarContentProps = Routes & {
@@ -133,6 +139,11 @@ const mainNavLinks = [
     icon: <GuidesIcon />,
     href: "/guides/integrations/with-cra",
     label: "Guides",
+  },
+  {
+    icon: <ResourcesIcon />,
+    href: "/resources",
+    label: "Resources",
   },
   {
     icon: <TeamIcon />,
