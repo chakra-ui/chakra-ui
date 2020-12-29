@@ -31,7 +31,6 @@ export const ModalTransition = React.forwardRef(
   (props: ModalTransitionProps, ref: React.Ref<any>) => {
     const { preset, ...rest } = props
     const motionProps = transitions[preset]
-    console.log(motionProps)
     return <Motion ref={ref} {...motionProps} {...rest} />
   },
 )
