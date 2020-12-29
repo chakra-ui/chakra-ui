@@ -28,8 +28,8 @@ interface PageContainerProps {
   frontmatter: {
     title: string
     description: string
-    editUrl: string
-    version: string
+    editUrl?: string
+    version?: string
   }
   children: React.ReactNode
   sidebar?: any
