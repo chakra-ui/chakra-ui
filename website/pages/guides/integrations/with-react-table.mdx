@@ -10,6 +10,16 @@ components, and the [React Table library](https://react-table.tanstack.com/).
 
 [Explore on codesandbox](https://codesandbox.io/s/chakra-ui-data-table-vfivp?file=/src/DataTable.tsx)
 
+## Imports
+
+```js live=false
+import { Table, Thead, Tbody, Tr, Th, Td, chakra } from "@chakra-ui/react"
+import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons"
+import { useTable, useSortBy } from "react-table"
+```
+
+## Usage
+
 ```jsx
 function DataTable() {
   const data = React.useMemo(
