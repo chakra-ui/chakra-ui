@@ -1,6 +1,8 @@
 import * as CSS from "csstype"
 import { Config, createParser, system } from "../core"
 import { Length, ResponsiveValue, t } from "../utils"
+import { PropsPath } from "../utils.types"
+import { ChakraTheme } from ".."
 
 const config: Config = {
   width: t.sizesT("width"),
@@ -37,7 +39,7 @@ Object.assign(config, {
 /**
  * Types for layout related CSS properties
  */
-export interface LayoutProps {
+export interface LayoutProps<Theme extends ChakraTheme = ChakraTheme> {
   /**
    * The CSS `display` property
    */
@@ -49,65 +51,101 @@ export interface LayoutProps {
   /**
    * The CSS `width` property
    */
-  width?: ResponsiveValue<CSS.Property.Width<Length>>
+  width?: ResponsiveValue<
+    CSS.Property.Width<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `width` property
    */
-  w?: ResponsiveValue<CSS.Property.Width<Length>>
-  inlineSize?: ResponsiveValue<CSS.Property.InlineSize<Length>>
+  w?: ResponsiveValue<CSS.Property.Width<Length> & PropsPath<Theme["sizes"]>>
+  inlineSize?: ResponsiveValue<
+    CSS.Property.InlineSize<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `width` and `height` property
    */
-  boxSize?: ResponsiveValue<CSS.Property.Width<Length>>
+  boxSize?: ResponsiveValue<
+    CSS.Property.Width<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `max-width` property
    */
-  maxWidth?: ResponsiveValue<CSS.Property.MaxWidth<Length>>
+  maxWidth?: ResponsiveValue<
+    CSS.Property.MaxWidth<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `max-width` property
    */
-  maxW?: ResponsiveValue<CSS.Property.MaxWidth<Length>>
-  maxInlineSize?: ResponsiveValue<CSS.Property.MaxInlineSize<Length>>
+  maxW?: ResponsiveValue<
+    CSS.Property.MaxWidth<Length> & PropsPath<Theme["sizes"]>
+  >
+  maxInlineSize?: ResponsiveValue<
+    CSS.Property.MaxInlineSize<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `min-width` property
    */
-  minWidth?: ResponsiveValue<CSS.Property.MinWidth<Length>>
+  minWidth?: ResponsiveValue<
+    CSS.Property.MinWidth<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `min-width` property
    */
-  minW?: ResponsiveValue<CSS.Property.MinWidth<Length>>
-  minInlineSize?: ResponsiveValue<CSS.Property.MinInlineSize<Length>>
+  minW?: ResponsiveValue<
+    CSS.Property.MinWidth<Length> & PropsPath<Theme["sizes"]>
+  >
+  minInlineSize?: ResponsiveValue<
+    CSS.Property.MinInlineSize<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `height` property
    */
-  height?: ResponsiveValue<CSS.Property.Height<Length>>
+  height?: ResponsiveValue<
+    CSS.Property.Height<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `height` property
    */
-  h?: ResponsiveValue<CSS.Property.Height<Length>>
-  blockSize?: ResponsiveValue<CSS.Property.BlockSize<Length>>
+  h?: ResponsiveValue<CSS.Property.Height<Length> & PropsPath<Theme["sizes"]>>
+  blockSize?: ResponsiveValue<
+    CSS.Property.BlockSize<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `max-height` property
    */
-  maxHeight?: ResponsiveValue<CSS.Property.MaxHeight<Length>>
+  maxHeight?: ResponsiveValue<
+    CSS.Property.MaxHeight<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `max-height` property
    */
-  maxH?: ResponsiveValue<CSS.Property.MaxHeight<Length>>
-  maxBlockSize?: ResponsiveValue<CSS.Property.MaxBlockSize<Length>>
+  maxH?: ResponsiveValue<
+    CSS.Property.MaxHeight<Length> & PropsPath<Theme["sizes"]>
+  >
+  maxBlockSize?: ResponsiveValue<
+    CSS.Property.MaxBlockSize<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `min-height` property
    */
-  minHeight?: ResponsiveValue<CSS.Property.MinHeight<Length>>
+  minHeight?: ResponsiveValue<
+    CSS.Property.MinHeight<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `min-height` property
    */
-  minH?: ResponsiveValue<CSS.Property.MinHeight<Length>>
-  minBlockSize?: ResponsiveValue<CSS.Property.MinBlockSize<Length>>
+  minH?: ResponsiveValue<
+    CSS.Property.MinHeight<Length> & PropsPath<Theme["sizes"]>
+  >
+  minBlockSize?: ResponsiveValue<
+    CSS.Property.MinBlockSize<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `vertical-align` property
    */
-  verticalAlign?: ResponsiveValue<CSS.Property.VerticalAlign<Length>>
+  verticalAlign?: ResponsiveValue<
+    CSS.Property.VerticalAlign<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `overflow` property
    */

@@ -1,6 +1,8 @@
 import * as CSS from "csstype"
 import { Config, createParser, system } from "../core"
 import { Length, ResponsiveValue, t } from "../utils"
+import { PropsPath } from "../utils.types"
+import { ChakraTheme } from ".."
 
 const config: Config = {
   margin: t.spaceT("margin"),
@@ -59,187 +61,269 @@ Object.assign(config, {
 /**
  * Types for space related CSS properties
  */
-export interface SpaceProps {
+export interface SpaceProps<Theme extends ChakraTheme = ChakraTheme> {
   /**
    * Margin on top, left, bottom and right
    */
-  m?: ResponsiveValue<CSS.Property.Margin<Length>>
+  m?: ResponsiveValue<CSS.Property.Margin<Length> & PropsPath<Theme["sizes"]>>
   /**
    * Margin on top, left, bottom and right
    */
-  margin?: ResponsiveValue<CSS.Property.Margin<Length>>
+  margin?: ResponsiveValue<
+    CSS.Property.Margin<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Margin on top
    */
-  mt?: ResponsiveValue<CSS.Property.Margin<Length>>
-  marginBlockStart?: ResponsiveValue<CSS.Property.MarginBlockStart<Length>>
+  mt?: ResponsiveValue<CSS.Property.Margin<Length> & PropsPath<Theme["sizes"]>>
+  marginBlockStart?: ResponsiveValue<
+    CSS.Property.MarginBlockStart<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Margin on top
    */
-  marginTop?: ResponsiveValue<CSS.Property.MarginTop<Length>>
+  marginTop?: ResponsiveValue<
+    CSS.Property.MarginTop<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Margin on right
    */
-  mr?: ResponsiveValue<CSS.Property.MarginRight<Length>>
+  mr?: ResponsiveValue<
+    CSS.Property.MarginRight<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * When direction is `ltr`, `marginInlineEnd` is equivalent to `marginRight`.
    * When direction is `rtl`, `marginInlineEnd` is equivalent to `marginLeft`.
    */
-  marginInlineEnd?: ResponsiveValue<CSS.Property.MarginInlineEnd<Length>>
+  marginInlineEnd?: ResponsiveValue<
+    CSS.Property.MarginInlineEnd<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * When direction is `ltr`, `marginEnd` is equivalent to `marginRight`.
    * When direction is `rtl`, `marginEnd` is equivalent to `marginLeft`.
    */
-  marginEnd?: ResponsiveValue<CSS.Property.MarginInlineEnd<Length>>
+  marginEnd?: ResponsiveValue<
+    CSS.Property.MarginInlineEnd<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * When direction is `ltr`, `me` is equivalent to `marginRight`.
    * When direction is `rtl`, `me` is equivalent to `marginLeft`.
    */
-  me?: ResponsiveValue<CSS.Property.MarginInlineEnd<Length>>
+  me?: ResponsiveValue<
+    CSS.Property.MarginInlineEnd<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Margin on right
    */
-  marginRight?: ResponsiveValue<CSS.Property.MarginRight<Length>>
+  marginRight?: ResponsiveValue<
+    CSS.Property.MarginRight<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Margin on bottom
    */
-  mb?: ResponsiveValue<CSS.Property.MarginBottom<Length>>
-  marginBlockEnd?: ResponsiveValue<CSS.Property.MarginBlockEnd<Length>>
+  mb?: ResponsiveValue<
+    CSS.Property.MarginBottom<Length> & PropsPath<Theme["sizes"]>
+  >
+  marginBlockEnd?: ResponsiveValue<
+    CSS.Property.MarginBlockEnd<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Margin on bottom
    */
-  marginBottom?: ResponsiveValue<CSS.Property.MarginBottom<Length>>
+  marginBottom?: ResponsiveValue<
+    CSS.Property.MarginBottom<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Margin on left
    */
-  ml?: ResponsiveValue<CSS.Property.MarginLeft<Length>>
+  ml?: ResponsiveValue<
+    CSS.Property.MarginLeft<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * When direction is `ltr`, `marginInlineStart` is equivalent to `marginLeft`.
    * When direction is `rtl`, `marginInlineStart` is equivalent to `marginRight`.
    */
-  marginInlineStart?: ResponsiveValue<CSS.Property.MarginInlineStart<Length>>
+  marginInlineStart?: ResponsiveValue<
+    CSS.Property.MarginInlineStart<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * When direction is `ltr`, `marginStart` is equivalent to `marginLeft`.
    * When direction is `rtl`, `marginStart` is equivalent to `marginRight`.
    */
-  marginStart?: ResponsiveValue<CSS.Property.MarginInlineStart<Length>>
+  marginStart?: ResponsiveValue<
+    CSS.Property.MarginInlineStart<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * When direction is `ltr`, `ms` is equivalent to `marginLeft`.
    * When direction is `rtl`, `ms` is equivalent to `marginRight`.
    */
-  ms?: ResponsiveValue<CSS.Property.MarginInlineStart<Length>>
+  ms?: ResponsiveValue<
+    CSS.Property.MarginInlineStart<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Margin on left
    */
-  marginLeft?: ResponsiveValue<CSS.Property.MarginLeft<Length>>
+  marginLeft?: ResponsiveValue<
+    CSS.Property.MarginLeft<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Margin on left and right
    */
-  mx?: ResponsiveValue<CSS.Property.Margin<Length>>
-  marginInline?: ResponsiveValue<CSS.Property.MarginInline<Length>>
+  mx?: ResponsiveValue<CSS.Property.Margin<Length> & PropsPath<Theme["sizes"]>>
+  marginInline?: ResponsiveValue<
+    CSS.Property.MarginInline<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Margin on left and right
    */
-  marginX?: ResponsiveValue<CSS.Property.Margin<Length>>
+  marginX?: ResponsiveValue<
+    CSS.Property.Margin<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Margin on top and bottom
    */
-  my?: ResponsiveValue<CSS.Property.Margin<Length>>
-  marginBlock?: ResponsiveValue<CSS.Property.MarginBlock<Length>>
+  my?: ResponsiveValue<CSS.Property.Margin<Length> & PropsPath<Theme["sizes"]>>
+  marginBlock?: ResponsiveValue<
+    CSS.Property.MarginBlock<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Margin on top and bottom
    */
-  marginY?: ResponsiveValue<CSS.Property.Margin<Length>>
+  marginY?: ResponsiveValue<
+    CSS.Property.Margin<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Padding on top, left, bottom and right
    */
-  p?: ResponsiveValue<CSS.Property.Padding<Length>>
+  p?: ResponsiveValue<CSS.Property.Padding<Length> & PropsPath<Theme["sizes"]>>
   /**
    * Padding on top, left, bottom and right
    */
-  padding?: ResponsiveValue<CSS.Property.Padding<Length>>
+  padding?: ResponsiveValue<
+    CSS.Property.Padding<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Padding on top
    */
-  pt?: ResponsiveValue<CSS.Property.PaddingTop<Length>>
-  paddingBlockStart?: ResponsiveValue<CSS.Property.PaddingBlockStart<Length>>
+  pt?: ResponsiveValue<
+    CSS.Property.PaddingTop<Length> & PropsPath<Theme["sizes"]>
+  >
+  paddingBlockStart?: ResponsiveValue<
+    CSS.Property.PaddingBlockStart<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Padding on top
    */
-  paddingTop?: ResponsiveValue<CSS.Property.PaddingTop<Length>>
+  paddingTop?: ResponsiveValue<
+    CSS.Property.PaddingTop<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Padding on right
    */
-  pr?: ResponsiveValue<CSS.Property.PaddingRight<Length>>
+  pr?: ResponsiveValue<
+    CSS.Property.PaddingRight<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * When direction is `ltr`, `paddingInlineEnd` is equivalent to `paddingRight`.
    * When direction is `rtl`, `paddingInlineEnd` is equivalent to `paddingLeft`.
    */
-  paddingInlineEnd?: ResponsiveValue<CSS.Property.PaddingInlineEnd<Length>>
+  paddingInlineEnd?: ResponsiveValue<
+    CSS.Property.PaddingInlineEnd<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * When direction is `ltr`, `paddingEnd` is equivalent to `paddingRight`.
    * When direction is `rtl`, `paddingEnd` is equivalent to `paddingLeft`.
    */
-  paddingEnd?: ResponsiveValue<CSS.Property.PaddingInlineEnd<Length>>
+  paddingEnd?: ResponsiveValue<
+    CSS.Property.PaddingInlineEnd<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * When direction is `ltr`, `pe` is equivalent to `paddingRight`.
    * When direction is `rtl`, `pe` is equivalent to `paddingLeft`.
    */
-  pe?: ResponsiveValue<CSS.Property.PaddingInlineEnd<Length>>
+  pe?: ResponsiveValue<
+    CSS.Property.PaddingInlineEnd<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Padding on right
    */
-  paddingRight?: ResponsiveValue<CSS.Property.PaddingRight<Length>>
+  paddingRight?: ResponsiveValue<
+    CSS.Property.PaddingRight<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Padding on bottom
    */
-  pb?: ResponsiveValue<CSS.Property.PaddingBottom<Length>>
-  paddingBlockEnd?: ResponsiveValue<CSS.Property.PaddingBlockEnd<Length>>
+  pb?: ResponsiveValue<
+    CSS.Property.PaddingBottom<Length> & PropsPath<Theme["sizes"]>
+  >
+  paddingBlockEnd?: ResponsiveValue<
+    CSS.Property.PaddingBlockEnd<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Padding on bottom
    */
-  paddingBottom?: ResponsiveValue<CSS.Property.PaddingBottom<Length>>
+  paddingBottom?: ResponsiveValue<
+    CSS.Property.PaddingBottom<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Padding on left
    */
-  pl?: ResponsiveValue<CSS.Property.PaddingLeft<Length>>
+  pl?: ResponsiveValue<
+    CSS.Property.PaddingLeft<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * When direction is `ltr`, `paddingInlineStart` is equivalent to `paddingLeft`.
    * When direction is `rtl`, `paddingInlineStart` is equivalent to `paddingRight`.
    */
-  paddingInlineStart?: ResponsiveValue<CSS.Property.PaddingInlineStart<Length>>
+  paddingInlineStart?: ResponsiveValue<
+    CSS.Property.PaddingInlineStart<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * When direction is `ltr`, `paddingStart` is equivalent to `paddingLeft`.
    * When direction is `rtl`, `paddingStart` is equivalent to `paddingRight`.
    */
-  paddingStart?: ResponsiveValue<CSS.Property.PaddingInlineStart<Length>>
+  paddingStart?: ResponsiveValue<
+    CSS.Property.PaddingInlineStart<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * When direction is `ltr`, `ps` is equivalent to `paddingLeft`.
    * When direction is `rtl`, `ps` is equivalent to `paddingRight`.
    */
-  ps?: ResponsiveValue<CSS.Property.PaddingInlineStart<Length>>
+  ps?: ResponsiveValue<
+    CSS.Property.PaddingInlineStart<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Padding on left
    */
-  paddingLeft?: ResponsiveValue<CSS.Property.PaddingLeft<Length>>
+  paddingLeft?: ResponsiveValue<
+    CSS.Property.PaddingLeft<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Padding on left and right
    */
-  px?: ResponsiveValue<CSS.Property.Padding<Length>>
-  paddingInline?: ResponsiveValue<CSS.Property.PaddingInline<Length>>
+  px?: ResponsiveValue<CSS.Property.Padding<Length> & PropsPath<Theme["sizes"]>>
+  paddingInline?: ResponsiveValue<
+    CSS.Property.PaddingInline<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Padding on left and right
    */
-  paddingX?: ResponsiveValue<CSS.Property.Padding<Length>>
+  paddingX?: ResponsiveValue<
+    CSS.Property.Padding<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Padding on top and bottom
    */
-  py?: ResponsiveValue<CSS.Property.Padding<Length>>
-  paddingBlock?: ResponsiveValue<CSS.Property.PaddingBlock<Length>>
+  py?: ResponsiveValue<CSS.Property.Padding<Length> & PropsPath<Theme["sizes"]>>
+  paddingBlock?: ResponsiveValue<
+    CSS.Property.PaddingBlock<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * Padding on top and bottom
    */
-  paddingY?: ResponsiveValue<CSS.Property.Padding<Length>>
+  paddingY?: ResponsiveValue<
+    CSS.Property.Padding<Length> & PropsPath<Theme["sizes"]>
+  >
 }
 
 /**

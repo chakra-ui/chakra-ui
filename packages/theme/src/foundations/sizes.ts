@@ -24,7 +24,7 @@ const container = {
   xl: "1280px",
 }
 
-const sizes = {
+const sizes: Sizes = {
   ...spacing,
   ...largeSizes,
   container,

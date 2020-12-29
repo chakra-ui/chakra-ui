@@ -1,6 +1,8 @@
 import * as CSS from "csstype"
 import { createParser, Config, system } from "../core"
 import { Length, ResponsiveValue, t } from "../utils"
+import { PropsPath } from "../utils.types"
+import { ChakraTheme } from ".."
 
 const config: Config = {
   gridGap: t.space("gridGap"),
@@ -22,7 +24,7 @@ const config: Config = {
   gridArea: true,
 }
 
-export interface GridProps {
+export interface GridProps<Theme extends ChakraTheme = ChakraTheme> {
   /**
    * The CSS `grid-gap` property.
    *
@@ -30,7 +32,9 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-gap)
    */
-  gridGap?: ResponsiveValue<CSS.Property.GridGap<Length>>
+  gridGap?: ResponsiveValue<
+    CSS.Property.GridGap<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `grid-column-gap` property.
    *
@@ -38,7 +42,9 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap)
    */
-  gridColumnGap?: ResponsiveValue<CSS.Property.GridColumnGap<Length>>
+  gridColumnGap?: ResponsiveValue<
+    CSS.Property.GridColumnGap<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `grid-row-gap` property.
    *
@@ -46,7 +52,9 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap)
    */
-  gridRowGap?: ResponsiveValue<CSS.Property.GridRowGap<Length>>
+  gridRowGap?: ResponsiveValue<
+    CSS.Property.GridRowGap<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `grid-column` property.
    *
@@ -130,7 +138,9 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns)
    */
-  gridAutoColumns?: ResponsiveValue<CSS.Property.GridAutoColumns<Length>>
+  gridAutoColumns?: ResponsiveValue<
+    CSS.Property.GridAutoColumns<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `grid-auto-rows` property.
    *
@@ -138,7 +148,9 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows)
    */
-  gridAutoRows?: ResponsiveValue<CSS.Property.GridAutoRows<Length>>
+  gridAutoRows?: ResponsiveValue<
+    CSS.Property.GridAutoRows<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `grid-template-columns` property
    *
@@ -147,7 +159,7 @@ export interface GridProps {
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns)
    */
   gridTemplateColumns?: ResponsiveValue<
-    CSS.Property.GridTemplateColumns<Length>
+    CSS.Property.GridTemplateColumns<Length> & PropsPath<Theme["sizes"]>
   >
   /**
    * The CSS `grid-template-rows` property.
@@ -156,7 +168,9 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows)
    */
-  gridTemplateRows?: ResponsiveValue<CSS.Property.GridTemplateRows<Length>>
+  gridTemplateRows?: ResponsiveValue<
+    CSS.Property.GridTemplateRows<Length> & PropsPath<Theme["sizes"]>
+  >
   /**
    * The CSS `grid-template-areas` property.
    *

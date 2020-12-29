@@ -2,6 +2,8 @@ import * as CSS from "csstype"
 import { createParser, Config, system } from "../core"
 import { ResponsiveValue, Length, t } from "../utils"
 import { transformGradient } from "../utils/parse-gradient"
+import { PropsPath } from "../utils.types"
+import { ChakraTheme } from ".."
 
 function transformBgClip(value: string) {
   return value === "text"
@@ -42,11 +44,13 @@ const config: Config = {
   },
 }
 
-export interface BackgroundProps {
+export interface BackgroundProps<Theme extends ChakraTheme = ChakraTheme> {
   /**
    * The CSS `background` property
    */
-  bg?: ResponsiveValue<CSS.Property.Background<Length>>
+  bg?: ResponsiveValue<
+    CSS.Property.Background<Length> & PropsPath<Theme["colors"]>
+  >
   /**
    * The CSS `background-clip` property
    */
@@ -58,15 +62,21 @@ export interface BackgroundProps {
   /**
    * The CSS `background` property
    */
-  background?: ResponsiveValue<CSS.Property.Background<Length>>
+  background?: ResponsiveValue<
+    CSS.Property.Background<Length> & PropsPath<Theme["colors"]>
+  >
   /**
    * The CSS `background-color` property
    */
-  bgColor?: ResponsiveValue<CSS.Property.BackgroundColor>
+  bgColor?: ResponsiveValue<
+    CSS.Property.BackgroundColor & PropsPath<Theme["colors"]>
+  >
   /**
    * The CSS `background-color` property
    */
-  backgroundColor?: ResponsiveValue<CSS.Property.BackgroundColor>
+  backgroundColor?: ResponsiveValue<
+    CSS.Property.BackgroundColor & PropsPath<Theme["colors"]>
+  >
   /**
    * The CSS `background-image` property
    */
