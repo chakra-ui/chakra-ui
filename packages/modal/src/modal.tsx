@@ -86,7 +86,7 @@ interface ModalOptions extends Pick<FocusLockProps, "lockFocusAcrossFrames"> {
 
 type ScrollBehavior = "inside" | "outside"
 
-type MotionPreset = "slideInBottom" | "slideInRight" | "scale"
+type MotionPreset = "slideInBottom" | "slideInRight" | "scale" | "none"
 
 export interface ModalProps extends UseModalProps, ModalOptions, ThemingProps {
   children: React.ReactNode
