@@ -5,6 +5,7 @@ import {
   Heading,
   Link,
   Text,
+  useColorModeValue,
   Wrap,
   WrapItem,
 } from "@chakra-ui/react"
@@ -30,12 +31,12 @@ function ResourceCard(props: ResourceCardProps) {
   return (
     <Box {...rest} maxW="360px">
       <Wrap spacing="3" mb="2" align="center">
-        {tags?.map((tag) => (
-          <WrapItem>
+        {tags?.map((tag, index) => (
+          <WrapItem key={index}>
             <Badge
               as="a"
               rel="tag"
-              color="teal.600"
+              color={useColorModeValue("teal.600", "teal.400")}
               textTransform="uppercase"
               fontSize="xs"
               fontWeight="bold"
@@ -54,7 +55,7 @@ function ResourceCard(props: ResourceCardProps) {
       <Text fontSize="sm" color="gray.500" mt="2">
         by {author}
       </Text>
-      <Text lineHeight="tall" py={2} color="gray.600">
+      <Text lineHeight="tall" py={2} opacity={0.8}>
         {description}
       </Text>
     </Box>
