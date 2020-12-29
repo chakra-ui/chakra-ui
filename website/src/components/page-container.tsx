@@ -26,8 +26,9 @@ function useHeadingFocusOnRouteChange() {
 
 interface PageContainerProps {
   frontmatter: {
+    slug?: string
     title: string
-    description: string
+    description?: string
     editUrl?: string
     version?: string
   }
