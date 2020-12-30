@@ -86,11 +86,7 @@ function HeaderContent() {
                 _hover={{ color: "gray.600" }}
               />
             </Link>
-            <Link
-              isExternal
-              aria-label="Go to Chakra UI Discord page"
-              href={siteConfig.discord.url}
-            >
+            <Link aria-label="Go to Chakra UI Discord page" href="/discord">
               <Icon
                 as={DiscordIcon}
                 transition="color 0.2s"
