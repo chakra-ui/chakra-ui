@@ -196,7 +196,7 @@ const ButtonSpinner: React.FC<ButtonSpinnerProps> = (props) => {
     display: "flex",
     alignItems: "center",
     position: label ? "relative" : "absolute",
-    mr: label ? spacing : 0,
+    me: label ? spacing : 0,
     ...__css,
   }
 
