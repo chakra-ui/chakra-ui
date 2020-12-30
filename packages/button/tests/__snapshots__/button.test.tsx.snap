@@ -396,7 +396,8 @@ exports[`shows spinner and loading text if isLoading and loadingText 1`] = `
   -ms-flex-align: center;
   align-items: center;
   position: relative;
-  margin-right: 0.5rem;
+  -webkit-margin-end: 0.5rem;
+  margin-inline-end: 0.5rem;
   font-size: 1em;
   line-height: normal;
 }
@@ -569,7 +570,8 @@ exports[`shows spinner if isLoading 1`] = `
   -ms-flex-align: center;
   align-items: center;
   position: absolute;
-  margin-right: 0;
+  -webkit-margin-end: 0;
+  margin-inline-end: 0;
   font-size: 1em;
   line-height: normal;
 }
