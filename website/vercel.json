@@ -1,10 +1,4 @@
 {
   "alias": "chakra-ui.com",
-  "scope": "chakra-ui",
-  "redirects": [
-    {
-      "source": "/discord",
-      "destination": "https://discord.com/invite/dQHfcWF"
-    }
-  ]
+  "scope": "chakra-ui"
 }
