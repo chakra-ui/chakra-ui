@@ -1,6 +1,8 @@
 import { useDisclosure } from "@chakra-ui/hooks"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
+import Lorem from "react-lorem-component"
+
 import {
   Modal,
   ModalBody,
@@ -10,8 +12,6 @@ import {
   ModalHeader,
   ModalOverlay,
 } from "../src"
-//@ts-ignore
-import Lorem from "react-lorem-component"
 
 const Button = chakra("button", {
   baseStyle: {
