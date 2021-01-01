@@ -10,10 +10,18 @@ Chakra UI websites or apps, here's a quick tip:
 
 ```jsx live=false
 import { Box } from "@chakra-ui/react"
-import { motion } from "framer-motion"
+import { motion, isValidMotionProp } from "framer-motion"
 
 // 1. Create a custom motion component from Box
-const MotionBox = motion.custom(Box)
+const MotionBox = motion.custom(
+  forwardRef((props, ref) => {
+    const chakraProps = Object.fromEntries(
+      // do not pass framer props to DOM element
+      Object.entries(props).filter(([key]) => !isValidMotionProp(key)),
+    )
+    return <chakra.div ref={ref} {...chakraProps} />
+  }),
+)
 
 // 2. You'll get access to `motion` and `chakra` props in `MotionBox`
 function Example() {
@@ -30,4 +38,4 @@ function Example() {
 }
 ```
 
-[![Edit with CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/chakra-ui-framer-motion-example-q5o40?file=/src/Example.js)
+[![Edit with CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/chakra-ui-motion-box-sbk9e?file=/src/App.tsx)
