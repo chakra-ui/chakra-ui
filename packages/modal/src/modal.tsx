@@ -322,8 +322,8 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
 }
 
 export interface ModalOverlayProps
-  extends Omit<HTMLMotionProps<"div">, "color">,
-    Omit<ChakraProps, "transition"> {
+  extends Omit<HTMLMotionProps<"div">, "color" | "transition">,
+    ChakraProps {
   children?: React.ReactNode
 }
 
@@ -335,7 +335,7 @@ export interface ModalOverlayProps
  */
 export const ModalOverlay = forwardRef<ModalOverlayProps, "div">(
   (props, ref) => {
-    const { className, ...rest } = props
+    const { className, transition, ...rest } = props
     const _className = cx("chakra-modal__overlay", className)
 
     const styles = useStyles()
