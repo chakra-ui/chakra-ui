@@ -1,7 +1,7 @@
 import * as CSS from "csstype"
 import { Config, createParser, system } from "../core"
 import { Length, ResponsiveValue, t } from "../utils"
-import { EmptyThemeTypings, ThemeTypings } from "../theming.types"
+import { ThemeTypings } from "../theming.types"
 
 const config: Config = {
   border: t.borders("border"),
@@ -141,7 +141,7 @@ Object.assign(config, {
 /**
  * The prop types for border properties listed above
  */
-export interface BorderProps<Theme extends ThemeTypings = EmptyThemeTypings> {
+export interface BorderProps<Theme extends ThemeTypings = ThemeTypings> {
   /**
    * The CSS `border` property
    */
