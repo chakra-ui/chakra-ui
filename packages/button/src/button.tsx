@@ -64,7 +64,7 @@ export interface ButtonOptions {
 export interface ButtonProps
   extends HTMLChakraProps<"button">,
     ButtonOptions,
-    ThemingProps {}
+    ThemingProps<"Button"> {}
 
 export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
   const group = useButtonGroup()

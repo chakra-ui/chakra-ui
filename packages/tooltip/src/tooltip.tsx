@@ -15,7 +15,7 @@ import { useTooltip, UseTooltipProps } from "./use-tooltip"
 
 export interface TooltipProps
   extends HTMLChakraProps<"div">,
-    ThemingProps,
+    ThemingProps<"Tooltip">,
     UseTooltipProps {
   /**
    * The react component to use as the

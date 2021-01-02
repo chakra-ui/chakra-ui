@@ -171,7 +171,7 @@ export interface BreadcrumbOptions {
 export interface BreadcrumbProps
   extends HTMLChakraProps<"nav">,
     BreadcrumbOptions,
-    ThemingProps {}
+    ThemingProps<"Breadcrumb"> {}
 
 /**
  * Breadcrumb is used to render a breadcrumb navigation landmark.

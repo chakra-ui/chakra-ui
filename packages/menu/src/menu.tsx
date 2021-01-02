@@ -30,7 +30,7 @@ import {
   UseMenuProps,
 } from "./use-menu"
 
-export interface MenuProps extends UseMenuProps, ThemingProps {
+export interface MenuProps extends UseMenuProps, ThemingProps<"Menu"> {
   children: MaybeRenderProp<{
     isOpen: boolean
     onClose: () => void

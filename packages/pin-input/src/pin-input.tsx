@@ -32,7 +32,7 @@ interface InputOptions {
 
 export interface PinInputProps
   extends UsePinInputProps,
-    ThemingProps,
+    ThemingProps<"PinInput">,
     InputOptions {
   /**
    * The children of the pin input component

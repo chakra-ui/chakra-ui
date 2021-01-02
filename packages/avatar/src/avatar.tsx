@@ -168,7 +168,7 @@ export const baseStyle: SystemStyleObject = {
 export interface AvatarProps
   extends Omit<HTMLChakraProps<"span">, "onError">,
     AvatarOptions,
-    ThemingProps {}
+    ThemingProps<"Avatar"> {}
 
 /**
  * Avatar component that renders an user avatar with

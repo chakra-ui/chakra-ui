@@ -27,7 +27,7 @@ export { SliderProvider, useSliderContext }
 type Omitted = "size" | "defaultValue" | "onChange"
 export interface SliderProps
   extends UseSliderProps,
-    ThemingProps,
+    ThemingProps<"Slider">,
     Omit<HTMLChakraProps<"div">, Omitted> {}
 
 /**

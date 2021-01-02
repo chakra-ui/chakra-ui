@@ -57,7 +57,7 @@ type BaseInputProps = Pick<
 export interface CheckboxProps
   extends StyledControlProps,
     BaseInputProps,
-    ThemingProps,
+    ThemingProps<"Checkbox">,
     UseCheckboxProps {
   /**
    * The spacing between the checkbox and its label text

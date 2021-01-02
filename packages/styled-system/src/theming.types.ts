@@ -13,4 +13,10 @@ export interface EmptyThemeTypings {
   sizes: string
   space: string
   zIndices: string
+  components: {
+    [componentName: string]: {
+      sizes: string
+      variants: string
+    }
+  }
 }

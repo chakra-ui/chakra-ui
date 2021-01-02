@@ -125,7 +125,7 @@ function useFormControlProvider(props: FormControlContext) {
 
 export interface FormControlProps
   extends HTMLChakraProps<"div">,
-    ThemingProps,
+    ThemingProps<"FormControl">,
     FormControlContext {}
 
 /**

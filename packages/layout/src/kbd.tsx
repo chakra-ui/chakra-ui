@@ -9,7 +9,7 @@ import {
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface KbdProps extends HTMLChakraProps<"kbd">, ThemingProps {}
+export interface KbdProps extends HTMLChakraProps<"kbd">, ThemingProps<"Kbd"> {}
 
 /**
  * Semantic component to render a keyboard shortcut

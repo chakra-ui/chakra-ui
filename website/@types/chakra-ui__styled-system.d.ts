@@ -326,6 +326,8 @@ declare module "@chakra-ui/styled-system" {
       | "80"
       | "96"
       | "px"
+    textStyles: never
+    transition: never
     zIndices:
       | "hide"
       | "auto"
@@ -340,5 +342,184 @@ declare module "@chakra-ui/styled-system" {
       | "skipLink"
       | "toast"
       | "tooltip"
+    components: {
+      Accordion: {
+        sizes: never
+        variants: never
+      }
+      Alert: {
+        sizes: never
+        variants: "subtle" | "left-accent" | "top-accent" | "solid"
+      }
+      Avatar: {
+        sizes: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "full"
+        variants: never
+      }
+      Badge: {
+        sizes: never
+        variants: "solid" | "subtle" | "outline"
+      }
+      Breadcrumb: {
+        sizes: never
+        variants: never
+      }
+      Button: {
+        sizes: "lg" | "md" | "sm" | "xs"
+        variants: "ghost" | "outline" | "solid" | "link" | "unstyled"
+      }
+      Checkbox: {
+        sizes: "sm" | "md" | "lg"
+        variants: never
+      }
+      CloseButton: {
+        sizes: "lg" | "md" | "sm"
+        variants: never
+      }
+      Code: {
+        sizes: never
+        variants: "solid" | "subtle" | "outline"
+      }
+      Container: {
+        sizes: never
+        variants: never
+      }
+      Divider: {
+        sizes: never
+        variants: "solid" | "dashed"
+      }
+      Drawer: {
+        sizes: "xs" | "sm" | "md" | "lg" | "xl" | "full"
+        variants: never
+      }
+      Editable: {
+        sizes: never
+        variants: never
+      }
+      Form: {
+        sizes: never
+        variants: never
+      }
+      FormLabel: {
+        sizes: never
+        variants: never
+      }
+      Heading: {
+        sizes: "4xl" | "3xl" | "2xl" | "xl" | "lg" | "md" | "sm" | "xs"
+        variants: never
+      }
+      Input: {
+        sizes: "lg" | "md" | "sm"
+        variants: "outline" | "filled" | "flushed" | "unstyled"
+      }
+      Kbd: {
+        sizes: never
+        variants: never
+      }
+      Link: {
+        sizes: never
+        variants: never
+      }
+      List: {
+        sizes: never
+        variants: never
+      }
+      Menu: {
+        sizes: never
+        variants: never
+      }
+      Modal: {
+        sizes:
+          | "xs"
+          | "sm"
+          | "md"
+          | "lg"
+          | "xl"
+          | "2xl"
+          | "3xl"
+          | "4xl"
+          | "5xl"
+          | "6xl"
+          | "full"
+        variants: never
+      }
+      NumberInput: {
+        sizes: "sm" | "md" | "lg"
+        variants: "outline" | "filled" | "flushed" | "unstyled"
+      }
+      PinInput: {
+        sizes: "lg" | "md" | "sm"
+        variants: "outline" | "flushed" | "filled" | "unstyled"
+      }
+      Popover: {
+        sizes: never
+        variants: never
+      }
+      Progress: {
+        sizes: "xs" | "sm" | "md" | "lg"
+        variants: never
+      }
+      Radio: {
+        sizes: "md" | "lg" | "sm"
+        variants: never
+      }
+      Select: {
+        sizes: "lg" | "md" | "sm"
+        variants: "outline" | "filled" | "flushed" | "unstyled"
+      }
+      Skeleton: {
+        sizes: never
+        variants: never
+      }
+      SkipLink: {
+        sizes: never
+        variants: never
+      }
+      Slider: {
+        sizes: "lg" | "md" | "sm"
+        variants: never
+      }
+      Spinner: {
+        sizes: "xs" | "sm" | "md" | "lg" | "xl"
+        variants: never
+      }
+      Stat: {
+        sizes: "md"
+        variants: never
+      }
+      Switch: {
+        sizes: "sm" | "md" | "lg"
+        variants: never
+      }
+      Table: {
+        sizes: "sm" | "md" | "lg"
+        variants: "simple" | "striped" | "unstyled"
+      }
+      Tabs: {
+        sizes: "sm" | "md" | "lg"
+        variants:
+          | "line"
+          | "enclosed"
+          | "enclosed-colored"
+          | "soft-rounded"
+          | "solid-rounded"
+          | "unstyled"
+      }
+      Tag: {
+        sizes: "sm" | "md" | "lg"
+        variants: "subtle" | "solid" | "outline"
+      }
+      Textarea: {
+        sizes: "sm" | "md" | "lg"
+        variants: "outline" | "flushed" | "filled" | "unstyled"
+      }
+      Tooltip: {
+        sizes: never
+        variants: never
+      }
+      FormError: {
+        sizes: never
+        variants: never
+      }
+    }
   }
 }

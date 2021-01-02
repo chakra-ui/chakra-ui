@@ -1,5 +1,10 @@
 import { isObject } from "@chakra-ui/utils"
 import { formatWithPrettierIfAvailable } from "./format-with-prettier"
+import { extractPropertyPaths, printUnionMap } from "./extract-property-paths"
+import {
+  extractComponentTypes,
+  printComponentTypes,
+} from "./extract-component-types"
 
 export interface ThemeKeyOptions {
   /**
@@ -15,41 +20,6 @@ export interface ThemeKeyOptions {
    * @default 1
    */
   maxScanDepth?: number
-}
-
-function wrapWithQuotes(value: unknown) {
-  return `"${value}"`
-}
-
-function printUnionType(values: string[]) {
-  return values.map(wrapWithQuotes).join(" | ")
-}
-
-function printUnionMap(unions: Record<string, string[]>) {
-  return Object.entries(unions)
-    .filter(([, union]) => union.length)
-    .map(([targetKey, union]) => `${targetKey}: ${printUnionType(union)};`)
-    .join("\n")
-}
-
-function extractPropertyPaths(target: object, maxDepth = 1) {
-  if (!maxDepth) {
-    return []
-  }
-
-  return Object.entries(target).reduce((allPropertyPaths, [key, value]) => {
-    if (isObject(value)) {
-      extractPropertyPaths(value, maxDepth - 1).forEach((childKey) =>
-        // e.g. gray.500
-        allPropertyPaths.push(`${key}.${childKey}`),
-      )
-    } else {
-      // e.g. transparent
-      allPropertyPaths.push(key)
-    }
-
-    return allPropertyPaths
-  }, [] as string[])
 }
 
 export interface CreateThemeTypingsInterfaceOptions {
@@ -68,6 +38,8 @@ export async function createThemeTypingsInterface(
     return allUnions
   }, {} as Record<string, string[]>)
 
+  const componentTypes = extractComponentTypes(theme)
+
   const template =
     // language=ts
     `// regenerate by running
@@ -77,6 +49,7 @@ import "@chakra-ui/styled-system"
 declare module "@chakra-ui/styled-system" {
   export interface ThemeTypings {
     ${printUnionMap(unions)}
+    ${printComponentTypes(componentTypes)}
   }
 }
 `

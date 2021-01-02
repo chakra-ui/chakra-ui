@@ -2,14 +2,15 @@ import {
   ResponsiveValue,
   SystemProps,
   SystemStyleObject,
+  ThemeTypings,
 } from "@chakra-ui/styled-system"
 import { Dict } from "@chakra-ui/utils"
 import { Interpolation } from "@emotion/react"
 import * as React from "react"
 
-export interface ThemingProps {
-  variant?: string
-  size?: string
+export interface ThemingProps<ThemeComponent extends string = string> {
+  variant?: ThemeTypings["components"][ThemeComponent]["variants"]
+  size?: ThemeTypings["components"][ThemeComponent]["sizes"]
   colorScheme?: string
   orientation?: "vertical" | "horizontal"
   styleConfig?: Dict

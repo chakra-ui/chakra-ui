@@ -42,7 +42,7 @@ interface AlertOptions {
 export interface AlertProps
   extends HTMLChakraProps<"div">,
     AlertOptions,
-    ThemingProps {}
+    ThemingProps<"Alert"> {}
 
 /**
  * Alert is used to communicate the state or status of a

@@ -9,7 +9,9 @@ import {
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface ContainerProps extends HTMLChakraProps<"div">, ThemingProps {
+export interface ContainerProps
+  extends HTMLChakraProps<"div">,
+    ThemingProps<"Container"> {
   /**
    * If `true`, container will center its children
    * regardless of their width.

@@ -66,7 +66,9 @@ export const Divider = forwardRef<DividerProps, "hr">((props, ref) => {
   )
 })
 
-export interface DividerProps extends HTMLChakraProps<"div">, ThemingProps {
+export interface DividerProps
+  extends HTMLChakraProps<"div">,
+    ThemingProps<"Divider"> {
   orientation?: "horizontal" | "vertical"
 }
 

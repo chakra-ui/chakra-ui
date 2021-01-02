@@ -58,7 +58,7 @@ export type ISkeleton = SkeletonOptions
 export interface SkeletonProps
   extends HTMLChakraProps<"div">,
     SkeletonOptions,
-    ThemingProps {}
+    ThemingProps<"Skeleton"> {}
 
 const fade = keyframes({
   from: { opacity: 0 },

@@ -13,7 +13,9 @@ import {
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface TagProps extends HTMLChakraProps<"span">, ThemingProps {}
+export interface TagProps
+  extends HTMLChakraProps<"span">,
+    ThemingProps<"Tag"> {}
 
 /**
  * The tag component is used to label or categorize UI elements.

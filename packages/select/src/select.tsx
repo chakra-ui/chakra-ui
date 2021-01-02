@@ -87,7 +87,7 @@ interface SelectOptions extends FormControlOptions {
 
 export interface SelectProps
   extends SelectFieldProps,
-    ThemingProps,
+    ThemingProps<"Select">,
     SelectOptions {
   /**
    * Props to forward to the root `div` element

@@ -122,7 +122,9 @@ if (__DEV__) {
   StatArrow.displayName = "StatArrow"
 }
 
-export interface StatProps extends HTMLChakraProps<"div">, ThemingProps {}
+export interface StatProps
+  extends HTMLChakraProps<"div">,
+    ThemingProps<"Stat"> {}
 
 export const Stat = forwardRef<StatProps, "div">((props, ref) => {
   const styles = useMultiStyleConfig("Stat", props)

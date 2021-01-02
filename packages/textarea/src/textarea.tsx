@@ -39,7 +39,7 @@ export interface TextareaProps
   extends Omit<HTMLChakraProps<"textarea">, Omitted>,
     TextareaOptions,
     FormControlOptions,
-    ThemingProps {}
+    ThemingProps<"Textarea"> {}
 
 /**
  * Textarea is used to enter an amount of text that's longer than a single line
