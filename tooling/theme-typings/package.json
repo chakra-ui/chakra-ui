@@ -1,0 +1,61 @@
+{
+  "name": "@chakra-ui/theme-typings",
+  "version": "1.0.0",
+  "description": "Generate theme typings for autocomplete",
+  "keywords": [
+    "theme",
+    "theming",
+    "ui mode",
+    "ui"
+  ],
+  "author": "Tim Kolberger <tim@kolberger.eu>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "typings": "dist/types/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "bin": {
+    "create-chakra-theme-typings": "bin/index.js"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "start": "nodemon --watch src --exec 'yarn build; yarn dev --out dist' -e ts,tsx",
+    "dev": "node bin/index.js ../../website/theme.ts",
+    "build": "concurrently yarn:build:*",
+    "test": "jest --env=jsdom --passWithNoTests",
+    "lint": "concurrently yarn:lint:*",
+    "version": "yarn build",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist --source-maps",
+    "test:cov": "yarn test --coverage",
+    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
+    "lint:types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@chakra-ui/utils": "^1.0.2",
+    "commander": "^6.2.1",
+    "regenerator-runtime": "^0.13.7",
+    "ts-node": "9.1.0"
+  }
+}

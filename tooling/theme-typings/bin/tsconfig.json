@@ -1,0 +1,9 @@
+{
+  // these options are used by ts-node
+  "compilerOptions": {
+    "module": "commonjs",
+    "allowJs": true,
+    "strict": false,
+    "noImplicitAny": false
+  }
+}
