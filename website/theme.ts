@@ -1,6 +1,5 @@
 import { extendTheme } from "@chakra-ui/react"
 import { mode } from "@chakra-ui/theme-tools"
-import { ChakraTheme } from "@chakra-ui/styled-system"
 
 const customTheme = extendTheme({
   fonts: {
@@ -131,6 +130,4 @@ const customTheme = extendTheme({
   },
 })
 
-export type ChakraWebsiteTheme = typeof customTheme
-// const isChakraTheme: Partial<ChakraTheme> = customTheme
 export default customTheme
