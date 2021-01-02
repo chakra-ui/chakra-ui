@@ -1,15 +1,14 @@
 import * as CSS from "csstype"
-import { createParser, Config, system } from "../core"
+import { Config, createParser, system } from "../core"
 import { Length, ResponsiveValue } from "../utils"
-import { PropsPath } from "../utils.types"
-import { ChakraTheme } from ".."
+import { ThemeTypings } from ".."
 
 const config: Config = {
   transform: true,
   transformOrigin: true,
 }
 
-export interface TransformProps<Theme extends ChakraTheme = ChakraTheme> {
+export interface TransformProps<Theme extends ThemeTypings = ThemeTypings> {
   /**
    * The CSS `transform` property
    */
@@ -18,7 +17,7 @@ export interface TransformProps<Theme extends ChakraTheme = ChakraTheme> {
    * The CSS `transform-origin` property
    */
   transformOrigin?: ResponsiveValue<
-    CSS.Property.TransformOrigin<Length> & PropsPath<Theme["sizes"]>
+    Theme["sizes"] | CSS.Property.TransformOrigin<Length>
   >
 }
 

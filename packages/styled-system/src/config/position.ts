@@ -1,8 +1,7 @@
 import * as CSS from "csstype"
 import { Config, createParser, system } from "../core"
 import { Length, positiveOrNegative, ResponsiveValue, t } from "../utils"
-import { PropsPath } from "../utils.types"
-import { ChakraTheme } from ".."
+import { ThemeTypings } from "../theming.types"
 
 const config: Config = {
   position: true,
@@ -45,7 +44,7 @@ Object.assign(config, {
 /**
  * Types for position CSS properties
  */
-export interface PositionProps<Theme extends ChakraTheme = ChakraTheme> {
+export interface PositionProps<Theme extends ThemeTypings = ThemeTypings> {
   /**
    * The CSS `z-index` property
    */
@@ -53,69 +52,61 @@ export interface PositionProps<Theme extends ChakraTheme = ChakraTheme> {
   /**
    * The CSS `top` property
    */
-  top?: ResponsiveValue<CSS.Property.Top<Length> & PropsPath<Theme["sizes"]>>
+  top?: ResponsiveValue<Theme["sizes"] | CSS.Property.Top<Length>>
   insetBlockStart?: ResponsiveValue<
-    CSS.Property.InsetBlockStart<Length> & PropsPath<Theme["sizes"]>
+    Theme["sizes"] | CSS.Property.InsetBlockStart<Length>
   >
   /**
    * The CSS `right` property
    */
-  right?: ResponsiveValue<
-    CSS.Property.Right<Length> & PropsPath<Theme["sizes"]>
-  >
+  right?: ResponsiveValue<Theme["sizes"] | CSS.Property.Right<Length>>
   /**
    * When the direction is `ltr`, `insetInlineEnd` is equivalent to `right`.
    * When the direction is `rtl`, `insetInlineEnd` is equivalent to `left`.
    */
   insetInlineEnd?: ResponsiveValue<
-    CSS.Property.InsetInlineEnd<Length> & PropsPath<Theme["sizes"]>
+    Theme["sizes"] | CSS.Property.InsetInlineEnd<Length>
   >
   /**
    * When the direction is `ltr`, `insetEnd` is equivalent to `right`.
    * When the direction is `rtl`, `insetEnd` is equivalent to `left`.
    */
   insetEnd?: ResponsiveValue<
-    CSS.Property.InsetInlineEnd<Length> & PropsPath<Theme["sizes"]>
+    Theme["sizes"] | CSS.Property.InsetInlineEnd<Length>
   >
   /**
    * The CSS `bottom` property
    */
-  bottom?: ResponsiveValue<
-    CSS.Property.Bottom<Length> & PropsPath<Theme["sizes"]>
-  >
+  bottom?: ResponsiveValue<Theme["sizes"] | CSS.Property.Bottom<Length>>
   insetBlockEnd?: ResponsiveValue<
-    CSS.Property.InsetBlockEnd<Length> & PropsPath<Theme["sizes"]>
+    Theme["sizes"] | CSS.Property.InsetBlockEnd<Length>
   >
   /**
    * The CSS `left` property
    */
-  left?: ResponsiveValue<CSS.Property.Left<Length> & PropsPath<Theme["sizes"]>>
+  left?: ResponsiveValue<Theme["sizes"] | CSS.Property.Left<Length>>
   insetInlineStart?: ResponsiveValue<
-    CSS.Property.InsetInlineStart<Length> & PropsPath<Theme["sizes"]>
+    Theme["sizes"] | CSS.Property.InsetInlineStart<Length>
   >
   /**
    * When the direction is `start`, `end` is equivalent to `left`.
    * When the direction is `start`, `end` is equivalent to `right`.
    */
   insetStart?: ResponsiveValue<
-    CSS.Property.InsetInlineStart<Length> & PropsPath<Theme["sizes"]>
+    Theme["sizes"] | CSS.Property.InsetInlineStart<Length>
   >
   /**
    * The CSS `left`, `right`, `top`, `bottom` property
    */
-  inset?: ResponsiveValue<CSS.Property.Left<Length> & PropsPath<Theme["sizes"]>>
+  inset?: ResponsiveValue<Theme["sizes"] | CSS.Property.Left<Length>>
   /**
    * The CSS `left`, and `right` property
    */
-  insetX?: ResponsiveValue<
-    CSS.Property.Left<Length> & PropsPath<Theme["sizes"]>
-  >
+  insetX?: ResponsiveValue<Theme["sizes"] | CSS.Property.Left<Length>>
   /**
    * The CSS `top`, and `bottom` property
    */
-  insetY?: ResponsiveValue<
-    CSS.Property.Left<Length> & PropsPath<Theme["sizes"]>
-  >
+  insetY?: ResponsiveValue<Theme["sizes"] | CSS.Property.Left<Length>>
   /**
    * The CSS `position` property
    */

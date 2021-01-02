@@ -1,8 +1,7 @@
 import * as CSS from "csstype"
 import { createParser, Config, system } from "../core"
 import { ResponsiveValue, t } from "../utils"
-import { ChakraTheme } from ".."
-import { PropsPath } from "../utils.types"
+import { ThemeTypings } from ".."
 
 const config: Config = {
   color: t.colors("color"),
@@ -12,23 +11,23 @@ const config: Config = {
   stroke: t.colors("stroke"),
 }
 
-export interface ColorProps<Theme extends ChakraTheme = ChakraTheme> {
+export interface ColorProps<Theme extends ThemeTypings = ThemeTypings> {
   /**
    * The CSS `color` property
    */
-  textColor?: ResponsiveValue<CSS.Property.Color & PropsPath<Theme["colors"]>>
+  textColor?: ResponsiveValue<Theme["colors"]>
   /**
    * The CSS `color` property
    */
-  color?: ResponsiveValue<CSS.Property.Color & PropsPath<Theme["colors"]>>
+  color?: ResponsiveValue<Theme["colors"] | CSS.Property.Color>
   /**
    * The CSS `fill` property for icon svgs and paths
    */
-  fill?: ResponsiveValue<CSS.Property.Color & PropsPath<Theme["colors"]>>
+  fill?: ResponsiveValue<Theme["colors"] | CSS.Property.Color>
   /**
    * The CSS `stroke` property for icon svgs and paths
    */
-  stroke?: ResponsiveValue<CSS.Property.Color & PropsPath<Theme["colors"]>>
+  stroke?: ResponsiveValue<Theme["colors"] | CSS.Property.Color>
   /**
    * The CSS `opacity` property
    */

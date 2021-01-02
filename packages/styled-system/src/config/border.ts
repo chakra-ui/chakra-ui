@@ -1,8 +1,7 @@
 import * as CSS from "csstype"
 import { Config, createParser, system } from "../core"
 import { Length, ResponsiveValue, t } from "../utils"
-import { PropsPath } from "../utils.types"
-import { ChakraTheme } from ".."
+import { EmptyThemeTypings, ThemeTypings } from "../theming.types"
 
 const config: Config = {
   border: t.borders("border"),
@@ -142,13 +141,11 @@ Object.assign(config, {
 /**
  * The prop types for border properties listed above
  */
-export interface BorderProps<Theme extends ChakraTheme = ChakraTheme> {
+export interface BorderProps<Theme extends ThemeTypings = EmptyThemeTypings> {
   /**
    * The CSS `border` property
    */
-  border?: ResponsiveValue<
-    CSS.Property.Border<Length> & PropsPath<Theme["borders"]>
-  >
+  border?: ResponsiveValue<CSS.Property.Border<Length> | Theme["borders"]>
   /**
    * The CSS `border-width` property
    */
@@ -160,27 +157,21 @@ export interface BorderProps<Theme extends ChakraTheme = ChakraTheme> {
   /**
    * The CSS `border-color` property
    */
-  borderColor?: ResponsiveValue<
-    CSS.Property.BorderTopColor & PropsPath<Theme["colors"]>
-  >
+  borderColor?: ResponsiveValue<CSS.Property.BorderTopColor | Theme["colors"]>
   /**
    * The CSS `border-radius` property
    */
   borderRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   /**
    * The CSS `border-radius` property
    */
-  rounded?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
-  >
+  rounded?: ResponsiveValue<CSS.Property.BorderRadius<Length> | Theme["radii"]>
   /**
    * The CSS `border-top` property
    */
-  borderTop?: ResponsiveValue<
-    CSS.Property.BorderTop<Length> & PropsPath<Theme["borders"]>
-  >
+  borderTop?: ResponsiveValue<CSS.Property.BorderTop<Length> | Theme["borders"]>
   borderBlockStart?: ResponsiveValue<CSS.Property.BorderBlockStart<Length>>
   /**
    * The CSS `border-top-width` property
@@ -238,45 +229,45 @@ export interface BorderProps<Theme extends ChakraTheme = ChakraTheme> {
    * The CSS `border-top-color` property
    */
   borderTopColor?: ResponsiveValue<
-    CSS.Property.BorderTopColor & PropsPath<Theme["colors"]>
+    CSS.Property.BorderTopColor | Theme["colors"]
   >
   borderBlockStartColor?: ResponsiveValue<
-    CSS.Property.BorderBlockStartColor & PropsPath<Theme["colors"]>
+    CSS.Property.BorderBlockStartColor | Theme["colors"]
   >
   /**
    * The CSS `border-bottom-color` property
    */
   borderBottomColor?: ResponsiveValue<
-    CSS.Property.BorderBottomColor & PropsPath<Theme["colors"]>
+    CSS.Property.BorderBottomColor | Theme["colors"]
   >
   borderBlockEndColor?: ResponsiveValue<
-    CSS.Property.BorderBlockEndColor & PropsPath<Theme["colors"]>
+    CSS.Property.BorderBlockEndColor | Theme["colors"]
   >
   /**
    * The CSS `border-left-color` property
    */
   borderLeftColor?: ResponsiveValue<
-    CSS.Property.BorderLeftColor & PropsPath<Theme["colors"]>
+    CSS.Property.BorderLeftColor | Theme["colors"]
   >
   borderStartColor?: ResponsiveValue<CSS.Property.BorderInlineStartColor>
   borderInlineStartColor?: ResponsiveValue<
-    CSS.Property.BorderInlineStartColor & PropsPath<Theme["colors"]>
+    CSS.Property.BorderInlineStartColor | Theme["colors"]
   >
   /**
    * The CSS `border-right-color` property
    */
   borderRightColor?: ResponsiveValue<
-    CSS.Property.BorderRightColor & PropsPath<Theme["colors"]>
+    CSS.Property.BorderRightColor | Theme["colors"]
   >
   borderEndColor?: ResponsiveValue<CSS.Property.BorderInlineEndColor>
   borderInlineEndColor?: ResponsiveValue<
-    CSS.Property.BorderInlineEndColor & PropsPath<Theme["colors"]>
+    CSS.Property.BorderInlineEndColor | Theme["colors"]
   >
   /**
    * The CSS `border-right` property
    */
   borderRight?: ResponsiveValue<
-    CSS.Property.BorderRight<Length> & PropsPath<Theme["borders"]>
+    CSS.Property.BorderRight<Length> | Theme["borders"]
   >
   borderEnd?: ResponsiveValue<CSS.Property.BorderInlineStart<Length>>
   borderInlineEnd?: ResponsiveValue<CSS.Property.BorderInlineEnd<Length>>
@@ -284,14 +275,14 @@ export interface BorderProps<Theme extends ChakraTheme = ChakraTheme> {
    * The CSS `border-bottom` property
    */
   borderBottom?: ResponsiveValue<
-    CSS.Property.BorderBottom<Length> & PropsPath<Theme["borders"]>
+    CSS.Property.BorderBottom<Length> | Theme["borders"]
   >
   borderBlockEnd?: ResponsiveValue<CSS.Property.BorderBlockEnd<Length>>
   /**
    * The CSS `border-left` property
    */
   borderLeft?: ResponsiveValue<
-    CSS.Property.BorderLeft<Length> & PropsPath<Theme["borders"]>
+    CSS.Property.BorderLeft<Length> | Theme["borders"]
   >
   borderStart?: ResponsiveValue<CSS.Property.BorderInlineStart<Length>>
   borderInlineStart?: ResponsiveValue<CSS.Property.BorderInlineStart<Length>>
@@ -299,190 +290,186 @@ export interface BorderProps<Theme extends ChakraTheme = ChakraTheme> {
    * The CSS `border-top-radius` property
    */
   borderTopRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   /**
    * The CSS `border-top-radius` property
    */
   roundedTop?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   /**
    * The CSS `border-right-radius` property
    */
   borderRightRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   /**
    * The CSS `border-right-radius` property
    */
   roundedRight?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   /**
    * When direction is `ltr`, `roundedEnd` is equivalent to `borderRightRadius`.
    * When direction is `rtl`, `roundedEnd` is equivalent to `borderLeftRadius`.
    */
   roundedEnd?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   /**
    * When direction is `ltr`, `borderInlineEndRadius` is equivalent to `borderRightRadius`.
    * When direction is `rtl`, `borderInlineEndRadius` is equivalent to `borderLeftRadius`.
    */
   borderInlineEndRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   /**
    * When direction is `ltr`, `borderEndRadius` is equivalent to `borderRightRadius`.
    * When direction is `rtl`, `borderEndRadius` is equivalent to `borderLeftRadius`.
    */
   borderEndRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   /**
    * The CSS `border-bottom-radius` property
    */
   borderBottomRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   /**
    * The CSS `border-bottom-radius` property
    */
   roundedBottom?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   /**
    * The CSS `border-left-radius` property
    */
   borderLeftRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   /**
    * The CSS `border-left-radius` property
    */
   roundedLeft?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   /**
    * When direction is `ltr`, `roundedEnd` is equivalent to `borderRightRadius`.
    * When direction is `rtl`, `roundedEnd` is equivalent to `borderLeftRadius`.
    */
   roundedStart?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   /**
    * When direction is `ltr`, `borderInlineStartRadius` is equivalent to `borderLeftRadius`.
    * When direction is `rtl`, `borderInlineStartRadius` is equivalent to `borderRightRadius`.
    */
   borderInlineStartRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   /**
    * When direction is `ltr`, `borderStartRadius` is equivalent to `borderLeftRadius`.
    * When direction is `rtl`, `borderStartRadius` is equivalent to `borderRightRadius`.
    */
   borderStartRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   /**
    * The CSS `border-top-left-radius` property
    */
   borderTopLeftRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   borderTopStartRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   borderStartStartRadius?: ResponsiveValue<
-    CSS.Property.BorderStartStartRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderStartStartRadius<Length> | Theme["radii"]
   >
   /**
    * The CSS `border-top-left-radius` property
    */
   roundedTopLeft?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   roundedTopStart?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   /**
    * The CSS `border-top-right-radius` property
    */
   borderTopRightRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   borderTopEndRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   borderStartEndRadius?: ResponsiveValue<
-    CSS.Property.BorderStartEndRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderStartEndRadius<Length> | Theme["radii"]
   >
   /**
    * The CSS `border-top-right-radius` property
    */
   roundedTopRight?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   roundedTopEnd?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
 
   /**
    * The CSS `border-bottom-left-radius` property
    */
   borderBottomLeftRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   borderBottomStartRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   borderEndStartRadius?: ResponsiveValue<
-    CSS.Property.BorderEndStartRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderEndStartRadius<Length> | Theme["radii"]
   >
   /**
    * The CSS `border-bottom-left-radius` property
    */
   roundedBottomLeft?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   roundedBottomStart?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   /**
    * The CSS `border-bottom-right-radius` property
    */
   borderBottomRightRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   borderBottomEndRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   borderEndEndRadius?: ResponsiveValue<
-    CSS.Property.BorderEndEndRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderEndEndRadius<Length> | Theme["radii"]
   >
   /**
    * The CSS `border-bottom-right-radius` property
    */
   roundedBottomRight?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   roundedBottomEnd?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> & PropsPath<Theme["radii"]>
+    CSS.Property.BorderRadius<Length> | Theme["radii"]
   >
   /**
    * The CSS `border-right` and `border-left` property
    */
-  borderX?: ResponsiveValue<
-    CSS.Property.Border<Length> & PropsPath<Theme["borders"]>
-  >
+  borderX?: ResponsiveValue<CSS.Property.Border<Length> | Theme["borders"]>
   borderInline?: ResponsiveValue<CSS.Property.BorderInline<Length>>
   /**
    * The CSS `border-top` and `border-bottom` property
    */
-  borderY?: ResponsiveValue<
-    CSS.Property.Border<Length> & PropsPath<Theme["borders"]>
-  >
+  borderY?: ResponsiveValue<CSS.Property.Border<Length> | Theme["borders"]>
   borderBlock?: ResponsiveValue<CSS.Property.BorderBlock<Length>>
 }
 

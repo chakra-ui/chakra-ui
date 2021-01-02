@@ -1,8 +1,7 @@
 import * as CSS from "csstype"
 import { Config, createParser, system } from "../core"
 import { ResponsiveValue, Length } from "../utils"
-import { PropsPath } from "../utils.types"
-import { ChakraTheme } from ".."
+import { ThemeTypings } from "../theming.types"
 
 const config: Config = {
   fontFamily: {
@@ -41,37 +40,31 @@ const config: Config = {
 /**
  * Types for typography related CSS properties
  */
-export interface TypographyProps<Theme extends ChakraTheme = ChakraTheme> {
+export interface TypographyProps<Theme extends ThemeTypings = ThemeTypings> {
   /**
    * The CSS `font-weight` property
    */
-  fontWeight?: ResponsiveValue<
-    string & number & PropsPath<Theme["fontWeights"]>
-  >
+  fontWeight?: ResponsiveValue<Theme["fontWeights"] | string | number>
   /**
    * The CSS `line-height` property
    */
   lineHeight?: ResponsiveValue<
-    CSS.Property.LineHeight<Length> & PropsPath<Theme["lineHeights"]>
+    Theme["lineHeights"] | CSS.Property.LineHeight<Length>
   >
   /**
    * The CSS `letter-spacing` property
    */
   letterSpacing?: ResponsiveValue<
-    CSS.Property.LetterSpacing<Length> & PropsPath<Theme["letterSpacings"]>
+    Theme["letterSpacings"] | CSS.Property.LetterSpacing<Length>
   >
   /**
    * The CSS `font-size` property
    */
-  fontSize?: ResponsiveValue<
-    CSS.Property.FontSize<Length> & PropsPath<Theme["fontSizes"]>
-  >
+  fontSize?: ResponsiveValue<Theme["fontSizes"] | CSS.Property.FontSize<Length>>
   /**
    * The CSS `font-family` property
    */
-  fontFamily?: ResponsiveValue<
-    CSS.Property.FontFamily & PropsPath<Theme["fonts"]>
-  >
+  fontFamily?: ResponsiveValue<Theme["fonts"] | CSS.Property.FontFamily>
   /**
    * The CSS `text-align` property
    */
