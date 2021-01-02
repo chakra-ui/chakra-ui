@@ -37,18 +37,18 @@ function extractPropertyPaths(target: object, maxDepth = 1) {
     return []
   }
 
-  return Object.entries(target).reduce((allColors, [key, value]) => {
+  return Object.entries(target).reduce((allPropertyPaths, [key, value]) => {
     if (isObject(value)) {
       extractPropertyPaths(value, maxDepth - 1).forEach((childKey) =>
         // e.g. gray.500
-        allColors.push(`${key}.${childKey}`),
+        allPropertyPaths.push(`${key}.${childKey}`),
       )
     } else {
       // e.g. transparent
-      allColors.push(key)
+      allPropertyPaths.push(key)
     }
 
-    return allColors
+    return allPropertyPaths
   }, [] as string[])
 }
 
