@@ -1,5 +1,43 @@
 # Change Log
 
+## 1.0.6
+
+### Patch Changes
+
+- [`ea93a6a5`](https://github.com/chakra-ui/chakra-ui/commit/ea93a6a5b11741d37be313126207a5d57e870e47)
+  [#2900](https://github.com/chakra-ui/chakra-ui/pull/2900) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Add integration guide with
+  react-table
+
+* [`ffa2b92c`](https://github.com/chakra-ui/chakra-ui/commit/ffa2b92cb6b150e08e368f40fc2da967cef208f6)
+  [#2913](https://github.com/chakra-ui/chakra-ui/pull/2913) Thanks
+  [@dodas](https://github.com/dodas)! - Make the `Import` section consistent
+  across component docs.
+
+- [`5c9ef8bd`](https://github.com/chakra-ui/chakra-ui/commit/5c9ef8bd9ca8a2bffae34bc96f9d50b17c9eb3c6)
+  [#2908](https://github.com/chakra-ui/chakra-ui/pull/2908) Thanks
+  [@singhArmani](https://github.com/singhArmani)! - Added the missing
+  `aria-labelledby` attribute and updated the tabs docs.
+
+* [`4c80980b`](https://github.com/chakra-ui/chakra-ui/commit/4c80980b626c94a3566d48df82721fbfd30bec01)
+  [#2927](https://github.com/chakra-ui/chakra-ui/pull/2927) Thanks
+  [@walf443](https://github.com/walf443)! - replace exmples of Input tag
+  type="phone" to type="tel".
+
+- [`60fbea0f`](https://github.com/chakra-ui/chakra-ui/commit/60fbea0fe7094e3a795d5513f24fedd04f17a653)
+  [#2915](https://github.com/chakra-ui/chakra-ui/pull/2915) Thanks
+  [@dodas](https://github.com/dodas)! - Align social buttons in the header
+  vertically
+
+* [`1c068d61`](https://github.com/chakra-ui/chakra-ui/commit/1c068d6173e6544df568d22b9910b27476501b42)
+  [#2914](https://github.com/chakra-ui/chakra-ui/pull/2914) Thanks
+  [@dodas](https://github.com/dodas)! - Fix typos and inconsistent word
+  capitalization in the `Icon` docs.
+
+* Updated dependencies []:
+  - @chakra-ui/react@1.1.1
+  - @chakra-ui/props-docs@1.0.6
+
 ## 1.0.5
 
 ### Patch Changes

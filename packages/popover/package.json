@@ -60,7 +60,7 @@
     "@chakra-ui/utils": "1.0.2"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.1.1",
+    "@chakra-ui/system": "1.1.2",
     "framer-motion": "^3.1.1",
     "react": "^17.0.1"
   },
