@@ -7,23 +7,25 @@ const LOAD_IMAGE = "load"
 const ERROR_IMAGE = "error"
 const orignalImage = window.Image
 
-const mockImage = (loadState: string) => {
+const mockImage = (loadState: "load" | "error") => {
   jest.useFakeTimers()
-  ;(window.Image as unknown) = class MockImage {
+  ;(window.Image as unknown) = class {
     onload: () => void = () => {}
     onerror: () => void = () => {}
     src: string = ""
     constructor() {
-      if (loadState === LOAD_IMAGE) {
-        setTimeout(() => {
-          this.onload()
-        }, DELAY)
-      }
-      if (loadState === ERROR_IMAGE) {
-        setTimeout(() => {
-          this.onerror()
-        }, DELAY)
-      }
+      setTimeout(() => {
+        switch (loadState) {
+          case LOAD_IMAGE:
+            this.onload()
+            break
+          case ERROR_IMAGE:
+            this.onerror()
+            break
+          default:
+            break
+        }
+      }, DELAY)
       return this
     }
   }
