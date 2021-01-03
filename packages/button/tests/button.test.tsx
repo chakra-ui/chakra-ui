@@ -3,28 +3,28 @@ import { render, testA11y, screen } from "@chakra-ui/test-utils"
 import { EmailIcon, ArrowForwardIcon } from "@chakra-ui/icons"
 import { Button, ButtonGroup } from "../src"
 
-test("matches snapshot", () => {
-  const { asFragment } = render(<Button>test</Button>)
-  expect(asFragment()).toMatchSnapshot()
-})
-
 it("passes a11y test", async () => {
   await testA11y(<Button>test</Button>)
 })
 
 test("matches snapshot with icons", () => {
-  const { asFragment } = render(
+  const { getByText } = render(
     <ButtonGroup>
       <Button leftIcon={<EmailIcon />}>Email</Button>
       <Button rightIcon={<ArrowForwardIcon />}>Arrow Forward</Button>
     </ButtonGroup>,
   )
-  expect(asFragment()).toMatchSnapshot()
+  expect(getByText("Email")).toBeTruthy()
+  expect(getByText("Arrow Forward")).toBeTruthy()
 })
 
 test("shows spinner if isLoading", () => {
-  const { asFragment } = render(<Button isLoading>Email</Button>)
-  expect(asFragment()).toMatchSnapshot()
+  const { getByTestId } = render(
+    <Button data-testid="btn" isLoading>
+      Email
+    </Button>,
+  )
+  expect(getByTestId("btn")).toHaveAttribute("data-loading")
 
   // children text is hidden
   expect(screen.getByText("Email")).not.toBeVisible()
@@ -34,12 +34,11 @@ test("shows spinner if isLoading", () => {
 })
 
 test("shows spinner and loading text if isLoading and loadingText", () => {
-  const { asFragment } = render(
+  render(
     <Button isLoading loadingText="Submitting">
       Submit
     </Button>,
   )
-  expect(asFragment()).toMatchSnapshot()
 
   // children text is replaced by `loadingText`
   screen.getByText("Submitting")

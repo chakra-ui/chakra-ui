@@ -124,7 +124,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
       {...rest}
     >
       {leftIcon && !isLoading && (
-        <ButtonIcon mr={iconSpacing}>{leftIcon}</ButtonIcon>
+        <ButtonIcon marginEnd={iconSpacing}>{leftIcon}</ButtonIcon>
       )}
       {isLoading && (
         <ButtonSpinner
@@ -139,7 +139,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
         ? loadingText || <chakra.span opacity={0}>{children}</chakra.span>
         : children}
       {rightIcon && !isLoading && (
-        <ButtonIcon ml={iconSpacing}>{rightIcon}</ButtonIcon>
+        <ButtonIcon marginStart={iconSpacing}>{rightIcon}</ButtonIcon>
       )}
     </chakra.button>
   )
@@ -196,7 +196,7 @@ const ButtonSpinner: React.FC<ButtonSpinnerProps> = (props) => {
     display: "flex",
     alignItems: "center",
     position: label ? "relative" : "absolute",
-    me: label ? spacing : 0,
+    marginEnd: label ? spacing : 0,
     ...__css,
   }
 
