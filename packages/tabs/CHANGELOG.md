@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.0.3
+
+### Patch Changes
+
+- [`5c9ef8bd`](https://github.com/chakra-ui/chakra-ui/commit/5c9ef8bd9ca8a2bffae34bc96f9d50b17c9eb3c6)
+  [#2908](https://github.com/chakra-ui/chakra-ui/pull/2908) Thanks
+  [@singhArmani](https://github.com/singhArmani)! - Added the missing
+  `aria-labelledby` attribute and updated the tabs docs.
+
 ## 1.0.2
 
 ### Patch Changes
