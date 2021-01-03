@@ -59,7 +59,7 @@ const IndexPage = () => (
         </chakra.div>
         <InputGroup>
           <InputLeftElement children={"+234"} />
-          <Input type="phone" placeholder="Phone number" />
+          <Input type="tel" placeholder="Phone number" />
         </InputGroup>
         <InputGrouper />
         <Switcher />
