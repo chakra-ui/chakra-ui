@@ -29,6 +29,10 @@ export interface RadioProps
   spacing?: SystemProps["marginLeft"]
   /**
    * If `true`, the radio will occupy the full width of its parent container
+   *
+   * @deprecated
+   * This component defaults to 100% width,
+   * please use the props `maxWidth` or `width` to configure
    */
   isFullWidth?: boolean
 }
