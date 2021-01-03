@@ -28,7 +28,7 @@
     "@babel/core": "^7.12.3"
   },
   "devDependencies": {
-    "@babel/core": "7.12.9"
+    "@babel/core": "^7.12.10"
   },
   "jest": {
     "testEnvironment": "node",
