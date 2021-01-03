@@ -7,24 +7,24 @@
   "dependencies": {
     "@chakra-ui/gatsby-plugin": "1.0.1",
     "@chakra-ui/react": "1.1.0",
-    "@emotion/react": "11.1.2",
+    "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
-    "framer-motion": "3.0.0",
-    "gatsby": "2.28.0",
-    "gatsby-image": "2.7.0",
-    "gatsby-plugin-manifest": "2.8.0",
-    "gatsby-plugin-offline": "3.6.0",
-    "gatsby-plugin-react-helmet": "3.6.0",
-    "gatsby-plugin-sharp": "2.10.0",
-    "gatsby-source-filesystem": "2.7.0",
-    "gatsby-transformer-sharp": "2.8.0",
-    "prop-types": "15.7.2",
+    "framer-motion": "^3.1.1",
+    "gatsby": "^2.29.3",
+    "gatsby-image": "^2.8.0",
+    "gatsby-plugin-manifest": "^2.9.1",
+    "gatsby-plugin-offline": "^3.7.1",
+    "gatsby-plugin-react-helmet": "^3.7.0",
+    "gatsby-plugin-sharp": "^2.11.2",
+    "gatsby-source-filesystem": "^2.8.1",
+    "gatsby-transformer-sharp": "^2.9.0",
+    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-helmet": "6.1.0"
+    "react-helmet": "^6.1.0"
   },
   "devDependencies": {
-    "prettier": "2.2.1"
+    "prettier": "^2.2.1"
   },
   "keywords": [
     "gatsby"

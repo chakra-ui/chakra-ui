@@ -115,6 +115,6 @@ component.
 ```jsx
 <InputGroup>
   <InputLeftElement children={"P"} />
-  <Input type="phone" placeholder="Phone number" />
+  <Input type="tel" placeholder="Phone number" />
 </InputGroup>
 ```

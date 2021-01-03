@@ -113,30 +113,34 @@ const config: Config = {
 
 Object.assign(config, {
   rounded: config.borderRadius,
+  roundedTop: config.borderTopRadius,
   roundedTopLeft: config.borderTopLeftRadius,
   roundedTopRight: config.borderTopRightRadius,
   roundedTopStart: config.borderStartStartRadius,
-  borderTopStartRadius: config.borderStartStartRadius,
   roundedTopEnd: config.borderStartEndRadius,
-  borderTopEndRadius: config.borderStartEndRadius,
+  roundedBottom: config.borderBottomRadius,
   roundedBottomLeft: config.borderBottomLeftRadius,
   roundedBottomRight: config.borderBottomRightRadius,
   roundedBottomStart: config.borderEndStartRadius,
-  borderBottomStartRadius: config.borderEndStartRadius,
   roundedBottomEnd: config.borderEndEndRadius,
-  borderBottomEndRadius: config.borderEndEndRadius,
-  roundedTop: config.borderTopRadius,
-  roundedBottom: config.borderBottomRadius,
   roundedLeft: config.borderLeftRadius,
   roundedRight: config.borderRightRadius,
   roundedStart: config.borderInlineStartRadius,
   roundedEnd: config.borderInlineEndRadius,
+  borderStart: config.borderInlineStart,
+  borderEnd: config.borderInlineEnd,
+  borderTopStartRadius: config.borderStartStartRadius,
+  borderTopEndRadius: config.borderStartEndRadius,
+  borderBottomStartRadius: config.borderEndStartRadius,
+  borderBottomEndRadius: config.borderEndEndRadius,
   borderStartRadius: config.borderInlineStartRadius,
   borderEndRadius: config.borderInlineEndRadius,
   borderStartWidth: config.borderInlineStartWidth,
   borderEndWidth: config.borderInlineEndWidth,
-  borderStart: config.borderInlineStart,
-  borderEnd: config.borderInlineEnd,
+  borderStartColor: config.borderInlineStartColor,
+  borderEndColor: config.borderInlineEndColor,
+  borderStartStyle: config.borderInlineStartStyle,
+  borderEndStyle: config.borderInlineEndStyle,
 })
 
 /**
@@ -190,6 +194,7 @@ export interface BorderProps {
    * The CSS `border-left-width` property
    */
   borderLeftWidth?: ResponsiveValue<CSS.Property.BorderWidth<Length>>
+  borderStartWidth?: ResponsiveValue<CSS.Property.BorderWidth<Length>>
   borderInlineStartWidth?: ResponsiveValue<
     CSS.Property.BorderInlineStartWidth<Length>
   >
@@ -197,6 +202,7 @@ export interface BorderProps {
    * The CSS `border-right-width` property
    */
   borderRightWidth?: ResponsiveValue<CSS.Property.BorderWidth<Length>>
+  borderEndWidth?: ResponsiveValue<CSS.Property.BorderWidth<Length>>
   borderInlineEndWidth?: ResponsiveValue<
     CSS.Property.BorderInlineEndWidth<Length>
   >
@@ -214,11 +220,13 @@ export interface BorderProps {
    * The CSS `border-left-style` property
    */
   borderLeftStyle?: ResponsiveValue<CSS.Property.BorderLeftStyle>
+  borderStartStyle?: ResponsiveValue<CSS.Property.BorderInlineStartStyle>
   borderInlineStartStyle?: ResponsiveValue<CSS.Property.BorderInlineStartStyle>
   /**
    * The CSS `border-right-styles` property
    */
   borderRightStyle?: ResponsiveValue<CSS.Property.BorderRightStyle>
+  borderEndStyle?: ResponsiveValue<CSS.Property.BorderInlineEndStyle>
   borderInlineEndStyle?: ResponsiveValue<CSS.Property.BorderInlineEndStyle>
   /**
    * The CSS `border-top-color` property
@@ -234,11 +242,13 @@ export interface BorderProps {
    * The CSS `border-left-color` property
    */
   borderLeftColor?: ResponsiveValue<CSS.Property.BorderLeftColor>
+  borderStartColor?: ResponsiveValue<CSS.Property.BorderInlineStartColor>
   borderInlineStartColor?: ResponsiveValue<CSS.Property.BorderInlineStartColor>
   /**
    * The CSS `border-right-color` property
    */
   borderRightColor?: ResponsiveValue<CSS.Property.BorderRightColor>
+  borderEndColor?: ResponsiveValue<CSS.Property.BorderInlineEndColor>
   borderInlineEndColor?: ResponsiveValue<CSS.Property.BorderInlineEndColor>
   /**
    * The CSS `border-right` property
