@@ -385,16 +385,16 @@ export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
  * @param props props object for the tab panel
  */
 export function useTabPanel(props: Dict) {
-  const { isSelected, id, ...htmlProps } = props
+  const { isSelected, id, children, ...htmlProps } = props
   const { isLazy } = useTabsContext()
 
   return {
     /**
      * Puts the tabpanel in the page `Tab` sequence.
      */
-    tabIndex: isSelected ? 0 : -1,
+    tabIndex: 0,
     ...htmlProps,
-    children: !isLazy || isSelected ? props.children : null,
+    children: !isLazy || isSelected ? children : null,
     role: "tabpanel",
     hidden: !isSelected,
     id,
