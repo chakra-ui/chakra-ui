@@ -1719,6 +1719,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "MohamedSayed008",
+      "name": "Mohamed Sayed",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/23707834?v=4",
+      "profile": "https://github.com/MohamedSayed008",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
