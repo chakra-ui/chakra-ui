@@ -107,7 +107,7 @@
     "url": "https://chakra-ui.netlify.app"
   },
   "devDependencies": {
-    "@emotion/react": "^11.1.2",
+    "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
     "framer-motion": "^3.1.1",
     "react": "^17.0.1"

@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "1.1.0",
-    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.2",
     "@testing-library/react-hooks": "3.4.1",
     "@testing-library/user-event": "12.1.3",

@@ -55,7 +55,7 @@
     "react": ">=16.8.6"
   },
   "devDependencies": {
-    "@emotion/react": "^11.1.2",
+    "@emotion/react": "^11.1.4",
     "react": "^17.0.1"
   }
 }

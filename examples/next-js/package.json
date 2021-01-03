@@ -9,10 +9,10 @@
   },
   "dependencies": {
     "@chakra-ui/react": "1.1.0",
-    "@emotion/react": "^11.1.2",
+    "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
     "framer-motion": "^3.1.1",
-    "next": "^10.0.3",
+    "next": "^10.0.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   }

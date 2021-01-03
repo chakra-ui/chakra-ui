@@ -75,7 +75,7 @@
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
     "@emotion/jest": "11.1.0",
-    "@emotion/react": "^11.1.2",
+    "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
     "@jest/types": "26.6.2",
     "@manypkg/cli": "0.17.0",
