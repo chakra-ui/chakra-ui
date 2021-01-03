@@ -20,10 +20,10 @@ export function getStackStyles(options: Options) {
   const { spacing, direction } = options
 
   const directionStyles = {
-    column: { mt: spacing, ml: 0 },
-    row: { ml: spacing, mt: 0 },
-    "column-reverse": { mb: spacing, mr: 0 },
-    "row-reverse": { mr: spacing, mb: 0 },
+    column: { marginTop: spacing, marginStart: 0 },
+    row: { marginStart: spacing, marginTop: 0 },
+    "column-reverse": { marginBottom: spacing, marginEnd: 0 },
+    "row-reverse": { marginEnd: spacing, marginBottom: 0 },
   }
 
   return {

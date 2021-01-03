@@ -2,7 +2,6 @@ import { useDisclosure } from "@chakra-ui/hooks"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import Lorem from "react-lorem-component"
-
 import {
   Modal,
   ModalBody,
