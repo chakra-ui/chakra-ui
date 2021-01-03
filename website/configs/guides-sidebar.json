@@ -40,6 +40,10 @@
             {
               "title": "React Hook Form",
               "path": "/guides/integrations/with-hook-form"
+            },
+            {
+              "title": "React Table",
+              "path": "/guides/integrations/with-react-table"
             }
           ]
         }
