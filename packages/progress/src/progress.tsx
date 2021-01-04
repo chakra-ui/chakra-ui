@@ -132,12 +132,16 @@ export const Progress: React.FC<ProgressProps> = (props) => {
     hasStripe,
     isAnimated,
     children,
-    borderRadius,
+    borderRadius: propBorderRadius,
     isIndeterminate,
     ...rest
   } = omitThemingProps(props)
 
   const styles = useMultiStyleConfig("Progress", props)
+
+  const borderRadius =
+    propBorderRadius ??
+    (styles.track?.borderRadius as string | number | undefined)
 
   const stripAnimation = { animation: `${stripe} 1s linear infinite` }
 
