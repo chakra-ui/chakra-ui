@@ -6,9 +6,11 @@ module.exports = {
   browsers: {
     chrome: {
       browserName: "chrome",
+      viewport: { width: 1024, height: 768 },
     },
     firefox: {
       browserName: "firefox",
+      viewport: { width: 1024, height: 768 },
     },
   },
 }
