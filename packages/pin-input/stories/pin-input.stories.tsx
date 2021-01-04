@@ -24,7 +24,7 @@ function Input(props: any) {
   return <input {...inputProps} />
 }
 
-export function HookExample() {
+export const HookExample = () => {
   const context = usePinInput({
     autoFocus: true,
     mask: true,
@@ -41,15 +41,13 @@ export function HookExample() {
   )
 }
 
-export function ComponentExample() {
-  return (
-    <PinInput defaultValue="234">
-      <PinInputField />
-      <PinInputField />
-      <PinInputField />
-    </PinInput>
-  )
-}
+export const ComponentExample = () => (
+  <PinInput defaultValue="234">
+    <PinInputField />
+    <PinInputField />
+    <PinInputField />
+  </PinInput>
+)
 
 export const Sizes = () => (
   <>

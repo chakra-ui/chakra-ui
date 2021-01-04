@@ -15,7 +15,7 @@ export default {
   ],
 }
 
-export function ToastExample() {
+export const ToastExample = () => {
   const toast = useToast()
   const id = "login-error-toast"
   return (
@@ -56,7 +56,7 @@ export function ToastExample() {
   )
 }
 
-export function CustomRender() {
+export const CustomRender = () => {
   const toast = useToast()
   return (
     <>
@@ -91,7 +91,7 @@ export function CustomRender() {
   )
 }
 
-export function SuccessToast() {
+export const SuccessToast = () => {
   const toast = useToast()
   return (
     <Button
@@ -114,7 +114,7 @@ export function SuccessToast() {
   )
 }
 
-export function WarningToast() {
+export const WarningToast = () => {
   const toast = useToast()
   return (
     <Button
@@ -133,7 +133,7 @@ export function WarningToast() {
   )
 }
 
-export function ErrorToast() {
+export const ErrorToast = () => {
   const toast = useToast()
   return (
     <Button

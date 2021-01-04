@@ -5,7 +5,7 @@ export default {
   title: "Live Region",
 }
 
-export function PoliteExample() {
+export const PoliteExample = () => {
   const region = useLiveRegion()
   return (
     <button

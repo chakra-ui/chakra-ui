@@ -44,29 +44,25 @@ export const WithSizes = () => {
   )
 }
 
-export const radioGroup = () => {
-  return (
-    <RadioGroup name="type" onChange={console.log}>
-      <Stack>
-        <Radio value="Option 1">Option 1</Radio>
-        <Radio value="Option 2">Option 2</Radio>
-        <Radio value="Option 3">Option 3</Radio>
-      </Stack>
-    </RadioGroup>
-  )
-}
+export const radioGroup = () => (
+  <RadioGroup name="type" onChange={console.log}>
+    <Stack>
+      <Radio value="Option 1">Option 1</Radio>
+      <Radio value="Option 2">Option 2</Radio>
+      <Radio value="Option 3">Option 3</Radio>
+    </Stack>
+  </RadioGroup>
+)
 
-export const GroupWithStack = () => {
-  return (
-    <RadioGroup defaultValue="Option 1" onChange={console.log}>
-      <Stack>
-        <Radio value="Option 1">Option 1</Radio>
-        <Radio value="Option 2">Option 2</Radio>
-        <Radio value="Option 3">Option 3</Radio>
-      </Stack>
-    </RadioGroup>
-  )
-}
+export const GroupWithStack = () => (
+  <RadioGroup defaultValue="Option 1" onChange={console.log}>
+    <Stack>
+      <Radio value="Option 1">Option 1</Radio>
+      <Radio value="Option 2">Option 2</Radio>
+      <Radio value="Option 3">Option 3</Radio>
+    </Stack>
+  </RadioGroup>
+)
 
 export const GroupWithWrap = () => {
   const range = Array.from(Array(10)).map((_, i) => i + 1)
@@ -140,7 +136,7 @@ function RadioCard(props: UseRadioProps & { children?: React.ReactNode }) {
   )
 }
 
-export function CustomRadioCard() {
+export const CustomRadioCard = () => {
   const options = ["react", "vue", "svelte"]
 
   const { getRootProps, getRadioProps } = useRadioGroup({

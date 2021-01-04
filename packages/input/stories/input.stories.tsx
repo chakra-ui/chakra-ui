@@ -104,7 +104,7 @@ export const WithInputElement = () => (
   </Stack>
 )
 
-export function PasswordInput() {
+export const PasswordInput = () => {
   const [show, setShow] = React.useState(false)
   const handleClick = () => setShow(!show)
 

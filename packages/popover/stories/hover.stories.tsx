@@ -1,4 +1,7 @@
 import * as React from "react"
+import { Box, Text, Link } from "@chakra-ui/layout"
+import { IconButton } from "@chakra-ui/button"
+import { MdCheck } from "react-icons/md"
 import {
   Popover,
   PopoverTrigger,
@@ -6,9 +9,6 @@ import {
   PopoverArrow,
   PopoverBody,
 } from "../src"
-import { Box, Text, Link } from "@chakra-ui/layout"
-import { IconButton } from "@chakra-ui/button"
-import { MdCheck } from "react-icons/md"
 
 function Card() {
   return (
@@ -21,40 +21,40 @@ function Card() {
   )
 }
 
-export function TwitterEx() {
-  return (
-    <Popover trigger="hover">
-      <PopoverTrigger>
-        <Link href="#" color="blue.500">
-          Hover to see @swyx profile
-        </Link>
-      </PopoverTrigger>
-
-      <PopoverContent
-        sx={{
-          bg: "#15202b",
-          color: "white",
-          width: "400px",
-        }}
-      >
-        <Card />
-      </PopoverContent>
-    </Popover>
-  )
+export default {
+  title: "Popover / Hover",
 }
 
-export function Bug() {
-  return (
-    <Popover>
-      <PopoverTrigger>
-        <IconButton aria-label="Check" p={8}>
-          <MdCheck />
-        </IconButton>
-      </PopoverTrigger>
-      <PopoverContent>
-        <PopoverArrow />
-        <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
-      </PopoverContent>
-    </Popover>
-  )
-}
+export const TwitterEx = () => (
+  <Popover trigger="hover">
+    <PopoverTrigger>
+      <Link href="#" color="blue.500">
+        Hover to see @swyx profile
+      </Link>
+    </PopoverTrigger>
+
+    <PopoverContent
+      sx={{
+        bg: "#15202b",
+        color: "white",
+        width: "400px",
+      }}
+    >
+      <Card />
+    </PopoverContent>
+  </Popover>
+)
+
+export const Bug = () => (
+  <Popover>
+    <PopoverTrigger>
+      <IconButton aria-label="Check" p={8}>
+        <MdCheck />
+      </IconButton>
+    </PopoverTrigger>
+    <PopoverContent>
+      <PopoverArrow />
+      <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
+    </PopoverContent>
+  </Popover>
+)

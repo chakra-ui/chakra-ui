@@ -5,7 +5,7 @@ export default {
   title: "Counter",
 }
 
-export function Basic() {
+export const Basic = () => {
   const [val, setVal] = React.useState<any>("8...4,.4")
   const counter = useCounter({
     value: val,

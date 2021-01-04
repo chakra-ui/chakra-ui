@@ -158,7 +158,7 @@ const data = [
   { title: "Another one", text: "Some value 7..." },
 ]
 
-export function Bug_2160() {
+export const Bug_2160 = () => {
   const inputRef = React.useRef<HTMLInputElement>()
   const [displayData, setDisplayData] = React.useState(data)
   const [filter, setFilter] = React.useState("")
