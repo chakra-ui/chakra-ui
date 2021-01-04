@@ -7,6 +7,7 @@ module.exports = {
   addons: [
     "storybook-addon-performance/register",
     "@storybook/addon-a11y",
+    "@storybook/addon-toolbars",
     "creevey",
   ],
   typescript: {

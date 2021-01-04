@@ -1,5 +1,49 @@
 # Change Log
 
+## 1.4.0
+
+### Minor Changes
+
+- [`6a82a3d4`](https://github.com/chakra-ui/chakra-ui/commit/6a82a3d4f061191171a12e6d38719ba05414a86e)
+  [#2888](https://github.com/chakra-ui/chakra-ui/pull/2888) Thanks
+  [@ytakayanagi](https://github.com/ytakayanagi)! - Added "none" option in
+  motionPreset prop to disable animation in modal component
+
+### Patch Changes
+
+- [`5cef5de4`](https://github.com/chakra-ui/chakra-ui/commit/5cef5de4f45cd58f7a29436335543cb5b40c0d70)
+  [#2918](https://github.com/chakra-ui/chakra-ui/pull/2918) Thanks
+  [@MohamedSayed008](https://github.com/MohamedSayed008)! - ## Button
+
+  - Update the style props applied for `leftIcon` and `rightIcon` to support
+    RTL. Changed `ml` and `mr` to `marginStart` and `marginEnd` respectively.
+  - Update the style props applied when `isLoading` is `true`. Changed
+    `marginRight` to `marginEnd`.
+
+  ## Stack
+
+  - Update `directionStyles` to use logical CSS properties for RTL support.
+    Changed `marginLeft` and `marginRight` to `marginStart` and `marginEnd`
+    respectively.
+
+  ## Styled System
+
+  - Add missing `borderStart`, and `borderEnd` for style and color.
+  - Sort `Object.assign` keys in `configs/border.ts` for better readability.
+
+  ## Other RTL Fixes
+
+  - Alignment for close icon for `Tag`, `Modal`, and `Drawer` components to
+    support RTL.
+
+  ## Storybook
+
+  Add RTL storybook toolbar for make it easy to test layouts.
+
+  Packages added:
+
+  - `@storybook/addon-toolbars`
+
 ## 1.3.0
 
 ### Minor Changes
