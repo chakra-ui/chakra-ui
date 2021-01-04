@@ -102,3 +102,4 @@ yarn-error.log
 .yarn-integrity
 
 report.*
+/.creevey/report
