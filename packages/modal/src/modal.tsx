@@ -347,9 +347,12 @@ export const ModalOverlay = forwardRef<ModalOverlayProps, "div">(
       ...styles.overlay,
     }
 
+    const { motionPreset } = useModalContext()
+    const motionProps = motionPreset === "none" ? {} : fadeConfig
+
     return (
       <Motion
-        {...fadeConfig}
+        {...motionProps}
         __css={overlayStyle}
         ref={ref}
         className={_className}
