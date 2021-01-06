@@ -2,23 +2,6 @@ import * as React from "react"
 import { render, screen, testA11y } from "@chakra-ui/test-utils"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "../src"
 
-test("matches snapshot", () => {
-  const { asFragment } = render(
-    <Breadcrumb>
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbItem isCurrentPage>
-        <BreadcrumbLink>Link 3</BreadcrumbLink>
-      </BreadcrumbItem>
-    </Breadcrumb>,
-  )
-  expect(asFragment()).toMatchSnapshot()
-})
-
 it("passes a11y test", async () => {
   await testA11y(
     <Breadcrumb>

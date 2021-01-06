@@ -4,56 +4,33 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 import { Box, Badge, Container, Divider, Flex } from "../src"
 
 describe("<Box />", () => {
-  test("renders box correctly", () => {
-    const { asFragment } = render(<Box>This is box</Box>)
-    expect(asFragment()).toMatchSnapshot()
-  })
-
-  it("passes a11y test", async () => {
+  test("passes a11y test", async () => {
     await testA11y(<Box>this is a box</Box>)
   })
 
   test("as - prop works correctly", () => {
-    const { asFragment } = render(
+    const { getByText } = render(
       <Box as="a" href="www.google.com">
-        This is box
+        Box
       </Box>,
     )
-    expect(asFragment()).toMatchSnapshot()
+    expect(getByText("Box").nodeName).toBe("A")
   })
 })
 
 describe("<Badge />", () => {
-  test("renders with default theming", () => {
-    const { asFragment } = render(<Badge>Badge</Badge>)
-    expect(asFragment()).toMatchSnapshot()
-  })
-
-  it("passes a11y test", async () => {
+  test("passes a11y test", async () => {
     await testA11y(<Badge>this is a badge</Badge>)
-  })
-
-  test("overrides the theming props", () => {
-    const { asFragment } = render(
-      <Badge variant="outline" colorScheme="pink">
-        Badge
-      </Badge>,
-    )
-    expect(asFragment()).toMatchSnapshot()
   })
 })
 
 describe("<Container />", () => {
   test("renders box correctly", () => {
-    const { asFragment } = render(<Container>This is container</Container>)
-    expect(asFragment()).toMatchSnapshot()
+    render(<Container>This is container</Container>)
   })
 
   test("centerContent - prop works correctly", () => {
-    const { asFragment } = render(
-      <Container centerContent>This is centered container</Container>,
-    )
-    expect(asFragment()).toMatchSnapshot()
+    render(<Container centerContent>This is centered container</Container>)
   })
 
   test("themeing works correctly", () => {
@@ -68,20 +45,19 @@ describe("<Container />", () => {
         },
       },
     })
-    const { asFragment } = render(
+    render(
       <ChakraProvider theme={theme}>
         <Container variant="customBackground">
           This is container has a red background
         </Container>
       </ChakraProvider>,
     )
-    expect(asFragment()).toMatchSnapshot()
   })
 })
 
 describe("<Flex />", () => {
   test("renders all the allowed shorthand style props", () => {
-    const { asFragment } = render(
+    render(
       <Flex
         align="stretch"
         justify="start"
@@ -92,19 +68,15 @@ describe("<Flex />", () => {
         shrink={0}
       />,
     )
-
-    expect(asFragment()).toMatchSnapshot()
   })
 })
 
 describe("<Divider />", () => {
   test("renders with default theming", () => {
-    const { asFragment } = render(<Divider />)
-    expect(asFragment()).toMatchSnapshot()
+    render(<Divider />)
   })
 
   test("overrides the theming props", () => {
-    const { asFragment } = render(<Divider variant="dashed" />)
-    expect(asFragment()).toMatchSnapshot()
+    render(<Divider variant="dashed" />)
   })
 })

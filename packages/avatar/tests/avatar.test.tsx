@@ -38,11 +38,6 @@ afterAll(() => {
   window.Image = orignalImage
 })
 
-test("matches snapshot", () => {
-  const { asFragment } = render(<Avatar />)
-  expect(asFragment()).toMatchSnapshot()
-})
-
 it("passes a11y test", async () => {
   await testA11y(<Avatar />, {
     axeOptions: {
@@ -51,15 +46,6 @@ it("passes a11y test", async () => {
       },
     },
   })
-})
-
-test("matches snapshot with AvatarBadge", () => {
-  const { asFragment } = render(
-    <Avatar>
-      <AvatarBadge />
-    </Avatar>,
-  )
-  expect(asFragment()).toMatchSnapshot()
 })
 
 it("passes a11y test with AvatarBadge", async () => {

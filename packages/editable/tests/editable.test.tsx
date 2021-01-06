@@ -9,14 +9,12 @@ import * as React from "react"
 import { Editable, EditableInput, EditablePreview } from "../src"
 
 test("matches snapshot", () => {
-  const { asFragment } = render(
+  render(
     <Editable defaultValue="testing">
       <EditablePreview data-testid="preview" />
       <EditableInput data-testid="input" />
     </Editable>,
   )
-
-  expect(asFragment()).toMatchSnapshot()
 
   const preview = screen.getByTestId("preview")
   const input = screen.getByTestId("input")

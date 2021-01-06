@@ -1,18 +1,6 @@
+import { render, screen, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { render, testA11y, screen } from "@chakra-ui/test-utils"
-import {
-  Input,
-  InputGroup,
-  InputLeftAddon,
-  InputRightAddon,
-  InputLeftElement,
-  InputRightElement,
-} from "../src"
-
-test("renders correctly", () => {
-  const { asFragment } = render(<Input />)
-  expect(asFragment()).toMatchSnapshot()
-})
+import { Input, InputGroup, InputLeftElement, InputRightElement } from "../src"
 
 test("passes a11y test", async () => {
   await testA11y(<Input />, {
@@ -24,19 +12,8 @@ test("passes a11y test", async () => {
   })
 })
 
-test("addons render correctly", () => {
-  const { asFragment } = render(
-    <InputGroup>
-      <InputLeftAddon>https://</InputLeftAddon>
-      <Input />
-      <InputRightAddon>.com</InputRightAddon>
-    </InputGroup>,
-  )
-  expect(asFragment()).toMatchSnapshot()
-})
-
 test("Elements inside input render correctly", () => {
-  const { asFragment } = render(
+  const { getByText } = render(
     <InputGroup>
       <InputLeftElement>
         <span>Hello</span>
@@ -47,7 +24,8 @@ test("Elements inside input render correctly", () => {
       </InputRightElement>
     </InputGroup>,
   )
-  expect(asFragment()).toMatchSnapshot()
+  expect(getByText("Hello")).toBeInTheDocument()
+  expect(getByText("World")).toBeInTheDocument()
 })
 
 test("Invalid input renders correctly", () => {

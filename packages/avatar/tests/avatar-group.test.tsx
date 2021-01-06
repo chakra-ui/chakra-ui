@@ -2,15 +2,6 @@ import * as React from "react"
 import { render, testA11y, screen } from "@chakra-ui/test-utils"
 import { Avatar, AvatarGroup } from "../src"
 
-test("matches snapshot", () => {
-  const tools = render(
-    <AvatarGroup>
-      <Avatar />
-    </AvatarGroup>,
-  )
-  expect(tools.asFragment()).toMatchSnapshot()
-})
-
 it("passes a11y test", async () => {
   await testA11y(
     <AvatarGroup>

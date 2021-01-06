@@ -16,11 +16,6 @@ import {
   UseCheckboxProps,
 } from "../src"
 
-test("matches snapshot ", () => {
-  const { asFragment } = render(<Checkbox />)
-  expect(asFragment()).toMatchSnapshot()
-})
-
 it("passes a11y test", async () => {
   await testA11y(<Checkbox>label</Checkbox>)
 })
@@ -28,11 +23,6 @@ it("passes a11y test", async () => {
 test("useCheckbox should return object", () => {
   const { result } = renderHook(() => useCheckbox())
   expect(typeof result.current).toBe("object")
-})
-
-test("Checkbox renders correctly", () => {
-  const tools = render(<Checkbox>This is custom checkbox</Checkbox>)
-  expect(tools.asFragment()).toMatchSnapshot()
 })
 
 test("Uncontrolled - should check and uncheck", () => {
@@ -144,15 +134,13 @@ test("Controlled - should check and uncheck", () => {
 })
 
 test("CheckboxGroup Uncontrolled - default values should be check", () => {
-  const Component = () => {
-    return (
-      <CheckboxGroup defaultValue={["one", "two"]}>
-        <Checkbox value="one">One</Checkbox>
-        <Checkbox value="two">Two</Checkbox>
-        <Checkbox value="three">Three</Checkbox>
-      </CheckboxGroup>
-    )
-  }
+  const Component = () => (
+    <CheckboxGroup defaultValue={["one", "two"]}>
+      <Checkbox value="one">One</Checkbox>
+      <Checkbox value="two">Two</Checkbox>
+      <Checkbox value="three">Three</Checkbox>
+    </CheckboxGroup>
+  )
   const { container } = render(<Component />)
   const checkboxOne = container.querySelectorAll("input")[0]
   const checkboxTwo = container.querySelectorAll("input")[1]
@@ -171,17 +159,17 @@ test("CheckboxGroup Uncontrolled - default values should be check", () => {
 
 test("Controlled CheckboxGroup", () => {
   let checked = ["one", "two"]
-  const onChange = jest.fn((value) => (checked = value))
+  const onChange = jest.fn((value) => {
+    checked = value
+  })
 
-  const Component = (props: CheckboxGroupProps) => {
-    return (
-      <CheckboxGroup {...props}>
-        <Checkbox value="one">One</Checkbox>
-        <Checkbox value="two">Two</Checkbox>
-        <Checkbox value="three">Three</Checkbox>
-      </CheckboxGroup>
-    )
-  }
+  const Component = (props: CheckboxGroupProps) => (
+    <CheckboxGroup {...props}>
+      <Checkbox value="one">One</Checkbox>
+      <Checkbox value="two">Two</Checkbox>
+      <Checkbox value="three">Three</Checkbox>
+    </CheckboxGroup>
+  )
   const { container, rerender } = render(
     <Component value={checked} onChange={onChange} />,
   )
@@ -217,12 +205,11 @@ test("accepts custom icon", () => {
     )
   }
 
-  const { asFragment } = render(
+  render(
     <Checkbox defaultIsChecked icon={<CustomIcon data-testid="custom-icon" />}>
       hello world
     </Checkbox>,
   )
 
   expect(screen.getByTestId("custom-icon")).toBeInTheDocument()
-  expect(asFragment()).toMatchSnapshot()
 })

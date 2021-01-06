@@ -48,9 +48,7 @@ it("forwards d attribute onto a path element", () => {
     d,
   })
 
-  const { asFragment, container } = render(<Icon />)
-
-  expect(asFragment()).toMatchSnapshot()
+  const { container } = render(<Icon />)
 
   expect(container.querySelector("path")).toHaveAttribute("d", d)
 })
@@ -64,9 +62,7 @@ it("accepts a single path", () => {
     path: <path fill={fill} d={d} />,
   })
 
-  const { asFragment, container } = render(<Icon />)
-
-  expect(asFragment()).toMatchSnapshot()
+  const { container } = render(<Icon />)
 
   expect(container.querySelector("svg")!.children).toHaveLength(1)
   expect(container.querySelector("path")).toHaveAttribute("d", d)
@@ -78,30 +74,11 @@ it("accepts multiple paths", () => {
     path: chakraIconPath,
   })
 
-  const { asFragment, container } = render(<Icon />)
-
-  expect(asFragment()).toMatchSnapshot()
+  const { container } = render(<Icon />)
 
   expect(container.querySelector("svg")!.children).toHaveLength(
     chakraIconPath.length,
   )
-})
-
-it("forwards default props", () => {
-  const Icon = createIcon({
-    path: chakraIconPath,
-    defaultProps: {
-      fill: "none",
-    },
-  })
-
-  const { asFragment } = render(<Icon />)
-
-  expect(asFragment()).toMatchSnapshot()
-
-  // cant check for the svg element to have some attribute as its hidden
-  // away in emotion internals creating a stylesheet and .getComputedStyle
-  // is not supported in jest-dom
 })
 
 it("forwards displayName", () => {

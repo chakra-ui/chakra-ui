@@ -1,11 +1,6 @@
+import { render, userEvent } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { userEvent, render } from "@chakra-ui/test-utils"
 import { Switch } from "../src"
-
-test("Switch renders correctly", () => {
-  const utils = render(<Switch />)
-  expect(utils.asFragment()).toMatchSnapshot()
-})
 
 test("Uncontrolled - should check and uncheck", () => {
   const { container } = render(<Switch />)

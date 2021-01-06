@@ -40,15 +40,8 @@ function renderComponent(props: NumberInputProps = {}) {
  * https://github.com/deberoppa7/react-numeric-input/blob/master/src/index.test.js
  */
 
-test("should render correctly", () => {
-  const { asFragment } = renderComponent()
-
-  expect(asFragment()).toMatchSnapshot()
-})
-
 test("passes a11y test", async () => {
   const { container } = renderComponent()
-
   await testA11y(container)
 })
 

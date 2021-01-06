@@ -3,13 +3,11 @@ import * as React from "react"
 import { PortalManager, Portal } from "../src"
 
 test("should render portal", () => {
-  const tools = render(
+  render(
     <PortalManager>
       <Portal>This is a portal</Portal>
     </PortalManager>,
   )
-
-  expect(tools.baseElement.innerHTML).toMatchSnapshot()
 })
 
 test("should render nested portal", () => {
@@ -22,8 +20,6 @@ test("should render nested portal", () => {
     </PortalManager>,
   )
 
-  expect(tools.asFragment()).toMatchSnapshot()
-
   const portals = Array.from(
     tools.baseElement.querySelectorAll(".chakra-portal"),
   )
@@ -33,7 +29,7 @@ test("should render nested portal", () => {
 })
 
 test("should render in a different node", () => {
-  const tools = render(
+  render(
     <PortalManager>
       <div data-testid="parent">
         <h1 data-testid="child-1">Foo</h1>
@@ -43,8 +39,6 @@ test("should render in a different node", () => {
       </div>
     </PortalManager>,
   )
-
-  expect(tools.asFragment()).toMatchSnapshot()
 
   const parent = screen.getByTestId("parent")
 
@@ -69,8 +63,6 @@ test("should render into a custom container", () => {
   }
 
   const tools = render(<Custom />)
-
-  expect(tools.asFragment()).toMatchSnapshot()
 
   const heading = tools.getByTestId("heading")
   const container = tools.getByTestId("container")

@@ -1,23 +1,42 @@
 import * as React from "react"
-import { render } from "@chakra-ui/test-utils"
+import { render, testA11y } from "@chakra-ui/test-utils"
 import { Progress, CircularProgress } from "../src"
 
-test("Progress renders correctly", () => {
-  const { asFragment } = render(
+test("Progress renders correctly", async () => {
+  const { container } = render(
     <div>
-      <Progress color="green" size="sm" value={20} />
-      <Progress color="blue" size="md" hasStripe value={40} />
-      <Progress color="yellow" size="lg" hasStripe isAnimated value={80} />
+      <Progress
+        aria-label="Account Usage"
+        colorScheme="green"
+        size="sm"
+        value={20}
+      />
+      <Progress
+        aria-label="Account Usage"
+        colorScheme="blue"
+        size="md"
+        hasStripe
+        value={40}
+      />
+      <Progress
+        aria-label="Account Usage"
+        colorScheme="yellow"
+        size="lg"
+        hasStripe
+        isAnimated
+        value={80}
+      />
     </div>,
   )
-  expect(asFragment()).toMatchSnapshot()
+  await testA11y(container)
 })
 
-test("CircularProgress renders correctly", () => {
-  const { asFragment } = render(
+test("CircularProgress renders correctly", async () => {
+  const { container } = render(
     <div>
-      <CircularProgress size="60px" value={20} />
+      <CircularProgress aria-label="Account Usage" size="60px" value={20} />
       <CircularProgress
+        aria-label="Account Usage"
         size="120px"
         trackColor="transparent"
         thickness={10}
@@ -25,13 +44,15 @@ test("CircularProgress renders correctly", () => {
       />
     </div>,
   )
-  expect(asFragment()).toMatchSnapshot()
+  await testA11y(container)
 })
 
 test("Progress: has the proper aria, data, and role attributes", () => {
-  const utils = render(<Progress color="green" size="sm" value={20} />)
+  const { getByRole, rerender } = render(
+    <Progress color="green" size="sm" value={20} />,
+  )
 
-  let progress = utils.getByRole("progressbar")
+  let progress = getByRole("progressbar")
 
   expect(progress).not.toHaveAttribute("data-indeterminate")
   expect(progress).toHaveAttribute("aria-valuemax", "100")
@@ -40,9 +61,9 @@ test("Progress: has the proper aria, data, and role attributes", () => {
   expect(progress).not.toHaveAttribute("aria-valuetext")
 
   // rerender as indeterminate
-  utils.rerender(<Progress color="green" size="sm" isIndeterminate />)
+  rerender(<Progress color="green" size="sm" isIndeterminate />)
 
-  progress = utils.getByRole("progressbar")
+  progress = getByRole("progressbar")
 
   expect(progress).toHaveAttribute("data-indeterminate")
   expect(progress).not.toHaveAttribute("aria-valuenow")

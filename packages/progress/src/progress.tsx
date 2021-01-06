@@ -134,6 +134,8 @@ export const Progress: React.FC<ProgressProps> = (props) => {
     children,
     borderRadius,
     isIndeterminate,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledBy,
     ...rest
   } = omitThemingProps(props)
 
@@ -171,6 +173,8 @@ export const Progress: React.FC<ProgressProps> = (props) => {
     <chakra.div borderRadius={borderRadius} __css={trackStyles} {...rest}>
       <StylesProvider value={styles}>
         <ProgressFilledTrack
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy}
           min={min}
           max={max}
           value={value}

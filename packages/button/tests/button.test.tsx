@@ -7,7 +7,7 @@ it("passes a11y test", async () => {
   await testA11y(<Button>test</Button>)
 })
 
-test("matches snapshot with icons", () => {
+test("renders with icons", () => {
   const { getByText } = render(
     <ButtonGroup>
       <Button leftIcon={<EmailIcon />}>Email</Button>
