@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.4.1
+
+### Patch Changes
+
+- [`a9807b33`](https://github.com/chakra-ui/chakra-ui/commit/a9807b334477ac9ecd7f3637c0ff7d5fb5c46639)
+  [#2753](https://github.com/chakra-ui/chakra-ui/pull/2753) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Restored TypeScript
+  autocomplete for chakra component props in Jetbrains IDEs.
+
+* [`f7142599`](https://github.com/chakra-ui/chakra-ui/commit/f714259943a03d6e191949c7c1c68c9f9b8b49fd)
+  [#2952](https://github.com/chakra-ui/chakra-ui/pull/2952) Thanks
+  [@mashabow](https://github.com/mashabow)! - Disable the `ModalOverlay`
+  animation as well as the `ModalContent` animation, if `motionPreset="none"`
+
 ## 1.4.0
 
 ### Minor Changes

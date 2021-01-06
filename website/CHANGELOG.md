@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.0.7
+
+### Patch Changes
+
+- [`5d83d2d6`](https://github.com/chakra-ui/chakra-ui/commit/5d83d2d67baee4b3a7fd4c50aca07e133691155a)
+  [#2911](https://github.com/chakra-ui/chakra-ui/pull/2911) Thanks
+  [@dodas](https://github.com/dodas)! - Replace example showing how to use
+  `useToken` to make a gradient with one that shows how to make a `boxShadow`.
+- Updated dependencies []:
+  - @chakra-ui/react@1.1.2
+  - @chakra-ui/props-docs@1.0.7
+
 ## 1.0.6
 
 ### Patch Changes
