@@ -48,7 +48,7 @@ const baseStyleHeader = {
 const baseStyleCloseButton = {
   position: "absolute",
   top: 2,
-  right: 3,
+  insetEnd: 3,
 }
 
 const baseStyleBody = {

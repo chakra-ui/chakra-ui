@@ -93,7 +93,7 @@ export const WithInputElement = () => (
   <Stack align="start">
     <InputGroup>
       <InputLeftElement children={<PhoneIcon color="gray.300" />} />
-      <Input pl="60px" type="phone" placeholder="Phone number" />
+      <Input pl="60px" type="tel" placeholder="Phone number" />
     </InputGroup>
 
     <InputGroup size="sm">

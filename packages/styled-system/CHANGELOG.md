@@ -1,5 +1,159 @@
 # Change Log
 
+## 1.3.1
+
+### Patch Changes
+
+- [`5cef5de4`](https://github.com/chakra-ui/chakra-ui/commit/5cef5de4f45cd58f7a29436335543cb5b40c0d70)
+  [#2918](https://github.com/chakra-ui/chakra-ui/pull/2918) Thanks
+  [@MohamedSayed008](https://github.com/MohamedSayed008)! - ## Button
+
+  - Update the style props applied for `leftIcon` and `rightIcon` to support
+    RTL. Changed `ml` and `mr` to `marginStart` and `marginEnd` respectively.
+  - Update the style props applied when `isLoading` is `true`. Changed
+    `marginRight` to `marginEnd`.
+
+  ## Stack
+
+  - Update `directionStyles` to use logical CSS properties for RTL support.
+    Changed `marginLeft` and `marginRight` to `marginStart` and `marginEnd`
+    respectively.
+
+  ## Styled System
+
+  - Add missing `borderStart`, and `borderEnd` for style and color.
+  - Sort `Object.assign` keys in `configs/border.ts` for better readability.
+
+  ## Other RTL Fixes
+
+  - Alignment for close icon for `Tag`, `Modal`, and `Drawer` components to
+    support RTL.
+
+  ## Storybook
+
+  Add RTL storybook toolbar for make it easy to test layouts.
+
+  Packages added:
+
+  - `@storybook/addon-toolbars`
+
+## 1.3.0
+
+### Minor Changes
+
+- [`a0e0bd9a`](https://github.com/chakra-ui/chakra-ui/commit/a0e0bd9a5d45fe08887f8df8d3eccc84951578df)
+  [#2816](https://github.com/chakra-ui/chakra-ui/pull/2816) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Add gradient support to
+  chakra style props. This PR adds to props:
+
+  - `bgGradient`: a shorthand, convenient style prop to apply theme-aware
+    gradients.
+  - `bgClip`: a shorthand for `background-clip` CSS attribute. Useful when
+    creating text gradients.
+  - `backgroundClip`: the typical `background-clip` CSS attribute. Useful when
+    creating text gradients.
+
+  ## The Background Gradient API
+
+  To add a gradient to a component, pass the `bgGradient` prop and set its value
+  following the API below:
+
+  - `linear(<direction>, <from>, <to>)`
+  - `radial(<from>, <to>)`
+
+  and other valid css gradient properties. For linear gradients, the direction
+  can be either of the following values:
+
+  ```js
+  "to-t" // 'to top'
+  "to-tr" // 'to top right'
+  "to-r" // 'to right'
+  "to-br" // 'to bottom right'
+  "to-b" // 'to bottom'
+  "to-bl" // 'to bottom left'
+  "to-l" // 'to left'
+  "to-tl" // 'to top left'
+  ```
+
+  ```jsx
+  <Box w="500px" h="200px" bgGradient="linear(to-r, gray.300, pink.200)" />
+  ```
+
+  You can use both theme-aware color tokens or raw CSS color values.
+
+  ```jsx
+  <Box w="500px" h="200px" bgGradient="linear(to-l, #7928CA, #FF0080)" />
+  ```
+
+  ### Multiple Color Stops
+
+  This is a gradient with multiple stops
+
+  ```jsx
+  <Box w="500px" h="200px" bgGradient="radial(gray.300,yellow.400,pink.200)" />
+  ```
+
+  ## The Text Gradient API
+
+  To add a text gradient, pass the `bgGradient` following the API and `bgClip`
+  prop to `text`.
+
+  ```jsx
+  <Text
+    bgGradient="linear(to-l,#7928CA,#FF0080)"
+    bgClip="text"
+    fontSize="7xl"
+    fontWeight="extrabold"
+  >
+    Welcome to Chakra UI
+  </Text>
+  ```
+
+* [`4fa07745`](https://github.com/chakra-ui/chakra-ui/commit/4fa077453a5c2165b695198c57366f3cc6506c37)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ## Improve
+  performance
+
+  Styled system core functions use `localCompare` to sort the transformed styles
+  before passing it to emotion. This seems to be slower compared to its
+  alternative `Intl.Collator`.
+
+  Here's a benchmark I ran on my Chrome, Macbook Pro:
+
+  ```js
+  // Create an array of 2000 random items
+  const arr = []
+  for (let i = 0; i < 2000; i++) {
+    arr.push(`test-${Math.random()}`)
+  }
+
+  // #1 - localeCompare: 169.665ms
+  arr.sort((a, b) =>
+    a.localeCompare(b, undefined, {
+      numeric: true,
+      sensitivity: "base",
+    }),
+  )
+
+  // #2 - collator: 10.915ms
+  const collator = new Intl.Collator("en", {
+    numeric: true,
+    sensitivity: "base",
+  })
+  arr.sort((a, b) => collator.compare(a, b))
+  ```
+
+  To improve performance, I had to do the following:
+
+  - Move the core functions from `@styled-system/core` into our own codebase (we
+    could create a PR to styled-system to improve the community)
+  - Rewrite the functions to TypeScript. Since they're written in JavaScript
+  - Change the sorting function to use `Intl.Collator`
+  - Change the `merge` function to use `lodash.mergeWith`
+
+  To learn more, check
+  [here](https://stackoverflow.com/questions/14677060/400x-sorting-speedup-by-switching-a-localecompareb-to-ab-1ab10/25775469)
+  to see this benchmark.
+
 ## 1.2.0
 
 ### Minor Changes

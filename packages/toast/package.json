@@ -61,8 +61,8 @@
     "@reach/alert": "0.11.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.1.0",
-    "framer-motion": "3.0.0",
+    "@chakra-ui/system": "1.1.2",
+    "framer-motion": "^3.1.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },

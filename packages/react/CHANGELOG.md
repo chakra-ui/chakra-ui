@@ -1,5 +1,138 @@
 # Change Log
 
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`5cef5de4`](https://github.com/chakra-ui/chakra-ui/commit/5cef5de4f45cd58f7a29436335543cb5b40c0d70),
+  [`6a82a3d4`](https://github.com/chakra-ui/chakra-ui/commit/6a82a3d4f061191171a12e6d38719ba05414a86e),
+  [`5c9ef8bd`](https://github.com/chakra-ui/chakra-ui/commit/5c9ef8bd9ca8a2bffae34bc96f9d50b17c9eb3c6)]:
+  - @chakra-ui/button@1.0.3
+  - @chakra-ui/layout@1.1.2
+  - @chakra-ui/modal@1.4.0
+  - @chakra-ui/tag@1.0.3
+  - @chakra-ui/tabs@1.0.3
+  - @chakra-ui/system@1.1.2
+  - @chakra-ui/skeleton@1.0.5
+
+## 1.1.0
+
+### Minor Changes
+
+- [`6a410f77`](https://github.com/chakra-ui/chakra-ui/commit/6a410f778f534e00e01fdf0d3ce1ffdd1d7b138e)
+  [#2834](https://github.com/chakra-ui/chakra-ui/pull/2834) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Allow `extendTheme` to
+  accept optional second argument `baseTheme` to customize:
+
+  ```jsx
+  const theme = extendTheme(
+    { colors: { red: { 500: "#ff0000" } } },
+    // the base theme to customize with the above overrides
+    yourTheme,
+  )
+  ```
+
+  If no `baseTheme` is provided, defaults to the Chakra theme.
+
+* [`a0e0bd9a`](https://github.com/chakra-ui/chakra-ui/commit/a0e0bd9a5d45fe08887f8df8d3eccc84951578df)
+  [#2816](https://github.com/chakra-ui/chakra-ui/pull/2816) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Add gradient support to
+  chakra style props. This PR adds to props:
+
+  - `bgGradient`: a shorthand, convenient style prop to apply theme-aware
+    gradients.
+  - `bgClip`: a shorthand for `background-clip` CSS attribute. Useful when
+    creating text gradients.
+  - `backgroundClip`: the typical `background-clip` CSS attribute. Useful when
+    creating text gradients.
+
+  ## The Background Gradient API
+
+  To add a gradient to a component, pass the `bgGradient` prop and set its value
+  following the API below:
+
+  - `linear(<direction>, <from>, <to>)`
+  - `radial(<from>, <to>)`
+
+  and other valid css gradient properties. For linear gradients, the direction
+  can be either of the following values:
+
+  ```js
+  "to-t" // 'to top'
+  "to-tr" // 'to top right'
+  "to-r" // 'to right'
+  "to-br" // 'to bottom right'
+  "to-b" // 'to bottom'
+  "to-bl" // 'to bottom left'
+  "to-l" // 'to left'
+  "to-tl" // 'to top left'
+  ```
+
+  ```jsx
+  <Box w="500px" h="200px" bgGradient="linear(to-r, gray.300, pink.200)" />
+  ```
+
+  You can use both theme-aware color tokens or raw CSS color values.
+
+  ```jsx
+  <Box w="500px" h="200px" bgGradient="linear(to-l, #7928CA, #FF0080)" />
+  ```
+
+  ### Multiple Color Stops
+
+  This is a gradient with multiple stops
+
+  ```jsx
+  <Box w="500px" h="200px" bgGradient="radial(gray.300,yellow.400,pink.200)" />
+  ```
+
+  ## The Text Gradient API
+
+  To add a text gradient, pass the `bgGradient` following the API and `bgClip`
+  prop to `text`.
+
+  ```jsx
+  <Text
+    bgGradient="linear(to-l,#7928CA,#FF0080)"
+    bgClip="text"
+    fontSize="7xl"
+    fontWeight="extrabold"
+  >
+    Welcome to Chakra UI
+  </Text>
+  ```
+
+### Patch Changes
+
+- [`916588a5`](https://github.com/chakra-ui/chakra-ui/commit/916588a5bbb771ff3f07b0ceb160bef57cdd6a8a)
+  [#2783](https://github.com/chakra-ui/chakra-ui/pull/2783) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue where
+  `extendTheme` did not allow string properties besides ColorHue in the `colors`
+  attribute of the theme override.
+
+  ```jsx
+  extendTheme({
+    colors: {
+      myColor: {
+        text: "#ff0000",
+      },
+    },
+  })
+  ```
+
+- Updated dependencies
+  [[`1e6db1e0`](https://github.com/chakra-ui/chakra-ui/commit/1e6db1e068c6bc0a4c6c6893d1716d284dcbb8f8),
+  [`5c8f0838`](https://github.com/chakra-ui/chakra-ui/commit/5c8f08382858c0bbc77d875db52859e7c304392f),
+  [`f09a1cbf`](https://github.com/chakra-ui/chakra-ui/commit/f09a1cbf2eaef537b31b1f2fdf1e7c685e1926bb),
+  [`46e24c58`](https://github.com/chakra-ui/chakra-ui/commit/46e24c5820ef2726a4fb16a190efda39fb0b075a)]:
+  - @chakra-ui/checkbox@1.1.0
+  - @chakra-ui/radio@1.1.0
+  - @chakra-ui/skeleton@1.0.4
+  - @chakra-ui/pin-input@1.1.2
+  - @chakra-ui/switch@1.0.3
+  - @chakra-ui/system@1.1.1
+
 ## 1.0.4
 
 ### Patch Changes

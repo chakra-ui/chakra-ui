@@ -72,7 +72,7 @@ component. Chakra UI exports `InputGroup`, `InputLeftAddon`, and
 <Stack spacing={4}>
   <InputGroup>
     <InputLeftAddon children="+234" />
-    <Input type="phone" borderLeftRadius="0" placeholder="phone number" />
+    <Input type="tel" borderLeftRadius="0" placeholder="phone number" />
   </InputGroup>
 
   {/* If you add the size prop to `InputGroup`, it'll pass it to all its children. */}
@@ -101,7 +101,7 @@ focused the input.
       pointerEvents="none"
       children={<PhoneIcon color="gray.300" />}
     />
-    <Input type="phone" placeholder="Phone number" />
+    <Input type="tel" placeholder="Phone number" />
   </InputGroup>
 
   <InputGroup>

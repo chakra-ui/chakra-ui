@@ -1,6 +1,7 @@
 import { useDisclosure } from "@chakra-ui/hooks"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
+import Lorem from "react-lorem-component"
 import {
   Modal,
   ModalBody,
@@ -10,8 +11,6 @@ import {
   ModalHeader,
   ModalOverlay,
 } from "../src"
-//@ts-ignore
-import Lorem from "react-lorem-component"
 
 const Button = chakra("button", {
   baseStyle: {
@@ -137,6 +136,28 @@ export const InsideScroll = () => {
     <>
       <button onClick={onOpen}>Open</button>
       <Modal onClose={onClose} isOpen={isOpen} scrollBehavior="inside">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Lorem size={5} />
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onClose}>Close</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  )
+}
+
+export const AnimationDisabled = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  return (
+    <>
+      <button onClick={onOpen}>Open</button>
+      <Modal onClose={onClose} isOpen={isOpen} motionPreset="none">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Modal Title</ModalHeader>

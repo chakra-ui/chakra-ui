@@ -1665,6 +1665,69 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "dananw",
+      "name": "Danan Wijaya",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/31610272?v=4",
+      "profile": "https://github.com/dananw",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "electather",
+      "name": "electather",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/33129195?v=4",
+      "profile": "https://github.com/electather",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "shubham-kaushal",
+      "name": "Shubham Kaushal",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/63925481?v=4",
+      "profile": "https://github.com/shubham-kaushal",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "petter",
+      "name": "Petter Sæther Moen",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/25374940?v=4",
+      "profile": "https://github.com/petter",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "HermanNygaard",
+      "name": "Herman Nygaard",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/20663884?v=4",
+      "profile": "https://nygaard.dev",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "jnmsl",
+      "name": "jnmsl",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/44583047?v=4",
+      "profile": "https://github.com/jnmsl",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "MohamedSayed008",
+      "name": "Mohamed Sayed",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/23707834?v=4",
+      "profile": "https://github.com/MohamedSayed008",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

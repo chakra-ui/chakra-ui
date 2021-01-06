@@ -48,11 +48,11 @@
     "react": "16.x || 17.x"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.1.0",
+    "@chakra-ui/system": "1.1.2",
     "react": "^17.0.1"
   },
   "dependencies": {
     "@chakra-ui/icon": "1.0.2",
-    "@types/react": "17.0.0"
+    "@types/react": "^17.0.0"
   }
 }

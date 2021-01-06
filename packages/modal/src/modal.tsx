@@ -28,6 +28,7 @@ import {
 } from "framer-motion"
 import * as React from "react"
 import { RemoveScroll } from "react-remove-scroll"
+import { MouseEvent } from "react"
 import { ModalTransition } from "./modal-transition"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
 
@@ -86,7 +87,7 @@ interface ModalOptions extends Pick<FocusLockProps, "lockFocusAcrossFrames"> {
 
 type ScrollBehavior = "inside" | "outside"
 
-type MotionPreset = "slideInBottom" | "slideInRight" | "scale"
+type MotionPreset = "slideInBottom" | "slideInRight" | "scale" | "none"
 
 export interface ModalProps extends UseModalProps, ModalOptions, ThemingProps {
   children: React.ReactNode
@@ -321,8 +322,8 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
 }
 
 export interface ModalOverlayProps
-  extends Omit<HTMLMotionProps<"div">, "color">,
-    Omit<ChakraProps, "transition"> {
+  extends Omit<HTMLMotionProps<"div">, "color" | "transition">,
+    ChakraProps {
   children?: React.ReactNode
 }
 
@@ -334,7 +335,7 @@ export interface ModalOverlayProps
  */
 export const ModalOverlay = forwardRef<ModalOverlayProps, "div">(
   (props, ref) => {
-    const { className, ...rest } = props
+    const { className, transition, ...rest } = props
     const _className = cx("chakra-modal__overlay", className)
 
     const styles = useStyles()
@@ -347,9 +348,12 @@ export const ModalOverlay = forwardRef<ModalOverlayProps, "div">(
       ...styles.overlay,
     }
 
+    const { motionPreset } = useModalContext()
+    const motionProps = motionPreset === "none" ? {} : fadeConfig
+
     return (
       <Motion
-        {...fadeConfig}
+        {...motionProps}
         __css={overlayStyle}
         ref={ref}
         className={_className}
@@ -505,7 +509,7 @@ export const ModalCloseButton = forwardRef<CloseButtonProps, "button">(
         ref={ref}
         __css={styles.closeButton}
         className={_className}
-        onClick={callAllHandlers(onClick, (event) => {
+        onClick={callAllHandlers(onClick, (event: MouseEvent) => {
           event.stopPropagation()
           onClose()
         })}

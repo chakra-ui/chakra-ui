@@ -22,7 +22,7 @@ const variants: FadeMotionVariant = {
   },
 }
 
-export const fadeConfig: HTMLMotionProps<any> = {
+export const fadeConfig: Omit<HTMLMotionProps<any>, "transition"> = {
   initial: "exit",
   animate: "enter",
   exit: "exit",

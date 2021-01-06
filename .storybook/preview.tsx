@@ -1,13 +1,30 @@
 import {
   ChakraProvider,
-  useColorMode,
-  useColorModeValue,
+  extendTheme,
   Flex,
   IconButton,
+  useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react"
-import { FaMoon, FaSun } from "react-icons/fa"
+import { StoryContext } from "@storybook/react"
 import * as React from "react"
+import { FaMoon, FaSun } from "react-icons/fa"
 import { withPerformance } from "storybook-addon-performance"
+
+/**
+ * Add global context for RTL-LTR switching
+ */
+export const globalTypes = {
+  direction: {
+    name: "Direction",
+    description: "Direction for layout",
+    defaultValue: "LTR",
+    toolbar: {
+      icon: "globe",
+      items: ["LTR", "RTL"],
+    },
+  },
+}
 
 const ColorModeToggleBar = () => {
   const { toggleColorMode } = useColorMode()
@@ -30,13 +47,17 @@ const ColorModeToggleBar = () => {
   )
 }
 
-const withChakra = (StoryFn: Function) => (
-  <ChakraProvider>
-    <div id="story-wrapper" style={{ minHeight: "100vh" }}>
-      <ColorModeToggleBar />
-      <StoryFn />
-    </div>
-  </ChakraProvider>
-)
+const withChakra = (StoryFn: Function, context: StoryContext) => {
+  const { direction } = context.globals
+  const dir = direction.toLowerCase()
+  return (
+    <ChakraProvider theme={extendTheme({ direction: dir })}>
+      <div dir={dir} id="story-wrapper" style={{ minHeight: "100vh" }}>
+        <ColorModeToggleBar />
+        <StoryFn />
+      </div>
+    </ChakraProvider>
+  )
+}
 
 export const decorators = [withChakra, withPerformance]

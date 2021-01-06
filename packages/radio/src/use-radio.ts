@@ -6,6 +6,7 @@ import {
   mergeRefs,
   pick,
   PropGetter,
+  warn,
 } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import {
@@ -43,8 +44,15 @@ export interface UseRadioProps {
   isChecked?: boolean
   /**
    * If `true`, the radio will be initially checked.
+   *
+   * @deprecated Please use `defaultChecked` which mirrors the default prop
+   * name for radio elements.
    */
   defaultIsChecked?: boolean
+  /**
+   * If `true`, the radio will be initially checked.
+   */
+  defaultChecked?: boolean
   /**
    * If `true`, the radio will be disabled
    */
@@ -75,6 +83,7 @@ export interface UseRadioProps {
 export function useRadio(props: UseRadioProps = {}) {
   const {
     defaultIsChecked,
+    defaultChecked = defaultIsChecked,
     isChecked: isCheckedProp,
     isFocusable,
     isDisabled,
@@ -94,12 +103,19 @@ export function useRadio(props: UseRadioProps = {}) {
 
   const ref = useRef<HTMLInputElement>(null)
 
-  const [isCheckedState, setChecked] = useState(Boolean(defaultIsChecked))
+  const [isCheckedState, setChecked] = useState(Boolean(defaultChecked))
 
   const [isControlled, isChecked] = useControllableProp(
     isCheckedProp,
     isCheckedState,
   )
+
+  warn({
+    condition: !!defaultIsChecked,
+    message:
+      'The "defaultIsChecked" prop has been deprecated and will be removed in a future version. ' +
+      'Please use the "defaultChecked" prop instead, which mirrors default React checkbox behavior.',
+  })
 
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {

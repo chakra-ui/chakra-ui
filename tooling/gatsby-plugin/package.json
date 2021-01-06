@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/gatsby-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Drop-in Chakra UI support for Gatsby sites",
   "author": "Alex Luong <alex@alexluong.com>",
   "license": "MIT",
@@ -20,11 +20,11 @@
   "peerDependencies": {
     "@chakra-ui/react": ">=1.0.0",
     "@chakra-ui/theme": ">=1.0.0",
-    "gatsby": "^2.24.85"
+    "gatsby": "^2.29.3"
   },
   "devDependencies": {
     "@chakra-ui/react": "*",
     "@chakra-ui/theme": "*",
-    "gatsby": "2.28.0"
+    "gatsby": "^2.29.3"
   }
 }
