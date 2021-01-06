@@ -1,45 +1,20 @@
 /**
- * All credit goes to Chance (Reach UI), and Haz (Reakit) for creating
- * the base type definitions upon which we improved on
+ * All credit goes to Chance (Reach UI), Haz (Reakit) and (fluentui)
+ * for creating the base type definitions upon which we improved on
  */
 import * as React from "react"
+import { As, ComponentWithAs, PropsOf, RightJoinProps } from "./system.types"
 
-type As = React.ElementType
-
-type PropsOf<T extends As> = React.ComponentProps<T>
-
-type AddProps<P> = React.PropsWithChildren<
-  P extends { transition?: any } ? Omit<P, "transition"> : P
->
-
-type AddTProps<T extends As> = PropsOf<T> extends { color?: any }
-  ? Omit<PropsOf<T>, "color">
-  : PropsOf<T>
-
-export interface ComponentWithAs<T extends As, P> {
-  <TT extends As>(
-    props: { as?: TT } & (PropsOf<T> extends { transition?: any }
-      ? Omit<P, "transition">
-      : P) &
-      Omit<PropsOf<TT>, keyof PropsOf<T>> &
-      Omit<AddTProps<T>, keyof P>,
-  ): JSX.Element
-  displayName?: string
-  propTypes?: React.WeakValidationMap<AddProps<P> & AddTProps<T>>
-  contextTypes?: React.ValidationMap<any>
-  defaultProps?: AddProps<P> & AddTProps<T> & { as?: As }
-  id?: string
-}
-
-export function forwardRef<P, T extends As>(
-  component: (
-    props: React.PropsWithChildren<P> &
-      Omit<PropsOf<T>, keyof P | "color" | "ref"> & { as?: As },
-    ref: React.Ref<any>,
-  ) => React.ReactElement | null,
+export function forwardRef<Props extends object, Component extends As>(
+  component: React.ForwardRefRenderFunction<
+    any,
+    RightJoinProps<PropsOf<Component>, Props> & {
+      as?: As
+    }
+  >,
 ) {
-  return (React.forwardRef(component as any) as unknown) as ComponentWithAs<
-    T,
-    P
+  return (React.forwardRef(component) as unknown) as ComponentWithAs<
+    Component,
+    Props
   >
 }

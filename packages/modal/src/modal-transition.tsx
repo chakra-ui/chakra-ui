@@ -4,8 +4,8 @@ import { HTMLMotionProps, motion } from "framer-motion"
 import * as React from "react"
 
 export interface ModalTransitionProps
-  extends Omit<HTMLMotionProps<"section">, "color">,
-    Omit<ChakraProps, "transition"> {
+  extends Omit<HTMLMotionProps<"section">, "color" | "transition">,
+    ChakraProps {
   preset: "slideInBottom" | "slideInRight" | "scale" | "none"
 }
 
@@ -31,6 +31,6 @@ export const ModalTransition = React.forwardRef(
   (props: ModalTransitionProps, ref: React.Ref<any>) => {
     const { preset, ...rest } = props
     const motionProps = transitions[preset]
-    return <Motion ref={ref} {...motionProps} {...rest} />
+    return <Motion ref={ref} {...(motionProps as ChakraProps)} {...rest} />
   },
 )
