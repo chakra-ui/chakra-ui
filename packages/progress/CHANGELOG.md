@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.0.3
+
+### Patch Changes
+
+- [`d45c4956`](https://github.com/chakra-ui/chakra-ui/commit/d45c495617ee5038b56eee89b094979b2ac96128)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Forward
+  `aria-label` and `aria-labelledby` to element that has `role=progressbar`
+  which is the `ProgressFilledTrack` component
+
 ## 1.0.2
 
 ### Patch Changes

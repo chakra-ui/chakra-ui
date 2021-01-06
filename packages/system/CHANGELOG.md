@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.1.3
+
+### Patch Changes
+
+- [`a9807b33`](https://github.com/chakra-ui/chakra-ui/commit/a9807b334477ac9ecd7f3637c0ff7d5fb5c46639)
+  [#2753](https://github.com/chakra-ui/chakra-ui/pull/2753) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Restored TypeScript
+  autocomplete for chakra component props in Jetbrains IDEs.
+
 ## 1.1.2
 
 ### Patch Changes

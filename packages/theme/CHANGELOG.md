@@ -1,5 +1,21 @@
 # Change Log
 
+## 1.3.0
+
+### Minor Changes
+
+- [`f192cfd6`](https://github.com/chakra-ui/chakra-ui/commit/f192cfd640302e75762bb351cec21fdf670ab898)
+  [#2751](https://github.com/chakra-ui/chakra-ui/pull/2751) Thanks
+  [@dodas](https://github.com/dodas)! - The `Input` component now supports "xs"
+  size. This change affects all components that extend from `Input`'s theme,
+  such as `Select`, `PinInput`, `Textarea` or `NumberInput`.
+
+### Patch Changes
+
+- [`de3d059b`](https://github.com/chakra-ui/chakra-ui/commit/de3d059bf2ee7ca2a8ba5f10051b4cd76f86847a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - This was omitted in
+  the last release.
+
 ## 1.2.2
 
 ### Patch Changes
