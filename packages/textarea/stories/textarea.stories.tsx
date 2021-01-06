@@ -1,6 +1,6 @@
+import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import { Textarea } from "../src"
-import { chakra } from "@chakra-ui/system"
 
 export default {
   title: "Textarea",
@@ -29,6 +29,11 @@ export const invalid = () => (
 
 export const withSizes = () => (
   <>
+    <Textarea
+      size="xs"
+      placeholder="A sample placeholder"
+      defaultValue="This is a x-small textarea"
+    />
     <Textarea
       size="sm"
       placeholder="A sample placeholder"

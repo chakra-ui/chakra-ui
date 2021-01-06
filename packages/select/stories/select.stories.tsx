@@ -67,9 +67,9 @@ export const SelectVariants = () => (
 
 export const SelectSizes = () => (
   <Stack spacing={4}>
-    <Select placeholder="large size" size="lg" />
-    <Select placeholder="default size" size="md" />
-    <Select placeholder="small size" size="sm" />
+    {["xs", "sm", "md", "lg"].map((size) => (
+      <Select placeholder={`${size} size`} size={size} key={size} />
+    ))}
   </Stack>
 )
 
@@ -103,9 +103,9 @@ const UpDownIcon = (props: any) => (
   </svg>
 )
 
-export const SelectIcon = () => {
-  return <Select icon={<UpDownIcon />} placeholder="Placeholder" size="md" />
-}
+export const SelectIcon = () => (
+  <Select icon={<UpDownIcon />} placeholder="Placeholder" size="md" />
+)
 
 export const FocusAndErrorColors = () => (
   <Stack>

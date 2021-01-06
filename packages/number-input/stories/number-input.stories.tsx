@@ -159,29 +159,15 @@ export const allowOutOfRange = () => (
 
 export const inputSizes = () => (
   <Stack>
-    <NumberInput size="sm" defaultValue={15} min={10}>
-      <NumberInputField />
-      <NumberInputStepper>
-        <NumberIncrementStepper />
-        <NumberDecrementStepper />
-      </NumberInputStepper>
-    </NumberInput>
-
-    <NumberInput size="md" defaultValue={15} min={10}>
-      <NumberInputField />
-      <NumberInputStepper>
-        <NumberIncrementStepper />
-        <NumberDecrementStepper />
-      </NumberInputStepper>
-    </NumberInput>
-
-    <NumberInput size="lg" defaultValue={15} min={10}>
-      <NumberInputField />
-      <NumberInputStepper>
-        <NumberIncrementStepper />
-        <NumberDecrementStepper />
-      </NumberInputStepper>
-    </NumberInput>
+    {["xs", "sm", "md", "lg"].map((size) => (
+      <NumberInput key={size} size={size} defaultValue={15} min={10}>
+        <NumberInputField />
+        <NumberInputStepper>
+          <NumberIncrementStepper />
+          <NumberDecrementStepper />
+        </NumberInputStepper>
+      </NumberInput>
+    ))}
   </Stack>
 )
 

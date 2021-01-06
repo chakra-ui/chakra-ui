@@ -53,8 +53,8 @@ export function ComponentExample() {
 
 export const Sizes = () => (
   <>
-    {["sm", "md", "lg"].map((size, i) => (
-      <div key={i} style={{ marginBottom: "1rem" }}>
+    {["xs", "sm", "md", "lg"].map((size) => (
+      <div key={size} style={{ marginBottom: "1rem" }}>
         <PinInput size={size} defaultValue="234">
           <PinInputField />
           <PinInputField />
