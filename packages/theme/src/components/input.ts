@@ -15,25 +15,29 @@ const baseStyle = {
 const size = {
   lg: {
     fontSize: "lg",
-    pl: 4,
-    pr: 4,
+    px: 4,
     h: 12,
     borderRadius: "md",
   },
 
   md: {
     fontSize: "md",
-    pl: 4,
-    pr: 4,
+    px: 4,
     h: 10,
     borderRadius: "md",
   },
 
   sm: {
     fontSize: "sm",
-    pl: 3,
-    pr: 3,
+    px: 3,
     h: 8,
+    borderRadius: "sm",
+  },
+
+  xs: {
+    fontSize: "xs",
+    px: 2,
+    h: 6,
     borderRadius: "sm",
   },
 }
@@ -50,6 +54,10 @@ const sizes = {
   sm: {
     field: size.sm,
     addon: size.sm,
+  },
+  xs: {
+    field: size.xs,
+    addon: size.xs,
   },
 }
 

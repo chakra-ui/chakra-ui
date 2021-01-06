@@ -50,7 +50,7 @@ export const Controlled = () => {
 
 export const WithSizes = () => (
   <Stack align="start">
-    {["sm", "md", "lg"].map((size) => (
+    {["xs", "sm", "md", "lg"].map((size) => (
       <Input size={size} placeholder="This is an input component" />
     ))}
   </Stack>

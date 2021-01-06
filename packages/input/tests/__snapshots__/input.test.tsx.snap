@@ -16,8 +16,6 @@ exports[`Elements inside input render correctly 1`] = `
   width: 2.5rem;
   height: 2.5rem;
   font-size: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -101,8 +99,6 @@ exports[`Elements inside input render correctly 1`] = `
   width: 2.5rem;
   height: 2.5rem;
   font-size: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;

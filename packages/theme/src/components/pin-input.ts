@@ -26,6 +26,12 @@ const sizes = {
     h: 8,
     borderRadius: "sm",
   },
+  xs: {
+    fontSize: "xs",
+    w: 6,
+    h: 6,
+    borderRadius: "sm",
+  },
 }
 
 const variants = {

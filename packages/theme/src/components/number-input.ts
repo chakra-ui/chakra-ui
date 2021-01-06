@@ -1,5 +1,6 @@
 import { mode } from "@chakra-ui/theme-tools"
 import Input from "./input"
+import typography from "../foundations/typography"
 
 const parts = ["field", "stepper", "stepperGroup"]
 
@@ -32,19 +33,25 @@ const baseStyle = (props: Record<string, any>) => ({
   stepper: baseStyleStepper(props),
 })
 
-function getSize(size: "sm" | "md" | "lg") {
-  const sizeStyle = Input.sizes?.[size]
+function getSize(size: "xs" | "sm" | "md" | "lg") {
+  const sizeStyle = Input.sizes[size]
 
   const radius = {
     lg: "md",
     md: "md",
     sm: "sm",
+    xs: "sm",
   }
 
+  const resolvedFontSize = typography.fontSizes[sizeStyle.field.fontSize]
+
   return {
-    field: sizeStyle?.field,
+    field: {
+      ...sizeStyle.field,
+      verticalAlign: "top",
+    },
     stepper: {
-      fontSize: size === "lg" ? "14px" : "10px",
+      fontSize: `calc(${resolvedFontSize} * 0.75)`,
       _first: {
         borderTopRightRadius: radius[size],
       },
@@ -58,6 +65,7 @@ function getSize(size: "sm" | "md" | "lg") {
 }
 
 const sizes = {
+  xs: getSize("xs"),
   sm: getSize("sm"),
   md: getSize("md"),
   lg: getSize("lg"),

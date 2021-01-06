@@ -27,6 +27,7 @@ exports[`should render correctly 1`] = `
   padding-right: 1rem;
   height: 2.5rem;
   border-radius: 0.375rem;
+  vertical-align: top;
   border: 1px solid;
   border-color: inherit;
   background: inherit;
@@ -94,7 +95,7 @@ exports[`should render correctly 1`] = `
   border-left: 1px solid;
   border-color: inherit;
   color: inherit;
-  font-size: 10px;
+  font-size: calc(1rem * 0.75);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
