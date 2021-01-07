@@ -56,6 +56,6 @@
     "@chakra-ui/utils": "^1.0.2",
     "commander": "^6.2.1",
     "regenerator-runtime": "^0.13.7",
-    "ts-node": "9.1.0"
+    "ts-node": "9.1.1"
   }
 }
