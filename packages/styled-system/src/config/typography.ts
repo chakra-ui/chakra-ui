@@ -31,7 +31,9 @@ const config: Config = {
   textTransform: true,
   whiteSpace: true,
   textDecoration: true,
-  textDecor: { property: "textDecoration" },
+  textDecor: {
+    property: "textDecoration",
+  },
 }
 
 /**

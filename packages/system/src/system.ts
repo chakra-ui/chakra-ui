@@ -13,7 +13,7 @@ import {
   Dict,
   isFunction,
 } from "@chakra-ui/utils"
-import emotionStyled, {
+import _styled, {
   CSSObject,
   FunctionInterpolation,
   Interpolation,
@@ -42,7 +42,7 @@ interface StyleResolverProps extends SystemProps {
   apply?: ResponsiveValue<string>
 }
 
-type StyleResolver = (params: {
+type GetStyleObject = (options: {
   baseStyle?: SystemStyleObject
 }) => FunctionInterpolation<StyleResolverProps>
 
@@ -59,7 +59,7 @@ type StyleResolver = (params: {
  * behaviors. Right now, the `sx` prop has the highest priority so the resolved
  * fontSize will be `40px`
  */
-export const styleResolver: StyleResolver = ({ baseStyle }) => (props) => {
+export const getStyleObject: GetStyleObject = ({ baseStyle }) => (props) => {
   const {
     theme,
     layerStyle,
@@ -141,14 +141,11 @@ export function styled<T extends As, P = {}>(
     styledOptions.shouldForwardProp = shouldForwardProp
   }
 
-  const styledFn = emotionStyled(
+  const styleObject = getStyleObject({ baseStyle })
+  return _styled(
     component as React.ComponentType<any>,
     styledOptions,
-  )
-  const args = styleResolver({ baseStyle })
-  const StyledComponent: any = styledFn(args)
-
-  return StyledComponent as ChakraComponent<T, P>
+  )(styleObject) as ChakraComponent<T, P>
 }
 
 export type HTMLChakraComponents = {

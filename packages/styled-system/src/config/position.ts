@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { Config, createParser, system } from "../core"
-import { Length, ResponsiveValue, t } from "../utils"
+import { Length, positiveOrNegative, ResponsiveValue, t } from "../utils"
 
 const config: Config = {
   position: true,
@@ -16,9 +16,23 @@ const config: Config = {
   bottom: t.spaceT("bottom"),
   insetBlockEnd: t.spaceT("insetBlockEnd"),
   left: t.spaceT("left"),
-  insetInlineStart: t.spaceT("insetInlineStart"),
+  insetInlineStart: t.logical({
+    scale: "space",
+    property: {
+      ltr: "left",
+      rtl: "right",
+    },
+    transform: positiveOrNegative,
+  }),
   right: t.spaceT("right"),
-  insetInlineEnd: t.spaceT("insetInlineEnd"),
+  insetInlineEnd: t.logical({
+    scale: "space",
+    property: {
+      ltr: "right",
+      rtl: "left",
+    },
+    transform: positiveOrNegative,
+  }),
 }
 
 Object.assign(config, {

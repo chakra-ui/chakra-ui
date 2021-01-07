@@ -5,7 +5,7 @@ import { transformGradient } from "../utils/parse-gradient"
 
 function transformBgClip(value: string) {
   return value === "text"
-    ? { WebkitTextFillColor: "transparent", backgroundClip: "text" }
+    ? { color: "transparent", backgroundClip: "text" }
     : { backgroundClip: value }
 }
 

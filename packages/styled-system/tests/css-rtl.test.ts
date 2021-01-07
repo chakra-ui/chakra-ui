@@ -14,6 +14,7 @@ test("RTL: should transform logical css properties", () => {
     marginStart: "sm",
     roundedStart: ["20px", "40px"],
     borderColor: "red",
+    insetStart: "sm",
   })({
     breakpoints,
     direction: "rtl",
@@ -33,6 +34,7 @@ test("RTL: should transform logical css properties", () => {
       "borderTopRightRadius": "20px",
       "float": "right",
       "marginInlineStart": 40,
+      "right": 40,
     }
   `)
 })

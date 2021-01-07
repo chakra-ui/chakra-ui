@@ -25,12 +25,14 @@ const config: Config = {
   boxSizing: true,
 }
 
-config.w = config.width
-config.h = config.height
-config.minW = config.minWidth
-config.maxW = config.maxWidth
-config.minH = config.minHeight
-config.maxH = config.maxHeight
+Object.assign(config, {
+  w: config.width,
+  h: config.height,
+  minW: config.minWidth,
+  maxW: config.maxWidth,
+  minH: config.minHeight,
+  maxH: config.maxHeight,
+})
 
 /**
  * Types for layout related CSS properties

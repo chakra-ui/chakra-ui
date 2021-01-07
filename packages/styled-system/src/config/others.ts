@@ -1,5 +1,5 @@
 import * as CSS from "csstype"
-import { Config, PropConfig, createParser, system } from "../core"
+import { Config, createParser, PropConfig, system } from "../core"
 import { getIsRtl, Length, ResponsiveValue } from "../utils"
 
 const floatTransform: PropConfig["transform"] = (value, _, props = {}) => {

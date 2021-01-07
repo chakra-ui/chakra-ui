@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { Config, createParser, system } from "../core"
-import { Length, polyfill, ResponsiveValue, t } from "../utils"
+import { Length, ResponsiveValue, t } from "../utils"
 
 const config: Config = {
   border: t.borders("border"),
@@ -11,39 +11,35 @@ const config: Config = {
   borderTop: t.borders("borderTop"),
   borderBlockStart: t.borders("borderBlockStart"),
   borderTopLeftRadius: t.radii("borderTopLeftRadius"),
-  borderStartStartRadius: {
-    property: "&",
+  borderStartStartRadius: t.logical({
     scale: "radii",
-    transform: polyfill({
+    property: {
       ltr: "borderTopLeftRadius",
       rtl: "borderTopRightRadius",
-    }),
-  },
-  borderEndStartRadius: {
-    property: "&",
+    },
+  }),
+  borderEndStartRadius: t.logical({
     scale: "radii",
-    transform: polyfill({
+    property: {
       ltr: "borderBottomLeftRadius",
       rtl: "borderBottomRightRadius",
-    }),
-  },
+    },
+  }),
   borderTopRightRadius: t.radii("borderTopRightRadius"),
-  borderStartEndRadius: {
-    property: "&",
+  borderStartEndRadius: t.logical({
     scale: "radii",
-    transform: polyfill({
+    property: {
       ltr: "borderTopRightRadius",
       rtl: "borderTopLeftRadius",
-    }),
-  },
-  borderEndEndRadius: {
-    property: "&",
+    },
+  }),
+  borderEndEndRadius: t.logical({
     scale: "radii",
-    transform: polyfill({
+    property: {
       ltr: "borderBottomRightRadius",
       rtl: "borderBottomLeftRadius",
-    }),
-  },
+    },
+  }),
   borderRight: t.borders("borderRight"),
   borderInlineEnd: t.borders("borderInlineEnd"),
   borderBottom: t.borders("borderBottom"),
@@ -55,22 +51,20 @@ const config: Config = {
     property: "borderInlineStart",
     scale: "borders",
   },
-  borderInlineStartRadius: {
+  borderInlineStartRadius: t.logical({
     scale: "radii",
-    property: "&",
-    transform: polyfill({
+    property: {
       ltr: ["borderTopLeftRadius", "borderBottomLeftRadius"],
       rtl: ["borderTopRightRadius", "borderBottomRightRadius"],
-    }),
-  },
-  borderInlineEndRadius: {
+    },
+  }),
+  borderInlineEndRadius: t.logical({
     scale: "radii",
-    property: "&",
-    transform: polyfill({
+    property: {
       ltr: ["borderTopRightRadius", "borderBottomRightRadius"],
       rtl: ["borderTopLeftRadius", "borderBottomLeftRadius"],
-    }),
-  },
+    },
+  }),
   borderX: t.borders(["borderLeft", "borderRight"]),
   borderInline: t.borders("borderInline"),
   borderY: t.borders(["borderTop", "borderBottom"]),

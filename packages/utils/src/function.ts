@@ -27,6 +27,11 @@ export function callAll<T extends AnyFunction>(...fns: (T | undefined)[]) {
   }
 }
 
+export const compose = <T>(
+  fn1: (...args: T[]) => T,
+  ...fns: Array<(...args: T[]) => T>
+) => fns.reduce((f1, f2) => (...args) => f1(f2(...args)), fn1)
+
 export function once(fn?: Function | null) {
   let result: any
 
