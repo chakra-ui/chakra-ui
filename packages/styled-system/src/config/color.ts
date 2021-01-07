@@ -11,23 +11,23 @@ const config: Config = {
   stroke: t.colors("stroke"),
 }
 
-export interface ColorProps<Theme extends ThemeTypings = ThemeTypings> {
+export interface ColorProps {
   /**
    * The CSS `color` property
    */
-  textColor?: ResponsiveValue<Theme["colors"]>
+  textColor?: ResponsiveValue<ThemeTypings["colors"]>
   /**
    * The CSS `color` property
    */
-  color?: ResponsiveValue<Theme["colors"] | CSS.Property.Color>
+  color?: ResponsiveValue<ThemeTypings["colors"] | CSS.Property.Color>
   /**
    * The CSS `fill` property for icon svgs and paths
    */
-  fill?: ResponsiveValue<Theme["colors"] | CSS.Property.Color>
+  fill?: ResponsiveValue<ThemeTypings["colors"] | CSS.Property.Color>
   /**
    * The CSS `stroke` property for icon svgs and paths
    */
-  stroke?: ResponsiveValue<Theme["colors"] | CSS.Property.Color>
+  stroke?: ResponsiveValue<ThemeTypings["colors"] | CSS.Property.Color>
   /**
    * The CSS `opacity` property
    */

@@ -1,7 +1,7 @@
 import * as CSS from "csstype"
 import { Config, createParser, system } from "../core"
 import { ResponsiveValue, Length } from "../utils"
-import { ThemeTypings } from "../theming.types"
+import { ThemeTypings } from ".."
 
 const config: Config = {
   fontFamily: {
@@ -40,31 +40,33 @@ const config: Config = {
 /**
  * Types for typography related CSS properties
  */
-export interface TypographyProps<Theme extends ThemeTypings = ThemeTypings> {
+export interface TypographyProps {
   /**
    * The CSS `font-weight` property
    */
-  fontWeight?: ResponsiveValue<Theme["fontWeights"] | string | number>
+  fontWeight?: ResponsiveValue<(ThemeTypings["fontWeights"] | string) | number>
   /**
    * The CSS `line-height` property
    */
   lineHeight?: ResponsiveValue<
-    Theme["lineHeights"] | CSS.Property.LineHeight<Length>
+    CSS.Property.LineHeight<ThemeTypings["lineHeights"] | Length>
   >
   /**
    * The CSS `letter-spacing` property
    */
   letterSpacing?: ResponsiveValue<
-    Theme["letterSpacings"] | CSS.Property.LetterSpacing<Length>
+    CSS.Property.LetterSpacing<ThemeTypings["letterSpacings"] | Length>
   >
   /**
    * The CSS `font-size` property
    */
-  fontSize?: ResponsiveValue<Theme["fontSizes"] | CSS.Property.FontSize<Length>>
+  fontSize?: ResponsiveValue<
+    CSS.Property.FontSize<ThemeTypings["fontSizes"] | Length>
+  >
   /**
    * The CSS `font-family` property
    */
-  fontFamily?: ResponsiveValue<Theme["fonts"] | CSS.Property.FontFamily>
+  fontFamily?: ResponsiveValue<ThemeTypings["fonts"] | CSS.Property.FontFamily>
   /**
    * The CSS `text-align` property
    */

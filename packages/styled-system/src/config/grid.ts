@@ -23,7 +23,7 @@ const config: Config = {
   gridArea: true,
 }
 
-export interface GridProps<Theme extends ThemeTypings = ThemeTypings> {
+export interface GridProps {
   /**
    * The CSS `grid-gap` property.
    *
@@ -31,7 +31,9 @@ export interface GridProps<Theme extends ThemeTypings = ThemeTypings> {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-gap)
    */
-  gridGap?: ResponsiveValue<CSS.Property.GridGap<Length> | Theme["sizes"]>
+  gridGap?: ResponsiveValue<
+    ThemeTypings["sizes"] | CSS.Property.GridGap<Length>
+  >
   /**
    * The CSS `grid-column-gap` property.
    *
@@ -40,7 +42,7 @@ export interface GridProps<Theme extends ThemeTypings = ThemeTypings> {
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap)
    */
   gridColumnGap?: ResponsiveValue<
-    CSS.Property.GridColumnGap<Length> | Theme["sizes"]
+    ThemeTypings["sizes"] | CSS.Property.GridColumnGap<Length>
   >
   /**
    * The CSS `grid-row-gap` property.
@@ -49,7 +51,9 @@ export interface GridProps<Theme extends ThemeTypings = ThemeTypings> {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap)
    */
-  gridRowGap?: ResponsiveValue<CSS.Property.GridRowGap<Length> | Theme["sizes"]>
+  gridRowGap?: ResponsiveValue<
+    ThemeTypings["sizes"] | CSS.Property.GridRowGap<Length>
+  >
   /**
    * The CSS `grid-column` property.
    *
@@ -134,7 +138,7 @@ export interface GridProps<Theme extends ThemeTypings = ThemeTypings> {
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns)
    */
   gridAutoColumns?: ResponsiveValue<
-    Theme["sizes"] | CSS.Property.GridAutoColumns<Length>
+    ThemeTypings["sizes"] | CSS.Property.GridAutoColumns<Length>
   >
   /**
    * The CSS `grid-auto-rows` property.
@@ -144,7 +148,7 @@ export interface GridProps<Theme extends ThemeTypings = ThemeTypings> {
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows)
    */
   gridAutoRows?: ResponsiveValue<
-    Theme["sizes"] | CSS.Property.GridAutoRows<Length>
+    ThemeTypings["sizes"] | CSS.Property.GridAutoRows<Length>
   >
   /**
    * The CSS `grid-template-columns` property
@@ -154,7 +158,7 @@ export interface GridProps<Theme extends ThemeTypings = ThemeTypings> {
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns)
    */
   gridTemplateColumns?: ResponsiveValue<
-    Theme["sizes"] | CSS.Property.GridTemplateColumns<Length>
+    ThemeTypings["sizes"] | CSS.Property.GridTemplateColumns<Length>
   >
   /**
    * The CSS `grid-template-rows` property.
@@ -164,7 +168,7 @@ export interface GridProps<Theme extends ThemeTypings = ThemeTypings> {
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows)
    */
   gridTemplateRows?: ResponsiveValue<
-    Theme["sizes"] | CSS.Property.GridTemplateRows<Length>
+    ThemeTypings["sizes"] | CSS.Property.GridTemplateRows<Length>
   >
   /**
    * The CSS `grid-template-areas` property.

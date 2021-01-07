@@ -15,22 +15,24 @@ Object.assign(config, {
 /**
  * Types for box and text shadow properties
  */
-export interface ShadowProps<Theme extends ThemeTypings = ThemeTypings> {
+export interface ShadowProps {
   /**
    * The `box-shadow` property
    */
   boxShadow?: ResponsiveValue<
-    Theme["shadows"] | CSS.Property.BoxShadow | number
+    ThemeTypings["shadows"] | CSS.Property.BoxShadow | number
   >
   /**
    * The `box-shadow` property
    */
-  shadow?: ResponsiveValue<Theme["shadows"] | CSS.Property.BoxShadow | number>
+  shadow?: ResponsiveValue<
+    ThemeTypings["shadows"] | CSS.Property.BoxShadow | number
+  >
   /**
    * The `text-shadow` property
    */
   textShadow?: ResponsiveValue<
-    Theme["shadows"] | CSS.Property.TextShadow | number
+    ThemeTypings["shadows"] | CSS.Property.TextShadow | number
   >
 }
 

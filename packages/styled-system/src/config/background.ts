@@ -43,11 +43,11 @@ const config: Config = {
   },
 }
 
-export interface BackgroundProps<Theme extends ThemeTypings = ThemeTypings> {
+export interface BackgroundProps {
   /**
    * The CSS `background` property
    */
-  bg?: ResponsiveValue<Theme["colors"] | CSS.Property.Background<Length>>
+  bg?: ResponsiveValue<CSS.Property.Background<ThemeTypings["colors"] | Length>>
   /**
    * The CSS `background-clip` property
    */
@@ -60,17 +60,19 @@ export interface BackgroundProps<Theme extends ThemeTypings = ThemeTypings> {
    * The CSS `background` property
    */
   background?: ResponsiveValue<
-    Theme["colors"] | CSS.Property.Background<Length>
+    CSS.Property.Background<ThemeTypings["colors"] | Length>
   >
   /**
    * The CSS `background-color` property
    */
-  bgColor?: ResponsiveValue<Theme["colors"] | CSS.Property.BackgroundColor>
+  bgColor?: ResponsiveValue<
+    ThemeTypings["colors"] | CSS.Property.BackgroundColor
+  >
   /**
    * The CSS `background-color` property
    */
   backgroundColor?: ResponsiveValue<
-    Theme["colors"] | CSS.Property.BackgroundColor
+    ThemeTypings["colors"] | CSS.Property.BackgroundColor
   >
   /**
    * The CSS `background-image` property

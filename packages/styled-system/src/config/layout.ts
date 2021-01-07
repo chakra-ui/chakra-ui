@@ -38,7 +38,7 @@ Object.assign(config, {
 /**
  * Types for layout related CSS properties
  */
-export interface LayoutProps<Theme extends ThemeTypings = ThemeTypings> {
+export interface LayoutProps {
   /**
    * The CSS `display` property
    */
@@ -50,75 +50,85 @@ export interface LayoutProps<Theme extends ThemeTypings = ThemeTypings> {
   /**
    * The CSS `width` property
    */
-  width?: ResponsiveValue<Theme["sizes"] | CSS.Property.Width<Length>>
+  width?: ResponsiveValue<CSS.Property.Width<ThemeTypings["sizes"] | Length>>
   /**
    * The CSS `width` property
    */
-  w?: ResponsiveValue<Theme["sizes"] | CSS.Property.Width<Length>>
-  inlineSize?: ResponsiveValue<Theme["sizes"] | CSS.Property.InlineSize<Length>>
+  w?: ResponsiveValue<CSS.Property.Width<ThemeTypings["sizes"] | Length>>
+  inlineSize?: ResponsiveValue<
+    CSS.Property.InlineSize<ThemeTypings["sizes"] | Length>
+  >
   /**
    * The CSS `width` and `height` property
    */
-  boxSize?: ResponsiveValue<Theme["sizes"] | CSS.Property.Width<Length>>
+  boxSize?: ResponsiveValue<CSS.Property.Width<ThemeTypings["sizes"] | Length>>
   /**
    * The CSS `max-width` property
    */
-  maxWidth?: ResponsiveValue<Theme["sizes"] | CSS.Property.MaxWidth<Length>>
+  maxWidth?: ResponsiveValue<
+    CSS.Property.MaxWidth<ThemeTypings["sizes"] | Length>
+  >
   /**
    * The CSS `max-width` property
    */
-  maxW?: ResponsiveValue<Theme["sizes"] | CSS.Property.MaxWidth<Length>>
+  maxW?: ResponsiveValue<CSS.Property.MaxWidth<ThemeTypings["sizes"] | Length>>
   maxInlineSize?: ResponsiveValue<
-    Theme["sizes"] | CSS.Property.MaxInlineSize<Length>
+    CSS.Property.MaxInlineSize<ThemeTypings["sizes"] | Length>
   >
   /**
    * The CSS `min-width` property
    */
-  minWidth?: ResponsiveValue<Theme["sizes"] | CSS.Property.MinWidth<Length>>
+  minWidth?: ResponsiveValue<
+    CSS.Property.MinWidth<ThemeTypings["sizes"] | Length>
+  >
   /**
    * The CSS `min-width` property
    */
-  minW?: ResponsiveValue<Theme["sizes"] | CSS.Property.MinWidth<Length>>
+  minW?: ResponsiveValue<CSS.Property.MinWidth<ThemeTypings["sizes"] | Length>>
   minInlineSize?: ResponsiveValue<
-    Theme["sizes"] | CSS.Property.MinInlineSize<Length>
+    CSS.Property.MinInlineSize<ThemeTypings["sizes"] | Length>
   >
   /**
    * The CSS `height` property
    */
-  height?: ResponsiveValue<CSS.Property.Height<Length> | Theme["sizes"]>
+  height?: ResponsiveValue<CSS.Property.Height<ThemeTypings["sizes"] | Length>>
   /**
    * The CSS `height` property
    */
-  h?: ResponsiveValue<CSS.Property.Height<Length> | Theme["sizes"]>
-  blockSize?: ResponsiveValue<CSS.Property.BlockSize<Length> | Theme["sizes"]>
+  h?: ResponsiveValue<CSS.Property.Height<ThemeTypings["sizes"] | Length>>
+  blockSize?: ResponsiveValue<
+    CSS.Property.BlockSize<ThemeTypings["sizes"] | Length>
+  >
   /**
    * The CSS `max-height` property
    */
-  maxHeight?: ResponsiveValue<CSS.Property.MaxHeight<Length> | Theme["sizes"]>
+  maxHeight?: ResponsiveValue<
+    CSS.Property.MaxHeight<ThemeTypings["sizes"] | Length>
+  >
   /**
    * The CSS `max-height` property
    */
-  maxH?: ResponsiveValue<CSS.Property.MaxHeight<Length> | Theme["sizes"]>
+  maxH?: ResponsiveValue<CSS.Property.MaxHeight<ThemeTypings["sizes"] | Length>>
   maxBlockSize?: ResponsiveValue<
-    CSS.Property.MaxBlockSize<Length> | Theme["sizes"]
+    CSS.Property.MaxBlockSize<ThemeTypings["sizes"] | Length>
   >
   /**
    * The CSS `min-height` property
    */
-  minHeight?: ResponsiveValue<CSS.Property.MinHeight<Length> | Theme["sizes"]>
+  minHeight?: ResponsiveValue<
+    CSS.Property.MinHeight<ThemeTypings["sizes"] | Length>
+  >
   /**
    * The CSS `min-height` property
    */
-  minH?: ResponsiveValue<CSS.Property.MinHeight<Length> | Theme["sizes"]>
+  minH?: ResponsiveValue<CSS.Property.MinHeight<ThemeTypings["sizes"] | Length>>
   minBlockSize?: ResponsiveValue<
-    CSS.Property.MinBlockSize<Length> | Theme["sizes"]
+    CSS.Property.MinBlockSize<ThemeTypings["sizes"] | Length>
   >
   /**
    * The CSS `vertical-align` property
    */
-  verticalAlign?: ResponsiveValue<
-    CSS.Property.VerticalAlign<Length> | Theme["sizes"]
-  >
+  verticalAlign?: ResponsiveValue<CSS.Property.VerticalAlign<Length>>
   /**
    * The CSS `overflow` property
    */

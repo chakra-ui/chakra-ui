@@ -141,11 +141,13 @@ Object.assign(config, {
 /**
  * The prop types for border properties listed above
  */
-export interface BorderProps<Theme extends ThemeTypings = ThemeTypings> {
+export interface BorderProps {
   /**
    * The CSS `border` property
    */
-  border?: ResponsiveValue<CSS.Property.Border<Length> | Theme["borders"]>
+  border?: ResponsiveValue<
+    CSS.Property.Border<ThemeTypings["borders"] | Length>
+  >
   /**
    * The CSS `border-width` property
    */
@@ -157,21 +159,27 @@ export interface BorderProps<Theme extends ThemeTypings = ThemeTypings> {
   /**
    * The CSS `border-color` property
    */
-  borderColor?: ResponsiveValue<CSS.Property.BorderTopColor | Theme["colors"]>
-  /**
-   * The CSS `border-radius` property
-   */
-  borderRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+  borderColor?: ResponsiveValue<
+    ThemeTypings["colors"] | CSS.Property.BorderTopColor
   >
   /**
    * The CSS `border-radius` property
    */
-  rounded?: ResponsiveValue<CSS.Property.BorderRadius<Length> | Theme["radii"]>
+  borderRadius?: ResponsiveValue<
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
+  >
+  /**
+   * The CSS `border-radius` property
+   */
+  rounded?: ResponsiveValue<
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
+  >
   /**
    * The CSS `border-top` property
    */
-  borderTop?: ResponsiveValue<CSS.Property.BorderTop<Length> | Theme["borders"]>
+  borderTop?: ResponsiveValue<
+    CSS.Property.BorderTop<ThemeTypings["borders"] | Length>
+  >
   borderBlockStart?: ResponsiveValue<CSS.Property.BorderBlockStart<Length>>
   /**
    * The CSS `border-top-width` property
@@ -229,45 +237,45 @@ export interface BorderProps<Theme extends ThemeTypings = ThemeTypings> {
    * The CSS `border-top-color` property
    */
   borderTopColor?: ResponsiveValue<
-    CSS.Property.BorderTopColor | Theme["colors"]
+    ThemeTypings["colors"] | CSS.Property.BorderTopColor
   >
   borderBlockStartColor?: ResponsiveValue<
-    CSS.Property.BorderBlockStartColor | Theme["colors"]
+    ThemeTypings["colors"] | CSS.Property.BorderBlockStartColor
   >
   /**
    * The CSS `border-bottom-color` property
    */
   borderBottomColor?: ResponsiveValue<
-    CSS.Property.BorderBottomColor | Theme["colors"]
+    ThemeTypings["colors"] | CSS.Property.BorderBottomColor
   >
   borderBlockEndColor?: ResponsiveValue<
-    CSS.Property.BorderBlockEndColor | Theme["colors"]
+    ThemeTypings["colors"] | CSS.Property.BorderBlockEndColor
   >
   /**
    * The CSS `border-left-color` property
    */
   borderLeftColor?: ResponsiveValue<
-    CSS.Property.BorderLeftColor | Theme["colors"]
+    ThemeTypings["colors"] | CSS.Property.BorderLeftColor
   >
   borderStartColor?: ResponsiveValue<CSS.Property.BorderInlineStartColor>
   borderInlineStartColor?: ResponsiveValue<
-    CSS.Property.BorderInlineStartColor | Theme["colors"]
+    ThemeTypings["colors"] | CSS.Property.BorderInlineStartColor
   >
   /**
    * The CSS `border-right-color` property
    */
   borderRightColor?: ResponsiveValue<
-    CSS.Property.BorderRightColor | Theme["colors"]
+    ThemeTypings["colors"] | CSS.Property.BorderRightColor
   >
   borderEndColor?: ResponsiveValue<CSS.Property.BorderInlineEndColor>
   borderInlineEndColor?: ResponsiveValue<
-    CSS.Property.BorderInlineEndColor | Theme["colors"]
+    ThemeTypings["colors"] | CSS.Property.BorderInlineEndColor
   >
   /**
    * The CSS `border-right` property
    */
   borderRight?: ResponsiveValue<
-    CSS.Property.BorderRight<Length> | Theme["borders"]
+    CSS.Property.BorderRight<ThemeTypings["borders"] | Length>
   >
   borderEnd?: ResponsiveValue<CSS.Property.BorderInlineStart<Length>>
   borderInlineEnd?: ResponsiveValue<CSS.Property.BorderInlineEnd<Length>>
@@ -275,14 +283,14 @@ export interface BorderProps<Theme extends ThemeTypings = ThemeTypings> {
    * The CSS `border-bottom` property
    */
   borderBottom?: ResponsiveValue<
-    CSS.Property.BorderBottom<Length> | Theme["borders"]
+    CSS.Property.BorderBottom<ThemeTypings["borders"] | Length>
   >
   borderBlockEnd?: ResponsiveValue<CSS.Property.BorderBlockEnd<Length>>
   /**
    * The CSS `border-left` property
    */
   borderLeft?: ResponsiveValue<
-    CSS.Property.BorderLeft<Length> | Theme["borders"]
+    CSS.Property.BorderLeft<ThemeTypings["borders"] | Length>
   >
   borderStart?: ResponsiveValue<CSS.Property.BorderInlineStart<Length>>
   borderInlineStart?: ResponsiveValue<CSS.Property.BorderInlineStart<Length>>
@@ -290,186 +298,190 @@ export interface BorderProps<Theme extends ThemeTypings = ThemeTypings> {
    * The CSS `border-top-radius` property
    */
   borderTopRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * The CSS `border-top-radius` property
    */
   roundedTop?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * The CSS `border-right-radius` property
    */
   borderRightRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * The CSS `border-right-radius` property
    */
   roundedRight?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * When direction is `ltr`, `roundedEnd` is equivalent to `borderRightRadius`.
    * When direction is `rtl`, `roundedEnd` is equivalent to `borderLeftRadius`.
    */
   roundedEnd?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * When direction is `ltr`, `borderInlineEndRadius` is equivalent to `borderRightRadius`.
    * When direction is `rtl`, `borderInlineEndRadius` is equivalent to `borderLeftRadius`.
    */
   borderInlineEndRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * When direction is `ltr`, `borderEndRadius` is equivalent to `borderRightRadius`.
    * When direction is `rtl`, `borderEndRadius` is equivalent to `borderLeftRadius`.
    */
   borderEndRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * The CSS `border-bottom-radius` property
    */
   borderBottomRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * The CSS `border-bottom-radius` property
    */
   roundedBottom?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * The CSS `border-left-radius` property
    */
   borderLeftRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * The CSS `border-left-radius` property
    */
   roundedLeft?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * When direction is `ltr`, `roundedEnd` is equivalent to `borderRightRadius`.
    * When direction is `rtl`, `roundedEnd` is equivalent to `borderLeftRadius`.
    */
   roundedStart?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * When direction is `ltr`, `borderInlineStartRadius` is equivalent to `borderLeftRadius`.
    * When direction is `rtl`, `borderInlineStartRadius` is equivalent to `borderRightRadius`.
    */
   borderInlineStartRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * When direction is `ltr`, `borderStartRadius` is equivalent to `borderLeftRadius`.
    * When direction is `rtl`, `borderStartRadius` is equivalent to `borderRightRadius`.
    */
   borderStartRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * The CSS `border-top-left-radius` property
    */
   borderTopLeftRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   borderTopStartRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   borderStartStartRadius?: ResponsiveValue<
-    CSS.Property.BorderStartStartRadius<Length> | Theme["radii"]
+    CSS.Property.BorderStartStartRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * The CSS `border-top-left-radius` property
    */
   roundedTopLeft?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   roundedTopStart?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * The CSS `border-top-right-radius` property
    */
   borderTopRightRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   borderTopEndRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   borderStartEndRadius?: ResponsiveValue<
-    CSS.Property.BorderStartEndRadius<Length> | Theme["radii"]
+    CSS.Property.BorderStartEndRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * The CSS `border-top-right-radius` property
    */
   roundedTopRight?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   roundedTopEnd?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
 
   /**
    * The CSS `border-bottom-left-radius` property
    */
   borderBottomLeftRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   borderBottomStartRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   borderEndStartRadius?: ResponsiveValue<
-    CSS.Property.BorderEndStartRadius<Length> | Theme["radii"]
+    CSS.Property.BorderEndStartRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * The CSS `border-bottom-left-radius` property
    */
   roundedBottomLeft?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   roundedBottomStart?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * The CSS `border-bottom-right-radius` property
    */
   borderBottomRightRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   borderBottomEndRadius?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   borderEndEndRadius?: ResponsiveValue<
-    CSS.Property.BorderEndEndRadius<Length> | Theme["radii"]
+    CSS.Property.BorderEndEndRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * The CSS `border-bottom-right-radius` property
    */
   roundedBottomRight?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   roundedBottomEnd?: ResponsiveValue<
-    CSS.Property.BorderRadius<Length> | Theme["radii"]
+    CSS.Property.BorderRadius<ThemeTypings["radii"] | Length>
   >
   /**
    * The CSS `border-right` and `border-left` property
    */
-  borderX?: ResponsiveValue<CSS.Property.Border<Length> | Theme["borders"]>
+  borderX?: ResponsiveValue<
+    CSS.Property.Border<ThemeTypings["borders"] | Length>
+  >
   borderInline?: ResponsiveValue<CSS.Property.BorderInline<Length>>
   /**
    * The CSS `border-top` and `border-bottom` property
    */
-  borderY?: ResponsiveValue<CSS.Property.Border<Length> | Theme["borders"]>
+  borderY?: ResponsiveValue<
+    CSS.Property.Border<ThemeTypings["borders"] | Length>
+  >
   borderBlock?: ResponsiveValue<CSS.Property.BorderBlock<Length>>
 }
 

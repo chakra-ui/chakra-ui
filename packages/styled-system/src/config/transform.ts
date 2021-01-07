@@ -8,7 +8,7 @@ const config: Config = {
   transformOrigin: true,
 }
 
-export interface TransformProps<Theme extends ThemeTypings = ThemeTypings> {
+export interface TransformProps {
   /**
    * The CSS `transform` property
    */
@@ -17,7 +17,7 @@ export interface TransformProps<Theme extends ThemeTypings = ThemeTypings> {
    * The CSS `transform-origin` property
    */
   transformOrigin?: ResponsiveValue<
-    Theme["sizes"] | CSS.Property.TransformOrigin<Length>
+    CSS.Property.TransformOrigin<ThemeTypings["sizes"] | Length>
   >
 }
 
