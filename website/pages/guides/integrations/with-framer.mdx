@@ -9,7 +9,7 @@ If you'd like to add some interesting motion interaction or animation to your
 Chakra UI websites or apps, here's a quick tip:
 
 ```jsx live=false
-import { Box } from "@chakra-ui/react"
+import { Box, forwardRef } from "@chakra-ui/react"
 import { motion, isValidMotionProp } from "framer-motion"
 
 // 1. Create a custom motion component from Box
@@ -19,7 +19,7 @@ const MotionBox = motion.custom(
       // do not pass framer props to DOM element
       Object.entries(props).filter(([key]) => !isValidMotionProp(key)),
     )
-    return <chakra.div ref={ref} {...chakraProps} />
+    return <Box ref={ref} {...chakraProps} />
   }),
 )
 
