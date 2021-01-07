@@ -172,17 +172,23 @@ export const SkeletonText: React.FC<SkeletonTextProps> = (props) => {
           return null
         }
 
+        const sizeProps = isLoaded
+          ? null
+          : {
+              mb: number === numbers.length ? "0" : spacing,
+              width: getWidth(number),
+              height: skeletonHeight,
+            }
+
         return (
           <Skeleton
             key={numbers.length.toString() + number}
-            mb={number === numbers.length ? "0" : spacing}
-            width={getWidth(number)}
-            height={skeletonHeight}
             startColor={startColor}
             endColor={endColor}
             isLoaded={isLoaded}
             fadeDuration={fadeDuration}
             speed={speed}
+            {...sizeProps}
           >
             {
               // allows animating the children
