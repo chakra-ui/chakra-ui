@@ -342,6 +342,25 @@ declare module "@chakra-ui/styled-system" {
       | "skipLink"
       | "toast"
       | "tooltip"
+    colorSchemes:
+      | "whiteAlpha"
+      | "blackAlpha"
+      | "gray"
+      | "red"
+      | "orange"
+      | "yellow"
+      | "green"
+      | "teal"
+      | "blue"
+      | "cyan"
+      | "purple"
+      | "pink"
+      | "linkedin"
+      | "facebook"
+      | "messenger"
+      | "whatsapp"
+      | "twitter"
+      | "telegram"
     components: {
       Accordion: {
         sizes: never
@@ -408,7 +427,7 @@ declare module "@chakra-ui/styled-system" {
         variants: never
       }
       Input: {
-        sizes: "lg" | "md" | "sm"
+        sizes: "lg" | "md" | "sm" | "xs"
         variants: "outline" | "filled" | "flushed" | "unstyled"
       }
       Kbd: {
@@ -443,11 +462,11 @@ declare module "@chakra-ui/styled-system" {
         variants: never
       }
       NumberInput: {
-        sizes: "sm" | "md" | "lg"
+        sizes: "xs" | "sm" | "md" | "lg"
         variants: "outline" | "filled" | "flushed" | "unstyled"
       }
       PinInput: {
-        sizes: "lg" | "md" | "sm"
+        sizes: "lg" | "md" | "sm" | "xs"
         variants: "outline" | "flushed" | "filled" | "unstyled"
       }
       Popover: {
@@ -463,7 +482,7 @@ declare module "@chakra-ui/styled-system" {
         variants: never
       }
       Select: {
-        sizes: "lg" | "md" | "sm"
+        sizes: "lg" | "md" | "sm" | "xs"
         variants: "outline" | "filled" | "flushed" | "unstyled"
       }
       Skeleton: {
@@ -509,7 +528,7 @@ declare module "@chakra-ui/styled-system" {
         variants: "subtle" | "solid" | "outline"
       }
       Textarea: {
-        sizes: "sm" | "md" | "lg"
+        sizes: "xs" | "sm" | "md" | "lg"
         variants: "outline" | "flushed" | "filled" | "unstyled"
       }
       Tooltip: {

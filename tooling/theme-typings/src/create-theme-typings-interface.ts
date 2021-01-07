@@ -5,6 +5,7 @@ import {
   extractComponentTypes,
   printComponentTypes,
 } from "./extract-component-types"
+import { extractColorSchemeTypes } from "./extract-color-schemes"
 
 export interface ThemeKeyOptions {
   /**
@@ -39,6 +40,7 @@ export async function createThemeTypingsInterface(
   }, {} as Record<string, string[]>)
 
   const componentTypes = extractComponentTypes(theme)
+  const colorSchemes = extractColorSchemeTypes(theme)
 
   const template =
     // language=ts
@@ -49,6 +51,7 @@ import "@chakra-ui/styled-system"
 declare module "@chakra-ui/styled-system" {
   export interface ThemeTypings {
     ${printUnionMap(unions)}
+    ${printUnionMap({ colorSchemes })}
     ${printComponentTypes(componentTypes)}
   }
 }

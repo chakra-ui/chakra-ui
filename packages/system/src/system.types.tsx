@@ -11,7 +11,7 @@ import * as React from "react"
 export interface ThemingProps<ThemeComponent extends string = string> {
   variant?: ThemeTypings["components"][ThemeComponent]["variants"]
   size?: ThemeTypings["components"][ThemeComponent]["sizes"]
-  colorScheme?: string
+  colorScheme?: ThemeTypings["colorSchemes"]
   orientation?: "vertical" | "horizontal"
   styleConfig?: Dict
 }
