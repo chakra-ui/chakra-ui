@@ -1,4 +1,4 @@
-import { bindMethods, Dict } from "@chakra-ui/utils"
+import { Dict } from "@chakra-ui/utils"
 import * as CSS from "csstype"
 
 type CSSProp = keyof CSS.Properties
@@ -38,7 +38,6 @@ export class Directionality<T extends Dict = Dict> {
     this.theme = theme
     this.direction = theme.direction
     this.isRtl = theme.direction === TextDirection.rtl
-    bindMethods(this)
   }
 
   getLogicalStyle<P extends CSSProp>(options: GetLogicalValue<P>) {

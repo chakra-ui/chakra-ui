@@ -1,8 +1,5 @@
-import bindMethods from "auto-bind"
 import { isFunction, __DEV__ } from "./assertion"
 import { AnyFunction, FunctionArguments } from "./types"
-
-export { bindMethods }
 
 export function runIfFn<T, U>(
   valueOrFn: T | ((...fnArgs: U[]) => T),
