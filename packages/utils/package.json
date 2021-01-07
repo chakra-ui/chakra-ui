@@ -45,6 +45,7 @@
   "dependencies": {
     "@types/lodash.mergewith": "4.6.6",
     "@types/object-assign": "4.0.30",
+    "auto-bind": "4.0.0",
     "css-box-model": "1.2.1",
     "lodash.mergewith": "4.6.2",
     "object-assign": "4.1.1"

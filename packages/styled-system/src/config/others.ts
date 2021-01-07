@@ -1,6 +1,7 @@
 import * as CSS from "csstype"
 import { Config, createParser, PropConfig, system } from "../core"
-import { getIsRtl, Length, ResponsiveValue } from "../utils"
+import { getIsRtl } from "../utils/directionality"
+import { Length, ResponsiveValue } from "../utils/types"
 
 const floatTransform: PropConfig["transform"] = (value, _, props = {}) => {
   const map = { left: "right", right: "left" }

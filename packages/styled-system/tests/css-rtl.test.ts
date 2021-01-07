@@ -1,12 +1,5 @@
-import { createBreakpoints } from "@chakra-ui/theme-tools"
 import { css } from "../src"
-
-const breakpoints = createBreakpoints({
-  sm: "40em",
-  md: "52em",
-  lg: "64em",
-  xl: "80em",
-})
+import { createTheme } from "./theme"
 
 test("RTL: should transform logical css properties", () => {
   const result = css({
@@ -15,13 +8,7 @@ test("RTL: should transform logical css properties", () => {
     roundedStart: ["20px", "40px"],
     borderColor: "red",
     insetStart: "sm",
-  })({
-    breakpoints,
-    direction: "rtl",
-    space: {
-      sm: 40,
-    },
-  })
+  })(createTheme("rtl"))
 
   expect(result).toMatchInlineSnapshot(`
     Object {
@@ -39,17 +26,26 @@ test("RTL: should transform logical css properties", () => {
   `)
 })
 
+test("can override logical properties", () => {
+  const result = css({
+    insetStart: "md",
+    // inset-start is `right` in rtl, so let's override it
+    right: "40px",
+  })(createTheme("rtl"))
+  expect(result).toMatchInlineSnapshot(`
+    Object {
+      "right": "40px",
+    }
+  `)
+})
+
 test("LTR: should transform logical css properties", () => {
   const result = css({
     float: "left",
     marginEnd: "sm",
     borderStartRadius: ["20px", "40px"],
     borderColor: "red",
-  })({
-    breakpoints,
-    direction: "ltr",
-    space: { sm: 40 },
-  })
+  })(createTheme("ltr"))
 
   expect(result).toMatchInlineSnapshot(`
     Object {
@@ -71,16 +67,7 @@ test("should work after refactoring. hehe", () => {
     mx: "40px",
     w: 0.4,
     bg: "pinkish",
-  })({
-    breakpoints,
-    direction: "ltr",
-    space: {
-      sm: 40,
-    },
-    colors: {
-      pinkish: "#dfsdds",
-    },
-  })
+  })(createTheme("ltr"))
 
   expect(result).toMatchInlineSnapshot(`
     Object {
