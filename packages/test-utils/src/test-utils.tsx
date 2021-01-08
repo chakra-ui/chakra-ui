@@ -1,7 +1,7 @@
 import { ChakraProvider } from "@chakra-ui/react"
 import "@testing-library/jest-dom/extend-expect"
 import {
-  render as RtlRender,
+  render as rtlRender,
   RenderOptions,
   fireEvent,
   RenderResult,
@@ -14,7 +14,7 @@ import { RunOptions } from "axe-core"
 expect.addSnapshotSerializer(createSerializer())
 expect.extend(toHaveNoViolations)
 
-type UI = Parameters<typeof RtlRender>[0]
+type UI = Parameters<typeof rtlRender>[0]
 
 // UI-less passthrough fallback to prevent using conditional logic in render
 function ChildrenPassthrough({ children }: { children: React.ReactElement }) {
@@ -59,14 +59,14 @@ export const render = (
   ui: UI,
   { wrapper: Wrapper = ChildrenPassthrough, ...options }: TestOptions = {},
 ): RenderResult =>
-  RtlRender(
+  rtlRender(
     <ChakraProvider>
       <Wrapper>{ui}</Wrapper>
     </ChakraProvider>,
     options,
   )
 
-export { RtlRender }
+export { rtlRender }
 export { axe }
 
 export * from "@testing-library/react"

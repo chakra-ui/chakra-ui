@@ -1,15 +1,9 @@
 import * as React from "react"
+import Frame from "react-frame-component"
 import { Portal, PortalManager } from "../src"
 
 export default {
   title: "Portal",
-  decorators: [
-    (Story: Function) => (
-      <PortalManager>
-        <Story />
-      </PortalManager>
-    ),
-  ],
 }
 
 export const BasicPortal = () => (
@@ -17,6 +11,15 @@ export const BasicPortal = () => (
     <p>Welcome</p>
     <Portal>This text has been portaled</Portal>
   </>
+)
+
+export const WithinIFrame = () => (
+  <Frame>
+    <PortalManager>
+      <h1>Welcome</h1>
+      <Portal>Welcome</Portal>
+    </PortalManager>
+  </Frame>
 )
 
 export const WithMountRef = () => {

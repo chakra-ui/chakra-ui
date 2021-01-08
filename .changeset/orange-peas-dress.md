@@ -7,5 +7,5 @@
 
 > Affect components: `Modal`, `Drawer`
 
-- Added a `Directionality` helper class to encapsulate all logic for ltr-rtl
+- Added a `directionality` helper function to encapsulate all logic for ltr-rtl
   value or style flipping.

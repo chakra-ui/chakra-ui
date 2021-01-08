@@ -3955,12 +3955,12 @@
     prop-types "^15.7.2"
     tslib "^2.0.0"
 
-"@reach/auto-id@0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@reach/auto-id/-/auto-id-0.11.0.tgz#274251c1fbf9cd58d874cfc75fba289d1829368c"
-  integrity sha512-KwwnsnYTbTsYvRbSNqtaA1znaXP9G1I0z+bE0eFMNICvR+bHApaTu0aEEZNXfevq2LBrIMP6hZY9BokgTRcB3g==
+"@reach/portal@^0.12.1":
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/@reach/portal/-/portal-0.12.1.tgz#995858a6e758d9446870937b60b8707a2efa11cb"
+  integrity sha512-Lhmtd2Qw1DzNZ2m0GHNzCu+2TYUf6kBREPSQJf44AP6kThRs02p1clntbJcmW/rrpYFYgFNbgf5Lso7NyW9ZXg==
   dependencies:
-    "@reach/utils" "0.11.0"
+    "@reach/utils" "0.12.1"
     tslib "^2.0.0"
 
 "@reach/router@^1.2.1", "@reach/router@^1.3.3", "@reach/router@^1.3.4":
@@ -3977,6 +3977,15 @@
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.11.0.tgz#09ad5e1f42b498253df8a6a4c99ccd0ab2d85464"
   integrity sha512-A7Ofr1Biq4vUeTBYhbZ/YiLq1B/lEObbEoR2UiuQqCO1r093N95hZNcKqfFwpkRScjD87uob3wSYYGxvq9y/+w==
+  dependencies:
+    "@types/warning" "^3.0.0"
+    tslib "^2.0.0"
+    warning "^4.0.3"
+
+"@reach/utils@0.12.1":
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.12.1.tgz#02b9c15ba5cddf23e16f2d2ca77aef98a9702607"
+  integrity sha512-5uH4OgO+GupAzZuf3b6Wv/9uC6NdMBlxS6FSKD6YqSxP4QJ0vjD34RVon6N/RMRORacCLyD/aaZIA7283YgeOg==
   dependencies:
     "@types/warning" "^3.0.0"
     tslib "^2.0.0"
@@ -5473,6 +5482,13 @@
   version "17.0.0"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.0.tgz#b3b691eb956c4b3401777ee67b900cb28415d95a"
   integrity sha512-lUqY7OlkF/RbNtD5nIq7ot8NquXrdFrjSOR6+w9a9RFQevGi1oZO1dcJbXMeONAPKtZ2UrZOEJ5UOCVsxbLk/g==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-frame-component@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@types/react-frame-component/-/react-frame-component-4.1.1.tgz#1d8293c062c1d43555ca80494a7b94e3088ad39e"
+  integrity sha512-7soxaTJ030rtC2lFlaFzzJyCY4rsPwOLxfw/eGnbEq/wq80e71outSL6dUXM9bOh2qMhM1xnp+EMEhjdVvIlkA==
   dependencies:
     "@types/react" "*"
 
@@ -21475,6 +21491,11 @@ react-focus-lock@^2.1.0:
     react-clientside-effect "^1.2.2"
     use-callback-ref "^1.2.1"
     use-sidecar "^1.0.1"
+
+react-frame-component@^4.1.3:
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/react-frame-component/-/react-frame-component-4.1.3.tgz#64c09dd29574720879c5f43ee36c17d8ae74d4ec"
+  integrity sha512-4PurhctiqnmC1F5prPZ+LdsalH7pZ3SFA5xoc0HBe8mSHctdLLt4Cr2WXfXOoajHBYq/yiipp9zOgx+vy8GiEA==
 
 react-helmet-async@^1.0.2:
   version "1.0.7"

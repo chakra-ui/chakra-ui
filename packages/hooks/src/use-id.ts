@@ -1,7 +1,10 @@
-import { useId as useUID } from "@reach/auto-id"
+import * as React from "react"
 
-function generatePrefix(prefix: string, id: string) {
-  return `${prefix}-${id}`
+let id = 0
+
+function genId() {
+  id += 1
+  return id
 }
 
 /**
@@ -11,10 +14,9 @@ function generatePrefix(prefix: string, id: string) {
  * @param prefix prefix to append before the id
  */
 export function useId(idProp?: string, prefix?: string) {
-  const uuid = useUID() as string
+  const [uuid] = React.useState(() => genId())
   const id = idProp ?? uuid
-  const result = prefix ? generatePrefix(prefix, id) : id
-  return result as string
+  return prefix ? `${prefix}-${id}` : id
 }
 
 /**
@@ -34,6 +36,5 @@ export function useId(idProp?: string, prefix?: string) {
  */
 export function useIds(idProp?: string, ...prefixes: string[]) {
   const id = useId(idProp)
-  const ids = prefixes.map((prefix) => generatePrefix(prefix, id))
-  return ids
+  return prefixes.map((prefix) => `${prefix}-${id}`)
 }

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { isBrowser } from "@chakra-ui/utils"
-import { useLatestRef } from "./use-latest-ref"
+import { useCallbackRef } from "./use-callback-ref"
 
 /**
  * React hook to manage browser event listeners
@@ -13,28 +13,20 @@ import { useLatestRef } from "./use-latest-ref"
 export function useEventListener<K extends keyof DocumentEventMap>(
   event: K,
   handler: (event: DocumentEventMap[K]) => void,
-  doc: Document | HTMLElement | null = isBrowser ? document : null,
+  env: Document | HTMLElement | null = isBrowser ? document : null,
   options?: boolean | AddEventListenerOptions,
 ) {
-  const savedHandler = useLatestRef(handler)
+  const fn = useCallbackRef(handler) as any
 
   React.useEffect(() => {
-    if (!doc) return undefined
-
-    const listener = (event: any) => {
-      savedHandler.current?.(event)
-    }
-
-    doc.addEventListener(event, listener, options)
-
+    if (!env) return undefined
+    env.addEventListener(event, fn, options)
     return () => {
-      doc.removeEventListener(event, listener, options)
+      env.removeEventListener(event, fn, options)
     }
-  }, [event, doc, options, savedHandler])
+  }, [event, env, options, fn])
 
   return () => {
-    if (savedHandler.current) {
-      doc?.removeEventListener(event, savedHandler.current as any, options)
-    }
+    env?.removeEventListener(event, fn, options)
   }
 }

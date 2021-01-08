@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useLatestRef } from "./use-latest-ref"
+import { useCallbackRef } from "./use-callback-ref"
 
 /**
  * React Hook that provides a declarative `setInterval`
@@ -8,11 +8,11 @@ import { useLatestRef } from "./use-latest-ref"
  * @param delay the `setInterval` delay (in ms)
  */
 export function useInterval(callback: () => void, delay: number | null) {
-  const callbackRef = useLatestRef(callback)
+  const fn = useCallbackRef(callback)
 
   React.useEffect(() => {
     let intervalId: number | null = null
-    const tick = () => callbackRef.current?.()
+    const tick = () => fn()
     if (delay !== null) {
       intervalId = window.setInterval(tick, delay)
     }
@@ -21,5 +21,5 @@ export function useInterval(callback: () => void, delay: number | null) {
         window.clearInterval(intervalId)
       }
     }
-  }, [delay, callbackRef])
+  }, [delay, fn])
 }
