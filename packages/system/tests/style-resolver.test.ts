@@ -1,5 +1,5 @@
 import theme from "@chakra-ui/theme"
-import { styleResolver } from "../src/system"
+import { getStyleObject } from "../src/system"
 
 const customTheme: any = {
   ...theme,
@@ -24,7 +24,7 @@ const customTheme: any = {
 }
 
 test("should resolve styles correctly", () => {
-  const result = styleResolver({ baseStyle: { bgPosition: "center" } })({
+  const result = getStyleObject({ baseStyle: { bgPosition: "center" } })({
     theme: customTheme,
     layerStyle: "v1",
     noOfLines: [3, 4],
@@ -92,7 +92,7 @@ test("should resolve styles correctly", () => {
 })
 
 test("should override padding correctly", () => {
-  const result = styleResolver({})({
+  const result = getStyleObject({})({
     theme: customTheme,
     __css: {
       paddingX: 4,
