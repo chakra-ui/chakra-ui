@@ -1,9 +1,9 @@
-import { Directionality } from "../src/utils/directionality"
+import directionality from "../src/utils/directionality"
 import { createTheme } from "./theme"
 
 describe("should map directional style", () => {
   test("single property", () => {
-    const helper = new Directionality(createTheme("rtl"))
+    const helper = directionality(createTheme("rtl"))
     const result = helper.getLogicalStyle({
       ltr: "left",
       rtl: "right",
@@ -15,7 +15,7 @@ describe("should map directional style", () => {
   })
 
   test("multiple properties", () => {
-    const helper = new Directionality(createTheme("rtl"))
+    const helper = directionality(createTheme("rtl"))
     const result = helper.getLogicalStyle({
       ltr: ["borderTopLeftRadius", "borderBottomLeftRadius"],
       rtl: ["borderTopRightRadius", "borderBottomRightRadius"],

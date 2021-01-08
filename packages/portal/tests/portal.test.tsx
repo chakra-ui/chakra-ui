@@ -1,13 +1,30 @@
-import { render, screen } from "@chakra-ui/test-utils"
+import { render, screen } from "@testing-library/react"
 import * as React from "react"
-import { PortalManager, Portal } from "../src"
+import { Portal, PortalManager } from "../src"
 
-test("should render portal", () => {
-  render(
-    <PortalManager>
-      <Portal>This is a portal</Portal>
-    </PortalManager>,
+test("should render portal", async () => {
+  const { baseElement } = render(
+    <Portal>
+      <>This is a portal 1</>
+      <Portal>This is a portal 2</Portal>
+    </Portal>,
   )
+
+  expect(baseElement).toMatchInlineSnapshot(`
+    <body>
+      <div />
+      <div
+        class="chakra-portal"
+      >
+        This is a portal 1
+        <div
+          class="chakra-portal"
+        >
+          This is a portal 2
+        </div>
+      </div>
+    </body>
+  `)
 })
 
 test("should render nested portal", () => {
@@ -20,12 +37,12 @@ test("should render nested portal", () => {
     </PortalManager>,
   )
 
-  const portals = Array.from(
-    tools.baseElement.querySelectorAll(".chakra-portal"),
+  const portals: HTMLElement[] = Array.from(
+    tools.baseElement.querySelectorAll(Portal.selector),
   )
 
   const [parentPortal, childPortal] = portals
-  expect(parentPortal).toContainElement(childPortal as HTMLElement)
+  expect(parentPortal).toContainElement(childPortal)
 })
 
 test("should render in a different node", () => {

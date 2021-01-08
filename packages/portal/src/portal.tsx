@@ -1,7 +1,12 @@
-import { useCallbackRef, useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { createContext, isBrowser, __DEV__ } from "@chakra-ui/utils"
+import {
+  useCallbackRef,
+  useForceUpdate,
+  useSafeLayoutEffect,
+} from "@chakra-ui/hooks"
+import { createContext, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import ReactDOM from "react-dom"
+import { createPortal } from "react-dom"
+import { usePortalManager } from "./portal-manager"
 
 type PortalContext = HTMLDivElement | null
 
@@ -9,6 +14,25 @@ const [PortalContextProvider, usePortalContext] = createContext<PortalContext>({
   strict: false,
   name: "PortalContext",
 })
+
+const Container: React.FC<{ zIndex?: number }> = (props) => {
+  const { children, zIndex } = props
+  return (
+    <div
+      className="chakra-portal-zIndex"
+      style={{
+        position: "absolute",
+        zIndex,
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+      }}
+    >
+      {children}
+    </div>
+  )
+}
 
 export interface PortalProps {
   /**
@@ -38,80 +62,63 @@ export interface PortalProps {
  *
  * @see Docs https://chakra-ui.com/docs/overlay/portal
  */
+
 export function Portal(props: PortalProps) {
+  const tempNode = React.useRef<HTMLDivElement | null>(null)
+  const portal = React.useRef<HTMLDivElement | null>(null)
+
+  const forceUpdate = useForceUpdate()
+
   const getContainer = useCallbackRef(props.getContainer)
   const onMount = useCallbackRef(props.onMount)
   const onUnmount = useCallbackRef(props.onUnmount)
 
-  /**
-   * Generate the portal's dom node. We'll wrap the children
-   * in this dom node before mounting it.
-   */
-  const [portal] = React.useState(() => {
-    if (isBrowser) {
-      const div = document.createElement("div")
-      div.className = "chakra-portal"
-      return div
-    }
-    // for ssr
-    return null
-  })
-
-  /**
-   * This portal might be nested in another portal.
-   * Let's read from the portal context to check this.
-   */
   const parentPortal = usePortalContext()
-
-  const append = React.useCallback(
-    (host: HTMLElement | null) => {
-      // if user specified a mount node, do nothing.
-      if (!portal || !host) return
-
-      // else, simply append component to the portal node
-      host.appendChild(portal)
-    },
-    [portal],
-  )
+  const manager = usePortalManager()
 
   useSafeLayoutEffect(() => {
-    // get the custom container from the container prop
-    const container = getContainer()
+    if (!tempNode.current) return
 
-    /**
-     * We need to know where to mount this portal, we have 4 options:
-     * - If a container ref is specified, we'll use that as the container
-     * - If portal is nested, use the parent portal node as container.
-     * - If it is not nested, use the manager's node as container
-     * - else use document.body as containers
-     */
-    const host = container ?? parentPortal ?? document.body
-    append(host)
+    const doc = tempNode.current!.ownerDocument
+    portal.current = doc.createElement("div")!
+    portal.current.className = Portal.className
+
+    const host = getContainer() ?? parentPortal ?? doc.body
+
+    host.appendChild(portal.current)
+    forceUpdate()
 
     onMount()
 
+    const portalNode = portal.current
     return () => {
       onUnmount()
-
-      if (!portal || !host) return
-
-      if (host.contains(portal)) {
-        host.removeChild(portal)
+      if (host.contains(portalNode)) {
+        host.removeChild(portalNode)
       }
     }
-  }, [portal, parentPortal, onMount, onUnmount, append])
+  }, [])
 
-  if (!portal) {
-    return <>{props.children}</>
-  }
+  const childrenToRender = manager?.zIndex ? (
+    <Container>{props.children}</Container>
+  ) : (
+    props.children
+  )
 
-  return ReactDOM.createPortal(
-    <PortalContextProvider value={portal}>
-      {props.children}
-    </PortalContextProvider>,
-    portal,
+  return portal.current ? (
+    createPortal(
+      <PortalContextProvider value={portal.current}>
+        {childrenToRender}
+      </PortalContextProvider>,
+      portal.current,
+    )
+  ) : (
+    <span ref={tempNode} />
   )
 }
+
+Portal.className = "chakra-portal"
+Portal.selector = `.${Portal.className}`
 
 if (__DEV__) {
   Portal.displayName = "Portal"

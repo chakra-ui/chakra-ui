@@ -83,7 +83,7 @@ export function roundValueToStep(value: number, from: number, step: number) {
  * @param min the minimum value
  * @param max the maximum value
  */
-export function clampValue(value: number | null, min: number, max: number) {
+export function clampValue(value: number, min: number, max: number) {
   if (value == null) return value
 
   warn({

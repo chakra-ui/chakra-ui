@@ -28,40 +28,41 @@ interface GetLogicalValue<P> {
   value: any
 }
 
-export class Directionality<T extends Dict = Dict> {
-  theme: T
-  direction: TextDirection
-  isRtl: boolean
+function directionality<T extends Dict = Dict>(options: T) {
+  const theme = determineTheme(options) as T
+  const direction: TextDirection = theme.direction
+  const isRtl: boolean = theme.direction === TextDirection.rtl
 
-  constructor(options: T) {
-    const theme = determineTheme(options) as T
-    this.theme = theme
-    this.direction = theme.direction
-    this.isRtl = theme.direction === TextDirection.rtl
-  }
-
-  getLogicalStyle<P extends CSSProp>(options: GetLogicalValue<P>) {
+  function getLogicalStyle<P extends CSSProp>(options: GetLogicalValue<P>) {
     const { ltr, rtl, value } = options
     const result = {} as Record<CSSProp, string | number>
-    if (Array.isArray(ltr) && Array.isArray(rtl)) {
+    const isProperties = Array.isArray(ltr) && Array.isArray(rtl)
+
+    if (isProperties) {
       for (let i = 0; i < ltr.length; i += 1) {
-        const key = this.isRtl ? rtl[i] : ltr[i]
+        const key = isRtl ? rtl[i] : ltr[i]
         result[key] = value
       }
     } else {
-      const key = (this.isRtl ? rtl : ltr) as P
+      const key = (isRtl ? rtl : ltr) as P
       result[key] = value
     }
     return result
   }
 
-  getFourCornerValue(value: string) {
+  function getFourCornerValue(value: string) {
     const split = toList(value)
     const dontFlip = split.length <= 3 || split.length > 4
     if (dontFlip) return value
     const [top, right, bottom, left] = split
     const flippedValue = [top, left, bottom, right].join(" ")
-    return this.isRtl ? flippedValue : value
+    return isRtl ? flippedValue : value
+  }
+
+  return {
+    getFourCornerValue,
+    direction,
+    getLogicalStyle,
   }
 }
 
@@ -72,3 +73,5 @@ function toList(value: string): string[] {
     .map((i) => i.trim())
     .filter(Boolean)
 }
+
+export default directionality

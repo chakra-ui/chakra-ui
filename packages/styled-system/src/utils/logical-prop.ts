@@ -1,7 +1,7 @@
 import { compose, getWithDefault } from "@chakra-ui/utils"
 import * as CSS from "csstype"
 import { PropConfig } from "../core"
-import { Directionality } from "./directionality"
+import directional from "./directionality"
 
 type CSSProp = keyof CSS.Properties
 
@@ -19,9 +19,9 @@ function logicalTransform<T extends CSSProp>(opts: LogicalTransformOptions<T>) {
   const { transform, ltr, rtl } = opts
 
   const rtlTransform: PropConfig["transform"] = (value, scale, props) => {
-    const directional = new Directionality(props)
+    const { getLogicalStyle } = directional(props)
     const raw = getWithDefault(value, scale)
-    return directional.getLogicalStyle({ rtl, ltr, value: raw })
+    return getLogicalStyle({ rtl, ltr, value: raw })
   }
 
   return transform ? compose(transform, rtlTransform) : rtlTransform
