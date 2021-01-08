@@ -1,39 +1,25 @@
 import * as React from "react"
 import { Booleanish, EventKeys } from "./types"
 
-let win: Window | undefined
-
-/**
- * Note: Accessing "window" in IE11 is somewhat expensive, and calling "typeof window"
- * hits a memory leak, whereas aliasing it and calling "typeof win" does not.
- * Caching the window value at the file scope lets us minimize the impact.
- *
- * @see IE11 Memory Leak Issue https://github.com/microsoft/fluentui/pull/9010#issuecomment-490768427
- */
-try {
-  win = window
-} catch (e) {
-  /* no-op */
+export function getOwnerWindow(node?: HTMLElement | null) {
+  return node instanceof Element
+    ? getOwnerDocument(node).defaultView ?? window
+    : window
 }
 
-/**
- * Helper to get the window object. The helper will make sure to use a cached variable
- * of "window", to avoid overhead and memory leaks in IE11.
- */
-export const getWindow = (node?: HTMLElement | null) =>
-  node?.ownerDocument?.defaultView ?? win
+export function getOwnerDocument(node?: HTMLElement | null) {
+  return node instanceof Element ? node.ownerDocument ?? document : document
+}
 
-/**
- * Check if we can use the DOM. Useful for SSR purposes
- */
-function checkIsBrowser() {
-  const win = getWindow()
-  return Boolean(
-    typeof win !== "undefined" && win.document && win.document.createElement,
+export function canUseDOM() {
+  return !!(
+    typeof window !== "undefined" &&
+    window.document &&
+    window.document.createElement
   )
 }
 
-export const isBrowser = checkIsBrowser()
+export const isBrowser = canUseDOM()
 
 /**
  * Get the normalized event key across all browsers

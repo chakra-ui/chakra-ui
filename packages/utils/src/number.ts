@@ -4,10 +4,6 @@ import { warn } from "./function"
 export const minSafeInteger = Number.MIN_SAFE_INTEGER || -9007199254740991
 export const maxSafeInteger = Number.MAX_SAFE_INTEGER || 9007199254740991
 
-/**
- * Convert a value to number
- * @param value the value to convert
- */
 function toNumber(value: any) {
   const num = parseFloat(value)
   return isNotNumber(num) ? 0 : num
@@ -87,7 +83,7 @@ export function roundValueToStep(value: number, from: number, step: number) {
  * @param min the minimum value
  * @param max the maximum value
  */
-export function clampValue(value: number, min: number, max: number) {
+export function clampValue(value: number | null, min: number, max: number) {
   if (value == null) return value
 
   warn({
