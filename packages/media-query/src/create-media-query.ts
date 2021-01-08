@@ -3,23 +3,29 @@ import { isNumber, isCustomBreakpoint, StringOrNumber } from "@chakra-ui/utils"
 export default function createMediaQueries(
   breakpoints: string[],
 ): MediaQuery[] {
-  return Object.entries(breakpoints)
-    .filter(([key]) => isCustomBreakpoint(key))
-    .sort((a, b) =>
-      Number.parseInt(a[1], 10) > Number.parseInt(b[1], 10) ? 1 : -1,
-    )
-    .map(([breakpoint, minWidth], index, arr) => {
-      const next = arr[index + 1]
-      const maxWidth = next ? next[1] : undefined
-      const query = createMediaQueryString(minWidth, maxWidth)
+  return (
+    Object.entries(breakpoints)
+      .filter(([key]) => isCustomBreakpoint(key))
+      // sort css units in ascending order to ensure media queries are generated
+      // in the correct order and reference to each other correctly aswell
+      .sort((a, b) =>
+        Number.parseInt(a[1], 10) > Number.parseInt(b[1], 10) ? 1 : -1,
+      )
+      .map(([breakpoint, minWidth], index, arr) => {
+        // given a following breakpoint
+        const next = arr[index + 1]
+        // this breakpoint must end prior the threshold of the next
+        const maxWidth = next ? next[1] : undefined
+        const query = createMediaQueryString(minWidth, maxWidth)
 
-      return {
-        minWidth,
-        maxWidth,
-        breakpoint,
-        query,
-      }
-    })
+        return {
+          minWidth,
+          maxWidth,
+          breakpoint,
+          query,
+        }
+      })
+  )
 }
 
 /**
