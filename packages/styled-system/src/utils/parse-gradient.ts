@@ -28,7 +28,7 @@ const trimSpace = (str: string) => str.trim()
 export function parseGradient(value: string | null | undefined, theme: Dict) {
   if (value == null || globals.includes(value)) return value
 
-  const regex = /(?<type>^[a-z-A-Z]+)\((?<values>(.*?))\)/g
+  const regex = /(?<type>^[a-z-A-Z]+)\((?<values>(.*))\)/g
 
   const { type, values } = regex.exec(value)?.groups ?? {}
 
