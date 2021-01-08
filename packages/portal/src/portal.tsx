@@ -80,7 +80,7 @@ export function Portal(props: PortalProps) {
     if (!tempNode.current) return
 
     const doc = tempNode.current!.ownerDocument
-    portal.current = doc.createElement("div")!
+    portal.current = doc.createElement("div")
     portal.current.className = Portal.className
 
     const host = getContainer() ?? parentPortal ?? doc.body
