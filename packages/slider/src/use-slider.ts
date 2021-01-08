@@ -2,7 +2,7 @@ import {
   useBoolean,
   useControllableState,
   useDimensions,
-  useEventCallback,
+  useCallbackRef,
   useEventListener,
   useIds,
   useUnmountEffect,
@@ -402,7 +402,7 @@ export function useSlider(props: UseSliderProps) {
     }
   }, [isDragging, onChangeEnd, value, eventSource])
 
-  const onMouseDown = useEventCallback((event: MouseEvent) => {
+  const onMouseDown = useCallbackRef((event: MouseEvent) => {
     /**
      * Prevent update if it is right-click
      */
@@ -440,7 +440,7 @@ export function useSlider(props: UseSliderProps) {
     }
   })
 
-  const onTouchStart = useEventCallback((event: TouchEvent) => {
+  const onTouchStart = useCallbackRef((event: TouchEvent) => {
     if (!isInteractive || !rootRef.current) return
 
     // Prevent scrolling for touch events

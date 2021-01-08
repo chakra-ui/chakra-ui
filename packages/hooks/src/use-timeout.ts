@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useLatestRef } from "./use-latest-ref"
+import { useCallbackRef } from "./use-callback-ref"
 
 /**
  * React hook that provides a declarative `setTimeout`
@@ -7,8 +7,11 @@ import { useLatestRef } from "./use-latest-ref"
  * @param callback the callback to run after specified delay
  * @param delay the delay (in ms)
  */
-export function useTimeout(callback: Function, delay: number | null) {
-  const savedCallback = useLatestRef(callback)
+export function useTimeout(
+  callback: (...args: any[]) => void,
+  delay: number | null,
+) {
+  const fn = useCallbackRef(callback)
 
   React.useEffect(() => {
     if (delay == null) return undefined
@@ -16,7 +19,7 @@ export function useTimeout(callback: Function, delay: number | null) {
     let timeoutId: number | null = null
 
     timeoutId = window.setTimeout(() => {
-      savedCallback.current?.()
+      fn()
     }, delay)
 
     return () => {
@@ -24,5 +27,5 @@ export function useTimeout(callback: Function, delay: number | null) {
         window.clearTimeout(timeoutId)
       }
     }
-  }, [delay, savedCallback])
+  }, [delay, fn])
 }

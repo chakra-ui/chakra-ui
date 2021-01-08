@@ -1,5 +1,5 @@
 import { RefObject, useEffect, useRef } from "react"
-import { useLatestRef } from "./use-latest-ref"
+import { useCallbackRef } from "./use-callback-ref"
 
 interface UseOutsideClickOptions {
   ref: RefObject<HTMLElement>
@@ -12,7 +12,7 @@ interface UseOutsideClickOptions {
  */
 export function useOutsideClick(props: UseOutsideClickOptions) {
   const { ref, handler } = props
-  const savedHandler = useLatestRef(handler)
+  const savedHandler = useCallbackRef(handler)
 
   const stateRef = useRef({
     isPointerDown: false,
@@ -36,7 +36,7 @@ export function useOutsideClick(props: UseOutsideClickOptions) {
 
       if (state.isPointerDown && handler && isValidEvent(event, ref)) {
         state.isPointerDown = false
-        savedHandler.current?.(event)
+        savedHandler(event)
       }
     }
 
@@ -44,7 +44,7 @@ export function useOutsideClick(props: UseOutsideClickOptions) {
       state.ignoreEmulatedMouseEvents = true
       if (handler && state.isPointerDown && isValidEvent(event, ref)) {
         state.isPointerDown = false
-        savedHandler.current?.(event)
+        savedHandler(event)
       }
     }
 
