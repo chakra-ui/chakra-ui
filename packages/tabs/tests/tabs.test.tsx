@@ -137,7 +137,7 @@ test("focuses the correct tab with manual keyboard navigation", async () => {
   // selection doesn't follow focus, so the tab is not selected
   // even if it is focused
   expect(tab2).toHaveFocus()
-  expect(tab2).not.toHaveAttribute("aria-selected")
+  expect(tab2).toHaveAttribute("aria-selected", "false")
   expect(panel2).not.toBeVisible()
 })
 
