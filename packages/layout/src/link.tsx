@@ -13,7 +13,8 @@ export interface LinkProps extends HTMLChakraProps<"a">, ThemingProps {
   /**
    *  If `true`, the link will open in new tab
    */
-  isExternal?: boolean
+  isExternal?: boolean;
+  isNofollow?: boolean;
 }
 
 /**
@@ -32,12 +33,12 @@ export interface LinkProps extends HTMLChakraProps<"a">, ThemingProps {
  */
 export const Link = forwardRef<LinkProps, "a">((props, ref) => {
   const styles = useStyleConfig("Link", props)
-  const { className, isExternal, ...rest } = omitThemingProps(props)
+  const { className, isExternal, isNofollow, ...rest } = omitThemingProps(props)
 
   return (
     <chakra.a
       target={isExternal ? "_blank" : undefined}
-      rel={isExternal ? "noopener noreferrer" : undefined}
+      rel={isExternal || isNofollow ? `${isExternal && 'noopener noreferrer'} ${isNofollow && 'nofollow'}` : undefined}
       ref={ref}
       className={cx("chakra-link", className)}
       {...rest}
