@@ -1,31 +1,31 @@
 import { isNumber, isCustomBreakpoint, StringOrNumber } from "@chakra-ui/utils"
 
-function createMediaQueries(breakpoints: string[]): MediaQuery[] {
-  /**
-   * Get the non-number breakpoint keys from the provided breakpoints
-   *
-   * reverse to begin with the largest
-   */
-  const keys = Object.keys(breakpoints).filter(isCustomBreakpoint).reverse()
+export default function createMediaQueries(
+  breakpoints: string[],
+): MediaQuery[] {
+  return (
+    Object.entries(breakpoints)
+      .filter(([key]) => isCustomBreakpoint(key))
+      // sort css units in ascending order to ensure media queries are generated
+      // in the correct order and reference to each other correctly aswell
+      .sort((a, b) =>
+        Number.parseInt(a[1], 10) > Number.parseInt(b[1], 10) ? 1 : -1,
+      )
+      .map(([breakpoint, minWidth], index, arr) => {
+        // given a following breakpoint
+        const next = arr[index + 1]
+        // this breakpoint must end prior the threshold of the next
+        const maxWidth = next ? next[1] : undefined
+        const query = createMediaQueryString(minWidth, maxWidth)
 
-  /**
-   * create a min-max media query string
-   */
-  return keys.map((breakpoint, index) => {
-    const minWidth = breakpoints[breakpoint]
-
-    const next = keys[index - 1]
-    const maxWidth = next ? breakpoints[next] : undefined
-
-    const query = createMediaQueryString(minWidth, maxWidth)
-
-    return {
-      breakpoint,
-      maxWidth,
-      minWidth,
-      query,
-    }
-  })
+        return {
+          minWidth,
+          maxWidth,
+          breakpoint,
+          query,
+        }
+      })
+  )
 }
 
 /**
@@ -92,5 +92,3 @@ function subtract(value: string) {
 function toMediaString(value: StringOrNumber) {
   return isNumber(value) ? `${value}px` : value
 }
-
-export default createMediaQueries
