@@ -6,7 +6,6 @@ import {
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
 import {
-  ariaAttr,
   callAllHandlers,
   createContext,
   Dict,
@@ -338,7 +337,7 @@ export function useTab<P extends UseTabProps>(props: P) {
     role: "tab",
     tabIndex: isSelected ? 0 : -1,
     type,
-    "aria-selected": ariaAttr(isSelected),
+    "aria-selected": isSelected,
     "aria-controls": makeTabPanelId(id, index),
     onFocus: isDisabled ? undefined : callAllHandlers(props.onFocus, onFocus),
   }
