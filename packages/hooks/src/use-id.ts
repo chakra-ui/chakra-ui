@@ -15,7 +15,7 @@ function genId() {
  */
 export function useId(idProp?: string, prefix?: string) {
   const [uuid] = React.useState(() => genId())
-  const id = idProp ?? uuid
+  const id = (idProp ?? uuid).toString()
   return prefix ? `${prefix}-${id}` : id
 }
 
