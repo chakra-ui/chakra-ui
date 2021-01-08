@@ -1,13 +1,13 @@
 import {
   ariaAttr,
   dataAttr,
-  getDocument,
-  getWindow,
+  getOwnerDocument,
+  getOwnerWindow,
   normalizeEventKey,
 } from "../src"
 
 test("should get window object", () => {
-  expect(getWindow()).toBe(window)
+  expect(getOwnerWindow()).toBe(window)
 })
 
 test("should normalize keyboard events", () => {
@@ -26,5 +26,5 @@ test("should return aria attribute value from boolean", () => {
 })
 
 test("should get document object", () => {
-  expect(getDocument()).toBe(document)
+  expect(getOwnerDocument()).toBe(document)
 })
