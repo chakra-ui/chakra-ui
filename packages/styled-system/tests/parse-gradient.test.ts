@@ -69,6 +69,23 @@ describe("linear gradient", () => {
       parseGradient("radial(to-b, #bbb 15%, pink.dark 15%)", theme),
     ).toEqual("radial-gradient(to bottom, #bbb 15%, #FF1493 15%)")
   })
+
+  test("should parse colors in rgb", () => {
+    expect(
+      parseGradient("linear(to-l, rgb(0,0,0), rgb(255,255,255))", theme),
+    ).toEqual("linear-gradient(to left, rgb(0, 0, 0), rgb(255, 255, 255))")
+  })
+
+  test("should parse colors in rgb with percentage", () => {
+    expect(
+      parseGradient(
+        "linear(to-l, rgb(0,0,0) 15%, rgb(255,255,255) 15%)",
+        theme,
+      ),
+    ).toEqual(
+      "linear-gradient(to left, rgb(0, 0, 0) 15%, rgb(255, 255, 255) 15%)",
+    )
+  })
 })
 
 describe("conic gradient", () => {

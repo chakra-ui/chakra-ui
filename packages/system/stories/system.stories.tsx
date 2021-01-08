@@ -105,3 +105,13 @@ export const WithGradient = () => (
     </chakra.span>
   </>
 )
+
+export const WithRgbGradient = () => (
+  <>
+    <chakra.div
+      bgGradient="linear(to-r, rgb(0,0,0), rgb(230,230,230))"
+      w="500px"
+      h="64px"
+    />
+  </>
+)
