@@ -48,6 +48,7 @@ export const Container = forwardRef<ContainerProps, "div">((props, ref) => {
   } = omitThemingProps(props)
 
   const theme = useTheme()
+
   const widthProps = transform(theme, {
     maxW,
     maxWidth,
