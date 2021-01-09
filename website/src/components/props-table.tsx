@@ -1,6 +1,7 @@
 import * as React from "react"
 import * as ComponentProps from "@chakra-ui/props-docs"
 import MDXComponents from "./mdx-components"
+import { theme } from "@chakra-ui/react"
 
 export type PropsTableProps = {
   /**
@@ -35,6 +36,27 @@ const PropsTable = ({
     return null
   }
 
+  const themeComponent = theme.components[of]
+  const sizeValues = themeComponent?.sizes && Object.keys(themeComponent.sizes)
+  const variantValues =
+    themeComponent?.variants && Object.keys(themeComponent.variants)
+
+  /**
+   * If component has size prop, override the rendered values
+   * for `size` prop with  the component's size values
+   */
+  if (info.props.size && sizeValues) {
+    info.props.size.type.name = sizeValues
+  }
+
+  /**
+   * If component has variant prop, override the rendered value
+   * for `variant` prop with the component's variant values
+   */
+  if (info.props.variant && variantValues) {
+    info.props.variant.type.name = variantValues
+  }
+
   const entries = React.useMemo(
     () =>
       Object.entries(info.props)
@@ -64,6 +86,18 @@ Remove the use of <PropsTable of="${of}" /> for this component in the docs.`,
     )
   }
 
+  const renderPropType = (type: string | string[]) => {
+    if (Array.isArray(type)) {
+      return type.map((item, index) => {
+        if (index === type.length - 1) {
+          return `${item}`
+        }
+        return `${item}, `
+      })
+    }
+    return type
+  }
+
   return (
     <MDXComponents.table>
       <thead>
@@ -85,7 +119,7 @@ Remove the use of <PropsTable of="${of}" /> for this component in the docs.`,
                 d="inline-block"
                 lineHeight="tall"
               >
-                {values.type?.name}
+                {renderPropType(values.type?.name)}
               </MDXComponents.inlineCode>
             </MDXComponents.td>
             <MDXComponents.td>{values.description}</MDXComponents.td>
