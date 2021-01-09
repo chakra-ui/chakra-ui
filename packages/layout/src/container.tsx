@@ -6,7 +6,14 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import {
+  cx,
+  Dict,
+  filterUndefined,
+  mapResponsive,
+  memoizedGet as get,
+  __DEV__,
+} from "@chakra-ui/utils"
 import * as React from "react"
 
 export interface ContainerProps extends HTMLChakraProps<"div">, ThemingProps {
@@ -26,9 +33,31 @@ export interface ContainerProps extends HTMLChakraProps<"div">, ThemingProps {
  * It also sets a default max-width of `60ch` (60 characters).
  */
 export const Container = forwardRef<ContainerProps, "div">((props, ref) => {
+  const {
+    maxW,
+    maxWidth,
+    width,
+    w,
+    minWidth,
+    minW,
+  } = props;
   const { className, centerContent, ...rest } = omitThemingProps(props)
 
-  const styles = useStyleConfig("Container", props)
+  const theme = useTheme()
+
+  const widthProps = transform(theme, {
+    maxW,
+    maxWidth,
+    width,
+    w,
+    minWidth,
+    minW,
+  })
+  
+  const styles = useStyleConfig("Container", {
+    ...props,
+    ...widthProps,
+  })
 
   return (
     <chakra.div
@@ -50,3 +79,17 @@ export const Container = forwardRef<ContainerProps, "div">((props, ref) => {
 if (__DEV__) {
   Container.displayName = "Container"
 }
+
+function transform(theme: Dict, props: Dict) {
+  const result: SystemStyleObject = {}
+
+  Object.keys(props).forEach((prop) => {
+    const propValue = props[prop]
+    result[prop] = mapResponsive(propValue, (value) =>
+      get(theme, `sizes.container.${value}`, value),
+    )
+  })
+
+  return filterUndefined(result)
+}
+  
