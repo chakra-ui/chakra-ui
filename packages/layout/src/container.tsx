@@ -3,8 +3,10 @@ import {
   forwardRef,
   omitThemingProps,
   ThemingProps,
+  useTheme,
   useStyleConfig,
   HTMLChakraProps,
+  SystemStyleObject,
 } from "@chakra-ui/system"
 import {
   cx,
@@ -34,17 +36,18 @@ export interface ContainerProps extends HTMLChakraProps<"div">, ThemingProps {
  */
 export const Container = forwardRef<ContainerProps, "div">((props, ref) => {
   const {
+    className,
+    centerContent,
     maxW,
     maxWidth,
     width,
     w,
     minWidth,
     minW,
-  } = props;
-  const { className, centerContent, ...rest } = omitThemingProps(props)
+    ...rest
+  } = omitThemingProps(props)
 
   const theme = useTheme()
-
   const widthProps = transform(theme, {
     maxW,
     maxWidth,
@@ -53,17 +56,15 @@ export const Container = forwardRef<ContainerProps, "div">((props, ref) => {
     minWidth,
     minW,
   })
-  
-  const styles = useStyleConfig("Container", {
-    ...props,
-    ...widthProps,
-  })
+
+  const styles = useStyleConfig("Container", props)
 
   return (
     <chakra.div
       ref={ref}
       className={cx("chakra-container", className)}
       {...rest}
+      {...widthProps}
       __css={{
         ...styles,
         ...(centerContent && {
@@ -92,4 +93,3 @@ function transform(theme: Dict, props: Dict) {
 
   return filterUndefined(result)
 }
-  
