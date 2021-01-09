@@ -46,7 +46,7 @@ const PropsTable = ({
    * for `size` prop with  the component's size values
    */
   if (info.props.size && sizeValues) {
-    info.props.size.type.name = sizeValues
+    info.props.size.type.name = sizeValues.join(", ")
   }
 
   /**
@@ -54,7 +54,7 @@ const PropsTable = ({
    * for `variant` prop with the component's variant values
    */
   if (info.props.variant && variantValues) {
-    info.props.variant.type.name = variantValues
+    info.props.variant.type.name = variantValues.join(", ")
   }
 
   const entries = React.useMemo(
@@ -86,18 +86,6 @@ Remove the use of <PropsTable of="${of}" /> for this component in the docs.`,
     )
   }
 
-  const renderPropType = (type: string | string[]) => {
-    if (Array.isArray(type)) {
-      return type.map((item, index) => {
-        if (index === type.length - 1) {
-          return `${item}`
-        }
-        return `${item}, `
-      })
-    }
-    return type
-  }
-
   return (
     <MDXComponents.table>
       <thead>
@@ -119,7 +107,7 @@ Remove the use of <PropsTable of="${of}" /> for this component in the docs.`,
                 d="inline-block"
                 lineHeight="tall"
               >
-                {renderPropType(values.type?.name)}
+                {values.type?.name}
               </MDXComponents.inlineCode>
             </MDXComponents.td>
             <MDXComponents.td>{values.description}</MDXComponents.td>
