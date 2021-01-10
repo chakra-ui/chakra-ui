@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.0.3
+
+### Patch Changes
+
+- [`1286da79`](https://github.com/chakra-ui/chakra-ui/commit/1286da7977db7bd8f19e2abd03b73990737b1379)
+  [#2992](https://github.com/chakra-ui/chakra-ui/pull/2992) Thanks
+  [@ljosberinn](https://github.com/ljosberinn)! - fix(media-query): fixes
+  useBreakpoinValue infinite loop due to bug in createMediaQueries
+
 ## 1.0.2
 
 ### Patch Changes

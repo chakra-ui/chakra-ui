@@ -1,5 +1,26 @@
 # Change Log
 
+## 1.1.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`3ab385bd`](https://github.com/chakra-ui/chakra-ui/commit/3ab385bdd61be3a9cbe5234494a8992a7be0dcdf),
+  [`1bc2aeb3`](https://github.com/chakra-ui/chakra-ui/commit/1bc2aeb31bac24f7c8108201a07f7aac3c1ac6ea),
+  [`a98817de`](https://github.com/chakra-ui/chakra-ui/commit/a98817de0849bf9eec89fae3faf4fbe085f21011),
+  [`ff7c3676`](https://github.com/chakra-ui/chakra-ui/commit/ff7c36764650dc7f01957c417eae1ec8ce356495),
+  [`1286da79`](https://github.com/chakra-ui/chakra-ui/commit/1286da7977db7bd8f19e2abd03b73990737b1379)]:
+  - @chakra-ui/tabs@1.0.4
+  - @chakra-ui/skeleton@1.0.7
+  - @chakra-ui/portal@1.0.3
+  - @chakra-ui/theme@1.4.0
+  - @chakra-ui/media-query@1.0.3
+  - @chakra-ui/system@1.1.4
+  - @chakra-ui/modal@1.4.2
+  - @chakra-ui/popover@1.0.5
+  - @chakra-ui/tooltip@1.0.3
+  - @chakra-ui/toast@1.1.4
+
 ## 1.1.2
 
 ### Patch Changes

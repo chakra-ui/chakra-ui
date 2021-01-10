@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.0.4
+
+### Patch Changes
+
+- [`3ab385bd`](https://github.com/chakra-ui/chakra-ui/commit/3ab385bdd61be3a9cbe5234494a8992a7be0dcdf)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fixed issue where
+  `Tab` button no longer has `aria-selected="false"` when it is inactive.
+
 ## 1.0.3
 
 ### Patch Changes

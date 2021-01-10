@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.4.0
+
+### Minor Changes
+
+- [`ff7c3676`](https://github.com/chakra-ui/chakra-ui/commit/ff7c36764650dc7f01957c417eae1ec8ce356495)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add the `2xl`
+  breakpoint to the theme which maps to `96em or 1536px`
+
 ## 1.3.0
 
 ### Minor Changes

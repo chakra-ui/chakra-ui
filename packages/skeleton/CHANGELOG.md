@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.0.7
+
+### Patch Changes
+
+- [`1bc2aeb3`](https://github.com/chakra-ui/chakra-ui/commit/1bc2aeb31bac24f7c8108201a07f7aac3c1ac6ea)
+  [#2980](https://github.com/chakra-ui/chakra-ui/pull/2980) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed a bug where
+  `SkeletonText` kept its fixed dimensions when `isLoaded` is true.
+
+- Updated dependencies
+  [[`1286da79`](https://github.com/chakra-ui/chakra-ui/commit/1286da7977db7bd8f19e2abd03b73990737b1379)]:
+  - @chakra-ui/media-query@1.0.3
+  - @chakra-ui/system@1.1.4
+
 ## 1.0.6
 
 ### Patch Changes

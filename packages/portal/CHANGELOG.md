@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.0.3
+
+### Patch Changes
+
+- [`a98817de`](https://github.com/chakra-ui/chakra-ui/commit/a98817de0849bf9eec89fae3faf4fbe085f21011)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Fix issue where
+  `Portal` and `PortalManager` renders elements outside of view.
+
+  - Fixed issue where elements within portal used in an `iframe` got rendered
+    outside of the `iframe`. `Portal` now smartly detects it's document owner
+    and attaches its node to the correct `document.body`
+
+  - Removed extra DOM node `PortalManager` creates. Less is more!
+
 ## 1.0.2
 
 ### Patch Changes

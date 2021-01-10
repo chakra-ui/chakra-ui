@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.0.8
+
+### Patch Changes
+
+- [`878f5fa9`](https://github.com/chakra-ui/chakra-ui/commit/878f5fa95ba16da0bcc94129b3dcb64dea1739f6)
+  [#2968](https://github.com/chakra-ui/chakra-ui/pull/2968) Thanks
+  [@dodas](https://github.com/dodas)! - The `Changing the icon in the Select`
+  example is now editable.
+
+- Updated dependencies []:
+  - @chakra-ui/props-docs@1.0.8
+  - @chakra-ui/react@1.1.3
+
 ## 1.0.7
 
 ### Patch Changes
