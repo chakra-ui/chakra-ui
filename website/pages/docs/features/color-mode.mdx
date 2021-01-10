@@ -16,14 +16,14 @@ scenario, you might need to make your component respond to color mode.
 
 To get dark mode working correctly, you need to do two things:
 
-1. Add the `ColorModeScript` to your application, and set the initial color mode
+1. Update your theme config to determine how Chakra should manage color mode
+   updates.
+
+2. Add the `ColorModeScript` to your application, and set the initial color mode
    your application should start with to either `light`, `dark` or `system`. It
    is `light` by default.
 
-2. Update your theme config to determine how Chakra should manage color mode
-   updates.
-
-## Adding the `ColorModeScript`
+### Updating the theme config
 
 The theme config for color mode has 2 options:
 
@@ -49,34 +49,47 @@ const theme = extendTheme({ config })
 export default theme
 ```
 
+### Adding the `ColorModeScript`
+
+The color mode script needs to added before the `body` tag for local storage
+syncing to work correctly.
+
 > When setting the initial color mode, we recommend adding it as a config to
 > your theme and reference that in the `ColorModeScript`.
 
-### For Next.js
+#### For Next.js
 
-For Next.js, you need to add the script the the `_app.js` file.
+For Next.js, you need to add the script the the `_document.js` file.
 
-```jsx live=false ln={9}
-// pages/_app.js
+```jsx live=false ln={16}
+// pages/_document.js
 
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react"
+import NextDocument, { Html, Head, Main, NextScript } from "next/document"
 import theme from "./theme"
 
-function App({ Component, pageProps }) {
-  return (
-    <>
-      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      <ChakraProvider theme={theme}>
-        <Component {...pageProps} />
-      </ChakraProvider>
-    </>
-  )
+class Document extends NextDocument {
+  static getInitialProps(ctx) {
+    return NextDocument.getInitialProps(ctx)
+  }
+
+  render() {
+    return (
+      <Html lang="en">
+        <body>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
+  }
 }
 
 export default App
 ```
 
-### For Create React App
+#### For Create React App
 
 For Next.js, you need to add the script the the `index.js` file.
 
@@ -97,7 +110,7 @@ ReactDOM.render(
 )
 ```
 
-### For Gatsby
+#### For Gatsby
 
 For Next.js, you need to add the script the the `gatsby-ssr.js` file.
 
