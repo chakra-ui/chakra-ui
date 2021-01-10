@@ -55,7 +55,7 @@
     "react-focus-lock": "2.4.1"
   },
   "peerDependencies": {
-    "react": "16.x || 17.x"
+    "react": ">=16.8.6"
   },
   "devDependencies": {
     "react": "^17.0.1"

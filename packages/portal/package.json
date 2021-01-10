@@ -56,8 +56,8 @@
     "@chakra-ui/utils": "1.0.2"
   },
   "peerDependencies": {
-    "react": "16.x || 17.x",
-    "react-dom": "16.x || 17.x"
+    "react": ">=16.8.6",
+    "react-dom": ">=16.8.6"
   },
   "devDependencies": {
     "@types/react-frame-component": "^4.1.1",
