@@ -1,5 +1,56 @@
 # Change Log
 
+## 1.4.0
+
+### Minor Changes
+
+- [`ff7c3676`](https://github.com/chakra-ui/chakra-ui/commit/ff7c36764650dc7f01957c417eae1ec8ce356495)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for css
+  media query and dark class selectors.
+
+  - Users can now define write styles for dark class variant
+
+  ```jsx live=false
+  <body className="dark">
+    <Box bg="red.200" _dark={{ bg: "red.300" }}>
+      This will be styled based on dark mode class in body
+    </Box>
+  </body>
+  ```
+
+  - Users can also define write styles for CSS media dark mode
+
+  ```jsx live=false
+  <Box bg="red.200" _mediaDark={{ bg: "red.300" }}>
+    This will be styled based on System preference
+  </Box>
+  ```
+
+  **Note to maintainers**
+
+  > This is an initial effort to move towards using CSS instead of JS for
+  > color-mode styles.
+  >
+  > In Chakra v2, we'll only use JS to detect the initial color mode and rely on
+  > `_dark` for changing styles.
+
+### Patch Changes
+
+- [`6830c0e3`](https://github.com/chakra-ui/chakra-ui/commit/6830c0e36959ebd76ce1991dd89d7303ce33b0d0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Due to Safari not
+  support css logical properties for `right`, and `left`, I added polyfill for
+  this css logical properties.
+
+  > Affect components: `Modal`, `Drawer`
+
+  - Added a `directionality` helper function to encapsulate all logic for
+    ltr-rtl value or style flipping.
+
+* [`09f028e4`](https://github.com/chakra-ui/chakra-ui/commit/09f028e4f2539d51b1c9ac7f3aec422ee6848fa3)
+  [#2985](https://github.com/chakra-ui/chakra-ui/pull/2985) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed a bug where rgb
+  values in bgGradient did not work correctly
+
 ## 1.3.1
 
 ### Patch Changes
