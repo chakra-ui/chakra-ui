@@ -152,6 +152,7 @@ export const TabPanel = forwardRef<TabPanelProps, "div">((props, ref) => {
 
   return (
     <chakra.div
+      outline="0"
       {...panelProps}
       className={cx("chakra-tabs__tab-panel", props.className)}
       __css={styles.tabpanel}
