@@ -223,6 +223,17 @@ export const pseudoSelectors = {
    * It is applied when any parent element has `dir="rtl"`
    */
   _rtl: "[dir=rtl] &",
+  /**
+   * Styles for CSS Selector `@media (prefers-color-scheme: dark)`
+   * used when the user has requested the system
+   * use a light or dark color theme.
+   */
+  _mediaDark: "@media (prefers-color-scheme: dark)",
+  /**
+   * Styles for when `.dark` is applied to any parent of
+   * this component or element.
+   */
+  _dark: ".dark &, [data-theme=dark] &",
 }
 
 export type Pseudos = typeof pseudoSelectors
