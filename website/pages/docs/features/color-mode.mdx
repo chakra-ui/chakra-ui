@@ -4,17 +4,126 @@ package: "@chakra-ui/color-mode"
 description: Working with color mode (light and dark mode) in Chakra UI
 ---
 
-When you use the `ChakraProvider` at the root of your app, you can automatically
-use color mode in your apps.
+Chakra UI comes with built-in support for managing color mode in your apps.
 
-By default, most of Chakra's components are dark mode compatible. To handle color
-mode manually in your application, use the `useColorMode` or `useColorModeValue`
-hooks.
+By default, most of Chakra's components are dark mode compatible. In some
+scenario, you might need to make your component respond to color mode.
 
-> **Tip:** Chakra stores the color mode in `localStorage` and uses CSS variables
-> to ensure the color mode is persistent.
+> **Tip:** Chakra stores the color mode in `localStorage` and appends a
+> className to the `body` to ensure the color mode is persistent.
 
-## useColorMode
+## Setup
+
+To get dark mode working correctly, you need to do two things:
+
+1. Add the `ColorModeScript` to your application, and set the initial color mode
+   your application should start with to either `light`, `dark` or `system`. It
+   is `light` by default.
+
+2. Update your theme config to determine how Chakra should manage color mode
+   updates.
+
+## Adding the `ColorModeScript`
+
+The theme config for color mode has 2 options:
+
+- `initialColorMode`: The initial mode you'd like you app to start with
+- `useSystemColorMode`: If `true`, your app will change color mode based on the
+  user's system preferences.
+
+```jsx live=false
+// theme.js
+
+// 1. import `extendTheme` function
+import { extendTheme } from "@chakra-ui/react"
+
+// 2. Add your color mode config
+const config = {
+  initialColorMode: "light",
+  useSystemColorMode: false,
+}
+
+// 3. extend the theme
+const theme = extendTheme({ config })
+
+export default theme
+```
+
+> When setting the initial color mode, we recommend adding it as a config to
+> your theme and reference that in the `ColorModeScript`.
+
+### For Next.js
+
+For Next.js, you need to add the script the the `_app.js` file.
+
+```jsx live=false ln={9}
+// pages/_app.js
+
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react"
+import theme from "./theme"
+
+function App({ Component, pageProps }) {
+  return (
+    <>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <ChakraProvider theme={theme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </>
+  )
+}
+
+export default App
+```
+
+### For Create React App
+
+For Next.js, you need to add the script the the `index.js` file.
+
+```jsx live=false ln={10}
+// index.js
+
+import ReactDOM from "react-dom"
+import App from "./App"
+import theme from "./theme"
+
+ReactDOM.render(
+  <>
+    {/* 👇 Here's the script */}
+    <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+    <App />
+  </>,
+  document.getElementById("root"),
+)
+```
+
+### For Gatsby
+
+For Next.js, you need to add the script the the `gatsby-ssr.js` file.
+
+```jsx live=false ln={9-12}
+// gatsby-ssr.js
+
+import React from "react"
+import theme from "../theme"
+import { ColorModeScript } from "@chakra-ui/react"
+
+export const onRenderBody = ({ setPreBodyComponents }) => {
+  setPreBodyComponents([
+    <ColorModeScript
+      initialColorMode={theme.config.initialColorMode}
+      key="chakra-ui-no-flash"
+    />,
+  ])
+}
+```
+
+## Changing Color Mode
+
+To manage color mode in your application, chakra exposes the `useColorMode` or
+`useColorModeValue` hooks.
+
+### useColorMode
 
 `useColorMode` is a React hook that gives you access to the current color mode,
 and a function to toggle the color mode.
@@ -32,9 +141,10 @@ function Example() {
 }
 ```
 
-Calling `toggleColorMode` anywhere in your app tree toggles the color mode.
+Calling `toggleColorMode` anywhere in your app tree toggles the color mode from
+`light` or `dark` and vice versa.
 
-## useColorModeValue
+### useColorModeValue
 
 `useColorModeValue` is a React hook used to change any value or style based on
 the color mode. It takes 2 arguments: the value in light mode, and the value in
@@ -103,108 +213,6 @@ function Example() {
   )
 }
 ```
-
-## Change color mode behavior
-
-Starting from v1.0, you can now set default color mode or use default OS color
-mode.
-
-By default, the color mode will be `light`.
-
-To support this, extend the default theme with a `config` key matching
-`ColorModeOptions`:
-
-```jsx live=false
-// 1. import `ChakraProvider` component and `extendTheme`
-import { extendTheme, ChakraProvider } from "@chakra-ui/react"
-
-// 2. declare your configuration, these are the defaults
-const config = {
-  useSystemColorMode: false,
-  initialColorMode: "light",
-}
-
-// 3. extend the theme
-const customTheme = extendTheme({ config })
-
-function App() {
-  return (
-    // 4. pass to `ChakraProvider` as usual
-    <ChakraProvider theme={customTheme}>
-      <h1>Example</h1>
-    </ChakraProvider>
-  )
-}
-```
-
-[Learn more about customizing your theme.](/docs/theming/customize-theme)
-
-## Add ColorModeScript
-
-Add the `ColorModeScript` to allow Chakra to determine the initial `ColorMode`
-without weird visual glitches.
-
-**create-react-app and similar**
-
-```jsx live=false
-// index.js
-import ReactDOM from "react-dom"
-import App from "./App"
-
-ReactDOM.render(
-  <>
-    {/* 👇 Here's the script */}
-    <ColorModeScript initialColorMode="light" />
-    <App />
-  </>,
-  document.getElementById("root"),
-)
-```
-
-**With Next.js**
-
-```jsx live=false
-// adjust your pages/_document.js
-import { ColorModeScript } from "@chakra-ui/react"
-
-export default class Document extends NextDocument {
-  static getInitialProps(ctx) {
-    return NextDocument.getInitialProps(ctx)
-  }
-
-  render() {
-    return (
-      <Html>
-        <Head />
-        <body>
-          {/* 👇 Here's the script */}
-          <ColorModeScript initialColorMode="light" />
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
-  }
-}
-```
-
-**With Gatsby**
-
-```jsx live=false
-// gatsby-ssr.js
-import React from "react"
-import { ColorModeScript } from "@chakra-ui/react"
-
-export const onRenderBody = ({ setPreBodyComponents }) => {
-  setPreBodyComponents([
-    <ColorModeScript initialColorMode="light" key="chakra-ui-no-flash" />,
-  ])
-}
-```
-
-> **Important**: If you customize your `initialColorMode` to be `dark`, import
-> your custom theme here and reference
-> `initialColorMode={customTheme.config.initialColorMode}` to keep it in sync.
 
 ## Add colorModeManager (Optional)
 
@@ -307,3 +315,11 @@ App.getInitialProps = ({ req }) => {
   }
 }
 ```
+
+## Color Mode Flash Issue
+
+In some cases, when you switch to dark mode and refresh the page, you might
+experience a quick flash of white mode before it switches correctly.
+
+This is a known issue and we're looking to fix it. If you have some ideas, feel
+free to share with us on Discord or Github.
