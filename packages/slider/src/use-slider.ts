@@ -17,7 +17,7 @@ import {
   EventKeyMap,
   focus,
   getBox,
-  getDocument,
+  getOwnerDocument,
   isRightClick,
   mergeRefs,
   normalizeEventKey,
@@ -414,7 +414,7 @@ export function useSlider(props: UseSliderProps) {
     prev.current = value
     onChangeStart?.(value)
 
-    const doc = getDocument(rootRef.current)
+    const doc = getOwnerDocument(rootRef.current)
 
     const run = (event: MouseEvent) => {
       const nextValue = getValueFromPointer(event)
@@ -450,7 +450,7 @@ export function useSlider(props: UseSliderProps) {
     prev.current = value
     onChangeStart?.(value)
 
-    const doc = getDocument(rootRef.current)
+    const doc = getOwnerDocument(rootRef.current)
 
     const run = (event: TouchEvent) => {
       const nextValue = getValueFromPointer(event)

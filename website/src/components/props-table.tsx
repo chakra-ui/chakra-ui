@@ -1,6 +1,7 @@
 import * as React from "react"
 import * as ComponentProps from "@chakra-ui/props-docs"
 import MDXComponents from "./mdx-components"
+import { theme } from "@chakra-ui/react"
 
 export type PropsTableProps = {
   /**
@@ -33,6 +34,27 @@ const PropsTable = ({
   const info: { props: Record<string, any> } = ComponentProps[of]
   if (!info || !info.props) {
     return null
+  }
+
+  const themeComponent = theme.components[of]
+  const sizeValues = themeComponent?.sizes && Object.keys(themeComponent.sizes)
+  const variantValues =
+    themeComponent?.variants && Object.keys(themeComponent.variants)
+
+  /**
+   * If component has size prop, override the rendered values
+   * for `size` prop with  the component's size values
+   */
+  if (info.props.size && sizeValues) {
+    info.props.size.type.name = sizeValues.join(", ")
+  }
+
+  /**
+   * If component has variant prop, override the rendered value
+   * for `variant` prop with the component's variant values
+   */
+  if (info.props.variant && variantValues) {
+    info.props.variant.type.name = variantValues.join(", ")
   }
 
   const entries = React.useMemo(

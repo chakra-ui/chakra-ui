@@ -132,7 +132,7 @@ function OmniSearch() {
   useEventListener("keydown", (event) => {
     const isMac = /(Mac|iPhone|iPod|iPad)/i.test(navigator?.platform)
     const hotkey = isMac ? "metaKey" : "ctrlKey"
-    if (event.key.toLowerCase() === "k" && event[hotkey]) {
+    if (event?.key?.toLowerCase() === "k" && event[hotkey]) {
       event.preventDefault()
       modal.onOpen()
     }
