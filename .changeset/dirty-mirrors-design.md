@@ -3,4 +3,4 @@
 "@chakra-ui/theme": patch
 ---
 
-fix: fixed form label for rtl support
+Fixed FormLabel margin and textAlign to support rtl; fixed form error icon margin to support rtl
