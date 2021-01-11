@@ -166,6 +166,31 @@ function CollapseEx() {
 }
 ```
 
+### Single Way Transition
+
+```jsx
+function SingleWay() {
+  const { isOpen } = useDisclosure({ isOpen: true })
+
+  return (
+    <>
+      <Collapse in={isOpen} animateOpacity>
+        <Box
+          p="40px"
+          color="white"
+          mt="4"
+          bg="teal.500"
+          rounded="md"
+          shadow="md"
+        >
+          <Lorem count={1} />
+        </Box>
+      </Collapse>
+    </>
+  )
+}
+```
+
 #### Changing the startingHeight
 
 ```jsx
