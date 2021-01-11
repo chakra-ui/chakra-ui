@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [`8b87406c`](https://github.com/chakra-ui/chakra-ui/commit/8b87406c3132586be3393117eef80d47ec82fc54)
+  [#3015](https://github.com/chakra-ui/chakra-ui/pull/3015) Thanks
+  [@with-heart](https://github.com/with-heart)! - Added a `compose` function
+
 ## 1.0.2
 
 ### Patch Changes
