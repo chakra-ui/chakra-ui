@@ -1,5 +1,25 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [`8b87406c`](https://github.com/chakra-ui/chakra-ui/commit/8b87406c3132586be3393117eef80d47ec82fc54)
+  [#3015](https://github.com/chakra-ui/chakra-ui/pull/3015) Thanks
+  [@with-heart](https://github.com/with-heart)! - Added `useCallbackRef` hook
+  for persisting a value between renders and updating it if it changes.
+
+### Patch Changes
+
+- [`8b87406c`](https://github.com/chakra-ui/chakra-ui/commit/8b87406c3132586be3393117eef80d47ec82fc54)
+  [#3015](https://github.com/chakra-ui/chakra-ui/pull/3015) Thanks
+  [@with-heart](https://github.com/with-heart)! - Deprecated `useLatestRef`,
+  `useEventCallback`, and `useMouseDownRef`. These functions will be removed in
+  a future `major` version.
+- Updated dependencies
+  [[`8b87406c`](https://github.com/chakra-ui/chakra-ui/commit/8b87406c3132586be3393117eef80d47ec82fc54)]:
+  - @chakra-ui/utils@1.1.0
+
 ## 1.0.2
 
 ### Patch Changes

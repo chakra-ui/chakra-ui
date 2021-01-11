@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/popover",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A React component to render that renders its content in a popover",
   "keywords": [
     "popover",
@@ -52,15 +52,15 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/close-button": "1.0.3",
-    "@chakra-ui/hooks": "1.0.2",
-    "@chakra-ui/popper": "1.0.2",
-    "@chakra-ui/portal": "1.0.3",
-    "@chakra-ui/transition": "1.0.3",
-    "@chakra-ui/utils": "1.0.2"
+    "@chakra-ui/close-button": "1.0.4",
+    "@chakra-ui/hooks": "1.1.0",
+    "@chakra-ui/popper": "1.0.3",
+    "@chakra-ui/portal": "1.0.4",
+    "@chakra-ui/transition": "1.0.4",
+    "@chakra-ui/utils": "1.1.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.1.4",
+    "@chakra-ui/system": "1.1.5",
     "framer-motion": "^3.1.1",
     "react": "^17.0.1"
   },
