@@ -1,5 +1,59 @@
 # Change Log
 
+## 1.1.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4ae55fa3`](https://github.com/chakra-ui/chakra-ui/commit/4ae55fa3ff28eec1be9e1e5b6ab37d3c7f727df1),
+  [`8b87406c`](https://github.com/chakra-ui/chakra-ui/commit/8b87406c3132586be3393117eef80d47ec82fc54),
+  [`8b87406c`](https://github.com/chakra-ui/chakra-ui/commit/8b87406c3132586be3393117eef80d47ec82fc54),
+  [`8b87406c`](https://github.com/chakra-ui/chakra-ui/commit/8b87406c3132586be3393117eef80d47ec82fc54)]:
+  - @chakra-ui/form-control@1.1.1
+  - @chakra-ui/theme@1.4.1
+  - @chakra-ui/hooks@1.1.0
+  - @chakra-ui/utils@1.1.0
+  - @chakra-ui/input@1.0.4
+  - @chakra-ui/number-input@1.0.4
+  - @chakra-ui/radio@1.1.1
+  - @chakra-ui/select@1.0.4
+  - @chakra-ui/textarea@1.0.4
+  - @chakra-ui/toast@1.1.5
+  - @chakra-ui/accordion@1.0.4
+  - @chakra-ui/checkbox@1.1.1
+  - @chakra-ui/counter@1.0.3
+  - @chakra-ui/editable@1.0.3
+  - @chakra-ui/image@1.0.3
+  - @chakra-ui/menu@1.0.4
+  - @chakra-ui/modal@1.4.3
+  - @chakra-ui/pin-input@1.1.3
+  - @chakra-ui/popover@1.0.6
+  - @chakra-ui/popper@1.0.3
+  - @chakra-ui/portal@1.0.4
+  - @chakra-ui/skeleton@1.0.8
+  - @chakra-ui/slider@1.0.3
+  - @chakra-ui/tabs@1.0.5
+  - @chakra-ui/tooltip@1.0.4
+  - @chakra-ui/transition@1.0.4
+  - @chakra-ui/alert@1.0.4
+  - @chakra-ui/avatar@1.0.3
+  - @chakra-ui/breadcrumb@1.0.3
+  - @chakra-ui/button@1.0.4
+  - @chakra-ui/close-button@1.0.4
+  - @chakra-ui/control-box@1.0.3
+  - @chakra-ui/icon@1.0.3
+  - @chakra-ui/layout@1.1.3
+  - @chakra-ui/live-region@1.0.3
+  - @chakra-ui/media-query@1.0.4
+  - @chakra-ui/progress@1.0.4
+  - @chakra-ui/spinner@1.0.3
+  - @chakra-ui/stat@1.0.3
+  - @chakra-ui/switch@1.0.4
+  - @chakra-ui/system@1.1.5
+  - @chakra-ui/table@1.0.3
+  - @chakra-ui/tag@1.0.4
+  - @chakra-ui/visually-hidden@1.0.3
+
 ## 1.1.3
 
 ### Patch Changes

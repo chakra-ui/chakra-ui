@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.0.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@1.1.4
+  - @chakra-ui/theme-tools@1.0.3
+  - @chakra-ui/icons@1.0.3
+
 ## 1.0.8
 
 ### Patch Changes
