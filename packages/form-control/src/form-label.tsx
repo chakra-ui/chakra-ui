@@ -60,7 +60,7 @@ export const FormLabel = forwardRef<FormLabelProps, "label">(
         className={cx("chakra-form__label", props.className)}
         __css={{
           display: "block",
-          textAlign: "left",
+          textAlign: "start",
           ...styles,
         }}
         {...ownProps}
