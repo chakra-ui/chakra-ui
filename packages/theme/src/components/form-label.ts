@@ -1,6 +1,6 @@
 const baseStyle = {
   fontSize: "md",
-  mr: 3,
+  marginEnd: 3,
   mb: 2,
   fontWeight: "medium",
   transition: "all 0.2s",
