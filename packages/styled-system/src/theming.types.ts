@@ -3,6 +3,7 @@ export interface ThemeTypings extends EmptyThemeTypings {}
 export interface EmptyThemeTypings {
   borders: string
   colors: string
+  breakpoints: string
   colorSchemes: string
   fonts: string
   fontSizes: string

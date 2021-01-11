@@ -1,7 +1,6 @@
 import * as CSS from "csstype"
 import { Config, createParser, system } from "../core"
-import { Length, ResponsiveValue, t } from "../utils"
-import { ThemeTypings } from "../theming.types"
+import { Token, t } from "../utils"
 
 const config: Config = {
   margin: t.spaceT("margin"),
@@ -64,251 +63,183 @@ export interface SpaceProps {
   /**
    * Margin on top, left, bottom and right
    */
-  m?: ResponsiveValue<CSS.Property.Margin<ThemeTypings["space"] | Length>>
+  m?: Token<CSS.Property.Margin | number, "space">
   /**
    * Margin on top, left, bottom and right
    */
-  margin?: ResponsiveValue<CSS.Property.Margin<ThemeTypings["space"] | Length>>
+  margin?: Token<CSS.Property.Margin | number, "space">
   /**
    * Margin on top
    */
-  mt?: ResponsiveValue<CSS.Property.Margin<ThemeTypings["space"] | Length>>
-  marginBlockStart?: ResponsiveValue<
-    CSS.Property.MarginBlockStart<ThemeTypings["space"] | Length>
-  >
+  mt?: Token<CSS.Property.Margin | number, "space">
+  marginBlockStart?: Token<CSS.Property.MarginBlockStart | number, "space">
   /**
    * Margin on top
    */
-  marginTop?: ResponsiveValue<
-    CSS.Property.MarginTop<ThemeTypings["space"] | Length>
-  >
+  marginTop?: Token<CSS.Property.MarginTop | number, "space">
   /**
    * Margin on right
    */
-  mr?: ResponsiveValue<CSS.Property.MarginRight<ThemeTypings["space"] | Length>>
+  mr?: Token<CSS.Property.MarginRight | number, "space">
   /**
    * When direction is `ltr`, `marginInlineEnd` is equivalent to `marginRight`.
    * When direction is `rtl`, `marginInlineEnd` is equivalent to `marginLeft`.
    */
-  marginInlineEnd?: ResponsiveValue<
-    CSS.Property.MarginInlineEnd<ThemeTypings["space"] | Length>
-  >
+  marginInlineEnd?: Token<CSS.Property.MarginInlineEnd | number, "space">
   /**
    * When direction is `ltr`, `marginEnd` is equivalent to `marginRight`.
    * When direction is `rtl`, `marginEnd` is equivalent to `marginLeft`.
    */
-  marginEnd?: ResponsiveValue<
-    CSS.Property.MarginInlineEnd<ThemeTypings["space"] | Length>
-  >
+  marginEnd?: Token<CSS.Property.MarginInlineEnd | number, "space">
   /**
    * When direction is `ltr`, `me` is equivalent to `marginRight`.
    * When direction is `rtl`, `me` is equivalent to `marginLeft`.
    */
-  me?: ResponsiveValue<
-    CSS.Property.MarginInlineEnd<ThemeTypings["space"] | Length>
-  >
+  me?: Token<CSS.Property.MarginInlineEnd | number, "space">
   /**
    * Margin on right
    */
-  marginRight?: ResponsiveValue<
-    CSS.Property.MarginRight<ThemeTypings["space"] | Length>
-  >
+  marginRight?: Token<CSS.Property.MarginRight | number, "space">
   /**
    * Margin on bottom
    */
-  mb?: ResponsiveValue<
-    CSS.Property.MarginBottom<ThemeTypings["space"] | Length>
-  >
-  marginBlockEnd?: ResponsiveValue<
-    CSS.Property.MarginBlockEnd<ThemeTypings["space"] | Length>
-  >
+  mb?: Token<CSS.Property.MarginBottom | number, "space">
+  marginBlockEnd?: Token<CSS.Property.MarginBlockEnd | number, "space">
   /**
    * Margin on bottom
    */
-  marginBottom?: ResponsiveValue<
-    CSS.Property.MarginBottom<ThemeTypings["space"] | Length>
-  >
+  marginBottom?: Token<CSS.Property.MarginBottom | number, "space">
   /**
    * Margin on left
    */
-  ml?: ResponsiveValue<CSS.Property.MarginLeft<ThemeTypings["space"] | Length>>
+  ml?: Token<CSS.Property.MarginLeft | number, "space">
   /**
    * When direction is `ltr`, `marginInlineStart` is equivalent to `marginLeft`.
    * When direction is `rtl`, `marginInlineStart` is equivalent to `marginRight`.
    */
-  marginInlineStart?: ResponsiveValue<
-    CSS.Property.MarginInlineStart<ThemeTypings["space"] | Length>
-  >
+  marginInlineStart?: Token<CSS.Property.MarginInlineStart | number, "space">
   /**
    * When direction is `ltr`, `marginStart` is equivalent to `marginLeft`.
    * When direction is `rtl`, `marginStart` is equivalent to `marginRight`.
    */
-  marginStart?: ResponsiveValue<
-    CSS.Property.MarginInlineStart<ThemeTypings["space"] | Length>
-  >
+  marginStart?: Token<CSS.Property.MarginInlineStart | number, "space">
   /**
    * When direction is `ltr`, `ms` is equivalent to `marginLeft`.
    * When direction is `rtl`, `ms` is equivalent to `marginRight`.
    */
-  ms?: ResponsiveValue<
-    CSS.Property.MarginInlineStart<ThemeTypings["space"] | Length>
-  >
+  ms?: Token<CSS.Property.MarginInlineStart | number, "space">
   /**
    * Margin on left
    */
-  marginLeft?: ResponsiveValue<
-    CSS.Property.MarginLeft<ThemeTypings["space"] | Length>
-  >
+  marginLeft?: Token<CSS.Property.MarginLeft | number, "space">
   /**
    * Margin on left and right
    */
-  mx?: ResponsiveValue<CSS.Property.Margin<ThemeTypings["space"] | Length>>
-  marginInline?: ResponsiveValue<
-    CSS.Property.MarginInline<ThemeTypings["space"] | Length>
-  >
+  mx?: Token<CSS.Property.Margin | number, "space">
+  marginInline?: Token<CSS.Property.MarginInline | number, "space">
   /**
    * Margin on left and right
    */
-  marginX?: ResponsiveValue<CSS.Property.Margin<ThemeTypings["space"] | Length>>
+  marginX?: Token<CSS.Property.Margin | number, "space">
   /**
    * Margin on top and bottom
    */
-  my?: ResponsiveValue<CSS.Property.Margin<ThemeTypings["space"] | Length>>
-  marginBlock?: ResponsiveValue<
-    CSS.Property.MarginBlock<ThemeTypings["space"] | Length>
-  >
+  my?: Token<CSS.Property.Margin | number, "space">
+  marginBlock?: Token<CSS.Property.MarginBlock | number, "space">
   /**
    * Margin on top and bottom
    */
-  marginY?: ResponsiveValue<CSS.Property.Margin<ThemeTypings["space"] | Length>>
+  marginY?: Token<CSS.Property.Margin | number, "space">
   /**
    * Padding on top, left, bottom and right
    */
-  p?: ResponsiveValue<CSS.Property.Padding<ThemeTypings["space"] | Length>>
+  p?: Token<CSS.Property.Padding | number, "space">
   /**
    * Padding on top, left, bottom and right
    */
-  padding?: ResponsiveValue<
-    CSS.Property.Padding<ThemeTypings["space"] | Length>
-  >
+  padding?: Token<CSS.Property.Padding | number, "space">
   /**
    * Padding on top
    */
-  pt?: ResponsiveValue<CSS.Property.PaddingTop<ThemeTypings["space"] | Length>>
-  paddingBlockStart?: ResponsiveValue<
-    CSS.Property.PaddingBlockStart<ThemeTypings["space"] | Length>
-  >
+  pt?: Token<CSS.Property.PaddingTop | number, "space">
+  paddingBlockStart?: Token<CSS.Property.PaddingBlockStart | number, "space">
   /**
    * Padding on top
    */
-  paddingTop?: ResponsiveValue<
-    CSS.Property.PaddingTop<ThemeTypings["space"] | Length>
-  >
+  paddingTop?: Token<CSS.Property.PaddingTop | number, "space">
   /**
    * Padding on right
    */
-  pr?: ResponsiveValue<
-    CSS.Property.PaddingRight<ThemeTypings["space"] | Length>
-  >
+  pr?: Token<CSS.Property.PaddingRight | number, "space">
   /**
    * When direction is `ltr`, `paddingInlineEnd` is equivalent to `paddingRight`.
    * When direction is `rtl`, `paddingInlineEnd` is equivalent to `paddingLeft`.
    */
-  paddingInlineEnd?: ResponsiveValue<
-    CSS.Property.PaddingInlineEnd<ThemeTypings["space"] | Length>
-  >
+  paddingInlineEnd?: Token<CSS.Property.PaddingInlineEnd | number, "space">
   /**
    * When direction is `ltr`, `paddingEnd` is equivalent to `paddingRight`.
    * When direction is `rtl`, `paddingEnd` is equivalent to `paddingLeft`.
    */
-  paddingEnd?: ResponsiveValue<
-    CSS.Property.PaddingInlineEnd<ThemeTypings["space"] | Length>
-  >
+  paddingEnd?: Token<CSS.Property.PaddingInlineEnd | number, "space">
   /**
    * When direction is `ltr`, `pe` is equivalent to `paddingRight`.
    * When direction is `rtl`, `pe` is equivalent to `paddingLeft`.
    */
-  pe?: ResponsiveValue<
-    CSS.Property.PaddingInlineEnd<ThemeTypings["space"] | Length>
-  >
+  pe?: Token<CSS.Property.PaddingInlineEnd | number, "space">
   /**
    * Padding on right
    */
-  paddingRight?: ResponsiveValue<
-    CSS.Property.PaddingRight<ThemeTypings["space"] | Length>
-  >
+  paddingRight?: Token<CSS.Property.PaddingRight | number, "space">
   /**
    * Padding on bottom
    */
-  pb?: ResponsiveValue<
-    CSS.Property.PaddingBottom<ThemeTypings["space"] | Length>
-  >
-  paddingBlockEnd?: ResponsiveValue<
-    CSS.Property.PaddingBlockEnd<ThemeTypings["space"] | Length>
-  >
+  pb?: Token<CSS.Property.PaddingBottom | number, "space">
+  paddingBlockEnd?: Token<CSS.Property.PaddingBlockEnd | number, "space">
   /**
    * Padding on bottom
    */
-  paddingBottom?: ResponsiveValue<
-    CSS.Property.PaddingBottom<ThemeTypings["space"] | Length>
-  >
+  paddingBottom?: Token<CSS.Property.PaddingBottom | number, "space">
   /**
    * Padding on left
    */
-  pl?: ResponsiveValue<CSS.Property.PaddingLeft<ThemeTypings["space"] | Length>>
+  pl?: Token<CSS.Property.PaddingLeft | number, "space">
   /**
    * When direction is `ltr`, `paddingInlineStart` is equivalent to `paddingLeft`.
    * When direction is `rtl`, `paddingInlineStart` is equivalent to `paddingRight`.
    */
-  paddingInlineStart?: ResponsiveValue<
-    CSS.Property.PaddingInlineStart<ThemeTypings["space"] | Length>
-  >
+  paddingInlineStart?: Token<CSS.Property.PaddingInlineStart | number, "space">
   /**
    * When direction is `ltr`, `paddingStart` is equivalent to `paddingLeft`.
    * When direction is `rtl`, `paddingStart` is equivalent to `paddingRight`.
    */
-  paddingStart?: ResponsiveValue<
-    CSS.Property.PaddingInlineStart<ThemeTypings["space"] | Length>
-  >
+  paddingStart?: Token<CSS.Property.PaddingInlineStart | number, "space">
   /**
    * When direction is `ltr`, `ps` is equivalent to `paddingLeft`.
    * When direction is `rtl`, `ps` is equivalent to `paddingRight`.
    */
-  ps?: ResponsiveValue<
-    CSS.Property.PaddingInlineStart<ThemeTypings["space"] | Length>
-  >
+  ps?: Token<CSS.Property.PaddingInlineStart | number, "space">
   /**
    * Padding on left
    */
-  paddingLeft?: ResponsiveValue<
-    CSS.Property.PaddingLeft<ThemeTypings["space"] | Length>
-  >
+  paddingLeft?: Token<CSS.Property.PaddingLeft | number, "space">
   /**
    * Padding on left and right
    */
-  px?: ResponsiveValue<CSS.Property.Padding<ThemeTypings["space"] | Length>>
-  paddingInline?: ResponsiveValue<
-    CSS.Property.PaddingInline<ThemeTypings["space"] | Length>
-  >
+  px?: Token<CSS.Property.Padding | number, "space">
+  paddingInline?: Token<CSS.Property.PaddingInline | number, "space">
   /**
    * Padding on left and right
    */
-  paddingX?: ResponsiveValue<
-    CSS.Property.Padding<ThemeTypings["space"] | Length>
-  >
+  paddingX?: Token<CSS.Property.Padding | number, "space">
   /**
    * Padding on top and bottom
    */
-  py?: ResponsiveValue<CSS.Property.Padding<ThemeTypings["space"] | Length>>
-  paddingBlock?: ResponsiveValue<
-    CSS.Property.PaddingBlock<ThemeTypings["space"] | Length>
-  >
+  py?: Token<CSS.Property.Padding | number, "space">
+  paddingBlock?: Token<CSS.Property.PaddingBlock | number, "space">
   /**
    * Padding on top and bottom
    */
-  paddingY?: ResponsiveValue<
-    CSS.Property.Padding<ThemeTypings["space"] | Length>
-  >
+  paddingY?: Token<CSS.Property.Padding | number, "space">
 }
 
 /**

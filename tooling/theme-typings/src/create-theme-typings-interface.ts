@@ -21,6 +21,8 @@ export interface ThemeKeyOptions {
    * @default 1
    */
   maxScanDepth?: number
+
+  filter?: (value: string) => boolean
 }
 
 export interface CreateThemeTypingsInterfaceOptions {
@@ -31,13 +33,18 @@ export async function createThemeTypingsInterface(
   theme: Record<string, unknown>,
   { themeKeys }: CreateThemeTypingsInterfaceOptions,
 ) {
-  const unions = themeKeys.reduce((allUnions, { key, maxScanDepth }) => {
-    const target = theme[key]
-    if (isObject(target)) {
-      allUnions[key] = extractPropertyPaths(target, maxScanDepth)
-    }
-    return allUnions
-  }, {} as Record<string, string[]>)
+  const unions = themeKeys.reduce(
+    (allUnions, { key, maxScanDepth, filter }) => {
+      const target = theme[key]
+      if (isObject(target) || Array.isArray(target)) {
+        allUnions[key] = extractPropertyPaths(target, maxScanDepth).filter(
+          filter ?? (() => true),
+        )
+      }
+      return allUnions
+    },
+    {} as Record<string, string[]>,
+  )
 
   const componentTypes = extractComponentTypes(theme)
   const colorSchemes = extractColorSchemeTypes(theme)
@@ -46,15 +53,12 @@ export async function createThemeTypingsInterface(
     // language=ts
     `// regenerate by running
 // npx @chakra-ui/theme-typings --out <out-dir> path/to/your/theme.(js|ts)
-import "@chakra-ui/styled-system"
-
-declare module "@chakra-ui/styled-system" {
-  export interface ThemeTypings {
-    ${printUnionMap(unions)}
-    ${printUnionMap({ colorSchemes })}
-    ${printComponentTypes(componentTypes)}
-  }
+export interface ThemeTypings {
+  ${printUnionMap(unions)}
+  ${printUnionMap({ colorSchemes })}
+  ${printComponentTypes(componentTypes)}
 }
+
 `
 
   return formatWithPrettierIfAvailable(template)

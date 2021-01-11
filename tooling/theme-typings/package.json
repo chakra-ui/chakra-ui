@@ -41,7 +41,7 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "start": "nodemon --watch src --exec 'yarn build; yarn dev --out dist' -e ts,tsx",
+    "start": "nodemon --watch src --exec 'yarn build; yarn dev' -e ts,tsx",
     "dev": "node bin/index.js ../../website/theme.ts",
     "build": "concurrently yarn:build:*",
     "test": "jest --env=jsdom --passWithNoTests",

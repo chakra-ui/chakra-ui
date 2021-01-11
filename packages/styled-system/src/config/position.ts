@@ -1,7 +1,6 @@
 import * as CSS from "csstype"
 import { Config, createParser, system } from "../core"
-import { Length, positiveOrNegative, ResponsiveValue, t } from "../utils"
-import { ThemeTypings } from "../theming.types"
+import { positiveOrNegative, t, Token } from "../utils"
 
 const config: Config = {
   position: true,
@@ -48,75 +47,63 @@ export interface PositionProps {
   /**
    * The CSS `z-index` property
    */
-  zIndex?: ResponsiveValue<string | CSS.Property.ZIndex>
+  zIndex?: Token<CSS.Property.ZIndex, "zIndices">
   /**
    * The CSS `top` property
    */
-  top?: ResponsiveValue<CSS.Property.Top<ThemeTypings["sizes"] | Length>>
-  insetBlockStart?: ResponsiveValue<
-    CSS.Property.InsetBlockStart<ThemeTypings["sizes"] | Length>
-  >
+  top?: Token<CSS.Property.Top | number, "sizes">
+  insetBlockStart?: Token<CSS.Property.InsetBlockStart | number, "sizes">
   /**
    * The CSS `right` property
    */
-  right?: ResponsiveValue<CSS.Property.Right<ThemeTypings["sizes"] | Length>>
+  right?: Token<CSS.Property.Right | number, "sizes">
   /**
    * When the direction is `ltr`, `insetInlineEnd` is equivalent to `right`.
    * When the direction is `rtl`, `insetInlineEnd` is equivalent to `left`.
    */
-  insetInlineEnd?: ResponsiveValue<
-    CSS.Property.InsetInlineEnd<ThemeTypings["sizes"] | Length>
-  >
+  insetInlineEnd?: Token<CSS.Property.InsetInlineEnd | number, "sizes">
   /**
    * When the direction is `ltr`, `insetEnd` is equivalent to `right`.
    * When the direction is `rtl`, `insetEnd` is equivalent to `left`.
    */
-  insetEnd?: ResponsiveValue<
-    CSS.Property.InsetInlineEnd<ThemeTypings["sizes"] | Length>
-  >
+  insetEnd?: Token<CSS.Property.InsetInlineEnd | number, "sizes">
   /**
    * The CSS `bottom` property
    */
-  bottom?: ResponsiveValue<CSS.Property.Bottom<ThemeTypings["sizes"] | Length>>
-  insetBlockEnd?: ResponsiveValue<
-    CSS.Property.InsetBlockEnd<ThemeTypings["sizes"] | Length>
-  >
+  bottom?: Token<CSS.Property.Bottom | number, "sizes">
+  insetBlockEnd?: Token<CSS.Property.InsetBlockEnd | number, "sizes">
   /**
    * The CSS `left` property
    */
-  left?: ResponsiveValue<CSS.Property.Left<ThemeTypings["sizes"] | Length>>
-  insetInlineStart?: ResponsiveValue<
-    CSS.Property.InsetInlineStart<ThemeTypings["sizes"] | Length>
-  >
+  left?: Token<CSS.Property.Left | number, "sizes">
+  insetInlineStart?: Token<CSS.Property.InsetInlineStart | number, "sizes">
   /**
    * When the direction is `start`, `end` is equivalent to `left`.
    * When the direction is `start`, `end` is equivalent to `right`.
    */
-  insetStart?: ResponsiveValue<
-    CSS.Property.InsetInlineStart<ThemeTypings["sizes"] | Length>
-  >
+  insetStart?: Token<CSS.Property.InsetInlineStart | number, "sizes">
   /**
    * The CSS `left`, `right`, `top`, `bottom` property
    */
-  inset?: ResponsiveValue<CSS.Property.Left<ThemeTypings["sizes"] | Length>>
+  inset?: Token<CSS.Property.Left | number, "sizes">
   /**
    * The CSS `left`, and `right` property
    */
-  insetX?: ResponsiveValue<CSS.Property.Left<ThemeTypings["sizes"] | Length>>
+  insetX?: Token<CSS.Property.Left | number, "sizes">
   /**
    * The CSS `top`, and `bottom` property
    */
-  insetY?: ResponsiveValue<CSS.Property.Left<ThemeTypings["sizes"] | Length>>
+  insetY?: Token<CSS.Property.Left | number, "sizes">
   /**
    * The CSS `position` property
    */
-  pos?: ResponsiveValue<CSS.Property.Position>
+  pos?: Token<CSS.Property.Position>
   /**
    * The CSS `position` property
    */
-  position?: ResponsiveValue<CSS.Property.Position>
-  insetInline?: ResponsiveValue<CSS.Property.InsetInline>
-  insetBlock?: ResponsiveValue<CSS.Property.InsetBlock>
+  position?: Token<CSS.Property.Position>
+  insetInline?: Token<CSS.Property.InsetInline>
+  insetBlock?: Token<CSS.Property.InsetBlock>
 }
 
 export const position = system(config)

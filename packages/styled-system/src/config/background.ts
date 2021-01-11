@@ -1,8 +1,7 @@
 import * as CSS from "csstype"
 import { createParser, Config, system } from "../core"
-import { ResponsiveValue, Length, t } from "../utils"
+import { Token, t } from "../utils"
 import { transformGradient } from "../utils/parse-gradient"
-import { ThemeTypings } from ".."
 
 function transformBgClip(value: string) {
   return value === "text"
@@ -47,93 +46,87 @@ export interface BackgroundProps {
   /**
    * The CSS `background` property
    */
-  bg?: ResponsiveValue<CSS.Property.Background<ThemeTypings["colors"] | Length>>
+  bg?: Token<CSS.Property.Color, "colors">
   /**
    * The CSS `background-clip` property
    */
-  bgClip?: ResponsiveValue<CSS.Property.BackgroundClip | "text">
+  bgClip?: Token<CSS.Property.BackgroundClip | "text">
   /**
    * The CSS `background-clip` property
    */
-  backgroundClip?: ResponsiveValue<CSS.Property.BackgroundClip | "text">
+  backgroundClip?: Token<CSS.Property.BackgroundClip | "text">
   /**
    * The CSS `background` property
    */
-  background?: ResponsiveValue<
-    CSS.Property.Background<ThemeTypings["colors"] | Length>
-  >
+  background?: Token<CSS.Property.Color, "colors">
   /**
    * The CSS `background-color` property
    */
-  bgColor?: ResponsiveValue<
-    ThemeTypings["colors"] | CSS.Property.BackgroundColor
-  >
+  bgColor?: Token<CSS.Property.Color, "colors">
   /**
    * The CSS `background-color` property
    */
-  backgroundColor?: ResponsiveValue<
-    ThemeTypings["colors"] | CSS.Property.BackgroundColor
-  >
+  backgroundColor?: Token<CSS.Property.Color, "colors">
   /**
    * The CSS `background-image` property
    */
-  backgroundImage?: ResponsiveValue<CSS.Property.BackgroundImage>
+  backgroundImage?: Token<CSS.Property.BackgroundImage>
   /**
    * The background-gradient shorthand
    */
-  bgGradient?: ResponsiveValue<CSS.Property.BackgroundImage>
+  bgGradient?: Token<CSS.Property.BackgroundImage>
   /**
    * The CSS `background-blend-mode` property
    */
-  backgroundBlendMode?: ResponsiveValue<CSS.Property.BackgroundBlendMode>
+  backgroundBlendMode?: Token<CSS.Property.BackgroundBlendMode>
   /**
    * The CSS `background-blend-mode` property
    */
-  bgBlendMode?: ResponsiveValue<CSS.Property.BackgroundBlendMode>
+  bgBlendMode?: Token<CSS.Property.BackgroundBlendMode>
   /**
    * The CSS `background-size` property
    */
-  backgroundSize?: ResponsiveValue<CSS.Property.BackgroundSize<Length>>
+  backgroundSize?: Token<CSS.Property.BackgroundSize | number>
   /**
    * The CSS `background-position` property
    */
-  bgPos?: ResponsiveValue<CSS.Property.BackgroundPosition<Length>>
+  bgPos?: Token<CSS.Property.BackgroundPosition | number>
   /**
    * The CSS `background-position` property
    */
-  backgroundPosition?: ResponsiveValue<CSS.Property.BackgroundPosition<Length>>
+  backgroundPosition?: Token<CSS.Property.BackgroundPosition | number>
   /**
    * The CSS `background-image` property
    */
-  bgImage?: ResponsiveValue<CSS.Property.BackgroundImage>
+  bgImage?: Token<CSS.Property.BackgroundImage>
   /**
    * The CSS `background-image` property
    */
-  bgImg?: ResponsiveValue<CSS.Property.BackgroundImage>
+  bgImg?: Token<CSS.Property.BackgroundImage>
   /**
    * The CSS `background-repeat` property
    */
-  bgRepeat?: ResponsiveValue<CSS.Property.BackgroundRepeat>
+  bgRepeat?: Token<CSS.Property.BackgroundRepeat>
   /**
    * The CSS `background-repeat` property
    */
-  backgroundRepeat?: ResponsiveValue<CSS.Property.BackgroundRepeat>
+  backgroundRepeat?: Token<CSS.Property.BackgroundRepeat>
   /**
    * The CSS `background-size` property
    */
-  bgSize?: ResponsiveValue<CSS.Property.BackgroundSize<Length>>
+  bgSize?: Token<CSS.Property.BackgroundSize | number>
   /**
    * The CSS `background-attachment` property
    */
-  bgAttachment?: ResponsiveValue<CSS.Property.BackgroundAttachment>
+  bgAttachment?: Token<CSS.Property.BackgroundAttachment>
   /**
    * The CSS `background-attachment` property
    */
-  backgroundAttachment?: ResponsiveValue<CSS.Property.BackgroundAttachment>
+  backgroundAttachment?: Token<CSS.Property.BackgroundAttachment>
   /**
    * The CSS `background-position` property
    */
-  bgPosition?: ResponsiveValue<CSS.Property.BackgroundPosition<Length>>
+  bgPosition?: Token<CSS.Property.BackgroundPosition | number>
 }
 
 export const background = system(config)

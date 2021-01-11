@@ -1,7 +1,6 @@
 import * as CSS from "csstype"
 import { Config, createParser, system } from "../core"
-import { Length, ResponsiveValue, t } from "../utils"
-import { ThemeTypings } from ".."
+import { Length, t, Token } from "../utils"
 
 const config: Config = {
   width: t.sizesT("width"),
@@ -42,105 +41,85 @@ export interface LayoutProps {
   /**
    * The CSS `display` property
    */
-  display?: ResponsiveValue<CSS.Property.Display>
+  display?: Token<CSS.Property.Display>
   /**
    * The CSS `display` property
    */
-  d?: ResponsiveValue<CSS.Property.Display>
+  d?: Token<CSS.Property.Display>
   /**
    * The CSS `width` property
    */
-  width?: ResponsiveValue<CSS.Property.Width<ThemeTypings["sizes"] | Length>>
+  width?: Token<CSS.Property.Width | number, "sizes">
   /**
    * The CSS `width` property
    */
-  w?: ResponsiveValue<CSS.Property.Width<ThemeTypings["sizes"] | Length>>
-  inlineSize?: ResponsiveValue<
-    CSS.Property.InlineSize<ThemeTypings["sizes"] | Length>
-  >
+  w?: Token<CSS.Property.Width | number, "sizes">
+  inlineSize?: Token<CSS.Property.InlineSize | number, "sizes">
   /**
    * The CSS `width` and `height` property
    */
-  boxSize?: ResponsiveValue<CSS.Property.Width<ThemeTypings["sizes"] | Length>>
+  boxSize?: Token<CSS.Property.Width | number, "sizes">
   /**
    * The CSS `max-width` property
    */
-  maxWidth?: ResponsiveValue<
-    CSS.Property.MaxWidth<ThemeTypings["sizes"] | Length>
-  >
+  maxWidth?: Token<CSS.Property.MaxWidth | number, "sizes">
   /**
    * The CSS `max-width` property
    */
-  maxW?: ResponsiveValue<CSS.Property.MaxWidth<ThemeTypings["sizes"] | Length>>
-  maxInlineSize?: ResponsiveValue<
-    CSS.Property.MaxInlineSize<ThemeTypings["sizes"] | Length>
-  >
+  maxW?: Token<CSS.Property.MaxWidth | number, "sizes">
+  maxInlineSize?: Token<CSS.Property.MaxInlineSize | number, "sizes">
   /**
    * The CSS `min-width` property
    */
-  minWidth?: ResponsiveValue<
-    CSS.Property.MinWidth<ThemeTypings["sizes"] | Length>
-  >
+  minWidth?: Token<CSS.Property.MinWidth | number, "sizes">
   /**
    * The CSS `min-width` property
    */
-  minW?: ResponsiveValue<CSS.Property.MinWidth<ThemeTypings["sizes"] | Length>>
-  minInlineSize?: ResponsiveValue<
-    CSS.Property.MinInlineSize<ThemeTypings["sizes"] | Length>
-  >
+  minW?: Token<CSS.Property.MinWidth | number, "sizes">
+  minInlineSize?: Token<CSS.Property.MinInlineSize | number, "sizes">
   /**
    * The CSS `height` property
    */
-  height?: ResponsiveValue<CSS.Property.Height<ThemeTypings["sizes"] | Length>>
+  height?: Token<CSS.Property.Height | number, "sizes">
   /**
    * The CSS `height` property
    */
-  h?: ResponsiveValue<CSS.Property.Height<ThemeTypings["sizes"] | Length>>
-  blockSize?: ResponsiveValue<
-    CSS.Property.BlockSize<ThemeTypings["sizes"] | Length>
-  >
+  h?: Token<CSS.Property.Height | number, "sizes">
+  blockSize?: Token<CSS.Property.BlockSize | number, "sizes">
   /**
    * The CSS `max-height` property
    */
-  maxHeight?: ResponsiveValue<
-    CSS.Property.MaxHeight<ThemeTypings["sizes"] | Length>
-  >
+  maxHeight?: Token<CSS.Property.MaxHeight | number, "sizes">
   /**
    * The CSS `max-height` property
    */
-  maxH?: ResponsiveValue<CSS.Property.MaxHeight<ThemeTypings["sizes"] | Length>>
-  maxBlockSize?: ResponsiveValue<
-    CSS.Property.MaxBlockSize<ThemeTypings["sizes"] | Length>
-  >
+  maxH?: Token<CSS.Property.MaxHeight | number, "sizes">
+  maxBlockSize?: Token<CSS.Property.MaxBlockSize | number, "sizes">
   /**
    * The CSS `min-height` property
    */
-  minHeight?: ResponsiveValue<
-    CSS.Property.MinHeight<ThemeTypings["sizes"] | Length>
-  >
+  minHeight?: Token<CSS.Property.MinHeight | number, "sizes">
   /**
    * The CSS `min-height` property
    */
-  minH?: ResponsiveValue<CSS.Property.MinHeight<ThemeTypings["sizes"] | Length>>
-  minBlockSize?: ResponsiveValue<
-    CSS.Property.MinBlockSize<ThemeTypings["sizes"] | Length>
-  >
+  minH?: Token<CSS.Property.MinHeight | number, "sizes">
+  minBlockSize?: Token<CSS.Property.MinBlockSize | number, "sizes">
   /**
    * The CSS `vertical-align` property
    */
-  verticalAlign?: ResponsiveValue<CSS.Property.VerticalAlign<Length>>
+  verticalAlign?: Token<CSS.Property.VerticalAlign<Length>>
   /**
    * The CSS `overflow` property
    */
-  overflow?: ResponsiveValue<CSS.Property.Overflow>
+  overflow?: Token<CSS.Property.Overflow>
   /**
    * The CSS `overflow-x` property
    */
-  overflowX?: ResponsiveValue<CSS.Property.OverflowX>
+  overflowX?: Token<CSS.Property.OverflowX>
   /**
    * The CSS `overflow-y` property
    */
-  overflowY?: ResponsiveValue<CSS.Property.OverflowY>
+  overflowY?: Token<CSS.Property.OverflowY>
   /**
    * The CSS `box-sizing` property
    */

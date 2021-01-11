@@ -1,7 +1,6 @@
 import * as CSS from "csstype"
 import { createParser, Config, system } from "../core"
-import { ResponsiveValue, t } from "../utils"
-import { ThemeTypings } from ".."
+import { t, Token } from "../utils"
 
 const config: Config = {
   color: t.colors("color"),
@@ -15,23 +14,23 @@ export interface ColorProps {
   /**
    * The CSS `color` property
    */
-  textColor?: ResponsiveValue<ThemeTypings["colors"]>
+  textColor?: Token<CSS.Property.Color, "colors">
   /**
    * The CSS `color` property
    */
-  color?: ResponsiveValue<ThemeTypings["colors"] | CSS.Property.Color>
+  color?: Token<CSS.Property.Color, "colors">
   /**
    * The CSS `fill` property for icon svgs and paths
    */
-  fill?: ResponsiveValue<ThemeTypings["colors"] | CSS.Property.Color>
+  fill?: Token<CSS.Property.Color, "colors">
   /**
    * The CSS `stroke` property for icon svgs and paths
    */
-  stroke?: ResponsiveValue<ThemeTypings["colors"] | CSS.Property.Color>
+  stroke?: Token<CSS.Property.Color, "colors">
   /**
    * The CSS `opacity` property
    */
-  opacity?: ResponsiveValue<CSS.Property.Opacity>
+  opacity?: Token<CSS.Property.Opacity>
 }
 
 export const color = system(config)

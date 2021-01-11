@@ -11,7 +11,7 @@ import { writeFile } from "fs/promises"
 
 const themeKeyConfiguration: ThemeKeyOptions[] = [
   { key: "borders" },
-  { key: "breakpoints" },
+  { key: "breakpoints", filter: (value) => Number.isNaN(Number(value)) },
   { key: "colors", maxScanDepth: 2 },
   { key: "fonts" },
   { key: "fontSizes" },
@@ -38,16 +38,14 @@ function readTheme(themeFilePath: string) {
 }
 
 async function run() {
-  program.requiredOption("-o, --out <path>", "output directory")
   program.on("--help", () => {
     console.info(`Example call:
-  $ create-chakra-theme-typings theme.ts --out @types
+  $ create-chakra-theme-typings theme.ts
 `)
   })
   program.parse(process.argv)
 
   const {
-    out,
     args: [themeFile],
   } = program
 
@@ -64,7 +62,17 @@ async function run() {
     themeKeys: themeKeyConfiguration,
   })
 
-  const outPath = path.join(process.cwd(), out, "chakra-ui__styled-system.d.ts")
+  const outPath = path.resolve(
+    "..",
+    "..",
+    "node_modules",
+    "@chakra-ui",
+    "styled-system",
+    "dist",
+    "types",
+    "theming.types.d.ts",
+  )
+
   console.info(`✍️  Write file "${outPath}"...`)
   await writeFile(outPath, template, "utf8")
   console.info(`✅ done`)

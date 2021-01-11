@@ -1,7 +1,6 @@
 import * as CSS from "csstype"
 import { Config, createParser, system } from "../core"
-import { ResponsiveValue, Length } from "../utils"
-import { ThemeTypings } from ".."
+import { Token } from "../utils"
 
 const config: Config = {
   fontFamily: {
@@ -44,65 +43,60 @@ export interface TypographyProps {
   /**
    * The CSS `font-weight` property
    */
-  fontWeight?: ResponsiveValue<(ThemeTypings["fontWeights"] | string) | number>
+  fontWeight?: Token<string, "fontWeights">
   /**
    * The CSS `line-height` property
    */
-  lineHeight?: ResponsiveValue<
-    CSS.Property.LineHeight<ThemeTypings["lineHeights"] | Length>
-  >
+  lineHeight?: Token<CSS.Property.LineHeight | number, "lineHeights">
   /**
    * The CSS `letter-spacing` property
    */
-  letterSpacing?: ResponsiveValue<
-    CSS.Property.LetterSpacing<ThemeTypings["letterSpacings"] | Length>
-  >
+  letterSpacing?: Token<CSS.Property.LetterSpacing | number, "letterSpacings">
+
   /**
    * The CSS `font-size` property
    */
-  fontSize?: ResponsiveValue<
-    CSS.Property.FontSize<ThemeTypings["fontSizes"] | Length>
-  >
+  fontSize?: Token<CSS.Property.FontSize | number, "fontSizes">
   /**
    * The CSS `font-family` property
    */
-  fontFamily?: ResponsiveValue<ThemeTypings["fonts"] | CSS.Property.FontFamily>
+  fontFamily?: Token<CSS.Property.FontFamily, "fonts">
   /**
    * The CSS `text-align` property
    */
-  textAlign?: ResponsiveValue<CSS.Property.TextAlign>
+  textAlign?: Token<CSS.Property.TextAlign>
   /**
    * The CSS `font-style` property
    */
-  fontStyle?: ResponsiveValue<CSS.Property.FontStyle>
+  fontStyle?: Token<CSS.Property.FontStyle>
   /**
    * The CSS `word-break` property
    */
-  wordBreak?: ResponsiveValue<CSS.Property.WordBreak>
+  wordBreak?: Token<CSS.Property.WordBreak>
   /**
    * The CSS `overflow-wrap` property
    */
-  overflowWrap?: ResponsiveValue<CSS.Property.OverflowWrap>
+  overflowWrap?: Token<CSS.Property.OverflowWrap>
   /**
    * The CSS `text-overflow` property
    */
-  textOverflow?: ResponsiveValue<CSS.Property.TextOverflow>
+  textOverflow?: Token<CSS.Property.TextOverflow>
   /**
    * The CSS `text-transform` property
    */
-  textTransform?: ResponsiveValue<CSS.Property.TextTransform>
+  textTransform?: Token<CSS.Property.TextTransform>
   /**
    * The CSS `white-space` property
    */
-  whiteSpace?: ResponsiveValue<CSS.Property.WhiteSpace>
+  whiteSpace?: Token<CSS.Property.WhiteSpace>
   /**
    * The CSS `text-decoration` property
    */
-  textDecoration?: ResponsiveValue<CSS.Property.TextDecoration<Length>>
+  textDecoration?: Token<CSS.Property.TextDecoration | number>
   /**
    * The CSS `text-decoration` property
    */
-  textDecor?: ResponsiveValue<CSS.Property.TextDecoration<Length>>
+  textDecor?: Token<CSS.Property.TextDecoration | number>
 }
 
 export const typography = system(config)
