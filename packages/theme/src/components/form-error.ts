@@ -14,7 +14,7 @@ function baseStyleText(props: Dict) {
 
 function baseStyleIcon(props: Dict) {
   return {
-    mr: "0.5em",
+    marginEnd: "0.5em",
     color: mode("red.500", "red.300")(props),
   }
 }
