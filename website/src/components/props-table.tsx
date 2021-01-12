@@ -61,6 +61,21 @@ const PropsTable = ({
       .join(" | ")
   }
 
+  const defaultSize = themeComponent?.defaultProps?.size
+  const defaultVariant = themeComponent?.defaultProps?.variant
+
+  if (defaultSize != null) {
+    info.props.size.defaultValue = {
+      value: defaultSize,
+    }
+  }
+
+  if (defaultVariant != null) {
+    info.props.variant.defaultValue = {
+      value: defaultVariant,
+    }
+  }
+
   const entries = React.useMemo(
     () =>
       Object.entries(info.props)
