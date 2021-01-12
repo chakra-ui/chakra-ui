@@ -1728,6 +1728,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "sampoder",
+      "name": "Sam Poder",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/39828164?v=4",
+      "profile": "http://sampoder.com",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
