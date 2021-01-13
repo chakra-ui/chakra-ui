@@ -28,9 +28,9 @@ const directions = {
     motion: { x: "-100%" },
     baseStyle: {
       width: "100%",
-      height: "100vh",
       left: 0,
       top: 0,
+      bottom: 0,
     },
   },
   right: {
@@ -39,7 +39,7 @@ const directions = {
       width: "100%",
       right: 0,
       top: 0,
-      height: "100vh",
+      bottom: 0,
     },
   },
 }
