@@ -37,7 +37,7 @@ function readTheme(themeFilePath: string) {
   return module.default ?? module.theme
 }
 
-async function run() {
+export async function run() {
   program.on("--help", () => {
     console.info(`Example call:
   $ create-chakra-theme-typings theme.ts
@@ -73,12 +73,7 @@ async function run() {
     "theming.types.d.ts",
   )
 
-  console.info(`✍️  Write file "${outPath}"...`)
+  console.info(`✏️  Write file "${outPath}"...`)
   await writeFile(outPath, template, "utf8")
   console.info(`✅ done`)
 }
-
-run().catch((e) => {
-  console.error(e)
-  process.exit(1)
-})
