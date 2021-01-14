@@ -20,9 +20,14 @@ export function useEventListener<K extends keyof DocumentEventMap>(
 
   React.useEffect(() => {
     if (!env) return undefined
-    env.addEventListener(event, fn, options)
+
+    const listener = (event: any) => {
+      fn(event)
+    }
+
+    env.addEventListener(event, listener, options)
     return () => {
-      env.removeEventListener(event, fn, options)
+      env.removeEventListener(event, listener, options)
     }
   }, [event, env, options, fn])
 
