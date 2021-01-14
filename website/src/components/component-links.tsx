@@ -107,6 +107,7 @@ function ComponentLinks(props: ComponentLinksProps) {
       <ComponentLink
         url={`${githubRepoUrl}/tree/master/packages/theme/src/components/${theme.componentName}.ts`}
         icon={FaGithub}
+        iconColor={useColorModeValue("gray.600", "inherit")}
         iconSize="1rem"
       >
         View theme source
