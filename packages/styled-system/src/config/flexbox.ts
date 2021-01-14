@@ -151,7 +151,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/flex-grow)
    */
-  flexGrow?: Token<CSS.Property.FlexGrow>
+  flexGrow?: Token<CSS.Property.FlexGrow | (string & number)>
   /**
    * The CSS `flex-shrink` property.
    *
@@ -160,7 +160,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/flex-shrink)
    */
-  flexShrink?: Token<CSS.Property.FlexShrink>
+  flexShrink?: Token<CSS.Property.FlexShrink | (string & number)>
   /**
    * The CSS `place-items` property.
    *

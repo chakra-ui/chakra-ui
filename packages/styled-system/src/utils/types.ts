@@ -17,4 +17,4 @@ export type Token<
   ThemeKey = unknown
 > = ThemeKey extends keyof ThemeTypings
   ? ResponsiveValue<Union<CSSType | ThemeTypings[ThemeKey]>>
-  : ResponsiveValue<Union<CSSType>>
+  : ResponsiveValue<CSSType>

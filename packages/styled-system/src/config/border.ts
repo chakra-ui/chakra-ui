@@ -160,11 +160,11 @@ export interface BorderProps {
   /**
    * The CSS `border-radius` property
    */
-  borderRadius?: Token<CSS.Property.BorderRadius, "radii">
+  borderRadius?: Token<CSS.Property.BorderRadius | number, "radii">
   /**
    * The CSS `border-radius` property
    */
-  rounded?: Token<CSS.Property.BorderRadius, "radii">
+  rounded?: Token<CSS.Property.BorderRadius | number, "radii">
   /**
    * The CSS `border-top` property
    */
@@ -173,8 +173,8 @@ export interface BorderProps {
   /**
    * The CSS `border-top-width` property
    */
-  borderTopWidth?: Token<CSS.Property.BorderWidth>
-  borderBlockStartWidth?: Token<CSS.Property.BorderBlockStartWidth>
+  borderTopWidth?: Token<CSS.Property.BorderWidth | number>
+  borderBlockStartWidth?: Token<CSS.Property.BorderBlockStartWidth | number>
   /**
    * The CSS `border-bottom-width` property
    */
