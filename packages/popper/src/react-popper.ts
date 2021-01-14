@@ -11,6 +11,7 @@ import { dequal } from "dequal"
 import * as React from "react"
 
 type Options = Partial<PopperOptions> & {
+  enabled?: boolean
   createPopper?: typeof defaultCreatePopper
 }
 
@@ -44,6 +45,8 @@ export function usePopper(
   popperElement: HTMLElement,
   options: Options = {},
 ) {
+  const { enabled = true } = options
+
   const prevOptions = React.useRef<any>(null)
 
   const optionsWithDefaults = {
@@ -66,16 +69,17 @@ export function usePopper(
   const updateStateModifier: Modifier<"updateState", any> = React.useMemo(
     () => ({
       name: "updateState",
-      enabled: true,
+      enabled,
       phase: "write",
       fn: ({ state }) => {
         const elements = Object.keys(state.elements)
+
         setStyles(resolve(state.styles, elements))
         setAttrs(resolve(state.attributes, elements))
       },
       requires: ["computeStyles"],
     }),
-    [],
+    [enabled],
   )
 
   const popperOptions = React.useMemo(() => {

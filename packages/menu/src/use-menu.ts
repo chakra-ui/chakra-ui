@@ -109,7 +109,11 @@ export function useMenu(props: UseMenuProps) {
   /**
    * Add some popper.js for dynamic positioning
    */
-  const popper = usePopper({ placement, ...props })
+  const popper = usePopper({
+    placement,
+    ...props,
+    enabled: isOpen,
+  })
 
   const [focusedIndex, setFocusedIndex] = React.useState(-1)
 
