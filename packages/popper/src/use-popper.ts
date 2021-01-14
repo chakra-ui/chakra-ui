@@ -7,6 +7,7 @@ import { usePopper as useBasePopper } from "./react-popper"
 export type { Placement }
 
 export interface UsePopperProps {
+  enabled?: boolean
   gutter?: number
   placement?: Placement
   offset?: [number, number]
@@ -26,6 +27,7 @@ export interface UsePopperProps {
 
 export function usePopper(props: UsePopperProps = {}) {
   const {
+    enabled,
     placement = "bottom",
     preventOverflow = true,
     fixed = false,
@@ -127,6 +129,7 @@ export function usePopper(props: UsePopperProps = {}) {
   ])
 
   const popperJS = useBasePopper(referenceNode as any, popperNode as any, {
+    enabled,
     placement,
     strategy: fixed ? "fixed" : "absolute",
     modifiers: customModifiers.concat(modifiers),
