@@ -9,7 +9,8 @@ import {
   LinkProps,
   WrapItem,
 } from "@chakra-ui/react"
-import { FaNpm, FaGithub, FaWrench } from "react-icons/fa"
+import { FaNpm, FaGithub } from "react-icons/fa"
+import { WiStars } from "react-icons/wi"
 import StorybookIcon from "./storybook-icon"
 
 type ComponentLinkProps = LinkProps & {
@@ -106,11 +107,11 @@ function ComponentLinks(props: ComponentLinksProps) {
     <WrapItem>
       <ComponentLink
         url={`${githubRepoUrl}/tree/master/packages/theme/src/components/${theme.componentName}.ts`}
-        icon={FaWrench}
-        iconSize="1rem"
+        icon={WiStars}
+        iconSize="1.25rem"
         iconColor="blue.500"
       >
-        View default theme
+        View theme source
       </ComponentLink>
     </WrapItem>
   )
@@ -118,9 +119,9 @@ function ComponentLinks(props: ComponentLinksProps) {
   return (
     <Wrap mt="2rem" spacing="4" {...rest}>
       {githubLink}
+      {themeComponentLink}
       {npmLink}
       {storybookLink}
-      {themeComponentLink}
     </Wrap>
   )
 }
