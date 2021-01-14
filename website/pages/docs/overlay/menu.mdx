@@ -11,6 +11,7 @@ An accessible dropdown menu for the common dropdown menu button design pattern.
 `Menu` uses roving `tabIndex` for focus management.
 
 <ComponentLinks
+  theme={{ componentName: "menu" }}
   github={{ package: "menu" }}
   npm={{ package: "@chakra-ui/menu" }}
 />
@@ -85,20 +86,19 @@ To access the internal state of the `Menu`, use a function as `children`
 </Menu>
 ```
 
-### Customising the button 
+### Customising the button
 
-The default `MenuButton` can be styled using the usual styled-system props, but it
-starts off plainly styled.
+The default `MenuButton` can be styled using the usual styled-system props, but
+it starts off plainly styled.
 
-Using the `as` prop of the `MenuButton`, you can render a custom component instead
-of the default `MenuButton`. For instance, you can use Chakra's `Button` component,
-or your own custom component.
+Using the `as` prop of the `MenuButton`, you can render a custom component
+instead of the default `MenuButton`. For instance, you can use Chakra's `Button`
+component, or your own custom component.
 
-> Custom components must take a `ref` prop which is assigned to the React component
-that triggers the menu opening. This is so that the `MenuList` popover can be
-positioned correctly. Without this, the `MenuList` will render in an undefined
-position.
-
+> Custom components must take a `ref` prop which is assigned to the React
+> component that triggers the menu opening. This is so that the `MenuList`
+> popover can be positioned correctly. Without this, the `MenuList` will render
+> in an undefined position.
 
 ### Letter Navigation
 
