@@ -392,6 +392,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/jnmsl"><img src="https://avatars0.githubusercontent.com/u/44583047?v=4?s=64" width="64px;" alt=""/><br /><sub><b>jnmsl</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=jnmsl" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/MohamedSayed008"><img src="https://avatars3.githubusercontent.com/u/23707834?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Mohamed Sayed</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=MohamedSayed008" title="Code">💻</a></td>
     <td align="center"><a href="http://sampoder.com"><img src="https://avatars3.githubusercontent.com/u/39828164?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Sam Poder</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=sampoder" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/dominictwlee"><img src="https://avatars2.githubusercontent.com/u/34794189?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Dominic Lee</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=dominictwlee" title="Documentation">📖</a></td>
   </tr>
 </table>
 
