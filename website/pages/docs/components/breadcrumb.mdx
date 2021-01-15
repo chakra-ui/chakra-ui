@@ -13,6 +13,7 @@ previous page levels of a website, especially if that website has many pages or
 products.
 
 <ComponentLinks
+  theme={{ componentName: "breadcrumb" }}
   github={{ package: "breadcrumb" }}
   npm={{ package: "@chakra-ui/breadcrumb" }}
 />
@@ -41,8 +42,8 @@ import {
 ## Usage
 
 Add `isCurrentPage` prop to the `BreadcrumbItem` that matches the current path.
-When this prop is present, the `BreadcrumbLink` renders
-a `span` with `aria-current` set to `page` instead of an anchor element.
+When this prop is present, the `BreadcrumbLink` renders a `span` with
+`aria-current` set to `page` instead of an anchor element.
 
 ```jsx
 <Breadcrumb>

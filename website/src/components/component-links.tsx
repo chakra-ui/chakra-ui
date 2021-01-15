@@ -50,19 +50,22 @@ function ComponentLink(props: ComponentLinkProps) {
 }
 
 export type ComponentLinksProps = {
+  theme?: { componentName: string }
   github?: { url?: string; package?: string }
   npm?: { package: string }
   storybook?: { url: string }
 }
 function ComponentLinks(props: ComponentLinksProps) {
-  const { github, npm, storybook, ...rest } = props
+  const { theme, github, npm, storybook, ...rest } = props
+
+  const githubRepoUrl = "https://github.com/chakra-ui/chakra-ui"
 
   const githubLink = (github?.url || github?.package) && (
     <WrapItem>
       <ComponentLink
         url={
           github.url ||
-          `https://github.com/chakra-ui/chakra-ui/tree/master/packages/${github.package}`
+          `${githubRepoUrl}/tree/master/packages/${github.package}`
         }
         icon={FaGithub}
         iconColor={useColorModeValue("gray.600", "inherit")}
@@ -99,9 +102,23 @@ function ComponentLinks(props: ComponentLinksProps) {
     </WrapItem>
   )
 
+  const themeComponentLink = theme && (
+    <WrapItem>
+      <ComponentLink
+        url={`${githubRepoUrl}/tree/master/packages/theme/src/components/${theme.componentName}.ts`}
+        icon={FaGithub}
+        iconColor={useColorModeValue("gray.600", "inherit")}
+        iconSize="1rem"
+      >
+        View theme source
+      </ComponentLink>
+    </WrapItem>
+  )
+
   return (
     <Wrap mt="2rem" spacing="4" {...rest}>
       {githubLink}
+      {themeComponentLink}
       {npmLink}
       {storybookLink}
     </Wrap>
