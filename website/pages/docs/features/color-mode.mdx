@@ -64,18 +64,15 @@ For Next.js, you need to add the `ColorModeScript` to the `_document.js` file.
 ```jsx live=false ln={16}
 // pages/_document.js
 
-import { ChakraProvider, ColorModeScript } from "@chakra-ui/react"
-import NextDocument, { Html, Head, Main, NextScript } from "next/document"
-import theme from "./theme"
+import {ColorModeScript} from '@chakra-ui/react'
+import NextDocument, {Html, Head, Main, NextScript} from 'next/document'
+import theme from './theme'
 
-class Document extends NextDocument {
-  static getInitialProps(ctx) {
-    return NextDocument.getInitialProps(ctx)
-  }
-
+export default class Document extends NextDocument {
   render() {
     return (
       <Html lang="en">
+        <Head />
         <body>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Main />
@@ -86,7 +83,6 @@ class Document extends NextDocument {
   }
 }
 
-export default App
 ```
 
 #### For Create React App
