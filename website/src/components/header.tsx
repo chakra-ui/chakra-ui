@@ -139,7 +139,7 @@ function Header(props) {
       transition="box-shadow 0.2s"
       pos="fixed"
       top="0"
-      zIndex="1"
+      zIndex="3"
       bg={bg}
       left="0"
       right="0"
