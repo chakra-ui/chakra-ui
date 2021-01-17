@@ -47,6 +47,7 @@ const config: Config = {
   },
   willChange: true,
   filter: true,
+  clipPath: true,
   srOnly: {
     property: "&",
     transform(value) {
@@ -113,6 +114,12 @@ export interface OtherProps {
    * to sighted users as well as screen readers.
    */
   srOnly?: true | "focusable"
+  /**
+   * The CSS `clip-path` property.
+   *
+   * It creates a clipping region that sets what part of an element should be shown.
+   */
+  clipPath?: ResponsiveValue<CSS.Property.ClipPath>
 }
 
 export const others = system(config)
