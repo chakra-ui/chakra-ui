@@ -17,7 +17,7 @@ type Omitted = "disabled" | "required" | "readOnly" | "size"
 
 export interface SelectFieldProps
   extends Omit<HTMLChakraProps<"select">, Omitted> {
-  size?: string
+  size?: ThemingProps["size"]
   isDisabled?: boolean
 }
 
