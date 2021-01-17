@@ -20,14 +20,7 @@ const Container: React.FC<{ zIndex?: number }> = (props) => {
   return (
     <div
       className="chakra-portal-zIndex"
-      style={{
-        position: "absolute",
-        zIndex,
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-      }}
+      style={{ display: "inline-block", position: "absolute", zIndex }}
     >
       {children}
     </div>
@@ -100,7 +93,7 @@ export function Portal(props: PortalProps) {
   }, [])
 
   const childrenToRender = manager?.zIndex ? (
-    <Container>{props.children}</Container>
+    <Container zIndex={manager.zIndex}>{props.children}</Container>
   ) : (
     props.children
   )
