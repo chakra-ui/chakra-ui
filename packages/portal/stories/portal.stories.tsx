@@ -1,3 +1,5 @@
+import { Button } from "@chakra-ui/button"
+import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu"
 import * as React from "react"
 import Frame from "react-frame-component"
 import { Portal, PortalManager } from "../src"
@@ -60,20 +62,34 @@ function Wrapper(props: any) {
   )
 }
 
-export const NestedPortals = () => {
-  return (
+export const NestedPortals = () => (
+  <Portal>
+    <Wrapper color="red">Welcome</Wrapper>
     <Portal>
-      <Wrapper color="red">Welcome</Wrapper>
+      <Wrapper offset="40%" color="green">
+        Welcome
+      </Wrapper>
       <Portal>
-        <Wrapper offset="40%" color="green">
+        <Wrapper offset="30%" color="tomato">
           Welcome
         </Wrapper>
-        <Portal>
-          <Wrapper offset="30%" color="tomato">
-            Welcome
-          </Wrapper>
-        </Portal>
       </Portal>
     </Portal>
-  )
-}
+  </Portal>
+)
+
+export const WithZIndex = () => (
+  <PortalManager zIndex={5}>
+    <Menu>
+      <MenuButton as={Button} variant="outline">
+        Hola
+      </MenuButton>
+      <Portal>
+        <MenuList>
+          <MenuItem>item1</MenuItem>
+          <MenuItem>item2</MenuItem>
+        </MenuList>
+      </Portal>
+    </Menu>
+  </PortalManager>
+)
