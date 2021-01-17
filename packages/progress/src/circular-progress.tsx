@@ -51,7 +51,7 @@ interface CircularProgressOptions {
    */
   min?: number
   /**
-   * The thickness of progress indicator as a ratio of `size`. Must be between `0` and `1`
+   * This defines the stroke width of the svg circle.
    */
   thickness?: StringOrNumber
   /**

@@ -1,11 +1,12 @@
 import * as React from "react"
+import { useSafeLayoutEffect } from "./use-safe-layout-effect"
 
+/**
+ * Credit: https://github.com/reach/reach-ui/blob/develop/packages/auto-id/src/index.tsx
+ */
+let handoffComplete = false
 let id = 0
-
-function genId() {
-  id += 1
-  return id
-}
+const genId = () => ++id
 
 /**
  * Reack hook to generate unique id
@@ -14,9 +15,21 @@ function genId() {
  * @param prefix prefix to append before the id
  */
 export function useId(idProp?: string, prefix?: string) {
-  const [uuid] = React.useState(() => genId())
-  const id = (idProp ?? uuid).toString()
-  return prefix ? `${prefix}-${id}` : id
+  const initialId = idProp || (handoffComplete ? genId() : null)
+  const [uid, setUid] = React.useState(initialId)
+
+  useSafeLayoutEffect(() => {
+    if (uid === null) setUid(genId())
+  }, [])
+
+  React.useEffect(() => {
+    if (handoffComplete === false) {
+      handoffComplete = true
+    }
+  }, [])
+
+  const id = uid != null ? uid.toString() : undefined
+  return (prefix ? `${prefix}-${id}` : id) as string
 }
 
 /**

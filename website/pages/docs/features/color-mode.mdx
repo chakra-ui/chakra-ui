@@ -59,23 +59,20 @@ syncing to work correctly.
 
 #### For Next.js
 
-For Next.js, you need to add the script the the `_document.js` file.
+For Next.js, you need to add the `ColorModeScript` to the `_document.js` file.
 
 ```jsx live=false ln={16}
 // pages/_document.js
 
-import { ChakraProvider, ColorModeScript } from "@chakra-ui/react"
-import NextDocument, { Html, Head, Main, NextScript } from "next/document"
-import theme from "./theme"
+import {ColorModeScript} from '@chakra-ui/react'
+import NextDocument, {Html, Head, Main, NextScript} from 'next/document'
+import theme from './theme'
 
-class Document extends NextDocument {
-  static getInitialProps(ctx) {
-    return NextDocument.getInitialProps(ctx)
-  }
-
+export default class Document extends NextDocument {
   render() {
     return (
       <Html lang="en">
+        <Head />
         <body>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Main />
@@ -86,12 +83,12 @@ class Document extends NextDocument {
   }
 }
 
-export default App
 ```
 
 #### For Create React App
 
-For Next.js, you need to add the script the the `index.js` file.
+For Create React App, you need to add the `ColorModeScript` to the `index.js`
+file.
 
 ```jsx live=false ln={10}
 // index.js
@@ -112,7 +109,8 @@ ReactDOM.render(
 
 #### For Gatsby
 
-For Next.js, you need to add the script the the `gatsby-ssr.js` file.
+For Gatsby.js, you need to add the `ColorModeScript` to the `gatsby-ssr.js`
+file.
 
 ```jsx live=false ln={9-12}
 // gatsby-ssr.js

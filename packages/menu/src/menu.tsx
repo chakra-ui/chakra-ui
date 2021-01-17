@@ -256,7 +256,7 @@ export const MenuItem = forwardRef<MenuItemProps, "button">((props, ref) => {
       className={cx("chakra-menu__menuitem", menuItemProps.className)}
     >
       {icon && (
-        <MenuIcon fontSize="0.8em" mr={iconSpacing}>
+        <MenuIcon fontSize="0.8em" marginEnd={iconSpacing}>
           {icon}
         </MenuIcon>
       )}
@@ -305,7 +305,7 @@ export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
       >
         <MenuIcon
           fontSize="0.8em"
-          mr={iconSpacing}
+          marginEnd={iconSpacing}
           opacity={props.isChecked ? 1 : 0}
         >
           {icon || <CheckIcon />}

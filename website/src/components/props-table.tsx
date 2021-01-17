@@ -1,4 +1,5 @@
 import * as React from "react"
+import Link from "next/link"
 import * as ComponentProps from "@chakra-ui/props-docs"
 import MDXComponents from "./mdx-components"
 import { theme } from "@chakra-ui/react"
@@ -41,20 +42,66 @@ const PropsTable = ({
   const variantValues =
     themeComponent?.variants && Object.keys(themeComponent.variants)
 
+  const extendThemeLink = (
+    <Link
+      href="/docs/theming/customize-theme#customizing-component-styles"
+      passHref
+    >
+      <MDXComponents.a>extend the theme</MDXComponents.a>
+    </Link>
+  )
+
   /**
-   * If component has size prop, override the rendered values
-   * for `size` prop with  the component's size values
+   * If component has size prop, override the rendered value
+   * for `size` prop with the component's size values formatted as TS type.
    */
-  if (info.props.size && sizeValues) {
-    info.props.size.type.name = sizeValues.join(", ")
+  if (info.props.size) {
+    if (sizeValues) {
+      info.props.size.type.name = sizeValues
+        .map((size) => `"${size}"`)
+        .join(" | ")
+    } else {
+      info.props.size.description = (
+        <>
+          Sizes for {of} are not implemented in the default theme, but you can{" "}
+          {extendThemeLink} to implement them.
+        </>
+      )
+    }
   }
 
   /**
    * If component has variant prop, override the rendered value
-   * for `variant` prop with the component's variant values
+   * for `variant` prop with the component's variant values formatted as TS type.
    */
-  if (info.props.variant && variantValues) {
-    info.props.variant.type.name = variantValues.join(", ")
+  if (info.props.variant) {
+    if (variantValues) {
+      info.props.variant.type.name = variantValues
+        .map((variant) => `"${variant}"`)
+        .join(" | ")
+    } else {
+      info.props.variant.description = (
+        <>
+          Variants for {of} are not implemented in the default theme, but you
+          can {extendThemeLink} to implement them.
+        </>
+      )
+    }
+  }
+
+  const defaultSize = themeComponent?.defaultProps?.size
+  const defaultVariant = themeComponent?.defaultProps?.variant
+
+  if (defaultSize != null) {
+    info.props.size.defaultValue = {
+      value: defaultSize,
+    }
+  }
+
+  if (defaultVariant != null) {
+    info.props.variant.defaultValue = {
+      value: defaultVariant,
+    }
   }
 
   const entries = React.useMemo(

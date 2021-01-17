@@ -154,6 +154,7 @@ export function usePopover(props: UsePopoverProps = {}) {
   const arrowColor = useToken("colors", shadowColor, arrowShadowColor)
 
   const popper = usePopper({
+    enabled: isOpen,
     placement: placementProp,
     gutter,
     arrowSize,

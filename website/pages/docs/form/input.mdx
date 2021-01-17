@@ -10,6 +10,7 @@ The `Input` component is a component that is used to get user input in a text
 field.
 
 <ComponentLinks
+  theme={{ componentName: "input" }}
   github={{ package: "input" }}
   npm={{ package: "@chakra-ui/input" }}
 />
@@ -72,13 +73,13 @@ component. Chakra UI exports `InputGroup`, `InputLeftAddon`, and
 <Stack spacing={4}>
   <InputGroup>
     <InputLeftAddon children="+234" />
-    <Input type="tel" borderLeftRadius="0" placeholder="phone number" />
+    <Input type="tel" placeholder="phone number" />
   </InputGroup>
 
   {/* If you add the size prop to `InputGroup`, it'll pass it to all its children. */}
   <InputGroup size="sm">
     <InputLeftAddon children="https://" />
-    <Input borderRadius="0" placeholder="mysite" />
+    <Input placeholder="mysite" />
     <InputRightAddon children=".com" />
   </InputGroup>
 </Stack>

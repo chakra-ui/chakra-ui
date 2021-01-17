@@ -104,7 +104,7 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
 
   const labelStyles: SystemStyleObject = {
     userSelect: "none",
-    ml: spacing,
+    marginStart: spacing,
     ...styles.label,
   }
 
