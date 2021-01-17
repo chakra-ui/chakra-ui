@@ -6,8 +6,14 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
+import {
+  useBreakpointValue,
+  sanitizeResponsivePropValue,
+} from "@chakra-ui/media-query"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
+
+export const DIVIDER_DEFAULT_ORIENTATION = "horizontal"
 
 /**
  * Layout component used to visually separate content in a list or group.
@@ -28,10 +34,14 @@ export const Divider = forwardRef<DividerProps, "hr">((props, ref) => {
   } = useStyleConfig("Divider", props)
   const {
     className,
-    orientation = "horizontal",
+    orientation: orientationProp = DIVIDER_DEFAULT_ORIENTATION,
     __css,
     ...rest
   } = omitThemingProps(props)
+
+  const orientation =
+    useBreakpointValue(sanitizeResponsivePropValue(orientationProp)) ??
+    DIVIDER_DEFAULT_ORIENTATION
 
   const dividerStyles = {
     vertical: {
