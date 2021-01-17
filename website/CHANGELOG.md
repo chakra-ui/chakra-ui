@@ -1,5 +1,53 @@
 # Change Log
 
+## 1.0.10
+
+### Patch Changes
+
+- [`5ab9d8fd`](https://github.com/chakra-ui/chakra-ui/commit/5ab9d8fd7e94448be5014acaa35678fc69187b45)
+  [#3066](https://github.com/chakra-ui/chakra-ui/pull/3066) Thanks
+  [@dodas](https://github.com/dodas)! - Added Props Table for the `ButtonGroup`
+  component.
+
+* [`c771f339`](https://github.com/chakra-ui/chakra-ui/commit/c771f33915c3b40cf68ad8cd02f96bcf2a011b19)
+  [#3036](https://github.com/chakra-ui/chakra-ui/pull/3036) Thanks
+  [@dodas](https://github.com/dodas)! - Components that don't implement `size`
+  or `variant` in the default theme will show note regarding that in their props
+  table.
+
+- [`b6054290`](https://github.com/chakra-ui/chakra-ui/commit/b605429010705441eabda3c4c3fe2bd483112096)
+  [#3060](https://github.com/chakra-ui/chakra-ui/pull/3060) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Add links to the default
+  theme implementation on all themable component pages.
+
+* [`cfc71870`](https://github.com/chakra-ui/chakra-ui/commit/cfc718700941094dc0b3b176aed74088b569f106)
+  [#3038](https://github.com/chakra-ui/chakra-ui/pull/3038) Thanks
+  [@dodas](https://github.com/dodas)! - Removed redudant `borderRadius` related
+  props from `InputGroup` example.
+
+- [`5954f94e`](https://github.com/chakra-ui/chakra-ui/commit/5954f94e7bb6d7c1a0bd3187e447678d792f3c78)
+  [#3069](https://github.com/chakra-ui/chakra-ui/pull/3069) Thanks
+  [@dodas](https://github.com/dodas)! - Updated stats on the homepage.
+
+* [`fad207b6`](https://github.com/chakra-ui/chakra-ui/commit/fad207b6cfe6587c8aadd80413e7897a8330b627)
+  [#3034](https://github.com/chakra-ui/chakra-ui/pull/3034) Thanks
+  [@dodas](https://github.com/dodas)! - Props table for each component now
+  displays default `size` and `variant` values where possible.
+
+- [`f4a51e56`](https://github.com/chakra-ui/chakra-ui/commit/f4a51e56453d1e48bbfbdc5e8ced16b6ee20f08d)
+  [#3005](https://github.com/chakra-ui/chakra-ui/pull/3005) Thanks
+  [@dodas](https://github.com/dodas)! - Format `size` and `variant` prop values
+  as TS types.
+
+* [`dbfb8eea`](https://github.com/chakra-ui/chakra-ui/commit/dbfb8eea89ce92bbb70ab81c751d99c2b23bc73c)
+  [#3067](https://github.com/chakra-ui/chakra-ui/pull/3067) Thanks
+  [@dodas](https://github.com/dodas)! - The `og:title` and `og:description` meta
+  tags now describe specific URLs.
+
+* Updated dependencies []:
+  - @chakra-ui/react@1.1.5
+  - @chakra-ui/props-docs@1.0.10
+
 ## 1.0.9
 
 ### Patch Changes

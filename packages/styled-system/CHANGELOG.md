@@ -1,5 +1,29 @@
 # Change Log
 
+## 1.5.0
+
+### Minor Changes
+
+- [`d9ec9f49`](https://github.com/chakra-ui/chakra-ui/commit/d9ec9f496bfe2f81ffb84adbed099581d5f6843e)
+  [#3049](https://github.com/chakra-ui/chakra-ui/pull/3049) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Move `srOnly` prop to
+  styled system props. This will deprecate the need for the visually hidden
+  package. Less is more!
+
+  ```jsx
+  // If `true`, hide an element visually without hiding it from screen readers.
+  <Box srOnly>Visually hidden</Box>
+
+  // If `focusable`, the sr-only styles will be undone, making the element visible to sighted users as well as screen readers.
+  <Box srOnly _active={{ srOnly: "focusable" }}>Visually hidden but shown on focus</Box>
+  ```
+
+* [`26ca4cc5`](https://github.com/chakra-ui/chakra-ui/commit/26ca4cc53b8cc0ca696f2130f832965f7dc0ee53)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add polyfill for
+  `inset` style prop as the CSS `inset` doesn't work in Safari
+  - Add missing style props for grid and flex layouts: `gridTemplate`,
+    `gridRowStart`, `gridRowEnd`, `flexFlow`, `clipPath`
+
 ## 1.4.1
 
 ### Patch Changes

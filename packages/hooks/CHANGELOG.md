@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.1.1
+
+### Patch Changes
+
+- [`02855588`](https://github.com/chakra-ui/chakra-ui/commit/02855588a4ffbc6573768052e53cc538361e91ee)
+  [#3056](https://github.com/chakra-ui/chakra-ui/pull/3056) Thanks
+  [@with-heart](https://github.com/with-heart)! - - Resolved an issue where
+  event handlers for certain components were removed after the first event
+  occurred.
+
+  - Fixed SSR issue with `useId` hook
+
 ## 1.1.0
 
 ### Minor Changes

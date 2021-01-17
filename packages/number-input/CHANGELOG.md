@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`02855588`](https://github.com/chakra-ui/chakra-ui/commit/02855588a4ffbc6573768052e53cc538361e91ee)]:
+  - @chakra-ui/hooks@1.1.1
+  - @chakra-ui/counter@1.0.4
+  - @chakra-ui/form-control@1.1.2
+
 ## 1.0.4
 
 ### Patch Changes
