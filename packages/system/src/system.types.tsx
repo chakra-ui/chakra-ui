@@ -8,10 +8,10 @@ import { Interpolation } from "@emotion/react"
 import * as React from "react"
 
 export interface ThemingProps {
-  variant?: string
-  size?: string
+  variant?: ResponsiveValue<string>
+  size?: ResponsiveValue<string>
   colorScheme?: string
-  orientation?: "vertical" | "horizontal"
+  orientation?: ResponsiveValue<"vertical" | "horizontal">
   styleConfig?: Dict
 }
 

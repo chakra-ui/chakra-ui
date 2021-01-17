@@ -1,5 +1,9 @@
 import { SystemStyleObject } from "@chakra-ui/styled-system"
 import {
+  useBreakpointValue,
+  sanitizeResponsivePropValue,
+} from "@chakra-ui/media-query"
+import {
   filterUndefined,
   memoizedGet as get,
   mergeWith,
@@ -30,10 +34,17 @@ export function useStyleConfig(themeKey: any, props: any = {}, opts: any = {}) {
   const themeStyleConfig = get(theme, `components.${themeKey}`)
   const styleConfig = styleConfigProp || themeStyleConfig
 
+  const orientation = useBreakpointValue(
+    sanitizeResponsivePropValue(props.orientation),
+  )
+  const size = useBreakpointValue(sanitizeResponsivePropValue(props.size))
+  const variant = useBreakpointValue(sanitizeResponsivePropValue(props.variant))
+
   const mergedProps = mergeWith(
     { theme, colorMode },
     styleConfig?.defaultProps ?? {},
     filterUndefined(omit(rest, ["children"])),
+    { orientation, size, variant },
   )
 
   /**
