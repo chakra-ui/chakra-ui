@@ -9,6 +9,11 @@ import {
   useUpdateEffect,
 } from "@chakra-ui/hooks"
 import {
+  useBreakpointValue,
+  sanitizeResponsivePropValue,
+} from "@chakra-ui/media-query"
+import { ThemingProps } from "@chakra-ui/system"
+import {
   ariaAttr,
   callAllHandlers,
   clampValue,
@@ -27,6 +32,8 @@ import {
   valueToPercent,
 } from "@chakra-ui/utils"
 import { CSSProperties, useCallback, useMemo, useRef, useState } from "react"
+
+export const SLIDER_DEFAULT_ORIENTATION = "horizontal"
 
 export interface UseSliderProps {
   /**
@@ -56,7 +63,7 @@ export interface UseSliderProps {
    * orientation of the slider
    * @default "horizontal"
    */
-  orientation?: "horizontal" | "vertical"
+  orientation?: ThemingProps["orientation"]
   /**
    * If `true`, the value will be incremented or decremented in reverse.
    */
@@ -136,7 +143,7 @@ export function useSlider(props: UseSliderProps) {
     value: valueProp,
     defaultValue,
     isReversed,
-    orientation,
+    orientation: orientationProp = SLIDER_DEFAULT_ORIENTATION,
     id: idProp,
     isDisabled,
     isReadOnly,
@@ -151,6 +158,10 @@ export function useSlider(props: UseSliderProps) {
     focusThumbOnChange = true,
     ...htmlProps
   } = props
+
+  const orientation =
+    useBreakpointValue(sanitizeResponsivePropValue(orientationProp)) ??
+    SLIDER_DEFAULT_ORIENTATION
 
   const [isDragging, setDragging] = useBoolean()
   const [isFocused, setFocused] = useBoolean()
