@@ -6,7 +6,7 @@ const config: Config = {
   position: true,
   pos: t.prop("position"),
   zIndex: { property: "zIndex", scale: "zIndices" },
-  inset: t.spaceT("inset"),
+  inset: t.spaceT(["top", "right", "bottom", "left"]),
   insetX: t.spaceT(["left", "right"]),
   insetInline: t.spaceT("insetInline"),
   insetY: t.spaceT(["top", "bottom"]),
