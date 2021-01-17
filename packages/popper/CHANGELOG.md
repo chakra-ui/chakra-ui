@@ -1,5 +1,22 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [`032f1678`](https://github.com/chakra-ui/chakra-ui/commit/032f16788553b84685de61af5f021c395e09648f)
+  [#3022](https://github.com/chakra-ui/chakra-ui/pull/3022) Thanks
+  [@dodas](https://github.com/dodas)! - Added `enabled` property to `usePopper`.
+  Popper won't be updated while it is set to `false`.
+
+  `Menu` now uses this option to not update its position while it's closed.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`02855588`](https://github.com/chakra-ui/chakra-ui/commit/02855588a4ffbc6573768052e53cc538361e91ee)]:
+  - @chakra-ui/hooks@1.1.1
+
 ## 1.0.3
 
 ### Patch Changes

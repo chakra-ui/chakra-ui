@@ -1,5 +1,29 @@
 # Change Log
 
+## 1.0.5
+
+### Patch Changes
+
+- [`26f28512`](https://github.com/chakra-ui/chakra-ui/commit/26f285129f6c739b24bf28ede71a5358ba4dbf9f)
+  [#3080](https://github.com/chakra-ui/chakra-ui/pull/3080) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Update styles to use css
+  logical style props
+
+* [`032f1678`](https://github.com/chakra-ui/chakra-ui/commit/032f16788553b84685de61af5f021c395e09648f)
+  [#3022](https://github.com/chakra-ui/chakra-ui/pull/3022) Thanks
+  [@dodas](https://github.com/dodas)! - Added `enabled` property to `usePopper`.
+  Popper won't be updated while it is set to `false`.
+
+  `Menu` now uses this option to not update its position while it's closed.
+
+* Updated dependencies
+  [[`02855588`](https://github.com/chakra-ui/chakra-ui/commit/02855588a4ffbc6573768052e53cc538361e91ee),
+  [`032f1678`](https://github.com/chakra-ui/chakra-ui/commit/032f16788553b84685de61af5f021c395e09648f)]:
+  - @chakra-ui/hooks@1.1.1
+  - @chakra-ui/popper@1.1.0
+  - @chakra-ui/descendant@1.0.4
+  - @chakra-ui/transition@1.0.5
+
 ## 1.0.4
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.0.5
+
+### Patch Changes
+
+- [`0d620f1d`](https://github.com/chakra-ui/chakra-ui/commit/0d620f1d46b9c72c9aef3bb15a691a249ace2eb4)
+  [#3079](https://github.com/chakra-ui/chakra-ui/pull/3079) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fixed issue where adding
+  `portalZIndex` to `ChakraProvider` makes app unusable
+
+- Updated dependencies
+  [[`02855588`](https://github.com/chakra-ui/chakra-ui/commit/02855588a4ffbc6573768052e53cc538361e91ee)]:
+  - @chakra-ui/hooks@1.1.1
+
 ## 1.0.4
 
 ### Patch Changes

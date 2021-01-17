@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.0.5
+
+### Patch Changes
+
+- [`02041efc`](https://github.com/chakra-ui/chakra-ui/commit/02041efcecd8b5f98ddd7be411c56cf12a40d343)
+  [#2946](https://github.com/chakra-ui/chakra-ui/pull/2946) Thanks
+  [@dodas](https://github.com/dodas)! - You can now override linear progress
+  component's border radius in the theme.
+
 ## 1.0.4
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.1.2
+
+### Patch Changes
+
+- [`26f28512`](https://github.com/chakra-ui/chakra-ui/commit/26f285129f6c739b24bf28ede71a5358ba4dbf9f)
+  [#3080](https://github.com/chakra-ui/chakra-ui/pull/3080) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Update styles to use css
+  logical style props
+
+- Updated dependencies
+  [[`02855588`](https://github.com/chakra-ui/chakra-ui/commit/02855588a4ffbc6573768052e53cc538361e91ee)]:
+  - @chakra-ui/hooks@1.1.1
+  - @chakra-ui/form-control@1.1.2
+
 ## 1.1.1
 
 ### Patch Changes
