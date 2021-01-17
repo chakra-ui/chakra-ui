@@ -15,13 +15,20 @@ import {
   mergeRefs,
   normalizeEventKey,
 } from "@chakra-ui/utils"
+import {
+  useBreakpointValue,
+  sanitizeResponsivePropValue,
+} from "@chakra-ui/media-query"
+import { ThemingProps } from "@chakra-ui/system"
 import * as React from "react"
+
+export const TABS_DEFAULT_ORIENTATION = "horizontal"
 
 export interface UseTabsProps {
   /**
    * The orientation of the tab list.
    */
-  orientation?: "vertical" | "horizontal"
+  orientation?: ThemingProps["orientation"]
   /**
    * If `true`, the tabs will be manually activated and
    * display its panel by pressing Space or Enter.
@@ -70,9 +77,13 @@ export function useTabs(props: UseTabsProps) {
     index,
     isManual,
     isLazy,
-    orientation = "horizontal",
+    orientation: orientationProp = TABS_DEFAULT_ORIENTATION,
     ...htmlProps
   } = props
+
+  const orientation =
+    useBreakpointValue(sanitizeResponsivePropValue(orientationProp)) ??
+    TABS_DEFAULT_ORIENTATION
 
   /**
    * We use this to keep track of the index of the focused tab.
