@@ -39,9 +39,7 @@ export interface InputProps
   extends Omit<HTMLChakraProps<"input">, Omitted>,
     InputOptions,
     ThemingProps,
-    FormControlOptions {
-  size?: string
-}
+    FormControlOptions {}
 
 /**
  * Input
