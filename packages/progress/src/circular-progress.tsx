@@ -1,4 +1,13 @@
-import { chakra, SystemStyleObject, HTMLChakraProps } from "@chakra-ui/system"
+import {
+  useBreakpointValue,
+  sanitizeResponsivePropValue,
+} from "@chakra-ui/media-query"
+import {
+  chakra,
+  SystemStyleObject,
+  HTMLChakraProps,
+  ResponsiveValue,
+} from "@chakra-ui/system"
 import { isUndefined, StringOrNumber, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { getProgressProps, rotate, spin } from "./progress.utils"
@@ -14,7 +23,7 @@ if (__DEV__) {
 }
 
 interface ShapeProps extends HTMLChakraProps<"svg"> {
-  size?: StringOrNumber
+  size?: ResponsiveValue<StringOrNumber>
   isIndeterminate?: boolean
 }
 
@@ -41,7 +50,7 @@ interface CircularProgressOptions {
   /**
    * The size of the circular progress in CSS units
    */
-  size?: StringOrNumber
+  size?: ResponsiveValue<StringOrNumber>
   /**
    * Maximum value defining 100% progress made (must be higher than 'min')
    */
@@ -89,6 +98,8 @@ interface CircularProgressOptions {
   isIndeterminate?: boolean
 }
 
+export const CIRCULAR_PROGRESS_DEFAULT_SIZE = "48px"
+
 export interface CircularProgressProps
   extends Omit<HTMLChakraProps<"div">, "color">,
     CircularProgressOptions {}
@@ -103,7 +114,7 @@ export interface CircularProgressProps
  */
 export const CircularProgress: React.FC<CircularProgressProps> = (props) => {
   const {
-    size = "48px",
+    size: sizeProp = CIRCULAR_PROGRESS_DEFAULT_SIZE,
     max = 100,
     min = 0,
     valueText,
@@ -117,6 +128,10 @@ export const CircularProgress: React.FC<CircularProgressProps> = (props) => {
     isIndeterminate,
     ...rest
   } = props
+
+  const size =
+    useBreakpointValue(sanitizeResponsivePropValue(sizeProp)) ??
+    CIRCULAR_PROGRESS_DEFAULT_SIZE
 
   const progress = getProgressProps({
     min,
