@@ -84,7 +84,7 @@ const calculateBreakpointAndMediaQueries = (
   }
 }
 
-const responsive = (styles: any) => (theme: Dict) => {
+export const processResponsive = (styles: any) => (theme: Dict) => {
   const computedStyles: any = {}
 
   const { breakpoints, mediaQueries } = calculateBreakpointAndMediaQueries(
@@ -140,7 +140,7 @@ export const css = (args: StyleObjectOrFn = {}) => (
   let computedStyles: CSSObject = {}
 
   const styleObject = runIfFn(args, theme)
-  const styles = responsive(styleObject)(theme)
+  const styles = processResponsive(styleObject)(theme)
 
   for (const k in styles) {
     const x = styles[k]
