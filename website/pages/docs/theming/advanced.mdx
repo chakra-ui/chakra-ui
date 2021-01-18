@@ -97,3 +97,26 @@ interface StyleConfig {
   }
 }
 ```
+
+## Theme Typings <Badge fontSize="sm" colorScheme="teal" letterSpacing="wider">v1.2.0</Badge>
+
+When adding new components, component variations, sizes, colors and other theme
+foundations, you can extend the internal theme typings to provide autocomplete
+for your application theme.
+
+```bash
+npx @chakra-ui/theme-typings <path/to/your/theme.(js|ts)>
+```
+
+> You need to run this command after every `npm install`, because it updates
+> some files in your node_modules
+
+For convenience, you can add a postinstall script to your `package.json`, so you
+don't have to think about this every time you reinstall your dependencies.
+
+```json
+"scripts": {
+  "gen:theme-typings": "create-chakra-theme-typings <path/to/your/theme.(js|ts)>",
+  "postinstall": "npm run gen:theme-typings"
+}
+```
