@@ -1,10 +1,11 @@
 import "regenerator-runtime/runtime"
 import * as path from "path"
-import { program } from "commander"
-import { register } from "ts-node"
-import { createThemeTypingsInterface } from "./create-theme-typings-interface"
-import { isObject } from "@chakra-ui/utils"
 import { writeFile } from "fs/promises"
+import { register } from "ts-node"
+import { program } from "commander"
+import { isObject } from "@chakra-ui/utils"
+import { createThemeTypingsInterface } from "./create-theme-typings-interface"
+import { destination, resolveOutputPath } from "./resolve-output-path"
 import { themeKeyConfiguration } from "./config"
 
 function readTheme(themeFilePath: string) {
@@ -18,6 +19,10 @@ function readTheme(themeFilePath: string) {
 }
 
 export async function run() {
+  program.option(
+    "--out <path>",
+    `output directory e.g. ${path.join(...destination)}`,
+  )
   program.on("--help", () => {
     console.info(`Example call:
   $ create-chakra-theme-typings theme.ts
@@ -26,6 +31,7 @@ export async function run() {
   program.parse(process.argv)
 
   const {
+    out,
     args: [themeFile],
   } = program
 
@@ -42,16 +48,7 @@ export async function run() {
     config: themeKeyConfiguration,
   })
 
-  const outPath = path.resolve(
-    "..",
-    "..",
-    "node_modules",
-    "@chakra-ui",
-    "styled-system",
-    "dist",
-    "types",
-    "theming.types.d.ts",
-  )
+  const outPath = await resolveOutputPath(out)
 
   console.info(`✏️  Write file "${outPath}"...`)
   await writeFile(outPath, template, "utf8")

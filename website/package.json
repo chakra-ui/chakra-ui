@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "gen:theme-typings": "create-chakra-theme-typings theme.ts --out @types",
+    "gen:theme-typings": "create-chakra-theme-typings theme.ts",
     "start": "next start",
     "test": "jest",
     "clean": "rm -rf .next .mdx-data",
