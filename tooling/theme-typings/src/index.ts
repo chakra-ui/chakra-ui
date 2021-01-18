@@ -1,12 +1,15 @@
 import "regenerator-runtime/runtime"
 import * as path from "path"
-import { writeFile } from "fs/promises"
+import { writeFile } from "fs"
+import { promisify } from "util"
 import { register } from "ts-node"
 import { program } from "commander"
 import { isObject } from "@chakra-ui/utils"
 import { createThemeTypingsInterface } from "./create-theme-typings-interface"
 import { destination, resolveOutputPath } from "./resolve-output-path"
 import { themeKeyConfiguration } from "./config"
+
+const writeFileAsync = promisify(writeFile)
 
 function readTheme(themeFilePath: string) {
   const absoluteThemePath = path.join(process.cwd(), themeFilePath)
@@ -52,6 +55,6 @@ export async function run() {
   const outPath = await resolveOutputPath(out)
 
   console.info(`✏️  Write file "${outPath}"...`)
-  await writeFile(outPath, template, "utf8")
+  await writeFileAsync(outPath, template, "utf8")
   console.info(`✅ done`)
 }
