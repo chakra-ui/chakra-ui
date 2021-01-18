@@ -14,6 +14,7 @@ const createFormatFileWithPrettier = (prettier: {
 export async function formatWithPrettierIfAvailable(content: string) {
   let prettier
   try {
+    // eslint-disable-next-line global-require
     prettier = require("prettier")
   } catch {
     // silent exit if prettier is not installed

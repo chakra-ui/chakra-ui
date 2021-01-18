@@ -14,6 +14,7 @@ function readTheme(themeFilePath: string) {
     project: path.join(__dirname, "..", "bin", "tsconfig.json"),
     dir: path.basename(absoluteThemePath),
   })
+  // eslint-disable-next-line import/no-dynamic-require,global-require
   const module = require(absoluteThemePath)
   return module.default ?? module.theme
 }

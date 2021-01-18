@@ -19,8 +19,8 @@ export function printUnionMap(unions: Record<string, string[]>) {
     .join("\n")
 }
 
-export function extractPropertyPaths(target: object, maxDepth = 1) {
-  if (!maxDepth) {
+export function extractPropertyPaths(target: unknown, maxDepth = 1) {
+  if ((!isObject(target) && !Array.isArray(target)) || !maxDepth) {
     return []
   }
 
