@@ -21,30 +21,34 @@ export interface ThemeKeyOptions {
    * @default 1
    */
   maxScanDepth?: number
-
+  /**
+   * Pass a function to filter extracted values
+   * @example
+   * Exclude numeric index values from `breakpoints`
+   * @default () => true
+   */
   filter?: (value: string) => boolean
 }
 
 export interface CreateThemeTypingsInterfaceOptions {
-  themeKeys: ThemeKeyOptions[]
+  config: ThemeKeyOptions[]
 }
 
 export async function createThemeTypingsInterface(
   theme: Record<string, unknown>,
-  { themeKeys }: CreateThemeTypingsInterfaceOptions,
+  { config }: CreateThemeTypingsInterfaceOptions,
 ) {
-  const unions = themeKeys.reduce(
-    (allUnions, { key, maxScanDepth, filter }) => {
-      const target = theme[key]
-      if (isObject(target) || Array.isArray(target)) {
-        allUnions[key] = extractPropertyPaths(target, maxScanDepth).filter(
-          filter ?? (() => true),
-        )
-      }
-      return allUnions
-    },
-    {} as Record<string, string[]>,
-  )
+  const unions = config.reduce((allUnions, { key, maxScanDepth, filter }) => {
+    const target = theme[key]
+    if (isObject(target) || Array.isArray(target)) {
+      allUnions[key] = extractPropertyPaths(target, maxScanDepth).filter(
+        filter ?? (() => true),
+      )
+    } else {
+      allUnions[key] = []
+    }
+    return allUnions
+  }, {} as Record<string, string[]>)
 
   const componentTypes = extractComponentTypes(theme)
   const colorSchemes = extractColorSchemeTypes(theme)

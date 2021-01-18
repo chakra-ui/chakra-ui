@@ -14,6 +14,7 @@ function printUnionType(values: string[]) {
 
 export function printUnionMap(unions: Record<string, string[]>) {
   return Object.entries(unions)
+    .sort(([a], [b]) => a.localeCompare(b))
     .map(([targetKey, union]) => `${targetKey}: ${printUnionType(union)};`)
     .join("\n")
 }

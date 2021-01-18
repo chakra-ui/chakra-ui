@@ -2,30 +2,10 @@ import "regenerator-runtime/runtime"
 import * as path from "path"
 import { program } from "commander"
 import { register } from "ts-node"
-import {
-  createThemeTypingsInterface,
-  ThemeKeyOptions,
-} from "./create-theme-typings-interface"
+import { createThemeTypingsInterface } from "./create-theme-typings-interface"
 import { isObject } from "@chakra-ui/utils"
 import { writeFile } from "fs/promises"
-
-const themeKeyConfiguration: ThemeKeyOptions[] = [
-  { key: "borders" },
-  { key: "breakpoints", filter: (value) => Number.isNaN(Number(value)) },
-  { key: "colors", maxScanDepth: 2 },
-  { key: "fonts" },
-  { key: "fontSizes" },
-  { key: "fontWeights" },
-  { key: "letterSpacings" },
-  { key: "lineHeights" },
-  { key: "radii" },
-  { key: "shadows" },
-  { key: "sizes", maxScanDepth: 2 },
-  { key: "space" },
-  { key: "textStyles" },
-  { key: "transition" },
-  { key: "zIndices" },
-]
+import { themeKeyConfiguration } from "./config"
 
 function readTheme(themeFilePath: string) {
   const absoluteThemePath = path.join(process.cwd(), themeFilePath)
@@ -59,7 +39,7 @@ export async function run() {
 
   console.info(`💭 Creating theme interface...`)
   const template = await createThemeTypingsInterface(theme, {
-    themeKeys: themeKeyConfiguration,
+    config: themeKeyConfiguration,
   })
 
   const outPath = path.resolve(
