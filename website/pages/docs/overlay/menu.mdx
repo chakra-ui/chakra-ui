@@ -132,7 +132,7 @@ the letter you typed.
 </Menu>
 ```
 
-### Just another example.
+### Just another example
 
 ```jsx
 <Menu>
@@ -164,21 +164,25 @@ the letter you typed.
 </Menu>
 ```
 
-### Adding menu commands
+### Adding icons and commands
 
-You can add custom menu icons and commands (or hotkeys) for each menu by passing
-the `command` prop.
+You can add icon to the left side of each `MenuItem` by passing the `icon` prop.
+To add a commands (or hotkeys) to menu items, you can use the `command` prop.
 
-```jsx live=false
+```jsx
 <Menu>
-  <MenuButton size="sm" colorScheme="teal">
-    Open menu
-  </MenuButton>
+  <MenuButton
+    as={IconButton}
+    aria-label="Options"
+    icon={<HamburgerIcon />}
+    size="xs"
+    variant="outline"
+  />
   <MenuList>
-    <MenuItem command="⌘T">New Tab</MenuItem>
-    <MenuItem command="⌘N">New Window</MenuItem>
-    <MenuItem command="⌘⇧N">Open Closed Tab</MenuItem>
-    <MenuItem command="⌘O">Open File...</MenuItem>
+    <MenuItem icon={<AddIcon />} command="⌘T">New Tab</MenuItem>
+    <MenuItem icon={<ExternalLinkIcon />} command="⌘N">New Window</MenuItem>
+    <MenuItem icon={<RepeatIcon />} command="⌘⇧N">Open Closed Tab</MenuItem>
+    <MenuItem icon={<EditIcon />} command="⌘O">Open File...</MenuItem>
   </MenuList>
 </Menu>
 ```
@@ -193,22 +197,17 @@ open, you can use the `isLazy` prop. This is useful if your `Menu` needs to be
 extra performant, or make network calls on mount that should only happen when
 the component is displayed.
 
-```jsx live=false
+```jsx
 <Menu isLazy>
   <MenuButton size="sm" colorScheme="teal">
     Open menu
   </MenuButton>
   <MenuList>
-    {/* initially mounted */}
-    <MenuItem>Menu 1</MenuItem>
-    {/* initially mounted */}
+    {/* MenuItems are not rendered unless Menu is open */}
     <MenuItem>New Window</MenuItem>
-    {/* initially mounted */}
     <MenuItem>Open Closed Tab</MenuItem>
-    {/* initially mounted */}
     <MenuItem>Open File</MenuItem>
-    </MenuList>
-  <MenuList>
+  </MenuList>
 </Menu>
 ```
 
@@ -217,7 +216,7 @@ the component is displayed.
 To render menus in a portal, import the `Portal` component and wrap the
 `MenuList` within the `Portal`.
 
-```jsx live=false
+```jsx
 <Menu>
   <MenuButton size="sm" colorScheme="teal">
     Open menu
