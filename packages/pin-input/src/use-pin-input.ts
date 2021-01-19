@@ -64,6 +64,11 @@ export interface UsePinInputProps {
    */
   manageFocus?: boolean
   /**
+   * If `true`, the pin input component signals to its fields that they should
+   * use `autocomplete="one-time-code"`.
+   */
+  otp?: boolean
+  /**
    * The top-level id string that will be applied to the input fields.
    * The index of the input will be appended to this top-level id.
    *
@@ -107,6 +112,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
     onComplete,
     placeholder = "○",
     manageFocus = true,
+    otp = false,
     id: idProp,
     isDisabled,
     isInvalid,
@@ -274,7 +280,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
         onFocus: callAllHandlers(rest.onFocus, onFocus),
         onBlur: callAllHandlers(rest.onBlur, onBlur),
         value: values[index] || "",
-        autoComplete: "off",
+        autoComplete: otp ? "one-time-code" : "off",
         placeholder: hasFocus ? "" : placeholder,
       }
     },
@@ -288,6 +294,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
       isInvalid,
       manageFocus,
       onComplete,
+      otp,
       placeholder,
       setValue,
       setValues,
