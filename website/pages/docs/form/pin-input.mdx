@@ -63,6 +63,20 @@ alphanumeric values, pass the `type` prop and set its value to either
 </HStack>
 ```
 
+### Using fields as a one time password (OTP)
+
+Use the `otp` prop on `PinInput` to set `autocomplete="one-time-code"` for all
+children `PinInputField` components.
+
+```jsx
+<PinInput otp>
+  <PinInputField />
+  <PinInputField />
+  <PinInputField />
+  <PinInputField />
+</PinInput>
+```
+
 ### Masking the pin input's value
 
 When collecting private or sensitive information using the pin input, you might

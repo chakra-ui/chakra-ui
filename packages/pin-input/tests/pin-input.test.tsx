@@ -1,5 +1,5 @@
 import * as React from "react"
-import { render, userEvent, fireEvent } from "@chakra-ui/test-utils"
+import { render, userEvent, fireEvent, screen } from "@chakra-ui/test-utils"
 import {
   usePinInput,
   usePinInputField,
@@ -99,4 +99,21 @@ test("can clear all input", () => {
   // verify that input values are blank
   expect(utils.getByTestId("1")).toHaveValue("")
   expect(utils.getByTestId("2")).toHaveValue("")
+})
+
+test('otp flag enables "one-time-code" autocomplete on fields', () => {
+  render(<Component otp />)
+
+  expect(screen.getByTestId("1")).toHaveAttribute(
+    "autocomplete",
+    "one-time-code",
+  )
+  expect(screen.getByTestId("2")).toHaveAttribute(
+    "autocomplete",
+    "one-time-code",
+  )
+  expect(screen.getByTestId("3")).toHaveAttribute(
+    "autocomplete",
+    "one-time-code",
+  )
 })
