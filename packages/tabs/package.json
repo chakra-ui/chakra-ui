@@ -64,6 +64,7 @@
     "@chakra-ui/clickable": "1.0.3",
     "@chakra-ui/descendant": "1.0.4",
     "@chakra-ui/hooks": "1.1.1",
+    "@chakra-ui/media-query": "^1.0.4",
     "@chakra-ui/utils": "1.1.0"
   },
   "devDependencies": {
