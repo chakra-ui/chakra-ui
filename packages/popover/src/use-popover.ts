@@ -64,6 +64,10 @@ export interface UsePopoverProps {
    */
   placement?: Placement
   /**
+   * The flip of the popover
+   */
+  flip?: boolean
+  /**
    * If `true`, the popover will close when you blur out it by
    * clicking outside or tabbing out
    */
@@ -118,6 +122,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     closeOnEsc = true,
     initialFocusRef,
     placement: placementProp,
+    flip,
     gutter,
     id,
     arrowSize,
@@ -156,6 +161,7 @@ export function usePopover(props: UsePopoverProps = {}) {
   const popper = usePopper({
     enabled: isOpen,
     placement: placementProp,
+    flip,
     gutter,
     arrowSize,
     arrowShadowColor: arrowColor,
