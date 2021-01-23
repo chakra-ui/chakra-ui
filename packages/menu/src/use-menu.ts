@@ -55,7 +55,7 @@ export interface UseMenuProps extends UsePopperProps, UseDisclosureProps {
    */
   closeOnBlur?: boolean
   /**
-   * If `true`, the first enabled menu item will receive focus
+   * If `true`, the first enabled menu item will receive focus and be selected
    * when the menu opens.
    *
    * @default true
