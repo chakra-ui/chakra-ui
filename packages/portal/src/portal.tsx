@@ -20,7 +20,7 @@ const Container: React.FC<{ zIndex?: number }> = (props) => {
   return (
     <div
       className="chakra-portal-zIndex"
-      style={{ display: "inline-block", position: "absolute", zIndex }}
+      style={{ position: "relative", zIndex }}
     >
       {children}
     </div>
@@ -73,10 +73,16 @@ export function Portal(props: PortalProps) {
     if (!tempNode.current) return
 
     const doc = tempNode.current!.ownerDocument
+    const host = getContainer() ?? parentPortal ?? doc.body
+
+    /**
+     * host may be `null` when a hot-loader
+     * replaces components on the page
+     */
+    if (!host) return
+
     portal.current = doc.createElement("div")
     portal.current.className = Portal.className
-
-    const host = getContainer() ?? parentPortal ?? doc.body
 
     host.appendChild(portal.current)
     forceUpdate()
