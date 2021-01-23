@@ -1,5 +1,12 @@
 import { Button } from "@chakra-ui/button"
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu"
+import {
+  Popover,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
+} from "@chakra-ui/popover"
+import { Tooltip } from "@chakra-ui/tooltip"
 import * as React from "react"
 import Frame from "react-frame-component"
 import { Portal, PortalManager } from "../src"
@@ -91,5 +98,28 @@ export const WithZIndex = () => (
         </MenuList>
       </Portal>
     </Menu>
+  </PortalManager>
+)
+
+export const WithZIndexPopover = () => (
+  <PortalManager zIndex={20}>
+    <Popover isOpen>
+      <PopoverTrigger>
+        <p>Popover</p>
+      </PopoverTrigger>
+      <Portal>
+        <PopoverContent>
+          <PopoverBody>I am a popover</PopoverBody>
+        </PopoverContent>
+      </Portal>
+    </Popover>
+  </PortalManager>
+)
+
+export const WithZIndexTooltip = () => (
+  <PortalManager zIndex={20}>
+    <Tooltip isOpen label="I am a tooltip">
+      Tooltip
+    </Tooltip>
   </PortalManager>
 )
