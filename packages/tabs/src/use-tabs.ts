@@ -92,11 +92,6 @@ export function useTabs(props: UseTabsProps) {
     defaultValue: defaultIndex ?? 0,
     value: index,
     onChange,
-    propsMap: {
-      value: "index",
-      defaultValue: "defaultIndex",
-      onChange: "onChange",
-    },
   })
 
   /**
