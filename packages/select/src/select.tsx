@@ -155,7 +155,7 @@ export const Select = forwardRef<SelectProps, "select">((props, ref) => {
 
       <SelectIcon
         data-disabled={props.isDisabled}
-        color={iconColor || color}
+        {...((iconColor || color) && { color: iconColor || color })}
         __css={styles.icon}
         {...(iconSize && { fontSize: iconSize })}
       >
