@@ -99,11 +99,6 @@ export function useAccordion(props: UseAccordionProps) {
       return defaultIndex ?? -1
     },
     onChange,
-    propsMap: {
-      value: "index",
-      defaultValue: "defaultIndex",
-      onChange: "onChange",
-    },
   })
 
   /**
@@ -151,9 +146,10 @@ interface AccordionContext extends Omit<UseAccordionReturn, "htmlProps"> {
   reduceMotion: boolean
 }
 
-const [AccordionProvider, useAccordionContext] = createContext<
-  AccordionContext
->({
+const [
+  AccordionProvider,
+  useAccordionContext,
+] = createContext<AccordionContext>({
   name: "AccordionContext",
   errorMessage:
     "useAccordionContext: `context` is undefined. Seems you forgot to wrap the accordion components in `<Accordion />`",

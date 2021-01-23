@@ -1,9 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { runIfFn, warn } from "@chakra-ui/utils"
+import { runIfFn } from "@chakra-ui/utils"
 import * as React from "react"
+import { useCallbackRef } from "./use-callback-ref"
 
 export function useControllableProp<T>(prop: T | undefined, state: T) {
-  const { current: isControlled } = React.useRef(prop !== undefined)
+  const isControlled = prop !== undefined
   const value = isControlled && typeof prop !== "undefined" ? prop : state
   return [isControlled, value] as const
 }
@@ -25,24 +25,6 @@ export interface UseControllableStateProps<T> {
    * The component name (for warnings)
    */
   name?: string
-  /**
-   * A mapping for the props to give more contextual warning messages.
-   *
-   * In some components `value` might be called `index`, and defaultValue
-   * might be called `defaultIndex`, so this map helps us generate
-   * contextual warning messages
-   */
-  propsMap?: {
-    value: string
-    defaultValue: string
-    onChange: string
-  }
-}
-
-const defaultPropsMap = {
-  value: "value",
-  defaultValue: "defaultValue",
-  onChange: "onChange",
 }
 
 /**
@@ -50,55 +32,23 @@ const defaultPropsMap = {
  * @param props
  */
 export function useControllableState<T>(props: UseControllableStateProps<T>) {
-  const {
-    value: valueProp,
-    defaultValue,
-    onChange,
-    name = "Component",
-    propsMap = defaultPropsMap,
-  } = props
+  const { value: valueProp, defaultValue, onChange } = props
+  const handleChange = useCallbackRef(onChange)
 
   const [valueState, setValue] = React.useState(defaultValue as T)
-  const { current: isControlled } = React.useRef(valueProp !== undefined)
-
-  // don't switch from controlled to uncontrolled
-  React.useEffect(() => {
-    const nextIsControlled = valueProp !== undefined
-
-    const nextMode = nextIsControlled ? "a controlled" : "an uncontrolled"
-    const mode = isControlled ? "a controlled" : "an uncontrolled"
-
-    warn({
-      condition: isControlled !== nextIsControlled,
-      message:
-        `Warning: ${name} is changing from ${mode} to ${nextMode} component. ` +
-        `Components should not switch from controlled to uncontrolled (or vice versa). ` +
-        `Use the '${propsMap.value}' with an '${propsMap.onChange}' handler. ` +
-        `If you want an uncontrolled component, remove the ${propsMap.value} prop and use '${propsMap.defaultValue}' instead. "` +
-        `More info: https://fb.me/react-controlled-components`,
-    })
-  }, [valueProp, isControlled, name])
-
-  const { current: initialDefaultValue } = React.useRef(defaultValue)
-
-  React.useEffect(() => {
-    warn({
-      condition: initialDefaultValue !== defaultValue,
-      message:
-        `Warning: A component is changing the default value of an uncontrolled ${name} after being initialized. ` +
-        `To suppress this warning opt to use a controlled ${name}.`,
-    })
-  }, [JSON.stringify(defaultValue)])
+  const isControlled = valueProp !== undefined
 
   const value = isControlled ? (valueProp as T) : valueState
 
   const updateValue = React.useCallback(
     (next: React.SetStateAction<T>) => {
       const nextValue = runIfFn(next, value)
-      if (!isControlled) setValue(nextValue)
-      onChange?.(nextValue)
+      if (!isControlled) {
+        setValue(nextValue)
+      }
+      handleChange(nextValue)
     },
-    [onChange, value],
+    [isControlled, handleChange, value],
   )
 
   return [value, updateValue] as [T, React.Dispatch<React.SetStateAction<T>>]

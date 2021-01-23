@@ -5,15 +5,9 @@ import {
   PropGetter,
   StringOrNumber,
 } from "@chakra-ui/utils"
-import {
-  ChangeEvent,
-  useCallback,
-  useRef,
-  useState,
-  InputHTMLAttributes,
-} from "react"
+import * as React from "react"
 
-type EventOrValue = ChangeEvent<HTMLInputElement> | StringOrNumber
+type EventOrValue = React.ChangeEvent<HTMLInputElement> | StringOrNumber
 
 export interface UseRadioGroupProps {
   /**
@@ -44,6 +38,14 @@ export interface UseRadioGroupProps {
   isNative?: boolean
 }
 
+type RadioPropGetter = PropGetter<
+  HTMLInputElement,
+  { onChange?: (e: EventOrValue) => void; value?: StringOrNumber } & Omit<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    "onChange" | "size" | "value"
+  >
+>
+
 /**
  * React hook to manage a group of radio inputs
  */
@@ -57,13 +59,14 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     ...htmlProps
   } = props
 
-  const [valueState, setValue] = useState<StringOrNumber>(defaultValue || "")
-
+  const [valueState, setValue] = React.useState<StringOrNumber>(
+    defaultValue || "",
+  )
   const [isControlled, value] = useControllableProp(valueProp, valueState)
 
-  const ref = useRef<any>(null)
+  const ref = React.useRef<any>(null)
 
-  const focus = useCallback(() => {
+  const focus = React.useCallback(() => {
     const rootNode = ref.current
     if (!rootNode) return
 
@@ -90,7 +93,7 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
   const fallbackName = useId(undefined, `radio`)
   const name = nameProp || fallbackName
 
-  const onChange = useCallback(
+  const onChange = React.useCallback(
     (eventOrValue: EventOrValue) => {
       const nextValue = isInputEvent(eventOrValue)
         ? eventOrValue.target.value
@@ -105,30 +108,28 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     [onChangeProp, isControlled],
   )
 
-  const getRootProps: PropGetter = (props = {}, forwardedRef = null) => ({
-    ...props,
-    ref: mergeRefs(forwardedRef, ref),
-    role: "radiogroup",
-  })
-
-  type RadioPropGetter = PropGetter<
-    HTMLInputElement,
-    { onChange?: (e: EventOrValue) => void; value?: StringOrNumber } & Omit<
-      InputHTMLAttributes<HTMLInputElement>,
-      "onChange" | "size" | "value"
-    >
-  >
-
-  const getRadioProps: RadioPropGetter = (props = {}, ref = null) => {
-    const checkedKey = isNative ? "checked" : "isChecked"
-    return {
+  const getRootProps: PropGetter = React.useCallback(
+    (props = {}, forwardedRef = null) => ({
       ...props,
-      ref,
-      name,
-      [checkedKey]: props.value === value,
-      onChange,
-    }
-  }
+      ref: mergeRefs(forwardedRef, ref),
+      role: "radiogroup",
+    }),
+    [],
+  )
+
+  const getRadioProps: RadioPropGetter = React.useCallback(
+    (props = {}, ref = null) => {
+      const checkedKey = isNative ? "checked" : "isChecked"
+      return {
+        ...props,
+        ref,
+        name,
+        [checkedKey]: value ? props.value === value : "",
+        onChange,
+      }
+    },
+    [isNative, name, onChange, value],
+  )
 
   return {
     getRootProps,
