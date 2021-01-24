@@ -4,12 +4,12 @@ import { writeFile } from "fs"
 import { promisify } from "util"
 import { register } from "ts-node"
 import { program } from "commander"
+import ora from "ora"
 import { isObject } from "@chakra-ui/utils"
 import { createThemeTypingsInterface } from "./create-theme-typings-interface"
 import { destination, resolveOutputPath } from "./resolve-output-path"
 import { themeKeyConfiguration } from "./config"
 import { initCLI } from "./init-cli"
-import ora from "ora"
 
 const writeFileAsync = promisify(writeFile)
 
