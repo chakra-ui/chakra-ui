@@ -14,11 +14,12 @@ export const themeInterfaceDestination = [
 ]
 
 async function resolveThemingDefinitionPath(): Promise<string | undefined> {
+  const baseDir = path.join("..", "..", "..")
   const cwd = process.cwd()
 
   const pathsToTry = [
-    path.resolve("..", "..", ...themeInterfaceDestination),
-    path.resolve("..", ...themeInterfaceDestination),
+    path.resolve(baseDir, "..", ...themeInterfaceDestination),
+    path.resolve(baseDir, "..", "..", ...themeInterfaceDestination),
     path.resolve(cwd, ...themeInterfaceDestination),
     path.resolve(cwd, "..", ...themeInterfaceDestination),
     path.resolve(cwd, "..", "..", ...themeInterfaceDestination),
