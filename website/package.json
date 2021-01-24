@@ -5,17 +5,17 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "gen:theme-typings": "create-chakra-theme-typings theme.ts",
+    "gen:theme-typings": "chakra-cli tokens theme.ts",
     "start": "next start",
     "test": "jest",
     "clean": "rm -rf .next .mdx-data",
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
+    "@chakra-ui/cli": "1.0.0",
     "@chakra-ui/props-docs": "1.0.11",
     "@chakra-ui/react": "1.1.6",
     "@chakra-ui/theme-tools": "1.0.3",
-    "@chakra-ui/theme-typings": "1.0.0",
     "@chakra-ui/utils": "1.1.0",
     "@docsearch/react": "^1.0.0-alpha.27",
     "@docusaurus/utils": "^2.0.0-alpha.69",
