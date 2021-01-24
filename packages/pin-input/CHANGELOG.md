@@ -1,5 +1,31 @@
 # Change Log
 
+## 1.2.0
+
+### Minor Changes
+
+- [`f91058e3`](https://github.com/chakra-ui/chakra-ui/commit/f91058e3883f30a6f8ef8f8288e9be614333a862)
+  [#3095](https://github.com/chakra-ui/chakra-ui/pull/3095) Thanks
+  [@with-heart](https://github.com/with-heart)! - Added an `otp` flag to
+  `PinInput` that sets the `autoComplete` value of `PinInputField` to
+  `"one-time-code"`.
+
+  ```jsx
+  <PinInput otp>
+    <PinInputField />
+    <PinInputField />
+    <PinInputField />
+    <PinInputField />
+  </PinInput>
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`002a4361`](https://github.com/chakra-ui/chakra-ui/commit/002a4361bd738bef49e021a2fff2b9b6a9af5815)]:
+  - @chakra-ui/hooks@1.1.2
+  - @chakra-ui/descendant@1.0.5
+
 ## 1.1.4
 
 ### Patch Changes

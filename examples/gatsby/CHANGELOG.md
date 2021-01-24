@@ -1,5 +1,12 @@
 # gatsby-starter-default
 
+## 0.1.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@1.1.6
+
 ## 0.1.8
 
 ### Patch Changes

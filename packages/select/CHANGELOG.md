@@ -1,5 +1,16 @@
 # Change Log
 
+## 1.0.6
+
+### Patch Changes
+
+- [`8816f3e3`](https://github.com/chakra-ui/chakra-ui/commit/8816f3e392eafbe283af119c44b900f5728b589e)
+  [#3129](https://github.com/chakra-ui/chakra-ui/pull/3129) Thanks
+  [@with-heart](https://github.com/with-heart)! - Fixed an issue where component
+  theme `color` style for `Select.icon` wasn't applied.
+- Updated dependencies []:
+  - @chakra-ui/form-control@1.1.3
+
 ## 1.0.5
 
 ### Patch Changes

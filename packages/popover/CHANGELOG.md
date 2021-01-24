@@ -1,5 +1,24 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [`07edd6d4`](https://github.com/chakra-ui/chakra-ui/commit/07edd6d4bf9988d95d49399f84f714533f96fb94)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Add `flip` prop to
+  `Popover` to change the placement when it is scheduled to overflow a given
+  boundary
+
+### Patch Changes
+
+- Updated dependencies
+  [[`002a4361`](https://github.com/chakra-ui/chakra-ui/commit/002a4361bd738bef49e021a2fff2b9b6a9af5815),
+  [`31881da7`](https://github.com/chakra-ui/chakra-ui/commit/31881da7314c9c464d080b7dd83edd59d8786b7c)]:
+  - @chakra-ui/hooks@1.1.2
+  - @chakra-ui/portal@1.0.6
+  - @chakra-ui/popper@1.1.1
+  - @chakra-ui/transition@1.0.6
+
 ## 1.0.7
 
 ### Patch Changes

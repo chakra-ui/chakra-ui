@@ -1,5 +1,29 @@
 # Change Log
 
+## 1.2.0
+
+### Minor Changes
+
+- [`df66d58e`](https://github.com/chakra-ui/chakra-ui/commit/df66d58e163c285f33649cfd2a480b810e9599a2)
+  [#3137](https://github.com/chakra-ui/chakra-ui/pull/3137) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Add `AbsoluteCenter`
+  component to help manage centering of an element relative to its parent
+  dimensions.
+
+  It requires a parent that has `position: relative` to work correctly.
+
+  Here's how it works:
+
+  ```jsx
+  <Box position="relative" w="600px" h="400px">
+    <img src="some-image.png" />
+    {/** This will be centered relative to `Box` */}
+    <AbsoluteCenter>
+      <PlayButton />
+    </AbsoluteCenter>
+  </Box>
+  ```
+
 ## 1.1.3
 
 ### Patch Changes
