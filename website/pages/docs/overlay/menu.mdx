@@ -86,7 +86,7 @@ To access the internal state of the `Menu`, use a function as `children`
 </Menu>
 ```
 
-### Customising the button
+### Customizing the button
 
 The default `MenuButton` can be styled using the usual styled-system props, but
 it starts off plainly styled.
@@ -116,9 +116,9 @@ the letter you typed.
     transition="all 0.2s"
     borderRadius="md"
     borderWidth="1px"
-    _hover={{ bg: "gray.100" }}
-    _expanded={{ bg: "red.200" }}
-    _focus={{ outline: 0, boxShadow: "outline" }}
+    _hover={{ bg: "gray.400" }}
+    _expanded={{ bg: "blue.400" }}
+    _focus={{ boxShadow: "outline" }}
   >
     File <ChevronDownIcon />
   </MenuButton>
@@ -166,7 +166,7 @@ the letter you typed.
 
 ### Adding icons and commands
 
-You can add icon to the left side of each `MenuItem` by passing the `icon` prop.
+You can add icon to each `MenuItem` by passing the `icon` prop.
 To add a commands (or hotkeys) to menu items, you can use the `command` prop.
 
 ```jsx
