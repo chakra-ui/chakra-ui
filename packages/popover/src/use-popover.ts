@@ -60,7 +60,7 @@ export interface UsePopoverProps {
    */
   gutter?: number
   /**
-   * The placment of the popover
+   * The placement of the popover
    */
   placement?: Placement
   /**
