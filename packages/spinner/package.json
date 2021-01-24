@@ -54,7 +54,7 @@
     "@chakra-ui/visually-hidden": "1.0.3"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.1.6",
+    "@chakra-ui/system": "1.1.7",
     "react": "^17.0.1"
   },
   "peerDependencies": {

@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.1.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/color-mode@1.0.5
+
 ## 1.1.6
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.1.2
+
+### Patch Changes
+
+- [`002a4361`](https://github.com/chakra-ui/chakra-ui/commit/002a4361bd738bef49e021a2fff2b9b6a9af5815)
+  [#3125](https://github.com/chakra-ui/chakra-ui/pull/3125) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fixed issue where using an
+  uncontrolled RadioGroup without a defaultValue causes multiple radio options
+  can be selected.
+
+  This was caused by the `useControllableProp` hook that uses `useRef` to check
+  if a value is controlled or uncontrolled.
+
 ## 1.1.1
 
 ### Patch Changes

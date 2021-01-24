@@ -1,5 +1,21 @@
 # Change Log
 
+## 1.0.6
+
+### Patch Changes
+
+- [`66193eb2`](https://github.com/chakra-ui/chakra-ui/commit/66193eb2073867ea47d062d4723416aae0e962b8)
+  [#3116](https://github.com/chakra-ui/chakra-ui/pull/3116) Thanks
+  [@tmikeschu](https://github.com/tmikeschu)! - Update Menu docs for the
+  autoSelect property to specify focus over "selected".
+
+- Updated dependencies
+  [[`002a4361`](https://github.com/chakra-ui/chakra-ui/commit/002a4361bd738bef49e021a2fff2b9b6a9af5815)]:
+  - @chakra-ui/hooks@1.1.2
+  - @chakra-ui/descendant@1.0.5
+  - @chakra-ui/popper@1.1.1
+  - @chakra-ui/transition@1.0.6
+
 ## 1.0.5
 
 ### Patch Changes
