@@ -105,7 +105,7 @@ foundations, you can extend the internal theme typings to provide autocomplete
 for your application theme.
 
 ```bash
-npx @chakra-ui/theme-typings <path/to/your/theme.(js|ts)>
+npx @chakra-ui/cli tokens <path/to/your/theme.(js|ts)>
 ```
 
 > You need to run this command after every `npm install`, because it updates
@@ -116,7 +116,7 @@ don't have to think about this every time you reinstall your dependencies.
 
 ```json
 "scripts": {
-  "gen:theme-typings": "create-chakra-theme-typings <path/to/your/theme.(js|ts)>",
+  "gen:theme-typings": "chakra-cli tokens <path/to/your/theme.(js|ts)>",
   "postinstall": "npm run gen:theme-typings"
 }
 ```
