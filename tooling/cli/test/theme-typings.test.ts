@@ -67,7 +67,7 @@ describe("Theme typings", () => {
 
     expect(themeInterface).toMatchInlineSnapshot(`
       "// regenerate by running
-      // npx @chakra-ui/theme-typings path/to/your/theme.(js|ts)
+      // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
       export interface ThemeTypings {
         borders: \\"sm\\" | \\"md\\"
         breakpoints: \\"sm\\" | \\"md\\"
@@ -118,7 +118,7 @@ describe("Theme typings", () => {
 
     expect(themeInterface).toMatchInlineSnapshot(`
       "// regenerate by running
-      // npx @chakra-ui/theme-typings path/to/your/theme.(js|ts)
+      // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
       export interface ThemeTypings {
         borders: never
         breakpoints: never

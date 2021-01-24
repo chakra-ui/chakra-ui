@@ -1,5 +1,5 @@
 {
-  "name": "@chakra-ui/theme-typings",
+  "name": "@chakra-ui/cli",
   "version": "1.0.0",
   "description": "Generate theme typings for autocomplete",
   "keywords": [
@@ -37,12 +37,12 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "bin": {
-    "create-chakra-theme-typings": "bin/index.js"
+    "chakra-cli": "bin/index.js"
   },
   "scripts": {
     "prebuild": "rimraf dist",
     "start": "nodemon --watch src --exec 'yarn build; yarn dev' -e ts,tsx",
-    "dev": "node bin/index.js ../../website/theme.ts",
+    "dev": "node bin/index.js tokens ../../website/theme.ts",
     "build": "concurrently yarn:build:*",
     "test": "jest --env=jsdom --passWithNoTests",
     "lint": "concurrently yarn:lint:*",
@@ -54,8 +54,16 @@
   },
   "dependencies": {
     "@chakra-ui/utils": "^1.0.2",
+    "cli-check-node": "^1.3.4",
+    "cli-welcome": "^2.2.2",
     "commander": "^6.2.1",
+    "ora": "^5.3.0",
     "regenerator-runtime": "^0.13.7",
-    "ts-node": "9.1.1"
+    "ts-node": "9.1.1",
+    "update-notifier": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/ora": "^3.2.0",
+    "@types/update-notifier": "5.0.0"
   }
 }
