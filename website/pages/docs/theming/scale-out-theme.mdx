@@ -1,0 +1,519 @@
+---
+title: Scale Out Theme
+description: How to divide a bloated theme into /theme folder.
+---
+
+As your project grows in size, it is best to keep things organized. We highly
+suggest that instead of using a single `theme.js` (or `theme.ts`) file, you
+create a `/theme` folder in its place. Inside this folder, you could have a
+directory structure that looks like this:
+
+```bash
+📁 theme
+  📄 index.js  # my main theme entrypoint
+  📄 styles.js  # all my global style overrides
+  📁 foundations
+    📄 borders.js  # all my border overrides
+    📄 index.js  # export all Foundations here.
+  📁 components
+    📄 button.js  # all my button overrides
+    📄 index.js  # export all Components style here.
+```
+
+In this time, we will show a few examples written in TypeScript that follow the above structure.
+
+---
+
+## 🌐 Global Styles
+
+Create a file named `styles.ts` directly under `/theme` folder.
+You can write the Global Styles override here.
+
+```ts live=false
+// styles.ts
+
+import { Styles } from '@chakra-ui/theme-tools'
+
+const styles: Styles = {
+  global: () => ({
+    body: {
+      // These variables are defined in /foundations
+      fontWeight: 'normal',
+      color: 'black',
+      bgColor: 'white',
+      fontSizes: '16px',
+      lineHeight: 'normal',
+      // More...
+    },
+  }),
+}
+
+export default styles
+```
+
+---
+
+## 📁 Foundations
+
+<ComponentLinks
+  github={{ package: "theme/src/foundations/" }}
+/>
+
+In this folder, we define the style variables that are commonly used in all components,
+such as `colors`, `spacing`, `shadows`, and `typography`.
+All of these settings will be combined with the default theme settings.
+
+### 📐 Borders
+You can add additional borders like this:
+
+```ts live=false
+// borders.ts
+
+const borders = {
+  none: 0,
+  "16px": "16px solid",
+  "dashed": "2px dashed",
+  "double": "2px double",
+  // More...
+}
+
+export default borders
+```
+
+### 🚩 BreakPoints 
+You can overwrite the default breakpoints like this:
+
+```ts live=false
+// breakpoints.ts
+
+import { createBreakpoints } from '@chakra-ui/theme-tools'
+
+// Breakpoints for responsive design
+const breakpoints = createBreakpoints({
+  sm: '768px',
+  md: '1024px',
+  lg: '1216px',
+  xl: '1408px',
+})
+
+export default breakpoints
+
+```
+To learn more about usage of breakpoints, [see "Responsive Styles" Page](/docs/features/responsive-styles).
+
+
+###  🎨 Colors
+If you want to use additional colors, this setting is useful.
+You can also see [default colors list here](/docs/theming/theme#colors).
+
+```ts live=false
+// colors.ts
+
+export interface ColorHues {
+  50: string
+  100: string
+  200: string
+  300: string
+  400: string
+  500: string
+  600: string
+  700: string
+  800: string
+  900: string
+}
+
+export type Colors = typeof colors
+
+const colors = {
+  youtube: "#FF0000",
+  pinkAlpha: {
+    50: "rgba(252, 157, 157, 0.04)",
+    100: "rgba(252, 157, 157, 0.06)",
+    200: "rgba(252, 157, 157, 0.08)",
+    300: "rgba(252, 157, 157, 0.16)",
+    400: "rgba(252, 157, 157, 0.24)",
+    500: "rgba(252, 157, 157, 0.36)",
+    600: "rgba(252, 157, 157, 0.48)",
+    700: "rgba(252, 157, 157, 0.64)",
+    800: "rgba(252, 157, 157, 0.80)",
+    900: "rgba(252, 157, 157, 0.92)",
+  },
+  // More...
+}
+
+export default colors
+```
+
+### 🌈 Border Radius
+You can customize border radius like this:
+
+```ts live=false
+// radius.ts
+
+const radii = {
+  none: "0",
+  base: "7px",
+  "circle": "50%",
+  // More...
+}
+
+export type Radii = typeof radii
+
+export default radii
+```
+
+### 🌓 Shadows
+You can add additional box-shadows like this:
+
+```ts live=false
+// shadows.ts
+
+const shadows = {
+  shopify: 'rgba(0, 0, 0, 0.15) 0px 5px 15px 0px',
+  airbnb: 'rgba(0, 0, 0, 0.15) 0px 2px 8px',
+  mac: 'rgba(0, 0, 0, 0.2) 0px 20px 30px',
+  // More...
+};
+
+export type Shadows = typeof shadows
+
+export default shadows
+```
+
+### 🚀 Spacing
+Setting the size of the whitespace for `padding`, `margin` and `gap` etc.
+
+```ts live=false
+// spacing.ts
+
+export const spacing = {
+  full: '100%',
+  half: '50%',
+  x1: '1em',
+  x2: '2em',
+  x4: '4em',
+  x8: '8em',
+  x16: '16em',
+  // More...
+}
+
+export type Spacing = typeof spacing
+```
+
+### 📏 Sizes
+You can customize the global sizing of components you build for your project.
+These value can be used by the `width`, `height`, and `maxWidth`, `minWidth`, `maxHeight`, `minHeight` styles.
+
+```ts live=false
+// sizes.ts
+import { spacing } from "./spacing"
+
+const largeSizes = {
+  full: "100%",
+  half: "50%",
+  "3xs": "14rem",
+  "2xs": "16rem",
+  xs: "20rem",
+  sm: "24rem",
+  md: "28rem",
+  lg: "32rem",
+  xl: "36rem",
+  "2xl": "42rem",
+  "3xl": "48rem",
+  // More...
+}
+
+const container = {
+  sm: "640px",
+  md: "768px",
+  lg: "1024px",
+  xl: "1280px",
+}
+
+const sizes = {
+  ...spacing,
+  ...largeSizes,
+  container,
+}
+
+export type Sizes = typeof spacing &
+  typeof largeSizes & { container: typeof container }
+
+export default sizes
+```
+
+### 📝 Typography
+To customize Typography options, the theme object supports the following keys:
+
+- `fonts` (font families)
+- `fontSizes`
+- `letterSpacings`
+- `lineHeights`
+- `fontWeights`
+
+```ts live=false
+const typography = {
+  fonts: {
+    body: "system-ui, sans-serif",
+    heading: "Georgia, serif",
+    mono: "Menlo, monospace",
+  },
+
+  fontSizes: {
+    xs: "0.75rem",
+    sm: "0.875rem",
+    md: "1rem",
+    lg: "1.125rem",
+    xl: "1.25rem",
+    "2xl": "1.5rem",
+    // More...
+  },
+
+  letterSpacings: {
+    tighter: "-0.06em",
+    tight: "-0.03em",
+    normal: "0",
+    wide: "0.03em",
+    wider: "0.06em",
+    // More...
+  },
+
+  lineHeights: {
+    shorter: 1.3,
+    short: 1.5,
+    base: 1.7,
+    tall: 1.9,
+    taller: "2",
+    // More...
+  },
+
+  fontWeights: {
+    // Custom in special cases. Like this:
+    // normal: 400,
+    // bold: 700,
+  },
+
+}
+
+export type Typography = typeof typography
+
+export default typography
+```
+
+### 💨 Transition
+You can customize transition like this:
+
+```ts live=false
+// transition.ts
+
+const transitionProperty = {
+  common:
+    "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform",
+  colors: "background-color, border-color, color, fill, stroke",
+  dimensions: "width, height",
+  position: "left, right, top, bottom",
+  background: "background-color, background-image, background-position",
+}
+
+const transitionTimingFunction = {
+  "linear": "cubic-bezier(0, 0, 1, 1)",
+  "ease-in": "cubic-bezier(0.42, 0, 1, 1)",
+  "ease-out": "cubic-bezier(0, 0, 0.58, 1)",
+  "ease-in-out": "cubic-bezier(0.42, 0, 0.58, 1)",
+  // More...
+}
+
+const transitionDuration = {
+  "custom-speed": "250ms",
+  // More ...
+}
+
+const transition = {
+  property: transitionProperty,
+  easing: transitionTimingFunction,
+  duration: transitionDuration,
+}
+
+export default transition
+```
+
+
+### 🗂 Z-index
+We recommend trying to solve stacking issues without `z-index`.
+You can learn more about [stacking contexts and z-index here](/guides/z-index).
+
+```ts live=false
+const zIndices = {
+  headerNavigation: 1750,
+  // More...
+}
+
+export type ZIndices = typeof zIndices
+
+export default zIndices
+```
+
+### 📦 Export Foundations
+Export all above overwritten Foundations in `index.ts`. Put this file under `/foundations` folder.
+
+```ts live=false
+// index.ts
+
+import borders from "./borders"
+import breakpoints from "./breakpoints"
+import colors from "./colors"
+import radii from "./radius"
+import shadows from "./shadows"
+import sizes from "./sizes"
+import { spacing } from "./spacing"
+import transition from "./transition"
+import typography from "./typography"
+import zIndices from "./z-index"
+
+const foundations = {
+  breakpoints,
+  zIndices,
+  radii,
+  colors,
+  ...typography,
+  sizes,
+  shadows,
+  space: spacing,
+  borders,
+  transition,
+}
+
+type FoundationsType = typeof foundations
+export interface Foundations extends FoundationsType {}
+
+export default foundations
+```
+
+---
+
+## 📁 Components
+
+<ComponentLinks
+  github={{ package: "theme/src/components/" }}
+/>
+
+In this folder, we define the style that will be the default for the components.
+
+We will learn [how to define the Components Styles in the next section](/docs/theming/component-style).
+For that reason, we only provides a simple example for splitting Components Styles into files.
+
+
+### 🛎 Button Component Styles
+We can define `<Button>` component style like this:
+
+```ts live=false
+// button.ts
+
+// Styles for the base style
+const baseStyle = {
+  fontWeight: 'bold',
+  textTransform: 'uppercase',
+}
+
+// Styles for the size variations
+const sizes = {
+  sm: {
+    fontSize: '12px',
+    padding: '16px',
+  },
+  md: {
+    fontSize: '16px',
+    padding: '24px',
+  },
+}
+
+// Styles for the visual style variations
+const variants = {
+  outline: {
+    border: '2px solid',
+    borderColor: 'green.500',
+  },
+  solid: {
+    bg: 'green.500',
+    color: 'white',
+  },
+}
+
+// The default `size` or `variant` values
+const defaultProps = {
+  size: 'md',
+  variant: 'outline',
+}
+
+export default {
+  baseStyle,
+  sizes,
+  variants,
+  defaultProps,
+}
+```
+
+
+### 📦 Export Components Style
+Export all Component Style in `index.ts`. Put this file under /components folder.
+
+```ts live=false
+// index.ts
+
+import Button from './button';
+// More...
+
+export default {
+  Button,
+  // More...
+}
+```
+
+---
+
+## 📦 Export Theme
+Finally, we will merge all the overwrites and export the theme.
+Put `index.ts` directly under `/theme` folder.
+
+You can learn more about [ColorModeOptions](/docs/features/color-mode) and [ThemeDirection](/docs/features/rtl-support).
+
+```ts live=false
+// index.ts
+
+import { extendTheme } from '@chakra-ui/react';
+import { ColorModeOptions } from '@chakra-ui/system';
+import styles from './styles';
+import foundations from './foundations';
+import components from './components';
+
+export type ThemeConfig = ColorModeOptions;
+
+export type ThemeDirection = 'ltr' | 'rtl';
+const direction: ThemeDirection = 'ltr';
+
+const config: ThemeConfig = {
+  useSystemColorMode: false,
+  initialColorMode: 'light',
+};
+
+const overrides = {
+  config,
+  styles,
+  direction,
+  ...foundations,
+
+  // Other foundational style overrides go here
+  components,
+};
+
+export default extendTheme(overrides);
+```
+
+None of these is strictly required to use Chakra - but we've learned some hard
+lessons on the "right" way and the "wrong" way to write styles. The above is our
+best suggestion on how to write style overrides and organize your custom theme.
+
+---
+
+[In the next section](/docs/theming/component-style), we'll show some examples
+of how to create custom component styles and use them in your components!
