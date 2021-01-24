@@ -6453,6 +6453,13 @@
     "hierarchy": { "lvl1": "Customize Theme" }
   },
   {
+    "content": "Scale Out Theme",
+    "id": "d8f97d39-9910-4ccd-a478-365d2e25909a",
+    "type": "lvl1",
+    "url": "/docs/theming/scale-out-theme",
+    "hierarchy": { "lvl1": "Scale Out Theme" }
+  },
+  {
     "content": "Customizing theme tokens",
     "id": "04203f21-063a-4751-a73f-746884724837",
     "type": "lvl2",
