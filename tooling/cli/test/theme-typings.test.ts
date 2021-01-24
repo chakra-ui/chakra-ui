@@ -1,5 +1,5 @@
-import { createThemeTypingsInterface } from "../src/create-theme-typings-interface"
-import { themeKeyConfiguration } from "../src/config"
+import { createThemeTypingsInterface } from "../src/command/tokens/create-theme-typings-interface"
+import { themeKeyConfiguration } from "../src/command/tokens/config"
 
 const defaultRecord = {
   sm: "",

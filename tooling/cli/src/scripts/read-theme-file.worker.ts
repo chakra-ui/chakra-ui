@@ -2,13 +2,13 @@ import "regenerator-runtime/runtime"
 import path from "path"
 import { register } from "ts-node"
 import { isObject } from "@chakra-ui/utils"
-import { createThemeTypingsInterface } from "./create-theme-typings-interface"
-import { themeKeyConfiguration } from "./config"
+import { createThemeTypingsInterface } from "../command/tokens/create-theme-typings-interface"
+import { themeKeyConfiguration } from "../command/tokens/config"
 
 async function readTheme(themeFilePath: string) {
   const absoluteThemePath = path.join(process.cwd(), themeFilePath)
   register({
-    project: path.join(__dirname, "..", "bin", "tsconfig.json"),
+    project: path.join(__dirname, "..", "..", "bin", "tsconfig.json"),
     dir: path.basename(absoluteThemePath),
   })
   const module = await import(absoluteThemePath)
@@ -39,6 +39,6 @@ async function run() {
 }
 
 run().catch((e) => {
-  process.stderr.write(e)
+  process.stderr.write(e.message)
   process.exit(1)
 })

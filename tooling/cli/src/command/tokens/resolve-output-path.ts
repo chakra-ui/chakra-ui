@@ -4,7 +4,7 @@ import { promisify } from "util"
 
 const exists = promisify(fs.exists)
 
-export const destination = [
+export const themeInterfaceDestination = [
   "node_modules",
   "@chakra-ui",
   "styled-system",
@@ -17,11 +17,11 @@ async function resolveThemingDefinitionPath(): Promise<string | undefined> {
   const cwd = process.cwd()
 
   const pathsToTry = [
-    path.resolve("..", "..", ...destination),
-    path.resolve("..", ...destination),
-    path.resolve(cwd, ...destination),
-    path.resolve(cwd, "..", ...destination),
-    path.resolve(cwd, "..", "..", ...destination),
+    path.resolve("..", "..", ...themeInterfaceDestination),
+    path.resolve("..", ...themeInterfaceDestination),
+    path.resolve(cwd, ...themeInterfaceDestination),
+    path.resolve(cwd, "..", ...themeInterfaceDestination),
+    path.resolve(cwd, "..", "..", ...themeInterfaceDestination),
   ]
 
   const triedPaths = await Promise.all(
