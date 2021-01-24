@@ -193,57 +193,9 @@ const overrides = extendTheme({
 })
 ```
 
-## Scaling out your project
 
-As your project grows in size, it is best to keep things organized. We highly
-suggest that instead of using a single `theme.js` (or `theme.ts`) file, you
-create a `/theme` folder in its place. Inside this folder, you could have a
-directory structure that looks like this:
-
-```bash
-📁 theme
-  📄 index.js  # my main theme entrypoint
-  📄 styles.js  # all my global style overrides
-  📁 foundations
-    📄 borders.js  # all my border overrides
-  📁 components
-    📄 button.js  # all my button overrides
-```
-
-This way, you can structure your main theme entrypoint file to be much cleaner,
-like this:
-
-```jsx live=false
-// theme.js
-import { extendTheme } from "@chakra-ui/react"
-
-// Global style overrides
-import styles from "./styles"
-
-// Foundational style overrides
-import borders from "./foundations/borders"
-
-// Component style overrides
-import Button from "./components/button"
-
-const overrides = {
-  styles,
-  borders,
-  // Other foundational style overrides go here
-  components: {
-    Button,
-    // Other components go here
-  },
-}
-
-export default extendTheme(overrides)
-```
-
-None of these is strictly required to use Chakra - but we've learned some hard
-lessons on the "right" way and the "wrong" way to write styles. The above is our
-best suggestion on how to write style overrides and organize your custom theme.
 
 ---
 
-[In the next section](/docs/theming/component-style), we'll show some examples
-of how to create custom component styles and use them in your components!
+[In the next section](/docs/theming/scale-out-theme), we'll show how to divide a bloated theme into /theme directory.
+As your project grows in size, it is best to keep things organized!
