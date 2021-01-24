@@ -30,12 +30,14 @@ export function extractComponentTypes(theme: Record<string, unknown>) {
 export function printComponentTypes(
   componentTypes: Record<string, ComponentType>,
 ) {
-  const types = Object.entries(componentTypes).map(
-    ([componentName, unions]) =>
-      `${componentName}: {
+  const types = Object.entries(componentTypes)
+    .map(
+      ([componentName, unions]) =>
+        `${componentName}: {
   ${printUnionMap(unions)}
 }`,
-  )
+    )
+    .join(`\n`)
 
   return `components: {
   ${types}  
