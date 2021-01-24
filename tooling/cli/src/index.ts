@@ -2,26 +2,28 @@ import "regenerator-runtime/runtime"
 import * as path from "path"
 import { writeFile } from "fs"
 import { promisify } from "util"
-import { register } from "ts-node"
+import { exec } from "child_process"
 import { program } from "commander"
 import ora from "ora"
-import { isObject } from "@chakra-ui/utils"
-import { createThemeTypingsInterface } from "./create-theme-typings-interface"
 import { destination, resolveOutputPath } from "./resolve-output-path"
-import { themeKeyConfiguration } from "./config"
 import { initCLI } from "./init-cli"
 
 const writeFileAsync = promisify(writeFile)
+const execAsync = promisify(exec)
 
-async function readTheme(themeFilePath: string) {
-  const absoluteThemePath = path.join(process.cwd(), themeFilePath)
-  register({
-    project: path.join(__dirname, "..", "bin", "tsconfig.json"),
-    dir: path.basename(absoluteThemePath),
-  })
-  // eslint-disable-next-line import/no-dynamic-require,global-require
-  const module = require(absoluteThemePath)
-  return module.default ?? module.theme
+async function runTemplateWorker({ themeFile }: { themeFile: string }) {
+  const { stdout, stderr } = await execAsync(
+    `node ${path.join(__dirname, "create-template-worker.js")} ${themeFile}`,
+    {
+      cwd: process.cwd(),
+    },
+  )
+
+  if (stderr) {
+    throw new Error(String(stderr))
+  }
+
+  return String(stdout)
 }
 
 async function generateThemeTypings({
@@ -32,28 +34,21 @@ async function generateThemeTypings({
   out: string
 }) {
   const spinner = ora("Generating chakra theme typings").start()
+  try {
+    const template = await runTemplateWorker({ themeFile })
+    const outPath = await resolveOutputPath(out)
 
-  spinner.text = `Reading theme file "${themeFile}"...`
-  const theme = await readTheme(themeFile)
+    spinner.info()
+    spinner.text = `Write file "${outPath}"...`
 
-  if (!isObject(theme)) {
-    console.error("❌ Theme not found in default or named `theme` export")
-    process.exit(1)
+    await writeFileAsync(outPath, template, "utf8")
+    spinner.succeed("Done")
+  } catch (e) {
+    spinner.fail("An error occurred")
+    console.error(e.message)
+  } finally {
+    spinner.stop()
   }
-
-  spinner.info()
-  spinner.text = `Creating theme interface...`
-  const template = await createThemeTypingsInterface(theme, {
-    config: themeKeyConfiguration,
-  })
-
-  const outPath = await resolveOutputPath(out)
-
-  spinner.info()
-  spinner.text = `Write file "${outPath}"...`
-  await writeFileAsync(outPath, template, "utf8")
-  spinner.succeed("Done")
-  spinner.stop()
 }
 
 export async function run() {
