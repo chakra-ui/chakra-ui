@@ -15,6 +15,9 @@ async function readTheme(themeFilePath: string) {
   return module.default ?? module.theme
 }
 
+/**
+ * Reads the theme file, generates the typings interface and prints it to stdout
+ */
 async function run() {
   const themeFile = process.argv[2]
 

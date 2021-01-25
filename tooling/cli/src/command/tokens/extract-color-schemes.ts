@@ -21,6 +21,10 @@ function isColorHue(value: unknown): boolean {
   return colorHueKeys.every((key) => keys.includes(key))
 }
 
+/**
+ * Extract color scheme names
+ * by validating that every property of type ColorHue is in the object
+ */
 export function extractColorSchemeTypes(theme: Record<string, unknown>) {
   const { colors } = theme
   if (!isObject(colors)) {

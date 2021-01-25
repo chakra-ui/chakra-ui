@@ -12,6 +12,10 @@ function printUnionType(values: string[]) {
   return values.map(wrapWithQuotes).join(" | ")
 }
 
+/**
+ * @example
+ * { colors: ['red.500', 'green.500'] } => `colors: "red.500" | "green.500"`
+ */
 export function printUnionMap(unions: Record<string, string[]>) {
   return Object.entries(unions)
     .sort(([a], [b]) => a.localeCompare(b))
@@ -19,6 +23,9 @@ export function printUnionMap(unions: Record<string, string[]>) {
     .join("\n")
 }
 
+/**
+ * Extract recursively all property paths with a max depth
+ */
 export function extractPropertyPaths(target: unknown, maxDepth = 1) {
   if ((!isObject(target) && !Array.isArray(target)) || !maxDepth) {
     return []

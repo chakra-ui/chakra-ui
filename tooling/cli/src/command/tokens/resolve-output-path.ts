@@ -13,6 +13,10 @@ export const themeInterfaceDestination = [
   "theming.types.d.ts",
 ]
 
+/**
+ * Finds the target file to override
+ * In our case it is located in the @chakra-ui/styled-system package
+ */
 async function resolveThemingDefinitionPath(): Promise<string | undefined> {
   const baseDir = path.join("..", "..", "..")
   const cwd = process.cwd()
@@ -37,6 +41,9 @@ async function resolveThemingDefinitionPath(): Promise<string | undefined> {
   return triedPaths.find(Boolean)
 }
 
+/**
+ * Find the location of the default target file or resolve the given path
+ */
 export async function resolveOutputPath(overridePath: string): Promise<string> {
   if (overridePath) {
     return path.resolve(process.cwd(), overridePath)
