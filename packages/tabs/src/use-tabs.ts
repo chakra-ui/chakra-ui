@@ -14,11 +14,9 @@ import {
   isUndefined,
   mergeRefs,
   normalizeEventKey,
-} from "@chakra-ui/utils"
-import {
-  useBreakpointValue,
   sanitizeResponsivePropValue,
-} from "@chakra-ui/media-query"
+} from "@chakra-ui/utils"
+import { useBreakpointValue } from "@chakra-ui/media-query"
 import { ThemingProps } from "@chakra-ui/system"
 import * as React from "react"
 

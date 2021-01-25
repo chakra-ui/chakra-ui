@@ -8,10 +8,7 @@ import {
   useUnmountEffect,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
-import {
-  useBreakpointValue,
-  sanitizeResponsivePropValue,
-} from "@chakra-ui/media-query"
+import { useBreakpointValue } from "@chakra-ui/media-query"
 import { ThemingProps } from "@chakra-ui/system"
 import {
   ariaAttr,
@@ -29,6 +26,7 @@ import {
   percentToValue,
   PropGetter,
   roundValueToStep,
+  sanitizeResponsivePropValue,
   valueToPercent,
 } from "@chakra-ui/utils"
 import { CSSProperties, useCallback, useMemo, useRef, useState } from "react"

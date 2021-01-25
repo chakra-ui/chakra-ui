@@ -1,14 +1,16 @@
-import {
-  useBreakpointValue,
-  sanitizeResponsivePropValue,
-} from "@chakra-ui/media-query"
+import { useBreakpointValue } from "@chakra-ui/media-query"
 import {
   chakra,
   SystemStyleObject,
   HTMLChakraProps,
   ResponsiveValue,
 } from "@chakra-ui/system"
-import { isUndefined, StringOrNumber, __DEV__ } from "@chakra-ui/utils"
+import {
+  isUndefined,
+  sanitizeResponsivePropValue,
+  StringOrNumber,
+  __DEV__,
+} from "@chakra-ui/utils"
 import * as React from "react"
 import { getProgressProps, rotate, spin } from "./progress.utils"
 

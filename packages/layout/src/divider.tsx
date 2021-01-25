@@ -6,11 +6,8 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import {
-  useBreakpointValue,
-  sanitizeResponsivePropValue,
-} from "@chakra-ui/media-query"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { useBreakpointValue } from "@chakra-ui/media-query"
+import { cx, sanitizeResponsivePropValue, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
 export const DIVIDER_DEFAULT_ORIENTATION = "horizontal"
