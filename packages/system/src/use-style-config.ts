@@ -135,6 +135,11 @@ function resolveResponsivePropStyles({
         mediaMaxWidth != null ? ` and (max-width: ${mediaMaxWidth})` : ``
       const mediaQuery = `@media (min-width: ${minWidth})${maxWidthQuery}`
 
+      // Take styles out of the "@media (min-width: 0) {" media query
+      if (/@media \(min-width: 0[a-zA-z]*\)$/.test(mediaQuery)) {
+        return Object.entries(styles)
+      }
+
       return [[mediaQuery, styles]]
     }),
   )
