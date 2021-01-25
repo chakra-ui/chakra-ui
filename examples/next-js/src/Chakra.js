@@ -1,25 +1,12 @@
-import {
-  ChakraProvider,
-  cookieStorageManager,
-  localStorageManager,
-} from "@chakra-ui/react"
+import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 
-export const Chakra = ({ children, cookies }) => {
-  return (
-    <ChakraProvider
-      colorModeManager={
-        cookies ? cookieStorageManager(cookies) : localStorageManager
-      }
-    >
-      {children}
-    </ChakraProvider>
-  )
-}
+const theme = extendTheme({
+  config: {
+    initialColorMode: "system",
+    useSystemColorMode: true,
+  },
+})
 
-export const getServerSideProps = ({ req }) => {
-  return {
-    props: {
-      cookies: req.headers.cookie ?? "",
-    },
-  }
+export const Chakra = ({ children }) => {
+  return <ChakraProvider theme={theme}>{children}</ChakraProvider>
 }
