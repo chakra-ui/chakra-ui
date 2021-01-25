@@ -102,14 +102,19 @@ interface StyleConfig {
 
 When adding new components, component variations, sizes, colors and other theme
 foundations, you can extend the internal theme typings to provide autocomplete
-for your application theme.
+for your application theme. If you want to learn how to scale your custom theme
+you can
+[follow this guide](/docs/theming/customize-theme#scaling-out-your-project).
 
 ```bash
 npx @chakra-ui/cli tokens <path/to/your/theme.(js|ts)>
 ```
 
-> You need to run this command after every `npm install`, because it updates
-> some files in your node_modules
+The theme entrypoint file should export the theme object either as `default`
+export or as named `theme` export.
+
+> You need to run this command after every `npm install` or update to the theme
+> files, because it updates your node_modules in place
 
 For convenience, you can add a postinstall script to your `package.json`, so you
 don't have to think about this every time you reinstall your dependencies.
@@ -120,3 +125,11 @@ don't have to think about this every time you reinstall your dependencies.
   "postinstall": "npm run gen:theme-typings"
 }
 ```
+
+The autocomplete for theme token only works in _Visual Studio Code_ for now. We
+keep an eye on the TypeScript support of Jetbrains IDEs, but I we have to wait
+until it is improved.
+
+Please note that the CLI cannot read non-JavaScript/TypeScript files. If you are
+importing additional e.g. `.css`, `.woff` or `.svg` files, you need to move
+those imports out of the theme files.
