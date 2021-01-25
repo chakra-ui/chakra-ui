@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "@chakra-ui/icon": "1.0.3",
+    "@chakra-ui/media-query": "^1.0.4",
     "@chakra-ui/utils": "1.1.0"
   },
   "devDependencies": {
