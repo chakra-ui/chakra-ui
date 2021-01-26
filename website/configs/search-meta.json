@@ -6453,11 +6453,11 @@
     "hierarchy": { "lvl1": "Customize Theme" }
   },
   {
-    "content": "Scale Out Theme",
+    "content": "Custom Theme Structure",
     "id": "d8f97d39-9910-4ccd-a478-365d2e25909a",
     "type": "lvl1",
-    "url": "/docs/theming/scale-out-theme",
-    "hierarchy": { "lvl1": "Scale Out Theme" }
+    "url": "/docs/theming/custom-theme-structure",
+    "hierarchy": { "lvl1": "Custom Theme Structure" }
   },
   {
     "content": "Customizing theme tokens",
