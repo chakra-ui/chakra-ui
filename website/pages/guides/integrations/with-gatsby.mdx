@@ -5,16 +5,8 @@ tags: ["gatsby", "websites", "ssr"]
 author: KenzoBenzo
 ---
 
-# Migration Notes
-
-## Changes
-
-- The Gatsby plugin has been renamed from `gatsby-plugin-chakra-ui` to
-  `@chakra-ui/gatsby-plugin`. Please make sure to have updated this when
-  installing Chakra UI in your next Gatsby project.
-
-Chakra UI is a great UI library to get your Gatsby website up and running fast
-and accessibly. The setup is slightly different than other projects, however the
+Chakra UI is a great UI library to get your [Gatsby](https://www.gatsbyjs.com/) website up and running fast.
+The setup is slightly different than other projects, however the
 API usage seen in the rest of the docs is the same!
 
 **There are two ways to setup Chakra with Gatsby shown in this Guide:**
@@ -24,7 +16,7 @@ API usage seen in the rest of the docs is the same!
 
 ## Gatsby plugin
 
-Gastby plugins make external APIs plug-and-play into your website. Installing
+Gatsby plugins make external APIs plug-and-play into your website. Installing
 can be done with the following command:
 
 ```bash
@@ -62,7 +54,7 @@ module.exports = {
 }
 ```
 
-To use custom theme, you can shadow this plugin’s theme.js directory and file
+To use a custom theme, you can [shadow](https://www.gatsbyjs.com/docs/how-to/plugins-and-themes/shadowing/) this plugin’s `theme.js` file
 with your own theme:
 
 ```jsx live=false
@@ -77,11 +69,9 @@ export default theme
 Chakra exposes some context providers to give your website context of the theme,
 and color mode.
 
-In Gatsby, the root of your project is `gatsby-browser.js` + `gatsby-ssr.js`.
-Further documentation about
-[Gastby Browser](https://www.gatsbyjs.org/docs/browser-apis/#wrapRootElement)
-and [Gatsby SSR](https://www.gatsbyjs.org/docs/ssr-apis/#wrapRootElement). The
-two files should look like this:
+Create the two files [`gatsby-browser.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/#wrapRootElement) and [`gatsby-ssr.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/#wrapRootElement) at the root of your Gatsby project.
+
+Add this to your `gatsby-browser.js`:
 
 ```js live=false
 import React from "react"
@@ -97,6 +87,8 @@ export const wrapRootElement = ({ element }) => {
   )
 }
 ```
+
+And this to your `gatsby-ssr.js`:
 
 ```js live=false
 // gatsby-ssr.js
@@ -126,3 +118,11 @@ export const wrapRootElement = ({ element }) => {
   )
 }
 ```
+
+## Migration Notes
+
+### Changes
+
+- The Gatsby plugin has been renamed from `gatsby-plugin-chakra-ui` to
+  `@chakra-ui/gatsby-plugin`. Please make sure to have updated this when
+  installing Chakra UI in your next Gatsby project.
