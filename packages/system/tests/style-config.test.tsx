@@ -1,6 +1,14 @@
 import { rtlRender, render } from "@chakra-ui/test-utils"
+import { createBreakpoints } from "@chakra-ui/theme-tools"
 import * as React from "react"
 import { ThemeProvider, useStyleConfig, useProps } from "../src"
+
+const breakpoints = createBreakpoints({
+  sm: "40em",
+  md: "52em",
+  lg: "64em",
+  xl: "80em",
+})
 
 test("should resolve styles in theme", async () => {
   const Component = () => {
@@ -11,6 +19,7 @@ test("should resolve styles in theme", async () => {
   const { asFragment } = rtlRender(
     <ThemeProvider
       theme={{
+        breakpoints,
         components: {
           Button: {
             baseStyle: {
@@ -57,6 +66,7 @@ test("should resolve multipart styles in theme", async () => {
   const { asFragment } = rtlRender(
     <ThemeProvider
       theme={{
+        breakpoints,
         components: {
           Tabs: {
             parts: ["tablist", "tabpanel", "tab"],
