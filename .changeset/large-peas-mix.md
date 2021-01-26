@@ -1,0 +1,3 @@
+---
+"@chakra-ui/theme": minor
+---
