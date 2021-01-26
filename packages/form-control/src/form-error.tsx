@@ -20,7 +20,7 @@ export interface FormErrorMessageProps
 
 /**
  * Used to provide feedback about an invalid input,
- * and suggest clear instrctions on how to fix it.
+ * and suggest clear instructions on how to fix it.
  */
 export const FormErrorMessage = forwardRef<FormErrorMessageProps, "div">(
   (passedProps, ref) => {
