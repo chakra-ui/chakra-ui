@@ -33,6 +33,10 @@ export interface WrapProps extends HTMLChakraProps<"div"> {
    * @type SystemProps["flexDirection"]
    */
   direction?: SystemProps["flexDirection"]
+  /**
+   * If `true`, the children will be wrapped in a `WrapItem`
+   */
+  shouldWrapChildren?: boolean
 }
 
 /**
@@ -53,6 +57,7 @@ export const Wrap = forwardRef<WrapProps, "div">((props, ref) => {
     direction,
     align,
     className,
+    shouldWrapChildren,
     ...rest
   } = props
 
@@ -85,11 +90,17 @@ export const Wrap = forwardRef<WrapProps, "div">((props, ref) => {
     margin: itemSpacing,
   }
 
+  const _children = shouldWrapChildren
+    ? React.Children.map(children, (child, index) => (
+        <WrapItem key={index}>{child}</WrapItem>
+      ))
+    : children
+
   return (
     <StylesProvider value={{ item: itemStyles }}>
       <chakra.div ref={ref} className={cx("chakra-wrap", className)} {...rest}>
         <chakra.ul className="chakra-wrap__list" __css={groupStyles}>
-          {children}
+          {_children}
         </chakra.ul>
       </chakra.div>
     </StylesProvider>
