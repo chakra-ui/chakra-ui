@@ -1755,6 +1755,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "jungaretti",
+      "name": "JP Ungaretti",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19893438?v=4",
+      "profile": "https://jungaretti.com",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,

@@ -395,6 +395,9 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/dominictwlee"><img src="https://avatars2.githubusercontent.com/u/34794189?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Dominic Lee</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=dominictwlee" title="Documentation">📖</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/ferasaloudah"><img src="https://avatars1.githubusercontent.com/u/45723438?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Feras Aloudah</b></sub></a><br /><a href="#ideas-FerasAloudah" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://jungaretti.com"><img src="https://avatars.githubusercontent.com/u/19893438?v=4?s=64" width="64px;" alt=""/><br /><sub><b>JP Ungaretti</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=jungaretti" title="Documentation">📖</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
