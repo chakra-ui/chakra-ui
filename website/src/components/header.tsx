@@ -1,6 +1,7 @@
 import {
   chakra,
   Flex,
+  Box,
   HStack,
   Icon,
   IconButton,
@@ -15,7 +16,7 @@ import { useViewportScroll } from "framer-motion"
 import NextLink from "next/link"
 import React from "react"
 import { FaMoon, FaSun } from "react-icons/fa"
-import Logo from "./logo"
+import Logo, { LogoIcon } from "./logo"
 import { MobileNavButton, MobileNavContent } from "./mobile-nav"
 import OmniSearch from "./omni-search"
 import SponsorButton from "./sponsor-button"
@@ -58,7 +59,10 @@ function HeaderContent() {
         <Flex align="center">
           <NextLink href="/" passHref>
             <chakra.a display="block" aria-label="Chakra UI, Back to homepage">
-              <Logo />
+              <Logo display={{ base: "none", md: "block" }} />
+              <Box minW="3rem" display={{ base: "block", md: "none" }}>
+                <LogoIcon />
+              </Box>
             </chakra.a>
           </NextLink>
         </Flex>
