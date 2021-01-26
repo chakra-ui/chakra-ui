@@ -10,22 +10,26 @@ import {
   VisuallyHidden,
 } from "@chakra-ui/react"
 import { DocSearchModal, useDocSearchKeyboardEvents } from "@docsearch/react"
-import { startsWith } from "lodash/fp"
 import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import * as React from "react"
 import SearchStyle from "./search.styles"
 
-const startsWithCss = startsWith("css-")
+const santize = (str: string | null) => {
+  return str
+    ?.split(" ")
+    .filter((t) => !t.startsWith(".css") && t !== "…")
+    .join(" ")
+}
 
 const ACTION_KEY_DEFAULT = ["Ctrl", "Control"]
 const ACTION_KEY_APPLE = ["⌘", "Command"]
 
-function Hit(props) {
-  const { hit, children } = props as any
+function Hit(props: any) {
+  const { hit, children } = props
   return (
-    <Link href={hit.url}>
+    <Link href={hit.url} passHref>
       <a>{children}</a>
     </Link>
   )
@@ -93,7 +97,7 @@ export const SearchButton = React.forwardRef(function SearchButton(
   )
 })
 
-export function Search() {
+function AlgoliaSearch() {
   const router = useRouter()
   const [isOpen, setIsOpen] = React.useState(false)
   const searchButtonRef = React.useRef()
@@ -155,23 +159,28 @@ export function Search() {
             transformItems={(items) => {
               return items
                 .filter((item) => {
+                  console.log(item._snippetResult?.hierarchy?.lvl1.value)
                   const lvl1 = item.hierarchy.lvl1
-                  return !startsWithCss(lvl1) || !startsWithCss(item.content)
+                  return (
+                    item._snippetResult != null &&
+                    !item._snippetResult.content?.value.includes(".css") &&
+                    !item._snippetResult.hierarchy?.lvl1.value.includes(".css")
+                  )
                 })
                 .map((item) => {
-                  /**
-                   *  We transform the absolute URL into a relative URL to
-                   *  leverage Next's preloading.
-                   */
                   const a = document.createElement("a")
                   a.href = item.url
                   const hash = a.hash === "#content-wrapper" ? "" : a.hash
 
-                  return {
-                    ...item,
-                    url: `${a.pathname}${hash}`,
-                    content: item.content ?? item.hierarchy.lvl0,
+                  // patch snippet result by removing `.css-` values
+                  if (item._snippetResult?.hierarchy?.lvl1?.value) {
+                    item._snippetResult.hierarchy.lvl1.value = santize(
+                      item._snippetResult.hierarchy.lvl1.value,
+                    )
                   }
+
+                  item.url = `${a.pathname}${hash}`
+                  return item
                 })
             }}
           />
@@ -180,3 +189,5 @@ export function Search() {
     </>
   )
 }
+
+export default AlgoliaSearch
