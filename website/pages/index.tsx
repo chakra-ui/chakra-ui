@@ -128,7 +128,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
           <Container>
             <Box textAlign="center">
               <chakra.h1
-                maxW="680px"
+                maxW="18ch"
                 mx="auto"
                 fontSize={{ base: "2.25rem", sm: "3rem", lg: "4rem" }}
                 fontFamily="heading"
