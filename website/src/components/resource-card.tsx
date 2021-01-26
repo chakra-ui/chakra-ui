@@ -30,7 +30,7 @@ function ResourceCard(props: ResourceCardProps) {
 
   return (
     <Box {...rest} maxW="360px">
-      <Wrap spacing="3" mb="2" align="center">
+      <Wrap className="algolia-exclude" spacing="3" mb="2" align="center">
         {tags?.map((tag, index) => (
           <WrapItem key={index}>
             <Badge
@@ -49,7 +49,7 @@ function ResourceCard(props: ResourceCardProps) {
 
       <Heading as="h3" size="sm">
         <Link isExternal href={url}>
-          {heading}
+          <span className="content">{heading}</span>
         </Link>
       </Heading>
       <Text fontSize="sm" color="gray.500" mt="2">
