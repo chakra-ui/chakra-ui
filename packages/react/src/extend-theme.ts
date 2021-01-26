@@ -2,10 +2,15 @@ import defaultTheme, { Theme } from "@chakra-ui/theme"
 import { isFunction, mergeWith } from "@chakra-ui/utils"
 import { ColorHues } from "@chakra-ui/theme/dist/types/foundations/colors"
 
-type ThemeExtensionTypeHints = {
-  colors: Record<string, Partial<ColorHues> | Record<string, string> | string> // typehints for color definitions
+// recursive color object type
+type ThemeColors = string | ColorObject | Record<string, ColorHues>
+interface ColorObject {
+  [property: string]: ThemeColors
 }
 
+type ThemeExtensionTypeHints = {
+  colors: ThemeColors // typehints for color definitions
+}
 /**
  * Represents a loose but specific type for the theme override.
  * It provides autocomplete hints for extending the theme, but leaves room
