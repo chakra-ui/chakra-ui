@@ -1,3 +1,4 @@
+import { getOwnerDocument } from "@chakra-ui/utils"
 import { RefObject, useEffect, useRef } from "react"
 import { useCallbackRef } from "./use-callback-ref"
 
@@ -48,16 +49,17 @@ export function useOutsideClick(props: UseOutsideClickOptions) {
       }
     }
 
-    document.addEventListener("mousedown", onPointerDown, true)
-    document.addEventListener("mouseup", onMouseUp, true)
-    document.addEventListener("touchstart", onPointerDown, true)
-    document.addEventListener("touchend", onTouchEnd, true)
+    const doc = getOwnerDocument(ref.current)
+    doc.addEventListener("mousedown", onPointerDown, true)
+    doc.addEventListener("mouseup", onMouseUp, true)
+    doc.addEventListener("touchstart", onPointerDown, true)
+    doc.addEventListener("touchend", onTouchEnd, true)
 
     return () => {
-      document.removeEventListener("mousedown", onPointerDown, true)
-      document.removeEventListener("mouseup", onMouseUp, true)
-      document.removeEventListener("touchstart", onPointerDown, true)
-      document.removeEventListener("touchend", onTouchEnd, true)
+      doc.removeEventListener("mousedown", onPointerDown, true)
+      doc.removeEventListener("mouseup", onMouseUp, true)
+      doc.removeEventListener("touchstart", onPointerDown, true)
+      doc.removeEventListener("touchend", onTouchEnd, true)
     }
   }, [handler, ref, savedHandler, state])
 }
@@ -67,11 +69,9 @@ function isValidEvent(event: any, ref: React.RefObject<HTMLElement>) {
   if (event.button > 0) return false
   // if the event target is no longer in the document
   if (target) {
-    const ownerDocument = target.ownerDocument
-    if (!ownerDocument || !ownerDocument.body.contains(target)) {
-      return false
-    }
+    const doc = getOwnerDocument(target)
+    if (!doc.body.contains(target)) return false
   }
 
-  return ref.current && !ref.current.contains(target)
+  return !ref.current?.contains(target)
 }
