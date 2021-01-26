@@ -22,7 +22,7 @@ if (__DEV__) {
   Center.displayName = "Center"
 }
 
-interface AbsoluteCenterProps extends HTMLChakraProps<"div"> {
+export interface AbsoluteCenterProps extends HTMLChakraProps<"div"> {
   axis?: "horizontal" | "vertical" | "both"
 }
 
