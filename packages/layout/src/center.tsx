@@ -38,7 +38,7 @@ const centerStyles = {
   both: {
     insetStart: "50%",
     top: "50%",
-    transform: "translateY(-50%, -50%)",
+    transform: "translate(-50%, -50%)",
   },
 }
 
