@@ -1,6 +1,8 @@
 import { spacing } from "./spacing"
 
 const largeSizes = {
+  max: "max-content",
+  min: "min-content",
   full: "100%",
   "3xs": "14rem",
   "2xs": "16rem",
@@ -15,6 +17,7 @@ const largeSizes = {
   "5xl": "64rem",
   "6xl": "72rem",
   "7xl": "80rem",
+  "8xl": "90rem",
 }
 
 const container = {
