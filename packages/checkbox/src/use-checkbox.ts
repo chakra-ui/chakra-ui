@@ -18,6 +18,7 @@ import React, {
   useRef,
   useState,
 } from "react"
+import ReactDOM from "react-dom"
 
 export interface UseCheckboxProps {
   /**
@@ -229,26 +230,39 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     }
   }
 
-  const getInputProps: PropGetter = (props = {}, forwardedRef = null) => ({
-    ...props,
-    ref: mergeRefs(ref, forwardedRef),
-    type: "checkbox",
-    name,
-    value,
-    id,
-    onChange: callAllHandlers(props.onChange, handleChange),
-    onBlur: callAllHandlers(props.onBlur, setFocused.off),
-    onFocus: callAllHandlers(props.onFocus, setFocused.on),
-    onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-    onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
-    required: isRequired,
-    checked: isChecked,
-    disabled: trulyDisabled,
-    readOnly: isReadOnly,
-    "aria-invalid": isInvalid,
-    "aria-disabled": isDisabled,
-    style: visuallyHiddenStyle,
-  })
+  const getInputProps: PropGetter = (props = {}, forwardedRef = null) => {
+    // This is a workaround for React Concurrent Mode issue https://github.com/facebook/react/issues/18591. Remove once it's fixed.
+    const focus = () => {
+      if (typeof (ReactDOM as any).flushSync === "function") {
+        ;(ReactDOM as any).flushSync(() => {
+          setFocused.on()
+        })
+      } else {
+        setFocused.on()
+      }
+    }
+
+    return {
+      ...props,
+      ref: mergeRefs(ref, forwardedRef),
+      type: "checkbox",
+      name,
+      value,
+      id,
+      onChange: callAllHandlers(props.onChange, handleChange),
+      onBlur: callAllHandlers(props.onBlur, setFocused.off),
+      onFocus: callAllHandlers(props.onFocus, focus),
+      onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+      onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
+      required: isRequired,
+      checked: isChecked,
+      disabled: trulyDisabled,
+      readOnly: isReadOnly,
+      "aria-invalid": isInvalid,
+      "aria-disabled": isDisabled,
+      style: visuallyHiddenStyle,
+    }
+  }
 
   const getLabelProps: PropGetter = (props = {}, forwardedRef = null) => ({
     ...props,
