@@ -116,7 +116,7 @@ export const WithDisabledButFocusableItem = () => (
 export const WithTogglableMenuItems = () => {
   const [items, setItems] = React.useState<
     {
-      content: React.ReactNode
+      content: string
       icon: React.ReactElement
       isDisabled?: boolean
       command?: string
@@ -170,7 +170,12 @@ export const WithTogglableMenuItems = () => {
         </MenuButton>
         <MenuList>
           {items.map(({ content, icon, isDisabled, command }, index) => (
-            <MenuItem isDisabled={isDisabled} icon={icon} command={command}>
+            <MenuItem
+              key={content}
+              isDisabled={isDisabled}
+              icon={icon}
+              command={command}
+            >
               {content}
             </MenuItem>
           ))}

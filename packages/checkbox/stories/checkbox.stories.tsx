@@ -109,7 +109,7 @@ export const Sizes = () => {
   return (
     <Stack direction="row">
       {sizes.map((size) => (
-        <Checkbox size={size} />
+        <Checkbox key={size} size={size} />
       ))}
     </Stack>
   )
