@@ -96,7 +96,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">((props, ref) => {
   const mergedProps = { ...group, ...props } as CheckboxProps
   const styles = useMultiStyleConfig("Checkbox", mergedProps)
 
-  const ownProps = omitThemingProps(mergedProps)
+  const ownProps = omitThemingProps(props)
 
   const {
     spacing = "0.5rem",
