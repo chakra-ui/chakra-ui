@@ -122,8 +122,6 @@ export interface ColorHues {
   900: string
 }
 
-export type Colors = typeof colors
-
 const colors = {
   youtube: "#FF0000",
   pinkAlpha: {
@@ -157,8 +155,6 @@ const radii = {
   // More...
 }
 
-export type Radii = typeof radii
-
 export default radii
 ```
 
@@ -174,8 +170,6 @@ const shadows = {
   mac: 'rgba(0, 0, 0, 0.2) 0px 20px 30px',
   // More...
 };
-
-export type Shadows = typeof shadows
 
 export default shadows
 ```
@@ -197,7 +191,7 @@ export const spacing = {
   // More...
 }
 
-export type Spacing = typeof spacing
+export default spacing
 ```
 
 ### 📏 Sizes
@@ -295,8 +289,6 @@ const typography = {
 
 }
 
-export type Typography = typeof typography
-
 export default typography
 ```
 
@@ -382,9 +374,6 @@ const foundations = {
   borders,
   transition,
 }
-
-type FoundationsType = typeof foundations
-export interface Foundations extends FoundationsType {}
 
 export default foundations
 ```
@@ -481,17 +470,15 @@ You can learn more about [ColorModeOptions](/docs/features/color-mode) and [Them
 // index.ts
 
 import { extendTheme } from '@chakra-ui/react';
+import { ThemeDirection } from '@chakra-ui/theme';
 import { ColorModeOptions } from '@chakra-ui/system';
 import styles from './styles';
 import foundations from './foundations';
 import components from './components';
 
-export type ThemeConfig = ColorModeOptions;
-
-export type ThemeDirection = 'ltr' | 'rtl';
 const direction: ThemeDirection = 'ltr';
 
-const config: ThemeConfig = {
+const config: ColorModeOptions = {
   useSystemColorMode: false,
   initialColorMode: 'light',
 };
