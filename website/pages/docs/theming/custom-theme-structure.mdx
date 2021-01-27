@@ -257,7 +257,7 @@ const typography = {
 
   fontWeights: {
     // Custom in special cases. Like this:
-    "custom-eeight": 400,
+    "custom-weight": 400,
   },
 
 }
@@ -368,6 +368,9 @@ We can define `<Button>` component styles like this:
 ```ts live=false
 // button.ts
 
+// tools for changing styles by color mode
+import { mode } from "@chakra-ui/theme-tools"
+
 // Styles for the base style
 const baseStyle = {
   fontWeight: 'bold',
@@ -386,17 +389,24 @@ const sizes = {
   },
 }
 
+// You can change the style depending on whether light or dark mode.
+function variantOutline(props: Record<string, any>) {
+  return {
+    border: '1px solid',
+    // mode(`LIGHT_MODE_VALUE`, `DARK_MODE_VALUE`)
+    color: mode(`black`, `white`)(props),
+    borderColor: mode(`black`, `white`)(props),
+  };
+}
+
 // Styles for the visual style variations
 const variants = {
-  outline: {
-    border: '2px solid',
-    borderColor: 'green.500',
-  },
+  outline: variantOutline,
   solid: {
     bg: 'green.500',
     color: 'white',
   },
-}
+};
 
 // The default `size` or `variant` values
 const defaultProps = {
