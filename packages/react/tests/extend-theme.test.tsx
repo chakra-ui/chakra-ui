@@ -181,4 +181,18 @@ describe("extendTheme", () => {
 
     extendTheme(override)
   })
+
+  it("should not extend with function that is inherited", () => {
+    Array.prototype["customFunction"] = () => {}
+
+    const override = {
+      breakpoints: [],
+    }
+
+    const customTheme = extendTheme(override)
+
+    delete Array.prototype["customFunction"]
+
+    expect(customTheme.breakpoints.customFunction).toBeUndefined()
+  })
 })
