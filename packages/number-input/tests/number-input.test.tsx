@@ -128,7 +128,7 @@ test("should increase/decrease by 0.1*step on ctrl+Arrow", () => {
   expect(input).toHaveValue("0.00")
 })
 
-it("should behave properly precision value", () => {
+it("should behave properly with precision value", () => {
   const { getByTestId } = renderComponent({
     defaultValue: 0,
     step: 0.65,
@@ -147,6 +147,12 @@ it("should behave properly precision value", () => {
   userEvent.click(incBtn)
   expect(input).toHaveValue("1.95")
   userEvent.click(decBtn)
+  expect(input).toHaveValue("1.30")
+
+  // on blur, value is clamped using precision
+  userEvent.type(input, "1234")
+  expect(input).toHaveValue("1.301234")
+  fireEvent.blur(input)
   expect(input).toHaveValue("1.30")
 })
 
