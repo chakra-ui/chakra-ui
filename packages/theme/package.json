@@ -51,7 +51,6 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/cli": "1.0.0",
     "@chakra-ui/theme-tools": "1.0.3",
     "@chakra-ui/utils": "1.1.0"
   },
@@ -59,6 +58,7 @@
     "@chakra-ui/system": ">=1.0.0"
   },
   "devDependencies": {
+    "@chakra-ui/cli": "1.0.0",
     "@chakra-ui/system": "1.1.7"
   }
 }

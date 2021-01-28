@@ -8,7 +8,7 @@ import {
 } from "./command/tokens"
 
 export async function run() {
-  initCLI()
+  await initCLI()
 
   program
     .command("tokens <source>")

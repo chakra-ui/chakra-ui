@@ -17,15 +17,16 @@ Options:
   --out <path>  output directory e.g.
                 node_modules/@chakra-ui/styled-system/dist/types/theming.types.d.ts
   -h, --help    display help for command
+
 Example call:
   $ chakra-cli tokens theme.ts
 ```
 
-> You need to run this command after every `npm install`, because it updates
-> some files in your node_modules
+> Note 🚨: If you delete the `node_modules` directory, you'll need to re-run the
+> command to get proper typings again.
 
-For convenience, you can add a postinstall script to your `package.json`, so you
-don't have to think about this every time you reinstall your dependencies.
+For convenience, you can add a `postinstall` script to your `package.json`, so
+you don't have to think about this every time you re-install your dependencies.
 
 ```json title="package.json"
 "scripts": {

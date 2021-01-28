@@ -98,12 +98,17 @@ interface StyleConfig {
 }
 ```
 
-## Theme Typings <Badge fontSize="sm" colorScheme="teal" letterSpacing="wider">v1.2.0</Badge>
+## Theme Typings
+
+<Badge fontSize="sm" colorScheme="teal" letterSpacing="wider">
+  v1.2.0
+</Badge>
 
 When adding new components, component variations, sizes, colors and other theme
 foundations, you can extend the internal theme typings to provide autocomplete
-for your application theme. If you want to learn how to scale your custom theme
-you can
+for your application theme.
+
+If you want to learn how to scale your custom theme you can
 [follow this guide](/docs/theming/customize-theme#scaling-out-your-project).
 
 ```bash
@@ -113,10 +118,10 @@ npx @chakra-ui/cli tokens <path/to/your/theme.(js|ts)>
 The theme entrypoint file should export the theme object either as `default`
 export or as named `theme` export.
 
-> You need to run this command after every `npm install` or update to the theme
-> files, because it updates your node_modules in place
+> Note 🚨: If you delete the `node_modules` directory, you'll need to re-run the
+> command to get proper typings again.
 
-For convenience, you can add a postinstall script to your `package.json`, so you
+For convenience, you can add a `postinstall` script to your `package.json`, so you
 don't have to think about this every time you reinstall your dependencies.
 
 ```json
@@ -126,10 +131,10 @@ don't have to think about this every time you reinstall your dependencies.
 }
 ```
 
-The autocomplete for theme token only works in _Visual Studio Code_ for now. We
-keep an eye on the TypeScript support of Jetbrains IDEs, but I we have to wait
-until it is improved.
+The autocomplete for theme token **only works in _Visual Studio Code_ for now**.
+We keep an eye on the TypeScript support of Jetbrains IDEs, but I we have to
+wait until it is improved.
 
-Please note that the CLI cannot read non-JavaScript/TypeScript files. If you are
-importing additional e.g. `.css`, `.woff` or `.svg` files, you need to move
-those imports out of the theme files.
+Please note that the CLI cannot read non-JavaScript/TypeScript files. If you
+import other file types (`.css`, `.woff` or `.svg`) in your theme file, you'll
+need to move those imports out of the theme file.
