@@ -33,7 +33,7 @@ interface ListOptions {
 
 export interface ListProps
   extends HTMLChakraProps<"ul">,
-    ThemingProps,
+    ThemingProps<"List">,
     ListOptions {}
 
 /**
