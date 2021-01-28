@@ -1,6 +1,6 @@
 import * as React from "react"
-import { Box, Center } from "../src"
 import { FaPhone } from "react-icons/fa"
+import { Box, Center } from "../src"
 
 export default {
   title: "Center",

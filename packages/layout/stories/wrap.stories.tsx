@@ -5,24 +5,22 @@ export default {
   title: "Wrap",
 }
 
-export const basic = () => {
-  return (
-    <Wrap spacing="40px">
-      <WrapItem>
-        <Badge>Badge 1</Badge>
-      </WrapItem>
-      <WrapItem>
-        <Badge>Badge 2</Badge>
-      </WrapItem>
-      <WrapItem>
-        <Badge>Badge 3</Badge>
-      </WrapItem>
-      <WrapItem>
-        <Badge>Badge 4</Badge>
-      </WrapItem>
-    </Wrap>
-  )
-}
+export const basic = () => (
+  <Wrap spacing="40px">
+    <WrapItem>
+      <Badge>Badge 1</Badge>
+    </WrapItem>
+    <WrapItem>
+      <Badge>Badge 2</Badge>
+    </WrapItem>
+    <WrapItem>
+      <Badge>Badge 3</Badge>
+    </WrapItem>
+    <WrapItem>
+      <Badge>Badge 4</Badge>
+    </WrapItem>
+  </Wrap>
+)
 const Placeholder = (props: any) => (
   <WrapItem>
     <div
@@ -32,38 +30,34 @@ const Placeholder = (props: any) => (
   </WrapItem>
 )
 
-export const placeholder = () => {
-  return (
-    <Wrap spacing={5}>
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-    </Wrap>
-  )
-}
+export const placeholder = () => (
+  <Wrap spacing={5}>
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+  </Wrap>
+)
 
-export const responsive = () => {
-  return (
-    <Wrap spacing={["12px", "24px"]} justify={["center", "flex-start"]}>
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-    </Wrap>
-  )
-}
+export const responsive = () => (
+  <Wrap spacing={["12px", "24px"]} justify={["center", "flex-start"]}>
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+  </Wrap>
+)
