@@ -10,3 +10,5 @@
 
 - Add `shouldWrapChildren` to `Wrap` component to make it possible use `Wrap`
   directly without thinking about `WrapItem`.
+
+- Update `LinkBox` and `LinkOverlay` components and make them public in docs.
