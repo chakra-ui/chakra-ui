@@ -1,0 +1,119 @@
+---
+title: Link Overlay
+package: "@chakra-ui/layout"
+image: "components/link-overlay.svg"
+description: "Link overlay is a semantic component used to wrap elements (cards, blog post,
+articles, etc.) in a link."
+---
+
+This component provides a semantic way to wrap elements (cards, blog post,
+articles, etc.) in a link.
+
+When you need to link an entire component or card, it is considered bad practice
+to wrap it within `<a href="...">`. This is because, the component or card could
+contain other clickable elements or links (tags, timestamps, buttons).
+
+> [According to the specification](https://www.w3.org/TR/html5/text-level-semantics.html#the-a-element),
+> an <a> element’s content model specifically states that an <a> cannot contain
+> any interactive descendants (button, anchors, input, etc).
+
+The `LinkOverlay` component aims to solve this by overlaying one link on top of
+the component or card, and then elevating the remaining links on top of it.
+
+<ComponentLinks
+  theme={{ componentName: "link-overlay" }}
+  github={{ package: "layout" }}
+  npm={{ package: "@chakra-ui/layout" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+```js
+import { LinkBox, LinkOverlay } from "@chakra-ui/react"
+```
+
+## Usage
+
+When using `LinkOverlay`, it is important to add `position:relative` to the
+parent wrapper. The reason is, we use `position:absolute` to achieve the overlay
+effect.
+
+```jsx
+<LinkBox as="article">
+  <Box as="time" datetime="2021-01-15 15:30:00 +0000 UTC">
+    13 days ago
+  </Box>
+  <Heading>
+    <LinkOverlay href="#">
+      New Year, New Beginnings: Smashing Workshops & Audits
+    </LinkOverlay>
+  </Heading>
+  <Text>
+    Catch up on what’s been cookin’ at Smashing and explore some of the most
+    popular community resources.
+  </Text>
+</LinkBox>
+```
+
+### Nested Links
+
+The `LinkBox` lifts any nested links to the top to ensure proper keyboard
+navigation between links.
+
+> Use the keybaord to test how focus ring moves within the article
+
+```jsx
+<LinkBox as="article">
+  <h2>
+    <LinkOverlay href="google.com">Some blog post</LinkOverlay>
+  </h2>
+  <p>
+    As a side note, using quotation marks around an attribute value is required
+    only if this value is not a valid identifier.
+  </p>
+  <a href="#">Some inner link</a>
+</LinkBox>
+```
+
+## Usage with Routing Library
+
+To add support for external libraries like Next.js' or gatsby `Link`, you can
+wrap them around the `LinkOverlay` or use the `as` prop (for reach and react
+router)
+
+```jsx live=false
+import NextLink from "next/link"
+
+function Example() {
+  return (
+    <LinkBox as="article">
+      <h2>
+        <NextLink href="#" passHref>
+          <LinkOverlay>Some blog post</LinkOverlay>
+        </NextLink>
+      </h2>
+      <p>
+        As a side note, using quotation marks around an attribute value is
+        required only if this value is not a valid identifier.
+      </p>
+      <a href="#">Some inner link</a>
+    </LinkBox>
+  )
+}
+```
+
+## Caveat
+
+One of the side-effects for this technique is that the content can't be
+"selectable" (i.e with a pointing device), however this seems to be pretty
+trivial compared to the benefits!
+
+## Props
+
+The `LinkBox` component composes the `Box` component.
+
+The `LinkOverlay` component components the `chakra.a`:
+
+<PropsTable of="LinkOverlay" />
