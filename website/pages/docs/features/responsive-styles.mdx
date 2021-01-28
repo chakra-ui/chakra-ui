@@ -14,12 +14,15 @@ Responsive syntax relies on the breakpoints defined in the theme object. Chakra
 UI provides default breakpoints, here's what it looks like:
 
 ```js
-const breakpoints = {
+import { createBreakpoints } from "@chakra-ui/theme-tools"
+
+const breakpoints = createBreakpoints({
   sm: "30em",
   md: "48em",
   lg: "62em",
   xl: "80em",
-}
+  "2xl": "96em",
+})
 ```
 
 To make styles responsive, you can use either the array or object syntax.
@@ -51,11 +54,19 @@ To interpret array responsive values, Chakra UI converts the values defined in
 values defined in the array to the breakpoints
 
 ```js
+import { createBreakpoints } from "@chakra-ui/theme-tools"
+
 // This is the default breakpoint
-const breakpoints = { sm: "30em", md: "48em", lg: "62em", xl: "80em" }
+const breakpoints = createBreakpoints({
+  sm: "30em",
+  md: "48em",
+  lg: "62em",
+  xl: "80em",
+  "2xl": "96em",
+})
 
 // Internally, we transform to this
-const breakpoints = ["0em", "30em", "48em", "62em", "80em"]
+const breakpoints = ["0em", "30em", "48em", "62em", "80em", "96em"]
 ```
 
 Here's how to interpret this syntax:
