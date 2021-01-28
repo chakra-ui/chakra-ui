@@ -55,6 +55,10 @@
               "path": "/docs/features/text-and-layer-styles"
             },
             {
+              "title": "The `sx` Prop",
+              "path": "/docs/features/the-sx-prop"
+            },
+            {
               "title": "RTL Support",
               "path": "/docs/features/rtl-support",
               "new": true
