@@ -289,6 +289,46 @@ async function redirect() {
       destination: "/docs/overlay/tooltip",
       permanent: true,
     },
+    {
+      source: "/docs/components/accordion",
+      destination: "/docs/disclosure/accordion",
+      permanent: true,
+    },
+    {
+      source: "/docs/components/tabs",
+      destination: "/docs/disclosure/tabs",
+      permanent: true,
+    },
+    {
+      source: "/docs/components/visually-hidden",
+      destination: "/docs/disclosure/visually-hidden",
+      permanent: true,
+    },
+    {
+      source: "/docs/components/breadcrumb",
+      destination: "/docs/navigation/breadcrumb",
+      permanent: true,
+    },
+    {
+      source: "/docs/components/link",
+      destination: "/docs/navigation/link",
+      permanent: true,
+    },
+    {
+      source: "/docs/data-display/avatar",
+      destination: "/docs/media-and-icons/avatar",
+      permanent: true,
+    },
+    {
+      source: "/docs/data-display/image",
+      destination: "/docs/media-and-icons/image",
+      permanent: true,
+    },
+    {
+      source: "/docs/components/icon",
+      destination: "/docs/media-and-icons/icon",
+      permanent: true,
+    },
   ]
 }
 
