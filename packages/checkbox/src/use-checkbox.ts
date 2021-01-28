@@ -195,9 +195,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
    */
   useSafeLayoutEffect(() => {
     if (!ref.current) return
-    const notInSync =
-      (ref.current.checked && !isChecked) || (!ref.current.checked && isChecked)
-
+    const notInSync = ref.current.checked !== !isChecked
     if (notInSync) {
       setCheckedState(ref.current.checked)
     }
