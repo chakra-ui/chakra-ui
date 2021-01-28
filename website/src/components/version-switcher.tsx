@@ -1,9 +1,16 @@
 import { Select, SelectProps, useColorModeValue } from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import React from "react"
+import pkgJSON from "@chakra-ui/react/package.json"
+
+function pkgVersion() {
+  let version: any = pkgJSON.version.split(".")
+  version.pop()
+  return version.join(".")
+}
 
 const versions = [
-  { label: "v1.0", url: "https://chakra-ui.com" },
+  { label: `v${pkgVersion()}`, url: "https://chakra-ui.com" },
   { label: "v0.8", url: "https://v0.chakra-ui.com" },
 ]
 

@@ -185,19 +185,21 @@ export default {
 
 ## Breakpoints
 
-To configure the default breakpoints used in responsive array values, add a
-breakpoints array to your theme. These values will be used to generate
-mobile-first (i.e. min-width) media queries, which can then be used to apply
-responsive styles.
+Chakra UI comes with a predefined set of commonly used breakpoints.
 
-> For example, you can write `<Box fontSize={["14px", "16px"]}/>` to make the
-> fontSize responsive.
+> Learn more about [Responsive Styles and Customizing Breakpoints](/docs/features/responsive-styles).
 
 ```js
 // theme.js
-export default {
-  breakpoints: ["30em", "48em", "62em", "80em"],
-}
+import { createBreakpoints } from "@chakra-ui/theme-tools"
+
+export default createBreakpoints({
+  sm: "30em",
+  md: "48em",
+  lg: "62em",
+  xl: "80em",
+  "2xl": "96em",
+})
 ```
 
 ## Spacing
@@ -364,9 +366,3 @@ export default {
   },
 }
 ```
-
-## Configuration reference
-
-Except for breakpoints, colors, and spacing, all the keys in the theme object
-map to one of Chakra's core theme. All of these keys can be replaced or
-extended.

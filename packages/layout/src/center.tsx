@@ -22,7 +22,7 @@ if (__DEV__) {
   Center.displayName = "Center"
 }
 
-interface AbsoluteCenterProps extends HTMLChakraProps<"div"> {
+export interface AbsoluteCenterProps extends HTMLChakraProps<"div"> {
   axis?: "horizontal" | "vertical" | "both"
 }
 
@@ -38,7 +38,7 @@ const centerStyles = {
   both: {
     insetStart: "50%",
     top: "50%",
-    transform: "translateY(-50%, -50%)",
+    transform: "translate(-50%, -50%)",
   },
 }
 

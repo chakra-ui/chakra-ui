@@ -44,7 +44,7 @@ const TData = (props) => (
 
 const LinkedHeading = (props: HTMLChakraProps<"h2">) => (
   <chakra.h2 data-group="" css={{ scrollMarginBlock: "6.875rem" }} {...props}>
-    <span>{props.children}</span>
+    <span className="content">{props.children}</span>
     {props.id && (
       <chakra.a
         aria-label="anchor"

@@ -16,6 +16,7 @@ import {
   useRef,
   useState,
 } from "react"
+import ReactDOM from "react-dom"
 import { useFormControl } from "@chakra-ui/form-control"
 
 /**
@@ -200,6 +201,17 @@ export function useRadio(props: UseRadioProps = {}) {
         "onBlur",
       ])
 
+      // This is a workaround for React Concurrent Mode issue https://github.com/facebook/react/issues/18591. Remove once it's fixed.
+      const focus = () => {
+        if (typeof (ReactDOM as any).flushSync === "function") {
+          ;(ReactDOM as any).flushSync(() => {
+            setFocused.on()
+          })
+        } else {
+          setFocused.on()
+        }
+      }
+
       const trulyDisabled = ownProps.disabled && !isFocusable
 
       return {
@@ -211,11 +223,7 @@ export function useRadio(props: UseRadioProps = {}) {
         value,
         onChange: callAllHandlers(props.onChange, handleChange),
         onBlur: callAllHandlers(ownProps.onBlur, props.onBlur, setFocused.off),
-        onFocus: callAllHandlers(
-          ownProps.onFocus,
-          props.onFocus,
-          setFocused.on,
-        ),
+        onFocus: callAllHandlers(ownProps.onFocus, props.onFocus, focus),
         onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
         onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
         checked: isChecked,
@@ -230,8 +238,7 @@ export function useRadio(props: UseRadioProps = {}) {
       name,
       value,
       handleChange,
-      setFocused.off,
-      setFocused.on,
+      setFocused,
       onKeyDown,
       onKeyUp,
       isChecked,

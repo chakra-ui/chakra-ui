@@ -40,7 +40,7 @@ const SearchStyle = () => (
         display: none;
         width: 1.5rem;
         height: 1.5rem;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Ccircle cx='12' cy='12' r='9' stroke-width='2' stroke='%23cffafe' /%3E%3Cpath d='M3,12a9,9 0 1,0 18,0a9,9 0 1,0 -18,0' stroke-width='2' stroke='%2306b6d4' stroke-dasharray='56.5486677646' stroke-dashoffset='37.6991118431' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Ccircle cx='12' cy='12' r='9' stroke-width='2' stroke='%23#319795' /%3E%3Cpath d='M3,12a9,9 0 1,0 18,0a9,9 0 1,0 -18,0' stroke-width='2' stroke='%2306b6d4' stroke-dasharray='56.5486677646' stroke-dashoffset='37.6991118431' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
         background-size: 100% 100%;
       }
 
@@ -58,6 +58,10 @@ const SearchStyle = () => (
         border-radius: 0.75rem;
         box-shadow: ${theme.shadows.lg};
         background: white;
+
+        .chakra-ui-dark & {
+          background: ${theme.colors.gray["700"]};
+        }
       }
 
       .DocSearch-SearchBar {
@@ -68,6 +72,10 @@ const SearchStyle = () => (
         display: flex;
         align-items: center;
         margin: 0 1.5rem;
+
+        .chakra-ui-dark & {
+          border-bottom-color: ${theme.colors.gray["600"]};
+        }
       }
 
       .DocSearch-Form {
@@ -89,7 +97,7 @@ const SearchStyle = () => (
         flex: none;
         width: 1.5rem;
         height: 1.5rem;
-        background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z' stroke='%2306b6d4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+        background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z' stroke='%23319795' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
       }
 
       .DocSearch-MagnifierLabel svg {
@@ -111,6 +119,10 @@ const SearchStyle = () => (
         margin-right: 1rem;
         flex: auto;
         min-width: 0;
+
+        .chakra-ui-dark & {
+          color: white;
+        }
       }
 
       .DocSearch-Input:focus {
@@ -139,6 +151,11 @@ const SearchStyle = () => (
         background-color: ${theme.colors.gray["50"]};
         border: 1px solid ${theme.colors.gray["300"]};
         padding: 0.125rem 0.375rem;
+
+        .chakra-ui-dark & {
+          background-color: ${theme.colors.gray["700"]};
+          border-color: ${theme.colors.gray["600"]};
+        }
       }
 
       .DocSearch-Cancel::before {
@@ -158,6 +175,9 @@ const SearchStyle = () => (
         color: ${theme.colors.gray["600"]};
         margin-top: 1.5rem;
         margin-bottom: 1rem;
+        .chakra-ui-dark & {
+          color: ${theme.colors.gray["400"]};
+        }
       }
 
       .DocSearch-Hit-Container {
@@ -199,7 +219,7 @@ const SearchStyle = () => (
       }
 
       .DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-path {
-        color: ${theme.colors.cyan["200"]};
+        color: ${theme.colors.teal["200"]};
       }
 
       .DocSearch-Dropdown ul {
@@ -251,10 +271,17 @@ const SearchStyle = () => (
         border-radius: 0.5rem;
         box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
         padding: 0 1.25rem 0 1rem;
+
+        .chakra-ui-dark & {
+          background: ${theme.colors.gray["600"]};
+          * {
+            color: white !important;
+          }
+        }
       }
 
       .DocSearch-Hit[aria-selected="true"] > a {
-        background: ${theme.colors.cyan["500"]};
+        background: ${theme.colors.teal["500"]};
       }
 
       .DocSearch-Hit + .DocSearch-Hit {
@@ -296,7 +323,7 @@ const SearchStyle = () => (
         left: 0;
         width: 1.25rem;
         height: 0.25rem;
-        background: #fff;
+        background: inherit;
       }
 
       .DocSearch-Hit--Child
@@ -305,11 +332,14 @@ const SearchStyle = () => (
         bottom: calc(100% + 0.25rem);
         height: calc(100% + 0.25rem);
         background-color: #fff;
+        .chakra-ui-dark & {
+          background-color: ${theme.colors.gray["700"]};
+        }
       }
 
       .DocSearch-Hits mark {
         background: none;
-        color: ${theme.colors.cyan["500"]};
+        color: ${theme.colors.teal["500"]};
       }
 
       .DocSearch-Hit[aria-selected="true"] mark {
@@ -324,6 +354,10 @@ const SearchStyle = () => (
         margin: 0 1.5rem;
         border-top: 1px solid ${theme.colors.gray["200"]};
         padding: 1.25rem 0;
+
+        .chakra-ui-dark & {
+          border-top-color: ${theme.colors.gray["600"]};
+        }
       }
 
       .DocSearch-Commands {
@@ -339,8 +373,15 @@ const SearchStyle = () => (
       }
 
       .DocSearch-Logo svg {
-        color: #5468ff;
+        color: ${theme.colors.teal["500"]};
         margin-left: 0.5rem;
+      }
+
+      .DocSearch-Label {
+        .chakra-ui-dark & {
+          opacity: 0.5;
+          color: white;
+        }
       }
 
       .DocSearch-Hit--deleting,
@@ -360,7 +401,7 @@ const SearchStyle = () => (
       }
 
       .DocSearch-Title strong {
-        color: ${theme.colors.gray["900"]};
+        color: inherit;
         font-weight: 500;
       }
 
@@ -383,16 +424,26 @@ const SearchStyle = () => (
         font-weight: 600;
         padding-bottom: 0.5rem;
         border-bottom: 1px solid ${theme.colors.gray["200"]};
+
+        .chakra-ui-dark & {
+          border-bottom: 1px solid ${theme.colors.gray["600"]};
+        }
       }
 
       .DocSearch-NoResults-Prefill-List li {
         padding: 0.5rem 0;
         border-bottom: 1px solid ${theme.colors.gray["200"]};
+        .chakra-ui-dark & {
+          border-bottom: 1px solid ${theme.colors.gray["600"]};
+        }
       }
 
       .DocSearch-NoResults-Prefill-List button {
         font-weight: 500;
-        color: ${theme.colors.cyan["600"]};
+        color: ${theme.colors.teal["600"]};
+        .chakra-ui-dark & {
+          color: ${theme.colors.teal["400"]};
+        }
       }
 
       .DocSearch-NoResults-Prefill-List + .DocSearch-Help {
@@ -402,10 +453,12 @@ const SearchStyle = () => (
       }
 
       .DocSearch-NoResults-Prefill-List + .DocSearch-Help a {
-        box-shadow: inset 0 -0.125em 0 0 #fff,
-          inset 0 -0.375em 0 0 rgba(165, 243, 252, 0.4);
-        color: ${theme.colors.cyan["600"]};
+        color: ${theme.colors.teal["600"]};
         font-weight: 500;
+
+        .chakra-ui-dark & {
+          color: ${theme.colors.teal["300"]};
+        }
       }
     `}
   />

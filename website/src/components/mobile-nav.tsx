@@ -7,6 +7,7 @@ import {
   HStack,
   IconButton,
   IconButtonProps,
+  useBreakpointValue,
   useColorModeValue,
   useUpdateEffect,
 } from "@chakra-ui/react"
@@ -63,6 +64,18 @@ export function MobileNavContent(props: MobileNavContentProps) {
   const { pathname } = useRouter()
 
   useRouteChanged(onClose)
+
+  /**
+   * Scenario: Menu is open on mobile, and user resizes to desktop/tablet viewport.
+   * Result: We'll close the menu
+   */
+  const showOnBreakpoint = useBreakpointValue({ base: true, lg: false })
+
+  React.useEffect(() => {
+    if (showOnBreakpoint == false) {
+      onClose()
+    }
+  }, [showOnBreakpoint])
 
   useUpdateEffect(() => {
     if (isOpen) {

@@ -221,7 +221,7 @@ interface MenuItemOptions
    */
   icon?: React.ReactElement
   /**
-   * The spacing between the icon and menu item's label
+   * The spacing between the icon and menu item's label.
    * @type SystemProps["mr"]
    */
   iconSpacing?: SystemProps["mr"]
@@ -229,6 +229,11 @@ interface MenuItemOptions
    * Right-aligned label text content, useful for displaying hotkeys.
    */
   command?: string
+  /**
+   * The spacing between the command and menu item's label.
+   * @type SystemProps["ml"]
+   */
+  commandSpacing?: SystemProps["ml"]
 }
 
 export interface MenuItemProps
@@ -236,7 +241,14 @@ export interface MenuItemProps
     MenuItemOptions {}
 
 export const MenuItem = forwardRef<MenuItemProps, "button">((props, ref) => {
-  const { icon, iconSpacing = "0.75rem", command, children, ...rest } = props
+  const {
+    icon,
+    iconSpacing = "0.75rem",
+    command,
+    commandSpacing = "0.75rem",
+    children,
+    ...rest
+  } = props
 
   const menuItemProps = useMenuItem(rest, ref) as MenuItemProps
 
@@ -261,7 +273,9 @@ export const MenuItem = forwardRef<MenuItemProps, "button">((props, ref) => {
         </MenuIcon>
       )}
       {_children}
-      {command && <MenuCommand>{command}</MenuCommand>}
+      {command && (
+        <MenuCommand marginStart={commandSpacing}>{command}</MenuCommand>
+      )}
     </StyledMenuItem>
   )
 })

@@ -71,7 +71,9 @@ export const BreadcrumbLink = forwardRef<BreadcrumbLinkProps, "a">(
     }
 
     if (isCurrentPage) {
-      return <chakra.span aria-current="page" {...sharedProps} />
+      return (
+        <chakra.span aria-current="page" __css={styles.link} {...sharedProps} />
+      )
     }
 
     return <chakra.a __css={styles.link} {...sharedProps} />
@@ -128,18 +130,17 @@ export const BreadcrumbItem = forwardRef<BreadcrumbItemProps, "li">(
       return child
     })
 
+    const styles = useStyles()
+    const itemStyles: SystemStyleObject = {
+      display: "inline-flex",
+      alignItems: "center",
+      ...styles.item,
+    }
+
     const _className = cx("chakra-breadcrumb__list-item", className)
 
     return (
-      <chakra.li
-        ref={ref}
-        className={_className}
-        {...rest}
-        __css={{
-          display: "inline-flex",
-          alignItems: "center",
-        }}
-      >
+      <chakra.li ref={ref} className={_className} {...rest} __css={itemStyles}>
         {clones}
         {!isLastChild && (
           <BreadcrumbSeparator spacing={spacing}>
@@ -209,6 +210,7 @@ export const Breadcrumb = forwardRef<BreadcrumbProps, "nav">((props, ref) => {
       ref={ref}
       aria-label="breadcrumb"
       className={_className}
+      __css={styles.container}
       {...rest}
     >
       <StylesProvider value={styles}>

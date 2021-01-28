@@ -12,7 +12,11 @@ import { findRouteByPath, removeFromLast } from "utils/find-route-by-path"
 import { getRouteContext } from "utils/get-route-context"
 
 export function getRoutes(slug: string) {
+  // for home page, use docs sidebat
+  if (slug === "/") return docsSidebar.routes
+
   const configMap = {
+    "/resources": docsSidebar,
     "/guides": guidesSidebar,
     "/blog": blogSidebar,
     "/docs": docsSidebar,

@@ -242,8 +242,12 @@ can also change the icons used in the steppers.
 
 ### Combining it with a Slider
 
-A common use case is to combine the `NumberInput` with a `Slider`. Here's an
-example of how to do that:
+A common use case is to combine the `NumberInput` with a `Slider`.
+
+We recommend disabling `focusThumbOnChange` on the `Slider`, so the `NumberInput`
+won't lose focus after input.
+
+Here's an example of how to do that:
 
 ```jsx
 function SliderInput() {
@@ -259,7 +263,7 @@ function SliderInput() {
           <NumberDecrementStepper />
         </NumberInputStepper>
       </NumberInput>
-      <Slider flex="1" value={value} onChange={handleChange}>
+      <Slider flex="1" focusThumbOnChange={false} value={value} onChange={handleChange}>
         <SliderTrack>
           <SliderFilledTrack />
         </SliderTrack>

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { extendTheme } from "../src/extend-theme"
+import { extendTheme, ThemeOverride } from "../src/extend-theme"
 
 describe("extendTheme", () => {
   it("should override a color", () => {
@@ -144,7 +144,7 @@ describe("extendTheme", () => {
   })
 
   it("should pass typescript lint with non colorhue properties", () => {
-    const override = {
+    const override: ThemeOverride = {
       colors: {
         grey: {
           100: "#e3e3e3",
@@ -155,6 +155,13 @@ describe("extendTheme", () => {
           medium: "#929292",
           dark: "#1D1D1B",
           navSubMenu: "#9F9F9F",
+          special: {
+            nestedColor: "#111",
+            verySpecial: {
+              50: "#fff",
+              deepNestedColor: "#111",
+            },
+          },
         },
         white: "#fff",
         black: {
@@ -173,5 +180,19 @@ describe("extendTheme", () => {
     }
 
     extendTheme(override)
+  })
+
+  it("should not extend with function that is inherited", () => {
+    Array.prototype["customFunction"] = () => {}
+
+    const override = {
+      breakpoints: [],
+    }
+
+    const customTheme = extendTheme(override)
+
+    delete Array.prototype["customFunction"]
+
+    expect(customTheme.breakpoints.customFunction).toBeUndefined()
   })
 })

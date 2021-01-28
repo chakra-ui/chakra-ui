@@ -26,7 +26,7 @@ jobs:
           node-version: 12.x
 
       - name: Load Yarn cache
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ${{ steps.yarn-cache.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
@@ -38,6 +38,9 @@ jobs:
 
       - name: Build packages
         run: yarn build
+
+      - name: Build CRA templates
+        run: yarn build:templates ../cra-templates
 
       - name: Lint types and code
         run: yarn lint

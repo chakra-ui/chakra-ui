@@ -186,5 +186,5 @@ export function useColorModeValue<TLight = unknown, TDark = unknown>(
   dark: TDark,
 ) {
   const { colorMode } = useColorMode()
-  return colorMode === "light" ? light : dark
+  return colorMode === "dark" ? dark : light
 }

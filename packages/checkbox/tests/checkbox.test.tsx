@@ -6,6 +6,7 @@ import {
   renderHook,
   screen,
   testA11y,
+  userEvent,
 } from "@chakra-ui/test-utils"
 import * as React from "react"
 import {
@@ -186,8 +187,24 @@ test("Controlled CheckboxGroup", () => {
   // change props
   rerender(<Component value={checked} onChange={onChange} />)
 
-  expect(onChange).toHaveBeenCalled()
+  expect(onChange).toHaveBeenCalledTimes(1)
   expect(checked).toEqual(["one", "two", "three"])
+})
+
+test("uncontrolled CheckboxGroup handles change", () => {
+  const onChange = jest.fn()
+  render(
+    <CheckboxGroup defaultValue={["A", "C"]} onChange={onChange}>
+      <Checkbox value="A">A</Checkbox>
+      <Checkbox value="B">B</Checkbox>
+      <Checkbox value="C">C</Checkbox>
+    </CheckboxGroup>,
+  )
+
+  userEvent.click(screen.getByLabelText("B"))
+
+  expect(onChange).toHaveBeenCalledTimes(1)
+  expect(onChange).toHaveBeenCalledWith(["A", "C", "B"])
 })
 
 test("accepts custom icon", () => {
