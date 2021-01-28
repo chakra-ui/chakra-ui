@@ -16,13 +16,6 @@ import { useRouter } from "next/router"
 import * as React from "react"
 import SearchStyle from "./search.styles"
 
-const santize = (str: string | null) => {
-  return str
-    ?.split(" ")
-    .filter((t) => !t.startsWith(".css") && t !== "…")
-    .join(" ")
-}
-
 const ACTION_KEY_DEFAULT = ["Ctrl", "Control"]
 const ACTION_KEY_APPLE = ["⌘", "Command"]
 
