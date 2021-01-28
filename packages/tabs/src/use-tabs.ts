@@ -164,7 +164,7 @@ const [TabsProvider, useTabsContext] = createContext<UseTabsReturn>({
     "useTabsContext: `context` is undefined. Seems you forgot to wrap all tabs components within <Tabs />",
 })
 
-export { TabsProvider }
+export { TabsProvider, useTabsContext }
 
 type Child = React.ReactElement<any>
 
