@@ -6,12 +6,13 @@ description: "Link overlay is a semantic component used to wrap elements (cards,
 articles, etc.) in a link."
 ---
 
-This component provides a semantic way to wrap elements (cards, blog post,
+Link overlay provides a semantic way to wrap elements (cards, blog post,
 articles, etc.) in a link.
 
-When you need to link an entire component or card, it is considered bad practice
-to wrap it within `<a href="...">`. This is because, the component or card could
-contain other clickable elements or links (tags, timestamps, buttons).
+When you need to link an entire component or card, it can be tempting to wrap it
+within `<a href="...">` and think you're done. This is considered **unsemantic
+and incorrect** because the component or card could contain other clickable
+elements or links (tags, timestamps, buttons).
 
 > [According to the specification](https://www.w3.org/TR/html5/text-level-semantics.html#the-a-element),
 > an `<a>` element’s content model specifically states that an `<a>` cannot
