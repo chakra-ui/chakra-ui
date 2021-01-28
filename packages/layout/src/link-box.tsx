@@ -3,6 +3,9 @@ import { cx } from "@chakra-ui/utils"
 import * as React from "react"
 
 export interface LinkOverlayProps extends HTMLChakraProps<"a"> {
+  /**
+   *  If `true`, the link will open in new tab
+   */
   isExternal?: boolean
 }
 

@@ -14,8 +14,8 @@ to wrap it within `<a href="...">`. This is because, the component or card could
 contain other clickable elements or links (tags, timestamps, buttons).
 
 > [According to the specification](https://www.w3.org/TR/html5/text-level-semantics.html#the-a-element),
-> an <a> element’s content model specifically states that an <a> cannot contain
-> any interactive descendants (button, anchors, input, etc).
+> an `<a>` element’s content model specifically states that an `<a>` cannot
+> contain any interactive descendants (button, anchors, input, etc).
 
 The `LinkOverlay` component aims to solve this by overlaying one link on top of
 the component or card, and then elevating the remaining links on top of it.
@@ -36,16 +36,15 @@ import { LinkBox, LinkOverlay } from "@chakra-ui/react"
 
 ## Usage
 
-When using `LinkOverlay`, it is important to add `position:relative` to the
-parent wrapper. The reason is, we use `position:absolute` to achieve the overlay
-effect.
+Wrap the container within a `LinkBox` and use the `LinkOverlay` as a child of it
+or around the title's content.
 
 ```jsx
-<LinkBox as="article">
-  <Box as="time" datetime="2021-01-15 15:30:00 +0000 UTC">
+<LinkBox as="article" maxW="sm" p="5" borderWidth="1px" rounded="md">
+  <Box as="time" dateTime="2021-01-15 15:30:00 +0000 UTC">
     13 days ago
   </Box>
-  <Heading>
+  <Heading size="md" my="2">
     <LinkOverlay href="#">
       New Year, New Beginnings: Smashing Workshops & Audits
     </LinkOverlay>
@@ -59,21 +58,28 @@ effect.
 
 ### Nested Links
 
-The `LinkBox` lifts any nested links to the top to ensure proper keyboard
-navigation between links.
+The `LinkBox` lifts any nested links to the top using `z-index` to ensure proper
+keyboard navigation between links.
 
 > Use the keybaord to test how focus ring moves within the article
 
 ```jsx
-<LinkBox as="article">
-  <h2>
-    <LinkOverlay href="google.com">Some blog post</LinkOverlay>
-  </h2>
-  <p>
-    As a side note, using quotation marks around an attribute value is required
-    only if this value is not a valid identifier.
-  </p>
-  <a href="#">Some inner link</a>
+<LinkBox as="article" maxW="sm" p="5" borderWidth="1px" rounded="md">
+  <Box as="time" dateTime="2021-01-15 15:30:00 +0000 UTC">
+    13 days ago
+  </Box>
+  <Heading size="md" my="2">
+    <LinkOverlay href="#">
+      New Year, New Beginnings: Smashing Workshops & Audits
+    </LinkOverlay>
+  </Heading>
+  <Text mb="3">
+    Catch up on what’s been cookin’ at Smashing and explore some of the most
+    popular community resources.
+  </Text>
+  <Box as="a" color="teal.400" href="#" fontWeight="bold">
+    Some inner link
+  </Box>
 </LinkBox>
 ```
 
@@ -114,6 +120,6 @@ trivial compared to the benefits!
 
 The `LinkBox` component composes the `Box` component.
 
-The `LinkOverlay` component components the `chakra.a`:
+The `LinkOverlay` component composes the `chakra.a` in addition to these props:
 
 <PropsTable of="LinkOverlay" />
