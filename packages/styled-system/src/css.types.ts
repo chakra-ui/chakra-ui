@@ -1,64 +1,37 @@
 import { Dict, Omit } from "@chakra-ui/utils"
-import {
-  PropertiesFallback,
-  Property,
-  Pseudos as CSSPseudos,
-  StandardProperties,
-  SvgProperties,
-} from "csstype"
+import * as CSS from "csstype"
 import { ChakraStyleProps } from "./parser.types"
-import { Pseudos } from "./pseudo"
+import { PseudoProps, Pseudos } from "./pseudo"
 import { ResponsiveValue } from "./utils"
 
-type CSS = PropertiesFallback<number | string>
-
-type CSSProperties = StandardProperties<number | string> &
-  SvgProperties<number | string>
-
-export type CSSPseudoStyles = {
-  [K in CSSPseudos]?: SystemStyleObject
+interface CSSNestedStyles {
+  [property: string]: undefined | number | string | CSSObject
 }
+
+type CSSNestedPseudoStyles = { [K in CSS.Pseudos]?: CSSObject }
 
 export interface CSSObject
-  extends CSSPropertiesWithMultiValues,
-    CSSPseudosForCSSObject,
-    CSSOthersObjectForCSSObject {}
+  extends CSS.Properties,
+    CSSNestedPseudoStyles,
+    CSSNestedStyles {}
 
-type CSSPropertiesWithMultiValues = {
-  [K in keyof CSSProperties]: CSSProperties[K]
-}
-
-type CSSPseudosForCSSObject = { [K in CSSPseudos]?: CSSObject }
-
-type CSSInterpolation = undefined | number | string | CSSObject
-
-interface CSSOthersObjectForCSSObject {
-  [propertiesName: string]: CSSInterpolation
-}
-
-export interface CSSSelectorStyles {
-  [cssSelector: string]: SystemStyleObject
-}
-
-interface AliasesCSSProperties extends Omit<ChakraStyleProps, keyof CSS> {}
-
-interface OverwriteCSSProperties {
-  boxShadow?: Property.BoxShadow | number
-  fontWeight?: Property.FontWeight | string
-  zIndex?: Property.ZIndex | string
-}
+interface ShorthandCSSProperties
+  extends Omit<ChakraStyleProps, keyof CSS.Properties> {}
 
 interface AllSystemCSSProperties
-  extends Omit<CSSProperties, "boxShadow" | "fontWeight" | "zIndex" | "inset">,
-    AliasesCSSProperties,
-    OverwriteCSSProperties {}
+  extends CSS.Properties,
+    ShorthandCSSProperties {}
+
+type ResolvedType<K extends keyof AllSystemCSSProperties> =
+  | string
+  | ResponsiveValue<AllSystemCSSProperties[K]>
+  | ((theme: any) => ResponsiveValue<AllSystemCSSProperties[K]>)
+  | SystemStyleObject
 
 export type SystemCSSProperties = {
-  [K in keyof AllSystemCSSProperties]:
-    | string
-    | ResponsiveValue<AllSystemCSSProperties[K]>
-    | ((theme: any) => ResponsiveValue<AllSystemCSSProperties[K]>)
-    | SystemStyleObject
+  [K in keyof AllSystemCSSProperties]: K extends keyof ChakraStyleProps
+    ? ChakraStyleProps[K]
+    : ResolvedType<K>
 }
 
 export interface ApplyPropStyles {
@@ -68,16 +41,26 @@ export interface ApplyPropStyles {
   apply?: ResponsiveValue<string>
 }
 
-type PseudoStyles = {
+type ShorthandPseudoStyles = {
   [K in keyof Pseudos]?: K extends "_before" | "_after"
     ? SystemCSSProperties & { content?: string }
     : SystemCSSProperties
 }
+export interface CSSSelectorStyles {
+  [cssSelector: string]: SystemStyleObject
+}
 
 export type SystemStyleObject =
-  | (SystemCSSProperties & CSSPseudoStyles & ApplyPropStyles & PseudoStyles)
+  | (SystemCSSProperties &
+      CSSNestedPseudoStyles &
+      ApplyPropStyles &
+      ShorthandPseudoStyles)
   | (SystemCSSProperties & CSSSelectorStyles)
 
 export type StyleObjectOrFn =
   | SystemStyleObject
   | ((theme: Dict) => SystemStyleObject)
+
+export interface SystemProps
+  extends ChakraStyleProps,
+    PseudoProps<SystemStyleObject> {}
