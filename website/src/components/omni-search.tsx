@@ -262,7 +262,7 @@ function OmniSearch() {
                   const selected = index === active
                   const isLvl1 = item.type === "lvl1"
                   return (
-                    <Link href={item.url}>
+                    <Link key={item.id} href={item.url}>
                       <Box
                         id={`search-item-${index}`}
                         as="li"
