@@ -111,6 +111,7 @@
     "commitizen": "4.2.2",
     "concurrently": "5.3.0",
     "cross-env": "7.0.3",
+    "csstype": "^3.0.6",
     "cz-conventional-changelog": "3.3.0",
     "dotenv-cli": "4.0.0",
     "edit-json-file": "1.5.0",
