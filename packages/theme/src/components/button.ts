@@ -128,6 +128,7 @@ function variantLink(props: Dict) {
     padding: 0,
     height: "auto",
     lineHeight: "normal",
+    verticalAlign: "baseline",
     color: mode(`${c}.500`, `${c}.200`)(props),
     _hover: {
       textDecoration: "underline",
