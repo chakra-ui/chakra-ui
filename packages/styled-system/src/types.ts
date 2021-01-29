@@ -1,0 +1,81 @@
+import { Dict } from "@chakra-ui/utils"
+import * as CSS from "csstype"
+import * as System from "./config"
+import { Pseudos } from "./pseudo"
+import { ResponsiveValue } from "./utils"
+
+export interface StyleProps
+  extends System.SpaceProps,
+    System.ColorProps,
+    System.TransitionProps,
+    System.TypographyProps,
+    System.FlexboxProps,
+    System.TransformProps,
+    System.GridProps,
+    System.LayoutProps,
+    System.BorderProps,
+    System.ShadowProps,
+    System.BackgroundProps,
+    System.ListProps,
+    System.PositionProps,
+    System.OutlineProps,
+    System.OtherProps {}
+
+export interface ApplyPropStyles {
+  /**
+   * Apply theme-aware style objects in `theme`
+   */
+  apply?: ResponsiveValue<string>
+}
+
+export interface SystemCSSProperties
+  extends CSS.Properties,
+    Omit<StyleProps, keyof CSS.Properties>,
+    ApplyPropStyles {}
+
+type PropertyValue<K extends keyof SystemCSSProperties> = ResponsiveValue<
+  boolean | number | string | SystemCSSProperties[K]
+>
+
+export type CSSWithMultiValues = {
+  [K in keyof SystemCSSProperties]?: K extends keyof StyleProps
+    ? StyleProps[K] | PropertyValue<K>
+    : PropertyValue<K>
+}
+
+type PseudoKeys = keyof CSS.Pseudos | keyof Pseudos
+
+type RecursivePseudo<D> = {
+  [K in PseudoKeys]?: (
+    | D
+    | { [K in PseudoKeys]: (D | { [K in PseudoKeys]: D }) & D }
+  ) &
+    D
+}
+
+type RecursiveCSSSelector<D> = {
+  [selector: string]: (
+    | D
+    | { [selector: string]: (D | { [selector: string]: D }) & D }
+  ) &
+    D
+}
+
+export type RecursiveCSSObject<D> = D &
+  (D | RecursivePseudo<D> | RecursiveCSSSelector<D>)
+
+export type CSSObject = RecursiveCSSObject<CSSWithMultiValues | string>
+
+export type SystemStyleObject = CSSObject
+
+export interface FunctionCSSInterpolation {
+  (theme: Dict): CSSObject
+}
+
+export type StyleObjectOrFn = CSSObject | FunctionCSSInterpolation
+
+type PseudoProps = {
+  [K in keyof Pseudos]?: SystemStyleObject
+}
+
+export interface SystemProps extends StyleProps, PseudoProps {}

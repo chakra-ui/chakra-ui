@@ -27,7 +27,7 @@
     "formik": "^2.2.5",
     "highlight-words-core": "^1.2.2",
     "match-sorter": "^6.1.0",
-    "next": "^10.0.4",
+    "next": "^10.0.5",
     "next-mdx-enhanced": "^5.0.0",
     "next-seo": "^4.17.0",
     "prism-react-renderer": "^1.1.1",
@@ -45,7 +45,7 @@
     "scroll-into-view-if-needed": "^2.2.26"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^10.0.4",
+    "@next/bundle-analyzer": "^10.0.5",
     "@types/sharp": "^0.26.1",
     "next-compose-plugins": "^2.2.1"
   }

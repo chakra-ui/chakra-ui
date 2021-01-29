@@ -1,4 +1,9 @@
-import { chakra, useColorModeValue, useTheme } from "@chakra-ui/react"
+import {
+  chakra,
+  useColorModeValue,
+  useTheme,
+  SystemStyleObject,
+} from "@chakra-ui/react"
 import * as React from "react"
 import loadScript from "utils/load-script"
 
@@ -8,7 +13,7 @@ function CarbonAd() {
   const theme = useTheme()
   const bg = useColorModeValue("gray.50", "rgba(36, 70, 93, 0.32)")
 
-  const carbonAd = {
+  const carbonAd: SystemStyleObject = {
     display: "block",
     position: "relative",
     margin: "32px 0",
