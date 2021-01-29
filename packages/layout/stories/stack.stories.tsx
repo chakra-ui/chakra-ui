@@ -13,26 +13,21 @@ export const Vertical = () => (
   </Stack>
 )
 
-export const WithCustomDivider = () => {
-  return (
-    <div>
-      <Stack spacing="12px">
-        <Box>1</Box>
-        <Box>2</Box>
-        <Box>3</Box>
-      </Stack>
+export const WithCustomDivider = () => (
+  <div>
+    <Stack spacing="12px">
+      <Box>1</Box>
+      <Box>2</Box>
+      <Box>3</Box>
+    </Stack>
 
-      <Stack
-        spacing="40px"
-        divider={<Divider sx={{ borderColor: "red.200" }} />}
-      >
-        <Box>1</Box>
-        <Box>2</Box>
-        <Box>3</Box>
-      </Stack>
-    </div>
-  )
-}
+    <Stack spacing="40px" divider={<Divider sx={{ borderColor: "red.200" }} />}>
+      <Box>1</Box>
+      <Box>2</Box>
+      <Box>3</Box>
+    </Stack>
+  </div>
+)
 
 export const Inline = () => (
   <Stack w="100%" bg="blue.500" direction="row">

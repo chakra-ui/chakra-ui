@@ -16,13 +16,6 @@ import { useRouter } from "next/router"
 import * as React from "react"
 import SearchStyle from "./search.styles"
 
-const santize = (str: string | null) => {
-  return str
-    ?.split(" ")
-    .filter((t) => !t.startsWith(".css") && t !== "…")
-    .join(" ")
-}
-
 const ACTION_KEY_DEFAULT = ["Ctrl", "Control"]
 const ACTION_KEY_APPLE = ["⌘", "Command"]
 
@@ -157,31 +150,13 @@ function AlgoliaSearch() {
             }}
             hitComponent={Hit}
             transformItems={(items) => {
-              return items
-                .filter((item) => {
-                  console.log(item._snippetResult?.hierarchy?.lvl1.value)
-                  const lvl1 = item.hierarchy.lvl1
-                  return (
-                    item._snippetResult != null &&
-                    !item._snippetResult.content?.value.includes(".css") &&
-                    !item._snippetResult.hierarchy?.lvl1.value.includes(".css")
-                  )
-                })
-                .map((item) => {
-                  const a = document.createElement("a")
-                  a.href = item.url
-                  const hash = a.hash === "#content-wrapper" ? "" : a.hash
-
-                  // patch snippet result by removing `.css-` values
-                  if (item._snippetResult?.hierarchy?.lvl1?.value) {
-                    item._snippetResult.hierarchy.lvl1.value = santize(
-                      item._snippetResult.hierarchy.lvl1.value,
-                    )
-                  }
-
-                  item.url = `${a.pathname}${hash}`
-                  return item
-                })
+              return items.map((item) => {
+                const a = document.createElement("a")
+                a.href = item.url
+                const hash = a.hash === "#content-wrapper" ? "" : a.hash
+                item.url = `${a.pathname}${hash}`
+                return item
+              })
             }}
           />
         </Portal>

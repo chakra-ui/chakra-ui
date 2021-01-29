@@ -318,45 +318,61 @@
         },
         {
           "title": "Disclosure",
-          "path": "/docs/components",
+          "path": "/docs/disclosure",
           "open": true,
           "sort": true,
           "routes": [
             {
               "title": "Accordion",
-              "path": "/docs/components/accordion"
-            },
-            {
-              "title": "Breadcrumb",
-              "path": "/docs/components/breadcrumb"
+              "path": "/docs/disclosure/accordion"
             },
             {
               "title": "Tabs",
-              "path": "/docs/components/tabs"
+              "path": "/docs/disclosure/tabs"
             },
             {
               "title": "Visually Hidden",
-              "path": "/docs/components/visually-hidden"
+              "path": "/docs/disclosure/visually-hidden"
             }
           ]
         },
         {
-          "title": "Media & Icons",
-          "path": "/docs/components",
+          "title": "Navigation",
+          "path": "/docs/navigation",
+          "open": true,
+          "sort": true,
+          "routes": [
+            {
+              "title": "Breadcrumb",
+              "path": "/docs/navigation/breadcrumb"
+            },
+            {
+              "title": "Link",
+              "path": "/docs/navigation/link"
+            },
+            {
+              "title": "LinkOverlay",
+              "path": "/docs/navigation/link-overlay"
+            }
+          ]
+        },
+        {
+          "title": "Media and icons",
+          "path": "/docs/media-and-icons",
           "sort": true,
           "open": true,
           "routes": [
             {
               "title": "Avatar",
-              "path": "/docs/data-display/avatar"
+              "path": "/docs/media-and-icons/avatar"
             },
             {
               "title": "Icon",
-              "path": "/docs/components/icon"
+              "path": "/docs/media-and-icons/icon"
             },
             {
               "title": "Image",
-              "path": "/docs/data-display/image"
+              "path": "/docs/media-and-icons/image"
             }
           ]
         },

@@ -1,6 +1,6 @@
 import * as React from "react"
-import { Link } from "../src"
 import { BrowserRouter, Link as ReactRouterLink } from "react-router-dom"
+import { Link, LinkOverlay, LinkBox } from "../src"
 
 export default {
   title: "Link",
@@ -30,4 +30,23 @@ export const WithRoutingLibrary = () => (
       Click me
     </Link>
   </BrowserRouter>
+)
+
+export const WithLinkOverlay = () => (
+  <LinkBox
+    borderWidth="1px"
+    bg="white"
+    p="4"
+    rounded="lg"
+    as="article"
+    _hover={{ shadow: "lg" }}
+  >
+    <h2>
+      <LinkOverlay href="google.com">Some blog post</LinkOverlay>
+    </h2>
+    <p>
+      As a side note, using quotation marks around an attribute value is
+      required only if this value is not a valid identifier.
+    </p>
+  </LinkBox>
 )
