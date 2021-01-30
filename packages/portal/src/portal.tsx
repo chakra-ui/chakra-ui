@@ -95,14 +95,14 @@ interface ContainerPortalProps {
  */
 const ContainerPortal: React.FC<ContainerPortalProps> = (props) => {
   const { children, containerRef, appendToParentPortal } = props
-  const host = containerRef.current ?? (isBrowser ? document.body : undefined)
+  const containerEl = containerRef.current
+  const host = containerEl ?? (isBrowser ? document.body : undefined)
 
   const portal = React.useMemo(() => {
-    const node = containerRef?.current?.ownerDocument.createElement("div")
+    const node = containerEl?.ownerDocument.createElement("div")
     if (node) node.className = PORTAL_CLASSNAME
     return node
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [containerRef.current])
+  }, [containerEl])
 
   const forceUpdate = useForceUpdate()
 

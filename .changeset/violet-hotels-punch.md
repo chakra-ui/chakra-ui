@@ -8,3 +8,13 @@
 - Add support for `appendToParentPortal={false}` to opt out of nested portals.
 - Fix issue with portal `zIndex` container where it renders elements outside of
   view.
+- Renamed `getContainer` prop to `containerRef` to make it possible to pass the
+  `ref` directly. This affects the `Modal` component primarily
+
+```jsx live=false
+// Before
+<Portal getContainer={() => ref.current}>{/** Content */}</Portal>
+
+// After
+<Portal containerRef={ref}>{/** Content */}</Portal>
+```
