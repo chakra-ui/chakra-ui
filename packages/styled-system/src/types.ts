@@ -64,7 +64,7 @@ type RecursiveCSSSelector<D> = {
 export type RecursiveCSSObject<D> = D &
   (D | RecursivePseudo<D> | RecursiveCSSSelector<D>)
 
-export type CSSObject = RecursiveCSSObject<CSSWithMultiValues | string>
+export type CSSObject = RecursiveCSSObject<CSSWithMultiValues>
 
 export type SystemStyleObject = CSSObject
 
