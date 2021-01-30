@@ -50,7 +50,7 @@
     "avatars:gen": "ts-node scripts/avatars.ts",
     "search-meta:gen": "ts-node scripts/get-search-meta.ts",
     "gen:pkg": "ts-node scripts/plopfile.ts",
-    "prerelease": "yarn build",
+    "prerelease": "yarn build && yarn test && yarn lint",
     "release": "changeset publish",
     "docs": "yarn workspace @chakra-ui/docs",
     "docs:deploy": "yarn build && yarn docs:build-ci && cp -r website/public .",
