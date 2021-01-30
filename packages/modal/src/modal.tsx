@@ -105,10 +105,9 @@ export interface ModalProps extends UseModalProps, ModalOptions, ThemingProps {
    */
   scrollBehavior?: ScrollBehavior
   /**
-   * Function that will be called to get the parent element
-   * that the modal will be attached to.
+   * Props to be forwarded to the portal component
    */
-  getContainer?: PortalProps["getContainer"]
+  portalProps: Pick<PortalProps, "appendToParentPortal" | "containerRef">
   /**
    * The transition that should be used for the modal
    */
@@ -139,7 +138,7 @@ export { ModalContextProvider, useModalContext }
  */
 export const Modal: React.FC<ModalProps> = (props) => {
   const {
-    getContainer,
+    portalProps,
     children,
     autoFocus,
     trapFocus,
@@ -174,9 +173,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     <ModalContextProvider value={context}>
       <StylesProvider value={styles}>
         <AnimatePresence>
-          {context.isOpen && (
-            <Portal getContainer={getContainer}>{children}</Portal>
-          )}
+          {context.isOpen && <Portal {...portalProps}>{children}</Portal>}
         </AnimatePresence>
       </StylesProvider>
     </ModalContextProvider>
