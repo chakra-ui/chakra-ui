@@ -10,7 +10,9 @@ import {
 import { mergeWith, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface SkipNavLinkProps extends HTMLChakraProps<"a">, ThemingProps {}
+export interface SkipNavLinkProps
+  extends HTMLChakraProps<"a">,
+    ThemingProps<"SkipNavLink"> {}
 
 const fallbackId = "chakra-skip-nav"
 

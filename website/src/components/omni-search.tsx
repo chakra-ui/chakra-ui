@@ -277,7 +277,6 @@ function OmniSearch() {
                         _selected={{
                           bg: "teal.500",
                           color: "white",
-                          //@ts-expect-error fix this in chakra styled-system types. I should be able to pass other css styles
                           mark: {
                             color: "white",
                             textDecor: "underline",

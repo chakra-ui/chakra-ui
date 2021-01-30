@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
-import { createParser, Config, system } from "../core"
-import { Length, ResponsiveValue } from "../utils"
+import { Config, createParser, system } from "../core"
+import { Token } from "../utils"
 
 const config: Config = {
   transform: true,
@@ -11,11 +11,11 @@ export interface TransformProps {
   /**
    * The CSS `transform` property
    */
-  transform?: ResponsiveValue<CSS.Property.Transform>
+  transform?: Token<CSS.Property.Transform>
   /**
    * The CSS `transform-origin` property
    */
-  transformOrigin?: ResponsiveValue<CSS.Property.TransformOrigin<Length>>
+  transformOrigin?: Token<CSS.Property.TransformOrigin | number, "sizes">
 }
 
 export const transform = system(config)

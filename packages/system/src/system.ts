@@ -4,7 +4,7 @@ import {
   ResponsiveValue,
   SystemProps,
   SystemStyleObject,
-  ChakraStyleProps,
+  StyleProps,
 } from "@chakra-ui/styled-system"
 import {
   memoizedGet as get,
@@ -155,8 +155,8 @@ export type HTMLChakraComponents = {
 export type HTMLChakraProps<T extends As> = Omit<
   PropsOf<T>,
   T extends "svg"
-    ? "ref" | "children" | keyof ChakraStyleProps
-    : "ref" | keyof ChakraStyleProps
+    ? "ref" | "children" | keyof StyleProps
+    : "ref" | keyof StyleProps
 > &
   ChakraProps & { as?: As }
 

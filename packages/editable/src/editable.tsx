@@ -45,7 +45,7 @@ interface BaseEditableProps
 export interface EditableProps
   extends UseEditableProps,
     BaseEditableProps,
-    ThemingProps {
+    ThemingProps<"Editable"> {
   children?: MaybeRenderProp<RenderProps>
 }
 

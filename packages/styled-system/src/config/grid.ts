@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { createParser, Config, system } from "../core"
-import { Length, ResponsiveValue, t } from "../utils"
+import { Token, t } from "../utils"
 
 const config: Config = {
   gridGap: t.space("gridGap"),
@@ -30,7 +30,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-gap)
    */
-  gridGap?: ResponsiveValue<CSS.Property.GridGap<Length>>
+  gridGap?: Token<CSS.Property.GridGap | number, "sizes">
   /**
    * The CSS `grid-column-gap` property.
    *
@@ -38,7 +38,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap)
    */
-  gridColumnGap?: ResponsiveValue<CSS.Property.GridColumnGap<Length>>
+  gridColumnGap?: Token<CSS.Property.GridColumnGap | number, "sizes">
   /**
    * The CSS `grid-row-gap` property.
    *
@@ -46,7 +46,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap)
    */
-  gridRowGap?: ResponsiveValue<CSS.Property.GridRowGap<Length>>
+  gridRowGap?: Token<CSS.Property.GridRowGap | number, "sizes">
   /**
    * The CSS `grid-column` property.
    *
@@ -55,7 +55,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-start)
    */
-  gridColumnStart?: ResponsiveValue<CSS.Property.GridColumnStart>
+  gridColumnStart?: Token<CSS.Property.GridColumnStart>
   /**
    * The CSS `grid-row-start` property
    *
@@ -65,7 +65,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-start)
    */
-  gridRowStart?: ResponsiveValue<CSS.Property.GridRowStart>
+  gridRowStart?: Token<CSS.Property.GridRowStart>
   /**
    * The CSS `grid-row-end` property
    *
@@ -75,7 +75,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-end)
    */
-  gridRowEnd?: ResponsiveValue<CSS.Property.GridRowEnd>
+  gridRowEnd?: Token<CSS.Property.GridRowEnd>
   /**
    * The CSS `grid-template` property.
    *
@@ -83,7 +83,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template)
    */
-  gridTemplate?: ResponsiveValue<CSS.Property.GridTemplate>
+  gridTemplate?: Token<CSS.Property.GridTemplate>
   /**
    * The CSS `grid-column` property
    *
@@ -93,7 +93,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-end)
    */
-  gridColumnEnd?: ResponsiveValue<CSS.Property.GridColumnEnd>
+  gridColumnEnd?: Token<CSS.Property.GridColumnEnd>
   /**
    * The CSS `grid-column` property.
    *
@@ -103,7 +103,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column)
    */
-  gridColumn?: ResponsiveValue<CSS.Property.GridColumn>
+  gridColumn?: Token<CSS.Property.GridColumn>
   /**
    * The CSS `grid-row` property
    *
@@ -113,7 +113,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row)
    */
-  gridRow?: ResponsiveValue<CSS.Property.GridRow>
+  gridRow?: Token<CSS.Property.GridRow>
   /**
    * The CSS `grid-auto-flow` property
    *
@@ -122,7 +122,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow)
    */
-  gridAutoFlow?: ResponsiveValue<CSS.Property.GridAutoFlow>
+  gridAutoFlow?: Token<CSS.Property.GridAutoFlow>
   /**
    * The CSS `grid-auto-columns` property.
    *
@@ -130,7 +130,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns)
    */
-  gridAutoColumns?: ResponsiveValue<CSS.Property.GridAutoColumns<Length>>
+  gridAutoColumns?: Token<CSS.Property.GridAutoColumns | number, "sizes">
   /**
    * The CSS `grid-auto-rows` property.
    *
@@ -138,7 +138,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows)
    */
-  gridAutoRows?: ResponsiveValue<CSS.Property.GridAutoRows<Length>>
+  gridAutoRows?: Token<CSS.Property.GridAutoRows | number, "sizes">
   /**
    * The CSS `grid-template-columns` property
    *
@@ -146,8 +146,9 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns)
    */
-  gridTemplateColumns?: ResponsiveValue<
-    CSS.Property.GridTemplateColumns<Length>
+  gridTemplateColumns?: Token<
+    CSS.Property.GridTemplateColumns | number,
+    "sizes"
   >
   /**
    * The CSS `grid-template-rows` property.
@@ -156,13 +157,13 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows)
    */
-  gridTemplateRows?: ResponsiveValue<CSS.Property.GridTemplateRows<Length>>
+  gridTemplateRows?: Token<CSS.Property.GridTemplateRows | number, "sizes">
   /**
    * The CSS `grid-template-areas` property.
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas)
    */
-  gridTemplateAreas?: ResponsiveValue<CSS.Property.GridTemplateAreas>
+  gridTemplateAreas?: Token<CSS.Property.GridTemplateAreas>
   /**
    * The CSS `grid-areas` property.
    *
@@ -172,7 +173,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-area)
    */
-  gridArea?: ResponsiveValue<CSS.Property.GridArea>
+  gridArea?: Token<CSS.Property.GridArea>
 }
 
 export const grid = system(config)

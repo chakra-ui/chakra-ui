@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
-import { createParser, Config, system } from "../core"
-import { ResponsiveValue, t } from "../utils"
+import { Config, createParser, system } from "../core"
+import { t, Token } from "../utils"
 
 const config: Config = {
   boxShadow: t.shadows("boxShadow"),
@@ -18,15 +18,15 @@ export interface ShadowProps {
   /**
    * The `box-shadow` property
    */
-  boxShadow?: ResponsiveValue<CSS.Property.BoxShadow | number>
+  boxShadow?: Token<CSS.Property.BoxShadow | number, "shadows">
   /**
    * The `box-shadow` property
    */
-  shadow?: ResponsiveValue<CSS.Property.BoxShadow | number>
+  shadow?: Token<CSS.Property.BoxShadow | number, "shadows">
   /**
    * The `text-shadow` property
    */
-  textShadow?: ResponsiveValue<CSS.Property.TextShadow | number>
+  textShadow?: Token<CSS.Property.TextShadow | number, "shadows">
 }
 
 export const shadow = system(config)

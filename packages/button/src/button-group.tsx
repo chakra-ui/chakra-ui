@@ -9,7 +9,9 @@ import {
 import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface ButtonGroupProps extends HTMLChakraProps<"div">, ThemingProps {
+export interface ButtonGroupProps
+  extends HTMLChakraProps<"div">,
+    ThemingProps<"ButtonGroup"> {
   /**
    * If `true`, the borderRadius of button that are direct children will be altered
    * to look flushed together
@@ -27,7 +29,7 @@ export interface ButtonGroupProps extends HTMLChakraProps<"div">, ThemingProps {
   spacing?: SystemProps["marginRight"]
 }
 
-interface ButtonGroupContext extends ThemingProps {
+interface ButtonGroupContext extends ThemingProps<"ButtonGroup"> {
   isDisabled?: boolean
 }
 

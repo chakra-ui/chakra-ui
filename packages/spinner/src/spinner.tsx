@@ -55,7 +55,7 @@ interface SpinnerOptions {
 export interface SpinnerProps
   extends Omit<HTMLChakraProps<"div">, keyof SpinnerOptions>,
     SpinnerOptions,
-    ThemingProps {}
+    ThemingProps<"Spinner"> {}
 
 /**
  * Spinner is used to indicate the loading state of a page or a component,

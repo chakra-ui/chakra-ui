@@ -16,7 +16,7 @@ type Omitted = "defaultChecked" | "checked" | "onChange"
 export interface SwitchProps
   extends Omit<UseCheckboxProps, "isIndeterminate">,
     Omit<HTMLChakraProps<"label">, Omitted>,
-    ThemingProps {}
+    ThemingProps<"Switch"> {}
 
 export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
   const styles = useMultiStyleConfig("Switch", props)

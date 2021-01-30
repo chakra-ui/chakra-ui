@@ -9,7 +9,9 @@ import {
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface HeadingProps extends HTMLChakraProps<"h2">, ThemingProps {}
+export interface HeadingProps
+  extends HTMLChakraProps<"h2">,
+    ThemingProps<"Heading"> {}
 
 export const Heading = forwardRef<HeadingProps, "h2">((props, ref) => {
   const styles = useStyleConfig("Heading", props)

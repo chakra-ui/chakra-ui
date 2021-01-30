@@ -11,7 +11,9 @@ import {
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 
-export interface TableProps extends HTMLChakraProps<"table">, ThemingProps {}
+export interface TableProps
+  extends HTMLChakraProps<"table">,
+    ThemingProps<"Table"> {}
 
 export const Table = forwardRef<TableProps, "table">((props, ref) => {
   const styles = useMultiStyleConfig("Table", props)

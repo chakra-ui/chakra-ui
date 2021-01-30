@@ -110,7 +110,7 @@ interface ProgressOptions {
 
 export interface ProgressProps
   extends ProgressOptions,
-    ThemingProps,
+    ThemingProps<"Progress">,
     HTMLChakraProps<"div"> {}
 
 /**

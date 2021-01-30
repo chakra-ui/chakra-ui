@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { createParser, Config, system } from "../core"
-import { ResponsiveValue, Length, t } from "../utils"
+import { Token, Length, t } from "../utils"
 
 const config: Config = {
   alignItems: true,
@@ -34,7 +34,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/align-items)
    */
-  alignItems?: ResponsiveValue<CSS.Property.AlignItems>
+  alignItems?: Token<CSS.Property.AlignItems>
   /**
    * The CSS `align-content` property.
    *
@@ -43,7 +43,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/align-content)
    */
-  alignContent?: ResponsiveValue<CSS.Property.AlignContent>
+  alignContent?: Token<CSS.Property.AlignContent>
   /**
    * The CSS `justify-items` property.
    *
@@ -53,7 +53,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/justify-items)
    */
-  justifyItems?: ResponsiveValue<CSS.Property.JustifyItems>
+  justifyItems?: Token<CSS.Property.JustifyItems>
   /**
    * The CSS `justify-content` property.
    *
@@ -62,7 +62,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/justify-content)
    */
-  justifyContent?: ResponsiveValue<CSS.Property.JustifyContent>
+  justifyContent?: Token<CSS.Property.JustifyContent>
   /**
    * The CSS `flex-wrap` property.
    *
@@ -72,7 +72,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/flex-wrap)
    */
-  flexWrap?: ResponsiveValue<CSS.Property.FlexWrap>
+  flexWrap?: Token<CSS.Property.FlexWrap>
   /**
    * The CSS `flex-flow` property.
    *
@@ -81,7 +81,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/flex-flow)
    */
-  flexFlow?: ResponsiveValue<CSS.Property.FlexFlow>
+  flexFlow?: Token<CSS.Property.FlexFlow>
   /**
    * The CSS `flex-basis` property.
    *
@@ -89,7 +89,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/flex-basis)
    */
-  flexBasis?: ResponsiveValue<CSS.Property.FlexBasis<Length>>
+  flexBasis?: Token<CSS.Property.FlexBasis<Length>>
   /**
    * The CSS `flex-direction` property.
    *
@@ -98,7 +98,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/flex-direction)
    */
-  flexDirection?: ResponsiveValue<CSS.Property.FlexDirection>
+  flexDirection?: Token<CSS.Property.FlexDirection>
   /**
    * The CSS `flex-direction` property.
    *
@@ -107,7 +107,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/flex-direction)
    */
-  flexDir?: ResponsiveValue<CSS.Property.FlexDirection>
+  flexDir?: Token<CSS.Property.FlexDirection>
   /**
    * The CSS `flex` property.
    *
@@ -116,7 +116,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/flex)
    */
-  flex?: ResponsiveValue<CSS.Property.Flex<Length>>
+  flex?: Token<CSS.Property.Flex<Length>>
   /**
    * The CSS `justify-self` property.
    *
@@ -125,7 +125,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/flex-flow)
    */
-  justifySelf?: ResponsiveValue<CSS.Property.JustifySelf>
+  justifySelf?: Token<CSS.Property.JustifySelf>
   /**
    * The CSS `align-self` property.
    *
@@ -134,7 +134,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/align-self)
    */
-  alignSelf?: ResponsiveValue<CSS.Property.AlignSelf>
+  alignSelf?: Token<CSS.Property.AlignSelf>
   /**
    * The CSS `order` property.
    *
@@ -142,7 +142,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/order)
    */
-  order?: ResponsiveValue<CSS.Property.Order>
+  order?: Token<CSS.Property.Order>
   /**
    * The CSS `flex-grow` property.
    *
@@ -151,7 +151,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/flex-grow)
    */
-  flexGrow?: ResponsiveValue<CSS.Property.FlexGrow>
+  flexGrow?: Token<CSS.Property.FlexGrow | (string & number)>
   /**
    * The CSS `flex-shrink` property.
    *
@@ -160,7 +160,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/flex-shrink)
    */
-  flexShrink?: ResponsiveValue<CSS.Property.FlexShrink>
+  flexShrink?: Token<CSS.Property.FlexShrink | (string & number)>
   /**
    * The CSS `place-items` property.
    *
@@ -170,7 +170,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/place-items)
    */
-  placeItems?: ResponsiveValue<CSS.Property.PlaceItems>
+  placeItems?: Token<CSS.Property.PlaceItems>
   /**
    * The CSS `place-content` property.
    *
@@ -180,7 +180,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/place-content)
    */
-  placeContent?: ResponsiveValue<CSS.Property.PlaceContent>
+  placeContent?: Token<CSS.Property.PlaceContent>
   /**
    * The CSS `place-self` property.
    *
@@ -190,7 +190,7 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/place-self)
    */
-  placeSelf?: ResponsiveValue<CSS.Property.PlaceSelf>
+  placeSelf?: Token<CSS.Property.PlaceSelf>
 }
 
 export const flexbox = system(config)

@@ -52,7 +52,7 @@ const [PopoverProvider, usePopoverContext] = createContext<UsePopoverReturn>({
 
 export { usePopoverContext }
 
-export interface PopoverProps extends UsePopoverProps, ThemingProps {
+export interface PopoverProps extends UsePopoverProps, ThemingProps<"Popover"> {
   /**
    * The content of the popover. It is usually the `PopoverTrigger`,
    * and `PopoverContent`

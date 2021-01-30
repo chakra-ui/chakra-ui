@@ -37,7 +37,7 @@ interface TabsOptions {
 
 export interface TabsProps
   extends UseTabsProps,
-    ThemingProps,
+    ThemingProps<"Tabs">,
     Omit<HTMLChakraProps<"div">, "onChange">,
     TabsOptions {
   children: React.ReactNode

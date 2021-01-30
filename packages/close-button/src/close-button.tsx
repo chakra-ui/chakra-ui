@@ -22,7 +22,7 @@ const CloseIcon: React.FC<IconProps> = (props) => (
 
 export interface CloseButtonProps
   extends HTMLChakraProps<"button">,
-    ThemingProps {
+    ThemingProps<"CloseButton"> {
   /**
    * If `true`, the close button will be disabled.
    */

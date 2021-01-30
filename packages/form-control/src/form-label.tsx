@@ -24,7 +24,9 @@ export function useFieldLabel(props: Dict) {
   }
 }
 
-export interface FormLabelProps extends HTMLChakraProps<"label">, ThemingProps {
+export interface FormLabelProps
+  extends HTMLChakraProps<"label">,
+    ThemingProps<"FormLabel"> {
   /**
    * @type React.ReactElement
    */

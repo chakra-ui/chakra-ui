@@ -1,7 +1,7 @@
 import * as CSS from "csstype"
 import { Config, createParser, PropConfig, system } from "../core"
 import { getIsRtl } from "../utils/directionality"
-import { Length, ResponsiveValue } from "../utils/types"
+import { Length, ResponsiveValue } from "../utils"
 
 const floatTransform: PropConfig["transform"] = (value, _, props = {}) => {
   const map = { left: "right", right: "left" }
@@ -92,7 +92,7 @@ export interface OtherProps {
    */
   objectFit?: ResponsiveValue<CSS.Property.ObjectFit>
   /**
-   * The CSS `object-psition` property
+   * The CSS `object-position` property
    */
   objectPosition?: ResponsiveValue<CSS.Property.ObjectPosition<Length>>
   /**

@@ -5,12 +5,14 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "gen:theme-typings": "chakra-cli tokens theme.ts",
     "start": "next start",
     "test": "jest",
     "clean": "rm -rf .next .mdx-data",
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
+    "@chakra-ui/cli": "1.0.0",
     "@chakra-ui/props-docs": "1.0.11",
     "@chakra-ui/react": "1.1.6",
     "@chakra-ui/theme-tools": "1.0.3",
@@ -25,7 +27,7 @@
     "formik": "^2.2.5",
     "highlight-words-core": "^1.2.2",
     "match-sorter": "^6.1.0",
-    "next": "^10.0.4",
+    "next": "^10.0.5",
     "next-mdx-enhanced": "^5.0.0",
     "next-seo": "^4.17.0",
     "prism-react-renderer": "^1.1.1",
@@ -43,7 +45,7 @@
     "scroll-into-view-if-needed": "^2.2.26"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^10.0.4",
+    "@next/bundle-analyzer": "^10.0.5",
     "@types/sharp": "^0.26.1",
     "next-compose-plugins": "^2.2.1"
   }

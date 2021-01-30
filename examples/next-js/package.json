@@ -12,7 +12,7 @@
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
     "framer-motion": "^3.1.1",
-    "next": "^10.0.4",
+    "next": "^10.0.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   }

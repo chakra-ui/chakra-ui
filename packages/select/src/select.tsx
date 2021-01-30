@@ -17,7 +17,6 @@ type Omitted = "disabled" | "required" | "readOnly" | "size"
 
 export interface SelectFieldProps
   extends Omit<HTMLChakraProps<"select">, Omitted> {
-  size?: string
   isDisabled?: boolean
 }
 
@@ -87,7 +86,7 @@ interface SelectOptions extends FormControlOptions {
 
 export interface SelectProps
   extends SelectFieldProps,
-    ThemingProps,
+    ThemingProps<"Select">,
     SelectOptions {
   /**
    * Props to forward to the root `div` element

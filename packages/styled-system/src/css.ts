@@ -9,7 +9,7 @@ import {
   objectToArrayNotation,
   runIfFn,
 } from "@chakra-ui/utils"
-import { CSSObject, StyleObjectOrFn } from "./css.types"
+import { CSSObject, StyleObjectOrFn } from "./types"
 import { parser } from "./parser"
 import { pseudoSelectors } from "./pseudo"
 
@@ -132,14 +132,14 @@ export const processResponsive = (styles: any) => (theme: Dict) => {
 
 type PropsOrTheme = Dict | { theme: Dict }
 
-export const css = (args: StyleObjectOrFn = {}) => (
+export const css = (styleOrFn: StyleObjectOrFn = {}) => (
   props: PropsOrTheme = {},
-) => {
+): CSSObject => {
   const theme = "theme" in props ? props.theme : props
 
   let computedStyles: CSSObject = {}
 
-  const styleObject = runIfFn(args, theme)
+  const styleObject = runIfFn(styleOrFn, theme)
   const styles = processResponsive(styleObject)(theme)
 
   for (const k in styles) {

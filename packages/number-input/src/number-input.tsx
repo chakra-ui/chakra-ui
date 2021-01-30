@@ -56,7 +56,7 @@ interface InputOptions {
 
 export interface NumberInputProps
   extends UseNumberInputProps,
-    ThemingProps,
+    ThemingProps<"NumberInput">,
     InputOptions,
     Omit<HTMLChakraProps<"div">, keyof UseNumberInputProps> {}
 

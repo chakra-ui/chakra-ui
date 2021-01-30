@@ -9,7 +9,9 @@ import {
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface BadgeProps extends HTMLChakraProps<"span">, ThemingProps {}
+export interface BadgeProps
+  extends HTMLChakraProps<"span">,
+    ThemingProps<"Badge"> {}
 
 /**
  * React component used to display notifications, messages, or

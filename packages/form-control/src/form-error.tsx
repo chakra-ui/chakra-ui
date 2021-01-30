@@ -16,7 +16,7 @@ import { useFormControlContext } from "./form-control"
 
 export interface FormErrorMessageProps
   extends HTMLChakraProps<"div">,
-    ThemingProps {}
+    ThemingProps<"FormErrorMessage"> {}
 
 /**
  * Used to provide feedback about an invalid input,
