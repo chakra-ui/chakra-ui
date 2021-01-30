@@ -46,6 +46,18 @@ jobs:
           git config --global user.email "joseshegs@gmail.com"
           git config --global user.name "Sage"
 
+      - name: Build packages
+        run: yarn build
+
+      - name: Build CRA templates
+        run: yarn build:templates ../cra-templates
+
+      - name: Lint types and code
+        run: yarn lint
+
+      - name: Run tests
+        run: yarn test
+
       - name: Publish packages
         uses: changesets/action@master
         with:
