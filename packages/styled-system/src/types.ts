@@ -47,21 +47,16 @@ export type CSSWithMultiValues = {
 
 type PseudoKeys = keyof CSS.Pseudos | keyof Pseudos
 
+type PseudoSelectorDefinition<D> = D | RecursivePseudo<D>
+
 type RecursivePseudo<D> = {
-  [K in PseudoKeys]?: (
-    | D
-    | { [K in PseudoKeys]: (D | { [K in PseudoKeys]: D }) & D }
-  ) &
-    D
+  [K in PseudoKeys]?: PseudoSelectorDefinition<D> & D
 }
 
-type RecursiveCSSSelector<D> = {
-  [selector: string]: (
-    | D
-    | string
-    | { [selector: string]: (D | { [selector: string]: D }) & D }
-  ) &
-    D
+type CSSDefinition<D> = D | string | RecursiveCSSSelector<D | string>
+
+interface RecursiveCSSSelector<D> {
+  [selector: string]: CSSDefinition<D> & D
 }
 
 export type RecursiveCSSObject<D> = D &
