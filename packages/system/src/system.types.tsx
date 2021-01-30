@@ -15,7 +15,7 @@ export interface ThemingProps<ThemeComponent extends string = string> {
   size?: ThemeComponent extends keyof ThemeTypings["components"]
     ? ThemeTypings["components"][ThemeComponent]["sizes"] | (string & {})
     : string
-  colorScheme?: ThemeTypings["colorSchemes"]
+  colorScheme?: ThemeTypings["colorSchemes"] | (string & {})
   orientation?: "vertical" | "horizontal"
   styleConfig?: Dict
 }
