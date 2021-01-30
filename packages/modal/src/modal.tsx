@@ -107,7 +107,7 @@ export interface ModalProps extends UseModalProps, ModalOptions, ThemingProps {
   /**
    * Props to be forwarded to the portal component
    */
-  portalProps: Pick<PortalProps, "appendToParentPortal" | "containerRef">
+  portalProps?: Pick<PortalProps, "appendToParentPortal" | "containerRef">
   /**
    * The transition that should be used for the modal
    */
