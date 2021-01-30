@@ -58,6 +58,7 @@ type RecursivePseudo<D> = {
 type RecursiveCSSSelector<D> = {
   [selector: string]: (
     | D
+    | string
     | { [selector: string]: (D | { [selector: string]: D }) & D }
   ) &
     D
