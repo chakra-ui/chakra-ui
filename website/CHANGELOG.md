@@ -1,5 +1,32 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [`90c7a4fbf`](https://github.com/chakra-ui/chakra-ui/commit/90c7a4fbfde69c01395ffe2876d7348dd72ea65a)
+  [#3092](https://github.com/chakra-ui/chakra-ui/pull/3092) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - - Improved theme typing in
+  order to provide a better autocomplete experience
+  - Fixed a type issue where pseudo style props like `_hover` and `_active`
+    didn't allow regular css properties
+
+### Patch Changes
+
+- [`c61ed9f52`](https://github.com/chakra-ui/chakra-ui/commit/c61ed9f523e855bc1343d6b15f6b9fb770c026ea)
+  [#3155](https://github.com/chakra-ui/chakra-ui/pull/3155) Thanks
+  [@jungaretti](https://github.com/jungaretti)! - - Correct capitalization of
+  `rightIcon` prop
+  - Add `LinkOverlay` docs
+  - Restructure component groupings and add permanent redirects
+  - Add docs for `Portal` component
+- Updated dependencies
+  [[`408096ca3`](https://github.com/chakra-ui/chakra-ui/commit/408096ca377197e46e2c9eb13e0ea33c46355b38),
+  [`90c7a4fbf`](https://github.com/chakra-ui/chakra-ui/commit/90c7a4fbfde69c01395ffe2876d7348dd72ea65a),
+  [`fa2083807`](https://github.com/chakra-ui/chakra-ui/commit/fa2083807f8372dc054261a214d66545ab7cac14)]:
+  - @chakra-ui/react@1.2.0
+  - @chakra-ui/props-docs@1.0.12
+
 ## 1.0.11
 
 ### Patch Changes

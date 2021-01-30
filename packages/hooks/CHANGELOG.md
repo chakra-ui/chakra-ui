@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.1.3
+
+### Patch Changes
+
+- [`b572bceed`](https://github.com/chakra-ui/chakra-ui/commit/b572bceedd9fb0c41c65118f0d9ba672791932ca)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! -
+  **useOutsideClick:**
+
+  - Update reference to `document.addEventListener` to detect owner document
+    based on `ref` passed. This would help detect outside click currently from
+    within an `iframe`.
+
 ## 1.1.2
 
 ### Patch Changes

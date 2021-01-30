@@ -1,5 +1,27 @@
 # Change Log
 
+## 1.2.0
+
+### Minor Changes
+
+- [`90c7a4fbf`](https://github.com/chakra-ui/chakra-ui/commit/90c7a4fbfde69c01395ffe2876d7348dd72ea65a)
+  [#3092](https://github.com/chakra-ui/chakra-ui/pull/3092) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - - Improved theme typing in
+  order to provide a better autocomplete experience
+  - Fixed a type issue where pseudo style props like `_hover` and `_active`
+    didn't allow regular css properties
+
+### Patch Changes
+
+- [`4e193f721`](https://github.com/chakra-ui/chakra-ui/commit/4e193f721fd51fd7e8d5f0fdc399a2784276a158)
+  [#3180](https://github.com/chakra-ui/chakra-ui/pull/3180) Thanks
+  [@with-heart](https://github.com/with-heart)! - Resolved an issue where
+  `Checkbox` used inside `CheckboxGroup` would call the group's `onChange`
+  handler twice
+- Updated dependencies
+  [[`b572bceed`](https://github.com/chakra-ui/chakra-ui/commit/b572bceedd9fb0c41c65118f0d9ba672791932ca)]:
+  - @chakra-ui/hooks@1.1.3
+
 ## 1.1.3
 
 ### Patch Changes

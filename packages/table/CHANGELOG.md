@@ -1,5 +1,16 @@
 # @chakra-ui/table
 
+## 1.1.0
+
+### Minor Changes
+
+- [`90c7a4fbf`](https://github.com/chakra-ui/chakra-ui/commit/90c7a4fbfde69c01395ffe2876d7348dd72ea65a)
+  [#3092](https://github.com/chakra-ui/chakra-ui/pull/3092) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - - Improved theme typing in
+  order to provide a better autocomplete experience
+  - Fixed a type issue where pseudo style props like `_hover` and `_active`
+    didn't allow regular css properties
+
 ## 1.0.3
 
 ### Patch Changes

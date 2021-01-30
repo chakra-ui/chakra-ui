@@ -1,5 +1,28 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [`500b1eea0`](https://github.com/chakra-ui/chakra-ui/commit/500b1eea0876909b670c103ffa354b2b77ff024f)
+  [#3187](https://github.com/chakra-ui/chakra-ui/pull/3187) Thanks
+  [@dodas](https://github.com/dodas)! - The `useTabsContext` hook is now
+  exported and can be used in userland.
+
+* [`90c7a4fbf`](https://github.com/chakra-ui/chakra-ui/commit/90c7a4fbfde69c01395ffe2876d7348dd72ea65a)
+  [#3092](https://github.com/chakra-ui/chakra-ui/pull/3092) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - - Improved theme typing in
+  order to provide a better autocomplete experience
+  - Fixed a type issue where pseudo style props like `_hover` and `_active`
+    didn't allow regular css properties
+
+### Patch Changes
+
+- Updated dependencies
+  [[`b572bceed`](https://github.com/chakra-ui/chakra-ui/commit/b572bceedd9fb0c41c65118f0d9ba672791932ca)]:
+  - @chakra-ui/hooks@1.1.3
+  - @chakra-ui/descendant@1.0.6
+
 ## 1.0.7
 
 ### Patch Changes
