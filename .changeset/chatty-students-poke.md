@@ -1,6 +1,6 @@
 ---
-"@chakra-ui/modal": patch
-"@chakra-ui/tooltip": patch
+"@chakra-ui/modal": minor
+"@chakra-ui/tooltip": minor
 ---
 
 Add support for forwarding props to the underlying `Portal` component. Pass the
