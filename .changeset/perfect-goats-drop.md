@@ -37,8 +37,6 @@
 "@chakra-ui/docs": minor
 ---
 
-- Improved theme typing to allow us provide better autocomplete experience
-  tousers of Chakra.
-
-- Fixed type issue where pseudo style props like `_hover, _active` don't
-  allowregular css properties.
+- Improved theme typing in order to provide a better autocomplete experience.
+- Fixed a type issue where pseudo style props like `_hover` and `_active` didn't
+  allow regular css properties.
