@@ -1,4 +1,4 @@
-import { Portal } from "@chakra-ui/portal"
+import { Portal, PortalProps } from "@chakra-ui/portal"
 import {
   chakra,
   forwardRef,
@@ -9,8 +9,9 @@ import {
 } from "@chakra-ui/system"
 import { isString, omit, pick, __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
-import { AnimatePresence, motion, Variants } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
+import { scale } from "./tooltip.transition"
 import { useTooltip, UseTooltipProps } from "./use-tooltip"
 
 export interface TooltipProps
@@ -43,40 +44,13 @@ export interface TooltipProps
    * If `true`, the tooltip will show an arrow tip
    */
   hasArrow?: boolean
+  /**
+   * Props to be forwarded to the portal component
+   */
+  portalProps?: Pick<PortalProps, "appendToParentPortal" | "containerRef">
 }
 
 const StyledTooltip = chakra(motion.div)
-
-const scaleVariants: Variants = {
-  exit: {
-    scale: 0.85,
-    opacity: 0,
-    transition: {
-      opacity: {
-        duration: 0.15,
-        easings: "easeInOut",
-      },
-      scale: {
-        duration: 0.2,
-        easings: "easeInOut",
-      },
-    },
-  },
-  enter: {
-    scale: 1,
-    opacity: 1,
-    transition: {
-      opacity: {
-        easings: "easeOut",
-        duration: 0.2,
-      },
-      scale: {
-        duration: 0.2,
-        ease: [0.175, 0.885, 0.4, 1.1],
-      },
-    },
-  },
-}
 
 /**
  * Tooltips display informative text when users hover, focus on, or tap an element.
@@ -95,6 +69,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
     "aria-label": ariaLabel,
     hasArrow,
     bg,
+    portalProps,
     ...rest
   } = ownProps
 
@@ -150,13 +125,13 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
       {trigger}
       <AnimatePresence>
         {tooltip.isOpen && (
-          <Portal>
+          <Portal {...portalProps}>
             <chakra.div
               {...tooltip.getTooltipPositionerProps()}
               __css={{ zIndex: styles.zIndex }}
             >
               <StyledTooltip
-                variants={scaleVariants}
+                variants={scale}
                 {...(tooltipProps as any)}
                 initial="exit"
                 animate="enter"

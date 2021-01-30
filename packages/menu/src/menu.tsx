@@ -95,22 +95,17 @@ export const MenuButton = forwardRef<MenuButtonProps, "button">(
 
     const buttonProps = useMenuButton(rest, ref)
 
-    const ButtonComp = As || StyledMenuButton
+    const Element = As || StyledMenuButton
 
     return (
-      <ButtonComp
+      <Element
         {...buttonProps}
         className={cx("chakra-menu__menu-button", props.className)}
       >
-        <chakra.span
-          __css={{
-            pointerEvents: "none",
-            flex: "1 1 auto",
-          }}
-        >
+        <chakra.span __css={{ pointerEvents: "none", flex: "1 1 auto" }}>
           {props.children}
         </chakra.span>
-      </ButtonComp>
+      </Element>
     )
   },
 )
@@ -119,7 +114,9 @@ if (__DEV__) {
   MenuButton.displayName = "MenuButton"
 }
 
-export interface MenuListProps extends HTMLChakraProps<"div"> {}
+export interface MenuListProps extends HTMLChakraProps<"div"> {
+  rootProps?: HTMLChakraProps<"div">
+}
 
 const motionVariants: Variants = {
   enter: {
@@ -147,15 +144,19 @@ const motionVariants: Variants = {
 const Motion = chakra(motion.div)
 
 export const MenuList = forwardRef<MenuListProps, "div">((props, ref) => {
+  const { rootProps, ...rest } = props
   const { isOpen, onTransitionEnd } = useMenuContext()
 
-  const listProps = useMenuList(props, ref)
-  const positionerProps = useMenuPositioner()
+  const listProps = useMenuList(rest, ref)
+  const positionerProps = useMenuPositioner(rootProps)
 
   const styles = useStyles()
 
   return (
-    <chakra.div {...positionerProps} __css={{ zIndex: styles.list?.zIndex }}>
+    <chakra.div
+      {...positionerProps}
+      __css={{ zIndex: props.zIndex ?? styles.list?.zIndex }}
+    >
       <Motion
         {...listProps}
         /**

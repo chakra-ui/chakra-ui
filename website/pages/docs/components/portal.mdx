@@ -1,0 +1,112 @@
+---
+title: Portal
+package: "@chakra-ui/portal"
+image: "components/portal.svg"
+description: Renders a React subtree in a different part of the DOM.
+---
+
+Portal is used to transport any component or element to the end of
+`document.body` and renders a React tree into it.
+
+Useful for rendering a natural React element hierarchy with a different DOM
+hierarchy to prevent parent styles from clipping or hiding content (for
+popovers, dropdowns, and modals). It supports nested portals
+
+<ComponentLinks
+  github={{ package: "portal" }}
+  npm={{ package: "@chakra-ui/portal" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+```js
+import { Portal } from "@chakra-ui/react"
+```
+
+## Usage
+
+```jsx
+function Example() {
+  return (
+    <Box bg="red.400" color="white">
+      I'm here,
+      <Portal>This text is portaled at the end of document.body!</Portal>
+    </Box>
+  )
+}
+```
+
+### Using a custom container
+
+You can render the contents within a portal to a different DOM node, instead of
+the default `document.body`. Pass the `containerRef` prop and set its value to
+the `ref` of the container you'd like to use.
+
+```jsx
+function Example() {
+  const ref = React.useRef()
+  return (
+    <Box bg="red.400" color="white">
+      I'm here,
+      <Portal containerRef={ref}>
+        Portal: This text is portaled to the yellow box!
+      </Portal>
+      <Box ref={ref} bg="yellow.500">
+        <div>Container: Hey,</div>
+      </Box>
+    </Box>
+  )
+}
+```
+
+### Nesting Portals
+
+You can also nest multiple portals within themselves, this will create a nested
+DOM hierarchy to make it easy to create nested modals, popovers, etc.
+
+```jsx
+function Example() {
+  const ref = React.useRef()
+  return (
+    <div>
+      <Portal containerRef={ref}>
+        <Box bg="teal.500" color="white">
+          Parent: Hey welcome,
+          <Portal>Child: I'm attached to my parent portal</Portal>
+        </Box>
+      </Portal>
+      <Box bg="red.400" color="white" ref={ref} />
+    </div>
+  )
+}
+```
+
+### Opting out of portal nesting
+
+In some cases, you might not want portal nodes to be nested to their parent
+portals. To opt out of this, pass `appendToParentPortal` and set it to `false`
+
+```jsx
+function Example() {
+  const ref = React.useRef()
+  return (
+    <div>
+      <Portal containerRef={ref}>
+        <Box bg="teal.500" color="white">
+          Parent: Hey welcome,
+          <Portal appendToParentPortal={false}>
+            Child: I'm going to document.body
+          </Portal>
+        </Box>
+      </Portal>
+      <div style={{ background: "red" }} ref={ref} />
+    </div>
+  )
+}
+```
+
+## Props
+
+<PropsTable of="Portal" />

@@ -37,7 +37,7 @@ export const WithMountRef = () => {
   return (
     <>
       <p>Welcome</p>
-      <Portal getContainer={() => ref.current}>
+      <Portal containerRef={ref}>
         <span>This text has been portaled</span>
       </Portal>
       <div id="iframe" ref={ref}>
@@ -123,3 +123,18 @@ export const WithZIndexTooltip = () => (
     </Tooltip>
   </PortalManager>
 )
+
+export const WithCustomContainer = () => {
+  const ref = React.useRef<HTMLDivElement>(null)
+  return (
+    <div>
+      <Portal containerRef={ref}>
+        <div className="baba">
+          Welcome man
+          <Portal>Testing my powers</Portal>
+        </div>
+      </Portal>
+      <div style={{ background: "red" }} ref={ref} />
+    </div>
+  )
+}

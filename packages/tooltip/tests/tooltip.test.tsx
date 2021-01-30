@@ -81,7 +81,7 @@ test("should show on mouseover if isDisabled has a falsy value", async () => {
 })
 
 test("should close on mouseleave if shouldWrapChildren is true and child is a disabled element", async () => {
-  render(<DummyComponent shouldWrapChildren isButtonDisabled={true} />)
+  render(<DummyComponent shouldWrapChildren isButtonDisabled />)
 
   act(() => {
     fireEvent.mouseEnter(screen.getByText(buttonLabel))
