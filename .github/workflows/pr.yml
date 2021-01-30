@@ -3,11 +3,7 @@ name: PR Workflow
 on:
   pull_request:
     branches:
-      - master
-      - develop
-  push:
-    branches:
-      - develop
+      - main
 
 jobs:
   build:
@@ -18,10 +14,10 @@ jobs:
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@master
 
       - name: Enable node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@master
         with:
           node-version: 12.x
 

@@ -5,7 +5,7 @@ on:
     paths:
       - "packages/**"
     branches:
-      - master
+      - main
       - next
 
 jobs:
