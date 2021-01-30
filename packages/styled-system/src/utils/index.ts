@@ -1,4 +1,4 @@
-import { get, isNumber } from "@chakra-ui/utils"
+import { get, isNumber, isObject } from "@chakra-ui/utils"
 import * as CSS from "csstype"
 import { PropConfig } from "../core"
 import { logical } from "./logical-prop"
@@ -29,7 +29,10 @@ function fractionalValue(value: any, scale: any) {
 export const t = {
   borderWidths: makeConfig("borderWidths"),
   borderStyles: makeConfig("borderStyles"),
-  colors: makeConfig("colors"),
+  colors: makeConfig("colors", (value, scale) => {
+    const resolvedValue = get(scale, value, value)
+    return isObject(resolvedValue) ? value : resolvedValue
+  }),
   borders: makeConfig("borders"),
   radii: makeConfig("radii"),
   space: makeConfig("space"),

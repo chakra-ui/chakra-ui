@@ -11,6 +11,9 @@ const breakpoints = createBreakpoints({
 const theme = {
   breakpoints,
   colors: {
+    red: {
+      500: "#ff0000",
+    },
     primary: "tomato",
     secondary: "cyan",
   },
@@ -315,6 +318,16 @@ test("functional values can return responsive arrays", () => {
       color: "cyan",
     },
     color: "tomato",
+  })
+})
+
+test("resolves color correctly", () => {
+  const result = css({
+    color: "red",
+  })(theme)
+
+  expect(result).toEqual({
+    color: "red",
   })
 })
 
