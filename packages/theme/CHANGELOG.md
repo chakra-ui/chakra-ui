@@ -1,5 +1,27 @@
 # Change Log
 
+## 1.5.0
+
+### Minor Changes
+
+- [`20fb74c07`](https://github.com/chakra-ui/chakra-ui/commit/20fb74c074fbb4f229c9613f91de65e824309c07)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add `8xl` to size
+  tokens. It maps to `90rem`
+
+* [`90c7a4fbf`](https://github.com/chakra-ui/chakra-ui/commit/90c7a4fbfde69c01395ffe2876d7348dd72ea65a)
+  [#3092](https://github.com/chakra-ui/chakra-ui/pull/3092) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - - Improved theme typing in
+  order to provide a better autocomplete experience
+  - Fixed a type issue where pseudo style props like `_hover` and `_active`
+    didn't allow regular css properties
+
+### Patch Changes
+
+- [`709ca0398`](https://github.com/chakra-ui/chakra-ui/commit/709ca0398a8c82c55b85c1364d80b90c5e075257)
+  [#3200](https://github.com/chakra-ui/chakra-ui/pull/3200) Thanks
+  [@dodas](https://github.com/dodas)! - A `Button` with `variant="link"` has now
+  `verticalAlign` set to `baseline`, instead of `middle`.
+
 ## 1.4.1
 
 ### Patch Changes

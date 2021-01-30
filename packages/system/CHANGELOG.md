@@ -1,5 +1,25 @@
 # Change Log
 
+## 1.2.0
+
+### Minor Changes
+
+- [`90c7a4fbf`](https://github.com/chakra-ui/chakra-ui/commit/90c7a4fbfde69c01395ffe2876d7348dd72ea65a)
+  [#3092](https://github.com/chakra-ui/chakra-ui/pull/3092) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - - Improved theme typing in
+  order to provide a better autocomplete experience
+  - Fixed a type issue where pseudo style props like `_hover` and `_active`
+    didn't allow regular css properties
+
+### Patch Changes
+
+- Updated dependencies
+  [[`e434aed4a`](https://github.com/chakra-ui/chakra-ui/commit/e434aed4a7d769d0c6e98e048b2100f0efed277a),
+  [`90c7a4fbf`](https://github.com/chakra-ui/chakra-ui/commit/90c7a4fbfde69c01395ffe2876d7348dd72ea65a),
+  [`e859a9fc1`](https://github.com/chakra-ui/chakra-ui/commit/e859a9fc1bd906801a490dceeb507cca0684a192)]:
+  - @chakra-ui/styled-system@1.6.0
+  - @chakra-ui/color-mode@1.0.6
+
 ## 1.1.7
 
 ### Patch Changes

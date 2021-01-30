@@ -1,5 +1,36 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [`e41e6b81b`](https://github.com/chakra-ui/chakra-ui/commit/e41e6b81bf6943fef9b34e5ddd31ee57b416a426)
+  [#3210](https://github.com/chakra-ui/chakra-ui/pull/3210) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Add support for changing
+  the container that portal is appended to. You can now pass `containerRef` to
+  portal.
+
+  - Update portal `README.md` and tests.
+  - Add support for `appendToParentPortal={false}` to opt out of nested portals.
+  - Fix issue with portal `zIndex` container where it renders elements outside
+    of view.
+  - Renamed `getContainer` prop to `containerRef` to make it possible to pass
+    the `ref` directly. This affects the `Modal` component primarily
+
+  ```jsx live=false
+  // Before
+  <Portal getContainer={() => ref.current}>{/** Content */}</Portal>
+
+  // After
+  <Portal containerRef={ref}>{/** Content */}</Portal>
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`b572bceed`](https://github.com/chakra-ui/chakra-ui/commit/b572bceedd9fb0c41c65118f0d9ba672791932ca)]:
+  - @chakra-ui/hooks@1.1.3
+
 ## 1.0.6
 
 ### Patch Changes
