@@ -72,7 +72,7 @@ test("should render into a custom container", () => {
     return (
       <PortalManager>
         <div data-testid="container" ref={ref} />
-        <Portal getContainer={() => ref.current}>
+        <Portal containerRef={ref}>
           <h1 data-testid="heading">Hello world</h1>
         </Portal>
       </PortalManager>

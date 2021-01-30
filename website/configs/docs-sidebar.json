@@ -385,6 +385,10 @@
             {
               "title": "Transitions",
               "path": "/docs/components/transitions"
+            },
+            {
+              "title": "Portal",
+              "path": "/docs/components/portal"
             }
           ]
         },
