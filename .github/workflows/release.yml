@@ -3,6 +3,8 @@ name: Publish to NPM
 on:
   push:
     paths:
+      - ".changeset/**"
+      - "tooling/**"
       - "packages/**"
     branches:
       - main
