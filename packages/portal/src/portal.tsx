@@ -14,6 +14,21 @@ const [PortalContextProvider, usePortalContext] = createContext<PortalContext>({
 const PORTAL_CLASSNAME = "chakra-portal"
 const PORTAL_SELECTOR = `.chakra-portal`
 
+const Container: React.FC<{ zIndex: number }> = (props) => (
+  <div
+    className="chakra-portal-zIndex"
+    style={{
+      position: "absolute",
+      zIndex: props.zIndex,
+      top: 0,
+      left: 0,
+      right: 0,
+    }}
+  >
+    {props.children}
+  </div>
+)
+
 /**
  * Portal that uses `document.body` as container
  */
@@ -51,12 +66,7 @@ const DefaultPortal: React.FC<{ appendToParentPortal?: boolean }> = (props) => {
   }, [])
 
   const _children = manager?.zIndex ? (
-    <div
-      className="chakra-portal-zIndex"
-      style={{ position: "relative", zIndex: manager.zIndex }}
-    >
-      {children}
-    </div>
+    <Container zIndex={manager?.zIndex}>{children}</Container>
   ) : (
     children
   )
