@@ -1,4 +1,4 @@
-# Component Name
+# @chakra-ui/styled-system
 
 The framework agnostic styling engine for Chakra UI. It's used in the `system`
 package.
