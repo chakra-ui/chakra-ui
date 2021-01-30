@@ -1,4 +1,6 @@
-// this file will be replaced by @chakra-ui/cli tokens
+/**
+ * This file will be replaced by @chakra-ui/cli tokens
+ */
 
 export interface ThemeTypings extends EmptyThemeTypings {}
 
