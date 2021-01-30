@@ -23,6 +23,8 @@ const Container: React.FC<{ zIndex: number }> = (props) => (
       top: 0,
       left: 0,
       right: 0,
+      // NB: Don't add `bottom: 0`, it makes the entire app unusable
+      // @see https://github.com/chakra-ui/chakra-ui/issues/3201
     }}
   >
     {props.children}
