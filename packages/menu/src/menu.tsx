@@ -95,22 +95,17 @@ export const MenuButton = forwardRef<MenuButtonProps, "button">(
 
     const buttonProps = useMenuButton(rest, ref)
 
-    const ButtonComp = As || StyledMenuButton
+    const Element = As || StyledMenuButton
 
     return (
-      <ButtonComp
+      <Element
         {...buttonProps}
         className={cx("chakra-menu__menu-button", props.className)}
       >
-        <chakra.span
-          __css={{
-            pointerEvents: "none",
-            flex: "1 1 auto",
-          }}
-        >
+        <chakra.span __css={{ pointerEvents: "none", flex: "1 1 auto" }}>
           {props.children}
         </chakra.span>
-      </ButtonComp>
+      </Element>
     )
   },
 )
