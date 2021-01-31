@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.2.1
+
+### Patch Changes
+
+- [`2575d6957`](https://github.com/chakra-ui/chakra-ui/commit/2575d6957feb6da82775aacf6fe633b50ca3f81e)
+  [#3221](https://github.com/chakra-ui/chakra-ui/pull/3221) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Allow string values for
+  ThemingProps['colorScheme']
+
 ## 1.2.0
 
 ### Minor Changes
