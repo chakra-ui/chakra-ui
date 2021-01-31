@@ -33,4 +33,13 @@ const sizes = {
   container,
 }
 
+/**
+ * @deprecated
+ * You can derive the Sizes type from the DefaultChakraTheme
+ *
+ * type Sizes = DefaultChakraTheme['sizes']
+ */
+export type Sizes = typeof spacing &
+  typeof largeSizes & { container: typeof container }
+
 export default sizes

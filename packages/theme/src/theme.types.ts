@@ -33,26 +33,6 @@ export interface ColorHues {
 
 export type ThemeDirection = "ltr" | "rtl"
 
-export interface Typography {
-  fonts: RecursiveObject<string>
-  fontSizes: RecursiveObject
-  fontWeights: RecursiveObject
-  letterSpacings: RecursiveObject
-  lineHeights: RecursiveObject
-}
-
-export interface Foundations extends Typography {
-  borders: RecursiveObject
-  breakpoints: Breakpoints<Dict>
-  colors: RecursiveObject<Record<string, Partial<ColorHues>> | string>
-  radii: RecursiveObject
-  shadows: RecursiveObject<string>
-  sizes: RecursiveObject
-  space: RecursiveObject
-  transition: ThemeTransitions
-  zIndices: RecursiveObject
-}
-
 interface ComponentDefaultProps {
   size?: string
   variant?: string
@@ -84,6 +64,26 @@ export type ComponentStyleConfig =
 
 export interface ThemeComponents {
   [componentName: string]: ComponentStyleConfig
+}
+
+interface Typography {
+  fonts: RecursiveObject<string>
+  fontSizes: RecursiveObject
+  fontWeights: RecursiveObject
+  letterSpacings: RecursiveObject
+  lineHeights: RecursiveObject
+}
+
+interface Foundations extends Typography {
+  borders: RecursiveObject
+  breakpoints: Breakpoints<Dict>
+  colors: RecursiveObject<Record<string, Partial<ColorHues>> | string>
+  radii: RecursiveObject
+  shadows: RecursiveObject<string>
+  sizes: RecursiveObject
+  space: RecursiveObject
+  transition: ThemeTransitions
+  zIndices: RecursiveObject
 }
 
 export interface ChakraTheme extends Foundations {

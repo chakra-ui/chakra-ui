@@ -1,3 +1,11 @@
+/**
+ * @deprecated
+ * You can derive the Colors type from the DefaultChakraTheme:
+ *
+ * type Colors = DefaultChakraTheme["colors"]
+ */
+export type Colors = typeof colors
+
 const colors = {
   transparent: "transparent",
   current: "currentColor",
