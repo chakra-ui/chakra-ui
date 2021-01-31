@@ -1,9 +1,9 @@
 {
   "name": "chakra-cra",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "private": true,
   "dependencies": {
-    "@chakra-ui/react": "1.2.0",
+    "@chakra-ui/react": "1.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
