@@ -58,7 +58,7 @@
     "@chakra-ui/theme": "1.5.0",
     "@chakra-ui/transition": "1.0.7",
     "@chakra-ui/utils": "1.1.0",
-    "@reach/alert": "0.11.0"
+    "@reach/alert": "0.13.0"
   },
   "devDependencies": {
     "@chakra-ui/system": "1.2.1",
