@@ -33,7 +33,4 @@ const sizes = {
   container,
 }
 
-export type Sizes = typeof spacing &
-  typeof largeSizes & { container: typeof container }
-
 export default sizes

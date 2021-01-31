@@ -22,7 +22,4 @@ const foundations = {
   transition,
 }
 
-type FoundationsType = typeof foundations
-export interface Foundations extends FoundationsType {}
-
 export default foundations

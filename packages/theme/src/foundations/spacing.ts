@@ -30,5 +30,3 @@ export const spacing = {
   80: "20rem",
   96: "24rem",
 }
-
-export type Spacing = typeof spacing

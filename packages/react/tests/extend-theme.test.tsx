@@ -1,5 +1,6 @@
 import * as React from "react"
 import { extendTheme, ThemeOverride } from "../src/extend-theme"
+import { createBreakpoints } from "@chakra-ui/theme-tools"
 
 describe("extendTheme", () => {
   it("should override a color", () => {
@@ -98,7 +99,7 @@ describe("extendTheme", () => {
       },
       config: {
         useSystemColorMode: false,
-        initialColorMode: "dark",
+        initialColorMode: "dark" as const,
       },
       styles: {
         global: {
@@ -186,13 +187,18 @@ describe("extendTheme", () => {
     Array.prototype["customFunction"] = () => {}
 
     const override = {
-      breakpoints: [],
+      breakpoints: createBreakpoints({
+        sm: "1",
+        md: "1",
+        lg: "1",
+        xl: "1",
+      }),
     }
 
     const customTheme = extendTheme(override)
 
     delete Array.prototype["customFunction"]
 
-    expect(customTheme.breakpoints.customFunction).toBeUndefined()
+    expect((customTheme.breakpoints as any).customFunction).toBeUndefined()
   })
 })

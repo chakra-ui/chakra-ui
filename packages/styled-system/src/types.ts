@@ -33,7 +33,7 @@ export interface SystemCSSProperties
     Omit<StyleProps, keyof CSS.Properties>,
     ApplyPropStyles {}
 
-type ThemeThunk<T> = T | ((theme: Dict) => T)
+export type ThemeThunk<T> = T | ((theme: Dict) => T)
 
 type PropertyValue<K extends keyof SystemCSSProperties> = ThemeThunk<
   ResponsiveValue<boolean | number | string | SystemCSSProperties[K]>

@@ -61,6 +61,4 @@ const typography = {
   },
 }
 
-export type Typography = typeof typography
-
 export default typography

@@ -14,6 +14,4 @@ const zIndices = {
   tooltip: 1800,
 }
 
-export type ZIndices = typeof zIndices
-
 export default zIndices

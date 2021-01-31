@@ -10,6 +10,4 @@ const radii = {
   full: "9999px",
 }
 
-export type Radii = typeof radii
-
 export default radii

@@ -1,11 +1,8 @@
-import { ColorModeOptions } from "@chakra-ui/system"
 import components from "./components"
-import foundations, { Foundations } from "./foundations"
+import foundations from "./foundations"
 import styles from "./styles"
+import { ChakraTheme, ThemeConfig, ThemeDirection } from "./theme.types"
 
-export interface ThemeConfig extends ColorModeOptions {}
-
-export type ThemeDirection = "ltr" | "rtl"
 const direction: ThemeDirection = "ltr"
 
 const config: ThemeConfig = {
@@ -13,7 +10,7 @@ const config: ThemeConfig = {
   initialColorMode: "light",
 }
 
-export const theme = {
+const defaultTheme = {
   direction,
   ...foundations,
   components,
@@ -21,11 +18,10 @@ export const theme = {
   config,
 }
 
-export interface Theme extends Foundations {
-  direction: ThemeDirection
-  components: typeof components
-  styles: typeof styles
-  config: ThemeConfig
-}
+export const theme: ChakraTheme = defaultTheme
+
+export type DefaultChakraTheme = typeof defaultTheme
+
+export * from "./theme.types"
 
 export default theme
