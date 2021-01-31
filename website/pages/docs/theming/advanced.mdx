@@ -111,8 +111,22 @@ for your application theme.
 If you want to learn how to scale your custom theme you can
 [follow this guide](/docs/theming/customize-theme#scaling-out-your-project).
 
+### Install 
+
 ```bash
-npx @chakra-ui/cli tokens <path/to/your/theme.(js|ts)>
+yarn add --dev @chakra-ui/cli
+```
+
+or
+
+```bash
+npm install -D @chakra-ui/cli
+```
+
+### Usage
+
+```bash
+chakra-cli tokens <path/to/your/theme.(js|ts)>
 ```
 
 The theme entrypoint file should export the theme object either as `default`
