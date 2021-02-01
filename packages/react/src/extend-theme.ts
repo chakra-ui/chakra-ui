@@ -41,11 +41,11 @@ export function extendTheme<
     object: any,
   ) {
     if (
-      isFunction(source) &&
+      (isFunction(source) || isFunction(override)) &&
       Object.prototype.hasOwnProperty.call(object, key)
     ) {
       return (...args: unknown[]) => {
-        const sourceValue = source(...args)
+        const sourceValue = isFunction(source) ? source(...args) : source
 
         const overrideValue = isFunction(override)
           ? override(...args)
