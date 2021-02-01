@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/chakra-ui/chakra-ui">
-    <img src="https://raw.githubusercontent.com/chakra-ui/chakra-ui/main/logo/logomark-colored@2x.png?raw=true" alt="Chakra logo" width="300" />
+    <img src="https://raw.githubusercontent.com/chakra-ui/chakra-ui/main/logo/logo-colored@2x.png?raw=true" alt="Chakra logo" width="300" />
   </a>
 </p>
 
