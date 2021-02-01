@@ -1,42 +1,39 @@
-import defaultTheme, { Theme } from "@chakra-ui/theme"
+import defaultTheme, { ChakraTheme, DefaultChakraTheme } from "@chakra-ui/theme"
 import { isFunction, mergeWith } from "@chakra-ui/utils"
-import { ColorHues } from "@chakra-ui/theme/dist/types/foundations/colors"
 
-// recursive color object type
-type ThemeColors = string | ColorObject | Record<string, ColorHues>
-interface ColorObject {
-  [property: string]: ThemeColors
-}
+type CloneKey<Target, Key> = Key extends keyof Target ? Target[Key] : unknown
 
-type ThemeExtensionTypeHints = {
-  colors: ThemeColors // typehints for color definitions
-}
 /**
  * Represents a loose but specific type for the theme override.
  * It provides autocomplete hints for extending the theme, but leaves room
  * for adding properties.
  */
-type DeepThemeExtension<ThemeObject, TypeHints> = {
-  [Key in keyof ThemeObject]?:
-    | Omit<DeepThemeExtension<ThemeObject[Key], TypeHints>, keyof TypeHints> // recursive type clone
-    | (ThemeObject[Key] extends (...args: any[]) => any
-        ? Partial<ReturnType<ThemeObject[Key]>>
-        : Partial<ThemeObject[Key]>) // allow function or object
-} &
-  Partial<TypeHints> &
-  Record<string, any> // escape hatch
+type DeepThemeExtension<BaseTheme, ThemeType> = {
+  [Key in keyof BaseTheme]?: BaseTheme[Key] extends (...args: any[]) => any
+    ? DeepThemeExtension<
+        Partial<ReturnType<BaseTheme[Key]>>,
+        CloneKey<ThemeType, Key>
+      >
+    : BaseTheme[Key] extends object
+    ? DeepThemeExtension<Partial<BaseTheme[Key]>, CloneKey<ThemeType, Key>>
+    : CloneKey<ThemeType, Key>
+}
 
-export type ThemeOverride = DeepThemeExtension<Theme, ThemeExtensionTypeHints>
+export type ThemeOverride = Partial<ChakraTheme> &
+  DeepThemeExtension<DefaultChakraTheme, ChakraTheme>
 
 /**
  * Function to override or customize the Chakra UI theme conveniently
  * @param overrides - Your custom theme object overrides
  * @param baseTheme - theme to customize
  */
-export function extendTheme<T extends ThemeOverride>(
-  overrides: T,
-  baseTheme: any = defaultTheme,
-) {
+export function extendTheme<
+  BaseTheme extends ChakraTheme = DefaultChakraTheme,
+  Overrides extends ThemeOverride = ThemeOverride
+>(
+  overrides: Overrides,
+  baseTheme: BaseTheme = defaultTheme as BaseTheme,
+): BaseTheme & Overrides {
   function customizer(
     source: unknown,
     override: unknown,
