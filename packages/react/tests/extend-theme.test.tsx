@@ -57,7 +57,7 @@ describe("extendTheme", () => {
     const customTheme = extendTheme(override)
 
     const { baseStyle, defaultProps } = customTheme.components.Button
-    const baseStyles = baseStyle(defaultProps)
+    const baseStyles = baseStyle()
 
     expect(baseStyles.bg).toBe(testColor)
 
