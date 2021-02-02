@@ -4,6 +4,15 @@ import * as ComponentProps from "@chakra-ui/props-docs"
 import { Tag, theme } from "@chakra-ui/react"
 import MDXComponents from "./mdx-components"
 
+/**
+ * A map of components that use foreign theme key.
+ * The key is name of the component and value is the theme key it uses.
+ */
+const themeComponentKeyAliases = {
+  AlertDialog: "Modal",
+  IconButton: "Button",
+}
+
 export type PropsTableProps = {
   /**
    * displayName of the target component
@@ -109,7 +118,8 @@ const TYPE_GENERIC_THEMABLE = "(string & {})"
 function makePropsTable({ of, omit, only }: MakePropsTableOptions) {
   const props = ComponentProps[of]?.props as Record<string, any>
 
-  const componentTheme = theme.components[of]
+  const themeKey = themeComponentKeyAliases[of] ?? of
+  const componentTheme = theme.components[themeKey]
 
   const featNotImplemented = (feat: string) => (
     <>
