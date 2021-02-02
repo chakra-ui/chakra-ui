@@ -64,8 +64,7 @@ function ComponentLinks(props: ComponentLinksProps) {
     <WrapItem>
       <ComponentLink
         url={
-          github.url ||
-          `${githubRepoUrl}/tree/master/packages/${github.package}`
+          github.url || `${githubRepoUrl}/tree/main/packages/${github.package}`
         }
         icon={FaGithub}
         iconColor={useColorModeValue("gray.600", "inherit")}
@@ -105,7 +104,7 @@ function ComponentLinks(props: ComponentLinksProps) {
   const themeComponentLink = theme && (
     <WrapItem>
       <ComponentLink
-        url={`${githubRepoUrl}/tree/master/packages/theme/src/components/${theme.componentName}.ts`}
+        url={`${githubRepoUrl}/tree/main/packages/theme/src/components/${theme.componentName}.ts`}
         icon={FaGithub}
         iconColor={useColorModeValue("gray.600", "inherit")}
         iconSize="1rem"

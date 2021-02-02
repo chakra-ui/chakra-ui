@@ -16,8 +16,8 @@ const siteConfig = {
   },
   repo: {
     url: baseUrl,
-    editUrl: `${baseUrl}/edit/develop/website`,
-    blobUrl: `${baseUrl}/blob/develop`,
+    editUrl: `${baseUrl}/edit/main/website`,
+    blobUrl: `${baseUrl}/blob/main`,
   },
   openCollective: {
     url: "https://opencollective.com/chakra-ui",

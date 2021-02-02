@@ -40,7 +40,7 @@ async function getUserData(username) {
 }
 
 const EDIT_URL =
-  "https://github.com/chakra-ui/chakra-ui/edit/develop/website/pages"
+  "https://github.com/chakra-ui/chakra-ui/edit/main/website/pages"
 
 /**
  * Gets the last edited timestamp and author from git
