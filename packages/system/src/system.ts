@@ -2,17 +2,10 @@ import {
   css,
   propNames,
   ResponsiveValue,
-  SystemProps,
-  SystemStyleObject,
   StyleProps,
+  SystemStyleObject,
 } from "@chakra-ui/styled-system"
-import {
-  memoizedGet as get,
-  objectFilter,
-  objectAssign,
-  Dict,
-  isFunction,
-} from "@chakra-ui/utils"
+import { Dict, isFunction, objectFilter } from "@chakra-ui/utils"
 import _styled, {
   CSSObject,
   FunctionInterpolation,
@@ -25,26 +18,25 @@ import { domElements, DOMElements } from "./system.utils"
 /**
  * Convert propNames array to object to faster lookup perf
  */
-const stylePropNames = propNames.reduce((keymirror, key) => {
-  if (typeof key !== "object" && typeof key !== "function") keymirror[key] = key
-  return keymirror
+const stylePropNames = propNames.reduce((acc, key) => {
+  if (typeof key !== "object" && typeof key !== "function") acc[key] = key
+  return acc
 }, {})
 
-interface StyleResolverProps extends SystemProps {
+type StyleResolverProps = SystemStyleObject & {
   __css?: SystemStyleObject
   sx?: SystemStyleObject
   theme: Dict
   css?: CSSObject
   noOfLines?: ResponsiveValue<number>
   isTruncated?: boolean
-  layerStyle?: string
-  textStyle?: string
-  apply?: ResponsiveValue<string>
 }
 
-type GetStyleObject = (options: {
-  baseStyle?: SystemStyleObject
-}) => FunctionInterpolation<StyleResolverProps>
+interface GetStyleObject {
+  (options: {
+    baseStyle?: SystemStyleObject
+  }): FunctionInterpolation<StyleResolverProps>
+}
 
 /**
  * Style resolver function that manages how style props are merged
@@ -62,9 +54,6 @@ type GetStyleObject = (options: {
 export const getStyleObject: GetStyleObject = ({ baseStyle }) => (props) => {
   const {
     theme,
-    layerStyle,
-    textStyle,
-    apply,
     noOfLines,
     isTruncated,
     css: cssProp,
@@ -72,9 +61,6 @@ export const getStyleObject: GetStyleObject = ({ baseStyle }) => (props) => {
     sx,
     ...rest
   } = props
-
-  const _layerStyle = get(theme, `layerStyles.${layerStyle}`, {})
-  const _textStyle = get(theme, `textStyles.${textStyle}`, {})
 
   // filter out props that aren't style props
   const styleProps = objectFilter(rest, (_, prop) => prop in stylePropNames)
@@ -101,13 +87,10 @@ export const getStyleObject: GetStyleObject = ({ baseStyle }) => (props) => {
    * The computed, theme-aware style object. The other of the properties
    * within `objectAssign` determines how styles are overriden.
    */
-  const finalStyles = objectAssign(
+  const finalStyles = Object.assign(
     {},
     __css,
     baseStyle,
-    { apply },
-    _layerStyle,
-    _textStyle,
     truncateStyle,
     styleProps,
     sx,
@@ -117,7 +100,7 @@ export const getStyleObject: GetStyleObject = ({ baseStyle }) => (props) => {
   const computedCSS = css(finalStyles)(props.theme)
 
   // Merge the computed css object with styles in css prop
-  const cssObject: Interpolation<StyleResolverProps> = objectAssign(
+  const cssObject: Interpolation<StyleResolverProps> = Object.assign(
     computedCSS,
     isFunction(cssProp) ? cssProp(theme) : cssProp,
   )

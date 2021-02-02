@@ -1,7 +1,14 @@
 import React from "react"
 import theme from "@chakra-ui/theme"
 import { motion } from "framer-motion"
-import { chakra, PropsOf, ThemeProvider, ThemingProps, useProps } from "../src"
+import {
+  chakra,
+  PropsOf,
+  ThemeProvider,
+  ThemingProps,
+  useProps,
+  useStyleConfig,
+} from "../src"
 
 export default {
   title: "System",
@@ -114,4 +121,55 @@ export const WithRgbGradient = () => (
       h="64px"
     />
   </>
+)
+
+export const WithLayerStyle = () => (
+  <ThemeProvider
+    theme={{
+      layerStyles: {
+        base: {
+          bg: "pink",
+          color: "red",
+        },
+      },
+      textStyles: {
+        caps: {
+          textTransform: "uppercase",
+          fontWeight: "bold",
+        },
+      },
+    }}
+  >
+    <chakra.div layerStyle="base" textStyle="caps" color="white" px="2">
+      Welcome
+    </chakra.div>
+  </ThemeProvider>
+)
+
+const Div: React.FC = ({ children }) => {
+  const styles = useStyleConfig("Div")
+  return <chakra.div sx={styles}>{children}</chakra.div>
+}
+
+export const WithLayerStyleInComponentTheme = () => (
+  <ThemeProvider
+    theme={{
+      textStyles: {
+        caps: {
+          textTransform: "uppercase",
+          fontWeight: "bold",
+        },
+      },
+      components: {
+        Div: {
+          baseStyle: {
+            textStyle: "caps",
+            bg: "red",
+          },
+        },
+      },
+    }}
+  >
+    <Div>Welcome</Div>
+  </ThemeProvider>
 )

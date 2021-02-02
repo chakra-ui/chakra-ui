@@ -30,6 +30,7 @@ export interface PropConfig {
   scale?: string
   defaultScale?: Scale
   transform?(value: any, scale: any, props: Props): any
+  processResult?: boolean
 }
 
 export interface Config {

@@ -21,17 +21,9 @@ export interface StyleProps
     System.OutlineProps,
     System.OtherProps {}
 
-export interface ApplyPropStyles {
-  /**
-   * Apply theme-aware style objects in `theme`
-   */
-  apply?: ResponsiveValue<string>
-}
-
 export interface SystemCSSProperties
   extends CSS.Properties,
-    Omit<StyleProps, keyof CSS.Properties>,
-    ApplyPropStyles {}
+    Omit<StyleProps, keyof CSS.Properties> {}
 
 export type ThemeThunk<T> = T | ((theme: Dict) => T)
 

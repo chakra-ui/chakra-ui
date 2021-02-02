@@ -78,7 +78,7 @@ test("should resolve styles correctly", () => {
       "WebkitLineClamp": 3,
       "background": "tomato",
       "backgroundPosition": "top left",
-      "color": "#F687B3",
+      "color": "#FC8181",
       "display": "-webkit-box",
       "fontSize": 10,
       "letterSpacing": "2px",
@@ -86,7 +86,7 @@ test("should resolve styles correctly", () => {
       "paddingLeft": 40,
       "paddingRight": "1.25rem",
       "textOverflow": "ellipsis",
-      "textTransform": "capitalize",
+      "textTransform": "uppercase",
     }
   `)
 })
