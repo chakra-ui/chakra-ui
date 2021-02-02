@@ -43,7 +43,7 @@ export interface TypographyProps {
   /**
    * The CSS `font-weight` property
    */
-  fontWeight?: Token<string, "fontWeights">
+  fontWeight?: Token<string | {}, "fontWeights">
   /**
    * The CSS `line-height` property
    */
