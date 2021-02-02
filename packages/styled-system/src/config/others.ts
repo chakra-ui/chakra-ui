@@ -1,7 +1,8 @@
+import { memoizedGet as get } from "@chakra-ui/utils"
 import * as CSS from "csstype"
 import { Config, createParser, PropConfig, system } from "../core"
-import { getIsRtl } from "../utils/directionality"
 import { Length, ResponsiveValue } from "../utils"
+import { getIsRtl } from "../utils/directionality"
 
 const floatTransform: PropConfig["transform"] = (value, _, props = {}) => {
   const map = { left: "right", right: "left" }
@@ -55,6 +56,21 @@ const config: Config = {
       if (value === "focusable") return srFocusable
       return {}
     },
+  },
+  layerStyle: {
+    processResult: true,
+    property: "&",
+    transform: (value, _, theme) => get(theme, `layerStyles.${value}`, {}),
+  },
+  textStyle: {
+    processResult: true,
+    property: "&",
+    transform: (value, _, theme) => get(theme, `textStyles.${value}`, {}),
+  },
+  apply: {
+    processResult: true,
+    property: "&",
+    transform: (value, _, theme) => get(theme, value, {}),
   },
 }
 
@@ -120,6 +136,20 @@ export interface OtherProps {
    * It creates a clipping region that sets what part of an element should be shown.
    */
   clipPath?: ResponsiveValue<CSS.Property.ClipPath>
+  /**
+   * The layer style object to apply.
+   * Note: Styles must be located in `theme.layerStyles`
+   */
+  layerStyle?: ResponsiveValue<string>
+  /**
+   * The text style object to apply.
+   * Note: Styles must be located in `theme.textStyles`
+   */
+  textStyle?: ResponsiveValue<string>
+  /**
+   * Apply theme-aware style objects in `theme`
+   */
+  apply?: ResponsiveValue<string>
 }
 
 export const others = system(config)

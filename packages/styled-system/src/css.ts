@@ -151,16 +151,7 @@ export const css = (styleOrFn: StyleObjectOrFn = {}) => (
 
     if (config === true) {
       // shortcut definition
-      config = {
-        property: key,
-        scale: key,
-      }
-    }
-
-    if (key === "apply") {
-      const apply = css(get(theme, val))(theme)
-      computedStyles = mergeWith({}, computedStyles, apply)
-      continue
+      config = { property: key, scale: key }
     }
 
     if (isObject(val)) {
@@ -169,7 +160,12 @@ export const css = (styleOrFn: StyleObjectOrFn = {}) => (
     }
 
     const scale = get(theme, config?.scale, {})
-    const value = config?.transform?.(val, scale, props) ?? get(scale, val, val)
+    let value = config?.transform?.(val, scale, props) ?? get(scale, val, val)
+    /**
+     * Useful for `layerStyle`, and `textStyle` to transform the returned
+     * result since it might use theme tokens
+     */
+    value = config?.processResult ? css(value)(theme) : value
 
     if (config?.properties) {
       for (const property of config.properties) {

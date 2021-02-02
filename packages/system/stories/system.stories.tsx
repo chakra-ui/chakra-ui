@@ -115,3 +115,26 @@ export const WithRgbGradient = () => (
     />
   </>
 )
+
+export const WithLayerStyle = () => (
+  <ThemeProvider
+    theme={{
+      layerStyles: {
+        base: {
+          bg: "pink",
+          color: "red",
+        },
+      },
+      textStyles: {
+        caps: {
+          textTransform: "uppercase",
+          fontWeight: "bold",
+        },
+      },
+    }}
+  >
+    <chakra.div layerStyle="base" textStyle="caps" color="white" px="2">
+      Welcome
+    </chakra.div>
+  </ThemeProvider>
+)

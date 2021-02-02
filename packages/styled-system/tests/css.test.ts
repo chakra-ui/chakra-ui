@@ -493,3 +493,61 @@ test("pseudo selectors are transformed", () => {
     },
   })
 })
+
+test("should expand textStyle and layerStyle", () => {
+  const theme = {
+    colors: { red: { 300: "#red" } },
+    breakpoints: createBreakpoints({
+      sm: "400px",
+      md: "768px",
+      lg: "1200px",
+      xl: "1800px",
+    }),
+    layerStyles: {
+      v1: {
+        color: "red.300",
+        bg: "tomato",
+      },
+    },
+    textStyles: {
+      caps: {
+        textTransform: "uppercase",
+        letterSpacing: "wide",
+        fontSize: "lg",
+      },
+      lower: {
+        textTransform: "lowercase",
+        letterSpacing: "0.2px",
+        fontSize: "sm",
+      },
+    },
+  }
+
+  expect(css({ layerStyle: "v1" })(theme)).toMatchInlineSnapshot(`
+    Object {
+      "background": "tomato",
+      "color": "#red",
+    }
+  `)
+
+  expect(css({ textStyle: "caps" })(theme)).toMatchInlineSnapshot(`
+    Object {
+      "fontSize": "lg",
+      "letterSpacing": "wide",
+      "textTransform": "uppercase",
+    }
+  `)
+
+  expect(css({ textStyle: ["caps", "lower"] })(theme)).toMatchInlineSnapshot(`
+    Object {
+      "@media screen and (min-width: 400px)": Object {
+        "fontSize": "sm",
+        "letterSpacing": "0.2px",
+        "textTransform": "lowercase",
+      },
+      "fontSize": "lg",
+      "letterSpacing": "wide",
+      "textTransform": "uppercase",
+    }
+  `)
+})
