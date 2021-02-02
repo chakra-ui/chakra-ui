@@ -5,6 +5,7 @@ const parts = ["field", "addon"]
 const baseStyle = {
   field: {
     width: "100%",
+    minWidth: 0,
     outline: 0,
     position: "relative",
     appearance: "none",
