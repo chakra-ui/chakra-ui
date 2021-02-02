@@ -168,7 +168,7 @@ export interface BorderProps {
   /**
    * The CSS `border-top` property
    */
-  borderTop?: Token<CSS.Property.BorderTop, "borders">
+  borderTop?: Token<CSS.Property.BorderTop | number, "borders">
   borderBlockStart?: Token<CSS.Property.BorderBlockStart | number>
   /**
    * The CSS `border-top-width` property
