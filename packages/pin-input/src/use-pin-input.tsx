@@ -162,8 +162,10 @@ export function usePinInput(props: UsePinInputProps = {}) {
     if (autoFocus) {
       const firstInput = nodes.first()
       firstInput?.node?.focus()
+      setFocusedIndex(0)
     }
-  }, [autoFocus, nodes])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [nodes])
 
   const focusNext = React.useCallback(
     (index: number) => {
