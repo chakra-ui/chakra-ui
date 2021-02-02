@@ -1,4 +1,9 @@
-import { useDescendant, useDescendants } from "@chakra-ui/descendant"
+import {
+  useDescendant,
+  useDescendants,
+  UseDescendantsReturn,
+  DescendantsContext,
+} from "@descendants/react"
 import { useControllableState, useId } from "@chakra-ui/hooks"
 import {
   ariaAttr,
@@ -13,7 +18,7 @@ type InputProps = Omit<
   "color" | "height" | "width"
 >
 
-export type PinInputContext = UsePinInputReturn & {
+export type PinInputContext = Omit<UsePinInputReturn, "descendants"> & {
   /**
    * Sets the pin input component to the disabled state
    */
@@ -24,13 +29,32 @@ export type PinInputContext = UsePinInputReturn & {
   isInvalid?: boolean
 }
 
-const [PinInputProvider, usePinInputContext] = createContext<PinInputContext>({
+const [
+  PinInputContextProvider,
+  usePinInputContext,
+] = createContext<PinInputContext>({
   name: "PinInputContext",
   errorMessage:
     "usePinInputContext: `context` is undefined. Seems you forgot to all pin input fields within `<PinInput />`",
 })
 
-export { PinInputProvider, usePinInputContext }
+interface PinInputProviderProps {
+  value: PinInputContext & { descendants: UseDescendantsReturn }
+}
+
+export const PinInputProvider: React.FC<PinInputProviderProps> = (props) => {
+  const { value, children } = props
+  const { descendants, ...context } = value
+  return (
+    <PinInputContextProvider value={context}>
+      <DescendantsContext.Provider value={descendants}>
+        {children}
+      </DescendantsContext.Provider>
+    </PinInputContextProvider>
+  )
+}
+
+export { PinInputContextProvider, usePinInputContext }
 
 export interface UsePinInputProps {
   /**
@@ -123,8 +147,8 @@ export function usePinInput(props: UsePinInputProps = {}) {
   const uuid = useId()
   const id = idProp ?? `pin-input-${uuid}`
 
-  const domContext = useDescendants<HTMLInputElement, {}>()
-  const { descendants } = domContext
+  const descendants = useDescendants()
+  const nodes = descendants.observer
 
   const [moveFocus, setMoveFocus] = React.useState(true)
 
@@ -136,21 +160,18 @@ export function usePinInput(props: UsePinInputProps = {}) {
 
   React.useEffect(() => {
     if (autoFocus) {
-      const firstInput = descendants[0]
-      firstInput?.element?.focus()
+      const firstInput = nodes.first()
+      firstInput?.node?.focus()
     }
-    // We don't want to listen for updates to `autoFocus` since it only runs initially
-    // eslint-disable-next-line
-  }, [descendants])
+  }, [autoFocus, nodes])
 
   const focusNext = React.useCallback(
     (index: number) => {
       if (!moveFocus || !manageFocus) return
-
-      const nextInput = descendants[index + 1]
-      nextInput?.element?.focus()
+      const nextInput = nodes.next(index, false)
+      nextInput?.node?.focus()
     },
-    [descendants, moveFocus, manageFocus],
+    [moveFocus, manageFocus, nodes],
   )
 
   const setValue = React.useCallback(
@@ -161,7 +182,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
 
       const isComplete =
         value !== "" &&
-        index === descendants.length - 1 &&
+        index === nodes.count() - 1 &&
         values.every((inputValue) => inputValue !== "")
 
       if (isComplete) {
@@ -170,15 +191,15 @@ export function usePinInput(props: UsePinInputProps = {}) {
         focusNext(index)
       }
     },
-    [values, setValues, focusNext, onComplete, descendants.length],
+    [values, setValues, focusNext, onComplete, nodes],
   )
 
   const clear = React.useCallback(() => {
-    const values: string[] = Array(descendants.length).fill("")
+    const values: string[] = Array(nodes.count()).fill("")
     setValues(values)
-    const firstInput = descendants[0]
-    firstInput.element?.focus()
-  }, [descendants, setValues])
+    const firstInput = nodes.first()
+    firstInput.node?.focus()
+  }, [setValues, nodes])
 
   const getNextValue = React.useCallback(
     (value: string, eventValue: string) => {
@@ -222,12 +243,12 @@ export function usePinInput(props: UsePinInputProps = {}) {
             // Ensure the value matches the number of inputs
             const nextValue = eventValue
               .split("")
-              .filter((_, index) => index < descendants.length)
+              .filter((_, index) => index < nodes.count())
 
             setValues(nextValue)
 
             // if pasting fills the entire input fields, trigger `onComplete`
-            if (nextValue.length === descendants.length) {
+            if (nextValue.length === nodes.count()) {
               onComplete?.(nextValue.join(""))
             }
           }
@@ -244,10 +265,10 @@ export function usePinInput(props: UsePinInputProps = {}) {
       const onKeyDown = (event: React.KeyboardEvent) => {
         if (event.key === "Backspace" && manageFocus) {
           if ((event.target as HTMLInputElement).value === "") {
-            const prevInput = descendants[index - 1]
+            const prevInput = nodes.prev(index, false)
             if (prevInput) {
               setValue("", index - 1)
-              prevInput.element?.focus()
+              prevInput.node?.focus()
               setMoveFocus(true)
             }
           } else {
@@ -285,7 +306,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
       }
     },
     [
-      descendants,
+      nodes,
       focusedIndex,
       getNextValue,
       id,
@@ -308,7 +329,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
     getInputProps,
     // state
     id,
-    domContext,
+    descendants,
     values,
     // actions
     setValue,
@@ -327,18 +348,11 @@ export function usePinInputField(
   props: UsePinInputFieldProps = {},
   forwardedRef: React.Ref<any> = null,
 ) {
-  const ref = React.useRef<HTMLInputElement>(null)
-
-  const { domContext, getInputProps } = usePinInputContext()
-
-  const index = useDescendant({
-    context: domContext,
-    element: ref.current,
-  })
-
+  const { getInputProps } = usePinInputContext()
+  const { index, register } = useDescendant()
   return getInputProps({
     ...props,
-    ref: mergeRefs(ref, forwardedRef),
+    ref: mergeRefs(register, forwardedRef),
     index,
   })
 }

@@ -1,10 +1,10 @@
 import {
   chakra,
-  forwardRef,
+  ChakraComponent,
+  HTMLChakraProps,
   omitThemingProps,
   ThemingProps,
   useStyleConfig,
-  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -59,17 +59,19 @@ if (__DEV__) {
 
 export interface PinInputFieldProps extends HTMLChakraProps<"input"> {}
 
-export const PinInputField = forwardRef<PinInputFieldProps, "input">(
-  (props, ref) => {
-    const inputProps = usePinInputField(props, ref)
-    return (
-      <chakra.input
-        {...inputProps}
-        className={cx("chakra-pin-input", props.className)}
-      />
-    )
-  },
-)
+export const PinInputField = React.memo(
+  React.forwardRef(
+    (props: PinInputFieldProps, ref: React.Ref<HTMLInputElement>) => {
+      const inputProps = usePinInputField(props, ref)
+      return (
+        <chakra.input
+          {...inputProps}
+          className={cx("chakra-pin-input", props.className)}
+        />
+      )
+    },
+  ),
+) as ChakraComponent<"a">
 
 if (__DEV__) {
   PinInputField.displayName = "PinInputField"

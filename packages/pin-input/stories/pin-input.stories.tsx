@@ -1,3 +1,4 @@
+import { DescendantsContext } from "@descendants/react"
 import * as React from "react"
 import {
   PinInput,
@@ -33,10 +34,12 @@ export function HookExample() {
   })
   return (
     <PinInputProvider value={context}>
-      <Input style={style} />
-      <Input style={style} />
-      <Input style={style} />
-      <Input style={style} />
+      <DescendantsContext.Provider value={context.descendants}>
+        <Input style={style} />
+        <Input style={style} />
+        <Input style={style} />
+        <Input style={style} />
+      </DescendantsContext.Provider>
     </PinInputProvider>
   )
 }
