@@ -178,7 +178,7 @@ https://www.conventionalcommits.org/ or check out the
 4. Run `yarn changeset` to create a detailed description of your changes. This
    will be used to generate a changelog when we publish an update.
    [Learn more about Changeset](https://github.com/atlassian/changesets/tree/master/packages/cli).
-   Please note that you might have to run `git fetch origin master:master`
+   Please note that you might have to run `git fetch origin main:master`
    (where origin will be your fork on GitHub) before `yarn changeset` works.
 
 > If you made minor changes like CI config, prettier, etc, you can run
