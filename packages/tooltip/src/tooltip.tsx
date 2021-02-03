@@ -128,7 +128,10 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
           <Portal {...portalProps}>
             <chakra.div
               {...tooltip.getTooltipPositionerProps()}
-              __css={{ zIndex: styles.zIndex }}
+              __css={{
+                zIndex: styles.zIndex,
+                pointerEvents: "none",
+              }}
             >
               <StyledTooltip
                 variants={scale}

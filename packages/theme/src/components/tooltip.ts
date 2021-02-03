@@ -8,7 +8,6 @@ function baseStyle(props: Record<string, any>) {
     color: mode("whiteAlpha.900", "gray.900")(props),
     borderRadius: "sm",
     fontWeight: "medium",
-    pointerEvents: "none",
     fontSize: "sm",
     boxShadow: "md",
     maxW: "320px",
