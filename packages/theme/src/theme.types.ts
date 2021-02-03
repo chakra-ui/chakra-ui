@@ -1,7 +1,11 @@
 import { ColorModeOptions } from "@chakra-ui/system"
 import { Breakpoints, Styles } from "@chakra-ui/theme-tools"
 import { Dict } from "@chakra-ui/utils"
-import { StyleObjectOrFn, ThemeThunk } from "@chakra-ui/styled-system"
+import {
+  ResponsiveValue,
+  StyleObjectOrFn,
+  ThemeThunk,
+} from "@chakra-ui/styled-system"
 
 export type RecursiveProperty<Nested = string | number> =
   | RecursiveObject<Nested>
@@ -34,8 +38,8 @@ export interface ColorHues {
 export type ThemeDirection = "ltr" | "rtl"
 
 interface ComponentDefaultProps {
-  size?: string
-  variant?: string
+  size?: ResponsiveValue<string>
+  variant?: ResponsiveValue<string>
   colorScheme?: string
 }
 

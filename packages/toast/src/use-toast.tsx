@@ -10,6 +10,7 @@ import {
   chakra,
   ColorMode,
   ColorModeContext,
+  ResponsiveValue,
   ThemeProvider,
   useChakra,
 } from "@chakra-ui/system"
@@ -53,7 +54,7 @@ export interface UseToastOptions {
   /**
    * The alert component `variant` to use
    */
-  variant?: string
+  variant?: ResponsiveValue<string>
   /**
    * The status of the toast.
    */

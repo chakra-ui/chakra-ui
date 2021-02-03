@@ -1,4 +1,4 @@
-import { SystemStyleObject } from "@chakra-ui/system"
+import { ResponsiveValue, SystemStyleObject } from "@chakra-ui/system"
 import { Dict, runIfFn } from "@chakra-ui/utils"
 
 export interface StyleConfig {
@@ -6,8 +6,8 @@ export interface StyleConfig {
   sizes?: { [size: string]: SystemStyleObject }
   variants?: { [variant: string]: SystemStyleObject }
   defaultProps?: {
-    size?: string
-    variant?: string
+    size?: ResponsiveValue<string>
+    variant?: ResponsiveValue<string>
     colorScheme?: string
   }
 }
