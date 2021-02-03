@@ -1,8 +1,16 @@
-import { isNumber, isCustomBreakpoint, StringOrNumber } from "@chakra-ui/utils"
+import { isNumber } from "./assertion"
+import { isCustomBreakpoint } from "./array"
+import { StringOrNumber } from "./types"
 
-export default function createMediaQueries(
-  breakpoints: string[],
-): MediaQuery[] {
+export interface MediaQuery {
+  breakpoint: string
+  maxWidth?: string
+  mediaMaxWidth?: string
+  minWidth: string
+  query: string
+}
+
+export function createMediaQueries(breakpoints: string[]): MediaQuery[] {
   return (
     Object.entries(breakpoints)
       .filter(([key]) => isCustomBreakpoint(key))
@@ -16,11 +24,13 @@ export default function createMediaQueries(
         const next = arr[index + 1]
         // this breakpoint must end prior the threshold of the next
         const maxWidth = next ? next[1] : undefined
+        const mediaMaxWidth = maxWidth && subtract(toMediaString(maxWidth))
         const query = createMediaQueryString(minWidth, maxWidth)
 
         return {
           minWidth,
           maxWidth,
+          mediaMaxWidth,
           breakpoint,
           query,
         }
@@ -52,13 +62,6 @@ function createMediaQueryString(minWidth: string, maxWidth?: string) {
   query += `(max-width: ${toMediaString(subtract(maxWidth))})`
 
   return query
-}
-
-interface MediaQuery {
-  breakpoint: string
-  maxWidth?: string
-  minWidth: string
-  query: string
 }
 
 const measurementRegex = /(\d+\.?\d*)/u
