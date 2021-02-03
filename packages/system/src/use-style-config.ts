@@ -100,24 +100,28 @@ function resolveResponsivePropStyles({
   breakpoints,
   props,
 }: ResolveResponsivePropStylesOptions) {
+  if (responsiveValue == null) {
+    return {}
+  }
+
+  // for example: ["base", "sm", "md", "lg", "xl", "2xl"]
+  const breakpointKeys = Object.keys(breakpoints).filter(isCustomBreakpoint)
+
+  // If `responsiveValue` is a primitive value (not responsive),
+  // wrap the value into an array.
   const sanitizedValue =
-    responsiveValue == null ||
-    typeof responsiveValue === "string" ||
-    typeof responsiveValue === "number"
+    typeof responsiveValue === "string" || typeof responsiveValue === "number"
       ? [responsiveValue]
       : responsiveValue
 
-  // ["base", "sm", "md", "lg", "xl", "2xl"]
-  const breakpointKeys = Object.keys(breakpoints).filter(isCustomBreakpoint)
-
-  const responsiveArray = Array.isArray(sanitizedValue)
+  const sanitizedValueArray = Array.isArray(sanitizedValue)
     ? sanitizedValue
     : objectToArrayNotation(sanitizedValue, breakpointKeys)
 
   const mediaQueries = createMediaQueries(breakpoints)
 
   const resolvedStyles = Object.fromEntries(
-    responsiveArray.flatMap((name, breakpointIndex) => {
+    sanitizedValueArray.flatMap((name, breakpointIndex) => {
       if (name == null) {
         return []
       }
@@ -126,7 +130,7 @@ function resolveResponsivePropStyles({
 
       const { minWidth } = mediaQueries[breakpointIndex]
 
-      const nextValueBreakpointIndex = responsiveArray.findIndex(
+      const nextValueBreakpointIndex = sanitizedValueArray.findIndex(
         (value, index) => index > breakpointIndex && value != null,
       )
 
@@ -135,12 +139,12 @@ function resolveResponsivePropStyles({
           ? mediaQueries[nextValueBreakpointIndex - 1].mediaMaxWidth
           : null
 
-      const maxWidthQuery =
+      const mediaQuery = `@media (min-width: ${minWidth})${
         mediaMaxWidth != null ? ` and (max-width: ${mediaMaxWidth})` : ``
+      }`
 
-      const mediaQuery = `@media (min-width: ${minWidth})${maxWidthQuery}`
-
-      // Take styles out of the "@media (min-width: 0<unit>) {" media query
+      // If the media query equals to `@media (min-width: 0<unit>)`,
+      // don't nest the styles inside the media query.
       if (minWidth.startsWith("0") && mediaMaxWidth == null) {
         return Object.entries(styles)
       }
