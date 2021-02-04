@@ -12637,6 +12637,11 @@ focus-lock@^0.8.1:
   dependencies:
     tslib "^1.9.3"
 
+focus-options-polyfill@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/focus-options-polyfill/-/focus-options-polyfill-1.6.0.tgz#12ef3081dae9801d32dfcffd7b69259ca8f57198"
+  integrity sha512-uyrAmLZrPnUItQY5wTdg31TO9GGZRGsh/jmohUg9oLmLi/sw5y7LlTV/mwyd6rvbxIOGwmRiv6LcTS8w7Bk9NQ==
+
 focus-visible@5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/focus-visible/-/focus-visible-5.2.0.tgz#3a9e41fccf587bd25dcc2ef045508284f0a4d6b3"
