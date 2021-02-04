@@ -4,88 +4,109 @@ import {
   invoke,
   render,
   screen,
-  fireEvent,
   userEvent,
 } from "@chakra-ui/test-utils"
-import { useControllableState } from "../src"
+import { useControllableState, useControllableProp } from "../src"
 
-test("should be uncontrolled when defaultValue is passed", () => {
-  const { result } = renderHook(() =>
-    useControllableState({ defaultValue: "testing" }),
+test("useControllableProp manages a value using controlled prop or uncontrolled state", () => {
+  const { result, rerender } = renderHook(
+    ({ prop }: { prop?: string }) => useControllableProp(prop, "state"),
+    {
+      initialProps: { prop: "prop" },
+    },
   )
-  const [value] = result.current
-  expect(value).toBe("testing")
 
-  invoke(() => {
-    const [, setValue] = result.current
-    setValue("naruto")
-  })
+  // controlled when prop has a value
+  expect(result.current).toEqual([true, "prop"])
 
-  const [next] = result.current
-  expect(next).toBe("naruto")
+  // uncontrolled when prop is undefined
+  rerender({ prop: undefined })
+  expect(result.current).toEqual([false, "state"])
+
+  // controlled again if prop has a value
+  rerender({ prop: "prop" })
+  expect(result.current).toEqual([true, "prop"])
 })
 
-test("should be controlled when value is passed", () => {
-  const { result } = renderHook(() =>
-    useControllableState({
-      value: "testing",
-      name: "useControllableState",
-    }),
-  )
-  const [value] = result.current
-  expect(value).toBe("testing")
-
-  invoke(() => {
-    const [, setValue] = result.current
-    setValue("naruto")
-  })
-
-  // value shouldn't change since it is controlled
-  // we need to connect it to state for it to change
-  const [next] = result.current
-  expect(next).toBe("testing")
-})
-
-test("onChange does not become stale when callback is updated", async () => {
-  const Controllable = ({
-    value,
-    onChange,
-  }: {
-    value: number
-    onChange: (next: number) => void
-  }) => {
-    const [state, setState] = useControllableState({ value, onChange })
-
-    return (
-      <div>
-        <p data-testid="value">{value}</p>
-        <input
-          type="text"
-          value={state}
-          onChange={(e) => setState(Number(e.target.value))}
-        />
-      </div>
+describe("useControllableState", () => {
+  test("should be uncontrolled when defaultValue is passed", () => {
+    const { result } = renderHook(() =>
+      useControllableState({ defaultValue: "testing" }),
     )
-  }
+    const [value] = result.current
+    expect(value).toBe("testing")
 
-  const TestComponent = () => {
-    const [value, setValue] = useState(0)
-    const onChange = (next: number) => {
-      setValue(value + next)
+    invoke(() => {
+      const [, setValue] = result.current
+      setValue("naruto")
+    })
+
+    const [next] = result.current
+    expect(next).toBe("naruto")
+  })
+
+  test("should be controlled when value is passed", () => {
+    const { result } = renderHook(() =>
+      useControllableState({
+        value: "testing",
+        name: "useControllableState",
+      }),
+    )
+    const [value] = result.current
+    expect(value).toBe("testing")
+
+    invoke(() => {
+      const [, setValue] = result.current
+      setValue("naruto")
+    })
+
+    // value shouldn't change since it is controlled
+    // we need to connect it to state for it to change
+    const [next] = result.current
+    expect(next).toBe("testing")
+  })
+
+  test("onChange does not become stale when callback is updated", async () => {
+    const Controllable = ({
+      value,
+      onChange,
+    }: {
+      value: number
+      onChange: (next: number) => void
+    }) => {
+      const [state, setState] = useControllableState({ value, onChange })
+
+      return (
+        <div>
+          <p data-testid="value">{value}</p>
+          <input
+            type="text"
+            value={state}
+            onChange={(e) => setState(Number(e.target.value))}
+          />
+        </div>
+      )
     }
 
-    return <Controllable value={value} onChange={onChange} />
-  }
+    const TestComponent = () => {
+      const [value, setValue] = useState(0)
+      const onChange = (next: number) => {
+        setValue(value + next)
+      }
 
-  render(<TestComponent />)
+      return <Controllable value={value} onChange={onChange} />
+    }
 
-  expect(screen.getByTestId("value")).toHaveTextContent("0")
+    render(<TestComponent />)
 
-  userEvent.type(screen.getByRole("textbox"), "5")
+    expect(screen.getByTestId("value")).toHaveTextContent("0")
 
-  expect(await screen.findByTestId("value")).toHaveTextContent("5")
+    userEvent.type(screen.getByRole("textbox"), "5")
 
-  userEvent.type(screen.getByRole("textbox"), "{selectall}1")
+    expect(await screen.findByTestId("value")).toHaveTextContent("5")
 
-  expect(await screen.findByTestId("value")).toHaveTextContent("6")
+    userEvent.type(screen.getByRole("textbox"), "{selectall}1")
+
+    expect(await screen.findByTestId("value")).toHaveTextContent("6")
+  })
 })
