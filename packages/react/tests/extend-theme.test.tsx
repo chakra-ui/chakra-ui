@@ -1,4 +1,3 @@
-import * as React from "react"
 import { extendTheme, ThemeOverride } from "../src/extend-theme"
 import { createBreakpoints } from "@chakra-ui/theme-tools"
 
@@ -41,6 +40,29 @@ describe("extendTheme", () => {
 
     // should have more properties from the default theme
     expect(Object.keys(solidStyles).length).toBeGreaterThan(1)
+  })
+
+  it("should merge component baseStyle object with a function result", () => {
+    const testColor = "papayawhip"
+    const override = {
+      components: {
+        Button: {
+          baseStyle: () => ({
+            bg: testColor,
+          }),
+        },
+      },
+    }
+
+    const customTheme = extendTheme(override)
+
+    const { baseStyle, defaultProps } = customTheme.components.Button
+    const baseStyles = baseStyle()
+
+    expect(baseStyles.bg).toBe(testColor)
+
+    // should have more properties from the default theme
+    expect(Object.keys(baseStyles).length).toBeGreaterThan(1)
   })
 
   it("should override component variant with an object", () => {
