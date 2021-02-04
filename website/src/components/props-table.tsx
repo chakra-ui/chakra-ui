@@ -74,7 +74,8 @@ Remove the use of <PropsTable of="${of}" /> for this component in the docs.`,
                 <Tag
                   size="sm"
                   colorScheme="red"
-                  mr={1}
+                  px={1}
+                  mr="0.125rem"
                   verticalAlign="baseline"
                 >
                   required
