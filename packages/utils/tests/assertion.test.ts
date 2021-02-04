@@ -14,6 +14,7 @@ import {
   isInputEvent,
   isEmpty,
   isNotEmptyObject,
+  isCssVar,
 } from "../src"
 
 test("is number", () => {
@@ -81,6 +82,11 @@ test("is null", () => {
 
 test("is string", () => {
   expect(isString("1")).toBeTruthy()
+})
+
+test("is css var", () => {
+  expect(isCssVar("var(--whatever-you-want)")).toBeTruthy()
+  expect(isCssVar("4")).not.toBeTruthy()
 })
 
 test("is input event", () => {
