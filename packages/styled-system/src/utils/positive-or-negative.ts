@@ -1,4 +1,4 @@
-import { StringOrNumber, isString, isNumber } from "@chakra-ui/utils"
+import { StringOrNumber, isString, isNumber, isCssVar } from "@chakra-ui/utils"
 import unit from "./get-unit"
 
 const startsWith = (string: string, target: string) =>
@@ -17,7 +17,7 @@ export function positiveOrNegative(
   if (startsWith(valueString, "-")) {
     const raw = scale[valueString.slice(1)]
     if (isString(raw)) {
-      result = `-${raw}`
+      result = isCssVar(raw) ? `calc(${raw} * -1)` : `-${raw}`
     } else if (isNumber(raw)) {
       result = raw * -1
     } else {
