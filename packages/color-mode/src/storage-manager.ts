@@ -1,10 +1,13 @@
+import { __DEV__ } from "@chakra-ui/utils"
 import { ColorMode } from "./color-mode.utils"
 
-const hasLocalStorage = typeof Storage !== "undefined"
+const hasSupport = () => typeof Storage !== "undefined"
 export const storageKey = "chakra-ui-color-mode"
 
+type MaybeColorMode = ColorMode | undefined
+
 export interface StorageManager {
-  get(init?: ColorMode): ColorMode | undefined
+  get(init?: ColorMode): MaybeColorMode
   set(value: ColorMode): void
   type: "cookie" | "localStorage"
 }
@@ -14,17 +17,25 @@ export interface StorageManager {
  */
 export const localStorageManager: StorageManager = {
   get(init?) {
-    if (!hasLocalStorage) {
+    if (!hasSupport()) return init
+    try {
+      const value = localStorage.getItem(storageKey) as MaybeColorMode
+      return value ?? init
+    } catch (error) {
+      if (__DEV__) {
+        console.log(error)
+      }
       return init
     }
-
-    const maybeValue = window.localStorage.getItem(storageKey) as ColorMode
-
-    return maybeValue ?? init
   },
   set(value) {
-    if (hasLocalStorage) {
+    if (!hasSupport()) return
+    try {
       window.localStorage.setItem(storageKey, value)
+    } catch (error) {
+      if (__DEV__) {
+        console.log(error)
+      }
     }
   },
   type: "localStorage",
