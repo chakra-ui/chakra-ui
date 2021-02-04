@@ -68,38 +68,3 @@ export function isTabbable(element?: HTMLElement | null) {
     !hasNegativeTabIndex(element)
   )
 }
-
-const isActiveElement = (element: FocusableElement) =>
-  document.activeElement === (element as HTMLElement)
-
-function isInputElement(
-  element: FocusableElement,
-): element is HTMLInputElement {
-  return (
-    isHTMLElement(element) &&
-    element.tagName.toLowerCase() === "input" &&
-    "select" in element
-  )
-}
-
-export interface FocusableElement {
-  focus(options?: FocusOptions): void
-}
-
-interface FocusProps extends FocusOptions {
-  isActive?: typeof isActiveElement
-}
-
-export function focus(element: FocusableElement, options: FocusProps = {}) {
-  const { isActive = isActiveElement, preventScroll } = options
-
-  if (isActive(element)) return -1
-
-  return requestAnimationFrame(() => {
-    element.focus({ preventScroll })
-
-    if (isInputElement(element)) {
-      element.select()
-    }
-  })
-}
