@@ -31,7 +31,7 @@ export const localStorageManager: StorageManager = {
   set(value) {
     if (!hasSupport()) return
     try {
-      window.localStorage.setItem(storageKey, value)
+     localStorage.setItem(storageKey, value)
     } catch (error) {
       if (__DEV__) {
         console.log(error)
