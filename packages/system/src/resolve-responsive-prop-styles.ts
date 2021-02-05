@@ -1,4 +1,4 @@
-import { ResponsiveValue, SystemStyleObject } from "@chakra-ui/styled-system"
+import { ResponsiveValue, StyleObjectOrFn } from "@chakra-ui/styled-system"
 import {
   createMediaQueries,
   isCustomBreakpoint,
@@ -9,7 +9,7 @@ import {
 
 export interface ResolveResponsivePropStylesOptions {
   responsiveValue: ResponsiveValue<string>
-  responsiveStyles: Record<string, SystemStyleObject>
+  responsiveStyles: Record<string, StyleObjectOrFn>
   breakpoints: string[]
   props: Record<string, any>
 }
@@ -24,53 +24,64 @@ export function resolveResponsivePropStyles({
     return {}
   }
 
-  // for example: ["base", "sm", "md", "lg", "xl", "2xl"]
-  const breakpointKeys = Object.keys(breakpoints).filter(isCustomBreakpoint)
-
   // If `responsiveValue` is a primitive value (not responsive),
-  // wrap the value into an array.
-  const sanitizedValue =
-    typeof responsiveValue === "string" || typeof responsiveValue === "number"
-      ? [responsiveValue]
-      : responsiveValue
-
-  const sanitizedValueArray = Array.isArray(sanitizedValue)
-    ? sanitizedValue
-    : objectToArrayNotation(sanitizedValue, breakpointKeys)
+  // return its styles early.
+  if (
+    typeof responsiveValue === "string" ||
+    typeof responsiveValue === "number"
+  ) {
+    return responsiveStyles[responsiveValue]
+  }
 
   const mediaQueries = createMediaQueries(breakpoints)
 
+  // for example: ["base", "sm", "md", "lg", "xl", "2xl"]
+  const breakpointKeys = Object.keys(breakpoints).filter(isCustomBreakpoint)
+
+  const responsiveValueArray = Array.isArray(responsiveValue)
+    ? responsiveValue
+    : objectToArrayNotation(responsiveValue, breakpointKeys)
+
   const resolvedStyles = Object.fromEntries(
-    sanitizedValueArray.flatMap((name, breakpointIndex) => {
-      if (name == null) {
-        return []
-      }
+    responsiveValueArray
+      // Slice in case responsive values array
+      // has more values than there are breakpoints.
+      .slice(0, mediaQueries.length)
+      .flatMap((name, breakpointIndex) => {
+        if (name == null) {
+          return []
+        }
 
-      const styles = runIfFn(responsiveStyles[name as string] ?? {}, props)
+        const styles = runIfFn(responsiveStyles[name as string] ?? {}, props)
 
-      const { minWidth } = mediaQueries[breakpointIndex]
+        const { minWidth } = mediaQueries[breakpointIndex]
 
-      const nextValueBreakpointIndex = sanitizedValueArray.findIndex(
-        (value, index) => index > breakpointIndex && value != null,
-      )
+        const nextValueBreakpointIndex = responsiveValueArray.findIndex(
+          (value, index) => index > breakpointIndex && value != null,
+        )
 
-      const mediaMaxWidth =
-        nextValueBreakpointIndex !== -1
-          ? mediaQueries[nextValueBreakpointIndex - 1].mediaMaxWidth
-          : null
+        const mediaMaxWidth =
+          nextValueBreakpointIndex !== -1
+            ? mediaQueries[nextValueBreakpointIndex - 1].mediaMaxWidth
+            : null
 
-      const mediaQuery = `@media (min-width: ${minWidth})${
-        mediaMaxWidth != null ? ` and (max-width: ${mediaMaxWidth})` : ``
-      }`
+        const isZeroMinWidth = minWidth.startsWith("0")
 
-      // If the media query equals to `@media (min-width: 0<unit>)`,
-      // don't nest the styles inside the media query.
-      if (minWidth.startsWith("0") && mediaMaxWidth == null) {
-        return Object.entries(styles)
-      }
+        // If the media query equals to `@media (min-width: 0<unit>)`,
+        // don't nest the styles inside the media query.
+        if (isZeroMinWidth && mediaMaxWidth == null) {
+          return Object.entries(styles)
+        }
 
-      return [[mediaQuery, styles]]
-    }),
+        const queryParts = [
+          !isZeroMinWidth ? `(min-width: ${minWidth})` : null,
+          mediaMaxWidth != null ? `(max-width: ${mediaMaxWidth})` : null,
+        ].filter((query) => query != null)
+
+        const mediaQuery = `@media ${queryParts.join(" and ")}`
+
+        return [[mediaQuery, styles]]
+      }),
   )
 
   return resolvedStyles
