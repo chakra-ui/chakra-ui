@@ -41,7 +41,7 @@ type PseudoKeys = keyof CSS.Pseudos | keyof Pseudos
 
 type PseudoSelectorDefinition<D> = D | RecursivePseudo<D>
 
-type RecursivePseudo<D> = {
+export type RecursivePseudo<D> = {
   [K in PseudoKeys]?: PseudoSelectorDefinition<D> & D
 }
 
