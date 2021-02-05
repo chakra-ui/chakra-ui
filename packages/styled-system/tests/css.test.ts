@@ -238,6 +238,30 @@ test("handles negative margins from scale", () => {
   })
 })
 
+test("handles negative values from custom css var scale", () => {
+  const customTheme = {
+    ...theme,
+    space: ["var(--size-0)", "var(--size-1)", "var(--size-2)", "var(--size-3)"],
+  }
+  const result = css({
+    mt: -1,
+    mx: -2,
+    top: -3,
+    right: -3,
+    bottom: -3,
+    left: -3,
+  })(customTheme)
+  expect(result).toEqual({
+    marginTop: `calc(var(--size-1) * -1)`,
+    marginLeft: `calc(var(--size-2) * -1)`,
+    marginRight: `calc(var(--size-2) * -1)`,
+    top: `calc(var(--size-3) * -1)`,
+    right: `calc(var(--size-3) * -1)`,
+    bottom: `calc(var(--size-3) * -1)`,
+    left: `calc(var(--size-3) * -1)`,
+  })
+})
+
 test("handles negative top, left, bottom, and right from scale", () => {
   const result = css({
     top: -1,

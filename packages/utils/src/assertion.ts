@@ -56,6 +56,10 @@ export function isString(value: any): value is string {
   return Object.prototype.toString.call(value) === "[object String]"
 }
 
+export function isCssVar(value: string) {
+  return /^var\(--.+\)$/.test(value)
+}
+
 // Event assertions
 export function isInputEvent(value: any): value is ChangeEvent {
   return value && isObject(value) && isObject(value.target)
