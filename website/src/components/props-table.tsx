@@ -1,8 +1,17 @@
 import * as React from "react"
 import Link from "next/link"
 import * as ComponentProps from "@chakra-ui/props-docs"
+import { Tag, theme } from "@chakra-ui/react"
 import MDXComponents from "./mdx-components"
-import { theme } from "@chakra-ui/react"
+
+/**
+ * A map of components that use foreign theme key.
+ * The key is name of the component and value is the theme key it uses.
+ */
+const themeComponentKeyAliases = {
+  AlertDialog: "Modal",
+  IconButton: "Button",
+}
 
 export type PropsTableProps = {
   /**
@@ -32,100 +41,13 @@ const PropsTable = ({
   ],
   only,
 }: PropsTableProps) => {
-  const info: { props: Record<string, any> } = ComponentProps[of]
-  if (!info || !info.props) {
-    return null
-  }
+  const propList = React.useMemo(() => makePropsTable({ of, omit, only }), [
+    of,
+    omit,
+    only,
+  ])
 
-  const themeComponent = theme.components[of]
-  const sizeValues = themeComponent?.sizes && Object.keys(themeComponent.sizes)
-  const variantValues =
-    themeComponent?.variants && Object.keys(themeComponent.variants)
-
-  const extendThemeLink = (
-    <Link
-      href="/docs/theming/customize-theme#customizing-component-styles"
-      passHref
-    >
-      <MDXComponents.a>extend the theme</MDXComponents.a>
-    </Link>
-  )
-
-  /**
-   * If component has size prop, override the rendered value
-   * for `size` prop with the component's size values formatted as TS type.
-   */
-  if (info.props.size) {
-    if (sizeValues) {
-      info.props.size.type.name = sizeValues
-        .map((size) => `"${size}"`)
-        .join(" | ")
-    } else {
-      info.props.size.description = (
-        <>
-          Sizes for {of} are not implemented in the default theme, but you can{" "}
-          {extendThemeLink} to implement them.
-        </>
-      )
-    }
-  }
-
-  /**
-   * If component has variant prop, override the rendered value
-   * for `variant` prop with the component's variant values formatted as TS type.
-   */
-  if (info.props.variant) {
-    if (variantValues) {
-      info.props.variant.type.name = variantValues
-        .map((variant) => `"${variant}"`)
-        .join(" | ")
-    } else {
-      info.props.variant.description = (
-        <>
-          Variants for {of} are not implemented in the default theme, but you
-          can {extendThemeLink} to implement them.
-        </>
-      )
-    }
-  }
-
-  const defaultSize = themeComponent?.defaultProps?.size
-  const defaultVariant = themeComponent?.defaultProps?.variant
-
-  if (defaultSize != null) {
-    info.props.size.defaultValue = {
-      value: defaultSize,
-    }
-  }
-
-  if (defaultVariant != null) {
-    info.props.variant.defaultValue = {
-      value: defaultVariant,
-    }
-  }
-
-  const entries = React.useMemo(
-    () =>
-      Object.entries(info.props)
-        .filter(([propName]) => {
-          if (Array.isArray(only)) {
-            return only.includes(propName)
-          }
-          if (Array.isArray(omit)) {
-            return !omit.includes(propName)
-          }
-          return true
-        })
-        .sort(([a, aDef], [b, bDef]) => {
-          const aRequired = aDef.required ? 1000 : 0
-          const bRequired = bDef.required ? 1000 : 0
-          const requiredOffset = aRequired - bRequired
-          return String(a).localeCompare(b) - requiredOffset
-        }),
-    [info.props, omit, only],
-  )
-
-  if (!entries.length) {
+  if (!propList.length) {
     // this error breaks the build to notify you when there would be an empty table
     throw new Error(
       `No props left to render for component ${of}.
@@ -141,39 +63,46 @@ Remove the use of <PropsTable of="${of}" /> for this component in the docs.`,
           <MDXComponents.th>Type</MDXComponents.th>
           <MDXComponents.th>Description</MDXComponents.th>
           <MDXComponents.th>Default</MDXComponents.th>
-          {/* <MDXComponents.th>Required</MDXComponents.th> */}
         </tr>
       </thead>
       <tbody>
-        {entries.map(([propName, values]) => (
-          <tr key={propName}>
-            <MDXComponents.td>{propName}</MDXComponents.td>
+        {propList.map((prop) => (
+          <tr key={prop.name}>
+            <MDXComponents.td>{prop.name}</MDXComponents.td>
             <MDXComponents.td>
+              {prop.required && (
+                <Tag
+                  size="sm"
+                  colorScheme="red"
+                  px={1}
+                  mr="0.125rem"
+                  verticalAlign="baseline"
+                >
+                  required
+                </Tag>
+              )}
               <MDXComponents.inlineCode
                 whiteSpace="wrap"
                 d="inline-block"
                 lineHeight="tall"
               >
-                {values.type?.name}
+                {prop.type}
               </MDXComponents.inlineCode>
             </MDXComponents.td>
-            <MDXComponents.td>{values.description}</MDXComponents.td>
+            <MDXComponents.td>{prop.description}</MDXComponents.td>
             <MDXComponents.td>
-              {values.defaultValue?.value ? (
+              {prop.defaultValue ? (
                 <MDXComponents.inlineCode
                   whiteSpace="wrap"
                   d="inline-block"
                   lineHeight="tall"
                 >
-                  {values.defaultValue.value}
+                  {prop.defaultValue}
                 </MDXComponents.inlineCode>
               ) : (
                 "-"
               )}
             </MDXComponents.td>
-            {/* <MDXComponents.td>
-              {values.required ? "required" : "-"}
-            </MDXComponents.td> */}
           </tr>
         ))}
       </tbody>
@@ -182,3 +111,106 @@ Remove the use of <PropsTable of="${of}" /> for this component in the docs.`,
 }
 
 export default PropsTable
+
+interface MakePropsTableOptions extends PropsTableProps {}
+
+const TYPE_GENERIC_THEMABLE = "(string & {})"
+
+function makePropsTable({ of, omit, only }: MakePropsTableOptions) {
+  const props = ComponentProps[of]?.props as Record<string, any>
+
+  const themeKey = themeComponentKeyAliases[of] ?? of
+  const componentTheme = theme.components[themeKey]
+
+  const featNotImplemented = (feat: string) => (
+    <>
+      {feat} for <MDXComponents.inlineCode>{of}</MDXComponents.inlineCode> are
+      not implemented in the default theme. You can{" "}
+      <Link
+        href="/docs/theming/customize-theme#customizing-component-styles"
+        passHref
+      >
+        <MDXComponents.a>extend the theme</MDXComponents.a>
+      </Link>{" "}
+      to implement them.
+    </>
+  )
+
+  return Object.entries(props)
+    .filter(([name]) => {
+      if (Array.isArray(only) && !only.includes(name)) {
+        return false
+      }
+
+      if (Array.isArray(omit) && omit.includes(name)) {
+        return false
+      }
+
+      return true
+    })
+    .map(([name, { defaultValue, description, required, type }]) => {
+      const prop = {
+        name,
+        defaultValue: defaultValue?.value,
+        description,
+        required,
+        type: type.name,
+      }
+
+      if (name === "size") {
+        const defaultSize = componentTheme?.defaultProps?.size
+
+        if (defaultSize != null) {
+          prop.defaultValue = `"${defaultSize}"`
+        }
+
+        if (prop.type === TYPE_GENERIC_THEMABLE) {
+          prop.type = "string"
+          prop.description = featNotImplemented("Sizes")
+        } else {
+          prop.type = omitGenericThemableType(prop.type)
+        }
+      }
+
+      if (name === "variant") {
+        const defaultVariant = componentTheme?.defaultProps?.variant
+
+        if (defaultVariant != null) {
+          prop.defaultValue = `"${defaultVariant}"`
+        }
+
+        if (prop.type === TYPE_GENERIC_THEMABLE) {
+          prop.type = "string"
+          prop.description = featNotImplemented("Variants")
+        } else {
+          prop.type = omitGenericThemableType(prop.type)
+        }
+      }
+
+      if (name === "colorScheme") {
+        prop.type = omitGenericThemableType(prop.type)
+
+        const defaultColorScheme = componentTheme?.defaultProps?.colorScheme
+
+        if (defaultColorScheme != null) {
+          prop.defaultValue = `"${defaultColorScheme}"`
+        } else {
+          prop.description = featNotImplemented("Color Schemes")
+        }
+      }
+
+      return prop
+    })
+    .sort((propA, propB) => {
+      const aRequired = propA.required ? 1000 : 0
+      const bRequired = propB.required ? 1000 : 0
+      const requiredOffset = aRequired - bRequired
+      return String(propA.name).localeCompare(propB.name) - requiredOffset
+    })
+}
+
+const omitGenericThemableType = (type: string) =>
+  type
+    .split(" | ")
+    .filter((type) => type !== TYPE_GENERIC_THEMABLE)
+    .join(" | ")

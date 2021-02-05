@@ -38,10 +38,8 @@ type Omitted = "disabled" | "required" | "readOnly" | "size"
 export interface InputProps
   extends Omit<HTMLChakraProps<"input">, Omitted>,
     InputOptions,
-    ThemingProps<"InputGroup">,
-    FormControlOptions {
-  size?: string
-}
+    ThemingProps<"Input">,
+    FormControlOptions {}
 
 /**
  * Input
