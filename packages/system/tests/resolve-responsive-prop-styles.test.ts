@@ -104,3 +104,35 @@ test("resolves styles for responsive variant (breakpoints in em)", () => {
     }
   `)
 })
+
+test("resolves styles for non-responsive value (breakpoints in em)", () => {
+  expect(
+    resolveResponsivePropStyles({
+      breakpoints: breakpointsInEm,
+      responsiveValue: "outline",
+      responsiveStyles: responsiveStyles,
+      props,
+    }),
+  ).toMatchInlineSnapshot(`
+    Object {
+      "borderColor": "gray.300",
+      "borderWidth": 1,
+    }
+  `)
+})
+
+test("resolves styles with fn for non-responsive value (breakpoints in em)", () => {
+  expect(
+    resolveResponsivePropStyles({
+      breakpoints: breakpointsInEm,
+      responsiveValue: "solid",
+      responsiveStyles: responsiveStyles,
+      props,
+    }),
+  ).toMatchInlineSnapshot(`
+    Object {
+      "bg": "purple.200",
+      "color": "purple.800",
+    }
+  `)
+})

@@ -30,7 +30,7 @@ export function resolveResponsivePropStyles({
     typeof responsiveValue === "string" ||
     typeof responsiveValue === "number"
   ) {
-    return responsiveStyles[responsiveValue]
+    return runIfFn(responsiveStyles[responsiveValue] ?? {}, props)
   }
 
   const mediaQueries = createMediaQueries(breakpoints)
