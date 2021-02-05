@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import {
   chakra,
   PropsOf,
+  ResponsiveValue,
   ThemeProvider,
   ThemingProps,
   useProps,
@@ -146,9 +147,12 @@ export const WithLayerStyle = () => (
   </ThemeProvider>
 )
 
-const Div: React.FC = ({ children }) => {
-  const styles = useStyleConfig("Div")
-  return <chakra.div sx={styles}>{children}</chakra.div>
+const Div: React.FC<{
+  variant?: ResponsiveValue<string>
+  size?: ResponsiveValue<string>
+}> = (props) => {
+  const styles = useStyleConfig("Div", props)
+  return <chakra.div sx={styles}>{props.children}</chakra.div>
 }
 
 export const WithLayerStyleInComponentTheme = () => (
@@ -171,5 +175,41 @@ export const WithLayerStyleInComponentTheme = () => (
     }}
   >
     <Div>Welcome</Div>
+  </ThemeProvider>
+)
+
+export const WithResponsiveVariantAndSize = () => (
+  <ThemeProvider
+    theme={{
+      components: {
+        Div: {
+          baseStyle: {
+            border: "1px solid black",
+          },
+          variants: {
+            solid: {
+              bg: "purple.500",
+            },
+            outline: {
+              borderWidth: 4,
+              borderColor: "purple.500",
+            },
+          },
+          sizes: {
+            xs: {
+              padding: 1,
+            },
+            md: {
+              fontSize: "xl",
+              padding: 5,
+            },
+          },
+        },
+      },
+    }}
+  >
+    <Div variant={["solid", null, "outline"]} size={["xs", null, "md"]}>
+      Responsive Variants and Sizes!
+    </Div>
   </ThemeProvider>
 )
