@@ -4,7 +4,6 @@ import {
   isCustomBreakpoint,
   objectToArrayNotation,
   runIfFn,
-  __DEV__,
 } from "@chakra-ui/utils"
 
 export interface ResolveResponsivePropStylesOptions {
@@ -44,7 +43,7 @@ export function resolveResponsivePropStyles({
 
   const resolvedStyles = Object.fromEntries(
     responsiveValueArray
-      // Slice in case responsive values array
+      // Slice in case the responsive values array
       // has more values than there are breakpoints.
       .slice(0, mediaQueries.length)
       .flatMap((name, breakpointIndex) => {
