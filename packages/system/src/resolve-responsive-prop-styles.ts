@@ -10,6 +10,7 @@ export interface ResolveResponsivePropStylesOptions {
   responsiveValue: ResponsiveValue<string>
   responsiveStyles: Record<string, StyleObjectOrFn>
   breakpoints: string[]
+  parts?: string[]
   props: Record<string, any>
 }
 
@@ -17,6 +18,7 @@ export function resolveResponsivePropStyles({
   responsiveValue,
   responsiveStyles,
   breakpoints,
+  parts,
   props,
 }: ResolveResponsivePropStylesOptions) {
   if (responsiveValue == null) {
@@ -41,47 +43,54 @@ export function resolveResponsivePropStyles({
     ? responsiveValue
     : objectToArrayNotation(responsiveValue, breakpointKeys)
 
-  const resolvedStyles = Object.fromEntries(
-    responsiveValueArray
-      // Slice in case the responsive values array
-      // has more values than there are breakpoints.
-      .slice(0, mediaQueries.length)
-      .flatMap((name, breakpointIndex) => {
-        if (name == null) {
-          return []
-        }
+  function resolve(part?: string) {
+    return Object.fromEntries(
+      responsiveValueArray
+        // Slice in case the responsive values array
+        // has more values than there are breakpoints.
+        .slice(0, mediaQueries.length)
+        .flatMap((name, breakpointIndex) => {
+          if (name == null) {
+            return []
+          }
 
-        const styles = runIfFn(responsiveStyles[name as string] ?? {}, props)
+          const styles = runIfFn(responsiveStyles[name as string] ?? {}, props)
+          const partStyles = (part == null ? styles : styles[part]) ?? {}
 
-        const { minWidth } = mediaQueries[breakpointIndex]
+          const { minWidth } = mediaQueries[breakpointIndex]
 
-        const nextValueBreakpointIndex = responsiveValueArray.findIndex(
-          (value, index) => index > breakpointIndex && value != null,
-        )
+          const nextValueBreakpointIndex = responsiveValueArray.findIndex(
+            (value, index) => index > breakpointIndex && value != null,
+          )
 
-        const mediaMaxWidth =
-          nextValueBreakpointIndex !== -1
-            ? mediaQueries[nextValueBreakpointIndex - 1].mediaMaxWidth
-            : null
+          const mediaMaxWidth =
+            nextValueBreakpointIndex !== -1
+              ? mediaQueries[nextValueBreakpointIndex - 1].mediaMaxWidth
+              : null
 
-        const isZeroMinWidth = minWidth.startsWith("0")
+          const isZeroMinWidth = minWidth.startsWith("0")
 
-        // If the media query equals to `@media (min-width: 0<unit>)`,
-        // don't nest the styles inside the media query.
-        if (isZeroMinWidth && mediaMaxWidth == null) {
-          return Object.entries(styles)
-        }
+          // If the media query equals to `@media (min-width: 0<unit>)`,
+          // don't nest the styles inside the media query.
+          if (isZeroMinWidth && mediaMaxWidth == null) {
+            return Object.entries(partStyles)
+          }
 
-        const queryParts = [
-          !isZeroMinWidth ? `(min-width: ${minWidth})` : null,
-          mediaMaxWidth != null ? `(max-width: ${mediaMaxWidth})` : null,
-        ].filter((query) => query != null)
+          const queryParts = [
+            !isZeroMinWidth ? `(min-width: ${minWidth})` : null,
+            mediaMaxWidth != null ? `(max-width: ${mediaMaxWidth})` : null,
+          ].filter((query) => query != null)
 
-        const mediaQuery = `@media ${queryParts.join(" and ")}`
+          const mediaQuery = `@media ${queryParts.join(" and ")}`
 
-        return [[mediaQuery, styles]]
-      }),
-  )
+          return [[mediaQuery, partStyles]]
+        }),
+    )
+  }
 
-  return resolvedStyles
+  if (parts == null) {
+    return resolve()
+  }
+
+  return Object.fromEntries(parts.map((part) => [part, resolve(part)]))
 }

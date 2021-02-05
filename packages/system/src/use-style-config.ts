@@ -47,28 +47,25 @@ export function useStyleConfig(themeKey: any, props: any = {}, opts: any = {}) {
   return useMemo(() => {
     if (styleConfig) {
       const baseStyles = runIfFn(styleConfig.baseStyle ?? {}, mergedProps)
+      const parts = opts?.isMultiPart ? styleConfig.parts : undefined
 
       const variantStyles = resolveResponsivePropStyles({
         breakpoints,
         responsiveValue: mergedProps.variant,
         responsiveStyles: styleConfig.variants ?? {},
         props: mergedProps,
+        parts,
       })
 
       const sizeStyles = resolveResponsivePropStyles({
         breakpoints,
         responsiveValue: mergedProps.size,
         responsiveStyles: styleConfig.sizes ?? {},
+        parts,
         props: mergedProps,
       })
 
       const styles = mergeWith({}, baseStyles, sizeStyles, variantStyles)
-
-      if (opts?.isMultiPart && styleConfig.parts) {
-        styleConfig.parts.forEach((part: string) => {
-          styles[part] = styles[part] ?? {}
-        })
-      }
 
       const isStyleEqual = isEqual(stylesRef.current, styles)
 
