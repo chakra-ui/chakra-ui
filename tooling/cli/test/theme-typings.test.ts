@@ -93,7 +93,7 @@ describe("Theme typings", () => {
         radii: \\"sm\\" | \\"md\\"
         shadows: \\"sm\\" | \\"md\\"
         sizes: \\"sm\\" | \\"md\\"
-        space: \\"sm\\" | \\"md\\"
+        space: \\"sm\\" | \\"-sm\\" | \\"md\\" | \\"-md\\"
         textStyles: never
         transition: \\"sm\\" | \\"md\\"
         zIndices: \\"sm\\" | \\"md\\"

@@ -12,7 +12,7 @@ export const themeKeyConfiguration: ThemeKeyOptions[] = [
   { key: "radii" },
   { key: "shadows" },
   { key: "sizes", maxScanDepth: 2 },
-  { key: "space" },
+  { key: "space", flatMap: (value) => [value, `-${value}`] },
   { key: "textStyles" },
   { key: "transition" },
   { key: "zIndices" },
