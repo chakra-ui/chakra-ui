@@ -1,0 +1,92 @@
+---
+title: The `sx` Prop
+description:
+  The sx prop lets you style components inline, using your theme tokens.
+---
+
+With `sx` you can provide any valid CSS to an element and utilize tokens from
+your theme to ensure consistency and that you are utilizing constraint-based
+design principles when styling your application.
+
+This prop provides a superset of CSS (contains all CSS properties/selectors in
+addition to custom ones) that maps values directly from the theme, depending on
+the CSS property used. Also, it allows a simple way of defining responsive
+values that correspond to the breakpoints defined in the theme.
+
+To find out which properties are theme-aware, see the
+[Style Props](https://chakra-ui.com/docs/features/style-props).
+
+## Use cases
+
+Although the `sx` prop is considered an escape hatch, there are few cases where
+it is needed.
+
+### Defining Any Standard CSS Property
+
+In case you need to set a CSS property that is not listed in the
+[Style Props](/docs/features/style-props) list, you can use the `sx` prop and
+pass it whatever CSS property you desire.
+
+One such example is the `filter` property:
+
+```jsx
+<Image
+  src="http://placekitten.com/200/300"
+  alt="a kitten"
+  sx={{ filter: "blur(8px)" }}
+/>
+```
+
+### Defining CSS Custom Properties
+
+Custom CSS properties can be defined via the `sx` prop as well:
+
+```jsx
+<Box sx={{ "--my-color": "#53c8c4" }}>
+  <Heading color="var(--my-color)" size="lg">
+    This uses CSS Custom Properties!
+  </Heading>
+</Box>
+```
+
+### Creating Nested Selectors
+
+To create complex, nested selectors, you can use utilize the `&` operator. The
+`&` in selector will get resolved to unique `className` that is assigned the
+component you put `sx` on.
+
+> For the following example you could also use the
+> [`_groupHover` shorthand prop](/docs/features/style-props#pseudo).
+
+```jsx
+<Box borderWidth={2} borderColor="purple.500" p={5} className="my-box">
+  <Heading size="lg">
+    Hover the box...
+    <Box
+      as="span"
+      color="red.500"
+      sx={{
+        ".my-box:hover &": {
+          color: "green.500",
+        },
+      }}
+    >
+      And I will turn green!
+    </Box>
+  </Heading>
+</Box>
+```
+
+### Custom Media queries
+
+```jsx
+<Box
+  sx={{
+    "@media print": {
+      display: "none",
+    },
+  }}
+>
+  This text won't be shown when printing this page.
+</Box>
+```

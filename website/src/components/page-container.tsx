@@ -1,3 +1,5 @@
+import { useRouter } from "next/router"
+import * as React from "react"
 import { Badge, Box, chakra } from "@chakra-ui/react"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
 import Container from "components/container"
@@ -5,8 +7,7 @@ import EditPageLink from "components/edit-page-button"
 import Footer from "components/footer"
 import Header from "components/header"
 import SEO from "components/seo"
-import { useRouter } from "next/router"
-import * as React from "react"
+import { convertBackticksToInlineCode } from "utils/convert-backticks-to-inline-code"
 import PageTransition from "./page-transition"
 
 function useHeadingFocusOnRouteChange() {
@@ -64,7 +65,7 @@ function PageContainer(props: PageContainerProps) {
             >
               <PageTransition>
                 <chakra.h1 tabIndex={-1} outline={0} apply="mdx.h1">
-                  {title}
+                  {convertBackticksToInlineCode(title)}
                 </chakra.h1>
                 {version && (
                   <Badge colorScheme="teal" letterSpacing="wider">

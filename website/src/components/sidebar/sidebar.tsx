@@ -1,3 +1,7 @@
+import NextLink from "next/link"
+import { useRouter } from "next/router"
+import * as React from "react"
+import _ from "lodash"
 import {
   Badge,
   Box,
@@ -10,12 +14,10 @@ import {
   Stack,
   useColorModeValue,
 } from "@chakra-ui/react"
-import { useRouter } from "next/router"
-import * as React from "react"
 import { Routes } from "utils/get-route-context"
+import { convertBackticksToInlineCode } from "utils/convert-backticks-to-inline-code"
 import SidebarCategory from "./sidebar-category"
 import SidebarLink from "./sidebar-link"
-import NextLink from "next/link"
 import {
   BlogIcon,
   DocsIcon,
@@ -23,7 +25,6 @@ import {
   TeamIcon,
   ResourcesIcon,
 } from "./sidebar-icons"
-import _ from "lodash"
 
 export type SidebarContentProps = Routes & {
   pathname?: string
@@ -77,7 +78,7 @@ export function SidebarContent(props: SidebarContentProps) {
                   <Stack as="ul">
                     {sortedRoutes.map((lvl3) => (
                       <SidebarLink as="li" key={lvl3.path} href={lvl3.path}>
-                        <span>{lvl3.title}</span>
+                        <span>{convertBackticksToInlineCode(lvl3.title)}</span>
                         {lvl3.new && (
                           <Badge
                             ml="2"
