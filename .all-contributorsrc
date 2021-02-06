@@ -1774,6 +1774,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "mattwells19",
+      "name": "Matt Wells",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36650048?v=4",
+      "profile": "https://github.com/mattwells19",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
