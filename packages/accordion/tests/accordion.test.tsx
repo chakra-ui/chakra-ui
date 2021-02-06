@@ -17,7 +17,9 @@ it("passes a11y test", async () => {
   await testA11y(
     <Accordion>
       <AccordionItem>
-        <AccordionButton>Section 1 title</AccordionButton>
+        <h2>
+          <AccordionButton>Section 1 title</AccordionButton>
+        </h2>
         <AccordionPanel>Panel 1</AccordionPanel>
       </AccordionItem>
     </Accordion>,
@@ -28,7 +30,11 @@ test("uncontrolled: It opens the accordion panel", () => {
   render(
     <Accordion defaultIndex={0}>
       <AccordionItem>
-        <AccordionButton data-testid="button">Section 1 title</AccordionButton>
+        <h2>
+          <AccordionButton data-testid="button">
+            Section 1 title
+          </AccordionButton>
+        </h2>
         <AccordionPanel data-testid="panel">Panel 1</AccordionPanel>
       </AccordionItem>
     </Accordion>,
@@ -41,7 +47,9 @@ test("uncontrolled: toggles the accordion on click", async () => {
   render(
     <Accordion>
       <AccordionItem>
-        <AccordionButton>Trigger</AccordionButton>
+        <h2>
+          <AccordionButton>Trigger</AccordionButton>
+        </h2>
         <AccordionPanel>Panel</AccordionPanel>
       </AccordionItem>
     </Accordion>,
@@ -62,7 +70,9 @@ test("arrow up & down moves focus to next/previous accordion", () => {
   render(
     <Accordion>
       <AccordionItem>
-        <AccordionButton>Section 1 title</AccordionButton>
+        <h2>
+          <AccordionButton>Section 1 title</AccordionButton>
+        </h2>
         <AccordionPanel>Panel 1</AccordionPanel>
       </AccordionItem>
 
@@ -87,17 +97,23 @@ test("home & end keys moves focus to first/last accordion", () => {
   render(
     <Accordion>
       <AccordionItem>
-        <AccordionButton>First section</AccordionButton>
+        <h2>
+          <AccordionButton>First section</AccordionButton>
+        </h2>
         <AccordionPanel>Panel 1</AccordionPanel>
       </AccordionItem>
 
       <AccordionItem>
-        <AccordionButton>Second section</AccordionButton>
+        <h2>
+          <AccordionButton>Second section</AccordionButton>
+        </h2>
         <AccordionPanel>Panel 1</AccordionPanel>
       </AccordionItem>
 
       <AccordionItem>
-        <AccordionButton>Last section</AccordionButton>
+        <h2>
+          <AccordionButton>Last section</AccordionButton>
+        </h2>
         <AccordionPanel>Panel 2</AccordionPanel>
       </AccordionItem>
     </Accordion>,
@@ -117,12 +133,16 @@ test("only one accordion can be visible + is not togglable", () => {
   render(
     <Accordion>
       <AccordionItem>
-        <AccordionButton>First section</AccordionButton>
+        <h2>
+          <AccordionButton>First section</AccordionButton>
+        </h2>
         <AccordionPanel>Panel 1</AccordionPanel>
       </AccordionItem>
 
       <AccordionItem>
-        <AccordionButton>Second section</AccordionButton>
+        <h2>
+          <AccordionButton>Second section</AccordionButton>
+        </h2>
         <AccordionPanel>Panel 1</AccordionPanel>
       </AccordionItem>
     </Accordion>,
@@ -141,12 +161,16 @@ test("only one accordion can be visible + is togglable", () => {
   render(
     <Accordion allowToggle>
       <AccordionItem>
-        <AccordionButton>First section</AccordionButton>
+        <h2>
+          <AccordionButton>First section</AccordionButton>
+        </h2>
         <AccordionPanel>Panel 1</AccordionPanel>
       </AccordionItem>
 
       <AccordionItem>
-        <AccordionButton>Second section</AccordionButton>
+        <h2>
+          <AccordionButton>Second section</AccordionButton>
+        </h2>
         <AccordionPanel>Panel 1</AccordionPanel>
       </AccordionItem>
     </Accordion>,
@@ -166,12 +190,16 @@ test("multiple accordions can be opened + is togglable", () => {
   render(
     <Accordion allowMultiple>
       <AccordionItem>
-        <AccordionButton>First section</AccordionButton>
+        <h2>
+          <AccordionButton>First section</AccordionButton>
+        </h2>
         <AccordionPanel>Panel 1</AccordionPanel>
       </AccordionItem>
 
       <AccordionItem>
-        <AccordionButton>Second section</AccordionButton>
+        <h2>
+          <AccordionButton>Second section</AccordionButton>
+        </h2>
         <AccordionPanel>Panel 1</AccordionPanel>
       </AccordionItem>
     </Accordion>,
@@ -192,7 +220,9 @@ test("has the proper aria attributes", () => {
   render(
     <Accordion>
       <AccordionItem>
-        <AccordionButton>Section 1 title</AccordionButton>
+        <h2>
+          <AccordionButton>Section 1 title</AccordionButton>
+        </h2>
         <AccordionPanel>Panel 1</AccordionPanel>
       </AccordionItem>
     </Accordion>,
@@ -210,17 +240,23 @@ test("tab moves focus to the next focusable element", () => {
   render(
     <Accordion>
       <AccordionItem>
-        <AccordionButton>First section</AccordionButton>
+        <h2>
+          <AccordionButton>First section</AccordionButton>
+        </h2>
         <AccordionPanel>Panel 1</AccordionPanel>
       </AccordionItem>
 
       <AccordionItem>
-        <AccordionButton>Second section</AccordionButton>
+        <h2>
+          <AccordionButton>Second section</AccordionButton>
+        </h2>
         <AccordionPanel>Panel 1</AccordionPanel>
       </AccordionItem>
 
       <AccordionItem>
-        <AccordionButton>Last section</AccordionButton>
+        <h2>
+          <AccordionButton>Last section</AccordionButton>
+        </h2>
         <AccordionPanel>Panel 2</AccordionPanel>
       </AccordionItem>
     </Accordion>,
@@ -244,7 +280,9 @@ test("aria-contols for button is same as id for panel", () => {
   render(
     <Accordion>
       <AccordionItem>
-        <AccordionButton>Section 1 title</AccordionButton>
+        <h2>
+          <AccordionButton>Section 1 title</AccordionButton>
+        </h2>
         <AccordionPanel>Panel 1</AccordionPanel>
       </AccordionItem>
     </Accordion>,
@@ -259,11 +297,15 @@ test("aria-expanded is true/false when accordion is open/closed", () => {
   render(
     <Accordion defaultIndex={0}>
       <AccordionItem>
-        <AccordionButton>Section 1 title</AccordionButton>
+        <h2>
+          <AccordionButton>Section 1 title</AccordionButton>
+        </h2>
         <AccordionPanel>Panel 1</AccordionPanel>
       </AccordionItem>
       <AccordionItem>
-        <AccordionButton>Section 2 title</AccordionButton>
+        <h2>
+          <AccordionButton>Section 2 title</AccordionButton>
+        </h2>
         <AccordionPanel>Panel 2</AccordionPanel>
       </AccordionItem>
     </Accordion>,
@@ -278,7 +320,9 @@ test("panel has role=region and aria-labelledby", () => {
   render(
     <Accordion>
       <AccordionItem>
-        <AccordionButton>Section 1 title</AccordionButton>
+        <h2>
+          <AccordionButton>Section 1 title</AccordionButton>
+        </h2>
         <AccordionPanel>Panel 1</AccordionPanel>
       </AccordionItem>
     </Accordion>,
