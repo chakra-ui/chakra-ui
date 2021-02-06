@@ -8,4 +8,4 @@
 ---
 
 Provide better typings for `size` and `variant` for AvatarGroup, CheckboxGroup,
-ButtonGroup, and RadioGroup
+ButtonGroup, and RadioGroup.
