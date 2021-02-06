@@ -162,7 +162,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
       const isComplete =
         value !== "" &&
         index === descendants.length - 1 &&
-        values.every((inputValue) => inputValue !== "")
+        nextValues.every((inputValue) => inputValue !== "")
 
       if (isComplete) {
         onComplete?.(nextValues.join(""))

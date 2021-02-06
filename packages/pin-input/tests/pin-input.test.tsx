@@ -117,3 +117,23 @@ test('otp flag enables "one-time-code" autocomplete on fields', () => {
     "one-time-code",
   )
 })
+
+test("Replacing last input calls onComplete correctly", () => {
+  const onComplete = jest.fn()
+  const { getByTestId } = render(<Component onComplete={onComplete} />)
+
+  userEvent.type(getByTestId("1"), "1")
+  userEvent.type(getByTestId("2"), "2")
+  userEvent.type(getByTestId("3"), "3")
+
+  expect(onComplete).toHaveBeenCalledWith("123")
+  onComplete.mockClear()
+
+  userEvent.clear(getByTestId("3"))
+
+  expect(onComplete).not.toHaveBeenCalledWith("123")
+
+  userEvent.type(getByTestId("3"), "3")
+
+  expect(onComplete).toHaveBeenCalledWith("123")
+})
