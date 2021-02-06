@@ -28,6 +28,12 @@ export interface ThemeKeyOptions {
    * @default () => true
    */
   filter?: (value: string) => boolean
+
+  /**
+   * Pass a function to flatMap extracted values
+   * @default value => value
+   */
+  flatMap?: (value: string) => string | string[]
 }
 
 export interface CreateThemeTypingsInterfaceOptions {
@@ -38,17 +44,23 @@ export async function createThemeTypingsInterface(
   theme: Record<string, unknown>,
   { config }: CreateThemeTypingsInterfaceOptions,
 ) {
-  const unions = config.reduce((allUnions, { key, maxScanDepth, filter }) => {
-    const target = theme[key]
-    if (isObject(target) || Array.isArray(target)) {
-      allUnions[key] = extractPropertyPaths(target, maxScanDepth).filter(
-        filter ?? (() => true),
-      )
-    } else {
-      allUnions[key] = []
-    }
-    return allUnions
-  }, {} as Record<string, string[]>)
+  const unions = config.reduce(
+    (
+      allUnions,
+      { key, maxScanDepth, filter = () => true, flatMap = (value) => value },
+    ) => {
+      const target = theme[key]
+      if (isObject(target) || Array.isArray(target)) {
+        allUnions[key] = extractPropertyPaths(target, maxScanDepth)
+          .filter(filter)
+          .flatMap(flatMap)
+      } else {
+        allUnions[key] = []
+      }
+      return allUnions
+    },
+    {} as Record<string, string[]>,
+  )
 
   const componentTypes = extractComponentTypes(theme)
   const colorSchemes = extractColorSchemeTypes(theme)
