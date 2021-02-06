@@ -33,7 +33,7 @@ import {
 export interface AccordionProps
   extends UseAccordionProps,
     Omit<HTMLChakraProps<"div">, keyof UseAccordionProps>,
-    ThemingProps {
+    ThemingProps<"Accordion"> {
   /**
    * If `true`, height animation and transitions will be disabled.
    */

@@ -38,7 +38,7 @@ interface AvatarGroupOptions {
 export interface AvatarGroupProps
   extends AvatarGroupOptions,
     Omit<HTMLChakraProps<"div">, "children">,
-    ThemingProps<"AvatarGroup"> {}
+    ThemingProps<"Avatar"> {}
 
 /**
  * AvatarGroup displays a number of avatars grouped together in a stack.

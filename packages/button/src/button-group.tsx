@@ -11,7 +11,7 @@ import * as React from "react"
 
 export interface ButtonGroupProps
   extends HTMLChakraProps<"div">,
-    ThemingProps<"ButtonGroup"> {
+    ThemingProps<"Button"> {
   /**
    * If `true`, the borderRadius of button that are direct children will be altered
    * to look flushed together

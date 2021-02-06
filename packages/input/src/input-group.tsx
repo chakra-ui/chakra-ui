@@ -12,7 +12,7 @@ import * as React from "react"
 
 export interface InputGroupProps
   extends HTMLChakraProps<"div">,
-    ThemingProps<"InputGroup"> {}
+    ThemingProps<"Input"> {}
 
 export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
   const styles = useMultiStyleConfig("Input", props)
