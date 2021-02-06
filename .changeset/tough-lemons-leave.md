@@ -8,7 +8,7 @@
 ---
 
 The `system` now supports responsive values for `size` and `variant` props. This
-means you can now use responsive values for this props in any component:
+means you can now use responsive values for these props in any component:
 
 ```ts
 <Button
