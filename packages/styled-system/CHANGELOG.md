@@ -1,5 +1,92 @@
 # Change Log
 
+## 1.7.0
+
+### Minor Changes
+
+- [`a97e42568`](https://github.com/chakra-ui/chakra-ui/commit/a97e42568c4470d6cd1e16b48429af93c52def49)
+  [#3290](https://github.com/chakra-ui/chakra-ui/pull/3290) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Theme Typings: Add
+  autocomplete for negative space values
+
+* [`ff4a36bca`](https://github.com/chakra-ui/chakra-ui/commit/ff4a36bca11cc177830f6f1da13700acd1e3a087)
+  [#3245](https://github.com/chakra-ui/chakra-ui/pull/3245) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Add support for
+  `textStyle` and `layerStyle` in styled-system package. This makes it possible
+  to use them in the component theme, `css` function, and `sx` prop as well.
+
+  ```jsx
+  const theme = {
+    textStyles: {
+      caps: {
+        fontWeight: "bold",
+        fontSize: "24px",
+      },
+    },
+  }
+
+  const styles = css({ textStyle: "caps" })(theme)
+  ```
+
+  This also works for component theme as well.
+
+  > `layerStyle`, `textStyle` and `apply` can now take responsive values as
+  > well.
+
+  - Refactored `apply` prop handling to use the style config pattern instead of
+    add it imperatively.
+
+### Patch Changes
+
+- [`ef34c10a0`](https://github.com/chakra-ui/chakra-ui/commit/ef34c10a0c3cfda6bafcca4aa287dfb82f130aeb)
+  [#3253](https://github.com/chakra-ui/chakra-ui/pull/3253) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Allow numbers for
+  `borderTop` and provide autocomplete for `fontWeight` prop
+
+* [`408aaaace`](https://github.com/chakra-ui/chakra-ui/commit/408aaaace0dd413b61354958a4c30b9f2f8aa376)
+  [#3227](https://github.com/chakra-ui/chakra-ui/pull/3227) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Introducing a generic
+  TypeScript type `ChakraTheme` to improve the `extendTheme` function even
+  further.
+
+  ```ts
+  import { extendTheme } from "@chakra-ui/react"
+
+  export const customTheme = extendTheme({
+    // here you get autocomplete for
+    //   - existing definitions from the default theme
+    //   - new components (Single and MultiStyle)
+    //   - CSS definitions
+    //   - color hues
+    //   - etc.
+  })
+
+  export type MyCustomTheme = typeof customTheme
+  ```
+
+  You can get typesafe access to your custom theme like this:
+
+  ```ts
+  import { useTheme } from "@chakra-ui/react"
+  import { MyCustomTheme } from "./my-custom-theme"
+
+  const MyComponent = () => {
+    const customTheme = useTheme<MyCustomTheme>()
+    //...
+  }
+  ```
+
+- [`61962345c`](https://github.com/chakra-ui/chakra-ui/commit/61962345c5b1c862445c16c586e304b28c376c9a)
+  [#3291](https://github.com/chakra-ui/chakra-ui/pull/3291) Thanks
+  [@dominictwlee](https://github.com/dominictwlee)! - Support negative scale
+  values for css variables.
+
+- Updated dependencies
+  [[`ff4a36bca`](https://github.com/chakra-ui/chakra-ui/commit/ff4a36bca11cc177830f6f1da13700acd1e3a087),
+  [`483687237`](https://github.com/chakra-ui/chakra-ui/commit/483687237f2c4fed05dc6a79693f307c601c1285),
+  [`61962345c`](https://github.com/chakra-ui/chakra-ui/commit/61962345c5b1c862445c16c586e304b28c376c9a)]:
+  - @chakra-ui/utils@1.2.0
+
 ## 1.6.0
 
 ### Minor Changes

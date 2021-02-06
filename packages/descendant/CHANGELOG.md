@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.0.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/hooks@1.1.4
+
 ## 1.0.6
 
 ### Patch Changes

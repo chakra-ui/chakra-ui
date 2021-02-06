@@ -1,5 +1,24 @@
 # Change Log
 
+## 1.4.0
+
+### Minor Changes
+
+- [`2eb58df12`](https://github.com/chakra-ui/chakra-ui/commit/2eb58df12b2ab1bd29cd02889e2eafa406747036)
+  [#3296](https://github.com/chakra-ui/chakra-ui/pull/3296) Thanks
+  [@mattwells19](https://github.com/mattwells19)! - Resolved an issue where
+  completing character entry in `PinInput` failed to call `onComplete`.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ff4a36bca`](https://github.com/chakra-ui/chakra-ui/commit/ff4a36bca11cc177830f6f1da13700acd1e3a087),
+  [`483687237`](https://github.com/chakra-ui/chakra-ui/commit/483687237f2c4fed05dc6a79693f307c601c1285),
+  [`61962345c`](https://github.com/chakra-ui/chakra-ui/commit/61962345c5b1c862445c16c586e304b28c376c9a)]:
+  - @chakra-ui/utils@1.2.0
+  - @chakra-ui/hooks@1.1.4
+  - @chakra-ui/descendant@1.0.7
+
 ## 1.3.0
 
 ### Minor Changes
