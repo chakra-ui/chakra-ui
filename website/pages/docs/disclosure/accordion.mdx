@@ -26,7 +26,7 @@ Chakra UI exports 5 accordion-related components.
   `AccordionItem` children.
 - `AccordionItem`: A single accordion item.
 - `AccordionButton`: The button that toggles the expand/collapse state of the
-  accordion item.
+  accordion item. This button must be wrapped in an element with role `heading`.
 - `AccordionPanel`: The container for the details to be revealed.
 - `AccordionIcon`: A `chevron-down` icon that rotates based on the
   expanded/collapsed state
@@ -52,12 +52,14 @@ the `up` and `down` arrow keys will move focus between accordion buttons.
 ```jsx
 <Accordion>
   <AccordionItem>
-    <AccordionButton>
-      <Box flex="1" textAlign="left">
-        Section 1 title
-      </Box>
-      <AccordionIcon />
-    </AccordionButton>
+    <h2>
+      <AccordionButton>
+        <Box flex="1" textAlign="left">
+          Section 1 title
+        </Box>
+        <AccordionIcon />
+      </AccordionButton>
+    </h2>
     <AccordionPanel pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -67,12 +69,14 @@ the `up` and `down` arrow keys will move focus between accordion buttons.
   </AccordionItem>
 
   <AccordionItem>
-    <AccordionButton>
-      <Box flex="1" textAlign="left">
-        Section 2 title
-      </Box>
-      <AccordionIcon />
-    </AccordionButton>
+    <h2>
+      <AccordionButton>
+        <Box flex="1" textAlign="left">
+          Section 2 title
+        </Box>
+        <AccordionIcon />
+      </AccordionButton>
+    </h2>
     <AccordionPanel pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -94,12 +98,14 @@ items to be expanded at once.
 ```jsx
 <Accordion defaultIndex={[0]} allowMultiple>
   <AccordionItem>
-    <AccordionButton>
-      <Box flex="1" textAlign="left">
-        Section 1 title
-      </Box>
-      <AccordionIcon />
-    </AccordionButton>
+    <h2>
+      <AccordionButton>
+        <Box flex="1" textAlign="left">
+          Section 1 title
+        </Box>
+        <AccordionIcon />
+      </AccordionButton>
+    </h2>
     <AccordionPanel pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -109,12 +115,14 @@ items to be expanded at once.
   </AccordionItem>
 
   <AccordionItem>
-    <AccordionButton>
-      <Box flex="1" textAlign="left">
-        Section 2 title
-      </Box>
-      <AccordionIcon />
-    </AccordionButton>
+    <h2>
+      <AccordionButton>
+        <Box flex="1" textAlign="left">
+          Section 2 title
+        </Box>
+        <AccordionIcon />
+      </AccordionButton>
+    </h2>
     <AccordionPanel pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -132,12 +140,14 @@ If you set `allowToggle` to `true`, any expanded item may be collapsed again.
 ```jsx
 <Accordion allowToggle>
   <AccordionItem>
-    <AccordionButton>
-      <Box flex="1" textAlign="left">
-        Section 1 title
-      </Box>
-      <AccordionIcon />
-    </AccordionButton>
+    <h2>
+      <AccordionButton>
+        <Box flex="1" textAlign="left">
+          Section 1 title
+        </Box>
+        <AccordionIcon />
+      </AccordionButton>
+    </h2>
     <AccordionPanel pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -147,12 +157,14 @@ If you set `allowToggle` to `true`, any expanded item may be collapsed again.
   </AccordionItem>
 
   <AccordionItem>
-    <AccordionButton>
-      <Box flex="1" textAlign="left">
-        Section 2 title
-      </Box>
-      <AccordionIcon />
-    </AccordionButton>
+    <h2>
+      <AccordionButton>
+        <Box flex="1" textAlign="left">
+          Section 2 title
+        </Box>
+        <AccordionIcon />
+      </AccordionButton>
+    </h2>
     <AccordionPanel pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -172,12 +184,14 @@ style this state.
 ```jsx
 <Accordion>
   <AccordionItem>
-    <AccordionButton _expanded={{ bg: "tomato", color: "white" }}>
-      <Box flex="1" textAlign="left">
-        Click me to see a different style
-      </Box>
-      <AccordionIcon />
-    </AccordionButton>
+    <h2>
+      <AccordionButton _expanded={{ bg: "tomato", color: "white" }}>
+        <Box flex="1" textAlign="left">
+          Click me to see a different style
+        </Box>
+        <AccordionIcon />
+      </AccordionButton>
+    </h2>
     <AccordionPanel>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -196,12 +210,14 @@ render prop. It provides 2 internal state props: `isExpanded` and `isDisabled`.
 ```jsx
 <Accordion allowMultiple>
   <AccordionItem>
-    <AccordionButton>
-      <Box flex="1" textAlign="left">
-        Section 1 title
-      </Box>
-      <AccordionIcon />
-    </AccordionButton>
+    <h2>
+      <AccordionButton>
+        <Box flex="1" textAlign="left">
+          Section 1 title
+        </Box>
+        <AccordionIcon />
+      </AccordionButton>
+    </h2>
     <AccordionPanel pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -213,16 +229,18 @@ render prop. It provides 2 internal state props: `isExpanded` and `isDisabled`.
   <AccordionItem>
     {({ isExpanded }) => (
       <>
-        <AccordionButton>
-          <Box flex="1" textAlign="left">
-            Section 2 title
-          </Box>
-          {isExpanded ? (
-            <MinusIcon fontSize="12px" />
-          ) : (
-            <AddIcon fontSize="12px" />
-          )}
-        </AccordionButton>
+        <h2>
+          <AccordionButton>
+            <Box flex="1" textAlign="left">
+              Section 2 title
+            </Box>
+            {isExpanded ? (
+              <MinusIcon fontSize="12px" />
+            ) : (
+              <AddIcon fontSize="12px" />
+            )}
+          </AccordionButton>
+        </h2>
         <AccordionPanel pb={4}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
