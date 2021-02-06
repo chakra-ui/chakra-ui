@@ -33,7 +33,7 @@ export interface ColorHues {
 
 export type ThemeDirection = "ltr" | "rtl"
 
-interface ComponentDefaultProps {
+interface ComponentDefaultProps extends Record<string, any> {
   size?: string
   variant?: string
   colorScheme?: string
@@ -51,7 +51,7 @@ export interface ComponentSingleStyleConfig {
 }
 
 export interface ComponentMultiStyleConfig {
-  parts: string[]
+  parts?: string[]
   baseStyle?: ThemeThunk<SystemStyleObjectRecord>
   sizes?: SystemStyleObjectRecord
   variants?: SystemStyleObjectRecord

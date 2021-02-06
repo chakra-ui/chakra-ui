@@ -90,6 +90,20 @@ describe("extendTheme", () => {
     expect(Object.keys(solidStyles).length).toBeGreaterThan(1)
   })
 
+  it("should be able to extend a multipart component", () => {
+    const override: ThemeOverride = {
+      components: {
+        Textarea: {
+          defaultProps: {
+            focusBorderColor: "green.200",
+          },
+        },
+      },
+    }
+
+    extendTheme(override)
+  })
+
   it("should pass typescript lint with random custom theme", () => {
     const override = {
       shadows: {
