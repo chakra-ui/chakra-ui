@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.3.2
+
+### Patch Changes
+
+- [`f3ba8dd53`](https://github.com/chakra-ui/chakra-ui/commit/f3ba8dd53abc697c096165185764235012ada90f)
+  [#3300](https://github.com/chakra-ui/chakra-ui/pull/3300) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue where the
+  TypeScript types were too narrow for component defaultProps and
+  ComponentMultiStyleConfig
+- Updated dependencies
+  [[`f3ba8dd53`](https://github.com/chakra-ui/chakra-ui/commit/f3ba8dd53abc697c096165185764235012ada90f)]:
+  - @chakra-ui/theme@1.6.1
+  - @chakra-ui/toast@1.1.10
+
 ## 1.3.1
 
 ### Patch Changes
