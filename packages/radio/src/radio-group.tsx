@@ -14,11 +14,12 @@ import {
 
 export interface RadioGroupContext
   extends Pick<UseRadioGroupReturn, "onChange" | "value" | "name">,
-    Omit<ThemingProps, "orientation"> {}
+    Omit<ThemingProps<"Radio">, "orientation"> {}
 
-const [RadioGroupProvider, useRadioGroupContext] = createContext<
-  RadioGroupContext
->({
+const [
+  RadioGroupProvider,
+  useRadioGroupContext,
+] = createContext<RadioGroupContext>({
   name: "RadioGroupContext",
   strict: false,
 })
@@ -34,7 +35,7 @@ type Omitted =
 export interface RadioGroupProps
   extends UseRadioGroupProps,
     Omit<HTMLChakraProps<"div">, Omitted>,
-    Omit<ThemingProps, "orientation"> {
+    Omit<ThemingProps<"Radio">, "orientation"> {
   children: React.ReactNode
 }
 

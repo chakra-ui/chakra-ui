@@ -9,13 +9,13 @@ import {
 
 export interface CheckboxGroupProps
   extends UseCheckboxGroupProps,
-    Omit<ThemingProps<"CheckboxGroup">, "orientation"> {
+    Omit<ThemingProps<"Checkbox">, "orientation"> {
   children?: React.ReactNode
 }
 
 export interface CheckboxGroupContext
   extends Pick<UseCheckboxGroupReturn, "onChange" | "value">,
-    Omit<ThemingProps<"CheckboxGroup">, "orientation"> {}
+    Omit<ThemingProps<"Checkbox">, "orientation"> {}
 
 const [
   CheckboxGroupProvider,
