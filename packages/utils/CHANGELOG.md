@@ -1,5 +1,31 @@
 # Change Log
 
+## 1.2.0
+
+### Minor Changes
+
+- [`61962345c`](https://github.com/chakra-ui/chakra-ui/commit/61962345c5b1c862445c16c586e304b28c376c9a)
+  [#3291](https://github.com/chakra-ui/chakra-ui/pull/3291) Thanks
+  [@dominictwlee](https://github.com/dominictwlee)! - Support negative scale
+  values for css variables.
+
+### Patch Changes
+
+- [`ff4a36bca`](https://github.com/chakra-ui/chakra-ui/commit/ff4a36bca11cc177830f6f1da13700acd1e3a087)
+  [#3245](https://github.com/chakra-ui/chakra-ui/pull/3245) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Removed `objectAssign`
+  function in favor of using native `Object.assign` method. It is
+  [now supported in most browsers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#browser_compatibility)
+
+  This function is only used once in the `system` package as well. This PR
+  simply removes it to cut bundle size of utils. Less is more 😃.
+
+* [`483687237`](https://github.com/chakra-ui/chakra-ui/commit/483687237f2c4fed05dc6a79693f307c601c1285)
+  [#3283](https://github.com/chakra-ui/chakra-ui/pull/3283) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Update focus util to
+  handle unsupported browsers (Safari), and ability to opt out of
+  `requestAnimationFrame`
+
 ## 1.1.0
 
 ### Minor Changes

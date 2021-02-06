@@ -1,5 +1,29 @@
 # Change Log
 
+## 1.3.0
+
+### Minor Changes
+
+- [`ff4a36bca`](https://github.com/chakra-ui/chakra-ui/commit/ff4a36bca11cc177830f6f1da13700acd1e3a087)
+  [#3245](https://github.com/chakra-ui/chakra-ui/pull/3245) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Add support for
+  responsive values when using `apply`, `textStyle` and `layerStyle`.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ef34c10a0`](https://github.com/chakra-ui/chakra-ui/commit/ef34c10a0c3cfda6bafcca4aa287dfb82f130aeb),
+  [`a97e42568`](https://github.com/chakra-ui/chakra-ui/commit/a97e42568c4470d6cd1e16b48429af93c52def49),
+  [`ff4a36bca`](https://github.com/chakra-ui/chakra-ui/commit/ff4a36bca11cc177830f6f1da13700acd1e3a087),
+  [`ff4a36bca`](https://github.com/chakra-ui/chakra-ui/commit/ff4a36bca11cc177830f6f1da13700acd1e3a087),
+  [`408aaaace`](https://github.com/chakra-ui/chakra-ui/commit/408aaaace0dd413b61354958a4c30b9f2f8aa376),
+  [`483687237`](https://github.com/chakra-ui/chakra-ui/commit/483687237f2c4fed05dc6a79693f307c601c1285),
+  [`9dc37ee37`](https://github.com/chakra-ui/chakra-ui/commit/9dc37ee37575650746e9b006e41428f1bf53e16c),
+  [`61962345c`](https://github.com/chakra-ui/chakra-ui/commit/61962345c5b1c862445c16c586e304b28c376c9a)]:
+  - @chakra-ui/styled-system@1.7.0
+  - @chakra-ui/utils@1.2.0
+  - @chakra-ui/color-mode@1.0.7
+
 ## 1.2.1
 
 ### Patch Changes

@@ -1,5 +1,21 @@
 # Change Log
 
+## 1.1.1
+
+### Patch Changes
+
+- [`3aa2abb13`](https://github.com/chakra-ui/chakra-ui/commit/3aa2abb134368acee592970995386dfd9aa5de01)
+  [#3255](https://github.com/chakra-ui/chakra-ui/pull/3255) Thanks
+  [@dodas](https://github.com/dodas)! - Fixed the typo in `InputProps` interface
+  due to which theming types were not correct.
+
+- Updated dependencies
+  [[`ff4a36bca`](https://github.com/chakra-ui/chakra-ui/commit/ff4a36bca11cc177830f6f1da13700acd1e3a087),
+  [`483687237`](https://github.com/chakra-ui/chakra-ui/commit/483687237f2c4fed05dc6a79693f307c601c1285),
+  [`61962345c`](https://github.com/chakra-ui/chakra-ui/commit/61962345c5b1c862445c16c586e304b28c376c9a)]:
+  - @chakra-ui/utils@1.2.0
+  - @chakra-ui/form-control@1.2.1
+
 ## 1.1.0
 
 ### Minor Changes

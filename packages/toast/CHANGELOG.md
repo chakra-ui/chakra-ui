@@ -1,5 +1,27 @@
 # Change Log
 
+## 1.1.9
+
+### Patch Changes
+
+- [`f50934bdd`](https://github.com/chakra-ui/chakra-ui/commit/f50934bdd5ec47396464a0f4cb02af732f835ee5)
+  [#3228](https://github.com/chakra-ui/chakra-ui/pull/3228) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Updated peer dependency
+  version of @reach/alert to fix installation of @chakra-ui with npm v7
+- Updated dependencies
+  [[`a023a269f`](https://github.com/chakra-ui/chakra-ui/commit/a023a269ffe0efdae74be3de28e41790c9a5ca8a),
+  [`2861b613b`](https://github.com/chakra-ui/chakra-ui/commit/2861b613bf354e6d00de01bf12bb543b2f2c2532),
+  [`ff4a36bca`](https://github.com/chakra-ui/chakra-ui/commit/ff4a36bca11cc177830f6f1da13700acd1e3a087),
+  [`408aaaace`](https://github.com/chakra-ui/chakra-ui/commit/408aaaace0dd413b61354958a4c30b9f2f8aa376),
+  [`483687237`](https://github.com/chakra-ui/chakra-ui/commit/483687237f2c4fed05dc6a79693f307c601c1285),
+  [`61962345c`](https://github.com/chakra-ui/chakra-ui/commit/61962345c5b1c862445c16c586e304b28c376c9a)]:
+  - @chakra-ui/theme@1.6.0
+  - @chakra-ui/utils@1.2.0
+  - @chakra-ui/alert@1.1.1
+  - @chakra-ui/close-button@1.1.1
+  - @chakra-ui/hooks@1.1.4
+  - @chakra-ui/transition@1.0.8
+
 ## 1.1.8
 
 ### Patch Changes
