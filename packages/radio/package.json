@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/radio",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "A React component to render custom Radio input types",
   "keywords": [
     "radio",

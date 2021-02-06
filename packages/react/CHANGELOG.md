@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.3.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`01231ed49`](https://github.com/chakra-ui/chakra-ui/commit/01231ed4919521fbe911cb1b035f4beadb340fa5)]:
+  - @chakra-ui/accordion@1.1.2
+  - @chakra-ui/avatar@1.1.2
+  - @chakra-ui/button@1.1.2
+  - @chakra-ui/checkbox@1.2.2
+  - @chakra-ui/input@1.1.2
+  - @chakra-ui/radio@1.2.2
+  - @chakra-ui/switch@1.1.2
+
 ## 1.3.0
 
 ### Minor Changes
