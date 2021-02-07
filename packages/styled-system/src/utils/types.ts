@@ -3,7 +3,7 @@ import { ThemeTypings } from "../theming.types"
 export type ResponsiveArray<T> = Array<T | null>
 
 export type ResponsiveObject<T> = Partial<
-  Record<ThemeTypings["breakpoints"], T>
+  Record<ThemeTypings["breakpoints"] | string, T>
 >
 
 export type ResponsiveValue<T> = T | ResponsiveArray<T> | ResponsiveObject<T>
