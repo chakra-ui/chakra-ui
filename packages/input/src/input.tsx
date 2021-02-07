@@ -6,6 +6,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
+  useThemingProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -47,7 +48,11 @@ export interface InputProps
  * Element that allows users enter single valued data.
  */
 export const Input = forwardRef<InputProps, "input">((props, ref) => {
-  const styles = useMultiStyleConfig("Input", props)
+  const inheritedThemingProps = useThemingProps()
+  const styles = useMultiStyleConfig("Input", {
+    ...inheritedThemingProps,
+    ...props,
+  })
   const ownProps = omitThemingProps(props)
   const input = useFormControl<HTMLInputElement>(ownProps)
   const _className = cx("chakra-input", props.className)
@@ -66,5 +71,8 @@ if (__DEV__) {
   Input.displayName = "Input"
 }
 
-// This is used in `input-group.tsx`
+/**
+ * @deprecated
+ * id is not used anymore by `input-group.tsx`
+ */
 Input.id = "Input"

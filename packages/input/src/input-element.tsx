@@ -40,7 +40,10 @@ const InputElement = forwardRef<InputElementProps, "div">((props, ref) => {
   return <StyledElement ref={ref} __css={elementStyles} {...rest} />
 })
 
-// This is used in `input-group.tsx`
+/**
+ * @deprecated
+ * id is not used anymore by `input-group.tsx`
+ */
 InputElement.id = "InputElement"
 
 if (__DEV__) {
@@ -63,7 +66,10 @@ export const InputLeftElement = forwardRef<InputElementProps, "div">(
   },
 )
 
-// This is used in `input-group.tsx`
+/**
+ * @deprecated
+ * id is not used anymore by `input-group.tsx`
+ */
 InputLeftElement.id = "InputLeftElement"
 
 if (__DEV__) {
@@ -86,7 +92,10 @@ export const InputRightElement = forwardRef<InputElementProps, "div">(
   },
 )
 
-// This is used in `input-group.tsx`
+/**
+ * @deprecated
+ * id is not used anymore by `input-group.tsx`
+ */
 InputRightElement.id = "InputRightElement"
 
 if (__DEV__) {

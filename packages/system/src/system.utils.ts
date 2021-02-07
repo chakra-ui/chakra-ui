@@ -1,4 +1,10 @@
-import { isString, omit, UnionStringArray, __DEV__ } from "@chakra-ui/utils"
+import {
+  isString,
+  omit,
+  pick,
+  UnionStringArray,
+  __DEV__,
+} from "@chakra-ui/utils"
 import * as React from "react"
 import { ThemingProps } from "./system.types"
 
@@ -71,6 +77,10 @@ export type DOMElements = UnionStringArray<typeof domElements>
 
 export function omitThemingProps<T extends ThemingProps>(props: T) {
   return omit(props, ["styleConfig", "size", "variant", "colorScheme"])
+}
+
+export function pickThemingProps<T extends ThemingProps>(props: T) {
+  return pick(props, ["styleConfig", "size", "variant", "colorScheme"])
 }
 
 export default function isTag(target: any) {

@@ -82,7 +82,10 @@ if (__DEV__) {
   InputLeftAddon.displayName = "InputLeftAddon"
 }
 
-// This is used in `input-group.tsx`
+/**
+ * @deprecated
+ * id is not used anymore by `input-group.tsx`
+ */
 InputLeftAddon.id = "InputLeftAddon"
 
 /**
@@ -105,5 +108,8 @@ if (__DEV__) {
   InputRightAddon.displayName = "InputRightAddon"
 }
 
-// This is used in `input-group.tsx`
+/**
+ * @deprecated
+ * id is not used anymore by `input-group.tsx`
+ */
 InputRightAddon.id = "InputRightAddon"

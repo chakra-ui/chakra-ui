@@ -1,71 +1,41 @@
+import { SystemStyleObject } from "@chakra-ui/system"
 import {
   chakra,
   forwardRef,
   omitThemingProps,
+  pickThemingProps,
   StylesProvider,
+  ThemingPropsProvider,
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
+import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
 export interface InputGroupProps
   extends HTMLChakraProps<"div">,
-    ThemingProps<"Input"> {}
+    ThemingProps<"Input"> {
+  leftElementStyles?: SystemStyleObject
+  rightElementStyles?: SystemStyleObject
+  leftAddonStyles?: SystemStyleObject
+  rightAddonStyles?: SystemStyleObject
+}
 
 export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
   const styles = useMultiStyleConfig("Input", props)
-  const { children, className, ...rest } = omitThemingProps(props)
+  const {
+    children,
+    className,
+    leftElementStyles,
+    rightElementStyles,
+    leftAddonStyles,
+    rightAddonStyles,
+    ...rest
+  } = omitThemingProps(props)
+  const themingProps = pickThemingProps(props)
 
   const _className = cx("chakra-input__group", className)
-  const groupStyles: InputGroupProps = {}
-
-  const validChildren = getValidChildren(children)
-
-  const input: any = styles.field
-
-  validChildren.forEach((child: any) => {
-    if (!styles) return
-
-    if (input && child.type.id === "InputLeftElement") {
-      groupStyles.paddingLeft = input.height ?? input.h
-    }
-
-    if (input && child.type.id === "InputRightElement") {
-      groupStyles.paddingRight = input.height ?? input.h
-    }
-
-    if (child.type.id === "InputRightAddon") {
-      groupStyles.borderRightRadius = 0
-    }
-
-    if (child.type.id === "InputLeftAddon") {
-      groupStyles.borderLeftRadius = 0
-    }
-  })
-
-  const clones = validChildren.map((child: any) => {
-    const { pl, paddingLeft, pr, paddingRight } = child.props
-
-    /**
-     * Make it possible to override the size and variant from `Input`
-     */
-    const theming = {
-      size: child.props?.size || props.size,
-      variant: child.props?.variant || props.variant,
-    }
-
-    return child.type.id !== "Input"
-      ? React.cloneElement(child, theming)
-      : React.cloneElement(child, {
-          ...theming,
-          paddingLeft: pl ?? paddingLeft ?? groupStyles?.paddingLeft,
-          paddingRight: pr ?? paddingRight ?? groupStyles?.paddingRight,
-          borderLeftRadius: groupStyles?.borderLeftRadius,
-          borderRightRadius: groupStyles?.borderRightRadius,
-        })
-  })
 
   return (
     <chakra.div
@@ -75,10 +45,28 @@ export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
         width: "100%",
         display: "flex",
         position: "relative",
+        ".chakra-input__left-addon ~ .chakra-input": {
+          borderLeftRadius: 0,
+          ...leftAddonStyles,
+        },
+        ".chakra-input__right-addon ~ .chakra-input": {
+          borderRightRadius: 0,
+          ...rightAddonStyles,
+        },
+        ".chakra-input__left-element ~ .chakra-input": {
+          paddingStart: styles.field?.h ?? styles.field?.height,
+          ...leftElementStyles,
+        },
+        ".chakra-input__right-element ~ .chakra-input": {
+          paddingEnd: styles.field?.h ?? styles.field?.height,
+          ...rightElementStyles,
+        },
       }}
       {...rest}
     >
-      <StylesProvider value={styles}>{clones}</StylesProvider>
+      <ThemingPropsProvider value={themingProps}>
+        <StylesProvider value={styles}>{children}</StylesProvider>
+      </ThemingPropsProvider>
     </chakra.div>
   )
 })

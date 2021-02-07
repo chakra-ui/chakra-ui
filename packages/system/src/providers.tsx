@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/utils"
 import { Global, Interpolation, ThemeContext } from "@emotion/react"
 import * as React from "react"
+import { ThemingProps } from "./system.types"
 
 export { ThemeProvider } from "@emotion/react"
 export type { ThemeProviderProps } from "@emotion/react"
@@ -32,6 +33,15 @@ const [StylesProvider, useStyles] = createContext<Dict<SystemStyleObject>>({
 })
 
 export { StylesProvider, useStyles }
+
+const [ThemingPropsProvider, useThemingProps] = createContext<
+  ThemingProps | undefined
+>({
+  name: "ThemingPropsContext",
+  strict: false,
+})
+
+export { ThemingPropsProvider, useThemingProps }
 
 /**
  * Applies styles defined in `theme.styles.global` globally
