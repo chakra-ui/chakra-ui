@@ -109,3 +109,14 @@ test("should support deep nesting", () => {
 
   expect(styles).toBeTruthy()
 })
+
+test("should allow arbitrary breakpoint names by default", () => {
+  const styles: SystemStyleObject = {
+    mt: {
+      base: "130px",
+      tablet: "152px",
+    },
+  }
+
+  expect(styles).toBeTruthy()
+})
