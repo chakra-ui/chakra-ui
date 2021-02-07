@@ -91,9 +91,9 @@ export const WithInputAddon = () => (
 
 export const WithInputElement = () => (
   <Stack align="start">
-    <InputGroup>
+    <InputGroup leftElementWidth="60px">
       <InputLeftElement children={<PhoneIcon color="gray.300" />} />
-      <Input pl="60px" type="tel" placeholder="Phone number" />
+      <Input type="tel" placeholder="Phone number" />
     </InputGroup>
 
     <InputGroup size="sm">

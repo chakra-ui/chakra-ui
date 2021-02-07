@@ -1,4 +1,3 @@
-import { SystemStyleObject } from "@chakra-ui/system"
 import {
   chakra,
   forwardRef,
@@ -12,14 +11,15 @@ import {
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
+import { BorderProps, SpaceProps } from "@chakra-ui/styled-system"
 
 export interface InputGroupProps
   extends HTMLChakraProps<"div">,
     ThemingProps<"Input"> {
-  leftElementStyles?: SystemStyleObject
-  rightElementStyles?: SystemStyleObject
-  leftAddonStyles?: SystemStyleObject
-  rightAddonStyles?: SystemStyleObject
+  leftAddonBorderLeftRadius?: BorderProps["borderLeftRadius"]
+  righAddonBorderRightRadius?: BorderProps["borderLeftRadius"]
+  leftElementWidth?: SpaceProps["paddingStart"]
+  rightElementWidth?: SpaceProps["paddingEnd"]
 }
 
 export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
@@ -27,10 +27,10 @@ export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
   const {
     children,
     className,
-    leftElementStyles,
-    rightElementStyles,
-    leftAddonStyles,
-    rightAddonStyles,
+    leftElementWidth,
+    rightElementWidth,
+    leftAddonBorderLeftRadius,
+    righAddonBorderRightRadius,
     ...rest
   } = omitThemingProps(props)
   const themingProps = pickThemingProps(props)
@@ -46,20 +46,18 @@ export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
         display: "flex",
         position: "relative",
         ".chakra-input__left-addon ~ .chakra-input": {
-          borderLeftRadius: 0,
-          ...leftAddonStyles,
+          borderLeftRadius: leftAddonBorderLeftRadius ?? 0,
         },
         ".chakra-input__right-addon ~ .chakra-input": {
-          borderRightRadius: 0,
-          ...rightAddonStyles,
+          borderRightRadius: righAddonBorderRightRadius ?? 0,
         },
         ".chakra-input__left-element ~ .chakra-input": {
-          paddingStart: styles.field?.h ?? styles.field?.height,
-          ...leftElementStyles,
+          paddingStart:
+            leftElementWidth ?? styles.field?.h ?? styles.field?.height,
         },
         ".chakra-input__right-element ~ .chakra-input": {
-          paddingEnd: styles.field?.h ?? styles.field?.height,
-          ...rightElementStyles,
+          paddingEnd:
+            rightElementWidth ?? styles.field?.h ?? styles.field?.height,
         },
       }}
       {...rest}
