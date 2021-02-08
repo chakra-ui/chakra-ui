@@ -12,42 +12,38 @@ import * as React from "react"
 
 export interface InputGroupProps
   extends HTMLChakraProps<"div">,
-    ThemingProps<"Input"> {}
+    ThemingProps<"InputGroup"> {}
 
 export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
   const styles = useMultiStyleConfig("Input", props)
   const { children, className, ...rest } = omitThemingProps(props)
 
-  const _className = cx("chakra-input__group", className)
-  const groupStyles: InputGroupProps = {}
-
   const validChildren = getValidChildren(children)
 
-  const input: any = styles.field
+  const hasLeftAddon = validChildren.some(
+    (child: any) => child.type.id === "InputLeftAddon",
+  )
+  const hasRightAddon = validChildren.some(
+    (child: any) => child.type.id === "InputRightAddon",
+  )
 
-  validChildren.forEach((child: any) => {
-    if (!styles) return
+  const hasLeftElement = validChildren.some(
+    (child: any) => child.type.id === "InputLeftElement",
+  )
+  const hasRightElement = validChildren.some(
+    (child: any) => child.type.id === "InputRightElement",
+  )
 
-    if (input && child.type.id === "InputLeftElement") {
-      groupStyles.paddingLeft = input.height ?? input.h
-    }
-
-    if (input && child.type.id === "InputRightElement") {
-      groupStyles.paddingRight = input.height ?? input.h
-    }
-
-    if (child.type.id === "InputRightAddon") {
-      groupStyles.borderRightRadius = 0
-    }
-
-    if (child.type.id === "InputLeftAddon") {
-      groupStyles.borderLeftRadius = 0
-    }
-  })
+  const _className = cx(
+    "chakra-input__group",
+    hasLeftAddon && "chakra-input__group--has-left-addon",
+    hasRightAddon && "chakra-input__group--has-right-addon",
+    hasLeftElement && "chakra-input__group--has-left-element",
+    hasRightElement && "chakra-input__group--has-right-element",
+    className,
+  )
 
   const clones = validChildren.map((child: any) => {
-    const { pl, paddingLeft, pr, paddingRight } = child.props
-
     /**
      * Make it possible to override the size and variant from `Input`
      */
@@ -56,15 +52,7 @@ export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
       variant: child.props?.variant || props.variant,
     }
 
-    return child.type.id !== "Input"
-      ? React.cloneElement(child, theming)
-      : React.cloneElement(child, {
-          ...theming,
-          paddingLeft: pl ?? paddingLeft ?? groupStyles?.paddingLeft,
-          paddingRight: pr ?? paddingRight ?? groupStyles?.paddingRight,
-          borderLeftRadius: groupStyles?.borderLeftRadius,
-          borderRightRadius: groupStyles?.borderRightRadius,
-        })
+    return React.cloneElement(child, theming)
   })
 
   return (

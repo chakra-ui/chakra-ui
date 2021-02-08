@@ -13,53 +13,72 @@ const baseStyle = {
   },
 }
 
-const size = {
-  lg: {
-    fontSize: "lg",
-    px: 4,
-    h: 12,
-    borderRadius: "md",
-  },
-
-  md: {
-    fontSize: "md",
-    px: 4,
-    h: 10,
-    borderRadius: "md",
-  },
-
-  sm: {
-    fontSize: "sm",
-    px: 3,
-    h: 8,
-    borderRadius: "sm",
-  },
-
-  xs: {
-    fontSize: "xs",
-    px: 2,
-    h: 6,
-    borderRadius: "sm",
-  },
+function makeSize(props: {
+  fontSize: string
+  borderRadius: string
+  px: number
+  h: number
+}) {
+  return {
+    field: {
+      ...props,
+      ".chakra-input__group.chakra-input__group--has-left-element &": {
+        paddingLeft: props.h,
+      },
+      ".chakra-input__group.chakra-input__group--has-right-element &": {
+        paddingRight: props.h,
+      },
+      ".chakra-input__group.chakra-input__group--has-left-addon &": {
+        borderLeftRadius: 0,
+      },
+      ".chakra-input__group.chakra-input__group--has-right-addon &": {
+        borderRightRadius: 0,
+      },
+    },
+    addon: {
+      ...props,
+      "&.chakra-input__left-addon": {
+        marginRight: "-1px",
+        borderRightColor: "transparent",
+        borderRightRadius: 0,
+      },
+      "&.chakra-input__right-addon": {
+        marginLeft: "-1px",
+        borderLeftColor: "transparent",
+        borderLeftRadius: 0,
+      },
+    },
+  }
 }
 
 const sizes = {
-  lg: {
-    field: size.lg,
-    addon: size.lg,
-  },
-  md: {
-    field: size.md,
-    addon: size.md,
-  },
-  sm: {
-    field: size.sm,
-    addon: size.sm,
-  },
-  xs: {
-    field: size.xs,
-    addon: size.xs,
-  },
+  lg: makeSize({
+    fontSize: "lg",
+    borderRadius: "md",
+    px: 4,
+    h: 12,
+  }),
+
+  md: makeSize({
+    fontSize: "md",
+    borderRadius: "md",
+    px: 4,
+    h: 10,
+  }),
+
+  sm: makeSize({
+    fontSize: "sm",
+    borderRadius: "sm",
+    px: 3,
+    h: 8,
+  }),
+
+  xs: makeSize({
+    fontSize: "xs",
+    borderRadius: "sm",
+    px: 2,
+    h: 6,
+  }),
 }
 
 function getDefaults(props: Record<string, any>) {
