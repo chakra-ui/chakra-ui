@@ -39,8 +39,6 @@ export const Logo = (props: HTMLChakraProps<"svg">) => {
 }
 
 export const LogoIcon = (props: HTMLChakraProps<"svg">) => {
-  const fill = useColorModeValue("#2D3748", "#fff")
-
   return (
     <chakra.svg
       height="8"
