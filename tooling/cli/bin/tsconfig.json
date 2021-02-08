@@ -5,5 +5,8 @@
     "allowJs": true,
     "strict": false,
     "noImplicitAny": false
+  },
+  "ts-node": {
+    "transpileOnly": true
   }
 }
