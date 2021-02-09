@@ -19,6 +19,7 @@ import {
   MenuItemOption,
   MenuList,
   MenuOptionGroup,
+  MenuArrow,
 } from "../src"
 
 const words = [
@@ -51,6 +52,30 @@ export const Basic = () => (
         Open Wakanda menu
       </MenuButton>
       <MenuList>
+        {words.map((word) => (
+          <MenuItem key={word} onClick={logEvents}>
+            {word}
+          </MenuItem>
+        ))}
+      </MenuList>
+    </Menu>
+  </div>
+)
+
+export const WithArrow = () => (
+  <div style={{ minHeight: 4000, paddingTop: 500 }}>
+    <Menu>
+      <MenuButton
+        as={Button}
+        variant="solid"
+        colorScheme="teal"
+        size="sm"
+        rightIcon={<FaUnlink />}
+      >
+        Open Wakanda menu with arrow
+      </MenuButton>
+      <MenuList>
+        <MenuArrow />
         {words.map((word) => (
           <MenuItem key={word} onClick={logEvents}>
             {word}

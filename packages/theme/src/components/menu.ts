@@ -1,6 +1,14 @@
 import { mode } from "@chakra-ui/theme-tools"
 
-const parts = ["item", "command", "list", "button", "groupTitle", "divider"]
+const parts = [
+  "item",
+  "command",
+  "list",
+  "button",
+  "groupTitle",
+  "divider",
+  "arrow",
+]
 
 function baseStyleList(props: Record<string, any>) {
   return {
@@ -12,6 +20,12 @@ function baseStyleList(props: Record<string, any>) {
     zIndex: 1,
     borderRadius: "md",
     borderWidth: "1px",
+  }
+}
+
+function baseStyleArrow(props: Record<string, any>) {
+  return {
+    bg: mode("white", "gray.700")(props),
   }
 }
 
@@ -61,6 +75,7 @@ const baseStyle = (props: Record<string, any>) => ({
   groupTitle: baseStyleGroupTitle,
   command: baseStyleCommand,
   divider: baseStyleDivider,
+  arrow: baseStyleArrow(props),
 })
 
 export default {
