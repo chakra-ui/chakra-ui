@@ -291,11 +291,12 @@ function HookUsage() {
     min: 1,
     max: 6,
     precision: 2,
+    isReadOnly: true,
   })
 
   const inc = getIncrementButtonProps()
   const dec = getDecrementButtonProps()
-  const input = getInputProps({ isReadOnly: true })
+  const input = getInputProps()
 
   return (
     <HStack maxW="320px">
