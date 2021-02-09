@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/system"
 import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
+import ReactDOM from "react-dom"
 
 export interface FormControlOptions {
   /**
@@ -101,13 +102,24 @@ function useFormControlProvider(props: FormControlContext) {
   // Track whether the form element (e.g, `input`) has focus.
   const [isFocused, setFocus] = useBoolean()
 
+  // This is a workaround for React Concurrent Mode issue https://github.com/facebook/react/issues/18591. Remove once it's fixed.
+  const onFocus = () => {
+    if (typeof (ReactDOM as any).flushSync === "function") {
+      ;(ReactDOM as any).flushSync(() => {
+        setFocus.on()
+      })
+    } else {
+      setFocus.on()
+    }
+  }
+
   const context = {
     isRequired: !!isRequired,
     isInvalid: !!isInvalid,
     isReadOnly: !!isReadOnly,
     isDisabled: !!isDisabled,
     isFocused: !!isFocused,
-    onFocus: setFocus.on,
+    onFocus,
     onBlur: setFocus.off,
     hasFeedbackText,
     setHasFeedbackText,
