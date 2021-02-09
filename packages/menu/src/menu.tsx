@@ -8,7 +8,6 @@ import {
   SystemProps,
   SystemStyleObject,
   ThemingProps,
-  useColorModeValue,
   useMultiStyleConfig,
   useStyles,
 } from "@chakra-ui/system"
