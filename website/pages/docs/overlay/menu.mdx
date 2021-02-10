@@ -166,8 +166,8 @@ the letter you typed.
 
 ### Adding icons and commands
 
-You can add icon to each `MenuItem` by passing the `icon` prop.
-To add a commands (or hotkeys) to menu items, you can use the `command` prop.
+You can add icon to each `MenuItem` by passing the `icon` prop. To add a
+commands (or hotkeys) to menu items, you can use the `command` prop.
 
 ```jsx
 <Menu>
@@ -179,10 +179,18 @@ To add a commands (or hotkeys) to menu items, you can use the `command` prop.
     variant="outline"
   />
   <MenuList>
-    <MenuItem icon={<AddIcon />} command="⌘T">New Tab</MenuItem>
-    <MenuItem icon={<ExternalLinkIcon />} command="⌘N">New Window</MenuItem>
-    <MenuItem icon={<RepeatIcon />} command="⌘⇧N">Open Closed Tab</MenuItem>
-    <MenuItem icon={<EditIcon />} command="⌘O">Open File...</MenuItem>
+    <MenuItem icon={<AddIcon />} command="⌘T">
+      New Tab
+    </MenuItem>
+    <MenuItem icon={<ExternalLinkIcon />} command="⌘N">
+      New Window
+    </MenuItem>
+    <MenuItem icon={<RepeatIcon />} command="⌘⇧N">
+      Open Closed Tab
+    </MenuItem>
+    <MenuItem icon={<EditIcon />} command="⌘O">
+      Open File...
+    </MenuItem>
   </MenuList>
 </Menu>
 ```
@@ -199,9 +207,7 @@ the component is displayed.
 
 ```jsx
 <Menu isLazy>
-  <MenuButton size="sm" colorScheme="teal">
-    Open menu
-  </MenuButton>
+  <MenuButton>Open menu</MenuButton>
   <MenuList>
     {/* MenuItems are not rendered unless Menu is open */}
     <MenuItem>New Window</MenuItem>
@@ -218,9 +224,7 @@ To render menus in a portal, import the `Portal` component and wrap the
 
 ```jsx
 <Menu>
-  <MenuButton size="sm" colorScheme="teal">
-    Open menu
-  </MenuButton>
+  <MenuButton>Open menu</MenuButton>
   <Portal>
     <MenuList>
       <MenuItem>Menu 1</MenuItem>
