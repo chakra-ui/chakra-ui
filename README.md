@@ -92,6 +92,8 @@ link to your website.
 To use Chakra UI components, all you need to do is install the
 `@chakra-ui/react` package and its peer dependencies:
 
+[![copy](https://cdn.jsdelivr.net/gh/lalit2005/copii@master/assets/copy.svg)](https://copii.vercel.app/?ct=yarn%20add%20@chakra-ui/react%20framer-motion&tm=blk&lg=https://avatars.githubusercontent.com/u/54212428?s=200&v=4)(Yarn)
+
 ```sh
 $ yarn add @chakra-ui/react framer-motion
 
@@ -99,6 +101,8 @@ $ yarn add @chakra-ui/react framer-motion
 
 $ npm install @chakra-ui/react framer-motion
 ```
+
+[![copy](https://cdn.jsdelivr.net/gh/lalit2005/copii@master/assets/copy.svg)](https://copii.vercel.app/?ct=npm%20install%20@chakra-ui/react%20framer-motion&tm=blk&lg=https://avatars.githubusercontent.com/u/54212428?s=200&v=4)(Npm)
 
 ## Usage
 
@@ -115,6 +119,7 @@ function App({ children }) {
   return <ChakraProvider>{children}</ChakraProvider>
 }
 ```
+[![copy](https://cdn.jsdelivr.net/gh/lalit2005/copii@master/assets/copy-above-code.svg)](https://copii.vercel.app/?ct=¬ß≈import%20{%20ChakraProvider%20}%20from%20"@chakra-ui/react"¬ß≈¬ß≈function%20App({%20children%20})%20{¬ß≈%20%20return%20<ChakraProvider>{children}</ChakraProvider>&tm=blk&lg=https://avatars.githubusercontent.com/u/54212428?s=200&v=4)
 
 Optionally, you can wrap your application with the `ColorModeProvider` so you
 can toggle between light and dark mode within your app.
@@ -128,6 +133,7 @@ function Example() {
   return <Button>I just consumed some ⚡️Chakra!</Button>
 }
 ```
+[![copy](https://cdn.jsdelivr.net/gh/lalit2005/copii@master/assets/copy-above-code.svg)](https://copii.vercel.app/?ct=import%20{%20Button%20}%20from%20"@chakra-ui/react"¬ß≈¬ß≈function%20Example()%20{¬ß≈%20%20return%20<Button>I%20just%20consumed%20some%20⚡️Chakra!</Button>¬ß≈}&tm=blk&lg=https://avatars.githubusercontent.com/u/54212428?s=200&v=4)
 
 ## CodeSandbox Templates
 
