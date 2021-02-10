@@ -35,6 +35,9 @@ function setScript(initialValue: Mode) {
 
 interface ColorModeScriptProps {
   initialColorMode?: Mode
+  /**
+   * Optional nonce that will be passed to the created `<script>` tag.
+   */
   nonce?: string
 }
 
