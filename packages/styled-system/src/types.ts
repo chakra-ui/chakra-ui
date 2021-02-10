@@ -41,13 +41,13 @@ type PseudoKeys = keyof CSS.Pseudos | keyof Pseudos
 
 type PseudoSelectorDefinition<D> = D | RecursivePseudo<D>
 
-type RecursivePseudo<D> = {
+export type RecursivePseudo<D> = {
   [K in PseudoKeys]?: PseudoSelectorDefinition<D> & D
 }
 
 type CSSDefinition<D> = D | string | RecursiveCSSSelector<D | string>
 
-interface RecursiveCSSSelector<D> {
+export interface RecursiveCSSSelector<D> {
   [selector: string]: CSSDefinition<D> & D
 }
 

@@ -30,7 +30,9 @@ export interface ColorHues {
   800: string
   900: string
 }
-
+export type Colors = RecursiveObject<
+  Record<string, Partial<ColorHues>> | string
+>
 export type ThemeDirection = "ltr" | "rtl"
 
 interface ComponentDefaultProps extends Record<string, any> {
@@ -77,7 +79,7 @@ interface Typography {
 interface Foundations extends Typography {
   borders: RecursiveObject
   breakpoints: Breakpoints<Dict>
-  colors: RecursiveObject<Record<string, Partial<ColorHues>> | string>
+  colors: Colors
   radii: RecursiveObject
   shadows: RecursiveObject<string>
   sizes: RecursiveObject

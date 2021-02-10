@@ -3,7 +3,7 @@ import foundations from "./foundations"
 import styles from "./styles"
 import { ChakraTheme, ThemeConfig, ThemeDirection } from "./theme.types"
 
-const direction: ThemeDirection = "ltr"
+const direction = "ltr" as ThemeDirection
 
 const config: ThemeConfig = {
   useSystemColorMode: false,
