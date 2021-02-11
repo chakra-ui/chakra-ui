@@ -55,7 +55,7 @@ export function SidebarContent(props: SidebarContentProps) {
               if (!lvl2.routes) {
                 return (
                   <SidebarLink ml="-3" mt="2" key={lvl2.path} href={lvl2.path}>
-                    {lvl2.title} BLABLA
+                    {lvl2.title}
                   </SidebarLink>
                 )
               }
