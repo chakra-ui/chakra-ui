@@ -170,7 +170,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">((props, ref) => {
         {clonedIcon}
       </StyledControl>
       {children && (
-        <chakra.div
+        <chakra.span
           className="chakra-checkbox__label"
           {...labelProps}
           __css={{
