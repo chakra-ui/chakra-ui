@@ -15,7 +15,7 @@ import { useCheckboxGroupContext } from "./checkbox-group"
 import { CheckboxIcon } from "./checkbox-icon"
 import { useCheckbox, UseCheckboxProps } from "./use-checkbox"
 
-const StyledControl = chakra("div", {
+const StyledControl = chakra("span", {
   baseStyle: {
     display: "inline-flex",
     alignItems: "center",
@@ -179,7 +179,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">((props, ref) => {
           }}
         >
           {children}
-        </chakra.div>
+        </chakra.span>
       )}
     </StyledContainer>
   )
