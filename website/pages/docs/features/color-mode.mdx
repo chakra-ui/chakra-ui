@@ -57,6 +57,9 @@ syncing to work correctly.
 > When setting the initial color mode, we recommend adding it as a config to
 > your theme and reference that in the `ColorModeScript`.
 
+> To use `ColorModeScript` on a site with strict `Content-Security-Policy`, you
+> can use the `nonce` prop that will be passed to the `<script>` tag.
+
 #### For Next.js
 
 For Next.js, you need to add the `ColorModeScript` to the `_document.js` file.
@@ -64,9 +67,9 @@ For Next.js, you need to add the `ColorModeScript` to the `_document.js` file.
 ```jsx live=false ln={16}
 // pages/_document.js
 
-import {ColorModeScript} from '@chakra-ui/react'
-import NextDocument, {Html, Head, Main, NextScript} from 'next/document'
-import theme from './theme'
+import { ColorModeScript } from "@chakra-ui/react"
+import NextDocument, { Html, Head, Main, NextScript } from "next/document"
+import theme from "./theme"
 
 export default class Document extends NextDocument {
   render() {
@@ -82,7 +85,6 @@ export default class Document extends NextDocument {
     )
   }
 }
-
 ```
 
 #### For Create React App
