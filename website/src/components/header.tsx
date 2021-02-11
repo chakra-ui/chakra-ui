@@ -18,7 +18,7 @@ import React from "react"
 import { FaMoon, FaSun } from "react-icons/fa"
 import Logo, { LogoIcon } from "./logo"
 import { MobileNavButton, MobileNavContent } from "./mobile-nav"
-import AlgoliaSearch from "./algolia-search"
+import Search from "./omni-search"
 import SponsorButton from "./sponsor-button"
 import VersionSwitcher from "./version-switcher"
 
@@ -74,7 +74,7 @@ function HeaderContent() {
           align="center"
           color="gray.400"
         >
-          <AlgoliaSearch />
+          <Search />
           <VersionSwitcher w="67px" display={{ base: "none", md: "flex" }} />
           <HStack spacing="5" display={{ base: "none", md: "flex" }}>
             <Link

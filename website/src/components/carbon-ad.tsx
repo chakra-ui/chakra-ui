@@ -99,9 +99,8 @@ const ChakraProAd = () => (
     </Box>
     <Flex direction="column">
       <Box flex="1" fontSize="sm">
-        <b>Chakra UI Pro:</b> Start your project with a growing collection of
-        beautiful, responsive UI components for your application and marketing
-        site.
+        <b>Chakra UI Pro:</b> Start your application or marketing site with a
+        growing collection of beautiful and responsive UI components.
       </Box>
       <Box fontWeight="medium" fontSize="xs" opacity={0.7}>
         Ads via Chakra UI
