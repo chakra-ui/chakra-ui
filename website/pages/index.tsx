@@ -1,4 +1,5 @@
 import {
+  Badge,
   Box,
   BoxProps,
   Button,
@@ -9,6 +10,7 @@ import {
   Flex,
   Grid,
   Heading,
+  HStack,
   Icon,
   Img,
   LightMode,
@@ -36,7 +38,7 @@ import * as React from "react"
 import { AiFillThunderbolt } from "react-icons/ai"
 import { DiGithubBadge } from "react-icons/di"
 import { FaArrowRight, FaDiscord, FaMicrophone } from "react-icons/fa"
-import { FiDownload, FiGithub, FiUsers } from "react-icons/fi"
+import { FiDownload, FiGithub, FiUsers, FiArrowRight } from "react-icons/fi"
 import { IoMdMoon } from "react-icons/io"
 import { MdAccessibility, MdGrain, MdPalette } from "react-icons/md"
 import type { Member, Sponsor } from "src/types/github"
@@ -102,6 +104,68 @@ const StatBox = (props: StatBoxProps) => {
   )
 }
 
+const ChakraProAd = () => (
+  <Box as="section" bg="gray.900" color="white" overflow="hidden">
+    <Container pt="24" pb="0">
+      <Flex align="center" direction="column" textAlign="center" mb="10">
+        <Text casing="uppercase" letterSpacing="wide" fontWeight="bold">
+          Ready-made components{" "}
+          <Badge
+            colorScheme="yellow"
+            variant="solid"
+            color="gray.800"
+            mt="-1"
+            ml="2"
+          >
+            New
+          </Badge>
+        </Text>
+        <Heading
+          mt="4"
+          fontWeight="extrabold"
+          size="3xl"
+          maxW="16ch"
+          mx="auto"
+          letterSpacing="tighter"
+        >
+          <Box bgGradient="linear(to-r, blue.400, teal.400)" bgClip="text">
+            Move even faster
+          </Box>{" "}
+          with Chakra UI Pro 💎
+        </Heading>
+        <Text maxW="48ch" mx="auto" fontSize="lg" mt="6" opacity={0.8}>
+          Chakra UI Pro is a growing collection of beautiful, responsive UI
+          components guaranteed to help you find the perfect starting point for
+          what you want to build.
+        </Text>
+        <HStack
+          mt="6"
+          as="a"
+          bg="whiteAlpha.300"
+          rounded="md"
+          px="8"
+          py="3"
+          href="https://pro.chakra-ui.com/components?ref=chakra-ui.com"
+          color="white"
+          fontSize="lg"
+          fontWeight="semibold"
+          transition="all 0.2s"
+          _hover={{ bg: "whiteAlpha.400" }}
+        >
+          <Text>Learn more</Text>
+          <Box as={FiArrowRight} display="inline-block" ml="2" />
+        </HStack>
+      </Flex>
+      <Img
+        position="relative"
+        top="3"
+        alt="Chakra UI Pro Image"
+        src="https://res.cloudinary.com/adebayosegun/image/upload/v1613045547/Chakra%20UI/Group_207.png"
+      />
+    </Container>
+  </Box>
+)
+
 interface HomePageProps {
   members: Member[]
   sponsors: {
@@ -128,12 +192,12 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
           <Container>
             <Box textAlign="center">
               <chakra.h1
-                maxW="18ch"
+                maxW="16ch"
                 mx="auto"
                 fontSize={{ base: "2.25rem", sm: "3rem", lg: "4rem" }}
                 fontFamily="heading"
-                letterSpacing="tight"
-                fontWeight="bold"
+                letterSpacing="tighter"
+                fontWeight="extrabold"
                 mb="16px"
                 lineHeight="1.2"
               >
@@ -258,6 +322,8 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
           </Container>
         </Box>
 
+        <ChakraProAd />
+
         <Box as="section">
           <Container py="80px">
             <Box mb="3em" textAlign="center">
@@ -363,12 +429,12 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
             >
               <StatBox
                 icon={FiDownload}
-                title="200k"
+                title="250k"
                 description="Downloads per month"
               />
               <StatBox
                 icon={FiGithub}
-                title="14.4k"
+                title="15.2k"
                 description="Github stars"
               />
               <StatBox
@@ -378,7 +444,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               />
               <StatBox
                 icon={FaDiscord}
-                title="1900+"
+                title="1.9K"
                 description="Discord members"
               />
             </SimpleGrid>
