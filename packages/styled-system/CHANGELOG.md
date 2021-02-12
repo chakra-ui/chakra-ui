@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.7.1
+
+### Patch Changes
+
+- [`e8113d3ca`](https://github.com/chakra-ui/chakra-ui/commit/e8113d3ca66e9d45ac2dbb7109ff8904cbfd1134)
+  [#3340](https://github.com/chakra-ui/chakra-ui/pull/3340) Thanks
+  [@MohamedSayed008](https://github.com/MohamedSayed008)! - Export `Recursive*`
+  types from theme, styled-system
+
+* [`4943a15c0`](https://github.com/chakra-ui/chakra-ui/commit/4943a15c084fd2e66ab0dbf273233630d006dc5a)
+  [#3306](https://github.com/chakra-ui/chakra-ui/pull/3306) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue where
+  TypeScript did not allow custom breakpoint names in ResponsiveObject
+
 ## 1.7.0
 
 ### Minor Changes

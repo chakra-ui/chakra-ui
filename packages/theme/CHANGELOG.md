@@ -1,5 +1,24 @@
 # Change Log
 
+## 1.6.2
+
+### Patch Changes
+
+- [`e8113d3ca`](https://github.com/chakra-ui/chakra-ui/commit/e8113d3ca66e9d45ac2dbb7109ff8904cbfd1134)
+  [#3340](https://github.com/chakra-ui/chakra-ui/pull/3340) Thanks
+  [@MohamedSayed008](https://github.com/MohamedSayed008)! - Export `Recursive*`
+  types from theme, styled-system
+
+* [`d6808f0a4`](https://github.com/chakra-ui/chakra-ui/commit/d6808f0a4ae6ad426b498e9556c76071f7aa9848)
+  [#3366](https://github.com/chakra-ui/chakra-ui/pull/3366) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Bring back the TS type
+  `Theme` export and deprecated `DefaultChakraTheme`.
+
+- [`8597f58b7`](https://github.com/chakra-ui/chakra-ui/commit/8597f58b7d5c1fe401086d28a379bc1727756c5b)
+  [#3361](https://github.com/chakra-ui/chakra-ui/pull/3361) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Allow halved values in
+  design token in spacing as mentioned in the documents
+
 ## 1.6.1
 
 ### Patch Changes

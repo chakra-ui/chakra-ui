@@ -1,5 +1,39 @@
 # Change Log
 
+## 1.3.3
+
+### Patch Changes
+
+- [`5a8d8c054`](https://github.com/chakra-ui/chakra-ui/commit/5a8d8c054aa3ecdfac51e355b61ac1ae6214f2d5)
+  [#3366](https://github.com/chakra-ui/chakra-ui/pull/3366) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - The `extendTheme` function
+  uses the type `Theme` again
+
+* [`8597f58b7`](https://github.com/chakra-ui/chakra-ui/commit/8597f58b7d5c1fe401086d28a379bc1727756c5b)
+  [#3361](https://github.com/chakra-ui/chakra-ui/pull/3361) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Allow halved values in
+  design token in spacing as mentioned in the documents
+
+* Updated dependencies
+  [[`e8113d3ca`](https://github.com/chakra-ui/chakra-ui/commit/e8113d3ca66e9d45ac2dbb7109ff8904cbfd1134),
+  [`091bad84a`](https://github.com/chakra-ui/chakra-ui/commit/091bad84a928c9d7f3cba103f2a0926045d931b8),
+  [`b99b8674f`](https://github.com/chakra-ui/chakra-ui/commit/b99b8674f1c1874d5805cb3ad2e893c0d852374f),
+  [`d6808f0a4`](https://github.com/chakra-ui/chakra-ui/commit/d6808f0a4ae6ad426b498e9556c76071f7aa9848),
+  [`8597f58b7`](https://github.com/chakra-ui/chakra-ui/commit/8597f58b7d5c1fe401086d28a379bc1727756c5b),
+  [`51ad518e2`](https://github.com/chakra-ui/chakra-ui/commit/51ad518e22642076485bee3dd1f99acbf025161b)]:
+  - @chakra-ui/theme@1.6.2
+  - @chakra-ui/modal@1.6.0
+  - @chakra-ui/checkbox@1.2.3
+  - @chakra-ui/radio@1.2.3
+  - @chakra-ui/popper@1.1.4
+  - @chakra-ui/system@1.3.1
+  - @chakra-ui/toast@1.1.11
+  - @chakra-ui/switch@1.1.3
+  - @chakra-ui/menu@1.1.2
+  - @chakra-ui/popover@1.2.2
+  - @chakra-ui/tooltip@1.1.2
+  - @chakra-ui/skeleton@1.1.3
+
 ## 1.3.2
 
 ### Patch Changes
