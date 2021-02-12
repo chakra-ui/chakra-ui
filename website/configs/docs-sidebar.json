@@ -120,10 +120,6 @@
               "path": "/docs/layout/grid"
             },
             {
-              "title": "Link",
-              "path": "/docs/components/link"
-            },
-            {
               "title": "SimpleGrid",
               "path": "/docs/layout/simple-grid"
             },
