@@ -72,7 +72,7 @@ const Feature = ({ title, icon, children, ...props }) => {
   )
 }
 
-type StatBoxProps = BoxProps & {
+interface StatBoxProps extends BoxProps {
   icon?: React.ElementType
   title: string
   description: string
