@@ -3,5 +3,4 @@
 "@chakra-ui/theme": patch
 ---
 
-fix: export types from theme, styled-system
-
+Export `Recursive*` types from theme, styled-system

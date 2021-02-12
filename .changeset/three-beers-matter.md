@@ -3,4 +3,4 @@
 "@chakra-ui/react": patch
 ---
 
-Allow halved values in design token in Spacing as mentioned in the documents
+Allow halved values in design token in spacing as mentioned in the documents
