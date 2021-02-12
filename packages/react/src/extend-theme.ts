@@ -1,4 +1,4 @@
-import defaultTheme, { ChakraTheme, DefaultChakraTheme } from "@chakra-ui/theme"
+import defaultTheme, { ChakraTheme, Theme } from "@chakra-ui/theme"
 import { isFunction, mergeWith } from "@chakra-ui/utils"
 
 type CloneKey<Target, Key> = Key extends keyof Target ? Target[Key] : unknown
@@ -20,7 +20,7 @@ type DeepThemeExtension<BaseTheme, ThemeType> = {
 }
 
 export type ThemeOverride = Partial<ChakraTheme> &
-  DeepThemeExtension<DefaultChakraTheme, ChakraTheme>
+  DeepThemeExtension<Theme, ChakraTheme>
 
 /**
  * Function to override or customize the Chakra UI theme conveniently
@@ -28,11 +28,11 @@ export type ThemeOverride = Partial<ChakraTheme> &
  * @param baseTheme - theme to customize
  */
 export function extendTheme<
-  BaseTheme extends ChakraTheme = DefaultChakraTheme,
+  BaseTheme extends ChakraTheme = Theme,
   Overrides extends ThemeOverride = ThemeOverride
 >(
   overrides: Overrides,
-  baseTheme: BaseTheme = defaultTheme as BaseTheme,
+  baseTheme: BaseTheme = (defaultTheme as unknown) as BaseTheme,
 ): BaseTheme & Overrides {
   function customizer(
     source: unknown,

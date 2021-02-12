@@ -237,4 +237,24 @@ describe("extendTheme", () => {
 
     expect((customTheme.breakpoints as any).customFunction).toBeUndefined()
   })
+
+  it("should allow custom breakpoints", () => {
+    const override = {
+      breakpoints: createBreakpoints({
+        sm: "1px",
+        md: "2px",
+        lg: "3px",
+        xl: "4px",
+        phone: "5px",
+      }),
+    }
+
+    const customTheme = extendTheme(override)
+
+    expect(customTheme.breakpoints).toHaveProperty("sm")
+    expect(customTheme.breakpoints).toHaveProperty("md")
+    expect(customTheme.breakpoints).toHaveProperty("lg")
+    expect(customTheme.breakpoints).toHaveProperty("xl")
+    expect(customTheme.breakpoints).toHaveProperty("phone")
+  })
 })
