@@ -69,7 +69,7 @@ export function usePopper(
   const updateStateModifier: Modifier<"updateState", any> = React.useMemo(
     () => ({
       name: "updateState",
-      enabled,
+      enabled: true,
       phase: "write",
       fn: ({ state }) => {
         const elements = Object.keys(state.elements)
@@ -79,7 +79,7 @@ export function usePopper(
       },
       requires: ["computeStyles"],
     }),
-    [enabled],
+    [],
   )
 
   const popperOptions = React.useMemo(() => {
@@ -117,7 +117,7 @@ export function usePopper(
   }, [popperOptions])
 
   useSafeLayoutEffect(() => {
-    if (referenceElement == null || popperElement == null) {
+    if (!enabled || referenceElement == null || popperElement == null) {
       return
     }
 
@@ -134,7 +134,7 @@ export function usePopper(
       popperInstance.destroy()
       popperInstanceRef.current = null
     }
-  }, [referenceElement, popperElement, options.createPopper])
+  }, [enabled, referenceElement, popperElement, options.createPopper])
 
   React.useEffect(() => {
     const id = requestAnimationFrame(() => {
