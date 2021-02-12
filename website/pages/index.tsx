@@ -84,7 +84,7 @@ const StatBox = (props: StatBoxProps) => {
     <Flex
       direction="column"
       align={{ base: "center", md: "flex-start" }}
-      pl={{ base: 0, md: "8" }}
+      pl={{ base: "0", md: "8" }}
       borderLeft="2px solid"
       borderLeftColor="yellow.200"
       {...rest}
