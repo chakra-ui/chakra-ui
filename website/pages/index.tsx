@@ -109,7 +109,7 @@ const ChakraProAd = () => (
     <Container pt="24" pb="0">
       <Flex align="center" direction="column" textAlign="center" mb="10">
         <Text casing="uppercase" letterSpacing="wide" fontWeight="bold">
-          Ready-made components{" "}
+          Premium components{" "}
           <Badge
             colorScheme="yellow"
             variant="solid"
@@ -124,19 +124,22 @@ const ChakraProAd = () => (
           mt="4"
           fontWeight="extrabold"
           size="3xl"
-          maxW="16ch"
+          maxW="14ch"
           mx="auto"
           letterSpacing="tighter"
         >
-          <Box bgGradient="linear(to-r, blue.400, teal.400)" bgClip="text">
-            Move even faster
+          <Box
+            as="span"
+            bgGradient="linear(to-r, blue.400, teal.400)"
+            bgClip="text"
+          >
+            Build faster
           </Box>{" "}
           with Chakra UI Pro 💎
         </Heading>
         <Text maxW="48ch" mx="auto" fontSize="lg" mt="6" opacity={0.8}>
-          Chakra UI Pro is a growing collection of beautiful, responsive UI
-          components guaranteed to help you find the perfect starting point for
-          what you want to build.
+          Beautiful and responsive React components to build your application or
+          marketing pages quicker.
         </Text>
         <HStack
           mt="6"
@@ -321,8 +324,6 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
             </Wrap>
           </Container>
         </Box>
-
-        <ChakraProAd />
 
         <Box as="section">
           <Container py="80px">
@@ -654,40 +655,9 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
           </Container>
         </Box>
 
-        <Box>
-          <Container py="120px" maxW="800px" mx="auto" textAlign="center">
-            <Flex direction="column" align="center">
-              <Center rounded="full" w="100px" h="100px" bg="teal.400">
-                <LogoMark w="80%" color="white" />
-              </Center>
-              <Box maxW="600px" mx="auto">
-                <chakra.h2 textStyle="heading-2" mt="6" mb="6">
-                  Get started with Chakra today
-                </chakra.h2>
-                <Text mb="40px" fontSize="lg" opacity={0.7}>
-                  Chakra keeps everyone aligned and working without friction.
-                  Engineers and designers using the same language.
-                </Text>
-              </Box>
-              <NextLink href="/docs/getting-started" passHref>
-                <Button
-                  h="4rem"
-                  px="40px"
-                  fontSize="1.2rem"
-                  as="a"
-                  size="lg"
-                  colorScheme="teal"
-                  rightIcon={<FaArrowRight fontSize="0.8em" />}
-                >
-                  Get Started
-                </Button>
-              </NextLink>
-            </Flex>
-          </Container>
-        </Box>
+        <ChakraProAd />
 
         <Box
-          bg={useColorModeValue("teal.50", "#81e6d91c")}
           bgImage="url(/audio-bar.svg)"
           bgPos="bottom center"
           bgSize="120px"
@@ -701,7 +671,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
             textAlign="center"
           >
             <Flex direction="column" align="center" maxW="600px" mx="auto">
-              <Circle size="80px" bg="blackAlpha.200">
+              <Circle size="80px" bg="blackAlpha.200" color="teal.400">
                 <FaMicrophone size="40px" />
               </Circle>
               <chakra.h2 textStyle="heading" mt="6" mb="6">
