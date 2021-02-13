@@ -1,5 +1,16 @@
 # Change Log
 
+## 1.3.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`e8113d3ca`](https://github.com/chakra-ui/chakra-ui/commit/e8113d3ca66e9d45ac2dbb7109ff8904cbfd1134),
+  [`4943a15c0`](https://github.com/chakra-ui/chakra-ui/commit/4943a15c084fd2e66ab0dbf273233630d006dc5a),
+  [`7f3bb3584`](https://github.com/chakra-ui/chakra-ui/commit/7f3bb35841f81e9e29a356b3070ac9fd28352731)]:
+  - @chakra-ui/styled-system@1.7.1
+  - @chakra-ui/color-mode@1.1.0
+
 ## 1.3.0
 
 ### Minor Changes

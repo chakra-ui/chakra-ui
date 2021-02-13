@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.2.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`51ad518e2`](https://github.com/chakra-ui/chakra-ui/commit/51ad518e22642076485bee3dd1f99acbf025161b)]:
+  - @chakra-ui/popper@1.1.4
+
 ## 1.2.1
 
 ### Patch Changes

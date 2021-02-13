@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [`7f3bb3584`](https://github.com/chakra-ui/chakra-ui/commit/7f3bb35841f81e9e29a356b3070ac9fd28352731)
+  [#3322](https://github.com/chakra-ui/chakra-ui/pull/3322) Thanks
+  [@dodas](https://github.com/dodas)! - You can now customize the `nonce` of the
+  `<script>` that `ColorModeScript` creates by passing `nonce` prop.
+
 ## 1.0.7
 
 ### Patch Changes

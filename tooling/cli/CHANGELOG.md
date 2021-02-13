@@ -1,5 +1,14 @@
 # @chakra-ui/cli
 
+## 1.2.1
+
+### Patch Changes
+
+- [`b78345c36`](https://github.com/chakra-ui/chakra-ui/commit/b78345c366ff79e1a2b5fb77d969f9ee8ced1ac8)
+  [#3309](https://github.com/chakra-ui/chakra-ui/pull/3309) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - CLI tokens command now
+  ignores TS errors in your theme.ts file
+
 ## 1.2.0
 
 ### Minor Changes

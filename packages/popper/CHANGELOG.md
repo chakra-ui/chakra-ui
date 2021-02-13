@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.1.4
+
+### Patch Changes
+
+- [`51ad518e2`](https://github.com/chakra-ui/chakra-ui/commit/51ad518e22642076485bee3dd1f99acbf025161b)
+  [#3343](https://github.com/chakra-ui/chakra-ui/pull/3343) Thanks
+  [@dodas](https://github.com/dodas)! - The Popper.js instance is now created
+  only once it is actually needed for positioning.
+
 ## 1.1.3
 
 ### Patch Changes

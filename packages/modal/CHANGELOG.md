@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.6.0
+
+### Minor Changes
+
+- [`091bad84a`](https://github.com/chakra-ui/chakra-ui/commit/091bad84a928c9d7f3cba103f2a0926045d931b8)
+  [#3337](https://github.com/chakra-ui/chakra-ui/pull/3337) Thanks
+  [@afermon](https://github.com/afermon)! - Upgrade to react-remove-scroll@2.4.1
+  and react-focus-lock@2.5.0 to fix React 17 peer dependencies compatibility
+
+### Patch Changes
+
+- Updated dependencies
+  [[`091bad84a`](https://github.com/chakra-ui/chakra-ui/commit/091bad84a928c9d7f3cba103f2a0926045d931b8)]:
+  - @chakra-ui/focus-lock@1.1.0
+
 ## 1.5.1
 
 ### Patch Changes

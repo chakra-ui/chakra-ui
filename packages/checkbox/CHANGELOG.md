@@ -1,5 +1,16 @@
 # Change Log
 
+## 1.2.3
+
+### Patch Changes
+
+- [`b99b8674f`](https://github.com/chakra-ui/chakra-ui/commit/b99b8674f1c1874d5805cb3ad2e893c0d852374f)
+  [#3364](https://github.com/chakra-ui/chakra-ui/pull/3364) Thanks
+  [@grahhham](https://github.com/grahhham)! - - Improve the semantic HTML
+  structure of checkbox. `label` is a phrasing content element and should not
+  contain block element `div`.
+  - Replaced `div` with `span` which is an inline element.
+
 ## 1.2.2
 
 ### Patch Changes
