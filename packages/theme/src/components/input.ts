@@ -20,34 +20,8 @@ function makeSize(props: {
   h: number
 }) {
   return {
-    field: {
-      ...props,
-      ".chakra-input__group.chakra-input__group--has-left-element &": {
-        paddingLeft: props.h,
-      },
-      ".chakra-input__group.chakra-input__group--has-right-element &": {
-        paddingRight: props.h,
-      },
-      ".chakra-input__group.chakra-input__group--has-left-addon &": {
-        borderLeftRadius: 0,
-      },
-      ".chakra-input__group.chakra-input__group--has-right-addon &": {
-        borderRightRadius: 0,
-      },
-    },
-    addon: {
-      ...props,
-      "&.chakra-input__left-addon": {
-        marginRight: "-1px",
-        borderRightColor: "transparent",
-        borderRightRadius: 0,
-      },
-      "&.chakra-input__right-addon": {
-        marginLeft: "-1px",
-        borderLeftColor: "transparent",
-        borderLeftRadius: 0,
-      },
-    },
+    field: props,
+    addon: props,
   }
 }
 

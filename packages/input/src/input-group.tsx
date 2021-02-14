@@ -6,6 +6,9 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
+  css,
+  useTheme,
+  SystemStyleObject,
 } from "@chakra-ui/system"
 import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -48,11 +51,19 @@ export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
      * Make it possible to override the size and variant from `Input`
      */
     const theming = {
-      size: child.props?.size || props.size,
-      variant: child.props?.variant || props.variant,
+      size: child.props?.size ?? props.size,
+      variant: child.props?.variant ?? props.variant,
     }
 
     return React.cloneElement(child, theming)
+  })
+
+  const theme = useTheme()
+  const inputCss = css(styles.field)({ theme })
+  const inputGroupCssVariables = mapCssPropNames(inputCss, {
+    height: "--chakra-input-group-height",
+    fontSize: "--chakra-input-group-font-size",
+    paddingLeft: "--chakra-input-group-padding-left",
   })
 
   return (
@@ -63,6 +74,7 @@ export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
         width: "100%",
         display: "flex",
         position: "relative",
+        ...inputGroupCssVariables,
       }}
       {...rest}
     >
@@ -73,4 +85,32 @@ export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
 
 if (__DEV__) {
   InputGroup.displayName = "InputGroup"
+}
+
+/**
+ * Returns a new `props` object where keys listed
+ * in `mapping` are mapped to new name and all other props are dropped.
+ * Any media query will be preserved and props inside will be mapped as well.
+ */
+function mapCssPropNames(
+  props: SystemStyleObject,
+  mapping: Record<string, string>,
+): SystemStyleObject {
+  return Object.fromEntries(
+    Object.entries(props).flatMap(([key, val]) => {
+      if (Object.prototype.hasOwnProperty.call(mapping, key)) {
+        return [[mapping[key], val]]
+      }
+
+      if (isMediaQuery(key)) {
+        return [[key, mapCssPropNames(val as SystemStyleObject, mapping)]]
+      }
+
+      return []
+    }),
+  )
+}
+
+function isMediaQuery(key: string) {
+  return key.startsWith("@media ")
 }

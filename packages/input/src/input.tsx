@@ -55,7 +55,27 @@ export const Input = forwardRef<InputProps, "input">((props, ref) => {
   return (
     <chakra.input
       {...input}
-      __css={styles.field}
+      __css={{
+        ...styles.field,
+        // Workaround to force the following css to be always placed _after_ the all above styes.
+        // Otherwise, if css above contains any media queries,
+        // they would be moved to the end and increased their priority.
+        // See: https://github.com/emotion-js/emotion/issues/1860
+        "&&": {
+          ".chakra-input__group.chakra-input__group--has-left-element &": {
+            paddingLeft: "var(--chakra-input-group-height)",
+          },
+          ".chakra-input__group.chakra-input__group--has-right-element &": {
+            paddingRight: "var(--chakra-input-group-height)",
+          },
+          ".chakra-input__group.chakra-input__group--has-left-addon &": {
+            borderLeftRadius: 0,
+          },
+          ".chakra-input__group.chakra-input__group--has-right-addon &": {
+            borderRightRadius: 0,
+          },
+        },
+      }}
       ref={ref}
       className={_className}
     />

@@ -9,16 +9,6 @@ import * as React from "react"
 
 type Placement = "left" | "right"
 
-const StyledAddon = chakra("div", {
-  baseStyle: {
-    flex: "0 0 auto",
-    width: "auto",
-    display: "flex",
-    alignItems: "center",
-    whiteSpace: "nowrap",
-  },
-})
-
 export interface InputAddonProps extends HTMLChakraProps<"div"> {
   placement?: Placement
 }
@@ -32,11 +22,25 @@ export const InputAddon = forwardRef<InputAddonProps, "div">((props, ref) => {
   const { placement = "left", ...rest } = props
   const styles = useStyles()
 
+  const cssStyles = {
+    flex: "0 0 auto",
+    width: "auto",
+    display: "flex",
+    alignItems: "center",
+    whiteSpace: "nowrap",
+    ...styles.addon,
+    // Workaround to force the following css to be always placed _after_ the all above styes.
+    // Otherwise, if css above contains any media queries,
+    // they would be moved to the end and increased their priority.
+    // See: https://github.com/emotion-js/emotion/issues/1860
+    "&&": props.__css,
+  }
+
   return (
-    <StyledAddon
+    <chakra.div
       ref={ref}
       {...rest}
-      __css={styles.addon}
+      __css={cssStyles}
       className={cx(`chakra-input__${placement}-addon`, props.className)}
     />
   )
@@ -52,7 +56,18 @@ if (__DEV__) {
  * Element to append to the left of an input
  */
 export const InputLeftAddon = forwardRef<InputAddonProps, "div">(
-  (props, ref) => <InputAddon ref={ref} placement="left" {...props} />,
+  (props, ref) => (
+    <InputAddon
+      ref={ref}
+      placement="left"
+      __css={{
+        marginRight: "-1px",
+        borderRightColor: "transparent",
+        borderRightRadius: 0,
+      }}
+      {...props}
+    />
+  ),
 )
 
 if (__DEV__) {
@@ -68,7 +83,18 @@ InputLeftAddon.id = "InputLeftAddon"
  * Element to append to the right of an input
  */
 export const InputRightAddon = forwardRef<InputAddonProps, "div">(
-  (props, ref) => <InputAddon ref={ref} placement="right" {...props} />,
+  (props, ref) => (
+    <InputAddon
+      ref={ref}
+      placement="right"
+      __css={{
+        marginLeft: "-1px",
+        borderLeftColor: "transparent",
+        borderLeftRadius: 0,
+      }}
+      {...props}
+    />
+  ),
 )
 
 if (__DEV__) {
