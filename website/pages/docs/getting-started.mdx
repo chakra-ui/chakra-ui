@@ -40,10 +40,27 @@ function App() {
 }
 ```
 
-> - For Next.js, you need to set this up in `pages/_app.js` or `pages/_app.tsx`
 > - For Gatsby, install the `@chakra-ui/gatsby-plugin`. It does it automatically
 >   for you.
 > - For Create React App, you need to set this up in `index.js` or `index.tsx`
+
+### Next.js
+Go to `pages/_app.js` or `pages/_app.tsx` (create if it doesn't exist) and add this:
+
+```jsx live=false
+import { ChakraProvider } from '@chakra-ui/react';
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <ChakraProvider>
+      <Component {...pageProps} />
+    </ChakraProvider>
+  );
+}
+
+export default MyApp;
+
+```
 
 ## Add custom theme (Optional)
 
