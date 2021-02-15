@@ -8,7 +8,6 @@ import {
   ModalBody,
   ModalContent,
   ModalOverlay,
-  useColorModeValue,
   useDisclosure,
   useEventListener,
   useUpdateEffect,
@@ -36,7 +35,7 @@ function OptionText(props: any) {
     const text = textToHighlight.substr(start, end - start)
     if (highlight) {
       return (
-        <Box as="mark" color="teal.500" bg="transparent" fontWeight="medium">
+        <Box as="mark" bg="transparent" color="teal.500">
           {text}
         </Box>
       )
@@ -148,14 +147,8 @@ function OmniSearch() {
     function getResults() {
       if (query.length < 2) return []
       return matchSorter(searchData, query, {
-        keys: ["content", "hierarchy.lvl1", "hierarchy.lvl2", "hierarchy.lvl3"],
-      })
-        .slice(0, 20)
-        .sort((a, b) => {
-          if (a.hierarchy.lvl2 == null && b.hierarchy != null) return -1
-          if (a.hierarchy.lvl2 != null && b.hierarchy == null) return 1
-          return 0
-        })
+        keys: ["hierarchy.lvl1", "hierarchy.lvl2", "hierarchy.lvl3", "content"],
+      }).slice(0, 20)
     },
     [query],
   )
@@ -179,6 +172,7 @@ function OmniSearch() {
           break
         }
         case "Enter": {
+          modal.onClose()
           router.push(results[active].url)
           break
         }
@@ -218,11 +212,12 @@ function OmniSearch() {
           role="combobox"
           aria-expanded="true"
           aria-haspopup="listbox"
-          rounded="md"
+          rounded="lg"
           overflow="hidden"
-          top="10vh"
+          top="4vh"
           bg="transparent"
-          shadow="search"
+          shadow="lg"
+          maxW="600px"
         >
           <Flex pos="relative" align="stretch">
             <chakra.input
@@ -231,12 +226,15 @@ function OmniSearch() {
               autoCorrect="off"
               spellCheck="false"
               maxLength={64}
-              w="100%"
-              h="40px"
-              bg={useColorModeValue("white", "gray.700")}
-              pl="40px"
-              outline="0"
-              id="docsearch-input"
+              sx={{
+                w: "100%",
+                h: "68px",
+                pl: "68px",
+                fontWeight: "medium",
+                outline: 0,
+                bg: "white",
+                ".chakra-ui-dark &": { bg: "gray.700" },
+              }}
               placeholder="Search the docs"
               value={query}
               onChange={(e) => {
@@ -245,80 +243,91 @@ function OmniSearch() {
               }}
               onKeyDown={onKeyDown}
             />
-            <Center pos="absolute" left="0" w="40px" h="40px">
-              <SearchIcon />
+            <Center pos="absolute" left={7} h="68px">
+              <SearchIcon color="teal.500" boxSize="20px" />
             </Center>
           </Flex>
-          <ModalBody maxH="calc(60vh - 40px)" p="0" ref={menuRef}>
+          <ModalBody maxH="66vh" p="0" ref={menuRef}>
             {open && (
               <Box
-                as="ul"
-                borderTopWidth="1px"
-                role="listbox"
-                id="docsearch-menu"
-                bg={useColorModeValue("white", "gray.700")}
+                sx={{
+                  px: 4,
+                  bg: "white",
+                  ".chakra-ui-dark &": { bg: "gray.700" },
+                }}
               >
-                {results.map((item, index) => {
-                  const selected = index === active
-                  const isLvl1 = item.type === "lvl1"
-                  return (
-                    <Link key={item.id} href={item.url}>
-                      <Box
-                        id={`search-item-${index}`}
-                        as="li"
-                        cursor="pointer"
-                        onMouseEnter={() => {
-                          setActive(index)
-                          eventRef.current = "mouse"
-                        }}
-                        ref={menuNodes.ref(index)}
-                        role="option"
-                        aria-selected={selected ? true : undefined}
-                        _selected={{
-                          bg: "teal.500",
-                          color: "white",
-                          mark: {
-                            color: "white",
-                            textDecor: "underline",
-                          },
-                        }}
-                        key={item.id}
-                        fontSize="sm"
-                        px="4"
-                        py="2"
-                        display="flex"
-                        alignItems="center"
-                        minH="60px"
-                      >
-                        {isLvl1 ? (
-                          <DocIcon opacity={0.3} />
-                        ) : (
-                          <HashIcon opacity={0.3} />
-                        )}
+                <Box as="ul" role="listbox" borderTopWidth="1px" pt={2} pb={4}>
+                  {results.map((item, index) => {
+                    const selected = index === active
+                    const isLvl1 = item.type === "lvl1"
 
-                        <Box flex="1" ml="3">
-                          {!isLvl1 && (
-                            <Box
-                              fontWeight="medium"
-                              fontSize="xs"
-                              opacity={0.6}
-                            >
-                              {item.hierarchy.lvl1}
-                            </Box>
+                    return (
+                      <Link key={item.id} href={item.url}>
+                        <Box
+                          id={`search-item-${index}`}
+                          as="li"
+                          aria-selected={selected ? true : undefined}
+                          cursor="pointer"
+                          onMouseEnter={() => {
+                            setActive(index)
+                            eventRef.current = "mouse"
+                          }}
+                          onClick={() => {
+                            modal.onClose()
+                          }}
+                          ref={menuNodes.ref(index)}
+                          role="option"
+                          key={item.id}
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            minH: 16,
+                            mt: 2,
+                            px: 4,
+                            py: 2,
+                            rounded: "lg",
+                            bg: "gray.100",
+                            ".chakra-ui-dark &": { bg: "gray.600" },
+                            _selected: {
+                              bg: "teal.500",
+                              color: "white",
+                              mark: {
+                                color: "white",
+                                textDecoration: "underline",
+                              },
+                            },
+                          }}
+                        >
+                          {isLvl1 ? (
+                            <DocIcon opacity={0.4} />
+                          ) : (
+                            <HashIcon opacity={0.4} />
                           )}
-                          <Box mb="1" fontWeight="semibold">
-                            <OptionText
-                              searchWords={[query]}
-                              textToHighlight={item.content}
-                            />
-                          </Box>
-                        </Box>
 
-                        <EnterIcon opacity={0.3} />
-                      </Box>
-                    </Link>
-                  )
-                })}
+                          <Box flex="1" ml="4">
+                            {!isLvl1 && (
+                              <Box
+                                fontWeight="medium"
+                                fontSize="xs"
+                                opacity={0.7}
+                              >
+                                {item.hierarchy.lvl1}
+                              </Box>
+                            )}
+                            <Box fontWeight="semibold">
+                              <OptionText
+                                searchWords={[query]}
+                                textToHighlight={item.content}
+                              />
+                            </Box>
+                          </Box>
+
+                          <EnterIcon opacity={0.5} />
+                        </Box>
+                      </Link>
+                    )
+                  })}
+                </Box>
               </Box>
             )}
           </ModalBody>
