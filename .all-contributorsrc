@@ -1792,6 +1792,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "tomchentw",
+      "name": "Tom Chen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/922234?v=4",
+      "profile": "https://medium.com/@tomchentw",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
