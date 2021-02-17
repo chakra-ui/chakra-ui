@@ -1783,6 +1783,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "anantja-in",
+      "name": "Anant Jain",
+      "avatar_url": "https://avatars.githubusercontent.com/u/509059?v=4",
+      "profile": "http://anantja.in",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
