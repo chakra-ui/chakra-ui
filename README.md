@@ -399,6 +399,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://jungaretti.com"><img src="https://avatars.githubusercontent.com/u/19893438?v=4?s=64" width="64px;" alt=""/><br /><sub><b>JP Ungaretti</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=jungaretti" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/eintxaurtieta"><img src="https://avatars.githubusercontent.com/u/24615080?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Endika Intxaurtieta</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=eintxaurtieta" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/mattwells19"><img src="https://avatars.githubusercontent.com/u/36650048?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Matt Wells</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=mattwells19" title="Code">💻</a></td>
+    <td align="center"><a href="http://anantja.in"><img src="https://avatars.githubusercontent.com/u/509059?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Anant Jain</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=anantja-in" title="Documentation">📖</a></td>
   </tr>
 </table>
 
