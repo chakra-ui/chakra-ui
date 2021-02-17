@@ -43,9 +43,15 @@ export function useControllableState<T>(props: UseControllableStateProps<T>) {
   const updateValue = React.useCallback(
     (next: React.SetStateAction<T>) => {
       const nextValue = runIfFn(next, value)
+
+      if (nextValue === value) {
+        return
+      }
+
       if (!isControlled) {
         setValue(nextValue)
       }
+
       handleChange(nextValue)
     },
     [isControlled, handleChange, value],
