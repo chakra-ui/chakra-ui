@@ -278,20 +278,28 @@ export function getServerSideProps({ req }) {
 2. Import your wrapper component setting up Chakra:
 
 ```jsx live=false
-// e.g pages/index.js
+// setup your wrapper in the _app file (e.g: pages/_app.js)
 import { Chakra } from "../src/Chakra"
 
-export default function Index({ cookies }) {
-  return (
-    <Chakra cookies={cookies}>
-      <h1>Example</h1>
-    </Chakra>
-  )
+export default function App({ Component, pageProps }) {
+    return (
+    	<Chakra cookies={pageProps.cookies}>
+    		<Component {...pageProps} />
+    	</Chakra>
+    );
+}
+
+// e.g pages/index.js
+export default function Index() {
+  return <h1>Example</h1>
 }
 
 // re-export the reusable `getServerSideProps` function
 export { getServerSideProps } from "./Chakra"
 ```
+
+> If you need to know the name of the Chakra cookie for specific reasons,
+> it's `chakra-ui-color-mode`.
 
 > **Important:** if you're using `Next.js 9.3` or newer, the Next.js team
 > recommends avoiding `getInitialProps`. The following example is for Next 9.2
