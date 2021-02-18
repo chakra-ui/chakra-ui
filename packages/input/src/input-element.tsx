@@ -16,6 +16,7 @@ const StyledElement = chakra("div", {
   baseStyle: {
     display: "flex",
     alignItems: "center",
+    height: "100%",
     justifyContent: "center",
     position: "absolute",
     top: "0",
