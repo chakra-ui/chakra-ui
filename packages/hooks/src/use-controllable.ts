@@ -121,15 +121,13 @@ const createControllableStateMachine = <T>({
     {
       id: "controllable-state",
       initial: "init",
-      context: {
-        defaultValue,
-        state: value !== undefined ? value : defaultValue,
-      },
       states: {
         init: {
           always: [{ target: "controlled", cond: "hasValue" }],
         },
-        controlled: {},
+        controlled: {
+          on: {},
+        },
         uncontrolled: {},
       },
     },
