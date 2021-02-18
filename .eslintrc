@@ -69,7 +69,8 @@
     "@typescript-eslint/no-shadow": "off",
     "react-hooks/exhaustive-deps": "error",
     "import/no-named-as-default": "off",
-    "prefer-object-spread": "off"
+    "prefer-object-spread": "off",
+    "arrow-body-style": "off"
   },
   "overrides": [
     {
