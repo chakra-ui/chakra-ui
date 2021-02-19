@@ -171,10 +171,6 @@ export namespace StateMachine {
      */
     context?: TContext
     /**
-     * The computed value to derive from the current context
-     */
-    computed?: Dict<(context: TContext) => any>
-    /**
      * The initial state to start with
      */
     initial?: TState
@@ -182,11 +178,13 @@ export namespace StateMachine {
      * The mapping of state node keys to their state node configurations (recursive).
      */
     //@ts-expect-error
-    states: Record<TState, StateNode<TContext, TState, TEvent>>
+    states?: Record<TState, StateNode<TContext, TState, TEvent>>
     /**
      * The `id` of the parent machine for this
      */
     parent?: string
+    //@ts-expect-error
+    on?: TransitionDefinitionMap<TContext, TState, TEvent>
   }
 
   export type SubscribeFunction<TContext> = (state: State<TContext>) => void
@@ -234,9 +232,12 @@ export namespace StateMachine {
     TContext extends Dict,
     TEvent extends EventObject
   > {
+    /**
+     * The computed value to derive from the current context
+     */
+    computed?: Dict<(context: TContext) => any>
     guards?: GuardsMap<TContext, TEvent>
     actions?: ActionsMap<TContext, TEvent>
     delays?: TimersMap<TContext, TEvent>
-    intervals?: TimersMap<TContext, TEvent>
   }
 }

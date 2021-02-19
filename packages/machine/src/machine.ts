@@ -72,9 +72,13 @@ export class Machine<
         },
       },
       {
-        ...toComputed(config.computed),
+        ...toComputed(opts?.computed),
         nextEvents(self) {
-          return keys((config.states as Dict)[self.current]?.["on"] ?? {})
+          const stateEvents =
+            (config.states as Dict)?.[self.current]?.["on"] ?? {}
+          const globalEvents = config?.on ?? {}
+          Object.assign(stateEvents, globalEvents)
+          return keys(stateEvents)
         },
         changed(self) {
           if (self.event === INTERNAL_EVENTS.INIT || !self.prev) return false
@@ -86,7 +90,6 @@ export class Machine<
     if (opts?.guards) this.guardsMap = opts.guards
     if (opts?.actions) this.actionsMap = opts.actions
     if (opts?.delays) this.delaysMap = opts.delays
-    if (opts?.intervals) this.intervalsMap = opts.intervals
   }
 
   // Starts the interpreted machine.
@@ -104,6 +107,14 @@ export class Machine<
     // cleanups
     this.cleanupChildren()
     this.cleanupActivities()
+    this.cleanupAfterCache()
+  }
+
+  cleanupAfterCache = () => {
+    this.afterActionsCache.forEach((fns) => {
+      fns.forEach((cleanup) => cleanup())
+    })
+    this.afterActionsCache.clear()
   }
 
   // Cleanup running activities (e.g `setInterval`)
@@ -173,6 +184,7 @@ export class Machine<
   }
 
   getStateConfig = (state: string) => {
+    if (!state) return
     type StateConfig = S.StateNode<TContext, TState, TEvent>
     return (this.config.states as Dict)[state] as StateConfig
   }
@@ -218,7 +230,6 @@ export class Machine<
   determineDelay = (
     delay: S.Delay<TContext, TEvent> | undefined,
     event: TEvent,
-    key: "delaysMap" | "intervalsMap" = "delaysMap",
   ) => {
     if (typeof delay === "number") {
       return delay
@@ -229,8 +240,8 @@ export class Machine<
     }
 
     if (isString(delay)) {
-      if (this[key]) {
-        const value = this[key]?.[delay]
+      if (this.delaysMap) {
+        const value = this.delaysMap?.[delay]
         return isFunction(value) ? value(this.state.context, event) : value
       }
       return Number(delay)
@@ -310,7 +321,9 @@ export class Machine<
           id = setTimeout(() => {
             const next = this.getNextState(event, transition)
             const current = this.getStateConfig(this.state.current)
-            this.performTransitionSideEffects(current, next, event)
+            if (current) {
+              this.performTransitionSideEffects(current, next, event)
+            }
           }, delay)
         },
         exit: () => {
@@ -404,15 +417,14 @@ export class Machine<
     if (isArray(every)) {
       // picked = { interval: string | number | <ref>, actions: [...], cond: ... }
       const picked = toArray(every).find((t) => {
-        t.interval = this.determineDelay(t.interval, event, "intervalsMap")
+        t.interval = this.determineDelay(t.interval, event)
         const cond = t.cond ? this.determineGuard(t.cond) : undefined
         return cond?.(this.state.context, event) ?? t.interval
       })
 
       if (!picked) return
 
-      const ms =
-        this.determineDelay(picked.interval, event, "intervalsMap") ?? 0
+      const ms = this.determineDelay(picked.interval, event) ?? 0
 
       const activity = (_: TContext, event: TEvent) => {
         const id = setInterval(() => {
@@ -427,7 +439,7 @@ export class Machine<
         const actions = every?.[interval]
 
         // interval could be a `ref` not the actual interval value, let's determine the actual value
-        const ms = this.determineDelay(interval, event, "intervalsMap") ?? 0
+        const ms = this.determineDelay(interval, event) ?? 0
 
         // create the activity to run for each `every` reaction
         const activity = (_: TContext, event: TEvent) => {
@@ -449,7 +461,7 @@ export class Machine<
    * Exit actions (current state) => Transition actions  => Go to state => Entry actions (next state)
    */
   performTransitionSideEffects = (
-    current: S.StateNode<TContext, TState, TEvent>,
+    current: S.StateNode<TContext, TState, TEvent> | undefined,
     next: S.StateInfo<TContext, TState, TEvent>,
     event: TEvent,
   ) => {
@@ -471,7 +483,7 @@ export class Machine<
       this.executeActions(event, exitActions)
 
       // cleanup activities for current state
-      if (this.hasActivities(current)) {
+      if (current && this.hasActivities(current)) {
         this.cleanupActivities(this.state.current)
       }
     }
@@ -537,7 +549,10 @@ export class Machine<
 
     if (!_transition?.target && _transition?.actions) {
       // execute transient actions
-      this.executeActions(event, _transition.actions)
+      const cond = this.determineGuard(_transition.cond) || (() => true)
+      if (cond(this.state.context, event)) {
+        this.executeActions(event, _transition.actions)
+      }
     }
 
     return next
@@ -583,12 +598,6 @@ export class Machine<
     const stateNode = this.getStateConfig(this.state.current)
 
     if (isInit) {
-      if (!this.config.initial) {
-        console.warn(
-          "Initial state not defined for Machine. Set value for `config.inital`",
-        )
-        return
-      }
       let next = this.getNextState(event, { target: this.config.initial })
       //@ts-ignore
       next = this.checkTransient(next, event)
@@ -596,15 +605,13 @@ export class Machine<
       return
     }
 
-    if (!stateNode) {
-      console.warn(
-        `State definition does not exist for state: \`${this.state.current}\``,
-      )
-      return
-    }
+    if (!stateNode && !this.config.on) return
 
-    const _transition = stateNode.on?.[event.type]
+    const _transition =
+      stateNode?.on?.[event.type] ?? this.config.on?.[event.type]
+
     const transition = toTransition(_transition, this.state.current)
+
     if (!transition) return
     let next = this.getNextState(event, transition as TransitionDfn)
     //@ts-ignore
