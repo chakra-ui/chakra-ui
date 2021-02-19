@@ -1,4 +1,4 @@
-const parts = ["container", "button", "panel"]
+const parts = ["container", "button", "panel", "icon"]
 
 const baseStyleContainer = {
   borderTopWidth: "1px",
@@ -30,10 +30,15 @@ const baseStylePanel = {
   pb: 5,
 }
 
+const baseStyleIcon = {
+  fontSize: "1.25em",
+}
+
 const baseStyle = {
   container: baseStyleContainer,
   button: baseStyleButton,
   panel: baseStylePanel,
+  icon: baseStyleIcon,
 }
 
 export default {
