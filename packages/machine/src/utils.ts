@@ -14,18 +14,7 @@ export const isFunction = (value: any): value is Function =>
 export const keys = <T extends Record<string, any>>(value: T) =>
   Object.keys(value) as string[]
 
-export const toArray = (v: any | any[] = []) => (isArray(v) ? v : [v])
-
-export function executeActions<
-  TContext extends Dict,
-  TEvent extends S.EventObject
->(context: TContext, event: TEvent, actions?: S.Actions<TContext, TEvent>) {
-  if (!actions) return
-  actions = toArray(actions)
-  for (const action of actions) {
-    action(context, event)
-  }
-}
+export const toArray = <T>(v: T | T[] = []) => (isArray(v) ? v : [v])
 
 export function toEvent<T extends string | S.Event>(event: T) {
   return isString(event) ? ({ type: event } as S.EventObject) : event
@@ -41,7 +30,7 @@ export function toTransition<
   TEvent extends S.EventObject
 >(
   transition: S.Transitions<TContext, TState, TEvent> | undefined,
-  currentState?: string,
+  currentState?: string | null,
 ) {
   const _transition = isString(transition) ? toTarget(transition) : transition
 
@@ -60,58 +49,15 @@ export function toTransition<
   }
 }
 
-export function pickTarget<
-  TContext extends Dict,
-  TState extends string,
-  TEvent extends S.EventObject
->(
-  context: Dict,
-  event: TEvent,
-  transitions?: S.Transitions<TContext, TState, TEvent>,
-): S.TransitionDefinitionWithDelay<TContext, TState, TEvent> | undefined {
-  return toArray(transitions).find((t) => {
-    const transition = toTarget(t)
-    return transition.cond?.(context, event) ?? transition.target
-  })
+export const INTERNAL_EVENTS = {
+  INIT: "machine.init",
+  AFTER: "machine.after",
+  EVERY: "machine.every",
+  SEND_PARENT: "machine.sendParent",
+  STOP: "machine.stop",
 }
 
-export function createEveryActivities<
-  TContext extends Dict,
-  TState extends string,
-  TEvent extends S.EventObject
->(
-  every: S.StateNode<TContext, TState, TEvent>["every"],
-  iterator: (activity: S.Activity<TContext, TEvent>) => void,
-) {
-  if (!every) return
-  for (const timeout in every) {
-    const activity = (context: TContext, event: TEvent) => {
-      const actions = every?.[timeout]
-      const id = setInterval(() => {
-        executeActions(context, event, actions as S.Actions<TContext, TEvent>)
-      }, +timeout)
-      return () => clearInterval(id)
-    }
-    iterator(activity)
-  }
-}
-
-export function executeActivities<
-  TContext extends Dict,
-  TEvent extends S.EventObject
->(
-  context: TContext,
-  event: TEvent,
-  activities: S.Activities<TContext, TEvent>,
-  iterator: (fn: VoidFunction) => void,
-) {
-  if (isArray(activities)) {
-    for (const activity of activities) {
-      const fn = activity(context, event)
-      iterator(fn)
-    }
-  } else {
-    const fn = activities?.(context, event)
-    iterator(fn)
-  }
+export const MACHINE_TYPES = {
+  MACHINE: "machine",
+  ACTOR: "machine.actor",
 }

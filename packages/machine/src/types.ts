@@ -20,10 +20,9 @@ export namespace StateMachine {
     [key: string]: any
   }
 
-  export type Action<
-    TContext extends Dict,
-    TEvent extends EventObject
-  > = Expression<TContext, TEvent, void>
+  export type Action<TContext extends Dict, TEvent extends EventObject> =
+    | string
+    | Expression<TContext, TEvent, void>
 
   export type Actions<
     TContext extends Dict,
@@ -37,7 +36,7 @@ export namespace StateMachine {
   > = {
     target?: TState
     actions?: Actions<TContext, TEvent>
-    cond?: Expression<TContext, TEvent, boolean>
+    cond?: string | Expression<TContext, TEvent, boolean>
   }
 
   export type TransitionDefinitionWithDelay<
@@ -45,8 +44,13 @@ export namespace StateMachine {
     TState extends string,
     TEvent extends EventObject
   > = TransitionDefinition<TContext, TState, TEvent> & {
-    delay?: number | string | Expression<TContext, TEvent, number>
+    delay?: Delay<TContext, TEvent>
   }
+
+  export type Delay<TContext extends Dict, TEvent extends EventObject> =
+    | string
+    | number
+    | Expression<TContext, TEvent, number>
 
   export type Transition<
     TContext extends Dict,
@@ -87,9 +91,10 @@ export namespace StateMachine {
         }
       >
 
-  type ComputeEvent<TEvent extends EventObject, K> = K extends TEvent["type"]
-    ? Extract<TEvent, { type: K }>
-    : EventObject
+  export type ExtractEvent<
+    TEvent extends EventObject,
+    K
+  > = K extends TEvent["type"] ? Extract<TEvent, { type: K }> : EventObject
 
   export type TransitionDefinitionMap<
     TContext,
@@ -99,7 +104,7 @@ export namespace StateMachine {
     [K in TEvent["type"]]?:
       | TState
       | MaybeArray<
-          TransitionDefinition<TContext, TState, ComputeEvent<TEvent, K>>
+          TransitionDefinition<TContext, TState, ExtractEvent<TEvent, K>>
         >
   }
 
@@ -144,9 +149,13 @@ export namespace StateMachine {
       | Array<{
           interval?: number | string | Expression<TContext, TEvent, number>
           actions: Actions<TContext, TEvent>
-          cond?: Expression<TContext, TEvent, boolean>
+          cond?: string | Expression<TContext, TEvent, boolean>
         }>
   }
+
+  export type Condition<TContext extends Dict, TEvent extends EventObject> =
+    | string
+    | Expression<TContext, TEvent, boolean>
 
   export interface MachineConfig<
     TContext extends Dict,
@@ -180,11 +189,9 @@ export namespace StateMachine {
     parent?: string
   }
 
-  export type SubscribeFunction<TContext> = (
-    state: ProxyState<TContext>,
-  ) => void
+  export type SubscribeFunction<TContext> = (state: State<TContext>) => void
 
-  export interface ProxyState<TContext extends Dict> {
+  export interface State<TContext extends Dict> {
     current: string
     prev: string
     event: string
@@ -193,9 +200,11 @@ export namespace StateMachine {
     matches(value: string): boolean
     nextEvents: string[]
     changed: boolean
+    // Useful for computed properties
+    [key: string]: any
   }
 
-  export interface NextStateDefinition<
+  export interface StateInfo<
     TContext extends Dict,
     TState extends string,
     TEvent extends EventObject
@@ -217,10 +226,9 @@ export namespace StateMachine {
     TEvent extends EventObject
   > = Record<string, Expression<TContext, TEvent, boolean>>
 
-  export type DelaysMap<
-    TContext extends Dict,
-    TEvent extends EventObject
-  > = Record<string, Expression<TContext, TEvent, number>>
+  export type TimersMap<TContext extends Dict, TEvent extends EventObject> = {
+    [delay: string]: number | Expression<TContext, TEvent, number>
+  }
 
   export interface MachineOptions<
     TContext extends Dict,
@@ -228,6 +236,7 @@ export namespace StateMachine {
   > {
     guards?: GuardsMap<TContext, TEvent>
     actions?: ActionsMap<TContext, TEvent>
-    delays?: DelaysMap<TContext, TEvent>
+    delays?: TimersMap<TContext, TEvent>
+    intervals?: TimersMap<TContext, TEvent>
   }
 }

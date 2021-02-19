@@ -1,22 +1,21 @@
-/**
- * 📝 Notes for Contributors:
- *
- * - When creating an interactive component, we recommend creating hooks that
- * handles accessibility, state management, and behavior concerns.
- *
- * - Hooks should return prop-getters and some state information.
- *
- * > If you're not creating an interactive component, you can delete this file.
- *
- * @see https://chakra-ui.com/guides/component-guide
- */
+import { useEffect, useLayoutEffect, useState } from "react"
+import { useProxy } from "valtio"
+import { MachineSrc } from "./machine"
+import { Dict } from "./types"
 
-import * as React from "react"
+const useSafeLayoutEffect =
+  typeof document !== "undefined" ? useLayoutEffect : useEffect
 
-export interface UseMachineProps {}
-
-export function useMachine(props: UseMachineProps) {
-  return {}
+export function useMachine<C extends Dict, S extends string>(
+  getMachine: MachineSrc<C, S>,
+) {
+  const [service] = useState(() =>
+    typeof getMachine === "function" ? getMachine() : getMachine,
+  )
+  useSafeLayoutEffect(() => {
+    service.start()
+    return () => service.stop()
+  }, [service])
+  const state = useProxy(service.state)
+  return [state, service.send] as const
 }
-
-export type UseMachineReturn = ReturnType<typeof useMachine>

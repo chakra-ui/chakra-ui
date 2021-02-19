@@ -2,62 +2,58 @@
 import { nanoid } from "nanoid"
 import { ref, subscribe } from "valtio"
 import { proxyWithComputed as proxy } from "valtio/utils"
-import { Dict, StateMachine as S } from "./types"
+import { CleanupFunction, Dict, MaybeArray, StateMachine as S } from "./types"
 import {
+  INTERNAL_EVENTS,
   isArray,
+  isFunction,
   isObject,
   isString,
   keys,
-  pickTarget,
+  MACHINE_TYPES,
   toArray,
   toEvent,
-  isFunction,
-  executeActions,
-  createEveryActivities,
-  executeActivities,
+  toTarget,
   toTransition,
 } from "./utils"
 
-const INTERNAL_EVENTS = {
-  INIT: "machine.init",
-  AFTER: "machine.after",
-  EVERY: "machine.every",
-  SEND_PARENT: "machine.sendParent",
-  STOP: "machine.stop",
+const toComputed = (obj: Dict = {}) => {
+  const res = Object.fromEntries(
+    Object.entries(obj).map(([k, v]) => [k, (self: any) => v(self.context)]),
+  )
+  console.log(res)
+  return res
 }
 
-const MAHCINE_TYPES = {
-  MACHINE: "machine",
-  ACTOR: "machine.actor",
-}
-
+/**
+ * Machine is used to create, interpret, and execute finite state machines.
+ * It is inspired by XState, State Designer and Robot3.
+ */
 export class Machine<
   TContext extends Dict,
   TState extends string,
   TEvent extends S.EventObject = S.AnyEventObject
 > {
-  state: S.ProxyState<TContext>
+  state: S.State<TContext>
   config: S.MachineConfig<TContext, TState, TEvent>
   context: TContext
   id: string
+  __type = MACHINE_TYPES.MACHINE
+
+  // Cleanup function map (per state)
+  disposables = new Map<string, Set<CleanupFunction>>()
+
+  // For Parent <==> Spawned Child relationship
   parent?: Machine<any, any>
-  __type = "machine"
-  disposables = new Map<string, Set<VoidFunction>>()
   children = new Map<string, Machine<any, any>>()
 
+  // A map of gaurd, action, delay implementations
   guardsMap?: S.GuardsMap<TContext, TEvent>
   actionsMap?: S.ActionsMap<TContext, TEvent>
-  delaysMap?: S.DelaysMap<TContext, TEvent>
+  delaysMap?: S.TimersMap<TContext, TEvent>
+  intervalsMap?: S.TimersMap<TContext, TEvent>
 
-  spawn = (src: MachineSrc<any, any>, id = nanoid()) => {
-    const actor = isFunction(src) ? src() : src
-    actor.id = id
-    actor.__type = MAHCINE_TYPES.ACTOR
-    actor.setParent(this)
-    this.children.set(id, actor)
-    return ref(actor)
-  }
-
+  // Let's get started!
   constructor(
     config: S.MachineConfig<TContext, TState, TEvent>,
     opts?: S.MachineOptions<TContext, TEvent>,
@@ -78,15 +74,12 @@ export class Machine<
         },
       },
       {
-        ...config.computed,
+        ...toComputed(config.computed),
         nextEvents(self) {
-          const omitTransient = (action: string) => action !== ""
-          return keys(
-            (config.states as Dict)[self.current]?.["on"] ?? {},
-          ).filter(omitTransient)
+          return keys((config.states as Dict)[self.current]?.["on"] ?? {})
         },
         changed(self) {
-          if (self.event === INTERNAL_EVENTS.INIT) return false
+          if (self.event === INTERNAL_EVENTS.INIT || !self.prev) return false
           return self.current !== self.prev
         },
       },
@@ -95,28 +88,60 @@ export class Machine<
     if (opts?.guards) this.guardsMap = opts.guards
     if (opts?.actions) this.actionsMap = opts.actions
     if (opts?.delays) this.delaysMap = opts.delays
+    if (opts?.intervals) this.intervalsMap = opts.intervals
+  }
+
+  // Starts the interpreted machine.
+  start = () => {
+    this.send(INTERNAL_EVENTS.INIT)
+  }
+
+  // Stops the interpreted machine
+  stop = () => {
+    this.state.current = ""
+    this.state.event = INTERNAL_EVENTS.STOP
+    if (this.config.context) {
+      this.state.context = this.config.context
+    }
+    // cleanups
+    this.cleanupChildren()
+    this.cleanupActivities()
+  }
+
+  // Cleanup running activities (e.g `setInterval`)
+  cleanupActivities = (key?: string) => {
+    const d = this.disposables
+    if (key) {
+      d.get(key)?.forEach((cleanup) => cleanup())
+      d.delete(key)
+    } else {
+      d.forEach((set) => set.forEach((cleanup) => cleanup()))
+      d.clear()
+    }
+  }
+
+  // Stop and delete spawned children
+  cleanupChildren = () => {
+    this.children.forEach((child) => {
+      child.stop()
+    })
+    this.children.clear()
   }
 
   setParent = (parent: any) => {
     this.parent = parent
   }
 
-  start = () => {
-    this.send({ type: INTERNAL_EVENTS.INIT })
+  spawn = (src: MachineSrc<any, any>, id = nanoid()) => {
+    const actor = isFunction(src) ? src() : src
+    actor.id = id
+    actor.__type = MACHINE_TYPES.ACTOR
+    actor.setParent(this)
+    this.children.set(id, actor)
+    return ref(actor)
   }
 
-  cleanupActivities = (key?: string) => {
-    const d = this.disposables
-    if (key) {
-      d.get(key)?.forEach((fn) => fn())
-      d.delete(key)
-    } else {
-      d.forEach((set) => set.forEach((fn) => fn()))
-      d.clear()
-    }
-  }
-
-  addCleanup = (key: string, cleanup: VoidFunction) => {
+  addCleanup = (key: string, cleanup: CleanupFunction) => {
     const d = this.disposables
     if (!d.has(key)) {
       d.set(key, new Set([cleanup]))
@@ -125,24 +150,9 @@ export class Machine<
     }
   }
 
-  cleanupChildren = () => {
-    this.children.forEach((child) => {
-      child.stop()
-    })
-    this.children.clear()
-  }
-
-  stop = () => {
-    this.state.current = ""
-    this.state.event = INTERNAL_EVENTS.STOP
-    this.cleanupChildren()
-    this.cleanupActivities()
-  }
-
-  setNextTarget = (target: string, event: TEvent) => {
+  assignState = (target: string) => {
     this.state.prev = this.state.current
     this.state.current = target
-    this.state.event = toEvent(event).type
   }
 
   subscribe = (listener: S.SubscribeFunction<TContext>) => {
@@ -165,24 +175,21 @@ export class Machine<
   }
 
   getStateConfig = (state: string) => {
-    return (this.config.states as Dict)[state] as S.StateNode<
-      TContext,
-      TState,
-      TEvent
-    >
+    type StateConfig = S.StateNode<TContext, TState, TEvent>
+    return (this.config.states as Dict)[state] as StateConfig
   }
 
   getNextState = (
     event: TEvent,
     transitions: S.Transitions<TContext, TState, TEvent>,
   ) => {
-    const transition = pickTarget(this.state.context, event, transitions)
+    const transition = this.pickTransition(event, transitions)
+
     const stateNode = transition
       ? this.getStateConfig(transition.target ?? this.state.current)
       : undefined
 
-    // check and execute transient state
-    const isTransient = stateNode?.on ? keys(stateNode.on).includes("") : false
+    const isTransient = !!stateNode?.always
 
     return {
       transition,
@@ -193,35 +200,120 @@ export class Machine<
     }
   }
 
+  /**
+   * Check if a state has running activities. A state is considering to
+   * have running activity if it defined `activities` or `every`
+   */
   hasActivities = (state: S.StateNode<TContext, TState, TEvent>) => {
     if (!state) return false
-    return state.activities || state.every || state.after
+    return state.activities || state.every
   }
 
-  createAfterActions = (state: string) => {
-    const event = { type: INTERNAL_EVENTS.AFTER } as TEvent
+  /**
+   * Delay can be specified as:
+   * - a string (reference to `options.delays`)
+   * - a number (in ms)
+   * - a function that returns a number (in ms)
+   *
+   * Let's resolve this to a number
+   */
+  determineDelay = (
+    delay: S.Delay<TContext, TEvent> | undefined,
+    event: TEvent,
+    key: "delaysMap" | "intervalsMap" = "delaysMap",
+  ) => {
+    if (typeof delay === "number") {
+      return delay
+    }
+
+    if (isFunction(delay)) {
+      return delay(this.state.context, event)
+    }
+
+    if (isString(delay)) {
+      if (this[key]) {
+        const value = this[key]?.[delay]
+        return isFunction(value) ? value(this.state.context, event) : value
+      }
+      return Number(delay)
+    }
+
+    return delay
+  }
+
+  /**
+   * Guards or conditions can be specified as:
+   * - a string (reference to `options.guards`)
+   * - a function that returns a number (in ms)
+   */
+  determineGuard = (cond: S.Condition<TContext, TEvent> | undefined) => {
+    return isString(cond) ? this.guardsMap?.[cond] : cond
+  }
+
+  /**
+   * A transition is an object that describes the next state, or/and actions
+   * that should run when an event is sent.
+   *
+   * Transitions can be specified as:
+   * - A single string: "spinning"
+   * - An object with `target`, `actions`, or `cond`: { target: "spinning", actions: [...], cond: isValid }
+   * - An array of possible transitions. In this case, we'll pick the first matching transition
+   * depending on the `cond` specified
+   */
+  pickTransition = (
+    event: TEvent,
+    transitions?: S.Transitions<TContext, TState, TEvent>,
+  ): S.TransitionDefinitionWithDelay<TContext, TState, TEvent> | undefined => {
+    type TransitionDfn = S.TransitionDefinition<TContext, TState, TEvent>
+
+    return toArray(transitions).find((t) => {
+      // convert to transition object, if it's a string
+      const transition = toTarget(t) as TransitionDfn
+      // get condition function
+      const cond = this.determineGuard(transition.cond)
+      return (
+        cond?.(this.state.context, event) ??
+        transition.target ??
+        transition.actions
+      )
+    })
+  }
+
+  /**
+   * All `after` events leverage `setTimeout` and `clearTimeout`,
+   * we invoke the `clearTimeout` on exit and `setTimeout` on entry.
+   *
+   * To achieve this, we split the after into `entry` and `exit` functions and
+   * append them to the normal `entry` and `exit` actions
+   */
+  convertAfterToActions = (state: string) => {
+    type DelayedTransition = S.TransitionDefinitionWithDelay<
+      TContext,
+      TState,
+      TEvent
+    >
+
+    const event = toEvent(INTERNAL_EVENTS.AFTER) as TEvent
     const { after } = this.getStateConfig(state) ?? {}
+
     if (!after) return
 
     const entries: any[] = []
     const exits: any[] = []
 
-    const makeActions = (
-      transition: S.TransitionDefinitionWithDelay<TContext, TState, TEvent>,
-    ) => {
-      const delay =
-        typeof transition.delay === "function"
-          ? transition.delay(this.state.context, event)
-          : transition.delay
+    const toActions = (transition: DelayedTransition) => {
+      // get the computed delay
+      const delay = this.determineDelay(transition.delay, event) ?? 0
 
       let id: any
+
       return {
         entry: () => {
           id = setTimeout(() => {
             const next = this.getNextState(event, transition)
             const current = this.getStateConfig(this.state.current)
-            this.sideEffects(current, next, event)
-          }, Number(delay ?? 0))
+            this.performTransitionSideEffects(current, next, event)
+          }, delay)
         },
         exit: () => {
           clearTimeout(id)
@@ -230,37 +322,33 @@ export class Machine<
     }
 
     if (isArray(after)) {
-      const transition = pickTarget(this.state.context, event, after)
+      const transition = this.pickTransition(event, after)
       if (!transition) return
 
-      const t = isString(transition) ? { target: transition } : transition
-      const { entry, exit } = makeActions(t as any)
+      const t = isString(transition)
+        ? ({ target: transition } as DelayedTransition)
+        : transition
+
+      const { entry, exit } = toActions(t)
 
       entries.push(entry)
       exits.push(exit)
     } else if (isObject(after)) {
       for (const delay in after) {
         const transition = after[delay]
-
-        type TransitionDelay = S.TransitionDefinitionWithDelay<
-          TContext,
-          TState,
-          TEvent
-        >
-
-        let target: TransitionDelay
+        let _transition: DelayedTransition
 
         if (isArray(transition)) {
-          const picked = pickTarget(this.state.context, event, transition)
-          if (picked) target = picked
+          const picked = this.pickTransition(event, transition)
+          if (picked) _transition = picked
         } else if (isString(transition)) {
-          target = { target: transition, delay } as TransitionDelay
+          _transition = { target: transition, delay }
         } else {
-          target = { ...transition, delay }
+          _transition = { ...transition, delay }
         }
 
         //@ts-ignore
-        const { entry, exit } = makeActions(target)
+        const { entry, exit } = toActions(_transition)
         entries.push(entry)
         exits.push(exit)
       }
@@ -269,48 +357,123 @@ export class Machine<
     return { entries, exits }
   }
 
-  sideEffects = (
+  /**
+   * Function to executes defined actions. It can accept actions as string
+   * (referencing `options.actionsMap`) or actual functions.
+   */
+  executeActions = (event: TEvent, actions?: S.Actions<TContext, TEvent>) => {
+    if (!actions) return
+    actions = toArray(actions)
+    for (const action of actions) {
+      const fn = isString(action) ? this.actionsMap?.[action] : action
+      fn?.(this.state.context, event)
+    }
+  }
+
+  /**
+   * Function to execute running activities and registers
+   * their cleanup function internally (to be called later on when we exit the state)
+   */
+  executeActivities = (
+    event: TEvent,
+    activities: S.Activities<TContext, TEvent>,
+  ) => {
+    if (isArray(activities)) {
+      for (const activity of activities) {
+        const cleanup = activity(this.state.context, event)
+        this.addCleanup(this.state.current, cleanup)
+      }
+    } else {
+      const cleanup = activities?.(this.state.context, event)
+      this.addCleanup(this.state.current, cleanup)
+    }
+  }
+
+  /**
+   * Normalizes the `every` definition to object transition. Every transitions
+   * can be:
+   * - An array of possible actions to run (we need to pick the first match based on cond)
+   * - An object of intervals and actions
+   */
+  createEveryActivities = (
+    every: S.StateNode<TContext, TState, TEvent>["every"],
+    iterator: (activity: S.Activity<TContext, TEvent>) => void,
+  ) => {
+    if (!every) return
+    const event = toEvent(INTERNAL_EVENTS.EVERY) as TEvent
+
+    // every: [{ interval: 2000, actions: [...], cond: "isValid" },  { interval: 1000, actions: [...] }]
+    if (isArray(every)) {
+      // picked = { interval: string | number | <ref>, actions: [...], cond: ... }
+      const picked = toArray(every).find((t) => {
+        t.interval = this.determineDelay(t.interval, event, "intervalsMap")
+        const cond = t.cond ? this.determineGuard(t.cond) : undefined
+        return cond?.(this.state.context, event) ?? t.interval
+      })
+
+      if (!picked) return
+
+      const ms =
+        this.determineDelay(picked.interval, event, "intervalsMap") ?? 0
+
+      const activity = (_: TContext, event: TEvent) => {
+        const id = setInterval(() => {
+          this.executeActions(event, picked.actions)
+        }, ms)
+        return () => clearInterval(id)
+      }
+      iterator(activity)
+    } else {
+      // every = { 1000: [fn, fn] | fn, [ref]: fn }
+      for (const interval in every) {
+        const actions = every?.[interval]
+
+        // interval could be a `ref` not the actual interval value, let's determine the actual value
+        const ms = this.determineDelay(interval, event, "intervalsMap") ?? 0
+
+        // create the activity to run for each `every` reaction
+        const activity = (_: TContext, event: TEvent) => {
+          const id = setInterval(() => {
+            this.executeActions(event, actions)
+          }, ms)
+          return () => clearInterval(id)
+        }
+        iterator(activity)
+      }
+    }
+  }
+
+  /**
+   * Performs all the requires side-effects or reactions when
+   * we move from state A => state B.
+   *
+   * The Effect order:
+   * Exit actions (current state) => Transition actions  => Go to state => Entry actions (next state)
+   */
+  performTransitionSideEffects = (
     current: S.StateNode<TContext, TState, TEvent>,
-    next: S.NextStateDefinition<TContext, TState, TEvent>,
+    next: S.StateInfo<TContext, TState, TEvent>,
     event: TEvent,
   ) => {
-    /**
-     * Effect Order:
-     * 1. exit reaction
-     * 2. transition reaction
-     * 3. go to state
-     * 4. enter reaction
-     */
-
-    // If no target is defined in transition, use the current state
-    if (!next.target) {
-      next.target = this.state.current
-    }
+    this.state.event = toEvent(event).type
+    next.target = next.target ?? this.state.current
 
     const changed = next.target !== this.state.current
+    const go = (next: any): next is { target: any } => changed && next.target
 
-    const proceed = (next: any): next is { target: any } =>
-      changed && next.target
+    // create entry and exit actions from after definitions
+    const afterActions = this.convertAfterToActions(next.target)
 
-    const afterActions = this.createAfterActions(next.target)
-
-    if (proceed(next)) {
-      // get all exit actions
+    if (go(next)) {
+      // get all exit actions for current state
       const exitActions = toArray(current?.exit)
-
-      /**
-       * All `after` events leverage `setTimeout` and `clearTimeout`,
-       * we invoke the `clearTimeout` on exit and `setTimeout` on entry.
-       *
-       * To achieve this, we split the after into `entry` and `exit` functions and
-       * append them to the normal `entry` and `exit` actions
-       */
+      // ??? Something feels weird here
       if (next.stateNode?.after && afterActions) {
         exitActions.push(...afterActions.exits)
       }
 
-      // call all transition actions (or side-effects)
-      executeActions(this.state.context, event, exitActions)
+      // call all exit actions for current state
+      this.executeActions(event, exitActions)
 
       // cleanup activities for current state
       if (this.hasActivities(current)) {
@@ -318,34 +481,32 @@ export class Machine<
       }
     }
 
-    // execute transition actions specified for current state
-    executeActions(this.state.context, event, next?.transition?.actions)
+    // execute transition actions
+    this.executeActions(event, next?.transition?.actions)
 
-    if (proceed(next)) {
-      // assign next state
-      this.setNextTarget(next.target, event)
+    // go to next state
+    this.assignState(next.target)
 
-      // execute entry actions for next state
+    if (go(next)) {
+      // get all entry actions
       const entryActions = toArray(next.stateNode?.entry)
-
       if (next.stateNode?.after && afterActions) {
         entryActions.push(...afterActions.entries)
       }
 
-      executeActions(this.state.context, event, entryActions)
+      // execute entry actions for next state
+      this.executeActions(event, entryActions)
 
       // execute activities for next state
       const activities = toArray(next.stateNode?.activities)
 
       // if `every` is defined, create an activity and append to activities
-      createEveryActivities(next.stateNode?.every, (activity) => {
+      this.createEveryActivities(next.stateNode?.every, (activity) => {
         activities.unshift(activity)
       })
 
       if (activities.length > 0) {
-        executeActivities(this.state.context, event, activities, (cleanup) =>
-          this.addCleanup(this.state.current, cleanup),
-        )
+        this.executeActivities(event, activities)
       }
 
       if (next.stateNode && this.isFinalState(next.stateNode)) {
@@ -354,72 +515,107 @@ export class Machine<
     }
   }
 
+  /**
+   * Check if the next state is transient and updates the
+   * next state to go to target of transient state.
+   */
   checkTransient = (
-    next: S.NextStateDefinition<TContext, TState, TEvent>,
+    next: S.StateInfo<TContext, TState, TEvent>,
     event: TEvent,
   ) => {
-    if (next.isTransient) {
-      const t = next.stateNode?.on?.[""]
-      const transition = toTransition(t, this.state.current)
-      if (transition) {
-        //@ts-ignore
-        next = this.getNextState(event, transition)
-      }
+    if (!next.stateNode?.always) return next
+
+    type TransitionDfn = S.TransitionDefinition<TContext, TState, TEvent>
+    const dfn = next.stateNode.always
+    const transition = toTransition(dfn, null) as MaybeArray<TransitionDfn>
+
+    const _transition = isArray(transition)
+      ? this.pickTransition(event, transition)
+      : transition
+
+    if (_transition?.target) {
+      next = this.getNextState(event, _transition)
     }
+
+    if (!_transition?.target && _transition?.actions) {
+      // execute transient actions
+      this.executeActions(event, _transition.actions)
+    }
+
     return next
   }
 
+  /**
+   * Function to send event to parent machine from spawned child
+   */
   sendParent = (evt: Event) => {
     const event = toEvent(evt) as S.EventWithSrc
     event.src = INTERNAL_EVENTS.SEND_PARENT
     this.parent?.send(event)
   }
 
-  sendChild = (evt: Event, to: any) => {
+  /**
+   * Function to send event to spawned child machine or actor
+   */
+  sendChild = (evt: Event, to: string | ((ctx: TContext) => string)) => {
     const event = toEvent(evt)
-    const _to = typeof to === "function" ? to(this.state.context) : to
-    const actor = this.children.get(_to)
-    actor?.send(event)
+    const id = typeof to === "function" ? to(this.state.context) : to
+    const child = this.children.get(id)
+    child?.send(event)
   }
 
-  stopChild = (actor: any) => {
-    if (this.children.has(actor.id)) {
-      actor.stop()
-      this.children.delete(actor.id)
+  /**
+   * Function to stop a running child machine or actor
+   */
+  stopChild = (child: Machine<any, any>) => {
+    if (this.children.has(child.id)) {
+      child.stop()
+      this.children.delete(child.id)
     }
   }
 
-  send = <TEvent extends S.EventObject>(evt: TEvent) => {
-    const { initial } = this.config
-    const event = toEvent(evt) as any
+  /**
+   * Function to send an event to current machine
+   */
+  send = (evt: string | TEvent) => {
+    type TransitionDfn = S.TransitionDefinition<TContext, TState, TEvent>
+
+    const event = toEvent(evt) as TEvent
     const isInit = event.type === INTERNAL_EVENTS.INIT
     const stateNode = this.getStateConfig(this.state.current)
 
-    if (isInit && typeof initial === "string") {
-      let next = this.getNextState(event, { target: initial })
-      //@ts-ignore
-      next = this.checkTransient(next, event)
-      this.sideEffects(stateNode, next, event)
-    } else {
-      if (!stateNode) {
+    if (isInit) {
+      if (!this.config.initial) {
         console.warn(
-          `State definition does not exist for state: \`${this.state.current}\``,
+          "Initial state not defined for Machine. Set value for `config.inital`",
         )
         return
       }
-
-      const _transition = stateNode.on?.[event.type]
-      const transition = toTransition(_transition, this.state.current)
-      if (!transition) return
-      let next = this.getNextState(event, transition as any)
+      let next = this.getNextState(event, { target: this.config.initial })
       //@ts-ignore
       next = this.checkTransient(next, event)
-      this.sideEffects(stateNode, next, event)
+      this.performTransitionSideEffects(stateNode, next, event)
+      return
     }
+
+    if (!stateNode) {
+      console.warn(
+        `State definition does not exist for state: \`${this.state.current}\``,
+      )
+      return
+    }
+
+    const _transition = stateNode.on?.[event.type]
+    const transition = toTransition(_transition, this.state.current)
+    if (!transition) return
+    let next = this.getNextState(event, transition as TransitionDfn)
+    //@ts-ignore
+    next = this.checkTransient(next, event)
+    this.performTransitionSideEffects(stateNode, next, event)
   }
 }
 
-type MachineSrc<
+export type MachineSrc<
   C extends Dict,
   S extends string,
   E extends S.EventObject = S.AnyEventObject
@@ -431,27 +627,5 @@ export const createMachine = <
   E extends S.EventObject = S.AnyEventObject
 >(
   config: S.MachineConfig<C, S, E>,
-) => new Machine(config)
-
-type State = "idle" | "loading"
-type Context = { value: number }
-
-export const counter = createMachine<Context, State>({
-  id: "counter",
-  states: {
-    idle: {
-      after: {
-        3000: "loading",
-      },
-      on: {
-        INC: "loading",
-        DEC: {
-          actions: (ctx) => {
-            ctx.value++
-          },
-        },
-      },
-    },
-    loading: {},
-  },
-})
+  opts?: S.MachineOptions<C, E>,
+) => new Machine(config, opts)
