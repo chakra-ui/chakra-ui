@@ -17,13 +17,10 @@ import {
   toTransition,
 } from "./utils"
 
-const toComputed = (obj: Dict = {}) => {
-  const res = Object.fromEntries(
+const toComputed = (obj: Dict = {}) =>
+  Object.fromEntries(
     Object.entries(obj).map(([k, v]) => [k, (self: any) => v(self.context)]),
   )
-  console.log(res)
-  return res
-}
 
 /**
  * Machine is used to create, interpret, and execute finite state machines.
@@ -42,6 +39,7 @@ export class Machine<
 
   // Cleanup function map (per state)
   disposables = new Map<string, Set<CleanupFunction>>()
+  private afterActionsCache = new Map<string, any[]>()
 
   // For Parent <==> Spawned Child relationship
   parent?: Machine<any, any>
@@ -461,15 +459,12 @@ export class Machine<
     const changed = next.target !== this.state.current
     const go = (next: any): next is { target: any } => changed && next.target
 
-    // create entry and exit actions from after definitions
-    const afterActions = this.convertAfterToActions(next.target)
-
     if (go(next)) {
-      // get all exit actions for current state
+      // get explicit exit and implicit "after.exit" actions for current state
       const exitActions = toArray(current?.exit)
-      // ??? Something feels weird here
-      if (next.stateNode?.after && afterActions) {
-        exitActions.push(...afterActions.exits)
+      const afterExitActions = this.afterActionsCache.get(this.state.current)
+      if (afterExitActions) {
+        exitActions.push(...afterExitActions)
       }
 
       // call all exit actions for current state
@@ -490,7 +485,10 @@ export class Machine<
     if (go(next)) {
       // get all entry actions
       const entryActions = toArray(next.stateNode?.entry)
+      const afterActions = this.convertAfterToActions(next.target)
+
       if (next.stateNode?.after && afterActions) {
+        this.afterActionsCache.set(next.target, afterActions?.exits)
         entryActions.push(...afterActions.entries)
       }
 

@@ -44,6 +44,14 @@ const counter = createMachine<Context, State>(
         //     },
         //   ],
         // },
+        after: {
+          5000: "idle",
+          6000: {
+            actions: () => {
+              console.log("hey!")
+            },
+          },
+        },
         every: {
           BASE_INTERVAL: "increment",
         },
