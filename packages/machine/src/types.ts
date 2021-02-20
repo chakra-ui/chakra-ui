@@ -2,7 +2,7 @@ export type Dict<T = any> = Record<string, T>
 export type MaybeArray<T> = T | T[]
 export type CleanupFunction = () => void
 
-export namespace StateMachine {
+export declare namespace StateMachine {
   export type EventObject = {
     type: string
   }
