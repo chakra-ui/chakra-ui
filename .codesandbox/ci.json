@@ -1,0 +1,4 @@
+{
+  "sandboxes": ["/examples/create-react-app"],
+  "packages": ["packages/machine"]
+}
