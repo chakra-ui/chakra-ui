@@ -49,6 +49,14 @@
       "url": "https://www.pluralsight.com/guides/installing-and-using-chakra-ui-with-react"
     },
     {
+      "heading": "How to Build an Image Gallery with NextJS using the Pexels API and Chakra UI",
+      "type": "blog",
+      "tags": ["Next.js", "Basics", "v1.0"],
+      "author": "Ashutosh Singh",
+      "description": "In this article, we will build an Image Gallery with Next.js using the Pexels API and Chakra UI v1, a modular and accessible component library.",
+      "url": "https://www.freecodecamp.org/news/build-an-image-gallery-with-nextjs/"
+    },
+    {
       "heading": "How to use Chakra UI's Default Theme",
       "type": "video",
       "tags": ["Theming", "v1.0"],
