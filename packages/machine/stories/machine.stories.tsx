@@ -6,35 +6,24 @@ export default {
   title: "Machine",
 }
 
-const counter = createMachine(
-  {
-    context: { count: 0 },
-    on: {
-      DEC: { cond: "isAboveMin", actions: "decrementCount" },
-      INC: { actions: "incrementCount" },
-    },
-  },
-  {
-    computed: {
-      formatted(ctx) {
-        return `$${ctx.count}`
-      },
-    },
-    actions: {
-      decrementCount(context) {
-        context.count--
-      },
-      incrementCount(context) {
-        context.count++
-      },
-    },
-    guards: {
-      isAboveMin(context) {
-        return context.count > 0
+const counter = createMachine({
+  context: { value: 0, min: 0, max: 100 },
+  initial: "idle",
+  states: {
+    idle: {
+      on: {
+        INC: {
+          cond: (ctx) => ctx.value <= ctx.max,
+          actions: (ctx) => ctx.value++,
+        },
+        DEC: {
+          cond: (ctx) => ctx.value > ctx.min,
+          actions: (ctx) => ctx.value--,
+        },
       },
     },
   },
-)
+})
 
 export const Counter = () => {
   const [state, send] = useMachine(counter)
