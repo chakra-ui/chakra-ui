@@ -6,7 +6,10 @@
     "@chakra-ui/machine": "*",
     "@chakra-ui/react": "*",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "@emotion/react": "^11.1.4",
+    "@emotion/styled": "^11.0.0",
+    "framer-motion": "^3.1.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.8",

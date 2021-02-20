@@ -3,5 +3,5 @@
   "installCommand": "prestart",
   "buildCommand": "build",
   "sandboxes": ["/examples/create-react-app"],
-  "packages": ["packages/machine"]
+  "packages": ["packages/react", "packages/machine"]
 }
