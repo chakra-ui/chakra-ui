@@ -69,7 +69,7 @@ export const Checkbox = () => {
   )
 }
 
-type PressableState = "hover" | "pressIn" | "idle" | "longPressIn"
+type PressableState = "hover" | "pressIn" | "idle" | "longPressIn" | "test"
 
 const pressable = createMachine<{}, PressableState>({
   initial: "idle",

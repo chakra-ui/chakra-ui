@@ -178,7 +178,7 @@ export namespace StateMachine {
      * The mapping of state node keys to their state node configurations (recursive).
      */
     //@ts-expect-error
-    states?: Record<TState, StateNode<TContext, TState, TEvent>>
+    states?: Partial<Record<TState, StateNode<TContext, TState, TEvent>>>
     /**
      * The `id` of the parent machine for this
      */
