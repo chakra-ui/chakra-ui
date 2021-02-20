@@ -195,7 +195,7 @@ export namespace StateMachine {
     event: string
     context: TContext
     done: boolean
-    matches(value: string): boolean
+    matches(value: string | string[]): boolean
     nextEvents: string[]
     changed: boolean
     // Useful for computed properties

@@ -67,8 +67,10 @@ export class Machine<
         event: "",
         context,
         done: false,
-        matches(value: string) {
-          return this.current === value
+        matches(value: string | string[]) {
+          return isArray(value)
+            ? value.includes(this.current)
+            : this.current === value
         },
       },
       {
