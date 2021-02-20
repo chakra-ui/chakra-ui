@@ -3,8 +3,8 @@
   "version": "1.0.17",
   "private": true,
   "dependencies": {
-    "@chakra-ui/react": "latest",
-    "@chakra-ui/machine": "latest",
+    "@chakra-ui/machine": "*",
+    "@chakra-ui/react": "*",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },

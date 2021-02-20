@@ -9,10 +9,10 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@chakra-ui/icons": "latest",
-    "@chakra-ui/react": "latest",
-    "@chakra-ui/machine": "latest",
-    "@chakra-ui/theme-tools": "latest",
+    "@chakra-ui/icons": "*",
+    "@chakra-ui/machine": "*",
+    "@chakra-ui/react": "*",
+    "@chakra-ui/theme-tools": "*",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
     "@types/faker": "^5.1.5",

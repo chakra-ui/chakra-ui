@@ -8,8 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "@chakra-ui/react": "latest",
-    "@chakra-ui/machine": "latest",
+    "@chakra-ui/machine": "*",
+    "@chakra-ui/react": "*",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
     "framer-motion": "^3.1.1",
