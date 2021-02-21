@@ -188,3 +188,78 @@ function AlertDialogExample() {
   )
 }
 ```
+
+# Drawer
+
+The Drawer component is a panel that slides out from the edge of the screen. 
+It can be useful when you need users to complete a task or view some details 
+without leaving the current page.
+
+## Installation
+
+```sh
+yarn add @chakra-ui/drawer
+
+# or
+
+npm i @chakra-ui/drawer
+```
+
+## Import components
+
+```jsx
+import {
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerFooter,
+  DrawerBody,
+  DrawerCloseButton,
+} from "@chakra-ui/react"
+```
+
+## Basic usage
+
+## Usage
+
+By default focus is placed on `DrawerCloseButton` when the drawer opens.
+
+```jsx
+function DrawerExample() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const btnRef = React.useRef()
+
+  return (
+    <>
+      <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
+        Open
+      </Button>
+      <Drawer
+        isOpen={isOpen}
+        placement="right"
+        onClose={onClose}
+        finalFocusRef={btnRef}
+      >
+        <DrawerOverlay>
+          <DrawerContent>
+            <DrawerCloseButton />
+            <DrawerHeader>Create your account</DrawerHeader>
+
+            <DrawerBody>
+              <Input placeholder="Type here..." />
+            </DrawerBody>
+
+            <DrawerFooter>
+              <Button variant="outline" mr={3} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button color="blue">Save</Button>
+            </DrawerFooter>
+          </DrawerContent>
+        </DrawerOverlay>
+      </Drawer>
+    </>
+  )
+}
+```
