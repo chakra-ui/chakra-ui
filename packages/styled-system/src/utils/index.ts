@@ -1,21 +1,15 @@
-import { get, isNumber, isObject } from "@chakra-ui/utils"
+import { isNumber } from "@chakra-ui/utils"
 import * as CSS from "csstype"
-// import { positiveOrNegative } from "./positive-or-negative"
-import { logical, PropConfig, toConfig } from "../prop-config"
+import { createTransform } from "../create-transform"
+import type { Token } from "../css-var"
+import { logical, toConfig } from "../prop-config"
 
-// export * from "./positive-or-negative"
 export * from "./logical-prop"
 export * from "./sort"
 export * from "./types"
 
-function fractionalValue(value: any, scale: any) {
-  const defaultValue = !isNumber(value) || value > 1 ? value : `${value * 100}%`
-  return get(scale, value, defaultValue)
-}
-
-function positiveOrNegative(value: any) {
-  console.log({ value })
-  return value
+function fractionalValue(value: any) {
+  return !isNumber(value) || value > 1 ? value : `${value * 100}%`
 }
 
 export const t = {
@@ -25,13 +19,11 @@ export const t = {
   borders: toConfig("borders"),
   radii: toConfig("radii"),
   space: toConfig("space"),
-  spaceT: toConfig("space", positiveOrNegative),
-  prop: (
-    property: keyof CSS.Properties,
-    transform?: PropConfig["transform"],
-  ) => ({
+  spaceT: toConfig("space"),
+  prop: (property: keyof CSS.Properties, scale?: Token) => ({
     property,
-    transform,
+    scale,
+    ...(scale && { transform: createTransform({ scale }) }),
   }),
   sizes: toConfig("sizes"),
   sizesT: toConfig("sizes", fractionalValue),

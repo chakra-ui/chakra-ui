@@ -1,28 +1,13 @@
 import * as CSS from "csstype"
 import { Config } from "../prop-config"
-import { Token } from "../utils"
+import { t, Token } from "../utils"
 
 export const typography: Config = {
-  fontFamily: {
-    property: "fontFamily",
-    scale: "fonts",
-  },
-  fontSize: {
-    property: "fontSize",
-    scale: "fontSizes",
-  },
-  fontWeight: {
-    property: "fontWeight",
-    scale: "fontWeights",
-  },
-  lineHeight: {
-    property: "lineHeight",
-    scale: "lineHeights",
-  },
-  letterSpacing: {
-    property: "letterSpacing",
-    scale: "letterSpacings",
-  },
+  fontFamily: t.prop("fontFamily", "fonts"),
+  fontSize: t.prop("fontSize", "fontSizes"),
+  fontWeight: t.prop("fontWeight", "fontWeights"),
+  lineHeight: t.prop("lineHeight", "lineHeights"),
+  letterSpacing: t.prop("letterSpacing", "letterSpacings"),
   textAlign: true,
   fontStyle: true,
   wordBreak: true,
@@ -31,9 +16,7 @@ export const typography: Config = {
   textTransform: true,
   whiteSpace: true,
   textDecoration: true,
-  textDecor: {
-    property: "textDecoration",
-  },
+  textDecor: { property: "textDecoration" },
 }
 
 /**

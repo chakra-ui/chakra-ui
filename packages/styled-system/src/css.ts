@@ -111,6 +111,10 @@ export function getCss(theme: Theme, options: Options) {
           config = { property: key } as PropConfig
         }
 
+        if (config?.property) {
+          config.property = runIfFn(config.property, theme)
+        }
+
         if (!nested && config?.static) {
           const staticStyles = runIfFn(config.static, theme)
           merge(result, staticStyles)

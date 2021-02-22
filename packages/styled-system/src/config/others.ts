@@ -1,12 +1,12 @@
 import { memoizedGet as get } from "@chakra-ui/utils"
 import * as CSS from "csstype"
-import { Config, PropConfig } from "../prop-config"
+import { Config } from "../prop-config"
+import { Transform } from "../types"
 import { Length, ResponsiveValue } from "../utils"
-import { getIsRtl } from "../utils/directionality"
 
-const floatTransform: PropConfig["transform"] = (value, _, props = {}) => {
+const floatTransform: Transform = (value, theme) => {
   const map = { left: "right", right: "left" }
-  return getIsRtl(props) ? map[value] : value
+  return theme.direction === "rtl" ? map[value] : value
 }
 
 const srOnly = {
@@ -50,7 +50,6 @@ export const others: Config = {
   filter: true,
   clipPath: true,
   srOnly: {
-    property: "&",
     transform(value) {
       if (value === true) return srOnly
       if (value === "focusable") return srFocusable
@@ -59,17 +58,14 @@ export const others: Config = {
   },
   layerStyle: {
     returnsThemeAwareStyles: true,
-    property: "&",
     transform: (value, theme) => get(theme, `layerStyles.${value}`, {}),
   },
   textStyle: {
     returnsThemeAwareStyles: true,
-    property: "&",
     transform: (value, theme) => get(theme, `textStyles.${value}`, {}),
   },
   apply: {
     returnsThemeAwareStyles: true,
-    property: "&",
     transform: (value, theme) => get(theme, value, {}),
   },
 }

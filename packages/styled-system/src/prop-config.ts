@@ -1,11 +1,11 @@
-import { Dict, isArray } from "@chakra-ui/utils"
 import * as CSS from "csstype"
+import { createTransform } from "./create-transform"
 import { Token } from "./css-var"
 import type { Theme, Transform } from "./types"
-import { createTransform } from "./create-transform"
 
 type CSSProp = keyof CSS.Properties
 type MaybeArray<T> = T | T[]
+type MaybeThemeFunction<T> = T | ((theme: Theme) => T)
 type StringUnion<T> = T | (string & {})
 
 export interface PropConfig {
@@ -23,7 +23,7 @@ export interface PropConfig {
   /**
    * Css property or Css variable the prop maps to
    */
-  property?: MaybeArray<StringUnion<CSSProp>>
+  property?: MaybeThemeFunction<MaybeArray<StringUnion<CSSProp>>>
   /**
    * Function to transform the value passed
    */
@@ -40,37 +40,12 @@ export type Config = Record<string, PropConfig | true>
 export function toConfig(scale: Token, transform?: Transform) {
   return <T extends CSSProp>(property: T | T[]) => {
     const result: PropConfig = { property, scale }
-    if (transform) {
-      result.transform = createTransform({
-        scale,
-        transform,
-      })
-    }
+    result.transform = createTransform({
+      scale,
+      transform,
+    })
     return result
   }
-}
-
-interface LogicalOptions {
-  ltr: MaybeArray<CSSProp>
-  rtl: MaybeArray<CSSProp>
-  compose?: Transform
-}
-
-export const rtl = (options: LogicalOptions) => (
-  value: string | number | true,
-  theme: Theme,
-) => {
-  const { ltr, rtl, compose } = options
-  const result = {} as Dict
-  const dir = theme.direction === "rtl" ? rtl : ltr
-  if (isArray(dir)) {
-    dir.forEach((prop) => {
-      result[prop] = compose?.(value, theme) ?? value
-    })
-  } else {
-    result[dir] = compose?.(value, theme) ?? value
-  }
-  return result
 }
 
 interface Opts {
@@ -79,13 +54,19 @@ interface Opts {
   transform?: Transform
 }
 
-export function logical(opts: Opts): PropConfig {
-  const { property, scale, transform } = opts
+const getRtl = ({ rtl, ltr }: any) => (theme: any) =>
+  theme.direction === "rtl" ? rtl : ltr
+
+export function logical(options: Opts): PropConfig {
+  const { property, scale, transform } = options
   return {
     scale,
-    transform: rtl({
-      ...property,
-      compose: transform,
-    }),
+    property: getRtl(property),
+    transform: scale
+      ? createTransform({
+          scale,
+          compose: transform,
+        })
+      : transform,
   }
 }

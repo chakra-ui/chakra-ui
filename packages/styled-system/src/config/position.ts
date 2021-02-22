@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { Config } from "../prop-config"
-import { positiveOrNegative, t, Token } from "../utils"
+import { t, Token } from "../utils"
 
 export const position: Config = {
   position: true,
@@ -18,20 +18,12 @@ export const position: Config = {
   left: t.spaceT("left"),
   insetInlineStart: t.logical({
     scale: "space",
-    property: {
-      ltr: "left",
-      rtl: "right",
-    },
-    transform: positiveOrNegative,
+    property: { ltr: "left", rtl: "right" },
   }),
   right: t.spaceT("right"),
   insetInlineEnd: t.logical({
     scale: "space",
-    property: {
-      ltr: "right",
-      rtl: "left",
-    },
-    transform: positiveOrNegative,
+    property: { ltr: "right", rtl: "left" },
   }),
 }
 

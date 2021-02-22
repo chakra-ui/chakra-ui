@@ -1,5 +1,5 @@
 import { themeCache } from "./cache"
-import { Token } from "./css-var"
+import type { Token } from "./css-var"
 import type { CachedValue, Transform } from "./types"
 
 interface CreateTransformOptions {
