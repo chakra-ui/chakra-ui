@@ -1,4 +1,4 @@
-import { Dict, isObject, pick } from "@chakra-ui/utils"
+import { Dict, isCssVar, isObject, pick } from "@chakra-ui/utils"
 import type { CSSMap, WithCSSVar } from "./types"
 
 const separator = ">"
@@ -51,14 +51,25 @@ interface AssignOptions {
 
 function assign(options: AssignOptions) {
   const { cssVars, cssMap, key, value, negate: minus } = options
+
   const _value = minus ? negate(value) : value
   const { varKey, mapKey, negVarKey } = getKeys(key)
+
   if (!minus) {
     cssVars[varKey] = _value
   }
+
   const _varKey = minus ? negVarKey : varKey
-  const varRef = minus ? `calc(${toVar(_varKey)} * -1)` : toVar(varKey)
-  cssMap[mapKey] = { var: _varKey, value: _value, varRef }
+  const minusVal = isCssVar(value)
+    ? `calc(${value} * -1)`
+    : `calc(${toVar(_varKey)} * -1)`
+
+  const varRef = minus ? minusVal : toVar(varKey)
+  cssMap[mapKey] = {
+    var: _varKey,
+    value: isCssVar(value) ? value : _value,
+    varRef,
+  }
 }
 
 const negate = (value?: string) => {
@@ -102,6 +113,7 @@ export function toCSSVariables<T extends Dict>(theme: T) {
       }
 
       assign({ cssMap, cssVars, key: newKey, value })
+
       if (negKey) {
         assign({ cssMap, cssVars, key: negKey, value, negate: true })
       }

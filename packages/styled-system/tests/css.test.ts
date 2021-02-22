@@ -1,7 +1,7 @@
 import { css } from "../src/css"
 import { toCSSVariables } from "../src/css-var"
 
-const theme = toCSSVariables({
+const theme = {
   breakpoints: {
     sm: "40em",
     md: "52em",
@@ -64,13 +64,13 @@ const theme = toCSSVariables({
   textTransform: {
     header: "uppercase",
   },
-})
+}
 
 test("returns system props styles", () => {
   const result = css({
     color: "primary",
     fontSize: [2, 3, 4],
-  })(theme)
+  })(toCSSVariables(theme))
 
   expect(result).toEqual({
     fontSize: 16,
@@ -90,7 +90,7 @@ test("returns nested system props styles", () => {
     "&:hover": {
       color: "secondary",
     },
-  })(theme)
+  })(toCSSVariables(theme))
   expect(result).toEqual({
     color: "tomato",
     "&:hover": {
@@ -105,7 +105,7 @@ test("returns nested responsive styles", () => {
     h1: {
       py: [3, 4],
     },
-  })(theme)
+  })(toCSSVariables(theme))
   expect(result).toEqual({
     color: "tomato",
     h1: {
@@ -133,7 +133,7 @@ test("handles all core styled system props", () => {
     fontFamily: "monospace",
     lineHeight: "body",
     textTransform: "header",
-  })(theme)
+  })(toCSSVariables(theme))
   expect(result).toEqual({
     margin: 0,
     marginBottom: 8,
@@ -157,7 +157,7 @@ test("works with the css prop", () => {
     color: "primary",
     m: 0,
     fontSize: 2,
-  })(theme)
+  })(toCSSVariables(theme))
   expect(result).toEqual({
     color: "tomato",
     margin: 0,
@@ -168,7 +168,7 @@ test("works with the css prop", () => {
 test("works with functional arguments", () => {
   const result = css((t: any) => ({
     color: t.colors.primary,
-  }))(theme)
+  }))(toCSSVariables(theme))
   expect(result).toEqual({
     color: "tomato",
   })
@@ -177,7 +177,7 @@ test("works with functional arguments", () => {
 test("supports functional values", () => {
   const result = css({
     color: (t: any) => t.colors.primary,
-  })(theme)
+  })(toCSSVariables(theme))
   expect(result).toEqual({
     color: "tomato",
   })
@@ -186,7 +186,7 @@ test("supports functional values", () => {
 test("returns variants from theme", () => {
   const result = css({
     apply: "buttons.primary",
-  })(theme)
+  })(toCSSVariables(theme))
   expect(result).toEqual({
     padding: 16,
     fontWeight: 600,
@@ -199,7 +199,7 @@ test("returns variants from theme", () => {
 test("handles variants with responsive values", () => {
   const result = css({
     apply: "text.caps",
-  })(theme)
+  })(toCSSVariables(theme))
   expect(result).toEqual({
     fontSize: 14,
     letterSpacing: "0.1em",
@@ -213,7 +213,7 @@ test("handles variants with responsive values", () => {
 test("handles responsive variants", () => {
   const result = css({
     apply: "text.title",
-  })(theme)
+  })(toCSSVariables(theme))
   expect(result).toEqual({
     fontSize: 24,
     letterSpacing: "-0.01em",
@@ -228,7 +228,7 @@ test("handles negative margins from scale", () => {
   const result = css({
     mt: -3,
     mx: -4,
-  })(theme)
+  })(toCSSVariables(theme))
   expect(result).toEqual({
     marginTop: -16,
     marginLeft: -32,
@@ -248,7 +248,7 @@ test("handles negative values from custom css var scale", () => {
     right: -3,
     bottom: -3,
     left: -3,
-  })(customTheme)
+  })(toCSSVariables(customTheme))
   expect(result).toEqual({
     marginTop: `calc(var(--size-1) * -1)`,
     marginLeft: `calc(var(--size-2) * -1)`,
@@ -266,7 +266,7 @@ test("handles negative top, left, bottom, and right from scale", () => {
     right: -4,
     bottom: -3,
     left: -2,
-  })(theme)
+  })(toCSSVariables(theme))
   expect(result).toEqual({
     top: -4,
     right: -32,
@@ -278,7 +278,7 @@ test("handles negative top, left, bottom, and right from scale", () => {
 test("skip breakpoints", () => {
   const result = css({
     width: ["100%", null, "50%"],
-  })(theme)
+  })(toCSSVariables(theme))
   expect(result).toEqual({
     width: "100%",
     "@media screen and (min-width: 40em)": {},
@@ -296,7 +296,7 @@ test("padding shorthand does not collide with nested p selector", () => {
       p: 2,
     },
     padding: 32,
-  })(theme)
+  })(toCSSVariables(theme))
   expect(result).toEqual({
     p: {
       fontSize: 32,
@@ -334,7 +334,7 @@ test("padding shorthand does not collide with nested p selector", () => {
 test("functional values can return responsive arrays", () => {
   const result = css({
     color: (t: any) => [t.colors.primary, t.colors.secondary],
-  })(theme)
+  })(toCSSVariables(theme))
   expect(result).toEqual({
     "@media screen and (min-width: 40em)": {
       color: "cyan",
@@ -346,7 +346,7 @@ test("functional values can return responsive arrays", () => {
 test("resolves color correctly", () => {
   const result = css({
     color: "red",
-  })(theme)
+  })(toCSSVariables(theme))
 
   expect(result).toEqual({
     color: "red",
@@ -371,7 +371,7 @@ test("returns individual border styles", () => {
     borderLeftWidth: "thin",
     borderLeftColor: "primary",
     borderLeftStyle: "thick",
-  })(theme)
+  })(toCSSVariables(theme))
 
   expect(result).toEqual({
     borderTopColor: "tomato",
@@ -396,7 +396,7 @@ test("returns individual border styles", () => {
 test("flexBasis uses theme.sizes", () => {
   const style = css({
     flexBasis: "sidebar",
-  })(theme)
+  })(toCSSVariables(theme))
   expect(style).toEqual({
     flexBasis: 320,
   })
@@ -406,7 +406,7 @@ test("fill and stroke use theme.colors", () => {
   const style = css({
     fill: "primary",
     stroke: "secondary",
-  })(theme)
+  })(toCSSVariables(theme))
   expect(style).toEqual({
     fill: "tomato",
     stroke: "cyan",
@@ -420,7 +420,7 @@ test("multiples are transformed", () => {
     paddingX: 2,
     paddingY: 2,
     width: "large",
-  })(theme)
+  })(toCSSVariables(theme))
   expect(style).toEqual({
     marginLeft: 8,
     marginRight: 8,
@@ -437,7 +437,7 @@ test("multiples are transformed", () => {
 test("returns outline color from theme", () => {
   const result = css({
     outlineColor: "primary",
-  })(theme)
+  })(toCSSVariables(theme))
   expect(result).toEqual({
     outlineColor: "tomato",
   })
@@ -447,7 +447,7 @@ test("returns correct media query order", () => {
   const result = css({
     width: ["100%", null, "50%"],
     color: ["red", "green", "blue"],
-  })(theme)
+  })(toCSSVariables(theme))
   const keys = Object.keys(result)
   expect(keys).toEqual([
     "width",
@@ -476,7 +476,7 @@ test("returns correct media query order 2", () => {
     height: "100%",
     px: [2, 3, 4],
     py: 4,
-  })(theme)
+  })(toCSSVariables(theme))
   const keys = Object.keys(result)
   expect(keys).toEqual([
     "flexDirection",
@@ -499,7 +499,7 @@ test("pseudo selectors are transformed", () => {
       paddingLeft: [2, 3, 4],
       paddingRight: { base: 1, sm: 2 },
     },
-  })(theme)
+  })(toCSSVariables(theme))
   expect(result).toEqual({
     "&::before": {
       "@media screen and (min-width: 40em)": {
@@ -545,14 +545,16 @@ test("should expand textStyle and layerStyle", () => {
     },
   })
 
-  expect(css({ layerStyle: "v1" })(theme)).toMatchInlineSnapshot(`
+  expect(css({ layerStyle: "v1" })(toCSSVariables(theme)))
+    .toMatchInlineSnapshot(`
     Object {
       "background": "tomato",
       "color": "#red",
     }
   `)
 
-  expect(css({ textStyle: "caps" })(theme)).toMatchInlineSnapshot(`
+  expect(css({ textStyle: "caps" })(toCSSVariables(theme)))
+    .toMatchInlineSnapshot(`
     Object {
       "fontSize": "lg",
       "letterSpacing": "wide",
@@ -560,7 +562,8 @@ test("should expand textStyle and layerStyle", () => {
     }
   `)
 
-  expect(css({ textStyle: ["caps", "lower"] })(theme)).toMatchInlineSnapshot(`
+  expect(css({ textStyle: ["caps", "lower"] })(toCSSVariables(theme)))
+    .toMatchInlineSnapshot(`
     Object {
       "@media screen and (min-width: 400px)": Object {
         "fontSize": "sm",
