@@ -16,7 +16,7 @@ import {
   transition,
   typography,
 } from "./config"
-import { pseudoPropNames } from "./pseudo"
+import { pseudoPropNames } from "./pseudos"
 
 export const systemProps = mergeWith(
   {},

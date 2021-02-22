@@ -9,7 +9,7 @@ import * as CSS from "csstype"
 import { analyzeBreakpoints } from "./breakpoints"
 import { themeCache } from "./cache"
 import { Config, PropConfig } from "./prop-config"
-import { pseudoSelectors } from "./pseudo"
+import { pseudoSelectors } from "./pseudos"
 import { systemProps } from "./system"
 import { CachedValue, StyleObjectOrFn, Theme } from "./types"
 

@@ -18,7 +18,7 @@ import type {
   TransitionProps,
   TypographyProps,
 } from "./config"
-import { Pseudos } from "./pseudo"
+import { Pseudos } from "./pseudos"
 import { ResponsiveValue } from "./utils"
 
 export interface StyleProps

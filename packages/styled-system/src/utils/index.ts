@@ -4,8 +4,6 @@ import { createTransform } from "../create-transform"
 import type { Token } from "../css-var"
 import { logical, toConfig } from "../prop-config"
 
-export * from "./logical-prop"
-export * from "./sort"
 export * from "./types"
 
 function fractionalValue(value: any) {
