@@ -1,8 +1,8 @@
 import * as CSS from "csstype"
-import { Config, createParser, system } from "../core"
+import { Config } from "../prop-config"
 import { Length, t, Token } from "../utils"
 
-const config: Config = {
+export const layout: Config = {
   width: t.sizesT("width"),
   inlineSize: t.sizesT("inlineSize"),
   height: t.sizes("height"),
@@ -25,13 +25,13 @@ const config: Config = {
   boxSizing: true,
 }
 
-Object.assign(config, {
-  w: config.width,
-  h: config.height,
-  minW: config.minWidth,
-  maxW: config.maxWidth,
-  minH: config.minHeight,
-  maxH: config.maxHeight,
+Object.assign(layout, {
+  w: layout.width,
+  h: layout.height,
+  minW: layout.minWidth,
+  maxW: layout.maxWidth,
+  minH: layout.minHeight,
+  maxH: layout.maxHeight,
 })
 
 /**
@@ -125,6 +125,3 @@ export interface LayoutProps {
    */
   boxSizing?: CSS.Property.BoxSizing
 }
-
-export const layout = system(config)
-export const layoutParser = createParser(config)

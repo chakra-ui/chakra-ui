@@ -1,8 +1,8 @@
 import * as CSS from "csstype"
-import { createParser, Config, system } from "../core"
-import { Token, Length, t } from "../utils"
+import { Config } from "../prop-config"
+import { Length, t, Token } from "../utils"
 
-const config: Config = {
+export const flexbox: Config = {
   alignItems: true,
   alignContent: true,
   justifyItems: true,
@@ -192,6 +192,3 @@ export interface FlexboxProps {
    */
   placeSelf?: Token<CSS.Property.PlaceSelf>
 }
-
-export const flexbox = system(config)
-export const flexboxParser = createParser(config)

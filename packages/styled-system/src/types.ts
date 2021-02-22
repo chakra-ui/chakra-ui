@@ -1,5 +1,6 @@
 import { Dict } from "@chakra-ui/utils"
 import * as CSS from "csstype"
+import { BreakpointReturn } from "./breakpoints"
 import * as System from "./config"
 import { Pseudos } from "./pseudo"
 import { ResponsiveValue } from "./utils"
@@ -69,3 +70,26 @@ type PseudoProps = {
 }
 
 export interface SystemProps extends StyleProps, PseudoProps {}
+
+export type ThemeDirection = "ltr" | "rtl"
+
+export type CSSMap = Dict<{ value: string; var: string; varRef: string }>
+
+export type Transform = (value: any, theme: Theme) => any
+
+export type WithCSSVar<T> = T & {
+  __cssVars: Dict
+  __cssMap: CSSMap
+}
+
+export type Theme = WithCSSVar<{
+  breakpoints: Dict
+  direction?: ThemeDirection
+  [key: string]: any
+}>
+
+export interface CachedValue {
+  theme: Theme
+  breakpoint: BreakpointReturn
+  [key: string]: any
+}

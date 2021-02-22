@@ -1,8 +1,8 @@
 import * as CSS from "csstype"
-import { Config, createParser, system } from "../core"
+import { Config } from "../prop-config"
 import { Token } from "../utils"
 
-const config: Config = {
+export const typography: Config = {
   fontFamily: {
     property: "fontFamily",
     scale: "fonts",
@@ -98,6 +98,3 @@ export interface TypographyProps {
    */
   textDecor?: Token<CSS.Property.TextDecoration | number>
 }
-
-export const typography = system(config)
-export const typographyParser = createParser(config)

@@ -1,6 +1,6 @@
 import { memoizedGet as get } from "@chakra-ui/utils"
 import * as CSS from "csstype"
-import { Config, createParser, PropConfig, system } from "../core"
+import { Config, PropConfig } from "../prop-config"
 import { Length, ResponsiveValue } from "../utils"
 import { getIsRtl } from "../utils/directionality"
 
@@ -32,7 +32,7 @@ const srFocusable = {
   whiteSpace: "normal",
 }
 
-const config: Config = {
+export const others: Config = {
   animation: true,
   appearance: true,
   visibility: true,
@@ -58,19 +58,19 @@ const config: Config = {
     },
   },
   layerStyle: {
-    processResult: true,
+    returnsThemeAwareStyles: true,
     property: "&",
-    transform: (value, _, theme) => get(theme, `layerStyles.${value}`, {}),
+    transform: (value, theme) => get(theme, `layerStyles.${value}`, {}),
   },
   textStyle: {
-    processResult: true,
+    returnsThemeAwareStyles: true,
     property: "&",
-    transform: (value, _, theme) => get(theme, `textStyles.${value}`, {}),
+    transform: (value, theme) => get(theme, `textStyles.${value}`, {}),
   },
   apply: {
-    processResult: true,
+    returnsThemeAwareStyles: true,
     property: "&",
-    transform: (value, _, theme) => get(theme, value, {}),
+    transform: (value, theme) => get(theme, value, {}),
   },
 }
 
@@ -151,6 +151,3 @@ export interface OtherProps {
    */
   apply?: ResponsiveValue<string>
 }
-
-export const others = system(config)
-export const othersParser = createParser(config)

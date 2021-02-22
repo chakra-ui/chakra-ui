@@ -1,15 +1,15 @@
 import * as CSS from "csstype"
-import { createParser, Config, system } from "../core"
-import { Token, t } from "../utils"
-import { transformGradient } from "../utils/parse-gradient"
+import type { Config } from "../prop-config"
+import { t, Token } from "../utils"
+import { gradientTransform } from "../utils/parse-gradient"
 
-function transformBgClip(value: string) {
+function bgClipTransform(value: string) {
   return value === "text"
     ? { color: "transparent", backgroundClip: "text" }
     : { backgroundClip: value }
 }
 
-const config: Config = {
+export const background: Config = {
   bg: t.colors("background"),
   bgColor: t.colors("backgroundColor"),
   background: t.colors("background"),
@@ -22,7 +22,7 @@ const config: Config = {
   backgroundBlendMode: true,
   backgroundClip: {
     property: "&",
-    transform: transformBgClip,
+    transform: bgClipTransform,
   },
   bgImage: t.prop("backgroundImage"),
   bgImg: t.prop("backgroundImage"),
@@ -34,11 +34,11 @@ const config: Config = {
   bgAttachment: t.prop("backgroundAttachment"),
   bgGradient: {
     property: "backgroundImage",
-    transform: transformGradient,
+    transform: gradientTransform,
   },
   bgClip: {
     property: "&",
-    transform: transformBgClip,
+    transform: bgClipTransform,
   },
 }
 
@@ -128,6 +128,3 @@ export interface BackgroundProps {
    */
   bgPosition?: Token<CSS.Property.BackgroundPosition | number>
 }
-
-export const background = system(config)
-export const backgroundParser = createParser(config)

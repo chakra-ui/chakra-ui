@@ -1,11 +1,11 @@
 import * as CSS from "csstype"
-import { createParser, Config, system } from "../core"
+import { Config } from "../prop-config"
 import { Length, ResponsiveValue, t } from "../utils"
 
 /**
  * The parser configuration for common outline properties
  */
-const config: Config = {
+export const outline: Config = {
   outline: true,
   outlineOffset: true,
   outlineColor: t.colors("outlineColor"),
@@ -25,6 +25,3 @@ export interface OutlineProps {
    */
   outlineColor?: ResponsiveValue<CSS.Property.OutlineColor>
 }
-
-export const outline = system(config)
-export const outlineParser = createParser(config)

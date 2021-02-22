@@ -1,8 +1,8 @@
 import * as CSS from "csstype"
-import { createParser, Config, system } from "../core"
-import { Token, t } from "../utils"
+import { Config } from "../prop-config"
+import { t, Token } from "../utils"
 
-const config: Config = {
+export const grid: Config = {
   gridGap: t.space("gridGap"),
   gridColumnGap: t.space("gridColumnGap"),
   gridRowGap: t.space("gridRowGap"),
@@ -175,6 +175,3 @@ export interface GridProps {
    */
   gridArea?: Token<CSS.Property.GridArea>
 }
-
-export const grid = system(config)
-export const gridParser = createParser(config)

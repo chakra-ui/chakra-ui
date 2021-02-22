@@ -1,48 +1,40 @@
 import { get, isNumber, isObject } from "@chakra-ui/utils"
 import * as CSS from "csstype"
-import { PropConfig } from "../core"
-import { logical } from "./logical-prop"
-import { positiveOrNegative } from "./positive-or-negative"
+// import { positiveOrNegative } from "./positive-or-negative"
+import { logical, PropConfig, toConfig } from "../prop-config"
 
-export * from "./positive-or-negative"
+// export * from "./positive-or-negative"
+export * from "./logical-prop"
 export * from "./sort"
 export * from "./types"
-export * from "./logical-prop"
-
-type CSSProp = keyof CSS.Properties
-
-export function makeConfig(scale: string, transform?: PropConfig["transform"]) {
-  return <T extends CSSProp>(prop: T | T[]) => {
-    const result: PropConfig = { scale }
-    if (transform) result.transform = transform
-    if (Array.isArray(prop)) result.properties = prop
-    else result.property = prop
-    return result
-  }
-}
 
 function fractionalValue(value: any, scale: any) {
   const defaultValue = !isNumber(value) || value > 1 ? value : `${value * 100}%`
   return get(scale, value, defaultValue)
 }
 
+function positiveOrNegative(value: any) {
+  console.log({ value })
+  return value
+}
+
 export const t = {
-  borderWidths: makeConfig("borderWidths"),
-  borderStyles: makeConfig("borderStyles"),
-  colors: makeConfig("colors", (value, scale) => {
-    const resolvedValue = get(scale, value, value)
-    return isObject(resolvedValue) ? value : resolvedValue
-  }),
-  borders: makeConfig("borders"),
-  radii: makeConfig("radii"),
-  space: makeConfig("space"),
-  spaceT: makeConfig("space", positiveOrNegative),
-  prop: (property: CSSProp, transform?: PropConfig["transform"]) => ({
+  borderWidths: toConfig("borderWidths"),
+  borderStyles: toConfig("borderStyles"),
+  colors: toConfig("colors"),
+  borders: toConfig("borders"),
+  radii: toConfig("radii"),
+  space: toConfig("space"),
+  spaceT: toConfig("space", positiveOrNegative),
+  prop: (
+    property: keyof CSS.Properties,
+    transform?: PropConfig["transform"],
+  ) => ({
     property,
     transform,
   }),
-  sizes: makeConfig("sizes"),
-  sizesT: makeConfig("sizes", fractionalValue),
-  shadows: makeConfig("shadows"),
+  sizes: toConfig("sizes"),
+  sizesT: toConfig("sizes", fractionalValue),
+  shadows: toConfig("shadows"),
   logical,
 }

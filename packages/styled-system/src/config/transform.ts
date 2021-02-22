@@ -1,8 +1,8 @@
 import * as CSS from "csstype"
-import { Config, createParser, system } from "../core"
+import { Config } from "../prop-config"
 import { Token } from "../utils"
 
-const config: Config = {
+export const transform: Config = {
   transform: true,
   transformOrigin: true,
 }
@@ -17,6 +17,3 @@ export interface TransformProps {
    */
   transformOrigin?: Token<CSS.Property.TransformOrigin | number, "sizes">
 }
-
-export const transform = system(config)
-export const transformParser = createParser(config)

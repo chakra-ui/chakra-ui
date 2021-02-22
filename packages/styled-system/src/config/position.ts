@@ -1,8 +1,8 @@
 import * as CSS from "csstype"
-import { Config, createParser, system } from "../core"
+import { Config } from "../prop-config"
 import { positiveOrNegative, t, Token } from "../utils"
 
-const config: Config = {
+export const position: Config = {
   position: true,
   pos: t.prop("position"),
   zIndex: { property: "zIndex", scale: "zIndices" },
@@ -35,9 +35,9 @@ const config: Config = {
   }),
 }
 
-Object.assign(config, {
-  insetStart: config.insetInlineStart,
-  insetEnd: config.insetInlineEnd,
+Object.assign(position, {
+  insetStart: position.insetInlineStart,
+  insetEnd: position.insetInlineEnd,
 })
 
 /**
@@ -105,6 +105,3 @@ export interface PositionProps {
   insetInline?: Token<CSS.Property.InsetInline>
   insetBlock?: Token<CSS.Property.InsetBlock>
 }
-
-export const position = system(config)
-export const positionParser = createParser(config)
