@@ -1,7 +1,7 @@
-import { ColorModeOptions } from "@chakra-ui/system"
+import { ColorMode, ColorModeOptions, ThemingProps } from "@chakra-ui/system"
 import { Breakpoints, Styles } from "@chakra-ui/theme-tools"
 import { Dict } from "@chakra-ui/utils"
-import { StyleObjectOrFn, ThemeThunk } from "@chakra-ui/styled-system"
+import { StyleObjectOrFn, SystemStyleObject } from "@chakra-ui/styled-system"
 
 export type RecursiveProperty<Nested = string | number> =
   | RecursiveObject<Nested>
@@ -35,28 +35,35 @@ export type Colors = RecursiveObject<
 >
 export type ThemeDirection = "ltr" | "rtl"
 
-interface ComponentDefaultProps extends Record<string, any> {
-  size?: string
-  variant?: string
-  colorScheme?: string
-}
+export interface ComponentDefaultProps
+  extends Omit<ThemingProps, "styleConfig">,
+    Dict {}
 
-interface SystemStyleObjectRecord {
+export type ThemingPropsThunk<T> =
+  | T
+  | ((
+      props: Dict &
+        Omit<ThemingProps, "styleConfig"> & {
+          colorMode: ColorMode
+        },
+    ) => T)
+
+export interface SystemStyleObjectRecord {
   [key: string]: StyleObjectOrFn
 }
 
 export interface ComponentSingleStyleConfig {
-  baseStyle?: StyleObjectOrFn
-  sizes?: SystemStyleObjectRecord
-  variants?: SystemStyleObjectRecord
+  baseStyle?: ThemingPropsThunk<SystemStyleObject>
+  sizes?: Record<string, ThemingPropsThunk<SystemStyleObject>>
+  variants?: Record<string, ThemingPropsThunk<SystemStyleObject>>
   defaultProps?: ComponentDefaultProps
 }
 
 export interface ComponentMultiStyleConfig {
-  parts?: string[]
-  baseStyle?: ThemeThunk<SystemStyleObjectRecord>
-  sizes?: SystemStyleObjectRecord
-  variants?: SystemStyleObjectRecord
+  parts: string[]
+  baseStyle?: ThemingPropsThunk<SystemStyleObjectRecord>
+  sizes?: Record<string, ThemingPropsThunk<SystemStyleObjectRecord>>
+  variants?: Record<string, ThemingPropsThunk<SystemStyleObjectRecord>>
   defaultProps?: ComponentDefaultProps
 }
 
