@@ -86,7 +86,7 @@ function omitVars(theme: Dict) {
   }
 }
 
-export function toCSSVariables<T extends Dict>(theme: T) {
+export function toCSSVar<T extends Dict>(theme: T) {
   /**
    * In the case the theme has already been converted to css-var (e.g extending the theme),
    * we can omit the computed css vars and recompute it for the extended theme.

@@ -1,7 +1,7 @@
-import { toCSSVariables } from "../src/css-var"
+import { toCSSVar } from "../src/css-var"
 
 export const createTheme = (direction: "rtl" | "ltr") =>
-  toCSSVariables({
+  toCSSVar({
     direction,
     breakpoints: {
       sm: "40em",

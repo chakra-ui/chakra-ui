@@ -1,8 +1,8 @@
-import { toCSSVariables } from "../src/css-var"
+import { toCSSVar } from "../src/css-var"
 
 test("should convert to css variables", () => {
   expect(
-    toCSSVariables({
+    toCSSVar({
       space: {
         sm: "8px",
         md: "16px",
@@ -59,7 +59,7 @@ test("should convert to css variables", () => {
 
 test("should convert to css variables", () => {
   expect(
-    toCSSVariables({
+    toCSSVar({
       space: [8, 12, 16, 33],
     }),
   ).toMatchInlineSnapshot(`
@@ -123,9 +123,9 @@ test("should convert to css variables", () => {
 })
 
 test("should handle nested theme with css-var", () => {
-  const baseTheme = toCSSVariables({ space: [2, 3, 4] })
+  const baseTheme = toCSSVar({ space: [2, 3, 4] })
   const theme = { ...baseTheme, colors: { red: { 100: "#100", 200: "#200" } } }
-  expect(toCSSVariables(theme)).toMatchInlineSnapshot(`
+  expect(toCSSVar(theme)).toMatchInlineSnapshot(`
     Object {
       "__cssMap": Object {
         "colors.red.100": Object {

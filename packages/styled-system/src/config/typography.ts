@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { Config } from "../prop-config"
-import { t, Token } from "../utils"
+import { ResponsiveValue, t, Token } from "../utils"
 
 export const typography: Config = {
   fontFamily: t.prop("fontFamily", "fonts"),
@@ -17,6 +17,28 @@ export const typography: Config = {
   whiteSpace: true,
   textDecoration: true,
   textDecor: { property: "textDecoration" },
+  noOfLines: {
+    static: {
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      display: "-webkit-box",
+      WebkitBoxOrient: "vertical",
+      //@ts-ignore
+      WebkitLineClamp: "var(--line-clamp)",
+    },
+    property: "--line-clamp",
+  },
+  isTruncated: {
+    transform(value) {
+      if (value === true) {
+        return {
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
+        }
+      }
+    },
+  },
 }
 
 /**
@@ -80,4 +102,13 @@ export interface TypographyProps {
    * The CSS `text-decoration` property
    */
   textDecor?: Token<CSS.Property.TextDecoration | number>
+  /**
+   * Used to visually truncate a text after a number of lines.
+   */
+  noOfLines?: ResponsiveValue<number>
+  /**
+   * If `true`, it clamps truncate a text after one line.
+   * @deprecated - Use `noOfLines` instead
+   */
+  isTruncated?: boolean
 }

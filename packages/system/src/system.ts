@@ -1,11 +1,10 @@
 import {
   css,
   propNames,
-  ResponsiveValue,
   StyleProps,
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
-import { Dict, isFunction, objectFilter } from "@chakra-ui/utils"
+import { isFunction, objectFilter } from "@chakra-ui/utils"
 import _styled, {
   CSSObject,
   FunctionInterpolation,
@@ -26,10 +25,8 @@ const stylePropNames = propNames.reduce((acc, key) => {
 type StyleResolverProps = SystemStyleObject & {
   __css?: SystemStyleObject
   sx?: SystemStyleObject
-  theme: Dict
+  theme: any
   css?: CSSObject
-  noOfLines?: ResponsiveValue<number>
-  isTruncated?: boolean
 }
 
 interface GetStyleObject {
@@ -51,56 +48,15 @@ interface GetStyleObject {
  * behaviors. Right now, the `sx` prop has the highest priority so the resolved
  * fontSize will be `40px`
  */
+type CSSObj = Interpolation<StyleResolverProps>
 export const getStyleObject: GetStyleObject = ({ baseStyle }) => (props) => {
-  const {
-    theme,
-    noOfLines,
-    isTruncated,
-    css: cssProp,
-    __css,
-    sx,
-    ...rest
-  } = props
-
-  // filter out props that aren't style props
+  const { theme, css: cssProp, __css, sx, ...rest } = props
   const styleProps = objectFilter(rest, (_, prop) => prop in stylePropNames)
-
-  let truncateStyle: any = {}
-
-  if (noOfLines != null) {
-    truncateStyle = {
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      display: "-webkit-box",
-      WebkitBoxOrient: "vertical",
-      WebkitLineClamp: noOfLines,
-    }
-  } else if (isTruncated) {
-    truncateStyle = {
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      whiteSpace: "nowrap",
-    }
-  }
-
-  /**
-   * The computed, theme-aware style object. The other of the properties
-   * within `objectAssign` determines how styles are overriden.
-   */
-  const finalStyles = Object.assign(
-    {},
-    __css,
-    baseStyle,
-    truncateStyle,
-    styleProps,
-    sx,
-  )
-
-  // Converts theme-aware style object to real css object
+  const finalStyles = Object.assign({}, __css, baseStyle, styleProps, sx)
   const computedCSS = css(finalStyles)(props.theme)
 
   // Merge the computed css object with styles in css prop
-  const cssObject: Interpolation<StyleResolverProps> = Object.assign(
+  const cssObject: CSSObj = Object.assign(
     computedCSS,
     isFunction(cssProp) ? cssProp(theme) : cssProp,
   )

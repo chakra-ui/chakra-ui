@@ -40,7 +40,7 @@ const checkCache = (theme: Theme) => {
   } else {
     cache = {
       theme,
-      breakpoint: analyzeBreakpoints(theme.breakpoints),
+      breakpoint: analyzeBreakpoints(theme.breakpoints ?? {}),
     }
     themeCache.set(theme, cache)
   }

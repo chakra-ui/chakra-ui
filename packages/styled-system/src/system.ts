@@ -40,4 +40,4 @@ export const systemProps = mergeWith(
 const layoutSystem = mergeWith({}, space, layout, flexbox, grid, position)
 export const layoutPropNames = objectKeys(layoutSystem)
 
-export const propNames = [...(systemProps.propNames || []), ...pseudoPropNames]
+export const propNames = [...objectKeys(systemProps), ...pseudoPropNames]
