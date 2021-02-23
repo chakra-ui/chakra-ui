@@ -30,7 +30,7 @@ export const tokens = [
 
 export type Token = typeof tokens[number]
 
-const extractTokens = (theme: Dict) => {
+function extractTokens(theme: Dict) {
   const _tokens = (tokens as unknown) as string[]
   return pick(theme, _tokens)
 }
@@ -72,14 +72,27 @@ function assign(options: AssignOptions) {
   }
 }
 
-const negate = (value?: string) => {
+function negate(value?: string) {
   if (!value) return
   const num = parseFloat(value)
   const unit = String(value).replace(String(num), "")
   return `-${num}${unit}`
 }
 
+function omitVars(theme: Dict) {
+  if ("__cssMap" in theme) {
+    delete theme.__cssMap
+    delete theme.__cssVars
+  }
+}
+
 export function toCSSVariables<T extends Dict>(theme: T) {
+  /**
+   * In the case the theme has already been converted to css-var (e.g extending the theme),
+   * we can omit the computed css vars and recompute it for the extended theme.
+   */
+  omitVars(theme)
+
   /**
    * The extracted css variables will be stored here, and used in
    * the emotion's <Global/> component to attach variables to `:root`

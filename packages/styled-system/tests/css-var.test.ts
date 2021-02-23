@@ -121,3 +121,72 @@ test("should convert to css variables", () => {
     }
   `)
 })
+
+test("should handle nested theme with css-var", () => {
+  const baseTheme = toCSSVariables({ space: [2, 3, 4] })
+  const theme = { ...baseTheme, colors: { red: { 100: "#100", 200: "#200" } } }
+  expect(toCSSVariables(theme)).toMatchInlineSnapshot(`
+    Object {
+      "__cssMap": Object {
+        "colors.red.100": Object {
+          "value": "#100",
+          "var": "--colors-red-100",
+          "varRef": "var(--colors-red-100)",
+        },
+        "colors.red.200": Object {
+          "value": "#200",
+          "var": "--colors-red-200",
+          "varRef": "var(--colors-red-200)",
+        },
+        "space.-0": Object {
+          "value": "-2",
+          "var": "--space-0",
+          "varRef": "calc(var(--space-0) * -1)",
+        },
+        "space.-1": Object {
+          "value": "-3",
+          "var": "--space-1",
+          "varRef": "calc(var(--space-1) * -1)",
+        },
+        "space.-2": Object {
+          "value": "-4",
+          "var": "--space-2",
+          "varRef": "calc(var(--space-2) * -1)",
+        },
+        "space.0": Object {
+          "value": 2,
+          "var": "--space-0",
+          "varRef": "var(--space-0)",
+        },
+        "space.1": Object {
+          "value": 3,
+          "var": "--space-1",
+          "varRef": "var(--space-1)",
+        },
+        "space.2": Object {
+          "value": 4,
+          "var": "--space-2",
+          "varRef": "var(--space-2)",
+        },
+      },
+      "__cssVars": Object {
+        "--colors-red-100": "#100",
+        "--colors-red-200": "#200",
+        "--space-0": 2,
+        "--space-1": 3,
+        "--space-2": 4,
+      },
+      "colors": Object {
+        "red": Object {
+          "100": "#100",
+          "200": "#200",
+        },
+      },
+      "space": Array [
+        2,
+        3,
+        4,
+      ],
+    }
+  `)
+})
