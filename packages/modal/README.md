@@ -198,11 +198,11 @@ without leaving the current page.
 ## Installation
 
 ```sh
-yarn add @chakra-ui/drawer
+yarn add @chakra-ui/modal
 
 # or
 
-npm i @chakra-ui/drawer
+npm i @chakra-ui/modal
 ```
 
 ## Import components
