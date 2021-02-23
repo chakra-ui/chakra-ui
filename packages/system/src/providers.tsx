@@ -11,17 +11,22 @@ import {
   Interpolation,
   ThemeContext,
   ThemeProvider as EThemeProvider,
-  ThemeProviderProps,
+  ThemeProviderProps as EThemeProviderProps,
 } from "@emotion/react"
 import * as React from "react"
 
 export { StylesProvider, useStyles }
 
+export interface ThemeProviderProps extends EThemeProviderProps {
+  cssVarsRoot?: string
+}
+
 export const ThemeProvider = (props: ThemeProviderProps) => {
+  const { cssVarsRoot = ":root", theme, children } = props
   return (
-    <EThemeProvider theme={toCSSVar(props.theme)}>
-      <Global styles={(t: any) => ({ ":root": t.__cssVars })} />
-      {props.children}
+    <EThemeProvider theme={toCSSVar(theme)}>
+      <Global styles={(t: any) => ({ [cssVarsRoot]: t.__cssVars })} />
+      {children}
     </EThemeProvider>
   )
 }
