@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import {
   Dict,
   fromEntries,
@@ -31,13 +32,14 @@ const analyzeCSSValue = (value: number | string) => {
   return { unitless: !unit, value: num, unit }
 }
 
-const px = (value: number | string) => {
+const px = (value: number | string): string => {
   const { unitless } = analyzeCSSValue(value)
-  return unitless ? `${value}px` : value
+  return unitless || isNumber(value) ? `${value}px` : value
 }
 
 function subtract(value: string) {
   if (!value) return value
+  value = px(value)
   const factor = value.endsWith("px") ? -1 : -0.0635
   return isNumber(value)
     ? `${value + factor}`
@@ -66,9 +68,10 @@ export function analyzeBreakpoints(breakpoints: Record<string, any>) {
 
   const queries = Object.entries(breakpoints)
     .sort(sortFn)
+    .filter(([bp]: any[]) => Number(bp) != bp)
     .map(([bp, minW], index, arr) => {
       let [, maxW] = arr[index + 1] ?? []
-      maxW = subtract(maxW)
+      maxW = parseFloat(maxW) > 0 ? subtract(maxW) : undefined
       return {
         breakpoint: bp,
         minW,
