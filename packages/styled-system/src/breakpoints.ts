@@ -14,7 +14,8 @@ const sortBps = (breakpoints: Dict): Dict =>
 
 function normalize(breakpoints: Dict) {
   const sorted = sortBps(breakpoints)
-  return Object.assign(Object.values(sorted), sorted) as string[]
+  const uniqSorted = Array.from(new Set(Object.values(sorted)))
+  return Object.assign(uniqSorted, sorted) as string[]
 }
 
 function keys(breakpoints: Dict) {
@@ -22,7 +23,18 @@ function keys(breakpoints: Dict) {
   return new Set(value)
 }
 
-const px = (value: string | number) => (isNumber(value) ? `${value}px` : value)
+// const px = (value: string | number) => (isNumber(value) ? `${value}px` : value)
+
+const analyzeCSSValue = (value: number | string) => {
+  const num = parseFloat(value.toString())
+  const unit = value.toString().replace(String(num), "")
+  return { unitless: !unit, value: num, unit }
+}
+
+const px = (value: number | string) => {
+  const { unitless } = analyzeCSSValue(value)
+  return unitless ? `${value}px` : value
+}
 
 function subtract(value: string) {
   if (!value) return value

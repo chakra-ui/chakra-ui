@@ -1,8 +1,7 @@
 import { isNumber } from "@chakra-ui/utils"
-import * as CSS from "csstype"
 import { createTransform } from "../create-transform"
-import type { Token } from "../css-var"
-import { logical, toConfig } from "../prop-config"
+import type { ThemeScale } from "../css-var"
+import { logical, PropConfig, toConfig } from "../prop-config"
 
 export * from "./types"
 
@@ -18,7 +17,7 @@ export const t = {
   radii: toConfig("radii"),
   space: toConfig("space"),
   spaceT: toConfig("space"),
-  prop: (property: keyof CSS.Properties, scale?: Token) => ({
+  prop: (property: PropConfig["property"], scale?: ThemeScale) => ({
     property,
     scale,
     ...(scale && { transform: createTransform({ scale }) }),

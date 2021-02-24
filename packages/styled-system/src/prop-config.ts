@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { createTransform } from "./create-transform"
-import { Token } from "./css-var"
+import { ThemeScale } from "./css-var"
 import type { Theme, Transform } from "./types"
 
 type CSSProp = keyof CSS.Properties
@@ -19,7 +19,7 @@ export interface PropConfig {
   /**
    * The theme scale this maps to
    */
-  scale?: Token
+  scale?: ThemeScale
   /**
    * Css property or Css variable the prop maps to
    */
@@ -37,7 +37,7 @@ export interface PropConfig {
 
 export type Config = Record<string, PropConfig | true>
 
-export function toConfig(scale: Token, transform?: Transform) {
+export function toConfig(scale: ThemeScale, transform?: Transform) {
   return <T extends CSSProp>(property: T | T[]) => {
     const result: PropConfig = { property, scale }
     result.transform = createTransform({
@@ -49,7 +49,7 @@ export function toConfig(scale: Token, transform?: Transform) {
 }
 
 interface Opts {
-  scale?: Token
+  scale?: ThemeScale
   property: { ltr: MaybeArray<CSSProp>; rtl: MaybeArray<CSSProp> }
   transform?: Transform
 }

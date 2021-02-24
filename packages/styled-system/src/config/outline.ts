@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { Config } from "../prop-config"
-import { Length, ResponsiveValue, t } from "../utils"
+import { Length, ResponsiveValue, t, Token } from "../utils"
 
 /**
  * The parser configuration for common outline properties
@@ -9,6 +9,11 @@ export const outline: Config = {
   outline: true,
   outlineOffset: true,
   outlineColor: t.colors("outlineColor"),
+  ringColor: t.prop("--ring-color", "colors"),
+  ringOffsetWidth: t.prop("--ring-offset"),
+  ringOffsetColor: t.prop("--ring-offset-color", "colors"),
+  ringWidth: t.prop("--ring-offset"),
+  ringInset: t.prop("--ring-inset"),
 }
 
 export interface OutlineProps {
@@ -23,5 +28,25 @@ export interface OutlineProps {
   /**
    * The CSS `outline-color` property
    */
-  outlineColor?: ResponsiveValue<CSS.Property.OutlineColor>
+  outlineColor?: Token<CSS.Property.Color, "colors">
+  /**
+   * The color of the outline ring
+   */
+  ringColor?: Token<CSS.Property.Color, "colors">
+  /**
+   * The thickness of the offset shadow when using outline rings
+   */
+  ringOffsetWidth?: Token<CSS.Property.OutlineOffset>
+  /**
+   * The color of the offset shadow when adding outline rings
+   */
+  ringOffsetColor?: Token<CSS.Property.Color, "colors">
+  /**
+   * The thickness of the outline rings
+   */
+  ringWidth?: Token<CSS.Property.OutlineWidth>
+  /**
+   * If the outline ring should an `inset`
+   */
+  ringInset?: "inset"
 }

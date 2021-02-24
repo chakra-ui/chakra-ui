@@ -1,9 +1,9 @@
 import { themeCache } from "./cache"
-import type { Token } from "./css-var"
+import type { ThemeScale } from "./css-var"
 import type { CachedValue, Transform } from "./types"
 
 interface CreateTransformOptions {
-  scale: Token
+  scale: ThemeScale
   compose?: Transform
   transform?: Transform
 }

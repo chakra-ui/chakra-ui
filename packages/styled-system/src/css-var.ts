@@ -28,7 +28,7 @@ export const tokens = [
   "transition.easing",
 ] as const
 
-export type Token = typeof tokens[number]
+export type ThemeScale = typeof tokens[number]
 
 function extractTokens(theme: Dict) {
   const _tokens = (tokens as unknown) as string[]
@@ -86,6 +86,30 @@ function omitVars(theme: Dict) {
   }
 }
 
+/**
+ * The CSS transform order following the upcoming spec from CSSWG
+ * translate => rotate => scale => skew
+ * @see https://drafts.csswg.org/css-transforms-2/#ctm
+ * @see https://www.stefanjudis.com/blog/order-in-css-transformation-transform-functions-vs-individual-transforms/
+ */
+const transformTemplate = [
+  "rotate(var(--rotate, 0))",
+  "scaleX(var(--scale-x, 1))",
+  "scaleY(var(--scale-y, 1))",
+  "skewX(var(--skew-x, 0))",
+  "skewY(var(--skew-y, 0))",
+]
+
+export function getTransformTemplate(type?: "gpu") {
+  const withGpu = "translate3d(var(--translate-x, 0), var(--translate-y, 0), 0)"
+  const basic = [
+    "translateX(var(--translate-x, 0))",
+    "translateY(var(--translate-y, 0))",
+  ].join(" ")
+  const transform = type === "gpu" ? withGpu : basic
+  return [transform, ...transformTemplate].join(" ")
+}
+
 export function toCSSVar<T extends Dict>(theme: T) {
   /**
    * In the case the theme has already been converted to css-var (e.g extending the theme),
@@ -97,7 +121,20 @@ export function toCSSVar<T extends Dict>(theme: T) {
    * The extracted css variables will be stored here, and used in
    * the emotion's <Global/> component to attach variables to `:root`
    */
-  const cssVars: Dict = {}
+  const cssVars: Dict = {
+    "--ring-offset": "0px",
+    "--ring-color": "rgba(66, 153, 225, 0.6)",
+    "--ring-width": "3px",
+    "--ring-inset": "/**/",
+    "--ring-offset-shadow":
+      "var(--ring-inset) 0 0 0 var(--ring-offset) var(--ring-offset-color, transparent)",
+    "--ring-shadow":
+      "var(--ring-inset) 0 0 0 calc(var(--ring-width) + var(--ring-offset)) var(--ring-color)",
+    "--ring": "var(--ring-offset-shadow), var(--ring-shadow), 0 0 transparent",
+    "--transform-gpu": getTransformTemplate("gpu"),
+    "--transform": getTransformTemplate(),
+  }
+
   /**
    * This is more like a dictionary of tokens users will type `green.500`,
    * and their equivalent css variable.
