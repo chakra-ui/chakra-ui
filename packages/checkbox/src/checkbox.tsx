@@ -9,9 +9,10 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
+import { useFormControl } from "@chakra-ui/form-control"
 import { callAll, cx, Omit, __DEV__, dataAttr } from "@chakra-ui/utils"
 import * as React from "react"
-import { useCheckboxGroupContext } from "./checkbox-group"
+import { CheckboxGroupContext, useCheckboxGroupContext } from "./checkbox-group"
 import { CheckboxIcon } from "./checkbox-icon"
 import { useCheckbox, UseCheckboxProps } from "./use-checkbox"
 
@@ -91,11 +92,6 @@ export interface CheckboxProps
  * @see Docs https://chakra-ui.com/docs/form/checkbox
  */
 export const Checkbox = forwardRef<CheckboxProps, "input">((props, ref) => {
-  const group = useCheckboxGroupContext()
-
-  const mergedProps = { ...group, ...props } as CheckboxProps
-  const styles = useMultiStyleConfig("Checkbox", mergedProps)
-
   const ownProps = omitThemingProps(props)
 
   const {
@@ -105,20 +101,21 @@ export const Checkbox = forwardRef<CheckboxProps, "input">((props, ref) => {
     iconColor,
     iconSize,
     icon: Icon = <CheckboxIcon />,
-    isChecked: isCheckedProp,
-    onChange: onChangeProp,
-    ...rest
+    ...restProps
   } = ownProps
 
-  let isChecked = isCheckedProp
-  if (group?.value && ownProps.value) {
-    isChecked = group.value.includes(ownProps.value)
-  }
+  const formControl = useFormControl<HTMLInputElement>(restProps)
+  const group = useCheckboxGroupContext() as CheckboxGroupContext | undefined
 
-  let onChange = onChangeProp
-  if (group?.onChange && ownProps.value) {
-    onChange = callAll(group.onChange, onChangeProp)
-  }
+  const onChange =
+    group?.onChange && props.value
+      ? callAll(group.onChange, props.onChange)
+      : props.onChange
+
+  const isChecked =
+    group?.value && props.value
+      ? group.value.includes(props.value)
+      : props.isChecked
 
   const {
     state,
@@ -127,16 +124,25 @@ export const Checkbox = forwardRef<CheckboxProps, "input">((props, ref) => {
     getLabelProps,
     htmlProps,
   } = useCheckbox({
-    ...rest,
-    isChecked,
+    ...formControl,
     onChange,
+    isChecked,
+    isDisabled: formControl.disabled,
+    isInvalid: formControl["aria-invalid"] ?? false,
+    isReadOnly: formControl["aria-readonly"] ?? false,
+    isRequired: formControl["aria-required"] ?? false,
   })
 
+  const styles = useMultiStyleConfig("Checkbox", {
+    ...group,
+    ...props,
+    ...state,
+  })
   const _className = cx("chakra-checkbox", className)
 
-  const inputProps = getInputProps({}, ref)
-  const labelProps = getLabelProps()
   const checkboxProps = getCheckboxProps()
+  const labelProps = getLabelProps()
+  const inputProps = getInputProps(undefined, ref)
 
   const iconStyles: SystemStyleObject = {
     opacity: state.isChecked || state.isIndeterminate ? 1 : 0,
