@@ -22,25 +22,17 @@ export const cssVars = () => {
 
 export const Stack = () => {
   return (
-    <ThemeProvider
-      theme={{
-        ...theme,
-        breakpoints: { sm: "320px", md: "768px", lg: "1200px", xl: "1600px" },
+    <Box
+      css={{
+        display: "flex",
+        flexDirection: { base: "column", md: "row-reverse" },
+        spaceX: { md: "40px" },
+        spaceY: { base: "40px", md: "0px" },
       }}
     >
-      <Global styles={(t: any) => ({ ":root": t.__cssVars })} />
-      <Box
-        css={{
-          display: "flex",
-          flexDirection: { base: "column", md: "row-reverse" },
-          spaceX: { md: "40px" },
-          spaceY: { base: "40px", md: "0px" },
-        }}
-      >
-        <div>Child 1</div>
-        <div>Child 2</div>
-        <div>Child 3</div>
-      </Box>
-    </ThemeProvider>
+      <div>Child 1</div>
+      <div>Child 2</div>
+      <div>Child 3</div>
+    </Box>
   )
 }
