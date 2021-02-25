@@ -33,7 +33,6 @@ interface Options {
 
 export function getCss(theme: Theme, options: Options) {
   const { configs, pseudos } = options
-  console.log(theme.__breakpoints)
   const { isResponsive, toArrayValue, media: medias } = theme.__breakpoints
 
   return {
