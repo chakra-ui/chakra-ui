@@ -87,11 +87,9 @@ type PseudoProps = {
 
 export interface SystemProps extends StyleProps, PseudoProps {}
 
-export type ThemeDirection = "ltr" | "rtl"
-
 export type CSSMap = Dict<{ value: string; var: string; varRef: string }>
 
-export type Transform = (value: any, theme: Theme) => any
+export type Transform = (value: any, theme: CssTheme) => any
 
 export type WithCSSVar<T> = T & {
   __cssVars: Dict
@@ -99,8 +97,8 @@ export type WithCSSVar<T> = T & {
   __breakpoints: BreakpointReturn
 }
 
-export type Theme = WithCSSVar<{
+export type CssTheme = WithCSSVar<{
   breakpoints: Dict
-  direction?: ThemeDirection
+  direction?: "ltr" | "rtl"
   [key: string]: any
 }>

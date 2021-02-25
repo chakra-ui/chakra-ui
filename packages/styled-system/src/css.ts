@@ -9,7 +9,7 @@ import * as CSS from "csstype"
 import { Config, PropConfig } from "./prop-config"
 import { pseudoSelectors } from "./pseudos"
 import { systemProps } from "./system"
-import { StyleObjectOrFn, Theme } from "./types"
+import { StyleObjectOrFn, CssTheme } from "./types"
 
 const collator = new Intl.Collator(undefined, {
   numeric: true,
@@ -31,10 +31,13 @@ interface Options {
   pseudos?: Record<string, CSS.Pseudos | (string & {})>
 }
 
-export function getCss(theme: Theme, options: Options) {
+export function getCss(theme: CssTheme, options: Options) {
   const { configs, pseudos } = options
-  //@ts-ignore
-  const { isResponsive, toArrayValue, media: medias } = theme.__breakpoints
+  const {
+    isResponsive,
+    toArrayValue,
+    media: medias,
+  } = theme.__breakpoints as any
 
   return {
     expandResponsive(styles: Dict) {
@@ -141,8 +144,8 @@ export function getCss(theme: Theme, options: Options) {
   }
 }
 
-export const css = (styles: StyleObjectOrFn) => (theme: Theme) =>
-  getCss(theme, {
+export const css = (styles: StyleObjectOrFn) => (theme: Dict) =>
+  getCss(theme as any, {
     pseudos: pseudoSelectors,
     configs: systemProps,
   }).process(styles)

@@ -2,11 +2,11 @@ import { Dict } from "@chakra-ui/utils"
 import * as CSS from "csstype"
 import { createTransform } from "./create-transform"
 import { ThemeScale } from "./css-var"
-import type { Theme, Transform } from "./types"
+import type { CssTheme, Transform } from "./types"
 
 type CSSProp = keyof CSS.Properties
 type MaybeArray<T> = T | T[]
-type MaybeThemeFunction<T> = T | ((theme: Theme) => T)
+type MaybeThemeFunction<T> = T | ((theme: CssTheme) => T)
 type StringUnion<T> = T | (string & {})
 
 export interface PropConfig {

@@ -1,5 +1,10 @@
 import { useColorMode } from "@chakra-ui/color-mode"
-import { css, SystemStyleObject, toCSSVar } from "@chakra-ui/styled-system"
+import {
+  css,
+  SystemStyleObject,
+  toCSSVar,
+  WithCSSVar,
+} from "@chakra-ui/styled-system"
 import {
   createContext,
   Dict,
@@ -41,7 +46,7 @@ export function useTheme<T extends object = Dict>() {
     )
   }
 
-  return theme
+  return theme as WithCSSVar<T>
 }
 
 const [StylesProvider, useStyles] = createContext<Dict<SystemStyleObject>>({
