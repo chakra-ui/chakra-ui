@@ -1,5 +1,17 @@
+import { isNumber } from "@chakra-ui/utils"
 import type { ThemeScale } from "./css-var"
 import type { Transform } from "./types"
+
+const analyzeCSSValue = (value: number | string) => {
+  const num = parseFloat(value.toString())
+  const unit = value.toString().replace(String(num), "")
+  return { unitless: !unit, value: num, unit }
+}
+
+export const px = (value: number | string): string => {
+  const { unitless } = analyzeCSSValue(value)
+  return unitless || isNumber(value) ? `${value}px` : value
+}
 
 interface CreateTransformOptions {
   scale: ThemeScale

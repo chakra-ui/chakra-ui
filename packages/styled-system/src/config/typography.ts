@@ -1,10 +1,11 @@
 import * as CSS from "csstype"
+import { px } from "../create-transform"
 import { Config } from "../prop-config"
 import { ResponsiveValue, t, Token } from "../utils"
 
 export const typography: Config = {
   fontFamily: t.prop("fontFamily", "fonts"),
-  fontSize: t.prop("fontSize", "fontSizes"),
+  fontSize: t.prop("fontSize", "fontSizes", px),
   fontWeight: t.prop("fontWeight", "fontWeights"),
   lineHeight: t.prop("lineHeight", "lineHeights"),
   letterSpacing: t.prop("letterSpacing", "letterSpacings"),

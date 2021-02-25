@@ -6,6 +6,7 @@ import {
   isNumber,
   isObject,
 } from "@chakra-ui/utils"
+import { px } from "./create-transform"
 
 const sortFn = (a: any[], b: any[]) =>
   parseInt(a[1], 10) > parseInt(b[1], 10) ? 1 : -1
@@ -21,17 +22,6 @@ function normalize(breakpoints: Dict) {
 function keys(breakpoints: Dict) {
   const value = Object.keys(sortBps(breakpoints))
   return new Set(value)
-}
-
-const analyzeCSSValue = (value: number | string) => {
-  const num = parseFloat(value.toString())
-  const unit = value.toString().replace(String(num), "")
-  return { unitless: !unit, value: num, unit }
-}
-
-const px = (value: number | string): string => {
-  const { unitless } = analyzeCSSValue(value)
-  return unitless || isNumber(value) ? `${value}px` : value
 }
 
 function subtract(value: string) {

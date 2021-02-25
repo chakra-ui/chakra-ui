@@ -33,6 +33,7 @@ interface Options {
 
 export function getCss(theme: Theme, options: Options) {
   const { configs, pseudos } = options
+  //@ts-ignore
   const { isResponsive, toArrayValue, media: medias } = theme.__breakpoints
 
   return {
@@ -106,7 +107,7 @@ export function getCss(theme: Theme, options: Options) {
         let rawValue = config?.transform?.(value, theme) ?? value
 
         rawValue = config?.processResult
-          ? this.expandStyles(rawValue, true)
+          ? sort(this.expandStyles(this.expandResponsive(rawValue), true))
           : rawValue
 
         if (config && isArray(config.property)) {
@@ -132,6 +133,7 @@ export function getCss(theme: Theme, options: Options) {
     },
 
     process(styles: Dict) {
+      styles = runIfFn(styles, theme)
       const responsive = this.expandResponsive(styles)
       const result = this.expandStyles(responsive)
       return sort(result)

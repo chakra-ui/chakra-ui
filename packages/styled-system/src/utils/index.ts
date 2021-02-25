@@ -1,5 +1,5 @@
 import { isNumber } from "@chakra-ui/utils"
-import { createTransform } from "../create-transform"
+import { createTransform, px as pxTransform } from "../create-transform"
 import type { ThemeScale } from "../css-var"
 import { logical, PropConfig, toConfig } from "../prop-config"
 
@@ -14,15 +14,24 @@ export const t = {
   borderStyles: toConfig("borderStyles"),
   colors: toConfig("colors"),
   borders: toConfig("borders"),
-  radii: toConfig("radii"),
-  space: toConfig("space"),
-  spaceT: toConfig("space"),
-  prop: (property: PropConfig["property"], scale?: ThemeScale) => ({
+  radii: toConfig("radii", pxTransform),
+  space: toConfig("space", pxTransform),
+  spaceT: toConfig("space", pxTransform),
+  prop: (
+    property: PropConfig["property"],
+    scale?: ThemeScale,
+    transform?: PropConfig["transform"],
+  ) => ({
     property,
     scale,
-    ...(scale && { transform: createTransform({ scale }) }),
+    ...(scale && {
+      transform: createTransform({
+        scale,
+        transform,
+      }),
+    }),
   }),
-  sizes: toConfig("sizes"),
+  sizes: toConfig("sizes", pxTransform),
   sizesT: toConfig("sizes", fractionalValue),
   shadows: toConfig("shadows"),
   logical,
