@@ -54,6 +54,8 @@ function queryString(min: string | null, max?: string) {
 }
 
 export function analyzeBreakpoints(breakpoints: Record<string, any>) {
+  if (!breakpoints) return null
+
   if (breakpoints.processed) {
     breakpoints = breakpoints.values
   }
