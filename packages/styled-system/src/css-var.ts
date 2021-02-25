@@ -1,4 +1,5 @@
 import { Dict, isCssVar, isObject, pick } from "@chakra-ui/utils"
+import analyzeBreakpoints from "./breakpoints"
 import type { CSSMap, WithCSSVar } from "./types"
 
 const separator = ">"
@@ -83,6 +84,7 @@ function omitVars(theme: Dict) {
   if ("__cssMap" in theme) {
     delete theme.__cssMap
     delete theme.__cssVars
+    delete theme.__breakpoints
   }
 }
 
@@ -125,7 +127,7 @@ export function toCSSVar<T extends Dict>(theme: T) {
     "--ring-offset": "0px",
     "--ring-color": "rgba(66, 153, 225, 0.6)",
     "--ring-width": "3px",
-    "--ring-inset": "/**/",
+    "--ring-inset": "/*!*/ /*!*/",
     "--ring-offset-shadow":
       "var(--ring-inset) 0 0 0 var(--ring-offset) var(--ring-offset-color, transparent)",
     "--ring-shadow":
@@ -133,6 +135,8 @@ export function toCSSVar<T extends Dict>(theme: T) {
     "--ring": "var(--ring-offset-shadow), var(--ring-shadow), 0 0 transparent",
     "--transform-gpu": getTransformTemplate("gpu"),
     "--transform": getTransformTemplate(),
+    "--space-x-reverse": "0",
+    "--space-y-reverse": "0",
   }
 
   /**
@@ -175,6 +179,7 @@ export function toCSSVar<T extends Dict>(theme: T) {
   Object.assign(theme, {
     __cssVars: cssVars,
     __cssMap: cssMap,
+    __breakpoints: analyzeBreakpoints(theme.breakpoints),
   })
 
   return theme as WithCSSVar<T>

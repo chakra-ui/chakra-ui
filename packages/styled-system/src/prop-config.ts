@@ -1,3 +1,4 @@
+import { Dict } from "@chakra-ui/utils"
 import * as CSS from "csstype"
 import { createTransform } from "./create-transform"
 import { ThemeScale } from "./css-var"
@@ -15,7 +16,7 @@ export interface PropConfig {
    *
    * It does not get replicated if value is responsive or styles are nested.
    */
-  static?: CSS.Properties
+  static?: Dict
   /**
    * The theme scale this maps to
    */
@@ -32,7 +33,7 @@ export interface PropConfig {
    * Useful for `layerStyle`, tex`tStyles and `apply` where their
    * transform function returns theme aware styles
    */
-  returnsThemeAwareStyles?: boolean
+  processResult?: boolean
 }
 
 export type Config = Record<string, PropConfig | true>

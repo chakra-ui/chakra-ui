@@ -15,16 +15,13 @@ const sortBps = (breakpoints: Dict): Dict =>
 
 function normalize(breakpoints: Dict) {
   const sorted = sortBps(breakpoints)
-  const uniqSorted = Array.from(new Set(Object.values(sorted)))
-  return Object.assign(uniqSorted, sorted) as string[]
+  return Object.assign(Object.values(sorted), sorted) as string[]
 }
 
 function keys(breakpoints: Dict) {
   const value = Object.keys(sortBps(breakpoints))
   return new Set(value)
 }
-
-// const px = (value: string | number) => (isNumber(value) ? `${value}px` : value)
 
 const analyzeCSSValue = (value: number | string) => {
   const num = parseFloat(value.toString())
@@ -49,26 +46,24 @@ function subtract(value: string) {
 function queryString(min: string | null, max?: string) {
   const query = []
 
-  if (min) {
-    query.push(`@media screen and (min-width: ${px(min)})`)
-  }
-
+  if (min) query.push(`@media screen and (min-width: ${px(min)})`)
   if (query.length > 0 && max) query.push("and")
-
-  if (max) {
-    query.push(`@media screen and (max-width: ${px(max)})`)
-  }
+  if (max) query.push(`@media screen and (max-width: ${px(max)})`)
 
   return query.join(" ")
 }
 
 export function analyzeBreakpoints(breakpoints: Record<string, any>) {
+  if (breakpoints.processed) {
+    breakpoints = breakpoints.values
+  }
+
   breakpoints.base = "0px"
+
   const normalized = normalize(breakpoints)
 
   const queries = Object.entries(breakpoints)
     .sort(sortFn)
-    .filter(([bp]: any[]) => Number(bp) != bp)
     .map(([bp, minW], index, arr) => {
       let [, maxW] = arr[index + 1] ?? []
       maxW = parseFloat(maxW) > 0 ? subtract(maxW) : undefined

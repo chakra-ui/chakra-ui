@@ -1,6 +1,20 @@
 import * as CSS from "csstype"
+import { createTransform } from "../create-transform"
 import { Config } from "../prop-config"
 import { Length, t, Token } from "../utils"
+
+const reverse = {
+  "row-reverse": {
+    space: "--space-x-reverse",
+    divide: "--divide-x-reverse",
+  },
+  "column-reverse": {
+    space: "--space-y-reverse",
+    divide: "--divide-y-reverse",
+  },
+}
+
+const owlSelector = "& > :not(style) ~ :not(style)"
 
 export const flexbox: Config = {
   alignItems: true,
@@ -8,7 +22,40 @@ export const flexbox: Config = {
   justifyItems: true,
   justifyContent: true,
   flexWrap: true,
-  flexDirection: true,
+  flexDirection: {
+    transform(value) {
+      const { space, divide } = reverse[value] ?? {}
+      const result = { flexDirection: value }
+      if (space) result[space] = 1
+      if (divide) result[divide] = 1
+      return result
+    },
+  },
+  spaceX: {
+    static: {
+      [owlSelector]: {
+        marginInlineStart:
+          "calc(var(--space-x) * calc(1 - var(--space-x-reverse)))",
+        marginInlineEnd: "calc(var(--space-x) * var(--space-x-reverse))",
+      },
+    },
+    transform: createTransform({
+      scale: "space",
+      transform: (value) => (value !== null ? { "--space-x": value } : null),
+    }),
+  },
+  spaceY: {
+    static: {
+      [owlSelector]: {
+        marginTop: "calc(var(--space-y) * calc(1 - var(--space-y-reverse)))",
+        marginBottom: "calc(var(--space-y) * var(--space-y-reverse))",
+      },
+    },
+    transform: createTransform({
+      scale: "space",
+      transform: (value) => (value != null ? { "--space-y": value } : null),
+    }),
+  },
   flex: true,
   flexFlow: true,
   flexGrow: true,
@@ -191,4 +238,12 @@ export interface FlexboxProps {
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/place-self)
    */
   placeSelf?: Token<CSS.Property.PlaceSelf>
+  /**
+   * Controls the horizontal space between elements
+   */
+  spaceX?: Token<CSS.Property.Margin | number, "space">
+  /**
+   * Controls the vertical space between elements
+   */
+  spaceY?: Token<CSS.Property.Margin | number, "space">
 }

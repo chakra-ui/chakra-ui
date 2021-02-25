@@ -96,6 +96,7 @@ export type Transform = (value: any, theme: Theme) => any
 export type WithCSSVar<T> = T & {
   __cssVars: Dict
   __cssMap: CSSMap
+  __breakpoints: BreakpointReturn
 }
 
 export type Theme = WithCSSVar<{
@@ -103,9 +104,3 @@ export type Theme = WithCSSVar<{
   direction?: ThemeDirection
   [key: string]: any
 }>
-
-export interface CachedValue {
-  theme: Theme
-  breakpoint: BreakpointReturn
-  [key: string]: any
-}

@@ -57,15 +57,15 @@ export const others: Config = {
     },
   },
   layerStyle: {
-    returnsThemeAwareStyles: true,
+    processResult: true,
     transform: (value, theme) => get(theme, `layerStyles.${value}`, {}),
   },
   textStyle: {
-    returnsThemeAwareStyles: true,
+    processResult: true,
     transform: (value, theme) => get(theme, `textStyles.${value}`, {}),
   },
   apply: {
-    returnsThemeAwareStyles: true,
+    processResult: true,
     transform: (value, theme) => get(theme, value, {}),
   },
 }

@@ -6,12 +6,10 @@ import {
   runIfFn,
 } from "@chakra-ui/utils"
 import * as CSS from "csstype"
-import { analyzeBreakpoints } from "./breakpoints"
-import { themeCache } from "./cache"
 import { Config, PropConfig } from "./prop-config"
 import { pseudoSelectors } from "./pseudos"
 import { systemProps } from "./system"
-import { CachedValue, StyleObjectOrFn, Theme } from "./types"
+import { StyleObjectOrFn, Theme } from "./types"
 
 const collator = new Intl.Collator(undefined, {
   numeric: true,
@@ -33,30 +31,16 @@ interface Options {
   pseudos?: Record<string, CSS.Pseudos | (string & {})>
 }
 
-const checkCache = (theme: Theme) => {
-  let cache: CachedValue
-  if (themeCache.has(theme)) {
-    cache = themeCache.get(theme) as CachedValue
-  } else {
-    cache = {
-      theme,
-      breakpoint: analyzeBreakpoints(theme.breakpoints ?? {}),
-    }
-    themeCache.set(theme, cache)
-  }
-  return cache
-}
-
 export function getCss(theme: Theme, options: Options) {
   const { configs, pseudos } = options
-  const cache = checkCache(theme)
-  const { isResponsive, toArrayValue, media: medias } = cache.breakpoint
+  console.log(theme.__breakpoints)
+  const { isResponsive, toArrayValue, media: medias } = theme.__breakpoints
 
   return {
     expandResponsive(styles: Dict) {
       const result: Dict = {}
       for (const key in styles) {
-        let value = runIfFn(styles[key], cache.theme)
+        let value = runIfFn(styles[key], theme)
         if (value == null) continue
 
         if (isObject(value)) {
@@ -94,7 +78,7 @@ export function getCss(theme: Theme, options: Options) {
 
       for (let key in styles) {
         const valueOrFn = styles[key]
-        const value = runIfFn(valueOrFn, cache.theme)
+        const value = runIfFn(valueOrFn, theme)
 
         if (pseudos && key in pseudos) {
           key = pseudos[key]
@@ -120,9 +104,9 @@ export function getCss(theme: Theme, options: Options) {
           merge(result, staticStyles)
         }
 
-        let rawValue = config?.transform?.(value, cache.theme) ?? value
+        let rawValue = config?.transform?.(value, theme) ?? value
 
-        rawValue = config?.returnsThemeAwareStyles
+        rawValue = config?.processResult
           ? this.expandStyles(rawValue, true)
           : rawValue
 
