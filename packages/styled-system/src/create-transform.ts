@@ -9,6 +9,7 @@ const analyzeCSSValue = (value: number | string) => {
 }
 
 export const px = (value: number | string): string => {
+  if (value == null) return value
   const { unitless } = analyzeCSSValue(value)
   return unitless || isNumber(value) ? `${value}px` : value
 }

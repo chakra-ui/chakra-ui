@@ -127,7 +127,7 @@ export function toCSSVar<T extends Dict>(theme: T) {
     "--ring-offset": "0px",
     "--ring-color": "rgba(66, 153, 225, 0.6)",
     "--ring-width": "3px",
-    "--ring-inset": "/*!*/ /*!*/",
+    "--ring-inset": "var(--empty, /* */)",
     "--ring-offset-shadow":
       "var(--ring-inset) 0 0 0 var(--ring-offset) var(--ring-offset-color, transparent)",
     "--ring-shadow":
