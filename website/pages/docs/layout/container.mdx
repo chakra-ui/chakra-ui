@@ -15,6 +15,7 @@ you can customize this by passing custom `maxWidth` values or changing the
 container size tokens defined in `theme.sizes.container`.
 
 <ComponentLinks
+  theme={{ componentName: "container" }}
   github={{ package: "layout" }}
   npm={{ package: "@chakra-ui/layout" }}
 />
@@ -38,6 +39,19 @@ To contain any piece of content, wrap it in the `Container` component.
   engineering teams. It makes sure that our experiences have a consistent look
   and feel, not just in our design specs, but in production
 </Container>
+```
+
+## Container Size
+
+To set the size of a Container, use the `maxW` attribute.
+
+```jsx
+<VStack>
+  <Container maxW="container.xl">Extra-Large Container</Container>
+  <Container maxW="container.lg">Large Container</Container>
+  <Container maxW="container.md">Medium Container</Container>
+  <Container maxW="container.sm">Small Container</Container>
+</VStack>
 ```
 
 ## Centering the children

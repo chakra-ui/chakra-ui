@@ -49,6 +49,9 @@ const theme = extendTheme({ config })
 export default theme
 ```
 
+> Remember to pass your custom `theme` to the `ChakraProvider`, otherwise your
+> color mode config won't be taken into consideration.
+
 ### Adding the `ColorModeScript`
 
 The color mode script needs to added before the `body` tag for local storage
