@@ -33,14 +33,11 @@ interface Options {
 
 export function getCss(theme: CssTheme, options: Options) {
   const { configs, pseudos } = options
-  const {
-    isResponsive,
-    toArrayValue,
-    media: medias,
-  } = theme.__breakpoints as any
 
   return {
     expandResponsive(styles: Dict) {
+      if (!theme.__breakpoints) return styles
+      const { isResponsive, toArrayValue, media: medias } = theme.__breakpoints
       const result: Dict = {}
       for (const key in styles) {
         let value = runIfFn(styles[key], theme)
