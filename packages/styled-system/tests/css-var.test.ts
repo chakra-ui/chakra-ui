@@ -47,7 +47,7 @@ test("should convert to css variables", () => {
       "__cssVars": Object {
         "--ring": "var(--ring-offset-shadow), var(--ring-shadow), 0 0 transparent",
         "--ring-color": "rgba(66, 153, 225, 0.6)",
-        "--ring-inset": "/*!*/ /*!*/",
+        "--ring-inset": "var(--empty, /* */)",
         "--ring-offset": "0px",
         "--ring-offset-shadow": "var(--ring-inset) 0 0 0 var(--ring-offset) var(--ring-offset-color, transparent)",
         "--ring-shadow": "var(--ring-inset) 0 0 0 calc(var(--ring-width) + var(--ring-offset)) var(--ring-color)",
@@ -122,7 +122,7 @@ test("should convert to css variables", () => {
       "__cssVars": Object {
         "--ring": "var(--ring-offset-shadow), var(--ring-shadow), 0 0 transparent",
         "--ring-color": "rgba(66, 153, 225, 0.6)",
-        "--ring-inset": "/*!*/ /*!*/",
+        "--ring-inset": "var(--empty, /* */)",
         "--ring-offset": "0px",
         "--ring-offset-shadow": "var(--ring-inset) 0 0 0 var(--ring-offset) var(--ring-offset-color, transparent)",
         "--ring-shadow": "var(--ring-inset) 0 0 0 calc(var(--ring-width) + var(--ring-offset)) var(--ring-color)",
@@ -199,7 +199,7 @@ test("should handle nested theme with css-var", () => {
         "--colors-red-200": "#200",
         "--ring": "var(--ring-offset-shadow), var(--ring-shadow), 0 0 transparent",
         "--ring-color": "rgba(66, 153, 225, 0.6)",
-        "--ring-inset": "/*!*/ /*!*/",
+        "--ring-inset": "var(--empty, /* */)",
         "--ring-offset": "0px",
         "--ring-offset-shadow": "var(--ring-inset) 0 0 0 var(--ring-offset) var(--ring-offset-color, transparent)",
         "--ring-shadow": "var(--ring-inset) 0 0 0 calc(var(--ring-width) + var(--ring-offset)) var(--ring-color)",

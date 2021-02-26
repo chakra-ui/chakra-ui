@@ -8,7 +8,7 @@ test("should work correctly", () => {
       md: "640px",
       lg: "1000px",
       xl: "4000px",
-    }).details,
+    })?.details,
   ).toMatchInlineSnapshot(`
     Array [
       Object {
@@ -65,7 +65,7 @@ test("should work with createBreakpoint output", () => {
         lg: "1000px",
         xl: "4000px",
       }),
-    ).details,
+    )?.details,
   ).toMatchInlineSnapshot(`
     Array [
       Object {
