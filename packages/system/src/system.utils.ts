@@ -38,6 +38,7 @@ export const domElements = [
   "input",
   "kbd",
   "label",
+  "legend",
   "li",
   "main",
   "mark",
@@ -66,6 +67,7 @@ export const domElements = [
   "thead",
   "tr",
   "ul",
+  "video",
 ] as const
 
 export type DOMElements = UnionStringArray<typeof domElements>
