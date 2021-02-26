@@ -173,3 +173,25 @@ export const AnimationDisabled = () => {
     </>
   )
 }
+
+export const FullWithLongContent = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  return (
+    <>
+      <button onClick={onOpen}>Open</button>
+      <Modal onClose={onClose} isOpen={isOpen} size="full">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title2</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Lorem count={30} />
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onClose}>Close</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  )
+}
