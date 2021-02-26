@@ -39,6 +39,7 @@ export const domElements = [
   "kbd",
   "label",
   "li",
+  "main",
   "mark",
   "nav",
   "ol",
