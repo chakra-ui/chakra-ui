@@ -1,4 +1,5 @@
 import { useBoolean } from "@chakra-ui/hooks"
+import { motion } from "framer-motion"
 import * as React from "react"
 import { Collapse, CollapseOptions } from "../src/collapse"
 
@@ -59,3 +60,5 @@ export const WithInitialIn = () => (
     </div>
   </Collapse>
 )
+
+export const WithNonDivElement = () => <CollapseExample as={motion.b} />

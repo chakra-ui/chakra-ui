@@ -62,6 +62,12 @@ export interface CollapseOptions {
    * @default "auto"
    */
   endingHeight?: number | string
+
+  /**
+   * The Motion element to render as.
+   * @default motion.div
+   */
+  as?: React.ElementType
 }
 
 export type ICollapse = CollapseProps
@@ -139,11 +145,13 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
       custom,
     }
 
+    const MotionComponent = props.as ?? motion.div
+
     if (unmountOnExit) {
       return (
         <AnimatePresence initial={false} custom={custom}>
           {isOpen && (
-            <motion.div
+            <MotionComponent
               {...ownProps}
               initial="exit"
               animate="enter"
@@ -155,7 +163,7 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
     }
 
     return (
-      <motion.div
+      <MotionComponent
         {...ownProps}
         style={{ ...ownProps.style, display }}
         initial={false}
