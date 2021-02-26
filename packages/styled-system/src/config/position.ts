@@ -5,7 +5,7 @@ import { t, Token } from "../utils"
 export const position: Config = {
   position: true,
   pos: t.prop("position"),
-  zIndex: { property: "zIndex", scale: "zIndices" },
+  zIndex: t.prop("zIndex", "zIndices"),
   inset: t.spaceT(["top", "right", "bottom", "left"]),
   insetX: t.spaceT(["left", "right"]),
   insetInline: t.spaceT("insetInline"),

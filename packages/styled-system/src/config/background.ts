@@ -21,7 +21,6 @@ export const background: Config = {
   backgroundAttachment: true,
   backgroundBlendMode: true,
   backgroundClip: {
-    property: "&",
     transform: bgClipTransform,
   },
   bgImage: t.prop("backgroundImage"),
@@ -37,7 +36,6 @@ export const background: Config = {
     transform: gradientTransform,
   },
   bgClip: {
-    property: "&",
     transform: bgClipTransform,
   },
 }
