@@ -36,3 +36,21 @@ export const Stack = () => {
     </Box>
   )
 }
+
+export const HoverFocus = () => {
+  return (
+    <Box
+      as="button"
+      css={{
+        _hover: {
+          bg: "red.300",
+        },
+        _focus: {
+          bg: "pink.400",
+        },
+      }}
+    >
+      Welcome
+    </Box>
+  )
+}

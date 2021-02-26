@@ -107,7 +107,7 @@ export function getCss(theme: CssTheme, options: Options) {
         let rawValue = config?.transform?.(value, theme) ?? value
 
         rawValue = config?.processResult
-          ? sort(this.expandStyles(this.expandResponsive(rawValue), true))
+          ? this.expandStyles(this.expandResponsive(rawValue), true)
           : rawValue
 
         if (config && isArray(config.property)) {
@@ -129,14 +129,13 @@ export function getCss(theme: CssTheme, options: Options) {
 
         result[key] = rawValue
       }
-      return result
+      return sort(result)
     },
 
     process(styles: Dict) {
       styles = runIfFn(styles, theme)
       const responsive = this.expandResponsive(styles)
-      const result = this.expandStyles(responsive)
-      return sort(result)
+      return this.expandStyles(responsive)
     },
   }
 }
