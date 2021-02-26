@@ -1,8 +1,9 @@
-import theme from "@chakra-ui/theme"
+import { toCSSVar } from "@chakra-ui/styled-system"
+import defaultTheme from "@chakra-ui/theme"
 import { getStyleObject } from "../src/system"
 
-const customTheme: any = {
-  ...theme,
+const theme = toCSSVar({
+  ...defaultTheme,
   layerStyles: {
     v1: {
       color: "red.300",
@@ -21,11 +22,11 @@ const customTheme: any = {
       fontSize: "sm",
     },
   },
-}
+})
 
 test("should resolve styles correctly", () => {
   const result = getStyleObject({ baseStyle: { bgPosition: "center" } })({
-    theme: customTheme,
+    theme,
     layerStyle: "v1",
     noOfLines: [3, 4],
     __css: {
@@ -63,28 +64,29 @@ test("should resolve styles correctly", () => {
           "display": "block",
         },
         "@media screen and (min-width: 30em)": Object {
-          "fontSize": 26,
+          "fontSize": "26px",
         },
-        "background": "#68D391",
-        "fontSize": 12,
+        "background": "var(--colors-green-300)",
+        "fontSize": "12px",
       },
+      "--line-clamp": 3,
       "@media screen and (min-width: 30em)": Object {
-        "WebkitLineClamp": 4,
-        "fontSize": 23,
+        "--line-clamp": 4,
+        "fontSize": "23px",
         "letterSpacing": "0.2px",
         "textTransform": "lowercase",
       },
       "WebkitBoxOrient": "vertical",
-      "WebkitLineClamp": 3,
+      "WebkitLineClamp": "var(--line-clamp)",
       "background": "tomato",
       "backgroundPosition": "top left",
-      "color": "#FC8181",
+      "color": "var(--colors-red-300)",
       "display": "-webkit-box",
-      "fontSize": 10,
+      "fontSize": "10px",
       "letterSpacing": "2px",
       "overflow": "hidden",
       "paddingLeft": 40,
-      "paddingRight": "1.25rem",
+      "paddingRight": "var(--space-5)",
       "textOverflow": "ellipsis",
       "textTransform": "uppercase",
     }
@@ -93,7 +95,7 @@ test("should resolve styles correctly", () => {
 
 test("should override padding correctly", () => {
   const result = getStyleObject({})({
-    theme: customTheme,
+    theme,
     __css: {
       paddingX: 4,
       color: "green.300",
@@ -106,10 +108,10 @@ test("should override padding correctly", () => {
   expect(result).toMatchInlineSnapshot(`
     Object {
       "background": "pinkish",
-      "color": "#68D391",
-      "marginRight": "1.25rem",
-      "paddingLeft": "1rem",
-      "paddingRight": "0.75rem",
+      "color": "var(--colors-green-300)",
+      "marginRight": "var(--space-5)",
+      "paddingLeft": "var(--space-4)",
+      "paddingRight": "var(--space-3)",
     }
   `)
 })
