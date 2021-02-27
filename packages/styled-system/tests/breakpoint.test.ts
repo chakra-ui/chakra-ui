@@ -1,5 +1,7 @@
 import { createBreakpoints } from "@chakra-ui/theme-tools"
 import { analyzeBreakpoints } from "../src/breakpoints"
+import { css } from "../src"
+import { createTheme } from "./theme"
 
 test("should work correctly", () => {
   expect(
@@ -110,4 +112,27 @@ test("should work with createBreakpoint output", () => {
       },
     ]
   `)
+})
+
+test("should handle array responsive values", () => {
+  expect(
+    css({
+      //@ts-ignore
+      "&": [
+        { marginTop: 2, marginLeft: 0 },
+        { marginLeft: 2, marginTop: 0 },
+      ],
+    })(createTheme("ltr")),
+  ).toMatchObject({
+    "&": {
+      marginTop: 2,
+      marginLeft: 0,
+    },
+    "@media screen and (min-width: 40em)": {
+      "&": {
+        marginLeft: 2,
+        marginTop: 0,
+      },
+    },
+  })
 })
