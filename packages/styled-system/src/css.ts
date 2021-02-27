@@ -8,23 +8,9 @@ import {
 import * as CSS from "csstype"
 import { Config, PropConfig } from "./prop-config"
 import { pseudoSelectors } from "./pseudos"
+import sort from "./sort"
 import { systemProps } from "./system"
 import { StyleObjectOrFn, CssTheme } from "./types"
-
-const collator = new Intl.Collator(undefined, {
-  numeric: true,
-  sensitivity: "base",
-})
-
-const sort = (obj: Dict) => {
-  const next: Dict = {}
-  Object.keys(obj)
-    .sort((a, b) => collator.compare(a, b))
-    .forEach((key) => {
-      next[key] = obj[key]
-    })
-  return next
-}
 
 interface Options {
   configs?: Config

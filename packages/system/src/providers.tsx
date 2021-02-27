@@ -28,9 +28,10 @@ export interface ThemeProviderProps extends EThemeProviderProps {
 
 export const ThemeProvider = (props: ThemeProviderProps) => {
   const { cssVarsRoot = ":root", theme, children } = props
+  const computedTheme = React.useMemo(() => toCSSVar(theme), [theme])
   return (
-    <EThemeProvider theme={toCSSVar(theme)}>
-      <Global styles={(t: any) => ({ [cssVarsRoot]: t.__cssVars })} />
+    <EThemeProvider theme={computedTheme}>
+      <Global styles={(theme: any) => ({ [cssVarsRoot]: theme.__cssVars })} />
       {children}
     </EThemeProvider>
   )

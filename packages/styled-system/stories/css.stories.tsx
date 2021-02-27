@@ -42,11 +42,11 @@ export const HoverFocus = () => {
     <Box
       as="button"
       css={{
-        _hover: {
-          bg: "red.300",
-        },
         _focus: {
           bg: "pink.400",
+        },
+        _hover: {
+          bg: "red.300",
         },
       }}
     >

@@ -51,33 +51,25 @@ interface AssignOptions {
 }
 
 function assign(options: AssignOptions) {
-  const { cssVars, cssMap, key, value, negate: minus } = options
+  const { cssVars, cssMap, key, value, negate } = options
 
-  const _value = minus ? negate(value) : value
+  const _value = negate ? `-${value}` : value
   const { varKey, mapKey, negVarKey } = getKeys(key)
 
-  if (!minus) {
+  if (!negate) {
     cssVars[varKey] = _value
   }
 
-  const _varKey = minus ? negVarKey : varKey
-  const minusVal = isCssVar(value)
-    ? `calc(${value} * -1)`
-    : `calc(${toVar(_varKey)} * -1)`
+  const _varKey = negate ? negVarKey : varKey
+  const minusVal = `calc(${isCssVar(value) ? value : toVar(_varKey)} * -1)`
 
-  const varRef = minus ? minusVal : toVar(varKey)
+  const varRef = negate ? minusVal : toVar(varKey)
+
   cssMap[mapKey] = {
     var: _varKey,
     value: isCssVar(value) ? value : _value,
     varRef,
   }
-}
-
-function negate(value?: string) {
-  if (!value) return
-  const num = parseFloat(value)
-  const unit = String(value).replace(String(num), "")
-  return `-${num}${unit}`
 }
 
 function omitVars(theme: Dict) {
@@ -102,16 +94,20 @@ const transformTemplate = [
   "skewY(var(--skew-y, 0))",
 ]
 
-export function getTransformTemplate(type?: "gpu") {
-  const withGpu = "translate3d(var(--translate-x, 0), var(--translate-y, 0), 0)"
-  const basic = [
+export function getTransformTemplate() {
+  return [
     "translateX(var(--translate-x, 0))",
     "translateY(var(--translate-y, 0))",
+    ...transformTemplate,
   ].join(" ")
-  const transform = type === "gpu" ? withGpu : basic
-  return [transform, ...transformTemplate].join(" ")
 }
 
+export function getTransformGpuTemplate() {
+  return [
+    "translate3d(var(--translate-x, 0), var(--translate-y, 0), 0)",
+    ...transformTemplate,
+  ].join(" ")
+}
 export function toCSSVar<T extends Dict>(theme: T) {
   /**
    * In the case the theme has already been converted to css-var (e.g extending the theme),
@@ -133,7 +129,7 @@ export function toCSSVar<T extends Dict>(theme: T) {
     "--ring-shadow":
       "var(--ring-inset) 0 0 0 calc(var(--ring-width) + var(--ring-offset)) var(--ring-color)",
     "--ring": "var(--ring-offset-shadow), var(--ring-shadow), 0 0 transparent",
-    "--transform-gpu": getTransformTemplate("gpu"),
+    "--transform-gpu": getTransformGpuTemplate(),
     "--transform": getTransformTemplate(),
     "--space-x-reverse": "0",
     "--space-y-reverse": "0",
@@ -151,6 +147,7 @@ export function toCSSVar<T extends Dict>(theme: T) {
   const toProperties = (object: Dict, prevKey?: string) => {
     Object.entries(object).forEach(([key, value]) => {
       value = Array.isArray(value) ? Object.assign({}, value) : value
+      // consider using an array format instead of separator
       const newKey = prevKey ? prevKey + separator + key : key
 
       let negKey: string | number | undefined

@@ -52,7 +52,7 @@ export function analyzeBreakpoints(breakpoints: Record<string, any>) {
 
   breakpoints.base = "0px"
 
-  const normalized = normalize(breakpoints)
+  const normalized = normalize(breakpoints) // {sm: 320, md: 640} => [0, 320, 640, sm: 320, md: 640]
 
   const queries = Object.entries(breakpoints)
     .sort(sortFn)
@@ -92,7 +92,7 @@ export function analyzeBreakpoints(breakpoints: Record<string, any>) {
       return result
     },
     toObjectValue(test: any[]) {
-      if (!Array.isArray) {
+      if (!Array.isArray(test)) {
         throw new Error("toObjectValue: value must be an array")
       }
       return test.reduce((acc, value, index) => {
