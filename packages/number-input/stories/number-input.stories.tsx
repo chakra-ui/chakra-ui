@@ -122,6 +122,16 @@ export const withStep = () => (
   </NumberInput>
 )
 
+export const withRightTextAlignment = () => (
+  <NumberInput step={5} defaultValue={15} min={10} max={30}>
+    <NumberInputField textAlign="right" />
+    <NumberInputStepper>
+      <NumberIncrementStepper />
+      <NumberDecrementStepper />
+    </NumberInputStepper>
+  </NumberInput>
+)
+
 export const withPrecision = () => (
   <NumberInput defaultValue={15} precision={2} step={0.2}>
     <NumberInputField />

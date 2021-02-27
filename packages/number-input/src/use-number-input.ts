@@ -10,6 +10,7 @@ import {
   callAllHandlers,
   EventKeyMap,
   focus,
+  getValidChildren,
   isBrowser,
   isNull,
   maxSafeInteger,
@@ -105,7 +106,9 @@ const sanitize = (value: string) =>
  * @see Docs     https://www.chakra-ui.com/useNumberInput
  * @see WHATWG   https://html.spec.whatwg.org/multipage/input.html#number-state-(type=number)
  */
-export function useNumberInput(props: UseNumberInputProps = {}) {
+export function useNumberInput(
+  props: React.PropsWithChildren<UseNumberInputProps> = {},
+) {
   const {
     focusInputOnChange = true,
     clampValueOnBlur = true,
@@ -337,7 +340,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
   useEventListener(
     "wheel",
-    (event) => {
+    (event: WheelEvent) => {
       const isInputFocused = document.activeElement === inputRef.current
       if (!allowMouseWheel || !isInputFocused) return
 
@@ -467,6 +470,8 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     ],
   )
 
+  const validChildren = getValidChildren(props.children)
+
   return {
     value: counter.value,
     valueAsNumber: counter.valueAsNumber,
@@ -477,6 +482,9 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     getDecrementButtonProps,
     getInputProps,
     htmlProps,
+    hasSteppers: validChildren.some(
+      (child) => child.type["id"] === "NumberInputStepper",
+    ),
   }
 }
 

@@ -7,6 +7,7 @@ import {
   useMultiStyleConfig,
   useStyles,
   HTMLChakraProps,
+  useToken,
 } from "@chakra-ui/system"
 import { createContext, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -133,6 +134,8 @@ export const NumberInputStepper = forwardRef<NumberInputStepperProps, "div">(
   },
 )
 
+NumberInputStepper.id = "NumberInputStepper"
+
 if (__DEV__) {
   NumberInputStepper.displayName = "NumberInputStepper"
 }
@@ -152,10 +155,17 @@ export interface NumberInputFieldProps extends HTMLChakraProps<"input"> {}
  */
 export const NumberInputField = forwardRef<NumberInputFieldProps, "input">(
   (props, ref) => {
-    const { getInputProps } = useNumberInputContext()
+    const { hasSteppers, getInputProps } = useNumberInputContext()
 
     const input = getInputProps(props, ref)
     const styles = useStyles()
+
+    const paddingRight = useToken("space", styles.field.px?.toString() ?? 0)
+    const stepperWidth = styles.stepperGroup.width
+
+    if (hasSteppers) {
+      styles.field.paddingRight = `calc(${paddingRight} + ${stepperWidth})`
+    }
 
     return (
       <chakra.input
