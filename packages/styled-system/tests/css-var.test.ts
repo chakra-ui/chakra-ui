@@ -226,3 +226,61 @@ test("should handle nested theme with css-var", () => {
     }
   `)
 })
+
+test("should handle values provided as CSS variables", () => {
+  const theme = toCSSVar({
+    colors: {
+      red: {
+        50: "var(--CUSTOM-red-50)",
+      },
+    },
+    space: {
+      sm: "var(--CUSTOM-sm)",
+    },
+  })
+  expect(toCSSVar(theme)).toMatchInlineSnapshot(`
+    Object {
+      "__breakpoints": null,
+      "__cssMap": Object {
+        "colors.red.50": Object {
+          "value": "var(--CUSTOM-red-50)",
+          "var": "--colors-red-50",
+          "varRef": "var(--colors-red-50)",
+        },
+        "space.-sm": Object {
+          "value": "calc(var(--CUSTOM-sm) * -1)",
+          "var": "--space-sm",
+          "varRef": "calc(var(--space-sm) * -1)",
+        },
+        "space.sm": Object {
+          "value": "var(--CUSTOM-sm)",
+          "var": "--space-sm",
+          "varRef": "var(--space-sm)",
+        },
+      },
+      "__cssVars": Object {
+        "--colors-red-50": "var(--CUSTOM-red-50)",
+        "--ring": "var(--ring-offset-shadow), var(--ring-shadow), 0 0 transparent",
+        "--ring-color": "rgba(66, 153, 225, 0.6)",
+        "--ring-inset": "var(--empty, /* */)",
+        "--ring-offset": "0px",
+        "--ring-offset-shadow": "var(--ring-inset) 0 0 0 var(--ring-offset) var(--ring-offset-color, transparent)",
+        "--ring-shadow": "var(--ring-inset) 0 0 0 calc(var(--ring-width) + var(--ring-offset)) var(--ring-color)",
+        "--ring-width": "3px",
+        "--space-sm": "var(--CUSTOM-sm)",
+        "--space-x-reverse": "0",
+        "--space-y-reverse": "0",
+        "--transform": "translateX(var(--translate-x, 0)) translateY(var(--translate-y, 0)) rotate(var(--rotate, 0)) scaleX(var(--scale-x, 1)) scaleY(var(--scale-y, 1)) skewX(var(--skew-x, 0)) skewY(var(--skew-y, 0))",
+        "--transform-gpu": "translate3d(var(--translate-x, 0), var(--translate-y, 0), 0) rotate(var(--rotate, 0)) scaleX(var(--scale-x, 1)) scaleY(var(--scale-y, 1)) skewX(var(--skew-x, 0)) skewY(var(--skew-y, 0))",
+      },
+      "colors": Object {
+        "red": Object {
+          "50": "var(--CUSTOM-red-50)",
+        },
+      },
+      "space": Object {
+        "sm": "var(--CUSTOM-sm)",
+      },
+    }
+  `)
+})

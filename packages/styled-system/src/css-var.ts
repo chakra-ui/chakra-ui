@@ -1,12 +1,10 @@
 import { Dict, isCssVar, isObject, pick } from "@chakra-ui/utils"
 import analyzeBreakpoints from "./breakpoints"
-import type { CSSMap, WithCSSVar } from "./types"
+import type { WithCSSVar } from "./types"
 
-const separator = ">"
-
-const replace = (value: string, str = ".") => value.replace(/>/g, str)
-
-export const toVar = (value: string) => `var(${value})`
+export const toVarDefinition = (value: string) => `--${value}`
+export const toVarReference = (value: string) => `var(${value})`
+export const toNegativeVar = (value: string) => `calc(${value} * -1)`
 
 export const tokens = [
   "colors",
@@ -36,48 +34,9 @@ function extractTokens(theme: Dict) {
   return pick(theme, _tokens)
 }
 
-const getKeys = (key: string) => ({
-  varKey: `--${replace(key, "-")}`,
-  mapKey: replace(key, "."),
-  negVarKey: `--${key.replace(">-", "-")}`,
-})
-
-interface AssignOptions {
-  cssVars: Dict
-  cssMap: CSSMap
-  key: any
-  value: any
-  negate?: boolean
-}
-
-function assign(options: AssignOptions) {
-  const { cssVars, cssMap, key, value, negate } = options
-
-  const _value = negate ? `-${value}` : value
-  const { varKey, mapKey, negVarKey } = getKeys(key)
-
-  if (!negate) {
-    cssVars[varKey] = _value
-  }
-
-  const _varKey = negate ? negVarKey : varKey
-  const minusVal = `calc(${isCssVar(value) ? value : toVar(_varKey)} * -1)`
-
-  const varRef = negate ? minusVal : toVar(varKey)
-
-  cssMap[mapKey] = {
-    var: _varKey,
-    value: isCssVar(value) ? value : _value,
-    varRef,
-  }
-}
-
-function omitVars(theme: Dict) {
-  if ("__cssMap" in theme) {
-    delete theme.__cssMap
-    delete theme.__cssVars
-    delete theme.__breakpoints
-  }
+function omitVars(rawTheme: Dict) {
+  const { __cssMap, __cssVars, __breakpoints, ...cleanTheme } = rawTheme
+  return cleanTheme
 }
 
 /**
@@ -108,18 +67,31 @@ export function getTransformGpuTemplate() {
     ...transformTemplate,
   ].join(" ")
 }
-export function toCSSVar<T extends Dict>(theme: T) {
+
+export function toCSSVar<T extends Dict>(rawTheme: T) {
   /**
    * In the case the theme has already been converted to css-var (e.g extending the theme),
    * we can omit the computed css vars and recompute it for the extended theme.
    */
-  omitVars(theme)
+  const theme = omitVars(rawTheme)
 
-  /**
-   * The extracted css variables will be stored here, and used in
-   * the emotion's <Global/> component to attach variables to `:root`
-   */
-  const cssVars: Dict = {
+  // omit components and breakpoints from css variable map
+  const tokens = extractTokens(theme)
+
+  const {
+    /**
+     * This is more like a dictionary of tokens users will type `green.500`,
+     * and their equivalent css variable.
+     */
+    cssMap,
+    /**
+     * The extracted css variables will be stored here, and used in
+     * the emotion's <Global/> component to attach variables to `:root`
+     */
+    cssVars,
+  } = toProperties(tokens)
+
+  const defaultCssVars: Dict = {
     "--ring-offset": "0px",
     "--ring-color": "rgba(66, 153, 225, 0.6)",
     "--ring-width": "3px",
@@ -135,49 +107,102 @@ export function toCSSVar<T extends Dict>(theme: T) {
     "--space-y-reverse": "0",
   }
 
-  /**
-   * This is more like a dictionary of tokens users will type `green.500`,
-   * and their equivalent css variable.
-   */
-  const cssMap: CSSMap = {}
-
-  // omit components and breakpoints from css variable map
-  const tokens = extractTokens(theme)
-
-  const toProperties = (object: Dict, prevKey?: string) => {
-    Object.entries(object).forEach(([key, value]) => {
-      value = Array.isArray(value) ? Object.assign({}, value) : value
-      // consider using an array format instead of separator
-      const newKey = prevKey ? prevKey + separator + key : key
-
-      let negKey: string | number | undefined
-      if (newKey.startsWith("space")) {
-        negKey = typeof key === "string" ? `-${key}` : -key
-        if (!Number.isNaN(negKey) && prevKey) {
-          negKey = prevKey + separator + negKey
-        }
-      }
-
-      if (isObject(value)) {
-        toProperties(value, newKey)
-        return
-      }
-
-      assign({ cssMap, cssVars, key: newKey, value })
-
-      if (negKey) {
-        assign({ cssMap, cssVars, key: negKey, value, negate: true })
-      }
-    })
-  }
-
-  toProperties(tokens)
-
   Object.assign(theme, {
-    __cssVars: cssVars,
+    __cssVars: { ...defaultCssVars, ...cssVars },
     __cssMap: cssMap,
     __breakpoints: analyzeBreakpoints(theme.breakpoints),
   })
 
   return theme as WithCSSVar<T>
+}
+
+function toProperties(
+  target: Dict,
+  initialContext?: { cssMap?: Dict; cssVars?: Dict },
+  prefixes: string[] = [],
+) {
+  const context = {
+    cssMap: {
+      ...initialContext?.cssMap,
+    },
+    cssVars: {
+      ...initialContext?.cssVars,
+    },
+  }
+
+  return Object.entries(target).reduce((properties, [key, value]) => {
+    if (isObject(value) || Array.isArray(value)) {
+      const nested = toProperties(value, properties, prefixes.concat(key))
+      Object.assign(properties.cssVars, nested.cssVars)
+      Object.assign(properties.cssMap, nested.cssMap)
+    } else {
+      const finalKey = prefixes.concat([key])
+      // firstKey will be e.g. "space"
+      const [firstKey] = finalKey
+
+      const handler =
+        tokenHandlerMap[firstKey] ?? tokenHandlerMap.defaultHandler
+
+      const { cssVars, cssMap } = handler(finalKey, value)
+      Object.assign(properties.cssVars, cssVars)
+      Object.assign(properties.cssMap, cssMap)
+    }
+
+    return properties
+  }, context)
+}
+
+/**
+ * Define transformation handlers for ThemeScale
+ */
+const tokenHandlerMap: Partial<
+  Record<
+    ThemeScale | "defaultHandler",
+    (keys: string[], value: unknown) => { cssVars: Dict; cssMap: Dict }
+  >
+> = {
+  space: (keys, value) => {
+    const properties = tokenHandlerMap.defaultHandler!(keys, value)
+    const [firstKey, ...referenceKeys] = keys
+
+    const negativeLookupKey = `${firstKey}.-${referenceKeys.join(".")}`
+    const negativeVarKey = keys.join("-")
+    const cssVar = toVarDefinition(negativeVarKey)
+    const negativeValue = isCssVar(String(value))
+      ? toNegativeVar(String(value))
+      : `-${value}`
+
+    const varRef = toNegativeVar(toVarReference(cssVar))
+
+    return {
+      cssVars: properties.cssVars,
+      cssMap: {
+        ...properties.cssMap,
+        [negativeLookupKey]: {
+          value: negativeValue,
+          var: cssVar,
+          varRef: varRef,
+        },
+      },
+    }
+  },
+  defaultHandler: (keys, value) => {
+    const lookupKey = keys.join(".")
+    const varKey = keys.join("-")
+
+    const cssVar = toVarDefinition(varKey)
+
+    return {
+      cssVars: {
+        [cssVar]: value,
+      },
+      cssMap: {
+        [lookupKey]: {
+          value,
+          var: cssVar,
+          varRef: toVarReference(cssVar),
+        },
+      },
+    }
+  },
 }

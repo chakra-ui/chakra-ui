@@ -272,14 +272,15 @@ test("handles negative values from custom css var scale", () => {
     left: -3,
   })(customTheme)
 
+  // Custom CSS variables are mapped to CSS vars controlled by chakra
   expect(result).toEqual({
-    marginTop: `calc(var(--size-1) * -1)`,
-    marginLeft: `calc(var(--size-2) * -1)`,
-    marginRight: `calc(var(--size-2) * -1)`,
-    top: `calc(var(--size-3) * -1)`,
-    right: `calc(var(--size-3) * -1)`,
-    bottom: `calc(var(--size-3) * -1)`,
-    left: `calc(var(--size-3) * -1)`,
+    marginTop: `calc(var(--space-1) * -1)`,
+    marginLeft: `calc(var(--space-2) * -1)`,
+    marginRight: `calc(var(--space-2) * -1)`,
+    top: `calc(var(--space-3) * -1)`,
+    right: `calc(var(--space-3) * -1)`,
+    bottom: `calc(var(--space-3) * -1)`,
+    left: `calc(var(--space-3) * -1)`,
   })
 })
 
