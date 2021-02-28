@@ -20,8 +20,6 @@ import {
 } from "@emotion/react"
 import * as React from "react"
 
-export { StylesProvider, useStyles }
-
 export interface ThemeProviderProps extends EThemeProviderProps {
   cssVarsRoot?: string
 }
@@ -50,7 +48,9 @@ export function useTheme<T extends object = Dict>() {
   return theme as WithCSSVar<T>
 }
 
-const [StylesProvider, useStyles] = createContext<Dict<SystemStyleObject>>({
+export const [StylesProvider, useStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
   name: "StylesContext",
   errorMessage:
     "useStyles: `styles` is undefined. Seems you forgot to wrap the components in `<StylesProvider />` ",
