@@ -136,7 +136,7 @@ function toProperties(
       Object.assign(properties.cssVars, nested.cssVars)
       Object.assign(properties.cssMap, nested.cssMap)
     } else {
-      const finalKey = prefixes.concat([key])
+      const finalKey = prefixes.concat(key)
       // firstKey will be e.g. "space"
       const [firstKey] = finalKey
 
@@ -181,7 +181,7 @@ const tokenHandlerMap: Partial<
         [negativeLookupKey]: {
           value: negativeValue,
           var: cssVar,
-          varRef: varRef,
+          varRef,
         },
       },
     }
