@@ -40,8 +40,6 @@ function App() {
 }
 ```
 
-> - For Gatsby, install the `@chakra-ui/gatsby-plugin`. It does it automatically
->   for you.
 > - For Create React App, you need to set this up in `index.js` or `index.tsx`
 
 ### Next.js
@@ -61,6 +59,27 @@ function MyApp({ Component, pageProps }) {
 export default MyApp;
 
 ```
+
+### Gatsby
+Add the [@chakra-ui/gatsby-plugin](gatsbyjs.com/plugins/@chakra-ui/gatsby-plugin/). It does everything automatically for you!
+
+```bash
+npm i @chakra-ui/gatsby-plugin
+```
+```bash
+yarn add @chakra-ui/gatsby-plugin
+```
+
+Then add the plugin to your `gatsby-config`.
+
+```js
+// gatsby-config.js
+
+module.exports = {
+  plugins: ["@chakra-ui/gatsby-plugin],
+}
+```
+
 
 ## Add custom theme (Optional)
 
