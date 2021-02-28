@@ -27,7 +27,10 @@ function keys(breakpoints: Dict) {
 function subtract(value: string) {
   if (!value) return value
   value = px(value)
-  const factor = value.endsWith("px") ? -1 : -0.0635
+  const factor = value.endsWith("px")
+    ? -1
+    : // the equivalent of 1px in em using a 16px base
+      -0.0635
   return isNumber(value)
     ? `${value + factor}`
     : value.replace(/(\d+\.?\d*)/u, (m) => `${parseFloat(m) + factor}`)
