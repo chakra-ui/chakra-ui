@@ -2,6 +2,7 @@ import { createBreakpoints } from "@chakra-ui/theme-tools"
 import { analyzeBreakpoints } from "../src/breakpoints"
 import { css } from "../src"
 import { createTheme } from "./theme"
+import { expandResponsive } from "../src/css"
 
 test("should work correctly", () => {
   expect(
@@ -125,14 +126,39 @@ test("should handle array responsive values", () => {
     })(createTheme("ltr")),
   ).toMatchObject({
     "&": {
-      marginTop: 2,
-      marginLeft: 0,
+      marginTop: "2px",
+      marginLeft: "0px",
     },
     "@media screen and (min-width: 40em)": {
       "&": {
-        marginLeft: 2,
-        marginTop: 0,
+        marginLeft: "2px",
+        marginTop: "0px",
       },
     },
   })
+})
+
+test("should work with stack", () => {
+  const result = expandResponsive({
+    //@ts-ignore
+    "& > *:not(style) ~ *:not(style)": [
+      { marginTop: "40px", marginStart: 0 },
+      { marginStart: "40px", marginTop: 0 },
+    ],
+  })(createTheme("ltr"))
+
+  expect(result).toMatchInlineSnapshot(`
+    Object {
+      "& > *:not(style) ~ *:not(style)": Object {
+        "marginStart": 0,
+        "marginTop": "40px",
+      },
+      "@media screen and (min-width: 40em)": Object {
+        "& > *:not(style) ~ *:not(style)": Object {
+          "marginStart": "40px",
+          "marginTop": 0,
+        },
+      },
+    }
+  `)
 })

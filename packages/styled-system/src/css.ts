@@ -10,124 +10,124 @@ import { Config, PropConfig } from "./prop-config"
 import { pseudoSelectors } from "./pseudos"
 import sort from "./sort"
 import { systemProps } from "./system"
-import { StyleObjectOrFn, CssTheme } from "./types"
+import { CssTheme, StyleObjectOrFn } from "./types"
+
+export const expandResponsive = (styles: Dict) => (theme: Dict) => {
+  if (!theme.__breakpoints) return styles
+  const { isResponsive, toArrayValue, media: medias } = theme.__breakpoints
+
+  const computedStyles: Dict = {}
+
+  for (const key in styles) {
+    let value = runIfFn(styles[key], theme)
+
+    if (value == null) continue
+
+    value = isObject(value) && isResponsive(value) ? toArrayValue(value) : value
+
+    if (!isArray(value)) {
+      computedStyles[key] = value
+      continue
+    }
+
+    const queries = value.slice(0, medias.length).length
+
+    for (let index = 0; index < queries; index += 1) {
+      const media = medias?.[index]
+
+      if (!media) {
+        computedStyles[key] = value[index]
+        continue
+      }
+
+      computedStyles[media] = computedStyles[media] || {}
+
+      if (value[index] == null) {
+        continue
+      }
+
+      computedStyles[media][key] = value[index]
+    }
+  }
+
+  return computedStyles
+}
 
 interface Options {
+  theme: CssTheme
   configs?: Config
   pseudos?: Record<string, CSS.Pseudos | (string & {})>
 }
 
-export function getCss(theme: CssTheme, options: Options) {
-  const { configs, pseudos } = options
+export function getCss(options: Options) {
+  const { configs = {}, pseudos = {}, theme } = options
 
-  return {
-    expandResponsive(styles: Dict) {
-      if (!theme.__breakpoints) return styles
-      const { isResponsive, toArrayValue, media: medias } = theme.__breakpoints
-      const result: Dict = {}
-      for (const key in styles) {
-        let value = runIfFn(styles[key], theme)
-        if (value == null) continue
+  const css = (stylesOrFn: Dict, nested = false) => {
+    const _styles = runIfFn(stylesOrFn, theme)
+    const styles = expandResponsive(_styles)(theme)
+    let computedStyles: Dict = {}
 
-        if (isObject(value)) {
-          value = isResponsive(value)
-            ? toArrayValue(value)
-            : this.expandResponsive(value)
-        }
+    for (let key in styles) {
+      const valueOrFn = styles[key]
+      const value = runIfFn(valueOrFn, theme)
+      key = key in pseudos ? pseudos[key] : key
 
-        if (!isArray(value)) {
-          result[key] = value
-          continue
-        }
+      let config = configs[key]
 
-        const mediaLength = value.slice(0, medias.length).length
-
-        for (let i = 0; i < mediaLength; i += 1) {
-          const media = medias?.[i]
-
-          if (!media) {
-            result[key] = value[i]
-            continue
-          }
-
-          result[media] = result[media] || {}
-          if (value[i] == null) continue
-          result[media][key] = value[i]
-        }
+      if (config === true) {
+        config = { property: key, scale: key } as PropConfig
       }
 
-      return result
-    },
-
-    expandStyles(styles: Dict, nested = false) {
-      const result: Dict = {}
-
-      for (let key in styles) {
-        const valueOrFn = styles[key]
-        const value = runIfFn(valueOrFn, theme)
-
-        if (pseudos && key in pseudos) {
-          key = pseudos[key]
-        }
-
-        if (isObject(value)) {
-          result[key] = this.expandStyles(value, true)
-          continue
-        }
-
-        let config = configs?.[key]
-
-        if (config === true) {
-          config = { property: key } as PropConfig
-        }
-
-        if (config?.property) {
-          config.property = runIfFn(config.property, theme)
-        }
-
-        if (!nested && config?.static) {
-          const staticStyles = runIfFn(config.static, theme)
-          merge(result, staticStyles)
-        }
-
-        let rawValue = config?.transform?.(value, theme) ?? value
-
-        rawValue = config?.processResult
-          ? this.expandStyles(this.expandResponsive(rawValue), true)
-          : rawValue
-
-        if (config && isArray(config.property)) {
-          for (const property of config.property) {
-            result[property as string] = rawValue
-          }
-          continue
-        }
-
-        if (config?.property) {
-          result[config.property as string] = rawValue
-          continue
-        }
-
-        if (isObject(rawValue)) {
-          merge(result, rawValue)
-          continue
-        }
-
-        result[key] = rawValue
+      if (isObject(value)) {
+        computedStyles[key] = css(value, true)
+        continue
       }
-      return sort(result)
-    },
 
-    process(styles: Dict) {
-      styles = runIfFn(styles, theme)
-      const responsive = this.expandResponsive(styles)
-      return this.expandStyles(responsive)
-    },
+      let rawValue = config.transform?.(value, theme) ?? value
+      rawValue = config.processResult ? css(rawValue, true) : rawValue
+
+      config.property = runIfFn(config.property, theme)
+
+      if (!nested && config?.static) {
+        const staticStyles = runIfFn(config.static, theme)
+        computedStyles = merge({}, computedStyles, staticStyles)
+      }
+
+      if (isArray(config.property)) {
+        for (const property of config.property) {
+          computedStyles[property] = rawValue
+        }
+        continue
+      }
+
+      if (config?.property) {
+        if (config.property === "&" && isObject(rawValue)) {
+          computedStyles = merge({}, computedStyles, rawValue)
+        } else {
+          computedStyles[config.property] = rawValue
+        }
+        continue
+      }
+
+      if (isObject(rawValue)) {
+        computedStyles = merge({}, computedStyles, rawValue)
+        continue
+      }
+
+      computedStyles[key] = rawValue
+    }
+
+    return sort(computedStyles)
   }
+
+  return css
 }
 
-export const css = (styles: StyleObjectOrFn) => (theme: Dict) =>
-  getCss(theme as any, {
+export const css = (styles: StyleObjectOrFn) => (theme: any) => {
+  const cssFn = getCss({
+    theme,
     pseudos: pseudoSelectors,
     configs: systemProps,
-  }).process(styles)
+  })
+  return cssFn(styles)
+}

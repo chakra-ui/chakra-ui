@@ -154,6 +154,8 @@ export const Stack = forwardRef<StackProps, "div">((props, ref) => {
 
   const _className = cx("chakra-stack", className)
 
+  console.log({ [selector]: styles[selector] })
+
   return (
     <chakra.div
       ref={ref}

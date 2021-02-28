@@ -53,6 +53,7 @@ export const getStyleObject: GetStyleObject = ({ baseStyle }) => (props) => {
   const { theme, css: cssProp, __css, sx, ...rest } = props
   const styleProps = objectFilter(rest, (_, prop) => prop in stylePropNames)
   const finalStyles = Object.assign({}, __css, baseStyle, styleProps, sx)
+
   const computedCSS = css(finalStyles)(props.theme)
 
   // Merge the computed css object with styles in css prop
