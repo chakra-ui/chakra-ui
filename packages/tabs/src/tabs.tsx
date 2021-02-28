@@ -176,12 +176,15 @@ export interface TabPanelsProps extends HTMLChakraProps<"div"> {}
  */
 export const TabPanels = forwardRef<TabPanelsProps, "div">((props, ref) => {
   const panelsProps = useTabPanels(props)
+  const styles = useStyles()
+
   return (
     <chakra.div
       {...panelsProps}
       width="100%"
       ref={ref}
       className={cx("chakra-tabs__tab-panels", props.className)}
+      __css={styles.tabpanels}
     />
   )
 })
