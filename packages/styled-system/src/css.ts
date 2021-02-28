@@ -83,17 +83,19 @@ export function getCss(options: Options) {
         continue
       }
 
-      let rawValue = config.transform?.(value, theme) ?? value
-      rawValue = config.processResult ? css(rawValue, true) : rawValue
+      let rawValue = config?.transform?.(value, theme) ?? value
+      rawValue = config?.processResult ? css(rawValue, true) : rawValue
 
-      config.property = runIfFn(config.property, theme)
+      if (config?.property) {
+        config.property = runIfFn(config.property, theme)
+      }
 
       if (!nested && config?.static) {
         const staticStyles = runIfFn(config.static, theme)
         computedStyles = merge({}, computedStyles, staticStyles)
       }
 
-      if (isArray(config.property)) {
+      if (isArray(config?.property)) {
         for (const property of config.property) {
           computedStyles[property] = rawValue
         }
@@ -104,7 +106,7 @@ export function getCss(options: Options) {
         if (config.property === "&" && isObject(rawValue)) {
           computedStyles = merge({}, computedStyles, rawValue)
         } else {
-          computedStyles[config.property] = rawValue
+          computedStyles[config.property as string] = rawValue
         }
         continue
       }
