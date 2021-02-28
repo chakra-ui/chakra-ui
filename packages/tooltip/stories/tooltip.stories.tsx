@@ -240,3 +240,11 @@ export const withDefaultIsOpenProp = () => (
     </button>
   </Tooltip>
 )
+
+export const withAutoPlacement = () => (
+  <Tooltip label="Hello world" placement="auto" hasArrow>
+    <button style={{ fontSize: 25, pointerEvents: "all" }}>
+      Can't Touch This
+    </button>
+  </Tooltip>
+)
