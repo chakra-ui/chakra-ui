@@ -10,7 +10,7 @@ function baseStyleField(props: Record<string, any>) {
     appearance: "none",
     paddingBottom: "1px",
     lineHeight: "normal",
-    "> option": {
+    "> option, > optgroup": {
       bg: mode("white", "gray.700")(props),
     },
   }
