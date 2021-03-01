@@ -2,7 +2,9 @@ import { cx, mergeWith, warn, __DEV__ } from "@chakra-ui/utils"
 import {
   AnimatePresence,
   HTMLMotionProps,
-  motion,
+  m as motion,
+  domAnimation,
+  LazyMotion,
   Variants as _Variants,
 } from "framer-motion"
 import * as React from "react"
@@ -133,25 +135,27 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
     const show = unmountOnExit ? isOpen : true
     const animate = isOpen || unmountOnExit ? "enter" : "exit"
 
-    return (
+return (
       <AnimatePresence initial={false} custom={custom}>
-        {show && (
-          <motion.div
-            ref={ref}
-            {...rest}
-            className={cx("chakra-collapse", className)}
-            style={{
-              overflow: "hidden",
-              display: "block",
-              ...style,
-            }}
-            custom={custom}
-            variants={variants as _Variants}
-            initial={unmountOnExit ? "exit" : false}
-            animate={animate}
-            exit="exit"
-          />
-        )}
+        <LazyMotion features={domAnimation}>
+          {show && (
+            <motion.div
+              ref={ref}
+              {...rest}
+              className={cx("chakra-collapse", className)}
+              style={{
+                overflow: "hidden",
+                display: "block",
+                ...style,
+              }}
+              custom={custom}
+              variants={variants as _Variants}
+              initial={unmountOnExit ? "exit" : false}
+              animate={animate}
+              exit="exit"
+            />
+          )}
+        </LazyMotion>
       </AnimatePresence>
     )
   },
