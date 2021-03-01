@@ -404,6 +404,9 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/emiranda04"><img src="https://avatars.githubusercontent.com/u/11409613?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Ernie Miranda</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=emiranda04" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/bjoluc"><img src="https://avatars.githubusercontent.com/u/25661029?v=4?s=64" width="64px;" alt=""/><br /><sub><b>bjoluc</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=bjoluc" title="Documentation">📖</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/psujit14"><img src="https://avatars.githubusercontent.com/u/61686343?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Sujit Pradhan</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=psujit14" title="Documentation">📖</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=psujit14" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
