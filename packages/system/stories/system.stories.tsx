@@ -14,7 +14,7 @@ export default {
   title: "System",
 }
 
-const MotionBox = motion.custom(chakra.div)
+const MotionBox = motion(chakra.div)
 
 export const WithFramerMotion = () => (
   <MotionBox

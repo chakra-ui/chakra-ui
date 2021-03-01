@@ -2,7 +2,7 @@ import { chakra, PropsOf } from "@chakra-ui/system"
 import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
 
-const MotionSvg = motion.custom(chakra.svg)
+const MotionSvg = motion(chakra.svg)
 
 const CheckIcon = (props: PropsOf<typeof MotionSvg>) => (
   <MotionSvg
