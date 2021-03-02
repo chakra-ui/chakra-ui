@@ -5,10 +5,10 @@ import {
   PhoneIcon,
   SearchIcon,
 } from "@chakra-ui/icons"
-import { Container, Stack, HStack } from "@chakra-ui/layout"
+import { Container, HStack, Stack } from "@chakra-ui/layout"
 import * as React from "react"
-import { MdBuild, MdCall } from "react-icons/md"
 import { FaFacebook, FaTwitter } from "react-icons/fa"
+import { MdBuild, MdCall } from "react-icons/md"
 import { BeatLoader } from "react-spinners"
 import { Button, ButtonGroup, IconButton } from "../src"
 
@@ -16,7 +16,7 @@ export default {
   title: "Button",
   decorators: [
     (Story: any) => (
-      <Container mt="40px" margin="3.5">
+      <Container mt="40px">
         <Story />
       </Container>
     ),
