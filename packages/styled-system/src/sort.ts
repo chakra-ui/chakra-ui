@@ -1,10 +1,5 @@
 import { Dict } from "@chakra-ui/utils"
 
-const collator = new Intl.Collator(undefined, {
-  numeric: true,
-  sensitivity: "base",
-})
-
 const pseudoOrder = [
   "&",
   "@media",
@@ -30,8 +25,7 @@ function byOrder([a]: [string, any], [b]: [string, any]) {
   const aIndex = getLastIndex(pseudoOrder, (key) => a.startsWith(key))
   const bIndex = getLastIndex(pseudoOrder, (key) => b.startsWith(key))
   const diff = aIndex - bIndex
-  if (diff !== 0) return diff
-  return collator.compare(a, b)
+  return diff !== 0 ? diff : 0
 }
 
 function sort(styles: Dict) {
