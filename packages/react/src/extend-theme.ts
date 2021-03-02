@@ -14,6 +14,8 @@ type DeepThemeExtension<BaseTheme, ThemeType> = {
         Partial<ReturnType<BaseTheme[Key]>>,
         CloneKey<ThemeType, Key>
       >
+    : BaseTheme[Key] extends Array<any>
+    ? CloneKey<ThemeType, Key>
     : BaseTheme[Key] extends object
     ? DeepThemeExtension<Partial<BaseTheme[Key]>, CloneKey<ThemeType, Key>>
     : CloneKey<ThemeType, Key>
