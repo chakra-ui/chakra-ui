@@ -5,6 +5,7 @@ const pseudoOrder = [
   "@media",
   "&:focus-within",
   "&:hover",
+  "&[aria-invalid=true]",
   "&:focus",
   "&:focus-visible",
   "&:active",

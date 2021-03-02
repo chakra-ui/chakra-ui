@@ -525,14 +525,14 @@ test("returns correct media query 2nd order", () => {
     Array [
       "@media screen and (min-width: 40em)",
       "@media screen and (min-width: 52em)",
-      "color",
       "flexDirection",
-      "height",
       "justifyContent",
-      "paddingBottom",
+      "color",
+      "height",
       "paddingLeft",
       "paddingRight",
       "paddingTop",
+      "paddingBottom",
     ]
   `)
 })
