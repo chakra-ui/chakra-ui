@@ -219,6 +219,38 @@ describe("extendTheme", () => {
     extendTheme(override)
   })
 
+  it("should have proper typings for ThemeProps callbacks", () => {
+    const override: ThemeOverride = {
+      components: {
+        Button: {
+          variants: {
+            solid: ({ colorScheme }) => ({
+              borderColor: `${colorScheme}.600`,
+            }),
+          },
+        },
+      },
+    }
+
+    extendTheme(override)
+  })
+
+  it("should have proper typings for CSS Objects in sizes", () => {
+    const override: ThemeOverride = {
+      components: {
+        Button: {
+          sizes: {
+            lg: {
+              padding: "1.25rem 2rem",
+            },
+          },
+        },
+      },
+    }
+
+    extendTheme(override)
+  })
+
   it("should not extend with function that is inherited", () => {
     Array.prototype["customFunction"] = () => {}
 
