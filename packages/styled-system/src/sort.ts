@@ -1,8 +1,8 @@
 import { Dict } from "@chakra-ui/utils"
+import sortMq from "sort-css-media-queries"
 
 const pseudoOrder = [
   "&",
-  "@media",
   "&:focus-within",
   "&:hover",
   "&[aria-invalid=true]",
@@ -25,12 +25,15 @@ function getLastIndex<T>(
 function byOrder([a]: [string, any], [b]: [string, any]) {
   const aIndex = getLastIndex(pseudoOrder, (key) => a.startsWith(key))
   const bIndex = getLastIndex(pseudoOrder, (key) => b.startsWith(key))
-  const diff = aIndex - bIndex
-  return diff !== 0 ? diff : 0
+  return aIndex - bIndex
 }
 
 function sort(styles: Dict) {
-  return Object.fromEntries(Object.entries(styles).sort(byOrder))
+  return Object.fromEntries(
+    Object.entries(styles)
+      .sort((a, b) => sortMq(a[0], b[0]))
+      .sort(byOrder),
+  )
 }
 
 export default sort
