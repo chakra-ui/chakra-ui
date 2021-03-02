@@ -2,7 +2,7 @@
 title: Toast
 package: "@chakra-ui/toast"
 image: "components/toast.svg"
-description: VThe toast is used to show alerts on top of an overlay
+description: The toast is used to show alerts on top of an overlay
 ---
 
 The toast is used to show alerts on top of an overlay. The toast will close
@@ -121,71 +121,60 @@ function Example() {
 }
 ```
 
-## Success
+## Status
+
+You can use `status` to change the color of your toasts.
 
 ```jsx
 function Example() {
   const toast = useToast()
+  const statuses = ["default", "success", "error", "warning", "info"]
+  
   return (
-    <Button
-      onClick={() =>
-        toast({
-          title: "Account created.",
-          description: "We've created your account for you.",
-          status: "success",
-          duration: 9000,
-          isClosable: true,
-        })
-      }
-    >
-      Show Success Toast
-    </Button>
+    <Stack>
+      statuses.map(status => (
+        <Button
+          onClick={() =>
+            toast({
+              title: `${status} toast`,
+              status: status,
+              isClosable: true,
+            })
+          }
+        >
+          Show {status} toast
+        </Button>
+      ))
+    </Stack>
   )
 }
 ```
 
-## Warning
+## Variants
+
+`Toast` uses the same variants as the [`Alert`](https://chakra-ui.com/docs/feedback/alert) component.
 
 ```jsx
 function Example() {
   const toast = useToast()
+  const variants = ["solid", "subtle", "left-accent", "top-accent"]
+  
   return (
-    <Button
-      onClick={() =>
-        toast({
-          title: "Warning.",
-          description: "This is a warning.",
-          status: "warning",
-          duration: 9000,
-          isClosable: true,
-        })
-      }
-    >
-      Show Warning Toast
-    </Button>
-  )
-}
-```
-
-## Error
-
-```jsx
-function ErrorToast() {
-  const toast = useToast()
-  return (
-    <Button
-      onClick={() =>
-        toast({
-          title: "An error occurred.",
-          description: "Unable to create user account.",
-          status: "error",
-          duration: 9000,
-          isClosable: true,
-        })
-      }
-    >
-      Show Error Toast
-    </Button>
+    <Stack>
+      variants.map(variant => (
+        <Button
+          onClick={() =>
+            toast({
+              title: `${variant} toast`,
+              status: variant,
+              isClosable: true,
+            })
+          }
+        >
+          Show {variant} toast
+        </Button>
+      ))
+    </Stack>
   )
 }
 ```
@@ -238,13 +227,14 @@ toast({
 
 ## Props
 
-| Name          | Type                                                                    | Default  | Description                                                          |
-| ------------- | ----------------------------------------------------------------------- | -------- | -------------------------------------------------------------------- |
-| `title`       | `React.ReactNode`                                                       |          | The title of the toast.                                              |
-| `isClosable`  | `boolean`                                                               | `false`  | If `true` adds a close button to the toast.                          |
-| `onClose`     | `function`                                                              |          | Callback function to close the toast.                                |
-| `description` | `React.ReactNode`                                                       |          | The description of the toast.                                        |
-| `status`      | `default`, `success`, `error`, `warning`, `info`                        |          | The status of the toast.                                             |
-| `duration`    | `number`                                                                | `5000ms` | Duration before dismiss in milliseconds, or `null` to never dismiss. |
-| `position`    | `top`, `top-left`, `top-right`, `bottom`, `bottom-left`, `bottom-right` | `bottom` | Position the toast will popup out from.                              |
-| `render`      | `(props: {onClose:() => void, id: string}) => React.ReactNode`          |          | Callback function to display a custom toast.                         |
+| Name          | Type                                                                                         | Default     | Description                                                                 |
+| ------------- | -------------------------------------------------------------------------------------------- | ----------- | --------------------------------------------------------------------------- |
+| `title`       | `React.ReactNode`                                                                            |             | The title of the toast.                                                     |
+| `description` | `React.ReactNode`                                                                            |             | The description of the toast.                                               |
+| `isClosable`  | `boolean`                                                                                    | `false`     | If `true`, adds a close button to the toast.                                |
+| `onClose`     | `function`                                                                                   |             | Callback function to close the toast.                                    |
+| `status`      | `"default" | "success" | "error" | "warning" | "info"`                                       | `"default"` | The status of the toast.                                                     |
+| `variant`     | `"solid" | "subtle" | "left-accent" | "top-accent"`                                          | `"subtle"`  | The variant of the toast.                                                   |
+| `duration`    | `number`                                                                                     | `5000ms`    | Duration before dismiss in milliseconds, or `null` to never dismiss. |
+| `position`    | `"top" | "top-left" | "top-right" | "bottom" | "bottom-left" | "bottom-right"`               | `"bottom"`  | Position the toast will popup out from.                                     |
+| `render`      | `(props: {onClose:() => void, id: string}) => React.ReactNode`                               |             | Callback function to display a custom toast.                             |
