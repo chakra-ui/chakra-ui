@@ -234,13 +234,20 @@ export const ModalContent = forwardRef<ModalContentProps, "section">(
     }
 
     const dialogContainerStyles: SystemStyleObject = {
-      display: "flex",
+      display: "block",
       width: "100vw",
       height: "100vh",
       position: "fixed",
       left: 0,
       top: 0,
       ...styles.dialogContainer,
+    }
+
+    const dialogInnerContainerStyles: SystemStyleObject = {
+      display: "flex",
+      minHeight: "100%",
+      alignItems: "inherit",
+      justifyContent: "inherit",
     }
 
     const { motionPreset } = useModalContext()
@@ -252,14 +259,16 @@ export const ModalContent = forwardRef<ModalContentProps, "section">(
           className="chakra-modal__content-container"
           __css={dialogContainerStyles}
         >
-          <ModalTransition
-            preset={motionPreset}
-            className={_className}
-            {...dialogProps}
-            __css={dialogStyles}
-          >
-            {children}
-          </ModalTransition>
+          <chakra.div __css={dialogInnerContainerStyles}>
+            <ModalTransition
+              preset={motionPreset}
+              className={_className}
+              {...dialogProps}
+              __css={dialogStyles}
+            >
+              {children}
+            </ModalTransition>
+          </chakra.div>
         </chakra.div>
       </ModalFocusScope>
     )

@@ -21,7 +21,7 @@ function baseStyleDialogContainer(props: Dict) {
   const { isCentered, scrollBehavior } = props
 
   return {
-    display: "flex",
+    display: "block",
     zIndex: "modal",
     justifyContent: "center",
     alignItems: isCentered ? "center" : "flex-start",
