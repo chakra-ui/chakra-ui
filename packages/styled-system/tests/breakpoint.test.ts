@@ -162,3 +162,16 @@ test("should work with stack", () => {
     }
   `)
 })
+
+test("should not add (min-width: 0px) for object notation", () => {
+  expect(css({ margin: { base: 4, md: 6 } })(createTheme("rtl")))
+    .toMatchInlineSnapshot(`
+    Object {
+      "@media screen and (min-width: 40em)": Object {},
+      "@media screen and (min-width: 52em)": Object {
+        "margin": "6px",
+      },
+      "margin": "4px",
+    }
+  `)
+})

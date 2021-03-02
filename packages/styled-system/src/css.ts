@@ -1,15 +1,9 @@
-import {
-  Dict,
-  isArray,
-  isObject,
-  mergeWith as merge,
-  runIfFn,
-} from "@chakra-ui/utils"
+import { Dict, isObject, mergeWith as merge, runIfFn } from "@chakra-ui/utils"
 import * as CSS from "csstype"
 import { Config, PropConfig } from "./prop-config"
 import { pseudoSelectors } from "./pseudos"
 import sort from "./sort"
-import { systemProps } from "./system"
+import { systemProps as systemPropConfigs } from "./system"
 import { CssTheme, StyleObjectOrFn } from "./types"
 
 export const expandResponsive = (styles: Dict) => (theme: Dict) => {
@@ -25,7 +19,7 @@ export const expandResponsive = (styles: Dict) => (theme: Dict) => {
 
     value = isObject(value) && isResponsive(value) ? toArrayValue(value) : value
 
-    if (!isArray(value)) {
+    if (!Array.isArray(value)) {
       computedStyles[key] = value
       continue
     }
@@ -95,7 +89,7 @@ export function getCss(options: Options) {
         computedStyles = merge({}, computedStyles, staticStyles)
       }
 
-      if (isArray(config?.property)) {
+      if (config?.property && Array.isArray(config?.property)) {
         for (const property of config.property) {
           computedStyles[property] = rawValue
         }
@@ -129,7 +123,7 @@ export const css = (styles: StyleObjectOrFn) => (theme: any) => {
   const cssFn = getCss({
     theme,
     pseudos: pseudoSelectors,
-    configs: systemProps,
+    configs: systemPropConfigs,
   })
   return cssFn(styles)
 }
