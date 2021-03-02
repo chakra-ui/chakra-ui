@@ -2,9 +2,16 @@ import { Dict, isCssVar, isObject, pick } from "@chakra-ui/utils"
 import analyzeBreakpoints from "./breakpoints"
 import type { WithCSSVar } from "./types"
 
-export const toVarDefinition = (value: string) => `--${value}`
-export const toVarReference = (value: string) => `var(${value})`
-export const toNegativeVar = (value: string) => `calc(${value} * -1)`
+const escape = (value: string | number) => {
+  const valueStr = value.toString()
+  if (valueStr.includes("\\.")) return value
+  const isDecimal = !Number.isInteger(parseFloat(value.toString()))
+  return isDecimal ? valueStr.replace(".", `\\.`) : value
+}
+
+export const toVarDefinition = (value: string) => `--${escape(value)}`
+export const toVarReference = (value: string) => `var(${escape(value)})`
+export const toNegativeVar = (value: string) => `calc(${escape(value)} * -1)`
 
 export const tokens = [
   "colors",

@@ -16,7 +16,7 @@ export default {
   title: "Button",
   decorators: [
     (Story: any) => (
-      <Container mt="40px">
+      <Container mt="40px" margin="3.5">
         <Story />
       </Container>
     ),
