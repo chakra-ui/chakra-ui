@@ -75,9 +75,9 @@ test("should work with createBreakpoint output", () => {
         "breakpoint": "base",
         "maxW": "319px",
         "maxWQuery": "@media screen and (max-width: 319px)",
-        "minMaxQuery": "@media screen and (min-width: 0px) and @media screen and (max-width: 319px)",
-        "minW": "0px",
-        "minWQuery": "@media screen and (min-width: 0px)",
+        "minMaxQuery": "@media screen and (min-width: 0em) and @media screen and (max-width: 319px)",
+        "minW": "0em",
+        "minWQuery": "@media screen and (min-width: 0em)",
       },
       Object {
         "breakpoint": "sm",

@@ -1,6 +1,6 @@
 import { toCSSVar } from "@chakra-ui/styled-system"
 import defaultTheme from "@chakra-ui/theme"
-import { getStyleObject } from "../src/system"
+import { toCSSObject } from "../src/system"
 
 const theme = toCSSVar({
   ...defaultTheme,
@@ -25,7 +25,7 @@ const theme = toCSSVar({
 })
 
 test("should resolve styles correctly", () => {
-  const result = getStyleObject({ baseStyle: { bgPosition: "center" } })({
+  const result = toCSSObject({ baseStyle: { bgPosition: "center" } })({
     theme,
     layerStyle: "v1",
     noOfLines: [3, 4],
@@ -57,44 +57,49 @@ test("should resolve styles correctly", () => {
   })
 
   expect(result).toMatchInlineSnapshot(`
-    Object {
-      "&:hover, &[data-hover]": Object {
-        "&::before": Object {
-          "content": "",
-          "display": "block",
+    Array [
+      Object {
+        "&:hover, &[data-hover]": Object {
+          "&::before": Object {
+            "content": "",
+            "display": "block",
+          },
+          "@media screen and (min-width: 30em)": Object {
+            "fontSize": "26px",
+          },
+          "background": "var(--colors-green-300)",
+          "fontSize": "12px",
         },
+        "--line-clamp": 3,
         "@media screen and (min-width: 30em)": Object {
-          "fontSize": "26px",
+          "--line-clamp": 4,
+          "fontSize": "23px",
+          "letterSpacing": "0.2px",
+          "textTransform": "lowercase",
         },
-        "background": "var(--colors-green-300)",
-        "fontSize": "12px",
+        "WebkitBoxOrient": "vertical",
+        "WebkitLineClamp": "var(--line-clamp)",
+        "background": "tomato",
+        "backgroundPosition": "top left",
+        "color": "var(--colors-red-300)",
+        "display": "-webkit-box",
+        "fontSize": "10px",
+        "letterSpacing": "2px",
+        "overflow": "hidden",
+        "paddingLeft": "var(--space-5)",
+        "paddingRight": "var(--space-5)",
+        "textOverflow": "ellipsis",
+        "textTransform": "uppercase",
       },
-      "--line-clamp": 3,
-      "@media screen and (min-width: 30em)": Object {
-        "--line-clamp": 4,
-        "fontSize": "23px",
-        "letterSpacing": "0.2px",
-        "textTransform": "lowercase",
+      Object {
+        "paddingLeft": 40,
       },
-      "WebkitBoxOrient": "vertical",
-      "WebkitLineClamp": "var(--line-clamp)",
-      "background": "tomato",
-      "backgroundPosition": "top left",
-      "color": "var(--colors-red-300)",
-      "display": "-webkit-box",
-      "fontSize": "10px",
-      "letterSpacing": "2px",
-      "overflow": "hidden",
-      "paddingLeft": 40,
-      "paddingRight": "var(--space-5)",
-      "textOverflow": "ellipsis",
-      "textTransform": "uppercase",
-    }
+    ]
   `)
 })
 
 test("should override padding correctly", () => {
-  const result = getStyleObject({})({
+  const result = toCSSObject({})({
     theme,
     __css: {
       paddingX: 4,
@@ -106,12 +111,15 @@ test("should override padding correctly", () => {
   })
 
   expect(result).toMatchInlineSnapshot(`
-    Object {
-      "background": "pinkish",
-      "color": "var(--colors-green-300)",
-      "marginRight": "var(--space-5)",
-      "paddingLeft": "var(--space-4)",
-      "paddingRight": "var(--space-3)",
-    }
+    Array [
+      Object {
+        "background": "pinkish",
+        "color": "var(--colors-green-300)",
+        "marginRight": "var(--space-5)",
+        "paddingLeft": "var(--space-4)",
+        "paddingRight": "var(--space-3)",
+      },
+      undefined,
+    ]
   `)
 })
