@@ -8,11 +8,11 @@ import {
 } from "@chakra-ui/utils"
 import { px } from "./create-transform"
 
-const sortFn = (a: any[], b: any[]) =>
+const sortByBreakpointValue = (a: any[], b: any[]) =>
   parseInt(a[1], 10) > parseInt(b[1], 10) ? 1 : -1
 
 const sortBps = (breakpoints: Dict): Dict =>
-  fromEntries(Object.entries(breakpoints).sort(sortFn))
+  fromEntries(Object.entries(breakpoints).sort(sortByBreakpointValue))
 
 function normalize(breakpoints: Dict) {
   const sorted = sortBps(breakpoints)
@@ -46,24 +46,38 @@ function queryString(min: string | null, max?: string) {
   return query.join(" ")
 }
 
-export function analyzeBreakpoints(breakpoints: Record<string, any>) {
+/**
+ * Check if the breakpoints was created using `createBreakpoints(...)`
+ * We're doing this for backward compatibility.
+ */
+const checkProcessed = (breakpoints: any) =>
+  Array.isArray(breakpoints) &&
+  breakpoints.every((key) => !Number.isNaN(parseFloat(key)))
+
+const extractBreakpoints = (breakpoints: Dict | string[]): Dict => {
+  const obj = Object.assign({}, breakpoints)
+  const check = (k: any) => Number(k) != k
+  return fromEntries(Object.entries(obj).filter(([k]) => check(k)))
+}
+
+export function analyzeBreakpoints(breakpoints: Dict) {
   if (!breakpoints) return null
 
-  if (breakpoints.processed) {
-    breakpoints = breakpoints.values
-  }
+  breakpoints = checkProcessed(breakpoints)
+    ? extractBreakpoints(breakpoints)
+    : breakpoints
 
-  breakpoints.base = "0px"
+  breakpoints.base = breakpoints.base ?? "0px"
 
-  const normalized = normalize(breakpoints) // {sm: 320, md: 640} => [0, 320, 640, sm: 320, md: 640]
+  const normalized = normalize(breakpoints)
 
   const queries = Object.entries(breakpoints)
-    .sort(sortFn)
-    .map(([bp, minW], index, arr) => {
-      let [, maxW] = arr[index + 1] ?? []
+    .sort(sortByBreakpointValue)
+    .map(([breakpoint, minW], index, entry) => {
+      let [, maxW] = entry[index + 1] ?? []
       maxW = parseFloat(maxW) > 0 ? subtract(maxW) : undefined
       return {
-        breakpoint: bp,
+        breakpoint,
         minW,
         maxW,
         maxWQuery: queryString(null, maxW),

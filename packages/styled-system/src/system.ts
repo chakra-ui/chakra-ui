@@ -16,7 +16,7 @@ import {
   transition,
   typography,
 } from "./config"
-import { pseudoPropNames } from "./pseudos"
+import { pseudoPropNames, pseudoSelectors } from "./pseudos"
 
 export const systemProps = mergeWith(
   {},
@@ -41,3 +41,7 @@ const layoutSystem = mergeWith({}, space, layout, flexbox, grid, position)
 export const layoutPropNames = objectKeys(layoutSystem)
 
 export const propNames = [...objectKeys(systemProps), ...pseudoPropNames]
+
+const styleProps = { ...systemProps, ...pseudoSelectors }
+
+export const isStyleProp = (prop: string) => prop in styleProps

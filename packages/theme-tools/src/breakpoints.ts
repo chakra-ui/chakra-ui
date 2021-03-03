@@ -19,17 +19,5 @@ export const createBreakpoints = <T extends BaseBreakpointConfig>(
     ),
   )
 
-  const result = Object.assign(Object.values(sorted), sorted)
-
-  Object.defineProperty(result, "processed", {
-    value: true,
-    enumerable: false,
-  })
-
-  Object.defineProperty(result, "values", {
-    value: config,
-    enumerable: false,
-  })
-
-  return result
+  return Object.assign(Object.values(sorted), sorted)
 }

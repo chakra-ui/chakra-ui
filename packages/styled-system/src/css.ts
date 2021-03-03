@@ -2,7 +2,6 @@ import { Dict, isObject, mergeWith as merge, runIfFn } from "@chakra-ui/utils"
 import * as CSS from "csstype"
 import { Config, PropConfig } from "./prop-config"
 import { pseudoSelectors } from "./pseudos"
-import sort from "./sort"
 import { systemProps as systemPropConfigs } from "./system"
 import { CssTheme, StyleObjectOrFn } from "./types"
 
@@ -59,17 +58,18 @@ export function getCss(options: Options) {
   const css = (stylesOrFn: Dict, nested = false) => {
     const _styles = runIfFn(stylesOrFn, theme)
     const styles = expandResponsive(_styles)(theme)
+
     let computedStyles: Dict = {}
 
-    for (let key in styles) {
-      const valueOrFn = styles[key]
+    for (const k in styles) {
+      const valueOrFn = styles[k]
       const value = runIfFn(valueOrFn, theme)
-      key = key in pseudos ? pseudos[key] : key
+      const key = k in pseudos ? pseudos[k] : k
 
       let config = configs[key]
 
       if (config === true) {
-        config = { property: key, scale: key } as PropConfig
+        config = { property: key } as PropConfig
       }
 
       if (isObject(value)) {
@@ -113,7 +113,7 @@ export function getCss(options: Options) {
       computedStyles[key] = rawValue
     }
 
-    return sort(computedStyles)
+    return computedStyles
   }
 
   return css
