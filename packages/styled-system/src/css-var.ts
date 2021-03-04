@@ -17,7 +17,8 @@ const escape = (value: string | number) => {
   return isDecimal ? valueStr.replace(".", `\\.`) : value
 }
 
-export const toVarDefinition = (value: string) => `--${escape(value)}`
+export const toVarDefinition = (value: string, prefix = "") =>
+  `--${[prefix, escape(value)].filter(Boolean).join("-")}`
 export const toVarReference = (value: string) => `var(${escape(value)})`
 export const toNegativeVar = (value: string) => `calc(${escape(value)} * -1)`
 
@@ -93,6 +94,8 @@ export function toCSSVar<T extends Dict>(rawTheme: T) {
   // omit components and breakpoints from css variable map
   const tokens = extractTokens(theme)
 
+  const cssVarPrefix = theme.config?.cssVarPrefix
+
   const {
     /**
      * This is more like a dictionary of tokens users will type `green.500`,
@@ -104,7 +107,7 @@ export function toCSSVar<T extends Dict>(rawTheme: T) {
      * the emotion's <Global/> component to attach variables to `:root`
      */
     cssVars,
-  } = toProperties(tokens)
+  } = toProperties(tokens, { cssVarPrefix })
 
   const defaultCssVars: Dict = {
     "--ring-offset": "0px",
@@ -131,8 +134,11 @@ export function toCSSVar<T extends Dict>(rawTheme: T) {
   return theme as WithCSSVar<T>
 }
 
+type ToPropertiesOptions = { cssVarPrefix?: string }
+
 function toProperties(
   target: Dict,
+  options: ToPropertiesOptions,
   initialContext?: { cssMap?: Dict; cssVars?: Dict },
   prefixes: string[] = [],
 ) {
@@ -147,7 +153,12 @@ function toProperties(
 
   return Object.entries(target).reduce((properties, [key, value]) => {
     if (isObject(value) || Array.isArray(value)) {
-      const nested = toProperties(value, properties, prefixes.concat(key))
+      const nested = toProperties(
+        value,
+        options,
+        properties,
+        prefixes.concat(key),
+      )
       Object.assign(properties.cssVars, nested.cssVars)
       Object.assign(properties.cssMap, nested.cssMap)
     } else {
@@ -158,7 +169,7 @@ function toProperties(
       const handler =
         tokenHandlerMap[firstKey] ?? tokenHandlerMap.defaultHandler
 
-      const { cssVars, cssMap } = handler(finalKey, value)
+      const { cssVars, cssMap } = handler(finalKey, value, options)
       Object.assign(properties.cssVars, cssVars)
       Object.assign(properties.cssMap, cssMap)
     }
@@ -173,16 +184,20 @@ function toProperties(
 const tokenHandlerMap: Partial<
   Record<
     ThemeScale | "defaultHandler",
-    (keys: string[], value: unknown) => { cssVars: Dict; cssMap: Dict }
+    (
+      keys: string[],
+      value: unknown,
+      options: ToPropertiesOptions,
+    ) => { cssVars: Dict; cssMap: Dict }
   >
 > = {
-  space: (keys, value) => {
-    const properties = tokenHandlerMap.defaultHandler!(keys, value)
+  space: (keys, value, options) => {
+    const properties = tokenHandlerMap.defaultHandler!(keys, value, options)
     const [firstKey, ...referenceKeys] = keys
 
     const negativeLookupKey = `${firstKey}.-${referenceKeys.join(".")}`
     const negativeVarKey = keys.join("-")
-    const cssVar = toVarDefinition(negativeVarKey)
+    const cssVar = toVarDefinition(negativeVarKey, options.cssVarPrefix)
     const negativeValue = isCssVar(String(value))
       ? toNegativeVar(String(value))
       : `-${value}`
@@ -201,11 +216,11 @@ const tokenHandlerMap: Partial<
       },
     }
   },
-  defaultHandler: (keys, value) => {
+  defaultHandler: (keys, value, options) => {
     const lookupKey = keys.join(".")
     const varKey = keys.join("-")
 
-    const cssVar = toVarDefinition(varKey)
+    const cssVar = toVarDefinition(varKey, options.cssVarPrefix)
 
     return {
       cssVars: {

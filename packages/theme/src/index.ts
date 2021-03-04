@@ -8,6 +8,7 @@ const direction = "ltr" as ThemeDirection
 const config: ThemeConfig = {
   useSystemColorMode: false,
   initialColorMode: "light",
+  cssVarPrefix: "ck",
 }
 
 export const theme = {

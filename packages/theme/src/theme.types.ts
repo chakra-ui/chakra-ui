@@ -11,7 +11,10 @@ export interface RecursiveObject<Nested = string | number> {
   [property: string]: RecursiveProperty<Nested>
 }
 
-export interface ThemeConfig extends ColorModeOptions {}
+export interface ThemeConfig extends ColorModeOptions {
+  cssVarPrefix?: string
+}
+
 export type ThemeTransitions = RecursiveObject & {
   property: RecursiveObject
   easing: RecursiveObject
