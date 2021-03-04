@@ -1,5 +1,10 @@
-import { Dict, isCssVar, isObject, pick } from "@chakra-ui/utils"
-import analyzeBreakpoints from "./breakpoints"
+import {
+  Dict,
+  isCssVar,
+  isObject,
+  pick,
+  analyzeBreakpoints,
+} from "@chakra-ui/utils"
 import type { WithCSSVar } from "./types"
 
 const escape = (value: string | number) => {
