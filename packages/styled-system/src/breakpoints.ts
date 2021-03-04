@@ -46,26 +46,8 @@ function queryString(min: string | null, max?: string) {
   return query.join(" ")
 }
 
-/**
- * Check if the breakpoints was created using `createBreakpoints(...)`
- * We're doing this for backward compatibility.
- */
-const checkProcessed = (breakpoints: any) =>
-  Array.isArray(breakpoints) &&
-  breakpoints.every((key) => !Number.isNaN(parseFloat(key)))
-
-const extractBreakpoints = (breakpoints: Dict | string[]): Dict => {
-  const obj = Object.assign({}, breakpoints)
-  const check = (k: any) => Number(k) != k
-  return fromEntries(Object.entries(obj).filter(([k]) => check(k)))
-}
-
 export function analyzeBreakpoints(breakpoints: Dict) {
   if (!breakpoints) return null
-
-  breakpoints = checkProcessed(breakpoints)
-    ? extractBreakpoints(breakpoints)
-    : breakpoints
 
   breakpoints.base = breakpoints.base ?? "0px"
 
