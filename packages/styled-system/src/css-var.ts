@@ -7,8 +7,11 @@ import {
 } from "@chakra-ui/utils"
 import type { WithCSSVar } from "./types"
 
+const replaceWhiteSpace = (value: string, replaceValue = "-") =>
+  value.replace(/\s+/g, replaceValue)
+
 const escape = (value: string | number) => {
-  const valueStr = value.toString()
+  const valueStr = replaceWhiteSpace(value.toString())
   if (valueStr.includes("\\.")) return value
   const isDecimal = !Number.isInteger(parseFloat(value.toString()))
   return isDecimal ? valueStr.replace(".", `\\.`) : value

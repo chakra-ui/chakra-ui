@@ -284,3 +284,41 @@ test("should handle values provided as CSS variables", () => {
     }
   `)
 })
+
+test("should handle spaces in keys", () => {
+  const theme = toCSSVar({
+    colors: {
+      "i have spaces": "#b4d455",
+    },
+  })
+
+  expect(toCSSVar(theme)).toMatchInlineSnapshot(`
+    Object {
+      "__breakpoints": null,
+      "__cssMap": Object {
+        "colors.i have spaces": Object {
+          "value": "#b4d455",
+          "var": "--colors-i-have-spaces",
+          "varRef": "var(--colors-i-have-spaces)",
+        },
+      },
+      "__cssVars": Object {
+        "--colors-i-have-spaces": "#b4d455",
+        "--ring": "var(--ring-offset-shadow), var(--ring-shadow), 0 0 transparent",
+        "--ring-color": "rgba(66, 153, 225, 0.6)",
+        "--ring-inset": "var(--empty, /* */)",
+        "--ring-offset": "0px",
+        "--ring-offset-shadow": "var(--ring-inset) 0 0 0 var(--ring-offset) var(--ring-offset-color, transparent)",
+        "--ring-shadow": "var(--ring-inset) 0 0 0 calc(var(--ring-width) + var(--ring-offset)) var(--ring-color)",
+        "--ring-width": "3px",
+        "--space-x-reverse": "0",
+        "--space-y-reverse": "0",
+        "--transform": "translateX(var(--translate-x, 0)) translateY(var(--translate-y, 0)) rotate(var(--rotate, 0)) scaleX(var(--scale-x, 1)) scaleY(var(--scale-y, 1)) skewX(var(--skew-x, 0)) skewY(var(--skew-y, 0))",
+        "--transform-gpu": "translate3d(var(--translate-x, 0), var(--translate-y, 0), 0) rotate(var(--rotate, 0)) scaleX(var(--scale-x, 1)) scaleY(var(--scale-y, 1)) skewX(var(--skew-x, 0)) skewY(var(--skew-y, 0))",
+      },
+      "colors": Object {
+        "i have spaces": "#b4d455",
+      },
+    }
+  `)
+})
