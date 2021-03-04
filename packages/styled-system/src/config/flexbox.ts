@@ -5,11 +5,11 @@ import { Length, t, Token } from "../utils"
 
 const reverse = {
   "row-reverse": {
-    space: "--space-x-reverse",
+    space: "--ck-space-x-reverse",
     divide: "--divide-x-reverse",
   },
   "column-reverse": {
-    space: "--space-y-reverse",
+    space: "--ck-space-y-reverse",
     divide: "--divide-y-reverse",
   },
 }
@@ -35,8 +35,8 @@ export const flexbox: Config = {
     static: {
       [owlSelector]: {
         marginInlineStart:
-          "calc(var(--space-x) * calc(1 - var(--space-x-reverse)))",
-        marginInlineEnd: "calc(var(--space-x) * var(--space-x-reverse))",
+          "calc(var(--space-x) * calc(1 - var(--ck-space-x-reverse)))",
+        marginInlineEnd: "calc(var(--space-x) * var(--ck-space-x-reverse))",
       },
     },
     transform: createTransform({
@@ -47,8 +47,8 @@ export const flexbox: Config = {
   spaceY: {
     static: {
       [owlSelector]: {
-        marginTop: "calc(var(--space-y) * calc(1 - var(--space-y-reverse)))",
-        marginBottom: "calc(var(--space-y) * var(--space-y-reverse))",
+        marginTop: "calc(var(--space-y) * calc(1 - var(--ck-space-y-reverse)))",
+        marginBottom: "calc(var(--space-y) * var(--ck-space-y-reverse))",
       },
     },
     transform: createTransform({

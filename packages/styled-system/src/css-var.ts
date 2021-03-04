@@ -110,19 +110,20 @@ export function toCSSVar<T extends Dict>(rawTheme: T) {
   } = toProperties(tokens, { cssVarPrefix })
 
   const defaultCssVars: Dict = {
-    "--ring-offset": "0px",
-    "--ring-color": "rgba(66, 153, 225, 0.6)",
-    "--ring-width": "3px",
-    "--ring-inset": "var(--empty, /* */)",
-    "--ring-offset-shadow":
-      "var(--ring-inset) 0 0 0 var(--ring-offset) var(--ring-offset-color, transparent)",
-    "--ring-shadow":
-      "var(--ring-inset) 0 0 0 calc(var(--ring-width) + var(--ring-offset)) var(--ring-color)",
-    "--ring": "var(--ring-offset-shadow), var(--ring-shadow), 0 0 transparent",
-    "--transform-gpu": getTransformGpuTemplate(),
-    "--transform": getTransformTemplate(),
-    "--space-x-reverse": "0",
-    "--space-y-reverse": "0",
+    "--ck-ring-offset": "0px",
+    "--ck-ring-color": "rgba(66, 153, 225, 0.6)",
+    "--ck-ring-width": "3px",
+    "--ck-ring-inset": "var(--empty, /* */)",
+    "--ck-ring-offset-shadow":
+      "var(--ck-ring-inset) 0 0 0 var(--ck-ring-offset) var(--ck-ring-offset-color, transparent)",
+    "--ck-ring-shadow":
+      "var(--ck-ring-inset) 0 0 0 calc(var(--ck-ring-width) + var(--ck-ring-offset)) var(--ck-ring-color)",
+    "--ring":
+      "var(--ck-ring-offset-shadow), var(--ck-ring-shadow), 0 0 transparent",
+    "--ck-transform-gpu": getTransformGpuTemplate(),
+    "--ck-transform": getTransformTemplate(),
+    "--ck-space-x-reverse": "0",
+    "--ck-space-y-reverse": "0",
   }
 
   Object.assign(theme, {

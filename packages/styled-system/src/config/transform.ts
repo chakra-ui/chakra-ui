@@ -3,8 +3,8 @@ import { Config } from "../prop-config"
 import { Token } from "../utils"
 
 const templates = {
-  auto: "var(--transform)",
-  "auto-gpu": "var(--transform-gpu)",
+  auto: "var(--ck-transform)",
+  "auto-gpu": "var(--ck-transform-gpu)",
 }
 
 export const transform: Config = {
