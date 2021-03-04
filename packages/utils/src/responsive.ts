@@ -173,7 +173,7 @@ export function analyzeBreakpoints(breakpoints: Dict) {
   }
 }
 
-export type BreakpointReturn = ReturnType<typeof analyzeBreakpoints>
+export type AnalyzeBreakpointsReturn = ReturnType<typeof analyzeBreakpoints>
 
 /**
  * since breakpoints are defined as custom properties on an array, you may

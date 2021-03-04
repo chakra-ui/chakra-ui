@@ -1,6 +1,5 @@
-import { Dict } from "@chakra-ui/utils"
+import { Dict, AnalyzeBreakpointsReturn } from "@chakra-ui/utils"
 import * as CSS from "csstype"
-import { BreakpointReturn } from "./breakpoints"
 import type {
   BackgroundProps,
   BorderProps,
@@ -94,7 +93,7 @@ export type Transform = (value: any, theme: CssTheme) => any
 export type WithCSSVar<T> = T & {
   __cssVars: Dict
   __cssMap: CSSMap
-  __breakpoints: BreakpointReturn
+  __breakpoints: AnalyzeBreakpointsReturn
 }
 
 export type CssTheme = WithCSSVar<{
