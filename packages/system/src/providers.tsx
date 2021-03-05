@@ -15,12 +15,16 @@ import {
   Global,
   Interpolation,
   ThemeContext,
-  ThemeProvider as EThemeProvider,
-  ThemeProviderProps as EThemeProviderProps,
+  ThemeProvider as EmotionThemeProvider,
+  ThemeProviderProps as EmotionThemeProviderProps,
 } from "@emotion/react"
 import * as React from "react"
 
-export interface ThemeProviderProps extends EThemeProviderProps {
+export interface ThemeProviderProps extends EmotionThemeProviderProps {
+  /**
+   * The element to attach the CSS custom properties to.
+   * @default ":root"
+   */
   cssVarsRoot?: string
 }
 
@@ -28,10 +32,10 @@ export const ThemeProvider = (props: ThemeProviderProps) => {
   const { cssVarsRoot = ":root", theme, children } = props
   const computedTheme = React.useMemo(() => toCSSVar(theme), [theme])
   return (
-    <EThemeProvider theme={computedTheme}>
+    <EmotionThemeProvider theme={computedTheme}>
       <Global styles={(theme: any) => ({ [cssVarsRoot]: theme.__cssVars })} />
       {children}
-    </EThemeProvider>
+    </EmotionThemeProvider>
   )
 }
 
@@ -41,7 +45,7 @@ export function useTheme<T extends object = Dict>() {
   )
   if (!theme) {
     throw Error(
-      "useTheme: `theme` is undefined. Seems you forgot to wrap your app in `<ChakraProvider />`",
+      "useTheme: `theme` is undefined. Seems you forgot to wrap your app in `<ChakraProvider />` or `<ThemeProvider />`",
     )
   }
 
