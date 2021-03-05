@@ -1,15 +1,11 @@
 import {
   chakra,
-  css,
   forwardRef,
-  StylesProvider,
-  SystemProps,
-  SystemStyleObject,
-  useStyles,
-  useTheme,
   HTMLChakraProps,
+  SystemProps,
+  tokenToCSSVar,
 } from "@chakra-ui/system"
-import { cx, mapResponsive, __DEV__ } from "@chakra-ui/utils"
+import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
 export interface WrapProps extends HTMLChakraProps<"div"> {
@@ -61,49 +57,37 @@ export const Wrap = forwardRef<WrapProps, "div">((props, ref) => {
     ...rest
   } = props
 
-  const theme = useTheme()
+  const styles = React.useMemo(
+    () => ({
+      "--chakra-wrap-spacing": tokenToCSSVar("space", spacing),
+      "--wrap-spacing": "calc(var(--chakra-wrap-spacing) / 2)",
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: justify,
+      alignItems: align,
+      flexDirection: direction,
+      listStyleType: "none",
+      padding: "0",
+      margin: "calc(var(--wrap-spacing) * -1)",
+      "& > *:not(style)": {
+        margin: "var(--wrap-spacing)",
+      },
+    }),
+    [spacing, justify, align, direction],
+  )
 
-  const itemSpacing = mapResponsive(spacing, (value) => {
-    const { margin } = css({ margin: value })(theme)
-    return `calc(${margin} / 2)`
-  })
-
-  const groupSpacing = mapResponsive(spacing, (value) => {
-    const { margin } = css({ margin: value })(theme)
-    return `calc(${margin} / 2 * -1)`
-  })
-
-  const groupStyles: SystemStyleObject = {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: justify,
-    alignItems: align,
-    flexDirection: direction,
-    listStyleType: "none",
-    padding: "0",
-    margin: groupSpacing,
-  }
-
-  const itemStyles: SystemStyleObject = {
-    display: "flex",
-    alignItems: "flex-start",
-    margin: itemSpacing,
-  }
-
-  const _children = shouldWrapChildren
+  const childrenToRender = shouldWrapChildren
     ? React.Children.map(children, (child, index) => (
         <WrapItem key={index}>{child}</WrapItem>
       ))
     : children
 
   return (
-    <StylesProvider value={{ item: itemStyles }}>
-      <chakra.div ref={ref} className={cx("chakra-wrap", className)} {...rest}>
-        <chakra.ul className="chakra-wrap__list" __css={groupStyles}>
-          {_children}
-        </chakra.ul>
-      </chakra.div>
-    </StylesProvider>
+    <chakra.div ref={ref} className={cx("chakra-wrap", className)} {...rest}>
+      <chakra.ul className="chakra-wrap__list" __css={styles}>
+        {childrenToRender}
+      </chakra.ul>
+    </chakra.div>
   )
 })
 
@@ -115,11 +99,10 @@ export interface WrapItemProps extends HTMLChakraProps<"li"> {}
 
 export const WrapItem = forwardRef<WrapItemProps, "li">((props, ref) => {
   const { className, ...rest } = props
-  const styles = useStyles()
   return (
     <chakra.li
       ref={ref}
-      __css={styles.item}
+      __css={{ display: "flex", alignItems: "flex-start" }}
       className={cx("chakra-wrap__listitem", className)}
       {...rest}
     />
