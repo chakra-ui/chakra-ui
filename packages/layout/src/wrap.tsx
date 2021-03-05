@@ -5,7 +5,7 @@ import {
   SystemProps,
   tokenToCSSVar,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx, Dict, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
 export interface WrapProps extends HTMLChakraProps<"div"> {
@@ -59,7 +59,8 @@ export const Wrap = forwardRef<WrapProps, "div">((props, ref) => {
 
   const styles = React.useMemo(
     () => ({
-      "--chakra-wrap-spacing": tokenToCSSVar("space", spacing),
+      "--chakra-wrap-spacing": (theme: Dict) =>
+        mapResponsive(spacing, (value) => tokenToCSSVar("space", value)(theme)),
       "--wrap-spacing": "calc(var(--chakra-wrap-spacing) / 2)",
       display: "flex",
       flexWrap: "wrap",
