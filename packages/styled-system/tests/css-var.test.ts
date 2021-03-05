@@ -46,7 +46,7 @@ test("should convert to css variables", () => {
       },
       "__cssVars": Object {
         "--ck-ring-color": "rgba(66, 153, 225, 0.6)",
-        "--ck-ring-inset": "var(--empty, /* */)",
+        "--ck-ring-inset": "var(--empty, /*!*/ /*!*/)",
         "--ck-ring-offset": "0px",
         "--ck-ring-offset-shadow": "var(--ck-ring-inset) 0 0 0 var(--ck-ring-offset) var(--ck-ring-offset-color, transparent)",
         "--ck-ring-shadow": "var(--ck-ring-inset) 0 0 0 calc(var(--ck-ring-width) + var(--ck-ring-offset)) var(--ck-ring-color)",
@@ -121,7 +121,7 @@ test("should convert to css variables", () => {
       },
       "__cssVars": Object {
         "--ck-ring-color": "rgba(66, 153, 225, 0.6)",
-        "--ck-ring-inset": "var(--empty, /* */)",
+        "--ck-ring-inset": "var(--empty, /*!*/ /*!*/)",
         "--ck-ring-offset": "0px",
         "--ck-ring-offset-shadow": "var(--ck-ring-inset) 0 0 0 var(--ck-ring-offset) var(--ck-ring-offset-color, transparent)",
         "--ck-ring-shadow": "var(--ck-ring-inset) 0 0 0 calc(var(--ck-ring-width) + var(--ck-ring-offset)) var(--ck-ring-color)",
@@ -196,7 +196,7 @@ test("should handle nested theme with css-var", () => {
       },
       "__cssVars": Object {
         "--ck-ring-color": "rgba(66, 153, 225, 0.6)",
-        "--ck-ring-inset": "var(--empty, /* */)",
+        "--ck-ring-inset": "var(--empty, /*!*/ /*!*/)",
         "--ck-ring-offset": "0px",
         "--ck-ring-offset-shadow": "var(--ck-ring-inset) 0 0 0 var(--ck-ring-offset) var(--ck-ring-offset-color, transparent)",
         "--ck-ring-shadow": "var(--ck-ring-inset) 0 0 0 calc(var(--ck-ring-width) + var(--ck-ring-offset)) var(--ck-ring-color)",
@@ -260,7 +260,7 @@ test("should handle values provided as CSS variables", () => {
       },
       "__cssVars": Object {
         "--ck-ring-color": "rgba(66, 153, 225, 0.6)",
-        "--ck-ring-inset": "var(--empty, /* */)",
+        "--ck-ring-inset": "var(--empty, /*!*/ /*!*/)",
         "--ck-ring-offset": "0px",
         "--ck-ring-offset-shadow": "var(--ck-ring-inset) 0 0 0 var(--ck-ring-offset) var(--ck-ring-offset-color, transparent)",
         "--ck-ring-shadow": "var(--ck-ring-inset) 0 0 0 calc(var(--ck-ring-width) + var(--ck-ring-offset)) var(--ck-ring-color)",
@@ -304,7 +304,7 @@ test("should handle spaces in keys", () => {
       },
       "__cssVars": Object {
         "--ck-ring-color": "rgba(66, 153, 225, 0.6)",
-        "--ck-ring-inset": "var(--empty, /* */)",
+        "--ck-ring-inset": "var(--empty, /*!*/ /*!*/)",
         "--ck-ring-offset": "0px",
         "--ck-ring-offset-shadow": "var(--ck-ring-inset) 0 0 0 var(--ck-ring-offset) var(--ck-ring-offset-color, transparent)",
         "--ck-ring-shadow": "var(--ck-ring-inset) 0 0 0 calc(var(--ck-ring-width) + var(--ck-ring-offset)) var(--ck-ring-color)",
@@ -346,7 +346,7 @@ test("should add a css var prefix if provided", () => {
       "__cssVars": Object {
         "--ck-colors-red": "#ec0016",
         "--ck-ring-color": "rgba(66, 153, 225, 0.6)",
-        "--ck-ring-inset": "var(--empty, /* */)",
+        "--ck-ring-inset": "var(--empty, /*!*/ /*!*/)",
         "--ck-ring-offset": "0px",
         "--ck-ring-offset-shadow": "var(--ck-ring-inset) 0 0 0 var(--ck-ring-offset) var(--ck-ring-offset-color, transparent)",
         "--ck-ring-shadow": "var(--ck-ring-inset) 0 0 0 calc(var(--ck-ring-width) + var(--ck-ring-offset)) var(--ck-ring-color)",

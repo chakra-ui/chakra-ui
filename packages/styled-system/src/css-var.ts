@@ -62,24 +62,24 @@ function omitVars(rawTheme: Dict) {
  * @see https://www.stefanjudis.com/blog/order-in-css-transformation-transform-functions-vs-individual-transforms/
  */
 const transformTemplate = [
-  "rotate(var(--rotate, 0))",
-  "scaleX(var(--scale-x, 1))",
-  "scaleY(var(--scale-y, 1))",
-  "skewX(var(--skew-x, 0))",
-  "skewY(var(--skew-y, 0))",
+  "rotate(var(--chakra-rotate, 0))",
+  "scaleX(var(--chakra-scale-x, 1))",
+  "scaleY(var(--chakra-scale-y, 1))",
+  "skewX(var(--chakra-skew-x, 0))",
+  "skewY(var(--chakra-skew-y, 0))",
 ]
 
 export function getTransformTemplate() {
   return [
-    "translateX(var(--translate-x, 0))",
-    "translateY(var(--translate-y, 0))",
+    "translateX(var(--chakra-translate-x, 0))",
+    "translateY(var(--chakra-translate-y, 0))",
     ...transformTemplate,
   ].join(" ")
 }
 
 export function getTransformGpuTemplate() {
   return [
-    "translate3d(var(--translate-x, 0), var(--translate-y, 0), 0)",
+    "translate3d(var(--chakra-translate-x, 0), var(--chakra-translate-y, 0), 0)",
     ...transformTemplate,
   ].join(" ")
 }
@@ -110,20 +110,20 @@ export function toCSSVar<T extends Dict>(rawTheme: T) {
   } = toProperties(tokens, { cssVarPrefix })
 
   const defaultCssVars: Dict = {
-    "--ck-ring-offset": "0px",
-    "--ck-ring-color": "rgba(66, 153, 225, 0.6)",
-    "--ck-ring-width": "3px",
-    "--ck-ring-inset": "var(--empty, /* */)",
-    "--ck-ring-offset-shadow":
-      "var(--ck-ring-inset) 0 0 0 var(--ck-ring-offset) var(--ck-ring-offset-color, transparent)",
-    "--ck-ring-shadow":
-      "var(--ck-ring-inset) 0 0 0 calc(var(--ck-ring-width) + var(--ck-ring-offset)) var(--ck-ring-color)",
-    "--ring":
-      "var(--ck-ring-offset-shadow), var(--ck-ring-shadow), 0 0 transparent",
-    "--ck-transform-gpu": getTransformGpuTemplate(),
-    "--ck-transform": getTransformTemplate(),
-    "--ck-space-x-reverse": "0",
-    "--ck-space-y-reverse": "0",
+    "--chakra-ring-offset": "0px",
+    "--chakra-ring-color": "rgba(66, 153, 225, 0.6)",
+    "--chakra-ring-width": "3px",
+    "--chakra-ring-inset": "var(--chakra-empty, /*!*/ /*!*/)",
+    "--chakra-ring-offset-shadow":
+      "var(--chakra-ring-inset) 0 0 0 var(--chakra-ring-offset) var(--chakra-ring-offset-color, transparent)",
+    "--chakra-ring-shadow":
+      "var(--chakra-ring-inset) 0 0 0 calc(var(--chakra-ring-width) + var(--chakra-ring-offset)) var(--chakra-ring-color)",
+    "--chakra-ring":
+      "var(--chakra-ring-offset-shadow), var(--chakra-ring-shadow), 0 0 transparent",
+    "--chakra-transform-gpu": getTransformGpuTemplate(),
+    "--chakra-transform": getTransformTemplate(),
+    "--chakra-space-x-reverse": "0",
+    "--chakra-space-y-reverse": "0",
   }
 
   Object.assign(theme, {

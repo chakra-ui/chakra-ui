@@ -31,17 +31,23 @@ function OptionText(props: any) {
     textToHighlight,
   })
 
-  const highlightedText = chunks.map((chunk) => {
+  const highlightedText = chunks.map((chunk, index) => {
     const { end, highlight, start } = chunk
     const text = textToHighlight.substr(start, end - start)
     if (highlight) {
       return (
-        <Box as="mark" color="teal.500" bg="transparent" fontWeight="medium">
+        <Box
+          key={index}
+          as="mark"
+          color="teal.500"
+          bg="transparent"
+          fontWeight="medium"
+        >
           {text}
         </Box>
       )
     } else {
-      return text
+      return <React.Fragment key={index}>text</React.Fragment>
     }
   })
 

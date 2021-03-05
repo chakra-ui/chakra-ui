@@ -9,11 +9,11 @@ export const outline: Config = {
   outline: true,
   outlineOffset: true,
   outlineColor: t.colors("outlineColor"),
-  ringColor: t.prop("--ck-ring-color", "colors"),
-  ringOffsetWidth: t.prop("--ck-ring-offset"),
-  ringOffsetColor: t.prop("--ck-ring-offset-color", "colors"),
-  ringWidth: t.prop("--ck-ring-offset"),
-  ringInset: t.prop("--ck-ring-inset"),
+  ringColor: t.prop("--chakra-ring-color", "colors"),
+  ringOffsetWidth: t.prop("--chakra-ring-offset"),
+  ringOffsetColor: t.prop("--chakra-ring-offset-color", "colors"),
+  ringWidth: t.prop("--chakra-ring-offset"),
+  ringInset: t.prop("--chakra-ring-inset"),
 }
 
 export interface OutlineProps {

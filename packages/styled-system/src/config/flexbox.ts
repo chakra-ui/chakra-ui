@@ -5,12 +5,12 @@ import { Length, t, Token } from "../utils"
 
 const reverse = {
   "row-reverse": {
-    space: "--ck-space-x-reverse",
-    divide: "--divide-x-reverse",
+    space: "--chakra-space-x-reverse",
+    divide: "--chakra-divide-x-reverse",
   },
   "column-reverse": {
-    space: "--ck-space-y-reverse",
-    divide: "--divide-y-reverse",
+    space: "--chakra-space-y-reverse",
+    divide: "--chakra-divide-y-reverse",
   },
 }
 
@@ -35,25 +35,30 @@ export const flexbox: Config = {
     static: {
       [owlSelector]: {
         marginInlineStart:
-          "calc(var(--space-x) * calc(1 - var(--ck-space-x-reverse)))",
-        marginInlineEnd: "calc(var(--space-x) * var(--ck-space-x-reverse))",
+          "calc(var(--chakra-space-x) * calc(1 - var(--chakra-space-x-reverse)))",
+        marginInlineEnd:
+          "calc(var(--chakra-space-x) * var(--chakra-space-x-reverse))",
       },
     },
     transform: createTransform({
       scale: "space",
-      transform: (value) => (value !== null ? { "--space-x": value } : null),
+      transform: (value) =>
+        value !== null ? { "--chakra-space-x": value } : null,
     }),
   },
   spaceY: {
     static: {
       [owlSelector]: {
-        marginTop: "calc(var(--space-y) * calc(1 - var(--ck-space-y-reverse)))",
-        marginBottom: "calc(var(--space-y) * var(--ck-space-y-reverse))",
+        marginTop:
+          "calc(var(--chakra-space-y) * calc(1 - var(--chakra-space-y-reverse)))",
+        marginBottom:
+          "calc(var(--chakra-space-y) * var(--chakra-space-y-reverse))",
       },
     },
     transform: createTransform({
       scale: "space",
-      transform: (value) => (value != null ? { "--space-y": value } : null),
+      transform: (value) =>
+        value != null ? { "--chakra-space-y": value } : null,
     }),
   },
   flex: true,

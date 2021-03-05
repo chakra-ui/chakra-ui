@@ -25,9 +25,9 @@ export const typography: Config = {
       display: "-webkit-box",
       WebkitBoxOrient: "vertical",
       //@ts-ignore
-      WebkitLineClamp: "var(--line-clamp)",
+      WebkitLineClamp: "var(--chakra-line-clamp)",
     },
-    property: "--line-clamp",
+    property: "--chakra-line-clamp",
   },
   isTruncated: {
     transform(value) {
