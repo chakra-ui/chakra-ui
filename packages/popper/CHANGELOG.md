@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.1.5
+
+### Patch Changes
+
+- [`e1924c621`](https://github.com/chakra-ui/chakra-ui/commit/e1924c62182969a109b4900b05932caa1b73ed99)
+  [#3477](https://github.com/chakra-ui/chakra-ui/pull/3477) Thanks
+  [@tomdohnal](https://github.com/tomdohnal)! - make the react-popper state in
+  sync with the internal popper instance state
+
+- Updated dependencies
+  [[`83ae62905`](https://github.com/chakra-ui/chakra-ui/commit/83ae62905935fdb3104380d6fd845159b00095fa),
+  [`87cc23e14`](https://github.com/chakra-ui/chakra-ui/commit/87cc23e14814e02cbbfc9737c2356cef682ddd5d)]:
+  - @chakra-ui/hooks@1.1.5
+  - @chakra-ui/utils@1.3.0
+
 ## 1.1.4
 
 ### Patch Changes

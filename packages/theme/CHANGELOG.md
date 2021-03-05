@@ -1,5 +1,44 @@
 # Change Log
 
+## 1.7.0
+
+### Minor Changes
+
+- [`87e42eb64`](https://github.com/chakra-ui/chakra-ui/commit/87e42eb6410846d0041a7e88e2c771d15d596f25)
+  [#3463](https://github.com/chakra-ui/chakra-ui/pull/3463) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Add new config property
+  `cssVarPrefix` to add a custom prefix for CSS variables. It defaults to
+  `chakra`.
+
+* [`f032942c8`](https://github.com/chakra-ui/chakra-ui/commit/f032942c8a2568a3a23baee0d5972834345e5fa6)
+  [#3447](https://github.com/chakra-ui/chakra-ui/pull/3447) Thanks
+  [@dodas](https://github.com/dodas)! - `TabPanels` component can now be styled
+  from `Tabs` component theme, specifying the `tabpanels` part.
+
+### Patch Changes
+
+- [`7efc9c217`](https://github.com/chakra-ui/chakra-ui/commit/7efc9c217789b2b314ed629c94b947256e8cbe2c)
+  [#3454](https://github.com/chakra-ui/chakra-ui/pull/3454) Thanks
+  [@tomdohnal](https://github.com/tomdohnal)! - - Fix full size modal with
+  y-overflowing content behaviour
+  - Fix border styles for alert and number input
+
+* [`280d0dbfd`](https://github.com/chakra-ui/chakra-ui/commit/280d0dbfdd8894ab4aa228ac7ef816008a5d0824)
+  [#3439](https://github.com/chakra-ui/chakra-ui/pull/3439) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Provide proper typings for
+  `ThemeOverride.components`
+
+- [`39375c15b`](https://github.com/chakra-ui/chakra-ui/commit/39375c15b64635ea3f59d9f5ad1f31851f9f018b)
+  [#3486](https://github.com/chakra-ui/chakra-ui/pull/3486) Thanks
+  [@with-heart](https://github.com/with-heart)! - Resolved an issue where
+  `optgroup` in dark mode was unreadable on browsers that allow `select`
+  contents styling.
+- Updated dependencies
+  [[`87cc23e14`](https://github.com/chakra-ui/chakra-ui/commit/87cc23e14814e02cbbfc9737c2356cef682ddd5d),
+  [`d77f63415`](https://github.com/chakra-ui/chakra-ui/commit/d77f63415822ad26e4f6ed133e4869c07fa72306)]:
+  - @chakra-ui/utils@1.3.0
+  - @chakra-ui/theme-tools@1.1.0
+
 ## 1.6.2
 
 ### Patch Changes
