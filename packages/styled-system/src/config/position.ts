@@ -1,11 +1,11 @@
 import * as CSS from "csstype"
-import { Config, createParser, system } from "../core"
-import { positiveOrNegative, t, Token } from "../utils"
+import { Config } from "../prop-config"
+import { t, Token } from "../utils"
 
-const config: Config = {
+export const position: Config = {
   position: true,
   pos: t.prop("position"),
-  zIndex: { property: "zIndex", scale: "zIndices" },
+  zIndex: t.prop("zIndex", "zIndices"),
   inset: t.spaceT(["top", "right", "bottom", "left"]),
   insetX: t.spaceT(["left", "right"]),
   insetInline: t.spaceT("insetInline"),
@@ -18,26 +18,18 @@ const config: Config = {
   left: t.spaceT("left"),
   insetInlineStart: t.logical({
     scale: "space",
-    property: {
-      ltr: "left",
-      rtl: "right",
-    },
-    transform: positiveOrNegative,
+    property: { ltr: "left", rtl: "right" },
   }),
   right: t.spaceT("right"),
   insetInlineEnd: t.logical({
     scale: "space",
-    property: {
-      ltr: "right",
-      rtl: "left",
-    },
-    transform: positiveOrNegative,
+    property: { ltr: "right", rtl: "left" },
   }),
 }
 
-Object.assign(config, {
-  insetStart: config.insetInlineStart,
-  insetEnd: config.insetInlineEnd,
+Object.assign(position, {
+  insetStart: position.insetInlineStart,
+  insetEnd: position.insetInlineEnd,
 })
 
 /**
@@ -105,6 +97,3 @@ export interface PositionProps {
   insetInline?: Token<CSS.Property.InsetInline>
   insetBlock?: Token<CSS.Property.InsetBlock>
 }
-
-export const position = system(config)
-export const positionParser = createParser(config)

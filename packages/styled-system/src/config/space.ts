@@ -1,8 +1,8 @@
 import * as CSS from "csstype"
-import { Config, createParser, system } from "../core"
-import { Token, t } from "../utils"
+import { Config } from "../prop-config"
+import { t, Token } from "../utils"
 
-const config: Config = {
+export const space: Config = {
   margin: t.spaceT("margin"),
   marginTop: t.spaceT("marginTop"),
   marginBlockStart: t.spaceT("marginBlockStart"),
@@ -31,29 +31,29 @@ const config: Config = {
   paddingBlock: t.space("paddingBlock"),
 }
 
-Object.assign(config, {
-  m: config.margin,
-  mt: config.marginTop,
-  mr: config.marginRight,
-  me: config.marginInlineEnd,
-  marginEnd: config.marginInlineEnd,
-  mb: config.marginBottom,
-  ml: config.marginLeft,
-  ms: config.marginInlineStart,
-  marginStart: config.marginInlineStart,
-  mx: config.marginX,
-  my: config.marginY,
-  p: config.padding,
-  pt: config.paddingTop,
-  py: config.paddingY,
-  px: config.paddingX,
-  pb: config.paddingBottom,
-  pl: config.paddingLeft,
-  ps: config.paddingInlineStart,
-  paddingStart: config.paddingInlineStart,
-  pr: config.paddingRight,
-  pe: config.paddingInlineEnd,
-  paddingEnd: config.paddingInlineEnd,
+Object.assign(space, {
+  m: space.margin,
+  mt: space.marginTop,
+  mr: space.marginRight,
+  me: space.marginInlineEnd,
+  marginEnd: space.marginInlineEnd,
+  mb: space.marginBottom,
+  ml: space.marginLeft,
+  ms: space.marginInlineStart,
+  marginStart: space.marginInlineStart,
+  mx: space.marginX,
+  my: space.marginY,
+  p: space.padding,
+  pt: space.paddingTop,
+  py: space.paddingY,
+  px: space.paddingX,
+  pb: space.paddingBottom,
+  pl: space.paddingLeft,
+  ps: space.paddingInlineStart,
+  paddingStart: space.paddingInlineStart,
+  pr: space.paddingRight,
+  pe: space.paddingInlineEnd,
+  paddingEnd: space.paddingInlineEnd,
 })
 
 /**
@@ -241,15 +241,3 @@ export interface SpaceProps {
    */
   paddingY?: Token<CSS.Property.Padding | number, "space">
 }
-
-/**
- * Converts shorthand or longhand margin and padding props to margin and padding CSS declarations
- *
- * - Numbers from 0-4 (or the length of theme.space) are converted to values on the spacing scale.
- * - Negative values can be used for negative margins.
- * - Numbers greater than the length of the theme.space array are converted to raw pixel values.
- * - String values are passed as raw CSS values.
- * - Array values are converted into responsive values.
- */
-export const space = system(config)
-export const spaceParser = createParser(config)

@@ -1,5 +1,5 @@
 import { renderHook } from "@chakra-ui/test-utils"
-import { useToken } from "../src"
+import { toCSSVar, useToken } from "../src"
 import * as system from "../src/providers"
 
 const mockRed = {
@@ -19,12 +19,14 @@ const mockBlue = {
 }
 
 const setupMock = () => {
-  jest.spyOn(system, "useTheme").mockReturnValueOnce({
-    colors: {
-      red: mockRed,
-      blue: mockBlue,
-    },
-  })
+  jest.spyOn(system, "useTheme").mockReturnValueOnce(
+    toCSSVar({
+      colors: {
+        red: mockRed,
+        blue: mockBlue,
+      },
+    }),
+  )
 }
 
 describe("useToken", () => {

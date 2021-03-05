@@ -1,11 +1,8 @@
-import { isNumber, isCustomBreakpoint, StringOrNumber } from "@chakra-ui/utils"
+import { Dict, isNumber, StringOrNumber } from "@chakra-ui/utils"
 
-export default function createMediaQueries(
-  breakpoints: string[],
-): MediaQuery[] {
+export default function createMediaQueries(breakpoints: Dict): MediaQuery[] {
   return (
     Object.entries(breakpoints)
-      .filter(([key]) => isCustomBreakpoint(key))
       // sort css units in ascending order to ensure media queries are generated
       // in the correct order and reference to each other correctly aswell
       .sort((a, b) =>

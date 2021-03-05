@@ -1,4 +1,4 @@
-import { compose } from "./core"
+import { mergeWith, objectKeys } from "@chakra-ui/utils"
 import {
   background,
   border,
@@ -16,9 +16,10 @@ import {
   transition,
   typography,
 } from "./config"
-import { pseudoPropNames } from "./pseudo"
+import { pseudoPropNames, pseudoSelectors } from "./pseudos"
 
-export const systemProps = compose(
+export const systemProps = mergeWith(
+  {},
   background,
   border,
   color,
@@ -36,7 +37,11 @@ export const systemProps = compose(
   transition,
 )
 
-const layoutSystem = compose(space, layout, flexbox, grid, position)
-export const layoutPropNames = layoutSystem.propNames
+const layoutSystem = mergeWith({}, space, layout, flexbox, grid, position)
+export const layoutPropNames = objectKeys(layoutSystem)
 
-export const propNames = [...(systemProps.propNames || []), ...pseudoPropNames]
+export const propNames = [...objectKeys(systemProps), ...pseudoPropNames]
+
+const styleProps = { ...systemProps, ...pseudoSelectors }
+
+export const isStyleProp = (prop: string) => prop in styleProps

@@ -1,28 +1,14 @@
 import * as CSS from "csstype"
-import { Config, createParser, system } from "../core"
-import { Token } from "../utils"
+import { px } from "../create-transform"
+import { Config } from "../prop-config"
+import { ResponsiveValue, t, Token } from "../utils"
 
-const config: Config = {
-  fontFamily: {
-    property: "fontFamily",
-    scale: "fonts",
-  },
-  fontSize: {
-    property: "fontSize",
-    scale: "fontSizes",
-  },
-  fontWeight: {
-    property: "fontWeight",
-    scale: "fontWeights",
-  },
-  lineHeight: {
-    property: "lineHeight",
-    scale: "lineHeights",
-  },
-  letterSpacing: {
-    property: "letterSpacing",
-    scale: "letterSpacings",
-  },
+export const typography: Config = {
+  fontFamily: t.prop("fontFamily", "fonts"),
+  fontSize: t.prop("fontSize", "fontSizes", px),
+  fontWeight: t.prop("fontWeight", "fontWeights"),
+  lineHeight: t.prop("lineHeight", "lineHeights"),
+  letterSpacing: t.prop("letterSpacing", "letterSpacings"),
   textAlign: true,
   fontStyle: true,
   wordBreak: true,
@@ -31,8 +17,28 @@ const config: Config = {
   textTransform: true,
   whiteSpace: true,
   textDecoration: true,
-  textDecor: {
-    property: "textDecoration",
+  textDecor: { property: "textDecoration" },
+  noOfLines: {
+    static: {
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      display: "-webkit-box",
+      WebkitBoxOrient: "vertical",
+      //@ts-ignore
+      WebkitLineClamp: "var(--chakra-line-clamp)",
+    },
+    property: "--chakra-line-clamp",
+  },
+  isTruncated: {
+    transform(value) {
+      if (value === true) {
+        return {
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
+        }
+      }
+    },
   },
 }
 
@@ -97,7 +103,13 @@ export interface TypographyProps {
    * The CSS `text-decoration` property
    */
   textDecor?: Token<CSS.Property.TextDecoration | number>
+  /**
+   * Used to visually truncate a text after a number of lines.
+   */
+  noOfLines?: ResponsiveValue<number>
+  /**
+   * If `true`, it clamps truncate a text after one line.
+   * @deprecated - Use `noOfLines` instead
+   */
+  isTruncated?: boolean
 }
-
-export const typography = system(config)
-export const typographyParser = createParser(config)

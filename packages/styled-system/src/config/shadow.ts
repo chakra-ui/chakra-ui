@@ -1,14 +1,14 @@
 import * as CSS from "csstype"
-import { Config, createParser, system } from "../core"
+import { Config } from "../prop-config"
 import { t, Token } from "../utils"
 
-const config: Config = {
+export const shadow: Config = {
   boxShadow: t.shadows("boxShadow"),
   textShadow: t.shadows("textShadow"),
 }
 
-Object.assign(config, {
-  shadow: config.boxShadow,
+Object.assign(shadow, {
+  shadow: shadow.boxShadow,
 })
 
 /**
@@ -28,6 +28,3 @@ export interface ShadowProps {
    */
   textShadow?: Token<CSS.Property.TextShadow | number, "shadows">
 }
-
-export const shadow = system(config)
-export const shadowParser = createParser(config)

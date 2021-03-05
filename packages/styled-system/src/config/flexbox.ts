@@ -1,14 +1,66 @@
 import * as CSS from "csstype"
-import { createParser, Config, system } from "../core"
-import { Token, Length, t } from "../utils"
+import { createTransform } from "../create-transform"
+import { Config } from "../prop-config"
+import { Length, t, Token } from "../utils"
 
-const config: Config = {
+const reverse = {
+  "row-reverse": {
+    space: "--chakra-space-x-reverse",
+    divide: "--chakra-divide-x-reverse",
+  },
+  "column-reverse": {
+    space: "--chakra-space-y-reverse",
+    divide: "--chakra-divide-y-reverse",
+  },
+}
+
+const owlSelector = "& > :not(style) ~ :not(style)"
+
+export const flexbox: Config = {
   alignItems: true,
   alignContent: true,
   justifyItems: true,
   justifyContent: true,
   flexWrap: true,
-  flexDirection: true,
+  flexDirection: {
+    transform(value) {
+      const { space, divide } = reverse[value] ?? {}
+      const result = { flexDirection: value }
+      if (space) result[space] = 1
+      if (divide) result[divide] = 1
+      return result
+    },
+  },
+  spaceX: {
+    static: {
+      [owlSelector]: {
+        marginInlineStart:
+          "calc(var(--chakra-space-x) * calc(1 - var(--chakra-space-x-reverse)))",
+        marginInlineEnd:
+          "calc(var(--chakra-space-x) * var(--chakra-space-x-reverse))",
+      },
+    },
+    transform: createTransform({
+      scale: "space",
+      transform: (value) =>
+        value !== null ? { "--chakra-space-x": value } : null,
+    }),
+  },
+  spaceY: {
+    static: {
+      [owlSelector]: {
+        marginTop:
+          "calc(var(--chakra-space-y) * calc(1 - var(--chakra-space-y-reverse)))",
+        marginBottom:
+          "calc(var(--chakra-space-y) * var(--chakra-space-y-reverse))",
+      },
+    },
+    transform: createTransform({
+      scale: "space",
+      transform: (value) =>
+        value != null ? { "--chakra-space-y": value } : null,
+    }),
+  },
   flex: true,
   flexFlow: true,
   flexGrow: true,
@@ -191,7 +243,12 @@ export interface FlexboxProps {
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/place-self)
    */
   placeSelf?: Token<CSS.Property.PlaceSelf>
+  /**
+   * Controls the horizontal space between elements
+   */
+  // spaceX?: Token<CSS.Property.Margin | number, "space">
+  /**
+   * Controls the vertical space between elements
+   */
+  // spaceY?: Token<CSS.Property.Margin | number, "space">
 }
-
-export const flexbox = system(config)
-export const flexboxParser = createParser(config)

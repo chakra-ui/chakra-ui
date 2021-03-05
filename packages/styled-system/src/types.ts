@@ -1,25 +1,41 @@
-import { Dict } from "@chakra-ui/utils"
+import { Dict, AnalyzeBreakpointsReturn } from "@chakra-ui/utils"
 import * as CSS from "csstype"
-import * as System from "./config"
-import { Pseudos } from "./pseudo"
+import type {
+  BackgroundProps,
+  BorderProps,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
+  LayoutProps,
+  ListProps,
+  OtherProps,
+  OutlineProps,
+  PositionProps,
+  ShadowProps,
+  SpaceProps,
+  TransformProps,
+  TransitionProps,
+  TypographyProps,
+} from "./config"
+import { Pseudos } from "./pseudos"
 import { ResponsiveValue } from "./utils"
 
 export interface StyleProps
-  extends System.SpaceProps,
-    System.ColorProps,
-    System.TransitionProps,
-    System.TypographyProps,
-    System.FlexboxProps,
-    System.TransformProps,
-    System.GridProps,
-    System.LayoutProps,
-    System.BorderProps,
-    System.ShadowProps,
-    System.BackgroundProps,
-    System.ListProps,
-    System.PositionProps,
-    System.OutlineProps,
-    System.OtherProps {}
+  extends SpaceProps,
+    ColorProps,
+    TransitionProps,
+    TypographyProps,
+    FlexboxProps,
+    TransformProps,
+    GridProps,
+    LayoutProps,
+    BorderProps,
+    ShadowProps,
+    BackgroundProps,
+    ListProps,
+    PositionProps,
+    OutlineProps,
+    OtherProps {}
 
 export interface SystemCSSProperties
   extends CSS.Properties,
@@ -69,3 +85,19 @@ type PseudoProps = {
 }
 
 export interface SystemProps extends StyleProps, PseudoProps {}
+
+export type CSSMap = Dict<{ value: string; var: string; varRef: string }>
+
+export type Transform = (value: any, theme: CssTheme) => any
+
+export type WithCSSVar<T> = T & {
+  __cssVars: Dict
+  __cssMap: CSSMap
+  __breakpoints: AnalyzeBreakpointsReturn
+}
+
+export type CssTheme = WithCSSVar<{
+  breakpoints: Dict
+  direction?: "ltr" | "rtl"
+  [key: string]: any
+}>

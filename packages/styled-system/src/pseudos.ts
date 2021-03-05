@@ -25,16 +25,6 @@ const toGroup = (fn: AnyFunction) =>
 const merge = (fn: AnyFunction, ...selectors: string[]) =>
   selectors.map(fn).join(", ")
 
-const disabled = (selector: string) =>
-  `${selector}, ${selector}:focus, ${selector}:hover`
-
-const disabledSelector = merge(
-  disabled,
-  "&[disabled]",
-  "&[aria-disabled=true]",
-  "&[data-disabled]",
-)
-
 export const pseudoSelectors = {
   /**
    * Styles for CSS selector `&:hover`
@@ -63,12 +53,9 @@ export const pseudoSelectors = {
    * Styles to apply when this element is disabled. The passed styles are applied to these CSS selectors:
    * - `&[aria-disabled=true]`
    * - `&:disabled`
-   * - `&:disabled:focus`
-   * - `&:disabled:hover`
-   * - `&:focus[aria-disabled=true]`
-   * - `&:hover[aria-disabled=true]`
+   * - `&[data-disabled]`
    */
-  _disabled: disabledSelector,
+  _disabled: "&[disabled], &[aria-disabled=true], &[data-disabled]",
   /**
    * Styles for CSS Selector `&:readonly`
    */

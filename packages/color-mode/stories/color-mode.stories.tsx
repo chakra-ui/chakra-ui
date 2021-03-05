@@ -1,11 +1,11 @@
 import * as React from "react"
-import { useColorMode } from "../src"
+import { useColorModeValue } from "../src"
 
 export default {
   title: "Color Mode",
 }
 
 export const BasicExample = () => {
-  const { colorMode } = useColorMode()
+  const colorMode = useColorModeValue("Light", "Dark")
   return <code>Color mode is: {colorMode}</code>
 }
