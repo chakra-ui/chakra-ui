@@ -395,11 +395,11 @@ export default {
 The theme's config is to provide global settings that are used by different
 parts of the Chakra UI system.
 
-| Property                 | Description                                                                                                 | Default |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------- | ------- |
-| `cssVarsRoot` **(v1.4)** | The element to attach the css custom properties to                                                          | `:root` |
-| `initialColorMode`       | The initial color mode your application should start with. <br reset/> Can be either `light` or `dark` mode | `light` |
-| `useSystemColorMode`     | If `true`, the chakra system will update color mode <br reset/> based on your system preferences            | `false` |
+| Property                   | Description                                                                                                 | Default  |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------- | -------- |
+| `cssVarsPrefix` **(v1.4)** | The prefix to use for the generated CSS custom properties                                                   | `chakra` |
+| `initialColorMode`         | The initial color mode your application should start with. <br reset/> Can be either `light` or `dark` mode | `light`  |
+| `useSystemColorMode`       | If `true`, the chakra system will update color mode <br reset/> based on your system preferences            | `false`  |
 
 You can leverage the `extendTheme` function to override a specific theme config
 property.
@@ -407,7 +407,7 @@ property.
 ```jsx live=false
 const theme = extendTheme({
   config: {
-    cssVarsRoot: "body",
+    cssVarsPrefix: "ck",
   },
 })
 ```
