@@ -1,6 +1,6 @@
 import defaultTheme from "@chakra-ui/theme"
 import { ThemingProps } from "@chakra-ui/system"
-import { Dict } from "@chakra-ui/utils"
+import { Dict, isObject } from "@chakra-ui/utils"
 import { mergeThemeOverride, ThemeExtension } from "../extend-theme"
 
 export function withDefaultColorScheme({
@@ -11,11 +11,13 @@ export function withDefaultColorScheme({
   components?: string[] | Dict
 }): ThemeExtension {
   return (theme) => {
-    const names = Array.isArray(components)
-      ? components
-      : components && typeof components === "object"
-      ? Object.keys(components)
-      : Object.keys(theme.components || {})
+    let names = Object.keys(theme.components || {})
+
+    if (Array.isArray(components)) {
+      names = components
+    } else if (isObject(components)) {
+      names = Object.keys(components)
+    }
 
     return mergeThemeOverride(theme, {
       components: Object.fromEntries(
