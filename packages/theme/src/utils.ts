@@ -26,6 +26,6 @@ export function isChakraTheme(unit: unknown): unit is ChakraTheme {
   }
 
   return requiredChakraThemeKeys.every((propertyName) =>
-    unit.hasOwnProperty(propertyName),
+    Object.prototype.hasOwnProperty.call(unit, propertyName),
   )
 }
