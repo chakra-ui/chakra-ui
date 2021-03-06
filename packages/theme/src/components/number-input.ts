@@ -15,7 +15,7 @@ const baseStyleStepperGroup = {
 function baseStyleStepper(props: Record<string, any>) {
   return {
     borderLeft: "1px solid",
-    borderColor: mode("inherit", "whiteAlpha.300")(props),
+    borderLeftColor: mode("inherit", "whiteAlpha.300")(props),
     color: mode("inherit", "whiteAlpha.800")(props),
     _active: {
       bg: mode("gray.200", "whiteAlpha.300")(props),

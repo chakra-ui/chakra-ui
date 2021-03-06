@@ -45,8 +45,8 @@ function variantLeftAccent(props: Dict) {
   return {
     container: {
       pl: 3,
-      borderLeft: "4px solid",
-      borderColor: mode(`${c}.500`, `${c}.200`)(props),
+      borderLeftWidth: "4px",
+      borderLeftColor: mode(`${c}.500`, `${c}.200`)(props),
       bg: getBg(props),
     },
     icon: {
@@ -60,8 +60,8 @@ function variantTopAccent(props: Dict) {
   return {
     container: {
       pt: 2,
-      borderTop: "4px solid",
-      borderColor: mode(`${c}.500`, `${c}.200`)(props),
+      borderTopWidth: "4px",
+      borderTopColor: mode(`${c}.500`, `${c}.200`)(props),
       bg: getBg(props),
     },
     icon: {

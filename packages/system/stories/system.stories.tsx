@@ -125,7 +125,9 @@ export const WithRgbGradient = () => (
 
 export const WithLayerStyle = () => (
   <ThemeProvider
+    cssVarsRoot="#root"
     theme={{
+      space: { 2: "4px" },
       layerStyles: {
         base: {
           bg: "pink",

@@ -1,6 +1,7 @@
 {
+  "node": "14",
   "installCommand": "prestart",
   "buildCommand": "build",
   "sandboxes": ["/examples/create-react-app"],
-  "packages": ["packages/!(test-utils)"]
+  "packages": ["packages/react", "packages/machine"]
 }

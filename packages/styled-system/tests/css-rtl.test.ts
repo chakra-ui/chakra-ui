@@ -20,8 +20,8 @@ test("RTL: should transform logical css properties", () => {
       "borderColor": "red",
       "borderTopRightRadius": "20px",
       "float": "right",
-      "marginInlineStart": 40,
-      "right": 40,
+      "marginInlineStart": "var(--space-sm)",
+      "right": "var(--space-sm)",
     }
   `)
 })
@@ -57,7 +57,7 @@ test("LTR: should transform logical css properties", () => {
       "borderColor": "red",
       "borderTopLeftRadius": "20px",
       "float": "left",
-      "marginInlineEnd": 40,
+      "marginInlineEnd": "var(--space-sm)",
     }
   `)
 })
@@ -71,7 +71,7 @@ test("should work after refactoring. hehe", () => {
 
   expect(result).toMatchInlineSnapshot(`
     Object {
-      "background": "#dfsdds",
+      "background": "var(--colors-pinkish)",
       "marginLeft": "40px",
       "marginRight": "40px",
       "width": "40%",

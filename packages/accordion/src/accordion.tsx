@@ -233,16 +233,25 @@ export const AccordionIcon: React.FC<IconProps> = (props) => {
   const { isOpen, isDisabled } = useAccordionItemContext()
   const { reduceMotion } = useAccordionContext()
 
+  const _className = cx("chakra-accordion__icon", props.className)
+  const styles = useStyles()
+
   const iconStyles: SystemStyleObject = {
-    fontSize: "1.25em",
     opacity: isDisabled ? 0.4 : 1,
     transform: isOpen ? "rotate(-180deg)" : undefined,
     transition: reduceMotion ? undefined : "transform 0.2s",
     transformOrigin: "center",
+    ...styles.icon,
   }
 
   return (
-    <Icon viewBox="0 0 24 24" aria-hidden __css={iconStyles} {...props}>
+    <Icon
+      viewBox="0 0 24 24"
+      aria-hidden
+      className={_className}
+      __css={iconStyles}
+      {...props}
+    >
       <path
         fill="currentColor"
         d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"

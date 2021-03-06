@@ -1,8 +1,8 @@
 import * as CSS from "csstype"
-import { Config, createParser, system } from "../core"
+import { Config } from "../prop-config"
 import { ResponsiveValue } from "../utils"
 
-const config: Config = {
+export const transition: Config = {
   transition: true,
   transitionDuration: {
     property: "transitionDuration",
@@ -36,6 +36,3 @@ export interface TransitionProps {
    */
   transitionDuration?: ResponsiveValue<string>
 }
-
-export const transition = system(config)
-export const transitionParser = createParser(config)

@@ -1,5 +1,21 @@
 # Change Log
 
+## 1.1.5
+
+### Patch Changes
+
+- [`83ae62905`](https://github.com/chakra-ui/chakra-ui/commit/83ae62905935fdb3104380d6fd845159b00095fa)
+  [#3373](https://github.com/chakra-ui/chakra-ui/pull/3373) Thanks
+  [@tobiasz](https://github.com/tobiasz)! - ### useClipboard
+
+  Add support to `format` - Optional string. Set the MIME type of what you want
+  to copy as. Use text/html to copy as HTML, text/plain to avoid inherited
+  styles showing when pasted into rich text editor.
+
+- Updated dependencies
+  [[`87cc23e14`](https://github.com/chakra-ui/chakra-ui/commit/87cc23e14814e02cbbfc9737c2356cef682ddd5d)]:
+  - @chakra-ui/utils@1.3.0
+
 ## 1.1.4
 
 ### Patch Changes

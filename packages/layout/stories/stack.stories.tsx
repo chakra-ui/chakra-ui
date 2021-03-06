@@ -39,15 +39,9 @@ export const Inline = () => (
 
 export const Responsive = () => (
   <Stack direction={["column", "row"]} spacing="40px" w="100%">
-    <Box boxSize="40px" bg="yellow.200">
-      1
-    </Box>
-    <Box boxSize="40px" bg="tomato">
-      2
-    </Box>
-    <Box boxSize="40px" bg="pink.100">
-      3
-    </Box>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
   </Stack>
 )
 

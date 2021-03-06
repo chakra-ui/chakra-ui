@@ -1,8 +1,8 @@
 import * as CSS from "csstype"
-import { Config, createParser, system } from "../core"
+import { Config } from "../prop-config"
 import { t, Token } from "../utils"
 
-const config: Config = {
+export const border: Config = {
   border: t.borders("border"),
   borderWidth: t.borderWidths("borderWidth"),
   borderStyle: t.borderStyles("borderStyle"),
@@ -105,36 +105,36 @@ const config: Config = {
   ]),
 }
 
-Object.assign(config, {
-  rounded: config.borderRadius,
-  roundedTop: config.borderTopRadius,
-  roundedTopLeft: config.borderTopLeftRadius,
-  roundedTopRight: config.borderTopRightRadius,
-  roundedTopStart: config.borderStartStartRadius,
-  roundedTopEnd: config.borderStartEndRadius,
-  roundedBottom: config.borderBottomRadius,
-  roundedBottomLeft: config.borderBottomLeftRadius,
-  roundedBottomRight: config.borderBottomRightRadius,
-  roundedBottomStart: config.borderEndStartRadius,
-  roundedBottomEnd: config.borderEndEndRadius,
-  roundedLeft: config.borderLeftRadius,
-  roundedRight: config.borderRightRadius,
-  roundedStart: config.borderInlineStartRadius,
-  roundedEnd: config.borderInlineEndRadius,
-  borderStart: config.borderInlineStart,
-  borderEnd: config.borderInlineEnd,
-  borderTopStartRadius: config.borderStartStartRadius,
-  borderTopEndRadius: config.borderStartEndRadius,
-  borderBottomStartRadius: config.borderEndStartRadius,
-  borderBottomEndRadius: config.borderEndEndRadius,
-  borderStartRadius: config.borderInlineStartRadius,
-  borderEndRadius: config.borderInlineEndRadius,
-  borderStartWidth: config.borderInlineStartWidth,
-  borderEndWidth: config.borderInlineEndWidth,
-  borderStartColor: config.borderInlineStartColor,
-  borderEndColor: config.borderInlineEndColor,
-  borderStartStyle: config.borderInlineStartStyle,
-  borderEndStyle: config.borderInlineEndStyle,
+Object.assign(border, {
+  rounded: border.borderRadius,
+  roundedTop: border.borderTopRadius,
+  roundedTopLeft: border.borderTopLeftRadius,
+  roundedTopRight: border.borderTopRightRadius,
+  roundedTopStart: border.borderStartStartRadius,
+  roundedTopEnd: border.borderStartEndRadius,
+  roundedBottom: border.borderBottomRadius,
+  roundedBottomLeft: border.borderBottomLeftRadius,
+  roundedBottomRight: border.borderBottomRightRadius,
+  roundedBottomStart: border.borderEndStartRadius,
+  roundedBottomEnd: border.borderEndEndRadius,
+  roundedLeft: border.borderLeftRadius,
+  roundedRight: border.borderRightRadius,
+  roundedStart: border.borderInlineStartRadius,
+  roundedEnd: border.borderInlineEndRadius,
+  borderStart: border.borderInlineStart,
+  borderEnd: border.borderInlineEnd,
+  borderTopStartRadius: border.borderStartStartRadius,
+  borderTopEndRadius: border.borderStartEndRadius,
+  borderBottomStartRadius: border.borderEndStartRadius,
+  borderBottomEndRadius: border.borderEndEndRadius,
+  borderStartRadius: border.borderInlineStartRadius,
+  borderEndRadius: border.borderInlineEndRadius,
+  borderStartWidth: border.borderInlineStartWidth,
+  borderEndWidth: border.borderInlineEndWidth,
+  borderStartColor: border.borderInlineStartColor,
+  borderEndColor: border.borderInlineEndColor,
+  borderStartStyle: border.borderInlineStartStyle,
+  borderEndStyle: border.borderInlineEndStyle,
 })
 
 /**
@@ -381,6 +381,3 @@ export interface BorderProps {
   borderY?: Token<CSS.Property.Border | number, "borders">
   borderBlock?: Token<CSS.Property.BorderBlock | number>
 }
-
-export const border = system(config)
-export const borderParser = createParser(config)

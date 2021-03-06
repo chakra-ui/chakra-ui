@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.3.0
+
+### Minor Changes
+
+- [`87cc23e14`](https://github.com/chakra-ui/chakra-ui/commit/87cc23e14814e02cbbfc9737c2356cef682ddd5d)
+  [#3463](https://github.com/chakra-ui/chakra-ui/pull/3463) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Move responsive utilities
+  to utils to prevent duplicate work
+
 ## 1.2.0
 
 ### Minor Changes

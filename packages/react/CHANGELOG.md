@@ -1,5 +1,108 @@
 # Change Log
 
+## 1.3.4
+
+### Patch Changes
+
+- [`92adc0dc1`](https://github.com/chakra-ui/chakra-ui/commit/92adc0dc10e609d14439b95ed304a2731247d084)
+  [#3438](https://github.com/chakra-ui/chakra-ui/pull/3438) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue where
+  extending the theme with custom breakpoints with `strictNullChecks: false` in
+  `tsconfig.json` lead to an error.
+- Updated dependencies
+  [[`f60e5c174`](https://github.com/chakra-ui/chakra-ui/commit/f60e5c174e07730cf073f2bf53ac6e0c8a66d0c1),
+  [`79ff8e84e`](https://github.com/chakra-ui/chakra-ui/commit/79ff8e84e4a8f70d3abe969d68d8bfbb63c18471),
+  [`87e42eb64`](https://github.com/chakra-ui/chakra-ui/commit/87e42eb6410846d0041a7e88e2c771d15d596f25),
+  [`7efc9c217`](https://github.com/chakra-ui/chakra-ui/commit/7efc9c217789b2b314ed629c94b947256e8cbe2c),
+  [`53408372e`](https://github.com/chakra-ui/chakra-ui/commit/53408372ef6926840815a03f2ac5269e3a4757f2),
+  [`83ae62905`](https://github.com/chakra-ui/chakra-ui/commit/83ae62905935fdb3104380d6fd845159b00095fa),
+  [`e1924c621`](https://github.com/chakra-ui/chakra-ui/commit/e1924c62182969a109b4900b05932caa1b73ed99),
+  [`280d0dbfd`](https://github.com/chakra-ui/chakra-ui/commit/280d0dbfdd8894ab4aa228ac7ef816008a5d0824),
+  [`0e93767f1`](https://github.com/chakra-ui/chakra-ui/commit/0e93767f1dfca00e5843d7ffab5eb3f038cec7fe),
+  [`87cc23e14`](https://github.com/chakra-ui/chakra-ui/commit/87cc23e14814e02cbbfc9737c2356cef682ddd5d),
+  [`dedc2d45f`](https://github.com/chakra-ui/chakra-ui/commit/dedc2d45fd8e568f9162bcf406b3059819eff6ff),
+  [`f032942c8`](https://github.com/chakra-ui/chakra-ui/commit/f032942c8a2568a3a23baee0d5972834345e5fa6),
+  [`39375c15b`](https://github.com/chakra-ui/chakra-ui/commit/39375c15b64635ea3f59d9f5ad1f31851f9f018b),
+  [`1f4d0aa4e`](https://github.com/chakra-ui/chakra-ui/commit/1f4d0aa4eff7ba3caffb0599eb81edfb223a36cc)]:
+  - @chakra-ui/layout@1.3.2
+  - @chakra-ui/modal@1.6.1
+  - @chakra-ui/theme@1.7.0
+  - @chakra-ui/system@1.4.0
+  - @chakra-ui/hooks@1.1.5
+  - @chakra-ui/popper@1.1.5
+  - @chakra-ui/slider@1.1.2
+  - @chakra-ui/utils@1.3.0
+  - @chakra-ui/tabs@1.2.0
+  - @chakra-ui/select@1.1.2
+  - @chakra-ui/toast@1.1.12
+  - @chakra-ui/accordion@1.1.3
+  - @chakra-ui/alert@1.1.2
+  - @chakra-ui/avatar@1.1.3
+  - @chakra-ui/breadcrumb@1.1.2
+  - @chakra-ui/button@1.1.3
+  - @chakra-ui/checkbox@1.2.4
+  - @chakra-ui/close-button@1.1.2
+  - @chakra-ui/control-box@1.0.5
+  - @chakra-ui/editable@1.1.2
+  - @chakra-ui/form-control@1.2.2
+  - @chakra-ui/icon@1.1.2
+  - @chakra-ui/image@1.0.8
+  - @chakra-ui/input@1.1.3
+  - @chakra-ui/media-query@1.0.6
+  - @chakra-ui/menu@1.1.3
+  - @chakra-ui/number-input@1.1.2
+  - @chakra-ui/pin-input@1.4.1
+  - @chakra-ui/popover@1.2.3
+  - @chakra-ui/progress@1.1.2
+  - @chakra-ui/radio@1.2.4
+  - @chakra-ui/skeleton@1.1.4
+  - @chakra-ui/spinner@1.1.2
+  - @chakra-ui/stat@1.1.2
+  - @chakra-ui/switch@1.1.4
+  - @chakra-ui/table@1.1.2
+  - @chakra-ui/tag@1.1.2
+  - @chakra-ui/textarea@1.1.2
+  - @chakra-ui/tooltip@1.1.3
+  - @chakra-ui/visually-hidden@1.0.5
+  - @chakra-ui/counter@1.0.8
+  - @chakra-ui/portal@1.1.2
+  - @chakra-ui/transition@1.0.9
+  - @chakra-ui/live-region@1.0.5
+
+## 1.3.3
+
+### Patch Changes
+
+- [`5a8d8c054`](https://github.com/chakra-ui/chakra-ui/commit/5a8d8c054aa3ecdfac51e355b61ac1ae6214f2d5)
+  [#3366](https://github.com/chakra-ui/chakra-ui/pull/3366) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - The `extendTheme` function
+  uses the type `Theme` again
+
+* [`8597f58b7`](https://github.com/chakra-ui/chakra-ui/commit/8597f58b7d5c1fe401086d28a379bc1727756c5b)
+  [#3361](https://github.com/chakra-ui/chakra-ui/pull/3361) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Allow halved values in
+  design token in spacing as mentioned in the documents
+
+* Updated dependencies
+  [[`e8113d3ca`](https://github.com/chakra-ui/chakra-ui/commit/e8113d3ca66e9d45ac2dbb7109ff8904cbfd1134),
+  [`091bad84a`](https://github.com/chakra-ui/chakra-ui/commit/091bad84a928c9d7f3cba103f2a0926045d931b8),
+  [`b99b8674f`](https://github.com/chakra-ui/chakra-ui/commit/b99b8674f1c1874d5805cb3ad2e893c0d852374f),
+  [`d6808f0a4`](https://github.com/chakra-ui/chakra-ui/commit/d6808f0a4ae6ad426b498e9556c76071f7aa9848),
+  [`8597f58b7`](https://github.com/chakra-ui/chakra-ui/commit/8597f58b7d5c1fe401086d28a379bc1727756c5b),
+  [`51ad518e2`](https://github.com/chakra-ui/chakra-ui/commit/51ad518e22642076485bee3dd1f99acbf025161b)]:
+  - @chakra-ui/theme@1.6.2
+  - @chakra-ui/modal@1.6.0
+  - @chakra-ui/checkbox@1.2.3
+  - @chakra-ui/radio@1.2.3
+  - @chakra-ui/popper@1.1.4
+  - @chakra-ui/system@1.3.1
+  - @chakra-ui/toast@1.1.11
+  - @chakra-ui/switch@1.1.3
+  - @chakra-ui/menu@1.1.2
+  - @chakra-ui/popover@1.2.2
+  - @chakra-ui/tooltip@1.1.2
+  - @chakra-ui/skeleton@1.1.3
+
 ## 1.3.2
 
 ### Patch Changes

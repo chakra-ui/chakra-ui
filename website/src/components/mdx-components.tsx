@@ -82,7 +82,13 @@ const MDXComponents = {
   code: CodeBlock,
   pre: Pre,
   kbd: Kbd,
-  br: (props) => <Box height="24px" {...props} />,
+  br: ({ reset, ...props }) => (
+    <Box
+      as={reset ? "br" : undefined}
+      height={reset ? undefined : "24px"}
+      {...props}
+    />
+  ),
   table: Table,
   th: THead,
   td: TData,

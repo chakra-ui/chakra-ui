@@ -1,5 +1,35 @@
 # Change Log
 
+## 1.8.0
+
+### Minor Changes
+
+- [`53408372e`](https://github.com/chakra-ui/chakra-ui/commit/53408372ef6926840815a03f2ac5269e3a4757f2)
+  [#3463](https://github.com/chakra-ui/chakra-ui/pull/3463) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Add support for CSS
+  Variables to the core of Chakra
+  - Improve style computation performance by 2.5x
+
+### Patch Changes
+
+- Updated dependencies
+  [[`87cc23e14`](https://github.com/chakra-ui/chakra-ui/commit/87cc23e14814e02cbbfc9737c2356cef682ddd5d)]:
+  - @chakra-ui/utils@1.3.0
+
+## 1.7.1
+
+### Patch Changes
+
+- [`e8113d3ca`](https://github.com/chakra-ui/chakra-ui/commit/e8113d3ca66e9d45ac2dbb7109ff8904cbfd1134)
+  [#3340](https://github.com/chakra-ui/chakra-ui/pull/3340) Thanks
+  [@MohamedSayed008](https://github.com/MohamedSayed008)! - Export `Recursive*`
+  types from theme, styled-system
+
+* [`4943a15c0`](https://github.com/chakra-ui/chakra-ui/commit/4943a15c084fd2e66ab0dbf273233630d006dc5a)
+  [#3306](https://github.com/chakra-ui/chakra-ui/pull/3306) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue where
+  TypeScript did not allow custom breakpoint names in ResponsiveObject
+
 ## 1.7.0
 
 ### Minor Changes

@@ -1,12 +1,12 @@
 import { memoizedGet as get } from "@chakra-ui/utils"
 import * as CSS from "csstype"
-import { Config, createParser, PropConfig, system } from "../core"
+import { Config } from "../prop-config"
+import { Transform } from "../types"
 import { Length, ResponsiveValue } from "../utils"
-import { getIsRtl } from "../utils/directionality"
 
-const floatTransform: PropConfig["transform"] = (value, _, props = {}) => {
+const floatTransform: Transform = (value, theme) => {
   const map = { left: "right", right: "left" }
-  return getIsRtl(props) ? map[value] : value
+  return theme.direction === "rtl" ? map[value] : value
 }
 
 const srOnly = {
@@ -32,7 +32,7 @@ const srFocusable = {
   whiteSpace: "normal",
 }
 
-const config: Config = {
+export const others: Config = {
   animation: true,
   appearance: true,
   visibility: true,
@@ -50,7 +50,6 @@ const config: Config = {
   filter: true,
   clipPath: true,
   srOnly: {
-    property: "&",
     transform(value) {
       if (value === true) return srOnly
       if (value === "focusable") return srFocusable
@@ -59,18 +58,15 @@ const config: Config = {
   },
   layerStyle: {
     processResult: true,
-    property: "&",
-    transform: (value, _, theme) => get(theme, `layerStyles.${value}`, {}),
+    transform: (value, theme) => get(theme, `layerStyles.${value}`, {}),
   },
   textStyle: {
     processResult: true,
-    property: "&",
-    transform: (value, _, theme) => get(theme, `textStyles.${value}`, {}),
+    transform: (value, theme) => get(theme, `textStyles.${value}`, {}),
   },
   apply: {
     processResult: true,
-    property: "&",
-    transform: (value, _, theme) => get(theme, value, {}),
+    transform: (value, theme) => get(theme, value, {}),
   },
 }
 
@@ -151,6 +147,3 @@ export interface OtherProps {
    */
   apply?: ResponsiveValue<string>
 }
-
-export const others = system(config)
-export const othersParser = createParser(config)

@@ -71,6 +71,6 @@ function widthToColumns(width: any) {
 
 function countToColumns(count: any) {
   return mapResponsive(count, (value) =>
-    isNull(value) ? null : `repeat(${value}, 1fr)`,
+    isNull(value) ? null : `repeat(${value}, minmax(0, 1fr))`,
   )
 }

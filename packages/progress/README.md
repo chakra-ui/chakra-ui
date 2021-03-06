@@ -18,7 +18,7 @@ npm i @chakra-ui/progress
 ```jsx
 import {
   Progress,
-  ProgressLabel
+  ProgressLabel,
   CircularProgress,
   CircularProgressLabel,
 } from "@chakra-ui/progress"

@@ -6,7 +6,7 @@ export default {
 }
 
 export const basic = () => (
-  <Wrap spacing="40px">
+  <Wrap spacing={["5", "8", "56px"]}>
     <WrapItem>
       <Badge>Badge 1</Badge>
     </WrapItem>

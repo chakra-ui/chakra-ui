@@ -1,116 +1,32 @@
-import {
-  Dict,
-  isArray,
-  isCustomBreakpoint,
-  isObject,
-  isResponsiveObjectLike,
-  memoizedGet as get,
-  mergeWith,
-  objectToArrayNotation,
-  runIfFn,
-} from "@chakra-ui/utils"
-import { CSSObject, StyleObjectOrFn } from "./types"
-import { parser } from "./parser"
-import { pseudoSelectors } from "./pseudo"
+import { Dict, isObject, mergeWith as merge, runIfFn } from "@chakra-ui/utils"
+import * as CSS from "csstype"
+import { Config, PropConfig } from "./prop-config"
+import { pseudoSelectors } from "./pseudos"
+import { systemProps as systemPropConfigs } from "./system"
+import { CssTheme, StyleObjectOrFn } from "./types"
 
-interface Cache {
-  themeBreakpoints: string[]
-  breakpoints: string[]
-  breakpointValues: string[]
-  mediaQueries: (string | null)[]
-}
+export const expandResponsive = (styles: Dict) => (theme: Dict) => {
+  if (!theme.__breakpoints) return styles
+  const { isResponsive, toArrayValue, media: medias } = theme.__breakpoints
 
-const cache: Cache = {
-  themeBreakpoints: [],
-  breakpoints: [],
-  breakpointValues: [],
-  mediaQueries: [],
-}
-
-interface BreakpointValueObj {
-  /**
-   * left side of a breakpoint object, the name, e.g. sm
-   */
-  breakpoints: string[]
-  /**
-   * right side of a breakpoint object, the size, e.g. 4
-   */
-  breakpointValues: string[]
-}
-
-/**
- *
- */
-const calculateBreakpointAndMediaQueries = (
-  themeBreakpoints: string[] = [],
-) => {
-  // caching here reduces execution time by factor 4-6x
-  const isCached = cache.themeBreakpoints === themeBreakpoints
-
-  if (isCached) {
-    return cache
-  }
-
-  const { breakpoints, breakpointValues } = Object.entries(themeBreakpoints)
-    .filter(([key]) => isCustomBreakpoint(key))
-    .reduce<BreakpointValueObj>(
-      (carry, [breakpoint, value]) => {
-        carry.breakpoints.push(breakpoint)
-        carry.breakpointValues.push(value)
-
-        return carry
-      },
-      {
-        breakpoints: [],
-        breakpointValues: [],
-      },
-    )
-
-  const mediaQueries = [
-    null,
-    ...breakpointValues
-      .map((bp) => `@media screen and (min-width: ${bp})`)
-      .slice(1),
-  ]
-
-  cache.themeBreakpoints = themeBreakpoints
-  cache.mediaQueries = mediaQueries
-  cache.breakpointValues = breakpointValues
-  cache.breakpoints = breakpoints
-
-  return {
-    breakpoints,
-    mediaQueries,
-  }
-}
-
-export const processResponsive = (styles: any) => (theme: Dict) => {
-  const computedStyles: any = {}
-
-  const { breakpoints, mediaQueries } = calculateBreakpointAndMediaQueries(
-    theme.breakpoints,
-  )
+  const computedStyles: Dict = {}
 
   for (const key in styles) {
     let value = runIfFn(styles[key], theme)
 
-    if (value == null) {
-      continue
-    }
+    if (value == null) continue
 
-    value = isResponsiveObjectLike(value, breakpoints)
-      ? objectToArrayNotation(value, breakpoints)
-      : value
+    value = isObject(value) && isResponsive(value) ? toArrayValue(value) : value
 
-    if (!isArray(value)) {
+    if (!Array.isArray(value)) {
       computedStyles[key] = value
       continue
     }
 
-    const queries = value.slice(0, mediaQueries.length).length
+    const queries = value.slice(0, medias.length).length
 
     for (let index = 0; index < queries; index += 1) {
-      const media = mediaQueries[index]
+      const media = medias?.[index]
 
       if (!media) {
         computedStyles[key] = value[index]
@@ -130,65 +46,84 @@ export const processResponsive = (styles: any) => (theme: Dict) => {
   return computedStyles
 }
 
-type PropsOrTheme = Dict | { theme: Dict }
+interface Options {
+  theme: CssTheme
+  configs?: Config
+  pseudos?: Record<string, CSS.Pseudos | (string & {})>
+}
 
-export const css = (styleOrFn: StyleObjectOrFn = {}) => (
-  props: PropsOrTheme = {},
-): CSSObject => {
-  const theme = "theme" in props ? props.theme : props
+export function getCss(options: Options) {
+  const { configs = {}, pseudos = {}, theme } = options
 
-  let computedStyles: CSSObject = {}
+  const css = (stylesOrFn: Dict, nested = false) => {
+    const _styles = runIfFn(stylesOrFn, theme)
+    const styles = expandResponsive(_styles)(theme)
 
-  const styleObject = runIfFn(styleOrFn, theme)
-  const styles = processResponsive(styleObject)(theme)
+    let computedStyles: Dict = {}
 
-  for (const k in styles) {
-    const x = styles[k]
-    const val = runIfFn(x, theme)
+    for (const k in styles) {
+      const valueOrFn = styles[k]
+      const value = runIfFn(valueOrFn, theme)
+      const key = k in pseudos ? pseudos[k] : k
 
-    const key = k in pseudoSelectors ? pseudoSelectors[k] : k
-    let config = (parser.config as Dict)[key]
+      let config = configs[key]
 
-    if (config === true) {
-      // shortcut definition
-      config = { property: key, scale: key }
-    }
-
-    if (isObject(val)) {
-      computedStyles[key] = css(val)(theme)
-      continue
-    }
-
-    const scale = get(theme, config?.scale, {})
-    let value = config?.transform?.(val, scale, props) ?? get(scale, val, val)
-    /**
-     * Useful for `layerStyle`, and `textStyle` to transform the returned
-     * result since it might use theme tokens
-     */
-    value = config?.processResult ? css(value)(theme) : value
-
-    if (config?.properties) {
-      for (const property of config.properties) {
-        computedStyles[property] = value
+      if (config === true) {
+        config = { property: key } as PropConfig
       }
-      continue
-    }
 
-    if (config?.property) {
-      /**
-       * Used for styled-system configs that map to multiple computed properties.
-       * For example, the `borderLeftRadius` computed keys based on rtl/ltr
-       */
-      if (config.property === "&") {
-        computedStyles = mergeWith({}, computedStyles, value)
-      } else {
-        computedStyles[config.property] = value
+      if (isObject(value)) {
+        computedStyles[key] = css(value, true)
+        continue
       }
-      continue
+
+      let rawValue = config?.transform?.(value, theme) ?? value
+      rawValue = config?.processResult ? css(rawValue, true) : rawValue
+
+      if (config?.property) {
+        config.property = runIfFn(config.property, theme)
+      }
+
+      if (!nested && config?.static) {
+        const staticStyles = runIfFn(config.static, theme)
+        computedStyles = merge({}, computedStyles, staticStyles)
+      }
+
+      if (config?.property && Array.isArray(config?.property)) {
+        for (const property of config.property) {
+          computedStyles[property] = rawValue
+        }
+        continue
+      }
+
+      if (config?.property) {
+        if (config.property === "&" && isObject(rawValue)) {
+          computedStyles = merge({}, computedStyles, rawValue)
+        } else {
+          computedStyles[config.property as string] = rawValue
+        }
+        continue
+      }
+
+      if (isObject(rawValue)) {
+        computedStyles = merge({}, computedStyles, rawValue)
+        continue
+      }
+
+      computedStyles[key] = rawValue
     }
 
-    computedStyles[key] = value
+    return computedStyles
   }
 
-  return computedStyles
+  return css
+}
+
+export const css = (styles: StyleObjectOrFn) => (theme: any) => {
+  const cssFn = getCss({
+    theme,
+    pseudos: pseudoSelectors,
+    configs: systemPropConfigs,
+  })
+  return cssFn(styles)
 }

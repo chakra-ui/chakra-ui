@@ -1,5 +1,28 @@
 # Change Log
 
+## 1.2.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`83ae62905`](https://github.com/chakra-ui/chakra-ui/commit/83ae62905935fdb3104380d6fd845159b00095fa),
+  [`87cc23e14`](https://github.com/chakra-ui/chakra-ui/commit/87cc23e14814e02cbbfc9737c2356cef682ddd5d)]:
+  - @chakra-ui/hooks@1.1.5
+  - @chakra-ui/utils@1.3.0
+  - @chakra-ui/form-control@1.2.2
+  - @chakra-ui/visually-hidden@1.0.5
+
+## 1.2.3
+
+### Patch Changes
+
+- [`b99b8674f`](https://github.com/chakra-ui/chakra-ui/commit/b99b8674f1c1874d5805cb3ad2e893c0d852374f)
+  [#3364](https://github.com/chakra-ui/chakra-ui/pull/3364) Thanks
+  [@grahhham](https://github.com/grahhham)! - - Improve the semantic HTML
+  structure of checkbox. `label` is a phrasing content element and should not
+  contain block element `div`.
+  - Replaced `div` with `span` which is an inline element.
+
 ## 1.2.2
 
 ### Patch Changes

@@ -1,16 +1,43 @@
 import { useColorMode } from "@chakra-ui/color-mode"
-import { css, SystemStyleObject } from "@chakra-ui/styled-system"
+import {
+  css,
+  SystemStyleObject,
+  toCSSVar,
+  WithCSSVar,
+} from "@chakra-ui/styled-system"
 import {
   createContext,
   Dict,
   memoizedGet as get,
   runIfFn,
 } from "@chakra-ui/utils"
-import { Global, Interpolation, ThemeContext } from "@emotion/react"
+import {
+  Global,
+  Interpolation,
+  ThemeContext,
+  ThemeProvider as EmotionThemeProvider,
+  ThemeProviderProps as EmotionThemeProviderProps,
+} from "@emotion/react"
 import * as React from "react"
 
-export { ThemeProvider } from "@emotion/react"
-export type { ThemeProviderProps } from "@emotion/react"
+export interface ThemeProviderProps extends EmotionThemeProviderProps {
+  /**
+   * The element to attach the CSS custom properties to.
+   * @default ":root"
+   */
+  cssVarsRoot?: string
+}
+
+export const ThemeProvider = (props: ThemeProviderProps) => {
+  const { cssVarsRoot = ":root", theme, children } = props
+  const computedTheme = React.useMemo(() => toCSSVar(theme), [theme])
+  return (
+    <EmotionThemeProvider theme={computedTheme}>
+      <Global styles={(theme: any) => ({ [cssVarsRoot]: theme.__cssVars })} />
+      {children}
+    </EmotionThemeProvider>
+  )
+}
 
 export function useTheme<T extends object = Dict>() {
   const theme = React.useContext(
@@ -18,20 +45,20 @@ export function useTheme<T extends object = Dict>() {
   )
   if (!theme) {
     throw Error(
-      "useTheme: `theme` is undefined. Seems you forgot to wrap your app in `<ChakraProvider />`",
+      "useTheme: `theme` is undefined. Seems you forgot to wrap your app in `<ChakraProvider />` or `<ThemeProvider />`",
     )
   }
 
-  return theme
+  return theme as WithCSSVar<T>
 }
 
-const [StylesProvider, useStyles] = createContext<Dict<SystemStyleObject>>({
+export const [StylesProvider, useStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
   name: "StylesContext",
   errorMessage:
     "useStyles: `styles` is undefined. Seems you forgot to wrap the components in `<StylesProvider />` ",
 })
-
-export { StylesProvider, useStyles }
 
 /**
  * Applies styles defined in `theme.styles.global` globally
@@ -41,7 +68,7 @@ export const GlobalStyle = () => {
   const { colorMode } = useColorMode()
   return (
     <Global
-      styles={(theme) => {
+      styles={(theme: any) => {
         const styleObjectOrFn = get(theme, "styles.global")
         const globalStyles = runIfFn(styleObjectOrFn, { theme, colorMode })
         if (!globalStyles) return undefined
