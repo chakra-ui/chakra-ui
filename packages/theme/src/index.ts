@@ -28,5 +28,6 @@ export type Theme = typeof theme
 export type DefaultChakraTheme = Theme
 
 export * from "./theme.types"
+export * from "./utils"
 
 export default theme

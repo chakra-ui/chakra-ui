@@ -244,6 +244,90 @@ None of these is strictly required to use Chakra - but we've learned some hard
 lessons on the "right" way and the "wrong" way to write styles. The above is our
 best suggestion on how to write style overrides and organize your custom theme.
 
+## Using Theme extensions
+
+<Badge fontSize="sm" colorScheme="teal" letterSpacing="wider">
+  v1.4.0
+</Badge>
+
+The `extendTheme` function allows you to pass multiple overrides or extensions:
+
+```js
+import {
+  extendTheme,
+  theme as baseTheme,
+  withDefaultColorScheme,
+} from "@chakra-ui/react"
+
+const customTheme = extendTheme(
+  withDefaultColorScheme({ colorScheme: "brand" }),
+  {
+    colors: {
+      brand: baseTheme.colors.red,
+    },
+    components: {
+      Alert: {
+        defaultProps: {
+          colorScheme: "blue",
+        },
+      },
+    },
+  },
+  baseTheme,
+)
+```
+
+The order of overrides is from right to left, except the base:
+
+```js
+extendTheme(
+  extionsionONEoverridesBase,
+  extensionTWOoverridesONE,
+  extensionNEXToverridesPRECEDING,
+  base,
+)
+```
+
+## Theme Extension: withDefaultColorScheme
+
+You can apply a default color scheme to all components in your baseTheme.
+
+```js
+import {
+  extendTheme,
+  theme as baseTheme,
+  withDefaultColorScheme,
+} from "@chakra-ui/react"
+
+const customTheme = extendTheme(
+  withDefaultColorScheme({ colorScheme: "red" }),
+  baseTheme,
+)
+```
+
+Or pass the component names you want to apply a default `colorScheme` to. This
+lets you apply different color schemes to a group of components.
+
+```js
+import {
+  extendTheme,
+  theme as baseTheme,
+  withDefaultColorScheme,
+} from "@chakra-ui/react"
+
+const customTheme = extendTheme(
+  withDefaultColorScheme({
+    colorScheme: "red",
+    components: ["Button", "Badge"],
+  }),
+  withDefaultColorScheme({
+    colorScheme: "blue",
+    components: ["Alert", "Table"],
+  }),
+  baseTheme,
+)
+```
+
 ---
 
 [In the next section](/docs/theming/component-style), we'll show some examples
