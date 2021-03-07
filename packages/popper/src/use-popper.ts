@@ -142,10 +142,8 @@ export function usePopper(props: UsePopperProps = {}) {
     popperJS.forceUpdate?.()
   })
 
-  const finalPlacement = popperJS.state?.placement ?? placement
-
   const arrowStyles = getArrowStyles({
-    placement: finalPlacement,
+    placement: popperJS.placement,
     popperArrowStyles: popperJS.styles.arrow,
     arrowSize,
   })
@@ -183,7 +181,7 @@ export function usePopper(props: UsePopperProps = {}) {
       ...props,
       ref: _ref,
       style: {
-        boxShadow: getBoxShadow(finalPlacement, arrowShadowColor),
+        boxShadow: getBoxShadow(popperJS.placement, arrowShadowColor),
         ...props.style,
         position: "absolute",
         zIndex: -1,
@@ -192,19 +190,18 @@ export function usePopper(props: UsePopperProps = {}) {
         transform: "rotate(45deg)",
       },
     }),
-    [finalPlacement, arrowShadowColor],
+    [popperJS.placement, arrowShadowColor],
   )
 
   return {
-    transformOrigin: toTransformOrigin(finalPlacement),
+    transformOrigin: toTransformOrigin(popperJS.placement),
     getReferenceProps,
     getPopperProps,
     getArrowWrapperProps,
     getArrowProps,
-    state: popperJS.state,
     forceUpdate: popperJS.forceUpdate,
     update: popperJS.update,
-    placement: finalPlacement,
+    placement: popperJS.placement,
   }
 }
 
