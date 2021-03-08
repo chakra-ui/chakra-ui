@@ -6,6 +6,68 @@ export default {
   title: "Machine",
 }
 
+const controlledCounter = createMachine<
+  {
+    value: number
+    min: number
+    max: number
+    onChange?(value: number): void
+    controlled?: boolean
+  },
+  "idle"
+>({
+  context: {
+    value: 0,
+    min: 0,
+    max: 100,
+  },
+  initial: "idle",
+  states: {
+    idle: {
+      on: {
+        INC: {
+          actions: (ctx) => {
+            ctx.onChange(ctx.value + 1)
+            if (!ctx.controlled) {
+              ctx.value++
+            }
+          },
+        },
+        UPDATE: {
+          actions: (ctx, event) => {
+            ctx.value = event.value
+          },
+        },
+      },
+    },
+  },
+})
+
+export const ControlledExample = () => {
+  const [value, setValue] = React.useState(2)
+  const [state, send] = useMachine(() =>
+    controlledCounter.withContext({
+      value,
+      onChange: (val) => {
+        console.log(val)
+        setValue(val)
+      },
+    }),
+  )
+
+  // useUpdateEffect(() => {
+  //   send({ type: "UPDATE", value })
+  // }, [value, send])
+
+  return (
+    <div>
+      <p>{value}</p>
+      <pre>{JSON.stringify(state, null, 2)}</pre>
+      <button onClick={() => send("INC")}>Increment</button>
+    </div>
+  )
+}
+
 const counter = createMachine({
   context: { value: 0, min: 0, max: 100 },
   initial: "idle",

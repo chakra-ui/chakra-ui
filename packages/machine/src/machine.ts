@@ -177,8 +177,9 @@ export class Machine<
    * Used to create a new machine from existing machine
    * but with modified context.
    */
-  withContext = <TTContext extends TContext>(context: TTContext) => {
-    return new Machine({ ...this.config, context })
+  withContext = (context: Partial<TContext>) => {
+    const newContext = { ...this.config.context, ...context } as TContext
+    return new Machine({ ...this.config, context: newContext })
   }
 
   isFinalState = (stateNode: S.StateNode<TContext, TState, TEvent>) => {
