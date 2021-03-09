@@ -75,8 +75,9 @@ Add this to your `gatsby-browser.js`:
 
 ```js live=false
 import React from "react"
-import { ChakraProvider, CSSReset } from "@chakra-ui/react"
-import customTheme from "./theme/theme"
+import { ChakraProvider, CSSReset, extendTheme } from "@chakra-ui/react"
+
+const customTheme = extendTheme({});
 
 export const wrapRootElement = ({ element }) => {
   return (
