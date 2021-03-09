@@ -22,14 +22,6 @@ export interface ThemingProps<ThemeComponent extends string = string> {
 
 export interface ChakraProps extends SystemProps {
   /**
-   * apply layer styles defined in `theme.layerStyles`
-   */
-  layerStyle?: string
-  /**
-   * apply typography styles defined in `theme.textStyles`
-   */
-  textStyle?: string
-  /**
    * Reference styles from any component or key in the theme.
    *
    * @example
