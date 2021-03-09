@@ -33,6 +33,7 @@ export class Machine<
 > {
   state: S.State<TContext>
   config: S.MachineConfig<TContext, TState, TEvent>
+  opts: S.MachineOptions<TContext, TEvent> | undefined
   context: TContext
   id: string
   __type = MACHINE_TYPES.MACHINE
@@ -56,6 +57,7 @@ export class Machine<
     config: S.MachineConfig<TContext, TState, TEvent>,
     opts?: S.MachineOptions<TContext, TEvent>,
   ) {
+    this.opts = opts
     this.config = config
     this.id = config.id ?? nanoid()
     const context = config.context ?? ({} as TContext)
@@ -80,7 +82,9 @@ export class Machine<
             (config.states as Dict)?.[self.current]?.["on"] ?? {}
           const globalEvents = config?.on ?? {}
           Object.assign(stateEvents, globalEvents)
-          return keys(stateEvents)
+          return keys(stateEvents).filter(
+            (event) => event !== INTERNAL_EVENTS.SYNC,
+          )
         },
         changed(self) {
           if (self.event === INTERNAL_EVENTS.INIT || !self.prev) return false
@@ -152,7 +156,7 @@ export class Machine<
     return ref(actor)
   }
 
-  addCleanup = (key: string, cleanup: CleanupFunction) => {
+  private addCleanup = (key: string, cleanup: CleanupFunction) => {
     const d = this.disposables
     if (!d.has(key)) {
       d.set(key, new Set([cleanup]))
@@ -161,7 +165,7 @@ export class Machine<
     }
   }
 
-  assignState = (target: string) => {
+  private assignState = (target: string) => {
     this.state.prev = this.state.current
     this.state.current = target
   }
@@ -179,7 +183,15 @@ export class Machine<
    */
   withContext = (context: Partial<TContext>) => {
     const newContext = { ...this.config.context, ...context } as TContext
-    return new Machine({ ...this.config, context: newContext })
+    return new Machine({ ...this.config, context: newContext }, this.opts)
+  }
+
+  withConfig = (config: Partial<S.MachineConfig<TContext, TState, TEvent>>) => {
+    return new Machine({ ...this.config, ...config }, this.opts)
+  }
+
+  withOptions = (opts: Partial<S.MachineOptions<TContext, TEvent>>) => {
+    return new Machine(this.config, { ...this.opts, ...opts })
   }
 
   isFinalState = (stateNode: S.StateNode<TContext, TState, TEvent>) => {
@@ -192,7 +204,7 @@ export class Machine<
     return (this.config.states as Dict)[state] as StateConfig
   }
 
-  getNextState = (
+  private getNextState = (
     event: TEvent,
     transitions: S.Transitions<TContext, TState, TEvent>,
   ) => {
@@ -217,7 +229,7 @@ export class Machine<
    * Check if a state has running activities. A state is considering to
    * have running activity if it defined `activities` or `every`
    */
-  hasActivities = (state: S.StateNode<TContext, TState, TEvent>) => {
+  private hasActivities = (state: S.StateNode<TContext, TState, TEvent>) => {
     if (!state) return false
     return state.activities || state.every
   }
@@ -230,7 +242,7 @@ export class Machine<
    *
    * Let's resolve this to a number
    */
-  determineDelay = (
+  private determineDelay = (
     delay: S.Delay<TContext, TEvent> | undefined,
     event: TEvent,
   ) => {
@@ -258,7 +270,9 @@ export class Machine<
    * - a string (reference to `options.guards`)
    * - a function that returns a number (in ms)
    */
-  determineGuard = (cond: S.Condition<TContext, TEvent> | undefined) => {
+  private determineGuard = (
+    cond: S.Condition<TContext, TEvent> | undefined,
+  ) => {
     return isString(cond) ? this.guardsMap?.[cond] : cond
   }
 
@@ -272,7 +286,7 @@ export class Machine<
    * - An array of possible transitions. In this case, we'll pick the first matching transition
    * depending on the `cond` specified
    */
-  pickTransition = (
+  private pickTransition = (
     event: TEvent,
     transitions?: S.Transitions<TContext, TState, TEvent>,
   ): S.TransitionDefinitionWithDelay<TContext, TState, TEvent> | undefined => {
@@ -298,7 +312,7 @@ export class Machine<
    * To achieve this, we split the after into `entry` and `exit` functions and
    * append them to the normal `entry` and `exit` actions
    */
-  convertAfterToActions = (state: string) => {
+  private convertAfterToActions = (state: string) => {
     type DelayedTransition = S.TransitionDefinitionWithDelay<
       TContext,
       TState,
@@ -375,7 +389,10 @@ export class Machine<
    * Function to executes defined actions. It can accept actions as string
    * (referencing `options.actionsMap`) or actual functions.
    */
-  executeActions = (event: TEvent, actions?: S.Actions<TContext, TEvent>) => {
+  private executeActions = (
+    event: TEvent,
+    actions?: S.Actions<TContext, TEvent>,
+  ) => {
     if (!actions) return
     actions = toArray(actions)
     for (const action of actions) {
@@ -388,7 +405,7 @@ export class Machine<
    * Function to execute running activities and registers
    * their cleanup function internally (to be called later on when we exit the state)
    */
-  executeActivities = (
+  private executeActivities = (
     event: TEvent,
     activities: S.Activities<TContext, TEvent>,
   ) => {
@@ -409,7 +426,7 @@ export class Machine<
    * - An array of possible actions to run (we need to pick the first match based on cond)
    * - An object of intervals and actions
    */
-  createEveryActivities = (
+  private createEveryActivities = (
     every: S.StateNode<TContext, TState, TEvent>["every"],
     iterator: (activity: S.Activity<TContext, TEvent>) => void,
   ) => {
@@ -456,6 +473,14 @@ export class Machine<
     }
   }
 
+  private setEvent = (event: TEvent) => {
+    const eventType = toEvent(event).type
+    this.state.event =
+      eventType === INTERNAL_EVENTS.SYNC
+        ? [this.state.event, INTERNAL_EVENTS.SYNC].join(" > ")
+        : eventType
+  }
+
   /**
    * Performs all the requires side-effects or reactions when
    * we move from state A => state B.
@@ -463,12 +488,12 @@ export class Machine<
    * The Effect order:
    * Exit actions (current state) => Transition actions  => Go to state => Entry actions (next state)
    */
-  performTransitionSideEffects = (
+  private performTransitionSideEffects = (
     current: S.StateNode<TContext, TState, TEvent> | undefined,
     next: S.StateInfo<TContext, TState, TEvent>,
     event: TEvent,
   ) => {
-    this.state.event = toEvent(event).type
+    this.setEvent(event)
     next.target = next.target ?? this.state.current
 
     const changed = next.target !== this.state.current
@@ -532,7 +557,7 @@ export class Machine<
    * Check if the next state is transient and updates the
    * next state to go to target of transient state.
    */
-  checkTransient = (
+  private checkTransient = (
     next: S.StateInfo<TContext, TState, TEvent>,
     event: TEvent,
   ) => {
@@ -628,12 +653,3 @@ export type MachineSrc<
   S extends string,
   E extends S.EventObject = S.AnyEventObject
 > = Machine<C, S, E> | (() => Machine<C, S, E>)
-
-export const createMachine = <
-  C extends Dict,
-  S extends string,
-  E extends S.EventObject = S.AnyEventObject
->(
-  config: S.MachineConfig<C, S, E>,
-  opts?: S.MachineOptions<C, E>,
-) => new Machine(config, opts)
