@@ -2,7 +2,7 @@
 title: Toast
 package: "@chakra-ui/toast"
 image: "components/toast.svg"
-description: VThe toast is used to show alerts on top of an overlay
+description: The toast is used to show alerts on top of an overlay
 ---
 
 The toast is used to show alerts on top of an overlay. The toast will close
@@ -55,7 +55,7 @@ function ToastExample() {
 Display a custom component instead of the default Toast UI.
 
 ```jsx
-function Example() {
+function CustomToastExample() {
   const toast = useToast()
   return (
     <Button
@@ -82,7 +82,7 @@ Toasts can be closed imperatively, individually (via the `close` instance
 method) or all together (via the `closeAll` instance method).
 
 ```jsx
-function Example() {
+function ClosingToastExample() {
   const toast = useToast()
   const toastIdRef = React.useRef()
 
@@ -121,71 +121,65 @@ function Example() {
 }
 ```
 
-## Success
+## Status
+
+You can use `status` to change the color of your toasts.
 
 ```jsx
-function Example() {
+function ToastStatusExample() {
   const toast = useToast()
+  const statuses = ["success", "error", "warning", "info"]
+
   return (
-    <Button
-      onClick={() =>
-        toast({
-          title: "Account created.",
-          description: "We've created your account for you.",
-          status: "success",
-          duration: 9000,
-          isClosable: true,
-        })
-      }
-    >
-      Show Success Toast
-    </Button>
+    <Wrap>
+      {statuses.map((status, i) => (
+        <WrapItem key={i}>
+          <Button
+            onClick={() =>
+              toast({
+                title: `${status} toast`,
+                status: status,
+                isClosable: true,
+              })
+            }
+          >
+            Show {status} toast
+          </Button>
+        </WrapItem>
+      ))}
+    </Wrap>
   )
 }
 ```
 
-## Warning
+## Variants
+
+`Toast` uses the same variants as the
+[`Alert`](https://chakra-ui.com/docs/feedback/alert) component.
 
 ```jsx
-function Example() {
+function ToastVariantsExample() {
   const toast = useToast()
-  return (
-    <Button
-      onClick={() =>
-        toast({
-          title: "Warning.",
-          description: "This is a warning.",
-          status: "warning",
-          duration: 9000,
-          isClosable: true,
-        })
-      }
-    >
-      Show Warning Toast
-    </Button>
-  )
-}
-```
+  const variants = ["solid", "subtle", "left-accent", "top-accent"]
 
-## Error
-
-```jsx
-function ErrorToast() {
-  const toast = useToast()
   return (
-    <Button
-      onClick={() =>
-        toast({
-          title: "An error occurred.",
-          description: "Unable to create user account.",
-          status: "error",
-          duration: 9000,
-          isClosable: true,
-        })
-      }
-    >
-      Show Error Toast
-    </Button>
+    <Wrap>
+      {variants.map((variant, i) => (
+        <WrapItem key={i}>
+          <Button
+            onClick={() =>
+              toast({
+                title: `${variant} toast`,
+                variant: variant,
+                isClosable: true,
+              })
+            }
+          >
+            Show {variant} toast
+          </Button>
+        </WrapItem>
+      ))}
+    </Wrap>
   )
 }
 ```
@@ -197,21 +191,33 @@ Using the `position` prop you can adjust where your toast will be popup from.
 ```jsx
 function PositionExample() {
   const toast = useToast()
+  const positions = [
+    "top",
+    "top-right",
+    "top-left",
+    "bottom",
+    "bottom-right",
+    "bottom-left",
+  ]
+
   return (
-    <Button
-      onClick={() =>
-        toast({
-          position: "bottom-left",
-          title: "Account created.",
-          description: "We've created your account for you.",
-          status: "success",
-          duration: 9000,
-          isClosable: true,
-        })
-      }
-    >
-      Show Toast
-    </Button>
+    <Wrap>
+      {positions.map((position, i) => (
+        <WrapItem key={i}>
+          <Button
+            onClick={() =>
+              toast({
+                title: `${position} toast`,
+                position: position,
+                isClosable: true,
+              })
+            }
+          >
+            Show {position} toast
+          </Button>
+        </WrapItem>
+      ))}
+    </Wrap>
   )
 }
 ```
@@ -238,13 +244,4 @@ toast({
 
 ## Props
 
-| Name          | Type                                                                    | Default  | Description                                                          |
-| ------------- | ----------------------------------------------------------------------- | -------- | -------------------------------------------------------------------- |
-| `title`       | `React.ReactNode`                                                       |          | The title of the toast.                                              |
-| `isClosable`  | `boolean`                                                               | `false`  | If `true` adds a close button to the toast.                          |
-| `onClose`     | `function`                                                              |          | Callback function to close the toast.                                |
-| `description` | `React.ReactNode`                                                       |          | The description of the toast.                                        |
-| `status`      | `default`, `success`, `error`, `warning`, `info`                        |          | The status of the toast.                                             |
-| `duration`    | `number`                                                                | `5000ms` | Duration before dismiss in milliseconds, or `null` to never dismiss. |
-| `position`    | `top`, `top-left`, `top-right`, `bottom`, `bottom-left`, `bottom-right` | `bottom` | Position the toast will popup out from.                              |
-| `render`      | `(props: {onClose:() => void, id: string}) => React.ReactNode`          |          | Callback function to display a custom toast.                         |
+<PropsTable of="useToast" />
