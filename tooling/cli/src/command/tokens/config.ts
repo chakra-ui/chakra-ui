@@ -7,6 +7,7 @@ export const themeKeyConfiguration: ThemeKeyOptions[] = [
   { key: "fonts" },
   { key: "fontSizes" },
   { key: "fontWeights" },
+  { key: "layerStyles" },
   { key: "letterSpacings" },
   { key: "lineHeights" },
   { key: "radii" },
