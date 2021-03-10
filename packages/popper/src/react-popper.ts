@@ -6,7 +6,7 @@ import {
   Modifier,
   Options as PopperOptions,
   VirtualElement,
-  State as PopperState,
+  Placement,
 } from "@popperjs/core"
 import { dequal } from "dequal"
 import * as React from "react"
@@ -57,7 +57,9 @@ export function usePopper(
     modifiers: options.modifiers || EMPTY_MODIFIERS,
   }
 
-  const [popperState, setPopperState] = React.useState<PopperState | null>(null)
+  const [placement, setPlacement] = React.useState<Placement>(
+    optionsWithDefaults.placement,
+  )
   const [styles, setStyles] = React.useState<State["styles"]>({
     popper: {
       position: optionsWithDefaults.strategy,
@@ -76,7 +78,7 @@ export function usePopper(
       fn: ({ state }) => {
         const elements = Object.keys(state.elements)
 
-        setPopperState(state)
+        setPlacement(state.placement)
 
         setStyles(resolve(state.styles, elements))
         setAttrs(resolve(state.attributes, elements))
@@ -150,7 +152,7 @@ export function usePopper(
   }, [])
 
   return {
-    state: popperState || null,
+    placement,
     styles,
     attributes: attrs,
     update: popperInstanceRef.current ? popperInstanceRef.current.update : null,
