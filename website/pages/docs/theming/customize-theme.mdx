@@ -290,7 +290,7 @@ extendTheme(
 
 ## Theme Extension: withDefaultColorScheme
 
-You can apply a default color scheme to all components in your baseTheme.
+You can apply a default color scheme to all components in your `baseTheme`.
 
 ```js
 import {
@@ -323,6 +323,69 @@ const customTheme = extendTheme(
   withDefaultColorScheme({
     colorScheme: "blue",
     components: ["Alert", "Table"],
+  }),
+  baseTheme,
+)
+```
+
+## Theme Extension: withDefaultSize
+
+You can apply a default size to all components in your `baseTheme`.
+
+```js
+import {
+  extendTheme,
+  theme as baseTheme,
+  withDefaultSize,
+} from "@chakra-ui/react"
+
+const customTheme = extendTheme(
+  withDefaultSize({
+    size: "lg",
+    components: ["Button", "Badge"],
+  }),
+  baseTheme,
+)
+```
+
+## Theme Extension: withDefaultVariant
+
+You can apply a default variant to all components in your `baseTheme`.
+
+```js
+import {
+  extendTheme,
+  theme as baseTheme,
+  withDefaultVariant,
+} from "@chakra-ui/react"
+
+const customTheme = extendTheme(
+  withDefaultVariant({
+    variant: "outline",
+    components: ["Input", "NumberInput", "PinInput"],
+  }),
+  baseTheme,
+)
+```
+
+## Theme Extension: withDefaultProps
+
+You can apply default props to all components in your `baseTheme`.
+
+```js
+import {
+  extendTheme,
+  theme as baseTheme,
+  withDefaultProps,
+} from "@chakra-ui/react"
+
+const customTheme = extendTheme(
+  withDefaultProps({
+    defaultProps: {
+      variant: "outline",
+      size: "lg",
+    },
+    components: ["Input", "NumberInput", "PinInput"],
   }),
   baseTheme,
 )
