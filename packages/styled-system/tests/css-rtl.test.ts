@@ -72,8 +72,8 @@ test("should work after refactoring. hehe", () => {
   expect(result).toMatchInlineSnapshot(`
     Object {
       "background": "var(--colors-pinkish)",
-      "marginLeft": "40px",
-      "marginRight": "40px",
+      "marginInlineEnd": "40px",
+      "marginInlineStart": "40px",
       "width": "40%",
     }
   `)

@@ -152,8 +152,8 @@ test("handles all core styled system props", () => {
       "lineHeight": "var(--lineHeights-body)",
       "margin": "var(--space-0)",
       "marginBottom": "var(--space-2)",
-      "marginLeft": "auto",
-      "marginRight": "auto",
+      "marginInlineEnd": "auto",
+      "marginInlineStart": "auto",
       "padding": "var(--space-3)",
       "paddingBottom": "var(--space-4)",
       "paddingTop": "var(--space-4)",
@@ -250,8 +250,8 @@ test("handles negative margins from scale", () => {
   })(theme)
   expect(result).toMatchInlineSnapshot(`
     Object {
-      "marginLeft": "calc(var(--space-4) * -1)",
-      "marginRight": "calc(var(--space-4) * -1)",
+      "marginInlineEnd": "calc(var(--space-4) * -1)",
+      "marginInlineStart": "calc(var(--space-4) * -1)",
       "marginTop": "calc(var(--space-3) * -1)",
     }
   `)
@@ -273,15 +273,17 @@ test("handles negative values from custom css var scale", () => {
   })(customTheme)
 
   // Custom CSS variables are mapped to CSS vars controlled by chakra
-  expect(result).toEqual({
-    marginTop: `calc(var(--space-1) * -1)`,
-    marginLeft: `calc(var(--space-2) * -1)`,
-    marginRight: `calc(var(--space-2) * -1)`,
-    top: `calc(var(--space-3) * -1)`,
-    right: `calc(var(--space-3) * -1)`,
-    bottom: `calc(var(--space-3) * -1)`,
-    left: `calc(var(--space-3) * -1)`,
-  })
+  expect(result).toMatchInlineSnapshot(`
+    Object {
+      "bottom": "calc(var(--space-3) * -1)",
+      "left": "calc(var(--space-3) * -1)",
+      "marginInlineEnd": "calc(var(--space-2) * -1)",
+      "marginInlineStart": "calc(var(--space-2) * -1)",
+      "marginTop": "calc(var(--space-1) * -1)",
+      "right": "calc(var(--space-3) * -1)",
+      "top": "calc(var(--space-3) * -1)",
+    }
+  `)
 })
 
 test("handles negative top, left, bottom, and right from scale", () => {
@@ -464,12 +466,12 @@ test("multiples are transformed", () => {
   expect(style).toMatchInlineSnapshot(`
     Object {
       "marginBottom": "var(--space-2)",
-      "marginLeft": "var(--space-2)",
-      "marginRight": "var(--space-2)",
+      "marginInlineEnd": "var(--space-2)",
+      "marginInlineStart": "var(--space-2)",
       "marginTop": "var(--space-2)",
       "paddingBottom": "var(--space-2)",
-      "paddingLeft": "var(--space-2)",
-      "paddingRight": "var(--space-2)",
+      "paddingInlineEnd": "var(--space-2)",
+      "paddingInlineStart": "var(--space-2)",
       "paddingTop": "var(--space-2)",
       "width": "var(--sizes-large)",
     }
@@ -529,8 +531,8 @@ test("returns correct media query 2nd order", () => {
       "@media screen and (min-width: 52em)",
       "color",
       "height",
-      "paddingLeft",
-      "paddingRight",
+      "paddingInlineStart",
+      "paddingInlineEnd",
       "paddingTop",
       "paddingBottom",
     ]
