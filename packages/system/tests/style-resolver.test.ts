@@ -86,8 +86,8 @@ test("should resolve styles correctly", () => {
         "fontSize": "10px",
         "letterSpacing": "2px",
         "overflow": "hidden",
-        "paddingLeft": "var(--chakra-space-5)",
-        "paddingRight": "var(--chakra-space-5)",
+        "paddingInlineEnd": "var(--chakra-space-5)",
+        "paddingInlineStart": "var(--chakra-space-5)",
         "textOverflow": "ellipsis",
         "textTransform": "uppercase",
       },
@@ -111,15 +111,13 @@ test("should override padding correctly", () => {
   })
 
   expect(result).toMatchInlineSnapshot(`
-    Array [
-      Object {
-        "background": "pinkish",
-        "color": "var(--chakra-colors-green-300)",
-        "marginRight": "var(--chakra-space-5)",
-        "paddingLeft": "var(--chakra-space-4)",
-        "paddingRight": "var(--chakra-space-3)",
-      },
-      undefined,
-    ]
+    Object {
+      "background": "pinkish",
+      "color": "var(--chakra-colors-green-300)",
+      "marginRight": "var(--chakra-space-5)",
+      "paddingInlineEnd": "var(--chakra-space-4)",
+      "paddingInlineStart": "var(--chakra-space-4)",
+      "paddingRight": "var(--chakra-space-3)",
+    }
   `)
 })

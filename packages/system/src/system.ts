@@ -41,7 +41,7 @@ export const toCSSObject: GetStyleObject = ({ baseStyle }) => (props) => {
   const styleProps = objectFilter(rest, (_, prop) => isStyleProp(prop))
   const finalStyles = Object.assign({}, __css, baseStyle, styleProps, sx)
   const computedCSS = css(finalStyles)(props.theme)
-  return [computedCSS, cssProp]
+  return cssProp ? [computedCSS, cssProp] : computedCSS
 }
 
 interface StyledOptions {
