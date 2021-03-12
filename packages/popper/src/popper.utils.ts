@@ -45,17 +45,16 @@ export const getArrowStyles = (options: GetArrowStyleOptions) => {
     ...popperArrowStyles,
     "--popper-arrow-size": isNumber(arrowSize) ? `${arrowSize}px` : arrowSize,
     "--popper-arrow-size-half": "calc(var(--popper-arrow-size) / 2)",
+    "--popper-arrow-offset": `calc(var(--popper-arrow-size-half) * -1)`,
     width: "var(--popper-arrow-size)",
     height: "var(--popper-arrow-size)",
     zIndex: -1,
   }
 
-  const offset = `calc(var(--popper-arrow-size-half) * -1)`
-
-  if (placement.startsWith("top")) styles.bottom = offset
-  if (placement.startsWith("bottom")) styles.top = offset
-  if (placement.startsWith("left")) styles.right = offset
-  if (placement.startsWith("right")) styles.left = offset
+  if (placement.startsWith("top")) styles.bottom = "var(--popper-arrow-offset)"
+  if (placement.startsWith("bottom")) styles.top = "var(--popper-arrow-offset)"
+  if (placement.startsWith("left")) styles.right = "var(--popper-arrow-offset)"
+  if (placement.startsWith("right")) styles.left = "var(--popper-arrow-offset)"
 
   return styles
 }
