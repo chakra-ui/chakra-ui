@@ -1,27 +1,15 @@
-import type { CSSProperties } from "react"
+import { isNumber } from "@chakra-ui/utils"
 import { Placement } from "@popperjs/core"
+import type { CSSProperties } from "react"
 
-export function getBoxShadow(placement: Placement, color?: string) {
-  if (!color) return undefined
-
-  if (placement.includes("top")) {
-    return `2px 2px 2px 0 ${color}`
-  }
-
-  if (placement.includes("bottom")) {
-    return `-1px -1px 1px 0 ${color}`
-  }
-
-  if (placement.includes("right")) {
-    return `-1px 1px 1px 0 ${color}`
-  }
-
-  if (placement.includes("left")) {
-    return `1px -1px 1px 0 ${color}`
-  }
-
-  return undefined
+const placements = {
+  top: `2px 2px 2px 0 var(--popper-arrow-color)`,
+  bottom: `-1px -1px 1px 0 var(--popper-arrow-color)`,
+  right: `-1px 1px 1px 0 var(--popper-arrow-color)`,
+  left: `1px -1px 1px 0 var(--popper-arrow-color)`,
 }
+
+export const getBoxShadow = (placement: Placement) => placements[placement]
 
 const transformEnum = {
   top: "bottom center",
@@ -53,19 +41,21 @@ interface GetArrowStyleOptions {
 export const getArrowStyles = (options: GetArrowStyleOptions) => {
   const { arrowSize, popperArrowStyles = {}, placement } = options
 
-  const styles: CSSProperties = {
+  const styles: CSSProperties & Record<string, any> = {
     ...popperArrowStyles,
-    width: arrowSize,
-    height: arrowSize,
+    "--popper-arrow-size": isNumber(arrowSize) ? `${arrowSize}px` : arrowSize,
+    "--popper-arrow-size-half": "calc(var(--popper-arrow-size) / 2)",
+    width: "var(--popper-arrow-size)",
+    height: "var(--popper-arrow-size)",
     zIndex: -1,
   }
 
-  const offsetAdjust = -(arrowSize / 2)
+  const offset = `calc(var(--popper-arrow-size-half) * -1)`
 
-  if (placement.startsWith("top")) styles.bottom = offsetAdjust
-  if (placement.startsWith("bottom")) styles.top = offsetAdjust
-  if (placement.startsWith("left")) styles.right = offsetAdjust
-  if (placement.startsWith("right")) styles.left = offsetAdjust
+  if (placement.startsWith("top")) styles.bottom = offset
+  if (placement.startsWith("bottom")) styles.top = offset
+  if (placement.startsWith("left")) styles.right = offset
+  if (placement.startsWith("right")) styles.left = offset
 
   return styles
 }

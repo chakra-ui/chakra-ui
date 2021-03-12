@@ -128,7 +128,7 @@ export function usePopper(props: UsePopperProps = {}) {
     matchWidth,
   ])
 
-  const popperJS = useBasePopper(referenceNode as any, popperNode as any, {
+  const popperJS = useBasePopper(referenceNode, popperNode, {
     enabled,
     placement,
     strategy: fixed ? "fixed" : "absolute",
@@ -181,7 +181,8 @@ export function usePopper(props: UsePopperProps = {}) {
       ...props,
       ref: _ref,
       style: {
-        boxShadow: getBoxShadow(popperJS.placement, arrowShadowColor),
+        "--popper-arrow-color": arrowShadowColor,
+        boxShadow: getBoxShadow(popperJS.placement),
         ...props.style,
         position: "absolute",
         zIndex: -1,

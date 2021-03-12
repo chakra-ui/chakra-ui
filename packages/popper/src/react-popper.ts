@@ -1,4 +1,4 @@
-import { useSafeLayoutEffect } from "@chakra-ui/hooks"
+import { useSafeLayoutEffect, useUpdateEffect } from "@chakra-ui/hooks"
 import { fromEntries } from "@chakra-ui/utils"
 import {
   createPopper as defaultCreatePopper,
@@ -42,8 +42,8 @@ function resolve(obj: any, elements: string[]) {
 const EMPTY_MODIFIERS: any[] = []
 
 export function usePopper(
-  referenceElement: Element | VirtualElement,
-  popperElement: HTMLElement,
+  referenceElement: Element | VirtualElement | null,
+  popperElement: HTMLElement | null,
   options: Options = {},
 ) {
   const { enabled = true } = options
@@ -77,9 +77,7 @@ export function usePopper(
       phase: "write",
       fn: ({ state }) => {
         const elements = Object.keys(state.elements)
-
         setPlacement(state.placement)
-
         setStyles(resolve(state.styles, elements))
         setAttrs(resolve(state.attributes, elements))
       },
@@ -116,10 +114,8 @@ export function usePopper(
 
   const popperInstanceRef = React.useRef<Instance | null>()
 
-  useSafeLayoutEffect(() => {
-    if (popperInstanceRef.current) {
-      popperInstanceRef.current.setOptions(popperOptions)
-    }
+  useUpdateEffect(() => {
+    popperInstanceRef.current?.setOptions(popperOptions)
   }, [popperOptions])
 
   useSafeLayoutEffect(() => {
