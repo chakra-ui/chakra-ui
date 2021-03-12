@@ -4,4 +4,4 @@
 "@chakra-ui/cli": minor
 ---
 
-Add support for textStyles theme type generation to @chakra-ui/cli
+Add support for textStyle and layerStyle theme type generation to @chakra-ui/cli
