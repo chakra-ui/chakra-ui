@@ -184,6 +184,8 @@ export function useSlider(props: UseSliderProps) {
    * or greater than max
    */
   const value = clampValue(computedValue, min, max)
+  const valueRef = useRef(value)
+  valueRef.current = value
 
   const reversedValue = max - value + min
   const trackValue = isReversed ? reversedValue : value
@@ -415,7 +417,7 @@ export function useSlider(props: UseSliderProps) {
     const run = (event: MouseEvent) => {
       const nextValue = getValueFromPointer(event)
 
-      if (nextValue != null) {
+      if (nextValue != null && nextValue !== valueRef.current) {
         setEventSource("mouse")
         setValue(nextValue)
       }
@@ -450,7 +452,7 @@ export function useSlider(props: UseSliderProps) {
     const run = (event: TouchEvent) => {
       const nextValue = getValueFromPointer(event)
 
-      if (nextValue != null) {
+      if (nextValue != null && nextValue !== valueRef.current) {
         setEventSource("touch")
         setValue(nextValue)
       }
