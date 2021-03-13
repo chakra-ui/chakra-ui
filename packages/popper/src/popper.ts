@@ -1,5 +1,6 @@
 import { Placement } from "@popperjs/core/lib/enums"
 import arrow from "@popperjs/core/lib/modifiers/arrow"
+import eventListeners from "@popperjs/core/lib/modifiers/eventListeners"
 import flip from "@popperjs/core/lib/modifiers/flip"
 import offset from "@popperjs/core/lib/modifiers/offset"
 import preventOverflow from "@popperjs/core/lib/modifiers/preventOverflow"
@@ -9,9 +10,10 @@ import {
   Modifier,
   popperGenerator,
   State,
+  VirtualElement,
 } from "@popperjs/core/lib/popper-lite"
 import { useCallback, useEffect, useMemo, useRef } from "react"
-import { toTransformOrigin } from "./popper.utils"
+import { getBoxShadow, toTransformOrigin } from "./popper.utils"
 
 const matchWidth: Modifier<"matchWidth", any> = {
   name: "matchWidth",
@@ -27,6 +29,25 @@ const matchWidth: Modifier<"matchWidth", any> = {
   },
 }
 
+const transformOrigin: Modifier<"transformOrigin", any> = {
+  name: "transformOrigin",
+  enabled: true,
+  phase: "write",
+  fn: ({ state }) => {
+    overridePopperStyles(state)
+  },
+  effect: ({ state }) => () => {
+    overridePopperStyles(state)
+  },
+}
+
+const overridePopperStyles = (state: State) => {
+  state.elements.popper.style.setProperty(
+    "--popper-transform-origin",
+    toTransformOrigin(state.placement),
+  )
+}
+
 const adjustArrow: Modifier<"adjustArrow", any> = {
   name: "adjustArrow",
   enabled: true,
@@ -34,24 +55,45 @@ const adjustArrow: Modifier<"adjustArrow", any> = {
   fn: ({ state }) => {
     overrideArrowStyles(state)
   },
-  effect: ({ state }) => () => {
-    overrideArrowStyles(state)
-  },
 }
 
-const transformOrigin: Modifier<"transformOrigin", any> = {
-  name: "transformOrigin",
+const overrideInnerArrow = (state: State) => {
+  if (!state.elements.arrow) return
+  const existingInner = state.elements.arrow.querySelector(
+    "#arrow-inner",
+  ) as HTMLElement | null
+  const boxShadow = getBoxShadow(state.placement)
+  if (!existingInner) {
+    const doc = state.elements.arrow.ownerDocument
+    const inner = doc.createElement("div")
+    inner.id = "arrow-inner"
+    state.elements.arrow.appendChild(inner)
+    Object.assign(inner.style, {
+      transform: "rotate(45deg)",
+      background: "var(--popper-arrow-bg, inherit)",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      position: "absolute",
+      zIndex: -1,
+      boxShadow,
+    })
+  } else if (boxShadow) {
+    existingInner.style.boxShadow = boxShadow
+  }
+}
+
+const innerArrow: Modifier<"innerArrow", any> = {
+  name: "innerArrow",
   enabled: true,
-  phase: "write",
+  phase: "main",
+  requiresIfExists: ["arrow"],
   fn: ({ state }) => {
-    state.elements.popper.style.transformOrigin = toTransformOrigin(
-      state.placement,
-    )
+    overrideInnerArrow(state)
   },
   effect: ({ state }) => () => {
-    state.elements.popper.style.transformOrigin = toTransformOrigin(
-      state.placement,
-    )
+    overrideInnerArrow(state)
   },
 }
 
@@ -62,6 +104,22 @@ type PopperOptions = {
   flip?: boolean
   matchWidth?: boolean
   boundary?: "clippingParents" | HTMLElement
+  eventListeners?: boolean | { scroll?: boolean; resize?: boolean }
+  arrowPadding?: number
+}
+
+function getEventListenerOptions(value: PopperOptions["eventListeners"]) {
+  const defaultListeners = { scroll: true, resize: true }
+  let eventListeners: { enabled?: boolean; options?: typeof defaultListeners }
+  if (typeof value === "object") {
+    eventListeners = {
+      enabled: true,
+      options: { ...defaultListeners, ...value },
+    }
+  } else {
+    eventListeners = { enabled: value, options: defaultListeners }
+  }
+  return eventListeners
 }
 
 export function getCreatePopper(options: PopperOptions) {
@@ -73,8 +131,10 @@ export function getCreatePopper(options: PopperOptions) {
     },
     defaultModifiers: [
       ...defaultModifiers,
-      arrow,
+      { ...eventListeners, ...getEventListenerOptions(options.eventListeners) },
+      { ...arrow, options: { padding: options.arrowPadding } },
       adjustArrow,
+      innerArrow,
       transformOrigin,
       {
         ...offset,
@@ -85,6 +145,9 @@ export function getCreatePopper(options: PopperOptions) {
       {
         ...flip,
         enabled: !!options.flip,
+        options: {
+          padding: 8,
+        },
       },
       {
         ...preventOverflow,
@@ -100,14 +163,18 @@ export function getCreatePopper(options: PopperOptions) {
 }
 
 const getArrowStyle = (placement: Placement) => {
-  if (placement.startsWith("top"))
+  if (placement.startsWith("top")) {
     return { property: "bottom", value: "var(--popper-arrow-offset)" }
-  if (placement.startsWith("bottom"))
+  }
+  if (placement.startsWith("bottom")) {
     return { property: "top", value: "var(--popper-arrow-offset)" }
-  if (placement.startsWith("left"))
+  }
+  if (placement.startsWith("left")) {
     return { property: "right", value: "var(--popper-arrow-offset)" }
-  if (placement.startsWith("right"))
+  }
+  if (placement.startsWith("right")) {
     return { property: "left", value: "var(--popper-arrow-offset)" }
+  }
 }
 
 const overrideArrowStyles = (state: Partial<State>) => {
@@ -144,16 +211,18 @@ const defaultOptions: UsePopperOptions = {
   strategy: "absolute",
   flip: true,
   gutter: 8,
+  arrowPadding: 8,
   preventOverflow: true,
+  eventListeners: true,
   modifiers: [],
 }
 
 export function usePopper(options: UsePopperOptions = {}) {
-  const opts = Object.assign({}, defaultOptions, options)
-  const { modifiers, placement } = opts
+  const opts = { ...defaultOptions, ...options }
+  const { modifiers = [], placement: placementProp } = opts
 
   const createPopper = useRef(getCreatePopper(opts))
-  const reference = useRef<Element | null>(null)
+  const reference = useRef<Element | VirtualElement | null>(null)
   const popper = useRef<HTMLElement | null>(null)
   const instanceRef = useRef<Instance | null>(null)
 
@@ -166,12 +235,11 @@ export function usePopper(options: UsePopperOptions = {}) {
     instanceRef.current = createPopper.current(
       reference.current,
       popper.current,
-      { placement, modifiers },
+      { placement: placementProp, modifiers },
     )
 
-    instanceRef.current.forceUpdate()
     cleanup.current = instanceRef.current.destroy
-  }, [placement, modifiers])
+  }, [placementProp, modifiers])
 
   useEffect(() => {
     return () => {
@@ -182,7 +250,13 @@ export function usePopper(options: UsePopperOptions = {}) {
 
   return useMemo(
     () => ({
-      referenceRef: <T extends Element>(node: T | null) => {
+      get update() {
+        return instanceRef.current?.update
+      },
+      get forceUpdate() {
+        return instanceRef.current?.forceUpdate
+      },
+      referenceRef: <T extends Element | VirtualElement>(node: T | null) => {
         reference.current = node
         setupPopper()
       },

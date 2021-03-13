@@ -2,14 +2,23 @@ import { isNumber } from "@chakra-ui/utils"
 import { Placement } from "@popperjs/core"
 import type { CSSProperties } from "react"
 
-const placements = {
-  top: `2px 2px 2px 0 var(--popper-arrow-color)`,
-  bottom: `-1px -1px 1px 0 var(--popper-arrow-color)`,
-  right: `-1px 1px 1px 0 var(--popper-arrow-color)`,
-  left: `1px -1px 1px 0 var(--popper-arrow-color)`,
-}
+export function getBoxShadow(placement: Placement) {
+  if (placement.includes("top")) {
+    return `1px 1px 1px 0 var(--popper-arrow-shadow-color)`
+  }
 
-export const getBoxShadow = (placement: Placement) => placements[placement]
+  if (placement.includes("bottom")) {
+    return `-1px -1px 1px 0 var(--popper-arrow-shadow-color)`
+  }
+
+  if (placement.includes("right")) {
+    return `-1px 1px 1px 0 var(--popper-arrow-shadow-color)`
+  }
+
+  if (placement.includes("left")) {
+    return `1px -1px 1px 0 var(--popper-arrow-shadow-color)`
+  }
+}
 
 const transformEnum = {
   top: "bottom center",
