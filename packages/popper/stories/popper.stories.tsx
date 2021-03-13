@@ -1,5 +1,5 @@
 import { useDisclosure } from "@chakra-ui/hooks"
-import { AnimatePresence, motion, Variants } from "framer-motion"
+import { motion, Variants } from "framer-motion"
 import * as React from "react"
 import { usePopper } from "../src"
 
@@ -61,36 +61,34 @@ export const WithTransition = () => {
       <button ref={referenceRef} onClick={onToggle}>
         Toggle
       </button>
-      <div
-        ref={popperRef}
-        style={{ "--popper-arrow-bg": isOpen ? "red" : undefined }}
-      >
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              transition={{
-                duration: 0.15,
-                easings: "easeInOut",
-              }}
-              variants={slide}
-              initial="exit"
-              animate="enter"
-              exit="exit"
-              style={{
-                background: bg,
-                width: 200,
-                transformOrigin: "var(--popper-transform-origin)",
-                borderRadius: 4,
-              }}
-            >
-              Testing
-            </motion.div>
-          )}
-        </AnimatePresence>
-        <div data-popper-arrow="">
-          <div data-popper-arrow-inner="" />
-        </div>
+      <div ref={popperRef} style={{ "--popper-arrow-bg": "red" }}>
+        <motion.div
+          transition={{
+            duration: 0.15,
+            easings: "easeInOut",
+          }}
+          variants={slide}
+          initial={false}
+          animate={isOpen ? "enter" : "exit"}
+          style={{
+            background: bg,
+            width: 200,
+            transformOrigin: "var(--popper-transform-origin)",
+            borderRadius: 4,
+          }}
+        >
+          Testing
+          <div data-popper-arrow="">
+            <div data-popper-arrow-inner="" />
+          </div>
+        </motion.div>
       </div>
     </>
   )
+}
+
+declare module "csstype" {
+  interface Properties {
+    [k: string]: any
+  }
 }
