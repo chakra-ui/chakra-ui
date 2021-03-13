@@ -67,3 +67,26 @@ export const getArrowStyles = (options: GetArrowStyleOptions) => {
 
   return styles
 }
+
+const defaultEventListeners = {
+  scroll: true,
+  resize: true,
+}
+
+export function getEventListenerOptions(
+  value?: boolean | Partial<typeof defaultEventListeners>,
+) {
+  let eventListeners: {
+    enabled?: boolean
+    options?: typeof defaultEventListeners
+  }
+  if (typeof value === "object") {
+    eventListeners = {
+      enabled: true,
+      options: { ...defaultEventListeners, ...value },
+    }
+  } else {
+    eventListeners = { enabled: value, options: defaultEventListeners }
+  }
+  return eventListeners
+}

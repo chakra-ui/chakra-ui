@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import * as React from "react"
-import { usePopper } from "../src/popper"
+import { usePopper } from "../src"
 
 export default {
   title: "Popper v2",
@@ -73,7 +73,7 @@ export const VirtualElement = () => {
     const el = document.getElementById("root")
     const handler = debounce(({ clientX: x, clientY: y }) => {
       setNode({ getBoundingClientRect: generateGetBoundingClientRect(x, y) })
-      update()
+      update?.()
     }, 10)
     el.addEventListener("mousemove", handler)
     return () => {
@@ -125,7 +125,9 @@ export const WithAnimation = () => {
               "--popper-arrow-size": "8px",
               "--popper-arrow-bg": "red",
             }}
-          />
+          >
+            <div data-popper-arrow-inner="" />
+          </div>
           Popper
         </motion.div>
       </div>

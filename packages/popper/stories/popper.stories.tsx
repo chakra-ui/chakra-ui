@@ -10,43 +10,31 @@ export default {
 export const Basic = () => {
   const { isOpen, onToggle } = useDisclosure()
 
-  const {
-    getReferenceProps,
-    getPopperProps,
-    getArrowWrapperProps,
-    getArrowProps,
-    transformOrigin,
-  } = usePopper({
+  const { referenceRef, popperRef } = usePopper({
     placement: "bottom-start",
     matchWidth: true,
   })
 
   return (
     <>
-      <button
-        {...getReferenceProps({
-          style: { margin: 400 },
-          onClick: onToggle,
-        })}
-      >
+      <button ref={referenceRef} style={{ margin: 400 }} onClick={onToggle}>
         Reference Tooltip Trigger
       </button>
 
       {isOpen && (
         <div
-          {...getPopperProps({
-            style: {
-              width: 250,
-              background: "red",
-              padding: 15,
-              borderRadius: 6,
-              transformOrigin,
-            },
-          })}
+          ref={popperRef}
+          style={{
+            width: 250,
+            background: "red",
+            "--popper-arrow-bg": "red",
+            padding: 15,
+            borderRadius: 6,
+          }}
         >
           Popper
-          <div {...getArrowWrapperProps()}>
-            <div {...getArrowProps({ style: { background: "red" } })} />
+          <div data-popper-arrow="">
+            <div data-popper-arrow-inner="" />
           </div>
         </div>
       )}
@@ -57,13 +45,7 @@ export const Basic = () => {
 export const WithTransition = () => {
   const { isOpen, onToggle } = useDisclosure()
 
-  const {
-    getPopperProps,
-    getReferenceProps,
-    getArrowWrapperProps,
-    getArrowProps,
-    transformOrigin,
-  } = usePopper({
+  const { referenceRef, popperRef } = usePopper({
     placement: "bottom-start",
   })
 
@@ -76,14 +58,13 @@ export const WithTransition = () => {
 
   return (
     <>
-      <button
-        {...getReferenceProps({
-          onClick: onToggle,
-        })}
-      >
+      <button ref={referenceRef} onClick={onToggle}>
         Toggle
       </button>
-      <div {...getPopperProps()}>
+      <div
+        ref={popperRef}
+        style={{ "--popper-arrow-bg": isOpen ? "red" : undefined }}
+      >
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -98,17 +79,17 @@ export const WithTransition = () => {
               style={{
                 background: bg,
                 width: 200,
-                padding: transformOrigin,
+                transformOrigin: "var(--popper-transform-origin)",
                 borderRadius: 4,
               }}
             >
               Testing
-              <div {...getArrowWrapperProps()}>
-                <div {...getArrowProps({ style: { background: bg } })} />
-              </div>
             </motion.div>
           )}
         </AnimatePresence>
+        <div data-popper-arrow="">
+          <div data-popper-arrow-inner="" />
+        </div>
       </div>
     </>
   )
