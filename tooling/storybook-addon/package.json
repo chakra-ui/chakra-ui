@@ -1,0 +1,31 @@
+{
+  "name": "@chakra-ui/storybook-addon",
+  "version": "0.0.0",
+  "description": "The official Storybook Addon for Chakra UI",
+  "keywords": [
+    "storybook-addons",
+    "chakra",
+    "addon"
+  ],
+  "author": "Mark Chandler <mark@chanchan.io>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "license": "MIT",
+  "main": "dist/preset.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
+}
