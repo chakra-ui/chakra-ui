@@ -1,1 +1,3 @@
-export const decorators = []
+import { withChakra } from "../withChakra"
+
+export const decorators = [withChakra]
