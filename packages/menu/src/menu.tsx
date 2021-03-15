@@ -34,7 +34,7 @@ export interface MenuProps extends UseMenuProps, ThemingProps<"Menu"> {
   children: MaybeRenderProp<{
     isOpen: boolean
     onClose: () => void
-    forceUpdate: (() => void) | null
+    forceUpdate: (() => void) | undefined
   }>
 }
 
@@ -202,7 +202,7 @@ const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
       display: "flex",
       width: "100%",
       alignItems: "center",
-      textAlign: "left",
+      textAlign: "start",
       flex: "0 0 auto",
       outline: 0,
       ...styles.item,
@@ -256,9 +256,7 @@ export const MenuItem = forwardRef<MenuItemProps, "button">((props, ref) => {
   const shouldWrap = icon || command
 
   const _children = shouldWrap ? (
-    <chakra.span pointerEvents="none" flex="1">
-      {children}
-    </chakra.span>
+    <span style={{ pointerEvents: "none", flex: 1 }}>{children}</span>
   ) : (
     children
   )
@@ -325,7 +323,7 @@ export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
         >
           {icon || <CheckIcon />}
         </MenuIcon>
-        <chakra.span flex="1">{optionProps.children}</chakra.span>
+        <span style={{ flex: 1 }}>{optionProps.children}</span>
       </StyledMenuItem>
     )
   },
@@ -366,14 +364,14 @@ export const MenuGroup = forwardRef<MenuGroupProps, "div">((props, ref) => {
   const styles = useStyles()
 
   return (
-    <chakra.div ref={ref} className="chakra-menu__group" role="group">
+    <div ref={ref} className="chakra-menu__group" role="group">
       {title && (
         <chakra.p className={_className} {...rest} __css={styles.groupTitle}>
           {title}
         </chakra.p>
       )}
       {children}
-    </chakra.div>
+    </div>
   )
 })
 
