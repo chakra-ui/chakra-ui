@@ -40,6 +40,23 @@ const smallTheme: Record<string, unknown> = {
       },
     },
   },
+  textStyles: {
+    small: {
+      fontSize: 16,
+    },
+    large: {
+      fontSize: 64,
+      fontWeight: "bold",
+    },
+  },
+  layerStyles: {
+    red: {
+      background: "#ff0000",
+    },
+    blue: {
+      background: "#0000ff",
+    },
+  },
   letterSpacings: defaultRecord,
   lineHeights: defaultRecord,
   fontWeights: defaultRecord,
@@ -85,19 +102,20 @@ describe("Theme typings", () => {
           | \\"onlyColorSchemeColor.800\\"
           | \\"onlyColorSchemeColor.900\\"
           | \\"such.deep.color\\"
+        colorSchemes: \\"onlyColorSchemeColor\\"
         fonts: \\"sm\\" | \\"md\\"
         fontSizes: \\"sm\\" | \\"md\\"
         fontWeights: \\"sm\\" | \\"md\\"
+        layerStyles: \\"red\\" | \\"blue\\"
         letterSpacings: \\"sm\\" | \\"md\\"
         lineHeights: \\"sm\\" | \\"md\\"
         radii: \\"sm\\" | \\"md\\"
         shadows: \\"sm\\" | \\"md\\"
         sizes: \\"sm\\" | \\"md\\"
         space: \\"sm\\" | \\"-sm\\" | \\"md\\" | \\"-md\\"
-        textStyles: never
+        textStyles: \\"small\\" | \\"large\\"
         transition: \\"sm\\" | \\"md\\"
         zIndices: \\"sm\\" | \\"md\\"
-        colorSchemes: \\"onlyColorSchemeColor\\"
         components: {
           Button: {
             sizes: \\"sm\\"
@@ -123,9 +141,11 @@ describe("Theme typings", () => {
         borders: never
         breakpoints: never
         colors: never
+        colorSchemes: never
         fonts: never
         fontSizes: never
         fontWeights: never
+        layerStyles: never
         letterSpacings: never
         lineHeights: never
         radii: never
@@ -135,7 +155,6 @@ describe("Theme typings", () => {
         textStyles: never
         transition: never
         zIndices: never
-        colorSchemes: never
         components: {}
       }
       "

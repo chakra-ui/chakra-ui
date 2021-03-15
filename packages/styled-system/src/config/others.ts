@@ -2,7 +2,7 @@ import { memoizedGet as get } from "@chakra-ui/utils"
 import * as CSS from "csstype"
 import { Config } from "../prop-config"
 import { Transform } from "../types"
-import { Length, ResponsiveValue } from "../utils"
+import { Length, ResponsiveValue, Token } from "../utils"
 
 const floatTransform: Transform = (value, theme) => {
   const map = { left: "right", right: "left" }
@@ -136,12 +136,12 @@ export interface OtherProps {
    * The layer style object to apply.
    * Note: Styles must be located in `theme.layerStyles`
    */
-  layerStyle?: ResponsiveValue<string>
+  layerStyle?: Token<(string & {}), 'layerStyles'>
   /**
    * The text style object to apply.
    * Note: Styles must be located in `theme.textStyles`
    */
-  textStyle?: ResponsiveValue<string>
+  textStyle?: Token<(string & {}), 'textStyles'>
   /**
    * Apply theme-aware style objects in `theme`
    */

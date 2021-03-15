@@ -13,7 +13,6 @@ export const themeKeyConfiguration: ThemeKeyOptions[] = [
   { key: "shadows" },
   { key: "sizes", maxScanDepth: 2 },
   { key: "space", flatMap: (value) => [value, `-${value}`] },
-  { key: "textStyles" },
   { key: "transition" },
   { key: "zIndices" },
 ]
