@@ -256,14 +256,11 @@ export interface PopoverArrowProps extends HTMLChakraProps<"div"> {}
 export const PopoverArrow: React.FC<PopoverArrowProps> = (props) => {
   const styles = useStyles()
   return (
-    <chakra.div
-      {...props}
-      data-popper-arrow
-      className={cx("chakra-popover__arrow-positioner", props.className)}
-    >
+    <chakra.div data-popper-arrow className="chakra-popover__arrow-positioner">
       <chakra.div
+        className={cx("chakra-popover__arrow", props.className)}
+        {...props}
         data-popper-arrow-inner
-        className="chakra-popover__arrow"
         __css={styles.arrow}
       />
     </chakra.div>
