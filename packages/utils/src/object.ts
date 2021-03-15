@@ -147,3 +147,9 @@ export const fromEntries = <T extends unknown>(entries: [string, any][]) =>
     carry[key] = value
     return carry
   }, {}) as T
+
+/**
+ * Get the CSS variable ref stored in the theme
+ */
+export const getCSSVar = (theme: Dict, scale: string, value: any) =>
+  theme.__cssMap[`${scale}.${value}`]?.varRef ?? value
