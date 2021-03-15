@@ -1,6 +1,10 @@
 import { Placement } from "@popperjs/core"
 import { Modifier, State } from "@popperjs/core/lib/popper-lite"
-import { getBoxShadow, toTransformOrigin } from "./utils"
+import {
+  getBoxShadow,
+  toTransformOrigin,
+  popperCSSVars as cssVars,
+} from "./utils"
 
 /* -------------------------------------------------------------------------------------------------
  The match width modifier sets the popper width to match the reference.
@@ -42,7 +46,7 @@ export const transformOrigin: Modifier<"transformOrigin", any> = {
 
 const setTransformOrigin = (state: State) => {
   state.elements.popper.style.setProperty(
-    "--popper-transform-origin",
+    cssVars.transformOrigin.var,
     toTransformOrigin(state.placement),
   )
 }
@@ -68,14 +72,14 @@ const setArrowStyles = (state: Partial<State>) => {
   if (state.elements?.arrow && overrides) {
     Object.assign(state.elements.arrow.style, {
       [overrides.property]: overrides.value,
-      width: "var(--popper-arrow-size, 8px)",
-      height: "var(--popper-arrow-size, 8px)",
+      width: cssVars.arrowSize.varRef,
+      height: cssVars.arrowSize.varRef,
       zIndex: -1,
     })
 
     const vars = {
-      "--popper-arrow-size-half": "calc(var(--popper-arrow-size, 8px) / 2)",
-      "--popper-arrow-offset": `calc(var(--popper-arrow-size-half) * -1)`,
+      [cssVars.arrowSizeHalf.var]: `calc(${cssVars.arrowSize.varRef} / 2)`,
+      [cssVars.arrowOffset.var]: `calc(${cssVars.arrowSizeHalf.varRef} * -1)`,
     }
 
     for (const property in vars) {
@@ -86,16 +90,16 @@ const setArrowStyles = (state: Partial<State>) => {
 
 const getArrowStyle = (placement: Placement) => {
   if (placement.startsWith("top")) {
-    return { property: "bottom", value: "var(--popper-arrow-offset)" }
+    return { property: "bottom", value: cssVars.arrowOffset.varRef }
   }
   if (placement.startsWith("bottom")) {
-    return { property: "top", value: "var(--popper-arrow-offset)" }
+    return { property: "top", value: cssVars.arrowOffset.varRef }
   }
   if (placement.startsWith("left")) {
-    return { property: "right", value: "var(--popper-arrow-offset)" }
+    return { property: "right", value: cssVars.arrowOffset.varRef }
   }
   if (placement.startsWith("right")) {
-    return { property: "left", value: "var(--popper-arrow-offset)" }
+    return { property: "left", value: cssVars.arrowOffset.varRef }
   }
 }
 
@@ -128,7 +132,7 @@ const setInnerArrowStyles = (state: State) => {
 
   Object.assign(inner.style, {
     transform: "rotate(45deg)",
-    background: "var(--popper-arrow-bg, inherit)",
+    background: cssVars.arrowBg.varRef,
     top: 0,
     left: 0,
     width: "100%",

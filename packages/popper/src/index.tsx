@@ -1,2 +1,2 @@
 export * from "./use-popper"
-export { toTransformOrigin } from "./utils"
+export { popperCSSVars } from "./utils"
