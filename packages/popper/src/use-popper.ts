@@ -1,3 +1,4 @@
+import { filterUndefined } from "@chakra-ui/utils"
 import { Placement } from "@popperjs/core/lib/enums"
 import {
   Instance,
@@ -7,13 +8,15 @@ import {
 import { useCallback, useEffect, useMemo, useRef } from "react"
 import { createPopperFn, CreatePopperOptions } from "./create-popper"
 
-interface UsePopperProps extends CreatePopperOptions {
+export type { Placement }
+
+export interface UsePopperProps extends CreatePopperOptions {
   strategy?: "absolute" | "fixed"
   placement?: Placement
   modifiers?: Array<Modifier<any, any>>
 }
 
-const defaultOptions: UsePopperProps = {
+const defaultProps: UsePopperProps = {
   placement: "bottom",
   strategy: "absolute",
   flip: true,
@@ -24,8 +27,8 @@ const defaultOptions: UsePopperProps = {
   modifiers: [],
 }
 
-export function usePopper(options: UsePopperProps = {}) {
-  const opts = { ...defaultOptions, ...options }
+export function usePopper(props: UsePopperProps = {}) {
+  const opts = { ...defaultProps, ...filterUndefined(props) }
   const { modifiers = [], placement: placementProp, strategy } = opts
 
   const createPopper = useRef(createPopperFn(opts))
