@@ -17,11 +17,19 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "license": "MIT",
-  "main": "dist/preset.js",
+  "main": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "typings": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "preset.js"
   ],
-  "scripts": {},
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "concurrently yarn:build:*",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist --source-maps",
+    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types"
+  },
   "dependencies": {},
   "devDependencies": {},
   "peerDependencies": {},
