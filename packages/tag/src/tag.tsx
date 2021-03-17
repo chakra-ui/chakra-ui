@@ -112,6 +112,7 @@ export const TagCloseButton: React.FC<TagCloseButtonProps> = (props) => {
     <chakra.button
       {...rest}
       type="button"
+      aria-label="close"
       disabled={isDisabled}
       __css={btnStyles}
     >
