@@ -121,7 +121,7 @@ const AvatarName: React.FC<AvatarNameProps> = (props) => {
   const styles = useStyles()
 
   return (
-    <chakra.div aria-label={name} {...rest} __css={styles.label}>
+    <chakra.div role="img" aria-label={name} {...rest} __css={styles.label}>
       {name ? getInitials?.(name) : null}
     </chakra.div>
   )
@@ -137,6 +137,7 @@ const DefaultIcon: ChakraComponent<"svg"> = (props) => (
     color="#fff"
     width="100%"
     height="100%"
+    className="chakra-avatar__svg"
     {...props}
   >
     <path
@@ -164,7 +165,9 @@ export const baseStyle: SystemStyleObject = {
 export interface AvatarProps
   extends Omit<HTMLChakraProps<"span">, "onError">,
     AvatarOptions,
-    ThemingProps<"Avatar"> {}
+    ThemingProps<"Avatar"> {
+  iconLabel?: string
+}
 
 /**
  * Avatar component that renders an user avatar with
@@ -181,6 +184,7 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
     onError,
     getInitials = initials,
     icon = <DefaultIcon />,
+    iconLabel = " avatar",
     loading,
     children,
     borderColor,
@@ -214,6 +218,7 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
           name={name}
           borderRadius={borderRadius}
           icon={icon}
+          iconLabel={iconLabel}
         />
         {children}
       </StylesProvider>
@@ -227,17 +232,22 @@ if (__DEV__) {
 
 interface AvatarImageProps
   extends ImageProps,
-    Pick<AvatarProps, "getInitials" | "borderRadius" | "icon" | "name"> {}
+    Pick<AvatarProps, "getInitials" | "borderRadius" | "icon" | "name"> {
+  iconLabel?: string
+}
 
-const AvatarImage: React.FC<AvatarImageProps> = ({
-  src,
-  onError,
-  getInitials,
-  name,
-  borderRadius,
-  loading,
-  icon = <DefaultIcon />,
-}) => {
+const AvatarImage: React.FC<AvatarImageProps> = (props) => {
+  const {
+    src,
+    onError,
+    getInitials,
+    name,
+    borderRadius,
+    loading,
+    iconLabel,
+    icon = <DefaultIcon />,
+  } = props
+
   /**
    * use the image hook to only show the image when it has loaded
    */
@@ -262,7 +272,10 @@ const AvatarImage: React.FC<AvatarImageProps> = ({
         name={name}
       />
     ) : (
-      React.cloneElement(icon, { role: "img" })
+      React.cloneElement(icon, {
+        role: "img",
+        "aria-label": iconLabel,
+      })
     )
   }
 
