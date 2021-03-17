@@ -21,8 +21,6 @@ const HookTooltip = ({ children }: any) => {
     getTriggerProps,
     getTooltipPositionerProps,
     getTooltipProps,
-    getArrowProps,
-    getArrowWrapperProps,
     isOpen,
   } = useTooltip({
     openDelay: 100,
@@ -42,12 +40,13 @@ const HookTooltip = ({ children }: any) => {
               borderRadius: "4px",
               padding: "0.5em 1em",
               visibility: isOpen ? "visible" : "hidden",
+              "--popper-arrow-bg": "tomato",
             },
           })}
         >
           {children}
-          <div {...getArrowWrapperProps()}>
-            <div {...getArrowProps({ style: { background: "tomato" } })} />
+          <div data-popper-arrow>
+            <div data-popper-arrow-inner />
           </div>
         </div>
       </div>
@@ -69,10 +68,7 @@ export const WithTransition = () => {
     getTriggerProps,
     getTooltipPositionerProps,
     getTooltipProps,
-    getArrowProps,
-    getArrowWrapperProps,
     isOpen,
-    transformOrigin,
   } = useTooltip({
     openDelay: 100,
   })
@@ -101,18 +97,17 @@ export const WithTransition = () => {
                     enter: { scale: 1, opacity: 1 },
                   }}
                   style={{
-                    transformOrigin,
+                    transformOrigin: "var(--popper-transform-origin)",
                     background: "tomato",
+                    "--popper-arrow-bg": "tomato",
                     color: "white",
                     borderRadius: "4px",
                     padding: "0.5em 1em",
                   }}
                 >
                   Fade! This is tooltip
-                  <div {...getArrowWrapperProps()}>
-                    <div
-                      {...getArrowProps({ style: { background: "tomato" } })}
-                    />
+                  <div data-popper-arrow>
+                    <div data-popper-arrow-inner />
                   </div>
                 </motion.div>
               </motion.div>
@@ -248,3 +243,9 @@ export const withAutoPlacement = () => (
     </button>
   </Tooltip>
 )
+
+declare module "csstype" {
+  interface Properties {
+    [k: string]: any
+  }
+}

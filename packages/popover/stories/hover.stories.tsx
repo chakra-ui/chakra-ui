@@ -1,14 +1,14 @@
+import { IconButton } from "@chakra-ui/button"
+import { Box, Link, Text } from "@chakra-ui/layout"
 import * as React from "react"
+import { MdCheck } from "react-icons/md"
 import {
   Popover,
-  PopoverTrigger,
-  PopoverContent,
   PopoverArrow,
   PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
 } from "../src"
-import { Box, Text, Link } from "@chakra-ui/layout"
-import { IconButton } from "@chakra-ui/button"
-import { MdCheck } from "react-icons/md"
 
 function Card() {
   return (

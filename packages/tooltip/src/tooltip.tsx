@@ -1,3 +1,4 @@
+import { popperCSSVars } from "@chakra-ui/popper"
 import { Portal, PortalProps } from "@chakra-ui/portal"
 import {
   chakra,
@@ -6,8 +7,9 @@ import {
   omitThemingProps,
   ThemingProps,
   useStyleConfig,
+  useTheme,
 } from "@chakra-ui/system"
-import { isString, omit, pick, __DEV__ } from "@chakra-ui/utils"
+import { isString, omit, pick, __DEV__, getCSSVar } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
@@ -61,6 +63,7 @@ const StyledTooltip = chakra(motion.div)
 export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
   const styles = useStyleConfig("Tooltip", props)
   const ownProps = omitThemingProps(props)
+  const theme = useTheme()
 
   const {
     children,
@@ -75,6 +78,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
 
   if (bg) {
     styles.bg = bg
+    styles[popperCSSVars.arrowBg.var] = getCSSVar(theme, "colors", bg)
   }
 
   const tooltip = useTooltip(rest)
@@ -147,12 +151,12 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
                 )}
                 {hasArrow && (
                   <chakra.div
+                    data-popper-arrow
                     className="chakra-tooltip__arrow-wrapper"
-                    {...tooltip.getArrowWrapperProps()}
                   >
                     <chakra.div
+                      data-popper-arrow-inner
                       className="chakra-tooltip__arrow"
-                      {...tooltip.getArrowProps()}
                       __css={{ bg: styles.bg }}
                     />
                   </chakra.div>

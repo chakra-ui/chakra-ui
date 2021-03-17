@@ -60,7 +60,7 @@ export interface PopoverProps extends UsePopoverProps, ThemingProps<"Popover"> {
   children?: MaybeRenderProp<{
     isOpen: boolean
     onClose: () => void
-    forceUpdate: (() => void) | null
+    forceUpdate: (() => void) | undefined
   }>
 }
 
@@ -254,17 +254,13 @@ if (__DEV__) {
 export interface PopoverArrowProps extends HTMLChakraProps<"div"> {}
 
 export const PopoverArrow: React.FC<PopoverArrowProps> = (props) => {
-  const { getArrowProps, getArrowPositionerProps } = usePopoverContext()
   const styles = useStyles()
-
   return (
-    <chakra.div
-      {...getArrowPositionerProps()}
-      className={cx("chakra-popover__arrow-positioner", props.className)}
-    >
+    <chakra.div data-popper-arrow className="chakra-popover__arrow-positioner">
       <chakra.div
         className={cx("chakra-popover__arrow", props.className)}
-        {...getArrowProps(props)}
+        {...props}
+        data-popper-arrow-inner
         __css={styles.arrow}
       />
     </chakra.div>
