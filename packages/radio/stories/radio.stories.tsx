@@ -44,14 +44,16 @@ export const WithSizes = () => {
   )
 }
 
-export const radioGroup = () => {
+export const _RadioGroup = () => {
+  const [value, setValue] = React.useState("")
   return (
-    <RadioGroup name="type" onChange={console.log}>
+    <RadioGroup value={value} onChange={setValue}>
       <Stack>
         <Radio value="Option 1">Option 1</Radio>
         <Radio value="Option 2">Option 2</Radio>
         <Radio value="Option 3">Option 3</Radio>
       </Stack>
+      <button onClick={() => setValue("")}>Clear</button>
     </RadioGroup>
   )
 }

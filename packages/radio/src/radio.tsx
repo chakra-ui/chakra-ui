@@ -57,12 +57,12 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
   } = omitThemingProps(props)
 
   let isChecked = props.isChecked
-  if (group?.value && valueProp) {
+  if (group?.value != null && valueProp != null) {
     isChecked = group.value === valueProp
   }
 
   let onChange = onChangeProp
-  if (group?.onChange && valueProp) {
+  if (group?.onChange && valueProp != null) {
     onChange = callAll(group.onChange, onChangeProp)
   }
 
