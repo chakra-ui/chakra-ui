@@ -57,7 +57,7 @@ if (__DEV__) {
 }
 
 export const TagLeftIcon = forwardRef<IconProps, "svg">((props, ref) => (
-  <Icon ref={ref} verticalAlign="top" mr="0.5rem" {...props} />
+  <Icon ref={ref} verticalAlign="top" marginEnd="0.5rem" {...props} />
 ))
 
 if (__DEV__) {
@@ -65,7 +65,7 @@ if (__DEV__) {
 }
 
 export const TagRightIcon = forwardRef<IconProps, "svg">((props, ref) => (
-  <Icon ref={ref} verticalAlign="top" ml="0.5rem" {...props} />
+  <Icon ref={ref} verticalAlign="top" marginStart="0.5rem" {...props} />
 ))
 
 if (__DEV__) {
