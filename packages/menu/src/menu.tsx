@@ -181,6 +181,32 @@ if (__DEV__) {
   MenuList.displayName = "MenuList"
 }
 
+export interface MenuArrowProps extends HTMLChakraProps<"div"> {}
+
+export const MenuArrow: React.FC<MenuArrowProps> = (props) => {
+  const { popper } = useMenuContext()
+
+  const { getArrowProps, getArrowWrapperProps } = popper
+  const styles = useStyles()
+
+  return (
+    <chakra.div
+      {...getArrowWrapperProps()}
+      className={cx("chakra-popover__arrow-positioner", props.className)}
+    >
+      <chakra.div
+        className={cx("chakra-popover__arrow", props.className)}
+        {...getArrowProps(props)}
+        __css={styles.arrow}
+      />
+    </chakra.div>
+  )
+}
+
+if (__DEV__) {
+  MenuArrow.displayName = "MenuArrow"
+}
+
 export interface StyledMenuItemProps extends HTMLChakraProps<"button"> {}
 
 const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(

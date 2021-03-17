@@ -12,6 +12,7 @@ import {
   useUpdateEffect,
 } from "@chakra-ui/hooks"
 import { usePopper, UsePopperProps } from "@chakra-ui/popper"
+import { useColorModeValue, useToken } from "@chakra-ui/system"
 import {
   addItem,
   callAllHandlers,
@@ -106,6 +107,9 @@ export function useMenu(props: UseMenuProps) {
     },
   })
 
+  const shadowColor = useColorModeValue("gray.200", "whiteAlpha.300")
+  const arrowColor = useToken("colors", shadowColor, "gray.200")
+
   /**
    * Add some popper.js for dynamic positioning
    */
@@ -113,6 +117,7 @@ export function useMenu(props: UseMenuProps) {
     placement,
     ...props,
     enabled: isOpen,
+    arrowShadowColor: arrowColor,
   })
 
   const [focusedIndex, setFocusedIndex] = React.useState(-1)

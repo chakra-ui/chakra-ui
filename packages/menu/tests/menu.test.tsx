@@ -18,6 +18,7 @@ import {
   MenuItemOption,
   MenuList,
   MenuOptionGroup,
+  MenuArrow,
 } from "../src"
 
 const words = [
@@ -48,6 +49,29 @@ test("passes a11y test", async () => {
       </MenuList>
     </Menu>,
   )
+})
+
+test("does render MenuArrow", async () => {
+  render(
+    <Menu>
+      <MenuButton
+        as={Button}
+        variant="solid"
+        colorScheme="teal"
+        size="sm"
+        // rightIcon={<FaUnlink />}
+      >
+        Open Wakanda menu
+      </MenuButton>
+      <MenuList>
+        <MenuArrow data-testid="menu-arrow" />
+        {words.map((word) => (
+          <MenuItem key={word}>{word}</MenuItem>
+        ))}
+      </MenuList>
+    </Menu>,
+  )
+  expect(screen.getByTestId("menu-arrow")).not.toBeNull()
 })
 
 test("does not render MenuList Items if Menu isLazy", () => {
