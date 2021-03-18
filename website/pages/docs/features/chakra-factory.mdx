@@ -138,7 +138,7 @@ const Div = chakra("div", {
     if (isChakraProp) return false
 
     // forward valid HTML props
-    const isValidProp = isValidHMTLProp(prop)
+    const isValidProp = isValidHTMLProp(prop)
     if (isValidProp) return true
 
     // else, only forward `sample` prop
