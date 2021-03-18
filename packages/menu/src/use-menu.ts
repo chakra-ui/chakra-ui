@@ -356,7 +356,7 @@ export function useMenuList(
     [descendants, focusedIndex, onCharacterPress, onClose, setFocusedIndex],
   )
 
-  const menulistProps: any = {
+  return {
     ...props,
     ref: mergeRefs(menuRef, ref),
     children: !isLazy || isOpen ? props.children : null,
@@ -370,8 +370,6 @@ export function useMenuList(
     "aria-orientation": "vertical" as React.AriaAttributes["aria-orientation"],
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
   }
-
-  return menulistProps
 }
 
 export function useMenuPositioner(props: any = {}) {
