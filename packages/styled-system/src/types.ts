@@ -88,7 +88,7 @@ export interface SystemProps extends StyleProps, PseudoProps {}
 
 export type CSSMap = Dict<{ value: string; var: string; varRef: string }>
 
-export type Transform = (value: any, theme: CssTheme) => any
+export type Transform = (value: any, theme: CssTheme, styles?: Dict) => any
 
 export type WithCSSVar<T> = T & {
   __cssVars: Dict

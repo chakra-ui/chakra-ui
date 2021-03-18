@@ -32,6 +32,14 @@ const srFocusable = {
   whiteSpace: "normal",
 }
 
+const getWithPriority = (theme: any, key: any, styles: any) => {
+  const expanded = get(theme, key, {})
+  for (const prop in expanded) {
+    if (prop in styles) delete expanded[prop]
+  }
+  return expanded
+}
+
 export const others: Config = {
   animation: true,
   appearance: true,
@@ -58,15 +66,17 @@ export const others: Config = {
   },
   layerStyle: {
     processResult: true,
-    transform: (value, theme) => get(theme, `layerStyles.${value}`, {}),
+    transform: (value, theme, styles) =>
+      getWithPriority(theme, `layerStyles.${value}`, styles),
   },
   textStyle: {
     processResult: true,
-    transform: (value, theme) => get(theme, `textStyles.${value}`, {}),
+    transform: (value, theme, styles = {}) =>
+      getWithPriority(theme, `textStyles.${value}`, styles),
   },
   apply: {
     processResult: true,
-    transform: (value, theme) => get(theme, value, {}),
+    transform: (value, theme, styles) => getWithPriority(theme, value, styles),
   },
 }
 
@@ -136,12 +146,12 @@ export interface OtherProps {
    * The layer style object to apply.
    * Note: Styles must be located in `theme.layerStyles`
    */
-  layerStyle?: Token<(string & {}), 'layerStyles'>
+  layerStyle?: Token<string & {}, "layerStyles">
   /**
    * The text style object to apply.
    * Note: Styles must be located in `theme.textStyles`
    */
-  textStyle?: Token<(string & {}), 'textStyles'>
+  textStyle?: Token<string & {}, "textStyles">
   /**
    * Apply theme-aware style objects in `theme`
    */

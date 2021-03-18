@@ -73,11 +73,12 @@ export function getCss(options: Options) {
       }
 
       if (isObject(value)) {
-        computedStyles[key] = css(value, true)
+        computedStyles[key] = computedStyles[key] ?? {}
+        computedStyles[key] = merge({}, computedStyles[key], css(value, true))
         continue
       }
 
-      let rawValue = config?.transform?.(value, theme) ?? value
+      let rawValue = config?.transform?.(value, theme, _styles) ?? value
       rawValue = config?.processResult ? css(rawValue, true) : rawValue
 
       const configProperty = runIfFn(config?.property, theme)

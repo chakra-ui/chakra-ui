@@ -81,7 +81,7 @@ test("should resolve styles correctly", () => {
         "WebkitLineClamp": "var(--chakra-line-clamp)",
         "background": "tomato",
         "backgroundPosition": "top left",
-        "color": "var(--chakra-colors-red-300)",
+        "color": "var(--chakra-colors-pink-300)",
         "display": "-webkit-box",
         "fontSize": "10px",
         "letterSpacing": "2px",
@@ -89,7 +89,7 @@ test("should resolve styles correctly", () => {
         "paddingInlineEnd": "var(--chakra-space-5)",
         "paddingInlineStart": "var(--chakra-space-5)",
         "textOverflow": "ellipsis",
-        "textTransform": "uppercase",
+        "textTransform": "capitalize",
       },
       Object {
         "paddingLeft": 40,
