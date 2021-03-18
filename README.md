@@ -92,12 +92,12 @@ link to your website.
 To use Chakra UI components, all you need to do is install the
 `@chakra-ui/react` package and its peer dependencies:
 
-```sh
-$ yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion
+```bash
+npm i @chakra-ui/react @emotion/react@^11.0.0 @emotion/styled@^11.0.0 framer-motion@^3.0.0
 
 # or
 
-$ npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+yarn add @chakra-ui/react @emotion/react@^11.0.0 @emotion/styled@^11.0.0 framer-motion@^3.0.0
 ```
 
 ## Usage
