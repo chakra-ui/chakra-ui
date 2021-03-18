@@ -366,3 +366,44 @@ test("should add a css var prefix if provided", () => {
     }
   `)
 })
+
+test("should convert transition tokens", () => {
+  const theme = {
+    transition: {
+      property: {
+        colors: "background-color, background",
+      },
+    },
+  }
+  expect(toCSSVar(theme)).toMatchInlineSnapshot(`
+    Object {
+      "__breakpoints": null,
+      "__cssMap": Object {
+        "transition.property.colors": Object {
+          "value": "background-color, background",
+          "var": "--transition-property-colors",
+          "varRef": "var(--transition-property-colors)",
+        },
+      },
+      "__cssVars": Object {
+        "--chakra-ring": "var(--chakra-ring-offset-shadow), var(--chakra-ring-shadow), 0 0 transparent",
+        "--chakra-ring-color": "rgba(66, 153, 225, 0.6)",
+        "--chakra-ring-inset": "var(--chakra-empty, /*!*/ /*!*/)",
+        "--chakra-ring-offset": "0px",
+        "--chakra-ring-offset-shadow": "var(--chakra-ring-inset) 0 0 0 var(--chakra-ring-offset) var(--chakra-ring-offset-color, transparent)",
+        "--chakra-ring-shadow": "var(--chakra-ring-inset) 0 0 0 calc(var(--chakra-ring-width) + var(--chakra-ring-offset)) var(--chakra-ring-color)",
+        "--chakra-ring-width": "3px",
+        "--chakra-space-x-reverse": "0",
+        "--chakra-space-y-reverse": "0",
+        "--chakra-transform": "translateX(var(--chakra-translate-x, 0)) translateY(var(--chakra-translate-y, 0)) rotate(var(--chakra-rotate, 0)) scaleX(var(--chakra-scale-x, 1)) scaleY(var(--chakra-scale-y, 1)) skewX(var(--chakra-skew-x, 0)) skewY(var(--chakra-skew-y, 0))",
+        "--chakra-transform-gpu": "translate3d(var(--chakra-translate-x, 0), var(--chakra-translate-y, 0), 0) rotate(var(--chakra-rotate, 0)) scaleX(var(--chakra-scale-x, 1)) scaleY(var(--chakra-scale-y, 1)) skewX(var(--chakra-skew-x, 0)) skewY(var(--chakra-skew-y, 0))",
+        "--transition-property-colors": "background-color, background",
+      },
+      "transition": Object {
+        "property": Object {
+          "colors": "background-color, background",
+        },
+      },
+    }
+  `)
+})

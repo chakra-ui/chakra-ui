@@ -37,13 +37,14 @@ export const tokens = [
   "shadows",
   "sizes",
   "zIndices",
-  "transitions",
-  "transition.duration",
-  "transition.property",
-  "transition.easing",
+  "transition",
 ] as const
 
-export type ThemeScale = typeof tokens[number]
+export type ThemeScale =
+  | typeof tokens[number]
+  | "transition.duration"
+  | "transition.property"
+  | "transition.easing"
 
 function extractTokens(theme: Dict) {
   const _tokens = (tokens as unknown) as string[]

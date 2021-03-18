@@ -54,3 +54,23 @@ export const HoverFocus = () => {
     </Box>
   )
 }
+
+export const TextAndLayerStyles = () => {
+  const theme = {
+    ...defaultTheme,
+    textStyles: {
+      big: { fontSize: "40px", lineHeight: "80px" },
+      responsiveValue: {
+        fontSize: { base: "10px", sm: "20px" },
+      },
+    },
+  }
+  return (
+    <ThemeProvider theme={toCSSVar(theme)}>
+      <Box css={{ textStyle: "responsiveValue", fontSize: "60px" }}>
+        Lorem ipsum is placeholder text commonly used in the graphic, print, and
+        publishing industries for previewing layouts and visual mockups.
+      </Box>
+    </ThemeProvider>
+  )
+}
