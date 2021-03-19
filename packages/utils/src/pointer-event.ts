@@ -158,3 +158,7 @@ export function addPointerEvent(
     options,
   )
 }
+
+export function isMultiTouchEvent(event: EventType) {
+  return isTouchEvent(event) && event.touches.length > 1
+}
