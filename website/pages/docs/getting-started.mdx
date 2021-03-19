@@ -5,13 +5,15 @@ description: How to install and set up Chakra UI in your project
 
 ## Installation
 
-Inside your React project directory, install Chakra UI by running either of the following:
+Inside your React project directory, install Chakra UI by running either of the
+following:
 
 ```bash
-npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4
 ```
+
 ```bash
-yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion
+yarn add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4
 ```
 
 > For `create-react-app` installation instructions, check this
@@ -43,29 +45,34 @@ function App() {
 > - For Create React App, you need to set this up in `index.js` or `index.tsx`
 
 ### Next.js
-Go to `pages/_app.js` or `pages/_app.tsx` (create if it doesn't exist) and add this:
+
+Go to `pages/_app.js` or `pages/_app.tsx` (create if it doesn't exist) and add
+this:
 
 ```jsx live=false
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider } from "@chakra-ui/react"
 
 function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider>
       <Component {...pageProps} />
     </ChakraProvider>
-  );
+  )
 }
 
-export default MyApp;
-
+export default MyApp
 ```
 
 ### Gatsby
-Add the [@chakra-ui/gatsby-plugin](gatsbyjs.com/plugins/@chakra-ui/gatsby-plugin/). It does everything automatically for you!
+
+Add the
+[@chakra-ui/gatsby-plugin](gatsbyjs.com/plugins/@chakra-ui/gatsby-plugin/). It
+does everything automatically for you!
 
 ```bash
 npm i @chakra-ui/gatsby-plugin
 ```
+
 ```bash
 yarn add @chakra-ui/gatsby-plugin
 ```
@@ -79,7 +86,6 @@ module.exports = {
   plugins: ["@chakra-ui/gatsby-plugin"],
 }
 ```
-
 
 ## Add custom theme (Optional)
 
