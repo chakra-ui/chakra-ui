@@ -49,7 +49,14 @@ export interface ThemeComponentProps<Theme extends ChakraTheme = ChakraTheme>
   theme: Theme
 }
 
-export type ThemingPropsThunk<T> = T | ((props: ThemeComponentProps) => T)
+export type ThemeComponentFunction<
+  Style,
+  Theme extends ChakraTheme = ChakraTheme
+> = (props: ThemeComponentProps<Theme>) => Style
+
+export type ThemingPropsThunk<Style, Theme extends ChakraTheme = ChakraTheme> =
+  | Style
+  | ThemeComponentFunction<Style, Theme>
 
 export interface SystemStyleObjectRecord {
   [key: string]: StyleObjectOrFn
