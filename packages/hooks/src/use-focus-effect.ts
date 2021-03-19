@@ -24,7 +24,7 @@ export function useFocusEffect<T extends HTMLElement>(
     if (!node || !shouldFocus) return
 
     if (!hasFocusWithin(node)) {
-      focus(node, { preventScroll })
+      focus(node, { preventScroll, nextTick: true })
     }
   }, [shouldFocus, ref, preventScroll])
 }

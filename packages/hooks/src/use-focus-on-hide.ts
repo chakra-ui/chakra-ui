@@ -52,7 +52,7 @@ export function useFocusOnHide(
     const el = focusRef?.current || containerRef.current
 
     if (el) {
-      focus(el)
+      focus(el, { nextTick: true })
     }
   }, [shouldFocus, containerRef, focusRef])
 }

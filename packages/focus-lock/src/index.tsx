@@ -71,7 +71,7 @@ export const FocusLock: React.FC<FocusLockProps> = (props) => {
     } else if (contentRef?.current) {
       const focusables = getAllFocusable(contentRef.current)
       if (focusables.length === 0) {
-        focus(contentRef.current)
+        focus(contentRef.current, { nextTick: true })
       }
     }
   }, [initialFocusRef, contentRef])

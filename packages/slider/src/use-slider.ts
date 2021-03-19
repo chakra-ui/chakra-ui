@@ -383,7 +383,7 @@ export function useSlider(props: UseSliderProps) {
 
   useUpdateEffect(() => {
     if (thumbRef.current && focusThumbOnChange) {
-      focus(thumbRef.current)
+      focus(thumbRef.current, { nextTick: true })
     }
   }, [value])
 

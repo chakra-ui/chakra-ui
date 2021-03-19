@@ -35,11 +35,11 @@ export function useFocusOnShow<T extends HTMLElement>(
     if (contains(element, document.activeElement as HTMLElement)) return
 
     if (focusRef?.current) {
-      focus(focusRef.current, { preventScroll })
+      focus(focusRef.current, { preventScroll, nextTick: true })
     } else {
       const tabbableEls = getAllFocusable(element)
       if (tabbableEls.length > 0) {
-        focus(tabbableEls[0], { preventScroll })
+        focus(tabbableEls[0], { preventScroll, nextTick: true })
       }
     }
   }, [autoFocus, preventScroll, element, focusRef])

@@ -142,7 +142,7 @@ export function useMenu(props: UseMenuProps) {
 
   const openAndFocusMenu = React.useCallback(() => {
     onOpen()
-    if (menuRef.current) focus(menuRef.current)
+    focus(menuRef.current, { nextTick: true })
   }, [onOpen, menuRef])
 
   const openAndFocusFirstItem = React.useCallback(() => {
@@ -476,7 +476,7 @@ export function useMenuItem(
   useUpdateEffect(() => {
     if (!isOpen) return
     if (isFocused && !trulyDisabled && ref.current) {
-      focus(ref.current)
+      focus(ref.current, { nextTick: true })
     } else if (document.activeElement !== menuRef.current) {
       menuRef.current?.focus()
     }

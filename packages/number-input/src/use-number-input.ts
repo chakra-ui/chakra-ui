@@ -308,7 +308,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
   const focusInput = React.useCallback(() => {
     if (focusInputOnChange && inputRef.current) {
-      focus(inputRef.current)
+      focus(inputRef.current, { nextTick: true })
     }
   }, [focusInputOnChange])
 
