@@ -2,9 +2,11 @@ import { chakra, PropsOf } from "@chakra-ui/system"
 import { AnimatePresence, CustomDomComponent, motion } from "framer-motion"
 import * as React from "react"
 
-const MotionSvg: CustomDomComponent<PropsOf<typeof chakra.svg>> = motion(
-  chakra.svg,
-)
+// @future: only call `motion(chakra.svg)` when we drop framer-motion v3 support
+const MotionSvg: CustomDomComponent<PropsOf<typeof chakra.svg>> =
+  "custom" in motion
+    ? (motion as any).custom(chakra.svg)
+    : (motion as any)(chakra.svg)
 
 const CheckIcon = (props: PropsOf<typeof MotionSvg>) => (
   <MotionSvg

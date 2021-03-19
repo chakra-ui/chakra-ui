@@ -141,9 +141,11 @@ const motionVariants: Variants = {
   },
 }
 
-const MotionDiv: CustomDomComponent<PropsOf<typeof chakra.div>> = motion(
-  chakra.div,
-)
+// @future: only call `motion(chakra.div)` when we drop framer-motion v3 support
+const MotionDiv: CustomDomComponent<PropsOf<typeof chakra.div>> =
+  "custom" in motion
+    ? (motion as any).custom(chakra.div)
+    : (motion as any)(chakra.div)
 
 export const MenuList = forwardRef<MenuListProps, "div">((props, ref) => {
   const { rootProps, ...rest } = props
