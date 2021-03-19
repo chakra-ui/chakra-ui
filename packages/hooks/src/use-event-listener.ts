@@ -11,7 +11,7 @@ import { useCallbackRef } from "./use-callback-ref"
  * @param options the event listener options
  */
 export function useEventListener<K extends keyof DocumentEventMap>(
-  event: K,
+  event: K | (string & {}),
   handler: (event: DocumentEventMap[K]) => void,
   env: Document | HTMLElement | null = isBrowser ? document : null,
   options?: boolean | AddEventListenerOptions,

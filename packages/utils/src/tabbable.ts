@@ -1,6 +1,8 @@
 // Really great work done by Diego Haz on this one
 // https://github.com/reakit/reakit/blob/master/packages/reakit-utils/src/tabbable.ts
 
+import { getOwnerDocument } from "./dom"
+
 export const hasDisplayNone = (element: HTMLElement) =>
   window.getComputedStyle(element).display === "none"
 
@@ -15,6 +17,26 @@ export function isDisabled(element: HTMLElement) {
     Boolean(element.getAttribute("disabled")) === true ||
     Boolean(element.getAttribute("aria-disabled")) === true
   )
+}
+
+export interface FocusableElement {
+  focus(options?: FocusOptions): void
+}
+
+export function isInputElement(
+  element: FocusableElement,
+): element is HTMLInputElement {
+  return (
+    isHTMLElement(element) &&
+    element.tagName.toLowerCase() === "input" &&
+    "select" in element
+  )
+}
+
+export function isActiveElement(element: FocusableElement) {
+  const doc =
+    element instanceof HTMLElement ? getOwnerDocument(element) : document
+  return doc.activeElement === (element as HTMLElement)
 }
 
 export function hasFocusWithin(element: HTMLElement) {

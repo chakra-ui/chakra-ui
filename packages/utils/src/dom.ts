@@ -11,6 +11,14 @@ export function getOwnerDocument(node?: HTMLElement | null) {
   return node instanceof Element ? node.ownerDocument ?? document : document
 }
 
+export function getRelatedTarget<E extends FocusEvent | React.FocusEvent>(
+  event: E,
+) {
+  return (event.relatedTarget ||
+    (event as any).nativeEvent.explicitOriginalTarget ||
+    document.activeElement) as HTMLElement
+}
+
 export function canUseDOM() {
   return !!(
     typeof window !== "undefined" &&
@@ -49,6 +57,19 @@ export function getActiveElement(node?: HTMLElement) {
   return doc?.activeElement as HTMLElement
 }
 
-export function contains(parent: HTMLElement, child: HTMLElement) {
+export function contains(parent: HTMLElement | null, child: HTMLElement) {
+  if (!parent) return false
   return parent === child || parent.contains(child)
+}
+
+export function addDomEvent(
+  target: EventTarget,
+  eventName: string,
+  handler: EventListener,
+  options?: AddEventListenerOptions,
+) {
+  target.addEventListener(eventName, handler, options)
+  return () => {
+    target.removeEventListener(eventName, handler, options)
+  }
 }
