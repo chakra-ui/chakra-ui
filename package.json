@@ -126,7 +126,7 @@
     "eslint-plugin-testing-library": "3.9.2",
     "esm": "3.2.25",
     "execa": "5.0.0",
-    "framer-motion": "^3.1.1",
+    "framer-motion": "^4.0.0",
     "fs-utils": "0.7.0",
     "husky": "4.3.6",
     "imagemin": "7.0.1",
