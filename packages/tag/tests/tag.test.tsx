@@ -17,4 +17,5 @@ test("Tag with close button renders correctly", () => {
   expect(getByTestId("tag")).toBeInTheDocument()
   expect(getByTestId("label")).toBeInTheDocument()
   expect(getByTestId("close-btn")).toBeInTheDocument()
+  expect(getByTestId("close-btn")).toHaveAttribute("aria-label")
 })

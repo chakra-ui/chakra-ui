@@ -1,17 +1,17 @@
 import { useDisclosure, useEventListener, useId } from "@chakra-ui/hooks"
-import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
-import { callAllHandlers, mergeRefs, PropGetter } from "@chakra-ui/utils"
+import {
+  Placement,
+  usePopper,
+  UsePopperProps,
+  popperCSSVars,
+} from "@chakra-ui/popper"
+import { callAllHandlers, mergeRefs, PropGetter, px } from "@chakra-ui/utils"
 import * as React from "react"
 
 export interface UseTooltipProps
   extends Pick<
     UsePopperProps,
-    | "arrowSize"
-    | "modifiers"
-    | "gutter"
-    | "offset"
-    | "arrowShadowColor"
-    | "arrowPadding"
+    "modifiers" | "gutter" | "offset" | "arrowPadding"
   > {
   /**
    * Delay (in ms) before showing the tooltip
@@ -57,6 +57,8 @@ export interface UseTooltipProps
    */
   defaultIsOpen?: boolean
   isDisabled?: boolean
+  arrowSize?: number
+  arrowShadowColor?: string
 }
 
 export function useTooltip(props: UseTooltipProps = {}) {
@@ -90,8 +92,6 @@ export function useTooltip(props: UseTooltipProps = {}) {
 
   const popper = usePopper({
     placement,
-    arrowSize,
-    arrowShadowColor,
     arrowPadding,
     modifiers,
     gutter,
@@ -158,6 +158,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     (props = {}, _ref = null) => {
       const triggerProps = {
         ...props,
+        ref: mergeRefs(ref, _ref, popper.referenceRef),
         onMouseEnter: callAllHandlers(props.onMouseEnter, openWithDelay),
         onClick: callAllHandlers(props.onClick, onClick),
         onMouseDown: callAllHandlers(props.onMouseDown, onMouseDown),
@@ -166,7 +167,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
         "aria-describedby": isOpen ? tooltipId : undefined,
       }
 
-      return popper.getReferenceProps(triggerProps, mergeRefs(ref, _ref))
+      return triggerProps
     },
     [
       openWithDelay,
@@ -179,7 +180,22 @@ export function useTooltip(props: UseTooltipProps = {}) {
     ],
   )
 
-  const getTooltipProps: PropGetter = React.useCallback(
+  const getTooltipPositionerProps: PropGetter = React.useCallback(
+    (props = {}, _ref = null) => {
+      return {
+        ...props,
+        style: {
+          ...props.style,
+          [popperCSSVars.arrowSize.var]: px(arrowSize),
+          [popperCSSVars.arrowShadowColor.var]: arrowShadowColor,
+        },
+        ref: mergeRefs(_ref, popper.popperRef),
+      }
+    },
+    [popper, arrowSize, arrowShadowColor],
+  )
+
+  const getTooltipProps = React.useCallback(
     (props = {}, _ref = null) => {
       const tooltipProps = {
         ref: _ref,
@@ -187,25 +203,16 @@ export function useTooltip(props: UseTooltipProps = {}) {
         ...props,
         id: tooltipId,
         role: "tooltip",
+        style: {
+          ...props.style,
+          position: "relative",
+          transformOrigin: popperCSSVars.transformOrigin.varRef,
+        },
       }
 
       return tooltipProps
     },
     [htmlProps, tooltipId],
-  )
-
-  const getTooltipPositionerProps: PropGetter = React.useCallback(
-    (props = {}, _ref = null) => {
-      const positionerProps = {
-        ...props,
-        style: {
-          ...props.style,
-          transformOrigin: popper.transformOrigin,
-        },
-      }
-      return popper.getPopperProps(positionerProps, _ref)
-    },
-    [popper],
   )
 
   return {
@@ -215,10 +222,6 @@ export function useTooltip(props: UseTooltipProps = {}) {
     getTriggerProps,
     getTooltipProps,
     getTooltipPositionerProps,
-    transformOrigin: popper.transformOrigin,
-    placement: popper.placement,
-    getArrowWrapperProps: popper.getArrowWrapperProps,
-    getArrowProps: popper.getArrowProps,
   }
 }
 

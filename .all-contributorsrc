@@ -1829,6 +1829,15 @@
         "doc",
         "code"
       ]
+    },
+    {
+      "login": "abhishekashyap",
+      "name": "Abhishek Kashyap",
+      "avatar_url": "https://avatars.githubusercontent.com/u/29458374?v=4",
+      "profile": "https://abhishekashyap.tech/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,

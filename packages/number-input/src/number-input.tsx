@@ -86,6 +86,7 @@ export const NumberInput = forwardRef<NumberInputProps, "div">((props, ref) => {
           __css={{
             position: "relative",
             zIndex: 0,
+            ...styles.root,
           }}
         />
       </StylesProvider>
@@ -122,7 +123,7 @@ export const NumberInputStepper = forwardRef<NumberInputStepperProps, "div">(
           flexDirection: "column",
           position: "absolute",
           top: "0",
-          right: "0px",
+          insetEnd: "0px",
           margin: "1px",
           height: "calc(100% - 2px)",
           zIndex: 1,

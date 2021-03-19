@@ -1,8 +1,8 @@
 import * as CSS from "csstype"
-import { createParser, Config, system } from "../core"
+import { Config } from "../prop-config"
 import { t, Token } from "../utils"
 
-const config: Config = {
+export const color: Config = {
   color: t.colors("color"),
   textColor: t.colors("color"),
   opacity: true,
@@ -32,6 +32,3 @@ export interface ColorProps {
    */
   opacity?: Token<CSS.Property.Opacity>
 }
-
-export const color = system(config)
-export const colorParser = createParser(config)

@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [`d77f63415`](https://github.com/chakra-ui/chakra-ui/commit/d77f63415822ad26e4f6ed133e4869c07fa72306)
+  [#3463](https://github.com/chakra-ui/chakra-ui/pull/3463) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Update implementation of
+  create-breakpoints to reduce code logic. Add deprecation message
+
+### Patch Changes
+
+- Updated dependencies
+  [[`87cc23e14`](https://github.com/chakra-ui/chakra-ui/commit/87cc23e14814e02cbbfc9737c2356cef682ddd5d)]:
+  - @chakra-ui/utils@1.3.0
+
 ## 1.0.4
 
 ### Patch Changes

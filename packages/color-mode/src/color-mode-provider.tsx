@@ -124,11 +124,14 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   }, [setColorMode, useSystemColorMode])
 
   // presence of `value` indicates a controlled context
-  const context = {
-    colorMode: (value ?? colorMode) as ColorMode,
-    toggleColorMode: value ? noop : toggleColorMode,
-    setColorMode: value ? noop : setColorMode,
-  }
+  const context = React.useMemo(
+    () => ({
+      colorMode: (value ?? colorMode) as ColorMode,
+      toggleColorMode: value ? noop : toggleColorMode,
+      setColorMode: value ? noop : setColorMode,
+    }),
+    [colorMode, setColorMode, toggleColorMode, value],
+  )
 
   return (
     <ColorModeContext.Provider value={context}>

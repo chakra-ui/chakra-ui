@@ -26,7 +26,6 @@ import {
   isArray,
   isString,
   mergeRefs,
-  mergeWith,
   normalizeEventKey,
   removeItem,
 } from "@chakra-ui/utils"
@@ -112,7 +111,6 @@ export function useMenu(props: UseMenuProps) {
   const popper = usePopper({
     placement,
     ...props,
-    enabled: isOpen,
   })
 
   const [focusedIndex, setFocusedIndex] = React.useState(-1)
@@ -253,6 +251,7 @@ export function useMenuButton(
 
   const buttonProps = {
     ...props,
+    ref: mergeRefs(menu.buttonRef, externalRef, popper.referenceRef),
     id: menu.buttonId,
     "data-active": dataAttr(menu.isOpen),
     "aria-expanded": menu.isOpen,
@@ -262,10 +261,7 @@ export function useMenuButton(
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
   }
 
-  return popper.getReferenceProps(
-    buttonProps,
-    mergeRefs(menu.buttonRef, externalRef),
-  )
+  return buttonProps
 }
 
 /**
@@ -298,7 +294,6 @@ export function useMenuList(
     isOpen,
     onClose,
     menuId,
-    popper,
     domContext: { descendants },
     isLazy,
   } = menu
@@ -361,7 +356,7 @@ export function useMenuList(
     [descendants, focusedIndex, onCharacterPress, onClose, setFocusedIndex],
   )
 
-  const menulistProps: any = {
+  return {
     ...props,
     ref: mergeRefs(menuRef, ref),
     children: !isLazy || isOpen ? props.children : null,
@@ -370,20 +365,20 @@ export function useMenuList(
     id: menuId,
     style: {
       ...props.style,
-      transformOrigin: popper.transformOrigin,
+      transformOrigin: "var(--popper-transform-origin)",
     },
     "aria-orientation": "vertical" as React.AriaAttributes["aria-orientation"],
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
   }
-
-  return menulistProps
 }
 
 export function useMenuPositioner(props: any = {}) {
   const { popper, isOpen } = useMenuContext()
-  return mergeWith(popper.getPopperProps(props), {
+  return {
+    ...props,
+    ref: popper.popperRef,
     style: { visibility: isOpen ? "visible" : "hidden" },
-  })
+  }
 }
 
 export interface UseMenuItemProps

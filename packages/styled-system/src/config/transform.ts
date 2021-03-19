@@ -1,9 +1,19 @@
 import * as CSS from "csstype"
-import { Config, createParser, system } from "../core"
+import { Config } from "../prop-config"
 import { Token } from "../utils"
 
-const config: Config = {
-  transform: true,
+const templates = {
+  auto: "var(--chakra-transform)",
+  "auto-gpu": "var(--chakra-transform-gpu)",
+}
+
+export const transform: Config = {
+  transform: {
+    property: "transform",
+    transform(value) {
+      return templates[value] ?? value
+    },
+  },
   transformOrigin: true,
 }
 
@@ -11,12 +21,9 @@ export interface TransformProps {
   /**
    * The CSS `transform` property
    */
-  transform?: Token<CSS.Property.Transform>
+  transform?: Token<CSS.Property.Transform | keyof typeof templates>
   /**
    * The CSS `transform-origin` property
    */
   transformOrigin?: Token<CSS.Property.TransformOrigin | number, "sizes">
 }
-
-export const transform = system(config)
-export const transformParser = createParser(config)

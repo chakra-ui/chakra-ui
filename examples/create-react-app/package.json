@@ -1,5 +1,5 @@
 {
-  "name": "chakra-cra",
+  "name": "create-react-app-ts",
   "version": "1.0.17",
   "private": true,
   "dependencies": {
@@ -9,7 +9,8 @@
     "@emotion/styled": "^11.0.0",
     "framer-motion": "^3.1.1",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-icons": "^4.1.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.8",

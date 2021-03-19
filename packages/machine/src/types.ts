@@ -192,7 +192,7 @@ export declare namespace StateMachine {
   export interface State<TContext extends Dict> {
     current: string
     prev: string
-    event: string
+    event: string | string[]
     context: TContext
     done: boolean
     matches(value: string | string[]): boolean

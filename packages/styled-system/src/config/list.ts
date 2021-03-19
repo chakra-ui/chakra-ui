@@ -1,8 +1,8 @@
 import * as CSS from "csstype"
-import { Config, createParser, system } from "../core"
+import { Config } from "../prop-config"
 import { ResponsiveValue, t } from "../utils"
 
-const config: Config = {
+export const list: Config = {
   listStyleType: true,
   listStylePosition: true,
   listStylePos: t.prop("listStylePosition"),
@@ -29,6 +29,3 @@ export interface ListProps {
    */
   listStyleImg?: ResponsiveValue<CSS.Property.ListStyleImage>
 }
-
-export const list = system(config)
-export const listParser = createParser(config)

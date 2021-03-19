@@ -19,12 +19,10 @@
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=1.0.0",
-    "@chakra-ui/theme": ">=1.0.0",
-    "gatsby": "^2.29.3"
+    "gatsby": ">=2.29.3"
   },
   "devDependencies": {
     "@chakra-ui/react": "*",
-    "@chakra-ui/theme": "*",
     "gatsby": "^2.29.3"
   }
 }

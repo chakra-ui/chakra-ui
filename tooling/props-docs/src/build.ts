@@ -77,12 +77,18 @@ async function findComponentFiles() {
 function parseInfo(filePaths: string[]) {
   const { parse } = docgen.withCustomConfig(tsConfigPath, {
     shouldRemoveUndefinedFromOptional: true,
-    propFilter: (prop) => {
+    propFilter: (prop, component) => {
       const isStyledSystemProp = excludedPropNames.includes(prop.name)
       const isHTMLElementProp =
         prop.parent?.fileName.includes("node_modules") ?? false
+      const isHook = component.name.startsWith("use")
+      const isTypeScriptNative =
+        prop.parent?.fileName.includes("node_modules/typescript") ?? false
 
-      return !(isStyledSystemProp || isHTMLElementProp)
+      return (
+        (isHook && !isTypeScriptNative) ||
+        !(isStyledSystemProp || isHTMLElementProp)
+      )
     },
   })
 

@@ -55,6 +55,7 @@ export const INTERNAL_EVENTS = {
   EVERY: "machine.every",
   SEND_PARENT: "machine.sendParent",
   STOP: "machine.stop",
+  SYNC: "machine.sync",
 }
 
 export const MACHINE_TYPES = {

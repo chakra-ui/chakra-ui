@@ -46,7 +46,7 @@ export const AspectRatio = forwardRef<AspectRatioProps, "div">((props, ref) => {
         paddingBottom: mapResponsive(ratio, (r) => `${(1 / r) * 100}%`),
       }}
       __css={{
-        "& > *": {
+        "& > *:not(style)": {
           overflow: "hidden",
           position: "absolute",
           top: "0",
@@ -61,7 +61,7 @@ export const AspectRatio = forwardRef<AspectRatioProps, "div">((props, ref) => {
         },
         "& > img, & > video": {
           objectFit: "cover",
-        },
+        }
       }}
       {...rest}
     >

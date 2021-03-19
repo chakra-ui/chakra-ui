@@ -3,7 +3,7 @@ import * as React from "react"
 import { createMachine, useMachine } from "../src"
 
 export default {
-  title: "Machine",
+  title: "Machine / Uncontrolled",
 }
 
 const counter = createMachine({

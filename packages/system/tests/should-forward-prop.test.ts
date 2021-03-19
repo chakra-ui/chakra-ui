@@ -3,7 +3,7 @@ import { shouldForwardProp } from "../src/should-forward-prop"
 
 describe("does not forward styled-system props", () => {
   test.each(propNames)("%s", (propName) => {
-    expect(shouldForwardProp(propName)).toBe(false)
+    expect(shouldForwardProp(propName.toString())).toBe(false)
   })
 })
 

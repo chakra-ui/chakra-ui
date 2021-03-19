@@ -49,6 +49,7 @@ const NigeriaFlag = (props) => (
     verticalAlign="middle"
     {...props}
   >
+    <title>Nigeria</title>
     <g>
       <rect x="16" y="6" fill="#E6E6E6" width="16" height="36"></rect>{" "}
       <path

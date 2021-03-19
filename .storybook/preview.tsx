@@ -5,6 +5,7 @@ import {
   IconButton,
   useColorMode,
   useColorModeValue,
+  theme,
 } from "@chakra-ui/react"
 import { StoryContext } from "@storybook/react"
 import * as React from "react"
@@ -50,6 +51,7 @@ const ColorModeToggleBar = () => {
 const withChakra = (StoryFn: Function, context: StoryContext) => {
   const { direction } = context.globals
   const dir = direction.toLowerCase()
+
   return (
     <ChakraProvider theme={extendTheme({ direction: dir })}>
       <div dir={dir} id="story-wrapper" style={{ minHeight: "100vh" }}>

@@ -1,10 +1,5 @@
 import { useTheme } from "@chakra-ui/system"
-import {
-  arrayToObjectNotation,
-  fromEntries,
-  isArray,
-  isCustomBreakpoint,
-} from "@chakra-ui/utils"
+import { arrayToObjectNotation, fromEntries, isArray } from "@chakra-ui/utils"
 import { getClosestValue } from "./media-query.utils"
 import { useBreakpoint } from "./use-breakpoint"
 
@@ -26,7 +21,7 @@ export function useBreakpointValue<T = any>(
   /**
    * Get the non-number breakpoint keys from the provided breakpoints
    */
-  const breakpoints = Object.keys(theme.breakpoints).filter(isCustomBreakpoint)
+  const breakpoints = Object.keys(theme.breakpoints)
 
   const obj = isArray(values)
     ? fromEntries<Record<string, T>>(

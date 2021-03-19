@@ -1,5 +1,24 @@
 # Change Log
 
+## 1.2.0
+
+### Minor Changes
+
+- [`f032942c8`](https://github.com/chakra-ui/chakra-ui/commit/f032942c8a2568a3a23baee0d5972834345e5fa6)
+  [#3447](https://github.com/chakra-ui/chakra-ui/pull/3447) Thanks
+  [@dodas](https://github.com/dodas)! - `TabPanels` component can now be styled
+  from `Tabs` component theme, specifying the `tabpanels` part.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`83ae62905`](https://github.com/chakra-ui/chakra-ui/commit/83ae62905935fdb3104380d6fd845159b00095fa),
+  [`87cc23e14`](https://github.com/chakra-ui/chakra-ui/commit/87cc23e14814e02cbbfc9737c2356cef682ddd5d)]:
+  - @chakra-ui/hooks@1.1.5
+  - @chakra-ui/utils@1.3.0
+  - @chakra-ui/descendant@1.0.8
+  - @chakra-ui/clickable@1.0.5
+
 ## 1.1.1
 
 ### Patch Changes

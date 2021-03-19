@@ -1,12 +1,12 @@
 import { memoizedGet as get } from "@chakra-ui/utils"
 import * as CSS from "csstype"
-import { Config, createParser, PropConfig, system } from "../core"
-import { Length, ResponsiveValue } from "../utils"
-import { getIsRtl } from "../utils/directionality"
+import { Config } from "../prop-config"
+import { Transform } from "../types"
+import { Length, ResponsiveValue, Token } from "../utils"
 
-const floatTransform: PropConfig["transform"] = (value, _, props = {}) => {
+const floatTransform: Transform = (value, theme) => {
   const map = { left: "right", right: "left" }
-  return getIsRtl(props) ? map[value] : value
+  return theme.direction === "rtl" ? map[value] : value
 }
 
 const srOnly = {
@@ -32,7 +32,15 @@ const srFocusable = {
   whiteSpace: "normal",
 }
 
-const config: Config = {
+const getWithPriority = (theme: any, key: any, styles: any) => {
+  const expanded = get(theme, key, {})
+  for (const prop in expanded) {
+    if (prop in styles) delete expanded[prop]
+  }
+  return expanded
+}
+
+export const others: Config = {
   animation: true,
   appearance: true,
   visibility: true,
@@ -50,7 +58,6 @@ const config: Config = {
   filter: true,
   clipPath: true,
   srOnly: {
-    property: "&",
     transform(value) {
       if (value === true) return srOnly
       if (value === "focusable") return srFocusable
@@ -59,18 +66,17 @@ const config: Config = {
   },
   layerStyle: {
     processResult: true,
-    property: "&",
-    transform: (value, _, theme) => get(theme, `layerStyles.${value}`, {}),
+    transform: (value, theme, styles) =>
+      getWithPriority(theme, `layerStyles.${value}`, styles),
   },
   textStyle: {
     processResult: true,
-    property: "&",
-    transform: (value, _, theme) => get(theme, `textStyles.${value}`, {}),
+    transform: (value, theme, styles = {}) =>
+      getWithPriority(theme, `textStyles.${value}`, styles),
   },
   apply: {
     processResult: true,
-    property: "&",
-    transform: (value, _, theme) => get(theme, value, {}),
+    transform: (value, theme, styles) => getWithPriority(theme, value, styles),
   },
 }
 
@@ -140,17 +146,14 @@ export interface OtherProps {
    * The layer style object to apply.
    * Note: Styles must be located in `theme.layerStyles`
    */
-  layerStyle?: ResponsiveValue<string>
+  layerStyle?: Token<string & {}, "layerStyles">
   /**
    * The text style object to apply.
    * Note: Styles must be located in `theme.textStyles`
    */
-  textStyle?: ResponsiveValue<string>
+  textStyle?: Token<string & {}, "textStyles">
   /**
    * Apply theme-aware style objects in `theme`
    */
   apply?: ResponsiveValue<string>
 }
-
-export const others = system(config)
-export const othersParser = createParser(config)
