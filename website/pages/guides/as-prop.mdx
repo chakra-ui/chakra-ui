@@ -55,7 +55,7 @@ const Card = forwardRef<BoxProps, "div">((props, ref) => (
 The `ChakraComponent` is a type we use internally to mark specific components as
 Chakra components rather than using `React.FC`.
 
-This is because a `ChakraComponent` comes props from the React component or
+This is because a `ChakraComponent` gets its props from the React component or
 element type, and adds chakra specific style props.
 
 `ChakraComponent` takes 2 type generic, the element type (like "div", "button",
