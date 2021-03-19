@@ -12,7 +12,7 @@ import {
   useStyles,
 } from "@chakra-ui/system"
 import { cx, MaybeRenderProp, runIfFn, __DEV__ } from "@chakra-ui/utils"
-import { motion, Variants } from "framer-motion"
+import { CustomDomComponent, motion, Variants } from "framer-motion"
 import * as React from "react"
 import {
   MenuProvider,
@@ -141,7 +141,9 @@ const motionVariants: Variants = {
   },
 }
 
-const Motion = chakra(motion.div)
+const MotionDiv: CustomDomComponent<PropsOf<typeof chakra.div>> = motion(
+  chakra.div,
+)
 
 export const MenuList = forwardRef<MenuListProps, "div">((props, ref) => {
   const { rootProps, ...rest } = props
@@ -157,7 +159,7 @@ export const MenuList = forwardRef<MenuListProps, "div">((props, ref) => {
       {...positionerProps}
       __css={{ zIndex: props.zIndex ?? styles.list?.zIndex }}
     >
-      <Motion
+      <MotionDiv
         {...listProps}
         /**
          * We could call this on either `onAnimationComplete` or `onUpdate`.

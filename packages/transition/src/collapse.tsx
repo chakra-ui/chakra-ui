@@ -126,11 +126,11 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
 
     const ownProps: HTMLMotionProps<"div"> & React.RefAttributes<any> = {
       ref,
-      onAnimationComplete: () => {
+      onAnimationComplete: (definition) => {
         if (!open && fromZeroHeight) {
           setDisplay("none")
         }
-        onAnimationComplete?.()
+        onAnimationComplete?.(definition)
       },
       className: cx("chakra-collapse", className),
       ...rest,
