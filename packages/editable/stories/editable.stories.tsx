@@ -1,12 +1,12 @@
+import { chakra } from "@chakra-ui/system"
 import * as React from "react"
+import { useEditable } from "../src"
 import {
   Editable,
   EditableInput,
   EditablePreview,
   useEditableControls,
 } from "../src/editable"
-import { useEditable } from "../src"
-import { chakra } from "@chakra-ui/system"
 
 export default {
   title: "Editable",
@@ -23,14 +23,16 @@ export const UseEditableHook = () => {
   const {
     getInputProps,
     getPreviewProps,
-    onSubmit,
-    onCancel,
+    getCancelButtonProps,
+    getSubmitButtonProps,
     isValueEmpty,
     isEditing,
     onEdit,
   } = useEditable({
     placeholder: "Title...",
-    submitOnBlur: false,
+    submitOnBlur: true,
+    onCancel: () => console.log("cancel"),
+    onSubmit: () => console.log("submit"),
   })
 
   return (
@@ -46,8 +48,10 @@ export const UseEditableHook = () => {
       {!isEditing && <button onClick={onEdit}>Edit</button>}
       {isEditing && (
         <>
-          <button onClick={onSubmit}>Save</button>
-          <button onClick={onCancel}>Cancel</button>
+          <button {...getSubmitButtonProps()}>Save</button>
+          <button {...getCancelButtonProps({ style: { padding: 10 } })}>
+            Cancel
+          </button>
         </>
       )}
     </>

@@ -1,14 +1,22 @@
-import { useControllableState, useUpdateEffect } from "@chakra-ui/hooks"
+import {
+  useControllableState,
+  useEnsureFocus,
+  useUpdateEffect,
+} from "@chakra-ui/hooks"
 import {
   ariaAttr,
   callAllHandlers,
+  contains,
   EventKeyMap,
+  focus,
+  getOwnerDocument,
+  getRelatedTarget,
   isEmpty,
   mergeRefs,
   normalizeEventKey,
   PropGetter,
 } from "@chakra-ui/utils"
-import { ChangeEvent, useCallback, useRef, useState } from "react"
+import React, { useCallback, useRef, useState } from "react"
 
 export interface UseEditableProps {
   /**
@@ -111,20 +119,25 @@ export function useEditable(props: UseEditableProps = {}) {
   const previewRef = useRef<any>(null)
 
   const editButtonRef = useRef<HTMLButtonElement>(null)
+  const cancelButtonRef = useRef<HTMLElement>(null)
+  const submitButtonRef = useRef<HTMLElement>(null)
+
+  useEnsureFocus({
+    doc: getOwnerDocument(inputRef.current),
+    elements: [cancelButtonRef, submitButtonRef],
+  })
 
   const isInteractive = !isEditing || !isDisabled
 
   useUpdateEffect(() => {
     if (!isEditing) {
-      editButtonRef.current?.focus()
+      focus(editButtonRef.current)
       return
     }
 
-    if (selectAllOnFocus) {
-      inputRef.current?.select()
-    } else {
-      inputRef.current?.focus()
-    }
+    focus(inputRef.current, {
+      selectTextIfInput: selectAllOnFocus,
+    })
 
     onEditProp?.()
   }, [isEditing, onEditProp, selectAllOnFocus])
@@ -148,7 +161,7 @@ export function useEditable(props: UseEditableProps = {}) {
   }, [value, onSubmitProp])
 
   const onChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
+    (event: React.ChangeEvent<HTMLInputElement>) => {
       setValue(event.target.value)
     },
     [setValue],
@@ -168,6 +181,7 @@ export function useEditable(props: UseEditableProps = {}) {
       }
 
       const action = keyMap[eventKey]
+
       if (action) {
         event.preventDefault()
         action(event)
@@ -178,63 +192,94 @@ export function useEditable(props: UseEditableProps = {}) {
 
   const isValueEmpty = isEmpty(value)
 
-  const getTabIndex = () => {
-    const shouldHaveTabIndex = isInteractive && isPreviewFocusable
-    return shouldHaveTabIndex ? 0 : undefined
-  }
+  const onBlur = useCallback(
+    (event: React.FocusEvent) => {
+      const relatedTarget = getRelatedTarget(event)
+      const targetIsCancel = contains(cancelButtonRef.current, relatedTarget)
+      const targetIsSubmit = contains(submitButtonRef.current, relatedTarget)
+      const isValidBlur = !targetIsCancel && !targetIsSubmit
 
-  const onBlur = useCallback(() => {
-    if (submitOnBlur) {
-      onSubmit()
-    }
-  }, [submitOnBlur, onSubmit])
+      if (isValidBlur && submitOnBlur) {
+        onSubmit()
+      }
+    },
+    [submitOnBlur, onSubmit],
+  )
 
-  const getPreviewProps: PropGetter = (props = {}, ref = null) => ({
-    ...props,
-    ref: mergeRefs(ref, previewRef),
-    children: isValueEmpty ? placeholder : value,
-    hidden: isEditing,
-    "aria-disabled": ariaAttr(isDisabled),
-    tabIndex: getTabIndex(),
-    onFocus: callAllHandlers(props.onFocus, onEdit),
-  })
+  const getPreviewProps: PropGetter = useCallback(
+    (props = {}, ref = null) => {
+      const tabIndex = isInteractive && isPreviewFocusable ? 0 : undefined
+      return {
+        ...props,
+        ref: mergeRefs(ref, previewRef),
+        children: isValueEmpty ? placeholder : value,
+        hidden: isEditing,
+        "aria-disabled": ariaAttr(isDisabled),
+        tabIndex,
+        onFocus: callAllHandlers(props.onFocus, onEdit),
+      }
+    },
+    [
+      isDisabled,
+      isEditing,
+      isInteractive,
+      isPreviewFocusable,
+      isValueEmpty,
+      onEdit,
+      placeholder,
+      value,
+    ],
+  )
 
-  const getInputProps: PropGetter = (props = {}, ref = null) => ({
-    ...props,
-    hidden: !isEditing,
-    placeholder,
-    ref: mergeRefs(ref, inputRef),
-    disabled: isDisabled,
-    "aria-disabled": ariaAttr(isDisabled),
-    value,
-    onBlur: callAllHandlers(props.onBlur, onBlur),
-    onChange: callAllHandlers(props.onChange, onChange),
-    onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-  })
+  const getInputProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
+      ...props,
+      hidden: !isEditing,
+      placeholder,
+      ref: mergeRefs(ref, inputRef),
+      disabled: isDisabled,
+      "aria-disabled": ariaAttr(isDisabled),
+      value,
+      onBlur: callAllHandlers(props.onBlur, onBlur),
+      onChange: callAllHandlers(props.onChange, onChange),
+      onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+    }),
+    [isDisabled, isEditing, onBlur, onChange, onKeyDown, placeholder, value],
+  )
 
-  const getEditButtonProps: PropGetter = (props = {}, ref = null) => ({
-    "aria-label": "Edit",
-    ...props,
-    type: "button",
-    onClick: callAllHandlers(props.onClick, onEdit),
-    ref: mergeRefs(ref, editButtonRef),
-  })
+  const getEditButtonProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
+      "aria-label": "Edit",
+      ...props,
+      type: "button",
+      onClick: callAllHandlers(props.onClick, onEdit),
+      ref: mergeRefs(ref, editButtonRef),
+    }),
+    [onEdit],
+  )
 
-  const getSubmitButtonProps: PropGetter = (props = {}, ref = null) => ({
-    ...props,
-    "aria-label": "Submit",
-    ref,
-    type: "button",
-    onClick: callAllHandlers(props.onClick, onSubmit),
-  })
+  const getSubmitButtonProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
+      ...props,
+      "aria-label": "Submit",
+      ref: mergeRefs(submitButtonRef, ref),
+      type: "button",
+      onClick: callAllHandlers(props.onClick, onSubmit),
+    }),
+    [onSubmit],
+  )
 
-  const getCancelButtonProps: PropGetter = (props = {}, ref = null) => ({
-    "aria-label": "Cancel",
-    ...props,
-    ref,
-    type: "button",
-    onClick: callAllHandlers(props.onClick, onCancel),
-  })
+  const getCancelButtonProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
+      "aria-label": "Cancel",
+      id: "cancel",
+      ...props,
+      ref: mergeRefs(cancelButtonRef, ref),
+      type: "button",
+      onClick: callAllHandlers(props.onClick, onCancel),
+    }),
+    [onCancel],
+  )
 
   return {
     isEditing,
