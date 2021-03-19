@@ -42,14 +42,14 @@ export interface ComponentDefaultProps
   extends Omit<ThemingProps, "styleConfig">,
     Dict {}
 
-export type ThemingPropsThunk<T> =
-  | T
-  | ((
-      props: Dict &
-        Omit<ThemingProps, "styleConfig"> & {
-          colorMode: ColorMode
-        },
-    ) => T)
+export interface ThemeComponentProps<Theme extends ChakraTheme = ChakraTheme>
+  extends Dict,
+    Omit<ThemingProps, "styleConfig"> {
+  colorMode: ColorMode
+  theme: Theme
+}
+
+export type ThemingPropsThunk<T> = T | ((props: ThemeComponentProps) => T)
 
 export interface SystemStyleObjectRecord {
   [key: string]: StyleObjectOrFn
