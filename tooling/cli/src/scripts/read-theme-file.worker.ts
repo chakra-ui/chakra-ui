@@ -22,23 +22,24 @@ async function run() {
   const themeFile = process.argv[2]
 
   if (!themeFile) {
-    process.stderr.write("No path to theme file provided.")
-    process.exit(127)
-    return
+    throw new Error("No path to theme file provided.")
   }
 
   const theme = await readTheme(themeFile)
 
   if (!isObject(theme)) {
-    process.stderr.write("Theme not found in default or named `theme` export")
-    process.exit(1)
+    throw new Error("Theme not found in default or named `theme` export")
   }
 
   const template = await createThemeTypingsInterface(theme, {
     config: themeKeyConfiguration,
   })
 
-  process.stdout.write(template)
+  if (process.send) {
+    process.send(template)
+  } else {
+    process.stdout.write(template)
+  }
 }
 
 run().catch((e) => {
