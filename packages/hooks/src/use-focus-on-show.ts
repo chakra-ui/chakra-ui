@@ -3,8 +3,9 @@ import {
   focus,
   FocusableElement,
   getAllFocusable,
+  isRefObject,
 } from "@chakra-ui/utils"
-import * as React from "react"
+import React, { useCallback } from "react"
 import { useEventListener } from "./use-event-listener"
 import { useUpdateEffect } from "./use-update-effect"
 
@@ -25,11 +26,11 @@ export function useFocusOnShow<T extends HTMLElement>(
   options = defaultOptions,
 ) {
   const { focusRef, preventScroll, shouldFocus, visible } = options
-  const element = target && "current" in target ? target.current : target
+  const element = isRefObject(target) ? target.current : target
 
   const autoFocus = shouldFocus && visible
 
-  const onFocus = React.useCallback(() => {
+  const onFocus = useCallback(() => {
     if (!element || !autoFocus) return
 
     if (contains(element, document.activeElement as HTMLElement)) return
