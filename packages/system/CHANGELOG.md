@@ -1,5 +1,32 @@
 # Change Log
 
+## 1.5.0
+
+### Minor Changes
+
+- [`035d5726e`](https://github.com/chakra-ui/chakra-ui/commit/035d5726e28396ef487b9801d7e2fa57677c703c)
+  [#3529](https://github.com/chakra-ui/chakra-ui/pull/3529) Thanks
+  [@callum-mellorreed-privitar](https://github.com/callum-mellorreed-privitar)! -
+  Add support for textStyle and layerStyle theme type generation to
+  @chakra-ui/cli
+
+### Patch Changes
+
+- [`96139067d`](https://github.com/chakra-ui/chakra-ui/commit/96139067daa4b9a606b60c73f28a88ccd99d983b)
+  [#3551](https://github.com/chakra-ui/chakra-ui/pull/3551) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fix: only return an array
+  in `toCSSObject` when `css` prop is passed.
+
+- Updated dependencies
+  [[`d70515fc2`](https://github.com/chakra-ui/chakra-ui/commit/d70515fc20279b5b2acf9a2db2bda0289b8c5408),
+  [`035d5726e`](https://github.com/chakra-ui/chakra-ui/commit/035d5726e28396ef487b9801d7e2fa57677c703c),
+  [`c3dcaabbc`](https://github.com/chakra-ui/chakra-ui/commit/c3dcaabbcf52ab9805a622f4e9833ad26cad9318),
+  [`91ef14839`](https://github.com/chakra-ui/chakra-ui/commit/91ef148397187010804eb8f30307d2ec94c32c5b),
+  [`96139067d`](https://github.com/chakra-ui/chakra-ui/commit/96139067daa4b9a606b60c73f28a88ccd99d983b)]:
+  - @chakra-ui/color-mode@1.1.2
+  - @chakra-ui/styled-system@1.9.0
+  - @chakra-ui/utils@1.4.0
+
 ## 1.4.0
 
 ### Minor Changes

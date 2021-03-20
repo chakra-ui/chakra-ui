@@ -1,5 +1,21 @@
 # Change Log
 
+## 1.1.3
+
+### Patch Changes
+
+- [`96139067d`](https://github.com/chakra-ui/chakra-ui/commit/96139067daa4b9a606b60c73f28a88ccd99d983b)
+  [#3551](https://github.com/chakra-ui/chakra-ui/pull/3551) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Add `root` to number input
+  parts and update `right` to `insetEnd` for it to work in RTL.
+- Updated dependencies
+  [[`91ef14839`](https://github.com/chakra-ui/chakra-ui/commit/91ef148397187010804eb8f30307d2ec94c32c5b)]:
+  - @chakra-ui/utils@1.4.0
+  - @chakra-ui/form-control@1.2.3
+  - @chakra-ui/icon@1.1.3
+  - @chakra-ui/counter@1.0.9
+  - @chakra-ui/hooks@1.1.6
+
 ## 1.1.2
 
 ### Patch Changes

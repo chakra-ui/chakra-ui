@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.3.3
+
+### Patch Changes
+
+- [`da443cd67`](https://github.com/chakra-ui/chakra-ui/commit/da443cd67289122d661bdab802d0ccb3740eb707)
+  [#3584](https://github.com/chakra-ui/chakra-ui/pull/3584) Thanks
+  [@isBatak](https://github.com/isBatak)! - fix: aspect ratio SSR style tag
+  display
+
+- Updated dependencies
+  [[`91ef14839`](https://github.com/chakra-ui/chakra-ui/commit/91ef148397187010804eb8f30307d2ec94c32c5b)]:
+  - @chakra-ui/utils@1.4.0
+  - @chakra-ui/icon@1.1.3
+
 ## 1.3.2
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [`64e8466b5`](https://github.com/chakra-ui/chakra-ui/commit/64e8466b528a027c915b7d2d5f474b08a0800e92)
+  [#3623](https://github.com/chakra-ui/chakra-ui/pull/3623) Thanks
+  [@with-heart](https://github.com/with-heart)! - Upgraded `framer-motion`
+  dependency to `^4.0.0`
+
 ## 1.0.2
 
 ### Patch Changes

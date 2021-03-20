@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.1.2
+
+### Patch Changes
+
+- [`d70515fc2`](https://github.com/chakra-ui/chakra-ui/commit/d70515fc20279b5b2acf9a2db2bda0289b8c5408)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - fix: memoize the
+  context value for color-mode-provider
+
+- Updated dependencies
+  [[`91ef14839`](https://github.com/chakra-ui/chakra-ui/commit/91ef148397187010804eb8f30307d2ec94c32c5b)]:
+  - @chakra-ui/utils@1.4.0
+  - @chakra-ui/hooks@1.1.6
+
 ## 1.1.1
 
 ### Patch Changes

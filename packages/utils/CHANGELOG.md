@@ -1,5 +1,23 @@
 # Change Log
 
+## 1.4.0
+
+### Minor Changes
+
+- [`91ef14839`](https://github.com/chakra-ui/chakra-ui/commit/91ef148397187010804eb8f30307d2ec94c32c5b)
+  [#3583](https://github.com/chakra-ui/chakra-ui/pull/3583) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Add `getCSSVar` function
+  to resolve token values and return the css variable reference instead of the
+  actual value. It does a lookup against `theme.__cssMap`.
+
+  ```jsx
+  const value = getCSSVar(theme, "colors", "blue.500")
+  // => "var(--chakra-colors-blue.500)"
+
+  const value = getCSSVar(theme, "colors", "tomato")
+  // => "tomato" // since tomato doesn't exist in theme colors
+  ```
+
 ## 1.3.0
 
 ### Minor Changes
