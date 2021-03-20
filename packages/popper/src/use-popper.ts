@@ -1,19 +1,29 @@
 import { filterUndefined } from "@chakra-ui/utils"
-import { Placement } from "@popperjs/core/lib/enums"
 import {
+  createPopper,
   Instance,
   Modifier,
+  Placement,
   VirtualElement,
-} from "@popperjs/core/lib/popper-lite"
+} from "@popperjs/core"
 import { useCallback, useEffect, useMemo, useRef } from "react"
-import { createPopperFn, CreatePopperOptions } from "./create-popper"
+import * as popperModifiers from "./modifiers"
+import { getEventListenerOptions } from "./utils"
 
 export type { Placement }
 
-export interface UsePopperProps extends CreatePopperOptions {
+export interface UsePopperProps {
+  offset?: [x: number, y: number]
+  gutter?: number
+  preventOverflow?: boolean
+  flip?: boolean
+  matchWidth?: boolean
+  boundary?: "clippingParents" | "scrollParent" | HTMLElement
+  eventListeners?: boolean | { scroll?: boolean; resize?: boolean }
+  arrowPadding?: number
   strategy?: "absolute" | "fixed"
   placement?: Placement
-  modifiers?: Array<Modifier<any, any>>
+  modifiers?: Array<Partial<Modifier<string, any>>>
 }
 
 const defaultProps: UsePopperProps = {
@@ -25,13 +35,25 @@ const defaultProps: UsePopperProps = {
   preventOverflow: true,
   eventListeners: true,
   modifiers: [],
+  boundary: "clippingParents",
 }
 
 export function usePopper(props: UsePopperProps = {}) {
-  const opts = { ...defaultProps, ...filterUndefined(props) }
-  const { modifiers = [], placement: placementProp, strategy } = opts
+  const opts = Object.assign({}, defaultProps, filterUndefined(props))
+  const {
+    modifiers = [],
+    placement: placementProp,
+    strategy,
+    arrowPadding,
+    eventListeners,
+    offset,
+    gutter,
+    flip,
+    boundary,
+    preventOverflow,
+    matchWidth,
+  } = opts
 
-  const createPopper = useRef(createPopperFn(opts))
   const reference = useRef<Element | VirtualElement | null>(null)
   const popper = useRef<HTMLElement | null>(null)
   const instanceRef = useRef<Instance | null>(null)
@@ -42,17 +64,58 @@ export function usePopper(props: UsePopperProps = {}) {
     if (!reference.current || !popper.current) return
     cleanup.current?.()
 
-    instanceRef.current = createPopper.current(
-      reference.current,
-      popper.current,
-      { placement: placementProp, modifiers, strategy },
-    )
+    instanceRef.current = createPopper(reference.current, popper.current, {
+      placement: placementProp,
+      modifiers: modifiers.concat([
+        popperModifiers.innerArrow,
+        popperModifiers.positionArrow,
+        popperModifiers.transformOrigin,
+        { ...popperModifiers.matchWidth, enabled: !!matchWidth },
+        {
+          name: "eventListeners",
+          ...getEventListenerOptions(eventListeners),
+        },
+        {
+          name: "arrow",
+          options: { padding: arrowPadding },
+        },
+        {
+          name: "offset",
+          options: {
+            offset: offset ?? [0, gutter],
+          },
+        },
+        {
+          name: "flip",
+          enabled: !!flip,
+          options: { padding: 8 },
+        },
+        {
+          name: "preventOverflow",
+          enabled: !!preventOverflow,
+          options: { boundary },
+        },
+      ]),
+      strategy,
+    })
 
     // force update one-time to fix any positioning issues
     instanceRef.current.forceUpdate()
 
     cleanup.current = instanceRef.current.destroy
-  }, [placementProp, strategy, modifiers])
+  }, [
+    placementProp,
+    modifiers,
+    matchWidth,
+    eventListeners,
+    arrowPadding,
+    offset,
+    gutter,
+    flip,
+    preventOverflow,
+    boundary,
+    strategy,
+  ])
 
   useEffect(() => {
     return () => {

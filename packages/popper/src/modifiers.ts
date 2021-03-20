@@ -1,5 +1,4 @@
-import { Placement } from "@popperjs/core"
-import { Modifier, State } from "@popperjs/core/lib/popper-lite"
+import { Placement, Modifier, State } from "@popperjs/core"
 import {
   getBoxShadow,
   toTransformOrigin,
