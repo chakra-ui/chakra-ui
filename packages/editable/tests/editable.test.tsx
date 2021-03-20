@@ -73,7 +73,7 @@ test("uncontrolled: handles callbacks correctly", async () => {
 
   // calls `onSubmit` with previous value when "enter" pressed after cancelling
   fireEvent.keyDown(input, { key: "Enter" })
-  expect(onSubmit).toHaveBeenCalledWith("World")
+  expect(onSubmit).toHaveBeenCalledWith("Hello World")
 })
 
 test("controlled: handles callbacks correctly", () => {
