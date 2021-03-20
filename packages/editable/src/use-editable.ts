@@ -1,6 +1,6 @@
 import {
   useControllableState,
-  useEnsureFocus,
+  useFocusOnPointerDown,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
 import {
@@ -122,7 +122,7 @@ export function useEditable(props: UseEditableProps = {}) {
   const cancelButtonRef = useRef<HTMLElement>(null)
   const submitButtonRef = useRef<HTMLElement>(null)
 
-  useEnsureFocus({
+  useFocusOnPointerDown({
     doc: getOwnerDocument(inputRef.current),
     elements: [cancelButtonRef, submitButtonRef],
   })
