@@ -126,11 +126,14 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
 
     const ownProps: HTMLMotionProps<"div"> & React.RefAttributes<any> = {
       ref,
-      onAnimationComplete: () => {
+      // @future: set parameter as `definition` when we remove `framer-motion`
+      // v3 support
+      onAnimationComplete: (definition?: any) => {
         if (!open && fromZeroHeight) {
           setDisplay("none")
         }
-        onAnimationComplete?.()
+        // @future: remove `any` cast when we remove `framer-motion` v3 support
+        ;(onAnimationComplete as any)?.(definition)
       },
       className: cx("chakra-collapse", className),
       ...rest,

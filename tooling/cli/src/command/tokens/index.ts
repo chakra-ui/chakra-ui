@@ -1,6 +1,6 @@
 import { promisify } from "util"
 import { writeFile } from "fs"
-import { exec } from "child_process"
+import { fork } from "child_process"
 import path from "path"
 import ora from "ora"
 import {
@@ -9,27 +9,25 @@ import {
 } from "./resolve-output-path"
 
 const writeFileAsync = promisify(writeFile)
-const execAsync = promisify(exec)
 
-async function runTemplateWorker({ themeFile }: { themeFile: string }) {
-  const { stdout, stderr } = await execAsync(
-    `node ${path.join(
-      __dirname,
-      "..",
-      "..",
-      "scripts",
-      "read-theme-file.worker.js",
-    )} ${themeFile}`,
+async function runTemplateWorker({
+  themeFile,
+}: {
+  themeFile: string
+}): Promise<string> {
+  const worker = fork(
+    path.join(__dirname, "..", "..", "scripts", "read-theme-file.worker.js"),
+    [themeFile],
     {
+      stdio: ["pipe", "pipe", "pipe", "ipc"],
       cwd: process.cwd(),
     },
   )
 
-  if (stderr) {
-    throw new Error(String(stderr))
-  }
-
-  return String(stdout)
+  return new Promise((resolve, reject) => {
+    worker.on("message", (message) => resolve(String(message)))
+    worker.on("error", reject)
+  })
 }
 
 export async function generateThemeTypings({
