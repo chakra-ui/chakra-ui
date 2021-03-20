@@ -48,7 +48,12 @@ export const simple = () => (
       <PopoverArrow />
       <PopoverCloseButton />
       <PopoverHeader>Confirmation!</PopoverHeader>
-      <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
+      <PopoverBody>
+        <p>Are you sure you want to have that milkshake?</p>
+        <br />
+        <button>Yes</button>
+        <button>No</button>
+      </PopoverBody>
     </PopoverContent>
   </Popover>
 )

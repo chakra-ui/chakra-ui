@@ -1,21 +1,24 @@
 import {
   useBoolean,
   useDisclosure,
+  useFocusOnPointerDown,
   useFocusOnHide,
   useFocusOnShow,
   useIds,
-  useOutsideClick,
 } from "@chakra-ui/hooks"
 import {
   Placement,
+  popperCSSVars,
   usePopper,
   UsePopperProps,
-  popperCSSVars,
 } from "@chakra-ui/popper"
 import { useColorModeValue, useToken } from "@chakra-ui/system"
 import {
   callAllHandlers,
+  contains,
   FocusableElement,
+  getOwnerDocument,
+  getRelatedTarget,
   HTMLProps,
   mergeRefs,
   PropGetter,
@@ -170,6 +173,11 @@ export function usePopover(props: UsePopoverProps = {}) {
     modifiers,
   })
 
+  useFocusOnPointerDown({
+    doc: getOwnerDocument(triggerRef.current),
+    elements: [triggerRef],
+  })
+
   useFocusOnHide(popoverRef, {
     focusRef: triggerRef,
     visible: isOpen,
@@ -180,20 +188,6 @@ export function usePopover(props: UsePopoverProps = {}) {
     focusRef: initialFocusRef,
     visible: isOpen,
     shouldFocus: autoFocus && trigger === TRIGGER.click,
-  })
-
-  useOutsideClick({
-    ref: popoverRef,
-    handler(event) {
-      if (
-        isOpen &&
-        trigger === TRIGGER.click &&
-        closeOnBlur &&
-        !triggerRef.current?.contains(event.target as HTMLElement)
-      ) {
-        onClose()
-      }
-    },
   })
 
   const getPopoverProps: PropGetter = useCallback(
@@ -215,15 +209,12 @@ export function usePopover(props: UsePopoverProps = {}) {
           }
         }),
         onBlur: callAllHandlers(props.onBlur, (event) => {
-          const element = (event.relatedTarget ??
-            document.activeElement) as HTMLElement
+          const relatedTarget = getRelatedTarget(event)
+          const targetIsPopover = contains(popoverRef.current, relatedTarget)
+          const targetIsTrigger = contains(triggerRef.current, relatedTarget)
+          const isValidBlur = !targetIsPopover && !targetIsTrigger
 
-          if (
-            isOpen &&
-            closeOnBlur &&
-            !popoverRef.current?.contains(element) &&
-            !triggerRef.current?.contains(element)
-          ) {
+          if (isOpen && closeOnBlur && isValidBlur) {
             onClose()
           }
         }),
