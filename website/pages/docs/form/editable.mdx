@@ -52,21 +52,25 @@ In some cases, you might need to use custom controls to toggle the edit and read
 mode. We use the render prop pattern to provide access to the internal state of
 the component.
 
-> Ensure you set `isPreviewFocusable` and `submitOnBlur` to `false` for this to
-> work.
-
 ```jsx
 function CustomControlsExample() {
   /* Here's a custom control */
-  function EditableControls({ isEditing, onSubmit, onCancel, onEdit }) {
+  function EditableControls() {
+    const {
+      isEditing,
+      getSubmitButtonProps,
+      getCancelButtonProps,
+      getEditButtonProps,
+    } = useEditableControls()
+
     return isEditing ? (
       <ButtonGroup justifyContent="center" size="sm">
-        <IconButton icon={<CheckIcon />} onClick={onSubmit} />
-        <IconButton icon={<CloseIcon />} onClick={onCancel} />
+        <IconButton icon={<CheckIcon />} {...getSubmitButtonProps()} />
+        <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
       </ButtonGroup>
     ) : (
       <Flex justifyContent="center">
-        <IconButton size="sm" icon={<EditIcon />} onClick={onEdit} />
+        <IconButton size="sm" icon={<EditIcon />} {...getEditButtonProps()} />
       </Flex>
     )
   }
@@ -77,15 +81,10 @@ function CustomControlsExample() {
       defaultValue="Rasengan ⚡️"
       fontSize="2xl"
       isPreviewFocusable={false}
-      submitOnBlur={false}
     >
-      {(props) => (
-        <>
-          <EditablePreview />
-          <EditableInput />
-          <EditableControls {...props} />
-        </>
-      )}
+      <EditablePreview />
+      <EditableInput />
+      <EditableControls />
     </Editable>
   )
 }
