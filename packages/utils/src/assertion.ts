@@ -75,3 +75,6 @@ export const isEmpty = (value: any) => {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const __DEV__ = process.env.NODE_ENV !== "production"
+
+export const isRefObject = (val: any): val is { current: any } =>
+  "current" in val
