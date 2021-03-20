@@ -1,13 +1,16 @@
-import { focus, isActiveElement } from "@chakra-ui/utils"
+import {
+  detectBrowser,
+  focus,
+  isActiveElement,
+  isRefObject,
+} from "@chakra-ui/utils"
 import { RefObject } from "react"
 import { usePointerEvent } from "./use-pointer-event"
 
-export interface UseEnsureFocusProps {
+export interface UseFocusOnMouseDownProps {
   doc: Document
   elements: Array<RefObject<HTMLElement> | HTMLElement | null>
 }
-
-const isRefObject = (val: any): val is { current: any } => "current" in val
 
 /**
  * Polyfill to get `relatedTarget` working correctly consistently
@@ -18,13 +21,18 @@ const isRefObject = (val: any): val is { current: any } => "current" in val
  *
  * @internal
  */
-export function useEnsureFocus(props: UseEnsureFocusProps) {
+export function useFocusOnPointerDown(props: UseFocusOnMouseDownProps) {
   const { doc, elements } = props
 
+  const isSafari = detectBrowser("Safari")
+
   usePointerEvent(doc, "pointerdown", (event) => {
+    if (!isSafari) return
     const target = event.target as HTMLElement
     const isValidTarget = elements.some((element) => {
-      if (isRefObject(element)) return target === element.current
+      if (isRefObject(element)) {
+        return target === element.current
+      }
       return target === element
     })
 
