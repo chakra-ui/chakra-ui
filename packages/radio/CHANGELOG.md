@@ -1,5 +1,26 @@
 # Change Log
 
+## 1.2.5
+
+### Patch Changes
+
+- [`5bbad1947`](https://github.com/chakra-ui/chakra-ui/commit/5bbad19478694b16bf83e00faa9f1fd420578535)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  controlled radio group can't be cleared
+
+* [`d82c3c81d`](https://github.com/chakra-ui/chakra-ui/commit/d82c3c81def4b984c716888472f5df8027b6e679)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix: `onChange`
+  type for `use-radio-group` props
+
+* Updated dependencies
+  [[`e748219f3`](https://github.com/chakra-ui/chakra-ui/commit/e748219f300f0c51b0eb304fce38b014d7bcbc86),
+  [`9c143bfe5`](https://github.com/chakra-ui/chakra-ui/commit/9c143bfe5bbf180929fabb0a1b4c18d40f7fd3fc),
+  [`91ef14839`](https://github.com/chakra-ui/chakra-ui/commit/91ef148397187010804eb8f30307d2ec94c32c5b)]:
+  - @chakra-ui/hooks@1.2.0
+  - @chakra-ui/utils@1.4.0
+  - @chakra-ui/form-control@1.2.3
+  - @chakra-ui/visually-hidden@1.0.6
+
 ## 1.2.4
 
 ### Patch Changes

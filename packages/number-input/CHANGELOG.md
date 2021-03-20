@@ -1,5 +1,30 @@
 # Change Log
 
+## 1.1.3
+
+### Patch Changes
+
+- [`9c143bfe5`](https://github.com/chakra-ui/chakra-ui/commit/9c143bfe5bbf180929fabb0a1b4c18d40f7fd3fc)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update focus utils
+  to use `nextTick` option since its default value is now false in the focus
+  utils
+
+  > `@internal` use only
+
+* [`96139067d`](https://github.com/chakra-ui/chakra-ui/commit/96139067daa4b9a606b60c73f28a88ccd99d983b)
+  [#3551](https://github.com/chakra-ui/chakra-ui/pull/3551) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Add `root` to number input
+  parts and update `right` to `insetEnd` for it to work in RTL.
+* Updated dependencies
+  [[`e748219f3`](https://github.com/chakra-ui/chakra-ui/commit/e748219f300f0c51b0eb304fce38b014d7bcbc86),
+  [`9c143bfe5`](https://github.com/chakra-ui/chakra-ui/commit/9c143bfe5bbf180929fabb0a1b4c18d40f7fd3fc),
+  [`91ef14839`](https://github.com/chakra-ui/chakra-ui/commit/91ef148397187010804eb8f30307d2ec94c32c5b)]:
+  - @chakra-ui/hooks@1.2.0
+  - @chakra-ui/utils@1.4.0
+  - @chakra-ui/form-control@1.2.3
+  - @chakra-ui/icon@1.1.3
+  - @chakra-ui/counter@1.0.9
+
 ## 1.1.2
 
 ### Patch Changes

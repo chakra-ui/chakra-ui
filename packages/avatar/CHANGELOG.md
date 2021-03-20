@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.1.4
+
+### Patch Changes
+
+- [`00be7e92f`](https://github.com/chakra-ui/chakra-ui/commit/00be7e92f6383dc2c12a2930ce0322ddbfe3aa73)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix: ensure
+  fallback avatar has an accessible text
+
+- Updated dependencies
+  [[`e748219f3`](https://github.com/chakra-ui/chakra-ui/commit/e748219f300f0c51b0eb304fce38b014d7bcbc86),
+  [`91ef14839`](https://github.com/chakra-ui/chakra-ui/commit/91ef148397187010804eb8f30307d2ec94c32c5b)]:
+  - @chakra-ui/utils@1.4.0
+  - @chakra-ui/image@1.0.9
+
 ## 1.1.3
 
 ### Patch Changes

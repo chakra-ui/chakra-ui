@@ -1,5 +1,49 @@
 # Change Log
 
+## 1.4.0
+
+### Minor Changes
+
+- [`e748219f3`](https://github.com/chakra-ui/chakra-ui/commit/e748219f300f0c51b0eb304fce38b014d7bcbc86)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ### Pointer Events
+
+  Add unified pointer event management utils and hook for interal use only.
+
+  The hook is called `usePointerEvent`, it works pretty similar to
+  `useEventListener` except that does two things:
+
+  - Unifies the pointer event system and ensure that only one of `onMouse*`,
+    `onTouch*`, or `onPointer*` handler runs
+  - Provide event information about the pointer event like `x` and `y` position
+    depending on the pointer type.
+
+  > Credits to `framer-motion` for doing the hard work for this utilities
+
+  - Added `useFocusOnPointerDown` to get Safari to detect the correct
+    `event.relatedTarget` when you blur a focused element.
+
+  ### Focus Management
+
+  Set `preventScroll` option to be `true` by default, setting focus on an
+  element should happen without scrolling the page (in most cases).
+
+  Set `nextTick` to `undefined` by default and update all components that use
+  next tick to use `{ nextTick: true }`.
+
+* [`91ef14839`](https://github.com/chakra-ui/chakra-ui/commit/91ef148397187010804eb8f30307d2ec94c32c5b)
+  [#3583](https://github.com/chakra-ui/chakra-ui/pull/3583) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Add `getCSSVar` function
+  to resolve token values and return the css variable reference instead of the
+  actual value. It does a lookup against `theme.__cssMap`.
+
+  ```jsx
+  const value = getCSSVar(theme, "colors", "blue.500")
+  // => "var(--chakra-colors-blue.500)"
+
+  const value = getCSSVar(theme, "colors", "tomato")
+  // => "tomato" // since tomato doesn't exist in theme colors
+  ```
+
 ## 1.3.0
 
 ### Minor Changes

@@ -1,5 +1,25 @@
 # gatsby-starter-default
 
+## 0.2.0
+
+### Minor Changes
+
+- [`64e8466b5`](https://github.com/chakra-ui/chakra-ui/commit/64e8466b528a027c915b7d2d5f474b08a0800e92)
+  [#3623](https://github.com/chakra-ui/chakra-ui/pull/3623) Thanks
+  [@with-heart](https://github.com/with-heart)! - Upgraded `framer-motion`
+  dependency to `^4.0.0`
+
+### Patch Changes
+
+- Updated dependencies
+  [[`efd32c982`](https://github.com/chakra-ui/chakra-ui/commit/efd32c982cd58c1e53468743346a3b8f482b1ae3),
+  [`64e8466b5`](https://github.com/chakra-ui/chakra-ui/commit/64e8466b528a027c915b7d2d5f474b08a0800e92),
+  [`dc9bccfe3`](https://github.com/chakra-ui/chakra-ui/commit/dc9bccfe3c24073a71ab72416aa83ee719186eb6),
+  [`64e8466b5`](https://github.com/chakra-ui/chakra-ui/commit/64e8466b528a027c915b7d2d5f474b08a0800e92)]:
+  - @chakra-ui/gatsby-plugin@1.0.2
+  - @chakra-ui/react@1.4.0
+  - @chakra-ui/machine@1.1.0
+
 ## 0.1.15
 
 ### Patch Changes

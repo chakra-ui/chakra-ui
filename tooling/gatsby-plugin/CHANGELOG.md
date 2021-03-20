@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.0.2
+
+### Patch Changes
+
+- [`efd32c982`](https://github.com/chakra-ui/chakra-ui/commit/efd32c982cd58c1e53468743346a3b8f482b1ae3)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Update
+  peer-dependency for gatsby
+  - Remove `@chakra-ui/theme` from peer-dependency. The theme already exists in
+    `@chakra-ui/react`
+
 ## 1.0.1
 
 ### Patch Changes

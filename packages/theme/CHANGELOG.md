@@ -1,5 +1,49 @@
 # Change Log
 
+## 1.7.1
+
+### Patch Changes
+
+- [`96139067d`](https://github.com/chakra-ui/chakra-ui/commit/96139067daa4b9a606b60c73f28a88ccd99d983b)
+  [#3551](https://github.com/chakra-ui/chakra-ui/pull/3551) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - NumberInput: add `root` to
+  parts, leverage css variables and update styles to be rtl friendly.
+
+* [`91ef14839`](https://github.com/chakra-ui/chakra-ui/commit/91ef148397187010804eb8f30307d2ec94c32c5b)
+  [#3583](https://github.com/chakra-ui/chakra-ui/pull/3583) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Refactor arrow
+  components to use `data-popper-arrow` and `data-popper-arrow-inner` to define
+  the arrow elements. This is used within the modifiers to update the arrow
+  styles/position positioning.
+
+  - Change `arrowSize` and `arrowShadowColor` to use CSS custom properties
+    instead of passing it to `usePopper`.
+
+  - Update component themes to use `--popper-arrow-bg` to set the background for
+    the popper's arrow element.
+
+- [`eece70293`](https://github.com/chakra-ui/chakra-ui/commit/eece70293fb095d016a1ef8f2e367422b3e02ef5)
+  [#3622](https://github.com/chakra-ui/chakra-ui/pull/3622) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - - Added typings for the
+  `theme` prop in `ThemingPropsThunk` and export a standalone type
+  `ThemeComponentProps`
+
+  ```ts
+  import { ThemeComponentProps } from "@chakra-ui/react"
+
+  function baseStyle(props: ThemeComponentProps) {
+    return {
+      boxShadow: `0 1px 2px 0 rgba(0, 0, 0, 0.05) ${props.theme.colors.whiteAlpha[500]}`,
+    }
+  }
+  ```
+
+- Updated dependencies
+  [[`e748219f3`](https://github.com/chakra-ui/chakra-ui/commit/e748219f300f0c51b0eb304fce38b014d7bcbc86),
+  [`91ef14839`](https://github.com/chakra-ui/chakra-ui/commit/91ef148397187010804eb8f30307d2ec94c32c5b)]:
+  - @chakra-ui/utils@1.4.0
+  - @chakra-ui/theme-tools@1.1.1
+
 ## 1.7.0
 
 ### Minor Changes
