@@ -2,4 +2,4 @@
 "@chakra-ui/radio": patch
 ---
 
-fix: onchange type for use-radio-group props
+Fix: `onChange` type for `use-radio-group` props

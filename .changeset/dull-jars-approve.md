@@ -17,6 +17,9 @@ The hook is called `usePointerEvent`, it works pretty similar to
 
 > Credits to `framer-motion` for doing the hard work for this utilities
 
+- Added `useFocusOnPointerDown` to get Safari to detect the correct
+  `event.relatedTarget` when you blur a focused element.
+
 ### Focus Management
 
 Set `preventScroll` option to be `true` by default, setting focus on an element
