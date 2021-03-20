@@ -147,7 +147,7 @@ export const MenuList = forwardRef<MenuListProps, "div">((props, ref) => {
   const { rootProps, ...rest } = props
   const { isOpen, onTransitionEnd } = useMenuContext()
 
-  const listProps = useMenuList(rest, ref)
+  const listProps: any = useMenuList(rest, ref)
   const positionerProps = useMenuPositioner(rootProps)
 
   const styles = useStyles()
