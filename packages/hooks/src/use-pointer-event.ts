@@ -11,7 +11,7 @@ import {
 import { useEventListener } from "./use-event-listener"
 
 export function usePointerEvent(
-  env: Document | HTMLElement,
+  env: Document | HTMLElement | null,
   eventName: string,
   handler: EventListenerWithPointInfo,
   options?: AddEventListenerOptions,

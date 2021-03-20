@@ -2,16 +2,16 @@ import { getOwnerDocument } from "@chakra-ui/utils"
 import { RefObject, useEffect, useRef } from "react"
 import { useCallbackRef } from "./use-callback-ref"
 
-interface UseOutsideClickOptions {
+export interface UseOutsideClickProps {
   ref: RefObject<HTMLElement>
-  handler: (e: Event) => void
+  handler?: (e: Event) => void
 }
 
 /**
  * Example, used in components like Dialogs and Popovers so they can close
  * when a user clicks outside them.
  */
-export function useOutsideClick(props: UseOutsideClickOptions) {
+export function useOutsideClick(props: UseOutsideClickProps) {
   const { ref, handler } = props
   const savedHandler = useCallbackRef(handler)
 

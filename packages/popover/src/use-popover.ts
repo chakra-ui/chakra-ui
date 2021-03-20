@@ -20,6 +20,7 @@ import {
   getOwnerDocument,
   getRelatedTarget,
   HTMLProps,
+  isBrowser,
   mergeRefs,
   PropGetter,
   px,
@@ -174,7 +175,7 @@ export function usePopover(props: UsePopoverProps = {}) {
   })
 
   useFocusOnPointerDown({
-    doc: getOwnerDocument(triggerRef.current),
+    doc: isBrowser ? getOwnerDocument(triggerRef.current) : null,
     elements: [triggerRef],
   })
 

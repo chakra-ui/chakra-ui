@@ -2,11 +2,13 @@ import * as React from "react"
 import { Booleanish, EventKeys } from "./types"
 
 export function getOwnerWindow(node?: HTMLElement | null) {
-  return getOwnerDocument(node).defaultView ?? window
+  return node instanceof Element
+    ? getOwnerDocument(node)?.defaultView ?? window
+    : window
 }
 
 export function getOwnerDocument(node?: HTMLElement | null) {
-  return node?.ownerDocument ?? document
+  return node instanceof Element ? node.ownerDocument ?? document : document
 }
 
 export function getRelatedTarget<E extends FocusEvent | React.FocusEvent>(

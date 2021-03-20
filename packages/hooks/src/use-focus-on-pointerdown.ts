@@ -8,7 +8,7 @@ import { RefObject } from "react"
 import { usePointerEvent } from "./use-pointer-event"
 
 export interface UseFocusOnMouseDownProps {
-  doc: Document
+  doc: Document | null
   elements: Array<RefObject<HTMLElement> | HTMLElement | null>
 }
 

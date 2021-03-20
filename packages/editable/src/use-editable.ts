@@ -11,6 +11,7 @@ import {
   focus,
   getOwnerDocument,
   getRelatedTarget,
+  isBrowser,
   isEmpty,
   mergeRefs,
   normalizeEventKey,
@@ -123,7 +124,7 @@ export function useEditable(props: UseEditableProps = {}) {
   const submitButtonRef = useRef<HTMLElement>(null)
 
   useFocusOnPointerDown({
-    doc: getOwnerDocument(inputRef.current),
+    doc: isBrowser ? getOwnerDocument(inputRef.current) : null,
     elements: [cancelButtonRef, submitButtonRef],
   })
 
