@@ -73,7 +73,7 @@ export const others: Config = {
   },
   textStyle: {
     processResult: true,
-    transform: (value, theme, styles = {}) =>
+    transform: (value, theme, styles) =>
       getWithPriority(theme, `textStyles.${value}`, styles),
   },
   apply: {
