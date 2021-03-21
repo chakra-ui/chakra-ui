@@ -22,7 +22,7 @@ import Search from "./omni-search"
 import SponsorButton from "./sponsor-button"
 import VersionSwitcher from "./version-switcher"
 
-const DiscordIcon = (props) => (
+const DiscordIcon = (props: React.ComponentProps<"svg">) => (
   <svg viewBox="0 0 146 146" {...props}>
     <path
       fill="currentColor"
@@ -32,7 +32,7 @@ const DiscordIcon = (props) => (
   </svg>
 )
 
-const GithubIcon = (props) => (
+const GithubIcon = (props: React.ComponentProps<"svg">) => (
   <svg viewBox="0 0 20 20" {...props}>
     <path
       fill="currentColor"
