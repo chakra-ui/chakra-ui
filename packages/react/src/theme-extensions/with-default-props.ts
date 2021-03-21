@@ -1,7 +1,4 @@
-import defaultTheme, {
-  ChakraTheme,
-  ComponentDefaultProps,
-} from "@chakra-ui/theme"
+import { ChakraTheme, ComponentDefaultProps } from "@chakra-ui/theme"
 import { Dict } from "@chakra-ui/utils"
 import { compose, mergeThemeOverride, ThemeOverride } from "../extend-theme"
 import { withDefaultColorScheme } from "./with-default-color-scheme"
@@ -13,7 +10,7 @@ export function withDefaultProps<
   Override extends ThemeOverride<BaseTheme>
 >({
   defaultProps: { colorScheme, variant, size },
-  components = defaultTheme.components,
+  components,
 }: {
   defaultProps: ComponentDefaultProps
   components?: string[] | Dict

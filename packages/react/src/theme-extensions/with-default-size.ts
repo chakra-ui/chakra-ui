@@ -1,11 +1,10 @@
-import defaultTheme from "@chakra-ui/theme"
 import { ThemingProps } from "@chakra-ui/system"
 import { Dict, isObject } from "@chakra-ui/utils"
 import { mergeThemeOverride, ThemeExtension } from "../extend-theme"
 
 export function withDefaultSize({
   size,
-  components = defaultTheme.components,
+  components,
 }: {
   size: ThemingProps["size"]
   components?: string[] | Dict

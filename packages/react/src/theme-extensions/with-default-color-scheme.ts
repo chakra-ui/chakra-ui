@@ -1,11 +1,10 @@
-import defaultTheme from "@chakra-ui/theme"
 import { ThemingProps } from "@chakra-ui/system"
 import { Dict, isObject } from "@chakra-ui/utils"
 import { mergeThemeOverride, ThemeExtension } from "../extend-theme"
 
 export function withDefaultColorScheme({
   colorScheme,
-  components = defaultTheme.components,
+  components,
 }: {
   colorScheme: ThemingProps["colorScheme"]
   components?: string[] | Dict

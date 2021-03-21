@@ -1,11 +1,10 @@
-import defaultTheme from "@chakra-ui/theme"
 import { ThemingProps } from "@chakra-ui/system"
 import { Dict, isObject } from "@chakra-ui/utils"
 import { mergeThemeOverride, ThemeExtension } from "../extend-theme"
 
 export function withDefaultVariant({
   variant,
-  components = defaultTheme.components,
+  components,
 }: {
   variant: ThemingProps["variant"]
   components?: string[] | Dict
