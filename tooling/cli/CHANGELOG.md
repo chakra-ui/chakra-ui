@@ -1,5 +1,27 @@
 # @chakra-ui/cli
 
+## 1.3.0
+
+### Minor Changes
+
+- [`035d5726e`](https://github.com/chakra-ui/chakra-ui/commit/035d5726e28396ef487b9801d7e2fa57677c703c)
+  [#3529](https://github.com/chakra-ui/chakra-ui/pull/3529) Thanks
+  [@callum-mellorreed-privitar](https://github.com/callum-mellorreed-privitar)! -
+  Add support for `textStyle` and `layerStyle` theme type generation to
+  `@chakra-ui/cli`
+
+### Patch Changes
+
+- [`4955fe4fa`](https://github.com/chakra-ui/chakra-ui/commit/4955fe4fafa7468f3788583ab4cdac5dad611591)
+  [#3621](https://github.com/chakra-ui/chakra-ui/pull/3621) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue where the
+  cli tokens command exited unexpectedly
+
+- Updated dependencies
+  [[`e748219f3`](https://github.com/chakra-ui/chakra-ui/commit/e748219f300f0c51b0eb304fce38b014d7bcbc86),
+  [`91ef14839`](https://github.com/chakra-ui/chakra-ui/commit/91ef148397187010804eb8f30307d2ec94c32c5b)]:
+  - @chakra-ui/utils@1.4.0
+
 ## 1.2.1
 
 ### Patch Changes
