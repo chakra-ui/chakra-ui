@@ -19,7 +19,8 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "declarationMap": true
   },
   "include": ["packages", "scripts", "tooling"],
   "exclude": ["node_modules"],
