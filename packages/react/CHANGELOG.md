@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.4.1
+
+### Patch Changes
+
+- [`a576f4de8`](https://github.com/chakra-ui/chakra-ui/commit/a576f4de850706ea7088c8a6ea687269cad05e69)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix: avoid mutation
+  for `getWithPriority` to get `textStyle` and `layerStyle` working
+  consistently.
+- Updated dependencies []:
+  - @chakra-ui/system@1.5.1
+  - @chakra-ui/skeleton@1.1.6
+
 ## 1.4.0
 
 ### Minor Changes
