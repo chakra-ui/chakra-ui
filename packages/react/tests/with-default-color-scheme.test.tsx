@@ -12,7 +12,6 @@ describe("", () => {
         },
       },
       withDefaultColorScheme({ colorScheme: "brand" }),
-      defaultTheme,
     )
 
     expect(theme.components.Alert.defaultProps.colorScheme).toBe("brand")
@@ -20,7 +19,7 @@ describe("", () => {
     expect(theme.colors.brand[500]).toBe("#b4d455")
   })
 
-  it("should override from right to left", () => {
+  it("should override from left to right", () => {
     const customTheme = extendTheme(
       withDefaultColorScheme({ colorScheme: "banana" }),
       withDefaultColorScheme({ colorScheme: "brand" }),
@@ -45,7 +44,6 @@ describe("", () => {
           },
         },
       },
-      defaultTheme,
     )
 
     expect(customTheme.components.Alert.defaultProps.colorScheme).toBe("brand")
@@ -57,11 +55,10 @@ describe("", () => {
   it("should pass on the computed value", () => {
     const customTheme = extendTheme(
       (theme) => ({ ...theme, step1: "completed" }),
-      (theme) => ({ ...theme, step1: "overriden", step2: theme.step1 }),
-      defaultTheme,
+      (theme) => ({ ...theme, step1: "overridden", step2: theme.step1 }),
     )
 
-    expect(customTheme.step1).toBe("overriden")
+    expect(customTheme.step1).toBe("overridden")
     expect(customTheme.step2).toBe("completed")
   })
 
@@ -81,7 +78,6 @@ describe("", () => {
             },
           },
         }),
-      defaultTheme,
     )
 
     expect(customTheme.colors.brand).toHaveProperty("500")
@@ -104,7 +100,6 @@ describe("", () => {
           },
         },
       },
-      defaultTheme,
     )
 
     expect(customTheme.colors.brand).toHaveProperty("500")
@@ -126,12 +121,32 @@ describe("", () => {
         colorScheme: "blue",
         components: ["Container"],
       }),
-      defaultTheme,
     )
 
     expect(customTheme.components.Button.defaultProps.colorScheme).toBe("red")
     expect(customTheme.components.Badge.defaultProps.colorScheme).toBe("red")
     expect(customTheme.components.Alert.defaultProps.colorScheme).toBe("blue")
     expect(customTheme.components.Table.defaultProps.colorScheme).toBe("blue")
+  })
+
+  it("should override colorScheme of custom components", () => {
+    const themeWithCustomComponent = {
+      components: {
+        MyCustomComponent: {
+          defaultProps: {
+            colorScheme: "purple",
+          },
+        },
+      },
+    }
+
+    const theme = extendTheme(
+      themeWithCustomComponent,
+      withDefaultColorScheme({ colorScheme: "brand" }),
+    )
+
+    expect(theme.components.MyCustomComponent.defaultProps.colorScheme).toBe(
+      "brand",
+    )
   })
 })

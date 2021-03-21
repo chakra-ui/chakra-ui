@@ -1,11 +1,9 @@
-import defaultTheme from "@chakra-ui/theme"
 import { extendTheme, withDefaultVariant } from "../src"
 
 describe("withDefaultVariant", () => {
   it("should set a defaultVariant", () => {
     const customTheme = extendTheme(
       withDefaultVariant({ variant: "my-custom-variant" }),
-      defaultTheme,
     )
 
     expect(customTheme.components.Button.defaultProps.variant).toBe(
@@ -19,7 +17,6 @@ describe("withDefaultVariant", () => {
         variant: "my-custom-variant",
         components: ["Button", "Badge"],
       }),
-      defaultTheme,
     )
 
     expect(customTheme.components.Button.defaultProps.variant).toBe(

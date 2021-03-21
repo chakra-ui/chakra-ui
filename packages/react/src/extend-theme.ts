@@ -3,7 +3,7 @@ import defaultTheme, {
   isChakraTheme,
   Theme,
 } from "@chakra-ui/theme"
-import { Dict, isFunction, mergeWith, warn } from "@chakra-ui/utils"
+import { Dict, isFunction, mergeWith, pipe } from "@chakra-ui/utils"
 
 type CloneKey<Target, Key> = Key extends keyof Target ? Target[Key] : unknown
 
@@ -40,29 +40,18 @@ export type ThemeExtension<Override extends ThemeOverride = ThemeOverride> = (
 export type BaseThemeWithExtensions<
   BaseTheme extends ChakraTheme,
   Extensions extends readonly [...any]
-> = Extensions extends [infer L, ...infer R]
-  ? L extends (...args: any[]) => any
-    ? ReturnType<L> & BaseThemeWithExtensions<BaseTheme, R>
-    : L & BaseThemeWithExtensions<BaseTheme, R>
-  : BaseTheme & Extensions
+> = BaseTheme &
+  (Extensions extends [infer L, ...infer R]
+    ? L extends (...args: any[]) => any
+      ? ReturnType<L> & BaseThemeWithExtensions<BaseTheme, R>
+      : L & BaseThemeWithExtensions<BaseTheme, R>
+    : Extensions)
 /**
  * Function to override or customize the Chakra UI theme conveniently.
  * First extension overrides the baseTheme and following extensions override the preceding extensions.
  *
- * @example with only overrides:
- * import { extendTheme } from '@chakra-ui/react'
- *
- * const customTheme = extendTheme({
- *   colors: {
- *     brand: {
- *       500: "#b4d455",
- *     },
- *   },
- * })
- *
- *
- * @example with extension:
- * import { theme, extendTheme, withDefaultColorScheme } from '@chakra-ui/react'
+ * @example:
+ * import { theme as baseTheme, extendTheme, withDefaultColorScheme } from '@chakra-ui/react'
  *
  * const customTheme = extendTheme(
  *   {
@@ -73,7 +62,7 @@ export type BaseThemeWithExtensions<
  *     },
  *   },
  *   withDefaultColorScheme({ colorScheme: "red" }),
- *   theme,
+ *   baseTheme // optional
  * )
  */
 export function extendTheme<
@@ -83,23 +72,22 @@ export function extendTheme<
     | ThemeOverride<BaseTheme>
     | ThemeExtension<ThemeOverride<BaseTheme>>
   )[] = (ThemeOverride<BaseTheme> | ThemeExtension<ThemeOverride<BaseTheme>>)[]
->(
-  ...extensions: [...Extensions]
-): BaseThemeWithExtensions<BaseTheme, Extensions> {
-  const overrides = [...extensions]
-    .slice(0, extensions.length - (extensions.length > 1 ? 1 : 0))
-    .reverse()
+>(...extensions: [...Extensions]) {
+  let overrides = [...extensions]
+  let baseTheme = extensions[extensions.length - 1]
 
-  const baseTheme =
-    extensions.length > 1 ? extensions[extensions.length - 1] : defaultTheme
-
-  if (!isChakraTheme(baseTheme) || !overrides.length) {
-    warn(
-      `Last parameter needs to be a valid \`ChakraTheme\`. Please check your extendTheme function call from @chakra-ui/react.`,
-    )
+  if (
+    isChakraTheme(baseTheme) &&
+    // this ensures backward compatibility
+    // previously only `extendTheme(override, baseTheme?)` was allowed
+    overrides.length > 1
+  ) {
+    overrides = overrides.slice(0, overrides.length - 1)
+  } else {
+    baseTheme = (defaultTheme as unknown) as BaseTheme
   }
 
-  return compose(
+  return pipe(
     ...overrides.map(
       (extension) => (
         prevTheme: BaseThemeWithExtensions<BaseTheme, Extensions>,
@@ -115,10 +103,6 @@ export function mergeThemeOverride<BaseTheme extends ChakraTheme = ChakraTheme>(
   ...overrides: ThemeOverride<BaseTheme>[]
 ): ThemeOverride<BaseTheme> {
   return mergeWith({}, ...overrides, mergeThemeCustomizer)
-}
-
-export function compose<R>(...fns: Array<(a: R) => R>) {
-  return fns.reduce((prevFn, nextFn) => (value) => prevFn(nextFn(value)))
 }
 
 function mergeThemeCustomizer(

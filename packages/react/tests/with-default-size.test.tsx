@@ -1,12 +1,8 @@
-import defaultTheme from "@chakra-ui/theme"
 import { extendTheme, withDefaultSize } from "../src"
 
 describe("withDefaultSize", () => {
   it("should set a defaultSize", () => {
-    const customTheme = extendTheme(
-      withDefaultSize({ size: "veryBig" }),
-      defaultTheme,
-    )
+    const customTheme = extendTheme(withDefaultSize({ size: "veryBig" }))
 
     expect(customTheme.components.Button.defaultProps.size).toBe("veryBig")
   })
@@ -17,7 +13,6 @@ describe("withDefaultSize", () => {
         size: "veryBig",
         components: ["Button", "Badge"],
       }),
-      defaultTheme,
     )
 
     expect(customTheme.components.Button.defaultProps.size).toBe("veryBig")

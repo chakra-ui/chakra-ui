@@ -2,22 +2,24 @@ import { isObject } from "@chakra-ui/utils"
 import { ChakraTheme } from "./theme.types"
 
 export const requiredChakraThemeKeys: (keyof ChakraTheme)[] = [
+  "borders",
+  "breakpoints",
+  "colors",
+  "components",
+  "config",
+  "direction",
   "fonts",
   "fontSizes",
   "fontWeights",
   "letterSpacings",
   "lineHeights",
-  "borders",
-  "breakpoints",
-  "colors",
   "radii",
   "shadows",
   "sizes",
   "space",
+  "styles",
   "transition",
   "zIndices",
-  "config",
-  "direction",
 ]
 
 export function isChakraTheme(unit: unknown): unit is ChakraTheme {

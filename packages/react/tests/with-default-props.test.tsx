@@ -1,4 +1,3 @@
-import defaultTheme from "@chakra-ui/theme"
 import { extendTheme, withDefaultProps } from "../src"
 
 describe("withDefaultProps", () => {
@@ -11,7 +10,6 @@ describe("withDefaultProps", () => {
           variant: "my-custom-variant",
         },
       }),
-      defaultTheme,
     )
 
     expect(customTheme.components.Button.defaultProps.colorScheme).toBe("brand")
@@ -31,7 +29,6 @@ describe("withDefaultProps", () => {
         },
         components: ["Button", "Badge"],
       }),
-      defaultTheme,
     )
 
     expect(customTheme.components.Button.defaultProps.colorScheme).toBe("brand")
