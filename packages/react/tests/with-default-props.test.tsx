@@ -1,6 +1,6 @@
 import { extendTheme, withDefaultProps } from "../src"
 
-describe("withDefaultProps", () => {
+describe("Theme extension: withDefaultProps", () => {
   it("should set a defaultProps", () => {
     const customTheme = extendTheme(
       withDefaultProps({

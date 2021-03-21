@@ -1,6 +1,6 @@
 import { extendTheme, withDefaultVariant } from "../src"
 
-describe("withDefaultVariant", () => {
+describe("Theme extension: withDefaultVariant", () => {
   it("should set a defaultVariant", () => {
     const customTheme = extendTheme(
       withDefaultVariant({ variant: "my-custom-variant" }),

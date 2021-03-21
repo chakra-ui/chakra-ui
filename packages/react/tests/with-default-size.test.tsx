@@ -1,6 +1,6 @@
 import { extendTheme, withDefaultSize } from "../src"
 
-describe("withDefaultSize", () => {
+describe("Theme extension: withDefaultSize", () => {
   it("should set a defaultSize", () => {
     const customTheme = extendTheme(withDefaultSize({ size: "veryBig" }))
 

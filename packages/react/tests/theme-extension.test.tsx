@@ -1,5 +1,4 @@
 import { extendTheme, mergeThemeOverride, ThemeOverride } from "../src"
-import { ChakraTheme } from "@chakra-ui/theme"
 
 describe("Theme Extension", () => {
   it("should be backwards compatible", () => {
