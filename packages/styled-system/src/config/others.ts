@@ -33,11 +33,13 @@ const srFocusable = {
 }
 
 const getWithPriority = (theme: any, key: any, styles: any) => {
-  const expanded = get(theme, key, {})
-  for (const prop in expanded) {
-    if (prop in styles) delete expanded[prop]
+  const result = {}
+  const obj = get(theme, key, {})
+  for (const prop in obj) {
+    const isInStyles = prop in styles && styles[prop] != null
+    if (!isInStyles) result[prop] = obj[prop]
   }
-  return expanded
+  return result
 }
 
 export const others: Config = {

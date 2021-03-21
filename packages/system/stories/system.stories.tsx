@@ -1,5 +1,6 @@
 import React from "react"
 import theme from "@chakra-ui/theme"
+import { Text } from "@chakra-ui/layout"
 import { motion } from "framer-motion"
 import {
   chakra,
@@ -14,7 +15,7 @@ export default {
   title: "System",
 }
 
-const MotionBox = motion.custom(chakra.div)
+const MotionBox = motion(chakra.div)
 
 export const WithFramerMotion = () => (
   <MotionBox
@@ -73,6 +74,9 @@ export const withTextStyles = () => (
     <chakra.h1 textStyle="h2" color="red.300">
       Welcome
     </chakra.h1>
+    <Text textStyle="h1" color="green.200">
+      Welcome text
+    </Text>
   </ThemeProvider>
 )
 
