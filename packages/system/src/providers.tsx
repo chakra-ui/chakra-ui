@@ -52,13 +52,12 @@ export function useTheme<T extends object = Dict>() {
   return theme as WithCSSVar<T>
 }
 
-export const [StylesProvider, useStyles] = createContext<
-  Dict<SystemStyleObject>
->({
+const [StylesProvider, useStyles] = createContext<Dict<SystemStyleObject>>({
   name: "StylesContext",
   errorMessage:
     "useStyles: `styles` is undefined. Seems you forgot to wrap the components in `<StylesProvider />` ",
 })
+export { StylesProvider, useStyles }
 
 /**
  * Applies styles defined in `theme.styles.global` globally
