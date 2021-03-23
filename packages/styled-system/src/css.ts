@@ -1,58 +1,20 @@
 import { Dict, isObject, mergeWith as merge, runIfFn } from "@chakra-ui/utils"
 import * as CSS from "csstype"
+import { expandResponsive } from "./expand-responsive"
 import { Config, PropConfig } from "./prop-config"
 import { pseudoSelectors } from "./pseudos"
 import { systemProps as systemPropConfigs } from "./system"
 import { CssTheme, StyleObjectOrFn } from "./types"
 
-export const expandResponsive = (styles: Dict) => (theme: Dict) => {
-  if (!theme.__breakpoints) return styles
-  const { isResponsive, toArrayValue, media: medias } = theme.__breakpoints
+const isCSSVar = (key: string) => key.startsWith("--")
 
-  const computedStyles: Dict = {}
-
-  for (const key in styles) {
-    let value = runIfFn(styles[key], theme)
-
-    if (value == null) continue
-
-    value = isObject(value) && isResponsive(value) ? toArrayValue(value) : value
-
-    if (!Array.isArray(value)) {
-      computedStyles[key] = value
-      continue
-    }
-
-    const queries = value.slice(0, medias.length).length
-
-    for (let index = 0; index < queries; index += 1) {
-      const media = medias?.[index]
-
-      if (!media) {
-        computedStyles[key] = value[index]
-        continue
-      }
-
-      computedStyles[media] = computedStyles[media] || {}
-
-      if (value[index] == null) {
-        continue
-      }
-
-      computedStyles[media][key] = value[index]
-    }
-  }
-
-  return computedStyles
-}
-
-interface Options {
+interface GetCSSOptions {
   theme: CssTheme
   configs?: Config
   pseudos?: Record<string, CSS.Pseudos | (string & {})>
 }
 
-export function getCss(options: Options) {
+export function getCss(options: GetCSSOptions) {
   const { configs = {}, pseudos = {}, theme } = options
 
   const css = (stylesOrFn: Dict, nested = false) => {
@@ -61,10 +23,30 @@ export function getCss(options: Options) {
 
     let computedStyles: Dict = {}
 
-    for (const k in styles) {
-      const valueOrFn = styles[k]
-      const value = runIfFn(valueOrFn, theme)
-      const key = k in pseudos ? pseudos[k] : k
+    for (let key in styles) {
+      const valueOrFn = styles[key]
+
+      /**
+       * allows the user to pass functional values
+       * boxShadow: theme => `0 2px 2px ${theme.colors.red}`
+       */
+      let value = runIfFn(valueOrFn, theme)
+
+      /**
+       * converts pseudo shorthands to valid selector
+       * "_hover" => "&:hover"
+       */
+      if (key in pseudos) {
+        key = pseudos[key]
+      }
+
+      /**
+       * allows the user to use theme tokens in css vars
+       * { --banner-height: "sizes.md" } => { --banner-height: "var(--chakra-sizes-md)" }
+       */
+      if (isCSSVar(key) && theme.__cssMap[value]) {
+        value = theme.__cssMap[value].varRef
+      }
 
       let config = configs[key]
 
@@ -79,8 +61,23 @@ export function getCss(options: Options) {
       }
 
       let rawValue = config?.transform?.(value, theme, _styles) ?? value
+
+      /**
+       * Used for `layerStyle`, `textStyle` and `apply`. After getting the
+       * styles in the theme, we need to process them since they might
+       * contain theme tokens.
+       *
+       * `processResult` is the config property we pass to `layerStyle`, `textStyle` and `apply`
+       */
       rawValue = config?.processResult ? css(rawValue, true) : rawValue
 
+      /**
+       * allows us define css properties for RTL and LTR.
+       *
+       * const marginStart = {
+       *   property: theme => theme.direction === "rtl" ? "marginRight": "marginLeft",
+       * }
+       */
       const configProperty = runIfFn(config?.property, theme)
 
       if (!nested && config?.static) {

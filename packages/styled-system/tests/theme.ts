@@ -14,7 +14,12 @@ export const createTheme = (direction: "rtl" | "ltr") =>
       md: 64,
       lg: 80,
     },
+    sizes: {
+      sm: "40px",
+      md: "90px",
+    },
     colors: {
       pinkish: "#dfsdds",
+      redish: "#rrtffg",
     },
   })

@@ -29,6 +29,8 @@
     "version:pkgs": "changeset version",
     "clean:emotion-types": "rm -rf node_modules/@emotion/core/types",
     "postinstall": "yarn clean:emotion-types && yarn check:pkgs",
+    "csb:pkgs": "node -r esm scripts/csb.js",
+    "csb:install": "yarn prestart && yarn csb:pkgs",
     "contributors:add": "all-contributors add",
     "contributors:gen": "all-contributors generate",
     "prestart": "yarn && yarn bootstrap",
