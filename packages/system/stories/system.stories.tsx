@@ -179,3 +179,19 @@ export const WithLayerStyleInComponentTheme = () => (
     <Div>Welcome</Div>
   </ThemeProvider>
 )
+
+export const WithCSSVarToken = () => {
+  return (
+    <chakra.div
+      sx={{
+        "--banner-height": "sizes.md",
+        ".banner": {
+          height: "var(--banner-height)",
+          bg: "red.200",
+        },
+      }}
+    >
+      <div className="banner">banner</div>
+    </chakra.div>
+  )
+}
