@@ -522,6 +522,10 @@ prop instead.
 - Removed `preserveScrollBarGap` prop. We preserve scroll bar gap by default to
   prevent any layout shift.
 
+- `ModalCloseButton` now reads the `onClose` action from the `Modal` context - 
+  you no longer need to pass the `onClick` to it. Conversely, the `onClose` prop
+  on `Modal` is now a required prop if you specify `ModalCloseButton`.
+
 - Only pass `size` values defined in the components theme. Hard-coded values
   will be ignored. Update the styles in `theme.components.Modal` to reflect your
   custom values.
