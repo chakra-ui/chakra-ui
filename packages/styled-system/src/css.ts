@@ -43,9 +43,15 @@ export function getCss(options: GetCSSOptions) {
       /**
        * allows the user to use theme tokens in css vars
        * { --banner-height: "sizes.md" } => { --banner-height: "var(--chakra-sizes-md)" }
+       *
+       * You can also provide fallback values
+       * { --banner-height: "sizes.no-exist, 40px" } => { --banner-height: "40px" }
        */
-      if (isCSSVar(key) && theme.__cssMap[value]) {
-        value = theme.__cssMap[value].varRef
+      if (isCSSVar(key) && typeof value === "string") {
+        const [tokenValue, fallbackValue] = value
+          .split(",")
+          .map((v) => v.trim())
+        value = theme.__cssMap[tokenValue]?.varRef ?? fallbackValue
       }
 
       let config = configs[key]
