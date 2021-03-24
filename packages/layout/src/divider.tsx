@@ -49,7 +49,6 @@ export const Divider = forwardRef<DividerProps, "hr">((props, ref) => {
   return (
     <chakra.hr
       ref={ref}
-      role="separator"
       aria-orientation={orientation}
       {...rest}
       __css={{
