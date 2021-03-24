@@ -14,7 +14,7 @@ import { systemProps as systemPropConfigs } from "./system"
 import { CssTheme, StyleObjectOrFn } from "./types"
 
 const isCSSVariableTokenValue = (key: string, value: any): value is string =>
-  key.startsWith("--") && isString(isString) && !isCssVar(value)
+  key.startsWith("--") && isString(value) && !isCssVar(value)
 
 interface GetCSSOptions {
   theme: CssTheme
