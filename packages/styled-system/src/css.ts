@@ -1,4 +1,11 @@
-import { Dict, isObject, mergeWith as merge, runIfFn } from "@chakra-ui/utils"
+import {
+  Dict,
+  isObject,
+  mergeWith as merge,
+  runIfFn,
+  isCssVar,
+  isString,
+} from "@chakra-ui/utils"
 import * as CSS from "csstype"
 import { expandResponsive } from "./expand-responsive"
 import { Config, PropConfig } from "./prop-config"
@@ -6,7 +13,8 @@ import { pseudoSelectors } from "./pseudos"
 import { systemProps as systemPropConfigs } from "./system"
 import { CssTheme, StyleObjectOrFn } from "./types"
 
-const isCSSVar = (key: string) => key.startsWith("--")
+const isCSSVariableTokenValue = (key: string, value: any): value is string =>
+  key.startsWith("--") && isString(isString) && !isCssVar(value)
 
 interface GetCSSOptions {
   theme: CssTheme
@@ -47,7 +55,7 @@ export function getCss(options: GetCSSOptions) {
        * You can also provide fallback values
        * { --banner-height: "sizes.no-exist, 40px" } => { --banner-height: "40px" }
        */
-      if (isCSSVar(key) && typeof value === "string") {
+      if (isCSSVariableTokenValue(key, value)) {
         const [tokenValue, fallbackValue] = value
           .split(",")
           .map((v) => v.trim())
