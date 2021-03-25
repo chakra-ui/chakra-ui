@@ -4,7 +4,7 @@ import { createTransform } from "./create-transform"
 import { ThemeScale } from "./css-var"
 import type { CssTheme, Transform } from "./types"
 
-type CSSProp = keyof CSS.Properties
+type CSSProp = keyof CSS.Properties | (string & {})
 type MaybeArray<T> = T | T[]
 type MaybeThemeFunction<T> = T | ((theme: CssTheme) => T)
 type StringUnion<T> = T | (string & {})

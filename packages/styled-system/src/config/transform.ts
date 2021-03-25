@@ -1,10 +1,16 @@
+import { isCssVar, isNumber } from "@chakra-ui/utils"
 import * as CSS from "csstype"
 import { Config } from "../prop-config"
-import { Token } from "../utils"
+import { t, Token } from "../utils"
 
 const templates = {
   auto: "var(--chakra-transform)",
   "auto-gpu": "var(--chakra-transform-gpu)",
+}
+
+const degreeTransform = (value: any) => {
+  if (isCssVar(value) || value == null) return value
+  return isNumber(value) ? `${value}deg` : value
 }
 
 export const transform: Config = {
@@ -15,6 +21,24 @@ export const transform: Config = {
     },
   },
   transformOrigin: true,
+  translateX: t.spaceT("--chakra-translate-x"),
+  translateY: t.spaceT("--chakra-translate-y"),
+  rotateX: {
+    property: "--chakra-rotate-x",
+    transform: degreeTransform,
+  },
+  rotateY: {
+    property: "--chakra-rotate-y",
+    transform: degreeTransform,
+  },
+  skewX: {
+    property: "--chakra-skew-x",
+    transform: degreeTransform,
+  },
+  skewY: {
+    property: "--chakra-skew-y",
+    transform: degreeTransform,
+  },
 }
 
 export interface TransformProps {
