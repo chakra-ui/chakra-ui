@@ -1,17 +1,19 @@
 {
   "name": "@chakra-ui/storybook-addon",
   "version": "0.0.0",
-  "description": "The official Storybook Addon for Chakra UI",
+  "description": "The official Storybook Addon for Chakra UI React",
   "keywords": [
     "storybook-addons",
     "chakra",
-    "addon"
+    "chakra-ui",
+    "react"
   ],
-  "author": "Mark Chandler <mark@chanchan.io>",
+  "author": "Mark Chandler <github@chanchan.io>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chakra-ui/chakra-ui.git"
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "tooling/storybook-addon"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
