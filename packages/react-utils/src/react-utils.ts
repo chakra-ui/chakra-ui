@@ -1,5 +1,10 @@
 import * as React from "react"
-import { isFunction } from "./assertion"
+import { isObject, isFunction } from "@chakra-ui/utils"
+
+// Event assertions
+export function isInputEvent(value: any): value is React.ChangeEvent {
+  return value && isObject(value) && isObject(value.target)
+}
 
 export interface CreateContextOptions {
   /**

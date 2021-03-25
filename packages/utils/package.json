@@ -47,11 +47,5 @@
     "@types/object-assign": "4.0.30",
     "css-box-model": "1.2.1",
     "lodash.mergewith": "4.6.2"
-  },
-  "peerDependencies": {
-    "react": ">=16.8.6"
-  },
-  "devDependencies": {
-    "react": "^17.0.1"
   }
 }
