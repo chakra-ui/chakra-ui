@@ -30,9 +30,14 @@
     "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist --source-maps",
     "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types"
   },
-  "dependencies": {},
-  "devDependencies": {},
-  "peerDependencies": {},
+  "devDependencies": {
+    "@chakra-ui/react": "^1.4.1",
+    "react": "^17.0.1"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": "^1.0.0",
+    "react": "16.x || 17.x"
+  },
   "publishConfig": {
     "access": "public"
   }
