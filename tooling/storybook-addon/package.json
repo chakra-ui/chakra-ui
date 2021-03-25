@@ -40,5 +40,17 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "storybook": {
+    "displayName": "Chakra UI",
+    "icon": "https://raw.githubusercontent.com/chakra-ui/chakra-ui/main/logo/logomark-colored.svg",
+    "supportedFrameworks": [
+      "react"
+    ],
+    "unsupportedFrameworks": [
+      "Vue",
+      "Angular",
+      "Svelte"
+    ]
   }
 }
