@@ -7,7 +7,8 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { Slide, SlideOptions } from "@chakra-ui/transition"
-import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
+import { cx, __DEV__ } from "@chakra-ui/utils"
+import { createContext } from "@chakra-ui/react-utils"
 import * as React from "react"
 import { Modal, ModalFocusScope, ModalProps, useModalContext } from "./modal"
 

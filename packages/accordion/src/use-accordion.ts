@@ -8,7 +8,6 @@ import {
 import {
   addItem,
   callAllHandlers,
-  createContext,
   EventKeyMap,
   getNextIndex,
   getPrevIndex,
@@ -20,6 +19,7 @@ import {
   removeItem,
   warn,
 } from "@chakra-ui/utils"
+import { createContext } from "@chakra-ui/react-utils"
 import { useCallback, useRef, useState } from "react"
 
 export type ExpandedIndex = number | number[]
