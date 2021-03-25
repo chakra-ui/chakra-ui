@@ -1,12 +1,11 @@
-import React, { useState } from "react"
 import {
-  renderHook,
   invoke,
   render,
+  renderHook,
   screen,
-  fireEvent,
   userEvent,
 } from "@chakra-ui/test-utils"
+import React, { useState } from "react"
 import { useControllableState } from "../src"
 
 test("should be uncontrolled when defaultValue is passed", () => {
@@ -27,10 +26,7 @@ test("should be uncontrolled when defaultValue is passed", () => {
 
 test("should be controlled when value is passed", () => {
   const { result } = renderHook(() =>
-    useControllableState({
-      value: "testing",
-      name: "useControllableState",
-    }),
+    useControllableState({ value: "testing" }),
   )
   const [value] = result.current
   expect(value).toBe("testing")
