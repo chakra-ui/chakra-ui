@@ -2,4 +2,4 @@
 "@chakra-ui/machine": minor
 ---
 
-Add assign function to level out api with xstate/fsm
+Add assign function to level out API with `@xstate/fsm`
