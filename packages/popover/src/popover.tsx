@@ -10,13 +10,8 @@ import {
   useStyles,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import {
-  createContext,
-  cx,
-  MaybeRenderProp,
-  runIfFn,
-  __DEV__,
-} from "@chakra-ui/utils"
+import { cx, MaybeRenderProp, runIfFn, __DEV__ } from "@chakra-ui/utils"
+import { createContext } from "@chakra-ui/react-utils"
 import { motion, Variants } from "framer-motion"
 import * as React from "react"
 import { usePopover, UsePopoverProps, UsePopoverReturn } from "./use-popover"

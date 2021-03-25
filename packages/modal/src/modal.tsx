@@ -15,11 +15,11 @@ import {
 import { fadeConfig } from "@chakra-ui/transition"
 import {
   callAllHandlers,
-  createContext,
   cx,
   FocusableElement,
   __DEV__,
 } from "@chakra-ui/utils"
+import { createContext } from "@chakra-ui/react-utils"
 import {
   AnimatePresence,
   HTMLMotionProps,

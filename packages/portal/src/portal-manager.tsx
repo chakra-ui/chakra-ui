@@ -1,4 +1,5 @@
-import { createContext, __DEV__ } from "@chakra-ui/utils"
+import { __DEV__ } from "@chakra-ui/utils"
+import { createContext } from "@chakra-ui/react-utils"
 import * as React from "react"
 
 interface PortalManagerContext {
