@@ -54,6 +54,13 @@ const centerStyles = {
 export const AbsoluteCenter = forwardRef<AbsoluteCenterProps, "div">(
   (props, ref) => {
     const { axis = "both", ...rest } = props
-    return <chakra.div ref={ref} __css={centerStyles[axis]} {...rest} />
+    return (
+      <chakra.div
+        ref={ref}
+        __css={centerStyles[axis]}
+        {...rest}
+        position="absolute"
+      />
+    )
   },
 )
