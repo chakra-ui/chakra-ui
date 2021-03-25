@@ -1,11 +1,11 @@
-import { useControllableProp } from "@chakra-ui/hooks"
+import { useCallbackRef, useControllableProp } from "@chakra-ui/hooks"
 import {
-  countDecimalPlaces,
   clampValue,
+  countDecimalPlaces,
   maxSafeInteger,
   minSafeInteger,
-  toPrecision,
   StringOrNumber,
+  toPrecision,
 } from "@chakra-ui/utils"
 import { useCallback, useState } from "react"
 
@@ -66,6 +66,8 @@ export function useCounter(props: UseCounterProps = {}) {
     keepWithinRange = true,
   } = props
 
+  const onChangeProp = useCallbackRef(onChange)
+
   const [valueState, setValue] = useState<StringOrNumber>(() => {
     if (defaultValue == null) return ""
     return cast(defaultValue, stepProp, precisionProp)
@@ -83,12 +85,13 @@ export function useCounter(props: UseCounterProps = {}) {
 
   const update = useCallback(
     (next: StringOrNumber) => {
+      if (next === value) return
       if (!isControlled) {
         setValue(next.toString())
       }
-      onChange?.(next.toString(), parse(next))
+      onChangeProp?.(next.toString(), parse(next))
     },
-    [onChange, isControlled],
+    [onChangeProp, isControlled, value],
   )
 
   // Function to clamp the value and round it to the precision

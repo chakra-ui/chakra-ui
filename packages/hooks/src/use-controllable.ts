@@ -22,9 +22,9 @@ export interface UseControllableStateProps<T> {
    */
   onChange?: (value: T) => void
   /**
-   * The component name (for warnings)
+   * The function that determines if the state should be updated
    */
-  name?: string
+  shouldUpdate?: (prev: T, next: T) => boolean
 }
 
 /**
@@ -32,19 +32,25 @@ export interface UseControllableStateProps<T> {
  * @param props
  */
 export function useControllableState<T>(props: UseControllableStateProps<T>) {
-  const { value: valueProp, defaultValue, onChange } = props
-  const handleChange = useCallbackRef(onChange)
+  const {
+    value: valueProp,
+    defaultValue,
+    onChange,
+    shouldUpdate = (prev, next) => prev !== next,
+  } = props
+  const onChangeProp = useCallbackRef(onChange)
+  const shouldUpdateProp = useCallbackRef(shouldUpdate)
 
   const [valueState, setValue] = React.useState(defaultValue as T)
-  const isControlled = valueProp !== undefined
 
+  const isControlled = valueProp !== undefined
   const value = isControlled ? (valueProp as T) : valueState
 
   const updateValue = React.useCallback(
     (next: React.SetStateAction<T>) => {
       const nextValue = runIfFn(next, value)
 
-      if (nextValue === value) {
+      if (!shouldUpdateProp(value, nextValue)) {
         return
       }
 
@@ -52,9 +58,9 @@ export function useControllableState<T>(props: UseControllableStateProps<T>) {
         setValue(nextValue)
       }
 
-      handleChange(nextValue)
+      onChangeProp(nextValue)
     },
-    [isControlled, handleChange, value],
+    [isControlled, onChangeProp, value, shouldUpdateProp],
   )
 
   return [value, updateValue] as [T, React.Dispatch<React.SetStateAction<T>>]
