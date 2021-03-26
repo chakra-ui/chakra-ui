@@ -27,37 +27,42 @@ export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
   const styles = useMultiStyleConfig("Switch", props)
 
   const ownProps = omitThemingProps(props)
-  const { state, getInputProps, getCheckboxProps, htmlProps } = useCheckbox(
+
+  const { state, getInputProps, getCheckboxProps, getRootProps } = useCheckbox(
     ownProps,
   )
 
-  const inputProps = getInputProps({}, ref)
-  const checkboxProps = getCheckboxProps()
+  const containerStyles: SystemStyleObject = React.useMemo(
+    () => ({
+      display: "inline-block",
+      verticalAlign: "middle",
+      lineHeight: "normal",
+      ...styles.container,
+    }),
+    [styles.container],
+  )
 
-  const labelStyles: SystemStyleObject = {
-    display: "inline-block",
-    verticalAlign: "middle",
-    lineHeight: "normal",
-  }
-
-  const trackStyles: SystemStyleObject = {
-    display: "inline-flex",
-    flexShrink: 0,
-    justifyContent: "flex-start",
-    boxSizing: "content-box",
-    cursor: "pointer",
-    ...styles.track,
-  }
+  const trackStyles: SystemStyleObject = React.useMemo(
+    () => ({
+      display: "inline-flex",
+      flexShrink: 0,
+      justifyContent: "flex-start",
+      boxSizing: "content-box",
+      cursor: "pointer",
+      ...styles.track,
+    }),
+    [styles.track],
+  )
 
   return (
     <chakra.label
-      {...htmlProps}
+      {...getRootProps()}
       className={cx("chakra-switch", props.className)}
-      __css={labelStyles}
+      __css={containerStyles}
     >
-      <input className="chakra-switch__input" {...inputProps} />
+      <input className="chakra-switch__input" {...getInputProps({}, ref)} />
       <chakra.span
-        {...checkboxProps}
+        {...getCheckboxProps()}
         className="chakra-switch__track"
         __css={trackStyles}
       >
