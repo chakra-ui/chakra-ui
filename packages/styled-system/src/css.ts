@@ -56,10 +56,14 @@ export function getCss(options: GetCSSOptions) {
        * { --banner-height: "sizes.no-exist, 40px" } => { --banner-height: "40px" }
        */
       if (isCSSVariableTokenValue(key, value)) {
-        const [tokenValue, fallbackValue] = value
-          .split(",")
-          .map((v) => v.trim())
-        value = theme.__cssMap[tokenValue]?.varRef ?? fallbackValue
+        const valueSplit = value.split(",").map((v) => v.trim())
+        const hasFallback = valueSplit.length > 1
+        if (hasFallback) {
+          const [tokenValue, fallbackValue] = valueSplit
+          value = theme.__cssMap[tokenValue]?.varRef ?? fallbackValue
+        } else {
+          value = theme.__cssMap[value]?.varRef ?? value
+        }
       }
 
       let config = configs[key]
