@@ -97,13 +97,10 @@ export interface CheckboxIconProps extends PropsOf<typeof MotionSvg> {
  */
 export const CheckboxIcon: React.FC<CheckboxIconProps> = (props) => {
   const { isIndeterminate, isChecked, ...rest } = props
+  const IconEl = isIndeterminate ? IndeterminateIcon : CheckIcon
   return (
     <CheckboxTransition open={isChecked || isIndeterminate}>
-      {isIndeterminate ? (
-        <IndeterminateIcon {...rest} />
-      ) : (
-        <CheckIcon {...rest} />
-      )}
+      <IconEl {...rest} />
     </CheckboxTransition>
   )
 }
