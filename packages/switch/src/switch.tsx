@@ -7,6 +7,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
+  SystemProps,
 } from "@chakra-ui/system"
 import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -21,16 +22,27 @@ type OmittedProps =
 export interface SwitchProps
   extends Omit<UseCheckboxProps, "isIndeterminate">,
     Omit<HTMLChakraProps<"label">, OmittedProps>,
-    ThemingProps<"Switch"> {}
+    ThemingProps<"Switch"> {
+  /**
+   * The spacing between the switch and its label text
+   * @default 0.5rem
+   * @type SystemProps["marginLeft"]
+   */
+  spacing?: SystemProps["marginLeft"]
+}
 
 export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
   const styles = useMultiStyleConfig("Switch", props)
 
-  const ownProps = omitThemingProps(props)
+  const { spacing = "0.5rem", children, ...ownProps } = omitThemingProps(props)
 
-  const { state, getInputProps, getCheckboxProps, getRootProps } = useCheckbox(
-    ownProps,
-  )
+  const {
+    state,
+    getInputProps,
+    getCheckboxProps,
+    getRootProps,
+    getLabelProps,
+  } = useCheckbox(ownProps)
 
   const containerStyles: SystemStyleObject = React.useMemo(
     () => ({
@@ -54,6 +66,15 @@ export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
     [styles.track],
   )
 
+  const labelStyles: SystemStyleObject = React.useMemo(
+    () => ({
+      userSelect: "none",
+      marginStart: spacing,
+      ...styles.label,
+    }),
+    [spacing, styles.label],
+  )
+
   return (
     <chakra.label
       {...getRootProps()}
@@ -73,6 +94,15 @@ export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
           data-hover={dataAttr(state.isHovered)}
         />
       </chakra.span>
+      {children && (
+        <chakra.span
+          className="chakra-switch__label"
+          {...getLabelProps()}
+          __css={labelStyles}
+        >
+          {children}
+        </chakra.span>
+      )}
     </chakra.label>
   )
 })
