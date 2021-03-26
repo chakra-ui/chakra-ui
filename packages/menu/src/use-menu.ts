@@ -15,19 +15,22 @@ import { usePopper, UsePopperProps } from "@chakra-ui/popper"
 import {
   addItem,
   callAllHandlers,
-  createContext,
   dataAttr,
   EventKeyMap,
   focus,
   getNextIndex,
   getNextItemFromSearch,
   getPrevIndex,
-  getValidChildren,
   isArray,
   isString,
   removeItem,
 } from "@chakra-ui/utils"
-import { mergeRefs, normalizeEventKey } from "@chakra-ui/react-utils"
+import {
+  mergeRefs,
+  createContext,
+  normalizeEventKey,
+  getValidChildren,
+} from "@chakra-ui/react-utils"
 import * as React from "react"
 
 const [MenuProvider, useMenuContext] = createContext<UseMenuReturn>({

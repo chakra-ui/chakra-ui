@@ -9,7 +9,8 @@ import {
   useStyles,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { createContext, cx } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/utils"
+import { createContext } from "@chakra-ui/react-utils"
 import * as React from "react"
 import { CheckIcon, InfoIcon, WarningIcon } from "./icons"
 
