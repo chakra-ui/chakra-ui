@@ -1,18 +1,7 @@
-import {
-  ariaAttr,
-  dataAttr,
-  getOwnerDocument,
-  getOwnerWindow,
-  normalizeEventKey,
-} from "../src"
+import { ariaAttr, dataAttr, getOwnerDocument, getOwnerWindow } from "../src"
 
 test("should get window object", () => {
   expect(getOwnerWindow()).toBe(window)
-})
-
-test("should normalize keyboard events", () => {
-  const keyboardEvent: any = { key: "Left", keyCode: 38 }
-  expect(normalizeEventKey(keyboardEvent)).toBe("ArrowLeft")
 })
 
 test("should return data attribute value from boolean", () => {

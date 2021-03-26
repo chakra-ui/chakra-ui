@@ -14,10 +14,10 @@ import {
   isNull,
   maxSafeInteger,
   minSafeInteger,
-  normalizeEventKey,
   PropGetter,
   StringOrNumber,
   withFlushSync,
+  normalizeEventKey,
 } from "@chakra-ui/utils"
 import { mergeRefs } from "@chakra-ui/react-utils"
 import * as React from "react"

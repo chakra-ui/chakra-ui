@@ -22,3 +22,7 @@ export function getRelatedTarget<E extends FocusEvent | React.FocusEvent>(
     (event as any).nativeEvent.explicitOriginalTarget ||
     document.activeElement) as HTMLElement
 }
+
+export const isRightClick = <E extends MouseEvent | React.MouseEvent>(
+  event: E,
+) => event.button !== 0

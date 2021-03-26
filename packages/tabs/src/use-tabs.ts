@@ -10,12 +10,12 @@ import {
   Dict,
   EventKeyMap,
   isUndefined,
-  normalizeEventKey,
 } from "@chakra-ui/utils"
 import {
   createContext,
   getValidChildren,
   mergeRefs,
+  normalizeEventKey,
 } from "@chakra-ui/react-utils"
 import * as React from "react"
 
