@@ -1,21 +1,21 @@
 import {
   chakra,
   forwardRef,
+  HTMLChakraProps,
   omitThemingProps,
   PropsOf,
   SystemProps,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  HTMLChakraProps,
 } from "@chakra-ui/system"
-import { callAll, cx, Omit, __DEV__, dataAttr } from "@chakra-ui/utils"
+import { callAll, cx, Omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useCheckboxGroupContext } from "./checkbox-group"
 import { CheckboxIcon } from "./checkbox-icon"
 import { useCheckbox, UseCheckboxProps } from "./use-checkbox"
 
-const StyledControl = chakra("span", {
+const CheckboxControl = chakra("span", {
   baseStyle: {
     display: "inline-flex",
     alignItems: "center",
@@ -26,7 +26,7 @@ const StyledControl = chakra("span", {
   },
 })
 
-const StyledContainer = chakra("label", {
+const Label = chakra("label", {
   baseStyle: {
     cursor: "pointer",
     display: "inline-flex",
@@ -39,15 +39,16 @@ const StyledContainer = chakra("label", {
   },
 })
 
-type Omitted =
+type OmittedProps =
   | "size"
   | "checked"
   | "defaultChecked"
   | "onChange"
   | "onBlur"
+  | "onFocus"
   | "value"
 
-type StyledControlProps = Omit<HTMLChakraProps<"div">, Omitted>
+type CheckboxControlProps = Omit<HTMLChakraProps<"div">, OmittedProps>
 
 type BaseInputProps = Pick<
   PropsOf<"input">,
@@ -55,7 +56,7 @@ type BaseInputProps = Pick<
 >
 
 export interface CheckboxProps
-  extends StyledControlProps,
+  extends CheckboxControlProps,
     BaseInputProps,
     ThemingProps<"Checkbox">,
     UseCheckboxProps {
@@ -104,7 +105,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">((props, ref) => {
     children,
     iconColor,
     iconSize,
-    icon: Icon = <CheckboxIcon />,
+    icon = <CheckboxIcon />,
     isChecked: isCheckedProp,
     onChange: onChangeProp,
     ...rest
@@ -125,54 +126,50 @@ export const Checkbox = forwardRef<CheckboxProps, "input">((props, ref) => {
     getInputProps,
     getCheckboxProps,
     getLabelProps,
-    htmlProps,
+    getRootProps,
   } = useCheckbox({
     ...rest,
     isChecked,
     onChange,
   })
 
-  const _className = cx("chakra-checkbox", className)
+  const iconStyles: SystemStyleObject = React.useMemo(
+    () => ({
+      opacity: state.isChecked || state.isIndeterminate ? 1 : 0,
+      transform:
+        state.isChecked || state.isIndeterminate ? "scale(1)" : "scale(0.95)",
+      transition: "transform 200ms",
+      fontSize: iconSize,
+      color: iconColor,
+      ...styles.icon,
+    }),
+    [iconColor, iconSize, state.isChecked, state.isIndeterminate, styles.icon],
+  )
 
-  const inputProps = getInputProps({}, ref)
-  const labelProps = getLabelProps()
-  const checkboxProps = getCheckboxProps()
-
-  const iconStyles: SystemStyleObject = {
-    opacity: state.isChecked || state.isIndeterminate ? 1 : 0,
-    transform:
-      state.isChecked || state.isIndeterminate ? "scale(1)" : "scale(0.95)",
-    transition: "transform 200ms",
-    fontSize: iconSize,
-    color: iconColor,
-    ...styles.icon,
-  }
-
-  const clonedIcon = React.cloneElement(Icon, {
+  const clonedIcon = React.cloneElement(icon, {
     __css: iconStyles,
     isIndeterminate: state.isIndeterminate,
     isChecked: state.isChecked,
   })
 
   return (
-    <StyledContainer
+    <Label
       __css={styles.container}
-      data-disabled={dataAttr(state.isDisabled)}
-      className={_className}
-      {...htmlProps}
+      className={cx("chakra-checkbox", className)}
+      {...getRootProps()}
     >
-      <input className="chakra-checkbox__input" {...inputProps} />
-      <StyledControl
+      <input className="chakra-checkbox__input" {...getInputProps({}, ref)} />
+      <CheckboxControl
         __css={styles.control}
         className="chakra-checkbox__control"
-        {...checkboxProps}
+        {...getCheckboxProps()}
       >
         {clonedIcon}
-      </StyledControl>
+      </CheckboxControl>
       {children && (
         <chakra.span
           className="chakra-checkbox__label"
-          {...labelProps}
+          {...getLabelProps()}
           __css={{
             marginStart: spacing,
             ...styles.label,
@@ -181,7 +178,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">((props, ref) => {
           {children}
         </chakra.span>
       )}
-    </StyledContainer>
+    </Label>
   )
 })
 
