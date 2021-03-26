@@ -1,5 +1,4 @@
-import * as React from "react"
-import { Booleanish, EventKeys } from "./types"
+import { Booleanish } from "./types"
 
 export function getOwnerWindow(node?: HTMLElement | null) {
   return node instanceof Element
@@ -11,14 +10,6 @@ export function getOwnerDocument(node?: HTMLElement | null) {
   return node instanceof Element ? node.ownerDocument ?? document : document
 }
 
-export function getRelatedTarget<E extends FocusEvent | React.FocusEvent>(
-  event: E,
-) {
-  return (event.relatedTarget ||
-    (event as any).nativeEvent.explicitOriginalTarget ||
-    document.activeElement) as HTMLElement
-}
-
 export function canUseDOM() {
   return !!(
     typeof window !== "undefined" &&
@@ -28,21 +19,6 @@ export function canUseDOM() {
 }
 
 export const isBrowser = canUseDOM()
-
-/**
- * Get the normalized event key across all browsers
- * @param event keyboard event
- */
-export function normalizeEventKey(event: React.KeyboardEvent) {
-  const { key, keyCode } = event
-
-  const isArrowKey =
-    keyCode >= 37 && keyCode <= 40 && key.indexOf("Arrow") !== 0
-
-  const eventKey = isArrowKey ? `Arrow${key}` : key
-
-  return eventKey as EventKeys
-}
 
 export const dataAttr = (condition: boolean | undefined) =>
   (condition ? "" : undefined) as Booleanish

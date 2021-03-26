@@ -1,7 +1,7 @@
 import { useControllableProp, useId } from "@chakra-ui/hooks"
-import { mergeRefs, PropGetter, StringOrNumber } from "@chakra-ui/utils"
+import { PropGetter, StringOrNumber } from "@chakra-ui/utils"
 import * as React from "react"
-import { isInputEvent } from "@chakra-ui/react-utils"
+import { mergeRefs, isInputEvent } from "@chakra-ui/react-utils"
 
 type EventOrValue = React.ChangeEvent<HTMLInputElement> | StringOrNumber
 

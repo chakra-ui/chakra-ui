@@ -13,10 +13,10 @@ import {
   getRelatedTarget,
   isBrowser,
   isEmpty,
-  mergeRefs,
   normalizeEventKey,
   PropGetter,
 } from "@chakra-ui/utils"
+import { mergeRefs } from "@chakra-ui/react-utils"
 import React, { useCallback, useRef, useState } from "react"
 
 export interface UseEditableProps {

@@ -8,12 +8,8 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import {
-  cx,
-  filterUndefined,
-  getValidChildren,
-  __DEV__,
-} from "@chakra-ui/utils"
+import { cx, filterUndefined, __DEV__ } from "@chakra-ui/utils"
+import { getValidChildren } from "@chakra-ui/react-utils"
 import * as React from "react"
 import { baseStyle } from "./avatar"
 

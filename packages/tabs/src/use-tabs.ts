@@ -9,12 +9,14 @@ import {
   callAllHandlers,
   Dict,
   EventKeyMap,
-  getValidChildren,
   isUndefined,
-  mergeRefs,
   normalizeEventKey,
 } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/react-utils"
+import {
+  createContext,
+  getValidChildren,
+  mergeRefs,
+} from "@chakra-ui/react-utils"
 import * as React from "react"
 
 export interface UseTabsProps {

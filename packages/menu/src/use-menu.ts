@@ -25,10 +25,10 @@ import {
   getValidChildren,
   isArray,
   isString,
-  mergeRefs,
   normalizeEventKey,
   removeItem,
 } from "@chakra-ui/utils"
+import { mergeRefs } from "react-utils"
 import * as React from "react"
 
 const [MenuProvider, useMenuContext] = createContext<UseMenuReturn>({
