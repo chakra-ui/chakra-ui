@@ -71,6 +71,12 @@ const users: User[] = [
     url: "https://tuteria.com/",
     type: "company",
   },
+  {
+    name: "BrightHire",
+    image: "/logos/brighthire.svg",
+    url: "https://brighthire.ai/",
+    type: "company",
+  },
 ]
 
 export default users
