@@ -1,10 +1,11 @@
 import {
   useBoolean,
+  useCallbackRef,
   useControllableProp,
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
 import { callAllHandlers, dataAttr, PropGetter, warn } from "@chakra-ui/utils"
-import { mergeRefs } from "@chakra-ui/react-utils"
+import { mergeRefs, withFlushSync } from "@chakra-ui/react-utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import React, {
   ChangeEvent,
@@ -13,7 +14,6 @@ import React, {
   useRef,
   useState,
 } from "react"
-import ReactDOM from "react-dom"
 
 export interface UseCheckboxProps {
   /**
@@ -63,7 +63,15 @@ export interface UseCheckboxProps {
   /**
    * The callback invoked when the checked state of the `Checkbox` changes..
    */
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  /**
+   * The callback invoked when the checkbox is blurred (loses focus)
+   */
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
+  /**
+   * The callback invoked when the checkbox is focused
+   */
+  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
   /**
    * The name of the input field in a checkbox
    * (Useful for form submission).
@@ -78,6 +86,14 @@ export interface UseCheckboxProps {
    * id assigned to input
    */
   id?: string
+  /**
+   * Defines the string that labels the checkbox element.
+   */
+  "aria-label"?: string
+  /**
+   * Refers to the `id` of the element that labels the checkbox element.
+   */
+  "aria-labelledby"?: string
 }
 
 /**
@@ -101,8 +117,16 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     name,
     value,
     id,
+    onBlur,
+    onFocus,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledBy,
     ...htmlProps
   } = props
+
+  const onChangeProp = useCallbackRef(onChange)
+  const onBlurProp = useCallbackRef(onBlur)
+  const onFocusProp = useCallbackRef(onFocus)
 
   const [isFocused, setFocused] = useBoolean()
   const [isHovered, setHovered] = useBoolean()
@@ -139,7 +163,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         }
       }
 
-      onChange?.(event)
+      onChangeProp?.(event)
     },
     [
       isReadOnly,
@@ -147,7 +171,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       isChecked,
       isControlled,
       isIndeterminate,
-      onChange,
+      onChangeProp,
     ],
   )
 
@@ -196,76 +220,120 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     }
   }, [ref.current])
 
-  const getCheckboxProps: PropGetter = (props = {}, forwardedRef = null) => {
-    const onPressDown = (event: React.MouseEvent) => {
-      // On mousedown, the input blurs and returns focus to the `body`,
-      // we need to prevent this. Native checkboxes keeps focus on `input`
-      event.preventDefault()
-      setActive.on()
-    }
+  const getCheckboxProps: PropGetter = useCallback(
+    (props = {}, forwardedRef = null) => {
+      const onPressDown = (event: React.MouseEvent) => {
+        // On mousedown, the input blurs and returns focus to the `body`,
+        // we need to prevent this. Native checkboxes keeps focus on `input`
+        event.preventDefault()
+        setActive.on()
+      }
 
-    return {
+      return {
+        ...props,
+        ref: forwardedRef,
+        "data-active": dataAttr(isActive),
+        "data-hover": dataAttr(isHovered),
+        "data-checked": dataAttr(isChecked),
+        "data-focus": dataAttr(isFocused),
+        "data-indeterminate": dataAttr(isIndeterminate),
+        "data-disabled": dataAttr(isDisabled),
+        "data-invalid": dataAttr(isInvalid),
+        "data-readonly": dataAttr(isReadOnly),
+        "aria-hidden": true,
+        onMouseDown: callAllHandlers(props.onMouseDown, onPressDown),
+        onMouseUp: callAllHandlers(props.onMouseUp, setActive.off),
+        onMouseEnter: callAllHandlers(props.onMouseEnter, setHovered.on),
+        onMouseLeave: callAllHandlers(props.onMouseLeave, setHovered.off),
+      }
+    },
+    [
+      isActive,
+      isChecked,
+      isDisabled,
+      isFocused,
+      isHovered,
+      isIndeterminate,
+      isInvalid,
+      isReadOnly,
+      setActive,
+      setHovered.off,
+      setHovered.on,
+    ],
+  )
+
+  const getRootProps: PropGetter = useCallback(
+    (props = {}, forwardedRef = null) => ({
+      ...htmlProps,
       ...props,
       ref: forwardedRef,
-      "data-active": dataAttr(isActive),
-      "data-hover": dataAttr(isHovered),
-      "data-checked": dataAttr(isChecked),
-      "data-focus": dataAttr(isFocused),
-      "data-indeterminate": dataAttr(isIndeterminate),
       "data-disabled": dataAttr(isDisabled),
-      "data-invalid": dataAttr(isInvalid),
-      "data-readonly": dataAttr(isReadOnly),
-      "aria-hidden": true,
-      onMouseDown: callAllHandlers(props.onMouseDown, onPressDown),
-      onMouseUp: callAllHandlers(props.onMouseUp, setActive.off),
-      onMouseEnter: callAllHandlers(props.onMouseEnter, setHovered.on),
-      onMouseLeave: callAllHandlers(props.onMouseLeave, setHovered.off),
-    }
-  }
+    }),
+    [htmlProps, isDisabled],
+  )
 
-  const getInputProps: PropGetter = (props = {}, forwardedRef = null) => {
-    // This is a workaround for React Concurrent Mode issue https://github.com/facebook/react/issues/18591. Remove once it's fixed.
-    const focus = () => {
-      if (typeof (ReactDOM as any).flushSync === "function") {
-        ;(ReactDOM as any).flushSync(() => {
-          setFocused.on()
-        })
-      } else {
-        setFocused.on()
+  const getInputProps: PropGetter = useCallback(
+    (props = {}, forwardedRef = null) => {
+      return {
+        ...props,
+        ref: mergeRefs(ref, forwardedRef),
+        type: "checkbox",
+        name,
+        value,
+        id,
+        onChange: callAllHandlers(props.onChange, handleChange),
+        onBlur: callAllHandlers(props.onBlur, setFocused.off, onBlurProp),
+        onFocus: callAllHandlers(
+          props.onFocus,
+          withFlushSync(setFocused.on),
+          onFocusProp,
+        ),
+        onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+        onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
+        required: isRequired,
+        checked: isChecked,
+        disabled: trulyDisabled,
+        readOnly: isReadOnly,
+        "aria-label": ariaLabel,
+        "aria-labelledby": ariaLabelledBy,
+        "aria-invalid": isInvalid,
+        "aria-disabled": isDisabled,
+        style: visuallyHiddenStyle,
       }
-    }
-
-    return {
-      ...props,
-      ref: mergeRefs(ref, forwardedRef),
-      type: "checkbox",
+    },
+    [
       name,
       value,
       id,
-      onChange: callAllHandlers(props.onChange, handleChange),
-      onBlur: callAllHandlers(props.onBlur, setFocused.off),
-      onFocus: callAllHandlers(props.onFocus, focus),
-      onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-      onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
-      required: isRequired,
-      checked: isChecked,
-      disabled: trulyDisabled,
-      readOnly: isReadOnly,
-      "aria-invalid": isInvalid,
-      "aria-disabled": isDisabled,
-      style: visuallyHiddenStyle,
-    }
-  }
+      handleChange,
+      setFocused,
+      onBlurProp,
+      onFocusProp,
+      onKeyDown,
+      onKeyUp,
+      isRequired,
+      isChecked,
+      trulyDisabled,
+      isReadOnly,
+      ariaLabel,
+      ariaLabelledBy,
+      isInvalid,
+      isDisabled,
+    ],
+  )
 
-  const getLabelProps: PropGetter = (props = {}, forwardedRef = null) => ({
-    ...props,
-    ref: forwardedRef,
-    onMouseDown: callAllHandlers(props.onMouseDown, stopEvent),
-    onTouchStart: callAllHandlers(props.onTouchStart, stopEvent),
-    "data-disabled": dataAttr(isDisabled),
-    "data-checked": dataAttr(isChecked),
-    "data-invalid": dataAttr(isInvalid),
-  })
+  const getLabelProps: PropGetter = useCallback(
+    (props = {}, forwardedRef = null) => ({
+      ...props,
+      ref: forwardedRef,
+      onMouseDown: callAllHandlers(props.onMouseDown, stopEvent),
+      onTouchStart: callAllHandlers(props.onTouchStart, stopEvent),
+      "data-disabled": dataAttr(isDisabled),
+      "data-checked": dataAttr(isChecked),
+      "data-invalid": dataAttr(isInvalid),
+    }),
+    [isChecked, isDisabled, isInvalid],
+  )
 
   return {
     state: {
@@ -279,6 +347,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       isReadOnly,
       isRequired,
     },
+    getRootProps,
     getCheckboxProps,
     getInputProps,
     getLabelProps,

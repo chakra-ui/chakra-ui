@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { Icon } from "@chakra-ui/icon"
 import { Container, Divider, Heading, Stack } from "@chakra-ui/layout"
 import * as React from "react"
@@ -9,11 +10,12 @@ export default {
 }
 
 export const CheckboxWithHooks = () => {
-  const { state, htmlProps, getInputProps, getCheckboxProps } = useCheckbox()
+  const { state, getRootProps, getInputProps, getCheckboxProps } = useCheckbox()
   return (
-    <label {...htmlProps}>
+    <label {...getRootProps()}>
       <input {...getInputProps()} />
-      <div {...getCheckboxProps()}>{JSON.stringify(state, null, 4)}</div>
+      <span {...getCheckboxProps()}>{JSON.stringify(state, null, 4)}</span>
+      <span>Hello</span>
     </label>
   )
 }

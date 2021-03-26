@@ -209,7 +209,7 @@ test("uncontrolled CheckboxGroup handles change", () => {
 
 test("accepts custom icon", () => {
   const CustomIcon = (props: any) => {
-    const { isIndeterminate, ...rest } = props
+    const { isIndeterminate, isChecked, ...rest } = props
 
     const d = isIndeterminate
       ? "M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm0,19a1.5,1.5,0,1,1,1.5-1.5A1.5,1.5,0,0,1,12,19Zm1.6-6.08a1,1,0,0,0-.6.917,1,1,0,1,1-2,0,3,3,0,0,1,1.8-2.75A2,2,0,1,0,10,9.255a1,1,0,1,1-2,0,4,4,0,1,1,5.6,3.666Z"

@@ -184,7 +184,7 @@ function ToastVariantsExample() {
 }
 ```
 
-## Position
+## Changing the toast position
 
 Using the `position` prop you can adjust where your toast will be popup from.
 
@@ -222,7 +222,34 @@ function PositionExample() {
 }
 ```
 
-## Standalone
+## Preventing Duplicate Toast
+
+In some cases you might need to prevent duplicate of specific toasts. To achieve
+you need to pass an `id` and use the `toast.isActive` method to determine when
+to call `toast(...)`.
+
+```jsx live=false
+function PreventDuplicateExample() {
+  const toast = useToast()
+  const id = "test-toast"
+  return (
+    <Button
+      onClick={() => {
+        if (!toast.isActive(id)) {
+          toast({
+            id,
+            title: "Hey! You can create a duplicate toast",
+          })
+        }
+      }}
+    >
+      Click me!
+    </Button>
+  )
+}
+```
+
+## Standalone Toasts
 
 Use `createStandaloneToast` to create toasts from outside of your React
 Components.

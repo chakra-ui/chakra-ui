@@ -30,7 +30,7 @@ export function useFormControl<T extends HTMLElement>(
   if (field?.hasHelpText) describedBy.push(field.helpTextId)
   const ariaDescribedBy = describedBy.join(" ")
 
-  const cleanProps = omit(props, [
+  const rest = omit(props, [
     "isInvalid",
     "isDisabled",
     "isReadOnly",
@@ -38,7 +38,7 @@ export function useFormControl<T extends HTMLElement>(
   ])
 
   return {
-    ...cleanProps,
+    ...rest,
     id: props.id ?? field?.id,
     disabled: props.disabled || props.isDisabled || field?.isDisabled,
     readOnly: props.readOnly || props.isReadOnly || field?.isReadOnly,

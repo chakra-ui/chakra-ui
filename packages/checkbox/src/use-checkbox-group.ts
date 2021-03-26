@@ -1,6 +1,6 @@
-import { useState, useCallback, ChangeEvent } from "react"
-import { useControllableProp } from "@chakra-ui/hooks"
-import { addItem, removeItem, StringOrNumber, Dict } from "@chakra-ui/utils"
+import { useCallbackRef, useControllableState } from "@chakra-ui/hooks"
+import { addItem, Dict, removeItem, StringOrNumber } from "@chakra-ui/utils"
+import { ChangeEvent, useCallback } from "react"
 import { isInputEvent } from "@chakra-ui/react-utils"
 
 type EventOrValue = ChangeEvent<HTMLInputElement> | StringOrNumber
@@ -34,28 +34,17 @@ export interface UseCheckboxGroupProps {
  * It is consumed by the `CheckboxGroup` component
  */
 export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
-  const {
-    defaultValue,
+  const { defaultValue, value: valueProp, onChange, isNative } = props
+
+  const onChangeProp = useCallbackRef(onChange)
+
+  const [value, setValue] = useControllableState({
     value: valueProp,
+    defaultValue: defaultValue || [],
     onChange: onChangeProp,
-    isNative,
-  } = props
+  })
 
-  const [valueState, setValue] = useState(defaultValue || [])
-  const [isControlled, value] = useControllableProp(valueProp, valueState)
-
-  const updateValue = useCallback(
-    (nextState: StringOrNumber[]) => {
-      if (!isControlled) {
-        setValue(nextState)
-      }
-
-      onChangeProp?.(nextState)
-    },
-    [isControlled, onChangeProp],
-  )
-
-  const onChange = useCallback(
+  const handleChange = useCallback(
     (eventOrValue: EventOrValue) => {
       if (!value) return
 
@@ -71,23 +60,28 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
         ? addItem(value, selectedValue)
         : removeItem(value, selectedValue)
 
-      updateValue(nextValue)
+      setValue(nextValue)
     },
-    [updateValue, value],
+    [setValue, value],
   )
 
-  return {
-    value,
-    onChange,
-    setValue: updateValue,
-    getCheckboxProps: (props: Dict = {}) => {
+  const getCheckboxProps = useCallback(
+    (props: Dict = {}) => {
       const checkedKey = isNative ? "checked" : "isChecked"
       return {
         ...props,
         [checkedKey]: value.includes(props.value),
-        onChange,
+        onChange: handleChange,
       }
     },
+    [handleChange, isNative, value],
+  )
+
+  return {
+    value,
+    onChange: handleChange,
+    setValue,
+    getCheckboxProps,
   }
 }
 

@@ -10,7 +10,7 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/react-utils"
+import { createContext, withFlushSync } from "@chakra-ui/react-utils"
 import * as React from "react"
 
 export interface FormControlOptions {
@@ -108,7 +108,7 @@ function useFormControlProvider(props: FormControlContext) {
     isReadOnly: !!isReadOnly,
     isDisabled: !!isDisabled,
     isFocused: !!isFocused,
-    onFocus: setFocus.on,
+    onFocus: withFlushSync(setFocus.on),
     onBlur: setFocus.off,
     hasFeedbackText,
     setHasFeedbackText,

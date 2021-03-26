@@ -1,5 +1,6 @@
 import * as React from "react"
-import { isObject, isFunction } from "@chakra-ui/utils"
+import * as ReactDOM from "react-dom"
+import { isObject, isFunction, AnyFunction } from "@chakra-ui/utils"
 
 // Event assertions
 export function isInputEvent(value: any): value is React.ChangeEvent {
@@ -103,5 +104,21 @@ export function assignRef<T = any>(ref: ReactRef<T> | undefined, value: T) {
 export function mergeRefs<T>(...refs: (ReactRef<T> | undefined)[]) {
   return (value: T) => {
     refs.forEach((ref) => assignRef(ref, value))
+  }
+}
+
+/** This is a workaround for React Concurrent Mode issue https://github.com/facebook/react/issues/18591. Remove once it's fixed. */
+export function withFlushSync<T extends AnyFunction>(fn: any) {
+  return (event: Parameters<T>[0]) => {
+    const flushSync = (ReactDOM as any).flushSync as
+      | ((fn: AnyFunction) => void)
+      | undefined
+    if (isFunction(flushSync)) {
+      flushSync(() => {
+        fn(event)
+      })
+    } else {
+      fn(event)
+    }
   }
 }
