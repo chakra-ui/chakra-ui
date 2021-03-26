@@ -11,11 +11,16 @@ import {
 import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-type Omitted = "defaultChecked" | "checked" | "onChange"
+type OmittedProps =
+  | "defaultChecked"
+  | "checked"
+  | "onChange"
+  | "onBlur"
+  | "onFocus"
 
 export interface SwitchProps
   extends Omit<UseCheckboxProps, "isIndeterminate">,
-    Omit<HTMLChakraProps<"label">, Omitted>,
+    Omit<HTMLChakraProps<"label">, OmittedProps>,
     ThemingProps<"Switch"> {}
 
 export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
