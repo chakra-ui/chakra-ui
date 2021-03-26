@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": [
+    "src",
+    "../../types",
+    "tests/useMonth.test.ts",
+    "tests/useDay.test.ts",
+    "tests/useDatepicker.test.ts"
+  ],
+  "exclude": [
+    "src/tests",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*/*.stories.tsx"
+  ]
+}

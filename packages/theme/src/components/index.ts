@@ -8,6 +8,7 @@ import Checkbox from "./checkbox"
 import CloseButton from "./close-button"
 import Code from "./code"
 import Container from "./container"
+import Datepicker from "./datepicker"
 import Divider from "./divider"
 import Drawer from "./drawer"
 import Editable from "./editable"
@@ -50,6 +51,7 @@ export default {
   CloseButton,
   Code,
   Container,
+  Datepicker,
   Divider,
   Drawer,
   Editable,

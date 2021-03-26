@@ -44,6 +44,7 @@
     "@chakra-ui/control-box": "1.0.6",
     "@chakra-ui/counter": "1.0.9",
     "@chakra-ui/css-reset": "1.0.0",
+    "@chakra-ui/datepicker-input": "1.0.0",
     "@chakra-ui/editable": "1.1.3",
     "@chakra-ui/form-control": "1.2.3",
     "@chakra-ui/hooks": "1.2.0",
