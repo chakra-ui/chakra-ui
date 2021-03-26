@@ -1,5 +1,6 @@
 import { useForceUpdate, useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { createContext, isBrowser, __DEV__ } from "@chakra-ui/utils"
+import { isBrowser, __DEV__ } from "@chakra-ui/utils"
+import { createContext } from "@chakra-ui/react-utils"
 import * as React from "react"
 import { createPortal } from "react-dom"
 import { usePortalManager } from "./portal-manager"
