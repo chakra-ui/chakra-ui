@@ -14,12 +14,11 @@ import {
   isNull,
   maxSafeInteger,
   minSafeInteger,
-  normalizeEventKey,
   pick,
   PropGetter,
   StringOrNumber,
 } from "@chakra-ui/utils"
-import { mergeRefs } from "@chakra-ui/react-utils"
+import { mergeRefs, normalizeEventKey } from "@chakra-ui/react-utils"
 import * as React from "react"
 import { useSpinner } from "./use-spinner"
 import {
