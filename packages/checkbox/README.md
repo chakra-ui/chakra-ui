@@ -37,3 +37,8 @@ whether one or more options are selected.
   <Checkbox value="three">Three</Checkbox>
 </CheckboxGroup>
 ```
+
+### Resources
+
+- https://www.a11ymatters.com/pattern/checkbox/
+- https://www.sarasoueidan.com/blog/inclusively-hiding-and-styling-checkboxes-and-radio-buttons/
