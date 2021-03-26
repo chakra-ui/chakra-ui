@@ -19,13 +19,13 @@ import {
   getBox,
   getOwnerDocument,
   isRightClick,
-  mergeRefs,
   normalizeEventKey,
   percentToValue,
   PropGetter,
   roundValueToStep,
   valueToPercent,
 } from "@chakra-ui/utils"
+import { mergeRefs } from "@chakra-ui/react-utils"
 import { CSSProperties, useCallback, useMemo, useRef, useState } from "react"
 
 export interface UseSliderProps {

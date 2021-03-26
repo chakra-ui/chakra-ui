@@ -1,4 +1,5 @@
-import { dataAttr, isRightClick, mergeRefs } from "@chakra-ui/utils"
+import { dataAttr, isRightClick } from "@chakra-ui/utils"
+import { mergeRefs } from "@chakra-ui/react-utils"
 import * as React from "react"
 import { useEventListeners } from "./use-event-listeners"
 

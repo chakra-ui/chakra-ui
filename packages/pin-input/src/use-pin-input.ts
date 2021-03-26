@@ -1,7 +1,7 @@
 import { useDescendant, useDescendants } from "@chakra-ui/descendant"
 import { useControllableState, useId } from "@chakra-ui/hooks"
-import { ariaAttr, callAllHandlers, mergeRefs } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/react-utils"
+import { ariaAttr, callAllHandlers } from "@chakra-ui/utils"
+import { createContext, mergeRefs } from "@chakra-ui/react-utils"
 import * as React from "react"
 
 type InputProps = Omit<

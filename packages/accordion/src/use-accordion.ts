@@ -13,13 +13,12 @@ import {
   getPrevIndex,
   isArray,
   isUndefined,
-  mergeRefs,
   normalizeEventKey,
   PropGetter,
   removeItem,
   warn,
 } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/react-utils"
+import { createContext, mergeRefs } from "@chakra-ui/react-utils"
 import { useCallback, useRef, useState } from "react"
 
 export type ExpandedIndex = number | number[]

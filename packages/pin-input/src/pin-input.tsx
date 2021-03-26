@@ -6,7 +6,8 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
+import { cx, __DEV__ } from "@chakra-ui/utils"
+import { getValidChildren } from "@chakra-ui/react-utils"
 import * as React from "react"
 import {
   PinInputProvider,
