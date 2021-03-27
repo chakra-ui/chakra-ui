@@ -8,12 +8,10 @@ import {
 import {
   addItem,
   callAllHandlers,
-  EventKeyMap,
   getNextIndex,
   getPrevIndex,
   isArray,
   isUndefined,
-  PropGetter,
   removeItem,
   warn,
 } from "@chakra-ui/utils"
@@ -21,6 +19,8 @@ import {
   createContext,
   mergeRefs,
   normalizeEventKey,
+  EventKeyMap,
+  PropGetter,
 } from "@chakra-ui/react-utils"
 import { useCallback, useRef, useState } from "react"
 
