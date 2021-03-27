@@ -9,8 +9,8 @@ import {
   useStyles,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, MaybeRenderProp, runIfFn, __DEV__ } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/react-utils"
+import { cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
+import { createContext, MaybeRenderProp } from "@chakra-ui/react-utils"
 import * as React from "react"
 import {
   useEditable,

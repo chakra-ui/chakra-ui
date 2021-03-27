@@ -11,7 +11,8 @@ import {
   useMultiStyleConfig,
   useStyles,
 } from "@chakra-ui/system"
-import { cx, MaybeRenderProp, runIfFn, __DEV__ } from "@chakra-ui/utils"
+import { cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
+import { MaybeRenderProp } from "@chakra-ui/react-utils"
 import { CustomDomComponent, motion, Variants } from "framer-motion"
 import * as React from "react"
 import {
