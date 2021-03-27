@@ -157,9 +157,9 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    */
   useSafeLayoutEffect(() => {
     if (!inputRef.current) return
-    const notInSync = inputRef.current.value !== counter.value
+    const notInSync = inputRef.current.value != counter.value
     if (notInSync) {
-      counter.update(sanitize(inputRef.current.value))
+      counter.setValue(sanitize(inputRef.current.value))
     }
   }, [])
 

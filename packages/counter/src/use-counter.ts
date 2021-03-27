@@ -188,6 +188,7 @@ export function useCounter(props: UseCounterProps = {}) {
     decrement,
     clamp,
     cast: castValue,
+    setValue,
   }
 }
 
