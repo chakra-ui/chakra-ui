@@ -15,7 +15,7 @@ const baseStyleNumber = {
 }
 
 const baseStyleIcon = {
-  mr: 1,
+  marginEnd: 1,
   w: "14px",
   h: "14px",
   verticalAlign: "middle",

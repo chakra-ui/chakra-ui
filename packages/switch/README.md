@@ -47,3 +47,8 @@ You can change the checked background color of the `switch` by passing the
 ```jsx
 <Switch colorScheme="blue" />
 ```
+
+## Resources
+
+- https://scottaohara.github.io/a11y_styled_form_controls/src/checkbox--switch/
+- https://www.lightningdesignsystem.com/components/checkbox-button/

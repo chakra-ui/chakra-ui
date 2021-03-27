@@ -16,6 +16,19 @@ import { CssTheme, StyleObjectOrFn } from "./types"
 const isCSSVariableTokenValue = (key: string, value: any): value is string =>
   key.startsWith("--") && isString(value) && !isCssVar(value)
 
+const resolveTokenValue = (theme: Dict, value: string) => {
+  if (value == null) return value
+
+  const getVar = (val: string) => theme.__cssMap?.[val]?.varRef
+  const getValue = (val: string) => getVar(val) ?? val
+
+  const valueSplit = value.split(",").map((v) => v.trim())
+  const [tokenValue, fallbackValue] = valueSplit
+  value = getVar(tokenValue) ?? getValue(fallbackValue) ?? getValue(value)
+
+  return value
+}
+
 interface GetCSSOptions {
   theme: CssTheme
   configs?: Config
@@ -56,10 +69,7 @@ export function getCss(options: GetCSSOptions) {
        * { --banner-height: "sizes.no-exist, 40px" } => { --banner-height: "40px" }
        */
       if (isCSSVariableTokenValue(key, value)) {
-        const [tokenValue, fallbackValue] = value
-          .split(",")
-          .map((v) => v.trim())
-        value = theme.__cssMap[tokenValue]?.varRef ?? fallbackValue
+        value = resolveTokenValue(theme, value)
       }
 
       let config = configs[key]

@@ -1,6 +1,6 @@
 import { mode } from "@chakra-ui/theme-tools"
 
-const parts = ["track", "thumb"]
+const parts = ["container", "track", "thumb"]
 
 function baseStyleTrack(props: Record<string, any>) {
   const { colorScheme: c } = props
@@ -8,6 +8,8 @@ function baseStyleTrack(props: Record<string, any>) {
   return {
     borderRadius: "full",
     p: "2px",
+    width: "var(--slider-track-width)",
+    height: "var(--slider-track-height)",
     transition: "all 120ms",
     bg: mode("gray.300", "whiteAlpha.400")(props),
     _focus: {
@@ -26,46 +28,44 @@ function baseStyleTrack(props: Record<string, any>) {
 const baseStyleThumb = {
   bg: "white",
   transition: "transform 250ms",
-  borderRadius: "full",
-  transform: "translateX(0)",
+  borderRadius: "inherit",
+  width: "var(--slider-track-height)",
+  height: "var(--slider-track-height)",
+  _checked: {
+    transform: "translateX(var(--slider-thumb-x))",
+  },
 }
 
 const baseStyle = (props: Record<string, any>) => ({
+  container: {
+    "--slider-track-diff":
+      "calc(var(--slider-track-width) - var(--slider-track-height))",
+    "--slider-thumb-x": "var(--slider-track-diff)",
+    _rtl: {
+      "--slider-thumb-x": "calc(-1 * var(--slider-track-diff))",
+    },
+  },
   track: baseStyleTrack(props),
   thumb: baseStyleThumb,
 })
 
 const sizes = {
   sm: {
-    track: { w: "1.375rem", h: "0.75rem" },
-    thumb: {
-      w: "0.75rem",
-      h: "0.75rem",
-      _checked: {
-        transform: "translateX(0.625rem)",
-      },
+    container: {
+      "--slider-track-width": "1.375rem",
+      "--slider-track-height": "0.75rem",
     },
   },
-
   md: {
-    track: { w: "1.875rem", h: "1rem" },
-    thumb: {
-      w: "1rem",
-      h: "1rem",
-      _checked: {
-        transform: "translateX(0.875rem)",
-      },
+    container: {
+      "--slider-track-width": "1.875rem",
+      "--slider-track-height": "1rem",
     },
   },
-
   lg: {
-    track: { w: "2.875rem", h: "1.5rem" },
-    thumb: {
-      w: "1.5rem",
-      h: "1.5rem",
-      _checked: {
-        transform: "translateX(1.375rem)",
-      },
+    container: {
+      "--slider-track-width": "2.875rem",
+      "--slider-track-height": "1.5rem",
     },
   },
 }

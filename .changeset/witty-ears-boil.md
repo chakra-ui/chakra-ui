@@ -7,3 +7,6 @@
 
 - Forward `onFocus` and `onBlur` props to the input element for better
   integration with form libraries.
+
+- Ensure the checkbox works when the root element is not `label`. This helps to
+  fix the current accessibility issues with the `Switch` component.
