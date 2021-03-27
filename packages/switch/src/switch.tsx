@@ -7,57 +7,76 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
+  SystemProps,
 } from "@chakra-ui/system"
 import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-type OmittedProps =
-  | "defaultChecked"
-  | "checked"
-  | "onChange"
-  | "onBlur"
-  | "onFocus"
-
 export interface SwitchProps
   extends Omit<UseCheckboxProps, "isIndeterminate">,
-    Omit<HTMLChakraProps<"label">, OmittedProps>,
-    ThemingProps<"Switch"> {}
+    Omit<HTMLChakraProps<"label">, keyof UseCheckboxProps>,
+    ThemingProps<"Switch"> {
+  /**
+   * The spacing between the switch and its label text
+   * @default 0.5rem
+   * @type SystemProps["marginLeft"]
+   */
+  spacing?: SystemProps["marginLeft"]
+}
 
 export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
   const styles = useMultiStyleConfig("Switch", props)
 
-  const ownProps = omitThemingProps(props)
-  const { state, getInputProps, getCheckboxProps, htmlProps } = useCheckbox(
-    ownProps,
+  const { spacing = "0.5rem", children, ...ownProps } = omitThemingProps(props)
+
+  const {
+    state,
+    getInputProps,
+    getCheckboxProps,
+    getRootProps,
+    getLabelProps,
+  } = useCheckbox(ownProps)
+
+  const containerStyles: SystemStyleObject = React.useMemo(
+    () => ({
+      display: "inline-block",
+      verticalAlign: "middle",
+      lineHeight: "normal",
+      ...styles.container,
+    }),
+    [styles.container],
   )
 
-  const inputProps = getInputProps({}, ref)
-  const checkboxProps = getCheckboxProps()
+  const trackStyles: SystemStyleObject = React.useMemo(
+    () => ({
+      display: "inline-flex",
+      flexShrink: 0,
+      justifyContent: "flex-start",
+      boxSizing: "content-box",
+      cursor: "pointer",
+      ...styles.track,
+    }),
+    [styles.track],
+  )
 
-  const labelStyles: SystemStyleObject = {
-    display: "inline-block",
-    verticalAlign: "middle",
-    lineHeight: "normal",
-  }
-
-  const trackStyles: SystemStyleObject = {
-    display: "inline-flex",
-    flexShrink: 0,
-    justifyContent: "flex-start",
-    boxSizing: "content-box",
-    cursor: "pointer",
-    ...styles.track,
-  }
+  const labelStyles: SystemStyleObject = React.useMemo(
+    () => ({
+      userSelect: "none",
+      marginStart: spacing,
+      ...styles.label,
+    }),
+    [spacing, styles.label],
+  )
 
   return (
     <chakra.label
-      {...htmlProps}
+      {...getRootProps()}
       className={cx("chakra-switch", props.className)}
-      __css={labelStyles}
+      __css={containerStyles}
     >
-      <input className="chakra-switch__input" {...inputProps} />
+      <input className="chakra-switch__input" {...getInputProps({}, ref)} />
       <chakra.span
-        {...checkboxProps}
+        {...getCheckboxProps()}
         className="chakra-switch__track"
         __css={trackStyles}
       >
@@ -68,6 +87,15 @@ export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
           data-hover={dataAttr(state.isHovered)}
         />
       </chakra.span>
+      {children && (
+        <chakra.span
+          className="chakra-switch__label"
+          {...getLabelProps()}
+          __css={labelStyles}
+        >
+          {children}
+        </chakra.span>
+      )}
     </chakra.label>
   )
 })

@@ -15,10 +15,10 @@ const baseStyle = {
     fontWeight: "bold",
     textTransform: "uppercase",
     letterSpacing: "wider",
-    textAlign: "left",
+    textAlign: "start",
   },
   td: {
-    textAlign: "left",
+    textAlign: "start",
   },
   caption: {
     mt: 4,

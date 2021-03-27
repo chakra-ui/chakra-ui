@@ -43,6 +43,9 @@ Create a minimal reproduction in CodeSandbox. We have created these official tem
 
 - TypeScript Template:
   [TypeScript CodeSandbox template](https://codesandbox.io/s/github/chakra-ui/codesandbox-react-ts-template/tree/master)
+
+- NextJS TypeScript Template:
+  [NextJS TypeScript CodeSandbox template](https://codesandbox.io/s/chakra-ui-next-js-typescript-kxvyr)
 -->
 
 CodeSandbox reproduction: https://your-codesandbox-link-goes-here.io

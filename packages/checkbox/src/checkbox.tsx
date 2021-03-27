@@ -39,16 +39,7 @@ const Label = chakra("label", {
   },
 })
 
-type OmittedProps =
-  | "size"
-  | "checked"
-  | "defaultChecked"
-  | "onChange"
-  | "onBlur"
-  | "onFocus"
-  | "value"
-
-type CheckboxControlProps = Omit<HTMLChakraProps<"div">, OmittedProps>
+type CheckboxControlProps = Omit<HTMLChakraProps<"div">, keyof UseCheckboxProps>
 
 type BaseInputProps = Pick<
   PropsOf<"input">,

@@ -4,7 +4,12 @@ import {
   useControllableProp,
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
-import { callAllHandlers, dataAttr, warn } from "@chakra-ui/utils"
+import {
+  callAllHandlers,
+  dataAttr,
+  warn,
+  focus,
+  warn } from "@chakra-ui/utils"
 import { mergeRefs, withFlushSync, PropGetter } from "@chakra-ui/react-utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import React, {
@@ -94,6 +99,8 @@ export interface UseCheckboxProps {
    * Refers to the `id` of the element that labels the checkbox element.
    */
   "aria-labelledby"?: string
+  "aria-invalid"?: true | undefined
+  "aria-describedby"?: string
 }
 
 /**
@@ -121,6 +128,8 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     onFocus,
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
+    "aria-invalid": ariaInvalid,
+    "aria-describedby": ariaDescribedBy,
     ...htmlProps
   } = props
 
@@ -132,7 +141,8 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   const [isHovered, setHovered] = useBoolean()
   const [isActive, setActive] = useBoolean()
 
-  const ref = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [rootIsLabelElement, setRootIsLabelElement] = useState(true)
 
   const [checkedState, setCheckedState] = useState(!!defaultChecked)
 
@@ -176,8 +186,8 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   )
 
   useSafeLayoutEffect(() => {
-    if (ref.current) {
-      ref.current.indeterminate = Boolean(isIndeterminate)
+    if (inputRef.current) {
+      inputRef.current.indeterminate = Boolean(isIndeterminate)
     }
   }, [isIndeterminate])
 
@@ -213,12 +223,12 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
    * Let's correct that by checking and syncing the state accordingly.
    */
   useSafeLayoutEffect(() => {
-    if (!ref.current) return
-    const notInSync = ref.current.checked !== isChecked
+    if (!inputRef.current) return
+    const notInSync = inputRef.current.checked !== isChecked
     if (notInSync) {
-      setCheckedState(ref.current.checked)
+      setCheckedState(inputRef.current.checked)
     }
-  }, [ref.current])
+  }, [inputRef.current])
 
   const getCheckboxProps: PropGetter = useCallback(
     (props = {}, forwardedRef = null) => {
@@ -266,17 +276,36 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     (props = {}, forwardedRef = null) => ({
       ...htmlProps,
       ...props,
-      ref: forwardedRef,
+      ref: mergeRefs(forwardedRef, (node: HTMLElement) => {
+        if (!node) return
+        setRootIsLabelElement(node.tagName === "LABEL")
+      }),
+      onClick: callAllHandlers(props.onClick, () => {
+        /**
+         * Accessibility:
+         *
+         * Ideally, `getRootProps` should be spread unto a `label` element.
+         *
+         * If the element was changed using the `as` prop or changing
+         * the dom node `getRootProps` is spread unto (to a `div` or `span`), we'll trigger
+         * click on the input when the element is clicked.
+         * @see Issue https://github.com/chakra-ui/chakra-ui/issues/3480
+         */
+        if (!rootIsLabelElement) {
+          inputRef.current?.click()
+          focus(inputRef.current, { nextTick: true })
+        }
+      }),
       "data-disabled": dataAttr(isDisabled),
     }),
-    [htmlProps, isDisabled],
+    [htmlProps, isDisabled, rootIsLabelElement],
   )
 
   const getInputProps: PropGetter = useCallback(
     (props = {}, forwardedRef = null) => {
       return {
         ...props,
-        ref: mergeRefs(ref, forwardedRef),
+        ref: mergeRefs(inputRef, forwardedRef),
         type: "checkbox",
         name,
         value,
@@ -296,7 +325,8 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         readOnly: isReadOnly,
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledBy,
-        "aria-invalid": isInvalid,
+        "aria-invalid": ariaInvalid ? Boolean(ariaInvalid) : isInvalid,
+        "aria-describedby": ariaDescribedBy,
         "aria-disabled": isDisabled,
         style: visuallyHiddenStyle,
       }
@@ -306,7 +336,8 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       value,
       id,
       handleChange,
-      setFocused,
+      setFocused.off,
+      setFocused.on,
       onBlurProp,
       onFocusProp,
       onKeyDown,
@@ -317,7 +348,9 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       isReadOnly,
       ariaLabel,
       ariaLabelledBy,
+      ariaInvalid,
       isInvalid,
+      ariaDescribedBy,
       isDisabled,
     ],
   )
