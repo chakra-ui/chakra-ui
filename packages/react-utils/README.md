@@ -1,6 +1,7 @@
 # @chakra-ui/react-utils
 
-A Quick description of the component
+This package contains all React-related utilities and types that may be consumed
+by other packages.
 
 ## Installation
 
