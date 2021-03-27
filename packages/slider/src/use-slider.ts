@@ -14,12 +14,10 @@ import {
   clampValue,
   dataAttr,
   Dict,
-  EventKeyMap,
   focus,
   getBox,
   getOwnerDocument,
   percentToValue,
-  PropGetter,
   roundValueToStep,
   valueToPercent,
 } from "@chakra-ui/utils"
@@ -27,6 +25,8 @@ import {
   mergeRefs,
   normalizeEventKey,
   isRightClick,
+  PropGetter,
+  EventKeyMap,
 } from "@chakra-ui/react-utils"
 import { CSSProperties, useCallback, useMemo, useRef, useState } from "react"
 

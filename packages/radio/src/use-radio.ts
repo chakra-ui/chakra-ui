@@ -4,10 +4,9 @@ import {
   callAllHandlers,
   dataAttr,
   pick,
-  PropGetter,
   warn,
 } from "@chakra-ui/utils"
-import { mergeRefs } from "@chakra-ui/react-utils"
+import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import {
   ChangeEvent,

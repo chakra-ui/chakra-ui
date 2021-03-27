@@ -19,3 +19,24 @@ export type FunctionArguments<T extends Function> = T extends (
 export type Dict<T = any> = Record<string, T>
 
 export type Booleanish = boolean | "true" | "false"
+export type StringOrNumber = string | number
+
+export type EventKeys =
+  | "ArrowDown"
+  | "ArrowUp"
+  | "ArrowLeft"
+  | "ArrowRight"
+  | "Enter"
+  | "Space"
+  | "Tab"
+  | "Backspace"
+  | "Control"
+  | "Meta"
+  | "Home"
+  | "End"
+  | "PageDown"
+  | "PageUp"
+  | "Delete"
+  | "Escape"
+  | " "
+  | "Shift"

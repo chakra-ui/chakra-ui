@@ -8,16 +8,16 @@ import {
 import {
   ariaAttr,
   callAllHandlers,
-  EventKeyMap,
   focus,
   isBrowser,
   isNull,
   maxSafeInteger,
   minSafeInteger,
-  PropGetter,
   StringOrNumber,
   withFlushSync,
   normalizeEventKey,
+  EventKeyMap,
+  PropGetter,
 } from "@chakra-ui/utils"
 import { mergeRefs } from "@chakra-ui/react-utils"
 import * as React from "react"

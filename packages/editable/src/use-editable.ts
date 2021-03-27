@@ -7,14 +7,14 @@ import {
   ariaAttr,
   callAllHandlers,
   contains,
-  EventKeyMap,
   focus,
   getOwnerDocument,
   isBrowser,
   isEmpty,
-  PropGetter,
 } from "@chakra-ui/utils"
 import {
+  PropGetter,
+  EventKeyMap,
   mergeRefs,
   normalizeEventKey,
   getRelatedTarget,

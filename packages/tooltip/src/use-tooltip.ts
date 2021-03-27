@@ -5,8 +5,8 @@ import {
   UsePopperProps,
   popperCSSVars,
 } from "@chakra-ui/popper"
-import { callAllHandlers, PropGetter, px } from "@chakra-ui/utils"
-import { mergeRefs } from "@chakra-ui/react-utils"
+import { callAllHandlers, px } from "@chakra-ui/utils"
+import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import * as React from "react"
 
 export interface UseTooltipProps
