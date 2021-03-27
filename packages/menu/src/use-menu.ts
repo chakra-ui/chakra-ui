@@ -16,7 +16,6 @@ import {
   addItem,
   callAllHandlers,
   dataAttr,
-  EventKeyMap,
   focus,
   getNextIndex,
   getNextItemFromSearch,
@@ -30,6 +29,7 @@ import {
   createContext,
   normalizeEventKey,
   getValidChildren,
+  EventKeyMap,
 } from "@chakra-ui/react-utils"
 import * as React from "react"
 
