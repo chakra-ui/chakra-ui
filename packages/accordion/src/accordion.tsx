@@ -11,8 +11,8 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { Collapse } from "@chakra-ui/transition"
-import { cx, Omit, MaybeRenderProp, runIfFn, __DEV__ } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/react-utils"
+import { cx, Omit, runIfFn, __DEV__ } from "@chakra-ui/utils"
+import { createContext, MaybeRenderProp } from "@chakra-ui/react-utils"
 import * as React from "react"
 import {
   AccordionProvider,

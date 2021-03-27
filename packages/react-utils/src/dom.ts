@@ -1,4 +1,4 @@
-import { EventKeys } from "@chakra-ui/utils"
+import { EventKeys } from "./types"
 
 /**
  * Get the normalized event key across all browsers
