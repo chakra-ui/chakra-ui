@@ -12,16 +12,9 @@ import {
 import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-type OmittedProps =
-  | "defaultChecked"
-  | "checked"
-  | "onChange"
-  | "onBlur"
-  | "onFocus"
-
 export interface SwitchProps
   extends Omit<UseCheckboxProps, "isIndeterminate">,
-    Omit<HTMLChakraProps<"label">, OmittedProps>,
+    Omit<HTMLChakraProps<"label">, keyof UseCheckboxProps>,
     ThemingProps<"Switch"> {
   /**
    * The spacing between the switch and its label text

@@ -101,6 +101,8 @@ export interface UseCheckboxProps {
    * Refers to the `id` of the element that labels the checkbox element.
    */
   "aria-labelledby"?: string
+  "aria-invalid"?: true | undefined
+  "aria-describedby"?: string
 }
 
 /**
@@ -128,6 +130,8 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     onFocus,
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
+    "aria-invalid": ariaInvalid,
+    "aria-describedby": ariaDescribedBy,
     ...htmlProps
   } = props
 
@@ -323,7 +327,8 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         readOnly: isReadOnly,
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledBy,
-        "aria-invalid": isInvalid,
+        "aria-invalid": ariaInvalid ? Boolean(ariaInvalid) : isInvalid,
+        "aria-describedby": ariaDescribedBy,
         "aria-disabled": isDisabled,
         style: visuallyHiddenStyle,
       }
@@ -333,7 +338,8 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       value,
       id,
       handleChange,
-      setFocused,
+      setFocused.off,
+      setFocused.on,
       onBlurProp,
       onFocusProp,
       onKeyDown,
@@ -344,7 +350,9 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       isReadOnly,
       ariaLabel,
       ariaLabelledBy,
+      ariaInvalid,
       isInvalid,
+      ariaDescribedBy,
       isDisabled,
     ],
   )
