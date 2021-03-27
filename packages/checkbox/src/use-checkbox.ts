@@ -8,8 +8,8 @@ import {
   callAllHandlers,
   dataAttr,
   warn,
-  PropGetter,
   focus,
+  PropGetter,
 } from "@chakra-ui/utils"
 import { mergeRefs, withFlushSync } from "@chakra-ui/react-utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
