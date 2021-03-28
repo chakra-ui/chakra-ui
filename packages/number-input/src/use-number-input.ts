@@ -1,7 +1,7 @@
 import { useCounter, UseCounterProps } from "@chakra-ui/counter"
-import { useFormControl } from "@chakra-ui/form-control"
 import {
   useBoolean,
+  useCallbackRef,
   useEventListener,
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
@@ -16,9 +16,9 @@ import {
   mergeRefs,
   minSafeInteger,
   normalizeEventKey,
-  pick,
   PropGetter,
   StringOrNumber,
+  withFlushSync,
 } from "@chakra-ui/utils"
 import * as React from "react"
 import { useSpinner } from "./use-spinner"
@@ -62,6 +62,7 @@ export interface UseNumberInputProps extends UseCounterProps {
    * If `true`, the input will be disabled
    */
   isDisabled?: boolean
+  isRequired?: boolean
   /**
    * The `id` to use for the number input field.
    */
@@ -89,6 +90,11 @@ export interface UseNumberInputProps extends UseCounterProps {
    * The HTML `name` attribute used for forms
    */
   name?: string
+  "aria-describedby"?: string
+  "aria-label"?: string
+  "aria-labelledby"?: string
+  onFocus?: React.FocusEventHandler<HTMLInputElement>
+  onBlur?: React.FocusEventHandler<HTMLInputElement>
 }
 
 const sanitize = (value: string) =>
@@ -115,20 +121,27 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     step: stepProp = 1,
     isReadOnly,
     isDisabled,
+    isRequired,
     getAriaValueText,
     isInvalid,
     pattern = "[0-9]*(.[0-9]+)?",
     inputMode = "decimal",
     allowMouseWheel,
     id,
-    /**
-     * These props are destructured to ensure `htmlProps` resolves to the correct type
-     */
-    onChange: onChangeProp,
+    onChange: _,
     precision,
     name,
+    "aria-describedby": ariaDescBy,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledBy,
+    onFocus,
+    onBlur,
     ...htmlProps
   } = props
+
+  const onFocusProp = useCallbackRef(onFocus)
+  const onBlurProp = useCallbackRef(onBlur)
+  const getAriaValueTextProp = useCallbackRef(getAriaValueText)
 
   /**
    * Leverage the `useCounter` hook since it provides
@@ -260,8 +273,8 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    * @see https://www.w3.org/TR/wai-aria-practices-1.1/#wai-aria-roles-states-and-properties-18
    * @see https://www.w3.org/TR/wai-aria-1.1/#aria-valuetext
    */
-  const _getAriaValueText = () => {
-    const text = getAriaValueText?.(counter.value)
+  const ariaValueText = React.useMemo(() => {
+    const text = getAriaValueTextProp?.(counter.value)
     if (!isNull(text)) {
       return text
     }
@@ -269,9 +282,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     const defaultText = counter.value.toString()
     // empty string is an invalid ARIA attribute value
     return !defaultText ? undefined : defaultText
-  }
-
-  const ariaValueText = _getAriaValueText()
+  }, [counter.value, getAriaValueTextProp])
 
   /**
    * Function that clamps the input's value on blur
@@ -298,7 +309,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     counter.cast(next)
   }, [counter, max, min])
 
-  const onBlur = React.useCallback(() => {
+  const onInputBlur = React.useCallback(() => {
     setFocused.off()
 
     if (clampValueOnBlur) {
@@ -307,7 +318,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
   }, [clampValueOnBlur, setFocused, validateAndClamp])
 
   const focusInput = React.useCallback(() => {
-    if (focusInputOnChange && inputRef.current) {
+    if (focusInputOnChange) {
       focus(inputRef.current, { nextTick: true })
     }
   }, [focusInputOnChange])
@@ -407,63 +418,73 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     ],
   )
 
-  const controlProps = useFormControl<HTMLInputElement>(props)
-  const inputProps = pick(controlProps, [
-    "id",
-    "disabled",
-    "readOnly",
-    "required",
-    "aria-invalid",
-    "aria-required",
-    "aria-readonly",
-    "aria-describedby",
-    "onFocus",
-    "onBlur",
-  ])
-
-  const getInputProps: PropGetter = React.useCallback(
+  const getInputProps: PropGetter<
+    HTMLInputElement,
+    Pick<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      "disabled" | "required" | "readOnly"
+    >
+  > = React.useCallback(
     (props = {}, ref = null) => ({
       name,
       inputMode,
       type: "text",
       pattern,
+      "aria-labelledby": ariaLabelledBy,
+      "aria-label": ariaLabel,
+      "aria-describedby": ariaDescBy,
+      id,
+      disabled: isDisabled,
       ...props,
-      ...inputProps,
+      readOnly: props.readOnly ?? isReadOnly,
+      "aria-readonly": props.readOnly ?? isReadOnly,
+      "aria-required": props.required ?? isRequired,
+      required: props.required ?? isRequired,
       ref: mergeRefs(inputRef, ref),
       value: counter.value,
       role: "spinbutton",
       "aria-valuemin": min,
       "aria-valuemax": max,
-      "aria-disabled": inputProps.disabled,
       "aria-valuenow": Number.isNaN(counter.valueAsNumber)
         ? undefined
         : counter.valueAsNumber,
-      "aria-invalid": ariaAttr(
-        inputProps["aria-invalid"] || counter.isOutOfRange,
-      ),
+      "aria-invalid": ariaAttr(isInvalid ?? counter.isOutOfRange),
       "aria-valuetext": ariaValueText,
       autoComplete: "off",
       autoCorrect: "off",
       onChange: callAllHandlers(props.onChange, onChange),
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-      onFocus: callAllHandlers(inputProps.onFocus, setFocused.on),
-      onBlur: callAllHandlers(inputProps.onBlur, onBlur),
+      onFocus: callAllHandlers(
+        props.onFocus,
+        onFocusProp,
+        withFlushSync(setFocused.on),
+      ),
+      onBlur: callAllHandlers(props.onBlur, onBlurProp, onInputBlur),
     }),
     [
       name,
-      inputProps,
+      inputMode,
+      pattern,
+      ariaLabelledBy,
+      ariaLabel,
+      ariaDescBy,
+      id,
+      isDisabled,
+      isRequired,
+      isReadOnly,
+      isInvalid,
       counter.value,
       counter.valueAsNumber,
       counter.isOutOfRange,
-      inputMode,
-      pattern,
       min,
       max,
       ariaValueText,
       onChange,
       onKeyDown,
+      onFocusProp,
       setFocused.on,
-      onBlur,
+      onBlurProp,
+      onInputBlur,
     ],
   )
 

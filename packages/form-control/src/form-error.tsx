@@ -1,14 +1,13 @@
-import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import Icon, { IconProps } from "@chakra-ui/icon"
 import {
   chakra,
   forwardRef,
-  useStyles,
   HTMLChakraProps,
-  useMultiStyleConfig,
-  ThemingProps,
   omitThemingProps,
   StylesProvider,
+  ThemingProps,
+  useMultiStyleConfig,
+  useStyles,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -23,38 +22,23 @@ export interface FormErrorMessageProps
  * and suggest clear instructions on how to fix it.
  */
 export const FormErrorMessage = forwardRef<FormErrorMessageProps, "div">(
-  (passedProps, ref) => {
-    const styles = useMultiStyleConfig("FormError", passedProps)
-    const props = omitThemingProps(passedProps)
-
+  (props, ref) => {
+    const styles = useMultiStyleConfig("FormError", props)
+    const ownProps = omitThemingProps(props)
     const field = useFormControlContext()
 
-    /**
-     * Notify the field context when the error message is rendered on screen,
-     * so we can apply the correct `aria-describedby` to the field (e.g. input, textarea).
-     */
-    useSafeLayoutEffect(() => {
-      field?.setHasFeedbackText.on()
-      return () => field?.setHasFeedbackText.off()
-    }, [])
-
     if (!field?.isInvalid) return null
-
-    const _className = cx("chakra-form__error-message", props.className)
 
     return (
       <StylesProvider value={styles}>
         <chakra.div
-          aria-live="polite"
-          ref={ref}
-          {...props}
+          {...field?.getErrorMessageProps(ownProps, ref)}
+          className={cx("chakra-form__error-message", props.className)}
           __css={{
             display: "flex",
             alignItems: "center",
             ...styles.text,
           }}
-          className={_className}
-          id={props.id ?? field?.feedbackId}
         />
       </StylesProvider>
     )

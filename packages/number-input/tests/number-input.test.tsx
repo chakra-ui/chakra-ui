@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { FormControl, FormHelperText, FormLabel } from "@chakra-ui/form-control"
 import {
   testA11y,
@@ -234,4 +235,13 @@ test("should derive values from surrounding FormControl", () => {
 
   fireEvent.blur(input)
   expect(onBlur).toHaveBeenCalled()
+})
+
+test("should fallback to min if `e` is typed", () => {
+  const { getByTestId } = renderComponent({ max: 30, min: 1 })
+  const input = getByTestId("input")
+  userEvent.type(input, "e")
+  // value is beyond max so it should reset to `max`
+  fireEvent.blur(input)
+  expect(input).toHaveValue("1")
 })

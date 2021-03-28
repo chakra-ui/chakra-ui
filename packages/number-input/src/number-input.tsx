@@ -8,7 +8,8 @@ import {
   useStyles,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { createContext, __DEV__ } from "@chakra-ui/utils"
+import { useFormControlProps } from "@chakra-ui/form-control"
+import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { TriangleDownIcon, TriangleUpIcon } from "./icons"
 import {
@@ -72,17 +73,20 @@ export interface NumberInputProps
  */
 export const NumberInput = forwardRef<NumberInputProps, "div">((props, ref) => {
   const styles = useMultiStyleConfig("NumberInput", props)
-  const ownProps = omitThemingProps(props)
 
-  const { htmlProps, ...context } = useNumberInput(ownProps)
+  const ownProps = omitThemingProps(props)
+  const controlProps = useFormControlProps(ownProps)
+
+  const { htmlProps, ...context } = useNumberInput(controlProps)
   const ctx = React.useMemo(() => context, [context])
 
   return (
     <NumberInputProvider value={ctx}>
       <StylesProvider value={styles}>
         <chakra.div
-          ref={ref}
           {...htmlProps}
+          ref={ref}
+          className={cx("chakra-numberinput", props.className)}
           __css={{
             position: "relative",
             zIndex: 0,
@@ -161,6 +165,7 @@ export const NumberInputField = forwardRef<NumberInputFieldProps, "input">(
     return (
       <chakra.input
         {...input}
+        className={cx("chakra-numberinput__field", props.className)}
         __css={{
           width: "100%",
           ...styles.field,
