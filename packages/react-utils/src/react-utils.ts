@@ -107,8 +107,7 @@ export function mergeRefs<T>(...refs: (ReactRef<T> | undefined)[]) {
   }
 }
 
-// TODO: Consider moving this to `react-utils`
-// This is a workaround for React Concurrent Mode issue https://github.com/facebook/react/issues/18591. Remove once it's fixed.
+/** This is a workaround for React Concurrent Mode issue https://github.com/facebook/react/issues/18591. Remove once it's fixed. */
 export function withFlushSync<T extends AnyFunction>(fn: any) {
   return (event: Parameters<T>[0]) => {
     const flushSync = (ReactDOM as any).flushSync as
