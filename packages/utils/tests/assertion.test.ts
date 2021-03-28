@@ -11,7 +11,6 @@ import {
   isEmptyObject,
   isNull,
   isString,
-  isInputEvent,
   isEmpty,
   isNotEmptyObject,
   isCssVar,
@@ -87,10 +86,6 @@ test("is string", () => {
 test("is css var", () => {
   expect(isCssVar("var(--whatever-you-want)")).toBeTruthy()
   expect(isCssVar("4")).not.toBeTruthy()
-})
-
-test("is input event", () => {
-  expect(isInputEvent({ target: {} })).toBeTruthy()
 })
 
 test("should check is object is not empty", () => {

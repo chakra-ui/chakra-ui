@@ -5,16 +5,14 @@ import {
   useId,
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
+import { callAllHandlers, Dict, isUndefined } from "@chakra-ui/utils"
 import {
-  callAllHandlers,
   createContext,
-  Dict,
-  EventKeyMap,
   getValidChildren,
-  isUndefined,
   mergeRefs,
   normalizeEventKey,
-} from "@chakra-ui/utils"
+  EventKeyMap,
+} from "@chakra-ui/react-utils"
 import * as React from "react"
 
 export interface UseTabsProps {

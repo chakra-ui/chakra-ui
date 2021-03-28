@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "@chakra-ui/image": "1.0.9",
+    "@chakra-ui/react-utils": "1.0.0",
     "@chakra-ui/utils": "1.4.0"
   },
   "peerDependencies": {

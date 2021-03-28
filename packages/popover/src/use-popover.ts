@@ -18,13 +18,15 @@ import {
   contains,
   FocusableElement,
   getOwnerDocument,
-  getRelatedTarget,
-  HTMLProps,
   isBrowser,
-  mergeRefs,
-  PropGetter,
   px,
 } from "@chakra-ui/utils"
+import {
+  mergeRefs,
+  getRelatedTarget,
+  HTMLProps,
+  PropGetter,
+} from "@chakra-ui/react-utils"
 import { RefObject, useCallback, useEffect, useRef } from "react"
 
 const TRIGGER = {

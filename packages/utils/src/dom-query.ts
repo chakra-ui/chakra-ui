@@ -19,10 +19,6 @@ const focusableElList = [
 
 const focusableElSelector = focusableElList.join()
 
-export const isRightClick = <E extends MouseEvent | React.MouseEvent>(
-  event: E,
-) => event.button !== 0
-
 export function getAllFocusable<T extends HTMLElement>(container: T) {
   const focusableEls = Array.from(
     container.querySelectorAll<T>(focusableElSelector),

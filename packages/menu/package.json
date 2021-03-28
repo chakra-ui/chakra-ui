@@ -58,6 +58,7 @@
     "@chakra-ui/descendant": "1.0.9",
     "@chakra-ui/hooks": "1.2.0",
     "@chakra-ui/popper": "2.0.0",
+    "@chakra-ui/react-utils": "1.0.0",
     "@chakra-ui/transition": "1.1.0",
     "@chakra-ui/utils": "1.4.0"
   },

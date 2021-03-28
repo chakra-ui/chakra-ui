@@ -10,7 +10,8 @@ import {
   StylesProvider,
   useStyles,
 } from "@chakra-ui/system"
-import { getValidChildren, __DEV__ } from "@chakra-ui/utils"
+import { __DEV__ } from "@chakra-ui/utils"
+import { getValidChildren } from "@chakra-ui/react-utils"
 import * as React from "react"
 
 interface ListOptions {

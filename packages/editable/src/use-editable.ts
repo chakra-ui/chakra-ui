@@ -7,16 +7,18 @@ import {
   ariaAttr,
   callAllHandlers,
   contains,
-  EventKeyMap,
   focus,
   getOwnerDocument,
-  getRelatedTarget,
   isBrowser,
   isEmpty,
+} from "@chakra-ui/utils"
+import {
+  PropGetter,
+  EventKeyMap,
   mergeRefs,
   normalizeEventKey,
-  PropGetter,
-} from "@chakra-ui/utils"
+  getRelatedTarget,
+} from "@chakra-ui/react-utils"
 import React, { useCallback, useRef, useState } from "react"
 
 export interface UseEditableProps {

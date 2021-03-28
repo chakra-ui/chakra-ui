@@ -3,11 +3,10 @@ import {
   ariaAttr,
   callAllHandlers,
   dataAttr,
-  mergeRefs,
   pick,
-  PropGetter,
   warn,
 } from "@chakra-ui/utils"
+import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import {
   ChangeEvent,

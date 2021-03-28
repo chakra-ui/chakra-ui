@@ -8,18 +8,20 @@ import {
 import {
   ariaAttr,
   callAllHandlers,
-  EventKeyMap,
   focus,
   isBrowser,
   isNull,
   maxSafeInteger,
-  mergeRefs,
   minSafeInteger,
+  StringOrNumber,
+} from "@chakra-ui/utils"
+import {
+  mergeRefs,
   normalizeEventKey,
   PropGetter,
-  StringOrNumber,
+  EventKeyMap,
   withFlushSync,
-} from "@chakra-ui/utils"
+} from "@chakra-ui/react-utils"
 import * as React from "react"
 import { useSpinner } from "./use-spinner"
 import {

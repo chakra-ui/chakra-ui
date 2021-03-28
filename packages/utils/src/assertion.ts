@@ -1,4 +1,3 @@
-import { ChangeEvent } from "react"
 import { Dict } from "./types"
 
 // Number assertions
@@ -58,11 +57,6 @@ export function isString(value: any): value is string {
 
 export function isCssVar(value: string) {
   return /^var\(--.+\)$/.test(value)
-}
-
-// Event assertions
-export function isInputEvent(value: any): value is ChangeEvent {
-  return value && isObject(value) && isObject(value.target)
 }
 
 // Empty assertions

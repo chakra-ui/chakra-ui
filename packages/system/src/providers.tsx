@@ -5,12 +5,8 @@ import {
   toCSSVar,
   WithCSSVar,
 } from "@chakra-ui/styled-system"
-import {
-  createContext,
-  Dict,
-  memoizedGet as get,
-  runIfFn,
-} from "@chakra-ui/utils"
+import { Dict, memoizedGet as get, runIfFn } from "@chakra-ui/utils"
+import { createContext } from "@chakra-ui/react-utils"
 import {
   Global,
   Interpolation,
