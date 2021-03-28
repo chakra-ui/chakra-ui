@@ -21,9 +21,8 @@ as streamlining developer experiences.
 
 For the purposes of this guide, we'll use
 [Open Sans](https://fonts.google.com/specimen/Open+Sans) for the heading font
-and [Raleway](https://fonts.google.com/specimen/Raleway) for the body font.
-
-If you have a different font you want to use, you can find the corresponding
+and [Raleway](https://fonts.google.com/specimen/Raleway) for the body font. If
+you have a different font you want to use, you can find the corresponding
 package on [NPM](https://www.npmjs.com/search?q=fontsource) or their
 [website](https://fontsource.org/).
 
@@ -52,9 +51,6 @@ export default theme
 
 Then import the relevant font weights and styles into the same root file you
 import `ChakraProvider` into.
-
-> - For Create React App, you need to set this up in `index.js` or in Next.js,
->   this can be found in `_app.js`.
 
 ```jsx live=false
 import "@fontsource/raleway/400.css"
@@ -89,6 +85,9 @@ const App = () => (
   </ChakraProvider>
 )
 ```
+
+> - For Create React App, you need to set this up in `index.js` or in Next.js,
+>   this can be found in `_app.js`.
 
 ## Option 2: Using `@font-face`
 
