@@ -1,15 +1,22 @@
-import { useBoolean, useId, useSafeLayoutEffect } from "@chakra-ui/hooks"
+import { useBoolean, useId } from "@chakra-ui/hooks"
 import {
   chakra,
   forwardRef,
+  HTMLChakraProps,
   omitThemingProps,
   StylesProvider,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
-  HTMLChakraProps,
 } from "@chakra-ui/system"
-import { createContext, cx, withFlushSync, __DEV__ } from "@chakra-ui/utils"
+import {
+  createContext,
+  cx,
+  mergeRefs,
+  PropGetter,
+  withFlushSync,
+  __DEV__,
+} from "@chakra-ui/utils"
 import * as React from "react"
 
 export interface FormControlOptions {
@@ -53,15 +60,15 @@ interface FormControlContext extends FormControlOptions {
   id?: string
 }
 
-type ControlContext = Omit<
+type FormControlProviderContext = Omit<
   ReturnType<typeof useFormControlProvider>,
-  "htmlProps"
+  "getRootProps" | "htmlProps"
 >
 
 const [
   FormControlProvider,
   useFormControlContext,
-] = createContext<ControlContext>({
+] = createContext<FormControlProviderContext>({
   strict: false,
   name: "FormControlContext",
 })
@@ -90,18 +97,61 @@ function useFormControlProvider(props: FormControlContext) {
    * Track whether the `FormErrorMessage` has been rendered.
    * We use this to append its id the the `aria-describedby` of the `input`.
    */
-  const [hasFeedbackText, setHasFeedbackText] = useBoolean()
+  const [hasFeedbackText, setHasFeedbackText] = React.useState(false)
 
   /**
    * Track whether the `FormHelperText` has been rendered.
    * We use this to append its id the the `aria-describedby` of the `input`.
    */
-  const [hasHelpText, setHasHelpText] = useBoolean()
+  const [hasHelpText, setHasHelpText] = React.useState(false)
 
   // Track whether the form element (e.g, `input`) has focus.
   const [isFocused, setFocus] = useBoolean()
 
-  const context = {
+  const getHelpTextProps: PropGetter = React.useCallback(
+    (props = {}, forwardedRef = null) => ({
+      id: helpTextId,
+      ...props,
+      /**
+       * Notify the field context when the help text is rendered on screen,
+       * so we can apply the correct `aria-describedby` to the field (e.g. input, textarea).
+       */
+      ref: mergeRefs(forwardedRef, (node) => {
+        if (!node) return
+        setHasHelpText(true)
+      }),
+    }),
+    [helpTextId],
+  )
+
+  const getErrorMessageProps: PropGetter = React.useCallback(
+    (props = {}, forwardedRef = null) => ({
+      id: feedbackId,
+      ...props,
+      /**
+       * Notify the field context when the error message is rendered on screen,
+       * so we can apply the correct `aria-describedby` to the field (e.g. input, textarea).
+       */
+      ref: mergeRefs(forwardedRef, (node) => {
+        if (!node) return
+        setHasFeedbackText(true)
+      }),
+      "aria-live": "polite",
+    }),
+    [feedbackId],
+  )
+
+  const getRootProps: PropGetter = React.useCallback(
+    (props = {}, forwardedRef = null) => ({
+      ...props,
+      ...htmlProps,
+      ref: forwardedRef,
+      role: "group",
+    }),
+    [htmlProps],
+  )
+
+  return {
     isRequired: !!isRequired,
     isInvalid: !!isInvalid,
     isReadOnly: !!isReadOnly,
@@ -118,9 +168,10 @@ function useFormControlProvider(props: FormControlContext) {
     feedbackId,
     helpTextId,
     htmlProps,
+    getHelpTextProps,
+    getErrorMessageProps,
+    getRootProps,
   }
-
-  return context
 }
 
 export interface FormControlProps
@@ -138,18 +189,19 @@ export interface FormControlProps
 export const FormControl = forwardRef<FormControlProps, "div">((props, ref) => {
   const styles = useMultiStyleConfig("Form", props)
   const ownProps = omitThemingProps(props)
-  const { htmlProps, ...context } = useFormControlProvider(ownProps)
+  const { getRootProps, htmlProps: _, ...context } = useFormControlProvider(
+    ownProps,
+  )
 
-  const _className = cx("chakra-form-control", props.className)
+  const className = cx("chakra-form-control", props.className)
+  const contextValue = React.useMemo(() => context, [context])
 
   return (
-    <FormControlProvider value={context}>
+    <FormControlProvider value={contextValue}>
       <StylesProvider value={styles}>
         <chakra.div
-          role="group"
-          ref={ref}
-          {...htmlProps}
-          className={_className}
+          {...getRootProps({}, ref)}
+          className={className}
           __css={{
             width: "100%",
             position: "relative",
@@ -176,25 +228,12 @@ export interface HelpTextProps extends HTMLChakraProps<"div"> {}
 export const FormHelperText = forwardRef<HelpTextProps, "div">((props, ref) => {
   const field = useFormControlContext()
   const styles = useStyles()
-
-  /**
-   * Notify the field context when the help text is rendered on screen,
-   * so we can apply the correct `aria-describedby` to the field (e.g. input, textarea).
-   */
-  useSafeLayoutEffect(() => {
-    field?.setHasHelpText.on()
-    return () => field?.setHasHelpText.off()
-  }, [])
-
-  const _className = cx("chakra-form__helper-text", props.className)
-
+  const className = cx("chakra-form__helper-text", props.className)
   return (
     <chakra.div
-      ref={ref}
+      {...field?.getHelpTextProps(props, ref)}
       __css={styles.helperText}
-      {...props}
-      className={_className}
-      id={props.id ?? field?.helpTextId}
+      className={className}
     />
   )
 })
