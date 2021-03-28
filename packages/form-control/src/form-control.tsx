@@ -9,8 +9,13 @@ import {
   useMultiStyleConfig,
   useStyles,
 } from "@chakra-ui/system"
-import { cx, __DEV__, PropGetter } from "@chakra-ui/utils"
-import { createContext, withFlushSync, mergeRefs } from "@chakra-ui/react-utils"
+import { cx, __DEV__ } from "@chakra-ui/utils"
+import {
+  createContext,
+  withFlushSync,
+  mergeRefs,
+  PropGetter,
+} from "@chakra-ui/react-utils"
 import * as React from "react"
 
 export interface FormControlOptions {

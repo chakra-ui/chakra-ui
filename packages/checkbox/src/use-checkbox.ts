@@ -4,14 +4,8 @@ import {
   useControllableProp,
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
-import {
-  callAllHandlers,
-  dataAttr,
-  warn,
-  focus,
-  PropGetter,
-} from "@chakra-ui/utils"
-import { mergeRefs, withFlushSync } from "@chakra-ui/react-utils"
+import { callAllHandlers, dataAttr, warn, focus } from "@chakra-ui/utils"
+import { mergeRefs, withFlushSync, PropGetter } from "@chakra-ui/react-utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import React, {
   ChangeEvent,
