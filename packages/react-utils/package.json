@@ -56,6 +56,6 @@
     "react": ">=16.8.6"
   },
   "devDependencies": {
-    "react": ">=16.8.6"
+    "react": "^17.0.1"
   }
 }
