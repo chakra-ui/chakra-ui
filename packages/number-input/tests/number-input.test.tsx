@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { FormControl, FormHelperText, FormLabel } from "@chakra-ui/form-control"
 import {
   testA11y,
@@ -18,6 +19,15 @@ import {
   NumberInputStepper,
   useNumberInput,
 } from "../src"
+
+beforeEach(() => {
+  jest.useFakeTimers()
+})
+
+afterEach(() => {
+  jest.runOnlyPendingTimers()
+  jest.useRealTimers()
+})
 
 function renderComponent(props: NumberInputProps = {}) {
   return render(
