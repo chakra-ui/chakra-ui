@@ -85,7 +85,7 @@ export const HookWithFormatAndParse = () => {
       <div>current: {valueAsNumber}</div>
       <chakra.div display="flex">
         <Button {...getIncrementButtonProps()}>+</Button>
-        <Input {...(getInputProps() as any)} />
+        <Input {...getInputProps()} />
         <Button {...getDecrementButtonProps()}>-</Button>
       </chakra.div>
     </>
@@ -182,7 +182,12 @@ export const WithReactHookForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <NumberInput name="sales">
+      <NumberInput
+        name="sales"
+        onBlur={() => {
+          console.log("blurred")
+        }}
+      >
         <NumberInputField ref={register} />
         <NumberInputStepper>
           <NumberIncrementStepper />
@@ -212,14 +217,21 @@ export const WithFormControl = () => {
 
   return (
     <Stack align="start">
-      <FormControl id="first-name" isRequired isInvalid={isError}>
+      <FormControl id="first-name" isInvalid={isError}>
         <chakra.div display="flex" mb="2">
           <FormLabel mb="0" lineHeight="1em">
             Amount
           </FormLabel>
           <FormError>is invalid!</FormError>
         </chakra.div>
-        <NumberInput max={50} min={10}>
+        <NumberInput
+          max={50}
+          min={10}
+          defaultValue={20}
+          onBlur={() => {
+            console.log("blurred")
+          }}
+        >
           <NumberInputField />
           <NumberInputStepper>
             <NumberIncrementStepper />
