@@ -20,15 +20,6 @@ import {
   useNumberInput,
 } from "../src"
 
-beforeEach(() => {
-  jest.useFakeTimers()
-})
-
-afterEach(() => {
-  jest.runOnlyPendingTimers()
-  jest.useRealTimers()
-})
-
 function renderComponent(props: NumberInputProps = {}) {
   return render(
     <>
@@ -244,4 +235,13 @@ test("should derive values from surrounding FormControl", () => {
 
   fireEvent.blur(input)
   expect(onBlur).toHaveBeenCalled()
+})
+
+test("should fallback to min if `e` is typed", () => {
+  const { getByTestId } = renderComponent({ max: 30, min: 1 })
+  const input = getByTestId("input")
+  userEvent.type(input, "e")
+  // value is beyond max so it should reset to `max`
+  fireEvent.blur(input)
+  expect(input).toHaveValue("1")
 })
