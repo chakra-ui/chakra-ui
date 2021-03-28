@@ -97,7 +97,13 @@ Alternatively, custom fonts can be loaded in your Chakra project using the
 You can then add these fonts to `theme.fonts` to make use of them throughout the
 Chakra system.
 
-First, we'll define a `Fonts` component that sets up the `@font-face` rules in
+First, we'll import all our relevant font files into the `public` or `static`
+directory of your project, where the files will persist in location. Please note
+that these persisting folders can vary per bundler or framework and should be
+double-checked. This can later be used for the `url` selector for the
+`@font-face` CSS rules.
+
+Next, we'll define a `Fonts` component that sets up the `@font-face` rules in
 the `styles` prop of `Global`:
 
 ```jsx live=false
