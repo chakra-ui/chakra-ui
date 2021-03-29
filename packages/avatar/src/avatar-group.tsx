@@ -73,9 +73,9 @@ export const AvatarGroup = forwardRef<AvatarGroupProps, "div">((props, ref) => {
     const isFirstAvatar = index === 0
 
     const childProps = {
-      mr: isFirstAvatar ? 0 : spacing,
+      marginEnd: isFirstAvatar ? 0 : spacing,
       size: props.size,
-      borderColor: child.props.borderColor || borderColor,
+      borderColor: child.props.borderColor ?? borderColor,
       showBorder: true,
     }
 
@@ -91,7 +91,7 @@ export const AvatarGroup = forwardRef<AvatarGroupProps, "div">((props, ref) => {
 
   const excessStyles: SystemStyleObject = {
     borderRadius,
-    ml: spacing,
+    marginStart: spacing,
     ...baseStyle,
     ...styles.excessLabel,
   }

@@ -83,7 +83,7 @@ export const AvatarBadge = forwardRef<AvatarBadgeProps, "div">((props, ref) => {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    right: "0",
+    insetEnd: "0",
     bottom: "0",
     ...styles.badge,
   }
