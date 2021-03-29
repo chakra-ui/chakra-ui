@@ -1,5 +1,27 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [`f9b1a2a9b`](https://github.com/chakra-ui/chakra-ui/commit/f9b1a2a9b82abddbfeff510afd52cf127b765818)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Expose setvalue
+  function to allow update state without onchange
+
+### Patch Changes
+
+- [`428593906`](https://github.com/chakra-ui/chakra-ui/commit/428593906ca3f3423a2e1bc25241169d1bf4de81)
+  [#3664](https://github.com/chakra-ui/chakra-ui/pull/3664) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where onChange
+  is called when value did not change
+
+- Updated dependencies
+  [[`623e782e8`](https://github.com/chakra-ui/chakra-ui/commit/623e782e80124297740a109e5c6c58cddc35b2eb),
+  [`a58b724e9`](https://github.com/chakra-ui/chakra-ui/commit/a58b724e9c8656044f866b658f378662f2a44b46),
+  [`b724a9dd9`](https://github.com/chakra-ui/chakra-ui/commit/b724a9dd9429d02c0b2c7f7deac66d3553100bdc)]:
+  - @chakra-ui/hooks@1.3.0
+  - @chakra-ui/utils@1.5.0
+
 ## 1.0.9
 
 ### Patch Changes

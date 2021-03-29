@@ -1,5 +1,36 @@
 # Change Log
 
+## 1.4.0
+
+### Minor Changes
+
+- [`b724a9dd9`](https://github.com/chakra-ui/chakra-ui/commit/b724a9dd9429d02c0b2c7f7deac66d3553100bdc)
+  [#3674](https://github.com/chakra-ui/chakra-ui/pull/3674) Thanks
+  [@codebender828](https://github.com/codebender828)! - Extract all React based
+  utilities and types into `@chakra-ui/react-utils`
+
+* [`69ae9f68e`](https://github.com/chakra-ui/chakra-ui/commit/69ae9f68e6f56e9b21660590b7a307f16b5695e8)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add
+  `getRootProps` to usecheckbox hook to manage props passed to checkbox
+  container.
+
+  - Forward `onFocus` and `onBlur` props to the input element for better
+    integration with form libraries.
+
+  - Ensure the checkbox works when the root element is not `label`. This helps
+    to fix the current accessibility issues with the `Switch` component.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`623e782e8`](https://github.com/chakra-ui/chakra-ui/commit/623e782e80124297740a109e5c6c58cddc35b2eb),
+  [`a58b724e9`](https://github.com/chakra-ui/chakra-ui/commit/a58b724e9c8656044f866b658f378662f2a44b46),
+  [`b724a9dd9`](https://github.com/chakra-ui/chakra-ui/commit/b724a9dd9429d02c0b2c7f7deac66d3553100bdc)]:
+  - @chakra-ui/hooks@1.3.0
+  - @chakra-ui/utils@1.5.0
+  - @chakra-ui/react-utils@1.1.0
+  - @chakra-ui/visually-hidden@1.0.7
+
 ## 1.3.0
 
 ### Minor Changes
