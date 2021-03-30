@@ -71,7 +71,7 @@ For TypeScript users, here's what you need to do:
 
 ```jsx live=false
 import React from "react"
-import { Box, forwardRef, HTMLChakraProps } from "@chakra-ui/react"
+import { HTMLChakraProps, chakra } from "@chakra-ui/react"
 import { motion, HTMLMotionProps } from "framer-motion"
 
 type Merge<P, T> = Omit<P, keyof T> & T;
