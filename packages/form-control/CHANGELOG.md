@@ -1,5 +1,45 @@
 # Change Log
 
+## 1.3.0
+
+### Minor Changes
+
+- [`b724a9dd9`](https://github.com/chakra-ui/chakra-ui/commit/b724a9dd9429d02c0b2c7f7deac66d3553100bdc)
+  [#3674](https://github.com/chakra-ui/chakra-ui/pull/3674) Thanks
+  [@codebender828](https://github.com/codebender828)! - Extract all React based
+  utilities and types into `@chakra-ui/react-utils`
+
+* [`fa9350eff`](https://github.com/chakra-ui/chakra-ui/commit/fa9350eff0b907abd87cac98f9d758baed260596)
+  [#3689](https://github.com/chakra-ui/chakra-ui/pull/3689) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Refactor
+  `useFormControlProvider` to return prop getters `getHelpTextProps`,
+  `getErrorMessageProps`, and `getRootProps`.
+
+  Detect helper text and error message using `ref` callback instead of
+  `useLayoutEffect`
+
+  Create `useFormControlProps` to provide a way to get the resolved form control
+  props `isInvalid`, `isDisabled`, instead of HTML attributes. This will make it
+  easier to integrate with number-input, checkbox, and switch.
+
+  Update `aria-describedby` id to include `feedbackId` only when `isInvalid` is
+  `true`,
+
+### Patch Changes
+
+- [`3cc77ce60`](https://github.com/chakra-ui/chakra-ui/commit/3cc77ce60681650436f764e28b4b2234c5ca6408)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix concurrent mode
+  issue with setting state in focus event handler. We use `withFlushSync` helper
+  to achieve this.
+- Updated dependencies
+  [[`623e782e8`](https://github.com/chakra-ui/chakra-ui/commit/623e782e80124297740a109e5c6c58cddc35b2eb),
+  [`a58b724e9`](https://github.com/chakra-ui/chakra-ui/commit/a58b724e9c8656044f866b658f378662f2a44b46),
+  [`b724a9dd9`](https://github.com/chakra-ui/chakra-ui/commit/b724a9dd9429d02c0b2c7f7deac66d3553100bdc)]:
+  - @chakra-ui/hooks@1.3.0
+  - @chakra-ui/utils@1.5.0
+  - @chakra-ui/react-utils@1.1.0
+  - @chakra-ui/icon@1.1.4
+
 ## 1.2.3
 
 ### Patch Changes

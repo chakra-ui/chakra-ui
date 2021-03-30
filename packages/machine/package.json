@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/machine",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A minial implementation of xstate with some more features missing in xstate-fsm",
   "keywords": [
     "theme",

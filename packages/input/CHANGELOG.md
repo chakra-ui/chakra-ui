@@ -1,5 +1,25 @@
 # Change Log
 
+## 1.2.0
+
+### Minor Changes
+
+- [`b724a9dd9`](https://github.com/chakra-ui/chakra-ui/commit/b724a9dd9429d02c0b2c7f7deac66d3553100bdc)
+  [#3674](https://github.com/chakra-ui/chakra-ui/pull/3674) Thanks
+  [@codebender828](https://github.com/codebender828)! - Extract all React based
+  utilities and types into `@chakra-ui/react-utils`
+
+### Patch Changes
+
+- Updated dependencies
+  [[`a58b724e9`](https://github.com/chakra-ui/chakra-ui/commit/a58b724e9c8656044f866b658f378662f2a44b46),
+  [`b724a9dd9`](https://github.com/chakra-ui/chakra-ui/commit/b724a9dd9429d02c0b2c7f7deac66d3553100bdc),
+  [`3cc77ce60`](https://github.com/chakra-ui/chakra-ui/commit/3cc77ce60681650436f764e28b4b2234c5ca6408),
+  [`fa9350eff`](https://github.com/chakra-ui/chakra-ui/commit/fa9350eff0b907abd87cac98f9d758baed260596)]:
+  - @chakra-ui/utils@1.5.0
+  - @chakra-ui/form-control@1.3.0
+  - @chakra-ui/react-utils@1.1.0
+
 ## 1.1.4
 
 ### Patch Changes
