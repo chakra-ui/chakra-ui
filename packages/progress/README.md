@@ -138,7 +138,7 @@ circular progress
 ## Note
 
 The CircularProgress and the Spinner may seem to serve the same purpose, but
-semantically, they don't. In the `indeterminate` state the have the following
+semantically, they don't. In the `indeterminate` state they have the following
 difference.
 
 ### CircularProgress
