@@ -1,5 +1,250 @@
 # Change Log
 
+## chakra-ui/react@1.4.2
+
+### @chakra-ui/accordion@1.2.0
+
+- **Feature🚀**: Extract all react based utilities and types to
+  @chakra-ui/react-utils.
+
+### @chakra-ui/avatar@1.2.0
+
+- **Bug-fix🐛**: Fix RTL styles.
+
+### @chakra-ui/checkbox@1.4.0
+
+- **Feature🚀**: Add getRootProps to useCheckbox hook to manage props passed to
+  checkbox container.
+
+- **Feature🚀**: Forward onFocus, onBlur and aria-\* props to the input element
+  for better integration with form libraries.
+
+- **Feature🚀**: Ensure the checkbox works when the root element is not label.
+  This helps to fix the current accessibility issues with the Switch component
+  when wrapped within FormControl.
+
+### @chakra-ui/counter@1.1.0
+
+- **Feature🚀**: Expose setValue function to allow update state without calling
+  onChange.
+- **Bug-fix🐛**: Fix issue where onChange is called when value did not change.
+
+### @chakra-ui/form-control@1.3.0
+
+- **Feature🚀**: Refactor useFormControlProvider to return prop getters
+  getHelpTextProps, getErrorMessageProps, and getRootProps.
+
+- **Feature🚀**: Detect helper text and error message using ref callback instead
+  of useLayoutEffect.
+
+- **Feature🚀**: Update aria-describedby id to include feedbackId only when
+  isInvalid is true.
+
+- **Feature🚀**: Create useFormControlProps to provide a way to get the resolved
+  form control props isInvalid, isDisabled, instead of HTML attributes. This
+  will make it easier to integrate with number-input, checkbox, and switch.
+- **Bug-fix🐛**: Fix concurrent mode issue with setting state in focus event
+  handler. We use withFlushSync helper to achieve this.
+
+### @chakra-ui/hooks@1.3.0
+
+- **Bug-fix🐛**: useControllableState: The onChange callback will be called only
+  if the new value isn't equal to the current one.
+
+### @chakra-ui/layout@1.4.0
+
+- **Bug-fix🐛**: Remove redundant role attribute from divider.
+- **Bug-fix🐛**: Fixed the bug where a margin- bottom would get applied to
+  direction=row of stack when using responsive props.
+
+- **Bug-fix🐛**: Fix issue where AbsoluteCenter doesn't have position: absolute.
+
+### @chakra-ui/number-input@1.2.0
+
+- **Bug-fix🐛**: Forward aria-\* props to the input element.
+
+- **Bug-fix🐛**: Fix issue where onChange was called on mount.
+- **Bug-fix🐛**: Fix issue where onBlur was called twice.
+- **Bug-fix🐛**: Memoize all callback props onFocus, onBlur, getAriaValueText.
+- **Bug-fix🐛**: Refactor implicit useFormControl logic to be called from
+  NumberInput instead.
+
+- **Bug-fix🐛**: Call setFocused.on with ReactDOM.flushSync to prevent
+  concurrent mode issue where setting state in onFocus affects onChange event
+  handler.
+
+### @chakra-ui/styled-system@1.10.0
+
+- **Feature🚀**: Add support for css variable tokens. This means you can create
+  a css variable and reference value in the tokens.
+
+```jsx
+<Box
+  sx={{
+    "--banner-color": "colors.red.200",
+    "& .banner": {
+      bg: "var(--banner-color)",
+    },
+  }}
+/>
+```
+
+### @chakra-ui/system@1.6.0
+
+- **Bug-fix🐛**: Fixed an issue where the StylesProvider export was not working
+  in every environment.
+
+- **Feature🚀**: Add style config for upcoming rotateX, rotateY, scaleX, scaleY
+  style props.
+
+### @chakra-ui/theme@1.8.0
+
+- **Feature🚀**: Remove 0 token value from spacing tokens. 0 maps to 0 and
+  there's no need to create a css custom property for that.
+
+#### Switch
+
+- Add container part
+- Use css vars to handle styles
+- Fix RTL styles
+
+#### Stat, Table
+
+- Fix RTL styles
+
+### @chakra-ui/utils@1.5.0
+
+- **Feature🚀**: Add withFlushSync function wrapper to help resolve concurrent
+  mode and onFocus state issues.
+
+### @chakra-ui/toast@1.2.1
+
+- **Bug-fix🐛**: Bump @reach/alert to fix yarn pnp issue.
+
+## chakra-ui/react@1.4.1
+
+### @chakra-ui/styled-system@1.9.1
+
+- **Bug-fix🐛**: Fix issue where textStyle doesn't get applied.
+
+## chakra-ui/react@1.4.0
+
+### @chakra-ui/react@1.4.0
+
+- **Feature🚀**: Added support for framer-motion v4.
+
+### @chakra-ui/popper@2.0.0
+
+- **Feature🚀**: Refactor the positioning logic to improve stability and
+  leverage CSS custom properties.
+
+### @chakra-ui/styled-system@1.9.0
+
+- **Bug-fix🐛**: Fix issue where responsive styles defined in text styles not
+  overridden by style props.
+- **Bug-fix🐛**: Fix issue where toCSSVars omitted the transition tokens.
+- **Bug Fix🐛**: Fix issue where RTL property keys are incorrect due to
+  config.property mutation.
+- **Bug-fix🐛**: Added typings for the theme prop in ThemingPropsThunk and
+  export a standalone type ThemeComponentProps. ThemingPropsThunk
+- **Bug-fix🐛**: Update mx and px to use logical properties. Instead of mapping
+  to marginLeft and marginRight, it maps to marginInlineStart and
+  marginInlineEnd. Same for px.
+
+### @chakra-ui/cli@1.3.0
+
+- **Feature🚀**: Add support for text style and layer style theme type
+  generation to @chakra-ui/cli.
+
+### @chakra-ui/color-mode@1.1.2
+
+- **Bug-fix🐛**: Memoize the context value for ColorModeProvider.
+
+### @chakra-ui/editable@1.1.3
+
+- **Bug-fix🐛**: Fix issue where blur/submit fires unexpectedly if submitOnBlur
+  is true and you try to click the cancel button.
+
+### @chakra-ui/radio@1.2.5
+
+- **Bug-fix🐛**: Fix issue where controlled radio group can't be cleared.
+- **Bug-fix🐛**: Fix onChange type for use-radio-group props.
+
+### @chakra-ui/tag@1.1.3
+
+- **Bug-fix🐛**: Add aria-label to tag close button.
+
+### @chakra-ui/gatsby-plugin@1.0.2
+
+- **Bug-fix🐛**: Update peer-dependency range for gatsby to support the latest.
+
+### @chakra-ui/popover@1.3.0
+
+- **Bug-fix🐛**: Fix issue (for Safari and Firefox) where popover doesn't close
+  when you click the trigger and popover is open.
+
+## chakra-ui/react@1.3.4
+
+### @chakra-ui/system@1.4.0
+
+- **Feature🚀**: Add support for CSS Variables to the core of Chakra.
+- **Feature🚀**: Improve style computation performance by 2.5x.
+- **Feature🚀**: Adds support for main in chakra factory
+
+### @chakra-ui/styled-system@1.8.0
+
+- **Feature🚀**: Add support for CSS Variables to the core of Chakra.
+- **Feature🚀**: Improve style computation performance by 2.5x.
+
+### @chakra-ui/theme@1.7.0
+
+- **Feature🚀**: Add new config property cssVarPrefix to add a custom prefix for
+  CSS variables. It defaults to chakra.
+- **Feature🚀**: TabPanels component can now be styled from Tabs component
+  theme, specifying the tabpanels part.
+- **Bug-fix🐛**: Fix full size modal with y-overflowing content behaviour
+- **Bug-fix🐛**: Fix border styles for alert and number input
+- **Bug-fix🐛**: Provide proper typings for ThemeOverride.components
+- **Bug-fix🐛**: Resolved an issue where optgroup in dark mode was unreadable on
+  browsers that allow select contents styling.
+
+### @chakra-ui/theme-tools@1.1.0
+
+- **Feature🚀**: Update implementation of create-breakpoints to reduce code
+  logic. Add deprecation message
+
+### @chakra-ui/hooks@1.1.5
+
+- **Bug-fix🐛**: Add support to format - Optional string. Set the MIME type of
+  what you want to copy as. Use text/html to copy as HTML, text/plain to avoid
+  inherited styles showing when pasted into rich text editor.
+
+### @chakra-ui/layout@1.3.2
+
+- **Bug-fix🐛**: SimpleGrid: Avoid grid blow by adding minmax(0, 1fr)
+- **Bug-fix🐛**: Simplify wrap style management to use CSS custom properties.
+
+### @chakra-ui/popper@1.1.5
+
+- **Bug-fix🐛**: Make the react-popper state in sync with the internal popper
+  instance state
+
+### @chakra-ui/react@1.3.4
+
+- **Bug-fix🐛**: Fixed an issue where extending the theme with custom
+  breakpoints with strictNullChecks: false in tsconfig.json lead to an error.
+
+### @chakra-ui/select@1.1.2
+
+- **Bug-fix🐛**: Resolved an issue where optgroup in dark mode was unreadable on
+  browsers that allow select contents styling.
+
+### @chakra-ui/slider@1.1.2
+
+- **Bug-fix🐛**: onChangeEnd won't be called if value doesn't change.
+
+....This is before
+
 ## 1.1.8
 
 ### Patch Changes
