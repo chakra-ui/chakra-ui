@@ -1,6 +1,6 @@
 # Change Log
 
-## chakra-ui/react@1.4.2
+## @chakra-ui/react@1.4.2
 
 ### @chakra-ui/accordion@1.2.0
 
@@ -121,13 +121,13 @@
 
 - **Bug-fix🐛**: Bump @reach/alert to fix yarn pnp issue.
 
-## chakra-ui/react@1.4.1
+## @chakra-ui/react@1.4.1
 
 ### @chakra-ui/styled-system@1.9.1
 
 - **Bug-fix🐛**: Fix issue where textStyle doesn't get applied.
 
-## chakra-ui/react@1.4.0
+## @chakra-ui/react@1.4.0
 
 ### @chakra-ui/react@1.4.0
 
@@ -183,7 +183,7 @@
 - **Bug-fix🐛**: Fix issue (for Safari and Firefox) where popover doesn't close
   when you click the trigger and popover is open.
 
-## chakra-ui/react@1.3.4
+## @chakra-ui/react@1.3.4
 
 ### @chakra-ui/system@1.4.0
 
@@ -242,6 +242,360 @@
 ### @chakra-ui/slider@1.1.2
 
 - **Bug-fix🐛**: onChangeEnd won't be called if value doesn't change.
+
+## @chakra-ui/react@1.3.3
+
+### @chakra-ui/color-mode@1.1.0
+
+- **Feature🚀**: You can now customize the nonce of the `<script>` that
+  ColorModeScript creates by passing nonce prop.
+
+### @chakra-ui/focus-lock@1.1.0
+
+- **Feature🚀**: Upgrade to react-remove-scroll@2.4.1 and react-focus-lock@2.5.0
+  to fix React 17 peer dependencies compatibility.
+
+### @chakra-ui/checkbox@1.2.3 & @chakra-ui/radio@1.2.3
+
+- **Bug-fix🐛**: Improve the semantic HTML structure of checkbox.
+
+### @chakra-ui/popper@1.1.4
+
+- **Bug-fix🐛**: The popper.js instance is now created only once it is actually
+  needed for positioning.
+
+### @chakra-ui/react@1.3.3
+
+- **Bug-fix🐛**: The extendTheme function uses the type Theme again.
+
+### @chakra-ui/theme@1.6.2
+
+- **Bug-fix🐛**: Export Recursive\* types from theme, styled-system.
+- **Bug-fix🐛**: Bring back the TS type Theme export and deprecated
+  DefaultChakraTheme.
+- **Bug-fix🐛**: Allow halved values in design token in spacing as mentioned in
+  the documents.
+
+### @chakra-ui/cli@1.2.1
+
+- **Bug-fix🐛**: CLI tokens command now ignores TS errors in your theme file.
+
+## @chakra-ui/react@1.3.2
+
+### @chakra-ui/pin-input@1.4.0
+
+- **Feature🚀**: Resolved an issue where completing character entry in PinInput
+  failed to call onComplete.
+
+### @chakra-ui/react@1.3.0
+
+- **Feature🚀**: Introducing a generic TypeScript type ChakraTheme to improve
+  the extendTheme function even further.
+
+```jsx
+import { extendTheme } from "@chakra-ui/react"
+
+export const customTheme = extendTheme({
+  // here you get autocomplete for
+  //   - existing definitions from the default theme
+  //   - new components (Single and MultiStyle)
+  //   - CSS definitions
+  //   - color hues
+  //   - etc.
+})
+
+export type MyCustomTheme = typeof customTheme
+```
+
+You can get typesafe access to your custom theme like this:
+
+```jsx
+ import { useTheme } from "@chakra-ui/react"
+  import { MyCustomTheme } from "./my-custom-theme"
+
+  const MyComponent = () => {
+    const customTheme = useTheme<MyCustomTheme>()
+    //...
+  }
+```
+
+- **Bug-fix🐛**: Fixed issue in extendTheme where overrides defined as function
+  replaced all base styles defined as a plain object.
+- **Bug-fix🐛**: Fixed an issue where the TypeScript types were too narrow for
+  component defaultProps and ComponentMultiStyleConfig.
+
+### @chakra-ui/styled-system@1.7.0
+
+- **Feature🚀**: Theme Typings: Add autocomplete for negative space values.
+- **Feature🚀**: Add support for textStyle and layerStyle in styled-system
+  package. This makes it possible to use them in the component theme, css
+  function and sx prop as well.
+
+```jsx
+const theme = {
+  textStyles: {
+    caps: {
+      fontWeight: "bold",
+      fontSize: "24px",
+    },
+  },
+}
+
+const styles = css({ textStyle: "caps" })(theme)
+```
+
+This also works for the component theme as well.
+
+`layerStyle`, `textStyle` and `apply` can now take responsive values as well.
+
+- **Feature🚀**: Refactored apply prop handling to use the style config pattern
+  instead of add it imperatively.
+- **Bug-fix🐛**: Allow numbers for borderTop and provide autocomplete for
+  fontWeight prop
+- **Bug-fix🐛**: Support negative scale values for css variables.
+
+### @chakra-ui/system@1.3.0
+
+- **Feature🚀**: Add support for responsive values when using apply, textStyle
+  and layerStyle.
+
+### @chakra-ui/theme@1.6.0
+
+- **Bug-fix🐛**: Fixed an issue where a Tooltip with negative gutter causes
+  flickering on hover.
+- **Bug-fix🐛**: Fixed an issue in Firefox where Input overflows it's flex
+  container.
+
+### @chakra-ui/cli@1.2.0
+
+- **Feature🚀**: Theme Typings: Add autocomplete for negative space values
+
+### @chakra-ui/accordion@1.1.2 & @chakra-ui/avatar@1.1.2 & @chakra-ui/button@1.1.2 & @chakra-ui/checkbox@1.2.2 & @chakra-ui/radio@1.2.2
+
+- **Bug-fix🐛**: Provide better typings for size and variant for AvatarGroup,
+  CheckboxGroup, ButtonGroup, and RadioGroup
+
+### @chakra-ui/color-mode@1.0.7
+
+- **Bug-fix🐛**: Fix issue where reading from localStorage maybe fail due to
+  several reasons (SecurityError, Uncaught DOMException, TypeError, etc.)
+
+### @chakra-ui/input@1.1.1
+
+- **Bug-fix🐛**: Fixed the typo in InputProps interface due to which theming
+  types were not correct.
+
+### @chakra-ui/tooltip@1.1.1
+
+- **Bug-fix🐛**: Fixed an issue where a Tooltip with negative gutter causes
+  flickering on hover.
+
+## @chakra-ui/react@1.2.1
+
+### @chakra-ui/system@1.2.1
+
+- **Bug-fix🐛**: Allow string values for ThemingProps['colorScheme']
+
+### @chakra-ui/cli@1.1.0
+
+- **Feature🚀**: Add minor bump for adding subcommand tokens to generate Theme
+  Typings & Republished with version 1.1.0.
+
+## @chakra-ui/react@1.2.0
+
+### @chakra-ui/color-mode@1.0.6
+
+- **Bug-fix🐛**: useColorModeValue defaults to light mode on first render if
+  system color mode is used.
+
+### @chakra-ui/hooks@1.1.3
+
+- **Bug-fix🐛**: Update reference to document.addEventListener to detect owner
+  document based on ref passed. This would help detect outside click currently
+  from within an iframe.
+
+### @chakra-ui/layout@1.3.0
+
+- **Feature🚀**: Update transform style for AbsoluteCenter when axis is both
+- **Feature🚀**: Add shouldWrapChildren to Wrap component to make it possible
+  use Wrap directly without thinking about WrapItem.
+- **Feature🚀**: Update LinkBox and LinkOverlay components and make them public
+  in docs.
+
+### @chakra-ui/menu@1.1.0
+
+- **Feature🚀**: The MenuItem now accepts a commandSpacing prop that can be used
+  to adjust the space between the command and label.
+- **Feature🚀**: Add support rootProps to MenuList so it's possible override the
+  styles for root container for menu list. Common use case is to change the
+  applied zIndex of the menulist.
+- **Feature🚀**: Make it possible to override zIndex by passing props to
+  MenuList.
+
+### @chakra-ui/modal@1.5.0 & @chakra-ui/tooltip@1.1.0
+
+- **Feature🚀**: Add support for forwarding props to the underlying Portal
+  component. Pass the portalProps prop to achieve this.
+- **Feature🚀**: containerRef: ref for the element where to mount the portal.
+- **Feature🚀**: appendToParentPortal: If false, it'll opt out of portal
+  nesting.
+
+### @chakra-ui/portal@1.1.0
+
+- **Feature🚀**: Add support for appendToParentPortal={false} to opt out of
+  nested portals.
+- **Bug-fix🐛**: Fix issue with portal zIndex container where it renders
+  elements outside of view.
+- **Feature🚀**: Renamed getContainer prop to containerRef to make it possible
+  to pass the ref directly. This affects the Modal component primarily.
+
+### @chakra-ui/styled-system@1.6.0
+
+- **Bug-fix🐛**: Fix issue where CSS color names are not passed correctly.
+- **Feature🚀**: Improved theme typing in order to provide a better autocomplete
+  experience.
+
+### @chakra-ui/tabs@1.1.0
+
+- **Feature🚀**: The useTabsContext hook is now exported and can be used in user
+  land.
+
+### @chakra-ui/theme@1.5.0
+
+- **Feature🚀**: Add 8xl to size tokens.
+
+## @chakra-ui/react@1.1.6
+
+### @chakra-ui/layout@1.2.0
+
+- **Feature🚀**: Add AbsoluteCenter component to help manage centering of an
+  element relative to its parent dimensions
+
+### @chakra-ui/pin-input@1.2.0
+
+- **Feature🚀**: Added an otp flag to PinInput that sets the autoComplete value
+  of PinInputField to "one-time-code"
+
+### @chakra-ui/hooks@1.1.2
+
+- **Bug-fix🐛**: Fixed issue where using an uncontrolled RadioGroup without a
+  defaultValue causes multiple radio options can be selected
+
+### @chakra-ui/portal@1.0.6
+
+- **Bug-fix🐛**: Fixed portal z-index wrapper squashing portaled elements
+
+### @chakra-ui/popover@1.1.0
+
+- **Feature🚀**: Add `flip` prop to Popover to change the placement when it is
+  scheduled to overflow a given boundary
+
+## @chakra-ui/react@1.1.5
+
+### @chakra-ui/popper@1.1.0
+
+- **Feature🚀**: Added enabled property to usePopper. Popper won't be updated
+  while it is set to false. Menu now uses this option to not update its position
+  while it's closed.
+
+### @chakra-ui/styled-system@1.5.0
+
+- **Feature🚀**: Move srOnly prop to styled system props. This will deprecate
+  the need for the visually hidden package. Less is more!
+
+```jsx
+  // If `true`, hide an element visually without hiding it from screen readers.
+  <Box srOnly>Visually hidden</Box>
+
+  // If `focusable`, the sr-only styles will be undone, making the element visible to sighted users as well as screen readers.
+  <Box srOnly _active={{ srOnly: "focusable" }}>Visually hidden but shown on focus
+  </Box>
+```
+
+- **Feature🚀**: Add polyfill for inset style prop as the CSS inset doesn't work
+  in Safari Add missing style props for grid and flex layouts: gridTemplate,
+  gridRowStart, gridRowEnd, flexFlow, clipPath
+
+### @chakra-ui/checkbox@1.1.2
+
+- **Bug-fix🐛**: Update styles to use css logical style props
+
+### @chakra-ui/hooks@1.1.1
+
+- **Bug-fix🐛**: Resolved an issue where event handlers for certain components
+  were removed after the first event occurred.
+- **Bug-fix🐛**: Fixed SSR issue with useId hook.
+
+### @chakra-ui/menu@1.0.5
+
+- **Bug-fix🐛**: Update styles to use css logical style props
+- **Feature🚀**: Added enabled property to usePopper. Popper won't be updated
+  while it is set to false. Menu now uses this option to not update its position
+  while it's closed.
+
+### @chakra-ui/popover@1.0.7
+
+- **Bug-fix🐛**: Popover now won't update its popper position while it's closed.
+
+### @chakra-ui/portal@1.0.5
+
+- **Bug-fix🐛**: Fixed issue where adding portalZIndex to ChakraProvider makes
+  app unusable
+
+### @chakra-ui/progress@1.0.5
+
+- **Bug-fix🐛**: You can now override linear progress component's border radius
+  in the theme.
+
+### @chakra-ui/radio@1.1.2
+
+- **Bug-fix🐛**: Update styles to use css logical style props.
+
+## @chakra-ui/react@1.1.4
+
+### @chakra-ui/hooks@1.1.0
+
+- **Feature🚀**: Added useCallbackRef hook for persisting a value between
+  renders and updating it if it changes.
+- **Bug-fix🐛**: Deprecated useLatestRef, useEventCallback, and useMouseDownRef.
+  These functions will be removed in a future major version.
+
+## @chakra-ui/react@1.1.3
+
+### @chakra-ui/styled-system@1.4.0
+
+- **Bug-fix🐛**: Fixed a bug where rgb values in bgGradient did not work
+  correctly
+- **Bug-fix🐛**: Due to Safari not support css logical properties for right, and
+  left, we added polyfill for these css logical properties.
+- **Feature🚀**: Add support for css media query and dark class selectors.
+
+### @chakra-ui/theme@1.4.0
+
+- **Feature🚀**: Add the 2xl breakpoint to the theme which maps to 96em or
+  1536px.
+
+### @chakra-ui/media-query@1.0.3
+
+- **Bug-fix🐛**: Fixed useBreakpoinValue infinite loop due to bug in
+  createMediaQueries.
+
+### @chakra-ui/portal@1.0.3
+
+- **Bug-fix🐛**: Fixed issue where elements within portal used in an iframe got
+  rendered outside of the iframe. Portal now smartly detects its document owner
+  and attaches its node to the correct document.body
+- **Bug-fix🐛**: Removed extra DOM node PortalManager creates. Less is more!
+
+### @chakra-ui/skeleton@1.0.7
+
+- **Bug-fix🐛**: Fixed a bug where SkeletonText kept its fixed dimensions when
+  isLoaded is true.
+
+### @chakra-ui/tabs@1.0.4
+
+- **Bug-fix🐛**: Fixed issue where Tab button no longer has
+  aria-selected="false" when it is inactive.
 
 ....This is before
 
