@@ -1,5 +1,64 @@
 # Change Log
 
+## 1.10.0
+
+### Minor Changes
+
+- [`32e79f835`](https://github.com/chakra-ui/chakra-ui/commit/32e79f83545740e1df73e7ce689e4101646bb57d)
+  [#3648](https://github.com/chakra-ui/chakra-ui/pull/3648) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Add support for css
+  variable tokens. This means you can create a css variable and reference value
+  in the tokens.
+
+  ```jsx
+  // We're convert `colors.red.200` to `var(--chakra-colors-red-200)`
+  <Box
+    sx={{
+      "--banner-color": "colors.red.200",
+      "& .banner": {
+        bg: "var(--banner-color)",
+      },
+    }}
+  />
+  ```
+
+  You can also add fallback values in event the token doesn't exist:
+
+  ```jsx
+  <Box
+    sx={{
+      // evaluates to #fff if `colors.red.1000` doesn't exists in theme map
+      "--banner-color": "colors.red.1000, #fff",
+      "& .banner": {
+        bg: "var(--banner-color)",
+      },
+    }}
+  />
+  ```
+
+  This opens new possbilities with css variables, for example you can apply
+  responsive token values like you would with style props.
+
+  > TypeScript support for this is still WIP
+
+  ```jsx
+  <Box
+    sx={{
+      "--banner-color": ["colors.red.200", "colors.pink.400"],
+      "& .banner": {
+        bg: "var(--banner-color)",
+      },
+    }}
+  />
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`a58b724e9`](https://github.com/chakra-ui/chakra-ui/commit/a58b724e9c8656044f866b658f378662f2a44b46),
+  [`b724a9dd9`](https://github.com/chakra-ui/chakra-ui/commit/b724a9dd9429d02c0b2c7f7deac66d3553100bdc)]:
+  - @chakra-ui/utils@1.5.0
+
 ## 1.9.1
 
 ### Patch Changes
@@ -335,6 +394,7 @@
   "to-bl" // 'to bottom left'
   "to-l" // 'to left'
   "to-tl" // 'to top left'
+
   ```
 
   ```jsx

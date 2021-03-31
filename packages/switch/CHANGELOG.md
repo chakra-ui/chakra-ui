@@ -1,5 +1,29 @@
 # Change Log
 
+## 1.2.0
+
+### Minor Changes
+
+- [`eed076c4b`](https://github.com/chakra-ui/chakra-ui/commit/eed076c4b373efa80cf55f541774c08a7366b846)
+  [#3678](https://github.com/chakra-ui/chakra-ui/pull/3678) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Fix use `getRootProps`
+  from useCheckbox for the root element and memoize styles
+  - Add support for `children` prop as a way to add an accessible label.
+
+* [`b724a9dd9`](https://github.com/chakra-ui/chakra-ui/commit/b724a9dd9429d02c0b2c7f7deac66d3553100bdc)
+  [#3674](https://github.com/chakra-ui/chakra-ui/pull/3674) Thanks
+  [@codebender828](https://github.com/codebender828)! - Extract all React based
+  utilities and types into `@chakra-ui/react-utils`
+
+### Patch Changes
+
+- Updated dependencies
+  [[`a58b724e9`](https://github.com/chakra-ui/chakra-ui/commit/a58b724e9c8656044f866b658f378662f2a44b46),
+  [`b724a9dd9`](https://github.com/chakra-ui/chakra-ui/commit/b724a9dd9429d02c0b2c7f7deac66d3553100bdc),
+  [`69ae9f68e`](https://github.com/chakra-ui/chakra-ui/commit/69ae9f68e6f56e9b21660590b7a307f16b5695e8)]:
+  - @chakra-ui/utils@1.5.0
+  - @chakra-ui/checkbox@1.4.0
+
 ## 1.1.5
 
 ### Patch Changes

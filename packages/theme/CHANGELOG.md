@@ -1,5 +1,32 @@
 # Change Log
 
+## 1.8.0
+
+### Minor Changes
+
+- [`aba02eab1`](https://github.com/chakra-ui/chakra-ui/commit/aba02eab1b38ab6c4ea6ae170740a10f8f9f16b7)
+  [#3678](https://github.com/chakra-ui/chakra-ui/pull/3678) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - ### `Switch`
+
+  - Add `container` part
+  - Use css vars to handle styles
+  - Fix rtl issue
+
+  ### `Stats` and `Table`
+
+  - Fix rtl issue
+
+  - Remove `0` token value from spacing tokens. 0 maps to `0` and there's no
+    need to create a css custom property for that.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`a58b724e9`](https://github.com/chakra-ui/chakra-ui/commit/a58b724e9c8656044f866b658f378662f2a44b46),
+  [`b724a9dd9`](https://github.com/chakra-ui/chakra-ui/commit/b724a9dd9429d02c0b2c7f7deac66d3553100bdc)]:
+  - @chakra-ui/utils@1.5.0
+  - @chakra-ui/theme-tools@1.1.2
+
 ## 1.7.1
 
 ### Patch Changes
