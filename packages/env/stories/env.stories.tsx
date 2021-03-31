@@ -27,3 +27,23 @@ export function WithIframe() {
     </div>
   )
 }
+
+function WindowSize() {
+  const { window } = useEnvironment()
+  return (
+    <pre>{JSON.stringify({ w: window.innerWidth, h: window.innerHeight })}</pre>
+  )
+}
+
+export function SizeWithinIframe() {
+  return (
+    <>
+      <WindowSize />
+      <Frame style={{ background: "yellow" }}>
+        <EnvironmentProvider>
+          <WindowSize />
+        </EnvironmentProvider>
+      </Frame>
+    </>
+  )
+}
