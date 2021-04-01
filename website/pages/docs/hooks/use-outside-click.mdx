@@ -1,0 +1,50 @@
+---
+title: useOutsideClick
+package: "@chakra-ui/hooks"
+description: "React hook to detect clicks outside of a specified element."
+---
+
+`useOutsideClick` is a custom hook that handles a click outside a specified DOM element, like a `div`.
+
+## Import
+
+```js
+import { useOutsideClick } from "@chakra-ui/react"
+```
+
+## Return value
+
+The `useOutsideClick` hook receives a reference to a DOM element and a handler when a clicks happens
+outside this given element.
+
+| Name        | Type       | Default | Description                              |
+| ----------- | ---------- | ------- | ---------------------------------------- |
+| `ref`       | `object`   |         | The ref to access the DOM.               |
+| `handler`   | `function` |         | Callback function to handle the click.   |
+
+> This hooks is compatible with mouse and touch events.
+
+## Usage
+
+```jsx
+function Example() {
+  const ref = React.useRef()
+  const [isModalOpen, setIsModalOpen] = React.useState(false)
+  useOutsideClick({
+    ref: ref,
+    handler: () => setIsModalOpen(false)
+  })
+
+  return (
+    <>
+      {isModalOpen ? (
+        <div ref={ref}>
+          👋 Hey, I'm a modal. Click anywhere outside of me to close.
+        </div>
+      ) : (
+        <button onClick={() => setModalOpen(true)}>Open Modal</button>
+      )}
+    </>
+  )
+}
+```

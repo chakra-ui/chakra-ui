@@ -419,6 +419,10 @@
               "path": "/docs/hooks/use-media-query"
             },
             {
+              "title": "useOutsideClick",
+              "path": "/docs/hooks/use-outside-click"
+            },
+            {
               "title": "usePrefersReducedMotion",
               "path": "/docs/hooks/use-prefers-reduced-motion"
             },
