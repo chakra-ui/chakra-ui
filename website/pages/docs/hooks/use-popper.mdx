@@ -1,0 +1,108 @@
+---
+title: usePopper
+package: "@chakra-ui/popper"
+description:
+  "React hook for positioning popovers around a reference element"
+---
+
+`usePopper` is a hook wrapper for [popper.js](https://github.com/popperjs/popper-core) to dynamic positioning of
+containers around a reference.
+
+## Return value
+
+The `usePopper` hook returns an object with the following fields:
+
+| Name           | Type       | Description                                                                                             |
+| -------------- | ---------- | ------------------------------------------------------------------------------------------------------- |
+| `popperRef`    | `ref`      | The ref object for the popover element.                                                                 |
+| `referenceRef` | `ref`      | The ref object for the target element of the popover.                                                   |
+| `forceUpdate`  | `function` | Synchronously updates the popper instance. Use this for low-frequency updates.                          |
+| `update`       | `function` | Asynchronously updates the popper instance, and returns a promise. Use this for high-frequency updates. |
+
+## Import
+
+```js
+import { usePopper } from "@chakra-ui/react"
+```
+
+## Basic Usage
+
+```jsx
+function Example() {
+  const { popperRef, referenceRef } = usePopper()
+  const { isOpen, onToggle } = useDisclosure()
+
+  return (
+    <>
+      <Button ref={referenceRef} onClick={onToggle} mb={2}>
+        {isOpen ? "Click me to see less" : "Click me to see more"}
+      </Button>
+      {isOpen && (
+        <Box ref={popperRef} bg="blue">
+          This is a popover for the button!
+        </Box>
+      )}
+    </>
+  )
+}
+```
+
+## Changing the placement
+
+You can change the placement of the popper by passing the `placement` option to
+`usePopper` and set it to the `popper.js` placement.
+
+```jsx
+function Example() {
+  const { isOpen, onToggle } = useDisclosure()
+  const { popperRef, referenceRef } = usePopper({
+    placement: "right-start",
+  })
+
+  return (
+    <>
+      <Button ref={referenceRef} onClick={onToggle} mb={2}>
+        {isOpen ? "Click me to see less" : "Click me to see more"}
+      </Button>
+      {isOpen && (
+        <Box ref={popperRef} bg="blue">
+          <Box bg="blue" data-popper-arrow />
+          This is a popover for the button!
+        </Box>
+      )}
+    </>
+  )
+}
+```
+
+### Match reference's width
+
+In some cases, you might want to allow the popper take the width of the
+reference. For example, autocomplete, select, etc.
+
+To achieve this, pass the `matchWidth` option and set it to `true`
+
+```jsx
+function Example() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { popperRef, referenceRef } = usePopper({
+    matchWidth: true,
+    gutter: 0,
+  })
+
+  return (
+    <>
+      <Input ref={referenceRef} onFocus={onOpen} onBlur={onClose}/>
+      {isOpen && (
+        <Box ref={popperRef} bg="blue">
+          This is a popover for the input!
+        </Box>
+      )}
+    </>
+  )
+}
+```
+
+## Props
+
+<PropsTable of="usePopper" />

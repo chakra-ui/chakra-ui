@@ -423,6 +423,10 @@
               "path": "/docs/hooks/use-outside-click"
             },
             {
+              "title": "usePopper",
+              "path": "/docs/hooks/use-popper"
+            },
+            {
               "title": "usePrefersReducedMotion",
               "path": "/docs/hooks/use-prefers-reduced-motion"
             },

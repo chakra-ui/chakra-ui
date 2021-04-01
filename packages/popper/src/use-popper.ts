@@ -13,15 +13,45 @@ import { getEventListenerOptions } from "./utils"
 export type { Placement }
 
 export interface UsePopperProps {
+  /**
+   * The offset of the popper to be near of the reference element.
+   */
   offset?: [x: number, y: number]
+  /**
+   * If `offset` is not defined, this will be used to set the offset of the
+   * popper to be near of the reference element.
+   */
   gutter?: number
+  /**
+   * If `true` will prevent the popper from being cut off by moving it so that
+   * it stays visible within its boundary area.
+   */
   preventOverflow?: boolean
+  /**
+   * If `true` the popper will attempt to flip the opposite placement if the
+   * preferred does not fit.
+   */
   flip?: boolean
+  /**
+   * If `true` the popper will have the same width as the reference.
+   */
   matchWidth?: boolean
   boundary?: "clippingParents" | "scrollParent" | HTMLElement
   eventListeners?: boolean | { scroll?: boolean; resize?: boolean }
+  /**
+   * The offset of the popper arrow that points toward the reference element.
+   */
   arrowPadding?: number
+  /**
+   * The positioning strategy to use, by default is `absolute`.
+   *
+   * If your reference element is in a fixed container,
+   * use the `fixed` strategy
+   */
   strategy?: "absolute" | "fixed"
+  /**
+   * The preferred placement of the popper.
+   */
   placement?: Placement
   modifiers?: Array<Partial<Modifier<string, any>>>
 }
