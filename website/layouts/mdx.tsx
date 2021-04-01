@@ -30,6 +30,14 @@ export function getRoutes(slug: string) {
   return sidebar?.routes ?? []
 }
 
+export function MDXLayoutProvider({ children }) {
+  return (
+    <MDXProvider components={{ ...chakraComponents, ...MDXComponents }}>
+      {children}
+    </MDXProvider>
+  )
+}
+
 function MDXLayout({ frontmatter, children }) {
   const routes = getRoutes(frontmatter.slug)
 
@@ -37,7 +45,7 @@ function MDXLayout({ frontmatter, children }) {
   const routeContext = getRouteContext(route, routes)
 
   return (
-    <MDXProvider components={{ ...chakraComponents, ...MDXComponents }}>
+    <MDXLayoutProvider>
       <PageContainer
         frontmatter={frontmatter}
         sidebar={<Sidebar routes={routes} />}
@@ -50,7 +58,7 @@ function MDXLayout({ frontmatter, children }) {
       >
         {children}
       </PageContainer>
-    </MDXProvider>
+    </MDXLayoutProvider>
   )
 }
 

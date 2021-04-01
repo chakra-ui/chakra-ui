@@ -18,5 +18,7 @@ export default function DefaultLayout({ children, frontMatter }) {
     String(slug).startsWith(path),
   )
 
-  return layout[1] ?? layoutMap.default
+  if (!layout) return layoutMap.default
+
+  return layout[1]
 }

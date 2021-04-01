@@ -108,7 +108,7 @@ const defaultConfig = {
 const mdxConfig = {
   layoutPath: "layouts",
   defaultLayout: true,
-  fileExtensions: ["mdx"],
+  fileExtensions: ["mdx", "md"],
   remarkPlugins: [
     require("remark-autolink-headings"),
     require("remark-emoji"),
