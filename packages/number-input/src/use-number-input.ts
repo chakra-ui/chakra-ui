@@ -14,14 +14,10 @@ import {
   maxSafeInteger,
   minSafeInteger,
   StringOrNumber,
-} from "@chakra-ui/utils"
-import {
-  mergeRefs,
   normalizeEventKey,
-  PropGetter,
-  EventKeyMap,
-  withFlushSync,
-} from "@chakra-ui/react-utils"
+  scheduleMicrotask,
+} from "@chakra-ui/utils"
+import { mergeRefs, PropGetter, EventKeyMap } from "@chakra-ui/react-utils"
 import * as React from "react"
 import { useSpinner } from "./use-spinner"
 import {
@@ -456,10 +452,8 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       autoCorrect: "off",
       onChange: callAllHandlers(props.onChange, onChange),
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-      onFocus: callAllHandlers(
-        props.onFocus,
-        onFocusProp,
-        withFlushSync(setFocused.on),
+      onFocus: callAllHandlers(props.onFocus, onFocusProp, () =>
+        scheduleMicrotask(setFocused.on),
       ),
       onBlur: callAllHandlers(props.onBlur, onBlurProp, onInputBlur),
     }),
