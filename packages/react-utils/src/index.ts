@@ -1,7 +1,4 @@
 export * from "./refs"
 export * from "./context"
-export * from "./dom"
 export * from "./types"
-export * from "./flush-sync"
-export * from "./assertion"
 export * from "./children"

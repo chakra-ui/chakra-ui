@@ -72,3 +72,9 @@ export const __DEV__ = process.env.NODE_ENV !== "production"
 
 export const isRefObject = (val: any): val is { current: any } =>
   "current" in val
+
+export function isInputEvent(
+  value: any,
+): value is { target: HTMLInputElement } {
+  return value && isObject(value) && isObject(value.target)
+}

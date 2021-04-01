@@ -65,3 +65,9 @@ export const error = once((options: MessageOptions) => {
     console.error(message)
   }
 })
+
+const promiseMicrotask = (callback: VoidFunction) =>
+  Promise.resolve().then(callback)
+
+export const scheduleMicrotask =
+  typeof queueMicrotask === "function" ? queueMicrotask : promiseMicrotask
