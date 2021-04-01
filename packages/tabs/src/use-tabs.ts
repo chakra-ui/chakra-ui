@@ -5,12 +5,16 @@ import {
   useId,
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
-import { callAllHandlers, Dict, isUndefined } from "@chakra-ui/utils"
+import {
+  callAllHandlers,
+  Dict,
+  isUndefined,
+  normalizeEventKey,
+} from "@chakra-ui/utils"
 import {
   createContext,
   getValidChildren,
   mergeRefs,
-  normalizeEventKey,
   EventKeyMap,
 } from "@chakra-ui/react-utils"
 import * as React from "react"

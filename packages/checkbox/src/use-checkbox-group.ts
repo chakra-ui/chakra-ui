@@ -1,7 +1,12 @@
 import { useCallbackRef, useControllableState } from "@chakra-ui/hooks"
-import { addItem, Dict, removeItem, StringOrNumber } from "@chakra-ui/utils"
+import {
+  addItem,
+  Dict,
+  removeItem,
+  StringOrNumber,
+  isInputEvent,
+} from "@chakra-ui/utils"
 import { ChangeEvent, useCallback } from "react"
-import { isInputEvent } from "@chakra-ui/react-utils"
 
 type EventOrValue = ChangeEvent<HTMLInputElement> | StringOrNumber
 

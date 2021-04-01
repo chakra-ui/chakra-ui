@@ -1,8 +1,8 @@
 import {
   useBoolean,
   useDisclosure,
-  useFocusOnPointerDown,
   useFocusOnHide,
+  useFocusOnPointerDown,
   useFocusOnShow,
   useIds,
 } from "@chakra-ui/hooks"
@@ -12,21 +12,17 @@ import {
   usePopper,
   UsePopperProps,
 } from "@chakra-ui/popper"
+import { HTMLProps, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import { useColorModeValue, useToken } from "@chakra-ui/system"
 import {
   callAllHandlers,
   contains,
   FocusableElement,
   getOwnerDocument,
+  getRelatedTarget,
   isBrowser,
   px,
 } from "@chakra-ui/utils"
-import {
-  mergeRefs,
-  getRelatedTarget,
-  HTMLProps,
-  PropGetter,
-} from "@chakra-ui/react-utils"
 import { RefObject, useCallback, useEffect, useRef } from "react"
 
 const TRIGGER = {
