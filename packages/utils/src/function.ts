@@ -1,4 +1,5 @@
-import { isFunction, __DEV__ } from "./assertion"
+/* eslint-disable no-nested-ternary */
+import { isFunction, __DEV__, __TEST__ } from "./assertion"
 import { AnyFunction, FunctionArguments } from "./types"
 
 export function runIfFn<T, U>(
@@ -70,10 +71,8 @@ const promiseMicrotask = (callback: VoidFunction) => {
   Promise.resolve().then(callback)
 }
 
-export const scheduleMicrotask =
-  // eslint-disable-next-line no-nested-ternary
-  process.env.NODE_ENV === "test"
-    ? (fn: VoidFunction) => fn()
-    : typeof queueMicrotask === "function"
-    ? queueMicrotask
-    : promiseMicrotask
+export const scheduleMicrotask = __TEST__
+  ? (fn: VoidFunction) => fn()
+  : typeof queueMicrotask === "function"
+  ? queueMicrotask
+  : promiseMicrotask
