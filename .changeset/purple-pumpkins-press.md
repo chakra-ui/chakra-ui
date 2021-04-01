@@ -12,4 +12,4 @@
 "@chakra-ui/utils": patch
 ---
 
-Update utils import
+Update import of shared utils from `react-utils` to `utils`
