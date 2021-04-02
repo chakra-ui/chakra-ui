@@ -135,8 +135,8 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
         ;(onAnimationComplete as any)?.(definition)
       },
       className: cx("chakra-collapse", className),
-      ...rest,
       variants,
+      ...rest,
       style: { overflow: "hidden", ...style },
       custom,
     }
