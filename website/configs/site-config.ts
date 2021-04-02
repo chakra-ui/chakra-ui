@@ -47,14 +47,14 @@ const siteConfig = {
         "Chakra UI: Simple, Modular and Accessible UI Components for your React Applications.",
       images: [
         {
-          url: "/og-image.png",
+          url: "https://chakra-ui.com/og-image.png",
           width: 1240,
           height: 480,
           alt:
             "Chakra UI: Simple, Modular and Accessible UI Components for your React Applications.",
         },
         {
-          url: "/twitter-og-image.png",
+          url: "https://chakra-ui.com/twitter-og-image.png",
           width: 1012,
           height: 506,
           alt:
