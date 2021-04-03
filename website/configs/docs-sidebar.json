@@ -419,6 +419,10 @@
               "path": "/docs/hooks/use-media-query"
             },
             {
+              "title": "useMergeRefs",
+              "path": "/docs/hooks/use-merge-refs"
+            },
+            {
               "title": "useOutsideClick",
               "path": "/docs/hooks/use-outside-click"
             },
