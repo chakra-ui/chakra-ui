@@ -133,7 +133,7 @@ function Header(props) {
     <chakra.header
       ref={ref}
       shadow={y > height ? "sm" : undefined}
-      transition="box-shadow 0.2s"
+      transition="box-shadow 0.2s, background-color 0.2s"
       pos="fixed"
       top="0"
       zIndex="1"
