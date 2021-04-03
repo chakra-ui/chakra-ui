@@ -1,4 +1,3 @@
-import { filterUndefined } from "@chakra-ui/utils"
 import {
   createPopper,
   Instance,
@@ -6,7 +5,7 @@ import {
   Placement,
   VirtualElement,
 } from "@popperjs/core"
-import { useCallback, useEffect, useMemo, useRef } from "react"
+import { createElement, useCallback, useEffect, useMemo, useRef } from "react"
 import * as popperModifiers from "./modifiers"
 import { getEventListenerOptions } from "./utils"
 
@@ -26,33 +25,20 @@ export interface UsePopperProps {
   modifiers?: Array<Partial<Modifier<string, any>>>
 }
 
-const defaultProps: UsePopperProps = {
-  placement: "bottom",
-  strategy: "absolute",
-  flip: true,
-  gutter: 8,
-  arrowPadding: 8,
-  preventOverflow: true,
-  eventListeners: true,
-  modifiers: [],
-  boundary: "clippingParents",
-}
-
 export function usePopper(props: UsePopperProps = {}) {
-  const opts = Object.assign({}, defaultProps, filterUndefined(props))
   const {
     modifiers = [],
-    placement: placementProp,
-    strategy,
-    arrowPadding,
-    eventListeners,
+    placement: placementProp = "bottom",
+    strategy = "absolute",
+    arrowPadding = 8,
+    eventListeners = true,
     offset,
-    gutter,
-    flip,
-    boundary,
-    preventOverflow,
+    gutter = 8,
+    flip = true,
+    boundary = "clippingParents",
+    preventOverflow = true,
     matchWidth,
-  } = opts
+  } = props
 
   const reference = useRef<Element | VirtualElement | null>(null)
   const popper = useRef<HTMLElement | null>(null)
@@ -66,7 +52,7 @@ export function usePopper(props: UsePopperProps = {}) {
 
     instanceRef.current = createPopper(reference.current, popper.current, {
       placement: placementProp,
-      modifiers: modifiers.concat([
+      modifiers: [
         popperModifiers.innerArrow,
         popperModifiers.positionArrow,
         popperModifiers.transformOrigin,
@@ -95,7 +81,8 @@ export function usePopper(props: UsePopperProps = {}) {
           enabled: !!preventOverflow,
           options: { boundary },
         },
-      ]),
+        ...modifiers,
+      ],
       strategy,
     })
 
@@ -119,26 +106,65 @@ export function usePopper(props: UsePopperProps = {}) {
 
   useEffect(() => {
     return () => {
-      instanceRef.current?.destroy()
-      instanceRef.current = null
+      /**
+       * Fast refresh might call this function and tear down the popper
+       * even if the reference still exists. This checks against that
+       */
+      if (!reference.current && !popper.current) {
+        instanceRef.current?.destroy()
+        instanceRef.current = null
+      }
     }
   }, [])
 
-  return useMemo(
-    () => ({
+  return useMemo(() => {
+    const referenceRef = <T extends Element | VirtualElement>(
+      node: T | null,
+    ) => {
+      reference.current = node
+      setupPopper()
+    }
+
+    const popperRef = <T extends HTMLElement>(node: T | null) => {
+      popper.current = node
+      setupPopper()
+    }
+
+    return {
       update: instanceRef.current?.update,
       forceUpdate: instanceRef.current?.forceUpdate,
-      referenceRef: <T extends Element | VirtualElement>(node: T | null) => {
-        reference.current = node
-        setupPopper()
+      referenceRef,
+      popperRef,
+      transformOrigin: "var(--popper-transform-origin)",
+      getPopperProps: (props: any = {}) => ({
+        ...props,
+        ref: popperRef,
+        style: {
+          ...props.style,
+          position: strategy,
+        },
+      }),
+      getArrowProps: (props: any = {}) => {
+        const { size, shadowColor, bg, style, ...rest } = props
+        return {
+          ...rest,
+          "data-popper-arrow": "",
+          style: {
+            ...style,
+            position: "absolute",
+            "--popper-arrow-size": size,
+            "--popper-arrow-shadow-color": shadowColor,
+            "--popper-arrow-bg": bg,
+          },
+          children: createElement("div", { "data-popper-arrow-inner": "" }),
+        }
       },
-      popperRef: <T extends HTMLElement>(node: T | null) => {
-        popper.current = node
-        setupPopper()
-      },
-    }),
-    [setupPopper],
-  )
+      getReferenceProps: (props: any = {}) => ({
+        ...props,
+        ref: referenceRef,
+      }),
+    }
+  }, [setupPopper, strategy])
 }
 
 export type UsePopperReturn = ReturnType<typeof usePopper>
