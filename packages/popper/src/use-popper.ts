@@ -5,8 +5,16 @@ import {
   Placement,
   VirtualElement,
 } from "@popperjs/core"
-import { createElement, useCallback, useEffect, useMemo, useRef } from "react"
-import * as popperModifiers from "./modifiers"
+import {
+  cloneElement,
+  createElement,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react"
+import { mergeRefs } from "@chakra-ui/react-utils"
+import * as customModifiers from "./modifiers"
 import { getEventListenerOptions } from "./utils"
 
 export type { Placement }
@@ -53,10 +61,10 @@ export function usePopper(props: UsePopperProps = {}) {
     instanceRef.current = createPopper(reference.current, popper.current, {
       placement: placementProp,
       modifiers: [
-        popperModifiers.innerArrow,
-        popperModifiers.positionArrow,
-        popperModifiers.transformOrigin,
-        { ...popperModifiers.matchWidth, enabled: !!matchWidth },
+        customModifiers.innerArrow,
+        customModifiers.positionArrow,
+        customModifiers.transformOrigin,
+        { ...customModifiers.matchWidth, enabled: !!matchWidth },
         {
           name: "eventListeners",
           ...getEventListenerOptions(eventListeners),
@@ -135,33 +143,37 @@ export function usePopper(props: UsePopperProps = {}) {
       forceUpdate: instanceRef.current?.forceUpdate,
       referenceRef,
       popperRef,
-      transformOrigin: "var(--popper-transform-origin)",
-      getPopperProps: (props: any = {}) => ({
+      getPopperProps: (props: any = {}, ref = null) => ({
         ...props,
-        ref: popperRef,
+        ref: mergeRefs(popperRef, ref),
         style: {
           ...props.style,
           position: strategy,
+          minWidth: "max-content",
         },
       }),
-      getArrowProps: (props: any = {}) => {
+      getArrowProps: (props: any = {}, ref = null) => {
         const { size, shadowColor, bg, style, ...rest } = props
+        const innerProps = { "data-popper-arrow-inner": "" }
         return {
           ...rest,
+          ref,
           "data-popper-arrow": "",
           style: {
             ...style,
             position: "absolute",
-            "--popper-arrow-size": size,
-            "--popper-arrow-shadow-color": shadowColor,
-            "--popper-arrow-bg": bg,
+            ...(size && { "--popper-arrow-size": size }),
+            ...(shadowColor && { "--popper-arrow-shadow-color": shadowColor }),
+            ...(bg && { "--popper-arrow-bg": bg }),
           },
-          children: createElement("div", { "data-popper-arrow-inner": "" }),
+          children: props.children
+            ? cloneElement(props.children, innerProps)
+            : createElement("div", innerProps),
         }
       },
-      getReferenceProps: (props: any = {}) => ({
+      getReferenceProps: (props: any = {}, ref = null) => ({
         ...props,
-        ref: referenceRef,
+        ref: mergeRefs(referenceRef, ref),
       }),
     }
   }, [setupPopper, strategy])

@@ -1,5 +1,4 @@
 import {
-  useBoolean,
   useDisclosure,
   useFocusOnHide,
   useFocusOnPointerDown,
@@ -23,7 +22,7 @@ import {
   isBrowser,
   px,
 } from "@chakra-ui/utils"
-import { RefObject, useCallback, useEffect, useRef } from "react"
+import { RefObject, useCallback, useEffect, useRef, useState } from "react"
 
 const TRIGGER = {
   click: "click",
@@ -123,6 +122,9 @@ export interface UsePopoverProps {
   isLazy?: boolean
 }
 
+/**
+ * @internal
+ */
 export function usePopover(props: UsePopoverProps = {}) {
   const {
     closeOnBlur = true,
@@ -150,8 +152,8 @@ export function usePopover(props: UsePopoverProps = {}) {
 
   const isHoveringRef = useRef(false)
 
-  const [hasHeader, setHasHeader] = useBoolean()
-  const [hasBody, setHasBody] = useBoolean()
+  const [hasHeader, setHasHeader] = useState(false)
+  const [hasBody, setHasBody] = useState(false)
 
   const [triggerId, popoverId, headerId, bodyId] = useIds(
     id,
@@ -339,32 +341,54 @@ export function usePopover(props: UsePopoverProps = {}) {
     ],
   )
 
-  useEffect(
-    () => () => {
-      if (openTimeout.current) clearTimeout(openTimeout.current)
-      if (closeTimeout.current) clearTimeout(closeTimeout.current)
-    },
-    [],
-  )
+  useEffect(() => {
+    return () => {
+      if (openTimeout.current) {
+        clearTimeout(openTimeout.current)
+      }
+      if (closeTimeout.current) {
+        clearTimeout(closeTimeout.current)
+      }
+    }
+  }, [])
 
   const onTransitionEnd = () => {
     popoverRef.current?.dispatchEvent(new Event("transitionend"))
   }
 
+  const getHeaderProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
+      ...props,
+      id: headerId,
+      ref: mergeRefs(ref, (node: HTMLElement | null) => {
+        setHasHeader(!!node)
+      }),
+    }),
+    [headerId],
+  )
+
+  const getBodyProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
+      ...props,
+      id: bodyId,
+      ref: mergeRefs(ref, (node) => {
+        setHasBody(!!node)
+      }),
+    }),
+    [bodyId],
+  )
+
   return {
     forceUpdate: popper.forceUpdate,
     isOpen,
     onClose,
-    headerId,
-    hasHeader,
-    setHasHeader,
-    bodyId,
-    hasBody,
-    setHasBody,
     onTransitionEnd,
+    getArrowProps: popper.getArrowProps,
     getPopoverPositionerProps,
     getPopoverProps,
     getTriggerProps,
+    getHeaderProps,
+    getBodyProps,
   }
 }
 

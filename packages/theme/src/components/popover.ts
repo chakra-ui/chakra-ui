@@ -1,13 +1,10 @@
 import { mode } from "@chakra-ui/theme-tools"
-import { getCSSVar } from "@chakra-ui/utils"
 
 const parts = ["popper", "content", "header", "body", "footer", "arrow"]
 
 type Dict = Record<string, any>
 
 const baseStylePopper = {
-  w: "100%",
-  maxW: "xs",
   zIndex: 10,
 }
 
@@ -15,7 +12,8 @@ function baseStyleContent(props: Dict) {
   const bg = mode("white", "gray.700")(props)
   return {
     bg,
-    "--popper-arrow-bg": getCSSVar(props.theme, "colors", bg),
+    "--popper-arrow-bg": `colors.${bg}, ${bg}`,
+    maxW: "xs",
     border: "1px solid",
     borderColor: "inherit",
     borderRadius: "md",

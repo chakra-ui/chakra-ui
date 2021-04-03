@@ -25,7 +25,7 @@ export function TwitterEx() {
   return (
     <Popover trigger="hover">
       <PopoverTrigger>
-        <Link href="#" color="blue.500">
+        <Link href="#test" color="blue.500">
           Hover to see @swyx profile
         </Link>
       </PopoverTrigger>
@@ -51,7 +51,7 @@ export function Bug() {
           <MdCheck />
         </IconButton>
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent maxW="md">
         <PopoverArrow />
         <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
       </PopoverContent>
