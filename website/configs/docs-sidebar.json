@@ -399,6 +399,10 @@
           "sort": true,
           "routes": [
             {
+              "title": "useBoolean",
+              "path": "/docs/hooks/use-boolean"
+            },
+            {
               "title": "useBreakpointValue",
               "path": "/docs/hooks/use-breakpoint-value"
             },
