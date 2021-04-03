@@ -11,6 +11,14 @@ export const ExamplePopper = () => {
   const { referenceRef, popperRef } = usePopper({
     gutter: 16,
     placement: "right-end",
+    modifiers: [
+      {
+        name: "offset",
+        options: {
+          offset: [100, 100],
+        },
+      },
+    ],
   })
   return (
     <div style={{ minHeight: "200vh", paddingTop: "100vh" }}>
@@ -35,7 +43,7 @@ export const ExamplePopper = () => {
 
 function debounce(func: any, wait: number, immediate?: any) {
   let timeout: any
-  return function run(...args: any[]) {
+  return function run(this: any, ...args: any[]) {
     const context = this
     const later = function later() {
       timeout = null
@@ -71,13 +79,14 @@ export const VirtualElement = () => {
   React.useEffect(() => {
     referenceRef(node)
     const el = document.getElementById("root")
+    //@ts-ignore
     const handler = debounce(({ clientX: x, clientY: y }) => {
       setNode({ getBoundingClientRect: generateGetBoundingClientRect(x, y) })
       update?.()
     }, 10)
-    el.addEventListener("mousemove", handler)
+    el?.addEventListener("mousemove", handler)
     return () => {
-      el.removeEventListener("mousemove", handler)
+      el?.removeEventListener("mousemove", handler)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [node])
@@ -97,7 +106,12 @@ declare module "csstype" {
 
 export const WithAnimation = () => {
   const [isOpen, setIsOpen] = React.useState(true)
-  const { popperRef, referenceRef } = usePopper({
+  const {
+    getPopperProps,
+    referenceRef,
+    getArrowProps,
+    transformOrigin,
+  } = usePopper({
     placement: "bottom",
   })
   return (
@@ -105,10 +119,10 @@ export const WithAnimation = () => {
       <button ref={referenceRef} onClick={() => setIsOpen(!isOpen)}>
         Trigger
       </button>
-      <div ref={popperRef}>
+      <div {...getPopperProps()}>
         <motion.div
           style={{
-            transformOrigin: "var(--popper-transform-origin)",
+            transformOrigin,
             background: "red",
             padding: 8,
           }}
@@ -119,15 +133,12 @@ export const WithAnimation = () => {
           }
         >
           <div
-            data-popper-arrow=""
-            style={{
-              "--popper-arrow-shadow-color": "rgba(0,0,0,0.3)",
-              "--popper-arrow-size": "8px",
-              "--popper-arrow-bg": "red",
-            }}
-          >
-            <div data-popper-arrow-inner="" />
-          </div>
+            {...getArrowProps({
+              shadowColor: "rgba(0,0,0,0.3)",
+              size: "8px",
+              bg: "red",
+            })}
+          />
           Popper
         </motion.div>
       </div>
