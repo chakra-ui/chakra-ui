@@ -59,6 +59,10 @@ export interface ButtonOptions {
    * @type React.ReactElement
    */
   spinner?: React.ReactElement
+  /**
+   * It places spinner before or after loading button label
+   */
+  loadingSpinnerPosition?: "start" | "end"
 }
 
 export interface ButtonProps
@@ -79,6 +83,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
     leftIcon,
     rightIcon,
     loadingText,
+    loadingSpinnerPosition = "start",
     iconSpacing = "0.5rem",
     type = "button",
     spinner,
@@ -126,7 +131,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
       {leftIcon && !isLoading && (
         <ButtonIcon marginEnd={iconSpacing}>{leftIcon}</ButtonIcon>
       )}
-      {isLoading && (
+      {isLoading && loadingSpinnerPosition === "start" && (
         <ButtonSpinner
           __css={{ fontSize: "1em", lineHeight: "normal" }}
           spacing={iconSpacing}
@@ -138,6 +143,19 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
       {isLoading
         ? loadingText || <chakra.span opacity={0}>{children}</chakra.span>
         : children}
+      {isLoading && loadingSpinnerPosition === "end" && (
+        <ButtonSpinner
+          __css={{
+            fontSize: "1em",
+            lineHeight: "normal",
+            marginLeft: iconSpacing,
+          }}
+          spacing={iconSpacing}
+          label={loadingText}
+        >
+          {spinner}
+        </ButtonSpinner>
+      )}
       {rightIcon && !isLoading && (
         <ButtonIcon marginStart={iconSpacing}>{rightIcon}</ButtonIcon>
       )}

@@ -155,6 +155,28 @@ export const WithLoading = () => (
   </Stack>
 )
 
+export const WithLoadingSpinnerPosition = () => (
+  <Stack direction="row" spacing={4} align="center">
+    <Button
+      isLoading
+      loadingText="Submitting..."
+      colorScheme="teal"
+      variant="outline"
+      loadingSpinnerPosition="start"
+    >
+      Submit
+    </Button>
+    <Button
+      isLoading
+      loadingText="Continuing..."
+      colorScheme="teal"
+      variant="outline"
+      loadingSpinnerPosition="end"
+    >
+      Continue
+    </Button>
+  </Stack>
+)
 export const withDisabled = () => (
   <HStack spacing="24px">
     <Button isDisabled colorScheme="teal" variant="solid">
