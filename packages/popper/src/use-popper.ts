@@ -1,4 +1,4 @@
-import { mergeRefs } from "@chakra-ui/react-utils"
+import { mergeRefs, PropGetterV2 } from "@chakra-ui/react-utils"
 import {
   createPopper,
   Instance,
@@ -6,16 +6,9 @@ import {
   Placement,
   VirtualElement,
 } from "@popperjs/core"
-import {
-  cloneElement,
-  createElement,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-} from "react"
+import { useCallback, useEffect, useRef } from "react"
 import * as customModifiers from "./modifiers"
-import { getEventListenerOptions } from "./utils"
+import { cssVars, getEventListenerOptions } from "./utils"
 
 export type { Placement }
 
@@ -83,6 +76,24 @@ export interface UsePopperProps {
    * @see Docs https://popper.js.org/docs/v2/modifiers/
    */
   modifiers?: Array<Partial<Modifier<string, any>>>
+}
+
+export type ArrowCSSVarProps = {
+  /**
+   * The size of the popover arrow.
+   * This sets the `--popper-arrow-size` css property
+   */
+  size?: string | number
+  /**
+   * The box-shadow color of the popover arrow.
+   * This sets the `--popper-arrow-shadow-color` css property
+   */
+  shadowColor?: string
+  /**
+   * The background color of teh popper arrow.
+   * This sets the `--popper-arrow-bg` css property.
+   */
+  bg?: string
 }
 
 export function usePopper(props: UsePopperProps = {}) {
@@ -188,6 +199,14 @@ export function usePopper(props: UsePopperProps = {}) {
     [setupPopper],
   )
 
+  const getReferenceProps = useCallback<PropGetterV2<"button">>(
+    (props = {}, ref = null) => ({
+      ...props,
+      ref: mergeRefs(referenceRef, ref),
+    }),
+    [referenceRef],
+  )
+
   const popperRef = useCallback(
     <T extends HTMLElement>(node: T | null) => {
       popper.current = node
@@ -196,41 +215,52 @@ export function usePopper(props: UsePopperProps = {}) {
     [setupPopper],
   )
 
-  return useMemo(
-    () => ({
-      update: instance.current?.update,
-      forceUpdate: instance.current?.forceUpdate,
-      referenceRef,
-      popperRef,
-      getPopperProps: (props: any = {}, ref = null) => ({
-        ...props,
-        ref: mergeRefs(popperRef, ref),
-        style: {
-          ...props.style,
-          position: strategy,
-          minWidth: "max-content",
-        },
-      }),
-      getArrowProps: (props: any = {}, ref = null) => {
-        const { size, shadowColor, bg, style, ...rest } = props
-        const innerProps = { "data-popper-arrow-inner": "" }
-        return {
-          ...rest,
-          ref,
-          "data-popper-arrow": "",
-          style: getArrowStyle(props),
-          children: props.children
-            ? cloneElement(props.children, innerProps)
-            : createElement("div", innerProps),
-        }
+  const getPopperProps = useCallback<PropGetterV2<"div">>(
+    (props = {}, ref = null) => ({
+      ...props,
+      ref: mergeRefs(popperRef, ref),
+      style: {
+        ...props.style,
+        position: strategy,
+        minWidth: "max-content",
       },
-      getReferenceProps: (props: any = {}, ref = null) => ({
-        ...props,
-        ref: mergeRefs(referenceRef, ref),
-      }),
     }),
-    [popperRef, referenceRef, strategy],
+    [strategy, popperRef],
   )
+
+  const getArrowProps = useCallback<PropGetterV2<"div", ArrowCSSVarProps>>(
+    (props = {}, ref = null) => {
+      const { size, shadowColor, bg, style, ...rest } = props
+      return {
+        ...rest,
+        ref,
+        "data-popper-arrow": "",
+        style: getArrowStyle(props),
+      }
+    },
+    [],
+  )
+
+  const getArrowInnerProps = useCallback<PropGetterV2<"div">>(
+    (props = {}, ref = null) => ({
+      ...props,
+      ref,
+      "data-popper-arrow-inner": "",
+    }),
+    [],
+  )
+
+  return {
+    update: instance.current?.update,
+    forceUpdate: instance.current?.forceUpdate,
+    transformOrigin: cssVars.transformOrigin.varRef,
+    referenceRef,
+    popperRef,
+    getPopperProps,
+    getArrowProps,
+    getArrowInnerProps,
+    getReferenceProps,
+  }
 }
 
 function getArrowStyle(props: any) {

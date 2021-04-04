@@ -1,51 +1,21 @@
 import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
+import { MaybeRenderProp } from "@chakra-ui/react-utils"
 import {
   chakra,
   forwardRef,
+  HTMLChakraProps,
   omitThemingProps,
   StylesProvider,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
-  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
-import { createContext, MaybeRenderProp } from "@chakra-ui/react-utils"
-import { motion, Variants } from "framer-motion"
 import * as React from "react"
-import { usePopover, UsePopoverProps, UsePopoverReturn } from "./use-popover"
-
-const motionVariants: Variants = {
-  exit: {
-    opacity: 0,
-    scale: 0.95,
-    transition: {
-      duration: 0.1,
-      ease: [0.4, 0, 1, 1],
-    },
-    transitionEnd: {
-      visibility: "hidden",
-    },
-  },
-  enter: {
-    visibility: "visible",
-    scale: 1,
-    opacity: 1,
-    transition: {
-      duration: 0.15,
-      ease: [0, 0, 0.2, 1],
-    },
-  },
-}
-
-const [PopoverProvider, usePopoverContext] = createContext<UsePopoverReturn>({
-  name: "PopoverContext",
-  errorMessage:
-    "usePopoverContext: `context` is undefined. Seems you forgot to wrap all popover components within `<Popover />`",
-})
-
-export { usePopoverContext }
+import { PopoverProvider, usePopoverContext } from "./popover-context"
+import { PopoverTransition, PopoverTransitionProps } from "./popover-transition"
+import { usePopover, UsePopoverProps } from "./use-popover"
 
 export interface PopoverProps extends UsePopoverProps, ThemingProps<"Popover"> {
   /**
@@ -101,22 +71,15 @@ if (__DEV__) {
   PopoverTrigger.displayName = "PopoverTrigger"
 }
 
-export interface PopoverContentProps extends HTMLChakraProps<"section"> {
+export interface PopoverContentProps extends PopoverTransitionProps {
   rootProps?: HTMLChakraProps<"div">
 }
-
-const MotionSection = chakra(motion.section)
 
 export const PopoverContent = forwardRef<PopoverContentProps, "section">(
   (props, ref) => {
     const { rootProps, ...contentProps } = props
 
-    const {
-      isOpen,
-      getPopoverProps,
-      onTransitionEnd,
-      getPopoverPositionerProps,
-    } = usePopoverContext()
+    const { getPopoverProps, getPopoverPositionerProps } = usePopoverContext()
 
     const styles = useStyles()
     const contentStyles: SystemStyleObject = {
@@ -128,17 +91,14 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
 
     return (
       <chakra.div
-        __css={styles.popper}
         {...getPopoverPositionerProps(rootProps)}
+        __css={styles.popper}
+        className="chakra-popover__popper"
       >
-        <MotionSection
-          {...(getPopoverProps(contentProps, ref) as any)}
-          onUpdate={onTransitionEnd}
+        <PopoverTransition
+          {...getPopoverProps(contentProps, ref)}
           className={cx("chakra-popover__content", props.className)}
           __css={contentStyles}
-          variants={motionVariants}
-          initial={false}
-          animate={isOpen ? "enter" : "exit"}
         />
       </chakra.div>
     )
@@ -241,7 +201,7 @@ export interface PopoverArrowProps extends HTMLChakraProps<"div"> {}
 
 export const PopoverArrow: React.FC<PopoverArrowProps> = (props) => {
   const { bg, bgColor, backgroundColor } = props
-  const { getArrowProps } = usePopoverContext()
+  const { getArrowProps, getArrowInnerProps } = usePopoverContext()
   const styles = useStyles()
   const arrowBg = bg ?? bgColor ?? backgroundColor
   return (
@@ -251,13 +211,12 @@ export const PopoverArrow: React.FC<PopoverArrowProps> = (props) => {
     >
       <chakra.div
         className={cx("chakra-popover__arrow", props.className)}
-        {...props}
-        data-popper-arrow-inner
+        {...getArrowInnerProps(props)}
         __css={{
           ...styles.arrow,
-          ...(arrowBg && {
-            "--popper-arrow-bg": `colors.${arrowBg}, ${arrowBg}`,
-          }),
+          "--popper-arrow-bg": arrowBg
+            ? `colors.${arrowBg}, ${arrowBg}`
+            : undefined,
         }}
       />
     </chakra.div>

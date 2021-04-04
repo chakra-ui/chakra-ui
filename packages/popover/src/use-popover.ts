@@ -12,7 +12,6 @@ import {
   UsePopperProps,
 } from "@chakra-ui/popper"
 import { HTMLProps, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
-import { useColorModeValue, useToken } from "@chakra-ui/system"
 import {
   callAllHandlers,
   contains,
@@ -134,10 +133,10 @@ export function usePopover(props: UsePopoverProps = {}) {
     flip,
     gutter,
     id,
-    arrowSize,
     returnFocusOnClose = true,
     autoFocus = true,
-    arrowShadowColor: arrowShadowColorProp,
+    arrowSize,
+    arrowShadowColor,
     modifiers,
     trigger = TRIGGER.click,
     openDelay = 200,
@@ -162,10 +161,6 @@ export function usePopover(props: UsePopoverProps = {}) {
     "popover-header",
     "popover-body",
   )
-
-  const fallbackShadowColor = useColorModeValue("gray.200", "whiteAlpha.300")
-  const shadowColor = arrowShadowColorProp ?? fallbackShadowColor
-  const arrowShadowColor = useToken("colors", shadowColor, arrowShadowColorProp)
 
   const popper = usePopper({
     placement: placementProp,
@@ -352,10 +347,6 @@ export function usePopover(props: UsePopoverProps = {}) {
     }
   }, [])
 
-  const onTransitionEnd = () => {
-    popoverRef.current?.dispatchEvent(new Event("transitionend"))
-  }
-
   const getHeaderProps: PropGetter = useCallback(
     (props = {}, ref = null) => ({
       ...props,
@@ -382,8 +373,8 @@ export function usePopover(props: UsePopoverProps = {}) {
     forceUpdate: popper.forceUpdate,
     isOpen,
     onClose,
-    onTransitionEnd,
     getArrowProps: popper.getArrowProps,
+    getArrowInnerProps: popper.getArrowInnerProps,
     getPopoverPositionerProps,
     getPopoverProps,
     getTriggerProps,

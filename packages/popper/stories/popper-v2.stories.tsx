@@ -110,6 +110,7 @@ export const WithAnimation = () => {
     getPopperProps,
     referenceRef,
     getArrowProps,
+    getArrowInnerProps,
     transformOrigin,
   } = usePopper({
     placement: "bottom",
@@ -138,7 +139,9 @@ export const WithAnimation = () => {
               size: "8px",
               bg: "red",
             })}
-          />
+          >
+            <div {...getArrowInnerProps()} />
+          </div>
           Popper
         </motion.div>
       </div>
