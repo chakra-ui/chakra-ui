@@ -76,7 +76,7 @@ export interface UseMenuProps extends UsePopperProps, UseDisclosureProps {
  * It provides the logic and will be used with react context
  * to propagate its return value to all children
  */
-export function useMenu(props: UseMenuProps) {
+export function useMenu(props: UseMenuProps = {}) {
   const {
     id,
     closeOnSelect = true,
@@ -207,7 +207,7 @@ export interface UseMenuButtonProps
   extends Omit<React.HTMLAttributes<Element>, "color"> {}
 
 export function useMenuButton(
-  props: UseMenuButtonProps,
+  props: UseMenuButtonProps = {},
   externalRef: React.Ref<any> = null,
 ) {
   const menu = useMenuContext()
@@ -278,7 +278,7 @@ export interface UseMenuListProps
   extends Omit<React.HTMLAttributes<Element>, "color"> {}
 
 export function useMenuList(
-  props: UseMenuListProps,
+  props: UseMenuListProps = {},
   ref: React.Ref<any> = null,
 ) {
   const menu = useMenuContext()
@@ -390,7 +390,7 @@ export interface UseMenuItemProps
 }
 
 export function useMenuItem(
-  props: UseMenuItemProps,
+  props: UseMenuItemProps = {},
   externalRef: React.Ref<any> = null,
 ) {
   const {
@@ -515,7 +515,7 @@ export interface UseMenuOptionProps
     UseMenuOptionOptions {}
 
 export function useMenuOption(
-  props: UseMenuOptionProps,
+  props: UseMenuOptionProps = {},
   externalRef: React.Ref<any> = null,
 ) {
   const {
@@ -546,7 +546,7 @@ export interface UseMenuOptionGroupProps {
   children?: React.ReactNode
 }
 
-export function useMenuOptionGroup(props: UseMenuOptionGroupProps) {
+export function useMenuOptionGroup(props: UseMenuOptionGroupProps = {}) {
   const {
     children,
     type = "radio",
