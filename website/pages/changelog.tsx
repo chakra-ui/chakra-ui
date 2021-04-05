@@ -1,13 +1,8 @@
 import React from "react"
-import ChangelogMarkdown from "../../CHANGELOG.md"
-import { MDXLayoutProvider } from "../layouts/mdx"
+import MarkdownContent from "../../CHANGELOG.md"
 
 function Changelog() {
-  return (
-    <MDXLayoutProvider>
-      <ChangelogMarkdown />
-    </MDXLayoutProvider>
-  )
+  return <MarkdownContent />
 }
 
 export default Changelog

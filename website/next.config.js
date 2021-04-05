@@ -132,7 +132,7 @@ const mdxConfig = {
       const editUrl = getEditUrl(mdxPath, EDIT_URL)
 
       // get the slug
-      const slug = fileToPath(mdxPath)
+      const slug = frontmatter.slug ?? fileToPath(mdxPath)
 
       // if frontmatter inclues author, add the author's data
       const authorData = author ? await getUserData(author) : undefined

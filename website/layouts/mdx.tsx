@@ -17,6 +17,7 @@ export function getRoutes(slug: string) {
 
   const configMap = {
     "/resources": docsSidebar,
+    "/changelog": docsSidebar,
     "/guides": guidesSidebar,
     "/blog": blogSidebar,
     "/docs": docsSidebar,
@@ -38,7 +39,13 @@ export function MDXLayoutProvider({ children }) {
   )
 }
 
-function MDXLayout({ frontmatter, children }) {
+interface MDXLayoutProps {
+  frontmatter: any
+  children: React.ReactNode
+}
+
+function MDXLayout(props: MDXLayoutProps) {
+  const { frontmatter, children } = props
   const routes = getRoutes(frontmatter.slug)
 
   const route = findRouteByPath(removeFromLast(frontmatter.slug, "#"), routes)
