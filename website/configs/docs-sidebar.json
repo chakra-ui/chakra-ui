@@ -21,6 +21,10 @@
           "path": "/docs/comparison"
         },
         {
+          "title": "Changelog",
+          "path": "/changelog"
+        },
+        {
           "title": "Features",
           "path": "/docs/features",
           "open": true,
