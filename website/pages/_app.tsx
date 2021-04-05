@@ -28,6 +28,14 @@ const App = ({ Component, pageProps }) => {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://static.cloudflareinsights.com" />
         <meta name="theme-color" content="#319795" />
+        {process.env.NODE_ENV === "production" && (
+          <script
+            async
+            defer
+            data-domain="chakra-ui.com"
+            src="https://plausible.io/js/plausible.js"
+          />
+        )}
       </Head>
       <DefaultSeo {...seo} />
       <ChakraProvider theme={theme}>
