@@ -1,4 +1,8 @@
-# Changelog
+---
+title: Changelog
+description: The changelog for Chakra UI React
+slug: "/changelog"
+---
 
 Legend:
 
