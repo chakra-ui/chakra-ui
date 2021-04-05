@@ -1,25 +1,13 @@
-import { parseMarkdownFile } from "@docusaurus/utils"
-import path from "path"
 import React from "react"
+import ChangelogMarkdown from "../../CHANGELOG.md"
 import { MDXLayoutProvider } from "../layouts/mdx"
-import ChangelogContent from "../../CHANGELOG.md"
 
-// DOM code
-function Changelog({ content }) {
+function Changelog() {
   return (
     <MDXLayoutProvider>
-      <ChangelogContent />
+      <ChangelogMarkdown />
     </MDXLayoutProvider>
   )
 }
-
-// Node.js
-// export async function getStaticProps() {
-//   const filePath = path.resolve("..", "CHANGELOG.md")
-//   const { content } = await parseMarkdownFile(filePath)
-//   return {
-//     props: { content },
-//   }
-// }
 
 export default Changelog
