@@ -14,11 +14,12 @@ export type Breakpoints<T> = T & { base: "0em" }
 export const createBreakpoints = <T extends BaseBreakpointConfig>(
   config: T,
 ): Breakpoints<T> => {
-  warn(
-    [
+  warn({
+    condition: true,
+    message: [
       `[chakra-ui]: createBreakpoints(...) will be deprecated pretty soon`,
       `simply pass the breakpoints as an object. Remove the createBreakpoint(..) call`,
     ].join(""),
-  )
+  })
   return { base: "0em", ...config }
 }

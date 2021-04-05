@@ -1,4 +1,4 @@
-import { Booleanish } from "./types"
+import { Booleanish, EventKeys } from "./types"
 
 export function getOwnerWindow(node?: HTMLElement | null) {
   return node instanceof Element
@@ -49,3 +49,32 @@ export function addDomEvent(
     target.removeEventListener(eventName, handler, options)
   }
 }
+
+/**
+ * Get the normalized event key across all browsers
+ * @param event keyboard event
+ */
+export function normalizeEventKey(
+  event: Pick<KeyboardEvent, "key" | "keyCode">,
+) {
+  const { key, keyCode } = event
+
+  const isArrowKey =
+    keyCode >= 37 && keyCode <= 40 && key.indexOf("Arrow") !== 0
+
+  const eventKey = isArrowKey ? `Arrow${key}` : key
+
+  return eventKey as EventKeys
+}
+
+export function getRelatedTarget(
+  event: Pick<FocusEvent, "relatedTarget" | "target" | "currentTarget">,
+) {
+  const target = (event.target ?? event.currentTarget) as HTMLElement
+  const activeElement = getActiveElement(target)
+  const originalTarget = (event as any).nativeEvent.explicitOriginalTarget
+  return (event.relatedTarget ?? originalTarget ?? activeElement) as HTMLElement
+}
+
+export const isRightClick = (event: Pick<MouseEvent, "button">) =>
+  event.button !== 0

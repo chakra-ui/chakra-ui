@@ -26,7 +26,7 @@ interface DrawerOptions {
   isFullHeight?: boolean
 }
 
-export interface DrawerProps extends ModalProps {
+export interface DrawerProps extends Omit<ModalProps, "scrollBehavior"> {
   /**
    * The placement of the drawer
    */

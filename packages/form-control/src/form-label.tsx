@@ -7,22 +7,9 @@ import {
   useStyleConfig,
   useStyles,
 } from "@chakra-ui/system"
-import { cx, dataAttr, Dict, __DEV__ } from "@chakra-ui/utils"
+import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useFormControlContext } from "./form-control"
-
-export function useFieldLabel(props: Dict) {
-  const field = useFormControlContext()
-  return {
-    ...props,
-    "data-focus": dataAttr(field?.isFocused),
-    "data-disabled": dataAttr(field?.isDisabled),
-    "data-invalid": dataAttr(field?.isInvalid),
-    "data-readonly": dataAttr(field?.isReadOnly),
-    id: props.id ?? field?.labelId,
-    htmlFor: props.htmlFor ?? field?.id,
-  }
-}
 
 export interface FormLabelProps
   extends HTMLChakraProps<"label">,
@@ -53,19 +40,17 @@ export const FormLabel = forwardRef<FormLabelProps, "label">(
       ...rest
     } = props
 
-    const ownProps = useFieldLabel(rest)
     const field = useFormControlContext()
 
     return (
       <chakra.label
-        ref={ref}
+        {...field?.getLabelProps(rest, ref)}
         className={cx("chakra-form__label", props.className)}
         __css={{
           display: "block",
           textAlign: "start",
           ...styles,
         }}
-        {...ownProps}
       >
         {children}
         {field?.isRequired ? requiredIndicator : null}
@@ -86,25 +71,19 @@ export interface RequiredIndicatorProps extends HTMLChakraProps<"span"> {}
  */
 export const RequiredIndicator = forwardRef<RequiredIndicatorProps, "span">(
   (props, ref) => {
-    const { children, className, ...rest } = props
     const field = useFormControlContext()
     const styles = useStyles()
 
     if (!field?.isRequired) return null
 
-    const _className = cx("chakra-form__required-indicator", className)
+    const className = cx("chakra-form__required-indicator", props.className)
 
     return (
       <chakra.span
-        role="presentation"
-        aria-hidden
-        ref={ref}
-        {...rest}
+        {...field?.getRequiredIndicatorProps(props, ref)}
         __css={styles.requiredIndicator}
-        className={_className}
-      >
-        {children || "*"}
-      </chakra.span>
+        className={className}
+      />
     )
   },
 )
