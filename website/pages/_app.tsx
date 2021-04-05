@@ -1,16 +1,11 @@
-import { trackPageview } from "analytics/track-event"
+import { ChakraProvider } from "@chakra-ui/react"
+import FontFace from "components/font-face"
 import { DefaultSeo } from "next-seo"
 import Head from "next/head"
-import Router, { useRouter } from "next/router"
+import { useRouter } from "next/router"
 import React from "react"
-import { ChakraProvider } from "@chakra-ui/react"
 import theme from "theme"
-import FontFace from "components/font-face"
 import { getSeo } from "utils/seo"
-
-Router.events.on("routeChangeComplete", (url) => {
-  trackPageview(url)
-})
 
 const App = ({ Component, pageProps }) => {
   // Omit og:image in Docs pages.
