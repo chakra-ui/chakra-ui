@@ -116,11 +116,10 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
      * If you specify a starting height, the collapsed needs to be mounted
      * for the height to take effect.
      */
-    if (startingHeight > 0 && unmountOnExit) {
-      warn(
-        `startingHeight and unmountOnExit are mutually exclusive. You can't use them together`,
-      )
-    }
+    warn({
+      condition: Boolean(startingHeight > 0 && unmountOnExit),
+      message: `startingHeight and unmountOnExit are mutually exclusive. You can't use them together`,
+    })
 
     const custom = { startingHeight, endingHeight, animateOpacity }
 

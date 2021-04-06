@@ -21,6 +21,10 @@
           "path": "/docs/comparison"
         },
         {
+          "title": "Changelog",
+          "path": "/changelog"
+        },
+        {
           "title": "Features",
           "path": "/docs/features",
           "open": true,
@@ -399,6 +403,10 @@
           "sort": true,
           "routes": [
             {
+              "title": "useBoolean",
+              "path": "/docs/hooks/use-boolean"
+            },
+            {
               "title": "useBreakpointValue",
               "path": "/docs/hooks/use-breakpoint-value"
             },
@@ -417,6 +425,10 @@
             {
               "title": "useMediaQuery",
               "path": "/docs/hooks/use-media-query"
+            },
+            {
+              "title": "useMergeRefs",
+              "path": "/docs/hooks/use-merge-refs"
             },
             {
               "title": "useOutsideClick",

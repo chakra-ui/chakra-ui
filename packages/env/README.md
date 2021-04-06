@@ -3,6 +3,8 @@
 React component and hook for handling window and document object in iframe or
 ssr environment
 
+> This is an internal utility, not intended for public usage.
+
 ## Installation
 
 ```sh

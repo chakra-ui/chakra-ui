@@ -6,17 +6,22 @@ const MDXLayout = dynamic(() => import("layouts/mdx"))
 
 export default function DefaultLayout({ children, frontMatter }) {
   const { slug } = frontMatter
+
   const layoutMap = {
-    "/guides": <MDXLayout frontmatter={frontMatter}>{children}</MDXLayout>,
-    "/docs": <MDXLayout frontmatter={frontMatter}>{children}</MDXLayout>,
-    "/blog": <MDXLayout frontmatter={frontMatter}>{children}</MDXLayout>,
+    guides: <MDXLayout frontmatter={frontMatter}>{children}</MDXLayout>,
+    docs: <MDXLayout frontmatter={frontMatter}>{children}</MDXLayout>,
+    blog: <MDXLayout frontmatter={frontMatter}>{children}</MDXLayout>,
+    changelog: <MDXLayout frontmatter={frontMatter}>{children}</MDXLayout>,
     default: (
       <PageContainer frontmatter={frontMatter}>{children}</PageContainer>
     ),
   }
+
   const layout = Object.entries(layoutMap).find(([path, _component]) =>
-    String(slug).startsWith(path),
+    String(slug).startsWith(`/${path}`),
   )
 
-  return layout[1] ?? layoutMap.default
+  if (!layout) return layoutMap.default
+
+  return layout[1]
 }

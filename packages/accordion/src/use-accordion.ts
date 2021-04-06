@@ -6,22 +6,22 @@ import {
   useUnmountEffect,
 } from "@chakra-ui/hooks"
 import {
+  createContext,
+  EventKeyMap,
+  mergeRefs,
+  PropGetter,
+} from "@chakra-ui/react-utils"
+import {
   addItem,
   callAllHandlers,
   getNextIndex,
   getPrevIndex,
   isArray,
   isUndefined,
+  normalizeEventKey,
   removeItem,
   warn,
 } from "@chakra-ui/utils"
-import {
-  createContext,
-  mergeRefs,
-  normalizeEventKey,
-  EventKeyMap,
-  PropGetter,
-} from "@chakra-ui/react-utils"
 import { useCallback, useRef, useState } from "react"
 
 export type ExpandedIndex = number | number[]

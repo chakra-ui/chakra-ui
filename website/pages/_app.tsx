@@ -1,16 +1,11 @@
-import { trackPageview } from "analytics/track-event"
+import { ChakraProvider } from "@chakra-ui/react"
+import FontFace from "components/font-face"
 import { DefaultSeo } from "next-seo"
 import Head from "next/head"
-import Router, { useRouter } from "next/router"
+import { useRouter } from "next/router"
 import React from "react"
-import { ChakraProvider } from "@chakra-ui/react"
 import theme from "theme"
-import FontFace from "components/font-face"
 import { getSeo } from "utils/seo"
-
-Router.events.on("routeChangeComplete", (url) => {
-  trackPageview(url)
-})
 
 const App = ({ Component, pageProps }) => {
   // Omit og:image in Docs pages.
@@ -28,6 +23,14 @@ const App = ({ Component, pageProps }) => {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://static.cloudflareinsights.com" />
         <meta name="theme-color" content="#319795" />
+        {process.env.NODE_ENV === "production" && (
+          <script
+            async
+            defer
+            data-domain="chakra-ui.com"
+            src="https://plausible.io/js/plausible.js"
+          />
+        )}
       </Head>
       <DefaultSeo {...seo} />
       <ChakraProvider theme={theme}>

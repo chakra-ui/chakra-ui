@@ -1,21 +1,22 @@
 import { mode } from "@chakra-ui/theme-tools"
-import { getCSSVar } from "@chakra-ui/utils"
 
 const parts = ["popper", "content", "header", "body", "footer", "arrow"]
 
 type Dict = Record<string, any>
 
 const baseStylePopper = {
-  w: "100%",
-  maxW: "xs",
   zIndex: 10,
 }
 
 function baseStyleContent(props: Dict) {
   const bg = mode("white", "gray.700")(props)
+  const shadowColor = mode("gray.200", "whiteAlpha.300")(props)
   return {
-    bg,
-    "--popper-arrow-bg": getCSSVar(props.theme, "colors", bg),
+    "--popover-bg": `colors.${bg}`,
+    bg: "var(--popover-bg)",
+    "--popper-arrow-bg": "var(--popover-bg)",
+    "--popper-arrow-shadow-color": `colors.${shadowColor}`,
+    width: "xs",
     border: "1px solid",
     borderColor: "inherit",
     borderRadius: "md",
@@ -25,12 +26,6 @@ function baseStyleContent(props: Dict) {
       outline: 0,
       boxShadow: "outline",
     },
-  }
-}
-
-function baseStyleArrow(props: Dict) {
-  return {
-    bg: mode("white", "gray.700")(props),
   }
 }
 
@@ -57,7 +52,7 @@ const baseStyle = (props: Dict) => ({
   header: baseStyleHeader,
   body: baseStyleBody,
   footer: baseStyleFooter,
-  arrow: baseStyleArrow(props),
+  arrow: {},
 })
 
 export default {

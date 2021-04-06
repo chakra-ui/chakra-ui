@@ -1,13 +1,14 @@
 import {
   useBoolean,
+  useCallbackRef,
   useControllableState,
   useDimensions,
-  useCallbackRef,
   useEventListener,
   useIds,
   useUnmountEffect,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
+import { EventKeyMap, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import {
   ariaAttr,
   callAllHandlers,
@@ -17,17 +18,12 @@ import {
   focus,
   getBox,
   getOwnerDocument,
+  isRightClick,
+  normalizeEventKey,
   percentToValue,
   roundValueToStep,
   valueToPercent,
 } from "@chakra-ui/utils"
-import {
-  mergeRefs,
-  normalizeEventKey,
-  isRightClick,
-  PropGetter,
-  EventKeyMap,
-} from "@chakra-ui/react-utils"
 import { CSSProperties, useCallback, useMemo, useRef, useState } from "react"
 
 export interface UseSliderProps {

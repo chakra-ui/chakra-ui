@@ -9,12 +9,12 @@ import {
   useMultiStyleConfig,
   useStyles,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx, dataAttr, __DEV__, scheduleMicrotask } from "@chakra-ui/utils"
 import {
   createContext,
-  withFlushSync,
   mergeRefs,
   PropGetter,
+  PropGetterV2,
 } from "@chakra-ui/react-utils"
 import * as React from "react"
 
@@ -107,7 +107,7 @@ function useFormControlProvider(props: FormControlContext) {
   // Track whether the form element (e.g, `input`) has focus.
   const [isFocused, setFocus] = useBoolean()
 
-  const getHelpTextProps: PropGetter = React.useCallback(
+  const getHelpTextProps = React.useCallback<PropGetter>(
     (props = {}, forwardedRef = null) => ({
       id: helpTextId,
       ...props,
@@ -123,7 +123,21 @@ function useFormControlProvider(props: FormControlContext) {
     [helpTextId],
   )
 
-  const getErrorMessageProps: PropGetter = React.useCallback(
+  const getLabelProps = React.useCallback<PropGetterV2<"label">>(
+    (props = {}, forwardedRef = null) => ({
+      ...props,
+      ref: forwardedRef,
+      "data-focus": dataAttr(isFocused),
+      "data-disabled": dataAttr(isDisabled),
+      "data-invalid": dataAttr(isInvalid),
+      "data-readonly": dataAttr(isReadOnly),
+      id: props.id ?? labelId,
+      htmlFor: props.htmlFor ?? id,
+    }),
+    [id, isDisabled, isFocused, isInvalid, isReadOnly, labelId],
+  )
+
+  const getErrorMessageProps = React.useCallback<PropGetter>(
     (props = {}, forwardedRef = null) => ({
       id: feedbackId,
       ...props,
@@ -140,7 +154,7 @@ function useFormControlProvider(props: FormControlContext) {
     [feedbackId],
   )
 
-  const getRootProps: PropGetter = React.useCallback(
+  const getRootProps = React.useCallback<PropGetterV2<"div">>(
     (props = {}, forwardedRef = null) => ({
       ...props,
       ...htmlProps,
@@ -150,13 +164,28 @@ function useFormControlProvider(props: FormControlContext) {
     [htmlProps],
   )
 
+  const getRequiredIndicatorProps = React.useCallback<PropGetter>(
+    (props = {}, forwardedRef = null) => ({
+      ...props,
+      ref: forwardedRef,
+      role: "presentation",
+      "aria-hidden": true,
+      children: props.children || "*",
+    }),
+    [],
+  )
+
+  const onFocus = React.useCallback(() => {
+    scheduleMicrotask(setFocus.on)
+  }, [setFocus])
+
   return {
     isRequired: !!isRequired,
     isInvalid: !!isInvalid,
     isReadOnly: !!isReadOnly,
     isDisabled: !!isDisabled,
     isFocused: !!isFocused,
-    onFocus: withFlushSync(setFocus.on),
+    onFocus,
     onBlur: setFocus.off,
     hasFeedbackText,
     setHasFeedbackText,
@@ -170,6 +199,8 @@ function useFormControlProvider(props: FormControlContext) {
     getHelpTextProps,
     getErrorMessageProps,
     getRootProps,
+    getLabelProps,
+    getRequiredIndicatorProps,
   }
 }
 

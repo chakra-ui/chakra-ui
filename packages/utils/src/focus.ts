@@ -37,7 +37,11 @@ export function focus(
 
   function triggerFocus() {
     if (!element) {
-      warn("[chakra-ui]: can't call focus() on `null` or `undefined` element")
+      warn({
+        condition: true,
+        message:
+          "[chakra-ui]: can't call focus() on `null` or `undefined` element",
+      })
       return
     }
     if (supportsPreventScroll()) {

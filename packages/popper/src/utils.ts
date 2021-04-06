@@ -5,7 +5,7 @@ const toVar = (value: string, fallback?: string) => ({
   varRef: fallback ? `var(${value}, ${fallback})` : `var(${value})`,
 })
 
-export const popperCSSVars = {
+export const cssVars = {
   arrowShadowColor: toVar("--popper-arrow-shadow-color"),
   arrowSize: toVar("--popper-arrow-size", "8px"),
   arrowSizeHalf: toVar("--popper-arrow-size-half"),
@@ -60,7 +60,7 @@ export function getEventListenerOptions(
   if (typeof value === "object") {
     eventListeners = {
       enabled: true,
-      options: Object.assign(defaultEventListeners, value),
+      options: { ...defaultEventListeners, ...value },
     }
   } else {
     eventListeners = {
