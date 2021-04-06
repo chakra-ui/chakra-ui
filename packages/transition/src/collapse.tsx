@@ -14,9 +14,9 @@ const variants: CollapseVariants = {
     ...(props.animateOpacity && {
       opacity: hasHeightValue(props.startingHeight) ? 1 : 0,
     }),
-    height: props.startingHeight,
+    [props.dimension!]: props.startingHeight,
     transition: {
-      height: { duration: 0.2, ease: EASINGS.ease },
+      [props.dimension!]: { duration: 0.2, ease: EASINGS.ease },
       opacity: { duration: 0.3, ease: EASINGS.ease },
     },
   }),
@@ -24,9 +24,9 @@ const variants: CollapseVariants = {
     ...(props.animateOpacity && {
       opacity: 1,
     }),
-    height: props.endingHeight,
+    [props.dimension!]: props.endingHeight,
     transition: {
-      height: {
+      [props.dimension!]: {
         duration: 0.3,
         ease: EASINGS.ease,
       },
@@ -62,6 +62,11 @@ export interface CollapseOptions {
    * @default "auto"
    */
   endingHeight?: number | string
+  /**
+   * The dimension you want to collapse by.
+   * @default "height"
+   */
+  dimension?: "height" | "width"
 }
 
 export type ICollapse = CollapseProps
@@ -80,6 +85,7 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
       animateOpacity = true,
       startingHeight = 0,
       endingHeight = "auto",
+      dimension = "height",
       style,
       className,
       onAnimationComplete,
@@ -121,7 +127,7 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
       message: `startingHeight and unmountOnExit are mutually exclusive. You can't use them together`,
     })
 
-    const custom = { startingHeight, endingHeight, animateOpacity }
+    const custom = { startingHeight, endingHeight, animateOpacity, dimension }
 
     const ownProps: HTMLMotionProps<"div"> & React.RefAttributes<any> = {
       ref,
