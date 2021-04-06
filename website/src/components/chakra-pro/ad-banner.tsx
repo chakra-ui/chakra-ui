@@ -12,7 +12,7 @@ export const AdBanner = () => {
     >
       <Flex align="center" fontSize="sm">
         <Text fontWeight="medium" maxW={{ base: "32ch", md: "unset" }}>
-          Build faster with Premium Chakra UI Component 💎
+          Build faster with Premium Chakra UI Components 💎
         </Text>
         <chakra.a
           flexShrink={0}

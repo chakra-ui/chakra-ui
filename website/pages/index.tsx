@@ -133,7 +133,7 @@ const HomePage = ({ members, sponsors, githubStars }: HomePageProps) => {
                 mb="16px"
                 lineHeight="1.2"
               >
-                Build accessible React apps
+                Create accessible React apps
                 <Box
                   as="span"
                   color={useColorModeValue("teal.500", "teal.300")}
