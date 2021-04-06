@@ -2,18 +2,12 @@ import { ChakraProvider } from "@chakra-ui/react"
 import FontFace from "components/font-face"
 import { DefaultSeo } from "next-seo"
 import Head from "next/head"
-import { useRouter } from "next/router"
 import React from "react"
 import theme from "theme"
 import { getSeo } from "utils/seo"
 
 const App = ({ Component, pageProps }) => {
-  // Omit og:image in Docs pages.
-  // It currently doesn't add any value and clutters discussions.
-  const { pathname } = useRouter()
-  const isDocsPage = pathname.startsWith("/docs/")
-  const seo = getSeo({ omitOpenGraphImage: isDocsPage })
-
+  const seo = getSeo()
   return (
     <>
       <Head>

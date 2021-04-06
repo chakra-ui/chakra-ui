@@ -9,6 +9,7 @@ import Header from "components/header"
 import SEO from "components/seo"
 import { convertBackticksToInlineCode } from "utils/convert-backticks-to-inline-code"
 import PageTransition from "./page-transition"
+import { AdBanner } from "./chakra-pro/ad-banner"
 
 function useHeadingFocusOnRouteChange() {
   const router = useRouter()
@@ -48,6 +49,7 @@ function PageContainer(props: PageContainerProps) {
     <>
       <SEO title={title} description={description} />
       <SkipNavLink zIndex={20}>Skip to Content</SkipNavLink>
+      <AdBanner />
       <Header />
       <Container as="main" className="main-content">
         <Box display={{ base: "block", md: "flex" }}>
@@ -56,7 +58,7 @@ function PageContainer(props: PageContainerProps) {
             <SkipNavContent />
             <Box
               id="content"
-              pt={3}
+              // pt={3}
               px={5}
               mt="4.5rem"
               mx="auto"

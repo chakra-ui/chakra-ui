@@ -1,10 +1,11 @@
 import siteConfig from "configs/site-config"
 
-export function getSeo({
-  omitOpenGraphImage,
-}: {
-  omitOpenGraphImage: boolean
-}) {
+type GetSeoOptions = {
+  omitOpenGraphImage?: boolean
+}
+
+export function getSeo(options: GetSeoOptions = {}) {
+  const { omitOpenGraphImage } = options
   const { seo } = siteConfig
   const { images, ...openGraph } = seo.openGraph
 

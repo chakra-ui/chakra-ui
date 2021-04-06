@@ -1,5 +1,4 @@
 import {
-  Badge,
   Box,
   BoxProps,
   Button,
@@ -10,7 +9,6 @@ import {
   Flex,
   Grid,
   Heading,
-  HStack,
   Icon,
   Img,
   LightMode,
@@ -23,6 +21,8 @@ import {
 } from "@chakra-ui/react"
 import { chunk } from "@chakra-ui/utils"
 import users from "chakra-users"
+import { ChakraProAd } from "components/chakra-pro/home-page-ad"
+import { AdBanner } from "components/chakra-pro/ad-banner"
 import Container from "components/container"
 import DiscordStrip from "components/discord-strip"
 import { Footer } from "components/footer"
@@ -30,17 +30,19 @@ import Header from "components/header"
 import SEO from "components/seo"
 import TweetCard from "components/tweet-card"
 import { tweets } from "configs/tweets.json"
-import fs from "fs"
 import NextLink from "next/link"
-import path from "path"
 import * as React from "react"
 import { AiFillThunderbolt } from "react-icons/ai"
 import { DiGithubBadge } from "react-icons/di"
 import { FaArrowRight, FaDiscord, FaMicrophone } from "react-icons/fa"
-import { FiArrowRight, FiDownload, FiGithub, FiUsers } from "react-icons/fi"
+import { FiDownload, FiGithub, FiUsers } from "react-icons/fi"
 import { IoMdMoon } from "react-icons/io"
 import { MdAccessibility, MdGrain, MdPalette } from "react-icons/md"
 import type { Member, Sponsor } from "src/types/github"
+import { getAllContributors } from "utils/get-all-contributors"
+import { getAllMembers } from "utils/get-all-members"
+import { getAllSponsors } from "utils/get-all-sponsors"
+import { getGithubStars } from "utils/get-github-stars"
 
 const Feature = ({ title, icon, children, ...props }) => {
   return (
@@ -88,11 +90,7 @@ const StatBox = (props: StatBoxProps) => {
       borderLeftColor="yellow.200"
       {...rest}
     >
-      <Box
-        fontSize={{ base: "4rem", md: "6.75rem" }}
-        lineHeight="1em"
-        mb="20px"
-      >
+      <Box fontSize={{ base: "4rem", md: "6rem" }} lineHeight="1em" mb="20px">
         {title}
       </Box>
       <Stack isInline align="center">
@@ -103,94 +101,26 @@ const StatBox = (props: StatBoxProps) => {
   )
 }
 
-const ChakraProAd = () => (
-  <Box as="section" bg="gray.900" color="white" overflow="hidden">
-    <Container pt="24" pb="0">
-      <Flex align="center" direction="column" textAlign="center" mb="10">
-        <Text casing="uppercase" letterSpacing="wide" fontWeight="bold">
-          Premium components{" "}
-          <Badge
-            colorScheme="yellow"
-            variant="solid"
-            color="gray.800"
-            mt="-1"
-            ml="2"
-          >
-            New
-          </Badge>
-        </Text>
-        <Heading
-          mt="4"
-          fontWeight="extrabold"
-          size="3xl"
-          maxW="14ch"
-          mx="auto"
-          letterSpacing="tighter"
-        >
-          <Box
-            as="span"
-            bgGradient="linear(to-r, blue.400, teal.400)"
-            bgClip="text"
-          >
-            Build faster
-          </Box>{" "}
-          with Chakra UI Pro 💎
-        </Heading>
-        <Text maxW="48ch" mx="auto" fontSize="lg" mt="6" opacity={0.8}>
-          Beautiful and responsive React components to build your application or
-          marketing pages quicker.
-        </Text>
-        <HStack
-          mt="6"
-          as="a"
-          bg="whiteAlpha.300"
-          rounded="md"
-          px="8"
-          py="3"
-          href="https://pro.chakra-ui.com/components?ref=chakra-ui.com"
-          color="white"
-          fontSize="lg"
-          fontWeight="semibold"
-          transition="all 0.2s"
-          _hover={{ bg: "whiteAlpha.400" }}
-        >
-          <Text>Learn more</Text>
-          <Box as={FiArrowRight} display="inline-block" ml="2" />
-        </HStack>
-      </Flex>
-      <Img
-        position="relative"
-        top="3"
-        alt="Chakra UI Pro Image"
-        src="https://res.cloudinary.com/adebayosegun/image/upload/v1613045547/Chakra%20UI/Group_207.png"
-      />
-    </Container>
-  </Box>
-)
-
 interface HomePageProps {
   members: Member[]
+  githubStars: string
   sponsors: {
     companies: Sponsor[]
     individuals: Sponsor[]
   }
 }
 
-const HomePage = ({ members, sponsors }: HomePageProps) => {
+const HomePage = ({ members, sponsors, githubStars }: HomePageProps) => {
   return (
     <>
       <SEO
         title="Chakra UI - A simple, modular and accessible component library that gives you the building blocks you need to build your React applications."
         description="Simple, Modular and Accessible UI Components for your React Applications. Built with Styled System"
       />
+      <AdBanner />
       <Header />
-
       <Box mb={20}>
-        <Box
-          as="section"
-          pt={{ base: "10rem", md: "12rem" }}
-          pb={{ base: "0", md: "5rem" }}
-        >
+        <Box as="section" pt="6rem" pb={{ base: "0", md: "5rem" }}>
           <Container>
             <Box textAlign="center">
               <chakra.h1
@@ -216,7 +146,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               <Text
                 maxW="560px"
                 mx="auto"
-                opacity={0.7}
+                color={useColorModeValue("gray.500", "gray.400")}
                 fontSize={{ base: "lg", lg: "xl" }}
                 mt="6"
               >
@@ -429,12 +359,12 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
             >
               <StatBox
                 icon={FiDownload}
-                title="250k"
+                title="250K"
                 description="Downloads per month"
               />
               <StatBox
                 icon={FiGithub}
-                title="15.2k"
+                title={githubStars}
                 description="Github stars"
               />
               <StatBox
@@ -444,7 +374,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               />
               <StatBox
                 icon={FaDiscord}
-                title="1.9K"
+                title="2.9K"
                 description="Discord members"
               />
             </SimpleGrid>
@@ -706,32 +636,15 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
 }
 
 export async function getStaticProps() {
-  /**
-   * Read the profile/bio of each member from `.all-membersrc` file
-   * to avoid overfetching from Github
-   */
-  const membersRcPath = path.resolve("..", ".all-membersrc")
-  const { members } = JSON.parse(fs.readFileSync(membersRcPath, "utf-8"))
-
-  /**
-   * Read contributors from `.all-contributorsrc` file
-   * to avoid overfetching from Github
-   */
-  const contributorsRcPath = path.resolve("..", ".all-contributorsrc")
-  const { contributors } = JSON.parse(
-    fs.readFileSync(contributorsRcPath, "utf-8"),
-  )
-
-  /**
-   * Read the information for each sponsor from `.all-sponsorsrc` file
-   */
-  const sponsorsRcPath = path.resolve("..", ".all-sponsorsrc")
-  const sponsors = JSON.parse(fs.readFileSync(sponsorsRcPath, "utf-8"))
-  const filters = ["christiannwamba"]
+  const { prettyCount } = await getGithubStars()
+  const contributors = getAllContributors()
+  const members = getAllMembers()
+  const sponsors = getAllSponsors()
 
   return {
     props: {
-      members: members.filter((m) => !filters.includes(m.login)),
+      githubStars: prettyCount,
+      members,
       contributors,
       sponsors,
     },
