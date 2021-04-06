@@ -25,7 +25,7 @@ export function TwitterEx() {
   return (
     <Popover trigger="hover">
       <PopoverTrigger>
-        <Link href="#" color="blue.500">
+        <Link href="#test" color="blue.500">
           Hover to see @swyx profile
         </Link>
       </PopoverTrigger>
@@ -43,7 +43,7 @@ export function TwitterEx() {
   )
 }
 
-export function Bug() {
+export function WithCustomAnimation() {
   return (
     <Popover>
       <PopoverTrigger>
@@ -51,7 +51,25 @@ export function Bug() {
           <MdCheck />
         </IconButton>
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent
+        width="400px"
+        variants={{
+          enter: {
+            y: 0,
+            opacity: 1,
+            transition: {
+              duration: 0.15,
+            },
+          },
+          exit: {
+            y: -4,
+            opacity: 0,
+            transition: {
+              duration: 0.1,
+            },
+          },
+        }}
+      >
         <PopoverArrow />
         <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
       </PopoverContent>

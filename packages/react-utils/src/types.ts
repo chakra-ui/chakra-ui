@@ -15,8 +15,8 @@ export type PropGetter<T extends HTMLElement = any, P = {}> = (
   ref?: React.Ref<any> | React.RefObject<any>,
 ) => Merge<HTMLProps<T>, P>
 
-export type PropGetterV2<T extends ElementType> = (
-  props?: WithoutStyleAttr<React.ComponentPropsWithoutRef<T>>,
+export type PropGetterV2<T extends ElementType, P = {}> = (
+  props?: WithoutStyleAttr<React.ComponentPropsWithoutRef<T>> & P,
   ref?: React.Ref<any> | React.RefObject<any>,
 ) => WithoutStyleAttr<React.ComponentPropsWithRef<T>>
 

@@ -1,51 +1,21 @@
 import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
+import { MaybeRenderProp } from "@chakra-ui/react-utils"
 import {
   chakra,
   forwardRef,
+  HTMLChakraProps,
   omitThemingProps,
   StylesProvider,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
-  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
-import { createContext, MaybeRenderProp } from "@chakra-ui/react-utils"
-import { motion, Variants } from "framer-motion"
 import * as React from "react"
-import { usePopover, UsePopoverProps, UsePopoverReturn } from "./use-popover"
-
-const motionVariants: Variants = {
-  exit: {
-    opacity: 0,
-    scale: 0.95,
-    transition: {
-      duration: 0.1,
-      ease: [0.4, 0, 1, 1],
-    },
-    transitionEnd: {
-      visibility: "hidden",
-    },
-  },
-  enter: {
-    visibility: "visible",
-    scale: 1,
-    opacity: 1,
-    transition: {
-      duration: 0.15,
-      ease: [0, 0, 0.2, 1],
-    },
-  },
-}
-
-const [PopoverProvider, usePopoverContext] = createContext<UsePopoverReturn>({
-  name: "PopoverContext",
-  errorMessage:
-    "usePopoverContext: `context` is undefined. Seems you forgot to wrap all popover components within `<Popover />`",
-})
-
-export { usePopoverContext }
+import { PopoverProvider, usePopoverContext } from "./popover-context"
+import { PopoverTransition, PopoverTransitionProps } from "./popover-transition"
+import { usePopover, UsePopoverProps } from "./use-popover"
 
 export interface PopoverProps extends UsePopoverProps, ThemingProps<"Popover"> {
   /**
@@ -101,18 +71,15 @@ if (__DEV__) {
   PopoverTrigger.displayName = "PopoverTrigger"
 }
 
-export interface PopoverContentProps extends HTMLChakraProps<"section"> {}
-
-const Motion = chakra(motion.section)
+export interface PopoverContentProps extends PopoverTransitionProps {
+  rootProps?: HTMLChakraProps<"div">
+}
 
 export const PopoverContent = forwardRef<PopoverContentProps, "section">(
   (props, ref) => {
-    const {
-      isOpen,
-      getPopoverProps,
-      onTransitionEnd,
-      getPopoverPositionerProps,
-    } = usePopoverContext()
+    const { rootProps, ...contentProps } = props
+
+    const { getPopoverProps, getPopoverPositionerProps } = usePopoverContext()
 
     const styles = useStyles()
     const contentStyles: SystemStyleObject = {
@@ -122,18 +89,16 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
       ...styles.content,
     }
 
-    const popoverProps: any = getPopoverProps(props, ref)
-
     return (
-      <chakra.div __css={styles.popper} {...getPopoverPositionerProps()}>
-        <Motion
-          {...popoverProps}
-          onUpdate={onTransitionEnd}
+      <chakra.div
+        {...getPopoverPositionerProps(rootProps)}
+        __css={styles.popper}
+        className="chakra-popover__popper"
+      >
+        <PopoverTransition
+          {...getPopoverProps(contentProps, ref)}
           className={cx("chakra-popover__content", props.className)}
           __css={contentStyles}
-          variants={motionVariants}
-          initial={false}
-          animate={isOpen ? "enter" : "exit"}
         />
       </chakra.div>
     )
@@ -152,21 +117,14 @@ export interface PopoverHeaderProps extends HTMLChakraProps<"header"> {}
  */
 export const PopoverHeader = forwardRef<PopoverHeaderProps, "header">(
   (props, ref) => {
-    const { headerId, setHasHeader } = usePopoverContext()
-
-    React.useEffect(() => {
-      setHasHeader.on()
-      return () => setHasHeader.off()
-    }, [setHasHeader])
+    const { getHeaderProps } = usePopoverContext()
 
     const styles = useStyles()
 
     return (
       <chakra.header
-        {...props}
+        {...getHeaderProps(props, ref)}
         className={cx("chakra-popover__header", props.className)}
-        id={headerId}
-        ref={ref}
         __css={styles.header}
       />
     )
@@ -184,21 +142,14 @@ export interface PopoverBodyProps extends HTMLChakraProps<"div"> {}
  * at least one interactive element.
  */
 export const PopoverBody = forwardRef<PopoverBodyProps, "div">((props, ref) => {
-  const { bodyId, setHasBody } = usePopoverContext()
-
-  React.useEffect(() => {
-    setHasBody.on()
-    return () => setHasBody.off()
-  }, [setHasBody])
+  const { getBodyProps } = usePopoverContext()
 
   const styles = useStyles()
 
   return (
     <chakra.div
-      {...props}
+      {...getBodyProps(props, ref)}
       className={cx("chakra-popover__body", props.className)}
-      id={bodyId}
-      ref={ref}
       __css={styles.body}
     />
   )
@@ -250,19 +201,22 @@ export interface PopoverArrowProps extends HTMLChakraProps<"div"> {}
 
 export const PopoverArrow: React.FC<PopoverArrowProps> = (props) => {
   const { bg, bgColor, backgroundColor } = props
+  const { getArrowProps, getArrowInnerProps } = usePopoverContext()
   const styles = useStyles()
   const arrowBg = bg ?? bgColor ?? backgroundColor
   return (
-    <chakra.div data-popper-arrow className="chakra-popover__arrow-positioner">
+    <chakra.div
+      {...getArrowProps()}
+      className="chakra-popover__arrow-positioner"
+    >
       <chakra.div
         className={cx("chakra-popover__arrow", props.className)}
-        {...props}
-        data-popper-arrow-inner
+        {...getArrowInnerProps(props)}
         __css={{
           ...styles.arrow,
-          ...(arrowBg && {
-            "--popper-arrow-bg": `colors.${arrowBg}, ${arrowBg}`,
-          }),
+          "--popper-arrow-bg": arrowBg
+            ? `colors.${arrowBg}, ${arrowBg}`
+            : undefined,
         }}
       />
     </chakra.div>

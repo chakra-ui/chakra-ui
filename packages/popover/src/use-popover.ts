@@ -1,5 +1,4 @@
 import {
-  useBoolean,
   useDisclosure,
   useFocusOnHide,
   useFocusOnPointerDown,
@@ -13,7 +12,6 @@ import {
   UsePopperProps,
 } from "@chakra-ui/popper"
 import { HTMLProps, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
-import { useColorModeValue, useToken } from "@chakra-ui/system"
 import {
   callAllHandlers,
   contains,
@@ -23,7 +21,7 @@ import {
   isBrowser,
   px,
 } from "@chakra-ui/utils"
-import { RefObject, useCallback, useEffect, useRef } from "react"
+import { RefObject, useCallback, useEffect, useRef, useState } from "react"
 
 const TRIGGER = {
   click: "click",
@@ -123,6 +121,9 @@ export interface UsePopoverProps {
   isLazy?: boolean
 }
 
+/**
+ * @internal
+ */
 export function usePopover(props: UsePopoverProps = {}) {
   const {
     closeOnBlur = true,
@@ -132,10 +133,10 @@ export function usePopover(props: UsePopoverProps = {}) {
     flip,
     gutter,
     id,
-    arrowSize,
     returnFocusOnClose = true,
     autoFocus = true,
-    arrowShadowColor: arrowShadowColorProp,
+    arrowSize,
+    arrowShadowColor,
     modifiers,
     trigger = TRIGGER.click,
     openDelay = 200,
@@ -150,8 +151,8 @@ export function usePopover(props: UsePopoverProps = {}) {
 
   const isHoveringRef = useRef(false)
 
-  const [hasHeader, setHasHeader] = useBoolean()
-  const [hasBody, setHasBody] = useBoolean()
+  const [hasHeader, setHasHeader] = useState(false)
+  const [hasBody, setHasBody] = useState(false)
 
   const [triggerId, popoverId, headerId, bodyId] = useIds(
     id,
@@ -160,10 +161,6 @@ export function usePopover(props: UsePopoverProps = {}) {
     "popover-header",
     "popover-body",
   )
-
-  const fallbackShadowColor = useColorModeValue("gray.200", "whiteAlpha.300")
-  const shadowColor = arrowShadowColorProp ?? fallbackShadowColor
-  const arrowShadowColor = useToken("colors", shadowColor, arrowShadowColorProp)
 
   const popper = usePopper({
     placement: placementProp,
@@ -339,32 +336,50 @@ export function usePopover(props: UsePopoverProps = {}) {
     ],
   )
 
-  useEffect(
-    () => () => {
-      if (openTimeout.current) clearTimeout(openTimeout.current)
-      if (closeTimeout.current) clearTimeout(closeTimeout.current)
-    },
-    [],
+  useEffect(() => {
+    return () => {
+      if (openTimeout.current) {
+        clearTimeout(openTimeout.current)
+      }
+      if (closeTimeout.current) {
+        clearTimeout(closeTimeout.current)
+      }
+    }
+  }, [])
+
+  const getHeaderProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
+      ...props,
+      id: headerId,
+      ref: mergeRefs(ref, (node: HTMLElement | null) => {
+        setHasHeader(!!node)
+      }),
+    }),
+    [headerId],
   )
 
-  const onTransitionEnd = () => {
-    popoverRef.current?.dispatchEvent(new Event("transitionend"))
-  }
+  const getBodyProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
+      ...props,
+      id: bodyId,
+      ref: mergeRefs(ref, (node) => {
+        setHasBody(!!node)
+      }),
+    }),
+    [bodyId],
+  )
 
   return {
     forceUpdate: popper.forceUpdate,
     isOpen,
     onClose,
-    headerId,
-    hasHeader,
-    setHasHeader,
-    bodyId,
-    hasBody,
-    setHasBody,
-    onTransitionEnd,
+    getArrowProps: popper.getArrowProps,
+    getArrowInnerProps: popper.getArrowInnerProps,
     getPopoverPositionerProps,
     getPopoverProps,
     getTriggerProps,
+    getHeaderProps,
+    getBodyProps,
   }
 }
 

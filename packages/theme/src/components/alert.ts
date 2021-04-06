@@ -12,14 +12,14 @@ const baseStyle = {
   title: {
     fontWeight: "bold",
     lineHeight: 6,
-    mr: 2,
+    marginEnd: 2,
   },
   description: {
     lineHeight: 6,
   },
   icon: {
     flexShrink: 0,
-    mr: 3,
+    marginEnd: 3,
     w: 5,
     h: 6,
   },
