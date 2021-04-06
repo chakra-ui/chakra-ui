@@ -222,10 +222,18 @@ export class ToastManager extends React.Component<Props, State> {
     const isTopOrBottom = position === "top" || position === "bottom"
     const margin = isTopOrBottom ? "0 auto" : undefined
 
-    const top = position.includes("top") ? 0 : undefined
-    const bottom = position.includes("bottom") ? 0 : undefined
-    const right = !position.includes("left") ? 0 : undefined
-    const left = !position.includes("right") ? 0 : undefined
+    const top = position.includes("top")
+      ? "env(safe-area-inset-top)"
+      : undefined
+    const bottom = position.includes("bottom")
+      ? "env(safe-area-inset-bottom)"
+      : undefined
+    const right = !position.includes("left")
+      ? "env(safe-area-inset-left)"
+      : undefined
+    const left = !position.includes("right")
+      ? "env(safe-area-inset-right)"
+      : undefined
 
     return {
       position: "fixed",
