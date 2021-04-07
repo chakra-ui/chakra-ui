@@ -223,16 +223,16 @@ export class ToastManager extends React.Component<Props, State> {
     const margin = isTopOrBottom ? "0 auto" : undefined
 
     const top = position.includes("top")
-      ? "env(safe-area-inset-top)"
+      ? "env(safe-area-inset-top, 0px)"
       : undefined
     const bottom = position.includes("bottom")
-      ? "env(safe-area-inset-bottom)"
+      ? "env(safe-area-inset-bottom, 0px)"
       : undefined
     const right = !position.includes("left")
-      ? "env(safe-area-inset-left)"
+      ? "env(safe-area-inset-right, 0px)"
       : undefined
     const left = !position.includes("right")
-      ? "env(safe-area-inset-right)"
+      ? "env(safe-area-inset-left, 0px)"
       : undefined
 
     return {
