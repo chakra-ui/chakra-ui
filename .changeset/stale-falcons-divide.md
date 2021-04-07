@@ -16,3 +16,15 @@
 ```
 
 - Add popover arrow shadow color
+
+**Select**
+
+- Update select icon to use `insetEnd` instead of `right` for RTL.
+
+**Skip Link**
+
+- Update styles to use `insetStart` instead of `left` for RTL.
+
+**Table**
+
+- Update text align attribute to use `end` instead of `right` for RTL.
