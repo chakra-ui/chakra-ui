@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/breadcrumb",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A React component used for navigation, with each item acting as a link",
   "keywords": [
     "breadcrumbs",
@@ -52,12 +52,12 @@
     "lint:types": "tsc --noEmit"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.6.0",
+    "@chakra-ui/system": "1.6.1",
     "react": "^17.0.1"
   },
   "dependencies": {
-    "@chakra-ui/react-utils": "1.1.0",
-    "@chakra-ui/utils": "1.5.0"
+    "@chakra-ui/react-utils": "1.1.1",
+    "@chakra-ui/utils": "1.5.1"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=1.0.0",

@@ -1,5 +1,24 @@
 # Change Log
 
+## 1.3.1
+
+### Patch Changes
+
+- [`2287d82e3`](https://github.com/chakra-ui/chakra-ui/commit/2287d82e31744cd289aaf524bb9961e46003c404)
+  [#3715](https://github.com/chakra-ui/chakra-ui/pull/3715) Thanks
+  [@with-heart](https://github.com/with-heart)! - Resolved a peer dependency
+  resolution issue reported by yarn2, npm7, and other more modern package
+  managers
+- Updated dependencies
+  [[`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94),
+  [`75817ec42`](https://github.com/chakra-ui/chakra-ui/commit/75817ec428ca3c078660a7c7f2a1c1b578c474df),
+  [`e481ba491`](https://github.com/chakra-ui/chakra-ui/commit/e481ba4914a7f163d93d4c22e2e457f1afb08721)]:
+  - @chakra-ui/utils@1.5.1
+  - @chakra-ui/popper@2.1.0
+  - @chakra-ui/hooks@1.3.1
+  - @chakra-ui/portal@1.2.1
+  - @chakra-ui/visually-hidden@1.0.8
+
 ## 1.3.0
 
 ### Minor Changes

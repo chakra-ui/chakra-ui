@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.5.1
+
+### Patch Changes
+
+- [`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update import of
+  shared utils from `react-utils` to `utils`
+
+* [`e481ba491`](https://github.com/chakra-ui/chakra-ui/commit/e481ba4914a7f163d93d4c22e2e457f1afb08721)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Extract functions
+  from `react-utils` back to `utils` package
+  - Remove `withFlushSync` function in favor of using a microtask callback
+  - Import types for `warn` function
+
 ## 1.5.0
 
 ### Minor Changes

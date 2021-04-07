@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/stat",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "A React component for displaying statistics",
   "keywords": [
     "stat",
@@ -53,12 +53,12 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/icon": "1.1.4",
-    "@chakra-ui/utils": "1.5.0",
-    "@chakra-ui/visually-hidden": "1.0.7"
+    "@chakra-ui/icon": "1.1.5",
+    "@chakra-ui/utils": "1.5.1",
+    "@chakra-ui/visually-hidden": "1.0.8"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.6.0",
+    "@chakra-ui/system": "1.6.1",
     "react": "^17.0.1"
   },
   "peerDependencies": {

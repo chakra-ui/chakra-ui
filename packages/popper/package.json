@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/popper",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "A React component and hooks wrapper for popper.js",
   "keywords": [
     "react",
@@ -56,7 +56,7 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/react-utils": "1.1.0",
+    "@chakra-ui/react-utils": "1.1.1",
     "@popperjs/core": "2.4.4"
   },
   "peerDependencies": {

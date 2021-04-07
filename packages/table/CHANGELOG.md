@@ -1,5 +1,29 @@
 # @chakra-ui/table
 
+## 1.2.0
+
+### Minor Changes
+
+- [`06612e3ba`](https://github.com/chakra-ui/chakra-ui/commit/06612e3ba108fe7726634f856c5fcbcc7fcda27d)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add
+  `TableContainer` component to help tables scroll horizontally when
+  overflowing.
+
+  ```jsx live=false
+  <TableContainer>
+    <Table>
+      {...}
+    </Table>
+  </TableContainer>
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94),
+  [`e481ba491`](https://github.com/chakra-ui/chakra-ui/commit/e481ba4914a7f163d93d4c22e2e457f1afb08721)]:
+  - @chakra-ui/utils@1.5.1
+
 ## 1.1.4
 
 ### Patch Changes
