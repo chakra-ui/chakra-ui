@@ -170,6 +170,11 @@ export const CircularProgress: React.FC<CircularProgressProps> = (props) => {
           strokeWidth={thickness}
           className="chakra-progress__indicator"
           strokeLinecap={capIsRound ? "round" : undefined}
+          /**
+           * fix issue in Safari where indictor still shows when value is 0
+           * @see Issue https://github.com/chakra-ui/chakra-ui/issues/3754
+           */
+          opacity={progress.value === 0 ? 0 : undefined}
           {...indicatorProps}
         />
       </Shape>

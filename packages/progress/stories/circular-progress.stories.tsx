@@ -1,6 +1,6 @@
+import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import { CircularProgress, CircularProgressLabel } from "../src"
-import { chakra } from "@chakra-ui/system"
 
 export default {
   title: "Circular Progress",
@@ -38,3 +38,5 @@ export const circularIndeterminate = () => (
     value={3}
   />
 )
+
+export const withZeroValue = () => <CircularProgress value={0} />
