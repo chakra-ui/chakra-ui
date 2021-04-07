@@ -19,7 +19,7 @@ function baseStyleField(props: Record<string, any>) {
 const baseStyleIcon = {
   width: "1.5rem",
   height: "100%",
-  right: "0.5rem",
+  insetEnd: "0.5rem",
   position: "relative",
   color: "currentColor",
   fontSize: "1.25rem",
@@ -36,7 +36,7 @@ const baseStyle = (props: Record<string, any>) => ({
 const sizes = merge({}, Input.sizes, {
   xs: {
     icon: {
-      right: "0.25rem",
+      insetEnd: "0.25rem",
     },
   },
 })
