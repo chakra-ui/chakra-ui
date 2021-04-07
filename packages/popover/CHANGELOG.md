@@ -1,5 +1,44 @@
 # Change Log
 
+## 1.5.0
+
+### Minor Changes
+
+- [`75817ec42`](https://github.com/chakra-ui/chakra-ui/commit/75817ec428ca3c078660a7c7f2a1c1b578c474df)
+  [#3733](https://github.com/chakra-ui/chakra-ui/pull/3733) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Return prop getters for
+  popover header and body and use `ref` callback to determine element's presense
+  instead of `useEffect`.
+
+  - Mark `usePopover` as internal for now.
+
+  - Add support for `rootProps` to `PopoverContent` to allow passing props to
+    popover's positioner.
+
+  - Make it possible to add custom motion `variants` so users can orchestrate
+    custom transitions.
+
+  - Remove unused dependencies
+
+  - Move popover arrow shadow color computation to popover's theme.
+
+### Patch Changes
+
+- [`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update import of
+  shared utils from `react-utils` to `utils`
+
+- Updated dependencies
+  [[`87a03b320`](https://github.com/chakra-ui/chakra-ui/commit/87a03b320b62e639ca4a891186f202cb839a8402),
+  [`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94),
+  [`75817ec42`](https://github.com/chakra-ui/chakra-ui/commit/75817ec428ca3c078660a7c7f2a1c1b578c474df),
+  [`e481ba491`](https://github.com/chakra-ui/chakra-ui/commit/e481ba4914a7f163d93d4c22e2e457f1afb08721)]:
+  - @chakra-ui/react-utils@1.1.1
+  - @chakra-ui/utils@1.5.1
+  - @chakra-ui/popper@2.1.0
+  - @chakra-ui/hooks@1.3.1
+  - @chakra-ui/close-button@1.1.5
+
 ## 1.4.0
 
 ### Minor Changes

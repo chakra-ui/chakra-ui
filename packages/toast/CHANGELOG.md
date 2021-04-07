@@ -1,5 +1,26 @@
 # Change Log
 
+## 1.2.2
+
+### Patch Changes
+
+- [`799f3c803`](https://github.com/chakra-ui/chakra-ui/commit/799f3c8037121b10aa4de15f5e9672b2b43a6a73)
+  [#3752](https://github.com/chakra-ui/chakra-ui/pull/3752) Thanks
+  [@baptisteArno](https://github.com/baptisteArno)! - Take into account safe
+  area insets for Toasts
+
+- Updated dependencies
+  [[`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94),
+  [`c69d2b983`](https://github.com/chakra-ui/chakra-ui/commit/c69d2b98350b57f133d6a8ea47b631cd25693aee),
+  [`75817ec42`](https://github.com/chakra-ui/chakra-ui/commit/75817ec428ca3c078660a7c7f2a1c1b578c474df),
+  [`e481ba491`](https://github.com/chakra-ui/chakra-ui/commit/e481ba4914a7f163d93d4c22e2e457f1afb08721)]:
+  - @chakra-ui/utils@1.5.1
+  - @chakra-ui/transition@1.1.2
+  - @chakra-ui/theme@1.8.1
+  - @chakra-ui/alert@1.2.1
+  - @chakra-ui/hooks@1.3.1
+  - @chakra-ui/close-button@1.1.5
+
 ## 1.2.1
 
 ### Patch Changes
