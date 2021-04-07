@@ -130,7 +130,7 @@ export const Select = forwardRef<SelectProps, "select">((props, ref) => {
   }
 
   const fieldStyles: SystemStyleObject = mergeWith({}, styles.field, {
-    pr: "2rem",
+    pe: "2rem",
     _focus: { zIndex: "unset" },
   })
 
