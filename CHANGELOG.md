@@ -14,6 +14,138 @@ To better understand the changelog, here are some legends we use:
 - 🚀 Feature
 - 🐛 Bug fix
 
+## 07-04-2021
+
+`@chakra-ui/react@1.5.0`
+
+**React** `v1.5.0`
+
+- 🚀 Bump package as minor.
+- 🐛 Resolved a peer dependency resolution issue reported by yarn2, npm7, and
+  other more modern package managers.
+
+**Popover** `v1.5.0`
+
+- 🚀 Return prop getters for popover header and body and use ref callback to
+  determine element's presense instead of useEffect.
+  [#3733](https://github.com/chakra-ui/chakra-ui/pull/3733)
+
+- 🚀 Add support for `rootProps` to `PopoverContent` to allow passing props to
+  popover's positioner.
+- 🚀 Make it possible to add custom motion `variants` so users can orchestrate
+  custom transitions.
+- 🚀 Move popover arrow shadow color computation to popover's theme.
+- 🐛 Update import of shared utils from `react-utils` to `utils`.
+
+**Popper** `v2.1.0`
+
+- 🚀 Add prop getters for popper and arrow for better ssr support.
+- 🚀 Replace `utils` dependency with `react-utils`.
+
+**Table** `v1.2.0`
+
+- 🚀 Add `TableContainer` component to help tables scroll horizontally when
+  overflowing.
+
+```jsx live=false
+<TableContainer>
+  <Table>
+    {...}
+  </Table>
+</TableContainer>
+```
+
+**Checkbox** `v1.4.1`, **Radio** `v1.3.1`
+
+- 🐛 Update import of shared utils from `react-utils` to `utils`.
+- 🐛 Replace `withFlushSync` with `scheduleMicrotask` callback to prevent
+  ReactDOM warning.
+
+**Form Control** `v1.3.1`
+
+- 🐛 Refactor form label to use prop getter instead of hook for better
+  consistency.
+- 🐛 Replace `withFlushSync` with `scheduleMicrotask` callback to prevent
+  ReactDOM warning when an element us focused by calling `.focus()`. This works
+  as well in concurrent mode.
+
+**Modal** `v1.8.1`
+
+- 🐛 Resolved a peer dependency resolution issue reported by yarn2, npm7, and
+  other more modern package managers.
+- 🐛 Omit scroll-behavior from drawer props.
+
+**Number Input** `v1.2.1`
+
+- 🐛 Replace `withFlushSync` with `scheduleMicrotask` callback to prevent
+  ReactDOM warning.
+
+**Progress** `v1.1.5`
+
+- 🐛 Fix issue in safari where circular progress indicator shows a tiny bit when
+  value is `0`.
+
+**React Utils** `v1.1.1`
+
+- 🐛 Update prop getter v2 type to take second parameter.
+- 🐛 Update import of shared utils from `react-utils` to `utils`.
+- 🐛 Replace `withFlushSync` with `scheduleMicrotask` callback to prevent
+  ReactDOM warning.
+
+**Select** `v1.1.5`
+
+- 🐛 Fix RTL styles for select field to use `paddingEnd` instead of `pr`.
+
+**Theme** `v1.8.1`
+
+Popover
+
+- 🐛 Moved `maxW` from popover's `popper` to `content` to allow for better
+  control of the popover's width.
+- 🐛 Use `width` instead of `maxW` to allow users more control of popover's
+  width.
+- 🐛 Use `--popover-bg` css property to control popover and arrow background.
+
+```jsx live=false
+<PopoverContent style={{ "--popover-bg": "purple" }}>
+  <PopoverArrow />
+</PopoverContent>
+```
+
+- 🐛 Add popover arrow shadow color.
+
+Select
+
+- 🐛 Update select icon to use insetEnd instead of right for RTL.
+
+Skip Link
+
+- 🐛 Update styles to use insetStart instead of left for RTL.
+
+Table
+
+🐛 Update text align attribute to use end instead of right for RTL.
+
+**Theme Tools** `v1.1.3` & **Transition** `v1.1.2`
+
+- 🐛 Fix issue where `warn` doesn't get called.
+
+**Toast** `v1.2.2`
+
+- 🐛 Take into account safe area insets for Toasts.
+
+**Tooltip** `v1.3.1`
+
+- 🐛 Resolved a peer dependency resolution issue reported by yarn2, npm7, and
+  other more modern package managers.
+
+**Utils** `v1.5.1`
+
+- 🐛 Update import of shared utils from `react-utils` to `utils`.
+- 🐛 Replace `withFlushSync` with `scheduleMicrotask` callback to prevent
+  ReactDOM warning.
+- 🐛 Import types for `warn` function.
+
 ## 30-03-2021
 
 `@chakra-ui/react@1.4.2`
