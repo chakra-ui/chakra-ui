@@ -220,7 +220,10 @@ const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
 )
 
 interface MenuItemOptions
-  extends Pick<UseMenuItemProps, "isDisabled" | "isFocusable"> {
+  extends Pick<
+    UseMenuItemProps,
+    "isDisabled" | "isFocusable" | "closeOnSelect"
+  > {
   /**
    * The icon to render before the menu item's label.
    * @type React.ReactElement

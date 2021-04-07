@@ -387,6 +387,10 @@ export interface UseMenuItemProps
   extends Omit<React.HTMLAttributes<Element>, "color"> {
   isDisabled?: boolean
   isFocusable?: boolean
+  /**
+   * Overrides the parent menu's `closeOnSelect` prop.
+   */
+  closeOnSelect?: boolean
 }
 
 export function useMenuItem(
@@ -400,6 +404,7 @@ export function useMenuItem(
     onClick: onClickProp,
     isDisabled,
     isFocusable,
+    closeOnSelect: menuItemCloseOnSelect,
     ...htmlProps
   } = props
 
@@ -409,7 +414,7 @@ export function useMenuItem(
     domContext,
     setFocusedIndex,
     focusedIndex,
-    closeOnSelect,
+    closeOnSelect: menuCloseOnSelect,
     onClose,
     menuRef,
     isOpen,
@@ -462,13 +467,14 @@ export function useMenuItem(
     (event: React.MouseEvent) => {
       onClickProp?.(event)
       /**
-       * Close menu and parent menu's if `closeOnSelect` is set to `true`
+       * Close menu and parent menus, allowing the MenuItem
+       * to override its parent menu's `closeOnSelect` prop.
        */
-      if (closeOnSelect) {
+      if (menuItemCloseOnSelect ?? menuCloseOnSelect) {
         onClose()
       }
     },
-    [onClose, onClickProp, closeOnSelect],
+    [onClose, onClickProp, menuCloseOnSelect, menuItemCloseOnSelect],
   )
 
   const isFocused = index === focusedIndex

@@ -171,3 +171,34 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
   </MenuList>
 </Menu>
 ```
+
+## `closeOnSelect`
+
+`MenuItem` and `MenuItemOption` can use the `closeOnSelect` prop to override
+their parent `Menu`'s behavior.
+
+```jsx
+<Menu>
+  <MenuButton>Open Menu</MenuButton>
+  <MenuList>
+    <MenuGroup title="Profile">
+      {/* Clicking on those items will close the menu (default behavior) */}
+      <MenuItem>My Account</MenuItem>
+      <MenuItem>Payments</MenuItem>
+    </MenuGroup>
+    <MenuDivider />
+    <MenuOptionGroup title="Country" type="checkbox">
+      {/* Clicking on those items will keep the menu open */}
+      <MenuItemOption value="email" closeOnSelect={false}>
+        Email
+      </MenuItemOption>
+      <MenuItemOption value="phone" closeOnSelect={false}>
+        Phone
+      </MenuItemOption>
+      <MenuItemOption value="country" closeOnSelect={false}>
+        Country
+      </MenuItemOption>
+    </MenuOptionGroup>
+  </MenuList>
+</Menu>
+```
