@@ -93,7 +93,7 @@ export const WithInputElement = () => (
   <Stack align="start">
     <InputGroup>
       <InputLeftElement children={<PhoneIcon color="gray.300" />} />
-      <Input pl="60px" type="tel" placeholder="Phone number" />
+      <Input paddingStart="60px" type="tel" placeholder="Phone number" />
     </InputGroup>
 
     <InputGroup size="sm">
@@ -111,7 +111,7 @@ export function PasswordInput() {
   return (
     <InputGroup size="md">
       <Input
-        pr="4.5rem"
+        paddingEnd="4.5rem"
         type={show ? "text" : "password"}
         placeholder="Enter password"
       />
