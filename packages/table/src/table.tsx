@@ -1,4 +1,3 @@
-import * as React from "react"
 import {
   chakra,
   forwardRef,
@@ -10,6 +9,30 @@ import {
   useStyles,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
+import * as React from "react"
+
+export interface TableContainerProps extends HTMLChakraProps<"div"> {}
+
+export const TableContainer = forwardRef<TableContainerProps, "div">(
+  (props: HTMLChakraProps<"div">, ref) => {
+    const { overflow, overflowX, className, ...rest } = props
+    return (
+      <chakra.div
+        ref={ref}
+        className={cx("chakra-table__container", className)}
+        {...rest}
+        __css={{
+          display: "block",
+          whiteSpace: "nowrap",
+          WebkitOverflowScrolling: "touch",
+          overflowX: overflow ?? overflowX ?? "auto",
+          overflowY: "hidden",
+          maxWidth: "100%",
+        }}
+      />
+    )
+  },
+)
 
 export interface TableProps
   extends HTMLChakraProps<"table">,
