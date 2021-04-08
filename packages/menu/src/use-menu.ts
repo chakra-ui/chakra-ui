@@ -490,7 +490,7 @@ export function useMenuItem(
     }
   }, [isFocused, trulyDisabled, menuRef, isOpen])
 
-  const tabbable = useClickable({
+  const clickableProps = useClickable({
     onClick,
     onMouseEnter,
     onMouseMove,
@@ -502,7 +502,7 @@ export function useMenuItem(
 
   return {
     ...htmlProps,
-    ...tabbable,
+    ...clickableProps,
     id,
     role: "menuitem",
     tabIndex: isFocused ? 0 : -1,
@@ -522,23 +522,12 @@ export interface UseMenuOptionProps
 
 export function useMenuOption(
   props: UseMenuOptionProps = {},
-  externalRef: React.Ref<any> = null,
+  ref: React.Ref<any> = null,
 ) {
-  const {
-    onClick,
-    isDisabled,
-    isFocusable,
-    type = "radio",
-    isChecked,
-    ...rest
-  } = props
-
-  const hookProps = { isDisabled, isFocusable, onClick }
-  const optionsProps = useMenuItem(hookProps, externalRef)
-
+  const { type = "radio", isChecked, ...menuItemProps } = props
+  const ownProps = useMenuItem(menuItemProps, ref)
   return {
-    ...rest,
-    ...optionsProps,
+    ...ownProps,
     role: `menuitem${type}`,
     "aria-checked": isChecked as React.AriaAttributes["aria-checked"],
   }
