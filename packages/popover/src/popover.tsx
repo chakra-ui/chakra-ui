@@ -186,7 +186,7 @@ export const PopoverCloseButton: React.FC<CloseButtonProps> = (props) => {
       position="absolute"
       borderRadius="md"
       top="0.25rem"
-      right="0.5rem"
+      insetEnd="0.5rem"
       padding="0.5rem"
       {...props}
     />
