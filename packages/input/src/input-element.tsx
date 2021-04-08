@@ -36,7 +36,6 @@ const InputElement = forwardRef<InputElementProps, "div">((props, ref) => {
     width: input?.height ?? input?.h,
     height: input?.height ?? input?.h,
     fontSize: input?.fontSize,
-    paddingX: input?.paddingLeft ?? input?.pl,
   }
 
   return <StyledElement ref={ref} __css={elementStyles} {...rest} />
