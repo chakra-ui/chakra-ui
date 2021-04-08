@@ -169,7 +169,7 @@ export const WithTogglableMenuItems = () => {
           Open menu
         </MenuButton>
         <MenuList>
-          {items.map(({ content, icon, isDisabled, command }, index) => (
+          {items.map(({ content, icon, isDisabled, command }) => (
             <MenuItem
               key={content}
               isDisabled={isDisabled}
@@ -249,7 +249,7 @@ export const withMenuRadio = () => (
 export const WithInternalState = () => (
   <Menu>
     {({ isOpen }) => (
-      <React.Fragment>
+      <>
         <MenuButton as={Button}>{isOpen ? "Close" : "Open"}</MenuButton>
         <MenuList>
           <MenuItem>Download</MenuItem>
@@ -257,7 +257,7 @@ export const WithInternalState = () => (
             Create a Copy
           </MenuItem>
         </MenuList>
-      </React.Fragment>
+      </>
     )}
   </Menu>
 )
@@ -392,3 +392,20 @@ export const GroupWithDivider = () => {
     </Menu>
   )
 }
+
+export const WithCloseOnSelect = () => (
+  <Menu>
+    <MenuButton>Welcome</MenuButton>
+    <MenuList>
+      <MenuOptionGroup type="radio">
+        <MenuItemOption closeOnSelect={false} value="A">
+          Option 1 (false)
+        </MenuItemOption>
+        <MenuItemOption value="B">Option 2</MenuItemOption>
+        <MenuItemOption value="C">Option 3</MenuItemOption>
+        <MenuDivider />
+        <MenuItemOption value="D">Option 4</MenuItemOption>
+      </MenuOptionGroup>
+    </MenuList>
+  </Menu>
+)

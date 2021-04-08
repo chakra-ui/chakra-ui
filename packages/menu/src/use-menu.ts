@@ -25,7 +25,9 @@ import {
   focus,
   getNextIndex,
   getNextItemFromSearch,
+  getOwnerDocument,
   getPrevIndex,
+  isActiveElement,
   isArray,
   isString,
   normalizeEventKey,
@@ -158,13 +160,14 @@ export function useMenu(props: UseMenuProps = {}) {
   }, [onOpen, setFocusedIndex, domContext.descendants])
 
   const refocus = React.useCallback(() => {
-    const hasFocusWithin = menuRef.current?.contains(document.activeElement)
+    const doc = getOwnerDocument(menuRef.current)
+    const hasFocusWithin = menuRef.current?.contains(doc.activeElement)
     const shouldRefocus = isOpen && !hasFocusWithin
 
     if (!shouldRefocus) return
 
     const el = domContext.descendants[focusedIndex]?.element
-    el?.focus({ preventScroll: true })
+    focus(el)
   }, [isOpen, focusedIndex, domContext.descendants])
 
   return {
@@ -251,7 +254,7 @@ export function useMenuButton(
     [openAndFocusFirstItem, openAndFocusLastItem],
   )
 
-  const buttonProps = {
+  return {
     ...props,
     ref: mergeRefs(menu.buttonRef, externalRef, popper.referenceRef),
     id: menu.buttonId,
@@ -262,8 +265,6 @@ export function useMenuButton(
     onClick: callAllHandlers(props.onClick, onClick),
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
   }
-
-  return buttonProps
 }
 
 /**
@@ -387,6 +388,10 @@ export interface UseMenuItemProps
   extends Omit<React.HTMLAttributes<Element>, "color"> {
   isDisabled?: boolean
   isFocusable?: boolean
+  /**
+   * Overrides the parent menu's `closeOnSelect` prop.
+   */
+  closeOnSelect?: boolean
 }
 
 export function useMenuItem(
@@ -400,6 +405,7 @@ export function useMenuItem(
     onClick: onClickProp,
     isDisabled,
     isFocusable,
+    closeOnSelect,
     ...htmlProps
   } = props
 
@@ -409,7 +415,7 @@ export function useMenuItem(
     domContext,
     setFocusedIndex,
     focusedIndex,
-    closeOnSelect,
+    closeOnSelect: menuCloseOnSelect,
     onClose,
     menuRef,
     isOpen,
@@ -432,7 +438,6 @@ export function useMenuItem(
     (event) => {
       onMouseEnterProp?.(event)
       if (isDisabled) return
-
       setFocusedIndex(index)
     },
     [setFocusedIndex, index, isDisabled, onMouseEnterProp],
@@ -441,7 +446,7 @@ export function useMenuItem(
   const onMouseMove = React.useCallback(
     (event) => {
       onMouseMoveProp?.(event)
-      if (document.activeElement !== ref.current) {
+      if (ref.current && !isActiveElement(ref.current)) {
         onMouseEnter(event)
       }
     },
@@ -452,7 +457,6 @@ export function useMenuItem(
     (event) => {
       onMouseLeaveProp?.(event)
       if (isDisabled) return
-
       setFocusedIndex(-1)
     },
     [setFocusedIndex, isDisabled, onMouseLeaveProp],
@@ -462,13 +466,14 @@ export function useMenuItem(
     (event: React.MouseEvent) => {
       onClickProp?.(event)
       /**
-       * Close menu and parent menu's if `closeOnSelect` is set to `true`
+       * Close menu and parent menus, allowing the MenuItem
+       * to override its parent menu's `closeOnSelect` prop.
        */
-      if (closeOnSelect) {
+      if (closeOnSelect ?? menuCloseOnSelect) {
         onClose()
       }
     },
-    [onClose, onClickProp, closeOnSelect],
+    [onClose, onClickProp, menuCloseOnSelect, closeOnSelect],
   )
 
   const isFocused = index === focusedIndex
@@ -479,12 +484,12 @@ export function useMenuItem(
     if (!isOpen) return
     if (isFocused && !trulyDisabled && ref.current) {
       focus(ref.current, { nextTick: true })
-    } else if (document.activeElement !== menuRef.current) {
-      menuRef.current?.focus()
+    } else if (menuRef.current && !isActiveElement(menuRef.current)) {
+      focus(menuRef.current)
     }
   }, [isFocused, trulyDisabled, menuRef, isOpen])
 
-  const tabbable = useClickable({
+  const clickableProps = useClickable({
     onClick,
     onMouseEnter,
     onMouseMove,
@@ -496,7 +501,7 @@ export function useMenuItem(
 
   return {
     ...htmlProps,
-    ...tabbable,
+    ...clickableProps,
     id,
     role: "menuitem",
     tabIndex: isFocused ? 0 : -1,
@@ -516,23 +521,12 @@ export interface UseMenuOptionProps
 
 export function useMenuOption(
   props: UseMenuOptionProps = {},
-  externalRef: React.Ref<any> = null,
+  ref: React.Ref<any> = null,
 ) {
-  const {
-    onClick,
-    isDisabled,
-    isFocusable,
-    type = "radio",
-    isChecked,
-    ...rest
-  } = props
-
-  const hookProps = { isDisabled, isFocusable, onClick }
-  const optionsProps = useMenuItem(hookProps, externalRef)
-
+  const { type = "radio", isChecked, ...menuItemProps } = props
+  const ownProps = useMenuItem(menuItemProps, ref)
   return {
-    ...rest,
-    ...optionsProps,
+    ...ownProps,
     role: `menuitem${type}`,
     "aria-checked": isChecked as React.AriaAttributes["aria-checked"],
   }
