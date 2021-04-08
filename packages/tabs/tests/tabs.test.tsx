@@ -164,6 +164,6 @@ test("renders only the currently active tab panel if isLazy", () => {
 
   userEvent.click(screen.getByText("Tab 2"))
 
-  expect(screen.queryByText("Panel 1")).not.toBeInTheDocument()
+  expect(screen.queryByText("Panel 1")).toBeInTheDocument()
   expect(screen.getByText("Panel 2")).toBeInTheDocument()
 })
