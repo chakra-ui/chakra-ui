@@ -75,8 +75,8 @@ const sizes = {
 function variantLine(props: Dict) {
   const { colorScheme: c, orientation } = props
   const isVertical = orientation === "vertical"
-  const borderProp = orientation === "vertical" ? "borderLeft" : "borderBottom"
-  const marginProp = isVertical ? "ml" : "mb"
+  const borderProp = orientation === "vertical" ? "borderStart" : "borderBottom"
+  const marginProp = isVertical ? "marginStart" : "marginBottom"
 
   return {
     tablist: {
@@ -133,7 +133,7 @@ function variantEnclosedColored(props: Dict) {
       bg: mode(`gray.50`, `whiteAlpha.50`)(props),
       mb: "-1px",
       _notLast: {
-        mr: "-1px",
+        marginEnd: "-1px",
       },
       _selected: {
         bg: mode(`#fff`, "gray.800")(props),
