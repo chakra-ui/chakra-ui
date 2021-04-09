@@ -151,6 +151,11 @@ export function usePopover(props: UsePopoverProps = {}) {
 
   const isHoveringRef = useRef(false)
 
+  const hasBeenOpened = useRef(false)
+  if (isOpen) {
+    hasBeenOpened.current = true
+  }
+
   const [hasHeader, setHasHeader] = useState(false)
   const [hasBody, setHasBody] = useState(false)
 
@@ -186,6 +191,8 @@ export function usePopover(props: UsePopoverProps = {}) {
     shouldFocus: autoFocus && trigger === TRIGGER.click,
   })
 
+  const shouldRenderChildren = !isLazy || hasBeenOpened.current
+
   const getPopoverProps: PropGetter = useCallback(
     (props = {}, _ref = null) => {
       const popoverProps: HTMLProps = {
@@ -195,7 +202,7 @@ export function usePopover(props: UsePopoverProps = {}) {
           transformOrigin: popperCSSVars.transformOrigin.varRef,
         },
         ref: mergeRefs(popoverRef, _ref),
-        children: !isLazy || isOpen ? props.children : null,
+        children: shouldRenderChildren ? props.children : null,
         id: popoverId,
         tabIndex: -1,
         role: "dialog",
@@ -232,8 +239,7 @@ export function usePopover(props: UsePopoverProps = {}) {
       return popoverProps
     },
     [
-      isLazy,
-      isOpen,
+      shouldRenderChildren,
       popoverId,
       hasHeader,
       headerId,
@@ -242,8 +248,9 @@ export function usePopover(props: UsePopoverProps = {}) {
       trigger,
       closeOnEsc,
       onClose,
-      closeDelay,
+      isOpen,
       closeOnBlur,
+      closeDelay,
     ],
   )
 

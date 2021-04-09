@@ -130,3 +130,18 @@ export function ControlledUsage() {
     </>
   )
 }
+
+export function LazyPopover() {
+  return (
+    <Popover isLazy>
+      <PopoverTrigger>
+        <Button colorScheme="pink">Popover Target</Button>
+      </PopoverTrigger>
+      <PopoverContent>
+        <PopoverBody>
+          Are you sure you want to continue with your action?
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
+  )
+}
