@@ -1,5 +1,7 @@
 import { ssrDocument } from "./mock-document"
 
+const noop = () => {}
+
 const win = {
   document: ssrDocument,
   navigator: {
@@ -8,8 +10,8 @@ const win = {
   CustomEvent: function CustomEvent() {
     return this
   },
-  addEventListener() {},
-  removeEventListener() {},
+  addEventListener: noop,
+  removeEventListener: noop,
   getComputedStyle() {
     return {
       getPropertyValue() {
@@ -17,12 +19,14 @@ const win = {
       },
     }
   },
-  Image() {},
-  Date() {},
-  setTimeout() {},
-  clearTimeout() {},
+  setTimeout: noop,
+  clearTimeout: noop,
   matchMedia() {
-    return {}
+    return {
+      matches: false,
+      addListener: noop,
+      removeListener: noop,
+    }
   },
   requestAnimationFrame(callback: () => void) {
     if (typeof setTimeout === "undefined") {
@@ -39,4 +43,4 @@ const win = {
   },
 }
 
-export const ssrWindow = (win as unknown) as typeof window
+export const ssrWindow = (win as unknown) as Window
