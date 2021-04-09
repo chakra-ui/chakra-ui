@@ -211,16 +211,16 @@ passed, the `defaultProps` defined in the style config will be used.
 
 ```jsx live=false
 // 1. Import useStyleConfig
-import { useStyleConfig } from "@chakra-ui/react"
+import { chakra, useStyleConfig } from "@chakra-ui/react"
 
 function Card(props) {
   const { variant, children, ...rest } = props;
   const styles = useStyleConfig("Card", { variant });
 
   return (
-    <Box sx={styles} {...rest}>
+    <chakra.div __css={styles} {...rest}>
       {children}
-    </Box>
+    </chakra.div>
   );
 }
 ```
@@ -384,7 +384,7 @@ function Menu(props) {
   const styles = useMultiStyleConfig("Menu", { size, variant })
 
   return (
-    <Flex sx={styles.menu} {...rest}>
+    <Flex __css={styles.menu} {...rest}>
       {/* 3. Mount the computed styles on `StylesProvider` */}
       <StylesProvider value={styles}>{children}</StylesProvider>
     </Flex>
@@ -394,7 +394,7 @@ function Menu(props) {
 function MenuItem(props) {
   // 4. Read computed `item` styles from styles provider
   const styles = useStyles()
-  return <Box as="button" sx={styles.item} {...props} />
+  return <Box as="button" __css={styles.item} {...props} />
 }
 ```
 
