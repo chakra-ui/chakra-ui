@@ -55,6 +55,7 @@
   },
   "dependencies": {
     "@chakra-ui/color-mode": "1.1.4",
+    "@chakra-ui/react-utils": "1.1.1",
     "@chakra-ui/styled-system": "1.10.1",
     "@chakra-ui/utils": "1.5.1",
     "react-fast-compare": "3.2.0"
