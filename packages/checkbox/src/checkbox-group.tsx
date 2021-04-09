@@ -15,7 +15,7 @@ export interface CheckboxGroupProps
 }
 
 export interface CheckboxGroupContext
-  extends Pick<UseCheckboxGroupReturn, "onChange" | "value">,
+  extends Pick<UseCheckboxGroupReturn, "onChange" | "value" | "isDisabled">,
     Omit<ThemingProps<"Checkbox">, "orientation"> {}
 
 const [
@@ -35,7 +35,7 @@ export { useCheckboxGroupContext }
  * @see Docs https://chakra-ui.com/docs/form/checkbox
  */
 export const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
-  const { colorScheme, size, variant, children } = props
+  const { colorScheme, size, variant, children, isDisabled } = props
   const { value, onChange } = useCheckboxGroup(props)
 
   const group = React.useMemo(
@@ -45,8 +45,9 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
       colorScheme,
       value,
       variant,
+      isDisabled,
     }),
-    [size, onChange, colorScheme, value, variant],
+    [size, onChange, colorScheme, value, variant, isDisabled],
   )
 
   return <CheckboxGroupProvider value={group}>{children}</CheckboxGroupProvider>
