@@ -359,10 +359,17 @@ export function useMenuList(
     [descendants, focusedIndex, onCharacterPress, onClose, setFocusedIndex],
   )
 
+  const hasBeenOpened = React.useRef(false)
+  if (isOpen) {
+    hasBeenOpened.current = true
+  }
+
+  const shouldRenderChildren = !isLazy || hasBeenOpened.current
+
   return {
     ...props,
     ref: mergeRefs(menuRef, ref),
-    children: !isLazy || isOpen ? props.children : null,
+    children: shouldRenderChildren ? props.children : null,
     tabIndex: -1,
     role: "menu",
     id: menuId,
