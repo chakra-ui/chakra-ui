@@ -383,9 +383,13 @@ export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
 export function useTabPanel(props: Dict) {
   const { isSelected, id, children, ...htmlProps } = props
   const { isLazy } = useTabsContext()
-  const hasBeenSelected = React.useRef(false)
 
-  if (isSelected) hasBeenSelected.current = true
+  const hasBeenSelected = React.useRef(false)
+  if (isSelected) {
+    hasBeenSelected.current = true
+  }
+
+  const shouldRenderChildren = !isLazy || hasBeenSelected.current
 
   return {
     /**
@@ -395,7 +399,7 @@ export function useTabPanel(props: Dict) {
     ...htmlProps,
     // Do not render tab panel content if tab is lazy and has never been
     // selected
-    children: !isLazy || hasBeenSelected.current ? children : null,
+    children: shouldRenderChildren ? children : null,
     role: "tabpanel",
     hidden: !isSelected,
     id,
