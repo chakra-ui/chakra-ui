@@ -4,4 +4,4 @@
 "@chakra-ui/tooltip": patch
 ---
 
-Add missing dependency issue of @chakra-ui/react-utils
+Add missing dependency issue of `@chakra-ui/react-utils`
