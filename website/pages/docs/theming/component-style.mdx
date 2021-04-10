@@ -79,7 +79,7 @@ export default {
 Let's say we want to create a custom button component following the design spec
 below.
 
-<Img mt="10" mb="12" height="180px" src="/button-spec.png" />
+<Img mt="10" mb="12" src="/button-spec.png" />
 
 Here's a contrived implementation of the design:
 
@@ -89,38 +89,42 @@ const Button = {
   baseStyle: {
     fontWeight: "bold",
     textTransform: "uppercase",
+    borderRadius: "base" // <-- border radius is same for all variants and sizes
   },
   // Two sizes: sm and md
   sizes: {
     sm: {
-      fontSize: "12px",
-      padding: "16px",
+      fontSize: "sm",
+      px: 4, // <-- px is short for paddingLeft and paddingRight
+      py: 3  // <-- py is short for paddingTop and paddingBottom
     },
     md: {
-      fontSize: "16px",
-      padding: "24px",
-    },
+      fontSize: "md",
+      px: 6, // <-- these values are tokens from the design system
+      py: 4  // <-- these values are tokens from the design system
+    }
   },
   // Two variants: outline and solid
   variants: {
     outline: {
       border: "2px solid",
-      borderColor: "green.500",
+      borderColor: "purple.500",
+      color: "purple.500"
     },
     solid: {
-      bg: "green.500",
-      color: "white",
-    },
+      bg: "purple.500",
+      color: "white"
+    }
   },
   // The default size and variant values
   defaultProps: {
     size: "md",
     variant: "outline",
-  },
+  }
 }
 ```
 
-Make sense? Next, we'll update the theme to include this new component style.
+Makes sense right? Now, let's update the theme to include this new component style.
 
 ```jsx live=false
 import { extendTheme } from "@chakra-ui/react"
@@ -151,21 +155,19 @@ const Card = {
   // Two variants: rounded and smooth
   variants: {
     rounded: {
-      padding: "32px",
-      borderRadius: "12px",
-      boxShadow:
-        "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+      padding: 8,
+      borderRadius: "xl",
+      boxShadow: "xl"
     },
     smooth: {
-      padding: "24px",
-      borderRadius: "4px",
-      boxShadow:
-        "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+      padding: 6,
+      borderRadius: "base",
+      boxShadow: "md"
     }
   },
   // The default variant value
   defaultProps: {
-    variant: "rounded"
+    variant: "smooth"
   }
 }
 ```
@@ -181,6 +183,8 @@ const theme = extendTheme({
   },
 })
 ```
+
+But in this case we'd have to **consume** these styles because the `Card` component is not a built-in component in Chakra UI.
 
 ### Consuming style config
 
@@ -228,9 +232,9 @@ And lastly - the fun part - let's use our custom Card component anywhere in our 
 function Usage() {
   return (
     <Card>
-      <Image src="/lin.png" rounded="full" w={32} h={32} boxShadow="md" />
+      <Image src="https://chakra-ui.com/eric.jpg" rounded="full" w={32} h={32} boxShadow="md" />
       <Heading mt={6} maxW={60} size="lg" textAlign="center" color="gray.700">
-        Welcome back, Lin
+        Welcome back, Eric
       </Heading>
       <Text mt={6} mb={6} size="sm" color="blackAlpha.500">
         Use your fingerprint to continue.
@@ -244,9 +248,9 @@ function Usage() {
 function Usage() {
   return (
     <Card variant="smooth">
-      <Image src="/lin.png" rounded="full" w={32} h={32} boxShadow="md" />
+      <Image src="https://chakra-ui.com/eric.jpg" rounded="full" w={32} h={32} boxShadow="md" />
       <Heading mt={6} maxW={60} size="lg" textAlign="center" color="gray.700">
-        Welcome back, Lin
+        Welcome back, Eric
       </Heading>
       <Text mt={6} mb={6} size="sm" color="blackAlpha.500">
         Use your fingerprint to continue.
