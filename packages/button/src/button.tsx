@@ -60,9 +60,10 @@ export interface ButtonOptions {
    */
   spinner?: React.ReactElement
   /**
-   * It places spinner before or after loading button label
+   * It determines the placement of the spinner when isLoading is true
+   * @default "start"
    */
-  loadingSpinnerPosition?: "start" | "end"
+  spinnerPosition?: "start" | "end"
 }
 
 export interface ButtonProps
@@ -83,7 +84,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
     leftIcon,
     rightIcon,
     loadingText,
-    loadingSpinnerPosition = "start",
+    spinnerPosition = "start",
     iconSpacing = "0.5rem",
     type = "button",
     spinner,
@@ -131,28 +132,14 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
       {leftIcon && !isLoading && (
         <ButtonIcon marginEnd={iconSpacing}>{leftIcon}</ButtonIcon>
       )}
-      {isLoading && loadingSpinnerPosition === "start" && (
-        <ButtonSpinner
-          __css={{ fontSize: "1em", lineHeight: "normal" }}
-          spacing={iconSpacing}
-          label={loadingText}
-        >
-          {spinner}
-        </ButtonSpinner>
+      {isLoading && spinnerPosition === "start" && (
+        <ButtonSpinner label={loadingText}>{spinner}</ButtonSpinner>
       )}
       {isLoading
         ? loadingText || <chakra.span opacity={0}>{children}</chakra.span>
         : children}
-      {isLoading && loadingSpinnerPosition === "end" && (
-        <ButtonSpinner
-          __css={{
-            fontSize: "1em",
-            lineHeight: "normal",
-            marginLeft: iconSpacing,
-          }}
-          spacing={iconSpacing}
-          label={loadingText}
-        >
+      {isLoading && spinnerPosition === "end" && (
+        <ButtonSpinner label={loadingText} __css={{ marginStart: "0.5rem" }}>
           {spinner}
         </ButtonSpinner>
       )}
@@ -214,7 +201,9 @@ const ButtonSpinner: React.FC<ButtonSpinnerProps> = (props) => {
     display: "flex",
     alignItems: "center",
     position: label ? "relative" : "absolute",
-    marginEnd: label ? spacing : 0,
+    marginEnd: label ? "0.5rem" : 0,
+    fontSize: "1em",
+    lineHeight: "normal",
     ...__css,
   }
 

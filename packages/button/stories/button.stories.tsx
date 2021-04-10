@@ -162,7 +162,7 @@ export const WithLoadingSpinnerPosition = () => (
       loadingText="Submitting..."
       colorScheme="teal"
       variant="outline"
-      loadingSpinnerPosition="start"
+      spinnerPosition="start"
     >
       Submit
     </Button>
@@ -171,7 +171,7 @@ export const WithLoadingSpinnerPosition = () => (
       loadingText="Continuing..."
       colorScheme="teal"
       variant="outline"
-      loadingSpinnerPosition="end"
+      spinnerPosition="end"
     >
       Continue
     </Button>
