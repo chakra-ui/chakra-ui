@@ -44,7 +44,7 @@ export interface UsePopperProps {
    */
   matchWidth?: boolean
   /**
-   * The boundary aread for the popper. Used within the `preventOverflow` modifier
+   * The boundary area for the popper. Used within the `preventOverflow` modifier
    * @default "clippingParents"
    */
   boundary?: "clippingParents" | "scrollParent" | HTMLElement
