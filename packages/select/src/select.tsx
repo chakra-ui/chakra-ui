@@ -75,6 +75,10 @@ interface SelectOptions extends FormControlOptions {
    */
   placeholder?: string
   /**
+   * The color of the placeholder
+   */
+  placeholderColor?: string
+  /**
    * The size (width and height) of the icon
    */
   iconSize?: string
@@ -117,8 +121,15 @@ export const Select = forwardRef<SelectProps, "select">((props, ref) => {
     iconColor,
     iconSize,
     isFullWidth,
+    onChange,
+    placeholderColor,
     ...rest
   } = omitThemingProps(props)
+
+  const [
+    isPlaceholderSelected,
+    setIsPlaceholderSelected,
+  ] = React.useState<boolean>(true)
 
   const [layoutProps, otherProps] = split(rest, layoutPropNames as any[])
 
@@ -126,11 +137,11 @@ export const Select = forwardRef<SelectProps, "select">((props, ref) => {
     width: "100%",
     height: "fit-content",
     position: "relative",
-    color,
   }
 
   const fieldStyles: SystemStyleObject = mergeWith({}, styles.field, {
     paddingEnd: "2rem",
+    color: isPlaceholderSelected ? placeholderColor : color,
     _focus: { zIndex: "unset" },
   })
 
@@ -146,6 +157,10 @@ export const Select = forwardRef<SelectProps, "select">((props, ref) => {
         height={h ?? height}
         minH={minH ?? minHeight}
         placeholder={placeholder}
+        onChange={(event) => {
+          setIsPlaceholderSelected(event.currentTarget.value === "")
+          if (onChange) onChange(event)
+        }}
         {...otherProps}
         __css={fieldStyles}
       >

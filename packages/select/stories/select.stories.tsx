@@ -1,4 +1,4 @@
-import { Container, Stack } from "@chakra-ui/layout"
+import { Container, Stack, Wrap } from "@chakra-ui/layout"
 import * as React from "react"
 import { Select } from "../src"
 
@@ -14,11 +14,20 @@ export default {
 }
 
 export const BasicUsage = () => (
-  <Select color="pink.500" placeholder="Select option">
-    <option value="Option 1">Option 1</option>
-    <option value="Option 2">Option 2</option>
-    <option value="Option 3">Option 3</option>
-  </Select>
+  <Wrap>
+    <Select
+      placeholder="Select option"
+      placeholderColor="gray.400"
+      color="green.500"
+      onChange={(event) => {
+        console.log("Event from outside", event)
+      }}
+    >
+      <option value="Option 1">Option 1</option>
+      <option value="Option 2">Option 2</option>
+      <option value="Option 3">Option 3</option>
+    </Select>
+  </Wrap>
 )
 
 export const SelectStates = () => (
