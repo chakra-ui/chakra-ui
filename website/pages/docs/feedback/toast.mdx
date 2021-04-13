@@ -50,6 +50,9 @@ function ToastExample() {
 }
 ```
 
+> Make sure to call `useToast` at least one component level below the
+> `<ChakraProvider>` because it needs access to the current theme.
+
 ## Custom component
 
 Display a custom component instead of the default Toast UI.
