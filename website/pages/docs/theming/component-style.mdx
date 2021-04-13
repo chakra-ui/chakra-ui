@@ -89,42 +89,43 @@ const Button = {
   baseStyle: {
     fontWeight: "bold",
     textTransform: "uppercase",
-    borderRadius: "base" // <-- border radius is same for all variants and sizes
+    borderRadius: "base", // <-- border radius is same for all variants and sizes
   },
   // Two sizes: sm and md
   sizes: {
     sm: {
       fontSize: "sm",
       px: 4, // <-- px is short for paddingLeft and paddingRight
-      py: 3  // <-- py is short for paddingTop and paddingBottom
+      py: 3, // <-- py is short for paddingTop and paddingBottom
     },
     md: {
       fontSize: "md",
       px: 6, // <-- these values are tokens from the design system
-      py: 4  // <-- these values are tokens from the design system
-    }
+      py: 4, // <-- these values are tokens from the design system
+    },
   },
   // Two variants: outline and solid
   variants: {
     outline: {
       border: "2px solid",
       borderColor: "purple.500",
-      color: "purple.500"
+      color: "purple.500",
     },
     solid: {
       bg: "purple.500",
-      color: "white"
-    }
+      color: "white",
+    },
   },
   // The default size and variant values
   defaultProps: {
     size: "md",
     variant: "outline",
-  }
+  },
 }
 ```
 
-Makes sense right? Now, let's update the theme to include this new component style.
+Makes sense right? Now, let's update the theme to include this new component
+style.
 
 ```jsx live=false
 import { extendTheme } from "@chakra-ui/react"
@@ -136,7 +137,9 @@ const theme = extendTheme({
 })
 ```
 
-**And that's it!** You can use your new Button along with its custom variants throughout your app. But what if we want to create a custom component that's not part of Chakra UI? Let's use the following design spec for a Card component:
+**And that's it!** You can use your new Button along with its custom variants
+throughout your app. But what if we want to create a custom component that's not
+part of Chakra UI? Let's use the following design spec for a Card component:
 
 <Img mt="10" mb="12" src="/card-spec.png" />
 
@@ -150,29 +153,30 @@ const Card = {
     flexDirection: "column",
     background: "white",
     alignItems: "center",
-    gap: 6
+    gap: 6,
   },
   // Two variants: rounded and smooth
   variants: {
     rounded: {
       padding: 8,
       borderRadius: "xl",
-      boxShadow: "xl"
+      boxShadow: "xl",
     },
     smooth: {
       padding: 6,
       borderRadius: "base",
-      boxShadow: "md"
-    }
+      boxShadow: "md",
+    },
   },
   // The default variant value
   defaultProps: {
-    variant: "smooth"
-  }
+    variant: "smooth",
+  },
 }
 ```
 
-As with the Button component, we'll update the theme to include the new Card component style.
+As with the Button component, we'll update the theme to include the new Card
+component style.
 
 ```jsx live=false
 import { extendTheme } from "@chakra-ui/react"
@@ -184,12 +188,14 @@ const theme = extendTheme({
 })
 ```
 
-But in this case we'd have to **consume** these styles because the `Card` component is not a built-in component in Chakra UI.
+But in this case we'd have to **consume** these styles because the `Card`
+component is not a built-in component in Chakra UI.
 
 ### Consuming style config
 
-Since the new Card component is **not** part of Chakra UI we need to create a new React component and consume the style we just created.
-We can do that using `useStyleConfig` hook.
+Since the new Card component is **not** part of Chakra UI we need to create a
+new React component and consume the style we just created. We can do that using
+`useStyleConfig` hook.
 
 ### useStyleConfig API
 
@@ -210,29 +216,38 @@ The computed styles for the component based on `props` passed. If no `props` is
 passed, the `defaultProps` defined in the style config will be used.
 
 ```jsx live=false
-// 1. Import useStyleConfig
-import { useStyleConfig } from "@chakra-ui/react"
+import { Box, useStyleConfig } from "@chakra-ui/react"
 
 function Card(props) {
-  const { variant, children, ...rest } = props;
-  const styles = useStyleConfig("Card", { variant });
+  const { variant, children, ...rest } = props
 
-  return (
-    <Box sx={styles} {...rest}>
-      {children}
-    </Box>
-  );
+  const styles = useStyleConfig("Card", { variant })
+
+  // Pass the computed styles into the `__css` prop
+  return <Box __css={styles} {...rest} />
 }
 ```
 
-And lastly - the fun part - let's use our custom Card component anywhere in our app:
+> Please note that we are passing the styles to the prop `__css`. It has the
+> same API as [the `sx` prop](/docs/features/the-sx-prop), but has a lower style
+> priority. This means you can override the style properties with chakra style
+> props.
+
+And lastly - the fun part - let's use our custom Card component anywhere in our
+app:
 
 ```jsx live=false
 // 1. Using the default props defined in style config
 function Usage() {
   return (
     <Card>
-      <Image src="https://chakra-ui.com/eric.jpg" rounded="full" w={32} h={32} boxShadow="md" />
+      <Image
+        src="https://chakra-ui.com/eric.jpg"
+        rounded="full"
+        w={32}
+        h={32}
+        boxShadow="md"
+      />
       <Heading mt={6} maxW={60} size="lg" textAlign="center" color="gray.700">
         Welcome back, Eric
       </Heading>
@@ -241,14 +256,20 @@ function Usage() {
       </Text>
       <Image src="/fingerprint.png" w={32} h={32} />
     </Card>
-  );
+  )
 }
 
 // 2. Overriding the default
 function Usage() {
   return (
     <Card variant="smooth">
-      <Image src="https://chakra-ui.com/eric.jpg" rounded="full" w={32} h={32} boxShadow="md" />
+      <Image
+        src="https://chakra-ui.com/eric.jpg"
+        rounded="full"
+        w={32}
+        h={32}
+        boxShadow="md"
+      />
       <Heading mt={6} maxW={60} size="lg" textAlign="center" color="gray.700">
         Welcome back, Eric
       </Heading>
@@ -384,7 +405,7 @@ function Menu(props) {
   const styles = useMultiStyleConfig("Menu", { size, variant })
 
   return (
-    <Flex sx={styles.menu} {...rest}>
+    <Flex __css={styles.menu} {...rest}>
       {/* 3. Mount the computed styles on `StylesProvider` */}
       <StylesProvider value={styles}>{children}</StylesProvider>
     </Flex>
@@ -394,7 +415,7 @@ function Menu(props) {
 function MenuItem(props) {
   // 4. Read computed `item` styles from styles provider
   const styles = useStyles()
-  return <Box as="button" sx={styles.item} {...props} />
+  return <Box as="button" __css={styles.item} {...props} />
 }
 ```
 
