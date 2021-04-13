@@ -70,7 +70,6 @@ export const Spinner = forwardRef<SpinnerProps, "div">((props, ref) => {
     label = "Loading...",
     thickness = "2px",
     speed = "0.45s",
-    color,
     emptyColor = "transparent",
     className,
     ...rest
@@ -86,7 +85,6 @@ export const Spinner = forwardRef<SpinnerProps, "div">((props, ref) => {
     borderWidth: thickness,
     borderBottomColor: emptyColor,
     borderLeftColor: emptyColor,
-    color,
     animation: `${spin} ${speed} linear infinite`,
     ...styles,
   }

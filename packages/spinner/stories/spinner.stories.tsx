@@ -1,3 +1,5 @@
+import { ThemeProvider, useTheme } from "@chakra-ui/system"
+import { mergeWith } from "@chakra-ui/utils"
 import * as React from "react"
 import { Spinner } from "../src"
 
@@ -5,22 +7,9 @@ export default {
   title: "Spinner",
 }
 
-/**
- * A simple spinner.
- */
-
 export const basic = () => <Spinner />
 
-/**
- * Pass the `color` prop to change the background color of
- * the moving section of the spinner.
- */
-
 export const color = () => <Spinner color="red.500" />
-
-/**
- * Pass the `size` prop to change the size of the spinner.
- */
 
 export const size = () => (
   <div>
@@ -30,19 +19,29 @@ export const size = () => (
   </div>
 )
 
-/**
- * Pass the `speed` prop to change the animation speed of the spinner.
- */
-
 export const speed = () => (
   <Spinner color="blue.500" emptyColor="gray.200" speed="0.8s" />
 )
 
-/**
- * Pass the `emptyColor` prop to change the background color
- * of the empty area of the spinner.
- */
-
 export const emptyColor = () => (
   <Spinner color="red.500" emptyColor="gray.200" />
 )
+
+export const WithCustomStyleConfig = () => {
+  const theme = useTheme()
+  return (
+    <ThemeProvider
+      theme={mergeWith(theme, {
+        components: {
+          Spinner: {
+            baseStyle: {
+              color: "blue.300",
+            },
+          },
+        },
+      })}
+    >
+      <Spinner color="red.500" />
+    </ThemeProvider>
+  )
+}

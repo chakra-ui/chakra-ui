@@ -162,7 +162,13 @@ const ButtonIcon: React.FC<HTMLChakraProps<"span">> = (props) => {
   const _className = cx("chakra-button__icon", className)
 
   return (
-    <chakra.span {...rest} className={_className}>
+    <chakra.span
+      display="inline-flex"
+      alignSelf="center"
+      flexShrink={0}
+      {...rest}
+      className={_className}
+    >
       {_children}
     </chakra.span>
   )
