@@ -25,6 +25,7 @@ const siteConfig = {
   discord: {
     url: "https://discord.gg/dQHfcWF",
   },
+  youtube: "https://www.youtube.com/channel/UC4TmDovH46TB4S0SM0Y4CIg",
   seo: {
     title: "Chakra UI",
     titleTemplate: "%s - Chakra UI",
