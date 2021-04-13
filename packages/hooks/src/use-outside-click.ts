@@ -3,7 +3,13 @@ import { RefObject, useEffect, useRef } from "react"
 import { useCallbackRef } from "./use-callback-ref"
 
 export interface UseOutsideClickProps {
+  /**
+   * The reference to a DOM element.
+   */
   ref: RefObject<HTMLElement>
+  /**
+   * Function invoked when a click is triggered outside the referenced element.
+   */
   handler?: (e: Event) => void
 }
 
