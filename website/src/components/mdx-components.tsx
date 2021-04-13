@@ -1,5 +1,6 @@
 import {
   Alert,
+  AspectRatio,
   Box,
   chakra,
   HTMLChakraProps,
@@ -120,6 +121,7 @@ const MDXComponents = {
   IconsList,
   PropsTable,
   VideoPlayer,
+  AspectRatio,
 }
 
 export default MDXComponents
