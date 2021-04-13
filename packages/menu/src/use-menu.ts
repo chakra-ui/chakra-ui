@@ -384,11 +384,13 @@ export function useMenuList(
 
 export function useMenuPositioner(props: any = {}) {
   const { popper, isOpen } = useMenuContext()
-  return {
+  return popper.getPopperProps({
     ...props,
-    ref: popper.popperRef,
-    style: { visibility: isOpen ? "visible" : "hidden" },
-  }
+    style: {
+      visibility: isOpen ? "visible" : "hidden",
+      ...props.style,
+    },
+  })
 }
 
 export interface UseMenuItemProps
