@@ -1,5 +1,28 @@
 # Change Log
 
+## 1.3.2
+
+### Patch Changes
+
+- [`3310f952e`](https://github.com/chakra-ui/chakra-ui/commit/3310f952efc6a196b12ffff1a0951683e0b0b6ff)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - use prop-getters
+  from use-popper to prevent ssr content shift
+
+* [`a73198529`](https://github.com/chakra-ui/chakra-ui/commit/a7319852908f68596600da799ef08a0e7dbb468e)
+  [#3775](https://github.com/chakra-ui/chakra-ui/pull/3775) Thanks
+  [@tomchentw](https://github.com/tomchentw)! - Add missing dependency issue of
+  `@chakra-ui/react-utils`
+
+* Updated dependencies
+  [[`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d),
+  [`d1532f0b7`](https://github.com/chakra-ui/chakra-ui/commit/d1532f0b72c36d0609ee4510613d7c76f4f9c113),
+  [`1615af488`](https://github.com/chakra-ui/chakra-ui/commit/1615af4881a6f37cffb7ea15078cf7ab6a4e4c79)]:
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/hooks@1.4.0
+  - @chakra-ui/popper@2.1.1
+  - @chakra-ui/portal@1.2.2
+  - @chakra-ui/visually-hidden@1.0.9
+
 ## 1.3.1
 
 ### Patch Changes

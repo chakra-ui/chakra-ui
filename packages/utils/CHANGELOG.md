@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.5.2
+
+### Patch Changes
+
+- [`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - update type
+  signature for `px` function
+
 ## 1.5.1
 
 ### Patch Changes

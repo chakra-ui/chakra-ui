@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.1.6
+
+### Patch Changes
+
+- [`3ff53e4e3`](https://github.com/chakra-ui/chakra-ui/commit/3ff53e4e3857b94c4fc18b8e02cf914bdff860e1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  spinner base-style cant be overriden
+
+- Updated dependencies
+  [[`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d)]:
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/visually-hidden@1.0.9
+
 ## 1.1.5
 
 ### Patch Changes

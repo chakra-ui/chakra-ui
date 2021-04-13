@@ -1,5 +1,24 @@
 # Change Log
 
+## 1.8.2
+
+### Patch Changes
+
+- [`753b56d63`](https://github.com/chakra-ui/chakra-ui/commit/753b56d6366276f217d28131c17c41427ae7761c)
+  [#3795](https://github.com/chakra-ui/chakra-ui/pull/3795) Thanks
+  [@hazem3500](https://github.com/hazem3500)! - Changes incorrect `panel` part
+  name in `Progress` theme file to `label`
+
+* [`890839d9f`](https://github.com/chakra-ui/chakra-ui/commit/890839d9fe32d5ec90954c8f4c5b6c463ff0b57d)
+  [#3765](https://github.com/chakra-ui/chakra-ui/pull/3765) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Update input, alert and
+  tabs RTL styles
+
+* Updated dependencies
+  [[`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d)]:
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/theme-tools@1.1.4
+
 ## 1.8.1
 
 ### Patch Changes

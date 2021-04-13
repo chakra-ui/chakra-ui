@@ -1,5 +1,28 @@
 # Change Log
 
+## 1.5.1
+
+### Patch Changes
+
+- [`782aa7f27`](https://github.com/chakra-ui/chakra-ui/commit/782aa7f27cfed28785f63aa294c3a6532ac47a06)
+  [#3765](https://github.com/chakra-ui/chakra-ui/pull/3765) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Fix RTL styles for close
+  button
+  - Do not unmount lazy popovers after first render
+
+* [`655b1a878`](https://github.com/chakra-ui/chakra-ui/commit/655b1a878cde607921fe4c9ae6fe41373552c5c3)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Update
+  focus-onmousedown to avoid memory leak
+  - Use prop-getters from use-popper to prevent ssr content shift
+* Updated dependencies
+  [[`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d),
+  [`d1532f0b7`](https://github.com/chakra-ui/chakra-ui/commit/d1532f0b72c36d0609ee4510613d7c76f4f9c113),
+  [`1615af488`](https://github.com/chakra-ui/chakra-ui/commit/1615af4881a6f37cffb7ea15078cf7ab6a4e4c79)]:
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/hooks@1.4.0
+  - @chakra-ui/popper@2.1.1
+  - @chakra-ui/close-button@1.1.6
+
 ## 1.5.0
 
 ### Minor Changes
