@@ -451,8 +451,8 @@ export function useTabIndicator(): React.CSSProperties {
     }
 
     // Prevent unwanted transition from 0 to measured rect
-    // by setting the measured state in the next tick
-    const id = requestAnimationFrame(() => {
+    // by setting the measured state in the next react tick
+    const id = requestIdleCallback(() => {
       setHasMeasured(true)
     })
 
