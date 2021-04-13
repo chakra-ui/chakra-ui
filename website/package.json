@@ -34,6 +34,7 @@
     "react-icons": "^4.1.0",
     "react-live": "^2.2.3",
     "react-multi-ref": "1.0.0",
+    "react-player": "^2.9.0",
     "remark": "^13.0.0",
     "remark-autolink-headings": "^6.0.1",
     "remark-emoji": "^2.1.0",
