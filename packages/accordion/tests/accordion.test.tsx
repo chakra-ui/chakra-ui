@@ -332,3 +332,21 @@ test("panel has role=region and aria-labelledby", () => {
   expect(panel).toHaveAttribute("aria-labelledby")
   expect(panel).toHaveAttribute("role", "region")
 })
+
+test("computes open index correctly", () => {
+  render(
+    <Accordion index={1}>
+      <AccordionItem isDisabled>
+        <AccordionButton>Button 0</AccordionButton>
+        <AccordionPanel>One Content</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Button 2</AccordionButton>
+        <AccordionPanel>I should be open by default</AccordionPanel>
+      </AccordionItem>
+    </Accordion>,
+  )
+
+  const button = screen.getByText("Button 2")
+  expect(button).toHaveAttribute("aria-expanded", "true")
+})

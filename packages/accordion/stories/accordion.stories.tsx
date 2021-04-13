@@ -297,3 +297,31 @@ export const FocusBug = () => {
     </Box>
   )
 }
+
+// See https://github.com/chakra-ui/chakra-ui/issues/3785
+export function IsOpenWithDisabled() {
+  return (
+    <Accordion index={2}>
+      <AccordionItem isDisabled>
+        <AccordionButton>Button 0</AccordionButton>
+        <AccordionPanel>One Content</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem isDisabled>
+        <AccordionButton>Button 1</AccordionButton>
+        <AccordionPanel>Two Content</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Button 2</AccordionButton>
+        <AccordionPanel>I should be open by default</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem isDisabled>
+        <AccordionButton>Button 3</AccordionButton>
+        <AccordionPanel>Four Content</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Button 4</AccordionButton>
+        <AccordionPanel>Five Content</AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  )
+}

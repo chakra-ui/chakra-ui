@@ -208,13 +208,15 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   const index = useDescendant({
     element: buttonRef.current,
     context: domContext,
-    disabled: isDisabled,
+    disabled: false /* passing `isDisabled` would lead to incorrect index */,
     focusable: isFocusable,
   })
 
-  const { isOpen, onChange } = getAccordionItemProps(
+  const { isOpen: _isOpen, onChange } = getAccordionItemProps(
     index === -1 ? null : index,
   )
+
+  const isOpen = !isDisabled && _isOpen
 
   const onOpen = () => {
     onChange?.(true)
