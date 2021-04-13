@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.1.1
+
+### Patch Changes
+
+- [`1615af488`](https://github.com/chakra-ui/chakra-ui/commit/1615af4881a6f37cffb7ea15078cf7ab6a4e4c79)
+  [#3786](https://github.com/chakra-ui/chakra-ui/pull/3786) Thanks
+  [@navarroaxel](https://github.com/navarroaxel)! - Update README for the
+  `popper.js` wrapper.
+
 ## 2.1.0
 
 ### Minor Changes

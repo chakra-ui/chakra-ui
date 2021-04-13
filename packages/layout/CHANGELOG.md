@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.4.2
+
+### Patch Changes
+
+- [`3bc27c018`](https://github.com/chakra-ui/chakra-ui/commit/3bc27c0183d06f8e0d38ab8e6d7d793f20e883c8)
+  [#3765](https://github.com/chakra-ui/chakra-ui/pull/3765) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fix RTL styles for
+  OrderedList and UnorderedList
+
+- Updated dependencies
+  [[`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d)]:
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/icon@1.1.6
+
 ## 1.4.1
 
 ### Patch Changes

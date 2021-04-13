@@ -1,5 +1,23 @@
 # Change Log
 
+## 1.2.2
+
+### Patch Changes
+
+- [`059ea7f26`](https://github.com/chakra-ui/chakra-ui/commit/059ea7f262b6f79bf303886f90ca82c02b8fcc78)
+  [#3791](https://github.com/chakra-ui/chakra-ui/pull/3791) Thanks
+  [@navarroaxel](https://github.com/navarroaxel)! - Improve wording for the
+  `use-outside-click` page
+
+- Updated dependencies
+  [[`09aa19b23`](https://github.com/chakra-ui/chakra-ui/commit/09aa19b23544f612ac54c22ad0b344d66b871674),
+  [`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d),
+  [`81a40231f`](https://github.com/chakra-ui/chakra-ui/commit/81a40231f12461dcca0fa0cd3c4e9e2c0497a04d)]:
+  - @chakra-ui/react@1.5.1
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/props-docs@1.0.23
+  - @chakra-ui/theme-tools@1.1.4
+
 ## 1.2.1
 
 ### Patch Changes

@@ -1,5 +1,25 @@
 # Change Log
 
+## 1.6.2
+
+### Patch Changes
+
+- [`000402a2c`](https://github.com/chakra-ui/chakra-ui/commit/000402a2c720878a06a63152a332b15efd79814f)
+  [#3805](https://github.com/chakra-ui/chakra-ui/pull/3805) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Allow passing custom props
+  to useStyleConfig
+
+* [`a73198529`](https://github.com/chakra-ui/chakra-ui/commit/a7319852908f68596600da799ef08a0e7dbb468e)
+  [#3775](https://github.com/chakra-ui/chakra-ui/pull/3775) Thanks
+  [@tomchentw](https://github.com/tomchentw)! - Add missing dependency issue of
+  `@chakra-ui/react-utils`
+
+* Updated dependencies
+  [[`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d)]:
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/color-mode@1.1.5
+  - @chakra-ui/styled-system@1.10.2
+
 ## 1.6.1
 
 ### Patch Changes

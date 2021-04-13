@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.2.2
+
+### Patch Changes
+
+- [`655b1a878`](https://github.com/chakra-ui/chakra-ui/commit/655b1a878cde607921fe4c9ae6fe41373552c5c3)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update
+  focus-on-mousedown util to avoid memory leak
+
+- Updated dependencies
+  [[`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d),
+  [`d1532f0b7`](https://github.com/chakra-ui/chakra-ui/commit/d1532f0b72c36d0609ee4510613d7c76f4f9c113)]:
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/hooks@1.4.0
+
 ## 1.2.1
 
 ### Patch Changes
