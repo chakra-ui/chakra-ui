@@ -14,6 +14,112 @@ To better understand the changelog, here are some legends we use:
 - 🚀 Feature
 - 🐛 Bug fix
 
+## 13-04-2021
+
+`@chakra-ui/react@1.5.1`
+
+**Hooks** `v1.4.0`
+
+- 🚀 Add support for passing function that returns element to `useEventListener`
+  and `usePointerEvent`.
+
+**Menu** `v1.4.0`
+
+- 🚀 Add `closeOnSelect` to `MenuItem` and `MenuItemOption`.
+- 🐛 Do not unmount menu list after first render.
+- 🐛 Use prop getter from use-popper to prevent ssr content jump.
+
+**Transition** `v1.2.0`
+
+- 🚀 Allow custom transition variants.
+
+**Button** `v1.2.2`
+
+- 🐛 Fix alignment of icon inside button.
+- 🐛 Update button group styles to use rtl-friendly equivalent.
+
+**Clickable** `v1.1.2`
+
+- 🐛 Add missing dependency issue of `@chakra-ui/react-util`.
+
+**Editable** `v1.1.2`
+
+- 🐛 Update focus-on-mousedown util to avoid memory leak.
+
+**React Env** `v1.0.1`
+
+- 🐛 Fix issue where window could be null Skip logic when `environment` prop is
+  passed.
+
+**Input** `v1.2.2`
+
+- 🐛 Remove unused padding-x from input element.
+
+- 🐛 Update input addon and element style handling.
+
+**Layout** `v1.4.2`
+
+- 🐛 Fix RTL styles for OrderedList and UnorderedList.
+
+**Popover** `v1.5.1`
+
+- 🐛 Fix RTL styles for close button.
+
+- 🐛 Do not unmount lazy popovers after first render.
+
+- 🐛 Update focus-onmousedown to avoid memory leak.
+
+- 🐛 Use prop-getters from use-popper to prevent ssr content shift.
+
+**Popper** `v2.1.1`
+
+- 🐛 Update README for the `popper.js` wrapper.
+
+**Progress** `v1.1.6`
+
+- 🐛 Fix an issue where `CircularProgress` with `isIndeterminate` doesn't show
+  the indicator
+
+**React** `v1.5.1`
+
+- 🐛 Fixed typing issues for `extendTheme` where variant overrides lead to an TS
+  error.
+
+- 🐛 Add `EnvironmentProvider` to `ChakraProvider` for better window and
+  document detection across hooks and components.
+
+**Spinner** `v1.1.6`
+
+- 🐛 Fix issue where spinner base-style cant be overriden.
+
+**System** `v1.6.2`
+
+- 🐛 Allow passing custom props to `useStyleConfig`.
+- 🐛 Add missing dependency issue of `@chakra-ui/react-utils`.
+
+**Tabs** `v1.3.2`
+
+- 🐛 Do not unmount lazy tabs when unselected.
+
+**Theme** `v1.8.2`
+
+- 🐛 Changes incorrect `panel` part name in `Progress` theme file to `label`.
+
+- 🐛 Update input, alert and tabs RTL styles.
+
+**Toast** `v1.2.3`
+
+- 🐛 Fix RTL styles for toast component.
+
+**Tool tip** `v1.2.3`
+
+- 🐛 Use prop-getters from use-popper to prevent ssr content shift.
+- 🐛 Add missing dependency issue of `@chakra-ui/react-utils`.
+
+**Utils** `v1.5.2`
+
+- 🐛 update type signature for `px` function.
+
 ## 07-04-2021
 
 `@chakra-ui/react@1.5.0`
