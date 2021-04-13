@@ -8,10 +8,10 @@ import {
   getPointerEventName,
   wrapPointerEventHandler,
 } from "@chakra-ui/utils"
-import { useEventListener } from "./use-event-listener"
+import { EventListenerRef, useEventListener } from "./use-event-listener"
 
 export function usePointerEvent(
-  env: Document | HTMLElement | null,
+  env: EventListenerRef | null,
   eventName: string,
   handler: EventListenerWithPointInfo,
   options?: AddEventListenerOptions,

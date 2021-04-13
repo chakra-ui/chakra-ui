@@ -1,6 +1,11 @@
 import * as React from "react"
-import { isBrowser } from "@chakra-ui/utils"
+import { isBrowser, isRefObject } from "@chakra-ui/utils"
 import { useCallbackRef } from "./use-callback-ref"
+
+export type EventListenerRef =
+  | Document
+  | HTMLElement
+  | React.RefObject<HTMLElement>
 
 /**
  * React hook to manage browser event listeners
@@ -13,25 +18,27 @@ import { useCallbackRef } from "./use-callback-ref"
 export function useEventListener<K extends keyof DocumentEventMap>(
   event: K | (string & {}),
   handler: (event: DocumentEventMap[K]) => void,
-  env: Document | HTMLElement | null = isBrowser ? document : null,
+  env: EventListenerRef | null = isBrowser ? document : null,
   options?: boolean | AddEventListenerOptions,
 ) {
   const fn = useCallbackRef(handler) as any
 
   React.useEffect(() => {
-    if (!env) return undefined
+    const node = isRefObject(env) ? env.current : env
+    if (!env || !node) return
 
     const listener = (event: any) => {
       fn(event)
     }
 
-    env.addEventListener(event, listener, options)
+    node.addEventListener(event, listener, options)
     return () => {
-      env.removeEventListener(event, listener, options)
+      node.removeEventListener(event, listener, options)
     }
   }, [event, env, options, fn])
 
   return () => {
-    env?.removeEventListener(event, fn, options)
+    const node = isRefObject(env) ? env.current : env
+    node?.removeEventListener(event, fn, options)
   }
 }
