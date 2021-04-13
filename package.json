@@ -46,6 +46,7 @@
     "prestorybook": "rimraf node_modules/.cache/storybook",
     "storybook": "start-storybook -p 6006",
     "clean": "lerna clean --yes && rm -rf node_modules",
+    "clean-dist": "yarn lerna exec -- rimraf dist",
     "bootstrap": "lerna bootstrap --use-workspaces",
     "commit": "git-cz",
     "build:storybook": "build-storybook && sb extract",
