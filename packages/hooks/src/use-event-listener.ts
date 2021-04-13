@@ -1,11 +1,10 @@
+import { runIfFn } from "@chakra-ui/utils"
 import * as React from "react"
-import { isBrowser, isRefObject } from "@chakra-ui/utils"
 import { useCallbackRef } from "./use-callback-ref"
 
-export type EventListenerRef =
-  | Document
-  | HTMLElement
-  | React.RefObject<HTMLElement>
+type DocumentOrElement = Document | HTMLElement | null
+
+export type EventListenerEnv = (() => DocumentOrElement) | DocumentOrElement
 
 /**
  * React hook to manage browser event listeners
@@ -14,31 +13,28 @@ export type EventListenerRef =
  * @param handler the event handler function to execute
  * @param doc the dom environment to execute against (defaults to `document`)
  * @param options the event listener options
+ *
+ * @internal
  */
 export function useEventListener<K extends keyof DocumentEventMap>(
   event: K | (string & {}),
   handler: (event: DocumentEventMap[K]) => void,
-  env: EventListenerRef | null = isBrowser ? document : null,
+  env?: EventListenerEnv,
   options?: boolean | AddEventListenerOptions,
 ) {
-  const fn = useCallbackRef(handler) as any
+  const listener = useCallbackRef(handler) as EventListener
 
   React.useEffect(() => {
-    const node = isRefObject(env) ? env.current : env
-    if (!env || !node) return
-
-    const listener = (event: any) => {
-      fn(event)
-    }
+    const node = runIfFn(env) ?? document
 
     node.addEventListener(event, listener, options)
     return () => {
       node.removeEventListener(event, listener, options)
     }
-  }, [event, env, options, fn])
+  }, [event, env, options, listener])
 
   return () => {
-    const node = isRefObject(env) ? env.current : env
-    node?.removeEventListener(event, fn, options)
+    const node = runIfFn(env) ?? document
+    node.removeEventListener(event, listener, options)
   }
 }

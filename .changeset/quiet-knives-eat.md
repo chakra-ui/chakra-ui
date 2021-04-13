@@ -2,4 +2,5 @@
 "@chakra-ui/hooks": minor
 ---
 
-Add support for passing ref object to `useEventListener` and `usePointerEvent`
+- Add support for passing function that returns element to `useEventListener`
+  and `usePointerEvent`

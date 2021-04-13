@@ -16,9 +16,7 @@ import {
   callAllHandlers,
   contains,
   FocusableElement,
-  getOwnerDocument,
   getRelatedTarget,
-  isBrowser,
   px,
 } from "@chakra-ui/utils"
 import { RefObject, useCallback, useEffect, useRef, useState } from "react"
@@ -181,8 +179,8 @@ export function usePopover(props: UsePopoverProps = {}) {
   })
 
   useFocusOnPointerDown({
-    doc: isBrowser ? getOwnerDocument(triggerRef.current) : null,
-    elements: [triggerRef],
+    enabled: isOpen,
+    ref: triggerRef,
   })
 
   useFocusOnHide(popoverRef, {

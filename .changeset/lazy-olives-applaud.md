@@ -1,5 +1,4 @@
 ---
-"@chakra-ui/popover": patch
 "@chakra-ui/tooltip": patch
 ---
 
