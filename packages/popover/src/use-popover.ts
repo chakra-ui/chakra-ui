@@ -167,7 +167,13 @@ export function usePopover(props: UsePopoverProps = {}) {
     "popover-body",
   )
 
-  const popper = usePopper({
+  const {
+    referenceRef,
+    getArrowProps,
+    getPopperProps,
+    getArrowInnerProps,
+    forceUpdate,
+  } = usePopper({
     placement: placementProp,
     flip,
     gutter,
@@ -255,17 +261,22 @@ export function usePopover(props: UsePopoverProps = {}) {
   )
 
   const getPopoverPositionerProps: PropGetter = useCallback(
-    (props = {}, _ref = null) => ({
-      ...props,
-      ref: mergeRefs(popper.popperRef, _ref),
-      style: {
-        ...props.style,
-        [popperCSSVars.arrowSize.var]: arrowSize ? px(arrowSize) : undefined,
-        [popperCSSVars.arrowShadowColor.var]: arrowShadowColor,
-        visibility: isOpen ? "visible" : "hidden",
-      },
-    }),
-    [arrowShadowColor, arrowSize, isOpen, popper.popperRef],
+    (props = {}, forwardedRef = null) =>
+      getPopperProps(
+        {
+          ...props,
+          style: {
+            [popperCSSVars.arrowSize.var]: arrowSize
+              ? px(arrowSize)
+              : undefined,
+            [popperCSSVars.arrowShadowColor.var]: arrowShadowColor,
+            visibility: isOpen ? "visible" : "hidden",
+            ...props.style,
+          },
+        },
+        forwardedRef,
+      ),
+    [arrowShadowColor, arrowSize, isOpen, getPopperProps],
   )
 
   const openTimeout = useRef<number>()
@@ -275,7 +286,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     (props = {}, _ref = null) => {
       const triggerProps: HTMLProps = {
         ...props,
-        ref: mergeRefs(triggerRef, _ref, popper.referenceRef),
+        ref: mergeRefs(triggerRef, _ref, referenceRef),
         id: triggerId,
         "aria-haspopup": "dialog",
         "aria-expanded": isOpen,
@@ -334,7 +345,7 @@ export function usePopover(props: UsePopoverProps = {}) {
       isOpen,
       popoverId,
       trigger,
-      popper.referenceRef,
+      referenceRef,
       onToggle,
       onOpen,
       onClose,
@@ -377,11 +388,11 @@ export function usePopover(props: UsePopoverProps = {}) {
   )
 
   return {
-    forceUpdate: popper.forceUpdate,
+    forceUpdate,
     isOpen,
     onClose,
-    getArrowProps: popper.getArrowProps,
-    getArrowInnerProps: popper.getArrowInnerProps,
+    getArrowProps,
+    getArrowInnerProps,
     getPopoverPositionerProps,
     getPopoverProps,
     getTriggerProps,
