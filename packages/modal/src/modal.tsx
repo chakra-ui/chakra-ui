@@ -237,6 +237,9 @@ export const ModalContent = forwardRef<ModalContentProps, "section">(
       display: "flex",
       width: "100vw",
       height: "100vh",
+      "@supports(height: -webkit-fill-available)": {
+        height: "-webkit-fill-available",
+      },
       position: "fixed",
       left: 0,
       top: 0,
