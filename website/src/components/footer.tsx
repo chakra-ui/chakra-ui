@@ -1,6 +1,7 @@
 import React from "react"
 import { Box, Icon, Text, Stack, Link, chakra } from "@chakra-ui/react"
 import { IoLogoTwitter, IoLogoLinkedin } from "react-icons/io"
+import { FaYoutube } from "react-icons/fa"
 import { MdEmail } from "react-icons/md"
 import { DiGithubBadge } from "react-icons/di"
 
@@ -36,6 +37,11 @@ const links = [
     icon: MdEmail,
     label: "Email",
     href: "mailto:sage@adebayosegun.com",
+  },
+  {
+    icon: FaYoutube,
+    label: "YouTube",
+    href: "https://www.youtube.com/channel/UC4TmDovH46TB4S0SM0Y4CIg",
   },
 ]
 
