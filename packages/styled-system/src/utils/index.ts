@@ -1,6 +1,6 @@
 import { isNumber } from "@chakra-ui/utils"
 import { createTransform, px as pxTransform } from "../create-transform"
-import type { ThemeScale } from "../css-var"
+import type { ThemeScale } from "../create-theme-vars"
 import { logical, PropConfig, toConfig } from "../prop-config"
 
 export * from "./types"

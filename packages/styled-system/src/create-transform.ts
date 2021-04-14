@@ -1,5 +1,5 @@
 import { Dict, isNumber, isObject } from "@chakra-ui/utils"
-import type { ThemeScale } from "./css-var"
+import type { ThemeScale } from "./create-theme-vars"
 import type { Transform } from "./types"
 
 const analyzeCSSValue = (value: number | string) => {
