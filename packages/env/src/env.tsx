@@ -1,6 +1,7 @@
-import React, { useMemo, useState, createContext, useContext } from "react"
-import { ssrWindow } from "./mock-window"
+import { isBrowser, __DEV__ } from "@chakra-ui/utils"
+import React, { createContext, useContext, useMemo, useState } from "react"
 import { ssrDocument } from "./mock-document"
+import { ssrWindow } from "./mock-window"
 
 interface Environment {
   window: Window
@@ -12,11 +13,12 @@ const mockEnv = {
   document: ssrDocument,
 }
 
-const defaultEnv: Environment =
-  typeof window !== "undefined" ? { window, document } : mockEnv
+const defaultEnv: Environment = isBrowser ? { window, document } : mockEnv
 
 const EnvironmentContext = createContext(defaultEnv)
-EnvironmentContext.displayName = "EnvironmentContext"
+if (__DEV__) {
+  EnvironmentContext.displayName = "EnvironmentContext"
+}
 
 export function useEnvironment() {
   return useContext(EnvironmentContext)
@@ -39,7 +41,7 @@ export function EnvironmentProvider(props: EnvironmentProviderProps) {
     return env as Environment
   }, [node, environmentProp])
 
-  const shouldRenderChildren = node || environmentProp
+  const shouldRenderChildren = !isBrowser || node || environmentProp
 
   return (
     <EnvironmentContext.Provider value={context}>
