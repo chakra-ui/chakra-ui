@@ -5,12 +5,7 @@ import {
   useFocusOnShow,
   useIds,
 } from "@chakra-ui/hooks"
-import {
-  Placement,
-  popperCSSVars,
-  usePopper,
-  UsePopperProps,
-} from "@chakra-ui/popper"
+import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { HTMLProps, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import {
   callAllHandlers,
@@ -26,7 +21,7 @@ const TRIGGER = {
   hover: "hover",
 } as const
 
-export interface UsePopoverProps {
+export interface UsePopoverProps extends UsePopperProps {
   /**
    * The html `id` attribute of the popover.
    * If not provided, we generate a unique id.
@@ -58,19 +53,6 @@ export interface UsePopoverProps {
    */
   autoFocus?: boolean
   /**
-   * The gap (in pixels) to apply between the popover and the target.
-   * Used by `popper.js`
-   */
-  gutter?: number
-  /**
-   * The placement of the popover
-   */
-  placement?: Placement
-  /**
-   * The flip of the popover
-   */
-  flip?: boolean
-  /**
    * If `true`, the popover will close when you blur out it by
    * clicking outside or tabbing out
    */
@@ -95,10 +77,6 @@ export interface UsePopoverProps {
    * The `box-shadow` of the popover arrow
    */
   arrowShadowColor?: string
-  /**
-   * The Popper.js modifiers to use.
-   */
-  modifiers?: UsePopperProps["modifiers"]
   /**
    * The interaction that triggers the popover.
    *
@@ -127,19 +105,16 @@ export function usePopover(props: UsePopoverProps = {}) {
     closeOnBlur = true,
     closeOnEsc = true,
     initialFocusRef,
-    placement: placementProp,
-    flip,
-    gutter,
     id,
     returnFocusOnClose = true,
     autoFocus = true,
     arrowSize,
     arrowShadowColor,
-    modifiers,
     trigger = TRIGGER.click,
     openDelay = 200,
     closeDelay = 200,
     isLazy,
+    ...popperProps
   } = props
 
   const { isOpen, onClose, onOpen, onToggle } = useDisclosure(props)
@@ -171,12 +146,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     getPopperProps,
     getArrowInnerProps,
     forceUpdate,
-  } = usePopper({
-    placement: placementProp,
-    flip,
-    gutter,
-    modifiers,
-  })
+  } = usePopper(popperProps)
 
   useFocusOnPointerDown({
     enabled: isOpen,

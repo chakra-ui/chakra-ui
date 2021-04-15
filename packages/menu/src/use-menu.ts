@@ -85,10 +85,20 @@ export function useMenu(props: UseMenuProps = {}) {
     closeOnBlur = true,
     autoSelect = true,
     isLazy,
+    isOpen: isOpenProp,
+    defaultIsOpen,
+    onClose: onCloseProp,
+    onOpen: onOpenProp,
     placement = "bottom-start",
+    ...popperProps
   } = props
 
-  const { isOpen, onOpen, onClose, onToggle } = useDisclosure(props)
+  const { isOpen, onOpen, onClose, onToggle } = useDisclosure({
+    isOpen: isOpenProp,
+    defaultIsOpen,
+    onClose: onCloseProp,
+    onOpen: onOpenProp,
+  })
 
   /**
    * Prepare the reference to the menu and disclosure
@@ -113,8 +123,8 @@ export function useMenu(props: UseMenuProps = {}) {
    * Add some popper.js for dynamic positioning
    */
   const popper = usePopper({
+    ...popperProps,
     placement,
-    ...props,
   })
 
   const [focusedIndex, setFocusedIndex] = React.useState(-1)
