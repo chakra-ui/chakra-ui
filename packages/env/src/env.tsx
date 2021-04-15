@@ -16,6 +16,7 @@ const mockEnv = {
 const defaultEnv: Environment = isBrowser ? { window, document } : mockEnv
 
 const EnvironmentContext = createContext(defaultEnv)
+
 if (__DEV__) {
   EnvironmentContext.displayName = "EnvironmentContext"
 }
@@ -36,18 +37,17 @@ export function EnvironmentProvider(props: EnvironmentProviderProps) {
   const context = useMemo(() => {
     const doc = node?.ownerDocument
     const win = node?.ownerDocument.defaultView
-    const nodeEnv = { document: doc, window: win }
+    const nodeEnv = doc ? { document: doc, window: win } : undefined
     const env = environmentProp ?? nodeEnv ?? defaultEnv
     return env as Environment
   }, [node, environmentProp])
 
-  const shouldRenderChildren = !isBrowser || node || environmentProp
+  const showEnvGetter = !node && !environmentProp
 
   return (
     <EnvironmentContext.Provider value={context}>
-      {shouldRenderChildren ? (
-        children
-      ) : (
+      {children}
+      {showEnvGetter && (
         <span
           ref={(el) => {
             if (el) setNode(el)
@@ -56,4 +56,8 @@ export function EnvironmentProvider(props: EnvironmentProviderProps) {
       )}
     </EnvironmentContext.Provider>
   )
+}
+
+if (__DEV__) {
+  EnvironmentProvider.displayName = "EnvironmentProvider"
 }
