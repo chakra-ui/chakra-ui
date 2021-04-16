@@ -11,13 +11,14 @@ import {
   useShortcut,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
-import { usePopper, UsePopperProps } from "@chakra-ui/popper"
+import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import {
   createContext,
   EventKeyMap,
   getValidChildren,
   mergeRefs,
 } from "@chakra-ui/react-utils"
+import { useTheme } from "@chakra-ui/system"
 import {
   addItem,
   callAllHandlers,
@@ -39,6 +40,19 @@ const [MenuProvider, useMenuContext] = createContext<UseMenuReturn>({
   strict: false,
   name: "MenuContext",
 })
+
+const LEFT_RIGHT_REGEX = /left|right|start|end/g
+const flipDirection = (placement: Placement) => {
+  return placement.replace(LEFT_RIGHT_REGEX, (m) => {
+    return m === "left"
+      ? "right"
+      : m === "right"
+      ? "left"
+      : m === "start"
+      ? "end"
+      : "start"
+  }) as Placement
+}
 
 export { MenuProvider, useMenuContext }
 
@@ -92,7 +106,9 @@ export function useMenu(props: UseMenuProps = {}) {
     placement = "bottom-start",
     ...popperProps
   } = props
-
+  const { direction } = useTheme()
+  const isRTL = direction === "rtl"
+  const dirAwarePlacement = isRTL ? flipDirection(placement) : placement
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure({
     isOpen: isOpenProp,
     defaultIsOpen,
@@ -124,7 +140,7 @@ export function useMenu(props: UseMenuProps = {}) {
    */
   const popper = usePopper({
     ...popperProps,
-    placement,
+    placement: dirAwarePlacement,
   })
 
   const [focusedIndex, setFocusedIndex] = React.useState(-1)

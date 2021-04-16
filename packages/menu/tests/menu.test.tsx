@@ -19,6 +19,7 @@ import {
   MenuList,
   MenuOptionGroup,
 } from "../src"
+import { extendTheme, ThemeProvider } from "@chakra-ui/react"
 
 const words = [
   "About Visual Studio Code",
@@ -442,4 +443,23 @@ test("MenuItem can override its parent menu's `closeOnSelect` and close the menu
 
   fireEvent.click(menuItemThatCloses)
   expect(onClose).toHaveBeenCalled()
+})
+
+test("MenuList direction reflects Chakra theme's direction", () => {
+  render(
+    <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
+      <Menu placement="top-end" isOpen>
+        <MenuButton as={Button}>Open menu</MenuButton>
+        <MenuList>
+          <MenuItem>Pick me</MenuItem>
+          <MenuItem>No no, pick me</MenuItem>
+        </MenuList>
+      </Menu>
+    </ThemeProvider>,
+  )
+
+  const menuList = screen.getByRole("menu")
+  expect(menuList.parentElement!.getAttribute("data-popper-placement")).toEqual(
+    "top-start",
+  )
 })
