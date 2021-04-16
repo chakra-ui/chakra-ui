@@ -465,13 +465,3 @@ test("MenuList direction reflects Chakra theme's direction", () => {
     "top-start",
   )
 })
-
-test("flipDirection() flips placement positions correctly", () => {
-  expect(flipDirection("top-right" as Placement)).toBe("top-left")
-  expect(flipDirection("top-left" as Placement)).toBe("top-right")
-  expect(flipDirection("bottom-left" as Placement)).toBe("bottom-right")
-  expect(flipDirection("top-start" as Placement)).toBe("top-end")
-  expect(flipDirection("top-end" as Placement)).toBe("top-start")
-  expect(flipDirection("bottom-end" as Placement)).toBe("bottom-start")
-  expect(flipDirection("auto" as Placement)).toBe("auto")
-})

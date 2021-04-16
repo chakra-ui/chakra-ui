@@ -11,7 +11,7 @@ import {
   useShortcut,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
-import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
+import { usePopper, UsePopperProps } from "@chakra-ui/popper"
 import {
   createContext,
   EventKeyMap,
@@ -33,6 +33,7 @@ import {
   isString,
   normalizeEventKey,
   removeItem,
+  flipDirection,
 } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -40,24 +41,6 @@ const [MenuProvider, useMenuContext] = createContext<UseMenuReturn>({
   strict: false,
   name: "MenuContext",
 })
-
-const LEFT_RIGHT_REGEX = /left|right|start|end/g
-export const flipDirection = (placement: Placement) => {
-  return placement.replace(LEFT_RIGHT_REGEX, (m) => {
-    switch (m) {
-      case "left":
-        return "right"
-      case "right":
-        return "left"
-      case "start":
-        return "end"
-      case "end":
-        return "start"
-      default:
-        return m
-    }
-  }) as Placement
-}
 
 export { MenuProvider, useMenuContext }
 
@@ -111,15 +94,15 @@ export function useMenu(props: UseMenuProps = {}) {
     placement = "bottom-start",
     ...popperProps
   } = props
-  const { direction } = useTheme()
-  const isRTL = direction === "rtl"
-  const dirAwarePlacement = isRTL ? flipDirection(placement) : placement
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure({
     isOpen: isOpenProp,
     defaultIsOpen,
     onClose: onCloseProp,
     onOpen: onOpenProp,
   })
+  const { direction } = useTheme()
+  const dirAwarePlacement =
+    direction === "rtl" ? flipDirection(placement) : placement
 
   /**
    * Prepare the reference to the menu and disclosure

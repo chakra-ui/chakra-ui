@@ -1,4 +1,5 @@
 import { mergeRefs, PropGetterV2 } from "@chakra-ui/react-utils"
+import { flipDirection } from "@chakra-ui/utils"
 import {
   createPopper,
   Instance,
@@ -76,6 +77,13 @@ export interface UsePopperProps {
    * @see Docs https://popper.js.org/docs/v2/modifiers/
    */
   modifiers?: Array<Partial<Modifier<string, any>>>
+
+  /**
+   * Theme direction `ltr` or `rtl`. Popper's placement will
+   * be set accordingly
+   * @default "ltr"
+   */
+  direction?: "ltr" | "rtl"
 }
 
 export type ArrowCSSVarProps = {
@@ -109,11 +117,14 @@ export function usePopper(props: UsePopperProps = {}) {
     boundary = "clippingParents",
     preventOverflow = true,
     matchWidth,
+    direction = "ltr",
   } = props
 
   const reference = useRef<Element | VirtualElement | null>(null)
   const popper = useRef<HTMLElement | null>(null)
   const instance = useRef<Instance | null>(null)
+  const dirAwarePlacement =
+    direction === "rtl" ? flipDirection(placementProp) : placementProp
 
   const cleanup = useRef(() => {})
 
@@ -124,7 +135,7 @@ export function usePopper(props: UsePopperProps = {}) {
     cleanup.current?.()
 
     instance.current = createPopper(reference.current, popper.current, {
-      placement: placementProp,
+      placement: dirAwarePlacement,
       modifiers: [
         customModifiers.innerArrow,
         customModifiers.positionArrow,
@@ -165,7 +176,7 @@ export function usePopper(props: UsePopperProps = {}) {
 
     cleanup.current = instance.current.destroy
   }, [
-    placementProp,
+    dirAwarePlacement,
     modifiers,
     matchWidth,
     eventListeners,
