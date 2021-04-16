@@ -1,4 +1,4 @@
-import { calc } from "../src/create-theme-vars/calc"
+import { calc, cssVar } from "../src"
 
 describe("calc", () => {
   it("standard usage", () => {
@@ -118,9 +118,16 @@ it("divide", () => {
 })
 
 it("negate", () => {
-  expect(calc.negate(2)).toMatchInlineSnapshot(`"calc(2 * -1)"`)
-  expect(calc.negate(3 - 4)).toMatchInlineSnapshot(`"calc(-1 * -1)"`)
+  expect(calc.negate(2)).toMatchInlineSnapshot(`"-2"`)
+  expect(calc.negate(3 - 4)).toMatchInlineSnapshot(`"1"`)
   expect(calc.negate(calc.add("10px", "2em"))).toMatchInlineSnapshot(
     `"calc((10px + 2em) * -1)"`,
+  )
+})
+
+it("negate css var", () => {
+  const variable = cssVar("my-var", undefined, "prefix")
+  expect(calc.negate(variable)).toMatchInlineSnapshot(
+    `"calc(var(--prefix-my-var) * -1)"`,
   )
 })

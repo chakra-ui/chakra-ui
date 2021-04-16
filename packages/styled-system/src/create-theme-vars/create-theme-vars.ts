@@ -1,6 +1,6 @@
-import { Dict, isCssVar, walkObject } from "@chakra-ui/utils"
+import { Dict, walkObject } from "@chakra-ui/utils"
 import { ThemeScale } from "./theme-tokens"
-import { calc } from "./calc"
+import { calc, Operand } from "./calc"
 import { cssVar } from "./css-var"
 
 export interface CreateThemeVarsOptions {
@@ -34,7 +34,7 @@ export function createThemeVars(target: Dict, options: CreateThemeVarsOptions) {
 
 type TokenHandler = (
   keys: string[],
-  value: unknown,
+  value: unknown | { reference: string },
   options: CreateThemeVarsOptions,
 ) => ThemeVars
 
@@ -55,19 +55,17 @@ const tokenHandlerMap: Partial<Record<ThemeScale, TokenHandler>> & {
       undefined, // TODO should we add a fallback value?
       options.cssVarPrefix,
     )
-    const negativeValue = isCssVar(String(value))
-      ? calc.negate(String(value)).toString()
-      : `-${value}`
 
-    const varRef = calc.negate(reference).toString()
+    const negativeValue = calc.negate(value as Operand)
+    const varRef = calc.negate(reference)
 
     return {
       cssVars: properties.cssVars,
       cssMap: {
         ...properties.cssMap,
         [negativeLookupKey]: {
-          value: negativeValue,
-          var: variable,
+          value: `${negativeValue}`,
+          var: `${variable}`,
           varRef,
         },
       },

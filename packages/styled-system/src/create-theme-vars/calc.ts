@@ -1,12 +1,20 @@
 /**
  * Thank you @markdalgleish for this piece of art!
  */
+import { isObject } from "@chakra-ui/utils"
 
-type Operand = string | number
+export type Operand = string | number | { reference: string }
 type Operator = "+" | "-" | "*" | "/"
 
+function resolveReference(operand: Operand): string {
+  if (isObject(operand) && operand.reference) {
+    return operand.reference
+  }
+  return String(operand)
+}
+
 const toExpression = (operator: Operator, ...operands: Array<Operand>) =>
-  operands.join(` ${operator} `).replace(/calc/g, "")
+  operands.map(resolveReference).join(` ${operator} `).replace(/calc/g, "")
 
 const add = (...operands: Array<Operand>) =>
   `calc(${toExpression("+", ...operands)})`
@@ -20,7 +28,15 @@ const multiply = (...operands: Array<Operand>) =>
 const divide = (...operands: Array<Operand>) =>
   `calc(${toExpression("/", ...operands)})`
 
-const negate = (x: Operand) => multiply(x, -1)
+const negate = (x: Operand) => {
+  const value = resolveReference(x)
+
+  if (value != null && !Number.isNaN(parseFloat(value))) {
+    return String(value).startsWith("-") ? String(value).slice(1) : `-${value}`
+  }
+
+  return multiply(value, -1)
+}
 
 interface CalcChain {
   add: (...operands: Array<Operand>) => CalcChain
