@@ -215,7 +215,7 @@ const HomePage = ({ members, sponsors, githubStars }: HomePageProps) => {
               color={useColorModeValue("teal.600", "teal.300")}
               mb="48px"
             >
-              Trusted in Production By
+              Supported and Backed by
             </chakra.p>
             <Wrap
               maxW="800px"
@@ -238,18 +238,6 @@ const HomePage = ({ members, sponsors, githubStars }: HomePageProps) => {
                     />
                   </WrapItem>
                 ))}
-              <Box
-                p="4"
-                border="1px dashed"
-                borderColor={useColorModeValue("teal.200", "teal.500")}
-                bg={useColorModeValue("teal.50", "whiteAlpha.200")}
-                rounded="md"
-              >
-                <Box as="span" mr="1" role="img">
-                  💖
-                </Box>{" "}
-                Your company
-              </Box>
             </Wrap>
           </Container>
         </Box>
