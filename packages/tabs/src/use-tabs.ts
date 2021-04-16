@@ -18,6 +18,7 @@ import {
   EventKeyMap,
 } from "@chakra-ui/react-utils"
 import * as React from "react"
+import { shouldTabPanelRenderChildren } from "./utils"
 
 export interface UseTabsProps {
   /**
@@ -50,10 +51,18 @@ export interface UseTabsProps {
   id?: string
   /**
    * Performance 🚀:
-   * If `true`, the TabPanel rendering will be deferred
-   * until it is open.
+   * If `true`, the TabPanel rendering will be deferred until it is open.
    */
   isLazy?: boolean
+  /**
+   * If `true`, tab panels will be unmounted when hidden. This prop only works
+   * if `isLazy={true}`. By default, lazy panels are always unmounted when not
+   * visible, but setting this to `false` overrides the behavior and leaves
+   * previously-selected panels mounted.
+   *
+   * @default true
+   */
+  unmountHiddenPanels?: boolean
 }
 
 /**
@@ -72,6 +81,7 @@ export function useTabs(props: UseTabsProps) {
     index,
     isManual,
     isLazy,
+    unmountHiddenPanels = true,
     orientation = "horizontal",
     ...htmlProps
   } = props
@@ -151,6 +161,7 @@ export function useTabs(props: UseTabsProps) {
     setFocusedIndex,
     isManual,
     isLazy,
+    unmountHiddenPanels,
     orientation,
     enabledDomContext,
     domContext,
@@ -382,14 +393,19 @@ export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
  */
 export function useTabPanel(props: Dict) {
   const { isSelected, id, children, ...htmlProps } = props
-  const { isLazy } = useTabsContext()
+  const { isLazy, unmountHiddenPanels } = useTabsContext()
 
   const hasBeenSelected = React.useRef(false)
   if (isSelected) {
     hasBeenSelected.current = true
   }
 
-  const shouldRenderChildren = !isLazy || hasBeenSelected.current
+  const shouldRenderChildren = shouldTabPanelRenderChildren({
+    hasBeenSelected: hasBeenSelected.current,
+    isSelected,
+    isLazy,
+    unmountHiddenPanels,
+  })
 
   return {
     /**
