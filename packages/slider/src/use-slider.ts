@@ -193,6 +193,8 @@ export function useSlider(props: UseSliderProps) {
   /**
    * Get relative value of slider from the event by tracking
    * how far you clicked within the track to determine the value
+   *
+   * @todo - Refactor this later on to use info from pan session
    */
 
   const getValueFromPointer = useCallback(
@@ -310,10 +312,14 @@ export function useSlider(props: UseSliderProps) {
     })
   }, [isReversed, orientation, thumbBoxModel?.borderBox, trackPercent])
 
-  useUpdateEffect(() => {
+  const focusThumb = useCallback(() => {
     if (thumbRef.current && focusThumbOnChange) {
-      focus(thumbRef.current, { nextTick: true })
+      setTimeout(() => focus(thumbRef.current))
     }
+  }, [focusThumbOnChange])
+
+  useUpdateEffect(() => {
+    focusThumb()
   }, [value])
 
   const setValueFromPointer = (event: AnyPointerEvent) => {
@@ -327,9 +333,7 @@ export function useSlider(props: UseSliderProps) {
     onPanSessionStart(event) {
       if (!isInteractive) return
       setValueFromPointer(event)
-      setTimeout(() => {
-        focus(thumbRef.current)
-      })
+      focusThumb()
     },
     onPanStart() {
       if (!isInteractive) return
