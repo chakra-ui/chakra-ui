@@ -42,15 +42,20 @@ const [MenuProvider, useMenuContext] = createContext<UseMenuReturn>({
 })
 
 const LEFT_RIGHT_REGEX = /left|right|start|end/g
-const flipDirection = (placement: Placement) => {
+export const flipDirection = (placement: Placement) => {
   return placement.replace(LEFT_RIGHT_REGEX, (m) => {
-    return m === "left"
-      ? "right"
-      : m === "right"
-      ? "left"
-      : m === "start"
-      ? "end"
-      : "start"
+    switch (m) {
+      case "left":
+        return "right"
+      case "right":
+        return "left"
+      case "start":
+        return "end"
+      case "end":
+        return "start"
+      default:
+        return m
+    }
   }) as Placement
 }
 

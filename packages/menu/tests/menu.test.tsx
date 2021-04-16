@@ -10,6 +10,8 @@ import { Portal } from "@chakra-ui/portal"
 import * as React from "react"
 import { Button } from "@chakra-ui/button"
 import { FaSearch, FaTruck, FaUndoAlt, FaUnlink } from "react-icons/fa"
+import { extendTheme, ThemeProvider } from "@chakra-ui/react"
+import { Placement } from "@chakra-ui/popper"
 import {
   Menu,
   MenuButton,
@@ -18,8 +20,8 @@ import {
   MenuItemOption,
   MenuList,
   MenuOptionGroup,
+  flipDirection,
 } from "../src"
-import { extendTheme, ThemeProvider } from "@chakra-ui/react"
 
 const words = [
   "About Visual Studio Code",
@@ -462,4 +464,14 @@ test("MenuList direction reflects Chakra theme's direction", () => {
   expect(menuList.parentElement!.getAttribute("data-popper-placement")).toEqual(
     "top-start",
   )
+})
+
+test("flipDirection() flips placement positions correctly", () => {
+  expect(flipDirection("top-right" as Placement)).toBe("top-left")
+  expect(flipDirection("top-left" as Placement)).toBe("top-right")
+  expect(flipDirection("bottom-left" as Placement)).toBe("bottom-right")
+  expect(flipDirection("top-start" as Placement)).toBe("top-end")
+  expect(flipDirection("top-end" as Placement)).toBe("top-start")
+  expect(flipDirection("bottom-end" as Placement)).toBe("bottom-start")
+  expect(flipDirection("auto" as Placement)).toBe("auto")
 })
