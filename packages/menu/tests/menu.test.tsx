@@ -11,7 +11,6 @@ import * as React from "react"
 import { Button } from "@chakra-ui/button"
 import { FaSearch, FaTruck, FaUndoAlt, FaUnlink } from "react-icons/fa"
 import { extendTheme, ThemeProvider } from "@chakra-ui/react"
-import { Placement } from "@chakra-ui/popper"
 import {
   Menu,
   MenuButton,
@@ -20,7 +19,6 @@ import {
   MenuItemOption,
   MenuList,
   MenuOptionGroup,
-  flipDirection,
 } from "../src"
 
 const words = [
