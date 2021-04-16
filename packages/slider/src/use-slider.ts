@@ -3,22 +3,20 @@ import {
   useCallbackRef,
   useControllableState,
   useDimensions,
-  useEventListener,
   useIds,
-  useUnmountEffect,
+  useLatestRef,
+  usePanSession,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
 import { EventKeyMap, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import {
+  AnyPointerEvent,
   ariaAttr,
   callAllHandlers,
   clampValue,
   dataAttr,
-  Dict,
   focus,
   getBox,
-  getOwnerDocument,
-  isRightClick,
   normalizeEventKey,
   percentToValue,
   roundValueToStep,
@@ -153,11 +151,6 @@ export function useSlider(props: UseSliderProps) {
   const onChangeEnd = useCallbackRef(onChangeEndProp)
   const getAriaValueText = useCallbackRef(getAriaValueTextProp)
 
-  const [isDragging, setDragging] = useBoolean()
-  const [isFocused, setFocused] = useBoolean()
-
-  const isInteractive = !(isDisabled || isReadOnly)
-
   /**
    * Enable the slider handle controlled and uncontrolled scenarios
    */
@@ -167,25 +160,17 @@ export function useSlider(props: UseSliderProps) {
     onChange,
   })
 
-  /**
-   * Slider uses DOM APIs to add and remove event listeners.
-   * Noticed some issues with React's synthetic events.
-   *
-   * We use `ref` to save the functions used to remove
-   * the event listeners.
-   *
-   * Ideally, we'll love to use pointer-events API but it is
-   * not fully supported in all browsers.
-   */
-  const cleanUpRef = useRef<Dict<Function>>({})
+  const [isDragging, setDragging] = useBoolean()
+  const [isFocused, setFocused] = useBoolean()
+
+  const isInteractive = !(isDisabled || isReadOnly)
 
   /**
    * Constrain the value because it can't be less than min
    * or greater than max
    */
   const value = clampValue(computedValue, min, max)
-  const valueRef = useRef(value)
-  valueRef.current = value
+  const valueRef = useLatestRef(value)
 
   const reversedValue = max - value + min
   const trackValue = isReversed ? reversedValue : value
@@ -331,122 +316,36 @@ export function useSlider(props: UseSliderProps) {
     }
   }, [value])
 
-  const onMouseDown = (event: MouseEvent) => {
-    /**
-     * Prevent update if it is right-click
-     */
-    if (isRightClick(event)) return
-
-    if (!isInteractive || !rootRef.current) return
-
-    setDragging.on()
-    onChangeStart?.(value)
-
-    const doc = getOwnerDocument(rootRef.current)
-
-    const run = (event: MouseEvent) => {
-      const nextValue = getValueFromPointer(event)
-
-      if (nextValue != null && nextValue !== valueRef.current) {
-        setValue(nextValue)
-      }
-    }
-
-    run(event)
-
-    doc?.addEventListener("mousemove", run)
-
-    function detachMouseMove() {
-      doc?.removeEventListener("mousemove", run)
-      setDragging.off()
-    }
-
-    function handlePointerUp() {
-      detachMouseMove()
-      onChangeEnd?.(value)
-    }
-
-    doc?.addEventListener("mouseup", handlePointerUp)
-    cleanUpRef.current.mouseup = () => {
-      doc?.removeEventListener("mouseup", handlePointerUp)
+  const setValueFromPointer = (event: AnyPointerEvent) => {
+    const nextValue = getValueFromPointer(event)
+    if (nextValue != null && nextValue !== valueRef.current) {
+      setValue(nextValue)
     }
   }
 
-  const onTouchStart = useCallback(
-    (event: TouchEvent) => {
-      if (!isInteractive || !rootRef.current) return
-
-      // Prevent scrolling for touch events
-      event.preventDefault()
-
-      setDragging.on()
-      onChangeStart?.(value)
-
-      const doc = getOwnerDocument(rootRef.current)
-
-      const run = (event: TouchEvent) => {
-        const nextValue = getValueFromPointer(event)
-        if (nextValue != null && nextValue !== valueRef.current) {
-          setValue(nextValue)
-        }
-      }
-
-      run(event)
-
-      doc?.addEventListener("touchmove", run)
-
-      const clean = () => {
-        doc?.removeEventListener("touchmove", run)
-        setDragging.off()
-      }
-
-      doc?.addEventListener("touchend", clean)
-      doc?.addEventListener("touchcancel", clean)
-
-      cleanUpRef.current.touchend = () => {
-        doc?.removeEventListener("touchend", clean)
-      }
-
-      cleanUpRef.current.touchcancel = () => {
-        doc?.removeEventListener("touchcancel", clean)
-      }
+  usePanSession(rootRef, {
+    onPanSessionStart(event) {
+      if (!isInteractive) return
+      setValueFromPointer(event)
+      setTimeout(() => {
+        focus(thumbRef.current)
+      })
     },
-    [
-      isInteractive,
-      setDragging,
-      onChangeStart,
-      value,
-      getValueFromPointer,
-      setValue,
-    ],
-  )
-
-  /**
-   * Remove all event handlers
-   */
-  const detach = useCallback(() => {
-    Object.values(cleanUpRef.current).forEach((cleanup) => {
-      cleanup?.()
-    })
-    cleanUpRef.current = {}
-  }, [])
-
-  /**
-   * Ensure we clean up listeners when slider unmounts
-   */
-  useUnmountEffect(detach)
-
-  cleanUpRef.current.mousedown = useEventListener(
-    "mousedown",
-    onMouseDown,
-    rootRef.current,
-  )
-
-  cleanUpRef.current.touchstart = useEventListener(
-    "touchstart",
-    onTouchStart,
-    rootRef.current,
-  )
+    onPanStart() {
+      if (!isInteractive) return
+      setDragging.on()
+      onChangeStart?.(valueRef.current)
+    },
+    onPan(event) {
+      if (!isInteractive) return
+      setValueFromPointer(event)
+    },
+    onPanEnd() {
+      if (!isInteractive) return
+      setDragging.off()
+      onChangeEnd?.(valueRef.current)
+    },
+  })
 
   const getRootProps: PropGetter = useCallback(
     (props = {}, ref = null) => ({
