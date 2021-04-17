@@ -5,7 +5,7 @@ import {
   useDimensions,
   useIds,
   useLatestRef,
-  usePanSession,
+  usePanGesture,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
 import { EventKeyMap, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
@@ -329,7 +329,7 @@ export function useSlider(props: UseSliderProps) {
     }
   }
 
-  usePanSession(rootRef, {
+  usePanGesture(rootRef, {
     onPanSessionStart(event) {
       if (!isInteractive) return
       setValueFromPointer(event)

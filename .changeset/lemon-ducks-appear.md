@@ -2,7 +2,7 @@
 "@chakra-ui/hooks": minor
 ---
 
-- Add pan session hook `usePanSession` for managing pan gestures
+- Add pan session hook `usePanGesture` for detecting pan gestures
 
 - Update `useLatestRef` to inline value updates. Not concurrent mode safe but
   works for now.

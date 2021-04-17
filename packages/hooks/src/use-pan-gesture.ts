@@ -9,22 +9,23 @@ import React, { useEffect, useRef } from "react"
 import { usePointerEvent } from "./use-pointer-event"
 import { useUnmountEffect } from "./use-unmount-effect"
 
-type UsePanSessionOptions = {
+export interface UsePanGestureProps {
   onPan?: PanHandler
   onPanStart?: PanHandler
   onPanEnd?: PanHandler
   onPanSessionStart?: PanHandler
 }
 
-export function usePanSession(
+export function usePanGesture(
   ref: React.RefObject<HTMLElement>,
-  props: UsePanSessionOptions,
+  props: UsePanGestureProps,
 ) {
   const { onPan, onPanStart, onPanEnd, onPanSessionStart } = props
 
   const hasPanEvents = Boolean(
     onPan || onPanStart || onPanEnd || onPanSessionStart,
   )
+
   const panSession = useRef<PanSession | null>(null)
 
   const handlers: Partial<PanSessionHandlers> = {
@@ -38,9 +39,7 @@ export function usePanSession(
   }
 
   useEffect(() => {
-    if (panSession.current !== null) {
-      panSession.current.updateHandlers(handlers)
-    }
+    panSession.current?.updateHandlers(handlers)
   })
 
   function onPointerDown(event: AnyPointerEvent) {
