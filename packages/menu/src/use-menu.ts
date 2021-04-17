@@ -18,7 +18,6 @@ import {
   getValidChildren,
   mergeRefs,
 } from "@chakra-ui/react-utils"
-import { useTheme } from "@chakra-ui/system"
 import {
   addItem,
   callAllHandlers,
@@ -72,6 +71,11 @@ export interface UseMenuProps extends UsePopperProps, UseDisclosureProps {
    * until the menu is open.
    */
   isLazy?: boolean
+  /**
+   * If `rtl`, poper placement positions will be flipped i.e. 'top-right' will
+   * become 'top-left' and vice-verse
+   */
+  direction?: "ltr" | "rtl"
 }
 
 /**
@@ -92,6 +96,7 @@ export function useMenu(props: UseMenuProps = {}) {
     onClose: onCloseProp,
     onOpen: onOpenProp,
     placement = "bottom-start",
+    direction,
     ...popperProps
   } = props
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure({
@@ -100,7 +105,7 @@ export function useMenu(props: UseMenuProps = {}) {
     onClose: onCloseProp,
     onOpen: onOpenProp,
   })
-  const { direction } = useTheme()
+
   const dirAwarePlacement =
     direction === "rtl" ? flipDirection(placement) : placement
 

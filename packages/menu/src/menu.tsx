@@ -10,6 +10,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
+  useTheme,
 } from "@chakra-ui/system"
 import { cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { MaybeRenderProp } from "@chakra-ui/react-utils"
@@ -48,8 +49,8 @@ export const Menu: React.FC<MenuProps> = (props) => {
 
   const styles = useMultiStyleConfig("Menu", props)
   const ownProps = omitThemingProps(props)
-
-  const ctx = useMenu(ownProps)
+  const { direction } = useTheme()
+  const ctx = useMenu({ ...ownProps, direction })
   const context = React.useMemo(() => ctx, [ctx])
 
   const { isOpen, onClose, forceUpdate } = context
