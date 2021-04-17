@@ -10,7 +10,7 @@ interface User {
 
 const users: User[] = [
   {
-    name: "EchoBinde",
+    name: "Echobind",
     image: "/logos/echobind.svg",
     url: "https://echobind.com/",
     type: "company",
