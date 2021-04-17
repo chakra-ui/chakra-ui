@@ -170,7 +170,7 @@ test("renders only the currently active tab panel if isLazy", () => {
 
 test("renders the currently active tab panel and previously-selected tabs if isLazy and unmountHiddenPanels={false}", () => {
   render(
-    <Tabs isLazy unmountHiddenPanels={false}>
+    <Tabs isLazy lazyBehavior="keepMounted">
       <TabList>
         <Tab>Tab 1</Tab>
         <Tab>Tab 2</Tab>
