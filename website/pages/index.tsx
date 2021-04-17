@@ -215,7 +215,7 @@ const HomePage = ({ members, sponsors, githubStars }: HomePageProps) => {
               color={useColorModeValue("teal.600", "teal.300")}
               mb="48px"
             >
-              Trusted in Production By
+              Supported and Backed by
             </chakra.p>
             <Wrap
               maxW="800px"
