@@ -77,5 +77,6 @@ export function getProgressProps(options: GetProgressPropsOptions) {
       role: "progressbar",
     },
     percent,
+    value,
   }
 }

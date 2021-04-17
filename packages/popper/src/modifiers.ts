@@ -1,9 +1,5 @@
 import { Placement, Modifier, State } from "@popperjs/core"
-import {
-  getBoxShadow,
-  toTransformOrigin,
-  popperCSSVars as cssVars,
-} from "./utils"
+import { getBoxShadow, toTransformOrigin, cssVars } from "./utils"
 
 /* -------------------------------------------------------------------------------------------------
  The match width modifier sets the popper width to match the reference.

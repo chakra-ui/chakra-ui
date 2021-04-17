@@ -1,5 +1,48 @@
 # Change Log
 
+## 1.2.3
+
+### Patch Changes
+
+- [`327f00644`](https://github.com/chakra-ui/chakra-ui/commit/327f00644d3336fe1e2d3152f9cc3474a18824ef)
+  [#3765](https://github.com/chakra-ui/chakra-ui/pull/3765) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fix RTL styles for toast
+  component
+
+- Updated dependencies
+  [[`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d),
+  [`5617aabea`](https://github.com/chakra-ui/chakra-ui/commit/5617aabeaa6c3faef37deeebeddbc9bf3cc88088),
+  [`753b56d63`](https://github.com/chakra-ui/chakra-ui/commit/753b56d6366276f217d28131c17c41427ae7761c),
+  [`d1532f0b7`](https://github.com/chakra-ui/chakra-ui/commit/d1532f0b72c36d0609ee4510613d7c76f4f9c113),
+  [`890839d9f`](https://github.com/chakra-ui/chakra-ui/commit/890839d9fe32d5ec90954c8f4c5b6c463ff0b57d)]:
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/transition@1.2.0
+  - @chakra-ui/theme@1.8.2
+  - @chakra-ui/hooks@1.4.0
+  - @chakra-ui/alert@1.2.2
+  - @chakra-ui/close-button@1.1.6
+
+## 1.2.2
+
+### Patch Changes
+
+- [`799f3c803`](https://github.com/chakra-ui/chakra-ui/commit/799f3c8037121b10aa4de15f5e9672b2b43a6a73)
+  [#3752](https://github.com/chakra-ui/chakra-ui/pull/3752) Thanks
+  [@baptisteArno](https://github.com/baptisteArno)! - Take into account safe
+  area insets for Toasts
+
+- Updated dependencies
+  [[`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94),
+  [`c69d2b983`](https://github.com/chakra-ui/chakra-ui/commit/c69d2b98350b57f133d6a8ea47b631cd25693aee),
+  [`75817ec42`](https://github.com/chakra-ui/chakra-ui/commit/75817ec428ca3c078660a7c7f2a1c1b578c474df),
+  [`e481ba491`](https://github.com/chakra-ui/chakra-ui/commit/e481ba4914a7f163d93d4c22e2e457f1afb08721)]:
+  - @chakra-ui/utils@1.5.1
+  - @chakra-ui/transition@1.1.2
+  - @chakra-ui/theme@1.8.1
+  - @chakra-ui/alert@1.2.1
+  - @chakra-ui/hooks@1.3.1
+  - @chakra-ui/close-button@1.1.5
+
 ## 1.2.1
 
 ### Patch Changes

@@ -1,4 +1,5 @@
 import { Button, ButtonGroup } from "@chakra-ui/button"
+import { useInterval } from "@chakra-ui/hooks"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import {
@@ -128,5 +129,51 @@ export function ControlledUsage() {
         </PopoverContent>
       </Popover>
     </>
+  )
+}
+
+const Interval = () => {
+  const [value, setValue] = React.useState(0)
+  useInterval(() => setValue((v) => v + 1), 1000)
+  return (
+    <span style={{ fontWeight: "bold", color: "tomato", padding: 4 }}>
+      {value}
+    </span>
+  )
+}
+
+export function WithLazyPopover() {
+  return (
+    <Popover isLazy>
+      <PopoverTrigger>
+        <Button colorScheme="pink">Popover Target</Button>
+      </PopoverTrigger>
+      <PopoverContent>
+        <PopoverBody>
+          Are you sure you want to continue with your action?
+          <p>
+            Timer: <Interval />
+          </p>
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
+  )
+}
+
+export function WithLazyPopoverMounted() {
+  return (
+    <Popover isLazy lazyBehavior="keepMounted">
+      <PopoverTrigger>
+        <Button colorScheme="pink">Popover Target</Button>
+      </PopoverTrigger>
+      <PopoverContent>
+        <PopoverBody>
+          Are you sure you want to continue with your action?
+          <p>
+            Timer: <Interval />
+          </p>
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
   )
 }

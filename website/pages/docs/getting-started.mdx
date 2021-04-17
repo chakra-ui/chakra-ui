@@ -45,6 +45,22 @@ function App() {
 > - For Create React App, you need to set this up in `index.js` or `index.tsx`
 
 ### Next.js
+<Box mt={3}>
+  <AspectRatio ratio={16 / 8.84}>
+    <VideoPlayer
+      width="100%"
+      height="100%"
+      url="https://www.youtube.com/watch?v=wI2vqXsjsIo"
+      config={{
+        youtube: {
+          playerVars: {
+            controls: true
+          }
+        }
+      }}
+    />
+  </AspectRatio>
+</Box>
 
 Go to `pages/_app.js` or `pages/_app.tsx` (create if it doesn't exist) and add
 this:
@@ -66,7 +82,7 @@ export default MyApp
 ### Gatsby
 
 Add the
-[@chakra-ui/gatsby-plugin](gatsbyjs.com/plugins/@chakra-ui/gatsby-plugin/). It
+[@chakra-ui/gatsby-plugin](https://www.gatsbyjs.com/plugins/@chakra-ui/gatsby-plugin/). It
 does everything automatically for you!
 
 ```bash

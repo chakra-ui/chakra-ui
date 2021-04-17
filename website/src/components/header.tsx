@@ -15,7 +15,7 @@ import siteConfig from "configs/site-config"
 import { useViewportScroll } from "framer-motion"
 import NextLink from "next/link"
 import React from "react"
-import { FaMoon, FaSun } from "react-icons/fa"
+import { FaMoon, FaSun, FaYoutube } from "react-icons/fa"
 import Logo, { LogoIcon } from "./logo"
 import { MobileNavButton, MobileNavContent } from "./mobile-nav"
 import Search from "./omni-search"
@@ -75,7 +75,11 @@ function HeaderContent() {
           color="gray.400"
         >
           <Search />
-          <VersionSwitcher w="67px" display={{ base: "none", md: "flex" }} />
+          <VersionSwitcher
+            width="auto"
+            flexShrink={0}
+            display={{ base: "none", md: "flex" }}
+          />
           <HStack spacing="5" display={{ base: "none", md: "flex" }}>
             <Link
               isExternal
@@ -94,6 +98,20 @@ function HeaderContent() {
             <Link aria-label="Go to Chakra UI Discord page" href="/discord">
               <Icon
                 as={DiscordIcon}
+                display="block"
+                transition="color 0.2s"
+                w="5"
+                h="5"
+                _hover={{ color: "gray.600" }}
+              />
+            </Link>
+            <Link
+              isExternal
+              aria-label="Go to Chakra UI YouTube channel"
+              href={siteConfig.youtube}
+            >
+              <Icon
+                as={FaYoutube}
                 display="block"
                 transition="color 0.2s"
                 w="5"
@@ -140,15 +158,13 @@ function Header(props) {
     <chakra.header
       ref={ref}
       shadow={y > height ? "sm" : undefined}
-      transition="box-shadow 0.2s"
-      pos="fixed"
+      transition="box-shadow 0.2s, background-color 0.2s"
+      pos="sticky"
       top="0"
       zIndex="3"
       bg={bg}
       left="0"
       right="0"
-      borderTop="6px solid"
-      borderTopColor="teal.400"
       width="full"
       {...props}
     >

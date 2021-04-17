@@ -31,20 +31,22 @@ if (__DEV__) {
   StatLabel.displayName = "StatLabel"
 }
 
-export interface StatHelpTextProps extends HTMLChakraProps<"p"> {}
+export interface StatHelpTextProps extends HTMLChakraProps<"dd"> {}
 
-export const StatHelpText = forwardRef<StatHelpTextProps, "p">((props, ref) => {
-  const styles = useStyles()
+export const StatHelpText = forwardRef<StatHelpTextProps, "dd">(
+  (props, ref) => {
+    const styles = useStyles()
 
-  return (
-    <chakra.p
-      ref={ref}
-      {...props}
-      className={cx("chakra-stat__help-text", props.className)}
-      __css={styles.helpText}
-    />
-  )
-})
+    return (
+      <chakra.dd
+        ref={ref}
+        {...props}
+        className={cx("chakra-stat__help-text", props.className)}
+        __css={styles.helpText}
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   StatHelpText.displayName = "StatHelpText"

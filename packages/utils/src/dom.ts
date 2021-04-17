@@ -1,16 +1,16 @@
 import { Booleanish, EventKeys } from "./types"
 
-export function getOwnerWindow(node?: HTMLElement | null) {
+export function getOwnerWindow(node?: HTMLElement | null): Window {
   return node instanceof Element
     ? getOwnerDocument(node)?.defaultView ?? window
     : window
 }
 
-export function getOwnerDocument(node?: HTMLElement | null) {
+export function getOwnerDocument(node?: HTMLElement | null): Document {
   return node instanceof Element ? node.ownerDocument ?? document : document
 }
 
-export function canUseDOM() {
+export function canUseDOM(): boolean {
   return !!(
     typeof window !== "undefined" &&
     window.document &&
@@ -76,5 +76,6 @@ export function getRelatedTarget(
   return (event.relatedTarget ?? originalTarget ?? activeElement) as HTMLElement
 }
 
-export const isRightClick = (event: Pick<MouseEvent, "button">) =>
-  event.button !== 0
+export function isRightClick(event: Pick<MouseEvent, "button">): boolean {
+  return event.button !== 0
+}

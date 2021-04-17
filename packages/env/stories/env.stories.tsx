@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import React, { createPortal } from "react-dom"
 import Frame from "react-frame-component"
 
@@ -28,18 +29,39 @@ export function WithIframe() {
   )
 }
 
+function useWindow() {
+  const { window: win } = useEnvironment()
+  const [match, setMatch] = useState(false)
+
+  useEffect(() => {
+    const handler = (query: MediaQueryListEvent) => {
+      setMatch(query.matches)
+    }
+    const mql = win.matchMedia("(min-width: 600px)")
+    setMatch(mql.matches)
+    mql.addListener(handler)
+    return () => {
+      mql.removeListener(handler)
+    }
+  }, [win])
+
+  return {
+    w: win.innerWidth,
+    h: win.innerHeight,
+    match,
+  }
+}
+
 function WindowSize() {
-  const { window } = useEnvironment()
-  return (
-    <pre>{JSON.stringify({ w: window.innerWidth, h: window.innerHeight })}</pre>
-  )
+  const details = useWindow()
+  return <pre>{JSON.stringify(details)}</pre>
 }
 
 export function SizeWithinIframe() {
   return (
     <>
       <WindowSize />
-      <Frame style={{ background: "yellow" }}>
+      <Frame style={{ background: "yellow", width: "100%", maxWidth: "300px" }}>
         <EnvironmentProvider>
           <WindowSize />
         </EnvironmentProvider>

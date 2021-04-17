@@ -91,7 +91,12 @@ export function useTooltip(props: UseTooltipProps = {}) {
     onClose: onCloseProp,
   })
 
-  const popper = usePopper({
+  const {
+    referenceRef,
+    getPopperProps,
+    getArrowInnerProps,
+    getArrowProps,
+  } = usePopper({
     placement,
     arrowPadding,
     modifiers,
@@ -159,7 +164,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     (props = {}, _ref = null) => {
       const triggerProps = {
         ...props,
-        ref: mergeRefs(ref, _ref, popper.referenceRef),
+        ref: mergeRefs(ref, _ref, referenceRef),
         onMouseEnter: callAllHandlers(props.onMouseEnter, openWithDelay),
         onClick: callAllHandlers(props.onClick, onClick),
         onMouseDown: callAllHandlers(props.onMouseDown, onMouseDown),
@@ -177,23 +182,26 @@ export function useTooltip(props: UseTooltipProps = {}) {
       isOpen,
       tooltipId,
       onClick,
-      popper,
+      referenceRef,
     ],
   )
 
   const getTooltipPositionerProps: PropGetter = React.useCallback(
-    (props = {}, _ref = null) => {
-      return {
-        ...props,
-        style: {
-          ...props.style,
-          [popperCSSVars.arrowSize.var]: px(arrowSize),
-          [popperCSSVars.arrowShadowColor.var]: arrowShadowColor,
+    (props = {}, forwardedRef = null) =>
+      getPopperProps(
+        {
+          ...props,
+          style: {
+            ...props.style,
+            [popperCSSVars.arrowSize.var]: arrowSize
+              ? px(arrowSize)
+              : undefined,
+            [popperCSSVars.arrowShadowColor.var]: arrowShadowColor,
+          },
         },
-        ref: mergeRefs(_ref, popper.popperRef),
-      }
-    },
-    [popper, arrowSize, arrowShadowColor],
+        forwardedRef,
+      ),
+    [getPopperProps, arrowSize, arrowShadowColor],
   )
 
   const getTooltipProps = React.useCallback(
@@ -223,6 +231,8 @@ export function useTooltip(props: UseTooltipProps = {}) {
     getTriggerProps,
     getTooltipProps,
     getTooltipPositionerProps,
+    getArrowProps,
+    getArrowInnerProps,
   }
 }
 

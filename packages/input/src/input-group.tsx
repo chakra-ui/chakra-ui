@@ -30,25 +30,23 @@ export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
     if (!styles) return
 
     if (input && child.type.id === "InputLeftElement") {
-      groupStyles.paddingLeft = input.height ?? input.h
+      groupStyles.paddingStart = input.height ?? input.h
     }
 
     if (input && child.type.id === "InputRightElement") {
-      groupStyles.paddingRight = input.height ?? input.h
+      groupStyles.paddingEnd = input.height ?? input.h
     }
 
     if (child.type.id === "InputRightAddon") {
-      groupStyles.borderRightRadius = 0
+      groupStyles.borderEndRadius = 0
     }
 
     if (child.type.id === "InputLeftAddon") {
-      groupStyles.borderLeftRadius = 0
+      groupStyles.borderStartRadius = 0
     }
   })
 
   const clones = validChildren.map((child: any) => {
-    const { pl, paddingLeft, pr, paddingRight } = child.props
-
     /**
      * Make it possible to override the size and variant from `Input`
      */
@@ -59,13 +57,10 @@ export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
 
     return child.type.id !== "Input"
       ? React.cloneElement(child, theming)
-      : React.cloneElement(child, {
-          ...theming,
-          paddingLeft: pl ?? paddingLeft ?? groupStyles?.paddingLeft,
-          paddingRight: pr ?? paddingRight ?? groupStyles?.paddingRight,
-          borderLeftRadius: groupStyles?.borderLeftRadius,
-          borderRightRadius: groupStyles?.borderRightRadius,
-        })
+      : React.cloneElement(
+          child,
+          Object.assign(theming, groupStyles, child.props),
+        )
   })
 
   return (

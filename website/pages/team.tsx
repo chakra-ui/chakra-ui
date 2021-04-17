@@ -12,6 +12,7 @@ import {
   WrapItem,
 } from "@chakra-ui/react"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
+import { AdBanner } from "components/chakra-pro/ad-banner"
 import Container from "components/container"
 import Header from "components/header"
 import PageTransition from "components/page-transition"
@@ -97,14 +98,15 @@ function Team({ members, contributors }: TeamProps) {
         description="List of team members and contributors that make the Chakra UI project possible"
       />
       <SkipNavLink zIndex={20}>Skip to Content</SkipNavLink>
+      <AdBanner />
       <Header />
 
-      <Box mt={{ base: "60px", md: "120px" }} mb="60px">
+      <Box mt="3rem" mb="60px">
         <SkipNavContent />
         <PageTransition>
           <Container py="80px" textAlign="center">
             <chakra.h1
-              color="teal.400"
+              color="teal.500"
               textStyle="heading"
               mb="5"
               fontWeight="bold"

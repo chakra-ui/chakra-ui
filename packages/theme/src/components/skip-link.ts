@@ -8,7 +8,7 @@ const baseStyle = (props: Record<string, any>) => ({
     padding: "1rem",
     position: "fixed",
     top: "1.5rem",
-    left: "1.5rem",
+    insetStart: "1.5rem",
     bg: mode("white", "gray.700")(props),
   },
 })

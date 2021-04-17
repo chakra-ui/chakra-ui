@@ -1,5 +1,36 @@
 # Change Log
 
+## 1.2.2
+
+### Patch Changes
+
+- [`3ff53e4e3`](https://github.com/chakra-ui/chakra-ui/commit/3ff53e4e3857b94c4fc18b8e02cf914bdff860e1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix alignment of
+  icon inside button
+
+* [`9fcccbe34`](https://github.com/chakra-ui/chakra-ui/commit/9fcccbe348f87fb4a386450e5327bb578e14cb16)
+  [#3765](https://github.com/chakra-ui/chakra-ui/pull/3765) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Update button group styles
+  to use rtl-friendly equivalent
+
+* Updated dependencies
+  [[`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d),
+  [`3ff53e4e3`](https://github.com/chakra-ui/chakra-ui/commit/3ff53e4e3857b94c4fc18b8e02cf914bdff860e1)]:
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/spinner@1.1.6
+
+## 1.2.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`87a03b320`](https://github.com/chakra-ui/chakra-ui/commit/87a03b320b62e639ca4a891186f202cb839a8402),
+  [`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94),
+  [`e481ba491`](https://github.com/chakra-ui/chakra-ui/commit/e481ba4914a7f163d93d4c22e2e457f1afb08721)]:
+  - @chakra-ui/react-utils@1.1.1
+  - @chakra-ui/utils@1.5.1
+  - @chakra-ui/spinner@1.1.5
+
 ## 1.2.0
 
 ### Minor Changes

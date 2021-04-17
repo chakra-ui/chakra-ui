@@ -6,7 +6,7 @@ const parts = ["requiredIndicator", "helperText"]
 
 function baseStyleRequiredIndicator(props: Dict) {
   return {
-    ml: 1,
+    marginStart: 1,
     color: mode("red.500", "red.300")(props),
   }
 }

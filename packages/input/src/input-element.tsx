@@ -29,12 +29,13 @@ const InputElement = forwardRef<InputElementProps, "div">((props, ref) => {
   const styles = useStyles()
   const input: any = styles.field
 
+  const attr = placement === "left" ? "insetStart" : "insetEnd"
+
   const elementStyles: SystemStyleObject = {
-    [placement]: "0",
+    [attr]: "0",
     width: input?.height ?? input?.h,
     height: input?.height ?? input?.h,
     fontSize: input?.fontSize,
-    paddingX: input?.paddingLeft ?? input?.pl,
   }
 
   return <StyledElement ref={ref} __css={elementStyles} {...rest} />

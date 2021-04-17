@@ -1,31 +1,31 @@
-export function getFirstItem<T>(array: T[]) {
+export function getFirstItem<T>(array: T[]): T | undefined {
   return array != null && array.length ? array[0] : undefined
 }
 
-export function getLastItem<T>(array: T[]) {
+export function getLastItem<T>(array: T[]): T | undefined {
   const length = array == null ? 0 : array.length
   return length ? array[length - 1] : undefined
 }
 
-export function getPrevItem<T>(index: number, array: T[], loop = true) {
+export function getPrevItem<T>(index: number, array: T[], loop = true): T {
   const prevIndex = getPrevIndex(index, array.length, loop)
   return array[prevIndex]
 }
 
-export function getNextItem<T>(index: number, array: T[], loop = true) {
+export function getNextItem<T>(index: number, array: T[], loop = true): T {
   const nextIndex = getNextIndex(index, array.length, 1, loop)
   return array[nextIndex]
 }
 
-export function removeIndex<T>(array: T[], index: number) {
+export function removeIndex<T>(array: T[], index: number): T[] {
   return array.filter((_, idx) => idx !== index)
 }
 
-export function addItem<T>(array: T[], item: T) {
+export function addItem<T>(array: T[], item: T): T[] {
   return [...array, item]
 }
 
-export function removeItem<T>(array: T[], item: T) {
+export function removeItem<T>(array: T[], item: T): T[] {
   return array.filter((eachItem) => eachItem !== item)
 }
 
@@ -42,7 +42,7 @@ export function getNextIndex(
   length: number,
   step = 1,
   loop = true,
-) {
+): number {
   const lastIndex = length - 1
 
   if (currentIndex === -1) {
@@ -72,8 +72,12 @@ export function getNextIndex(
  * @param loop - whether we should circle back to the
  * first/last once `currentIndex` is at the start/end
  */
-export function getPrevIndex(currentIndex: number, count: number, loop = true) {
-  return getNextIndex(currentIndex, count, -1, loop)
+export function getPrevIndex(
+  index: number,
+  count: number,
+  loop = true,
+): number {
+  return getNextIndex(index, count, -1, loop)
 }
 
 /**
@@ -106,7 +110,7 @@ export function getNextItemFromSearch<T>(
   searchString: string,
   itemToString: (item: T) => string,
   currentItem: T,
-) {
+): T | undefined {
   if (searchString == null) {
     return currentItem
   }

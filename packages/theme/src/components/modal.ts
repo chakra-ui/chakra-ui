@@ -38,7 +38,7 @@ function baseStyleDialog(props: Dict) {
     color: "inherit",
     my: "3.75rem",
     zIndex: "modal",
-    maxH: scrollBehavior === "inside" ? "calc(100vh - 7.5rem)" : undefined,
+    maxH: scrollBehavior === "inside" ? "calc(100% - 7.5rem)" : undefined,
     boxShadow: mode("lg", "dark-lg")(props),
   }
 }

@@ -5,6 +5,7 @@ import {
   dataAttr,
   pick,
   warn,
+  scheduleMicrotask,
 } from "@chakra-ui/utils"
 import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
@@ -15,7 +16,6 @@ import {
   useRef,
   useState,
 } from "react"
-import ReactDOM from "react-dom"
 import { useFormControl } from "@chakra-ui/form-control"
 
 /**
@@ -200,15 +200,16 @@ export function useRadio(props: UseRadioProps = {}) {
         "onBlur",
       ])
 
-      // This is a workaround for React Concurrent Mode issue https://github.com/facebook/react/issues/18591. Remove once it's fixed.
+      /**
+       * This is a workaround for React Concurrent Mode issue.
+       * @see Issue https://github.com/facebook/react/issues/18591.
+       *
+       * Remove once it's fixed.
+       */
       const focus = () => {
-        if (typeof (ReactDOM as any).flushSync === "function") {
-          ;(ReactDOM as any).flushSync(() => {
-            setFocused.on()
-          })
-        } else {
+        scheduleMicrotask(() => {
           setFocused.on()
-        }
+        })
       }
 
       const trulyDisabled = ownProps.disabled && !isFocusable

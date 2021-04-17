@@ -1,5 +1,53 @@
 # Change Log
 
+## 1.2.2
+
+### Patch Changes
+
+- [`059ea7f26`](https://github.com/chakra-ui/chakra-ui/commit/059ea7f262b6f79bf303886f90ca82c02b8fcc78)
+  [#3791](https://github.com/chakra-ui/chakra-ui/pull/3791) Thanks
+  [@navarroaxel](https://github.com/navarroaxel)! - Improve wording for the
+  `use-outside-click` page
+
+- Updated dependencies
+  [[`09aa19b23`](https://github.com/chakra-ui/chakra-ui/commit/09aa19b23544f612ac54c22ad0b344d66b871674),
+  [`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d),
+  [`81a40231f`](https://github.com/chakra-ui/chakra-ui/commit/81a40231f12461dcca0fa0cd3c4e9e2c0497a04d)]:
+  - @chakra-ui/react@1.5.1
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/props-docs@1.0.23
+  - @chakra-ui/theme-tools@1.1.4
+
+## 1.2.1
+
+### Patch Changes
+
+- [`d79f5bce9`](https://github.com/chakra-ui/chakra-ui/commit/d79f5bce905cd9157d86c69fd6255c3196e4c0cb)
+  [#3729](https://github.com/chakra-ui/chakra-ui/pull/3729) Thanks
+  [@navarroaxel](https://github.com/navarroaxel)! - Add docs for `useMergeRefs`
+  hook
+
+* [`5f19da9db`](https://github.com/chakra-ui/chakra-ui/commit/5f19da9db806d452cbb827696078e9b63c75884c)
+  [#3730](https://github.com/chakra-ui/chakra-ui/pull/3730) Thanks
+  [@navarroaxel](https://github.com/navarroaxel)! - Add docs for `useBoolean`
+  hook
+
+- [`372b8f485`](https://github.com/chakra-ui/chakra-ui/commit/372b8f485b1411ad3be694b0d5c4d466caca23b7)
+  [#3661](https://github.com/chakra-ui/chakra-ui/pull/3661) Thanks
+  [@navarroaxel](https://github.com/navarroaxel)! - Add docs for
+  `useOutsideClick` hook
+
+- Updated dependencies
+  [[`ac21d798a`](https://github.com/chakra-ui/chakra-ui/commit/ac21d798a0759b45de02c6821804f40f492fd80e),
+  [`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94),
+  [`c69d2b983`](https://github.com/chakra-ui/chakra-ui/commit/c69d2b98350b57f133d6a8ea47b631cd25693aee),
+  [`2287d82e3`](https://github.com/chakra-ui/chakra-ui/commit/2287d82e31744cd289aaf524bb9961e46003c404),
+  [`e481ba491`](https://github.com/chakra-ui/chakra-ui/commit/e481ba4914a7f163d93d4c22e2e457f1afb08721)]:
+  - @chakra-ui/react@1.5.0
+  - @chakra-ui/utils@1.5.1
+  - @chakra-ui/theme-tools@1.1.3
+  - @chakra-ui/props-docs@1.0.22
+
 ## 1.2.0
 
 ### Minor Changes

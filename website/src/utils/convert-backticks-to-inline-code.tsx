@@ -4,7 +4,8 @@ import MDXComponents from "components/mdx-components"
  * Replace the code blocks wrapped in backticks
  * with inline code blocks.
  */
-export function convertBackticksToInlineCode(input: string) {
+export function convertBackticksToInlineCode(input?: string) {
+  if (!input) return ""
   return input
     .split(/(`\w+`)/)
     .map((chunk) =>

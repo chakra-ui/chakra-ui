@@ -69,14 +69,14 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">((props, ref) => {
   if (isAttached) {
     groupStyles = {
       ...groupStyles,
-      "> *:first-of-type:not(:last-of-type)": { borderRightRadius: 0 },
+      "> *:first-of-type:not(:last-of-type)": { borderEndRadius: 0 },
       "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
-      "> *:not(:first-of-type):last-of-type": { borderLeftRadius: 0 },
+      "> *:not(:first-of-type):last-of-type": { borderStartRadius: 0 },
     }
   } else {
     groupStyles = {
       ...groupStyles,
-      "& > *:not(style) ~ *:not(style)": { marginLeft: spacing },
+      "& > *:not(style) ~ *:not(style)": { marginStart: spacing },
     }
   }
 

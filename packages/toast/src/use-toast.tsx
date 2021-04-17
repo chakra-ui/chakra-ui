@@ -84,8 +84,8 @@ const Toast: React.FC<any> = (props) => {
       alignItems="start"
       borderRadius="md"
       boxShadow="lg"
-      paddingRight={8}
-      textAlign="left"
+      paddingEnd={8}
+      textAlign="start"
       width="auto"
     >
       <AlertIcon />
@@ -100,7 +100,7 @@ const Toast: React.FC<any> = (props) => {
           size="sm"
           onClick={onClose}
           position="absolute"
-          right={1}
+          insetEnd={1}
           top={1}
         />
       )}

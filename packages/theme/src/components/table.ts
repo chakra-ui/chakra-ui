@@ -30,7 +30,7 @@ const baseStyle = {
 
 const numericStyles = {
   "&[data-is-numeric=true]": {
-    textAlign: "right",
+    textAlign: "end",
   },
 }
 

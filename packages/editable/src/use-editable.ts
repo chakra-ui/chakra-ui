@@ -3,18 +3,16 @@ import {
   useFocusOnPointerDown,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
+import { EventKeyMap, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import {
   ariaAttr,
   callAllHandlers,
   contains,
   focus,
-  getOwnerDocument,
-  isBrowser,
+  getRelatedTarget,
   isEmpty,
   normalizeEventKey,
-  getRelatedTarget,
 } from "@chakra-ui/utils"
-import { PropGetter, EventKeyMap, mergeRefs } from "@chakra-ui/react-utils"
 import React, { useCallback, useRef, useState } from "react"
 
 export interface UseEditableProps {
@@ -122,7 +120,8 @@ export function useEditable(props: UseEditableProps = {}) {
   const submitButtonRef = useRef<HTMLElement>(null)
 
   useFocusOnPointerDown({
-    doc: isBrowser ? getOwnerDocument(inputRef.current) : null,
+    ref: inputRef,
+    enabled: isEditing,
     elements: [cancelButtonRef, submitButtonRef],
   })
 

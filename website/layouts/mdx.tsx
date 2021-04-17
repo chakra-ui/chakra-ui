@@ -17,6 +17,7 @@ export function getRoutes(slug: string) {
 
   const configMap = {
     "/resources": docsSidebar,
+    "/changelog": docsSidebar,
     "/guides": guidesSidebar,
     "/blog": blogSidebar,
     "/docs": docsSidebar,
@@ -30,14 +31,28 @@ export function getRoutes(slug: string) {
   return sidebar?.routes ?? []
 }
 
-function MDXLayout({ frontmatter, children }) {
+export function MDXLayoutProvider({ children }) {
+  return (
+    <MDXProvider components={{ ...chakraComponents, ...MDXComponents }}>
+      {children}
+    </MDXProvider>
+  )
+}
+
+interface MDXLayoutProps {
+  frontmatter: any
+  children: React.ReactNode
+}
+
+function MDXLayout(props: MDXLayoutProps) {
+  const { frontmatter, children } = props
   const routes = getRoutes(frontmatter.slug)
 
   const route = findRouteByPath(removeFromLast(frontmatter.slug, "#"), routes)
   const routeContext = getRouteContext(route, routes)
 
   return (
-    <MDXProvider components={{ ...chakraComponents, ...MDXComponents }}>
+    <MDXLayoutProvider>
       <PageContainer
         frontmatter={frontmatter}
         sidebar={<Sidebar routes={routes} />}
@@ -50,7 +65,7 @@ function MDXLayout({ frontmatter, children }) {
       >
         {children}
       </PageContainer>
-    </MDXProvider>
+    </MDXLayoutProvider>
   )
 }
 

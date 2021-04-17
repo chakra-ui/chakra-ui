@@ -3,15 +3,9 @@ import { useRouter } from "next/router"
 import React from "react"
 import pkgJSON from "@chakra-ui/react/package.json"
 
-function pkgVersion() {
-  let version: any = pkgJSON.version.split(".")
-  version.pop()
-  return version.join(".")
-}
-
 const versions = [
-  { label: `v${pkgVersion()}`, url: "https://chakra-ui.com" },
-  { label: "v0.8", url: "https://v0.chakra-ui.com" },
+  { label: `v${pkgJSON.version}`, url: "https://chakra-ui.com" },
+  { label: "v0.8.x", url: "https://v0.chakra-ui.com" },
 ]
 
 const v1Url = versions[0].url
@@ -21,7 +15,7 @@ function VersionSwitcher(props: SelectProps) {
 
   return (
     <Select
-      mr="1rem"
+      marginEnd="1rem"
       variant="unstyled"
       fontWeight="semibold"
       color={useColorModeValue("gray.600", "whiteAlpha.600")}
