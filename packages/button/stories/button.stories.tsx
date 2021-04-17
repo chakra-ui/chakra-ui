@@ -155,11 +155,11 @@ export const WithLoading = () => (
   </Stack>
 )
 
-export const WithLoadingSpinnerPosition = () => (
+export const WithLoadingSpinnerPlacement = () => (
   <Stack direction="row" spacing={4} align="center">
     <Button
       isLoading
-      loadingText="Submitting..."
+      loadingText="Loading"
       colorScheme="teal"
       variant="outline"
       spinnerPosition="start"
@@ -168,15 +168,16 @@ export const WithLoadingSpinnerPosition = () => (
     </Button>
     <Button
       isLoading
-      loadingText="Continuing..."
+      loadingText="Loading"
       colorScheme="teal"
       variant="outline"
-      spinnerPosition="end"
+      spinnerPlacement="end"
     >
       Continue
     </Button>
   </Stack>
 )
+
 export const withDisabled = () => (
   <HStack spacing="24px">
     <Button isDisabled colorScheme="teal" variant="solid">
