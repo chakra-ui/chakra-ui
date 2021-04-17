@@ -1,4 +1,5 @@
 import { chakra } from "@chakra-ui/system"
+import { useInterval } from "@chakra-ui/hooks"
 import * as React from "react"
 import { Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs } from "../src"
 
@@ -101,6 +102,54 @@ export const withVerticalTabs = () => (
       <TabPanel>Billings</TabPanel>
       <TabPanel>Preferences</TabPanel>
       <TabPanel>Shut Down</TabPanel>
+    </TabPanels>
+  </Tabs>
+)
+
+const Interval = () => {
+  const [value, setValue] = React.useState(0)
+  useInterval(() => setValue((v) => v + 1), 1000)
+  return (
+    <span style={{ fontWeight: "bold", color: "tomato", padding: 4 }}>
+      {value}
+    </span>
+  )
+}
+
+export const withLazyTabs = () => (
+  <Tabs isLazy>
+    <TabList>
+      <Tab>Interval 1</Tab>
+      <Tab>Interval 2</Tab>
+    </TabList>
+    <TabPanels>
+      <TabPanel>
+        Interval 1:
+        <Interval />
+      </TabPanel>
+      <TabPanel>
+        Interval 2:
+        <Interval />
+      </TabPanel>
+    </TabPanels>
+  </Tabs>
+)
+
+export const withLazyTabsMounted = () => (
+  <Tabs isLazy lazyBehavior="keepMounted">
+    <TabList>
+      <Tab>Interval 1</Tab>
+      <Tab>Interval 2</Tab>
+    </TabList>
+    <TabPanels>
+      <TabPanel>
+        Interval 1:
+        <Interval />
+      </TabPanel>
+      <TabPanel>
+        Interval 2:
+        <Interval />
+      </TabPanel>
     </TabPanels>
   </Tabs>
 )

@@ -10,59 +10,49 @@ interface User {
 
 const users: User[] = [
   {
+    name: "Echobind",
+    image: "/logos/echobind.svg",
+    url: "https://echobind.com/",
+    type: "company",
+  },
+  {
+    name: "Lattice",
+    image:
+      "https://assets-global.website-files.com/5b5a66e9f3166b36708705fa/5d9a24a24aefbe7193967c21_logo.svg",
+    url: "https://lattice.com/",
+    type: "company",
+  },
+  {
+    name: "DataStory",
+    image: "/logos/datastory.svg",
+    url: "https://www.datastory.org/",
+    type: "company",
+  },
+  {
+    name: "Shogun",
+    image:
+      "https://assets-global.website-files.com/6019b5ca8a4b1bb6fcbcdbe1/603965ab496482ca15b0ecfb_shogunlogo-black.svg",
+    url: "https://getshogun.com/",
+    type: "company",
+  },
+  {
+    name: "Brikl",
+    image:
+      "https://www.brikl.com/hs-fs/hubfs/Brand%20Assets/BRIKL-LOGO-removebg-preview.png?width=667&height=231&name=BRIKL-LOGO-removebg-preview.png",
+    url: "https://www.brikl.com/",
+    type: "company",
+  },
+  {
     name: "Usability Hub",
     image: "/logos/usability-hub.png",
     url: "https://usabilityhub.com/",
     type: "company",
   },
   {
-    name: "Tradeling",
-    image: "/logos/tradeling.svg",
-    url: "https://tradeling.com/",
-    type: "company",
-  },
-  {
-    name: "Codelify",
-    // issue with downloading logo locally
+    name: "Shoot Proof",
     image:
-      "https://res.cloudinary.com/codelify/image/upload/f_auto,q_auto/v1583158030/logo-green-grad_b5mjgi.svg",
-    url: "https://codelify.dev/",
-    type: "company",
-  },
-  {
-    name: "NullServe",
-    image: "/logos/null-serve.svg",
-    url: "https://nullserve.com/",
-    type: "company",
-  },
-  {
-    name: "Virus Cafe",
-    image: "🥰 Virus Cafe",
-    url: "https://virus.cafe/",
-    type: "project",
-  },
-  {
-    name: "Dokz",
-    image: "/logos/dokz.svg",
-    url: "https://dokz.site/",
-    type: "project",
-  },
-  {
-    name: "Cataloged",
-    image: "Cataloged",
-    url: "https://cataloged.co/",
-    type: "company",
-  },
-  {
-    name: "Common Grounds",
-    image: "Common Grounds",
-    url: "https://www.commongrounds.co/",
-    type: "company",
-  },
-  {
-    name: "Meeshkan",
-    image: "/logos/meeshkan.svg",
-    url: "https://meeshkan.com/",
+      "https://assets-global.website-files.com/5e5fc9d32793216b14649599/5ec7e43bf972fae797ba4ffb_ShootProof%20Logo%20-%20Blue%20nav.png",
+    url: "https://www.shootproof.com/hp",
     type: "company",
   },
   {
@@ -70,6 +60,12 @@ const users: User[] = [
     image: "/logos/tuteria.png",
     url: "https://tuteria.com/",
     type: "company",
+  },
+  {
+    name: "Virus Cafe",
+    image: "🥰 Virus Cafe",
+    url: "https://virus.cafe/",
+    type: "project",
   },
 ]
 

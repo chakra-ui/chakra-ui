@@ -22,6 +22,7 @@ import {
   addItem,
   callAllHandlers,
   dataAttr,
+  determineLazyBehavior,
   focus,
   getNextIndex,
   getNextItemFromSearch,
@@ -30,6 +31,7 @@ import {
   isActiveElement,
   isArray,
   isString,
+  LazyBehavior,
   normalizeEventKey,
   removeItem,
 } from "@chakra-ui/utils"
@@ -70,6 +72,18 @@ export interface UseMenuProps extends UsePopperProps, UseDisclosureProps {
    * until the menu is open.
    */
   isLazy?: boolean
+  /**
+   * Performance 🚀:
+   * The lazy behavior of menu's content when not visible.
+   * Only works when `isLazy={true}`
+   *
+   * - "unmount": The menu's content is always unmounted when not open.
+   * - "keepMounted": The menu's content initially unmounted,
+   * but stays mounted when menu is open.
+   *
+   * @default "unmount"
+   */
+  lazyBehavior?: LazyBehavior
 }
 
 /**
@@ -90,6 +104,7 @@ export function useMenu(props: UseMenuProps = {}) {
     onClose: onCloseProp,
     onOpen: onOpenProp,
     placement = "bottom-start",
+    lazyBehavior = "unmount",
     ...popperProps
   } = props
 
@@ -203,6 +218,7 @@ export function useMenu(props: UseMenuProps = {}) {
     autoSelect,
     setFocusedIndex,
     isLazy,
+    lazyBehavior,
   }
 }
 
@@ -309,6 +325,7 @@ export function useMenuList(
     menuId,
     domContext: { descendants },
     isLazy,
+    lazyBehavior,
   } = menu
 
   /**
@@ -374,7 +391,12 @@ export function useMenuList(
     hasBeenOpened.current = true
   }
 
-  const shouldRenderChildren = !isLazy || hasBeenOpened.current
+  const shouldRenderChildren = determineLazyBehavior({
+    hasBeenSelected: hasBeenOpened.current,
+    isLazy,
+    lazyBehavior,
+    isSelected: isOpen,
+  })
 
   return {
     ...props,
