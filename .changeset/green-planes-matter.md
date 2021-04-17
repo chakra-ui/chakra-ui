@@ -2,4 +2,12 @@
 "@chakra-ui/button": minor
 ---
 
-Added a prop that allows to change spinner position when isLoading prop is true
+Added `spinnerPlacement` prop to allow changing the spinner placement for the
+button when `isLoading` is `true`. Spinner placement can be either `start` or
+`end`
+
+```jsx live=false
+<Button isLoading spinnerPlacement="end">
+  Click me
+</Button>
+```
