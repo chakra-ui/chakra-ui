@@ -59,7 +59,7 @@ export const SliderOnChangeBug = () => {
 
 export function HorizontalSlider() {
   return (
-    <Slider colorScheme="red" onChangeEnd={console.log}>
+    <Slider colorScheme="red" onChange={console.log}>
       <SliderTrack>
         <SliderFilledTrack />
       </SliderTrack>

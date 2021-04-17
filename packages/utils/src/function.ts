@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import { isFunction, __DEV__, __TEST__ } from "./assertion"
+import { isFunction, isNumber, __DEV__, __TEST__ } from "./assertion"
 import { AnyFunction, FunctionArguments } from "./types"
 
 export function runIfFn<T, U>(
@@ -76,3 +76,25 @@ export const scheduleMicrotask = __TEST__
   : typeof queueMicrotask === "function"
   ? queueMicrotask
   : promiseMicrotask
+
+const combineFunctions = (a: Function, b: Function) => (v: any) => b(a(v))
+export const pipe = (...transformers: Function[]) =>
+  transformers.reduce(combineFunctions)
+
+const distance1D = (a: number, b: number) => Math.abs(a - b)
+type Point = { x: number; y: number }
+
+const isPoint = (point: any): point is { x: number; y: number } =>
+  "x" in point && "y" in point
+
+export function distance<P extends Point | number>(a: P, b: P) {
+  if (isNumber(a) && isNumber(b)) {
+    return distance1D(a, b)
+  }
+  if (isPoint(a) && isPoint(b)) {
+    const xDelta = distance1D(a.x, b.x)
+    const yDelta = distance1D(a.y, b.y)
+    return Math.sqrt(xDelta ** 2 + yDelta ** 2)
+  }
+  return 0
+}

@@ -5,10 +5,11 @@
 
 import { addDomEvent, isBrowser } from "./dom"
 
-type EventType = MouseEvent | TouchEvent | PointerEvent
+export type AnyPointerEvent = MouseEvent | TouchEvent | PointerEvent
+
 type PointType = "page" | "client"
 
-export function isMouseEvent(event: EventType): event is MouseEvent {
+export function isMouseEvent(event: AnyPointerEvent): event is MouseEvent {
   // PointerEvent inherits from MouseEvent so we can't use a straight instanceof check.
   if (typeof PointerEvent !== "undefined" && event instanceof PointerEvent) {
     return !!(event.pointerType === "mouse")
@@ -17,21 +18,24 @@ export function isMouseEvent(event: EventType): event is MouseEvent {
   return event instanceof MouseEvent
 }
 
-export function isTouchEvent(event: EventType): event is TouchEvent {
+export function isTouchEvent(event: AnyPointerEvent): event is TouchEvent {
   const hasTouches = !!(event as TouchEvent).touches
   return hasTouches
 }
 
-export interface Point2D {
+export interface Point {
   x: number
   y: number
 }
 
-export interface EventInfo {
-  point: Point2D
+export interface PointerEventInfo {
+  point: Point
 }
 
-export type EventHandler = (event: EventType, info: EventInfo) => void
+export type EventHandler = (
+  event: AnyPointerEvent,
+  info: PointerEventInfo,
+) => void
 
 /**
  * Filters out events not attached to the primary pointer (currently left mouse button)
@@ -48,7 +52,10 @@ function filterPrimaryPointer(eventHandler: EventListener): EventListener {
   }
 }
 
-export type EventListenerWithPointInfo = (e: EventType, info: EventInfo) => void
+export type EventListenerWithPointInfo = (
+  e: AnyPointerEvent,
+  info: PointerEventInfo,
+) => void
 
 const defaultPagePoint = { pageX: 0, pageY: 0 }
 
@@ -73,9 +80,9 @@ function pointFromMouse(
 }
 
 export function extractEventInfo(
-  event: EventType,
+  event: AnyPointerEvent,
   pointType: PointType = "page",
-): EventInfo {
+): PointerEventInfo {
   return {
     point: isTouchEvent(event)
       ? pointFromTouch(event, pointType)
@@ -83,7 +90,7 @@ export function extractEventInfo(
   }
 }
 
-export function getViewportPointFromEvent(event: EventType) {
+export function getViewportPointFromEvent(event: AnyPointerEvent) {
   return extractEventInfo(event, "client")
 }
 
@@ -159,6 +166,6 @@ export function addPointerEvent(
   )
 }
 
-export function isMultiTouchEvent(event: EventType) {
+export function isMultiTouchEvent(event: AnyPointerEvent) {
   return isTouchEvent(event) && event.touches.length > 1
 }
