@@ -168,7 +168,7 @@ test("renders only the currently active tab panel if isLazy", () => {
   expect(screen.getByText("Panel 2")).toBeInTheDocument()
 })
 
-test("renders the currently active tab panel and previously-selected tabs if isLazy and unmountHiddenPanels={false}", () => {
+test("renders the currently active tab panel and previously-selected tabs if isLazy and lazy behavior is keepMounted", () => {
   render(
     <Tabs isLazy lazyBehavior="keepMounted">
       <TabList>
