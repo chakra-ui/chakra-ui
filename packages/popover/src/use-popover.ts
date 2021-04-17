@@ -10,8 +10,10 @@ import { HTMLProps, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import {
   callAllHandlers,
   contains,
+  determineLazyBehavior,
   FocusableElement,
   getRelatedTarget,
+  LazyBehavior,
   px,
 } from "@chakra-ui/utils"
 import { RefObject, useCallback, useEffect, useRef, useState } from "react"
@@ -95,6 +97,18 @@ export interface UsePopoverProps extends UsePopperProps {
    * until the popover is open.
    */
   isLazy?: boolean
+  /**
+   * Performance 🚀:
+   * The lazy behavior of popover's content when not visible.
+   * Only works when `isLazy={true}`
+   *
+   * - "unmount": The popover's content is always unmounted when not open.
+   * - "keepMounted": The popover's content initially unmounted,
+   * but stays mounted when popover is open.
+   *
+   * @default "unmount"
+   */
+  lazyBehavior?: LazyBehavior
 }
 
 /**
@@ -114,6 +128,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     openDelay = 200,
     closeDelay = 200,
     isLazy,
+    lazyBehavior = "unmount",
     ...popperProps
   } = props
 
@@ -165,7 +180,12 @@ export function usePopover(props: UsePopoverProps = {}) {
     shouldFocus: autoFocus && trigger === TRIGGER.click,
   })
 
-  const shouldRenderChildren = !isLazy || hasBeenOpened.current
+  const shouldRenderChildren = determineLazyBehavior({
+    hasBeenSelected: hasBeenOpened.current,
+    isLazy,
+    lazyBehavior,
+    isSelected: isOpen,
+  })
 
   const getPopoverProps: PropGetter = useCallback(
     (props = {}, _ref = null) => {

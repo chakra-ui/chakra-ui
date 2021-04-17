@@ -6,19 +6,20 @@ import {
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
 import {
-  callAllHandlers,
-  Dict,
-  isUndefined,
-  normalizeEventKey,
-} from "@chakra-ui/utils"
-import {
   createContext,
+  EventKeyMap,
   getValidChildren,
   mergeRefs,
-  EventKeyMap,
 } from "@chakra-ui/react-utils"
+import {
+  callAllHandlers,
+  determineLazyBehavior,
+  Dict,
+  isUndefined,
+  LazyBehavior,
+  normalizeEventKey,
+} from "@chakra-ui/utils"
 import * as React from "react"
-import { shouldTabPanelRenderChildren } from "./utils"
 
 export interface UseTabsProps {
   /**
@@ -51,18 +52,21 @@ export interface UseTabsProps {
   id?: string
   /**
    * Performance 🚀:
-   * If `true`, the TabPanel rendering will be deferred until it is open.
+   * If `true`, rendering of the tab panel's will be deferred until it is selected.
    */
   isLazy?: boolean
   /**
-   * If `true`, tab panels will be unmounted when hidden. This prop only works
-   * if `isLazy={true}`. By default, lazy panels are always unmounted when not
-   * visible, but setting this to `false` overrides the behavior and leaves
-   * previously-selected panels mounted.
+   * Performance 🚀:
+   * The lazy behavior of tab panels' content when not active.
+   * Only works when `isLazy={true}`
    *
-   * @default true
+   * - "unmount": The content of inactive tab panels are always unmounted.
+   * - "keepMounted": The content of inactive tab panels is initially unmounted,
+   * but stays mounted when selected.
+   *
+   * @default "unmount"
    */
-  unmountHiddenPanels?: boolean
+  lazyBehavior?: LazyBehavior
 }
 
 /**
@@ -81,7 +85,7 @@ export function useTabs(props: UseTabsProps) {
     index,
     isManual,
     isLazy,
-    unmountHiddenPanels = true,
+    lazyBehavior = "unmount",
     orientation = "horizontal",
     ...htmlProps
   } = props
@@ -161,7 +165,7 @@ export function useTabs(props: UseTabsProps) {
     setFocusedIndex,
     isManual,
     isLazy,
-    unmountHiddenPanels,
+    lazyBehavior,
     orientation,
     enabledDomContext,
     domContext,
@@ -375,9 +379,7 @@ export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
     React.cloneElement(child as Child, {
       isSelected: index === selectedIndex,
       id: makeTabPanelId(id, index),
-      /**
-       * Refers to the associated tab element, and also provides an accessible name to the tab panel.
-       */
+      // Refers to the associated tab element, and also provides an accessible name to the tab panel.
       "aria-labelledby": makeTabId(id, index),
     }),
   )
@@ -393,28 +395,24 @@ export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
  */
 export function useTabPanel(props: Dict) {
   const { isSelected, id, children, ...htmlProps } = props
-  const { isLazy, unmountHiddenPanels } = useTabsContext()
+  const { isLazy, lazyBehavior } = useTabsContext()
 
   const hasBeenSelected = React.useRef(false)
   if (isSelected) {
     hasBeenSelected.current = true
   }
 
-  const shouldRenderChildren = shouldTabPanelRenderChildren({
+  const shouldRenderChildren = determineLazyBehavior({
     hasBeenSelected: hasBeenSelected.current,
     isSelected,
     isLazy,
-    unmountHiddenPanels,
+    lazyBehavior,
   })
 
   return {
-    /**
-     * Puts the tabpanel in the page `Tab` sequence.
-     */
+    // Puts the tabpanel in the page `Tab` sequence.
     tabIndex: 0,
     ...htmlProps,
-    // Do not render tab panel content if tab is lazy and has never been
-    // selected
     children: shouldRenderChildren ? children : null,
     role: "tabpanel",
     hidden: !isSelected,
