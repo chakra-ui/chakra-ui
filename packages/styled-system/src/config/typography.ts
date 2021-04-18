@@ -18,6 +18,10 @@ export const typography: Config = {
   whiteSpace: true,
   textDecoration: true,
   textDecor: { property: "textDecoration" },
+  textDecorationColor: t.colors("color"),
+  textDecorationLine: true,
+  textDecorationStyle: true,
+  textDecorationThickness: true,
   noOfLines: {
     static: {
       overflow: "hidden",
@@ -103,6 +107,22 @@ export interface TypographyProps {
    * The CSS `text-decoration` property
    */
   textDecor?: Token<CSS.Property.TextDecoration | number>
+  /**
+   * The CSS `text-decoration-color` property
+   */
+  textDecorationColor?: Token<CSS.Property.Color, "colors">
+  /**
+   * The CSS `text-decoration-line` property
+   */
+  textDecorationLine?: Token<CSS.Property.TextDecorationLine>
+  /**
+   * The CSS `text-decoration-style` property
+   */
+  textDecorationStyle?: Token<CSS.Property.TextDecorationStyle>
+  /**
+   * The CSS `text-decoration-thickness` property
+   */
+  textDecorationThickness?: Token<CSS.Property.TextDecorationThickness | number>
   /**
    * Used to visually truncate a text after a number of lines.
    */
