@@ -1,21 +1,12 @@
 import * as CSS from "csstype"
 import { Config } from "../prop-config"
-import { ResponsiveValue } from "../utils"
+import { ResponsiveValue, t } from "../utils"
 
 export const transition: Config = {
   transition: true,
-  transitionDuration: {
-    property: "transitionDuration",
-    scale: "transition.duration",
-  },
-  transitionProperty: {
-    property: "transitionProperty",
-    scale: "transition.property",
-  },
-  transitionTimingFunction: {
-    property: "transitionTimingFunction",
-    scale: "transition.easing",
-  },
+  transitionDuration: t.transitionDuration("transitionDuration"),
+  transitionProperty: t.transitionProperty("transitionProperty"),
+  transitionTimingFunction: t.transitionEasing("transitionTimingFunction"),
 }
 
 export interface TransitionProps {
