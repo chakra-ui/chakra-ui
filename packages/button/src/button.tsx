@@ -1,3 +1,4 @@
+import { mergeRefs } from "@chakra-ui/react-utils"
 import { Spinner } from "@chakra-ui/spinner"
 import {
   chakra,
@@ -59,6 +60,11 @@ export interface ButtonOptions {
    * @type React.ReactElement
    */
   spinner?: React.ReactElement
+  /**
+   * It determines the placement of the spinner when isLoading is true
+   * @default "start"
+   */
+  spinnerPlacement?: "start" | "end"
 }
 
 export interface ButtonProps
@@ -82,6 +88,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
     iconSpacing = "0.5rem",
     type = "button",
     spinner,
+    spinnerPlacement = "start",
     className,
     as,
     ...rest
@@ -111,12 +118,19 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
     ...(!!group && { _focus }),
   }
 
+  const [isButton, setIsButton] = React.useState(!as)
+  const refCallback = React.useCallback((node: HTMLElement | null) => {
+    if (node?.tagName !== "BUTTON") {
+      setIsButton(false)
+    }
+  }, [])
+
   return (
     <chakra.button
       disabled={isDisabled || isLoading}
-      ref={ref}
+      ref={mergeRefs(ref, refCallback)}
       as={as}
-      type={as ? undefined : type}
+      type={isButton ? type : undefined}
       data-active={dataAttr(isActive)}
       data-loading={dataAttr(isLoading)}
       __css={buttonStyles}
@@ -126,18 +140,19 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
       {leftIcon && !isLoading && (
         <ButtonIcon marginEnd={iconSpacing}>{leftIcon}</ButtonIcon>
       )}
-      {isLoading && (
-        <ButtonSpinner
-          __css={{ fontSize: "1em", lineHeight: "normal" }}
-          spacing={iconSpacing}
-          label={loadingText}
-        >
+      {isLoading && spinnerPlacement === "start" && (
+        <ButtonSpinner label={loadingText} placement="start">
           {spinner}
         </ButtonSpinner>
       )}
       {isLoading
         ? loadingText || <chakra.span opacity={0}>{children}</chakra.span>
         : children}
+      {isLoading && spinnerPlacement === "end" && (
+        <ButtonSpinner label={loadingText} placement="end">
+          {spinner}
+        </ButtonSpinner>
+      )}
       {rightIcon && !isLoading && (
         <ButtonIcon marginStart={iconSpacing}>{rightIcon}</ButtonIcon>
       )}
@@ -184,11 +199,13 @@ interface ButtonSpinnerProps extends HTMLChakraProps<"div"> {
    * @type SystemProps["margin"]
    */
   spacing?: SystemProps["margin"]
+  placement?: "start" | "end"
 }
 
 const ButtonSpinner: React.FC<ButtonSpinnerProps> = (props) => {
   const {
     label,
+    placement,
     spacing,
     children = <Spinner color="currentColor" width="1em" height="1em" />,
     className,
@@ -198,11 +215,15 @@ const ButtonSpinner: React.FC<ButtonSpinnerProps> = (props) => {
 
   const _className = cx("chakra-button__spinner", className)
 
+  const marginProp = placement === "start" ? "marginEnd" : "marginStart"
+
   const spinnerStyles: SystemStyleObject = {
     display: "flex",
     alignItems: "center",
     position: label ? "relative" : "absolute",
-    marginEnd: label ? spacing : 0,
+    [marginProp]: label ? "0.5rem" : 0,
+    fontSize: "1em",
+    lineHeight: "normal",
     ...__css,
   }
 
