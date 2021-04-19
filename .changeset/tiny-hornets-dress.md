@@ -36,7 +36,7 @@ const customTheme = extendTheme(
   // or all in one:
   withDefaultProps({
     defaultProps: {
-      colorSchem: "brand",
+      colorScheme: "brand",
       variant: "outline",
       size: "lg",
     },
