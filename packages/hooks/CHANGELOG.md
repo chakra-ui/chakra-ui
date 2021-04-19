@@ -1,5 +1,27 @@
 # Change Log
 
+## 1.5.0
+
+### Minor Changes
+
+- [`384902e35`](https://github.com/chakra-ui/chakra-ui/commit/384902e35b186c8c8154b9569455c27f72ee0f6f)
+  [#3836](https://github.com/chakra-ui/chakra-ui/pull/3836) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Add pan session hook
+  `usePanGesture` for detecting pan gestures
+
+  - Update `useLatestRef` to inline value updates. Not concurrent mode safe but
+    works for now.
+
+  - Add `useEventListenerMap` to provide an elegant way of attaching several
+    pointer event to the `document` or an element.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0974e547c`](https://github.com/chakra-ui/chakra-ui/commit/0974e547c29e4efc1ba4d1eb1507d0dad7d7a77a),
+  [`59ea894a7`](https://github.com/chakra-ui/chakra-ui/commit/59ea894a7e03d16cd7a1b89d00816eafa9fab65d)]:
+  - @chakra-ui/utils@1.6.0
+
 ## 1.4.0
 
 ### Minor Changes
