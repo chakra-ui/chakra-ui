@@ -3,7 +3,13 @@ import defaultTheme, {
   isChakraTheme,
   Theme,
 } from "@chakra-ui/theme"
-import { Dict, isFunction, mergeWith, pipe } from "@chakra-ui/utils"
+import {
+  AnyFunction,
+  Dict,
+  isFunction,
+  mergeWith,
+  pipe,
+} from "@chakra-ui/utils"
 
 type CloneKey<Target, Key> = Key extends keyof Target ? Target[Key] : unknown
 
@@ -29,9 +35,9 @@ type DeepThemeExtension<BaseTheme, ThemeType> = {
     : CloneKey<ThemeType, Key>
 }
 
-export declare type ThemeOverride<BaseTheme = Theme> = DeepPartial<ChakraTheme> &
-  DeepThemeExtension<BaseTheme, ChakraTheme> &
-  Dict
+export declare type ThemeOverride<
+  BaseTheme = Theme
+> = DeepPartial<ChakraTheme> & DeepThemeExtension<BaseTheme, ChakraTheme> & Dict
 
 export type ThemeExtension<Override extends ThemeOverride = ThemeOverride> = (
   themeOverride: Override,
@@ -42,7 +48,7 @@ export type BaseThemeWithExtensions<
   Extensions extends readonly [...any]
 > = BaseTheme &
   (Extensions extends [infer L, ...infer R]
-    ? L extends (...args: any[]) => any
+    ? L extends AnyFunction
       ? ReturnType<L> & BaseThemeWithExtensions<BaseTheme, R>
       : L & BaseThemeWithExtensions<BaseTheme, R>
     : Extensions)
