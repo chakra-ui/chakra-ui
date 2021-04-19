@@ -118,17 +118,21 @@ import { Text } from "@chakra-ui/react"
 <Text textAlign={[ 'left', 'center' ]} />
 ```
 
-| Prop             | CSS Property      | Theme Key        |
-| ---------------- | ----------------- | ---------------- |
-| `fontFamily`     | `font-family`     | `fonts`          |
-| `fontSize`       | `font-size`       | `fontSizes`      |
-| `fontWeight`     | `font-weight`     | `fontWeights`    |
-| `lineHeight`     | `line-height`     | `lineHeights`    |
-| `letterSpacing`  | `letter-spacing`  | `letterSpacings` |
-| `textAlign`      | `text-align`      | none             |
-| `fontStyle`      | `font-style`      | none             |
-| `textTransform`  | `text-transform`  | none             |
-| `textDecoration` | `text-decoration` | none             |
+| Prop                      | CSS Property                | Theme Key        |
+| ------------------------- | --------------------------- | ---------------- |
+| `fontFamily`              | `font-family`               | `fonts`          |
+| `fontSize`                | `font-size`                 | `fontSizes`      |
+| `fontWeight`              | `font-weight`               | `fontWeights`    |
+| `lineHeight`              | `line-height`               | `lineHeights`    |
+| `letterSpacing`           | `letter-spacing`            | `letterSpacings` |
+| `textAlign`               | `text-align`                | none             |
+| `fontStyle`               | `font-style`                | none             |
+| `textTransform`           | `text-transform`            | none             |
+| `textDecoration`          | `text-decoration`           | none             |
+| `textDecorationColor`     | `text-decoration-color`     | `colors`         |
+| `textDecorationLine`      | `text-decoration-line`      | None             |
+| `textDecorationStyle`     | `text-decoration-style`     | None             |
+| `textDecorationThickness` | `text-decoration-thickness` | None             |
 
 ### Layout, width and height
 
@@ -358,7 +362,7 @@ import { Box } from "@chakra-ui/react"
 ```jsx
 <SimpleGrid
   bg="gray.50"
-  columns={{sm: 2, md: 4}}
+  columns={{ sm: 2, md: 4 }}
   spacing="8"
   p="10"
   textAlign="center"
