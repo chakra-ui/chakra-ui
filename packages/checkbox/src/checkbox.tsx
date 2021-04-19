@@ -98,6 +98,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">((props, ref) => {
     iconSize,
     icon = <CheckboxIcon />,
     isChecked: isCheckedProp,
+    isDisabled = group?.isDisabled,
     onChange: onChangeProp,
     ...rest
   } = ownProps
@@ -120,6 +121,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">((props, ref) => {
     getRootProps,
   } = useCheckbox({
     ...rest,
+    isDisabled,
     isChecked,
     onChange,
   })

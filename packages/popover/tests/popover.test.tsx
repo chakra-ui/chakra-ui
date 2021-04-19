@@ -79,7 +79,7 @@ test("can close the popover by pressing escape", async () => {
 })
 
 test("load content lazily", async () => {
-  const utils = render(<Component isLazy />)
+  const utils = render(<Component isLazy lazyBehavior="keepMounted" />)
 
   // by default, content should not be visible
   let content = screen.queryByTestId("content")

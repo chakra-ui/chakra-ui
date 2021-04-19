@@ -191,6 +191,36 @@ test("Controlled CheckboxGroup", () => {
   expect(checked).toEqual(["one", "two", "three"])
 })
 
+test("Uncontrolled CheckboxGroup - should not check if group disabled", () => {
+  const Component = () => (
+    <CheckboxGroup isDisabled>
+      <Checkbox value="one">One</Checkbox>
+      <Checkbox value="two" isDisabled>
+        Two
+      </Checkbox>
+      <Checkbox value="three" isDisabled={false}>
+        Three
+      </Checkbox>
+    </CheckboxGroup>
+  )
+  const { container } = render(<Component />)
+  const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
+    container.querySelectorAll("input"),
+  )
+
+  expect(checkboxOne).toBeDisabled()
+  expect(checkboxTwo).toBeDisabled()
+  expect(checkboxThree).not.toBeDisabled()
+
+  fireEvent.click(checkboxOne)
+  fireEvent.click(checkboxTwo)
+  fireEvent.click(checkboxThree)
+
+  expect(checkboxOne).not.toBeChecked()
+  expect(checkboxTwo).not.toBeChecked()
+  expect(checkboxThree).toBeChecked()
+})
+
 test("uncontrolled CheckboxGroup handles change", () => {
   const onChange = jest.fn()
   render(
