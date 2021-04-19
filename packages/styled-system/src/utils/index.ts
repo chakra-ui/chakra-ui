@@ -34,5 +34,8 @@ export const t = {
   sizes: toConfig("sizes", pxTransform),
   sizesT: toConfig("sizes", fractionalValue),
   shadows: toConfig("shadows"),
+  transitionDuration: toConfig("transition.duration"),
+  transitionProperty: toConfig("transition.property"),
+  transitionEasing: toConfig("transition.easing"),
   logical,
 }
