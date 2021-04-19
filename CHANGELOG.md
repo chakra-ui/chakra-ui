@@ -18,6 +18,18 @@ To better understand the changelog, here are some legends we use:
 
 `@chakra-ui/react@1.5.2`
 
+**Button** `v1.3.0`
+
+- 🚀 Added `spinnerPlacement` prop to allow changing the spinner placement for
+  the button when `isLoading` is `true`. Spinner placement can be either `start`
+  or `end`.
+
+```jsx live=false
+<Button isLoading spinnerPlacement="end">
+  Click me
+</Button>
+```
+
 **Checkbox** `v1.5.0`
 
 - 🚀 Add `isDisabled` prop to `CheckboxGroup`.
