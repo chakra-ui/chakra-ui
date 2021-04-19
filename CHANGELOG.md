@@ -72,6 +72,10 @@ mounted (but hidden) after it was previously selected or opened, use
 - 🐛 Fixed a11y issue related to `StatHelpText`. It was using an invalid `dl`
   child tag.
 
+**Styled System** `v1.10.3`
+
+- 🐛 Fixed an issue where thtransition props are not resolved correctly
+
 ## 13-04-2021
 
 `@chakra-ui/react@1.5.1`
