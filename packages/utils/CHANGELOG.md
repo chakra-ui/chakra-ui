@@ -1,5 +1,24 @@
 # Change Log
 
+## 1.6.0
+
+### Minor Changes
+
+- [`0974e547c`](https://github.com/chakra-ui/chakra-ui/commit/0974e547c29e4efc1ba4d1eb1507d0dad7d7a77a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add lazy content
+  utility for disclosure components like popover, menu, tab, etc.
+
+* [`59ea894a7`](https://github.com/chakra-ui/chakra-ui/commit/59ea894a7e03d16cd7a1b89d00816eafa9fab65d)
+  [#3836](https://github.com/chakra-ui/chakra-ui/pull/3836) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Add pan session class to
+  handle pan gestures. This is used in the slider logic and sharable with vue
+  library.
+
+  - Perf: Throttle pan move events to once per frame which improves the slider's
+    `onChange` call performance.
+
+  - Update types for internal pointer event
+
 ## 1.5.2
 
 ### Patch Changes

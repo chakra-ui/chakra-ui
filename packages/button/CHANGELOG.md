@@ -1,5 +1,29 @@
 # Change Log
 
+## 1.3.0
+
+### Minor Changes
+
+- [`aec2aaf9d`](https://github.com/chakra-ui/chakra-ui/commit/aec2aaf9d6e7fb43855ae7e3b238ee043ec2c533)
+  [#3732](https://github.com/chakra-ui/chakra-ui/pull/3732) Thanks
+  [@jatin33](https://github.com/jatin33)! - Added `spinnerPlacement` prop to
+  allow changing the spinner placement for the button when `isLoading` is
+  `true`. Spinner placement can be either `start` or `end`
+
+  ```jsx live=false
+  <Button isLoading spinnerPlacement="end">
+    Click me
+  </Button>
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0974e547c`](https://github.com/chakra-ui/chakra-ui/commit/0974e547c29e4efc1ba4d1eb1507d0dad7d7a77a),
+  [`59ea894a7`](https://github.com/chakra-ui/chakra-ui/commit/59ea894a7e03d16cd7a1b89d00816eafa9fab65d)]:
+  - @chakra-ui/utils@1.6.0
+  - @chakra-ui/spinner@1.1.7
+
 ## 1.2.2
 
 ### Patch Changes

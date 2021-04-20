@@ -1,5 +1,24 @@
 # Change Log
 
+## 1.5.0
+
+### Minor Changes
+
+- [`fbc125258`](https://github.com/chakra-ui/chakra-ui/commit/fbc12525822190e1ea5eced874ef3fdfafdabfb3)
+  [#3778](https://github.com/chakra-ui/chakra-ui/pull/3778) Thanks
+  [@kristian240](https://github.com/kristian240)! - Add `isDisabled` prop to
+  `CheckboxGroup`
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0974e547c`](https://github.com/chakra-ui/chakra-ui/commit/0974e547c29e4efc1ba4d1eb1507d0dad7d7a77a),
+  [`59ea894a7`](https://github.com/chakra-ui/chakra-ui/commit/59ea894a7e03d16cd7a1b89d00816eafa9fab65d),
+  [`384902e35`](https://github.com/chakra-ui/chakra-ui/commit/384902e35b186c8c8154b9569455c27f72ee0f6f)]:
+  - @chakra-ui/utils@1.6.0
+  - @chakra-ui/hooks@1.5.0
+  - @chakra-ui/visually-hidden@1.0.10
+
 ## 1.4.2
 
 ### Patch Changes

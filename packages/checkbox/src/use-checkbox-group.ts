@@ -24,6 +24,10 @@ export interface UseCheckboxGroupProps {
    */
   onChange?(value: StringOrNumber[]): void
   /**
+   * If `true`, all wrapped checkbox inputs will be disabled
+   */
+  isDisabled?: boolean
+  /**
    * If `true`, input elements will receive
    * `checked` attribute instead of `isChecked`.
    *
@@ -39,7 +43,13 @@ export interface UseCheckboxGroupProps {
  * It is consumed by the `CheckboxGroup` component
  */
 export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
-  const { defaultValue, value: valueProp, onChange, isNative } = props
+  const {
+    defaultValue,
+    value: valueProp,
+    onChange,
+    isDisabled,
+    isNative,
+  } = props
 
   const onChangeProp = useCallbackRef(onChange)
 
@@ -84,6 +94,7 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
 
   return {
     value,
+    isDisabled,
     onChange: handleChange,
     setValue,
     getCheckboxProps,

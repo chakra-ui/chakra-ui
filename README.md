@@ -133,7 +133,8 @@ function Example() {
 
 - JavaScript Starter: https://codesandbox.io/s/chakra-ui-javascript-lzzg9
 - TypeScript Starter: https://codesandbox.io/s/chakra-ui-typescript-pomi8
-- NextJS TypeScript Starter: https://codesandbox.io/s/chakra-ui-next-js-typescript-kxvyr
+- NextJS TypeScript Starter:
+  https://codesandbox.io/s/chakra-ui-next-js-typescript-kxvyr
 
 ## `create-react-app` Templates
 
@@ -408,6 +409,7 @@ Thanks goes to these wonderful people
   <tr>
     <td align="center"><a href="https://github.com/psujit"><img src="https://avatars.githubusercontent.com/u/17481888?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Sujit Pradhan</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=psujit" title="Documentation">📖</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=psujit" title="Code">💻</a></td>
     <td align="center"><a href="https://abhishekashyap.tech/"><img src="https://avatars.githubusercontent.com/u/29458374?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Abhishek Kashyap</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=abhishekashyap" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/kristian240"><img src="https://avatars.githubusercontent.com/u/55184443?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Kristian Djaković</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=kristian240" title="Code">💻</a></td>
   </tr>
 </table>
 

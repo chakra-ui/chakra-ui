@@ -9,6 +9,7 @@ import { useSafeLayoutEffect } from "./use-safe-layout-effect"
  */
 export function useCallbackRef<T extends (...args: any[]) => any>(
   fn: T | undefined,
+  deps: React.DependencyList = [],
 ): T {
   const ref = React.useRef(fn)
 
@@ -17,5 +18,5 @@ export function useCallbackRef<T extends (...args: any[]) => any>(
   })
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  return React.useCallback(((...args) => ref.current?.(...args)) as T, [])
+  return React.useCallback(((...args) => ref.current?.(...args)) as T, deps)
 }
