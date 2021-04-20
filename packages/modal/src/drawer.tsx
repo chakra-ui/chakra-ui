@@ -7,7 +7,7 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { Slide, SlideOptions } from "@chakra-ui/transition"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx, getPlacementForThemeDirection, __DEV__ } from "@chakra-ui/utils"
 import { createContext } from "@chakra-ui/react-utils"
 import * as React from "react"
 import { Modal, ModalFocusScope, ModalProps, useModalContext } from "./modal"
@@ -43,9 +43,13 @@ export function Drawer(props: DrawerProps) {
 
   const theme = useTheme()
   const drawerStyleConfig = theme.components?.Drawer
+  const dirAwarePlacement = getPlacementForThemeDirection(
+    placement,
+    theme.direction,
+  )
 
   return (
-    <DrawerContextProvider value={{ placement }}>
+    <DrawerContextProvider value={{ placement: dirAwarePlacement }}>
       <Modal
         isOpen={isOpen}
         onClose={onClose}

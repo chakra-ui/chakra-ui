@@ -9,6 +9,7 @@ import {
   useUpdateEffect,
 } from "@chakra-ui/hooks"
 import { EventKeyMap, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
+import { useTheme } from "@chakra-ui/system"
 import {
   AnyPointerEvent,
   ariaAttr,
@@ -23,7 +24,7 @@ import {
   valueToPercent,
 } from "@chakra-ui/utils"
 import { CSSProperties, useCallback, useMemo, useRef } from "react"
-import { getPartsStyle } from "./utils"
+import { getPartsStyle, getSliderDirectionForTheme } from "./utils"
 
 export interface UseSliderProps {
   /**
@@ -150,6 +151,13 @@ export function useSlider(props: UseSliderProps) {
   const onChangeStart = useCallbackRef(onChangeEndProp)
   const onChangeEnd = useCallbackRef(onChangeEndProp)
   const getAriaValueText = useCallbackRef(getAriaValueTextProp)
+  const { direction } = useTheme()
+
+  const dirAwareIsReversed = getSliderDirectionForTheme({
+    isReversed,
+    direction,
+    orientation,
+  })
 
   /**
    * Enable the slider handle controlled and uncontrolled scenarios
@@ -173,7 +181,7 @@ export function useSlider(props: UseSliderProps) {
   const valueRef = useLatestRef(value)
 
   const reversedValue = max - value + min
-  const trackValue = isReversed ? reversedValue : value
+  const trackValue = dirAwareIsReversed ? reversedValue : value
   const trackPercent = valueToPercent(trackValue, min, max)
 
   const isVertical = orientation === "vertical"
@@ -211,7 +219,7 @@ export function useSlider(props: UseSliderProps) {
       const length = isVertical ? trackRect.height : trackRect.width
       let percent = diff / length
 
-      if (isReversed) {
+      if (dirAwareIsReversed) {
         percent = 1 - percent
       }
 
@@ -225,7 +233,7 @@ export function useSlider(props: UseSliderProps) {
 
       return nextValue
     },
-    [isVertical, isReversed, max, min, step],
+    [isVertical, dirAwareIsReversed, max, min, step],
   )
 
   const tenSteps = (max - min) / 10
@@ -245,17 +253,17 @@ export function useSlider(props: UseSliderProps) {
   const actions = useMemo(
     () => ({
       stepUp: (step = oneStep) => {
-        const next = isReversed ? value - step : value + step
+        const next = dirAwareIsReversed ? value - step : value + step
         constrain(next)
       },
       stepDown: (step = oneStep) => {
-        const next = isReversed ? value + step : value - step
+        const next = dirAwareIsReversed ? value + step : value - step
         constrain(next)
       },
       reset: () => constrain(defaultValue || 0),
       stepTo: (value: number) => constrain(value),
     }),
-    [constrain, isReversed, value, oneStep, defaultValue],
+    [constrain, dirAwareIsReversed, value, oneStep, defaultValue],
   )
 
   /**
@@ -305,12 +313,12 @@ export function useSlider(props: UseSliderProps) {
   const { thumbStyle, rootStyle, trackStyle, innerTrackStyle } = useMemo(() => {
     const thumbRect = thumbBoxModel?.borderBox ?? { width: 0, height: 0 }
     return getPartsStyle({
-      isReversed,
+      isReversed: dirAwareIsReversed,
       orientation,
       thumbRect,
       trackPercent,
     })
-  }, [isReversed, orientation, thumbBoxModel?.borderBox, trackPercent])
+  }, [dirAwareIsReversed, orientation, thumbBoxModel?.borderBox, trackPercent])
 
   const focusThumb = useCallback(() => {
     if (thumbRef.current && focusThumbOnChange) {
@@ -449,12 +457,14 @@ export function useSlider(props: UseSliderProps) {
         ...orient({
           orientation,
           vertical: {
-            bottom: isReversed
+            bottom: dirAwareIsReversed
               ? `${100 - markerPercent}%`
               : `${markerPercent}%`,
           },
           horizontal: {
-            left: isReversed ? `${100 - markerPercent}%` : `${markerPercent}%`,
+            left: dirAwareIsReversed
+              ? `${100 - markerPercent}%`
+              : `${markerPercent}%`,
           },
         }),
       }
@@ -473,7 +483,7 @@ export function useSlider(props: UseSliderProps) {
         },
       }
     },
-    [isDisabled, isReversed, max, min, orientation, value],
+    [isDisabled, dirAwareIsReversed, max, min, orientation, value],
   )
 
   const getInputProps: PropGetter<HTMLInputElement> = useCallback(

@@ -85,3 +85,18 @@ export function getPartsStyle(options: {
 
   return { trackStyle, innerTrackStyle, rootStyle, thumbStyle }
 }
+
+export function getSliderDirectionForTheme(options: {
+  isReversed?: boolean
+  direction: any
+  orientation?: "horizontal" | "vertical"
+}) {
+  const { isReversed, direction, orientation } = options
+
+  if (direction === "ltr" || orientation === "vertical") {
+    return isReversed
+  }
+  // only flip for horizontal RTL
+  // if isReserved 🔜  otherwise  🔚
+  return !isReversed
+}
