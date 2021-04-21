@@ -52,7 +52,7 @@ const tokenHandlerMap: Partial<Record<ThemeScale, TokenHandler>> & {
     const negativeVarKey = keys.join("-")
     const { variable, reference } = cssVar(
       negativeVarKey,
-      undefined, // TODO should we add a fallback value?
+      undefined,
       options.cssVarPrefix,
     )
 
@@ -77,7 +77,7 @@ const tokenHandlerMap: Partial<Record<ThemeScale, TokenHandler>> & {
 
     const { variable, reference } = cssVar(
       varKey,
-      undefined, // TODO should we add a fallback value?
+      undefined,
       options.cssVarPrefix,
     )
 
