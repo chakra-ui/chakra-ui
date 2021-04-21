@@ -1,5 +1,14 @@
+/**
+ * @jest-environment jsdom
+ */
 import * as React from "react"
-import { render, testA11y, screen } from "@chakra-ui/test-utils"
+import {
+  render,
+  testA11y,
+  screen,
+  userEvent,
+  waitFor,
+} from "@chakra-ui/test-utils"
 import { EmailIcon, ArrowForwardIcon } from "@chakra-ui/icons"
 import { Button, ButtonGroup } from "../src"
 
@@ -61,4 +70,21 @@ test("has the proper aria attributes", () => {
   rerender(<Button isDisabled>Hello</Button>)
   button = screen.getByRole("button")
   expect(button).toHaveAttribute("disabled", "")
+})
+
+function ButtonTestReRender() {
+  const [, setState] = React.useState(false)
+  return <Button onClick={() => setState((s) => !s)} />
+}
+test("type is preserved between renders", async () => {
+  render(<ButtonTestReRender />)
+
+  let button = screen.getByRole("button")
+  expect(button).toHaveAttribute("type", "button")
+  userEvent.click(button)
+
+  await waitFor(() => {
+    button = screen.getByRole("button")
+    expect(button).toHaveAttribute("type", "button")
+  })
 })

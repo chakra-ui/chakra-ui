@@ -120,7 +120,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
 
   const [isButton, setIsButton] = React.useState(!as)
   const refCallback = React.useCallback((node: HTMLElement | null) => {
-    if (node?.tagName !== "BUTTON") {
+    if (node && node.tagName !== "BUTTON") {
       setIsButton(false)
     }
   }, [])
