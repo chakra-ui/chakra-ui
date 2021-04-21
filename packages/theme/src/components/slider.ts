@@ -60,7 +60,7 @@ function baseStyleThumb(props: Dict) {
     border: "1px solid",
     borderColor: "transparent",
     transition: "transform 0.2s",
-    _focus: { boxShadow: "outline" },
+    _focusVisible: { boxShadow: "outline" },
     _disabled: { bg: "gray.300" },
     ...thumbOrientation(props),
   }

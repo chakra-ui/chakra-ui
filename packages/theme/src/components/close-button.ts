@@ -14,7 +14,7 @@ function baseStyle(props: Record<string, any>) {
     },
     _hover: { bg: hoverBg },
     _active: { bg: activeBg },
-    _focus: {
+    _focusVisible: {
       boxShadow: "outline",
     },
   }

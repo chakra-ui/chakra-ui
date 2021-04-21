@@ -29,7 +29,7 @@ const SponsorButton = (props: BoxProps) => (
     _active={{
       borderColor: "gray.200",
     }}
-    _focus={{
+    _focusVisible={{
       boxShadow: "outline",
     }}
     {...props}
