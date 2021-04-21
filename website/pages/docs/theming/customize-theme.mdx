@@ -253,7 +253,11 @@ best suggestion on how to write style overrides and organize your custom theme.
 The `extendTheme` function allows you to pass multiple overrides or extensions:
 
 ```js
-import { extendTheme, withDefaultColorScheme } from "@chakra-ui/react"
+import {
+  extendTheme,
+  withDefaultColorScheme,
+  theme as baseTheme,
+} from "@chakra-ui/react"
 
 const customTheme = extendTheme(
   {
