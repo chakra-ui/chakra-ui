@@ -12,7 +12,7 @@ import * as React from "react"
 export interface UseTooltipProps
   extends Pick<
     UsePopperProps,
-    "modifiers" | "gutter" | "offset" | "arrowPadding"
+    "modifiers" | "gutter" | "offset" | "arrowPadding" | "direction"
   > {
   /**
    * Delay (in ms) before showing the tooltip
@@ -81,6 +81,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     isDisabled,
     gutter,
     offset,
+    direction,
     ...htmlProps
   } = props
 
@@ -102,6 +103,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     modifiers,
     gutter,
     offset,
+    direction,
   })
 
   const tooltipId = useId(id, "tooltip")
