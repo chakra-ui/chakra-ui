@@ -62,3 +62,24 @@ test("has the proper aria attributes", () => {
   button = screen.getByRole("button")
   expect(button).toHaveAttribute("disabled", "")
 })
+
+test("Has the proper type attribute", () => {
+  const { getByTestId, rerender } = render(
+    <Button data-testid="btn">Email</Button>,
+  )
+  expect(getByTestId("btn")).toHaveAttribute("type", "button")
+
+  rerender(
+    <Button data-testid="btn" type="submit">
+      Email
+    </Button>,
+  )
+  expect(getByTestId("btn")).toHaveAttribute("type", "submit")
+
+  rerender(
+    <Button data-testid="btn" as="span">
+      Email
+    </Button>,
+  )
+  expect(getByTestId("btn")).not.toHaveAttribute("type")
+})

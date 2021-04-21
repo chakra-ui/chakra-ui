@@ -1,4 +1,3 @@
-import { mergeRefs } from "@chakra-ui/react-utils"
 import { Spinner } from "@chakra-ui/spinner"
 import {
   chakra,
@@ -118,17 +117,12 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
     ...(!!group && { _focus }),
   }
 
-  const [isButton, setIsButton] = React.useState(!as)
-  const refCallback = React.useCallback((node: HTMLElement | null) => {
-    if (node?.tagName !== "BUTTON") {
-      setIsButton(false)
-    }
-  }, [])
+  const isButton = Boolean(!as)
 
   return (
     <chakra.button
       disabled={isDisabled || isLoading}
-      ref={mergeRefs(ref, refCallback)}
+      ref={ref}
       as={as}
       type={isButton ? type : undefined}
       data-active={dataAttr(isActive)}
