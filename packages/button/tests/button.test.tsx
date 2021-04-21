@@ -77,6 +77,13 @@ test("Has the proper type attribute", () => {
   expect(getByTestId("btn")).toHaveAttribute("type", "submit")
 
   rerender(
+    <Button data-testid="btn" as="button">
+      Email
+    </Button>,
+  )
+  expect(getByTestId("btn")).toHaveAttribute("type")
+
+  rerender(
     <Button data-testid="btn" as="span">
       Email
     </Button>,
