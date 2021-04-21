@@ -52,7 +52,8 @@ export class DescendantsManager<T extends HTMLElement, K = {}> {
 
   private assignIndex = (descendants: Node[]) => {
     this.descendants.forEach((descendant) => {
-      descendant.index = descendants.indexOf(descendant.node)
+      const index = descendants.indexOf(descendant.node)
+      descendant.index = index
       descendant.node.dataset.index = descendant.index.toString()
     })
   }
@@ -66,10 +67,15 @@ export class DescendantsManager<T extends HTMLElement, K = {}> {
     return values.sort((a, b) => a.index - b.index)
   }
 
-  enabledValues = () =>
-    this.values()
+  enabledValues = () => {
+    return this.values()
       .filter((descendant) => !descendant.disabled)
-      .map((descendant, index) => ({ ...descendant, index }))
+      .map((descendant, index) => ({
+        ...descendant,
+        index,
+        __index: descendant.index,
+      }))
+  }
 
   item = (index: number) => this.values()[index]
 
@@ -102,8 +108,9 @@ export class DescendantsManager<T extends HTMLElement, K = {}> {
   }
 
   nextEnabled = (index: number, loop = true) => {
-    const next = nextIndex(index, this.enabledCount(), loop)
-    return this.enabledItem(next)
+    const _index = this.enabledIndexOf(this.item(index).node)
+    const _nextIndex = nextIndex(_index, this.enabledCount(), loop)
+    return this.enabledItem(_nextIndex)
   }
 
   prev = (index: number, loop = true) => {
@@ -112,8 +119,9 @@ export class DescendantsManager<T extends HTMLElement, K = {}> {
   }
 
   prevEnabled = (index: number, loop = true) => {
-    const prev = prevIndex(index, this.enabledCount() - 1, loop)
-    return this.enabledItem(prev)
+    const _index = this.enabledIndexOf(this.item(index).node)
+    const _prevIndex = prevIndex(_index, this.enabledCount() - 1, loop)
+    return this.enabledItem(_prevIndex)
   }
 
   private registerNode = (node: T | null, options: DescendantOptions = {}) => {

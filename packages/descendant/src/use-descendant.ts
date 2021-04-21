@@ -73,10 +73,18 @@ export function createDescendantContext<
   type ProviderType = React.Provider<DescendantsManager<T, K>>
   const Provider = cast<ProviderType>(DescendantsContextProvider)
 
+  const _useDescendantsContext = () =>
+    cast<DescendantsManager<T, K>>(useDescendantsContext())
+
   const _useDescendant = (options?: DescendantOptions & K) =>
     useDescendant<T, K>(options)
 
   const _useDescendants = () => useDescendants<T, K>()
 
-  return [Provider, _useDescendants, _useDescendant] as const
+  return [
+    Provider,
+    _useDescendants,
+    _useDescendant,
+    _useDescendantsContext,
+  ] as const
 }
