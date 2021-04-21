@@ -1,5 +1,37 @@
 # Change Log
 
+## 1.6.0
+
+### Minor Changes
+
+- [`f2544fb58`](https://github.com/chakra-ui/chakra-ui/commit/f2544fb581a6dbe558236ebb11883a273ed61a28)
+  [#3839](https://github.com/chakra-ui/chakra-ui/pull/3839) Thanks
+  [@with-heart](https://github.com/with-heart)! - This change restores the
+  behavior of the `isLazy` prop (which was broken by the previous release) and
+  adds a new `lazyBehavior` prop which configures the behavior of `isLazy`.
+
+  If you'd like the content of tab panel, popover and menu components to be
+  unmounted when not selected or opened, please continue to use `isLazy`. This
+  is the default behavior.
+
+  If you'd like the content of tab panel, popover and menu components to remain
+  mounted (but hidden) after it was previously selected or opened, use
+  `lazyBehavior="keepMounted"` in combination with `isLazy`.
+
+### Patch Changes
+
+- [`57baa5e63`](https://github.com/chakra-ui/chakra-ui/commit/57baa5e6350f89f1098a5d965b90483348aa0073)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Make it possible to
+  pass popper.js props to popover and menu
+
+- Updated dependencies
+  [[`0974e547c`](https://github.com/chakra-ui/chakra-ui/commit/0974e547c29e4efc1ba4d1eb1507d0dad7d7a77a),
+  [`59ea894a7`](https://github.com/chakra-ui/chakra-ui/commit/59ea894a7e03d16cd7a1b89d00816eafa9fab65d),
+  [`384902e35`](https://github.com/chakra-ui/chakra-ui/commit/384902e35b186c8c8154b9569455c27f72ee0f6f)]:
+  - @chakra-ui/utils@1.6.0
+  - @chakra-ui/hooks@1.5.0
+  - @chakra-ui/close-button@1.1.7
+
 ## 1.5.1
 
 ### Patch Changes

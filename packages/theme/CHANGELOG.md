@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.8.3
+
+### Patch Changes
+
+- [`9c6be11b1`](https://github.com/chakra-ui/chakra-ui/commit/9c6be11b1d95f8add314dbe214bc7ce3c67b76cd)
+  [#3806](https://github.com/chakra-ui/chakra-ui/pull/3806) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue where the
+  modal exceeded the viewport height on iOS
+
+- Updated dependencies
+  [[`0974e547c`](https://github.com/chakra-ui/chakra-ui/commit/0974e547c29e4efc1ba4d1eb1507d0dad7d7a77a),
+  [`59ea894a7`](https://github.com/chakra-ui/chakra-ui/commit/59ea894a7e03d16cd7a1b89d00816eafa9fab65d)]:
+  - @chakra-ui/utils@1.6.0
+  - @chakra-ui/theme-tools@1.1.5
+
 ## 1.8.2
 
 ### Patch Changes

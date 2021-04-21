@@ -14,6 +14,80 @@ To better understand the changelog, here are some legends we use:
 - 🚀 Feature
 - 🐛 Bug fix
 
+## 19-04-2021
+
+`@chakra-ui/react@1.5.2`
+
+**Button** `v1.3.0`
+
+- 🚀 Added `spinnerPlacement` prop to allow changing the spinner placement for
+  the button when `isLoading` is `true`. Spinner placement can be either `start`
+  or `end`.
+
+```jsx live=false
+<Button isLoading spinnerPlacement="end">
+  Click me
+</Button>
+```
+
+**Checkbox** `v1.5.0`
+
+- 🚀 Add `isDisabled` prop to `CheckboxGroup`.
+
+**Hooks** `v1.5.0`
+
+- 🚀 Add pan session hook `usePanGesture` for detecting pan gestures.
+- 🚀 Update `useLatestRef` to inline value updates. Not concurrent mode safe but
+  works for now.
+- 🚀 Add `useEventListenerMap` to provide an elegant way of attaching several
+  pointer event to the `document` or an element.
+
+**Menu** `v1.5.0` & **Popover** `v1.6.0` & **Tabs** `v1.4.0`
+
+- 🚀 This change restores the behavior of the `isLazy` prop (which was broken by
+  the previous release) and adds a new `lazyBehavior` prop which configures the
+  behavior of `isLazy`.
+
+If you'd like the content of tab panel, popover and menu components to be
+unmounted when not selected or opened, please continue to use `isLazy`. This is
+the default behavior.
+
+If you'd like the content of tab panel, popover and menu components to remain
+mounted (but hidden) after it was previously selected or opened, use
+`lazyBehavior="keepMounted"` in combination with `isLazy`.
+
+**Utils** `v1.6.0`
+
+- 🚀 Add lazy content utility for disclosure components like popover, menu, tab,
+  etc.
+- 🚀 Add pan session class to handle pan gestures. This is used in the slider
+  logic and sharable with vue library.
+- 🚀 Perfomance: Throttle pan move events to once per frame which improves the
+  slider's `onChange` call performance.
+- 🚀 Update types for internal pointer event.
+
+**React Env** `v1.0.2`
+
+- 🐛 Fix bug where `EnvProvider` breaks SSR.
+
+**Modal** `v1.8.3` & **Theme** `v1.8.3`
+
+- 🐛 Fixed an issue where the modal exceeded the viewport height on iOS.
+
+**Slider** `v1.2.3`
+
+- 🐛 Fix issue where slider doesnt work after first slide.
+- 🐛 Avoid exccess `onChange` calls.
+
+**Stat** `v1.1.7`
+
+- 🐛 Fixed a11y issue related to `StatHelpText`. It was using an invalid `dl`
+  child tag.
+
+**Styled System** `v1.10.3`
+
+- 🐛 Fixed an issue where thtransition props are not resolved correctly
+
 ## 13-04-2021
 
 `@chakra-ui/react@1.5.1`
