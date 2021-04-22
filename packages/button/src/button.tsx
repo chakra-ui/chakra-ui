@@ -86,7 +86,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
     rightIcon,
     loadingText,
     iconSpacing = "0.5rem",
-    type = "button",
+    type,
     spinner,
     spinnerPlacement = "start",
     className,
@@ -123,13 +123,14 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
     if (!node) return
     setIsButton(node.tagName === "BUTTON")
   }, [])
+  const defaultType = isButton ? "button" : undefined
 
   return (
     <chakra.button
       disabled={isDisabled || isLoading}
       ref={mergeRefs(ref, refCallback)}
       as={as}
-      type={isButton ? type : undefined}
+      type={type ?? defaultType}
       data-active={dataAttr(isActive)}
       data-loading={dataAttr(isLoading)}
       __css={buttonStyles}
