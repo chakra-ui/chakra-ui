@@ -1,5 +1,6 @@
 import React from "react"
 import { render } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import {
   mockIsBrowser,
   createMockStorageManager,
@@ -8,7 +9,7 @@ import {
   DummyComponent,
 } from "./utils"
 import * as colorModeUtils from "../src/color-mode.utils"
-import userEvent from "@testing-library/user-event"
+import { ColorModeProvider } from "../src"
 
 beforeEach(() => {
   jest.resetAllMocks()
@@ -17,8 +18,6 @@ beforeEach(() => {
 
 describe("<ColorModeProvider /> localStorage browser", () => {
   test("by default, picks from theme.config.initialColorMode", () => {
-    const { ColorModeProvider } = require("../src/color-mode-provider")
-
     render(
       <ColorModeProvider options={defaultThemeOptions}>
         <DummyComponent />
@@ -31,7 +30,6 @@ describe("<ColorModeProvider /> localStorage browser", () => {
   })
 
   test("prefers useSystemColorMode over root property", () => {
-    const { ColorModeProvider } = require("../src/color-mode-provider")
     const getColorSchemeSpy = jest
       .spyOn(colorModeUtils, "getColorScheme")
       .mockReturnValueOnce("dark")
@@ -57,9 +55,7 @@ describe("<ColorModeProvider /> localStorage browser", () => {
     )
   })
 
-  test("prefers root property over localStorage", () => {
-    const { ColorModeProvider } = require("../src/color-mode-provider")
-
+  test("prefers localStorage over initial color mode and root value", () => {
     const rootGetSpy = jest
       .spyOn(colorModeUtils.root, "get")
       // @ts-expect-error only happens if value doesn't exist, e.g. CSR
@@ -85,11 +81,11 @@ describe("<ColorModeProvider /> localStorage browser", () => {
     expect(getColorModeButton()).not.toHaveTextContent(
       defaultThemeOptions.initialColorMode,
     )
+
+    expect(getColorModeButton()).toHaveTextContent("dark")
   })
 
   test("onChange sets value to all listeners", () => {
-    const { ColorModeProvider } = require("../src/color-mode-provider")
-
     const rootSet = jest.spyOn(colorModeUtils.root, "set")
 
     const mockLocalStorageManager = createMockStorageManager("localStorage")
@@ -120,8 +116,6 @@ describe("<ColorModeProvider /> localStorage browser", () => {
 
 describe("<ColorModeProvider /> cookie browser", () => {
   test("by default, picks from cookie", () => {
-    const { ColorModeProvider } = require("../src/color-mode-provider")
-
     const getColorSchemeSpy = jest
       .spyOn(colorModeUtils, "getColorScheme")
       .mockReturnValueOnce("dark")
@@ -145,8 +139,6 @@ describe("<ColorModeProvider /> cookie browser", () => {
   })
 
   test("onChange sets value to all listeners", () => {
-    const { ColorModeProvider } = require("../src/color-mode-provider")
-
     const rootSet = jest.spyOn(colorModeUtils.root, "set")
 
     const mockCookieStorageManager = createMockStorageManager("cookie")

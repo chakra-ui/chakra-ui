@@ -1,7 +1,7 @@
 import React from "react"
-import * as colorModeUtils from "../src/color-mode.utils"
 import { render } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
+import * as colorModeUtils from "../src/color-mode.utils"
 import {
   defaultThemeOptions,
   DummyComponent,
@@ -68,5 +68,22 @@ describe("<ColorModeProvider />", () => {
     userEvent.click(button)
 
     expect(getColorModeButton()).toHaveTextContent(value)
+  })
+
+  test("prefixes body classname using cssVarPrefix", () => {
+    const cssVarPrefix = "arkahc"
+
+    render(
+      <ColorModeProvider options={{ ...defaultThemeOptions, cssVarPrefix }}>
+        <DummyComponent />
+      </ColorModeProvider>,
+    )
+    const button = getColorModeButton()
+
+    expect(document.body).toHaveClass(`${cssVarPrefix}-${button.textContent}`)
+
+    userEvent.click(button)
+
+    expect(document.body).toHaveClass(`${cssVarPrefix}-${button.textContent}`)
   })
 })

@@ -221,8 +221,26 @@ export const pseudoSelectors = {
    * this component or element.
    */
   _dark: ".dark &, [data-theme=dark] &",
+  /**
+   * Styles for when `.light` is applied to any parent of
+   * this component or element.
+   */
+  _light: ".light &, [data-theme=light] &",
 }
 
 export type Pseudos = typeof pseudoSelectors
+
+export const getPrefixedPseudoSelectors = (theme: any) => {
+  const prefix = theme?.config?.cssVarPrefix ?? ""
+  return {
+    ...pseudoSelectors,
+    _dark: `.${applyPrefix("dark", prefix)} &, [data-theme=dark] &`,
+    _light: `.${applyPrefix("light", prefix)} &, [data-theme=light] &`,
+  }
+}
+
+// TODO: extract this into an appropriate utils file
+const applyPrefix = (value: string, prefix = "", separator = "-") =>
+  `${[prefix, value].filter(Boolean).join(separator)}`
 
 export const pseudoPropNames = objectKeys(pseudoSelectors)

@@ -1,8 +1,8 @@
 import { isBrowser, noop } from "@chakra-ui/utils"
 
 const classNames = {
-  light: "chakra-ui-light",
-  dark: "chakra-ui-dark",
+  light: "light",
+  dark: "dark",
 }
 
 export type ColorMode = "light" | "dark"
@@ -16,13 +16,23 @@ const mockBody = {
 
 const getBody = () => (isBrowser ? document.body : mockBody)
 
+// TODO: extract this into an appropriate utils file
+const applyPrefix = (value: string, prefix = "", separator = "-") =>
+  `${[prefix, value].filter(Boolean).join(separator)}`
+
 /**
  * Function to add/remove class from `body` based on color mode
  */
-export function syncBodyClassName(isDark: boolean) {
+export function syncBodyClassName(isDark: boolean, cssVarPrefix = "") {
   const body = getBody()
-  body.classList.add(isDark ? classNames.dark : classNames.light)
-  body.classList.remove(isDark ? classNames.light : classNames.dark)
+  const { light, dark } = classNames
+
+  body.classList.add(
+    isDark ? applyPrefix(dark, cssVarPrefix) : applyPrefix(light, cssVarPrefix),
+  )
+  body.classList.remove(
+    isDark ? applyPrefix(light, cssVarPrefix) : applyPrefix(dark, cssVarPrefix),
+  )
 }
 
 /**

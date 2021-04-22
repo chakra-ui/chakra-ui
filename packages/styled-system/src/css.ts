@@ -9,7 +9,7 @@ import {
 import * as CSS from "csstype"
 import { expandResponsive } from "./expand-responsive"
 import { Config, PropConfig } from "./prop-config"
-import { pseudoSelectors } from "./pseudos"
+import { getPrefixedPseudoSelectors } from "./pseudos"
 import { systemProps as systemPropConfigs } from "./system"
 import { CssTheme, StyleObjectOrFn } from "./types"
 
@@ -142,7 +142,7 @@ export function getCss(options: GetCSSOptions) {
 export const css = (styles: StyleObjectOrFn) => (theme: any) => {
   const cssFn = getCss({
     theme,
-    pseudos: pseudoSelectors,
+    pseudos: getPrefixedPseudoSelectors(theme),
     configs: systemPropConfigs,
   })
   return cssFn(styles)

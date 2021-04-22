@@ -14,6 +14,7 @@ export type { ColorMode }
 export interface ColorModeOptions {
   initialColorMode?: ColorMode
   useSystemColorMode?: boolean
+  cssVarPrefix?: string
 }
 
 interface ColorModeContextType {
@@ -55,7 +56,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   const {
     value,
     children,
-    options: { useSystemColorMode, initialColorMode },
+    options: { useSystemColorMode, initialColorMode, cssVarPrefix },
     colorModeManager = localStorageManager,
   } = props
 
@@ -95,9 +96,9 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   React.useEffect(() => {
     const isDark = colorMode === "dark"
 
-    syncBodyClassName(isDark)
+    syncBodyClassName(isDark, cssVarPrefix)
     root.set(isDark ? "dark" : "light")
-  }, [colorMode])
+  }, [colorMode, cssVarPrefix])
 
   const setColorMode = React.useCallback(
     (value: ColorMode) => {
