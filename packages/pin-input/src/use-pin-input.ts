@@ -333,6 +333,9 @@ export interface UsePinInputFieldProps extends InputProps {
   ref?: React.Ref<HTMLInputElement>
 }
 
+/**
+ * @internal
+ */
 export function usePinInputField(
   props: UsePinInputFieldProps = {},
   forwardedRef: React.Ref<any> = null,
