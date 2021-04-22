@@ -1,18 +1,12 @@
 import { createContext, mergeRefs } from "@chakra-ui/react-utils"
-import {
-  RefCallback,
-  useRef,
-  useState,
-  useLayoutEffect,
-  useEffect,
-} from "react"
+import { RefCallback, useRef, useState } from "react"
 import { DescendantsManager, DescendantOptions } from "./descendant"
+import { useSafeLayoutEffect, cast } from "./utils"
 
-const useSafeLayoutEffect =
-  typeof window !== "undefined" ? useLayoutEffect : useEffect
-
-const cast = <T>(value: any) => value as T
-
+/**
+ * @internal
+ * React hook that initializes the DescendantsManager
+ */
 export function useDescendants<T extends HTMLElement = HTMLElement, K = {}>() {
   const [descendants] = useState(() => new DescendantsManager<T, K>())
   useSafeLayoutEffect(() => {
@@ -24,6 +18,14 @@ export function useDescendants<T extends HTMLElement = HTMLElement, K = {}>() {
 export interface UseDescendantsReturn
   extends ReturnType<typeof useDescendants> {}
 
+/* -------------------------------------------------------------------------------------------------
+ * Descendants context to be used in component-land.
+  - Mount the `DescendantsContextProvider` at the root of the component
+  - Call `useDescendantsContext` anywhere you need access to the descendants information
+
+  NB:  I recommend using `createDescendantContext` below
+ * -----------------------------------------------------------------------------------------------*/
+
 export const [
   DescendantsContextProvider,
   useDescendantsContext,
@@ -32,6 +34,13 @@ export const [
   errorMessage: "useDescendantsContext must be used within DescendantsProvider",
 })
 
+/**
+ * @internal
+ * This hook provides information a descendant such as:
+ * - Its index compared to other descendants
+ * - ref callback to register the descendant
+ * - Its enabled index compared to other enabled descendants
+ */
 export function useDescendant<T extends HTMLElement = HTMLElement, K = {}>(
   options?: DescendantOptions & K,
 ) {
@@ -66,12 +75,17 @@ export function useDescendant<T extends HTMLElement = HTMLElement, K = {}>(
   }
 }
 
+/* -------------------------------------------------------------------------------------------------
+ * Function that provides strongly typed versions of the context provider and hooks above.
+   To be used in component-land
+ * -----------------------------------------------------------------------------------------------*/
+
 export function createDescendantContext<
   T extends HTMLElement = HTMLElement,
   K = {}
 >() {
-  type ProviderType = React.Provider<DescendantsManager<T, K>>
-  const Provider = cast<ProviderType>(DescendantsContextProvider)
+  type ContextProviderType = React.Provider<DescendantsManager<T, K>>
+  const ContextProvider = cast<ContextProviderType>(DescendantsContextProvider)
 
   const _useDescendantsContext = () =>
     cast<DescendantsManager<T, K>>(useDescendantsContext())
@@ -82,9 +96,13 @@ export function createDescendantContext<
   const _useDescendants = () => useDescendants<T, K>()
 
   return [
-    Provider,
-    _useDescendants,
-    _useDescendant,
+    // context provider
+    ContextProvider,
+    // call this when you need to read from context
     _useDescendantsContext,
+    // descendants state information, to be called and passed to `ContextProvider`
+    _useDescendants,
+    // descendant index information
+    _useDescendant,
   ] as const
 }

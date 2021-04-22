@@ -28,9 +28,9 @@ import * as React from "react"
 
 export const [
   TabsDescendantsProvider,
+  useTabsDescendantsContext,
   useTabsDescendants,
   useTabsDescendant,
-  useDescendantsContext,
 ] = createDescendantContext<HTMLButtonElement>()
 
 /* -------------------------------------------------------------------------------------------------
@@ -196,7 +196,7 @@ export interface UseTabListProps {
 export function useTabList<P extends UseTabListProps>(props: P) {
   const { focusedIndex, orientation, direction } = useTabsContext()
 
-  const descendants = useDescendantsContext()
+  const descendants = useTabsDescendantsContext()
 
   const onKeyDown = React.useCallback(
     (event: React.KeyboardEvent) => {
@@ -401,7 +401,7 @@ export function useTabPanel(props: Dict) {
  */
 export function useTabIndicator(): React.CSSProperties {
   const context = useTabsContext()
-  const descendants = useDescendantsContext()
+  const descendants = useTabsDescendantsContext()
 
   const { selectedIndex, orientation } = context
 

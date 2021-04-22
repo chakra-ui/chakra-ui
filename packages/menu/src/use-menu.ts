@@ -41,9 +41,9 @@ import * as React from "react"
 
 export const [
   MenuDescendantsProvider,
+  useMenuDescendantsContext,
   useMenuDescendants,
   useMenuDescendant,
-  useDescendantsContext,
 ] = createDescendantContext<HTMLElement>()
 
 /* -------------------------------------------------------------------------------------------------
@@ -356,7 +356,7 @@ export function useMenuList(
     lazyBehavior,
   } = menu
 
-  const descendants = useDescendantsContext()
+  const descendants = useMenuDescendantsContext()
 
   /**
    * Hook that creates a keydown event handler that listens

@@ -1,7 +1,4 @@
-import sortNodes from "./sort-nodes"
-
-const isElement = (el: any): el is HTMLElement =>
-  typeof el == "object" && "nodeType" in el && el.nodeType === Node.ELEMENT_NODE
+import { sortNodes, isElement, getNextIndex, getPrevIndex } from "./utils"
 
 export interface DescendantOptions {
   /**
@@ -26,18 +23,12 @@ export interface Descendant<T> extends DescendantOptions {
   index: number
 }
 
-function nextIndex(current: number, max: number, loop: boolean) {
-  let next = current + 1
-  if (loop && next >= max) next = 0
-  return next
-}
-
-function prevIndex(current: number, max: number, loop: boolean) {
-  let next = current - 1
-  if (loop && next < 0) next = max
-  return next
-}
-
+/**
+ * @internal
+ *
+ * Class to manage descendants and their relative indices in the DOM.
+ * It uses `node.compareDocumentPosition(...)` under the hood
+ */
 export class DescendantsManager<T extends HTMLElement, K = {}> {
   private descendants = new Map<T, Descendant<T>>()
 
@@ -110,24 +101,24 @@ export class DescendantsManager<T extends HTMLElement, K = {}> {
   }
 
   next = (index: number, loop = true) => {
-    const next = nextIndex(index, this.count(), loop)
+    const next = getNextIndex(index, this.count(), loop)
     return this.item(next)
   }
 
   nextEnabled = (index: number, loop = true) => {
     const _index = this.enabledIndexOf(this.item(index).node)
-    const _nextIndex = nextIndex(_index, this.enabledCount(), loop)
+    const _nextIndex = getNextIndex(_index, this.enabledCount(), loop)
     return this.enabledItem(_nextIndex)
   }
 
   prev = (index: number, loop = true) => {
-    const prev = prevIndex(index, this.count() - 1, loop)
+    const prev = getPrevIndex(index, this.count() - 1, loop)
     return this.item(prev)
   }
 
   prevEnabled = (index: number, loop = true) => {
     const _index = this.enabledIndexOf(this.item(index).node)
-    const _prevIndex = prevIndex(_index, this.enabledCount() - 1, loop)
+    const _prevIndex = getPrevIndex(_index, this.enabledCount() - 1, loop)
     return this.enabledItem(_prevIndex)
   }
 

@@ -28,6 +28,7 @@ import React, { useCallback, useRef, useState } from "react"
 
 export const [
   AccordionDescendantsProvider,
+  useAccordionDescendantsContext,
   useAccordionDescendants,
   useAccordionDescendant,
 ] = createDescendantContext<HTMLButtonElement>()
