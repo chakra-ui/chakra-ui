@@ -4,12 +4,25 @@ const isElement = (el: any): el is HTMLElement =>
   typeof el == "object" && "nodeType" in el && el.nodeType === Node.ELEMENT_NODE
 
 export interface DescendantOptions {
+  /**
+   * If `true`, the item will be registered in all nodes map
+   * but omitted from enabled nodes map
+   */
   disabled?: boolean
+  /**
+   * The id of the item
+   */
   id?: string
 }
 
 export interface Descendant<T> extends DescendantOptions {
+  /**
+   * DOM element of the item
+   */
   node: T
+  /**
+   * index of item in all nodes map and enabled nodes map
+   */
   index: number
 }
 
@@ -68,13 +81,7 @@ export class DescendantsManager<T extends HTMLElement, K = {}> {
   }
 
   enabledValues = () => {
-    return this.values()
-      .filter((descendant) => !descendant.disabled)
-      .map((descendant, index) => ({
-        ...descendant,
-        index,
-        __index: descendant.index,
-      }))
+    return this.values().filter((descendant) => !descendant.disabled)
   }
 
   item = (index: number) => this.values()[index]
