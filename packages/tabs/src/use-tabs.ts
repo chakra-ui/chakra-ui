@@ -83,6 +83,12 @@ export interface UseTabsProps {
    * @default "unmount"
    */
   lazyBehavior?: LazyBehavior
+  /**
+   * The writing mode direction.
+   *
+   * - When in RTL, the left and right navigation is flipped
+   */
+  direction?: "rtl" | "ltr"
 }
 
 /**
@@ -103,6 +109,7 @@ export function useTabs(props: UseTabsProps) {
     isLazy,
     lazyBehavior = "unmount",
     orientation = "horizontal",
+    direction = "ltr",
     ...htmlProps
   } = props
 
@@ -137,23 +144,11 @@ export function useTabs(props: UseTabsProps) {
 
   /**
    * Think of `useDescendants` as a register for the tab nodes.
-   *
-   * This manager is used to store only the tab nodes that are not disabled, and focusable.
-   * If we have the following code
-   *
-   * ```jsx
-   * <Tab>Tab 1</Tab>
-   * <Tab isDisabled>Tab 2</Tab>
-   * <Tab>Tab 3</Tab>
-   * ```
-   *
-   * The manager will only hold references to "Tab 1" and "Tab 3", since `Tab 2` is disabled
    */
   const descendants = useTabsDescendants()
 
   /**
-   * generate a unique id or use user-provided id for
-   * the tabs widget
+   * Generate a unique id or use user-provided id for the tabs widget
    */
   const id = useId(props.id, `tabs`)
 
@@ -168,6 +163,7 @@ export function useTabs(props: UseTabsProps) {
     lazyBehavior,
     orientation,
     descendants,
+    direction,
     htmlProps,
   }
 }
@@ -177,13 +173,11 @@ export type UseTabsReturn = Omit<
   "htmlProps" | "descendants"
 >
 
-const [TabsProvider, useTabsContext] = createContext<UseTabsReturn>({
+export const [TabsProvider, useTabsContext] = createContext<UseTabsReturn>({
   name: "TabsContext",
   errorMessage:
     "useTabsContext: `context` is undefined. Seems you forgot to wrap all tabs components within <Tabs />",
 })
-
-export { TabsProvider, useTabsContext }
 
 type Child = React.ReactElement<any>
 
@@ -200,7 +194,7 @@ export interface UseTabListProps {
  * @param props props object for the tablist
  */
 export function useTabList<P extends UseTabListProps>(props: P) {
-  const { focusedIndex, orientation } = useTabsContext()
+  const { focusedIndex, orientation, direction } = useTabsContext()
 
   const descendants = useDescendantsContext()
 
@@ -227,9 +221,13 @@ export function useTabList<P extends UseTabListProps>(props: P) {
       const isVertical = orientation === "vertical"
 
       const eventKey = normalizeEventKey(event)
+
+      const ArrowStart = direction === "ltr" ? "ArrowLeft" : "ArrowRight"
+      const ArrowEnd = direction === "ltr" ? "ArrowRight" : "ArrowLeft"
+
       const keyMap: EventKeyMap = {
-        ArrowRight: () => isHorizontal && nextTab(),
-        ArrowLeft: () => isHorizontal && prevTab(),
+        [ArrowStart]: () => isHorizontal && prevTab(),
+        [ArrowEnd]: () => isHorizontal && nextTab(),
         ArrowDown: () => isVertical && nextTab(),
         ArrowUp: () => isVertical && prevTab(),
         Home: firstTab,
@@ -243,7 +241,7 @@ export function useTabList<P extends UseTabListProps>(props: P) {
         action(event)
       }
     },
-    [descendants, focusedIndex, orientation],
+    [descendants, focusedIndex, orientation, direction],
   )
 
   return {
