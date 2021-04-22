@@ -1,6 +1,5 @@
 import { Placement } from "@chakra-ui/popper"
 import { ThemeDirection } from "@chakra-ui/theme"
-import { DrawerProps } from "@chakra-ui/modal"
 
 export function flipDirection(placement: Placement): Placement {
   const LEFT_RIGHT_REGEX = /left|right|start|end/g
@@ -25,8 +24,8 @@ export function flipDirection(placement: Placement): Placement {
  * swaps 'left' with 'right (& vice-verse) when dir is 'rtl'
  */
 export function getPlacementForThemeDirection(
-  placement: DrawerProps["placement"],
   dir: ThemeDirection,
+  placement?: string,
 ) {
   if (!placement || dir === "ltr") {
     return placement
@@ -34,5 +33,5 @@ export function getPlacementForThemeDirection(
   // only flip for RTL
   return placement.replace(/left|right/g, (m) => {
     return m === "left" ? "right" : "left"
-  }) as DrawerProps["placement"]
+  })
 }

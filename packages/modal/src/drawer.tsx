@@ -44,9 +44,9 @@ export function Drawer(props: DrawerProps) {
   const theme = useTheme()
   const drawerStyleConfig = theme.components?.Drawer
   const dirAwarePlacement = getPlacementForThemeDirection(
-    placement,
     theme.direction,
-  )
+    placement,
+  ) as DrawerProps["placement"]
 
   return (
     <DrawerContextProvider value={{ placement: dirAwarePlacement }}>
