@@ -2,4 +2,5 @@
 "@chakra-ui/button": patch
 ---
 
-Fixed #3859 issue where button type was reciving undefined
+Resolved an issue where the `type` prop of the `Button` component was set to
+`undefined`.
