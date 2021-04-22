@@ -133,7 +133,7 @@ function OmniSearch() {
     const hotkey = isMac ? "metaKey" : "ctrlKey"
     if (event?.key?.toLowerCase() === "k" && event[hotkey]) {
       event.preventDefault()
-      modal.onOpen()
+      modal.isOpen ? modal.onClose() : modal.onOpen()
     }
   })
 
