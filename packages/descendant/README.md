@@ -11,11 +11,11 @@ components.
 ## Installation
 
 ```sh
-yarn add @chakra-ui/descendants
+yarn add @chakra-ui/descendant
 
 # or
 
-npm i @chakra-ui/descendants
+npm i @chakra-ui/descendant
 ```
 
 ## Motivation
@@ -43,13 +43,15 @@ This enables component composition:
 ### Usage
 
 ```jsx
-import {
-  DescendantsContext,
-  useDescendant,
-  useDescendants,
-  useDescendantsContext,
-} from "@descendants/react"
+import { createDescendantContext } from "@descendants/react"
 import * as React from "react"
+
+const [
+  DescendantsProvider,
+  useDescendantsContext,
+  useDescendants,
+  useDescendant,
+] = createDescendantContext()
 
 const MenuContext = React.createContext({})
 
@@ -57,20 +59,17 @@ function Menu({ children }) {
   // 1. Call the `useDescendants` hook
   const descendants = useDescendants()
 
-  // 2. Grab the `observer` in the bag
-  const { observer } = descendants
-
   const [selected, setSelected] = React.useState(1)
   const context = React.useMemo(() => ({ selected, setSelected }), [selected])
 
   return (
-    // 3. Add the descendants context
-    <DescendantsContext.Provider value={descendants}>
+    // 2. Add the descendants context
+    <DescendantsProvider value={descendants}>
       <MenuContext.Provider value={context}>
         <div role="menu" style={{ maxWidth: 320 }}>
           <button
             onClick={() => {
-              const prev = observer.prev(selected, true)
+              const prev = descendants.prev(selected)
               prev.node.focus()
               setSelected(prev.index)
             }}
@@ -79,7 +78,7 @@ function Menu({ children }) {
           </button>
           <button
             onClick={() => {
-              const next = observer.next(selected, true)
+              const next = descendants.next(selected)
               next.node.focus()
               setSelected(next.index)
             }}
@@ -89,22 +88,22 @@ function Menu({ children }) {
           {children}
         </div>
       </MenuContext.Provider>
-    </DescendantsContext.Provider>
+    </DescendantsProvider>
   )
 }
 
 const MenuItem = ({ children }) => {
   const { selected, setSelected } = React.useContext(MenuContext)
 
-  // 4. Read from descendant context
-  const { index, ref } = useDescendant()
+  // 3. Read from descendant context
+  const { index, register } = useDescendant()
 
   const isSelected = index === selected
 
   return (
     <div
       role="menuitem"
-      ref={ref}
+      ref={register}
       aria-selected={isSelected}
       onMouseMove={() => setSelected(index)}
       style={{ color: isSelected ? "red" : "black" }}

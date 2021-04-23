@@ -253,17 +253,19 @@ export function useAccordionItem(props: UseAccordionItemProps) {
       const keyMap: EventKeyMap = {
         ArrowDown: () => {
           const next = descendants.nextEnabled(index)
-          focus(next.node)
+          if (next) focus(next.node)
         },
         ArrowUp: () => {
           const prev = descendants.prevEnabled(index)
-          focus(prev.node)
+          if (prev) focus(prev.node)
         },
         Home: () => {
-          focus(descendants.firstEnabled().node)
+          const first = descendants.firstEnabled()
+          if (first) focus(first.node)
         },
         End: () => {
-          focus(descendants.lastEnabled().node)
+          const last = descendants.lastEnabled()
+          if (last) focus(last.node)
         },
       }
 

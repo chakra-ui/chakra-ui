@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useInterval } from "@chakra-ui/hooks"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
@@ -9,6 +10,7 @@ export default {
 
 const [
   DescendantsProvider,
+  useDescendantsContext,
   useDescendants,
   useDescendant,
 ] = createDescendantContext<HTMLDivElement, { value?: string }>()

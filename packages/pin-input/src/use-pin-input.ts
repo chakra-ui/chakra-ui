@@ -15,10 +15,9 @@ export const [
   usePinInputDescendant,
 ] = createDescendantContext<HTMLInputElement>()
 
-type InputProps = Omit<
-  React.ComponentPropsWithRef<"input">,
-  "color" | "height" | "width"
->
+/* -------------------------------------------------------------------------------------------------
+ * Create context that stores pin-input logic
+ * -----------------------------------------------------------------------------------------------*/
 
 export type PinInputContext = Omit<UsePinInputReturn, "descendants"> & {
   /**
@@ -31,13 +30,18 @@ export type PinInputContext = Omit<UsePinInputReturn, "descendants"> & {
   isInvalid?: boolean
 }
 
-const [PinInputProvider, usePinInputContext] = createContext<PinInputContext>({
+export const [
+  PinInputProvider,
+  usePinInputContext,
+] = createContext<PinInputContext>({
   name: "PinInputContext",
   errorMessage:
     "usePinInputContext: `context` is undefined. Seems you forgot to all pin input fields within `<PinInput />`",
 })
 
-export { PinInputProvider, usePinInputContext }
+/* -------------------------------------------------------------------------------------------------
+ * usePinInput hook
+ * -----------------------------------------------------------------------------------------------*/
 
 export interface UsePinInputProps {
   /**
@@ -110,6 +114,10 @@ function validate(value: string, type: UsePinInputProps["type"]) {
   return regex.test(value)
 }
 
+/* -------------------------------------------------------------------------------------------------
+ * usePinInput - handles the general pin input logic
+ * -----------------------------------------------------------------------------------------------*/
+
 /**
  * @internal
  */
@@ -136,6 +144,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
   const descendants = usePinInputDescendants()
 
   const [moveFocus, setMoveFocus] = React.useState(true)
+  const [focusedIndex, setFocusedIndex] = React.useState(-1)
 
   const [values, setValues] = useControllableState<string[]>({
     defaultValue: toArray(defaultValue) || [],
@@ -146,7 +155,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
   React.useEffect(() => {
     if (autoFocus) {
       const first = descendants.first()
-      focus(first?.node, { nextTick: true })
+      if (first) focus(first.node, { nextTick: true })
     }
     // We don't want to listen for updates to `autoFocus` since it only runs initially
     // eslint-disable-next-line
@@ -156,7 +165,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
     (index: number) => {
       if (!moveFocus || !manageFocus) return
       const next = descendants.next(index, false)
-      focus(next?.node, { nextTick: true })
+      if (next) focus(next.node, { nextTick: true })
     },
     [descendants, moveFocus, manageFocus],
   )
@@ -187,7 +196,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
     const values: string[] = Array(descendants.count()).fill("")
     setValues(values)
     const first = descendants.first()
-    focus(first?.node)
+    if (first) focus(first.node)
   }, [descendants, setValues])
 
   const getNextValue = React.useCallback(
@@ -204,8 +213,6 @@ export function usePinInput(props: UsePinInputProps = {}) {
     },
     [],
   )
-
-  const [focusedIndex, setFocusedIndex] = React.useState(-1)
 
   const getInputProps = React.useCallback(
     (props: InputProps & { index: number }): InputProps => {
@@ -338,14 +345,20 @@ export interface UsePinInputFieldProps extends InputProps {
  */
 export function usePinInputField(
   props: UsePinInputFieldProps = {},
-  forwardedRef: React.Ref<any> = null,
+  ref: React.Ref<any> = null,
 ) {
   const { getInputProps } = usePinInputContext()
   const { index, register } = usePinInputDescendant()
 
   return getInputProps({
     ...props,
-    ref: mergeRefs(register, forwardedRef),
+    ref: mergeRefs(register, ref),
     index,
   })
 }
+
+interface InputProps
+  extends Omit<
+    React.ComponentPropsWithRef<"input">,
+    "color" | "height" | "width"
+  > {}

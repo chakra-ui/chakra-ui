@@ -75,9 +75,15 @@ export class DescendantsManager<T extends HTMLElement, K = {}> {
     return this.values().filter((descendant) => !descendant.disabled)
   }
 
-  item = (index: number) => this.values()[index]
+  item = (index: number) => {
+    if (this.count() === 0) return undefined
+    return this.values()[index]
+  }
 
-  enabledItem = (index: number) => this.enabledValues()[index]
+  enabledItem = (index: number) => {
+    if (this.enabledCount() === 0) return undefined
+    return this.enabledValues()[index]
+  }
 
   first = () => this.item(0)
 
@@ -96,7 +102,7 @@ export class DescendantsManager<T extends HTMLElement, K = {}> {
   }
 
   enabledIndexOf = (node: T | null) => {
-    if (!node) return -1
+    if (node == null) return -1
     return this.enabledValues().findIndex((i) => i.node.isSameNode(node))
   }
 
@@ -106,9 +112,15 @@ export class DescendantsManager<T extends HTMLElement, K = {}> {
   }
 
   nextEnabled = (index: number, loop = true) => {
-    const _index = this.enabledIndexOf(this.item(index).node)
-    const _nextIndex = getNextIndex(_index, this.enabledCount(), loop)
-    return this.enabledItem(_nextIndex)
+    const item = this.item(index)
+    if (!item) return
+    const enabledIndex = this.enabledIndexOf(item.node)
+    const nextEnabledIndex = getNextIndex(
+      enabledIndex,
+      this.enabledCount(),
+      loop,
+    )
+    return this.enabledItem(nextEnabledIndex)
   }
 
   prev = (index: number, loop = true) => {
@@ -117,9 +129,15 @@ export class DescendantsManager<T extends HTMLElement, K = {}> {
   }
 
   prevEnabled = (index: number, loop = true) => {
-    const _index = this.enabledIndexOf(this.item(index).node)
-    const _prevIndex = getPrevIndex(_index, this.enabledCount() - 1, loop)
-    return this.enabledItem(_prevIndex)
+    const item = this.item(index)
+    if (!item) return
+    const enabledIndex = this.enabledIndexOf(item.node)
+    const prevEnabledIndex = getPrevIndex(
+      enabledIndex,
+      this.enabledCount() - 1,
+      loop,
+    )
+    return this.enabledItem(prevEnabledIndex)
   }
 
   private registerNode = (node: T | null, options: DescendantOptions = {}) => {

@@ -194,13 +194,13 @@ export function useMenu(props: UseMenuProps = {}) {
   const openAndFocusFirstItem = React.useCallback(() => {
     onOpen()
     const first = descendants.firstEnabled()
-    setFocusedIndex(first.index)
+    if (first) setFocusedIndex(first.index)
   }, [onOpen, setFocusedIndex, descendants])
 
   const openAndFocusLastItem = React.useCallback(() => {
     onOpen()
     const last = descendants.lastEnabled()
-    setFocusedIndex(last.index)
+    if (last) setFocusedIndex(last.index)
   }, [onOpen, setFocusedIndex, descendants])
 
   const refocus = React.useCallback(() => {
@@ -211,7 +211,7 @@ export function useMenu(props: UseMenuProps = {}) {
     if (!shouldRefocus) return
 
     const el = descendants.item(focusedIndex)?.node
-    focus(el)
+    if (el) focus(el)
   }, [isOpen, focusedIndex, descendants])
 
   return {
@@ -378,11 +378,11 @@ export function useMenuList(
         Escape: onClose,
         ArrowDown: () => {
           const next = descendants.nextEnabled(focusedIndex)
-          setFocusedIndex(next.index)
+          if (next) setFocusedIndex(next.index)
         },
         ArrowUp: () => {
           const prev = descendants.prevEnabled(focusedIndex)
-          setFocusedIndex(prev.index)
+          if (prev) setFocusedIndex(prev.index)
         },
       }
 
@@ -402,7 +402,7 @@ export function useMenuList(
         const nextItem = getNextItemFromSearch(
           descendants.values(),
           character,
-          (item) => item.node?.textContent || "",
+          (item) => item?.node?.textContent ?? "",
           descendants.item(focusedIndex),
         )
         if (nextItem) {

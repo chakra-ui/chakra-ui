@@ -202,19 +202,19 @@ export function useTabList<P extends UseTabListProps>(props: P) {
     (event: React.KeyboardEvent) => {
       const nextTab = () => {
         const next = descendants.nextEnabled(focusedIndex)
-        focus(next.node)
+        if (next) focus(next.node)
       }
       const prevTab = () => {
         const prev = descendants.prevEnabled(focusedIndex)
-        focus(prev.node)
+        if (prev) focus(prev.node)
       }
       const firstTab = () => {
         const first = descendants.firstEnabled()
-        focus(first.node)
+        if (first) focus(first.node)
       }
       const lastTab = () => {
         const last = descendants.lastEnabled()
-        focus(last.node)
+        if (last) focus(last.node)
       }
 
       const isHorizontal = orientation === "horizontal"
