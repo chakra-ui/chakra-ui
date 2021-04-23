@@ -50,8 +50,8 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "nanoid": "3.1.20",
-    "valtio": "0.7.0"
+    "nanoid": "^3.1.22",
+    "valtio": "^1.0.3"
   },
   "peerDependencies": {
     "react": ">=16.8.6"
