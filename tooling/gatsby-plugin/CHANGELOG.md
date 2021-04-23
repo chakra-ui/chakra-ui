@@ -1,5 +1,32 @@
 # Change Log
 
+## 2.0.0
+
+### Major Changes
+
+- [`e7261d536`](https://github.com/chakra-ui/chakra-ui/commit/e7261d536caf95ced36bf20931cdcd3bc7b31a4e)
+  [#3841](https://github.com/chakra-ui/chakra-ui/pull/3841) Thanks
+  [@LekoArts](https://github.com/LekoArts)! - Upgrading to this new major
+  version is recommended for everyone as it fixes hot reloading in Gatsby (Fast
+  Refresh). In the previous version changes to the shadowed `theme.js` file
+  didn't trigger automatic reloading, and a manual reload was necessary.
+
+  ## Breaking Changes
+
+  - The `isUsingColorMode` option was removed. The `ChakraProvider` will always
+    use the `ColorModeProvider`
+  - The `isResettingCSS` option was renamed to `resetCSS`
+
+  Those changes were made to use the current `ChakraProvider` and align the prop
+  names.
+
+  ## Improvements
+
+  - Use `ChakraProvider` instead of the outdated `ThemeProvider` pattern
+  - Add `initialColorMode` to the `ColorModeScript`
+  - Allow Fast Refresh reloading of all theme files
+  - Set stricter `peerDependency` on `gatsby` (to `^2.29.3 || ^3.0.0`)
+
 ## 1.0.2
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @chakra-ui/react-env
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)]:
+  - @chakra-ui/utils@1.7.0
+
 ## 1.0.2
 
 ### Patch Changes

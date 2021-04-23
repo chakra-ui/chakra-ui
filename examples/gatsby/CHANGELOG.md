@@ -1,5 +1,27 @@
 # gatsby-starter-default
 
+## 0.3.0
+
+### Minor Changes
+
+- [`e7261d536`](https://github.com/chakra-ui/chakra-ui/commit/e7261d536caf95ced36bf20931cdcd3bc7b31a4e)
+  [#3841](https://github.com/chakra-ui/chakra-ui/pull/3841) Thanks
+  [@LekoArts](https://github.com/LekoArts)! - Updates to Gatsby-related
+  documentation to account for the breaking changes made in
+  [PR #3841](https://github.com/chakra-ui/chakra-ui/pull/3841). The "Providers"
+  section from the Gatsby guide was removed as the plugin itself handles
+  everything already.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`e7261d536`](https://github.com/chakra-ui/chakra-ui/commit/e7261d536caf95ced36bf20931cdcd3bc7b31a4e),
+  [`52748f4e5`](https://github.com/chakra-ui/chakra-ui/commit/52748f4e561130af01ad75ef10233b9e1126279f),
+  [`1d5e55272`](https://github.com/chakra-ui/chakra-ui/commit/1d5e55272fe1475ce6fa0ed5bdccef4218885f77)]:
+  - @chakra-ui/gatsby-plugin@2.0.0
+  - @chakra-ui/machine@1.3.0
+  - @chakra-ui/react@1.6.0
+
 ## 0.2.0
 
 ### Minor Changes

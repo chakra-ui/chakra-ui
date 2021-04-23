@@ -1,5 +1,25 @@
 # Change Log
 
+## 1.2.4
+
+### Patch Changes
+
+- [`e7261d536`](https://github.com/chakra-ui/chakra-ui/commit/e7261d536caf95ced36bf20931cdcd3bc7b31a4e)
+  [#3841](https://github.com/chakra-ui/chakra-ui/pull/3841) Thanks
+  [@LekoArts](https://github.com/LekoArts)! - Updates to Gatsby-related
+  documentation to account for the breaking changes made in
+  [PR #3841](https://github.com/chakra-ui/chakra-ui/pull/3841). The "Providers"
+  section from the Gatsby guide was removed as the plugin itself handles
+  everything already.
+
+- Updated dependencies
+  [[`1d5e55272`](https://github.com/chakra-ui/chakra-ui/commit/1d5e55272fe1475ce6fa0ed5bdccef4218885f77),
+  [`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)]:
+  - @chakra-ui/react@1.6.0
+  - @chakra-ui/utils@1.7.0
+  - @chakra-ui/props-docs@1.0.25
+  - @chakra-ui/theme-tools@1.1.6
+
 ## 1.2.3
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.7.0
+
+### Minor Changes
+
+- [`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)
+  [#3511](https://github.com/chakra-ui/chakra-ui/pull/3511) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - - Add `pipe` function
+  - Add generic to `isFunction` guard
+
 ## 1.6.0
 
 ### Minor Changes
