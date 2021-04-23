@@ -14,6 +14,121 @@ To better understand the changelog, here are some legends we use:
 - 🚀 Feature
 - 🐛 Bug fix
 
+## 23-04-2021
+
+`@chakra-ui/react@1.6.0`
+
+**Gatsby Plugin** `v2.0.0`
+
+- 💥 Upgrading to this new majorversion is recommended for everyone as it fixes
+  hot reloading in Gatsby (Fast Refresh). In the previous version changes to the
+  shadowed theme.js file didn't trigger automatic reloading, and a manual reload
+  was necessary.
+
+- 💥 The `isUsingColorMode` option was removed. The `ChakraProvider` will always
+  use the `ColorModeProvider`.
+- 💥 The `isResettingCSS` option was renamed to `resetCSS`. Those changes were
+  made to use the current ChakraProvider and align the prop names.
+
+Improvements
+
+- Use `ChakraProvider` instead of the outdated `ThemeProvider` pattern.
+- Add `initialColorMode` to the `ColorModeScript`.
+- Allow Fast Refresh reloading of all theme files.
+- Set stricter `peerDependency` on `gatsby` (to ^2.29.3 || ^3.0.0).
+
+**Accordion** `v1.3.0`
+
+- 🚀 Update tabs and accordion to use updated descendants logic.
+
+**Menu** `v1.6.0`
+
+- 🚀 Update menu to use new descendants logic.
+- 🐛 Fix issue where menu doesn't select menu item when the first item is
+  disabled.
+- 🐛 Fix issue where menu doesn't work when an input is used within it.
+- 🐛 Fix issue where menu button doesn't work with truncated text.
+
+**Pin Input** `v1.6.0`
+
+- 🚀 Update pin-input to use the new descendants logic.
+
+**React** `v1.6.0` & **Theme** `v1.8.4`
+
+- 🚀 The `extendTheme` function allows you to pass multiple overrides or
+  extensions:
+
+```jsx live=false
+import {
+  extendTheme,
+  withDefaultColorScheme,
+  withDefaultSize,
+  withDefaultVariant,
+  withDefaultProps,
+} from "@chakra-ui/react"
+
+const customTheme = extendTheme(
+  {
+    colors: {
+      brand: {
+        // ...
+        500: "#b4d455",
+        // ...
+      },
+    },
+  },
+  withDefaultColorScheme({ colorScheme: "brand" }),
+  withDefaultSize({
+    size: "lg",
+    components: ["Input", "NumberInput", "PinInput"],
+  }),
+  withDefaultVariant({
+    variant: "outline",
+    components: ["Input", "NumberInput", "PinInput"],
+  }),
+  // or all in one:
+  withDefaultProps({
+    defaultProps: {
+      colorScheme: "brand",
+      variant: "outline",
+      size: "lg",
+    },
+    components: ["Input", "NumberInput", "PinInput"],
+  }),
+  // optional:
+  yourCustomBaseTheme, // defaults to our chakra default theme
+)
+```
+
+**Tabs** `v1.5.0`
+
+- 🚀 Update tabs and accordion to use updated descendants logic.
+- 🚀 Add support for RTL keyboard navigation.
+
+**Utils** `v1.7.0`
+
+- 🚀 Add `pipe` function.
+- 🚀 Add generic to `isFunction` guard.
+
+**Button** `v1.3.1`
+
+- 🐛 Resolved an issue where the `type` prop of the `Button` component was set
+  to `undefined`.
+
+**Progress** `v1.1.8`
+
+- 🐛 Fix hyperlink to docs.
+
+**React Utils** `v1.1.2`
+
+- 🐛 Update types for `mergeRefs` to include null.
+
+**Gatsby Starter Default** `v0.3.0`
+
+- 🚀 Updates to Gatsby-related documentation to account for the breaking changes
+  made in PR #3841. The "Providers" section from the Gatsby guide was removed as
+  the plugin itself handles everything already.
+
 ## 19-04-2021
 
 `@chakra-ui/react@1.5.2`
@@ -86,7 +201,7 @@ mounted (but hidden) after it was previously selected or opened, use
 
 **Styled System** `v1.10.3`
 
-- 🐛 Fixed an issue where thtransition props are not resolved correctly
+- 🐛 Fixed an issue where thtransition props are not resolved correctly.
 
 ## 13-04-2021
 
