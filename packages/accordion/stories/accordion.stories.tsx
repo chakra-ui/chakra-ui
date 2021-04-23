@@ -297,3 +297,30 @@ export const FocusBug = () => {
     </Box>
   )
 }
+
+export const WithDisabledAccordionItem = () => {
+  return (
+    <Accordion index={1}>
+      <AccordionItem isDisabled>
+        <AccordionButton>Button 1</AccordionButton>
+        <AccordionPanel>One Content</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem isDisabled>
+        <AccordionButton>Button 2</AccordionButton>
+        <AccordionPanel>Two Content</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Button 3</AccordionButton>
+        <AccordionPanel>Three Content</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem isDisabled>
+        <AccordionButton>Button 4</AccordionButton>
+        <AccordionPanel>Four Content</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Button 5</AccordionButton>
+        <AccordionPanel>Five Content</AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  )
+}

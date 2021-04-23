@@ -5,6 +5,7 @@ import {
   usePinInput,
   usePinInputField,
   PinInputProvider,
+  PinInputDescendantsProvider,
 } from "../src"
 
 export default {
@@ -25,25 +26,27 @@ function Input(props: any) {
 }
 
 export function HookExample() {
-  const context = usePinInput({
+  const { descendants, ...context } = usePinInput({
     autoFocus: true,
     mask: true,
     onComplete: alert,
     type: "number",
   })
   return (
-    <PinInputProvider value={context}>
-      <Input style={style} />
-      <Input style={style} />
-      <Input style={style} />
-      <Input style={style} />
-    </PinInputProvider>
+    <PinInputDescendantsProvider value={descendants}>
+      <PinInputProvider value={context}>
+        <Input style={style} />
+        <Input style={style} />
+        <Input style={style} />
+        <Input style={style} />
+      </PinInputProvider>
+    </PinInputDescendantsProvider>
   )
 }
 
 export function ComponentExample() {
   return (
-    <PinInput defaultValue="234">
+    <PinInput>
       <PinInputField />
       <PinInputField />
       <PinInputField />
@@ -55,7 +58,7 @@ export const Sizes = () => (
   <>
     {["xs", "sm", "md", "lg"].map((size) => (
       <div key={size} style={{ marginBottom: "1rem" }}>
-        <PinInput size={size} defaultValue="234">
+        <PinInput size={size}>
           <PinInputField />
           <PinInputField />
           <PinInputField />
@@ -75,6 +78,7 @@ export const Controlled = () => {
   const handleComplete = (value: string) => {
     console.log(value)
   }
+
   return (
     <PinInput value={value} onChange={handleChange} onComplete={handleComplete}>
       <PinInputField />

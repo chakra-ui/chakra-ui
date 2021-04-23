@@ -1,15 +1,25 @@
-import { useDescendant, useDescendants } from "@chakra-ui/descendant"
+import { createDescendantContext } from "@chakra-ui/descendant"
 import { useControllableState, useId } from "@chakra-ui/hooks"
-import { ariaAttr, callAllHandlers } from "@chakra-ui/utils"
+import { ariaAttr, callAllHandlers, focus } from "@chakra-ui/utils"
 import { createContext, mergeRefs } from "@chakra-ui/react-utils"
 import * as React from "react"
 
-type InputProps = Omit<
-  React.ComponentPropsWithRef<"input">,
-  "color" | "height" | "width"
->
+/* -------------------------------------------------------------------------------------------------
+ * Create context to track descendants and their indices
+ * -----------------------------------------------------------------------------------------------*/
 
-export type PinInputContext = UsePinInputReturn & {
+export const [
+  PinInputDescendantsProvider,
+  usePinInputDescendantsContext,
+  usePinInputDescendants,
+  usePinInputDescendant,
+] = createDescendantContext<HTMLInputElement>()
+
+/* -------------------------------------------------------------------------------------------------
+ * Create context that stores pin-input logic
+ * -----------------------------------------------------------------------------------------------*/
+
+export type PinInputContext = Omit<UsePinInputReturn, "descendants"> & {
   /**
    * Sets the pin input component to the disabled state
    */
@@ -20,13 +30,18 @@ export type PinInputContext = UsePinInputReturn & {
   isInvalid?: boolean
 }
 
-const [PinInputProvider, usePinInputContext] = createContext<PinInputContext>({
+export const [
+  PinInputProvider,
+  usePinInputContext,
+] = createContext<PinInputContext>({
   name: "PinInputContext",
   errorMessage:
     "usePinInputContext: `context` is undefined. Seems you forgot to all pin input fields within `<PinInput />`",
 })
 
-export { PinInputProvider, usePinInputContext }
+/* -------------------------------------------------------------------------------------------------
+ * usePinInput hook
+ * -----------------------------------------------------------------------------------------------*/
 
 export interface UsePinInputProps {
   /**
@@ -99,6 +114,13 @@ function validate(value: string, type: UsePinInputProps["type"]) {
   return regex.test(value)
 }
 
+/* -------------------------------------------------------------------------------------------------
+ * usePinInput - handles the general pin input logic
+ * -----------------------------------------------------------------------------------------------*/
+
+/**
+ * @internal
+ */
 export function usePinInput(props: UsePinInputProps = {}) {
   const {
     autoFocus,
@@ -119,10 +141,10 @@ export function usePinInput(props: UsePinInputProps = {}) {
   const uuid = useId()
   const id = idProp ?? `pin-input-${uuid}`
 
-  const domContext = useDescendants<HTMLInputElement, {}>()
-  const { descendants } = domContext
+  const descendants = usePinInputDescendants()
 
   const [moveFocus, setMoveFocus] = React.useState(true)
+  const [focusedIndex, setFocusedIndex] = React.useState(-1)
 
   const [values, setValues] = useControllableState<string[]>({
     defaultValue: toArray(defaultValue) || [],
@@ -132,8 +154,8 @@ export function usePinInput(props: UsePinInputProps = {}) {
 
   React.useEffect(() => {
     if (autoFocus) {
-      const firstInput = descendants[0]
-      firstInput?.element?.focus()
+      const first = descendants.first()
+      if (first) focus(first.node, { nextTick: true })
     }
     // We don't want to listen for updates to `autoFocus` since it only runs initially
     // eslint-disable-next-line
@@ -142,9 +164,8 @@ export function usePinInput(props: UsePinInputProps = {}) {
   const focusNext = React.useCallback(
     (index: number) => {
       if (!moveFocus || !manageFocus) return
-
-      const nextInput = descendants[index + 1]
-      nextInput?.element?.focus()
+      const next = descendants.next(index, false)
+      if (next) focus(next.node, { nextTick: true })
     },
     [descendants, moveFocus, manageFocus],
   )
@@ -157,8 +178,10 @@ export function usePinInput(props: UsePinInputProps = {}) {
 
       const isComplete =
         value !== "" &&
-        index === descendants.length - 1 &&
-        nextValues.every((inputValue) => inputValue !== "")
+        nextValues.length === descendants.count() &&
+        nextValues.every(
+          (inputValue) => inputValue != null && inputValue !== "",
+        )
 
       if (isComplete) {
         onComplete?.(nextValues.join(""))
@@ -166,14 +189,14 @@ export function usePinInput(props: UsePinInputProps = {}) {
         focusNext(index)
       }
     },
-    [values, setValues, focusNext, onComplete, descendants.length],
+    [values, setValues, focusNext, onComplete, descendants],
   )
 
   const clear = React.useCallback(() => {
-    const values: string[] = Array(descendants.length).fill("")
+    const values: string[] = Array(descendants.count()).fill("")
     setValues(values)
-    const firstInput = descendants[0]
-    firstInput.element?.focus()
+    const first = descendants.first()
+    if (first) focus(first.node)
   }, [descendants, setValues])
 
   const getNextValue = React.useCallback(
@@ -190,8 +213,6 @@ export function usePinInput(props: UsePinInputProps = {}) {
     },
     [],
   )
-
-  const [focusedIndex, setFocusedIndex] = React.useState(-1)
 
   const getInputProps = React.useCallback(
     (props: InputProps & { index: number }): InputProps => {
@@ -218,12 +239,12 @@ export function usePinInput(props: UsePinInputProps = {}) {
             // Ensure the value matches the number of inputs
             const nextValue = eventValue
               .split("")
-              .filter((_, index) => index < descendants.length)
+              .filter((_, index) => index < descendants.count())
 
             setValues(nextValue)
 
             // if pasting fills the entire input fields, trigger `onComplete`
-            if (nextValue.length === descendants.length) {
+            if (nextValue.length === descendants.count()) {
               onComplete?.(nextValue.join(""))
             }
           }
@@ -240,10 +261,10 @@ export function usePinInput(props: UsePinInputProps = {}) {
       const onKeyDown = (event: React.KeyboardEvent) => {
         if (event.key === "Backspace" && manageFocus) {
           if ((event.target as HTMLInputElement).value === "") {
-            const prevInput = descendants[index - 1]
+            const prevInput = descendants.prev(index, false)
             if (prevInput) {
               setValue("", index - 1)
-              prevInput.element?.focus()
+              focus(prevInput.node)
               setMoveFocus(true)
             }
           } else {
@@ -304,7 +325,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
     getInputProps,
     // state
     id,
-    domContext,
+    descendants,
     values,
     // actions
     setValue,
@@ -319,22 +340,25 @@ export interface UsePinInputFieldProps extends InputProps {
   ref?: React.Ref<HTMLInputElement>
 }
 
+/**
+ * @internal
+ */
 export function usePinInputField(
   props: UsePinInputFieldProps = {},
-  forwardedRef: React.Ref<any> = null,
+  ref: React.Ref<any> = null,
 ) {
-  const ref = React.useRef<HTMLInputElement>(null)
-
-  const { domContext, getInputProps } = usePinInputContext()
-
-  const index = useDescendant({
-    context: domContext,
-    element: ref.current,
-  })
+  const { getInputProps } = usePinInputContext()
+  const { index, register } = usePinInputDescendant()
 
   return getInputProps({
     ...props,
-    ref: mergeRefs(ref, forwardedRef),
+    ref: mergeRefs(register, ref),
     index,
   })
 }
+
+interface InputProps
+  extends Omit<
+    React.ComponentPropsWithRef<"input">,
+    "color" | "height" | "width"
+  > {}

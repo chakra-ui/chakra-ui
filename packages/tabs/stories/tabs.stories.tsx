@@ -153,3 +153,78 @@ export const withLazyTabsMounted = () => (
     </TabPanels>
   </Tabs>
 )
+
+export const WithSwappedTabs = () => {
+  const initialData = [
+    { id: "a", value: 1 },
+    { id: "b", value: 5 },
+  ]
+
+  const TabView: React.FC<{
+    items: typeof initialData
+    selectedItemId: string
+    setSelectedItemId: (id: string) => void
+  }> = ({ items, selectedItemId, setSelectedItemId }) => {
+    // Derive current tab index from id
+    const tabIndex = React.useMemo(() => {
+      return items.findIndex((x) => x.id === selectedItemId)
+    }, [items, selectedItemId])
+
+    // Update current selected item id
+    const onTabChange = (idx: number) => {
+      console.log("onTabChange", idx, items[idx].id)
+      const { id } = items[idx]
+      setSelectedItemId(id)
+    }
+
+    return (
+      <Tabs
+        index={tabIndex}
+        onChange={onTabChange}
+        orientation="vertical"
+        variant="enclosed-colored"
+      >
+        <TabList minW="100px">
+          {items.map((x) => (
+            <Tab key={x.id}>
+              {x.id}: {x.value}
+            </Tab>
+          ))}
+        </TabList>
+        <TabPanels>
+          {items.map((x) => (
+            <TabPanel key={x.id}>
+              {x.id}: {x.value}
+            </TabPanel>
+          ))}
+        </TabPanels>
+      </Tabs>
+    )
+  }
+
+  const [items, setItems] = React.useState(initialData)
+  const [selectedItemId, setSelectedItemId] = React.useState("a")
+
+  const swapData = () => {
+    setItems((items) => {
+      const [a, b] = items
+      return [b, a]
+    })
+  }
+
+  console.log(
+    { selectedItemId },
+    items.map((x) => x.id),
+  )
+
+  return (
+    <chakra.div m={4}>
+      <button onClick={swapData}>Swap tab order</button>
+      <TabView
+        items={items}
+        selectedItemId={selectedItemId}
+        setSelectedItemId={setSelectedItemId}
+      />
+    </chakra.div>
+  )
+}

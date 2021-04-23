@@ -1,10 +1,17 @@
 import * as React from "react"
-import { render, userEvent, fireEvent, screen } from "@chakra-ui/test-utils"
+import {
+  render,
+  userEvent,
+  fireEvent,
+  screen,
+  waitFor,
+} from "@chakra-ui/test-utils"
 import {
   usePinInput,
   usePinInputField,
   UsePinInputProps,
   PinInputProvider,
+  PinInputDescendantsProvider,
 } from "../src"
 
 function Input(props: any) {
@@ -13,40 +20,42 @@ function Input(props: any) {
 }
 
 const Component = (props: UsePinInputProps = {}) => {
-  const context = usePinInput(props)
+  const { descendants, ...context } = usePinInput(props)
   return (
-    <PinInputProvider value={context}>
-      <Input data-testid="1" />
-      <Input data-testid="2" />
-      <Input data-testid="3" />
-    </PinInputProvider>
+    <PinInputDescendantsProvider value={descendants}>
+      <PinInputProvider value={context}>
+        <Input data-testid="1" />
+        <Input data-testid="2" />
+        <Input data-testid="3" />
+        <button onClick={() => context.clear()}>Clear</button>
+      </PinInputProvider>
+    </PinInputDescendantsProvider>
   )
 }
 
 test("has the proper aria attributes", () => {
   const utils = render(<Component />)
-
   expect(utils.queryAllByLabelText("Please enter your pin code")).toHaveLength(
     3,
   )
 })
 
-test("can autofocus the first field", () => {
+test("can autofocus the first field", async () => {
   const utils = render(<Component autoFocus />)
-
-  expect(document.activeElement).toEqual(utils.getByTestId("1"))
+  await waitFor(() => expect(utils.getByTestId("1")).toHaveFocus())
 })
 
-test("typing in an input automatically moves focus to the next item", () => {
+test("typing in an input automatically moves focus to the next item", async () => {
   const utils = render(<Component />)
 
   userEvent.type(utils.getByTestId("1"), "1")
-  expect(document.activeElement).toEqual(utils.getByTestId("2"))
+  await waitFor(() => expect(utils.getByTestId("2")).toHaveFocus())
+
   userEvent.type(utils.getByTestId("2"), "2")
-  expect(document.activeElement).toEqual(utils.getByTestId("3"))
+  await waitFor(() => expect(utils.getByTestId("3")).toHaveFocus())
 })
 
-test("pressing backspace moves to the previous input and clears", () => {
+test("pressing backspace moves to the previous input and clears", async () => {
   const utils = render(<Component />)
 
   // type in the first two inputs
@@ -54,13 +63,13 @@ test("pressing backspace moves to the previous input and clears", () => {
   userEvent.type(utils.getByTestId("2"), "2")
 
   // verify that 3rd input is active
-  expect(document.activeElement).toEqual(utils.getByTestId("3"))
+  await waitFor(() => expect(utils.getByTestId("3")).toHaveFocus())
 
   // send backspace to the 3rd input
   fireEvent.keyDown(utils.getByTestId("3"), { key: "Backspace" })
 
   // verify that 2nd input is active and value was cleared
-  expect(document.activeElement).toEqual(utils.getByTestId("2"))
+  await waitFor(() => expect(utils.getByTestId("2")).toHaveFocus())
   expect(utils.getByTestId("2")).toHaveValue("")
 })
 
@@ -76,17 +85,6 @@ test("filling out all inputs calls the complete callback", () => {
 })
 
 test("can clear all input", () => {
-  const Component = () => {
-    const context = usePinInput()
-    return (
-      <PinInputProvider value={context}>
-        <Input data-testid="1" />
-        <Input data-testid="2" />
-        <Input data-testid="3" />
-        <button onClick={() => context.clear()}>Clear</button>
-      </PinInputProvider>
-    )
-  }
   const utils = render(<Component />)
 
   // fill out the first two
@@ -94,7 +92,7 @@ test("can clear all input", () => {
   userEvent.type(utils.getByTestId("2"), "2")
 
   // click the clear button
-  fireEvent.click(utils.getByText(/clear/i))
+  fireEvent.click(utils.getByRole("button"))
 
   // verify that input values are blank
   expect(utils.getByTestId("1")).toHaveValue("")
