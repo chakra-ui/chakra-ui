@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react-utils",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "React utilities and helpers for Chakra UI",
   "keywords": [
     "theme",
@@ -50,7 +50,7 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/utils": "^1.5.1"
+    "@chakra-ui/utils": "^1.7.0"
   },
   "peerDependencies": {
     "react": ">=16.8.6"

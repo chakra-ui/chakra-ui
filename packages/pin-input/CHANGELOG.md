@@ -1,5 +1,25 @@
 # Change Log
 
+## 1.6.0
+
+### Minor Changes
+
+- [`17c57be68`](https://github.com/chakra-ui/chakra-ui/commit/17c57be6821247413c9ea8e94df34331f0ef129e)
+  [#3864](https://github.com/chakra-ui/chakra-ui/pull/3864) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Update pin-input to use
+  the new descendants logic
+
+### Patch Changes
+
+- Updated dependencies
+  [[`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f),
+  [`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f),
+  [`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)]:
+  - @chakra-ui/react-utils@1.1.2
+  - @chakra-ui/descendant@2.0.0
+  - @chakra-ui/utils@1.7.0
+  - @chakra-ui/hooks@1.5.1
+
 ## 1.5.3
 
 ### Patch Changes

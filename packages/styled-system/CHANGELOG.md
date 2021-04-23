@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.10.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)]:
+  - @chakra-ui/utils@1.7.0
+
 ## 1.10.3
 
 ### Patch Changes
@@ -425,7 +433,6 @@
   "to-bl" // 'to bottom left'
   "to-l" // 'to left'
   "to-tl" // 'to top left'
-
   ```
 
   ```jsx

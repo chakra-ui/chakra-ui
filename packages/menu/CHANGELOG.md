@@ -1,5 +1,36 @@
 # Change Log
 
+## 1.6.0
+
+### Minor Changes
+
+- [`d14c97420`](https://github.com/chakra-ui/chakra-ui/commit/d14c974203fe8c1a525d8932d5c8d0ae7d1fa84e)
+  [#3864](https://github.com/chakra-ui/chakra-ui/pull/3864) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Update menu to use new
+  descendants logic.
+  - Fix issue where menu doesn't select menu item when the first item is
+    disabled.
+  - Fix issue where menu doesn't work when an input is used within it.
+
+### Patch Changes
+
+- [`1f94620a1`](https://github.com/chakra-ui/chakra-ui/commit/1f94620a11dc616f0982321114a9a236bbf872d2)
+  [#3863](https://github.com/chakra-ui/chakra-ui/pull/3863) Thanks
+  [@isBatak](https://github.com/isBatak)! - Fix issue where menu button doesn't
+  work with truncated text
+
+- Updated dependencies
+  [[`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f),
+  [`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f),
+  [`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)]:
+  - @chakra-ui/react-utils@1.1.2
+  - @chakra-ui/descendant@2.0.0
+  - @chakra-ui/utils@1.7.0
+  - @chakra-ui/clickable@1.1.4
+  - @chakra-ui/hooks@1.5.1
+  - @chakra-ui/popper@2.1.2
+  - @chakra-ui/transition@1.2.2
+
 ## 1.5.0
 
 ### Minor Changes

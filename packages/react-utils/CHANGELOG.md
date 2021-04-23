@@ -1,5 +1,18 @@
 # @chakra-ui/react-utils
 
+## 1.1.2
+
+### Patch Changes
+
+- [`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f)
+  [#3864](https://github.com/chakra-ui/chakra-ui/pull/3864) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Update types for
+  `mergeRefs` to include null
+
+- Updated dependencies
+  [[`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)]:
+  - @chakra-ui/utils@1.7.0
+
 ## 1.1.1
 
 ### Patch Changes

@@ -1,5 +1,27 @@
 # Change Log
 
+## 1.3.0
+
+### Minor Changes
+
+- [`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f)
+  [#3864](https://github.com/chakra-ui/chakra-ui/pull/3864) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Update tabs and accordion
+  to use updated descendants logic
+
+### Patch Changes
+
+- Updated dependencies
+  [[`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f),
+  [`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f),
+  [`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)]:
+  - @chakra-ui/react-utils@1.1.2
+  - @chakra-ui/descendant@2.0.0
+  - @chakra-ui/utils@1.7.0
+  - @chakra-ui/hooks@1.5.1
+  - @chakra-ui/icon@1.1.8
+  - @chakra-ui/transition@1.2.2
+
 ## 1.2.3
 
 ### Patch Changes
