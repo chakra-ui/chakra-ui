@@ -20,7 +20,7 @@ To better understand the changelog, here are some legends we use:
 
 **Gatsby Plugin** `v2.0.0`
 
-- 💥 Upgrading to this new majorversion is recommended for everyone as it fixes
+- 💥 Upgrading to this new major version is recommended for everyone as it fixes
   hot reloading in Gatsby (Fast Refresh). In the previous version changes to the
   shadowed theme.js file didn't trigger automatic reloading, and a manual reload
   was necessary.
