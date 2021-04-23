@@ -1,5 +1,15 @@
-import defaultTheme, { ChakraTheme, Theme } from "@chakra-ui/theme"
-import { isFunction, mergeWith } from "@chakra-ui/utils"
+import defaultTheme, {
+  ChakraTheme,
+  isChakraTheme,
+  Theme,
+} from "@chakra-ui/theme"
+import {
+  AnyFunction,
+  Dict,
+  isFunction,
+  mergeWith,
+  pipe,
+} from "@chakra-ui/utils"
 
 type CloneKey<Target, Key> = Key extends keyof Target ? Target[Key] : unknown
 
@@ -25,44 +35,101 @@ type DeepThemeExtension<BaseTheme, ThemeType> = {
     : CloneKey<ThemeType, Key>
 }
 
-export declare type ThemeOverride = DeepPartial<ChakraTheme> &
-  DeepThemeExtension<Theme, ChakraTheme>
+export declare type ThemeOverride<
+  BaseTheme = Theme
+> = DeepPartial<ChakraTheme> & DeepThemeExtension<BaseTheme, ChakraTheme> & Dict
+
+export type ThemeExtension<Override extends ThemeOverride = ThemeOverride> = (
+  themeOverride: Override,
+) => Override
+
+export type BaseThemeWithExtensions<
+  BaseTheme extends ChakraTheme,
+  Extensions extends readonly [...any]
+> = BaseTheme &
+  (Extensions extends [infer L, ...infer R]
+    ? L extends AnyFunction
+      ? ReturnType<L> & BaseThemeWithExtensions<BaseTheme, R>
+      : L & BaseThemeWithExtensions<BaseTheme, R>
+    : Extensions)
 /**
- * Function to override or customize the Chakra UI theme conveniently
- * @param overrides - Your custom theme object overrides
- * @param baseTheme - theme to customize
+ * Function to override or customize the Chakra UI theme conveniently.
+ * First extension overrides the baseTheme and following extensions override the preceding extensions.
+ *
+ * @example:
+ * import { theme as baseTheme, extendTheme, withDefaultColorScheme } from '@chakra-ui/react'
+ *
+ * const customTheme = extendTheme(
+ *   {
+ *     colors: {
+ *       brand: {
+ *         500: "#b4d455",
+ *       },
+ *     },
+ *   },
+ *   withDefaultColorScheme({ colorScheme: "red" }),
+ *   baseTheme // optional
+ * )
  */
 export function extendTheme<
   BaseTheme extends ChakraTheme = Theme,
-  Overrides extends ThemeOverride = ThemeOverride
->(
-  overrides: Overrides,
-  baseTheme: BaseTheme = (defaultTheme as unknown) as BaseTheme,
-): BaseTheme & Overrides {
-  function customizer(
-    source: unknown,
-    override: unknown,
-    key: string,
-    object: any,
+  Extensions extends (
+    | BaseTheme
+    | ThemeOverride<BaseTheme>
+    | ThemeExtension<ThemeOverride<BaseTheme>>
+  )[] = (ThemeOverride<BaseTheme> | ThemeExtension<ThemeOverride<BaseTheme>>)[]
+>(...extensions: [...Extensions]) {
+  let overrides = [...extensions]
+  let baseTheme = extensions[extensions.length - 1]
+
+  if (
+    isChakraTheme(baseTheme) &&
+    // this ensures backward compatibility
+    // previously only `extendTheme(override, baseTheme?)` was allowed
+    overrides.length > 1
   ) {
-    if (
-      (isFunction(source) || isFunction(override)) &&
-      Object.prototype.hasOwnProperty.call(object, key)
-    ) {
-      return (...args: unknown[]) => {
-        const sourceValue = isFunction(source) ? source(...args) : source
-
-        const overrideValue = isFunction(override)
-          ? override(...args)
-          : override
-
-        return mergeWith({}, sourceValue, overrideValue, customizer)
-      }
-    }
-
-    // fallback to default behaviour
-    return undefined
+    overrides = overrides.slice(0, overrides.length - 1)
+  } else {
+    baseTheme = (defaultTheme as unknown) as BaseTheme
   }
 
-  return mergeWith({}, baseTheme, overrides, customizer)
+  return pipe(
+    ...overrides.map(
+      (extension) => (
+        prevTheme: BaseThemeWithExtensions<BaseTheme, Extensions>,
+      ) =>
+        isFunction(extension)
+          ? (extension as any)(prevTheme)
+          : mergeThemeOverride(prevTheme, extension),
+    ),
+  )(baseTheme as BaseThemeWithExtensions<BaseTheme, Extensions>)
+}
+
+export function mergeThemeOverride<BaseTheme extends ChakraTheme = ChakraTheme>(
+  ...overrides: ThemeOverride<BaseTheme>[]
+): ThemeOverride<BaseTheme> {
+  return mergeWith({}, ...overrides, mergeThemeCustomizer)
+}
+
+function mergeThemeCustomizer(
+  source: unknown,
+  override: unknown,
+  key: string,
+  object: any,
+) {
+  if (
+    (isFunction(source) || isFunction(override)) &&
+    Object.prototype.hasOwnProperty.call(object, key)
+  ) {
+    return (...args: unknown[]) => {
+      const sourceValue = isFunction(source) ? source(...args) : source
+
+      const overrideValue = isFunction(override) ? override(...args) : override
+
+      return mergeWith({}, sourceValue, overrideValue, mergeThemeCustomizer)
+    }
+  }
+
+  // fallback to default behaviour
+  return undefined
 }
