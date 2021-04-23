@@ -1,18 +1,16 @@
 import * as React from "react"
-import { ChakraProvider, extendTheme } from "@chakra-ui/react"
-import userTheme from "./theme"
-
-const theme = extendTheme(userTheme)
+import { ChakraProvider } from "@chakra-ui/react"
+import theme from "./theme"
 
 export const WrapRootElement = ({
   element,
-  isResettingCSS = true,
+  resetCSS = true,
   portalZIndex = 40,
 }) => {
   return (
     <ChakraProvider
       theme={theme}
-      resetCSS={isResettingCSS}
+      resetCSS={resetCSS}
       portalZIndex={portalZIndex}
     >
       {element}

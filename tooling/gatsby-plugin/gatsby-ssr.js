@@ -1,9 +1,7 @@
 import React from "react"
-import { ColorModeScript, extendTheme } from "@chakra-ui/react"
+import { ColorModeScript } from "@chakra-ui/react"
 import { WrapRootElement } from "./src/provider"
-import userTheme from "./src/theme"
-
-const theme = extendTheme(userTheme)
+import theme from "./src/theme"
 
 export const onRenderBody = ({ setPreBodyComponents }) => {
   setPreBodyComponents([

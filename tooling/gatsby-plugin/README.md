@@ -56,7 +56,7 @@ work correctly.
 ```jsx
 <ChakraProvider
   theme={theme}
-  resetCSS={isResettingCSS}
+  resetCSS={resetCSS}
   portalZIndex={portalZIndex}
 >
   {element}
@@ -73,16 +73,10 @@ module.exports = {
       resolve: "@chakra-ui/gatsby-plugin",
       options: {
         /**
-         * @property {boolean} [isResettingCSS=true]
+         * @property {boolean} [resetCSS=true]
          * if `false`, this plugin will not use `<CSSReset />
          */
-        isResettingCSS: true,
-        /**
-         * @deprecated
-         * @property {boolean} [isUsingColorMode=true]
-         * if `false`, this plugin will not use <ColorModeProvider />
-         */
-        isUsingColorMode: true,
+        resetCSS: true,
         /**
          * @property {number} [portalZIndex=40]
          * The z-index to apply to all portal nodes. This is useful
@@ -102,9 +96,14 @@ To use customize the theme in your Gatsby site, you can shadow the plugin's
 
 ```js
 // src/@chakra-ui/gatsby-plugin/theme.js
-const theme = {}
+import { extendTheme } from "@chakra-ui/react"
+const theme = {
+  colors: {
+    primary: "rebeccapurple"
+  }
+}
 
-export default theme
+export default extendTheme(theme)
 ```
 
 You can learn more about custom theme at
