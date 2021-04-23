@@ -29,11 +29,8 @@ module.exports = {
     },
     {
       resolve: "@chakra-ui/gatsby-plugin",
-      options: {
-        isResettingCSS: true,
-        isUsingColorMode: true,
-        portalZIndex: 40,
-      },
+      // See the plugin's README for all available options
+      options: {},
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline

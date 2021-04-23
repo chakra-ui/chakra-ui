@@ -46,24 +46,21 @@ export default IndexPage
 
 ## Plugin options
 
-By default, this plugin adds a couple of context providers to make all
-components work correctly.
+By default, this plugin adds the main context provider to make all components
+work correctly.
 
-- **ThemeProvider:** To provide the theme context to all components.
-- **ColorModeProvider:** To provide the current preferred color mode stored in
-  `localStorage`
-- **GlobalStyles:** To add global styles defined in `theme.styles.global`
-- **CSSReset:** To add browser reset styles
-- **PortalManager:** To manage portals used by modal, popover, etc
+- **ChakraProvider:** Your custom theme and all
+  [ChakraProvider Props](https://chakra-ui.com/docs/getting-started#chakraprovider-props)
+  are passed to this instance
 
 ```jsx
-<ThemeProvider theme={theme}>
-  <ColorModeProvider>
-    <GlobalStyle />
-    {isResettingCSS && <CSSReset />}
-    <PortalManager zIndex={portalZIndex}>{element}</PortalManager>
-  </ColorModeProvider>
-</ThemeProvider>
+<ChakraProvider
+  theme={theme}
+  resetCSS={resetCSS}
+  portalZIndex={portalZIndex}
+>
+  {element}
+</ChakraProvider>
 ```
 
 You can disable either of these with Gatsby options:
@@ -76,15 +73,10 @@ module.exports = {
       resolve: "@chakra-ui/gatsby-plugin",
       options: {
         /**
-         * @property {boolean} [isResettingCSS=true]
+         * @property {boolean} [resetCSS=true]
          * if `false`, this plugin will not use `<CSSReset />
          */
-        isResettingCSS: true,
-        /**
-         * @property {boolean} [isUsingColorMode=true]
-         * if `false`, this plugin will not use <ColorModeProvider />
-         */
-        isUsingColorMode: true,
+        resetCSS: true,
         /**
          * @property {number} [portalZIndex=40]
          * The z-index to apply to all portal nodes. This is useful
@@ -104,9 +96,14 @@ To use customize the theme in your Gatsby site, you can shadow the plugin's
 
 ```js
 // src/@chakra-ui/gatsby-plugin/theme.js
-const theme = {}
+import { extendTheme } from "@chakra-ui/react"
+const theme = {
+  colors: {
+    primary: "rebeccapurple"
+  }
+}
 
-export default theme
+export default extendTheme(theme)
 ```
 
 You can learn more about custom theme at
