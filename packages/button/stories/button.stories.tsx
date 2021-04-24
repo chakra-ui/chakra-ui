@@ -35,6 +35,24 @@ export const basic = () => (
     <Button colorScheme="cyan">Button</Button>
     <Button colorScheme="orange">Button</Button>
     <Button colorScheme="yellow">Button</Button>
+
+    {/* The solid buttons were themed with `_dark` nested under other selectors */}
+    {/* 
+    If we pass the `_dark` prop, it overrides only `color` and `bg`, so we end up with the light theme values
+    Hover styling is kept because of the nested `_dark` styling in the `_hover` object
+    */}
+    <Button colorScheme="yellow" _dark={{ _hover: {} }}>
+      _Dark
+    </Button>
+    {/* 
+    If we pass the `_hover` prop, it overrides only the styling on hover effect
+    Other styles from the top-level `_dark` object are inherited (like color and bg)
+    
+    The _hover styling is overridden for both dark and light themes
+    */}
+    <Button colorScheme="yellow" _hover={{ _dark: {} }}>
+      _Dark
+    </Button>
   </>
 )
 
@@ -77,6 +95,19 @@ export const withVariants = () => (
     </Button>
     <Button colorScheme="teal" variant="outline">
       Button
+    </Button>
+    {/* The outline buttons were themed with all `_dark` styles in a top-level object */}
+
+    {/* If we pass the `_dark` prop, ALL dark-specific styling is lost, as they were all placed in `_dark` object at the top-level of the theme */}
+    <Button colorScheme="teal" variant="outline" _dark={{}}>
+      _Dark
+    </Button>
+    {/* 
+    If we pass another prop like `_hover`, no dark styles are overridden.
+    Overrides hover effect works on light theme only, since the hover styling for dark theme is under `_dark`
+    */}
+    <Button colorScheme="teal" variant="outline" _hover={{}}>
+      _Dark
     </Button>
     <Button colorScheme="teal" variant="ghost">
       Button
