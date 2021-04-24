@@ -42,6 +42,11 @@
               "path": "/docs/features/color-mode"
             },
             {
+              "title": "CSS Variables",
+              "path": "/docs/features/css-variables",
+              "new": true
+            },
+            {
               "title": "Responsive Styles",
               "path": "/docs/features/responsive-styles"
             },
