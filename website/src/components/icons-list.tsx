@@ -64,6 +64,8 @@ const iconList = {
 }
 
 const IconsList = () => {
+  const toast = useToast()
+
   return (
     <Grid
       mt={7}
@@ -73,7 +75,6 @@ const IconsList = () => {
       {Object.keys(iconList).map((key, i) => {
         const Icon = iconList[key]
         const { onCopy } = useClipboard(`<${key} />`)
-        const toast = useToast()
 
         const onCopyIcon = () => {
           onCopy()
