@@ -1,5 +1,5 @@
 import React from "react"
-import { Grid, Flex, Text } from "@chakra-ui/react"
+import { Grid, Flex, Text, useClipboard, useToast } from "@chakra-ui/react"
 import * as icons from "@chakra-ui/icons"
 
 const iconList = {
@@ -72,11 +72,29 @@ const IconsList = () => {
     >
       {Object.keys(iconList).map((key, i) => {
         const Icon = iconList[key]
+        const { onCopy } = useClipboard(`<${key} />`)
+        const toast = useToast()
+
+        const onCopyIcon = () => {
+          onCopy()
+
+          toast({
+            title: `'<${key} />' copied to clipboard`,
+            status: "success",
+            duration: 2000,
+            isClosable: false,
+          })
+        }
+
         return (
           <Flex
             p={3}
+            onClick={() => onCopyIcon()}
             key={i}
             align="center"
+            cursor="pointer"
+            transition="all 0.2s ease"
+            _hover={{ opacity: 0.7 }}
             borderRadius="md"
             borderWidth="1px"
             flexDir="column"
