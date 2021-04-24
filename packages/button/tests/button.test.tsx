@@ -34,7 +34,7 @@ test("shows spinner if isLoading", () => {
 })
 
 test("shows spinner and loading text if isLoading and loadingText", () => {
-  render(
+  const { rerender } = render(
     <Button isLoading loadingText="Submitting">
       Submit
     </Button>,
@@ -43,6 +43,35 @@ test("shows spinner and loading text if isLoading and loadingText", () => {
   // children text is replaced by `loadingText`
   screen.getByText("Submitting")
   expect(screen.queryByText("Submit")).toBeNull()
+
+  // Confirm spinner position
+  expect(screen.queryByTestId("placement-start")).toBeInTheDocument()
+  expect(screen.queryByTestId("placement-end")).not.toBeInTheDocument()
+
+  rerender(
+    <Button
+      isLoading
+      spinnerPlacement="end"
+      loadingText="Test if spinner placement"
+    >
+      Submit
+    </Button>,
+  )
+  expect(screen.queryByTestId("placement-end")).toBeInTheDocument()
+  expect(screen.queryByTestId("placement-start")).not.toBeInTheDocument()
+
+  // Should be abble to use a custom spinner
+  rerender(
+    <Button
+      isLoading
+      spinnerPlacement="end"
+      loadingText="Test if spinner placement"
+      spinner={<>FakeSpinner</>}
+    >
+      Submit
+    </Button>,
+  )
+  expect(screen.queryByText(/FakeSpinner/i)).toBeInTheDocument()
 })
 
 test("has the proper aria attributes", () => {
@@ -89,4 +118,23 @@ test("Has the proper type attribute", () => {
     </Button>,
   )
   expect(getByTestId("btn")).not.toHaveAttribute("type")
+})
+
+test("Should be disabled", () => {
+  const { getByRole } = render(
+    <Button isDisabled data-testid="btn">
+      I'm a invalid button
+    </Button>,
+  )
+  const button = getByRole("button")
+  expect(button).toBeDisabled()
+})
+
+test("Should take up full width", () => {
+  const { getByRole } = render(
+    <Button isFullWidth data-testid="btn">
+      i'm a big button
+    </Button>,
+  )
+  expect(getByRole("button")).toHaveStyle("width: 100%")
 })
