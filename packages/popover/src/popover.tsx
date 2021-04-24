@@ -17,6 +17,8 @@ import { PopoverProvider, usePopoverContext } from "./popover-context"
 import { PopoverTransition, PopoverTransitionProps } from "./popover-transition"
 import { usePopover, UsePopoverProps } from "./use-popover"
 
+export { usePopoverContext }
+
 export interface PopoverProps extends UsePopoverProps, ThemingProps<"Popover"> {
   /**
    * The content of the popover. It is usually the `PopoverTrigger`,
