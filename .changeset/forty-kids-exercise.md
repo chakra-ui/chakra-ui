@@ -1,5 +1,5 @@
 ---
-"@chakra-ui/popover": major
+"@chakra-ui/popover": minor
 ---
 
 Add an export for `usePopoverContext` hook
