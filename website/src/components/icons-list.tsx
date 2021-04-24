@@ -74,13 +74,13 @@ const IconsList = () => {
     >
       {Object.keys(iconList).map((key, i) => {
         const Icon = iconList[key]
-        const { onCopy } = useClipboard(`<${key} />`)
+        const { onCopy } = useClipboard(key)
 
         const onCopyIcon = () => {
           onCopy()
 
           toast({
-            title: `'<${key} />' copied to clipboard`,
+            title: `'${key}' copied to clipboard`,
             status: "success",
             duration: 2000,
             isClosable: false,
