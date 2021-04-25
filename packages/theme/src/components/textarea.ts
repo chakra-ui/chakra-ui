@@ -7,6 +7,11 @@ const baseStyle = {
   paddingY: "8px",
   minHeight: "80px",
   lineHeight: "short",
+  transition: [
+    ...Input.baseStyle.field.transition.split(","),
+    "height 0s",
+    "width 0s",
+  ].join(","),
 }
 
 const variants = {
