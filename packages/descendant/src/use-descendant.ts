@@ -15,7 +15,8 @@ function useDescendants<T extends HTMLElement = HTMLElement, K = {}>() {
   return descendants
 }
 
-interface UseDescendantsReturn extends ReturnType<typeof useDescendants> {}
+export interface UseDescendantsReturn
+  extends ReturnType<typeof useDescendants> {}
 
 /* -------------------------------------------------------------------------------------------------
  * Descendants context to be used in component-land.
