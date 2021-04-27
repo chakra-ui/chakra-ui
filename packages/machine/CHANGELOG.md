@@ -1,5 +1,13 @@
 # @chakra-ui/machine
 
+## 1.3.0
+
+### Minor Changes
+
+- [`52748f4e5`](https://github.com/chakra-ui/chakra-ui/commit/52748f4e561130af01ad75ef10233b9e1126279f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Upgrade valtio to
+  v1
+
 ## 1.2.0
 
 ### Minor Changes

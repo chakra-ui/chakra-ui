@@ -25,7 +25,9 @@ export function isEmptyArray(value: any) {
 }
 
 // Function assertions
-export function isFunction(value: any): value is Function {
+export function isFunction<T extends Function = Function>(
+  value: any,
+): value is T {
   return typeof value === "function"
 }
 

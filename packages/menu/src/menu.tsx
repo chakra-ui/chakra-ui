@@ -17,6 +17,7 @@ import { MaybeRenderProp } from "@chakra-ui/react-utils"
 import { CustomDomComponent, motion, Variants } from "framer-motion"
 import * as React from "react"
 import {
+  MenuDescendantsProvider,
   MenuProvider,
   useMenu,
   useMenuButton,
@@ -50,17 +51,19 @@ export const Menu: React.FC<MenuProps> = (props) => {
   const styles = useMultiStyleConfig("Menu", props)
   const ownProps = omitThemingProps(props)
   const { direction } = useTheme()
-  const ctx = useMenu({ ...ownProps, direction })
+  const { descendants, ...ctx } = useMenu({ ...ownProps, direction })
   const context = React.useMemo(() => ctx, [ctx])
 
   const { isOpen, onClose, forceUpdate } = context
 
   return (
-    <MenuProvider value={context}>
-      <StylesProvider value={styles}>
-        {runIfFn(children, { isOpen, onClose, forceUpdate })}
-      </StylesProvider>
-    </MenuProvider>
+    <MenuDescendantsProvider value={descendants}>
+      <MenuProvider value={context}>
+        <StylesProvider value={styles}>
+          {runIfFn(children, { isOpen, onClose, forceUpdate })}
+        </StylesProvider>
+      </MenuProvider>
+    </MenuDescendantsProvider>
   )
 }
 
@@ -104,7 +107,9 @@ export const MenuButton = forwardRef<MenuButtonProps, "button">(
         {...buttonProps}
         className={cx("chakra-menu__menu-button", props.className)}
       >
-        <chakra.span __css={{ pointerEvents: "none", flex: "1 1 auto" }}>
+        <chakra.span
+          __css={{ pointerEvents: "none", flex: "1 1 auto", minW: 0 }}
+        >
           {props.children}
         </chakra.span>
       </Element>

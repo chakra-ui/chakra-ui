@@ -36,7 +36,6 @@ test("it works", () => {
       "event": "machine.init",
       "matches": [Function],
       "prev": "",
-      Symbol(): 0,
     }
   `)
 
@@ -52,7 +51,6 @@ test("it works", () => {
       "event": "INC",
       "matches": [Function],
       "prev": "idle",
-      Symbol(): 0,
     }
   `)
 
@@ -67,7 +65,6 @@ test("it works", () => {
       "event": "DEC",
       "matches": [Function],
       "prev": "idle",
-      Symbol(): 0,
     }
   `)
 })

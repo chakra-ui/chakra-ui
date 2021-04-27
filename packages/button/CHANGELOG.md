@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.3.1
+
+### Patch Changes
+
+- [`ad8a7b9f1`](https://github.com/chakra-ui/chakra-ui/commit/ad8a7b9f1064bba04a8f9cc022de2d773ab1e331)
+  [#3875](https://github.com/chakra-ui/chakra-ui/pull/3875) Thanks
+  [@antoniel](https://github.com/antoniel)! - Resolved an issue where the `type`
+  prop of the `Button` component was set to `undefined`.
+- Updated dependencies
+  [[`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f),
+  [`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)]:
+  - @chakra-ui/react-utils@1.1.2
+  - @chakra-ui/utils@1.7.0
+  - @chakra-ui/spinner@1.1.8
+
 ## 1.3.0
 
 ### Minor Changes

@@ -1,5 +1,61 @@
 # Change Log
 
+## 1.8.4
+
+### Patch Changes
+
+- [`1d5e55272`](https://github.com/chakra-ui/chakra-ui/commit/1d5e55272fe1475ce6fa0ed5bdccef4218885f77)
+  [#3511](https://github.com/chakra-ui/chakra-ui/pull/3511) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - The `extendTheme` function
+  allows you to pass multiple overrides or extensions:
+
+  ```js
+  import {
+    extendTheme,
+    withDefaultColorScheme,
+    withDefaultSize,
+    withDefaultVariant,
+    withDefaultProps,
+  } from "@chakra-ui/react"
+
+  const customTheme = extendTheme(
+    {
+      colors: {
+        brand: {
+          // ...
+          500: "#b4d455",
+          // ...
+        },
+      },
+    },
+    withDefaultColorScheme({ colorScheme: "brand" }),
+    withDefaultSize({
+      size: "lg",
+      components: ["Input", "NumberInput", "PinInput"],
+    }),
+    withDefaultVariant({
+      variant: "outline",
+      components: ["Input", "NumberInput", "PinInput"],
+    }),
+    // or all in one:
+    withDefaultProps({
+      defaultProps: {
+        colorScheme: "brand",
+        variant: "outline",
+        size: "lg",
+      },
+      components: ["Input", "NumberInput", "PinInput"],
+    }),
+    // optional:
+    yourCustomBaseTheme, // defaults to our chakra default theme
+  )
+  ```
+
+- Updated dependencies
+  [[`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)]:
+  - @chakra-ui/utils@1.7.0
+  - @chakra-ui/theme-tools@1.1.6
+
 ## 1.8.3
 
 ### Patch Changes

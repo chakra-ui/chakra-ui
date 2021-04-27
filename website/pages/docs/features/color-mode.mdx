@@ -114,25 +114,7 @@ ReactDOM.render(
 
 #### For Gatsby
 
-For Gatsby.js, you need to add the `ColorModeScript` to the `gatsby-ssr.js`
-file.
-
-```jsx live=false ln={9-12}
-// gatsby-ssr.js
-
-import React from "react"
-import theme from "../theme"
-import { ColorModeScript } from "@chakra-ui/react"
-
-export const onRenderBody = ({ setPreBodyComponents }) => {
-  setPreBodyComponents([
-    <ColorModeScript
-      initialColorMode={theme.config.initialColorMode}
-      key="chakra-ui-no-flash"
-    />,
-  ])
-}
-```
+Install `@chakra-ui/gatsby-plugin` into your project. You can read more in the [Chakra UI + Gatsby guide](/guides/integrations/with-gatsby).
 
 ## Changing Color Mode
 

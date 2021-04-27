@@ -29,22 +29,29 @@ import { Box } from "@chakra-ui/react"
 <Box m={[2, 3]} />
 ```
 
-| Prop                  | CSS Property                       | Theme Key |
-| --------------------- | ---------------------------------- | --------- |
-| `m`, `margin`         | `margin`                           | `space`   |
-| `mt`, `marginTop`     | `margin-top`                       | `space`   |
-| `mr`, `marginRight`   | `margin-right`                     | `space`   |
-| `mb`, `marginBottom`  | `margin-bottom`                    | `space`   |
-| `ml`, `marginLeft`    | `margin-left`                      | `space`   |
-| `mx`                  | `margin-left` and `margin-right`   | `space`   |
-| `my`                  | `margin-top` and `margin-bottom`   | `space`   |
-| `p`, `padding`        | `padding`                          | `space`   |
-| `pt`, `paddingTop`    | `padding-top`                      | `space`   |
-| `pr`, `paddingRight`  | `padding-right`                    | `space`   |
-| `pb`, `paddingBottom` | `padding-bottom`                   | `space`   |
-| `pl`, `paddingLeft`   | `padding-left`                     | `space`   |
-| `px`                  | `padding-left` and `padding-right` | `space`   |
-| `py`                  | `padding-top` and `padding-bottom` | `space`   |
+| Prop                  | CSS Property                                  | Theme Key |
+| --------------------- | --------------------------------------------- | --------- |
+| `m`, `margin`         | `margin`                                      | `space`   |
+| `mt`, `marginTop`     | `margin-top`                                  | `space`   |
+| `mr`, `marginRight`   | `margin-right`                                | `space`   |
+| `me`, `marginEnd`     | `margin-inline-end`                           | `space`   |
+| `mb`, `marginBottom`  | `margin-bottom`                               | `space`   |
+| `ml`, `marginLeft`    | `margin-left`                                 | `space`   |
+| `ms`, `marginStart`   | `margin-inline-start`                         | `space`   |
+| `mx`                  | `margin-inline-start` + `margin-inline-end`   | `space`   |
+| `my`                  | `margin-top` + `margin-bottom`                | `space`   |
+| `p`, `padding`        | `padding`                                     | `space`   |
+| `pt`, `paddingTop`    | `padding-top`                                 | `space`   |
+| `pr`, `paddingRight`  | `padding-right`                               | `space`   |
+| `pe`, `paddingEnd`    | `padding-inline-end`                          | `space`   |
+| `pb`, `paddingBottom` | `padding-bottom`                              | `space`   |
+| `pl`, `paddingLeft`   | `padding-left`                                | `space`   |
+| `ps`, `paddingStart`  | `padding-inline-start`                        | `space`   |
+| `px`                  | `padding-inline-start` + `padding-inline-end` | `space`   |
+| `py`                  | `padding-top` + `padding-bottom`              | `space`   |
+
+> For `mx` and `px` props, we use `margin-inline-start` and `margin-inline-end`
+> to ensure the generated styles are RTL-friendly
 
 ### Color and background color
 
@@ -285,17 +292,25 @@ import { Box } from "@chakra-ui/react"
 | `borderTopStyle`    | `border-top-style`             | `borderStyles` |
 | `borderTopColor`    | `border-top-color`             | `colors`       |
 | `borderRight`       | `border-right`                 | `borders`      |
+| `borderEnd`         | `border-inline-end`            | `borders`      |
 | `borderRightWidth`  | `border-right-width`           | `borderWidths` |
+| `borderEndWidth`    | `border-inline-end-width`      | `borderWidths` |
 | `borderRightStyle`  | `border-right-style`           | `borderStyles` |
+| `borderEndStyle`    | `border-inline-end-style`      | `borderStyles` |
 | `borderRightColor`  | `border-right-color`           | `colors`       |
+| `borderEndColor`    | `border-inline-end-color`      | `colors`       |
 | `borderBottom`      | `border-bottom`                | `borders`      |
 | `borderBottomWidth` | `border-bottom-width`          | `borderWidths` |
 | `borderBottomStyle` | `border-bottom-style`          | `borderStyles` |
 | `borderBottomColor` | `border-bottom-color`          | `colors`       |
 | `borderLeft`        | `border-left`                  | `borders`      |
+| `borderStart`       | `border-inline-start`          | `borders`      |
 | `borderLeftWidth`   | `border-left-width`            | `borderWidths` |
+| `borderStartWidth`  | `border-inline-start-width`    | `borderWidths` |
 | `borderLeftStyle`   | `border-left-style`            | `borderStyles` |
+| `borderStartStyle`  | `border-inline-start-style`    | `borderStyles` |
 | `borderLeftColor`   | `border-left-color`            | `colors`       |
+| `borderStartColor`  | `border-inline-start-color`    | `colors`       |
 | `borderX`           | `border-left` , `border-right` | `borders`      |
 | `borderY`           | `border-top` , `border-bottom` | `borders`      |
 
@@ -314,17 +329,23 @@ import { Button } from "@chakra-ui/react"
 <Button borderTopRadius="md">Button 2</Button>
 ```
 
-| Prop                      | CSS Property                                               | Theme Field |
-| ------------------------- | ---------------------------------------------------------- | ----------- |
-| `borderRadius`            | `border-radius`                                            | `radii`     |
-| `borderTopLeftRadius`     | `border-top-left-radius`                                   | `radii`     |
-| `borderTopRightRadius`    | `border-top-right-radius`                                  | `radii`     |
-| `borderBottomRightRadius` | `border-bottom-right-radius`                               | `radii`     |
-| `borderBottomLeftRadius`  | `border-bottom-left-radius`                                | `radii`     |
-| `borderTopRadius`         | `border-top-left-radius` & `border-top-right-radius`       | `radii`     |
-| `borderRightRadius`       | `border-top-right-radius` & `border-bottom-right-radius`   | `radii`     |
-| `borderBottomRadius`      | `border-bottom-left-radius` & `border-bottom-right-radius` | `radii`     |
-| `borderLeftRadius`        | `border-top-left-radius` & `border-bottom-left-radius`     | `radii`     |
+| Prop                      | CSS Property                                                                 | Theme Field |
+| ------------------------- | ---------------------------------------------------------------------------- | ----------- |
+| `borderRadius`            | `border-radius`                                                              | `radii`     |
+| `borderTopLeftRadius`     | `border-top-left-radius`                                                     | `radii`     |
+| `borderTopStartRadius`    | `border-top-left-radius` in LTR,<br/> `border-top-right-radius` in RTL       | `radii`     |
+| `borderTopRightRadius`    | `border-top-right-radius`                                                    | `radii`     |
+| `borderTopEndRadius`      | `border-top-right-radius` in LTR,<br/> `border-top-left-radius` in RTL       | `radii`     |
+| `borderBottomRightRadius` | `border-bottom-right-radius`                                                 | `radii`     |
+| `borderBottomEndRadius`   | `border-bottom-right-radius` in LTR,<br/> `border-bottom-left-radius` in RTL | `radii`     |
+| `borderBottomLeftRadius`  | `border-bottom-left-radius`                                                  | `radii`     |
+| `borderBottomStartRadius` | `border-bottom-left-radius` in LTR,<br/> `border-bottom-left-radius` in RTL  | `radii`     |
+| `borderTopRadius`         | `border-top-left-radius` + `border-top-right-radius`                         | `radii`     |
+| `borderRightRadius`       | `border-top-right-radius` + `border-bottom-right-radius`                     | `radii`     |
+| `borderEndRadius`         | `border-top-right-radius` + `border-bottom-right-radius`                     | `radii`     |
+| `borderBottomRadius`      | `border-bottom-left-radius` + `border-bottom-right-radius`                   | `radii`     |
+| `borderLeftRadius`        | `border-top-left-radius` + `border-bottom-left-radius`                       | `radii`     |
+| `borderStartRadius`       | `border-top-left-radius` + `border-bottom-left-radius`                       | `radii`     |
 
 ### Position
 
@@ -358,7 +379,7 @@ import { Box } from "@chakra-ui/react"
 ```jsx
 <SimpleGrid
   bg="gray.50"
-  columns={{sm: 2, md: 4}}
+  columns={{ sm: 2, md: 4 }}
   spacing="8"
   p="10"
   textAlign="center"

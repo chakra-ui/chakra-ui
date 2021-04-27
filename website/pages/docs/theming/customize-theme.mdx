@@ -244,6 +244,129 @@ None of these is strictly required to use Chakra - but we've learned some hard
 lessons on the "right" way and the "wrong" way to write styles. The above is our
 best suggestion on how to write style overrides and organize your custom theme.
 
+## Using Theme extensions
+
+<Badge fontSize="sm" colorScheme="teal" letterSpacing="wider">
+  v1.6.0
+</Badge>
+
+The `extendTheme` function allows you to pass multiple overrides or extensions:
+
+```js
+import {
+  extendTheme,
+  withDefaultColorScheme,
+  theme as baseTheme,
+} from "@chakra-ui/react"
+
+const customTheme = extendTheme(
+  {
+    colors: {
+      brand: baseTheme.colors.red,
+    },
+    components: {
+      Alert: {
+        defaultProps: {
+          colorScheme: "blue",
+        },
+      },
+    },
+  },
+  withDefaultColorScheme({ colorScheme: "brand" }),
+)
+```
+
+The order of overrides is from left to right. E.g. the second extension
+overrides the first one, and so on.
+
+> Please note that you can pass a base theme as last parameter. If no base theme
+> is provided, we use the Chakra UI default theme
+
+```js
+extendTheme(
+  withFirstExtension,
+  withSecondExtension,
+  withThirdExtension,
+  optionalBaseTheme,
+)
+```
+
+## Theme Extension: withDefaultColorScheme
+
+You can apply a default color scheme to all components.
+
+```js
+import { extendTheme, withDefaultColorScheme } from "@chakra-ui/react"
+
+const customTheme = extendTheme(withDefaultColorScheme({ colorScheme: "red" }))
+```
+
+Or pass the component names you want to apply a default `colorScheme` to. This
+lets you apply different color schemes to a group of components.
+
+```js
+import { extendTheme, withDefaultColorScheme } from "@chakra-ui/react"
+
+const customTheme = extendTheme(
+  withDefaultColorScheme({
+    colorScheme: "red",
+    components: ["Button", "Badge"],
+  }),
+  withDefaultColorScheme({
+    colorScheme: "blue",
+    components: ["Alert", "Table"],
+  }),
+)
+```
+
+## Theme Extension: withDefaultSize
+
+You can apply a default size to all components.
+
+```js
+import { extendTheme, withDefaultSize } from "@chakra-ui/react"
+
+const customTheme = extendTheme(
+  withDefaultSize({
+    size: "lg",
+    components: ["Button", "Badge"],
+  }),
+)
+```
+
+## Theme Extension: withDefaultVariant
+
+You can apply a default variant to all components.
+
+```js
+import { extendTheme, withDefaultVariant } from "@chakra-ui/react"
+
+const customTheme = extendTheme(
+  withDefaultVariant({
+    variant: "outline",
+    components: ["Input", "NumberInput", "PinInput"],
+  }),
+)
+```
+
+## Theme Extension: withDefaultProps
+
+You can apply default props to all components.
+
+```js
+import { extendTheme, withDefaultProps } from "@chakra-ui/react"
+
+const customTheme = extendTheme(
+  withDefaultProps({
+    defaultProps: {
+      variant: "outline",
+      size: "lg",
+    },
+    components: ["Input", "NumberInput", "PinInput"],
+  }),
+)
+```
+
 ---
 
 [In the next section](/docs/theming/component-style), we'll show some examples
