@@ -147,7 +147,7 @@ export function useSlider(props: UseSliderProps) {
     ...htmlProps
   } = props
 
-  const onChangeStart = useCallbackRef(onChangeEndProp)
+  const onChangeStart = useCallbackRef(onChangeStartProp)
   const onChangeEnd = useCallbackRef(onChangeEndProp)
   const getAriaValueText = useCallbackRef(getAriaValueTextProp)
 
