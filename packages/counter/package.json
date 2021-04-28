@@ -19,12 +19,12 @@
   "license": "MIT",
   "main": "dist/chakra-ui-counter.cjs.js",
   "module": "dist/chakra-ui-counter.esm.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
+  "types": "dist/chakra-ui-counter.cjs.d.ts",
+  "typings": "dist/chakra-ui-counter.cjs.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
+      "require": "./dist/chakra-ui-counter.cjs.js",
+      "default": "./dist/chakra-ui-counter.esm.js"
     }
   },
   "files": [

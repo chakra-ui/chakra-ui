@@ -6,13 +6,13 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/chakra-ui-icons.cjs.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
+  "types": "dist/chakra-ui-icons.cjs.d.ts",
+  "typings": "dist/chakra-ui-icons.cjs.d.ts",
   "module": "dist/chakra-ui-icons.esm.js",
   "exports": {
     ".": {
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
+      "require": "./dist/chakra-ui-icons.cjs.js",
+      "default": "./dist/chakra-ui-icons.esm.js"
     }
   },
   "sideEffects": false,

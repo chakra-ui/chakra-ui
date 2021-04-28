@@ -13,13 +13,13 @@
   "license": "MIT",
   "main": "dist/chakra-ui-react-utils.cjs.js",
   "module": "dist/chakra-ui-react-utils.esm.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
+  "types": "dist/chakra-ui-react-utils.cjs.d.ts",
+  "typings": "dist/chakra-ui-react-utils.cjs.d.ts",
   "sideEffects": false,
   "exports": {
     ".": {
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
+      "require": "./dist/chakra-ui-react-utils.cjs.js",
+      "default": "./dist/chakra-ui-react-utils.esm.js"
     }
   },
   "files": [

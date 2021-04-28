@@ -16,7 +16,7 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "require": "./dist/index.js"
+      "require": "./dist/chakra-ui-cli.cjs.js"
     }
   },
   "files": [
@@ -63,5 +63,7 @@
   "devDependencies": {
     "@types/ora": "^3.2.0",
     "@types/update-notifier": "5.0.0"
-  }
+  },
+  "types": "dist/chakra-ui-cli.cjs.d.ts",
+  "typings": "dist/chakra-ui-cli.cjs.d.ts"
 }

@@ -23,12 +23,12 @@
   "license": "MIT",
   "main": "dist/chakra-ui-modal.cjs.js",
   "module": "dist/chakra-ui-modal.esm.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
+  "types": "dist/chakra-ui-modal.cjs.d.ts",
+  "typings": "dist/chakra-ui-modal.cjs.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
+      "require": "./dist/chakra-ui-modal.cjs.js",
+      "default": "./dist/chakra-ui-modal.esm.js"
     }
   },
   "files": [

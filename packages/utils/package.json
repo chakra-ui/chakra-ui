@@ -8,12 +8,12 @@
   "sideEffects": false,
   "main": "dist/chakra-ui-utils.cjs.js",
   "module": "dist/chakra-ui-utils.esm.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
+  "types": "dist/chakra-ui-utils.cjs.d.ts",
+  "typings": "dist/chakra-ui-utils.cjs.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
+      "require": "./dist/chakra-ui-utils.cjs.js",
+      "default": "./dist/chakra-ui-utils.esm.js"
     }
   },
   "files": [

@@ -14,12 +14,12 @@
   "license": "MIT",
   "main": "dist/chakra-ui-theme-tools.cjs.js",
   "module": "dist/chakra-ui-theme-tools.esm.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
+  "types": "dist/chakra-ui-theme-tools.cjs.d.ts",
+  "typings": "dist/chakra-ui-theme-tools.cjs.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
+      "require": "./dist/chakra-ui-theme-tools.cjs.js",
+      "default": "./dist/chakra-ui-theme-tools.esm.js"
     }
   },
   "files": [

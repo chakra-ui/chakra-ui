@@ -18,12 +18,12 @@
   "license": "MIT",
   "main": "dist/chakra-ui-skeleton.cjs.js",
   "module": "dist/chakra-ui-skeleton.esm.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
+  "types": "dist/chakra-ui-skeleton.cjs.d.ts",
+  "typings": "dist/chakra-ui-skeleton.cjs.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
+      "require": "./dist/chakra-ui-skeleton.cjs.js",
+      "default": "./dist/chakra-ui-skeleton.esm.js"
     }
   },
   "files": [

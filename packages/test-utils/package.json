@@ -38,5 +38,7 @@
   },
   "devDependencies": {
     "react": "^17.0.1"
-  }
+  },
+  "types": "dist/chakra-ui-test-utils.cjs.d.ts",
+  "typings": "dist/chakra-ui-test-utils.cjs.d.ts"
 }

@@ -15,12 +15,12 @@
   "license": "MIT",
   "main": "dist/chakra-ui-focus-lock.cjs.js",
   "module": "dist/chakra-ui-focus-lock.esm.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
+  "types": "dist/chakra-ui-focus-lock.cjs.d.ts",
+  "typings": "dist/chakra-ui-focus-lock.cjs.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
+      "require": "./dist/chakra-ui-focus-lock.cjs.js",
+      "default": "./dist/chakra-ui-focus-lock.esm.js"
     }
   },
   "files": [
