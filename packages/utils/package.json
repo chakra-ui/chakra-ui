@@ -6,8 +6,8 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "sideEffects": false,
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/chakra-ui-utils.cjs.js",
+  "module": "dist/chakra-ui-utils.esm.js",
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
   "exports": {

@@ -11,7 +11,8 @@
   "author": "Tim Kolberger <tim@kolberger.eu>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "dist/chakra-ui-cli.cjs.js",
+  "module": "dist/chakra-ui-cli.esm.js",
   "sideEffects": false,
   "exports": {
     ".": {

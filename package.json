@@ -16,6 +16,12 @@
       "**/@types/theme-ui__components"
     ]
   },
+  "preconstruct": {
+    "packages": [
+      "packages/*",
+      "tooling/cli"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git"

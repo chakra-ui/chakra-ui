@@ -14,7 +14,8 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "src/index.ts",
+  "main": "dist/chakra-ui-test-utils.cjs.js",
+  "module": "dist/chakra-ui-test-utils.esm.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git"

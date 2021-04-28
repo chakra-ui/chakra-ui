@@ -5,10 +5,10 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/cjs/index.js",
+  "main": "dist/chakra-ui-icons.cjs.js",
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
-  "module": "dist/esm/index.js",
+  "module": "dist/chakra-ui-icons.esm.js",
   "exports": {
     ".": {
       "require": "./dist/cjs/index.js",
