@@ -5,7 +5,7 @@
  * License can be found here: https://github.com/framer/motion
  */
 
-import sync, { cancelSync } from "framesync"
+import sync, { cancelSync, getFrameData } from "framesync"
 import {
   isMouseEvent,
   extractEventInfo,
@@ -39,32 +39,50 @@ export interface PanEventInfo {
    * the first pan event.
    */
   offset: Point
+  /**
+   * Contains `x` and `y` values for the current velocity of the pointer.
+   */
+  velocity: Point
 }
 
-export type PanHandler = (event: AnyPointerEvent, info: PanEventInfo) => void
+export type PanEventHandler = (
+  event: AnyPointerEvent,
+  info: PanEventInfo,
+) => void
+
+interface TimestampedPoint extends Point {
+  timestamp: number
+}
 
 export interface PanSessionHandlers {
   /**
    * Callback fired when the pan session is created.
    * This is typically called once `pointerdown` event is fired.
    */
-  onSessionStart: PanHandler
+  onSessionStart: PanEventHandler
+  /**
+   * Callback fired when the pan session is detached.
+   * This is typically called once `pointerup` event is fired.
+   */
+  onSessionEnd: PanEventHandler
   /**
    * Callback fired when the pan session has started.
    * The pan session when the pan offset is greater than
    * the threshold (allowable move distance to detect pan)
    */
-  onStart: PanHandler
+  onStart: PanEventHandler
   /**
    * Callback fired while panning
    */
-  onMove: PanHandler
+  onMove: PanEventHandler
   /**
    * Callback fired when the current pan session has end.
    * This is typically called once `pointerup` event is fired.
    */
-  onEnd: PanHandler
+  onEnd: PanEventHandler
 }
+
+type PanSessionHistory = TimestampedPoint[]
 
 /**
  * @internal
@@ -77,7 +95,7 @@ export class PanSession {
    * We use this to keep track of the `x` and `y` pan session history
    * as the pan event happens. It helps to calculate the `offset` and `delta`
    */
-  private history: Point[] = []
+  private history: PanSessionHistory = []
 
   // The pointer event that started the pan session
   private startEvent: AnyPointerEvent | null = null
@@ -119,7 +137,8 @@ export class PanSession {
     // get and save the `pointerdown` event info in history
     // we'll use it to compute the `offset`
     const info = extractEventInfo(event)
-    this.history = [info.point]
+    const { timestamp } = getFrameData()
+    this.history = [{ ...info.point, timestamp }]
 
     // notify pan session start
     const { onSessionStart } = handlers
@@ -145,7 +164,8 @@ export class PanSession {
 
     if (!isPanStarted && !isDistancePastThreshold) return
 
-    this.history.push(info.point)
+    const { timestamp } = getFrameData()
+    this.history.push({ ...info.point, timestamp })
 
     const { onStart, onMove } = this.handlers
 
@@ -172,12 +192,17 @@ export class PanSession {
   }
 
   private onPointerUp = (event: AnyPointerEvent, info: PointerEventInfo) => {
+    // notify pan session ended
+    const panInfo = getPanInfo(info, this.history)
+    const { onEnd, onSessionEnd } = this.handlers
+
+    onSessionEnd?.(event, panInfo)
     this.end()
 
-    const { onEnd } = this.handlers
+    // if panning never started, no need to call `onEnd`
+    // panning requires a pointermove of at least 3px
     if (!onEnd || !this.startEvent) return
 
-    const panInfo = getPanInfo(info, this.history)
     onEnd?.(event, panInfo)
   }
 
@@ -195,18 +220,68 @@ function subtractPoint(a: Point, b: Point) {
   return { x: a.x - b.x, y: a.y - b.y }
 }
 
-function startPanPoint(history: Point[]) {
+function startPanPoint(history: PanSessionHistory) {
   return history[0]
 }
 
-function lastPanPoint(history: Point[]) {
+function lastPanPoint(history: PanSessionHistory) {
   return history[history.length - 1]
 }
 
-function getPanInfo(info: PointerEventInfo, history: Point[]) {
+function getPanInfo(info: PointerEventInfo, history: PanSessionHistory) {
   return {
     point: info.point,
     delta: subtractPoint(info.point, lastPanPoint(history)),
     offset: subtractPoint(info.point, startPanPoint(history)),
+    velocity: getVelocity(history, 0.1),
   }
+}
+
+function lastDevicePoint(history: TimestampedPoint[]): TimestampedPoint {
+  return history[history.length - 1]
+}
+
+const toMilliseconds = (seconds: number) => seconds * 1000
+
+function getVelocity(history: TimestampedPoint[], timeDelta: number): Point {
+  if (history.length < 2) {
+    return { x: 0, y: 0 }
+  }
+
+  let i = history.length - 1
+  let timestampedPoint: TimestampedPoint | null = null
+  const lastPoint = lastDevicePoint(history)
+  while (i >= 0) {
+    timestampedPoint = history[i]
+    if (
+      lastPoint.timestamp - timestampedPoint.timestamp >
+      toMilliseconds(timeDelta)
+    ) {
+      break
+    }
+    i--
+  }
+
+  if (!timestampedPoint) {
+    return { x: 0, y: 0 }
+  }
+
+  const time = (lastPoint.timestamp - timestampedPoint.timestamp) / 1000
+  if (time === 0) {
+    return { x: 0, y: 0 }
+  }
+
+  const currentVelocity = {
+    x: (lastPoint.x - timestampedPoint.x) / time,
+    y: (lastPoint.y - timestampedPoint.y) / time,
+  }
+
+  if (currentVelocity.x === Infinity) {
+    currentVelocity.x = 0
+  }
+  if (currentVelocity.y === Infinity) {
+    currentVelocity.y = 0
+  }
+
+  return currentVelocity
 }

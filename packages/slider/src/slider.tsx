@@ -40,9 +40,9 @@ export interface SliderProps
  */
 export const Slider = forwardRef<SliderProps, "div">((props, ref) => {
   const styles = useMultiStyleConfig("Slider", props)
-  const realProps = omitThemingProps(props)
+  const ownProps = omitThemingProps(props)
 
-  const { getInputProps, getRootProps, ...context } = useSlider(realProps)
+  const { getInputProps, getRootProps, ...context } = useSlider(ownProps)
 
   const rootProps = getRootProps()
   const inputProps = getInputProps({}, ref)
