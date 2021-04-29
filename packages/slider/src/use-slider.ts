@@ -6,6 +6,7 @@ import {
   useIds,
   useLatestRef,
   usePanGesture,
+  usePrevious,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
 import { EventKeyMap, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
@@ -24,7 +25,7 @@ import {
   valueToPercent,
 } from "@chakra-ui/utils"
 import { CSSProperties, useCallback, useMemo, useRef } from "react"
-import { getPartsStyle, getSliderDirectionForTheme } from "./utils"
+import { getPartsStyle, getSliderDirectionForTheme } from "./slider-utils"
 
 export interface UseSliderProps {
   /**
@@ -148,7 +149,7 @@ export function useSlider(props: UseSliderProps) {
     ...htmlProps
   } = props
 
-  const onChangeStart = useCallbackRef(onChangeEndProp)
+  const onChangeStart = useCallbackRef(onChangeStartProp)
   const onChangeEnd = useCallbackRef(onChangeEndProp)
   const getAriaValueText = useCallbackRef(getAriaValueTextProp)
   const { direction } = useTheme()
@@ -169,7 +170,10 @@ export function useSlider(props: UseSliderProps) {
   })
 
   const [isDragging, setDragging] = useBoolean()
+  const prevIsDragging = usePrevious(isDragging)
+
   const [isFocused, setFocused] = useBoolean()
+  const eventSourceRef = useRef<"pointer" | "keyboard" | null>(null)
 
   const isInteractive = !(isDisabled || isReadOnly)
 
@@ -179,6 +183,8 @@ export function useSlider(props: UseSliderProps) {
    */
   const value = clampValue(computedValue, min, max)
   const valueRef = useLatestRef(value)
+
+  const prevRef = useRef(valueRef.current)
 
   const reversedValue = max - value + min
   const trackValue = dirAwareIsReversed ? reversedValue : value
@@ -207,8 +213,8 @@ export function useSlider(props: UseSliderProps) {
 
   const getValueFromPointer = useCallback(
     (event) => {
-      if (!trackRef.current) return undefined
-
+      if (!trackRef.current) return
+      eventSourceRef.current = "pointer"
       const trackRect = getBox(trackRef.current).borderBox
       const { clientX, clientY } = event.touches?.[0] ?? event
 
@@ -241,7 +247,6 @@ export function useSlider(props: UseSliderProps) {
 
   const constrain = useCallback(
     (value: number) => {
-      // bail out if slider isn't interactive
       if (!isInteractive) return
       value = parseFloat(roundValueToStep(value, min, oneStep))
       value = clampValue(value, min, max)
@@ -290,6 +295,7 @@ export function useSlider(props: UseSliderProps) {
         event.preventDefault()
         event.stopPropagation()
         action(event)
+        eventSourceRef.current = "keyboard"
       }
     },
     [actions, constrain, max, min, tenSteps],
@@ -328,7 +334,10 @@ export function useSlider(props: UseSliderProps) {
 
   useUpdateEffect(() => {
     focusThumb()
-  }, [value])
+    if (eventSourceRef.current === "keyboard") {
+      onChangeEndProp?.(valueRef.current)
+    }
+  }, [value, onChangeEndProp])
 
   const setValueFromPointer = (event: AnyPointerEvent) => {
     const nextValue = getValueFromPointer(event)
@@ -341,7 +350,13 @@ export function useSlider(props: UseSliderProps) {
     onPanSessionStart(event) {
       if (!isInteractive) return
       setValueFromPointer(event)
-      focusThumb()
+    },
+    onPanSessionEnd() {
+      if (!isInteractive) return
+      if (!prevIsDragging && prevRef.current !== valueRef.current) {
+        onChangeEnd?.(valueRef.current)
+        prevRef.current = valueRef.current
+      }
     },
     onPanStart() {
       if (!isInteractive) return
@@ -406,7 +421,7 @@ export function useSlider(props: UseSliderProps) {
       ...props,
       ref: mergeRefs(ref, thumbRef),
       role: "slider",
-      tabIndex: 0,
+      tabIndex: isInteractive ? 0 : undefined,
       id: thumbId,
       "data-active": dataAttr(isDragging),
       "aria-valuetext": valueText,
@@ -432,6 +447,7 @@ export function useSlider(props: UseSliderProps) {
       isDisabled,
       isDragging,
       isReadOnly,
+      isInteractive,
       max,
       min,
       onKeyDown,

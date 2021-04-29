@@ -10,6 +10,9 @@ import {
 } from "@chakra-ui/utils"
 import { EventListenerEnv, useEventListener } from "./use-event-listener"
 
+/**
+ * @internal
+ */
 export function usePointerEvent(
   env: EventListenerEnv,
   eventName: string,

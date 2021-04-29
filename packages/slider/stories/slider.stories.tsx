@@ -21,7 +21,14 @@ export default {
 
 export const SliderBug = () => {
   return (
-    <Slider defaultValue={10} min={0} max={20} step={5}>
+    <Slider
+      defaultValue={10}
+      min={0}
+      max={20}
+      step={5}
+      onChangeStart={console.log}
+      onChangeEnd={console.log}
+    >
       <SliderTrack bg="red.100">
         <SliderFilledTrack bg="tomato" />
       </SliderTrack>
@@ -59,7 +66,7 @@ export const SliderOnChangeBug = () => {
 
 export function HorizontalSlider() {
   return (
-    <Slider colorScheme="red" onChange={console.log}>
+    <Slider colorScheme="red" onChangeEnd={console.log}>
       <SliderTrack>
         <SliderFilledTrack />
       </SliderTrack>
