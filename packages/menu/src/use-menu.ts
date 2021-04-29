@@ -316,7 +316,8 @@ export function useMenuButton(
 
 function isTargetMenuItem(event: Pick<MouseEvent, "currentTarget">) {
   const target = event.currentTarget as HTMLElement
-  return target.getAttribute("role") === "menuitem"
+  // this will catch `menuitem`, `menuitemradio`, `menuitemcheckbox`
+  return !!target.getAttribute("role")?.startsWith("menuitem")
 }
 
 /* -------------------------------------------------------------------------------------------------
@@ -618,8 +619,8 @@ export function useMenuOption(
   props: UseMenuOptionProps = {},
   ref: React.Ref<any> = null,
 ) {
-  const { type = "radio", isChecked, ...menuItemProps } = props
-  const ownProps = useMenuItem(menuItemProps, ref)
+  const { type = "radio", isChecked, ...rest } = props
+  const ownProps = useMenuItem(rest, ref)
   return {
     ...ownProps,
     role: `menuitem${type}`,
