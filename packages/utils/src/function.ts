@@ -77,9 +77,8 @@ export const scheduleMicrotask = __TEST__
   ? queueMicrotask
   : promiseMicrotask
 
-const combineFunctions = (a: Function, b: Function) => (v: any) => b(a(v))
-export const pipe = (...transformers: Function[]) =>
-  transformers.reduce(combineFunctions)
+export const pipe = <R>(...fns: Array<(a: R) => R>) => (v: R) =>
+  fns.reduce((a, b) => b(a), v)
 
 const distance1D = (a: number, b: number) => Math.abs(a - b)
 type Point = { x: number; y: number }
