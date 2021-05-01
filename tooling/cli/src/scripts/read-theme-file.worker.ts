@@ -43,6 +43,10 @@ async function run() {
 }
 
 run().catch((e) => {
-  process.stderr.write(e.message)
+  if (process.send) {
+    process.send({ err: e.toString() })
+  } else {
+    process.stderr.write(e.message)
+  }
   process.exit(1)
 })

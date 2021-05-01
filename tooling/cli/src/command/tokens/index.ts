@@ -1,6 +1,6 @@
 import { promisify } from "util"
 import { writeFile } from "fs"
-import { fork } from "child_process"
+import { fork, Serializable } from "child_process"
 import path from "path"
 import ora from "ora"
 import {
@@ -25,7 +25,17 @@ async function runTemplateWorker({
   )
 
   return new Promise((resolve, reject) => {
-    worker.on("message", (message) => resolve(String(message)))
+    worker.on("message", (message: Record<"err", string> | Serializable) => {
+      const errMessage = (message as Record<"err", string>)?.err
+
+      if (errMessage) {
+        const error = new Error(errMessage)
+        reject(error)
+        throw error
+      }
+
+      return resolve(String(message))
+    })
     worker.on("error", reject)
   })
 }
