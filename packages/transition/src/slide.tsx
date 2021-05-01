@@ -1,5 +1,10 @@
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
+import {
+  AnimatePresence,
+  HTMLMotionProps,
+  motion,
+  Transition,
+} from "framer-motion"
 import * as React from "react"
 import { EASINGS, MotionVariants } from "./__utils"
 
@@ -46,27 +51,28 @@ const directions = {
 
 type SlideVariants = MotionVariants<"enter" | "exit">
 
+type VariantOption = {
+  direction: string
+  transition?: {
+    enter?: Transition
+    exit?: Transition
+  }
+}
+
 const variants: SlideVariants = {
-  exit: (direction: string) => {
-    const { motion } = directions[direction] ?? {}
+  exit: (props: VariantOption) => {
+    const { motion } = directions[props.direction] ?? {}
     return {
       ...motion,
-      transition: {
-        duration: 0.15,
-        ease: EASINGS.easeInOut,
-      },
+      transition: props.transition?.exit,
     }
   },
-  enter: (direction: string) => {
-    const { motion } = directions[direction] ?? {}
+  enter: (props: VariantOption) => {
+    const { motion } = directions[props.direction] ?? {}
     const [axis] = motion ? Object.keys(motion) : ["x"]
     return {
       [axis]: 0,
-      transition: {
-        type: "spring",
-        damping: 25,
-        stiffness: 180,
-      },
+      transition: props.transition?.enter,
     }
   },
 }
@@ -85,9 +91,27 @@ export interface SlideOptions {
    * Show the component; triggers the enter or exit states
    */
   in?: boolean
+  /**
+   * Framer-motion's transition config for `enter` and `exit` variants
+   */
+  transition?: VariantOption["transition"]
 }
 
-export interface SlideProps extends HTMLMotionProps<"div">, SlideOptions {}
+export interface SlideProps
+  extends Omit<HTMLMotionProps<"div">, "transition">,
+    SlideOptions {}
+
+const defaultTransition: SlideOptions["transition"] = {
+  exit: {
+    duration: 0.15,
+    ease: EASINGS.easeInOut,
+  },
+  enter: {
+    type: "spring",
+    damping: 25,
+    stiffness: 180,
+  },
+}
 
 export const Slide = React.forwardRef<HTMLDivElement, SlideProps>(
   (props, ref) => {
@@ -97,14 +121,20 @@ export const Slide = React.forwardRef<HTMLDivElement, SlideProps>(
       unmountOnExit,
       in: isOpen,
       className,
+      transition,
       ...rest
     } = props
 
     const { baseStyle } = directions[direction] ?? {}
     const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
 
+    const custom: Pick<SlideOptions, "direction" | "transition"> = {
+      direction,
+      transition: { ...defaultTransition, ...transition },
+    }
+
     return (
-      <AnimatePresence custom={direction}>
+      <AnimatePresence custom={custom}>
         {shouldExpand && (
           <motion.div
             ref={ref}
@@ -112,7 +142,7 @@ export const Slide = React.forwardRef<HTMLDivElement, SlideProps>(
             className={cx("chakra-slide", className)}
             animate={isOpen || unmountOnExit ? "enter" : "exit"}
             exit="exit"
-            custom={direction}
+            custom={custom}
             variants={variants}
             style={{
               position: "fixed",

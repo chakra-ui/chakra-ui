@@ -12,6 +12,7 @@ const SlideExample = (props: any) => {
     <>
       <button onClick={toggle}>Toggle Slide</button>
       <Slide
+        transition={{ enter: { duration: 0.2 } }}
         style={{
           maxWidth: 400,
           background: "red",
