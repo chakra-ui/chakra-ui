@@ -1,4 +1,4 @@
-import { toCSSVar } from "../src/css-var"
+import { toCSSVar } from "../src/create-theme-vars"
 
 test("should convert to css variables", () => {
   expect(
