@@ -1,5 +1,5 @@
 ---
-"@chakra-ui/button": patch
+"@chakra-ui/button": minor
 ---
 
-Increment coverage of test cases
+Add className prop to button load spinner

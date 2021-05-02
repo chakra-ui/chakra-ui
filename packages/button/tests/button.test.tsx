@@ -35,7 +35,7 @@ test("shows spinner if isLoading", () => {
 
 test("shows spinner and loading text if isLoading and loadingText", () => {
   const { rerender } = render(
-    <Button isLoading loadingText="Submitting">
+    <Button isLoading loadingText="Submitting" spinner={<>Spinner at start</>}>
       Submit
     </Button>,
   )
@@ -45,20 +45,26 @@ test("shows spinner and loading text if isLoading and loadingText", () => {
   expect(screen.queryByText("Submit")).toBeNull()
 
   // Confirm spinner position
-  expect(screen.queryByTestId("placement-start")).toBeInTheDocument()
-  expect(screen.queryByTestId("placement-end")).not.toBeInTheDocument()
+  expect(screen.getByText(/Spinner at start/i)).toHaveClass(
+    "chakra-button__spinner--start",
+  )
 
   rerender(
     <Button
       isLoading
       spinnerPlacement="end"
       loadingText="Test if spinner placement"
+      spinner={<>Spinner at end</>}
     >
       Submit
     </Button>,
   )
-  expect(screen.queryByTestId("placement-end")).toBeInTheDocument()
-  expect(screen.queryByTestId("placement-start")).not.toBeInTheDocument()
+
+  expect(screen.getByText(/Spinner at end/i)).toHaveClass(
+    "chakra-button__spinner--end",
+  )
+  // expect(screen.queryByTestId("placement-end")).toBeInTheDocument()
+  // expect(screen.queryByTestId("placement-start")).not.toBeInTheDocument()
 
   // Should be abble to use a custom spinner
   rerender(

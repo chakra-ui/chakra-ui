@@ -143,7 +143,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
 
       {isLoading && spinnerPlacement === "start" && (
         <ButtonSpinner
-          data-testid="placement-start"
+          className="chakra-button__spinner--start"
           label={loadingText}
           placement="start"
         >
@@ -157,7 +157,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
 
       {isLoading && spinnerPlacement === "end" && (
         <ButtonSpinner
-          data-testid="placement-end"
+          className="chakra-button__spinner--end"
           label={loadingText}
           placement="end"
         >
