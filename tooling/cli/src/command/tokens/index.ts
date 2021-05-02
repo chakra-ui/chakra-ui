@@ -8,6 +8,8 @@ import {
   themeInterfaceDestination,
 } from "./resolve-output-path"
 
+type ErrorRecord = Record<"err", string>
+
 const writeFileAsync = promisify(writeFile)
 
 async function runTemplateWorker({
@@ -25,13 +27,11 @@ async function runTemplateWorker({
   )
 
   return new Promise((resolve, reject) => {
-    worker.on("message", (message: Record<"err", string> | Serializable) => {
-      const errMessage = (message as Record<"err", string>)?.err
+    worker.on("message", (message: ErrorRecord | Serializable) => {
+      const errMessage = (message as ErrorRecord)?.err
 
       if (errMessage) {
-        const error = new Error(errMessage)
-        reject(error)
-        throw error
+        reject(new Error(errMessage))
       }
 
       return resolve(String(message))
