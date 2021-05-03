@@ -68,12 +68,12 @@ export const TransitionVariants = {
     exit: { x: "100%" },
   },
   slideUp: {
-    position: { top: 0, left: 0, right: 0, width: "100vw" },
+    position: { top: 0, left: 0, right: 0, maxWidth: "100vw" },
     enter: { y: 0 },
     exit: { y: "-100%" },
   },
   slideDown: {
-    position: { bottom: 0, left: 0, right: 0, width: "100vw" },
+    position: { bottom: 0, left: 0, right: 0, maxWidth: "100vw" },
     enter: { y: 0 },
     exit: { y: "100%" },
   },
