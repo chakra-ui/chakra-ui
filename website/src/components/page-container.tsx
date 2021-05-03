@@ -7,7 +7,9 @@ import EditPageLink from "components/edit-page-button"
 import Footer from "components/footer"
 import Header from "components/header"
 import SEO from "components/seo"
+import SectionNavigation from "components/section-navigation"
 import { convertBackticksToInlineCode } from "utils/convert-backticks-to-inline-code"
+import { Heading } from "utils/get-headings"
 import PageTransition from "./page-transition"
 import { AdBanner } from "./chakra-pro/ad-banner"
 
@@ -34,13 +36,14 @@ interface PageContainerProps {
     editUrl?: string
     version?: string
   }
+  headings: Heading[]
   children: React.ReactNode
   sidebar?: any
   pagination?: any
 }
 
 function PageContainer(props: PageContainerProps) {
-  const { frontmatter, children, sidebar, pagination } = props
+  const { frontmatter, children, sidebar, pagination, headings } = props
   useHeadingFocusOnRouteChange()
 
   const { title, description, editUrl, version } = frontmatter
@@ -51,8 +54,8 @@ function PageContainer(props: PageContainerProps) {
       <SkipNavLink zIndex={20}>Skip to Content</SkipNavLink>
       <AdBanner />
       <Header />
-      <Container as="main" className="main-content">
-        <Box display={{ base: "block", md: "flex" }}>
+      <Container as="main" className="main-content" display="flex">
+        <Box display={{ base: "block", md: "flex" }} flex="1">
           {sidebar || null}
           <div style={{ flex: 1 }}>
             <SkipNavContent />
@@ -82,6 +85,7 @@ function PageContainer(props: PageContainerProps) {
             <Footer />
           </div>
         </Box>
+        {headings && <SectionNavigation headings={headings} />}
       </Container>
     </>
   )
