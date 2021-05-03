@@ -4,6 +4,7 @@ import {
   HTMLMotionProps,
   motion,
   MotionStyle,
+  Variants as _Variants,
 } from "framer-motion"
 import * as React from "react"
 import {
@@ -98,7 +99,7 @@ export const Slide = React.forwardRef<HTMLDivElement, SlideProps>(
             animate={animate}
             exit="exit"
             custom={custom}
-            variants={variants}
+            variants={variants as _Variants}
             style={computedStyle}
             {...rest}
           />

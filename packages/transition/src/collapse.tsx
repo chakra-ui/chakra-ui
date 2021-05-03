@@ -1,5 +1,10 @@
 import { cx, mergeWith, warn, __DEV__ } from "@chakra-ui/utils"
-import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
+import {
+  AnimatePresence,
+  HTMLMotionProps,
+  motion,
+  Variants as _Variants,
+} from "framer-motion"
 import * as React from "react"
 import {
   TransitionEasings,
@@ -142,7 +147,7 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
               ...style,
             }}
             custom={custom}
-            variants={variants}
+            variants={variants as _Variants}
             initial={unmountOnExit ? "exit" : false}
             animate={animate}
             exit="exit"

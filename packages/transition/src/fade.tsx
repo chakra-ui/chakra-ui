@@ -1,5 +1,10 @@
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
+import {
+  AnimatePresence,
+  HTMLMotionProps,
+  motion,
+  Variants as _Variants,
+} from "framer-motion"
 import * as React from "react"
 import {
   TransitionDefaults,
@@ -30,7 +35,7 @@ export const fadeConfig: HTMLMotionProps<"div"> = {
   initial: "exit",
   animate: "enter",
   exit: "exit",
-  variants,
+  variants: variants as _Variants,
 }
 
 export const Fade = React.forwardRef<HTMLDivElement, FadeProps>(
