@@ -17,7 +17,7 @@ function SectionNavigation(props: SectionNavigationProps) {
   )
   return (
     <Box
-      display={{ md: "none", lg: "block" }}
+      display={{ base: "none", lg: "block" }}
       position="sticky"
       top={24}
       right={0}

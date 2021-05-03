@@ -55,7 +55,7 @@ function PageContainer(props: PageContainerProps) {
       <AdBanner />
       <Header />
       <Container as="main" className="main-content" display="flex">
-        <Box display={{ base: "block", md: "flex" }} flex="1">
+        <Box display={{ base: "block", md: "flex" }} flex="1" width="full">
           {sidebar || null}
           <div style={{ flex: 1 }}>
             <SkipNavContent />
