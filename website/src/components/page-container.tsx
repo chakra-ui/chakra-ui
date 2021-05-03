@@ -36,8 +36,8 @@ interface PageContainerProps {
     editUrl?: string
     version?: string
   }
-  headings: Heading[]
   children: React.ReactNode
+  headings?: Heading[]
   sidebar?: any
   pagination?: any
 }
