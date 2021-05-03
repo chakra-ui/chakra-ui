@@ -1,12 +1,12 @@
 import { useBoolean } from "@chakra-ui/hooks"
 import * as React from "react"
-import { Collapse, CollapseOptions } from "../src/collapse"
+import { Collapse, CollapseProps } from "../src/collapse"
 
 export default {
   title: "Transition / Collapse",
 }
 
-const CollapseExample = (props: CollapseOptions) => {
+const CollapseExample = (props: CollapseProps) => {
   const [open, { toggle }] = useBoolean()
   return (
     <>
