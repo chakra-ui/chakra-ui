@@ -75,7 +75,7 @@ export function detectBrowser(browser: UserAgentBrowser) {
   return getUserAgentBrowser(window.navigator) === browser
 }
 
-export function detectTouh() {
+export function detectTouch() {
   if (!isBrowser) return false
   return (
     window.ontouchstart === null &&
