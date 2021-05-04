@@ -54,10 +54,10 @@ function PageContainer(props: PageContainerProps) {
       <SkipNavLink zIndex={20}>Skip to Content</SkipNavLink>
       <AdBanner />
       <Header />
-      <Container as="main" className="main-content" display="flex">
+      <Container as="main" className="main-content">
         <Box display={{ base: "block", md: "flex" }} flex="1" width="full">
           {sidebar || null}
-          <div style={{ flex: 1 }}>
+          <Box flex="1" maxWidth={{ lg: "calc(100% - 280px - 10rem)" }}>
             <SkipNavContent />
             <Box
               id="content"
@@ -83,9 +83,9 @@ function PageContainer(props: PageContainerProps) {
               {pagination || null}
             </Box>
             <Footer />
-          </div>
+          </Box>
+          {headings && <SectionNavigation headings={headings} />}
         </Box>
-        {headings && <SectionNavigation headings={headings} />}
       </Container>
     </>
   )

@@ -21,6 +21,8 @@ function SectionNavigation(props: SectionNavigationProps) {
       position="sticky"
       top={24}
       right={0}
+      flexShrink={0}
+      flexBasis={40}
       fontSize="12px"
       alignSelf="start"
     >
