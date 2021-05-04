@@ -1,56 +1,77 @@
-import React from "react"
-import { Link, Heading, Stack, useColorModeValue } from "@chakra-ui/react"
+import * as React from "react"
+import { useScrollSpy } from "hooks/use-scrollspy"
+import { Heading } from "utils/get-headings"
+import {
+  Box,
+  ListItem,
+  OrderedList,
+  chakra,
+  Text,
+  useColorModeValue,
+  BoxProps,
+} from "@chakra-ui/react"
 
-interface EntryProps {
-  item: any
-  indent?: boolean
-  slug?: string
+interface TableOfContentProps extends BoxProps {
+  headings: Heading[]
 }
 
-export const Entry: React.FC<EntryProps> = ({ item, indent, slug }) => {
-  const { url, title, items = [] } = item
-  const color = useColorModeValue("gray.600", "whiteAlpha.600")
-
-  return (
-    <Stack spacing={1} pl={indent && 4} mt="1">
-      <Link color={color} fontSize="sm" href={`${slug}${url}`}>
-        {title}
-      </Link>
-      <Stack spacing={1}>
-        {items.map((item) => (
-          <Entry key={item.url} slug={slug} item={item} indent />
-        ))}
-      </Stack>
-    </Stack>
+function TableOfContent(props: TableOfContentProps) {
+  const { headings, ...rest } = props
+  const activeId = useScrollSpy(
+    headings.map(({ id }) => `[id="${id}"]`),
+    {
+      rootMargin: "0% 0% -24% 0%",
+    },
   )
-}
-
-export const TableOfContents = ({ tableOfContents, slug }) => {
-  // skip the first depth which is just the current page's url and title
-  const {
-    items: [{ items = [] }],
-  } = tableOfContents
-
-  const color = useColorModeValue("gray.600", "whiteAlpha.700")
-
-  if (!items.length) return null
-
   return (
-    <Stack spacing={3} position="sticky" top="0">
-      <Heading
-        fontSize="sm"
-        fontWeight="bold"
+    <Box
+      as="nav"
+      aria-labelledby="toc-title"
+      width="16rem"
+      flexShrink={0}
+      display={{ base: "none", xl: "block" }}
+      position="sticky"
+      py="10"
+      pr="4"
+      top="6rem"
+      right="0"
+      fontSize="sm"
+      alignSelf="start"
+      maxHeight="calc(100vh - 8rem)"
+      overflowY="auto"
+      sx={{ overscrollBehavior: "contain" }}
+      {...rest}
+    >
+      <Text
+        as="h2"
+        id="toc-title"
         textTransform="uppercase"
+        fontWeight="bold"
+        fontSize="xs"
+        color={useColorModeValue("gray.700", "gray.400")}
         letterSpacing="wide"
-        color={color}
       >
-        Table of Contents
-      </Heading>
-      <Stack spacing={1}>
-        {items.map((item) => (
-          <Entry key={item.url} item={item} slug={slug} />
+        On this page
+      </Text>
+      <OrderedList spacing={1} ml="0" mt="4" styleType="none">
+        {headings.map(({ id, text, level }) => (
+          <ListItem key={id} title={text} ml={level === "h3" ? "4" : undefined}>
+            <chakra.a
+              py="1"
+              display="block"
+              _hover={{ color: "gray.900" }}
+              fontWeight={id === activeId ? "bold" : "medium"}
+              href={`#${id}`}
+              aria-current={id === activeId ? "location" : undefined}
+              color={useColorModeValue("gray.600", "gray.400")}
+            >
+              {text}
+            </chakra.a>
+          </ListItem>
         ))}
-      </Stack>
-    </Stack>
+      </OrderedList>
+    </Box>
   )
 }
+
+export default TableOfContent

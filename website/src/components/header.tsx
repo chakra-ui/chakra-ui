@@ -10,6 +10,7 @@ import {
   useColorModeValue,
   useDisclosure,
   useUpdateEffect,
+  HTMLChakraProps,
 } from "@chakra-ui/react"
 import siteConfig from "configs/site-config"
 import { useViewportScroll } from "framer-motion"
@@ -70,9 +71,9 @@ function HeaderContent() {
         <Flex
           justify="flex-end"
           w="100%"
-          maxW="824px"
           align="center"
           color="gray.400"
+          maxW="824px"
         >
           <Search />
           <VersionSwitcher
@@ -143,7 +144,10 @@ function HeaderContent() {
   )
 }
 
-function Header(props) {
+function Header(
+  props: HTMLChakraProps<"header"> & { maxContentWidth?: string },
+) {
+  const { maxContentWidth = "1200px", ...rest } = props
   const bg = useColorModeValue("white", "gray.800")
   const ref = React.useRef<HTMLHeadingElement>()
   const [y, setY] = React.useState(0)
@@ -166,9 +170,9 @@ function Header(props) {
       left="0"
       right="0"
       width="full"
-      {...props}
+      {...rest}
     >
-      <chakra.div height="4.5rem" mx="auto" maxW="1200px">
+      <chakra.div height="4.5rem" mx="auto" maxW={maxContentWidth}>
         <HeaderContent />
       </chakra.div>
     </chakra.header>
