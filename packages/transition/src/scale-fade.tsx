@@ -1,39 +1,19 @@
-import { cx, mergeWith, __DEV__ } from "@chakra-ui/utils"
-import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
+import { cx, __DEV__ } from "@chakra-ui/utils"
+import {
+  AnimatePresence,
+  HTMLMotionProps,
+  motion,
+  Variants as _Variants,
+} from "framer-motion"
 import * as React from "react"
-import { EASINGS, MotionVariants } from "./__utils"
+import {
+  TransitionDefaults,
+  Variants,
+  withDelay,
+  WithTransitionConfig,
+} from "./transition-utils"
 
-type ScaleFadeVariants = MotionVariants<"enter" | "exit">
-
-const variants: ScaleFadeVariants = {
-  exit: (props) => ({
-    opacity: 0,
-    ...(props.reverse
-      ? { scale: props.initialScale }
-      : { transitionEnd: { scale: props.initialScale } }),
-    transition: {
-      duration: 0.1,
-      ease: EASINGS.easeOut,
-    },
-  }),
-  enter: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.25,
-      ease: EASINGS.easeInOut,
-    },
-  },
-}
-
-export const scaleFadeConfig: HTMLMotionProps<"div"> = {
-  initial: "exit",
-  animate: "enter",
-  exit: "exit",
-  variants,
-}
-
-export interface ScaleFadeProps extends HTMLMotionProps<"div"> {
+interface ScaleFadeOptions {
   /**
    * The initial scale of the element
    * @default 0.95
@@ -43,15 +23,36 @@ export interface ScaleFadeProps extends HTMLMotionProps<"div"> {
    * If `true`, the element will transition back to exit state
    */
   reverse?: boolean
-  /**
-   * If `true`, the element will unmount when `in={false}` and animation is done
-   */
-  unmountOnExit?: boolean
-  /**
-   * Show the component; triggers the enter or exit states
-   */
-  in?: boolean
 }
+
+const variants: Variants<ScaleFadeOptions> = {
+  exit: ({ reverse, initialScale, transition, transitionEnd, delay }) => ({
+    opacity: 0,
+    ...(reverse
+      ? { scale: initialScale, transitionEnd: transitionEnd?.exit }
+      : { transitionEnd: { scale: initialScale, ...transitionEnd?.exit } }),
+    transition:
+      transition?.exit ?? withDelay.exit(TransitionDefaults.exit, delay),
+  }),
+  enter: ({ transitionEnd, transition, delay }) => ({
+    opacity: 1,
+    scale: 1,
+    transition:
+      transition?.enter ?? withDelay.enter(TransitionDefaults.enter, delay),
+    transitionEnd: transitionEnd?.enter,
+  }),
+}
+
+export const scaleFadeConfig: HTMLMotionProps<"div"> = {
+  initial: "exit",
+  animate: "enter",
+  exit: "exit",
+  variants: variants as _Variants,
+}
+
+export interface ScaleFadeProps
+  extends ScaleFadeOptions,
+    WithTransitionConfig<HTMLMotionProps<"div">> {}
 
 export const ScaleFade = React.forwardRef<HTMLDivElement, ScaleFadeProps>(
   (props, ref) => {
@@ -61,16 +62,16 @@ export const ScaleFade = React.forwardRef<HTMLDivElement, ScaleFadeProps>(
       reverse = true,
       initialScale = 0.95,
       className,
+      transition,
+      transitionEnd,
+      delay,
       ...rest
     } = props
 
     const show = unmountOnExit ? isOpen && unmountOnExit : true
-    const custom = { initialScale, reverse }
+    const animate = isOpen || unmountOnExit ? "enter" : "exit"
 
-    const motionProps = mergeWith(scaleFadeConfig, {
-      custom,
-      animate: isOpen || unmountOnExit ? "enter" : "exit",
-    })
+    const custom = { initialScale, reverse, transition, transitionEnd, delay }
 
     return (
       <AnimatePresence custom={custom}>
@@ -78,7 +79,9 @@ export const ScaleFade = React.forwardRef<HTMLDivElement, ScaleFadeProps>(
           <motion.div
             ref={ref}
             className={cx("chakra-offset-slide", className)}
-            {...motionProps}
+            {...scaleFadeConfig}
+            animate={animate}
+            custom={custom}
             {...rest}
           />
         )}

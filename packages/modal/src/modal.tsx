@@ -205,7 +205,7 @@ export interface ModalContentProps extends HTMLChakraProps<"section"> {
   containerProps?: HTMLChakraProps<"div">
 }
 
-const Motion = chakra(motion.div)
+const MotionDiv = chakra(motion.div)
 
 /**
  * ModalContent is used to group modal's content. It has all the
@@ -352,10 +352,10 @@ export const ModalOverlay = forwardRef<ModalOverlayProps, "div">(
     }
 
     const { motionPreset } = useModalContext()
-    const motionProps = motionPreset === "none" ? {} : fadeConfig
+    const motionProps: any = motionPreset === "none" ? {} : fadeConfig
 
     return (
-      <Motion
+      <MotionDiv
         {...motionProps}
         __css={overlayStyle}
         ref={ref}

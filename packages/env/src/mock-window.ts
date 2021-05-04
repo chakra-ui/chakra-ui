@@ -19,8 +19,6 @@ const win = {
       },
     }
   },
-  setTimeout: noop,
-  clearTimeout: noop,
   matchMedia() {
     return {
       matches: false,
@@ -36,11 +34,13 @@ const win = {
     return setTimeout(callback, 0)
   },
   cancelAnimationFrame(id: number) {
-    if (typeof setTimeout === "undefined") {
-      return
-    }
+    if (typeof setTimeout === "undefined") return
     clearTimeout(id)
   },
+  setTimeout: () => 0,
+  clearTimeout: noop,
+  setInterval: () => 0,
+  clearInterval: noop,
 }
 
 export const ssrWindow = (win as unknown) as Window
