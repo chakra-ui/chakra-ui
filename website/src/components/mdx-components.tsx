@@ -97,7 +97,7 @@ const MDXComponents = {
   table: Table,
   th: THead,
   td: TData,
-  a: React.forwardRef((props, ref: any) => (
+  a: React.forwardRef((props: any, ref: any) => (
     <chakra.a ref={ref} apply="mdx.a" {...props} />
   )),
   p: (props) => <chakra.p apply="mdx.p" {...props} />,
