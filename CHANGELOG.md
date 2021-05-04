@@ -14,6 +14,86 @@ To better understand the changelog, here are some legends we use:
 - 🚀 Feature
 - 🐛 Bug fix
 
+## 04-05-2021
+
+`@chakra-ui/react@1.6.1`
+
+**Popover** `v1.7.0`
+
+- 🚀 Add an export for `usePopoverContext` hook.
+
+**Transition** `v1.3.0`
+
+- 🚀 Add support for tweaking the enter-exit transitions. Affected components:
+  `Fade`, `Slide`, `SlideFade`, `SlideScale`, `Collapse`.
+
+```jsx live=false
+<Fade
+  transition={{
+    enter: { duration: 0.3 },
+    exit: { duration: 0.1 },
+  }}
+/>
+```
+
+- 🚀 Fix issue where `Collapse` animation hide overflow when it expands.
+  Collapse transition how shows overflow when it's expanded and hides overflow
+  when it's collapsed.
+
+- 🚀 Add support for `delay` prop for all transition components.
+
+```jsx live=false
+// as a number
+<Fade delay={0.3} />
+
+// or based on state (enter/exit only)
+<Fade delay={{ enter: 0.2 }} />
+
+// or both
+<Fade delay={{ enter: 0.2, exit: 0.1 }} />
+```
+
+Note: this only works when you're using our built-in transition definition. If
+you're passing your own transition definition, pass the delay there.
+
+```jsx live=false
+// adding delay to your custom transition definition
+<Fade
+  transition={{
+    enter: { duration: 0.2, delay: 0.1 },
+  }}
+/>
+```
+
+**Utils** `v1.8.0`
+
+- 🚀 Add types for the return value of `pipe` function.
+- 🚀 Update user agent assertions.
+- 🚀 Add walkObject helper to iterate over all keys including nested.
+
+**React Env** `v1.0.4`
+
+- 🐛 Update mock window.
+
+**Menu** `v1.6.1`
+
+- 🐛 Fix issue where `closeOnSelect` didn't work for menuitem options.
+
+**Modal** `v1.8.5`
+
+- 🐛 Fix types for modal overlay fade config.
+
+**Slider** `v1.2.5`
+
+- 🐛 Fix issue where `onChangeStart` doesnt get called.
+- 🐛 Fix issue where slider thumb remains tabbable when `isDisabled={true}`.
+- 🐛 Fix issue where `onChangeEnd` doesn't get called when you click anywhere on
+  the track.
+
+**Styled System** `v1.10.5`
+
+- 🐛 Refactored the creation of the theme css vars.
+
 ## 23-04-2021
 
 `@chakra-ui/react@1.6.0`
