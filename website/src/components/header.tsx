@@ -144,10 +144,7 @@ function HeaderContent() {
   )
 }
 
-function Header(
-  props: HTMLChakraProps<"header"> & { maxContentWidth?: string },
-) {
-  const { maxContentWidth = "1200px", ...rest } = props
+function Header(props: HTMLChakraProps<"header">) {
   const bg = useColorModeValue("white", "gray.800")
   const ref = React.useRef<HTMLHeadingElement>()
   const [y, setY] = React.useState(0)
@@ -170,9 +167,9 @@ function Header(
       left="0"
       right="0"
       width="full"
-      {...rest}
+      {...props}
     >
-      <chakra.div height="4.5rem" mx="auto" maxW={maxContentWidth}>
+      <chakra.div height="4.5rem" mx="auto" maxW="8xl">
         <HeaderContent />
       </chakra.div>
     </chakra.header>

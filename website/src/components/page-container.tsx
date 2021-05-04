@@ -53,7 +53,7 @@ function PageContainer(props: PageContainerProps) {
       <SEO title={title} description={description} />
       <SkipNavLink zIndex={20}>Skip to Content</SkipNavLink>
       <AdBanner />
-      <Header maxContentWidth="8xl" />
+      <Header />
       <Box as="main" className="main-content" w="full" maxW="8xl" mx="auto">
         <Box display={{ md: "flex" }}>
           {sidebar || null}
@@ -67,22 +67,24 @@ function PageContainer(props: PageContainerProps) {
                   px={{ base: "4", sm: "6", xl: "8" }}
                   pt="10"
                 >
-                  <chakra.h1 tabIndex={-1} outline={0} apply="mdx.h1">
-                    {convertBackticksToInlineCode(title)}
-                  </chakra.h1>
-                  {version && (
-                    <Badge colorScheme="teal" letterSpacing="wider">
-                      v{version}
-                    </Badge>
-                  )}
-                  {children}
-                  <Box mt="40px">
-                    <Box>{editUrl && <EditPageLink href={editUrl} />}</Box>
-                    {pagination || null}
-                  </Box>
-                  <Box pb="20">
-                    <Footer />
-                  </Box>
+                  <PageTransition>
+                    <chakra.h1 tabIndex={-1} outline={0} apply="mdx.h1">
+                      {convertBackticksToInlineCode(title)}
+                    </chakra.h1>
+                    {version && (
+                      <Badge colorScheme="teal" letterSpacing="wider">
+                        v{version}
+                      </Badge>
+                    )}
+                    {children}
+                    <Box mt="40px">
+                      <Box>{editUrl && <EditPageLink href={editUrl} />}</Box>
+                      {pagination || null}
+                    </Box>
+                    <Box pb="20">
+                      <Footer />
+                    </Box>
+                  </PageTransition>
                 </Box>
                 <TableOfContent
                   visibility={headings.length === 0 ? "hidden" : "initial"}
