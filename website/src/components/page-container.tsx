@@ -43,7 +43,7 @@ interface PageContainerProps {
 }
 
 function PageContainer(props: PageContainerProps) {
-  const { frontmatter, children, sidebar, pagination, headings } = props
+  const { frontmatter, children, sidebar, pagination, headings = [] } = props
   useHeadingFocusOnRouteChange()
 
   const { title, description, editUrl, version } = frontmatter
