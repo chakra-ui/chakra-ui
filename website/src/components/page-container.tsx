@@ -67,7 +67,7 @@ function PageContainer(props: PageContainerProps) {
                   px={{ base: "4", sm: "6", xl: "8" }}
                   pt="10"
                 >
-                  <PageTransition>
+                  <PageTransition style={{ maxWidth: "48rem" }}>
                     <chakra.h1 tabIndex={-1} outline={0} apply="mdx.h1">
                       {convertBackticksToInlineCode(title)}
                     </chakra.h1>
