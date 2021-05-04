@@ -1,17 +1,17 @@
 import { useBoolean } from "@chakra-ui/hooks"
 import * as React from "react"
-import { Fade, FadeProps } from "../src/fade"
+import { SlideFade, SlideFadeProps } from ".."
 
 export default {
-  title: "Transition / Fade",
+  title: "Transition / Slide Fade",
 }
 
-const Example = (props: FadeProps) => {
+const Example = (props: SlideFadeProps) => {
   const [open, { toggle }] = useBoolean(false)
   return (
     <>
       <button onClick={toggle}>Toggle Slide</button>
-      <Fade
+      <SlideFade
         in={open}
         {...props}
         style={{
@@ -23,7 +23,7 @@ const Example = (props: FadeProps) => {
       >
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry.
-      </Fade>
+      </SlideFade>
     </>
   )
 }
@@ -41,4 +41,10 @@ export const WithTransitionEnd = () => (
   />
 )
 
-export const WithTransitionDelay = () => <Example delay={{ enter: 0.2 }} />
+export const WithoutReverseProp = () => (
+  <Example
+    reverse={false}
+    style={{ display: "block" }}
+    transitionEnd={{ exit: { display: "none" } }}
+  />
+)
