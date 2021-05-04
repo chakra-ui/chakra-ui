@@ -43,7 +43,7 @@
     "boot": "yarn prestart && yarn build",
     "start": "yarn prebuild && yarn storybook",
     "start:all": "yarn build && concurrently \"yarn docs dev\"  \"yarn storybook\" ",
-    "prebuild": "preconstruct dev && yarn pkg babel-plugin build && yarn pkg props-docs build",
+    "prebuild": "preconstruct dev && yarn pkg props-docs build",
     "build": "preconstruct build",
     "build:templates": "ts-node -T scripts/build-templates.ts",
     "test": "jest --maxWorkers=50%",
