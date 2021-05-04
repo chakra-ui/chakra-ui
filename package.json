@@ -34,7 +34,7 @@
     "fix:pkgs": "manypkg fix",
     "version:pkgs": "changeset version",
     "clean:emotion-types": "rm -rf node_modules/@emotion/core/types",
-    "postinstall": "yarn clean:emotion-types && yarn check:pkgs",
+    "postinstall": "yarn clean:emotion-types && yarn check:pkgs && preconstruct dev",
     "csb:pkgs": "node -r esm scripts/csb.js",
     "csb:install": "yarn prestart && yarn csb:pkgs",
     "contributors:add": "all-contributors add",
