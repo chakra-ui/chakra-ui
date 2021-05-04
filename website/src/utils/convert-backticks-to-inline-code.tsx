@@ -1,11 +1,12 @@
+import { isObject } from "@chakra-ui/utils"
 import MDXComponents from "components/mdx-components"
 
 /**
  * Replace the code blocks wrapped in backticks
  * with inline code blocks.
  */
-export function convertBackticksToInlineCode(input?: string) {
-  if (!input) return ""
+
+function toInlineCode(input: string) {
   return input
     .split(/(`\w+`)/)
     .map((chunk) =>
@@ -17,4 +18,9 @@ export function convertBackticksToInlineCode(input?: string) {
         chunk
       ),
     )
+}
+
+export function convertBackticksToInlineCode(input?: string) {
+  if (!input) return ""
+  return isObject(input) ? input : toInlineCode(input)
 }
