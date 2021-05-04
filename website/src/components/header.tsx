@@ -73,7 +73,7 @@ function HeaderContent() {
           w="100%"
           align="center"
           color="gray.400"
-          maxW="824px"
+          maxW="1100px"
         >
           <Search />
           <VersionSwitcher
