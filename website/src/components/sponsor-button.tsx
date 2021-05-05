@@ -5,7 +5,7 @@ import siteConfig from "configs/site-config"
 
 const SponsorButton = (props: BoxProps) => (
   <Box
-    display={{ base: "none", md: "flex" }}
+    display={{ base: "none", lg: "flex" }}
     alignItems="center"
     as="a"
     aria-label="Sponsor Chakra UI on Open Collective"
