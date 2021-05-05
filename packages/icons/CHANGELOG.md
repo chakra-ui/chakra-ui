@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/icon@1.1.9
+
 ## 1.0.12
 
 ### Patch Changes

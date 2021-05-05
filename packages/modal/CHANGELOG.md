@@ -1,5 +1,27 @@
 # Change Log
 
+## 1.8.5
+
+### Patch Changes
+
+- [`db8adf204`](https://github.com/chakra-ui/chakra-ui/commit/db8adf20432a2e0b799c3eff9914fc8b5dfca7c6)
+  [#3946](https://github.com/chakra-ui/chakra-ui/pull/3946) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fix types for modal
+  overlay fade config
+
+- Updated dependencies
+  [[`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01),
+  [`b199b06e3`](https://github.com/chakra-ui/chakra-ui/commit/b199b06e33924bdf98c9c13868f14172a20d0248),
+  [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab),
+  [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd),
+  [`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01)]:
+  - @chakra-ui/utils@1.8.0
+  - @chakra-ui/transition@1.3.0
+  - @chakra-ui/hooks@1.5.2
+  - @chakra-ui/close-button@1.1.9
+  - @chakra-ui/focus-lock@1.1.8
+  - @chakra-ui/portal@1.2.5
+
 ## 1.8.4
 
 ### Patch Changes

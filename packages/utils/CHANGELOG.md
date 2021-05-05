@@ -1,5 +1,28 @@
 # Change Log
 
+## 1.8.0
+
+### Minor Changes
+
+- [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab)
+  [#3930](https://github.com/chakra-ui/chakra-ui/pull/3930) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - - Add types for the return
+  value of `pipe` function
+  - Update user agent assertions
+
+* [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd)
+  [#3850](https://github.com/chakra-ui/chakra-ui/pull/3850) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Add walkObject helper to
+  iterate over all keys including nested
+
+### Patch Changes
+
+- [`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - `PanSession` class
+
+  - Add velocity data to pointer pan event
+  - Add `onSessionStart` to pan event handlers
+
 ## 1.7.0
 
 ### Minor Changes
