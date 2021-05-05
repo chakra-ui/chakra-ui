@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- [`173738dd9`](https://github.com/chakra-ui/chakra-ui/commit/173738dd938903d2b0fcdc666a7c9f4fe13e2bd6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - > This is an
+  internal package
+
+  - Unexport internal functions and hooks
+  - Allow options passed in `useDescendants` to be set in `DescendantsManager`
+  - Add default export for `createDescendantsContext`
+
 ## 2.0.0
 
 ### Major Changes

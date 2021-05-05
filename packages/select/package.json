@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/select",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "description",
   "keywords": [
     "theme",
@@ -53,11 +53,11 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/form-control": "1.3.4",
-    "@chakra-ui/utils": "1.7.0"
+    "@chakra-ui/form-control": "1.3.5",
+    "@chakra-ui/utils": "1.8.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.6.4",
+    "@chakra-ui/system": "1.6.5",
     "react": "^17.0.1"
   },
   "peerDependencies": {

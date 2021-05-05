@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/focus-lock",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "React focus lock for all Chakra components",
   "keywords": [
     "react focus lock",
@@ -51,7 +51,7 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.7.0",
+    "@chakra-ui/utils": "1.8.0",
     "react-focus-lock": "2.5.0"
   },
   "peerDependencies": {

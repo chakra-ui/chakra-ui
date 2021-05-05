@@ -1,5 +1,18 @@
 # @chakra-ui/react-env
 
+## 1.0.4
+
+### Patch Changes
+
+- [`48cc3f00d`](https://github.com/chakra-ui/chakra-ui/commit/48cc3f00d5cad522904b3a159cf6f2bfefdaa1ed)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update mock window
+
+- Updated dependencies
+  [[`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01),
+  [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab),
+  [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd)]:
+  - @chakra-ui/utils@1.8.0
+
 ## 1.0.3
 
 ### Patch Changes

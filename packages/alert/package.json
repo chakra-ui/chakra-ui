@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/alert",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "A React component used to alert users of a particular screen area that needs user action",
   "keywords": [
     "alert",
@@ -52,12 +52,12 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/icon": "1.1.8",
+    "@chakra-ui/icon": "1.1.9",
     "@chakra-ui/react-utils": "1.1.2",
-    "@chakra-ui/utils": "1.7.0"
+    "@chakra-ui/utils": "1.8.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.6.4",
+    "@chakra-ui/system": "1.6.5",
     "react": "^17.0.1"
   },
   "peerDependencies": {

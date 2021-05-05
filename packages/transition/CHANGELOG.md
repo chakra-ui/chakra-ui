@@ -1,5 +1,63 @@
 # Change Log
 
+## 1.3.0
+
+### Minor Changes
+
+- [`b199b06e3`](https://github.com/chakra-ui/chakra-ui/commit/b199b06e33924bdf98c9c13868f14172a20d0248)
+  [#3946](https://github.com/chakra-ui/chakra-ui/pull/3946) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Add support for tweaking
+  the enter-exit transitions.
+
+  > Affected components: `Fade`, `Slide`, `SlideFade`, `SlideScale`, `Collapse`
+
+  ```jsx live=false
+  <Fade
+    transition={{
+      enter: { duration: 0.3 },
+      exit: { duration: 0.1 },
+    }}
+  />
+  ```
+
+  - Fix issue where `Collapse` animation hide overflow when it expands.
+
+  > Collapse transition how shows overflow when it's expanded and hides overflow
+  > when it's collapsed.
+
+  - Add support for `delay` prop for all transition components.
+
+  ```jsx live=false
+  // as a number
+  <Fade delay={0.3} />
+
+  // or based on state (enter/exit only)
+  <Fade delay={{ enter: 0.2 }} />
+
+  // or both
+  <Fade delay={{ enter: 0.2, exit: 0.1 }} />
+  ```
+
+  > Note: this only works when you're using our built-in transition definition.
+  > If you're passing your own transition definition, pass the delay there.
+
+  ```jsx live=false
+  // adding delay to your custom transition definition
+  <Fade
+    transition={{
+      enter: { duration: 0.2, delay: 0.1 },
+    }}
+  />
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01),
+  [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab),
+  [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd)]:
+  - @chakra-ui/utils@1.8.0
+
 ## 1.2.2
 
 ### Patch Changes
