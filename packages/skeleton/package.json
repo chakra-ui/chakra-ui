@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/skeleton",
-  "version": "1.1.11",
+  "version": "1.1.12",
   "description": "React component to render a placeholders while you wait for content to load",
   "keywords": [
     "skeleton",
@@ -53,10 +53,10 @@
     "lint": "concurrently yarn:lint:*"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "1.5.1",
-    "@chakra-ui/media-query": "1.0.12",
-    "@chakra-ui/system": "1.6.4",
-    "@chakra-ui/utils": "1.7.0"
+    "@chakra-ui/hooks": "1.5.2",
+    "@chakra-ui/media-query": "1.0.13",
+    "@chakra-ui/system": "1.6.5",
+    "@chakra-ui/utils": "1.8.0"
   },
   "peerDependencies": {
     "react": ">=16.8.6"

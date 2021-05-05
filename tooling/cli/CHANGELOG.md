@@ -1,5 +1,23 @@
 # @chakra-ui/cli
 
+## 1.3.1
+
+### Patch Changes
+
+- [`e8f64a4a6`](https://github.com/chakra-ui/chakra-ui/commit/e8f64a4a6ab5eac862ec8127dcf6c5852a0f84dd)
+  [#3941](https://github.com/chakra-ui/chakra-ui/pull/3941) Thanks
+  [@jbarzegar](https://github.com/jbarzegar)! - Fixes issues with `tokens`
+  command hanging forever if theme workers run into errors during runtime. Now
+  when an error is discovered within a worker an `{ err: string }` object is
+  passed to the parent which will cause the promise to reject. This will in
+  turn, pass the same `err` upwards to allow the command to exit gracefully,
+  printing the `err` in question to `stdout`
+- Updated dependencies
+  [[`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01),
+  [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab),
+  [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd)]:
+  - @chakra-ui/utils@1.8.0
+
 ## 1.3.0
 
 ### Minor Changes

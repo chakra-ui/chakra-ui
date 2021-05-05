@@ -7,7 +7,7 @@ export default {
   title: "Transition / Offset Slide",
 }
 
-export const slideFade = () => {
+export const _SlideFade = () => {
   const [open, { toggle }] = useBoolean(false)
   return (
     <>
@@ -36,7 +36,7 @@ export const slideFade = () => {
   )
 }
 
-export const scaleFade = () => {
+export const _ScaleFade = () => {
   const [open, { toggle }] = useBoolean(false)
   return (
     <>
