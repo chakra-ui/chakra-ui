@@ -1,5 +1,5 @@
 ---
-"@chakra-ui/cli": minor
+"@chakra-ui/cli": patch
 ---
 
 Fixes issues with `tokens` command hanging forever if theme workers run into
