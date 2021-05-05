@@ -66,7 +66,9 @@ The basic API for styling a single part component is:
 ```jsx live=false
 export default {
   // Styles for the base style
-  baseStyle: {},
+  baseStyle: {
+    field: {},
+  },
   // Styles for the size variations
   sizes: {},
   // Styles for the visual style variations
@@ -87,9 +89,11 @@ Here's a contrived implementation of the design:
 const Button = {
   // The styles all button have in common
   baseStyle: {
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    borderRadius: "base", // <-- border radius is same for all variants and sizes
+    field: {
+      fontWeight: "bold",
+      textTransform: "uppercase",
+      borderRadius: "base", // <-- border radius is same for all variants and sizes
+    },
   },
   // Two sizes: sm and md
   sizes: {
@@ -149,11 +153,13 @@ Here's a contrived implementation of the design:
 const Card = {
   // The styles all Cards have in common
   baseStyle: {
-    display: "flex",
-    flexDirection: "column",
-    background: "white",
-    alignItems: "center",
-    gap: 6,
+    field: {
+      display: "flex",
+      flexDirection: "column",
+      background: "white",
+      alignItems: "center",
+      gap: 6,
+    },
   },
   // Two variants: rounded and smooth
   variants: {
@@ -304,7 +310,9 @@ export default {
   // The parts of the component
   parts: [],
   // The base styles for each part
-  baseStyle: {},
+  baseStyle: {
+    field: {},
+  },
   // The size styles for each part
   sizes: {},
   // The variant styles for each part
@@ -321,16 +329,18 @@ looks like:
 const Menu = {
   parts: ["menu", "item"],
   baseStyle: {
-    menu: {
-      boxShadow: "lg",
-      rounded: "lg",
-      flexDirection: "column",
-      py: "2",
-    },
-    item: {
-      fontWeight: "medium",
-      lineHeight: "normal",
-      color: "gray.600",
+    field: {
+      menu: {
+        boxShadow: "lg",
+        rounded: "lg",
+        flexDirection: "column",
+        py: "2",
+      },
+      item: {
+        fontWeight: "medium",
+        lineHeight: "normal",
+        color: "gray.600",
+      },
     },
   },
   sizes: {
