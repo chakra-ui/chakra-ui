@@ -188,7 +188,10 @@ export function useMenu(props: UseMenuProps = {}) {
 
   const openAndFocusMenu = React.useCallback(() => {
     onOpen()
-    focus(menuRef.current, { nextTick: true })
+    focus(menuRef.current, {
+      nextTick: true,
+      selectTextIfInput: false,
+    })
   }, [onOpen, menuRef])
 
   const openAndFocusFirstItem = React.useCallback(() => {
@@ -210,8 +213,10 @@ export function useMenu(props: UseMenuProps = {}) {
 
     if (!shouldRefocus) return
 
-    const el = descendants.item(focusedIndex)?.node
-    if (el) focus(el)
+    const node = descendants.item(focusedIndex)?.node
+    if (node) {
+      focus(node, { selectTextIfInput: false })
+    }
   }, [isOpen, focusedIndex, descendants])
 
   return {
@@ -314,8 +319,8 @@ export function useMenuButton(
   }
 }
 
-function isTargetMenuItem(event: Pick<MouseEvent, "currentTarget">) {
-  const target = event.currentTarget as HTMLElement
+function isTargetMenuItem(event: Pick<MouseEvent, "target">) {
+  const target = event.target as HTMLElement
   // this will catch `menuitem`, `menuitemradio`, `menuitemcheckbox`
   return !!target.getAttribute("role")?.startsWith("menuitem")
 }
@@ -364,10 +369,7 @@ export function useMenuList(
    * to printable keyboard character press
    */
   const createTypeaheadHandler = useShortcut({
-    preventDefault: (event) => {
-      const isMenuItem = isTargetMenuItem(event)
-      return event.key !== " " && isMenuItem
-    },
+    preventDefault: (event) => event.key !== " " && isTargetMenuItem(event),
   })
 
   const onKeyDown = React.useCallback(
@@ -412,7 +414,9 @@ export function useMenuList(
         }
       })
 
-      onTypeahead(event)
+      if (isTargetMenuItem(event)) {
+        onTypeahead(event)
+      }
     },
     [
       descendants,
@@ -575,7 +579,7 @@ export function useMenuItem(
   useUpdateEffect(() => {
     if (!isOpen) return
     if (isFocused && !trulyDisabled && ref.current) {
-      focus(ref.current, { nextTick: true })
+      focus(ref.current, { nextTick: true, selectTextIfInput: false })
     } else if (menuRef.current && !isActiveElement(menuRef.current)) {
       focus(menuRef.current)
     }
