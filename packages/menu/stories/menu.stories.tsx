@@ -412,10 +412,10 @@ export const WithCloseOnSelect = () => (
 )
 
 const MenuItemWithInput = (props: any) => {
-  const { role, ...rest } = useMenuItem(props)
+  const { role: _, ...rest } = useMenuItem(props)
   return (
-    <div role={role}>
-      <input {...rest} type="text" style={{ WebkitUserSelect: "all" }} />
+    <div>
+      <input {...rest} />
     </div>
   )
 }
