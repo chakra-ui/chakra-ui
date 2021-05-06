@@ -110,3 +110,9 @@ export const StylingFocus: React.FC = () => (
     <FormErrorMessage>Your First name is invalid</FormErrorMessage>
   </FormControl>
 )
+
+export const FormLabelStandalone = () => (
+  <FormLabel fontWeight="bold" color="blue">
+    Not wrapperd by FormControl
+  </FormLabel>
+)
