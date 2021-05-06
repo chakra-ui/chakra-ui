@@ -38,14 +38,9 @@ REQUIRED
 
 Create a minimal reproduction in CodeSandbox. We have created these official templates to make this easy:
 
-- JavaScript Template:
-  [JavaScript CodeSandbox template](https://codesandbox.io/s/github/chakra-ui/codesandbox-react-js-template/tree/master)
-
-- TypeScript Template:
-  [TypeScript CodeSandbox template](https://codesandbox.io/s/github/chakra-ui/codesandbox-react-ts-template/tree/master)
-
-- NextJS TypeScript Template:
-  [NextJS TypeScript CodeSandbox template](https://codesandbox.io/s/chakra-ui-next-js-typescript-kxvyr)
+- JavaScript Starter: https://codesandbox.io/s/chakra-ui-javascript-lzzg9
+- TypeScript Starter: https://codesandbox.io/s/chakra-ui-typescript-pomi8
+- NextJS TypeScript Starter: https://codesandbox.io/s/chakra-ui-next-js-typescript-kxvyr
 -->
 
 CodeSandbox reproduction: https://your-codesandbox-link-goes-here.io
