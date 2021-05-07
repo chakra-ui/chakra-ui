@@ -7,8 +7,7 @@ import {
   waitForElementToBeRemoved,
 } from "@chakra-ui/test-utils"
 import * as React from "react"
-import type { TooltipProps } from "../src"
-import { Tooltip } from "../src"
+import { Tooltip, TooltipProps } from "../src"
 
 const buttonLabel = "Hover me"
 const tooltipLabel = "tooltip label"
