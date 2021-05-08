@@ -1,3 +1,4 @@
+import { MaybeRenderProp } from "@chakra-ui/react-utils"
 import {
   chakra,
   forwardRef,
@@ -13,7 +14,6 @@ import {
   useTheme,
 } from "@chakra-ui/system"
 import { cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
-import { MaybeRenderProp } from "@chakra-ui/react-utils"
 import { CustomDomComponent, motion, Variants } from "framer-motion"
 import * as React from "react"
 import {
@@ -158,7 +158,7 @@ export const MenuList = forwardRef<MenuListProps, "div">((props, ref) => {
   const { rootProps, ...rest } = props
   const { isOpen, onTransitionEnd } = useMenuContext()
 
-  const listProps: any = useMenuList(rest, ref)
+  const menulistProps = useMenuList(rest, ref) as HTMLAttributes
   const positionerProps = useMenuPositioner(rootProps)
 
   const styles = useStyles()
@@ -169,13 +169,13 @@ export const MenuList = forwardRef<MenuListProps, "div">((props, ref) => {
       __css={{ zIndex: props.zIndex ?? styles.list?.zIndex }}
     >
       <MotionDiv
-        {...listProps}
+        {...menulistProps}
         /**
          * We could call this on either `onAnimationComplete` or `onUpdate`.
          * It seems the re-focusing works better with the `onUpdate`
          */
         onUpdate={onTransitionEnd}
-        className={cx("chakra-menu__menu-list", listProps.className)}
+        className={cx("chakra-menu__menu-list", menulistProps.className)}
         variants={motionVariants}
         initial={false}
         animate={isOpen ? "enter" : "exit"}
@@ -251,6 +251,8 @@ interface MenuItemOptions
   commandSpacing?: SystemProps["ml"]
 }
 
+type HTMLAttributes = React.HTMLAttributes<HTMLElement>
+
 export interface MenuItemProps
   extends HTMLChakraProps<"button">,
     MenuItemOptions {}
@@ -265,7 +267,7 @@ export const MenuItem = forwardRef<MenuItemProps, "button">((props, ref) => {
     ...rest
   } = props
 
-  const menuItemProps = useMenuItem(rest, ref) as MenuItemProps
+  const menuitemProps = useMenuItem(rest, ref) as HTMLAttributes
 
   const shouldWrap = icon || command
 
@@ -277,8 +279,8 @@ export const MenuItem = forwardRef<MenuItemProps, "button">((props, ref) => {
 
   return (
     <StyledMenuItem
-      {...menuItemProps}
-      className={cx("chakra-menu__menuitem", menuItemProps.className)}
+      {...menuitemProps}
+      className={cx("chakra-menu__menuitem", menuitemProps.className)}
     >
       {icon && (
         <MenuIcon fontSize="0.8em" marginEnd={iconSpacing}>
@@ -323,7 +325,7 @@ export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
   (props, ref) => {
     const { icon, iconSpacing = "0.75rem", ...rest } = props
 
-    const optionProps = useMenuOption(rest, ref) as StyledMenuItemProps
+    const optionProps = useMenuOption(rest, ref) as HTMLAttributes
 
     return (
       <StyledMenuItem
