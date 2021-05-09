@@ -46,7 +46,6 @@
     "type-check": "yarn type-check:project && yarn type-check:website",
     "type-check:project": "tsc --noEmit",
     "type-check:website": "yarn pkg @chakra-ui/docs type-check",
-    "lint:types": "lerna run lint:types --no-private --stream",
     "prestorybook": "rimraf node_modules/.cache/storybook",
     "storybook": "start-storybook -p 6006",
     "clean": "lerna clean --yes && rm -rf node_modules",
