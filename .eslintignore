@@ -2,4 +2,7 @@ dist
 node_modules
 coverage
 .next
+.cache
 build
+examples
+storybook-static
