@@ -42,7 +42,4 @@ jobs:
         run: yarn lint
 
       - name: Run tests
-        run: yarn test
-
-      - name: Run tests (ci)
         run: yarn test:ci

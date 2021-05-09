@@ -53,7 +53,7 @@ jobs:
         run: yarn build:templates ../cra-templates
 
       - name: Run tests
-        run: yarn test
+        run: yarn test:ci
 
       - name: Publish packages
         uses: changesets/action@master
