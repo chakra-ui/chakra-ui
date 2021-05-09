@@ -38,8 +38,11 @@ jobs:
       - name: Build CRA templates
         run: yarn build:templates ../cra-templates
 
-      - name: Lint types and code
+      - name: Lint project
         run: yarn lint
+
+      - name: Type-check project
+        run: yarn type-check
 
       - name: Run tests
         run: yarn test:ci
