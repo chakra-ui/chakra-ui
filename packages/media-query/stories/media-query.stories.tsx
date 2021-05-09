@@ -42,7 +42,7 @@ export const BreakpointHook = () => {
 
 export const BreakpointValueHook = () => {
   const width = useBreakpointValue({ base: "150px", md: "250px" })
-  const color = useBreakpointValue(["red.500", null, "green.500"])
+  const color = useBreakpointValue(["red.500", undefined, "green.500"])
   return (
     <chakra.div bg={color} mx="auto" width={width}>
       I'm {width} wide

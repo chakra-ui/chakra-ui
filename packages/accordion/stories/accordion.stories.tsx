@@ -169,7 +169,7 @@ const data = [
 ]
 
 export function Bug_2160() {
-  const inputRef = React.useRef<HTMLInputElement>()
+  const inputRef = React.useRef<HTMLInputElement>(null)
   const [displayData, setDisplayData] = React.useState(data)
   const [filter, setFilter] = React.useState("")
 
@@ -188,7 +188,7 @@ export function Bug_2160() {
     inputRef.current?.focus()
   }, [displayData])
 
-  function onInputChange(e) {
+  function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFilter(e.target.value)
   }
 

@@ -74,7 +74,7 @@ export const WithReactHookForm = () => {
     defaultValues,
   })
 
-  function onSubmit(values) {
+  function onSubmit(values: typeof defaultValues) {
     alert(JSON.stringify(values, null, 2))
   }
 
