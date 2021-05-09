@@ -42,7 +42,7 @@
     "build:templates": "ts-node -T scripts/build-templates.ts",
     "test": "jest --maxWorkers=50%",
     "test:ci": "jest --runInBand",
-    "lint": "lerna run lint --no-private --stream",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx -c ./.eslintrc",
     "type-check": "yarn type-check:project && yarn type-check:website",
     "type-check:project": "tsc --noEmit",
     "type-check:website": "yarn pkg @chakra-ui/docs type-check",
