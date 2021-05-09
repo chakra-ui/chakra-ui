@@ -9,10 +9,6 @@ test("should handle array interpolations", () => {
     xl: "70em",
   })
 
-<<<<<<< HEAD
-  // @ts-ignore
-=======
->>>>>>> 66fc8e9b8 (chore: resolve type-check errors)
   const result = css({ "&": [{ bg: "red" }, { bg: "green" }] })(
     toCSSVar({
       breakpoints: customBreakpoints,

@@ -1,4 +1,4 @@
-import { Box, Center, chakra, Flex, Text } from "@chakra-ui/react"
+import { Center, chakra, Flex, Text } from "@chakra-ui/react"
 import { getUrl } from "./get-url"
 
 export const AdBanner = () => {
@@ -12,7 +12,10 @@ export const AdBanner = () => {
     >
       <Flex align="center" fontSize="sm">
         <Text fontWeight="medium" maxW={{ base: "32ch", md: "unset" }}>
-          Build faster with Premium Chakra UI Components 💎
+          Build faster with Premium Chakra UI Components{" "}
+          <span role="img" aria-label="diamond">
+            💎
+          </span>
         </Text>
         <chakra.a
           flexShrink={0}

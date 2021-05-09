@@ -267,7 +267,7 @@ export const useToastCustomRenderUpdate = () => {
 
       return () => clearTimeout(timeout)
     }
-  }, [id])
+  }, [id, toast])
 
   return (
     <Button

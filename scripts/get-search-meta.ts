@@ -54,7 +54,7 @@ async function getMDXMeta(file: string) {
       content: item.content,
       id: uuid(),
       type: `lvl${item.lvl}` as any,
-      url: removePrefix(slug, "/") + `#${item.slug}`,
+      url: `${removePrefix(slug, "/")}#${item.slug}`,
       hierarchy: {
         lvl1: frontMatter.title,
         lvl2: item.lvl === 2 ? item.content : json[index - 1]?.content ?? null,
@@ -74,13 +74,17 @@ async function getSearchMeta() {
     .map((file) => path.join(process.cwd(), websiteRoot, file))
     .filter((file) => file.endsWith(".mdx"))
 
-  for (const file of files) {
-    let result: any[] = []
-    try {
-      result = await getMDXMeta(file)
-      json.push(...result)
-    } catch (error) {}
-  }
+  json = (
+    await Promise.all(
+      files.map(async (file) => {
+        try {
+          return await getMDXMeta(file)
+        } catch (_error) {
+          return undefined
+        }
+      }),
+    )
+  ).filter(Boolean)
 
   json = prettier.format(JSON.stringify(json), { parser: "json" })
   const outPath = path.join(

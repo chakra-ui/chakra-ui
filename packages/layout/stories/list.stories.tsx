@@ -1,4 +1,5 @@
 import * as React from "react"
+import { FaCheck, FaPhone, FaAccessibleIcon } from "react-icons/fa"
 import {
   List,
   ListItem,
@@ -8,7 +9,6 @@ import {
   OrderedList,
   UnorderedList,
 } from "../src"
-import { FaCheck, FaPhone, FaAccessibleIcon } from "react-icons/fa"
 
 export default {
   title: "List",

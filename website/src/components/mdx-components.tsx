@@ -14,7 +14,7 @@ import CarbonAd from "./carbon-ad"
 import CodeBlock from "./codeblock/codeblock"
 import ComponentLinks from "./component-links"
 import IconsList from "./icons-list"
-import PropsTable from "./props-table"
+import PropsTable from "./props-table" // eslint-disable-line import/no-cycle
 
 const Pre = (props) => <chakra.div my="2em" borderRadius="sm" {...props} />
 

@@ -28,6 +28,10 @@ function NavLink({ href, children }) {
 
   const [, group] = href.split("/")
   const isActive = pathname.includes(group)
+  const inactiveHoverBackground = useColorModeValue(
+    "gray.100",
+    "whiteAlpha.100",
+  )
 
   return (
     <NextLink href={href}>
@@ -42,9 +46,7 @@ function NavLink({ href, children }) {
         borderWidth={isActive ? undefined : "1px"}
         color={isActive ? "white" : undefined}
         _hover={{
-          bg: isActive
-            ? "teal.500"
-            : useColorModeValue("gray.100", "whiteAlpha.100"),
+          bg: isActive ? "teal.500" : inactiveHoverBackground,
         }}
       >
         {children}
@@ -75,7 +77,7 @@ export function MobileNavContent(props: MobileNavContentProps) {
     if (showOnBreakpoint == false) {
       onClose()
     }
-  }, [showOnBreakpoint])
+  }, [showOnBreakpoint, onClose])
 
   useUpdateEffect(() => {
     if (isOpen) {
@@ -86,6 +88,7 @@ export function MobileNavContent(props: MobileNavContentProps) {
   }, [isOpen])
 
   const [shadow, setShadow] = React.useState<string>()
+  const flexBackground = useColorModeValue("white", "gray.800")
 
   return (
     <AnimatePresence>
@@ -100,7 +103,7 @@ export function MobileNavContent(props: MobileNavContentProps) {
             <Flex
               direction="column"
               w="100%"
-              bg={useColorModeValue("white", "gray.800")}
+              bg={flexBackground}
               h="100vh"
               overflow="auto"
               pos="absolute"
@@ -156,7 +159,7 @@ const ScrollView = (props: BoxProps & { onScroll?: any }) => {
   }, [scrollY])
 
   useUpdateEffect(() => {
-    onScroll?.(y > 5 ? true : false)
+    onScroll?.(y > 5)
   }, [y])
 
   return (

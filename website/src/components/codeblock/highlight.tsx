@@ -2,7 +2,7 @@ import { chakra } from "@chakra-ui/react"
 import BaseHighlight, { defaultProps, Language } from "prism-react-renderer"
 import theme from "prism-react-renderer/themes/nightOwl"
 import React from "react"
-import { liveEditorStyle } from "./codeblock"
+import { liveEditorStyle } from "./codeblock" // eslint-disable-line import/no-cycle
 
 const RE = /{([\d,-]+)}/
 

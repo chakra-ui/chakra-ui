@@ -116,7 +116,6 @@ export const Select = forwardRef<SelectProps, "select">((props, ref) => {
     minHeight,
     iconColor,
     iconSize,
-    isFullWidth,
     ...rest
   } = omitThemingProps(props)
 

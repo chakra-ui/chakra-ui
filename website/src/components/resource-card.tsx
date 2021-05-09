@@ -27,6 +27,7 @@ interface ResourceCardProps extends BoxProps {
 function ResourceCard(props: ResourceCardProps) {
   const { data, ...rest } = props
   const { heading, author, description, url, tags } = data
+  const badgeColor = useColorModeValue("teal.600", "teal.400")
 
   return (
     <Box {...rest} maxW="360px">
@@ -36,7 +37,7 @@ function ResourceCard(props: ResourceCardProps) {
             <Badge
               as="a"
               rel="tag"
-              color={useColorModeValue("teal.600", "teal.400")}
+              color={badgeColor}
               textTransform="uppercase"
               fontSize="xs"
               fontWeight="bold"
