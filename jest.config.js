@@ -1,7 +1,12 @@
 module.exports = {
   preset: "ts-jest",
-  testEnvironment: "node",
+  testEnvironment: "jsdom",
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
+  modulePathIgnorePatterns: [
+    "<rootDir>/website/.cache",
+    "<rootDir>/examples",
+    "<rootDir>/tooling/cra-template*",
+  ],
   transform: {
     "^.+\\.(ts|tsx)?$": "ts-jest/dist",
   },
