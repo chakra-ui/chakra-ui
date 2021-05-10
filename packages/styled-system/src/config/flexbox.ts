@@ -250,9 +250,9 @@ export interface FlexboxProps {
   /**
    * Controls the horizontal space between elements
    */
-  // spaceX?: Token<CSS.Property.Margin | number, "space">
+  spaceX?: Token<CSS.Property.Margin | number, "space">
   /**
    * Controls the vertical space between elements
    */
-  // spaceY?: Token<CSS.Property.Margin | number, "space">
+  spaceY?: Token<CSS.Property.Margin | number, "space">
 }

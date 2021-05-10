@@ -11,7 +11,8 @@ import type {
   OtherProps,
   PositionProps,
   RingProps,
-  ShadowProps,
+  InteractivityProps,
+  EffectProps,
   SpaceProps,
   TextDecorationProps,
   TransformProps,
@@ -19,7 +20,7 @@ import type {
   TypographyProps,
 } from "./config"
 import { Pseudos } from "./pseudos"
-import { ResponsiveValue } from "./utils"
+import { ResponsiveValue } from "./utils/types"
 
 export interface StyleProps
   extends SpaceProps,
@@ -31,11 +32,12 @@ export interface StyleProps
     GridProps,
     LayoutProps,
     BorderProps,
-    ShadowProps,
+    EffectProps,
     BackgroundProps,
     ListProps,
     PositionProps,
     RingProps,
+    InteractivityProps,
     TextDecorationProps,
     OtherProps {}
 

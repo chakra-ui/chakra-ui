@@ -2,7 +2,7 @@ import defaultTheme from "@chakra-ui/theme"
 import { Global, ThemeProvider } from "@emotion/react"
 import styled from "@emotion/styled"
 import * as React from "react"
-import { css, toCSSVar } from "../src"
+import { css, SystemProps, toCSSVar } from "../src"
 
 export default {
   title: "css",
@@ -10,12 +10,21 @@ export default {
 
 const Box = styled("div")((props: any) => css(props.css)(props.theme))
 
+const styles: SystemProps = {
+  bg: "yellow.500",
+  ring: "6px",
+  ringColor: "red.500",
+  rounded: "lg",
+  px: 3,
+  py: 2,
+}
+
 const theme = toCSSVar(defaultTheme)
 export const cssVars = () => {
   return (
     <ThemeProvider theme={theme}>
       <Global styles={(t: any) => ({ ":root": t.__cssVars })} />
-      <Box css={{ mt: ["-8", "12"], color: "red.400" }}>Welcome</Box>
+      <Box css={styles}>Welcome</Box>
     </ThemeProvider>
   )
 }

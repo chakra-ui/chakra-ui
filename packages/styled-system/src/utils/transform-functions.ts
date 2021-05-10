@@ -1,5 +1,4 @@
-import { isCssVar, isNumber } from "@chakra-ui/utils"
-import { Transform } from "./types"
+import { Dict, isCssVar, isNumber } from "@chakra-ui/utils"
 import { gradientTransform } from "./parse-gradient"
 
 const analyzeCSSValue = (value: number | string) => {
@@ -7,29 +6,6 @@ const analyzeCSSValue = (value: number | string) => {
   const unit = value.toString().replace(String(num), "")
   return { unitless: !unit, value: num, unit }
 }
-
-type TransformFunctions = Record<
-  | "fraction"
-  | "float"
-  | "degree"
-  | "px"
-  | "transform"
-  | "bgClip"
-  | "gradient"
-  | "filter"
-  | "backdropFilter"
-  | "opacity"
-  | "brightness"
-  | "contrast"
-  | "dropShadow"
-  | "grayscale"
-  | "hueRotate"
-  | "invert"
-  | "saturate"
-  | "sepia"
-  | "blur",
-  Transform
->
 
 const transformTemplates = {
   auto: "var(--chakra-transform)",
@@ -46,12 +22,12 @@ const backdropFilterTemplates = {
 
 const wrap = (str: string) => (value: any) => `${str}(${value})`
 
-export const transformFunctions: TransformFunctions = {
-  filter(value) {
+export const transformFunctions = {
+  filter(value: any) {
     return filterTemplates[value] ?? value
   },
 
-  backdropFilter(value) {
+  backdropFilter(value: any) {
     return backdropFilterTemplates[value] ?? value
   },
 
@@ -61,7 +37,7 @@ export const transformFunctions: TransformFunctions = {
       : { backgroundClip: value }
   },
 
-  transform(value) {
+  transform(value: any) {
     return transformTemplates[value] ?? value
   },
 
@@ -75,12 +51,12 @@ export const transformFunctions: TransformFunctions = {
     return !isNumber(value) || value > 1 ? value : `${value * 100}%`
   },
 
-  float(value, theme) {
+  float(value: any, theme: Dict) {
     const map = { left: "right", right: "left" }
     return theme.direction === "rtl" ? map[value] : value
   },
 
-  degree(value) {
+  degree(value: any) {
     if (isCssVar(value) || value == null) return value
     return isNumber(value) ? `${value}deg` : value
   },
