@@ -1,4 +1,4 @@
-import { Dict, AnalyzeBreakpointsReturn } from "@chakra-ui/utils"
+import { Dict } from "@chakra-ui/utils"
 import * as CSS from "csstype"
 import type {
   BackgroundProps,
@@ -9,10 +9,11 @@ import type {
   LayoutProps,
   ListProps,
   OtherProps,
-  OutlineProps,
   PositionProps,
+  RingProps,
   ShadowProps,
   SpaceProps,
+  TextDecorationProps,
   TransformProps,
   TransitionProps,
   TypographyProps,
@@ -34,7 +35,8 @@ export interface StyleProps
     BackgroundProps,
     ListProps,
     PositionProps,
-    OutlineProps,
+    RingProps,
+    TextDecorationProps,
     OtherProps {}
 
 export interface SystemCSSProperties
@@ -85,19 +87,3 @@ type PseudoProps = {
 }
 
 export interface SystemProps extends StyleProps, PseudoProps {}
-
-export type CSSMap = Dict<{ value: string; var: string; varRef: string }>
-
-export type Transform = (value: any, theme: CssTheme, styles?: Dict) => any
-
-export type WithCSSVar<T> = T & {
-  __cssVars: Dict
-  __cssMap: CSSMap
-  __breakpoints: AnalyzeBreakpointsReturn
-}
-
-export type CssTheme = WithCSSVar<{
-  breakpoints: Dict
-  direction?: "ltr" | "rtl"
-  [key: string]: any
-}>

@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
-import { createTransform } from "../create-transform"
-import { Config } from "../prop-config"
+import { createTransform } from "../utils/create-transform"
+import { Config } from "../utils/prop-config"
 import { Length, t, Token } from "../utils"
 
 const reverse = {
@@ -23,6 +23,7 @@ export const flexbox: Config = {
   justifyContent: true,
   flexWrap: true,
   flexDirection: {
+    property: "flexDirection",
     transform(value) {
       const { space, divide } = reverse[value] ?? {}
       const result = { flexDirection: value }
@@ -72,8 +73,11 @@ export const flexbox: Config = {
   placeItems: true,
   placeContent: true,
   placeSelf: true,
-  flexDir: t.prop("flexDirection"),
 }
+
+Object.assign(flexbox, {
+  flexDir: flexbox.flexDirection,
+})
 
 export interface FlexboxProps {
   /**

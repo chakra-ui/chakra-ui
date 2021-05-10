@@ -1,5 +1,5 @@
 import { analyzeBreakpoints, Dict } from "@chakra-ui/utils"
-import type { WithCSSVar } from "../types"
+import type { WithCSSVar } from "../utils/types"
 import { createThemeVars } from "./create-theme-vars"
 import {
   getTransformGpuTemplate,
@@ -47,6 +47,10 @@ export function toCSSVar<T extends Dict>(rawTheme: T) {
     "--chakra-transform": getTransformTemplate(),
     "--chakra-space-x-reverse": "0",
     "--chakra-space-y-reverse": "0",
+    "--chakra-filter":
+      "var(--chakra-blur) var(--chakra-brightness) var(--chakra-contrast) var(--chakra-grayscale) var(--chakra-hue-rotate) var(--chakra-invert) var(--chakra-saturate) var(--chakra-sepia) var(--chakra-drop-shadow)",
+    "--chakra-bg-filter":
+      "backdrop-filter: var(--chakra-backdrop-blur) var(--chakra-backdrop-brightness) var(--chakra-backdrop-contrast) var(--chakra-backdrop-grayscale) var(--chakra-backdrop-hue-rotate) var(--chakra-backdrop-invert) var(--chakra-backdrop-opacity) var(--chakra-backdrop-saturate) var(--chakra-backdrop-sepia)",
   }
 
   Object.assign(theme, {

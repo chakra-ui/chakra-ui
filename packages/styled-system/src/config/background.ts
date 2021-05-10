@@ -1,17 +1,8 @@
 import * as CSS from "csstype"
-import type { Config } from "../prop-config"
-import { t, Token } from "../utils"
-import { gradientTransform } from "../utils/parse-gradient"
-
-function bgClipTransform(value: string) {
-  return value === "text"
-    ? { color: "transparent", backgroundClip: "text" }
-    : { backgroundClip: value }
-}
+import type { Config } from "../utils/prop-config"
+import { t, Token, transforms } from "../utils"
 
 export const background: Config = {
-  bg: t.colors("background"),
-  bgColor: t.colors("backgroundColor"),
   background: t.colors("background"),
   backgroundColor: t.colors("backgroundColor"),
   backgroundImage: true,
@@ -19,25 +10,18 @@ export const background: Config = {
   backgroundPosition: true,
   backgroundRepeat: true,
   backgroundAttachment: true,
-  backgroundBlendMode: true,
-  backgroundClip: {
-    transform: bgClipTransform,
-  },
+  backgroundClip: { transform: transforms.bgClip },
   bgImage: t.prop("backgroundImage"),
   bgImg: t.prop("backgroundImage"),
-  bgBlendMode: t.prop("backgroundBlendMode"),
   bgSize: t.prop("backgroundSize"),
   bgPosition: t.prop("backgroundPosition"),
+  bg: t.colors("background"),
+  bgColor: t.colors("backgroundColor"),
   bgPos: t.prop("backgroundPosition"),
   bgRepeat: t.prop("backgroundRepeat"),
   bgAttachment: t.prop("backgroundAttachment"),
-  bgGradient: {
-    property: "backgroundImage",
-    transform: gradientTransform,
-  },
-  bgClip: {
-    transform: bgClipTransform,
-  },
+  bgGradient: t.propT("backgroundImage", transforms.gradient),
+  bgClip: { transform: transforms.bgClip },
 }
 
 export interface BackgroundProps {
@@ -73,14 +57,6 @@ export interface BackgroundProps {
    * The background-gradient shorthand
    */
   bgGradient?: Token<CSS.Property.BackgroundImage>
-  /**
-   * The CSS `background-blend-mode` property
-   */
-  backgroundBlendMode?: Token<CSS.Property.BackgroundBlendMode>
-  /**
-   * The CSS `background-blend-mode` property
-   */
-  bgBlendMode?: Token<CSS.Property.BackgroundBlendMode>
   /**
    * The CSS `background-size` property
    */

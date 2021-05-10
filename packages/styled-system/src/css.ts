@@ -1,17 +1,18 @@
 import {
   Dict,
+  isCssVar,
   isObject,
+  isString,
   mergeWith as merge,
   runIfFn,
-  isCssVar,
-  isString,
 } from "@chakra-ui/utils"
 import * as CSS from "csstype"
-import { expandResponsive } from "./expand-responsive"
-import { Config, PropConfig } from "./prop-config"
 import { pseudoSelectors } from "./pseudos"
 import { systemProps as systemPropConfigs } from "./system"
-import { CssTheme, StyleObjectOrFn } from "./types"
+import { StyleObjectOrFn } from "./types"
+import { expandResponsive } from "./utils/expand-responsive"
+import { Config, PropConfig } from "./utils/prop-config"
+import { CssTheme } from "./utils/types"
 
 const isCSSVariableTokenValue = (key: string, value: any): value is string =>
   key.startsWith("--") && isString(value) && !isCssVar(value)

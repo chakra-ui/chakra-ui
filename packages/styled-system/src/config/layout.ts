@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
-import { Config } from "../prop-config"
-import { Length, t, Token } from "../utils"
+import { Config } from "../utils/prop-config"
+import { Length, t, Token, transforms } from "../utils"
 
 export const layout: Config = {
   width: t.sizesT("width"),
@@ -20,9 +20,18 @@ export const layout: Config = {
   overflow: true,
   overflowX: true,
   overflowY: true,
+  overscrollBehavior: true,
+  overscrollBehaviorX: true,
+  overscrollBehaviorY: true,
   display: true,
   verticalAlign: true,
   boxSizing: true,
+  boxDecorationBreak: true,
+  float: t.propT("float", transforms.filter),
+  objectFit: true,
+  objectPosition: true,
+  visibility: true,
+  isolation: true,
 }
 
 Object.assign(layout, {
@@ -32,6 +41,9 @@ Object.assign(layout, {
   maxW: layout.maxWidth,
   minH: layout.minHeight,
   maxH: layout.maxHeight,
+  overscroll: layout.overscrollBehavior,
+  overscrollX: layout.overscrollBehaviorX,
+  overscrollY: layout.overscrollBehaviorY,
 })
 
 /**
@@ -124,4 +136,52 @@ export interface LayoutProps {
    * The CSS `box-sizing` property
    */
   boxSizing?: CSS.Property.BoxSizing
+  /**
+   * The CSS `box-decoration` property
+   */
+  boxDecorationBreak?: Token<CSS.Property.BoxDecorationBreak>
+  /**
+   * The CSS `float` property
+   */
+  float?: Token<CSS.Property.Float>
+  /**
+   * The CSS `object-fit` property
+   */
+  objectFit?: Token<CSS.Property.ObjectFit>
+  /**
+   * The CSS `object-position` property
+   */
+  objectPosition?: Token<CSS.Property.ObjectPosition<Length>>
+  /**
+   * The CSS `overscroll-behavior` property
+   */
+  overscrollBehavior?: Token<CSS.Property.OverscrollBehavior>
+  /**
+   * The CSS `overscroll-behavior` property
+   */
+  overscroll?: Token<CSS.Property.OverscrollBehavior>
+  /**
+   * The CSS `overscroll-behavior-x` property
+   */
+  overscrollBehaviorX?: Token<CSS.Property.OverscrollBehaviorX>
+  /**
+   * The CSS `overscroll-behavior-x` property
+   */
+  overscrollX?: Token<CSS.Property.OverscrollBehaviorX>
+  /**
+   * The CSS `overscroll-behavior-y` property
+   */
+  overscrollBehaviorY?: Token<CSS.Property.OverscrollBehaviorY>
+  /**
+   * The CSS `overscroll-behavior-y` property
+   */
+  overscrollY?: Token<CSS.Property.OverscrollBehaviorY>
+  /**
+   * The CSS `visibility` property
+   */
+  visibility?: Token<CSS.Property.Visibility>
+  /**
+   * The CSS `isolation` property
+   */
+  isolation?: Token<CSS.Property.Isolation>
 }
