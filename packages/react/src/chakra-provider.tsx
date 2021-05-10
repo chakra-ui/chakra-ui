@@ -5,6 +5,7 @@ import {
   ColorModeProviderProps,
   GlobalStyle,
   ThemeProvider,
+  ThemeProviderProps,
 } from "@chakra-ui/system"
 import defaultTheme from "@chakra-ui/theme"
 import { Dict } from "@chakra-ui/utils"
@@ -14,7 +15,8 @@ import {
 } from "@chakra-ui/react-env"
 import * as React from "react"
 
-export interface ChakraProviderProps {
+export interface ChakraProviderProps
+  extends Pick<ThemeProviderProps, "cssVarsRoot"> {
   /**
    * a theme. if omitted, uses the default theme provided by chakra
    */
@@ -67,11 +69,12 @@ export const ChakraProvider = (props: ChakraProviderProps) => {
     resetCSS = true,
     theme = defaultTheme,
     environment,
+    cssVarsRoot,
   } = props
 
   return (
     <EnvironmentProvider environment={environment}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme} cssVarsRoot={cssVarsRoot}>
         <ColorModeProvider
           colorModeManager={colorModeManager}
           options={theme.config}
