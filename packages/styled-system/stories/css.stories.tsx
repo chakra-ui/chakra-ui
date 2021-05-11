@@ -11,12 +11,21 @@ export default {
 const Box = styled("div")((props: any) => css(props.css)(props.theme))
 
 const styles: SystemProps = {
-  bg: "yellow.500",
-  ring: "6px",
-  ringColor: "red.500",
+  bg: "rgba(255,255,255,0.3)",
+  backdropFilter: "auto",
+  backdropBlur: "21px",
+  color: "white",
   rounded: "lg",
+  transform: "auto",
+  translateX: "40px",
   px: 3,
   py: 2,
+  _focus: {
+    ring: "2px",
+    ringOffset: "3px",
+    ringOffsetColor: "gray",
+    ringColor: "purple.300",
+  },
 }
 
 const theme = toCSSVar(defaultTheme)
@@ -24,7 +33,20 @@ export const cssVars = () => {
   return (
     <ThemeProvider theme={theme}>
       <Global styles={(t: any) => ({ ":root": t.__cssVars })} />
-      <Box css={styles}>Welcome</Box>
+      <Box
+        css={{
+          bgImage: "url(https://windicss.org/assets/bg-shop.jpg)",
+          bgSize: "cover",
+          height: "200px",
+          width: "200px",
+          display: "grid",
+          placeItems: "center",
+        }}
+      >
+        <Box as="button" css={styles}>
+          Welcome
+        </Box>
+      </Box>
     </ThemeProvider>
   )
 }

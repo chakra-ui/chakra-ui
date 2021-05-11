@@ -33,22 +33,14 @@ export function toCSSVar<T extends Dict>(rawTheme: T) {
   } = createThemeVars(tokens, { cssVarPrefix })
 
   const defaultCssVars: Dict = {
-    // ring css vars
     "--chakra-ring-inset": "var(--chakra-empty,/*!*/ /*!*/)",
     "--chakra-ring-offset-width": "0px",
     "--chakra-ring-offset-color": "#fff",
     "--chakra-ring-color": "rgba(66, 153, 225, 0.6)",
     "--chakra-ring-offset-shadow": "0 0 #0000",
     "--chakra-ring-shadow": "0 0 #0000",
-    // transform css vars
-    "--chakra-transform-gpu": getTransformGpuTemplate(),
-    "--chakra-transform": getTransformTemplate(),
     "--chakra-space-x-reverse": "0",
     "--chakra-space-y-reverse": "0",
-    "--chakra-filter":
-      "var(--chakra-blur) var(--chakra-brightness) var(--chakra-contrast) var(--chakra-grayscale) var(--chakra-hue-rotate) var(--chakra-invert) var(--chakra-saturate) var(--chakra-sepia) var(--chakra-drop-shadow)",
-    "--chakra-bg-filter":
-      "backdrop-filter: var(--chakra-backdrop-blur) var(--chakra-backdrop-brightness) var(--chakra-backdrop-contrast) var(--chakra-backdrop-grayscale) var(--chakra-backdrop-hue-rotate) var(--chakra-backdrop-invert) var(--chakra-backdrop-opacity) var(--chakra-backdrop-saturate) var(--chakra-backdrop-sepia)",
   }
 
   Object.assign(theme, {

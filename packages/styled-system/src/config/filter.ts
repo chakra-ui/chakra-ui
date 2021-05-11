@@ -3,7 +3,7 @@ import { Config } from "../utils/prop-config"
 import { Length, Token, t, transforms } from "../utils"
 
 export const filter: Config = {
-  filter: t.propT("filter", transforms.filter),
+  filter: { transform: transforms.filter },
   blur: t.blur("--chakra-blur"),
   brightness: t.propT("--chakra-brightness", transforms.brightness),
   contrast: t.propT("--chakra-contrast", transforms.contrast),
@@ -11,7 +11,7 @@ export const filter: Config = {
   invert: t.propT("--chakra-invert", transforms.invert),
   saturate: t.propT("--chakra-saturate", transforms.saturate),
   dropShadow: t.propT("--chakra-drop-shadow", transforms.dropShadow),
-  backdropFilter: t.propT("filter", transforms.backdropFilter),
+  backdropFilter: { transform: transforms.backdropFilter },
   backdropBlur: t.blur("--chakra-backdrop-blur"),
   backdropBrightness: t.propT(
     "--chakra-backdrop-brightness",
