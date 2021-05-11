@@ -9,7 +9,7 @@ test("should handle array interpolations", () => {
     xl: "70em",
   })
 
-  // @ts-expect-error "&" is technically disallowed
+  // @ts-ignore
   const result = css({ "&": [{ bg: "red" }, { bg: "green" }] })(
     toCSSVar({
       breakpoints: customBreakpoints,

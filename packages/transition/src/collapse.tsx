@@ -93,7 +93,6 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
       className,
       transition,
       transitionEnd,
-      onAnimationComplete,
       ...rest
     } = props
 
