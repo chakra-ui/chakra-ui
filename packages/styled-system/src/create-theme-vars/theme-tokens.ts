@@ -16,7 +16,6 @@ const tokens = [
   "sizes",
   "zIndices",
   "transition",
-  "degrees",
   "blur",
 ] as const
 

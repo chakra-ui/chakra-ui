@@ -15,7 +15,9 @@ export const t = {
   radii: toConfig("radii", transforms.px),
   space: toConfig("space", transforms.px),
   spaceT: toConfig("space", transforms.px),
-  degreeT: toConfig("degrees", transforms.degree),
+  degreeT(property: PropConfig["property"]) {
+    return { property, transform: transforms.degree }
+  },
   prop(
     property: PropConfig["property"],
     scale?: ThemeScale,

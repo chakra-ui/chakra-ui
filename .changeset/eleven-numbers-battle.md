@@ -87,3 +87,6 @@ To fix this, we've added `outline: 2px solid transparent` whenever you set
 - Added `_light` pseudo props to map to
   `.chakra-ui-light &, [data-theme=light] &, &[data-theme=light]` for users that
   prefer to start with dark mode.
+
+- Added `overscroll`, `overscrollX`, and `overscrollY` style prop to manage
+  overscroll behavior of an container

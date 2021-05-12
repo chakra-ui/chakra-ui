@@ -16,10 +16,15 @@ const styles: Styles = {
   button: {
     bg: "red.300",
     px: 4,
+    transform: "auto",
+    rotate: "4",
     py: 2,
     rounded: "lg",
     fontWeight: "bold",
     outline: 0,
+    _hover: {
+      rotate: "0",
+    },
     _focusVisible: {
       bg: "red.400",
       ring: "2px",

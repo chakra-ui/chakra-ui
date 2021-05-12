@@ -50,7 +50,8 @@ export const transformFunctions = {
   },
   degree(value: any) {
     if (isCssVar(value) || value == null) return value
-    return isNumber(value) ? `${value}deg` : value
+    const unitless = isString(value) && !value.endsWith("deg")
+    return isNumber(value) || unitless ? `${value}deg` : value
   },
   gradient: gradientTransform,
   blur: wrap("blur"),
