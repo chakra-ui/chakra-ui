@@ -32,7 +32,7 @@ export const flexbox: Config = {
       return result
     },
   },
-  spaceX: {
+  experimental_spaceX: {
     static: {
       [owlSelector]: {
         marginInlineStart:
@@ -47,7 +47,7 @@ export const flexbox: Config = {
         value !== null ? { "--chakra-space-x": value } : null,
     }),
   },
-  spaceY: {
+  experimental_spaceY: {
     static: {
       [owlSelector]: {
         marginTop:
@@ -250,9 +250,9 @@ export interface FlexboxProps {
   /**
    * Controls the horizontal space between elements
    */
-  spaceX?: Token<CSS.Property.Margin | number, "space">
+  experimental_spaceX?: Token<CSS.Property.Margin | number, "space">
   /**
    * Controls the vertical space between elements
    */
-  spaceY?: Token<CSS.Property.Margin | number, "space">
+  experimental_spaceY?: Token<CSS.Property.Margin | number, "space">
 }

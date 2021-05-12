@@ -84,9 +84,7 @@ export const StackItem: ChakraComponent<"div"> = (props) => (
   />
 )
 
-export interface StackProps
-  extends Omit<HTMLChakraProps<"div">, "spaceX" | "spaceY">,
-    StackOptions {}
+export interface StackProps extends HTMLChakraProps<"div">, StackOptions {}
 
 /**
  * Stacks help you easily create flexible and automatically distributed layouts

@@ -4,12 +4,11 @@ import {
   HTMLChakraProps,
   SystemProps,
   tokenToCSSVar,
-  OmitSpaceXY,
 } from "@chakra-ui/system"
 import { cx, Dict, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface WrapProps extends OmitSpaceXY<HTMLChakraProps<"div">> {
+export interface WrapProps extends HTMLChakraProps<"div"> {
   /**
    * The space between the each child (even if it wraps)
    * @type SystemProps["margin"]

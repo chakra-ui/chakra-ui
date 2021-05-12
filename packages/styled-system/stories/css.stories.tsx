@@ -49,8 +49,8 @@ export const Stack = () => {
       css={{
         display: "flex",
         flexDirection: { base: "column", md: "row-reverse" },
-        spaceX: { md: "40px" },
-        spaceY: { base: "40px", md: "0px" },
+        experimental_spaceX: { md: "40px" },
+        experimental_spaceY: { base: "40px", md: "0px" },
       }}
     >
       <div>Child 1</div>
