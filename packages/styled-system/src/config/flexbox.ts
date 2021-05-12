@@ -23,7 +23,6 @@ export const flexbox: Config = {
   justifyContent: true,
   flexWrap: true,
   flexDirection: {
-    property: "flexDirection",
     transform(value) {
       const { space, divide } = reverse[value] ?? {}
       const result = { flexDirection: value }
