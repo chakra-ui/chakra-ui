@@ -80,3 +80,10 @@ To fix this, we've added `outline: 2px solid transparent` whenever you set
 `outline:0` to make your components work in high-constrast mode by default.
 
 [Learn more](https://sarahmhigley.com/writing/whcm-quick-tips/)
+
+- Fix the `_dark` pseudo props to map to
+  `.chakra-ui-dark &, [data-theme=dark] &, &[data-theme=dark]`.
+
+- Added `_light` pseudo props to map to
+  `.chakra-ui-light &, [data-theme=light] &, &[data-theme=light]` for users that
+  prefer to start with dark mode.
