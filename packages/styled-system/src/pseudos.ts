@@ -220,12 +220,12 @@ export const pseudoSelectors = {
    * Styles for when `data-theme` is applied to any parent of
    * this component or element.
    */
-  _dark: ".chakra-ui-dark &, [data-theme=dark] &, [data-theme=dark]",
+  _dark: ".chakra-ui-dark &, [data-theme=dark] &, &[data-theme=dark]",
   /**
    * Styles for when `data-theme` is applied to any parent of
    * this component or element.
    */
-  _light: ".chakra-ui-light &, [data-theme=light] &, [data-theme=light]",
+  _light: ".chakra-ui-light &, [data-theme=light] &, &[data-theme=light]",
 }
 
 export type Pseudos = typeof pseudoSelectors

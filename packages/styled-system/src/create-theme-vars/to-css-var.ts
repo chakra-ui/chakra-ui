@@ -1,10 +1,6 @@
 import { analyzeBreakpoints, Dict } from "@chakra-ui/utils"
 import type { WithCSSVar } from "../utils/types"
 import { createThemeVars } from "./create-theme-vars"
-import {
-  getTransformGpuTemplate,
-  getTransformTemplate,
-} from "./transform-template"
 import { extractTokens, omitVars } from "./theme-tokens"
 
 export function toCSSVar<T extends Dict>(rawTheme: T) {

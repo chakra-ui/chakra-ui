@@ -9,7 +9,7 @@ import {
 import * as CSS from "csstype"
 import { pseudoSelectors } from "./pseudos"
 import { systemProps as systemPropConfigs } from "./system"
-import { StyleObjectOrFn } from "./types"
+import { StyleObjectOrFn } from "./system.types"
 import { expandResponsive } from "./utils/expand-responsive"
 import { Config, PropConfig } from "./utils/prop-config"
 import { CssTheme } from "./utils/types"

@@ -5,14 +5,12 @@ import { t, Token, transforms } from "../utils"
 export const background: Config = {
   background: t.colors("background"),
   backgroundColor: t.colors("backgroundColor"),
-  backgroundImage: true,
+  backgroundImage: t.propT("backgroundImage", transforms.bgImage),
   backgroundSize: true,
   backgroundPosition: true,
   backgroundRepeat: true,
   backgroundAttachment: true,
   backgroundClip: { transform: transforms.bgClip },
-  bgImage: t.prop("backgroundImage"),
-  bgImg: t.prop("backgroundImage"),
   bgSize: t.prop("backgroundSize"),
   bgPosition: t.prop("backgroundPosition"),
   bg: t.colors("background"),
@@ -23,6 +21,11 @@ export const background: Config = {
   bgGradient: t.propT("backgroundImage", transforms.gradient),
   bgClip: { transform: transforms.bgClip },
 }
+
+Object.assign(background, {
+  bgImage: background.backgroundImage,
+  bgImg: background.backgroundImage,
+})
 
 export interface BackgroundProps {
   /**

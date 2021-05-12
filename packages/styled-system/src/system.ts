@@ -3,16 +3,18 @@ import {
   background,
   border,
   color,
-  flexbox,
+  effect,
   filter,
+  flexbox,
   grid,
+  interactivity,
   layout,
   list,
   others,
-  ring,
   position,
-  effect,
+  ring,
   space,
+  textDecoration,
   transform,
   transition,
   typography,
@@ -28,22 +30,23 @@ export const systemProps = mergeWith(
   layout,
   filter,
   ring,
+  interactivity,
   grid,
   others,
   position,
   effect,
   space,
   typography,
+  textDecoration,
   transform,
   list,
   transition,
 )
 
-const layoutSystem = mergeWith({}, space, layout, flexbox, grid, position)
+const layoutSystem = Object.assign({}, space, layout, flexbox, grid, position)
 export const layoutPropNames = objectKeys(layoutSystem)
 
 export const propNames = [...objectKeys(systemProps), ...pseudoPropNames]
-
 const styleProps = { ...systemProps, ...pseudoSelectors }
 
 export const isStyleProp = (prop: string) => prop in styleProps

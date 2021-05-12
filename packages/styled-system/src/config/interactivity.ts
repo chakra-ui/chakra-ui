@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { Config } from "../utils/prop-config"
-import { t, Token, Length } from "../utils"
+import { t, Token, Length, transforms } from "../utils"
 
 export const interactivity: Config = {
   appearance: true,
@@ -8,7 +8,7 @@ export const interactivity: Config = {
   resize: true,
   userSelect: true,
   pointerEvents: true,
-  outline: true,
+  outline: { transform: transforms.outline },
   outlineOffset: true,
   outlineColor: t.colors("outlineColor"),
 }

@@ -56,6 +56,7 @@ export interface LayoutProps {
   display?: Token<CSS.Property.Display>
   /**
    * The CSS `display` property
+   * @deprecated - Please use `display` instead
    */
   d?: Token<CSS.Property.Display>
   /**

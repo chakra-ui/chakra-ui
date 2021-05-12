@@ -1,5 +1,5 @@
 import { Dict } from "@chakra-ui/utils"
-import { Transform } from "../types"
+import { Transform } from "./types"
 
 const directionMap = {
   "to-t": "to top",

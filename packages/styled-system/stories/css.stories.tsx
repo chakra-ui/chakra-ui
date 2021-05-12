@@ -10,21 +10,22 @@ export default {
 
 const Box = styled("div")((props: any) => css(props.css)(props.theme))
 
-const styles: SystemProps = {
-  bg: "rgba(255,255,255,0.3)",
-  backdropFilter: "auto",
-  backdropBlur: "21px",
-  color: "white",
-  rounded: "lg",
-  transform: "auto",
-  translateX: "40px",
-  px: 3,
-  py: 2,
-  _focus: {
-    ring: "2px",
-    ringOffset: "3px",
-    ringOffsetColor: "gray",
-    ringColor: "purple.300",
+type Styles = Record<string, SystemProps>
+
+const styles: Styles = {
+  button: {
+    bg: "red.300",
+    px: 4,
+    py: 2,
+    rounded: "lg",
+    fontWeight: "bold",
+    outline: 0,
+    _focusVisible: {
+      bg: "red.400",
+      ring: "2px",
+      ringOffset: "2px",
+      ringColor: "red.600",
+    },
   },
 }
 
@@ -33,17 +34,8 @@ export const cssVars = () => {
   return (
     <ThemeProvider theme={theme}>
       <Global styles={(t: any) => ({ ":root": t.__cssVars })} />
-      <Box
-        css={{
-          bgImage: "url(https://windicss.org/assets/bg-shop.jpg)",
-          bgSize: "cover",
-          height: "200px",
-          width: "200px",
-          display: "grid",
-          placeItems: "center",
-        }}
-      >
-        <Box as="button" css={styles}>
+      <Box css={styles.background}>
+        <Box as="button" css={styles.button}>
           Welcome
         </Box>
       </Box>
