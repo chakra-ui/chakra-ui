@@ -1,20 +1,8 @@
 import * as CSS from "csstype"
+import { Length, t, Token, transforms } from "../utils"
 import { createTransform } from "../utils/create-transform"
 import { Config } from "../utils/prop-config"
-import { Length, t, Token } from "../utils"
-
-const reverse = {
-  "row-reverse": {
-    space: "--chakra-space-x-reverse",
-    divide: "--chakra-divide-x-reverse",
-  },
-  "column-reverse": {
-    space: "--chakra-space-y-reverse",
-    divide: "--chakra-divide-y-reverse",
-  },
-}
-
-const owlSelector = "& > :not(style) ~ :not(style)"
+import { spaceXTemplate, spaceYTemplate } from "../utils/templates"
 
 export const flexbox: Config = {
   alignItems: true,
@@ -22,24 +10,9 @@ export const flexbox: Config = {
   justifyItems: true,
   justifyContent: true,
   flexWrap: true,
-  flexDirection: {
-    transform(value) {
-      const { space, divide } = reverse[value] ?? {}
-      const result = { flexDirection: value }
-      if (space) result[space] = 1
-      if (divide) result[divide] = 1
-      return result
-    },
-  },
+  flexDirection: { transform: transforms.flexDirection },
   experimental_spaceX: {
-    static: {
-      [owlSelector]: {
-        marginInlineStart:
-          "calc(var(--chakra-space-x) * calc(1 - var(--chakra-space-x-reverse)))",
-        marginInlineEnd:
-          "calc(var(--chakra-space-x) * var(--chakra-space-x-reverse))",
-      },
-    },
+    static: spaceXTemplate,
     transform: createTransform({
       scale: "space",
       transform: (value) =>
@@ -47,14 +20,7 @@ export const flexbox: Config = {
     }),
   },
   experimental_spaceY: {
-    static: {
-      [owlSelector]: {
-        marginTop:
-          "calc(var(--chakra-space-y) * calc(1 - var(--chakra-space-y-reverse)))",
-        marginBottom:
-          "calc(var(--chakra-space-y) * var(--chakra-space-y-reverse))",
-      },
-    },
+    static: spaceYTemplate,
     transform: createTransform({
       scale: "space",
       transform: (value) =>

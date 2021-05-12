@@ -5,6 +5,7 @@ import {
   getRingTemplate,
   getTransformGpuTemplate,
   getTransformTemplate,
+  flexDirectionTemplate,
 } from "./templates"
 import { gradientTransform } from "./parse-gradient"
 
@@ -72,5 +73,12 @@ export const transformFunctions = {
     return value !== null && isNoneOrZero
       ? { outline: "2px solid transparent", outlineOffset: "2px" }
       : { outline: value }
+  },
+  flexDirection(value: any) {
+    const { space, divide } = flexDirectionTemplate[value] ?? {}
+    const result = { flexDirection: value }
+    if (space) result[space] = 1
+    if (divide) result[divide] = 1
+    return result
   },
 }
