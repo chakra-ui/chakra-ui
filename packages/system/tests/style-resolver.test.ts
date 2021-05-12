@@ -97,6 +97,19 @@ test("should resolve styles correctly", () => {
     ]
   `)
 })
+test("should resolve styles correctly", () => {
+  const result = toCSSObject({ baseStyle: (props) => ({ bg: props.color }) })({
+    theme,
+    color: "pink.300",
+  })
+
+  expect(result).toMatchInlineSnapshot(`
+    Object {
+      "background": "var(--chakra-colors-pink-300)",
+      "color": "var(--chakra-colors-pink-300)",
+    }
+  `)
+})
 
 test("should override padding correctly", () => {
   const result = toCSSObject({})({
