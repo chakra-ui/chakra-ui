@@ -27,7 +27,7 @@ export const layout: Config = {
   verticalAlign: true,
   boxSizing: true,
   boxDecorationBreak: true,
-  float: t.propT("float", transforms.filter),
+  float: t.propT("float", transforms.float),
   objectFit: true,
   objectPosition: true,
   visibility: true,
