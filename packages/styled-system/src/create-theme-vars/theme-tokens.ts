@@ -16,6 +16,7 @@ const tokens = [
   "sizes",
   "zIndices",
   "transition",
+  "blur",
 ] as const
 
 export type ThemeScale =

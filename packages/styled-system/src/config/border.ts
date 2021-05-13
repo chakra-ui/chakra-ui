@@ -1,5 +1,5 @@
 import * as CSS from "csstype"
-import { Config } from "../prop-config"
+import { Config } from "../utils/prop-config"
 import { t, Token } from "../utils"
 
 export const border: Config = {
