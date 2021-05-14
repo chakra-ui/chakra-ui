@@ -59,11 +59,13 @@ function TableOfContent(props: TableOfContentProps) {
             <chakra.a
               py="1"
               display="block"
-              _hover={{ color: "gray.900" }}
               fontWeight={id === activeId ? "bold" : "medium"}
               href={`#${id}`}
               aria-current={id === activeId ? "location" : undefined}
               color={useColorModeValue("gray.600", "gray.400")}
+              _hover={{
+                color: useColorModeValue("gray.900", "gray.600"),
+              }}
             >
               {text}
             </chakra.a>
