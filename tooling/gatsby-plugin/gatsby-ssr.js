@@ -12,6 +12,6 @@ export const onRenderBody = ({ setPreBodyComponents }) => {
   ])
 }
 
-export const wrapRootElement = (props) => {
-  return <WrapRootElement {...props} />
+export const wrapRootElement = ({ element }, pluginOptions) => {
+  return <WrapRootElement element={element} {...pluginOptions} />
 }
