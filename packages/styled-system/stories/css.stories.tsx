@@ -2,7 +2,7 @@ import defaultTheme from "@chakra-ui/theme"
 import { Global, ThemeProvider } from "@emotion/react"
 import styled from "@emotion/styled"
 import * as React from "react"
-import { css, toCSSVar } from "../src"
+import { css, SystemProps, toCSSVar } from "../src"
 
 export default {
   title: "css",
@@ -10,12 +10,40 @@ export default {
 
 const Box = styled("div")((props: any) => css(props.css)(props.theme))
 
+type Styles = Record<string, SystemProps>
+
+const styles: Styles = {
+  button: {
+    bg: "red.300",
+    px: 4,
+    transform: "auto",
+    rotate: "4",
+    py: 2,
+    rounded: "lg",
+    fontWeight: "bold",
+    outline: 0,
+    _hover: {
+      rotate: "0",
+    },
+    _focusVisible: {
+      bg: "red.400",
+      ring: "2px",
+      ringOffset: "2px",
+      ringColor: "red.600",
+    },
+  },
+}
+
 const theme = toCSSVar(defaultTheme)
 export const cssVars = () => {
   return (
     <ThemeProvider theme={theme}>
       <Global styles={(t: any) => ({ ":root": t.__cssVars })} />
-      <Box css={{ mt: ["-8", "12"], color: "red.400" }}>Welcome</Box>
+      <Box css={styles.background}>
+        <Box as="button" css={styles.button}>
+          Welcome
+        </Box>
+      </Box>
     </ThemeProvider>
   )
 }
@@ -26,8 +54,8 @@ export const Stack = () => {
       css={{
         display: "flex",
         flexDirection: { base: "column", md: "row-reverse" },
-        spaceX: { md: "40px" },
-        spaceY: { base: "40px", md: "0px" },
+        experimental_spaceX: { md: "40px" },
+        experimental_spaceY: { base: "40px", md: "0px" },
       }}
     >
       <div>Child 1</div>

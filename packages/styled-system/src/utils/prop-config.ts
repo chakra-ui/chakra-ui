@@ -1,7 +1,7 @@
 import { Dict } from "@chakra-ui/utils"
 import * as CSS from "csstype"
 import { createTransform } from "./create-transform"
-import { ThemeScale } from "./create-theme-vars"
+import { ThemeScale } from "../create-theme-vars"
 import type { CssTheme, Transform } from "./types"
 
 type CSSProp = keyof CSS.Properties | (string & {})

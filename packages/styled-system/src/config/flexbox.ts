@@ -1,20 +1,8 @@
 import * as CSS from "csstype"
-import { createTransform } from "../create-transform"
-import { Config } from "../prop-config"
-import { Length, t, Token } from "../utils"
-
-const reverse = {
-  "row-reverse": {
-    space: "--chakra-space-x-reverse",
-    divide: "--chakra-divide-x-reverse",
-  },
-  "column-reverse": {
-    space: "--chakra-space-y-reverse",
-    divide: "--chakra-divide-y-reverse",
-  },
-}
-
-const owlSelector = "& > :not(style) ~ :not(style)"
+import { Length, t, Token, transforms } from "../utils"
+import { createTransform } from "../utils/create-transform"
+import { Config } from "../utils/prop-config"
+import { spaceXTemplate, spaceYTemplate } from "../utils/templates"
 
 export const flexbox: Config = {
   alignItems: true,
@@ -22,39 +10,17 @@ export const flexbox: Config = {
   justifyItems: true,
   justifyContent: true,
   flexWrap: true,
-  flexDirection: {
-    transform(value) {
-      const { space, divide } = reverse[value] ?? {}
-      const result = { flexDirection: value }
-      if (space) result[space] = 1
-      if (divide) result[divide] = 1
-      return result
-    },
-  },
-  spaceX: {
-    static: {
-      [owlSelector]: {
-        marginInlineStart:
-          "calc(var(--chakra-space-x) * calc(1 - var(--chakra-space-x-reverse)))",
-        marginInlineEnd:
-          "calc(var(--chakra-space-x) * var(--chakra-space-x-reverse))",
-      },
-    },
+  flexDirection: { transform: transforms.flexDirection },
+  experimental_spaceX: {
+    static: spaceXTemplate,
     transform: createTransform({
       scale: "space",
       transform: (value) =>
         value !== null ? { "--chakra-space-x": value } : null,
     }),
   },
-  spaceY: {
-    static: {
-      [owlSelector]: {
-        marginTop:
-          "calc(var(--chakra-space-y) * calc(1 - var(--chakra-space-y-reverse)))",
-        marginBottom:
-          "calc(var(--chakra-space-y) * var(--chakra-space-y-reverse))",
-      },
-    },
+  experimental_spaceY: {
+    static: spaceYTemplate,
     transform: createTransform({
       scale: "space",
       transform: (value) =>
@@ -72,8 +38,11 @@ export const flexbox: Config = {
   placeItems: true,
   placeContent: true,
   placeSelf: true,
-  flexDir: t.prop("flexDirection"),
 }
+
+Object.assign(flexbox, {
+  flexDir: flexbox.flexDirection,
+})
 
 export interface FlexboxProps {
   /**
@@ -246,9 +215,9 @@ export interface FlexboxProps {
   /**
    * Controls the horizontal space between elements
    */
-  // spaceX?: Token<CSS.Property.Margin | number, "space">
+  experimental_spaceX?: Token<CSS.Property.Margin | number, "space">
   /**
    * Controls the vertical space between elements
    */
-  // spaceY?: Token<CSS.Property.Margin | number, "space">
+  experimental_spaceY?: Token<CSS.Property.Margin | number, "space">
 }

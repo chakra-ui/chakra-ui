@@ -1,10 +1,6 @@
 import { analyzeBreakpoints, Dict } from "@chakra-ui/utils"
-import type { WithCSSVar } from "../types"
+import type { WithCSSVar } from "../utils/types"
 import { createThemeVars } from "./create-theme-vars"
-import {
-  getTransformGpuTemplate,
-  getTransformTemplate,
-} from "./transform-template"
 import { extractTokens, omitVars } from "./theme-tokens"
 
 export function toCSSVar<T extends Dict>(rawTheme: T) {
@@ -33,18 +29,12 @@ export function toCSSVar<T extends Dict>(rawTheme: T) {
   } = createThemeVars(tokens, { cssVarPrefix })
 
   const defaultCssVars: Dict = {
-    "--chakra-ring-offset": "0px",
+    "--chakra-ring-inset": "var(--chakra-empty,/*!*/ /*!*/)",
+    "--chakra-ring-offset-width": "0px",
+    "--chakra-ring-offset-color": "#fff",
     "--chakra-ring-color": "rgba(66, 153, 225, 0.6)",
-    "--chakra-ring-width": "3px",
-    "--chakra-ring-inset": "var(--chakra-empty, /*!*/ /*!*/)",
-    "--chakra-ring-offset-shadow":
-      "var(--chakra-ring-inset) 0 0 0 var(--chakra-ring-offset) var(--chakra-ring-offset-color, transparent)",
-    "--chakra-ring-shadow":
-      "var(--chakra-ring-inset) 0 0 0 calc(var(--chakra-ring-width) + var(--chakra-ring-offset)) var(--chakra-ring-color)",
-    "--chakra-ring":
-      "var(--chakra-ring-offset-shadow), var(--chakra-ring-shadow), 0 0 transparent",
-    "--chakra-transform-gpu": getTransformGpuTemplate(),
-    "--chakra-transform": getTransformTemplate(),
+    "--chakra-ring-offset-shadow": "0 0 #0000",
+    "--chakra-ring-shadow": "0 0 #0000",
     "--chakra-space-x-reverse": "0",
     "--chakra-space-y-reverse": "0",
   }

@@ -1,38 +1,42 @@
-import { isNumber } from "@chakra-ui/utils"
-import { createTransform, px as pxTransform } from "../create-transform"
 import type { ThemeScale } from "../create-theme-vars"
-import { logical, PropConfig, toConfig } from "../prop-config"
+import { createTransform } from "./create-transform"
+import { logical, PropConfig, toConfig } from "./prop-config"
+import { transformFunctions as transforms } from "./transform-functions"
+
+export { transforms }
 
 export * from "./types"
-
-function fractionalValue(value: any) {
-  return !isNumber(value) || value > 1 ? value : `${value * 100}%`
-}
 
 export const t = {
   borderWidths: toConfig("borderWidths"),
   borderStyles: toConfig("borderStyles"),
   colors: toConfig("colors"),
   borders: toConfig("borders"),
-  radii: toConfig("radii", pxTransform),
-  space: toConfig("space", pxTransform),
-  spaceT: toConfig("space", pxTransform),
-  prop: (
+  radii: toConfig("radii", transforms.px),
+  space: toConfig("space", transforms.px),
+  spaceT: toConfig("space", transforms.px),
+  degreeT(property: PropConfig["property"]) {
+    return { property, transform: transforms.degree }
+  },
+  prop(
     property: PropConfig["property"],
     scale?: ThemeScale,
     transform?: PropConfig["transform"],
-  ) => ({
-    property,
-    scale,
-    ...(scale && {
-      transform: createTransform({
-        scale,
-        transform,
+  ) {
+    return {
+      property,
+      scale,
+      ...(scale && {
+        transform: createTransform({ scale, transform }),
       }),
-    }),
-  }),
-  sizes: toConfig("sizes", pxTransform),
-  sizesT: toConfig("sizes", fractionalValue),
+    }
+  },
+  propT(property: PropConfig["property"], transform?: PropConfig["transform"]) {
+    return { property, transform }
+  },
+  sizes: toConfig("sizes", transforms.px),
+  sizesT: toConfig("sizes", transforms.fraction),
   shadows: toConfig("shadows"),
   logical,
+  blur: toConfig("blur", transforms.blur),
 }
