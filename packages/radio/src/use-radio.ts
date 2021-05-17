@@ -1,13 +1,13 @@
-import { useBoolean, useControllableProp } from "@chakra-ui/hooks"
+import { useFormControlProps } from "@chakra-ui/form-control"
+import { useBoolean, useControllableProp, useId } from "@chakra-ui/hooks"
+import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import {
   ariaAttr,
   callAllHandlers,
   dataAttr,
-  pick,
-  warn,
   scheduleMicrotask,
+  warn,
 } from "@chakra-ui/utils"
-import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import {
   ChangeEvent,
@@ -16,7 +16,6 @@ import {
   useRef,
   useState,
 } from "react"
-import { useFormControl } from "@chakra-ui/form-control"
 
 /**
  * @todo use the `useClickable` hook here
@@ -86,16 +85,25 @@ export function useRadio(props: UseRadioProps = {}) {
     defaultChecked = defaultIsChecked,
     isChecked: isCheckedProp,
     isFocusable,
-    isDisabled,
-    isReadOnly,
-    isRequired,
+    isDisabled: isDisabledProp,
+    isReadOnly: isReadOnlyProp,
+    isRequired: isRequiredProp,
     onChange,
-    isInvalid,
+    isInvalid: isInvalidProp,
     name,
     value,
-    id,
+    id: idProp,
     ...htmlProps
   } = props
+
+  const id = useId(idProp, "radio")
+
+  const formControl = useFormControlProps<HTMLInputElement>(props)
+
+  const isDisabled = formControl?.isDisabled
+  const isReadOnly = formControl?.isReadOnly
+  const isRequired = formControl?.isRequired
+  const isInvalid = formControl?.isInvalid
 
   const [isFocused, setFocused] = useBoolean()
   const [isHovered, setHovering] = useBoolean()
@@ -183,23 +191,10 @@ export function useRadio(props: UseRadioProps = {}) {
     ],
   )
 
-  const inputProps = useFormControl<HTMLInputElement>(props)
+  const { onFocus, onBlur } = formControl
 
   const getInputProps: PropGetter<HTMLInputElement> = useCallback(
     (props = {}, forwardedRef = null) => {
-      const ownProps = pick(inputProps, [
-        "id",
-        "disabled",
-        "readOnly",
-        "required",
-        "aria-invalid",
-        "aria-required",
-        "aria-readonly",
-        "aria-describedby",
-        "onFocus",
-        "onBlur",
-      ])
-
       /**
        * This is a workaround for React Concurrent Mode issue.
        * @see Issue https://github.com/facebook/react/issues/18591.
@@ -212,18 +207,18 @@ export function useRadio(props: UseRadioProps = {}) {
         })
       }
 
-      const trulyDisabled = ownProps.disabled && !isFocusable
+      const trulyDisabled = isDisabled && !isFocusable
 
       return {
         ...props,
-        ...ownProps,
+        id,
         ref: mergeRefs(forwardedRef, ref),
         type: "radio",
         name,
         value,
         onChange: callAllHandlers(props.onChange, handleChange),
-        onBlur: callAllHandlers(ownProps.onBlur, props.onBlur, setFocused.off),
-        onFocus: callAllHandlers(ownProps.onFocus, props.onFocus, focus),
+        onBlur: callAllHandlers(onBlur, props.onBlur, setFocused.off),
+        onFocus: callAllHandlers(onFocus, props.onFocus, focus),
         onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
         onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
         checked: isChecked,
@@ -233,12 +228,15 @@ export function useRadio(props: UseRadioProps = {}) {
       }
     },
     [
-      inputProps,
+      isDisabled,
       isFocusable,
+      id,
       name,
       value,
       handleChange,
+      onBlur,
       setFocused,
+      onFocus,
       onKeyDown,
       onKeyUp,
       isChecked,
