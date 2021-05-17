@@ -362,6 +362,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       }
     },
     inputRef.current,
+    { passive: false },
   )
 
   const getIncrementButtonProps: PropGetter = React.useCallback(
