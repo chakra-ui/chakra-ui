@@ -14,6 +14,139 @@ To better understand the changelog, here are some legends we use:
 - 🚀 Feature
 - 🐛 Bug fix
 
+## 17-05-2021
+
+`@chakra-ui/react@1.6.2`
+
+**Styled System** `v1.11.0`
+
+Ring
+
+- 🚀 Added ring style props to make it easier to style an element's focus ring
+  shadows. Props are `ring`, `ringColor`, `ringOffset`, and `ringOffsetColor`.
+
+```jsx live=false
+// adds a 2px box-shadow with `gray.400` color
+<Box ring="2px" ringColor="gray.400">
+  Sample
+</Box>
+
+// adds main box-shadow + offset box-shadow
+<Box ring="2px" ringColor="gray.400" ringOffset="3px" ringOffsetColor="white">
+ Sample
+</Box>
+```
+
+Filter Styles
+
+- 🚀 Added css variable based API to apply css filter properties (blur,
+  backdrop-blur) to an element. Props are `filter`, `blur`, `sepia`,
+  `brightness`, `invert`, `saturation`, `backdropFilter`, `backdropBlur`,
+  `sepia`, `saturation`, etc.
+
+To use this API, you'll need to set `filter` to `auto`, same for
+`backdropFilter`.
+
+```jsx live=false
+// adds a 3px blur filter to this element
+<Image src="boruto.png" filter="auto" blur="3px" />
+
+// adds a 3px blur and 40% saturation filter to this element
+<Image src="boruto.png" filter="auto" blur="3px" saturation={0.4} />
+```
+
+Transform Styles
+
+- 🚀 Added css variable based API to apply css transform properties (translateX,
+  translateY, scale, etc.). Props are `translateX`, `translateY`, `rotate`,
+  `scaleX`, `scaleY`, and `scale`.
+
+To use this API, you'll need to set `transform` to `auto` or `auto-gpu` (for the
+GPU accelerated version).
+
+```jsx live=false
+<Circle transform="auto" translateX="4" _hover={{ translateX: "8" }}>
+  <CheckIcon />
+</Circle>
+```
+
+- Add `mixBlendMode`, `backgroundBlendMode`, and `bgBlendMode` props to apply
+  blend modes to elements.
+
+- Automatic wrapping of `backgroundImage` or `bgImage` props with url() so you
+  can just pass the image URL directly.
+
+```jsx live=false
+// You can now do this!
+<Box bgImage="naruto.png" />
+
+// This still works
+<Box bgImage="url(naruto.png)" />
+```
+
+- Text decoration styles: Added `textDecorationColor`, `textDecorationLine`,
+  `textDecorationStyles` style props.
+
+- Add `isolation` style prop to create a new stacking context.
+
+High Contrast Mode
+
+- Fixed issue where setting `outline:0` or `outline:none` and using `box-shadow`
+  for focus outlines don't work in high-contrast mode.
+
+- To fix this, we've added `outline: 2px solid transparent` whenever you set
+  `outline:0` to make your components work in high-constrast mode by default.
+
+[Learn more](https://sarahmhigley.com/writing/whcm-quick-tips/)
+
+- Fix the `_dark` pseudo props to map to
+  `.chakra-ui-dark &, [data-theme=dark] &, &[data-theme=dark]`.
+
+- Added `_light` pseudo props to map to
+  `.chakra-ui-light &, [data-theme=light] &, &[data-theme=light]` for users that
+  prefer to start with dark mode.
+
+- Added `overscroll`, `overscrollX`, and `overscrollY` style prop to manage
+  overscroll behavior of an container.
+
+**Theme** `v1.9.0`
+
+- 🚀 Add blur token values for `filter` and `backdropFilter`.
+
+```jsx live=false
+{
+  "none": 0,
+  "sm": "4px",
+  "base": "8px",
+  "md": "12px",
+  "lg": "16px",
+  "xl": "24px",
+  "2xl": "40px",
+  "3xl": "64px"
+}
+```
+
+**Form Control** `v1.3.6`
+
+- 🐛 Fix issue where FormLabel could not be used without form-control.
+
+**Menu** `v1.6.2`
+
+- 🐛 Fix issue where typeahead overrides input keydown.
+
+**React** `v1.6.2`
+
+- 🐛 `ChakraProvider` now accepts the prop `cssVarsRoot` which defaults to
+  `:host, :root`.
+
+**System** `v1.6.6`
+
+- 🐛 Attach CSS vars to `:host, :root` to fix usage in shadow dom.
+
+**Transition** `v1.3.1`
+
+- 🐛 Fix issue where `onAnimationComplete` is not forwarded to motion element.
+
 ## 04-05-2021
 
 `@chakra-ui/react@1.6.1`
