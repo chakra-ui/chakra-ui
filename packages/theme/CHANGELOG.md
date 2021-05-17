@@ -1,5 +1,27 @@
 # Change Log
 
+## 1.9.0
+
+### Minor Changes
+
+- [`4f1cf6d6b`](https://github.com/chakra-ui/chakra-ui/commit/4f1cf6d6b9de134806c5f24d6b1c49f5aadae9a8)
+  [#3997](https://github.com/chakra-ui/chakra-ui/pull/3997) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Add blur token values for
+  `filter` and `backdropFilter`
+
+  ```json
+  {
+    "none": 0,
+    "sm": "4px",
+    "base": "8px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "24px",
+    "2xl": "40px",
+    "3xl": "64px"
+  }
+  ```
+
 ## 1.8.5
 
 ### Patch Changes
