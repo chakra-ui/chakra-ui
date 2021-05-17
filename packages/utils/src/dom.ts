@@ -1,47 +1,62 @@
 import { Booleanish, EventKeys } from "./types"
-import * as React from "react"
 
-let _window: Window | undefined = undefined
-
-/**
- * Note: Accessing "window" in IE11 is somewhat expensive, and calling "typeof window"
- * hits a memory leak, whereas aliasing it and calling "typeof _window" does not.
- * Caching the window value at the file scope lets us minimize the impact.
- *
- * @see IE11 Memory Leak Issue https://github.com/microsoft/fluentui/pull/9010#issuecomment-490768427
- */
-try {
-  _window = window
-} catch (e) {
-  /* no-op */
+export function getOwnerWindow(node?: HTMLElement | null): Window {
+  return node instanceof Element
+    ? getOwnerDocument(node)?.defaultView ?? window
+    : window
 }
 
-/**
- * Helper to get the window object. The helper will make sure to use a cached variable
- * of "window", to avoid overhead and memory leaks in IE11.
- */
-export const getWindow = (node?: HTMLElement | null) =>
-  node?.ownerDocument?.defaultView ?? _window
+export function getOwnerDocument(node?: HTMLElement | null): Document {
+  return node instanceof Element ? node.ownerDocument ?? document : document
+}
 
-/**
- * Check if we can use the DOM. Useful for SSR purposes
- */
-function checkIsBrowser() {
-  const _window = getWindow()
-  return Boolean(
-    typeof _window !== "undefined" &&
-      _window.document &&
-      _window.document.createElement,
+export function canUseDOM(): boolean {
+  return !!(
+    typeof window !== "undefined" &&
+    window.document &&
+    window.document.createElement
   )
 }
 
-export const isBrowser = checkIsBrowser()
+export const isBrowser = canUseDOM()
+
+export const dataAttr = (condition: boolean | undefined) =>
+  (condition ? "" : undefined) as Booleanish
+
+export const ariaAttr = (condition: boolean | undefined) =>
+  condition ? true : undefined
+
+export const cx = (...classNames: any[]) => classNames.filter(Boolean).join(" ")
+
+export function getActiveElement(node?: HTMLElement) {
+  const doc = getOwnerDocument(node)
+  return doc?.activeElement as HTMLElement
+}
+
+export function contains(parent: HTMLElement | null, child: HTMLElement) {
+  if (!parent) return false
+  return parent === child || parent.contains(child)
+}
+
+export function addDomEvent(
+  target: EventTarget,
+  eventName: string,
+  handler: EventListener,
+  options?: AddEventListenerOptions,
+) {
+  target.addEventListener(eventName, handler, options)
+  return () => {
+    target.removeEventListener(eventName, handler, options)
+  }
+}
 
 /**
  * Get the normalized event key across all browsers
  * @param event keyboard event
  */
-export function normalizeEventKey(event: React.KeyboardEvent) {
+export function normalizeEventKey(
+  event: Pick<KeyboardEvent, "key" | "keyCode">,
+) {
   const { key, keyCode } = event
 
   const isArrowKey =
@@ -52,13 +67,15 @@ export function normalizeEventKey(event: React.KeyboardEvent) {
   return eventKey as EventKeys
 }
 
-export const dataAttr = (condition: boolean | undefined) =>
-  (condition ? "" : undefined) as Booleanish
+export function getRelatedTarget(
+  event: Pick<FocusEvent, "relatedTarget" | "target" | "currentTarget">,
+) {
+  const target = (event.target ?? event.currentTarget) as HTMLElement
+  const activeElement = getActiveElement(target)
+  const originalTarget = (event as any).nativeEvent.explicitOriginalTarget
+  return (event.relatedTarget ?? originalTarget ?? activeElement) as HTMLElement
+}
 
-export const ariaAttr = (condition: boolean | undefined) =>
-  condition ? true : undefined
-
-export const getOwnerDocument = (node?: HTMLElement) =>
-  node?.ownerDocument || document
-
-export const cx = (...classNames: any[]) => classNames.filter(Boolean).join(" ")
+export function isRightClick(event: Pick<MouseEvent, "button">): boolean {
+  return event.button !== 0
+}

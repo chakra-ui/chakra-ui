@@ -1,4 +1,4 @@
-import { Link, SimpleGrid, Text } from "@chakra-ui/core"
+import { Link, SimpleGrid, Text } from "@chakra-ui/react"
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons"
 import NextLink from "next/link"
 import React from "react"
@@ -31,7 +31,7 @@ export const Pagination = ({ previous, next, ...rest }) => {
   return (
     <SimpleGrid
       as="nav"
-      aria-label="pagination"
+      aria-label="Pagination"
       spacing="40px"
       my="64px"
       columns={2}

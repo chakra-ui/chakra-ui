@@ -6,14 +6,12 @@ description:
   Alerts are used to communicate a state that affects a system, feature or page.
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
 Alerts are used to communicate a state that affects a system, feature or page.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/alert", url: "#" }}
+  theme={{ componentName: "alert" }}
+  github={{ package: "alert" }}
+  npm={{ package: "@chakra-ui/alert" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -30,7 +28,12 @@ Chakra UI exports 4 alert related components.
   readers.
 
 ```js
-import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/core"
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from "@chakra-ui/react"
 ```
 
 ## Usage
@@ -76,7 +79,7 @@ color scheme and icon used. Alert supports `error`, `success`, `warning`, and
 
 ### Variant
 
-Alert has 4 variant styles you can use. Pass the `variant` prop and use either
+`Alert` has 4 variant styles you can use. Pass the `variant` prop and use either
 `subtle`, `solid`, `left-accent` or `top-accent`.
 
 ```jsx
@@ -105,7 +108,7 @@ Alert has 4 variant styles you can use. Pass the `variant` prop and use either
 
 ### Composition
 
-Alert ships with smaller components to allow for flexibility in creating all
+`Alert` ships with smaller components to allow for flexibility in creating all
 kinds of layouts. Here's an example of a custom alert style and layout:
 
 ```jsx
@@ -128,7 +131,8 @@ kinds of layouts. Here's an example of a custom alert style and layout:
 </Alert>
 ```
 
-Alerts can also incorporate other Chakra components. Here's an example of an alert with wrapping description text:
+`Alert` can also incorporate other Chakra components. Here's an example of an
+alert with wrapping description text:
 
 ```jsx
 <Alert status="success">
@@ -136,7 +140,8 @@ Alerts can also incorporate other Chakra components. Here's an example of an ale
   <Box flex="1">
     <AlertTitle>Success!</AlertTitle>
     <AlertDescription display="block">
-      Your application has been received. We will review your application and respond within the next 48 hours.
+      Your application has been received. We will review your application and
+      respond within the next 48 hours.
     </AlertDescription>
   </Box>
   <CloseButton position="absolute" right="8px" top="8px" />
@@ -147,21 +152,18 @@ Alerts can also incorporate other Chakra components. Here's an example of an ale
 
 ### Alert Props
 
-Alert is the wrapper for alert component. It composes the `Flex` component.
+`Alert` is the wrapper for `Alert` component. It composes the `Flex` component.
 
-| Name    | Type                                           | Default  | Description                            |
-| ------- | ---------------------------------------------- | -------- | -------------------------------------- |
-| status  | `error`, `success`, `warning`, `info`          | `info`   | The status of the alert                |
-| variant | `subtle`, `solid`, `left-accent`, `top-accent` | `subtle` | The variant of the alert style to use. |
+<PropsTable of="Alert" />
 
 ### AlertIcon Props
 
-AlertIcon composes `Icon` and changes the icon based on the `status` prop.
+`AlertIcon` composes `Icon` and changes the icon based on the `status` prop.
 
 ### AlertTitle Props
 
-AlertTitle composes the `Box` component.
+`AlertTitle` composes the `Box` component.
 
 ### AlertDescription Props
 
-AlertDescription composes the `Box` component.
+`AlertDescription` composes the `Box` component.

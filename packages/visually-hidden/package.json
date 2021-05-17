@@ -1,7 +1,7 @@
 {
   "name": "@chakra-ui/visually-hidden",
-  "version": "1.0.0-rc.5",
-  "description": "A React component that visually hides it's content",
+  "version": "1.0.12",
+  "description": "A React component that visually hides its content",
   "keywords": [
     "react",
     "component",
@@ -24,6 +24,12 @@
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -52,13 +58,14 @@
     "lint:types": "tsc --noEmit"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.0.0-rc.5"
+    "@chakra-ui/system": "1.6.5",
+    "react": "^17.0.1"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.0.0-rc.5"
+    "@chakra-ui/utils": "1.8.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">=1.0.0-rc.3",
-    "react": "16.x"
+    "@chakra-ui/system": ">=1.0.0",
+    "react": ">=16.8.6"
   }
 }

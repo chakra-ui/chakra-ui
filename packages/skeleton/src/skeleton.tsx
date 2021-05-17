@@ -1,14 +1,14 @@
+import { useBreakpointValue } from "@chakra-ui/media-query"
 import {
   chakra,
-  PropsOf,
-  keyframes,
-  useStyleConfig,
-  ThemingProps,
   forwardRef,
+  keyframes,
   omitThemingProps,
+  ThemingProps,
+  useStyleConfig,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import { useBreakpointValue } from "@chakra-ui/media-query";
 import * as React from "react"
 
 export interface SkeletonOptions {
@@ -21,7 +21,7 @@ export interface SkeletonOptions {
    */
   endColor?: string
   /**
-   * If `true`, it'll render it's children with a nice fade transition
+   * If `true`, it'll render its children with a nice fade transition
    */
   isLoaded?: boolean
   /**
@@ -56,20 +56,28 @@ const StyledSkeleton = chakra("div", {
 export type ISkeleton = SkeletonOptions
 
 export interface SkeletonProps
-  extends PropsOf<typeof StyledSkeleton>,
+  extends HTMLChakraProps<"div">,
     SkeletonOptions,
-    ThemingProps {}
+    ThemingProps<"Skeleton"> {}
 
 const fade = keyframes({
   from: { opacity: 0 },
   to: { opacity: 1 },
 })
 
-export const Skeleton = forwardRef<SkeletonProps, "div">(function Skeleton(
-  props,
-  ref,
-) {
+const useIsFirstRender = () => {
+  const isFirstRender = React.useRef(true)
+
+  React.useEffect(() => {
+    isFirstRender.current = false
+  }, [])
+
+  return isFirstRender.current
+}
+
+export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
   const styles = useStyleConfig("Skeleton", props)
+  const isFirstRender = useIsFirstRender()
 
   const {
     startColor,
@@ -84,11 +92,13 @@ export const Skeleton = forwardRef<SkeletonProps, "div">(function Skeleton(
   const _className = cx("chakra-skeleton", className)
 
   if (isLoaded) {
+    const animation = isFirstRender ? "none" : `${fade} ${fadeDuration}s`
+
     return (
       <chakra.div
         ref={ref}
         className={_className}
-        __css={{ animation: `${fade} ${fadeDuration}s` }}
+        __css={{ animation }}
         {...rest}
       />
     )
@@ -122,7 +132,7 @@ export interface SkeletonTextProps extends SkeletonProps {
   isLoaded?: SkeletonProps["isLoaded"]
 }
 
-const defaultNoOfLines = 3;
+const defaultNoOfLines = 3
 
 export const SkeletonText: React.FC<SkeletonTextProps> = (props) => {
   const {
@@ -133,11 +143,16 @@ export const SkeletonText: React.FC<SkeletonTextProps> = (props) => {
     startColor,
     endColor,
     isLoaded,
+    fadeDuration,
+    speed,
     children,
     ...rest
   } = props
 
-  const noOfLinesValue = useBreakpointValue(typeof noOfLines === 'number' ? [noOfLines] : noOfLines) || defaultNoOfLines;
+  const noOfLinesValue =
+    useBreakpointValue(
+      typeof noOfLines === "number" ? [noOfLines] : noOfLines,
+    ) || defaultNoOfLines
   const numbers = range(noOfLinesValue)
 
   const getWidth = (index: number) => {
@@ -151,19 +166,37 @@ export const SkeletonText: React.FC<SkeletonTextProps> = (props) => {
 
   return (
     <chakra.div className={_className} {...rest}>
-      {isLoaded
-        ? children
-        : numbers.map((number) => (
-            <Skeleton
-              key={numbers.length.toString() + number}
-              height={skeletonHeight}
-              mb={number === numbers.length ? "0" : spacing}
-              width={getWidth(number)}
-              startColor={startColor}
-              endColor={endColor}
-              isLoaded={isLoaded}
-            />
-          ))}
+      {numbers.map((number, index) => {
+        if (isLoaded && index > 0) {
+          // skip other lines
+          return null
+        }
+
+        const sizeProps = isLoaded
+          ? null
+          : {
+              mb: number === numbers.length ? "0" : spacing,
+              width: getWidth(number),
+              height: skeletonHeight,
+            }
+
+        return (
+          <Skeleton
+            key={numbers.length.toString() + number}
+            startColor={startColor}
+            endColor={endColor}
+            isLoaded={isLoaded}
+            fadeDuration={fadeDuration}
+            speed={speed}
+            {...sizeProps}
+          >
+            {
+              // allows animating the children
+              index === 0 ? children : undefined
+            }
+          </Skeleton>
+        )
+      })}
     </chakra.div>
   )
 }

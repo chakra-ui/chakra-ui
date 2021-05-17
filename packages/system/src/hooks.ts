@@ -20,12 +20,25 @@ export function useChakra<T extends Dict = Dict>() {
   return { ...colorModeResult, theme }
 }
 
-export function useToken(
+export function useToken<T extends StringOrNumber>(
   scale: string,
-  token: StringOrNumber,
-  fallback?: StringOrNumber,
+  token: T | T[],
+  fallback?: T | T[],
 ) {
   const theme = useTheme()
+
+  if (Array.isArray(token)) {
+    let fallbackArr: T[] = []
+    if (fallback) {
+      fallbackArr = Array.isArray(fallback) ? fallback : [fallback]
+    }
+
+    return token.map((token, index) => {
+      const path = `${scale}.${token}`
+      return get(theme, path, fallbackArr[index] ?? token)
+    })
+  }
+
   const path = `${scale}.${token}`
   return get(theme, path, fallback ?? token)
 }
@@ -48,7 +61,7 @@ export function useProps<P extends ThemingProps>(
   props: Omit<P, keyof ThemingProps>
 }
 
-export function useProps(themeKey: string, props: Dict, isMultiPart?: boolean) {
+export function useProps(themeKey: string, props: Dict) {
   const { theme, colorMode } = useChakra()
 
   const styleConfig = (props.styleConfig || theme.components?.[themeKey]) as
@@ -79,9 +92,9 @@ export function useProps(themeKey: string, props: Dict, isMultiPart?: boolean) {
       const styles = mergeWith(baseStyles, sizes, variants)
 
       if (styleConfig.parts) {
-        for (const part of styleConfig.parts) {
+        styleConfig.parts.forEach((part: string) => {
           styles[part] = styles[part] ?? {}
-        }
+        })
       }
 
       const isStyleEqual = isEqual(stylesRef.current, styles)

@@ -1,16 +1,9 @@
-export interface ColorHues {
-  50: string
-  100: string
-  200: string
-  300: string
-  400: string
-  500: string
-  600: string
-  700: string
-  800: string
-  900: string
-}
-
+/**
+ * @deprecated
+ * You can derive the Colors type from the DefaultChakraTheme:
+ *
+ * type Colors = DefaultChakraTheme["colors"]
+ */
 export type Colors = typeof colors
 
 const colors = {
@@ -215,16 +208,16 @@ const colors = {
   },
 
   whatsapp: {
-    50: "#E2F7F4",
-    100: "#C3F0E9",
-    200: "#A0E7DC",
-    300: "#76DCCD",
-    400: "#43CFBA",
-    500: "#00BFA5",
-    600: "#00AC92",
-    700: "#009780",
-    800: "#007D6A",
-    900: "#005A4C",
+    50: "#dffeec",
+    100: "#b9f5d0",
+    200: "#90edb3",
+    300: "#65e495",
+    400: "#3cdd78",
+    500: "#22c35e",
+    600: "#179848",
+    700: "#0c6c33",
+    800: "#01421c",
+    900: "#001803",
   },
 
   twitter: {

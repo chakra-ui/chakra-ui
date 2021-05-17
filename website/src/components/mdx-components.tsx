@@ -1,7 +1,20 @@
-import { Alert, Box, chakra, Kbd, useColorModeValue } from "@chakra-ui/core"
+import {
+  Alert,
+  AspectRatio,
+  Box,
+  chakra,
+  HTMLChakraProps,
+  Kbd,
+  useColorModeValue,
+} from "@chakra-ui/react"
 import React from "react"
+import ReactPlayer, { ReactPlayerProps } from "react-player"
+
 import CarbonAd from "./carbon-ad"
 import CodeBlock from "./codeblock/codeblock"
+import ComponentLinks from "./component-links"
+import IconsList from "./icons-list"
+import PropsTable from "./props-table"
 
 const Pre = (props) => <chakra.div my="2em" borderRadius="sm" {...props} />
 
@@ -32,40 +45,24 @@ const TData = (props) => (
   />
 )
 
-const LinkedHeading = (props) => (
-  <chakra.h2
-    css={{
-      "&[id]": {
-        pointerEvents: "none",
-      },
-      "&[id]::before": {
-        display: "block",
-        height: " 6rem",
-        marginTop: "-6rem",
-        visibility: "hidden",
-        content: `""`,
-      },
-      "&[id]:hover a": { opacity: 1 },
-    }}
-    {...props}
-  >
-    <chakra.div pointerEvents="auto">
-      {props.children}
-      {props.id && (
-        <chakra.a
-          aria-label="anchor"
-          color="teal.500"
-          fontWeight="normal"
-          outline="none"
-          _focus={{ opacity: 1, boxShadow: "outline" }}
-          opacity={0}
-          ml="0.375rem"
-          href={`#${props.id}`}
-        >
-          #
-        </chakra.a>
-      )}
-    </chakra.div>
+const LinkedHeading = (props: HTMLChakraProps<"h2">) => (
+  <chakra.h2 data-group="" css={{ scrollMarginBlock: "6.875rem" }} {...props}>
+    <span className="content">{props.children}</span>
+    {props.id && (
+      <chakra.a
+        aria-label="anchor"
+        color="teal.500"
+        fontWeight="normal"
+        outline="none"
+        _focus={{ opacity: 1, boxShadow: "outline" }}
+        opacity={0}
+        _groupHover={{ opacity: 1 }}
+        ml="0.375rem"
+        href={`#${props.id}`}
+      >
+        #
+      </chakra.a>
+    )}
   </chakra.h2>
 )
 
@@ -76,6 +73,8 @@ const InlineCode = (props: any) => (
     {...props}
   />
 )
+
+const VideoPlayer = (props: ReactPlayerProps) => <ReactPlayer {...props} />
 
 const MDXComponents = {
   h1: (props) => <chakra.h1 apply="mdx.h1" {...props} />,
@@ -88,11 +87,19 @@ const MDXComponents = {
   code: CodeBlock,
   pre: Pre,
   kbd: Kbd,
-  br: (props) => <Box height="24px" {...props} />,
+  br: ({ reset, ...props }) => (
+    <Box
+      as={reset ? "br" : undefined}
+      height={reset ? undefined : "24px"}
+      {...props}
+    />
+  ),
   table: Table,
   th: THead,
   td: TData,
-  a: (props) => <chakra.a apply="mdx.a" {...props} />,
+  a: React.forwardRef((props: any, ref: any) => (
+    <chakra.a ref={ref} apply="mdx.a" {...props} />
+  )),
   p: (props) => <chakra.p apply="mdx.p" {...props} />,
   ul: (props) => <chakra.ul apply="mdx.ul" {...props} />,
   ol: (props) => <chakra.ol apply="mdx.ul" {...props} />,
@@ -110,6 +117,11 @@ const MDXComponents = {
     />
   ),
   "carbon-ad": CarbonAd,
+  ComponentLinks,
+  IconsList,
+  PropsTable,
+  VideoPlayer,
+  AspectRatio,
 }
 
 export default MDXComponents

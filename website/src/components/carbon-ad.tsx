@@ -1,14 +1,22 @@
-import { chakra, useColorModeValue, useTheme } from "@chakra-ui/core"
+import {
+  Box,
+  chakra,
+  Flex,
+  SystemStyleObject,
+  useColorModeValue,
+  useTheme,
+} from "@chakra-ui/react"
+import NextImage from "next/image"
 import * as React from "react"
 import loadScript from "utils/load-script"
 
-function CarbonAd() {
+export function CarbonAd() {
   const ref = React.useRef(null)
 
   const theme = useTheme()
   const bg = useColorModeValue("gray.50", "rgba(36, 70, 93, 0.32)")
 
-  const carbonAd = {
+  const carbonAd: SystemStyleObject = {
     display: "block",
     position: "relative",
     margin: "32px 0",
@@ -67,7 +75,40 @@ function CarbonAd() {
     script.id = "_carbonads_js"
   }, [])
 
-  return <chakra.span ref={ref} sx={carbonAd} />
+  return <chakra.span id="carbon-ad" ref={ref} sx={carbonAd} />
 }
 
-export default CarbonAd
+const DocsPageChakraProAd = () => (
+  <Flex
+    p="4"
+    bg={useColorModeValue("gray.50", "rgba(36, 70, 93, 0.32)")}
+    as="a"
+    href="https://pro.chakra-ui.com/components?utm_source=chakra-ui.com&utm_medium=docs-ad"
+    rel="noopener sponsored"
+    target="_blank"
+    maxW="xl"
+    my="8"
+    rounded="md"
+  >
+    <Box w="xs" h="100px" bg="gray.300" mr="4">
+      <NextImage
+        alt="chakra ui pro"
+        src="/chakra-pro-ad.png"
+        layout="fixed"
+        width="150"
+        height="100"
+      />
+    </Box>
+    <Flex direction="column">
+      <Box flex="1" fontSize="sm">
+        <b>Chakra UI Pro:</b> Start your application or marketing site with a
+        growing collection of beautiful and responsive UI components.
+      </Box>
+      <Box fontWeight="medium" fontSize="xs" opacity={0.7}>
+        Ads via Chakra UI
+      </Box>
+    </Flex>
+  </Flex>
+)
+
+export default DocsPageChakraProAd

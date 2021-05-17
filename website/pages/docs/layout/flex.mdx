@@ -6,15 +6,12 @@ description:
   It renders a `div` element.
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
 Flex is [Box](/docs/layout/box) with `display: flex` and comes with helpful
 style shorthand. It renders a `div` element.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/layout", url: "#" }}
+  github={{ package: "layout" }}
+  npm={{ package: "@chakra-ui/layout" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -22,12 +19,12 @@ style shorthand. It renders a `div` element.
 ## Import
 
 ```js
-import { Flex, Spacer } from "@chakra-ui/core"
+import { Flex, Spacer } from "@chakra-ui/react"
 ```
 
-- **Flex:** a `Box` with `display: flex`
-- **Spacer:** creates an adjustable, empty space that can be used to tune the
-  spacing between child elements within `Flex`
+- **Flex:** A `Box` with `display: flex`.
+- **Spacer:** Creates an adjustable, empty space that can be used to tune the
+  spacing between child elements within `Flex`.
 
 ## Usage
 
@@ -35,6 +32,9 @@ Using the Flex components, here are some helpful shorthand props:
 
 - `flexDirection` is `direction`
 - `flexWrap` is `wrap`
+- `flexBasis` is `basis`
+- `flexGrow` is `grow`
+- `flexShrink` is `shrink`
 - `alignItems` is `align`
 - `justifyContent` is `justify`
 
@@ -71,3 +71,68 @@ stackable and responsive layouts.
   </Box>
 </Flex>
 ```
+
+### Flex and Spacer vs Grid vs Stack
+
+The `Flex` and `Spacer` components, `Grid` and `HStack` treat children of
+different widths differently.
+
+- In `HStack`, the children will have equal spacing between them but they won't
+  span the entire width of the container.
+- In `Grid`, the starting points of the children will be equally spaced but the
+  gaps between them will not be equal.
+- With `Flex` and `Spacer`, the children will span the entire width of the
+  container and also have equal spacing between them.
+
+```jsx
+<Box>
+  <Text>Flex and Spacer: Full width, equal Spacing</Text>
+  <Flex>
+    <Box w="70px" h="10" bg="red.500" />
+    <Spacer />
+    <Box w="170px" h="10" bg="red.500" />
+    <Spacer />
+    <Box w="180px" h="10" bg="red.500" />
+  </Flex>
+
+  <Text>
+    Grid: The children start at the beginning, the 1/3 mark and 2/3 mark
+  </Text>
+  <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+    <Box w="70px" h="10" bg="blue.500" />
+    <Box w="170px" h="10" bg="blue.500" />
+    <Box w="180px" h="10" bg="blue.500" />
+  </Grid>
+
+  <Text>
+    HStack: The children have equal spacing but don't span the whole container
+  </Text>
+  <HStack spacing="24px">
+    <Box w="70px" h="10" bg="teal.500" />
+    <Box w="170px" h="10" bg="teal.500" />
+    <Box w="180px" h="10" bg="teal.500" />
+  </HStack>
+</Box>
+```
+
+A good use case for `Spacer` is to create a navbar with a signup/login button
+aligned to the right.
+
+```jsx
+<Flex>
+  <Box p="2">
+    <Heading size="md">Chakra App</Heading>
+  </Box>
+  <Spacer />
+  <Box>
+    <Button colorScheme="teal" mr="4">
+      Sign Up
+    </Button>
+    <Button colorScheme="teal">Log in</Button>
+  </Box>
+</Flex>
+```
+
+## Props
+
+<PropsTable of="Flex" />

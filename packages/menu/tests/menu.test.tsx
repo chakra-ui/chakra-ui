@@ -8,6 +8,8 @@ import {
 } from "@chakra-ui/test-utils"
 import { Portal } from "@chakra-ui/portal"
 import * as React from "react"
+import { Button } from "@chakra-ui/button"
+import { FaSearch, FaTruck, FaUndoAlt, FaUnlink } from "react-icons/fa"
 import {
   Menu,
   MenuButton,
@@ -17,8 +19,6 @@ import {
   MenuList,
   MenuOptionGroup,
 } from "../src"
-import { Button } from "@chakra-ui/button"
-import { FaSearch, FaTruck, FaUndoAlt, FaUnlink } from "react-icons/fa"
 
 const words = [
   "About Visual Studio Code",
@@ -90,10 +90,7 @@ test("sets correct aria attributes on disabled MenuItems", () => {
     </Menu>,
   )
 
-  expect(screen.getByText("Delivery").parentElement).toHaveAttribute(
-    "aria-disabled",
-    "true",
-  )
+  expect(screen.getByText("Delivery").parentElement).toBeDisabled()
 })
 
 test("does not fire onClick on disabled MenuItem", () => {
@@ -172,7 +169,7 @@ test("allows using a Portal to render the MenuList", async () => {
   expect(menu.previousElementSibling).not.toBe(screen.getByText("Open menu"))
 })
 
-test("MenuGroup has correct role ", () => {
+test("MenuGroup has correct role ", async () => {
   render(
     <Menu>
       <MenuButton as={Button}>Open menu</MenuButton>
@@ -193,13 +190,13 @@ test("MenuGroup has correct role ", () => {
 
   fireEvent.click(button)
 
-  expect(screen.getAllByRole("group")).toHaveLength(2)
+  await waitFor(() => expect(screen.getAllByRole("group")).toHaveLength(2))
   expect(screen.getByText("Group 1").nextElementSibling).toBe(
     screen.getByText("Share..."),
   )
 })
 
-test("MenuOptionGroup radio", () => {
+test("MenuOptionGroup radio", async () => {
   render(
     <Menu>
       <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
@@ -219,7 +216,7 @@ test("MenuOptionGroup radio", () => {
 
   fireEvent.click(button)
 
-  expect(screen.getByText("Order")).toBeInTheDocument()
+  await waitFor(() => expect(screen.getByText("Order")).toBeInTheDocument())
   expect(screen.getAllByRole("menuitemradio")).toHaveLength(2)
 })
 
@@ -246,7 +243,7 @@ test("MenuOptionGroup radio defaultValue checked", async () => {
   expect(screen.getByText("Option 1").closest("button")).toBeChecked()
 })
 
-test("MenuOptionGroup checkbox defaultValue single checked", () => {
+test("MenuOptionGroup checkbox defaultValue single checked", async () => {
   render(
     <Menu closeOnSelect={false}>
       <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
@@ -267,7 +264,7 @@ test("MenuOptionGroup checkbox defaultValue single checked", () => {
 
   fireEvent.click(button)
 
-  expect(screen.getByText("Info")).toBeInTheDocument()
+  await waitFor(() => expect(screen.getByText("Info")).toBeInTheDocument())
   expect(screen.getAllByRole("menuitemcheckbox")).toHaveLength(3)
 
   expect(screen.getByText("Email").closest("button")).toBeChecked()
@@ -309,7 +306,7 @@ test("exposes internal state as render prop", () => {
   render(
     <Menu>
       {({ isOpen }) => (
-        <React.Fragment>
+        <>
           <MenuButton as={Button}>{isOpen ? "Close" : "Open"}</MenuButton>
           <MenuList>
             <MenuItem>Download</MenuItem>
@@ -317,7 +314,7 @@ test("exposes internal state as render prop", () => {
               Create a Copy
             </MenuItem>
           </MenuList>
-        </React.Fragment>
+        </>
       )}
     </Menu>,
   )
@@ -397,4 +394,52 @@ test("onClose doesn't affect the state of other menus", async () => {
   expect(
     screen.getByText("No 1").parentElement!.getAttribute("aria-expanded"),
   ).toBe("false")
+})
+
+test("MenuItem can override its parent menu's `closeOnSelect` and keep the menu open", async () => {
+  const onClose = jest.fn()
+  render(
+    <Menu onClose={onClose}>
+      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuList>
+        <MenuItem closeOnSelect={false}>I do not close the menu</MenuItem>
+        <MenuItem>I close the menu</MenuItem>
+      </MenuList>
+    </Menu>,
+  )
+
+  const openMenuButton = screen.getByRole("button")
+  const menuItemThatDoesNotClose = screen.getByText("I do not close the menu")
+  const menuItemThatCloses = screen.getByText("I close the menu")
+
+  fireEvent.click(openMenuButton)
+  fireEvent.click(menuItemThatDoesNotClose)
+  expect(onClose).not.toHaveBeenCalled()
+
+  fireEvent.click(menuItemThatCloses)
+  expect(onClose).toHaveBeenCalled()
+})
+
+test("MenuItem can override its parent menu's `closeOnSelect` and close the menu", async () => {
+  const onClose = jest.fn()
+  render(
+    <Menu onClose={onClose} closeOnSelect={false}>
+      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuList>
+        <MenuItem>I do not close the menu</MenuItem>
+        <MenuItem closeOnSelect>I close the menu</MenuItem>
+      </MenuList>
+    </Menu>,
+  )
+
+  const openMenuButton = screen.getByRole("button")
+  const menuItemThatDoesNotClose = screen.getByText("I do not close the menu")
+  const menuItemThatCloses = screen.getByText("I close the menu")
+
+  fireEvent.click(openMenuButton)
+  fireEvent.click(menuItemThatDoesNotClose)
+  expect(onClose).not.toHaveBeenCalled()
+
+  fireEvent.click(menuItemThatCloses)
+  expect(onClose).toHaveBeenCalled()
 })

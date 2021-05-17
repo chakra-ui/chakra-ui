@@ -10,11 +10,6 @@ const baseStyle = {
   _focus: {
     boxShadow: "outline",
   },
-  _disabled: {
-    opacity: 0.4,
-    cursor: "not-allowed",
-    textDecoration: "none",
-  },
 }
 
 export default {

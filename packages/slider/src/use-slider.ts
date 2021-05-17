@@ -1,38 +1,30 @@
 import {
   useBoolean,
+  useCallbackRef,
   useControllableState,
   useDimensions,
-  useEventCallback,
-  useEventListener,
   useIds,
+  useLatestRef,
+  usePanGesture,
+  usePrevious,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
+import { EventKeyMap, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import {
+  AnyPointerEvent,
   ariaAttr,
   callAllHandlers,
   clampValue,
   dataAttr,
-  Dict,
-  EventKeyMap,
   focus,
   getBox,
-  getOwnerDocument,
-  isRightClick,
-  mergeRefs,
   normalizeEventKey,
   percentToValue,
-  PropGetter,
   roundValueToStep,
   valueToPercent,
 } from "@chakra-ui/utils"
-import {
-  CSSProperties,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react"
+import { CSSProperties, useCallback, useMemo, useRef } from "react"
+import { getPartsStyle } from "./slider-utils"
 
 export interface UseSliderProps {
   /**
@@ -80,7 +72,7 @@ export interface UseSliderProps {
    */
   onChange?(value: number): void
   /**
-   * The base `id` to use for the slider and it's components
+   * The base `id` to use for the slider and its components
    */
   id?: string
   /**
@@ -98,7 +90,7 @@ export interface UseSliderProps {
   isReadOnly?: boolean
   /**
    * Function that returns the `aria-valuetext` for screen readers.
-   * It's mostly used to generate a more human-readable
+   * It is mostly used to generate a more human-readable
    * representation of the value for assistive technologies
    */
   getAriaValueText?(value: number): string
@@ -123,15 +115,13 @@ export interface UseSliderProps {
   "aria-labelledby"?: string
 }
 
-type EventSource = "mouse" | "touch" | "keyboard"
-
 /**
  * React hook that implements an accessible range slider.
  *
- * It's an alternative to `<input type="range" />`, and returns
+ * It is an alternative to `<input type="range" />`, and returns
  * prop getters for the component parts
  *
- * @see Docs     https://chakra-ui.com/components/slider
+ * @see Docs     https://chakra-ui.com/docs/form/slider
  * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices-1.1/#slider
  */
 export function useSlider(props: UseSliderProps) {
@@ -142,14 +132,14 @@ export function useSlider(props: UseSliderProps) {
     value: valueProp,
     defaultValue,
     isReversed,
-    orientation,
+    orientation = "horizontal",
     id: idProp,
     isDisabled,
     isReadOnly,
-    onChangeStart,
-    onChangeEnd,
+    onChangeStart: onChangeStartProp,
+    onChangeEnd: onChangeEndProp,
     step = 1,
-    getAriaValueText,
+    getAriaValueText: getAriaValueTextProp,
     "aria-valuetext": ariaValueText,
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
@@ -158,11 +148,9 @@ export function useSlider(props: UseSliderProps) {
     ...htmlProps
   } = props
 
-  const [isDragging, setDragging] = useBoolean()
-  const [isFocused, setFocused] = useBoolean()
-  const [eventSource, setEventSource] = useState<EventSource>()
-
-  const isInteractive = !(isDisabled || isReadOnly)
+  const onChangeStart = useCallbackRef(onChangeStartProp)
+  const onChangeEnd = useCallbackRef(onChangeEndProp)
+  const getAriaValueText = useCallbackRef(getAriaValueTextProp)
 
   /**
    * Enable the slider handle controlled and uncontrolled scenarios
@@ -171,27 +159,24 @@ export function useSlider(props: UseSliderProps) {
     value: valueProp,
     defaultValue: defaultValue ?? getDefaultValue(min, max),
     onChange,
-    shouldUpdate: (prev, next) => prev !== next,
   })
 
-  /**
-   * Slider uses DOM APIs to add and remove event listeners.
-   * Noticed some issues with React's synthetic events.
-   *
-   * We use `ref` to save the functions used to remove
-   * the event listeners.
-   *
-   * Ideally, we'll love to use pointer-events API but it's
-   * not fully supported in all browsers.
-   */
-  const cleanUpRef = useRef<Dict<Function>>({})
+  const [isDragging, setDragging] = useBoolean()
+  const prevIsDragging = usePrevious(isDragging)
+
+  const [isFocused, setFocused] = useBoolean()
+  const eventSourceRef = useRef<"pointer" | "keyboard" | null>(null)
+
+  const isInteractive = !(isDisabled || isReadOnly)
 
   /**
    * Constrain the value because it can't be less than min
    * or greater than max
    */
   const value = clampValue(computedValue, min, max)
-  const prev = useRef<number>()
+  const valueRef = useLatestRef(value)
+
+  const prevRef = useRef(valueRef.current)
 
   const reversedValue = max - value + min
   const trackValue = isReversed ? reversedValue : value
@@ -214,11 +199,14 @@ export function useSlider(props: UseSliderProps) {
   /**
    * Get relative value of slider from the event by tracking
    * how far you clicked within the track to determine the value
+   *
+   * @todo - Refactor this later on to use info from pan session
    */
+
   const getValueFromPointer = useCallback(
     (event) => {
       if (!trackRef.current) return
-
+      eventSourceRef.current = "pointer"
       const trackRect = getBox(trackRef.current).borderBox
       const { clientX, clientY } = event.touches?.[0] ?? event
 
@@ -251,9 +239,7 @@ export function useSlider(props: UseSliderProps) {
 
   const constrain = useCallback(
     (value: number) => {
-      // bail out if slider isn't interactive
       if (!isInteractive) return
-      prev.current = value
       value = parseFloat(roundValueToStep(value, min, oneStep))
       value = clampValue(value, min, max)
       setValue(value)
@@ -300,8 +286,8 @@ export function useSlider(props: UseSliderProps) {
       if (action) {
         event.preventDefault()
         event.stopPropagation()
-        setEventSource("keyboard")
         action(event)
+        eventSourceRef.current = "keyboard"
       }
     },
     [actions, constrain, max, min, tenSteps],
@@ -318,316 +304,204 @@ export function useSlider(props: UseSliderProps) {
    * we can center it within the track properly
    */
   const thumbBoxModel = useDimensions(thumbRef)
-  const thumbRect = thumbBoxModel?.borderBox ?? {
-    width: 0,
-    height: 0,
-  }
 
   /**
    * Compute styles for all component parts.
    */
-  const thumbStyle: React.CSSProperties = {
-    position: "absolute",
-    userSelect: "none",
-    touchAction: "none",
-    ...orient({
+  const { thumbStyle, rootStyle, trackStyle, innerTrackStyle } = useMemo(() => {
+    const thumbRect = thumbBoxModel?.borderBox ?? { width: 0, height: 0 }
+    return getPartsStyle({
+      isReversed,
       orientation,
-      vertical: {
-        bottom: `calc(${trackPercent}% - ${thumbRect.height / 2}px)`,
-      },
-      horizontal: {
-        left: `calc(${trackPercent}% - ${thumbRect.width / 2}px)`,
-      },
-    }),
-  }
-
-  const rootStyle: React.CSSProperties = {
-    position: "relative",
-    touchAction: "none",
-    WebkitTapHighlightColor: "rgba(0,0,0,0)",
-    userSelect: "none",
-    outline: 0,
-    ...orient({
-      orientation,
-      vertical: {
-        paddingLeft: thumbRect.width / 2,
-        paddingRight: thumbRect.width / 2,
-      },
-      horizontal: {
-        paddingTop: thumbRect.height / 2,
-        paddingBottom: thumbRect.height / 2,
-      },
-    }),
-  }
-
-  const trackStyle: React.CSSProperties = {
-    position: "absolute",
-    ...orient({
-      orientation,
-      vertical: {
-        left: "50%",
-        transform: "translateX(-50%)",
-        height: "100%",
-      },
-      horizontal: {
-        top: "50%",
-        transform: "translateY(-50%)",
-        width: "100%",
-      },
-    }),
-  }
-
-  const innerTrackStyle: React.CSSProperties = {
-    ...trackStyle,
-    ...orient({
-      orientation,
-      vertical: isReversed
-        ? { height: `${100 - trackPercent}%`, top: 0 }
-        : { height: `${trackPercent}%`, bottom: 0 },
-      horizontal: isReversed
-        ? { width: `${100 - trackPercent}%`, right: 0 }
-        : { width: `${trackPercent}%`, left: 0 },
-    }),
-  }
-
-  useUpdateEffect(() => {
-    if (thumbRef.current && focusThumbOnChange) {
-      focus(thumbRef.current)
-    }
-  }, [value])
-
-  useUpdateEffect(() => {
-    const shouldUpdate =
-      !isDragging && eventSource !== "keyboard" && prev.current !== value
-
-    if (shouldUpdate) {
-      onChangeEnd?.(value)
-    }
-
-    if (eventSource === "keyboard") {
-      onChangeEnd?.(value)
-    }
-  }, [isDragging, onChangeEnd, value, eventSource])
-
-  const onMouseDown = useEventCallback((event: MouseEvent) => {
-    /**
-     * Prevent update if it's right-click
-     */
-    if (isRightClick(event)) return
-
-    if (!isInteractive || !rootRef.current) return
-
-    setDragging.on()
-    prev.current = value
-    onChangeStart?.(value)
-
-    const doc = getOwnerDocument(rootRef.current)
-
-    const run = (event: MouseEvent) => {
-      const nextValue = getValueFromPointer(event)
-      if (nextValue != null && nextValue !== value) {
-        setEventSource("mouse")
-        setValue(nextValue)
-      }
-    }
-
-    run(event)
-
-    doc.addEventListener("mousemove", run)
-
-    const clean = () => {
-      doc.removeEventListener("mousemove", run)
-      setDragging.off()
-    }
-
-    doc.addEventListener("mouseup", clean)
-    cleanUpRef.current.mouseup = () => {
-      doc.removeEventListener("mouseup", clean)
-    }
-  })
-
-  const onTouchStart = useEventCallback((event: TouchEvent) => {
-    if (!isInteractive || !rootRef.current) return
-
-    // Prevent scrolling for touch events
-    event.preventDefault()
-
-    setDragging.on()
-    prev.current = value
-    onChangeStart?.(value)
-
-    const doc = getOwnerDocument(rootRef.current)
-
-    const run = (event: TouchEvent) => {
-      const nextValue = getValueFromPointer(event)
-
-      if (nextValue != null && nextValue !== value) {
-        setEventSource("touch")
-        setValue(nextValue)
-      }
-    }
-
-    run(event)
-
-    doc.addEventListener("touchmove", run)
-
-    const clean = () => {
-      doc.removeEventListener("touchmove", run)
-      setDragging.off()
-    }
-
-    doc.addEventListener("touchend", clean)
-    doc.addEventListener("touchcancel", clean)
-
-    cleanUpRef.current.touchend = () => {
-      doc.removeEventListener("touchend", clean)
-    }
-
-    cleanUpRef.current.touchcancel = () => {
-      doc.removeEventListener("touchcancel", clean)
-    }
-  })
-
-  /**
-   * Remove all event handlers
-   */
-  const detach = () => {
-    Object.values(cleanUpRef.current).forEach((cleanup) => {
-      cleanup?.()
+      thumbRect,
+      trackPercent,
     })
-    cleanUpRef.current = {}
-  }
+  }, [isReversed, orientation, thumbBoxModel?.borderBox, trackPercent])
 
-  /**
-   * Ensure we clean up listeners when slider unmounts
-   */
-  useEffect(() => {
-    return () => detach()
-  }, [])
+  const focusThumb = useCallback(() => {
+    if (thumbRef.current && focusThumbOnChange) {
+      setTimeout(() => focus(thumbRef.current))
+    }
+  }, [focusThumbOnChange])
 
   useUpdateEffect(() => {
-    if (!isDragging) {
-      detach()
+    focusThumb()
+    if (eventSourceRef.current === "keyboard") {
+      onChangeEndProp?.(valueRef.current)
     }
-  }, [isDragging])
+  }, [value, onChangeEndProp])
 
-  cleanUpRef.current.mousedown = useEventListener(
-    "mousedown",
-    onMouseDown,
-    rootRef.current,
-  )
-
-  cleanUpRef.current.touchstart = useEventListener(
-    "touchstart",
-    onTouchStart,
-    rootRef.current,
-  )
-
-  const getRootProps: PropGetter = (props = {}, ref = null) => ({
-    ...props,
-    ...htmlProps,
-    ref: mergeRefs(ref, rootRef),
-    tabIndex: -1,
-    "aria-disabled": ariaAttr(isDisabled),
-    "data-focused": dataAttr(isFocused),
-    style: {
-      ...props.style,
-      ...rootStyle,
-    },
-  })
-
-  const getTrackProps: PropGetter = (props = {}, ref = null) => ({
-    ...props,
-    ref: mergeRefs(ref, trackRef),
-    id: trackId,
-    "data-disabled": dataAttr(isDisabled),
-    style: {
-      ...props.style,
-      ...trackStyle,
-    },
-  })
-
-  const getInnerTrackProps: PropGetter = (props = {}, ref = null) => ({
-    ...props,
-    ref,
-    style: {
-      ...props.style,
-      ...innerTrackStyle,
-    },
-  })
-
-  const getThumbProps: PropGetter = (props = {}, ref = null) => ({
-    ...props,
-    ref: mergeRefs(ref, thumbRef),
-    role: "slider",
-    tabIndex: 0,
-    id: thumbId,
-    "data-active": dataAttr(isDragging),
-    "aria-valuetext": valueText,
-    "aria-valuemin": min,
-    "aria-valuemax": max,
-    "aria-valuenow": value,
-    "aria-orientation": orientation,
-    "aria-disabled": ariaAttr(isDisabled),
-    "aria-readonly": ariaAttr(isReadOnly),
-    "aria-label": ariaLabel,
-    "aria-labelledby": ariaLabel ? undefined : ariaLabelledBy,
-    style: {
-      ...props.style,
-      ...thumbStyle,
-    },
-    onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-    onFocus: callAllHandlers(props.onFocus, setFocused.on),
-    onBlur: callAllHandlers(props.onBlur, setFocused.off),
-  })
-
-  const getMarkerProps: PropGetter<any, { value?: any }> = (
-    props = {},
-    ref = null,
-  ) => {
-    const isInRange = !(props.value < min || props.value > max)
-    const isHighlighted = value >= props.value
-    const markerPercent = valueToPercent(props.value, min, max)
-
-    const markerStyle: React.CSSProperties = {
-      position: "absolute",
-      pointerEvents: "none",
-      ...orient({
-        orientation,
-        vertical: {
-          bottom: isReversed ? `${100 - markerPercent}%` : `${markerPercent}%`,
-        },
-        horizontal: {
-          left: isReversed ? `${100 - markerPercent}%` : `${markerPercent}%`,
-        },
-      }),
+  const setValueFromPointer = (event: AnyPointerEvent) => {
+    const nextValue = getValueFromPointer(event)
+    if (nextValue != null && nextValue !== valueRef.current) {
+      setValue(nextValue)
     }
+  }
 
-    return {
+  usePanGesture(rootRef, {
+    onPanSessionStart(event) {
+      if (!isInteractive) return
+      setValueFromPointer(event)
+    },
+    onPanSessionEnd() {
+      if (!isInteractive) return
+      if (!prevIsDragging && prevRef.current !== valueRef.current) {
+        onChangeEnd?.(valueRef.current)
+        prevRef.current = valueRef.current
+      }
+    },
+    onPanStart() {
+      if (!isInteractive) return
+      setDragging.on()
+      onChangeStart?.(valueRef.current)
+    },
+    onPan(event) {
+      if (!isInteractive) return
+      setValueFromPointer(event)
+    },
+    onPanEnd() {
+      if (!isInteractive) return
+      setDragging.off()
+      onChangeEnd?.(valueRef.current)
+    },
+  })
+
+  const getRootProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
       ...props,
-      ref,
-      role: "presentation",
-      "aria-hidden": true,
-      "data-disabled": dataAttr(isDisabled),
-      "data-invalid": dataAttr(!isInRange),
-      "data-highlighted": dataAttr(isHighlighted),
+      ...htmlProps,
+      ref: mergeRefs(ref, rootRef),
+      tabIndex: -1,
+      "aria-disabled": ariaAttr(isDisabled),
+      "data-focused": dataAttr(isFocused),
       style: {
         ...props.style,
-        ...markerStyle,
+        ...rootStyle,
       },
-    }
-  }
+    }),
+    [htmlProps, isDisabled, isFocused, rootStyle],
+  )
 
-  const getInputProps: PropGetter<HTMLInputElement> = (
-    props = {},
-    ref = null,
-  ) => ({
-    ...props,
-    ref,
-    type: "hidden",
-    value,
-    name,
-  })
+  const getTrackProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
+      ...props,
+      ref: mergeRefs(ref, trackRef),
+      id: trackId,
+      "data-disabled": dataAttr(isDisabled),
+      style: {
+        ...props.style,
+        ...trackStyle,
+      },
+    }),
+    [isDisabled, trackId, trackStyle],
+  )
+
+  const getInnerTrackProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
+      ...props,
+      ref,
+      style: {
+        ...props.style,
+        ...innerTrackStyle,
+      },
+    }),
+    [innerTrackStyle],
+  )
+
+  const getThumbProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
+      ...props,
+      ref: mergeRefs(ref, thumbRef),
+      role: "slider",
+      tabIndex: isInteractive ? 0 : undefined,
+      id: thumbId,
+      "data-active": dataAttr(isDragging),
+      "aria-valuetext": valueText,
+      "aria-valuemin": min,
+      "aria-valuemax": max,
+      "aria-valuenow": value,
+      "aria-orientation": orientation,
+      "aria-disabled": ariaAttr(isDisabled),
+      "aria-readonly": ariaAttr(isReadOnly),
+      "aria-label": ariaLabel,
+      "aria-labelledby": ariaLabel ? undefined : ariaLabelledBy,
+      style: {
+        ...props.style,
+        ...thumbStyle,
+      },
+      onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+      onFocus: callAllHandlers(props.onFocus, setFocused.on),
+      onBlur: callAllHandlers(props.onBlur, setFocused.off),
+    }),
+    [
+      ariaLabel,
+      ariaLabelledBy,
+      isDisabled,
+      isDragging,
+      isReadOnly,
+      isInteractive,
+      max,
+      min,
+      onKeyDown,
+      orientation,
+      setFocused.off,
+      setFocused.on,
+      thumbId,
+      thumbStyle,
+      value,
+      valueText,
+    ],
+  )
+
+  const getMarkerProps: PropGetter<any, { value?: any }> = useCallback(
+    (props = {}, ref = null) => {
+      const isInRange = !(props.value < min || props.value > max)
+      const isHighlighted = value >= props.value
+      const markerPercent = valueToPercent(props.value, min, max)
+
+      const markerStyle: React.CSSProperties = {
+        position: "absolute",
+        pointerEvents: "none",
+        ...orient({
+          orientation,
+          vertical: {
+            bottom: isReversed
+              ? `${100 - markerPercent}%`
+              : `${markerPercent}%`,
+          },
+          horizontal: {
+            left: isReversed ? `${100 - markerPercent}%` : `${markerPercent}%`,
+          },
+        }),
+      }
+
+      return {
+        ...props,
+        ref,
+        role: "presentation",
+        "aria-hidden": true,
+        "data-disabled": dataAttr(isDisabled),
+        "data-invalid": dataAttr(!isInRange),
+        "data-highlighted": dataAttr(isHighlighted),
+        style: {
+          ...props.style,
+          ...markerStyle,
+        },
+      }
+    },
+    [isDisabled, isReversed, max, min, orientation, value],
+  )
+
+  const getInputProps: PropGetter<HTMLInputElement> = useCallback(
+    (props = {}, ref = null) => ({
+      ...props,
+      ref,
+      type: "hidden",
+      value,
+      name,
+    }),
+    [name, value],
+  )
 
   return {
     state: {

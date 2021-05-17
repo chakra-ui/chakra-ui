@@ -1,21 +1,22 @@
+import {
+  FormControl,
+  FormErrorMessage,
+  FormHelperText,
+  FormLabel,
+} from "@chakra-ui/form-control"
+import { CheckIcon, PhoneIcon } from "@chakra-ui/icons"
+import { useDisclosure } from "@chakra-ui/hooks"
+import { Stack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import {
   Input,
-  InputLeftAddon,
-  InputRightAddon,
-  InputLeftElement,
-  InputRightElement,
   InputGroup,
+  InputLeftAddon,
+  InputLeftElement,
+  InputRightAddon,
+  InputRightElement,
 } from "../src"
-import { Stack } from "@chakra-ui/layout"
-import {
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  FormErrorMessage,
-} from "@chakra-ui/form-control"
-import { PhoneIcon, CheckIcon } from "@chakra-ui/icons"
 
 export default {
   title: "Input",
@@ -47,15 +48,13 @@ export const Controlled = () => {
   )
 }
 
-export const WithSizes = () => {
-  return (
-    <Stack align="start">
-      {["sm", "md", "lg"].map((size) => (
-        <Input size={size} placeholder="This is an input component" />
-      ))}
-    </Stack>
-  )
-}
+export const WithSizes = () => (
+  <Stack align="start">
+    {["xs", "sm", "md", "lg"].map((size) => (
+      <Input key={size} size={size} placeholder="This is an input component" />
+    ))}
+  </Stack>
+)
 
 export const WithStates = () => (
   <Stack align="start">
@@ -94,7 +93,7 @@ export const WithInputElement = () => (
   <Stack align="start">
     <InputGroup>
       <InputLeftElement children={<PhoneIcon color="gray.300" />} />
-      <Input pl="60px" type="phone" placeholder="Phone number" />
+      <Input paddingStart="60px" type="tel" placeholder="Phone number" />
     </InputGroup>
 
     <InputGroup size="sm">
@@ -112,7 +111,7 @@ export function PasswordInput() {
   return (
     <InputGroup size="md">
       <Input
-        pr="4.5rem"
+        paddingEnd="4.5rem"
         type={show ? "text" : "password"}
         placeholder="Enter password"
       />
@@ -182,5 +181,18 @@ export const WithFormControl = () => {
       </FormControl>
       <button onClick={() => setIsError((s) => !s)}>Toggle Invalid</button>
     </Stack>
+  )
+}
+
+export const WithInputElementBug = () => {
+  const { isOpen, onToggle } = useDisclosure({ defaultIsOpen: true })
+  return (
+    <>
+      <button onClick={onToggle}>Toggle element</button>
+      <InputGroup>
+        {isOpen && <InputLeftElement>O</InputLeftElement>}
+        <Input name="input" placeholder="placeholder" />
+      </InputGroup>
+    </>
   )
 }

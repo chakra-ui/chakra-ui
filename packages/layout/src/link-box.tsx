@@ -1,50 +1,65 @@
-import { chakra, forwardRef, PropsOf } from "@chakra-ui/system"
+import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
+import { cx } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface LinkOverlayProps extends PropsOf<typeof chakra.a> {}
-
-export const LinkOverlay = (props: LinkOverlayProps) => (
-  <chakra.a
-    {...props}
-    css={{
-      position: "static",
-      "&::before": {
-        content: "''",
-        cursor: "inherit",
-        display: "block",
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-      },
-    }}
-  />
-)
-
-export interface LinkBoxProps
-  extends PropsOf<typeof chakra.div>,
-    Pick<PropsOf<"a">, "href" | "target" | "rel"> {
+export interface LinkOverlayProps extends HTMLChakraProps<"a"> {
+  /**
+   *  If `true`, the link will open in new tab
+   */
   isExternal?: boolean
 }
 
-/**
- * LinkBox is used to wrap content areas within a link while ensuring semantic html
- * To learn more, @see https://github.com/chakra-ui/chakra-ui/pull/1717
- */
-const LinkBox = forwardRef(function LinkBox(props: LinkBoxProps, ref) {
-  const { children, href, target, rel, isExternal, ...rest } = props
-
+export const LinkOverlay = forwardRef<LinkOverlayProps, "a">((props, ref) => {
+  const { isExternal, target, rel, className, ...rest } = props
   return (
-    <chakra.div ref={ref} pos="relative" {...rest}>
-      {children}
-      <LinkOverlay
-        href={href}
-        target={isExternal ? "_blank" : undefined}
-        rel={isExternal ? "noopener noreferrer" : undefined}
-      />
-    </chakra.div>
+    <chakra.a
+      {...rest}
+      ref={ref}
+      className={cx("chakra-linkbox__overlay", className)}
+      rel={isExternal ? "noopener noreferrer" : rel}
+      target={isExternal ? "_blank" : target}
+      __css={{
+        position: "static",
+        "&::before": {
+          content: "''",
+          cursor: "inherit",
+          display: "block",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 0,
+          width: "100%",
+          height: "100%",
+        },
+      }}
+    />
   )
 })
 
-export default LinkBox
+export interface LinkBoxProps extends HTMLChakraProps<"div"> {}
+
+/**
+ * `LinkBox` is used to wrap content areas within a link while ensuring semantic html
+ *
+ * @see Docs https://www.chakra-ui.com/docs/link-overlay
+ * @see Resources https://www.sarasoueidan.com/blog/nested-links
+ */
+export const LinkBox = forwardRef<LinkBoxProps, "div">((props, ref) => {
+  const { className, ...rest } = props
+
+  return (
+    <chakra.div
+      ref={ref}
+      position="relative"
+      {...rest}
+      className={cx("chakra-linkbox", className)}
+      __css={{
+        /* Elevate the links and abbreviations up */
+        "a[href]:not(.chakra-linkbox__overlay), abbr[title]": {
+          position: "relative",
+          zIndex: 1,
+        },
+      }}
+    />
+  )
+})

@@ -4,10 +4,10 @@
 
 # Features
 
-- Support for `fit` prop to specify how to fit an image within it's dimension.
-  It uses the `object-fit` property
+- Support for `fit` prop to specify how to fit an image within its dimension. It
+  uses the `object-fit` property
 
-- Support for `align` prop to specify how to align the image within it's
+- Support for `align` prop to specify how to align the image within its
   dimension. It uses the `object-position` property
 
 - Support for custom `fallback` component

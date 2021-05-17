@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/counter",
-  "version": "1.0.0-rc.5",
+  "version": "1.1.5",
   "description": "A React hook for managing counters",
   "keywords": [
     "counter",
@@ -21,6 +21,12 @@
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -49,10 +55,13 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "1.0.0-rc.5",
-    "@chakra-ui/utils": "1.0.0-rc.5"
+    "@chakra-ui/hooks": "1.5.2",
+    "@chakra-ui/utils": "1.8.0"
   },
   "peerDependencies": {
-    "react": "16.x"
+    "react": ">=16.8.6"
+  },
+  "devDependencies": {
+    "react": "^17.0.1"
   }
 }

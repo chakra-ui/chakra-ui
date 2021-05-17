@@ -7,15 +7,13 @@ description:
   form, opening a Dialog, canceling an action, or performing a delete operation.
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
 The Button component is used to trigger an action or event, such as submitting a
 form, opening a dialog, canceling an action, or performing a delete operation.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/button", url: "#" }}
+  theme={{ componentName: "button" }}
+  github={{ package: "button" }}
+  npm={{ package: "@chakra-ui/button" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -23,7 +21,7 @@ form, opening a dialog, canceling an action, or performing a delete operation.
 ## Import
 
 ```js
-import { Button, ButtonGroup } from "@chakra-ui/core"
+import { Button, ButtonGroup } from "@chakra-ui/react"
 ```
 
 - **Button:** The button component with support for custom icons, spinners, etc.
@@ -83,7 +81,7 @@ value to `solid`, `ghost`, `outline`, or `link`.
 ### Button with icon
 
 You can add left and right icons to the Button component using the `leftIcon`
-and `RightIcon` props respectively.
+and `rightIcon` props respectively.
 
 > Note: The `leftIcon` and `rightIcon` prop values should be react elements NOT
 > strings.
@@ -139,7 +137,7 @@ You can also pass the `loadingText` prop to show a spinner and the loading text.
 </Stack>
 ```
 
-You can also change the spinner itself to use custom loaders as per your design
+You can change the spinner element to use custom loaders as per your design
 requirements. Pass the `spinner` prop and set it to a custom react element.
 
 ```jsx
@@ -150,6 +148,32 @@ requirements. Pass the `spinner` prop and set it to a custom react element.
 >
   Click me
 </Button>
+```
+
+When a `loadingText` is present, you can change the placement of the spinner
+element to either `start` or `end`. It is `start` by default.
+
+```jsx
+<Stack direction="row" spacing={4} align="center">
+  <Button
+    isLoading
+    loadingText="Loading"
+    colorScheme="teal"
+    variant="outline"
+    spinnerPlacement="start"
+  >
+    Submit
+  </Button>
+  <Button
+    isLoading
+    loadingText="Loading"
+    colorScheme="teal"
+    variant="outline"
+    spinnerPlacement="end"
+  >
+    Continue
+  </Button>
+</Stack>
 ```
 
 ### Social Buttons
@@ -175,10 +199,10 @@ The Facebook and Twitter icons in the above example are available from
 ### Grouping Buttons
 
 You can use the `Stack` or `ButtonGroup` component to group buttons. When you
-use the `ButtonGroup` component, it allows you:
+use the `ButtonGroup` component, it allows you to:
 
 - Set the `size` and `variant` of all buttons within it.
-- Add spacing between the buttons
+- Add `spacing` between the buttons.
 - Flush the buttons together by removing the border radius of the its children
   as needed.
 
@@ -189,7 +213,7 @@ use the `ButtonGroup` component, it allows you:
 </ButtonGroup>
 ```
 
-To flush the buttons, pass the `isAttached` prop
+To flush the buttons, pass the `isAttached` prop.
 
 ```jsx
 <ButtonGroup size="sm" isAttached variant="outline">
@@ -210,7 +234,7 @@ props. This means you can override any style of the Button via props.
 
 ```jsx
 // The size prop affects the height of the button
-// but I can still override it by passing a custom height
+// It can still be overriden by passing a custom height
 <Button
   size="md"
   height="48px"
@@ -262,18 +286,16 @@ props to style the button.
 
 ## Props
 
-Button composes the `Box` component so you can pass all props for `Box`. These
-are props specific to the Button component.
+### Button Props
 
-| Name          | Type                                              | Default | Description                                                                                               |
-| ------------- | ------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------- |
-| `aria-label`  | `string`                                          |         | An accessible label for the button, useful when you render only an icon in the button                     |
-| `colorScheme` | `string`                                          | `blue`  | The color scheme of the button—one of the colors from `theme.colors`.                                     |
-| `leftIcon`    | `ReactElement`                                    |         | The left icon element to use in the button                                                                |
-| `rightIcon`   | `ReactElement`                                    |         | The right icon element to use in the button                                                               |
-| `spinner`     | `ReactElement`                                    |         | The spinner element to use when `isLoading` is set to `true`                                              |
-| `variant`     | `outline`, `ghost`, `unstyled` , `link` , `solid` | `solid` | The variant of the button style to use.                                                                   |
-| `isDisabled`  | `boolean`                                         |         | If `true`, the button will be disabled.                                                                   |
-| `isLoading`   | `boolean`                                         |         | If `true`, the button will show a spinner.                                                                |
-| `loadingText` | `string`                                          |         | The label to show in the button when `isLoading` is true. If no text is passed, it only shows the spinner |
-| `size`        | `sm`, `md`, `lg`                                  | `md`    | The size of the button.                                                                                   |
+`Button` composes the `Box` component, so you can pass all its props. These are
+props specific to the `Button` component:
+
+<PropsTable of="Button" />
+
+### Button Group Props
+
+`ButtonGroup` composes the `Box` component, so you can pass all its props. These
+are props specific to the `ButtonGroup` component:
+
+<PropsTable of="ButtonGroup" />

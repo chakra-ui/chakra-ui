@@ -1,9 +1,9 @@
-import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
+import { chakra, forwardRef, PropsOf } from "@chakra-ui/system"
 import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
 import {
-  FormControlOptions,
   FormControl,
+  FormControlOptions,
   FormErrorIcon,
   FormErrorMessage,
   FormHelperText,
@@ -172,7 +172,10 @@ test("has the proper aria attributes", async () => {
   expect(input).toHaveAttribute("aria-invalid", "true")
   expect(input).toHaveAttribute("aria-required", "true")
   expect(input).toHaveAttribute("aria-readonly", "true")
-  expect(input).toHaveAttribute("aria-describedby", "name-feedback")
+  expect(input).toHaveAttribute(
+    "aria-describedby",
+    "name-feedback name-helptext",
+  )
   expect(indicator).toHaveAttribute("aria-hidden")
   expect(errorMessage).toHaveAttribute("aria-live", "polite")
 })
@@ -190,7 +193,7 @@ test("has the correct role attributes", () => {
   expect(screen.getByRole("group")).toEqual(control)
 })
 
-test("has the correct data attributes", () => {
+test("has the correct data attributes", async () => {
   render(
     <FormControl
       data-testid="control"
@@ -198,7 +201,6 @@ test("has the correct data attributes", () => {
       isRequired
       isInvalid
       isDisabled
-      isLoading
       isReadOnly
     >
       <FormLabel data-testid="label">Name</FormLabel>
@@ -212,13 +214,11 @@ test("has the correct data attributes", () => {
       </FormErrorMessage>
     </FormControl>,
   )
-  const label = screen.getByTestId("label")
 
   fireEvent.focus(screen.getByLabelText(/Name/))
 
+  const label = screen.getByTestId("label")
   expect(label).toHaveAttribute("data-focus")
   expect(label).toHaveAttribute("data-invalid")
-
-  expect(label).toHaveAttribute("data-loading")
   expect(label).toHaveAttribute("data-readonly")
 })

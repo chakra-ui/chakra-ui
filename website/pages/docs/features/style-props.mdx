@@ -17,7 +17,7 @@ each group.
 ### Margin and padding
 
 ```jsx live=false
-import { Box } from "@chakra-ui/core"
+import { Box } from "@chakra-ui/react"
 
 // m={2} refers to the value of `theme.space[2]`
 <Box m={2}>Tomato</Box>
@@ -29,27 +29,34 @@ import { Box } from "@chakra-ui/core"
 <Box m={[2, 3]} />
 ```
 
-| Prop                  | CSS Property                       | Theme Key |
-| --------------------- | ---------------------------------- | --------- |
-| `m`, `margin`         | `margin`                           | `space`   |
-| `mt`, `marginTop`     | `margin-top`                       | `space`   |
-| `mr`, `marginRight`   | `margin-right`                     | `space`   |
-| `mb`, `marginBottom`  | `margin-bottom`                    | `space`   |
-| `ml`, `marginLeft`    | `margin-left`                      | `space`   |
-| `mx`                  | `margin-left` and `margin-right`   | `space`   |
-| `my`                  | `margin-top` and `margin-bottom`   | `space`   |
-| `p`, `padding`        | `padding`                          | `space`   |
-| `pt`, `paddingTop`    | `padding-top`                      | `space`   |
-| `pr`, `paddingRight`  | `padding-right`                    | `space`   |
-| `pb`, `paddingBottom` | `padding-bottom`                   | `space`   |
-| `pl`, `paddingLeft`   | `padding-left`                     | `space`   |
-| `px`                  | `padding-left` and `padding-right` | `space`   |
-| `py`                  | `padding-top` and `padding-bottom` | `space`   |
+| Prop                  | CSS Property                                  | Theme Key |
+| --------------------- | --------------------------------------------- | --------- |
+| `m`, `margin`         | `margin`                                      | `space`   |
+| `mt`, `marginTop`     | `margin-top`                                  | `space`   |
+| `mr`, `marginRight`   | `margin-right`                                | `space`   |
+| `me`, `marginEnd`     | `margin-inline-end`                           | `space`   |
+| `mb`, `marginBottom`  | `margin-bottom`                               | `space`   |
+| `ml`, `marginLeft`    | `margin-left`                                 | `space`   |
+| `ms`, `marginStart`   | `margin-inline-start`                         | `space`   |
+| `mx`                  | `margin-inline-start` + `margin-inline-end`   | `space`   |
+| `my`                  | `margin-top` + `margin-bottom`                | `space`   |
+| `p`, `padding`        | `padding`                                     | `space`   |
+| `pt`, `paddingTop`    | `padding-top`                                 | `space`   |
+| `pr`, `paddingRight`  | `padding-right`                               | `space`   |
+| `pe`, `paddingEnd`    | `padding-inline-end`                          | `space`   |
+| `pb`, `paddingBottom` | `padding-bottom`                              | `space`   |
+| `pl`, `paddingLeft`   | `padding-left`                                | `space`   |
+| `ps`, `paddingStart`  | `padding-inline-start`                        | `space`   |
+| `px`                  | `padding-inline-start` + `padding-inline-end` | `space`   |
+| `py`                  | `padding-top` + `padding-bottom`              | `space`   |
+
+> For `mx` and `px` props, we use `margin-inline-start` and `margin-inline-end`
+> to ensure the generated styles are RTL-friendly
 
 ### Color and background color
 
 ```jsx live=false
-import { Box } from "@chakra-ui/core"
+import { Box } from "@chakra-ui/react"
 
 // picks up a nested color value using dot notation
 // => `theme.colors.gray[50]`
@@ -72,10 +79,38 @@ import { Box } from "@chakra-ui/core"
 | `bgColor`          | `background-color` | `colors`  |
 | `opacity`          | `opacity`          | none      |
 
+### Gradient
+
+```jsx live=false
+import { Box, Text } from "@chakra-ui/react"
+
+// adding linear gradient and color transitions
+<Box w="100%" h="200px" bgGradient="linear(to-t, green.200, pink.500)" />
+
+// adding radial gradient and color transitions
+<Box w="100%" h="200px" bgGradient="radial(gray.300,yellow.400,pink.200)" />
+
+// adding the text gradient
+<Text
+  bgGradient="linear(to-l, #7928CA,#FF0080)"
+  bgClip="text"
+  fontSize="6xl"
+  fontWeight="extrabold"
+>
+  Welcome to Chakra UI
+</Text>
+
+```
+
+| Prop                       | CSS Property       | Theme Key |
+| -------------------------- | ------------------ | --------- |
+| `bgGradient`               | `background-image` | none      |
+| `bgClip`, `backgroundClip` | `background-clip`  | none      |
+
 ### Typography
 
 ```jsx live=false
-import { Text } from "@chakra-ui/core"
+import { Text } from "@chakra-ui/react"
 
 // font-size of `theme.fontSizes.md`
 <Text fontSize="md" />
@@ -105,7 +140,7 @@ import { Text } from "@chakra-ui/core"
 ### Layout, width and height
 
 ```jsx live=false
-import { Box } from "@chakra-ui/core"
+import { Box } from "@chakra-ui/react"
 
 // verbose
 <Box width="100%" height={32} />
@@ -145,7 +180,7 @@ import { Box } from "@chakra-ui/core"
 ### Flexbox
 
 ```jsx live=false
-import { Box, Flex } from "@chakra-ui/core"
+import { Box, Flex } from "@chakra-ui/react"
 
 // verbose
 <Box display="flex" alignItems="center" justifyContent="space-between">
@@ -179,7 +214,7 @@ import { Box, Flex } from "@chakra-ui/core"
 ### Grid Layout
 
 ```jsx live=false
-import { Box, Grid } from "@chakra-ui/core"
+import { Box, Grid } from "@chakra-ui/react"
 
 // verbose
 <Box display="grid" gridGap={2} gridAutoFlow="row dense">
@@ -212,7 +247,7 @@ import { Box, Grid } from "@chakra-ui/core"
 ### Background
 
 ```jsx live=false
-import { Box } from "@chakra-ui/core"
+import { Box } from "@chakra-ui/react"
 
 // verbose
 <Box
@@ -231,7 +266,7 @@ import { Box } from "@chakra-ui/core"
 
 | Prop                                  | CSS Property            | Theme Key |
 | ------------------------------------- | ----------------------- | --------- |
-| `background`                          | `background`            | none      |
+| `bg`, `background`                    | `background`            | none      |
 | `bgImage`, `backgroundImage`          | `background-image`      | none      |
 | `bgSize`, `backgroundSize`            | `background-size`       | none      |
 | `bgPosition`,`backgroundPosition`     | `background-position`   | none      |
@@ -257,24 +292,32 @@ import { Box } from "@chakra-ui/core"
 | `borderTopStyle`    | `border-top-style`             | `borderStyles` |
 | `borderTopColor`    | `border-top-color`             | `colors`       |
 | `borderRight`       | `border-right`                 | `borders`      |
+| `borderEnd`         | `border-inline-end`            | `borders`      |
 | `borderRightWidth`  | `border-right-width`           | `borderWidths` |
+| `borderEndWidth`    | `border-inline-end-width`      | `borderWidths` |
 | `borderRightStyle`  | `border-right-style`           | `borderStyles` |
+| `borderEndStyle`    | `border-inline-end-style`      | `borderStyles` |
 | `borderRightColor`  | `border-right-color`           | `colors`       |
+| `borderEndColor`    | `border-inline-end-color`      | `colors`       |
 | `borderBottom`      | `border-bottom`                | `borders`      |
 | `borderBottomWidth` | `border-bottom-width`          | `borderWidths` |
 | `borderBottomStyle` | `border-bottom-style`          | `borderStyles` |
 | `borderBottomColor` | `border-bottom-color`          | `colors`       |
 | `borderLeft`        | `border-left`                  | `borders`      |
+| `borderStart`       | `border-inline-start`          | `borders`      |
 | `borderLeftWidth`   | `border-left-width`            | `borderWidths` |
+| `borderStartWidth`  | `border-inline-start-width`    | `borderWidths` |
 | `borderLeftStyle`   | `border-left-style`            | `borderStyles` |
+| `borderStartStyle`  | `border-inline-start-style`    | `borderStyles` |
 | `borderLeftColor`   | `border-left-color`            | `colors`       |
+| `borderStartColor`  | `border-inline-start-color`    | `colors`       |
 | `borderX`           | `border-left` , `border-right` | `borders`      |
 | `borderY`           | `border-top` , `border-bottom` | `borders`      |
 
 ### Border Radius
 
 ```jsx live=false
-import { Button } from "@chakra-ui/core"
+import { Button } from "@chakra-ui/react"
 
 // This button will have no right borderRadius
 <Button borderRightRadius="0">Button 1</Button>
@@ -286,22 +329,28 @@ import { Button } from "@chakra-ui/core"
 <Button borderTopRadius="md">Button 2</Button>
 ```
 
-| Prop                      | CSS Property                                               | Theme Field |
-| ------------------------- | ---------------------------------------------------------- | ----------- |
-| `borderRadius`            | `border-radius`                                            | `radii`     |
-| `borderTopLeftRadius`     | `border-top-left-radius`                                   | `radii`     |
-| `borderTopRightRadius`    | `border-top-right-radius`                                  | `radii`     |
-| `borderBottomRightRadius` | `border-bottom-right-radius`                               | `radii`     |
-| `borderBottomLeftRadius`  | `border-bottom-left-radius`                                | `radii`     |
-| `borderTopRadius`         | `border-top-left-radius` & `border-top-right-radius`       | `radii`     |
-| `borderRightRadius`       | `border-top-right-radius` & `border-bottom-right-radius`   | `radii`     |
-| `borderBottomRadius`      | `border-bottom-left-radius` & `border-bottom-right-radius` | `radii`     |
-| `borderLeftRadius`        | `border-top-left-radius` & `border-bottom-left-radius`     | `radii`     |
+| Prop                      | CSS Property                                                                 | Theme Field |
+| ------------------------- | ---------------------------------------------------------------------------- | ----------- |
+| `borderRadius`            | `border-radius`                                                              | `radii`     |
+| `borderTopLeftRadius`     | `border-top-left-radius`                                                     | `radii`     |
+| `borderTopStartRadius`    | `border-top-left-radius` in LTR,<br/> `border-top-right-radius` in RTL       | `radii`     |
+| `borderTopRightRadius`    | `border-top-right-radius`                                                    | `radii`     |
+| `borderTopEndRadius`      | `border-top-right-radius` in LTR,<br/> `border-top-left-radius` in RTL       | `radii`     |
+| `borderBottomRightRadius` | `border-bottom-right-radius`                                                 | `radii`     |
+| `borderBottomEndRadius`   | `border-bottom-right-radius` in LTR,<br/> `border-bottom-left-radius` in RTL | `radii`     |
+| `borderBottomLeftRadius`  | `border-bottom-left-radius`                                                  | `radii`     |
+| `borderBottomStartRadius` | `border-bottom-left-radius` in LTR,<br/> `border-bottom-left-radius` in RTL  | `radii`     |
+| `borderTopRadius`         | `border-top-left-radius` + `border-top-right-radius`                         | `radii`     |
+| `borderRightRadius`       | `border-top-right-radius` + `border-bottom-right-radius`                     | `radii`     |
+| `borderEndRadius`         | `border-top-right-radius` + `border-bottom-right-radius`                     | `radii`     |
+| `borderBottomRadius`      | `border-bottom-left-radius` + `border-bottom-right-radius`                   | `radii`     |
+| `borderLeftRadius`        | `border-top-left-radius` + `border-bottom-left-radius`                       | `radii`     |
+| `borderStartRadius`       | `border-top-left-radius` + `border-bottom-left-radius`                       | `radii`     |
 
 ### Position
 
 ```jsx live=false
-import { Box } from "@chakra-ui/core"
+import { Box } from "@chakra-ui/react"
 
 // verbose
 <Box position="absolute">Cover</Box>
@@ -328,7 +377,15 @@ import { Box } from "@chakra-ui/core"
 ### Shadow
 
 ```jsx
-<SimpleGrid bg="gray.50" columns="4" spacing="8" p="10" textAlign="center" rounded="lg" color="gray.400">
+<SimpleGrid
+  bg="gray.50"
+  columns={{ sm: 2, md: 4 }}
+  spacing="8"
+  p="10"
+  textAlign="center"
+  rounded="lg"
+  color="gray.400"
+>
   <Box boxShadow="xs" p="6" rounded="md" bg="white">
     xs
   </Box>
@@ -363,7 +420,7 @@ import { Box } from "@chakra-ui/core"
 ```
 
 ```jsx
-<Text textShadow="2px 2px #ff0000" boxShadow="5px 10px #999" m="6">
+<Text textShadow="1px 1px #ff0000" m="6">
   Text with shadows
 </Text>
 ```
@@ -376,7 +433,7 @@ import { Box } from "@chakra-ui/core"
 ### Pseudo
 
 ```jsx live=false
-import { Button } from "@chakra-ui/core"
+import { Button } from "@chakra-ui/react"
 
 // :hover style
 <Button
@@ -390,7 +447,9 @@ import { Button } from "@chakra-ui/core"
 </Button>
 
 // apply :hover over parent element
-<Box>
+<Box
+  role="group"
+>
   <Box
     _hover={{ fontWeight: 'semibold' }}
     _groupHover={{ color: 'tomato' }}
@@ -431,12 +490,12 @@ import { Button } from "@chakra-ui/core"
 | `_visited`       | `:visited`                                                               | none        |
 | `_activeLink`    | `[aria-current=page]`                                                    | none        |
 | `_indeterminate` | `:indeterminate`,<br/>`[aria-checked=mixed]`,<br/>`[data-indeterminate]` | none        |
-| `_groupHover`    | ``                                                                       | none        |
-| `_groupFocus`    | ``                                                                       | none        |
-| `_groupActive`   | ``                                                                       | none        |
-| `_groupDisabled` | ``                                                                       | none        |
-| `_groupInvalid`  | ``                                                                       | none        |
-| `_groupChecked`  | ``                                                                       | none        |
+| `_groupHover`    | `[role=group]:hover &`, <br/> `[role=group][data-hover] &`               | none        |
+| `_groupFocus`    | `[role=group]:focus &`, <br/> `[role=group][data-focus] &`               | none        |
+| `_groupActive`   | `[role=group]:active &`, <br/> `[role=group][data-active] &`             | none        |
+| `_groupDisabled` | `[role=group]:disabled &`, <br/> `[role=group][data-disabled] &`         | none        |
+| `_groupInvalid`  | `[role=group][data-invalid] &`                                           | none        |
+| `_groupChecked`  | `[role=group][data-checked] &`                                           | none        |
 | `_placeholder`   | `::placeholder`                                                          | none        |
 | `_fullScreen`    | `:fullscreen`                                                            | none        |
 | `_selection`     | `::selection`                                                            | none        |

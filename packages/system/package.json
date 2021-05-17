@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/system",
-  "version": "1.0.0-rc.5",
+  "version": "1.6.5",
   "description": "Chakra UI system primitives",
   "keywords": [
     "system",
@@ -20,6 +20,12 @@
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -48,14 +54,20 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/color-mode": "1.0.0-rc.5",
-    "@chakra-ui/styled-system": "1.0.0-rc.5",
-    "@chakra-ui/utils": "1.0.0-rc.5",
-    "@emotion/core": "10.0.35",
-    "@emotion/styled": "10.0.27",
+    "@chakra-ui/color-mode": "1.1.8",
+    "@chakra-ui/react-utils": "1.1.2",
+    "@chakra-ui/styled-system": "1.10.5",
+    "@chakra-ui/utils": "1.8.0",
     "react-fast-compare": "3.2.0"
   },
   "peerDependencies": {
-    "react": "16.x"
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "react": ">=16.8.6"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.1.4",
+    "@emotion/styled": "^11.0.0",
+    "react": "^17.0.1"
   }
 }

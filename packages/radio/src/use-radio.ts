@@ -1,10 +1,12 @@
-import { useBoolean, useControllableProp } from "@chakra-ui/hooks"
+import { useFormControlProps } from "@chakra-ui/form-control"
+import { useBoolean, useControllableProp, useId } from "@chakra-ui/hooks"
+import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import {
   ariaAttr,
   callAllHandlers,
   dataAttr,
-  mergeRefs,
-  PropGetter,
+  scheduleMicrotask,
+  warn,
 } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import {
@@ -36,13 +38,20 @@ export interface UseRadioProps {
   value?: string | number
   /**
    * If `true`, the radio will be checked.
-   * You'll need to pass `onChange` to update it's value (since it's now controlled)
+   * You'll need to pass `onChange` to update its value (since it is now controlled)
    */
   isChecked?: boolean
   /**
    * If `true`, the radio will be initially checked.
+   *
+   * @deprecated Please use `defaultChecked` which mirrors the default prop
+   * name for radio elements.
    */
   defaultIsChecked?: boolean
+  /**
+   * If `true`, the radio will be initially checked.
+   */
+  defaultChecked?: boolean
   /**
    * If `true`, the radio will be disabled
    */
@@ -57,11 +66,11 @@ export interface UseRadioProps {
    */
   isReadOnly?: boolean
   /**
-   * If `true`, the radio button will be invalid. This sets `aria-invalid` to `true`.
+   * If `true`, the radio button will be invalid. This also sets `aria-invalid` to `true`.
    */
   isInvalid?: boolean
   /**
-   * If `true`, the radio button will be invalid. This sets `aria-invalid` to `true`.
+   * If `true`, the radio button will be required. This also sets `aria-required` to `true`.
    */
   isRequired?: boolean
   /**
@@ -73,18 +82,28 @@ export interface UseRadioProps {
 export function useRadio(props: UseRadioProps = {}) {
   const {
     defaultIsChecked,
+    defaultChecked = defaultIsChecked,
     isChecked: isCheckedProp,
     isFocusable,
-    isDisabled,
-    isReadOnly,
-    isRequired,
+    isDisabled: isDisabledProp,
+    isReadOnly: isReadOnlyProp,
+    isRequired: isRequiredProp,
     onChange,
-    isInvalid,
+    isInvalid: isInvalidProp,
     name,
     value,
-    id,
+    id: idProp,
     ...htmlProps
   } = props
+
+  const id = useId(idProp, "radio")
+
+  const formControl = useFormControlProps<HTMLInputElement>(props)
+
+  const isDisabled = formControl?.isDisabled
+  const isReadOnly = formControl?.isReadOnly
+  const isRequired = formControl?.isRequired
+  const isInvalid = formControl?.isInvalid
 
   const [isFocused, setFocused] = useBoolean()
   const [isHovered, setHovering] = useBoolean()
@@ -92,27 +111,35 @@ export function useRadio(props: UseRadioProps = {}) {
 
   const ref = useRef<HTMLInputElement>(null)
 
-  const [isCheckedState, setChecked] = useState(Boolean(defaultIsChecked))
+  const [isCheckedState, setChecked] = useState(Boolean(defaultChecked))
 
   const [isControlled, isChecked] = useControllableProp(
     isCheckedProp,
     isCheckedState,
   )
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (isReadOnly || isDisabled) {
-      event.preventDefault()
-      return
-    }
+  warn({
+    condition: !!defaultIsChecked,
+    message:
+      'The "defaultIsChecked" prop has been deprecated and will be removed in a future version. ' +
+      'Please use the "defaultChecked" prop instead, which mirrors default React checkbox behavior.',
+  })
 
-    if (!isControlled) {
-      setChecked(event.target.checked)
-    }
+  const handleChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      if (isReadOnly || isDisabled) {
+        event.preventDefault()
+        return
+      }
 
-    onChange?.(event)
-  }
+      if (!isControlled) {
+        setChecked(event.target.checked)
+      }
 
-  const trulyDisabled = isDisabled && !isFocusable
+      onChange?.(event)
+    },
+    [isControlled, isDisabled, isReadOnly, onChange],
+  )
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
@@ -132,58 +159,99 @@ export function useRadio(props: UseRadioProps = {}) {
     [setActive],
   )
 
-  const getCheckboxProps: PropGetter = (props = {}, ref = null) => ({
-    ...props,
-    ref,
-    "data-active": dataAttr(isActive),
-    "data-hover": dataAttr(isHovered),
-    "data-disabled": dataAttr(isDisabled),
-    "data-invalid": dataAttr(isInvalid),
-    "data-checked": dataAttr(isChecked),
-    "data-focus": dataAttr(isFocused),
-    "data-readonly": dataAttr(isReadOnly),
-    "aria-hidden": true,
-    onMouseDown: callAllHandlers(props.onMouseDown, setActive.on),
-    onMouseUp: callAllHandlers(props.onMouseUp, setActive.off),
-    onMouseEnter: callAllHandlers(props.onMouseEnter, setHovering.on),
-    onMouseLeave: callAllHandlers(props.onMouseLeave, setHovering.off),
-  })
-
-  const getInputProps: PropGetter<HTMLInputElement> = (
-    props = {},
-    forwardedRef = null,
-  ) => ({
-    ...props,
-    ref: mergeRefs(forwardedRef, ref),
-    type: "radio",
-    name,
-    value,
-    id,
-    onChange: callAllHandlers(props.onChange, handleChange),
-    onBlur: callAllHandlers(props.onBlur, setFocused.off),
-    onFocus: callAllHandlers(props.onFocus, setFocused.on),
-    onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-    onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
-    "aria-required": ariaAttr(isRequired),
-    checked: isChecked,
-    disabled: trulyDisabled,
-    readOnly: isReadOnly,
-    "aria-invalid": ariaAttr(isInvalid),
-    "aria-disabled": ariaAttr(isDisabled),
-    style: visuallyHiddenStyle,
-  })
-
-  const getLabelProps: PropGetter = (props = {}, ref = null) => {
-    return {
+  const getCheckboxProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
       ...props,
       ref,
-      onMouseDown: callAllHandlers(props.onMouseDown, stop),
-      onTouchStart: callAllHandlers(props.onTouchStart, stop),
+      "data-active": dataAttr(isActive),
+      "data-hover": dataAttr(isHovered),
       "data-disabled": dataAttr(isDisabled),
-      "data-checked": dataAttr(isChecked),
       "data-invalid": dataAttr(isInvalid),
-    }
-  }
+      "data-checked": dataAttr(isChecked),
+      "data-focus": dataAttr(isFocused),
+      "data-readonly": dataAttr(isReadOnly),
+      "aria-hidden": true,
+      onMouseDown: callAllHandlers(props.onMouseDown, setActive.on),
+      onMouseUp: callAllHandlers(props.onMouseUp, setActive.off),
+      onMouseEnter: callAllHandlers(props.onMouseEnter, setHovering.on),
+      onMouseLeave: callAllHandlers(props.onMouseLeave, setHovering.off),
+    }),
+    [
+      isActive,
+      isHovered,
+      isDisabled,
+      isInvalid,
+      isChecked,
+      isFocused,
+      isReadOnly,
+      setActive.on,
+      setActive.off,
+      setHovering.on,
+      setHovering.off,
+    ],
+  )
+
+  const { onFocus, onBlur } = formControl
+
+  const getInputProps: PropGetter<HTMLInputElement> = useCallback(
+    (props = {}, forwardedRef = null) => {
+      /**
+       * This is a workaround for React Concurrent Mode issue.
+       * @see Issue https://github.com/facebook/react/issues/18591.
+       *
+       * Remove once it's fixed.
+       */
+      const focus = () => {
+        scheduleMicrotask(() => {
+          setFocused.on()
+        })
+      }
+
+      const trulyDisabled = isDisabled && !isFocusable
+
+      return {
+        ...props,
+        id,
+        ref: mergeRefs(forwardedRef, ref),
+        type: "radio",
+        name,
+        value,
+        onChange: callAllHandlers(props.onChange, handleChange),
+        onBlur: callAllHandlers(onBlur, props.onBlur, setFocused.off),
+        onFocus: callAllHandlers(onFocus, props.onFocus, focus),
+        onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+        onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
+        checked: isChecked,
+        disabled: trulyDisabled,
+        "aria-disabled": ariaAttr(trulyDisabled),
+        style: visuallyHiddenStyle,
+      }
+    },
+    [
+      isDisabled,
+      isFocusable,
+      id,
+      name,
+      value,
+      handleChange,
+      onBlur,
+      setFocused,
+      onFocus,
+      onKeyDown,
+      onKeyUp,
+      isChecked,
+    ],
+  )
+
+  const getLabelProps: PropGetter = (props = {}, ref = null) => ({
+    ...props,
+    ref,
+    onMouseDown: callAllHandlers(props.onMouseDown, stop),
+    onTouchStart: callAllHandlers(props.onTouchStart, stop),
+    "data-disabled": dataAttr(isDisabled),
+    "data-checked": dataAttr(isChecked),
+    "data-invalid": dataAttr(isInvalid),
+  })
 
   return {
     state: {

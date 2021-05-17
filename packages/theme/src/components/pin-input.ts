@@ -1,4 +1,5 @@
 import Input from "./input"
+
 type Dict = Record<string, any>
 
 const baseStyle = {
@@ -23,6 +24,12 @@ const sizes = {
     fontSize: "sm",
     w: 8,
     h: 8,
+    borderRadius: "sm",
+  },
+  xs: {
+    fontSize: "xs",
+    w: 6,
+    h: 6,
     borderRadius: "sm",
   },
 }

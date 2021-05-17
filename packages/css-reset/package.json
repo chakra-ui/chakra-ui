@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/css-reset",
-  "version": "1.0.0-rc.5",
+  "version": "1.0.0",
   "description": "CSS reset component for Chakra UI",
   "keywords": [
     "theme",
@@ -17,6 +17,12 @@
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -45,7 +51,11 @@
     "lint:types": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@emotion/core": "10.0.35",
-    "react": "16.x"
+    "@emotion/react": ">=10.0.35",
+    "react": ">=16.8.6"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.1.4",
+    "react": "^17.0.1"
   }
 }

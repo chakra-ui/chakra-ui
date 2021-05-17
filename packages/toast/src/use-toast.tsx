@@ -1,4 +1,3 @@
-import * as React from "react"
 import type { AlertStatus } from "@chakra-ui/alert"
 import {
   Alert,
@@ -9,16 +8,16 @@ import {
 import { CloseButton } from "@chakra-ui/close-button"
 import {
   chakra,
+  ColorMode,
   ColorModeContext,
   ThemeProvider,
   useChakra,
-  ColorMode,
 } from "@chakra-ui/system"
-import { isFunction, noop } from "@chakra-ui/utils"
 import defaultTheme from "@chakra-ui/theme"
+import { isFunction, noop } from "@chakra-ui/utils"
+import * as React from "react"
 import { toast } from "./toast.class"
 import { RenderProps, ToastId, ToastOptions } from "./toast.types"
-import { PropsWithChildren } from "react"
 
 export interface UseToastOptions {
   /**
@@ -42,11 +41,11 @@ export interface UseToastOptions {
   /**
    * The title of the toast
    */
-  title?: string
+  title?: React.ReactNode
   /**
    * The description of the toast
    */
-  description?: string
+  description?: React.ReactNode
   /**
    * If `true`, toast will show a close button
    */
@@ -85,9 +84,8 @@ const Toast: React.FC<any> = (props) => {
       alignItems="start"
       borderRadius="md"
       boxShadow="lg"
-      margin={2}
-      paddingRight={8}
-      textAlign="left"
+      paddingEnd={8}
+      textAlign="start"
       width="auto"
     >
       <AlertIcon />
@@ -102,7 +100,7 @@ const Toast: React.FC<any> = (props) => {
           size="sm"
           onClick={onClose}
           position="absolute"
-          right={1}
+          insetEnd={1}
           top={1}
         />
       )}
@@ -119,7 +117,7 @@ const defaults = {
 export type CreateStandAloneToastParam = Partial<
   {
     setColorMode: (value: ColorMode) => void
-  } & ReturnType<typeof useChakra>
+  } & ReturnType<typeof useChakra> & { defaultOptions: UseToastOptions }
 >
 
 export const defaultStandaloneParam: Required<CreateStandAloneToastParam> = {
@@ -127,6 +125,7 @@ export const defaultStandaloneParam: Required<CreateStandAloneToastParam> = {
   colorMode: "light",
   toggleColorMode: noop,
   setColorMode: noop,
+  defaultOptions: defaults,
 }
 /**
  * Create a toast from outside of React Components
@@ -136,9 +135,10 @@ export function createStandaloneToast({
   colorMode = defaultStandaloneParam.colorMode,
   toggleColorMode = defaultStandaloneParam.toggleColorMode,
   setColorMode = defaultStandaloneParam.setColorMode,
+  defaultOptions = defaultStandaloneParam.defaultOptions,
 }: CreateStandAloneToastParam = defaultStandaloneParam) {
   const renderWithProviders = (
-    props: PropsWithChildren<RenderProps>,
+    props: React.PropsWithChildren<RenderProps>,
     options: UseToastOptions,
   ) => (
     <ThemeProvider theme={theme}>
@@ -154,8 +154,8 @@ export function createStandaloneToast({
     </ThemeProvider>
   )
 
-  const toastImpl = function (options: UseToastOptions) {
-    const opts = { ...defaults, ...options }
+  const toastImpl = (options?: UseToastOptions) => {
+    const opts = { ...defaultOptions, ...options }
 
     const Message: React.FC<RenderProps> = (props) =>
       renderWithProviders(props, opts)
@@ -168,11 +168,9 @@ export function createStandaloneToast({
 
   // toasts can only be updated if they have a valid id
   toastImpl.update = (id: ToastId, options: Omit<UseToastOptions, "id">) => {
-    const { render, ...rest } = options
-
     if (!id) return
 
-    const opts = { ...defaults, ...rest }
+    const opts = { ...defaultOptions, ...options }
 
     toast.update(id, {
       ...opts,
@@ -189,7 +187,7 @@ export function createStandaloneToast({
  * React hook used to create a function that can be used
  * to show toasts in an application.
  */
-export function useToast() {
+export function useToast(options?: UseToastOptions) {
   const { theme, setColorMode, toggleColorMode, colorMode } = useChakra()
   return React.useMemo(
     () =>
@@ -198,8 +196,9 @@ export function useToast() {
         colorMode,
         setColorMode,
         toggleColorMode,
+        defaultOptions: options,
       }),
-    [theme, setColorMode, toggleColorMode, colorMode],
+    [theme, setColorMode, toggleColorMode, colorMode, options],
   )
 }
 

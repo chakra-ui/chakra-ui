@@ -6,13 +6,12 @@ description: Text is the used to render text and paragraphs within an interface.
 
 import ComponentLinks from "../../../src/components/component-links"
 
-Text is the used to render text and paragraphs within an interface. It renders a
-`<p>` tag by default.
+`Text` component is the used to render text and paragraphs within an interface.
+It renders a `<p>` tag by default.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/layout", url: "#" }}
+  github={{ package: "layout" }}
+  npm={{ package: "@chakra-ui/layout" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -20,7 +19,7 @@ Text is the used to render text and paragraphs within an interface. It renders a
 ## Import
 
 ```js
-import { Text } from "@chakra-ui/core"
+import { Text } from "@chakra-ui/react"
 ```
 
 ## Changing the font size
@@ -78,7 +77,7 @@ pass the `noOfLines` prop and set it to the desired no of lines.
 ### Override style
 
 You can change the entire style of the text via props. For example, to change
-the font size, pass the `fontSize` prop. No need to write `css` or `styled()`
+the font size, pass the `fontSize` prop. No need to write `css` or `styled()`.
 
 ```jsx
 <Text fontSize="50px" color="tomato">
@@ -123,5 +122,7 @@ Element** to see the element that gets rendered in html.
 
 ## Props
 
-Text composes the [Box](/docs/layout/box) component, so you can pass all `Box`
+`Text` composes the [Box](/docs/layout/box) component, so you can pass all `Box`
 style props.
+
+<PropsTable of="Text" omit={null} />

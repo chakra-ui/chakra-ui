@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/live-region",
-  "version": "1.0.0-rc.5",
+  "version": "1.0.12",
   "description": "Aria live region for React components",
   "keywords": [
     "aria",
@@ -19,6 +19,12 @@
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -46,7 +52,13 @@
     "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
     "lint:types": "tsc --noEmit"
   },
+  "dependencies": {
+    "@chakra-ui/utils": "1.8.0"
+  },
   "peerDependencies": {
-    "react": "16.x"
+    "react": ">=16.8.6"
+  },
+  "devDependencies": {
+    "react": "^17.0.1"
   }
 }

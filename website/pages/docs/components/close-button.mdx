@@ -8,17 +8,15 @@ description:
   Toasts, Drawers and Modals
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
 CloseButton is essentially a button with a close icon. It is used to handle the
 close functionality in feedback and overlay components like
 [Alerts](/docs/feedback/alert), [Toasts](/docs/feedback/toast),
 [Drawers](/docs/overlay/drawer) and [Modals](/docs/overlay/modal).
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/close-button", url: "#" }}
+  theme={{ componentName: "close-button" }}
+  github={{ package: "close-button" }}
+  npm={{ package: "@chakra-ui/close-button" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -26,7 +24,7 @@ close functionality in feedback and overlay components like
 ## Import
 
 ```js
-import { CloseButton } from "@chakra-ui/core"
+import { CloseButton } from "@chakra-ui/react"
 ```
 
 ## Usage
@@ -52,9 +50,4 @@ Pass the `size` prop to adjust the size of the close button. Values can be `sm`,
 
 The CloseButton composes `Box` component.
 
-| Name         | Type             | Default | Description                              |
-| ------------ | ---------------- | ------- | ---------------------------------------- |
-| `aria-label` | `string`         |         | An accessible label for the close button |
-| `isDisabled` | `boolean`        |         | If `true`, the button will be disabled   |
-| `color`      | `string`         |         | The color of the close icon              |
-| `size`       | `sm`, `md`, `lg` | `md`    | The size of the close button             |
+<PropsTable of="CloseButton" />

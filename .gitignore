@@ -2,7 +2,7 @@
 .changelog/
 
 # website public/ folder (temporary; copied to root for docs:build and vercel compat)
-public/
+# public/
 
 node_modules/
 lerna-debug.log
@@ -12,6 +12,7 @@ packages/*/.next
 storybook-static
 packages/*/coverage
 packages/*/dist
+tooling/*/dist
 packages/*/node_modules
 npm-debug.log*
 packages/*/.env
@@ -24,8 +25,7 @@ packages/*/tsconfig.tsbuildinfo
 tsconfig.tsbuildinfo
 .next
 .idea
-# Ignore next-mdx-enhanced cache directory
-.mdx-data
+
 # Local Netlify folder
 .netlify
 .idea

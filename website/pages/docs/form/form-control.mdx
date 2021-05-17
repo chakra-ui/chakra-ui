@@ -6,8 +6,6 @@ description:
   form elements
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
 FormControl provides context such as `isInvalid`, `isDisabled`, and `isRequired`
 to form elements.
 
@@ -15,9 +13,9 @@ It follows the [WAI specifications](https://www.w3.org/WAI/tutorials/forms/) for
 forms.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/form-control", url: "#" }}
+  theme={{ componentName: "form" }}
+  github={{ package: "form-control" }}
+  npm={{ package: "@chakra-ui/form-control" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -30,7 +28,7 @@ import {
   FormLabel,
   FormErrorMessage,
   FormHelperText,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 ```
 
 ## Usage
@@ -67,9 +65,7 @@ By passing the `isRequired` props, the `Input` field has `aria-required` set to
 
 ```jsx
 <FormControl id="first-name" isRequired>
-  <FormLabel>
-    First name
-  </FormLabel>
+  <FormLabel>First name</FormLabel>
   <Input placeholder="First name" />
 </FormControl>
 ```
@@ -86,6 +82,21 @@ By passing the `isRequired` props, the `Input` field has `aria-required` set to
 </FormControl>
 ```
 
+### Number Input Example
+
+```jsx
+<FormControl id="amount">
+  <FormLabel>Amount</FormLabel>
+  <NumberInput max={50} min={10}>
+    <NumberInputField />
+    <NumberInputStepper>
+      <NumberIncrementStepper />
+      <NumberDecrementStepper />
+    </NumberInputStepper>
+  </NumberInput>
+</FormControl>
+```
+
 ### Usage with Form Libraries
 
 Form Libraries like [Formik](https://jaredpalmer.com/formik/) make it soooo easy
@@ -97,7 +108,7 @@ function FormikExample() {
     let error
     if (!value) {
       error = "Name is required"
-    } else if (value !== "Naruto") {
+    } else if (value.toLowerCase() !== "naruto") {
       error = "Jeez! You're not a fan 😱"
     }
     return error
@@ -144,13 +155,13 @@ function FormikExample() {
 - We've improved the accessibility of the `FormControl` component. Here are the
   changes:
 
-  - `id` passed to the form control will be passed to the form input directly
-  - `FormLabel` will have `htmlFor` that points to the `id` of the form input
+  - `id` passed to the form control will be passed to the form input directly.
+  - `FormLabel` will have `htmlFor` that points to the `id` of the form input.
   - `FormErrorMessage` adds `aria-describedby` and `aria-invalid` pointing to
-    the form input
-  - `FormHelperText` adds/extends `aria-describedby` pointing to the form input
+    the form input.
+  - `FormHelperText` adds/extends `aria-describedby` pointing to the form input.
   - `isDisabled`, `isRequired`, `isReadOnly` props passed to `FormControl` will
-    cascade across all related components
+    cascade across all related components.
 
 - `FormLabel` is now aware of the `disabled`, `focused` and `error` state of the
   form input. This helps you style the label accordingly using the `_disabled`,
@@ -162,9 +173,4 @@ function FormikExample() {
 
 ## Props
 
-| Name         | Type      | Default | Description                                     |
-| ------------ | --------- | ------- | ----------------------------------------------- |
-| `isInvalid`  | `boolean` |         | If `true`, this prop is passed to its children. |
-| `isRequired` | `boolean` |         | If `true`, this prop is passed to its children. |
-| `isDisabled` | `boolean` |         | If `true`, this prop is passed to its children. |
-| `isReadOnly` | `boolean` |         | If `true`, this prop is passed to its children. |
+<PropsTable of="FormControl" />

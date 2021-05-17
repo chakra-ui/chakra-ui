@@ -1,15 +1,15 @@
 import {
   chakra,
-  PropsOf,
-  useStyleConfig,
+  forwardRef,
   omitThemingProps,
   ThemingProps,
-  forwardRef,
+  useStyleConfig,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
+import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { __DEV__, cx } from "@chakra-ui/utils"
 
-export interface LinkProps extends PropsOf<typeof chakra.a>, ThemingProps {
+export interface LinkProps extends HTMLChakraProps<"a">, ThemingProps<"Link"> {
   /**
    *  If `true`, the link will open in new tab
    */
@@ -28,7 +28,7 @@ export interface LinkProps extends PropsOf<typeof chakra.a>, ThemingProps {
  * <Link as={ReactRouterLink} to="/home">Home</Link>
  * ```
  *
- * @see Docs https://chakra-ui.com/components/link
+ * @see Docs https://chakra-ui.com/docs/layout/link
  */
 export const Link = forwardRef<LinkProps, "a">((props, ref) => {
   const styles = useStyleConfig("Link", props)

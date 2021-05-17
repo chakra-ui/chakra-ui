@@ -1,23 +1,35 @@
 import { mode } from "@chakra-ui/theme-tools"
 
-const parts = ["overlay", "content", "header", "body", "footer"]
+const parts = [
+  "overlay",
+  "dialogContainer",
+  "dialog",
+  "header",
+  "closeButton",
+  "body",
+  "footer",
+]
+
+const baseStyleOverlay = {
+  bg: "blackAlpha.600",
+  zIndex: "modal",
+}
 
 type Dict = Record<string, any>
 
-function baseStyleOverlay(props: Dict) {
+function baseStyleDialogContainer(props: Dict) {
   const { isCentered, scrollBehavior } = props
 
   return {
-    bg: "blackAlpha.600",
     display: "flex",
-    zIndex: "overlay",
+    zIndex: "modal",
     justifyContent: "center",
     alignItems: isCentered ? "center" : "flex-start",
     overflow: scrollBehavior === "inside" ? "hidden" : "auto",
   }
 }
 
-function baseStyleContent(props: Dict) {
+function baseStyleDialog(props: Dict) {
   const { scrollBehavior } = props
 
   return {
@@ -26,7 +38,7 @@ function baseStyleContent(props: Dict) {
     color: "inherit",
     my: "3.75rem",
     zIndex: "modal",
-    maxH: scrollBehavior === "inside" ? "calc(100vh - 7.5rem)" : undefined,
+    maxH: scrollBehavior === "inside" ? "calc(100% - 7.5rem)" : undefined,
     boxShadow: mode("lg", "dark-lg")(props),
   }
 }
@@ -36,6 +48,12 @@ const baseStyleHeader = {
   py: 4,
   fontSize: "xl",
   fontWeight: "semibold",
+}
+
+const baseStyleCloseButton = {
+  position: "absolute",
+  top: 2,
+  insetEnd: 3,
 }
 
 function baseStyleBody(props: Dict) {
@@ -54,9 +72,11 @@ const baseStyleFooter = {
 }
 
 const baseStyle = (props: Dict) => ({
-  overlay: baseStyleOverlay(props),
-  content: baseStyleContent(props),
+  overlay: baseStyleOverlay,
+  dialogContainer: baseStyleDialogContainer(props),
+  dialog: baseStyleDialog(props),
   header: baseStyleHeader,
+  closeButton: baseStyleCloseButton,
   body: baseStyleBody(props),
   footer: baseStyleFooter,
 })
@@ -67,12 +87,9 @@ const baseStyle = (props: Dict) => ({
  */
 function getSize(value: string) {
   if (value === "full") {
-    return { content: { maxW: "100vw", h: "100vh" } }
+    return { dialog: { maxW: "100vw", minH: "100vh" } }
   }
-
-  return {
-    content: { maxW: value },
-  }
+  return { dialog: { maxW: value } }
 }
 
 const sizes = {

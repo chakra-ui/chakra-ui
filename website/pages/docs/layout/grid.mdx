@@ -6,15 +6,12 @@ description:
   It renders a `div` element.
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
-A primitive useful for grid layouts. Grid is `Box` with `display: grid` and
+A primitive useful for grid layouts. Grid is `Box` with `display: grid` and it
 comes with helpful style shorthand. It renders a `div` element.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/layout", url: "#" }}
+  github={{ package: "layout" }}
+  npm={{ package: "@chakra-ui/layout" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -22,30 +19,17 @@ comes with helpful style shorthand. It renders a `div` element.
 ## Import
 
 ```js
-import { Grid } from "@chakra-ui/core"
+import { Grid, GridItem } from "@chakra-ui/react"
 ```
 
-## Usage
+- **Grid:** The main wrapper with `display: grid`.
+- **GridItem:** Used as a child of `Grid` to control the span, and start
+  positions within the grid.
 
-Using the Grid components, here are some helpful shorthand props:
+## Template columns
 
-| Verbose Prop          | Shorthand Prop    |
-| --------------------- | ----------------- |
-| `gridArea`            | `area`            |
-| `gridTemplateAreas`   | `templateAreas`   |
-| `gridGap`             | `gap`             |
-| `gridRowGap`          | `rowGap`          |
-| `gridColumnGap`       | `columnGap`       |
-| `gridAutoColumns`     | `autoColumns`     |
-| `gridColumn`          | `column`          |
-| `gridRow`             | `row`             |
-| `gridAutoFlow`        | `autoFlow`        |
-| `gridAutoRows`        | `autoRows`        |
-| `gridTemplateRows`    | `templateRows`    |
-| `gridTemplateColumns` | `templateColumns` |
-
-While you can pass the verbose props, using the shorthand can save you some
-time.
+Here's an example of using grid template columns with the `grid` component, and
+applying a `gap` or space between the grid items.
 
 ```jsx
 <Grid templateColumns="repeat(5, 1fr)" gap={6}>
@@ -57,7 +41,49 @@ time.
 </Grid>
 ```
 
+## Spanning columns
+
+In some layouts, you may need certain grid items to span specific amount of
+columns or rows instead of an even distribution. To achieve this, you need to
+pass the `colSpan` prop to the `GridItem` component to span across columns and
+also pass the `rowSpan` component to span across rows. You also need to specify
+the `templateColumns` and `templateRows`.
+
+```jsx
+<Grid
+  h="200px"
+  templateRows="repeat(2, 1fr)"
+  templateColumns="repeat(5, 1fr)"
+  gap={4}
+>
+  <GridItem rowSpan={2} colSpan={1} bg="tomato" />
+  <GridItem colSpan={2} bg="papayawhip" />
+  <GridItem colSpan={2} bg="papayawhip" />
+  <GridItem colSpan={4} bg="tomato" />
+</Grid>
+```
+
+## Starting and ending lines
+
+Pass the `colStart` and `colEnd` prop to `GridItem` component to make an element
+start or end at the `nth` grid position.
+
+```jsx
+<Grid templateColumns="repeat(5, 1fr)" gap={4}>
+  <GridItem colSpan={2} h="10" bg="tomato" />
+  <GridItem colStart={4} colEnd={6} h="10" bg="papayawhip" />
+</Grid>
+```
+
 ## Props
 
-Grid composes `Box` so you can pass all the `Box` prop and related css grid
-props.
+### Grid Props
+
+Grid composes `Box` so you can pass all the `Box` prop, and these shorthand prop
+to save you some time:
+
+<PropsTable of="Grid" />
+
+### GridItem Props
+
+<PropsTable of="GridItem" />

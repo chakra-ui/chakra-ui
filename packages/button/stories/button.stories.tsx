@@ -5,10 +5,10 @@ import {
   PhoneIcon,
   SearchIcon,
 } from "@chakra-ui/icons"
-import { Container, Stack, HStack } from "@chakra-ui/layout"
+import { Container, HStack, Stack } from "@chakra-ui/layout"
 import * as React from "react"
-import { MdBuild, MdCall } from "react-icons/md"
 import { FaFacebook, FaTwitter } from "react-icons/fa"
+import { MdBuild, MdCall } from "react-icons/md"
 import { BeatLoader } from "react-spinners"
 import { Button, ButtonGroup, IconButton } from "../src"
 
@@ -155,6 +155,46 @@ export const WithLoading = () => (
   </Stack>
 )
 
+export const WithLoadingSpinnerPlacement = () => (
+  <Stack direction="row" spacing={4} align="center">
+    <Button
+      isLoading
+      loadingText="Loading"
+      colorScheme="teal"
+      variant="outline"
+      spinnerPosition="start"
+    >
+      Submit
+    </Button>
+    <Button
+      isLoading
+      loadingText="Loading"
+      colorScheme="teal"
+      variant="outline"
+      spinnerPlacement="end"
+    >
+      Continue
+    </Button>
+  </Stack>
+)
+
+export const withDisabled = () => (
+  <HStack spacing="24px">
+    <Button isDisabled colorScheme="teal" variant="solid">
+      Button
+    </Button>
+    <Button isDisabled colorScheme="teal" variant="outline">
+      Button
+    </Button>
+    <Button isDisabled colorScheme="teal" variant="ghost">
+      Button
+    </Button>
+    <Button isDisabled colorScheme="teal" variant="link">
+      Button
+    </Button>
+  </HStack>
+)
+
 export const customComposition = () => (
   <Button
     size="md"
@@ -192,7 +232,7 @@ export const WithButtonGroup = () => (
 
 export const attachedButtons = () => (
   <ButtonGroup size="sm" isAttached variant="outline">
-    <Button mr="-px">Save</Button>
+    <Button marginEnd="-px">Save</Button>
     <IconButton
       fontSize="2xl"
       aria-label="Add to friends"

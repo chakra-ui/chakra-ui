@@ -1,67 +1,84 @@
-import * as CSS from "csstype"
-import { createParser, Config, system } from "@styled-system/core"
-import { Length, ResponsiveValue } from "../utils"
+import { memoizedGet as get } from "@chakra-ui/utils"
+import { Config } from "../utils/prop-config"
+import { ResponsiveValue, Token } from "../utils/types"
 
-const config: Config = {
-  animation: true,
-  appearance: true,
-  visibility: true,
-  userSelect: true,
-  pointerEvents: true,
-  cursor: true,
-  resize: true,
-  objectFit: true,
-  objectPosition: true,
-  float: true,
-  willChange: true,
+const srOnly = {
+  border: "0px",
+  clip: "rect(0, 0, 0, 0)",
+  width: "1px",
+  height: "1px",
+  margin: "-1px",
+  padding: "0px",
+  overflow: "hidden",
+  whiteSpace: "nowrap",
+  position: "absolute",
+}
+
+const srFocusable = {
+  position: "static",
+  width: "auto",
+  height: "auto",
+  clip: "auto",
+  padding: "0",
+  margin: "0",
+  overflow: "visible",
+  whiteSpace: "normal",
+}
+
+const getWithPriority = (theme: any, key: any, styles: any) => {
+  const result = {}
+  const obj = get(theme, key, {})
+  for (const prop in obj) {
+    const isInStyles = prop in styles && styles[prop] != null
+    if (!isInStyles) result[prop] = obj[prop]
+  }
+  return result
+}
+
+export const others: Config = {
+  srOnly: {
+    transform(value) {
+      if (value === true) return srOnly
+      if (value === "focusable") return srFocusable
+      return {}
+    },
+  },
+  layerStyle: {
+    processResult: true,
+    transform: (value, theme, styles) =>
+      getWithPriority(theme, `layerStyles.${value}`, styles),
+  },
+  textStyle: {
+    processResult: true,
+    transform: (value, theme, styles) =>
+      getWithPriority(theme, `textStyles.${value}`, styles),
+  },
+  apply: {
+    processResult: true,
+    transform: (value, theme, styles) => getWithPriority(theme, value, styles),
+  },
 }
 
 export interface OtherProps {
   /**
-   * The CSS `animation` property
+   * If `true`, hide an element visually without hiding it from screen readers.
+   *
+   * If `focusable`, the sr-only styles will be undone, making the element visible
+   * to sighted users as well as screen readers.
    */
-  animation?: ResponsiveValue<CSS.Property.Animation>
+  srOnly?: true | "focusable"
   /**
-   * The CSS `appearance` property
+   * The layer style object to apply.
+   * Note: Styles must be located in `theme.layerStyles`
    */
-  appearance?: ResponsiveValue<CSS.Property.Appearance>
+  layerStyle?: Token<string & {}, "layerStyles">
   /**
-   * The CSS `visibility` property
+   * The text style object to apply.
+   * Note: Styles must be located in `theme.textStyles`
    */
-  visibility?: ResponsiveValue<CSS.Property.Visibility>
+  textStyle?: Token<string & {}, "textStyles">
   /**
-   * The CSS `user-select` property
+   * Apply theme-aware style objects in `theme`
    */
-  userSelect?: ResponsiveValue<CSS.Property.UserSelect>
-  /**
-   * The CSS `pointer-events` property
-   */
-  pointerEvents?: ResponsiveValue<CSS.Property.PointerEvents>
-  /**
-   * The CSS `cursor` property
-   */
-  cursor?: ResponsiveValue<CSS.Property.Cursor>
-  /**
-   * The CSS `resize` property
-   */
-  resize?: ResponsiveValue<CSS.Property.Resize>
-  /**
-   * The CSS `object-fit` property
-   */
-  objectFit?: ResponsiveValue<CSS.Property.ObjectFit>
-  /**
-   * The CSS `object-psition` property
-   */
-  objectPosition?: ResponsiveValue<CSS.Property.ObjectPosition<Length>>
-  /**
-   * The CSS `float` property
-   */
-  float?: ResponsiveValue<CSS.Property.Float>
-  /**
-   * The CSS `will-change` property
-   */
-  willChange?: ResponsiveValue<CSS.Property.WillChange>
+  apply?: ResponsiveValue<string>
 }
-
-export const others = system(config)
-export const othersParser = createParser(config)

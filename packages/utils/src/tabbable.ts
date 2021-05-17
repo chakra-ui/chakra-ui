@@ -1,10 +1,12 @@
 // Really great work done by Diego Haz on this one
 // https://github.com/reakit/reakit/blob/master/packages/reakit-utils/src/tabbable.ts
 
-export const hasDisplayNone = (element: Element) =>
+import { getOwnerDocument } from "./dom"
+
+export const hasDisplayNone = (element: HTMLElement) =>
   window.getComputedStyle(element).display === "none"
 
-export const hasTabIndex = (element: Element) =>
+export const hasTabIndex = (element: HTMLElement) =>
   element.hasAttribute("tabindex")
 
 export const hasNegativeTabIndex = (element: HTMLElement) =>
@@ -12,12 +14,32 @@ export const hasNegativeTabIndex = (element: HTMLElement) =>
 
 export function isDisabled(element: HTMLElement) {
   return (
-    Boolean(element.getAttribute("disabled")) == true ||
-    Boolean(element.getAttribute("aria-disabled")) == true
+    Boolean(element.getAttribute("disabled")) === true ||
+    Boolean(element.getAttribute("aria-disabled")) === true
   )
 }
 
-export function hasFocusWithin(element: Element) {
+export interface FocusableElement {
+  focus(options?: FocusOptions): void
+}
+
+export function isInputElement(
+  element: FocusableElement,
+): element is HTMLInputElement {
+  return (
+    isHTMLElement(element) &&
+    element.tagName.toLowerCase() === "input" &&
+    "select" in element
+  )
+}
+
+export function isActiveElement(element: FocusableElement) {
+  const doc =
+    element instanceof HTMLElement ? getOwnerDocument(element) : document
+  return doc.activeElement === (element as HTMLElement)
+}
+
+export function hasFocusWithin(element: HTMLElement) {
   if (!document.activeElement) return false
   return element.contains(document.activeElement)
 }
@@ -36,7 +58,7 @@ export function isContentEditable(element: HTMLElement) {
   return value !== "false" && value != null
 }
 
-export function isFocusable(element: Element) {
+export function isFocusable(element: HTMLElement) {
   if (!isHTMLElement(element) || isHidden(element) || isDisabled(element)) {
     return false
   }
@@ -60,45 +82,11 @@ export function isFocusable(element: Element) {
   return hasTabIndex(element)
 }
 
-export function isTabbable(element: Element) {
+export function isTabbable(element?: HTMLElement | null) {
+  if (!element) return false
   return (
     isHTMLElement(element) &&
     isFocusable(element) &&
     !hasNegativeTabIndex(element)
   )
-}
-
-const isActiveElement = (element: FocusableElement) =>
-  document.activeElement === (element as any)
-
-function isInputElement(
-  element: FocusableElement,
-): element is HTMLInputElement {
-  return (
-    isHTMLElement(element) &&
-    element.tagName.toLowerCase() === "input" &&
-    "select" in element
-  )
-}
-
-export interface FocusableElement {
-  focus(options?: FocusOptions): void
-}
-
-interface FocusProps extends FocusOptions {
-  isActive?: typeof isActiveElement
-}
-
-export function focus(element: FocusableElement, options: FocusProps = {}) {
-  const { isActive = isActiveElement, preventScroll } = options
-
-  if (isActive(element)) return -1
-
-  return requestAnimationFrame(() => {
-    element.focus({ preventScroll })
-
-    if (isInputElement(element)) {
-      element.select()
-    }
-  })
 }

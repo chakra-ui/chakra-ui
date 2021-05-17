@@ -5,6 +5,7 @@ const parts = ["field", "addon"]
 const baseStyle = {
   field: {
     width: "100%",
+    minWidth: 0,
     outline: 0,
     position: "relative",
     appearance: "none",
@@ -15,25 +16,29 @@ const baseStyle = {
 const size = {
   lg: {
     fontSize: "lg",
-    pl: 4,
-    pr: 4,
+    px: 4,
     h: 12,
     borderRadius: "md",
   },
 
   md: {
     fontSize: "md",
-    pl: 4,
-    pr: 4,
+    px: 4,
     h: 10,
     borderRadius: "md",
   },
 
   sm: {
     fontSize: "sm",
-    pl: 3,
-    pr: 3,
+    px: 3,
     h: 8,
+    borderRadius: "sm",
+  },
+
+  xs: {
+    fontSize: "xs",
+    px: 2,
+    h: 6,
     borderRadius: "sm",
   },
 }
@@ -50,6 +55,10 @@ const sizes = {
   sm: {
     field: size.sm,
     addon: size.sm,
+  },
+  xs: {
+    field: size.xs,
+    addon: size.xs,
   },
 }
 
@@ -81,14 +90,14 @@ function variantOutline(props: Record<string, any>) {
         opacity: 0.4,
         cursor: "not-allowed",
       },
+      _invalid: {
+        borderColor: getColor(theme, ec),
+        boxShadow: `0 0 0 1px ${getColor(theme, ec)}`,
+      },
       _focus: {
         zIndex: 1,
         borderColor: getColor(theme, fc),
         boxShadow: `0 0 0 1px ${getColor(theme, fc)}`,
-      },
-      _invalid: {
-        borderColor: getColor(theme, ec),
-        boxShadow: `0 0 0 1px ${getColor(theme, ec)}`,
       },
     },
     addon: {
@@ -119,12 +128,12 @@ function variantFilled(props: Record<string, any>) {
         opacity: 0.4,
         cursor: "not-allowed",
       },
+      _invalid: {
+        borderColor: getColor(theme, ec),
+      },
       _focus: {
         bg: "transparent",
         borderColor: getColor(theme, fc),
-      },
-      _invalid: {
-        borderColor: getColor(theme, ec),
       },
     },
     addon: {
@@ -144,26 +153,26 @@ function variantFlushed(props: Record<string, any>) {
       borderBottom: "1px solid",
       borderColor: "inherit",
       borderRadius: 0,
-      pl: 0,
-      pr: 0,
+      px: 0,
       bg: "transparent",
       _readOnly: {
         boxShadow: "none !important",
         userSelect: "all",
       },
+      _invalid: {
+        borderColor: getColor(theme, ec),
+        boxShadow: `0px 1px 0px 0px ${getColor(theme, ec)}`,
+      },
       _focus: {
         borderColor: getColor(theme, fc),
         boxShadow: `0px 1px 0px 0px ${getColor(theme, fc)}`,
-      },
-      _invalid: {
-        borderColor: getColor(theme, ec),
       },
     },
     addon: {
       borderBottom: "2px solid",
       borderColor: "inherit",
       borderRadius: 0,
-      paddingX: 0,
+      px: 0,
       bg: "transparent",
     },
   }
@@ -172,14 +181,12 @@ function variantFlushed(props: Record<string, any>) {
 const variantUnstyled = {
   field: {
     bg: "transparent",
-    pl: 0,
-    pr: 0,
+    px: 0,
     height: "auto",
   },
   addon: {
     bg: "transparent",
-    pl: 0,
-    pr: 0,
+    px: 0,
     height: "auto",
   },
 }

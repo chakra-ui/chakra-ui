@@ -44,14 +44,14 @@ export interface FocusLockProps {
    * @default `false`
    */
   persistentFocus?: boolean
+  /**
+   * Enables aggressive focus capturing within iframes.
+   * - If `true`: keep focus in the lock, no matter where lock is active
+   * - If `false`:  allows focus to move outside of iframe
+   */
+  lockFocusAcrossFrames?: boolean
 }
 
-/**
- * React component to trap focus within an element or component.
- * Mostly used in Modals, Popovers, etc.
- *
- * @see Docs https://chakra-ui.com/components/focuslock
- */
 export const FocusLock: React.FC<FocusLockProps> = (props) => {
   const {
     initialFocusRef,
@@ -62,17 +62,16 @@ export const FocusLock: React.FC<FocusLockProps> = (props) => {
     isDisabled,
     autoFocus,
     persistentFocus,
+    lockFocusAcrossFrames,
   } = props
 
   const onActivation = React.useCallback(() => {
     if (initialFocusRef?.current) {
       initialFocusRef.current.focus()
-    } else {
-      if (contentRef?.current) {
-        const focusables = getAllFocusable(contentRef.current)
-        if (focusables.length === 0) {
-          focus(contentRef.current)
-        }
+    } else if (contentRef?.current) {
+      const focusables = getAllFocusable(contentRef.current)
+      if (focusables.length === 0) {
+        focus(contentRef.current, { nextTick: true })
       }
     }
   }, [initialFocusRef, contentRef])
@@ -85,6 +84,7 @@ export const FocusLock: React.FC<FocusLockProps> = (props) => {
 
   return (
     <ReactFocusLock
+      crossFrame={lockFocusAcrossFrames}
       persistentFocus={persistentFocus}
       autoFocus={autoFocus}
       disabled={isDisabled}

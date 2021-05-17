@@ -1,6 +1,7 @@
 import React from "react"
-import { Box, Icon, Text, Stack, Link, chakra } from "@chakra-ui/core"
+import { Box, Icon, Text, Stack, Link, chakra } from "@chakra-ui/react"
 import { IoLogoTwitter, IoLogoLinkedin } from "react-icons/io"
+import { FaYoutube } from "react-icons/fa"
 import { MdEmail } from "react-icons/md"
 import { DiGithubBadge } from "react-icons/di"
 
@@ -37,6 +38,11 @@ const links = [
     label: "Email",
     href: "mailto:sage@adebayosegun.com",
   },
+  {
+    icon: FaYoutube,
+    label: "YouTube",
+    href: "https://www.youtube.com/channel/UC4TmDovH46TB4S0SM0Y4CIg",
+  },
 ]
 
 const NigeriaFlag = (props) => (
@@ -46,8 +52,10 @@ const NigeriaFlag = (props) => (
     h="16px"
     w="auto"
     viewBox="0 0 48 48"
+    verticalAlign="middle"
     {...props}
   >
+    <title>Nigeria</title>
     <g>
       <rect x="16" y="6" fill="#E6E6E6" width="16" height="36"></rect>{" "}
       <path

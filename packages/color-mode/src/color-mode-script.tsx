@@ -35,6 +35,10 @@ function setScript(initialValue: Mode) {
 
 interface ColorModeScriptProps {
   initialColorMode?: Mode
+  /**
+   * Optional nonce that will be passed to the created `<script>` tag.
+   */
+  nonce?: string
 }
 
 /**
@@ -43,6 +47,8 @@ interface ColorModeScriptProps {
  */
 export const ColorModeScript = (props: ColorModeScriptProps) => {
   const { initialColorMode = "light" } = props
-  const __html = `(${String(setScript)})('${initialColorMode}')`
-  return <script dangerouslySetInnerHTML={{ __html }} />
+  const html = `(${String(setScript)})('${initialColorMode}')`
+  return (
+    <script nonce={props.nonce} dangerouslySetInnerHTML={{ __html: html }} />
+  )
 }

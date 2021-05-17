@@ -34,42 +34,33 @@ export interface SimpleGridProps extends GridProps, SimpleGridOptions {}
  * React component make that providers a simpler interface, and
  * make its easy to create responsive grid layouts.
  *
- * @see Docs https://chakra-ui.com/components/simplegrid
+ * @see Docs https://chakra-ui.com/docs/layout/simple-grid
  */
-export const SimpleGrid = forwardRef<SimpleGridProps, "div">(
-  function SimpleGrid(props, ref) {
-    const {
-      columns,
-      spacingX,
-      spacingY,
-      spacing,
-      minChildWidth,
-      ...rest
-    } = props
+export const SimpleGrid = forwardRef<SimpleGridProps, "div">((props, ref) => {
+  const { columns, spacingX, spacingY, spacing, minChildWidth, ...rest } = props
 
-    const templateColumns = Boolean(minChildWidth)
-      ? widthToColumns(minChildWidth)
-      : countToColumns(columns)
+  const templateColumns = minChildWidth
+    ? widthToColumns(minChildWidth)
+    : countToColumns(columns)
 
-    return (
-      <Grid
-        ref={ref}
-        gap={spacing}
-        columnGap={spacingX}
-        rowGap={spacingY}
-        templateColumns={templateColumns}
-        {...rest}
-      />
-    )
-  },
-)
+  return (
+    <Grid
+      ref={ref}
+      gap={spacing}
+      columnGap={spacingX}
+      rowGap={spacingY}
+      templateColumns={templateColumns}
+      {...rest}
+    />
+  )
+})
 
 if (__DEV__) {
   SimpleGrid.displayName = "SimpleGrid"
 }
 
 function toPx(n: string | number) {
-  return isNumber(n) ? n + "px" : n
+  return isNumber(n) ? `${n}px` : n
 }
 
 function widthToColumns(width: any) {
@@ -80,6 +71,6 @@ function widthToColumns(width: any) {
 
 function countToColumns(count: any) {
   return mapResponsive(count, (value) =>
-    isNull(value) ? null : `repeat(${value}, 1fr)`,
+    isNull(value) ? null : `repeat(${value}, minmax(0, 1fr))`,
   )
 }

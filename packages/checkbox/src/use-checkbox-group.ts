@@ -1,12 +1,12 @@
-import { useState, useCallback, ChangeEvent } from "react"
-import { useControllableProp } from "@chakra-ui/hooks"
+import { useCallbackRef, useControllableState } from "@chakra-ui/hooks"
 import {
-  isInputEvent,
   addItem,
+  Dict,
   removeItem,
   StringOrNumber,
-  Dict,
+  isInputEvent,
 } from "@chakra-ui/utils"
+import { ChangeEvent, useCallback } from "react"
 
 type EventOrValue = ChangeEvent<HTMLInputElement> | StringOrNumber
 
@@ -23,6 +23,10 @@ export interface UseCheckboxGroupProps {
    * The callback fired when any children Checkbox is checked or unchecked
    */
   onChange?(value: StringOrNumber[]): void
+  /**
+   * If `true`, all wrapped checkbox inputs will be disabled
+   */
+  isDisabled?: boolean
   /**
    * If `true`, input elements will receive
    * `checked` attribute instead of `isChecked`.
@@ -42,25 +46,20 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
   const {
     defaultValue,
     value: valueProp,
-    onChange: onChangeProp,
+    onChange,
+    isDisabled,
     isNative,
   } = props
 
-  const [valueState, setValue] = useState(defaultValue || [])
-  const [isControlled, value] = useControllableProp(valueProp, valueState)
+  const onChangeProp = useCallbackRef(onChange)
 
-  const updateValue = useCallback(
-    (nextState: StringOrNumber[]) => {
-      if (!isControlled) {
-        setValue(nextState)
-      }
+  const [value, setValue] = useControllableState({
+    value: valueProp,
+    defaultValue: defaultValue || [],
+    onChange: onChangeProp,
+  })
 
-      onChangeProp?.(nextState)
-    },
-    [isControlled, onChangeProp],
-  )
-
-  const onChange = useCallback(
+  const handleChange = useCallback(
     (eventOrValue: EventOrValue) => {
       if (!value) return
 
@@ -76,23 +75,29 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
         ? addItem(value, selectedValue)
         : removeItem(value, selectedValue)
 
-      updateValue(nextValue)
+      setValue(nextValue)
     },
-    [updateValue, value],
+    [setValue, value],
   )
 
-  return {
-    value,
-    onChange,
-    setValue: updateValue,
-    getCheckboxProps: (props: Dict = {}) => {
+  const getCheckboxProps = useCallback(
+    (props: Dict = {}) => {
       const checkedKey = isNative ? "checked" : "isChecked"
       return {
         ...props,
         [checkedKey]: value.includes(props.value),
-        onChange,
+        onChange: handleChange,
       }
     },
+    [handleChange, isNative, value],
+  )
+
+  return {
+    value,
+    isDisabled,
+    onChange: handleChange,
+    setValue,
+    getCheckboxProps,
   }
 }
 

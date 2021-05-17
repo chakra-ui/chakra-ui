@@ -112,17 +112,26 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   }, [colorMode, setColorMode])
 
   React.useEffect(() => {
+    let removeListener: any
     if (useSystemColorMode) {
-      return addListener(setColorMode)
+      removeListener = addListener(setColorMode)
+    }
+    return () => {
+      if (removeListener && useSystemColorMode) {
+        removeListener()
+      }
     }
   }, [setColorMode, useSystemColorMode])
 
   // presence of `value` indicates a controlled context
-  const context = {
-    colorMode: (value ?? colorMode) as ColorMode,
-    toggleColorMode: value ? noop : toggleColorMode,
-    setColorMode: value ? noop : setColorMode,
-  }
+  const context = React.useMemo(
+    () => ({
+      colorMode: (value ?? colorMode) as ColorMode,
+      toggleColorMode: value ? noop : toggleColorMode,
+      setColorMode: value ? noop : setColorMode,
+    }),
+    [colorMode, setColorMode, toggleColorMode, value],
+  )
 
   return (
     <ColorModeContext.Provider value={context}>
@@ -180,5 +189,5 @@ export function useColorModeValue<TLight = unknown, TDark = unknown>(
   dark: TDark,
 ) {
   const { colorMode } = useColorMode()
-  return colorMode === "light" ? light : dark
+  return colorMode === "dark" ? dark : light
 }

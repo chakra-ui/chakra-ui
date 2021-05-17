@@ -1,8 +1,10 @@
 import * as React from "react"
-import { render } from "@chakra-ui/test-utils"
+import { render, testA11y } from "@chakra-ui/test-utils"
 import { Textarea } from "../src"
 
-test("Textarea renders correctly", () => {
-  const { asFragment } = render(<Textarea defaultValue="hello" />)
-  expect(asFragment()).toMatchSnapshot()
+test("Textarea renders correctly", async () => {
+  const { container } = render(
+    <Textarea aria-label="Enter notes" defaultValue="hello" />,
+  )
+  await testA11y(container)
 })

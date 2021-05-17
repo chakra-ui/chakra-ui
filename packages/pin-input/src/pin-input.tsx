@@ -1,14 +1,16 @@
 import {
   chakra,
-  PropsOf,
-  ThemingProps,
-  useStyleConfig,
   forwardRef,
   omitThemingProps,
+  ThemingProps,
+  useStyleConfig,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__, getValidChildren } from "@chakra-ui/utils"
+import { cx, __DEV__ } from "@chakra-ui/utils"
+import { getValidChildren } from "@chakra-ui/react-utils"
 import * as React from "react"
 import {
+  PinInputDescendantsProvider,
   PinInputProvider,
   usePinInput,
   usePinInputField,
@@ -32,7 +34,7 @@ interface InputOptions {
 
 export interface PinInputProps
   extends UsePinInputProps,
-    ThemingProps,
+    ThemingProps<"PinInput">,
     InputOptions {
   /**
    * The children of the pin input component
@@ -44,24 +46,28 @@ export const PinInput: React.FC<PinInputProps> = (props) => {
   const styles = useStyleConfig("PinInput", props)
 
   const { children, ...rest } = omitThemingProps(props)
-  const context = usePinInput(rest)
+  const { descendants, ...context } = usePinInput(rest)
 
-  const clones = getValidChildren(children).map((child) => {
-    return React.cloneElement(child, { __css: styles })
-  })
+  const clones = getValidChildren(children).map((child) =>
+    React.cloneElement(child, { __css: styles }),
+  )
 
-  return <PinInputProvider value={context}>{clones}</PinInputProvider>
+  return (
+    <PinInputDescendantsProvider value={descendants}>
+      <PinInputProvider value={context}>{clones}</PinInputProvider>
+    </PinInputDescendantsProvider>
+  )
 }
 
 if (__DEV__) {
   PinInput.displayName = "PinInput"
 }
 
-export interface PinInputFieldProps extends PropsOf<typeof chakra.input> {}
+export interface PinInputFieldProps extends HTMLChakraProps<"input"> {}
 
 export const PinInputField = forwardRef<PinInputFieldProps, "input">(
-  function PinInputField(props, ref) {
-    const inputProps = usePinInputField({ ref, ...props })
+  (props, ref) => {
+    const inputProps = usePinInputField(props, ref)
     return (
       <chakra.input
         {...inputProps}

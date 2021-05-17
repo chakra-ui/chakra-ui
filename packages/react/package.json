@@ -1,0 +1,118 @@
+{
+  "name": "@chakra-ui/react",
+  "version": "1.6.1",
+  "description": "Responsive and accessible React UI components built with React and Emotion",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "typings": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "start": "nodemon --watch src --exec yarn build -e ts,tsx",
+    "build": "concurrently yarn:build:*",
+    "test": "jest --env=jsdom --passWithNoTests",
+    "lint": "concurrently yarn:lint:*",
+    "version": "yarn build",
+    "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
+    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
+    "test:cov": "yarn test --coverage",
+    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
+    "lint:types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@chakra-ui/accordion": "1.3.1",
+    "@chakra-ui/alert": "1.2.5",
+    "@chakra-ui/avatar": "1.2.5",
+    "@chakra-ui/breadcrumb": "1.2.5",
+    "@chakra-ui/button": "1.3.2",
+    "@chakra-ui/checkbox": "1.5.2",
+    "@chakra-ui/close-button": "1.1.9",
+    "@chakra-ui/control-box": "1.0.12",
+    "@chakra-ui/counter": "1.1.5",
+    "@chakra-ui/css-reset": "1.0.0",
+    "@chakra-ui/editable": "1.2.5",
+    "@chakra-ui/form-control": "1.3.5",
+    "@chakra-ui/hooks": "1.5.2",
+    "@chakra-ui/icon": "1.1.9",
+    "@chakra-ui/image": "1.0.15",
+    "@chakra-ui/input": "1.2.5",
+    "@chakra-ui/layout": "1.4.5",
+    "@chakra-ui/live-region": "1.0.12",
+    "@chakra-ui/media-query": "1.0.13",
+    "@chakra-ui/menu": "1.6.1",
+    "@chakra-ui/modal": "1.8.5",
+    "@chakra-ui/number-input": "1.2.5",
+    "@chakra-ui/pin-input": "1.6.1",
+    "@chakra-ui/popover": "1.7.0",
+    "@chakra-ui/popper": "2.1.2",
+    "@chakra-ui/portal": "1.2.5",
+    "@chakra-ui/progress": "1.1.9",
+    "@chakra-ui/radio": "1.3.5",
+    "@chakra-ui/react-env": "1.0.4",
+    "@chakra-ui/select": "1.1.9",
+    "@chakra-ui/skeleton": "1.1.12",
+    "@chakra-ui/slider": "1.2.5",
+    "@chakra-ui/spinner": "1.1.9",
+    "@chakra-ui/stat": "1.1.9",
+    "@chakra-ui/switch": "1.2.5",
+    "@chakra-ui/system": "1.6.5",
+    "@chakra-ui/table": "1.2.4",
+    "@chakra-ui/tabs": "1.5.1",
+    "@chakra-ui/tag": "1.1.9",
+    "@chakra-ui/textarea": "1.1.9",
+    "@chakra-ui/theme": "1.8.5",
+    "@chakra-ui/toast": "1.2.6",
+    "@chakra-ui/tooltip": "1.3.5",
+    "@chakra-ui/transition": "1.3.0",
+    "@chakra-ui/utils": "1.8.0",
+    "@chakra-ui/visually-hidden": "1.0.12"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "framer-motion": "3.x || 4.x",
+    "react": ">=16.8.6",
+    "react-dom": ">=16.8.6"
+  },
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "license": "MIT",
+  "homepage": "https://chakra-ui.com/",
+  "repository": "https://github.com/chakra-ui/chakra-ui",
+  "keywords": [
+    "react",
+    "ui",
+    "design-system",
+    "react-components",
+    "uikit",
+    "accessible",
+    "components",
+    "emotion",
+    "library",
+    "design-system"
+  ],
+  "storybook": {
+    "title": "Chakra UI",
+    "url": "https://chakra-ui.netlify.app"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.1.4",
+    "@emotion/styled": "^11.0.0",
+    "framer-motion": "^4.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}

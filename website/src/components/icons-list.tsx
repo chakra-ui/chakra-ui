@@ -1,5 +1,5 @@
 import React from "react"
-import { Grid, Flex, Text } from "@chakra-ui/core"
+import { Grid, Flex, Text } from "@chakra-ui/react"
 import * as icons from "@chakra-ui/icons"
 
 const iconList = {
@@ -84,7 +84,7 @@ const IconsList = () => {
           >
             <Icon />
             <Text mt={2} fontSize="sm" textAlign="center">
-              {`<${key}/>`}
+              {key}
             </Text>
           </Flex>
         )

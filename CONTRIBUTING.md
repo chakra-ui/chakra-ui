@@ -4,26 +4,9 @@ When it comes to open source, there are different ways you can contribute, all
 of which are valuable. Here's a few guidelines that should help you as you
 prepare your contribution.
 
-- [Setup](#setup)
-- [Development](#development)
-  - [Tooling](#tooling)
-  - [Commands](#commands)
-    - [Package Aliasing and Yarn Workspace](#package-aliasing-and-yarn-workspace)
-  - [Documentation](#documentation)
-  - [Storybook](#storybook)
-- [Think you found a bug?](#think-you-found-a-bug)
-- [Proposing new or changed API?](#proposing-new-or-changed-api)
-- [Making a Pull Request?](#making-a-pull-request)
-  - [Commit Convention](#commit-convention)
-  - [Steps to PR](#steps-to-pr)
-  - [Tests](#tests)
-- [Want to write a blog post or tutorial](#want-to-write-a-blog-post-or-tutorial)
-- [Want to help improve the docs?](#want-to-help-improve-the-docs)
-- [License](#license)
+## Setup the Project
 
-## Setup
-
-The following steps will get you set up to contribute changes to this repo:
+The following steps will get you up and running to contribute to Chakra UI:
 
 1. Fork the repo (click the <kbd>Fork</kbd> button at the top right of
    [this page](https://github.com/chakra-ui/chakra-ui))
@@ -31,24 +14,21 @@ The following steps will get you set up to contribute changes to this repo:
 2. Clone your fork locally
 
 ```sh
-# in a terminal, cd to the parent directory where you want your clone to be, then
 git clone https://github.com/<your_github_username>/chakra-ui.git
-
 cd chakra-ui
 ```
 
-3. Setup all dependencies and build. Chakra UI uses `yarn` and `lerna`, so run
-   `yarn prestart`. This command will install dependencies, and then bootstrap
-   the repo using `lerna` to build all packages.
+3. Setup all the dependencies and packages by running `yarn prestart`. This
+   command will install dependencies and bootstrap the repo using `lerna`
 
 > If you run into any issues during this step, kindly reach out to the Chakra UI
 > React team here: https://discord.gg/dQHfcWF
 
 ## Development
 
-To improve our development process, we've set up a couple of systems. Chakra UI
-uses a monorepo structure, this means each component is it's own package and can
-use consumed independently.
+To improve our development process, we've set up tooling and systems. Chakra UI
+uses a monorepo structure and we treat each component as an independent package
+that can be consumed in isolation.
 
 ### Tooling
 
@@ -58,8 +38,10 @@ use consumed independently.
   testing
 - [Testing Library](https://testing-library.com/) for testing components and
   hooks
-- [Gatsby](https://www.gatsbyjs.org/) for a blazing fast documentation website.
+- [Nextjs](https://www.nextjs.org/) for a blazing fast documentation website.
   versioning and changelogs
+- [Changeset](https://github.com/atlassian/changesets) for changes
+  documentation, changelog generation, and release management.
 
 ### Commands
 
@@ -80,8 +62,8 @@ end with `.stories.tsx`.
 
 **`yarn release`**: publish changed packages.
 
-**`yarn [package] <cmd>`**: Run a command on the specific package you're working
-on. You can run `build`, `test`, `lint` commands.
+**`yarn pkg [package] <cmd>`**: Run a command on the specific package you're
+working on. You can run `build`, `test`, `lint` commands.
 
 #### Package Aliasing and Yarn Workspace
 
@@ -89,7 +71,7 @@ Since we're using lerna monorepo + yarn workspaces by default, this enables us
 to run commands within component packages directly from the root.
 
 Each component is named this way: `@chakra-ui/[component]`. Let's say we want to
-build the checkbox component. Here's how to do it:
+build the button component. Here's how to do it:
 
 ```bash
 yarn workspace @chakra-ui/button build
@@ -104,14 +86,14 @@ each component in the root `package.json`. Now you can simply do:
 
 ```bash
 # to build
-yarn button build
+yarn pkg tabs build
 
 # to test
-yarn button test
-yarn button test --watch
+yarn pkg tabs test
+yarn pkg tabs test --watch
 
 # to lint
-yarn button lint
+yarn pkg tabs lint
 ```
 
 This alias is particularly useful when you're working on a specific component
@@ -119,13 +101,12 @@ and want to avoid running the command for all components.
 
 ### Documentation
 
-The documentation site is built with Gatsby. If you'd like to contribute to the
-docs, simply run `yarn build`, then `yarn docs:build`, and then
-`yarn docs:start`.
+The documentation site is built with Next.js. If you'd like to contribute to the
+docs, simply run `yarn build`, and `yarn docs:dev`
 
 ### Storybook
 
-Build components in isolation with Storybook using `yarn storybook`.
+Build components in isolation with Storybook using `yarn storybook`
 
 ## Think you found a bug?
 
@@ -180,13 +161,29 @@ https://www.conventionalcommits.org/ or check out the
 
 ### Steps to PR
 
-- Fork of the chakra-ui repository and clone your fork
-- Create a new branch out of the `develop` branch. We follow the convention
-  `[type/scope]`. For example `fix/accordion-hook`, `docs/menu-typo`
+1. Fork of the chakra-ui repository and clone your fork
 
-  - `type` can be either `docs`, `fix`, `feat`, `build`, or any other
-    conventional commit type
-  - `scope` is just a short id that describes the scope of work.
+2. Create a new branch out of the `main` branch. We follow the convention
+   `[type/scope]`. For example `fix/accordion-hook` or `docs/menu-typo`. `type`
+   can be either `docs`, `fix`, `feat`, `build`, or any other conventional
+   commit type. `scope` is just a short id that describes the scope of work.
+
+3. Make and commit your changes following the
+   [commit convention](https://github.com/chakra-ui/chakra-ui/blob/main/CONTRIBUTING.md#commit-convention).
+   As you develop, you can run `yarn pkg <module> build` and
+   `yarn pkg <module> test` to make sure everything works as expected. Please
+   note that you might have to run `yarn boot` first in order to build all
+   dependencies.
+
+4. Run `yarn changeset` to create a detailed description of your changes. This
+   will be used to generate a changelog when we publish an update.
+   [Learn more about Changeset](https://github.com/atlassian/changesets/tree/master/packages/cli).
+   Please note that you might have to run `git fetch origin main:master` (where
+   origin will be your fork on GitHub) before `yarn changeset` works.
+
+> If you made minor changes like CI config, prettier, etc, you can run
+> `yarn changeset add --empty` to generate an empty changeset file to document
+> your changes.
 
 ### Tests
 
@@ -209,8 +206,8 @@ variable allows the user to avoid the limit.
 
 Visit
 https://github.com/settings/tokens/new?description=Chakra+website+development to
-create a new personal access token. Once it's created, be sure to copy the token
-string.
+create a new personal access token. After creating the token, be sure to copy
+the token string to your clipboard.
 
 You'll then run the following command in the terminal that you'll start the docs
 from:

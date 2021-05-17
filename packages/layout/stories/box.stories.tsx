@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Box, Flex, Spacer, Text, Kbd, Square, Circle } from "../src"
+import { Box, Circle, Flex, Kbd, Spacer, Square } from "../src"
 
 export default {
   title: "Box",
@@ -26,7 +26,10 @@ export const basic = () => (
 export const kbd = () => <Kbd>Ctrl + L</Kbd>
 
 export const spacer = () => (
-  <Flex color="white" direction={{ base: "column", md: "row" }}>
+  <Flex
+    color={["green.400", "tomato"]}
+    direction={{ base: "column", md: "row" }}
+  >
     <Box bg="pink.500" boxSize="100px">
       Box 1
     </Box>

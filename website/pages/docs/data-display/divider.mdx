@@ -5,14 +5,12 @@ image: "components/divider.svg"
 description: Dividers are used to visually separate content in a list or group.
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
 Dividers are used to visually separate content in a list or group.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/layout", url: "#" }}
+  theme={{ componentName: "divider" }}
+  github={{ package: "divider" }}
+  npm={{ package: "@chakra-ui/layout" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -20,12 +18,13 @@ Dividers are used to visually separate content in a list or group.
 ## Import
 
 ```js
-import { Divider } from "@chakra-ui/core"
+import { Divider } from "@chakra-ui/react"
 ```
 
 ## Usage
 
-The Divider displays a thin horizontal or vertical line, and renders a `hr` tag.
+The `Divider` displays a thin horizontal or vertical line, and renders a `hr`
+tag.
 
 ```jsx
 <Divider />
@@ -59,6 +58,4 @@ assigned a height.
 
 ## Props
 
-| Name          | Type                     | Default      | Description                    |
-| ------------- | ------------------------ | ------------ | ------------------------------ |
-| `orientation` | `horizontal`, `vertical` | `horizontal` | The orientation of the divider |
+<PropsTable of="Divider" />

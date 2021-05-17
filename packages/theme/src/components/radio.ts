@@ -1,6 +1,6 @@
 import Checkbox from "./checkbox"
 
-const parts = ["control", "label"]
+const parts = ["container", "control", "label"]
 
 function baseStyleControl(props: Record<string, any>) {
   const { control } = Checkbox.baseStyle(props)
@@ -23,12 +23,10 @@ function baseStyleControl(props: Record<string, any>) {
   }
 }
 
-const baseStyle = function (props: Record<string, any>) {
-  return {
-    label: Checkbox.baseStyle(props).label,
-    control: baseStyleControl(props),
-  }
-}
+const baseStyle = (props: Record<string, any>) => ({
+  label: Checkbox.baseStyle(props).label,
+  control: baseStyleControl(props),
+})
 
 const sizes = {
   md: {

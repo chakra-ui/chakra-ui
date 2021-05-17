@@ -4,14 +4,12 @@ package: "@chakra-ui/textarea"
 image: "components/textarea.svg"
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
-The Textarea component allows you to easily create multi-line text inputs.
+The `Textarea` component allows you to easily create multi-line text inputs.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/textarea", url: "#" }}
+  theme={{ componentName: "textarea" }}
+  github={{ package: "textarea" }}
+  npm={{ package: "@chakra-ui/textarea" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -19,7 +17,7 @@ The Textarea component allows you to easily create multi-line text inputs.
 ## Import
 
 ```js
-import { Textarea } from "@chakra-ui/core"
+import { Textarea } from "@chakra-ui/react"
 ```
 
 ### Usage
@@ -54,7 +52,7 @@ function Example() {
 
 ### Resize behavior
 
-You can add `resize` prop to change the Textarea resize behavior.
+You can add `resize` prop to change the `Textarea` resize behavior.
 
 ```jsx
 function ResizeExample() {
@@ -94,8 +92,6 @@ function ResizeExample() {
 
 ## Props
 
-The Textarea composes the [Input](/docs/form/input) component
+The Textarea composes the [Input](/docs/form/input) component.
 
-| Name   | Type     | Default    | Description                                                         |
-| ------ | -------- | ---------- | ------------------------------------------------------------------- |
-| resize | `string` | `vertical` | Textarea resize behavior, can be `vertical`, `horizontal` or `none` |
+<PropsTable of="Textarea" />

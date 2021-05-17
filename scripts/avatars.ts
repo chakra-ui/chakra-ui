@@ -2,8 +2,10 @@ import path from "path"
 import { promises as fs } from "fs"
 import mkdirp from "mkdirp"
 import fetch from "node-fetch"
-import { tweets } from "../website/configs/tweets.json"
+import tweetsJson from "../website/configs/tweets.json"
 import ImageCache from "./image-cache"
+
+const { tweets } = tweetsJson
 
 const websiteDir = path.join(__dirname, "..", "website")
 const publicDir = path.join(websiteDir, "public")

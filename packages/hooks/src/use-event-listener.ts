@@ -1,6 +1,10 @@
+import { runIfFn } from "@chakra-ui/utils"
 import * as React from "react"
-import { isBrowser } from "@chakra-ui/utils"
-import { useLatestRef } from "./use-latest-ref"
+import { useCallbackRef } from "./use-callback-ref"
+
+type DocumentOrElement = Document | HTMLElement | null
+
+export type EventListenerEnv = (() => DocumentOrElement) | DocumentOrElement
 
 /**
  * React hook to manage browser event listeners
@@ -9,30 +13,28 @@ import { useLatestRef } from "./use-latest-ref"
  * @param handler the event handler function to execute
  * @param doc the dom environment to execute against (defaults to `document`)
  * @param options the event listener options
+ *
+ * @internal
  */
-export function useEventListener(
-  event: keyof WindowEventMap,
-  handler: (event: any) => void,
-  doc: Document | null = isBrowser ? document : null,
+export function useEventListener<K extends keyof DocumentEventMap>(
+  event: K | (string & {}),
+  handler: (event: DocumentEventMap[K]) => void,
+  env?: EventListenerEnv,
   options?: boolean | AddEventListenerOptions,
 ) {
-  const savedHandler = useLatestRef(handler)
+  const listener = useCallbackRef(handler) as EventListener
 
   React.useEffect(() => {
-    if (!doc) return
+    const node = runIfFn(env) ?? document
 
-    const listener = (event: any) => {
-      savedHandler.current(event)
-    }
-
-    doc.addEventListener(event, listener, options)
-
+    node.addEventListener(event, listener, options)
     return () => {
-      doc.removeEventListener(event, listener, options)
+      node.removeEventListener(event, listener, options)
     }
-  }, [event, doc, options, savedHandler])
+  }, [event, env, options, listener])
 
   return () => {
-    doc?.removeEventListener(event, savedHandler.current, options)
+    const node = runIfFn(env) ?? document
+    node.removeEventListener(event, listener, options)
   }
 }

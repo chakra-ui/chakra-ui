@@ -62,7 +62,7 @@ export const whiten = (color: string, amount: number) => (theme: Dict) => {
 /**
  * Add black to a color
  * @param color - the color in hex, rgb, or hsl
- * @param amount - the amount white to add (0-1)
+ * @param amount - the amount black to add (0-1)
  */
 export const blacken = (color: string, amount: number) => (theme: Dict) => {
   const raw = getColor(theme, color)
@@ -72,13 +72,18 @@ export const blacken = (color: string, amount: number) => (theme: Dict) => {
 /**
  * Darken a specified color
  * @param color - the color in hex, rgb, or hsl
- * @param amount - the amount white to add (0-1)
+ * @param amount - the amount to darken (0-1)
  */
 export const darken = (color: string, amount: number) => (theme: Dict) => {
   const raw = getColor(theme, color)
   return Color(raw).darken(amount).toHexString()
 }
 
+/**
+ * Lighten a specified color
+ * @param color - the color in hex, rgb, or hsl
+ * @param amount - the amount to lighten (0-1)
+ */
 export const lighten = (color: string, amount: number) => (theme: Dict) =>
   Color(getColor(theme, color)).lighten(amount).toHexString()
 
@@ -169,14 +174,14 @@ export function randomColor(opts?: RandomColorOptions) {
 function randomColorFromString(str: string) {
   let hash = 0
   if (str.length === 0) return hash.toString()
-  for (let i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i += 1) {
     hash = str.charCodeAt(i) + ((hash << 5) - hash)
     hash = hash & hash
   }
   let color = "#"
-  for (let j = 0; j < 3; j++) {
+  for (let j = 0; j < 3; j += 1) {
     const value = (hash >> (j * 8)) & 255
-    color += ("00" + value.toString(16)).substr(-2)
+    color += `00${value.toString(16)}`.substr(-2)
   }
   return color
 }
@@ -184,7 +189,7 @@ function randomColorFromString(str: string) {
 function randomColorFromList(str: string, list: string[]) {
   let index = 0
   if (str.length === 0) return list[0]
-  for (let i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i += 1) {
     index = str.charCodeAt(i) + ((index << 5) - index)
     index = index & index
   }

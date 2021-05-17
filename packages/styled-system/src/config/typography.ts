@@ -1,28 +1,13 @@
 import * as CSS from "csstype"
-import { Config, createParser, system } from "@styled-system/core"
-import { ResponsiveValue, Length } from "../utils"
+import { Config } from "../utils/prop-config"
+import { ResponsiveValue, t, Token, transforms } from "../utils"
 
-const config: Config = {
-  fontFamily: {
-    property: "fontFamily",
-    scale: "fonts",
-  },
-  fontSize: {
-    property: "fontSize",
-    scale: "fontSizes",
-  },
-  fontWeight: {
-    property: "fontWeight",
-    scale: "fontWeights",
-  },
-  lineHeight: {
-    property: "lineHeight",
-    scale: "lineHeights",
-  },
-  letterSpacing: {
-    property: "letterSpacing",
-    scale: "letterSpacings",
-  },
+export const typography: Config = {
+  fontFamily: t.prop("fontFamily", "fonts"),
+  fontSize: t.prop("fontSize", "fontSizes", transforms.px),
+  fontWeight: t.prop("fontWeight", "fontWeights"),
+  lineHeight: t.prop("lineHeight", "lineHeights"),
+  letterSpacing: t.prop("letterSpacing", "letterSpacings"),
   textAlign: true,
   fontStyle: true,
   wordBreak: true,
@@ -30,8 +15,28 @@ const config: Config = {
   textOverflow: true,
   textTransform: true,
   whiteSpace: true,
-  textDecoration: true,
-  textDecor: { property: "textDecoration" },
+  noOfLines: {
+    static: {
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      display: "-webkit-box",
+      WebkitBoxOrient: "vertical",
+      //@ts-ignore
+      WebkitLineClamp: "var(--chakra-line-clamp)",
+    },
+    property: "--chakra-line-clamp",
+  },
+  isTruncated: {
+    transform(value) {
+      if (value === true) {
+        return {
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
+        }
+      }
+    },
+  },
 }
 
 /**
@@ -41,60 +46,59 @@ export interface TypographyProps {
   /**
    * The CSS `font-weight` property
    */
-  fontWeight?: ResponsiveValue<string | number>
+  fontWeight?: Token<number | (string & {}), "fontWeights">
   /**
    * The CSS `line-height` property
    */
-  lineHeight?: ResponsiveValue<CSS.Property.LineHeight<Length>>
+  lineHeight?: Token<CSS.Property.LineHeight | number, "lineHeights">
   /**
-   * The CSS `line-height` property
+   * The CSS `letter-spacing` property
    */
-  letterSpacing?: ResponsiveValue<CSS.Property.LetterSpacing<Length>>
+  letterSpacing?: Token<CSS.Property.LetterSpacing | number, "letterSpacings">
+
   /**
    * The CSS `font-size` property
    */
-  fontSize?: ResponsiveValue<CSS.Property.FontSize<Length>>
+  fontSize?: Token<CSS.Property.FontSize | number, "fontSizes">
   /**
    * The CSS `font-family` property
    */
-  fontFamily?: ResponsiveValue<CSS.Property.FontFamily>
+  fontFamily?: Token<CSS.Property.FontFamily, "fonts">
   /**
    * The CSS `text-align` property
    */
-  textAlign?: ResponsiveValue<CSS.Property.TextAlign>
+  textAlign?: Token<CSS.Property.TextAlign>
   /**
    * The CSS `font-style` property
    */
-  fontStyle?: ResponsiveValue<CSS.Property.FontStyle>
+  fontStyle?: Token<CSS.Property.FontStyle>
   /**
    * The CSS `word-break` property
    */
-  wordBreak?: ResponsiveValue<CSS.Property.WordBreak>
+  wordBreak?: Token<CSS.Property.WordBreak>
   /**
    * The CSS `overflow-wrap` property
    */
-  overflowWrap?: ResponsiveValue<CSS.Property.OverflowWrap>
+  overflowWrap?: Token<CSS.Property.OverflowWrap>
   /**
    * The CSS `text-overflow` property
    */
-  textOverflow?: ResponsiveValue<CSS.Property.TextOverflow>
+  textOverflow?: Token<CSS.Property.TextOverflow>
   /**
    * The CSS `text-transform` property
    */
-  textTransform?: ResponsiveValue<CSS.Property.TextTransform>
+  textTransform?: Token<CSS.Property.TextTransform>
   /**
    * The CSS `white-space` property
    */
-  whiteSpace?: ResponsiveValue<CSS.Property.WhiteSpace>
+  whiteSpace?: Token<CSS.Property.WhiteSpace>
   /**
-   * The CSS `text-decoration` property
+   * Used to visually truncate a text after a number of lines.
    */
-  textDecoration?: ResponsiveValue<CSS.Property.TextDecoration<Length>>
+  noOfLines?: ResponsiveValue<number>
   /**
-   * The CSS `text-decoration` property
+   * If `true`, it clamps truncate a text after one line.
+   * @deprecated - Use `noOfLines` instead
    */
-  textDecor?: ResponsiveValue<CSS.Property.TextDecoration<Length>>
+  isTruncated?: boolean
 }
-
-export const typography = system(config)
-export const typographyParser = createParser(config)

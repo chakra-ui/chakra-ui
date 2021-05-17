@@ -11,9 +11,10 @@ import {
   InputRightElement,
   Stack,
   Container,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 import Head from "next/head"
 import { Chakra } from "../src/Chakra"
+import { useState } from "react"
 
 function Switcher() {
   const { toggleColorMode: toggleMode } = useColorMode()
@@ -22,11 +23,11 @@ function Switcher() {
 }
 
 const InputGrouper = () => {
-  const [bool, setBool] = React.useState(false)
+  const [bool, setBool] = useState(false)
   return (
     <>
       <InputGroup maxWidth="400px">
-        <InputLeftElement color="gray.300" fontSize="1.2em" children="$23" />
+        <InputLeftElement color="gray.300" fontSize="1.2em" children="$" />
         <Input placeholder="Enter amount" />
         {bool && <InputRightElement children={"C"} />}
       </InputGroup>
@@ -36,8 +37,8 @@ const InputGrouper = () => {
   )
 }
 
-const Home = ({ cookies }) => (
-  <Chakra cookies={cookies}>
+const Home = () => (
+  <Chakra>
     <Container>
       <Head>
         <title>Create Next App</title>
@@ -60,10 +61,7 @@ const Home = ({ cookies }) => (
           </DarkMode>
         </chakra.div>
 
-        <InputGroup>
-          <InputLeftElement children={"+234"} />
-          <Input type="phone" placeholder="Phone number" />
-        </InputGroup>
+        <Input type="tel" placeholder="Phone number" />
 
         <InputGrouper />
 
@@ -80,5 +78,3 @@ const Home = ({ cookies }) => (
 )
 
 export default Home
-
-export { getServerSideProps } from "../src/Chakra"

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/popper",
-  "version": "1.0.0-rc.5",
+  "version": "2.1.2",
   "description": "A React component and hooks wrapper for popper.js",
   "keywords": [
     "react",
@@ -22,6 +22,12 @@
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -50,11 +56,13 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@popperjs/core": "2.4.4",
-    "react-popper": "2.2.3",
-    "@chakra-ui/utils": "1.0.0-rc.5"
+    "@chakra-ui/react-utils": "1.1.2",
+    "@popperjs/core": "2.4.4"
   },
   "peerDependencies": {
-    "react": "16.x"
+    "react": ">=16.8.6"
+  },
+  "devDependencies": {
+    "react": "^17.0.1"
   }
 }

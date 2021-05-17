@@ -1,7 +1,7 @@
+import { callAllHandlers } from "@chakra-ui/utils"
 import * as React from "react"
 import { useControllableProp } from "./use-controllable"
 import { useId } from "./use-id"
-import { callAllHandlers } from "@chakra-ui/utils"
 
 export interface UseDisclosureProps {
   isOpen?: boolean

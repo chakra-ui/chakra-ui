@@ -1,42 +1,52 @@
+import { mergeWith, objectKeys } from "@chakra-ui/utils"
 import {
   background,
   border,
   color,
+  effect,
+  filter,
   flexbox,
   grid,
+  interactivity,
+  layout,
+  list,
   others,
   position,
-  shadow,
+  ring,
   space,
-  typography,
-  layout,
-  outline,
+  textDecoration,
   transform,
-  list,
   transition,
+  typography,
 } from "./config"
-import { pseudoPropNames } from "./pseudo"
-import { compose } from "@styled-system/core"
+import { pseudoPropNames, pseudoSelectors } from "./pseudos"
 
-export const systemProps = compose(
+export const systemProps = mergeWith(
+  {},
   background,
   border,
   color,
   flexbox,
   layout,
-  outline,
+  filter,
+  ring,
+  interactivity,
   grid,
   others,
   position,
-  shadow,
+  effect,
   space,
   typography,
+  textDecoration,
   transform,
   list,
   transition,
 )
 
-const layoutSystem = compose(space, layout, flexbox, grid, position)
-export const layoutPropNames = layoutSystem.propNames
+const layoutSystem = Object.assign({}, space, layout, flexbox, grid, position)
+export const layoutPropNames = objectKeys(layoutSystem)
 
-export const propNames = [...systemProps.propNames, ...pseudoPropNames]
+export const propNames = [...objectKeys(systemProps), ...pseudoPropNames]
+const styleProps = { ...systemProps, ...pseudoSelectors }
+
+export const isStyleProp = (prop: string) => prop in styleProps

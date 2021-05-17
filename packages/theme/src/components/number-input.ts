@@ -1,20 +1,27 @@
 import { mode } from "@chakra-ui/theme-tools"
 import Input from "./input"
+import typography from "../foundations/typography"
 
-const parts = ["field", "stepper", "stepperGroup"]
+const parts = ["root", "field", "stepper", "stepperGroup"]
 
 const { variants, defaultProps } = Input
+
+const baseStyleRoot = {
+  "--number-input-stepper-width": "24px",
+  "--number-input-field-padding":
+    "calc(var(--number-input-stepper-width) + 0.5rem)",
+}
 
 const baseStyleField = Input.baseStyle?.field
 
 const baseStyleStepperGroup = {
-  width: "24px",
+  width: "var(--number-input-stepper-width)",
 }
 
 function baseStyleStepper(props: Record<string, any>) {
   return {
-    borderLeft: "1px solid",
-    borderColor: mode("inherit", "whiteAlpha.300")(props),
+    borderStart: "1px solid",
+    borderStartColor: mode("inherit", "whiteAlpha.300")(props),
     color: mode("inherit", "whiteAlpha.800")(props),
     _active: {
       bg: mode("gray.200", "whiteAlpha.300")(props),
@@ -26,32 +33,38 @@ function baseStyleStepper(props: Record<string, any>) {
   }
 }
 
-const baseStyle = function (props: Record<string, any>) {
-  return {
-    field: baseStyleField,
-    stepperGroup: baseStyleStepperGroup,
-    stepper: baseStyleStepper(props),
-  }
-}
+const baseStyle = (props: Record<string, any>) => ({
+  root: baseStyleRoot,
+  field: baseStyleField,
+  stepperGroup: baseStyleStepperGroup,
+  stepper: baseStyleStepper(props),
+})
 
-function getSize(size: "sm" | "md" | "lg") {
-  const sizeStyle = Input.sizes?.[size]
+function getSize(size: "xs" | "sm" | "md" | "lg") {
+  const sizeStyle = Input.sizes[size]
 
   const radius = {
     lg: "md",
     md: "md",
     sm: "sm",
+    xs: "sm",
   }
 
+  const resolvedFontSize = typography.fontSizes[sizeStyle.field.fontSize]
+
   return {
-    field: sizeStyle?.field,
+    field: {
+      ...sizeStyle.field,
+      paddingInlineEnd: "var(--number-input-field-padding)",
+      verticalAlign: "top",
+    },
     stepper: {
-      fontSize: size === "lg" ? "14px" : "10px",
+      fontSize: `calc(${resolvedFontSize} * 0.75)`,
       _first: {
-        borderTopRightRadius: radius[size],
+        borderTopEndRadius: radius[size],
       },
       _last: {
-        borderBottomRightRadius: radius[size],
+        borderBottomEndRadius: radius[size],
         mt: "-1px",
         borderTopWidth: 1,
       },
@@ -60,6 +73,7 @@ function getSize(size: "sm" | "md" | "lg") {
 }
 
 const sizes = {
+  xs: getSize("xs"),
   sm: getSize("sm"),
   md: getSize("md"),
   lg: getSize("lg"),

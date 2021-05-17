@@ -1,20 +1,20 @@
-import { ChakraProvider } from "@chakra-ui/core"
+import { ChakraProvider } from "@chakra-ui/react"
 import "@testing-library/jest-dom/extend-expect"
 import {
-  render as RtlRender,
+  render as rtlRender,
   RenderOptions,
   fireEvent,
   RenderResult,
 } from "@testing-library/react"
 import * as React from "react"
 import { toHaveNoViolations, axe } from "jest-axe"
-import serializer from "jest-emotion"
+import { createSerializer } from "@emotion/jest"
 import { RunOptions } from "axe-core"
 
-expect.addSnapshotSerializer(serializer)
+expect.addSnapshotSerializer(createSerializer())
 expect.extend(toHaveNoViolations)
 
-type UI = Parameters<typeof RtlRender>[0]
+type UI = Parameters<typeof rtlRender>[0]
 
 // UI-less passthrough fallback to prevent using conditional logic in render
 function ChildrenPassthrough({ children }: { children: React.ReactElement }) {
@@ -58,16 +58,15 @@ export interface TestOptions extends Omit<RenderOptions, "wrapper"> {
 export const render = (
   ui: UI,
   { wrapper: Wrapper = ChildrenPassthrough, ...options }: TestOptions = {},
-): RenderResult => {
-  return RtlRender(
+): RenderResult =>
+  rtlRender(
     <ChakraProvider>
       <Wrapper>{ui}</Wrapper>
     </ChakraProvider>,
     options,
   )
-}
 
-export { RtlRender }
+export { rtlRender }
 export { axe }
 
 export * from "@testing-library/react"
@@ -110,7 +109,7 @@ type TestA11YOptions = TestOptions & { axeOptions?: RunOptions }
  * @see https://github.com/nickcolley/jest-axe#testing-react-with-react-testing-library
  */
 export const testA11y = async (
-  ui: UI | HTMLElement,
+  ui: UI | Element,
   { axeOptions, ...options }: TestA11YOptions = {},
 ) => {
   const container = React.isValidElement(ui)

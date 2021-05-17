@@ -1,11 +1,10 @@
-import * as React from "react"
-import { render, userEvent, fireEvent, screen } from "@chakra-ui/test-utils"
 import { chakra, forwardRef } from "@chakra-ui/system"
-import { ClickableProps } from "../stories/use-clickable.stories"
+import { fireEvent, render, screen, userEvent } from "@chakra-ui/test-utils"
+import * as React from "react"
 import { useClickable } from "../src"
 
-const Clickable: React.FC<ClickableProps> = forwardRef((props, ref) => {
-  const clickable = useClickable({ ...props, ref })
+const Clickable = forwardRef((props: any, ref) => {
+  const clickable = useClickable({ ...props, ref }) as any
   return <chakra.button display="inline-flex" {...clickable} />
 })
 

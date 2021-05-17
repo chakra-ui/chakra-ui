@@ -1,10 +1,12 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import Icon from "@chakra-ui/icon"
 import {
+  fireEvent,
   render,
   renderHook,
-  fireEvent,
   screen,
   testA11y,
+  userEvent,
 } from "@chakra-ui/test-utils"
 import * as React from "react"
 import {
@@ -14,13 +16,6 @@ import {
   useCheckbox,
   UseCheckboxProps,
 } from "../src"
-import { CheckboxIconProps } from "../src/checkbox.icon"
-
-test("matches snapshot ", () => {
-  const { asFragment } = render(<Checkbox />)
-
-  expect(asFragment()).toMatchSnapshot()
-})
 
 it("passes a11y test", async () => {
   await testA11y(<Checkbox>label</Checkbox>)
@@ -29,11 +24,6 @@ it("passes a11y test", async () => {
 test("useCheckbox should return object", () => {
   const { result } = renderHook(() => useCheckbox())
   expect(typeof result.current).toBe("object")
-})
-
-test("Checkbox renders correctly", () => {
-  const tools = render(<Checkbox>This is custom checkbox</Checkbox>)
-  expect(tools.asFragment()).toMatchSnapshot()
 })
 
 test("Uncontrolled - should check and uncheck", () => {
@@ -54,12 +44,12 @@ test("Uncontrolled - should check and uncheck", () => {
   const input = screen.getByTestId("input")
   const checkbox = screen.getByTestId("checkbox")
 
-  // click the first time, it's checked
+  // click the first time, it is checked
   fireEvent.click(input)
   expect(input).toBeChecked()
   expect(checkbox).toHaveAttribute("data-checked")
 
-  // click the second time, it's unchecked
+  // click the second time, it is unchecked
   fireEvent.click(input)
   expect(input).not.toBeChecked()
   expect(checkbox).not.toHaveAttribute("data-checked")
@@ -145,15 +135,13 @@ test("Controlled - should check and uncheck", () => {
 })
 
 test("CheckboxGroup Uncontrolled - default values should be check", () => {
-  const Component = () => {
-    return (
-      <CheckboxGroup defaultValue={["one", "two"]}>
-        <Checkbox value="one">One</Checkbox>
-        <Checkbox value="two">Two</Checkbox>
-        <Checkbox value="three">Three</Checkbox>
-      </CheckboxGroup>
-    )
-  }
+  const Component = () => (
+    <CheckboxGroup defaultValue={["one", "two"]}>
+      <Checkbox value="one">One</Checkbox>
+      <Checkbox value="two">Two</Checkbox>
+      <Checkbox value="three">Three</Checkbox>
+    </CheckboxGroup>
+  )
   const { container } = render(<Component />)
   const checkboxOne = container.querySelectorAll("input")[0]
   const checkboxTwo = container.querySelectorAll("input")[1]
@@ -172,17 +160,17 @@ test("CheckboxGroup Uncontrolled - default values should be check", () => {
 
 test("Controlled CheckboxGroup", () => {
   let checked = ["one", "two"]
-  const onChange = jest.fn((value) => (checked = value))
+  const onChange = jest.fn((value) => {
+    checked = value
+  })
 
-  const Component = (props: CheckboxGroupProps) => {
-    return (
-      <CheckboxGroup {...props}>
-        <Checkbox value="one">One</Checkbox>
-        <Checkbox value="two">Two</Checkbox>
-        <Checkbox value="three">Three</Checkbox>
-      </CheckboxGroup>
-    )
-  }
+  const Component = (props: CheckboxGroupProps) => (
+    <CheckboxGroup {...props}>
+      <Checkbox value="one">One</Checkbox>
+      <Checkbox value="two">Two</Checkbox>
+      <Checkbox value="three">Three</Checkbox>
+    </CheckboxGroup>
+  )
   const { container, rerender } = render(
     <Component value={checked} onChange={onChange} />,
   )
@@ -199,13 +187,59 @@ test("Controlled CheckboxGroup", () => {
   // change props
   rerender(<Component value={checked} onChange={onChange} />)
 
-  expect(onChange).toHaveBeenCalled()
+  expect(onChange).toHaveBeenCalledTimes(1)
   expect(checked).toEqual(["one", "two", "three"])
 })
 
+test("Uncontrolled CheckboxGroup - should not check if group disabled", () => {
+  const Component = () => (
+    <CheckboxGroup isDisabled>
+      <Checkbox value="one">One</Checkbox>
+      <Checkbox value="two" isDisabled>
+        Two
+      </Checkbox>
+      <Checkbox value="three" isDisabled={false}>
+        Three
+      </Checkbox>
+    </CheckboxGroup>
+  )
+  const { container } = render(<Component />)
+  const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
+    container.querySelectorAll("input"),
+  )
+
+  expect(checkboxOne).toBeDisabled()
+  expect(checkboxTwo).toBeDisabled()
+  expect(checkboxThree).not.toBeDisabled()
+
+  fireEvent.click(checkboxOne)
+  fireEvent.click(checkboxTwo)
+  fireEvent.click(checkboxThree)
+
+  expect(checkboxOne).not.toBeChecked()
+  expect(checkboxTwo).not.toBeChecked()
+  expect(checkboxThree).toBeChecked()
+})
+
+test("uncontrolled CheckboxGroup handles change", () => {
+  const onChange = jest.fn()
+  render(
+    <CheckboxGroup defaultValue={["A", "C"]} onChange={onChange}>
+      <Checkbox value="A">A</Checkbox>
+      <Checkbox value="B">B</Checkbox>
+      <Checkbox value="C">C</Checkbox>
+    </CheckboxGroup>,
+  )
+
+  userEvent.click(screen.getByLabelText("B"))
+
+  expect(onChange).toHaveBeenCalledTimes(1)
+  expect(onChange).toHaveBeenCalledWith(["A", "C", "B"])
+})
+
 test("accepts custom icon", () => {
-  const CustomIcon = (props: CheckboxIconProps) => {
-    const { isIndeterminate, ...rest } = props
+  const CustomIcon = (props: any) => {
+    const { isIndeterminate, isChecked, ...rest } = props
 
     const d = isIndeterminate
       ? "M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm0,19a1.5,1.5,0,1,1,1.5-1.5A1.5,1.5,0,0,1,12,19Zm1.6-6.08a1,1,0,0,0-.6.917,1,1,0,1,1-2,0,3,3,0,0,1,1.8-2.75A2,2,0,1,0,10,9.255a1,1,0,1,1-2,0,4,4,0,1,1,5.6,3.666Z"
@@ -218,12 +252,11 @@ test("accepts custom icon", () => {
     )
   }
 
-  const { asFragment } = render(
+  render(
     <Checkbox defaultIsChecked icon={<CustomIcon data-testid="custom-icon" />}>
       hello world
     </Checkbox>,
   )
 
   expect(screen.getByTestId("custom-icon")).toBeInTheDocument()
-  expect(asFragment()).toMatchSnapshot()
 })

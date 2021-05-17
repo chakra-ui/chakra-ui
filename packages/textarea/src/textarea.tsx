@@ -1,15 +1,15 @@
 import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
 import {
   chakra,
-  PropsOf,
   forwardRef,
-  useStyleConfig,
   omitThemingProps,
-  ThemingProps,
   SystemStyleObject,
+  ThemingProps,
+  useStyleConfig,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
+import { cx, omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { __DEV__, cx, omit } from "@chakra-ui/utils"
 
 interface TextareaOptions {
   /**
@@ -25,32 +25,31 @@ interface TextareaOptions {
    */
   errorBorderColor?: string
   /**
-   * If `true`, the textarea element will span the full width of it's parent
+   * If `true`, the textarea element will span the full width of its parent
+   *
+   * @deprecated
+   * This component defaults to 100% width,
+   * please use the props `maxWidth` or `width` to configure
    */
   isFullWidth?: boolean
 }
 
+type Omitted = "disabled" | "required" | "readOnly"
 export interface TextareaProps
-  extends Omit<
-      PropsOf<typeof chakra.textarea>,
-      "disabled" | "required" | "readOnly"
-    >,
+  extends Omit<HTMLChakraProps<"textarea">, Omitted>,
     TextareaOptions,
     FormControlOptions,
-    ThemingProps {}
+    ThemingProps<"Textarea"> {}
 
 /**
  * Textarea is used to enter an amount of text that's longer than a single line
- * @see Docs https://chakra-ui.com/components/textarea
+ * @see Docs https://chakra-ui.com/docs/form/textarea
  */
-export const Textarea = forwardRef<TextareaProps, "textarea">(function Textarea(
-  props,
-  ref,
-) {
+export const Textarea = forwardRef<TextareaProps, "textarea">((props, ref) => {
   const styles = useStyleConfig("Textarea", props)
-  const { className, rows, ...otherProps } = omitThemingProps(props)
+  const { className, rows, ...rest } = omitThemingProps(props)
 
-  const textareaProps = useFormControl<HTMLTextAreaElement>(otherProps)
+  const textareaProps = useFormControl<HTMLTextAreaElement>(rest)
 
   const omitted = [
     "h",

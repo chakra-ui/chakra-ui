@@ -1,17 +1,18 @@
-import foundations from "./foundations"
 import components from "./components"
+import foundations from "./foundations"
 import styles from "./styles"
-import { ColorModeOptions } from "@chakra-ui/system"
+import { ThemeConfig, ThemeDirection } from "./theme.types"
 
-/**
- * Color mode config
- */
-const config: ColorModeOptions = {
+const direction = "ltr" as ThemeDirection
+
+const config: ThemeConfig = {
   useSystemColorMode: false,
   initialColorMode: "light",
+  cssVarPrefix: "chakra",
 }
 
 export const theme = {
+  direction,
   ...foundations,
   components,
   styles,
@@ -19,5 +20,14 @@ export const theme = {
 }
 
 export type Theme = typeof theme
+
+/**
+ * @deprecated
+ * Duplicate theme type. Please use `Theme`
+ */
+export type DefaultChakraTheme = Theme
+
+export * from "./theme.types"
+export * from "./utils"
 
 export default theme

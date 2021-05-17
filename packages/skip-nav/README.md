@@ -1,8 +1,8 @@
 # @chakra-ui/skip-nav
 
 Skip navigation link for screen reader and keyboard users. Because the main
-content is not usually the first thing in the document, it's valuable to provide
-a shortcut for keyboard and screen reader users to skip to the content.
+content is not usually the first thing in the document, it is valuable to
+provide a shortcut for keyboard and screen reader users to skip to the content.
 
 If the user does not navigate with the keyboard, they won't see the link.
 
@@ -17,7 +17,7 @@ yarn add @chakra-ui/skip-nav
 ## Import
 
 ```jsx
-import { SkipNavLink, SkipNavContent } from "@reach/skip-nav"
+import { SkipNavLink, SkipNavContent } from "@chakra-ui/skip-nav"
 ```
 
 ## Usage

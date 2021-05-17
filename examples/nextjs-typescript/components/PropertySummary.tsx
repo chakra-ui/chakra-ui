@@ -5,7 +5,7 @@ import {
   Flex,
   HStack,
   Image,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 import { StarIcon } from "@chakra-ui/icons"
 import { Property } from "../interfaces/Property"
 

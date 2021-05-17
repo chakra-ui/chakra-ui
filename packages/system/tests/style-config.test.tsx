@@ -1,4 +1,4 @@
-import { RtlRender, render } from "@chakra-ui/test-utils"
+import { rtlRender, render } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { ThemeProvider, useStyleConfig, useProps } from "../src"
 
@@ -8,7 +8,7 @@ test("should resolve styles in theme", async () => {
     return <>{JSON.stringify(styles, null, 2)}</>
   }
 
-  const { asFragment } = RtlRender(
+  const { asFragment } = rtlRender(
     <ThemeProvider
       theme={{
         components: {
@@ -54,7 +54,7 @@ test("should resolve multipart styles in theme", async () => {
     return <>{JSON.stringify(styles, null, 2)}</>
   }
 
-  const { asFragment } = RtlRender(
+  const { asFragment } = rtlRender(
     <ThemeProvider
       theme={{
         components: {
@@ -123,9 +123,7 @@ test("should resolve props and styles", async () => {
       <>
         {JSON.stringify(
           res,
-          function (k, v) {
-            return typeof v === "function" ? "[Function]" : v
-          },
+          (k, v) => (typeof v === "function" ? "[Function]" : v),
           2,
         )}
       </>
@@ -137,7 +135,7 @@ test("should resolve props and styles", async () => {
       size="sm"
       variant="outline"
       aria-label="testing"
-      tabIndex={1}
+      tabIndex={0}
       styleConfig={{
         baseStyle: {
           fontFamily: "Inter",
@@ -179,7 +177,7 @@ test("should resolve props and styles", async () => {
       "props": {
         "focusBorderColor": "red.400",
         "aria-label": "testing",
-        "tabIndex": 1,
+        "tabIndex": 0,
         "onClick": "[Function]"
       }
     }

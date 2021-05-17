@@ -1,16 +1,24 @@
-import { chakra, PropsOf, useMultiStyleConfig } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/system"
 import * as React from "react"
+import Lorem from "react-lorem-component"
+import { Button } from "@chakra-ui/button"
+import { Input } from "@chakra-ui/input"
+import { Stack } from "@chakra-ui/layout"
+import { useForm } from "react-hook-form"
 import {
-  useNumberInput,
+  FormControl,
+  FormErrorMessage,
+  FormHelperText,
+  FormLabel,
+} from "@chakra-ui/form-control"
+import {
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  useNumberInput,
 } from "../src"
-import { Stack } from "@chakra-ui/layout"
-import { Input } from "@chakra-ui/input"
-import { Button } from "@chakra-ui/button"
 
 export default {
   title: "NumberInput",
@@ -35,21 +43,24 @@ export const HookUsage = () => {
     min: 1,
     max: 6,
     precision: 2,
+    allowMouseWheel: true,
   })
 
   return (
     <>
       <div>current: {valueAsNumber}</div>
+      <Lorem />
       <chakra.div display="flex">
         <Button {...getIncrementButtonProps()}>+</Button>
         <Input {...(getInputProps() as any)} />
         <Button {...getDecrementButtonProps()}>-</Button>
       </chakra.div>
+      <Lorem />
     </>
   )
 }
 
-const format = (val: string) => `$` + val
+const format = (val: string) => `$${val}`
 const parse = (val: string) => val.replace(/^\$/, "")
 
 export const HookWithFormatAndParse = () => {
@@ -74,7 +85,7 @@ export const HookWithFormatAndParse = () => {
       <div>current: {valueAsNumber}</div>
       <chakra.div display="flex">
         <Button {...getIncrementButtonProps()}>+</Button>
-        <Input {...(getInputProps() as any)} />
+        <Input {...getInputProps()} />
         <Button {...getDecrementButtonProps()}>-</Button>
       </chakra.div>
     </>
@@ -148,28 +159,88 @@ export const allowOutOfRange = () => (
 
 export const inputSizes = () => (
   <Stack>
-    <NumberInput size="sm" defaultValue={15} min={10}>
-      <NumberInputField />
-      <NumberInputStepper>
-        <NumberIncrementStepper />
-        <NumberDecrementStepper />
-      </NumberInputStepper>
-    </NumberInput>
-
-    <NumberInput size="md" defaultValue={15} min={10}>
-      <NumberInputField />
-      <NumberInputStepper>
-        <NumberIncrementStepper />
-        <NumberDecrementStepper />
-      </NumberInputStepper>
-    </NumberInput>
-
-    <NumberInput size="lg" defaultValue={15} min={10}>
-      <NumberInputField />
-      <NumberInputStepper>
-        <NumberIncrementStepper />
-        <NumberDecrementStepper />
-      </NumberInputStepper>
-    </NumberInput>
+    {["xs", "sm", "md", "lg"].map((size) => (
+      <NumberInput key={size} size={size} defaultValue={15} min={10}>
+        <NumberInputField />
+        <NumberInputStepper>
+          <NumberIncrementStepper />
+          <NumberDecrementStepper />
+        </NumberInputStepper>
+      </NumberInput>
+    ))}
   </Stack>
 )
+
+export const WithReactHookForm = () => {
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      sales: 12,
+    },
+  })
+
+  const onSubmit = (data: any) => console.log(data)
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <NumberInput
+        name="sales"
+        onBlur={() => {
+          console.log("blurred")
+        }}
+      >
+        <NumberInputField ref={register} />
+        <NumberInputStepper>
+          <NumberIncrementStepper />
+          <NumberDecrementStepper />
+        </NumberInputStepper>
+      </NumberInput>
+    </form>
+  )
+}
+
+function FormError(props: any) {
+  return (
+    <FormErrorMessage
+      mt="0"
+      bg="red.500"
+      color="white"
+      px="1"
+      lineHeight="1em"
+      borderRadius="sm"
+      {...props}
+    />
+  )
+}
+
+export const WithFormControl = () => {
+  const [isError, setIsError] = React.useState(false)
+
+  return (
+    <Stack align="start">
+      <FormControl id="first-name" isInvalid={isError}>
+        <chakra.div display="flex" mb="2">
+          <FormLabel mb="0" lineHeight="1em">
+            Amount
+          </FormLabel>
+          <FormError>is invalid!</FormError>
+        </chakra.div>
+        <NumberInput
+          max={50}
+          min={10}
+          defaultValue={20}
+          onBlur={() => {
+            console.log("blurred")
+          }}
+        >
+          <NumberInputField />
+          <NumberInputStepper>
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput>
+        <FormHelperText>Keep it very short and sweet!</FormHelperText>
+      </FormControl>
+      <Button onClick={() => setIsError((s) => !s)}>Toggle Invalid</Button>
+    </Stack>
+  )
+}

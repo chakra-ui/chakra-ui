@@ -12,9 +12,7 @@ export function AlertDialog(props: AlertDialogProps) {
 }
 
 export const AlertDialogContent = forwardRef<ModalContentProps, "section">(
-  function AlertDialogContent(props, ref) {
-    return <ModalContent ref={ref} role="alertdialog" {...props} />
-  },
+  (props, ref) => <ModalContent ref={ref} role="alertdialog" {...props} />,
 )
 
 export {

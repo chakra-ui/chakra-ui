@@ -1,23 +1,20 @@
-import * as React from "react"
 import {
-  render,
-  userEvent,
   fireEvent,
+  render,
   screen,
   testA11y,
-  waitFor,
+  userEvent,
 } from "@chakra-ui/test-utils"
+import * as React from "react"
 import { Editable, EditableInput, EditablePreview } from "../src"
 
 test("matches snapshot", () => {
-  const { asFragment } = render(
+  render(
     <Editable defaultValue="testing">
       <EditablePreview data-testid="preview" />
       <EditableInput data-testid="input" />
     </Editable>,
   )
-
-  expect(asFragment()).toMatchSnapshot()
 
   const preview = screen.getByTestId("preview")
   const input = screen.getByTestId("input")
@@ -76,7 +73,7 @@ test("uncontrolled: handles callbacks correctly", async () => {
 
   // calls `onSubmit` with previous value when "enter" pressed after cancelling
   fireEvent.keyDown(input, { key: "Enter" })
-  expect(onSubmit).toHaveBeenCalledWith("World")
+  expect(onSubmit).toHaveBeenCalledWith("Hello World")
 })
 
 test("controlled: handles callbacks correctly", () => {

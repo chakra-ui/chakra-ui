@@ -54,10 +54,26 @@ const typography = {
     "3xl": "1.875rem",
     "4xl": "2.25rem",
     "5xl": "3rem",
-    "6xl": "4rem",
+    "6xl": "3.75rem",
+    "7xl": "4.5rem",
+    "8xl": "6rem",
+    "9xl": "8rem",
   },
 }
 
+/**
+ * @deprecated
+ * You can derive the Typography type from the DefaultChakraTheme
+ *
+ * type Typography = Pick<
+ *   DefaultChakraTheme,
+ *   | "letterSpacings"
+ *   | "lineHeights"
+ *   | "fontWeights"
+ *   | "fonts"
+ *   | "fontSizes"
+ *  >
+ */
 export type Typography = typeof typography
 
 export default typography

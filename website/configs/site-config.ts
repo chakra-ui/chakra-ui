@@ -16,8 +16,8 @@ const siteConfig = {
   },
   repo: {
     url: baseUrl,
-    editUrl: `${baseUrl}/edit/develop/website`,
-    blobUrl: `${baseUrl}/blob/develop`,
+    editUrl: `${baseUrl}/edit/main/website`,
+    blobUrl: `${baseUrl}/blob/main`,
   },
   openCollective: {
     url: "https://opencollective.com/chakra-ui",
@@ -25,6 +25,7 @@ const siteConfig = {
   discord: {
     url: "https://discord.gg/dQHfcWF",
   },
+  youtube: "https://www.youtube.com/channel/UC4TmDovH46TB4S0SM0Y4CIg",
   seo: {
     title: "Chakra UI",
     titleTemplate: "%s - Chakra UI",
@@ -47,14 +48,14 @@ const siteConfig = {
         "Chakra UI: Simple, Modular and Accessible UI Components for your React Applications.",
       images: [
         {
-          url: "/og-image.png",
+          url: "https://chakra-ui.com/og-image.png",
           width: 1240,
           height: 480,
           alt:
             "Chakra UI: Simple, Modular and Accessible UI Components for your React Applications.",
         },
         {
-          url: "/twitter-og-image.png",
+          url: "https://chakra-ui.com/twitter-og-image.png",
           width: 1012,
           height: 506,
           alt:

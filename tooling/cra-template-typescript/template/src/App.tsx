@@ -8,7 +8,7 @@ import {
   Code,
   Grid,
   theme,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 import { ColorModeSwitcher } from "./ColorModeSwitcher"
 import { Logo } from "./Logo"
 
@@ -24,7 +24,7 @@ export const App = () => (
           </Text>
           <Link
             color="teal.500"
-            href="https://next.chakra-ui.com"
+            href="https://chakra-ui.com"
             fontSize="2xl"
             target="_blank"
             rel="noopener noreferrer"

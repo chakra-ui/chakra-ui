@@ -1,17 +1,13 @@
-import { Config, createParser, system } from "@styled-system/core"
 import * as CSS from "csstype"
-import { ResponsiveValue } from "../utils"
+import { Config } from "../utils/prop-config"
+import { ResponsiveValue, t } from "../utils"
 
-const config: Config = {
+export const list: Config = {
   listStyleType: true,
   listStylePosition: true,
-  listStylePos: {
-    property: "listStylePosition",
-  },
+  listStylePos: t.prop("listStylePosition"),
   listStyleImage: true,
-  listStyleImg: {
-    property: "listStyleImage",
-  },
+  listStyleImg: t.prop("listStyleImage"),
 }
 
 export interface ListProps {
@@ -33,6 +29,3 @@ export interface ListProps {
    */
   listStyleImg?: ResponsiveValue<CSS.Property.ListStyleImage>
 }
-
-export const list = system(config)
-export const listParser = createParser(config)

@@ -1,13 +1,25 @@
+import { Container } from "@chakra-ui/layout"
+import {
+  Box,
+  Button,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  useDisclosure,
+} from "@chakra-ui/react"
+import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import {
   Accordion,
   AccordionButton,
+  AccordionIcon,
   AccordionItem,
   AccordionPanel,
-  AccordionIcon,
 } from "../src"
-import { chakra } from "@chakra-ui/system"
-import { Container } from "@chakra-ui/layout"
 
 export default {
   title: "Accordion",
@@ -52,12 +64,14 @@ export const Basic = () => (
 export const allowToggle = () => (
   <Accordion allowToggle>
     <AccordionItem>
-      <AccordionButton>
-        <chakra.div flex="1" textAlign="left">
-          Section 1 title
-        </chakra.div>
-        <AccordionIcon />
-      </AccordionButton>
+      <h2>
+        <AccordionButton>
+          <chakra.div flex="1" textAlign="left">
+            Section 1 title
+          </chakra.div>
+          <AccordionIcon />
+        </AccordionButton>
+      </h2>
       <AccordionPanel pb={4}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -67,12 +81,14 @@ export const allowToggle = () => (
     </AccordionItem>
 
     <AccordionItem>
-      <AccordionButton>
-        <chakra.div flex="1" textAlign="left">
-          Section 2 title
-        </chakra.div>
-        <AccordionIcon />
-      </AccordionButton>
+      <h2>
+        <AccordionButton>
+          <chakra.div flex="1" textAlign="left">
+            Section 2 title
+          </chakra.div>
+          <AccordionIcon />
+        </AccordionButton>
+      </h2>
       <AccordionPanel pb={4}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -86,12 +102,14 @@ export const allowToggle = () => (
 export const allowMultiple = () => (
   <Accordion allowMultiple>
     <AccordionItem>
-      <AccordionButton>
-        <chakra.div flex="1" textAlign="left">
-          Section 1 title
-        </chakra.div>
-        <AccordionIcon />
-      </AccordionButton>
+      <h2>
+        <AccordionButton>
+          <chakra.div flex="1" textAlign="left">
+            Section 1 title
+          </chakra.div>
+          <AccordionIcon />
+        </AccordionButton>
+      </h2>
       <AccordionPanel pb={4}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -101,12 +119,14 @@ export const allowMultiple = () => (
     </AccordionItem>
 
     <AccordionItem>
-      <AccordionButton>
-        <chakra.div flex="1" textAlign="left">
-          Section 2 title
-        </chakra.div>
-        <AccordionIcon />
-      </AccordionButton>
+      <h2>
+        <AccordionButton>
+          <chakra.div flex="1" textAlign="left">
+            Section 2 title
+          </chakra.div>
+          <AccordionIcon />
+        </AccordionButton>
+      </h2>
       <AccordionPanel pb={4}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -120,12 +140,14 @@ export const allowMultiple = () => (
 export const stylingExpanded = () => (
   <Accordion allowToggle>
     <AccordionItem>
-      <AccordionButton _expanded={{ bg: "tomato", color: "white" }}>
-        <chakra.div flex="1" textAlign="left">
-          Click me to see a different style
-        </chakra.div>
-        <AccordionIcon />
-      </AccordionButton>
+      <h2>
+        <AccordionButton _expanded={{ bg: "tomato", color: "white" }}>
+          <chakra.div flex="1" textAlign="left">
+            Click me to see a different style
+          </chakra.div>
+          <AccordionIcon />
+        </AccordionButton>
+      </h2>
       <AccordionPanel>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -182,21 +204,122 @@ export function Bug_2160() {
       </chakra.div>
       {displayData.length > 0 && (
         <Accordion allowToggle>
-          {displayData.map((item, i) => {
-            return (
-              <AccordionItem key={`accordion-item-${i}`}>
+          {displayData.map((item, i) => (
+            <AccordionItem key={`accordion-item-${i}`}>
+              <h2>
                 <AccordionButton>
                   <chakra.div flex="1" textAlign="left">
                     {item.title}
                   </chakra.div>
                   <AccordionIcon />
                 </AccordionButton>
-                <AccordionPanel pb={4}>{item.text}</AccordionPanel>
-              </AccordionItem>
-            )
-          })}
+              </h2>
+              <AccordionPanel pb={4}>{item.text}</AccordionPanel>
+            </AccordionItem>
+          ))}
         </Accordion>
       )}
     </chakra.div>
+  )
+}
+
+export const FocusBug = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  return (
+    <Box textAlign="center" fontSize="xl">
+      <Button colorScheme="teal" onClick={onOpen}>
+        Open
+      </Button>
+      <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>Create your account</DrawerHeader>
+
+          <DrawerBody>
+            <Accordion allowMultiple>
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box flex="1" textAlign="left">
+                      Section 1 title
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                  <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-1">
+                    Chakra 1
+                  </a>
+                  <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-2">
+                    Chakra 2
+                  </a>
+                  <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-3">
+                    Chakra 3
+                  </a>
+                </AccordionPanel>
+              </AccordionItem>
+
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box flex="1" textAlign="left">
+                      Section 2 title
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                  <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-4">
+                    Chakra 1
+                  </a>
+                  <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-5">
+                    Chakra 2
+                  </a>
+                  <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-6">
+                    Chakra 3
+                  </a>
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+          </DrawerBody>
+
+          <DrawerFooter>
+            <Button variant="outline" mr={3} onClick={onClose}>
+              Cancel
+            </Button>
+            <Button color="blue">Save</Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    </Box>
+  )
+}
+
+export const WithDisabledAccordionItem = () => {
+  return (
+    <Accordion index={1}>
+      <AccordionItem isDisabled>
+        <AccordionButton>Button 1</AccordionButton>
+        <AccordionPanel>One Content</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem isDisabled>
+        <AccordionButton>Button 2</AccordionButton>
+        <AccordionPanel>Two Content</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Button 3</AccordionButton>
+        <AccordionPanel>Three Content</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem isDisabled>
+        <AccordionButton>Button 4</AccordionButton>
+        <AccordionPanel>Four Content</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Button 5</AccordionButton>
+        <AccordionPanel>Five Content</AccordionPanel>
+      </AccordionItem>
+    </Accordion>
   )
 }

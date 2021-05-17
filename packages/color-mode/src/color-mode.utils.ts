@@ -14,12 +14,13 @@ const mockBody = {
   classList: { add: noop, remove: noop },
 }
 
-export const body = isBrowser ? document.body : mockBody
+const getBody = () => (isBrowser ? document.body : mockBody)
 
 /**
  * Function to add/remove class from `body` based on color mode
  */
 export function syncBodyClassName(isDark: boolean) {
+  const body = getBody()
   body.classList.add(isDark ? classNames.dark : classNames.light)
   body.classList.remove(isDark ? classNames.light : classNames.dark)
 }
@@ -60,7 +61,7 @@ export function addListener(fn: Function) {
   const mediaQueryList = window.matchMedia(queries.dark)
 
   const listener = () => {
-    fn(!!mediaQueryList.matches ? "dark" : "light")
+    fn(mediaQueryList.matches ? "dark" : "light")
   }
 
   listener()

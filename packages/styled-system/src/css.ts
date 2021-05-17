@@ -1,182 +1,150 @@
 import {
   Dict,
-  isArray,
-  isCustomBreakpoint,
+  isCssVar,
   isObject,
-  isResponsiveObjectLike,
-  memoizedGet as get,
-  mergeWith,
-  objectToArrayNotation,
+  isString,
+  mergeWith as merge,
   runIfFn,
 } from "@chakra-ui/utils"
-import { CSSObject, StyleObjectOrFn } from "./css.types"
-import { parser } from "./parser"
-import { pseudoSelectors } from "./pseudo"
+import * as CSS from "csstype"
+import { pseudoSelectors } from "./pseudos"
+import { systemProps as systemPropConfigs } from "./system"
+import { StyleObjectOrFn } from "./system.types"
+import { expandResponsive } from "./utils/expand-responsive"
+import { Config, PropConfig } from "./utils/prop-config"
+import { CssTheme } from "./utils/types"
 
-interface Cache {
-  themeBreakpoints: string[]
-  breakpoints: string[]
-  breakpointValues: string[]
-  mediaQueries: (string | null)[]
+const isCSSVariableTokenValue = (key: string, value: any): value is string =>
+  key.startsWith("--") && isString(value) && !isCssVar(value)
+
+const resolveTokenValue = (theme: Dict, value: string) => {
+  if (value == null) return value
+
+  const getVar = (val: string) => theme.__cssMap?.[val]?.varRef
+  const getValue = (val: string) => getVar(val) ?? val
+
+  const valueSplit = value.split(",").map((v) => v.trim())
+  const [tokenValue, fallbackValue] = valueSplit
+  value = getVar(tokenValue) ?? getValue(fallbackValue) ?? getValue(value)
+
+  return value
 }
 
-const cache: Cache = {
-  themeBreakpoints: [],
-  breakpoints: [],
-  breakpointValues: [],
-  mediaQueries: [],
+interface GetCSSOptions {
+  theme: CssTheme
+  configs?: Config
+  pseudos?: Record<string, CSS.Pseudos | (string & {})>
 }
 
-interface BreakpointValueObj {
-  /**
-   * left side of a breakpoint object, the name, e.g. sm
-   */
-  breakpoints: string[]
-  /**
-   * right side of a breakpoint object, the size, e.g. 4
-   */
-  breakpointValues: string[]
-}
+export function getCss(options: GetCSSOptions) {
+  const { configs = {}, pseudos = {}, theme } = options
 
-/**
- *
- */
-const calculateBreakpointAndMediaQueries = (
-  themeBreakpoints: string[] = [],
-) => {
-  // caching here reduces execution time by factor 4-6x
-  const isCached = cache.themeBreakpoints === themeBreakpoints
+  const css = (stylesOrFn: Dict, nested = false) => {
+    const _styles = runIfFn(stylesOrFn, theme)
+    const styles = expandResponsive(_styles)(theme)
 
-  if (isCached) {
-    return cache
-  }
+    let computedStyles: Dict = {}
 
-  const { breakpoints, breakpointValues } = Object.entries(themeBreakpoints)
-    .filter(([key]) => isCustomBreakpoint(key))
-    .reduce<BreakpointValueObj>(
-      (carry, [breakpoint, value]) => {
-        carry.breakpoints.push(breakpoint)
-        carry.breakpointValues.push(value)
+    for (let key in styles) {
+      const valueOrFn = styles[key]
 
-        return carry
-      },
-      {
-        breakpoints: [],
-        breakpointValues: [],
-      },
-    )
+      /**
+       * allows the user to pass functional values
+       * boxShadow: theme => `0 2px 2px ${theme.colors.red}`
+       */
+      let value = runIfFn(valueOrFn, theme)
 
-  const mediaQueries = [
-    null,
-    ...breakpointValues
-      .map((bp) => `@media screen and (min-width: ${bp})`)
-      .slice(1),
-  ]
+      /**
+       * converts pseudo shorthands to valid selector
+       * "_hover" => "&:hover"
+       */
+      if (key in pseudos) {
+        key = pseudos[key]
+      }
 
-  cache.themeBreakpoints = themeBreakpoints
-  cache.mediaQueries = mediaQueries
-  cache.breakpointValues = breakpointValues
-  cache.breakpoints = breakpoints
+      /**
+       * allows the user to use theme tokens in css vars
+       * { --banner-height: "sizes.md" } => { --banner-height: "var(--chakra-sizes-md)" }
+       *
+       * You can also provide fallback values
+       * { --banner-height: "sizes.no-exist, 40px" } => { --banner-height: "40px" }
+       */
+      if (isCSSVariableTokenValue(key, value)) {
+        value = resolveTokenValue(theme, value)
+      }
 
-  return {
-    breakpoints,
-    mediaQueries,
-  }
-}
+      let config = configs[key]
 
-const responsive = (styles: any) => (theme: Dict) => {
-  const computedStyles: any = {}
+      if (config === true) {
+        config = { property: key } as PropConfig
+      }
 
-  const { breakpoints, mediaQueries } = calculateBreakpointAndMediaQueries(
-    theme.breakpoints,
-  )
-
-  for (const key in styles) {
-    let value = runIfFn(styles[key], theme)
-
-    if (value == null) {
-      continue
-    }
-
-    value = isResponsiveObjectLike(value, breakpoints)
-      ? objectToArrayNotation(value, breakpoints)
-      : value
-
-    if (!isArray(value)) {
-      computedStyles[key] = value
-      continue
-    }
-
-    const queries = value.slice(0, mediaQueries.length).length
-
-    for (let index = 0; index < queries; index++) {
-      const media = mediaQueries[index]
-
-      if (!media) {
-        computedStyles[key] = value[index]
+      if (isObject(value)) {
+        computedStyles[key] = computedStyles[key] ?? {}
+        computedStyles[key] = merge({}, computedStyles[key], css(value, true))
         continue
       }
 
-      computedStyles[media] = computedStyles[media] || {}
+      let rawValue = config?.transform?.(value, theme, _styles) ?? value
 
-      if (value[index] == null) {
+      /**
+       * Used for `layerStyle`, `textStyle` and `apply`. After getting the
+       * styles in the theme, we need to process them since they might
+       * contain theme tokens.
+       *
+       * `processResult` is the config property we pass to `layerStyle`, `textStyle` and `apply`
+       */
+      rawValue = config?.processResult ? css(rawValue, true) : rawValue
+
+      /**
+       * allows us define css properties for RTL and LTR.
+       *
+       * const marginStart = {
+       *   property: theme => theme.direction === "rtl" ? "marginRight": "marginLeft",
+       * }
+       */
+      const configProperty = runIfFn(config?.property, theme)
+
+      if (!nested && config?.static) {
+        const staticStyles = runIfFn(config.static, theme)
+        computedStyles = merge({}, computedStyles, staticStyles)
+      }
+
+      if (configProperty && Array.isArray(configProperty)) {
+        for (const property of configProperty) {
+          computedStyles[property] = rawValue
+        }
         continue
       }
 
-      computedStyles[media][key] = value[index]
+      if (configProperty) {
+        if (configProperty === "&" && isObject(rawValue)) {
+          computedStyles = merge({}, computedStyles, rawValue)
+        } else {
+          computedStyles[configProperty as string] = rawValue
+        }
+        continue
+      }
+
+      if (isObject(rawValue)) {
+        computedStyles = merge({}, computedStyles, rawValue)
+        continue
+      }
+
+      computedStyles[key] = rawValue
     }
+
+    return computedStyles
   }
 
-  return computedStyles
+  return css
 }
 
-type PropsOrTheme = Dict | { theme: Dict }
-
-export const css = (args: StyleObjectOrFn = {}) => (
-  props: PropsOrTheme = {},
-) => {
-  const theme = "theme" in props ? props.theme : props
-
-  let computedStyles: CSSObject = {}
-
-  const styleObject = runIfFn(args, theme)
-  const styles = responsive(styleObject)(theme)
-
-  for (const k in styles) {
-    const x = styles[k]
-    const val = runIfFn(x, theme)
-
-    const key = k in pseudoSelectors ? pseudoSelectors[k] : k
-    const config = (parser.config as Dict)[key]
-
-    if (key === "apply") {
-      const apply = css(get(theme, val))(theme)
-      computedStyles = mergeWith({}, computedStyles, apply)
-      continue
-    }
-
-    if (isObject(val)) {
-      computedStyles[key] = css(val)(theme)
-      continue
-    }
-
-    const scale = get(theme, config?.scale, {})
-    const value = config?.transform?.(val, scale) ?? get(scale, val, val)
-
-    if (config?.properties) {
-      for (const property of config.properties) {
-        computedStyles[property] = value
-      }
-      continue
-    }
-
-    if (config?.property) {
-      computedStyles[config.property] = value
-      continue
-    }
-
-    computedStyles[key] = value
-  }
-
-  return computedStyles
+export const css = (styles: StyleObjectOrFn) => (theme: any) => {
+  const cssFn = getCss({
+    theme,
+    pseudos: pseudoSelectors,
+    configs: systemPropConfigs,
+  })
+  return cssFn(styles)
 }

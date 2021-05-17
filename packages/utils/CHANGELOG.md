@@ -1,31 +1,242 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## 1.8.0
+
+### Minor Changes
+
+- [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab)
+  [#3930](https://github.com/chakra-ui/chakra-ui/pull/3930) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - - Add types for the return
+  value of `pipe` function
+  - Update user agent assertions
+
+* [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd)
+  [#3850](https://github.com/chakra-ui/chakra-ui/pull/3850) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Add walkObject helper to
+  iterate over all keys including nested
+
+### Patch Changes
+
+- [`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - `PanSession` class
+
+  - Add velocity data to pointer pan event
+  - Add `onSessionStart` to pan event handlers
+
+## 1.7.0
+
+### Minor Changes
+
+- [`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)
+  [#3511](https://github.com/chakra-ui/chakra-ui/pull/3511) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - - Add `pipe` function
+  - Add generic to `isFunction` guard
+
+## 1.6.0
+
+### Minor Changes
+
+- [`0974e547c`](https://github.com/chakra-ui/chakra-ui/commit/0974e547c29e4efc1ba4d1eb1507d0dad7d7a77a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add lazy content
+  utility for disclosure components like popover, menu, tab, etc.
+
+* [`59ea894a7`](https://github.com/chakra-ui/chakra-ui/commit/59ea894a7e03d16cd7a1b89d00816eafa9fab65d)
+  [#3836](https://github.com/chakra-ui/chakra-ui/pull/3836) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Add pan session class to
+  handle pan gestures. This is used in the slider logic and sharable with vue
+  library.
+
+  - Perf: Throttle pan move events to once per frame which improves the slider's
+    `onChange` call performance.
+
+  - Update types for internal pointer event
+
+## 1.5.2
+
+### Patch Changes
+
+- [`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - update type
+  signature for `px` function
+
+## 1.5.1
+
+### Patch Changes
+
+- [`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update import of
+  shared utils from `react-utils` to `utils`
+
+* [`e481ba491`](https://github.com/chakra-ui/chakra-ui/commit/e481ba4914a7f163d93d4c22e2e457f1afb08721)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Extract functions
+  from `react-utils` back to `utils` package
+  - Remove `withFlushSync` function in favor of using a microtask callback
+  - Import types for `warn` function
+
+## 1.5.0
+
+### Minor Changes
+
+- [`a58b724e9`](https://github.com/chakra-ui/chakra-ui/commit/a58b724e9c8656044f866b658f378662f2a44b46)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add `withFlushSync`
+  function wrapper to help resolve concurrent mode and onFocus state issues.
+
+  > This is a temp fix until the issue is fixed in React.
+
+* [`b724a9dd9`](https://github.com/chakra-ui/chakra-ui/commit/b724a9dd9429d02c0b2c7f7deac66d3553100bdc)
+  [#3674](https://github.com/chakra-ui/chakra-ui/pull/3674) Thanks
+  [@codebender828](https://github.com/codebender828)! - Extract all React based
+  utilities and types into `@chakra-ui/react-utils`
+
+## 1.4.0
+
+### Minor Changes
+
+- [`e748219f3`](https://github.com/chakra-ui/chakra-ui/commit/e748219f300f0c51b0eb304fce38b014d7bcbc86)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ### Pointer Events
+
+  Add unified pointer event management utils and hook for interal use only.
+
+  The hook is called `usePointerEvent`, it works pretty similar to
+  `useEventListener` except that does two things:
+
+  - Unifies the pointer event system and ensure that only one of `onMouse*`,
+    `onTouch*`, or `onPointer*` handler runs
+  - Provide event information about the pointer event like `x` and `y` position
+    depending on the pointer type.
+
+  > Credits to `framer-motion` for doing the hard work for this utilities
+
+  - Added `useFocusOnPointerDown` to get Safari to detect the correct
+    `event.relatedTarget` when you blur a focused element.
+
+  ### Focus Management
+
+  Set `preventScroll` option to be `true` by default, setting focus on an
+  element should happen without scrolling the page (in most cases).
+
+  Set `nextTick` to `undefined` by default and update all components that use
+  next tick to use `{ nextTick: true }`.
+
+* [`91ef14839`](https://github.com/chakra-ui/chakra-ui/commit/91ef148397187010804eb8f30307d2ec94c32c5b)
+  [#3583](https://github.com/chakra-ui/chakra-ui/pull/3583) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Add `getCSSVar` function
+  to resolve token values and return the css variable reference instead of the
+  actual value. It does a lookup against `theme.__cssMap`.
+
+  ```jsx
+  const value = getCSSVar(theme, "colors", "blue.500")
+  // => "var(--chakra-colors-blue.500)"
+
+  const value = getCSSVar(theme, "colors", "tomato")
+  // => "tomato" // since tomato doesn't exist in theme colors
+  ```
+
+## 1.3.0
+
+### Minor Changes
+
+- [`87cc23e14`](https://github.com/chakra-ui/chakra-ui/commit/87cc23e14814e02cbbfc9737c2356cef682ddd5d)
+  [#3463](https://github.com/chakra-ui/chakra-ui/pull/3463) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Move responsive utilities
+  to utils to prevent duplicate work
+
+## 1.2.0
+
+### Minor Changes
+
+- [`61962345c`](https://github.com/chakra-ui/chakra-ui/commit/61962345c5b1c862445c16c586e304b28c376c9a)
+  [#3291](https://github.com/chakra-ui/chakra-ui/pull/3291) Thanks
+  [@dominictwlee](https://github.com/dominictwlee)! - Support negative scale
+  values for css variables.
+
+### Patch Changes
+
+- [`ff4a36bca`](https://github.com/chakra-ui/chakra-ui/commit/ff4a36bca11cc177830f6f1da13700acd1e3a087)
+  [#3245](https://github.com/chakra-ui/chakra-ui/pull/3245) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Removed `objectAssign`
+  function in favor of using native `Object.assign` method. It is
+  [now supported in most browsers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#browser_compatibility)
+
+  This function is only used once in the `system` package as well. This PR
+  simply removes it to cut bundle size of utils. Less is more 😃.
+
+* [`483687237`](https://github.com/chakra-ui/chakra-ui/commit/483687237f2c4fed05dc6a79693f307c601c1285)
+  [#3283](https://github.com/chakra-ui/chakra-ui/pull/3283) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Update focus util to
+  handle unsupported browsers (Safari), and ability to opt out of
+  `requestAnimationFrame`
+
+## 1.1.0
+
+### Minor Changes
+
+- [`8b87406c`](https://github.com/chakra-ui/chakra-ui/commit/8b87406c3132586be3393117eef80d47ec82fc54)
+  [#3015](https://github.com/chakra-ui/chakra-ui/pull/3015) Thanks
+  [@with-heart](https://github.com/with-heart)! - Added a `compose` function
+
+## 1.0.2
+
+### Patch Changes
+
+- [`e73878ee`](https://github.com/chakra-ui/chakra-ui/commit/e73878ee686c11d3f94ad6ac61b19ae9508d75a5)
+  [#2790](https://github.com/chakra-ui/chakra-ui/pull/2790) Thanks
+  [@yuzima](https://github.com/yuzima)! - Resolved an issue where custom
+  breakpoints prefixed with a number ("2xl") weren't detected
+
+## 1.0.1
+
+### Patch Changes
+
+- [`5c482483`](https://github.com/chakra-ui/chakra-ui/commit/5c482483ce24fc798540c9792a15e06772eae213)
+  [#2562](https://github.com/chakra-ui/chakra-ui/pull/2562) Thanks
+  [@LaurenceGGush](https://github.com/LaurenceGGush)! - Fix memory leak in
+  `utils/objects.ts`
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 1.0.0 (2020-11-13)
+
+**Note:** Version bump only for package @chakra-ui/utils
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 1.0.0-rc.8 (2020-10-29)
+
+### Bug Fixes
+
+- **toast:** allow custom render in update
+  ([eb8bff9](https://github.com/chakra-ui/chakra-ui/commit/eb8bff911e6ec9de0165ab1e8f5ca10d5e022459)),
+  closes [#2362](https://github.com/chakra-ui/chakra-ui/issues/2362)
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 1.0.0-rc.7 (2020-10-25)
+
+**Note:** Version bump only for package @chakra-ui/utils
+
+# 1.0.0-rc.6 (2020-10-25)
+
+**Note:** Version bump only for package @chakra-ui/utils
 
 # 1.0.0-rc.5 (2020-09-27)
 
 **Note:** Version bump only for package @chakra-ui/utils
 
-
-
-
-
 # 1.0.0-rc.4 (2020-09-25)
 
 **Note:** Version bump only for package @chakra-ui/utils
 
-
-
-
-
 # 1.0.0-rc.3 (2020-08-30)
 
 **Note:** Version bump only for package @chakra-ui/utils
-
-
-
-
 
 # Change Log
 

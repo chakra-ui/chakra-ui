@@ -1,9 +1,16 @@
-import { isArray, isObject } from "./assertion"
-import { Dict } from "./types"
-import { objectKeys } from "./object"
 import { getLastItem } from "./array"
+import { isArray, isObject } from "./assertion"
+import { objectKeys } from "./object"
+import { Dict } from "./types"
 
-export const breakpoints = Object.freeze(["base", "sm", "md", "lg", "xl"])
+export const breakpoints = Object.freeze([
+  "base",
+  "sm",
+  "md",
+  "lg",
+  "xl",
+  "2xl",
+])
 
 export function mapResponsive(prop: any, mapper: (val: any) => any) {
   if (isArray(prop)) {
@@ -51,3 +58,13 @@ export function isResponsiveObjectLike(obj: Dict, bps = breakpoints) {
   const keys = Object.keys(obj)
   return keys.length > 0 && keys.every((key) => bps.includes(key))
 }
+
+/**
+ * since breakpoints are defined as custom properties on an array, you may
+ * `Object.keys(theme.breakpoints)` to retrieve both regular numeric indices
+ * and custom breakpoints as string.
+ *
+ * This function returns true given a custom array property.
+ */
+export const isCustomBreakpoint = (maybeBreakpoint: string) =>
+  Number.isNaN(Number(maybeBreakpoint))

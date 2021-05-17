@@ -8,6 +8,7 @@ import {
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, mergeWith, split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -15,13 +16,12 @@ import * as React from "react"
 type Omitted = "disabled" | "required" | "readOnly" | "size"
 
 export interface SelectFieldProps
-  extends Omit<PropsOf<typeof chakra.select>, Omitted> {
-  size?: string
+  extends Omit<HTMLChakraProps<"select">, Omitted> {
   isDisabled?: boolean
 }
 
 export const SelectField = forwardRef<SelectFieldProps, "select">(
-  function SelectField(props, ref) {
+  (props, ref) => {
     const { children, placeholder, className, ...rest } = props
     const ownProps = useFormControl<HTMLSelectElement>(rest)
 
@@ -42,7 +42,7 @@ if (__DEV__) {
   SelectField.displayName = "SelectField"
 }
 
-interface RootProps extends Omit<PropsOf<typeof chakra.div>, "color"> {}
+interface RootProps extends Omit<HTMLChakraProps<"div">, "color"> {}
 
 interface SelectOptions extends FormControlOptions {
   /**
@@ -58,7 +58,11 @@ interface SelectOptions extends FormControlOptions {
    */
   errorBorderColor?: string
   /**
-   * If `true`, the select element will span the full width of it's parent
+   * If `true`, the select element will span the full width of its parent
+   *
+   * @deprecated
+   * This component defaults to 100% width,
+   * please use the props `maxWidth` or `width` to configure
    */
   isFullWidth?: boolean
   /**
@@ -82,7 +86,7 @@ interface SelectOptions extends FormControlOptions {
 
 export interface SelectProps
   extends SelectFieldProps,
-    ThemingProps,
+    ThemingProps<"Select">,
     SelectOptions {
   /**
    * Props to forward to the root `div` element
@@ -90,6 +94,7 @@ export interface SelectProps
   rootProps?: RootProps
   /**
    * The icon element to use in the select
+   * @type React.ReactElement
    */
   icon?: React.ReactElement<any>
 }
@@ -97,10 +102,7 @@ export interface SelectProps
 /**
  * React component used to select one item from a list of options.
  */
-export const Select = forwardRef<SelectProps, "select">(function Select(
-  props,
-  ref,
-) {
+export const Select = forwardRef<SelectProps, "select">((props, ref) => {
   const styles = useMultiStyleConfig("Select", props)
 
   const {
@@ -114,6 +116,7 @@ export const Select = forwardRef<SelectProps, "select">(function Select(
     minHeight,
     iconColor,
     iconSize,
+    isFullWidth,
     ...rest
   } = omitThemingProps(props)
 
@@ -127,7 +130,7 @@ export const Select = forwardRef<SelectProps, "select">(function Select(
   }
 
   const fieldStyles: SystemStyleObject = mergeWith({}, styles.field, {
-    pr: "2rem",
+    paddingEnd: "2rem",
     _focus: { zIndex: "unset" },
   })
 
@@ -151,11 +154,12 @@ export const Select = forwardRef<SelectProps, "select">(function Select(
 
       <SelectIcon
         data-disabled={props.isDisabled}
-        children={icon}
-        color={iconColor || color}
+        {...((iconColor || color) && { color: iconColor || color })}
         __css={styles.icon}
         {...(iconSize && { fontSize: iconSize })}
-      />
+      >
+        {icon}
+      </SelectIcon>
     </chakra.div>
   )
 })
@@ -177,18 +181,15 @@ const IconWrapper = chakra("div", {
   baseStyle: {
     position: "absolute",
     display: "inline-flex",
-    width: "1.5rem",
-    height: "100%",
     alignItems: "center",
     justifyContent: "center",
-    right: "0.5rem",
     pointerEvents: "none",
     top: "50%",
     transform: "translateY(-50%)",
   },
 })
 
-type SelectIconProps = PropsOf<typeof IconWrapper>
+interface SelectIconProps extends HTMLChakraProps<"div"> {}
 
 const SelectIcon: React.FC<SelectIconProps> = (props) => {
   const { children = <DefaultIcon />, ...rest } = props
@@ -207,11 +208,9 @@ const SelectIcon: React.FC<SelectIconProps> = (props) => {
   })
 
   return (
-    <IconWrapper
-      {...rest}
-      className="chakra-select__icon-wrapper"
-      children={React.isValidElement(children) ? clone : null}
-    />
+    <IconWrapper {...rest} className="chakra-select__icon-wrapper">
+      {React.isValidElement(children) ? clone : null}
+    </IconWrapper>
   )
 }
 

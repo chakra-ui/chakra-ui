@@ -23,7 +23,9 @@ test("SkeletonText renders noOfLines respective to the responsive breakpoint", (
     queries.sm,
     <SkeletonText noOfLines={[5, desiredNoOfLines, 7]} />,
   )
+
   const skeletonGroup = container.querySelector(".chakra-skeleton__group")
+
   expect(skeletonGroup).not.toBeNull()
   expect(skeletonGroup!.childElementCount).toBe(desiredNoOfLines)
 })

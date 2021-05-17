@@ -7,16 +7,13 @@ description:
   uses a very common padding hack
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
 AspectRatio component is used to embed responsive videos and maps, etc. It uses
 a very common [**padding hack**](https://css-tricks.com/aspect-ratio-boxes/) to
 achieve this.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/layout", url: "#" }}
+  github={{ package: "layout" }}
+  npm={{ package: "@chakra-ui/layout" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -24,16 +21,13 @@ achieve this.
 ## Import
 
 ```js
-import { AspectRatio } from "@chakra-ui/core"
+import { AspectRatio } from "@chakra-ui/react"
 ```
 
 ## Embed Video
 
 To embed a video with a specific aspect ratio, use an iframe with `src` pointing
 to the link of the video.
-
-> Use `<Box as="iframe">` instead of `<iframe>` directly because we're
-> forwarding some style props behind the scene.
 
 Pass the `maxWidth` prop to `AspectRatio` to control the width of the content.
 
@@ -74,6 +68,4 @@ take up the entire width, we can ignore the `maxWidth` prop.
 
 ## Props
 
-| Name  | Type     | Default | Description                     |
-| ----- | -------- | ------- | ------------------------------- |
-| ratio | `number` | 4/3     | The aspect ratio of the content |
+<PropsTable of="AspectRatio" />

@@ -1,21 +1,26 @@
 {
-  "name": "chakra-cra",
-  "version": "1.0.0-rc.5",
+  "name": "create-react-app-ts",
+  "version": "1.1.0",
   "private": true,
   "dependencies": {
-    "@chakra-ui/core": "1.0.0-rc.5",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "@chakra-ui/machine": "*",
+    "@chakra-ui/react": "*",
+    "@emotion/react": "^11.1.4",
+    "@emotion/styled": "^11.0.0",
+    "framer-motion": "^4.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-icons": "^4.1.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.11.3",
-    "@testing-library/react": "^10.4.8",
-    "@types/jest": "^26.0.0",
-    "@types/react": "^16.9.23",
-    "@types/react-dom": "^16.9.8",
-    "eslint-config-react-app": "^5.2.1",
-    "react-scripts": "^3.4.3",
-    "typescript": "^3.9.7"
+    "@testing-library/jest-dom": "^5.11.8",
+    "@testing-library/react": "^11.2.2",
+    "@types/jest": "^26.0.19",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "eslint-config-react-app": "^6.0.0",
+    "react-scripts": "^4.0.1",
+    "typescript": "^4.1.3"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,0 +1,178 @@
+---
+title: Table
+package: "@chakra-ui/table"
+image: "components/table.svg"
+description:
+  "Table component is used to organize and display data efficiently. It renders
+  a <table> element by default"
+---
+
+Tables are used to organize and display data efficiently. It renders a `<table>`
+element by default.
+
+<ComponentLinks
+  theme={{ componentName: "table" }}
+  github={{ package: "table" }}
+  npm={{ package: "@chakra-ui/table" }}
+/>
+
+<carbon-ad />
+
+## Import
+
+```js
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+} from "@chakra-ui/react"
+```
+
+## Table Variants
+
+The table component comes in 3 variants: `simple`, `striped`, and `unstyled`.
+The default variant is `simple`
+
+> Change the `variant` values to see the other variants.
+
+### Simple Table
+
+```jsx
+<Table variant="simple">
+  <TableCaption>Imperial to metric conversion factors</TableCaption>
+  <Thead>
+    <Tr>
+      <Th>To convert</Th>
+      <Th>into</Th>
+      <Th isNumeric>multiply by</Th>
+    </Tr>
+  </Thead>
+  <Tbody>
+    <Tr>
+      <Td>inches</Td>
+      <Td>millimetres (mm)</Td>
+      <Td isNumeric>25.4</Td>
+    </Tr>
+    <Tr>
+      <Td>feet</Td>
+      <Td>centimetres (cm)</Td>
+      <Td isNumeric>30.48</Td>
+    </Tr>
+    <Tr>
+      <Td>yards</Td>
+      <Td>metres (m)</Td>
+      <Td isNumeric>0.91444</Td>
+    </Tr>
+  </Tbody>
+  <Tfoot>
+    <Tr>
+      <Th>To convert</Th>
+      <Th>into</Th>
+      <Th isNumeric>multiply by</Th>
+    </Tr>
+  </Tfoot>
+</Table>
+```
+
+### Striped Table
+
+```jsx
+<Table variant="striped" colorScheme="teal">
+  <TableCaption>Imperial to metric conversion factors</TableCaption>
+  <Thead>
+    <Tr>
+      <Th>To convert</Th>
+      <Th>into</Th>
+      <Th isNumeric>multiply by</Th>
+    </Tr>
+  </Thead>
+  <Tbody>
+    <Tr>
+      <Td>inches</Td>
+      <Td>millimetres (mm)</Td>
+      <Td isNumeric>25.4</Td>
+    </Tr>
+    <Tr>
+      <Td>feet</Td>
+      <Td>centimetres (cm)</Td>
+      <Td isNumeric>30.48</Td>
+    </Tr>
+    <Tr>
+      <Td>yards</Td>
+      <Td>metres (m)</Td>
+      <Td isNumeric>0.91444</Td>
+    </Tr>
+  </Tbody>
+  <Tfoot>
+    <Tr>
+      <Th>To convert</Th>
+      <Th>into</Th>
+      <Th isNumeric>multiply by</Th>
+    </Tr>
+  </Tfoot>
+</Table>
+```
+
+## Table Sizing
+
+The table component is available in 3 sizes: `sm`, `md`, `lg`. The default size
+is `md`.
+
+```jsx
+<Table size="sm">
+  <Thead>
+    <Tr>
+      <Th>To convert</Th>
+      <Th>into</Th>
+      <Th isNumeric>multiply by</Th>
+    </Tr>
+  </Thead>
+  <Tbody>
+    <Tr>
+      <Td>inches</Td>
+      <Td>millimetres (mm)</Td>
+      <Td isNumeric>25.4</Td>
+    </Tr>
+    <Tr>
+      <Td>feet</Td>
+      <Td>centimetres (cm)</Td>
+      <Td isNumeric>30.48</Td>
+    </Tr>
+    <Tr>
+      <Td>yards</Td>
+      <Td>metres (m)</Td>
+      <Td isNumeric>0.91444</Td>
+    </Tr>
+  </Tbody>
+  <Tfoot>
+    <Tr>
+      <Th>To convert</Th>
+      <Th>into</Th>
+      <Th isNumeric>multiply by</Th>
+    </Tr>
+  </Tfoot>
+</Table>
+```
+
+## Props
+
+### Table
+
+<PropsTable of="Table" />
+
+### Td
+
+<PropsTable of="Td" />
+
+### Th
+
+<PropsTable of="Th" />
+
+### TableCaption
+
+<PropsTable of="TableCaption" />

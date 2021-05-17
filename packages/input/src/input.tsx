@@ -2,10 +2,10 @@ import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
 import {
   chakra,
   forwardRef,
-  PropsOf,
-  useMultiStyleConfig,
   omitThemingProps,
   ThemingProps,
+  useMultiStyleConfig,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -24,7 +24,11 @@ interface InputOptions {
    */
   errorBorderColor?: string
   /**
-   * If `true`, the input element will span the full width of it's parent
+   * If `true`, the input element will span the full width of its parent
+   *
+   * @deprecated
+   * This component defaults to 100% width,
+   *  please use the props `maxWidth` or `width` to configure
    */
   isFullWidth?: boolean
 }
@@ -32,22 +36,17 @@ interface InputOptions {
 type Omitted = "disabled" | "required" | "readOnly" | "size"
 
 export interface InputProps
-  extends Omit<PropsOf<typeof chakra.input>, Omitted>,
+  extends Omit<HTMLChakraProps<"input">, Omitted>,
     InputOptions,
-    ThemingProps,
-    FormControlOptions {
-  size?: string
-}
+    ThemingProps<"Input">,
+    FormControlOptions {}
 
 /**
  * Input
  *
  * Element that allows users enter single valued data.
  */
-export const Input = forwardRef<InputProps, "input">(function Input(
-  props,
-  ref,
-) {
+export const Input = forwardRef<InputProps, "input">((props, ref) => {
   const styles = useMultiStyleConfig("Input", props)
   const ownProps = omitThemingProps(props)
   const input = useFormControl<HTMLInputElement>(ownProps)

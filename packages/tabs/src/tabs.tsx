@@ -2,16 +2,17 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  PropsOf,
   StylesProvider,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import {
+  TabsDescendantsProvider,
   TabsProvider,
   useTab,
   useTabIndicator,
@@ -37,8 +38,8 @@ interface TabsOptions {
 
 export interface TabsProps
   extends UseTabsProps,
-    ThemingProps,
-    Omit<PropsOf<typeof chakra.div>, "onChange">,
+    ThemingProps<"Tabs">,
+    Omit<HTMLChakraProps<"div">, "onChange">,
     TabsOptions {
   children: React.ReactNode
 }
@@ -49,27 +50,30 @@ export interface TabsProps
  * Provides context and logic for all tabs components. It doesn't render
  * any DOM node.
  */
-export const Tabs = forwardRef<TabsProps, "div">(function Tabs(props, ref) {
+export const Tabs = forwardRef<TabsProps, "div">((props, ref) => {
   const styles = useMultiStyleConfig("Tabs", props)
   const { children, className, ...rest } = omitThemingProps(props)
 
-  const { htmlProps, ...ctx } = useTabs(rest)
+  const { htmlProps, descendants, ...ctx } = useTabs(rest)
   const context = React.useMemo(() => ctx, [ctx])
 
   const rootProps = omit(htmlProps as any, ["isFitted"])
 
   return (
-    <TabsProvider value={context}>
-      <StylesProvider value={styles}>
-        <chakra.div
-          className={cx("chakra-tabs", className)}
-          ref={ref}
-          {...rootProps}
-        >
-          {children}
-        </chakra.div>
-      </StylesProvider>
-    </TabsProvider>
+    <TabsDescendantsProvider value={descendants}>
+      <TabsProvider value={context}>
+        <StylesProvider value={styles}>
+          <chakra.div
+            className={cx("chakra-tabs", className)}
+            ref={ref}
+            {...rootProps}
+            __css={styles.root}
+          >
+            {children}
+          </chakra.div>
+        </StylesProvider>
+      </TabsProvider>
+    </TabsDescendantsProvider>
   )
 })
 
@@ -77,15 +81,13 @@ if (__DEV__) {
   Tabs.displayName = "Tabs"
 }
 
-export interface TabProps
-  extends UseTabOptions,
-    PropsOf<typeof chakra.button> {}
+export interface TabProps extends UseTabOptions, HTMLChakraProps<"button"> {}
 
 /**
  * Tab button used to activate a specific tab panel. It renders a `button`,
  * and is responsible for automatic and manual selection modes.
  */
-export const Tab = forwardRef<TabProps, "button">(function Tab(props, ref) {
+export const Tab = forwardRef<TabProps, "button">((props, ref) => {
   const styles = useStyles()
   const tabProps = useTab({ ...props, ref })
 
@@ -112,16 +114,13 @@ if (__DEV__) {
 
 export interface TabListProps
   extends UseTabListProps,
-    Omit<PropsOf<typeof chakra.div>, "onKeyDown" | "ref"> {}
+    Omit<HTMLChakraProps<"div">, "onKeyDown" | "ref"> {}
 
 /**
  * TabList is used to manage a list of tab buttons. It renders a `div` by default,
  * and is responsible the keyboard interaction between tabs.
  */
-export const TabList = forwardRef<TabListProps, "div">(function TabList(
-  props,
-  ref,
-) {
+export const TabList = forwardRef<TabListProps, "div">((props, ref) => {
   const tablistProps = useTabList({ ...props, ref })
 
   const styles = useStyles()
@@ -144,21 +143,19 @@ if (__DEV__) {
   TabList.displayName = "TabList"
 }
 
-export interface TabPanelProps extends PropsOf<typeof chakra.div> {}
+export interface TabPanelProps extends HTMLChakraProps<"div"> {}
 
 /**
  * TabPanel
  * Used to render the content for a specific tab.
  */
-export const TabPanel = forwardRef<TabPanelProps, "div">(function TabPanel(
-  props,
-  ref,
-) {
+export const TabPanel = forwardRef<TabPanelProps, "div">((props, ref) => {
   const panelProps = useTabPanel({ ...props, ref })
   const styles = useStyles()
 
   return (
     <chakra.div
+      outline="0"
       {...panelProps}
       className={cx("chakra-tabs__tab-panel", props.className)}
       __css={styles.tabpanel}
@@ -170,7 +167,7 @@ if (__DEV__) {
   TabPanel.displayName = "TabPanel"
 }
 
-export interface TabPanelsProps extends PropsOf<typeof chakra.div> {}
+export interface TabPanelsProps extends HTMLChakraProps<"div"> {}
 
 /**
  * TabPanel
@@ -180,16 +177,17 @@ export interface TabPanelsProps extends PropsOf<typeof chakra.div> {}
  *
  * It renders a `div` by default.
  */
-export const TabPanels = forwardRef<TabPanelsProps, "div">(function TabPanels(
-  props,
-  ref,
-) {
+export const TabPanels = forwardRef<TabPanelsProps, "div">((props, ref) => {
   const panelsProps = useTabPanels(props)
+  const styles = useStyles()
+
   return (
     <chakra.div
       {...panelsProps}
+      width="100%"
       ref={ref}
       className={cx("chakra-tabs__tab-panels", props.className)}
+      __css={styles.tabpanels}
     />
   )
 })
@@ -198,7 +196,7 @@ if (__DEV__) {
   TabPanels.displayName = "TabPanels"
 }
 
-export interface TabIndicatorProps extends PropsOf<typeof chakra.div> {}
+export interface TabIndicatorProps extends HTMLChakraProps<"div"> {}
 
 /**
  * TabIndicator
@@ -207,7 +205,7 @@ export interface TabIndicatorProps extends PropsOf<typeof chakra.div> {}
  * selected tabs.
  */
 export const TabIndicator = forwardRef<TabIndicatorProps, "div">(
-  function TabIndicator(props, ref) {
+  (props, ref) => {
     const indicatorStyle = useTabIndicator()
     const style = {
       ...props.style,

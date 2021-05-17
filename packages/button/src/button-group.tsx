@@ -1,17 +1,18 @@
 import {
   chakra,
+  forwardRef,
   SystemProps,
   SystemStyleObject,
   ThemingProps,
-  forwardRef,
-  PropsOf,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
-import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
+import { cx, __DEV__ } from "@chakra-ui/utils"
+import { createContext } from "@chakra-ui/react-utils"
 import * as React from "react"
 
 export interface ButtonGroupProps
-  extends PropsOf<typeof chakra.div>,
-    ThemingProps {
+  extends HTMLChakraProps<"div">,
+    ThemingProps<"Button"> {
   /**
    * If `true`, the borderRadius of button that are direct children will be altered
    * to look flushed together
@@ -24,11 +25,12 @@ export interface ButtonGroupProps
   /**
    * The spacing between the buttons
    * @default '0.5rem'
+   * @type SystemProps["marginRight"]
    */
   spacing?: SystemProps["marginRight"]
 }
 
-interface ButtonGroupContext extends ThemingProps {
+interface ButtonGroupContext extends ThemingProps<"ButtonGroup"> {
   isDisabled?: boolean
 }
 
@@ -41,57 +43,55 @@ const [ButtonGroupProvider, useButtonGroup] = createContext<ButtonGroupContext>(
 
 export { useButtonGroup }
 
-export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
-  function ButtonGroup(props, ref) {
-    const {
-      size,
-      colorScheme,
-      variant,
-      className,
-      spacing = "0.5rem",
-      isAttached,
-      isDisabled,
-      ...rest
-    } = props
+export const ButtonGroup = forwardRef<ButtonGroupProps, "div">((props, ref) => {
+  const {
+    size,
+    colorScheme,
+    variant,
+    className,
+    spacing = "0.5rem",
+    isAttached,
+    isDisabled,
+    ...rest
+  } = props
 
-    const _className = cx("chakra-button__group", className)
+  const _className = cx("chakra-button__group", className)
 
-    const context = React.useMemo(
-      () => ({ size, colorScheme, variant, isDisabled }),
-      [size, colorScheme, variant, isDisabled],
-    )
+  const context = React.useMemo(
+    () => ({ size, colorScheme, variant, isDisabled }),
+    [size, colorScheme, variant, isDisabled],
+  )
 
-    let groupStyles: SystemStyleObject = {
-      display: "inline-flex",
+  let groupStyles: SystemStyleObject = {
+    display: "inline-flex",
+  }
+
+  if (isAttached) {
+    groupStyles = {
+      ...groupStyles,
+      "> *:first-of-type:not(:last-of-type)": { borderEndRadius: 0 },
+      "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
+      "> *:not(:first-of-type):last-of-type": { borderStartRadius: 0 },
     }
-
-    if (isAttached) {
-      groupStyles = {
-        ...groupStyles,
-        "> *:first-of-type:not(:last-of-type)": { borderRightRadius: 0 },
-        "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
-        "> *:not(:first-of-type):last-of-type": { borderLeftRadius: 0 },
-      }
-    } else {
-      groupStyles = {
-        ...groupStyles,
-        "& > *:not(style) ~ *:not(style)": { marginLeft: spacing },
-      }
+  } else {
+    groupStyles = {
+      ...groupStyles,
+      "& > *:not(style) ~ *:not(style)": { marginStart: spacing },
     }
+  }
 
-    return (
-      <ButtonGroupProvider value={context}>
-        <chakra.div
-          ref={ref}
-          role="group"
-          __css={groupStyles}
-          className={_className}
-          {...rest}
-        />
-      </ButtonGroupProvider>
-    )
-  },
-)
+  return (
+    <ButtonGroupProvider value={context}>
+      <chakra.div
+        ref={ref}
+        role="group"
+        __css={groupStyles}
+        className={_className}
+        {...rest}
+      />
+    </ButtonGroupProvider>
+  )
+})
 
 if (__DEV__) {
   ButtonGroup.displayName = "ButtonGroup"

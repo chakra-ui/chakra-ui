@@ -5,22 +5,19 @@ image: "components/popover.svg"
 description: Popover is a non-modal dialog that floats around a trigger
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
-Popover is a non-modal dialog that floats around a trigger. It's used to display
-contextual information to the user, and should be paired with a clickable
-trigger element.
+Popover is a non-modal dialog that floats around a trigger. It is used to
+display contextual information to the user, and should be paired with a
+clickable trigger element.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/popover", url: "#" }}
+  theme={{ componentName: "popover" }}
+  github={{ package: "popover" }}
+  npm={{ package: "@chakra-ui/popover" }}
 />
 
 <carbon-ad></carbon-ad>
 
-Popover is built on top of the [Popper.js](https://popper.js.org/) library, and
-composes the `Popper` component.
+`Popover` is built on top of the [Popper.js](https://popper.js.org/) library.
 
 ## Import
 
@@ -43,14 +40,14 @@ import {
   PopoverFooter,
   PopoverArrow,
   PopoverCloseButton,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 ```
 
 ## Basic Usage
 
 When using this component, ensure the children passed to `PopoverTrigger` is
-focusable. Users can tab to it using their keyboard, and it can take a `ref`.
-It's critical for accessiblity.
+focusable. Users can tab to it using their keyboard, and it can take a `ref`. It
+is critical for accessiblity.
 
 > **A11y:** When Popover opens, focus is sent to `PopoverContent`. When it
 > closes, focus is returned to the trigger.
@@ -192,10 +189,9 @@ const Form = ({ firstFieldRef, onCancel }) => {
 // 3. Create the Popover
 // Ensure you set `closeOnBlur` prop to false so it doesn't close on outside click
 const PopoverForm = () => {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const { onOpen, onClose, isOpen } = useDisclosure()
   const firstFieldRef = React.useRef(null)
-  const open = () => setIsOpen(true)
-  const close = () => setIsOpen(false)
+
   return (
     <>
       <Box d="inline-block" mr={3}>
@@ -204,8 +200,8 @@ const PopoverForm = () => {
       <Popover
         isOpen={isOpen}
         initialFocusRef={firstFieldRef}
-        onOpen={open}
-        onClose={close}
+        onOpen={onOpen}
+        onClose={onClose}
         placement="right"
         closeOnBlur={false}
       >
@@ -214,9 +210,9 @@ const PopoverForm = () => {
         </PopoverTrigger>
         <PopoverContent p={5}>
           <FocusLock returnFocus persistentFocus={false}>
-            <PopoverArrow bg="white" />
+            <PopoverArrow />
             <PopoverCloseButton />
-            <Form firstFieldRef={firstFieldRef} onCancel={close} />
+            <Form firstFieldRef={firstFieldRef} onCancel={onClose} />
           </FocusLock>
         </PopoverContent>
       </Popover>
@@ -403,7 +399,7 @@ happen when the component is displayed.
 
 ## Accessiblity
 
-> When you see the word _"trigger"_, it's referring to the `children` of
+> When you see the word _"trigger"_, it is referring to the `children` of
 > `PopoverTrigger`
 
 ### Keyboard and Focus
@@ -413,7 +409,7 @@ happen when the component is displayed.
 - When the popover is closed, focus returns to the trigger. If you set
   `returnFocusOnClose` to `false`, focus will not return.
 - If trigger is set to `hover`:
-  - Focusing on or mousing over the trigger will open the popover
+  - Focusing on or mousing over the trigger will open the popover.
   - Blurring or mousing out of the trigger will close the popover. If you move
     your mouse into the `PopoverContent`, it'll remain visible.
 - If trigger is set to `click`:
@@ -448,27 +444,12 @@ happen when the component is displayed.
 
 ### Popover Props
 
-| Name                 | Type                                                           | Default  | Description                                                                                                                                                                                                                |
-| -------------------- | -------------------------------------------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `isOpen`             | `boolean`                                                      |          | If `true`, the popover is shown                                                                                                                                                                                            |
-| `defaultIsOpen`      | `boolean`                                                      |          | If `true`, the popover is shown initially.                                                                                                                                                                                 |
-| `initialFocusRef`    | `React.Ref`                                                    |          | The `ref` of the element that should receive focus when the popover opens.                                                                                                                                                 |
-| `trigger`            | `hover`, `click`                                               | `click`  | The interaction that triggers the popover.                                                                                                                                                                                 |
-| `placement`          | `PopperJS.placement`                                           | `bottom` | The placement of the popover.                                                                                                                                                                                              |
-| `returnFocusOnClose` | `boolean`                                                      | `true`   | If `true`, the popover will return focus to the trigger when it closes                                                                                                                                                     |
-| `closeOnBlur`        | `boolean`                                                      | `true`   | If `true`, the popover will close when you blur out it by clicking outside or tabbing out                                                                                                                                  |
-| `closeOnEsc`         | `boolean`                                                      | `true`   | If `true`, close the popover when the `esc` key is pressed                                                                                                                                                                 |
-| `children`           | `React.ReactNode`, `(props: InternalState) => React.ReactNode` |          | The children of the popover                                                                                                                                                                                                |
-| `gutter`             | `number`                                                       | `4`      | The gap (in pixels) to apply between the popover and the target. Used by `popper.js`                                                                                                                                       |
-| `usePortal`          | `boolean`                                                      | `false`  | If `true` the popover is displayed with a `Portal`. Rendering content inside a Portal allows the popover content to escape the physical bounds of its parent while still being positioned correctly relative to its target |
-| `onOpen`             | `() => void`                                                   |          | Callback fired when the popover opens                                                                                                                                                                                      |
-| `onClose`            | `() => void`                                                   |          | Callback fired when the popover closes                                                                                                                                                                                     |
-| `isLazy`             | `boolean`                                                      |          | If `true`, the popover content won't render until the popover is open.                                                                                                                                                     |
+<PropsTable of="Popover" />
 
 ### Other Props
 
 - `PopoverContent` composes `Box` and has the ability to smartly position
-  itself. Thanks to popper.js
+  itself. Thanks to popper.js.
 - `PopoverArrow`, `PopoverHeader`, `PopoverFooter` and `PopoverBody` composes
   `Box`.
 - `PopoverCloseButton` composes `Box` component.

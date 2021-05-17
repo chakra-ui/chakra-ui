@@ -1,172 +1,141 @@
 import * as CSS from "csstype"
-import { ResponsiveValue, Length } from "../utils"
-import { createParser, Config, system } from "@styled-system/core"
+import { Config } from "../utils/prop-config"
+import { t, Token } from "../utils"
 
-/**
- * The parser configuration for common border properties
- */
-const config: Config = {
-  border: {
-    property: "border",
+export const border: Config = {
+  border: t.borders("border"),
+  borderWidth: t.borderWidths("borderWidth"),
+  borderStyle: t.borderStyles("borderStyle"),
+  borderColor: t.colors("borderColor"),
+  borderRadius: t.radii("borderRadius"),
+  borderTop: t.borders("borderTop"),
+  borderBlockStart: t.borders("borderBlockStart"),
+  borderTopLeftRadius: t.radii("borderTopLeftRadius"),
+  borderStartStartRadius: t.logical({
+    scale: "radii",
+    property: {
+      ltr: "borderTopLeftRadius",
+      rtl: "borderTopRightRadius",
+    },
+  }),
+  borderEndStartRadius: t.logical({
+    scale: "radii",
+    property: {
+      ltr: "borderBottomLeftRadius",
+      rtl: "borderBottomRightRadius",
+    },
+  }),
+  borderTopRightRadius: t.radii("borderTopRightRadius"),
+  borderStartEndRadius: t.logical({
+    scale: "radii",
+    property: {
+      ltr: "borderTopRightRadius",
+      rtl: "borderTopLeftRadius",
+    },
+  }),
+  borderEndEndRadius: t.logical({
+    scale: "radii",
+    property: {
+      ltr: "borderBottomRightRadius",
+      rtl: "borderBottomLeftRadius",
+    },
+  }),
+  borderRight: t.borders("borderRight"),
+  borderInlineEnd: t.borders("borderInlineEnd"),
+  borderBottom: t.borders("borderBottom"),
+  borderBlockEnd: t.borders("borderBlockEnd"),
+  borderBottomLeftRadius: t.radii("borderBottomLeftRadius"),
+  borderBottomRightRadius: t.radii("borderBottomRightRadius"),
+  borderLeft: t.borders("borderLeft"),
+  borderInlineStart: {
+    property: "borderInlineStart",
     scale: "borders",
   },
-  borderWidth: {
-    property: "borderWidth",
-    scale: "borderWidths",
-  },
-  borderStyle: {
-    property: "borderStyle",
-    scale: "borderStyles",
-  },
-  borderColor: {
-    property: "borderColor",
-    scale: "colors",
-  },
-  borderRadius: {
-    property: "borderRadius",
+  borderInlineStartRadius: t.logical({
     scale: "radii",
-  },
-  rounded: {
-    property: "borderRadius",
+    property: {
+      ltr: ["borderTopLeftRadius", "borderBottomLeftRadius"],
+      rtl: ["borderTopRightRadius", "borderBottomRightRadius"],
+    },
+  }),
+  borderInlineEndRadius: t.logical({
     scale: "radii",
-  },
-  borderTop: {
-    property: "borderTop",
-    scale: "borders",
-  },
-  borderTopLeftRadius: {
-    property: "borderTopLeftRadius",
-    scale: "radii",
-  },
-  roundedTopLeft: {
-    property: "borderTopLeftRadius",
-    scale: "radii",
-  },
-  borderTopRightRadius: {
-    property: "borderTopRightRadius",
-    scale: "radii",
-  },
-  roundedTopRight: {
-    property: "borderTopRightRadius",
-    scale: "radii",
-  },
-  borderRight: {
-    property: "borderRight",
-    scale: "borders",
-  },
-  borderBottom: {
-    property: "borderBottom",
-    scale: "borders",
-  },
-  borderBottomLeftRadius: {
-    property: "borderBottomLeftRadius",
-    scale: "radii",
-  },
-  roundedBottomLeft: {
-    property: "borderBottomLeftRadius",
-    scale: "radii",
-  },
-  borderBottomRightRadius: {
-    property: "borderBottomRightRadius",
-    scale: "radii",
-  },
-  roundedBottomRight: {
-    property: "borderBottomRightRadius",
-    scale: "radii",
-  },
-  borderLeft: {
-    property: "borderLeft",
-    scale: "borders",
-  },
-  borderX: {
-    properties: ["borderLeft", "borderRight"],
-    scale: "borders",
-  },
-  borderY: {
-    properties: ["borderTop", "borderBottom"],
-    scale: "borders",
-  },
-  borderTopWidth: {
-    property: "borderTopWidth",
-    scale: "borderWidths",
-  },
-  borderTopColor: {
-    property: "borderTopColor",
-    scale: "colors",
-  },
-  borderTopStyle: {
-    property: "borderTopStyle",
-    scale: "borderStyles",
-  },
-  borderBottomWidth: {
-    property: "borderBottomWidth",
-    scale: "borderWidths",
-  },
-  borderBottomColor: {
-    property: "borderBottomColor",
-    scale: "colors",
-  },
-  borderBottomStyle: {
-    property: "borderBottomStyle",
-    scale: "borderStyles",
-  },
-  borderLeftWidth: {
-    property: "borderLeftWidth",
-    scale: "borderWidths",
-  },
-  borderLeftColor: {
-    property: "borderLeftColor",
-    scale: "colors",
-  },
-  borderLeftStyle: {
-    property: "borderLeftStyle",
-    scale: "borderStyles",
-  },
-  borderRightWidth: {
-    property: "borderRightWidth",
-    scale: "borderWidths",
-  },
-  borderRightColor: {
-    property: "borderRightColor",
-    scale: "colors",
-  },
-  borderRightStyle: {
-    property: "borderRightStyle",
-    scale: "borderStyles",
-  },
-  borderTopRadius: {
-    properties: ["borderTopLeftRadius", "borderTopRightRadius"],
-    scale: "radii",
-  },
-  roundedTop: {
-    properties: ["borderTopLeftRadius", "borderTopRightRadius"],
-    scale: "radii",
-  },
-  borderBottomRadius: {
-    properties: ["borderBottomLeftRadius", "borderBottomRightRadius"],
-    scale: "radii",
-  },
-  roundedBottom: {
-    properties: ["borderBottomLeftRadius", "borderBottomRightRadius"],
-    scale: "radii",
-  },
-  borderLeftRadius: {
-    properties: ["borderTopLeftRadius", "borderBottomLeftRadius"],
-    scale: "radii",
-  },
-  roundedLeft: {
-    properties: ["borderTopLeftRadius", "borderBottomLeftRadius"],
-    scale: "radii",
-  },
-  borderRightRadius: {
-    properties: ["borderTopRightRadius", "borderBottomRightRadius"],
-    scale: "radii",
-  },
-  roundedRight: {
-    properties: ["borderTopRightRadius", "borderBottomRightRadius"],
-    scale: "radii",
-  },
+    property: {
+      ltr: ["borderTopRightRadius", "borderBottomRightRadius"],
+      rtl: ["borderTopLeftRadius", "borderBottomLeftRadius"],
+    },
+  }),
+  borderX: t.borders(["borderLeft", "borderRight"]),
+  borderInline: t.borders("borderInline"),
+  borderY: t.borders(["borderTop", "borderBottom"]),
+  borderBlock: t.borders("borderBlock"),
+  borderTopWidth: t.borderWidths("borderTopWidth"),
+  borderBlockStartWidth: t.borderWidths("borderBlockStartWidth"),
+  borderTopColor: t.colors("borderTopColor"),
+  borderBlockStartColor: t.colors("borderBlockStartColor"),
+  borderTopStyle: t.borderStyles("borderTopStyle"),
+  borderBlockStartStyle: t.borderStyles("borderBlockStartStyle"),
+  borderBottomWidth: t.borderWidths("borderBottomWidth"),
+  borderBlockEndWidth: t.borderWidths("borderBlockEndWidth"),
+  borderBottomColor: t.colors("borderBottomColor"),
+  borderBlockEndColor: t.colors("borderBlockEndColor"),
+  borderBottomStyle: t.borderStyles("borderBottomStyle"),
+  borderBlockEndStyle: t.borderStyles("borderBlockEndStyle"),
+  borderLeftWidth: t.borderWidths("borderLeftWidth"),
+  borderInlineStartWidth: t.borderWidths("borderInlineStartWidth"),
+  borderLeftColor: t.colors("borderLeftColor"),
+  borderInlineStartColor: t.colors("borderInlineStartColor"),
+  borderLeftStyle: t.borderStyles("borderLeftStyle"),
+  borderInlineStartStyle: t.borderStyles("borderInlineStartStyle"),
+  borderRightWidth: t.borderWidths("borderRightWidth"),
+  borderInlineEndWidth: t.borderWidths("borderInlineEndWidth"),
+  borderRightColor: t.colors("borderRightColor"),
+  borderInlineEndColor: t.colors("borderInlineEndColor"),
+  borderRightStyle: t.borderStyles("borderRightStyle"),
+  borderInlineEndStyle: t.borderStyles("borderInlineEndStyle"),
+  borderTopRadius: t.radii(["borderTopLeftRadius", "borderTopRightRadius"]),
+  borderBottomRadius: t.radii([
+    "borderBottomLeftRadius",
+    "borderBottomRightRadius",
+  ]),
+  borderLeftRadius: t.radii(["borderTopLeftRadius", "borderBottomLeftRadius"]),
+  borderRightRadius: t.radii([
+    "borderTopRightRadius",
+    "borderBottomRightRadius",
+  ]),
 }
+
+Object.assign(border, {
+  rounded: border.borderRadius,
+  roundedTop: border.borderTopRadius,
+  roundedTopLeft: border.borderTopLeftRadius,
+  roundedTopRight: border.borderTopRightRadius,
+  roundedTopStart: border.borderStartStartRadius,
+  roundedTopEnd: border.borderStartEndRadius,
+  roundedBottom: border.borderBottomRadius,
+  roundedBottomLeft: border.borderBottomLeftRadius,
+  roundedBottomRight: border.borderBottomRightRadius,
+  roundedBottomStart: border.borderEndStartRadius,
+  roundedBottomEnd: border.borderEndEndRadius,
+  roundedLeft: border.borderLeftRadius,
+  roundedRight: border.borderRightRadius,
+  roundedStart: border.borderInlineStartRadius,
+  roundedEnd: border.borderInlineEndRadius,
+  borderStart: border.borderInlineStart,
+  borderEnd: border.borderInlineEnd,
+  borderTopStartRadius: border.borderStartStartRadius,
+  borderTopEndRadius: border.borderStartEndRadius,
+  borderBottomStartRadius: border.borderEndStartRadius,
+  borderBottomEndRadius: border.borderEndEndRadius,
+  borderStartRadius: border.borderInlineStartRadius,
+  borderEndRadius: border.borderInlineEndRadius,
+  borderStartWidth: border.borderInlineStartWidth,
+  borderEndWidth: border.borderInlineEndWidth,
+  borderStartColor: border.borderInlineStartColor,
+  borderEndColor: border.borderInlineEndColor,
+  borderStartStyle: border.borderInlineStartStyle,
+  borderEndStyle: border.borderInlineEndStyle,
+})
 
 /**
  * The prop types for border properties listed above
@@ -175,165 +144,240 @@ export interface BorderProps {
   /**
    * The CSS `border` property
    */
-  border?: ResponsiveValue<CSS.Property.Border<Length>>
+  border?: Token<CSS.Property.Border | number, "borders">
   /**
    * The CSS `border-width` property
    */
-  borderWidth?: ResponsiveValue<CSS.Property.BorderWidth<Length>>
+  borderWidth?: Token<CSS.Property.BorderWidth | number>
   /**
    * The CSS `border-style` property
    */
-  borderStyle?: ResponsiveValue<CSS.Property.BorderStyle>
+  borderStyle?: Token<CSS.Property.BorderStyle>
   /**
    * The CSS `border-color` property
    */
-  borderColor?: ResponsiveValue<CSS.Property.BorderTopColor>
+  borderColor?: Token<CSS.Property.BorderTopColor, "colors">
   /**
    * The CSS `border-radius` property
    */
-  borderRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  borderRadius?: Token<CSS.Property.BorderRadius | number, "radii">
   /**
    * The CSS `border-radius` property
    */
-  rounded?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  rounded?: Token<CSS.Property.BorderRadius | number, "radii">
   /**
    * The CSS `border-top` property
    */
-  borderTop?: ResponsiveValue<CSS.Property.BorderTop<Length>>
+  borderTop?: Token<CSS.Property.BorderTop | number, "borders">
+  borderBlockStart?: Token<CSS.Property.BorderBlockStart | number>
   /**
    * The CSS `border-top-width` property
    */
-  borderTopWidth?: ResponsiveValue<CSS.Property.BorderWidth<Length>>
+  borderTopWidth?: Token<CSS.Property.BorderWidth | number>
+  borderBlockStartWidth?: Token<CSS.Property.BorderBlockStartWidth | number>
   /**
    * The CSS `border-bottom-width` property
    */
-  borderBottomWidth?: ResponsiveValue<CSS.Property.BorderWidth<Length>>
+  borderBottomWidth?: Token<CSS.Property.BorderWidth | number>
+  borderBlockEndWidth?: Token<CSS.Property.BorderBlockEndWidth | number>
   /**
    * The CSS `border-left-width` property
    */
-  borderLeftWidth?: ResponsiveValue<CSS.Property.BorderWidth<Length>>
+  borderLeftWidth?: Token<CSS.Property.BorderWidth | number>
+  borderStartWidth?: Token<CSS.Property.BorderWidth | number>
+  borderInlineStartWidth?: Token<CSS.Property.BorderInlineStartWidth | number>
   /**
    * The CSS `border-right-width` property
    */
-  borderRightWidth?: ResponsiveValue<CSS.Property.BorderWidth<Length>>
+  borderRightWidth?: Token<CSS.Property.BorderWidth | number>
+  borderEndWidth?: Token<CSS.Property.BorderWidth | number>
+  borderInlineEndWidth?: Token<CSS.Property.BorderInlineEndWidth | number>
   /**
    * The CSS `border-top-style` property
    */
-  borderTopStyle?: ResponsiveValue<CSS.Property.BorderTopStyle>
+  borderTopStyle?: Token<CSS.Property.BorderTopStyle>
+  borderBlockStartStyle?: Token<CSS.Property.BorderBlockStartStyle>
   /**
    * The CSS `border-bottom-style` property
    */
-  borderBottomStyle?: ResponsiveValue<CSS.Property.BorderBottomStyle>
+  borderBottomStyle?: Token<CSS.Property.BorderBottomStyle>
+  borderBlockEndStyle?: Token<CSS.Property.BorderBlockEndStyle>
   /**
    * The CSS `border-left-style` property
    */
-  borderLeftStyle?: ResponsiveValue<CSS.Property.BorderLeftStyle>
+  borderLeftStyle?: Token<CSS.Property.BorderLeftStyle>
+  borderStartStyle?: Token<CSS.Property.BorderInlineStartStyle>
+  borderInlineStartStyle?: Token<CSS.Property.BorderInlineStartStyle>
   /**
    * The CSS `border-right-styles` property
    */
-  borderRightStyle?: ResponsiveValue<CSS.Property.BorderRightStyle>
+  borderRightStyle?: Token<CSS.Property.BorderRightStyle>
+  borderEndStyle?: Token<CSS.Property.BorderInlineEndStyle>
+  borderInlineEndStyle?: Token<CSS.Property.BorderInlineEndStyle>
   /**
    * The CSS `border-top-color` property
    */
-  borderTopColor?: ResponsiveValue<CSS.Property.BorderTopColor>
+  borderTopColor?: Token<CSS.Property.BorderTopColor, "colors">
+  borderBlockStartColor?: Token<CSS.Property.BorderBlockStartColor, "colors">
   /**
    * The CSS `border-bottom-color` property
    */
-  borderBottomColor?: ResponsiveValue<CSS.Property.BorderBottomColor>
+  borderBottomColor?: Token<CSS.Property.BorderBottomColor, "colors">
+  borderBlockEndColor?: Token<CSS.Property.BorderBlockEndColor, "colors">
   /**
    * The CSS `border-left-color` property
    */
-  borderLeftColor?: ResponsiveValue<CSS.Property.BorderLeftColor>
+  borderLeftColor?: Token<CSS.Property.BorderLeftColor, "colors">
+  borderStartColor?: Token<CSS.Property.BorderInlineStartColor>
+  borderInlineStartColor?: Token<CSS.Property.BorderInlineStartColor, "colors">
   /**
    * The CSS `border-right-color` property
    */
-  borderRightColor?: ResponsiveValue<CSS.Property.BorderRightColor>
+  borderRightColor?: Token<CSS.Property.BorderRightColor, "colors">
+  borderEndColor?: Token<CSS.Property.BorderInlineEndColor>
+  borderInlineEndColor?: Token<CSS.Property.BorderInlineEndColor, "colors">
   /**
    * The CSS `border-right` property
    */
-  borderRight?: ResponsiveValue<CSS.Property.BorderRight<Length>>
+  borderRight?: Token<CSS.Property.BorderRight | number, "borders">
+
+  borderEnd?: Token<CSS.Property.BorderInlineStart | number>
+  borderInlineEnd?: Token<CSS.Property.BorderInlineEnd | number>
   /**
    * The CSS `border-bottom` property
    */
-  borderBottom?: ResponsiveValue<CSS.Property.BorderBottom<Length>>
+  borderBottom?: Token<CSS.Property.BorderBottom | number, "borders">
+
+  borderBlockEnd?: Token<CSS.Property.BorderBlockEnd | number>
   /**
    * The CSS `border-left` property
    */
-  borderLeft?: ResponsiveValue<CSS.Property.BorderLeft<Length>>
+  borderLeft?: Token<CSS.Property.BorderLeft | number, "borders">
+  borderStart?: Token<CSS.Property.BorderInlineStart | number>
+  borderInlineStart?: Token<CSS.Property.BorderInlineStart | number>
   /**
    * The CSS `border-top-radius` property
    */
-  borderTopRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  borderTopRadius?: Token<CSS.Property.BorderRadius | number, "radii">
   /**
    * The CSS `border-top-radius` property
    */
-  roundedTop?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  roundedTop?: Token<CSS.Property.BorderRadius | number, "radii">
   /**
    * The CSS `border-right-radius` property
    */
-  borderRightRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  borderRightRadius?: Token<CSS.Property.BorderRadius | number, "radii">
   /**
    * The CSS `border-right-radius` property
    */
-  roundedRight?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  roundedRight?: Token<CSS.Property.BorderRadius | number, "radii">
+  /**
+   * When direction is `ltr`, `roundedEnd` is equivalent to `borderRightRadius`.
+   * When direction is `rtl`, `roundedEnd` is equivalent to `borderLeftRadius`.
+   */
+  roundedEnd?: Token<CSS.Property.BorderRadius | number, "radii">
+  /**
+   * When direction is `ltr`, `borderInlineEndRadius` is equivalent to `borderRightRadius`.
+   * When direction is `rtl`, `borderInlineEndRadius` is equivalent to `borderLeftRadius`.
+   */
+  borderInlineEndRadius?: Token<CSS.Property.BorderRadius | number, "radii">
+  /**
+   * When direction is `ltr`, `borderEndRadius` is equivalent to `borderRightRadius`.
+   * When direction is `rtl`, `borderEndRadius` is equivalent to `borderLeftRadius`.
+   */
+  borderEndRadius?: Token<CSS.Property.BorderRadius | number, "radii">
   /**
    * The CSS `border-bottom-radius` property
    */
-  borderBottomRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  borderBottomRadius?: Token<CSS.Property.BorderRadius | number, "radii">
   /**
    * The CSS `border-bottom-radius` property
    */
-  roundedBottom?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  roundedBottom?: Token<CSS.Property.BorderRadius | number, "radii">
   /**
    * The CSS `border-left-radius` property
    */
-  borderLeftRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  borderLeftRadius?: Token<CSS.Property.BorderRadius | number, "radii">
   /**
    * The CSS `border-left-radius` property
    */
-  roundedLeft?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  roundedLeft?: Token<CSS.Property.BorderRadius | number, "radii">
+  /**
+   * When direction is `ltr`, `roundedEnd` is equivalent to `borderRightRadius`.
+   * When direction is `rtl`, `roundedEnd` is equivalent to `borderLeftRadius`.
+   */
+  roundedStart?: Token<CSS.Property.BorderRadius | number, "radii">
+  /**
+   * When direction is `ltr`, `borderInlineStartRadius` is equivalent to `borderLeftRadius`.
+   * When direction is `rtl`, `borderInlineStartRadius` is equivalent to `borderRightRadius`.
+   */
+  borderInlineStartRadius?: Token<CSS.Property.BorderRadius | number, "radii">
+  /**
+   * When direction is `ltr`, `borderStartRadius` is equivalent to `borderLeftRadius`.
+   * When direction is `rtl`, `borderStartRadius` is equivalent to `borderRightRadius`.
+   */
+  borderStartRadius?: Token<CSS.Property.BorderRadius | number, "radii">
   /**
    * The CSS `border-top-left-radius` property
    */
-  borderTopLeftRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  borderTopLeftRadius?: Token<CSS.Property.BorderRadius | number, "radii">
+  borderTopStartRadius?: Token<CSS.Property.BorderRadius | number, "radii">
+  borderStartStartRadius?: Token<
+    CSS.Property.BorderStartStartRadius | number,
+    "radii"
+  >
   /**
    * The CSS `border-top-left-radius` property
    */
-  roundedTopLeft?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  roundedTopLeft?: Token<CSS.Property.BorderRadius | number, "radii">
+  roundedTopStart?: Token<CSS.Property.BorderRadius | number, "radii">
   /**
    * The CSS `border-top-right-radius` property
    */
-  borderTopRightRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  borderTopRightRadius?: Token<CSS.Property.BorderRadius | number, "radii">
+  borderTopEndRadius?: Token<CSS.Property.BorderRadius | number, "radii">
+  borderStartEndRadius?: Token<
+    CSS.Property.BorderStartEndRadius | number,
+    "radii"
+  >
   /**
    * The CSS `border-top-right-radius` property
    */
-  roundedTopRight?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  roundedTopRight?: Token<CSS.Property.BorderRadius | number, "radii">
+  roundedTopEnd?: Token<CSS.Property.BorderRadius | number, "radii">
   /**
    * The CSS `border-bottom-left-radius` property
    */
-  borderBottomLeftRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  borderBottomLeftRadius?: Token<CSS.Property.BorderRadius | number, "radii">
+  borderBottomStartRadius?: Token<CSS.Property.BorderRadius | number, "radii">
+  borderEndStartRadius?: Token<
+    CSS.Property.BorderEndStartRadius | number,
+    "radii"
+  >
   /**
    * The CSS `border-bottom-left-radius` property
    */
-  roundedBottomLeft?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  roundedBottomLeft?: Token<CSS.Property.BorderRadius | number, "radii">
+  roundedBottomStart?: Token<CSS.Property.BorderRadius | number, "radii">
   /**
    * The CSS `border-bottom-right-radius` property
    */
-  borderBottomRightRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  borderBottomRightRadius?: Token<CSS.Property.BorderRadius | number, "radii">
+  borderBottomEndRadius?: Token<CSS.Property.BorderRadius | number, "radii">
+  borderEndEndRadius?: Token<CSS.Property.BorderEndEndRadius | number, "radii">
   /**
    * The CSS `border-bottom-right-radius` property
    */
-  roundedBottomRight?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
+  roundedBottomRight?: Token<CSS.Property.BorderRadius | number, "radii">
+  roundedBottomEnd?: Token<CSS.Property.BorderRadius | number, "radii">
   /**
    * The CSS `border-right` and `border-left` property
    */
-  borderX?: ResponsiveValue<CSS.Property.Border<Length>>
+  borderX?: Token<CSS.Property.Border | number, "borders">
+  borderInline?: Token<CSS.Property.BorderInline | number>
   /**
    * The CSS `border-top` and `border-bottom` property
    */
-  borderY?: ResponsiveValue<CSS.Property.Border<Length>>
+  borderY?: Token<CSS.Property.Border | number, "borders">
+  borderBlock?: Token<CSS.Property.BorderBlock | number>
 }
-
-export const border = system(config)
-
-export const borderParser = createParser(config)

@@ -1,49 +1,70 @@
 ---
-name: Report a bug
-about: Create a bug report for the Chakra UI ecosystem
+name: Report a bug 🐛
+about: Something isn't working as expected? Here is the right place to report.
 ---
 
-# Bug report
+<!---
+Thanks for creating an issue 😄!
 
-## Describe the bug
+Please search open/closed issues before submitting. Someone
+might have asked the same thing before 😉!
 
-<!-- A clear and concise description of what the bug is. -->
+Please fill out all of the sections of this template marked as REQUIRED! We
+ask for this information because we need it in order to understand your issue
+and quickly diagnose it or provide a solution. Failure to provide the
+required information will result in your issue being closed.
 
-## To reproduce
+We're all volunteers here, so help us help you by taking the time to
+accurately fill out this template. ❤️
+-->
 
-<!-- Clear and concise reproduction instructions are important for us to be
-able to triage your issue in a timely manner. -->
+# 🐛 Bug report
+
+<!-- REQUIRED: Provide a brief description of your bug below -->
+
+## 💥 Steps to reproduce
+
+<!-- REQUIRED -->
 
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
 
-## Minimal reproduction
+## 💻 Link to reproduction
 
-<!-- Please provide a codesandbox link or GitHub repo with a minimal
-reproduction of the bug.
+<!--
+REQUIRED
 
-Official Chakra CodeSandbox templates:
-- [JavaScript CodeSandbox template](https://codesandbox.io/s/github/chakra-ui/codesandbox-react-js-template/tree/master)
-- [TypeScript CodeSandbox template](https://codesandbox.io/s/github/chakra-ui/codesandbox-react-ts-template/tree/master)
+Create a minimal reproduction in CodeSandbox. We have created these official templates to make this easy:
+
+- JavaScript Starter: https://codesandbox.io/s/chakra-ui-javascript-lzzg9
+- TypeScript Starter: https://codesandbox.io/s/chakra-ui-typescript-pomi8
+- NextJS TypeScript Starter: https://codesandbox.io/s/chakra-ui-next-js-typescript-kxvyr
 -->
 
-## Expected behavior
+CodeSandbox reproduction: https://your-codesandbox-link-goes-here.io
 
-<!-- A clear and concise description of what you expected to happen. -->
+## 🧐 Expected behavior
 
-## Screenshots
+<!-- Explain what you expected to happen -->
 
-<!-- If applicable, add screenshots to help explain your problem. -->
+## 🧭 Possible Solution
 
-## System information
+<!-- Not required, but feel free to suggest a possible solution below if you
+have one in mind. -->
 
-- OS: [e.g. macOS, Windows]
-- Browser (if applies): [e.g. Chrome, Safari]
-- Version of @chakra-ui/core: [e.g. 1.0.0-rc.3]
-- Version of Node.js: [e.g. 12.11.1]
+## 🌍 System information
 
-## Additional context
+<!-- REQUIRED -->
 
-<!-- Add any other context about the problem here. -->
+| Software         | Version(s) |
+| ---------------- | ---------- |
+| Chakra UI        |            |
+| Browser          |            |
+| Operating System |            |
+
+## 📝 Additional information
+
+<!-- Use this section to provide any additional information you might have,
+like screenshots, notes, or links to ideas. -->

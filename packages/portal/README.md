@@ -1,8 +1,7 @@
 # @chakra-ui/portal
 
 A wrapper for rendering components in React Portals, with support for nested
-portals and stacking. No need to use `z-index` at all with this portal, that's
-right!
+portals and stacking.
 
 ## Installation
 
@@ -38,8 +37,6 @@ function App() {
 Portals are render into the portal manager's node by default not
 `document.body`.
 
-> It'll only render into `document.body` if you don't include `PortalManager`.
-
 ```jsx
 <div>
   <p>Welcome</p>
@@ -61,14 +58,14 @@ popovers, modal, etc.
 
 ### Custom container
 
-You can also portal elements into a custom containers. Simply pass a `container`
-prop that points to the `node` of that element.
+You can also portal elements into a custom containers. Simply pass a
+`containerRef` prop that points to the `node` of that element.
 
 ```jsx
 <>
-  <div data-testid="container" ref={ref} />
-  <Portal container={() => ref.current}>
-    <h1 data-testid="heading">Hello world</h1>
+  <div ref={ref} />
+  <Portal containerRef={ref}>
+    <h1>Hello world</h1>
   </Portal>
 </>
 ```

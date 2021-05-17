@@ -4,14 +4,12 @@ description: Skeleton is used to display the loading state of some component
 package: "@chakra-ui/skeleton"
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
-Skeleton is used to display the loading state of some component.
+`Skeleton` is used to display the loading state of some components.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/skeleton", url: "#" }}
+  theme={{ componentName: "skeleton" }}
+  github={{ package: "skeleton" }}
+  npm={{ package: "@chakra-ui/skeleton" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -19,12 +17,12 @@ Skeleton is used to display the loading state of some component.
 ## Import
 
 ```js
-import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/core"
+import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react"
 ```
 
 ## Usage
 
-You can use it as a standalone component
+You can use it as a standalone component.
 
 ```jsx
 <Stack>
@@ -34,7 +32,7 @@ You can use it as a standalone component
 </Stack>
 ```
 
-Or to wrap another component to take the same height and width
+Or to wrap another component to take the same height and width.
 
 ```jsx
 <Skeleton>
@@ -43,10 +41,10 @@ Or to wrap another component to take the same height and width
 </Skeleton>
 ```
 
-Useful when fetching remote data
+Useful when fetching remote data.
 
 ```js live=false
-import { Box } from "@chakra-ui/core"
+import { Box } from "@chakra-ui/react"
 
 function Card() {
   const { data, loading, error } = useRemoteData()
@@ -72,7 +70,7 @@ function Card() {
 
 ### Skeleton color
 
-You can change the animation color with `colorStart` and `colorEnd`.
+You can change the animation color with `startColor` and `endColor`.
 
 ```jsx
 <Skeleton startColor="pink.500" endColor="orange.500" height="20px" />
@@ -80,10 +78,14 @@ You can change the animation color with `colorStart` and `colorEnd`.
 
 ### Skipping the skeleton when content is loaded
 
-You can prevent the skeleton from rendering using the `isLoaded` prop
+You can prevent the skeleton from rendering using the `isLoaded` prop.
 
 ```jsx
 <Skeleton isLoaded>
   <span>Chakra ui is cool</span>
 </Skeleton>
 ```
+
+## Props
+
+<PropsTable of="Skeleton" />

@@ -1,11 +1,11 @@
 import {
   chakra,
   forwardRef,
-  PropsOf,
   keyframes,
   omitThemingProps,
   ThemingProps,
   useStyleConfig,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
@@ -46,34 +46,30 @@ interface SpinnerOptions {
    */
   speed?: string
   /**
-   * For accessibility, it's important to add a fallback loading text.
+   * For accessibility, it is important to add a fallback loading text.
    * This text will be visible to screen readers.
    */
   label?: string
 }
 
 export interface SpinnerProps
-  extends Omit<PropsOf<typeof chakra.div>, keyof SpinnerOptions>,
+  extends Omit<HTMLChakraProps<"div">, keyof SpinnerOptions>,
     SpinnerOptions,
-    ThemingProps {}
+    ThemingProps<"Spinner"> {}
 
 /**
  * Spinner is used to indicate the loading state of a page or a component,
  * It renders a `div` by default.
  *
- * @see Docs https://chakra-ui.com/components/spinner
+ * @see Docs https://chakra-ui.com/docs/feedback/spinner
  */
-export const Spinner = forwardRef<SpinnerProps, "div">(function Spinner(
-  props,
-  ref,
-) {
+export const Spinner = forwardRef<SpinnerProps, "div">((props, ref) => {
   const styles = useStyleConfig("Spinner", props)
 
   const {
     label = "Loading...",
     thickness = "2px",
     speed = "0.45s",
-    color,
     emptyColor = "transparent",
     className,
     ...rest
@@ -89,7 +85,6 @@ export const Spinner = forwardRef<SpinnerProps, "div">(function Spinner(
     borderWidth: thickness,
     borderBottomColor: emptyColor,
     borderLeftColor: emptyColor,
-    color: color,
     animation: `${spin} ${speed} linear infinite`,
     ...styles,
   }

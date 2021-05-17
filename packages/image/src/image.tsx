@@ -1,4 +1,10 @@
-import { chakra, PropsOf, SystemProps, forwardRef } from "@chakra-ui/system"
+import {
+  chakra,
+  PropsOf,
+  SystemProps,
+  forwardRef,
+  HTMLChakraProps,
+} from "@chakra-ui/system"
 import { omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useImage, UseImageProps } from "./use-image"
@@ -16,13 +22,20 @@ interface NativeImageOptions {
 
 interface NativeImageProps extends PropsOf<"img">, NativeImageOptions {}
 
-const NativeImage = React.forwardRef(function NativeImage(
-  props: NativeImageProps,
-  ref: React.Ref<any>,
-) {
-  const { htmlWidth, htmlHeight, ...rest } = props
-  return <img width={htmlWidth} height={htmlHeight} ref={ref} {...rest} />
-})
+const NativeImage = React.forwardRef(
+  (props: NativeImageProps, ref: React.Ref<any>) => {
+    const { htmlWidth, htmlHeight, alt, ...rest } = props
+    return (
+      <img
+        width={htmlWidth}
+        height={htmlHeight}
+        ref={ref}
+        alt={alt}
+        {...rest}
+      />
+    )
+  },
+)
 
 interface ImageOptions extends NativeImageOptions {
   /**
@@ -33,6 +46,7 @@ interface ImageOptions extends NativeImageOptions {
   fallbackSrc?: string
   /**
    * Fallback element to show if image is loading or image fails.
+   * @type React.ReactElement
    */
   fallback?: React.ReactElement
   /**
@@ -40,13 +54,15 @@ interface ImageOptions extends NativeImageOptions {
    */
   loading?: "eager" | "lazy"
   /**
-   * How the image to fit within it's bounds.
+   * How the image to fit within its bounds.
    * It maps to css `object-fit` property.
+   * @type SystemProps["objectFit"]
    */
   fit?: SystemProps["objectFit"]
   /**
    * How to align the image within its bounds.
    * It maps to css `object-position` property.
+   * @type SystemProps["objectPosition"]
    */
   align?: SystemProps["objectPosition"]
   /**
@@ -57,16 +73,16 @@ interface ImageOptions extends NativeImageOptions {
 
 export interface ImageProps
   extends UseImageProps,
-    Omit<PropsOf<typeof chakra.img>, keyof UseImageProps>,
+    Omit<HTMLChakraProps<"img">, keyof UseImageProps>,
     ImageOptions {}
 
 /**
  * React component that renders an image with support
  * for fallbacks
  *
- * @see Docs https://chakra-ui.com/components/image
+ * @see Docs https://chakra-ui.com/docs/data-display/image
  */
-export const Image = forwardRef<ImageProps, "img">(function Image(props, ref) {
+export const Image = forwardRef<ImageProps, "img">((props, ref) => {
   const {
     fallbackSrc,
     fallback,
@@ -126,24 +142,15 @@ export const Image = forwardRef<ImageProps, "img">(function Image(props, ref) {
   )
 })
 
-export interface ImgProps
-  extends PropsOf<typeof chakra.img>,
-    NativeImageOptions {}
+export interface ImgProps extends HTMLChakraProps<"img">, NativeImageOptions {}
 
 /**
  * Fallback component for most SSR users who want to use the native `img` with
  * support for chakra props
  */
-export const Img = forwardRef<ImgProps, "img">(function Img(props, ref) {
-  return (
-    <chakra.img
-      ref={ref}
-      as={NativeImage}
-      className="chakra-image"
-      {...props}
-    />
-  )
-})
+export const Img = forwardRef<ImgProps, "img">((props, ref) => (
+  <chakra.img ref={ref} as={NativeImage} className="chakra-image" {...props} />
+))
 
 if (__DEV__) {
   Image.displayName = "Image"

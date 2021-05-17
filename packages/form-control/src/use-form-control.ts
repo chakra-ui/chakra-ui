@@ -1,12 +1,6 @@
+import { ariaAttr, callAllHandlers } from "@chakra-ui/utils"
 import { FocusEventHandler } from "react"
 import { FormControlOptions, useFormControlContext } from "./form-control"
-import {
-  ariaAttr,
-  dataAttr,
-  callAllHandlers,
-  Dict,
-  omit,
-} from "@chakra-ui/utils"
 
 export interface UseFormControlProps<T extends HTMLElement>
   extends FormControlOptions {
@@ -28,56 +22,64 @@ export interface UseFormControlProps<T extends HTMLElement>
 export function useFormControl<T extends HTMLElement>(
   props: UseFormControlProps<T>,
 ) {
-  const field = useFormControlContext()
-  const describedBy: string[] = []
-
-  if (field?.isInvalid) {
-    /**
-     * Error message must be described first
-     * in all scenarios
-     */
-    if (describedBy.length > 0) {
-      describedBy.unshift(field.feedbackId)
-    } else {
-      describedBy.push(field.feedbackId)
-    }
-  }
-
-  if (field?.hasHelpText) describedBy.push(field.helpTextId)
-  const ariaDescribedBy = describedBy.join(" ")
-
-  const cleanProps = omit(props, [
-    "isInvalid",
-    "isDisabled",
-    "isReadOnly",
-    "isRequired",
-  ])
+  const {
+    isDisabled,
+    isInvalid,
+    isReadOnly,
+    isRequired,
+    ...rest
+  } = useFormControlProps(props)
 
   return {
-    ...cleanProps,
-    id: props.id ?? field?.id,
-    disabled: props.disabled || props.isDisabled || field?.isDisabled,
-    readOnly: props.readOnly || props.isReadOnly || field?.isReadOnly,
-    required: props.required || props.isRequired || field?.isRequired,
-    "aria-invalid": ariaAttr(props.isInvalid || field?.isInvalid),
-    "aria-required": ariaAttr(props.isRequired || field?.isRequired),
-    "aria-readonly": ariaAttr(props.isReadOnly || field?.isReadOnly),
-    "aria-describedby": ariaDescribedBy || undefined,
-    onFocus: callAllHandlers(field?.onFocus, props.onFocus),
-    onBlur: callAllHandlers(field?.onBlur, props.onBlur),
+    ...rest,
+    disabled: isDisabled,
+    readOnly: isReadOnly,
+    required: isRequired,
+    "aria-invalid": ariaAttr(isInvalid),
+    "aria-required": ariaAttr(isRequired),
+    "aria-readonly": ariaAttr(isReadOnly),
   }
 }
 
-export function useFormControlLabel(props: Dict) {
+export function useFormControlProps<T extends HTMLElement>(
+  props: UseFormControlProps<T>,
+) {
   const field = useFormControlContext()
+
+  const {
+    id,
+    disabled,
+    readOnly,
+    required,
+    isRequired,
+    isInvalid,
+    isReadOnly,
+    isDisabled,
+    onFocus,
+    onBlur,
+    ...rest
+  } = props
+
+  const labelIds: string[] = []
+
+  // Error message must be described first in all scenarios.
+  if (field?.hasFeedbackText && field?.isInvalid) {
+    labelIds.push(field.feedbackId)
+  }
+
+  if (field?.hasHelpText) {
+    labelIds.push(field.helpTextId)
+  }
+
   return {
-    ...props,
-    "data-focus": dataAttr(field?.isFocused),
-    "data-disabled": dataAttr(field?.isDisabled),
-    "data-invalid": dataAttr(field?.isInvalid),
-    "data-loading": dataAttr(field?.isLoading),
-    "data-readonly": dataAttr(field?.isReadOnly),
-    id: props.id ?? field?.labelId,
-    htmlFor: props.htmlFor ?? field?.id,
+    ...rest,
+    "aria-describedby": labelIds.join(" ") || undefined,
+    id: id ?? field?.id,
+    isDisabled: disabled ?? isDisabled ?? field?.isDisabled,
+    isReadOnly: readOnly ?? isReadOnly ?? field?.isReadOnly,
+    isRequired: required ?? isRequired ?? field?.isRequired,
+    isInvalid: isInvalid ?? field?.isInvalid,
+    onFocus: callAllHandlers(field?.onFocus, onFocus),
+    onBlur: callAllHandlers(field?.onBlur, onBlur),
   }
 }

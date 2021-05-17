@@ -1,52 +1,36 @@
 import * as CSS from "csstype"
-import { positiveOrNegative, ResponsiveValue, Length } from "../utils"
-import { createParser, Config, system } from "@styled-system/core"
+import { Config } from "../utils/prop-config"
+import { t, Token } from "../utils"
 
-const config: Config = {
+export const position: Config = {
   position: true,
-  pos: {
-    property: "position",
-  },
-  zIndex: {
-    property: "zIndex",
-    scale: "zIndices",
-  },
-  inset: {
-    properties: ["left", "top", "bottom", "right"],
+  pos: t.prop("position"),
+  zIndex: t.prop("zIndex", "zIndices"),
+  inset: t.spaceT(["top", "right", "bottom", "left"]),
+  insetX: t.spaceT(["left", "right"]),
+  insetInline: t.spaceT("insetInline"),
+  insetY: t.spaceT(["top", "bottom"]),
+  insetBlock: t.spaceT("insetBlock"),
+  top: t.spaceT("top"),
+  insetBlockStart: t.spaceT("insetBlockStart"),
+  bottom: t.spaceT("bottom"),
+  insetBlockEnd: t.spaceT("insetBlockEnd"),
+  left: t.spaceT("left"),
+  insetInlineStart: t.logical({
     scale: "space",
-    transform: positiveOrNegative,
-  },
-  insetX: {
-    properties: ["left", "right"],
+    property: { ltr: "left", rtl: "right" },
+  }),
+  right: t.spaceT("right"),
+  insetInlineEnd: t.logical({
     scale: "space",
-    transform: positiveOrNegative,
-  },
-  insetY: {
-    properties: ["top", "bottom"],
-    scale: "space",
-    transform: positiveOrNegative,
-  },
-  top: {
-    property: "top",
-    scale: "space",
-    transform: positiveOrNegative,
-  },
-  right: {
-    property: "right",
-    scale: "space",
-    transform: positiveOrNegative,
-  },
-  bottom: {
-    property: "bottom",
-    scale: "space",
-    transform: positiveOrNegative,
-  },
-  left: {
-    property: "left",
-    scale: "space",
-    transform: positiveOrNegative,
-  },
+    property: { ltr: "right", rtl: "left" },
+  }),
 }
+
+Object.assign(position, {
+  insetStart: position.insetInlineStart,
+  insetEnd: position.insetInlineEnd,
+})
 
 /**
  * Types for position CSS properties
@@ -55,44 +39,61 @@ export interface PositionProps {
   /**
    * The CSS `z-index` property
    */
-  zIndex?: ResponsiveValue<string | CSS.Property.ZIndex>
+  zIndex?: Token<CSS.Property.ZIndex, "zIndices">
   /**
    * The CSS `top` property
    */
-  top?: ResponsiveValue<CSS.Property.Top<Length>>
+  top?: Token<CSS.Property.Top | number, "sizes">
+  insetBlockStart?: Token<CSS.Property.InsetBlockStart | number, "sizes">
   /**
    * The CSS `right` property
    */
-  right?: ResponsiveValue<CSS.Property.Right<Length>>
+  right?: Token<CSS.Property.Right | number, "sizes">
+  /**
+   * When the direction is `ltr`, `insetInlineEnd` is equivalent to `right`.
+   * When the direction is `rtl`, `insetInlineEnd` is equivalent to `left`.
+   */
+  insetInlineEnd?: Token<CSS.Property.InsetInlineEnd | number, "sizes">
+  /**
+   * When the direction is `ltr`, `insetEnd` is equivalent to `right`.
+   * When the direction is `rtl`, `insetEnd` is equivalent to `left`.
+   */
+  insetEnd?: Token<CSS.Property.InsetInlineEnd | number, "sizes">
   /**
    * The CSS `bottom` property
    */
-  bottom?: ResponsiveValue<CSS.Property.Bottom<Length>>
+  bottom?: Token<CSS.Property.Bottom | number, "sizes">
+  insetBlockEnd?: Token<CSS.Property.InsetBlockEnd | number, "sizes">
   /**
    * The CSS `left` property
    */
-  left?: ResponsiveValue<CSS.Property.Left<Length>>
+  left?: Token<CSS.Property.Left | number, "sizes">
+  insetInlineStart?: Token<CSS.Property.InsetInlineStart | number, "sizes">
+  /**
+   * When the direction is `start`, `end` is equivalent to `left`.
+   * When the direction is `start`, `end` is equivalent to `right`.
+   */
+  insetStart?: Token<CSS.Property.InsetInlineStart | number, "sizes">
   /**
    * The CSS `left`, `right`, `top`, `bottom` property
    */
-  inset?: ResponsiveValue<CSS.Property.Left<Length>>
+  inset?: Token<CSS.Property.Left | number, "sizes">
   /**
    * The CSS `left`, and `right` property
    */
-  insetX?: ResponsiveValue<CSS.Property.Left<Length>>
+  insetX?: Token<CSS.Property.Left | number, "sizes">
   /**
    * The CSS `top`, and `bottom` property
    */
-  insetY?: ResponsiveValue<CSS.Property.Left<Length>>
+  insetY?: Token<CSS.Property.Left | number, "sizes">
   /**
    * The CSS `position` property
    */
-  pos?: ResponsiveValue<CSS.Property.Position>
+  pos?: Token<CSS.Property.Position>
   /**
    * The CSS `position` property
    */
-  position?: ResponsiveValue<CSS.Property.Position>
+  position?: Token<CSS.Property.Position>
+  insetInline?: Token<CSS.Property.InsetInline>
+  insetBlock?: Token<CSS.Property.InsetBlock>
 }
-
-export const position = system(config)
-export const positionParser = createParser(config)

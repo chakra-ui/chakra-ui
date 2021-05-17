@@ -1,15 +1,30 @@
-import { render, screen } from "@chakra-ui/test-utils"
+import { render, screen } from "@testing-library/react"
 import * as React from "react"
-import { PortalManager, Portal } from "../src"
+import { Portal, PortalManager } from "../src"
 
-test("should render portal", () => {
-  const tools = render(
-    <PortalManager>
-      <Portal>This is a portal</Portal>
-    </PortalManager>,
+test("should render portal", async () => {
+  const { baseElement } = render(
+    <Portal>
+      <>This is a portal 1</>
+      <Portal>This is a portal 2</Portal>
+    </Portal>,
   )
 
-  expect(tools.baseElement.innerHTML).toMatchSnapshot()
+  expect(baseElement).toMatchInlineSnapshot(`
+    <body>
+      <div />
+      <div
+        class="chakra-portal"
+      >
+        This is a portal 1
+        <div
+          class="chakra-portal"
+        >
+          This is a portal 2
+        </div>
+      </div>
+    </body>
+  `)
 })
 
 test("should render nested portal", () => {
@@ -22,18 +37,16 @@ test("should render nested portal", () => {
     </PortalManager>,
   )
 
-  expect(tools.asFragment()).toMatchSnapshot()
-
-  const portals = Array.from(
-    tools.baseElement.querySelectorAll(".chakra-portal"),
+  const portals: HTMLElement[] = Array.from(
+    tools.baseElement.querySelectorAll(Portal.selector),
   )
 
   const [parentPortal, childPortal] = portals
-  expect(parentPortal).toContainElement(childPortal as HTMLElement)
+  expect(parentPortal).toContainElement(childPortal)
 })
 
 test("should render in a different node", () => {
-  const tools = render(
+  render(
     <PortalManager>
       <div data-testid="parent">
         <h1 data-testid="child-1">Foo</h1>
@@ -43,8 +56,6 @@ test("should render in a different node", () => {
       </div>
     </PortalManager>,
   )
-
-  expect(tools.asFragment()).toMatchSnapshot()
 
   const parent = screen.getByTestId("parent")
 
@@ -61,7 +72,7 @@ test("should render into a custom container", () => {
     return (
       <PortalManager>
         <div data-testid="container" ref={ref} />
-        <Portal getContainer={() => ref.current}>
+        <Portal containerRef={ref}>
           <h1 data-testid="heading">Hello world</h1>
         </Portal>
       </PortalManager>
@@ -69,8 +80,6 @@ test("should render into a custom container", () => {
   }
 
   const tools = render(<Custom />)
-
-  expect(tools.asFragment()).toMatchSnapshot()
 
   const heading = tools.getByTestId("heading")
   const container = tools.getByTestId("container")

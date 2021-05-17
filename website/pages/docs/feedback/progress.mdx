@@ -7,15 +7,13 @@ description:
   time or consists of several steps.
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
-Progress is used to display the progress status for a task that takes a long
+`Progress` is used to display the progress status for a task that takes a long
 time or consists of several steps.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/progress", url: "#" }}
+  theme={{ componentName: "progress" }}
+  github={{ package: "progress" }}
+  npm={{ package: "@chakra-ui/progress" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -23,7 +21,7 @@ time or consists of several steps.
 ## Import
 
 ```js
-import { Progress } from "@chakra-ui/core"
+import { Progress } from "@chakra-ui/react"
 ```
 
 ## Usage
@@ -34,7 +32,7 @@ import { Progress } from "@chakra-ui/core"
 
 ### Progress with Stripe
 
-You can add `hasStripe` prop to any progressbar to apply a stripe via a CSS
+You can add `hasStripe` prop to any progress bar to apply a stripe via a CSS
 gradient over the progress bar’s background color.
 
 ```jsx
@@ -43,9 +41,9 @@ gradient over the progress bar’s background color.
 
 ### Progress sizes
 
-There are two ways you can increase the height of the progressbar:
+There are two ways you can increase the height of the progress bar:
 
-- You can add `size` prop to increase the height of the progressbar.
+- You can add `size` prop to increase the height of the progress bar.
 - You can also use the `height` prop to manually set a height.
 
 ```jsx
@@ -59,11 +57,11 @@ There are two ways you can increase the height of the progressbar:
 
 ### Progress color scheme
 
-You can add `colorScheme` prop to any progressbar to apply any color that exists
-in the theme.
+You can add `colorScheme` prop to any progress bar to apply any color that
+exists in the `theme`.
 
 ```jsx
-<Progress size="xs" colorScheme="pink" />
+<Progress value={20} size="xs" colorScheme="pink" />
 ```
 
 ### Animated Progress
@@ -76,6 +74,10 @@ To show an animated progress, pass the `isIndeterminate` prop.
 
 ## Accessibility
 
-- Progress has a `role` set to `progressbar` to denote that it's a progress.
-- Progress has `aria-valuenow` set to the percentage completion value passed to
-  the component, to ensure the progress percent is visible to screen readers.
+- `Progress` has a `role` set to `progressbar` to denote that it is a progress.
+- `Progress` has `aria-valuenow` set to the percentage completion value passed
+  to the component, to ensure the progress percent is visible to screen readers.
+
+## Props
+
+<PropsTable of="Progress" />

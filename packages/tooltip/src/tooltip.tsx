@@ -1,20 +1,24 @@
-import { Portal } from "@chakra-ui/portal"
+import { popperCSSVars } from "@chakra-ui/popper"
+import { Portal, PortalProps } from "@chakra-ui/portal"
 import {
   chakra,
-  PropsOf,
+  forwardRef,
+  HTMLChakraProps,
+  omitThemingProps,
   ThemingProps,
   useStyleConfig,
-  omitThemingProps,
-  forwardRef,
+  useTheme,
 } from "@chakra-ui/system"
-import { isString, omit, pick, __DEV__ } from "@chakra-ui/utils"
+import { isString, omit, pick, __DEV__, getCSSVar } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
+import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
+import { scale } from "./tooltip.transition"
 import { useTooltip, UseTooltipProps } from "./use-tooltip"
 
 export interface TooltipProps
-  extends PropsOf<typeof chakra.div>,
-    ThemingProps,
+  extends HTMLChakraProps<"div">,
+    ThemingProps<"Tooltip">,
     UseTooltipProps {
   /**
    * The react component to use as the
@@ -24,7 +28,7 @@ export interface TooltipProps
   /**
    * The label of the tooltip
    */
-  label?: string
+  label?: React.ReactNode
   /**
    * The accessible, human friendly label to use for
    * screen readers.
@@ -34,7 +38,7 @@ export interface TooltipProps
    */
   "aria-label"?: string
   /**
-   * If `true`, the tooltip will wrap it's children
+   * If `true`, the tooltip will wrap its children
    * in a `<span/>` with `tabIndex=0`
    */
   shouldWrapChildren?: boolean
@@ -42,7 +46,13 @@ export interface TooltipProps
    * If `true`, the tooltip will show an arrow tip
    */
   hasArrow?: boolean
+  /**
+   * Props to be forwarded to the portal component
+   */
+  portalProps?: Pick<PortalProps, "appendToParentPortal" | "containerRef">
 }
+
+const StyledTooltip = chakra(motion.div)
 
 /**
  * Tooltips display informative text when users hover, focus on, or tap an element.
@@ -50,12 +60,10 @@ export interface TooltipProps
  * @see Docs     https://chakra-ui.com/components/tooltip
  * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices/#tooltip
  */
-export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
-  props,
-  ref,
-) {
+export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
   const styles = useStyleConfig("Tooltip", props)
   const ownProps = omitThemingProps(props)
+  const theme = useTheme()
 
   const {
     children,
@@ -64,10 +72,14 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
     "aria-label": ariaLabel,
     hasArrow,
     bg,
+    portalProps,
     ...rest
   } = ownProps
 
-  if (bg) styles.bg = bg
+  if (bg) {
+    styles.bg = bg
+    styles[popperCSSVars.arrowBg.var] = getCSSVar(theme, "colors", bg)
+  }
 
   const tooltip = useTooltip(rest)
 
@@ -115,28 +127,45 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
   return (
     <>
       {trigger}
-      {tooltip.isOpen && (
-        <Portal>
-          <chakra.div {...tooltipProps} __css={styles}>
-            {label}
-            {hasAriaLabel && (
-              <VisuallyHidden {...hiddenProps}>{ariaLabel}</VisuallyHidden>
-            )}
-            {hasArrow && (
-              <chakra.div
-                className="chakra-tooltip__arrow-wrapper"
-                {...tooltip.getArrowWrapperProps()}
+      <AnimatePresence>
+        {tooltip.isOpen && (
+          <Portal {...portalProps}>
+            <chakra.div
+              {...tooltip.getTooltipPositionerProps()}
+              __css={{
+                zIndex: styles.zIndex,
+                pointerEvents: "none",
+              }}
+            >
+              <StyledTooltip
+                variants={scale}
+                {...(tooltipProps as any)}
+                initial="exit"
+                animate="enter"
+                exit="exit"
+                __css={styles}
               >
-                <chakra.div
-                  className="chakra-toolip__arrow"
-                  {...tooltip.getArrowProps()}
-                  __css={{ bg: styles.bg }}
-                />
-              </chakra.div>
-            )}
-          </chakra.div>
-        </Portal>
-      )}
+                {label}
+                {hasAriaLabel && (
+                  <VisuallyHidden {...hiddenProps}>{ariaLabel}</VisuallyHidden>
+                )}
+                {hasArrow && (
+                  <chakra.div
+                    data-popper-arrow
+                    className="chakra-tooltip__arrow-wrapper"
+                  >
+                    <chakra.div
+                      data-popper-arrow-inner
+                      className="chakra-tooltip__arrow"
+                      __css={{ bg: styles.bg }}
+                    />
+                  </chakra.div>
+                )}
+              </StyledTooltip>
+            </chakra.div>
+          </Portal>
+        )}
+      </AnimatePresence>
     </>
   )
 })

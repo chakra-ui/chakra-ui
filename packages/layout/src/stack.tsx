@@ -1,32 +1,37 @@
 import {
   chakra,
+  ChakraComponent,
   forwardRef,
-  PropsOf,
-  ResponsiveValue,
+  HTMLChakraProps,
   SystemProps,
 } from "@chakra-ui/system"
-import { cx, getValidChildren, mapResponsive, __DEV__ } from "@chakra-ui/utils"
+import { cx, __DEV__ } from "@chakra-ui/utils"
+import { getValidChildren } from "@chakra-ui/react-utils"
 import * as React from "react"
+import type { StackDirection } from "./stack.utils"
+import { getDividerStyles, getStackStyles, selector } from "./stack.utils"
 
-export type StackDirection = ResponsiveValue<
-  "row" | "column" | "row-reverse" | "column-reverse"
->
+export type { StackDirection }
 
 interface StackOptions {
   /**
    * Shorthand for `alignItems` style prop
+   * @type SystemProps["alignItems"]
    */
   align?: SystemProps["alignItems"]
   /**
    * Shorthand for `justifyContent` style prop
+   * @type SystemProps["justifyContent"]
    */
   justify?: SystemProps["justifyContent"]
   /**
    * Shorthand for `flexWrap` style prop
+   * @type SystemProps["flexWrap"]
    */
   wrap?: SystemProps["flexWrap"]
   /**
    * The space between each stack item
+   * @type SystemProps["margin"]
    */
   spacing?: SystemProps["margin"]
   /**
@@ -35,6 +40,7 @@ interface StackOptions {
   direction?: StackDirection
   /**
    * If `true`, each stack item will show a divider
+   * @type React.ReactElement
    */
   divider?: React.ReactElement
   /**
@@ -48,34 +54,37 @@ interface StackOptions {
   isInline?: boolean
 }
 
-export interface StackDividerProps extends PropsOf<typeof chakra.div> {}
+export interface StackDividerProps extends HTMLChakraProps<"div"> {}
 
-export const StackDivider: React.FC<StackDividerProps> = (props) => {
-  return (
-    <chakra.div
-      className="chakra-stack__divider"
-      {...props}
-      __css={{
-        ...props["__css"],
-        borderWidth: 0,
-        alignSelf: "stretch",
-        borderColor: "inherit",
-        width: "auto",
-        height: "auto",
-      }}
-    />
-  )
-}
-
-export const StackItem: React.FC<PropsOf<typeof chakra.div>> = (props) => (
+export const StackDivider: ChakraComponent<"div"> = (props) => (
   <chakra.div
-    className="chakra-stack__item"
-    __css={{ display: "inline-block", flex: 0 }}
+    className="chakra-stack__divider"
     {...props}
+    __css={{
+      ...props["__css"],
+      borderWidth: 0,
+      alignSelf: "stretch",
+      borderColor: "inherit",
+      width: "auto",
+      height: "auto",
+    }}
   />
 )
 
-export interface StackProps extends PropsOf<typeof chakra.div>, StackOptions {}
+export const StackItem: ChakraComponent<"div"> = (props) => (
+  <chakra.div
+    className="chakra-stack__item"
+    {...props}
+    __css={{
+      display: "inline-block",
+      flex: "0 0 auto",
+      minWidth: 0,
+      ...props["__css"],
+    }}
+  />
+)
+
+export interface StackProps extends HTMLChakraProps<"div">, StackOptions {}
 
 /**
  * Stacks help you easily create flexible and automatically distributed layouts
@@ -85,13 +94,13 @@ export interface StackProps extends PropsOf<typeof chakra.div>, StackOptions {}
  *
  * It uses `display: flex` internally and renders a `div`.
  *
- * @see Docs https://chakra-ui.com/components/stack
+ * @see Docs https://chakra-ui.com/docs/layout/stack
  *
  */
-export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
+export const Stack = forwardRef<StackProps, "div">((props, ref) => {
   const {
     isInline,
-    direction,
+    direction: directionProp,
     align,
     justify,
     spacing = "0.5rem",
@@ -103,42 +112,17 @@ export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
     ...rest
   } = props
 
-  const _direction = isInline ? "row" : direction ?? "column"
+  const direction = isInline ? "row" : directionProp ?? "column"
 
-  /**
-   * If we ever run into SSR issues with this, check this post to find a fix for it:
-   * @see https://medium.com/@emmenko/patching-lobotomized-owl-selector-for-emotion-ssr-5a582a3c424c
-   */
-  const selector = "& > *:not(style) ~ *:not(style)"
+  const styles = React.useMemo(() => getStackStyles({ direction, spacing }), [
+    direction,
+    spacing,
+  ])
 
-  const directionStyles = {
-    column: { mt: spacing, ml: 0 },
-    row: { ml: spacing, mt: 0 },
-    "column-reverse": { mb: spacing, mr: 0 },
-    "row-reverse": { mr: spacing, mb: 0 },
-  }
-
-  const styles = {
-    flexDirection: _direction,
-    [selector]: mapResponsive(_direction, (value) => directionStyles[value]),
-  }
-
-  const dividerStyles = mapResponsive(_direction, (value) => {
-    if (value.includes("row")) {
-      return {
-        mx: spacing,
-        my: 0,
-        borderLeftWidth: "1px",
-        borderBottomWidth: 0,
-      }
-    }
-    return {
-      mx: 0,
-      my: spacing,
-      borderLeftWidth: 0,
-      borderBottomWidth: "1px",
-    }
-  })
+  const dividerStyle = React.useMemo(
+    () => getDividerStyles({ spacing, direction }),
+    [spacing, direction],
+  )
 
   const hasDivider = !!divider
   const shouldUseChildren = !shouldWrapChildren && !hasDivider
@@ -149,24 +133,22 @@ export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
     ? validChildren
     : validChildren.map((child, index) => {
         const isLast = index + 1 === validChildren.length
-        const _child = shouldWrapChildren ? (
-          <StackItem key={index}>{child}</StackItem>
-        ) : (
-          child
-        )
+        const wrappedChild = <StackItem key={index}>{child}</StackItem>
+        const _child = shouldWrapChildren ? wrappedChild : child
 
         if (!hasDivider) return _child
 
-        const cloneDivider = isLast
-          ? null
-          : React.cloneElement(divider as any, {
-              __css: { "&": dividerStyles },
-            })
+        const clonedDivider = React.cloneElement(
+          divider as React.ReactElement<any>,
+          { __css: dividerStyle },
+        )
+
+        const _divider = isLast ? null : clonedDivider
 
         return (
           <React.Fragment key={index}>
             {_child}
-            {cloneDivider}
+            {_divider}
           </React.Fragment>
         )
       })
@@ -197,9 +179,9 @@ if (__DEV__) {
 /**
  * A view that arranges its children in a horizontal line.
  */
-export const HStack = forwardRef<StackProps, "div">((props, ref) => {
-  return <Stack align="center" {...props} direction="row" ref={ref} />
-})
+export const HStack = forwardRef<StackProps, "div">((props, ref) => (
+  <Stack align="center" {...props} direction="row" ref={ref} />
+))
 
 if (__DEV__) {
   HStack.displayName = "HStack"
@@ -208,9 +190,9 @@ if (__DEV__) {
 /**
  * A view that arranges its children in a vertical line.
  */
-export const VStack = forwardRef<StackProps, "div">((props, ref) => {
-  return <Stack align="center" {...props} direction="column" ref={ref} />
-})
+export const VStack = forwardRef<StackProps, "div">((props, ref) => (
+  <Stack align="center" {...props} direction="column" ref={ref} />
+))
 
 if (__DEV__) {
   VStack.displayName = "VStack"

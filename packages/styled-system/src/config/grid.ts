@@ -1,101 +1,177 @@
 import * as CSS from "csstype"
-import { createParser, Config, system } from "@styled-system/core"
-import { Length, ResponsiveValue } from "../utils"
+import { Config } from "../utils/prop-config"
+import { t, Token } from "../utils"
 
-const config: Config = {
-  gridGap: {
-    property: "gridGap",
-    scale: "space",
-  },
-  gridColumnGap: {
-    property: "gridColumnGap",
-    scale: "space",
-  },
-  gridRowGap: {
-    property: "gridRowGap",
-    scale: "space",
-  },
+export const grid: Config = {
+  gridGap: t.space("gridGap"),
+  gridColumnGap: t.space("gridColumnGap"),
+  gridRowGap: t.space("gridRowGap"),
   gridColumn: true,
   gridRow: true,
   gridAutoFlow: true,
   gridAutoColumns: true,
   gridColumnStart: true,
   gridColumnEnd: true,
+  gridRowStart: true,
+  gridRowEnd: true,
   gridAutoRows: true,
+  gridTemplate: true,
   gridTemplateColumns: true,
   gridTemplateRows: true,
   gridTemplateAreas: true,
   gridArea: true,
-  placeItems: true,
 }
 
-/**
- * Types for grid related CSS properties
- */
 export interface GridProps {
   /**
-   * The CSS `grid-gap` property
+   * The CSS `grid-gap` property.
+   *
+   * It defines the gaps (gutters) between rows and columns
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-gap)
    */
-  gridGap?: ResponsiveValue<CSS.Property.GridGap<Length>>
+  gridGap?: Token<CSS.Property.GridGap | number, "sizes">
   /**
-   * The CSS `grid-column-gap` property
+   * The CSS `grid-column-gap` property.
+   *
+   * It defines the size of the gap (gutter) between an element's columns.
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap)
    */
-  gridColumnGap?: ResponsiveValue<CSS.Property.GridColumnGap<Length>>
+  gridColumnGap?: Token<CSS.Property.GridColumnGap | number, "sizes">
   /**
-   * The CSS `grid-row-gap` property
+   * The CSS `grid-row-gap` property.
+   *
+   * It defines the size of the gap (gutter) between an element's grid rows.
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap)
    */
-  gridRowGap?: ResponsiveValue<CSS.Property.GridRowGap<Length>>
+  gridRowGap?: Token<CSS.Property.GridRowGap | number, "sizes">
+  /**
+   * The CSS `grid-column` property.
+   *
+   * It specifies a grid item’s start position within the grid column by
+   * contributing a line, a span, or nothing (automatic) to its grid placement
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-start)
+   */
+  gridColumnStart?: Token<CSS.Property.GridColumnStart>
+  /**
+   * The CSS `grid-row-start` property
+   *
+   * It specifies a grid item’s start position within the grid row by
+   * contributing a line, a span, or nothing (automatic) to its grid placement,
+   * thereby specifying the `inline-start` edge of its grid area.
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-start)
+   */
+  gridRowStart?: Token<CSS.Property.GridRowStart>
+  /**
+   * The CSS `grid-row-end` property
+   *
+   * It specifies a grid item’s end position within the grid row by
+   * contributing a line, a span, or nothing (automatic) to its grid placement,
+   * thereby specifying the `inline-end` edge of its grid area.
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-end)
+   */
+  gridRowEnd?: Token<CSS.Property.GridRowEnd>
+  /**
+   * The CSS `grid-template` property.
+   *
+   * It is a shorthand property for defining grid columns, rows, and areas.
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template)
+   */
+  gridTemplate?: Token<CSS.Property.GridTemplate>
   /**
    * The CSS `grid-column` property
+   *
+   * It specifies a grid item’s end position within the grid column by
+   * contributing a line, a span, or nothing (automatic) to its grid placement,
+   * thereby specifying the block-end edge of its grid area.
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-end)
    */
-  gridColumnStart?: ResponsiveValue<CSS.Property.GridColumnStart>
+  gridColumnEnd?: Token<CSS.Property.GridColumnEnd>
   /**
-   * The CSS `grid-column` property
+   * The CSS `grid-column` property.
+   *
+   * It specifies a grid item's size and location within a grid column
+   * by contributing a line, a span, or nothing (automatic) to its grid placement,
+   * thereby specifying the `inline-start` and `inline-end` edge of its grid area.
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column)
    */
-  gridColumnEnd?: ResponsiveValue<CSS.Property.GridColumnEnd>
-  /**
-   * The CSS `grid-column` property
-   */
-  gridColumn?: ResponsiveValue<CSS.Property.GridColumn>
+  gridColumn?: Token<CSS.Property.GridColumn>
   /**
    * The CSS `grid-row` property
+   *
+   * It specifies a grid item’s size and location within the grid row
+   * by contributing a line, a span, or nothing (automatic) to its grid placement,
+   * thereby specifying the `inline-start` and `inline-end` edge of its grid area.
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row)
    */
-  gridRow?: ResponsiveValue<CSS.Property.GridRow>
+  gridRow?: Token<CSS.Property.GridRow>
   /**
    * The CSS `grid-auto-flow` property
+   *
+   * It controls how the auto-placement algorithm works,
+   * specifying exactly how auto-placed items get flowed into the grid.
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow)
    */
-  gridAutoFlow?: ResponsiveValue<CSS.Property.GridAutoFlow>
+  gridAutoFlow?: Token<CSS.Property.GridAutoFlow>
   /**
-   * The CSS `grid-auto-columns` property
+   * The CSS `grid-auto-columns` property.
+   *
+   * It specifies the size of an implicitly-created grid column track or pattern of tracks.
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns)
    */
-  gridAutoColumns?: ResponsiveValue<CSS.Property.GridAutoColumns<Length>>
+  gridAutoColumns?: Token<CSS.Property.GridAutoColumns | number, "sizes">
   /**
-   * The CSS `grid-auto-rows` property
+   * The CSS `grid-auto-rows` property.
+   *
+   * It specifies the size of an implicitly-created grid row track or pattern of tracks.
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows)
    */
-  gridAutoRows?: ResponsiveValue<CSS.Property.GridAutoRows<Length>>
+  gridAutoRows?: Token<CSS.Property.GridAutoRows | number, "sizes">
   /**
    * The CSS `grid-template-columns` property
+   *
+   * It defines the line names and track sizing functions of the grid columns.
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns)
    */
-  gridTemplateColumns?: ResponsiveValue<
-    CSS.Property.GridTemplateColumns<Length>
+  gridTemplateColumns?: Token<
+    CSS.Property.GridTemplateColumns | number,
+    "sizes"
   >
   /**
-   * The CSS `grid-template-rows` property
+   * The CSS `grid-template-rows` property.
+   *
+   * It defines the line names and track sizing functions of the grid rows.
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows)
    */
-  gridTemplateRows?: ResponsiveValue<CSS.Property.GridTemplateRows<Length>>
+  gridTemplateRows?: Token<CSS.Property.GridTemplateRows | number, "sizes">
   /**
-   * The CSS `grid-template-areas` property
+   * The CSS `grid-template-areas` property.
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas)
    */
-  gridTemplateAreas?: ResponsiveValue<CSS.Property.GridTemplateAreas>
+  gridTemplateAreas?: Token<CSS.Property.GridTemplateAreas>
   /**
-   * The CSS `grid-areas` property
+   * The CSS `grid-areas` property.
+   *
+   * It specifies a grid item’s size and location within a grid by
+   * contributing a line, a span, or nothing (automatic)
+   * to its grid placement, thereby specifying the edges of its grid area.
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-area)
    */
-  gridArea?: ResponsiveValue<CSS.Property.GridArea>
-  /**
-   * The CSS `place-items` property
-   */
-  placeItems?: ResponsiveValue<CSS.Property.PlaceItems>
+  gridArea?: Token<CSS.Property.GridArea>
 }
-
-export const grid = system(config)
-export const gridParser = createParser(config)

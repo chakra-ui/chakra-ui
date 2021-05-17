@@ -14,6 +14,12 @@ const zIndices = {
   tooltip: 1800,
 }
 
+/**
+ * @deprecated
+ * You can derive the ZIndices type from the DefaultChakraTheme
+ *
+ * type ZIndices = DefaultChakraTheme['zIndices']
+ */
 export type ZIndices = typeof zIndices
 
 export default zIndices

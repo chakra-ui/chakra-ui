@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/cra-template",
-  "version": "1.0.0-rc.5",
+  "version": "1.1.0",
   "main": "template.json",
   "keywords": [
     "chakra",
@@ -28,7 +28,6 @@
     "template.json"
   ],
   "scripts": {
-    "lint": "concurrently yarn:lint:*",
-    "lint:src": "eslint template/src --ext .js,.jsx --config ../../.eslintrc"
+    "lint": "eslint template/src"
   }
 }

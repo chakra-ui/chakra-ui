@@ -1,6 +1,6 @@
 import { useTheme } from "@chakra-ui/system"
-import createMediaQueries from "./create-media-query"
 import React from "react"
+import createMediaQueries from "./create-media-query"
 
 interface Listener {
   mediaQuery: MediaQueryList
@@ -31,9 +31,12 @@ export function useBreakpoint(defaultBreakpoint?: string) {
   )
 
   const [currentBreakpoint, setCurrentBreakpoint] = React.useState(() => {
-    if (!defaultBreakpoint) return undefined
+    if (!defaultBreakpoint) {
+      return undefined
+    }
+
     const mediaQuery = mediaQueries.find(
-      (query) => query.breakpoint === defaultBreakpoint,
+      ({ breakpoint }) => breakpoint === defaultBreakpoint,
     )
 
     if (mediaQuery) {

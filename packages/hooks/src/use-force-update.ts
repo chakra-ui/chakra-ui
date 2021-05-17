@@ -1,10 +1,17 @@
 import * as React from "react"
+import { useUnmountEffect } from "./use-unmount-effect"
 
-/**
- * React hook for force a component to re-render
- */
 export function useForceUpdate() {
+  const unloadingRef = React.useRef(false)
   const [count, setCount] = React.useState(0)
-  const forceUpdate = React.useCallback(() => setCount(count + 1), [count])
-  return forceUpdate
+
+  useUnmountEffect(() => {
+    unloadingRef.current = true
+  })
+
+  return React.useCallback(() => {
+    if (!unloadingRef.current) {
+      setCount(count + 1)
+    }
+  }, [count])
 }

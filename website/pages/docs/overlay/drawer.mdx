@@ -8,21 +8,19 @@ description:
   without leaving the current page.
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
-The Drawer component is a panel that slides out from the edge of the screen. It
-can be useful when you need users to complete a task or view some details
+The `Drawer` component is a panel that slides out from the edge of the screen.
+It can be useful when you need users to complete a task or view some details
 without leaving the current page.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/drawer", url: "#" }}
+  theme={{ componentName: "drawer" }}
+  github={{ package: "modal" }}
+  npm={{ package: "@chakra-ui/modal" }}
 />
 
 <carbon-ad></carbon-ad>
 
-## Installation
+## Import
 
 ```js
 import {
@@ -33,7 +31,7 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 ```
 
 ## Usage
@@ -56,23 +54,22 @@ function DrawerExample() {
         onClose={onClose}
         finalFocusRef={btnRef}
       >
-        <DrawerOverlay>
-          <DrawerContent>
-            <DrawerCloseButton />
-            <DrawerHeader>Create your account</DrawerHeader>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>Create your account</DrawerHeader>
 
-            <DrawerBody>
-              <Input placeholder="Type here..." />
-            </DrawerBody>
+          <DrawerBody>
+            <Input placeholder="Type here..." />
+          </DrawerBody>
 
-            <DrawerFooter>
-              <Button variant="outline" mr={3} onClick={onClose}>
-                Cancel
-              </Button>
-              <Button color="blue">Save</Button>
-            </DrawerFooter>
-          </DrawerContent>
-        </DrawerOverlay>
+          <DrawerFooter>
+            <Button variant="outline" mr={3} onClick={onClose}>
+              Cancel
+            </Button>
+            <Button colorScheme="blue">Save</Button>
+          </DrawerFooter>
+        </DrawerContent>
       </Drawer>
     </>
   )
@@ -103,16 +100,15 @@ function PlacementExample() {
         Open
       </Button>
       <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
-        <DrawerOverlay>
-          <DrawerContent>
-            <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
-            <DrawerBody>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-            </DrawerBody>
-          </DrawerContent>
-        </DrawerOverlay>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
+          <DrawerBody>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+          </DrawerBody>
+        </DrawerContent>>
       </Drawer>
     </>
   )
@@ -143,61 +139,59 @@ function DrawerExample() {
         initialFocusRef={firstField}
         onClose={onClose}
       >
-        <DrawerOverlay>
-          <DrawerContent>
-            <DrawerCloseButton />
-            <DrawerHeader borderBottomWidth="1px">
-              Create a new account
-            </DrawerHeader>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader borderBottomWidth="1px">
+            Create a new account
+          </DrawerHeader>
 
-            <DrawerBody>
-              <Stack spacing="24px">
-                <Box>
-                  <FormLabel htmlFor="username">Name</FormLabel>
+          <DrawerBody>
+            <Stack spacing="24px">
+              <Box>
+                <FormLabel htmlFor="username">Name</FormLabel>
+                <Input
+                  ref={firstField}
+                  id="username"
+                  placeholder="Please enter user name"
+                />
+              </Box>
+
+              <Box>
+                <FormLabel htmlFor="url">Url</FormLabel>
+                <InputGroup>
+                  <InputLeftAddon>http://</InputLeftAddon>
                   <Input
-                    ref={firstField}
-                    id="username"
-                    placeholder="Please enter user name"
+                    type="url"
+                    id="url"
+                    placeholder="Please enter domain"
                   />
-                </Box>
+                  <InputRightAddon>.com</InputRightAddon>
+                </InputGroup>
+              </Box>
 
-                <Box>
-                  <FormLabel htmlFor="url">Url</FormLabel>
-                  <InputGroup>
-                    <InputLeftAddon>http://</InputLeftAddon>
-                    <Input
-                      type="url"
-                      id="url"
-                      placeholder="Please enter domain"
-                      borderRadius="0"
-                    />
-                    <InputRightAddon>.com</InputRightAddon>
-                  </InputGroup>
-                </Box>
+              <Box>
+                <FormLabel htmlFor="owner">Select Owner</FormLabel>
+                <Select id="owner" defaultValue="segun">
+                  <option value="segun">Segun Adebayo</option>
+                  <option value="kola">Kola Tioluwani</option>
+                </Select>
+              </Box>
 
-                <Box>
-                  <FormLabel htmlFor="owner">Select Owner</FormLabel>
-                  <Select id="owner" defaultValue="segun">
-                    <option value="segun">Segun Adebayo</option>
-                    <option value="kola">Kola Tioluwani</option>
-                  </Select>
-                </Box>
+              <Box>
+                <FormLabel htmlFor="desc">Description</FormLabel>
+                <Textarea id="desc" />
+              </Box>
+            </Stack>
+          </DrawerBody>
 
-                <Box>
-                  <FormLabel htmlFor="desc">Description</FormLabel>
-                  <Textarea id="desc" />
-                </Box>
-              </Stack>
-            </DrawerBody>
-
-            <DrawerFooter borderTopWidth="1px">
-              <Button variant="outline" mr={3} onClick={onClose}>
-                Cancel
-              </Button>
-              <Button colorScheme="blue">Submit</Button>
-            </DrawerFooter>
-          </DrawerContent>
-        </DrawerOverlay>
+          <DrawerFooter borderTopWidth="1px">
+            <Button variant="outline" mr={3} onClick={onClose}>
+              Cancel
+            </Button>
+            <Button colorScheme="blue">Submit</Button>
+          </DrawerFooter>
+        </DrawerContent>
       </Drawer>
     </>
   )
@@ -232,16 +226,60 @@ function SizeExample() {
       ))}
 
       <Drawer onClose={onClose} isOpen={isOpen} size={size}>
-        <DrawerOverlay>
-          <DrawerContent>
-            <DrawerHeader>{`${size} drawer contents`}</DrawerHeader>
-            <DrawerBody>
-              {size === "full"
-                ? `You're trapped 😆 , refresh the page to leave or press 'Esc' key.`
-                : null}
-            </DrawerBody>
-          </DrawerContent>
-        </DrawerOverlay>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader>{`${size} drawer contents`}</DrawerHeader>
+          <DrawerBody>
+            {size === "full"
+              ? `You're trapped 😆 , refresh the page to leave or press 'Esc' key.`
+              : null}
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+    </>
+  )
+}
+```
+
+### Using a form in a Drawer
+
+If you need to put a form within the Drawer, you might need to use to form
+validation library like `react-hook-form` or `formik`. Here's the recommended
+way to do it:
+
+> Because the button is located outside the form, you can leverage its native
+> HTML `form` attrbute and refer to the `id` of the `form`.
+
+```jsx live=false
+export const App = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  return (
+    <>
+      <Button onClick={onOpen}>Open</Button>
+      <Drawer isOpen={isOpen} onClose={onClose}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>Create your account</DrawerHeader>
+
+          <DrawerBody>
+            <form
+              id="my-form"
+              onSubmit={(e) => {
+                e.preventDefault()
+                console.log("submitted")
+              }}
+            >
+              <Input name="nickname" placeholder="Type here..." />
+            </form>
+          </DrawerBody>
+
+          <DrawerFooter>
+            <Button type="submit" form="my-form">
+              Save
+            </Button>
+          </DrawerFooter>
+        </DrawerContent>
       </Drawer>
     </>
   )
@@ -260,12 +298,9 @@ function SizeExample() {
 
 ### Drawer Props
 
-Drawer composes the `Modal` component with these extra props:
+`Drawer` composes the `Modal` component with these extra props:
 
-| Name           | Type                             | Default | Description                                                                                         |
-| -------------- | -------------------------------- | ------- | --------------------------------------------------------------------------------------------------- |
-| `isFullHeight` | `boolean`                        | `false` | If `true` and `placement` is set to `top` or `bottom`, the drawer fills the height of the viewport. |
-| `placement`    | `left`, `right`, `top`, `bottom` | `right` | The ref to the initial element to receive focus when the drawer opens.                              |
+<PropsTable of="Drawer" />
 
 ### Other components
 

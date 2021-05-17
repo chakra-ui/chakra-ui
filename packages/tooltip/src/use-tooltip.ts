@@ -1,17 +1,18 @@
 import { useDisclosure, useEventListener, useId } from "@chakra-ui/hooks"
-import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
-import { callAllHandlers, mergeRefs, PropGetter } from "@chakra-ui/utils"
-import { useCallback, useEffect, useRef } from "react"
+import {
+  Placement,
+  usePopper,
+  UsePopperProps,
+  popperCSSVars,
+} from "@chakra-ui/popper"
+import { callAllHandlers, px } from "@chakra-ui/utils"
+import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
+import * as React from "react"
 
 export interface UseTooltipProps
   extends Pick<
     UsePopperProps,
-    | "arrowSize"
-    | "modifiers"
-    | "gutter"
-    | "offset"
-    | "arrowShadowColor"
-    | "arrowPadding"
+    "modifiers" | "gutter" | "offset" | "arrowPadding"
   > {
   /**
    * Delay (in ms) before showing the tooltip
@@ -57,6 +58,8 @@ export interface UseTooltipProps
    */
   defaultIsOpen?: boolean
   isDisabled?: boolean
+  arrowSize?: number
+  arrowShadowColor?: string
 }
 
 export function useTooltip(props: UseTooltipProps = {}) {
@@ -88,10 +91,13 @@ export function useTooltip(props: UseTooltipProps = {}) {
     onClose: onCloseProp,
   })
 
-  const popper = usePopper({
+  const {
+    referenceRef,
+    getPopperProps,
+    getArrowInnerProps,
+    getArrowProps,
+  } = usePopper({
     placement,
-    arrowSize,
-    arrowShadowColor,
     arrowPadding,
     modifiers,
     gutter,
@@ -100,31 +106,31 @@ export function useTooltip(props: UseTooltipProps = {}) {
 
   const tooltipId = useId(id, "tooltip")
 
-  const ref = useRef<any>(null)
+  const ref = React.useRef<any>(null)
 
-  const enterTimeout = useRef<number>()
-  const exitTimeout = useRef<number>()
+  const enterTimeout = React.useRef<number>()
+  const exitTimeout = React.useRef<number>()
 
-  const openWithDelay = useCallback(() => {
+  const openWithDelay = React.useCallback(() => {
     if (!isDisabled) {
       enterTimeout.current = window.setTimeout(onOpen, openDelay)
     }
   }, [isDisabled, onOpen, openDelay])
 
-  const closeWithDelay = useCallback(() => {
+  const closeWithDelay = React.useCallback(() => {
     if (enterTimeout.current) {
       clearTimeout(enterTimeout.current)
     }
     exitTimeout.current = window.setTimeout(onClose, closeDelay)
   }, [closeDelay, onClose])
 
-  const onClick = useCallback(() => {
+  const onClick = React.useCallback(() => {
     if (closeOnClick) {
       closeWithDelay()
     }
   }, [closeOnClick, closeWithDelay])
 
-  const onMouseDown = useCallback(() => {
+  const onMouseDown = React.useCallback(() => {
     if (closeOnMouseDown) {
       closeWithDelay()
     }
@@ -138,38 +144,85 @@ export function useTooltip(props: UseTooltipProps = {}) {
 
   useEventListener("keydown", onKeyDown)
 
-  useEffect(() => {
-    return () => {
+  React.useEffect(
+    () => () => {
       clearTimeout(enterTimeout.current)
       clearTimeout(exitTimeout.current)
-    }
-  }, [])
+    },
+    [],
+  )
 
-  const getTriggerProps: PropGetter = (props = {}, _ref = null) => {
-    const triggerProps = {
-      ...props,
-      onMouseLeave: callAllHandlers(props.onMouseLeave, closeWithDelay),
-      onMouseEnter: callAllHandlers(props.onMouseEnter, openWithDelay),
-      onClick: callAllHandlers(props.onClick, onClick),
-      onMouseDown: callAllHandlers(props.onMouseDown, onMouseDown),
-      onFocus: callAllHandlers(props.onFocus, openWithDelay),
-      onBlur: callAllHandlers(props.onBlur, closeWithDelay),
-      "aria-describedby": isOpen ? tooltipId : undefined,
-    }
+  /**
+   * This allows for catching mouseleave events when the tooltip
+   * trigger is disabled. There's currently a known issue in
+   * React regarding the onMouseLeave polyfill.
+   * @see https://github.com/facebook/react/issues/11972
+   */
+  useEventListener("mouseleave", closeWithDelay, ref.current)
 
-    return popper.getReferenceProps(triggerProps, mergeRefs(ref, _ref))
-  }
+  const getTriggerProps: PropGetter = React.useCallback(
+    (props = {}, _ref = null) => {
+      const triggerProps = {
+        ...props,
+        ref: mergeRefs(ref, _ref, referenceRef),
+        onMouseEnter: callAllHandlers(props.onMouseEnter, openWithDelay),
+        onClick: callAllHandlers(props.onClick, onClick),
+        onMouseDown: callAllHandlers(props.onMouseDown, onMouseDown),
+        onFocus: callAllHandlers(props.onFocus, openWithDelay),
+        onBlur: callAllHandlers(props.onBlur, closeWithDelay),
+        "aria-describedby": isOpen ? tooltipId : undefined,
+      }
 
-  const getTooltipProps: PropGetter = (props = {}, _ref = null) => {
-    const popperProps = {
-      ...htmlProps,
-      ...props,
-      id: tooltipId,
-      role: "tooltip",
-    }
+      return triggerProps
+    },
+    [
+      openWithDelay,
+      closeWithDelay,
+      onMouseDown,
+      isOpen,
+      tooltipId,
+      onClick,
+      referenceRef,
+    ],
+  )
 
-    return popper.getPopperProps(popperProps, _ref)
-  }
+  const getTooltipPositionerProps: PropGetter = React.useCallback(
+    (props = {}, forwardedRef = null) =>
+      getPopperProps(
+        {
+          ...props,
+          style: {
+            ...props.style,
+            [popperCSSVars.arrowSize.var]: arrowSize
+              ? px(arrowSize)
+              : undefined,
+            [popperCSSVars.arrowShadowColor.var]: arrowShadowColor,
+          },
+        },
+        forwardedRef,
+      ),
+    [getPopperProps, arrowSize, arrowShadowColor],
+  )
+
+  const getTooltipProps = React.useCallback(
+    (props = {}, _ref = null) => {
+      const tooltipProps = {
+        ref: _ref,
+        ...htmlProps,
+        ...props,
+        id: tooltipId,
+        role: "tooltip",
+        style: {
+          ...props.style,
+          position: "relative",
+          transformOrigin: popperCSSVars.transformOrigin.varRef,
+        },
+      }
+
+      return tooltipProps
+    },
+    [htmlProps, tooltipId],
+  )
 
   return {
     isOpen,
@@ -177,10 +230,9 @@ export function useTooltip(props: UseTooltipProps = {}) {
     hide: closeWithDelay,
     getTriggerProps,
     getTooltipProps,
-    transformOrigin: popper.transformOrigin,
-    placement: popper.placement,
-    getArrowWrapperProps: popper.getArrowWrapperProps,
-    getArrowProps: popper.getArrowProps,
+    getTooltipPositionerProps,
+    getArrowProps,
+    getArrowInnerProps,
   }
 }
 

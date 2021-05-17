@@ -6,14 +6,12 @@ description:
   As the name implies, the Stat component is used to display some statistics.
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
-As the name implies, the Stat component is used to display some statistics.
+As the name implies, the `Stat` component is used to display some statistics.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/stat", url: "#" }}
+  theme={{ componentName: "stat" }}
+  github={{ package: "stat" }}
+  npm={{ package: "@chakra-ui/stat" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -28,7 +26,7 @@ import {
   StatHelpText,
   StatArrow,
   StatGroup,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 ```
 
 ## Basic Usage
@@ -67,7 +65,9 @@ import {
 
 ## Props
 
-- StatLabel, StatHelpText, StatNumber composes [Text](/docs/typography/text)
-  component
-- StatArrow composes [Icon](/docs/components/icon) component
-- Stat, StatGroup composes [Box](/docs/layout/box) component
+- `StatLabel`, `StatHelpText`, `StatNumber` composes
+  [Text](/docs/typography/text) component.
+- `StatArrow` composes [Icon](/docs/components/icon) component.
+- `Stat` and `StatGroup` composes [Box](/docs/layout/box) component.
+
+<PropsTable of="Stat" />

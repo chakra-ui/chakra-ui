@@ -135,9 +135,9 @@ test("focuses the correct tab with manual keyboard navigation", async () => {
   fireEvent.keyDown(tabList, { key: "ArrowRight", code: 39 })
 
   // selection doesn't follow focus, so the tab is not selected
-  // even if it's focused
+  // even if it is focused
   expect(tab2).toHaveFocus()
-  expect(tab2).not.toHaveAttribute("aria-selected")
+  expect(tab2).toHaveAttribute("aria-selected", "false")
   expect(panel2).not.toBeVisible()
 })
 
@@ -165,5 +165,32 @@ test("renders only the currently active tab panel if isLazy", () => {
   userEvent.click(screen.getByText("Tab 2"))
 
   expect(screen.queryByText("Panel 1")).not.toBeInTheDocument()
+  expect(screen.getByText("Panel 2")).toBeInTheDocument()
+})
+
+test("renders the currently active tab panel and previously-selected tabs if isLazy and lazy behavior is keepMounted", () => {
+  render(
+    <Tabs isLazy lazyBehavior="keepMounted">
+      <TabList>
+        <Tab>Tab 1</Tab>
+        <Tab>Tab 2</Tab>
+      </TabList>
+      <TabPanels>
+        <TabPanel>
+          <p>Panel 1</p>
+        </TabPanel>
+        <TabPanel>
+          <p>Panel 2</p>
+        </TabPanel>
+      </TabPanels>
+    </Tabs>,
+  )
+
+  expect(screen.getByText("Panel 1")).toBeInTheDocument()
+  expect(screen.queryByText("Panel 2")).not.toBeInTheDocument()
+
+  userEvent.click(screen.getByText("Tab 2"))
+
+  expect(screen.queryByText("Panel 1")).toBeInTheDocument()
   expect(screen.getByText("Panel 2")).toBeInTheDocument()
 })

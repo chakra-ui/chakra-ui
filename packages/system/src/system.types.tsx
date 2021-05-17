@@ -1,25 +1,26 @@
-import { SystemProps, SystemStyleObject, ResponsiveValue } from "@chakra-ui/styled-system"
+import {
+  ResponsiveValue,
+  SystemProps,
+  SystemStyleObject,
+  ThemeTypings,
+} from "@chakra-ui/styled-system"
 import { Dict } from "@chakra-ui/utils"
+import { Interpolation } from "@emotion/react"
 import * as React from "react"
-import { ComponentWithAs } from "./forward-ref"
 
-export interface ThemingProps {
-  variant?: string
-  size?: string
-  colorScheme?: string
+export interface ThemingProps<ThemeComponent extends string = string> {
+  variant?: ThemeComponent extends keyof ThemeTypings["components"]
+    ? ThemeTypings["components"][ThemeComponent]["variants"] | (string & {})
+    : string
+  size?: ThemeComponent extends keyof ThemeTypings["components"]
+    ? ThemeTypings["components"][ThemeComponent]["sizes"] | (string & {})
+    : string
+  colorScheme?: ThemeTypings["colorSchemes"] | (string & {})
   orientation?: "vertical" | "horizontal"
   styleConfig?: Dict
 }
 
 export interface ChakraProps extends SystemProps {
-  /**
-   * apply layer styles defined in `theme.layerStyles`
-   */
-  layerStyle?: string
-  /**
-   * apply typography styles defined in `theme.textStyles`
-   */
-  textStyle?: string
   /**
    * Reference styles from any component or key in the theme.
    *
@@ -49,18 +50,57 @@ export interface ChakraProps extends SystemProps {
    * NB: This is the public API for user-land
    */
   sx?: SystemStyleObject
+  /**
+   * The emotion's css style object
+   */
+  css?: Interpolation<{}>
 }
 
-export type As = React.ElementType<any>
+export type As<Props = any> = React.ElementType<Props>
 
 /**
  * Extract the props of a React element or component
  */
-export type PropsOf<T extends As> = React.ComponentProps<T> & {
-  as?: string | React.ComponentType<any>
+export type PropsOf<T extends As> = React.ComponentPropsWithoutRef<T> & {
+  as?: As
 }
 
-export type WithChakra<P> = P & ChakraProps
+export type OmitCommonProps<
+  Target,
+  OmitAdditionalProps extends keyof any = never
+> = Omit<Target, "transition" | "as" | "color" | OmitAdditionalProps>
 
-export interface ChakraComponent<T extends As, P>
-  extends ComponentWithAs<T, WithChakra<P>> {}
+export type RightJoinProps<
+  SourceProps extends object = {},
+  OverrideProps extends object = {}
+> = OmitCommonProps<SourceProps, keyof OverrideProps> & OverrideProps
+
+export type MergeWithAs<
+  ComponentProps extends object,
+  AsProps extends object,
+  AdditionalProps extends object = {},
+  AsComponent extends As = As
+> = RightJoinProps<ComponentProps, AdditionalProps> &
+  RightJoinProps<AsProps, AdditionalProps> & {
+    as?: AsComponent
+  }
+
+export type ComponentWithAs<Component extends As, Props extends object = {}> = {
+  <AsComponent extends As>(
+    props: MergeWithAs<
+      React.ComponentProps<Component>,
+      React.ComponentProps<AsComponent>,
+      Props,
+      AsComponent
+    >,
+  ): JSX.Element
+
+  displayName?: string
+  propTypes?: React.WeakValidationMap<any>
+  contextTypes?: React.ValidationMap<any>
+  defaultProps?: Partial<any>
+  id?: string
+}
+
+export interface ChakraComponent<T extends As, P = {}>
+  extends ComponentWithAs<T, ChakraProps & P> {}

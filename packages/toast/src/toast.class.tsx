@@ -66,8 +66,6 @@ class Toaster {
 
   update = (id: ToastId, options: Partial<ToastOptions> = {}) => {
     this.updateToast?.(id, options)
-    window.scrollBy({ top: 10 })
-    window.scrollBy({ top: -10 })
   }
 
   isActive = (id: ToastId) => this.isToastActive?.(id)

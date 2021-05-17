@@ -1,7 +1,7 @@
 {
   "name": "@chakra-ui/popover",
-  "version": "1.0.0-rc.5",
-  "description": "A React component to render that renders it's content in a popover",
+  "version": "1.7.0",
+  "description": "A React component to render that renders its content in a popover",
   "keywords": [
     "popover",
     "popper",
@@ -18,6 +18,12 @@
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -46,20 +52,20 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/close-button": "1.0.0-rc.5",
-    "@chakra-ui/hooks": "1.0.0-rc.5",
-    "@chakra-ui/popper": "1.0.0-rc.5",
-    "@chakra-ui/portal": "1.0.0-rc.5",
-    "@chakra-ui/transition": "1.0.0-rc.5",
-    "@chakra-ui/utils": "1.0.0-rc.5",
-    "@react-aria/interactions": "3.2.0"
+    "@chakra-ui/close-button": "1.1.9",
+    "@chakra-ui/hooks": "1.5.2",
+    "@chakra-ui/popper": "2.1.2",
+    "@chakra-ui/react-utils": "1.1.2",
+    "@chakra-ui/utils": "1.8.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.0.0-rc.5"
+    "@chakra-ui/system": "1.6.5",
+    "framer-motion": "^4.0.0",
+    "react": "^17.0.1"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">=1.0.0-rc.3",
-    "react": "16.x",
-    "react-dom": "16.x"
+    "@chakra-ui/system": ">=1.0.0",
+    "framer-motion": "3.x || 4.x",
+    "react": ">=16.8.6"
   }
 }

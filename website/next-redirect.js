@@ -1,5 +1,10 @@
 async function redirect() {
   return [
+    {
+      source: "/discord",
+      destination: "https://discord.gg/dQHfcWF",
+      permanent: true,
+    },
     // GENERAL
     {
       source: "/getting-started",
@@ -104,7 +109,7 @@ async function redirect() {
     },
     {
       source: "/collapse",
-      destination: "/docs/components/collapse",
+      destination: "/docs/components/transition#collapse",
       permanent: true,
     },
     {
@@ -282,6 +287,46 @@ async function redirect() {
     {
       source: "/tooltip",
       destination: "/docs/overlay/tooltip",
+      permanent: true,
+    },
+    {
+      source: "/docs/components/accordion",
+      destination: "/docs/disclosure/accordion",
+      permanent: true,
+    },
+    {
+      source: "/docs/components/tabs",
+      destination: "/docs/disclosure/tabs",
+      permanent: true,
+    },
+    {
+      source: "/docs/components/visually-hidden",
+      destination: "/docs/disclosure/visually-hidden",
+      permanent: true,
+    },
+    {
+      source: "/docs/components/breadcrumb",
+      destination: "/docs/navigation/breadcrumb",
+      permanent: true,
+    },
+    {
+      source: "/docs/components/link",
+      destination: "/docs/navigation/link",
+      permanent: true,
+    },
+    {
+      source: "/docs/data-display/avatar",
+      destination: "/docs/media-and-icons/avatar",
+      permanent: true,
+    },
+    {
+      source: "/docs/data-display/image",
+      destination: "/docs/media-and-icons/image",
+      permanent: true,
+    },
+    {
+      source: "/docs/components/icon",
+      destination: "/docs/media-and-icons/icon",
       permanent: true,
     },
   ]

@@ -7,15 +7,13 @@ description:
   pattern. Menu uses roving tabIndex for focus management.
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
 An accessible dropdown menu for the common dropdown menu button design pattern.
-Menu uses roving `tabIndex` for focus management.
+`Menu` uses roving `tabIndex` for focus management.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/menu", url: "#" }}
+  theme={{ componentName: "menu" }}
+  github={{ package: "menu" }}
+  npm={{ package: "@chakra-ui/menu" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -31,8 +29,8 @@ Chakra UI exports 8 components for rendering menus:
   a `MenuList`.
 - `MenuGroup`: A wrapper to group related menu items.
 - `MenuDivider`: A visual separator for menu items and groups.
-- `MenuOptionGroup`: A wrapper for checkable menu items (radio and checkbox)
-- `MenuItemOption`: The checkable menu item, to be used with `MenuOptionGroup`
+- `MenuOptionGroup`: A wrapper for checkable menu items (radio and checkbox).
+- `MenuItemOption`: The checkable menu item, to be used with `MenuOptionGroup`.
 
 ```js
 import {
@@ -40,11 +38,13 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuGroup,
-  MenuDivider,
-  MenuOptionGroup,
   MenuItemOption,
-} from "@chakra-ui/core"
+  MenuGroup,
+  MenuOptionGroup,
+  MenuIcon,
+  MenuCommand,
+  MenuDivider,
+} from "@chakra-ui/react"
 ```
 
 ## Usage
@@ -59,18 +59,16 @@ import {
     <MenuItem>Create a Copy</MenuItem>
     <MenuItem>Mark as Draft</MenuItem>
     <MenuItem>Delete</MenuItem>
-    <MenuItem as="a" href="#">
-      Attend a Workshop
-    </MenuItem>
+    <MenuItem>Attend a Workshop</MenuItem>
   </MenuList>
 </Menu>
 ```
 
 ### Accessing the internal state
 
-To access the internal state of the Menu, use a function as `children` (commonly
-known as a render prop). You'll get access to the internal state `isOpen` and
-method `onClose`.
+To access the internal state of the `Menu`, use a function as `children`
+(commonly known as a render prop). You'll get access to the internal state
+`isOpen` and method `onClose`.
 
 ```jsx
 <Menu>
@@ -88,6 +86,20 @@ method `onClose`.
 </Menu>
 ```
 
+### Customizing the button
+
+The default `MenuButton` can be styled using the usual styled-system props, but
+it starts off plainly styled.
+
+Using the `as` prop of the `MenuButton`, you can render a custom component
+instead of the default `MenuButton`. For instance, you can use Chakra's `Button`
+component, or your own custom component.
+
+> Custom components must take a `ref` prop which is assigned to the React
+> component that triggers the menu opening. This is so that the `MenuList`
+> popover can be positioned correctly. Without this, the `MenuList` will render
+> in an undefined position.
+
 ### Letter Navigation
 
 When focus is on the `MenuButton` or within the `MenuList` and you type a letter
@@ -104,9 +116,9 @@ the letter you typed.
     transition="all 0.2s"
     borderRadius="md"
     borderWidth="1px"
-    _hover={{ bg: "gray.100" }}
-    _expanded={{ bg: "red.200" }}
-    _focus={{ outline: 0, boxShadow: "outline" }}
+    _hover={{ bg: "gray.400" }}
+    _expanded={{ bg: "blue.400" }}
+    _focus={{ boxShadow: "outline" }}
   >
     File <ChevronDownIcon />
   </MenuButton>
@@ -120,7 +132,7 @@ the letter you typed.
 </Menu>
 ```
 
-### Just another example.
+### Just another example
 
 ```jsx
 <Menu>
@@ -152,48 +164,33 @@ the letter you typed.
 </Menu>
 ```
 
-### Adding menu commands
+### Adding icons and commands
 
-You can add custom menu icons and commands (or hotkeys) for each menu by passing
-the `command` prop.
+You can add icon to each `MenuItem` by passing the `icon` prop. To add a
+commands (or hotkeys) to menu items, you can use the `command` prop.
 
-```jsx live=false
+```jsx
 <Menu>
-  <MenuButton size="sm" colorScheme="teal">
-    Open menu
-  </MenuButton>
+  <MenuButton
+    as={IconButton}
+    aria-label="Options"
+    icon={<HamburgerIcon />}
+    variant="outline"
+  />
   <MenuList>
-    <MenuItem command="⌘T">New Tab</MenuItem>
-    <MenuItem command="⌘N">New Window</MenuItem>
-    <MenuItem command="⌘⇧N">Open Closed Tab</MenuItem>
-    <MenuItem command="⌘O">Open File...</MenuItem>
+    <MenuItem icon={<AddIcon />} command="⌘T">
+      New Tab
+    </MenuItem>
+    <MenuItem icon={<ExternalLinkIcon />} command="⌘N">
+      New Window
+    </MenuItem>
+    <MenuItem icon={<RepeatIcon />} command="⌘⇧N">
+      Open Closed Tab
+    </MenuItem>
+    <MenuItem icon={<EditIcon />} command="⌘O">
+      Open File...
+    </MenuItem>
   </MenuList>
-</Menu>
-```
-
-## Adding menu transition
-
-You can add transition support for the menu by importing the `MenuTransition`
-component.
-
-> It's important to use the `sx` prop for the transitions to work properly. For
-> some reason, it doesn't work with the `style` native prop
-
-```jsx live=false
-<Menu>
-  <MenuButton size="sm" colorScheme="teal">
-    Open menu
-  </MenuButton>
-  <MenuTransition>
-    {(styles) => (
-      <MenuList sx={styles}>
-        <MenuItem command="⌘T">New Tab</MenuItem>
-        <MenuItem command="⌘N">New Window</MenuItem>
-        <MenuItem command="⌘⇧N">Open Closed Tab</MenuItem>
-        <MenuItem command="⌘O">Open File...</MenuItem>
-      </MenuList>
-    )}
-  </MenuTransition>
 </Menu>
 ```
 
@@ -207,22 +204,15 @@ open, you can use the `isLazy` prop. This is useful if your `Menu` needs to be
 extra performant, or make network calls on mount that should only happen when
 the component is displayed.
 
-```jsx live=false
+```jsx
 <Menu isLazy>
-  <MenuButton size="sm" colorScheme="teal">
-    Open menu
-  </MenuButton>
+  <MenuButton>Open menu</MenuButton>
   <MenuList>
-    {/* initially mounted */}
-    <MenuItem>Menu 1</MenuItem>
-    {/* initially mounted */}
+    {/* MenuItems are not rendered unless Menu is open */}
     <MenuItem>New Window</MenuItem>
-    {/* initially mounted */}
     <MenuItem>Open Closed Tab</MenuItem>
-    {/* initially mounted */}
     <MenuItem>Open File</MenuItem>
-    </MenuList>
-  <MenuList>
+  </MenuList>
 </Menu>
 ```
 
@@ -231,11 +221,9 @@ the component is displayed.
 To render menus in a portal, import the `Portal` component and wrap the
 `MenuList` within the `Portal`.
 
-```jsx live=false
+```jsx
 <Menu>
-  <MenuButton size="sm" colorScheme="teal">
-    Open menu
-  </MenuButton>
+  <MenuButton>Open menu</MenuButton>
   <Portal>
     <MenuList>
       <MenuItem>Menu 1</MenuItem>
@@ -302,10 +290,10 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
 
 | Key                | Action                                                                                                                                  |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `Enter` or `Space` | When `MenuButton` receives focus, opens the menu and places focus on the first menu item                                                |
-| `ArrowDown`        | When `MenuButton` receives focus, opens the menu and moves focus to the first menu item                                                 |
-| `ArrowUp`          | When `MenuButton` receives focus, opens the menu and moves focus to the last menu item                                                  |
-| `Escape`           | When the menu is open, closes the menu and sets focus to the `MenuButton`                                                               |
+| `Enter` or `Space` | When `MenuButton` receives focus, opens the menu and places focus on the first menu item.                                               |
+| `ArrowDown`        | When `MenuButton` receives focus, opens the menu and moves focus to the first menu item.                                                |
+| `ArrowUp`          | When `MenuButton` receives focus, opens the menu and moves focus to the last menu item.                                                 |
+| `Escape`           | When the menu is open, closes the menu and sets focus to the `MenuButton`.                                                              |
 | `Tab`              | no effect                                                                                                                               |
 | `Home`             | When the menu is open, moves focus to the first item.                                                                                   |
 | `End`              | When the menu is open, moves focus to the last item.                                                                                    |
@@ -317,76 +305,51 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
 
 - `role` is set to `button`.
 - `aria-haspopup` is set to `menu`.
-- When the menu is displayed, `MenuButton` has `aria-expanded` set to `true`.
-- `MenuButton` has `aria-controls` set to the `id` of the `MenuList`.
+- When the menu is displayed, `aria-expanded` is set to `true`.
+- `aria-controls` is set to the `id` of the `MenuList`.
 
 **For `MenuList`:**
 
-- The `MenuItem` has role `menu`.
+- `role` is set to `menu`.
+- `aria-orientation` is set to `vertical`.
+
+**For `MenuItem`:**
+
+- `role` is set to `menuitem`.
+- Gets one of these roles `menuitem`/`menuitemradio`/ `menuitemcheckbox`.
 
 ## Props
 
 ### Menu Props
 
-| Name          | Type                 | Default | Description                                                                 |
-| ------------- | -------------------- | ------- | --------------------------------------------------------------------------- |
-| children      | `React.ReactNode`    |         | The children of the menu must be `MenuButton` and `MenuList`                |
-| isOpen        | `boolean`            |         | If `true`, the menu will be opened                                          |
-| autoSelect    | `boolean`            | `true`  | The menu will select the first enabled item when it opens                   |
-| closeOnBlur   | `boolean`            | `true`  | If `true`, the menu will close on outside click or blur                     |
-| closeOnSelect | `boolean`            | `true`  | If `true`, the menu will close on menu item select                          |
-| placement     | `PopperJS.placement` |         | The placement of the `MenuList`                                             |
-| isLazy        | `boolean`            |         | If `true`, children of `MenuList` will not render until the menu is opened. |
+<PropsTable of="Menu" />
 
 ### MenuButton Props
 
-| Name      | Type                         |
-| --------- | ---------------------------- |
-| children  | `React.ReactNode`            |
-| onClick   | `React.MouseEventHandler`    |
-| onKeyDown | `React.KeyboardEventHandler` |
+`MenuButton` composes [Box](/docs/layout/box) so you can pass all `Box` props to
+change its style.
 
 ### MenuList Props
 
-| Name     | Type                      | Description                                                       |
-| -------- | ------------------------- | ----------------------------------------------------------------- |
-| children | `React.ReactNode`         | The content of the `MenuList`, should be the `MenuItem` component |
-| onClick  | `React.MouseEventHandler` | Function to be called when you click on the menu item             |
-| onBlur   | `React.FocusEventHandler` | Function to be called when you blur out of the menu list          |
+`MenuList` composes [Box](/docs/layout/box) so you can pass all `Box` props to
+change its style.
 
 ### MenuItem Props
 
-| Name       | Type                                            | Description                                               |
-| ---------- | ----------------------------------------------- | --------------------------------------------------------- |
-| isDisabled | `boolean`                                       | If `true`, the menu item will be disabled                 |
-| onClick    | `React.MouseEventHandler`                       | Function that is called on click and enter/space keypress |
-| onKeyDown  | `React.KeyboardEventHander`                     | Function that is called on keydown                        |
-| role       | `menuitem`, `menuitemradio`, `menuitemcheckbox` | The ARIA role of the menuitem                             |
+<PropsTable of="MenuItem" />
 
 ### MenuGroup Props
 
-| Name     | Type              | Description                   |
-| -------- | ----------------- | ----------------------------- |
-| children | `React.ReactNode` | The content of the menu group |
-| title    | `string`          | The title of the menu group   |
+`MenuGroup` composes [Box](/docs/layout/box) so you can pass all `Box` props to
+change its style.
 
 ### MenuOptionGroup Props
 
-| Name         | Type                                          | Description                                             |
-| ------------ | --------------------------------------------- | ------------------------------------------------------- |
-| children     | `React.ReactNode`                             | The content of the option group                         |
-| title        | `string`                                      | Title of the option group                               |
-| type         | `radio`, `checkbox`                           | Used to add roles `menuitemradio` or `menuitemcheckbox` |
-| defaultValue | `string`, `number`, `Array<string or number>` | The initial value of the option group                   |
-| value        | `string`, `number`, `Array<string or number>` | The value of the option group                           |
-| onChange     | `(value) => void`                             | Function called when selection changes                  |
+<PropsTable of="MenuOptionGroup" />
 
 ### MenuItemOption Props
 
-MenuItemOption extends `Box` so you can pass all box props in addition to these:
+`MenuItemOption` composes [Box](/docs/layout/box) so you can pass all box props
+in addition to these:
 
-| Name       | Type                | Description                                                           |
-| ---------- | ------------------- | --------------------------------------------------------------------- |
-| isDisabled | `boolean`           | If `true`, the option item will be disabled                           |
-| value      | `StringOrNumber`    | The value of the option item                                          |
-| type       | `radio`, `checkbox` | Used to add `menuitemradio` or `menuitemcheckbox` roles to the option |
+<PropsTable of="MenuItemOption" />

@@ -1,7 +1,8 @@
 import { getColor, mode, transparentize } from "@chakra-ui/theme-tools"
+
 type Dict = Record<string, any>
 
-const parts = ["container", "title", "icon"]
+const parts = ["container", "title", "description", "icon"]
 
 const baseStyle = {
   container: {
@@ -11,13 +12,14 @@ const baseStyle = {
   title: {
     fontWeight: "bold",
     lineHeight: 6,
-    mr: 2,
+    marginEnd: 2,
   },
   description: {
     lineHeight: 6,
   },
   icon: {
-    mr: 3,
+    flexShrink: 0,
+    marginEnd: 3,
     w: 5,
     h: 6,
   },
@@ -42,9 +44,9 @@ function variantLeftAccent(props: Dict) {
   const { colorScheme: c } = props
   return {
     container: {
-      pl: 3,
-      borderLeft: "4px solid",
-      borderColor: mode(`${c}.500`, `${c}.200`)(props),
+      paddingStart: 3,
+      borderStartWidth: "4px",
+      borderStartColor: mode(`${c}.500`, `${c}.200`)(props),
       bg: getBg(props),
     },
     icon: {
@@ -58,8 +60,8 @@ function variantTopAccent(props: Dict) {
   return {
     container: {
       pt: 2,
-      borderTop: "4px solid",
-      borderColor: mode(`${c}.500`, `${c}.200`)(props),
+      borderTopWidth: "4px",
+      borderTopColor: mode(`${c}.500`, `${c}.200`)(props),
       bg: getBg(props),
     },
     icon: {
@@ -87,6 +89,7 @@ const variants = {
 
 const defaultProps = {
   variant: "subtle",
+  colorScheme: "blue",
 }
 
 export default {

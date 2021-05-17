@@ -1,130 +1,107 @@
 import * as CSS from "csstype"
-import { createParser, Config, system } from "@styled-system/core"
-import { ResponsiveValue, Length } from "../utils"
+import type { Config } from "../utils/prop-config"
+import { t, Token, transforms } from "../utils"
 
-const config: Config = {
-  bg: {
-    property: "background",
-    scale: "colors",
-  },
-  bgColor: {
-    property: "backgroundColor",
-    scale: "colors",
-  },
-  background: {
-    property: "background",
-    scale: "colors",
-  },
-  backgroundColor: {
-    property: "backgroundColor",
-    scale: "colors",
-  },
-  backgroundImage: true,
+export const background: Config = {
+  background: t.colors("background"),
+  backgroundColor: t.colors("backgroundColor"),
+  backgroundImage: t.propT("backgroundImage", transforms.bgImage),
   backgroundSize: true,
   backgroundPosition: true,
   backgroundRepeat: true,
   backgroundAttachment: true,
-  backgroundBlendMode: true,
-  bgImage: {
-    property: "backgroundImage",
-  },
-  bgImg: {
-    property: "backgroundImage",
-  },
-  bgBlendMode: {
-    property: "backgroundBlendMode",
-  },
-  bgSize: {
-    property: "backgroundSize",
-  },
-  bgPosition: {
-    property: "backgroundPosition",
-  },
-  bgPos: {
-    property: "backgroundPosition",
-  },
-  bgRepeat: {
-    property: "backgroundRepeat",
-  },
-  bgAttachment: {
-    property: "backgroundAttachment",
-  },
+  backgroundClip: { transform: transforms.bgClip },
+  bgSize: t.prop("backgroundSize"),
+  bgPosition: t.prop("backgroundPosition"),
+  bg: t.colors("background"),
+  bgColor: t.colors("backgroundColor"),
+  bgPos: t.prop("backgroundPosition"),
+  bgRepeat: t.prop("backgroundRepeat"),
+  bgAttachment: t.prop("backgroundAttachment"),
+  bgGradient: t.propT("backgroundImage", transforms.gradient),
+  bgClip: { transform: transforms.bgClip },
 }
+
+Object.assign(background, {
+  bgImage: background.backgroundImage,
+  bgImg: background.backgroundImage,
+})
 
 export interface BackgroundProps {
   /**
    * The CSS `background` property
    */
-  bg?: ResponsiveValue<CSS.Property.Background<Length>>
+  bg?: Token<CSS.Property.Color, "colors">
+  /**
+   * The CSS `background-clip` property
+   */
+  bgClip?: Token<CSS.Property.BackgroundClip | "text">
+  /**
+   * The CSS `background-clip` property
+   */
+  backgroundClip?: Token<CSS.Property.BackgroundClip | "text">
   /**
    * The CSS `background` property
    */
-  background?: ResponsiveValue<CSS.Property.Background<Length>>
+  background?: Token<CSS.Property.Color, "colors">
   /**
    * The CSS `background-color` property
    */
-  bgColor?: ResponsiveValue<CSS.Property.BackgroundColor>
+  bgColor?: Token<CSS.Property.Color, "colors">
   /**
    * The CSS `background-color` property
    */
-  backgroundColor?: ResponsiveValue<CSS.Property.BackgroundColor>
+  backgroundColor?: Token<CSS.Property.Color, "colors">
   /**
    * The CSS `background-image` property
    */
-  backgroundImage?: ResponsiveValue<CSS.Property.BackgroundImage>
+  backgroundImage?: Token<CSS.Property.BackgroundImage>
   /**
-   * The CSS `background-blend-mode` property
+   * The background-gradient shorthand
    */
-  backgroundBlendMode?: ResponsiveValue<CSS.Property.BackgroundBlendMode>
-  /**
-   * The CSS `background-blend-mode` property
-   */
-  bgBlendMode?: ResponsiveValue<CSS.Property.BackgroundBlendMode>
+  bgGradient?: Token<CSS.Property.BackgroundImage>
   /**
    * The CSS `background-size` property
    */
-  backgroundSize?: ResponsiveValue<CSS.Property.BackgroundSize<Length>>
+  backgroundSize?: Token<CSS.Property.BackgroundSize | number>
   /**
    * The CSS `background-position` property
    */
-  bgPos?: ResponsiveValue<CSS.Property.BackgroundPosition<Length>>
+  bgPos?: Token<CSS.Property.BackgroundPosition | number>
   /**
    * The CSS `background-position` property
    */
-  backgroundPosition?: ResponsiveValue<CSS.Property.BackgroundPosition<Length>>
+  backgroundPosition?: Token<CSS.Property.BackgroundPosition | number>
   /**
    * The CSS `background-image` property
    */
-  bgImage?: ResponsiveValue<CSS.Property.BackgroundImage>
+  bgImage?: Token<CSS.Property.BackgroundImage>
   /**
    * The CSS `background-image` property
    */
-  bgImg?: ResponsiveValue<CSS.Property.BackgroundImage>
+  bgImg?: Token<CSS.Property.BackgroundImage>
   /**
    * The CSS `background-repeat` property
    */
-  bgRepeat?: ResponsiveValue<CSS.Property.BackgroundRepeat>
+  bgRepeat?: Token<CSS.Property.BackgroundRepeat>
   /**
    * The CSS `background-repeat` property
    */
-  backgroundRepeat?: ResponsiveValue<CSS.Property.BackgroundRepeat>
+  backgroundRepeat?: Token<CSS.Property.BackgroundRepeat>
   /**
    * The CSS `background-size` property
    */
-  bgSize?: ResponsiveValue<CSS.Property.BackgroundSize<Length>>
+  bgSize?: Token<CSS.Property.BackgroundSize | number>
   /**
    * The CSS `background-attachment` property
    */
-  bgAttachment?: ResponsiveValue<CSS.Property.BackgroundAttachment>
+  bgAttachment?: Token<CSS.Property.BackgroundAttachment>
   /**
    * The CSS `background-attachment` property
    */
-  backgroundAttachment?: ResponsiveValue<CSS.Property.BackgroundAttachment>
+  backgroundAttachment?: Token<CSS.Property.BackgroundAttachment>
   /**
    * The CSS `background-position` property
    */
-  bgPosition?: ResponsiveValue<CSS.Property.BackgroundPosition<Length>>
+  bgPosition?: Token<CSS.Property.BackgroundPosition | number>
 }
-
-export const background = system(config)
-export const backgroundParser = createParser(config)

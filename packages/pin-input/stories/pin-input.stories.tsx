@@ -5,6 +5,7 @@ import {
   usePinInput,
   usePinInputField,
   PinInputProvider,
+  PinInputDescendantsProvider,
 } from "../src"
 
 export default {
@@ -25,20 +26,27 @@ function Input(props: any) {
 }
 
 export function HookExample() {
-  const context = usePinInput({ autoFocus: true })
+  const { descendants, ...context } = usePinInput({
+    autoFocus: true,
+    mask: true,
+    onComplete: alert,
+    type: "number",
+  })
   return (
-    <PinInputProvider value={context}>
-      <Input style={style} />
-      <Input style={style} />
-      <Input style={style} />
-      <Input style={style} />
-    </PinInputProvider>
+    <PinInputDescendantsProvider value={descendants}>
+      <PinInputProvider value={context}>
+        <Input style={style} />
+        <Input style={style} />
+        <Input style={style} />
+        <Input style={style} />
+      </PinInputProvider>
+    </PinInputDescendantsProvider>
   )
 }
 
 export function ComponentExample() {
   return (
-    <PinInput defaultValue="234">
+    <PinInput>
       <PinInputField />
       <PinInputField />
       <PinInputField />
@@ -46,21 +54,19 @@ export function ComponentExample() {
   )
 }
 
-export const Sizes = () => {
-  return (
-    <>
-      {["sm", "md", "lg"].map((size, i) => (
-        <div key={i} style={{ marginBottom: "1rem" }}>
-          <PinInput size={size} defaultValue="234">
-            <PinInputField />
-            <PinInputField />
-            <PinInputField />
-          </PinInput>
-        </div>
-      ))}
-    </>
-  )
-}
+export const Sizes = () => (
+  <>
+    {["xs", "sm", "md", "lg"].map((size) => (
+      <div key={size} style={{ marginBottom: "1rem" }}>
+        <PinInput size={size}>
+          <PinInputField />
+          <PinInputField />
+          <PinInputField />
+        </PinInput>
+      </div>
+    ))}
+  </>
+)
 
 export const Controlled = () => {
   const [value, setValue] = React.useState("")
@@ -72,6 +78,7 @@ export const Controlled = () => {
   const handleComplete = (value: string) => {
     console.log(value)
   }
+
   return (
     <PinInput value={value} onChange={handleChange} onComplete={handleComplete}>
       <PinInputField />

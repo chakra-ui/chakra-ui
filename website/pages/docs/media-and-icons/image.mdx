@@ -1,0 +1,99 @@
+---
+title: Image
+package: "@chakra-ui/image"
+image: "components/image.svg"
+description:
+  The Image component is used to display images with support for fallback.
+---
+
+The `Image` component is used to display images.
+
+Image composes `Box` so you can use all the style props and add responsive
+styles as well.
+
+<ComponentLinks
+  github={{ package: "image" }}
+  npm={{ package: "@chakra-ui/image" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+```js
+import { Image } from "@chakra-ui/react"
+```
+
+## Usage
+
+```jsx
+<Box boxSize="sm">
+  <Image src="https://bit.ly/sage-adebayo" alt="Segun Adebayo" />
+</Box>
+```
+
+## Size
+
+The size of the image can be adjusted using the `boxSize` prop.
+
+```jsx
+<Stack direction="row">
+  <Image
+    boxSize="100px"
+    objectFit="cover"
+    src="https://bit.ly/sage-adebayo"
+    alt="Segun Adebayo"
+  />
+  <Image
+    boxSize="150px"
+    objectFit="cover"
+    src="https://bit.ly/dan-abramov"
+    alt="Dan Abramov"
+  />
+  <Image boxSize="200px" src="https://bit.ly/dan-abramov" alt="Dan Abramov" />
+</Stack>
+```
+
+## Image with border radius
+
+```jsx
+<Image
+  borderRadius="full"
+  boxSize="150px"
+  src="https://bit.ly/sage-adebayo"
+  alt="Segun Adebayo"
+/>
+```
+
+## Fallback support
+
+You can provide a fallback image for when there is an error loading the `src` of
+the image. You can also opt out of this behavior by passing the `ignoreFallback`
+prop.
+
+```jsx
+<Image src="gibbresh.png" fallbackSrc="https://via.placeholder.com/150" />
+```
+
+### Improvements from v1
+
+- Added support for the `fit` prop to specify how to fit an image within its
+  dimension. It uses the `object-fit` property.
+
+- Added support for the `align` prop to specify how to align the image within
+  its dimension. It uses the `object-position` property.
+
+- Added support for custom `fallback` component.
+
+## Usage with SSR
+
+```js
+import { Img } from "@chakra-ui/react"
+```
+
+The `Img` Component provides a fallback for SSR applications which uses the
+image directly without client side checks.
+
+## Props
+
+<PropsTable of="Image" />

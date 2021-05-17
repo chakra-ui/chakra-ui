@@ -5,15 +5,13 @@ image: "components/tags.svg"
 description: Tag component is used for items that need to be labeled
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
-Tag component is used for items that need to be labeled, categorized, or
+`Tag` component is used for items that need to be labeled, categorized, or
 organized using keywords that describe them.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/tag", url: "#" }}
+  theme={{ componentName: "tag" }}
+  github={{ package: "tag" }}
+  npm={{ package: "@chakra-ui/tag" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -22,10 +20,10 @@ organized using keywords that describe them.
 
 Chakra UI exports 5 Tag related components:
 
-- **Tag**: The wrapper for all the tag elements
+- **Tag**: The wrapper for all the tag elements.
 - **TagLabel**: The label for tag's text content.
-- **TagLeftIcon**: The icon placed on the left side of the tag
-- **TagRightIcon**: The icon placed on the right side of the tag
+- **TagLeftIcon**: The icon placed on the left side of the tag.
+- **TagRightIcon**: The icon placed on the right side of the tag.
 - **TagCloseButton**: The close button for the tag.
 
 ```js
@@ -35,7 +33,7 @@ import {
   TagLeftIcon,
   TagRightIcon,
   TagCloseButton,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 ```
 
 ## Usage
@@ -102,7 +100,7 @@ import {
 ## With custom element
 
 ```jsx
-<Tag colorScheme="red" borderRadius="full">
+<Tag size="lg" colorScheme="red" borderRadius="full">
   <Avatar
     src="https://bit.ly/sage-adebayo"
     size="xs"
@@ -116,8 +114,4 @@ import {
 
 ## Props
 
-| Name          | Type                         | Default | Description                             |
-| ------------- | ---------------------------- | ------- | --------------------------------------- |
-| `variant`     | `solid`, `subtle`, `outline` | `solid` | The variant style of the tag component. |
-| `size`        | `sm`, `md`, `lg`             | `md`    | The size of the tag component.          |
-| `colorScheme` | `string`                     |         | The color scheme of the tag variant.    |
+<PropsTable of="Tag" />

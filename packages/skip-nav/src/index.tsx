@@ -1,18 +1,18 @@
 import {
   chakra,
-  PropsOf,
-  useStyleConfig,
+  forwardRef,
   omitThemingProps,
   SystemStyleObject,
-  forwardRef,
   ThemingProps,
+  useStyleConfig,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
-import { __DEV__, mergeWith } from "@chakra-ui/utils"
+import { mergeWith, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
 export interface SkipNavLinkProps
-  extends PropsOf<typeof chakra.a>,
-    ThemingProps {}
+  extends HTMLChakraProps<"a">,
+    ThemingProps<"SkipNavLink"> {}
 
 const fallbackId = "chakra-skip-nav"
 
@@ -37,31 +37,35 @@ const baseStyle: SystemStyleObject = {
 /**
  * Renders a link that remains hidden until focused to skip to the main content.
  */
-export const SkipNavLink = forwardRef<SkipNavLinkProps, "a">(
-  function SkipNavLink(props, ref) {
-    const styles = useStyleConfig("SkipLink", props)
-    const { id = fallbackId, ...rest } = omitThemingProps(props)
+export const SkipNavLink = forwardRef<SkipNavLinkProps, "a">((props, ref) => {
+  const styles = useStyleConfig("SkipLink", props)
+  const { id = fallbackId, ...rest } = omitThemingProps(props)
 
-    const linkStyles = mergeWith({}, baseStyle, styles)
+  const linkStyles = mergeWith({}, baseStyle, styles)
 
-    return <chakra.a {...rest} ref={ref} href={`#${id}`} __css={linkStyles} />
-  },
-)
+  return <chakra.a {...rest} ref={ref} href={`#${id}`} __css={linkStyles} />
+})
 
 if (__DEV__) {
   SkipNavLink.displayName = "SkipNavLink"
 }
 
-export interface SkipNavContentProps extends PropsOf<"div"> {}
+export interface SkipNavContentProps extends HTMLChakraProps<"div"> {}
 
 /**
  * Renders a div as the target for the link.
  */
 export const SkipNavContent = forwardRef<SkipNavContentProps, "div">(
-  function SkipNavContent(props, ref) {
+  (props, ref) => {
     const { id = fallbackId, ...rest } = props
     return (
-      <div ref={ref} id={id} tabIndex={-1} style={{ outline: 0 }} {...rest} />
+      <chakra.div
+        ref={ref}
+        id={id}
+        tabIndex={-1}
+        style={{ outline: 0 }}
+        {...rest}
+      />
     )
   },
 )

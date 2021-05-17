@@ -1,4 +1,4 @@
-import { chakra, SystemStyleObject, PropsOf } from "@chakra-ui/system"
+import { chakra, SystemStyleObject, HTMLChakraProps } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -19,7 +19,7 @@ export interface ControlBoxOptions {
 export type IControlBox = ControlBoxOptions
 
 interface BaseControlProps
-  extends Omit<PropsOf<typeof chakra.div>, keyof ControlBoxOptions> {}
+  extends Omit<HTMLChakraProps<"div">, keyof ControlBoxOptions> {}
 
 export interface ControlBoxProps extends BaseControlProps, ControlBoxOptions {}
 
@@ -40,15 +40,15 @@ export const ControlBox: React.FC<ControlBoxProps> = (props) => {
     ...rest
   } = props
 
-  const checkedAndDisabled = `input[type=${type}]:checked:disabled + &`,
-    checkedAndHover = `input[type=${type}]:checked:hover:not(:disabled) + &`,
-    checkedAndFocus = `input[type=${type}]:checked:focus + &`,
-    disabled = `input[type=${type}]:disabled + &`,
-    focus = `input[type=${type}]:focus + &`,
-    hover = `input[type=${type}]:hover:not(:disabled):not(:checked) + &`,
-    checked = `input[type=${type}]:checked + &, input[type=${type}][aria-checked=mixed] + &`,
-    invalid = `input[type=${type}][aria-invalid=true] + &`,
-    child = `& > *`
+  const checkedAndDisabled = `input[type=${type}]:checked:disabled + &`
+  const checkedAndHover = `input[type=${type}]:checked:hover:not(:disabled) + &`
+  const checkedAndFocus = `input[type=${type}]:checked:focus + &`
+  const disabled = `input[type=${type}]:disabled + &`
+  const focus = `input[type=${type}]:focus + &`
+  const hover = `input[type=${type}]:hover:not(:disabled):not(:checked) + &`
+  const checked = `input[type=${type}]:checked + &, input[type=${type}][aria-checked=mixed] + &`
+  const invalid = `input[type=${type}][aria-invalid=true] + &`
+  const child = `& > *`
 
   return (
     <chakra.div

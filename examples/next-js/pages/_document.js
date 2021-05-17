@@ -1,4 +1,4 @@
-import { ColorModeScript } from "@chakra-ui/core"
+import { ColorModeScript } from "@chakra-ui/react"
 import NextDocument, { Html, Head, Main, NextScript } from "next/document"
 
 export default class Document extends NextDocument {
@@ -11,7 +11,7 @@ export default class Document extends NextDocument {
       <Html>
         <Head />
         <body>
-          <ColorModeScript />
+          <ColorModeScript initialColorMode="system" />
           <Main />
           <NextScript />
         </body>

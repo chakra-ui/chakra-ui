@@ -21,6 +21,16 @@
       "location": "Beijing Institute of Technology, Beijing, CN"
     },
     {
+      "login": "dombavetta",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/33183744?v=4",
+      "url": "https://github.com/dombavetta",
+      "blog": "",
+      "name": "Dom Bavetta",
+      "bio": null,
+      "twitter_username": null,
+      "location": null
+    },
+    {
       "login": "estheragbaje",
       "avatar_url": "https://avatars3.githubusercontent.com/u/53586167?v=4",
       "url": "https://github.com/estheragbaje",
@@ -41,14 +51,34 @@
       "location": "Cincinnati, OH"
     },
     {
+      "login": "koca",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/342666?v=4",
+      "url": "https://github.com/koca",
+      "blog": "mesut.dev",
+      "name": "Mesut",
+      "bio": "Core @chakra-ui\r\nSenior Frontend Developer @onediocom\r\n#JS #VUE",
+      "twitter_username": "imesutkoca",
+      "location": null
+    },
+    {
       "login": "ljosberinn",
       "avatar_url": "https://avatars1.githubusercontent.com/u/29307652?v=4",
       "url": "https://github.com/ljosberinn",
       "blog": "https://gerritalex.de",
       "name": "Gerrit Alex",
-      "bio": "frontend engineer @Interhyp, core contributor @chakra-ui, busy in dev-related discords, self taught",
+      "bio": "professional unblocker on discord & at work, frontend engineer @Interhyp, maintainer \r\n@chakra-ui, self taught",
       "twitter_username": "gerrit_alex",
       "location": "Munich, Bavaria"
+    },
+    {
+      "login": "TimKolberger",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/16899513?v=4",
+      "url": "https://github.com/TimKolberger",
+      "blog": "https://kolberger.eu",
+      "name": "Tim Kolberger",
+      "bio": null,
+      "twitter_username": "TimKolberger",
+      "location": "Darmstadt, Germany"
     },
     {
       "login": "tioluwani94",

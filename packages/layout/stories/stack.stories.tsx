@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Stack, StackDivider, Box, Heading, Text } from "../src"
+import { Stack, StackDivider, Box, Heading, Text, Divider } from "../src"
 
 export default {
   title: "Stack",
@@ -13,25 +13,35 @@ export const Vertical = () => (
   </Stack>
 )
 
+export const WithCustomDivider = () => (
+  <div>
+    <Stack spacing="12px">
+      <Box>1</Box>
+      <Box>2</Box>
+      <Box>3</Box>
+    </Stack>
+
+    <Stack spacing="40px" divider={<Divider sx={{ borderColor: "red.200" }} />}>
+      <Box>1</Box>
+      <Box>2</Box>
+      <Box>3</Box>
+    </Stack>
+  </div>
+)
+
 export const Inline = () => (
   <Stack w="100%" bg="blue.500" direction="row">
-    <Box boxSize="40px" bg={"#fff"} borderRadius="full" />
-    <Box boxSize="40px" bg={"#fff"} borderRadius="full" />
-    <Box boxSize="40px" bg={"#fff"} borderRadius="full" />
+    <Box boxSize="40px" bg="white" borderRadius="full" />
+    <Box boxSize="40px" bg="white" borderRadius="full" />
+    <Box boxSize="40px" bg="white" borderRadius="full" />
   </Stack>
 )
 
 export const Responsive = () => (
   <Stack direction={["column", "row"]} spacing="40px" w="100%">
-    <Box boxSize="40px" bg="yellow.200">
-      1
-    </Box>
-    <Box boxSize="40px" bg="tomato">
-      2
-    </Box>
-    <Box boxSize="40px" bg="pink.100">
-      3
-    </Box>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
   </Stack>
 )
 
@@ -39,16 +49,18 @@ export const WithResponsiveDivider = () => (
   <Stack
     mt={10}
     direction={["column", "row"]}
-    divider={<StackDivider borderColor="red.200" />}
+    divider={
+      <StackDivider borderColor={{ base: "green.500", md: "red.200" }} />
+    }
     spacing={4}
   >
-    <Box boxSize="40px" bg="yellow.200">
+    <Box flex="1" w={["100%", "40px"]} h="40px" bg="yellow.200">
       1
     </Box>
-    <Box boxSize="40px" bg="tomato">
+    <Box flex="1" w={["100%", "40px"]} h="40px" bg="tomato">
       2
     </Box>
-    <Box boxSize="40px" bg="pink.100">
+    <Box flex="1" w={["100%", "40px"]} h="40px" bg="pink.100">
       3
     </Box>
   </Stack>
@@ -119,21 +131,31 @@ export const WrappingChildren = () => (
   </Stack>
 )
 
-export const StackBug_2119 = () => (
+export const WithResponsiveSpacingAndDirection = () => (
+  <Stack
+    spacing={["10px", "60px"]}
+    divider={<StackDivider borderColor="gray.200" />}
+    direction={["column", "row"]}
+  >
+    <Box bgColor="red.500">First</Box>
+    <Box bgColor="blue.500">Second</Box>
+    <Box bgColor="yellow.500">Third</Box>
+  </Stack>
+)
+
+export const WithCustomBorderColor = () => (
   <Stack
     direction={{ base: "column", md: "row" }}
-    divider={
-      <StackDivider borderColor={{ base: "gray.100", md: "gray.900" }} />
-    }
+    divider={<StackDivider borderColor={{ base: "gray.200", md: "red.300" }} />}
     spacing={4}
   >
-    <Box h="40px" bg="yellow.200">
+    <Box w="40px" flexShrink={0} h="40px" bg="yellow.200">
       1
     </Box>
-    <Box h="40px" bg="tomato">
+    <Box w="40px" flexShrink={0} h="40px" bg="tomato">
       2
     </Box>
-    <Box h="40px" bg="pink.100">
+    <Box w="40px" flexShrink={0} h="40px" bg="pink.100">
       3
     </Box>
   </Stack>

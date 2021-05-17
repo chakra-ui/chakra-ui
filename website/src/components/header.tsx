@@ -1,23 +1,29 @@
 import {
   chakra,
   Flex,
+  Box,
   HStack,
   Icon,
   IconButton,
   Link,
   useColorMode,
   useColorModeValue,
-} from "@chakra-ui/core"
+  useDisclosure,
+  useUpdateEffect,
+  HTMLChakraProps,
+} from "@chakra-ui/react"
 import siteConfig from "configs/site-config"
+import { useViewportScroll } from "framer-motion"
 import NextLink from "next/link"
 import React from "react"
-import { FaMoon, FaSun } from "react-icons/fa"
-import NavLink from "./header-nav-link"
-import Logo from "./logo"
+import { FaMoon, FaSun, FaYoutube } from "react-icons/fa"
+import Logo, { LogoIcon } from "./logo"
+import { MobileNavButton, MobileNavContent } from "./mobile-nav"
+import Search from "./omni-search"
 import SponsorButton from "./sponsor-button"
 import VersionSwitcher from "./version-switcher"
 
-const DiscordIcon = (props) => (
+const DiscordIcon = (props: React.ComponentProps<"svg">) => (
   <svg viewBox="0 0 146 146" {...props}>
     <path
       fill="currentColor"
@@ -27,7 +33,7 @@ const DiscordIcon = (props) => (
   </svg>
 )
 
-const GithubIcon = (props) => (
+const GithubIcon = (props: React.ComponentProps<"svg">) => (
   <svg viewBox="0 0 20 20" {...props}>
     <path
       fill="currentColor"
@@ -36,85 +42,134 @@ const GithubIcon = (props) => (
   </svg>
 )
 
-const HeaderContent = () => {
+function HeaderContent() {
+  const mobileNav = useDisclosure()
+
   const { toggleColorMode: toggleMode } = useColorMode()
   const text = useColorModeValue("dark", "light")
   const SwitchIcon = useColorModeValue(FaMoon, FaSun)
+  const mobileNavBtnRef = React.useRef<HTMLButtonElement>()
+
+  useUpdateEffect(() => {
+    mobileNavBtnRef.current?.focus()
+  }, [mobileNav.isOpen])
 
   return (
-    <Flex w="100%" h="100%" px="6" align="center" justify="space-between">
-      <Flex align="center">
-        <NextLink href="/" passHref>
-          <chakra.a display="block" aria-label="Chakra UI, Back to homepage">
-            <Logo />
-          </chakra.a>
-        </NextLink>
-        <HStack
-          as="nav"
-          spacing="4"
-          ml="24px"
-          display={{ base: "none", md: "flex" }}
-        >
-          <NavLink href="/docs/getting-started">Docs</NavLink>
-          <NavLink href="/guides/integrations/with-cra">Guides</NavLink>
-          <NavLink href="/team">Team</NavLink>
-          <NavLink href="/enterprise-support"> Support</NavLink>
-        </HStack>
-      </Flex>
+    <>
+      <Flex w="100%" h="100%" px="6" align="center" justify="space-between">
+        <Flex align="center">
+          <NextLink href="/" passHref>
+            <chakra.a display="block" aria-label="Chakra UI, Back to homepage">
+              <Logo display={{ base: "none", md: "block" }} />
+              <Box minW="3rem" display={{ base: "block", md: "none" }}>
+                <LogoIcon />
+              </Box>
+            </chakra.a>
+          </NextLink>
+        </Flex>
 
-      <Flex maxW="720px" align="center" color="gray.400">
-        <VersionSwitcher />
-        <HStack spacing="5">
-          <Link isExternal aria-label="GitHub" href={siteConfig.repo.url}>
-            <Icon
-              as={GithubIcon}
-              transition="color 0.2s"
-              w="5"
-              h="5"
-              _hover={{ color: "gray.600" }}
-            />
-          </Link>
-          <Link isExternal aria-label="Discord" href={siteConfig.discord.url}>
-            <Icon
-              as={DiscordIcon}
-              transition="color 0.2s"
-              w="5"
-              h="5"
-              _hover={{ color: "gray.600" }}
-            />
-          </Link>
-        </HStack>
-        <IconButton
-          size="md"
-          fontSize="lg"
-          aria-label={`Switch to ${text} mode`}
-          variant="ghost"
-          color="current"
-          ml="3"
-          onClick={toggleMode}
-          icon={<SwitchIcon />}
-        />
-        <SponsorButton ml="5" />
+        <Flex
+          justify="flex-end"
+          w="100%"
+          align="center"
+          color="gray.400"
+          maxW="1100px"
+        >
+          <Search />
+          <VersionSwitcher
+            width="auto"
+            flexShrink={0}
+            display={{ base: "none", md: "flex" }}
+          />
+          <HStack spacing="5" display={{ base: "none", md: "flex" }}>
+            <Link
+              isExternal
+              aria-label="Go to Chakra UI GitHub page"
+              href={siteConfig.repo.url}
+            >
+              <Icon
+                as={GithubIcon}
+                display="block"
+                transition="color 0.2s"
+                w="5"
+                h="5"
+                _hover={{ color: "gray.600" }}
+              />
+            </Link>
+            <Link aria-label="Go to Chakra UI Discord page" href="/discord">
+              <Icon
+                as={DiscordIcon}
+                display="block"
+                transition="color 0.2s"
+                w="5"
+                h="5"
+                _hover={{ color: "gray.600" }}
+              />
+            </Link>
+            <Link
+              isExternal
+              aria-label="Go to Chakra UI YouTube channel"
+              href={siteConfig.youtube}
+            >
+              <Icon
+                as={FaYoutube}
+                display="block"
+                transition="color 0.2s"
+                w="5"
+                h="5"
+                _hover={{ color: "gray.600" }}
+              />
+            </Link>
+          </HStack>
+          <IconButton
+            size="md"
+            fontSize="lg"
+            aria-label={`Switch to ${text} mode`}
+            variant="ghost"
+            color="current"
+            ml={{ base: "0", md: "3" }}
+            onClick={toggleMode}
+            icon={<SwitchIcon />}
+          />
+          <SponsorButton ml="5" />
+          <MobileNavButton
+            ref={mobileNavBtnRef}
+            aria-label="Open Menu"
+            onClick={mobileNav.onOpen}
+          />
+        </Flex>
       </Flex>
-    </Flex>
+      <MobileNavContent isOpen={mobileNav.isOpen} onClose={mobileNav.onClose} />
+    </>
   )
 }
 
-const Header = (props) => {
+function Header(props: HTMLChakraProps<"header">) {
   const bg = useColorModeValue("white", "gray.800")
+  const ref = React.useRef<HTMLHeadingElement>()
+  const [y, setY] = React.useState(0)
+  const { height = 0 } = ref.current?.getBoundingClientRect() ?? {}
+
+  const { scrollY } = useViewportScroll()
+  React.useEffect(() => {
+    return scrollY.onChange(() => setY(scrollY.get()))
+  }, [scrollY])
+
   return (
     <chakra.header
-      pos="fixed"
+      ref={ref}
+      shadow={y > height ? "sm" : undefined}
+      transition="box-shadow 0.2s, background-color 0.2s"
+      pos="sticky"
       top="0"
-      zIndex="1"
+      zIndex="3"
       bg={bg}
       left="0"
       right="0"
-      borderBottomWidth="1px"
       width="full"
       {...props}
     >
-      <chakra.div height="4.5rem" mx="auto" maxW="1200px">
+      <chakra.div height="4.5rem" mx="auto" maxW="8xl">
         <HeaderContent />
       </chakra.div>
     </chakra.header>

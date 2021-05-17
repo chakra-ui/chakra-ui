@@ -1,33 +1,41 @@
 import { useClickable, UseClickableProps } from "@chakra-ui/clickable"
-import { useDescendant, useDescendants } from "@chakra-ui/descendant"
+import { createDescendantContext } from "@chakra-ui/descendant"
 import {
   useControllableState,
   useId,
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
 import {
-  callAllHandlers,
   createContext,
-  Dict,
   EventKeyMap,
   getValidChildren,
-  isUndefined,
   mergeRefs,
+} from "@chakra-ui/react-utils"
+import {
+  callAllHandlers,
+  determineLazyBehavior,
+  Dict,
+  focus,
+  isUndefined,
+  LazyBehavior,
   normalizeEventKey,
 } from "@chakra-ui/utils"
-import {
-  ButtonHTMLAttributes,
-  cloneElement,
-  CSSProperties,
-  KeyboardEventHandler,
-  ReactElement,
-  ReactNode,
-  Ref,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react"
+import * as React from "react"
+
+/* -------------------------------------------------------------------------------------------------
+ * Create context to track descendants and their indices
+ * -----------------------------------------------------------------------------------------------*/
+
+export const [
+  TabsDescendantsProvider,
+  useTabsDescendantsContext,
+  useTabsDescendants,
+  useTabsDescendant,
+] = createDescendantContext<HTMLButtonElement>()
+
+/* -------------------------------------------------------------------------------------------------
+ * useTabs - The root react hook that manages all tab items
+ * -----------------------------------------------------------------------------------------------*/
 
 export interface UseTabsProps {
   /**
@@ -60,20 +68,37 @@ export interface UseTabsProps {
   id?: string
   /**
    * Performance 🚀:
-   * If `true`, the TabPanel rendering will be deferred
-   * until it is open.
+   * If `true`, rendering of the tab panel's will be deferred until it is selected.
    */
   isLazy?: boolean
+  /**
+   * Performance 🚀:
+   * The lazy behavior of tab panels' content when not active.
+   * Only works when `isLazy={true}`
+   *
+   * - "unmount": The content of inactive tab panels are always unmounted.
+   * - "keepMounted": The content of inactive tab panels is initially unmounted,
+   * but stays mounted when selected.
+   *
+   * @default "unmount"
+   */
+  lazyBehavior?: LazyBehavior
+  /**
+   * The writing mode direction.
+   *
+   * - When in RTL, the left and right navigation is flipped
+   */
+  direction?: "rtl" | "ltr"
 }
 
 /**
  * Tabs hooks that provides all the states, and accessibility
  * helpers to keep all things working properly.
  *
- * It's returned object will be passed unto a Context Provider
+ * Its returned object will be passed unto a Context Provider
  * so all child components can read from it.
- *
- * @see Docs https://chakra-ui.com/components/useTabs
+ * There is no document link yet
+ * @see Docs https://chakra-ui.com/docs/components/useTabs
  */
 export function useTabs(props: UseTabsProps) {
   const {
@@ -82,7 +107,9 @@ export function useTabs(props: UseTabsProps) {
     index,
     isManual,
     isLazy,
+    lazyBehavior = "unmount",
     orientation = "horizontal",
+    direction = "ltr",
     ...htmlProps
   } = props
 
@@ -98,63 +125,30 @@ export function useTabs(props: UseTabsProps) {
    *
    * This is why we need to keep track of the `focusedIndex` and `selectedIndex`
    */
-  const [focusedIndex, setFocusedIndex] = useState(defaultIndex ?? 0)
+  const [focusedIndex, setFocusedIndex] = React.useState(defaultIndex ?? 0)
 
   const [selectedIndex, setSelectedIndex] = useControllableState({
     defaultValue: defaultIndex ?? 0,
     value: index,
     onChange,
-    shouldUpdate: (prevIndex, nextIndex) => prevIndex !== nextIndex,
-    propsMap: {
-      value: "index",
-      defaultValue: "defaultIndex",
-    },
   })
 
   /**
    * Sync focused `index` with controlled `selectedIndex` (which is the `props.index`)
    */
-  useEffect(() => {
-    if (!isUndefined(index)) {
+  React.useEffect(() => {
+    if (index != null) {
       setFocusedIndex(index)
     }
   }, [index])
 
   /**
    * Think of `useDescendants` as a register for the tab nodes.
-   *
-   * This manager is used to store only the tab nodes that are not disabled, and focusable.
-   * If we have the following code
-   *
-   * ```jsx
-   * <Tab>Tab 1</Tab>
-   * <Tab isDisabled>Tab 2</Tab>
-   * <Tab>Tab 3</Tab>
-   * ```
-   *
-   * The manager will only hold references to "Tab 1" and "Tab 3", since `Tab 2` is disabled
    */
-  const enabledDomContext = useDescendants()
+  const descendants = useTabsDescendants()
 
   /**
-   * This manager is used to store all tab nodes whether disabled or not.
-   * If we have the following code
-   *
-   * ```jsx
-   * <Tab>Tab 1</Tab>
-   * <Tab isDisabled>Tab 2</Tab>
-   * <Tab>Tab 3</Tab>
-   * ```
-   *
-   * The manager will only hold references to "Tab 1", "Tab 2" "Tab 3".
-   *
-   * We need this for correct indexing of tabs in event a tab is disabled
-   */
-  const domContext = useDescendants()
-
-  /**
-   * generate a unique id or use user-provided id for
-   * the tabs widget
+   * Generate a unique id or use user-provided id for the tabs widget
    */
   const id = useId(props.id, `tabs`)
 
@@ -166,29 +160,31 @@ export function useTabs(props: UseTabsProps) {
     setFocusedIndex,
     isManual,
     isLazy,
+    lazyBehavior,
     orientation,
-    enabledDomContext,
-    domContext,
+    descendants,
+    direction,
     htmlProps,
   }
 }
 
-export type UseTabsReturn = Omit<ReturnType<typeof useTabs>, "htmlProps">
+export type UseTabsReturn = Omit<
+  ReturnType<typeof useTabs>,
+  "htmlProps" | "descendants"
+>
 
-const [TabsProvider, useTabsContext] = createContext<UseTabsReturn>({
+export const [TabsProvider, useTabsContext] = createContext<UseTabsReturn>({
   name: "TabsContext",
   errorMessage:
     "useTabsContext: `context` is undefined. Seems you forgot to wrap all tabs components within <Tabs />",
 })
 
-export { TabsProvider }
-
-type Child = ReactElement<any>
+type Child = React.ReactElement<any>
 
 export interface UseTabListProps {
-  children?: ReactNode
-  onKeyDown?: KeyboardEventHandler
-  ref?: Ref<any>
+  children?: React.ReactNode
+  onKeyDown?: React.KeyboardEventHandler
+  ref?: React.Ref<any>
 }
 
 /**
@@ -198,43 +194,40 @@ export interface UseTabListProps {
  * @param props props object for the tablist
  */
 export function useTabList<P extends UseTabListProps>(props: P) {
-  const {
-    setFocusedIndex,
-    focusedIndex,
-    orientation,
-    enabledDomContext,
-  } = useTabsContext()
+  const { focusedIndex, orientation, direction } = useTabsContext()
 
-  const count = enabledDomContext.descendants.length
+  const descendants = useTabsDescendantsContext()
 
-  /**
-   * Function to update the selected tab index
-   */
-  const setIndex = useCallback(
-    (index: number) => {
-      const tab = enabledDomContext.descendants[index]
-      if (tab?.element) {
-        tab.element.focus()
-        setFocusedIndex(index)
-      }
-    },
-    [enabledDomContext.descendants, setFocusedIndex],
-  )
-
-  const onKeyDown = useCallback(
+  const onKeyDown = React.useCallback(
     (event: React.KeyboardEvent) => {
-      const nextTab = () => setIndex((focusedIndex + 1) % count)
-      const prevTab = () => setIndex((focusedIndex - 1 + count) % count)
-      const firstTab = () => setIndex(0)
-      const lastTab = () => setIndex(count - 1)
+      const nextTab = () => {
+        const next = descendants.nextEnabled(focusedIndex)
+        if (next) focus(next.node)
+      }
+      const prevTab = () => {
+        const prev = descendants.prevEnabled(focusedIndex)
+        if (prev) focus(prev.node)
+      }
+      const firstTab = () => {
+        const first = descendants.firstEnabled()
+        if (first) focus(first.node)
+      }
+      const lastTab = () => {
+        const last = descendants.lastEnabled()
+        if (last) focus(last.node)
+      }
 
       const isHorizontal = orientation === "horizontal"
       const isVertical = orientation === "vertical"
 
       const eventKey = normalizeEventKey(event)
+
+      const ArrowStart = direction === "ltr" ? "ArrowLeft" : "ArrowRight"
+      const ArrowEnd = direction === "ltr" ? "ArrowRight" : "ArrowLeft"
+
       const keyMap: EventKeyMap = {
-        ArrowRight: () => isHorizontal && nextTab(),
-        ArrowLeft: () => isHorizontal && prevTab(),
+        [ArrowStart]: () => isHorizontal && prevTab(),
+        [ArrowEnd]: () => isHorizontal && nextTab(),
         ArrowDown: () => isVertical && nextTab(),
         ArrowUp: () => isVertical && prevTab(),
         Home: firstTab,
@@ -248,7 +241,7 @@ export function useTabList<P extends UseTabListProps>(props: P) {
         action(event)
       }
     },
-    [count, focusedIndex, orientation, setIndex],
+    [descendants, focusedIndex, orientation, direction],
   )
 
   return {
@@ -281,9 +274,7 @@ export interface UseTabProps
  * A tab can be disabled and focusable, or both,
  * hence the use of `useClickable` to handle this scenario
  */
-export function useTab<P extends UseTabProps>(
-  props: P,
-): ButtonHTMLAttributes<any> {
+export function useTab<P extends UseTabProps>(props: P) {
   const { isDisabled, isFocusable, ...htmlProps } = props
 
   const {
@@ -291,53 +282,31 @@ export function useTab<P extends UseTabProps>(
     isManual,
     id,
     setFocusedIndex,
-    enabledDomContext,
-    domContext,
     selectedIndex,
   } = useTabsContext()
 
-  const ref = useRef<HTMLElement>(null)
-
-  /**
-   * Think of `useDescendant` as the function that registers tab node
-   * to the `enabledDomContext`, and returns it's index.
-   *
-   * Tab is registered if it's enabled or focusable
-   */
-  const enabledIndex = useDescendant({
-    disabled: Boolean(isDisabled),
-    focusable: Boolean(isFocusable),
-    context: enabledDomContext,
-    element: ref.current,
-  })
-
-  /**
-   * Registers all tabs (whether disabled or not)
-   */
-  const index = useDescendant({
-    context: domContext,
-    element: ref.current,
+  const { index, register } = useTabsDescendant({
+    disabled: isDisabled && !isFocusable,
   })
 
   const isSelected = index === selectedIndex
 
   const onClick = () => {
-    setFocusedIndex(enabledIndex)
     setSelectedIndex(index)
   }
 
   const onFocus = () => {
+    setFocusedIndex(index)
     const isDisabledButFocusable = isDisabled && isFocusable
     const shouldSelect = !isManual && !isDisabledButFocusable
-
     if (shouldSelect) {
       setSelectedIndex(index)
     }
   }
 
-  const clickable = useClickable({
+  const clickableProps = useClickable({
     ...htmlProps,
-    ref: mergeRefs(ref, props.ref),
+    ref: mergeRefs(register, props.ref),
     isDisabled,
     isFocusable,
     onClick: callAllHandlers(props.onClick, onClick),
@@ -346,19 +315,19 @@ export function useTab<P extends UseTabProps>(
   const type: "button" | "submit" | "reset" = "button"
 
   return {
-    ...clickable,
+    ...clickableProps,
     id: makeTabId(id, index),
     role: "tab",
     tabIndex: isSelected ? 0 : -1,
     type,
-    "aria-selected": isSelected ? true : undefined,
+    "aria-selected": isSelected,
     "aria-controls": makeTabPanelId(id, index),
     onFocus: isDisabled ? undefined : callAllHandlers(props.onFocus, onFocus),
   }
 }
 
 export interface UseTabPanelsProps {
-  children?: ReactNode
+  children?: React.ReactNode
 }
 
 /**
@@ -367,7 +336,7 @@ export interface UseTabPanelsProps {
  * Since only one panel can be show at a time, we use `cloneElement`
  * to inject `selected` panel to each TabPanel.
  *
- * It returns a cloned version of it's children with
+ * It returns a cloned version of its children with
  * all functionality included.
  */
 export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
@@ -378,9 +347,11 @@ export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
   const validChildren = getValidChildren(props.children)
 
   const children = validChildren.map((child, index) =>
-    cloneElement(child as Child, {
+    React.cloneElement(child as Child, {
       isSelected: index === selectedIndex,
       id: makeTabPanelId(id, index),
+      // Refers to the associated tab element, and also provides an accessible name to the tab panel.
+      "aria-labelledby": makeTabId(id, index),
     }),
   )
 
@@ -394,12 +365,26 @@ export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
  * @param props props object for the tab panel
  */
 export function useTabPanel(props: Dict) {
-  const { isSelected, id, ...htmlProps } = props
-  const { isLazy } = useTabsContext()
+  const { isSelected, id, children, ...htmlProps } = props
+  const { isLazy, lazyBehavior } = useTabsContext()
+
+  const hasBeenSelected = React.useRef(false)
+  if (isSelected) {
+    hasBeenSelected.current = true
+  }
+
+  const shouldRenderChildren = determineLazyBehavior({
+    hasBeenSelected: hasBeenSelected.current,
+    isSelected,
+    isLazy,
+    lazyBehavior,
+  })
 
   return {
+    // Puts the tabpanel in the page `Tab` sequence.
+    tabIndex: 0,
     ...htmlProps,
-    children: !isLazy || isSelected ? props.children : null,
+    children: shouldRenderChildren ? children : null,
     role: "tabpanel",
     hidden: !isSelected,
     id,
@@ -414,28 +399,30 @@ export function useTabPanel(props: Dict) {
  * of the active tab, and return that as CSS style for
  * the indicator.
  */
-export function useTabIndicator(): CSSProperties {
+export function useTabIndicator(): React.CSSProperties {
   const context = useTabsContext()
+  const descendants = useTabsDescendantsContext()
 
-  const { selectedIndex, orientation, domContext } = context
+  const { selectedIndex, orientation } = context
 
   const isHorizontal = orientation === "horizontal"
   const isVertical = orientation === "vertical"
 
   // Get the clientRect of the selected tab
-  const [rect, setRect] = useState(() => {
+  const [rect, setRect] = React.useState(() => {
     if (isHorizontal) return { left: 0, width: 0 }
     if (isVertical) return { top: 0, height: 0 }
+    return undefined
   })
 
-  const [hasMeasured, setHasMeasured] = useState(false)
+  const [hasMeasured, setHasMeasured] = React.useState(false)
 
   // Update the selected tab rect when the selectedIndex changes
   useSafeLayoutEffect(() => {
-    if (isUndefined(selectedIndex)) return
+    if (isUndefined(selectedIndex)) return undefined
 
-    const tab = domContext.descendants[selectedIndex]
-    const tabRect = tab?.element?.getBoundingClientRect()
+    const tab = descendants.item(selectedIndex)
+    const tabRect = tab?.node?.getBoundingClientRect()
 
     // Horizontal Tab: Calculate width and left distance
     if (isHorizontal && tabRect) {
@@ -451,14 +438,16 @@ export function useTabIndicator(): CSSProperties {
 
     // Prevent unwanted transition from 0 to measured rect
     // by setting the measured state in the next tick
-    const frameId = requestAnimationFrame(() => {
+    const id = requestAnimationFrame(() => {
       setHasMeasured(true)
     })
 
     return () => {
-      cancelAnimationFrame(frameId)
+      if (id) {
+        cancelAnimationFrame(id)
+      }
     }
-  }, [selectedIndex, isHorizontal, isVertical, domContext.descendants])
+  }, [selectedIndex, isHorizontal, isVertical, descendants])
 
   return {
     position: "absolute",

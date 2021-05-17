@@ -1,20 +1,22 @@
+import { forwardRef } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { Button, ButtonProps } from "./button"
-import { forwardRef } from "@chakra-ui/system"
 
-type Omitted =
+type OmittedProps =
   | "leftIcon"
   | "isFullWidth"
   | "rightIcon"
   | "loadingText"
   | "iconSpacing"
+  | "spinnerPlacement"
 
-interface BaseButtonProps extends Omit<ButtonProps, Omitted> {}
+interface BaseButtonProps extends Omit<ButtonProps, OmittedProps> {}
 
 export interface IconButtonProps extends BaseButtonProps {
   /**
    * The icon to be used in the button.
+   * @type React.ReactElement
    */
   icon?: React.ReactElement
   /**
@@ -28,7 +30,7 @@ export interface IconButtonProps extends BaseButtonProps {
 }
 
 export const IconButton = forwardRef<IconButtonProps, "button">(
-  function IconButton(props, ref) {
+  (props, ref) => {
     const { icon, children, isRound, "aria-label": ariaLabel, ...rest } = props
 
     /**

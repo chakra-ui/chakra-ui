@@ -1,23 +1,29 @@
-import { useBoolean, useDisclosure, useIds } from "@chakra-ui/hooks"
-import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
-import { useColorModeValue, useToken } from "@chakra-ui/system"
+import {
+  useDisclosure,
+  useFocusOnHide,
+  useFocusOnPointerDown,
+  useFocusOnShow,
+  useIds,
+} from "@chakra-ui/hooks"
+import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
+import { HTMLProps, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import {
   callAllHandlers,
+  contains,
+  determineLazyBehavior,
   FocusableElement,
-  HTMLProps,
-  mergeRefs,
-  PropGetter,
+  getRelatedTarget,
+  LazyBehavior,
+  px,
 } from "@chakra-ui/utils"
-import { useInteractOutside } from "@react-aria/interactions"
-import { RefObject, useCallback, useEffect, useRef } from "react"
-import { useFocusOnHide, useFocusOnShow } from "./popover.utils"
+import { RefObject, useCallback, useEffect, useRef, useState } from "react"
 
-const TRIGGER_TYPE = {
+const TRIGGER = {
   click: "click",
   hover: "hover",
 } as const
 
-export interface UsePopoverProps {
+export interface UsePopoverProps extends UsePopperProps {
   /**
    * The html `id` attribute of the popover.
    * If not provided, we generate a unique id.
@@ -49,15 +55,6 @@ export interface UsePopoverProps {
    */
   autoFocus?: boolean
   /**
-   * The gap (in pixels) to apply between the popover and the target.
-   * Used by `popper.js`
-   */
-  gutter?: number
-  /**
-   * The placment of the popover
-   */
-  placement?: Placement
-  /**
    * If `true`, the popover will close when you blur out it by
    * clicking outside or tabbing out
    */
@@ -83,10 +80,6 @@ export interface UsePopoverProps {
    */
   arrowShadowColor?: string
   /**
-   * The Popper.js modifiers to use.
-   */
-  modifiers?: UsePopperProps["modifiers"]
-  /**
    * The interaction that triggers the popover.
    *
    * `hover` - means the popover will open when you hover with mouse or
@@ -95,7 +88,7 @@ export interface UsePopoverProps {
    * `click` - means the popover will open on click or
    * press `Enter` to `Space` on keyboard
    */
-  trigger?: keyof typeof TRIGGER_TYPE
+  trigger?: keyof typeof TRIGGER
   openDelay?: number
   closeDelay?: number
   /**
@@ -104,25 +97,39 @@ export interface UsePopoverProps {
    * until the popover is open.
    */
   isLazy?: boolean
+  /**
+   * Performance 🚀:
+   * The lazy behavior of popover's content when not visible.
+   * Only works when `isLazy={true}`
+   *
+   * - "unmount": The popover's content is always unmounted when not open.
+   * - "keepMounted": The popover's content initially unmounted,
+   * but stays mounted when popover is open.
+   *
+   * @default "unmount"
+   */
+  lazyBehavior?: LazyBehavior
 }
 
+/**
+ * @internal
+ */
 export function usePopover(props: UsePopoverProps = {}) {
   const {
     closeOnBlur = true,
     closeOnEsc = true,
     initialFocusRef,
-    placement: placementProp,
-    gutter,
     id,
-    arrowSize,
     returnFocusOnClose = true,
     autoFocus = true,
+    arrowSize,
     arrowShadowColor,
-    modifiers,
-    trigger = TRIGGER_TYPE.click,
+    trigger = TRIGGER.click,
     openDelay = 200,
     closeDelay = 200,
     isLazy,
+    lazyBehavior = "unmount",
+    ...popperProps
   } = props
 
   const { isOpen, onClose, onOpen, onToggle } = useDisclosure(props)
@@ -132,8 +139,13 @@ export function usePopover(props: UsePopoverProps = {}) {
 
   const isHoveringRef = useRef(false)
 
-  const [hasHeader, setHasHeader] = useBoolean()
-  const [hasBody, setHasBody] = useBoolean()
+  const hasBeenOpened = useRef(false)
+  if (isOpen) {
+    hasBeenOpened.current = true
+  }
+
+  const [hasHeader, setHasHeader] = useState(false)
+  const [hasBody, setHasBody] = useState(false)
 
   const [triggerId, popoverId, headerId, bodyId] = useIds(
     id,
@@ -143,62 +155,71 @@ export function usePopover(props: UsePopoverProps = {}) {
     "popover-body",
   )
 
-  const fallbackShadowColor = useColorModeValue("gray.200", "whiteAlpha.300")
-  const shadowColor = arrowShadowColor ?? fallbackShadowColor
-  const arrowColor = useToken("colors", shadowColor, arrowShadowColor)
+  const {
+    referenceRef,
+    getArrowProps,
+    getPopperProps,
+    getArrowInnerProps,
+    forceUpdate,
+  } = usePopper(popperProps)
 
-  const popper = usePopper({
-    placement: placementProp,
-    gutter,
-    arrowSize,
-    arrowShadowColor: arrowColor,
-    modifiers,
+  useFocusOnPointerDown({
+    enabled: isOpen,
+    ref: triggerRef,
   })
 
   useFocusOnHide(popoverRef, {
-    autoFocus: returnFocusOnClose,
-    visible: isOpen,
     focusRef: triggerRef,
-    trigger,
+    visible: isOpen,
+    shouldFocus: returnFocusOnClose && trigger === TRIGGER.click,
   })
 
   useFocusOnShow(popoverRef, {
-    autoFocus: autoFocus,
-    visible: isOpen,
     focusRef: initialFocusRef,
-    trigger,
+    visible: isOpen,
+    shouldFocus: autoFocus && trigger === TRIGGER.click,
   })
 
-  useInteractOutside({
-    ref: popoverRef,
-    onInteractOutside: (event) => {
-      if (
-        trigger === TRIGGER_TYPE.click &&
-        closeOnBlur &&
-        !triggerRef.current?.contains(event.target as HTMLElement)
-      ) {
-        onClose()
-      }
-    },
+  const shouldRenderChildren = determineLazyBehavior({
+    hasBeenSelected: hasBeenOpened.current,
+    isLazy,
+    lazyBehavior,
+    isSelected: isOpen,
   })
 
   const getPopoverProps: PropGetter = useCallback(
     (props = {}, _ref = null) => {
       const popoverProps: HTMLProps = {
         ...props,
-        children: isLazy ? (isOpen ? props.children : null) : props.children,
+        style: {
+          ...props.style,
+          transformOrigin: popperCSSVars.transformOrigin.varRef,
+        },
+        ref: mergeRefs(popoverRef, _ref),
+        children: shouldRenderChildren ? props.children : null,
         id: popoverId,
         tabIndex: -1,
-        style: { visibility: isOpen ? "visible" : "hidden" },
         role: "dialog",
         onKeyDown: callAllHandlers(props.onKeyDown, (event) => {
-          if (closeOnEsc && event.key === "Escape") onClose()
+          if (closeOnEsc && event.key === "Escape") {
+            onClose()
+          }
+        }),
+        onBlur: callAllHandlers(props.onBlur, (event) => {
+          const relatedTarget = getRelatedTarget(event)
+          const targetIsPopover = contains(popoverRef.current, relatedTarget)
+          const targetIsTrigger = contains(triggerRef.current, relatedTarget)
+          const isValidBlur = !targetIsPopover && !targetIsTrigger
+
+          if (isOpen && closeOnBlur && isValidBlur) {
+            onClose()
+          }
         }),
         "aria-labelledby": hasHeader ? headerId : undefined,
         "aria-describedby": hasBody ? bodyId : undefined,
       }
 
-      if (trigger === TRIGGER_TYPE.hover) {
+      if (trigger === TRIGGER.hover) {
         popoverProps.role = "tooltip"
         popoverProps.onMouseEnter = callAllHandlers(props.onMouseEnter, () => {
           isHoveringRef.current = true
@@ -209,22 +230,41 @@ export function usePopover(props: UsePopoverProps = {}) {
         })
       }
 
-      return popper.getPopperProps(popoverProps, mergeRefs(popoverRef, _ref))
+      return popoverProps
     },
     [
-      isLazy,
-      isOpen,
+      shouldRenderChildren,
       popoverId,
       hasHeader,
       headerId,
       hasBody,
       bodyId,
       trigger,
-      popper,
       closeOnEsc,
       onClose,
+      isOpen,
+      closeOnBlur,
       closeDelay,
     ],
+  )
+
+  const getPopoverPositionerProps: PropGetter = useCallback(
+    (props = {}, forwardedRef = null) =>
+      getPopperProps(
+        {
+          ...props,
+          style: {
+            [popperCSSVars.arrowSize.var]: arrowSize
+              ? px(arrowSize)
+              : undefined,
+            [popperCSSVars.arrowShadowColor.var]: arrowShadowColor,
+            visibility: isOpen ? "visible" : "hidden",
+            ...props.style,
+          },
+        },
+        forwardedRef,
+      ),
+    [arrowShadowColor, arrowSize, isOpen, getPopperProps],
   )
 
   const openTimeout = useRef<number>()
@@ -234,17 +274,18 @@ export function usePopover(props: UsePopoverProps = {}) {
     (props = {}, _ref = null) => {
       const triggerProps: HTMLProps = {
         ...props,
+        ref: mergeRefs(triggerRef, _ref, referenceRef),
         id: triggerId,
         "aria-haspopup": "dialog",
         "aria-expanded": isOpen,
         "aria-controls": popoverId,
       }
 
-      if (trigger === TRIGGER_TYPE.click) {
+      if (trigger === TRIGGER.click) {
         triggerProps.onClick = callAllHandlers(props.onClick, onToggle)
       }
 
-      if (trigger === TRIGGER_TYPE.hover) {
+      if (trigger === TRIGGER.hover) {
         /**
          * Any content that shows on pointer hover should also show on keyboard focus.
          * Consider focus and blur to be the `hover` for keyboard users.
@@ -285,14 +326,14 @@ export function usePopover(props: UsePopoverProps = {}) {
         })
       }
 
-      return popper.getReferenceProps(triggerProps, mergeRefs(triggerRef, _ref))
+      return triggerProps
     },
     [
       triggerId,
       isOpen,
       popoverId,
       trigger,
-      popper,
+      referenceRef,
       onToggle,
       onOpen,
       onClose,
@@ -303,24 +344,48 @@ export function usePopover(props: UsePopoverProps = {}) {
 
   useEffect(() => {
     return () => {
-      if (openTimeout.current) clearTimeout(openTimeout.current)
-      if (closeTimeout.current) clearTimeout(closeTimeout.current)
+      if (openTimeout.current) {
+        clearTimeout(openTimeout.current)
+      }
+      if (closeTimeout.current) {
+        clearTimeout(closeTimeout.current)
+      }
     }
   }, [])
 
+  const getHeaderProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
+      ...props,
+      id: headerId,
+      ref: mergeRefs(ref, (node: HTMLElement | null) => {
+        setHasHeader(!!node)
+      }),
+    }),
+    [headerId],
+  )
+
+  const getBodyProps: PropGetter = useCallback(
+    (props = {}, ref = null) => ({
+      ...props,
+      id: bodyId,
+      ref: mergeRefs(ref, (node) => {
+        setHasBody(!!node)
+      }),
+    }),
+    [bodyId],
+  )
+
   return {
+    forceUpdate,
     isOpen,
     onClose,
-    headerId,
-    hasHeader,
-    setHasHeader,
-    bodyId,
-    hasBody,
-    setHasBody,
-    getArrowProps: popper.getArrowProps,
-    getArrowWrapperProps: popper.getArrowWrapperProps,
-    getTriggerProps,
+    getArrowProps,
+    getArrowInnerProps,
+    getPopoverPositionerProps,
     getPopoverProps,
+    getTriggerProps,
+    getHeaderProps,
+    getBodyProps,
   }
 }
 

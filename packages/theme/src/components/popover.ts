@@ -1,27 +1,31 @@
 import { mode } from "@chakra-ui/theme-tools"
 
-const parts = ["content", "header", "body", "footer", "arrow"]
+const parts = ["popper", "content", "header", "body", "footer", "arrow"]
 
-function baseStyleContent(props: Record<string, any>) {
+type Dict = Record<string, any>
+
+const baseStylePopper = {
+  zIndex: 10,
+}
+
+function baseStyleContent(props: Dict) {
+  const bg = mode("white", "gray.700")(props)
+  const shadowColor = mode("gray.200", "whiteAlpha.300")(props)
   return {
-    bg: mode("white", "gray.700")(props),
+    "--popover-bg": `colors.${bg}`,
+    bg: "var(--popover-bg)",
+    "--popper-arrow-bg": "var(--popover-bg)",
+    "--popper-arrow-shadow-color": `colors.${shadowColor}`,
+    width: "xs",
     border: "1px solid",
     borderColor: "inherit",
     borderRadius: "md",
     boxShadow: "sm",
-    w: "100%",
-    maxW: "xs",
-    zIndex: "1",
+    zIndex: "inherit",
     _focus: {
       outline: 0,
       boxShadow: "outline",
     },
-  }
-}
-
-function baseStyleArrow(props: Record<string, any>) {
-  return {
-    bg: mode("white", "gray.700")(props),
   }
 }
 
@@ -42,15 +46,14 @@ const baseStyleFooter = {
   borderTopWidth: "1px",
 }
 
-const baseStyle = function (props: Record<string, any>) {
-  return {
-    content: baseStyleContent(props),
-    header: baseStyleHeader,
-    body: baseStyleBody,
-    footer: baseStyleFooter,
-    arrow: baseStyleArrow(props),
-  }
-}
+const baseStyle = (props: Dict) => ({
+  popper: baseStylePopper,
+  content: baseStyleContent(props),
+  header: baseStyleHeader,
+  body: baseStyleBody,
+  footer: baseStyleFooter,
+  arrow: {},
+})
 
 export default {
   parts,

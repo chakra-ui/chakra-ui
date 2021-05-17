@@ -7,11 +7,7 @@ import * as React from "react"
  * @param value the value or function to persist
  */
 export function useLatestRef<T>(value: T) {
-  const ref = React.useRef(value)
-
-  React.useEffect(() => {
-    ref.current = value
-  }, [value])
-
-  return ref
+  const ref = React.useRef<T | null>(null)
+  ref.current = value
+  return ref as React.MutableRefObject<T>
 }

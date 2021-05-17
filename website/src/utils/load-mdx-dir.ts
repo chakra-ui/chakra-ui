@@ -2,6 +2,7 @@ import { createExcerpt, parseMarkdownFile } from "@docusaurus/utils"
 import siteConfig from "configs/site-config"
 import path from "path"
 import shell from "shelljs"
+import { calcReadTime } from "utils/calc-read-time"
 
 async function loadMDXFromPages(mdxDir = "guides") {
   const { processFrontmatter } = require("utils/mdx-utils")
@@ -21,14 +22,13 @@ async function loadMDXFromPages(mdxDir = "guides") {
     const { frontMatter, content } = await parseMarkdownFile(filename)
 
     // extends frontmatter with more useful information
-    const _frontmatter = await processFrontmatter({
+    return processFrontmatter({
       ...frontMatter,
       path: mdxPath,
       baseEditUrl: siteConfig.repo.editUrl,
-      excerpt: createExcerpt(content),
+      excerpt: frontMatter.excerpt || createExcerpt(content),
+      readTimeMinutes: calcReadTime(content),
     })
-
-    return _frontmatter
   })
 
   const data = await Promise.all(dataPromise)

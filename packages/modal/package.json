@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/modal",
-  "version": "1.0.0-rc.5",
+  "version": "1.8.5",
   "description": "An accessible dialog (modal) component for React & Chakra UI",
   "keywords": [
     "react",
@@ -25,6 +25,12 @@
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -53,21 +59,26 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/close-button": "1.0.0-rc.5",
-    "@chakra-ui/focus-lock": "1.0.0-rc.5",
-    "@chakra-ui/hooks": "1.0.0-rc.5",
-    "@chakra-ui/portal": "1.0.0-rc.5",
-    "@chakra-ui/transition": "1.0.0-rc.5",
-    "@chakra-ui/utils": "1.0.0-rc.5",
+    "@chakra-ui/close-button": "1.1.9",
+    "@chakra-ui/focus-lock": "1.1.8",
+    "@chakra-ui/hooks": "1.5.2",
+    "@chakra-ui/portal": "1.2.5",
+    "@chakra-ui/react-utils": "1.1.2",
+    "@chakra-ui/transition": "1.3.0",
+    "@chakra-ui/utils": "1.8.0",
     "aria-hidden": "^1.1.1",
-    "react-remove-scroll": "2.4.0"
+    "react-remove-scroll": "2.4.1"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.0.0-rc.5"
+    "@chakra-ui/system": "1.6.5",
+    "framer-motion": "^4.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">=1.0.0-rc.3",
-    "react": "16.x",
-    "react-dom": "16.x"
+    "@chakra-ui/system": ">=1.0.0",
+    "framer-motion": "3.x || 4.x",
+    "react": ">=16.8.6",
+    "react-dom": ">=16.8.6"
   }
 }

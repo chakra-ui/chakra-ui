@@ -1,8 +1,9 @@
 import React from "react"
-import * as Chakra from "@chakra-ui/core"
-import { chakra } from "@chakra-ui/core"
+import * as Chakra from "@chakra-ui/react"
+import { chakra } from "@chakra-ui/react"
 import * as Icons from "@chakra-ui/icons"
 import * as Formik from "formik"
+import * as ReactTable from "react-table"
 import FocusLock from "react-focus-lock"
 import {
   MdSettings,
@@ -47,6 +48,7 @@ const ReactLiveScope = {
   ...React,
   ...Chakra,
   ...Formik,
+  ...ReactTable,
   ...Icons,
   ...Loaders,
   ...reactIcons,

@@ -16,10 +16,12 @@
     "strictPropertyInitialization": true,
     "jsx": "react",
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "declarationMap": true
   },
-  "include": ["packages"],
+  "include": ["packages", "scripts", "tooling"],
   "exclude": ["node_modules"],
   "ts-node": {
     "compilerOptions": {

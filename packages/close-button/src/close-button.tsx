@@ -3,10 +3,10 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  PropsOf,
   SystemStyleObject,
   ThemingProps,
   useStyleConfig,
+  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -21,8 +21,8 @@ const CloseIcon: React.FC<IconProps> = (props) => (
 )
 
 export interface CloseButtonProps
-  extends PropsOf<typeof chakra.button>,
-    ThemingProps {
+  extends HTMLChakraProps<"button">,
+    ThemingProps<"CloseButton"> {
   /**
    * If `true`, the close button will be disabled.
    */
@@ -36,9 +36,9 @@ export interface CloseButtonProps
  * like Alerts, Toasts, Drawers and Modals.
  */
 export const CloseButton = forwardRef<CloseButtonProps, "button">(
-  function CloseButton(props, ref) {
+  (props, ref) => {
     const styles = useStyleConfig("CloseButton", props)
-    const { children, isDisabled, ...rest } = omitThemingProps(props)
+    const { children, isDisabled, __css, ...rest } = omitThemingProps(props)
 
     const baseStyle: SystemStyleObject = {
       outline: 0,
@@ -57,6 +57,7 @@ export const CloseButton = forwardRef<CloseButtonProps, "button">(
         __css={{
           ...baseStyle,
           ...styles,
+          ...__css,
         }}
         {...rest}
       >

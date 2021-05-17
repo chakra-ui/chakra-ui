@@ -1,8 +1,12 @@
-import { useId as useUID } from "@reach/auto-id"
+import * as React from "react"
+import { useSafeLayoutEffect } from "./use-safe-layout-effect"
 
-function generatePrefix(prefix: string, id: string) {
-  return `${prefix}-${id}`
-}
+/**
+ * Credit: https://github.com/reach/reach-ui/blob/develop/packages/auto-id/src/index.tsx
+ */
+let handoffComplete = false
+let id = 0
+const genId = () => ++id
 
 /**
  * Reack hook to generate unique id
@@ -11,10 +15,21 @@ function generatePrefix(prefix: string, id: string) {
  * @param prefix prefix to append before the id
  */
 export function useId(idProp?: string, prefix?: string) {
-  const uuid = useUID() as string
-  const id = idProp ?? uuid
-  const result = prefix ? generatePrefix(prefix, id) : id
-  return result as string
+  const initialId = idProp || (handoffComplete ? genId() : null)
+  const [uid, setUid] = React.useState(initialId)
+
+  useSafeLayoutEffect(() => {
+    if (uid === null) setUid(genId())
+  }, [])
+
+  React.useEffect(() => {
+    if (handoffComplete === false) {
+      handoffComplete = true
+    }
+  }, [])
+
+  const id = uid != null ? uid.toString() : undefined
+  return (prefix ? `${prefix}-${id}` : id) as string
 }
 
 /**
@@ -34,6 +49,5 @@ export function useId(idProp?: string, prefix?: string) {
  */
 export function useIds(idProp?: string, ...prefixes: string[]) {
   const id = useId(idProp)
-  const ids = prefixes.map((prefix) => generatePrefix(prefix, id))
-  return ids
+  return prefixes.map((prefix) => `${prefix}-${id}`)
 }

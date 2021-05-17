@@ -1,16 +1,16 @@
 import * as React from "react"
-import useToast from "../src/use-toast"
 import { Button, ButtonGroup } from "@chakra-ui/button"
 import { chakra, useColorMode } from "@chakra-ui/system"
 import { Alert } from "@chakra-ui/alert"
+import { useToast } from "../src"
 
 export default {
   title: "Toast",
   decorators: [
     (Story: Function) => (
-      <React.Fragment>
+      <>
         <Story />
-      </React.Fragment>
+      </>
     ),
   ],
 }
@@ -59,20 +59,35 @@ export function ToastExample() {
 export function CustomRender() {
   const toast = useToast()
   return (
-    <Button
-      onClick={() =>
-        toast({
-          position: "top-right",
-          render: () => (
-            <chakra.div m={2} color="white" p={3} bg="blue.500">
-              Hello World
-            </chakra.div>
-          ),
-        })
-      }
-    >
-      Show Toast
-    </Button>
+    <>
+      <Button
+        onClick={() =>
+          toast({
+            duration: null,
+            position: "top-right",
+            render: () => (
+              <chakra.div rounded="md" color="white" p={3} bg="blue.500">
+                Hello World
+              </chakra.div>
+            ),
+          })
+        }
+      >
+        Show Toast
+      </Button>
+      <Button
+        colorScheme="pink"
+        onClick={() =>
+          toast({
+            position: "bottom-right",
+            title: "Testing",
+            description: "This toast is working well",
+          })
+        }
+      >
+        Show Toastify
+      </Button>
+    </>
   )
 }
 
@@ -82,11 +97,15 @@ export function SuccessToast() {
     <Button
       onClick={() =>
         toast({
+          position: "bottom",
           title: "Account created.",
           description: "We've created your account for you.",
           status: "success",
-          duration: 9000,
+          duration: 3000,
           isClosable: true,
+          onCloseComplete: () => {
+            console.log("close")
+          },
         })
       }
     >
@@ -157,8 +176,9 @@ export const AllSides = () => {
         Trigger
       </Button>
 
-      <hr />
-      <Button onClick={() => toast.closeAll()}>close all</Button>
+      <Button ml="40px" onClick={() => toast.closeAll()}>
+        Close all
+      </Button>
     </>
   )
 }
@@ -201,7 +221,7 @@ export const CloseAllTopLeftToasts = () => {
       <Button
         onClick={() => {
           positions.forEach((position) => {
-            toast({ position, title: p })
+            toast({ position, title: position })
           })
         }}
       >
@@ -213,5 +233,53 @@ export const CloseAllTopLeftToasts = () => {
         close all top-left
       </Button>
     </>
+  )
+}
+
+export const UseToastWithDefaults = () => {
+  const toast = useToast({
+    position: "top-right",
+    title: "asdf",
+  })
+
+  return <Button onClick={() => toast()}>toast</Button>
+}
+
+export const useToastCustomRenderUpdate = () => {
+  const [id, setId] = React.useState(null)
+  const toast = useToast()
+
+  React.useEffect(() => {
+    if (id) {
+      const timeout = setTimeout(() => {
+        toast.update(id, {
+          render: () => (
+            <ButtonGroup>
+              <Button variant="outline">outline button after update</Button>
+              <Button variant="ghost">ghost button after update</Button>
+              <Button variant="link">link button after update</Button>
+            </ButtonGroup>
+          ),
+        })
+
+        setId(null)
+      }, 2000)
+
+      return () => clearTimeout(timeout)
+    }
+  }, [id])
+
+  return (
+    <Button
+      onClick={() => {
+        const id = toast({
+          render: () => <Button variant="solid">solid button initially</Button>,
+        })
+
+        setId(id)
+      }}
+    >
+      toast
+    </Button>
   )
 }

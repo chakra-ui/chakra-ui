@@ -26,5 +26,10 @@
     "prefix": "imr",
     "body": "import * as React from 'react'",
     "description": "Import react"
+  },
+  "Add JSX Codeblock": {
+    "scope": "markdown,markdownreact",
+    "prefix": "jsx",
+    "body": ["```jsx live=false", "$1", "```"]
   }
 }

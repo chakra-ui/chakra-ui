@@ -38,7 +38,7 @@ Flex is just a `Box` with `display: flex`
 </Flex>
 ```
 
-Stack is used to group elements and apply a spacing between them. It stacks it's
+Stack is used to group elements and apply a spacing between them. It stacks its
 children vertically by default.
 
 ```jsx
@@ -48,7 +48,7 @@ children vertically by default.
 </Stack>
 ```
 
-AspectRatio is used to constrain it's child to specific aspect ratio. It's
+AspectRatio is used to constrain its child to specific aspect ratio. It is
 mostly used for embedding videos, images, and maps.
 
 ```jsx
@@ -58,7 +58,7 @@ mostly used for embedding videos, images, and maps.
 ```
 
 Wrap is used to manage the distribution of child elements that are liable to
-wrap. It's mostly used for button groups, tag group, badge group, and chips.
+wrap. It is mostly used for button groups, tag group, badge group, and chips.
 
 ```jsx
 <AspectRatio ratio={16 / 9}>
@@ -75,7 +75,7 @@ schemes as defined in the `theme.components.Badge`
 </Badge>
 ```
 
-Center is used to vertically and horizontally center it's child
+Center is used to vertically and horizontally center its child
 
 ```jsx
 <Center bg="blue.500" borderRadius="4px" boxSize="40px">
@@ -93,8 +93,8 @@ default max-width of `60ch` (60 characters)
 </Container>
 ```
 
-Spacer is a component that takes up the remaining space in a flex container.
-It's mostly useful to manage space and wrapping in flex containers
+Spacer is a component that takes up the remaining space in a flex container. It
+is mostly useful to manage space and wrapping in flex containers
 
 ```jsx
 <Flex>

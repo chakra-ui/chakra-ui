@@ -20,7 +20,12 @@ export default {
 export const Basic = () => <Skeleton h="20px" />
 
 export const Text = () => (
-  <SkeletonText padding="20px" borderWidth="1px" borderRadius="lg" noOfLines={[3, 4, 5, 6, 7]} />
+  <SkeletonText
+    padding="20px"
+    borderWidth="1px"
+    borderRadius="lg"
+    noOfLines={[3, 4, 5, 6, 7]}
+  />
 )
 
 export const AsContainer = () => (
@@ -39,6 +44,28 @@ export const WithFade = () => {
   return (
     <Skeleton isLoaded={hasLoaded}>
       <span>Chakra ui is cool</span>
+    </Skeleton>
+  )
+}
+
+export const WithFadeText = () => {
+  const [hasLoaded, setHasLoaded] = React.useState(false)
+
+  React.useEffect(() => {
+    setTimeout(() => setHasLoaded(true), 1000)
+  }, [])
+
+  return (
+    <SkeletonText isLoaded={hasLoaded}>
+      <span>Chakra ui is cool</span>
+    </SkeletonText>
+  )
+}
+
+export const WithFadeAlreadyLoaded = () => {
+  return (
+    <Skeleton isLoaded={true}>
+      <span>This should not fade in</span>
     </Skeleton>
   )
 }

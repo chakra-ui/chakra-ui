@@ -4,18 +4,16 @@ package: "@chakra-ui/layout"
 image: "components/kbd.svg"
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
-The keyboard key component exists to show which key or combination of keys
+The `keyboard key` component exists to show which key or combination of keys
 performs a given action.
 
 The action itself should be further explained in accompanying content. It
 renders a `<kbd>` element.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/input", url: "#" }}
+  theme={{ componentName: "kbd" }}
+  github={{ package: "layout" }}
+  npm={{ package: "@chakra-ui/input" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -23,7 +21,7 @@ renders a `<kbd>` element.
 ## Import
 
 ```js
-import { Kbd } from "@chakra-ui/core"
+import { Kbd } from "@chakra-ui/react"
 ```
 
 ```jsx
@@ -42,8 +40,8 @@ All shortcuts should do their best to match what appears on the user’s keyboar
 
 ## Modifer
 
-The only punctuation you should need is the **+** to indicate a combination of
-keys will activate the shortcut.
+The only punctuation you should need is the **+** to indicate that a combination
+of keys will activate the shortcut.
 
 ```jsx
 <span>
@@ -60,7 +58,7 @@ Stick to lowercase to match the non-letter keys.
 </span>
 ```
 
-If two different keys can execute the same action, or the shortcut itself may
+If two different keys can execute the same action or the shortcut itself may
 look different on the user’s keyboard, write "or" in between.
 
 ```jsx

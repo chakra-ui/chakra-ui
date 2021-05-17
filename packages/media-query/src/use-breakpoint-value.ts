@@ -1,8 +1,7 @@
+import { useTheme } from "@chakra-ui/system"
+import { arrayToObjectNotation, fromEntries, isArray } from "@chakra-ui/utils"
 import { getClosestValue } from "./media-query.utils"
 import { useBreakpoint } from "./use-breakpoint"
-import { isArray, arrayToObjectNotation, fromEntries } from "@chakra-ui/utils"
-import { useTheme } from "@chakra-ui/system"
-import { isCustomBreakpoint } from "@chakra-ui/utils"
 
 /**
  * React hook for getting the value for the current breakpoint from the
@@ -17,14 +16,12 @@ export function useBreakpointValue<T = any>(
   const breakpoint = useBreakpoint()
   const theme = useTheme()
 
-  if (!breakpoint) {
-    return
-  }
+  if (!breakpoint) return undefined
 
   /**
    * Get the non-number breakpoint keys from the provided breakpoints
    */
-  const breakpoints = Object.keys(theme.breakpoints).filter(isCustomBreakpoint)
+  const breakpoints = Object.keys(theme.breakpoints)
 
   const obj = isArray(values)
     ? fromEntries<Record<string, T>>(
@@ -34,5 +31,5 @@ export function useBreakpointValue<T = any>(
       )
     : values
 
-  return getClosestValue(obj, breakpoint)
+  return getClosestValue(obj, breakpoint, breakpoints)
 }

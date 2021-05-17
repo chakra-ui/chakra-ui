@@ -1,8 +1,9 @@
-import { styleResolver } from "../src/system"
-import theme from "@chakra-ui/theme"
+import { toCSSVar } from "@chakra-ui/styled-system"
+import defaultTheme from "@chakra-ui/theme"
+import { toCSSObject } from "../src/system"
 
-const customTheme: any = {
-  ...theme,
+const theme = toCSSVar({
+  ...defaultTheme,
   layerStyles: {
     v1: {
       color: "red.300",
@@ -21,11 +22,11 @@ const customTheme: any = {
       fontSize: "sm",
     },
   },
-}
+})
 
 test("should resolve styles correctly", () => {
-  const result = styleResolver({ baseStyle: { bgPosition: "center" } })({
-    theme: customTheme,
+  const result = toCSSObject({ baseStyle: { bgPosition: "center" } })({
+    theme,
     layerStyle: "v1",
     noOfLines: [3, 4],
     __css: {
@@ -56,44 +57,50 @@ test("should resolve styles correctly", () => {
   })
 
   expect(result).toMatchInlineSnapshot(`
-    Object {
-      "&:hover, &[data-hover]": Object {
-        "&::before": Object {
-          "content": "",
-          "display": "block",
+    Array [
+      Object {
+        "&:hover, &[data-hover]": Object {
+          "&::before": Object {
+            "content": "",
+            "display": "block",
+          },
+          "@media screen and (min-width: 30em)": Object {
+            "fontSize": "26px",
+          },
+          "background": "var(--chakra-colors-green-300)",
+          "fontSize": "12px",
         },
+        "--chakra-line-clamp": 3,
         "@media screen and (min-width: 30em)": Object {
-          "fontSize": 26,
+          "--chakra-line-clamp": 4,
+          "fontSize": "23px",
+          "letterSpacing": "0.2px",
+          "textTransform": "lowercase",
         },
-        "background": "#68D391",
-        "fontSize": 12,
+        "WebkitBoxOrient": "vertical",
+        "WebkitLineClamp": "var(--chakra-line-clamp)",
+        "background": "tomato",
+        "backgroundPosition": "top left",
+        "color": "var(--chakra-colors-pink-300)",
+        "display": "-webkit-box",
+        "fontSize": "10px",
+        "letterSpacing": "2px",
+        "overflow": "hidden",
+        "paddingInlineEnd": "var(--chakra-space-5)",
+        "paddingInlineStart": "var(--chakra-space-5)",
+        "textOverflow": "ellipsis",
+        "textTransform": "capitalize",
       },
-      "@media screen and (min-width: 30em)": Object {
-        "WebkitLineClamp": 4,
-        "fontSize": 23,
-        "letterSpacing": "0.2px",
-        "textTransform": "lowercase",
+      Object {
+        "paddingLeft": 40,
       },
-      "WebkitBoxOrient": "vertical",
-      "WebkitLineClamp": 3,
-      "background": "tomato",
-      "backgroundPosition": "top left",
-      "color": "#F687B3",
-      "display": "-webkit-box",
-      "fontSize": 10,
-      "letterSpacing": "2px",
-      "overflow": "hidden",
-      "paddingLeft": 40,
-      "paddingRight": "1.25rem",
-      "textOverflow": "ellipsis",
-      "textTransform": "capitalize",
-    }
+    ]
   `)
 })
 
 test("should override padding correctly", () => {
-  const result = styleResolver({})({
-    theme: customTheme,
+  const result = toCSSObject({})({
+    theme,
     __css: {
       paddingX: 4,
       color: "green.300",
@@ -106,10 +113,11 @@ test("should override padding correctly", () => {
   expect(result).toMatchInlineSnapshot(`
     Object {
       "background": "pinkish",
-      "color": "#68D391",
-      "marginRight": "1.25rem",
-      "paddingLeft": "1rem",
-      "paddingRight": "0.75rem",
+      "color": "var(--chakra-colors-green-300)",
+      "marginRight": "var(--chakra-space-5)",
+      "paddingInlineEnd": "var(--chakra-space-4)",
+      "paddingInlineStart": "var(--chakra-space-4)",
+      "paddingRight": "var(--chakra-space-3)",
     }
   `)
 })

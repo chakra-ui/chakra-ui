@@ -40,7 +40,7 @@ async function getUserData(username) {
 }
 
 const EDIT_URL =
-  "https://github.com/chakra-ui/chakra-ui/edit/develop/website/pages"
+  "https://github.com/chakra-ui/chakra-ui/edit/main/website/pages"
 
 /**
  * Gets the last edited timestamp and author from git
@@ -94,15 +94,12 @@ function fileToPath(str) {
 
 const defaultConfig = {
   target: "serverless",
-  webpack: (config) => {
-    return {
-      ...config,
-      externals: [...config.externals, "sharp"],
-    }
-  },
+  webpack: (config) => ({
+    ...config,
+    externals: [...config.externals, "sharp"],
+  }),
   experimental: {
     optimizeFonts: true,
-    optimizeImages: true,
     modern: true,
   },
   redirects: require("./next-redirect"),
@@ -111,7 +108,7 @@ const defaultConfig = {
 const mdxConfig = {
   layoutPath: "layouts",
   defaultLayout: true,
-  fileExtensions: ["mdx"],
+  fileExtensions: ["mdx", "md"],
   remarkPlugins: [
     require("remark-autolink-headings"),
     require("remark-emoji"),
@@ -135,7 +132,7 @@ const mdxConfig = {
       const editUrl = getEditUrl(mdxPath, EDIT_URL)
 
       // get the slug
-      const slug = fileToPath(mdxPath)
+      const slug = frontmatter.slug || fileToPath(mdxPath)
 
       // if frontmatter inclues author, add the author's data
       const authorData = author ? await getUserData(author) : undefined

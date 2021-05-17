@@ -17,20 +17,20 @@ import {
   Text,
   useColorModeValue,
   Wrap,
-} from "@chakra-ui/core"
+  WrapItem,
+} from "@chakra-ui/react"
 import { chunk } from "@chakra-ui/utils"
 import users from "chakra-users"
+import { ChakraProAd } from "components/chakra-pro/home-page-ad"
+import { AdBanner } from "components/chakra-pro/ad-banner"
 import Container from "components/container"
 import DiscordStrip from "components/discord-strip"
 import { Footer } from "components/footer"
 import Header from "components/header"
-import LogoMark from "components/logo-mark"
 import SEO from "components/seo"
 import TweetCard from "components/tweet-card"
 import { tweets } from "configs/tweets.json"
-import fs from "fs"
 import NextLink from "next/link"
-import path from "path"
 import * as React from "react"
 import { AiFillThunderbolt } from "react-icons/ai"
 import { DiGithubBadge } from "react-icons/di"
@@ -39,6 +39,10 @@ import { FiDownload, FiGithub, FiUsers } from "react-icons/fi"
 import { IoMdMoon } from "react-icons/io"
 import { MdAccessibility, MdGrain, MdPalette } from "react-icons/md"
 import type { Member, Sponsor } from "src/types/github"
+import { getAllContributors } from "utils/get-all-contributors"
+import { getAllMembers } from "utils/get-all-members"
+import { getAllSponsors } from "utils/get-all-sponsors"
+import { getGithubStars } from "utils/get-github-stars"
 
 const Feature = ({ title, icon, children, ...props }) => {
   return (
@@ -69,7 +73,7 @@ const Feature = ({ title, icon, children, ...props }) => {
   )
 }
 
-type StatBoxProps = BoxProps & {
+interface StatBoxProps extends BoxProps {
   icon?: React.ElementType
   title: string
   description: string
@@ -81,16 +85,12 @@ const StatBox = (props: StatBoxProps) => {
     <Flex
       direction="column"
       align={{ base: "center", md: "flex-start" }}
-      pl={{ base: 0, md: "8" }}
+      pl={{ base: "0", md: "8" }}
       borderLeft="2px solid"
       borderLeftColor="yellow.200"
       {...rest}
     >
-      <Box
-        fontSize={{ base: "4rem", md: "6.75rem" }}
-        lineHeight="1em"
-        mb="20px"
-      >
+      <Box fontSize={{ base: "4rem", md: "6rem" }} lineHeight="1em" mb="20px">
         {title}
       </Box>
       <Stack isInline align="center">
@@ -103,33 +103,37 @@ const StatBox = (props: StatBoxProps) => {
 
 interface HomePageProps {
   members: Member[]
+  githubStars: string
   sponsors: {
     companies: Sponsor[]
     individuals: Sponsor[]
   }
 }
 
-const HomePage = ({ members, sponsors }: HomePageProps) => {
+const HomePage = ({ members, sponsors, githubStars }: HomePageProps) => {
   return (
     <>
       <SEO
         title="Chakra UI - A simple, modular and accessible component library that gives you the building blocks you need to build your React applications."
         description="Simple, Modular and Accessible UI Components for your React Applications. Built with Styled System"
       />
+      <AdBanner />
       <Header />
-
       <Box mb={20}>
-        <Box as="section" pt="12rem" pb="6rem">
+        <Box as="section" pt="6rem" pb={{ base: "0", md: "5rem" }}>
           <Container>
-            <Box maxW="760px" mx="auto" textAlign="center">
+            <Box textAlign="center">
               <chakra.h1
-                fontSize={{ base: "2.25rem", sm: "3rem", lg: "3.75rem" }}
-                letterSpacing="tight"
-                fontWeight="bold"
+                maxW="16ch"
+                mx="auto"
+                fontSize={{ base: "2.25rem", sm: "3rem", lg: "4rem" }}
+                fontFamily="heading"
+                letterSpacing="tighter"
+                fontWeight="extrabold"
                 mb="16px"
                 lineHeight="1.2"
               >
-                Build accessible React apps
+                Create accessible React apps
                 <Box
                   as="span"
                   color={useColorModeValue("teal.500", "teal.300")}
@@ -139,7 +143,13 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
                 </Box>
               </chakra.h1>
 
-              <Text opacity={0.7} fontSize={{ base: "lg", lg: "xl" }} mt="6">
+              <Text
+                maxW="560px"
+                mx="auto"
+                color={useColorModeValue("gray.500", "gray.400")}
+                fontSize={{ base: "lg", lg: "xl" }}
+                mt="6"
+              >
                 Chakra UI is a simple, modular and accessible component library
                 that gives you the building blocks you need to build your React
                 applications.
@@ -178,10 +188,24 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
                 </Button>
               </Stack>
             </Box>
+
+            <Center>
+              <Box
+                display="inline-block"
+                mt="70px"
+                rounded="xl"
+                bg="green.50"
+                shadow="base"
+                px="6"
+                py="4"
+              >
+                <Img h="55px" src="/git-nation-badge.png" />
+              </Box>
+            </Center>
           </Container>
         </Box>
 
-        <Divider mt={16} />
+        <Divider />
 
         <Box as="section" pt="48px" pb="32px">
           <Container textAlign="center">
@@ -191,7 +215,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               color={useColorModeValue("teal.600", "teal.300")}
               mb="48px"
             >
-              Trusted in Production By
+              Supported and Backed by
             </chakra.p>
             <Wrap
               maxW="800px"
@@ -202,20 +226,18 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
             >
               {users
                 .filter((user) => user.image.includes("."))
-                .map((user) => {
-                  return (
-                    <Box key={user.name} bg="white" p="5" rounded="md">
-                      <chakra.img
-                        key={user.image}
-                        alt={user.name}
-                        h="24px"
-                        w="auto"
-                        src={user.image}
-                        loading="lazy"
-                      />
-                    </Box>
-                  )
-                })}
+                .map((user) => (
+                  <WrapItem key={user.name} bg="white" p="5" rounded="md">
+                    <chakra.img
+                      key={user.image}
+                      alt={user.name}
+                      h="24px"
+                      w="auto"
+                      src={user.image}
+                      loading="lazy"
+                    />
+                  </WrapItem>
+                ))}
               <Box
                 p="4"
                 border="1px dashed"
@@ -251,7 +273,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               <Box
                 as="iframe"
                 tabIndex={-1}
-                src="https://codesandbox.io/embed/chakra-home-page-xqt3d?codemirror=1&fontsize=12&hidenavigation=1&theme=dark"
+                src="https://codesandbox.io/embed/homepage-s7pkh?codemirror=1&fontsize=12&hidenavigation=1&theme=dark"
                 style={{
                   width: "100%",
                   background: "white",
@@ -263,7 +285,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
                   zIndex: 0,
                 }}
                 shadow="2xl"
-                title="dazzling-swanson-wne32"
+                title="Chakra Playground"
                 allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
                 sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
               />
@@ -279,7 +301,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
           <Container py="120px" maxW="1280px">
             <Box maxW="760px" mx="auto" textAlign="center" mb="56px">
               <chakra.h2 textStyle="heading" mb="5">
-                An experience you'd expect from a design system.
+                An experience you'd expect from a design system
               </chakra.h2>
               <chakra.p opacity={0.7} fontSize="lg">
                 Opinionated and designed for daily use.
@@ -310,8 +332,8 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
                 website.
               </Feature>
               <Feature icon={FaDiscord} title="Active Community">
-                We're a team of active maintainer ready to help you whenver you
-                need.
+                We're a team of active maintainers ready to help you whenever
+                you need.
               </Feature>
             </Grid>
           </Container>
@@ -325,7 +347,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               </chakra.h2>
               <chakra.p opacity={0.7} fontSize="lg">
                 We're dedicated to improving the experience and performance of
-                Chakra UI
+                Chakra UI.
               </chakra.p>
             </Box>
             <SimpleGrid
@@ -337,22 +359,22 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
             >
               <StatBox
                 icon={FiDownload}
-                title="140k"
+                title="250K"
                 description="Downloads per month"
               />
               <StatBox
                 icon={FiGithub}
-                title="9.9k"
+                title={githubStars}
                 description="Github stars"
               />
               <StatBox
                 icon={FiUsers}
-                title="6"
+                title="7"
                 description="Core contributors"
               />
               <StatBox
                 icon={FaDiscord}
-                title="450+"
+                title="2.9K"
                 description="Discord members"
               />
             </SimpleGrid>
@@ -363,7 +385,8 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               </chakra.p>
               <Wrap spacing="4" justify="center" maxW="660px" mx="auto">
                 {members.map((i) => (
-                  <Img
+                  <WrapItem
+                    as={Img}
                     key={i.login}
                     width="80px"
                     height="80px"
@@ -401,7 +424,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               <chakra.h2 textStyle="heading-2" mb="4">
                 Support Chakra UI 💖
               </chakra.h2>
-              <Text opacity={0.7} lineHeight="taller">
+              <Text fontSize="lg" opacity={0.7}>
                 Our maintainers devote their time, effort, and heart to ensure
                 Chakra UI keeps getting better. Support us by donating to our
                 collective 🙏
@@ -515,26 +538,27 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               </chakra.p>
               <Wrap justify="center">
                 {sponsors.companies.map((i) => (
-                  <Circle
-                    key={i.MemberId}
-                    as="a"
-                    href={i.website}
-                    target="_blank"
-                    rel="noopener"
-                    size="80px"
-                    bg="white"
-                    shadow="lg"
-                  >
-                    <Img
-                      rounded="full"
-                      w="56px"
-                      h="56px"
-                      alt={i.name}
-                      key={i.MemberId}
-                      src={i.image}
-                      loading="lazy"
-                    />
-                  </Circle>
+                  <WrapItem key={i.MemberId}>
+                    <Circle
+                      as="a"
+                      href={i.website}
+                      target="_blank"
+                      rel="noopener"
+                      size="80px"
+                      bg="white"
+                      shadow="lg"
+                    >
+                      <Img
+                        rounded="full"
+                        w="56px"
+                        h="56px"
+                        alt={i.name}
+                        key={i.MemberId}
+                        src={i.image}
+                        loading="lazy"
+                      />
+                    </Circle>
+                  </WrapItem>
                 ))}
               </Wrap>
 
@@ -543,7 +567,8 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
               </chakra.p>
               <Wrap justify="center">
                 {sponsors.individuals.map((i) => (
-                  <Img
+                  <WrapItem
+                    as={Img}
                     rounded="full"
                     w="40px"
                     h="40px"
@@ -559,38 +584,9 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
           </Container>
         </Box>
 
-        <Box>
-          <Container py="120px" maxW="800px" mx="auto" textAlign="center">
-            <Flex direction="column" align="center">
-              <Center rounded="full" w="100px" h="100px" bg="teal.400">
-                <LogoMark w="80%" color="white" />
-              </Center>
-              <Box maxW="600px" mx="auto">
-                <chakra.h2 textStyle="heading-2" mt="6" mb="6">
-                  Get started with Chakra today.
-                </chakra.h2>
-                <Text mb="40px" fontSize="lg" opacity={0.7}>
-                  Chakra keeps everyone aligned and working without friction.
-                  Engineers and designers using the same language.
-                </Text>
-              </Box>
-              <Button
-                h="4rem"
-                px="40px"
-                fontSize="1.2rem"
-                as="a"
-                size="lg"
-                colorScheme="teal"
-                rightIcon={<FaArrowRight fontSize="0.8em" />}
-              >
-                Get Started
-              </Button>
-            </Flex>
-          </Container>
-        </Box>
+        <ChakraProAd />
 
         <Box
-          bg={useColorModeValue("teal.50", "#81e6d91c")}
           bgImage="url(/audio-bar.svg)"
           bgPos="bottom center"
           bgSize="120px"
@@ -604,7 +600,7 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
             textAlign="center"
           >
             <Flex direction="column" align="center" maxW="600px" mx="auto">
-              <Circle size="80px" bg="blackAlpha.200">
+              <Circle size="80px" bg="blackAlpha.200" color="teal.400">
                 <FaMicrophone size="40px" />
               </Circle>
               <chakra.h2 textStyle="heading" mt="6" mb="6">
@@ -640,32 +636,15 @@ const HomePage = ({ members, sponsors }: HomePageProps) => {
 }
 
 export async function getStaticProps() {
-  /**
-   * Read the profile/bio of each member from `.all-membersrc` file
-   * to avoid overfetching from Github
-   */
-  const membersRcPath = path.resolve("..", ".all-membersrc")
-  const { members } = JSON.parse(fs.readFileSync(membersRcPath, "utf-8"))
-
-  /**
-   * Read contributors from `.all-contributorsrc` file
-   * to avoid overfetching from Github
-   */
-  const contributorsRcPath = path.resolve("..", ".all-contributorsrc")
-  const { contributors } = JSON.parse(
-    fs.readFileSync(contributorsRcPath, "utf-8"),
-  )
-
-  /**
-   * Read the information for each sponsor from `.all-sponsorsrc` file
-   */
-  const sponsorsRcPath = path.resolve("..", ".all-sponsorsrc")
-  const sponsors = JSON.parse(fs.readFileSync(sponsorsRcPath, "utf-8"))
-  const filters = ["christiannwamba"]
+  const { prettyCount } = await getGithubStars()
+  const contributors = getAllContributors()
+  const members = getAllMembers()
+  const sponsors = getAllSponsors()
 
   return {
     props: {
-      members: members.filter((m) => !filters.includes(m.login)),
+      githubStars: prettyCount,
+      members,
       contributors,
       sponsors,
     },

@@ -1,8 +1,15 @@
 import { getColor, mode } from "@chakra-ui/theme-tools"
 
-const parts = ["tablist", "tab", "tabpanel", "indicator"]
+const parts = ["root", "tablist", "tab", "tabpanels", "tabpanel", "indicator"]
 
 type Dict = Record<string, any>
+
+function baseStyleRoot(props: Dict) {
+  const { orientation } = props
+  return {
+    display: orientation === "vertical" ? "flex" : "block",
+  }
+}
 
 function baseStyleTab(props: Dict) {
   const { isFitted } = props
@@ -34,13 +41,12 @@ function baseStyleTablist(props: Dict) {
 
 const baseStyleTabpanel = { p: 4 }
 
-const baseStyle = (props: Dict) => {
-  return {
-    tab: baseStyleTab(props),
-    tablist: baseStyleTablist(props),
-    tabpanel: baseStyleTabpanel,
-  }
-}
+const baseStyle = (props: Dict) => ({
+  root: baseStyleRoot(props),
+  tab: baseStyleTab(props),
+  tablist: baseStyleTablist(props),
+  tabpanel: baseStyleTabpanel,
+})
 
 const sizes = {
   sm: {
@@ -68,7 +74,9 @@ const sizes = {
 
 function variantLine(props: Dict) {
   const { colorScheme: c, orientation } = props
-  const borderProp = orientation === "vertical" ? "borderLeft" : "borderBottom"
+  const isVertical = orientation === "vertical"
+  const borderProp = orientation === "vertical" ? "borderStart" : "borderBottom"
+  const marginProp = isVertical ? "marginStart" : "marginBottom"
 
   return {
     tablist: {
@@ -78,7 +86,7 @@ function variantLine(props: Dict) {
     tab: {
       [borderProp]: "2px solid",
       borderColor: "transparent",
-      mb: "-2px",
+      [marginProp]: "-2px",
       _selected: {
         color: mode(`${c}.600`, `${c}.300`)(props),
         borderColor: "currentColor",
@@ -125,7 +133,7 @@ function variantEnclosedColored(props: Dict) {
       bg: mode(`gray.50`, `whiteAlpha.50`)(props),
       mb: "-1px",
       _notLast: {
-        mr: "-1px",
+        marginEnd: "-1px",
       },
       _selected: {
         bg: mode(`#fff`, "gray.800")(props),

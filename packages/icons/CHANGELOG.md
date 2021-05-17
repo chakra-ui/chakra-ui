@@ -1,31 +1,141 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/icon@1.1.9
+
+## 1.0.12
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/icon@1.1.8
+
+## 1.0.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/icon@1.1.7
+
+## 1.0.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/icon@1.1.6
+
+## 1.0.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/icon@1.1.5
+
+## 1.0.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/icon@1.1.4
+
+## 1.0.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/icon@1.1.3
+
+## 1.0.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/icon@1.1.2
+
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/icon@1.1.1
+
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`90c7a4fbf`](https://github.com/chakra-ui/chakra-ui/commit/90c7a4fbfde69c01395ffe2876d7348dd72ea65a)]:
+  - @chakra-ui/icon@1.1.0
+
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/icon@1.0.3
+
+## 1.0.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/icon@1.0.2
+
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/icon@1.0.1
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 1.0.0 (2020-11-13)
+
+**Note:** Version bump only for package @chakra-ui/icons
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 1.0.0-rc.8 (2020-10-29)
+
+### Bug Fixes
+
+- **toast:** allow custom render in update
+  ([eb8bff9](https://github.com/chakra-ui/chakra-ui/commit/eb8bff911e6ec9de0165ab1e8f5ca10d5e022459)),
+  closes [#2362](https://github.com/chakra-ui/chakra-ui/issues/2362)
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 1.0.0-rc.7 (2020-10-25)
+
+**Note:** Version bump only for package @chakra-ui/icons
+
+# 1.0.0-rc.6 (2020-10-25)
+
+**Note:** Version bump only for package @chakra-ui/icons
 
 # 1.0.0-rc.5 (2020-09-27)
 
 **Note:** Version bump only for package @chakra-ui/icons
 
-
-
-
-
 # 1.0.0-rc.4 (2020-09-25)
 
 **Note:** Version bump only for package @chakra-ui/icons
 
-
-
-
-
 # 1.0.0-rc.3 (2020-08-30)
 
 **Note:** Version bump only for package @chakra-ui/icons
-
-
-
-
 
 # Change Log
 

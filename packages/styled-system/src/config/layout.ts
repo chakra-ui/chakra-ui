@@ -1,78 +1,50 @@
-import { get, isNumber, memoizedGet } from "@chakra-ui/utils"
 import * as CSS from "csstype"
-import { createParser, Config, system } from "@styled-system/core"
-import { Length, ResponsiveValue } from "../utils"
+import { Config } from "../utils/prop-config"
+import { Length, t, Token, transforms } from "../utils"
 
-function transform(value: any, scale: any) {
-  const defaultValue = !isNumber(value) || value > 1 ? value : value * 100 + "%"
-  return memoizedGet(scale, value, defaultValue)
-}
-
-const config: Config = {
-  width: {
-    property: "width",
-    scale: "sizes",
-    transform,
-  },
-  w: {
-    property: "width",
-    scale: "sizes",
-    transform,
-  },
-  height: {
-    property: "height",
-    scale: "sizes",
-  },
-  h: {
-    property: "height",
-    scale: "sizes",
-  },
-  boxSize: {
-    properties: ["width", "height"],
-    scale: "sizes",
-  },
-  minWidth: {
-    property: "minWidth",
-    scale: "sizes",
-  },
-  minW: {
-    property: "minWidth",
-    scale: "sizes",
-  },
-  minHeight: {
-    property: "minHeight",
-    scale: "sizes",
-  },
-  minH: {
-    property: "minHeight",
-    scale: "sizes",
-  },
-  maxWidth: {
-    property: "maxWidth",
-    scale: "sizes",
-  },
-  maxW: {
-    property: "maxWidth",
-    scale: "sizes",
-  },
-  maxHeight: {
-    property: "maxHeight",
-    scale: "sizes",
-  },
-  maxH: {
-    property: "maxHeight",
-    scale: "sizes",
-  },
-  d: {
-    property: "display",
-  },
+export const layout: Config = {
+  width: t.sizesT("width"),
+  inlineSize: t.sizesT("inlineSize"),
+  height: t.sizes("height"),
+  blockSize: t.sizes("blockSize"),
+  boxSize: t.sizes(["width", "height"]),
+  minWidth: t.sizes("minWidth"),
+  minInlineSize: t.sizes("minInlineSize"),
+  minHeight: t.sizes("minHeight"),
+  minBlockSize: t.sizes("minBlockSize"),
+  maxWidth: t.sizes("maxWidth"),
+  maxInlineSize: t.sizes("maxInlineSize"),
+  maxHeight: t.sizes("maxHeight"),
+  maxBlockSize: t.sizes("maxBlockSize"),
+  d: t.prop("display"),
   overflow: true,
   overflowX: true,
   overflowY: true,
+  overscrollBehavior: true,
+  overscrollBehaviorX: true,
+  overscrollBehaviorY: true,
   display: true,
   verticalAlign: true,
   boxSizing: true,
+  boxDecorationBreak: true,
+  float: t.propT("float", transforms.float),
+  objectFit: true,
+  objectPosition: true,
+  visibility: true,
+  isolation: true,
 }
+
+Object.assign(layout, {
+  w: layout.width,
+  h: layout.height,
+  minW: layout.minWidth,
+  maxW: layout.maxWidth,
+  minH: layout.minHeight,
+  maxH: layout.maxHeight,
+  overscroll: layout.overscrollBehavior,
+  overscrollX: layout.overscrollBehaviorX,
+  overscrollY: layout.overscrollBehaviorY,
+})
 
 /**
  * Types for layout related CSS properties
@@ -81,84 +53,136 @@ export interface LayoutProps {
   /**
    * The CSS `display` property
    */
-  display?: ResponsiveValue<CSS.Property.Display>
+  display?: Token<CSS.Property.Display>
   /**
    * The CSS `display` property
+   * @deprecated - Please use `display` instead
    */
-  d?: ResponsiveValue<CSS.Property.Display>
+  d?: Token<CSS.Property.Display>
   /**
    * The CSS `width` property
    */
-  width?: ResponsiveValue<CSS.Property.Width<Length>>
+  width?: Token<CSS.Property.Width | number, "sizes">
   /**
    * The CSS `width` property
    */
-  w?: ResponsiveValue<CSS.Property.Width<Length>>
+  w?: Token<CSS.Property.Width | number, "sizes">
+  inlineSize?: Token<CSS.Property.InlineSize | number, "sizes">
   /**
    * The CSS `width` and `height` property
    */
-  boxSize?: ResponsiveValue<CSS.Property.Width<Length>>
+  boxSize?: Token<CSS.Property.Width | number, "sizes">
   /**
    * The CSS `max-width` property
    */
-  maxWidth?: ResponsiveValue<CSS.Property.MaxWidth<Length>>
+  maxWidth?: Token<CSS.Property.MaxWidth | number, "sizes">
   /**
    * The CSS `max-width` property
    */
-  maxW?: ResponsiveValue<CSS.Property.MaxWidth<Length>>
+  maxW?: Token<CSS.Property.MaxWidth | number, "sizes">
+  maxInlineSize?: Token<CSS.Property.MaxInlineSize | number, "sizes">
   /**
    * The CSS `min-width` property
    */
-  minWidth?: ResponsiveValue<CSS.Property.MinWidth<Length>>
+  minWidth?: Token<CSS.Property.MinWidth | number, "sizes">
   /**
    * The CSS `min-width` property
    */
-  minW?: ResponsiveValue<CSS.Property.MinWidth<Length>>
+  minW?: Token<CSS.Property.MinWidth | number, "sizes">
+  minInlineSize?: Token<CSS.Property.MinInlineSize | number, "sizes">
   /**
    * The CSS `height` property
    */
-  height?: ResponsiveValue<CSS.Property.Height<Length>>
+  height?: Token<CSS.Property.Height | number, "sizes">
   /**
    * The CSS `height` property
    */
-  h?: ResponsiveValue<CSS.Property.Height<Length>>
+  h?: Token<CSS.Property.Height | number, "sizes">
+  blockSize?: Token<CSS.Property.BlockSize | number, "sizes">
   /**
    * The CSS `max-height` property
    */
-  maxHeight?: ResponsiveValue<CSS.Property.MaxHeight<Length>>
+  maxHeight?: Token<CSS.Property.MaxHeight | number, "sizes">
   /**
    * The CSS `max-height` property
    */
-  maxH?: ResponsiveValue<CSS.Property.MaxHeight<Length>>
+  maxH?: Token<CSS.Property.MaxHeight | number, "sizes">
+  maxBlockSize?: Token<CSS.Property.MaxBlockSize | number, "sizes">
   /**
    * The CSS `min-height` property
    */
-  minHeight?: ResponsiveValue<CSS.Property.MinHeight<Length>>
+  minHeight?: Token<CSS.Property.MinHeight | number, "sizes">
   /**
    * The CSS `min-height` property
    */
-  minH?: ResponsiveValue<CSS.Property.MinHeight<Length>>
+  minH?: Token<CSS.Property.MinHeight | number, "sizes">
+  minBlockSize?: Token<CSS.Property.MinBlockSize | number, "sizes">
   /**
    * The CSS `vertical-align` property
    */
-  verticalAlign?: ResponsiveValue<CSS.Property.VerticalAlign<Length>>
+  verticalAlign?: Token<CSS.Property.VerticalAlign<Length>>
   /**
    * The CSS `overflow` property
    */
-  overflow?: ResponsiveValue<CSS.Property.Overflow>
+  overflow?: Token<CSS.Property.Overflow>
   /**
    * The CSS `overflow-x` property
    */
-  overflowX?: ResponsiveValue<CSS.Property.OverflowX>
+  overflowX?: Token<CSS.Property.OverflowX>
   /**
    * The CSS `overflow-y` property
    */
-  overflowY?: ResponsiveValue<CSS.Property.OverflowY>
+  overflowY?: Token<CSS.Property.OverflowY>
   /**
    * The CSS `box-sizing` property
    */
   boxSizing?: CSS.Property.BoxSizing
+  /**
+   * The CSS `box-decoration` property
+   */
+  boxDecorationBreak?: Token<CSS.Property.BoxDecorationBreak>
+  /**
+   * The CSS `float` property
+   */
+  float?: Token<CSS.Property.Float>
+  /**
+   * The CSS `object-fit` property
+   */
+  objectFit?: Token<CSS.Property.ObjectFit>
+  /**
+   * The CSS `object-position` property
+   */
+  objectPosition?: Token<CSS.Property.ObjectPosition<Length>>
+  /**
+   * The CSS `overscroll-behavior` property
+   */
+  overscrollBehavior?: Token<CSS.Property.OverscrollBehavior>
+  /**
+   * The CSS `overscroll-behavior` property
+   */
+  overscroll?: Token<CSS.Property.OverscrollBehavior>
+  /**
+   * The CSS `overscroll-behavior-x` property
+   */
+  overscrollBehaviorX?: Token<CSS.Property.OverscrollBehaviorX>
+  /**
+   * The CSS `overscroll-behavior-x` property
+   */
+  overscrollX?: Token<CSS.Property.OverscrollBehaviorX>
+  /**
+   * The CSS `overscroll-behavior-y` property
+   */
+  overscrollBehaviorY?: Token<CSS.Property.OverscrollBehaviorY>
+  /**
+   * The CSS `overscroll-behavior-y` property
+   */
+  overscrollY?: Token<CSS.Property.OverscrollBehaviorY>
+  /**
+   * The CSS `visibility` property
+   */
+  visibility?: Token<CSS.Property.Visibility>
+  /**
+   * The CSS `isolation` property
+   */
+  isolation?: Token<CSS.Property.Isolation>
 }
-
-export const layout = system(config)
-export const layoutParser = createParser(config)

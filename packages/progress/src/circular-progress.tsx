@@ -1,9 +1,9 @@
+import { chakra, SystemStyleObject, HTMLChakraProps } from "@chakra-ui/system"
+import { isUndefined, StringOrNumber, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { getProgressProps, rotate, spin } from "./progress.utils"
-import { chakra, PropsOf, SystemStyleObject } from "@chakra-ui/system"
-import { isUndefined, __DEV__, StringOrNumber } from "@chakra-ui/utils"
 
-interface CircleProps extends PropsOf<typeof chakra.circle> {}
+interface CircleProps extends HTMLChakraProps<"circle"> {}
 
 const Circle: React.FC<CircleProps> = (props) => (
   <chakra.circle cx={50} cy={50} r={42} fill="transparent" {...props} />
@@ -13,7 +13,7 @@ if (__DEV__) {
   Circle.displayName = "Circle"
 }
 
-interface ShapeProps extends PropsOf<typeof chakra.svg> {
+interface ShapeProps extends HTMLChakraProps<"svg"> {
   size?: StringOrNumber
   isIndeterminate?: boolean
 }
@@ -51,7 +51,7 @@ interface CircularProgressOptions {
    */
   min?: number
   /**
-   * The thickness of progress indicator as a ratio of `size`. Must be between `0` and `1`
+   * This defines the stroke width of the svg circle.
    */
   thickness?: StringOrNumber
   /**
@@ -90,15 +90,15 @@ interface CircularProgressOptions {
 }
 
 export interface CircularProgressProps
-  extends Omit<PropsOf<typeof chakra.div>, "color">,
+  extends Omit<HTMLChakraProps<"div">, "color">,
     CircularProgressOptions {}
 
 /**
  * CircularProgress is used to indicate the progress of an activity.
- * It's built using `svg` and `circle` components with support for
+ * It is built using `svg` and `circle` components with support for
  * theming and `indeterminate` state
  *
- * @see Docs https://chakra-ui.com/components/progress
+ * @see Docs https://chakra-ui.com/docs/feedback/circular-progress
  * @todo add theming support for circular progress
  */
 export const CircularProgress: React.FC<CircularProgressProps> = (props) => {
@@ -170,6 +170,11 @@ export const CircularProgress: React.FC<CircularProgressProps> = (props) => {
           strokeWidth={thickness}
           className="chakra-progress__indicator"
           strokeLinecap={capIsRound ? "round" : undefined}
+          /**
+           * fix issue in Safari where indictor still shows when value is 0
+           * @see Issue https://github.com/chakra-ui/chakra-ui/issues/3754
+           */
+          opacity={progress.value === 0 && !isIndeterminate ? 0 : undefined}
           {...indicatorProps}
         />
       </Shape>
@@ -183,7 +188,7 @@ if (__DEV__) {
 }
 
 /**
- * CircularProgress component label. In most cases it's a numeric indicator
+ * CircularProgress component label. In most cases it is a numeric indicator
  * of the circular progress component's value
  */
 export const CircularProgressLabel = chakra("div", {
@@ -202,5 +207,4 @@ if (__DEV__) {
   CircularProgressLabel.displayName = "CircularProgressLabel"
 }
 
-export interface CircularProgressLabelProps
-  extends PropsOf<typeof CircularProgressLabel> {}
+export interface CircularProgressLabelProps extends HTMLChakraProps<"div"> {}

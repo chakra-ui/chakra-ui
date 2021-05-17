@@ -6,14 +6,12 @@ description:
   Badges are used to highlight an item's status for quick recognition.
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
 Badges are used to highlight an item's status for quick recognition.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/layout", url: "#" }}
+  theme={{ componentName: "badge" }}
+  github={{ package: "layout" }}
+  npm={{ package: "@chakra-ui/layout" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -21,7 +19,7 @@ Badges are used to highlight an item's status for quick recognition.
 ## Import
 
 ```js
-import { Badge } from "@chakra-ui/core"
+import { Badge } from "@chakra-ui/react"
 ```
 
 ## Usage
@@ -47,7 +45,7 @@ can be any **color key** that exists in `theme.colors`.
 
 ### Badge Variants
 
-Pass the variant prop and set it to either `subtle`, `solid`, or `outline` to
+Pass the `variant` prop and set it to either `subtle`, `solid`, or `outline` to
 get a different style.
 
 ```jsx
@@ -94,9 +92,6 @@ You can also change the size of the badge by passing the `fontSize` prop.
 
 ## Props
 
-The Badge component composes `Box` component so you can pass props for `Box`.
+The `Badge` component composes `Box` component so you can pass props for `Box`.
 
-| Name          | Type                         | Default  | Description                                                            |
-| ------------- | ---------------------------- | -------- | ---------------------------------------------------------------------- |
-| `variant`     | `solid`, `subtle`, `outline` | `subtle` | The style variant of the badge                                         |
-| `colorScheme` | `string`                     | `gray`   | The color scheme to use for the badge. Must be a key in `theme.colors` |
+<PropsTable of="Badge" />

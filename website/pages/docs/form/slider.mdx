@@ -4,14 +4,12 @@ package: "@chakra-ui/slider"
 image: "components/slider.svg"
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
-The Slider is used to allow users to make selections from a range of values.
+The `Slider` is used to allow users to make selections from a range of values.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/slider", url: "#" }}
+  theme={{ componentName: "slider" }}
+  github={{ package: "slider" }}
+  npm={{ package: "@chakra-ui/slider" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -24,11 +22,11 @@ or applying image filters.
 
 Chakra UI export 4 components for Slider:
 
-- **Slider**: The wrapper that provides context and functionality for all
+- **`Slider`**: The wrapper that provides context and functionality for all
   children.
-- **SliderTrack**: The empty part of the slider that shows the track.
-- **SliderFilledTrack**: The filled part of the slider.
-- **SliderThumb**: The handle that's used to change the slider value.
+- **`SliderTrack`**: The empty part of the slider that shows the track.
+- **`SliderFilledTrack`**: The filled part of the slider.
+- **`SliderThumb`**: The handle that's used to change the slider value.
 
 ```js
 import {
@@ -36,13 +34,16 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 ```
 
 ## Usage
 
+> **Note:** We recommend adding a `aria-label` or `aria-labelledby` prop to
+> provide an accessible label for the Slider.
+
 ```jsx
-<Slider defaultValue={30}>
+<Slider aria-label="slider-ex-1" defaultValue={30}>
   <SliderTrack>
     <SliderFilledTrack />
   </SliderTrack>
@@ -50,10 +51,10 @@ import {
 </Slider>
 ```
 
-### Changing the slider color
+### Changing the slider color scheme
 
 ```jsx
-<Slider colorScheme="pink" defaultValue={30}>
+<Slider aria-label="slider-ex-2" colorScheme="pink" defaultValue={30}>
   <SliderTrack>
     <SliderFilledTrack />
   </SliderTrack>
@@ -61,13 +62,29 @@ import {
 </Slider>
 ```
 
-### Customized Sliders
+### Changing the slider orientation
 
-Slider component was designed to be composed to make it easy for you to
+```jsx
+<Slider
+  aria-label="slider-ex-3"
+  defaultValue={30}
+  orientation="vertical"
+  minH="32"
+>
+  <SliderTrack>
+    <SliderFilledTrack />
+  </SliderTrack>
+  <SliderThumb />
+</Slider>
+```
+
+### Customizing the Slider
+
+`Slider` component was designed to be composed to make it easy for you to
 customize its styles.
 
 ```jsx
-<Slider defaultValue={30}>
+<Slider aria-label="slider-ex-4" defaultValue={30}>
   <SliderTrack bg="red.100">
     <SliderFilledTrack bg="tomato" />
   </SliderTrack>
@@ -77,14 +94,29 @@ customize its styles.
 </Slider>
 ```
 
+### Discrete Sliders
+
+Discrete sliders allow you to snap to predefined sets of values. This can be
+accomplished using the `step` prop.
+
+```jsx
+<Slider defaultValue={60} min={0} max={300} step={30}>
+  <SliderTrack bg="red.100">
+    <Box position="relative" right={10} />
+    <SliderFilledTrack bg="tomato" />
+  </SliderTrack>
+  <SliderThumb boxSize={6} />
+</Slider>
+```
+
 ### Getting the final value when dragging the slider
 
-Dragging the slider can trigger lots of updates and the user might only 
-be interested in the final result after sliding is complete. You can use 
-`onChangeEnd` for this. 
+Dragging the slider can trigger lots of updates and the user might only be
+interested in the final result after sliding is complete. You can use
+`onChangeEnd` for this.
 
 ```jsx live=false
-<Slider onChangeEnd={(val) => console.log(val)}>
+<Slider aria-label="slider-ex-5" onChangeEnd={(val) => console.log(val)}>
   <SliderTrack>
     <SliderFilledTrack />
   </SliderTrack>
@@ -94,18 +126,19 @@ be interested in the final result after sliding is complete. You can use
 
 ### Configure thumb focus with `focusThumbOnChange`
 
-By default `SliderThumb` will receive focus whenever `value` changes. You can 
-opt-out of this behavior by setting `focusThumbOnChange=false`.  This is 
-normally used with a "controlled" slider value.
+By default `SliderThumb` will receive focus whenever `value` changes. You can
+opt-out of this behavior by setting the value of `focusThumbOnChange` to
+`false`. This is normally used with a "controlled" slider value.
 
 ```jsx live=false
-<Slider value={value} focusThumbOnChange={false}>
+<Slider aria-label="slider-ex-5" value={value} focusThumbOnChange={false}>
   <SliderTrack>
     <SliderFilledTrack />
   </SliderTrack>
   <SliderThumb />
 </Slider>
 ```
+
 ### useSlider
 
 We've exported the `useSlider` hook to help users manage and build custom slider
@@ -115,45 +148,22 @@ UIs.
 
 ### Slider Props
 
-The `Slider` component wraps all it's children in the [Box](/docs/layout/box)
-component, so you can pass all `Box` props to change it's style.
+The `Slider` component wraps all its children in the [Box](/docs/layout/box)
+component, so you can pass all `Box` props to change its style.
 
-| Name               | Type                       | Default | Description                                                               |
-| ------------------ | -------------------------- | ------- | ------------------------------------------------------------------------- |
-| `value`            | `number`                   |         | The value of the slider.                                                  |
-| `defaultValue`     | `number`                   |         | The initial value of the slider.                                          |
-| `max`              | `number`                   |         | Standard `input` max attribute.                                           |
-| `min`              | `number`                   |         | Standard `input` min attribute.                                           |
-| `step`             | `number`                   |         | Standard `input` step attribute.                                          |
-| `onChange`         | `(value: number): void`    |         | Callback fired when the value of the slider changes.                      |
-| `onChangeEnd`      | `(value: number): void`    |         | Callback fired when the slider changes is done.                           |
-| `isReadOnly`       | `boolean`                  |         | If `true`, the slider will be in read-only mode.                          |
-| `onFocus`          | `Function`                 |         | Callback fired when the thumb receives focus                              |
-| `onBlur`           | `Function`                 |         | Callback fired when the thumb is blurred                                  |
-| `onMouseDown`      | `Function                  |         |                                                                           | Callback fired when the you mousedown on any part of the slider |
-| `aria-label`       | `string`                   |         | The accessible label.                                                     |
-| `aria-labelledby`  | `string`                   |         | The `id` of the element that labels the sliders                           |
-| `aria-valuetext`   | `string`                   |         | The aria-valuetext of the switch for accessibility.                       |
-| `orientation`      | `string`                   |         | The orientation of the slider, only `horizontal` is supported for now.    |
-| `getAriaValueText` | `(value: number ): string` |         | The callback to format the `aria-valuetext`.                              |
-| `size`             | `sm`, `md`, `lg`           |         | The size of the slider.                                                   |
-| `colorScheme`      | `string`                   |         | The color scheme to use for the slider. Use a color key in `theme.colors` |
-| `name`             | `string`                   |         | The name of the slider component when used in a form.                     |
-| `id`               | `string`                   |         | The id of the slider component when used in a form.                       |
-| `children`         | `React.ReactNode`          |         | The children of the slider.                                               |
-| `isReversed`       | `boolean`                  |         | If `true`, it'll reverse the direction and functionality of the slider    |
+<PropsTable of="Slider" />
 
 ### SliderThumb Props
 
-SliderThumb composes [Box](/docs/layout/box) so you can pass all Box props to
-change it's style.
+`SliderThumb` composes [Box](/docs/layout/box) so you can pass all `Box` props
+to change its style.
 
 ### SliderFilledTrack Props
 
-SliderFilledTrack composes [Box](/docs/layout/box) so you can pass all Box props
-to change it's style.
+`SliderFilledTrack` composes [Box](/docs/layout/box) so you can pass all `Box`
+props to change its style.
 
 ### SliderTrack Props
 
-SliderTrack composes [Box](/docs/layout/box) so you can pass all Box props to
-change it's style.
+`SliderTrack` composes [Box](/docs/layout/box) so you can pass all `Box` props
+to change its style.

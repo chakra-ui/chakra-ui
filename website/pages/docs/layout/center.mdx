@@ -7,14 +7,11 @@ description:
   components are built. By default, it renders a `div` element
 ---
 
-import ComponentLinks from "../../../src/components/component-links"
-
 Center is a layout component that centers its child within itself.
 
 <ComponentLinks
-  github={{ url: "#" }}
-  storybook={{ url: "#" }}
-  npm={{ label: "@chakra-ui/layout", url: "#" }}
+  github={{ package: "layout" }}
+  npm={{ package: "@chakra-ui/layout" }}
 />
 
 <carbon-ad></carbon-ad>
@@ -22,11 +19,11 @@ Center is a layout component that centers its child within itself.
 ## Import
 
 ```js
-import { Center, Square, Circle } from "@chakra-ui/core"
+import { Center, Square, Circle } from "@chakra-ui/react"
 ```
 
-- **Center:** centers it's child given `width` and `height`
-- **Square:** centers it's child given `size` (width and height)
+- **Center:** centers its child given `width` and `height`
+- **Square:** centers its child given `size` (width and height)
 - **Circle:** a `Square` with round `border-radius`
 
 ## Usage
@@ -42,7 +39,7 @@ ensure the child is centered.
 
 ### With icons
 
-Center can be used to create frames around icons or numbers
+Center can be used to create frames around icons or numbers.
 
 ```jsx
 <HStack>
@@ -59,8 +56,8 @@ Center can be used to create frames around icons or numbers
 
 ### Square and Circle
 
-To reduce boilerplace, we've export `Square` and `Circle` components that
-automatically centers it's children given the `size`.
+To reduce boilerplate, we've exported `Square` and `Circle` components that
+automatically centers its children given the `size`.
 
 ```jsx
 <HStack>
