@@ -1,6 +1,5 @@
 export type Dict<T = any> = Record<string, T>
 export type MaybeArray<T> = T | T[]
-export type CleanupFunction = () => void
 
 export declare namespace StateMachine {
   export type EventObject = {
@@ -61,7 +60,7 @@ export declare namespace StateMachine {
   export type Activity<
     TContext extends Dict,
     TEvent extends EventObject
-  > = Expression<TContext, TEvent, CleanupFunction>
+  > = Expression<TContext, TEvent, VoidFunction>
 
   export type Activities<
     TContext extends Dict,
@@ -114,6 +113,10 @@ export declare namespace StateMachine {
     TEvent extends EventObject
   > {
     type?: "final"
+    /**
+     * The tags for the state node.
+     */
+    tags?: string[]
     /**
      * The activities to be started upon entering the state node,
      * and stopped upon exiting the state node.
@@ -196,8 +199,10 @@ export declare namespace StateMachine {
     context: TContext
     done: boolean
     matches(value: string | string[]): boolean
+    hasTag(value: string): boolean
     nextEvents: string[]
     changed: boolean
+    tags: Set<string>
     // Useful for computed properties
     [key: string]: any
   }

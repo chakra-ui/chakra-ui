@@ -36,13 +36,16 @@ export const Counter = () => {
   )
 }
 
-const checkbox = createMachine<{}, "checked" | "unchecked">({
+const checkbox = createMachine<{ count: number }, "checked" | "unchecked">({
   initial: "unchecked",
+  context: { count: 1 },
   states: {
     checked: {
+      tags: ["open"],
       on: { CLICK: "unchecked" },
     },
     unchecked: {
+      tags: ["close"],
       on: { CLICK: "checked" },
     },
   },
@@ -50,9 +53,17 @@ const checkbox = createMachine<{}, "checked" | "unchecked">({
 
 export const Checkbox = () => {
   const [state, send] = useMachine(checkbox)
+
   return (
     <div>
-      <pre>{JSON.stringify(state, null, 3)}</pre>
+      <pre>
+        {JSON.stringify(
+          state,
+          (k, v) => (v instanceof Set ? Array.from(v) : v),
+          3,
+        )}
+      </pre>
+      {state.hasTag("open") ? "Open" : "Close"}
       <button onClick={() => send("CLICK")}>CLICK</button>
     </div>
   )
