@@ -1,29 +1,43 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import * as React from "react"
-import { createMachine, useMachine } from "../src"
+import { createMachine, useMachine, guards } from "../src"
+
+const { and, not } = guards
 
 export default {
   title: "Machine / Uncontrolled",
 }
 
-const counter = createMachine({
-  context: { value: 0, min: 0, max: 100 },
-  initial: "idle",
-  states: {
-    idle: {
-      on: {
-        INC: {
-          cond: (ctx) => ctx.value <= ctx.max,
-          actions: (ctx) => ctx.value++,
-        },
-        DEC: {
-          cond: (ctx) => ctx.value > ctx.min,
-          actions: (ctx) => ctx.value--,
+const counter = createMachine(
+  {
+    context: { value: 0, min: 0, max: 100 },
+    initial: "idle",
+    states: {
+      idle: {
+        on: {
+          TEST: {
+            cond: and("isBelowMax", not("isNumber")),
+            actions: console.log,
+          },
+          INC: {
+            cond: (ctx) => ctx.value <= ctx.max,
+            actions: (ctx) => ctx.value++,
+          },
+          DEC: {
+            cond: (ctx) => ctx.value > ctx.min,
+            actions: (ctx) => ctx.value--,
+          },
         },
       },
     },
   },
-})
+  {
+    guards: {
+      isBelowMax: (ctx) => ctx.value <= ctx.max,
+      isNumber: (ctx) => typeof ctx.value === "number",
+    },
+  },
+)
 
 export const Counter = () => {
   const [state, send] = useMachine(counter)
@@ -32,6 +46,8 @@ export const Counter = () => {
       <pre>{JSON.stringify(state, null, 3)}</pre>
       <button onClick={() => send("INC")}>INC</button>
       <button onClick={() => send("DEC")}>DEC</button>
+      <br />
+      <button onClick={() => send("TEST")}>TEST</button>
     </div>
   )
 }

@@ -67,3 +67,7 @@ export const toComputed = (obj: Dict = {}) =>
   Object.fromEntries(
     Object.entries(obj).map(([k, v]) => [k, (state: any) => v(state.context)]),
   )
+
+export function isGuardHelper(value: unknown): value is { exec: Function } {
+  return isObject(value) && value.exec != null
+}

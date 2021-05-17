@@ -35,7 +35,7 @@ export declare namespace StateMachine {
   > = {
     target?: TState
     actions?: Actions<TContext, TEvent>
-    cond?: string | Expression<TContext, TEvent, boolean>
+    cond?: Condition<TContext, TEvent>
   }
 
   export type TransitionDefinitionWithDelay<
@@ -156,9 +156,15 @@ export declare namespace StateMachine {
         }>
   }
 
+  export type ConditionHelper<
+    TContext extends Dict,
+    TEvent extends EventObject
+  > = { exec: (guards: Dict) => Expression<TContext, TEvent, boolean> }
+
   export type Condition<TContext extends Dict, TEvent extends EventObject> =
     | string
     | Expression<TContext, TEvent, boolean>
+    | ConditionHelper<TContext, TEvent>
 
   export interface MachineConfig<
     TContext extends Dict,

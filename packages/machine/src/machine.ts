@@ -16,6 +16,7 @@ import {
   toTarget,
   toTransition,
   toComputed,
+  isGuardHelper,
 } from "./utils"
 
 export enum MachineStatus {
@@ -37,7 +38,7 @@ export class Machine<
   state: S.State<TContext>
   config: S.MachineConfig<TContext, TState, TEvent>
   options: S.MachineOptions<TContext, TEvent> | undefined
-  private context: TContext
+  context: TContext
   id: string
   __type = MACHINE_TYPES.MACHINE
 
@@ -53,7 +54,6 @@ export class Machine<
   private guardsMap?: S.GuardsMap<TContext, TEvent>
   private actionsMap?: S.ActionsMap<TContext, TEvent>
   private delaysMap?: S.TimersMap<TContext, TEvent>
-  private intervalsMap?: S.TimersMap<TContext, TEvent>
 
   // Let's get started!
   constructor(
@@ -293,7 +293,13 @@ export class Machine<
   private determineGuard = (
     cond: S.Condition<TContext, TEvent> | undefined,
   ) => {
-    return isString(cond) ? this.guardsMap?.[cond] : cond
+    if (isString(cond)) {
+      return this.guardsMap?.[cond]
+    }
+    if (isGuardHelper(cond)) {
+      return cond.exec(this.guardsMap ?? {})
+    }
+    return cond
   }
 
   /**
