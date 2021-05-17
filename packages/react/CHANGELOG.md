@@ -1,5 +1,37 @@
 # Change Log
 
+## 1.6.2
+
+### Patch Changes
+
+- [`ddd5ef4a1`](https://github.com/chakra-ui/chakra-ui/commit/ddd5ef4a1e9cc988c99b80c26579205ea4c57b2f)
+  [#3985](https://github.com/chakra-ui/chakra-ui/pull/3985) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - `ChakraProvider` now
+  accepts the prop `cssVarsRoot` which defaults to `:host, :root`.
+- Updated dependencies
+  [[`4f1cf6d6b`](https://github.com/chakra-ui/chakra-ui/commit/4f1cf6d6b9de134806c5f24d6b1c49f5aadae9a8),
+  [`e190ce1b3`](https://github.com/chakra-ui/chakra-ui/commit/e190ce1b30e17eb0cffaa00c7ec2660d25ba6c23),
+  [`8dc0622e8`](https://github.com/chakra-ui/chakra-ui/commit/8dc0622e8a5acda768c694d2daa28a4181d829ad),
+  [`ddd5ef4a1`](https://github.com/chakra-ui/chakra-ui/commit/ddd5ef4a1e9cc988c99b80c26579205ea4c57b2f),
+  [`f4ad5c7dd`](https://github.com/chakra-ui/chakra-ui/commit/f4ad5c7ddb41824d5ec02908d1daa4a479e8a283),
+  [`c1f8d90ad`](https://github.com/chakra-ui/chakra-ui/commit/c1f8d90ad7ebd9594e9888010170cda7969f0ded),
+  [`620f0b7d7`](https://github.com/chakra-ui/chakra-ui/commit/620f0b7d756ffb6bfc6ddf0459e96f774ffbb9be),
+  [`4a7f8dab7`](https://github.com/chakra-ui/chakra-ui/commit/4a7f8dab7a9c4507bca05d9b9383de26447a7863)]:
+  - @chakra-ui/theme@1.9.0
+  - @chakra-ui/menu@1.6.2
+  - @chakra-ui/system@1.6.6
+  - @chakra-ui/radio@1.3.6
+  - @chakra-ui/transition@1.3.1
+  - @chakra-ui/form-control@1.3.6
+  - @chakra-ui/number-input@1.2.6
+  - @chakra-ui/toast@1.2.7
+  - @chakra-ui/accordion@1.3.2
+  - @chakra-ui/input@1.2.6
+  - @chakra-ui/modal@1.8.6
+  - @chakra-ui/select@1.1.10
+  - @chakra-ui/skeleton@1.1.13
+  - @chakra-ui/textarea@1.1.10
+
 ## 1.6.1
 
 ### Patch Changes

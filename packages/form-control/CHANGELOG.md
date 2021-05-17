@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.3.6
+
+### Patch Changes
+
+- [`620f0b7d7`](https://github.com/chakra-ui/chakra-ui/commit/620f0b7d756ffb6bfc6ddf0459e96f774ffbb9be)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  FormLabel could not be used without form-control
+
 ## 1.3.5
 
 ### Patch Changes

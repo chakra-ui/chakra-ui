@@ -1,5 +1,16 @@
 # Change Log
 
+## 1.3.6
+
+### Patch Changes
+
+- [`f4ad5c7dd`](https://github.com/chakra-ui/chakra-ui/commit/f4ad5c7ddb41824d5ec02908d1daa4a479e8a283)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `Radio` or `useRadio` gets non-unique id when wrapped within `FormControl`.
+- Updated dependencies
+  [[`620f0b7d7`](https://github.com/chakra-ui/chakra-ui/commit/620f0b7d756ffb6bfc6ddf0459e96f774ffbb9be)]:
+  - @chakra-ui/form-control@1.3.6
+
 ## 1.3.5
 
 ### Patch Changes
