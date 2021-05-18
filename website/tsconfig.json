@@ -20,7 +20,8 @@
       "utils/*": ["src/utils/*"],
       "analytics/*": ["src/analytics/*"]
     },
-    "incremental": true
+    "incremental": true,
+    "tsBuildInfoFile": "tsconfig.tsbuildinfo"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
