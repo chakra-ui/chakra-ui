@@ -19,7 +19,8 @@
       "components/*": ["src/components/*"],
       "utils/*": ["src/utils/*"],
       "analytics/*": ["src/analytics/*"]
-    }
+    },
+    "incremental": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
