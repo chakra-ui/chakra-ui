@@ -298,7 +298,7 @@ if (__DEV__) {
   MenuItem.displayName = "MenuItem"
 }
 
-const CheckIcon: React.FC<PropsOf<"svg">> = (props) => (
+export const CheckIcon: React.FC<PropsOf<"svg">> = (props) => (
   <svg viewBox="0 0 14 14" width="1em" height="1em" {...props}>
     <polygon
       fill="currentColor"
@@ -313,16 +313,30 @@ export interface MenuItemOptionProps
   /**
    * @type React.ReactElement
    */
-  icon?: React.ReactElement
+  leftIcon?: React.ReactElement
   /**
    * @type SystemProps["mr"]
    */
-  iconSpacing?: SystemProps["mr"]
+  leftIconSpacing?: SystemProps["mr"]
+  /**
+   * @type React.ReactElement
+   */
+  rightIcon?: React.ReactElement
+  /**
+   * @type SystemProps["mr"]
+   */
+  rightIconSpacing?: SystemProps["mr"]
 }
 
 export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
   (props, ref) => {
-    const { icon, iconSpacing = "0.75rem", ...rest } = props
+    const {
+      rightIcon,
+      rightIconSpacing = "0.75rem",
+      leftIcon = rightIcon ? null : <CheckIcon />,
+      leftIconSpacing = "0.75rem",
+      ...rest
+    } = props
 
     const optionProps = useMenuOption(rest, ref) as HTMLAttributes
 
@@ -331,14 +345,27 @@ export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
         {...optionProps}
         className={cx("chakra-menu__menuitem-option", rest.className)}
       >
-        <MenuIcon
-          fontSize="0.8em"
-          marginEnd={iconSpacing}
-          opacity={props.isChecked ? 1 : 0}
-        >
-          {icon || <CheckIcon />}
-        </MenuIcon>
+        {leftIcon && (
+          <MenuIcon
+            fontSize="0.8em"
+            marginEnd={leftIconSpacing}
+            opacity={props.isChecked ? 1 : 0}
+          >
+            {leftIcon}
+          </MenuIcon>
+        )}
+
         <span style={{ flex: 1 }}>{optionProps.children}</span>
+
+        {rightIcon && (
+          <MenuIcon
+            fontSize="0.8em"
+            marginStart={leftIconSpacing}
+            opacity={props.isChecked ? 1 : 0}
+          >
+            {rightIcon}
+          </MenuIcon>
+        )}
       </StyledMenuItem>
     )
   },

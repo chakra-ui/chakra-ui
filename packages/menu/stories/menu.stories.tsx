@@ -9,6 +9,7 @@ import {
   FaTruck,
   FaUndoAlt,
   FaUnlink,
+  FaCheck,
 } from "react-icons/fa"
 import {
   Menu,
@@ -255,6 +256,43 @@ export const withMenuRadio = () => (
         <MenuItemOption value="email">Email</MenuItemOption>
         <MenuItemOption value="phone">Phone</MenuItemOption>
         <MenuItemOption value="country">Country</MenuItemOption>
+      </MenuOptionGroup>
+    </MenuList>
+  </Menu>
+)
+
+export const withMenuRadioRightIcon = () => (
+  <Menu closeOnSelect={false}>
+    <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
+      Open menu
+    </MenuButton>
+
+    <MenuList minWidth="240px">
+      <MenuItem icon={<FaUndoAlt />}>Undo</MenuItem>
+
+      <MenuDivider />
+
+      <MenuOptionGroup defaultValue="val-1" title="Order" type="radio">
+        <MenuItemOption rightIcon={<FaCheck />} value="val-1">
+          Option 1
+        </MenuItemOption>
+        <MenuItemOption rightIcon={<FaCheck />} value="val-2">
+          Option 2
+        </MenuItemOption>
+      </MenuOptionGroup>
+
+      <MenuDivider />
+
+      <MenuOptionGroup title="Country" type="checkbox">
+        <MenuItemOption rightIcon={<FaCheck />} value="email">
+          Email
+        </MenuItemOption>
+        <MenuItemOption rightIcon={<FaCheck />} value="phone">
+          Phone
+        </MenuItemOption>
+        <MenuItemOption rightIcon={<FaCheck />} value="country">
+          Country
+        </MenuItemOption>
       </MenuOptionGroup>
     </MenuList>
   </Menu>
