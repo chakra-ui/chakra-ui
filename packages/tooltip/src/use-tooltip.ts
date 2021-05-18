@@ -97,6 +97,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     getArrowInnerProps,
     getArrowProps,
   } = usePopper({
+    isEnabled: isOpen,
     placement,
     arrowPadding,
     modifiers,
