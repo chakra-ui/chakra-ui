@@ -360,7 +360,7 @@ export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
         {rightIcon && (
           <MenuIcon
             fontSize="0.8em"
-            marginStart={leftIconSpacing}
+            marginStart={rightIconSpacing}
             opacity={props.isChecked ? 1 : 0}
           >
             {rightIcon}
