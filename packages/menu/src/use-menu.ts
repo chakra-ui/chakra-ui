@@ -9,6 +9,7 @@ import {
   useIds,
   useOutsideClick,
   useShortcut,
+  useUnmountEffect,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
 import { usePopper, UsePopperProps } from "@chakra-ui/popper"
@@ -203,16 +204,29 @@ export function useMenu(props: UseMenuProps = {}) {
     })
   }, [onOpen, menuRef])
 
+  const timeoutIds = React.useRef<Set<number>>(new Set([]))
+
+  useUnmountEffect(() => {
+    timeoutIds.current.forEach((id) => clearTimeout(id))
+    timeoutIds.current.clear()
+  })
+
   const openAndFocusFirstItem = React.useCallback(() => {
     onOpen()
-    const first = descendants.firstEnabled()
-    if (first) setFocusedIndex(first.index)
+    const id = setTimeout(() => {
+      const first = descendants.firstEnabled()
+      if (first) setFocusedIndex(first.index)
+    })
+    timeoutIds.current.add(id)
   }, [onOpen, setFocusedIndex, descendants])
 
   const openAndFocusLastItem = React.useCallback(() => {
     onOpen()
-    const last = descendants.lastEnabled()
-    if (last) setFocusedIndex(last.index)
+    const id = setTimeout(() => {
+      const last = descendants.lastEnabled()
+      if (last) setFocusedIndex(last.index)
+    })
+    timeoutIds.current.add(id)
   }, [onOpen, setFocusedIndex, descendants])
 
   const refocus = React.useCallback(() => {

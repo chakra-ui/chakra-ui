@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- [`dee5a15c8`](https://github.com/chakra-ui/chakra-ui/commit/dee5a15c8964607f889a83ebda9bb0e063e034cc)
+  [#4017](https://github.com/chakra-ui/chakra-ui/pull/4017) Thanks
+  [@LekoArts](https://github.com/LekoArts)! - Pass `pluginOptions` correctly to
+  the `ChakraProvider`. Fixes https://github.com/chakra-ui/chakra-ui/issues/4014
+
 ## 2.0.0
 
 ### Major Changes

@@ -62,6 +62,19 @@ export const Basic = () => (
   </div>
 )
 
+export const LazyMenu = () => (
+  <Menu isLazy>
+    <MenuButton as={Button}>Open Wakanda menu</MenuButton>
+    <MenuList>
+      {words.map((word) => (
+        <MenuItem key={word} onClick={logEvents}>
+          {word}
+        </MenuItem>
+      ))}
+    </MenuList>
+  </Menu>
+)
+
 export const WithDisabledItem = () => (
   <>
     <Menu>
