@@ -51,23 +51,23 @@ const baseStyle = (props: Dict) => ({
 const sizes = {
   sm: {
     tab: {
-      py: "0.25rem",
-      px: "1rem",
-      fontSize: "0.85rem",
+      py: 1,
+      px: 4,
+      fontSize: "sm",
     },
   },
   md: {
     tab: {
-      fontSize: "1rem",
-      py: "0.5rem",
-      px: "1rem",
+      fontSize: "md",
+      py: 2,
+      px: 4,
     },
   },
   lg: {
     tab: {
-      fontSize: "1.15rem",
-      py: "0.75rem",
-      px: "1rem",
+      fontSize: "lg",
+      py: 3,
+      px: 4,
     },
   },
 }
