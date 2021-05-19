@@ -71,24 +71,24 @@ component give these characteristics. Here's how it works:
 ```jsx
 // 1. create a component schema in your theme
 const theme = {
-	colors: {
+  colors: {
     green: {
       light: "#dfdfdf",
       normal: "#dfdfdf",
       dark: "#d566Df",
       darker: "#dfd56f"
     },
-		blue: {}
+    blue: {}
   },
   components: {
     Button: {
       defaultProps: {
         variant: "solid",
         size: "md",
-				colorScheme: "blue"
+	colorScheme: "blue"
       },
       variants: {
-				// props has colorScheme, colorMode (light mode or dark mode)
+	// props has colorScheme, colorMode (light mode or dark mode)
         solid: props => ({
           bg: `${props.colorScheme}.normal`,
           color: "white",
