@@ -163,7 +163,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     forceUpdate,
   } = usePopper({
     ...popperProps,
-    isEnabled: isOpen,
+    isOpen,
   })
 
   useFocusOnPointerDown({

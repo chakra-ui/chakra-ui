@@ -157,7 +157,7 @@ export function useMenu(props: UseMenuProps = {}) {
    */
   const popper = usePopper({
     ...popperProps,
-    isEnabled: isOpen,
+    isOpen,
     placement,
   })
 
