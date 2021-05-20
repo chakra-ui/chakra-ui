@@ -66,7 +66,7 @@ export const transformFunctions = {
   saturate: wrap("saturate"),
   sepia: wrap("sepia"),
   bgImage(value: any) {
-    return isString(value) && !value.startsWith("url") ? `url(${value})` : value
+    return isString(value) && value.startsWith("url") ? `url(${value})` : value
   },
   outline(value: any) {
     const isNoneOrZero = String(value) === "0" || String(value) === "none"
