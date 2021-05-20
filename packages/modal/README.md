@@ -191,8 +191,8 @@ function AlertDialogExample() {
 
 # Drawer
 
-The Drawer component is a panel that slides out from the edge of the screen. 
-It can be useful when you need users to complete a task or view some details 
+The Drawer component is a panel that slides out from the edge of the screen.
+It can be useful when you need users to complete a task or view some details
 without leaving the current page.
 
 ## Installation
@@ -241,23 +241,22 @@ function DrawerExample() {
         onClose={onClose}
         finalFocusRef={btnRef}
       >
-        <DrawerOverlay>
-          <DrawerContent>
-            <DrawerCloseButton />
-            <DrawerHeader>Create your account</DrawerHeader>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>Create your account</DrawerHeader>
 
-            <DrawerBody>
-              <Input placeholder="Type here..." />
-            </DrawerBody>
+          <DrawerBody>
+            <Input placeholder="Type here..." />
+          </DrawerBody>
 
-            <DrawerFooter>
-              <Button variant="outline" mr={3} onClick={onClose}>
-                Cancel
-              </Button>
-              <Button color="blue">Save</Button>
-            </DrawerFooter>
-          </DrawerContent>
-        </DrawerOverlay>
+          <DrawerFooter>
+            <Button variant="outline" mr={3} onClick={onClose}>
+              Cancel
+            </Button>
+            <Button color="blue">Save</Button>
+          </DrawerFooter>
+        </DrawerContent>
       </Drawer>
     </>
   )
