@@ -7,7 +7,7 @@ import {
   getTransformTemplate,
   flexDirectionTemplate,
 } from "./templates"
-import { gradientTransform } from "./parse-gradient"
+import { gradientTransform, globalSet } from "./parse-gradient"
 
 const analyzeCSSValue = (value: number | string) => {
   const num = parseFloat(value.toString())
@@ -66,7 +66,9 @@ export const transformFunctions = {
   saturate: wrap("saturate"),
   sepia: wrap("sepia"),
   bgImage(value: any) {
-    return isString(value) && value.startsWith("url") ? `url(${value})` : value
+    if (value == null) return value
+    const prevent = isCSSFunction(value) || globalSet.has(value)
+    return !prevent ? `url(${value})` : value
   },
   outline(value: any) {
     const isNoneOrZero = String(value) === "0" || String(value) === "none"
@@ -81,4 +83,8 @@ export const transformFunctions = {
     if (divide) result[divide] = 1
     return result
   },
+}
+
+const isCSSFunction = (value: unknown) => {
+  return isString(value) && value.includes("(") && value.includes(")")
 }
