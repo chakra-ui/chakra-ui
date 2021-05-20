@@ -13,7 +13,7 @@ import { cssVars, getEventListenerOptions } from "./utils"
 export type { Placement }
 
 export interface UsePopperProps {
-  isOpen?: boolean
+  enabled?: boolean
   /**
    * The main and cross-axis offset to displace popper element
    * from its reference element.
@@ -99,7 +99,7 @@ export type ArrowCSSVarProps = {
 
 export function usePopper(props: UsePopperProps = {}) {
   const {
-    isOpen = true,
+    enabled = true,
     modifiers = [],
     placement: placementProp = "bottom",
     strategy = "absolute",
@@ -120,7 +120,7 @@ export function usePopper(props: UsePopperProps = {}) {
   const cleanup = useRef(() => {})
 
   const setupPopper = useCallback(() => {
-    if (!isOpen || !reference.current || !popper.current) return
+    if (!enabled || !reference.current || !popper.current) return
 
     // If popper instance exists, destroy it so we can create a new one
     cleanup.current?.()
@@ -167,7 +167,7 @@ export function usePopper(props: UsePopperProps = {}) {
 
     cleanup.current = instance.current.destroy
   }, [
-    isOpen,
+    enabled,
     placementProp,
     modifiers,
     matchWidth,
