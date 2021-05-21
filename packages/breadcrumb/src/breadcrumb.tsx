@@ -179,7 +179,7 @@ export interface BreadcrumbProps
  * Breadcrumb is used to render a breadcrumb navigation landmark.
  * It renders a `nav` element with `aria-label` set to `Breadcrumb`
  *
- * @see Docs https://chakra-ui.com/breadcrumbs
+ * @see Docs https://chakra-ui.com/breadcrumb
  */
 export const Breadcrumb = forwardRef<BreadcrumbProps, "nav">((props, ref) => {
   const styles = useMultiStyleConfig("Breadcrumb", props)
