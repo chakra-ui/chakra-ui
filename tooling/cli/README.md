@@ -8,6 +8,12 @@ Generate TypeScript types to provide autocomplete for your custom theme.
 npx @chakra-ui/cli tokens <path/to/your/theme.(js|ts)>
 ```
 
+or
+
+```sh
+npx @chakra-ui/cli tokens <@your-org/chakra-theme-package>
+```
+
 ```sh
 $ npx @chakra-ui/cli --help
 

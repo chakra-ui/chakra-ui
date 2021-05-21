@@ -1,18 +1,32 @@
 import "regenerator-runtime/runtime"
 import path from "path"
+import fs from "fs"
 import { register } from "ts-node"
 import { isObject } from "@chakra-ui/utils"
 import { createThemeTypingsInterface } from "../command/tokens/create-theme-typings-interface"
 import { themeKeyConfiguration } from "../command/tokens/config"
 
+async function importTheme(path: string) {
+  const module = await import(path)
+
+  return module.default ?? module.theme
+}
+
 async function readTheme(themeFilePath: string) {
-  const absoluteThemePath = path.join(process.cwd(), themeFilePath)
+  const cwd = process.cwd()
+  const absoluteThemePath = path.join(cwd, themeFilePath)
+
   register({
     project: path.join(__dirname, "..", "..", "bin", "tsconfig.json"),
-    dir: path.basename(absoluteThemePath),
   })
-  const module = await import(absoluteThemePath)
-  return module.default ?? module.theme
+
+  try {
+    await fs.promises.stat(absoluteThemePath)
+
+    return importTheme(absoluteThemePath)
+  } catch {
+    return importTheme(require.resolve(themeFilePath, { paths: [cwd] }))
+  }
 }
 
 /**
