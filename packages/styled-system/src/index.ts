@@ -7,4 +7,4 @@ export * from "./create-theme-vars"
 export type { ResponsiveValue } from "./utils"
 export { tokenToCSSVar } from "./utils/create-transform"
 export type OmitSpaceXY<T> = Omit<T, "spaceX" | "spaceY">
-export { WithCSSVar } from "./utils/types"
+export type { WithCSSVar } from "./utils/types"

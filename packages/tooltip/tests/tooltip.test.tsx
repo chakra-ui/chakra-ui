@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/test-utils"
 import { extendTheme, ThemeProvider } from "@chakra-ui/react"
 import * as React from "react"
-import { TooltipProps } from "../dist/types"
+import type { TooltipProps } from "../src"
 import { Tooltip } from "../src"
 
 const buttonLabel = "Hover me"

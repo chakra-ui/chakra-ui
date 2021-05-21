@@ -25,6 +25,8 @@ Ring
 - 🚀 Added ring style props to make it easier to style an element's focus ring
   shadows. Props are `ring`, `ringColor`, `ringOffset`, and `ringOffsetColor`.
 
+[CodeSandbox Link](https://codesandbox.io/s/ring-colors-4wz1w)
+
 ```jsx live=false
 // adds a 2px box-shadow with `gray.400` color
 <Box ring="2px" ringColor="gray.400">

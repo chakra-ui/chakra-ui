@@ -1,3 +1,4 @@
+import { useEnvironment } from "@chakra-ui/react-env"
 import { useTheme } from "@chakra-ui/system"
 import React from "react"
 import createMediaQueries from "./create-media-query"
@@ -24,6 +25,7 @@ export interface Breakpoint {
  */
 export function useBreakpoint(defaultBreakpoint?: string) {
   const { breakpoints } = useTheme()
+  const env = useEnvironment()
 
   const mediaQueries = React.useMemo(
     () => createMediaQueries({ base: "0px", ...breakpoints }),
@@ -62,7 +64,7 @@ export function useBreakpoint(defaultBreakpoint?: string) {
     const listeners = new Set<Listener>()
 
     mediaQueries.forEach(({ query, ...breakpoint }) => {
-      const mediaQuery = window.matchMedia(query)
+      const mediaQuery = env.window.matchMedia(query)
 
       // trigger an initial update to determine media query
       update(mediaQuery, breakpoint)
@@ -91,7 +93,7 @@ export function useBreakpoint(defaultBreakpoint?: string) {
       })
       listeners.clear()
     }
-  }, [mediaQueries, breakpoints, update])
+  }, [mediaQueries, breakpoints, update, env.window])
 
   return current
 }

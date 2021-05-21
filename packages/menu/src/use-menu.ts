@@ -167,6 +167,7 @@ export function useMenu(props: UseMenuProps = {}) {
   const popper = usePopper({
     ...popperProps,
     placement: dirAwarePlacement,
+    enabled: isOpen,
   })
 
   const [focusedIndex, setFocusedIndex] = React.useState(-1)

@@ -377,7 +377,7 @@ export interface ModalHeaderProps extends HTMLChakraProps<"header"> {}
  *
  * React component that houses the title of the modal.
  *
- * @see Docs https://chakra-ui.com/docs/components/modal
+ * @see Docs https://chakra-ui.com/docs/overlay/modal
  */
 export const ModalHeader = forwardRef<ModalHeaderProps, "header">(
   (props, ref) => {
@@ -425,7 +425,7 @@ export interface ModalBodyProps extends HTMLChakraProps<"div"> {}
  *
  * React component that houses the main content of the modal.
  *
- * @see Docs https://chakra-ui.com/docs/components/modal
+ * @see Docs https://chakra-ui.com/docs/overlay/modal
  */
 export const ModalBody = forwardRef<ModalBodyProps, "div">((props, ref) => {
   const { className, ...rest } = props
@@ -462,7 +462,7 @@ export interface ModalFooterProps extends HTMLChakraProps<"footer"> {}
 
 /**
  * ModalFooter houses the action buttons of the modal.
- * @see Docs https://chakra-ui.com/docs/components/modal
+ * @see Docs https://chakra-ui.com/docs/overlay/modal
  */
 export const ModalFooter = forwardRef<ModalFooterProps, "footer">(
   (props, ref) => {
