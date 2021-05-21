@@ -44,7 +44,7 @@ async function redirect() {
     // COMPONENTS
     {
       source: "/accordion",
-      destination: "/docs/components/accordion",
+      destination: "/docs/disclosure/accordion",
       permanent: true,
     },
     {
@@ -64,7 +64,7 @@ async function redirect() {
     },
     {
       source: "/avatar",
-      destination: "/docs/data-display/avatar",
+      destination: "/docs/media-and-icons/avatar",
       permanent: true,
     },
     {
@@ -78,8 +78,13 @@ async function redirect() {
       permanent: true,
     },
     {
+      source: "/wrap",
+      destination: "/docs/layout/wrap",
+      permanent: true,
+    },
+    {
       source: "/breadcrumb",
-      destination: "/docs/components/breadcrumb",
+      destination: "/docs/navigation/breadcrumb",
       permanent: true,
     },
     {
@@ -108,8 +113,18 @@ async function redirect() {
       permanent: true,
     },
     {
+      source: "/portal",
+      destination: "/docs/components/portal",
+      permanent: true,
+    },
+    {
       source: "/collapse",
       destination: "/docs/components/transition#collapse",
+      permanent: true,
+    },
+    {
+      source: "/center",
+      destination: "/docs/layout/center",
       permanent: true,
     },
     {
@@ -155,7 +170,7 @@ async function redirect() {
     },
     {
       source: "/icon",
-      destination: "/docs/components/icon",
+      destination: "/docs/media-and-icons/icon",
       permanent: true,
     },
     {
@@ -165,7 +180,7 @@ async function redirect() {
     },
     {
       source: "/image",
-      destination: "/docs/data-display/image",
+      destination: "/docs/media-and-icons/image",
       permanent: true,
     },
     {
@@ -175,7 +190,12 @@ async function redirect() {
     },
     {
       source: "/link",
-      destination: "/docs/components/link",
+      destination: "/docs/navigation/link",
+      permanent: true,
+    },
+    {
+      source: "/kbd",
+      destination: "/docs/data-display/kbd",
       permanent: true,
     },
     {
@@ -261,7 +281,7 @@ async function redirect() {
     },
     {
       source: "/tabs",
-      destination: "/docs/components/tabs",
+      destination: "/docs/disclosure/tabs",
       permanent: true,
     },
     {
@@ -290,43 +310,8 @@ async function redirect() {
       permanent: true,
     },
     {
-      source: "/docs/components/accordion",
-      destination: "/docs/disclosure/accordion",
-      permanent: true,
-    },
-    {
-      source: "/docs/components/tabs",
-      destination: "/docs/disclosure/tabs",
-      permanent: true,
-    },
-    {
       source: "/docs/components/visually-hidden",
       destination: "/docs/disclosure/visually-hidden",
-      permanent: true,
-    },
-    {
-      source: "/docs/components/breadcrumb",
-      destination: "/docs/navigation/breadcrumb",
-      permanent: true,
-    },
-    {
-      source: "/docs/components/link",
-      destination: "/docs/navigation/link",
-      permanent: true,
-    },
-    {
-      source: "/docs/data-display/avatar",
-      destination: "/docs/media-and-icons/avatar",
-      permanent: true,
-    },
-    {
-      source: "/docs/data-display/image",
-      destination: "/docs/media-and-icons/image",
-      permanent: true,
-    },
-    {
-      source: "/docs/components/icon",
-      destination: "/docs/media-and-icons/icon",
       permanent: true,
     },
   ]

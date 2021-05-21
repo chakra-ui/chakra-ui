@@ -21,7 +21,7 @@ export interface KbdProps extends HTMLChakraProps<"kbd">, ThemingProps<"Kbd"> {}
  * <Kbd>⌘ + T</Kbd>
  * ```
  *
- * @see Docs https://chakra-ui.com/docs/data-display/kbd
+ * @see Docs https://chakra-ui.com/kbd
  */
 export const Kbd = forwardRef<KbdProps, "kbd">((props, ref) => {
   const styles = useStyleConfig("Kbd", props)

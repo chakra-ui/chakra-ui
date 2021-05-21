@@ -44,7 +44,7 @@ export interface RadioGroupProps
  * Used for multiple radios which are bound in one group,
  * and it indicates which option is selected.
  *
- * @see Docs https://chakra-ui.com/docs/form/radio
+ * @see Docs https://chakra-ui.com/radio
  */
 export const RadioGroup = forwardRef<RadioGroupProps, "div">((props, ref) => {
   const { colorScheme, size, variant, children, className, ...rest } = props

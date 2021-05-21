@@ -20,7 +20,7 @@ export interface TagProps
 /**
  * The tag component is used to label or categorize UI elements.
  * To style the tag globally, change the styles in `theme.components.Tag`
- * @see Docs https://chakra-ui.com/docs/data-display/tag
+ * @see Docs https://chakra-ui.com/tag
  */
 export const Tag = forwardRef<TagProps, "span">((props, ref) => {
   const styles = useMultiStyleConfig("Tag", props)
@@ -92,7 +92,7 @@ export interface TagCloseButtonProps
 
 /**
  * TagCloseButton is used to close "remove" the tag
- * @see Docs https://chakra-ui.com/docs/components/tag
+ * @see Docs https://chakra-ui.com/tag
  */
 export const TagCloseButton: React.FC<TagCloseButtonProps> = (props) => {
   const { isDisabled, children, ...rest } = props

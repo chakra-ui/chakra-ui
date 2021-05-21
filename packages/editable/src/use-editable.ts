@@ -74,7 +74,7 @@ export interface UseEditableProps {
 /**
  * React hook for managing the inline renaming of some text.
  *
- * @see Docs https://chakra-ui.com/docs/editable
+ * @see Docs https://chakra-ui.com/editable
  */
 export function useEditable(props: UseEditableProps = {}) {
   const {
