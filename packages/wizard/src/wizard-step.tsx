@@ -55,11 +55,9 @@ export const WizardStep = forwardRef<FullStepProps, "div">(
       description: descriptionProp,
     } = props
 
-    const Icon = React.useMemo(
-      () =>
-        React.isValidElement(CustomIcon) ? motion(CustomIcon) : AnimatedCheck,
-      [CustomIcon],
-    )
+    const Icon = React.useMemo(() => (CustomIcon ? motion(CustomIcon) : null), [
+      CustomIcon,
+    ])
 
     const { step, stepIcon, label, description } = useStyles()
 
@@ -85,6 +83,15 @@ export const WizardStep = forwardRef<FullStepProps, "div">(
 
     const isVertical = orientation === "vertical"
 
+    const renderLabel = () => {
+      if (Icon) return <Icon />
+      return (
+        <AnimatedSpan key="label" __css={label} {...{ ...animationConfig }}>
+          {(index || 0) + 1}
+        </AnimatedSpan>
+      )
+    }
+
     return (
       <chakra.div
         ref={ref}
@@ -109,7 +116,7 @@ export const WizardStep = forwardRef<FullStepProps, "div">(
           >
             <AnimatePresence exitBeforeEnter>
               {isCompletedStep ? (
-                <Icon
+                <AnimatedCheck
                   key="icon"
                   width="18px"
                   height="18px"
@@ -117,13 +124,7 @@ export const WizardStep = forwardRef<FullStepProps, "div">(
                   {...{ ...animationConfig }}
                 />
               ) : (
-                <AnimatedSpan
-                  key="label"
-                  __css={label}
-                  {...{ ...animationConfig }}
-                >
-                  {(index || 0) + 1}
-                </AnimatedSpan>
+                renderLabel()
               )}
             </AnimatePresence>
           </chakra.div>
