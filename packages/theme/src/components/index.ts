@@ -12,6 +12,7 @@ import Divider from "./divider"
 import Drawer from "./drawer"
 import Editable from "./editable"
 import Form from "./form"
+import FormError from "./form-error"
 import FormLabel from "./form-label"
 import Heading from "./heading"
 import Input from "./input"
@@ -37,7 +38,7 @@ import Tabs from "./tabs"
 import Tag from "./tag"
 import Textarea from "./textarea"
 import Tooltip from "./tooltip"
-import FormError from "./form-error"
+import Wizard from "./wizard"
 
 export default {
   Accordion,
@@ -79,5 +80,6 @@ export default {
   Tag,
   Textarea,
   Tooltip,
+  Wizard,
   FormError,
 }

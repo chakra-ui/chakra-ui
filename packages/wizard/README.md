@@ -1,7 +1,6 @@
 # Wizard
 
-Use this component to display extra information about an element by displaying a
-floating description.
+Use this component to guide users through incrmental steps of a task.
 
 ## Installation
 
