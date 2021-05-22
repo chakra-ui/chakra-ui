@@ -104,8 +104,6 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
       return () => clearTimeout(timeout)
     }, [])
 
-    const hasStartingHeight = parseFloat(startingHeight.toString()) > 0
-
     /**
      * Warn 🚨: `startingHeight` and `unmountOnExit` are mutually exclusive
      *
@@ -124,9 +122,7 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
       transition: !mounted ? { enter: { duration: 0 } } : transition,
       transitionEnd: mergeWith(transitionEnd, {
         enter: { overflow: "initial" },
-        exit: {
-          display: hasStartingHeight ? "block" : "none",
-        },
+        exit: {},
       }),
     }
 

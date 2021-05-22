@@ -59,7 +59,9 @@
     "react": ">=16.8.6"
   },
   "devDependencies": {
+    "chart.js": "^3.2.1",
     "framer-motion": "^4.0.0",
-    "react": "^17.0.1"
+    "react": "^17.0.1",
+    "react-chartjs-2": "^3.0.3"
   }
 }
