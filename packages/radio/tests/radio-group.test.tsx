@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import { FormControl } from "@chakra-ui/react"
 import { fireEvent, render } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Radio, useRadioGroup, UseRadioGroupProps } from "../src"
@@ -139,4 +141,23 @@ test("has the proper role", () => {
   const utils = render(<Component />)
 
   utils.getByRole("radiogroup")
+})
+
+test("should use unique id when wrapped in FormControl", () => {
+  const Component = () => {
+    const { getRootProps, getRadioProps, setValue } = useRadioGroup()
+
+    return (
+      <FormControl>
+        <button onClick={() => setValue("a")}>Set</button>
+        <div {...getRootProps()}>
+          <Radio {...getRadioProps({ value: "a" })}>a</Radio>
+          <Radio {...getRadioProps({ value: "b" })}>b</Radio>
+        </div>
+      </FormControl>
+    )
+  }
+  const { getAllByRole } = render(<Component />)
+  const [input1, input2] = getAllByRole("radio")
+  expect(input1.id === input2.id).toBeFalsy()
 })

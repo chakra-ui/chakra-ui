@@ -14,8 +14,10 @@ export function useMachine<C extends Dict, S extends string>(
   )
   useSafeLayoutEffect(() => {
     service.start()
-    return () => service.stop()
+    return () => {
+      service.stop()
+    }
   }, [service])
   const state = useSnapshot(service.state)
-  return [state, service.send] as const
+  return [state, service.send, service] as const
 }

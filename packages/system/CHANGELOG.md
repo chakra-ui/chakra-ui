@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.6.6
+
+### Patch Changes
+
+- [`ddd5ef4a1`](https://github.com/chakra-ui/chakra-ui/commit/ddd5ef4a1e9cc988c99b80c26579205ea4c57b2f)
+  [#3985](https://github.com/chakra-ui/chakra-ui/pull/3985) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Attach CSS vars to
+  `:host, :root` to fix usage in shadow dom.
+
+- Updated dependencies
+  [[`773497896`](https://github.com/chakra-ui/chakra-ui/commit/773497896e65ffbbda10e75b6e0a7bb5b68c853a)]:
+  - @chakra-ui/styled-system@1.11.0
+
 ## 1.6.5
 
 ### Patch Changes

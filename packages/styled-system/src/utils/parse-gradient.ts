@@ -14,7 +14,7 @@ const directionMap = {
 
 const valueSet = new Set(Object.values(directionMap))
 
-const globalSet = new Set([
+export const globalSet = new Set([
   "none",
   "-moz-initial",
   "inherit",

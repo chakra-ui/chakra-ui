@@ -1,4 +1,4 @@
-import { useFormControlProps } from "@chakra-ui/form-control"
+import { useFormControlContext } from "@chakra-ui/form-control"
 import { useBoolean, useControllableProp, useId } from "@chakra-ui/hooks"
 import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import {
@@ -16,6 +16,7 @@ import {
   useRef,
   useState,
 } from "react"
+import { useRadioGroupContext } from "./radio-group"
 
 /**
  * @todo use the `useClickable` hook here
@@ -77,6 +78,10 @@ export interface UseRadioProps {
    * Function called when checked state of the `input` changes
    */
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  /**
+   * @internal
+   */
+  "data-radiogroup"?: any
 }
 
 export function useRadio(props: UseRadioProps = {}) {
@@ -93,17 +98,25 @@ export function useRadio(props: UseRadioProps = {}) {
     name,
     value,
     id: idProp,
+    "data-radiogroup": dataRadioGroup,
     ...htmlProps
   } = props
 
-  const id = useId(idProp, "radio")
+  const uuid = useId(undefined, "radio")
 
-  const formControl = useFormControlProps<HTMLInputElement>(props)
+  const formControl = useFormControlContext()
+  const group = useRadioGroupContext()
 
-  const isDisabled = formControl?.isDisabled
-  const isReadOnly = formControl?.isReadOnly
-  const isRequired = formControl?.isRequired
-  const isInvalid = formControl?.isInvalid
+  const isWithinRadioGroup = !!group || !!dataRadioGroup
+  const isWithinFormControl = !!formControl
+
+  let id = isWithinFormControl && !isWithinRadioGroup ? formControl.id : uuid
+  id = idProp ?? id
+
+  const isDisabled = isDisabledProp ?? formControl?.isDisabled
+  const isReadOnly = isReadOnlyProp ?? formControl?.isReadOnly
+  const isRequired = isRequiredProp ?? formControl?.isRequired
+  const isInvalid = isInvalidProp ?? formControl?.isInvalid
 
   const [isFocused, setFocused] = useBoolean()
   const [isHovered, setHovering] = useBoolean()
@@ -191,7 +204,7 @@ export function useRadio(props: UseRadioProps = {}) {
     ],
   )
 
-  const { onFocus, onBlur } = formControl
+  const { onFocus, onBlur } = formControl ?? {}
 
   const getInputProps: PropGetter<HTMLInputElement> = useCallback(
     (props = {}, forwardedRef = null) => {
@@ -223,7 +236,12 @@ export function useRadio(props: UseRadioProps = {}) {
         onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
         checked: isChecked,
         disabled: trulyDisabled,
+        readOnly: isReadOnly,
+        required: isRequired,
+        "aria-invalid": ariaAttr(isInvalid),
         "aria-disabled": ariaAttr(trulyDisabled),
+        "aria-readonly": ariaAttr(isReadOnly),
+        "aria-required": ariaAttr(isRequired),
         style: visuallyHiddenStyle,
       }
     },
@@ -240,6 +258,9 @@ export function useRadio(props: UseRadioProps = {}) {
       onKeyDown,
       onKeyUp,
       isChecked,
+      isReadOnly,
+      isRequired,
+      isInvalid,
     ],
   )
 

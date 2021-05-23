@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.3.1
+
+### Patch Changes
+
+- [`c1f8d90ad`](https://github.com/chakra-ui/chakra-ui/commit/c1f8d90ad7ebd9594e9888010170cda7969f0ded)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  onAnimationComplete is not forwarded to motion element
+
 ## 1.3.0
 
 ### Minor Changes

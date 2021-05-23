@@ -241,23 +241,22 @@ function DrawerExample() {
         onClose={onClose}
         finalFocusRef={btnRef}
       >
-        <DrawerOverlay>
-          <DrawerContent>
-            <DrawerCloseButton />
-            <DrawerHeader>Create your account</DrawerHeader>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>Create your account</DrawerHeader>
 
-            <DrawerBody>
-              <Input placeholder="Type here..." />
-            </DrawerBody>
+          <DrawerBody>
+            <Input placeholder="Type here..." />
+          </DrawerBody>
 
-            <DrawerFooter>
-              <Button variant="outline" mr={3} onClick={onClose}>
-                Cancel
-              </Button>
-              <Button color="blue">Save</Button>
-            </DrawerFooter>
-          </DrawerContent>
-        </DrawerOverlay>
+          <DrawerFooter>
+            <Button variant="outline" mr={3} onClick={onClose}>
+              Cancel
+            </Button>
+            <Button color="blue">Save</Button>
+          </DrawerFooter>
+        </DrawerContent>
       </Drawer>
     </>
   )
