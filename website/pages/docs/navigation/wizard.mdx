@@ -1,0 +1,281 @@
+---
+title: Wizard
+package: "@chakra-ui/table"
+image: "components/wizard.svg"
+description:
+  "The Wizard component is a navigation bar that guides users through sequential
+  steps of a task."
+---
+
+Wizards display progress through a sequence of logical and numbered steps.
+
+<ComponentLinks
+  theme={{ componentName: "wizard" }}
+  github={{ package: "wizard" }}
+  npm={{ package: "@chakra-ui/wizard" }}
+/>
+
+<carbon-ad />
+
+## Import
+
+```js
+import { Wizard, WizardStep } from "@chakra-ui/react"
+```
+
+## Basic Usage
+
+```jsx
+function WizardExample() {
+  const [activeStep, setActiveStep] = React.useState(0)
+  return (
+    <>
+      <Wizard py={6} colorScheme="teal" activeStep={activeStep}>
+        <WizardStep label="Step 1" />
+        <WizardStep label="Step 2" />
+        <WizardStep label="Step 3" />
+      </Wizard>
+      <Flex pt={4} justify="space-between">
+        <Button
+          isDisabled={activeStep === 0}
+          onClick={() => setActiveStep(activeStep - 1)}
+        >
+          Previous
+        </Button>
+        <Button
+          isDisabled={activeStep === 3}
+          onClick={() => setActiveStep(activeStep + 1)}
+        >
+          Next
+        </Button>
+      </Flex>
+    </>
+  )
+}
+```
+
+## Wizard Orientation
+
+The Wizard component accepts 2 orientations, `vertical` and `horizontal`. The
+default orientation is `horizontal`.
+
+```jsx
+function VerticalWizard() {
+  const [activeStep, setActiveStep] = React.useState(0)
+  return (
+    <>
+      <Wizard py={6} orientation="vertical" activeStep={activeStep}>
+        <WizardStep label="Step 1" />
+        <WizardStep label="Step 2" />
+        <WizardStep label="Step 3" />
+      </Wizard>
+      <Flex pt={4} justify="space-between">
+        <Button
+          isDisabled={activeStep === 0}
+          onClick={() => setActiveStep(activeStep - 1)}
+        >
+          Previous
+        </Button>
+        <Button
+          isDisabled={activeStep === 3}
+          onClick={() => setActiveStep(activeStep + 1)}
+        >
+          Next
+        </Button>
+      </Flex>
+    </>
+  )
+}
+```
+
+When in `vertical` orientation, the WizardStep component also accepts children
+to render extra information about the current step:
+
+```jsx
+function VerticalWizardWithChildren() {
+  const ContentBox = (props) => (
+    <Flex
+      p={4}
+      ml={4}
+      rounded="md"
+      flexDir="column"
+      textAlign="left"
+      justify="space-between"
+      {...props}
+    >
+      {props.children}
+    </Flex>
+  )
+
+  const [activeStep, setActiveStep] = React.useState(0)
+
+  const color = useColorModeValue("gray.700", "gray.200")
+  const bg = useColorModeValue("gray.200", "gray.700")
+
+  return (
+    <>
+      <Wizard py={6} orientation="vertical" activeStep={activeStep}>
+        <WizardStep label="Step 1">
+          <ContentBox bg={bg} color={color}>
+            <chakra.span>I'm a child component!</chakra.span>
+          </ContentBox>
+        </WizardStep>
+        <WizardStep label="Step 2">
+          <ContentBox bg={bg} color={color}>
+            <chakra.span>I'm also a child component!</chakra.span>
+            <chakra.span mt={1}>
+              You can add some extra content in here describing your steps
+            </chakra.span>
+          </ContentBox>
+        </WizardStep>
+        <WizardStep label="Step 3">
+          <ContentBox bg={bg} color={color}>
+            <chakra.span>I'm also a child component!</chakra.span>
+          </ContentBox>
+        </WizardStep>
+      </Wizard>
+      <Flex pt={4} justify="space-between">
+        <Button
+          isDisabled={activeStep === 0}
+          onClick={() => setActiveStep(activeStep - 1)}
+        >
+          Previous
+        </Button>
+        <Button
+          isDisabled={activeStep === 3}
+          onClick={() => setActiveStep(activeStep + 1)}
+        >
+          Next
+        </Button>
+      </Flex>
+    </>
+  )
+}
+```
+
+## Custom Icons
+
+The WizardStep component also allows you to pass custom icons if you would like
+to change the default numerical indicator:
+
+```jsx
+function WizardWithCustomIcons() {
+  const [activeStep, setActiveStep] = React.useState(0)
+  return (
+    <>
+      <Wizard
+        py={6}
+        colorScheme="green"
+        orientation="vertical"
+        activeStep={activeStep}
+      >
+        <WizardStep
+          label="Step 1"
+          icon={CalendarIcon}
+          description="Here's a calendar icon"
+        />
+        <WizardStep
+          label="Step 2"
+          icon={DeleteIcon}
+          description="Here's a delete icon"
+        />
+        <WizardStep
+          label="Step 3"
+          icon={ChatIcon}
+          description="Here's a chat icon"
+        />
+      </Wizard>
+      <Flex pt={4} justify="space-between">
+        <Button
+          isDisabled={activeStep === 0}
+          onClick={() => setActiveStep(activeStep - 1)}
+        >
+          Previous
+        </Button>
+        <Button
+          isDisabled={activeStep === 3}
+          onClick={() => setActiveStep(activeStep + 1)}
+        >
+          Next
+        </Button>
+      </Flex>
+    </>
+  )
+}
+```
+
+## Wizard States
+
+The WizardStep accepts two states, `isLoading` and `isError` which when defined
+will provide visual feedback on the current active step:
+
+```jsx
+function WizardStates() {
+  const [activeStep, setActiveStep] = React.useState(0)
+  return (
+    <>
+      <p>Loading</p>
+      <Wizard py={6} isLoading activeStep={activeStep}>
+        <WizardStep label="Step 1" />
+        <WizardStep label="Step 2" />
+        <WizardStep label="Step 3" />
+      </Wizard>
+      <Flex mb={6} pt={4} justify="space-between" />
+      <p>Error</p>
+      <Wizard py={6} isError activeStep={activeStep}>
+        <WizardStep label="Step 1" />
+        <WizardStep label="Step 2" />
+        <WizardStep label="Step 3" />
+      </Wizard>
+      <Flex pt={4} justify="space-between">
+        <Button onClick={() => setActiveStep(activeStep - 1)}>Previous</Button>
+        <Button onClick={() => setActiveStep(activeStep + 1)}>Next</Button>
+      </Flex>
+    </>
+  )
+}
+```
+
+## Wizard Sizing
+
+The wizard component is available in 3 sizes: `sm`, `md`, `lg`. The default size
+is `md`.
+
+```jsx
+function WizardSizeExample() {
+  const [activeStep, setActiveStep] = React.useState(0)
+  return (
+    <>
+      <Wizard py={6} colorScheme="green" activeStep={activeStep} size="sm">
+        <WizardStep label="Step 1" />
+        <WizardStep label="Step 2" />
+        <WizardStep label="Step 3" />
+      </Wizard>
+      <Flex pt={4} justify="space-between">
+        <Button
+          isDisabled={activeStep === 0}
+          onClick={() => setActiveStep(activeStep - 1)}
+        >
+          Previous
+        </Button>
+        <Button
+          isDisabled={activeStep === 3}
+          onClick={() => setActiveStep(activeStep + 1)}
+        >
+          Next
+        </Button>
+      </Flex>
+    </>
+  )
+}
+```
+
+## Props
+
+### Wizard
+
+<PropsTable of="Wizard" />
+
+### WizardStep
+
+<PropsTable of="WizardStep" />

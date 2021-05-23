@@ -360,6 +360,10 @@
             {
               "title": "LinkOverlay",
               "path": "/docs/navigation/link-overlay"
+            },
+            {
+              "title": "Wizard",
+              "path": "/docs/navigation/wizard"
             }
           ]
         },
