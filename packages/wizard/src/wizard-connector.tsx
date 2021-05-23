@@ -16,13 +16,20 @@ export interface WizardConnectorProps
     ThemingProps {
   isCompletedStep: boolean
   isVertical: boolean
+  isLastStep?: boolean
 }
 
 const Connector = motion(chakra.div)
 
 export const WizardConnector = forwardRef(
   (
-    { colorScheme: c, isCompletedStep, isVertical }: WizardConnectorProps,
+    {
+      colorScheme: c,
+      isCompletedStep,
+      isVertical,
+      children,
+      isLastStep,
+    }: WizardConnectorProps,
     ref: React.Ref<HTMLDivElement>,
   ) => {
     const { connector, stepIcon } = useStyles()
@@ -42,15 +49,26 @@ export const WizardConnector = forwardRef(
         ref={ref}
         __css={{
           ...connector,
-          minHeight: isVertical ? "1.5rem" : "auto",
+          my: isVertical ? 2 : 0,
+          minHeight: isLastStep || !isVertical ? "auto" : "1.5rem",
           ml: isVertical ? `calc(${stepIcon.width} / 2)` : 0,
-          width: isVertical ? "2px" : "auto",
+          width: isVertical ? "100%" : "auto",
+          borderLeftWidth: isLastStep || !isVertical ? 0 : "2px",
         }}
-        initial={{ backgroundColor: rawInitialColor }}
+        initial={{
+          backgroundColor: isVertical ? "transparent" : rawInitialColor,
+        }}
         animate={{
-          backgroundColor: isCompletedStep ? rawActiveColor : rawInitialColor,
+          ...(!isVertical && {
+            backgroundColor: isCompletedStep ? rawActiveColor : rawInitialColor,
+          }),
+          ...(isVertical && {
+            borderColor: isCompletedStep ? rawActiveColor : rawInitialColor,
+          }),
         }}
-      />
+      >
+        {isVertical && children}
+      </Connector>
     )
   },
 )

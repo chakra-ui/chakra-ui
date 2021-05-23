@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/button"
 import { CalendarIcon, ChatIcon, DeleteIcon } from "@chakra-ui/icons"
-import { Flex } from "@chakra-ui/react"
+import { Flex, useColorModeValue } from "@chakra-ui/react"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import { Wizard, WizardStep } from "../src"
@@ -21,13 +21,7 @@ export const DefaultWizard = () => {
   return (
     <>
       <p>Default</p>
-      <Wizard
-        py={6}
-        isLoading
-        isError
-        colorScheme="teal"
-        activeStep={activeStep}
-      >
+      <Wizard py={6} colorScheme="teal" activeStep={activeStep}>
         <WizardStep label="Step 1" />
         <WizardStep label="Step 2" />
         <WizardStep label="Step 3" />
@@ -46,9 +40,69 @@ export const VerticalWizard = () => {
     <>
       <p>Vertical</p>
       <Wizard py={6} orientation="vertical" activeStep={activeStep}>
-        <WizardStep label="Step 1" description="This is a description" />
-        <WizardStep label="Step 2" description="This is a description" />
-        <WizardStep label="Step 3" description="This is a description" />
+        <WizardStep label="Step 1" />
+        <WizardStep label="Step 2" />
+        <WizardStep label="Step 3" />
+      </Wizard>
+      <Flex pt={4} justify="space-between">
+        <Button onClick={() => setActiveStep(activeStep - 1)}>Previous</Button>
+        <Button onClick={() => setActiveStep(activeStep + 1)}>Next</Button>
+      </Flex>
+    </>
+  )
+}
+
+export const VerticalWizardWithChildren = () => {
+  const [activeStep, setActiveStep] = React.useState(0)
+
+  const color = useColorModeValue("gray.700", "gray.200")
+  const bg = useColorModeValue("gray.200", "gray.700")
+
+  return (
+    <>
+      <p>Vertical</p>
+      <Wizard py={6} orientation="vertical" activeStep={activeStep}>
+        <WizardStep label="Step 1">
+          <Flex
+            ml={4}
+            p={4}
+            justify="space-between"
+            bg={bg}
+            color={color}
+            rounded="md"
+          >
+            <chakra.span>I'm a child component!</chakra.span>
+          </Flex>
+        </WizardStep>
+        <WizardStep label="Step 2">
+          <Flex
+            p={4}
+            ml={4}
+            rounded="md"
+            flexDir="column"
+            bg={bg}
+            color={color}
+            textAlign="left"
+            justify="space-between"
+          >
+            <chakra.span>I'm also a child component!</chakra.span>
+            <chakra.span mt={1}>
+              You can add some extra content in here describing your steps
+            </chakra.span>
+          </Flex>
+        </WizardStep>
+        <WizardStep label="Step 3">
+          <Flex
+            p={4}
+            ml={4}
+            bg={bg}
+            rounded="md"
+            color={color}
+            justify="space-between"
+          >
+            <chakra.span>I'm also a child component!</chakra.span>
+          </Flex>
+        </WizardStep>
       </Wizard>
       <Flex pt={4} justify="space-between">
         <Button onClick={() => setActiveStep(activeStep - 1)}>Previous</Button>
@@ -116,6 +170,33 @@ export const WizardSizes = () => {
         <WizardStep label="Step 1" />
         <WizardStep label="Step 2" />
         <WizardStep label="Step 3" />
+      </Wizard>
+      <Flex pt={4} justify="space-between">
+        <Button onClick={() => setActiveStep(activeStep - 1)}>Previous</Button>
+        <Button onClick={() => setActiveStep(activeStep + 1)}>Next</Button>
+      </Flex>
+    </>
+  )
+}
+
+export const WizardStates = () => {
+  const [activeStep, setActiveStep] = React.useState(0)
+  return (
+    <>
+      <p>Loading</p>
+      <Wizard py={6} isLoading activeStep={activeStep}>
+        <WizardStep label="Step 1" />
+        <WizardStep label="Step 2" />
+        <WizardStep label="Step 3" />
+        <WizardStep label="Step 4" />
+      </Wizard>
+      <Flex mb={6} pt={4} justify="space-between" />
+      <p>Error</p>
+      <Wizard py={6} isError activeStep={activeStep}>
+        <WizardStep label="Step 1" />
+        <WizardStep label="Step 2" />
+        <WizardStep label="Step 3" />
+        <WizardStep label="Step 4" />
       </Wizard>
       <Flex pt={4} justify="space-between">
         <Button onClick={() => setActiveStep(activeStep - 1)}>Previous</Button>

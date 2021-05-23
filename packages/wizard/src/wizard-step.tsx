@@ -15,7 +15,6 @@ import { WizardConnector } from "./wizard-connector"
 
 const AnimatedCheck = motion(CheckIcon)
 const AnimatedCloseIcon = motion(CloseIcon)
-
 const AnimatedSpan = motion(chakra.span)
 export interface WizardStepProps extends HTMLChakraProps<"div">, ThemingProps {
   label?: string
@@ -49,6 +48,7 @@ interface FullStepProps extends WizardStepProps, WizardInternalConfig {}
 export const WizardStep = forwardRef<FullStepProps, "div">(
   (props, ref: React.Ref<any>) => {
     const {
+      children,
       isCompletedStep,
       isCurrentStep,
       index,
@@ -61,6 +61,7 @@ export const WizardStep = forwardRef<FullStepProps, "div">(
       labelOrientation,
       isLoading,
       isError,
+      ...styleProps
     } = props
 
     const Icon = React.useMemo(() => (CustomIcon ? motion(CustomIcon) : null), [
@@ -141,6 +142,8 @@ export const WizardStep = forwardRef<FullStepProps, "div">(
     return (
       <chakra.div
         ref={ref}
+        {...styleProps}
+        aria-disabled={!hasVisited}
         __css={{
           ...step,
           opacity,
@@ -167,6 +170,7 @@ export const WizardStep = forwardRef<FullStepProps, "div">(
             <AnimatePresence exitBeforeEnter>{renderIcon()}</AnimatePresence>
           </chakra.div>
           <chakra.div
+            aria-current={isCurrentStep}
             __css={{
               display: "flex",
               flexDir: "column",
@@ -186,13 +190,29 @@ export const WizardStep = forwardRef<FullStepProps, "div">(
             )}
           </chakra.div>
         </chakra.div>
-        {!isLastStep && (
-          <WizardConnector
-            isVertical={isVertical}
-            colorScheme={props.colorScheme}
-            isCompletedStep={isCompletedStep || false}
-          />
-        )}
+        <WizardConnector
+          isLastStep={isLastStep}
+          isVertical={isVertical}
+          colorScheme={props.colorScheme}
+          isCompletedStep={isCompletedStep || false}
+        >
+          <AnimatePresence exitBeforeEnter>
+            {isCurrentStep && (
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                transition={{
+                  type: "just",
+                  staggerChildren: 0.2,
+                  when: "afterChildren",
+                }}
+                exit={{ scale: 0, opacity: 0, height: 0 }}
+                animate={{ scale: 1, opacity: 1, height: "auto" }}
+              >
+                {children}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </WizardConnector>
       </chakra.div>
     )
   },

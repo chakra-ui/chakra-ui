@@ -85,7 +85,7 @@ const sizes = {
       fontSize: "md",
     },
     description: {
-      fontWeight: "medium",
+      fontWeight: "lighter",
       textAlign: "center",
       fontSize: "sm",
     },
