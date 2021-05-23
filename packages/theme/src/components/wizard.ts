@@ -20,10 +20,7 @@ const baseStyle = (props: Dict) => {
       justifyContent: "flex-start",
     },
     stepIcon: {
-      width: "40px",
-      height: "40px",
       display: "flex",
-      borderWidth: "2px",
       borderRadius: "50%",
       alignItems: "center",
       justifyContent: "center",
@@ -50,158 +47,74 @@ const baseStyle = (props: Dict) => {
   }
 }
 
-// const modifierNumber = {
-//   "&[data-is-numeric=true]": {
-//     textAlign: "right",
-//   },
-// }
-
-// const simpleVariant = (props: Dict) => {
-//   const { colorScheme: c } = props
-
-//   return {
-//     th: {
-//       color: mode(`gray.600`, `gray.400`)(props),
-//       textTransform: "uppercase",
-//       letterSpacing: "wider",
-//       fontWeight: "medium",
-//       borderBottom: "1px",
-//       borderColor: mode(`${c}.100`, `${c}.700`)(props),
-//       ...modifierNumber,
-//     },
-//     td: {
-//       borderBottom: "1px",
-//       borderColor: mode(`${c}.100`, `${c}.700`)(props),
-//       ...modifierNumber,
-//     },
-//     caption: {
-//       fontWeight: "bold",
-//       color: mode(`gray.600`, `gray.100`)(props),
-//     },
-//     tfoot: {
-//       tr: {
-//         "&:last-of-type": {
-//           th: {
-//             borderBottomWidth: 0,
-//           },
-//         },
-//       },
-//     },
-//   }
-// }
-
-// const stripedVariant = (props: Dict) => {
-//   const { colorScheme: c } = props
-
-//   return {
-//     th: {
-//       color: mode(`gray.600`, `gray.400`)(props),
-//       textTransform: "uppercase",
-//       letterSpacing: "wider",
-//       fontWeight: "medium",
-//       borderBottom: "1px",
-//       borderColor: mode(`${c}.100`, `${c}.700`)(props),
-//       ...modifierNumber,
-//     },
-//     td: {
-//       borderBottom: "1px",
-//       borderColor: mode(`${c}.100`, `${c}.700`)(props),
-//       ...modifierNumber,
-//     },
-//     caption: {
-//       fontWeight: "bold",
-//       color: mode(`gray.600`, `gray.100`)(props),
-//     },
-//     tbody: {
-//       tr: {
-//         "&:nth-of-type(odd)": {
-//           "th, td": {
-//             borderBottomWidth: "1px",
-//             borderColor: mode(`${c}.100`, `${c}.700`)(props),
-//           },
-//           td: {
-//             background: mode(`${c}.100`, `${c}.700`)(props),
-//           },
-//         },
-//       },
-//     },
-//     tfoot: {
-//       tr: {
-//         "&:last-of-type": {
-//           th: {
-//             borderBottomWidth: 0,
-//           },
-//         },
-//       },
-//     },
-//   }
-// }
-
-const variants = {
-  // simple: simpleVariant,
-  // striped: stripedVariant,
-  unstyled: {},
-}
-
 const sizes = {
   sm: {
-    th: {
-      px: "4",
-      py: "1",
-      lineHeight: "4",
-      fontSize: "xs",
+    stepIcon: {
+      width: "32px",
+      height: "32px",
+      borderWidth: "1px",
     },
-    td: {
-      px: "4",
-      py: "2",
-      lineHeight: "4",
+    icon: {
+      width: "16px",
+      height: "16px",
     },
-    caption: {
-      px: "4",
-      py: "2",
+    label: {
+      fontWeight: "medium",
+      textAlign: "center",
+      fontSize: "sm",
+    },
+    description: {
+      fontWeight: "medium",
+      textAlign: "center",
       fontSize: "xs",
     },
   },
   md: {
-    th: {
-      px: "6",
-      py: "3",
-      lineHeight: "4",
-      fontSize: "xs",
+    stepIcon: {
+      width: "40px",
+      height: "40px",
+      borderWidth: "2px",
     },
-    td: {
-      px: "6",
-      py: "4",
-      lineHeight: "5",
+    icon: {
+      width: "20px",
+      height: "20px",
     },
-    caption: {
-      px: "6",
-      py: "2",
+    label: {
+      fontWeight: "medium",
+      textAlign: "center",
+      fontSize: "md",
+    },
+    description: {
+      fontWeight: "medium",
+      textAlign: "center",
       fontSize: "sm",
     },
   },
   lg: {
-    th: {
-      px: "8",
-      py: "4",
-      lineHeight: "5",
-      fontSize: "sm",
+    stepIcon: {
+      width: "56px",
+      height: "56px",
+      borderWidth: "2px",
     },
-    td: {
-      px: "8",
-      py: "5",
-      lineHeight: "6",
+    icon: {
+      width: "24px",
+      height: "24px",
     },
-    caption: {
-      px: "6",
-      py: "2",
+    label: {
+      fontWeight: "bold",
+      textAlign: "center",
+      fontSize: "lg",
+    },
+    description: {
+      fontWeight: "lighter",
+      textAlign: "center",
       fontSize: "md",
     },
   },
 }
 
 const defaultProps = {
-  variant: "simple",
+  variant: "unstyled",
   size: "md",
   colorScheme: "green",
 }
@@ -209,7 +122,6 @@ const defaultProps = {
 export default {
   parts,
   baseStyle,
-  variants,
   sizes,
   defaultProps,
 }

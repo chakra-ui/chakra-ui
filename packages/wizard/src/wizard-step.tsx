@@ -1,5 +1,6 @@
 import { useColorModeValue } from "@chakra-ui/color-mode"
-import { CheckIcon } from "@chakra-ui/icons"
+import { CheckIcon, CloseIcon } from "@chakra-ui/icons"
+import { Spinner } from "@chakra-ui/spinner"
 import {
   chakra,
   forwardRef,
@@ -13,10 +14,11 @@ import * as React from "react"
 import { WizardConnector } from "./wizard-connector"
 
 const AnimatedCheck = motion(CheckIcon)
+const AnimatedCloseIcon = motion(CloseIcon)
 
 const AnimatedSpan = motion(chakra.span)
 export interface WizardStepProps extends HTMLChakraProps<"div">, ThemingProps {
-  label: string
+  label?: string
   description?: string
   icon?: React.ComponentType<any>
 }
@@ -27,7 +29,10 @@ interface WizardInternalConfig {
   isCompletedStep?: boolean
   isCurrentStep?: boolean
   isLastStep?: boolean
+  labelOrientation?: "vertical" | "horizontal"
   orientation?: "vertical" | "horizontal"
+  isLoading?: boolean
+  isError?: boolean
 }
 
 const animationConfig = {
@@ -53,29 +58,42 @@ export const WizardStep = forwardRef<FullStepProps, "div">(
       icon: CustomIcon,
       orientation,
       description: descriptionProp,
+      labelOrientation,
+      isLoading,
+      isError,
     } = props
 
     const Icon = React.useMemo(() => (CustomIcon ? motion(CustomIcon) : null), [
       CustomIcon,
     ])
 
-    const { step, stepIcon, label, description } = useStyles()
+    const { step, stepIcon, label, description, icon } = useStyles()
 
     const activeBg = `${c}.500`
 
     const inactiveBg = useColorModeValue(`gray.200`, `gray.700`)
 
     const getBorderColor = React.useMemo(() => {
-      if (isCompletedStep || isCurrentStep) return activeBg
+      if (isCompletedStep) return activeBg
+      if (isCurrentStep) {
+        if (isError) {
+          return "red.500"
+        }
+        return activeBg
+      }
       return inactiveBg
-    }, [isCompletedStep, isCurrentStep, activeBg, inactiveBg])
+    }, [isError, isCompletedStep, isCurrentStep, activeBg, inactiveBg])
 
     const getBgColor = React.useMemo(() => {
       if (isCompletedStep) return activeBg
-      if (isCurrentStep)
-        return mode(darken(inactiveBg, 0.25), lighten(inactiveBg, 0.25))
+      if (isCurrentStep) {
+        if (isError) {
+          return "red.500"
+        }
+        return mode(darken(inactiveBg, 0.5), lighten(inactiveBg, 0.5))
+      }
       return inactiveBg
-    }, [isCompletedStep, isCurrentStep, activeBg, inactiveBg])
+    }, [isError, isCompletedStep, isCurrentStep, activeBg, inactiveBg])
 
     const hasVisited = isCurrentStep || isCompletedStep
 
@@ -83,7 +101,35 @@ export const WizardStep = forwardRef<FullStepProps, "div">(
 
     const isVertical = orientation === "vertical"
 
-    const renderLabel = () => {
+    const renderIcon = () => {
+      if (isCompletedStep) {
+        return (
+          <AnimatedCheck
+            key="icon"
+            color="white"
+            {...{ ...animationConfig }}
+            {...{ ...icon }}
+          />
+        )
+      }
+      if (isCurrentStep) {
+        if (isError)
+          return (
+            <AnimatedCloseIcon
+              key="icon"
+              color="white"
+              {...{ ...animationConfig }}
+              {...{ ...icon }}
+            />
+          )
+        if (isLoading)
+          return (
+            <Spinner
+              width={icon.width as string}
+              height={icon.height as string}
+            />
+          )
+      }
       if (Icon) return <Icon />
       return (
         <AnimatedSpan key="label" __css={label} {...{ ...animationConfig }}>
@@ -105,7 +151,11 @@ export const WizardStep = forwardRef<FullStepProps, "div">(
         }}
       >
         <chakra.div
-          __css={{ display: "flex", flexDir: "row", alignItems: "center" }}
+          __css={{
+            display: "flex",
+            flexDir: labelOrientation === "vertical" ? "column" : "row",
+            alignItems: "center",
+          }}
         >
           <chakra.div
             __css={{
@@ -114,19 +164,7 @@ export const WizardStep = forwardRef<FullStepProps, "div">(
               borderColor: getBorderColor,
             }}
           >
-            <AnimatePresence exitBeforeEnter>
-              {isCompletedStep ? (
-                <AnimatedCheck
-                  key="icon"
-                  width="18px"
-                  height="18px"
-                  color="white"
-                  {...{ ...animationConfig }}
-                />
-              ) : (
-                renderLabel()
-              )}
-            </AnimatePresence>
+            <AnimatePresence exitBeforeEnter>{renderIcon()}</AnimatePresence>
           </chakra.div>
           <chakra.div
             __css={{

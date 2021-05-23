@@ -7,11 +7,15 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
+import { cx } from "@chakra-ui/utils"
 import * as React from "react"
 
 export interface WizardProps extends HTMLChakraProps<"div">, ThemingProps {
   activeStep: number
   orientation?: "vertical" | "horizontal"
+  labelOrientation?: "vertical" | "horizontal"
+  isLoading?: boolean
+  isError?: boolean
 }
 
 export const Wizard = forwardRef<WizardProps, "div">(
@@ -23,6 +27,9 @@ export const Wizard = forwardRef<WizardProps, "div">(
       activeStep,
       children,
       orientation,
+      labelOrientation,
+      isLoading,
+      isError,
       ...wizardProps
     } = omitThemingProps(props)
 
@@ -38,6 +45,7 @@ export const Wizard = forwardRef<WizardProps, "div">(
             flexDir: orientation === "vertical" ? "column" : "row",
             ...styles.wizard,
           }}
+          className={cx("chakra-wizard", className)}
           {...wizardProps}
           ref={ref}
         >
@@ -53,12 +61,14 @@ export const Wizard = forwardRef<WizardProps, "div">(
               isCurrentStep,
               isLastStep,
               orientation,
+              labelOrientation,
+              isLoading,
+              isError,
             }
 
-            return (
-              React.isValidElement(child) &&
-              React.cloneElement(child, stepProps)
-            )
+            return React.isValidElement(child)
+              ? React.cloneElement(child, stepProps)
+              : null
           })}
         </chakra.div>
       </StylesProvider>
