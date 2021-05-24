@@ -27,7 +27,7 @@ export interface Contributor {
 
 export interface Sponsor {
   MemberId: number
-  comapny: null
+  company: null
   createdAt: string
   description: string
   email: null
