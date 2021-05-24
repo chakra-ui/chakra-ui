@@ -109,8 +109,8 @@ export const WizardStep = forwardRef<FullStepProps, "div">(
           <AnimatedCheck
             key="icon"
             color="white"
-            {...{ ...animationConfig }}
-            {...{ ...icon }}
+            {...animationConfig}
+            {...icon}
           />
         )
       }
@@ -120,8 +120,8 @@ export const WizardStep = forwardRef<FullStepProps, "div">(
             <AnimatedCloseIcon
               key="icon"
               color="white"
-              {...{ ...animationConfig }}
-              {...{ ...icon }}
+              {...animationConfig}
+              {...icon}
             />
           )
         if (isLoading)
@@ -134,7 +134,7 @@ export const WizardStep = forwardRef<FullStepProps, "div">(
       }
       if (Icon) return <Icon />
       return (
-        <AnimatedSpan key="label" __css={label} {...{ ...animationConfig }}>
+        <AnimatedSpan key="label" __css={label} {...animationConfig}>
           {(index || 0) + 1}
         </AnimatedSpan>
       )
@@ -196,6 +196,7 @@ export const WizardStep = forwardRef<FullStepProps, "div">(
           isVertical={isVertical}
           colorScheme={props.colorScheme}
           isCompletedStep={isCompletedStep || false}
+          hasLabel={!!labelProp || !!descriptionProp}
         >
           <Collapse in={isCurrentStep}>{children}</Collapse>
         </WizardConnector>

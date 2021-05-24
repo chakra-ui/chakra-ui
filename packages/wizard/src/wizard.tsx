@@ -40,14 +40,14 @@ export const Wizard = forwardRef<WizardProps, "div">(
     return (
       <StylesProvider value={styles}>
         <chakra.div
+          ref={ref}
           __css={{
             justifyContent: stepCount === 1 ? "flex-end" : "space-between",
             flexDir: orientation === "vertical" ? "column" : "row",
             ...styles.wizard,
           }}
-          className={cx("chakra-wizard", className)}
           {...wizardProps}
-          ref={ref}
+          className={cx("chakra-wizard", className)}
         >
           {React.Children.map(children, (child, i) => {
             const isCompletedStep = i < activeStep

@@ -1,6 +1,13 @@
 import { mode } from "@chakra-ui/theme-tools"
 
-const parts = ["wizard", "step", "stepIcon", "connector"]
+const parts = [
+  "wizard",
+  "step",
+  "stepIcon",
+  "connector",
+  "label",
+  "description",
+]
 
 type Dict = Record<string, any>
 
@@ -114,7 +121,6 @@ const sizes = {
 }
 
 const defaultProps = {
-  variant: "unstyled",
   size: "md",
   colorScheme: "green",
 }
