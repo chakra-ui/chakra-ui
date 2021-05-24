@@ -50,10 +50,11 @@ export const WizardConnector = forwardRef(
         __css={{
           ...connector,
           my: isVertical ? 2 : 0,
-          minHeight: isLastStep || !isVertical ? "auto" : "1.5rem",
-          ml: isVertical ? `calc(${stepIcon.width} / 2)` : 0,
+          pl: isVertical ? 4 : 0,
           width: isVertical ? "100%" : "auto",
+          ml: isVertical ? `calc(${stepIcon.width} / 2)` : 0,
           borderLeftWidth: isLastStep || !isVertical ? 0 : "2px",
+          minHeight: isLastStep || !isVertical ? "auto" : "1.5rem",
         }}
         initial={{
           backgroundColor: isVertical ? "transparent" : rawInitialColor,

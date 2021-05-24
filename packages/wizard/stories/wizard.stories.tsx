@@ -64,7 +64,6 @@ export const VerticalWizardWithChildren = () => {
       <Wizard py={6} orientation="vertical" activeStep={activeStep}>
         <WizardStep label="Step 1">
           <Flex
-            ml={4}
             p={4}
             justify="space-between"
             bg={bg}
@@ -77,7 +76,6 @@ export const VerticalWizardWithChildren = () => {
         <WizardStep label="Step 2">
           <Flex
             p={4}
-            ml={4}
             rounded="md"
             flexDir="column"
             bg={bg}
@@ -94,7 +92,6 @@ export const VerticalWizardWithChildren = () => {
         <WizardStep label="Step 3">
           <Flex
             p={4}
-            ml={4}
             bg={bg}
             rounded="md"
             color={color}

@@ -9,6 +9,7 @@ import {
   useStyles,
 } from "@chakra-ui/system"
 import { darken, lighten, mode } from "@chakra-ui/theme-tools"
+import { Collapse } from "@chakra-ui/transition"
 import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
 import { WizardConnector } from "./wizard-connector"
@@ -16,14 +17,14 @@ import { WizardConnector } from "./wizard-connector"
 const AnimatedCheck = motion(CheckIcon)
 const AnimatedCloseIcon = motion(CloseIcon)
 const AnimatedSpan = motion(chakra.span)
-export interface WizardStepProps extends HTMLChakraProps<"div">, ThemingProps {
+export interface WizardStepProps extends HTMLChakraProps<"div"> {
   label?: string
   description?: string
   icon?: React.ComponentType<any>
 }
 
 // Props which shouldn't be passed to to the WizardStep component from the user
-interface WizardInternalConfig {
+interface WizardInternalConfig extends ThemingProps {
   index?: number
   isCompletedStep?: boolean
   isCurrentStep?: boolean
@@ -196,22 +197,7 @@ export const WizardStep = forwardRef<FullStepProps, "div">(
           colorScheme={props.colorScheme}
           isCompletedStep={isCompletedStep || false}
         >
-          <AnimatePresence exitBeforeEnter>
-            {isCurrentStep && (
-              <motion.div
-                initial={{ scale: 0, opacity: 0 }}
-                transition={{
-                  type: "just",
-                  staggerChildren: 0.2,
-                  when: "afterChildren",
-                }}
-                exit={{ scale: 0, opacity: 0, height: 0 }}
-                animate={{ scale: 1, opacity: 1, height: "auto" }}
-              >
-                {children}
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <Collapse in={isCurrentStep}>{children}</Collapse>
         </WizardConnector>
       </chakra.div>
     )
