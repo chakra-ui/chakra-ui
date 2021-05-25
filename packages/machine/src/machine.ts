@@ -422,6 +422,9 @@ export class Machine<
     if (!actions) return
     actions = toArray(actions)
     for (const action of actions) {
+      if (isString(action) && !this.actionsMap?.[action]) {
+        console.warn(`${action} not implemented in ${this.id}`)
+      }
       const fn = isString(action) ? this.actionsMap?.[action] : action
       fn?.(this.state.context, event)
     }
