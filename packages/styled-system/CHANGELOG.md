@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.11.1
+
+### Patch Changes
+
+- [`d9d66a9e8`](https://github.com/chakra-ui/chakra-ui/commit/d9d66a9e876f076ffd1c8bb531fd03e9074d325f)
+  [#4048](https://github.com/chakra-ui/chakra-ui/pull/4048) Thanks
+  [@mcha-dev](https://github.com/mcha-dev)! - fixed boolean condition affecting
+  bgImage url
+
 ## 1.11.0
 
 ### Minor Changes
