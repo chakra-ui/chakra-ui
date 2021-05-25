@@ -206,7 +206,7 @@ function WizardWithCustomIcons() {
 
 ## Wizard States
 
-The WizardStep accepts two states, `isLoading` and `isError` which when defined
+The Wizard component accepts two states, `isLoading` and `isError` which when defined
 will provide visual feedback on the current active step:
 
 ```jsx
@@ -278,4 +278,4 @@ function WizardSizeExample() {
 
 ### WizardStep
 
-<PropsTable of="WizardStep" />
+<PropsTable of="WizardStep" only={["label", "description", "icon"]} />

@@ -58,7 +58,6 @@
     "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/lines-between-class-members": "off",
     "no-alert": "off",
-    "@typescript-eslint/no-implied-eval": "off",
     "react/jsx-filename-extension": [
       "error",
       { "extensions": [".js", ".tsx"] }
@@ -76,9 +75,9 @@
   },
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx", "*.js"],
+      "files": ["*.ts", "*.tsx"],
       "parserOptions": {
-        "project": ["tsconfig.json", "./packages/*/tsconfig.json"]
+        "project": ["tsconfig.json"]
       }
     }
   ]

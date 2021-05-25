@@ -61,7 +61,7 @@ export const AspectRatio = forwardRef<AspectRatioProps, "div">((props, ref) => {
         },
         "& > img, & > video": {
           objectFit: "cover",
-        },
+        }
       }}
       {...rest}
     >

@@ -5,7 +5,7 @@ import {
   HTMLChakraProps,
   ThemingProps,
   useStyles,
-  useTheme,
+  useTheme
 } from "@chakra-ui/system"
 import { getColor } from "@chakra-ui/theme-tools"
 import { motion } from "framer-motion"

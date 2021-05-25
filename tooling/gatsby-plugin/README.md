@@ -54,7 +54,11 @@ work correctly.
   are passed to this instance
 
 ```jsx
-<ChakraProvider theme={theme} resetCSS={resetCSS} portalZIndex={portalZIndex}>
+<ChakraProvider
+  theme={theme}
+  resetCSS={resetCSS}
+  portalZIndex={portalZIndex}
+>
   {element}
 </ChakraProvider>
 ```
@@ -95,8 +99,8 @@ To use customize the theme in your Gatsby site, you can shadow the plugin's
 import { extendTheme } from "@chakra-ui/react"
 const theme = {
   colors: {
-    primary: "rebeccapurple",
-  },
+    primary: "rebeccapurple"
+  }
 }
 
 export default extendTheme(theme)
