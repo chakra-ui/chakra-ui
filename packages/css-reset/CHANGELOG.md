@@ -162,4 +162,3 @@ All notable changes to this project will be documented in this file. See
   ([c21681b](https://github.com/chakra-ui/chakra-ui/commit/c21681b982322b6af957b49ec484ac62020b90b5))
 - use pseudo element instead of pseudo class
   ([756cdae](https://github.com/chakra-ui/chakra-ui/commit/756cdaeb1f72f7dcbda45124b78696c7638c80de))
-  
