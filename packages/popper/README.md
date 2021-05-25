@@ -76,7 +76,7 @@ const { popperRef, referenceRef } = usePopper({
 
 ### Place the popper next to the reference
 
-You can place the popper next to the reference without margin or distancebetween them. 
+You can place the popper next to the reference without margin or distance between them.
 Useful to create an autocomplete or typeahead feature.
 
 ```jsx
