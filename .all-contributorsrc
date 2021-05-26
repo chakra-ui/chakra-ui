@@ -1866,6 +1866,15 @@
         "ideas",
         "code"
       ]
+    },
+    {
+      "login": "imalbert",
+      "name": "imalbert",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12537973?v=4",
+      "profile": "https://github.com/imalbert",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
