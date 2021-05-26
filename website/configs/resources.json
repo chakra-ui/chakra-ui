@@ -113,6 +113,14 @@
       "url": "https://www.youtube.com/watch?v=lhOvI9s5gQY"
     },
     {
+      "heading": "Chakra UI: Design vs Dev Challenge #1",
+      "type": "video",
+      "tags": ["Next.js", "Design Implementation", "v1.6.2"],
+      "author": "Lazar Nikolov",
+      "description": "In this video Lazar is rebuilding a full Chat App interface designed by Denys Sergushkin.",
+      "url": "https://www.youtube.com/watch?v=wGhZMOInL18"
+    },
+    {
       "heading": "The Chakra UI Component Library",
       "type": "talk",
       "tags": ["React", "UI", "Accessibility"],
