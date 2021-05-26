@@ -14,6 +14,27 @@ To better understand the changelog, here are some legends we use:
 - 🚀 Feature
 - 🐛 Bug fix
 
+## 26-05-2021
+
+`@chakra-ui/react@1.6.3`
+
+**Popper** `v2.2.0`
+
+The `popper.js` instance will not be created until the `enabled` option is
+`true`. This improves the render and scroll performance when you use many
+popper-related items.
+
+Affected components: Menu, Popover and Tooltip components
+
+**Media Query** `v1.0.14` Fix issue where `useMediaQuery` does not work as
+expected when use within an `iframe`. The hook now references the correct
+`ownerDocument`
+
+**Styled System** `v1.6.7`
+
+- Fix boolean condition affecting `bgImage` url
+- Fix import type issues caused by the `WithCSSVar` type
+
 ## 17-05-2021
 
 `@chakra-ui/react@1.6.2`
