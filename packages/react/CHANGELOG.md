@@ -1,5 +1,22 @@
 # Change Log
 
+## 1.6.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d9f8bea60`](https://github.com/chakra-ui/chakra-ui/commit/d9f8bea6081020c1841cb0d0f094642c7ce71db6),
+  [`760607680`](https://github.com/chakra-ui/chakra-ui/commit/76060768093b056a8d645b981da12f147bb7cf0f),
+  [`5e24481fc`](https://github.com/chakra-ui/chakra-ui/commit/5e24481fc73b0097d0bac900479d7cc145a92670)]:
+  - @chakra-ui/modal@1.8.7
+  - @chakra-ui/media-query@1.0.14
+  - @chakra-ui/popper@2.2.0
+  - @chakra-ui/menu@1.6.3
+  - @chakra-ui/popover@1.7.1
+  - @chakra-ui/tooltip@1.3.6
+  - @chakra-ui/skeleton@1.1.14
+  - @chakra-ui/system@1.6.7
+
 ## 1.6.2
 
 ### Patch Changes

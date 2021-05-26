@@ -1,5 +1,13 @@
 # @chakra-ui/machine
 
+## 1.4.1
+
+### Patch Changes
+
+- [`21ca6725d`](https://github.com/chakra-ui/chakra-ui/commit/21ca6725d50c091b2a0e91e625d10b7221359db5)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Remove warning for
+  self transitions and add error for invalid state nodes
+
 ## 1.4.0
 
 ### Minor Changes

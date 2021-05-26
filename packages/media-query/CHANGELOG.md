@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.0.14
+
+### Patch Changes
+
+- [`760607680`](https://github.com/chakra-ui/chakra-ui/commit/76060768093b056a8d645b981da12f147bb7cf0f)
+  [#4038](https://github.com/chakra-ui/chakra-ui/pull/4038) Thanks
+  [@cschroeter](https://github.com/cschroeter)! - fix(media-query): fix an issue
+  with useBreakpointValue
+
 ## 1.0.13
 
 ### Patch Changes

@@ -422,6 +422,9 @@ export class Machine<
     if (!actions) return
     actions = toArray(actions)
     for (const action of actions) {
+      if (isString(action) && !this.actionsMap?.[action]) {
+        console.warn(`${action} not implemented in ${this.id}`)
+      }
       const fn = isString(action) ? this.actionsMap?.[action] : action
       fn?.(this.state.context, event)
     }
@@ -667,19 +670,16 @@ export class Machine<
     type TransitionDfn = S.TransitionDefinition<TContext, TState, TEvent>
 
     const event = toEvent(evt) as TEvent
+
     if (!stateNode && !this.config.on) {
-      console.warn("[machine]: state doesn't have a definition")
-      return
+      throw new Error("[machine]: state node has no definition")
     }
 
     const _transition =
       stateNode?.on?.[event.type] ?? this.config.on?.[event.type]
 
     const transition = toTransition(_transition, this.state.current)
-    if (!transition) {
-      console.warn("[machine]: Could not determine transition")
-      return
-    }
+    if (!transition) return
 
     let next = this.getNextState(event, transition as TransitionDfn)
     //@ts-ignore

@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.8.7
+
+### Patch Changes
+
+- [`d9f8bea60`](https://github.com/chakra-ui/chakra-ui/commit/d9f8bea6081020c1841cb0d0f094642c7ce71db6)
+  [#4046](https://github.com/chakra-ui/chakra-ui/pull/4046) Thanks
+  [@mcha-dev](https://github.com/mcha-dev)! - Fix link in @see doc
+
 ## 1.8.6
 
 ### Patch Changes

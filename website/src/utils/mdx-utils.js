@@ -26,7 +26,7 @@ async function processFrontmatter(options) {
   // get the slug
   const slug = fileToPath(mdxPath)
 
-  // if frontmatter inclues author, add the author's data
+  // if frontmatter includes author, add the author's data
   const authorData = author ? await getGithubUserData(author) : undefined
 
   return {
