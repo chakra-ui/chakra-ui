@@ -1,5 +1,11 @@
-import { chakra } from "@chakra-ui/system"
 import { useInterval } from "@chakra-ui/hooks"
+import {
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerOverlay,
+} from "@chakra-ui/modal"
+import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import { Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs } from "../src"
 
@@ -228,3 +234,31 @@ export const WithSwappedTabs = () => {
     </chakra.div>
   )
 }
+
+export const withinDrawer = () => (
+  <Drawer isOpen onClose={console.log}>
+    <DrawerOverlay>
+      <DrawerContent>
+        <DrawerBody>
+          <Tabs variant="unstyled" isManual>
+            <TabList>
+              <Tab>Settings</Tab>
+              <Tab>Billings</Tab>
+              <Tab>Preferences</Tab>
+              <Tab>Shut Down</Tab>
+            </TabList>
+
+            <TabIndicator mt="-4" zIndex={-1} height="4px" bg="green.200" />
+
+            <TabPanels>
+              <TabPanel>Settings</TabPanel>
+              <TabPanel>Billings</TabPanel>
+              <TabPanel>Preferences</TabPanel>
+              <TabPanel>Shut Down</TabPanel>
+            </TabPanels>
+          </Tabs>
+        </DrawerBody>
+      </DrawerContent>
+    </DrawerOverlay>
+  </Drawer>
+)
