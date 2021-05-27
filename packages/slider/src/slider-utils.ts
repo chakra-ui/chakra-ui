@@ -22,6 +22,9 @@ export function getPartsStyle(options: {
   const thumbStyle: CSSProperties = {
     position: "absolute",
     userSelect: "none",
+    WebkitUserSelect: "none",
+    MozUserSelect: "none",
+    msUserSelect: "none",
     touchAction: "none",
     ...orient({
       orientation,

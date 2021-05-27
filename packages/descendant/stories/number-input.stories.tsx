@@ -1,34 +1,33 @@
-import { useInterval } from "@chakra-ui/hooks"
-import { chakra } from "@chakra-ui/system"
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from "react"
-import {
-  DescendantsContextProvider,
-  useDescendant,
-  useDescendants,
-} from "../src"
+import createDescendantContext from "../src"
 
 export default {
   title: "Descendants / NumberInput",
 }
 
+const [
+  DescendantsProvider,
+  useDescendantsContext,
+  useDescendants,
+  useDescendant,
+] = createDescendantContext<HTMLInputElement, { value?: string }>()
+
 function NumberInput({ children }: { children?: React.ReactNode }) {
-  const context = useDescendants<HTMLDivElement, { value?: string }>()
-  const { descendants } = context
+  const descendants = useDescendants()
 
   React.useEffect(() => {
     descendants.first().node.focus()
-  }, [])
+  }, [descendants])
 
   return (
-    <DescendantsContextProvider value={context as any}>
-      {children}
-    </DescendantsContextProvider>
+    <DescendantsProvider value={descendants}>{children}</DescendantsProvider>
   )
 }
 
 function Input() {
   const [focused, setFocused] = React.useState(false)
-  const { register, index, descendants } = useDescendant<HTMLInputElement>()
+  const { register, index, descendants } = useDescendant()
 
   return (
     <input

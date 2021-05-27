@@ -7,7 +7,7 @@ import { useSafeLayoutEffect, cast } from "./utils"
  * @internal
  * React hook that initializes the DescendantsManager
  */
-export function useDescendants<T extends HTMLElement = HTMLElement, K = {}>() {
+function useDescendants<T extends HTMLElement = HTMLElement, K = {}>() {
   const [descendants] = useState(() => new DescendantsManager<T, K>())
   useSafeLayoutEffect(() => {
     return () => descendants.destroy()
@@ -26,7 +26,7 @@ export interface UseDescendantsReturn
   NB:  I recommend using `createDescendantContext` below
  * -----------------------------------------------------------------------------------------------*/
 
-export const [
+const [
   DescendantsContextProvider,
   useDescendantsContext,
 ] = createContext<UseDescendantsReturn>({
@@ -41,8 +41,8 @@ export const [
  * - ref callback to register the descendant
  * - Its enabled index compared to other enabled descendants
  */
-export function useDescendant<T extends HTMLElement = HTMLElement, K = {}>(
-  options?: DescendantOptions & K,
+function useDescendant<T extends HTMLElement = HTMLElement, K = {}>(
+  options?: DescendantOptions<K>,
 ) {
   const descendants = useDescendantsContext()
   const [index, setIndex] = useState(-1)
@@ -90,7 +90,7 @@ export function createDescendantContext<
   const _useDescendantsContext = () =>
     cast<DescendantsManager<T, K>>(useDescendantsContext())
 
-  const _useDescendant = (options?: DescendantOptions & K) =>
+  const _useDescendant = (options?: DescendantOptions<K>) =>
     useDescendant<T, K>(options)
 
   const _useDescendants = () => useDescendants<T, K>()

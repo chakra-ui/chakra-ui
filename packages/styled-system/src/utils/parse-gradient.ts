@@ -1,5 +1,5 @@
 import { Dict } from "@chakra-ui/utils"
-import { PropConfig } from "../prop-config"
+import { Transform } from "./types"
 
 const directionMap = {
   "to-t": "to top",
@@ -14,7 +14,7 @@ const directionMap = {
 
 const valueSet = new Set(Object.values(directionMap))
 
-const globalSet = new Set([
+export const globalSet = new Set([
   "none",
   "-moz-initial",
   "inherit",
@@ -63,5 +63,5 @@ export function parseGradient(value: string | null | undefined, theme: Dict) {
   return `${_type}(${_values.join(", ")})`
 }
 
-export const gradientTransform: PropConfig["transform"] = (value, theme) =>
+export const gradientTransform: Transform = (value, theme) =>
   parseGradient(value, theme ?? {})

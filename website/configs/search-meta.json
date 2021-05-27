@@ -639,11 +639,11 @@
     "hierarchy": { "lvl1": "Keyboard Key", "lvl2": "Guideline", "lvl3": null }
   },
   {
-    "content": "Modifer",
+    "content": "Modifier",
     "id": "71a5eafc-282a-482a-815d-08ef1778b12a",
     "type": "lvl2",
-    "url": "/docs/data-display/kbd#modifer",
-    "hierarchy": { "lvl1": "Keyboard Key", "lvl2": "Modifer", "lvl3": null }
+    "url": "/docs/data-display/kbd#modifier",
+    "hierarchy": { "lvl1": "Keyboard Key", "lvl2": "Modifier", "lvl3": null }
   },
   {
     "content": "List",

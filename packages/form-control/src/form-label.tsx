@@ -41,10 +41,11 @@ export const FormLabel = forwardRef<FormLabelProps, "label">(
     } = props
 
     const field = useFormControlContext()
+    const ownProps = field?.getLabelProps(rest, ref) ?? { ref, ...rest }
 
     return (
       <chakra.label
-        {...field?.getLabelProps(rest, ref)}
+        {...ownProps}
         className={cx("chakra-form__label", props.className)}
         __css={{
           display: "block",

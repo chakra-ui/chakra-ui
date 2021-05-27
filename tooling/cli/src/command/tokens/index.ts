@@ -1,12 +1,14 @@
 import { promisify } from "util"
 import { writeFile } from "fs"
-import { fork } from "child_process"
+import { fork, Serializable } from "child_process"
 import path from "path"
 import ora from "ora"
 import {
   resolveOutputPath,
   themeInterfaceDestination,
 } from "./resolve-output-path"
+
+type ErrorRecord = Record<"err", string>
 
 const writeFileAsync = promisify(writeFile)
 
@@ -25,7 +27,15 @@ async function runTemplateWorker({
   )
 
   return new Promise((resolve, reject) => {
-    worker.on("message", (message) => resolve(String(message)))
+    worker.on("message", (message: ErrorRecord | Serializable) => {
+      const errMessage = (message as ErrorRecord)?.err
+
+      if (errMessage) {
+        reject(new Error(errMessage))
+      }
+
+      return resolve(String(message))
+    })
     worker.on("error", reject)
   })
 }

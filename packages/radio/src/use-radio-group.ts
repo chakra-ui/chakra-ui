@@ -122,6 +122,7 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
         name,
         [checkedKey]: value != null ? props.value === value : undefined,
         onChange,
+        "data-radiogroup": true,
       }
     },
     [isNative, name, onChange, value],

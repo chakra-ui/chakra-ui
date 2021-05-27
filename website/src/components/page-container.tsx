@@ -1,13 +1,15 @@
 import { useRouter } from "next/router"
 import * as React from "react"
-import { Badge, Box, chakra } from "@chakra-ui/react"
+import { Badge, Box, chakra, Flex } from "@chakra-ui/react"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
 import Container from "components/container"
 import EditPageLink from "components/edit-page-button"
 import Footer from "components/footer"
 import Header from "components/header"
 import SEO from "components/seo"
+import TableOfContent from "components/table-of-content"
 import { convertBackticksToInlineCode } from "utils/convert-backticks-to-inline-code"
+import { Heading } from "utils/get-headings"
 import PageTransition from "./page-transition"
 import { AdBanner } from "./chakra-pro/ad-banner"
 
@@ -35,12 +37,13 @@ interface PageContainerProps {
     version?: string
   }
   children: React.ReactNode
+  headings?: Heading[]
   sidebar?: any
   pagination?: any
 }
 
 function PageContainer(props: PageContainerProps) {
-  const { frontmatter, children, sidebar, pagination } = props
+  const { frontmatter, children, sidebar, pagination, headings = [] } = props
   useHeadingFocusOnRouteChange()
 
   const { title, description, editUrl, version } = frontmatter
@@ -51,38 +54,47 @@ function PageContainer(props: PageContainerProps) {
       <SkipNavLink zIndex={20}>Skip to Content</SkipNavLink>
       <AdBanner />
       <Header />
-      <Container as="main" className="main-content">
-        <Box display={{ base: "block", md: "flex" }}>
+      <Box as="main" className="main-content" w="full" maxW="8xl" mx="auto">
+        <Box display={{ md: "flex" }}>
           {sidebar || null}
-          <div style={{ flex: 1 }}>
+          <Box flex="1" minW="0">
             <SkipNavContent />
-            <Box
-              id="content"
-              // pt={3}
-              px={5}
-              mt="4.5rem"
-              mx="auto"
-              maxW="48rem"
-              minH="76vh"
-            >
-              <PageTransition>
-                <chakra.h1 tabIndex={-1} outline={0} apply="mdx.h1">
-                  {convertBackticksToInlineCode(title)}
-                </chakra.h1>
-                {version && (
-                  <Badge colorScheme="teal" letterSpacing="wider">
-                    v{version}
-                  </Badge>
-                )}
-                {children}
-              </PageTransition>
-              <Box mt="40px">{editUrl && <EditPageLink href={editUrl} />}</Box>
-              {pagination || null}
+            <Box id="content" px={5} mx="auto" minH="76vh">
+              <Flex>
+                <Box
+                  minW="0"
+                  flex="auto"
+                  px={{ base: "4", sm: "6", xl: "8" }}
+                  pt="10"
+                >
+                  <PageTransition style={{ maxWidth: "48rem" }}>
+                    <chakra.h1 tabIndex={-1} outline={0} apply="mdx.h1">
+                      {convertBackticksToInlineCode(title)}
+                    </chakra.h1>
+                    {version && (
+                      <Badge colorScheme="teal" letterSpacing="wider">
+                        v{version}
+                      </Badge>
+                    )}
+                    {children}
+                    <Box mt="40px">
+                      <Box>{editUrl && <EditPageLink href={editUrl} />}</Box>
+                      {pagination || null}
+                    </Box>
+                    <Box pb="20">
+                      <Footer />
+                    </Box>
+                  </PageTransition>
+                </Box>
+                <TableOfContent
+                  visibility={headings.length === 0 ? "hidden" : "initial"}
+                  headings={headings}
+                />
+              </Flex>
             </Box>
-            <Footer />
-          </div>
+          </Box>
         </Box>
-      </Container>
+      </Box>
     </>
   )
 }

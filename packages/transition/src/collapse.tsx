@@ -1,42 +1,20 @@
-import { useUpdateEffect } from "@chakra-ui/hooks"
-import { cx, warn, __DEV__ } from "@chakra-ui/utils"
-import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
+import { cx, mergeWith, warn, __DEV__ } from "@chakra-ui/utils"
+import {
+  AnimatePresence,
+  HTMLMotionProps,
+  motion,
+  Variants as _Variants,
+} from "framer-motion"
 import * as React from "react"
-import { EASINGS, MotionVariants } from "./__utils"
+import {
+  TransitionEasings,
+  Variants,
+  withDelay,
+  WithTransitionConfig,
+} from "./transition-utils"
 
-type CollapseVariants = MotionVariants<"enter" | "exit">
-
-const hasHeightValue = (value?: string | number) =>
+const isNumeric = (value?: string | number) =>
   value != null && parseInt(value.toString(), 10) > 0
-
-const variants: CollapseVariants = {
-  exit: (props: CollapseOptions) => ({
-    ...(props.animateOpacity && {
-      opacity: hasHeightValue(props.startingHeight) ? 1 : 0,
-    }),
-    height: props.startingHeight,
-    transition: {
-      height: { duration: 0.2, ease: EASINGS.ease },
-      opacity: { duration: 0.3, ease: EASINGS.ease },
-    },
-  }),
-  enter: (props: CollapseOptions) => ({
-    ...(props.animateOpacity && {
-      opacity: 1,
-    }),
-    height: props.endingHeight,
-    transition: {
-      height: {
-        duration: 0.3,
-        ease: EASINGS.ease,
-      },
-      opacity: {
-        duration: 0.4,
-        ease: EASINGS.ease,
-      },
-    },
-  }),
-}
 
 export interface CollapseOptions {
   /**
@@ -44,14 +22,6 @@ export interface CollapseOptions {
    * @default true
    */
   animateOpacity?: boolean
-  /**
-   * If `true`, the element will unmount when `in={false}` and animation is done
-   */
-  unmountOnExit?: boolean
-  /**
-   * If `true`, the content will be expanded
-   */
-  in?: boolean
   /**
    * The height you want the content in its collapsed state.
    * @default 0
@@ -64,12 +34,51 @@ export interface CollapseOptions {
   endingHeight?: number | string
 }
 
+const defaultTransitions = {
+  exit: {
+    height: { duration: 0.2, ease: TransitionEasings.ease },
+    opacity: { duration: 0.3, ease: TransitionEasings.ease },
+  },
+  enter: {
+    height: { duration: 0.3, ease: TransitionEasings.ease },
+    opacity: { duration: 0.4, ease: TransitionEasings.ease },
+  },
+}
+
+const variants: Variants<CollapseOptions> = {
+  exit: ({
+    animateOpacity,
+    startingHeight,
+    transition,
+    transitionEnd,
+    delay,
+  }) => ({
+    ...(animateOpacity && { opacity: isNumeric(startingHeight) ? 1 : 0 }),
+    overflow: "hidden",
+    height: startingHeight,
+    transitionEnd: transitionEnd?.exit,
+    transition:
+      transition?.exit ?? withDelay.exit(defaultTransitions.exit, delay),
+  }),
+  enter: ({
+    animateOpacity,
+    endingHeight,
+    transition,
+    transitionEnd,
+    delay,
+  }) => ({
+    ...(animateOpacity && { opacity: 1 }),
+    height: endingHeight,
+    transitionEnd: transitionEnd?.enter,
+    transition:
+      transition?.enter ?? withDelay.enter(defaultTransitions.enter, delay),
+  }),
+}
+
 export type ICollapse = CollapseProps
 
-type Display = React.CSSProperties["display"]
-
 export interface CollapseProps
-  extends HTMLMotionProps<"div">,
+  extends WithTransitionConfig<HTMLMotionProps<"div">>,
     CollapseOptions {}
 
 export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
@@ -82,33 +91,20 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
       endingHeight = "auto",
       style,
       className,
-      onAnimationComplete,
+      transition,
+      transitionEnd,
       ...rest
     } = props
 
-    const fromZeroHeight = startingHeight === 0
+    const [mounted, setMounted] = React.useState(false)
+    React.useEffect(() => {
+      const timeout = setTimeout(() => {
+        setMounted(true)
+      })
+      return () => clearTimeout(timeout)
+    }, [])
 
-    const [open, setOpen] = React.useState(!!isOpen)
-
-    const getInitialHidden = () => {
-      // If it is open by default, no need to apply `aria-hidden`
-      if (isOpen) return false
-      // If startingHeight > 0, then content is partially visible
-      if (hasHeightValue(startingHeight)) return false
-      // Else, the content is hidden
-      return true
-    }
-
-    const [display, setDisplay] = React.useState<Display>(() => {
-      if (!fromZeroHeight) return "block"
-      const hidden = getInitialHidden()
-      return hidden ? "none" : "block"
-    })
-
-    useUpdateEffect(() => {
-      setDisplay("block")
-      setOpen(!!isOpen)
-    }, [isOpen])
+    const hasStartingHeight = parseFloat(startingHeight.toString()) > 0
 
     /**
      * Warn 🚨: `startingHeight` and `unmountOnExit` are mutually exclusive
@@ -121,48 +117,42 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
       message: `startingHeight and unmountOnExit are mutually exclusive. You can't use them together`,
     })
 
-    const custom = { startingHeight, endingHeight, animateOpacity }
-
-    const ownProps: HTMLMotionProps<"div"> & React.RefAttributes<any> = {
-      ref,
-      // @future: set parameter as `definition` when we remove `framer-motion`
-      // v3 support
-      onAnimationComplete: (definition?: any) => {
-        if (!open && fromZeroHeight) {
-          setDisplay("none")
-        }
-        // @future: remove `any` cast when we remove `framer-motion` v3 support
-        ;(onAnimationComplete as any)?.(definition)
-      },
-      className: cx("chakra-collapse", className),
-      variants,
-      ...rest,
-      style: { overflow: "hidden", ...style },
-      custom,
+    const custom = {
+      startingHeight,
+      endingHeight,
+      animateOpacity,
+      transition: !mounted ? { enter: { duration: 0 } } : transition,
+      transitionEnd: mergeWith(transitionEnd, {
+        enter: { overflow: "initial" },
+        exit: {
+          display: hasStartingHeight ? "block" : "none",
+        },
+      }),
     }
 
-    if (unmountOnExit) {
-      return (
-        <AnimatePresence initial={false} custom={custom}>
-          {isOpen && (
-            <motion.div
-              {...ownProps}
-              initial="exit"
-              animate="enter"
-              exit="exit"
-            />
-          )}
-        </AnimatePresence>
-      )
-    }
+    const show = unmountOnExit ? isOpen : true
+    const animate = isOpen || unmountOnExit ? "enter" : "exit"
 
     return (
-      <motion.div
-        {...ownProps}
-        style={{ ...ownProps.style, display }}
-        initial={false}
-        animate={open ? "enter" : "exit"}
-      />
+      <AnimatePresence initial={false} custom={custom}>
+        {show && (
+          <motion.div
+            ref={ref}
+            {...rest}
+            className={cx("chakra-collapse", className)}
+            style={{
+              overflow: "hidden",
+              display: "block",
+              ...style,
+            }}
+            custom={custom}
+            variants={variants as _Variants}
+            initial={unmountOnExit ? "exit" : false}
+            animate={animate}
+            exit="exit"
+          />
+        )}
+      </AnimatePresence>
     )
   },
 )

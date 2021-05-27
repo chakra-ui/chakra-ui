@@ -1856,6 +1856,25 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "grikomsn",
+      "name": "Griko Nibras",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8220954?v=4",
+      "profile": "https://griko.id",
+      "contributions": [
+        "ideas",
+        "code"
+      ]
+    },
+    {
+      "login": "imalbert",
+      "name": "imalbert",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12537973?v=4",
+      "profile": "https://github.com/imalbert",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,

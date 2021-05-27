@@ -4,10 +4,19 @@ import _ from "lodash"
 
 const plop = nodePlop("plop-templates/plopfile.hbs")
 
+const workspaces = [
+  "packages",
+  "packages/@chakra-utils",
+  "packages/@chakra-machines",
+  "packages/@chakra-hooks",
+] as const
+
+type Workspace = typeof workspaces[number]
+
 interface Answers {
   componentName: string
   description: string
-  destinationDirectory: "packages" | "tooling"
+  outDir: Workspace
 }
 
 async function createPackage() {
@@ -28,19 +37,26 @@ async function createPackage() {
         name: "description",
         message: "The description of this component:",
       },
+      {
+        type: "list",
+        name: "outDir",
+        message: "where should this component or package live?",
+        default: "packages",
+        choices: workspaces,
+      },
     ],
     actions(answers: any) {
       const actions: ActionType[] = []
 
       if (!answers) return actions
 
-      const { componentName, description } = answers as Answers
+      const { componentName, description, outDir } = answers as Answers
 
       actions.push({
         type: "addMany",
-        templateFiles: "component-pkg/**",
-        destination: "../packages/{{dashCase componentName}}",
-        base: "component-pkg/",
+        templateFiles: "component/**",
+        destination: `../${outDir}/{{dashCase componentName}}`,
+        base: "component/",
         data: { description, componentName },
         abortOnFail: true,
       })

@@ -1,5 +1,37 @@
 # Change Log
 
+## 1.2.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@1.6.3
+  - @chakra-ui/props-docs@1.0.28
+
+## 1.2.6
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ddd5ef4a1`](https://github.com/chakra-ui/chakra-ui/commit/ddd5ef4a1e9cc988c99b80c26579205ea4c57b2f)]:
+  - @chakra-ui/react@1.6.2
+  - @chakra-ui/props-docs@1.0.27
+
+## 1.2.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01),
+  [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab),
+  [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd),
+  [`e8f64a4a6`](https://github.com/chakra-ui/chakra-ui/commit/e8f64a4a6ab5eac862ec8127dcf6c5852a0f84dd)]:
+  - @chakra-ui/utils@1.8.0
+  - @chakra-ui/cli@1.3.1
+  - @chakra-ui/react@1.6.1
+  - @chakra-ui/theme-tools@1.1.7
+  - @chakra-ui/props-docs@1.0.26
+
 ## 1.2.4
 
 ### Patch Changes

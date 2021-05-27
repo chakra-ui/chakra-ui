@@ -1,6 +1,6 @@
+import { render, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Collapse } from "../src"
-import { render, screen } from "@chakra-ui/test-utils"
 
 describe("<Collapse />", () => {
   it("should hide its children", async () => {

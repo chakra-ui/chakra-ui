@@ -1,37 +1,44 @@
 import { useBoolean } from "@chakra-ui/hooks"
 import * as React from "react"
-import { Fade } from "../src/fade"
+import { Fade, FadeProps } from "../src/fade"
 
 export default {
   title: "Transition / Fade",
 }
 
-const Component = (props: any) => {
+const Example = (props: FadeProps) => {
   const [open, { toggle }] = useBoolean(false)
   return (
     <>
       <button onClick={toggle}>Toggle Slide</button>
       <Fade
         in={open}
+        {...props}
         style={{
           maxWidth: 400,
           background: "red",
           padding: 30,
+          ...props.style,
         }}
-        {...props}
       >
         Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five
-        centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum.
+        industry.
       </Fade>
     </>
   )
 }
 
-export const Basic = () => <Component />
+export const Basic = () => <Example />
+
+export const WithCustomTransition = () => (
+  <Example transition={{ enter: { duration: 0.3 }, exit: { duration: 0.5 } }} />
+)
+
+export const WithTransitionEnd = () => (
+  <Example
+    style={{ display: "block" }}
+    transitionEnd={{ exit: { display: "none" } }}
+  />
+)
+
+export const WithTransitionDelay = () => <Example delay={{ enter: 0.2 }} />

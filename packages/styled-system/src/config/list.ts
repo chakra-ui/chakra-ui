@@ -1,5 +1,5 @@
 import * as CSS from "csstype"
-import { Config } from "../prop-config"
+import { Config } from "../utils/prop-config"
 import { ResponsiveValue, t } from "../utils"
 
 export const list: Config = {

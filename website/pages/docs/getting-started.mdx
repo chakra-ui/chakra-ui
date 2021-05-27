@@ -32,11 +32,11 @@ import * as React from "react"
 // 1. import `ChakraProvider` component
 import { ChakraProvider } from "@chakra-ui/react"
 
-function App() {
+function App({ Component }) {
   // 2. Use at the root of your app
   return (
     <ChakraProvider>
-      <App />
+      <Component />
     </ChakraProvider>
   )
 }
@@ -127,10 +127,10 @@ const colors = {
 const theme = extendTheme({ colors })
 
 // 3. Pass the `theme` prop to the `ChakraProvider`
-function App() {
+function App({ Component }) {
   return (
     <ChakraProvider theme={theme}>
-      <App />
+      <Component />
     </ChakraProvider>
   )
 }

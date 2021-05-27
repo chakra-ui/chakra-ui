@@ -62,6 +62,19 @@ export const Basic = () => (
   </div>
 )
 
+export const LazyMenu = () => (
+  <Menu isLazy>
+    <MenuButton as={Button}>Open Wakanda menu</MenuButton>
+    <MenuList>
+      {words.map((word) => (
+        <MenuItem key={word} onClick={logEvents}>
+          {word}
+        </MenuItem>
+      ))}
+    </MenuList>
+  </Menu>
+)
+
 export const WithDisabledItem = () => (
   <>
     <Menu>
@@ -412,10 +425,10 @@ export const WithCloseOnSelect = () => (
 )
 
 const MenuItemWithInput = (props: any) => {
-  const { role, ...rest } = useMenuItem(props)
+  const { role: _, ...rest } = useMenuItem(props)
   return (
-    <div role={role}>
-      <input {...rest} type="text" style={{ WebkitUserSelect: "all" }} />
+    <div>
+      <input {...rest} />
     </div>
   )
 }

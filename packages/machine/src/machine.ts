@@ -2,7 +2,7 @@
 import { nanoid } from "nanoid"
 import { ref, subscribe } from "valtio"
 import { proxyWithComputed as proxy } from "valtio/utils"
-import { CleanupFunction, Dict, MaybeArray, StateMachine as S } from "./types"
+import { Dict, MaybeArray, StateMachine as S } from "./types"
 import {
   INTERNAL_EVENTS,
   isArray,
@@ -15,12 +15,15 @@ import {
   toEvent,
   toTarget,
   toTransition,
+  toComputed,
+  isGuardHelper,
 } from "./utils"
 
-const toComputed = (obj: Dict = {}) =>
-  Object.fromEntries(
-    Object.entries(obj).map(([k, v]) => [k, (self: any) => v(self.context)]),
-  )
+export enum MachineStatus {
+  NotStarted = "Not Started",
+  Running = "Running",
+  Stopped = "Stopped",
+}
 
 /**
  * Machine is used to create, interpret, and execute finite state machines.
@@ -31,35 +34,35 @@ export class Machine<
   TState extends string,
   TEvent extends S.EventObject = S.AnyEventObject
 > {
+  status: MachineStatus = MachineStatus.NotStarted
   state: S.State<TContext>
   config: S.MachineConfig<TContext, TState, TEvent>
-  opts: S.MachineOptions<TContext, TEvent> | undefined
+  options: S.MachineOptions<TContext, TEvent> | undefined
   context: TContext
   id: string
   __type = MACHINE_TYPES.MACHINE
 
   // Cleanup function map (per state)
-  disposables = new Map<string, Set<CleanupFunction>>()
-  private afterActionsCache = new Map<string, any[]>()
+  private disposables = new Map<string, Set<VoidFunction>>()
+  private afterEventsMap = new Map<string, any[]>()
 
-  // For Parent <==> Spawned Child relationship
-  parent?: Machine<any, any>
-  children = new Map<string, Machine<any, any>>()
+  // For Parent <==> Spawned Actor relationship
+  private parent?: Machine<any, any>
+  private children = new Map<string, Machine<any, any>>()
 
   // A map of gaurd, action, delay implementations
-  guardsMap?: S.GuardsMap<TContext, TEvent>
-  actionsMap?: S.ActionsMap<TContext, TEvent>
-  delaysMap?: S.TimersMap<TContext, TEvent>
-  intervalsMap?: S.TimersMap<TContext, TEvent>
+  private guardsMap?: S.GuardsMap<TContext, TEvent>
+  private actionsMap?: S.ActionsMap<TContext, TEvent>
+  private delaysMap?: S.TimersMap<TContext, TEvent>
 
   // Let's get started!
   constructor(
     config: S.MachineConfig<TContext, TState, TEvent>,
-    opts?: S.MachineOptions<TContext, TEvent>,
+    options?: S.MachineOptions<TContext, TEvent>,
   ) {
-    this.opts = opts
+    this.options = options
     this.config = config
-    this.id = config.id ?? nanoid()
+    this.id = config.id ?? `machine-${nanoid()}`
     const context = config.context ?? ({} as TContext)
     this.context = context
     this.state = proxy(
@@ -69,14 +72,18 @@ export class Machine<
         event: "",
         context,
         done: false,
-        matches(value: string | string[]) {
+        tags: new Set<string>(),
+        hasTag(tag: string): boolean {
+          return this.tags.has(tag)
+        },
+        matches(value: string | string[]): boolean {
           return isArray(value)
             ? value.includes(this.current)
             : this.current === value
         },
       },
       {
-        ...toComputed(opts?.computed),
+        ...toComputed(options?.computed),
         nextEvents(self) {
           const stateEvents =
             (config.states as Dict)?.[self.current]?.["on"] ?? {}
@@ -93,57 +100,67 @@ export class Machine<
       },
     )
 
-    if (opts?.guards) this.guardsMap = opts.guards
-    if (opts?.actions) this.actionsMap = opts.actions
-    if (opts?.delays) this.delaysMap = opts.delays
+    if (options?.guards) this.guardsMap = options.guards
+    if (options?.actions) this.actionsMap = options.actions
+    if (options?.delays) this.delaysMap = options.delays
   }
 
   // Starts the interpreted machine.
   start = () => {
+    // Don't start if it's already running
+    if (this.status === MachineStatus.Running) return
+
+    this.status = MachineStatus.Running
     this.send(INTERNAL_EVENTS.INIT)
+    return this
   }
 
   // Stops the interpreted machine
   stop = () => {
+    // No need to call if already stopped
+    if (this.status === MachineStatus.Stopped) return
+
     this.state.current = ""
     this.state.event = INTERNAL_EVENTS.STOP
     if (this.config.context) {
       this.state.context = this.config.context
     }
     // cleanups
-    this.cleanupChildren()
-    this.cleanupActivities()
-    this.cleanupAfterCache()
+    this.stopChildren()
+    this.stopActivities()
+    this.stopAfterEvents()
+
+    this.status = MachineStatus.Stopped
+    return this
   }
 
-  cleanupAfterCache = () => {
-    this.afterActionsCache.forEach((fns) => {
-      fns.forEach((cleanup) => cleanup())
+  private stopAfterEvents = () => {
+    this.afterEventsMap.forEach((fns) => {
+      fns.forEach((stop) => stop())
     })
-    this.afterActionsCache.clear()
+    this.afterEventsMap.clear()
   }
 
-  // Cleanup running activities (e.g `setInterval`)
-  cleanupActivities = (key?: string) => {
-    const d = this.disposables
+  // Cleanup running activities (e.g `setInterval`, invoked callbacks, promises)
+  private stopActivities = (key?: string) => {
     if (key) {
-      d.get(key)?.forEach((cleanup) => cleanup())
-      d.delete(key)
+      this.disposables.get(key)?.forEach((cleanup) => cleanup())
+      this.disposables.delete(key)
     } else {
-      d.forEach((set) => set.forEach((cleanup) => cleanup()))
-      d.clear()
+      this.disposables.forEach((set) => {
+        set.forEach((cleanup) => cleanup())
+      })
+      this.disposables.clear()
     }
   }
 
   // Stop and delete spawned children
-  cleanupChildren = () => {
-    this.children.forEach((child) => {
-      child.stop()
-    })
+  private stopChildren = () => {
+    this.children.forEach((child) => child.stop())
     this.children.clear()
   }
 
-  setParent = (parent: any) => {
+  private setParent = (parent: any) => {
     this.parent = parent
   }
 
@@ -156,18 +173,21 @@ export class Machine<
     return ref(actor)
   }
 
-  private addCleanup = (key: string, cleanup: CleanupFunction) => {
-    const d = this.disposables
-    if (!d.has(key)) {
-      d.set(key, new Set([cleanup]))
+  private addCleanup = (key: string, cleanup: VoidFunction) => {
+    if (!this.disposables.has(key)) {
+      this.disposables.set(key, new Set([cleanup]))
     } else {
-      d.get(key)?.add(cleanup)
+      this.disposables.get(key)?.add(cleanup)
     }
   }
 
   private assignState = (target: string) => {
     this.state.prev = this.state.current
     this.state.current = target
+  }
+
+  private assignTags = (next: S.StateInfo<TContext, TState, TEvent>) => {
+    this.state.tags = new Set(next.stateNode?.tags ?? [])
   }
 
   subscribe = (listener: S.SubscribeFunction<TContext>) => {
@@ -183,22 +203,22 @@ export class Machine<
    */
   withContext = (context: Partial<TContext>) => {
     const newContext = { ...this.config.context, ...context } as TContext
-    return new Machine({ ...this.config, context: newContext }, this.opts)
+    return new Machine({ ...this.config, context: newContext }, this.options)
   }
 
   withConfig = (config: Partial<S.MachineConfig<TContext, TState, TEvent>>) => {
-    return new Machine({ ...this.config, ...config }, this.opts)
+    return new Machine({ ...this.config, ...config }, this.options)
   }
 
-  withOptions = (opts: Partial<S.MachineOptions<TContext, TEvent>>) => {
-    return new Machine(this.config, { ...this.opts, ...opts })
+  withOptions = (options: Partial<S.MachineOptions<TContext, TEvent>>) => {
+    return new Machine(this.config, { ...this.options, ...options })
   }
 
-  isFinalState = (stateNode: S.StateNode<TContext, TState, TEvent>) => {
+  private isFinalState = (stateNode: S.StateNode<TContext, TState, TEvent>) => {
     return stateNode.type === "final"
   }
 
-  getStateConfig = (state: string) => {
+  private getStateConfig = (state: string) => {
     if (!state) return
     type StateConfig = S.StateNode<TContext, TState, TEvent>
     return (this.config.states as Dict)[state] as StateConfig
@@ -273,7 +293,13 @@ export class Machine<
   private determineGuard = (
     cond: S.Condition<TContext, TEvent> | undefined,
   ) => {
-    return isString(cond) ? this.guardsMap?.[cond] : cond
+    if (isString(cond)) {
+      return this.guardsMap?.[cond]
+    }
+    if (isGuardHelper(cond)) {
+      return cond.exec(this.guardsMap ?? {})
+    }
+    return cond
   }
 
   /**
@@ -396,6 +422,9 @@ export class Machine<
     if (!actions) return
     actions = toArray(actions)
     for (const action of actions) {
+      if (isString(action) && !this.actionsMap?.[action]) {
+        console.warn(`${action} not implemented in ${this.id}`)
+      }
       const fn = isString(action) ? this.actionsMap?.[action] : action
       fn?.(this.state.context, event)
     }
@@ -502,7 +531,7 @@ export class Machine<
     if (go(next)) {
       // get explicit exit and implicit "after.exit" actions for current state
       const exitActions = toArray(current?.exit)
-      const afterExitActions = this.afterActionsCache.get(this.state.current)
+      const afterExitActions = this.afterEventsMap.get(this.state.current)
       if (afterExitActions) {
         exitActions.push(...afterExitActions)
       }
@@ -512,7 +541,7 @@ export class Machine<
 
       // cleanup activities for current state
       if (current && this.hasActivities(current)) {
-        this.cleanupActivities(this.state.current)
+        this.stopActivities(this.state.current)
       }
     }
 
@@ -521,6 +550,7 @@ export class Machine<
 
     // go to next state
     this.assignState(next.target)
+    this.assignTags(next)
 
     if (go(next)) {
       // get all entry actions
@@ -528,7 +558,7 @@ export class Machine<
       const afterActions = this.convertAfterToActions(next.target)
 
       if (next.stateNode?.after && afterActions) {
-        this.afterActionsCache.set(next.target, afterActions?.exits)
+        this.afterEventsMap.set(next.target, afterActions?.exits)
         entryActions.push(...afterActions.entries)
       }
 
@@ -619,8 +649,6 @@ export class Machine<
    * Function to send an event to current machine
    */
   send = (evt: string | TEvent) => {
-    type TransitionDfn = S.TransitionDefinition<TContext, TState, TEvent>
-
     const event = toEvent(evt) as TEvent
     const isInit = event.type === INTERNAL_EVENTS.INIT
     const stateNode = this.getStateConfig(this.state.current)
@@ -630,21 +658,34 @@ export class Machine<
       //@ts-ignore
       next = this.checkTransient(next, event)
       this.performTransitionSideEffects(stateNode, next, event)
-      return
+    } else {
+      this.transition(stateNode, event)
     }
+  }
 
-    if (!stateNode && !this.config.on) return
+  transition = (
+    stateNode: S.StateNode<TContext, TState, TEvent> | undefined,
+    evt: TEvent | string,
+  ) => {
+    type TransitionDfn = S.TransitionDefinition<TContext, TState, TEvent>
+
+    const event = toEvent(evt) as TEvent
+
+    if (!stateNode && !this.config.on) {
+      throw new Error("[machine]: state node has no definition")
+    }
 
     const _transition =
       stateNode?.on?.[event.type] ?? this.config.on?.[event.type]
 
     const transition = toTransition(_transition, this.state.current)
-
     if (!transition) return
+
     let next = this.getNextState(event, transition as TransitionDfn)
     //@ts-ignore
     next = this.checkTransient(next, event)
     this.performTransitionSideEffects(stateNode, next, event)
+    return next.stateNode
   }
 }
 

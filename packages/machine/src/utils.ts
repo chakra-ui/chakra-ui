@@ -53,7 +53,7 @@ export const INTERNAL_EVENTS = {
   INIT: "machine.init",
   AFTER: "machine.after",
   EVERY: "machine.every",
-  SEND_PARENT: "machine.sendParent",
+  SEND_PARENT: "machine.send-parent",
   STOP: "machine.stop",
   SYNC: "machine.sync",
 }
@@ -61,4 +61,13 @@ export const INTERNAL_EVENTS = {
 export const MACHINE_TYPES = {
   MACHINE: "machine",
   ACTOR: "machine.actor",
+}
+
+export const toComputed = (obj: Dict = {}) =>
+  Object.fromEntries(
+    Object.entries(obj).map(([k, v]) => [k, (state: any) => v(state.context)]),
+  )
+
+export function isGuardHelper(value: unknown): value is { exec: Function } {
+  return isObject(value) && value.exec != null
 }

@@ -1,5 +1,61 @@
 # Change Log
 
+## 1.6.3
+
+### Patch Changes
+
+- [`5e24481fc`](https://github.com/chakra-ui/chakra-ui/commit/5e24481fc73b0097d0bac900479d7cc145a92670)
+  [#4026](https://github.com/chakra-ui/chakra-ui/pull/4026) Thanks
+  [@dodas](https://github.com/dodas)! - Add `enabled` option to `usePopper`
+  hook.
+
+  The `popper.js` instance will not be created until this option is `true`.
+
+  `Menu`, `Popover` and `Tooltip` components now use this option, so the
+  `popper.js` instance is created only once the popper is open. This should
+  significantly improve render and scroll performance.
+
+- Updated dependencies
+  [[`5e24481fc`](https://github.com/chakra-ui/chakra-ui/commit/5e24481fc73b0097d0bac900479d7cc145a92670)]:
+  - @chakra-ui/popper@2.2.0
+
+## 1.6.2
+
+### Patch Changes
+
+- [`e190ce1b3`](https://github.com/chakra-ui/chakra-ui/commit/e190ce1b30e17eb0cffaa00c7ec2660d25ba6c23)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  keyboard navigation doesn't work `isLazy` is passed.
+
+* [`8dc0622e8`](https://github.com/chakra-ui/chakra-ui/commit/8dc0622e8a5acda768c694d2daa28a4181d829ad)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  typeaheaad overrides input keydown
+
+* Updated dependencies
+  [[`c1f8d90ad`](https://github.com/chakra-ui/chakra-ui/commit/c1f8d90ad7ebd9594e9888010170cda7969f0ded)]:
+  - @chakra-ui/transition@1.3.1
+
+## 1.6.1
+
+### Patch Changes
+
+- [`ad87d837a`](https://github.com/chakra-ui/chakra-ui/commit/ad87d837a9b7b117cec35d0819cc1f4c72769923)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `closeOnSelect` didn't work for menuitem options
+
+- Updated dependencies
+  [[`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01),
+  [`b199b06e3`](https://github.com/chakra-ui/chakra-ui/commit/b199b06e33924bdf98c9c13868f14172a20d0248),
+  [`173738dd9`](https://github.com/chakra-ui/chakra-ui/commit/173738dd938903d2b0fcdc666a7c9f4fe13e2bd6),
+  [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab),
+  [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd),
+  [`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01)]:
+  - @chakra-ui/utils@1.8.0
+  - @chakra-ui/transition@1.3.0
+  - @chakra-ui/descendant@2.0.1
+  - @chakra-ui/hooks@1.5.2
+  - @chakra-ui/clickable@1.1.5
+
 ## 1.6.0
 
 ### Minor Changes

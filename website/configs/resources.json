@@ -113,12 +113,36 @@
       "url": "https://www.youtube.com/watch?v=lhOvI9s5gQY"
     },
     {
+      "heading": "Chakra UI: Design vs Dev Challenge #1",
+      "type": "video",
+      "tags": ["Next.js", "Design Implementation", "v1.6.2"],
+      "author": "Lazar Nikolov",
+      "description": "In this video Lazar is rebuilding a full Chat App interface designed by Denys Sergushkin.",
+      "url": "https://www.youtube.com/watch?v=wGhZMOInL18"
+    },
+    {
       "heading": "The Chakra UI Component Library",
       "type": "talk",
       "tags": ["React", "UI", "Accessibility"],
       "author": "Devmode.fm",
       "description": "In this talk, Segun ​“Sage” Ade­bayo talks about how Chakra UI came to be, and how help­ing peo­ple has changed his life.",
       "url": "https://devmode.fm/episodes/the-chakra-ui-component-library#2"
+    },
+    {
+      "heading": "The Future of Chakra UI",
+      "type": "talk",
+      "tags": ["Vision", "UI", "Framework"],
+      "author": "Lee Robinson",
+      "description": "Learn about the future of Chakra UI, an accessible React component library, from it's creator Segun Adebayo.",
+      "url": "https://www.youtube.com/watch?v=I5xEc9t-HZg"
+    },
+    {
+      "heading": "Interview with Segun Adebayo: Chakra UI, Open Source, Life.",
+      "type": "talk",
+      "tags": ["Open source", "Life", "Balance"],
+      "author": "Gift Egwuenu",
+      "description": "I had the pleasure of inviting Segun Adebayo(Sage) for a chat. We talked about Chakra UI, Open Source, Work-Life Balance and so much more.",
+      "url": "https://youtu.be/DpKMxzQvRzk"
     },
     {
       "heading": "Chakra UI Talk and Demo",

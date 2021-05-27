@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- [`5e24481fc`](https://github.com/chakra-ui/chakra-ui/commit/5e24481fc73b0097d0bac900479d7cc145a92670)
+  [#4026](https://github.com/chakra-ui/chakra-ui/pull/4026) Thanks
+  [@dodas](https://github.com/dodas)! - Add `enabled` option to `usePopper`
+  hook.
+
+  The `popper.js` instance will not be created until this option is `true`.
+
+  `Menu`, `Popover` and `Tooltip` components now use this option, so the
+  `popper.js` instance is created only once the popper is open. This should
+  significantly improve render and scroll performance.
+
 ## 2.1.2
 
 ### Patch Changes

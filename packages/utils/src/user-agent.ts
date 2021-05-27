@@ -1,58 +1,85 @@
 import { isBrowser } from "./dom"
 
-function getUserAgentBrowser(ua: string) {
-  const android = /Android/.test(ua)
+function getUserAgentBrowser(navigator: Navigator) {
+  const { userAgent: ua, vendor } = navigator
+  const android = /(android)/i.test(ua)
+
   switch (true) {
     case /CriOS/.test(ua):
       return "Chrome for iOS"
-    case /Edge/.test(ua):
+    case /Edg\//.test(ua):
       return "Edge"
     case android && /Silk\//.test(ua):
       return "Silk"
-    case /Chrome/.test(ua):
+    case /Chrome/.test(ua) && /Google Inc/.test(vendor):
       return "Chrome"
-    case /Firefox/.test(ua):
+    case /Firefox\/\d+\.\d+$/.test(ua):
       return "Firefox"
     case android:
       return "AOSP"
     case /MSIE|Trident/.test(ua):
       return "IE"
-    case /Safari\//.test(ua):
+    case /Safari/.test(navigator.userAgent) && /Apple Computer/.test(ua):
       return "Safari"
     case /AppleWebKit/.test(ua):
       return "WebKit"
     default:
-      return ""
+      return null
   }
 }
 
-function getUserAgentOS(ua: string) {
+export type UserAgentBrowser = NonNullable<
+  ReturnType<typeof getUserAgentBrowser>
+>
+
+function getUserAgentOS(navigator: Navigator) {
+  const { userAgent: ua, platform } = navigator
   switch (true) {
     case /Android/.test(ua):
       return "Android"
-    case /iPhone|iPad|iPod/.test(ua):
+    case /iPhone|iPad|iPod/.test(platform):
       return "iOS"
-    case /Windows/.test(ua):
+    case /Win/.test(platform):
       return "Windows"
-    case /Mac OS X/.test(ua):
+    case /Mac/.test(platform):
       return "Mac"
     case /CrOS/.test(ua):
       return "Chrome OS"
     case /Firefox/.test(ua):
       return "Firefox OS"
     default:
-      return ""
+      return null
   }
 }
 
-export function detectOS(string: string) {
-  if (!isBrowser) return false
-  const ua = window.navigator.userAgent
-  return getUserAgentOS(ua) === string
+export type UserAgentOS = NonNullable<ReturnType<typeof getUserAgentOS>>
+
+export function detectDeviceType(navigator: Navigator) {
+  const { userAgent: ua } = navigator
+  if (/(tablet)|(iPad)|(Nexus 9)/i.test(ua)) return "tablet"
+  if (/(mobi)/i.test(ua)) return "phone"
+  return "desktop"
 }
 
-export function detectBrowser(string: string) {
+export type UserAgentDeviceType = NonNullable<
+  ReturnType<typeof detectDeviceType>
+>
+
+export function detectOS(os: UserAgentOS) {
   if (!isBrowser) return false
-  const ua = window.navigator.userAgent
-  return getUserAgentBrowser(ua) === string
+  return getUserAgentOS(window.navigator) === os
+}
+
+export function detectBrowser(browser: UserAgentBrowser) {
+  if (!isBrowser) return false
+  return getUserAgentBrowser(window.navigator) === browser
+}
+
+export function detectTouch() {
+  if (!isBrowser) return false
+  return (
+    window.ontouchstart === null &&
+    window.ontouchmove === null &&
+    window.ontouchend === null
+  )
 }

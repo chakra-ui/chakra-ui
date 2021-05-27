@@ -1,5 +1,32 @@
 # Change Log
 
+## 1.2.6
+
+### Patch Changes
+
+- [`4a7f8dab7`](https://github.com/chakra-ui/chakra-ui/commit/4a7f8dab7a9c4507bca05d9b9383de26447a7863)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix warning with
+  scroll listener when `allowMouseWheel` is passed
+
+- Updated dependencies
+  [[`620f0b7d7`](https://github.com/chakra-ui/chakra-ui/commit/620f0b7d756ffb6bfc6ddf0459e96f774ffbb9be)]:
+  - @chakra-ui/form-control@1.3.6
+
+## 1.2.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01),
+  [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab),
+  [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd),
+  [`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01)]:
+  - @chakra-ui/utils@1.8.0
+  - @chakra-ui/hooks@1.5.2
+  - @chakra-ui/counter@1.1.5
+  - @chakra-ui/form-control@1.3.5
+  - @chakra-ui/icon@1.1.9
+
 ## 1.2.4
 
 ### Patch Changes

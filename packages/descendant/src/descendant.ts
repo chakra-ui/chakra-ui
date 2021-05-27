@@ -1,6 +1,6 @@
 import { sortNodes, isElement, getNextIndex, getPrevIndex } from "./utils"
 
-export interface DescendantOptions {
+export type DescendantOptions<T = {}> = T & {
   /**
    * If `true`, the item will be registered in all nodes map
    * but omitted from enabled nodes map
@@ -12,7 +12,7 @@ export interface DescendantOptions {
   id?: string
 }
 
-export interface Descendant<T> extends DescendantOptions {
+export type Descendant<T, K> = DescendantOptions<K> & {
   /**
    * DOM element of the item
    */
@@ -29,10 +29,13 @@ export interface Descendant<T> extends DescendantOptions {
  * Class to manage descendants and their relative indices in the DOM.
  * It uses `node.compareDocumentPosition(...)` under the hood
  */
-export class DescendantsManager<T extends HTMLElement, K = {}> {
-  private descendants = new Map<T, Descendant<T>>()
+export class DescendantsManager<
+  T extends HTMLElement,
+  K extends Record<string, any> = {}
+> {
+  private descendants = new Map<T, Descendant<T, K>>()
 
-  register = (nodeOrOptions: T | null | (DescendantOptions & K)) => {
+  register = (nodeOrOptions: T | null | DescendantOptions<K>) => {
     if (nodeOrOptions == null) return
 
     if (isElement(nodeOrOptions)) {
@@ -140,17 +143,19 @@ export class DescendantsManager<T extends HTMLElement, K = {}> {
     return this.enabledItem(prevEnabledIndex)
   }
 
-  private registerNode = (node: T | null, options: DescendantOptions = {}) => {
+  private registerNode = (node: T | null, options?: DescendantOptions<K>) => {
     if (!node || this.descendants.has(node)) return
 
     const keys = Array.from(this.descendants.keys()).concat(node)
     const sorted = sortNodes(keys)
 
-    this.descendants.set(node, {
-      node,
-      index: -1,
-      disabled: !!options.disabled,
-    })
+    if (options?.disabled) {
+      options.disabled = !!options.disabled
+    }
+
+    const descendant = { node, index: -1, ...options }
+
+    this.descendants.set(node, descendant as Descendant<T, K>)
 
     this.assignIndex(sorted)
   }

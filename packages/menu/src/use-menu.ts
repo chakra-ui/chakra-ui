@@ -9,6 +9,7 @@ import {
   useIds,
   useOutsideClick,
   useShortcut,
+  useUnmountEffect,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
 import { usePopper, UsePopperProps } from "@chakra-ui/popper"
@@ -156,6 +157,7 @@ export function useMenu(props: UseMenuProps = {}) {
    */
   const popper = usePopper({
     ...popperProps,
+    enabled: isOpen,
     placement,
   })
 
@@ -188,19 +190,35 @@ export function useMenu(props: UseMenuProps = {}) {
 
   const openAndFocusMenu = React.useCallback(() => {
     onOpen()
-    focus(menuRef.current, { nextTick: true })
+    focus(menuRef.current, {
+      nextTick: true,
+      selectTextIfInput: false,
+    })
   }, [onOpen, menuRef])
+
+  const timeoutIds = React.useRef<Set<number>>(new Set([]))
+
+  useUnmountEffect(() => {
+    timeoutIds.current.forEach((id) => clearTimeout(id))
+    timeoutIds.current.clear()
+  })
 
   const openAndFocusFirstItem = React.useCallback(() => {
     onOpen()
-    const first = descendants.firstEnabled()
-    if (first) setFocusedIndex(first.index)
+    const id = setTimeout(() => {
+      const first = descendants.firstEnabled()
+      if (first) setFocusedIndex(first.index)
+    })
+    timeoutIds.current.add(id)
   }, [onOpen, setFocusedIndex, descendants])
 
   const openAndFocusLastItem = React.useCallback(() => {
     onOpen()
-    const last = descendants.lastEnabled()
-    if (last) setFocusedIndex(last.index)
+    const id = setTimeout(() => {
+      const last = descendants.lastEnabled()
+      if (last) setFocusedIndex(last.index)
+    })
+    timeoutIds.current.add(id)
   }, [onOpen, setFocusedIndex, descendants])
 
   const refocus = React.useCallback(() => {
@@ -210,8 +228,10 @@ export function useMenu(props: UseMenuProps = {}) {
 
     if (!shouldRefocus) return
 
-    const el = descendants.item(focusedIndex)?.node
-    if (el) focus(el)
+    const node = descendants.item(focusedIndex)?.node
+    if (node) {
+      focus(node, { selectTextIfInput: false })
+    }
   }, [isOpen, focusedIndex, descendants])
 
   return {
@@ -314,9 +334,10 @@ export function useMenuButton(
   }
 }
 
-function isTargetMenuItem(event: Pick<MouseEvent, "currentTarget">) {
-  const target = event.currentTarget as HTMLElement
-  return target.getAttribute("role") === "menuitem"
+function isTargetMenuItem(event: Pick<MouseEvent, "target">) {
+  const target = event.target as HTMLElement
+  // this will catch `menuitem`, `menuitemradio`, `menuitemcheckbox`
+  return !!target.getAttribute("role")?.startsWith("menuitem")
 }
 
 /* -------------------------------------------------------------------------------------------------
@@ -363,10 +384,7 @@ export function useMenuList(
    * to printable keyboard character press
    */
   const createTypeaheadHandler = useShortcut({
-    preventDefault: (event) => {
-      const isMenuItem = isTargetMenuItem(event)
-      return event.key !== " " && isMenuItem
-    },
+    preventDefault: (event) => event.key !== " " && isTargetMenuItem(event),
   })
 
   const onKeyDown = React.useCallback(
@@ -411,7 +429,9 @@ export function useMenuList(
         }
       })
 
-      onTypeahead(event)
+      if (isTargetMenuItem(event)) {
+        onTypeahead(event)
+      }
     },
     [
       descendants,
@@ -574,7 +594,7 @@ export function useMenuItem(
   useUpdateEffect(() => {
     if (!isOpen) return
     if (isFocused && !trulyDisabled && ref.current) {
-      focus(ref.current, { nextTick: true })
+      focus(ref.current, { nextTick: true, selectTextIfInput: false })
     } else if (menuRef.current && !isActiveElement(menuRef.current)) {
       focus(menuRef.current)
     }
@@ -618,8 +638,8 @@ export function useMenuOption(
   props: UseMenuOptionProps = {},
   ref: React.Ref<any> = null,
 ) {
-  const { type = "radio", isChecked, ...menuItemProps } = props
-  const ownProps = useMenuItem(menuItemProps, ref)
+  const { type = "radio", isChecked, ...rest } = props
+  const ownProps = useMenuItem(rest, ref)
   return {
     ...ownProps,
     role: `menuitem${type}`,

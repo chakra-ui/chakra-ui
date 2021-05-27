@@ -1,7 +1,8 @@
-import * as React from "react"
-import Link from "next/link"
 import * as ComponentProps from "@chakra-ui/props-docs"
-import { Tag, theme } from "@chakra-ui/react"
+import { chakra, Code, HStack, Stack, theme, Tag, Flex } from "@chakra-ui/react"
+import Link from "next/link"
+import * as React from "react"
+import { convertBackticksToInlineCode } from "utils/convert-backticks-to-inline-code"
 import MDXComponents from "./mdx-components"
 
 /**
@@ -56,57 +57,76 @@ Remove the use of <PropsTable of="${of}" /> for this component in the docs.`,
   }
 
   return (
-    <MDXComponents.table>
-      <thead>
-        <tr>
-          <MDXComponents.th>Name</MDXComponents.th>
-          <MDXComponents.th>Type</MDXComponents.th>
-          <MDXComponents.th>Description</MDXComponents.th>
-          <MDXComponents.th>Default</MDXComponents.th>
-        </tr>
-      </thead>
-      <tbody>
-        {propList.map((prop) => (
-          <tr key={prop.name}>
-            <MDXComponents.td>{prop.name}</MDXComponents.td>
-            <MDXComponents.td>
-              {prop.required && (
-                <Tag
-                  size="sm"
-                  colorScheme="red"
-                  px={1}
-                  mr="0.125rem"
-                  verticalAlign="baseline"
-                >
-                  required
-                </Tag>
-              )}
-              <MDXComponents.inlineCode
-                whiteSpace="wrap"
-                d="inline-block"
-                lineHeight="tall"
-              >
-                {prop.type}
-              </MDXComponents.inlineCode>
-            </MDXComponents.td>
-            <MDXComponents.td>{prop.description}</MDXComponents.td>
-            <MDXComponents.td>
-              {prop.defaultValue ? (
-                <MDXComponents.inlineCode
-                  whiteSpace="wrap"
-                  d="inline-block"
-                  lineHeight="tall"
-                >
-                  {prop.defaultValue}
+    <Stack spacing="10" my="10">
+      {propList.map((prop) => (
+        <chakra.div
+          key={prop.name}
+          css={{
+            width: "100%",
+            fontSize: "0.95em",
+            borderCollapse: "collapse",
+            ".row": {
+              minWidth: 100,
+              width: "20%",
+              fontSize: "0.9em",
+              textAlign: "start",
+              fontWeight: 500,
+              padding: "4px 16px 4px 8px",
+              whiteSpace: "nowrap",
+              verticalAlign: "baseline",
+            },
+            ".cell": {
+              padding: "4px 0px 4px 8px",
+              width: "100%",
+            },
+          }}
+        >
+          <chakra.div css={{ textAlign: "start", fontSize: "1em" }}>
+            <chakra.h3
+              css={{
+                fontSize: "0.8em",
+                paddingBottom: 16,
+                marginBottom: 16,
+                borderBottomWidth: 1,
+              }}
+            >
+              <HStack>
+                <Code colorScheme="purple">{prop.name}</Code>
+                {prop.required && <Code colorScheme="red">required</Code>}
+              </HStack>
+            </chakra.h3>
+          </chakra.div>
+          <div>
+            {prop.description && (
+              <Flex>
+                <div className="row">Description</div>
+                <div className="cell">
+                  <p>{convertBackticksToInlineCode(prop.description)}</p>
+                </div>
+              </Flex>
+            )}
+            <Flex>
+              <div className="row">Type</div>
+              <div className="cell">
+                <MDXComponents.inlineCode whiteSpace="wrap" fontSize="0.8em">
+                  {prop.type}
                 </MDXComponents.inlineCode>
-              ) : (
-                "-"
-              )}
-            </MDXComponents.td>
-          </tr>
-        ))}
-      </tbody>
-    </MDXComponents.table>
+              </div>
+            </Flex>
+            {prop.defaultValue && (
+              <Flex>
+                <div className="row">Default</div>
+                <div className="cell">
+                  <MDXComponents.inlineCode whiteSpace="wrap" fontSize="0.8em">
+                    {prop.defaultValue}
+                  </MDXComponents.inlineCode>
+                </div>
+              </Flex>
+            )}
+          </div>
+        </chakra.div>
+      ))}
+    </Stack>
   )
 }
 
@@ -135,6 +155,8 @@ function makePropsTable({ of, omit, only }: MakePropsTableOptions) {
       to implement them.
     </>
   )
+
+  if (!props) return []
 
   return Object.entries(props)
     .filter(([name]) => {
@@ -214,3 +236,60 @@ const omitGenericThemableType = (type: string) =>
     .split(" | ")
     .filter((type) => type !== TYPE_GENERIC_THEMABLE)
     .join(" | ")
+
+function PropTableV1(props: any) {
+  const { data } = props
+  return (
+    <MDXComponents.table>
+      <thead>
+        <tr>
+          <MDXComponents.th>Name</MDXComponents.th>
+          <MDXComponents.th>Type</MDXComponents.th>
+          <MDXComponents.th>Description</MDXComponents.th>
+          <MDXComponents.th>Default</MDXComponents.th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((prop) => (
+          <tr key={prop.name}>
+            <MDXComponents.td>{prop.name}</MDXComponents.td>
+            <MDXComponents.td>
+              {prop.required && (
+                <Tag
+                  size="sm"
+                  colorScheme="red"
+                  px={1}
+                  mr="0.125rem"
+                  verticalAlign="baseline"
+                >
+                  required
+                </Tag>
+              )}
+              <MDXComponents.inlineCode
+                whiteSpace="wrap"
+                d="inline-block"
+                lineHeight="tall"
+              >
+                {prop.type}
+              </MDXComponents.inlineCode>
+            </MDXComponents.td>
+            <MDXComponents.td>{prop.description}</MDXComponents.td>
+            <MDXComponents.td>
+              {prop.defaultValue ? (
+                <MDXComponents.inlineCode
+                  whiteSpace="wrap"
+                  d="inline-block"
+                  lineHeight="tall"
+                >
+                  {prop.defaultValue}
+                </MDXComponents.inlineCode>
+              ) : (
+                "-"
+              )}
+            </MDXComponents.td>
+          </tr>
+        ))}
+      </tbody>
+    </MDXComponents.table>
+  )
+}

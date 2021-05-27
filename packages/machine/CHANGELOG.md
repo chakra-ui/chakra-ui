@@ -1,5 +1,26 @@
 # @chakra-ui/machine
 
+## 1.4.1
+
+### Patch Changes
+
+- [`21ca6725d`](https://github.com/chakra-ui/chakra-ui/commit/21ca6725d50c091b2a0e91e625d10b7221359db5)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Remove warning for
+  self transitions and add error for invalid state nodes
+
+## 1.4.0
+
+### Minor Changes
+
+- [`1d8f8e2d0`](https://github.com/chakra-ui/chakra-ui/commit/1d8f8e2d0afbca738c793727d9cb5ff5b3399582)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - > This is an
+  internal package
+
+  - Add support for state tags and pure `transition` function
+  - Return `service` in `useMachine`
+  - Add machine status to `Machine` class
+  - Add support for `or`, `and` and `not` guard composition for better DX.
+
 ## 1.3.0
 
 ### Minor Changes

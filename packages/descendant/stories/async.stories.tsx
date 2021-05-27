@@ -2,7 +2,7 @@
 import { useInterval } from "@chakra-ui/hooks"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
-import { createDescendantContext } from "../src"
+import createDescendantContext from "../src"
 
 export default {
   title: "Descendants / Async",
