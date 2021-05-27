@@ -176,7 +176,7 @@ export const AccordionButton = forwardRef<AccordionButtonProps, "button">(
       display: "flex",
       alignItems: "center",
       width: "100%",
-      transition: "all 0.2s",
+      transition: "color 0.2s, box-shadow 0.2s",
       outline: 0,
       ...styles.button,
     }

@@ -11,6 +11,7 @@ import { FaFacebook, FaTwitter } from "react-icons/fa"
 import { MdBuild, MdCall } from "react-icons/md"
 import { BeatLoader } from "react-spinners"
 import { Button, ButtonGroup, IconButton } from "../src"
+import "focus-visible"
 
 export default {
   title: "Button",

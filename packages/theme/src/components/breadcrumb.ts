@@ -1,7 +1,7 @@
 const parts = ["container", "item", "link", "separator"]
 
 const baseStyleLink = {
-  transition: "all 0.15s ease-out",
+  transition: "all 0.15s ease-out, outline none",
   cursor: "pointer",
   textDecoration: "none",
   outline: "none",

@@ -107,7 +107,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
     appearance: "none",
     alignItems: "center",
     justifyContent: "center",
-    transition: "all 250ms",
+    transition: "color 250ms, box-shadow 250ms",
     userSelect: "none",
     position: "relative",
     whiteSpace: "nowrap",

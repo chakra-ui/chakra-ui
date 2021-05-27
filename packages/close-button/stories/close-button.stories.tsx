@@ -1,5 +1,6 @@
 import * as React from "react"
 import { CloseButton } from "../src"
+import "focus-visible"
 
 export default {
   title: "CloseButton",

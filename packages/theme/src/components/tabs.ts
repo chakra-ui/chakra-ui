@@ -16,7 +16,7 @@ function baseStyleTab(props: Dict) {
 
   return {
     flex: isFitted ? 1 : undefined,
-    transition: "all 0.2s",
+    transition: "all 0.2s, outline none",
     _focus: {
       zIndex: 1,
       boxShadow: "outline",

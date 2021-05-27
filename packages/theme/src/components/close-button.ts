@@ -6,7 +6,7 @@ function baseStyle(props: Record<string, any>) {
 
   return {
     borderRadius: "md",
-    transition: "all 0.2s",
+    transition: "color 0.2s, box-shadow 0.2s",
     _disabled: {
       opacity: 0.4,
       cursor: "not-allowed",
