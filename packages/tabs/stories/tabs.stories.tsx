@@ -245,16 +245,14 @@ export const withinDrawer = () => (
               <Tab>Settings</Tab>
               <Tab>Billings</Tab>
               <Tab>Preferences</Tab>
-              <Tab>Shut Down</Tab>
             </TabList>
 
-            <TabIndicator mt="-4" zIndex={-1} height="4px" bg="green.200" />
+            <TabIndicator zIndex={-1} height="4px" bg="green.200" />
 
             <TabPanels>
               <TabPanel>Settings</TabPanel>
               <TabPanel>Billings</TabPanel>
               <TabPanel>Preferences</TabPanel>
-              <TabPanel>Shut Down</TabPanel>
             </TabPanels>
           </Tabs>
         </DrawerBody>
