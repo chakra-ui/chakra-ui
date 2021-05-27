@@ -129,6 +129,22 @@
       "url": "https://devmode.fm/episodes/the-chakra-ui-component-library#2"
     },
     {
+      "heading": "The Future of Chakra UI",
+      "type": "talk",
+      "tags": ["Vision", "UI", "Framework"],
+      "author": "Lee Robinson",
+      "description": "Learn about the future of Chakra UI, an accessible React component library, from it's creator Segun Adebayo.",
+      "url": "https://www.youtube.com/watch?v=I5xEc9t-HZg"
+    },
+    {
+      "heading": "Interview with Segun Adebayo: Chakra UI, Open Source, Life.",
+      "type": "talk",
+      "tags": ["Open source", "Life", "Balance"],
+      "author": "Gift Egwuenu",
+      "description": "I had the pleasure of inviting Segun Adebayo(Sage) for a chat. We talked about Chakra UI, Open Source, Work-Life Balance and so much more.",
+      "url": "https://youtu.be/DpKMxzQvRzk"
+    },
+    {
       "heading": "Chakra UI Talk and Demo",
       "type": "talk",
       "tags": ["React", "Demo", "Accessibility"],
