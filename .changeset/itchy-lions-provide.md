@@ -2,4 +2,4 @@
 "@chakra-ui/popper": minor
 ---
 
-usePoper accepts direction prop now so it handles splacement for rtl languages
+`usePopper` now accepts a `direction` prop so it can handle placement for RTL languages.
