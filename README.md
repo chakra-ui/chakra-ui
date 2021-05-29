@@ -412,6 +412,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/antoniel"><img src="https://avatars.githubusercontent.com/u/17225358?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Antoniel Magalhães</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=antoniel" title="Code">💻</a></td>
     <td align="center"><a href="https://griko.id"><img src="https://avatars.githubusercontent.com/u/8220954?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Griko Nibras</b></sub></a><br /><a href="#ideas-grikomsn" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=grikomsn" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/imalbert"><img src="https://avatars.githubusercontent.com/u/12537973?v=4?s=64" width="64px;" alt=""/><br /><sub><b>imalbert</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=imalbert" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/mcha-dev"><img src="https://avatars.githubusercontent.com/u/13101565?v=4?s=64" width="64px;" alt=""/><br /><sub><b>mcha</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=mcha-dev" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=mcha-dev" title="Tests">⚠️</a></td>
   </tr>
 </table>
 
