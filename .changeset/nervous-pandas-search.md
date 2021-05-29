@@ -4,4 +4,4 @@
 "@chakra-ui/tooltip": patch
 ---
 
-Flip right/left under RTL theme direction
+Resolved an issue where the theme's `direction` wasn't handled. The component will now correctly flip between left/right based on `direction`.
