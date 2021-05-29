@@ -67,7 +67,7 @@ export interface UseCheckboxProps {
    */
   defaultChecked?: boolean
   /**
-   * The callback invoked when the checked state of the `Checkbox` changes..
+   * The callback invoked when the checked state of the `Checkbox` changes.
    */
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
   /**

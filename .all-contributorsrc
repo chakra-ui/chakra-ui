@@ -1875,6 +1875,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "mcha-dev",
+      "name": "mcha",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13101565?v=4",
+      "profile": "https://github.com/mcha-dev",
+      "contributions": [
+        "code",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
