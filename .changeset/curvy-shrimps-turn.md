@@ -4,4 +4,4 @@
 "@chakra-ui/utils": patch
 ---
 
-support RTL theme direction
+Added RTL `direction` support.
