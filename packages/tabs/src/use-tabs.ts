@@ -422,18 +422,16 @@ export function useTabIndicator(): React.CSSProperties {
     if (isUndefined(selectedIndex)) return undefined
 
     const tab = descendants.item(selectedIndex)
-    const tabRect = tab?.node?.getBoundingClientRect()
+    if (isUndefined(tab)) return undefined
 
     // Horizontal Tab: Calculate width and left distance
-    if (isHorizontal && tabRect) {
-      const { left, width } = tabRect
-      setRect({ left, width })
+    if (isHorizontal) {
+      setRect({ left: tab.node.offsetLeft, width: tab.node.offsetWidth })
     }
 
     // Vertical Tab: Calculate height and top distance
-    if (isVertical && tabRect) {
-      const { top, height } = tabRect
-      setRect({ top, height })
+    if (isVertical) {
+      setRect({ top: tab.node.offsetTop, height: tab.node.offsetHeight })
     }
 
     // Prevent unwanted transition from 0 to measured rect

@@ -68,6 +68,7 @@
     "@chakra-ui/utils": "1.8.0"
   },
   "devDependencies": {
+    "@chakra-ui/modal": "1.8.7",
     "@chakra-ui/system": "1.6.7",
     "react": "^17.0.1"
   },
