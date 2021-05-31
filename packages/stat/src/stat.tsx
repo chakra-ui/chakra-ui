@@ -151,7 +151,7 @@ if (__DEV__) {
   Stat.displayName = "Stat"
 }
 
-interface StatGroupProps extends HTMLChakraProps<"div"> {}
+export interface StatGroupProps extends HTMLChakraProps<"div"> {}
 
 export const StatGroup = forwardRef<StatGroupProps, "div">((props, ref) => (
   <chakra.div
