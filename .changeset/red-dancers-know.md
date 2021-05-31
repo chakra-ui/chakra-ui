@@ -2,4 +2,4 @@
 "@chakra-ui/stat": patch
 ---
 
-export statgroupprops interface
+Export TypeScript interface `StatGroupProps`
