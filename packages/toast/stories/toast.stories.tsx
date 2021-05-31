@@ -2,7 +2,9 @@ import * as React from "react"
 import { Button, ButtonGroup } from "@chakra-ui/button"
 import { chakra, useColorMode } from "@chakra-ui/system"
 import { Alert } from "@chakra-ui/alert"
-import { useToast } from "../src"
+import { Text } from "@chakra-ui/layout"
+import { createStandaloneToast, useToast } from "../src"
+import theme from "../../../website/theme"
 
 export default {
   title: "Toast",
@@ -281,5 +283,51 @@ export const useToastCustomRenderUpdate = () => {
     >
       toast
     </Button>
+  )
+}
+
+export function StandAloneToast() {
+  const toast = createStandaloneToast({ theme })
+  const toast2 = createStandaloneToast()
+  return (
+    <>
+      <Text fontSize="lg" fontWeight="bold">
+        This Text matches Theme font
+      </Text>
+      <ButtonGroup>
+        <Button
+          onClick={() => {
+            toast({
+              title: "Standalone Toast",
+              description: "Uses provided theme",
+              status: "success",
+              duration: 3000,
+              isClosable: true,
+              onCloseComplete: () => {
+                console.log("hello")
+              },
+            })
+          }}
+        >
+          Standalone Toast With Custom Theme
+        </Button>
+        <Button
+          onClick={() => {
+            toast2({
+              title: "Standalone Toast",
+              description: "Uses default theme",
+              status: "success",
+              duration: 3000,
+              isClosable: true,
+              onCloseComplete: () => {
+                console.log("hello")
+              },
+            })
+          }}
+        >
+          Standalone Toast With Default Theme
+        </Button>
+      </ButtonGroup>
+    </>
   )
 }
