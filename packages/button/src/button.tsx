@@ -140,16 +140,27 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
       {leftIcon && !isLoading && (
         <ButtonIcon marginEnd={iconSpacing}>{leftIcon}</ButtonIcon>
       )}
+
       {isLoading && spinnerPlacement === "start" && (
-        <ButtonSpinner label={loadingText} placement="start">
+        <ButtonSpinner
+          className="chakra-button__spinner--start"
+          label={loadingText}
+          placement="start"
+        >
           {spinner}
         </ButtonSpinner>
       )}
+
       {isLoading
         ? loadingText || <chakra.span opacity={0}>{children}</chakra.span>
         : children}
+
       {isLoading && spinnerPlacement === "end" && (
-        <ButtonSpinner label={loadingText} placement="end">
+        <ButtonSpinner
+          className="chakra-button__spinner--end"
+          label={loadingText}
+          placement="end"
+        >
           {spinner}
         </ButtonSpinner>
       )}
