@@ -1885,6 +1885,15 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "hasibhassan",
+      "name": "Hasib Hassan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/67892792?v=4",
+      "profile": "http://hasibhassan.com",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
