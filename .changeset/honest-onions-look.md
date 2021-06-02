@@ -2,4 +2,4 @@
 "@chakra-ui/docs": minor
 ---
 
-Add copy icon name to clipboard when clicking
+Clicking an icon in the icons list now copies the icon name to clipboard.
