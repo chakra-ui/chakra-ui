@@ -164,7 +164,7 @@ export const pseudoSelectors = {
    */
   _activeLink: "&[aria-current=page]",
   /**
-   * Used to style the active link in a navigation
+   * Used to style the current step within a process
    * Styles for CSS Selector `&[aria-current=step]`
    */
   _activeStep: "&[aria-current=step]",
