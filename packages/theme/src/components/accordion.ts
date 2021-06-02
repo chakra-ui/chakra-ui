@@ -9,6 +9,8 @@ const baseStyleContainer = {
 }
 
 const baseStyleButton = {
+  transitionProperty: "common",
+  transitionDuration: "normal",
   fontSize: "1rem",
   _focus: {
     boxShadow: "outline",

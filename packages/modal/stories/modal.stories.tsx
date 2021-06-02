@@ -15,7 +15,8 @@ import {
 const Button = chakra("button", {
   baseStyle: {
     outline: 0,
-    transition: "color 0.2s, box-shadow 0.2s",
+    transitionProperty: "color, box-shadow",
+    transitionDuration: "normal",
   },
 })
 

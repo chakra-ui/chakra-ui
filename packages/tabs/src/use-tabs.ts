@@ -451,7 +451,9 @@ export function useTabIndicator(): React.CSSProperties {
 
   return {
     position: "absolute",
-    transition: hasMeasured ? "all 200ms cubic-bezier(0, 0, 0.2, 1)" : "none",
+    transitionProperty: "left, right, top, bottom",
+    transitionDuration: hasMeasured ? "200ms" : "0ms",
+    transitionTimingFunction: "cubic-bezier(0, 0, 0.2, 1)",
     ...rect,
   }
 }

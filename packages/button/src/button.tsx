@@ -107,7 +107,6 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
     appearance: "none",
     alignItems: "center",
     justifyContent: "center",
-    transition: "color 250ms, box-shadow 250ms",
     userSelect: "none",
     position: "relative",
     whiteSpace: "nowrap",
@@ -118,17 +117,12 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
     ...(!!group && { _focus }),
   }
 
-  const [isButton, setIsButton] = React.useState(!as)
-  const refCallback = React.useCallback((node: HTMLElement | null) => {
-    if (!node) return
-    setIsButton(node.tagName === "BUTTON")
-  }, [])
-  const defaultType = isButton ? "button" : undefined
+  const { ref: _ref, type: defaultType } = useButtonType(as)
 
   return (
     <chakra.button
       disabled={isDisabled || isLoading}
-      ref={mergeRefs(ref, refCallback)}
+      ref={mergeRefs(ref, _ref)}
       as={as}
       type={type ?? defaultType}
       data-active={dataAttr(isActive)}
@@ -162,6 +156,16 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
 
 if (__DEV__) {
   Button.displayName = "Button"
+}
+
+function useButtonType(value?: React.ElementType) {
+  const [isButton, setIsButton] = React.useState(!value)
+  const refCallback = React.useCallback((node: HTMLElement | null) => {
+    if (!node) return
+    setIsButton(node.tagName === "BUTTON")
+  }, [])
+  const type = isButton ? "button" : undefined
+  return { ref: refCallback, type } as const
 }
 
 const ButtonIcon: React.FC<HTMLChakraProps<"span">> = (props) => {

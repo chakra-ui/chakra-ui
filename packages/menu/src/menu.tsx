@@ -83,7 +83,6 @@ const StyledMenuButton = forwardRef<MenuButtonProps, "button">((props, ref) => {
         appearance: "none",
         alignItems: "center",
         outline: 0,
-        transition: "color 250ms, box-shadow 250ms",
         ...styles.button,
       }}
     />

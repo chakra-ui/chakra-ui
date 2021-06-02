@@ -9,7 +9,8 @@ const baseStyle = {
     outline: 0,
     position: "relative",
     appearance: "none",
-    transition: "all 0.2s",
+    transitionProperty: "common",
+    transitionDuration: "normal",
   },
 }
 
