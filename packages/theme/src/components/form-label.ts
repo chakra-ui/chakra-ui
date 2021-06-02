@@ -3,7 +3,8 @@ const baseStyle = {
   marginEnd: 3,
   mb: 2,
   fontWeight: "medium",
-  transition: "all 0.2s",
+  transitionProperty: "common",
+  transitionDuration: "normal",
   opacity: 1,
   _disabled: {
     opacity: 0.4,

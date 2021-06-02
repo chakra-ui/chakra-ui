@@ -44,7 +44,8 @@ function baseStyleTrack(props: Dict) {
 
 function baseStyleFilledTrack(props: Dict) {
   return {
-    transition: "all 0.3s",
+    transitionProperty: "common",
+    transitionDuration: "slow",
     ...filledStyle(props),
   }
 }

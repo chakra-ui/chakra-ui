@@ -6,6 +6,8 @@ const baseStyle = {
   lineHeight: "1.2",
   borderRadius: "md",
   fontWeight: "semibold",
+  transitionProperty: "common",
+  transitionDuration: "normal",
   _focus: {
     boxShadow: "outline",
   },

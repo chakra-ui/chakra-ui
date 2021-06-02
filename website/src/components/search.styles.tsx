@@ -387,7 +387,9 @@ const SearchStyle = () => (
       .DocSearch-Hit--deleting,
       .DocSearch-Hit--favoriting {
         opacity: 0;
-        transition: all 250ms linear;
+        transition-property: background-color, border-color, color, fill, stroke,
+          opacity, box-shadow, transform;
+        transition-duration: 200ms;
       }
 
       .DocSearch-NoResults .DocSearch-Screen-Icon {

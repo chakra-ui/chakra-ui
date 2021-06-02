@@ -7,7 +7,8 @@ function baseStyleControl(props: Record<string, any>) {
 
   return {
     w: "100%",
-    transition: "box-shadow 250ms",
+    transitionProperty: "box-shadow",
+    transitionDuration: "normal",
     border: "2px solid",
     borderRadius: "sm",
     borderColor: "inherit",
@@ -56,7 +57,13 @@ const baseStyleLabel = {
   _disabled: { opacity: 0.4 },
 }
 
+const baseStyleIcon = {
+  transitionProperty: "transform",
+  transitionDuration: "normal",
+}
+
 const baseStyle = (props: Record<string, any>) => ({
+  icon: baseStyleIcon,
   control: baseStyleControl(props),
   label: baseStyleLabel,
 })

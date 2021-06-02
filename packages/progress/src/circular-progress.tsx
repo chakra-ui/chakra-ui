@@ -142,7 +142,9 @@ export const CircularProgress: React.FC<CircularProgressProps> = (props) => {
     : {
         strokeDashoffset: 66,
         strokeDasharray,
-        transition: `stroke-dasharray 0.6s ease 0s, stroke 0.6s ease`,
+        transitionProperty: "stroke-dasharray, stroke",
+        transitionDuration: "0.6s",
+        transitionTimingFunction: "ease",
       }
 
   const rootStyles: SystemStyleObject = {
