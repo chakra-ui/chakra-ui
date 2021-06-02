@@ -1,6 +1,6 @@
 import { getColor, mode } from "@chakra-ui/theme-tools"
 
-const parts = ["field", "addon"]
+const parts = ["field", "addon", "leftelement", "rightelement", "group"]
 
 const baseStyle = {
   field: {

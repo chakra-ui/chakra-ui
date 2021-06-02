@@ -71,6 +71,7 @@ export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
         width: "100%",
         display: "flex",
         position: "relative",
+        ...styles.group,
       }}
       {...rest}
     >
