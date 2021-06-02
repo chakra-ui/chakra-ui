@@ -164,6 +164,11 @@ export const pseudoSelectors = {
    */
   _activeLink: "&[aria-current=page]",
   /**
+   * Used to style the current step within a process
+   * Styles for CSS Selector `&[aria-current=step]`
+   */
+  _activeStep: "&[aria-current=step]",
+  /**
    * Styles to apply when the ARIA attribute `aria-checked` is `mixed`
    * - CSS selector `&[aria-checked=mixed]`
    */
