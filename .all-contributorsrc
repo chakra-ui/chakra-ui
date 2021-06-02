@@ -1894,6 +1894,17 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "jrolfs",
+      "name": "Jamie Rolfs",
+      "avatar_url": "https://avatars.githubusercontent.com/u/288160?v=4",
+      "profile": "http://jamie.rolfs.sh",
+      "contributions": [
+        "ideas",
+        "doc",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
