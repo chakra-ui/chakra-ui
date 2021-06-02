@@ -104,7 +104,6 @@ export const TagCloseButton: React.FC<TagCloseButtonProps> = (props) => {
     alignItems: "center",
     justifyContent: "center",
     outline: "0",
-    transition: "all 0.2s",
     ...styles.closeButton,
   }
 

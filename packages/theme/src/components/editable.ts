@@ -3,13 +3,15 @@ const parts = ["preview", "input"]
 const baseStylePreview = {
   borderRadius: "md",
   py: "3px",
-  transition: "all 0.2s",
+  transitionProperty: "common",
+  transitionDuration: "normal",
 }
 
 const baseStyleInput = {
   borderRadius: "md",
   py: "3px",
-  transition: "all 0.2s",
+  transitionProperty: "common",
+  transitionDuration: "normal",
   width: "full",
   _focus: { boxShadow: "outline" },
   _placeholder: { opacity: 0.6 },

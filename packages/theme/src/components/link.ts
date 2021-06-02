@@ -1,5 +1,7 @@
 const baseStyle = {
-  transition: `all 0.15s ease-out`,
+  transitionProperty: "common",
+  transitionDuration: "fast",
+  transitionTimingFunction: "ease-out",
   cursor: "pointer",
   textDecoration: "none",
   outline: "none",
