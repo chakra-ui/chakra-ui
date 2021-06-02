@@ -54,7 +54,7 @@ const LinkedHeading = (props: HTMLChakraProps<"h2">) => (
         color="teal.500"
         fontWeight="normal"
         outline="none"
-        _focus={{ opacity: 1, boxShadow: "outline" }}
+        _focusVisible={{ opacity: 1, boxShadow: "outline" }}
         opacity={0}
         _groupHover={{ opacity: 1 }}
         ml="0.375rem"

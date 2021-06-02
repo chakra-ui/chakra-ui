@@ -11,7 +11,7 @@ const baseStyleInput = {
   py: "3px",
   transition: "all 0.2s",
   width: "full",
-  _focus: { boxShadow: "outline" },
+  _focusVisible: { boxShadow: "outline" },
   _placeholder: { opacity: 0.6 },
 }
 

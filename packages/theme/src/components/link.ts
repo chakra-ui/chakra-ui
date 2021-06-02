@@ -7,7 +7,7 @@ const baseStyle = {
   _hover: {
     textDecoration: "underline",
   },
-  _focus: {
+  _focusVisible: {
     boxShadow: "outline",
   },
 }

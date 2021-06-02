@@ -19,6 +19,9 @@ function baseStyleTab(props: Dict) {
     transition: "all 0.2s",
     _focus: {
       zIndex: 1,
+    },
+    _focusVisible: {
+      zIndex: 1,
       boxShadow: "outline",
     },
   }

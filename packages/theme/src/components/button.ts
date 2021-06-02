@@ -6,7 +6,7 @@ const baseStyle = {
   lineHeight: "1.2",
   borderRadius: "md",
   fontWeight: "semibold",
-  _focus: {
+  _focusVisible: {
     boxShadow: "outline",
   },
   _disabled: {

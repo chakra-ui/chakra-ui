@@ -9,7 +9,7 @@ const baseStyleLink = {
   _hover: {
     textDecoration: "underline",
   },
-  _focus: {
+  _focusVisible: {
     boxShadow: "outline",
   },
 }

@@ -10,7 +10,7 @@ const baseStyleContainer = {
 
 const baseStyleButton = {
   fontSize: "1rem",
-  _focus: {
+  _focusVisible: {
     boxShadow: "outline",
   },
   _hover: {

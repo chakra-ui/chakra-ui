@@ -22,7 +22,7 @@ function baseStyleContent(props: Dict) {
     borderRadius: "md",
     boxShadow: "sm",
     zIndex: "inherit",
-    _focus: {
+    _focusVisible: {
       outline: 0,
       boxShadow: "outline",
     },

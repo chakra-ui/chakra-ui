@@ -8,7 +8,7 @@ const baseStyleContainer = {
   fontWeight: "medium",
   lineHeight: 1.2,
   outline: 0,
-  _focus: {
+  _focusVisible: {
     boxShadow: "outline",
   },
 }
@@ -28,8 +28,11 @@ const baseStyleCloseButton = {
   _disabled: {
     opacity: 0.4,
   },
-  _focus: {
+  _focusVisible: {
     boxShadow: "outline",
+    bg: "rgba(0, 0, 0, 0.14)",
+  },
+  _focus: {
     bg: "rgba(0, 0, 0, 0.14)",
   },
   _hover: { opacity: 0.8 },
