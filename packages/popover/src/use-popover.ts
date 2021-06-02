@@ -199,7 +199,6 @@ export function usePopover(props: UsePopoverProps = {}) {
           transformOrigin: popperCSSVars.transformOrigin.varRef,
           [popperCSSVars.arrowSize.var]: arrowSize ? px(arrowSize) : undefined,
           [popperCSSVars.arrowShadowColor.var]: arrowShadowColor,
-          visibility: isOpen ? "visible" : "hidden",
         },
         ref: mergeRefs(popoverRef, _ref),
         children: shouldRenderChildren ? props.children : null,
@@ -257,8 +256,18 @@ export function usePopover(props: UsePopoverProps = {}) {
   )
 
   const getPopoverPositionerProps: PropGetter = useCallback(
-    (props = {}, forwardedRef = null) => getPopperProps(props, forwardedRef),
-    [getPopperProps],
+    (props = {}, forwardedRef = null) =>
+      getPopperProps(
+        {
+          ...props,
+          style: {
+            visibility: isOpen ? "visible" : "hidden",
+            ...props.style,
+          },
+        },
+        forwardedRef,
+      ),
+    [isOpen, getPopperProps],
   )
 
   const openTimeout = useRef<number>()
