@@ -25,6 +25,7 @@ const NotFoundPage = () => {
         </Text>
         <NextLink href="/" passHref>
           <Button
+            as="a"
             aria-label="Back to Home"
             leftIcon={<FaHome />}
             colorScheme="teal"
