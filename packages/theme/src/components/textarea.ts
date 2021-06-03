@@ -7,6 +7,7 @@ const baseStyle = {
   paddingY: "8px",
   minHeight: "80px",
   lineHeight: "short",
+  verticalAlign: "top",
 }
 
 const variants = {
