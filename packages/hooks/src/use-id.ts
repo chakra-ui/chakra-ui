@@ -1,35 +1,42 @@
+// This implementation is heavily inspired by react-aria's implementation
+
 import * as React from "react"
-import { useSafeLayoutEffect } from "./use-safe-layout-effect"
 
-/**
- * Credit: https://github.com/reach/reach-ui/blob/develop/packages/auto-id/src/index.tsx
- */
-let handoffComplete = false
-let id = 0
-const genId = () => ++id
+type IdContextValue = {
+  prefix: number
+  current: number
+}
 
-/**
- * Reack hook to generate unique id
- *
- * @param idProp the external id passed from the user
- * @param prefix prefix to append before the id
- */
-export function useId(idProp?: string, prefix?: string) {
-  const initialId = idProp || (handoffComplete ? genId() : null)
-  const [uid, setUid] = React.useState(initialId)
+const defaultIdContext: IdContextValue = {
+  prefix: Math.round(Math.random() * 10000000000),
+  current: 0,
+}
 
-  useSafeLayoutEffect(() => {
-    if (uid === null) setUid(genId())
-  }, [])
+const IdContext = React.createContext<IdContextValue>(defaultIdContext)
 
-  React.useEffect(() => {
-    if (handoffComplete === false) {
-      handoffComplete = true
-    }
-  }, [])
+export const IdProvider: React.FC = React.memo(({ children }) => {
+  const currentContext = React.useContext(IdContext)
+  const isRoot = currentContext === defaultIdContext
+  const context: IdContextValue = React.useMemo(
+    () => ({
+      prefix: isRoot ? 0 : ++currentContext.prefix,
+      current: 0,
+    }),
+    [isRoot, currentContext],
+  )
 
-  const id = uid != null ? uid.toString() : undefined
-  return (prefix ? `${prefix}-${id}` : id) as string
+  return React.createElement(IdContext.Provider, { value: context }, children)
+})
+
+export function useId(idProp?: string, prefix?: string): string {
+  const context = React.useContext(IdContext)
+  return React.useMemo(
+    () =>
+      idProp ||
+      [prefix, context.prefix, ++context.current].filter(Boolean).join("-"),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [idProp, prefix],
+  )
 }
 
 /**
@@ -49,5 +56,27 @@ export function useId(idProp?: string, prefix?: string) {
  */
 export function useIds(idProp?: string, ...prefixes: string[]) {
   const id = useId(idProp)
-  return prefixes.map((prefix) => `${prefix}-${id}`)
+  return React.useMemo(() => {
+    return prefixes.map((prefix) => `${prefix}-${id}`)
+  }, [id, prefixes])
+}
+
+/**
+ * Used to generate an id, and after render, check if that id is rendered so we know
+ * if we can use it in places such as `aria-labelledby`.
+ *
+ * @param partId - The unique id for the component part
+ *
+ * @example
+ * const { ref, id } = useOptionalPart<HTMLInputElement>(`${id}-label`)
+ */
+export function useOptionalPart<T = any>(partId: string) {
+  const [id, setId] = React.useState<string | null>()
+  const ref = React.useCallback(
+    (node: T) => {
+      setId(node ? partId : null)
+    },
+    [partId],
+  )
+  return { ref, id, isRendered: Boolean(id) }
 }
