@@ -291,6 +291,10 @@ function PreventDuplicateExample() {
 Use `createStandaloneToast` to create toasts from outside of your React
 Components.
 
+> 🚨 If you're using a custom theme, you **must** pass it in the arguments to
+> `createStandaloneToast`. If you don't, the default theme will be applied,
+> causing the font size of your page to shift when the toast is open.
+
 ```js
 import { createStandaloneToast } from "@chakra-ui/react"
 
