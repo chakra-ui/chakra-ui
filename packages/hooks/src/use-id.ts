@@ -71,7 +71,7 @@ export function useIds(idProp?: string, ...prefixes: string[]) {
  * const { ref, id } = useOptionalPart<HTMLInputElement>(`${id}-label`)
  */
 export function useOptionalPart<T = any>(partId: string) {
-  const [id, setId] = React.useState<string | null>()
+  const [id, setId] = React.useState<string | null>(null)
   const ref = React.useCallback(
     (node: T) => {
       setId(node ? partId : null)
