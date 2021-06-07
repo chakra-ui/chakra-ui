@@ -109,6 +109,13 @@ export interface UsePopoverProps extends UsePopperProps {
    * @default "unmount"
    */
   lazyBehavior?: LazyBehavior
+  /**
+   * If `true`, the popover will be positioned when it mounts
+   * (even if it's not open)
+   *
+   * @default false
+   */
+  computePositionOnMount?: boolean
 }
 
 /**
@@ -129,6 +136,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     closeDelay = 200,
     isLazy,
     lazyBehavior = "unmount",
+    computePositionOnMount = false,
     ...popperProps
   } = props
 
@@ -163,7 +171,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     forceUpdate,
   } = usePopper({
     ...popperProps,
-    enabled: isOpen,
+    enabled: isOpen || computePositionOnMount,
   })
 
   useFocusOnPointerDown({

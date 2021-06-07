@@ -13,6 +13,9 @@ import { cssVars, getEventListenerOptions } from "./utils"
 export type { Placement }
 
 export interface UsePopperProps {
+  /**
+   * Whether the popper.js should be enabled
+   */
   enabled?: boolean
   /**
    * The main and cross-axis offset to displace popper element
@@ -254,8 +257,12 @@ export function usePopper(props: UsePopperProps = {}) {
   )
 
   return {
-    update: instance.current?.update,
-    forceUpdate: instance.current?.forceUpdate,
+    update() {
+      instance.current?.update()
+    },
+    forceUpdate() {
+      instance.current?.forceUpdate()
+    },
     transformOrigin: cssVars.transformOrigin.varRef,
     referenceRef,
     popperRef,
