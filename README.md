@@ -417,6 +417,7 @@ Thanks goes to these wonderful people
   <tr>
     <td align="center"><a href="http://hasibhassan.com"><img src="https://avatars.githubusercontent.com/u/67892792?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Hasib Hassan</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=hasibhassan" title="Documentation">📖</a></td>
     <td align="center"><a href="http://jamie.rolfs.sh"><img src="https://avatars.githubusercontent.com/u/288160?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Jamie Rolfs</b></sub></a><br /><a href="#ideas-jrolfs" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=jrolfs" title="Documentation">📖</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=jrolfs" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/spidertwin2"><img src="https://avatars.githubusercontent.com/u/29196888?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Surabhi Gupta</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=spidertwin2" title="Documentation">📖</a></td>
   </tr>
 </table>
 
