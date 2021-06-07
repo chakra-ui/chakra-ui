@@ -334,10 +334,12 @@ export function useMenuButton(
   }
 }
 
-function isTargetMenuItem(event: Pick<MouseEvent, "target">) {
-  const target = event.target as HTMLElement
+function isTargetMenuItem(event: Pick<MouseEvent, "currentTarget">) {
   // this will catch `menuitem`, `menuitemradio`, `menuitemcheckbox`
-  return !!target.getAttribute("role")?.startsWith("menuitem")
+  return (
+    event.currentTarget instanceof HTMLElement &&
+    !!event.currentTarget.getAttribute("role")?.startsWith("menuitem")
+  )
 }
 
 /* -------------------------------------------------------------------------------------------------
