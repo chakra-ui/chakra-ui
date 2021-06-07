@@ -44,7 +44,7 @@ export interface AccordionProps
  * for all accordion items.
  *
  * It wraps all accordion items in a `div` for better grouping.
- * @see Docs https://chakra-ui.com/docs/components/accordion
+ * @see Docs https://chakra-ui.com/accordion
  */
 export const Accordion = forwardRef<AccordionProps, "div">(
   ({ children, reduceMotion, ...props }, ref) => {

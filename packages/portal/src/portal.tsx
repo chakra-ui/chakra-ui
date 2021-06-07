@@ -157,7 +157,7 @@ export interface PortalProps {
  * Declarative component used to render children into a DOM node
  * that exists outside the DOM hierarchy of the parent component.
  *
- * @see Docs https://chakra-ui.com/docs/components/portal
+ * @see Docs https://chakra-ui.com/portal
  */
 
 export function Portal(props: PortalProps) {

@@ -98,7 +98,7 @@ export interface BreadcrumbItemProps
  * BreadcrumbItem is used to group a breadcrumb link.
  * It renders a `li` element to denote it belongs to an order list of links.
  *
- * @see Docs https://chakra-ui.com/docs/components/breadcrumbs
+ * @see Docs https://chakra-ui.com/breadcrumb
  */
 export const BreadcrumbItem = forwardRef<BreadcrumbItemProps, "li">(
   (props, ref) => {
@@ -179,7 +179,7 @@ export interface BreadcrumbProps
  * Breadcrumb is used to render a breadcrumb navigation landmark.
  * It renders a `nav` element with `aria-label` set to `Breadcrumb`
  *
- * @see Docs https://chakra-ui.com/docs/components/breadcrumbs
+ * @see Docs https://chakra-ui.com/breadcrumb
  */
 export const Breadcrumb = forwardRef<BreadcrumbProps, "nav">((props, ref) => {
   const styles = useMultiStyleConfig("Breadcrumb", props)

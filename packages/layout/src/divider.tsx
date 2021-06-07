@@ -13,7 +13,7 @@ import * as React from "react"
  * Layout component used to visually separate content in a list or group.
  * It display a thin horizontal or vertical line, and renders a `hr` tag.
  *
- * @see Docs https://chakra-ui.com/docs/data-display/divider
+ * @see Docs https://chakra-ui.com/divider
  */
 export const Divider = forwardRef<DividerProps, "hr">((props, ref) => {
   const {

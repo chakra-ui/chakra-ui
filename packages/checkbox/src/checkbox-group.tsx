@@ -32,7 +32,7 @@ export { useCheckboxGroupContext }
  * Used for multiple checkboxes which are bound in one group,
  * and it indicates whether one or more options are selected.
  *
- * @see Docs https://chakra-ui.com/docs/form/checkbox
+ * @see Docs https://chakra-ui.com/checkbox
  */
 export const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
   const { colorScheme, size, variant, children, isDisabled } = props
