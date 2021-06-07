@@ -1905,6 +1905,15 @@
         "doc",
         "code"
       ]
+    },
+    {
+      "login": "spidertwin2",
+      "name": "Surabhi Gupta",
+      "avatar_url": "https://avatars.githubusercontent.com/u/29196888?v=4",
+      "profile": "https://github.com/spidertwin2",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
