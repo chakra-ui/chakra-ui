@@ -50,7 +50,7 @@ function getTimestampAndAuthor(str) {
 
   if (!temp || temp.length < 3) return null
 
-  const [_, timestamp, author] = temp
+  const [, timestamp, author] = temp
   const dateStr = fromUnixTime(+timestamp)
 
   return {

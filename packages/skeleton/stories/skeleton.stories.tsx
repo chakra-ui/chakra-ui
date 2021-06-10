@@ -1,7 +1,7 @@
 import * as React from "react"
-import { Skeleton, SkeletonText, SkeletonCircle } from "../src"
 import { chakra, DarkMode } from "@chakra-ui/system"
 import { Stack } from "@chakra-ui/layout"
+import { Skeleton, SkeletonText, SkeletonCircle } from "../src"
 
 export default {
   title: "Skeleton",
@@ -64,7 +64,7 @@ export const WithFadeText = () => {
 
 export const WithFadeAlreadyLoaded = () => {
   return (
-    <Skeleton isLoaded={true}>
+    <Skeleton isLoaded>
       <span>This should not fade in</span>
     </Skeleton>
   )

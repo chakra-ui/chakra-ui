@@ -31,6 +31,11 @@ export function extractTokens(theme: Dict) {
 }
 
 export function omitVars(rawTheme: Dict) {
-  const { __cssMap, __cssVars, __breakpoints, ...cleanTheme } = rawTheme
+  const {
+    __cssMap: _cssMap,
+    __cssVars: _cssVars,
+    __breakpoints: _breakpoints,
+    ...cleanTheme
+  } = rawTheme
   return cleanTheme
 }

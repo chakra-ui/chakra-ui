@@ -13,10 +13,10 @@ let imageOnload: any = null
  */
 function trackImageOnload() {
   Object.defineProperty(window.Image.prototype, "onload", {
-    get: function () {
+    get() {
       return this._onload
     },
-    set: function (fn) {
+    set(fn) {
       imageOnload = fn
       this._onload = fn
     },

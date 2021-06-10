@@ -9,7 +9,8 @@
     "start": "next start",
     "test": "jest",
     "clean": "rm -rf .next .mdx-data",
-    "analyze": "ANALYZE=true next build"
+    "analyze": "ANALYZE=true next build",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@chakra-ui/cli": "1.3.1",

@@ -17,7 +17,7 @@ function NumberInput({ children }: { children?: React.ReactNode }) {
   const descendants = useDescendants()
 
   React.useEffect(() => {
-    descendants.first().node.focus()
+    descendants.first()?.node.focus()
   }, [descendants])
 
   return (
@@ -44,7 +44,7 @@ function Input() {
       ref={register}
       onKeyDown={(event) => {
         if (event.key === "ArrowRight") {
-          descendants.next(index).node.focus()
+          descendants.next(index)?.node.focus()
         }
       }}
     />

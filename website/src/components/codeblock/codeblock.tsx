@@ -9,7 +9,7 @@ import {
 import theme from "prism-react-renderer/themes/nightOwl"
 import React, { useState } from "react"
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live"
-import Highlight from "./highlight"
+import Highlight from "./highlight" // eslint-disable-line import/no-cycle
 import scope from "./react-live-scope"
 
 export const liveEditorStyle: React.CSSProperties = {

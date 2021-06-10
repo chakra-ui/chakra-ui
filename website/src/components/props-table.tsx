@@ -1,9 +1,9 @@
 import * as ComponentProps from "@chakra-ui/props-docs"
-import { chakra, Code, HStack, Stack, theme, Tag, Flex } from "@chakra-ui/react"
+import { chakra, Code, HStack, Stack, theme, Flex } from "@chakra-ui/react"
 import Link from "next/link"
 import * as React from "react"
 import { convertBackticksToInlineCode } from "utils/convert-backticks-to-inline-code"
-import MDXComponents from "./mdx-components"
+import MDXComponents from "./mdx-components" // eslint-disable-line import/no-cycle
 
 /**
  * A map of components that use foreign theme key.
@@ -236,60 +236,3 @@ const omitGenericThemableType = (type: string) =>
     .split(" | ")
     .filter((type) => type !== TYPE_GENERIC_THEMABLE)
     .join(" | ")
-
-function PropTableV1(props: any) {
-  const { data } = props
-  return (
-    <MDXComponents.table>
-      <thead>
-        <tr>
-          <MDXComponents.th>Name</MDXComponents.th>
-          <MDXComponents.th>Type</MDXComponents.th>
-          <MDXComponents.th>Description</MDXComponents.th>
-          <MDXComponents.th>Default</MDXComponents.th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((prop) => (
-          <tr key={prop.name}>
-            <MDXComponents.td>{prop.name}</MDXComponents.td>
-            <MDXComponents.td>
-              {prop.required && (
-                <Tag
-                  size="sm"
-                  colorScheme="red"
-                  px={1}
-                  mr="0.125rem"
-                  verticalAlign="baseline"
-                >
-                  required
-                </Tag>
-              )}
-              <MDXComponents.inlineCode
-                whiteSpace="wrap"
-                d="inline-block"
-                lineHeight="tall"
-              >
-                {prop.type}
-              </MDXComponents.inlineCode>
-            </MDXComponents.td>
-            <MDXComponents.td>{prop.description}</MDXComponents.td>
-            <MDXComponents.td>
-              {prop.defaultValue ? (
-                <MDXComponents.inlineCode
-                  whiteSpace="wrap"
-                  d="inline-block"
-                  lineHeight="tall"
-                >
-                  {prop.defaultValue}
-                </MDXComponents.inlineCode>
-              ) : (
-                "-"
-              )}
-            </MDXComponents.td>
-          </tr>
-        ))}
-      </tbody>
-    </MDXComponents.table>
-  )
-}

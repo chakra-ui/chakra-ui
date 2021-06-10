@@ -29,9 +29,7 @@
     "template.json"
   ],
   "scripts": {
-    "lint": "concurrently yarn:lint:*",
-    "lint:src": "eslint template/src --ext .ts,.tsx --config ../../.eslintrc",
-    "lint:types": "tsc --noEmit"
+    "lint": "eslint template/src --ext .ts,.tsx --config ../../.eslintrc"
   },
   "devDependencies": {
     "web-vitals": "^0.2.2"

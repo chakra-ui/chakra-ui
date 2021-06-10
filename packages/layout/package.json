@@ -48,14 +48,12 @@
     "start": "nodemon --watch src --exec yarn build -e ts,tsx",
     "build": "concurrently yarn:build:*",
     "test": "jest --env=jsdom --passWithNoTests",
-    "lint": "concurrently yarn:lint:*",
+    "lint": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
     "version": "yarn build",
     "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
     "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
     "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
-    "test:cov": "yarn test --coverage",
-    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
-    "lint:types": "tsc --noEmit"
+    "test:cov": "yarn test --coverage"
   },
   "dependencies": {
     "@chakra-ui/icon": "1.1.9",

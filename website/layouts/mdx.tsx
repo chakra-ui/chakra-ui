@@ -11,6 +11,7 @@ import * as React from "react"
 import { findRouteByPath, removeFromLast } from "utils/find-route-by-path"
 import { getRouteContext } from "utils/get-route-context"
 import { getHeadings } from "utils/get-headings"
+
 export function getRoutes(slug: string) {
   // for home page, use docs sidebat
   if (slug === "/") return docsSidebar.routes
@@ -23,7 +24,7 @@ export function getRoutes(slug: string) {
     "/docs": docsSidebar,
   }
 
-  const [_path, sidebar] =
+  const [, sidebar] =
     Object.entries(configMap).find(([path, _sidebar]) =>
       slug.startsWith(path),
     ) ?? []

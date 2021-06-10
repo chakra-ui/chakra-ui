@@ -22,7 +22,7 @@ export function useScrollSpy(
     }, options)
     elements.forEach((el) => observer.current.observe(el))
     return () => observer.current.disconnect()
-  }, [selectors])
+  }, [selectors, options])
 
   return activeId
 }

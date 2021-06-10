@@ -35,9 +35,7 @@
     "build": "concurrently yarn:build:*",
     "test": "jest --env=jsdom --passWithNoTests",
     "test:cov": "yarn test --coverage",
-    "lint:src": "eslint src --fix --ext .ts,.tsx --config ../../.eslintrc",
-    "lint:types": "tsc --noEmit",
-    "lint": "concurrently yarn:lint:*"
+    "lint": "eslint src --fix --ext .ts,.tsx --config ../../.eslintrc"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"

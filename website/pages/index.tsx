@@ -246,7 +246,9 @@ const HomePage = ({ members, sponsors, githubStars }: HomePageProps) => {
                 rounded="md"
               >
                 <Box as="span" mr="1" role="img">
-                  💖
+                  <span role="img" aria-label="sparkling heart">
+                    💖
+                  </span>
                 </Box>{" "}
                 Your company
               </Box>
@@ -381,7 +383,10 @@ const HomePage = ({ members, sponsors, githubStars }: HomePageProps) => {
 
             <Box mt="5rem" textAlign="center">
               <chakra.p mb="48px" textStyle="caps">
-                Chakra Heroes 🥇
+                Chakra Heroes{" "}
+                <span role="img" aria-label="1st place medal">
+                  🥇
+                </span>
               </chakra.p>
               <Wrap spacing="4" justify="center" maxW="660px" mx="auto">
                 {members.map((i) => (
@@ -422,12 +427,18 @@ const HomePage = ({ members, sponsors, githubStars }: HomePageProps) => {
           <Container py="120px" maxW="1200px" px="32px" color="white">
             <Box maxW="560px" mx="auto" textAlign="center" mb="56px">
               <chakra.h2 textStyle="heading-2" mb="4">
-                Support Chakra UI 💖
+                Support Chakra UI{" "}
+                <span role="img" aria-label="sparkling heart">
+                  💖
+                </span>
               </chakra.h2>
               <Text fontSize="lg" opacity={0.7}>
                 Our maintainers devote their time, effort, and heart to ensure
                 Chakra UI keeps getting better. Support us by donating to our
-                collective 🙏
+                collective{" "}
+                <span role="img" aria-label="praying hands">
+                  🙏
+                </span>
               </Text>
             </Box>
 
@@ -534,7 +545,10 @@ const HomePage = ({ members, sponsors, githubStars }: HomePageProps) => {
 
             <Box maxW="600px" mx="auto" textAlign="center">
               <chakra.p textStyle="caps" mb="8" mt="4rem">
-                Organization Sponsors 🏦
+                Organization Sponsors{" "}
+                <span role="img" aria-label="bank">
+                  🏦
+                </span>
               </chakra.p>
               <Wrap justify="center">
                 {sponsors.companies.map((i) => (
@@ -563,7 +577,10 @@ const HomePage = ({ members, sponsors, githubStars }: HomePageProps) => {
               </Wrap>
 
               <chakra.p mb="8" mt="4rem" textStyle="caps">
-                Individual Sponsors 🥇
+                Individual Sponsors{" "}
+                <span role="img" aria-label="1st place medal">
+                  🥇
+                </span>
               </chakra.p>
               <Wrap justify="center">
                 {sponsors.individuals.map((i) => (

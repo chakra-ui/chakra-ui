@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { ReactNode, useEffect, useState } from "react"
 import React, { createPortal } from "react-dom"
 import Frame from "react-frame-component"
 
@@ -8,7 +8,7 @@ export default {
   title: "Environment",
 }
 
-const Portal = ({ children }) => {
+const Portal = ({ children }: { children: ReactNode }) => {
   const env = useEnvironment()
   return createPortal(children, env.document.body)
 }

@@ -5,7 +5,8 @@
     "ecmaVersion": 10,
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "project": "tsconfig.json"
   },
   "extends": [
     "plugin:import/recommended",
@@ -17,6 +18,7 @@
     "prettier/@typescript-eslint"
   ],
   "plugins": [
+    "jest",
     "react-hooks",
     "@typescript-eslint/eslint-plugin",
     "testing-library"
@@ -71,13 +73,44 @@
     "react-hooks/exhaustive-deps": "error",
     "import/no-named-as-default": "off",
     "prefer-object-spread": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "^_",
+        "argsIgnorePattern": "^_",
+        "ignoreRestSiblings": true
+      }
+    ],
+    "default-case": "off"
   },
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx"],
+      "files": ["*.js", "*.jsx"],
       "parserOptions": {
-        "project": ["tsconfig.json"]
+        "project": "tsconfig.eslint.json"
+      }
+    },
+    {
+      "files": ["*.test.*", "*.test.*"],
+      "env": {
+        "jest/globals": true
+      },
+      "rules": {
+        "jsx-a11y/label-has-associated-control": "off",
+        "global-require": "off",
+        "no-new": "off"
+      }
+    },
+    {
+      "files": ["website/**"],
+      "parserOptions": {
+        "project": "tsconfig.website.json"
+      },
+      "rules": {
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-pascal-case": "off",
+        "global-require": "off"
       }
     }
   ]

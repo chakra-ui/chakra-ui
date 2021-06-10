@@ -19,9 +19,10 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
-    "declarationMap": true
+    "declarationMap": true,
+    "incremental": true
   },
-  "include": ["packages", "scripts", "tooling"],
+  "include": ["types", "packages", "scripts", "tooling"],
   "exclude": ["node_modules"],
   "ts-node": {
     "compilerOptions": {

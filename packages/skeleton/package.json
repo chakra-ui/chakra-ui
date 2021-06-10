@@ -48,9 +48,7 @@
     "build": "concurrently yarn:build:*",
     "test": "jest --env=jsdom --passWithNoTests",
     "test:cov": "yarn test --coverage",
-    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
-    "lint:types": "tsc --noEmit",
-    "lint": "concurrently yarn:lint:*"
+    "lint": "eslint src --ext .ts,.tsx --config ../../.eslintrc"
   },
   "dependencies": {
     "@chakra-ui/hooks": "1.5.2",

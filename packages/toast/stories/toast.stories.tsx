@@ -248,7 +248,7 @@ export const UseToastWithDefaults = () => {
 }
 
 export const useToastCustomRenderUpdate = () => {
-  const [id, setId] = React.useState(null)
+  const [id, setId] = React.useState<string | number | undefined>(undefined)
   const toast = useToast()
 
   React.useEffect(() => {
@@ -264,12 +264,12 @@ export const useToastCustomRenderUpdate = () => {
           ),
         })
 
-        setId(null)
+        setId("")
       }, 2000)
 
       return () => clearTimeout(timeout)
     }
-  }, [id])
+  }, [id, toast])
 
   return (
     <Button

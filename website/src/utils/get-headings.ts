@@ -24,5 +24,7 @@ export function getHeadings(children: React.ReactNode): Heading[] {
           text: heading.props?.children,
         }
       }
+      return undefined
     })
+    .filter(Boolean)
 }

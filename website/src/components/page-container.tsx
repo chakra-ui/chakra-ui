@@ -2,7 +2,6 @@ import { useRouter } from "next/router"
 import * as React from "react"
 import { Badge, Box, chakra, Flex } from "@chakra-ui/react"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
-import Container from "components/container"
 import EditPageLink from "components/edit-page-button"
 import Footer from "components/footer"
 import Header from "components/header"
@@ -25,7 +24,7 @@ function useHeadingFocusOnRouteChange() {
     return () => {
       router.events.off("routeChangeComplete", onRouteChange)
     }
-  }, [])
+  }, [router.events])
 }
 
 interface PageContainerProps {

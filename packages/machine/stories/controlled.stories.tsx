@@ -15,13 +15,13 @@ const counter = createControllableMachine({
     INC: {
       cond: (ctx) => ctx.value < ctx.max,
       actions: (ctx) => {
-        ctx.setValue(ctx.value + 1)
+        ctx.setValue?.(ctx.value + 1)
       },
     },
     DEC: {
       cond: (ctx) => ctx.value > ctx.min,
       actions: (ctx) => {
-        ctx.setValue(ctx.value - 1)
+        ctx.setValue?.(ctx.value - 1)
       },
     },
   },

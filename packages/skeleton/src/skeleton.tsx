@@ -80,8 +80,6 @@ export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
   const isFirstRender = useIsFirstRender()
 
   const {
-    startColor,
-    endColor,
     isLoaded,
     fadeDuration,
     speed,

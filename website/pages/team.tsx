@@ -121,7 +121,12 @@ function Team({ members, contributors }: TeamProps) {
 
           <Container>
             <Stack spacing={8}>
-              <Heading size="lg">Core Team 🤝</Heading>
+              <Heading size="lg">
+                Core Team{" "}
+                <span role="img" aria-label="shaking hands">
+                  🤝
+                </span>
+              </Heading>
               <SimpleGrid columns={[1, 1, 2]} spacing="40px" pt="3">
                 {members.map((member) => (
                   <Member key={member.login} member={member} />
@@ -130,7 +135,12 @@ function Team({ members, contributors }: TeamProps) {
             </Stack>
 
             <Stack py="48px" spacing={8}>
-              <Heading size="lg">Our Sponsors 💰</Heading>
+              <Heading size="lg">
+                Our Sponsors{" "}
+                <span role="img" aria-label="bag of money">
+                  💰
+                </span>
+              </Heading>
 
               <Box>
                 <Text
@@ -149,6 +159,7 @@ function Team({ members, contributors }: TeamProps) {
                       href={`https://opencollective.com/chakra-ui/organization/${idx}/website`}
                     >
                       <img
+                        alt=""
                         src={`https://opencollective.com/chakra-ui/organization/${idx}/avatar.svg?avatarHeight=130`}
                       />
                     </WrapItem>
@@ -165,13 +176,21 @@ function Team({ members, contributors }: TeamProps) {
                   Individuals
                 </Text>
                 <a href="https://opencollective.com/chakra-ui">
-                  <img src="https://opencollective.com/chakra-ui/individuals.svg?width=890" />
+                  <img
+                    alt=""
+                    src="https://opencollective.com/chakra-ui/individuals.svg?width=890"
+                  />
                 </a>
               </Box>
             </Stack>
 
             <Stack spacing={8} mt={{ base: "40px", md: "100px" }}>
-              <Heading size="lg">Project Contributors 💖</Heading>
+              <Heading size="lg">
+                Project Contributors{" "}
+                <span role="img" aria-label="sparkling heart">
+                  💖
+                </span>
+              </Heading>
               <Wrap spacing="3">
                 {contributorsWithoutTeam.map((contributor) => (
                   <WrapItem

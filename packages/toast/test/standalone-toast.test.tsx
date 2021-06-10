@@ -1,4 +1,3 @@
-import React from "react"
 import { screen } from "@chakra-ui/test-utils"
 import { createStandaloneToast } from "../src"
 

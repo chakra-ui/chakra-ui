@@ -1,5 +1,5 @@
-import { extendTheme, ThemeOverride } from "../src/extend-theme"
 import { createBreakpoints } from "@chakra-ui/theme-tools"
+import { extendTheme, ThemeOverride } from "../src/extend-theme"
 
 describe("extendTheme", () => {
   it("should override a color", () => {
@@ -56,7 +56,7 @@ describe("extendTheme", () => {
 
     const customTheme = extendTheme(override)
 
-    const { baseStyle, defaultProps } = customTheme.components.Button
+    const { baseStyle } = customTheme.components.Button
     const baseStyles = baseStyle()
 
     expect(baseStyles.bg).toBe(testColor)
@@ -252,6 +252,7 @@ describe("extendTheme", () => {
   })
 
   it("should not extend with function that is inherited", () => {
+    // eslint-disable-next-line no-extend-native
     Array.prototype["customFunction"] = () => {}
 
     const override = {

@@ -1,11 +1,12 @@
 import React from "react"
 import theme from "@chakra-ui/theme"
+import { screen } from "@testing-library/react"
 import { ColorModeOptions } from "../src/color-mode-provider"
 import type { ColorMode } from "../src/color-mode.utils"
-import { screen } from "@testing-library/react"
 import type { StorageManager } from "../src/storage-manager"
 
 export const DummyComponent = () => {
+  // eslint-disable-next-line global-require
   const { useColorMode } = require("../src/color-mode-provider")
   const { colorMode, toggleColorMode } = useColorMode()
 
