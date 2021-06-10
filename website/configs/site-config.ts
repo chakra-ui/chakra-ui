@@ -23,7 +23,7 @@ const siteConfig = {
     url: "https://opencollective.com/chakra-ui",
   },
   discord: {
-    url: "https://discord.gg/dQHfcWF",
+    url: "https://discord.gg/chakra-ui",
   },
   youtube: "https://www.youtube.com/channel/UC4TmDovH46TB4S0SM0Y4CIg",
   seo: {

@@ -14,7 +14,7 @@
   <img alt="MIT License" src="https://img.shields.io/github/license/chakra-ui/chakra-ui"/>
   <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@chakra-ui/react.svg?style=flat"/>
   <img alt="Github Stars" src="https://badgen.net/github/stars/chakra-ui/chakra-ui" />
-  <a href="https://discord.gg/yxpPm4q">
+  <a href="https://discord.gg/chakra-ui">
     <img alt="Discord" src="https://img.shields.io/discord/660863154703695893.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" />
   </a>
 </p>
@@ -133,7 +133,8 @@ function Example() {
 
 - JavaScript Starter: https://codesandbox.io/s/chakra-ui-javascript-lzzg9
 - TypeScript Starter: https://codesandbox.io/s/chakra-ui-typescript-pomi8
-- NextJS TypeScript Starter: https://codesandbox.io/s/chakra-ui-next-js-typescript-kxvyr
+- NextJS TypeScript Starter:
+  https://codesandbox.io/s/chakra-ui-next-js-typescript-kxvyr
 
 ## `create-react-app` Templates
 
