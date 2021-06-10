@@ -1,7 +1,13 @@
 import { useTimeout, useUpdateEffect } from "@chakra-ui/hooks"
 import { isFunction, __DEV__ } from "@chakra-ui/utils"
 import ReachAlert from "@reach/alert"
-import { motion, useIsPresent, Variants } from "framer-motion"
+import {
+  domAnimation,
+  LazyMotion,
+  m as motion,
+  useIsPresent,
+  Variants,
+} from "framer-motion"
 import * as React from "react"
 import { ToastOptions } from "./toast.types"
 import { getToastStyle } from "./toast.utils"
@@ -102,30 +108,32 @@ export const Toast: React.FC<ToastProps> = (props) => {
   const style = React.useMemo(() => getToastStyle(position), [position])
 
   return (
-    <motion.li
-      layout
-      className="chakra-toast"
-      variants={toastMotionVariants}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      onHoverStart={onMouseEnter}
-      onHoverEnd={onMouseLeave}
-      custom={{ position }}
-      style={style}
-    >
-      <ReachAlert
-        className="chakra-toast__inner"
-        style={{
-          pointerEvents: "auto",
-          maxWidth: 560,
-          minWidth: 300,
-          margin: "0.5rem",
-        }}
+    <LazyMotion features={domAnimation}>
+      <motion.li
+        layout
+        className="chakra-toast"
+        variants={toastMotionVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        onHoverStart={onMouseEnter}
+        onHoverEnd={onMouseLeave}
+        custom={{ position }}
+        style={style}
       >
-        {isFunction(message) ? message({ id, onClose: close }) : message}
-      </ReachAlert>
-    </motion.li>
+        <ReachAlert
+          className="chakra-toast__inner"
+          style={{
+            pointerEvents: "auto",
+            maxWidth: 560,
+            minWidth: 300,
+            margin: "0.5rem",
+          }}
+        >
+          {isFunction(message) ? message({ id, onClose: close }) : message}
+        </ReachAlert>
+      </motion.li>
+    </LazyMotion>
   )
 }
 

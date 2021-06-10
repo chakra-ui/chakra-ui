@@ -22,8 +22,10 @@ import {
 import { createContext } from "@chakra-ui/react-utils"
 import {
   AnimatePresence,
+  domAnimation,
   HTMLMotionProps,
-  motion,
+  LazyMotion,
+  m as motion,
   usePresence,
 } from "framer-motion"
 import * as React from "react"
@@ -355,13 +357,15 @@ export const ModalOverlay = forwardRef<ModalOverlayProps, "div">(
     const motionProps: any = motionPreset === "none" ? {} : fadeConfig
 
     return (
-      <MotionDiv
-        {...motionProps}
-        __css={overlayStyle}
-        ref={ref}
-        className={_className}
-        {...rest}
-      />
+      <LazyMotion features={domAnimation}>
+        <MotionDiv
+          {...motionProps}
+          __css={overlayStyle}
+          ref={ref}
+          className={_className}
+          {...rest}
+        />
+      </LazyMotion>
     )
   },
 )
