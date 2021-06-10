@@ -1914,6 +1914,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "Ningaro",
+      "name": "Ningaro",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23503775?v=4",
+      "profile": "http://rp.station.msk.ru",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
