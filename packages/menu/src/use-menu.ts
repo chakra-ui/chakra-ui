@@ -334,11 +334,11 @@ export function useMenuButton(
   }
 }
 
-function isTargetMenuItem(event: Pick<MouseEvent, "currentTarget">) {
+function isTargetMenuItem(target: EventTarget | null) {
   // this will catch `menuitem`, `menuitemradio`, `menuitemcheckbox`
   return (
-    event.currentTarget instanceof HTMLElement &&
-    !!event.currentTarget.getAttribute("role")?.startsWith("menuitem")
+    target instanceof HTMLElement &&
+    !!target.getAttribute("role")?.startsWith("menuitem")
   )
 }
 
@@ -386,7 +386,8 @@ export function useMenuList(
    * to printable keyboard character press
    */
   const createTypeaheadHandler = useShortcut({
-    preventDefault: (event) => event.key !== " " && isTargetMenuItem(event),
+    preventDefault: (event) =>
+      event.key !== " " && isTargetMenuItem(event.target),
   })
 
   const onKeyDown = React.useCallback(
@@ -431,7 +432,7 @@ export function useMenuList(
         }
       })
 
-      if (isTargetMenuItem(event)) {
+      if (isTargetMenuItem(event.target)) {
         onTypeahead(event)
       }
     },
@@ -577,7 +578,7 @@ export function useMenuItem(
   const onClick = React.useCallback(
     (event: React.MouseEvent) => {
       onClickProp?.(event)
-      if (!isTargetMenuItem(event)) return
+      if (!isTargetMenuItem(event.currentTarget)) return
       /**
        * Close menu and parent menus, allowing the MenuItem
        * to override its parent menu's `closeOnSelect` prop.
