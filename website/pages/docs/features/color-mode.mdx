@@ -348,5 +348,14 @@ App.getInitialProps = ({ req }) => {
 In some cases, when you switch to dark mode and refresh the page, you might
 experience a quick flash of white mode before it switches correctly.
 
+(for NextJs) Optionally you can add a background color on HTML, thus avoiding the white flash.
+```jsx live=false ln={16}
+// pages/_document.js
+
+   // ...
+   <Html style={{ backgroundColor: '#1a202c' }}>
+   // ...
+```
+
 This is a known issue and we're looking to fix it. If you have some ideas, feel
 free to share with us on Discord or Github.
