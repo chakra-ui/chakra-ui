@@ -33,6 +33,7 @@ import {
   LazyBehavior,
   normalizeEventKey,
   removeItem,
+  flipDirection,
 } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -102,6 +103,11 @@ export interface UseMenuProps extends UsePopperProps, UseDisclosureProps {
    * @default "unmount"
    */
   lazyBehavior?: LazyBehavior
+  /**
+   * If `rtl`, poper placement positions will be flipped i.e. 'top-right' will
+   * become 'top-left' and vice-verse
+   */
+  direction?: "ltr" | "rtl"
 }
 
 /**
@@ -123,15 +129,18 @@ export function useMenu(props: UseMenuProps = {}) {
     onOpen: onOpenProp,
     placement = "bottom-start",
     lazyBehavior = "unmount",
+    direction,
     ...popperProps
   } = props
-
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure({
     isOpen: isOpenProp,
     defaultIsOpen,
     onClose: onCloseProp,
     onOpen: onOpenProp,
   })
+
+  const dirAwarePlacement =
+    direction === "rtl" ? flipDirection(placement) : placement
 
   /**
    * Prepare the reference to the menu and disclosure
@@ -157,8 +166,8 @@ export function useMenu(props: UseMenuProps = {}) {
    */
   const popper = usePopper({
     ...popperProps,
+    placement: dirAwarePlacement,
     enabled: isOpen,
-    placement,
   })
 
   const [focusedIndex, setFocusedIndex] = React.useState(-1)

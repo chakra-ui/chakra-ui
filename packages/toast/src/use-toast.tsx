@@ -14,10 +14,19 @@ import {
   useChakra,
 } from "@chakra-ui/system"
 import defaultTheme from "@chakra-ui/theme"
-import { isFunction, noop } from "@chakra-ui/utils"
+import {
+  getPlacementForThemeDirection,
+  isFunction,
+  noop,
+} from "@chakra-ui/utils"
 import * as React from "react"
 import { toast } from "./toast.class"
-import { RenderProps, ToastId, ToastOptions } from "./toast.types"
+import {
+  RenderProps,
+  ToastId,
+  ToastOptions,
+  ToastPosition,
+} from "./toast.types"
 
 export interface UseToastOptions {
   /**
@@ -189,17 +198,23 @@ export function createStandaloneToast({
  */
 export function useToast(options?: UseToastOptions) {
   const { theme, setColorMode, toggleColorMode, colorMode } = useChakra()
-  return React.useMemo(
-    () =>
-      createStandaloneToast({
-        theme,
-        colorMode,
-        setColorMode,
-        toggleColorMode,
-        defaultOptions: options,
-      }),
-    [theme, setColorMode, toggleColorMode, colorMode, options],
-  )
+  return React.useMemo(() => {
+    const dirAwarePosition = getPlacementForThemeDirection(
+      theme.direction,
+      options?.position,
+    )
+
+    return createStandaloneToast({
+      theme,
+      colorMode,
+      setColorMode,
+      toggleColorMode,
+      defaultOptions: {
+        ...options,
+        position: dirAwarePosition as ToastPosition,
+      },
+    })
+  }, [theme, setColorMode, toggleColorMode, colorMode, options])
 }
 
 export default useToast
