@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.12.0
+
+### Minor Changes
+
+- [`ebda07095`](https://github.com/chakra-ui/chakra-ui/commit/ebda07095bffd9b3135c5d19803a3a08397b78ef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Added the
+  `_activeStep` pseudoselector which is applied when `aria-current="step"`.
+  [See the `wai-aria` documentation](https://www.w3.org/TR/wai-aria-1.2/#aria-current)
+  for more information on `aria-current`.
+
 ## 1.11.1
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [`31ec6466c`](https://github.com/chakra-ui/chakra-ui/commit/31ec6466c2ddc7fffb8e8dfa0f7f241f189f96eb)
+  [#4029](https://github.com/chakra-ui/chakra-ui/pull/4029) Thanks
+  [@jesstelford](https://github.com/jesstelford)! - `useBreakpointValue()` now
+  supports receiving a `defaultBreakpoint` as the second argument to support
+  SSR/SSG.
+
 ## 1.0.14
 
 ### Patch Changes

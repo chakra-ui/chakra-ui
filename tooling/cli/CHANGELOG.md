@@ -1,5 +1,34 @@
 # @chakra-ui/cli
 
+## 1.4.0
+
+### Minor Changes
+
+- [`fe2557584`](https://github.com/chakra-ui/chakra-ui/commit/fe255758437b04740e1a0d8c8549afefe7dc71ce)
+  [#4067](https://github.com/chakra-ui/chakra-ui/pull/4067) Thanks
+  [@jrolfs](https://github.com/jrolfs)! - The `tokens` command now supports
+  generating theme token type definitions from a Chakra UI theme published as a
+  package:
+
+  ```sh
+  npx @chakra-ui/cli tokens <@your-org/chakra-theme-package>
+  ```
+
+  A published theme package should export a theme object as either the `default`
+  export or an export named `theme`.
+
+  ```jsx
+  // chakra-theme-package/src/index.js
+  import { extendTheme } from "@chakra-ui/react"
+
+  const theme = extendTheme({})
+
+  // as default export
+  export default theme
+  // as named export
+  export { theme }
+  ```
+
 ## 1.3.1
 
 ### Patch Changes

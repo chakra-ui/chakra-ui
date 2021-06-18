@@ -1,5 +1,30 @@
 # Change Log
 
+## 1.4.0
+
+### Minor Changes
+
+- [`7e3d3ff35`](https://github.com/chakra-ui/chakra-ui/commit/7e3d3ff356b9f2e875790cd7a96ddfce83034737)
+  [#3904](https://github.com/chakra-ui/chakra-ui/pull/3904) Thanks
+  [@antoniel](https://github.com/antoniel)! - Add className prop to button load
+  spinner
+
+### Patch Changes
+
+- [`afb9b3cfa`](https://github.com/chakra-ui/chakra-ui/commit/afb9b3cfa87076ed8897b7edd4a9d9f1e1701721)
+  [#4103](https://github.com/chakra-ui/chakra-ui/pull/4103) Thanks
+  [@with-heart](https://github.com/with-heart)! - Update transitions to use
+  theme tokens and remove outline transitions
+
+* [`ff946d73e`](https://github.com/chakra-ui/chakra-ui/commit/ff946d73e121aba4b2ff2740ea22440a1c5fdb85)
+  [#4245](https://github.com/chakra-ui/chakra-ui/pull/4245) Thanks
+  [@Mattinton](https://github.com/Mattinton)! - fix(icon-button): update
+  IconButton to use theme borderRadius
+
+* Updated dependencies
+  [[`4c157e320`](https://github.com/chakra-ui/chakra-ui/commit/4c157e320a73b08eb89a44831a7cf434fb403bad)]:
+  - @chakra-ui/spinner@1.1.10
+
 ## 1.3.2
 
 ### Patch Changes

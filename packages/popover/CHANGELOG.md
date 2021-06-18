@@ -1,5 +1,28 @@
 # Change Log
 
+## 1.8.0
+
+### Minor Changes
+
+- [`5afa7ef49`](https://github.com/chakra-ui/chakra-ui/commit/5afa7ef49c7e3b01bce932e252865226b9511b39)
+  [#4180](https://github.com/chakra-ui/chakra-ui/pull/4180) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Added
+  `computePositionOnMount` prop to allow positioning the popover or menu before
+  initial open
+
+### Patch Changes
+
+- [`8881d925d`](https://github.com/chakra-ui/chakra-ui/commit/8881d925d494b33b4bebd53cc14e5dea6cea5a46)
+  [#4146](https://github.com/chakra-ui/chakra-ui/pull/4146) Thanks
+  [@anubra266](https://github.com/anubra266)! - Fix issue where arrowshadowcolor
+  didn't work
+
+- Updated dependencies
+  [[`aa374ffcb`](https://github.com/chakra-ui/chakra-ui/commit/aa374ffcb4003efd88eb6a62e10723ea9fbfa3d0),
+  [`5afa7ef49`](https://github.com/chakra-ui/chakra-ui/commit/5afa7ef49c7e3b01bce932e252865226b9511b39)]:
+  - @chakra-ui/hooks@1.5.3
+  - @chakra-ui/popper@2.2.1
+
 ## 1.7.1
 
 ### Patch Changes

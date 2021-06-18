@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/counter",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "A React hook for managing counters",
   "keywords": [
     "counter",
@@ -55,7 +55,7 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "1.5.2",
+    "@chakra-ui/hooks": "1.5.3",
     "@chakra-ui/utils": "1.8.0"
   },
   "peerDependencies": {

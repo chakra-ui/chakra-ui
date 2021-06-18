@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.0.13
+
+### Patch Changes
+
+- [`afb9b3cfa`](https://github.com/chakra-ui/chakra-ui/commit/afb9b3cfa87076ed8897b7edd4a9d9f1e1701721)
+  [#4103](https://github.com/chakra-ui/chakra-ui/pull/4103) Thanks
+  [@with-heart](https://github.com/with-heart)! - Update transitions to use
+  theme tokens and remove outline transitions
+
 ## 1.0.12
 
 ### Patch Changes

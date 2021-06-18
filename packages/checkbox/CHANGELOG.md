@@ -1,5 +1,23 @@
 # Change Log
 
+## 1.5.3
+
+### Patch Changes
+
+- [`4c157e320`](https://github.com/chakra-ui/chakra-ui/commit/4c157e320a73b08eb89a44831a7cf434fb403bad)
+  [#4057](https://github.com/chakra-ui/chakra-ui/pull/4057) Thanks
+  [@mcha-dev](https://github.com/mcha-dev)! - updated @see doc links to point to
+  shorthand see PR #4046 comment
+
+* [`afb9b3cfa`](https://github.com/chakra-ui/chakra-ui/commit/afb9b3cfa87076ed8897b7edd4a9d9f1e1701721)
+  [#4103](https://github.com/chakra-ui/chakra-ui/pull/4103) Thanks
+  [@with-heart](https://github.com/with-heart)! - Update transitions to use
+  theme tokens and remove outline transitions
+
+* Updated dependencies
+  [[`aa374ffcb`](https://github.com/chakra-ui/chakra-ui/commit/aa374ffcb4003efd88eb6a62e10723ea9fbfa3d0)]:
+  - @chakra-ui/hooks@1.5.3
+
 ## 1.5.2
 
 ### Patch Changes

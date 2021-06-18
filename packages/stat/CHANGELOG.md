@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.1.10
+
+### Patch Changes
+
+- [`f2c0480ee`](https://github.com/chakra-ui/chakra-ui/commit/f2c0480ee2bc4312837cac078e855b9555f47b61)
+  [#4124](https://github.com/chakra-ui/chakra-ui/pull/4124) Thanks
+  [@anubra266](https://github.com/anubra266)! - Export TypeScript interface
+  `StatGroupProps`
+
 ## 1.1.9
 
 ### Patch Changes
