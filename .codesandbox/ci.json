@@ -26,8 +26,6 @@
     "packages/image",
     "packages/input",
     "packages/layout",
-    "packages/live-region",
-    "packages/machine",
     "packages/media-query",
     "packages/menu",
     "packages/modal",
