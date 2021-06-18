@@ -106,7 +106,7 @@ export interface UseMenuProps extends UsePopperProps, UseDisclosureProps {
    * If `true`, the menu will be positioned when it mounts
    * (even if it's not open).
    *
-   * Note 🚨: We don't recommend using this in a menu intensive UI or page
+   * Note 🚨: We don't recommend using this in a menu/popover intensive UI or page
    * as it might affect scrolling performance.
    */
   computePositionOnMount?: boolean
