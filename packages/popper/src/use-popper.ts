@@ -229,6 +229,7 @@ export function usePopper(props: UsePopperProps = {}) {
         ...props.style,
         position: strategy,
         minWidth: "max-content",
+        inset: "0 auto auto 0",
       },
     }),
     [strategy, popperRef],
