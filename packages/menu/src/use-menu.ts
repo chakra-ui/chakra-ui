@@ -104,9 +104,10 @@ export interface UseMenuProps extends UsePopperProps, UseDisclosureProps {
   lazyBehavior?: LazyBehavior
   /**
    * If `true`, the menu will be positioned when it mounts
-   * (even if it's not open)
+   * (even if it's not open).
    *
-   * @default false
+   * Note 🚨: We don't recommend using this in a menu intensive UI or page
+   * as it might affect scrolling performance.
    */
   computePositionOnMount?: boolean
 }
@@ -130,7 +131,7 @@ export function useMenu(props: UseMenuProps = {}) {
     onOpen: onOpenProp,
     placement = "bottom-start",
     lazyBehavior = "unmount",
-    computePositionOnMount = false,
+    computePositionOnMount,
     ...popperProps
   } = props
 
