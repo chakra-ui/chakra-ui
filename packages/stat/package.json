@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/stat",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "description": "A React component for displaying statistics",
   "keywords": [
     "stat",
@@ -58,7 +58,7 @@
     "@chakra-ui/visually-hidden": "1.0.12"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.6.7",
+    "@chakra-ui/system": "1.7.0",
     "react": "^17.0.1"
   },
   "peerDependencies": {

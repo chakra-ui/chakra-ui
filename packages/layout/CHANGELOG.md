@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.4.6
+
+### Patch Changes
+
+- [`4c157e320`](https://github.com/chakra-ui/chakra-ui/commit/4c157e320a73b08eb89a44831a7cf434fb403bad)
+  [#4057](https://github.com/chakra-ui/chakra-ui/pull/4057) Thanks
+  [@mcha-dev](https://github.com/mcha-dev)! - updated @see doc links to point to
+  shorthand see PR #4046 comment
+
 ## 1.4.5
 
 ### Patch Changes
