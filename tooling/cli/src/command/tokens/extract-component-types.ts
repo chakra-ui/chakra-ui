@@ -28,7 +28,7 @@ export function extractComponentTypes(theme: Record<string, unknown>) {
 }
 
 function escapeComponentName(componentName: string) {
-  return componentName.match(/^[a-zA-Z0-9\-\_]+$/)
+  return componentName.match(/^[a-zA-Z0-9\-_]+$/)
     ? componentName
     : `"${componentName}"`
 }
