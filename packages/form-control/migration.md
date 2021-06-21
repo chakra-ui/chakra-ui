@@ -2,7 +2,7 @@
 
 ## Changes
 
-- `FormControl` now exposes most of it is internal functions and hooks so you
+- `FormControl` now exposes most of its internal functions and hooks so you
   can leverage in building custom components.
 
 - Now export `useFormControl`, the hook you can consume in any custom form
