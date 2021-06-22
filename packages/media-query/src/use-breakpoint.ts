@@ -42,18 +42,18 @@ export function useBreakpoint(defaultBreakpoint?: string) {
     )
 
     if (mediaQuery) {
-      const { query, ...breakpoint } = mediaQuery
+      const { breakpoint } = mediaQuery
       return breakpoint
     }
 
     return undefined
   })
 
-  const current = currentBreakpoint?.breakpoint
+  const current = currentBreakpoint
 
   const update = React.useCallback(
-    (query: MediaQueryList, breakpoint: Breakpoint) => {
-      if (query.matches && current !== breakpoint.breakpoint) {
+    (query: MediaQueryList, { breakpoint }: Breakpoint) => {
+      if (query.matches && current !== breakpoint) {
         setCurrentBreakpoint(breakpoint)
       }
     },
