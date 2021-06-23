@@ -2,22 +2,25 @@
 daysUntilStale: 30
 # Number of days of inactivity before a stale issue is closed
 daysUntilClose: 5
+# Only issues or pull requests with all of these labels are check if stale.
+onlyLabels:
+  - "Status: Awaiting Response ⏳"
+  - "Status: Needs Reproduction ♺"
 # Issues with these labels will never be considered stale
-exemptLabels:
-  - "not stale"
-  - "Priority: High 🚨"
+exemptLabels: []
 # Label to use when marking an issue as stale
 staleLabel: stale
 # Comment to post when marking an issue as stale. Set to `false` to disable
 markComment: >
   Hi!
 
-  This issue hasn't seen any activity recently. We close inactive issues after
-  35 days to manage the volume of issues we receive.
+  This issue was labeled "awaiting response" or "needs reproduction" by a Chakra
+  team member. In order to reduce the number of stale issues we have, I'm in
+  charge of closing issues with no response or reproduction after 1 month.
 
-  If we missed this issue or you want to keep it open, please reply here. That
-  will reset the timer and allow more time for this issue to be addressed before
-  it is closed.
+  Since it's been 1 month and we still haven't received a response or
+  reproduction, I will close this issue in 5 days. This issue will remain open
+  if a response or reproduction is received before then.
 # Comment to post when closing a stale issue. Set to `false` to disable
 closeComment: false
 unmarkComment: false
