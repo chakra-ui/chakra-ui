@@ -420,6 +420,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="http://jamie.rolfs.sh"><img src="https://avatars.githubusercontent.com/u/288160?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Jamie Rolfs</b></sub></a><br /><a href="#ideas-jrolfs" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=jrolfs" title="Documentation">📖</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=jrolfs" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/spidertwin2"><img src="https://avatars.githubusercontent.com/u/29196888?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Surabhi Gupta</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=spidertwin2" title="Documentation">📖</a></td>
     <td align="center"><a href="http://rp.station.msk.ru"><img src="https://avatars.githubusercontent.com/u/23503775?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Ningaro</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3ANingaro" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="http://monae.me"><img src="https://avatars.githubusercontent.com/u/74229895?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Monae</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=m0nae" title="Code">💻</a></td>
   </tr>
 </table>
 
