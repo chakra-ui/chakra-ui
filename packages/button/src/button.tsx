@@ -10,7 +10,13 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, dataAttr, mergeWith, __DEV__ } from "@chakra-ui/utils"
+import {
+  cx,
+  dataAttr,
+  filterUndefined,
+  mergeWith,
+  __DEV__,
+} from "@chakra-ui/utils"
 import * as React from "react"
 import { useButtonGroup } from "./button-group"
 
@@ -129,7 +135,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
       data-loading={dataAttr(isLoading)}
       __css={buttonStyles}
       className={cx("chakra-button", className)}
-      {...rest}
+      {...filterUndefined(rest)}
     >
       {leftIcon && !isLoading && (
         <ButtonIcon marginEnd={iconSpacing}>{leftIcon}</ButtonIcon>
