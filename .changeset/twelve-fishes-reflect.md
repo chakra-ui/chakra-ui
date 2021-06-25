@@ -1,6 +1,6 @@
 ---
-"@chakra-ui/button": patch
+"@chakra-ui/system": patch
 ---
 
 Fixed an issue where undefined style props (such as `borderRadius`) would not
-fall back on using default styles
+fallback to the default styles
