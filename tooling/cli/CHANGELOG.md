@@ -1,5 +1,14 @@
 # @chakra-ui/cli
 
+## 1.5.0
+
+### Minor Changes
+
+- [`211d94de3`](https://github.com/chakra-ui/chakra-ui/commit/211d94de397e4e7c91cfe70a3bafa905c7506cbf)
+  [#4258](https://github.com/chakra-ui/chakra-ui/pull/4258) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Enable esModuleInterop for
+  `chakra-cli tokens`
+
 ## 1.4.0
 
 ### Minor Changes

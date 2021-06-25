@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -38,7 +38,7 @@
     "@chakra-ui/alert": "1.2.5",
     "@chakra-ui/avatar": "1.2.6",
     "@chakra-ui/breadcrumb": "1.2.6",
-    "@chakra-ui/button": "1.4.0",
+    "@chakra-ui/button": "1.4.1",
     "@chakra-ui/checkbox": "1.5.3",
     "@chakra-ui/close-button": "1.1.9",
     "@chakra-ui/control-box": "1.0.13",
