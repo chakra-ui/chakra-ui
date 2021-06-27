@@ -1,9 +1,9 @@
 import { ChakraProvider } from "@chakra-ui/react"
+import { CustomizableThemeProvider } from "components/customizable-theme"
 import FontFace from "components/font-face"
 import { DefaultSeo } from "next-seo"
 import Head from "next/head"
 import React from "react"
-import theme from "theme"
 import { getSeo } from "utils/seo"
 
 const App = ({ Component, pageProps }) => {
@@ -27,9 +27,9 @@ const App = ({ Component, pageProps }) => {
         )}
       </Head>
       <DefaultSeo {...seo} />
-      <ChakraProvider theme={theme}>
+      <CustomizableThemeProvider>
         <Component {...pageProps} />
-      </ChakraProvider>
+      </CustomizableThemeProvider>
       <FontFace />
     </>
   )
