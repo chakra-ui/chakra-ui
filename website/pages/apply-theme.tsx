@@ -18,7 +18,8 @@ import {
 import PageContainer from "components/page-container"
 import Sidebar from "components/sidebar/sidebar"
 import { getRoutes } from "layouts/mdx"
-import { last, omit } from "lodash"
+import last from "lodash/last"
+import omit from "lodash/omit"
 import { extension } from "theme"
 import { useContext, useCallback, useEffect, useState } from "react"
 import {

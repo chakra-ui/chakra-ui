@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import { omit } from "lodash"
+import omit from "lodash/omit"
 import {
   ChakraProvider,
   useToast,
