@@ -18,7 +18,7 @@ import {
 import PageContainer from "components/page-container"
 import Sidebar from "components/sidebar/sidebar"
 import { getRoutes } from "layouts/mdx"
-import _ from "lodash"
+import { last, omit } from "lodash"
 import { extension } from "theme"
 import { useContext, useCallback, useEffect, useState } from "react"
 import {
@@ -47,7 +47,7 @@ function GistTheme({ onChangeGistId }) {
           url: { value },
         },
       } = event
-      const fromGistId: string = _.last(value.split("/"))
+      const fromGistId: string = last(value.split("/"))
       if (!isValidGistId(fromGistId)) {
         return
       }
@@ -182,7 +182,7 @@ function ApplyTheme() {
     })
     replace({
       pathname: route,
-      query: _.omit(query, ["fromGistId"]),
+      query: omit(query, ["fromGistId"]),
     })
   }, [code, replace, route, query])
 

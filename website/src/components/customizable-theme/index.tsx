@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import _ from "lodash"
+import { omit } from "lodash"
 import {
   ChakraProvider,
   useToast,
@@ -51,7 +51,7 @@ function ThemeConfigProvider({ setTheme, children }) {
     setTheme(initialTheme)
     replace({
       pathname: route,
-      query: _.omit(query, ["fromGistId"]),
+      query: omit(query, ["fromGistId"]),
     })
   }, [removeThemeConfig, setTheme, route, query, replace])
 
