@@ -169,7 +169,7 @@ function ApplyTheme() {
   )
   const setThemeConfig = useContext(ThemeConfigContext)
   useEffect(() => {
-    if (!isValidGistId(query.fromGistId)) {
+    if (!isValidGistId(query?.fromGistId)) {
       return
     }
     setThemeConfig({
