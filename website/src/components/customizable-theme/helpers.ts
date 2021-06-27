@@ -29,11 +29,7 @@ export async function getFromGistId(gistId) {
   const rawTrimeedContent = rawContent.trim()
   // eval
   try {
-    const exports = {}
-    const localModule = { exports }
-    const execContent = new Function("module", "exports", rawTrimeedContent)
-    execContent(localModule, exports)
-
+    const localModule = execCode(rawTrimeedContent)
     return {
       file,
       localModule,
@@ -43,4 +39,13 @@ export async function getFromGistId(gistId) {
       error: true,
     }
   }
+}
+
+export function execCode(code) {
+  // eval
+  const exports = {}
+  const localModule = { exports }
+  const execContent = new Function("module", "exports", code)
+  execContent(localModule, exports)
+  return localModule
 }
