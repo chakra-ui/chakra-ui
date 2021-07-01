@@ -2,7 +2,7 @@ import { createContext } from "react"
 
 export const ThemeConfigContext = createContext(undefined)
 
-export function isValidGistId(gistId: string): boolean {
+export function isValidGistId(gistId: string | string[]): boolean {
   return !!gistId && gistId.length === 32
 }
 
