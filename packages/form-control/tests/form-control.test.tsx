@@ -1,6 +1,7 @@
 import { chakra, forwardRef, PropsOf } from "@chakra-ui/system"
 import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
+import { ChakraProvider, extendTheme } from "../../react"
 import {
   FormControl,
   FormControlOptions,
@@ -221,4 +222,96 @@ test("has the correct data attributes", async () => {
   expect(label).toHaveAttribute("data-focus")
   expect(label).toHaveAttribute("data-invalid")
   expect(label).toHaveAttribute("data-readonly")
+})
+
+test("inherits variant styles", async () => {
+  render(
+    <FormControl data-testid="control" id="name" variant="floating-label">
+      <FormLabel data-testid="label">Name</FormLabel>
+      <Input placeholder="Name" />
+    </FormControl>,
+    {
+      wrapper: ({ children }) => (
+        <ChakraProvider
+          theme={extendTheme({
+            components: {
+              Form: {
+                variants: {
+                  "floating-label": {
+                    "form-control": {
+                      bg: "white",
+                      border: "1px",
+                      borderColor: "#ccc",
+                      borderRadius: "base",
+                      h: "3.75rem",
+                      overflow: "hidden",
+                      transition:
+                        "all 500ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                      width: "full",
+                    },
+                  },
+                },
+              },
+            },
+          })}
+        >
+          {children}
+        </ChakraProvider>
+      ),
+    },
+  )
+
+  const formControl = screen.getByTestId("control")
+  expect(formControl).toMatchInlineSnapshot(`
+    .emotion-0 {
+      background: var(--chakra-colors-white);
+      border: var(--chakra-borders-1px);
+      border-color: #ccc;
+      border-radius: var(--chakra-radii-base);
+      height: 3.75rem;
+      overflow: hidden;
+      -webkit-transition: all 500ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+      transition: all 500ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+      width: var(--chakra-sizes-full);
+    }
+
+    .emotion-1 {
+      display: block;
+      text-align: start;
+      font-size: var(--chakra-fontSizes-md);
+      -webkit-margin-end: var(--chakra-space-3);
+      margin-inline-end: var(--chakra-space-3);
+      margin-bottom: var(--chakra-space-2);
+      font-weight: var(--chakra-fontWeights-medium);
+      transition-property: var(--chakra-transition-property-common);
+      transition-duration: var(--chakra-transition-duration-normal);
+      opacity: 1;
+    }
+
+    .emotion-1[disabled],
+    .emotion-1[aria-disabled=true],
+    .emotion-1[data-disabled] {
+      opacity: 0.4;
+    }
+
+    <div
+      class="chakra-form-control emotion-0"
+      data-testid="control"
+      role="group"
+    >
+      <label
+        class="chakra-form__label emotion-1"
+        data-testid="label"
+        for="name"
+        id="name-label"
+      >
+        Name
+      </label>
+      <input
+        class="emotion-2"
+        id="name"
+        placeholder="Name"
+      />
+    </div>
+  `)
 })

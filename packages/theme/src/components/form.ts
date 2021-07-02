@@ -21,6 +21,10 @@ function baseStyleHelperText(props: Dict) {
 }
 
 const baseStyle = (props: Dict) => ({
+  "form-control": {
+    width: "100%",
+    position: "relative",
+  },
   requiredIndicator: baseStyleRequiredIndicator(props),
   helperText: baseStyleHelperText(props),
 })
