@@ -1,6 +1,7 @@
 import nodePlop, { ActionType } from "node-plop"
 import shell from "shelljs"
-import _ from "lodash"
+import capitalize from "lodash/capitalize"
+import camelCase from "lodash/camelCase"
 
 const plop = nodePlop("plop-templates/plopfile.hbs")
 
@@ -21,7 +22,7 @@ interface Answers {
 
 async function createPackage() {
   plop.setHelper("capitalize", (text) => {
-    return _.capitalize(_.camelCase(text))
+    return capitalize(camelCase(text))
   })
 
   plop.setGenerator("component", {
