@@ -2,7 +2,7 @@ import * as React from "react"
 import { Button, ButtonGroup } from "@chakra-ui/button"
 import { chakra, useColorMode } from "@chakra-ui/system"
 import { Alert } from "@chakra-ui/alert"
-import { useToast } from "../src"
+import { useToast, useAsyncToast } from "../src"
 
 export default {
   title: "Toast",
@@ -282,4 +282,20 @@ export const useToastCustomRenderUpdate = () => {
       toast
     </Button>
   )
+}
+
+export const LoadingToast = () => {
+  const { setLoading } = useAsyncToast(false, {
+    title: "Loading toast",
+    description: "This is a loading toast....",
+  })
+
+  const callApi = () => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 7000)
+  }
+
+  return <Button onClick={() => callApi()}>Call Api</Button>
 }
