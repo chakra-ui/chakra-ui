@@ -163,7 +163,7 @@
     "react-table": "7.6.2",
     "react-test-renderer": "^17.0.1",
     "rimraf": "3.0.2",
-    "sharp": "0.27.0",
+    "sharp": "0.28.0",
     "shelljs": "0.8.4",
     "storybook-addon-performance": "0.15.2",
     "ts-jest": "26.4.4",
