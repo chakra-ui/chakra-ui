@@ -10,6 +10,7 @@ import { cx, __DEV__ } from "@chakra-ui/utils"
 import { getValidChildren } from "@chakra-ui/react-utils"
 import * as React from "react"
 import {
+  PinInputDescendantsProvider,
   PinInputProvider,
   usePinInput,
   usePinInputField,
@@ -45,13 +46,17 @@ export const PinInput: React.FC<PinInputProps> = (props) => {
   const styles = useStyleConfig("PinInput", props)
 
   const { children, ...rest } = omitThemingProps(props)
-  const context = usePinInput(rest)
+  const { descendants, ...context } = usePinInput(rest)
 
   const clones = getValidChildren(children).map((child) =>
     React.cloneElement(child, { __css: styles }),
   )
 
-  return <PinInputProvider value={context}>{clones}</PinInputProvider>
+  return (
+    <PinInputDescendantsProvider value={descendants}>
+      <PinInputProvider value={context}>{clones}</PinInputProvider>
+    </PinInputDescendantsProvider>
+  )
 }
 
 if (__DEV__) {

@@ -19,6 +19,7 @@ import {
   MenuItemOption,
   MenuList,
   MenuOptionGroup,
+  useMenuItem,
 } from "../src"
 
 const words = [
@@ -61,6 +62,19 @@ export const Basic = () => (
   </div>
 )
 
+export const LazyMenu = () => (
+  <Menu isLazy>
+    <MenuButton as={Button}>Open Wakanda menu</MenuButton>
+    <MenuList>
+      {words.map((word) => (
+        <MenuItem key={word} onClick={logEvents}>
+          {word}
+        </MenuItem>
+      ))}
+    </MenuList>
+  </Menu>
+)
+
 export const WithDisabledItem = () => (
   <>
     <Menu>
@@ -68,14 +82,14 @@ export const WithDisabledItem = () => (
         Open menu
       </MenuButton>
       <MenuList>
-        <MenuItem icon={<FaSearch />} command="⌥T">
+        <MenuItem isDisabled icon={<FaSearch />} command="⌥T">
           Search
         </MenuItem>
         <MenuItem icon={<FaUndoAlt />}>Undo</MenuItem>
-        <MenuItem isDisabled icon={<FaTruck />}>
-          Delivery
+        <MenuItem icon={<FaTruck />}>Delivery</MenuItem>
+        <MenuItem isDisabled icon={<FaUnlink />}>
+          Unlink
         </MenuItem>
-        <MenuItem icon={<FaUnlink />}>Unlink</MenuItem>
       </MenuList>
     </Menu>
 
@@ -169,7 +183,7 @@ export const WithTogglableMenuItems = () => {
           Open menu
         </MenuButton>
         <MenuList>
-          {items.map(({ content, icon, isDisabled, command }, index) => (
+          {items.map(({ content, icon, isDisabled, command }) => (
             <MenuItem
               key={content}
               isDisabled={isDisabled}
@@ -249,7 +263,7 @@ export const withMenuRadio = () => (
 export const WithInternalState = () => (
   <Menu>
     {({ isOpen }) => (
-      <React.Fragment>
+      <>
         <MenuButton as={Button}>{isOpen ? "Close" : "Open"}</MenuButton>
         <MenuList>
           <MenuItem>Download</MenuItem>
@@ -257,7 +271,7 @@ export const WithInternalState = () => (
             Create a Copy
           </MenuItem>
         </MenuList>
-      </React.Fragment>
+      </>
     )}
   </Menu>
 )
@@ -361,7 +375,7 @@ export const WithinForm = () => {
         <Menu>
           <MenuButton as={Button}>do something</MenuButton>
           <MenuList>
-            <MenuItem>Download</MenuItem>
+            <MenuItem isDisabled>Download</MenuItem>
             <MenuItem>Create a Copy</MenuItem>
             <MenuItem>Mark as Draft</MenuItem>
             <MenuItem>Delete</MenuItem>
@@ -388,6 +402,47 @@ export const GroupWithDivider = () => {
           <MenuItemOption value="D">D</MenuItemOption>
           <MenuItemOption value="E">E</MenuItemOption>
         </MenuOptionGroup>
+      </MenuList>
+    </Menu>
+  )
+}
+
+export const WithCloseOnSelect = () => (
+  <Menu>
+    <MenuButton>Welcome</MenuButton>
+    <MenuList>
+      <MenuOptionGroup type="radio">
+        <MenuItemOption closeOnSelect={false} value="A">
+          Option 1 (false)
+        </MenuItemOption>
+        <MenuItemOption value="B">Option 2</MenuItemOption>
+        <MenuItemOption value="C">Option 3</MenuItemOption>
+        <MenuDivider />
+        <MenuItemOption value="D">Option 4</MenuItemOption>
+      </MenuOptionGroup>
+    </MenuList>
+  </Menu>
+)
+
+const MenuItemWithInput = (props: any) => {
+  const { role: _, ...rest } = useMenuItem(props)
+  return (
+    <div>
+      <input {...rest} />
+    </div>
+  )
+}
+
+export const MenuWithInput = () => {
+  return (
+    <Menu>
+      <MenuButton>Welcome</MenuButton>
+      <MenuList>
+        <MenuItemWithInput />
+        <MenuItem>Menu 1</MenuItem>
+        <MenuItem>Menu 2</MenuItem>
+        <MenuItem>Menu 3</MenuItem>
+        <MenuItem>Menu 4</MenuItem>
       </MenuList>
     </Menu>
   )

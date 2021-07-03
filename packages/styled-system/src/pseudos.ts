@@ -164,6 +164,11 @@ export const pseudoSelectors = {
    */
   _activeLink: "&[aria-current=page]",
   /**
+   * Used to style the current step within a process
+   * Styles for CSS Selector `&[aria-current=step]`
+   */
+  _activeStep: "&[aria-current=step]",
+  /**
    * Styles to apply when the ARIA attribute `aria-checked` is `mixed`
    * - CSS selector `&[aria-checked=mixed]`
    */
@@ -217,10 +222,15 @@ export const pseudoSelectors = {
    */
   _mediaDark: "@media (prefers-color-scheme: dark)",
   /**
-   * Styles for when `.dark` is applied to any parent of
+   * Styles for when `data-theme` is applied to any parent of
    * this component or element.
    */
-  _dark: ".dark &, [data-theme=dark] &",
+  _dark: ".chakra-ui-dark &, [data-theme=dark] &, &[data-theme=dark]",
+  /**
+   * Styles for when `data-theme` is applied to any parent of
+   * this component or element.
+   */
+  _light: ".chakra-ui-light &, [data-theme=light] &, &[data-theme=light]",
 }
 
 export type Pseudos = typeof pseudoSelectors

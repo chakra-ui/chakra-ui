@@ -19,7 +19,9 @@ function baseStyleItem(props: Record<string, any>) {
   return {
     py: "0.4rem",
     px: "0.8rem",
-    transition: "background 50ms ease-in 0s",
+    transitionProperty: "background",
+    transitionDuration: "ultra-fast",
+    transitionTimingFunction: "ease-in",
     _focus: {
       bg: mode(`gray.100`, `whiteAlpha.100`)(props),
     },
@@ -55,7 +57,13 @@ const baseStyleDivider = {
   opacity: 0.6,
 }
 
+const baseStyleButton = {
+  transitionProperty: "common",
+  transitionDuration: "normal",
+}
+
 const baseStyle = (props: Record<string, any>) => ({
+  button: baseStyleButton,
   list: baseStyleList(props),
   item: baseStyleItem(props),
   groupTitle: baseStyleGroupTitle,

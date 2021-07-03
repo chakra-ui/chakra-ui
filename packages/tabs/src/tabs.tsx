@@ -12,6 +12,7 @@ import {
 import { cx, omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import {
+  TabsDescendantsProvider,
   TabsProvider,
   useTab,
   useTabIndicator,
@@ -46,31 +47,32 @@ export interface TabsProps
 /**
  * Tabs
  *
- * Provides context and logic for all tabs components. It doesn't render
- * any DOM node.
+ * Provides context and logic for all tabs components.
  */
 export const Tabs = forwardRef<TabsProps, "div">((props, ref) => {
   const styles = useMultiStyleConfig("Tabs", props)
   const { children, className, ...rest } = omitThemingProps(props)
 
-  const { htmlProps, ...ctx } = useTabs(rest)
+  const { htmlProps, descendants, ...ctx } = useTabs(rest)
   const context = React.useMemo(() => ctx, [ctx])
 
   const rootProps = omit(htmlProps as any, ["isFitted"])
 
   return (
-    <TabsProvider value={context}>
-      <StylesProvider value={styles}>
-        <chakra.div
-          className={cx("chakra-tabs", className)}
-          ref={ref}
-          {...rootProps}
-          __css={styles.root}
-        >
-          {children}
-        </chakra.div>
-      </StylesProvider>
-    </TabsProvider>
+    <TabsDescendantsProvider value={descendants}>
+      <TabsProvider value={context}>
+        <StylesProvider value={styles}>
+          <chakra.div
+            className={cx("chakra-tabs", className)}
+            ref={ref}
+            {...rootProps}
+            __css={styles.root}
+          >
+            {children}
+          </chakra.div>
+        </StylesProvider>
+      </TabsProvider>
+    </TabsDescendantsProvider>
   )
 })
 

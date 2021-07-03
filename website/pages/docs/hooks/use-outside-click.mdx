@@ -4,25 +4,16 @@ package: "@chakra-ui/hooks"
 description: "React hook to detect clicks outside of a specified element."
 ---
 
-`useOutsideClick` is a custom hook that handles a click outside a specified DOM element, like a `div`.
+`useOutsideClick` is a custom hook that handles click events outside a specific DOM element, like a `div`. A
+handler is invoked when a click or touch event happens outside the referenced element.
+
+> This hook is compatible with mouse and touch events.
 
 ## Import
 
 ```js
 import { useOutsideClick } from "@chakra-ui/react"
 ```
-
-## Return value
-
-The `useOutsideClick` hook receives a reference to a DOM element and a handler when a clicks happens
-outside this given element.
-
-| Name        | Type       | Default | Description                              |
-| ----------- | ---------- | ------- | ---------------------------------------- |
-| `ref`       | `object`   |         | The ref to access the DOM.               |
-| `handler`   | `function` |         | Callback function to handle the click.   |
-
-> This hooks is compatible with mouse and touch events.
 
 ## Usage
 
@@ -48,3 +39,9 @@ function Example() {
   )
 }
 ```
+
+## Parameters
+
+The `useOutsideClick` hook accepts an object with the following properties:
+
+<PropsTable of="useOutsideClick" />

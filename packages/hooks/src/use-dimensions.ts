@@ -44,7 +44,7 @@ export function useDimensions(
         cancelAnimationFrame(rafId.current)
       }
     }
-  }, [ref, observe])
+  }, [observe])
 
   return dimensions
 }

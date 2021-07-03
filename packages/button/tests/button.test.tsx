@@ -34,8 +34,8 @@ test("shows spinner if isLoading", () => {
 })
 
 test("shows spinner and loading text if isLoading and loadingText", () => {
-  render(
-    <Button isLoading loadingText="Submitting">
+  const { rerender } = render(
+    <Button isLoading loadingText="Submitting" spinner={<>Spinner at start</>}>
       Submit
     </Button>,
   )
@@ -43,6 +43,41 @@ test("shows spinner and loading text if isLoading and loadingText", () => {
   // children text is replaced by `loadingText`
   screen.getByText("Submitting")
   expect(screen.queryByText("Submit")).toBeNull()
+
+  // Confirm spinner position
+  expect(screen.getByText(/Spinner at start/i)).toHaveClass(
+    "chakra-button__spinner--start",
+  )
+
+  rerender(
+    <Button
+      isLoading
+      spinnerPlacement="end"
+      loadingText="Test if spinner placement"
+      spinner={<>Spinner at end</>}
+    >
+      Submit
+    </Button>,
+  )
+
+  expect(screen.getByText(/Spinner at end/i)).toHaveClass(
+    "chakra-button__spinner--end",
+  )
+  // expect(screen.queryByTestId("placement-end")).toBeInTheDocument()
+  // expect(screen.queryByTestId("placement-start")).not.toBeInTheDocument()
+
+  // Should be abble to use a custom spinner
+  rerender(
+    <Button
+      isLoading
+      spinnerPlacement="end"
+      loadingText="Test if spinner placement"
+      spinner={<>FakeSpinner</>}
+    >
+      Submit
+    </Button>,
+  )
+  expect(screen.queryByText(/FakeSpinner/i)).toBeInTheDocument()
 })
 
 test("has the proper aria attributes", () => {
@@ -61,4 +96,51 @@ test("has the proper aria attributes", () => {
   rerender(<Button isDisabled>Hello</Button>)
   button = screen.getByRole("button")
   expect(button).toHaveAttribute("disabled", "")
+})
+
+test("Has the proper type attribute", () => {
+  const { getByTestId, rerender } = render(
+    <Button data-testid="btn">Email</Button>,
+  )
+  expect(getByTestId("btn")).toHaveAttribute("type", "button")
+
+  rerender(
+    <Button data-testid="btn" type="submit">
+      Email
+    </Button>,
+  )
+  expect(getByTestId("btn")).toHaveAttribute("type", "submit")
+
+  rerender(
+    <Button data-testid="btn" as="button">
+      Email
+    </Button>,
+  )
+  expect(getByTestId("btn")).toHaveAttribute("type")
+
+  rerender(
+    <Button data-testid="btn" as="span">
+      Email
+    </Button>,
+  )
+  expect(getByTestId("btn")).not.toHaveAttribute("type")
+})
+
+test("Should be disabled", () => {
+  const { getByRole } = render(
+    <Button isDisabled data-testid="btn">
+      I'm a invalid button
+    </Button>,
+  )
+  const button = getByRole("button")
+  expect(button).toBeDisabled()
+})
+
+test("Should take up full width", () => {
+  const { getByRole } = render(
+    <Button isFullWidth data-testid="btn">
+      i'm a big button
+    </Button>,
+  )
+  expect(getByRole("button")).toHaveStyle("width: 100%")
 })

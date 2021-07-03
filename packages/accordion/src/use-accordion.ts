@@ -1,7 +1,6 @@
-import { useDescendant, useDescendants } from "@chakra-ui/descendant"
+import { createDescendantContext } from "@chakra-ui/descendant"
 import {
   useControllableState,
-  useFocusEffect,
   useIds,
   useUnmountEffect,
 } from "@chakra-ui/hooks"
@@ -14,15 +13,29 @@ import {
 import {
   addItem,
   callAllHandlers,
-  getNextIndex,
-  getPrevIndex,
+  focus,
   isArray,
   isUndefined,
   normalizeEventKey,
   removeItem,
   warn,
 } from "@chakra-ui/utils"
-import { useCallback, useRef, useState } from "react"
+import React, { useCallback, useRef, useState } from "react"
+
+/* -------------------------------------------------------------------------------------------------
+ * Create context to track descendants and their indices
+ * -----------------------------------------------------------------------------------------------*/
+
+export const [
+  AccordionDescendantsProvider,
+  useAccordionDescendantsContext,
+  useAccordionDescendants,
+  useAccordionDescendant,
+] = createDescendantContext<HTMLButtonElement>()
+
+/* -------------------------------------------------------------------------------------------------
+ * useAccordion - The root react hook that manages all accordion items
+ * -----------------------------------------------------------------------------------------------*/
 
 export type ExpandedIndex = number | number[]
 
@@ -46,7 +59,7 @@ export interface UseAccordionProps {
   /**
    * The callback invoked when accordion items are expanded or collapsed.
    */
-  onChange?: (expandedIndex: ExpandedIndex) => void
+  onChange?(expandedIndex: ExpandedIndex): void
 }
 
 /**
@@ -73,7 +86,7 @@ export function useAccordion(props: UseAccordionProps) {
    *
    * Every accordion item, registers their button refs in this context
    */
-  const domContext = useDescendants()
+  const descendants = useAccordionDescendants()
 
   /**
    * This state is used to track the index focused accordion
@@ -88,7 +101,7 @@ export function useAccordion(props: UseAccordionProps) {
    */
   useUnmountEffect(() => {
     setFocusedIndex(-1)
-  }, [domContext.descendants])
+  })
 
   /**
    * Hook that manages the controlled and un-controlled state
@@ -96,7 +109,7 @@ export function useAccordion(props: UseAccordionProps) {
    */
   const [index, setIndex] = useControllableState({
     value: indexProp,
-    defaultValue: () => {
+    defaultValue() {
       if (allowMultiple) return defaultIndex ?? []
       return defaultIndex ?? -1
     },
@@ -138,17 +151,22 @@ export function useAccordion(props: UseAccordionProps) {
     getAccordionItemProps,
     focusedIndex,
     setFocusedIndex,
-    domContext,
+    descendants,
   }
 }
 
 export type UseAccordionReturn = ReturnType<typeof useAccordion>
 
-interface AccordionContext extends Omit<UseAccordionReturn, "htmlProps"> {
+/* -------------------------------------------------------------------------------------------------
+ * Create context for the root accordion logic
+ * -----------------------------------------------------------------------------------------------*/
+
+interface AccordionContext
+  extends Omit<UseAccordionReturn, "htmlProps" | "descendants"> {
   reduceMotion: boolean
 }
 
-const [
+export const [
   AccordionProvider,
   useAccordionContext,
 ] = createContext<AccordionContext>({
@@ -157,7 +175,9 @@ const [
     "useAccordionContext: `context` is undefined. Seems you forgot to wrap the accordion components in `<Accordion />`",
 })
 
-export { AccordionProvider, useAccordionContext }
+/* -------------------------------------------------------------------------------------------------
+ * Hook for a single accordion item
+ * -----------------------------------------------------------------------------------------------*/
 
 export interface UseAccordionItemProps {
   /**
@@ -182,15 +202,7 @@ export interface UseAccordionItemProps {
  */
 export function useAccordionItem(props: UseAccordionItemProps) {
   const { isDisabled, isFocusable, id, ...htmlProps } = props
-
-  const {
-    getAccordionItemProps,
-    domContext,
-    focusedIndex,
-    setFocusedIndex,
-  } = useAccordionContext()
-
-  const { descendants } = domContext
+  const { getAccordionItemProps, setFocusedIndex } = useAccordionContext()
 
   const buttonRef = useRef<HTMLElement>(null)
 
@@ -205,16 +217,15 @@ export function useAccordionItem(props: UseAccordionItemProps) {
    * Think of this as a way to register this accordion item
    * with its parent `useAccordion`
    */
-  const index = useDescendant({
-    element: buttonRef.current,
-    context: domContext,
-    disabled: isDisabled,
-    focusable: isFocusable,
+  const { register, index, descendants } = useAccordionDescendant({
+    disabled: isDisabled && !isFocusable,
   })
 
   const { isOpen, onChange } = getAccordionItemProps(
     index === -1 ? null : index,
   )
+
+  warnIfOpenAndDisabled({ isOpen, isDisabled })
 
   const onOpen = () => {
     onChange?.(true)
@@ -224,21 +235,13 @@ export function useAccordionItem(props: UseAccordionItemProps) {
     onChange?.(false)
   }
 
-  const shouldFocus = index === focusedIndex
-
-  /**
-   * Autofocus the accordion button when
-   * the active index matched the accordion item's index
-   */
-  useFocusEffect(buttonRef, { shouldFocus })
-
   /**
    * Toggle the visibility of the accordion item
    */
   const onClick = useCallback(() => {
     onChange?.(!isOpen)
     setFocusedIndex(index)
-  }, [index, isOpen, onChange, setFocusedIndex])
+  }, [index, setFocusedIndex, isOpen, onChange])
 
   /**
    * Manage keyboard navigation between accordion items.
@@ -249,22 +252,20 @@ export function useAccordionItem(props: UseAccordionItemProps) {
 
       const keyMap: EventKeyMap = {
         ArrowDown: () => {
-          const nextIndex = getNextIndex(index, descendants.length)
-          const nextAccordion = descendants[nextIndex]
-          nextAccordion?.element?.focus()
+          const next = descendants.nextEnabled(index)
+          if (next) focus(next.node)
         },
         ArrowUp: () => {
-          const prevIndex = getPrevIndex(index, descendants.length)
-          const prevAccordion = descendants[prevIndex]
-          prevAccordion?.element?.focus()
+          const prev = descendants.prevEnabled(index)
+          if (prev) focus(prev.node)
         },
         Home: () => {
-          const firstAccordion = descendants[0]
-          firstAccordion?.element?.focus()
+          const first = descendants.firstEnabled()
+          if (first) focus(first.node)
         },
         End: () => {
-          const lastAccordion = descendants[descendants.length - 1]
-          lastAccordion?.element?.focus()
+          const last = descendants.lastEnabled()
+          if (last) focus(last.node)
         },
       }
 
@@ -282,16 +283,15 @@ export function useAccordionItem(props: UseAccordionItemProps) {
    * Since each accordion item's button still remains tabbable, let's
    * update the focusedIndex when it receives focus
    */
-  const onFocus = useCallback(() => setFocusedIndex(index), [
-    index,
-    setFocusedIndex,
-  ])
+  const onFocus = useCallback(() => {
+    setFocusedIndex(index)
+  }, [setFocusedIndex, index])
 
   const getButtonProps: PropGetter<HTMLButtonElement> = useCallback(
     (props = {}, ref = null) => ({
       ...props,
       type: "button",
-      ref: mergeRefs(buttonRef, ref),
+      ref: mergeRefs(register, buttonRef, ref),
       id: buttonId,
       disabled: !!isDisabled,
       "aria-expanded": !!isOpen,
@@ -300,7 +300,16 @@ export function useAccordionItem(props: UseAccordionItemProps) {
       onFocus: callAllHandlers(props.onFocus, onFocus),
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
     }),
-    [buttonId, isDisabled, isOpen, onClick, onFocus, onKeyDown, panelId],
+    [
+      buttonId,
+      isDisabled,
+      isOpen,
+      onClick,
+      onFocus,
+      onKeyDown,
+      panelId,
+      register,
+    ],
   )
 
   const getPanelProps: PropGetter = useCallback(
@@ -329,6 +338,10 @@ export function useAccordionItem(props: UseAccordionItemProps) {
 
 export type UseAccordionItemReturn = ReturnType<typeof useAccordionItem>
 
+/* -------------------------------------------------------------------------------------------------
+ * Validate accordion and accordion item props, and emit warnings.
+ * -----------------------------------------------------------------------------------------------*/
+
 function allowMultipleWarning(props: UseAccordionProps) {
   const index = props.index || props.defaultIndex
   const condition =
@@ -352,5 +365,15 @@ function focusableNotDisabledWarning(props: UseAccordionItemProps) {
     condition: !!(props.isFocusable && !props.isDisabled),
     message: `Using only 'isFocusable', this prop is reserved for situations where you pass 'isDisabled' but you still want the element to receive focus (A11y). Either remove it or pass 'isDisabled' as well.
     `,
+  })
+}
+
+function warnIfOpenAndDisabled(props: {
+  isOpen: boolean
+  isDisabled?: boolean
+}) {
+  warn({
+    condition: props.isOpen && !!props.isDisabled,
+    message: "Cannot open a disabled accordion item",
   })
 }

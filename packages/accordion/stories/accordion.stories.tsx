@@ -231,69 +231,95 @@ export const FocusBug = () => {
       <Button colorScheme="teal" onClick={onOpen}>
         Open
       </Button>
-      <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="lg">
-        <DrawerOverlay>
-          <DrawerContent>
-            <DrawerCloseButton />
-            <DrawerHeader>Create your account</DrawerHeader>
+      <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>Create your account</DrawerHeader>
 
-            <DrawerBody>
-              <Accordion allowMultiple>
-                <AccordionItem>
-                  <h2>
-                    <AccordionButton>
-                      <Box flex="1" textAlign="left">
-                        Section 1 title
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
-                  <AccordionPanel pb={4}>
-                    <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-1">
-                      Chakra 1
-                    </a>
-                    <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-2">
-                      Chakra 2
-                    </a>
-                    <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-3">
-                      Chakra 3
-                    </a>
-                  </AccordionPanel>
-                </AccordionItem>
+          <DrawerBody>
+            <Accordion allowMultiple>
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box flex="1" textAlign="left">
+                      Section 1 title
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                  <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-1">
+                    Chakra 1
+                  </a>
+                  <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-2">
+                    Chakra 2
+                  </a>
+                  <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-3">
+                    Chakra 3
+                  </a>
+                </AccordionPanel>
+              </AccordionItem>
 
-                <AccordionItem>
-                  <h2>
-                    <AccordionButton>
-                      <Box flex="1" textAlign="left">
-                        Section 2 title
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
-                  <AccordionPanel pb={4}>
-                    <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-4">
-                      Chakra 1
-                    </a>
-                    <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-5">
-                      Chakra 2
-                    </a>
-                    <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-6">
-                      Chakra 3
-                    </a>
-                  </AccordionPanel>
-                </AccordionItem>
-              </Accordion>
-            </DrawerBody>
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box flex="1" textAlign="left">
+                      Section 2 title
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                  <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-4">
+                    Chakra 1
+                  </a>
+                  <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-5">
+                    Chakra 2
+                  </a>
+                  <a href="https://chakra-ui.com/should-not-have-focus-if-panel-closed-6">
+                    Chakra 3
+                  </a>
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+          </DrawerBody>
 
-            <DrawerFooter>
-              <Button variant="outline" mr={3} onClick={onClose}>
-                Cancel
-              </Button>
-              <Button color="blue">Save</Button>
-            </DrawerFooter>
-          </DrawerContent>
-        </DrawerOverlay>
+          <DrawerFooter>
+            <Button variant="outline" mr={3} onClick={onClose}>
+              Cancel
+            </Button>
+            <Button color="blue">Save</Button>
+          </DrawerFooter>
+        </DrawerContent>
       </Drawer>
     </Box>
+  )
+}
+
+export const WithDisabledAccordionItem = () => {
+  return (
+    <Accordion index={1}>
+      <AccordionItem isDisabled>
+        <AccordionButton>Button 1</AccordionButton>
+        <AccordionPanel>One Content</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem isDisabled>
+        <AccordionButton>Button 2</AccordionButton>
+        <AccordionPanel>Two Content</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Button 3</AccordionButton>
+        <AccordionPanel>Three Content</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem isDisabled>
+        <AccordionButton>Button 4</AccordionButton>
+        <AccordionPanel>Four Content</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Button 5</AccordionButton>
+        <AccordionPanel>Five Content</AccordionPanel>
+      </AccordionItem>
+    </Accordion>
   )
 }

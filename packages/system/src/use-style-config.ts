@@ -5,6 +5,7 @@ import {
   mergeWith,
   runIfFn,
   omit,
+  Dict,
 } from "@chakra-ui/utils"
 import { useMemo, useRef } from "react"
 import isEqual from "react-fast-compare"
@@ -13,13 +14,13 @@ import { ThemingProps } from "./system.types"
 
 export function useStyleConfig(
   themeKey: string,
-  props: ThemingProps,
+  props: ThemingProps & Dict,
   opts: { isMultiPart: true },
 ): Record<string, SystemStyleObject>
 
 export function useStyleConfig(
   themeKey: string,
-  props?: ThemingProps,
+  props?: ThemingProps & Dict,
   opts?: { isMultiPart?: boolean },
 ): SystemStyleObject
 

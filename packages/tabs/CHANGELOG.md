@@ -1,5 +1,134 @@
 # Change Log
 
+## 1.5.2
+
+### Patch Changes
+
+- [`8acd3c11a`](https://github.com/chakra-ui/chakra-ui/commit/8acd3c11a80271b0dca4b7a8922c59b8969d5401)
+  [#4102](https://github.com/chakra-ui/chakra-ui/pull/4102) Thanks
+  [@cschroeter](https://github.com/cschroeter)! - fix(tabs): render tab
+  indicator at the correct pos
+
+* [`b93eb007e`](https://github.com/chakra-ui/chakra-ui/commit/b93eb007e53b56f19beb8535dca2378c4e8198a6)
+  [#4204](https://github.com/chakra-ui/chakra-ui/pull/4204) Thanks
+  [@jesstelford](https://github.com/jesstelford)! - Remove erroneous note about
+  <Tabs> not rendering to DOM
+
+- [`afb9b3cfa`](https://github.com/chakra-ui/chakra-ui/commit/afb9b3cfa87076ed8897b7edd4a9d9f1e1701721)
+  [#4103](https://github.com/chakra-ui/chakra-ui/pull/4103) Thanks
+  [@with-heart](https://github.com/with-heart)! - Update transitions to use
+  theme tokens and remove outline transitions
+
+- Updated dependencies
+  [[`aa374ffcb`](https://github.com/chakra-ui/chakra-ui/commit/aa374ffcb4003efd88eb6a62e10723ea9fbfa3d0)]:
+  - @chakra-ui/hooks@1.5.3
+
+## 1.5.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01),
+  [`173738dd9`](https://github.com/chakra-ui/chakra-ui/commit/173738dd938903d2b0fcdc666a7c9f4fe13e2bd6),
+  [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab),
+  [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd),
+  [`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01)]:
+  - @chakra-ui/utils@1.8.0
+  - @chakra-ui/descendant@2.0.1
+  - @chakra-ui/hooks@1.5.2
+  - @chakra-ui/clickable@1.1.5
+
+## 1.5.0
+
+### Minor Changes
+
+- [`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f)
+  [#3864](https://github.com/chakra-ui/chakra-ui/pull/3864) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Update tabs and accordion
+  to use updated descendants logic
+
+* [`04be15201`](https://github.com/chakra-ui/chakra-ui/commit/04be15201ac9ae4c284ca639bd45f6a42d9f11bc)
+  [#3864](https://github.com/chakra-ui/chakra-ui/pull/3864) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Add support for RTL
+  keyboard navigation
+
+### Patch Changes
+
+- Updated dependencies
+  [[`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f),
+  [`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f),
+  [`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)]:
+  - @chakra-ui/react-utils@1.1.2
+  - @chakra-ui/descendant@2.0.0
+  - @chakra-ui/utils@1.7.0
+  - @chakra-ui/clickable@1.1.4
+  - @chakra-ui/hooks@1.5.1
+
+## 1.4.0
+
+### Minor Changes
+
+- [`f2544fb58`](https://github.com/chakra-ui/chakra-ui/commit/f2544fb581a6dbe558236ebb11883a273ed61a28)
+  [#3839](https://github.com/chakra-ui/chakra-ui/pull/3839) Thanks
+  [@with-heart](https://github.com/with-heart)! - This change restores the
+  behavior of the `isLazy` prop (which was broken by the previous release) and
+  adds a new `lazyBehavior` prop which configures the behavior of `isLazy`.
+
+  If you'd like the content of tab panel, popover and menu components to be
+  unmounted when not selected or opened, please continue to use `isLazy`. This
+  is the default behavior.
+
+  If you'd like the content of tab panel, popover and menu components to remain
+  mounted (but hidden) after it was previously selected or opened, use
+  `lazyBehavior="keepMounted"` in combination with `isLazy`.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0974e547c`](https://github.com/chakra-ui/chakra-ui/commit/0974e547c29e4efc1ba4d1eb1507d0dad7d7a77a),
+  [`59ea894a7`](https://github.com/chakra-ui/chakra-ui/commit/59ea894a7e03d16cd7a1b89d00816eafa9fab65d),
+  [`384902e35`](https://github.com/chakra-ui/chakra-ui/commit/384902e35b186c8c8154b9569455c27f72ee0f6f)]:
+  - @chakra-ui/utils@1.6.0
+  - @chakra-ui/hooks@1.5.0
+  - @chakra-ui/clickable@1.1.3
+  - @chakra-ui/descendant@1.1.3
+
+## 1.3.2
+
+### Patch Changes
+
+- [`fce6d8ecb`](https://github.com/chakra-ui/chakra-ui/commit/fce6d8ecb17b6fe5792804a980cfbe5367d519da)
+  [#3763](https://github.com/chakra-ui/chakra-ui/pull/3763) Thanks
+  [@stellarhoof](https://github.com/stellarhoof)! - Do not unmount lazy tabs
+  when unselected
+
+- Updated dependencies
+  [[`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d),
+  [`d1532f0b7`](https://github.com/chakra-ui/chakra-ui/commit/d1532f0b72c36d0609ee4510613d7c76f4f9c113),
+  [`a73198529`](https://github.com/chakra-ui/chakra-ui/commit/a7319852908f68596600da799ef08a0e7dbb468e)]:
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/hooks@1.4.0
+  - @chakra-ui/clickable@1.1.2
+  - @chakra-ui/descendant@1.1.2
+
+## 1.3.1
+
+### Patch Changes
+
+- [`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update import of
+  shared utils from `react-utils` to `utils`
+
+- Updated dependencies
+  [[`87a03b320`](https://github.com/chakra-ui/chakra-ui/commit/87a03b320b62e639ca4a891186f202cb839a8402),
+  [`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94),
+  [`e481ba491`](https://github.com/chakra-ui/chakra-ui/commit/e481ba4914a7f163d93d4c22e2e457f1afb08721)]:
+  - @chakra-ui/react-utils@1.1.1
+  - @chakra-ui/clickable@1.1.1
+  - @chakra-ui/utils@1.5.1
+  - @chakra-ui/hooks@1.3.1
+  - @chakra-ui/descendant@1.1.1
+
 ## 1.3.0
 
 ### Minor Changes

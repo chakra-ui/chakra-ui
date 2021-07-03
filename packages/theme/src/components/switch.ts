@@ -10,7 +10,8 @@ function baseStyleTrack(props: Record<string, any>) {
     p: "2px",
     width: "var(--slider-track-width)",
     height: "var(--slider-track-height)",
-    transition: "all 120ms",
+    transitionProperty: "common",
+    transitionDuration: "fast",
     bg: mode("gray.300", "whiteAlpha.400")(props),
     _focus: {
       boxShadow: "outline",
@@ -27,7 +28,8 @@ function baseStyleTrack(props: Record<string, any>) {
 
 const baseStyleThumb = {
   bg: "white",
-  transition: "transform 250ms",
+  transitionProperty: "transform",
+  transitionDuration: "normal",
   borderRadius: "inherit",
   width: "var(--slider-track-height)",
   height: "var(--slider-track-height)",

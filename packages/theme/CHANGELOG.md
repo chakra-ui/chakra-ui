@@ -1,5 +1,182 @@
 # Change Log
 
+## 1.9.1
+
+### Patch Changes
+
+- [`cbf8bbdf0`](https://github.com/chakra-ui/chakra-ui/commit/cbf8bbdf02eff45a57a28307ec9c3137ce845420)
+  [#4157](https://github.com/chakra-ui/chakra-ui/pull/4157) Thanks
+  [@vcastroi](https://github.com/vcastroi)! - Fix an issue where the distance to
+  the next element below a textarea was too large in some browsers.
+
+* [`afb9b3cfa`](https://github.com/chakra-ui/chakra-ui/commit/afb9b3cfa87076ed8897b7edd4a9d9f1e1701721)
+  [#4103](https://github.com/chakra-ui/chakra-ui/pull/4103) Thanks
+  [@with-heart](https://github.com/with-heart)! - Update transitions to use
+  theme tokens and remove outline transitions
+
+## 1.9.0
+
+### Minor Changes
+
+- [`4f1cf6d6b`](https://github.com/chakra-ui/chakra-ui/commit/4f1cf6d6b9de134806c5f24d6b1c49f5aadae9a8)
+  [#3997](https://github.com/chakra-ui/chakra-ui/pull/3997) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Add blur token values for
+  `filter` and `backdropFilter`
+
+  ```json
+  {
+    "none": 0,
+    "sm": "4px",
+    "base": "8px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "24px",
+    "2xl": "40px",
+    "3xl": "64px"
+  }
+  ```
+
+## 1.8.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01),
+  [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab),
+  [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd)]:
+  - @chakra-ui/utils@1.8.0
+  - @chakra-ui/theme-tools@1.1.7
+
+## 1.8.4
+
+### Patch Changes
+
+- [`1d5e55272`](https://github.com/chakra-ui/chakra-ui/commit/1d5e55272fe1475ce6fa0ed5bdccef4218885f77)
+  [#3511](https://github.com/chakra-ui/chakra-ui/pull/3511) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - The `extendTheme` function
+  allows you to pass multiple overrides or extensions:
+
+  ```js
+  import {
+    extendTheme,
+    withDefaultColorScheme,
+    withDefaultSize,
+    withDefaultVariant,
+    withDefaultProps,
+  } from "@chakra-ui/react"
+
+  const customTheme = extendTheme(
+    {
+      colors: {
+        brand: {
+          // ...
+          500: "#b4d455",
+          // ...
+        },
+      },
+    },
+    withDefaultColorScheme({ colorScheme: "brand" }),
+    withDefaultSize({
+      size: "lg",
+      components: ["Input", "NumberInput", "PinInput"],
+    }),
+    withDefaultVariant({
+      variant: "outline",
+      components: ["Input", "NumberInput", "PinInput"],
+    }),
+    // or all in one:
+    withDefaultProps({
+      defaultProps: {
+        colorScheme: "brand",
+        variant: "outline",
+        size: "lg",
+      },
+      components: ["Input", "NumberInput", "PinInput"],
+    }),
+    // optional:
+    yourCustomBaseTheme, // defaults to our chakra default theme
+  )
+  ```
+
+- Updated dependencies
+  [[`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)]:
+  - @chakra-ui/utils@1.7.0
+  - @chakra-ui/theme-tools@1.1.6
+
+## 1.8.3
+
+### Patch Changes
+
+- [`9c6be11b1`](https://github.com/chakra-ui/chakra-ui/commit/9c6be11b1d95f8add314dbe214bc7ce3c67b76cd)
+  [#3806](https://github.com/chakra-ui/chakra-ui/pull/3806) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue where the
+  modal exceeded the viewport height on iOS
+
+- Updated dependencies
+  [[`0974e547c`](https://github.com/chakra-ui/chakra-ui/commit/0974e547c29e4efc1ba4d1eb1507d0dad7d7a77a),
+  [`59ea894a7`](https://github.com/chakra-ui/chakra-ui/commit/59ea894a7e03d16cd7a1b89d00816eafa9fab65d)]:
+  - @chakra-ui/utils@1.6.0
+  - @chakra-ui/theme-tools@1.1.5
+
+## 1.8.2
+
+### Patch Changes
+
+- [`753b56d63`](https://github.com/chakra-ui/chakra-ui/commit/753b56d6366276f217d28131c17c41427ae7761c)
+  [#3795](https://github.com/chakra-ui/chakra-ui/pull/3795) Thanks
+  [@hazem3500](https://github.com/hazem3500)! - Changes incorrect `panel` part
+  name in `Progress` theme file to `label`
+
+* [`890839d9f`](https://github.com/chakra-ui/chakra-ui/commit/890839d9fe32d5ec90954c8f4c5b6c463ff0b57d)
+  [#3765](https://github.com/chakra-ui/chakra-ui/pull/3765) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Update input, alert and
+  tabs RTL styles
+
+* Updated dependencies
+  [[`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d)]:
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/theme-tools@1.1.4
+
+## 1.8.1
+
+### Patch Changes
+
+- [`75817ec42`](https://github.com/chakra-ui/chakra-ui/commit/75817ec428ca3c078660a7c7f2a1c1b578c474df)
+  [#3733](https://github.com/chakra-ui/chakra-ui/pull/3733) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - **Popover**
+
+  - Moved `maxW` from popover's `popper` to `content` to allow for better
+    control of the popover's width.
+  - Use `width` instead of `maxW` to allow users more control of popover's width
+  - Use `--popover-bg` css property to control popover and arrow background.
+
+  ```jsx live=false
+  <PopoverContent style={{ "--popover-bg": "purple" }}>
+    <PopoverArrow />
+  </PopoverContent>
+  ```
+
+  - Add popover arrow shadow color
+
+  **Select**
+
+  - Update select icon to use `insetEnd` instead of `right` for RTL.
+
+  **Skip Link**
+
+  - Update styles to use `insetStart` instead of `left` for RTL.
+
+  **Table**
+
+  - Update text align attribute to use `end` instead of `right` for RTL.
+
+- Updated dependencies
+  [[`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94),
+  [`c69d2b983`](https://github.com/chakra-ui/chakra-ui/commit/c69d2b98350b57f133d6a8ea47b631cd25693aee),
+  [`e481ba491`](https://github.com/chakra-ui/chakra-ui/commit/e481ba4914a7f163d93d4c22e2e457f1afb08721)]:
+  - @chakra-ui/utils@1.5.1
+  - @chakra-ui/theme-tools@1.1.3
+
 ## 1.8.0
 
 ### Minor Changes

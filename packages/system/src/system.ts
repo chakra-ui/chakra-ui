@@ -4,7 +4,7 @@ import {
   StyleProps,
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
-import { objectFilter } from "@chakra-ui/utils"
+import { filterUndefined, objectFilter, runIfFn } from "@chakra-ui/utils"
 import _styled, { CSSObject, FunctionInterpolation } from "@emotion/styled"
 import { shouldForwardProp } from "./should-forward-prop"
 import { As, ChakraComponent, ChakraProps, PropsOf } from "./system.types"
@@ -19,7 +19,9 @@ type StyleResolverProps = SystemStyleObject & {
 
 interface GetStyleObject {
   (options: {
-    baseStyle?: SystemStyleObject
+    baseStyle?:
+      | SystemStyleObject
+      | ((props: StyleResolverProps) => SystemStyleObject)
   }): FunctionInterpolation<StyleResolverProps>
 }
 
@@ -39,7 +41,14 @@ interface GetStyleObject {
 export const toCSSObject: GetStyleObject = ({ baseStyle }) => (props) => {
   const { theme, css: cssProp, __css, sx, ...rest } = props
   const styleProps = objectFilter(rest, (_, prop) => isStyleProp(prop))
-  const finalStyles = Object.assign({}, __css, baseStyle, styleProps, sx)
+  const finalBaseStyle = runIfFn(baseStyle, props)
+  const finalStyles = Object.assign(
+    {},
+    __css,
+    finalBaseStyle,
+    filterUndefined(styleProps),
+    sx,
+  )
   const computedCSS = css(finalStyles)(props.theme)
   return cssProp ? [computedCSS, cssProp] : computedCSS
 }
@@ -47,7 +56,9 @@ export const toCSSObject: GetStyleObject = ({ baseStyle }) => (props) => {
 interface StyledOptions {
   shouldForwardProp?(prop: string): boolean
   label?: string
-  baseStyle?: SystemStyleObject
+  baseStyle?:
+    | SystemStyleObject
+    | ((props: StyleResolverProps) => SystemStyleObject)
 }
 
 export function styled<T extends As, P = {}>(

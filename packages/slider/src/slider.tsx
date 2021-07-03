@@ -40,9 +40,9 @@ export interface SliderProps
  */
 export const Slider = forwardRef<SliderProps, "div">((props, ref) => {
   const styles = useMultiStyleConfig("Slider", props)
-  const realProps = omitThemingProps(props)
+  const ownProps = omitThemingProps(props)
 
-  const { getInputProps, getRootProps, ...context } = useSlider(realProps)
+  const { getInputProps, getRootProps, ...context } = useSlider(ownProps)
 
   const rootProps = getRootProps()
   const inputProps = getInputProps({}, ref)
@@ -172,7 +172,7 @@ export interface SliderMarkProps extends HTMLChakraProps<"div"> {
  * SliderMark is used to provide names for specific Slider
  * values by defining labels or markers along the track.
  *
- * @see Docs https://chakra-ui.com/docs/components/slider
+ * @see Docs https://chakra-ui.com/slider
  */
 export const SliderMark = forwardRef<SliderMarkProps, "div">((props, ref) => {
   const { getMarkerProps } = useSliderContext()

@@ -1,5 +1,509 @@
 # Change Log
 
+## 1.6.4
+
+### Patch Changes
+
+- [`aa374ffcb`](https://github.com/chakra-ui/chakra-ui/commit/aa374ffcb4003efd88eb6a62e10723ea9fbfa3d0)
+  [#4166](https://github.com/chakra-ui/chakra-ui/pull/4166) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fix inconsisent id
+  generation between client and server
+
+- Updated dependencies
+  [[`9fadbc80f`](https://github.com/chakra-ui/chakra-ui/commit/9fadbc80f626534edca5f9a789bda2b5232cde15),
+  [`8acd3c11a`](https://github.com/chakra-ui/chakra-ui/commit/8acd3c11a80271b0dca4b7a8922c59b8969d5401),
+  [`8881d925d`](https://github.com/chakra-ui/chakra-ui/commit/8881d925d494b33b4bebd53cc14e5dea6cea5a46),
+  [`7e3d3ff35`](https://github.com/chakra-ui/chakra-ui/commit/7e3d3ff356b9f2e875790cd7a96ddfce83034737),
+  [`31ec6466c`](https://github.com/chakra-ui/chakra-ui/commit/31ec6466c2ddc7fffb8e8dfa0f7f241f189f96eb),
+  [`5afa7ef49`](https://github.com/chakra-ui/chakra-ui/commit/5afa7ef49c7e3b01bce932e252865226b9511b39),
+  [`cbf8bbdf0`](https://github.com/chakra-ui/chakra-ui/commit/cbf8bbdf02eff45a57a28307ec9c3137ce845420),
+  [`4c157e320`](https://github.com/chakra-ui/chakra-ui/commit/4c157e320a73b08eb89a44831a7cf434fb403bad),
+  [`e8da4c65f`](https://github.com/chakra-ui/chakra-ui/commit/e8da4c65f026f636ea26d11b7aaed63f2babf00d),
+  [`f2c0480ee`](https://github.com/chakra-ui/chakra-ui/commit/f2c0480ee2bc4312837cac078e855b9555f47b61),
+  [`aa374ffcb`](https://github.com/chakra-ui/chakra-ui/commit/aa374ffcb4003efd88eb6a62e10723ea9fbfa3d0),
+  [`b93eb007e`](https://github.com/chakra-ui/chakra-ui/commit/b93eb007e53b56f19beb8535dca2378c4e8198a6),
+  [`afb9b3cfa`](https://github.com/chakra-ui/chakra-ui/commit/afb9b3cfa87076ed8897b7edd4a9d9f1e1701721),
+  [`a66258a01`](https://github.com/chakra-ui/chakra-ui/commit/a66258a01ea4235853ba3f3e1eabed16f7658c53),
+  [`991ea2e29`](https://github.com/chakra-ui/chakra-ui/commit/991ea2e29746a501b79591228664702ce1277235),
+  [`245a164f6`](https://github.com/chakra-ui/chakra-ui/commit/245a164f6058e96986b2354017d96816b5d336e9),
+  [`5afa7ef49`](https://github.com/chakra-ui/chakra-ui/commit/5afa7ef49c7e3b01bce932e252865226b9511b39),
+  [`ff946d73e`](https://github.com/chakra-ui/chakra-ui/commit/ff946d73e121aba4b2ff2740ea22440a1c5fdb85)]:
+  - @chakra-ui/menu@1.7.0
+  - @chakra-ui/tabs@1.5.2
+  - @chakra-ui/popover@1.8.0
+  - @chakra-ui/button@1.4.0
+  - @chakra-ui/media-query@1.1.0
+  - @chakra-ui/theme@1.9.1
+  - @chakra-ui/accordion@1.3.3
+  - @chakra-ui/breadcrumb@1.2.6
+  - @chakra-ui/checkbox@1.5.3
+  - @chakra-ui/editable@1.2.6
+  - @chakra-ui/image@1.0.16
+  - @chakra-ui/layout@1.4.6
+  - @chakra-ui/modal@1.8.8
+  - @chakra-ui/portal@1.2.6
+  - @chakra-ui/progress@1.1.10
+  - @chakra-ui/radio@1.3.7
+  - @chakra-ui/slider@1.2.6
+  - @chakra-ui/spinner@1.1.10
+  - @chakra-ui/tag@1.1.10
+  - @chakra-ui/textarea@1.1.11
+  - @chakra-ui/transition@1.3.2
+  - @chakra-ui/stat@1.1.10
+  - @chakra-ui/hooks@1.5.3
+  - @chakra-ui/control-box@1.0.13
+  - @chakra-ui/number-input@1.2.7
+  - @chakra-ui/toast@1.2.8
+  - @chakra-ui/system@1.7.0
+  - @chakra-ui/popper@2.2.1
+  - @chakra-ui/skeleton@1.1.15
+  - @chakra-ui/switch@1.2.6
+  - @chakra-ui/avatar@1.2.6
+  - @chakra-ui/tooltip@1.3.7
+  - @chakra-ui/counter@1.1.6
+  - @chakra-ui/form-control@1.3.7
+  - @chakra-ui/pin-input@1.6.2
+  - @chakra-ui/input@1.2.7
+  - @chakra-ui/select@1.1.11
+
+## 1.6.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d9f8bea60`](https://github.com/chakra-ui/chakra-ui/commit/d9f8bea6081020c1841cb0d0f094642c7ce71db6),
+  [`760607680`](https://github.com/chakra-ui/chakra-ui/commit/76060768093b056a8d645b981da12f147bb7cf0f),
+  [`5e24481fc`](https://github.com/chakra-ui/chakra-ui/commit/5e24481fc73b0097d0bac900479d7cc145a92670)]:
+  - @chakra-ui/modal@1.8.7
+  - @chakra-ui/media-query@1.0.14
+  - @chakra-ui/popper@2.2.0
+  - @chakra-ui/menu@1.6.3
+  - @chakra-ui/popover@1.7.1
+  - @chakra-ui/tooltip@1.3.6
+  - @chakra-ui/skeleton@1.1.14
+  - @chakra-ui/system@1.6.7
+
+## 1.6.2
+
+### Patch Changes
+
+- [`ddd5ef4a1`](https://github.com/chakra-ui/chakra-ui/commit/ddd5ef4a1e9cc988c99b80c26579205ea4c57b2f)
+  [#3985](https://github.com/chakra-ui/chakra-ui/pull/3985) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - `ChakraProvider` now
+  accepts the prop `cssVarsRoot` which defaults to `:host, :root`.
+- Updated dependencies
+  [[`4f1cf6d6b`](https://github.com/chakra-ui/chakra-ui/commit/4f1cf6d6b9de134806c5f24d6b1c49f5aadae9a8),
+  [`e190ce1b3`](https://github.com/chakra-ui/chakra-ui/commit/e190ce1b30e17eb0cffaa00c7ec2660d25ba6c23),
+  [`8dc0622e8`](https://github.com/chakra-ui/chakra-ui/commit/8dc0622e8a5acda768c694d2daa28a4181d829ad),
+  [`ddd5ef4a1`](https://github.com/chakra-ui/chakra-ui/commit/ddd5ef4a1e9cc988c99b80c26579205ea4c57b2f),
+  [`f4ad5c7dd`](https://github.com/chakra-ui/chakra-ui/commit/f4ad5c7ddb41824d5ec02908d1daa4a479e8a283),
+  [`c1f8d90ad`](https://github.com/chakra-ui/chakra-ui/commit/c1f8d90ad7ebd9594e9888010170cda7969f0ded),
+  [`620f0b7d7`](https://github.com/chakra-ui/chakra-ui/commit/620f0b7d756ffb6bfc6ddf0459e96f774ffbb9be),
+  [`4a7f8dab7`](https://github.com/chakra-ui/chakra-ui/commit/4a7f8dab7a9c4507bca05d9b9383de26447a7863)]:
+  - @chakra-ui/theme@1.9.0
+  - @chakra-ui/menu@1.6.2
+  - @chakra-ui/system@1.6.6
+  - @chakra-ui/radio@1.3.6
+  - @chakra-ui/transition@1.3.1
+  - @chakra-ui/form-control@1.3.6
+  - @chakra-ui/number-input@1.2.6
+  - @chakra-ui/toast@1.2.7
+  - @chakra-ui/accordion@1.3.2
+  - @chakra-ui/input@1.2.6
+  - @chakra-ui/modal@1.8.6
+  - @chakra-ui/select@1.1.10
+  - @chakra-ui/skeleton@1.1.13
+  - @chakra-ui/textarea@1.1.10
+
+## 1.6.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01),
+  [`8501fd105`](https://github.com/chakra-ui/chakra-ui/commit/8501fd105b50ebc61f53026688f8f63ad1e64173),
+  [`48cc3f00d`](https://github.com/chakra-ui/chakra-ui/commit/48cc3f00d5cad522904b3a159cf6f2bfefdaa1ed),
+  [`b199b06e3`](https://github.com/chakra-ui/chakra-ui/commit/b199b06e33924bdf98c9c13868f14172a20d0248),
+  [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab),
+  [`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01),
+  [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd),
+  [`ad87d837a`](https://github.com/chakra-ui/chakra-ui/commit/ad87d837a9b7b117cec35d0819cc1f4c72769923),
+  [`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01),
+  [`db8adf204`](https://github.com/chakra-ui/chakra-ui/commit/db8adf20432a2e0b799c3eff9914fc8b5dfca7c6)]:
+  - @chakra-ui/utils@1.8.0
+  - @chakra-ui/popover@1.7.0
+  - @chakra-ui/react-env@1.0.4
+  - @chakra-ui/transition@1.3.0
+  - @chakra-ui/slider@1.2.5
+  - @chakra-ui/menu@1.6.1
+  - @chakra-ui/hooks@1.5.2
+  - @chakra-ui/modal@1.8.5
+  - @chakra-ui/accordion@1.3.1
+  - @chakra-ui/alert@1.2.5
+  - @chakra-ui/avatar@1.2.5
+  - @chakra-ui/breadcrumb@1.2.5
+  - @chakra-ui/button@1.3.2
+  - @chakra-ui/checkbox@1.5.2
+  - @chakra-ui/close-button@1.1.9
+  - @chakra-ui/control-box@1.0.12
+  - @chakra-ui/counter@1.1.5
+  - @chakra-ui/editable@1.2.5
+  - @chakra-ui/form-control@1.3.5
+  - @chakra-ui/icon@1.1.9
+  - @chakra-ui/image@1.0.15
+  - @chakra-ui/input@1.2.5
+  - @chakra-ui/layout@1.4.5
+  - @chakra-ui/live-region@1.0.12
+  - @chakra-ui/media-query@1.0.13
+  - @chakra-ui/number-input@1.2.5
+  - @chakra-ui/pin-input@1.6.1
+  - @chakra-ui/portal@1.2.5
+  - @chakra-ui/progress@1.1.9
+  - @chakra-ui/radio@1.3.5
+  - @chakra-ui/select@1.1.9
+  - @chakra-ui/skeleton@1.1.12
+  - @chakra-ui/spinner@1.1.9
+  - @chakra-ui/stat@1.1.9
+  - @chakra-ui/switch@1.2.5
+  - @chakra-ui/system@1.6.5
+  - @chakra-ui/table@1.2.4
+  - @chakra-ui/tabs@1.5.1
+  - @chakra-ui/tag@1.1.9
+  - @chakra-ui/textarea@1.1.9
+  - @chakra-ui/theme@1.8.5
+  - @chakra-ui/toast@1.2.6
+  - @chakra-ui/tooltip@1.3.5
+  - @chakra-ui/visually-hidden@1.0.12
+
+## 1.6.0
+
+### Minor Changes
+
+- [`1d5e55272`](https://github.com/chakra-ui/chakra-ui/commit/1d5e55272fe1475ce6fa0ed5bdccef4218885f77)
+  [#3511](https://github.com/chakra-ui/chakra-ui/pull/3511) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - The `extendTheme` function
+  allows you to pass multiple overrides or extensions:
+
+  ```js
+  import {
+    extendTheme,
+    withDefaultColorScheme,
+    withDefaultSize,
+    withDefaultVariant,
+    withDefaultProps,
+  } from "@chakra-ui/react"
+
+  const customTheme = extendTheme(
+    {
+      colors: {
+        brand: {
+          // ...
+          500: "#b4d455",
+          // ...
+        },
+      },
+    },
+    withDefaultColorScheme({ colorScheme: "brand" }),
+    withDefaultSize({
+      size: "lg",
+      components: ["Input", "NumberInput", "PinInput"],
+    }),
+    withDefaultVariant({
+      variant: "outline",
+      components: ["Input", "NumberInput", "PinInput"],
+    }),
+    // or all in one:
+    withDefaultProps({
+      defaultProps: {
+        colorScheme: "brand",
+        variant: "outline",
+        size: "lg",
+      },
+      components: ["Input", "NumberInput", "PinInput"],
+    }),
+    // optional:
+    yourCustomBaseTheme, // defaults to our chakra default theme
+  )
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`17c57be68`](https://github.com/chakra-ui/chakra-ui/commit/17c57be6821247413c9ea8e94df34331f0ef129e),
+  [`1f94620a1`](https://github.com/chakra-ui/chakra-ui/commit/1f94620a11dc616f0982321114a9a236bbf872d2),
+  [`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f),
+  [`ad8a7b9f1`](https://github.com/chakra-ui/chakra-ui/commit/ad8a7b9f1064bba04a8f9cc022de2d773ab1e331),
+  [`d14c97420`](https://github.com/chakra-ui/chakra-ui/commit/d14c974203fe8c1a525d8932d5c8d0ae7d1fa84e),
+  [`04be15201`](https://github.com/chakra-ui/chakra-ui/commit/04be15201ac9ae4c284ca639bd45f6a42d9f11bc),
+  [`946f8eab5`](https://github.com/chakra-ui/chakra-ui/commit/946f8eab5b98036db372dc0c85c9e5354c565b58),
+  [`1d5e55272`](https://github.com/chakra-ui/chakra-ui/commit/1d5e55272fe1475ce6fa0ed5bdccef4218885f77),
+  [`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)]:
+  - @chakra-ui/pin-input@1.6.0
+  - @chakra-ui/menu@1.6.0
+  - @chakra-ui/accordion@1.3.0
+  - @chakra-ui/tabs@1.5.0
+  - @chakra-ui/button@1.3.1
+  - @chakra-ui/progress@1.1.8
+  - @chakra-ui/theme@1.8.4
+  - @chakra-ui/utils@1.7.0
+  - @chakra-ui/alert@1.2.4
+  - @chakra-ui/avatar@1.2.4
+  - @chakra-ui/breadcrumb@1.2.4
+  - @chakra-ui/checkbox@1.5.1
+  - @chakra-ui/editable@1.2.4
+  - @chakra-ui/form-control@1.3.4
+  - @chakra-ui/hooks@1.5.1
+  - @chakra-ui/input@1.2.4
+  - @chakra-ui/layout@1.4.4
+  - @chakra-ui/modal@1.8.4
+  - @chakra-ui/number-input@1.2.4
+  - @chakra-ui/popover@1.6.1
+  - @chakra-ui/popper@2.1.2
+  - @chakra-ui/portal@1.2.4
+  - @chakra-ui/radio@1.3.4
+  - @chakra-ui/slider@1.2.4
+  - @chakra-ui/system@1.6.4
+  - @chakra-ui/tooltip@1.3.4
+  - @chakra-ui/table@1.2.3
+  - @chakra-ui/toast@1.2.5
+  - @chakra-ui/close-button@1.1.8
+  - @chakra-ui/control-box@1.0.11
+  - @chakra-ui/counter@1.1.4
+  - @chakra-ui/react-env@1.0.3
+  - @chakra-ui/icon@1.1.8
+  - @chakra-ui/image@1.0.14
+  - @chakra-ui/live-region@1.0.11
+  - @chakra-ui/media-query@1.0.12
+  - @chakra-ui/select@1.1.8
+  - @chakra-ui/skeleton@1.1.11
+  - @chakra-ui/spinner@1.1.8
+  - @chakra-ui/stat@1.1.8
+  - @chakra-ui/switch@1.2.4
+  - @chakra-ui/tag@1.1.8
+  - @chakra-ui/textarea@1.1.8
+  - @chakra-ui/transition@1.2.2
+  - @chakra-ui/visually-hidden@1.0.11
+
+## 1.5.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0974e547c`](https://github.com/chakra-ui/chakra-ui/commit/0974e547c29e4efc1ba4d1eb1507d0dad7d7a77a),
+  [`fbc125258`](https://github.com/chakra-ui/chakra-ui/commit/fbc12525822190e1ea5eced874ef3fdfafdabfb3),
+  [`57baa5e63`](https://github.com/chakra-ui/chakra-ui/commit/57baa5e6350f89f1098a5d965b90483348aa0073),
+  [`aec2aaf9d`](https://github.com/chakra-ui/chakra-ui/commit/aec2aaf9d6e7fb43855ae7e3b238ee043ec2c533),
+  [`59ea894a7`](https://github.com/chakra-ui/chakra-ui/commit/59ea894a7e03d16cd7a1b89d00816eafa9fab65d),
+  [`384902e35`](https://github.com/chakra-ui/chakra-ui/commit/384902e35b186c8c8154b9569455c27f72ee0f6f),
+  [`a13252624`](https://github.com/chakra-ui/chakra-ui/commit/a13252624fdc69eab2dc4dbd3fa228b86380f091),
+  [`f2544fb58`](https://github.com/chakra-ui/chakra-ui/commit/f2544fb581a6dbe558236ebb11883a273ed61a28),
+  [`a139b106f`](https://github.com/chakra-ui/chakra-ui/commit/a139b106f428cadbaaffe9cdbd45ff264804b2c2),
+  [`9c6be11b1`](https://github.com/chakra-ui/chakra-ui/commit/9c6be11b1d95f8add314dbe214bc7ce3c67b76cd)]:
+  - @chakra-ui/utils@1.6.0
+  - @chakra-ui/checkbox@1.5.0
+  - @chakra-ui/menu@1.5.0
+  - @chakra-ui/popover@1.6.0
+  - @chakra-ui/button@1.3.0
+  - @chakra-ui/hooks@1.5.0
+  - @chakra-ui/stat@1.1.7
+  - @chakra-ui/tabs@1.4.0
+  - @chakra-ui/react-env@1.0.2
+  - @chakra-ui/slider@1.2.3
+  - @chakra-ui/modal@1.8.3
+  - @chakra-ui/theme@1.8.3
+  - @chakra-ui/accordion@1.2.3
+  - @chakra-ui/alert@1.2.3
+  - @chakra-ui/avatar@1.2.3
+  - @chakra-ui/breadcrumb@1.2.3
+  - @chakra-ui/close-button@1.1.7
+  - @chakra-ui/control-box@1.0.10
+  - @chakra-ui/counter@1.1.3
+  - @chakra-ui/editable@1.2.3
+  - @chakra-ui/form-control@1.3.3
+  - @chakra-ui/icon@1.1.7
+  - @chakra-ui/image@1.0.13
+  - @chakra-ui/input@1.2.3
+  - @chakra-ui/layout@1.4.3
+  - @chakra-ui/live-region@1.0.10
+  - @chakra-ui/media-query@1.0.11
+  - @chakra-ui/number-input@1.2.3
+  - @chakra-ui/pin-input@1.5.3
+  - @chakra-ui/portal@1.2.3
+  - @chakra-ui/progress@1.1.7
+  - @chakra-ui/radio@1.3.3
+  - @chakra-ui/select@1.1.7
+  - @chakra-ui/skeleton@1.1.10
+  - @chakra-ui/spinner@1.1.7
+  - @chakra-ui/switch@1.2.3
+  - @chakra-ui/system@1.6.3
+  - @chakra-ui/table@1.2.2
+  - @chakra-ui/tag@1.1.7
+  - @chakra-ui/textarea@1.1.7
+  - @chakra-ui/toast@1.2.4
+  - @chakra-ui/tooltip@1.3.3
+  - @chakra-ui/transition@1.2.1
+  - @chakra-ui/visually-hidden@1.0.10
+
+## 1.5.1
+
+### Patch Changes
+
+- [`09aa19b23`](https://github.com/chakra-ui/chakra-ui/commit/09aa19b23544f612ac54c22ad0b344d66b871674)
+  [#3779](https://github.com/chakra-ui/chakra-ui/pull/3779) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed typing issues for
+  `extendTheme` where variant overrides lead to an TS error.
+
+* [`81a40231f`](https://github.com/chakra-ui/chakra-ui/commit/81a40231f12461dcca0fa0cd3c4e9e2c0497a04d)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add
+  `EnvironmentProvider` to `ChakraProvider` for better window and document
+  detection across hooks and components
+* Updated dependencies
+  [[`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d),
+  [`5617aabea`](https://github.com/chakra-ui/chakra-ui/commit/5617aabeaa6c3faef37deeebeddbc9bf3cc88088),
+  [`753b56d63`](https://github.com/chakra-ui/chakra-ui/commit/753b56d6366276f217d28131c17c41427ae7761c),
+  [`3ff53e4e3`](https://github.com/chakra-ui/chakra-ui/commit/3ff53e4e3857b94c4fc18b8e02cf914bdff860e1),
+  [`fce6d8ecb`](https://github.com/chakra-ui/chakra-ui/commit/fce6d8ecb17b6fe5792804a980cfbe5367d519da),
+  [`3310f952e`](https://github.com/chakra-ui/chakra-ui/commit/3310f952efc6a196b12ffff1a0951683e0b0b6ff),
+  [`327f00644`](https://github.com/chakra-ui/chakra-ui/commit/327f00644d3336fe1e2d3152f9cc3474a18824ef),
+  [`9fcccbe34`](https://github.com/chakra-ui/chakra-ui/commit/9fcccbe348f87fb4a386450e5327bb578e14cb16),
+  [`19421fa94`](https://github.com/chakra-ui/chakra-ui/commit/19421fa94f52c32d43a34768e232e7919708eae2),
+  [`a588116f9`](https://github.com/chakra-ui/chakra-ui/commit/a588116f92911769334132d90ccec01d49f029aa),
+  [`327f00644`](https://github.com/chakra-ui/chakra-ui/commit/327f00644d3336fe1e2d3152f9cc3474a18824ef),
+  [`655b1a878`](https://github.com/chakra-ui/chakra-ui/commit/655b1a878cde607921fe4c9ae6fe41373552c5c3),
+  [`000402a2c`](https://github.com/chakra-ui/chakra-ui/commit/000402a2c720878a06a63152a332b15efd79814f),
+  [`3bc27c018`](https://github.com/chakra-ui/chakra-ui/commit/3bc27c0183d06f8e0d38ab8e6d7d793f20e883c8),
+  [`d1532f0b7`](https://github.com/chakra-ui/chakra-ui/commit/d1532f0b72c36d0609ee4510613d7c76f4f9c113),
+  [`1615af488`](https://github.com/chakra-ui/chakra-ui/commit/1615af4881a6f37cffb7ea15078cf7ab6a4e4c79),
+  [`890839d9f`](https://github.com/chakra-ui/chakra-ui/commit/890839d9fe32d5ec90954c8f4c5b6c463ff0b57d),
+  [`782aa7f27`](https://github.com/chakra-ui/chakra-ui/commit/782aa7f27cfed28785f63aa294c3a6532ac47a06),
+  [`29148130a`](https://github.com/chakra-ui/chakra-ui/commit/29148130a699409322931cc6ba1b970b7afeefbd),
+  [`3ff53e4e3`](https://github.com/chakra-ui/chakra-ui/commit/3ff53e4e3857b94c4fc18b8e02cf914bdff860e1),
+  [`a73198529`](https://github.com/chakra-ui/chakra-ui/commit/a7319852908f68596600da799ef08a0e7dbb468e),
+  [`d37b00021`](https://github.com/chakra-ui/chakra-ui/commit/d37b00021490c24bd3168a7f2800b6490aee90b1),
+  [`dd2257935`](https://github.com/chakra-ui/chakra-ui/commit/dd225793575ff88aa2a2114a5840150ac3cf744c),
+  [`655b1a878`](https://github.com/chakra-ui/chakra-ui/commit/655b1a878cde607921fe4c9ae6fe41373552c5c3),
+  [`890839d9f`](https://github.com/chakra-ui/chakra-ui/commit/890839d9fe32d5ec90954c8f4c5b6c463ff0b57d)]:
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/transition@1.2.0
+  - @chakra-ui/theme@1.8.2
+  - @chakra-ui/button@1.2.2
+  - @chakra-ui/tabs@1.3.2
+  - @chakra-ui/tooltip@1.3.2
+  - @chakra-ui/input@1.2.2
+  - @chakra-ui/react-env@1.0.1
+  - @chakra-ui/menu@1.4.0
+  - @chakra-ui/toast@1.2.3
+  - @chakra-ui/editable@1.2.2
+  - @chakra-ui/system@1.6.2
+  - @chakra-ui/layout@1.4.2
+  - @chakra-ui/hooks@1.4.0
+  - @chakra-ui/popper@2.1.1
+  - @chakra-ui/popover@1.5.1
+  - @chakra-ui/spinner@1.1.6
+  - @chakra-ui/progress@1.1.6
+  - @chakra-ui/accordion@1.2.2
+  - @chakra-ui/alert@1.2.2
+  - @chakra-ui/avatar@1.2.2
+  - @chakra-ui/breadcrumb@1.2.2
+  - @chakra-ui/checkbox@1.4.2
+  - @chakra-ui/close-button@1.1.6
+  - @chakra-ui/control-box@1.0.9
+  - @chakra-ui/counter@1.1.2
+  - @chakra-ui/form-control@1.3.2
+  - @chakra-ui/icon@1.1.6
+  - @chakra-ui/image@1.0.12
+  - @chakra-ui/live-region@1.0.9
+  - @chakra-ui/media-query@1.0.10
+  - @chakra-ui/modal@1.8.2
+  - @chakra-ui/number-input@1.2.2
+  - @chakra-ui/pin-input@1.5.2
+  - @chakra-ui/portal@1.2.2
+  - @chakra-ui/radio@1.3.2
+  - @chakra-ui/select@1.1.6
+  - @chakra-ui/skeleton@1.1.9
+  - @chakra-ui/slider@1.2.2
+  - @chakra-ui/stat@1.1.6
+  - @chakra-ui/switch@1.2.2
+  - @chakra-ui/table@1.2.1
+  - @chakra-ui/tag@1.1.6
+  - @chakra-ui/textarea@1.1.6
+  - @chakra-ui/visually-hidden@1.0.9
+
+## 1.5.0
+
+### Minor Changes
+
+- [`ac21d798a`](https://github.com/chakra-ui/chakra-ui/commit/ac21d798a0759b45de02c6821804f40f492fd80e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump package as
+  minor
+
+### Patch Changes
+
+- [`2287d82e3`](https://github.com/chakra-ui/chakra-ui/commit/2287d82e31744cd289aaf524bb9961e46003c404)
+  [#3715](https://github.com/chakra-ui/chakra-ui/pull/3715) Thanks
+  [@with-heart](https://github.com/with-heart)! - Resolved a peer dependency
+  resolution issue reported by yarn2, npm7, and other more modern package
+  managers
+- Updated dependencies
+  [[`1cff6f54e`](https://github.com/chakra-ui/chakra-ui/commit/1cff6f54e5d6d8d72456915f56a6a575054305dc),
+  [`06612e3ba`](https://github.com/chakra-ui/chakra-ui/commit/06612e3ba108fe7726634f856c5fcbcc7fcda27d),
+  [`38706f731`](https://github.com/chakra-ui/chakra-ui/commit/38706f731372783bb05f01b5755a1753fab16f9e),
+  [`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94),
+  [`799f3c803`](https://github.com/chakra-ui/chakra-ui/commit/799f3c8037121b10aa4de15f5e9672b2b43a6a73),
+  [`c69d2b983`](https://github.com/chakra-ui/chakra-ui/commit/c69d2b98350b57f133d6a8ea47b631cd25693aee),
+  [`2287d82e3`](https://github.com/chakra-ui/chakra-ui/commit/2287d82e31744cd289aaf524bb9961e46003c404),
+  [`75817ec42`](https://github.com/chakra-ui/chakra-ui/commit/75817ec428ca3c078660a7c7f2a1c1b578c474df),
+  [`75817ec42`](https://github.com/chakra-ui/chakra-ui/commit/75817ec428ca3c078660a7c7f2a1c1b578c474df),
+  [`e481ba491`](https://github.com/chakra-ui/chakra-ui/commit/e481ba4914a7f163d93d4c22e2e457f1afb08721),
+  [`d86a0f6b4`](https://github.com/chakra-ui/chakra-ui/commit/d86a0f6b4cfcaaf759559325c8fe8b9376f7548b),
+  [`75817ec42`](https://github.com/chakra-ui/chakra-ui/commit/75817ec428ca3c078660a7c7f2a1c1b578c474df),
+  [`07ddf0f27`](https://github.com/chakra-ui/chakra-ui/commit/07ddf0f276e14f900119668c87947d3e669e09af),
+  [`ac21d798a`](https://github.com/chakra-ui/chakra-ui/commit/ac21d798a0759b45de02c6821804f40f492fd80e)]:
+  - @chakra-ui/progress@1.1.5
+  - @chakra-ui/table@1.2.0
+  - @chakra-ui/checkbox@1.4.1
+  - @chakra-ui/number-input@1.2.1
+  - @chakra-ui/radio@1.3.1
+  - @chakra-ui/accordion@1.2.1
+  - @chakra-ui/editable@1.2.1
+  - @chakra-ui/menu@1.3.1
+  - @chakra-ui/popover@1.5.0
+  - @chakra-ui/slider@1.2.1
+  - @chakra-ui/tabs@1.3.1
+  - @chakra-ui/utils@1.5.1
+  - @chakra-ui/toast@1.2.2
+  - @chakra-ui/transition@1.1.2
+  - @chakra-ui/modal@1.8.1
+  - @chakra-ui/tooltip@1.3.1
+  - @chakra-ui/popper@2.1.0
+  - @chakra-ui/theme@1.8.1
+  - @chakra-ui/form-control@1.3.1
+  - @chakra-ui/select@1.1.5
+  - @chakra-ui/alert@1.2.1
+  - @chakra-ui/avatar@1.2.1
+  - @chakra-ui/breadcrumb@1.2.1
+  - @chakra-ui/button@1.2.1
+  - @chakra-ui/hooks@1.3.1
+  - @chakra-ui/input@1.2.1
+  - @chakra-ui/layout@1.4.1
+  - @chakra-ui/pin-input@1.5.1
+  - @chakra-ui/portal@1.2.1
+  - @chakra-ui/switch@1.2.1
+  - @chakra-ui/close-button@1.1.5
+  - @chakra-ui/control-box@1.0.8
+  - @chakra-ui/counter@1.1.1
+  - @chakra-ui/icon@1.1.5
+  - @chakra-ui/image@1.0.11
+  - @chakra-ui/live-region@1.0.8
+  - @chakra-ui/media-query@1.0.9
+  - @chakra-ui/skeleton@1.1.8
+  - @chakra-ui/spinner@1.1.5
+  - @chakra-ui/stat@1.1.5
+  - @chakra-ui/system@1.6.1
+  - @chakra-ui/tag@1.1.5
+  - @chakra-ui/textarea@1.1.5
+  - @chakra-ui/visually-hidden@1.0.8
+
 ## 1.4.2
 
 ### Patch Changes

@@ -1,5 +1,66 @@
 # Change Log
 
+## 1.2.6
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4c157e320`](https://github.com/chakra-ui/chakra-ui/commit/4c157e320a73b08eb89a44831a7cf434fb403bad)]:
+  - @chakra-ui/image@1.0.16
+
+## 1.2.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01),
+  [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab),
+  [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd)]:
+  - @chakra-ui/utils@1.8.0
+  - @chakra-ui/image@1.0.15
+
+## 1.2.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f),
+  [`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)]:
+  - @chakra-ui/react-utils@1.1.2
+  - @chakra-ui/utils@1.7.0
+  - @chakra-ui/image@1.0.14
+
+## 1.2.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0974e547c`](https://github.com/chakra-ui/chakra-ui/commit/0974e547c29e4efc1ba4d1eb1507d0dad7d7a77a),
+  [`59ea894a7`](https://github.com/chakra-ui/chakra-ui/commit/59ea894a7e03d16cd7a1b89d00816eafa9fab65d)]:
+  - @chakra-ui/utils@1.6.0
+  - @chakra-ui/image@1.0.13
+
+## 1.2.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d)]:
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/image@1.0.12
+
+## 1.2.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`87a03b320`](https://github.com/chakra-ui/chakra-ui/commit/87a03b320b62e639ca4a891186f202cb839a8402),
+  [`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94),
+  [`e481ba491`](https://github.com/chakra-ui/chakra-ui/commit/e481ba4914a7f163d93d4c22e2e457f1afb08721)]:
+  - @chakra-ui/react-utils@1.1.1
+  - @chakra-ui/utils@1.5.1
+  - @chakra-ui/image@1.0.11
+
 ## 1.2.0
 
 ### Minor Changes

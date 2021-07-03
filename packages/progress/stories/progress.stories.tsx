@@ -50,7 +50,7 @@ export const withCustomBorderRadius = () => (
   <Progress value={20} borderRadius="4px" />
 )
 
-export const withThemeBorderRadiusOverride = () => {
+export const WithThemeBorderRadiusOverride = () => {
   const theme = useTheme()
   const extendedTheme = extendTheme(
     {
@@ -64,7 +64,7 @@ export const withThemeBorderRadiusOverride = () => {
         },
       },
     },
-    theme,
+    theme as any,
   )
 
   return (

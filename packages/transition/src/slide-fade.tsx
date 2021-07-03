@@ -1,58 +1,19 @@
-import { cx, mergeWith, __DEV__ } from "@chakra-ui/utils"
-import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
+import { cx, __DEV__ } from "@chakra-ui/utils"
+import {
+  AnimatePresence,
+  HTMLMotionProps,
+  motion,
+  Variants as _Variants,
+} from "framer-motion"
 import * as React from "react"
-import { EASINGS, MotionVariants } from "./__utils"
+import {
+  TransitionDefaults,
+  Variants,
+  withDelay,
+  WithTransitionConfig,
+} from "./transition-utils"
 
-type SlideFadeVariant = MotionVariants<"initial" | "enter" | "exit">
-
-const transitions = {
-  enter: {
-    duration: 0.2,
-    ease: EASINGS.easeOut,
-  },
-  exit: {
-    duration: 0.1,
-    ease: EASINGS.easeIn,
-  },
-}
-
-const variants: SlideFadeVariant = {
-  initial: (props) => ({
-    opacity: 0,
-    x: props.offsetX,
-    y: props.offsetY,
-    transition: transitions.exit,
-  }),
-  exit: (props) => ({
-    opacity: 0,
-    transition: transitions.exit,
-    ...(props.reverse && {
-      x: props.offsetX,
-      y: props.offsetY,
-    }),
-    ...(!props.reverse && {
-      transitionEnd: {
-        x: props.offsetX,
-        y: props.offsetY,
-      },
-    }),
-  }),
-  enter: {
-    opacity: 1,
-    x: 0,
-    y: 0,
-    transition: transitions.enter,
-  },
-}
-
-export const slideFadeConfig: HTMLMotionProps<"div"> = {
-  initial: "initial",
-  animate: "enter",
-  exit: "exit",
-  variants,
-}
-
-export interface SlideFadeProps extends HTMLMotionProps<"div"> {
+interface SlideFadeOptions {
   /**
    * The offset on the horizontal or `x` axis
    * @default 0
@@ -69,15 +30,48 @@ export interface SlideFadeProps extends HTMLMotionProps<"div"> {
    * @default true
    */
   reverse?: boolean
-  /**
-   * If `true`, the element will unmount when `in={false}` and animation is done
-   */
-  unmountOnExit?: boolean
-  /**
-   * If `true`, the content will animate in
-   */
-  in?: boolean
 }
+
+const variants: Variants<SlideFadeOptions> = {
+  initial: ({ offsetX, offsetY, transition, transitionEnd, delay }) => ({
+    opacity: 0,
+    x: offsetX,
+    y: offsetY,
+    transition:
+      transition?.exit ?? withDelay.exit(TransitionDefaults.exit, delay),
+    transitionEnd: transitionEnd?.exit,
+  }),
+  enter: ({ transition, transitionEnd, delay }) => ({
+    opacity: 1,
+    x: 0,
+    y: 0,
+    transition:
+      transition?.enter ?? withDelay.enter(TransitionDefaults.enter, delay),
+    transitionEnd: transitionEnd?.enter,
+  }),
+  exit: ({ offsetY, offsetX, transition, transitionEnd, reverse, delay }) => {
+    const offset = { x: offsetX, y: offsetY }
+    return {
+      opacity: 0,
+      transition:
+        transition?.exit ?? withDelay.exit(TransitionDefaults.exit, delay),
+      ...(reverse
+        ? { ...offset, transitionEnd: transitionEnd?.exit }
+        : { transitionEnd: { ...offset, ...transitionEnd?.exit } }),
+    }
+  },
+}
+
+export const slideFadeConfig: HTMLMotionProps<"div"> = {
+  initial: "initial",
+  animate: "enter",
+  exit: "exit",
+  variants: variants as _Variants,
+}
+
+export interface SlideFadeProps
+  extends SlideFadeOptions,
+    WithTransitionConfig<HTMLMotionProps<"div">> {}
 
 export const SlideFade = React.forwardRef<HTMLDivElement, SlideFadeProps>(
   (props, ref) => {
@@ -88,24 +82,33 @@ export const SlideFade = React.forwardRef<HTMLDivElement, SlideFadeProps>(
       className,
       offsetX = 0,
       offsetY = 8,
+      transition,
+      transitionEnd,
+      delay,
       ...rest
     } = props
 
-    const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
+    const show = unmountOnExit ? isOpen && unmountOnExit : true
+    const animate = isOpen || unmountOnExit ? "enter" : "exit"
 
-    const custom = { offsetX, offsetY, reverse }
-    const motionProps = mergeWith(slideFadeConfig, {
-      custom,
-      animate: isOpen || unmountOnExit ? "enter" : "exit",
-    })
+    const custom = {
+      offsetX,
+      offsetY,
+      reverse,
+      transition,
+      transitionEnd,
+      delay,
+    }
 
     return (
       <AnimatePresence custom={custom}>
-        {shouldExpand && (
+        {show && (
           <motion.div
             ref={ref}
             className={cx("chakra-offset-slide", className)}
-            {...motionProps}
+            custom={custom}
+            {...slideFadeConfig}
+            animate={animate}
             {...rest}
           />
         )}

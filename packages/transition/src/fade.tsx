@@ -1,58 +1,69 @@
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
+import {
+  AnimatePresence,
+  HTMLMotionProps,
+  motion,
+  Variants as _Variants,
+} from "framer-motion"
 import * as React from "react"
-import { EASINGS, MotionVariants } from "./__utils"
+import {
+  TransitionDefaults,
+  Variants,
+  withDelay,
+  WithTransitionConfig,
+} from "./transition-utils"
 
-type FadeMotionVariant = MotionVariants<"enter" | "exit">
+export interface FadeProps
+  extends WithTransitionConfig<HTMLMotionProps<"div">> {}
 
-const variants: FadeMotionVariant = {
-  exit: {
-    opacity: 0,
-    transition: {
-      duration: 0.1,
-      ease: EASINGS.easeOut,
-    },
-  },
-  enter: {
+const variants: Variants = {
+  enter: ({ transition, transitionEnd, delay } = {}) => ({
     opacity: 1,
-    transition: {
-      duration: 0.2,
-      ease: EASINGS.easeIn,
-    },
-  },
+    transition:
+      transition?.enter ?? withDelay.enter(TransitionDefaults.enter, delay),
+    transitionEnd: transitionEnd?.enter,
+  }),
+  exit: ({ transition, transitionEnd, delay } = {}) => ({
+    opacity: 0,
+    transition:
+      transition?.exit ?? withDelay.exit(TransitionDefaults.exit, delay),
+    transitionEnd: transitionEnd?.exit,
+  }),
 }
 
-export const fadeConfig: Omit<HTMLMotionProps<any>, "transition"> = {
+export const fadeConfig: HTMLMotionProps<"div"> = {
   initial: "exit",
   animate: "enter",
   exit: "exit",
-  variants,
-}
-
-export interface FadeProps extends HTMLMotionProps<"div"> {
-  /**
-   * If `true`, the element will unmount when `in={false}` and animation is done
-   */
-  unmountOnExit?: boolean
-  /**
-   * Show the component; triggers the enter or exit states
-   */
-  in?: boolean
+  variants: variants as _Variants,
 }
 
 export const Fade = React.forwardRef<HTMLDivElement, FadeProps>(
   (props, ref) => {
-    const { unmountOnExit, in: isOpen, className, ...rest } = props
-    const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true
+    const {
+      unmountOnExit,
+      in: isOpen,
+      className,
+      transition,
+      transitionEnd,
+      delay,
+      ...rest
+    } = props
+
+    const animate = isOpen || unmountOnExit ? "enter" : "exit"
+    const show = unmountOnExit ? isOpen && unmountOnExit : true
+
+    const custom = { transition, transitionEnd, delay }
 
     return (
-      <AnimatePresence>
-        {shouldExpand && (
+      <AnimatePresence custom={custom}>
+        {show && (
           <motion.div
             ref={ref}
             className={cx("chakra-fade", className)}
+            custom={custom}
             {...fadeConfig}
-            animate={isOpen || unmountOnExit ? "enter" : "exit"}
+            animate={animate}
             {...rest}
           />
         )}

@@ -1,5 +1,124 @@
 # Change Log
 
+## 1.7.0
+
+### Minor Changes
+
+- [`991ea2e29`](https://github.com/chakra-ui/chakra-ui/commit/991ea2e29746a501b79591228664702ce1277235)
+  [#3998](https://github.com/chakra-ui/chakra-ui/pull/3998) Thanks
+  [@terrierscript](https://github.com/terrierscript)! - The `styled` function
+  allows a functional `baseStyle` property:
+
+  ```js
+  import { styled } from '@chakra-ui/react'
+
+  const MyComponent = styled('div', {
+    baseStyle: (props) => ({
+      bg: props.highlightColor
+    })
+  })
+
+  // ...
+
+  <MyComponent highlightColor="red.500" />
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ebda07095`](https://github.com/chakra-ui/chakra-ui/commit/ebda07095bffd9b3135c5d19803a3a08397b78ef)]:
+  - @chakra-ui/styled-system@1.12.0
+  - @chakra-ui/color-mode@1.1.9
+
+## 1.6.7
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d9d66a9e8`](https://github.com/chakra-ui/chakra-ui/commit/d9d66a9e876f076ffd1c8bb531fd03e9074d325f)]:
+  - @chakra-ui/styled-system@1.11.1
+
+## 1.6.6
+
+### Patch Changes
+
+- [`ddd5ef4a1`](https://github.com/chakra-ui/chakra-ui/commit/ddd5ef4a1e9cc988c99b80c26579205ea4c57b2f)
+  [#3985](https://github.com/chakra-ui/chakra-ui/pull/3985) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Attach CSS vars to
+  `:host, :root` to fix usage in shadow dom.
+
+- Updated dependencies
+  [[`773497896`](https://github.com/chakra-ui/chakra-ui/commit/773497896e65ffbbda10e75b6e0a7bb5b68c853a)]:
+  - @chakra-ui/styled-system@1.11.0
+
+## 1.6.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01),
+  [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab),
+  [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd),
+  [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd)]:
+  - @chakra-ui/utils@1.8.0
+  - @chakra-ui/styled-system@1.10.5
+  - @chakra-ui/color-mode@1.1.8
+
+## 1.6.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f),
+  [`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)]:
+  - @chakra-ui/react-utils@1.1.2
+  - @chakra-ui/utils@1.7.0
+  - @chakra-ui/color-mode@1.1.7
+  - @chakra-ui/styled-system@1.10.4
+
+## 1.6.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0974e547c`](https://github.com/chakra-ui/chakra-ui/commit/0974e547c29e4efc1ba4d1eb1507d0dad7d7a77a),
+  [`59ea894a7`](https://github.com/chakra-ui/chakra-ui/commit/59ea894a7e03d16cd7a1b89d00816eafa9fab65d),
+  [`a11810f70`](https://github.com/chakra-ui/chakra-ui/commit/a11810f705f0731f5ddc967a59b6899dfe8d5050)]:
+  - @chakra-ui/utils@1.6.0
+  - @chakra-ui/styled-system@1.10.3
+  - @chakra-ui/color-mode@1.1.6
+
+## 1.6.2
+
+### Patch Changes
+
+- [`000402a2c`](https://github.com/chakra-ui/chakra-ui/commit/000402a2c720878a06a63152a332b15efd79814f)
+  [#3805](https://github.com/chakra-ui/chakra-ui/pull/3805) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Allow passing custom props
+  to useStyleConfig
+
+* [`a73198529`](https://github.com/chakra-ui/chakra-ui/commit/a7319852908f68596600da799ef08a0e7dbb468e)
+  [#3775](https://github.com/chakra-ui/chakra-ui/pull/3775) Thanks
+  [@tomchentw](https://github.com/tomchentw)! - Add missing dependency issue of
+  `@chakra-ui/react-utils`
+
+* Updated dependencies
+  [[`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d)]:
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/color-mode@1.1.5
+  - @chakra-ui/styled-system@1.10.2
+
+## 1.6.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94),
+  [`e481ba491`](https://github.com/chakra-ui/chakra-ui/commit/e481ba4914a7f163d93d4c22e2e457f1afb08721)]:
+  - @chakra-ui/utils@1.5.1
+  - @chakra-ui/color-mode@1.1.4
+  - @chakra-ui/styled-system@1.10.1
+
 ## 1.6.0
 
 ### Minor Changes

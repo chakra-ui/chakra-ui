@@ -38,7 +38,10 @@ export function createContext<ContextType>(options: CreateContextOptions = {}) {
     const context = React.useContext(Context)
 
     if (!context && strict) {
-      throw new Error(errorMessage)
+      const error = new Error(errorMessage)
+      error.name = "ContextError"
+      Error.captureStackTrace?.(error, useContext)
+      throw error
     }
 
     return context

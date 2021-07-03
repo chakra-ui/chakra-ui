@@ -32,11 +32,11 @@ import * as React from "react"
 // 1. import `ChakraProvider` component
 import { ChakraProvider } from "@chakra-ui/react"
 
-function App() {
+function App({ Component }) {
   // 2. Use at the root of your app
   return (
     <ChakraProvider>
-      <App />
+      <Component />
     </ChakraProvider>
   )
 }
@@ -45,6 +45,22 @@ function App() {
 > - For Create React App, you need to set this up in `index.js` or `index.tsx`
 
 ### Next.js
+<Box mt={3}>
+  <AspectRatio ratio={16 / 8.84}>
+    <VideoPlayer
+      width="100%"
+      height="100%"
+      url="https://www.youtube.com/watch?v=wI2vqXsjsIo"
+      config={{
+        youtube: {
+          playerVars: {
+            controls: true
+          }
+        }
+      }}
+    />
+  </AspectRatio>
+</Box>
 
 Go to `pages/_app.js` or `pages/_app.tsx` (create if it doesn't exist) and add
 this:
@@ -66,7 +82,7 @@ export default MyApp
 ### Gatsby
 
 Add the
-[@chakra-ui/gatsby-plugin](gatsbyjs.com/plugins/@chakra-ui/gatsby-plugin/). It
+[@chakra-ui/gatsby-plugin](https://www.gatsbyjs.com/plugins/@chakra-ui/gatsby-plugin/). It
 does everything automatically for you!
 
 ```bash
@@ -111,10 +127,10 @@ const colors = {
 const theme = extendTheme({ colors })
 
 // 3. Pass the `theme` prop to the `ChakraProvider`
-function App() {
+function App({ Component }) {
   return (
     <ChakraProvider theme={theme}>
-      <App />
+      <Component />
     </ChakraProvider>
   )
 }

@@ -94,7 +94,7 @@ export interface StackProps extends HTMLChakraProps<"div">, StackOptions {}
  *
  * It uses `display: flex` internally and renders a `div`.
  *
- * @see Docs https://chakra-ui.com/docs/layout/stack
+ * @see Docs https://chakra-ui.com/stack
  *
  */
 export const Stack = forwardRef<StackProps, "div">((props, ref) => {

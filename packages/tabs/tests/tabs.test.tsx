@@ -167,3 +167,30 @@ test("renders only the currently active tab panel if isLazy", () => {
   expect(screen.queryByText("Panel 1")).not.toBeInTheDocument()
   expect(screen.getByText("Panel 2")).toBeInTheDocument()
 })
+
+test("renders the currently active tab panel and previously-selected tabs if isLazy and lazy behavior is keepMounted", () => {
+  render(
+    <Tabs isLazy lazyBehavior="keepMounted">
+      <TabList>
+        <Tab>Tab 1</Tab>
+        <Tab>Tab 2</Tab>
+      </TabList>
+      <TabPanels>
+        <TabPanel>
+          <p>Panel 1</p>
+        </TabPanel>
+        <TabPanel>
+          <p>Panel 2</p>
+        </TabPanel>
+      </TabPanels>
+    </Tabs>,
+  )
+
+  expect(screen.getByText("Panel 1")).toBeInTheDocument()
+  expect(screen.queryByText("Panel 2")).not.toBeInTheDocument()
+
+  userEvent.click(screen.getByText("Tab 2"))
+
+  expect(screen.queryByText("Panel 1")).toBeInTheDocument()
+  expect(screen.getByText("Panel 2")).toBeInTheDocument()
+})

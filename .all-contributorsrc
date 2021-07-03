@@ -1838,6 +1838,100 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "kristian240",
+      "name": "Kristian Djaković",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55184443?v=4",
+      "profile": "https://github.com/kristian240",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "antoniel",
+      "name": "Antoniel Magalhães",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17225358?v=4",
+      "profile": "https://github.com/antoniel",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "grikomsn",
+      "name": "Griko Nibras",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8220954?v=4",
+      "profile": "https://griko.id",
+      "contributions": [
+        "ideas",
+        "code"
+      ]
+    },
+    {
+      "login": "imalbert",
+      "name": "imalbert",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12537973?v=4",
+      "profile": "https://github.com/imalbert",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "mcha-dev",
+      "name": "mcha",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13101565?v=4",
+      "profile": "https://github.com/mcha-dev",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "hasibhassan",
+      "name": "Hasib Hassan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/67892792?v=4",
+      "profile": "http://hasibhassan.com",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "jrolfs",
+      "name": "Jamie Rolfs",
+      "avatar_url": "https://avatars.githubusercontent.com/u/288160?v=4",
+      "profile": "http://jamie.rolfs.sh",
+      "contributions": [
+        "ideas",
+        "doc",
+        "code"
+      ]
+    },
+    {
+      "login": "spidertwin2",
+      "name": "Surabhi Gupta",
+      "avatar_url": "https://avatars.githubusercontent.com/u/29196888?v=4",
+      "profile": "https://github.com/spidertwin2",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "Ningaro",
+      "name": "Ningaro",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23503775?v=4",
+      "profile": "http://rp.station.msk.ru",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "m0nae",
+      "name": "Monae",
+      "avatar_url": "https://avatars.githubusercontent.com/u/74229895?v=4",
+      "profile": "http://monae.me",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

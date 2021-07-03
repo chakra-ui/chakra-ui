@@ -32,7 +32,7 @@ export function assignRef<T = any>(ref: ReactRef<T> | undefined, value: T) {
  * @param refs refs to assign to value to
  */
 export function mergeRefs<T>(...refs: (ReactRef<T> | undefined)[]) {
-  return (value: T) => {
-    refs.forEach((ref) => assignRef(ref, value))
+  return (node: T | null) => {
+    refs.forEach((ref) => assignRef(ref, node))
   }
 }

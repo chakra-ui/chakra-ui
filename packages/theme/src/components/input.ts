@@ -9,7 +9,8 @@ const baseStyle = {
     outline: 0,
     position: "relative",
     appearance: "none",
-    transition: "all 0.2s",
+    transitionProperty: "common",
+    transitionDuration: "normal",
   },
 }
 
@@ -153,8 +154,7 @@ function variantFlushed(props: Record<string, any>) {
       borderBottom: "1px solid",
       borderColor: "inherit",
       borderRadius: 0,
-      pl: 0,
-      pr: 0,
+      px: 0,
       bg: "transparent",
       _readOnly: {
         boxShadow: "none !important",
@@ -173,7 +173,7 @@ function variantFlushed(props: Record<string, any>) {
       borderBottom: "2px solid",
       borderColor: "inherit",
       borderRadius: 0,
-      paddingX: 0,
+      px: 0,
       bg: "transparent",
     },
   }
@@ -182,14 +182,12 @@ function variantFlushed(props: Record<string, any>) {
 const variantUnstyled = {
   field: {
     bg: "transparent",
-    pl: 0,
-    pr: 0,
+    px: 0,
     height: "auto",
   },
   addon: {
     bg: "transparent",
-    pl: 0,
-    pr: 0,
+    px: 0,
     height: "auto",
   },
 }

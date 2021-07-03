@@ -1,5 +1,5 @@
 import { css } from "../src/css"
-import { toCSSVar } from "../src/css-var"
+import { toCSSVar } from "../src/create-theme-vars"
 
 const theme = toCSSVar({
   breakpoints: {
@@ -63,6 +63,17 @@ const theme = toCSSVar({
   },
   textTransform: {
     header: "uppercase",
+  },
+  transition: {
+    duration: {
+      slow: "1s",
+    },
+    easing: {
+      smooth: "ease-in-out",
+    },
+    property: {
+      common: "opacity, transform, background-color, color",
+    },
   },
 })
 
@@ -620,6 +631,22 @@ test("should expand textStyle and layerStyle", () => {
       "fontSize": "lg",
       "letterSpacing": "wide",
       "textTransform": "uppercase",
+    }
+  `)
+})
+
+test("transition tokens are replaced correctly", () => {
+  expect(
+    css({
+      transitionProperty: "common",
+      transitionDuration: "slow",
+      transitionTimingFunction: "smooth",
+    })(theme),
+  ).toMatchInlineSnapshot(`
+    Object {
+      "transitionDuration": "var(--transition-duration-slow)",
+      "transitionProperty": "var(--transition-property-common)",
+      "transitionTimingFunction": "var(--transition-easing-smooth)",
     }
   `)
 })

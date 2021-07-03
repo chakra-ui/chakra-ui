@@ -1,5 +1,6 @@
 import {
   Alert,
+  AspectRatio,
   Box,
   chakra,
   HTMLChakraProps,
@@ -7,6 +8,8 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react"
 import React from "react"
+import ReactPlayer, { ReactPlayerProps } from "react-player"
+
 import CarbonAd from "./carbon-ad"
 import CodeBlock from "./codeblock/codeblock"
 import ComponentLinks from "./component-links"
@@ -71,6 +74,8 @@ const InlineCode = (props: any) => (
   />
 )
 
+const VideoPlayer = (props: ReactPlayerProps) => <ReactPlayer {...props} />
+
 const MDXComponents = {
   h1: (props) => <chakra.h1 apply="mdx.h1" {...props} />,
   h2: (props) => <LinkedHeading apply="mdx.h2" {...props} />,
@@ -92,7 +97,9 @@ const MDXComponents = {
   table: Table,
   th: THead,
   td: TData,
-  a: (props) => <chakra.a apply="mdx.a" {...props} />,
+  a: React.forwardRef((props: any, ref: any) => (
+    <chakra.a ref={ref} apply="mdx.a" {...props} />
+  )),
   p: (props) => <chakra.p apply="mdx.p" {...props} />,
   ul: (props) => <chakra.ul apply="mdx.ul" {...props} />,
   ol: (props) => <chakra.ol apply="mdx.ul" {...props} />,
@@ -113,6 +120,8 @@ const MDXComponents = {
   ComponentLinks,
   IconsList,
   PropsTable,
+  VideoPlayer,
+  AspectRatio,
 }
 
 export default MDXComponents

@@ -67,7 +67,7 @@ export interface UseCheckboxProps {
    */
   defaultChecked?: boolean
   /**
-   * The callback invoked when the checked state of the `Checkbox` changes..
+   * The callback invoked when the checked state of the `Checkbox` changes.
    */
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
   /**
@@ -108,7 +108,7 @@ export interface UseCheckboxProps {
  * useCheckbox that provides all the state and focus management logic
  * for a checkbox. It is consumed by the `Checkbox` component
  *
- * @see Docs https://chakra-ui.com/docs/form/checkbox#hooks
+ * @see Docs https://chakra-ui.com/checkbox#hooks
  */
 export function useCheckbox(props: UseCheckboxProps = {}) {
   const {

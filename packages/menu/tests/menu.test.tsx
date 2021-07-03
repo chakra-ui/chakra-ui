@@ -395,3 +395,51 @@ test("onClose doesn't affect the state of other menus", async () => {
     screen.getByText("No 1").parentElement!.getAttribute("aria-expanded"),
   ).toBe("false")
 })
+
+test("MenuItem can override its parent menu's `closeOnSelect` and keep the menu open", async () => {
+  const onClose = jest.fn()
+  render(
+    <Menu onClose={onClose}>
+      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuList>
+        <MenuItem closeOnSelect={false}>I do not close the menu</MenuItem>
+        <MenuItem>I close the menu</MenuItem>
+      </MenuList>
+    </Menu>,
+  )
+
+  const openMenuButton = screen.getByRole("button")
+  const menuItemThatDoesNotClose = screen.getByText("I do not close the menu")
+  const menuItemThatCloses = screen.getByText("I close the menu")
+
+  fireEvent.click(openMenuButton)
+  fireEvent.click(menuItemThatDoesNotClose)
+  expect(onClose).not.toHaveBeenCalled()
+
+  fireEvent.click(menuItemThatCloses)
+  expect(onClose).toHaveBeenCalled()
+})
+
+test("MenuItem can override its parent menu's `closeOnSelect` and close the menu", async () => {
+  const onClose = jest.fn()
+  render(
+    <Menu onClose={onClose} closeOnSelect={false}>
+      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuList>
+        <MenuItem>I do not close the menu</MenuItem>
+        <MenuItem closeOnSelect>I close the menu</MenuItem>
+      </MenuList>
+    </Menu>,
+  )
+
+  const openMenuButton = screen.getByRole("button")
+  const menuItemThatDoesNotClose = screen.getByText("I do not close the menu")
+  const menuItemThatCloses = screen.getByText("I close the menu")
+
+  fireEvent.click(openMenuButton)
+  fireEvent.click(menuItemThatDoesNotClose)
+  expect(onClose).not.toHaveBeenCalled()
+
+  fireEvent.click(menuItemThatCloses)
+  expect(onClose).toHaveBeenCalled()
+})

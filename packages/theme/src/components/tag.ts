@@ -21,9 +21,11 @@ const baseStyleCloseButton = {
   fontSize: "18px",
   w: "1.25rem",
   h: "1.25rem",
+  transitionProperty: "common",
+  transitionDuration: "normal",
   borderRadius: "full",
-  ms: "0.375rem",
-  me: "-1",
+  marginStart: "0.375rem",
+  marginEnd: "-1",
   opacity: 0.5,
   _disabled: {
     opacity: 0.4,
@@ -52,8 +54,8 @@ const sizes = {
       borderRadius: "md",
     },
     closeButton: {
-      me: "-2px",
-      ms: "0.35rem",
+      marginEnd: "-2px",
+      marginStart: "0.35rem",
     },
   },
   md: {

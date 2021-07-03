@@ -1,5 +1,142 @@
 # Change Log
 
+## 1.8.8
+
+### Patch Changes
+
+- [`4c157e320`](https://github.com/chakra-ui/chakra-ui/commit/4c157e320a73b08eb89a44831a7cf434fb403bad)
+  [#4057](https://github.com/chakra-ui/chakra-ui/pull/4057) Thanks
+  [@mcha-dev](https://github.com/mcha-dev)! - updated @see doc links to point to
+  shorthand see PR #4046 comment
+
+* [`afb9b3cfa`](https://github.com/chakra-ui/chakra-ui/commit/afb9b3cfa87076ed8897b7edd4a9d9f1e1701721)
+  [#4103](https://github.com/chakra-ui/chakra-ui/pull/4103) Thanks
+  [@with-heart](https://github.com/with-heart)! - Update transitions to use
+  theme tokens and remove outline transitions
+
+* Updated dependencies
+  [[`4c157e320`](https://github.com/chakra-ui/chakra-ui/commit/4c157e320a73b08eb89a44831a7cf434fb403bad),
+  [`e8da4c65f`](https://github.com/chakra-ui/chakra-ui/commit/e8da4c65f026f636ea26d11b7aaed63f2babf00d),
+  [`aa374ffcb`](https://github.com/chakra-ui/chakra-ui/commit/aa374ffcb4003efd88eb6a62e10723ea9fbfa3d0)]:
+  - @chakra-ui/portal@1.2.6
+  - @chakra-ui/transition@1.3.2
+  - @chakra-ui/hooks@1.5.3
+
+## 1.8.7
+
+### Patch Changes
+
+- [`d9f8bea60`](https://github.com/chakra-ui/chakra-ui/commit/d9f8bea6081020c1841cb0d0f094642c7ce71db6)
+  [#4046](https://github.com/chakra-ui/chakra-ui/pull/4046) Thanks
+  [@mcha-dev](https://github.com/mcha-dev)! - Fix link in @see doc
+
+## 1.8.6
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c1f8d90ad`](https://github.com/chakra-ui/chakra-ui/commit/c1f8d90ad7ebd9594e9888010170cda7969f0ded)]:
+  - @chakra-ui/transition@1.3.1
+
+## 1.8.5
+
+### Patch Changes
+
+- [`db8adf204`](https://github.com/chakra-ui/chakra-ui/commit/db8adf20432a2e0b799c3eff9914fc8b5dfca7c6)
+  [#3946](https://github.com/chakra-ui/chakra-ui/pull/3946) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fix types for modal
+  overlay fade config
+
+- Updated dependencies
+  [[`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01),
+  [`b199b06e3`](https://github.com/chakra-ui/chakra-ui/commit/b199b06e33924bdf98c9c13868f14172a20d0248),
+  [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab),
+  [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd),
+  [`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01)]:
+  - @chakra-ui/utils@1.8.0
+  - @chakra-ui/transition@1.3.0
+  - @chakra-ui/hooks@1.5.2
+  - @chakra-ui/close-button@1.1.9
+  - @chakra-ui/focus-lock@1.1.8
+  - @chakra-ui/portal@1.2.5
+
+## 1.8.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f),
+  [`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)]:
+  - @chakra-ui/react-utils@1.1.2
+  - @chakra-ui/utils@1.7.0
+  - @chakra-ui/hooks@1.5.1
+  - @chakra-ui/portal@1.2.4
+  - @chakra-ui/close-button@1.1.8
+  - @chakra-ui/focus-lock@1.1.7
+  - @chakra-ui/transition@1.2.2
+
+## 1.8.3
+
+### Patch Changes
+
+- [`9c6be11b1`](https://github.com/chakra-ui/chakra-ui/commit/9c6be11b1d95f8add314dbe214bc7ce3c67b76cd)
+  [#3806](https://github.com/chakra-ui/chakra-ui/pull/3806) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue where the
+  modal exceeded the viewport height on iOS
+
+- Updated dependencies
+  [[`0974e547c`](https://github.com/chakra-ui/chakra-ui/commit/0974e547c29e4efc1ba4d1eb1507d0dad7d7a77a),
+  [`59ea894a7`](https://github.com/chakra-ui/chakra-ui/commit/59ea894a7e03d16cd7a1b89d00816eafa9fab65d),
+  [`384902e35`](https://github.com/chakra-ui/chakra-ui/commit/384902e35b186c8c8154b9569455c27f72ee0f6f)]:
+  - @chakra-ui/utils@1.6.0
+  - @chakra-ui/hooks@1.5.0
+  - @chakra-ui/close-button@1.1.7
+  - @chakra-ui/focus-lock@1.1.6
+  - @chakra-ui/portal@1.2.3
+  - @chakra-ui/transition@1.2.1
+
+## 1.8.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d),
+  [`5617aabea`](https://github.com/chakra-ui/chakra-ui/commit/5617aabeaa6c3faef37deeebeddbc9bf3cc88088),
+  [`d1532f0b7`](https://github.com/chakra-ui/chakra-ui/commit/d1532f0b72c36d0609ee4510613d7c76f4f9c113)]:
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/transition@1.2.0
+  - @chakra-ui/hooks@1.4.0
+  - @chakra-ui/close-button@1.1.6
+  - @chakra-ui/focus-lock@1.1.5
+  - @chakra-ui/portal@1.2.2
+
+## 1.8.1
+
+### Patch Changes
+
+- [`2287d82e3`](https://github.com/chakra-ui/chakra-ui/commit/2287d82e31744cd289aaf524bb9961e46003c404)
+  [#3715](https://github.com/chakra-ui/chakra-ui/pull/3715) Thanks
+  [@with-heart](https://github.com/with-heart)! - Resolved a peer dependency
+  resolution issue reported by yarn2, npm7, and other more modern package
+  managers
+
+* [`07ddf0f27`](https://github.com/chakra-ui/chakra-ui/commit/07ddf0f276e14f900119668c87947d3e669e09af)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Omit
+  scroll-behavior from drawer props
+
+* Updated dependencies
+  [[`87a03b320`](https://github.com/chakra-ui/chakra-ui/commit/87a03b320b62e639ca4a891186f202cb839a8402),
+  [`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94),
+  [`c69d2b983`](https://github.com/chakra-ui/chakra-ui/commit/c69d2b98350b57f133d6a8ea47b631cd25693aee),
+  [`e481ba491`](https://github.com/chakra-ui/chakra-ui/commit/e481ba4914a7f163d93d4c22e2e457f1afb08721)]:
+  - @chakra-ui/react-utils@1.1.1
+  - @chakra-ui/utils@1.5.1
+  - @chakra-ui/transition@1.1.2
+  - @chakra-ui/hooks@1.3.1
+  - @chakra-ui/portal@1.2.1
+  - @chakra-ui/close-button@1.1.5
+  - @chakra-ui/focus-lock@1.1.4
+
 ## 1.8.0
 
 ### Minor Changes

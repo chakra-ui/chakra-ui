@@ -33,7 +33,7 @@ function DiscordStrip(props: BoxProps) {
             justifyContent="center"
             display="inline-flex"
             alignItems="center"
-            href="https://discord.gg/dQHfcWF"
+            href="https://discord.gg/chakra-ui"
             rel="noopener"
             target="_blank"
             fontWeight="bold"

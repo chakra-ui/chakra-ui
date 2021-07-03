@@ -10,13 +10,14 @@ import blogSidebar from "configs/blog-sidebar.json"
 import * as React from "react"
 import { findRouteByPath, removeFromLast } from "utils/find-route-by-path"
 import { getRouteContext } from "utils/get-route-context"
-
+import { getHeadings } from "utils/get-headings"
 export function getRoutes(slug: string) {
   // for home page, use docs sidebat
   if (slug === "/") return docsSidebar.routes
 
   const configMap = {
     "/resources": docsSidebar,
+    "/changelog": docsSidebar,
     "/guides": guidesSidebar,
     "/blog": blogSidebar,
     "/docs": docsSidebar,
@@ -30,17 +31,33 @@ export function getRoutes(slug: string) {
   return sidebar?.routes ?? []
 }
 
-function MDXLayout({ frontmatter, children }) {
+export function MDXLayoutProvider({ children }) {
+  return (
+    <MDXProvider components={{ ...chakraComponents, ...MDXComponents }}>
+      {children}
+    </MDXProvider>
+  )
+}
+
+interface MDXLayoutProps {
+  frontmatter: any
+  children: React.ReactNode
+}
+
+function MDXLayout(props: MDXLayoutProps) {
+  const { frontmatter, children } = props
   const routes = getRoutes(frontmatter.slug)
+  const headings = getHeadings(children)
 
   const route = findRouteByPath(removeFromLast(frontmatter.slug, "#"), routes)
   const routeContext = getRouteContext(route, routes)
 
   return (
-    <MDXProvider components={{ ...chakraComponents, ...MDXComponents }}>
+    <MDXLayoutProvider>
       <PageContainer
         frontmatter={frontmatter}
         sidebar={<Sidebar routes={routes} />}
+        headings={headings}
         pagination={
           <Pagination
             next={routeContext.nextRoute}
@@ -50,7 +67,7 @@ function MDXLayout({ frontmatter, children }) {
       >
         {children}
       </PageContainer>
-    </MDXProvider>
+    </MDXLayoutProvider>
   )
 }
 

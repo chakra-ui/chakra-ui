@@ -1,7 +1,8 @@
-import * as React from "react"
-import { render, fireEvent, screen } from "@chakra-ui/test-utils"
-import { Radio, useRadio, UseRadioProps } from "../src"
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { FormControl, FormHelperText, FormLabel } from "@chakra-ui/form-control"
+import { fireEvent, render, screen } from "@chakra-ui/test-utils"
+import * as React from "react"
+import { Radio, useRadio, UseRadioProps } from "../src"
 
 test("has proper aria and data attributes", async () => {
   const Component = (props: UseRadioProps = {}) => {
@@ -144,7 +145,6 @@ test("should derive values from surrounding FormControl", () => {
   expect(radio).toHaveAttribute("aria-required", "true")
   expect(radio).toHaveAttribute("aria-readonly", "true")
   expect(radio).toHaveAttribute("aria-invalid", "true")
-  expect(radio).toHaveAttribute("aria-describedby")
 
   fireEvent.focus(radio)
   expect(onFocus).toHaveBeenCalled()

@@ -3,14 +3,15 @@ import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { Button, ButtonProps } from "./button"
 
-type Omitted =
+type OmittedProps =
   | "leftIcon"
   | "isFullWidth"
   | "rightIcon"
   | "loadingText"
   | "iconSpacing"
+  | "spinnerPlacement"
 
-interface BaseButtonProps extends Omit<ButtonProps, Omitted> {}
+interface BaseButtonProps extends Omit<ButtonProps, OmittedProps> {}
 
 export interface IconButtonProps extends BaseButtonProps {
   /**
@@ -46,7 +47,7 @@ export const IconButton = forwardRef<IconButtonProps, "button">(
     return (
       <Button
         padding="0"
-        borderRadius={isRound ? "full" : "md"}
+        borderRadius={isRound ? "full" : undefined}
         ref={ref}
         aria-label={ariaLabel}
         {...rest}

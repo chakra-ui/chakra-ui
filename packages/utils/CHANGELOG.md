@@ -1,5 +1,78 @@
 # Change Log
 
+## 1.8.0
+
+### Minor Changes
+
+- [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab)
+  [#3930](https://github.com/chakra-ui/chakra-ui/pull/3930) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - - Add types for the return
+  value of `pipe` function
+  - Update user agent assertions
+
+* [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd)
+  [#3850](https://github.com/chakra-ui/chakra-ui/pull/3850) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Add walkObject helper to
+  iterate over all keys including nested
+
+### Patch Changes
+
+- [`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - `PanSession` class
+
+  - Add velocity data to pointer pan event
+  - Add `onSessionStart` to pan event handlers
+
+## 1.7.0
+
+### Minor Changes
+
+- [`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)
+  [#3511](https://github.com/chakra-ui/chakra-ui/pull/3511) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - - Add `pipe` function
+  - Add generic to `isFunction` guard
+
+## 1.6.0
+
+### Minor Changes
+
+- [`0974e547c`](https://github.com/chakra-ui/chakra-ui/commit/0974e547c29e4efc1ba4d1eb1507d0dad7d7a77a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add lazy content
+  utility for disclosure components like popover, menu, tab, etc.
+
+* [`59ea894a7`](https://github.com/chakra-ui/chakra-ui/commit/59ea894a7e03d16cd7a1b89d00816eafa9fab65d)
+  [#3836](https://github.com/chakra-ui/chakra-ui/pull/3836) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Add pan session class to
+  handle pan gestures. This is used in the slider logic and sharable with vue
+  library.
+
+  - Perf: Throttle pan move events to once per frame which improves the slider's
+    `onChange` call performance.
+
+  - Update types for internal pointer event
+
+## 1.5.2
+
+### Patch Changes
+
+- [`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - update type
+  signature for `px` function
+
+## 1.5.1
+
+### Patch Changes
+
+- [`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update import of
+  shared utils from `react-utils` to `utils`
+
+* [`e481ba491`](https://github.com/chakra-ui/chakra-ui/commit/e481ba4914a7f163d93d4c22e2e457f1afb08721)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Extract functions
+  from `react-utils` back to `utils` package
+  - Remove `withFlushSync` function in favor of using a microtask callback
+  - Import types for `warn` function
+
 ## 1.5.0
 
 ### Minor Changes

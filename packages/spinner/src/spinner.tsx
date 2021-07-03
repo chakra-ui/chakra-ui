@@ -61,7 +61,7 @@ export interface SpinnerProps
  * Spinner is used to indicate the loading state of a page or a component,
  * It renders a `div` by default.
  *
- * @see Docs https://chakra-ui.com/docs/feedback/spinner
+ * @see Docs https://chakra-ui.com/spinner
  */
 export const Spinner = forwardRef<SpinnerProps, "div">((props, ref) => {
   const styles = useStyleConfig("Spinner", props)
@@ -70,7 +70,6 @@ export const Spinner = forwardRef<SpinnerProps, "div">((props, ref) => {
     label = "Loading...",
     thickness = "2px",
     speed = "0.45s",
-    color,
     emptyColor = "transparent",
     className,
     ...rest
@@ -86,7 +85,6 @@ export const Spinner = forwardRef<SpinnerProps, "div">((props, ref) => {
     borderWidth: thickness,
     borderBottomColor: emptyColor,
     borderLeftColor: emptyColor,
-    color,
     animation: `${spin} ${speed} linear infinite`,
     ...styles,
   }

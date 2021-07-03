@@ -21,6 +21,10 @@
           "path": "/docs/comparison"
         },
         {
+          "title": "Changelog",
+          "path": "/changelog"
+        },
+        {
           "title": "Features",
           "path": "/docs/features",
           "open": true,
@@ -31,12 +35,16 @@
             },
             {
               "title": "Gradient",
-              "path": "/docs/features/gradient",
-              "new": true
+              "path": "/docs/features/gradient"
             },
             {
               "title": "Color Mode",
               "path": "/docs/features/color-mode"
+            },
+            {
+              "title": "CSS Variables",
+              "path": "/docs/features/css-variables",
+              "new": true
             },
             {
               "title": "Responsive Styles",
@@ -60,8 +68,7 @@
             },
             {
               "title": "RTL Support",
-              "path": "/docs/features/rtl-support",
-              "new": true
+              "path": "/docs/features/rtl-support"
             }
           ]
         },

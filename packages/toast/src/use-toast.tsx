@@ -84,12 +84,12 @@ const Toast: React.FC<any> = (props) => {
       alignItems="start"
       borderRadius="md"
       boxShadow="lg"
-      paddingRight={8}
-      textAlign="left"
+      paddingEnd={8}
+      textAlign="start"
       width="auto"
     >
       <AlertIcon />
-      <chakra.div flex="1">
+      <chakra.div flex="1" maxWidth="100%">
         {title && <AlertTitle>{title}</AlertTitle>}
         {description && (
           <AlertDescription display="block">{description}</AlertDescription>
@@ -100,7 +100,7 @@ const Toast: React.FC<any> = (props) => {
           size="sm"
           onClick={onClose}
           position="absolute"
-          right={1}
+          insetEnd={1}
           top={1}
         />
       )}

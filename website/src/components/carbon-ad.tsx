@@ -1,12 +1,12 @@
 import {
+  Box,
   chakra,
+  Flex,
+  SystemStyleObject,
   useColorModeValue,
   useTheme,
-  SystemStyleObject,
-  Box,
-  Flex,
-  Img,
 } from "@chakra-ui/react"
+import NextImage from "next/image"
 import * as React from "react"
 import loadScript from "utils/load-script"
 
@@ -78,12 +78,12 @@ export function CarbonAd() {
   return <chakra.span id="carbon-ad" ref={ref} sx={carbonAd} />
 }
 
-const ChakraProAd = () => (
+const DocsPageChakraProAd = () => (
   <Flex
     p="4"
     bg={useColorModeValue("gray.50", "rgba(36, 70, 93, 0.32)")}
     as="a"
-    href="https://pro.chakra-ui.com/components?ref=chakra-ui-ad"
+    href="https://pro.chakra-ui.com/components?utm_source=chakra-ui.com&utm_medium=docs-ad"
     rel="noopener sponsored"
     target="_blank"
     maxW="xl"
@@ -91,10 +91,12 @@ const ChakraProAd = () => (
     rounded="md"
   >
     <Box w="xs" h="100px" bg="gray.300" mr="4">
-      <Img
-        h="full"
-        w="full"
-        src="https://res.cloudinary.com/adebayosegun/image/upload/v1613049374/Chakra%20UI/pro-ad.png"
+      <NextImage
+        alt="chakra ui pro"
+        src="/chakra-pro-ad.png"
+        layout="fixed"
+        width="150"
+        height="100"
       />
     </Box>
     <Flex direction="column">
@@ -109,4 +111,4 @@ const ChakraProAd = () => (
   </Flex>
 )
 
-export default ChakraProAd
+export default DocsPageChakraProAd

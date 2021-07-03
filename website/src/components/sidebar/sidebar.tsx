@@ -187,11 +187,11 @@ const Sidebar = ({ routes }) => {
       }}
       top="6.5rem"
       w="280px"
-      h="calc(((100vh - 1.5rem) - 64px) - 42px);"
+      h="calc(100vh - 8.125rem)"
       pr="8"
-      pb="8"
-      pl="3"
-      pt="8"
+      pb="6"
+      pl="6"
+      pt="4"
       overflowY="auto"
       className="sidebar-content"
       flexShrink={0}

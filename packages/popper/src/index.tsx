@@ -1,2 +1,2 @@
 export * from "./use-popper"
-export { popperCSSVars } from "./utils"
+export { cssVars as popperCSSVars } from "./utils"

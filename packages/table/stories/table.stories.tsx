@@ -2,6 +2,7 @@ import * as React from "react"
 import {
   Table,
   TableCaption,
+  TableContainer,
   TableProps,
   Tbody,
   Td,
@@ -100,3 +101,9 @@ export const stripedMD = () => <SimpleTable variant="striped" size="md" />
 export const stripedLG = () => <SimpleTable variant="striped" size="lg" />
 
 export const unstyled = () => <SimpleTable variant="unstyled" size="none" />
+
+export const withOverflow = () => (
+  <TableContainer maxW={{ base: "400px", lg: "unset" }}>
+    <SimpleTable />
+  </TableContainer>
+)

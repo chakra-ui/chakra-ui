@@ -1,5 +1,82 @@
 # Change Log
 
+## 1.2.6
+
+### Patch Changes
+
+- [`4c157e320`](https://github.com/chakra-ui/chakra-ui/commit/4c157e320a73b08eb89a44831a7cf434fb403bad)
+  [#4057](https://github.com/chakra-ui/chakra-ui/pull/4057) Thanks
+  [@mcha-dev](https://github.com/mcha-dev)! - updated @see doc links to point to
+  shorthand see PR #4046 comment
+
+- Updated dependencies
+  [[`aa374ffcb`](https://github.com/chakra-ui/chakra-ui/commit/aa374ffcb4003efd88eb6a62e10723ea9fbfa3d0)]:
+  - @chakra-ui/hooks@1.5.3
+
+## 1.2.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01),
+  [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab),
+  [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd),
+  [`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01)]:
+  - @chakra-ui/utils@1.8.0
+  - @chakra-ui/hooks@1.5.2
+
+## 1.2.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f),
+  [`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)]:
+  - @chakra-ui/react-utils@1.1.2
+  - @chakra-ui/utils@1.7.0
+  - @chakra-ui/hooks@1.5.1
+
+## 1.2.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0974e547c`](https://github.com/chakra-ui/chakra-ui/commit/0974e547c29e4efc1ba4d1eb1507d0dad7d7a77a),
+  [`59ea894a7`](https://github.com/chakra-ui/chakra-ui/commit/59ea894a7e03d16cd7a1b89d00816eafa9fab65d),
+  [`384902e35`](https://github.com/chakra-ui/chakra-ui/commit/384902e35b186c8c8154b9569455c27f72ee0f6f)]:
+  - @chakra-ui/utils@1.6.0
+  - @chakra-ui/hooks@1.5.0
+
+## 1.2.2
+
+### Patch Changes
+
+- [`655b1a878`](https://github.com/chakra-ui/chakra-ui/commit/655b1a878cde607921fe4c9ae6fe41373552c5c3)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update
+  focus-on-mousedown util to avoid memory leak
+
+- Updated dependencies
+  [[`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d),
+  [`d1532f0b7`](https://github.com/chakra-ui/chakra-ui/commit/d1532f0b72c36d0609ee4510613d7c76f4f9c113)]:
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/hooks@1.4.0
+
+## 1.2.1
+
+### Patch Changes
+
+- [`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update import of
+  shared utils from `react-utils` to `utils`
+
+- Updated dependencies
+  [[`87a03b320`](https://github.com/chakra-ui/chakra-ui/commit/87a03b320b62e639ca4a891186f202cb839a8402),
+  [`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94),
+  [`e481ba491`](https://github.com/chakra-ui/chakra-ui/commit/e481ba4914a7f163d93d4c22e2e457f1afb08721)]:
+  - @chakra-ui/react-utils@1.1.1
+  - @chakra-ui/utils@1.5.1
+  - @chakra-ui/hooks@1.3.1
+
 ## 1.2.0
 
 ### Minor Changes

@@ -98,7 +98,7 @@ export interface CircularProgressProps
  * It is built using `svg` and `circle` components with support for
  * theming and `indeterminate` state
  *
- * @see Docs https://chakra-ui.com/docs/feedback/progress
+ * @see Docs https://chakra-ui.com/circularprogress
  * @todo add theming support for circular progress
  */
 export const CircularProgress: React.FC<CircularProgressProps> = (props) => {
@@ -142,7 +142,9 @@ export const CircularProgress: React.FC<CircularProgressProps> = (props) => {
     : {
         strokeDashoffset: 66,
         strokeDasharray,
-        transition: `stroke-dasharray 0.6s ease 0s, stroke 0.6s ease`,
+        transitionProperty: "stroke-dasharray, stroke",
+        transitionDuration: "0.6s",
+        transitionTimingFunction: "ease",
       }
 
   const rootStyles: SystemStyleObject = {
@@ -170,6 +172,11 @@ export const CircularProgress: React.FC<CircularProgressProps> = (props) => {
           strokeWidth={thickness}
           className="chakra-progress__indicator"
           strokeLinecap={capIsRound ? "round" : undefined}
+          /**
+           * fix issue in Safari where indictor still shows when value is 0
+           * @see Issue https://github.com/chakra-ui/chakra-ui/issues/3754
+           */
+          opacity={progress.value === 0 && !isIndeterminate ? 0 : undefined}
           {...indicatorProps}
         />
       </Shape>

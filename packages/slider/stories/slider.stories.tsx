@@ -21,12 +21,46 @@ export default {
 
 export const SliderBug = () => {
   return (
-    <Slider defaultValue={10} min={0} max={20} step={5}>
+    <Slider
+      defaultValue={10}
+      min={0}
+      max={20}
+      step={5}
+      onChangeStart={console.log}
+      onChangeEnd={console.log}
+    >
       <SliderTrack bg="red.100">
         <SliderFilledTrack bg="tomato" />
       </SliderTrack>
       <SliderThumb boxSize={6} />
     </Slider>
+  )
+}
+
+export const SliderOnChangeBug = () => {
+  const [value, setValue] = React.useState(10)
+  const [counter, setCounter] = React.useState(0)
+
+  return (
+    <div>
+      <Slider
+        min={0}
+        max={20}
+        step={5}
+        value={value}
+        onChange={(value) => {
+          setCounter((c) => c + 1)
+          setValue(value)
+        }}
+      >
+        <SliderTrack bg="red.100">
+          <SliderFilledTrack bg="tomato" />
+        </SliderTrack>
+        <SliderThumb boxSize={6} />
+      </Slider>
+      <chakra.div mt="10px">Value: {value}</chakra.div>
+      <chakra.div mt="10px">Change Count: {counter}</chakra.div>
+    </div>
   )
 }
 

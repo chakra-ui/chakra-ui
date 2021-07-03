@@ -1,5 +1,60 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- [`173738dd9`](https://github.com/chakra-ui/chakra-ui/commit/173738dd938903d2b0fcdc666a7c9f4fe13e2bd6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - > This is an
+  internal package
+
+  - Unexport internal functions and hooks
+  - Allow options passed in `useDescendants` to be set in `DescendantsManager`
+  - Add default export for `createDescendantsContext`
+
+## 2.0.0
+
+### Major Changes
+
+- [`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f)
+  [#3864](https://github.com/chakra-ui/chakra-ui/pull/3864) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - > Note: This is an
+  internal package.
+
+  Improve performance of registering, filtering and finding the index of
+  descendants in a disclosure(open/close) widget.
+
+  Mostly used by the accordion, menu, tabs and pin-input components.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f)]:
+  - @chakra-ui/react-utils@1.1.2
+
+## 1.1.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`384902e35`](https://github.com/chakra-ui/chakra-ui/commit/384902e35b186c8c8154b9569455c27f72ee0f6f)]:
+  - @chakra-ui/hooks@1.5.0
+
+## 1.1.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d1532f0b7`](https://github.com/chakra-ui/chakra-ui/commit/d1532f0b72c36d0609ee4510613d7c76f4f9c113)]:
+  - @chakra-ui/hooks@1.4.0
+
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/hooks@1.3.1
+
 ## 1.1.0
 
 ### Minor Changes

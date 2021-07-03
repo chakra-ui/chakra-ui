@@ -1,5 +1,7 @@
-import * as React from "react"
+import { EnvironmentProvider } from "@chakra-ui/react-env"
 import { chakra } from "@chakra-ui/system"
+import * as React from "react"
+import Frame from "react-frame-component"
 import { Hide, Show, useBreakpoint, useBreakpointValue } from "../src"
 
 export default {
@@ -48,4 +50,28 @@ export const BreakpointValueHook = () => {
       I'm {width} wide
     </chakra.div>
   )
+}
+
+export const BreakpointHookWithIFrame = () => {
+  return (
+    <>
+      <BreakpointValue />
+      <Frame style={{ background: "yellow", maxWidth: "600px", width: "100%" }}>
+        <EnvironmentProvider>
+          <BreakpointValue />
+        </EnvironmentProvider>
+      </Frame>
+    </>
+  )
+}
+
+const BreakpointValue = () => {
+  const breakpoint = useBreakpointValue({
+    base: "base",
+    sm: "sm",
+    md: "md",
+    lg: "lg",
+    xl: "xl",
+  })
+  return <p>Breakpoint: {breakpoint}</p>
 }

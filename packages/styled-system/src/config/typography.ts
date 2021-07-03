@@ -1,11 +1,10 @@
 import * as CSS from "csstype"
-import { px } from "../create-transform"
-import { Config } from "../prop-config"
-import { ResponsiveValue, t, Token } from "../utils"
+import { Config } from "../utils/prop-config"
+import { ResponsiveValue, t, Token, transforms } from "../utils"
 
 export const typography: Config = {
   fontFamily: t.prop("fontFamily", "fonts"),
-  fontSize: t.prop("fontSize", "fontSizes", px),
+  fontSize: t.prop("fontSize", "fontSizes", transforms.px),
   fontWeight: t.prop("fontWeight", "fontWeights"),
   lineHeight: t.prop("lineHeight", "lineHeights"),
   letterSpacing: t.prop("letterSpacing", "letterSpacings"),
@@ -16,8 +15,6 @@ export const typography: Config = {
   textOverflow: true,
   textTransform: true,
   whiteSpace: true,
-  textDecoration: true,
-  textDecor: { property: "textDecoration" },
   noOfLines: {
     static: {
       overflow: "hidden",
@@ -95,14 +92,6 @@ export interface TypographyProps {
    * The CSS `white-space` property
    */
   whiteSpace?: Token<CSS.Property.WhiteSpace>
-  /**
-   * The CSS `text-decoration` property
-   */
-  textDecoration?: Token<CSS.Property.TextDecoration | number>
-  /**
-   * The CSS `text-decoration` property
-   */
-  textDecor?: Token<CSS.Property.TextDecoration | number>
   /**
    * Used to visually truncate a text after a number of lines.
    */

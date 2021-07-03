@@ -1,5 +1,72 @@
 # Change Log
 
+## 1.1.10
+
+### Patch Changes
+
+- [`f2c0480ee`](https://github.com/chakra-ui/chakra-ui/commit/f2c0480ee2bc4312837cac078e855b9555f47b61)
+  [#4124](https://github.com/chakra-ui/chakra-ui/pull/4124) Thanks
+  [@anubra266](https://github.com/anubra266)! - Export TypeScript interface
+  `StatGroupProps`
+
+## 1.1.9
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01),
+  [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab),
+  [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd)]:
+  - @chakra-ui/utils@1.8.0
+  - @chakra-ui/icon@1.1.9
+  - @chakra-ui/visually-hidden@1.0.12
+
+## 1.1.8
+
+### Patch Changes
+
+- Updated dependencies
+  [[`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)]:
+  - @chakra-ui/utils@1.7.0
+  - @chakra-ui/icon@1.1.8
+  - @chakra-ui/visually-hidden@1.0.11
+
+## 1.1.7
+
+### Patch Changes
+
+- [`a13252624`](https://github.com/chakra-ui/chakra-ui/commit/a13252624fdc69eab2dc4dbd3fa228b86380f091)
+  [#3810](https://github.com/chakra-ui/chakra-ui/pull/3810) Thanks
+  [@davidsonsns](https://github.com/davidsonsns)! - Fixed a11y issue related to
+  `StatHelpText`. It was using an invalid `dl` child tag.
+- Updated dependencies
+  [[`0974e547c`](https://github.com/chakra-ui/chakra-ui/commit/0974e547c29e4efc1ba4d1eb1507d0dad7d7a77a),
+  [`59ea894a7`](https://github.com/chakra-ui/chakra-ui/commit/59ea894a7e03d16cd7a1b89d00816eafa9fab65d)]:
+  - @chakra-ui/utils@1.6.0
+  - @chakra-ui/icon@1.1.7
+  - @chakra-ui/visually-hidden@1.0.10
+
+## 1.1.6
+
+### Patch Changes
+
+- Updated dependencies
+  [[`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d)]:
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/icon@1.1.6
+  - @chakra-ui/visually-hidden@1.0.9
+
+## 1.1.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94),
+  [`e481ba491`](https://github.com/chakra-ui/chakra-ui/commit/e481ba4914a7f163d93d4c22e2e457f1afb08721)]:
+  - @chakra-ui/utils@1.5.1
+  - @chakra-ui/icon@1.1.5
+  - @chakra-ui/visually-hidden@1.0.8
+
 ## 1.1.4
 
 ### Patch Changes

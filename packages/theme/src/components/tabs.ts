@@ -16,7 +16,8 @@ function baseStyleTab(props: Dict) {
 
   return {
     flex: isFitted ? 1 : undefined,
-    transition: "all 0.2s",
+    transitionProperty: "common",
+    transitionDuration: "normal",
     _focus: {
       zIndex: 1,
       boxShadow: "outline",
@@ -51,23 +52,23 @@ const baseStyle = (props: Dict) => ({
 const sizes = {
   sm: {
     tab: {
-      py: "0.25rem",
-      px: "1rem",
-      fontSize: "0.85rem",
+      py: 1,
+      px: 4,
+      fontSize: "sm",
     },
   },
   md: {
     tab: {
-      fontSize: "1rem",
-      py: "0.5rem",
-      px: "1rem",
+      fontSize: "md",
+      py: 2,
+      px: 4,
     },
   },
   lg: {
     tab: {
-      fontSize: "1.15rem",
-      py: "0.75rem",
-      px: "1rem",
+      fontSize: "lg",
+      py: 3,
+      px: 4,
     },
   },
 }
@@ -75,8 +76,8 @@ const sizes = {
 function variantLine(props: Dict) {
   const { colorScheme: c, orientation } = props
   const isVertical = orientation === "vertical"
-  const borderProp = orientation === "vertical" ? "borderLeft" : "borderBottom"
-  const marginProp = isVertical ? "ml" : "mb"
+  const borderProp = orientation === "vertical" ? "borderStart" : "borderBottom"
+  const marginProp = isVertical ? "marginStart" : "marginBottom"
 
   return {
     tablist: {
@@ -133,7 +134,7 @@ function variantEnclosedColored(props: Dict) {
       bg: mode(`gray.50`, `whiteAlpha.50`)(props),
       mb: "-1px",
       _notLast: {
-        mr: "-1px",
+        marginEnd: "-1px",
       },
       _selected: {
         bg: mode(`#fff`, "gray.800")(props),

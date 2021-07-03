@@ -12,14 +12,14 @@ const baseStyle = {
   title: {
     fontWeight: "bold",
     lineHeight: 6,
-    mr: 2,
+    marginEnd: 2,
   },
   description: {
     lineHeight: 6,
   },
   icon: {
     flexShrink: 0,
-    mr: 3,
+    marginEnd: 3,
     w: 5,
     h: 6,
   },
@@ -44,9 +44,9 @@ function variantLeftAccent(props: Dict) {
   const { colorScheme: c } = props
   return {
     container: {
-      pl: 3,
-      borderLeftWidth: "4px",
-      borderLeftColor: mode(`${c}.500`, `${c}.200`)(props),
+      paddingStart: 3,
+      borderStartWidth: "4px",
+      borderStartColor: mode(`${c}.500`, `${c}.200`)(props),
       bg: getBg(props),
     },
     icon: {

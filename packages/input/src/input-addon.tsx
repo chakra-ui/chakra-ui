@@ -11,14 +11,14 @@ type Placement = "left" | "right"
 
 const placements = {
   left: {
-    marginRight: "-1px",
-    borderRightRadius: 0,
-    borderRightColor: "transparent",
+    marginEnd: "-1px",
+    borderEndRadius: 0,
+    borderEndColor: "transparent",
   },
   right: {
-    marginLeft: "-1px",
-    borderLeftRadius: 0,
-    borderLeftColor: "transparent",
+    marginStart: "-1px",
+    borderStartRadius: 0,
+    borderStartColor: "transparent",
   },
 }
 

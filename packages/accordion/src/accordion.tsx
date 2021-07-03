@@ -22,7 +22,12 @@ import {
   UseAccordionItemProps,
   UseAccordionItemReturn,
   UseAccordionProps,
+  AccordionDescendantsProvider,
 } from "./use-accordion"
+
+/* -------------------------------------------------------------------------------------------------
+ * Accordion - The wrapper that provides context for all accordion items
+ * -----------------------------------------------------------------------------------------------*/
 
 export interface AccordionProps
   extends UseAccordionProps,
@@ -39,14 +44,14 @@ export interface AccordionProps
  * for all accordion items.
  *
  * It wraps all accordion items in a `div` for better grouping.
- * @see Docs https://chakra-ui.com/docs/components/accordion
+ * @see Docs https://chakra-ui.com/accordion
  */
 export const Accordion = forwardRef<AccordionProps, "div">(
   ({ children, reduceMotion, ...props }, ref) => {
     const styles = useMultiStyleConfig("Accordion", props)
     const ownProps = omitThemingProps(props)
 
-    const { htmlProps, ...context } = useAccordion(ownProps)
+    const { htmlProps, descendants, ...context } = useAccordion(ownProps)
 
     const ctx = React.useMemo(
       () => ({ ...context, reduceMotion: !!reduceMotion }),
@@ -54,17 +59,19 @@ export const Accordion = forwardRef<AccordionProps, "div">(
     )
 
     return (
-      <AccordionProvider value={ctx}>
-        <StylesProvider value={styles}>
-          <chakra.div
-            ref={ref}
-            {...htmlProps}
-            className={cx("chakra-accordion", props.className)}
-          >
-            {children}
-          </chakra.div>
-        </StylesProvider>
-      </AccordionProvider>
+      <AccordionDescendantsProvider value={descendants}>
+        <AccordionProvider value={ctx}>
+          <StylesProvider value={styles}>
+            <chakra.div
+              ref={ref}
+              {...htmlProps}
+              className={cx("chakra-accordion", props.className)}
+            >
+              {children}
+            </chakra.div>
+          </StylesProvider>
+        </AccordionProvider>
+      </AccordionDescendantsProvider>
     )
   },
 )
@@ -72,6 +79,10 @@ export const Accordion = forwardRef<AccordionProps, "div">(
 if (__DEV__) {
   Accordion.displayName = "Accordion"
 }
+
+/* -------------------------------------------------------------------------------------------------
+ * Accordion Item
+ * -----------------------------------------------------------------------------------------------*/
 
 type AccordionItemContext = Omit<UseAccordionItemReturn, "htmlProps">
 
@@ -110,10 +121,10 @@ export const AccordionItem = forwardRef<AccordionItemProps, "div">(
       overflowAnchor: "none",
     }
 
-    const _context = React.useMemo(() => context, [context])
+    const ctx = React.useMemo(() => context, [context])
 
     return (
-      <AccordionItemProvider value={_context}>
+      <AccordionItemProvider value={ctx}>
         <chakra.div
           ref={ref}
           {...htmlProps}
@@ -142,6 +153,10 @@ export function useAccordionItemState() {
   return { isOpen, onClose, isDisabled, onOpen }
 }
 
+/* -------------------------------------------------------------------------------------------------
+ * Accordion Item => Button
+ * -----------------------------------------------------------------------------------------------*/
+
 export interface AccordionButtonProps extends HTMLChakraProps<"button"> {}
 
 /**
@@ -161,7 +176,6 @@ export const AccordionButton = forwardRef<AccordionButtonProps, "button">(
       display: "flex",
       alignItems: "center",
       width: "100%",
-      transition: "all 0.2s",
       outline: 0,
       ...styles.button,
     }
@@ -179,6 +193,10 @@ export const AccordionButton = forwardRef<AccordionButtonProps, "button">(
 if (__DEV__) {
   AccordionButton.displayName = "AccordionButton"
 }
+
+/* -------------------------------------------------------------------------------------------------
+ * Accordion Item => Panel
+ * -----------------------------------------------------------------------------------------------*/
 
 export interface AccordionPanelProps extends HTMLChakraProps<"div"> {}
 
@@ -218,6 +236,10 @@ export const AccordionPanel = forwardRef<AccordionPanelProps, "div">(
 if (__DEV__) {
   AccordionPanel.displayName = "AccordionPanel"
 }
+
+/* -------------------------------------------------------------------------------------------------
+ * Accordion Item => Icon
+ * -----------------------------------------------------------------------------------------------*/
 
 /**
  * AccordionIcon that gives a visual cue of the open/close state of the accordion item.

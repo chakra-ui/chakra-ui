@@ -1,5 +1,174 @@
 # Change Log
 
+## 1.8.0
+
+### Minor Changes
+
+- [`5afa7ef49`](https://github.com/chakra-ui/chakra-ui/commit/5afa7ef49c7e3b01bce932e252865226b9511b39)
+  [#4180](https://github.com/chakra-ui/chakra-ui/pull/4180) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Added
+  `computePositionOnMount` prop to allow positioning the popover or menu before
+  initial open
+
+### Patch Changes
+
+- [`8881d925d`](https://github.com/chakra-ui/chakra-ui/commit/8881d925d494b33b4bebd53cc14e5dea6cea5a46)
+  [#4146](https://github.com/chakra-ui/chakra-ui/pull/4146) Thanks
+  [@anubra266](https://github.com/anubra266)! - Fix issue where arrowshadowcolor
+  didn't work
+
+- Updated dependencies
+  [[`aa374ffcb`](https://github.com/chakra-ui/chakra-ui/commit/aa374ffcb4003efd88eb6a62e10723ea9fbfa3d0),
+  [`5afa7ef49`](https://github.com/chakra-ui/chakra-ui/commit/5afa7ef49c7e3b01bce932e252865226b9511b39)]:
+  - @chakra-ui/hooks@1.5.3
+  - @chakra-ui/popper@2.2.1
+
+## 1.7.1
+
+### Patch Changes
+
+- [`5e24481fc`](https://github.com/chakra-ui/chakra-ui/commit/5e24481fc73b0097d0bac900479d7cc145a92670)
+  [#4026](https://github.com/chakra-ui/chakra-ui/pull/4026) Thanks
+  [@dodas](https://github.com/dodas)! - Add `enabled` option to `usePopper`
+  hook.
+
+  The `popper.js` instance will not be created until this option is `true`.
+
+  `Menu`, `Popover` and `Tooltip` components now use this option, so the
+  `popper.js` instance is created only once the popper is open. This should
+  significantly improve render and scroll performance.
+
+- Updated dependencies
+  [[`5e24481fc`](https://github.com/chakra-ui/chakra-ui/commit/5e24481fc73b0097d0bac900479d7cc145a92670)]:
+  - @chakra-ui/popper@2.2.0
+
+## 1.7.0
+
+### Minor Changes
+
+- [`8501fd105`](https://github.com/chakra-ui/chakra-ui/commit/8501fd105b50ebc61f53026688f8f63ad1e64173)
+  [#3906](https://github.com/chakra-ui/chakra-ui/pull/3906) Thanks
+  [@joaorodrs](https://github.com/joaorodrs)! - Add an export for
+  `usePopoverContext` hook
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01),
+  [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab),
+  [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd),
+  [`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01)]:
+  - @chakra-ui/utils@1.8.0
+  - @chakra-ui/hooks@1.5.2
+  - @chakra-ui/close-button@1.1.9
+
+## 1.6.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`82f08867f`](https://github.com/chakra-ui/chakra-ui/commit/82f08867fa4825d647a3b9cc805220d9364f2f3f),
+  [`e9ac4cc76`](https://github.com/chakra-ui/chakra-ui/commit/e9ac4cc7629cd79efc753b4e3353bacdad46cd7d)]:
+  - @chakra-ui/react-utils@1.1.2
+  - @chakra-ui/utils@1.7.0
+  - @chakra-ui/hooks@1.5.1
+  - @chakra-ui/popper@2.1.2
+  - @chakra-ui/close-button@1.1.8
+
+## 1.6.0
+
+### Minor Changes
+
+- [`f2544fb58`](https://github.com/chakra-ui/chakra-ui/commit/f2544fb581a6dbe558236ebb11883a273ed61a28)
+  [#3839](https://github.com/chakra-ui/chakra-ui/pull/3839) Thanks
+  [@with-heart](https://github.com/with-heart)! - This change restores the
+  behavior of the `isLazy` prop (which was broken by the previous release) and
+  adds a new `lazyBehavior` prop which configures the behavior of `isLazy`.
+
+  If you'd like the content of tab panel, popover and menu components to be
+  unmounted when not selected or opened, please continue to use `isLazy`. This
+  is the default behavior.
+
+  If you'd like the content of tab panel, popover and menu components to remain
+  mounted (but hidden) after it was previously selected or opened, use
+  `lazyBehavior="keepMounted"` in combination with `isLazy`.
+
+### Patch Changes
+
+- [`57baa5e63`](https://github.com/chakra-ui/chakra-ui/commit/57baa5e6350f89f1098a5d965b90483348aa0073)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Make it possible to
+  pass popper.js props to popover and menu
+
+- Updated dependencies
+  [[`0974e547c`](https://github.com/chakra-ui/chakra-ui/commit/0974e547c29e4efc1ba4d1eb1507d0dad7d7a77a),
+  [`59ea894a7`](https://github.com/chakra-ui/chakra-ui/commit/59ea894a7e03d16cd7a1b89d00816eafa9fab65d),
+  [`384902e35`](https://github.com/chakra-ui/chakra-ui/commit/384902e35b186c8c8154b9569455c27f72ee0f6f)]:
+  - @chakra-ui/utils@1.6.0
+  - @chakra-ui/hooks@1.5.0
+  - @chakra-ui/close-button@1.1.7
+
+## 1.5.1
+
+### Patch Changes
+
+- [`782aa7f27`](https://github.com/chakra-ui/chakra-ui/commit/782aa7f27cfed28785f63aa294c3a6532ac47a06)
+  [#3765](https://github.com/chakra-ui/chakra-ui/pull/3765) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Fix RTL styles for close
+  button
+  - Do not unmount lazy popovers after first render
+
+* [`655b1a878`](https://github.com/chakra-ui/chakra-ui/commit/655b1a878cde607921fe4c9ae6fe41373552c5c3)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Update
+  focus-onmousedown to avoid memory leak
+  - Use prop-getters from use-popper to prevent ssr content shift
+* Updated dependencies
+  [[`8b5eb9654`](https://github.com/chakra-ui/chakra-ui/commit/8b5eb9654affe562795d38a19f732f84732a949d),
+  [`d1532f0b7`](https://github.com/chakra-ui/chakra-ui/commit/d1532f0b72c36d0609ee4510613d7c76f4f9c113),
+  [`1615af488`](https://github.com/chakra-ui/chakra-ui/commit/1615af4881a6f37cffb7ea15078cf7ab6a4e4c79)]:
+  - @chakra-ui/utils@1.5.2
+  - @chakra-ui/hooks@1.4.0
+  - @chakra-ui/popper@2.1.1
+  - @chakra-ui/close-button@1.1.6
+
+## 1.5.0
+
+### Minor Changes
+
+- [`75817ec42`](https://github.com/chakra-ui/chakra-ui/commit/75817ec428ca3c078660a7c7f2a1c1b578c474df)
+  [#3733](https://github.com/chakra-ui/chakra-ui/pull/3733) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Return prop getters for
+  popover header and body and use `ref` callback to determine element's presense
+  instead of `useEffect`.
+
+  - Mark `usePopover` as internal for now.
+
+  - Add support for `rootProps` to `PopoverContent` to allow passing props to
+    popover's positioner.
+
+  - Make it possible to add custom motion `variants` so users can orchestrate
+    custom transitions.
+
+  - Remove unused dependencies
+
+  - Move popover arrow shadow color computation to popover's theme.
+
+### Patch Changes
+
+- [`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update import of
+  shared utils from `react-utils` to `utils`
+
+- Updated dependencies
+  [[`87a03b320`](https://github.com/chakra-ui/chakra-ui/commit/87a03b320b62e639ca4a891186f202cb839a8402),
+  [`1a04a41bd`](https://github.com/chakra-ui/chakra-ui/commit/1a04a41bd2285069011a738fff422ba1a6fcce94),
+  [`75817ec42`](https://github.com/chakra-ui/chakra-ui/commit/75817ec428ca3c078660a7c7f2a1c1b578c474df),
+  [`e481ba491`](https://github.com/chakra-ui/chakra-ui/commit/e481ba4914a7f163d93d4c22e2e457f1afb08721)]:
+  - @chakra-ui/react-utils@1.1.1
+  - @chakra-ui/utils@1.5.1
+  - @chakra-ui/popper@2.1.0
+  - @chakra-ui/hooks@1.3.1
+  - @chakra-ui/close-button@1.1.5
+
 ## 1.4.0
 
 ### Minor Changes

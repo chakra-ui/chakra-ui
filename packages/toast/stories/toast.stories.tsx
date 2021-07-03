@@ -2,7 +2,10 @@ import * as React from "react"
 import { Button, ButtonGroup } from "@chakra-ui/button"
 import { chakra, useColorMode } from "@chakra-ui/system"
 import { Alert } from "@chakra-ui/alert"
-import { useToast, useAsyncToast } from "../src"
+import { Text } from "@chakra-ui/layout"
+import { useToast, useAsyncToast, createStandaloneToast } from "../src"
+
+import theme from "../../../website/theme"
 
 export default {
   title: "Toast",
@@ -298,4 +301,50 @@ export const LoadingToast = () => {
   }
 
   return <Button onClick={() => callApi()}>Call Api</Button>
+}
+
+export function StandAloneToast() {
+  const toast = createStandaloneToast({ theme })
+  const toast2 = createStandaloneToast()
+  return (
+    <>
+      <Text fontSize="lg" fontWeight="bold">
+        This Text matches Theme font
+      </Text>
+      <ButtonGroup>
+        <Button
+          onClick={() => {
+            toast({
+              title: "Standalone Toast",
+              description: "Uses provided theme",
+              status: "success",
+              duration: 3000,
+              isClosable: true,
+              onCloseComplete: () => {
+                console.log("hello")
+              },
+            })
+          }}
+        >
+          Standalone Toast With Custom Theme
+        </Button>
+        <Button
+          onClick={() => {
+            toast2({
+              title: "Standalone Toast",
+              description: "Uses default theme",
+              status: "success",
+              duration: 3000,
+              isClosable: true,
+              onCloseComplete: () => {
+                console.log("hello")
+              },
+            })
+          }}
+        >
+          Standalone Toast With Default Theme
+        </Button>
+      </ButtonGroup>
+    </>
+  )
 }

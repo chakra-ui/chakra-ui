@@ -40,7 +40,7 @@ export const isLight = (color: string) => (theme: Dict) =>
 /**
  * Make a color transparent
  * @param color - the color in hex, rgb, or hsl
- * @param amount - the amount white to add
+ * @param opacity - the amount of opacity the color should have (0-1)
  */
 export const transparentize = (color: string, opacity: number) => (
   theme: Dict,
