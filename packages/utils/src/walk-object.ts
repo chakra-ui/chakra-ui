@@ -1,4 +1,4 @@
-import { isArray, isObject } from "@chakra-ui/utils"
+import { isArray, isObject } from "./assertion"
 
 export type WalkObjectPredicate<Leaf = unknown> = (
   value: unknown,

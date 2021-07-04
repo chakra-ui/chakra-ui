@@ -30,14 +30,3 @@ export const createMockStorageManager = (
     type,
   }
 }
-
-export const mockIsBrowser = (isBrowser: boolean) => {
-  jest.mock("@chakra-ui/utils", () => {
-    const actual = jest.requireActual("@chakra-ui/utils")
-
-    return {
-      ...actual,
-      isBrowser,
-    }
-  })
-}

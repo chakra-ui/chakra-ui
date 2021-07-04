@@ -16,6 +16,12 @@
       "**/@types/theme-ui__components"
     ]
   },
+  "preconstruct": {
+    "packages": [
+      "packages/*",
+      "tooling/cli"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git"
@@ -28,7 +34,7 @@
     "fix:pkgs": "manypkg fix",
     "version:pkgs": "changeset version",
     "clean:emotion-types": "rm -rf node_modules/@emotion/core/types",
-    "postinstall": "yarn clean:emotion-types && yarn check:pkgs",
+    "postinstall": "yarn clean:emotion-types && yarn check:pkgs && preconstruct dev",
     "csb:pkgs": "node -r esm scripts/csb.js",
     "csb:install": "yarn prestart && yarn csb:pkgs",
     "contributors:add": "all-contributors add",
@@ -37,8 +43,8 @@
     "boot": "yarn prestart && yarn build",
     "start": "yarn prebuild && yarn storybook",
     "start:all": "yarn build && concurrently \"yarn docs dev\"  \"yarn storybook\" ",
-    "prebuild": "yarn pkg babel-plugin build",
-    "build": "lerna run build --ignore @chakra-ui/test-utils --no-private --stream",
+    "prebuild": "preconstruct dev && yarn pkg props-docs build",
+    "build": "preconstruct build",
     "build:templates": "ts-node -T scripts/build-templates.ts",
     "test": "jest --maxWorkers=50%",
     "test:ci": "jest --runInBand",
@@ -87,6 +93,7 @@
     "@emotion/styled": "^11.0.0",
     "@jest/types": "26.6.2",
     "@manypkg/cli": "0.17.0",
+    "@preconstruct/cli": "^2.0.6",
     "@storybook/addon-a11y": "~6.2.2",
     "@storybook/addon-actions": "~6.2.2",
     "@storybook/addon-knobs": "~6.2.2",

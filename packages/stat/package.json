@@ -15,14 +15,14 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
+  "main": "dist/chakra-ui-stat.cjs.js",
+  "module": "dist/chakra-ui-stat.esm.js",
+  "types": "dist/chakra-ui-stat.cjs.d.ts",
+  "typings": "dist/chakra-ui-stat.cjs.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
+      "require": "./dist/chakra-ui-stat.cjs.js",
+      "default": "./dist/chakra-ui-stat.esm.js"
     }
   },
   "files": [

@@ -14,7 +14,8 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "src/index.ts",
+  "main": "dist/chakra-ui-test-utils.cjs.js",
+  "module": "dist/chakra-ui-test-utils.esm.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git"
@@ -24,6 +25,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "1.6.4",
+    "@emotion/jest": "11.1.0",
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.2",
     "@testing-library/react-hooks": "3.4.1",
@@ -37,5 +39,7 @@
   },
   "devDependencies": {
     "react": "^17.0.1"
-  }
+  },
+  "types": "dist/chakra-ui-test-utils.cjs.d.ts",
+  "typings": "dist/chakra-ui-test-utils.cjs.d.ts"
 }
