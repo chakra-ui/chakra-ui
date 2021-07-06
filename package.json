@@ -144,6 +144,7 @@
     "lerna": "3.22.1",
     "lint-staged": "10.5.3",
     "listr": "0.14.3",
+    "lodash": "^4.17.21",
     "markdown-toc": "1.2.0",
     "mkdirp": "^1.0.4",
     "ncp": "2.0.0",

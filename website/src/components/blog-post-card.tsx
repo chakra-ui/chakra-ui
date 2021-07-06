@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react"
 import format from "date-fns/format"
 import parseISO from "date-fns/parseISO"
-import _ from "lodash"
+import capitalize from "lodash/capitalize"
 import Link from "next/link"
 import * as React from "react"
 import { BlogPost } from "utils/get-blog-posts"
@@ -46,7 +46,7 @@ export const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
         </Heading>
         <Box fontSize="sm" color="gray.500" pt="2">
           <Text as="span" mb="3">
-            {post.tags.map((t) => _.capitalize(t)).join(",")}
+            {post.tags.map((t) => capitalize(t)).join(",")}
           </Text>
           <Box
             bg="gray.100"
