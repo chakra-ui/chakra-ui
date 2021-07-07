@@ -1,5 +1,5 @@
 ---
-"@chakra-ui/utils": minor
+"@chakra-ui/utils": patch
 ---
 
 fixed circular dependency
