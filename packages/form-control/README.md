@@ -86,11 +86,11 @@ component to be fully accessible.
 ## Changing the required indicator
 
 To change the required indicator beside the `FormLabel`, simply pass the
-`indicator` prop and set it to your custom indicator components.
+`requiredIndicator` prop and set it to your custom indicator components.
 
 ```jsx
 <FormControl as="fieldset">
-  <FormLabel as="legend" indicator={CustomIndicator}>
+  <FormLabel as="legend" requiredIndicator={CustomIndicator}>
     Who is better:
   </FormLabel>
   <CheckboxGroup>
