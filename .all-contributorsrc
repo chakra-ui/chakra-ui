@@ -1932,6 +1932,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "wadewadewadewadewadewade",
+      "name": "Wade McDaniel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23270394?v=4",
+      "profile": "https://github.com/wadewadewadewadewadewade",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
