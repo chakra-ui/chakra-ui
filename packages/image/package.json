@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/image",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "React component for progressive image loading",
   "keywords": [
     "react",
@@ -53,11 +53,11 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "1.5.3",
-    "@chakra-ui/utils": "1.8.0"
+    "@chakra-ui/hooks": "1.5.4",
+    "@chakra-ui/utils": "1.8.1"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.7.0",
+    "@chakra-ui/system": "1.7.1",
     "react": "^17.0.1"
   },
   "peerDependencies": {
