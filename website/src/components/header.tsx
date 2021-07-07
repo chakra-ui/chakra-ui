@@ -127,8 +127,8 @@ function HeaderContent() {
                 <Icon
                   as={LinkIcon}
                   transition="color 0.2s"
-                  w="5"
-                  h="5"
+                  minW="5"
+                  minH="5"
                   _hover={{ color: "gray.600" }}
                 />
               }

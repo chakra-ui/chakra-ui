@@ -1,7 +1,6 @@
-import { extendTheme } from "@chakra-ui/react"
 import { mode } from "@chakra-ui/theme-tools"
 
-const customTheme = extendTheme({
+export const extension = {
   fonts: {
     heading: "Inter, sans-serif",
     body: "Inter, sans-serif",
@@ -124,6 +123,4 @@ const customTheme = extendTheme({
       lineHeight: "normal",
     },
   },
-})
-
-export default customTheme
+}

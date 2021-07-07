@@ -17,10 +17,15 @@ import {
   Button,
   Text,
 } from "@chakra-ui/react"
-import { useState, ReactElement } from "react"
-import { getFromGistId, isValidGistId } from "./helpers"
+import { useState, useContext, ReactElement } from "react"
+import {
+  getFromGistId,
+  isValidGistId,
+  CustomizableThemeContext,
+} from "./helpers"
 
 function GistPopover({ icon }) {
+  const updateThemeFromFile = useContext(CustomizableThemeContext)
   const [state, setState] = useState({ isLoading: false, error: false })
   function onSubmit(event) {
     event.preventDefault()
@@ -38,7 +43,7 @@ function GistPopover({ icon }) {
     setState((it) => ({ ...it, isLoading: true }))
     getFromGistId(fromGistId).then(
       (it) => {
-        console.log("Success", it)
+        updateThemeFromFile(it)
         setState((it) => ({ ...it, isLoading: false }))
       },
       (error) => {

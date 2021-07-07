@@ -1,8 +1,13 @@
+import { createContext } from "react"
+
+export const CustomizableThemeContext = createContext(undefined)
+
 export function isValidGistId(gistId: string | string[]): boolean {
   return !!gistId && gistId.length === 32
 }
 
 export type File = {
+  gistId: string
   filename: string
   content: string
   localModule: any
@@ -31,6 +36,7 @@ export async function getFromGistId(gistId): Promise<File> {
     execContent(localModule, exports)
 
     return {
+      gistId,
       filename,
       content,
       localModule,
