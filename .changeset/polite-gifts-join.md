@@ -2,4 +2,5 @@
 "@chakra-ui/utils": patch
 ---
 
-fixed circular dependency
+Fixed a circular dependency which was causing warnings when bundling Chakra with
+`rollup`.
