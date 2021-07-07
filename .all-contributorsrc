@@ -1941,6 +1941,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "MasterGordon",
+      "name": "Gordon Goldbach",
+      "avatar_url": "https://avatars.githubusercontent.com/u/18127395?v=4",
+      "profile": "https://github.com/MasterGordon",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
