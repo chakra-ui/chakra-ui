@@ -12,11 +12,13 @@ import {
   useUpdateEffect,
   HTMLChakraProps,
 } from "@chakra-ui/react"
+import { LinkIcon } from "@chakra-ui/icons"
 import siteConfig from "configs/site-config"
 import { useViewportScroll } from "framer-motion"
 import NextLink from "next/link"
 import React from "react"
 import { FaMoon, FaSun, FaYoutube } from "react-icons/fa"
+import GistPopover from "./customizable-theme/gist-popover"
 import Logo, { LogoIcon } from "./logo"
 import { MobileNavButton, MobileNavContent } from "./mobile-nav"
 import Search from "./omni-search"
@@ -120,6 +122,17 @@ function HeaderContent() {
                 _hover={{ color: "gray.600" }}
               />
             </Link>
+            <GistPopover
+              icon={
+                <Icon
+                  as={LinkIcon}
+                  transition="color 0.2s"
+                  w="5"
+                  h="5"
+                  _hover={{ color: "gray.600" }}
+                />
+              }
+            />
           </HStack>
           <IconButton
             size="md"
