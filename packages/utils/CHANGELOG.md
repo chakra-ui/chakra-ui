@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.8.1
+
+### Patch Changes
+
+- [`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)
+  [#4305](https://github.com/chakra-ui/chakra-ui/pull/4305) Thanks
+  [@MasterGordon](https://github.com/MasterGordon)! - Fixed a circular
+  dependency which was causing warnings when bundling Chakra with `rollup`.
+
 ## 1.8.0
 
 ### Minor Changes

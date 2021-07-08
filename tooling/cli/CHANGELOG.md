@@ -1,5 +1,25 @@
 # @chakra-ui/cli
 
+## 1.5.0
+
+### Minor Changes
+
+- [`211d94de3`](https://github.com/chakra-ui/chakra-ui/commit/211d94de397e4e7c91cfe70a3bafa905c7506cbf)
+  [#4258](https://github.com/chakra-ui/chakra-ui/pull/4258) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Enable esModuleInterop for
+  `chakra-cli tokens`
+
+### Patch Changes
+
+- [`7d9cb190c`](https://github.com/chakra-ui/chakra-ui/commit/7d9cb190cda3b9b58fbd159662402f37fcf7f087)
+  [#4214](https://github.com/chakra-ui/chakra-ui/pull/4214) Thanks
+  [@npirotte](https://github.com/npirotte)! - Token generation supports non
+  valid JS keys for components
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+
 ## 1.4.0
 
 ### Minor Changes
