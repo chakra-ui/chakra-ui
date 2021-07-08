@@ -232,7 +232,7 @@ export const FormControl = forwardRef<FormControlProps, "div">((props, ref) => {
         <chakra.div
           {...getRootProps({}, ref)}
           className={className}
-          __css={styles["formControl"]}
+          __css={styles["container"]}
         />
       </StylesProvider>
     </FormControlProvider>

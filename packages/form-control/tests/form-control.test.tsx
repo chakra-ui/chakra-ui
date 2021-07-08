@@ -238,7 +238,7 @@ test("inherits variant styles", async () => {
               Form: {
                 variants: {
                   "floating-label": {
-                    formControl: {
+                    container: {
                       bg: "white",
                       border: "1px",
                       borderColor: "#ccc",
