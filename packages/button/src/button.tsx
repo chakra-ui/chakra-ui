@@ -81,7 +81,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
     isLoading,
     isActive,
     isFullWidth,
-    children,
+    children: _children,
     leftIcon,
     rightIcon,
     loadingText,
@@ -119,6 +119,16 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
 
   const { ref: _ref, type: defaultType } = useButtonType(as)
 
+  const children = (
+    <>
+      {leftIcon && <ButtonIcon marginEnd={iconSpacing}>{leftIcon}</ButtonIcon>}
+      {_children}
+      {rightIcon && (
+        <ButtonIcon marginStart={iconSpacing}>{rightIcon}</ButtonIcon>
+      )}
+    </>
+  )
+
   return (
     <chakra.button
       disabled={isDisabled || isLoading}
@@ -131,10 +141,6 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
       className={cx("chakra-button", className)}
       {...rest}
     >
-      {leftIcon && !isLoading && (
-        <ButtonIcon marginEnd={iconSpacing}>{leftIcon}</ButtonIcon>
-      )}
-
       {isLoading && spinnerPlacement === "start" && (
         <ButtonSpinner
           className="chakra-button__spinner--start"
@@ -157,9 +163,6 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
         >
           {spinner}
         </ButtonSpinner>
-      )}
-      {rightIcon && !isLoading && (
-        <ButtonIcon marginStart={iconSpacing}>{rightIcon}</ButtonIcon>
       )}
     </chakra.button>
   )
