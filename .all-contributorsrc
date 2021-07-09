@@ -1960,6 +1960,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "soloamilkar",
+      "name": "Amilkar Munoz",
+      "avatar_url": "https://avatars.githubusercontent.com/u/71573508?v=4",
+      "profile": "http://amilkar.dev",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
