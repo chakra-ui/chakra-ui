@@ -30,7 +30,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-gap)
    */
-  gridGap?: Token<CSS.Property.GridGap | number, "sizes">
+  gridGap?: Token<CSS.Property.GridGap | number, "space">
   /**
    * The CSS `grid-column-gap` property.
    *
@@ -38,7 +38,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap)
    */
-  gridColumnGap?: Token<CSS.Property.GridColumnGap | number, "sizes">
+  gridColumnGap?: Token<CSS.Property.GridColumnGap | number, "space">
   /**
    * The CSS `grid-row-gap` property.
    *
@@ -46,7 +46,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap)
    */
-  gridRowGap?: Token<CSS.Property.GridRowGap | number, "sizes">
+  gridRowGap?: Token<CSS.Property.GridRowGap | number, "space">
   /**
    * The CSS `grid-column` property.
    *
