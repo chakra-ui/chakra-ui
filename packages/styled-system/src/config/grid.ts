@@ -130,7 +130,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns)
    */
-  gridAutoColumns?: Token<CSS.Property.GridAutoColumns | number, "sizes">
+  gridAutoColumns?: Token<CSS.Property.GridAutoColumns>
   /**
    * The CSS `grid-auto-rows` property.
    *
@@ -138,7 +138,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows)
    */
-  gridAutoRows?: Token<CSS.Property.GridAutoRows | number, "sizes">
+  gridAutoRows?: Token<CSS.Property.GridAutoRows>
   /**
    * The CSS `grid-template-columns` property
    *
@@ -146,10 +146,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns)
    */
-  gridTemplateColumns?: Token<
-    CSS.Property.GridTemplateColumns | number,
-    "sizes"
-  >
+  gridTemplateColumns?: Token<CSS.Property.GridTemplateColumns>
   /**
    * The CSS `grid-template-rows` property.
    *
@@ -157,7 +154,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows)
    */
-  gridTemplateRows?: Token<CSS.Property.GridTemplateRows | number, "sizes">
+  gridTemplateRows?: Token<CSS.Property.GridTemplateRows>
   /**
    * The CSS `grid-template-areas` property.
    *
