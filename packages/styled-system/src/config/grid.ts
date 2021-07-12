@@ -30,7 +30,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-gap)
    */
-  gridGap?: Token<CSS.Property.GridGap | number, "sizes">
+  gridGap?: Token<CSS.Property.GridGap | number, "space">
   /**
    * The CSS `grid-column-gap` property.
    *
@@ -38,7 +38,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap)
    */
-  gridColumnGap?: Token<CSS.Property.GridColumnGap | number, "sizes">
+  gridColumnGap?: Token<CSS.Property.GridColumnGap | number, "space">
   /**
    * The CSS `grid-row-gap` property.
    *
@@ -46,7 +46,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap)
    */
-  gridRowGap?: Token<CSS.Property.GridRowGap | number, "sizes">
+  gridRowGap?: Token<CSS.Property.GridRowGap | number, "space">
   /**
    * The CSS `grid-column` property.
    *
@@ -130,7 +130,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns)
    */
-  gridAutoColumns?: Token<CSS.Property.GridAutoColumns | number, "sizes">
+  gridAutoColumns?: Token<CSS.Property.GridAutoColumns>
   /**
    * The CSS `grid-auto-rows` property.
    *
@@ -138,7 +138,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows)
    */
-  gridAutoRows?: Token<CSS.Property.GridAutoRows | number, "sizes">
+  gridAutoRows?: Token<CSS.Property.GridAutoRows>
   /**
    * The CSS `grid-template-columns` property
    *
@@ -146,10 +146,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns)
    */
-  gridTemplateColumns?: Token<
-    CSS.Property.GridTemplateColumns | number,
-    "sizes"
-  >
+  gridTemplateColumns?: Token<CSS.Property.GridTemplateColumns>
   /**
    * The CSS `grid-template-rows` property.
    *
@@ -157,7 +154,7 @@ export interface GridProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows)
    */
-  gridTemplateRows?: Token<CSS.Property.GridTemplateRows | number, "sizes">
+  gridTemplateRows?: Token<CSS.Property.GridTemplateRows>
   /**
    * The CSS `grid-template-areas` property.
    *
