@@ -341,10 +341,13 @@ export function useSlider(props: UseSliderProps) {
   usePanGesture(rootRef, {
     onPanSessionStart(event) {
       if (!isInteractive) return
+      setDragging.on()
+      focusThumb()
       setValueFromPointer(event)
     },
     onPanSessionEnd() {
       if (!isInteractive) return
+      setDragging.off()
       if (!prevIsDragging && prevRef.current !== valueRef.current) {
         onChangeEnd?.(valueRef.current)
         prevRef.current = valueRef.current
@@ -352,7 +355,6 @@ export function useSlider(props: UseSliderProps) {
     },
     onPanStart() {
       if (!isInteractive) return
-      setDragging.on()
       onChangeStart?.(valueRef.current)
     },
     onPan(event) {
@@ -361,7 +363,6 @@ export function useSlider(props: UseSliderProps) {
     },
     onPanEnd() {
       if (!isInteractive) return
-      setDragging.off()
       onChangeEnd?.(valueRef.current)
     },
   })
