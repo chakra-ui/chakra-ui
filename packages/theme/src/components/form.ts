@@ -2,7 +2,7 @@ import { mode } from "@chakra-ui/theme-tools"
 
 type Dict = Record<string, any>
 
-const parts = ["requiredIndicator", "helperText"]
+const parts = ["container", "requiredIndicator", "helperText"]
 
 function baseStyleRequiredIndicator(props: Dict) {
   return {
@@ -21,6 +21,10 @@ function baseStyleHelperText(props: Dict) {
 }
 
 const baseStyle = (props: Dict) => ({
+  container: {
+    width: "100%",
+    position: "relative",
+  },
   requiredIndicator: baseStyleRequiredIndicator(props),
   helperText: baseStyleHelperText(props),
 })
