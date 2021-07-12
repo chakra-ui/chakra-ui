@@ -77,7 +77,7 @@ export const SearchButton = React.forwardRef(function SearchButton(
               title={actionKey[1]}
               textDecoration="none !important"
             >
-              {ACTION_KEY_APPLE[0]}
+              {actionKey[0]}
             </chakra.div>
           </Kbd>
           <VisuallyHidden> and </VisuallyHidden>
