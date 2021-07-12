@@ -89,6 +89,9 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
       if (mode) {
         rawSetColorMode(mode)
       }
+      if (document.body.classList.contains("chakra-ui-dark")) {
+        rawSetColorMode("dark")
+      }
     }
   }, [colorModeManager, useSystemColorMode, initialColorMode])
 

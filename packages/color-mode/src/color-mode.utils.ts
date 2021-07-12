@@ -11,7 +11,7 @@ export type ColorMode = "light" | "dark"
  * SSR: Graceful fallback for the `body` element
  */
 const mockBody = {
-  classList: { add: noop, remove: noop },
+  classList: { add: noop, remove: noop, contains: noop },
 }
 
 const getBody = () => (isBrowser ? document.body : mockBody)
@@ -21,8 +21,15 @@ const getBody = () => (isBrowser ? document.body : mockBody)
  */
 export function syncBodyClassName(isDark: boolean) {
   const body = getBody()
-  body.classList.add(isDark ? classNames.dark : classNames.light)
-  body.classList.remove(isDark ? classNames.light : classNames.dark)
+  if (
+    !(
+      body.classList.contains(classNames.dark) ||
+      body.classList.contains(classNames.light)
+    )
+  ) {
+    body.classList.add(isDark ? classNames.dark : classNames.light)
+    body.classList.remove(isDark ? classNames.light : classNames.dark)
+  }
 }
 
 /**

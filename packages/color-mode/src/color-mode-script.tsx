@@ -30,6 +30,14 @@ function setScript(initialValue: Mode) {
   if (colorMode) {
     const root = document.documentElement
     root.style.setProperty("--chakra-ui-color-mode", colorMode)
+    if (colorMode === "light") {
+      document.body.classList.add('chakra-ui-light')
+      document.body.classList.remove('chakra-ui-dark')
+    }
+    if (colorMode === "dark") {
+      document.body.classList.add('chakra-ui-dark')
+      document.body.classList.remove('chakra-ui-light')
+    }
   }
 }
 
