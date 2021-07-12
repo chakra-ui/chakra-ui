@@ -1799,7 +1799,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/922234?v=4",
       "profile": "https://medium.com/@tomchentw",
       "contributions": [
-        "doc"
+        "doc",
+        "infra"
       ]
     },
     {
@@ -1911,6 +1912,60 @@
       "name": "Surabhi Gupta",
       "avatar_url": "https://avatars.githubusercontent.com/u/29196888?v=4",
       "profile": "https://github.com/spidertwin2",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "Ningaro",
+      "name": "Ningaro",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23503775?v=4",
+      "profile": "http://rp.station.msk.ru",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "m0nae",
+      "name": "Monae",
+      "avatar_url": "https://avatars.githubusercontent.com/u/74229895?v=4",
+      "profile": "http://monae.me",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "wadewadewadewadewadewade",
+      "name": "Wade McDaniel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23270394?v=4",
+      "profile": "https://github.com/wadewadewadewadewadewade",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "MasterGordon",
+      "name": "Gordon Goldbach",
+      "avatar_url": "https://avatars.githubusercontent.com/u/18127395?v=4",
+      "profile": "https://github.com/MasterGordon",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "bhishp",
+      "name": "Bhish",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12024258?v=4",
+      "profile": "https://github.com/bhishp",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "soloamilkar",
+      "name": "Amilkar Munoz",
+      "avatar_url": "https://avatars.githubusercontent.com/u/71573508?v=4",
+      "profile": "http://amilkar.dev",
       "contributions": [
         "doc"
       ]

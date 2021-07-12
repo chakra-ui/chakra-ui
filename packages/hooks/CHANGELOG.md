@@ -1,5 +1,22 @@
 # Change Log
 
+## 1.5.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+
+## 1.5.3
+
+### Patch Changes
+
+- [`aa374ffcb`](https://github.com/chakra-ui/chakra-ui/commit/aa374ffcb4003efd88eb6a62e10723ea9fbfa3d0)
+  [#4166](https://github.com/chakra-ui/chakra-ui/pull/4166) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fix inconsisent id
+  generation between client and server
+
 ## 1.5.2
 
 ### Patch Changes

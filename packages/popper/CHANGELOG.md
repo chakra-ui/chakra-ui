@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.2.1
+
+### Patch Changes
+
+- [`5afa7ef49`](https://github.com/chakra-ui/chakra-ui/commit/5afa7ef49c7e3b01bce932e252865226b9511b39)
+  [#4180](https://github.com/chakra-ui/chakra-ui/pull/4180) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Wrap force update within
+  a function to prevent null scenarios
+  - Add default `inset` value to prevent overflow in scenarios where `enabled`
+    is `false` (i.e. when the popper is not visible)
+
 ## 2.2.0
 
 ### Minor Changes

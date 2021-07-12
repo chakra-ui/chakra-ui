@@ -1,5 +1,47 @@
 # Change Log
 
+## 1.3.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`7d9cb190c`](https://github.com/chakra-ui/chakra-ui/commit/7d9cb190cda3b9b58fbd159662402f37fcf7f087),
+  [`211d94de3`](https://github.com/chakra-ui/chakra-ui/commit/211d94de397e4e7c91cfe70a3bafa905c7506cbf),
+  [`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/cli@1.5.0
+  - @chakra-ui/utils@1.8.1
+  - @chakra-ui/react@1.6.5
+  - @chakra-ui/theme-tools@1.1.8
+  - @chakra-ui/props-docs@1.0.30
+
+## 1.3.0
+
+### Minor Changes
+
+- [`3dd5a653c`](https://github.com/chakra-ui/chakra-ui/commit/3dd5a653c254afec4919b107e7e6079c258d074a)
+  [#3910](https://github.com/chakra-ui/chakra-ui/pull/3910) Thanks
+  [@joaorodrs](https://github.com/joaorodrs)! - Clicking an icon in the icons
+  list now copies the icon name to clipboard.
+
+### Patch Changes
+
+- [`4c157e320`](https://github.com/chakra-ui/chakra-ui/commit/4c157e320a73b08eb89a44831a7cf434fb403bad)
+  [#4057](https://github.com/chakra-ui/chakra-ui/pull/4057) Thanks
+  [@mcha-dev](https://github.com/mcha-dev)! - updated @see doc links to point to
+  shorthand see PR #4046 comment
+
+* [`afb9b3cfa`](https://github.com/chakra-ui/chakra-ui/commit/afb9b3cfa87076ed8897b7edd4a9d9f1e1701721)
+  [#4103](https://github.com/chakra-ui/chakra-ui/pull/4103) Thanks
+  [@with-heart](https://github.com/with-heart)! - Update transitions to use
+  theme tokens and remove outline transitions
+
+* Updated dependencies
+  [[`aa374ffcb`](https://github.com/chakra-ui/chakra-ui/commit/aa374ffcb4003efd88eb6a62e10723ea9fbfa3d0),
+  [`fe2557584`](https://github.com/chakra-ui/chakra-ui/commit/fe255758437b04740e1a0d8c8549afefe7dc71ce)]:
+  - @chakra-ui/react@1.6.4
+  - @chakra-ui/cli@1.4.0
+  - @chakra-ui/props-docs@1.0.29
+
 ## 1.2.7
 
 ### Patch Changes

@@ -1,5 +1,49 @@
 # Change Log
 
+## 1.7.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+  - @chakra-ui/clickable@1.1.6
+  - @chakra-ui/hooks@1.5.4
+  - @chakra-ui/transition@1.3.3
+
+## 1.7.0
+
+### Minor Changes
+
+- [`5afa7ef49`](https://github.com/chakra-ui/chakra-ui/commit/5afa7ef49c7e3b01bce932e252865226b9511b39)
+  [#4180](https://github.com/chakra-ui/chakra-ui/pull/4180) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Added
+  `computePositionOnMount` prop to allow positioning the popover or menu before
+  initial open
+
+### Patch Changes
+
+- [`9fadbc80f`](https://github.com/chakra-ui/chakra-ui/commit/9fadbc80f626534edca5f9a789bda2b5232cde15)
+  [#4211](https://github.com/chakra-ui/chakra-ui/pull/4211) Thanks
+  [@tim-stasse](https://github.com/tim-stasse)! - Fixed menu typeahead
+
+* [`afb9b3cfa`](https://github.com/chakra-ui/chakra-ui/commit/afb9b3cfa87076ed8897b7edd4a9d9f1e1701721)
+  [#4103](https://github.com/chakra-ui/chakra-ui/pull/4103) Thanks
+  [@with-heart](https://github.com/with-heart)! - Update transitions to use
+  theme tokens and remove outline transitions
+
+- [`245a164f6`](https://github.com/chakra-ui/chakra-ui/commit/245a164f6058e96986b2354017d96816b5d336e9)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  closeOnSelect won't work sometime
+
+- Updated dependencies
+  [[`e8da4c65f`](https://github.com/chakra-ui/chakra-ui/commit/e8da4c65f026f636ea26d11b7aaed63f2babf00d),
+  [`aa374ffcb`](https://github.com/chakra-ui/chakra-ui/commit/aa374ffcb4003efd88eb6a62e10723ea9fbfa3d0),
+  [`5afa7ef49`](https://github.com/chakra-ui/chakra-ui/commit/5afa7ef49c7e3b01bce932e252865226b9511b39)]:
+  - @chakra-ui/transition@1.3.2
+  - @chakra-ui/hooks@1.5.3
+  - @chakra-ui/popper@2.2.1
+
 ## 1.6.3
 
 ### Patch Changes

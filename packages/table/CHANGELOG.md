@@ -1,5 +1,13 @@
 # @chakra-ui/table
 
+## 1.2.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+
 ## 1.2.4
 
 ### Patch Changes

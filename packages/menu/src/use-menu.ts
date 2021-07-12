@@ -102,6 +102,14 @@ export interface UseMenuProps extends UsePopperProps, UseDisclosureProps {
    * @default "unmount"
    */
   lazyBehavior?: LazyBehavior
+  /**
+   * If `true`, the menu will be positioned when it mounts
+   * (even if it's not open).
+   *
+   * Note 🚨: We don't recommend using this in a menu/popover intensive UI or page
+   * as it might affect scrolling performance.
+   */
+  computePositionOnMount?: boolean
 }
 
 /**
@@ -123,6 +131,7 @@ export function useMenu(props: UseMenuProps = {}) {
     onOpen: onOpenProp,
     placement = "bottom-start",
     lazyBehavior = "unmount",
+    computePositionOnMount,
     ...popperProps
   } = props
 
@@ -157,7 +166,7 @@ export function useMenu(props: UseMenuProps = {}) {
    */
   const popper = usePopper({
     ...popperProps,
-    enabled: isOpen,
+    enabled: isOpen || computePositionOnMount,
     placement,
   })
 
@@ -334,11 +343,11 @@ export function useMenuButton(
   }
 }
 
-function isTargetMenuItem(event: Pick<MouseEvent, "currentTarget">) {
+function isTargetMenuItem(target: EventTarget | null) {
   // this will catch `menuitem`, `menuitemradio`, `menuitemcheckbox`
   return (
-    event.currentTarget instanceof HTMLElement &&
-    !!event.currentTarget.getAttribute("role")?.startsWith("menuitem")
+    target instanceof HTMLElement &&
+    !!target.getAttribute("role")?.startsWith("menuitem")
   )
 }
 
@@ -386,7 +395,8 @@ export function useMenuList(
    * to printable keyboard character press
    */
   const createTypeaheadHandler = useShortcut({
-    preventDefault: (event) => event.key !== " " && isTargetMenuItem(event),
+    preventDefault: (event) =>
+      event.key !== " " && isTargetMenuItem(event.target),
   })
 
   const onKeyDown = React.useCallback(
@@ -431,7 +441,7 @@ export function useMenuList(
         }
       })
 
-      if (isTargetMenuItem(event)) {
+      if (isTargetMenuItem(event.target)) {
         onTypeahead(event)
       }
     },
@@ -577,7 +587,7 @@ export function useMenuItem(
   const onClick = React.useCallback(
     (event: React.MouseEvent) => {
       onClickProp?.(event)
-      if (!isTargetMenuItem(event)) return
+      if (!isTargetMenuItem(event.currentTarget)) return
       /**
        * Close menu and parent menus, allowing the MenuItem
        * to override its parent menu's `closeOnSelect` prop.

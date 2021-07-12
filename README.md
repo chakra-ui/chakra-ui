@@ -14,7 +14,7 @@
   <img alt="MIT License" src="https://img.shields.io/github/license/chakra-ui/chakra-ui"/>
   <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@chakra-ui/react.svg?style=flat"/>
   <img alt="Github Stars" src="https://badgen.net/github/stars/chakra-ui/chakra-ui" />
-  <a href="https://discord.gg/yxpPm4q">
+  <a href="https://discord.gg/chakra-ui">
     <img alt="Discord" src="https://img.shields.io/discord/660863154703695893.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" />
   </a>
 </p>
@@ -133,7 +133,8 @@ function Example() {
 
 - JavaScript Starter: https://codesandbox.io/s/chakra-ui-javascript-lzzg9
 - TypeScript Starter: https://codesandbox.io/s/chakra-ui-typescript-pomi8
-- NextJS TypeScript Starter: https://codesandbox.io/s/chakra-ui-next-js-typescript-kxvyr
+- NextJS TypeScript Starter:
+  https://codesandbox.io/s/chakra-ui-next-js-typescript-kxvyr
 
 ## `create-react-app` Templates
 
@@ -401,7 +402,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/eintxaurtieta"><img src="https://avatars.githubusercontent.com/u/24615080?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Endika Intxaurtieta</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=eintxaurtieta" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/mattwells19"><img src="https://avatars.githubusercontent.com/u/36650048?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Matt Wells</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=mattwells19" title="Code">💻</a></td>
     <td align="center"><a href="http://anantja.in"><img src="https://avatars.githubusercontent.com/u/509059?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Anant Jain</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=anantja-in" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://medium.com/@tomchentw"><img src="https://avatars.githubusercontent.com/u/922234?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Tom Chen</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=tomchentw" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://medium.com/@tomchentw"><img src="https://avatars.githubusercontent.com/u/922234?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Tom Chen</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=tomchentw" title="Documentation">📖</a> <a href="#infra-tomchentw" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
     <td align="center"><a href="https://github.com/emiranda04"><img src="https://avatars.githubusercontent.com/u/11409613?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Ernie Miranda</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=emiranda04" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/bjoluc"><img src="https://avatars.githubusercontent.com/u/25661029?v=4?s=64" width="64px;" alt=""/><br /><sub><b>bjoluc</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=bjoluc" title="Documentation">📖</a></td>
   </tr>
@@ -418,6 +419,14 @@ Thanks goes to these wonderful people
     <td align="center"><a href="http://hasibhassan.com"><img src="https://avatars.githubusercontent.com/u/67892792?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Hasib Hassan</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=hasibhassan" title="Documentation">📖</a></td>
     <td align="center"><a href="http://jamie.rolfs.sh"><img src="https://avatars.githubusercontent.com/u/288160?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Jamie Rolfs</b></sub></a><br /><a href="#ideas-jrolfs" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=jrolfs" title="Documentation">📖</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=jrolfs" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/spidertwin2"><img src="https://avatars.githubusercontent.com/u/29196888?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Surabhi Gupta</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=spidertwin2" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://rp.station.msk.ru"><img src="https://avatars.githubusercontent.com/u/23503775?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Ningaro</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3ANingaro" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="http://monae.me"><img src="https://avatars.githubusercontent.com/u/74229895?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Monae</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=m0nae" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/wadewadewadewadewadewade"><img src="https://avatars.githubusercontent.com/u/23270394?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Wade McDaniel</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=wadewadewadewadewadewade" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/MasterGordon"><img src="https://avatars.githubusercontent.com/u/18127395?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Gordon Goldbach</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=MasterGordon" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/bhishp"><img src="https://avatars.githubusercontent.com/u/12024258?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Bhish</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=bhishp" title="Code">💻</a></td>
+    <td align="center"><a href="http://amilkar.dev"><img src="https://avatars.githubusercontent.com/u/71573508?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Amilkar Munoz</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=soloamilkar" title="Documentation">📖</a></td>
   </tr>
 </table>
 

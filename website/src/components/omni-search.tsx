@@ -28,6 +28,7 @@ function OptionText(props: any) {
   const chunks = findAll({
     searchWords,
     textToHighlight,
+    autoEscape: true,
   })
 
   const highlightedText = chunks.map((chunk) => {

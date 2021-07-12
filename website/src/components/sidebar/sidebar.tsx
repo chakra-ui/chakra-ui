@@ -1,7 +1,7 @@
 import NextLink from "next/link"
 import { useRouter } from "next/router"
 import * as React from "react"
-import _ from "lodash"
+import sortBy from "lodash/sortBy"
 import {
   Badge,
   Box,
@@ -64,7 +64,7 @@ export function SidebarContent(props: SidebarContentProps) {
               const opened = selected || lvl2.open
 
               const sortedRoutes = !!lvl2.sort
-                ? _.sortBy(lvl2.routes, (i) => i.title)
+                ? sortBy(lvl2.routes, (i) => i.title)
                 : lvl2.routes
 
               return (

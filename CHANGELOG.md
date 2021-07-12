@@ -14,6 +14,132 @@ To better understand the changelog, here are some legends we use:
 - 🚀 Feature
 - 🐛 Bug fix
 
+## 08-07-2021
+
+`@chakra-ui/cli@1.5.0`
+
+- 🚀 Enable esModuleInterop for `chakra-cli tokens`
+- 🐛 Token generation supports non valid JS keys for components
+
+`@chakra-ui/utils@1.8.1`
+
+- 🐛 Fixed a circular dependency which was causing warnings when bundling Chakra
+  with `rollup`.
+
+`@chakra-ui/system@1.7.1`
+
+- 🐛 Fix issue where undefined style props (such as `borderRadius`) would not
+  fallback to the default styles
+
+## 16-06-2021
+
+`@chakra-ui/react@1.6.4`
+
+**Button** `v1.4.0`
+
+- 🚀 Add `className` prop to button load spinner.
+- 🐛 Update transitions to use theme tokens and remove outline transitions.
+
+**Media Query** `v1.1.0`
+
+- 🚀 `useBreakpointValue()` now supports receiving a `defaultBreakpoint` as the
+  second argument to support SSR/SSG.
+
+**Styled System** `v1.12.0`
+
+- 🚀 Added the `_activeStep` pseudoselector which is applied when
+  `aria-current="step"`.
+  [See the `wai-aria` documentation](https://www.w3.org/TR/wai-aria-1.2/#aria-current)
+
+**System** `v1.7.0`
+
+- 🚀 The `styled` function allows a functional `baseStyle` property.
+
+```jsx live=false
+import { styled } from '@chakra-ui/react'
+
+const MyComponent = styled('div', {
+  baseStyle: (props) => ({
+    bg: props.highlightColor
+  })
+})
+
+// ...
+
+<MyComponent highlightColor="red.500" />
+
+```
+
+**Cli** `v1.4.0`
+
+- 🚀 The `tokens` command now supports generating theme token type definitions
+  from a Chakra UI theme published as a package:
+
+`npx @chakra-ui/cli tokens <@your-org/chakra-theme-package>`
+
+A published theme package should export a theme object as either the `default`
+export or an export named `theme`.
+
+```jsx live=false
+// chakra-theme-package/src/index.js
+import { extendTheme } from "@chakra-ui/react"
+
+const theme = extendTheme({})
+
+// as default export
+export default theme
+// as named export
+export { theme }
+```
+
+**Accordion** `v1.3.3` & **Checkbox** `v1.5.3` & **Control Box** `v1.0.13` &
+**Modal** `v1.8.8` & **Number Input** `v1.2.7` & **Progress** `v1.1.10` &
+**Tag** `v1.1.10`
+
+- 🐛 Update transitions to use theme tokens and remove outline transitions.
+
+**Hooks** `v1.5.3`
+
+- 🐛 Fix inconsisent id generation between client and server.
+
+**Menu** `v1.6.4`
+
+- 🐛 Fix issue where `closeOnSelect` won't work sometimes.
+- 🐛 Update transitions to use theme tokens and remove outline transitions.
+
+**Popover** `v1.7.2`
+
+- 🐛 Fix issue where arrowshadowcolor didn't work.
+
+**React** `v1.6.4`
+
+- 🐛 Fix inconsisent id generation between client and server.
+
+**Stat** `v1.1.10`
+
+- 🐛 Export TypeScript interface `StatGroupProps`.
+
+**Tabs** `v1.5.2`
+
+- 🐛 Render tab indicator at the correct position.
+- 🐛 Update transitions to use theme tokens and remove outline transitions.
+
+**Theme** `v1.9.1`
+
+- 🐛 Fix an issue where the distance to the next element below a textarea was
+  too large in some browsers.
+- 🐛 Update transitions to use theme tokens and remove outline transitions.
+
+**Toast** `v1.2.8`
+
+- 🐛 Resolved an issue where `overflowX` couldn't be used within a toast's
+  `title` or `description` by adding `maxWidth="100%"` to the containing div.
+
+**Transition** `v1.3.2`
+
+- 🐛 Fixed an issue in the Collapse transition's enter animation in case of
+  `unmountOnExit`.
+
 ## 26-05-2021
 
 `@chakra-ui/react@1.6.3`

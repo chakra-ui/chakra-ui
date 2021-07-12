@@ -89,7 +89,7 @@ const Toast: React.FC<any> = (props) => {
       width="auto"
     >
       <AlertIcon />
-      <chakra.div flex="1">
+      <chakra.div flex="1" maxWidth="100%">
         {title && <AlertTitle>{title}</AlertTitle>}
         {description && (
           <AlertDescription display="block">{description}</AlertDescription>

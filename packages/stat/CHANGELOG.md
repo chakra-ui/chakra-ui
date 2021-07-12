@@ -1,5 +1,24 @@
 # Change Log
 
+## 1.1.11
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+  - @chakra-ui/icon@1.1.10
+  - @chakra-ui/visually-hidden@1.0.13
+
+## 1.1.10
+
+### Patch Changes
+
+- [`f2c0480ee`](https://github.com/chakra-ui/chakra-ui/commit/f2c0480ee2bc4312837cac078e855b9555f47b61)
+  [#4124](https://github.com/chakra-ui/chakra-ui/pull/4124) Thanks
+  [@anubra266](https://github.com/anubra266)! - Export TypeScript interface
+  `StatGroupProps`
+
 ## 1.1.9
 
 ### Patch Changes

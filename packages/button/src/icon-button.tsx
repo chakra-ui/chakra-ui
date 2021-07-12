@@ -47,7 +47,7 @@ export const IconButton = forwardRef<IconButtonProps, "button">(
     return (
       <Button
         padding="0"
-        borderRadius={isRound ? "full" : "md"}
+        borderRadius={isRound ? "full" : undefined}
         ref={ref}
         aria-label={ariaLabel}
         {...rest}

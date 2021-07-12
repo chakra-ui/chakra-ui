@@ -47,8 +47,7 @@ export interface TabsProps
 /**
  * Tabs
  *
- * Provides context and logic for all tabs components. It doesn't render
- * any DOM node.
+ * Provides context and logic for all tabs components.
  */
 export const Tabs = forwardRef<TabsProps, "div">((props, ref) => {
   const styles = useMultiStyleConfig("Tabs", props)

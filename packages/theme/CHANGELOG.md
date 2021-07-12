@@ -1,5 +1,28 @@
 # Change Log
 
+## 1.9.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+  - @chakra-ui/theme-tools@1.1.8
+
+## 1.9.1
+
+### Patch Changes
+
+- [`cbf8bbdf0`](https://github.com/chakra-ui/chakra-ui/commit/cbf8bbdf02eff45a57a28307ec9c3137ce845420)
+  [#4157](https://github.com/chakra-ui/chakra-ui/pull/4157) Thanks
+  [@vcastroi](https://github.com/vcastroi)! - Fix an issue where the distance to
+  the next element below a textarea was too large in some browsers.
+
+* [`afb9b3cfa`](https://github.com/chakra-ui/chakra-ui/commit/afb9b3cfa87076ed8897b7edd4a9d9f1e1701721)
+  [#4103](https://github.com/chakra-ui/chakra-ui/pull/4103) Thanks
+  [@with-heart](https://github.com/with-heart)! - Update transitions to use
+  theme tokens and remove outline transitions
+
 ## 1.9.0
 
 ### Minor Changes

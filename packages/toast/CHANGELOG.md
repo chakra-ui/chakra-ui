@@ -1,5 +1,37 @@
 # Change Log
 
+## 1.2.9
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+  - @chakra-ui/theme@1.9.2
+  - @chakra-ui/alert@1.2.6
+  - @chakra-ui/close-button@1.1.10
+  - @chakra-ui/hooks@1.5.4
+  - @chakra-ui/transition@1.3.3
+
+## 1.2.8
+
+### Patch Changes
+
+- [`a66258a01`](https://github.com/chakra-ui/chakra-ui/commit/a66258a01ea4235853ba3f3e1eabed16f7658c53)
+  [#3935](https://github.com/chakra-ui/chakra-ui/pull/3935) Thanks
+  [@n1ru4l](https://github.com/n1ru4l)! - Resolved an issue where `overflowX`
+  couldn't be used within a toast's `title` or `description` by adding
+  `maxWidth="100%"` to the containing `div`.
+
+- Updated dependencies
+  [[`cbf8bbdf0`](https://github.com/chakra-ui/chakra-ui/commit/cbf8bbdf02eff45a57a28307ec9c3137ce845420),
+  [`e8da4c65f`](https://github.com/chakra-ui/chakra-ui/commit/e8da4c65f026f636ea26d11b7aaed63f2babf00d),
+  [`aa374ffcb`](https://github.com/chakra-ui/chakra-ui/commit/aa374ffcb4003efd88eb6a62e10723ea9fbfa3d0),
+  [`afb9b3cfa`](https://github.com/chakra-ui/chakra-ui/commit/afb9b3cfa87076ed8897b7edd4a9d9f1e1701721)]:
+  - @chakra-ui/theme@1.9.1
+  - @chakra-ui/transition@1.3.2
+  - @chakra-ui/hooks@1.5.3
+
 ## 1.2.7
 
 ### Patch Changes

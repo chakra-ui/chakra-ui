@@ -1,5 +1,23 @@
 # Change Log
 
+## 1.12.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+
+## 1.12.0
+
+### Minor Changes
+
+- [`ebda07095`](https://github.com/chakra-ui/chakra-ui/commit/ebda07095bffd9b3135c5d19803a3a08397b78ef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Added the
+  `_activeStep` pseudoselector which is applied when `aria-current="step"`.
+  [See the `wai-aria` documentation](https://www.w3.org/TR/wai-aria-1.2/#aria-current)
+  for more information on `aria-current`.
+
 ## 1.11.1
 
 ### Patch Changes
@@ -552,6 +570,7 @@
   "to-bl" // 'to bottom left'
   "to-l" // 'to left'
   "to-tl" // 'to top left'
+
   ```
 
   ```jsx
