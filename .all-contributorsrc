@@ -1969,6 +1969,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "samarmohan",
+      "name": "Samar Mohan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/71091489?v=4",
+      "profile": "https://book-worm-1.herokuapp.com/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
