@@ -64,11 +64,10 @@ export function addListener(fn: Function) {
     fn(mediaQueryList.matches ? "dark" : "light")
   }
 
-  listener()
-  mediaQueryList.addListener(listener)
+  mediaQueryList.addEventListener('change', listener)
 
   return () => {
-    mediaQueryList.removeListener(listener)
+    mediaQueryList.removeEventListener('change', listener)
   }
 }
 
