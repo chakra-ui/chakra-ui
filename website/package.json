@@ -8,7 +8,7 @@
     "gen:theme-typings": "chakra-cli tokens theme.ts",
     "start": "next start",
     "test": "jest",
-    "clean": "rm -rf .next .mdx-data",
+    "clean": "rimraf .next .mdx-data",
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
