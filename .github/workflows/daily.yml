@@ -1,0 +1,62 @@
+name: Run daily cron script
+
+on:
+  workflow_dispatch: # Manual testing
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Git
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+      - name: Get Yarn cache path
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Enable node
+        uses: actions/setup-node@master
+        with:
+          node-version: 12.x
+
+      - name: Load Yarn cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile && yarn bootstrap
+
+      - name: Generate avatars and all-sponsorsrc
+        run: yarn avatars:gen
+
+      - name: Commit avatars and all-sponsorsrc
+        run: |
+          git add website/public/avatars
+          git commit -m "chore(avatars): $GITHUB_SHA"
+
+          git add .all-sponsorsrc
+          git commit -m "chore(.all-sponsorsrc): $GITHUB_SHA"
+
+      - name: Generate all-membersrc
+        run: yarn members:gen
+
+      - name: Commit all-membersrc
+        run: |
+          git add .all-membersrc
+          git commit -m "chore(.all-membersrc): $GITHUB_SHA"
+
+      - name: Deploy to main
+        run: |
+          git pull --rebase
+          git push

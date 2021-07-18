@@ -58,9 +58,8 @@
     "release": "changeset publish",
     "docs": "yarn workspace @chakra-ui/docs",
     "docs:deploy": "yarn build && yarn docs:build-ci && cp -r website/public .",
-    "docs:build-ci": "yarn members:gen && yarn docs:build",
-    "docs:build": "yarn avatars:gen && yarn search-meta:gen && yarn docs build",
-    "docs:dev": "yarn avatars:gen && yarn docs dev",
+    "docs:build": "yarn search-meta:gen && yarn docs build",
+    "docs:dev": "yarn docs dev",
     "docs:start": "yarn docs start",
     "dedup": "yarn-deduplicate --strategy highest yarn.lock"
   },
