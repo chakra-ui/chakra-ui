@@ -107,3 +107,12 @@ export const CodeSandboxTopbar = () => {
     </chakra.div>
   )
 }
+
+export const EditWhenEmpty = () => {
+  return (
+    <Editable defaultValue="chakra-ui-demo" minW="40">
+      <EditableInput _focus={{ boxShadow: "none" }} />
+      <EditablePreview />
+    </Editable>
+  )
+}
