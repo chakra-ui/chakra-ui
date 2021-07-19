@@ -1978,6 +1978,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "joaorodrs",
+      "name": "João Paulo Rodrigues",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64229622?v=4",
+      "profile": "https://joaopaulo-developer.vercel.app/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
