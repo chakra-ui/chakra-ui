@@ -57,7 +57,7 @@
     "create:pkg": "ts-node scripts/plopfile.ts",
     "release": "changeset publish",
     "docs": "yarn workspace @chakra-ui/docs",
-    "docs:deploy": "yarn build && yarn docs:build-ci && cp -r website/public .",
+    "docs:deploy": "yarn build && yarn docs:build && cp -r website/public .",
     "docs:build": "yarn search-meta:gen && yarn docs build",
     "docs:dev": "yarn docs dev",
     "docs:start": "yarn docs start",
