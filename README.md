@@ -428,6 +428,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/bhishp"><img src="https://avatars.githubusercontent.com/u/12024258?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Bhish</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=bhishp" title="Code">💻</a></td>
     <td align="center"><a href="http://amilkar.dev"><img src="https://avatars.githubusercontent.com/u/71573508?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Amilkar Munoz</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=soloamilkar" title="Documentation">📖</a></td>
     <td align="center"><a href="https://book-worm-1.herokuapp.com/"><img src="https://avatars.githubusercontent.com/u/71091489?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Samar Mohan</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=samarmohan" title="Code">💻</a></td>
+    <td align="center"><a href="https://joaopaulo-developer.vercel.app/"><img src="https://avatars.githubusercontent.com/u/64229622?v=4?s=64" width="64px;" alt=""/><br /><sub><b>João Paulo Rodrigues</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=joaorodrs" title="Documentation">📖</a></td>
   </tr>
 </table>
 
