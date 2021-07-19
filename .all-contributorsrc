@@ -1987,6 +1987,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "averyfreeman",
+      "name": "Avery Freeman",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1308847?v=4",
+      "profile": "http://develmonk.com",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
