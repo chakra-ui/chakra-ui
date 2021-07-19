@@ -212,6 +212,7 @@ export function useEditable(props: UseEditableProps = {}) {
         ref: mergeRefs(ref, previewRef),
         children: isValueEmpty ? placeholder : value,
         hidden: isEditing,
+        w: "full",
         "aria-disabled": ariaAttr(isDisabled),
         tabIndex,
         onFocus: callAllHandlers(props.onFocus, onEdit),
