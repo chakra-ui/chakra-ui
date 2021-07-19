@@ -9,17 +9,14 @@ jobs:
   daily:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Git
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-
       - name: Get Yarn cache path
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - name: Checkout
         uses: actions/checkout@master
+        with:
+          ref: main
 
       - name: Enable node
         uses: actions/setup-node@master
@@ -36,6 +33,11 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile && yarn bootstrap
+
+      - name: Setup Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Generate avatars and all-sponsorsrc
         run: yarn avatars:gen
