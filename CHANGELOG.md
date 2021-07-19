@@ -14,6 +14,23 @@ To better understand the changelog, here are some legends we use:
 - 🚀 Feature
 - 🐛 Bug fix
 
+## 08-07-2021
+
+`@chakra-ui/cli@1.5.0`
+
+- 🚀 Enable esModuleInterop for `chakra-cli tokens`
+- 🐛 Token generation supports non valid JS keys for components
+
+`@chakra-ui/utils@1.8.1`
+
+- 🐛 Fixed a circular dependency which was causing warnings when bundling Chakra
+  with `rollup`.
+
+`@chakra-ui/system@1.7.1`
+
+- 🐛 Fix issue where undefined style props (such as `borderRadius`) would not
+  fallback to the default styles
+
 ## 16-06-2021
 
 `@chakra-ui/react@1.6.4`
