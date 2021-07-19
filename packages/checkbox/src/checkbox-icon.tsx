@@ -1,5 +1,11 @@
 import { chakra, PropsOf } from "@chakra-ui/system"
-import { AnimatePresence, CustomDomComponent, motion } from "framer-motion"
+import {
+  AnimatePresence,
+  CustomDomComponent,
+  domAnimation,
+  LazyMotion,
+  m as motion,
+} from "framer-motion"
 import * as React from "react"
 
 // @future: only call `motion(chakra.svg)` when we drop framer-motion v3 support
@@ -62,25 +68,27 @@ const IndeterminateIcon = (props: PropsOf<typeof MotionSvg>) => (
 
 const CheckboxTransition = ({ open, children }: any) => (
   <AnimatePresence initial={false}>
-    {open && (
-      <motion.div
-        variants={{
-          unchecked: { scale: 0.5 },
-          checked: { scale: 1 },
-        }}
-        initial="unchecked"
-        animate="checked"
-        exit="unchecked"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100%",
-        }}
-      >
-        {children}
-      </motion.div>
-    )}
+    <LazyMotion features={domAnimation}>
+      {open && (
+        <motion.div
+          variants={{
+            unchecked: { scale: 0.5 },
+            checked: { scale: 1 },
+          }}
+          initial="unchecked"
+          animate="checked"
+          exit="unchecked"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+          }}
+        >
+          {children}
+        </motion.div>
+      )}
+    </LazyMotion>
   </AnimatePresence>
 )
 
