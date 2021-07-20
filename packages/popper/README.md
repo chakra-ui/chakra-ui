@@ -18,8 +18,8 @@ By default, the `usePopper` hook returns props for the popper, reference and
 arrow.
 
 ```jsx
-import { Box } from '@chakra-ui/layout'
-import { Button } from '@chakra-ui/button'
+import { Box } from "@chakra-ui/layout"
+import { Button } from "@chakra-ui/button"
 import { useDisclosure } from "@chakra-ui/hooks"
 import { usePopper } from "@chakra-ui/popper"
 
@@ -76,8 +76,8 @@ const { popperRef, referenceRef } = usePopper({
 
 ### Place the popper next to the reference
 
-You can place the popper next to the reference without margin or distance between them.
-Useful to create an autocomplete or typeahead feature.
+You can place the popper next to the reference without margin or distance
+between them. Useful to create an autocomplete or typeahead feature.
 
 ```jsx
 const { popperRef, referenceRef } = usePopper({
@@ -87,11 +87,12 @@ const { popperRef, referenceRef } = usePopper({
 
 ### Using inside a fixed container
 
-If the reference element is inside a fixed container, you should use the `fixed` strategy.
+If the reference element is inside a fixed container, you should use the `fixed`
+strategy.
 
 ```jsx
 const { popperRef, referenceRef } = usePopper({
-  strategy: 'fixed',
+  strategy: "fixed",
 })
 ```
 
@@ -123,7 +124,12 @@ export function Example() {
   }
 
   // 4. Consume the `usePopper` hook
-  const { getPopperProps, getReferenceProps, getArrowProps, transformOrigin } = usePopper({
+  const {
+    getPopperProps,
+    getReferenceProps,
+    getArrowProps,
+    transformOrigin,
+  } = usePopper({
     placement: "bottom-start",
   })
 

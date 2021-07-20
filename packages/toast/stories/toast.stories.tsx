@@ -3,7 +3,8 @@ import { Button, ButtonGroup } from "@chakra-ui/button"
 import { chakra, useColorMode } from "@chakra-ui/system"
 import { Alert } from "@chakra-ui/alert"
 import { Text } from "@chakra-ui/layout"
-import { createStandaloneToast, useToast } from "../src"
+import { useToast, useAsyncToast, createStandaloneToast } from "../src"
+
 import theme from "../../../website/theme"
 
 export default {
@@ -284,6 +285,22 @@ export const useToastCustomRenderUpdate = () => {
       toast
     </Button>
   )
+}
+
+export const LoadingToast = () => {
+  const { setLoading } = useAsyncToast(false, {
+    title: "Loading toast",
+    description: "This is a loading toast....",
+  })
+
+  const callApi = () => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 7000)
+  }
+
+  return <Button onClick={() => callApi()}>Call Api</Button>
 }
 
 export function StandAloneToast() {

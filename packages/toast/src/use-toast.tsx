@@ -202,4 +202,38 @@ export function useToast(options?: UseToastOptions) {
   )
 }
 
+export function useAsyncToast(
+  isLoading: boolean,
+  options?: Omit<UseToastOptions, "duration">,
+) {
+  const { theme, setColorMode, toggleColorMode, colorMode } = useChakra()
+  const [loading, setLoading] = React.useState<boolean>(isLoading ?? false)
+  const toastRef = React.useRef<string | number>()
+
+  const toast = React.useMemo(
+    () =>
+      createStandaloneToast({
+        theme,
+        colorMode,
+        setColorMode,
+        toggleColorMode,
+        defaultOptions: options,
+      }),
+    [theme, setColorMode, toggleColorMode, colorMode, options],
+  )
+
+  React.useEffect(() => {
+    if (loading) {
+      toastRef.current = toast({
+        ...options,
+        status: "loading",
+      })
+    } else if (toastRef.current) {
+      toast.close(toastRef.current)
+    }
+  }, [loading, options, toast])
+
+  return { setLoading }
+}
+
 export default useToast
