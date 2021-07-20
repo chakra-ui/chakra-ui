@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.3.9
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ff4dc7c38`](https://github.com/chakra-ui/chakra-ui/commit/ff4dc7c38310367c0e89522db9e88ae069cb6c2b)]:
+  - @chakra-ui/form-control@1.4.0
+
 ## 1.3.8
 
 ### Patch Changes

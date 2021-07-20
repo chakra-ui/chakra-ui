@@ -1,5 +1,36 @@
 # Change Log
 
+## 1.4.0
+
+### Minor Changes
+
+- [`ff4dc7c38`](https://github.com/chakra-ui/chakra-ui/commit/ff4dc7c38310367c0e89522db9e88ae069cb6c2b)
+  [#4317](https://github.com/chakra-ui/chakra-ui/pull/4317) Thanks
+  [@bhishp](https://github.com/bhishp)! - Added a `container` part to the
+  `FormControl` component theme, allowing the root `FormControl` element to be
+  themed.
+
+  ```jsx
+  import { extendTheme } from "@chakra-ui/react"
+
+  export const theme = extendTheme({
+    components: {
+      Form: {
+        variants: {
+          // create a variant named "custom"
+          custom: {
+            // style the root `FormControl` element
+            container: {
+              color: "white",
+              bg: "blue.900",
+            },
+          },
+        },
+      },
+    },
+  })
+  ```
+
 ## 1.3.8
 
 ### Patch Changes

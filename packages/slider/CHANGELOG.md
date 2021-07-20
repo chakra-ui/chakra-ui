@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.2.8
+
+### Patch Changes
+
+- [`2172e610b`](https://github.com/chakra-ui/chakra-ui/commit/2172e610b2a5c6e3867e83d142be2d1a19b7355d)
+  [#4370](https://github.com/chakra-ui/chakra-ui/pull/4370) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where slider
+  thumb doesn't show active state in firefox
+
 ## 1.2.7
 
 ### Patch Changes

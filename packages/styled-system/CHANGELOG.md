@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.12.2
+
+### Patch Changes
+
+- [`270b71ebb`](https://github.com/chakra-ui/chakra-ui/commit/270b71ebbb2bd9007d2e138e432675991d94f18d)
+  [#4368](https://github.com/chakra-ui/chakra-ui/pull/4368) Thanks
+  [@avendiart](https://github.com/avendiart)! - Grid props type definitions now
+  correclty reflect the implemented behavior in regard to tokens.
+
 ## 1.12.1
 
 ### Patch Changes

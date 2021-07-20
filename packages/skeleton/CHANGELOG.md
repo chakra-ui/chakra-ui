@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.1.17
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/system@1.7.2
+
 ## 1.1.16
 
 ### Patch Changes
