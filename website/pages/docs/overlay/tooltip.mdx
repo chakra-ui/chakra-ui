@@ -160,6 +160,25 @@ Using the `placement` prop you can adjust where your tooltip will be displayed.
 </VStack>
 ```
 
+## Styling arrow
+
+The API for changing the background of an arrow is:
+
+> Note ⚠️: If you're styling the arrow element, it does not accept Chakra UI 
+> color values. You have to put the color as an explicit css value.
+
+```jsx
+export default {
+  // Styles for the base style
+  baseStyle: {
+     bg: '"purple.500"', // Chakra UI color value
+     "--popper-arrow-bg": "#805AD5", // explicit css color value
+  },
+}
+
+```
+
+
 ## More examples
 
 ```jsx
