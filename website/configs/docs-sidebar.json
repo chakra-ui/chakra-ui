@@ -87,6 +87,10 @@
               "path": "/docs/theming/customize-theme"
             },
             {
+              "title": "Apply Theme",
+              "path": "/apply-theme"
+            },
+            {
               "title": "Component Style",
               "path": "/docs/theming/component-style"
             },

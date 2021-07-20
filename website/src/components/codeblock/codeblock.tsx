@@ -37,7 +37,7 @@ const LiveCodePreview = chakra(LivePreview, {
   },
 })
 
-const CopyButton = (props: ButtonProps) => (
+export const CopyButton = (props: ButtonProps) => (
   <Button
     size="sm"
     position="absolute"
@@ -76,7 +76,7 @@ const EditableNotice = (props: BoxProps) => {
   )
 }
 
-const CodeContainer = (props: BoxProps) => (
+export const CodeContainer = (props: BoxProps) => (
   <Box padding="5" rounded="8px" my="8" bg="#011627" {...props} />
 )
 
