@@ -9,6 +9,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
+  useColorModeValue,
 } from "@chakra-ui/system"
 import { cx, mergeWith, split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -30,6 +31,7 @@ export const SelectField = forwardRef<SelectFieldProps, "select">(
         {...ownProps}
         ref={ref}
         className={cx("chakra-select", className)}
+        bg={useColorModeValue("white", "gray.700")}
       >
         {placeholder && <option value="">{placeholder}</option>}
         {children}
