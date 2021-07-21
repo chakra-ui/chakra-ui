@@ -28,7 +28,7 @@ type State = { [K in ToastPosition]: ToastOptions[] }
 type CreateToastOptions = Partial<
   Pick<
     ToastOptions,
-    "status" | "duration" | "position" | "id" | "onCloseComplete"
+    "status" | "duration" | "position" | "id" | "onCloseComplete" | "maxWidth"
   >
 >
 
@@ -168,6 +168,7 @@ export class ToastManager extends React.Component<Props, State> {
       onRequestRemove: () => this.removeToast(String(id), position),
       status: options.status,
       requestClose: false,
+      maxWidth: options.maxWidth, 
     }
   }
 

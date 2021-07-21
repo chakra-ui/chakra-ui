@@ -63,6 +63,13 @@ export interface ToastOptions {
    * anyone else, but documented regardless.
    */
   requestClose?: boolean
+
+  /**
+   * The maximum width of the toast. 
+   * The toast will wrap if its width is bigger than this. 
+   * Defaults to 560px if not set.
+   */
+  maxWidth?: number | string
 }
 
 export type ToastState = { [K in ToastPosition]: ToastOptions[] }

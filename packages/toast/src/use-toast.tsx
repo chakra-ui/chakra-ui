@@ -69,6 +69,13 @@ export interface UseToastOptions {
    * Callback function to run side effects after the toast has closed.
    */
   onCloseComplete?: () => void
+
+  /**
+   * The maximum width of the toast. 
+   * The toast will wrap if its width is bigger than this. 
+   * Defaults to 560px if not set.
+   */
+  maxWidth?: number | string
 }
 
 export type IToast = UseToastOptions
@@ -112,6 +119,7 @@ const defaults = {
   duration: 5000,
   position: "bottom",
   variant: "solid",
+  maxWidth: 560, 
 } as const
 
 export type CreateStandAloneToastParam = Partial<

@@ -65,6 +65,7 @@ export const Toast: React.FC<ToastProps> = (props) => {
     message,
     onCloseComplete,
     onRequestRemove,
+    maxWidth = 560, 
     requestClose = false,
     position = "bottom",
     duration = 5000,
@@ -118,7 +119,7 @@ export const Toast: React.FC<ToastProps> = (props) => {
         className="chakra-toast__inner"
         style={{
           pointerEvents: "auto",
-          maxWidth: 560,
+          maxWidth,
           minWidth: 300,
           margin: "0.5rem",
         }}
