@@ -2,7 +2,7 @@ import * as React from "react"
 import { Button, ButtonGroup } from "@chakra-ui/button"
 import { chakra, useColorMode } from "@chakra-ui/system"
 import { Alert } from "@chakra-ui/alert"
-import { Text } from "@chakra-ui/layout"
+import { Box, Text } from "@chakra-ui/layout"
 import { createStandaloneToast, useToast } from "../src"
 import theme from "../../../website/theme"
 
@@ -89,6 +89,38 @@ export function CustomRender() {
       >
         Show Toastify
       </Button>
+      <Button
+      onClick={() =>
+        toast({
+          position: "top",
+          maxWidth: '100%', 
+          render: () => (
+            <Box color="white" p={3} w="800px" bg="blue.500">
+              Test for alignment
+            </Box>
+          ),
+        })
+      }
+    >
+      Show Huge Toast
+    </Button>
+    <Button
+    colorScheme = 'pink'
+      onClick={() =>
+        toast({
+          position: "top",
+          maxWidth: '600px', 
+          render: () => (
+            <Box color="white" p={3} bg="blue.500">
+              Test for alignment when the toast is extremely small.
+              Look at this toast. It is so small. How can it be so ridiculously small.
+            </Box>
+          ),
+        })
+      }
+    >
+      Show small Toast
+    </Button>
     </>
   )
 }
