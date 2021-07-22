@@ -25,11 +25,21 @@ export function pick<T extends Dict, K extends keyof T>(object: T, keys: K[]) {
   return result
 }
 
+/**
+ * Splits the property values of a dictionary like type.
+ * The values are split based on whether they are present within the keys.
+ * @param object The dictionary whose values we want to split
+ * @param keys The keys whose values we want to include
+ * @returns [picked, omitted] of the values of the dictionary
+ */
 export function split<T extends Dict, K extends keyof T>(object: T, keys: K[]) {
   const picked: Dict = {}
   const omitted: Dict = {}
 
   Object.keys(object).forEach((key) => {
+    // if key is within keys of the object
+    // then add it to picked
+    // otherwise omit it
     if (keys.includes(key as T[K])) {
       picked[key] = object[key]
     } else {
