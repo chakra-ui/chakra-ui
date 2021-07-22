@@ -1,6 +1,13 @@
 import * as React from "react"
 import { chakra } from "@chakra-ui/system"
-import { Stack, Wrap, SimpleGrid, Container, WrapItem } from "@chakra-ui/layout"
+import {
+  Stack,
+  Wrap,
+  SimpleGrid,
+  Container,
+  WrapItem,
+  Box,
+} from "@chakra-ui/layout"
 import {
   useRadio,
   Radio,
@@ -23,7 +30,17 @@ export const Readonly = () => (
     I'm a readonly radio
   </Radio>
 )
-
+export const StyledRadio = () => (
+  <Radio
+    background="gray.100"
+    border="1px"
+    borderColor="gray.300"
+    colorScheme="gray"
+    padding={4}
+  >
+    Radio
+  </Radio>
+)
 export const WithSizes = () => {
   const sizes = ["sm", "md", "lg"]
 
