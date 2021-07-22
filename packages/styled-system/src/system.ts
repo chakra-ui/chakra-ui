@@ -50,3 +50,4 @@ export const propNames = [...objectKeys(systemProps), ...pseudoPropNames]
 const styleProps = { ...systemProps, ...pseudoSelectors }
 
 export const isStyleProp = (prop: string) => prop in styleProps
+export const stylePropNames = objectKeys(styleProps)
