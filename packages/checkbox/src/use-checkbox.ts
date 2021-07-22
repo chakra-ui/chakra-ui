@@ -5,13 +5,7 @@ import {
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
 import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
-import {
-  callAllHandlers,
-  dataAttr,
-  focus,
-  scheduleMicrotask,
-  warn,
-} from "@chakra-ui/utils"
+import { callAllHandlers, dataAttr, focus, warn } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import React, {
   ChangeEvent,
@@ -304,9 +298,6 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
 
   const getInputProps: PropGetter = useCallback(
     (props = {}, forwardedRef = null) => {
-      const onFocus = () => {
-        scheduleMicrotask(setFocused.on)
-      }
       return {
         ...props,
         ref: mergeRefs(inputRef, forwardedRef),
@@ -316,7 +307,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         id,
         onChange: callAllHandlers(props.onChange, handleChange),
         onBlur: callAllHandlers(props.onBlur, onBlurProp, setFocused.off),
-        onFocus: callAllHandlers(props.onFocus, onFocusProp, onFocus),
+        onFocus: callAllHandlers(props.onFocus, onFocusProp, setFocused.on),
         onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
         onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
         required: isRequired,

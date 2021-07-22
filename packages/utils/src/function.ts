@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import { isFunction, isNumber, __DEV__, __TEST__ } from "./assertion"
+import { isFunction, isNumber, __DEV__ } from "./assertion"
 import { AnyFunction, FunctionArguments } from "./types"
 
 export function runIfFn<T, U>(
@@ -66,16 +66,6 @@ export const error = once((options: MessageOptions) => () => {
     console.error(message)
   }
 })
-
-const promiseMicrotask = (callback: VoidFunction) => {
-  Promise.resolve().then(callback)
-}
-
-export const scheduleMicrotask = __TEST__
-  ? (fn: VoidFunction) => fn()
-  : typeof queueMicrotask === "function"
-  ? queueMicrotask
-  : promiseMicrotask
 
 export const pipe = <R>(...fns: Array<(a: R) => R>) => (v: R) =>
   fns.reduce((a, b) => b(a), v)
