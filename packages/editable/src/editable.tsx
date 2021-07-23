@@ -8,6 +8,7 @@ import {
   useMultiStyleConfig,
   useStyles,
   HTMLChakraProps,
+  useStyleConfig,
 } from "@chakra-ui/system"
 import { cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { createContext, MaybeRenderProp } from "@chakra-ui/react-utils"
@@ -160,6 +161,41 @@ if (__DEV__) {
   EditableInput.displayName = "EditableInput"
 }
 
+export interface EditableTextareaProps extends HTMLChakraProps<"textarea"> {}
+
+/**
+ * EditableTextarea
+ *
+ * The textarea used in the `edit` mode
+ */
+export const EditableTextarea = forwardRef<EditableTextareaProps, "textarea">(
+  (props, ref) => {
+    const { getTextareaProps } = useEditableContext()
+    const styles = useStyleConfig("Textarea", props)
+
+    const textareaProps = getTextareaProps(
+      props,
+      ref,
+    ) as HTMLChakraProps<"textarea">
+    const _className = cx("chakra-editable__textarea", props.className)
+
+    return (
+      <chakra.textarea
+        {...textareaProps}
+        __css={{
+          outline: 0,
+          ...commonStyles,
+          ...styles,
+        }}
+        className={_className}
+      />
+    )
+  },
+)
+
+if (__DEV__) {
+  EditableTextarea.displayName = "EditableTextarea"
+}
 /**
  * React hook use to gain access to the editable state and actions.
  */
