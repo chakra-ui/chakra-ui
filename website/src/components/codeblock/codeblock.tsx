@@ -54,6 +54,7 @@ function CodeBlock(props) {
     children,
     viewlines,
     ln,
+    mountStylesheet = false,
     ...rest
   } = props
   const [editorCode, setEditorCode] = useState(children.trim())
@@ -66,6 +67,7 @@ function CodeBlock(props) {
     code: editorCode,
     scope,
     noInline: manual,
+    mountStylesheet,
     ...rest,
   }
 
@@ -113,10 +115,6 @@ function CodeBlock(props) {
       <CopyButton top="4" code={editorCode} />
     </Box>
   )
-}
-
-CodeBlock.defaultProps = {
-  mountStylesheet: false,
 }
 
 export default CodeBlock
