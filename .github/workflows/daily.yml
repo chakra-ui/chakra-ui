@@ -7,6 +7,7 @@ on:
 
 jobs:
   daily:
+    if: ${{ 'chakra-ui/chakra-ui' == github.repository }}
     runs-on: ubuntu-latest
     steps:
       - name: Get Yarn cache path
