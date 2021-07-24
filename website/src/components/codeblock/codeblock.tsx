@@ -2,6 +2,7 @@ import { Box, BoxProps, chakra } from "@chakra-ui/react"
 import theme from "prism-react-renderer/themes/nightOwl"
 import React, { useState } from "react"
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live"
+import CodeContainer from "./code-container"
 import CopyButton from "./copy-button"
 import Highlight from "./highlight"
 import scope from "./react-live-scope"
@@ -40,10 +41,6 @@ const EditableNotice = (props: BoxProps) => {
     </Box>
   )
 }
-
-const CodeContainer = (props: BoxProps) => (
-  <Box padding="5" rounded="8px" my="8" bg="#011627" {...props} />
-)
 
 function CodeBlock(props) {
   const {
