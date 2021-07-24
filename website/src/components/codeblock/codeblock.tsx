@@ -11,21 +11,7 @@ import React, { useState } from "react"
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live"
 import Highlight from "./highlight"
 import scope from "./react-live-scope"
-
-export const liveEditorStyle: React.CSSProperties = {
-  fontSize: 14,
-  overflowX: "auto",
-  fontFamily: "SF Mono, Menlo, monospace",
-}
-
-export const liveErrorStyle: React.CSSProperties = {
-  fontFamily: "SF Mono, Menlo, monospace",
-  fontSize: 14,
-  padding: "1em",
-  overflowX: "auto",
-  color: "white",
-  backgroundColor: "red",
-}
+import { liveEditorStyle, liveErrorStyle } from "./styles"
 
 const LiveCodePreview = chakra(LivePreview, {
   baseStyle: {
