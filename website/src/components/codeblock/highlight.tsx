@@ -1,6 +1,9 @@
 import { chakra } from "@chakra-ui/react"
-import BaseHighlight, { defaultProps, Language } from "prism-react-renderer"
-import theme from "prism-react-renderer/themes/nightOwl"
+import BaseHighlight, {
+  defaultProps,
+  Language,
+  PrismTheme,
+} from "prism-react-renderer"
 import React from "react"
 import { liveEditorStyle } from "./styles"
 
@@ -26,6 +29,7 @@ const calculateLinesToHighlight = (meta: string) => {
 interface HighlightProps {
   codeString: string
   language: Language
+  theme: PrismTheme
   metastring?: string
   showLines?: boolean
 }
@@ -44,7 +48,6 @@ function Highlight({
       {...defaultProps}
       code={codeString}
       language={language}
-      theme={theme}
       {...props}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (

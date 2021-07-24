@@ -105,6 +105,7 @@ function CodeBlock(props) {
         <Highlight
           codeString={editorCode}
           language={language}
+          theme={theme}
           metastring={ln}
           showLines={viewlines}
         />
