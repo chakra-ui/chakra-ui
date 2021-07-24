@@ -1,14 +1,8 @@
-import {
-  Box,
-  BoxProps,
-  Button,
-  ButtonProps,
-  chakra,
-  useClipboard,
-} from "@chakra-ui/react"
+import { Box, BoxProps, chakra } from "@chakra-ui/react"
 import theme from "prism-react-renderer/themes/nightOwl"
 import React, { useState } from "react"
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live"
+import CopyButton from "./copy-button"
 import Highlight from "./highlight"
 import scope from "./react-live-scope"
 import { liveEditorStyle, liveErrorStyle } from "./styles"
@@ -22,21 +16,6 @@ const LiveCodePreview = chakra(LivePreview, {
     borderRadius: "12px",
   },
 })
-
-const CopyButton = (props: ButtonProps) => (
-  <Button
-    size="sm"
-    position="absolute"
-    textTransform="uppercase"
-    colorScheme="teal"
-    fontSize="xs"
-    height="24px"
-    top={0}
-    zIndex="1"
-    right="1.25em"
-    {...props}
-  />
-)
 
 const EditableNotice = (props: BoxProps) => {
   return (
@@ -80,7 +59,6 @@ function CodeBlock(props) {
   const [editorCode, setEditorCode] = useState(children.trim())
 
   const language = className?.replace(/language-/, "")
-  const { hasCopied, onCopy } = useClipboard(editorCode)
 
   const liveProviderProps = {
     theme,
@@ -101,9 +79,7 @@ function CodeBlock(props) {
           <CodeContainer>
             <LiveEditor onChange={onChange} style={liveEditorStyle} />
           </CodeContainer>
-          <CopyButton onClick={onCopy}>
-            {hasCopied ? "copied" : "copy"}
-          </CopyButton>
+          <CopyButton code={editorCode} />
           <EditableNotice />
         </Box>
         <LiveError style={liveErrorStyle} />
@@ -117,9 +93,7 @@ function CodeBlock(props) {
         <LiveProvider {...liveProviderProps}>
           <LiveCodePreview zIndex="1" />
           <Box position="relative" zIndex="0">
-            <CopyButton onClick={onCopy}>
-              {hasCopied ? "copied" : "copy"}
-            </CopyButton>
+            <CopyButton code={editorCode} />
           </Box>
         </LiveProvider>
       </div>
@@ -136,9 +110,7 @@ function CodeBlock(props) {
           showLines={viewlines}
         />
       </CodeContainer>
-      <CopyButton top="4" onClick={onCopy}>
-        {hasCopied ? "copied" : "copy"}
-      </CopyButton>
+      <CopyButton top="4" code={editorCode} />
     </Box>
   )
 }
