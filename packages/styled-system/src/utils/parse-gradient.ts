@@ -1,4 +1,4 @@
-import { Dict } from "@chakra-ui/utils"
+import { Dict, isString } from "@chakra-ui/utils"
 import { Transform } from "./types"
 
 const directionMap = {
@@ -51,16 +51,27 @@ export function parseGradient(value: string | null | undefined, theme: Dict) {
     // if stop is valid shorthand direction, return it
     if (valueSet.has(stop)) return stop
 
+    const firstStop = stop.indexOf(" ")
+
     // color stop could be `red.200 20%` based on css gradient spec
-    const [_color, _stop] = stop.split(" ")
+    const [_color, _stop] =
+      firstStop !== -1
+        ? [stop.substr(0, firstStop), stop.substr(firstStop + 1)]
+        : [stop]
+
+    const _stopOrFunc = isCSSFunction(_stop) ? _stop : _stop && _stop.split(" ")
 
     // else, get and transform the color token or css value
     const key = `colors.${_color}`
     const color = key in theme.__cssMap ? theme.__cssMap[key].varRef : _color
-    return _stop ? [color, _stop].join(" ") : color
+    return _stopOrFunc ? [color, _stopOrFunc].join(" ") : color
   })
 
   return `${_type}(${_values.join(", ")})`
+}
+
+export const isCSSFunction = (value: unknown) => {
+  return isString(value) && value.includes("(") && value.includes(")")
 }
 
 export const gradientTransform: Transform = (value, theme) =>
