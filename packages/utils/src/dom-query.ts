@@ -1,4 +1,5 @@
-import { isFocusable, isTabbable, isHTMLElement } from "./tabbable"
+import { isHTMLElement } from "./dom"
+import { isFocusable, isTabbable } from "./tabbable"
 
 const focusableElList = [
   "input:not([disabled])",
