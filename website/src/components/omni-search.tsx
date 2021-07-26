@@ -263,68 +263,69 @@ function OmniSearch() {
                     const isLvl1 = item.type === "lvl1"
 
                     return (
-                      <Link key={item.id} href={item.url}>
-                        <Box
-                          id={`search-item-${index}`}
-                          as="li"
-                          aria-selected={selected ? true : undefined}
-                          cursor="pointer"
-                          onMouseEnter={() => {
-                            setActive(index)
-                            eventRef.current = "mouse"
-                          }}
-                          onClick={() => {
-                            modal.onClose()
-                          }}
-                          ref={menuNodes.ref(index)}
-                          role="option"
-                          key={item.id}
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            minH: 16,
-                            mt: 2,
-                            px: 4,
-                            py: 2,
-                            rounded: "lg",
-                            bg: "gray.100",
-                            ".chakra-ui-dark &": { bg: "gray.600" },
-                            _selected: {
-                              bg: "teal.500",
-                              color: "white",
-                              mark: {
+                      <Link key={item.id} href={item.url} passHref>
+                        <a>
+                          <Box
+                            id={`search-item-${index}`}
+                            as="li"
+                            aria-selected={selected ? true : undefined}
+                            onMouseEnter={() => {
+                              setActive(index)
+                              eventRef.current = "mouse"
+                            }}
+                            onClick={() => {
+                              modal.onClose()
+                            }}
+                            ref={menuNodes.ref(index)}
+                            role="option"
+                            key={item.id}
+                            sx={{
+                              display: "flex",
+                              alignItems: "center",
+                              minH: 16,
+                              mt: 2,
+                              px: 4,
+                              py: 2,
+                              rounded: "lg",
+                              bg: "gray.100",
+                              ".chakra-ui-dark &": { bg: "gray.600" },
+                              _selected: {
+                                bg: "teal.500",
                                 color: "white",
-                                textDecoration: "underline",
+                                mark: {
+                                  color: "white",
+                                  textDecoration: "underline",
+                                },
                               },
-                            },
-                          }}
-                        >
-                          {isLvl1 ? (
-                            <DocIcon opacity={0.4} />
-                          ) : (
-                            <HashIcon opacity={0.4} />
-                          )}
-
-                          <Box flex="1" ml="4">
-                            {!isLvl1 && (
-                              <Box
-                                fontWeight="medium"
-                                fontSize="xs"
-                                opacity={0.7}
-                              >
-                                {item.hierarchy.lvl1}
-                              </Box>
+                            }}
+                          >
+                            {isLvl1 ? (
+                              <DocIcon opacity={0.4} />
+                            ) : (
+                              <HashIcon opacity={0.4} />
                             )}
-                            <Box fontWeight="semibold">
-                              <OptionText
-                                searchWords={[query]}
-                                textToHighlight={item.content}
-                              />
-                            </Box>
-                          </Box>
 
-                          <EnterIcon opacity={0.5} />
-                        </Box>
+                            <Box flex="1" ml="4">
+                              {!isLvl1 && (
+                                <Box
+                                  fontWeight="medium"
+                                  fontSize="xs"
+                                  opacity={0.7}
+                                >
+                                  {item.hierarchy.lvl1}
+                                </Box>
+                              )}
+                              <Box fontWeight="semibold">
+                                <OptionText
+                                  searchWords={[query]}
+                                  textToHighlight={item.content}
+                                />
+                              </Box>
+                            </Box>
+
+                            <EnterIcon opacity={0.5} />
+                          </Box>
+                        </a>
                       </Link>
                     )
                   })}
