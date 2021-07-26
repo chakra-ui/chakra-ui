@@ -116,6 +116,7 @@ function OmniSearch() {
   const router = useRouter()
   const [query, setQuery] = React.useState("")
   const [active, setActive] = React.useState(0)
+  const [shouldCloseModal, setShouldCloseModal] = React.useState(false)
   const menu = useDisclosure()
   const modal = useDisclosure()
   const [menuNodes] = React.useState(() => new MultiRef<number, HTMLElement>())
@@ -172,6 +173,13 @@ function OmniSearch() {
           }
           break
         }
+        case "Control":
+        case "Alt":
+        case "Shift": {
+          e.preventDefault()
+          setShouldCloseModal(true)
+          break
+        }
         case "Enter": {
           modal.onClose()
           router.push(results[active].url)
@@ -181,6 +189,18 @@ function OmniSearch() {
     },
     [active, results, router],
   )
+
+  const onKeyUp = React.useCallback((e: React.KeyboardEvent) => {
+    eventRef.current = "keyboard"
+    switch (e.key) {
+      case "Control":
+      case "Alt":
+      case "Shift": {
+        e.preventDefault()
+        setShouldCloseModal(false)
+      }
+    }
+  }, [])
 
   useUpdateEffect(() => {
     setActive(0)
@@ -243,6 +263,7 @@ function OmniSearch() {
                 menu.onOpen()
               }}
               onKeyDown={onKeyDown}
+              onKeyUp={onKeyUp}
             />
             <Center pos="absolute" left={7} h="68px">
               <SearchIcon color="teal.500" boxSize="20px" />
@@ -274,7 +295,9 @@ function OmniSearch() {
                               eventRef.current = "mouse"
                             }}
                             onClick={() => {
-                              modal.onClose()
+                              if (!shouldCloseModal) {
+                                modal.onClose()
+                              }
                             }}
                             ref={menuNodes.ref(index)}
                             role="option"
