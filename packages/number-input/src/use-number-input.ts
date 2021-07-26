@@ -25,7 +25,49 @@ import {
   isValidNumericKeyboardEvent,
 } from "./utils"
 
-export interface UseNumberInputProps extends UseCounterProps {
+/**
+ * Represents the standard floating point format used in `isFloatingPointNumericCharacter`
+ */
+export type JavascriptParsableNumberFormat = string
+export type UnknownStringFormat = string
+
+export interface NumberFormatParseResult<TCustomNumberFormat extends string> {
+  raw: UnknownStringFormat
+  custom: TCustomNumberFormat
+  native: JavascriptParsableNumberFormat
+}
+
+export interface NumberInputCustomFormat<TCustomNumberFormat extends string> {
+  parse: (
+    text: UnknownStringFormat,
+  ) => NumberFormatParseResult<TCustomNumberFormat>
+  format: (value: StringOrNumber) => TCustomNumberFormat | StringOrNumber
+  isValidCharacter: (character: string) => boolean
+}
+
+const defaultNumberInputFormat: NumberInputCustomFormat<JavascriptParsableNumberFormat> = {
+  parse: (
+    text: UnknownStringFormat,
+  ): NumberFormatParseResult<JavascriptParsableNumberFormat> => {
+    return {
+      raw: text,
+      custom: text,
+      native: text,
+    }
+  },
+  format: (
+    value: StringOrNumber,
+  ): JavascriptParsableNumberFormat | StringOrNumber => {
+    return value
+  },
+  isValidCharacter: (character: string): boolean => {
+    return isFloatingPointNumericCharacter(character)
+  },
+}
+
+export interface UseNumberInputProps<
+  TCustomNumberFormat extends string = JavascriptParsableNumberFormat
+> extends UseCounterProps {
   /**
    * If `true`, the input will be focused as you increment
    * or decrement the value with the stepper
@@ -93,10 +135,8 @@ export interface UseNumberInputProps extends UseCounterProps {
   "aria-labelledby"?: string
   onFocus?: React.FocusEventHandler<HTMLInputElement>
   onBlur?: React.FocusEventHandler<HTMLInputElement>
+  customFormat?: NumberInputCustomFormat<TCustomNumberFormat>
 }
-
-const sanitize = (value: string) =>
-  value.split("").filter(isFloatingPointNumericCharacter).join("")
 
 /**
  * React hook that implements the WAI-ARIA Spin Button widget
@@ -109,7 +149,9 @@ const sanitize = (value: string) =>
  * @see Docs     https://www.chakra-ui.com/useNumberInput
  * @see WHATWG   https://html.spec.whatwg.org/multipage/input.html#number-state-(type=number)
  */
-export function useNumberInput(props: UseNumberInputProps = {}) {
+export function useNumberInput<
+  TCustomNumberFormat extends string = JavascriptParsableNumberFormat
+>(props: UseNumberInputProps<TCustomNumberFormat> = {}) {
   const {
     focusInputOnChange = true,
     clampValueOnBlur = true,
@@ -132,12 +174,12 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     "aria-describedby": ariaDescBy,
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
-    onFocus,
+    onFocus: onFocusProp,
     onBlur,
+    customFormat = defaultNumberInputFormat,
     ...htmlProps
   } = props
 
-  const onFocusProp = useCallbackRef(onFocus)
   const onBlurProp = useCallbackRef(onBlur)
   const getAriaValueTextProp = useCallbackRef(getAriaValueText)
 
@@ -162,6 +204,17 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
   const [isFocused, setFocused] = useBoolean()
 
   const inputRef = React.useRef<HTMLInputElement>(null)
+  const inputSelection = React.useRef<{
+    start: number | null
+    end: number | null
+  } | null>(null)
+
+  const sanitize = React.useCallback(
+    (value: string) => {
+      return value.split("").filter(customFormat.isValidCharacter).join("")
+    },
+    [customFormat.isValidCharacter],
+  )
 
   /**
    * Sync state with uncontrolled form libraries like `react-hook-form`.
@@ -170,9 +223,10 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     if (!inputRef.current) return
     const notInSync = inputRef.current.value != counter.value
     if (notInSync) {
-      counter.setValue(sanitize(inputRef.current.value))
+      const { native } = customFormat.parse(inputRef.current.value)
+      counter.setValue(sanitize(native))
     }
-  }, [])
+  }, [customFormat])
 
   const isInteractive = !(isReadOnly || isDisabled)
 
@@ -208,9 +262,27 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    */
   const onChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      updateFn(sanitize(event.target.value))
+      const { native } = customFormat.parse(event.target.value)
+      updateFn(sanitize(native))
+      inputSelection.current = {
+        start: event.target.selectionStart,
+        end: event.target.selectionEnd,
+      }
     },
-    [updateFn],
+    [customFormat, sanitize, updateFn],
+  )
+
+  const onFocus = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      /**
+       * restore selection if custom format moved it to the end
+       */
+      event.target.selectionStart =
+        inputSelection.current?.start ?? event.target.value?.length
+      event.target.selectionEnd =
+        inputSelection.current?.end ?? event.target.selectionStart
+    },
+    [],
   )
 
   const onKeyDown = React.useCallback(
@@ -218,7 +290,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       /**
        * only allow valid numeric keys
        */
-      if (!isValidNumericKeyboardEvent(event)) {
+      if (!isValidNumericKeyboardEvent(event, customFormat.isValidCharacter)) {
         event.preventDefault()
       }
 
@@ -248,7 +320,15 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         action(event)
       }
     },
-    [updateFn, decrement, increment, max, min, stepProp],
+    [
+      customFormat.isValidCharacter,
+      stepProp,
+      increment,
+      decrement,
+      updateFn,
+      min,
+      max,
+    ],
   )
 
   const getStepFactor = <Event extends React.KeyboardEvent | React.WheelEvent>(
@@ -453,7 +533,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       autoCorrect: "off",
       onChange: callAllHandlers(props.onChange, onChange),
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-      onFocus: callAllHandlers(props.onFocus, onFocusProp, () =>
+      onFocus: callAllHandlers(props.onFocus, onFocus, () =>
         scheduleMicrotask(setFocused.on),
       ),
       onBlur: callAllHandlers(props.onBlur, onBlurProp, onInputBlur),
@@ -478,7 +558,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       ariaValueText,
       onChange,
       onKeyDown,
-      onFocusProp,
+      onFocus,
       setFocused.on,
       onBlurProp,
       onInputBlur,
@@ -487,6 +567,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
   return {
     value: counter.value,
+    formattedValue: customFormat.format(counter.value) as TCustomNumberFormat,
     valueAsNumber: counter.valueAsNumber,
     isFocused,
     isDisabled,

@@ -12,7 +12,10 @@ export function isFloatingPointNumericCharacter(character: string) {
  * Determine if the event is a valid numeric keyboard event.
  * We use this so we can prevent non-number characters in the input
  */
-export function isValidNumericKeyboardEvent(event: React.KeyboardEvent) {
+export function isValidNumericKeyboardEvent(
+  event: React.KeyboardEvent,
+  isValidCharacter?: (character: string) => boolean,
+) {
   if (event.key == null) return true
 
   const isModifierKey = event.ctrlKey || event.altKey || event.metaKey
@@ -25,6 +28,10 @@ export function isValidNumericKeyboardEvent(event: React.KeyboardEvent) {
 
   if (!isSingleCharacterKey) {
     return true
+  }
+
+  if (isValidCharacter) {
+    return isValidCharacter(event.key)
   }
 
   return isFloatingPointNumericCharacter(event.key)
