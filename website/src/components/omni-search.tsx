@@ -116,7 +116,7 @@ function OmniSearch() {
   const router = useRouter()
   const [query, setQuery] = React.useState("")
   const [active, setActive] = React.useState(0)
-  const [shouldCloseModal, setShouldCloseModal] = React.useState(false)
+  const [shouldCloseModal, setShouldCloseModal] = React.useState(true)
   const menu = useDisclosure()
   const modal = useDisclosure()
   const [menuNodes] = React.useState(() => new MultiRef<number, HTMLElement>())
@@ -295,7 +295,7 @@ function OmniSearch() {
                               eventRef.current = "mouse"
                             }}
                             onClick={() => {
-                              if (!shouldCloseModal) {
+                              if (shouldCloseModal) {
                                 modal.onClose()
                               }
                             }}
