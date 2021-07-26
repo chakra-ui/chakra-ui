@@ -31,33 +31,17 @@ import {
 export type JavascriptParsableNumberFormat = string
 export type UnknownStringFormat = string
 
-export interface NumberFormatParseResult<TCustomNumberFormat extends string> {
-  raw: UnknownStringFormat
-  custom: TCustomNumberFormat
-  native: JavascriptParsableNumberFormat
-}
-
-export interface NumberInputCustomFormat<TCustomNumberFormat extends string> {
-  parse: (
-    text: UnknownStringFormat,
-  ) => NumberFormatParseResult<TCustomNumberFormat>
-  format: (value: StringOrNumber) => TCustomNumberFormat | StringOrNumber
+export interface NumberInputCustomFormat {
+  parse: (rawInput: UnknownStringFormat) => JavascriptParsableNumberFormat
+  format: (value: StringOrNumber) => StringOrNumber
   isValidCharacter: (character: string) => boolean
 }
 
-const defaultNumberInputFormat: NumberInputCustomFormat<JavascriptParsableNumberFormat> = {
-  parse: (
-    text: UnknownStringFormat,
-  ): NumberFormatParseResult<JavascriptParsableNumberFormat> => {
-    return {
-      raw: text,
-      custom: text,
-      native: text,
-    }
+const defaultNumberInputFormat: NumberInputCustomFormat = {
+  parse: (text: UnknownStringFormat): JavascriptParsableNumberFormat => {
+    return text
   },
-  format: (
-    value: StringOrNumber,
-  ): JavascriptParsableNumberFormat | StringOrNumber => {
+  format: (value: StringOrNumber): StringOrNumber => {
     return value
   },
   isValidCharacter: (character: string): boolean => {
@@ -65,9 +49,7 @@ const defaultNumberInputFormat: NumberInputCustomFormat<JavascriptParsableNumber
   },
 }
 
-export interface UseNumberInputProps<
-  TCustomNumberFormat extends string = JavascriptParsableNumberFormat
-> extends UseCounterProps {
+export interface UseNumberInputProps extends UseCounterProps {
   /**
    * If `true`, the input will be focused as you increment
    * or decrement the value with the stepper
@@ -135,7 +117,7 @@ export interface UseNumberInputProps<
   "aria-labelledby"?: string
   onFocus?: React.FocusEventHandler<HTMLInputElement>
   onBlur?: React.FocusEventHandler<HTMLInputElement>
-  customFormat?: NumberInputCustomFormat<TCustomNumberFormat>
+  customFormat?: NumberInputCustomFormat
 }
 
 /**
@@ -149,9 +131,7 @@ export interface UseNumberInputProps<
  * @see Docs     https://www.chakra-ui.com/useNumberInput
  * @see WHATWG   https://html.spec.whatwg.org/multipage/input.html#number-state-(type=number)
  */
-export function useNumberInput<
-  TCustomNumberFormat extends string = JavascriptParsableNumberFormat
->(props: UseNumberInputProps<TCustomNumberFormat> = {}) {
+export function useNumberInput(props: UseNumberInputProps = {}) {
   const {
     focusInputOnChange = true,
     clampValueOnBlur = true,
@@ -223,8 +203,8 @@ export function useNumberInput<
     if (!inputRef.current) return
     const notInSync = inputRef.current.value != counter.value
     if (notInSync) {
-      const { native } = customFormat.parse(inputRef.current.value)
-      counter.setValue(sanitize(native))
+      const parsedInput = customFormat.parse(inputRef.current.value)
+      counter.setValue(sanitize(parsedInput))
     }
   }, [customFormat])
 
@@ -262,8 +242,8 @@ export function useNumberInput<
    */
   const onChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { native } = customFormat.parse(event.target.value)
-      updateFn(sanitize(native))
+      const parsedInput = customFormat.parse(event.target.value)
+      updateFn(sanitize(parsedInput))
       inputSelection.current = {
         start: event.target.selectionStart,
         end: event.target.selectionEnd,
@@ -274,8 +254,11 @@ export function useNumberInput<
 
   const onFocus = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
+      if (!inputSelection.current) {
+        return
+      }
       /**
-       * restore selection if custom format moved it to the end
+       * restore selection if custom format string replacement moved it to the end
        */
       event.target.selectionStart =
         inputSelection.current?.start ?? event.target.value?.length
@@ -520,7 +503,7 @@ export function useNumberInput<
       "aria-required": props.required ?? isRequired,
       required: props.required ?? isRequired,
       ref: mergeRefs(inputRef, ref),
-      value: counter.value,
+      value: customFormat.format(counter.value),
       role: "spinbutton",
       "aria-valuemin": min,
       "aria-valuemax": max,
@@ -562,12 +545,12 @@ export function useNumberInput<
       setFocused.on,
       onBlurProp,
       onInputBlur,
+      customFormat,
     ],
   )
 
   return {
-    value: counter.value,
-    formattedValue: customFormat.format(counter.value) as TCustomNumberFormat,
+    value: customFormat.format(counter.value),
     valueAsNumber: counter.valueAsNumber,
     isFocused,
     isDisabled,
