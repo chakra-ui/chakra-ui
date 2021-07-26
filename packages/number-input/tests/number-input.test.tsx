@@ -9,6 +9,7 @@ import {
   press,
   screen,
 } from "@chakra-ui/test-utils"
+import { StringOrNumber } from "@chakra-ui/utils"
 import * as React from "react"
 import {
   NumberDecrementStepper,
@@ -33,6 +34,24 @@ function renderComponent(props: NumberInputProps = {}) {
       </NumberInput>
     </>,
   )
+}
+
+const FLOATING_POINT_REGEX = /^[Ee0-9+\-.,]$/
+const testNumberInputCustomFormat = {
+  parse: (rawInput: string) => rawInput?.replace(",", "."),
+  format: (value: StringOrNumber) => {
+    if (!value) {
+      return value as string
+    }
+    console.log(
+      value,
+      typeof value,
+      String(value),
+      String(value).replace(".", ","),
+    )
+    return String(value).replace(".", ",")
+  },
+  isValidCharacter: (character: string) => FLOATING_POINT_REGEX.test(character),
 }
 
 /**
@@ -155,6 +174,35 @@ it("should behave properly with precision value", () => {
   expect(input).toHaveValue("1.301234")
   fireEvent.blur(input)
   expect(input).toHaveValue("1.30")
+})
+
+it("should apply custom format", () => {
+  const { getByTestId } = renderComponent({
+    defaultValue: 0,
+    step: 0.65,
+    precision: 2,
+    customFormat: testNumberInputCustomFormat,
+  })
+
+  const input = getByTestId("input")
+  const incBtn = getByTestId("up-btn")
+  const decBtn = getByTestId("down-btn")
+
+  expect(input).toHaveValue("0,00")
+  userEvent.click(incBtn)
+  expect(input).toHaveValue("0,65")
+  userEvent.click(incBtn)
+  expect(input).toHaveValue("1,30")
+  userEvent.click(incBtn)
+  expect(input).toHaveValue("1,95")
+  userEvent.click(decBtn)
+  expect(input).toHaveValue("1,30")
+
+  // on blur, value is clamped using precision
+  userEvent.type(input, "1234")
+  expect(input).toHaveValue("1,301234")
+  fireEvent.blur(input)
+  expect(input).toHaveValue("1,30")
 })
 
 test("should call onChange on value change", () => {
