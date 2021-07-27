@@ -56,11 +56,10 @@ interface InputOptions {
   isFullWidth?: boolean
 }
 
-export interface NumberInputProps
-  extends UseNumberInputProps,
-    ThemingProps<"NumberInput">,
-    InputOptions,
-    Omit<HTMLChakraProps<"div">, keyof UseNumberInputProps> {}
+export type NumberInputProps = UseNumberInputProps &
+  ThemingProps<"NumberInput"> &
+  InputOptions &
+  Omit<HTMLChakraProps<"div">, keyof UseNumberInputProps> & {}
 
 /**
  * NumberInput

@@ -20,10 +20,7 @@ import {
 import { mergeRefs, PropGetter, EventKeyMap } from "@chakra-ui/react-utils"
 import * as React from "react"
 import { useSpinner } from "./use-spinner"
-import {
-  isFloatingPointNumericCharacter,
-  isValidNumericKeyboardEvent,
-} from "./utils"
+import { FLOATING_POINT_REGEX, isValidNumericKeyboardEvent } from "./utils"
 
 /**
  * Represents the standard floating point format used in `isFloatingPointNumericCharacter`
@@ -31,94 +28,99 @@ import {
 export type JavascriptParsableNumberFormat = string
 export type UnknownStringFormat = string
 
-export interface NumberInputCustomFormat {
-  parse: (rawInput: UnknownStringFormat) => JavascriptParsableNumberFormat
-  format: (value: StringOrNumber) => StringOrNumber
-  isValidCharacter: (character: string) => boolean
+type UnusedCustomFormat = {
+  charPattern?: never
+  parseValue?: never
+  formatValue?: never
 }
+type UsedCustomFormat = {
+  /**
+   * If using a custom display format, this defines which keys are valid on a `KeyDown`-Event.
+   *
+   * @default /^[Ee0-9+\-.]$/
+   */
+  charPattern: RegExp
+  /**
+   * If using a custom display format, this converts the custom format to a format `parseFloat` understands.
+   */
+  parseValue: (rawValue: string) => string
+  /**
+   * If using a custom display format, this converts the default format to the custom format.
+   */
+  formatValue: (value: StringOrNumber) => StringOrNumber
+}
+type OptionalCustomFormat = UsedCustomFormat | UnusedCustomFormat
 
-const defaultNumberInputFormat: NumberInputCustomFormat = {
-  parse: (text: UnknownStringFormat): JavascriptParsableNumberFormat => {
-    return text
-  },
-  format: (value: StringOrNumber): StringOrNumber => {
-    return value
-  },
-  isValidCharacter: (character: string): boolean => {
-    return isFloatingPointNumericCharacter(character)
-  },
-}
-
-export interface UseNumberInputProps extends UseCounterProps {
-  /**
-   * If `true`, the input will be focused as you increment
-   * or decrement the value with the stepper
-   *
-   * @default true
-   */
-  focusInputOnChange?: boolean
-  /**
-   * This controls the value update when you blur out of the input.
-   * - If `true` and the value is greater than `max`, the value will be reset to `max`
-   * - Else, the value remains the same.
-   *
-   * @default true
-   */
-  clampValueOnBlur?: boolean
-  /**
-   * This is used to format the value so that screen readers
-   * can speak out a more human-friendly value.
-   *
-   * It is used to set the `aria-valuetext` property of the input
-   */
-  getAriaValueText?(value: StringOrNumber): string
-  /**
-   * If `true`, the input will be in readonly mode
-   */
-  isReadOnly?: boolean
-  /**
-   * If `true`, the input will have `aria-invalid` set to `true`
-   */
-  isInvalid?: boolean
-  /**
-   * If `true`, the input will be disabled
-   */
-  isDisabled?: boolean
-  isRequired?: boolean
-  /**
-   * The `id` to use for the number input field.
-   */
-  id?: string
-  /**
-   * The pattern used to check the <input> element's value against on form submission.
-   *
-   * @default
-   * "[0-9]*(.[0-9]+)?"
-   */
-  pattern?: React.InputHTMLAttributes<any>["pattern"]
-  /**
-   * Hints at the type of data that might be entered by the user. It also determines
-   * the type of keyboard shown to the user on mobile devices
-   *
-   * @default
-   * "decimal"
-   */
-  inputMode?: React.InputHTMLAttributes<any>["inputMode"]
-  /**
-   * If `true`, the input's value will change based on mouse wheel
-   */
-  allowMouseWheel?: boolean
-  /**
-   * The HTML `name` attribute used for forms
-   */
-  name?: string
-  "aria-describedby"?: string
-  "aria-label"?: string
-  "aria-labelledby"?: string
-  onFocus?: React.FocusEventHandler<HTMLInputElement>
-  onBlur?: React.FocusEventHandler<HTMLInputElement>
-  customFormat?: NumberInputCustomFormat
-}
+export type UseNumberInputProps = UseCounterProps &
+  OptionalCustomFormat & {
+    /**
+     * If `true`, the input will be focused as you increment
+     * or decrement the value with the stepper
+     *
+     * @default true
+     */
+    focusInputOnChange?: boolean
+    /**
+     * This controls the value update when you blur out of the input.
+     * - If `true` and the value is greater than `max`, the value will be reset to `max`
+     * - Else, the value remains the same.
+     *
+     * @default true
+     */
+    clampValueOnBlur?: boolean
+    /**
+     * This is used to format the value so that screen readers
+     * can speak out a more human-friendly value.
+     *
+     * It is used to set the `aria-valuetext` property of the input
+     */
+    getAriaValueText?(value: StringOrNumber): string
+    /**
+     * If `true`, the input will be in readonly mode
+     */
+    isReadOnly?: boolean
+    /**
+     * If `true`, the input will have `aria-invalid` set to `true`
+     */
+    isInvalid?: boolean
+    /**
+     * If `true`, the input will be disabled
+     */
+    isDisabled?: boolean
+    isRequired?: boolean
+    /**
+     * The `id` to use for the number input field.
+     */
+    id?: string
+    /**
+     * The pattern used to check the <input> element's value against on form submission.
+     *
+     * @default
+     * "[0-9]*(.[0-9]+)?"
+     */
+    pattern?: React.InputHTMLAttributes<any>["pattern"]
+    /**
+     * Hints at the type of data that might be entered by the user. It also determines
+     * the type of keyboard shown to the user on mobile devices
+     *
+     * @default
+     * "decimal"
+     */
+    inputMode?: React.InputHTMLAttributes<any>["inputMode"]
+    /**
+     * If `true`, the input's value will change based on mouse wheel
+     */
+    allowMouseWheel?: boolean
+    /**
+     * The HTML `name` attribute used for forms
+     */
+    name?: string
+    "aria-describedby"?: string
+    "aria-label"?: string
+    "aria-labelledby"?: string
+    onFocus?: React.FocusEventHandler<HTMLInputElement>
+    onBlur?: React.FocusEventHandler<HTMLInputElement>
+  }
 
 /**
  * React hook that implements the WAI-ARIA Spin Button widget
@@ -156,7 +158,9 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     "aria-labelledby": ariaLabelledBy,
     onFocus: onFocusProp,
     onBlur,
-    customFormat = defaultNumberInputFormat,
+    charPattern = FLOATING_POINT_REGEX,
+    parseValue,
+    formatValue,
     ...htmlProps
   } = props
 
@@ -189,11 +193,36 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     end: number | null
   } | null>(null)
 
+  const isValidCharacter = React.useCallback(
+    (character: string) => charPattern.test(character),
+    [charPattern],
+  )
+
   const sanitize = React.useCallback(
     (value: string) => {
-      return value.split("").filter(customFormat.isValidCharacter).join("")
+      return value.split("").filter(isValidCharacter).join("")
     },
-    [customFormat.isValidCharacter],
+    [isValidCharacter],
+  )
+
+  const parse = React.useCallback(
+    (rawValue: string) => {
+      if (parseValue) {
+        return parseValue(rawValue)
+      }
+      return rawValue
+    },
+    [parseValue],
+  )
+
+  const format = React.useCallback(
+    (value: StringOrNumber) => {
+      if (formatValue) {
+        return formatValue(value)
+      }
+      return value
+    },
+    [formatValue],
   )
 
   /**
@@ -203,10 +232,10 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     if (!inputRef.current) return
     const notInSync = inputRef.current.value != counter.value
     if (notInSync) {
-      const parsedInput = customFormat.parse(inputRef.current.value)
+      const parsedInput = parse(inputRef.current.value)
       counter.setValue(sanitize(parsedInput))
     }
-  }, [customFormat])
+  }, [parse])
 
   const isInteractive = !(isReadOnly || isDisabled)
 
@@ -242,14 +271,14 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    */
   const onChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      const parsedInput = customFormat.parse(event.target.value)
+      const parsedInput = parse(event.target.value)
       updateFn(sanitize(parsedInput))
       inputSelection.current = {
         start: event.target.selectionStart,
         end: event.target.selectionEnd,
       }
     },
-    [customFormat, sanitize, updateFn],
+    [parse, sanitize, updateFn],
   )
 
   const onFocus = React.useCallback(
@@ -261,9 +290,9 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
        * restore selection if custom format string replacement moved it to the end
        */
       event.target.selectionStart =
-        inputSelection.current?.start ?? event.target.value?.length
+        inputSelection.current.start ?? event.target.value?.length
       event.target.selectionEnd =
-        inputSelection.current?.end ?? event.target.selectionStart
+        inputSelection.current.end ?? event.target.selectionStart
     },
     [],
   )
@@ -273,7 +302,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       /**
        * only allow valid numeric keys
        */
-      if (!isValidNumericKeyboardEvent(event, customFormat.isValidCharacter)) {
+      if (!isValidNumericKeyboardEvent(event, isValidCharacter)) {
         event.preventDefault()
       }
 
@@ -303,15 +332,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         action(event)
       }
     },
-    [
-      customFormat.isValidCharacter,
-      stepProp,
-      increment,
-      decrement,
-      updateFn,
-      min,
-      max,
-    ],
+    [isValidCharacter, stepProp, increment, decrement, updateFn, min, max],
   )
 
   const getStepFactor = <Event extends React.KeyboardEvent | React.WheelEvent>(
@@ -503,7 +524,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       "aria-required": props.required ?? isRequired,
       required: props.required ?? isRequired,
       ref: mergeRefs(inputRef, ref),
-      value: customFormat.format(counter.value),
+      value: format(counter.value),
       role: "spinbutton",
       "aria-valuemin": min,
       "aria-valuemax": max,
@@ -545,12 +566,12 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       setFocused.on,
       onBlurProp,
       onInputBlur,
-      customFormat,
+      format,
     ],
   )
 
   return {
-    value: customFormat.format(counter.value),
+    value: format(counter.value),
     valueAsNumber: counter.valueAsNumber,
     isFocused,
     isDisabled,
