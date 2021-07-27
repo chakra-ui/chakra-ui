@@ -36,22 +36,16 @@ function renderComponent(props: NumberInputProps = {}) {
   )
 }
 
-const FLOATING_POINT_REGEX = /^[Ee0-9+\-.,]$/
+const CUSTOM_FLOATING_POINT_REGEX = /^[Ee0-9+\-.,]$/
 const testNumberInputCustomFormat = {
-  parse: (rawInput: string) => rawInput?.replace(",", "."),
-  format: (value: StringOrNumber) => {
+  charPattern: CUSTOM_FLOATING_POINT_REGEX,
+  parseValue: (rawInput: string) => rawInput?.replace(",", "."),
+  formatValue: (value: StringOrNumber) => {
     if (!value) {
       return value as string
     }
-    console.log(
-      value,
-      typeof value,
-      String(value),
-      String(value).replace(".", ","),
-    )
     return String(value).replace(".", ",")
   },
-  isValidCharacter: (character: string) => FLOATING_POINT_REGEX.test(character),
 }
 
 /**
@@ -181,7 +175,7 @@ it("should apply custom format", () => {
     defaultValue: 0,
     step: 0.65,
     precision: 2,
-    customFormat: testNumberInputCustomFormat,
+    ...testNumberInputCustomFormat,
   })
 
   const input = getByTestId("input")
