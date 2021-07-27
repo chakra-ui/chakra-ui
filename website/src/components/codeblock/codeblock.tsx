@@ -1,86 +1,22 @@
-import {
-  Box,
-  BoxProps,
-  Button,
-  ButtonProps,
-  chakra,
-  useClipboard,
-} from "@chakra-ui/react"
+import { Box, useBoolean } from "@chakra-ui/react"
+import dynamic from "next/dynamic"
 import theme from "prism-react-renderer/themes/nightOwl"
-import React, { useState } from "react"
-import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live"
+import React, { useEffect } from "react"
+import CodeContainer from "./code-container"
+import CopyButton from "./copy-button"
 import Highlight from "./highlight"
-import scope from "./react-live-scope"
 
-export const liveEditorStyle: React.CSSProperties = {
-  fontSize: 14,
-  overflowX: "auto",
-  fontFamily: "SF Mono, Menlo, monospace",
-}
-
-export const liveErrorStyle: React.CSSProperties = {
-  fontFamily: "SF Mono, Menlo, monospace",
-  fontSize: 14,
-  padding: "1em",
-  overflowX: "auto",
-  color: "white",
-  backgroundColor: "red",
-}
-
-const LiveCodePreview = chakra(LivePreview, {
-  baseStyle: {
-    fontFamily: "body",
-    mt: 5,
-    p: 3,
-    borderWidth: 1,
-    borderRadius: "12px",
-  },
-})
-
-const CopyButton = (props: ButtonProps) => (
-  <Button
-    size="sm"
-    position="absolute"
-    textTransform="uppercase"
-    colorScheme="teal"
-    fontSize="xs"
-    height="24px"
-    top={0}
-    zIndex="1"
-    right="1.25em"
-    {...props}
-  />
-)
-
-const EditableNotice = (props: BoxProps) => {
-  return (
-    <Box
-      position="absolute"
-      width="full"
-      top="-1.25em"
-      roundedTop="8px"
-      bg="#011627"
-      py="2"
-      zIndex="0"
-      letterSpacing="wide"
-      color="gray.400"
-      fontSize="xs"
-      fontWeight="semibold"
-      textAlign="center"
-      textTransform="uppercase"
-      pointerEvents="none"
-      {...props}
-    >
-      Editable Example
-    </Box>
-  )
-}
-
-const CodeContainer = (props: BoxProps) => (
-  <Box padding="5" rounded="8px" my="8" bg="#011627" {...props} />
-)
+const ReactLiveBlock = dynamic(() => import("./react-live-block"))
 
 function CodeBlock(props) {
+  const [isMounted, { on }] = useBoolean()
+  useEffect(
+    /**
+     * Lazily-load <ReactLiveBlock /> to save bundle size.
+     */
+    on,
+    [],
+  )
   const {
     className,
     live = true,
@@ -89,53 +25,32 @@ function CodeBlock(props) {
     children,
     viewlines,
     ln,
+    mountStylesheet = false,
     ...rest
   } = props
-  const [editorCode, setEditorCode] = useState(children.trim())
 
   const language = className?.replace(/language-/, "")
-  const { hasCopied, onCopy } = useClipboard(editorCode)
-
-  const liveProviderProps = {
-    theme,
+  const rawCode = children.trim()
+  const reactLiveBlockProps = {
+    rawCode,
     language,
-    code: editorCode,
-    scope,
+    theme,
     noInline: manual,
+    mountStylesheet,
     ...rest,
   }
 
-  const onChange = (newCode) => setEditorCode(newCode.trim())
-
-  if (language === "jsx" && live === true) {
-    return (
-      <LiveProvider {...liveProviderProps}>
-        <LiveCodePreview zIndex="1" />
-        <Box position="relative" zIndex="0">
-          <CodeContainer>
-            <LiveEditor onChange={onChange} style={liveEditorStyle} />
-          </CodeContainer>
-          <CopyButton onClick={onCopy}>
-            {hasCopied ? "copied" : "copy"}
-          </CopyButton>
-          <EditableNotice />
-        </Box>
-        <LiveError style={liveErrorStyle} />
-      </LiveProvider>
-    )
+  if (isMounted && language === "jsx" && live === true) {
+    return <ReactLiveBlock editable {...reactLiveBlockProps} />
   }
 
-  if (render) {
+  if (isMounted && render) {
+    /**
+     * @TODO Not sure if this is even used?
+     */
     return (
       <div style={{ marginTop: 32 }}>
-        <LiveProvider {...liveProviderProps}>
-          <LiveCodePreview zIndex="1" />
-          <Box position="relative" zIndex="0">
-            <CopyButton onClick={onCopy}>
-              {hasCopied ? "copied" : "copy"}
-            </CopyButton>
-          </Box>
-        </LiveProvider>
+        <ReactLiveBlock editable={false} {...reactLiveBlockProps} />
       </div>
     )
   }
@@ -144,21 +59,16 @@ function CodeBlock(props) {
     <Box position="relative" zIndex="0">
       <CodeContainer px="0" overflow="hidden">
         <Highlight
-          codeString={editorCode}
+          codeString={rawCode}
           language={language}
+          theme={theme}
           metastring={ln}
           showLines={viewlines}
         />
       </CodeContainer>
-      <CopyButton top="4" onClick={onCopy}>
-        {hasCopied ? "copied" : "copy"}
-      </CopyButton>
+      <CopyButton top="4" code={rawCode} />
     </Box>
   )
-}
-
-CodeBlock.defaultProps = {
-  mountStylesheet: false,
 }
 
 export default CodeBlock
