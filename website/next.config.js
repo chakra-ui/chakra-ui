@@ -5,8 +5,8 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 })
 const path = require("path")
 const execa = require("execa")
-const fromUnixTime = require("date-fns/fromUnixTime")
-const format = require("date-fns/format")
+const { default: fromUnixTime } = require("date-fns/fromUnixTime")
+const { default: format } = require("date-fns/format")
 const { getEditUrl, addLeadingSlash } = require("@docusaurus/utils")
 const { Octokit } = require("@octokit/rest")
 
