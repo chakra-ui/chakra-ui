@@ -22,12 +22,6 @@ import * as React from "react"
 import { useSpinner } from "./use-spinner"
 import { FLOATING_POINT_REGEX, isValidNumericKeyboardEvent } from "./utils"
 
-/**
- * Represents the standard floating point format used in `isFloatingPointNumericCharacter`
- */
-export type JavascriptParsableNumberFormat = string
-export type UnknownStringFormat = string
-
 type UnusedCustomFormat = {
   charPattern?: never
   parseValue?: never
