@@ -33,7 +33,7 @@ type UsedCustomFormat = {
    *
    * @default /^[Ee0-9+\-.]$/
    */
-  charPattern: RegExp
+  charPattern?: RegExp
   /**
    * If using a custom display format, this converts the custom format to a format `parseFloat` understands.
    */
