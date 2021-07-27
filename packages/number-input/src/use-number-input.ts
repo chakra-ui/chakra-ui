@@ -229,7 +229,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       const parsedInput = parse(inputRef.current.value)
       counter.setValue(sanitize(parsedInput))
     }
-  }, [parse])
+  }, [parse, sanitize])
 
   const isInteractive = !(isReadOnly || isDisabled)
 
