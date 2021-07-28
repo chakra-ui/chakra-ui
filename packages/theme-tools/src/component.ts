@@ -13,6 +13,7 @@ export interface StyleConfig {
 }
 
 export interface MultiStyleConfig {
+  parts?: string[]
   baseStyle?: { [part: string]: SystemStyleObject }
   sizes?: { [size: string]: { [part: string]: SystemStyleObject } }
   variants?: { [variants: string]: { [part: string]: SystemStyleObject } }
