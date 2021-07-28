@@ -430,6 +430,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://book-worm-1.herokuapp.com/"><img src="https://avatars.githubusercontent.com/u/71091489?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Samar Mohan</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=samarmohan" title="Code">💻</a></td>
     <td align="center"><a href="https://joaopaulo-developer.vercel.app/"><img src="https://avatars.githubusercontent.com/u/64229622?v=4?s=64" width="64px;" alt=""/><br /><sub><b>João Paulo Rodrigues</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=joaorodrs" title="Documentation">📖</a></td>
     <td align="center"><a href="http://develmonk.com"><img src="https://avatars.githubusercontent.com/u/1308847?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Avery Freeman</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=averyfreeman" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://schulz.codes"><img src="https://avatars.githubusercontent.com/u/3123354?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Daniel Schulz</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Atakethefake" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
