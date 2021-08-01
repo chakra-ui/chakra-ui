@@ -26,8 +26,7 @@ export type ThemeScale =
   | "transition.easing"
 
 export function extractTokens(theme: Dict) {
-  const _tokens = (tokens as unknown) as string[]
-  return pick(theme, _tokens)
+  return pick(theme, [...tokens, "tokensMap"])
 }
 
 export function omitVars(rawTheme: Dict) {

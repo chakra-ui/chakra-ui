@@ -216,6 +216,11 @@ export const pseudoSelectors = {
    */
   _rtl: "[dir=rtl] &",
   /**
+   * Styles for CSS Selector `[dir=ltr] &`
+   * It is applied when any parent element has `dir="ltr"`
+   */
+  _ltr: "[dir=ltr] &",
+  /**
    * Styles for CSS Selector `@media (prefers-color-scheme: dark)`
    * used when the user has requested the system
    * use a light or dark color theme.

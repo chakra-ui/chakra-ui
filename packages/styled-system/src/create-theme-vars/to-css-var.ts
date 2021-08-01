@@ -1,7 +1,8 @@
 import { analyzeBreakpoints, Dict } from "@chakra-ui/utils"
-import type { WithCSSVar } from "../utils/types"
+import type { WithCSSVar } from "../utils"
 import { createThemeVars } from "./create-theme-vars"
 import { extractTokens, omitVars } from "./theme-tokens"
+import { pseudoSelectors } from "../pseudos"
 
 export function toCSSVar<T extends Dict>(rawTheme: T) {
   /**
@@ -15,6 +16,11 @@ export function toCSSVar<T extends Dict>(rawTheme: T) {
 
   const cssVarPrefix = theme.config?.cssVarPrefix
 
+  const conditions = {
+    ...pseudoSelectors,
+    ...theme.conditions,
+  }
+
   const {
     /**
      * This is more like a dictionary of tokens users will type `green.500`,
@@ -26,7 +32,7 @@ export function toCSSVar<T extends Dict>(rawTheme: T) {
      * the emotion's <Global/> component to attach variables to `:root`
      */
     cssVars,
-  } = createThemeVars(tokens, { cssVarPrefix })
+  } = createThemeVars(tokens, { cssVarPrefix, conditions })
 
   const defaultCssVars: Dict = {
     "--chakra-ring-inset": "var(--chakra-empty,/*!*/ /*!*/)",

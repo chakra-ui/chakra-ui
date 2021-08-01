@@ -2,6 +2,7 @@ import { ColorMode, ColorModeOptions, ThemingProps } from "@chakra-ui/system"
 import { Breakpoints, Styles } from "@chakra-ui/theme-tools"
 import { Dict } from "@chakra-ui/utils"
 import { StyleObjectOrFn, SystemStyleObject } from "@chakra-ui/styled-system"
+import { Pseudos } from "csstype"
 
 export type RecursiveProperty<Nested = string | number> =
   | RecursiveObject<Nested>
@@ -105,11 +106,25 @@ interface Foundations extends Typography {
   zIndices: RecursiveObject
 }
 
-export interface ChakraTheme extends Foundations {
+export type ConditionToken<
+  AdditionalConditions extends keyof any = string,
+  Condition extends keyof any = "DEFAULT" | keyof Pseudos | AdditionalConditions
+> = Partial<Record<string, string | Partial<Record<Condition, string>>>>
+
+export type TokensMap<
+  ThemeTokens extends Foundations,
+  ThemeConditions extends Breakpoints<any>
+> = Partial<Record<keyof ThemeTokens, ConditionToken<keyof ThemeConditions>>>
+
+export interface ChakraTheme<
+  ThemeTokens extends Foundations = Foundations,
+  ThemeBreakpoints extends Breakpoints<Dict> = Breakpoints<Dict>
+> extends Foundations {
   components: ThemeComponents
   config: ThemeConfig
   direction: ThemeDirection
   styles: Styles
   layerStyles?: SystemStyleObjectRecord
   textStyles?: SystemStyleObjectRecord
+  tokensMap?: TokensMap<ThemeTokens, ThemeBreakpoints>
 }
