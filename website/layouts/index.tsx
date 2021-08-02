@@ -10,7 +10,6 @@ export default function DefaultLayout({ children, frontMatter }) {
   const layoutMap = {
     guides: <MDXLayout frontmatter={frontMatter}>{children}</MDXLayout>,
     docs: <MDXLayout frontmatter={frontMatter}>{children}</MDXLayout>,
-    blog: <MDXLayout frontmatter={frontMatter}>{children}</MDXLayout>,
     changelog: <MDXLayout frontmatter={frontMatter}>{children}</MDXLayout>,
     default: (
       <PageContainer frontmatter={frontMatter}>{children}</PageContainer>
