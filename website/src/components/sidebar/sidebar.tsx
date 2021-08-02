@@ -18,13 +18,7 @@ import { Routes } from "utils/get-route-context"
 import { convertBackticksToInlineCode } from "utils/convert-backticks-to-inline-code"
 import SidebarCategory from "./sidebar-category"
 import SidebarLink from "./sidebar-link"
-import {
-  BlogIcon,
-  DocsIcon,
-  GuidesIcon,
-  TeamIcon,
-  ResourcesIcon,
-} from "./sidebar-icons"
+import { DocsIcon, GuidesIcon, TeamIcon, ResourcesIcon } from "./sidebar-icons"
 
 export type SidebarContentProps = Routes & {
   pathname?: string
@@ -150,11 +144,6 @@ const mainNavLinks = [
     icon: <TeamIcon />,
     href: "/team",
     label: "Team",
-  },
-  {
-    icon: <BlogIcon />,
-    href: "/blog",
-    label: "Blog",
   },
 ]
 

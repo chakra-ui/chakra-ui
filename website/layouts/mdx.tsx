@@ -6,7 +6,6 @@ import Pagination from "components/pagination"
 import Sidebar from "components/sidebar/sidebar"
 import docsSidebar from "configs/docs-sidebar.json"
 import guidesSidebar from "configs/guides-sidebar.json"
-import blogSidebar from "configs/blog-sidebar.json"
 import * as React from "react"
 import { findRouteByPath, removeFromLast } from "utils/find-route-by-path"
 import { getRouteContext } from "utils/get-route-context"
@@ -19,7 +18,6 @@ export function getRoutes(slug: string) {
     "/resources": docsSidebar,
     "/changelog": docsSidebar,
     "/guides": guidesSidebar,
-    "/blog": blogSidebar,
     "/docs": docsSidebar,
   }
 
