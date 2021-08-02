@@ -452,7 +452,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       autoCorrect: "off",
       onChange: callAllHandlers(props.onChange, onChange),
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-      onFocus: callAllHandlers(props.onFocus, onFocusProp, () => setFocused.on),
+      onFocus: callAllHandlers(props.onFocus, onFocusProp, setFocused.on),
       onBlur: callAllHandlers(props.onBlur, onBlurProp, onInputBlur),
     }),
     [
