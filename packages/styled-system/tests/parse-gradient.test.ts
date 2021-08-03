@@ -87,6 +87,14 @@ describe("linear gradient", () => {
     )
   })
 
+  test("should parse color stop with function", () => {
+    expect(
+      parseGradient("linear(to-r, green, pink.dark calc(20px + 20px))", theme),
+    ).toMatchInlineSnapshot(
+      `"linear-gradient(to right, var(--colors-green), var(--colors-pink-dark) calc(20px + 20px))"`,
+    )
+  })
+
   test("should parse colors in rgb", () => {
     expect(
       parseGradient("linear(to-l, rgb(0,0,0), rgb(255,255,255))", theme),
