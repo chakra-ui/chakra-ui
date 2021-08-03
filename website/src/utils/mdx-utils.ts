@@ -3,12 +3,9 @@ import execa from "execa"
 import format from "date-fns/format"
 import fromUnixTime from "date-fns/fromUnixTime"
 import { addLeadingSlash, getEditUrl } from "@docusaurus/utils"
-import { Octokit } from "@octokit/rest"
-import { __DEV__, Dict } from "@chakra-ui/utils"
+import { Dict } from "@chakra-ui/utils"
 import { serialize } from "next-mdx-remote/serialize"
 import matter from "gray-matter"
-
-const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
 
 export async function serializeMdx(source: string) {
   const { content, data } = matter(source)
@@ -58,14 +55,14 @@ export async function processFrontmatter<Options extends Dict>(
   const slug = _slug || fileToPath(mdxPath)
 
   // if frontmatter includes author, add the author's data
-  const authorData = !__DEV__ && author ? await getGithubUserData(author) : null
+  //const authorData = !__DEV__ && author ? await getGithubUserData(author) : null
 
   const data = {
     ...rest,
     slug,
     lastEdited,
     editUrl,
-    author: authorData,
+    author,
     tags,
   }
 
@@ -117,28 +114,5 @@ async function getLastEdited(filePath: string) {
   } catch (error) {
     console.error(error)
     return null
-  }
-}
-
-async function getGithubUserData(username: string) {
-  const { data } = await octokit.users.getByUsername({ username })
-
-  const {
-    avatar_url: avatarUrl,
-    html_url: githubUrl,
-    blog: websiteUrl,
-    bio,
-    name,
-    twitter_username: twitterUsername,
-  } = data
-
-  return {
-    login: username,
-    avatarUrl,
-    githubUrl,
-    websiteUrl,
-    bio,
-    name,
-    twitterUsername,
   }
 }
