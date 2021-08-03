@@ -10,7 +10,6 @@ import blogSidebar from "configs/blog-sidebar.json"
 import * as React from "react"
 import { findRouteByPath, removeFromLast } from "utils/find-route-by-path"
 import { getRouteContext } from "utils/get-route-context"
-import { getHeadings } from "utils/get-headings"
 
 export function getRoutes(slug: string) {
   // for home page, use docs sidebat
@@ -46,7 +45,6 @@ interface MDXLayoutProps {
 export default function MDXLayout(props: MDXLayoutProps) {
   const { frontmatter, children } = props
   const routes = getRoutes(frontmatter.slug)
-  const headings = getHeadings(children)
 
   const route = findRouteByPath(removeFromLast(frontmatter.slug, "#"), routes)
   const routeContext = getRouteContext(route, routes)
@@ -56,7 +54,6 @@ export default function MDXLayout(props: MDXLayoutProps) {
       <PageContainer
         frontmatter={frontmatter}
         sidebar={<Sidebar routes={routes} />}
-        headings={headings}
         pagination={
           <Pagination
             next={routeContext.nextRoute}

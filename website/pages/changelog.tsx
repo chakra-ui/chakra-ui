@@ -24,10 +24,7 @@ export async function getStaticProps() {
   }
 
   const { mdxSource: processedMdxSource, ...processedFrontmatter } = page
-  // const string = renderToString(
-  //   <MDXRemote {...mdxSource} components={MDXComponents} />,
-  // )
-  // console.log(getHeadings(string))
+
   return {
     props: {
       mdxSource: processedMdxSource,

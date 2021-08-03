@@ -27,6 +27,7 @@ export async function loadMdx(filename: string) {
     baseEditUrl: siteConfig.repo.editUrl,
     excerpt: frontMatter.excerpt || excerpt,
     readTimeMinutes: calcReadTime(mdxContent),
+    mdxContent,
     ...frontMatter,
     path: relativeFilePath,
     mdxSource,
