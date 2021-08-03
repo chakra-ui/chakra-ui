@@ -19,9 +19,6 @@ function Changelog({
 export async function getStaticProps() {
   const changelogPath = ["..", "CHANGELOG.md"].join("/")
   const page = await loadMdx(changelogPath)
-  if (!page) {
-    console.warn(`No changelog found`)
-  }
 
   const { mdxSource: processedMdxSource, ...processedFrontmatter } = page
 

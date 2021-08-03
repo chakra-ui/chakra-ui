@@ -14,6 +14,11 @@ export async function loadMdx(filename: string) {
   const relativeFilePath = path.relative(pagesDir, filename)
 
   const filePath = path.resolve(filename)
+  if (!fs.existsSync(filePath)) {
+    throw new Error(
+      `can't load MDX file ${filename} in ${filePath} does not exist`,
+    )
+  }
 
   const mdxContent = fs.readFileSync(filePath).toString()
 
