@@ -10,7 +10,7 @@ import {
   WrapItem,
 } from "@chakra-ui/react"
 import { FaNpm, FaGithub } from "react-icons/fa"
-import StorybookIcon from "./storybook-icon"
+import StorybookIcon from "../storybook-icon"
 
 type ComponentLinkProps = LinkProps & {
   icon: React.ElementType
