@@ -1,6 +1,3 @@
-/**
- * @todo add Roadmap.sh here
- */
 interface User {
   name: string
   image: string
@@ -23,9 +20,9 @@ const users: User[] = [
     type: "company",
   },
   {
-    name: "DataStory",
-    image: "/logos/datastory.svg",
-    url: "https://www.datastory.org/",
+    name: "TrustPage",
+    image: "/logos/trust-page.svg",
+    url: "https://trustpage.com/",
     type: "company",
   },
   {
