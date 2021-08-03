@@ -3,19 +3,24 @@
  * License can be found here: https://github.com/framer/motion
  */
 
-import { addDomEvent, isBrowser } from "./dom"
+import { addDomEvent, getEventWindow, isBrowser } from "./dom"
 
 export type AnyPointerEvent = MouseEvent | TouchEvent | PointerEvent
 
 type PointType = "page" | "client"
 
 export function isMouseEvent(event: AnyPointerEvent): event is MouseEvent {
+  const win = getEventWindow(event)
+
   // PointerEvent inherits from MouseEvent so we can't use a straight instanceof check.
-  if (typeof PointerEvent !== "undefined" && event instanceof PointerEvent) {
+  if (
+    typeof win.PointerEvent !== "undefined" &&
+    event instanceof win.PointerEvent
+  ) {
     return !!(event.pointerType === "mouse")
   }
 
-  return event instanceof MouseEvent
+  return event instanceof win.MouseEvent
 }
 
 export function isTouchEvent(event: AnyPointerEvent): event is TouchEvent {
@@ -43,7 +48,8 @@ export type EventHandler = (
  */
 function filterPrimaryPointer(eventHandler: EventListener): EventListener {
   return (event: Event) => {
-    const isMouseEvent = event instanceof MouseEvent
+    const win = getEventWindow(event)
+    const isMouseEvent = event instanceof win.MouseEvent
     const isPrimaryPointer =
       !isMouseEvent || (isMouseEvent && (event as MouseEvent).button === 0)
     if (isPrimaryPointer) {

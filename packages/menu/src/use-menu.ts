@@ -29,6 +29,7 @@ import {
   getOwnerDocument,
   isActiveElement,
   isArray,
+  isHTMLElement,
   isString,
   LazyBehavior,
   normalizeEventKey,
@@ -346,7 +347,7 @@ export function useMenuButton(
 function isTargetMenuItem(target: EventTarget | null) {
   // this will catch `menuitem`, `menuitemradio`, `menuitemcheckbox`
   return (
-    target instanceof HTMLElement &&
+    isHTMLElement(target) &&
     !!target.getAttribute("role")?.startsWith("menuitem")
   )
 }

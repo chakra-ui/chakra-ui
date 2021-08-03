@@ -1,6 +1,7 @@
 import {
   ariaAttr,
   dataAttr,
+  getEventWindow,
   getOwnerDocument,
   getOwnerWindow,
   normalizeEventKey,
@@ -22,6 +23,11 @@ test("should return aria attribute value from boolean", () => {
 
 test("should get document object", () => {
   expect(getOwnerDocument()).toBe(document)
+})
+
+test("should get window object from event", () => {
+  const event = new UIEvent("change", { view: window })
+  expect(getEventWindow(event)).toBe(window)
 })
 
 test("should normalize keyboard events", () => {
