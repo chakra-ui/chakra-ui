@@ -240,7 +240,7 @@ export function useMenu(props: UseMenuProps = {}) {
 
     const node = descendants.item(focusedIndex)?.node
     if (node) {
-      focus(node, { selectTextIfInput: false })
+      focus(node, { selectTextIfInput: false, preventScroll: false })
     }
   }, [isOpen, focusedIndex, descendants])
 
@@ -607,9 +607,13 @@ export function useMenuItem(
   useUpdateEffect(() => {
     if (!isOpen) return
     if (isFocused && !trulyDisabled && ref.current) {
-      focus(ref.current, { nextTick: true, selectTextIfInput: false })
+      focus(ref.current, {
+        nextTick: true,
+        selectTextIfInput: false,
+        preventScroll: false,
+      })
     } else if (menuRef.current && !isActiveElement(menuRef.current)) {
-      focus(menuRef.current)
+      focus(menuRef.current, { preventScroll: false })
     }
   }, [isFocused, trulyDisabled, menuRef, isOpen])
 
