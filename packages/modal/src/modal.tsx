@@ -29,6 +29,9 @@ import {
 import * as React from "react"
 import { RemoveScroll } from "react-remove-scroll"
 import { MouseEvent } from "react"
+import { lock, unlock } from "tua-body-scroll-lock"
+import { usePrevious } from "@chakra-ui/hooks"
+import { RemoveScrollBar } from "react-remove-scroll-bar"
 import { ModalTransition } from "./modal-transition"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
 
@@ -83,6 +86,12 @@ interface ModalOptions extends Pick<FocusLockProps, "lockFocusAcrossFrames"> {
    * and content adjustment when the modal opens
    */
   preserveScrollBarGap?: boolean
+
+  /**
+   * TODO remove this
+   * Variable just for demonstration purposes to use tua-body-scroll-lock in codesandbox
+   */
+  withTua?: boolean
 }
 
 type ScrollBehavior = "inside" | "outside"
@@ -153,6 +162,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     preserveScrollBarGap,
     motionPreset,
     lockFocusAcrossFrames,
+    withTua,
   } = props
 
   const styles = useMultiStyleConfig("Modal", props)
@@ -170,6 +180,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     preserveScrollBarGap,
     motionPreset,
     lockFocusAcrossFrames,
+    withTua,
   }
 
   return (
@@ -192,6 +203,7 @@ Modal.defaultProps = {
   blockScrollOnMount: true,
   allowPinchZoom: false,
   motionPreset: "scale",
+  withTua: false,
 }
 
 if (__DEV__) {
@@ -292,6 +304,7 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
     returnFocusOnClose,
     preserveScrollBarGap,
     lockFocusAcrossFrames,
+    withTua,
   } = useModalContext()
 
   const [isPresent, safeToRemove] = usePresence()
@@ -301,6 +314,30 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
       setTimeout(safeToRemove)
     }
   }, [isPresent, safeToRemove])
+
+  console.log("useTua")
+  const prevBlockScrollOnMount = usePrevious(blockScrollOnMount)
+
+  React.useEffect(() => {
+    console.log(isPresent, dialogRef.current)
+    // if blockScrollOnMount changed to false we want to remove the lock if the current view is present
+    if (isPresent && withTua && prevBlockScrollOnMount && !blockScrollOnMount) {
+      unlock(dialogRef.current)
+    }
+    if (isPresent && withTua && blockScrollOnMount) {
+      lock(dialogRef.current)
+    }
+    if (!isPresent && withTua && blockScrollOnMount) {
+      unlock(dialogRef.current)
+    }
+  }, [
+    dialogRef,
+    isPresent,
+    blockScrollOnMount,
+    withTua,
+    prevBlockScrollOnMount,
+  ])
+  console.log("preserver", !preserveScrollBarGap)
 
   return (
     <FocusLock
@@ -312,10 +349,11 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
       contentRef={dialogRef}
       lockFocusAcrossFrames={lockFocusAcrossFrames}
     >
+      {!preserveScrollBarGap && <RemoveScrollBar />}
       <RemoveScroll
         removeScrollBar={!preserveScrollBarGap}
         allowPinchZoom={allowPinchZoom}
-        enabled={blockScrollOnMount}
+        enabled={!withTua && blockScrollOnMount}
         forwardProps
       >
         {props.children}

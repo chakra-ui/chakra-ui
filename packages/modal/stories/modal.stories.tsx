@@ -196,3 +196,32 @@ export const FullWithLongContent = () => {
     </>
   )
 }
+
+export const BlockScrollOnMount = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  return (
+    <>
+      <button onClick={onOpen}>Open</button>
+      <Lorem count={50} />
+      <Modal
+        onClose={onClose}
+        isOpen={isOpen}
+        withTua={true}
+        blockScrollOnMount={true}
+        preserveScrollBarGap={true}
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title2</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Lorem count={20} />
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onClose}>Close</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  )
+}
