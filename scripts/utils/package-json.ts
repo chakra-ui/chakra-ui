@@ -1,13 +1,13 @@
 import editJson from "edit-json-file"
-import fs from "fs-utils"
+import path from "path"
 
 // read package.json
-export function getPackageJson(dir) {
-  const pkgPath = fs.resolve(dir, "package.json")
+export function getPackageJson(dir: string) {
+  const pkgPath = path.resolve(dir, "package.json")
   return editJson(pkgPath)
 }
 
-export function deletePackageJson(dir, key) {
+export function deletePackageJson(dir: string, key: string) {
   const pkgJson = getPackageJson(dir)
   pkgJson.unset(key)
   pkgJson.save()
@@ -19,19 +19,17 @@ export function deletePackageJson(dir, key) {
  * @param {Object} content the content object
  * @param {Function} getPath function to resolve key (for nested path)
  */
-export function editPackageJson(dir, content, group) {
+export function editPackageJson(dir: string, content: Record<string, any>) {
   // read package.json
   const pkgJson = getPackageJson(dir)
 
   // update entrypoint fields
   for (const key in content) {
-    // check the existing value in package.json
-    const path = group ? `${group}.${key}` : key
-    const valueInJson = pkgJson.get(path)
+    const valueInJson = pkgJson.get(key)
     const value = content[key]
 
     if (valueInJson != value) {
-      pkgJson.set(path, value)
+      pkgJson.set(key, value)
     }
   }
 
