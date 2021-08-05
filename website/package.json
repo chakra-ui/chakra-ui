@@ -48,6 +48,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^10.0.5",
+    "@preconstruct/next": "^3.0.0",
     "@types/sharp": "^0.26.1",
     "next-compose-plugins": "^2.2.1"
   }

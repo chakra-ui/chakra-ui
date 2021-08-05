@@ -1,6 +1,7 @@
 module.exports = {
   preset: "ts-jest",
   testEnvironment: "jsdom",
+  collectCoverageFrom: ["packages/**/*.{ts,tsx}"],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
   modulePathIgnorePatterns: [
     "<rootDir>/website/.cache",
@@ -9,6 +10,7 @@ module.exports = {
   ],
   transform: {
     "^.+\\.(ts|tsx)?$": "ts-jest/dist",
+    ".(js|jsx)$": "babel-jest",
   },
   transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
   setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
