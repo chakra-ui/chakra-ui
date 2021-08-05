@@ -7,13 +7,6 @@
       "examples/*",
       "tooling/*",
       "website"
-    ],
-    "nohoist": [
-      "@emotion/core/types",
-      "**/@emotion/core/types",
-      "**/@types/theme-ui",
-      "**/@types/theme-ui/**",
-      "**/@types/theme-ui__components"
     ]
   },
   "preconstruct": {
@@ -62,6 +55,7 @@
     "search-meta:gen": "ts-node scripts/get-search-meta.ts",
     "create:pkg": "ts-node scripts/plopfile.ts",
     "release": "changeset publish",
+    "prop-table": "yarn pkg props-docs build",
     "docs": "yarn workspace @chakra-ui/docs",
     "docs:export-public": "cp -r website/public .",
     "docs:deploy": "npm-run-all -s build docs:build docs:export-public",

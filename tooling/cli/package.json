@@ -1,10 +1,13 @@
 {
   "name": "@chakra-ui/cli",
   "version": "1.5.0",
-  "description": "Generate theme typings for autocomplete",
+  "description": "Generate theme typings for Chakra UI theme specification",
   "keywords": [
     "theme",
     "theming",
+    "typings",
+    "generator",
+    "chakra ui",
     "ui mode",
     "ui"
   ],
@@ -12,6 +15,8 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/chakra-ui-cli.cjs.js",
+  "module": "dist/chakra-ui-cli.esm.js",
+  "types": "dist/chakra-ui-cli.cjs.d.ts",
   "sideEffects": false,
   "files": [
     "dist",
@@ -44,7 +49,5 @@
   "devDependencies": {
     "@types/ora": "^3.2.0",
     "@types/update-notifier": "5.0.0"
-  },
-  "module": "dist/chakra-ui-cli.esm.js",
-  "types": "dist/chakra-ui-cli.cjs.d.ts"
+  }
 }
