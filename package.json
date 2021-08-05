@@ -38,6 +38,7 @@
     "test:pkg": "yarn ts-node scripts/run-test.ts",
     "lint:pkg": "yarn ts-node scripts/run-lint.ts",
     "postinstall": "npm-run-all -s clean:emotion-types build:babel check:pkgs dev:pkgs",
+    "prepare": "husky install",
     "csb:pkgs": "node -r esm scripts/csb.js",
     "csb:install": "npm-run-all -s prestart csb:pkgs",
     "contributors:add": "all-contributors add",
