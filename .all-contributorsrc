@@ -2004,7 +2004,9 @@
       "profile": "http://schulz.codes",
       "contributions": [
         "bug",
-        "code"
+        "code",
+        "doc",
+        "ideas"
       ]
     }
   ],
