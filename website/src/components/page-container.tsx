@@ -2,14 +2,12 @@ import { useRouter } from "next/router"
 import * as React from "react"
 import { Badge, Box, chakra, Flex } from "@chakra-ui/react"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
-import Container from "components/container"
 import EditPageLink from "components/edit-page-button"
 import Footer from "components/footer"
 import Header from "components/header"
 import SEO from "components/seo"
 import TableOfContent from "components/table-of-content"
 import { convertBackticksToInlineCode } from "utils/convert-backticks-to-inline-code"
-import { Heading } from "utils/get-headings"
 import PageTransition from "./page-transition"
 import { AdBanner } from "./chakra-pro/ad-banner"
 
@@ -25,7 +23,13 @@ function useHeadingFocusOnRouteChange() {
     return () => {
       router.events.off("routeChangeComplete", onRouteChange)
     }
-  }, [])
+  }, [router.events])
+}
+
+export interface Heading {
+  level: "h2" | "h3"
+  text: string
+  id: string
 }
 
 interface PageContainerProps {
@@ -35,18 +39,18 @@ interface PageContainerProps {
     description?: string
     editUrl?: string
     version?: string
+    headings?: Heading[]
   }
   children: React.ReactNode
-  headings?: Heading[]
   sidebar?: any
   pagination?: any
 }
 
 function PageContainer(props: PageContainerProps) {
-  const { frontmatter, children, sidebar, pagination, headings = [] } = props
+  const { frontmatter, children, sidebar, pagination } = props
   useHeadingFocusOnRouteChange()
 
-  const { title, description, editUrl, version } = frontmatter
+  const { title, description, editUrl, version, headings = [] } = frontmatter
 
   return (
     <>
