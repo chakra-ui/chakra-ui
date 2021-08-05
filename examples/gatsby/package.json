@@ -5,9 +5,9 @@
   "version": "0.3.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "@chakra-ui/gatsby-plugin": "*",
+    "@chakra-ui/gatsby-plugin": "2.0.1",
     "@chakra-ui/machine": "*",
-    "@chakra-ui/react": "*",
+    "@chakra-ui/react": "1.6.5",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
     "framer-motion": "^4.0.0",
