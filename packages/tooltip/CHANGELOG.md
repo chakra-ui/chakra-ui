@@ -1,5 +1,26 @@
 # Change Log
 
+## 1.3.9-next.0
+
+### Patch Changes
+
+- [`df57f448f`](https://github.com/chakra-ui/chakra-ui/commit/df57f448ff1de6eded6647f73950e8978612316c)
+  [#4442](https://github.com/chakra-ui/chakra-ui/pull/4442) Thanks
+  [@5ebastianMeier](https://github.com/5ebastianMeier)! - Fix tooltips not
+  closing when openDelay is set
+
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`d3d85956c`](https://github.com/chakra-ui/chakra-ui/commit/d3d85956c776b4768cfe21dabcf9292e01875d74),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2-next.0
+  - @chakra-ui/system@1.7.2-next.0
+  - @chakra-ui/hooks@1.5.5-next.0
+  - @chakra-ui/portal@1.2.8-next.0
+  - @chakra-ui/react-utils@1.1.3-next.0
+  - @chakra-ui/visually-hidden@1.0.14-next.0
+  - @chakra-ui/popper@2.2.2-next.0
+
 ## 1.3.8
 
 ### Patch Changes

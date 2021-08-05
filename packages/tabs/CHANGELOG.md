@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.5.4-next.0
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`d3d85956c`](https://github.com/chakra-ui/chakra-ui/commit/d3d85956c776b4768cfe21dabcf9292e01875d74),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2-next.0
+  - @chakra-ui/system@1.7.2-next.0
+  - @chakra-ui/clickable@1.1.7-next.0
+  - @chakra-ui/hooks@1.5.5-next.0
+  - @chakra-ui/react-utils@1.1.3-next.0
+  - @chakra-ui/descendant@2.0.2-next.0
+
 ## 1.5.3
 
 ### Patch Changes
