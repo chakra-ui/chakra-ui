@@ -1,21 +1,15 @@
-import {
-  deletePackageJson,
-  editPackageJson,
-  getPackageJson,
-} from "./utils/package-json"
-import glob from "glob"
 import fs from "fs-utils"
+import getPreconstructPackages from "./utils/get-workspace-pkgs"
+import { deletePackageJson, editPackageJson } from "./utils/package-json"
 
 const KEYS_TO_DELETE = ["typings", "exports", "scripts"]
 const FILES_TO_DELETE = ["jest.config.js", "tsconfig.json"]
 
 async function fix() {
-  const packages = getPackageJson(".").get("preconstruct.packages")
-  const paths = packages.flatMap((p) => glob.sync(p))
+  const packages = getPreconstructPackages()
 
-  paths.forEach((path) => {
-    const pkg = getPackageJson(path)
-    const name = pkg.get("name").replace("@", "").replace("/", "-")
+  packages.forEach(({ name, path }) => {
+    const name = name.replace("@", "").replace("/", "-")
 
     editPackageJson(path, {
       main: `dist/${name}.cjs.js`,
@@ -32,7 +26,11 @@ async function fix() {
     })
 
     FILES_TO_DELETE.forEach((file) => {
-      fs.del(fs.resolve(path, file))
+      try {
+        fs.del(fs.resolve(path, file))
+      } catch (error) {
+        console.log(`${file} could not be deleted in ${path}`)
+      }
     })
   })
 }

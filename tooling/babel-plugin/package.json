@@ -21,21 +21,12 @@
     "build": "babel src -d dist"
   },
   "dependencies": {
-    "@babel/helper-annotate-as-pure": "^7.12.10",
-    "@babel/helper-plugin-utils": "^7.10.4"
+    "@babel/helper-annotate-as-pure": "^7.12.10"
   },
   "peerDependencies": {
     "@babel/core": "^7.12.10"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "testRegex": "/test/.*\\.test\\.js$",
-    "collectCoverageFrom": [
-      "src/**/*.js",
-      "!src/log.js"
-    ]
   }
 }

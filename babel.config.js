@@ -1,9 +1,8 @@
 module.exports = {
-  comments: false,
   plugins: [
+    "@chakra-ui/babel-plugin",
     "babel-plugin-annotate-pure-calls",
     "@babel/plugin-proposal-class-properties",
-    "@chakra-ui/babel-plugin",
   ],
   presets: [
     "@babel/preset-typescript",
