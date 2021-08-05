@@ -18,8 +18,8 @@ git clone https://github.com/<your_github_username>/chakra-ui.git
 cd chakra-ui
 ```
 
-3. Setup all the dependencies and packages by running `yarn prestart`. This
-   command will install dependencies and bootstrap the repo using `preconstruct`
+1. Setup all the dependencies and packages by running `yarn`. This command will
+   install dependencies and bootstrap the repo using `preconstruct`
 
 > If you run into any issues during this step, kindly reach out to the Chakra UI
 > React team here: https://discord.gg/dQHfcWF
@@ -47,25 +47,24 @@ that can be consumed in isolation.
 
 ### Commands
 
-**`yarn boot`**: bootstraps the entire project, symlinks all dependencies for
+**`yarn`**: bootstraps the entire project, symlinks all dependencies for
 cross-component development and builds all components.
-
-**`yarn bootstrap`**: bootstraps the entire project and symlinks all
-dependencies for cross-component development.
 
 **`yarn storybook`**: starts storybook server and loads stories in files that
 end with `.stories.tsx`.
 
-**`yarn docs:start`**: run the documentation site locally.
+**`yarn docs:dev`**: run the documentation site locally.
 
 **`yarn build`**: run build for all component packages.
 
 **`yarn test`**: run test for all component packages.
 
+**`yarn test:pkg <package>`**: run test for specific component package.
+
 **`yarn release`**: publish changed packages.
 
-**`yarn pkg [package] <cmd>`**: Run a command on the specific package you're
-working on. You can run `build`, `test`, `lint` commands.
+**`yarn lint:pkg <package>`**: Run the lint command for specific component
+package
 
 #### Package Aliasing and Yarn Workspace
 

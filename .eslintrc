@@ -12,9 +12,7 @@
     "plugin:import/typescript",
     "plugin:react-hooks/recommended",
     "airbnb-typescript",
-    "prettier",
-    "prettier/react",
-    "prettier/@typescript-eslint"
+    "prettier"
   ],
   "plugins": [
     "react-hooks",
@@ -71,13 +69,31 @@
     "react-hooks/exhaustive-deps": "error",
     "import/no-named-as-default": "off",
     "prefer-object-spread": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "^_",
+        "argsIgnorePattern": "^_",
+        "ignoreRestSiblings": true
+      }
+    ],
+    "default-case": "off"
   },
   "overrides": [
     {
       "files": ["*.ts", "*.tsx"],
       "parserOptions": {
         "project": ["tsconfig.json"]
+      }
+    },
+    {
+      "files": ["*.test.ts", "*.test.tsx"],
+      "extends": ["plugin:jest/recommended", "plugin:jest/style"],
+      "rules": {
+        "jsx-a11y/label-has-associated-control": "off",
+        "global-require": "off",
+        "no-new": "off"
       }
     }
   ]
