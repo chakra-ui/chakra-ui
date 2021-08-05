@@ -37,12 +37,12 @@
   },
   "dependencies": {
     "@chakra-ui/react-utils": "1.1.2",
-    "@popperjs/core": "2.4.4"
+    "@popperjs/core": "^2.9.3"
   },
   "peerDependencies": {
     "react": ">=16.8.6"
   },
   "devDependencies": {
-    "react": "^17.0.1"
+    "react": "^17.0.2"
   }
 }

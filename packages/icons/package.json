@@ -29,10 +29,10 @@
   },
   "devDependencies": {
     "@chakra-ui/system": "1.7.1",
-    "react": "^17.0.1"
+    "react": "^17.0.2"
   },
   "dependencies": {
     "@chakra-ui/icon": "1.1.10",
-    "@types/react": "^17.0.0"
+    "@types/react": "^17.0.15"
   }
 }

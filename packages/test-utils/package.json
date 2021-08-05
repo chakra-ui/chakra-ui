@@ -38,7 +38,7 @@
     "react": ">=16.8.6"
   },
   "devDependencies": {
-    "react": "^17.0.1"
+    "react": "^17.0.2"
   },
   "module": "dist/chakra-ui-test-utils.esm.js",
   "types": "dist/chakra-ui-test-utils.cjs.d.ts"

@@ -8,9 +8,9 @@
     "@chakra-ui/gatsby-plugin": "*",
     "@chakra-ui/machine": "*",
     "@chakra-ui/react": "*",
-    "@emotion/react": "^11.1.4",
-    "@emotion/styled": "^11.0.0",
-    "framer-motion": "^4.0.0",
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
+    "framer-motion": "^4.1.17",
     "gatsby": "^3.0.0",
     "gatsby-image": "^2.8.0",
     "gatsby-plugin-manifest": "^3.3.0",
@@ -20,12 +20,12 @@
     "gatsby-source-filesystem": "^3.3.0",
     "gatsby-transformer-sharp": "^3.3.0",
     "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0"
   },
   "devDependencies": {
-    "prettier": "^2.2.1"
+    "prettier": "^2.3.2"
   },
   "keywords": [
     "gatsby"
