@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.0.15-next.0
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d3d85956c`](https://github.com/chakra-ui/chakra-ui/commit/d3d85956c776b4768cfe21dabcf9292e01875d74)]:
+  - @chakra-ui/system@1.7.2-next.0
+  - @chakra-ui/icon@1.1.11-next.0
+
 ## 1.0.14
 
 ### Patch Changes

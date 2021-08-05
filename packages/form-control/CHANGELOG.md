@@ -1,5 +1,53 @@
 # Change Log
 
+## 1.4.0-next.0
+
+### Minor Changes
+
+- [`ff4dc7c38`](https://github.com/chakra-ui/chakra-ui/commit/ff4dc7c38310367c0e89522db9e88ae069cb6c2b)
+  [#4317](https://github.com/chakra-ui/chakra-ui/pull/4317) Thanks
+  [@bhishp](https://github.com/bhishp)! - Added a `container` part to the
+  `FormControl` component theme, allowing the root `FormControl` element to be
+  themed.
+
+  ```jsx
+  import { extendTheme } from "@chakra-ui/react"
+
+  export const theme = extendTheme({
+    components: {
+      Form: {
+        variants: {
+          // create a variant named "custom"
+          custom: {
+            // style the root `FormControl` element
+            container: {
+              color: "white",
+              bg: "blue.900",
+            },
+          },
+        },
+      },
+    },
+  })
+  ```
+
+### Patch Changes
+
+- [`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0)
+  [#4437](https://github.com/chakra-ui/chakra-ui/pull/4437) Thanks
+  [@Toxiapo](https://github.com/Toxiapo)! - Remove code that was added as a
+  workaround for pre-releases of React concurrent mode.
+
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`d3d85956c`](https://github.com/chakra-ui/chakra-ui/commit/d3d85956c776b4768cfe21dabcf9292e01875d74),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2-next.0
+  - @chakra-ui/system@1.7.2-next.0
+  - @chakra-ui/hooks@1.5.5-next.0
+  - @chakra-ui/icon@1.1.11-next.0
+  - @chakra-ui/react-utils@1.1.3-next.0
+
 ## 1.3.8
 
 ### Patch Changes

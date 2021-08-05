@@ -1,5 +1,24 @@
 # Change Log
 
+## 1.4.2-next.0
+
+### Patch Changes
+
+- [`bafcc39aa`](https://github.com/chakra-ui/chakra-ui/commit/bafcc39aa80964928a69215ab16e0f24f33bea95)
+  [#4353](https://github.com/chakra-ui/chakra-ui/pull/4353) Thanks
+  [@dsumer](https://github.com/dsumer)! - Resolved an issue where a `Button` in
+  loading state didn't consider the width of `leftIcon` and `rightIcon`,
+  resulting in layout shifts when the button leaves the loading state. Buttons
+  now render with the same width regardless of state.
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`d3d85956c`](https://github.com/chakra-ui/chakra-ui/commit/d3d85956c776b4768cfe21dabcf9292e01875d74),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2-next.0
+  - @chakra-ui/system@1.7.2-next.0
+  - @chakra-ui/react-utils@1.1.3-next.0
+  - @chakra-ui/spinner@1.1.12-next.0
+
 ## 1.4.1
 
 ### Patch Changes

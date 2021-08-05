@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.0.0-next.0
+
+### Major Changes
+
+- [`e522d84b7`](https://github.com/chakra-ui/chakra-ui/commit/e522d84b76a61e47ad2120cc9eaeaafc23971656)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Prepare `next`
+  pre-release
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@1.6.6-next.0
+  - @chakra-ui/theme-tools@1.1.9-next.0
+  - @chakra-ui/icons@1.0.15-next.0
+
 ## 1.1.0
 
 ### Minor Changes
