@@ -29,7 +29,7 @@ import { Footer } from "components/footer"
 import Header from "components/header"
 import SEO from "components/seo"
 import TweetCard from "components/tweet-card"
-import { tweets } from "configs/tweets.json"
+import tweetsJson from "configs/tweets.json"
 import NextLink from "next/link"
 import * as React from "react"
 import { AiFillThunderbolt } from "react-icons/ai"
@@ -407,7 +407,7 @@ const HomePage = ({ members, sponsors, githubStars }: HomePageProps) => {
               Loved by product people like you
             </chakra.h2>
             <SimpleGrid spacing="32px" columns={{ base: 1, md: 3 }}>
-              {chunk(tweets, 3).map((tweetList, idx) => (
+              {chunk(tweetsJson.tweets, 3).map((tweetList, idx) => (
                 <Stack spacing="6" key={idx}>
                   {tweetList.map((tweet: any, idx) => (
                     <TweetCard key={idx} {...tweet} />

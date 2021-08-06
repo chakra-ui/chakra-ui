@@ -3,6 +3,7 @@ const withPreconstruct = require("@preconstruct/next")
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 })
+const redirects = require("./next-redirect")
 
 const defaultConfig = {
   target: "serverless",
@@ -14,7 +15,7 @@ const defaultConfig = {
     optimizeFonts: true,
     modern: true,
   },
-  redirects: require("./next-redirect"),
+  redirects,
 }
 
 module.exports = withPlugins(

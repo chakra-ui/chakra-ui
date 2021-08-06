@@ -1,3 +1,3 @@
 /// <reference types="next" />
 /// <reference types="next/types/global" />
-declare module "*.md"
+/// <reference types="next/image-types/global" />
