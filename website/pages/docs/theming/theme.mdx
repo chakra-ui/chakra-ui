@@ -3,13 +3,6 @@ title: Default Theme
 description: The default chakra theme tokens
 ---
 
-import { Box, Flex, Grid, useTheme } from "@chakra-ui/react"
-import {
-  ColorPalette,
-  ColorPalettes,
-  ColorWrapper,
-} from "../../../src/components/color-palette"
-
 The theme object is where you define your application's color palette, type
 scale, font stacks, breakpoints, border radius values, and more.
 
@@ -397,11 +390,11 @@ export default {
 The theme's config is to provide global settings that are used by different
 parts of the Chakra UI system.
 
-| Property                   | Description                                                                                                 | Default  |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------- | -------- |
-| `cssVarPrefix` **(v1.4)**  | The prefix to use for the generated CSS custom properties                                                   | `chakra` |
-| `initialColorMode`         | The initial color mode your application should start with. <br reset/> Can be either `light` or `dark` mode | `light`  |
-| `useSystemColorMode`       | If `true`, the chakra system will update color mode <br reset/> based on your system preferences            | `false`  |
+| Property                  | Description                                                                                                 | Default  |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------- | -------- |
+| `cssVarPrefix` **(v1.4)** | The prefix to use for the generated CSS custom properties                                                   | `chakra` |
+| `initialColorMode`        | The initial color mode your application should start with. <br reset/> Can be either `light` or `dark` mode | `light`  |
+| `useSystemColorMode`      | If `true`, the chakra system will update color mode <br reset/> based on your system preferences            | `false`  |
 
 You can leverage the `extendTheme` function to override a specific theme config
 property.

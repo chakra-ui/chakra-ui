@@ -10,16 +10,8 @@
   "author": "Tim Kolberger <tim@kolberger.eu>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
-    }
-  },
+  "main": "dist/chakra-ui-props-docs.cjs.js",
+  "module": "dist/chakra-ui-props-docs.esm.js",
   "files": [
     "dist"
   ],
@@ -34,14 +26,15 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "scripts": {
-    "build": "ts-node src/build.ts"
+    "prebuild": "rimraf dist",
+    "build": "ts-node -T src/build.ts"
   },
   "dependencies": {
     "@chakra-ui/react": "1.6.5",
     "@chakra-ui/styled-system": "1.12.1",
     "glob": "^7.1.6",
     "mkdirp": "^1.0.4",
-    "react-docgen-typescript": "^1.20.5",
+    "react-docgen-typescript": "^2.1.0",
     "regenerator-runtime": "^0.13.7"
   },
   "devDependencies": {

@@ -1,4 +1,5 @@
-import { Box, Center, chakra, Flex, Text } from "@chakra-ui/react"
+import React from "react"
+import { Center, chakra, Flex, Text } from "@chakra-ui/react"
 import { getUrl } from "./get-url"
 
 export const AdBanner = () => {

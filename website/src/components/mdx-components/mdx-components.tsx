@@ -1,19 +1,26 @@
-import * as React from "react"
-import { Alert, AspectRatio, Box, chakra, Kbd } from "@chakra-ui/react"
+import * as Chakra from "@chakra-ui/react"
+import {
+  ColorPalette,
+  ColorPalettes,
+  ColorWrapper,
+} from "components/color-palette"
 import { Anchor } from "components/mdx-components/anchor"
 import { InlineCode } from "components/mdx-components/inline-code"
-import { VideoPlayer } from "components/mdx-components/video-player"
 import { LinkedHeading } from "components/mdx-components/linked-heading"
-import { Table, TData, THead } from "components/mdx-components/table"
 import { Pre } from "components/mdx-components/pre"
+import { Table, TData, THead } from "components/mdx-components/table"
+import { VideoPlayer } from "components/mdx-components/video-player"
+import * as React from "react"
+import PropsTable from "../props-table"
 import CarbonAd from "./carbon-ad"
 import CodeBlock from "./codeblock/codeblock"
 import ComponentLinks from "./component-links"
 import IconsList from "./icons-list"
-import PropsTable from "../props-table"
+
+const { Alert, AspectRatio, Box, chakra, Kbd } = Chakra
 
 export const MDXComponents = {
-  Box,
+  ...Chakra,
   h1: (props) => <chakra.h1 apply="mdx.h1" {...props} />,
   h2: (props) => <LinkedHeading apply="mdx.h2" {...props} />,
   h3: (props) => <LinkedHeading as="h3" apply="mdx.h3" {...props} />,
@@ -57,4 +64,7 @@ export const MDXComponents = {
   PropsTable,
   VideoPlayer,
   AspectRatio,
+  ColorPalette,
+  ColorPalettes,
+  ColorWrapper,
 }
