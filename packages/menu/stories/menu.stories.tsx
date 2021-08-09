@@ -447,3 +447,25 @@ export const MenuWithInput = () => {
     </Menu>
   )
 }
+
+export const MenuWithOverflowingContent = () => {
+  return (
+    <Menu>
+      <MenuButton>Welcome</MenuButton>
+      <MenuList maxHeight="200px" overflowY="hidden">
+        <MenuItem>Menu 1</MenuItem>
+        <MenuItem>Menu 2</MenuItem>
+        <MenuItem>Menu 3</MenuItem>
+        <MenuItem>Menu 4</MenuItem>
+        <MenuItem>Menu 5</MenuItem>
+        <MenuItem>Menu 6</MenuItem>
+        <MenuItem>Menu 7</MenuItem>
+        <MenuItem>Menu 8</MenuItem>
+        <MenuItem>Menu 9</MenuItem>
+        <MenuItem>Menu 10</MenuItem>
+        <MenuItem>Menu 11</MenuItem>
+        <MenuItem>Menu 12</MenuItem>
+      </MenuList>
+    </Menu>
+  )
+}

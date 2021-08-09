@@ -4,6 +4,7 @@ import { IoLogoTwitter, IoLogoLinkedin } from "react-icons/io"
 import { FaYoutube } from "react-icons/fa"
 import { MdEmail } from "react-icons/md"
 import { DiGithubBadge } from "react-icons/di"
+import { VercelCallout } from "./vercel-callout"
 
 type FooterLinkProps = {
   icon?: React.ElementType
@@ -84,6 +85,7 @@ export const Footer = () => (
         <FooterLink key={link.href} {...link} />
       ))}
     </Stack>
+    <VercelCallout />
   </Box>
 )
 

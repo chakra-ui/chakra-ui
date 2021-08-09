@@ -1,5 +1,6 @@
-const parts = ["label", "number", "icon", "helpText"]
+const parts = ["label", "number", "icon", "helpText", "container"]
 
+const baseStyleContainer = {}
 const baseStyleLabel = {
   fontWeight: "medium",
 }
@@ -22,6 +23,7 @@ const baseStyleIcon = {
 }
 
 const baseStyle = {
+  container: baseStyleContainer,
   label: baseStyleLabel,
   helpText: baseStyleHelpText,
   number: baseStyleNumber,

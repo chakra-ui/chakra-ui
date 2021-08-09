@@ -1,6 +1,6 @@
 import * as chakraComponents from "@chakra-ui/react"
 import { MDXProvider } from "@mdx-js/react"
-import MDXComponents from "components/mdx-components"
+import { MDXComponents } from "components/mdx-components"
 import PageContainer from "components/page-container"
 import Pagination from "components/pagination"
 import Sidebar from "components/sidebar/sidebar"
@@ -10,7 +10,7 @@ import blogSidebar from "configs/blog-sidebar.json"
 import * as React from "react"
 import { findRouteByPath, removeFromLast } from "utils/find-route-by-path"
 import { getRouteContext } from "utils/get-route-context"
-import { getHeadings } from "utils/get-headings"
+
 export function getRoutes(slug: string) {
   // for home page, use docs sidebat
   if (slug === "/") return docsSidebar.routes
@@ -23,10 +23,8 @@ export function getRoutes(slug: string) {
     "/docs": docsSidebar,
   }
 
-  const [_path, sidebar] =
-    Object.entries(configMap).find(([path, _sidebar]) =>
-      slug.startsWith(path),
-    ) ?? []
+  const [, sidebar] =
+    Object.entries(configMap).find(([path]) => slug.startsWith(path)) ?? []
 
   return sidebar?.routes ?? []
 }
@@ -44,10 +42,9 @@ interface MDXLayoutProps {
   children: React.ReactNode
 }
 
-function MDXLayout(props: MDXLayoutProps) {
+export default function MDXLayout(props: MDXLayoutProps) {
   const { frontmatter, children } = props
   const routes = getRoutes(frontmatter.slug)
-  const headings = getHeadings(children)
 
   const route = findRouteByPath(removeFromLast(frontmatter.slug, "#"), routes)
   const routeContext = getRouteContext(route, routes)
@@ -57,7 +54,6 @@ function MDXLayout(props: MDXLayoutProps) {
       <PageContainer
         frontmatter={frontmatter}
         sidebar={<Sidebar routes={routes} />}
-        headings={headings}
         pagination={
           <Pagination
             next={routeContext.nextRoute}
@@ -70,5 +66,3 @@ function MDXLayout(props: MDXLayoutProps) {
     </MDXLayoutProvider>
   )
 }
-
-export default MDXLayout

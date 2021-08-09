@@ -17,7 +17,7 @@ export default function DefaultLayout({ children, frontMatter }) {
     ),
   }
 
-  const layout = Object.entries(layoutMap).find(([path, _component]) =>
+  const layout = Object.entries(layoutMap).find(([path]) =>
     String(slug).startsWith(`/${path}`),
   )
 

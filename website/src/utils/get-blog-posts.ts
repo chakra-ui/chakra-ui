@@ -2,14 +2,14 @@ import loadMDXFromPages from "utils/load-mdx-dir"
 
 export type BlogPost = {
   slug: string
-  title: string
-  date: string
-  excerpt: string
-  tags: string[]
-  readTimeMinutes: number
+  title?: string
+  date?: string
+  excerpt?: string
+  tags?: string[]
+  readTimeMinutes?: number
 }
 
-export async function getBlogPosts() {
+export async function getBlogPosts(): Promise<BlogPost[]> {
   const mdxData = await loadMDXFromPages("blog")
   return mdxData
     .map((blogPostData) => ({
@@ -22,7 +22,7 @@ export async function getBlogPosts() {
     .sort(byDateDesc)
 }
 
-function byDateDesc(a: BlogPost, b: BlogPost) {
+function byDateDesc<T extends { date: number | string | Date }>(a: T, b: T) {
   const bTime = new Date(b.date).getTime()
   const aTime = new Date(a.date).getTime()
 

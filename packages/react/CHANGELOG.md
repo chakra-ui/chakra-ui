@@ -1,5 +1,67 @@
 # Change Log
 
+## 1.6.6
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`bafcc39aa`](https://github.com/chakra-ui/chakra-ui/commit/bafcc39aa80964928a69215ab16e0f24f33bea95),
+  [`2d9942d3b`](https://github.com/chakra-ui/chakra-ui/commit/2d9942d3b7221cfe9a74aefa54ec0b6451bd961b),
+  [`4981d9898`](https://github.com/chakra-ui/chakra-ui/commit/4981d9898641be3904367ef917560fef3b362720),
+  [`df57f448f`](https://github.com/chakra-ui/chakra-ui/commit/df57f448ff1de6eded6647f73950e8978612316c),
+  [`2172e610b`](https://github.com/chakra-ui/chakra-ui/commit/2172e610b2a5c6e3867e83d142be2d1a19b7355d),
+  [`6dadb97db`](https://github.com/chakra-ui/chakra-ui/commit/6dadb97db74fb9e559c41770b8c99e1a9ed08577),
+  [`d3d85956c`](https://github.com/chakra-ui/chakra-ui/commit/d3d85956c776b4768cfe21dabcf9292e01875d74),
+  [`a8dcdfdb6`](https://github.com/chakra-ui/chakra-ui/commit/a8dcdfdb636e0c9624e171bb155302723504e290),
+  [`46d0fb099`](https://github.com/chakra-ui/chakra-ui/commit/46d0fb099f415f7f3556c657ecd05e35ec68a9de),
+  [`ff4dc7c38`](https://github.com/chakra-ui/chakra-ui/commit/ff4dc7c38310367c0e89522db9e88ae069cb6c2b),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/checkbox@1.5.5
+  - @chakra-ui/form-control@1.4.0
+  - @chakra-ui/number-input@1.2.9
+  - @chakra-ui/radio@1.3.9
+  - @chakra-ui/utils@1.8.2
+  - @chakra-ui/button@1.4.2
+  - @chakra-ui/stat@1.1.12
+  - @chakra-ui/theme@1.10.0
+  - @chakra-ui/tooltip@1.3.9
+  - @chakra-ui/slider@1.2.8
+  - @chakra-ui/menu@1.7.2
+  - @chakra-ui/system@1.7.2
+  - @chakra-ui/layout@1.4.8
+  - @chakra-ui/switch@1.2.8
+  - @chakra-ui/input@1.2.9
+  - @chakra-ui/select@1.1.13
+  - @chakra-ui/textarea@1.1.13
+  - @chakra-ui/accordion@1.3.5
+  - @chakra-ui/alert@1.2.7
+  - @chakra-ui/avatar@1.2.8
+  - @chakra-ui/breadcrumb@1.2.8
+  - @chakra-ui/close-button@1.1.11
+  - @chakra-ui/control-box@1.0.15
+  - @chakra-ui/counter@1.1.8
+  - @chakra-ui/editable@1.2.8
+  - @chakra-ui/react-env@1.0.6
+  - @chakra-ui/hooks@1.5.5
+  - @chakra-ui/icon@1.1.11
+  - @chakra-ui/image@1.0.18
+  - @chakra-ui/live-region@1.0.14
+  - @chakra-ui/media-query@1.1.2
+  - @chakra-ui/modal@1.8.10
+  - @chakra-ui/pin-input@1.6.4
+  - @chakra-ui/popover@1.8.2
+  - @chakra-ui/portal@1.2.8
+  - @chakra-ui/progress@1.1.12
+  - @chakra-ui/skeleton@1.1.17
+  - @chakra-ui/spinner@1.1.12
+  - @chakra-ui/table@1.2.6
+  - @chakra-ui/tabs@1.5.4
+  - @chakra-ui/tag@1.1.12
+  - @chakra-ui/toast@1.2.10
+  - @chakra-ui/transition@1.3.4
+  - @chakra-ui/visually-hidden@1.0.14
+
 ## 1.6.5
 
 ### Patch Changes

@@ -87,7 +87,7 @@ const baseStyle = (props: Dict) => ({
  */
 function getSize(value: string) {
   if (value === "full") {
-    return { dialog: { maxW: "100vw", minH: "100vh" } }
+    return { dialog: { maxW: "100vw", minH: "100vh", my: 0 } }
   }
   return { dialog: { maxW: value } }
 }

@@ -1,5 +1,32 @@
 # Change Log
 
+## 1.7.2
+
+### Patch Changes
+
+- [`d3d85956c`](https://github.com/chakra-ui/chakra-ui/commit/d3d85956c776b4768cfe21dabcf9292e01875d74)
+  [#4511](https://github.com/chakra-ui/chakra-ui/pull/4511) Thanks
+  [@jrolfs](https://github.com/jrolfs)! - Fix type definitions for `apply` prop.
+
+  The `apply` prop supports responsive styles:
+
+  ```tsx
+  // Before: type error, expects `string` for `apply`
+  <Text apply={{ sm: 'styles.h3', lg: 'styles.h4' }}>
+
+  // After: no type error, expects `ResponsiveValue<string>` for `apply`
+  <Text apply={{ sm: 'styles.h3', lg: 'styles.h4' }}>
+  ```
+
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`1d4b1f874`](https://github.com/chakra-ui/chakra-ui/commit/1d4b1f87498c2d843cd21c24e86085d812a1de07),
+  [`270b71ebb`](https://github.com/chakra-ui/chakra-ui/commit/270b71ebbb2bd9007d2e138e432675991d94f18d),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+  - @chakra-ui/styled-system@1.12.2
+  - @chakra-ui/color-mode@1.1.11
+
 ## 1.7.1
 
 ### Patch Changes
