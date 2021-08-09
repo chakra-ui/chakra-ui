@@ -13,6 +13,7 @@ To better understand the changelog, here are some legends we use:
 - 💥 Breaking
 - 🚀 Feature
 - 🐛 Bug fix
+- 🛠 Refactor
 
 ## 09-08-2021
 
@@ -42,7 +43,7 @@ export const theme = extendTheme({
 })
 ```
 
-- Remove code that was added as a workaround for pre-releases of React
+- 🛠 Remove code that was added as a workaround for pre-releases of React
   concurrent mode.
 
 - 🐛 If an `aria-describedby` property is passed it will be joined with the id's
@@ -50,60 +51,60 @@ export const theme = extendTheme({
 
 `@chakra-ui/theme@1.10.0`
 
-- Added a container part to the FormControl component theme, allowing the root
-  FormControl element to be themed.
+- 🚀 Added a container part to the FormControl component theme, allowing the
+  root FormControl element to be themed.
 
-- Fixed issue where modals with `size=full` have vertical margins.
+- 🐛 Fixed issue where modals with `size=full` have vertical margins.
 
 `@chakra-ui/button@1.4.2`
 
-Resolved an issue where a `Button` in loading state didn't consider the width of
-`leftIcon` and `rightIcon`, resulting in layout shifts when the button leaves
+🐛 Resolved an issue where a `Button` in loading state didn't consider the width
+of `leftIcon` and `rightIcon`, resulting in layout shifts when the button leaves
 the loading state. Buttons now render with the same width regardless of state.
 
 `@chakra-ui/checkbox@1.5.5`
 
-Remove code that was added as a workaround for pre-releases of React concurrent
-mode.
+🛠 Remove code that was added as a workaround for pre-releases of React
+concurrent mode.
 
 `@chakra-ui/layout@1.4.8`
 
-**Stack**: Ensure that when cloning children, their provided keys are preferred
-over index. This prevents them from being destroyed and recreated when a child's
-position in the list changes.
+**Stack**: 🐛 Ensure that when cloning children, their provided keys are
+preferred over index. This prevents them from being destroyed and recreated when
+a child's position in the list changes.
 
 `@chakra-ui/menu@1.7.2`
 
-MenuList scroll to next MenuItem on keyboard navigation when there is a defined
-maxHeight on MenuList.
+🐛 MenuList scroll to next MenuItem on keyboard navigation when there is a
+defined maxHeight on MenuList.
 
 Fix issues when rendering chakra components in different window
 
 `@chakra-ui/number-input@1.2.9`
 
-Remove code that was added as a workaround for pre-releases of React concurrent
-mode.
+🛠 Remove code that was added as a workaround for pre-releases of React
+concurrent mode.
 
 `@chakra-ui/radio@1.3.9`
 
-Remove code that was added as a workaround for pre-releases of React concurrent
-mode.
+🛠 Remove code that was added as a workaround for pre-releases of React
+concurrent mode.
 
 `@chakra-ui/slider@1.2.8`
 
-Fix issue where slider thumb doesn't show active state in firefox
+🐛 Fix issue where slider thumb doesn't show active state in firefox
 
 `@chakra-ui/stat@1.1.12`
 
-Add container part to Stat styleConfig
+🚀 Add container part to Stat styleConfig
 
 `@chakra-ui/styled-system@1.12.2`
 
-- Corrected parseGradient function so that it checks for CSS functions.
+- 🐛 Corrected `parseGradient` function so that it checks for CSS functions.
   Previously, using the CSS calc function would result in invalid CSS being
   generated. The expectation is that:
 
-```jsx
+```jsx live=false
 <Heading bgGradient="linear(to-r, green.200, pink.500 calc(20px + 20px))">
   Chakra-UI: Create accessible React apps with speed
 </Heading>
@@ -119,14 +120,15 @@ functions similar to linear-gradient which handles using a CSS function
 </Heading>
 ```
 
-- Grid props type definitions now correclty reflect the implemented behavior in
-  regard to tokens.
+- 🐛 Grid props type definitions now correclty reflect the implemented behavior
+  in regard to tokens.
 
 `@chakra-ui/system@1.7.2`
 
-Fix type definitions for apply prop. The apply prop supports responsive styles:
+🐛 Fix type definitions for `apply` prop. The `apply` prop supports responsive
+styles:
 
-```jsx
+```jsx live=false
 // Before: type error, expects `string` for `apply`
 <Text apply={{ sm: 'styles.h3', lg: 'styles.h4' }}>
 
@@ -136,13 +138,13 @@ Fix type definitions for apply prop. The apply prop supports responsive styles:
 
 `@chakra-ui/tooltip@1.3.9`
 
-Fix tooltips not closing when `openDelay` is set
+🐛 Fix tooltips not closing when `openDelay` is set
 
 `@chakra-ui/utils@1.8.2`
 
 - Remove code that was added as a workaround for pre-releases of React
   concurrent mode.
-- Fix issues when rendering chakra components in different window
+- 🐛 Fix issues when rendering chakra components in different window
 
 ## 08-07-2021
 
@@ -185,7 +187,7 @@ Fix tooltips not closing when `openDelay` is set
 
 - 🚀 The `styled` function allows a functional `baseStyle` property.
 
-```jsx live=false
+```jsx live=false live=false
 import { styled } from '@chakra-ui/react'
 
 const MyComponent = styled('div', {
@@ -210,7 +212,7 @@ const MyComponent = styled('div', {
 A published theme package should export a theme object as either the `default`
 export or an export named `theme`.
 
-```jsx live=false
+```jsx live=false live=false
 // chakra-theme-package/src/index.js
 import { extendTheme } from "@chakra-ui/react"
 
@@ -304,7 +306,7 @@ Ring
 
 [CodeSandbox Link](https://codesandbox.io/s/ring-colors-4wz1w)
 
-```jsx live=false
+```jsx live=false live=false
 // adds a 2px box-shadow with `gray.400` color
 <Box ring="2px" ringColor="gray.400">
   Sample
@@ -326,7 +328,7 @@ Filter Styles
 To use this API, you'll need to set `filter` to `auto`, same for
 `backdropFilter`.
 
-```jsx live=false
+```jsx live=false live=false
 // adds a 3px blur filter to this element
 <Image src="boruto.png" filter="auto" blur="3px" />
 
@@ -343,7 +345,7 @@ Transform Styles
 To use this API, you'll need to set `transform` to `auto` or `auto-gpu` (for the
 GPU accelerated version).
 
-```jsx live=false
+```jsx live=false live=false
 <Circle transform="auto" translateX="4" _hover={{ translateX: "8" }}>
   <CheckIcon />
 </Circle>
@@ -355,7 +357,7 @@ GPU accelerated version).
 - Automatic wrapping of `backgroundImage` or `bgImage` props with url() so you
   can just pass the image URL directly.
 
-```jsx live=false
+```jsx live=false live=false
 // You can now do this!
 <Box bgImage="naruto.png" />
 
@@ -392,7 +394,7 @@ High Contrast Mode
 
 - 🚀 Add blur token values for `filter` and `backdropFilter`.
 
-```jsx live=false
+```jsx live=false live=false
 {
   "none": 0,
   "sm": "4px",
@@ -439,7 +441,7 @@ High Contrast Mode
 - 🚀 Add support for tweaking the enter-exit transitions. Affected components:
   `Fade`, `Slide`, `SlideFade`, `SlideScale`, `Collapse`.
 
-```jsx live=false
+```jsx live=false live=false
 <Fade
   transition={{
     enter: { duration: 0.3 },
@@ -454,7 +456,7 @@ High Contrast Mode
 
 - 🚀 Add support for `delay` prop for all transition components.
 
-```jsx live=false
+```jsx live=false live=false
 // as a number
 <Fade delay={0.3} />
 
@@ -468,7 +470,7 @@ High Contrast Mode
 Note: this only works when you're using our built-in transition definition. If
 you're passing your own transition definition, pass the delay there.
 
-```jsx live=false
+```jsx live=false live=false
 // adding delay to your custom transition definition
 <Fade
   transition={{
@@ -550,7 +552,7 @@ Improvements
 - 🚀 The `extendTheme` function allows you to pass multiple overrides or
   extensions:
 
-```jsx live=false
+```jsx live=false live=false
 import {
   extendTheme,
   withDefaultColorScheme,
@@ -631,7 +633,7 @@ const customTheme = extendTheme(
   the button when `isLoading` is `true`. Spinner placement can be either `start`
   or `end`.
 
-```jsx live=false
+```jsx live=false live=false
 <Button isLoading spinnerPlacement="end">
   Click me
 </Button>
@@ -834,7 +836,7 @@ mounted (but hidden) after it was previously selected or opened, use
 - 🚀 Add `TableContainer` component to help tables scroll horizontally when
   overflowing.
 
-```jsx live=false
+```jsx live=false live=false
 <TableContainer>
   <Table>
     {...}
@@ -893,7 +895,7 @@ Popover
   width.
 - 🐛 Use `--popover-bg` css property to control popover and arrow background.
 
-```jsx live=false
+```jsx live=false live=false
 <PopoverContent style={{ "--popover-bg": "purple" }}>
   <PopoverArrow />
 </PopoverContent>
@@ -1011,7 +1013,7 @@ Table
 - 🚀 Add support for css variable tokens. This means you can create a css
   variable and reference value in the tokens.
 
-```jsx live=false
+```jsx live=false live=false
 <Box
   sx={{
     "--banner-color": "colors.red.200",
@@ -1233,7 +1235,7 @@ Table
 - 🚀 Introducing a generic TypeScript type `ChakraTheme` to improve the
   `extendTheme` function even further.
 
-```jsx live=false
+```jsx live=false live=false
 import { extendTheme } from "@chakra-ui/react"
 
 export const customTheme = extendTheme({
@@ -1250,7 +1252,7 @@ export type MyCustomTheme = typeof customTheme
 
 You can get typesafe access to your custom theme like this:
 
-```jsx live=false
+```jsx live=false live=false
  import { useTheme } from "@chakra-ui/react"
   import { MyCustomTheme } from "./my-custom-theme"
 
@@ -1272,7 +1274,7 @@ You can get typesafe access to your custom theme like this:
   makes it possible to use them in the component theme, `css` function and `sx`
   prop as well.
 
-```jsx live=false
+```jsx live=false live=false
 const theme = {
   textStyles: {
     caps: {
@@ -1447,7 +1449,7 @@ This also works for the component theme as well.
 - 🚀 Move `srOnly` prop to styled system props. This will deprecate the need for
   the visually hidden package. Less is more!
 
-```jsx live=false
+```jsx live=false live=false
   // If `true`, hide an element visually without hiding it from screen readers.
   <Box srOnly>Visually hidden</Box>
 
