@@ -14,6 +14,136 @@ To better understand the changelog, here are some legends we use:
 - 🚀 Feature
 - 🐛 Bug fix
 
+## 09-08-2021
+
+`@chakra-ui/form-control@1.4.0`
+
+- 🚀 Added a `container` part to the `FormControl` component theme, allowing the
+  root FormControl element to be themed.
+
+```jsx live=false
+import { extendTheme } from "@chakra-ui/react"
+
+export const theme = extendTheme({
+  components: {
+    Form: {
+      variants: {
+        // create a variant named "custom"
+        custom: {
+          // style the root `FormControl` element
+          container: {
+            color: "white",
+            bg: "blue.900",
+          },
+        },
+      },
+    },
+  },
+})
+```
+
+- Remove code that was added as a workaround for pre-releases of React
+  concurrent mode.
+
+- 🐛 If an `aria-describedby` property is passed it will be joined with the id's
+  from helper text and error message instead of being overwritten.
+
+`@chakra-ui/theme@1.10.0`
+
+- Added a container part to the FormControl component theme, allowing the root
+  FormControl element to be themed.
+
+- Fixed issue where modals with `size=full` have vertical margins.
+
+`@chakra-ui/button@1.4.2`
+
+Resolved an issue where a `Button` in loading state didn't consider the width of
+`leftIcon` and `rightIcon`, resulting in layout shifts when the button leaves
+the loading state. Buttons now render with the same width regardless of state.
+
+`@chakra-ui/checkbox@1.5.5`
+
+Remove code that was added as a workaround for pre-releases of React concurrent
+mode.
+
+`@chakra-ui/layout@1.4.8`
+
+**Stack**: Ensure that when cloning children, their provided keys are preferred
+over index. This prevents them from being destroyed and recreated when a child's
+position in the list changes.
+
+`@chakra-ui/menu@1.7.2`
+
+MenuList scroll to next MenuItem on keyboard navigation when there is a defined
+maxHeight on MenuList.
+
+Fix issues when rendering chakra components in different window
+
+`@chakra-ui/number-input@1.2.9`
+
+Remove code that was added as a workaround for pre-releases of React concurrent
+mode.
+
+`@chakra-ui/radio@1.3.9`
+
+Remove code that was added as a workaround for pre-releases of React concurrent
+mode.
+
+`@chakra-ui/slider@1.2.8`
+
+Fix issue where slider thumb doesn't show active state in firefox
+
+`@chakra-ui/stat@1.1.12`
+
+Add container part to Stat styleConfig
+
+`@chakra-ui/styled-system@1.12.2`
+
+- Corrected parseGradient function so that it checks for CSS functions.
+  Previously, using the CSS calc function would result in invalid CSS being
+  generated. The expectation is that:
+
+```jsx
+<Heading bgGradient="linear(to-r, green.200, pink.500 calc(20px + 20px))">
+  Chakra-UI: Create accessible React apps with speed
+</Heading>
+functions similar to linear-gradient which handles using a CSS function
+
+<Heading
+  bgImage="linear-gradient(
+    to right,
+    var(--chakra-colors-green-200)),
+    var(--chakra-colors-pink-500 calc(20px + 20px))"
+>
+  Chakra-UI: Create accessible React apps with speed
+</Heading>
+```
+
+- Grid props type definitions now correclty reflect the implemented behavior in
+  regard to tokens.
+
+`@chakra-ui/system@1.7.2`
+
+Fix type definitions for apply prop. The apply prop supports responsive styles:
+
+```jsx
+// Before: type error, expects `string` for `apply`
+<Text apply={{ sm: 'styles.h3', lg: 'styles.h4' }}>
+
+// After: no type error, expects `ResponsiveValue<string>` for `apply`
+<Text apply={{ sm: 'styles.h3', lg: 'styles.h4' }}>
+```
+
+`@chakra-ui/tooltip@1.3.9`
+
+Fix tooltips not closing when `openDelay` is set
+
+`@chakra-ui/utils@1.8.2`
+
+- Remove code that was added as a workaround for pre-releases of React
+  concurrent mode.
+- Fix issues when rendering chakra components in different window
+
 ## 08-07-2021
 
 `@chakra-ui/cli@1.5.0`
