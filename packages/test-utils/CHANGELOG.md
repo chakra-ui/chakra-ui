@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.0.31
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@1.6.6
+
 ## 1.0.30
 
 ### Patch Changes
