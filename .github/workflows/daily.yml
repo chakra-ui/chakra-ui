@@ -46,10 +46,10 @@ jobs:
       - name: Commit avatars and all-sponsorsrc
         run: |
           git add website/public/avatars
-          git commit -m "chore(avatars): $GITHUB_SHA"
+          git diff --staged --quiet || git commit -m "chore(avatars): $GITHUB_SHA"
 
           git add .all-sponsorsrc
-          git commit -m "chore(.all-sponsorsrc): $GITHUB_SHA"
+          git diff --staged --quiet || git commit -m "chore(.all-sponsorsrc): $GITHUB_SHA"
 
       - name: Generate all-membersrc
         run: yarn members:gen
@@ -57,7 +57,7 @@ jobs:
       - name: Commit all-membersrc
         run: |
           git add .all-membersrc
-          git commit -m "chore(.all-membersrc): $GITHUB_SHA"
+          git diff --staged --quiet || git commit -m "chore(.all-membersrc): $GITHUB_SHA"
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
