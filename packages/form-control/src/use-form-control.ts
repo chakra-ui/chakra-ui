@@ -60,7 +60,9 @@ export function useFormControlProps<T extends HTMLElement>(
     ...rest
   } = props
 
-  const labelIds: string[] = []
+  const labelIds: string[] = props["aria-describedby"]
+    ? [props["aria-describedby"]]
+    : []
 
   // Error message must be described first in all scenarios.
   if (field?.hasFeedbackText && field?.isInvalid) {
