@@ -1,5 +1,27 @@
 # Change Log
 
+## 1.7.2
+
+### Patch Changes
+
+- [`6dadb97db`](https://github.com/chakra-ui/chakra-ui/commit/6dadb97db74fb9e559c41770b8c99e1a9ed08577)
+  [#4514](https://github.com/chakra-ui/chakra-ui/pull/4514) Thanks
+  [@takethefake](https://github.com/takethefake)! - MenuList scroll to next
+  MenuItem on KeyboardNavigation when there is a defined maxHeight on MenuList
+
+* [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)
+  [#4458](https://github.com/chakra-ui/chakra-ui/pull/4458) Thanks
+  [@agundermann](https://github.com/agundermann)! - Fix issues when rendering
+  chakra components in different window
+
+* Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+  - @chakra-ui/clickable@1.1.7
+  - @chakra-ui/hooks@1.5.5
+  - @chakra-ui/transition@1.3.4
+
 ## 1.7.1
 
 ### Patch Changes
