@@ -9,7 +9,7 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { callAll, split, __DEV__ } from "@chakra-ui/utils"
+import { callAll, split, __DEV__, isDisabled } from "@chakra-ui/utils"
 import * as React from "react"
 import { useRadioGroupContext } from "./radio-group"
 import { useRadio, UseRadioProps } from "./use-radio"
@@ -44,18 +44,24 @@ export interface RadioProps
  * @see Docs https://chakra-ui.com/radio
  */
 export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
+  const group = useRadioGroupContext()
   const { onChange: onChangeProp, value: valueProp } = props
 
-  const group = useRadioGroupContext()
   const styles = useMultiStyleConfig("Radio", { ...group, ...props })
+
+  const ownProps = omitThemingProps(props)
 
   const {
     spacing = "0.5rem",
     children,
     isFullWidth,
+    isDisabled = group?.isDisabled,
     ...rest
-  } = omitThemingProps(props)
+  } = ownProps
 
+  // if `isFocusable` is defined on a `Radio` we take this value, if it's inside a `RadioGroup with `isDisabled===true` we use `false`
+  const isFocusable =
+    ownProps.isFocusable ?? group?.isDisabled ? false : undefined
   let isChecked = props.isChecked
   if (group?.value != null && valueProp != null) {
     isChecked = group.value === valueProp
@@ -76,6 +82,8 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
   } = useRadio({
     ...rest,
     isChecked,
+    isFocusable,
+    isDisabled,
     onChange,
     name,
   })

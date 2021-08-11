@@ -2,7 +2,7 @@
 import { FormControl } from "@chakra-ui/react"
 import { fireEvent, render } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { Radio, useRadioGroup, UseRadioGroupProps } from "../src"
+import { Radio, useRadioGroup, UseRadioGroupProps, RadioGroup } from "../src"
 
 test("works with Radio component", () => {
   const Component = (props: UseRadioGroupProps = {}) => {
@@ -39,6 +39,35 @@ test("uncontrolled: correctly manages state", () => {
   // changes checked on click
   fireEvent.click(utils.getByLabelText("b"))
   expect(utils.getByLabelText("b")).toBeChecked()
+})
+
+test("Uncontrolled RadioGroup - should not check if group disabled", () => {
+  const Component = () => (
+    <RadioGroup isDisabled>
+      <Radio value="one">One</Radio>
+      <Radio value="two" isDisabled>
+        Two
+      </Radio>
+      <Radio value="three" isDisabled={false}>
+        Three
+      </Radio>
+    </RadioGroup>
+  )
+  const { container } = render(<Component />)
+  const [radioOne, radioTwo, radioThree] = Array.from(
+    container.querySelectorAll("input"),
+  )
+
+  expect(radioOne).toBeDisabled()
+  expect(radioTwo).toBeDisabled()
+  expect(radioThree).not.toBeDisabled()
+
+  fireEvent.click(radioOne)
+  expect(radioOne).not.toBeChecked()
+  fireEvent.click(radioTwo)
+  expect(radioTwo).not.toBeChecked()
+  fireEvent.click(radioThree)
+  expect(radioThree).toBeChecked()
 })
 
 test("controlled: correctly manages state", () => {

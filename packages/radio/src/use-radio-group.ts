@@ -22,6 +22,10 @@ export interface UseRadioGroupProps {
    */
   onChange?(nextValue: string): void
   /**
+   * If `true`, all wrapped radio jinputs will be disabled
+   */
+  isDisabled?: boolean
+  /**
    * The `name` attribute forwarded to each `radio` element
    */
   name?: string
@@ -51,6 +55,7 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     value: valueProp,
     defaultValue,
     name: nameProp,
+    isDisabled,
     isNative,
     ...htmlProps
   } = props
@@ -137,6 +142,7 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     setValue,
     value,
     onChange,
+    isDisabled,
     htmlProps,
   }
 }
