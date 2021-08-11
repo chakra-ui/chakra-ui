@@ -9,7 +9,7 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { callAll, split, __DEV__, isDisabled } from "@chakra-ui/utils"
+import { callAll, split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useRadioGroupContext } from "./radio-group"
 import { useRadio, UseRadioProps } from "./use-radio"
@@ -56,12 +56,10 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
     children,
     isFullWidth,
     isDisabled = group?.isDisabled,
+    isFocusable = group?.isFocusable,
     ...rest
   } = ownProps
 
-  // if `isFocusable` is defined on a `Radio` we take this value, if it's inside a `RadioGroup with `isDisabled===true` we use `false`
-  const isFocusable =
-    ownProps.isFocusable ?? group?.isDisabled ? false : undefined
   let isChecked = props.isChecked
   if (group?.value != null && valueProp != null) {
     isChecked = group.value === valueProp

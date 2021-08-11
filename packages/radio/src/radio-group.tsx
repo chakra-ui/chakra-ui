@@ -16,7 +16,7 @@ import {
 export interface RadioGroupContext
   extends Pick<
       UseRadioGroupReturn,
-      "onChange" | "value" | "name" | "isDisabled"
+      "onChange" | "value" | "name" | "isDisabled" | "isFocusable"
     >,
     Omit<ThemingProps<"Radio">, "orientation"> {}
 
@@ -57,6 +57,7 @@ export const RadioGroup = forwardRef<RadioGroupProps, "div">((props, ref) => {
     children,
     className,
     isDisabled,
+    isFocusable,
     ...rest
   } = props
 
@@ -71,8 +72,18 @@ export const RadioGroup = forwardRef<RadioGroupProps, "div">((props, ref) => {
       value,
       variant,
       isDisabled,
+      isFocusable,
     }),
-    [size, name, onChange, colorScheme, value, variant, isDisabled],
+    [
+      name,
+      size,
+      onChange,
+      colorScheme,
+      value,
+      variant,
+      isDisabled,
+      isFocusable,
+    ],
   )
 
   const groupProps = getRootProps(htmlProps, ref)
