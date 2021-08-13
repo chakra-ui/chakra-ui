@@ -327,9 +327,9 @@ export function useSlider(props: UseSliderProps) {
   useUpdateEffect(() => {
     focusThumb()
     if (eventSourceRef.current === "keyboard") {
-      onChangeEndProp?.(valueRef.current)
+      onChangeEnd?.(valueRef.current)
     }
-  }, [value, onChangeEndProp])
+  }, [value, onChangeEnd])
 
   const setValueFromPointer = (event: AnyPointerEvent) => {
     const nextValue = getValueFromPointer(event)
