@@ -44,17 +44,21 @@ export interface RadioProps
  * @see Docs https://chakra-ui.com/radio
  */
 export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
+  const group = useRadioGroupContext()
   const { onChange: onChangeProp, value: valueProp } = props
 
-  const group = useRadioGroupContext()
   const styles = useMultiStyleConfig("Radio", { ...group, ...props })
+
+  const ownProps = omitThemingProps(props)
 
   const {
     spacing = "0.5rem",
     children,
     isFullWidth,
+    isDisabled = group?.isDisabled,
+    isFocusable = group?.isFocusable,
     ...rest
-  } = omitThemingProps(props)
+  } = ownProps
 
   let isChecked = props.isChecked
   if (group?.value != null && valueProp != null) {
@@ -76,6 +80,8 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
   } = useRadio({
     ...rest,
     isChecked,
+    isFocusable,
+    isDisabled,
     onChange,
     name,
   })
