@@ -8,6 +8,7 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
+import { usePrevious } from "@chakra-ui/hooks"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -89,10 +90,13 @@ export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
     ...rest
   } = omitThemingProps(props)
 
+  const wasPreviouslyLoaded = usePrevious(isLoaded)
+
   const _className = cx("chakra-skeleton", className)
 
   if (isLoaded) {
-    const animation = isFirstRender ? "none" : `${fade} ${fadeDuration}s`
+    const animation =
+      isFirstRender || wasPreviouslyLoaded ? "none" : `${fade} ${fadeDuration}s`
 
     return (
       <chakra.div

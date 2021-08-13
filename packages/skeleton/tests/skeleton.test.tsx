@@ -2,7 +2,7 @@ import * as React from "react"
 import { ThemeProvider } from "@chakra-ui/system"
 import { render } from "@chakra-ui/test-utils"
 import MatchMediaMock from "jest-matchmedia-mock"
-import { SkeletonText } from "../src"
+import { Skeleton, SkeletonText } from "../src"
 import { queries, theme } from "./test-data"
 
 let matchMedia: any
@@ -28,6 +28,27 @@ test("SkeletonText renders noOfLines respective to the responsive breakpoint", (
 
   expect(skeletonGroup).not.toBeNull()
   expect(skeletonGroup!.childElementCount).toBe(desiredNoOfLines)
+})
+
+test("Change in parent state does not cause animation if already loaded", () => {
+  const TestComponent = () => {
+    const [, setState] = React.useState(false)
+    React.useEffect(() => {
+      setState(true)
+    }, [])
+    return (
+      <ThemeProvider theme={theme}>
+        <Skeleton isLoaded />
+      </ThemeProvider>
+    )
+  }
+
+  const { container } = render(<TestComponent />)
+
+  const skeleton = container.querySelector(".chakra-skeleton")
+
+  expect(skeleton).not.toBeNull()
+  expect(skeleton).toHaveStyle({ animation: "none" })
 })
 
 function renderWithQuery(query: string, ui: React.ReactElement) {
