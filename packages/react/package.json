@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react",
-  "version": "1.6.6-next.0",
+  "version": "1.6.6-next.1",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -34,7 +34,7 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/accordion": "1.3.5-next.0",
+    "@chakra-ui/accordion": "1.3.5-next.1",
     "@chakra-ui/alert": "1.2.7-next.0",
     "@chakra-ui/avatar": "1.2.8-next.0",
     "@chakra-ui/breadcrumb": "1.2.8-next.0",
@@ -53,10 +53,10 @@
     "@chakra-ui/layout": "1.4.8-next.0",
     "@chakra-ui/live-region": "1.0.14-next.0",
     "@chakra-ui/media-query": "2.0.0-next.0",
-    "@chakra-ui/menu": "1.7.2-next.0",
+    "@chakra-ui/menu": "1.7.2-next.1",
     "@chakra-ui/modal": "1.8.10-next.0",
     "@chakra-ui/number-input": "1.2.9-next.0",
-    "@chakra-ui/pin-input": "1.6.4-next.0",
+    "@chakra-ui/pin-input": "1.6.4-next.1",
     "@chakra-ui/popover": "1.8.2-next.0",
     "@chakra-ui/popper": "2.2.2-next.0",
     "@chakra-ui/portal": "1.2.8-next.0",
@@ -71,7 +71,7 @@
     "@chakra-ui/switch": "1.2.8-next.0",
     "@chakra-ui/system": "1.7.2-next.0",
     "@chakra-ui/table": "1.2.6-next.0",
-    "@chakra-ui/tabs": "1.5.4-next.0",
+    "@chakra-ui/tabs": "1.5.4-next.1",
     "@chakra-ui/tag": "1.1.12-next.0",
     "@chakra-ui/textarea": "1.1.13-next.0",
     "@chakra-ui/theme": "1.10.0-next.0",

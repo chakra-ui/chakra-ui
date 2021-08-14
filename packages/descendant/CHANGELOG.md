@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.0.2-next.1
+
+### Patch Changes
+
+- [`63cdaa453`](https://github.com/chakra-ui/chakra-ui/commit/63cdaa453427d3bb8d75a2b50fae2083f0f4b55d)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumping version to
+  fix an npm publish error
+
 ## 2.0.2-next.0
 
 ### Patch Changes
