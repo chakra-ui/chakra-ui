@@ -15,6 +15,7 @@ const baseStyleContainer = {
 
 const baseStyleLabel = {
   lineHeight: 1.2,
+  overflow: "visible",
 }
 
 const baseStyleCloseButton = {
