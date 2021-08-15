@@ -6,7 +6,6 @@ import {
   useIds,
   useLatestRef,
   usePanGesture,
-  usePrevious,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
 import { EventKeyMap, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
@@ -162,7 +161,6 @@ export function useSlider(props: UseSliderProps) {
   })
 
   const [isDragging, setDragging] = useBoolean()
-  const prevIsDragging = usePrevious(isDragging)
 
   const [isFocused, setFocused] = useBoolean()
   const eventSourceRef = useRef<"pointer" | "keyboard" | null>(null)
@@ -344,26 +342,17 @@ export function useSlider(props: UseSliderProps) {
       setDragging.on()
       focusThumb()
       setValueFromPointer(event)
+      onChangeStart?.(valueRef.current)
     },
     onPanSessionEnd() {
       if (!isInteractive) return
       setDragging.off()
-      if (!prevIsDragging && prevRef.current !== valueRef.current) {
-        onChangeEnd?.(valueRef.current)
-        prevRef.current = valueRef.current
-      }
-    },
-    onPanStart() {
-      if (!isInteractive) return
-      onChangeStart?.(valueRef.current)
+      onChangeEnd?.(valueRef.current)
+      prevRef.current = valueRef.current
     },
     onPan(event) {
       if (!isInteractive) return
       setValueFromPointer(event)
-    },
-    onPanEnd() {
-      if (!isInteractive) return
-      onChangeEnd?.(valueRef.current)
     },
   })
 
