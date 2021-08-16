@@ -59,15 +59,15 @@ export interface UseSliderProps {
    */
   isReversed?: boolean
   /**
-   * function gets called whenever the user starts dragging the slider handle
+   * Function called when the user starts selecting a new value (by dragging or clicking)
    */
   onChangeStart?(value: number): void
   /**
-   * function gets called whenever the user stops dragging the slider handle.
+   * Function called when the user is done selecting a new value (by dragging or clicking)
    */
   onChangeEnd?(value: number): void
   /**
-   * function gets called whenever the slider handle is being dragged or clicked
+   * Function called whenever the slider value changes  (by dragging or clicking)
    */
   onChange?(value: number): void
   /**
