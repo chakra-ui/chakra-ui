@@ -1,5 +1,5 @@
 import { useColorMode } from "@chakra-ui/color-mode"
-import { SystemStyleObject } from "@chakra-ui/styled-system"
+import { SystemStyleObject, ThemingProps } from "@chakra-ui/styled-system"
 import {
   Dict,
   filterUndefined,
@@ -11,7 +11,6 @@ import {
 import { useMemo, useRef } from "react"
 import isEqual from "react-fast-compare"
 import { useTheme } from "./providers"
-import { ThemingProps } from "./system.types"
 import { omitThemingProps } from "./system.utils"
 
 export function useChakra<T extends Dict = Dict>() {

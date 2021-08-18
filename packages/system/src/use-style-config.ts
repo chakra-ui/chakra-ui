@@ -1,4 +1,4 @@
-import { SystemStyleObject } from "@chakra-ui/styled-system"
+import { SystemStyleObject, ThemingProps } from "@chakra-ui/styled-system"
 import {
   filterUndefined,
   memoizedGet as get,
@@ -10,7 +10,6 @@ import {
 import { useMemo, useRef } from "react"
 import isEqual from "react-fast-compare"
 import { useChakra } from "./hooks"
-import { ThemingProps } from "./system.types"
 
 export function useStyleConfig(
   themeKey: string,

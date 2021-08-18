@@ -1,6 +1,6 @@
 import { isString, omit, UnionStringArray, __DEV__ } from "@chakra-ui/utils"
+import { ThemingProps } from "@chakra-ui/styled-system"
 import * as React from "react"
-import { ThemingProps } from "./system.types"
 
 /**
  * Carefully selected html elements for chakra components.
