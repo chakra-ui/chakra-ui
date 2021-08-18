@@ -1,5 +1,19 @@
-import { keyframes } from "@chakra-ui/system"
 import { getColor, mode } from "@chakra-ui/theme-tools"
+
+let emotion = null
+try {
+  // eslint-disable-next-line global-require
+  emotion = require('@emotion/react')
+} catch {
+  // eslint-disable-next-line global-require
+  emotion = require('@emotion/css')
+}
+
+if(!emotion) {
+  throw Error('Either @emotion/react (for React) or @emotion/css (for others) must be installed')
+}
+
+const { keyframes } = emotion
 
 const fade = (startColor: string, endColor: string) =>
   keyframes({
