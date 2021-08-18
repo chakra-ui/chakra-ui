@@ -1,7 +1,6 @@
 import React from "react"
 import theme from "@chakra-ui/theme"
-import { ColorModeOptions } from "../src/color-mode-provider"
-import type { ColorMode } from "../src/color-mode.utils"
+import { ColorMode, ColorModeOptions } from "@chakra-ui/styled-system"
 import { screen } from "@testing-library/react"
 import type { StorageManager } from "../src/storage-manager"
 

@@ -1,11 +1,10 @@
 import { isBrowser, noop } from "@chakra-ui/utils"
+import { ColorMode } from "@chakra-ui/styled-system"
 
 const classNames = {
   light: "chakra-ui-light",
   dark: "chakra-ui-dark",
 }
-
-export type ColorMode = "light" | "dark"
 
 /**
  * SSR: Graceful fallback for the `body` element

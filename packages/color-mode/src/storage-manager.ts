@@ -1,5 +1,5 @@
 import { __DEV__ } from "@chakra-ui/utils"
-import { ColorMode } from "./color-mode.utils"
+import { ColorMode } from "@chakra-ui/styled-system"
 
 const hasSupport = () => typeof Storage !== "undefined"
 export const storageKey = "chakra-ui-color-mode"

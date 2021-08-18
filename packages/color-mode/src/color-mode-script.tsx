@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ColorMode } from "./color-mode-provider"
+import { ColorMode } from "@chakra-ui/styled-system"
 
 type Mode = ColorMode | "system" | undefined
 

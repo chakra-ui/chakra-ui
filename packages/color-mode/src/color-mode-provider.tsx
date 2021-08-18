@@ -1,20 +1,13 @@
 import { isBrowser, noop, __DEV__ } from "@chakra-ui/utils"
+import { ColorMode, ColorModeOptions } from "@chakra-ui/styled-system"
 import * as React from "react"
 import {
   addListener,
-  ColorMode,
   getColorScheme,
   syncBodyClassName,
   root,
 } from "./color-mode.utils"
 import { localStorageManager, StorageManager } from "./storage-manager"
-
-export type { ColorMode }
-
-export interface ColorModeOptions {
-  initialColorMode?: ColorMode
-  useSystemColorMode?: boolean
-}
 
 interface ColorModeContextType {
   colorMode: ColorMode
