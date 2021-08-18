@@ -56,7 +56,7 @@
   "dependencies": {
     "@chakra-ui/hooks": "1.5.5",
     "@chakra-ui/media-query": "1.1.2",
-    "@chakra-ui/system": "1.7.2",
+    "@chakra-ui/system": "1.7.3",
     "@chakra-ui/utils": "1.8.2"
   },
   "peerDependencies": {
