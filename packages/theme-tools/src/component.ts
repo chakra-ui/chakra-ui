@@ -1,4 +1,4 @@
-import { SystemStyleObject } from "@chakra-ui/system"
+import { SystemStyleObject } from "@chakra-ui/styled-system"
 import { Dict, runIfFn } from "@chakra-ui/utils"
 
 export interface StyleConfig {

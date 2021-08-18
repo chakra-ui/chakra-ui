@@ -1,7 +1,6 @@
-import { ColorMode, ColorModeOptions, ThemingProps } from "@chakra-ui/system"
 import { Breakpoints, Styles } from "@chakra-ui/theme-tools"
 import { Dict } from "@chakra-ui/utils"
-import { StyleObjectOrFn, SystemStyleObject } from "@chakra-ui/styled-system"
+import { ColorMode, ColorModeOptions, ThemingProps, StyleObjectOrFn, SystemStyleObject } from "@chakra-ui/styled-system"
 
 export type RecursiveProperty<Nested = string | number> =
   | RecursiveObject<Nested>
