@@ -150,13 +150,10 @@ export function useMenu(props: UseMenuProps = {}) {
   const buttonRef = React.useRef<HTMLButtonElement>(null)
 
   useOutsideClick({
+    enabled: isOpen && closeOnBlur,
     ref: menuRef,
     handler: (event) => {
-      if (
-        isOpen &&
-        closeOnBlur &&
-        !buttonRef.current?.contains(event.target as HTMLElement)
-      ) {
+      if (!buttonRef.current?.contains(event.target as HTMLElement)) {
         onClose()
       }
     },
