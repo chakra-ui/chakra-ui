@@ -469,3 +469,18 @@ export const MenuWithOverflowingContent = () => {
     </Menu>
   )
 }
+
+export const MenuPerformanceTest = () => {
+  return [...Array(100)].map((_, index) => (
+    <div key={index}>
+      <Menu eventListeners={false}>
+        <MenuButton>Menu {index + 1}</MenuButton>
+        <MenuList>
+          <MenuItem>Menu 1</MenuItem>
+          <MenuItem>Menu 2</MenuItem>
+          <MenuItem>Menu 3</MenuItem>
+        </MenuList>
+      </Menu>
+    </div>
+  ))
+}
