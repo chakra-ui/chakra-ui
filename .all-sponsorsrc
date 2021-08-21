@@ -1252,6 +1252,25 @@
       "twitter": "https://twitter.com/codebender828",
       "github": "https://github.com/codebender828",
       "website": "https://jbakebwa.dev"
+    },
+    {
+      "MemberId": 219561,
+      "createdAt": "2021-08-20 19:12",
+      "type": "USER",
+      "role": "MEMBER",
+      "isActive": true,
+      "totalAmountDonated": 0,
+      "lastTransactionAt": "2021-08-21 00:03",
+      "lastTransactionAmount": 0,
+      "profile": "https://opencollective.com/javieralaves",
+      "name": "Javier Alaves",
+      "company": "tribe.so",
+      "description": "Designer at Tribe",
+      "image": "/avatars/219561.jpg",
+      "email": null,
+      "twitter": "https://twitter.com/javalaves",
+      "github": "https://github.com/javieralaves",
+      "website": null
     }
   ],
   "companies": [
@@ -1282,7 +1301,7 @@
       "role": "BACKER",
       "isActive": true,
       "totalAmountDonated": 18,
-      "lastTransactionAt": "2021-08-20 00:03",
+      "lastTransactionAt": "2021-08-21 00:03",
       "lastTransactionAmount": 0,
       "profile": "https://opencollective.com/triplebyte",
       "name": "Triplebyte",
@@ -1301,7 +1320,7 @@
       "role": "BACKER",
       "isActive": true,
       "totalAmountDonated": 20,
-      "lastTransactionAt": "2021-08-20 00:03",
+      "lastTransactionAt": "2021-08-21 00:03",
       "lastTransactionAmount": 0,
       "profile": "https://opencollective.com/thinkmill",
       "name": "Thinkmill",
