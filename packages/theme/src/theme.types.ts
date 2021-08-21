@@ -1,6 +1,13 @@
 import { Breakpoints, Styles } from "@chakra-ui/theme-tools"
 import { Dict } from "@chakra-ui/utils"
-import { ColorMode, ColorModeOptions, ThemingProps, StyleObjectOrFn, SystemStyleObject } from "@chakra-ui/styled-system"
+import {
+  ColorMode,
+  ColorModeOptions,
+  ThemingProps,
+  StyleObjectOrFn,
+  SystemStyleObject,
+  CssSerializer,
+} from "@chakra-ui/styled-system"
 
 export type RecursiveProperty<Nested = string | number> =
   | RecursiveObject<Nested>
@@ -46,6 +53,7 @@ export interface ThemeComponentProps<Theme extends ChakraTheme = ChakraTheme>
     Omit<ThemingProps, "styleConfig"> {
   colorMode: ColorMode
   theme: Theme
+  _serializer: CssSerializer
 }
 
 export type ThemeComponentFunction<

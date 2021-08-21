@@ -1,4 +1,8 @@
-import { SystemStyleObject, ThemingProps } from "@chakra-ui/styled-system"
+import {
+  SystemStyleObject,
+  ThemingProps,
+  CssSerializer,
+} from "@chakra-ui/styled-system"
 import {
   filterUndefined,
   memoizedGet as get,
@@ -8,6 +12,7 @@ import {
   Dict,
 } from "@chakra-ui/utils"
 import { useMemo, useRef } from "react"
+import * as emotion from "@emotion/react"
 import isEqual from "react-fast-compare"
 import { useChakra } from "./hooks"
 
@@ -31,7 +36,11 @@ export function useStyleConfig(themeKey: any, props: any = {}, opts: any = {}) {
   const styleConfig = styleConfigProp || themeStyleConfig
 
   const mergedProps = mergeWith(
-    { theme, colorMode },
+    {
+      theme,
+      colorMode,
+      _serializer: emotion as CssSerializer,
+    },
     styleConfig?.defaultProps ?? {},
     filterUndefined(omit(rest, ["children"])),
   )

@@ -3,9 +3,11 @@ import {
   isStyleProp,
   StyleProps,
   SystemStyleObject,
+  CssSerializer,
 } from "@chakra-ui/styled-system"
 import { filterUndefined, objectFilter, runIfFn } from "@chakra-ui/utils"
 import _styled, { CSSObject, FunctionInterpolation } from "@emotion/styled"
+import * as emotion from "@emotion/react"
 import { shouldForwardProp } from "./should-forward-prop"
 import { As, ChakraComponent, ChakraProps, PropsOf } from "./system.types"
 import { domElements, DOMElements } from "./system.utils"
@@ -41,7 +43,10 @@ interface GetStyleObject {
 export const toCSSObject: GetStyleObject = ({ baseStyle }) => (props) => {
   const { theme, css: cssProp, __css, sx, ...rest } = props
   const styleProps = objectFilter(rest, (_, prop) => isStyleProp(prop))
-  const finalBaseStyle = runIfFn(baseStyle, props)
+  const finalBaseStyle = runIfFn(baseStyle, {
+    _serializer: emotion as CssSerializer,
+    ...props,
+  })
   const finalStyles = Object.assign(
     {},
     __css,

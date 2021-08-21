@@ -1,27 +1,7 @@
 import { getColor, mode } from "@chakra-ui/theme-tools"
+import { ThemeComponentProps } from "../theme.types"
 
-let emotion = null
-try {
-  // eslint-disable-next-line global-require
-  emotion = require('@emotion/react')
-} catch {
-  // eslint-disable-next-line global-require
-  emotion = require('@emotion/css')
-}
-
-if(!emotion) {
-  throw Error('Either @emotion/react (for React) or @emotion/css (for others) must be installed')
-}
-
-const { keyframes } = emotion
-
-const fade = (startColor: string, endColor: string) =>
-  keyframes({
-    from: { borderColor: startColor, background: startColor },
-    to: { borderColor: endColor, background: endColor },
-  })
-
-const baseStyle = (props: Record<string, any>) => {
+const baseStyle = (props: ThemeComponentProps) => {
   const defaultStartColor = mode("gray.100", "gray.800")(props)
   const defaultEndColor = mode("gray.400", "gray.600")(props)
 
@@ -30,17 +10,23 @@ const baseStyle = (props: Record<string, any>) => {
     endColor = defaultEndColor,
     speed,
     theme,
+    _serializer,
   } = props
 
   const start = getColor(theme, startColor)
   const end = getColor(theme, endColor)
+
+  const fade = _serializer.keyframes({
+    from: { borderColor: startColor, background: startColor },
+    to: { borderColor: endColor, background: endColor },
+  })
 
   return {
     opacity: 0.7,
     borderRadius: "2px",
     borderColor: start,
     background: end,
-    animation: `${speed}s linear infinite alternate ${fade(start, end)}`,
+    animation: `${speed}s linear infinite alternate ${fade}`,
   }
 }
 

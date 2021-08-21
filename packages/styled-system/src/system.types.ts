@@ -91,3 +91,9 @@ type PseudoProps = {
 }
 
 export interface SystemProps extends StyleProps, PseudoProps {}
+
+export interface CssSerializer {
+  css: (...args: any) => Dict
+  keyframes: (...args: any) => String
+  injectGlobal?: (...args: any) => any
+}
