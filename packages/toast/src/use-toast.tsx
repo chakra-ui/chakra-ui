@@ -53,7 +53,7 @@ export interface UseToastOptions {
   /**
    * The alert component `variant` to use
    */
-  variant?: "subtle"| "solid"| "left-accent" | "top-accent"
+  variant?: "subtle"| "solid"| "left-accent" | "top-accent" | (string & {})
   /**
    * The status of the toast.
    */
