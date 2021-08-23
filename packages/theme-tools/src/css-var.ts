@@ -1,4 +1,6 @@
-import { isDecimal } from "@chakra-ui/utils"
+export function isDecimal(value: any) {
+  return !Number.isInteger(parseFloat(value.toString()))
+}
 
 function replaceWhiteSpace(value: string, replaceValue = "-") {
   return value.replace(/\s+/g, replaceValue)
