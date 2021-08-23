@@ -42,10 +42,10 @@ const baseStyleStepper: SystemStyleFunction = (props) => {
 }
 
 const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
-  [parts.root]: baseStyleRoot,
-  [parts.field]: baseStyleField,
-  [parts.stepperGroup]: baseStyleStepperGroup,
-  [parts.stepper]: baseStyleStepper(props),
+  root: baseStyleRoot,
+  field: baseStyleField,
+  stepperGroup: baseStyleStepperGroup,
+  stepper: baseStyleStepper(props),
 })
 
 type Size = "xs" | "sm" | "md" | "lg"
