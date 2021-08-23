@@ -1,13 +1,16 @@
-import { mode } from "@chakra-ui/theme-tools"
+import { mode, cssVar, SystemStyleFunction } from "@chakra-ui/theme-tools"
 
-function baseStyle(props: Record<string, any>) {
+const tooltipBg = cssVar("tooltip-bg")
+const arrowBg = cssVar("popper-arrow-bg")
+
+const baseStyle: SystemStyleFunction = (props) => {
   const bg = mode("gray.700", "gray.300")(props)
   return {
-    "--tooltip-bg": `colors.${bg}`,
+    [tooltipBg.variable]: `colors.${bg}`,
     px: "8px",
     py: "2px",
-    bg: "var(--tooltip-bg)",
-    "--popper-arrow-bg": "var(--tooltip-bg)",
+    bg: [tooltipBg.reference],
+    [arrowBg.variable]: [tooltipBg.reference],
     color: mode("whiteAlpha.900", "gray.900")(props),
     borderRadius: "sm",
     fontWeight: "medium",

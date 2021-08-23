@@ -1,8 +1,12 @@
+import { inputAnatomy as parts } from "@chakra-ui/anatomy"
+import type {
+  PartsStyleFunction,
+  PartsStyleObject,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
 import { getColor, mode } from "@chakra-ui/theme-tools"
 
-const parts = ["field", "addon"]
-
-const baseStyle = {
+const baseStyle: PartsStyleObject<typeof parts> = {
   field: {
     width: "100%",
     minWidth: 0,
@@ -14,7 +18,7 @@ const baseStyle = {
   },
 }
 
-const size = {
+const size: Record<string, SystemStyleObject> = {
   lg: {
     fontSize: "lg",
     px: 4,
@@ -44,7 +48,7 @@ const size = {
   },
 }
 
-const sizes = {
+const sizes: Record<string, PartsStyleObject<typeof parts>> = {
   lg: {
     field: size.lg,
     addon: size.lg,
@@ -71,7 +75,7 @@ function getDefaults(props: Record<string, any>) {
   }
 }
 
-function variantOutline(props: Record<string, any>) {
+const variantOutline: PartsStyleFunction<typeof parts> = (props) => {
   const { theme } = props
   const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
 
@@ -109,7 +113,7 @@ function variantOutline(props: Record<string, any>) {
   }
 }
 
-function variantFilled(props: Record<string, any>) {
+const variantFilled: PartsStyleFunction<typeof parts> = (props) => {
   const { theme } = props
   const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
 
@@ -145,7 +149,7 @@ function variantFilled(props: Record<string, any>) {
   }
 }
 
-function variantFlushed(props: Record<string, any>) {
+const variantFlushed: PartsStyleFunction<typeof parts> = (props) => {
   const { theme } = props
   const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
 
@@ -179,7 +183,7 @@ function variantFlushed(props: Record<string, any>) {
   }
 }
 
-const variantUnstyled = {
+const variantUnstyled: PartsStyleObject<typeof parts> = {
   field: {
     bg: "transparent",
     px: 0,

@@ -1,10 +1,12 @@
+import { tableAnatomy as parts } from "@chakra-ui/anatomy"
 import { mode } from "@chakra-ui/theme-tools"
+import type {
+  PartsStyleFunction,
+  PartsStyleObject,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
 
-const parts = ["table", "thead", "tbody", "tr", "th", "td", "caption"]
-
-type Dict = Record<string, any>
-
-const baseStyle = {
+const baseStyle: PartsStyleObject<typeof parts> = {
   table: {
     fontVariantNumeric: "lining-nums tabular-nums",
     borderCollapse: "collapse",
@@ -28,13 +30,13 @@ const baseStyle = {
   },
 }
 
-const numericStyles = {
+const numericStyles: SystemStyleObject = {
   "&[data-is-numeric=true]": {
     textAlign: "end",
   },
 }
 
-const simpleVariant = (props: Dict) => {
+const variantSimple: PartsStyleFunction<typeof parts> = (props) => {
   const { colorScheme: c } = props
 
   return {
@@ -62,7 +64,7 @@ const simpleVariant = (props: Dict) => {
   }
 }
 
-const stripedVariant = (props: Dict) => {
+const variantStripe: PartsStyleFunction<typeof parts> = (props) => {
   const { colorScheme: c } = props
 
   return {
@@ -104,12 +106,12 @@ const stripedVariant = (props: Dict) => {
 }
 
 const variants = {
-  simple: simpleVariant,
-  striped: stripedVariant,
+  simple: variantSimple,
+  striped: variantStripe,
   unstyled: {},
 }
 
-const sizes = {
+const sizes: Record<string, PartsStyleObject<typeof parts>> = {
   sm: {
     th: {
       px: "4",

@@ -1,8 +1,10 @@
+import type {
+  StyleFunctionProps,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
 import Input from "./input"
 
-type Dict = Record<string, any>
-
-const baseStyle = {
+const baseStyle: SystemStyleObject = {
   ...Input.baseStyle.field,
   paddingY: "8px",
   minHeight: "80px",
@@ -11,9 +13,9 @@ const baseStyle = {
 }
 
 const variants = {
-  outline: (props: Dict) => Input.variants.outline(props).field,
-  flushed: (props: Dict) => Input.variants.flushed(props).field,
-  filled: (props: Dict) => Input.variants.filled(props).field,
+  outline: (props: StyleFunctionProps) => Input.variants.outline(props).field,
+  flushed: (props: StyleFunctionProps) => Input.variants.flushed(props).field,
+  filled: (props: StyleFunctionProps) => Input.variants.filled(props).field,
   unstyled: Input.variants.unstyled.field,
 }
 

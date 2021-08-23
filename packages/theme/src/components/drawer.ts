@@ -1,31 +1,39 @@
-import { mode } from "@chakra-ui/theme-tools"
-import Modal from "./modal"
-
-const parts = Modal.parts
+import { drawerAnatomy as parts } from "@chakra-ui/anatomy"
+import {
+  mode,
+  PartsStyleFunction,
+  PartsStyleObject,
+  SystemStyleFunction,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
 
 /**
  * Since the `maxWidth` prop references theme.sizes internally,
  * we can leverage that to size our modals.
  */
-function getSize(value: string) {
+function getSize(value: string): PartsStyleObject<typeof parts> {
   if (value === "full") {
-    return { dialog: { maxW: "100vw", h: "100vh" } }
+    return {
+      dialog: { maxW: "100vw", h: "100vh" },
+    }
   }
-  return { dialog: { maxW: value } }
+  return {
+    dialog: { maxW: value },
+  }
 }
 
-const baseStyleOverlay = {
+const baseStyleOverlay: SystemStyleObject = {
   bg: "blackAlpha.600",
   zIndex: "overlay",
 }
 
-const baseStyleDialogContainer = {
+const baseStyleDialogContainer: SystemStyleObject = {
   display: "flex",
   zIndex: "modal",
   justifyContent: "center",
 }
 
-function baseStyleDialog(props: Record<string, any>) {
+const baseStyleDialog: SystemStyleFunction = (props) => {
   const { isFullHeight } = props
 
   return {
@@ -38,32 +46,32 @@ function baseStyleDialog(props: Record<string, any>) {
   }
 }
 
-const baseStyleHeader = {
+const baseStyleHeader: SystemStyleObject = {
   px: 6,
   py: 4,
   fontSize: "xl",
   fontWeight: "semibold",
 }
 
-const baseStyleCloseButton = {
+const baseStyleCloseButton: SystemStyleObject = {
   position: "absolute",
   top: 2,
   insetEnd: 3,
 }
 
-const baseStyleBody = {
+const baseStyleBody: SystemStyleObject = {
   px: 6,
   py: 2,
   flex: 1,
   overflow: "auto",
 }
 
-const baseStyleFooter = {
+const baseStyleFooter: SystemStyleObject = {
   px: 6,
   py: 4,
 }
 
-const baseStyle = (props: Record<string, any>) => ({
+const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   overlay: baseStyleOverlay,
   dialogContainer: baseStyleDialogContainer,
   dialog: baseStyleDialog(props),

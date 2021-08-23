@@ -1,6 +1,7 @@
+import type { SystemStyleFunction } from "@chakra-ui/theme-tools"
 import { mode } from "@chakra-ui/theme-tools"
 
-function baseStyle(props: Record<string, any>) {
+const baseStyle: SystemStyleFunction = (props) => {
   return {
     bg: mode("gray.100", "whiteAlpha")(props),
     borderRadius: "md",

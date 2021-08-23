@@ -1,15 +1,30 @@
-import { mode } from "@chakra-ui/theme-tools"
+import { switchAnatomy as parts } from "@chakra-ui/anatomy"
+import {
+  calc,
+  cssVar,
+  mode,
+  PartsStyleFunction,
+  PartsStyleObject,
+  SystemStyleFunction,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
 
-const parts = ["container", "track", "thumb"]
+const sliderWidth = cssVar("slider-track-width")
+const sliderHeight = cssVar("slider-track-height")
 
-function baseStyleTrack(props: Record<string, any>) {
+const sliderDiff = cssVar("slider-track-diff")
+const sliderDiffValue = calc(sliderWidth).subtract(sliderHeight).toString()
+
+const sliderX = cssVar("slider-thumb-x")
+
+const baseStyleTrack: SystemStyleFunction = (props) => {
   const { colorScheme: c } = props
 
   return {
     borderRadius: "full",
     p: "2px",
-    width: "var(--slider-track-width)",
-    height: "var(--slider-track-height)",
+    width: [sliderWidth.reference],
+    height: [sliderHeight.reference],
     transitionProperty: "common",
     transitionDuration: "fast",
     bg: mode("gray.300", "whiteAlpha.400")(props),
@@ -26,48 +41,47 @@ function baseStyleTrack(props: Record<string, any>) {
   }
 }
 
-const baseStyleThumb = {
+const baseStyleThumb: SystemStyleObject = {
   bg: "white",
   transitionProperty: "transform",
   transitionDuration: "normal",
   borderRadius: "inherit",
-  width: "var(--slider-track-height)",
-  height: "var(--slider-track-height)",
+  width: [sliderWidth.reference],
+  height: [sliderHeight.reference],
   _checked: {
-    transform: "translateX(var(--slider-thumb-x))",
+    transform: `translateX(${sliderX.reference})`,
   },
 }
 
-const baseStyle = (props: Record<string, any>) => ({
+const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   container: {
-    "--slider-track-diff":
-      "calc(var(--slider-track-width) - var(--slider-track-height))",
-    "--slider-thumb-x": "var(--slider-track-diff)",
+    [sliderDiff.variable]: sliderDiffValue,
+    [sliderX.variable]: sliderDiff.reference,
     _rtl: {
-      "--slider-thumb-x": "calc(-1 * var(--slider-track-diff))",
+      [sliderX.variable]: calc(sliderDiff).negate().toString(),
     },
   },
   track: baseStyleTrack(props),
   thumb: baseStyleThumb,
 })
 
-const sizes = {
+const sizes: Record<string, PartsStyleObject<typeof parts>> = {
   sm: {
     container: {
-      "--slider-track-width": "1.375rem",
-      "--slider-track-height": "0.75rem",
+      [sliderWidth.variable]: "1.375rem",
+      [sliderHeight.variable]: "0.75rem",
     },
   },
   md: {
     container: {
-      "--slider-track-width": "1.875rem",
-      "--slider-track-height": "1rem",
+      [sliderWidth.variable]: "1.875rem",
+      [sliderHeight.variable]: "1rem",
     },
   },
   lg: {
     container: {
-      "--slider-track-width": "2.875rem",
-      "--slider-track-height": "1.5rem",
+      [sliderWidth.variable]: "2.875rem",
+      [sliderHeight.variable]: "1.5rem",
     },
   },
 }

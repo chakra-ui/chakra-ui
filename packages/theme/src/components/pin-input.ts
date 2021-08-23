@@ -1,43 +1,46 @@
+import type {
+  StyleFunctionProps,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
+import { cssVar } from "@chakra-ui/theme-tools"
 import Input from "./input"
 
-type Dict = Record<string, any>
+const inputSize = cssVar("pin-input-size")
 
-const baseStyle = {
+const baseStyle: SystemStyleObject = {
   ...Input.baseStyle.field,
   textAlign: "center",
+  w: inputSize.reference,
+  h: inputSize.reference,
 }
 
-const sizes = {
+const sizes: Record<string, SystemStyleObject> = {
   lg: {
     fontSize: "lg",
-    w: 12,
-    h: 12,
+    [inputSize.variable]: 12,
     borderRadius: "md",
   },
   md: {
     fontSize: "md",
-    w: 10,
-    h: 10,
+    [inputSize.variable]: 10,
     borderRadius: "md",
   },
   sm: {
     fontSize: "sm",
-    w: 8,
-    h: 8,
+    [inputSize.variable]: 8,
     borderRadius: "sm",
   },
   xs: {
     fontSize: "xs",
-    w: 6,
-    h: 6,
+    [inputSize.variable]: 6,
     borderRadius: "sm",
   },
 }
 
 const variants = {
-  outline: (props: Dict) => Input.variants.outline(props).field,
-  flushed: (props: Dict) => Input.variants.flushed(props).field,
-  filled: (props: Dict) => Input.variants.filled(props).field,
+  outline: (props: StyleFunctionProps) => Input.variants.outline(props).field,
+  flushed: (props: StyleFunctionProps) => Input.variants.flushed(props).field,
+  filled: (props: StyleFunctionProps) => Input.variants.filled(props).field,
   unstyled: Input.variants.unstyled.field,
 }
 

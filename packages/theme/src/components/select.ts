@@ -1,10 +1,14 @@
-import { mode } from "@chakra-ui/theme-tools"
-import { mergeWith as merge } from "@chakra-ui/utils"
+import { selectAnatomy as parts } from "@chakra-ui/anatomy"
+import {
+  mode,
+  PartsStyleFunction,
+  PartsStyleObject,
+  SystemStyleFunction,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
 import Input from "./input"
 
-const parts = ["field", "icon"]
-
-function baseStyleField(props: Record<string, any>) {
+const baseStyleField: SystemStyleFunction = (props) => {
   return {
     ...Input.baseStyle.field,
     appearance: "none",
@@ -16,7 +20,7 @@ function baseStyleField(props: Record<string, any>) {
   }
 }
 
-const baseStyleIcon = {
+const baseStyleIcon: SystemStyleObject = {
   width: "1.5rem",
   height: "100%",
   insetEnd: "0.5rem",
@@ -28,18 +32,18 @@ const baseStyleIcon = {
   },
 }
 
-const baseStyle = (props: Record<string, any>) => ({
+const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   field: baseStyleField(props),
   icon: baseStyleIcon,
 })
 
-const sizes = merge({}, Input.sizes, {
+const sizes: Record<string, PartsStyleObject<typeof parts>> = {
+  ...Input.sizes,
   xs: {
-    icon: {
-      insetEnd: "0.25rem",
-    },
+    ...Input.sizes.xs,
+    icon: { insetEnd: "0.25rem" },
   },
-})
+}
 
 export default {
   parts,
