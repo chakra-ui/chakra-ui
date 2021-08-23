@@ -403,7 +403,7 @@ function CustomTabs() {
 
   const CustomTab = React.forwardRef((props, ref) => {
     // 2. Reuse the `useTab` hook
-    const tabProps = useTab(props)
+    const tabProps = useTab({...props, ref})
     const isSelected = !!tabProps["aria-selected"]
 
     // 3. Hook into the Tabs `size`, `variant`, props
