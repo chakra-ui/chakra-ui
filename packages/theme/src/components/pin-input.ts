@@ -1,5 +1,5 @@
 import type {
-  StyleFunctionProps,
+  SystemStyleInterpolation,
   SystemStyleObject,
 } from "@chakra-ui/theme-tools"
 import { cssVar } from "@chakra-ui/theme-tools"
@@ -37,11 +37,11 @@ const sizes: Record<string, SystemStyleObject> = {
   },
 }
 
-const variants = {
-  outline: (props: StyleFunctionProps) => Input.variants.outline(props).field,
-  flushed: (props: StyleFunctionProps) => Input.variants.flushed(props).field,
-  filled: (props: StyleFunctionProps) => Input.variants.filled(props).field,
-  unstyled: Input.variants.unstyled.field,
+const variants: Record<string, SystemStyleInterpolation> = {
+  outline: (props) => Input.variants.outline(props).field ?? {},
+  flushed: (props) => Input.variants.flushed(props).field ?? {},
+  filled: (props) => Input.variants.filled(props).field ?? {},
+  unstyled: Input.variants.unstyled.field ?? {},
 }
 
 const defaultProps = Input.defaultProps

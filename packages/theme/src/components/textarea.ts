@@ -1,5 +1,5 @@
 import type {
-  StyleFunctionProps,
+  SystemStyleInterpolation,
   SystemStyleObject,
 } from "@chakra-ui/theme-tools"
 import Input from "./input"
@@ -12,18 +12,18 @@ const baseStyle: SystemStyleObject = {
   verticalAlign: "top",
 }
 
-const variants = {
-  outline: (props: StyleFunctionProps) => Input.variants.outline(props).field,
-  flushed: (props: StyleFunctionProps) => Input.variants.flushed(props).field,
-  filled: (props: StyleFunctionProps) => Input.variants.filled(props).field,
-  unstyled: Input.variants.unstyled.field,
+const variants: Record<string, SystemStyleInterpolation> = {
+  outline: (props) => Input.variants.outline(props).field ?? {},
+  flushed: (props) => Input.variants.flushed(props).field ?? {},
+  filled: (props) => Input.variants.filled(props).field ?? {},
+  unstyled: Input.variants.unstyled.field ?? {},
 }
 
-const sizes = {
-  xs: Input.sizes.xs.field,
-  sm: Input.sizes.sm.field,
-  md: Input.sizes.md.field,
-  lg: Input.sizes.lg.field,
+const sizes: Record<string, SystemStyleObject> = {
+  xs: Input.sizes.xs.field ?? {},
+  sm: Input.sizes.sm.field ?? {},
+  md: Input.sizes.md.field ?? {},
+  lg: Input.sizes.lg.field ?? {},
 }
 
 const defaultProps = {

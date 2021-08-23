@@ -25,6 +25,6 @@ const baseStyle: PartsStyleObject<typeof parts> = {
 }
 
 export default {
-  parts,
+  parts: parts.keys,
   baseStyle,
 }

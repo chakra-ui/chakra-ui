@@ -28,6 +28,6 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
 })
 
 export default {
-  parts,
+  parts: parts.keys,
   baseStyle,
 }

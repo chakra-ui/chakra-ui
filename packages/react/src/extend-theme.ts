@@ -117,19 +117,6 @@ function mergeThemeCustomizer(
   key: string,
   object: any,
 ) {
-  // (backward compat) how the parts array should be merged
-  // The new Anatomy class returns an iterator instead of an array
-  // we need to convert it to an array using `Array.from`
-  if (key === "parts") {
-    //@ts-ignore
-    const _source = Array.from(source ?? []) as string[]
-    //@ts-ignore
-    const _override = Array.from(override ?? []) as string[]
-    const merged = _source.concat(_override)
-    // remove duplicates
-    return Array.from(new Set(merged))
-  }
-
   if (
     (isFunction(source) || isFunction(override)) &&
     Object.prototype.hasOwnProperty.call(object, key)

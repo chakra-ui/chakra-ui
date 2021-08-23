@@ -46,7 +46,7 @@ const sizes: Record<string, PartsStyleObject<typeof parts>> = {
 }
 
 export default {
-  parts,
+  parts: parts.keys,
   baseStyle,
   sizes,
   variants: Input.variants,

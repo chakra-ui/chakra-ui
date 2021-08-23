@@ -91,7 +91,7 @@ const sizes = {
 }
 
 export default {
-  parts,
+  parts: parts.keys,
   baseStyle,
   sizes,
   variants,

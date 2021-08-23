@@ -131,7 +131,7 @@ const defaultProps = {
 }
 
 export default {
-  parts,
+  parts: parts.keys,
   sizes,
   baseStyle,
   defaultProps,

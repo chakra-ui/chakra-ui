@@ -58,12 +58,8 @@ export function useStyleConfig(themeKey: any, props: any = {}, opts: any = {}) {
 
     const styles = mergeWith({}, baseStyles, sizes, variants)
 
-    // parts could be a literal array (backward compat) or
-    // our parts iterable (new)
-    const parts = Array.from<string>(styleConfig.parts ?? [])
-
-    if (opts?.isMultiPart && parts) {
-      parts.forEach((part: string) => {
+    if (opts?.isMultiPart && styleConfig.parts) {
+      styleConfig.parts.forEach((part: string) => {
         styles[part] = styles[part] ?? {}
       })
     }

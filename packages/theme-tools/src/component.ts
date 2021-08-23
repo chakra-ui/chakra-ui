@@ -46,13 +46,19 @@ export type SystemStyleFunction = (
   props: StyleFunctionProps,
 ) => SystemStyleObject
 
-export type PartsStyleObject<T extends Anatomy> = Partial<
+export type SystemStyleInterpolation = SystemStyleObject | SystemStyleFunction
+
+export type PartsStyleObject<T extends Anatomy = Anatomy> = Partial<
   Record<T["__type"], SystemStyleObject>
 >
 
-export type PartsStyleFunction<T extends Anatomy> = (
+export type PartsStyleFunction<T extends Anatomy = Anatomy> = (
   props: StyleFunctionProps,
 ) => PartsStyleObject<T>
+
+export type PartsStyleInterpolation<T extends Anatomy = Anatomy> =
+  | PartsStyleObject<T>
+  | PartsStyleFunction<T>
 
 /* -----------------------------------------------------------------------------
  * Global Style object definitions

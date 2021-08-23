@@ -1,12 +1,12 @@
 import { tabsAnatomy as parts } from "@chakra-ui/anatomy"
-import {
-  getColor,
-  mode,
+import type {
   PartsStyleFunction,
+  PartsStyleInterpolation,
   PartsStyleObject,
   SystemStyleFunction,
-  SystemStyleObject,
+  SystemStyleObject
 } from "@chakra-ui/theme-tools"
+import { getColor, mode } from "@chakra-ui/theme-tools"
 
 const baseStyleRoot: SystemStyleFunction = (props) => {
   const { orientation } = props
@@ -188,9 +188,9 @@ const variantSolidRounded: PartsStyleFunction<typeof parts> = (props) => {
   }
 }
 
-const variantUnstyled: SystemStyleObject = {}
+const variantUnstyled: PartsStyleObject<typeof parts> = {}
 
-const variants = {
+const variants: Record<string, PartsStyleInterpolation<typeof parts>> = {
   line: variantLine,
   enclosed: variantEnclosed,
   "enclosed-colored": variantEnclosedColored,
@@ -206,7 +206,7 @@ const defaultProps = {
 }
 
 export default {
-  parts,
+  parts: parts.keys,
   baseStyle,
   sizes,
   variants,
