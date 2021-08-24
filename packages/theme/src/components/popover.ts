@@ -6,9 +6,10 @@ import type {
 } from "@chakra-ui/theme-tools"
 import { cssVar, mode } from "@chakra-ui/theme-tools"
 
-const popperBg = cssVar("popper-bg")
-const popperArrowBg = cssVar("popper-arrow-bg")
-const popperArrowShadowColor = cssVar("popper-shadow-color")
+const $popperBg = cssVar("popper-bg")
+
+const $arrowBg = cssVar("popper-arrow-bg")
+const $arrowShadowColor = cssVar("popper-shadow-color")
 
 const baseStylePopper: SystemStyleObject = {
   zIndex: 10,
@@ -19,10 +20,10 @@ const baseStyleContent: SystemStyleFunction = (props) => {
   const shadowColor = mode("gray.200", "whiteAlpha.300")(props)
 
   return {
-    [popperBg.variable]: `colors.${bg}`,
-    bg: popperBg.reference,
-    [popperArrowBg.variable]: popperBg.reference,
-    [popperArrowShadowColor.variable]: `colors.${shadowColor}`,
+    [$popperBg.variable]: `colors.${bg}`,
+    bg: $popperBg.reference,
+    [$arrowBg.variable]: $popperBg.reference,
+    [$arrowShadowColor.variable]: `colors.${shadowColor}`,
     width: "xs",
     border: "1px solid",
     borderColor: "inherit",

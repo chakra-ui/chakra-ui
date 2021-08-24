@@ -2,37 +2,36 @@ import type {
   SystemStyleInterpolation,
   SystemStyleObject,
 } from "@chakra-ui/theme-tools"
-import { cssVar } from "@chakra-ui/theme-tools"
 import Input from "./input"
-
-const inputSize = cssVar("pin-input-size")
 
 const baseStyle: SystemStyleObject = {
   ...Input.baseStyle.field,
   textAlign: "center",
-  w: inputSize.reference,
-  h: inputSize.reference,
 }
 
 const sizes: Record<string, SystemStyleObject> = {
   lg: {
     fontSize: "lg",
-    [inputSize.variable]: 12,
+    w: 12,
+    h: 12,
     borderRadius: "md",
   },
   md: {
     fontSize: "md",
-    [inputSize.variable]: 10,
+    w: 10,
+    h: 10,
     borderRadius: "md",
   },
   sm: {
     fontSize: "sm",
-    [inputSize.variable]: 8,
+    w: 8,
+    h: 8,
     borderRadius: "sm",
   },
   xs: {
     fontSize: "xs",
-    [inputSize.variable]: 6,
+    w: 6,
+    h: 6,
     borderRadius: "sm",
   },
 }

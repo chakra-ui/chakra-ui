@@ -1,11 +1,11 @@
 import { drawerAnatomy as parts } from "@chakra-ui/anatomy"
-import {
-  mode,
+import type {
   PartsStyleFunction,
   PartsStyleObject,
   SystemStyleFunction,
   SystemStyleObject,
 } from "@chakra-ui/theme-tools"
+import { mode } from "@chakra-ui/theme-tools"
 
 /**
  * Since the `maxWidth` prop references theme.sizes internally,

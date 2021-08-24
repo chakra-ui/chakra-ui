@@ -1,9 +1,9 @@
 import { numberInputAnatomy as parts } from "@chakra-ui/anatomy"
 import type {
-  SystemStyleFunction,
-  SystemStyleObject,
   PartsStyleFunction,
   PartsStyleObject,
+  SystemStyleFunction,
+  SystemStyleObject,
 } from "@chakra-ui/theme-tools"
 import { calc, cssVar, mode } from "@chakra-ui/theme-tools"
 import typography from "../foundations/typography"
@@ -11,19 +11,20 @@ import Input from "./input"
 
 const { variants, defaultProps } = Input
 
-const stepperWidth = cssVar("number-input-stepper-width")
-const inputPadding = cssVar("number-input-input-padding")
-const inputPaddingValue = calc(stepperWidth).add("0.5rem").toString()
+const $stepperWidth = cssVar("number-input-stepper-width")
+
+const $inputPadding = cssVar("number-input-input-padding")
+const inputPaddingValue = calc($stepperWidth).add("0.5rem").toString()
 
 const baseStyleRoot: SystemStyleObject = {
-  [stepperWidth.variable]: "24px",
-  [inputPadding.variable]: inputPaddingValue,
+  [$stepperWidth.variable]: "24px",
+  [$inputPadding.variable]: inputPaddingValue,
 }
 
 const baseStyleField: SystemStyleObject = Input.baseStyle?.field ?? {}
 
 const baseStyleStepperGroup: SystemStyleObject = {
-  width: [stepperWidth.reference],
+  width: [$stepperWidth.reference],
 }
 
 const baseStyleStepper: SystemStyleFunction = (props) => {
@@ -66,7 +67,7 @@ function getSize(size: Size): PartsStyleObject<typeof parts> {
   return {
     field: {
       ...sizeStyle.field,
-      paddingInlineEnd: inputPadding.reference,
+      paddingInlineEnd: $inputPadding.reference,
       verticalAlign: "top",
     },
     stepper: {

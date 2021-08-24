@@ -4,7 +4,7 @@ import type {
   PartsStyleInterpolation,
   PartsStyleObject,
   SystemStyleFunction,
-  SystemStyleObject
+  SystemStyleObject,
 } from "@chakra-ui/theme-tools"
 import { getColor, mode } from "@chakra-ui/theme-tools"
 
@@ -143,7 +143,7 @@ const variantEnclosedColored: PartsStyleFunction<typeof parts> = (props) => {
         marginEnd: "-1px",
       },
       _selected: {
-        bg: mode(`#fff`, "gray.800")(props),
+        bg: mode("#fff", "gray.800")(props),
         color: mode(`${c}.600`, `${c}.300`)(props),
         borderColor: "inherit",
         borderTopColor: "currentColor",

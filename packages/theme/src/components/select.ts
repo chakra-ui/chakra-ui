@@ -1,16 +1,17 @@
 import { selectAnatomy as parts } from "@chakra-ui/anatomy"
-import {
-  mode,
+import type {
   PartsStyleFunction,
   PartsStyleObject,
   SystemStyleFunction,
   SystemStyleObject,
 } from "@chakra-ui/theme-tools"
+import { mode } from "@chakra-ui/theme-tools"
 import Input from "./input"
 
 const baseStyleField: SystemStyleFunction = (props) => {
   return {
     ...Input.baseStyle.field,
+    bg: mode("white", "gray.700")(props),
     appearance: "none",
     paddingBottom: "1px",
     lineHeight: "normal",

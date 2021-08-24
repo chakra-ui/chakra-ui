@@ -46,7 +46,7 @@ const baseStyleLabel: SystemStyleObject = {
 
 const baseStyleTrack: SystemStyleFunction = (props) => {
   return {
-    bg: mode(`gray.100`, `whiteAlpha.300`)(props),
+    bg: mode("gray.100", "whiteAlpha.300")(props),
   }
 }
 

@@ -4,15 +4,15 @@ import type {
 } from "@chakra-ui/theme-tools"
 import { cssVar, mode } from "@chakra-ui/theme-tools"
 
-const btnSize = cssVar("close-button-size")
+const $size = cssVar("close-button-size")
 
 const baseStyle: SystemStyleFunction = (props) => {
   const hoverBg = mode(`blackAlpha.100`, `whiteAlpha.100`)(props)
   const activeBg = mode(`blackAlpha.200`, `whiteAlpha.200`)(props)
 
   return {
-    w: [btnSize.reference],
-    h: [btnSize.reference],
+    w: [$size.reference],
+    h: [$size.reference],
     borderRadius: "md",
     transitionProperty: "common",
     transitionDuration: "normal",
@@ -31,15 +31,15 @@ const baseStyle: SystemStyleFunction = (props) => {
 
 const sizes: Record<string, SystemStyleObject> = {
   lg: {
-    [btnSize.variable]: "40px",
+    [$size.variable]: "40px",
     fontSize: "16px",
   },
   md: {
-    [btnSize.variable]: "32px",
+    [$size.variable]: "32px",
     fontSize: "12px",
   },
   sm: {
-    [btnSize.variable]: "24px",
+    [$size.variable]: "24px",
     fontSize: "10px",
   },
 }

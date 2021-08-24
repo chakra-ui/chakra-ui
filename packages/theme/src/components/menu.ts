@@ -1,15 +1,15 @@
 import { menuAnatomy as parts } from "@chakra-ui/anatomy"
-import {
-  mode,
+import type {
   PartsStyleFunction,
   SystemStyleFunction,
   SystemStyleObject,
 } from "@chakra-ui/theme-tools"
+import { mode } from "@chakra-ui/theme-tools"
 
 const baseStyleList: SystemStyleFunction = (props) => {
   return {
-    bg: mode(`#fff`, `gray.700`)(props),
-    boxShadow: mode(`sm`, `dark-lg`)(props),
+    bg: mode("#fff", "gray.700")(props),
+    boxShadow: mode("sm", "dark-lg")(props),
     color: "inherit",
     minW: "3xs",
     py: "2",
@@ -27,13 +27,13 @@ const baseStyleItem: SystemStyleFunction = (props) => {
     transitionDuration: "ultra-fast",
     transitionTimingFunction: "ease-in",
     _focus: {
-      bg: mode(`gray.100`, `whiteAlpha.100`)(props),
+      bg: mode("gray.100", "whiteAlpha.100")(props),
     },
     _active: {
-      bg: mode(`gray.200`, `whiteAlpha.200`)(props),
+      bg: mode("gray.200", "whiteAlpha.200")(props),
     },
     _expanded: {
-      bg: mode(`gray.100`, `whiteAlpha.100`)(props),
+      bg: mode("gray.100", "whiteAlpha.100")(props),
     },
     _disabled: {
       opacity: 0.4,

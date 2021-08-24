@@ -36,12 +36,6 @@ export class Anatomy<T extends string = string> {
     return Object.keys(this.map) as T[]
   }
 
-  *[Symbol.iterator]() {
-    for (const val of this.keys) {
-      yield val as T
-    }
-  }
-
   toPart = (part: string) => {
     const el = ["container", "root"].includes(part ?? "")
       ? [this.name]

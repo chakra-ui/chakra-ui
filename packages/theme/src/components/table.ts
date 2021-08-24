@@ -41,7 +41,7 @@ const variantSimple: PartsStyleFunction<typeof parts> = (props) => {
 
   return {
     th: {
-      color: mode(`gray.600`, `gray.400`)(props),
+      color: mode("gray.600", "gray.400")(props),
       borderBottom: "1px",
       borderColor: mode(`${c}.100`, `${c}.700`)(props),
       ...numericStyles,
@@ -52,7 +52,7 @@ const variantSimple: PartsStyleFunction<typeof parts> = (props) => {
       ...numericStyles,
     },
     caption: {
-      color: mode(`gray.600`, `gray.100`)(props),
+      color: mode("gray.600", "gray.100")(props),
     },
     tfoot: {
       tr: {
@@ -69,7 +69,7 @@ const variantStripe: PartsStyleFunction<typeof parts> = (props) => {
 
   return {
     th: {
-      color: mode(`gray.600`, `gray.400`)(props),
+      color: mode("gray.600", "gray.400")(props),
       borderBottom: "1px",
       borderColor: mode(`${c}.100`, `${c}.700`)(props),
       ...numericStyles,
@@ -80,7 +80,7 @@ const variantStripe: PartsStyleFunction<typeof parts> = (props) => {
       ...numericStyles,
     },
     caption: {
-      color: mode(`gray.600`, `gray.100`)(props),
+      color: mode("gray.600", "gray.100")(props),
     },
     tbody: {
       tr: {

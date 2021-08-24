@@ -109,7 +109,7 @@ const variantSolid: SystemStyleFunction = (props) => {
     color = "white",
     hoverBg = `${c}.600`,
     activeBg = `${c}.700`,
-  } = accessibleColorMap[c] || {}
+  } = accessibleColorMap[c] ?? {}
 
   const background = mode(bg, `${c}.200`)(props)
 

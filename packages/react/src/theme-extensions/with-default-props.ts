@@ -1,14 +1,11 @@
-import { ChakraTheme, ComponentDefaultProps } from "@chakra-ui/theme"
+import { ComponentDefaultProps } from "@chakra-ui/theme"
 import { Dict, pipe } from "@chakra-ui/utils"
-import { mergeThemeOverride, ThemeOverride } from "../extend-theme"
+import { mergeThemeOverride } from "../extend-theme"
 import { withDefaultColorScheme } from "./with-default-color-scheme"
-import { withDefaultVariant } from "./with-default-variant"
 import { withDefaultSize } from "./with-default-size"
+import { withDefaultVariant } from "./with-default-variant"
 
-export function withDefaultProps<
-  BaseTheme extends ChakraTheme,
-  Override extends ThemeOverride<BaseTheme>
->({
+export function withDefaultProps({
   defaultProps: { colorScheme, variant, size },
   components,
 }: {
@@ -24,5 +21,5 @@ export function withDefaultProps<
     variant ? withDefaultVariant({ variant, components }) : identity,
   ]
 
-  return (theme: Override) => mergeThemeOverride<BaseTheme>(pipe(...fns)(theme))
+  return (theme: Dict) => mergeThemeOverride(pipe(...fns)(theme))
 }

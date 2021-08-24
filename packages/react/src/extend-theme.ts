@@ -52,7 +52,11 @@ export type BaseThemeWithExtensions<
       ? ReturnType<L> & BaseThemeWithExtensions<BaseTheme, R>
       : L & BaseThemeWithExtensions<BaseTheme, R>
     : Extensions)
+
 /**
+ * NOTE: This got too complex to manage and it's not worth the extra complexity.
+ * We'll re-evaluate this API in the future releases.
+ *
  * Function to override or customize the Chakra UI theme conveniently.
  * First extension overrides the baseTheme and following extensions override the preceding extensions.
  *
@@ -71,14 +75,7 @@ export type BaseThemeWithExtensions<
  *   baseTheme // optional
  * )
  */
-export function extendTheme<
-  BaseTheme extends ChakraTheme = Theme,
-  Extensions extends (
-    | BaseTheme
-    | ThemeOverride<BaseTheme>
-    | ThemeExtension<ThemeOverride<BaseTheme>>
-  )[] = (ThemeOverride<BaseTheme> | ThemeExtension<ThemeOverride<BaseTheme>>)[]
->(...extensions: [...Extensions]) {
+export function extendTheme(...extensions: any[]): Dict {
   let overrides = [...extensions]
   let baseTheme = extensions[extensions.length - 1]
 
@@ -90,24 +87,19 @@ export function extendTheme<
   ) {
     overrides = overrides.slice(0, overrides.length - 1)
   } else {
-    baseTheme = (defaultTheme as unknown) as BaseTheme
+    baseTheme = defaultTheme
   }
 
   return pipe(
-    ...overrides.map(
-      (extension) => (
-        prevTheme: BaseThemeWithExtensions<BaseTheme, Extensions>,
-      ) =>
-        isFunction(extension)
-          ? (extension as any)(prevTheme)
-          : mergeThemeOverride(prevTheme, extension),
+    ...overrides.map((extension) => (prevTheme: any) =>
+      isFunction(extension)
+        ? (extension as any)(prevTheme)
+        : mergeThemeOverride(prevTheme, extension),
     ),
-  )(baseTheme as BaseThemeWithExtensions<BaseTheme, Extensions>)
+  )(baseTheme)
 }
 
-export function mergeThemeOverride<BaseTheme extends ChakraTheme = ChakraTheme>(
-  ...overrides: ThemeOverride<BaseTheme>[]
-): ThemeOverride<BaseTheme> {
+export function mergeThemeOverride(...overrides: any[]): any {
   return mergeWith({}, ...overrides, mergeThemeCustomizer)
 }
 

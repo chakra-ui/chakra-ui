@@ -1,12 +1,16 @@
-import { StyleObjectOrFn } from "@chakra-ui/styled-system"
-import { ColorMode, ColorModeOptions, ThemingProps } from "@chakra-ui/system"
-import {
+import type { StyleObjectOrFn } from "@chakra-ui/styled-system"
+import type {
+  ColorMode,
+  ColorModeOptions,
+  ThemingProps,
+} from "@chakra-ui/system"
+import type {
   Breakpoints,
   PartsStyleInterpolation,
   Styles,
   SystemStyleInterpolation,
 } from "@chakra-ui/theme-tools"
-import { Dict } from "@chakra-ui/utils"
+import type { Dict } from "@chakra-ui/utils"
 
 export type RecursiveProperty<T = string | number> = RecursiveObject<T> | T
 
@@ -36,9 +40,11 @@ export interface ColorHues {
   800: string
   900: string
 }
+
 export type Colors = RecursiveObject<
   Record<string, Partial<ColorHues>> | string
 >
+
 export type ThemeDirection = "ltr" | "rtl"
 
 export interface ComponentDefaultProps

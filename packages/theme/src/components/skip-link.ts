@@ -1,4 +1,5 @@
-import { mode, SystemStyleFunction } from "@chakra-ui/theme-tools"
+import type { SystemStyleFunction } from "@chakra-ui/theme-tools"
+import { mode } from "@chakra-ui/theme-tools"
 
 const baseStyle: SystemStyleFunction = (props) => ({
   borderRadius: "md",

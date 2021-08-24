@@ -1,12 +1,11 @@
 import { sliderAnatomy as parts } from "@chakra-ui/anatomy"
-import {
-  mode,
-  orient,
-  SystemStyleObject,
-  SystemStyleFunction,
-  StyleFunctionProps,
+import type {
   PartsStyleFunction,
+  StyleFunctionProps,
+  SystemStyleFunction,
+  SystemStyleObject,
 } from "@chakra-ui/theme-tools"
+import { mode, orient } from "@chakra-ui/theme-tools"
 
 function thumbOrientation(props: StyleFunctionProps): SystemStyleObject {
   return orient({

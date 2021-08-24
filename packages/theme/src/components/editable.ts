@@ -1,5 +1,8 @@
 import { editableAnatomy as parts } from "@chakra-ui/anatomy"
-import { PartsStyleObject, SystemStyleObject } from "@chakra-ui/theme-tools"
+import type {
+  PartsStyleObject,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
 
 const baseStylePreview: SystemStyleObject = {
   borderRadius: "md",

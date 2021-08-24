@@ -27,7 +27,7 @@ export interface MultiStyleConfig<T extends Anatomy = Anatomy> {
 }
 
 /* -----------------------------------------------------------------------------
- * [NEW] Style Functions used in the theme
+ * Style Functions used in the theme
    - Single part components: use SystemStyleObject or SystemStyleFunction
    - Multi part components: use PartsStyleObject or PartsStyleFunction
  * -----------------------------------------------------------------------------*/
@@ -37,7 +37,7 @@ export type { SystemStyleObject }
 export type StyleFunctionProps = {
   colorScheme: string
   colorMode: "light" | "dark"
-  orientation: "horizontal" | "vertical"
+  orientation?: "horizontal" | "vertical"
   theme: Dict
   [key: string]: any
 }
@@ -67,9 +67,7 @@ export type PartsStyleInterpolation<T extends Anatomy = Anatomy> =
 export type GlobalStyleProps = StyleFunctionProps
 
 export type GlobalStyles = {
-  global?:
-    | SystemStyleObject
-    | ((props: StyleFunctionProps) => SystemStyleObject)
+  global?: SystemStyleInterpolation
 }
 
 export type JSXElementStyles = {
@@ -87,8 +85,8 @@ export function mode(light: any, dark: any) {
 
 export function orient(options: {
   orientation?: "vertical" | "horizontal"
-  vertical: any
-  horizontal: any
+  vertical: SystemStyleObject
+  horizontal: SystemStyleObject
 }) {
   const { orientation, vertical, horizontal } = options
   if (!orientation) return {}
