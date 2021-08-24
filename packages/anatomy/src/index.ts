@@ -148,6 +148,12 @@ export const tabsAnatomy = anatomy("tabs").parts(
   "indicator",
 )
 
+/**
+ * **Tag anatomy**
+ * - Container: the container for the tag
+ * - Label: the text content of the tag
+ * - closeButton: the close button for the tag
+ */
 export const tagAnatomy = anatomy("tag").parts(
   "container",
   "label",

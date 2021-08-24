@@ -75,7 +75,10 @@ export type BaseThemeWithExtensions<
  *   baseTheme // optional
  * )
  */
-export function extendTheme(...extensions: any[]): Dict {
+
+export function extendTheme(
+  ...extensions: Array<Dict | ((theme: Dict) => Dict)>
+): Dict {
   let overrides = [...extensions]
   let baseTheme = extensions[extensions.length - 1]
 
