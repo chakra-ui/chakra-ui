@@ -44,7 +44,7 @@ const baseStyleThumb: SystemStyleObject = {
   transitionProperty: "transform",
   transitionDuration: "normal",
   borderRadius: "inherit",
-  width: [$width.reference],
+  width: [$height.reference],
   height: [$height.reference],
   _checked: {
     transform: `translateX(${$translateX.reference})`,
