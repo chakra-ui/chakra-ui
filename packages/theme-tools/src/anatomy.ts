@@ -11,7 +11,7 @@ export class Anatomy<T extends string = string> {
     for (const part of values) {
       ;(this.map as any)[part] = this.toPart(part)
     }
-    return (this as unknown) as Anatomy<V>
+    return (this as unknown) as Omit<Anatomy<V>, "parts">
   }
 
   public extend = <U extends string>(...parts: U[]) => {
@@ -19,7 +19,7 @@ export class Anatomy<T extends string = string> {
       if (part in this.map) continue
       ;(this.map as any)[part] = this.toPart(part)
     }
-    return (this as unknown) as Anatomy<T | U>
+    return (this as unknown) as Omit<Anatomy<T | U>, "parts">
   }
 
   get selectors() {
