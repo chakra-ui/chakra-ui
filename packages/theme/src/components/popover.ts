@@ -9,7 +9,7 @@ import { cssVar, mode } from "@chakra-ui/theme-tools"
 const $popperBg = cssVar("popper-bg")
 
 const $arrowBg = cssVar("popper-arrow-bg")
-const $arrowShadowColor = cssVar("popper-shadow-color")
+const $arrowShadowColor = cssVar("popper-arrow-shadow-color")
 
 const baseStylePopper: SystemStyleObject = {
   zIndex: 10,
