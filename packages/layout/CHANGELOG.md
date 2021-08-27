@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.4.9
+
+### Patch Changes
+
+- [`83eecb75f`](https://github.com/chakra-ui/chakra-ui/commit/83eecb75f5bec58ea60e800122ce63c3d96c6a25)
+  [#4560](https://github.com/chakra-ui/chakra-ui/pull/4560) Thanks
+  [@take](https://github.com/take)! - Fix url for `LinkBox` component
+
 ## 1.4.8
 
 ### Patch Changes
