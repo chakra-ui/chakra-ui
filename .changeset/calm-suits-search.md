@@ -2,4 +2,4 @@
 "@chakra-ui/docs": major
 ---
 
-Removed blog The blog has removed been because nobody has written any articles.
+Removed blog since nobody has written any articles.

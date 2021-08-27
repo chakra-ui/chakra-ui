@@ -1,4 +1,6 @@
-const baseStyle = {
+import type { SystemStyleObject } from "@chakra-ui/theme-tools"
+
+const baseStyle: SystemStyleObject = {
   fontSize: "md",
   marginEnd: 3,
   mb: 2,
