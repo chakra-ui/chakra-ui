@@ -85,7 +85,7 @@ if (__DEV__) {
 export const OrderedList = forwardRef<ListProps, "ol">((props, ref) => {
   const { as, ...rest } = props
   return (
-    <List ref={ref} as="ol" styleType="decimal" marginStart="1em" {...rest} />
+    <List ref={ref} as="ol" styleType="decimal" {...rest} />
   )
 })
 
@@ -96,7 +96,7 @@ if (__DEV__) {
 export const UnorderedList = forwardRef<ListProps, "ul">((props, ref) => {
   const { as, ...rest } = props
   return (
-    <List ref={ref} as="ul" styleType="initial" marginStart="1em" {...rest} />
+    <List ref={ref} as="ul" styleType="initial" {...rest} />
   )
 })
 

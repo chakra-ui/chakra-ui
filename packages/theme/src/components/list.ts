@@ -1,6 +1,8 @@
 const parts = ["container", "item", "icon"]
 
-const baseStyleContainer = {}
+const baseStyleContainer = {
+  marginStart: "1em",
+}
 
 const baseStyleItem = {}
 
