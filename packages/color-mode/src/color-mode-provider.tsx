@@ -108,11 +108,11 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     (value: ColorMode, isListenerEvent = false) => {
       if (!isListenerEvent) {
         colorModeManager.set(value)
-      } else if (colorModeManager.get()) return
+      } else if (colorModeManager.get() && !useSystemColorMode) return
 
       rawSetColorMode(value)
     },
-    [colorModeManager],
+    [colorModeManager, useSystemColorMode],
   )
 
   const toggleColorMode = React.useCallback(() => {
