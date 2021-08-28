@@ -1,24 +1,24 @@
-const parts = ["container", "item", "icon"]
+import { listAnatomy as parts } from "@chakra-ui/anatomy"
+import type {
+  PartsStyleObject,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
 
-const baseStyleContainer = {
-  marginStart: "1em",
-}
-
-const baseStyleItem = {}
-
-const baseStyleIcon = {
+const baseStyleIcon: SystemStyleObject = {
   marginEnd: "0.5rem",
   display: "inline",
   verticalAlign: "text-bottom",
 }
 
-const baseStyle = {
-  container: baseStyleContainer,
-  item: baseStyleItem,
+const baseStyle: PartsStyleObject<typeof parts> = {
+  container: {
+    marginStart: "1em",
+  },
+  item: {},
   icon: baseStyleIcon,
 }
 
 export default {
-  parts,
+  parts: parts.keys,
   baseStyle,
 }

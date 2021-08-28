@@ -44,7 +44,7 @@
     "test:ci": "jest --runInBand",
     "lint": "lerna run lint --no-private --stream",
     "lint:types": "lerna run lint:types --no-private --stream",
-    "prestorybook": "rimraf node_modules/.cache/storybook",
+    "prestorybook": "rimraf node_modules/.cache/storybook && yarn pkg babel-plugin build",
     "storybook": "start-storybook -p 6006",
     "clean": "lerna clean --yes && rimraf node_modules",
     "clean-dist": "yarn lerna exec -- rimraf dist",

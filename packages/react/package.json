@@ -61,6 +61,7 @@
     "@chakra-ui/popper": "2.2.1",
     "@chakra-ui/portal": "1.2.8",
     "@chakra-ui/progress": "1.1.12",
+    "@chakra-ui/provider": "1.6.6",
     "@chakra-ui/radio": "1.3.9",
     "@chakra-ui/react-env": "1.0.6",
     "@chakra-ui/select": "1.1.13",

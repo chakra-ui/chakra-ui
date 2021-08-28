@@ -1,24 +1,33 @@
-import { mode } from "@chakra-ui/theme-tools"
-import Input from "./input"
+import { numberInputAnatomy as parts } from "@chakra-ui/anatomy"
+import type {
+  PartsStyleFunction,
+  PartsStyleObject,
+  SystemStyleFunction,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
+import { calc, cssVar, mode } from "@chakra-ui/theme-tools"
 import typography from "../foundations/typography"
-
-const parts = ["root", "field", "stepper", "stepperGroup"]
+import Input from "./input"
 
 const { variants, defaultProps } = Input
 
-const baseStyleRoot = {
-  "--number-input-stepper-width": "24px",
-  "--number-input-field-padding":
-    "calc(var(--number-input-stepper-width) + 0.5rem)",
+const $stepperWidth = cssVar("number-input-stepper-width")
+
+const $inputPadding = cssVar("number-input-input-padding")
+const inputPaddingValue = calc($stepperWidth).add("0.5rem").toString()
+
+const baseStyleRoot: SystemStyleObject = {
+  [$stepperWidth.variable]: "24px",
+  [$inputPadding.variable]: inputPaddingValue,
 }
 
-const baseStyleField = Input.baseStyle?.field
+const baseStyleField: SystemStyleObject = Input.baseStyle?.field ?? {}
 
-const baseStyleStepperGroup = {
-  width: "var(--number-input-stepper-width)",
+const baseStyleStepperGroup: SystemStyleObject = {
+  width: [$stepperWidth.reference],
 }
 
-function baseStyleStepper(props: Record<string, any>) {
+const baseStyleStepper: SystemStyleFunction = (props) => {
   return {
     borderStart: "1px solid",
     borderStartColor: mode("inherit", "whiteAlpha.300")(props),
@@ -33,33 +42,36 @@ function baseStyleStepper(props: Record<string, any>) {
   }
 }
 
-const baseStyle = (props: Record<string, any>) => ({
+const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   root: baseStyleRoot,
   field: baseStyleField,
   stepperGroup: baseStyleStepperGroup,
   stepper: baseStyleStepper(props),
 })
 
-function getSize(size: "xs" | "sm" | "md" | "lg") {
+type Size = "xs" | "sm" | "md" | "lg"
+
+function getSize(size: Size): PartsStyleObject<typeof parts> {
   const sizeStyle = Input.sizes[size]
 
-  const radius = {
+  const radius: Record<Size, string> = {
     lg: "md",
     md: "md",
     sm: "sm",
     xs: "sm",
   }
 
-  const resolvedFontSize = typography.fontSizes[sizeStyle.field.fontSize]
+  const _fontSize = sizeStyle.field?.fontSize ?? "md"
+  const fontSize = typography.fontSizes[_fontSize.toString()]
 
   return {
     field: {
       ...sizeStyle.field,
-      paddingInlineEnd: "var(--number-input-field-padding)",
+      paddingInlineEnd: $inputPadding.reference,
       verticalAlign: "top",
     },
     stepper: {
-      fontSize: `calc(${resolvedFontSize} * 0.75)`,
+      fontSize: calc(fontSize).multiply(0.75).toString(),
       _first: {
         borderTopEndRadius: radius[size],
       },
@@ -80,7 +92,7 @@ const sizes = {
 }
 
 export default {
-  parts,
+  parts: parts.keys,
   baseStyle,
   sizes,
   variants,
