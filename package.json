@@ -119,7 +119,7 @@
     "cross-env": "7.0.3",
     "csstype": "^3.0.6",
     "cz-conventional-changelog": "3.3.0",
-    "discord.js": "^13.1.0",
+    "discord.js": "^12.5.3",
     "dotenv-cli": "4.0.0",
     "edit-json-file": "1.5.0",
     "eslint": "7.17.0",

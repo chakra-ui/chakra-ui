@@ -12,7 +12,7 @@ const CHANNELS = {
 const intents = new Discord.Intents(["GUILDS", "GUILD_MESSAGES"])
 
 function start() {
-  const client = new Discord.Client({ intents })
+  const client = new Discord.Client({ ws: { intents } })
   const spinner = ora("Logging in discord client...").start()
 
   client.login(process.env.DISCORD_BOT_TOKEN)
@@ -23,7 +23,7 @@ function start() {
     process.exit(code)
   }
 
-  client.on("ready", async (client) => {
+  client.on("ready", async () => {
     spinner.succeed("Client logged in")
     spinner.start("Setting up client...")
 
@@ -36,18 +36,19 @@ function start() {
         (channel) => channel.isText() && channel.id === CHANNELS.ANNOUNCEMENT,
       ) as Discord.TextChannel | null
 
-      channel?.sendTyping()
-      await Discord.Util.delayFor(1000)
+      channel?.startTyping()
 
+      await Discord.Util.delayFor(1000)
       spinner.start("Reading Changelog.md...")
 
       const content = fs.readFileSync(".changelogrc").toString()
-
       spinner.succeed().start("Posting Changelog content to #annoucement")
 
       const msgs = Discord.Util.splitMessage(content)
       const promises = msgs.map((msg) => channel?.send(msg))
       await Promise.all(promises)
+
+      channel?.stopTyping()
 
       spinner.succeed("Changelog posted to Discord: #announcement")
       exit(0)
