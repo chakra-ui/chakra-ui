@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.6.0
+
+### Minor Changes
+
+- [`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130)
+  [#4595](https://github.com/chakra-ui/chakra-ui/pull/4595) Thanks
+  [@margalit](https://github.com/margalit)! - - Added an enabled prop to the
+  `useOutsideClick` hook to conditionally attach event handlers.
+
+  - Updated the `useMenu` hook to only enable the `useOutsideClick` hook when
+    the menu is open.
+
 ## 1.5.5
 
 ### Patch Changes

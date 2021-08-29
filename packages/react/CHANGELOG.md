@@ -1,5 +1,67 @@
 # Change Log
 
+## 1.6.7
+
+### Patch Changes
+
+- [`52640a1fd`](https://github.com/chakra-ui/chakra-ui/commit/52640a1fd9089e3c0ffc5dc8e42fcfa7a5752904)
+  [#4594](https://github.com/chakra-ui/chakra-ui/pull/4594) Thanks
+  [@feychenie](https://github.com/feychenie)! - Move ChakraProvider to a
+  separate package `@chakra-ui/provider`
+
+* [`e7a732755`](https://github.com/chakra-ui/chakra-ui/commit/e7a732755e8b2447d3193225ba8265f78a9d1d81)
+  [#4611](https://github.com/chakra-ui/chakra-ui/pull/4611) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Loosen types of
+  `extendTheme` to allow recent TS compiler to work and avoid
+  `Type instantiation is excessively deep and possibly infinite` errors.
+
+  This might lead to a slightly degraded autocomplete experience when extended
+  the theme but we promise to revisit the typings and API very soon.
+
+  > In the meantime, please use `ThemeOverrides` type to provide
+
+* Updated dependencies
+  [[`ed8301181`](https://github.com/chakra-ui/chakra-ui/commit/ed830118114231624eb1538f183134a5741a16f7),
+  [`9cdbf4127`](https://github.com/chakra-ui/chakra-ui/commit/9cdbf412710e99085b832aa63e1c1df720227f14),
+  [`01c913309`](https://github.com/chakra-ui/chakra-ui/commit/01c913309819c342806307291d2d60aea0122ecf),
+  [`b41191868`](https://github.com/chakra-ui/chakra-ui/commit/b4119186862a11959e7a3af0c1963ec0d7a10b88),
+  [`52640a1fd`](https://github.com/chakra-ui/chakra-ui/commit/52640a1fd9089e3c0ffc5dc8e42fcfa7a5752904),
+  [`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130),
+  [`7b04008b2`](https://github.com/chakra-ui/chakra-ui/commit/7b04008b22bd9c794fae87d53679732526283f20),
+  [`83eecb75f`](https://github.com/chakra-ui/chakra-ui/commit/83eecb75f5bec58ea60e800122ce63c3d96c6a25),
+  [`a48449550`](https://github.com/chakra-ui/chakra-ui/commit/a484495501970cba793b709505c714c2b12304d6),
+  [`6532f97eb`](https://github.com/chakra-ui/chakra-ui/commit/6532f97eb13105e126881f709f48f1270ac7f5c9),
+  [`633df562f`](https://github.com/chakra-ui/chakra-ui/commit/633df562f4ab22ae5406d5a5cda7661171fc8a65)]:
+  - @chakra-ui/slider@1.2.9
+  - @chakra-ui/skeleton@1.1.18
+  - @chakra-ui/system@1.7.3
+  - @chakra-ui/radio@1.3.10
+  - @chakra-ui/provider@1.6.7
+  - @chakra-ui/hooks@1.6.0
+  - @chakra-ui/toast@1.2.11
+  - @chakra-ui/layout@1.4.9
+  - @chakra-ui/theme@1.10.1
+  - @chakra-ui/accordion@1.3.6
+  - @chakra-ui/avatar@1.2.9
+  - @chakra-ui/checkbox@1.5.6
+  - @chakra-ui/editable@1.2.9
+  - @chakra-ui/form-control@1.4.1
+  - @chakra-ui/image@1.0.19
+  - @chakra-ui/input@1.2.10
+  - @chakra-ui/menu@1.7.3
+  - @chakra-ui/modal@1.8.11
+  - @chakra-ui/number-input@1.2.10
+  - @chakra-ui/pin-input@1.6.5
+  - @chakra-ui/popover@1.8.3
+  - @chakra-ui/progress@1.1.13
+  - @chakra-ui/select@1.1.14
+  - @chakra-ui/switch@1.2.9
+  - @chakra-ui/tabs@1.5.5
+  - @chakra-ui/textarea@1.1.14
+  - @chakra-ui/tooltip@1.3.10
+  - @chakra-ui/counter@1.1.9
+  - @chakra-ui/portal@1.2.9
+
 ## 1.6.6
 
 ### Patch Changes

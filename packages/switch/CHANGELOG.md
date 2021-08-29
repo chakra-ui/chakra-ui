@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.2.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/checkbox@1.5.6
+
 ## 1.2.8
 
 ### Patch Changes

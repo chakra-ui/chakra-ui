@@ -54,7 +54,7 @@
     "lint:types": "tsc --noEmit"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.7.2",
+    "@chakra-ui/system": "1.7.3",
     "react": "^17.0.1"
   },
   "dependencies": {
