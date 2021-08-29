@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.7.3
+
+### Patch Changes
+
+- [`01c913309`](https://github.com/chakra-ui/chakra-ui/commit/01c913309819c342806307291d2d60aea0122ecf)
+  [#4611](https://github.com/chakra-ui/chakra-ui/pull/4611) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Update `useStyleConfig` to
+  read parts array from the new anatomy class
+
+- Updated dependencies []:
+  - @chakra-ui/color-mode@1.1.12
+
 ## 1.7.2
 
 ### Patch Changes

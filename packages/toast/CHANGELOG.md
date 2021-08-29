@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.2.11
+
+### Patch Changes
+
+- [`7b04008b2`](https://github.com/chakra-ui/chakra-ui/commit/7b04008b22bd9c794fae87d53679732526283f20)
+  [#4605](https://github.com/chakra-ui/chakra-ui/pull/4605) Thanks
+  [@LarsOlt](https://github.com/LarsOlt)! - Add correct variant type to
+  `UseToastOptions`
+
+- Updated dependencies
+  [[`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130),
+  [`633df562f`](https://github.com/chakra-ui/chakra-ui/commit/633df562f4ab22ae5406d5a5cda7661171fc8a65)]:
+  - @chakra-ui/hooks@1.6.0
+  - @chakra-ui/theme@1.10.1
+
 ## 1.2.10
 
 ### Patch Changes

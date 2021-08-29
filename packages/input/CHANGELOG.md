@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.2.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@1.4.1
+
 ## 1.2.9
 
 ### Patch Changes

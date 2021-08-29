@@ -1,5 +1,23 @@
 # Change Log
 
+## 1.2.9
+
+### Patch Changes
+
+- [`ed8301181`](https://github.com/chakra-ui/chakra-ui/commit/ed830118114231624eb1538f183134a5741a16f7)
+  [#4564](https://github.com/chakra-ui/chakra-ui/pull/4564) Thanks
+  [@trabuchhobbes](https://github.com/trabuchhobbes)! - Fix issue where slider
+  thumb gets focus when `onChangeEnd` changes.
+
+* [`6532f97eb`](https://github.com/chakra-ui/chakra-ui/commit/6532f97eb13105e126881f709f48f1270ac7f5c9)
+  [#4575](https://github.com/chakra-ui/chakra-ui/pull/4575) Thanks
+  [@takethefake](https://github.com/takethefake)! - Call `onChangeStart`/
+  `onChangeEnd` when clicking somewhere in the `SliderTrack` without dragging
+  the `DragHandle`
+* Updated dependencies
+  [[`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130)]:
+  - @chakra-ui/hooks@1.6.0
+
 ## 1.2.8
 
 ### Patch Changes
