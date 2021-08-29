@@ -9,7 +9,11 @@ const CHANNELS = {
   ANNOUNCEMENT: "660865232004055050",
 }
 
-const intents = new Discord.Intents(["GUILDS", "GUILD_MESSAGES"])
+const intents = new Discord.Intents([
+  "GUILDS",
+  "GUILD_MESSAGES",
+  "GUILD_MESSAGE_TYPING",
+])
 
 function start() {
   const client = new Discord.Client({ ws: { intents } })
