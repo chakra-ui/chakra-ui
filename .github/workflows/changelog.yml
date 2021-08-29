@@ -47,7 +47,7 @@ jobs:
 
       - name: Commit changelog
         run: |
-          git add '.CHANGELOG.md' '.releaserc'
+          git add .
           git diff --staged --quiet || git commit -m "docs(changelog): $GITHUB_SHA"
 
       - name: Create Pull Request
