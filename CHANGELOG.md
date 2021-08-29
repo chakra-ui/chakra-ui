@@ -15,6 +15,8 @@ To better understand the changelog, here are some legends we use:
 - 🐛 Bug fix
 - 🛠 Refactor
 
+<!-- CHANGELOG:INSERT -->
+
 ## 09-08-2021
 
 `@chakra-ui/react@1.6.6`
