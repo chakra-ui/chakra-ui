@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.1.18
+
+### Patch Changes
+
+- [`9cdbf4127`](https://github.com/chakra-ui/chakra-ui/commit/9cdbf412710e99085b832aa63e1c1df720227f14)
+  [#4444](https://github.com/chakra-ui/chakra-ui/pull/4444) Thanks
+  [@codetheweb](https://github.com/codetheweb)! - Don't animate when skeleton
+  was previously loaded
+
+- Updated dependencies
+  [[`01c913309`](https://github.com/chakra-ui/chakra-ui/commit/01c913309819c342806307291d2d60aea0122ecf),
+  [`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130)]:
+  - @chakra-ui/system@1.7.3
+  - @chakra-ui/hooks@1.6.0
+
 ## 1.1.17
 
 ### Patch Changes

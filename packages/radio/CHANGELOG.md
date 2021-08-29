@@ -1,5 +1,24 @@
 # Change Log
 
+## 1.3.10
+
+### Patch Changes
+
+- [`b41191868`](https://github.com/chakra-ui/chakra-ui/commit/b4119186862a11959e7a3af0c1963ec0d7a10b88)
+  [#4552](https://github.com/chakra-ui/chakra-ui/pull/4552) Thanks
+  [@takethefake](https://github.com/takethefake)! - Add `isDisabled` to
+  `RadioGroup` to make it possible to disable all `Radio` inside `RadioGroup`
+
+* [`a48449550`](https://github.com/chakra-ui/chakra-ui/commit/a484495501970cba793b709505c714c2b12304d6)
+  [#4552](https://github.com/chakra-ui/chakra-ui/pull/4552) Thanks
+  [@takethefake](https://github.com/takethefake)! - Add `isFocusable` to
+  `RadioGroup` to make it possible to define the `focusable`-state for all
+  `Radio` inside a `RadioGroup`
+* Updated dependencies
+  [[`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130)]:
+  - @chakra-ui/hooks@1.6.0
+  - @chakra-ui/form-control@1.4.1
+
 ## 1.3.9
 
 ### Patch Changes
