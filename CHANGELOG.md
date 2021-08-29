@@ -17,6 +17,109 @@ To better understand the changelog, here are some legends we use:
 
 <!-- CHANGELOG:INSERT -->
 
+## 29-08-2021
+
+`@chakra-ui/react@1.6.7`
+
+- Move ChakraProvider to a separate package `@chakra-ui/provider`
+- Loosen types of `extendTheme` to allow recent TS compiler to work and avoid
+  `Type instantiation is excessively deep and possibly infinite` errors.
+
+This might lead to a slightly degraded autocomplete experience when extended the
+theme but we promise to revisit the typings and API very soon.
+
+> In the meantime, please use `ThemeOverrides` type to provide
+
+**Slider** `v1.2.9`
+
+- Fix issue where slider thumb gets focus when `onChangeEnd` changes.
+- Call `onChangeStart`/ `onChangeEnd` when clicking somewhere in the `SliderTrack`
+  without dragging the `DragHandle`
+
+**Skeleton** `v1.1.18`
+
+- Don't animate when skeleton was previously loaded
+
+**System** `v1.7.3`
+
+- Update `useStyleConfig` to read parts array from the new anatomy class
+
+**Theme Tools** `v1.2.0`
+
+- Add new helpers to the `theme-tools` package to make the process of creating
+  component themes less cumbersome.
+
+- `cssVar` - function to create css vars
+- `calc` - function that makes it easy to create the css calc string
+- `anatomy`- function to define and extend component parts
+
+Creating a CSS variable in the theme
+
+```jsx
+import { cssVar, calc } from '@chakra-ui/theme-tools';
+
+const $width = cssVar('slider-width');
+const $height = cssVar('slider-height');
+
+const $diff = calc($width).subtract($height).toString();
+
+$width.variable; // => '--slider-width'
+$width.reference; // => 'var(--slider-width)'
+```
+
+Create a component anatomy
+
+```jsx
+import { anatomy }  from "@chakra-ui/theme-tools"
+import type { PartsStyle } from "@chakra-ui/theme-tools"
+
+const btn = anatomy("button").parts("label", "container")
+
+const newBtn = btn.extend("icon") //  extend button to include icon part
+
+// Using the anatomy in component theme
+const baseStyle: PartsStyle<typeof newBtn> = {
+  // auto-complete for the component parts
+  icon: {...},
+  label: {...}
+}
+```
+
+Added `PartsStyleObject` and `PartStyleFunction` types for easy creation of
+type-safe, multipart component styles.
+
+**Radio** `v1.3.10`
+
+- Add `isDisabled` to `RadioGroup` to make it possible to disable all `Radio`
+  inside `RadioGroup`
+- Add `isFocusable` to `RadioGroup` to make it possible to define the
+  `focusable`-state for all `Radio` inside a `RadioGroup`
+
+**Provider** `v1.6.7`
+
+- Move ChakraProvider to a separate package `@chakra-ui/provider`
+
+**Hooks** `v1.6.0`
+
+- Added an enabled prop to the `useOutsideClick` hook to conditionally attach
+  event handlers.
+
+- Updated the `useMenu` hook to only enable the `useOutsideClick` hook when the
+  menu is open.
+
+**Toast** `v1.2.11`
+
+- Add correct variant type to `UseToastOptions`
+
+**Layout** `v1.4.9`
+
+- Fix url for `LinkBox` component
+
+**Theme** `v1.10.1`
+
+- Added `overview:"visible"` to `baseStyle` of `TagLabel` to avoid clipped text
+
+
 ## 09-08-2021
 
 `@chakra-ui/react@1.6.6`
