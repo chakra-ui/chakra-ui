@@ -1,4 +1,6 @@
-const baseStyle = {
+import type { SystemStyleObject } from "@chakra-ui/theme-tools"
+
+const baseStyle: SystemStyleObject = {
   transitionProperty: "common",
   transitionDuration: "fast",
   transitionTimingFunction: "ease-out",

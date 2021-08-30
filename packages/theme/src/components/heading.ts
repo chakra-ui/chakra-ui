@@ -1,9 +1,11 @@
-const baseStyle = {
+import { SystemStyleObject } from "@chakra-ui/theme-tools"
+
+const baseStyle: SystemStyleObject = {
   fontFamily: "heading",
   fontWeight: "bold",
 }
 
-const sizes = {
+const sizes: Record<string, SystemStyleObject> = {
   "4xl": {
     fontSize: ["6xl", null, "7xl"],
     lineHeight: 1,

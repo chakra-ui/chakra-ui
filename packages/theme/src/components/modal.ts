@@ -1,23 +1,18 @@
+import { modalAnatomy as parts } from "@chakra-ui/anatomy"
+import type {
+  PartsStyleFunction,
+  PartsStyleObject,
+  SystemStyleFunction,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
 import { mode } from "@chakra-ui/theme-tools"
 
-const parts = [
-  "overlay",
-  "dialogContainer",
-  "dialog",
-  "header",
-  "closeButton",
-  "body",
-  "footer",
-]
-
-const baseStyleOverlay = {
+const baseStyleOverlay: SystemStyleObject = {
   bg: "blackAlpha.600",
   zIndex: "modal",
 }
 
-type Dict = Record<string, any>
-
-function baseStyleDialogContainer(props: Dict) {
+const baseStyleDialogContainer: SystemStyleFunction = (props) => {
   const { isCentered, scrollBehavior } = props
 
   return {
@@ -29,7 +24,7 @@ function baseStyleDialogContainer(props: Dict) {
   }
 }
 
-function baseStyleDialog(props: Dict) {
+const baseStyleDialog: SystemStyleFunction = (props) => {
   const { scrollBehavior } = props
 
   return {
@@ -43,20 +38,20 @@ function baseStyleDialog(props: Dict) {
   }
 }
 
-const baseStyleHeader = {
+const baseStyleHeader: SystemStyleObject = {
   px: 6,
   py: 4,
   fontSize: "xl",
   fontWeight: "semibold",
 }
 
-const baseStyleCloseButton = {
+const baseStyleCloseButton: SystemStyleObject = {
   position: "absolute",
   top: 2,
   insetEnd: 3,
 }
 
-function baseStyleBody(props: Dict) {
+const baseStyleBody: SystemStyleFunction = (props) => {
   const { scrollBehavior } = props
   return {
     px: 6,
@@ -66,12 +61,12 @@ function baseStyleBody(props: Dict) {
   }
 }
 
-const baseStyleFooter = {
+const baseStyleFooter: SystemStyleObject = {
   px: 6,
   py: 4,
 }
 
-const baseStyle = (props: Dict) => ({
+const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   overlay: baseStyleOverlay,
   dialogContainer: baseStyleDialogContainer(props),
   dialog: baseStyleDialog(props),
@@ -85,11 +80,15 @@ const baseStyle = (props: Dict) => ({
  * Since the `maxWidth` prop references theme.sizes internally,
  * we can leverage that to size our modals.
  */
-function getSize(value: string) {
+function getSize(value: string): PartsStyleObject<typeof parts> {
   if (value === "full") {
-    return { dialog: { maxW: "100vw", minH: "100vh", my: 0 } }
+    return {
+      dialog: { maxW: "100vw", minH: "100vh", my: 0 },
+    }
   }
-  return { dialog: { maxW: value } }
+  return {
+    dialog: { maxW: value },
+  }
 }
 
 const sizes = {
@@ -111,7 +110,7 @@ const defaultProps = {
 }
 
 export default {
-  parts,
+  parts: parts.keys,
   baseStyle,
   sizes,
   defaultProps,

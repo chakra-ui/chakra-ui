@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/layout",
-  "version": "1.4.8",
+  "version": "1.4.9",
   "description": "Chakra UI layout components that give you massive speed",
   "keywords": [
     "layout",
@@ -64,7 +64,7 @@
     "@chakra-ui/utils": "1.8.2"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.7.2",
+    "@chakra-ui/system": "1.7.3",
     "react": "^17.0.1"
   },
   "peerDependencies": {

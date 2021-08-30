@@ -1,11 +1,15 @@
+import { menuAnatomy as parts } from "@chakra-ui/anatomy"
+import type {
+  PartsStyleFunction,
+  SystemStyleFunction,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
 import { mode } from "@chakra-ui/theme-tools"
 
-const parts = ["item", "command", "list", "button", "groupTitle", "divider"]
-
-function baseStyleList(props: Record<string, any>) {
+const baseStyleList: SystemStyleFunction = (props) => {
   return {
-    bg: mode(`#fff`, `gray.700`)(props),
-    boxShadow: mode(`sm`, `dark-lg`)(props),
+    bg: mode("#fff", "gray.700")(props),
+    boxShadow: mode("sm", "dark-lg")(props),
     color: "inherit",
     minW: "3xs",
     py: "2",
@@ -15,7 +19,7 @@ function baseStyleList(props: Record<string, any>) {
   }
 }
 
-function baseStyleItem(props: Record<string, any>) {
+const baseStyleItem: SystemStyleFunction = (props) => {
   return {
     py: "0.4rem",
     px: "0.8rem",
@@ -23,13 +27,13 @@ function baseStyleItem(props: Record<string, any>) {
     transitionDuration: "ultra-fast",
     transitionTimingFunction: "ease-in",
     _focus: {
-      bg: mode(`gray.100`, `whiteAlpha.100`)(props),
+      bg: mode("gray.100", "whiteAlpha.100")(props),
     },
     _active: {
-      bg: mode(`gray.200`, `whiteAlpha.200`)(props),
+      bg: mode("gray.200", "whiteAlpha.200")(props),
     },
     _expanded: {
-      bg: mode(`gray.100`, `whiteAlpha.100`)(props),
+      bg: mode("gray.100", "whiteAlpha.100")(props),
     },
     _disabled: {
       opacity: 0.4,
@@ -38,18 +42,18 @@ function baseStyleItem(props: Record<string, any>) {
   }
 }
 
-const baseStyleGroupTitle = {
+const baseStyleGroupTitle: SystemStyleObject = {
   mx: 4,
   my: 2,
   fontWeight: "semibold",
   fontSize: "sm",
 }
 
-const baseStyleCommand = {
+const baseStyleCommand: SystemStyleObject = {
   opacity: 0.6,
 }
 
-const baseStyleDivider = {
+const baseStyleDivider: SystemStyleObject = {
   border: 0,
   borderBottom: "1px solid",
   borderColor: "inherit",
@@ -57,12 +61,12 @@ const baseStyleDivider = {
   opacity: 0.6,
 }
 
-const baseStyleButton = {
+const baseStyleButton: SystemStyleObject = {
   transitionProperty: "common",
   transitionDuration: "normal",
 }
 
-const baseStyle = (props: Record<string, any>) => ({
+const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   button: baseStyleButton,
   list: baseStyleList(props),
   item: baseStyleItem(props),
@@ -72,6 +76,6 @@ const baseStyle = (props: Record<string, any>) => ({
 })
 
 export default {
-  parts,
+  parts: parts.keys,
   baseStyle,
 }

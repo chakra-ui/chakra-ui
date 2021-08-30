@@ -1,13 +1,15 @@
+import type {
+  SystemStyleInterpolation,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
 import Input from "./input"
 
-type Dict = Record<string, any>
-
-const baseStyle = {
+const baseStyle: SystemStyleObject = {
   ...Input.baseStyle.field,
   textAlign: "center",
 }
 
-const sizes = {
+const sizes: Record<string, SystemStyleObject> = {
   lg: {
     fontSize: "lg",
     w: 12,
@@ -34,11 +36,11 @@ const sizes = {
   },
 }
 
-const variants = {
-  outline: (props: Dict) => Input.variants.outline(props).field,
-  flushed: (props: Dict) => Input.variants.flushed(props).field,
-  filled: (props: Dict) => Input.variants.filled(props).field,
-  unstyled: Input.variants.unstyled.field,
+const variants: Record<string, SystemStyleInterpolation> = {
+  outline: (props) => Input.variants.outline(props).field ?? {},
+  flushed: (props) => Input.variants.flushed(props).field ?? {},
+  filled: (props) => Input.variants.filled(props).field ?? {},
+  unstyled: Input.variants.unstyled.field ?? {},
 }
 
 const defaultProps = Input.defaultProps

@@ -1,36 +1,39 @@
-const parts = ["label", "number", "icon", "helpText", "container"]
+import { statAnatomy as parts } from "@chakra-ui/anatomy"
+import type {
+  PartsStyleObject,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
 
-const baseStyleContainer = {}
-const baseStyleLabel = {
+const baseStyleLabel: SystemStyleObject = {
   fontWeight: "medium",
 }
 
-const baseStyleHelpText = {
+const baseStyleHelpText: SystemStyleObject = {
   opacity: 0.8,
   marginBottom: 2,
 }
 
-const baseStyleNumber = {
+const baseStyleNumber: SystemStyleObject = {
   verticalAlign: "baseline",
   fontWeight: "semibold",
 }
 
-const baseStyleIcon = {
+const baseStyleIcon: SystemStyleObject = {
   marginEnd: 1,
   w: "14px",
   h: "14px",
   verticalAlign: "middle",
 }
 
-const baseStyle = {
-  container: baseStyleContainer,
+const baseStyle: PartsStyleObject<typeof parts> = {
+  container: {},
   label: baseStyleLabel,
   helpText: baseStyleHelpText,
   number: baseStyleNumber,
   icon: baseStyleIcon,
 }
 
-const sizes = {
+const sizes: Record<string, PartsStyleObject<typeof parts>> = {
   md: {
     label: { fontSize: "sm" },
     helpText: { fontSize: "sm" },
@@ -43,7 +46,7 @@ const defaultProps = {
 }
 
 export default {
-  parts,
+  parts: parts.keys,
   baseStyle,
   sizes,
   defaultProps,
