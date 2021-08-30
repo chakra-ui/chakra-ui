@@ -1,10 +1,12 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import { FormControl, FormLabel } from "@chakra-ui/form-control"
 import { Icon } from "@chakra-ui/icon"
 import {
   Container,
   Divider,
   Heading,
   Stack,
+  HStack,
   Flex,
   Box,
   Text,
@@ -234,8 +236,13 @@ export const ControlledCheckboxGroup = () => {
 
 export const CustomCheckboxGroup = () => {
   function CustomCheckbox(props: any) {
-    const { state, getCheckboxProps, getInputProps, getLabelProps, htmlProps } =
-      useCheckbox(props)
+    const {
+      state,
+      getCheckboxProps,
+      getInputProps,
+      getLabelProps,
+      htmlProps,
+    } = useCheckbox(props)
 
     return (
       <chakra.label
@@ -281,5 +288,65 @@ export const CustomCheckboxGroup = () => {
       <CustomCheckbox {...getCheckboxProps({ value: 2 })} />
       <CustomCheckbox {...getCheckboxProps({ value: 3 })} />
     </Stack>
+  )
+}
+export const WithFormControl = () => {
+  return (
+    <>
+      <FormControl id="optIn">
+        <FormLabel>Opt-in Example</FormLabel>
+        <CheckboxGroup defaultValue={["1", "3"]}>
+          <HStack>
+            <Checkbox value="1">Opt-in 1</Checkbox>
+            <Checkbox value="2">Opt-in 2</Checkbox>
+            <Checkbox value="3">Opt-in 3</Checkbox>
+          </HStack>
+        </CheckboxGroup>
+      </FormControl>
+
+      <FormControl id="optInInvalid" isInvalid mt={4}>
+        <FormLabel>Invalid Opt-in Example</FormLabel>
+        <CheckboxGroup defaultValue={["2", "3"]}>
+          <Stack spacing={2}>
+            <Checkbox value="1">Invalid Opt-in 1</Checkbox>
+            <Checkbox value="2">Invalid Opt-in 2</Checkbox>
+            <Checkbox value="3">Invalid Opt-in 3</Checkbox>
+          </Stack>
+        </CheckboxGroup>
+      </FormControl>
+
+      <FormControl id="optInDisabled" isDisabled mt={4}>
+        <FormLabel>Disabled Opt-in Example</FormLabel>
+        <CheckboxGroup defaultValue={["2", "3"]}>
+          <Stack spacing={2}>
+            <Checkbox value="1">Disabled Opt-in 1</Checkbox>
+            <Checkbox value="2">Disabled Opt-in 2</Checkbox>
+            <Checkbox value="3">Disabled Opt-in 3</Checkbox>
+          </Stack>
+        </CheckboxGroup>
+      </FormControl>
+
+      <FormControl id="optInReadonly" isReadOnly mt={4}>
+        <FormLabel>Readonly Opt-in Example</FormLabel>
+        <CheckboxGroup defaultValue={["2", "3"]}>
+          <Stack spacing={2}>
+            <Checkbox value="1">Readonly Opt-in 1</Checkbox>
+            <Checkbox value="2">Readonly Opt-in 2</Checkbox>
+            <Checkbox value="3">Readonly Opt-in 3</Checkbox>
+          </Stack>
+        </CheckboxGroup>
+      </FormControl>
+
+      <FormControl id="optInRequired" isRequired mt={4}>
+        <FormLabel>Required Opt-in Example</FormLabel>
+        <CheckboxGroup defaultValue={["2", "3"]}>
+          <Stack spacing={2}>
+            <Checkbox value="1">Required Opt-in 1</Checkbox>
+            <Checkbox value="2">Required Opt-in 2</Checkbox>
+            <Checkbox value="3">Required Opt-in 3</Checkbox>
+          </Stack>
+        </CheckboxGroup>
+      </FormControl>
+    </>
   )
 }

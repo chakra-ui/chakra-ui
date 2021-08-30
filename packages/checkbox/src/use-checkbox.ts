@@ -6,7 +6,7 @@ import {
   useUpdateEffect,
 } from "@chakra-ui/hooks"
 import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
-import { callAllHandlers, dataAttr, focus, warn } from "@chakra-ui/utils"
+import { omit, callAllHandlers, dataAttr, focus, warn } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import React, {
   ChangeEvent,
@@ -15,6 +15,7 @@ import React, {
   useRef,
   useState,
 } from "react"
+import { useFormControlProps } from "@chakra-ui/form-control"
 
 export interface UseCheckboxProps {
   /**
@@ -120,29 +121,43 @@ export interface CheckboxState {
  * @see Docs https://chakra-ui.com/checkbox#hooks
  */
 export function useCheckbox(props: UseCheckboxProps = {}) {
+  const formControlProps = useFormControlProps(props)
+  const {
+    isDisabled,
+    isReadOnly,
+    isRequired,
+    isInvalid,
+    id,
+    onBlur,
+    onFocus,
+    "aria-describedby": ariaDescribedBy,
+  } = formControlProps
   const {
     defaultIsChecked,
     defaultChecked = defaultIsChecked,
     isChecked: checkedProp,
     isFocusable,
-    isDisabled,
-    isReadOnly,
-    isRequired,
     onChange,
     isIndeterminate,
-    isInvalid,
     name,
     value,
-    id,
-    onBlur,
-    onFocus,
     tabIndex = undefined,
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
     "aria-invalid": ariaInvalid,
-    "aria-describedby": ariaDescribedBy,
-    ...htmlProps
+    ...rest
   } = props
+
+  const htmlProps = omit(rest, [
+    "isDisabled",
+    "isReadOnly",
+    "isRequired",
+    "isInvalid",
+    "id",
+    "onBlur",
+    "onFocus",
+    "aria-describedby",
+  ])
 
   const onChangeProp = useCallbackRef(onChange)
   const onBlurProp = useCallbackRef(onBlur)

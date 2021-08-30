@@ -1,8 +1,9 @@
-import { HStack } from "@chakra-ui/layout"
+import { HStack, Stack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Switch } from "../src"
+import { FormControl, FormLabel } from "@chakra-ui/form-control"
 
 export default {
   title: "Components / Forms / Switch",
@@ -85,5 +86,56 @@ export const WithReactHookForm = () => {
       <Switch {...register("boolean")} />
       <button type="submit">Submit</button>
     </form>
+  )
+}
+
+export const WithFormControl = () => {
+  return (
+    <>
+      <FormControl id="optIn">
+        <FormLabel>Opt-in Example</FormLabel>
+        <Stack>
+          <Switch value="1">Opt-in 1</Switch>
+          <Switch value="2">Opt-in 2</Switch>
+          <Switch value="3">Opt-in 3</Switch>
+        </Stack>
+      </FormControl>
+
+      <FormControl id="optInInvalid" isInvalid mt={4}>
+        <FormLabel>Invalid Opt-in Example</FormLabel>
+        <Stack spacing={2}>
+          <Switch value="1">Invalid Opt-in 1</Switch>
+          <Switch value="2">Invalid Opt-in 2</Switch>
+          <Switch value="3">Invalid Opt-in 3</Switch>
+        </Stack>
+      </FormControl>
+
+      <FormControl id="optInDisabled" isDisabled mt={4}>
+        <FormLabel>Disabled Opt-in Example</FormLabel>
+        <Stack spacing={2}>
+          <Switch value="1">Disabled Opt-in 1</Switch>
+          <Switch value="2">Disabled Opt-in 2</Switch>
+          <Switch value="3">Disabled Opt-in 3</Switch>
+        </Stack>
+      </FormControl>
+
+      <FormControl id="optInReadonly" isReadOnly mt={4}>
+        <FormLabel>Readonly Opt-in Example</FormLabel>
+        <Stack spacing={2}>
+          <Switch value="1">Readonly Opt-in 1</Switch>
+          <Switch value="2">Readonly Opt-in 2</Switch>
+          <Switch value="3">Readonly Opt-in 3</Switch>
+        </Stack>
+      </FormControl>
+
+      <FormControl id="optInRequired" isRequired mt={4}>
+        <FormLabel>Required Opt-in Example</FormLabel>
+        <Stack spacing={2}>
+          <Switch value="1">Required Opt-in 1</Switch>
+          <Switch value="2">Required Opt-in 2</Switch>
+          <Switch value="3">Required Opt-in 3</Switch>
+        </Stack>
+      </FormControl>
+    </>
   )
 }
