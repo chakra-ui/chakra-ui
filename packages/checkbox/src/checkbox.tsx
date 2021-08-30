@@ -150,7 +150,10 @@ export const Checkbox = forwardRef<CheckboxProps, "input">((props, ref) => {
       className={cx("chakra-checkbox", className)}
       {...getRootProps()}
     >
-      <input className="chakra-checkbox__input" {...getInputProps({}, ref)} />
+      <input
+        className="chakra-checkbox__input"
+        {...getInputProps({ tabIndex: props.tabIndex ?? undefined }, ref)}
+      />
       <CheckboxControl
         __css={styles.control}
         className="chakra-checkbox__control"
