@@ -60,16 +60,17 @@ test("should merge reponsive values in textStyles + override", () => {
     css({
       textStyle: "h1",
       mt: [3, 4],
-      fontSize: "30px",
+      fontSize: ["18px", "30px"],
     })(theme),
   ).toMatchInlineSnapshot(`
     Object {
       "@media screen and (min-width: 30em)": Object {
         "color": "red",
+        "fontSize": "30px",
         "marginTop": "var(--chakra-space-4)",
       },
       "color": "blue",
-      "fontSize": "30px",
+      "fontSize": "18px",
       "fontWeight": "var(--chakra-fontWeights-bold)",
       "marginTop": "var(--chakra-space-3)",
     }

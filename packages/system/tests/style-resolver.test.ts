@@ -74,7 +74,7 @@ test("should resolve styles correctly", () => {
         "@media screen and (min-width: 30em)": Object {
           "--chakra-line-clamp": 4,
           "fontSize": "23px",
-          "letterSpacing": "0.2px",
+          "letterSpacing": "50px",
           "textTransform": "lowercase",
         },
         "WebkitBoxOrient": "vertical",

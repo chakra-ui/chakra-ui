@@ -25,16 +25,6 @@ const srFocusable = {
   whiteSpace: "normal",
 }
 
-const getWithPriority = (theme: any, key: any, styles: any) => {
-  const result = {}
-  const obj = get(theme, key, {})
-  for (const prop in obj) {
-    const isInStyles = prop in styles && styles[prop] != null
-    if (!isInStyles) result[prop] = obj[prop]
-  }
-  return result
-}
-
 export const others: Config = {
   srOnly: {
     transform(value) {
@@ -45,17 +35,15 @@ export const others: Config = {
   },
   layerStyle: {
     processResult: true,
-    transform: (value, theme, styles) =>
-      getWithPriority(theme, `layerStyles.${value}`, styles),
+    transform: (value, theme) => get(theme, `layerStyles.${value}`),
   },
   textStyle: {
     processResult: true,
-    transform: (value, theme, styles) =>
-      getWithPriority(theme, `textStyles.${value}`, styles),
+    transform: (value, theme) => get(theme, `textStyles.${value}`),
   },
   apply: {
     processResult: true,
-    transform: (value, theme, styles) => getWithPriority(theme, value, styles),
+    transform: (value, theme) => get(theme, value),
   },
 }
 

@@ -1,10 +1,18 @@
 import {
   css,
   isStyleProp,
+  isOtherProp,
+  systemProps,
   StyleProps,
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
-import { filterUndefined, objectFilter, runIfFn } from "@chakra-ui/utils"
+import {
+  filterUndefined,
+  objectFilter,
+  mergeWith,
+  runIfFn,
+  Dict,
+} from "@chakra-ui/utils"
 import _styled, { CSSObject, FunctionInterpolation } from "@emotion/styled"
 import { shouldForwardProp } from "./should-forward-prop"
 import { As, ChakraComponent, ChakraProps, PropsOf } from "./system.types"
@@ -40,16 +48,31 @@ interface GetStyleObject {
  */
 export const toCSSObject: GetStyleObject = ({ baseStyle }) => (props) => {
   const { theme, css: cssProp, __css, sx, ...rest } = props
-  const styleProps = objectFilter(rest, (_, prop) => isStyleProp(prop))
-  const finalBaseStyle = runIfFn(baseStyle, props)
-  const finalStyles = Object.assign(
-    {},
-    __css,
-    finalBaseStyle,
-    filterUndefined(styleProps),
-    sx,
+  const stylePrecedence = []
+
+  // Styles are applied by precedence (lowest to highest)
+  //   __css
+  //   baseStyle
+  //   other (apply, layerStyles, textStyles)
+  //   styleProps
+  //   sx
+  //   css
+  stylePrecedence.push({ ...__css })
+  stylePrecedence.push(Object.assign({}, runIfFn(baseStyle, props)))
+  stylePrecedence.push(objectFilter(rest, (_, prop) => isOtherProp(prop)))
+
+  const styleProps = objectFilter(
+    rest,
+    (_, prop) => isStyleProp(prop) && !isOtherProp(prop),
   )
-  const computedCSS = css(finalStyles)(props.theme)
+  stylePrecedence.push(filterUndefined(styleProps))
+
+  stylePrecedence.push({ ...sx })
+
+  const computedCSS = stylePrecedence.reduce((accStyle: any, style: any) => {
+    return mergeWith(accStyle, css(style)(theme))
+  }, {})
+
   return cssProp ? [computedCSS, cssProp] : computedCSS
 }
 
