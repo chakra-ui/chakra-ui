@@ -11,9 +11,7 @@ const baseStyleIcon: SystemStyleObject = {
 }
 
 const baseStyle: PartsStyleObject<typeof parts> = {
-  container: {
-    marginStart: "1em",
-  },
+  container: {},
   item: {},
   icon: baseStyleIcon,
 }
