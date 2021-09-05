@@ -22,7 +22,7 @@ import {
   PinInputField,
   usePinInput,
   usePinInputField,
-} from "@chakra-ui/switch"
+} from "@chakra-ui/pin-input"
 ```
 
 ## Usage

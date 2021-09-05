@@ -99,7 +99,10 @@ export const Image = forwardRef<ImageProps, "img">((props, ref) => {
    * Defer to native `img` tag if `loading` prop is passed
    * @see https://github.com/chakra-ui/chakra-ui/issues/1027
    */
-  const shouldIgnore = loading != null || ignoreFallback
+  const shouldIgnore =
+    loading != null ||
+    ignoreFallback ||
+    (fallbackSrc === undefined && fallback === undefined) // if the user doesn't provide any kind of fallback we should ignore it
 
   const status = useImage({
     ...props,
