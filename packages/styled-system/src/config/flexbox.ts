@@ -38,6 +38,7 @@ export const flexbox: Config = {
   placeItems: true,
   placeContent: true,
   placeSelf: true,
+  gap: t.space("gap"),
 }
 
 Object.assign(flexbox, {
@@ -138,6 +139,15 @@ export interface FlexboxProps {
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/flex)
    */
   flex?: Token<CSS.Property.Flex<Length>>
+  /**
+   * The CSS `gap` property.
+   *
+   * It defines the gap between items in both flex and
+   * grid contexts.
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/gap)
+   */
+  gap?: Token<CSS.Property.Gap<Length>>
   /**
    * The CSS `justify-self` property.
    *

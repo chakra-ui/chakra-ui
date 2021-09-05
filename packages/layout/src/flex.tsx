@@ -70,6 +70,7 @@ export const Flex = forwardRef<FlexProps, "div">((props, ref) => {
     basis,
     grow,
     shrink,
+    gap,
     ...rest
   } = props
 
@@ -82,6 +83,7 @@ export const Flex = forwardRef<FlexProps, "div">((props, ref) => {
     flexBasis: basis,
     flexGrow: grow,
     flexShrink: shrink,
+    gap,
   }
 
   return <chakra.div ref={ref} __css={styles} {...rest} />
