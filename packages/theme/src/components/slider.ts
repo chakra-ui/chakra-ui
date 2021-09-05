@@ -93,6 +93,11 @@ const sizeLg: PartsStyleFunction<typeof parts> = (props) => {
       horizontal: { h: "4px" },
       vertical: { w: "4px" },
     }),
+    container: orient({
+      orientation: props.Orientation,
+      horizontal: { paddingX: "8px" },
+      vertical: { paddingY: "8px" },
+    }),
   }
 }
 
@@ -104,6 +109,11 @@ const sizeMd: PartsStyleFunction<typeof parts> = (props) => {
       horizontal: { h: "4px" },
       vertical: { w: "4px" },
     }),
+    container: orient({
+      orientation: props.Orientation,
+      horizontal: { paddingX: "7px" },
+      vertical: { paddingY: "7px" },
+    }),
   }
 }
 
@@ -114,6 +124,11 @@ const sizeSm: PartsStyleFunction<typeof parts> = (props) => {
       orientation: props.orientation,
       horizontal: { h: "2px" },
       vertical: { w: "2px" },
+    }),
+    container: orient({
+      orientation: props.Orientation,
+      horizontal: { paddingX: "5px" },
+      vertical: { paddingY: "5px" },
     }),
   }
 }
