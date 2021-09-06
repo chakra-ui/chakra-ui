@@ -36,6 +36,7 @@ import {
   removeItem,
 } from "@chakra-ui/utils"
 import * as React from "react"
+import { UseOutsideClickProps } from "@chakra-ui/hooks/src"
 
 /* -------------------------------------------------------------------------------------------------
  * Create context to track descendants and their indices
@@ -157,7 +158,7 @@ export function useMenu(props: UseMenuProps = {}) {
         onClose()
       }
     },
-  })
+  } as UseOutsideClickProps)
 
   /**
    * Add some popper.js for dynamic positioning
@@ -727,10 +728,12 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps = {}) {
       child.props.onClick?.(event)
     }
 
-    const isChecked =
+    const isCheckedBasedOnMenuOptionGroup =
       type === "radio"
         ? child.props.value === value
         : value.includes(child.props.value)
+
+    const isChecked = isCheckedBasedOnMenuOptionGroup || child.props.isChecked
 
     return React.cloneElement(child, {
       type,

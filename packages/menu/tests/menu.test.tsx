@@ -443,3 +443,21 @@ test("MenuItem can override its parent menu's `closeOnSelect` and close the menu
   fireEvent.click(menuItemThatCloses)
   expect(onClose).toHaveBeenCalled()
 })
+
+test("MenuItemOption can be manually checked", () => {
+  const { getByRole } = render(
+    <Menu closeOnSelect={false}>
+      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuOptionGroup>
+        <MenuItemOption isChecked>Option 1</MenuItemOption>
+        <MenuItemOption>Option 2</MenuItemOption>
+      </MenuOptionGroup>
+    </Menu>,
+  )
+
+  const openMenuButton = getByRole("button")
+  fireEvent.click(openMenuButton)
+
+  expect(screen.getByText("Option 1").closest("button")).toBeChecked()
+  expect(screen.getByText("Option 2").closest("button")).not.toBeChecked()
+})
