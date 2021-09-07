@@ -168,8 +168,8 @@ export function useEditable(props: UseEditableProps = {}) {
   }, [value, onSubmitProp])
 
   const onChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement & HTMLTextAreaElement>) => {
-      setValue(event.target.value)
+    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setValue(event.currentTarget.value)
     },
     [setValue],
   )
