@@ -37,7 +37,9 @@
     "@chakra-ui/css-reset": "1.0.0",
     "@chakra-ui/hooks": "1.6.0",
     "@chakra-ui/system": "1.7.3",
-    "@chakra-ui/utils": "1.8.2"
+    "@chakra-ui/react-env": "1.0.6",
+    "@chakra-ui/utils": "1.8.2",
+    "@chakra-ui/portal": "1.2.9"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
