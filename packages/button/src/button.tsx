@@ -1,4 +1,4 @@
-import { mergeRefs } from "@chakra-ui/react-utils"
+import { useMergeRefs } from "@chakra-ui/hooks"
 import {
   chakra,
   forwardRef,
@@ -127,7 +127,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
   return (
     <chakra.button
       disabled={isDisabled || isLoading}
-      ref={mergeRefs(ref, _ref)}
+      ref={useMergeRefs(ref, _ref)}
       as={as}
       type={type ?? defaultType}
       data-active={dataAttr(isActive)}
