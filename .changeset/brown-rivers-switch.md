@@ -1,6 +1,6 @@
 ---
-"@chakra-ui/layout": patch
-"@chakra-ui/styled-system": patch
+"@chakra-ui/layout": minor
+"@chakra-ui/styled-system": minor
 ---
 
-Add support for `gap` CSS flexbox/grid gap property
+Add support for `gap` style prop. This maps to the CSS flexbox/grid gap property
