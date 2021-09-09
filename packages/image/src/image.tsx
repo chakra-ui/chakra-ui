@@ -87,6 +87,7 @@ export const Image = forwardRef<ImageProps, "img">((props, ref) => {
     fallbackSrc,
     fallback,
     src,
+    srcSet,
     align,
     fit,
     loading,
@@ -137,6 +138,7 @@ export const Image = forwardRef<ImageProps, "img">((props, ref) => {
     <chakra.img
       as={NativeImage}
       src={src}
+      srcSet={srcSet}
       crossOrigin={crossOrigin}
       loading={loading}
       className="chakra-image"
