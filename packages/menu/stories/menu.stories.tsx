@@ -2,6 +2,7 @@ import { Button } from "@chakra-ui/button"
 import { Image } from "@chakra-ui/image"
 import { Portal } from "@chakra-ui/portal"
 import { chakra } from "@chakra-ui/system"
+import { Modal, ModalBody, ModalContent, ModalOverlay } from "@chakra-ui/modal"
 import * as React from "react"
 import {
   FaChevronDown,
@@ -483,4 +484,47 @@ export const MenuPerformanceTest = () => {
       </Menu>
     </div>
   ))
+}
+
+export const WithoutMenuButton = () => {
+  const [isOpen, setOpen] = React.useState(false)
+  const open = () => setOpen(true)
+  const close = () => setOpen(false)
+
+  React.useEffect(() => {
+    const listener = (ev) => {
+      if ((ev.metaKey || ev.ctrlKey) && ev.code === "KeyK") {
+        ev.preventDefault()
+        open()
+      }
+    }
+    window.addEventListener("keydown", listener)
+    return () => window.removeEventListener("keydown", listener)
+  }, [])
+
+  return (
+    <>
+      <Modal
+        onClose={close}
+        isOpen={isOpen}
+        isCentered
+        motionPreset="slideInBottom"
+      >
+        <ModalOverlay />
+        <ModalContent minHeight={100} background="none" boxShadow="none">
+          <ModalBody display="flex" justifyContent="center" alignItems="center">
+            <Menu isOpen closeOnSelect onClose={close}>
+              <MenuList paddingY={5}>
+                <MenuItem>
+                  Saves or updates the code in Stately Registry
+                </MenuItem>
+                <MenuItem>Visualizes the current editor code</MenuItem>
+              </MenuList>
+            </Menu>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+      <p>Press Cmd + K to open</p>
+    </>
+  )
 }

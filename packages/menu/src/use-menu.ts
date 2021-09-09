@@ -241,6 +241,12 @@ export function useMenu(props: UseMenuProps = {}) {
     }
   }, [isOpen, focusedIndex, descendants])
 
+  React.useEffect(() => {
+    if (!isOpen) return
+    if (autoSelect) openAndFocusFirstItem()
+    else openAndFocusMenu()
+  }, [isOpen, autoSelect, openAndFocusFirstItem, openAndFocusMenu])
+
   return {
     openAndFocusMenu,
     openAndFocusFirstItem,
@@ -289,24 +295,7 @@ export function useMenuButton(
 ) {
   const menu = useMenuContext()
 
-  const {
-    isOpen,
-    onClose,
-    autoSelect,
-    popper,
-    openAndFocusFirstItem,
-    openAndFocusLastItem,
-    openAndFocusMenu,
-  } = menu
-
-  const onClick = React.useCallback(() => {
-    if (isOpen) {
-      onClose()
-    } else {
-      const action = autoSelect ? openAndFocusFirstItem : openAndFocusMenu
-      action()
-    }
-  }, [autoSelect, isOpen, onClose, openAndFocusFirstItem, openAndFocusMenu])
+  const { onToggle, popper, openAndFocusFirstItem, openAndFocusLastItem } = menu
 
   const onKeyDown = React.useCallback(
     (event: React.KeyboardEvent) => {
@@ -336,7 +325,7 @@ export function useMenuButton(
     "aria-expanded": menu.isOpen,
     "aria-haspopup": "menu" as React.AriaAttributes["aria-haspopup"],
     "aria-controls": menu.menuId,
-    onClick: callAllHandlers(props.onClick, onClick),
+    onClick: callAllHandlers(props.onClick, onToggle),
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
   }
 }
