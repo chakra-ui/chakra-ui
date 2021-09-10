@@ -53,7 +53,7 @@ export interface UseToastOptions {
   /**
    * The alert component `variant` to use
    */
-  variant?: "subtle"| "solid"| "left-accent" | "top-accent" | (string & {})
+  variant?: "subtle" | "solid" | "left-accent" | "top-accent" | (string & {})
   /**
    * The status of the toast.
    */
@@ -76,6 +76,8 @@ export type IToast = UseToastOptions
 const Toast: React.FC<any> = (props) => {
   const { status, variant, id, title, isClosable, onClose, description } = props
 
+  const alertTitleId = typeof id !== "undefined" ? `${id}-title` : undefined
+
   return (
     <Alert
       status={status}
@@ -87,10 +89,11 @@ const Toast: React.FC<any> = (props) => {
       paddingEnd={8}
       textAlign="start"
       width="auto"
+      aria-labelledby={alertTitleId}
     >
       <AlertIcon />
       <chakra.div flex="1" maxWidth="100%">
-        {title && <AlertTitle>{title}</AlertTitle>}
+        {title && <AlertTitle id={alertTitleId}>{title}</AlertTitle>}
         {description && (
           <AlertDescription display="block">{description}</AlertDescription>
         )}
