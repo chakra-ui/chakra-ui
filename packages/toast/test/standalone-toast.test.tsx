@@ -14,7 +14,9 @@ test("Standalone toast renders correctly", async () => {
     isClosable: true,
   })
 
-  const allByTitle = await screen.findAllByText(title)
+  const allByTitle = await screen.findAllByRole("alert", {
+    name: new RegExp(title),
+  })
   const allByDescription = await screen.findAllByText(description)
 
   expect(allByTitle).toHaveLength(1)
