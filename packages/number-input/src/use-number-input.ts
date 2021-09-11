@@ -377,6 +377,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         onMouseLeave: callAllHandlers(props.onMouseUp, spinner.stop),
         onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
         onPointerLeave: callAllHandlers(props.onPointerLeave, spinner.stop),
+        onPointerUp: callAllHandlers(props.onPointerUp, spinner.stop),
         disabled,
         "aria-disabled": ariaAttr(disabled),
       }
@@ -404,6 +405,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
         onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
         onPointerLeave: callAllHandlers(props.onPointerLeave, spinner.stop),
+        onPointerUp: callAllHandlers(props.onPointerUp, spinner.stop),
         disabled,
         "aria-disabled": ariaAttr(disabled),
       }
