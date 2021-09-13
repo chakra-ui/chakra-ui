@@ -1,4 +1,10 @@
-import Color from "tinycolor2"
+import {
+  TinyColor,
+  readability,
+  isReadable,
+  random,
+  WCAG2Parms,
+} from "@ctrl/tinycolor"
 import { memoizedGet as get, Dict, isEmptyObject } from "@chakra-ui/utils"
 
 /**
@@ -9,7 +15,7 @@ import { memoizedGet as get, Dict, isEmptyObject } from "@chakra-ui/utils"
  */
 export const getColor = (theme: Dict, color: string, fallback?: string) => {
   const hex = get(theme, `colors.${color}`, color)
-  const isValid = Color(hex).isValid()
+  const { isValid } = new TinyColor(hex)
   return isValid ? hex : fallback
 }
 
@@ -19,7 +25,7 @@ export const getColor = (theme: Dict, color: string, fallback?: string) => {
  */
 export const tone = (color: string) => (theme: Dict) => {
   const hex = getColor(theme, color)
-  const isDark = Color(hex).isDark()
+  const isDark = new TinyColor(hex).isDark()
   return isDark ? "dark" : "light"
 }
 
@@ -46,7 +52,7 @@ export const transparentize = (color: string, opacity: number) => (
   theme: Dict,
 ) => {
   const raw = getColor(theme, color)
-  return Color(raw).setAlpha(opacity).toRgbString()
+  return new TinyColor(raw).setAlpha(opacity).toRgbString()
 }
 
 /**
@@ -56,7 +62,7 @@ export const transparentize = (color: string, opacity: number) => (
  */
 export const whiten = (color: string, amount: number) => (theme: Dict) => {
   const raw = getColor(theme, color)
-  return Color.mix(raw, "#fff", amount).toHexString()
+  return new TinyColor(raw).mix("#fff", amount).toHexString()
 }
 
 /**
@@ -66,7 +72,7 @@ export const whiten = (color: string, amount: number) => (theme: Dict) => {
  */
 export const blacken = (color: string, amount: number) => (theme: Dict) => {
   const raw = getColor(theme, color)
-  return Color.mix(raw, "#000", amount).toHexString()
+  return new TinyColor(raw).mix("#000", amount).toHexString()
 }
 
 /**
@@ -76,7 +82,7 @@ export const blacken = (color: string, amount: number) => (theme: Dict) => {
  */
 export const darken = (color: string, amount: number) => (theme: Dict) => {
   const raw = getColor(theme, color)
-  return Color(raw).darken(amount).toHexString()
+  return new TinyColor(raw).darken(amount).toHexString()
 }
 
 /**
@@ -85,7 +91,7 @@ export const darken = (color: string, amount: number) => (theme: Dict) => {
  * @param amount - the amount to lighten (0-100)
  */
 export const lighten = (color: string, amount: number) => (theme: Dict) =>
-  Color(getColor(theme, color)).lighten(amount).toHexString()
+  new TinyColor(getColor(theme, color)).lighten(amount).toHexString()
 
 /**
  * Checks the contract ratio of between 2 colors,
@@ -95,7 +101,7 @@ export const lighten = (color: string, amount: number) => (theme: Dict) =>
  * @param bg - the background color
  */
 export const contrast = (fg: string, bg: string) => (theme: Dict) =>
-  Color.readability(getColor(theme, bg), getColor(theme, fg))
+  readability(getColor(theme, bg), getColor(theme, fg))
 
 /**
  * Checks if a color meets the Web Content Accessibility
@@ -107,16 +113,12 @@ export const contrast = (fg: string, bg: string) => (theme: Dict) =>
 export const isAccessible = (
   textColor: string,
   bgColor: string,
-  options?: Color.WCAG2Options,
+  options?: WCAG2Parms,
 ) => (theme: Dict) =>
-  Color.isReadable(
-    getColor(theme, bgColor),
-    getColor(theme, textColor),
-    options,
-  )
+  isReadable(getColor(theme, bgColor), getColor(theme, textColor), options)
 
 export const complementary = (color: string) => (theme: Dict) =>
-  Color(getColor(theme, color)).complement().toHexString()
+  new TinyColor(getColor(theme, color)).complement().toHexString()
 
 export function generateStripe(
   size = "1rem",
@@ -150,7 +152,7 @@ interface RandomColorOptions {
 }
 
 export function randomColor(opts?: RandomColorOptions) {
-  const fallback = Color.random().toHexString()
+  const fallback = random().toHexString()
 
   if (!opts || isEmptyObject(opts)) {
     return fallback
