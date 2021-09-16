@@ -292,8 +292,10 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         }
       }),
       "data-disabled": dataAttr(isDisabled),
+      "data-checked": dataAttr(isChecked),
+      "data-invalid": dataAttr(isInvalid),
     }),
-    [htmlProps, isDisabled, rootIsLabelElement],
+    [htmlProps, isDisabled, isChecked, isInvalid, rootIsLabelElement],
   )
 
   const getInputProps: PropGetter = useCallback(
