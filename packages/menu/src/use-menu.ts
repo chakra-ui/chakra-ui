@@ -34,7 +34,6 @@ import {
   LazyBehavior,
   normalizeEventKey,
   removeItem,
-  flipDirection,
 } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -149,9 +148,6 @@ export function useMenu(props: UseMenuProps = {}) {
     onOpen: onOpenProp,
   })
 
-  const dirAwarePlacement =
-    direction === "rtl" ? flipDirection(placement) : placement
-
   /**
    * Prepare the reference to the menu and disclosure
    */
@@ -174,7 +170,8 @@ export function useMenu(props: UseMenuProps = {}) {
   const popper = usePopper({
     ...popperProps,
     enabled: isOpen || computePositionOnMount,
-    placement: dirAwarePlacement,
+    placement,
+    direction,
   })
 
   const [focusedIndex, setFocusedIndex] = React.useState(-1)

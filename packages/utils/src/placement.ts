@@ -43,10 +43,10 @@ function replace(v: string, rtl?: boolean) {
   return v
 }
 
-export function getPlacement(
-  placement: Placement,
+export function getPlacement<T extends Placement>(
+  placement: T,
   options: LogicalPlacementOptions = {},
-): Placement {
+): T {
   const {
     direction: dir = "ltr",
     flipLogical = false,
@@ -54,7 +54,7 @@ export function getPlacement(
   } = options
 
   const rtl = dir === "rtl"
-  let result: Placement
+  let result = placement
 
   const opposites = {
     "auto-start": flipLogical ? "auto-end" : null,
@@ -84,15 +84,15 @@ export function getPlacement(
   }
 
   if (rtl) {
-    result = opposites[placement] ?? placement
+    result = opposites[placement as any] ?? placement
   }
 
   // resolve the preserve logical option
   if (!preserveLogical) {
-    //@ts-ignore
-    result = placement.replace(/start|end/g, (value) => replace(value, rtl))
+    result = placement.replace(/start|end/g, (value) =>
+      replace(value, rtl),
+    ) as T
   }
 
-  //@ts-ignore
   return result
 }

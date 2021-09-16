@@ -1,5 +1,5 @@
 import { mergeRefs, PropGetterV2 } from "@chakra-ui/react-utils"
-import { flipDirection } from "@chakra-ui/utils"
+import { getPlacement } from "@chakra-ui/utils"
 import {
   createPopper,
   Instance,
@@ -128,8 +128,10 @@ export function usePopper(props: UsePopperProps = {}) {
   const reference = useRef<Element | VirtualElement | null>(null)
   const popper = useRef<HTMLElement | null>(null)
   const instance = useRef<Instance | null>(null)
-  const dirAwarePlacement =
-    direction === "rtl" ? flipDirection(placementProp) : placementProp
+  const placement = getPlacement(placementProp, {
+    direction,
+    flipLogical: true,
+  })
 
   const cleanup = useRef(() => {})
 
@@ -140,7 +142,7 @@ export function usePopper(props: UsePopperProps = {}) {
     cleanup.current?.()
 
     instance.current = createPopper(reference.current, popper.current, {
-      placement: dirAwarePlacement,
+      placement,
       modifiers: [
         customModifiers.innerArrow,
         customModifiers.positionArrow,
@@ -181,7 +183,7 @@ export function usePopper(props: UsePopperProps = {}) {
 
     cleanup.current = instance.current.destroy
   }, [
-    dirAwarePlacement,
+    placement,
     enabled,
     modifiers,
     matchWidth,
