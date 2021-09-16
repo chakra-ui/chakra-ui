@@ -47,7 +47,7 @@ export const breadcrumbAnatomy = anatomy("breadcrumb")
 export const buttonAnatomy = anatomy("button").parts()
 
 export const checkboxAnatomy = anatomy("checkbox")
-  .parts("control", "icon")
+  .parts("control", "icon", "container")
   .extend("label")
 
 export const circularProgressAnatomy = anatomy("progress")
