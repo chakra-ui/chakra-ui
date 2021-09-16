@@ -1,18 +1,51 @@
 import "regenerator-runtime/runtime"
 import path from "path"
+import fs from "fs"
 import { register } from "ts-node"
 import { isObject } from "@chakra-ui/utils"
 import { createThemeTypingsInterface } from "../command/tokens/create-theme-typings-interface"
 import { themeKeyConfiguration } from "../command/tokens/config"
 
+const bold = (text: string) => `\x1b[1m${text}\x1b[22m`
+
+async function importTheme(path: string) {
+  const module = await import(path)
+  const theme = module.default ?? module.theme
+
+  if (!theme)
+    throw new Error(`
+    Theme export not found in module: '${path}'.
+
+    A theme should have a ${bold("default")} export or a ${bold(
+      "theme",
+    )} named export.
+    Found the following exports: ${bold(Object.keys(module).join(", "))}
+  `)
+
+  return theme
+}
+
 async function readTheme(themeFilePath: string) {
-  const absoluteThemePath = path.join(process.cwd(), themeFilePath)
+  const cwd = process.cwd()
+  const absoluteThemePath = path.join(cwd, themeFilePath)
+
   register({
     project: path.join(__dirname, "..", "..", "bin", "tsconfig.json"),
-    dir: path.basename(absoluteThemePath),
   })
-  const module = await import(absoluteThemePath)
-  return module.default ?? module.theme
+
+  try {
+    await fs.promises.stat(absoluteThemePath)
+
+    return importTheme(absoluteThemePath)
+  } catch (statError) {
+    try {
+      return importTheme(require.resolve(themeFilePath, { paths: [cwd] }))
+    } catch (resolveError) {
+      throw new Error(
+        `Theme file or package not found \n${statError} \n${resolveError}`,
+      )
+    }
+  }
 }
 
 /**

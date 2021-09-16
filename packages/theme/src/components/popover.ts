@@ -1,21 +1,29 @@
-import { mode } from "@chakra-ui/theme-tools"
+import { popoverAnatomy as parts } from "@chakra-ui/anatomy"
+import type {
+  PartsStyleFunction,
+  SystemStyleFunction,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
+import { cssVar, mode } from "@chakra-ui/theme-tools"
 
-const parts = ["popper", "content", "header", "body", "footer", "arrow"]
+const $popperBg = cssVar("popper-bg")
 
-type Dict = Record<string, any>
+const $arrowBg = cssVar("popper-arrow-bg")
+const $arrowShadowColor = cssVar("popper-arrow-shadow-color")
 
-const baseStylePopper = {
+const baseStylePopper: SystemStyleObject = {
   zIndex: 10,
 }
 
-function baseStyleContent(props: Dict) {
+const baseStyleContent: SystemStyleFunction = (props) => {
   const bg = mode("white", "gray.700")(props)
   const shadowColor = mode("gray.200", "whiteAlpha.300")(props)
+
   return {
-    "--popover-bg": `colors.${bg}`,
-    bg: "var(--popover-bg)",
-    "--popper-arrow-bg": "var(--popover-bg)",
-    "--popper-arrow-shadow-color": `colors.${shadowColor}`,
+    [$popperBg.variable]: `colors.${bg}`,
+    bg: $popperBg.reference,
+    [$arrowBg.variable]: $popperBg.reference,
+    [$arrowShadowColor.variable]: `colors.${shadowColor}`,
     width: "xs",
     border: "1px solid",
     borderColor: "inherit",
@@ -29,24 +37,24 @@ function baseStyleContent(props: Dict) {
   }
 }
 
-const baseStyleHeader = {
+const baseStyleHeader: SystemStyleObject = {
   px: 3,
   py: 2,
   borderBottomWidth: "1px",
 }
 
-const baseStyleBody = {
+const baseStyleBody: SystemStyleObject = {
   px: 3,
   py: 2,
 }
 
-const baseStyleFooter = {
+const baseStyleFooter: SystemStyleObject = {
   px: 3,
   py: 2,
   borderTopWidth: "1px",
 }
 
-const baseStyle = (props: Dict) => ({
+const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   popper: baseStylePopper,
   content: baseStyleContent(props),
   header: baseStyleHeader,
@@ -56,6 +64,6 @@ const baseStyle = (props: Dict) => ({
 })
 
 export default {
-  parts,
+  parts: parts.keys,
   baseStyle,
 }

@@ -1,5 +1,5 @@
 <!---
-Thanks for creating an Pull Request 💖!
+Thanks for creating a Pull Request 💖!
 
 Please read the following before submitting:
 - PRs that adds new external dependencies might take a while to review.

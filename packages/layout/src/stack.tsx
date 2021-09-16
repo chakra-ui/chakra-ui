@@ -94,7 +94,7 @@ export interface StackProps extends HTMLChakraProps<"div">, StackOptions {}
  *
  * It uses `display: flex` internally and renders a `div`.
  *
- * @see Docs https://chakra-ui.com/docs/layout/stack
+ * @see Docs https://chakra-ui.com/stack
  *
  */
 export const Stack = forwardRef<StackProps, "div">((props, ref) => {
@@ -132,8 +132,10 @@ export const Stack = forwardRef<StackProps, "div">((props, ref) => {
   const clones = shouldUseChildren
     ? validChildren
     : validChildren.map((child, index) => {
+        // Prefer provided child key, fallback to index
+        const key = typeof child.key !== "undefined" ? child.key : index
         const isLast = index + 1 === validChildren.length
-        const wrappedChild = <StackItem key={index}>{child}</StackItem>
+        const wrappedChild = <StackItem key={key}>{child}</StackItem>
         const _child = shouldWrapChildren ? wrappedChild : child
 
         if (!hasDivider) return _child
@@ -146,7 +148,7 @@ export const Stack = forwardRef<StackProps, "div">((props, ref) => {
         const _divider = isLast ? null : clonedDivider
 
         return (
-          <React.Fragment key={index}>
+          <React.Fragment key={key}>
             {_child}
             {_divider}
           </React.Fragment>

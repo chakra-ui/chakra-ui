@@ -1,5 +1,34 @@
 # Change Log
 
+## 1.1.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+  - @chakra-ui/react-env@1.0.6
+
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+  - @chakra-ui/react-env@1.0.5
+
+## 1.1.0
+
+### Minor Changes
+
+- [`31ec6466c`](https://github.com/chakra-ui/chakra-ui/commit/31ec6466c2ddc7fffb8e8dfa0f7f241f189f96eb)
+  [#4029](https://github.com/chakra-ui/chakra-ui/pull/4029) Thanks
+  [@jesstelford](https://github.com/jesstelford)! - `useBreakpointValue()` now
+  supports receiving a `defaultBreakpoint` as the second argument to support
+  SSR/SSG.
+
 ## 1.0.14
 
 ### Patch Changes

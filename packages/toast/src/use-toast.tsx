@@ -62,7 +62,7 @@ export interface UseToastOptions {
   /**
    * The alert component `variant` to use
    */
-  variant?: string
+  variant?: "subtle"| "solid"| "left-accent" | "top-accent" | (string & {})
   /**
    * The status of the toast.
    */
@@ -98,7 +98,7 @@ const Toast: React.FC<any> = (props) => {
       width="auto"
     >
       <AlertIcon />
-      <chakra.div flex="1">
+      <chakra.div flex="1" maxWidth="100%">
         {title && <AlertTitle>{title}</AlertTitle>}
         {description && (
           <AlertDescription display="block">{description}</AlertDescription>

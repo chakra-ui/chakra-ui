@@ -98,6 +98,34 @@ interface StyleConfig {
 }
 ```
 
+## Distributing a Theme Package
+
+Publishing your theme to a package registry such as NPM is a great way to share
+your theme across multiple projects or applications.
+
+A published theme package should export a theme object as either the `default`
+export or an export named `theme`. For example, in
+`chakra-theme-package/src/index.js`:
+
+```js
+import { extendTheme } from "@chakra-ui/react"
+const theme = extendTheme({})
+
+// as default export
+export default theme
+
+// as named export
+export { theme }
+```
+
+See [this guide](/docs/theming/customize-theme#scaling-out-your-project) for
+more recommendations on how to structure your theme package.
+
+> Note ⚠️: If you're using TypeScript, you'll want to include some documentation guiding
+> consumers of your theme package to add a `postinstall` script to generate
+> typings for your theme. See the
+> [theme typings](/docs/theming/advanced#theme-typings) section for details.
+
 ## Theme Typings
 
 <Badge fontSize="sm" colorScheme="teal" letterSpacing="wider">
@@ -111,7 +139,7 @@ for your application theme.
 If you want to learn how to scale your custom theme you can
 [follow this guide](/docs/theming/customize-theme#scaling-out-your-project).
 
-### Install 
+### Install
 
 ```bash
 yarn add --dev @chakra-ui/cli
@@ -125,8 +153,16 @@ npm install -D @chakra-ui/cli
 
 ### Usage
 
+For a theme file:
+
 ```bash
 chakra-cli tokens <path/to/your/theme.(js|ts)>
+```
+
+or, for a [theme package](/docs/theming/advanced#distributing-a-theme-package):
+
+```bash
+chakra-cli tokens <@your-org/chakra-theme-package>
 ```
 
 The theme entrypoint file should export the theme object either as `default`

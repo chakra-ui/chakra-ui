@@ -39,6 +39,12 @@ test("renders placeholder first, before image load", async () => {
   expect(screen.getByRole("img")).toHaveAttribute("src", fallbackSrc)
 })
 
+test("renders image if there is no fallback behavior defined", async () => {
+  render(<Image src={src} />)
+
+  expect(screen.getByRole("img")).toHaveAttribute("src", src)
+})
+
 /**
  * Not sure of the correctness of this test:
  * @see https://www.tfzx.net/article/4859040.html

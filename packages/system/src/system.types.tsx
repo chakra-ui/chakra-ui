@@ -22,17 +22,6 @@ export interface ThemingProps<ThemeComponent extends string = string> {
 
 export interface ChakraProps extends SystemProps {
   /**
-   * Reference styles from any component or key in the theme.
-   *
-   * @example
-   * ```jsx
-   * <Box apply="styles.h3">This is a div</Box>
-   * ```
-   *
-   * This will apply styles defined in `theme.styles.h3`
-   */
-  apply?: string
-  /**
    * if `true`, it'll render an ellipsis when the text exceeds the width of the viewport or maxWidth set.
    */
   isTruncated?: boolean

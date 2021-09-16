@@ -5,13 +5,7 @@ import {
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
 import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
-import {
-  callAllHandlers,
-  dataAttr,
-  focus,
-  scheduleMicrotask,
-  warn,
-} from "@chakra-ui/utils"
+import { callAllHandlers, dataAttr, focus, warn } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import React, {
   ChangeEvent,
@@ -67,7 +61,7 @@ export interface UseCheckboxProps {
    */
   defaultChecked?: boolean
   /**
-   * The callback invoked when the checked state of the `Checkbox` changes..
+   * The callback invoked when the checked state of the `Checkbox` changes.
    */
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
   /**
@@ -108,7 +102,7 @@ export interface UseCheckboxProps {
  * useCheckbox that provides all the state and focus management logic
  * for a checkbox. It is consumed by the `Checkbox` component
  *
- * @see Docs https://chakra-ui.com/docs/form/checkbox#hooks
+ * @see Docs https://chakra-ui.com/checkbox#hooks
  */
 export function useCheckbox(props: UseCheckboxProps = {}) {
   const {
@@ -298,15 +292,14 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         }
       }),
       "data-disabled": dataAttr(isDisabled),
+      "data-checked": dataAttr(isChecked),
+      "data-invalid": dataAttr(isInvalid),
     }),
-    [htmlProps, isDisabled, rootIsLabelElement],
+    [htmlProps, isDisabled, isChecked, isInvalid, rootIsLabelElement],
   )
 
   const getInputProps: PropGetter = useCallback(
     (props = {}, forwardedRef = null) => {
-      const onFocus = () => {
-        scheduleMicrotask(setFocused.on)
-      }
       return {
         ...props,
         ref: mergeRefs(inputRef, forwardedRef),
@@ -316,7 +309,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         id,
         onChange: callAllHandlers(props.onChange, handleChange),
         onBlur: callAllHandlers(props.onBlur, onBlurProp, setFocused.off),
-        onFocus: callAllHandlers(props.onFocus, onFocusProp, onFocus),
+        onFocus: callAllHandlers(props.onFocus, onFocusProp, setFocused.on),
         onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
         onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
         required: isRequired,

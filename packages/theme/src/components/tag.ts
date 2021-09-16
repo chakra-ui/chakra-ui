@@ -1,10 +1,12 @@
+import { tagAnatomy as parts } from "@chakra-ui/anatomy"
+import type {
+  PartsStyleInterpolation,
+  PartsStyleObject,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
 import Badge from "./badge"
 
-const parts = ["container", "label", "closeButton"]
-
-type Dict = Record<string, any>
-
-const baseStyleContainer = {
+const baseStyleContainer: SystemStyleObject = {
   fontWeight: "medium",
   lineHeight: 1.2,
   outline: 0,
@@ -13,14 +15,17 @@ const baseStyleContainer = {
   },
 }
 
-const baseStyleLabel = {
+const baseStyleLabel: SystemStyleObject = {
   lineHeight: 1.2,
+  overflow: "visible",
 }
 
-const baseStyleCloseButton = {
+const baseStyleCloseButton: SystemStyleObject = {
   fontSize: "18px",
   w: "1.25rem",
   h: "1.25rem",
+  transitionProperty: "common",
+  transitionDuration: "normal",
   borderRadius: "full",
   marginStart: "0.375rem",
   marginEnd: "-1",
@@ -36,13 +41,13 @@ const baseStyleCloseButton = {
   _active: { opacity: 1 },
 }
 
-const baseStyle = {
+const baseStyle: PartsStyleObject<typeof parts> = {
   container: baseStyleContainer,
   label: baseStyleLabel,
   closeButton: baseStyleCloseButton,
 }
 
-const sizes = {
+const sizes: Record<string, PartsStyleObject<typeof parts>> = {
   sm: {
     container: {
       minH: "1.25rem",
@@ -76,14 +81,14 @@ const sizes = {
   },
 }
 
-const variants = {
-  subtle: (props: Dict) => ({
+const variants: Record<string, PartsStyleInterpolation<typeof parts>> = {
+  subtle: (props) => ({
     container: Badge.variants.subtle(props),
   }),
-  solid: (props: Dict) => ({
+  solid: (props) => ({
     container: Badge.variants.solid(props),
   }),
-  outline: (props: Dict) => ({
+  outline: (props) => ({
     container: Badge.variants.outline(props),
   }),
 }
@@ -95,7 +100,7 @@ const defaultProps = {
 }
 
 export default {
-  parts,
+  parts: parts.keys,
   variants,
   baseStyle,
   sizes,

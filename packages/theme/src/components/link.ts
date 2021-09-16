@@ -1,5 +1,9 @@
-const baseStyle = {
-  transition: `all 0.15s ease-out`,
+import type { SystemStyleObject } from "@chakra-ui/theme-tools"
+
+const baseStyle: SystemStyleObject = {
+  transitionProperty: "common",
+  transitionDuration: "fast",
+  transitionTimingFunction: "ease-out",
   cursor: "pointer",
   textDecoration: "none",
   outline: "none",

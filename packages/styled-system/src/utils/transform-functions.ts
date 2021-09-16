@@ -7,7 +7,7 @@ import {
   getTransformTemplate,
   flexDirectionTemplate,
 } from "./templates"
-import { gradientTransform, globalSet } from "./parse-gradient"
+import { gradientTransform, globalSet, isCSSFunction } from "./parse-gradient"
 
 const analyzeCSSValue = (value: number | string) => {
   const num = parseFloat(value.toString())
@@ -83,8 +83,4 @@ export const transformFunctions = {
     if (divide) result[divide] = 1
     return result
   },
-}
-
-const isCSSFunction = (value: unknown) => {
-  return isString(value) && value.includes("(") && value.includes(")")
 }

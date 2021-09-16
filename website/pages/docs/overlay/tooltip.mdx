@@ -36,6 +36,26 @@ If the `children` of Tooltip is a `string`, we wrap with in a `span` with
 > Note 🚨: If the `Tooltip` is wrapping a functional component, ensure that the
 > functional component accepts a `ref` using `forwardRef`.
 
+### Using custom components
+
+```jsx manual=true
+const CustomCard = React.forwardRef(({ children, ...rest }, ref) => (
+  <Box p="1">
+    <Tag ref={ref} {...rest}>
+      {children}
+    </Tag>
+  </Box>
+))
+
+const CustomToolTip = () => (
+  <Tooltip label="Hover me">
+    <CustomCard>Tag Here</CustomCard>
+  </Tooltip>
+)
+
+render(<CustomToolTip />)
+```
+
 ```jsx
 <Tooltip label="Hey, I'm here!" aria-label="A tooltip">
   Hover me

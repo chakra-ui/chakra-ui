@@ -1,5 +1,60 @@
 # Change Log
 
+## 1.2.9
+
+### Patch Changes
+
+- [`ed8301181`](https://github.com/chakra-ui/chakra-ui/commit/ed830118114231624eb1538f183134a5741a16f7)
+  [#4564](https://github.com/chakra-ui/chakra-ui/pull/4564) Thanks
+  [@trabuchhobbes](https://github.com/trabuchhobbes)! - Fix issue where slider
+  thumb gets focus when `onChangeEnd` changes.
+
+* [`6532f97eb`](https://github.com/chakra-ui/chakra-ui/commit/6532f97eb13105e126881f709f48f1270ac7f5c9)
+  [#4575](https://github.com/chakra-ui/chakra-ui/pull/4575) Thanks
+  [@takethefake](https://github.com/takethefake)! - Call `onChangeStart`/
+  `onChangeEnd` when clicking somewhere in the `SliderTrack` without dragging
+  the `DragHandle`
+* Updated dependencies
+  [[`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130)]:
+  - @chakra-ui/hooks@1.6.0
+
+## 1.2.8
+
+### Patch Changes
+
+- [`2172e610b`](https://github.com/chakra-ui/chakra-ui/commit/2172e610b2a5c6e3867e83d142be2d1a19b7355d)
+  [#4370](https://github.com/chakra-ui/chakra-ui/pull/4370) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where slider
+  thumb doesn't show active state in firefox
+
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+  - @chakra-ui/hooks@1.5.5
+
+## 1.2.7
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+  - @chakra-ui/hooks@1.5.4
+
+## 1.2.6
+
+### Patch Changes
+
+- [`4c157e320`](https://github.com/chakra-ui/chakra-ui/commit/4c157e320a73b08eb89a44831a7cf434fb403bad)
+  [#4057](https://github.com/chakra-ui/chakra-ui/pull/4057) Thanks
+  [@mcha-dev](https://github.com/mcha-dev)! - updated @see doc links to point to
+  shorthand see PR #4046 comment
+
+- Updated dependencies
+  [[`aa374ffcb`](https://github.com/chakra-ui/chakra-ui/commit/aa374ffcb4003efd88eb6a62e10723ea9fbfa3d0)]:
+  - @chakra-ui/hooks@1.5.3
+
 ## 1.2.5
 
 ### Patch Changes

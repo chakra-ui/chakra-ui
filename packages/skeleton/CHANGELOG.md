@@ -1,5 +1,57 @@
 # Change Log
 
+## 1.1.18
+
+### Patch Changes
+
+- [`9cdbf4127`](https://github.com/chakra-ui/chakra-ui/commit/9cdbf412710e99085b832aa63e1c1df720227f14)
+  [#4444](https://github.com/chakra-ui/chakra-ui/pull/4444) Thanks
+  [@codetheweb](https://github.com/codetheweb)! - Don't animate when skeleton
+  was previously loaded
+
+- Updated dependencies
+  [[`01c913309`](https://github.com/chakra-ui/chakra-ui/commit/01c913309819c342806307291d2d60aea0122ecf),
+  [`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130)]:
+  - @chakra-ui/system@1.7.3
+  - @chakra-ui/hooks@1.6.0
+
+## 1.1.17
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`d3d85956c`](https://github.com/chakra-ui/chakra-ui/commit/d3d85956c776b4768cfe21dabcf9292e01875d74),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+  - @chakra-ui/system@1.7.2
+  - @chakra-ui/hooks@1.5.5
+  - @chakra-ui/media-query@1.1.2
+
+## 1.1.16
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1),
+  [`56e99313e`](https://github.com/chakra-ui/chakra-ui/commit/56e99313e1177978c9842e55696be15c5bbfe8d9)]:
+  - @chakra-ui/utils@1.8.1
+  - @chakra-ui/system@1.7.1
+  - @chakra-ui/hooks@1.5.4
+  - @chakra-ui/media-query@1.1.1
+
+## 1.1.15
+
+### Patch Changes
+
+- Updated dependencies
+  [[`31ec6466c`](https://github.com/chakra-ui/chakra-ui/commit/31ec6466c2ddc7fffb8e8dfa0f7f241f189f96eb),
+  [`aa374ffcb`](https://github.com/chakra-ui/chakra-ui/commit/aa374ffcb4003efd88eb6a62e10723ea9fbfa3d0),
+  [`991ea2e29`](https://github.com/chakra-ui/chakra-ui/commit/991ea2e29746a501b79591228664702ce1277235)]:
+  - @chakra-ui/media-query@1.1.0
+  - @chakra-ui/hooks@1.5.3
+  - @chakra-ui/system@1.7.0
+
 ## 1.1.14
 
 ### Patch Changes

@@ -31,7 +31,7 @@ export interface TextProps extends HTMLChakraProps<"p">, ThemingProps<"Text"> {
 /**
  * Used to render texts or paragraphs.
  *
- * @see Docs https://chakra-ui.com/docs/typography/text
+ * @see Docs https://chakra-ui.com/text
  */
 export const Text = forwardRef<TextProps, "p">((props, ref) => {
   const styles = useStyleConfig("Text", props)

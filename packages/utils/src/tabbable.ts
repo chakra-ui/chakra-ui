@@ -1,7 +1,7 @@
 // Really great work done by Diego Haz on this one
 // https://github.com/reakit/reakit/blob/master/packages/reakit-utils/src/tabbable.ts
 
-import { getOwnerDocument } from "./dom"
+import { getOwnerDocument, isHTMLElement } from "./dom"
 
 export const hasDisplayNone = (element: HTMLElement) =>
   window.getComputedStyle(element).display === "none"
@@ -34,18 +34,13 @@ export function isInputElement(
 }
 
 export function isActiveElement(element: FocusableElement) {
-  const doc =
-    element instanceof HTMLElement ? getOwnerDocument(element) : document
+  const doc = isHTMLElement(element) ? getOwnerDocument(element) : document
   return doc.activeElement === (element as HTMLElement)
 }
 
 export function hasFocusWithin(element: HTMLElement) {
   if (!document.activeElement) return false
   return element.contains(document.activeElement)
-}
-
-export function isHTMLElement(element: any): element is HTMLElement {
-  return element instanceof HTMLElement
 }
 
 export function isHidden(element: HTMLElement) {

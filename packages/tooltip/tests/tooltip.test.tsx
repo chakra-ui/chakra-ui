@@ -77,6 +77,35 @@ test("should not show on mouseover if isDisabled is true", async () => {
   jest.useRealTimers()
 })
 
+test("should close on mouseleave if openDelay is set", async () => {
+  jest.useFakeTimers()
+
+  render(<DummyComponent openDelay={500} />)
+
+  act(() => {
+    fireEvent.mouseOver(screen.getByText(buttonLabel))
+    jest.advanceTimersByTime(200)
+  })
+
+  expect(screen.queryByText(tooltipLabel)).not.toBeInTheDocument()
+
+  act(() => {
+    jest.advanceTimersByTime(500)
+    fireEvent.mouseLeave(screen.getByText(buttonLabel))
+  })
+
+  expect(screen.getByText(buttonLabel)).toBeInTheDocument()
+  expect(screen.getByRole("tooltip")).toBeInTheDocument()
+
+  act(() => {
+    jest.advanceTimersByTime(1000)
+  })
+
+  await waitForElementToBeRemoved(() => screen.getByText(tooltipLabel))
+
+  jest.useRealTimers()
+})
+
 test("should show on mouseover if isDisabled has a falsy value", async () => {
   render(<DummyComponent isDisabled={false} />)
 

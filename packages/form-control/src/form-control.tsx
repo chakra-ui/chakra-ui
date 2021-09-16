@@ -9,7 +9,7 @@ import {
   useMultiStyleConfig,
   useStyles,
 } from "@chakra-ui/system"
-import { cx, dataAttr, __DEV__, scheduleMicrotask } from "@chakra-ui/utils"
+import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils"
 import {
   createContext,
   mergeRefs,
@@ -175,17 +175,13 @@ function useFormControlProvider(props: FormControlContext) {
     [],
   )
 
-  const onFocus = React.useCallback(() => {
-    scheduleMicrotask(setFocus.on)
-  }, [setFocus])
-
   return {
     isRequired: !!isRequired,
     isInvalid: !!isInvalid,
     isReadOnly: !!isReadOnly,
     isDisabled: !!isDisabled,
     isFocused: !!isFocused,
-    onFocus,
+    onFocus: setFocus.on,
     onBlur: setFocus.off,
     hasFeedbackText,
     setHasFeedbackText,
@@ -232,10 +228,7 @@ export const FormControl = forwardRef<FormControlProps, "div">((props, ref) => {
         <chakra.div
           {...getRootProps({}, ref)}
           className={className}
-          __css={{
-            width: "100%",
-            position: "relative",
-          }}
+          __css={styles["container"]}
         />
       </StylesProvider>
     </FormControlProvider>

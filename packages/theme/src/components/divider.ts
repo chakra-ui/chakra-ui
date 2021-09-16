@@ -1,13 +1,15 @@
-const baseStyle = {
+import type { SystemStyleObject } from "@chakra-ui/theme-tools"
+
+const baseStyle: SystemStyleObject = {
   opacity: 0.6,
   borderColor: "inherit",
 }
 
-const variantSolid = {
+const variantSolid: SystemStyleObject = {
   borderStyle: "solid",
 }
 
-const variantDashed = {
+const variantDashed: SystemStyleObject = {
   borderStyle: "dashed",
 }
 

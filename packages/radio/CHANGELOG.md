@@ -1,5 +1,68 @@
 # Change Log
 
+## 1.3.10
+
+### Patch Changes
+
+- [`b41191868`](https://github.com/chakra-ui/chakra-ui/commit/b4119186862a11959e7a3af0c1963ec0d7a10b88)
+  [#4552](https://github.com/chakra-ui/chakra-ui/pull/4552) Thanks
+  [@takethefake](https://github.com/takethefake)! - Add `isDisabled` to
+  `RadioGroup` to make it possible to disable all `Radio` inside `RadioGroup`
+
+* [`a48449550`](https://github.com/chakra-ui/chakra-ui/commit/a484495501970cba793b709505c714c2b12304d6)
+  [#4552](https://github.com/chakra-ui/chakra-ui/pull/4552) Thanks
+  [@takethefake](https://github.com/takethefake)! - Add `isFocusable` to
+  `RadioGroup` to make it possible to define the `focusable`-state for all
+  `Radio` inside a `RadioGroup`
+* Updated dependencies
+  [[`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130)]:
+  - @chakra-ui/hooks@1.6.0
+  - @chakra-ui/form-control@1.4.1
+
+## 1.3.9
+
+### Patch Changes
+
+- [`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0)
+  [#4437](https://github.com/chakra-ui/chakra-ui/pull/4437) Thanks
+  [@Toxiapo](https://github.com/Toxiapo)! - Remove code that was added as a
+  workaround for pre-releases of React concurrent mode.
+
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`4981d9898`](https://github.com/chakra-ui/chakra-ui/commit/4981d9898641be3904367ef917560fef3b362720),
+  [`ff4dc7c38`](https://github.com/chakra-ui/chakra-ui/commit/ff4dc7c38310367c0e89522db9e88ae069cb6c2b),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/form-control@1.4.0
+  - @chakra-ui/utils@1.8.2
+  - @chakra-ui/hooks@1.5.5
+  - @chakra-ui/visually-hidden@1.0.14
+
+## 1.3.8
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+  - @chakra-ui/form-control@1.3.8
+  - @chakra-ui/hooks@1.5.4
+  - @chakra-ui/visually-hidden@1.0.13
+
+## 1.3.7
+
+### Patch Changes
+
+- [`4c157e320`](https://github.com/chakra-ui/chakra-ui/commit/4c157e320a73b08eb89a44831a7cf434fb403bad)
+  [#4057](https://github.com/chakra-ui/chakra-ui/pull/4057) Thanks
+  [@mcha-dev](https://github.com/mcha-dev)! - updated @see doc links to point to
+  shorthand see PR #4046 comment
+
+- Updated dependencies
+  [[`aa374ffcb`](https://github.com/chakra-ui/chakra-ui/commit/aa374ffcb4003efd88eb6a62e10723ea9fbfa3d0)]:
+  - @chakra-ui/hooks@1.5.3
+  - @chakra-ui/form-control@1.3.7
+
 ## 1.3.6
 
 ### Patch Changes

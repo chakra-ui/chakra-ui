@@ -1,11 +1,15 @@
 import { mode, transparentize } from "@chakra-ui/theme-tools"
+import type {
+  SystemStyleObject,
+  SystemStyleFunction,
+} from "@chakra-ui/theme-tools"
 
-type Dict = Record<string, any>
-
-const baseStyle = {
+const baseStyle: SystemStyleObject = {
   lineHeight: "1.2",
   borderRadius: "md",
   fontWeight: "semibold",
+  transitionProperty: "common",
+  transitionDuration: "normal",
   _focus: {
     boxShadow: "outline",
   },
@@ -21,7 +25,7 @@ const baseStyle = {
   },
 }
 
-function variantGhost(props: Dict) {
+const variantGhost: SystemStyleFunction = (props) => {
   const { colorScheme: c, theme } = props
 
   if (c === "gray") {
@@ -49,7 +53,7 @@ function variantGhost(props: Dict) {
   }
 }
 
-function variantOutline(props: Dict) {
+const variantOutline: SystemStyleFunction = (props) => {
   const { colorScheme: c } = props
   const borderColor = mode(`gray.200`, `whiteAlpha.300`)(props)
   return {
@@ -82,7 +86,7 @@ const accessibleColorMap: { [key: string]: AccessibleColor } = {
   },
 }
 
-function variantSolid(props: Dict) {
+const variantSolid: SystemStyleFunction = (props) => {
   const { colorScheme: c } = props
 
   if (c === "gray") {
@@ -105,7 +109,7 @@ function variantSolid(props: Dict) {
     color = "white",
     hoverBg = `${c}.600`,
     activeBg = `${c}.700`,
-  } = accessibleColorMap[c] || {}
+  } = accessibleColorMap[c] ?? {}
 
   const background = mode(bg, `${c}.200`)(props)
 
@@ -122,7 +126,7 @@ function variantSolid(props: Dict) {
   }
 }
 
-function variantLink(props: Dict) {
+const variantLink: SystemStyleFunction = (props) => {
   const { colorScheme: c } = props
   return {
     padding: 0,
@@ -142,7 +146,7 @@ function variantLink(props: Dict) {
   }
 }
 
-const variantUnstyled = {
+const variantUnstyled: SystemStyleObject = {
   bg: "none",
   color: "inherit",
   display: "inline",
@@ -159,7 +163,7 @@ const variants = {
   unstyled: variantUnstyled,
 }
 
-const sizes = {
+const sizes: Record<string, SystemStyleObject> = {
   lg: {
     h: 12,
     minW: 12,

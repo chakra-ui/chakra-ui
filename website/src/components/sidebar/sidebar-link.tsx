@@ -39,8 +39,8 @@ type SidebarLinkProps = PropsOf<typeof chakra.div> & {
 const SidebarLink = (props: SidebarLinkProps) => {
   const { href, icon, children, ...rest } = props
 
-  const { pathname } = useRouter()
-  const isActive = pathname === href
+  const { asPath } = useRouter()
+  const isActive = asPath === href
 
   return (
     <chakra.div

@@ -1,13 +1,7 @@
 import { useFormControlContext } from "@chakra-ui/form-control"
 import { useBoolean, useControllableProp, useId } from "@chakra-ui/hooks"
 import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
-import {
-  ariaAttr,
-  callAllHandlers,
-  dataAttr,
-  scheduleMicrotask,
-  warn,
-} from "@chakra-ui/utils"
+import { ariaAttr, callAllHandlers, dataAttr, warn } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import {
   ChangeEvent,
@@ -208,18 +202,6 @@ export function useRadio(props: UseRadioProps = {}) {
 
   const getInputProps: PropGetter<HTMLInputElement> = useCallback(
     (props = {}, forwardedRef = null) => {
-      /**
-       * This is a workaround for React Concurrent Mode issue.
-       * @see Issue https://github.com/facebook/react/issues/18591.
-       *
-       * Remove once it's fixed.
-       */
-      const focus = () => {
-        scheduleMicrotask(() => {
-          setFocused.on()
-        })
-      }
-
       const trulyDisabled = isDisabled && !isFocusable
 
       return {
@@ -231,7 +213,7 @@ export function useRadio(props: UseRadioProps = {}) {
         value,
         onChange: callAllHandlers(props.onChange, handleChange),
         onBlur: callAllHandlers(onBlur, props.onBlur, setFocused.off),
-        onFocus: callAllHandlers(onFocus, props.onFocus, focus),
+        onFocus: callAllHandlers(onFocus, props.onFocus, setFocused.on),
         onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
         onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
         checked: isChecked,

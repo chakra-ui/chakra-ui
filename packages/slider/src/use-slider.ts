@@ -6,7 +6,6 @@ import {
   useIds,
   useLatestRef,
   usePanGesture,
-  usePrevious,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
 import { EventKeyMap, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
@@ -61,15 +60,15 @@ export interface UseSliderProps {
    */
   isReversed?: boolean
   /**
-   * function gets called whenever the user starts dragging the slider handle
+   * Function called when the user starts selecting a new value (by dragging or clicking)
    */
   onChangeStart?(value: number): void
   /**
-   * function gets called whenever the user stops dragging the slider handle.
+   * Function called when the user is done selecting a new value (by dragging or clicking)
    */
   onChangeEnd?(value: number): void
   /**
-   * function gets called whenever the slider handle is being dragged or clicked
+   * Function called whenever the slider value changes  (by dragging or clicking)
    */
   onChange?(value: number): void
   /**
@@ -170,7 +169,6 @@ export function useSlider(props: UseSliderProps) {
   })
 
   const [isDragging, setDragging] = useBoolean()
-  const prevIsDragging = usePrevious(isDragging)
 
   const [isFocused, setFocused] = useBoolean()
   const eventSourceRef = useRef<"pointer" | "keyboard" | null>(null)
@@ -335,9 +333,9 @@ export function useSlider(props: UseSliderProps) {
   useUpdateEffect(() => {
     focusThumb()
     if (eventSourceRef.current === "keyboard") {
-      onChangeEndProp?.(valueRef.current)
+      onChangeEnd?.(valueRef.current)
     }
-  }, [value, onChangeEndProp])
+  }, [value, onChangeEnd])
 
   const setValueFromPointer = (event: AnyPointerEvent) => {
     const nextValue = getValueFromPointer(event)
@@ -349,28 +347,20 @@ export function useSlider(props: UseSliderProps) {
   usePanGesture(rootRef, {
     onPanSessionStart(event) {
       if (!isInteractive) return
+      setDragging.on()
+      focusThumb()
       setValueFromPointer(event)
+      onChangeStart?.(valueRef.current)
     },
     onPanSessionEnd() {
       if (!isInteractive) return
-      if (!prevIsDragging && prevRef.current !== valueRef.current) {
-        onChangeEnd?.(valueRef.current)
-        prevRef.current = valueRef.current
-      }
-    },
-    onPanStart() {
-      if (!isInteractive) return
-      setDragging.on()
-      onChangeStart?.(valueRef.current)
+      setDragging.off()
+      onChangeEnd?.(valueRef.current)
+      prevRef.current = valueRef.current
     },
     onPan(event) {
       if (!isInteractive) return
       setValueFromPointer(event)
-    },
-    onPanEnd() {
-      if (!isInteractive) return
-      setDragging.off()
-      onChangeEnd?.(valueRef.current)
     },
   })
 

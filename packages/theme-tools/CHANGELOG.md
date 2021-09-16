@@ -1,5 +1,73 @@
 # Change Log
 
+## 1.2.0
+
+### Minor Changes
+
+- [`01c913309`](https://github.com/chakra-ui/chakra-ui/commit/01c913309819c342806307291d2d60aea0122ecf)
+  [#4611](https://github.com/chakra-ui/chakra-ui/pull/4611) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Add new helpers to the
+  `theme-tools` package to make the process of creating component themes less
+  cumbersome.
+
+  - `cssVar` - function to create css vars
+  - `calc` - function that makes it easy to create the css calc string
+  - `anatomy`- function to define and extend component parts
+
+  Creating a CSS variable in the theme
+
+  ```jsx
+  import { cssVar, calc } from "@chakra-ui/theme-tools"
+
+  const $width = cssVar("slider-width")
+  const $height = cssVar("slider-height")
+
+  const $diff = calc($width)
+    .subtract($height)
+    .toString()
+
+  $width.variable // => '--slider-width'
+  $width.reference // => 'var(--slider-width)'
+  ```
+
+  Create a component anatomy
+
+  ```jsx
+  import { anatomy }  from "@chakra-ui/theme-tools"
+  import type { PartsStyle } from "@chakra-ui/theme-tools"
+
+  const btn = anatomy("button").parts("label", "container")
+
+  const newBtn = btn.extend("icon") //  extend button to include icon part
+
+  // Using the anatomy in component theme
+  const baseStyle: PartsStyle<typeof newBtn> = {
+    // auto-complete for the component parts
+    icon: {...},
+    label: {...}
+  }
+  ```
+
+  Added `PartsStyleObject` and `PartStyleFunction` types for easy creation of
+  type-safe, multipart component styles.
+
+## 1.1.9
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+
+## 1.1.8
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+
 ## 1.1.7
 
 ### Patch Changes

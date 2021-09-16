@@ -26,7 +26,8 @@ interface DrawerOptions {
   isFullHeight?: boolean
 }
 
-export interface DrawerProps extends Omit<ModalProps, "scrollBehavior"> {
+export interface DrawerProps
+  extends Omit<ModalProps, "scrollBehavior" | "motionPreset" | "isCentered"> {
   /**
    * The placement of the drawer
    */
@@ -62,7 +63,7 @@ export function Drawer(props: DrawerProps) {
   )
 }
 
-const StyleSlide = chakra(Slide)
+const StyledSlide = chakra(Slide)
 
 export interface DrawerContentProps extends HTMLChakraProps<"section"> {}
 
@@ -115,7 +116,7 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
         __css={dialogContainerStyles}
       >
         <ModalFocusScope>
-          <StyleSlide
+          <StyledSlide
             direction={placement}
             in={isOpen}
             className={_className}
@@ -123,7 +124,7 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
             __css={dialogStyles}
           >
             {children}
-          </StyleSlide>
+          </StyledSlide>
         </ModalFocusScope>
       </chakra.div>
     )

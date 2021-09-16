@@ -22,6 +22,16 @@ export interface UseRadioGroupProps {
    */
   onChange?(nextValue: string): void
   /**
+   * If `true`, all wrapped radio inputs will be disabled
+   */
+  isDisabled?: boolean
+
+  /**
+   * If `true` and `isDisabled` is true, all wrapped radio inputs will remain
+   * focusable but not interactive.
+   */
+  isFocusable?: boolean
+  /**
    * The `name` attribute forwarded to each `radio` element
    */
   name?: string
@@ -51,6 +61,8 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     value: valueProp,
     defaultValue,
     name: nameProp,
+    isDisabled,
+    isFocusable,
     isNative,
     ...htmlProps
   } = props
@@ -137,6 +149,8 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     setValue,
     value,
     onChange,
+    isDisabled,
+    isFocusable,
     htmlProps,
   }
 }

@@ -1,9 +1,13 @@
+import { avatarAnatomy as parts } from "@chakra-ui/anatomy"
 import { isDark, mode, randomColor } from "@chakra-ui/theme-tools"
+import type {
+  PartsStyleFunction,
+  PartsStyleObject,
+  SystemStyleFunction,
+} from "@chakra-ui/theme-tools"
 import themeSizes from "../foundations/sizes"
 
-const parts = ["container", "excessLabel", "badge", "label"]
-
-function baseStyleBadge(props: Record<string, any>) {
+const baseStyleBadge: SystemStyleFunction = (props) => {
   return {
     transform: "translate(25%, 25%)",
     borderRadius: "full",
@@ -12,13 +16,13 @@ function baseStyleBadge(props: Record<string, any>) {
   }
 }
 
-function baseStyleExcessLabel(props: Record<string, any>) {
+const baseStyleExcessLabel: SystemStyleFunction = (props) => {
   return {
     bg: mode("gray.200", "whiteAlpha.400")(props),
   }
 }
 
-function baseStyleContainer(props: Record<string, any>) {
+const baseStyleContainer: SystemStyleFunction = (props) => {
   const { name, theme } = props
   const bg = name ? randomColor({ string: name }) : "gray.400"
   const isBgDark = isDark(bg)(theme)
@@ -36,13 +40,13 @@ function baseStyleContainer(props: Record<string, any>) {
   }
 }
 
-const baseStyle = (props: Record<string, any>) => ({
+const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   badge: baseStyleBadge(props),
   excessLabel: baseStyleExcessLabel(props),
   container: baseStyleContainer(props),
 })
 
-function getSize(size: string) {
+function getSize(size: string): PartsStyleObject<typeof parts> {
   const themeSize = themeSizes[size]
   return {
     container: {
@@ -77,7 +81,7 @@ const defaultProps = {
 }
 
 export default {
-  parts,
+  parts: parts.keys,
   baseStyle,
   sizes,
   defaultProps,

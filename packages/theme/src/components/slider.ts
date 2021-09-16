@@ -1,10 +1,13 @@
+import { sliderAnatomy as parts } from "@chakra-ui/anatomy"
+import type {
+  PartsStyleFunction,
+  StyleFunctionProps,
+  SystemStyleFunction,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
 import { mode, orient } from "@chakra-ui/theme-tools"
 
-const parts = ["container", "thumb", "track", "filledTrack"]
-
-type Dict = Record<string, any>
-
-function thumbOrientation(props: Dict) {
+function thumbOrientation(props: StyleFunctionProps): SystemStyleObject {
   return orient({
     orientation: props.orientation,
     vertical: {
@@ -24,7 +27,7 @@ function thumbOrientation(props: Dict) {
   })
 }
 
-const baseStyleContainer = (props: Dict) => {
+const baseStyleContainer: SystemStyleFunction = (props) => {
   const { orientation } = props
 
   return {
@@ -41,7 +44,7 @@ const baseStyleContainer = (props: Dict) => {
   }
 }
 
-function baseStyleTrack(props: Dict) {
+const baseStyleTrack: SystemStyleFunction = (props) => {
   return {
     borderRadius: "sm",
     bg: mode("gray.200", "whiteAlpha.200")(props),
@@ -51,7 +54,7 @@ function baseStyleTrack(props: Dict) {
   }
 }
 
-function baseStyleThumb(props: Dict) {
+const baseStyleThumb: SystemStyleFunction = (props) => {
   return {
     zIndex: 1,
     borderRadius: "full",
@@ -59,14 +62,15 @@ function baseStyleThumb(props: Dict) {
     boxShadow: "base",
     border: "1px solid",
     borderColor: "transparent",
-    transition: "transform 0.2s",
+    transitionProperty: "transform",
+    transitionDuration: "normal",
     _focus: { boxShadow: "outline" },
     _disabled: { bg: "gray.300" },
     ...thumbOrientation(props),
   }
 }
 
-function baseStyleFilledTrack(props: Dict) {
+const baseStyleFilledTrack: SystemStyleFunction = (props) => {
   const { colorScheme: c } = props
 
   return {
@@ -74,14 +78,14 @@ function baseStyleFilledTrack(props: Dict) {
   }
 }
 
-const baseStyle = (props: Dict) => ({
+const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   container: baseStyleContainer(props),
   track: baseStyleTrack(props),
   thumb: baseStyleThumb(props),
   filledTrack: baseStyleFilledTrack(props),
 })
 
-function sizeLg(props: Dict) {
+const sizeLg: PartsStyleFunction<typeof parts> = (props) => {
   return {
     thumb: { w: "16px", h: "16px" },
     track: orient({
@@ -92,7 +96,7 @@ function sizeLg(props: Dict) {
   }
 }
 
-function sizeMd(props: Dict) {
+const sizeMd: PartsStyleFunction<typeof parts> = (props) => {
   return {
     thumb: { w: "14px", h: "14px" },
     track: orient({
@@ -103,7 +107,7 @@ function sizeMd(props: Dict) {
   }
 }
 
-function sizeSm(props: Dict) {
+const sizeSm: PartsStyleFunction<typeof parts> = (props) => {
   return {
     thumb: { w: "10px", h: "10px" },
     track: orient({
@@ -126,7 +130,7 @@ const defaultProps = {
 }
 
 export default {
-  parts,
+  parts: parts.keys,
   sizes,
   baseStyle,
   defaultProps,
