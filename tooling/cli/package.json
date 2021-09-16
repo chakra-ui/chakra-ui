@@ -39,11 +39,10 @@
     "prebuild": "rimraf dist",
     "start": "nodemon --watch src --exec 'yarn build; yarn dev' -e ts,tsx",
     "dev": "node bin/index.js tokens ../../website/theme.ts",
-    "build": "concurrently yarn:build:*",
     "test": "jest --env=jsdom --passWithNoTests",
     "lint": "concurrently yarn:lint:*",
     "version": "yarn build",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist --source-maps",
+    "build": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist --source-maps",
     "test:cov": "yarn test --coverage",
     "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
     "lint:types": "tsc --noEmit"
@@ -54,12 +53,15 @@
     "cli-handle-unhandled": "^1.1.1",
     "cli-welcome": "^2.2.2",
     "commander": "^6.2.1",
+    "module-alias": "^2.2.2",
     "ora": "^5.3.0",
     "regenerator-runtime": "^0.13.7",
     "ts-node": "9.1.1",
+    "tsconfig-paths": "^3.11.0",
     "update-notifier": "^5.0.1"
   },
   "devDependencies": {
+    "@types/module-alias": "^2.0.1",
     "@types/ora": "^3.2.0",
     "@types/update-notifier": "5.0.0"
   }
