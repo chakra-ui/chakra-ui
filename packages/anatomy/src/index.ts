@@ -41,13 +41,13 @@ export const avatarAnatomy = anatomy("avatar")
  * - Separator: the separator between breadcrumb items
  */
 export const breadcrumbAnatomy = anatomy("breadcrumb")
-  .parts("link", "item")
+  .parts("link", "item", "container")
   .extend("separator")
 
 export const buttonAnatomy = anatomy("button").parts()
 
 export const checkboxAnatomy = anatomy("checkbox")
-  .parts("control", "icon")
+  .parts("control", "icon", "container")
   .extend("label")
 
 export const circularProgressAnatomy = anatomy("progress")

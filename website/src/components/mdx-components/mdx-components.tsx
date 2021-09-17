@@ -16,6 +16,7 @@ import CarbonAd from "./carbon-ad"
 import CodeBlock from "./codeblock/codeblock"
 import ComponentLinks from "./component-links"
 import IconsList from "./icons-list"
+import EggheadCourseBanner from "./egghead-course-banner"
 
 const { Alert, AspectRatio, Box, chakra, Kbd } = Chakra
 
@@ -67,4 +68,5 @@ export const MDXComponents = {
   ColorPalette,
   ColorPalettes,
   ColorWrapper,
+  EggheadCourseBanner,
 }
