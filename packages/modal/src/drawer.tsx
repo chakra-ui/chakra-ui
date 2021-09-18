@@ -51,7 +51,7 @@ export function Drawer(props: DrawerProps) {
   const {
     isOpen,
     onClose,
-    placement: placementProp = "end",
+    placement: placementProp = "right",
     children,
     ...rest
   } = props
