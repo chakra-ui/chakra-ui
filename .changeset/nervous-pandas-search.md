@@ -1,7 +1,7 @@
 ---
-"@chakra-ui/popover": patch
-"@chakra-ui/toast": patch
-"@chakra-ui/tooltip": patch
+"@chakra-ui/toast": minor
 ---
 
-Resolved an issue where the theme's `direction` wasn't handled. The component will now correctly flip between left/right based on `direction`.
+Add support for RTL-aware `position` values. You can now use `top-start`,
+`top-end`, `bottom-start` and `bottom-end` values. The toast will flip depending
+on the `direction` provided in the theme.

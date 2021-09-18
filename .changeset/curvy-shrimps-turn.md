@@ -1,7 +1,7 @@
 ---
-"@chakra-ui/modal": patch
-"@chakra-ui/slider": patch
-"@chakra-ui/utils": patch
+"@chakra-ui/modal": minor
 ---
 
-Added RTL `direction` support.
+**Drawer:** Add support for RTL-aware placement values. You can pass `start` and
+`end` values. The drawer will use `left/right` placement depending on the
+specified `theme.direction` value.

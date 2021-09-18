@@ -445,7 +445,7 @@ test("MenuItem can override its parent menu's `closeOnSelect` and close the menu
   expect(onClose).toHaveBeenCalled()
 })
 
-test("MenuList direction reflects Chakra theme's direction", () => {
+test("MenuList direction flips in rtl", () => {
   render(
     <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
       <Menu placement="top-end" isOpen>
