@@ -28,7 +28,7 @@ const placementMap: LogicalPlacementMap = {
 
 function getDrawerPlacement(placement: DrawerPlacement, dir: "ltr" | "rtl") {
   if (!placement) return
-  return placementMap[placement][dir] ?? placement
+  return placementMap[placement]?.[dir] ?? placement
 }
 
 interface DrawerOptions {
