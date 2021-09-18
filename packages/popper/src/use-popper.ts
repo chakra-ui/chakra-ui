@@ -1,5 +1,4 @@
 import { mergeRefs, PropGetterV2 } from "@chakra-ui/react-utils"
-import { getPlacement } from "@chakra-ui/utils"
 import {
   createPopper,
   Instance,
@@ -9,6 +8,7 @@ import {
 } from "@popperjs/core"
 import { useCallback, useEffect, useRef } from "react"
 import * as customModifiers from "./modifiers"
+import { getPopperPlacement } from "./popper.placement"
 import { cssVars, getEventListenerOptions } from "./utils"
 
 export type { Placement }
@@ -128,10 +128,7 @@ export function usePopper(props: UsePopperProps = {}) {
   const reference = useRef<Element | VirtualElement | null>(null)
   const popper = useRef<HTMLElement | null>(null)
   const instance = useRef<Instance | null>(null)
-  const placement = getPlacement(placementProp, {
-    direction,
-    flipLogical: true,
-  })
+  const placement = getPopperPlacement(placementProp, direction)
 
   const cleanup = useRef(() => {})
 

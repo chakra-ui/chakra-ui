@@ -8,6 +8,7 @@ import {
   useMultiStyleConfig,
   useStyles,
   HTMLChakraProps,
+  useTheme,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { createContext } from "@chakra-ui/react-utils"
@@ -41,6 +42,8 @@ export interface SliderProps
 export const Slider = forwardRef<SliderProps, "div">((props, ref) => {
   const styles = useMultiStyleConfig("Slider", props)
   const ownProps = omitThemingProps(props)
+  const { direction } = useTheme()
+  ownProps.direction = direction
 
   const { getInputProps, getRootProps, ...context } = useSlider(ownProps)
 

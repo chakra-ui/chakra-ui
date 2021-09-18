@@ -1,4 +1,5 @@
-import { ToastPosition, ToastOptions, ToastState, ToastId } from "./toast.types"
+import type { ToastPosition } from "./toast.placement"
+import type { ToastId, ToastOptions, ToastState } from "./toast.types"
 
 /**
  * Given an array of toasts for a specific position.
@@ -12,7 +13,7 @@ export const findById = (arr: ToastOptions[], id: ToastId) =>
  * the id and return its position and index
  */
 export function findToast(toasts: ToastState, id: ToastId) {
-  const position = getToastPosition(toasts, id)
+  const position = getToastPosition(toasts, id) as ToastPosition
 
   const index = position
     ? toasts[position].findIndex((toast) => toast.id === id)

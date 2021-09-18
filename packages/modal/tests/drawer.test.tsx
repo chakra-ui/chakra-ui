@@ -59,7 +59,7 @@ it("renders on the correct side under 'ltr' direction", () => {
 it("swaps sides (left/right) under 'rtl' direction", () => {
   render(
     <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
-      <SimpleDrawer placement="left" isOpen />
+      <SimpleDrawer placement="start" isOpen />
     </ThemeProvider>,
   )
 

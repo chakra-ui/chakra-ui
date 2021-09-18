@@ -14,19 +14,15 @@ import {
   useChakra,
 } from "@chakra-ui/system"
 import defaultTheme from "@chakra-ui/theme"
-import {
-  getPlacementForThemeDirection,
-  isFunction,
-  noop,
-} from "@chakra-ui/utils"
+import { isFunction, noop } from "@chakra-ui/utils"
 import * as React from "react"
 import { toast } from "./toast.class"
 import {
-  RenderProps,
-  ToastId,
-  ToastOptions,
-  ToastPosition,
-} from "./toast.types"
+  getToastPlacement,
+  ToastPositionWithLogical,
+  WithoutLogicalPosition,
+} from "./toast.placement"
+import type { RenderProps, ToastId, ToastOptions } from "./toast.types"
 
 export interface UseToastOptions {
   /**
@@ -34,7 +30,7 @@ export interface UseToastOptions {
    *
    * @default "bottom"
    */
-  position?: ToastOptions["position"]
+  position?: ToastPositionWithLogical
   /**
    * The delay before the toast hides (in milliseconds)
    * If set to `null`, toast will never dismiss.
@@ -62,7 +58,7 @@ export interface UseToastOptions {
   /**
    * The alert component `variant` to use
    */
-  variant?: "subtle"| "solid"| "left-accent" | "top-accent" | (string & {})
+  variant?: "subtle" | "solid" | "left-accent" | "top-accent" | (string & {})
   /**
    * The status of the toast.
    */
@@ -79,6 +75,8 @@ export interface UseToastOptions {
    */
   onCloseComplete?: () => void
 }
+
+type UseToastOptionsNormalized = WithoutLogicalPosition<UseToastOptions>
 
 export type IToast = UseToastOptions
 
@@ -124,9 +122,10 @@ const defaults = {
 } as const
 
 export type CreateStandAloneToastParam = Partial<
-  {
+  ReturnType<typeof useChakra> & {
     setColorMode: (value: ColorMode) => void
-  } & ReturnType<typeof useChakra> & { defaultOptions: UseToastOptions }
+    defaultOptions: UseToastOptions
+  }
 >
 
 export const defaultStandaloneParam: Required<CreateStandAloneToastParam> = {
@@ -148,7 +147,7 @@ export function createStandaloneToast({
 }: CreateStandAloneToastParam = defaultStandaloneParam) {
   const renderWithProviders = (
     props: React.PropsWithChildren<RenderProps>,
-    options: UseToastOptions,
+    options: UseToastOptionsNormalized,
   ) => (
     <ThemeProvider theme={theme}>
       <ColorModeContext.Provider
@@ -164,7 +163,8 @@ export function createStandaloneToast({
   )
 
   const toastImpl = (options?: UseToastOptions) => {
-    const opts = { ...defaultOptions, ...options }
+    const opts = { ...defaultOptions, ...options } as UseToastOptionsNormalized
+    opts.position = getToastPlacement(opts.position, theme.direction)
 
     const Message: React.FC<RenderProps> = (props) =>
       renderWithProviders(props, opts)
@@ -179,7 +179,8 @@ export function createStandaloneToast({
   toastImpl.update = (id: ToastId, options: Omit<UseToastOptions, "id">) => {
     if (!id) return
 
-    const opts = { ...defaultOptions, ...options }
+    const opts = { ...defaultOptions, ...options } as UseToastOptionsNormalized
+    opts.position = getToastPlacement(opts.position, theme.direction)
 
     toast.update(id, {
       ...opts,
@@ -199,20 +200,12 @@ export function createStandaloneToast({
 export function useToast(options?: UseToastOptions) {
   const { theme, setColorMode, toggleColorMode, colorMode } = useChakra()
   return React.useMemo(() => {
-    const dirAwarePosition = getPlacementForThemeDirection(
-      theme.direction,
-      options?.position,
-    )
-
     return createStandaloneToast({
       theme,
       colorMode,
       setColorMode,
       toggleColorMode,
-      defaultOptions: {
-        ...options,
-        position: dirAwarePosition as ToastPosition,
-      },
+      defaultOptions: options,
     })
   }, [theme, setColorMode, toggleColorMode, colorMode, options])
 }

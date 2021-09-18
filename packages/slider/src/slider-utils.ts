@@ -89,9 +89,9 @@ export function getPartsStyle(options: {
   return { trackStyle, innerTrackStyle, rootStyle, thumbStyle }
 }
 
-export function getSliderDirectionForTheme(options: {
+export function getIsReversed(options: {
   isReversed?: boolean
-  direction: any
+  direction: "ltr" | "rtl"
   orientation?: "horizontal" | "vertical"
 }) {
   const { isReversed, direction, orientation } = options
