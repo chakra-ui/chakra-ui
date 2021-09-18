@@ -3,15 +3,12 @@ import {
   createPopper,
   Instance,
   Modifier,
-  Placement,
   VirtualElement,
 } from "@popperjs/core"
 import { useCallback, useEffect, useRef } from "react"
 import * as customModifiers from "./modifiers"
-import { getPopperPlacement } from "./popper.placement"
+import { getPopperPlacement, PlacementWithLogical } from "./popper.placement"
 import { cssVars, getEventListenerOptions } from "./utils"
-
-export type { Placement }
 
 export interface UsePopperProps {
   /**
@@ -73,7 +70,7 @@ export interface UsePopperProps {
    * The placement of the popper relative to its reference.
    * @default "bottom"
    */
-  placement?: Placement
+  placement?: PlacementWithLogical
   /**
    * Array of popper.js modifiers. Check the docs to see
    * the list of possible modifiers you can pass.

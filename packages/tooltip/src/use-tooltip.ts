@@ -1,18 +1,18 @@
 import { useDisclosure, useEventListener, useId } from "@chakra-ui/hooks"
-import {
-  Placement,
-  usePopper,
-  UsePopperProps,
-  popperCSSVars,
-} from "@chakra-ui/popper"
-import { callAllHandlers, px } from "@chakra-ui/utils"
+import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
+import { callAllHandlers, px } from "@chakra-ui/utils"
 import * as React from "react"
 
 export interface UseTooltipProps
   extends Pick<
     UsePopperProps,
-    "modifiers" | "gutter" | "offset" | "arrowPadding" | "direction"
+    | "modifiers"
+    | "gutter"
+    | "offset"
+    | "arrowPadding"
+    | "direction"
+    | "placement"
   > {
   /**
    * Delay (in ms) before showing the tooltip
@@ -41,10 +41,6 @@ export interface UseTooltipProps
    * Callback to run when the tooltip hides
    */
   onClose?(): void
-  /**
-   * The Popper.js placement of the tooltip
-   */
-  placement?: Placement
   /**
    * Custom `id` to use in place of `uuid`
    */
