@@ -2,7 +2,6 @@ import {
   css,
   isStyleProp,
   isOtherProp,
-  systemProps,
   StyleProps,
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
@@ -11,7 +10,6 @@ import {
   objectFilter,
   mergeWith,
   runIfFn,
-  Dict,
 } from "@chakra-ui/utils"
 import _styled, { CSSObject, FunctionInterpolation } from "@emotion/styled"
 import { shouldForwardProp } from "./should-forward-prop"
