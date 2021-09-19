@@ -104,6 +104,11 @@ export interface UseMenuProps extends UsePopperProps, UseDisclosureProps {
    */
   lazyBehavior?: LazyBehavior
   /**
+   * If `rtl`, poper placement positions will be flipped i.e. 'top-right' will
+   * become 'top-left' and vice-verse
+   */
+  direction?: "ltr" | "rtl"
+  /*
    * If `true`, the menu will be positioned when it mounts
    * (even if it's not open).
    *
@@ -132,10 +137,10 @@ export function useMenu(props: UseMenuProps = {}) {
     onOpen: onOpenProp,
     placement = "bottom-start",
     lazyBehavior = "unmount",
+    direction,
     computePositionOnMount,
     ...popperProps
   } = props
-
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure({
     isOpen: isOpenProp,
     defaultIsOpen,
@@ -166,6 +171,7 @@ export function useMenu(props: UseMenuProps = {}) {
     ...popperProps,
     enabled: isOpen || computePositionOnMount,
     placement,
+    direction,
   })
 
   const [focusedIndex, setFocusedIndex] = React.useState(-1)

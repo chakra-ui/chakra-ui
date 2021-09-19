@@ -23,7 +23,7 @@ import {
   valueToPercent,
 } from "@chakra-ui/utils"
 import { CSSProperties, useCallback, useMemo, useRef } from "react"
-import { getPartsStyle } from "./slider-utils"
+import { getPartsStyle, getIsReversed } from "./slider-utils"
 
 export interface UseSliderProps {
   /**
@@ -112,6 +112,7 @@ export interface UseSliderProps {
    * ID of the element that serves as label for the slider
    */
   "aria-labelledby"?: string
+  direction?: "ltr" | "rtl"
 }
 
 /**
@@ -130,7 +131,8 @@ export function useSlider(props: UseSliderProps) {
     onChange,
     value: valueProp,
     defaultValue,
-    isReversed,
+    isReversed: isReversedProp,
+    direction = "ltr",
     orientation = "horizontal",
     id: idProp,
     isDisabled,
@@ -150,6 +152,12 @@ export function useSlider(props: UseSliderProps) {
   const onChangeStart = useCallbackRef(onChangeStartProp)
   const onChangeEnd = useCallbackRef(onChangeEndProp)
   const getAriaValueText = useCallbackRef(getAriaValueTextProp)
+
+  const isReversed = getIsReversed({
+    isReversed: isReversedProp,
+    direction,
+    orientation,
+  })
 
   /**
    * Enable the slider handle controlled and uncontrolled scenarios
