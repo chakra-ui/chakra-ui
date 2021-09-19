@@ -92,16 +92,6 @@ async function main() {
     trailingComma: "es5",
   })
 
-  // replace in changelog
-  const changelogPath = `${cwd}/CHANGELOG.md`
-  const changelog = await fs.promises.readFile(changelogPath, "utf8")
-  const newChangelog = changelog.replace(
-    "<!-- CHANGELOG:INSERT -->",
-    `<!-- CHANGELOG:INSERT -->\n\n${content}`,
-  )
-  // write new changelog
-  await fs.promises.writeFile(changelogPath, newChangelog)
-
   // write to rc file
   fs.writeFileSync(
     `${cwd}/.changelogrc`,

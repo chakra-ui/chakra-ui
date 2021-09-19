@@ -33,8 +33,8 @@ theme but we promise to revisit the typings and API very soon.
 **Slider** `v1.2.9`
 
 - Fix issue where slider thumb gets focus when `onChangeEnd` changes.
-- Call `onChangeStart`/ `onChangeEnd` when clicking somewhere in the `SliderTrack`
-  without dragging the `DragHandle`
+- Call `onChangeStart`/ `onChangeEnd` when clicking somewhere in the
+  `SliderTrack` without dragging the `DragHandle`
 
 **Skeleton** `v1.1.18`
 
@@ -55,21 +55,21 @@ theme but we promise to revisit the typings and API very soon.
 
 Creating a CSS variable in the theme
 
-```jsx
-import { cssVar, calc } from '@chakra-ui/theme-tools';
+```jsx live=false
+import { cssVar, calc } from "@chakra-ui/theme-tools"
 
-const $width = cssVar('slider-width');
-const $height = cssVar('slider-height');
+const $width = cssVar("slider-width")
+const $height = cssVar("slider-height")
 
-const $diff = calc($width).subtract($height).toString();
+const $diff = calc($width).subtract($height).toString()
 
-$width.variable; // => '--slider-width'
-$width.reference; // => 'var(--slider-width)'
+$width.variable // => '--slider-width'
+$width.reference // => 'var(--slider-width)'
 ```
 
 Create a component anatomy
 
-```jsx
+```jsx live=false
 import { anatomy }  from "@chakra-ui/theme-tools"
 import type { PartsStyle } from "@chakra-ui/theme-tools"
 
@@ -118,7 +118,6 @@ type-safe, multipart component styles.
 **Theme** `v1.10.1`
 
 - Added `overview:"visible"` to `baseStyle` of `TagLabel` to avoid clipped text
-
 
 ## 09-08-2021
 
@@ -296,7 +295,7 @@ styles:
 
 - 🚀 The `styled` function allows a functional `baseStyle` property.
 
-```jsx live=false live=false
+```jsx live=false
 import { styled } from '@chakra-ui/react'
 
 const MyComponent = styled('div', {
@@ -321,7 +320,7 @@ const MyComponent = styled('div', {
 A published theme package should export a theme object as either the `default`
 export or an export named `theme`.
 
-```jsx live=false live=false
+```jsx live=false
 // chakra-theme-package/src/index.js
 import { extendTheme } from "@chakra-ui/react"
 
@@ -415,7 +414,7 @@ Ring
 
 [CodeSandbox Link](https://codesandbox.io/s/ring-colors-4wz1w)
 
-```jsx live=false live=false
+```jsx live=false
 // adds a 2px box-shadow with `gray.400` color
 <Box ring="2px" ringColor="gray.400">
   Sample
@@ -437,7 +436,7 @@ Filter Styles
 To use this API, you'll need to set `filter` to `auto`, same for
 `backdropFilter`.
 
-```jsx live=false live=false
+```jsx live=false
 // adds a 3px blur filter to this element
 <Image src="boruto.png" filter="auto" blur="3px" />
 
@@ -454,7 +453,7 @@ Transform Styles
 To use this API, you'll need to set `transform` to `auto` or `auto-gpu` (for the
 GPU accelerated version).
 
-```jsx live=false live=false
+```jsx live=false
 <Circle transform="auto" translateX="4" _hover={{ translateX: "8" }}>
   <CheckIcon />
 </Circle>
@@ -466,7 +465,7 @@ GPU accelerated version).
 - Automatic wrapping of `backgroundImage` or `bgImage` props with url() so you
   can just pass the image URL directly.
 
-```jsx live=false live=false
+```jsx live=false
 // You can now do this!
 <Box bgImage="naruto.png" />
 
@@ -503,7 +502,7 @@ High Contrast Mode
 
 - 🚀 Add blur token values for `filter` and `backdropFilter`.
 
-```jsx live=false live=false
+```jsx live=false
 {
   "none": 0,
   "sm": "4px",
@@ -550,7 +549,7 @@ High Contrast Mode
 - 🚀 Add support for tweaking the enter-exit transitions. Affected components:
   `Fade`, `Slide`, `SlideFade`, `SlideScale`, `Collapse`.
 
-```jsx live=false live=false
+```jsx live=false
 <Fade
   transition={{
     enter: { duration: 0.3 },
@@ -565,7 +564,7 @@ High Contrast Mode
 
 - 🚀 Add support for `delay` prop for all transition components.
 
-```jsx live=false live=false
+```jsx live=false
 // as a number
 <Fade delay={0.3} />
 
@@ -579,7 +578,7 @@ High Contrast Mode
 Note: this only works when you're using our built-in transition definition. If
 you're passing your own transition definition, pass the delay there.
 
-```jsx live=false live=false
+```jsx live=false
 // adding delay to your custom transition definition
 <Fade
   transition={{
@@ -661,7 +660,7 @@ Improvements
 - 🚀 The `extendTheme` function allows you to pass multiple overrides or
   extensions:
 
-```jsx live=false live=false
+```jsx live=false
 import {
   extendTheme,
   withDefaultColorScheme,
@@ -742,7 +741,7 @@ const customTheme = extendTheme(
   the button when `isLoading` is `true`. Spinner placement can be either `start`
   or `end`.
 
-```jsx live=false live=false
+```jsx live=false
 <Button isLoading spinnerPlacement="end">
   Click me
 </Button>
@@ -945,7 +944,7 @@ mounted (but hidden) after it was previously selected or opened, use
 - 🚀 Add `TableContainer` component to help tables scroll horizontally when
   overflowing.
 
-```jsx live=false live=false
+```jsx live=false
 <TableContainer>
   <Table>
     {...}
@@ -1004,7 +1003,7 @@ Popover
   width.
 - 🐛 Use `--popover-bg` css property to control popover and arrow background.
 
-```jsx live=false live=false
+```jsx live=false
 <PopoverContent style={{ "--popover-bg": "purple" }}>
   <PopoverArrow />
 </PopoverContent>
@@ -1122,7 +1121,7 @@ Table
 - 🚀 Add support for css variable tokens. This means you can create a css
   variable and reference value in the tokens.
 
-```jsx live=false live=false
+```jsx live=false
 <Box
   sx={{
     "--banner-color": "colors.red.200",
@@ -1344,7 +1343,7 @@ Table
 - 🚀 Introducing a generic TypeScript type `ChakraTheme` to improve the
   `extendTheme` function even further.
 
-```jsx live=false live=false
+```jsx live=false
 import { extendTheme } from "@chakra-ui/react"
 
 export const customTheme = extendTheme({
@@ -1361,7 +1360,7 @@ export type MyCustomTheme = typeof customTheme
 
 You can get typesafe access to your custom theme like this:
 
-```jsx live=false live=false
+```jsx live=false
  import { useTheme } from "@chakra-ui/react"
   import { MyCustomTheme } from "./my-custom-theme"
 
@@ -1383,7 +1382,7 @@ You can get typesafe access to your custom theme like this:
   makes it possible to use them in the component theme, `css` function and `sx`
   prop as well.
 
-```jsx live=false live=false
+```jsx live=false
 const theme = {
   textStyles: {
     caps: {
@@ -1558,7 +1557,7 @@ This also works for the component theme as well.
 - 🚀 Move `srOnly` prop to styled system props. This will deprecate the need for
   the visually hidden package. Less is more!
 
-```jsx live=false live=false
+```jsx live=false
   // If `true`, hide an element visually without hiding it from screen readers.
   <Box srOnly>Visually hidden</Box>
 

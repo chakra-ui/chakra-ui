@@ -63,3 +63,21 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Post updates to Discord announcement channel
+        run: yarn discord
+
+      - name: Generate changelog
+        run: yarn changelog:write
+
+      - name: Commit changelog
+        run: |
+          git add .CHANGELOG.md
+          git diff --staged --quiet || git commit -m "docs: update changelog"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          delete-branch: true
+          title: "docs: update changelog"
+          branch: docs/changelog
