@@ -229,7 +229,11 @@ You can control the opening and closing of the popover by passing the `isOpen`,
 and `onClose` props.
 
 Sometimes you might need to set the `returnFocusOnClose` prop to `false` to
-prevent popver from returning focus to `PopoverTrigger`'s children.
+prevent popover from returning focus to `PopoverTrigger`'s children.
+
+Setting the `trigger` to `manual` is useful in case you don't want the
+`PopoverTrigger` to close the popover on click, but rather serve just as an
+reference point for positioning.
 
 ```jsx
 function ControlledUsage() {
@@ -247,6 +251,7 @@ function ControlledUsage() {
         onClose={close}
         placement="right"
         closeOnBlur={false}
+        trigger="manual"
       >
         <PopoverTrigger>
           <Button colorScheme="pink">Popover Target</Button>

@@ -21,6 +21,7 @@ import { RefObject, useCallback, useEffect, useRef, useState } from "react"
 const TRIGGER = {
   click: "click",
   hover: "hover",
+  manual: "manual",
 } as const
 
 export interface UsePopoverProps extends UsePopperProps {
@@ -87,6 +88,9 @@ export interface UsePopoverProps extends UsePopperProps {
    *
    * `click` - means the popover will open on click or
    * press `Enter` to `Space` on keyboard
+   *
+   * `manual` - means the popover won't automatically open or close
+   * on any trigger interaction.
    */
   trigger?: keyof typeof TRIGGER
   openDelay?: number
