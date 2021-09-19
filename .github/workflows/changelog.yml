@@ -54,5 +54,5 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           delete-branch: true
-          title: "docs: update changelog"
+          title: "docs: update .changelogrc"
           branch: docs/changelog-updates
