@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.5.7
+
+### Patch Changes
+
+- [`726105acb`](https://github.com/chakra-ui/chakra-ui/commit/726105acb38f34290fff53d2dc520b5fbd299061)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add state `data-*`
+  attributes to the checkbox `container` to allow user style the `_checked`,
+  `_invalid` and `_disabled` states
+
 ## 1.5.6
 
 ### Patch Changes

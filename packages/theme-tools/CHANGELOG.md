@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.2.1
+
+### Patch Changes
+
+- [`09577b088`](https://github.com/chakra-ui/chakra-ui/commit/09577b088272075f6f183bbb34d5639ac5e68cc0)
+  [#4708](https://github.com/chakra-ui/chakra-ui/pull/4708) Thanks
+  [@hiroppy](https://github.com/hiroppy)! - Replace `tinycolor2` with
+  `@ctrl/tinycolor` to get better tree-shaking benefits
+
 ## 1.2.0
 
 ### Minor Changes

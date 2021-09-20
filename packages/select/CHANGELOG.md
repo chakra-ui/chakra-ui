@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.1.15
+
+### Patch Changes
+
+- [`fba77bf32`](https://github.com/chakra-ui/chakra-ui/commit/fba77bf32a817e31327e566484c1b1439f14fb42)
+  [#4660](https://github.com/chakra-ui/chakra-ui/pull/4660) Thanks
+  [@takethefake](https://github.com/takethefake)! - The disabled state of the
+  `SelectIcon` can be reflected by a disabled `FormControl` or by the
+  `isDisabled`-flag of the `select` field
+
 ## 1.1.14
 
 ### Patch Changes

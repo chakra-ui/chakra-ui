@@ -1,5 +1,41 @@
 # Change Log
 
+## 1.6.8
+
+### Patch Changes
+
+- Updated dependencies
+  [[`09577b088`](https://github.com/chakra-ui/chakra-ui/commit/09577b088272075f6f183bbb34d5639ac5e68cc0),
+  [`726105acb`](https://github.com/chakra-ui/chakra-ui/commit/726105acb38f34290fff53d2dc520b5fbd299061),
+  [`74fada62b`](https://github.com/chakra-ui/chakra-ui/commit/74fada62b9e2cc389615855a8ad48041f2c45973),
+  [`8c61e75ec`](https://github.com/chakra-ui/chakra-ui/commit/8c61e75ec6da4ca6ce0fe413034f6aed7f685977),
+  [`a1ca91b76`](https://github.com/chakra-ui/chakra-ui/commit/a1ca91b769000a9d4e6badb5bce46cd5e4035106),
+  [`4146a9051`](https://github.com/chakra-ui/chakra-ui/commit/4146a9051a5151532503e31c464193e9d118dd26),
+  [`93c99bdd7`](https://github.com/chakra-ui/chakra-ui/commit/93c99bdd77b01f699a70a9fe1ffbfc2f0be5776a),
+  [`347294426`](https://github.com/chakra-ui/chakra-ui/commit/347294426c121a05dfaed92c526b588a38310061),
+  [`11eebac4c`](https://github.com/chakra-ui/chakra-ui/commit/11eebac4cc951c3af65ebdf4ec0f70b8fe9d0f63),
+  [`17c84be66`](https://github.com/chakra-ui/chakra-ui/commit/17c84be66fcb68e77a838cbb900315caaaf61d26),
+  [`c1d1029bc`](https://github.com/chakra-ui/chakra-ui/commit/c1d1029bca08a9774fc3ca8d2e04a1cc5b58a43b),
+  [`19d9abe75`](https://github.com/chakra-ui/chakra-ui/commit/19d9abe75cf863468b70362ce7eee90f0ad94d29),
+  [`87ffdd1cb`](https://github.com/chakra-ui/chakra-ui/commit/87ffdd1cb615e9d4bc8a9af66fb6ae9ef1563caf),
+  [`fba77bf32`](https://github.com/chakra-ui/chakra-ui/commit/fba77bf32a817e31327e566484c1b1439f14fb42)]:
+  - @chakra-ui/theme@1.10.2
+  - @chakra-ui/checkbox@1.5.7
+  - @chakra-ui/slider@1.3.0
+  - @chakra-ui/modal@1.9.0
+  - @chakra-ui/image@1.0.20
+  - @chakra-ui/popper@2.3.0
+  - @chakra-ui/avatar@1.2.10
+  - @chakra-ui/toast@1.3.0
+  - @chakra-ui/provider@1.6.8
+  - @chakra-ui/menu@1.7.4
+  - @chakra-ui/button@1.4.3
+  - @chakra-ui/select@1.1.15
+  - @chakra-ui/progress@1.1.14
+  - @chakra-ui/switch@1.2.10
+  - @chakra-ui/popover@1.8.4
+  - @chakra-ui/tooltip@1.3.11
+
 ## 1.6.7
 
 ### Patch Changes
@@ -1396,7 +1432,6 @@
   "to-bl" // 'to bottom left'
   "to-l" // 'to left'
   "to-tl" // 'to top left'
-
   ```
 
   ```jsx

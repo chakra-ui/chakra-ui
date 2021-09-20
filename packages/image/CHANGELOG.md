@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.0.20
+
+### Patch Changes
+
+- [`a1ca91b76`](https://github.com/chakra-ui/chakra-ui/commit/a1ca91b769000a9d4e6badb5bce46cd5e4035106)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  onload doesn't get called when using srcset
+
+* [`11eebac4c`](https://github.com/chakra-ui/chakra-ui/commit/11eebac4cc951c3af65ebdf4ec0f70b8fe9d0f63)
+  [#4659](https://github.com/chakra-ui/chakra-ui/pull/4659) Thanks
+  [@takethefake](https://github.com/takethefake)! - If the user doesn't provide
+  a `fallbackSrc` or a `fallback` `ignoreFallback` is applied by default
+
 ## 1.0.19
 
 ### Patch Changes
