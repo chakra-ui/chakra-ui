@@ -1,103 +1,104 @@
 **New Release Update :tada:**
 
-## 29-08-2021
+## 20-09-2021
 
-`@chakra-ui/react@1.6.7`
+**Theme Tools** `v1.2.1`
 
-- Move ChakraProvider to a separate package `@chakra-ui/provider`
-- Loosen types of `extendTheme` to allow recent TS compiler to work and avoid
-  `Type instantiation is excessively deep and possibly infinite` errors.
+- Replace `tinycolor2` with `@ctrl/tinycolor` to get better tree-shaking benefits
 
-This might lead to a slightly degraded autocomplete experience when extended the
-theme but we promise to revisit the typings and API very soon.
+**Theme** `v1.10.2`
 
-> In the meantime, please use `ThemeOverrides` type to provide
+- Replace `tinycolor2` with `@ctrl/tinycolor` to get better tree-shaking benefits
 
-**Slider** `v1.2.9`
+**Checkbox** `v1.5.7`
 
-- Fix issue where slider thumb gets focus when `onChangeEnd` changes.
-- Call `onChangeStart`/ `onChangeEnd` when clicking somewhere in the `SliderTrack`
-  without dragging the `DragHandle`
+- Add state `data-*` attributes to the checkbox `container` to allow user style
+  the `_checked`, `_invalid` and `_disabled` states
 
-**Skeleton** `v1.1.18`
+**Slider** `v1.3.0`
 
-- Don't animate when skeleton was previously loaded
+- Add `RTL` support by using the theme's direction ("ltr" or "rtl") to set the
+  default `isReversed` property when the `orientation` is `horizontal`
 
-**System** `v1.7.3`
+**Modal** `v1.9.0`
 
-- Update `useStyleConfig` to read parts array from the new anatomy class
+- **Drawer:** Add support for RTL-aware placement values. You can now pass `start`
+  and `end` values. The drawer will use `left/right` placement depending on the
+  specified `theme.direction` value.
+- **Drawer**: omit the `motionPreset` prop type since `Drawer` only implements the
+  `Slide` transition, unlike `Modal` that allows you switch its motion preset.
 
-**Theme Tools** `v1.2.0`
+**Image** `v1.0.20`
 
-- Add new helpers to the `theme-tools` package to make the process of creating
-  component themes less cumbersome.
+- Fix issue where onload doesn't get called when using srcset
+- If the user doesn't provide a `fallbackSrc` or a `fallback` `ignoreFallback` is
+  applied by default
 
-- `cssVar` - function to create css vars
-- `calc` - function that makes it easy to create the css calc string
-- `anatomy`- function to define and extend component parts
+**Anatomy** `v1.0.1`
 
-Creating a CSS variable in the theme
+- Add missing breadcrumb part
+- Add container part to checkbox
 
-```jsx
-import { cssVar, calc } from '@chakra-ui/theme-tools';
+**Popper** `v2.3.0`
 
-const $width = cssVar('slider-width');
-const $height = cssVar('slider-height');
+- `usePopper` now accepts a `direction` prop so it can handle placement for RTL
+  languages. Values such as `top-start`, `top-end`, `bottom-start` and
+  `bottom-end` will be flipped depending on the theme's direction value.
 
-const $diff = calc($width).subtract($height).toString();
+In addition to the default `popper.js` placement, you can pass `start-start`,
+`start-end`, `end-start` and `end-end`. This will resolve to the equivalent
+`popper.js` placement as well.
 
-$width.variable; // => '--slider-width'
-$width.reference; // => 'var(--slider-width)'
-```
+**Cli** `v1.5.1`
 
-Create a component anatomy
+- Fixed an issue where the CLI did not resolve custom tsconfig paths.
 
-```jsx
-import { anatomy }  from "@chakra-ui/theme-tools"
-import type { PartsStyle } from "@chakra-ui/theme-tools"
+🚨 Please note that only the first alias target from the string array will be
+resolved.
 
-const btn = anatomy("button").parts("label", "container")
-
-const newBtn = btn.extend("icon") //  extend button to include icon part
-
-// Using the anatomy in component theme
-const baseStyle: PartsStyle<typeof newBtn> = {
-  // auto-complete for the component parts
-  icon: {...},
-  label: {...}
+```json5
+// tsconfig.json
+{
+  //...
+  compilerOptions: {
+    baseUrl: 'src',
+    paths: {
+      '@alias/*': ['target/*'],
+      //           ^-- only the first target will be resolved
+    },
+  },
 }
 ```
 
-Added `PartsStyleObject` and `PartStyleFunction` types for easy creation of
-type-safe, multipart component styles.
+**Avatar** `v1.2.10`
 
-**Radio** `v1.3.10`
+- Fix issue where avatar blinks during API call due to its fallback logic. You can
+  disable the fallback logic by setting `ignoreFallback`, just like you can with
+  the `Image` component
 
-- Add `isDisabled` to `RadioGroup` to make it possible to disable all `Radio`
-  inside `RadioGroup`
-- Add `isFocusable` to `RadioGroup` to make it possible to define the
-  `focusable`-state for all `Radio` inside a `RadioGroup`
+**Toast** `v1.3.0`
 
-**Provider** `v1.6.7`
+- Add support for RTL-aware `position` values. You can now use `top-start`,
+  `top-end`, `bottom-start` and `bottom-end` values. The toast will flip depending
+  on the `direction` provided in the theme.
 
-- Move ChakraProvider to a separate package `@chakra-ui/provider`
+**Provider** `v1.6.8`
 
-**Hooks** `v1.6.0`
+- Resolve dependency issues caused by previous release
+- Add `ChakraProviderProps` type what was removed in previous release
 
-- Added an enabled prop to the `useOutsideClick` hook to conditionally attach
-  event handlers.
+**Menu** `v1.7.4`
 
-- Updated the `useMenu` hook to only enable the `useOutsideClick` hook when the
-  menu is open.
+- Fix issue where keyboard navigation doesn't work when `MenuButton` isn't
+  rendered. This is useful in scenarios where you want the menu to be triggered by
+  a command or right-click.
 
-**Toast** `v1.2.11`
+**Button** `v1.4.3`
 
-- Add correct variant type to `UseToastOptions`
+- Fix issue where composing `Button` with framer-motion's `motion` factory breaks
+  animation/transition
 
-**Layout** `v1.4.9`
+**Select** `v1.1.15`
 
-- Fix url for `LinkBox` component
-
-**Theme** `v1.10.1`
-
-- Added `overview:"visible"` to `baseStyle` of `TagLabel` to avoid clipped text
+- The disabled state of the `SelectIcon` can be reflected by a disabled
+  `FormControl` or by the `isDisabled`-flag of the `select` field
