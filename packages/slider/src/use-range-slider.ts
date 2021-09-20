@@ -169,7 +169,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
 
   const [valueState, setValue] = useControllableState({
     value: valueProp,
-    defaultValue,
+    defaultValue: defaultValue ?? [25, 75],
     onChange,
   })
 

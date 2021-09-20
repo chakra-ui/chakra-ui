@@ -1,12 +1,18 @@
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
-import { useRangeSlider } from "../src"
+import {
+  useRangeSlider,
+  RangeSlider,
+  RangeSliderFilledTrack,
+  RangeSliderTrack,
+  RangeSliderThumb,
+} from "../src"
 
 export default {
   title: "Range Slider",
   decorators: [
     (story: Function) => (
-      <chakra.div maxWidth="400px" height="300px" mx="auto" mt="40px">
+      <chakra.div maxWidth="400px" mx="auto" mt="40px">
         {story()}
       </chakra.div>
     ),
@@ -42,5 +48,17 @@ export const HookUsage = () => {
         />
       ))}
     </chakra.div>
+  )
+}
+
+export function HorizontalSlider() {
+  return (
+    <RangeSlider onChangeEnd={console.log}>
+      <RangeSliderTrack>
+        <RangeSliderFilledTrack />
+      </RangeSliderTrack>
+      <RangeSliderThumb index={0} />
+      <RangeSliderThumb index={1} />
+    </RangeSlider>
   )
 }
