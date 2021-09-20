@@ -72,7 +72,7 @@ jobs:
 
       - name: Commit changelog
         run: |
-          git add .CHANGELOG.md
+          git add CHANGELOG.md
           git diff --staged --quiet || git commit -m "docs: update changelog"
 
       - name: Create Pull Request
