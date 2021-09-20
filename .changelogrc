@@ -1,14 +1,14 @@
-**New Release Update :tada:**
-
 ## 20-09-2021
 
 **Theme Tools** `v1.2.1`
 
-- Replace `tinycolor2` with `@ctrl/tinycolor` to get better tree-shaking benefits
+- Replace `tinycolor2` with `@ctrl/tinycolor` to get better tree-shaking
+  benefits
 
 **Theme** `v1.10.2`
 
-- Replace `tinycolor2` with `@ctrl/tinycolor` to get better tree-shaking benefits
+- Replace `tinycolor2` with `@ctrl/tinycolor` to get better tree-shaking
+  benefits
 
 **Checkbox** `v1.5.7`
 
@@ -22,17 +22,18 @@
 
 **Modal** `v1.9.0`
 
-- **Drawer:** Add support for RTL-aware placement values. You can now pass `start`
-  and `end` values. The drawer will use `left/right` placement depending on the
-  specified `theme.direction` value.
-- **Drawer**: omit the `motionPreset` prop type since `Drawer` only implements the
-  `Slide` transition, unlike `Modal` that allows you switch its motion preset.
+- **Drawer:** Add support for RTL-aware placement values. You can now pass
+  `start` and `end` values. The drawer will use `left/right` placement depending
+  on the specified `theme.direction` value.
+- **Drawer**: omit the `motionPreset` prop type since `Drawer` only implements
+  the `Slide` transition, unlike `Modal` that allows you switch its motion
+  preset.
 
 **Image** `v1.0.20`
 
 - Fix issue where onload doesn't get called when using srcset
-- If the user doesn't provide a `fallbackSrc` or a `fallback` `ignoreFallback` is
-  applied by default
+- If the user doesn't provide a `fallbackSrc` or a `fallback` `ignoreFallback`
+  is applied by default
 
 **Anatomy** `v1.0.1`
 
@@ -56,31 +57,31 @@ In addition to the default `popper.js` placement, you can pass `start-start`,
 🚨 Please note that only the first alias target from the string array will be
 resolved.
 
-```json5
+```json live=false
 // tsconfig.json
 {
   //...
-  compilerOptions: {
-    baseUrl: 'src',
-    paths: {
-      '@alias/*': ['target/*'],
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@alias/*": ["target/*"]
       //           ^-- only the first target will be resolved
-    },
-  },
+    }
+  }
 }
 ```
 
 **Avatar** `v1.2.10`
 
-- Fix issue where avatar blinks during API call due to its fallback logic. You can
-  disable the fallback logic by setting `ignoreFallback`, just like you can with
-  the `Image` component
+- Fix issue where avatar blinks during API call due to its fallback logic. You
+  can disable the fallback logic by setting `ignoreFallback`, just like you can
+  with the `Image` component
 
 **Toast** `v1.3.0`
 
 - Add support for RTL-aware `position` values. You can now use `top-start`,
-  `top-end`, `bottom-start` and `bottom-end` values. The toast will flip depending
-  on the `direction` provided in the theme.
+  `top-end`, `bottom-start` and `bottom-end` values. The toast will flip
+  depending on the `direction` provided in the theme.
 
 **Provider** `v1.6.8`
 
@@ -90,13 +91,13 @@ resolved.
 **Menu** `v1.7.4`
 
 - Fix issue where keyboard navigation doesn't work when `MenuButton` isn't
-  rendered. This is useful in scenarios where you want the menu to be triggered by
-  a command or right-click.
+  rendered. This is useful in scenarios where you want the menu to be triggered
+  by a command or right-click.
 
 **Button** `v1.4.3`
 
-- Fix issue where composing `Button` with framer-motion's `motion` factory breaks
-  animation/transition
+- Fix issue where composing `Button` with framer-motion's `motion` factory
+  breaks animation/transition
 
 **Select** `v1.1.15`
 

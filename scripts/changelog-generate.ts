@@ -93,10 +93,7 @@ async function main() {
   })
 
   // write to rc file
-  fs.writeFileSync(
-    `${cwd}/.changelogrc`,
-    ["**New Release Update :tada:**", content].join("\n\n"),
-  )
+  fs.writeFileSync(`${cwd}/.changelogrc`, content)
 }
 
 main()

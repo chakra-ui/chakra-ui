@@ -17,6 +17,113 @@ To better understand the changelog, here are some legends we use:
 
 <!-- CHANGELOG:INSERT -->
 
+## 20-09-2021
+
+**Theme Tools** `v1.2.1`
+
+- Replace `tinycolor2` with `@ctrl/tinycolor` to get better tree-shaking
+  benefits
+
+**Theme** `v1.10.2`
+
+- Replace `tinycolor2` with `@ctrl/tinycolor` to get better tree-shaking
+  benefits
+
+**Checkbox** `v1.5.7`
+
+- Add state `data-*` attributes to the checkbox `container` to allow user style
+  the `_checked`, `_invalid` and `_disabled` states
+
+**Slider** `v1.3.0`
+
+- Add `RTL` support by using the theme's direction ("ltr" or "rtl") to set the
+  default `isReversed` property when the `orientation` is `horizontal`
+
+**Modal** `v1.9.0`
+
+- **Drawer:** Add support for RTL-aware placement values. You can now pass
+  `start` and `end` values. The drawer will use `left/right` placement depending
+  on the specified `theme.direction` value.
+- **Drawer**: omit the `motionPreset` prop type since `Drawer` only implements
+  the `Slide` transition, unlike `Modal` that allows you switch its motion
+  preset.
+
+**Image** `v1.0.20`
+
+- Fix issue where onload doesn't get called when using srcset
+- If the user doesn't provide a `fallbackSrc` or a `fallback` `ignoreFallback`
+  is applied by default
+
+**Anatomy** `v1.0.1`
+
+- Add missing breadcrumb part
+- Add container part to checkbox
+
+**Popper** `v2.3.0`
+
+- `usePopper` now accepts a `direction` prop so it can handle placement for RTL
+  languages. Values such as `top-start`, `top-end`, `bottom-start` and
+  `bottom-end` will be flipped depending on the theme's direction value.
+
+In addition to the default `popper.js` placement, you can pass `start-start`,
+`start-end`, `end-start` and `end-end`. This will resolve to the equivalent
+`popper.js` placement as well.
+
+**Cli** `v1.5.1`
+
+- Fixed an issue where the CLI did not resolve custom tsconfig paths.
+
+🚨 Please note that only the first alias target from the string array will be
+resolved.
+
+```json live=false
+// tsconfig.json
+{
+  //...
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@alias/*": ["target/*"]
+      //           ^-- only the first target will be resolved
+    }
+  }
+}
+```
+
+**Avatar** `v1.2.10`
+
+- Fix issue where avatar blinks during API call due to its fallback logic. You
+  can disable the fallback logic by setting `ignoreFallback`, just like you can
+  with the `Image` component
+
+**Toast** `v1.3.0`
+
+- Add support for RTL-aware `position` values. You can now use `top-start`,
+  `top-end`, `bottom-start` and `bottom-end` values. The toast will flip
+  depending on the `direction` provided in the theme.
+
+**Provider** `v1.6.8`
+
+- Resolve dependency issues caused by previous release
+- Add `ChakraProviderProps` type what was removed in previous release
+
+**Menu** `v1.7.4`
+
+- Fix issue where keyboard navigation doesn't work when `MenuButton` isn't
+  rendered. This is useful in scenarios where you want the menu to be triggered
+  by a command or right-click.
+
+**Button** `v1.4.3`
+
+- Fix issue where composing `Button` with framer-motion's `motion` factory
+  breaks animation/transition
+
+**Select** `v1.1.15`
+
+- The disabled state of the `SelectIcon` can be reflected by a disabled
+  `FormControl` or by the `isDisabled`-flag of the `select` field
+
+
 ## 29-08-2021
 
 `@chakra-ui/react@1.6.7`
