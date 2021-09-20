@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.7.4
+
+### Patch Changes
+
+- [`19d9abe75`](https://github.com/chakra-ui/chakra-ui/commit/19d9abe75cf863468b70362ce7eee90f0ad94d29)
+  [#4691](https://github.com/chakra-ui/chakra-ui/pull/4691) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where keyboard
+  navigation doesn't work when `MenuButton` isn't rendered. This is useful in
+  scenarios where you want the menu to be triggered by a command or right-click.
+- Updated dependencies
+  [[`4146a9051`](https://github.com/chakra-ui/chakra-ui/commit/4146a9051a5151532503e31c464193e9d118dd26)]:
+  - @chakra-ui/popper@2.3.0
+
 ## 1.7.3
 
 ### Patch Changes

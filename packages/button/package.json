@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/button",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "A React component that is a base button.",
   "keywords": [
     "button",

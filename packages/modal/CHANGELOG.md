@@ -1,5 +1,23 @@
 # Change Log
 
+## 1.9.0
+
+### Minor Changes
+
+- [`8c61e75ec`](https://github.com/chakra-ui/chakra-ui/commit/8c61e75ec6da4ca6ce0fe413034f6aed7f685977)
+  [#3837](https://github.com/chakra-ui/chakra-ui/pull/3837) Thanks
+  [@mcha-dev](https://github.com/mcha-dev)! - **Drawer:** Add support for
+  RTL-aware placement values. You can now pass `start` and `end` values. The
+  drawer will use `left/right` placement depending on the specified
+  `theme.direction` value.
+
+### Patch Changes
+
+- [`c1d1029bc`](https://github.com/chakra-ui/chakra-ui/commit/c1d1029bca08a9774fc3ca8d2e04a1cc5b58a43b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **Drawer**: omit
+  the `motionPreset` prop type since `Drawer` only implements the `Slide`
+  transition, unlike `Modal` that allows you switch its motion preset.
+
 ## 1.8.11
 
 ### Patch Changes

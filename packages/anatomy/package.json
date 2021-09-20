@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/anatomy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The anatony of all chakra components",
   "keywords": [
     "theme",
@@ -51,6 +51,6 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/theme-tools": "^1.1.9"
+    "@chakra-ui/theme-tools": "^1.2.1"
   }
 }

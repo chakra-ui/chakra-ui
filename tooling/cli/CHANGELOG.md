@@ -1,5 +1,31 @@
 # @chakra-ui/cli
 
+## 1.5.1
+
+### Patch Changes
+
+- [`c96f44e16`](https://github.com/chakra-ui/chakra-ui/commit/c96f44e1660fd0430eac0e003f1e807873776b15)
+  [#4725](https://github.com/chakra-ui/chakra-ui/pull/4725) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue where the
+  CLI did not resolve custom tsconfig paths.
+
+  🚨 Please note that only the first alias target from the string array will be
+  resolved.
+
+  ```json5
+  // tsconfig.json
+  {
+    //...
+    compilerOptions: {
+      baseUrl: "src",
+      paths: {
+        "@alias/*": ["target/*"],
+        //           ^-- only the first target will be resolved
+      },
+    },
+  }
+  ```
+
 ## 1.5.0
 
 ### Minor Changes
