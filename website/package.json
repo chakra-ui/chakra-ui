@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/docs",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "scripts": {
     "dev": "next",
@@ -12,10 +12,10 @@
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
-    "@chakra-ui/cli": "1.5.0",
-    "@chakra-ui/props-docs": "1.0.32",
-    "@chakra-ui/react": "1.6.7",
-    "@chakra-ui/theme-tools": "1.2.0",
+    "@chakra-ui/cli": "1.5.1",
+    "@chakra-ui/props-docs": "1.0.33",
+    "@chakra-ui/react": "1.6.8",
+    "@chakra-ui/theme-tools": "1.2.1",
     "@chakra-ui/utils": "1.8.2",
     "@docsearch/react": "^1.0.0-alpha.27",
     "@docusaurus/utils": "^2.0.0-alpha.69",

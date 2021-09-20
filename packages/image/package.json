@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/image",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "React component for progressive image loading",
   "keywords": [
     "react",

@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.4.3
+
+### Patch Changes
+
+- [`87ffdd1cb`](https://github.com/chakra-ui/chakra-ui/commit/87ffdd1cb615e9d4bc8a9af66fb6ae9ef1563caf)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  composing `Button` with framer-motion's `motion` factory breaks
+  animation/transition
+
 ## 1.4.2
 
 ### Patch Changes

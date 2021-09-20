@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.2.10
+
+### Patch Changes
+
+- [`93c99bdd7`](https://github.com/chakra-ui/chakra-ui/commit/93c99bdd77b01f699a70a9fe1ffbfc2f0be5776a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  avatar blinks during API call due to its fallback logic. You can disable the
+  fallback logic by setting `ignoreFallback`, just like you can with the `Image`
+  component
+- Updated dependencies
+  [[`a1ca91b76`](https://github.com/chakra-ui/chakra-ui/commit/a1ca91b769000a9d4e6badb5bce46cd5e4035106),
+  [`11eebac4c`](https://github.com/chakra-ui/chakra-ui/commit/11eebac4cc951c3af65ebdf4ec0f70b8fe9d0f63)]:
+  - @chakra-ui/image@1.0.20
+
 ## 1.2.9
 
 ### Patch Changes
