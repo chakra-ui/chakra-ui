@@ -59,6 +59,7 @@
     "discord": "ts-node scripts/discord.ts",
     "create:pkg": "ts-node scripts/plopfile.ts",
     "release": "changeset publish",
+    "notify:release": "yarn changelog:write && yarn discord",
     "docs": "yarn workspace @chakra-ui/docs",
     "docs:deploy": "yarn build && yarn docs:build && cp -r website/public .",
     "docs:build": "yarn search-meta:gen && yarn docs build",

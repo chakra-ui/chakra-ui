@@ -1,4 +1,4 @@
-name: Update Changelog
+name: Update Changelog RC
 
 on:
   push:
