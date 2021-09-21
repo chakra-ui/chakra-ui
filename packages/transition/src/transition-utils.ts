@@ -83,7 +83,6 @@ export type SlideDirection = "top" | "left" | "bottom" | "right"
 
 export function slideTransition(options?: { direction?: SlideDirection }) {
   const side = options?.direction ?? "right"
-  // console.log(side)
   switch (side) {
     case "right":
       return TransitionVariants.slideRight
