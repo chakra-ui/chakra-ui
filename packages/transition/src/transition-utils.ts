@@ -59,23 +59,23 @@ export const TransitionVariants = {
   },
   slideLeft: {
     position: { left: 0, top: 0, bottom: 0, width: "100%" },
-    enter: { x: 0 },
-    exit: { x: "-100%" },
+    enter: { x: 0, y: 0 },
+    exit: { x: "-100%", y: 0 },
   },
   slideRight: {
     position: { right: 0, top: 0, bottom: 0, width: "100%" },
-    enter: { x: 0 },
-    exit: { x: "100%" },
+    enter: { x: 0, y: 0 },
+    exit: { x: "100%", y: 0 },
   },
   slideUp: {
     position: { top: 0, left: 0, right: 0, maxWidth: "100vw" },
-    enter: { y: 0 },
-    exit: { y: "-100%" },
+    enter: { x: 0, y: 0 },
+    exit: { x: 0, y: "-100%" },
   },
   slideDown: {
     position: { bottom: 0, left: 0, right: 0, maxWidth: "100vw" },
-    enter: { y: 0 },
-    exit: { y: "100%" },
+    enter: { x: 0, y: 0 },
+    exit: { x: 0, y: "100%" },
   },
 }
 
@@ -83,6 +83,7 @@ export type SlideDirection = "top" | "left" | "bottom" | "right"
 
 export function slideTransition(options?: { direction?: SlideDirection }) {
   const side = options?.direction ?? "right"
+  // console.log(side)
   switch (side) {
     case "right":
       return TransitionVariants.slideRight
