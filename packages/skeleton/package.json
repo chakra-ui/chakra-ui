@@ -57,12 +57,17 @@
     "@chakra-ui/hooks": "1.6.0",
     "@chakra-ui/media-query": "1.1.2",
     "@chakra-ui/system": "1.7.3",
+    "@chakra-ui/theme": "1.10.2",
     "@chakra-ui/utils": "1.8.2"
   },
   "peerDependencies": {
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
     "react": ">=16.8.6"
   },
   "devDependencies": {
+    "@emotion/react": "^11.1.4",
+    "@emotion/styled": "^11.0.0",
     "react": "^17.0.1"
   }
 }
