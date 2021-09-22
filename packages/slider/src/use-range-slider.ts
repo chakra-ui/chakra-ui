@@ -167,8 +167,8 @@ export function useRangeSlider(props: UseRangeSliderProps) {
   })
 
   if (!Array.isArray(valueState)) {
-    throw new Error(
-      `You passed an invalid value for \`value\` or \`defaultValue\`, expected \`Array\` but got \`${typeof valueState}\``,
+    throw new TypeError(
+      `[range-slider] You passed an invalid value for \`value\` or \`defaultValue\`, expected \`Array\` but got \`${typeof valueState}\``,
     )
   }
 
@@ -410,6 +410,11 @@ export function useRangeSlider(props: UseRangeSliderProps) {
       const { index, ...rest } = props
 
       const _value = value[index]
+      if (_value == null) {
+        throw new TypeError(
+          `[range-slider > thumb] Cannot find value at index \`${index}\`. The \`value\` or \`defaultValue\` length is : ${value.length}`,
+        )
+      }
       const bounds = valueBounds[index]
 
       return {

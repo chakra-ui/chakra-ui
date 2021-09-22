@@ -4,9 +4,9 @@ package: "@chakra-ui/slider"
 image: "components/range-slider.svg"
 ---
 
-The `RangeSlider` is a slider with two or more thumbs that each set a value in a
-group of related values. A common use-case of this component is a price range
-picker that allows a user to set the minimum and maximum price.
+The `RangeSlider` is a multi thumb slider used to select a range of related
+values. A common use-case of this component is a price range picker that allows
+a user to set the minimum and maximum price.
 
 <ComponentLinks
   theme={{ componentName: "slider" }}
@@ -52,6 +52,9 @@ import {
 
 ### Changing the slider color scheme
 
+You can override the color scheme of the slider to any color key specified in
+`theme.colors`.
+
 ```jsx
 <RangeSlider
   aria-label={["min", "max"]}
@@ -67,6 +70,9 @@ import {
 ```
 
 ### Changing the slider orientation
+
+By default, the slider orientation is `horizontal`. However, if you want to have
+it vertical, pass the `orientation` prop and set its value to `vertical`.
 
 ```jsx
 <RangeSlider
