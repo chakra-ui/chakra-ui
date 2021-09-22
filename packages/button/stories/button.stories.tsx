@@ -41,31 +41,7 @@ export const basic = () => (
 
 export const outlines = () => (
   <>
-    <Button variant="outline" colorScheme="red">
-      Button
-    </Button>
-    <Button variant="outline" colorScheme="green">
-      Button
-    </Button>
-    <Button variant="outline" colorScheme="blue">
-      Button
-    </Button>
-    <Button variant="outline" colorScheme="teal">
-      Button
-    </Button>
-    <Button variant="outline" colorScheme="pink">
-      Button
-    </Button>
-    <Button variant="outline" colorScheme="purple">
-      Button
-    </Button>
-    <Button variant="outline" colorScheme="cyan">
-      Button
-    </Button>
-    <Button variant="outline" colorScheme="orange">
-      Button
-    </Button>
-    <Button variant="outline" colorScheme="yellow">
+    <Button variant="outline">
       Button
     </Button>
   </>
@@ -93,16 +69,16 @@ export const withVariants = () => (
 
 export const withSizes = () => (
   <HStack>
-    <Button colorScheme="blue" size="xs">
+    <Button size="xs">
       Button
     </Button>
-    <Button colorScheme="blue" size="sm">
+    <Button size="sm">
       Button
     </Button>
-    <Button colorScheme="blue" size="md">
+    <Button size="md">
       Button
     </Button>
-    <Button colorScheme="blue" size="lg">
+    <Button size="lg">
       Button
     </Button>
   </HStack>
@@ -110,12 +86,11 @@ export const withSizes = () => (
 
 export const WithIcon = () => (
   <Stack direction="row" spacing={4}>
-    <Button leftIcon={<EmailIcon />} colorScheme="teal" variant="solid">
+    <Button leftIcon={<EmailIcon />} variant="solid">
       Email
     </Button>
     <Button
       rightIcon={<ArrowForwardIcon />}
-      colorScheme="teal"
       variant="outline"
     >
       Call us
@@ -125,10 +100,10 @@ export const WithIcon = () => (
 
 export const withReactIcons = () => (
   <Stack direction="row" spacing={4} align="center">
-    <Button leftIcon={<MdBuild />} colorScheme="pink" variant="solid">
+    <Button leftIcon={<MdBuild />} variant="solid">
       Settings
     </Button>
-    <Button rightIcon={<MdCall />} colorScheme="blue" variant="outline">
+    <Button rightIcon={<MdCall />} variant="outline">
       Call us
     </Button>
   </Stack>
@@ -136,14 +111,14 @@ export const withReactIcons = () => (
 
 export const WithLoading = () => (
   <Stack direction="row" spacing={4} align="center">
-    <Button size="lg" isLoading colorScheme="teal">
+    <Button size="lg" isLoading>
       Email
     </Button>
 
     <Button
       isLoading
       colorScheme="blue"
-      spinner={<BeatLoader size={8} color="white" />}
+      spinner={<BeatLoader size={8} />}
     >
       Click me
     </Button>
@@ -151,7 +126,6 @@ export const WithLoading = () => (
     <Button
       isLoading
       loadingText="Submitting..."
-      colorScheme="teal"
       variant="outline"
     >
       Submit
@@ -164,7 +138,6 @@ export const WithLoadingSpinnerPlacement = () => (
     <Button
       isLoading
       loadingText="Loading"
-      colorScheme="teal"
       variant="outline"
       spinnerPosition="start"
     >
@@ -173,7 +146,6 @@ export const WithLoadingSpinnerPlacement = () => (
     <Button
       isLoading
       loadingText="Loading"
-      colorScheme="teal"
       variant="outline"
       spinnerPlacement="end"
     >
@@ -184,16 +156,16 @@ export const WithLoadingSpinnerPlacement = () => (
 
 export const withDisabled = () => (
   <HStack spacing="24px">
-    <Button isDisabled colorScheme="teal" variant="solid">
+    <Button isDisabled variant="solid">
       Button
     </Button>
-    <Button isDisabled colorScheme="teal" variant="outline">
+    <Button isDisabled variant="outline">
       Button
     </Button>
-    <Button isDisabled colorScheme="teal" variant="ghost">
+    <Button isDisabled variant="ghost">
       Button
     </Button>
-    <Button isDisabled colorScheme="teal" variant="link">
+    <Button isDisabled variant="link">
       Button
     </Button>
   </HStack>
@@ -216,12 +188,11 @@ export const iconButton = () => (
     <IconButton aria-label="Search database" icon={<SearchIcon />} />
 
     <IconButton
-      colorScheme="blue"
       aria-label="Search database"
       icon={<SearchIcon />}
     />
 
-    <IconButton colorScheme="teal" aria-label="Call Segun" size="lg">
+    <IconButton aria-label="Call Segun" size="lg">
       <PhoneIcon />
     </IconButton>
   </Stack>
@@ -229,8 +200,8 @@ export const iconButton = () => (
 
 export const WithButtonGroup = () => (
   <ButtonGroup variant="outline">
-    <Button colorScheme="blue">Save</Button>
-    <Button>Cancel</Button>
+    <Button>Save</Button>
+    <Button colorScheme="gray">Cancel</Button>
   </ButtonGroup>
 )
 
