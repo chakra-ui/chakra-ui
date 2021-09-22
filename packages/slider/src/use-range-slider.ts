@@ -20,15 +20,8 @@ import {
   roundValueToStep,
   valueToPercent,
 } from "@chakra-ui/utils"
-import {
-  CSSProperties,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react"
-import { getIsReversed, getPartsStyle } from "./slider-utils"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { getIds, getIsReversed, getStyles, orient } from "./slider-utils"
 
 export interface UseRangeSliderProps {
   /**
@@ -83,7 +76,7 @@ export interface UseRangeSliderProps {
    * The name attribute of the hidden `input` field.
    * This is particularly useful in forms
    */
-  name?: string
+  name?: string | string[]
   /**
    * If `true`, the slider will be disabled
    */
@@ -106,17 +99,17 @@ export interface UseRangeSliderProps {
   /**
    * The static string to use used for `aria-valuetext`
    */
-  "aria-valuetext"?: string
+  "aria-valuetext"?: string[]
   /**
    * The static string to use used for `aria-label`
    * if no visible label is used.
    */
-  "aria-label"?: string
+  "aria-label"?: string[]
   /**
    * The static string `aria-labelledby` that points to the
    * ID of the element that serves as label for the slider
    */
-  "aria-labelledby"?: string
+  "aria-labelledby"?: string[]
   /**
    * The writing mode
    */
@@ -216,19 +209,17 @@ export function useRangeSlider(props: UseRangeSliderProps) {
   const rootRef = useRef<HTMLElement>(null)
 
   const uuid = useId(idProp)
+  const ids = getIds(uuid)
 
   const getValueFromPointer = useCallback(
     (event) => {
       if (!trackRef.current) return
       eventSourceRef.current = "pointer"
-      const trackRect = trackRef.current.getBoundingClientRect()
+      const rect = trackRef.current.getBoundingClientRect()
       const { clientX, clientY } = event.touches?.[0] ?? event
 
-      const diff = isVertical
-        ? trackRect.bottom - clientY
-        : clientX - trackRect.left
-
-      const length = isVertical ? trackRect.height : trackRect.width
+      const diff = isVertical ? rect.bottom - clientY : clientX - rect.left
+      const length = isVertical ? rect.height : rect.width
 
       let percent = diff / length
       if (isReversed) percent = 1 - percent
@@ -309,7 +300,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
    */
   const { getThumbStyle, rootStyle, trackStyle, innerTrackStyle } = useMemo(
     () =>
-      getPartsStyle({
+      getStyles({
         isReversed,
         orientation,
         thumbRects,
@@ -322,14 +313,14 @@ export function useRangeSlider(props: UseRangeSliderProps) {
     (index?: number) => {
       const idx = index ?? activeIndex
       if (idx !== -1 && focusThumbOnChange) {
-        const id = `slider-thumb-${uuid}-${idx}`
+        const id = ids.getThumb(idx)
         const thumb = rootRef.current?.ownerDocument.getElementById(id)
         if (thumb) {
           setTimeout(() => focus(thumb))
         }
       }
     },
-    [focusThumbOnChange, uuid, activeIndex],
+    [focusThumbOnChange, activeIndex, ids],
   )
 
   useUpdateEffect(() => {
@@ -377,49 +368,41 @@ export function useRangeSlider(props: UseRangeSliderProps) {
     (props = {}, ref = null) => ({
       ...props,
       ...htmlProps,
+      id: ids.root,
       ref: mergeRefs(ref, rootRef),
       tabIndex: -1,
       "aria-disabled": ariaAttr(isDisabled),
       "data-focused": dataAttr(isFocused),
-      style: {
-        ...props.style,
-        ...rootStyle,
-      },
+      style: { ...props.style, ...rootStyle },
     }),
-    [htmlProps, isDisabled, isFocused, rootStyle],
+    [htmlProps, isDisabled, isFocused, rootStyle, ids],
   )
 
   const getTrackProps: PropGetter = useCallback(
     (props = {}, ref = null) => ({
       ...props,
       ref: mergeRefs(ref, trackRef),
-      id: `slider-track-${uuid}`,
+      id: ids.track,
       "data-disabled": dataAttr(isDisabled),
-      style: {
-        ...props.style,
-        ...trackStyle,
-      },
+      style: { ...props.style, ...trackStyle },
     }),
-    [isDisabled, trackStyle, uuid],
+    [isDisabled, trackStyle, ids],
   )
 
   const getInnerTrackProps: PropGetter = useCallback(
     (props = {}, ref = null) => ({
       ...props,
       ref,
-      style: {
-        ...props.style,
-        ...innerTrackStyle,
-      },
+      id: ids.innerTrack,
+      style: { ...props.style, ...innerTrackStyle },
     }),
-    [innerTrackStyle],
+    [innerTrackStyle, ids],
   )
 
   const getThumbProps = useCallback(
     (props, ref = null) => {
       const { index, ...rest } = props
 
-      const id = `slider-thumb-${uuid}-${index}`
       const _value = value[index]
       const bounds = valueBounds[index]
 
@@ -428,21 +411,20 @@ export function useRangeSlider(props: UseRangeSliderProps) {
         ref,
         role: "slider",
         tabIndex: isInteractive ? 0 : undefined,
-        id,
-        "data-active": dataAttr(isDragging) && activeIndex === index,
-        "aria-valuetext": getAriaValueText?.(_value) ?? ariaValueText,
+        id: ids.getThumb(index),
+        "data-active": dataAttr(isDragging && activeIndex === index),
+        "aria-valuetext": getAriaValueText?.(_value) ?? ariaValueText?.[index],
         "aria-valuemin": bounds.min,
         "aria-valuemax": bounds.max,
         "aria-valuenow": _value,
         "aria-orientation": orientation,
         "aria-disabled": ariaAttr(isDisabled),
         "aria-readonly": ariaAttr(isReadOnly),
-        "aria-label": ariaLabel,
-        "aria-labelledby": ariaLabel ? undefined : ariaLabelledBy,
-        style: {
-          ...props.style,
-          ...getThumbStyle(index),
-        },
+        "aria-label": ariaLabel?.[index],
+        "aria-labelledby": ariaLabel?.[index]
+          ? undefined
+          : ariaLabelledBy?.[index],
+        style: { ...props.style, ...getThumbStyle(index) },
         onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
         onFocus: callAllHandlers(props.onFocus, () => {
           setFocused.on()
@@ -455,7 +437,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
       }
     },
     [
-      uuid,
+      ids,
       value,
       valueBounds,
       isInteractive,
@@ -474,26 +456,41 @@ export function useRangeSlider(props: UseRangeSliderProps) {
     ],
   )
 
+  const getOutputProps = useCallback(
+    (props = {}, ref = null) => ({
+      ...props,
+      ref,
+      id: ids.output,
+      htmlFor: value.map((v, i) => ids.getThumb(i)).join(" "),
+      "aria-live": "off",
+    }),
+    [ids, value],
+  )
+
   const getMarkerProps: PropGetter<any, { value?: any }> = useCallback(
     (props = {}, ref = null) => {
-      const isInRange = !(props.value < min || props.value > max)
-      const isHighlighted = value >= props.value
-      let markerPercent = valueToPercent(props.value, min, max)
-      markerPercent = isReversed ? 100 - markerPercent : markerPercent
+      const { value: v, ...rest } = props
+
+      const isInRange = !(v < min || v > max)
+      const isHighlighted = v >= value[0] && v <= value[value.length - 1]
+
+      let percent = valueToPercent(v, min, max)
+      percent = isReversed ? 100 - percent : percent
 
       const markerStyle: React.CSSProperties = {
         position: "absolute",
         pointerEvents: "none",
         ...orient({
           orientation,
-          vertical: { bottom: `${markerPercent}%` },
-          horizontal: { left: `${markerPercent}%` },
+          vertical: { bottom: `${percent}%` },
+          horizontal: { left: `${percent}%` },
         }),
       }
 
       return {
-        ...props,
+        ...rest,
         ref,
+        id: ids.getMarker(props.value),
         role: "presentation",
         "aria-hidden": true,
         "data-disabled": dataAttr(isDisabled),
@@ -505,7 +502,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
         },
       }
     },
-    [isDisabled, isReversed, max, min, orientation, value],
+    [isDisabled, isReversed, max, min, orientation, value, ids],
   )
 
   const getInputProps = useCallback(
@@ -514,12 +511,13 @@ export function useRangeSlider(props: UseRangeSliderProps) {
       return {
         ...rest,
         ref,
+        id: ids.getInput(index),
         type: "hidden",
         value: value[index],
-        name,
+        name: Array.isArray(name) ? name[index] : `${name}-${index}`,
       }
     },
-    [name, value],
+    [name, value, ids],
   )
 
   return {
@@ -527,9 +525,9 @@ export function useRangeSlider(props: UseRangeSliderProps) {
       value,
       isFocused,
       isDragging,
-      getThumbPercent: (index: number) => thumbPercents[index],
-      getThumbMinValue: (index: number) => valueBounds[index].min,
-      getThumbMaxValue: (index: number) => valueBounds[index].max,
+      getThumbPercent: (i: number) => thumbPercents[i],
+      getThumbMinValue: (i: number) => valueBounds[i].min,
+      getThumbMaxValue: (i: number) => valueBounds[i].max,
     },
     actions,
     getRootProps,
@@ -538,19 +536,11 @@ export function useRangeSlider(props: UseRangeSliderProps) {
     getThumbProps,
     getMarkerProps,
     getInputProps,
+    getOutputProps,
   }
 }
 
 export type UseRangeSliderReturn = ReturnType<typeof useRangeSlider>
-
-function orient(options: {
-  orientation: UseRangeSliderProps["orientation"]
-  vertical: CSSProperties
-  horizontal: CSSProperties
-}) {
-  const { orientation, vertical, horizontal } = options
-  return orientation === "vertical" ? vertical : horizontal
-}
 
 const getValueBounds = (arr: number[], min: number, max: number) =>
   arr.map((v, i) => ({

@@ -1,8 +1,20 @@
-import { CSSProperties } from "react"
+import type { CSSProperties } from "react"
+
+export function getIds(id: string | number) {
+  return {
+    root: `slider-root-${id}`,
+    getThumb: (i: number) => `slider-thumb-${id}-${i}`,
+    getInput: (i: number) => `slider-input-${id}-${i}`,
+    track: `slider-track-${id}`,
+    innerTrack: `slider-filled-track-${id}`,
+    getMarker: (i: number) => `slider-marker-${id}-${i}`,
+    output: `slider-output-${id}`,
+  }
+}
 
 type Orientation = "vertical" | "horizontal"
 
-function orient(options: {
+export function orient(options: {
   orientation: Orientation
   vertical: CSSProperties
   horizontal: CSSProperties
@@ -15,7 +27,7 @@ type Size = { height: number; width: number }
 
 const zeroRect: Size = { width: 0, height: 0 }
 
-export function getPartsStyle(options: {
+export function getStyles(options: {
   orientation: Orientation
   thumbPercents: number[]
   thumbRects: Size[]
@@ -23,7 +35,7 @@ export function getPartsStyle(options: {
 }) {
   const { orientation, thumbPercents, thumbRects, isReversed } = options
 
-  const getThumbStyle = (index: number): CSSProperties => ({
+  const getThumbStyle = (i: number): CSSProperties => ({
     position: "absolute",
     userSelect: "none",
     WebkitUserSelect: "none",
@@ -33,14 +45,10 @@ export function getPartsStyle(options: {
     ...orient({
       orientation,
       vertical: {
-        bottom: `calc(${thumbPercents[index]}% - ${
-          thumbRects[index].height / 2
-        }px)`,
+        bottom: `calc(${thumbPercents[i]}% - ${thumbRects[i].height / 2}px)`,
       },
       horizontal: {
-        left: `calc(${thumbPercents[index]}% - ${
-          thumbRects[index].width / 2
-        }px)`,
+        left: `calc(${thumbPercents[i]}% - ${thumbRects[i].width / 2}px)`,
       },
     }),
   })
@@ -89,8 +97,11 @@ export function getPartsStyle(options: {
   const isSingleThumb = thumbPercents.length === 1
   const fallback = [0, isReversed ? 100 - thumbPercents[0] : thumbPercents[0]]
   const range = isSingleThumb ? fallback : thumbPercents
+
   let start = range[0]
-  if (!isSingleThumb && isReversed) start = 100 - start
+  if (!isSingleThumb && isReversed) {
+    start = 100 - start
+  }
   const percent = Math.abs(range[range.length - 1] - range[0])
 
   const innerTrackStyle: React.CSSProperties = {
