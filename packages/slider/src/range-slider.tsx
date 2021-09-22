@@ -32,11 +32,10 @@ const [
 
 export { RangeSliderProvider, useRangeSliderContext }
 
-type Omitted = "size" | "defaultValue" | "onChange"
 export interface RangeSliderProps
   extends UseRangeSliderProps,
     ThemingProps<"Slider">,
-    Omit<HTMLChakraProps<"div">, Omitted> {}
+    Omit<HTMLChakraProps<"div">, keyof UseRangeSliderProps> {}
 
 /**
  * The Slider is used to allow users to make selections from a range of values.

@@ -25,11 +25,10 @@ const [SliderProvider, useSliderContext] = createContext<SliderContext>({
 
 export { SliderProvider, useSliderContext }
 
-type Omitted = "size" | "defaultValue" | "onChange"
 export interface SliderProps
   extends UseSliderProps,
     ThemingProps<"Slider">,
-    Omit<HTMLChakraProps<"div">, Omitted> {}
+    Omit<HTMLChakraProps<"div">, keyof UseSliderProps> {}
 
 /**
  * The Slider is used to allow users to make selections from a range of values.
