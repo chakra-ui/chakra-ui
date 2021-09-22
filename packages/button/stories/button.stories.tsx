@@ -73,19 +73,19 @@ export const outlines = () => (
 
 export const withVariants = () => (
   <HStack spacing="24px">
-    <Button colorScheme="teal" variant="solid">
+    <Button variant="solid">
       Button
     </Button>
-    <Button colorScheme="teal" variant="outline">
+    <Button variant="outline">
       Button
     </Button>
-    <Button colorScheme="teal" variant="ghost">
+    <Button variant="ghost">
       Button
     </Button>
-    <Button colorScheme="teal" variant="link">
+    <Button variant="link">
       Button
     </Button>
-    <Button colorScheme="teal" variant="unstyled">
+    <Button variant="unstyled">
       Button
     </Button>
   </HStack>
