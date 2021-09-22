@@ -186,6 +186,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
 
   const reversedValue = value.map((val) => max - val + min)
   const thumbValues = isReversed ? reversedValue : value
+
   const thumbPercents = thumbValues.map((val) => valueToPercent(val, min, max))
 
   const isVertical = orientation === "vertical"

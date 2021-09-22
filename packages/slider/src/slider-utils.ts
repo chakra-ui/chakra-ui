@@ -86,23 +86,23 @@ export function getPartsStyle(options: {
     }),
   }
 
-  const range =
-    thumbPercents.length === 1 ? [0, thumbPercents[0]] : thumbPercents
-  const startRange = range[0]
-
-  let rangeDiff = range[range.length - 1] - range[0]
-  rangeDiff = isReversed ? 100 - rangeDiff : rangeDiff
+  const isSingleThumb = thumbPercents.length === 1
+  const fallback = [0, isReversed ? 100 - thumbPercents[0] : thumbPercents[0]]
+  const range = isSingleThumb ? fallback : thumbPercents
+  let start = range[0]
+  if (!isSingleThumb && isReversed) start = 100 - start
+  const percent = Math.abs(range[range.length - 1] - range[0])
 
   const innerTrackStyle: React.CSSProperties = {
     ...trackStyle,
     ...orient({
       orientation,
       vertical: isReversed
-        ? { height: `${rangeDiff}%`, top: `${startRange}%` }
-        : { height: `${rangeDiff}%`, bottom: `${startRange}%` },
+        ? { height: `${percent}%`, top: `${start}%` }
+        : { height: `${percent}%`, bottom: `${start}%` },
       horizontal: isReversed
-        ? { width: `${rangeDiff}%`, right: `${startRange}%` }
-        : { width: `${rangeDiff}%`, left: `${startRange}%` },
+        ? { width: `${percent}%`, right: `${start}%` }
+        : { width: `${percent}%`, left: `${start}%` },
     }),
   }
 

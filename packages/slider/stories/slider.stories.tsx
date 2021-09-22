@@ -24,7 +24,7 @@ export const SliderBug = () => {
     <Slider
       defaultValue={10}
       min={0}
-      max={20}
+      max={60}
       step={5}
       onChangeStart={console.log}
       onChangeEnd={console.log}
