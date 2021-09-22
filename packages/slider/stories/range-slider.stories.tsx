@@ -12,7 +12,7 @@ export default {
   title: "Range Slider",
   decorators: [
     (story: Function) => (
-      <chakra.div maxWidth="400px" mx="auto" mt="40px">
+      <chakra.div maxWidth="400px" height="300px" mx="auto" mt="40px">
         {story()}
       </chakra.div>
     ),
@@ -58,6 +58,38 @@ export const HookUsage = () => {
 export function HorizontalSlider() {
   return (
     <RangeSlider onChangeEnd={console.log}>
+      <RangeSliderTrack>
+        <RangeSliderFilledTrack />
+      </RangeSliderTrack>
+      <RangeSliderThumb index={0} />
+      <RangeSliderThumb index={1} />
+    </RangeSlider>
+  )
+}
+
+export function VerticalSlider() {
+  return (
+    <RangeSlider orientation="vertical" onChangeEnd={console.log}>
+      <RangeSliderTrack>
+        <RangeSliderFilledTrack />
+      </RangeSliderTrack>
+      <RangeSliderThumb index={0} />
+      <RangeSliderThumb index={1} />
+    </RangeSlider>
+  )
+}
+
+export function SteppedHorizontalSlider() {
+  const [value, setValue] = React.useState([3, 10])
+  return (
+    <RangeSlider
+      colorScheme="pink"
+      value={value}
+      onChange={setValue}
+      min={1}
+      max={20}
+      step={2}
+    >
       <RangeSliderTrack>
         <RangeSliderFilledTrack />
       </RangeSliderTrack>
