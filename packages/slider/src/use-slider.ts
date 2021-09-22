@@ -23,7 +23,7 @@ import {
   valueToPercent,
 } from "@chakra-ui/utils"
 import { CSSProperties, useCallback, useMemo, useRef } from "react"
-import { getPartsStyle, getIsReversed } from "./slider-utils"
+import { getStyles, getIsReversed } from "./slider-utils"
 
 export interface UseSliderProps {
   /**
@@ -321,7 +321,7 @@ export function useSlider(props: UseSliderProps) {
     innerTrackStyle,
   } = useMemo(() => {
     const thumbRect = thumbBoxModel?.borderBox ?? { width: 0, height: 0 }
-    return getPartsStyle({
+    return getStyles({
       isReversed,
       orientation,
       thumbRects: [thumbRect],
