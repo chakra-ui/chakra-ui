@@ -19,7 +19,9 @@ import {
 } from "./use-range-slider"
 
 interface RangeSliderContext
-  extends Omit<UseRangeSliderReturn, "getInputProps" | "getRootProps"> {}
+  extends Omit<UseRangeSliderReturn, "getRootProps"> {
+  name?: string | string[]
+}
 
 const [
   RangeSliderProvider,
@@ -51,9 +53,13 @@ export const RangeSlider = forwardRef<RangeSliderProps, "div">((props, ref) => {
   ownProps.direction = direction
 
   const { getRootProps, ...context } = useRangeSlider(ownProps)
+  const ctx = React.useMemo(() => ({ ...context, name: props.name }), [
+    context,
+    props.name,
+  ])
 
   return (
-    <RangeSliderProvider value={context}>
+    <RangeSliderProvider value={ctx}>
       <StylesProvider value={styles}>
         <chakra.div
           {...getRootProps({}, ref)}
@@ -85,7 +91,7 @@ export interface RangeSliderThumbProps extends HTMLChakraProps<"div"> {
  */
 export const RangeSliderThumb = forwardRef<RangeSliderThumbProps, "div">(
   (props, ref) => {
-    const { getThumbProps } = useRangeSliderContext()
+    const { getThumbProps, getInputProps, name } = useRangeSliderContext()
     const styles = useStyles()
     const thumbProps = getThumbProps(props, ref)
 
@@ -94,7 +100,10 @@ export const RangeSliderThumb = forwardRef<RangeSliderThumbProps, "div">(
         {...thumbProps}
         className={cx("chakra-slider__thumb", props.className)}
         __css={styles.thumb}
-      />
+      >
+        {thumbProps.children}
+        {name && <input {...getInputProps({ index: props.index })} />}
+      </chakra.div>
     )
   },
 )
