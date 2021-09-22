@@ -43,8 +43,7 @@
             },
             {
               "title": "CSS Variables",
-              "path": "/docs/features/css-variables",
-              "new": true
+              "path": "/docs/features/css-variables"
             },
             {
               "title": "Responsive Styles",
@@ -189,6 +188,11 @@
             {
               "title": "Slider",
               "path": "/docs/form/slider"
+            },
+            {
+              "new": true,
+              "title": "Range Slider",
+              "path": "/docs/form/range-slider"
             },
             {
               "title": "Switch",

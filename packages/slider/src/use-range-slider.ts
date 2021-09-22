@@ -166,6 +166,12 @@ export function useRangeSlider(props: UseRangeSliderProps) {
     onChange,
   })
 
+  if (!Array.isArray(valueState)) {
+    throw new Error(
+      `You passed an invalid value for \`value\` or \`defaultValue\`, expected \`Array\` but got \`${typeof valueState}\``,
+    )
+  }
+
   const [isDragging, setDragging] = useBoolean()
   const [isFocused, setFocused] = useBoolean()
   const [activeIndex, setActiveIndex] = useState(-1)
