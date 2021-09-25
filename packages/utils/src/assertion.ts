@@ -83,7 +83,10 @@ export const __DEV__ = process.env.NODE_ENV !== "production"
 
 export const __TEST__ = process.env.NODE_ENV === "test"
 
-export function isRefObject(val: any): val is { current: any } {
+export interface RefLike<T = any> {
+  current: T | null
+}
+export function isRefObject<T>(val: RefLike<T>): val is RefLike<T> {
   return "current" in val
 }
 
