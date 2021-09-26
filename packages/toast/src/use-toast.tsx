@@ -83,6 +83,8 @@ export type IToast = UseToastOptions
 const Toast: React.FC<any> = (props) => {
   const { status, variant, id, title, isClosable, onClose, description } = props
 
+  const alertTitleId = typeof id !== "undefined" ? `toast-${id}-title` : undefined
+
   return (
     <Alert
       status={status}
@@ -94,10 +96,11 @@ const Toast: React.FC<any> = (props) => {
       paddingEnd={8}
       textAlign="start"
       width="auto"
+      aria-labelledby={alertTitleId}
     >
       <AlertIcon />
       <chakra.div flex="1" maxWidth="100%">
-        {title && <AlertTitle>{title}</AlertTitle>}
+        {title && <AlertTitle id={alertTitleId}>{title}</AlertTitle>}
         {description && (
           <AlertDescription display="block">{description}</AlertDescription>
         )}
