@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "@chakra-ui/hooks": "1.6.0",
+    "@chakra-ui/react-utils": "1.1.2",
     "@chakra-ui/spinner": "1.1.12",
     "@chakra-ui/utils": "1.8.2"
   },
