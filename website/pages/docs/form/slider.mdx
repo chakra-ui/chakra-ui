@@ -20,13 +20,14 @@ or applying image filters.
 
 ## Import
 
-Chakra UI export 4 components for Slider:
+Chakra UI export 5 components for Slider:
 
 - **`Slider`**: The wrapper that provides context and functionality for all
   children.
 - **`SliderTrack`**: The empty part of the slider that shows the track.
 - **`SliderFilledTrack`**: The filled part of the slider.
 - **`SliderThumb`**: The handle that's used to change the slider value.
+- **`SliderMark`**: The label or mark that shows names for specific slider values
 
 ```js
 import {
@@ -34,6 +35,7 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
+  SliderMark
 } from "@chakra-ui/react"
 ```
 
@@ -107,6 +109,34 @@ accomplished using the `step` prop.
   </SliderTrack>
   <SliderThumb boxSize={6} />
 </Slider>
+```
+
+### Slider with custom labels
+
+You can have custom labels by using `SliderMark` component
+
+```jsx
+function SliderMarkExample() {
+  const [sliderValue, setSliderValue] = useState(50);
+  return (
+    <Slider aria-label="slider-ex-1" onChange={(val) => setSliderValue(val)}>
+      <SliderMark
+        value={sliderValue}
+        textAlign="center"
+        bg="blue.500"
+        color="white"
+        m="-40px 0 0 -25px"
+        w="50px"
+      >
+        {sliderValue}
+      </SliderMark>
+      <SliderTrack>
+        <SliderFilledTrack />
+      </SliderTrack>
+      <SliderThumb />
+    </Slider>
+  )
+}
 ```
 
 ### Getting the final value when dragging the slider
