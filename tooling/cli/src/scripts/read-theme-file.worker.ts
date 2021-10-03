@@ -30,8 +30,9 @@ async function importTheme(path: string) {
 async function readTheme(themeFilePath: string) {
   const cwd = process.cwd()
   const absoluteThemePath = path.join(cwd, themeFilePath)
+  const absoluteThemeDir = path.dirname(absoluteThemePath)
 
-  const tsConfig = tsConfigPaths.loadConfig(absoluteThemePath)
+  const tsConfig = tsConfigPaths.loadConfig(absoluteThemeDir)
   if (tsConfig.resultType === "success") {
     tsNode.register({
       // use the TS projects own tsconfig file
