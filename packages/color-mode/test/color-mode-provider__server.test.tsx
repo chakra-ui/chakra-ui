@@ -1,7 +1,6 @@
 import React from "react"
 import { render } from "@testing-library/react"
 import {
-  mockIsBrowser,
   createMockStorageManager,
   defaultThemeOptions,
   getColorModeButton,
@@ -61,7 +60,6 @@ describe("<ColorModeProvider /> localStorage server", () => {
   })
 
   test("adds no mediaQueryListener if theme.config.useSystemColorMode is false", () => {
-    mockIsBrowser(false)
     const { ColorModeProvider } = require("../src/color-mode-provider")
 
     const addListenerSpy = jest.spyOn(colorModeUtils, "addListener")
