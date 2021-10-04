@@ -76,6 +76,7 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
     getInputProps,
     getCheckboxProps,
     getLabelProps,
+    getRootProps,
     htmlProps,
   } = useRadio({
     ...rest,
@@ -91,6 +92,7 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
   const checkboxProps = getCheckboxProps(otherProps)
   const inputProps = getInputProps({}, ref)
   const labelProps = getLabelProps()
+  const rootProps = Object.assign(layoutProps, getRootProps())
 
   const rootStyles = {
     width: isFullWidth ? "full" : undefined,
@@ -115,7 +117,7 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
   }
 
   return (
-    <chakra.label className="chakra-radio" {...layoutProps} __css={rootStyles}>
+    <chakra.label className="chakra-radio" {...rootProps} __css={rootStyles}>
       <input className="chakra-radio__input" {...inputProps} />
       <chakra.span
         className="chakra-radio__control"
