@@ -145,7 +145,7 @@ export const Progress: React.FC<ProgressProps> = (props) => {
     propBorderRadius ??
     (styles.track?.borderRadius as string | number | undefined)
 
-  const stripAnimation = { animation: `${stripe} 1s linear infinite` }
+  const stripeAnimation = { animation: `${stripe} 1s linear infinite` }
 
   /**
    * We should not use stripe if it is `indeterminate`
@@ -158,7 +158,7 @@ export const Progress: React.FC<ProgressProps> = (props) => {
    * Generate styles for stripe and stripe animation
    */
   const css: Interpolation<any> = {
-    ...(shouldAnimateStripe && stripAnimation),
+    ...(shouldAnimateStripe && stripeAnimation),
     ...(isIndeterminate && {
       position: "absolute",
       willChange: "left",
