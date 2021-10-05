@@ -33,14 +33,14 @@ export function useMediaQuery(query: string | string[]): boolean[] {
           ),
         )
 
-      mediaQuery.addListener(listener)
+      mediaQuery.addEventListener("change", listener)
 
       return listener
     })
 
     return () => {
       mediaQueryList.forEach((mediaQuery, index) => {
-        mediaQuery.removeListener(listenerList[index])
+        mediaQuery.removeEventListener("change", listenerList[index])
       })
     }
   }, [query])
