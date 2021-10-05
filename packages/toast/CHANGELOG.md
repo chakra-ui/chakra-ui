@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.3.1
+
+### Patch Changes
+
+- [`6f99723f8`](https://github.com/chakra-ui/chakra-ui/commit/6f99723f8b2f170978a34bc4da1dc85228ab4512)
+  [#4702](https://github.com/chakra-ui/chakra-ui/pull/4702) Thanks
+  [@stefee](https://github.com/stefee)! - Allow alerts rendered by useToast and
+  createStandaloneToast to be discovered by role and accessible name (e.g. using
+  Testing Library [ByRole](https://testing-library.com/docs/queries/byrole/)).
+- Updated dependencies
+  [[`eafb21e18`](https://github.com/chakra-ui/chakra-ui/commit/eafb21e1883cf40bfe44e143714d9a480a0cc7da),
+  [`b769e88f9`](https://github.com/chakra-ui/chakra-ui/commit/b769e88f977a4e2a8641de57beefd8220bc5dffa)]:
+  - @chakra-ui/transition@1.3.5
+  - @chakra-ui/theme@1.10.3
+
 ## 1.3.0
 
 ### Minor Changes

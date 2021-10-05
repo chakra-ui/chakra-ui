@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.3.5
+
+### Patch Changes
+
+- [`eafb21e18`](https://github.com/chakra-ui/chakra-ui/commit/eafb21e1883cf40bfe44e143714d9a480a0cc7da)
+  [#4744](https://github.com/chakra-ui/chakra-ui/pull/4744) Thanks
+  [@rohankokane](https://github.com/rohankokane)! - Updated transition variants
+  for drawer animations to prevent it from disappearing when placement
+  conditionally changes
+
 ## 1.3.4
 
 ### Patch Changes
