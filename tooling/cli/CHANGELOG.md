@@ -1,5 +1,14 @@
 # @chakra-ui/cli
 
+## 1.5.2
+
+### Patch Changes
+
+- [`236efcbf5`](https://github.com/chakra-ui/chakra-ui/commit/236efcbf562a966d5a3fcd0a778ee404b379d41d)
+  [#4781](https://github.com/chakra-ui/chakra-ui/pull/4781) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue where the
+  CLI failed with `SyntaxError: JSON5: invalid character`.
+
 ## 1.5.1
 
 ### Patch Changes

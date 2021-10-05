@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.10.3
+
+### Patch Changes
+
+- [`b769e88f9`](https://github.com/chakra-ui/chakra-ui/commit/b769e88f977a4e2a8641de57beefd8220bc5dffa)
+  [#4740](https://github.com/chakra-ui/chakra-ui/pull/4740) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Refactor slider theme from
+  slider.tsx to slider's theme
+
 ## 1.10.2
 
 ### Patch Changes

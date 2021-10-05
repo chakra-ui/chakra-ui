@@ -1,5 +1,27 @@
 # Change Log
 
+## 1.4.0
+
+### Minor Changes
+
+- [`b769e88f9`](https://github.com/chakra-ui/chakra-ui/commit/b769e88f977a4e2a8641de57beefd8220bc5dffa)
+  [#4740](https://github.com/chakra-ui/chakra-ui/pull/4740) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Move hard-coded styles
+  to slider's theme
+
+  - Add support for multithumb slider. We now have `useRangeSlider`,
+    `RangeSlider` and `RangeSlider*` components
+
+  ```jsx live=false
+  <RangeSlider>
+    <RangeSliderTrack>
+      <RangeSliderFilledTrack />
+    </RangeSliderTrack>
+    <RangeSliderThumb index={0} />
+    <RangeSliderThumb index={1} />
+  </RangeSlider>
+  ```
+
 ## 1.3.0
 
 ### Minor Changes

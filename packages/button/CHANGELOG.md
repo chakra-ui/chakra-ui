@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.4.4
+
+### Patch Changes
+
+- [`21531b59d`](https://github.com/chakra-ui/chakra-ui/commit/21531b59dba938be1b4ee9d3a5f43f4e10d3f783)
+  [#4767](https://github.com/chakra-ui/chakra-ui/pull/4767) Thanks
+  [@gluck](https://github.com/gluck)! - Added missing `@chakra-ui/react-utils`
+  import
+
 ## 1.4.3
 
 ### Patch Changes

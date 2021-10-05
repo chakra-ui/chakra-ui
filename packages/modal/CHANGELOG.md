@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.9.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`eafb21e18`](https://github.com/chakra-ui/chakra-ui/commit/eafb21e1883cf40bfe44e143714d9a480a0cc7da)]:
+  - @chakra-ui/transition@1.3.5
+
 ## 1.9.0
 
 ### Minor Changes
