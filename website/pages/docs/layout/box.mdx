@@ -62,7 +62,7 @@ function AirbnbExample() {
       <Image src={property.imageUrl} alt={property.imageAlt} />
 
       <Box p="6">
-        <Box d="flex" alignItems="baseline">
+        <Box display="flex" alignItems="baseline">
           <Badge borderRadius="full" px="2" colorScheme="teal">
             New
           </Badge>
@@ -95,7 +95,7 @@ function AirbnbExample() {
           </Box>
         </Box>
 
-        <Box d="flex" mt="2" alignItems="center">
+        <Box display="flex" mt="2" alignItems="center">
           {Array(5)
             .fill("")
             .map((_, i) => (
