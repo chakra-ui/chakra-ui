@@ -1,8 +1,20 @@
-import { CSSProperties } from "react"
+import type { CSSProperties } from "react"
+
+export function getIds(id: string | number) {
+  return {
+    root: `slider-root-${id}`,
+    getThumb: (i: number) => `slider-thumb-${id}-${i}`,
+    getInput: (i: number) => `slider-input-${id}-${i}`,
+    track: `slider-track-${id}`,
+    innerTrack: `slider-filled-track-${id}`,
+    getMarker: (i: number) => `slider-marker-${id}-${i}`,
+    output: `slider-output-${id}`,
+  }
+}
 
 type Orientation = "vertical" | "horizontal"
 
-function orient(options: {
+export function orient(options: {
   orientation: Orientation
   vertical: CSSProperties
   horizontal: CSSProperties
@@ -11,15 +23,19 @@ function orient(options: {
   return orientation === "vertical" ? vertical : horizontal
 }
 
-export function getPartsStyle(options: {
+type Size = { height: number; width: number }
+
+const zeroRect: Size = { width: 0, height: 0 }
+
+export function getStyles(options: {
   orientation: Orientation
-  trackPercent: number
-  thumbRect: { height: number; width: number }
+  thumbPercents: number[]
+  thumbRects: Size[]
   isReversed?: boolean
 }) {
-  const { orientation, trackPercent, thumbRect, isReversed } = options
+  const { orientation, thumbPercents, thumbRects, isReversed } = options
 
-  const thumbStyle: CSSProperties = {
+  const getThumbStyle = (i: number): CSSProperties => ({
     position: "absolute",
     userSelect: "none",
     WebkitUserSelect: "none",
@@ -29,13 +45,18 @@ export function getPartsStyle(options: {
     ...orient({
       orientation,
       vertical: {
-        bottom: `calc(${trackPercent}% - ${thumbRect.height / 2}px)`,
+        bottom: `calc(${thumbPercents[i]}% - ${thumbRects[i].height / 2}px)`,
       },
       horizontal: {
-        left: `calc(${trackPercent}% - ${thumbRect.width / 2}px)`,
+        left: `calc(${thumbPercents[i]}% - ${thumbRects[i].width / 2}px)`,
       },
     }),
-  }
+  })
+
+  const size =
+    orientation === "vertical"
+      ? thumbRects.reduce((a, b) => (a.height > b.height ? a : b), zeroRect)
+      : thumbRects.reduce((a, b) => (a.width > b.width ? a : b), zeroRect)
 
   const rootStyle: CSSProperties = {
     position: "relative",
@@ -46,12 +67,12 @@ export function getPartsStyle(options: {
     ...orient({
       orientation,
       vertical: {
-        paddingLeft: thumbRect.width / 2,
-        paddingRight: thumbRect.width / 2,
+        paddingLeft: size.width / 2,
+        paddingRight: size.width / 2,
       },
       horizontal: {
-        paddingTop: thumbRect.height / 2,
-        paddingBottom: thumbRect.height / 2,
+        paddingTop: size.height / 2,
+        paddingBottom: size.height / 2,
       },
     }),
   }
@@ -73,20 +94,30 @@ export function getPartsStyle(options: {
     }),
   }
 
+  const isSingleThumb = thumbPercents.length === 1
+  const fallback = [0, isReversed ? 100 - thumbPercents[0] : thumbPercents[0]]
+  const range = isSingleThumb ? fallback : thumbPercents
+
+  let start = range[0]
+  if (!isSingleThumb && isReversed) {
+    start = 100 - start
+  }
+  const percent = Math.abs(range[range.length - 1] - range[0])
+
   const innerTrackStyle: React.CSSProperties = {
     ...trackStyle,
     ...orient({
       orientation,
       vertical: isReversed
-        ? { height: `${100 - trackPercent}%`, top: 0 }
-        : { height: `${trackPercent}%`, bottom: 0 },
+        ? { height: `${percent}%`, top: `${start}%` }
+        : { height: `${percent}%`, bottom: `${start}%` },
       horizontal: isReversed
-        ? { width: `${100 - trackPercent}%`, right: 0 }
-        : { width: `${trackPercent}%`, left: 0 },
+        ? { width: `${percent}%`, right: `${start}%` }
+        : { width: `${percent}%`, left: `${start}%` },
     }),
   }
 
-  return { trackStyle, innerTrackStyle, rootStyle, thumbStyle }
+  return { trackStyle, innerTrackStyle, rootStyle, getThumbStyle }
 }
 
 export function getIsReversed(options: {

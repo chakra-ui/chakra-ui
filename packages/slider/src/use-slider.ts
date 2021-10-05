@@ -23,7 +23,7 @@ import {
   valueToPercent,
 } from "@chakra-ui/utils"
 import { CSSProperties, useCallback, useMemo, useRef } from "react"
-import { getPartsStyle, getIsReversed } from "./slider-utils"
+import { getStyles, getIsReversed } from "./slider-utils"
 
 export interface UseSliderProps {
   /**
@@ -186,7 +186,7 @@ export function useSlider(props: UseSliderProps) {
 
   const reversedValue = max - value + min
   const trackValue = isReversed ? reversedValue : value
-  const trackPercent = valueToPercent(trackValue, min, max)
+  const thumbPercent = valueToPercent(trackValue, min, max)
 
   const isVertical = orientation === "vertical"
 
@@ -314,15 +314,20 @@ export function useSlider(props: UseSliderProps) {
   /**
    * Compute styles for all component parts.
    */
-  const { thumbStyle, rootStyle, trackStyle, innerTrackStyle } = useMemo(() => {
+  const {
+    getThumbStyle,
+    rootStyle,
+    trackStyle,
+    innerTrackStyle,
+  } = useMemo(() => {
     const thumbRect = thumbBoxModel?.borderBox ?? { width: 0, height: 0 }
-    return getPartsStyle({
+    return getStyles({
       isReversed,
       orientation,
-      thumbRect,
-      trackPercent,
+      thumbRects: [thumbRect],
+      thumbPercents: [thumbPercent],
     })
-  }, [isReversed, orientation, thumbBoxModel?.borderBox, trackPercent])
+  }, [isReversed, orientation, thumbBoxModel?.borderBox, thumbPercent])
 
   const focusThumb = useCallback(() => {
     if (thumbRef.current && focusThumbOnChange) {
@@ -425,29 +430,29 @@ export function useSlider(props: UseSliderProps) {
       "aria-labelledby": ariaLabel ? undefined : ariaLabelledBy,
       style: {
         ...props.style,
-        ...thumbStyle,
+        ...getThumbStyle(0),
       },
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
       onFocus: callAllHandlers(props.onFocus, setFocused.on),
       onBlur: callAllHandlers(props.onBlur, setFocused.off),
     }),
     [
+      isInteractive,
+      thumbId,
+      isDragging,
+      valueText,
+      min,
+      max,
+      value,
+      orientation,
+      isDisabled,
+      isReadOnly,
       ariaLabel,
       ariaLabelledBy,
-      isDisabled,
-      isDragging,
-      isReadOnly,
-      isInteractive,
-      max,
-      min,
+      getThumbStyle,
       onKeyDown,
-      orientation,
-      setFocused.off,
       setFocused.on,
-      thumbId,
-      thumbStyle,
-      value,
-      valueText,
+      setFocused.off,
     ],
   )
 
