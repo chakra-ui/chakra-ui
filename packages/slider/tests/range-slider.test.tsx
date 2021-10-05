@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/aria-proptypes */
 import * as React from "react"
 import { press, render, screen, testA11y } from "@chakra-ui/test-utils"
 import {
