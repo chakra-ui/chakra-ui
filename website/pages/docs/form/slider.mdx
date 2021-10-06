@@ -111,15 +111,36 @@ accomplished using the `step` prop.
 </Slider>
 ```
 
-### Slider with custom labels
+### Slider with custom labels and marks
 
-You can have custom labels by using `SliderMark` component
+You can have custom labels and marks by using `SliderMark` component
 
 ```jsx
 function SliderMarkExample() {
   const [sliderValue, setSliderValue] = useState(50);
   return (
-    <Slider aria-label="slider-ex-1" onChange={(val) => setSliderValue(val)}>
+    <Slider aria-label="slider-ex-6" onChange={(val) => setSliderValue(val)}>
+      <SliderMark
+        value={25}
+        m="7px 0 0 -8px"
+        fontSize="13px"
+      >
+        25
+      </SliderMark>
+      <SliderMark
+        value={50}
+        m="7px 0 0 -8px"
+        fontSize="13px"
+      >
+        50
+      </SliderMark>
+      <SliderMark
+        value={75}
+        m="7px 0 0 -8px"
+        fontSize="13px"
+      >
+        75
+      </SliderMark>
       <SliderMark
         value={sliderValue}
         textAlign="center"
