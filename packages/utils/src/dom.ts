@@ -94,8 +94,7 @@ export function getRelatedTarget(
 ) {
   const target = (event.target ?? event.currentTarget) as HTMLElement
   const activeElement = getActiveElement(target)
-  const originalTarget = (event as any).nativeEvent.explicitOriginalTarget
-  return (event.relatedTarget ?? originalTarget ?? activeElement) as HTMLElement
+  return (event.relatedTarget ?? activeElement) as HTMLElement
 }
 
 export function isRightClick(event: Pick<MouseEvent, "button">): boolean {
