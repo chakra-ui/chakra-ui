@@ -376,7 +376,7 @@ functions similar to linear-gradient which handles using a CSS function
 </Heading>
 ```
 
-- 🐛 Grid props type definitions now correclty reflect the implemented behavior
+- 🐛 Grid props type definitions now correctly reflect the implemented behavior
   in regard to tokens.
 
 **System** `v1.7.2`
