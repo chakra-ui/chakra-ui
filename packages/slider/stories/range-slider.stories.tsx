@@ -28,8 +28,9 @@ export const HookUsage = () => {
     getTrackProps,
   } = useRangeSlider({
     direction: useTheme().direction,
-    defaultValue: [40, 80],
-    onChange: (v) => console.log(v.toString()),
+    defaultValue: [10, 40],
+    minStepsBetweenThumbs: 5,
+    // onChange: (v) => console.log(v.toStri     ng()),
   })
 
   return (
