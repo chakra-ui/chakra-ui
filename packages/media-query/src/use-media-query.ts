@@ -25,15 +25,19 @@ export function useMediaQuery(query: string | string[]): boolean[] {
 
     const mediaQueryList = queries.map((query) => env.window.matchMedia(query))
 
-    const listenerList = mediaQueryList.map((mediaQuery, index) => {
+    const listenerList = mediaQueryList.map(() => {
       const listener = () => {
         const isEqual = (prev: boolean[], curr: boolean[]) =>
           prev.length === curr.length &&
           prev.every((elem, idx) => elem === curr[idx])
 
-        const currentMatches = mediaQueryList.map((query) => query.matches)
+        const currentMatches = mediaQueryList.map(
+          (mediaQuery) => mediaQuery.matches,
+        )
 
-        !isEqual(matches, currentMatches) && setMatches(currentMatches)
+        if (!isEqual(matches, currentMatches)) {
+          setMatches(currentMatches)
+        }
       }
 
       env.window.addEventListener("resize", listener)
@@ -42,7 +46,7 @@ export function useMediaQuery(query: string | string[]): boolean[] {
     })
 
     return () => {
-      mediaQueryList.forEach((mediaQuery, index) => {
+      mediaQueryList.forEach((_, index) => {
         env.window.removeEventListener("resize", listenerList[index])
       })
     }
