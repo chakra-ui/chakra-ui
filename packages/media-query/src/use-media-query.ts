@@ -26,21 +26,24 @@ export function useMediaQuery(query: string | string[]): boolean[] {
     const mediaQueryList = queries.map((query) => env.window.matchMedia(query))
 
     const listenerList = mediaQueryList.map((mediaQuery, index) => {
-      const listener = () =>
-        setMatches((prev) =>
-          prev.map((prevValue, idx) =>
-            index === idx ? !!mediaQuery.matches : prevValue,
-          ),
-        )
+      const listener = () => {
+        const isEqual = (prev: boolean[], curr: boolean[]) =>
+          prev.length === curr.length &&
+          prev.every((elem, idx) => elem === curr[idx])
 
-      mediaQuery.addListener(listener)
+        const currentMatches = mediaQueryList.map((query) => query.matches)
+
+        !isEqual(matches, currentMatches) && setMatches(currentMatches)
+      }
+
+      env.window.addEventListener("resize", listener)
 
       return listener
     })
 
     return () => {
       mediaQueryList.forEach((mediaQuery, index) => {
-        mediaQuery.removeListener(listenerList[index])
+        env.window.removeEventListener("resize", listenerList[index])
       })
     }
   }, [query])
