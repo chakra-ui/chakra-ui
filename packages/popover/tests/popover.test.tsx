@@ -1,5 +1,5 @@
 import * as React from "react"
-import { fireEvent, render, screen, waitFor } from "@chakra-ui/test-utils"
+import { act, fireEvent, render, screen, waitFor } from "@chakra-ui/test-utils"
 import { usePopover, UsePopoverProps } from "../src"
 
 const Component = (props: UsePopoverProps) => {
@@ -99,4 +99,86 @@ test("load content lazily", async () => {
 
   // content should still be visible
   expect(content).toBeInTheDocument()
+})
+
+test("should delay opening content on hover", async () => {
+  jest.useFakeTimers()
+  const utils = render(
+    <Component trigger="hover" openDelay={500} closeDelay={0} />,
+  )
+
+  // by default, content should not be visible
+  expect(screen.queryByText("Popover content")).not.toBeVisible()
+
+  // only pass 40% of the time
+  act(() => {
+    fireEvent.mouseOver(utils.getByText(/open/i))
+    jest.advanceTimersByTime(200)
+  })
+
+  // content should still not appear since 500ms has not occurred
+  expect(screen.queryByText("Popover content")).not.toBeVisible()
+
+  // Pass 100% of the time
+  act(() => {
+    jest.advanceTimersByTime(300)
+  })
+
+  // content should be visible to user
+  await waitFor(() => {
+    expect(screen.getByText("Popover content")).toBeVisible()
+  })
+
+  jest.useRealTimers()
+})
+
+test("should not display popover content when leaving the trigger before the targeted delay time", () => {
+  jest.useFakeTimers()
+  render(<Component trigger="hover" openDelay={500} closeDelay={0} />)
+
+  // by default, content should not be visible
+  expect(screen.queryByText("Popover content")).not.toBeVisible()
+
+  // simulate an entry that is less than the open delay and then leave
+  act(() => {
+    fireEvent.mouseOver(screen.getByRole("button", { name: "Open" }))
+    jest.advanceTimersByTime(200)
+    fireEvent.mouseLeave(screen.getByRole("button", { name: "Open" }))
+    jest.advanceTimersByTime(300)
+  })
+
+  expect(screen.queryByText("Popover content")).not.toBeVisible()
+  jest.useRealTimers()
+})
+
+test("should delay closing content on hover leave", async () => {
+  jest.useFakeTimers()
+  render(<Component trigger="hover" openDelay={0} closeDelay={500} />)
+
+  // by default, content should not be visible
+  expect(screen.queryByText("Popover content")).not.toBeVisible()
+
+  // leave the hover to start the close delay
+  act(() => {
+    fireEvent.mouseOver(screen.getByRole("button", { name: "Open" }))
+    jest.advanceTimersByTime(200)
+    fireEvent.mouseLeave(screen.getByRole("button", { name: "Open" }))
+  })
+
+  // since only 40% of the time has passed, content should still appear
+  await waitFor(() => {
+    expect(screen.queryByText("Popover content")).toBeVisible()
+  })
+
+  // pass 100% of the time
+  act(() => {
+    jest.advanceTimersByTime(300)
+  })
+
+  // content should not be visible
+  await waitFor(() => {
+    expect(screen.queryByText("Popover content")).not.toBeVisible()
+  })
+
+  jest.useRealTimers()
 })

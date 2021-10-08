@@ -76,3 +76,19 @@ export function WithCustomAnimation() {
     </Popover>
   )
 }
+
+export function HoverWithDelay() {
+  return (
+    <Popover trigger="hover" openDelay={500} closeDelay={200}>
+      <PopoverTrigger>
+        <IconButton aria-label="Check" p={8}>
+          <MdCheck />
+        </IconButton>
+      </PopoverTrigger>
+      <PopoverContent>
+        <PopoverArrow />
+        <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
+      </PopoverContent>
+    </Popover>
+  )
+}
