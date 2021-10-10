@@ -13,8 +13,10 @@ import { isString, omit, pick, __DEV__, getCSSVar } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
-import { scale } from "./tooltip.transition"
+import { transitions } from "./tooltip.transition"
 import { useTooltip, UseTooltipProps } from "./use-tooltip"
+
+type MotionPreset = "slideInTop" | "scale" | "none"
 
 export interface TooltipProps
   extends HTMLChakraProps<"div">,
@@ -50,6 +52,10 @@ export interface TooltipProps
    * Props to be forwarded to the portal component
    */
   portalProps?: Pick<PortalProps, "appendToParentPortal" | "containerRef">
+  /**
+   * The transition that should be used for the tooltip
+   */
+  motionPreset?: MotionPreset
 }
 
 const StyledTooltip = chakra(motion.div)
@@ -73,6 +79,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
     hasArrow,
     bg,
     portalProps,
+    motionPreset,
     ...rest
   } = ownProps
 
@@ -124,6 +131,8 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
     return <>{children}</>
   }
 
+  const motionProps = transitions[motionPreset || "scale"]
+
   return (
     <>
       {trigger}
@@ -138,11 +147,8 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
               }}
             >
               <StyledTooltip
-                variants={scale}
+                {...motionProps}
                 {...(tooltipProps as any)}
-                initial="exit"
-                animate="enter"
-                exit="exit"
                 __css={styles}
               >
                 {label}

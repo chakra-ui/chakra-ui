@@ -1,3 +1,4 @@
+import { scaleFadeConfig, slideFadeConfig } from "@chakra-ui/transition"
 import { Variants } from "framer-motion"
 
 export const scale: Variants = {
@@ -16,5 +17,14 @@ export const scale: Variants = {
       opacity: { easings: "easeOut", duration: 0.2 },
       scale: { duration: 0.2, ease: [0.175, 0.885, 0.4, 1.1] },
     },
+  },
+}
+
+export const transitions = {
+  none: {},
+  scale: { ...scaleFadeConfig, variants: scale },
+  slideInTop: {
+    ...slideFadeConfig,
+    custom: { offsetX: 0, offsetY: -20 },
   },
 }

@@ -102,6 +102,33 @@ cursor out of the element.
 </Tooltip>
 ```
 
+### Changing Tooltip transition
+
+Change the `Tooltip` transition using a `motionPreset` prop that can be either
+`slideInTop`, `scale` or `none`. Default is set to `scale`.
+
+```jsx
+<Wrap spacing={6}>
+  <WrapItem>
+    <Tooltip label="Hello world" motionPreset="none">
+      No transition
+    </Tooltip>
+  </WrapItem>
+
+  <WrapItem>
+    <Tooltip label="Hello world" motionPreset="slideInTop">
+      Slide-in-Top
+    </Tooltip>
+  </WrapItem>
+
+  <WrapItem>
+    <Tooltip label="Hello world" motionPreset="scale">
+      Scale
+    </Tooltip>
+  </WrapItem>
+</Wrap>
+```
+
 ## Placement
 
 Using the `placement` prop you can adjust where your tooltip will be displayed.
