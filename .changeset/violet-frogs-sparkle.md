@@ -1,5 +1,5 @@
 ---
-"@chakra-ui/cli": minor
+"@chakra-ui/cli": patch
 ---
 
 If tsconfig.json didn't have the settings for ts-node it ended up giving this
