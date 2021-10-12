@@ -10,6 +10,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
+  useTheme,
 } from "@chakra-ui/system"
 import { cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -39,7 +40,8 @@ export const Popover: React.FC<PopoverProps> = (props) => {
   const styles = useMultiStyleConfig("Popover", props)
 
   const { children, ...rest } = omitThemingProps(props)
-  const context = usePopover(rest)
+  const theme = useTheme()
+  const context = usePopover({ ...rest, direction: theme.direction })
 
   return (
     <PopoverProvider value={context}>

@@ -1,13 +1,19 @@
+import { checkboxAnatomy as parts } from "@chakra-ui/anatomy"
+import type {
+  PartsStyleFunction,
+  PartsStyleObject,
+  SystemStyleFunction,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
 import { mode } from "@chakra-ui/theme-tools"
 
-const parts = ["container", "control", "label", "icon"]
-
-function baseStyleControl(props: Record<string, any>) {
+const baseStyleControl: SystemStyleFunction = (props) => {
   const { colorScheme: c } = props
 
   return {
     w: "100%",
-    transition: "box-shadow 250ms",
+    transitionProperty: "box-shadow",
+    transitionDuration: "normal",
     border: "2px solid",
     borderRadius: "sm",
     borderColor: "inherit",
@@ -51,17 +57,23 @@ function baseStyleControl(props: Record<string, any>) {
   }
 }
 
-const baseStyleLabel = {
+const baseStyleLabel: SystemStyleObject = {
   userSelect: "none",
   _disabled: { opacity: 0.4 },
 }
 
-const baseStyle = (props: Record<string, any>) => ({
+const baseStyleIcon: SystemStyleObject = {
+  transitionProperty: "transform",
+  transitionDuration: "normal",
+}
+
+const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
+  icon: baseStyleIcon,
   control: baseStyleControl(props),
   label: baseStyleLabel,
 })
 
-const sizes = {
+const sizes: Record<string, PartsStyleObject<typeof parts>> = {
   sm: {
     control: { h: 3, w: 3 },
     label: { fontSize: "sm" },
@@ -85,7 +97,7 @@ const defaultProps = {
 }
 
 export default {
-  parts,
+  parts: parts.keys,
   baseStyle,
   sizes,
   defaultProps,

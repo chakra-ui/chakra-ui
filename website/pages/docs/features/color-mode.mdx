@@ -49,6 +49,26 @@ const theme = extendTheme({ config })
 export default theme
 ```
 
+For typescript, you need to explicitly describe the theme config type as `ThemeConfig` object.
+
+```jsx live=false
+// theme.ts
+
+// 1. import `extendTheme` function
+import { extendTheme, ThemeConfig } from "@chakra-ui/react"
+
+// 2. Add your color mode config
+const config : ThemeConfig = {
+  initialColorMode: "light",
+  useSystemColorMode: false,
+}
+
+// 3. extend the theme
+const theme = extendTheme({ config })
+
+export default theme
+```
+
 > Remember to pass your custom `theme` to the `ChakraProvider`, otherwise your
 > color mode config won't be taken into consideration.
 
@@ -67,7 +87,7 @@ syncing to work correctly.
 
 For Next.js, you need to add the `ColorModeScript` to the `_document.js` file.
 
-```jsx live=false ln={16}
+```jsx live=false ln={14}
 // pages/_document.js
 
 import { ColorModeScript } from "@chakra-ui/react"
@@ -80,6 +100,7 @@ export default class Document extends NextDocument {
       <Html lang="en">
         <Head />
         <body>
+          {/* 👇 Here's the script */}
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Main />
           <NextScript />

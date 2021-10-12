@@ -10,6 +10,7 @@ import { Portal } from "@chakra-ui/portal"
 import * as React from "react"
 import { Button } from "@chakra-ui/button"
 import { FaSearch, FaTruck, FaUndoAlt, FaUnlink } from "react-icons/fa"
+import { extendTheme, ThemeProvider } from "@chakra-ui/react"
 import {
   Menu,
   MenuButton,
@@ -442,4 +443,23 @@ test("MenuItem can override its parent menu's `closeOnSelect` and close the menu
 
   fireEvent.click(menuItemThatCloses)
   expect(onClose).toHaveBeenCalled()
+})
+
+test("MenuList direction flips in rtl", () => {
+  render(
+    <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
+      <Menu placement="top-end" isOpen>
+        <MenuButton as={Button}>Open menu</MenuButton>
+        <MenuList>
+          <MenuItem>Pick me</MenuItem>
+          <MenuItem>No no, pick me</MenuItem>
+        </MenuList>
+      </Menu>
+    </ThemeProvider>,
+  )
+
+  const menuList = screen.getByRole("menu")
+  expect(menuList.parentElement!.getAttribute("data-popper-placement")).toEqual(
+    "top-start",
+  )
 })

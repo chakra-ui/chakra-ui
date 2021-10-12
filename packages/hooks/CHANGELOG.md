@@ -1,5 +1,43 @@
 # Change Log
 
+## 1.6.0
+
+### Minor Changes
+
+- [`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130)
+  [#4595](https://github.com/chakra-ui/chakra-ui/pull/4595) Thanks
+  [@margalit](https://github.com/margalit)! - - Added an enabled prop to the
+  `useOutsideClick` hook to conditionally attach event handlers.
+
+  - Updated the `useMenu` hook to only enable the `useOutsideClick` hook when
+    the menu is open.
+
+## 1.5.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+
+## 1.5.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+
+## 1.5.3
+
+### Patch Changes
+
+- [`aa374ffcb`](https://github.com/chakra-ui/chakra-ui/commit/aa374ffcb4003efd88eb6a62e10723ea9fbfa3d0)
+  [#4166](https://github.com/chakra-ui/chakra-ui/pull/4166) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fix inconsisent id
+  generation between client and server
+
 ## 1.5.2
 
 ### Patch Changes

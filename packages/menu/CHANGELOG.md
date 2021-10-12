@@ -1,5 +1,100 @@
 # Change Log
 
+## 1.7.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`eafb21e18`](https://github.com/chakra-ui/chakra-ui/commit/eafb21e1883cf40bfe44e143714d9a480a0cc7da)]:
+  - @chakra-ui/transition@1.3.5
+
+## 1.7.4
+
+### Patch Changes
+
+- [`19d9abe75`](https://github.com/chakra-ui/chakra-ui/commit/19d9abe75cf863468b70362ce7eee90f0ad94d29)
+  [#4691](https://github.com/chakra-ui/chakra-ui/pull/4691) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where keyboard
+  navigation doesn't work when `MenuButton` isn't rendered. This is useful in
+  scenarios where you want the menu to be triggered by a command or right-click.
+- Updated dependencies
+  [[`4146a9051`](https://github.com/chakra-ui/chakra-ui/commit/4146a9051a5151532503e31c464193e9d118dd26)]:
+  - @chakra-ui/popper@2.3.0
+
+## 1.7.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130)]:
+  - @chakra-ui/hooks@1.6.0
+
+## 1.7.2
+
+### Patch Changes
+
+- [`6dadb97db`](https://github.com/chakra-ui/chakra-ui/commit/6dadb97db74fb9e559c41770b8c99e1a9ed08577)
+  [#4514](https://github.com/chakra-ui/chakra-ui/pull/4514) Thanks
+  [@takethefake](https://github.com/takethefake)! - MenuList scroll to next
+  MenuItem on KeyboardNavigation when there is a defined maxHeight on MenuList
+
+* [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)
+  [#4458](https://github.com/chakra-ui/chakra-ui/pull/4458) Thanks
+  [@agundermann](https://github.com/agundermann)! - Fix issues when rendering
+  chakra components in different window
+
+* Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+  - @chakra-ui/clickable@1.1.7
+  - @chakra-ui/hooks@1.5.5
+  - @chakra-ui/transition@1.3.4
+
+## 1.7.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+  - @chakra-ui/clickable@1.1.6
+  - @chakra-ui/hooks@1.5.4
+  - @chakra-ui/transition@1.3.3
+
+## 1.7.0
+
+### Minor Changes
+
+- [`5afa7ef49`](https://github.com/chakra-ui/chakra-ui/commit/5afa7ef49c7e3b01bce932e252865226b9511b39)
+  [#4180](https://github.com/chakra-ui/chakra-ui/pull/4180) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Added
+  `computePositionOnMount` prop to allow positioning the popover or menu before
+  initial open
+
+### Patch Changes
+
+- [`9fadbc80f`](https://github.com/chakra-ui/chakra-ui/commit/9fadbc80f626534edca5f9a789bda2b5232cde15)
+  [#4211](https://github.com/chakra-ui/chakra-ui/pull/4211) Thanks
+  [@tim-stasse](https://github.com/tim-stasse)! - Fixed menu typeahead
+
+* [`afb9b3cfa`](https://github.com/chakra-ui/chakra-ui/commit/afb9b3cfa87076ed8897b7edd4a9d9f1e1701721)
+  [#4103](https://github.com/chakra-ui/chakra-ui/pull/4103) Thanks
+  [@with-heart](https://github.com/with-heart)! - Update transitions to use
+  theme tokens and remove outline transitions
+
+- [`245a164f6`](https://github.com/chakra-ui/chakra-ui/commit/245a164f6058e96986b2354017d96816b5d336e9)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  closeOnSelect won't work sometime
+
+- Updated dependencies
+  [[`e8da4c65f`](https://github.com/chakra-ui/chakra-ui/commit/e8da4c65f026f636ea26d11b7aaed63f2babf00d),
+  [`aa374ffcb`](https://github.com/chakra-ui/chakra-ui/commit/aa374ffcb4003efd88eb6a62e10723ea9fbfa3d0),
+  [`5afa7ef49`](https://github.com/chakra-ui/chakra-ui/commit/5afa7ef49c7e3b01bce932e252865226b9511b39)]:
+  - @chakra-ui/transition@1.3.2
+  - @chakra-ui/hooks@1.5.3
+  - @chakra-ui/popper@2.2.1
+
 ## 1.6.3
 
 ### Patch Changes

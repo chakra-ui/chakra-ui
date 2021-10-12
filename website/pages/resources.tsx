@@ -4,7 +4,7 @@ import ResourceCard, { Resource } from "components/resource-card"
 import Sidebar from "components/sidebar/sidebar"
 import resources from "configs/resources.json"
 import { getRoutes } from "layouts/mdx"
-import _ from "lodash"
+import groupBy from "lodash/groupBy"
 import * as React from "react"
 import { FaMicrophone, FaPenSquare, FaVideo } from "react-icons/fa"
 
@@ -15,7 +15,7 @@ function Resources() {
    */
   const routes = getRoutes("/docs/")
   const data = resources.data as Resource[]
-  const groups = _.groupBy(data, "type")
+  const groups = groupBy(data, "type")
 
   return (
     <PageContainer

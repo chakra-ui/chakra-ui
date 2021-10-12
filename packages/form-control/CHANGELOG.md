@@ -1,5 +1,81 @@
 # Change Log
 
+## 1.4.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130)]:
+  - @chakra-ui/hooks@1.6.0
+
+## 1.4.0
+
+### Minor Changes
+
+- [`ff4dc7c38`](https://github.com/chakra-ui/chakra-ui/commit/ff4dc7c38310367c0e89522db9e88ae069cb6c2b)
+  [#4317](https://github.com/chakra-ui/chakra-ui/pull/4317) Thanks
+  [@bhishp](https://github.com/bhishp)! - Added a `container` part to the
+  `FormControl` component theme, allowing the root `FormControl` element to be
+  themed.
+
+  ```jsx
+  import { extendTheme } from "@chakra-ui/react"
+
+  export const theme = extendTheme({
+    components: {
+      Form: {
+        variants: {
+          // create a variant named "custom"
+          custom: {
+            // style the root `FormControl` element
+            container: {
+              color: "white",
+              bg: "blue.900",
+            },
+          },
+        },
+      },
+    },
+  })
+  ```
+
+### Patch Changes
+
+- [`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0)
+  [#4437](https://github.com/chakra-ui/chakra-ui/pull/4437) Thanks
+  [@Toxiapo](https://github.com/Toxiapo)! - Remove code that was added as a
+  workaround for pre-releases of React concurrent mode.
+
+* [`4981d9898`](https://github.com/chakra-ui/chakra-ui/commit/4981d9898641be3904367ef917560fef3b362720)
+  [#4538](https://github.com/chakra-ui/chakra-ui/pull/4538) Thanks
+  [@takethefake](https://github.com/takethefake)! - if an `aria-describedby`
+  property is passed it will be joined with the id's from helper-text and
+  error-message instead of being overwritten.
+* Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+  - @chakra-ui/hooks@1.5.5
+  - @chakra-ui/icon@1.1.11
+
+## 1.3.8
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+  - @chakra-ui/hooks@1.5.4
+  - @chakra-ui/icon@1.1.10
+
+## 1.3.7
+
+### Patch Changes
+
+- Updated dependencies
+  [[`aa374ffcb`](https://github.com/chakra-ui/chakra-ui/commit/aa374ffcb4003efd88eb6a62e10723ea9fbfa3d0)]:
+  - @chakra-ui/hooks@1.5.3
+
 ## 1.3.6
 
 ### Patch Changes

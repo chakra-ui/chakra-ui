@@ -109,6 +109,14 @@ export interface UsePopoverProps extends UsePopperProps {
    * @default "unmount"
    */
   lazyBehavior?: LazyBehavior
+  /**
+   * If `true`, the popover will be positioned when it mounts
+   * (even if it's not open)
+   *
+   * Note 🚨: We don't recommend using this in a popover/menu intensive UI or page
+   * as it might affect scrolling performance.
+   */
+  computePositionOnMount?: boolean
 }
 
 /**
@@ -129,6 +137,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     closeDelay = 200,
     isLazy,
     lazyBehavior = "unmount",
+    computePositionOnMount,
     ...popperProps
   } = props
 
@@ -163,7 +172,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     forceUpdate,
   } = usePopper({
     ...popperProps,
-    enabled: isOpen,
+    enabled: isOpen || !!computePositionOnMount,
   })
 
   useFocusOnPointerDown({
@@ -197,6 +206,8 @@ export function usePopover(props: UsePopoverProps = {}) {
         style: {
           ...props.style,
           transformOrigin: popperCSSVars.transformOrigin.varRef,
+          [popperCSSVars.arrowSize.var]: arrowSize ? px(arrowSize) : undefined,
+          [popperCSSVars.arrowShadowColor.var]: arrowShadowColor,
         },
         ref: mergeRefs(popoverRef, _ref),
         children: shouldRenderChildren ? props.children : null,
@@ -248,6 +259,8 @@ export function usePopover(props: UsePopoverProps = {}) {
       isOpen,
       closeOnBlur,
       closeDelay,
+      arrowShadowColor,
+      arrowSize,
     ],
   )
 
@@ -257,17 +270,13 @@ export function usePopover(props: UsePopoverProps = {}) {
         {
           ...props,
           style: {
-            [popperCSSVars.arrowSize.var]: arrowSize
-              ? px(arrowSize)
-              : undefined,
-            [popperCSSVars.arrowShadowColor.var]: arrowShadowColor,
             visibility: isOpen ? "visible" : "hidden",
             ...props.style,
           },
         },
         forwardedRef,
       ),
-    [arrowShadowColor, arrowSize, isOpen, getPopperProps],
+    [isOpen, getPopperProps],
   )
 
   const openTimeout = useRef<number>()

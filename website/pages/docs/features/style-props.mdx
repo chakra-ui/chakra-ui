@@ -88,11 +88,11 @@ import { Box, Text } from "@chakra-ui/react"
 <Box w="100%" h="200px" bgGradient="linear(to-t, green.200, pink.500)" />
 
 // adding radial gradient and color transitions
-<Box w="100%" h="200px" bgGradient="radial(gray.300,yellow.400,pink.200)" />
+<Box w="100%" h="200px" bgGradient="radial(gray.300, yellow.400, pink.200)" />
 
 // adding the text gradient
 <Text
-  bgGradient="linear(to-l, #7928CA,#FF0080)"
+  bgGradient="linear(to-l, #7928CA, #FF0080)"
   bgClip="text"
   fontSize="6xl"
   fontWeight="extrabold"
@@ -489,6 +489,7 @@ import { Button } from "@chakra-ui/react"
 | `_notLast`       | `:not(:last-of-type)`                                                    | none        |
 | `_visited`       | `:visited`                                                               | none        |
 | `_activeLink`    | `[aria-current=page]`                                                    | none        |
+| `_activeStep`    | `[aria-current=step]`                                                    | none        |
 | `_indeterminate` | `:indeterminate`,<br/>`[aria-checked=mixed]`,<br/>`[data-indeterminate]` | none        |
 | `_groupHover`    | `[role=group]:hover &`, <br/> `[role=group][data-hover] &`               | none        |
 | `_groupFocus`    | `[role=group]:focus &`, <br/> `[role=group][data-focus] &`               | none        |
@@ -532,7 +533,7 @@ following props:
 
 ## The `as` prop
 
-The `as` prop is a feature that all of our components that allows you to pass an
+The `as` prop is a feature in all of our components that allows you to pass an
 HTML tag or component to be rendered.
 
 For example, say you are using a `Button` component, and you need to make it a

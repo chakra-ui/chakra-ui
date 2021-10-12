@@ -1,5 +1,73 @@
 # Change Log
 
+## 1.4.4
+
+### Patch Changes
+
+- [`21531b59d`](https://github.com/chakra-ui/chakra-ui/commit/21531b59dba938be1b4ee9d3a5f43f4e10d3f783)
+  [#4767](https://github.com/chakra-ui/chakra-ui/pull/4767) Thanks
+  [@gluck](https://github.com/gluck)! - Added missing `@chakra-ui/react-utils`
+  import
+
+## 1.4.3
+
+### Patch Changes
+
+- [`87ffdd1cb`](https://github.com/chakra-ui/chakra-ui/commit/87ffdd1cb615e9d4bc8a9af66fb6ae9ef1563caf)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  composing `Button` with framer-motion's `motion` factory breaks
+  animation/transition
+
+## 1.4.2
+
+### Patch Changes
+
+- [`bafcc39aa`](https://github.com/chakra-ui/chakra-ui/commit/bafcc39aa80964928a69215ab16e0f24f33bea95)
+  [#4353](https://github.com/chakra-ui/chakra-ui/pull/4353) Thanks
+  [@dsumer](https://github.com/dsumer)! - Resolved an issue where a `Button` in
+  loading state didn't consider the width of `leftIcon` and `rightIcon`,
+  resulting in layout shifts when the button leaves the loading state. Buttons
+  now render with the same width regardless of state.
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+  - @chakra-ui/spinner@1.1.12
+
+## 1.4.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+  - @chakra-ui/spinner@1.1.11
+
+## 1.4.0
+
+### Minor Changes
+
+- [`7e3d3ff35`](https://github.com/chakra-ui/chakra-ui/commit/7e3d3ff356b9f2e875790cd7a96ddfce83034737)
+  [#3904](https://github.com/chakra-ui/chakra-ui/pull/3904) Thanks
+  [@antoniel](https://github.com/antoniel)! - Add className prop to button load
+  spinner
+
+### Patch Changes
+
+- [`afb9b3cfa`](https://github.com/chakra-ui/chakra-ui/commit/afb9b3cfa87076ed8897b7edd4a9d9f1e1701721)
+  [#4103](https://github.com/chakra-ui/chakra-ui/pull/4103) Thanks
+  [@with-heart](https://github.com/with-heart)! - Update transitions to use
+  theme tokens and remove outline transitions
+
+* [`ff946d73e`](https://github.com/chakra-ui/chakra-ui/commit/ff946d73e121aba4b2ff2740ea22440a1c5fdb85)
+  [#4245](https://github.com/chakra-ui/chakra-ui/pull/4245) Thanks
+  [@Mattinton](https://github.com/Mattinton)! - fix(icon-button): update
+  IconButton to use theme borderRadius
+
+* Updated dependencies
+  [[`4c157e320`](https://github.com/chakra-ui/chakra-ui/commit/4c157e320a73b08eb89a44831a7cf434fb403bad)]:
+  - @chakra-ui/spinner@1.1.10
+
 ## 1.3.2
 
 ### Patch Changes

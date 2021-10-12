@@ -1,4 +1,5 @@
 import { keyframes } from "@chakra-ui/system"
+import type { SystemStyleFunction } from "@chakra-ui/theme-tools"
 import { getColor, mode } from "@chakra-ui/theme-tools"
 
 const fade = (startColor: string, endColor: string) =>
@@ -7,7 +8,7 @@ const fade = (startColor: string, endColor: string) =>
     to: { borderColor: endColor, background: endColor },
   })
 
-const baseStyle = (props: Record<string, any>) => {
+const baseStyle: SystemStyleFunction = (props) => {
   const defaultStartColor = mode("gray.100", "gray.800")(props)
   const defaultEndColor = mode("gray.400", "gray.600")(props)
 

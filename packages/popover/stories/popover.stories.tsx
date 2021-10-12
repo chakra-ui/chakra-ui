@@ -94,6 +94,24 @@ export const basic = () => (
   </>
 )
 
+export const Arrow = () => (
+  <>
+    <Popover placement="top" arrowShadowColor="red" arrowSize={40}>
+      <PopoverTrigger>
+        <chakra.button>Welcome home</chakra.button>
+      </PopoverTrigger>
+      <PopoverContent>
+        <PopoverArrow />
+        <PopoverHeader>Submit now</PopoverHeader>
+        <PopoverBody>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
+  </>
+)
+
 export function ControlledUsage() {
   const [isOpen, setIsOpen] = React.useState(false)
   const open = () => setIsOpen(!isOpen)

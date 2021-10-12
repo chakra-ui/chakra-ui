@@ -4,6 +4,10 @@ import { useCallbackRef } from "./use-callback-ref"
 
 export interface UseOutsideClickProps {
   /**
+   * Whether the hook is enabled
+   */
+  enabled?: boolean
+  /**
    * The reference to a DOM element.
    */
   ref: RefObject<HTMLElement>
@@ -18,7 +22,7 @@ export interface UseOutsideClickProps {
  * when a user clicks outside them.
  */
 export function useOutsideClick(props: UseOutsideClickProps) {
-  const { ref, handler } = props
+  const { ref, handler, enabled = true } = props
   const savedHandler = useCallbackRef(handler)
 
   const stateRef = useRef({
@@ -29,6 +33,7 @@ export function useOutsideClick(props: UseOutsideClickProps) {
   const state = stateRef.current
 
   useEffect(() => {
+    if (!enabled) return
     const onPointerDown: any = (e: PointerEvent) => {
       if (isValidEvent(e, ref)) {
         state.isPointerDown = true
@@ -67,7 +72,7 @@ export function useOutsideClick(props: UseOutsideClickProps) {
       doc.removeEventListener("touchstart", onPointerDown, true)
       doc.removeEventListener("touchend", onTouchEnd, true)
     }
-  }, [handler, ref, savedHandler, state])
+  }, [handler, ref, savedHandler, state, enabled])
 }
 
 function isValidEvent(event: any, ref: React.RefObject<HTMLElement>) {

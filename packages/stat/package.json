@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/stat",
-  "version": "1.1.9",
+  "version": "1.1.12",
   "description": "A React component for displaying statistics",
   "keywords": [
     "stat",
@@ -33,7 +33,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chakra-ui/chakra-ui.git"
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/stat"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
@@ -53,12 +54,12 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/icon": "1.1.9",
-    "@chakra-ui/utils": "1.8.0",
-    "@chakra-ui/visually-hidden": "1.0.12"
+    "@chakra-ui/icon": "1.1.11",
+    "@chakra-ui/utils": "1.8.2",
+    "@chakra-ui/visually-hidden": "1.0.14"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.6.7",
+    "@chakra-ui/system": "1.7.3",
     "react": "^17.0.1"
   },
   "peerDependencies": {

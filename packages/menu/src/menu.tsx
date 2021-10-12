@@ -11,6 +11,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
+  useTheme,
 } from "@chakra-ui/system"
 import { cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { CustomDomComponent, motion, Variants } from "framer-motion"
@@ -49,8 +50,8 @@ export const Menu: React.FC<MenuProps> = (props) => {
 
   const styles = useMultiStyleConfig("Menu", props)
   const ownProps = omitThemingProps(props)
-
-  const { descendants, ...ctx } = useMenu(ownProps)
+  const { direction } = useTheme()
+  const { descendants, ...ctx } = useMenu({ ...ownProps, direction })
   const context = React.useMemo(() => ctx, [ctx])
 
   const { isOpen, onClose, forceUpdate } = context
@@ -83,7 +84,6 @@ const StyledMenuButton = forwardRef<MenuButtonProps, "button">((props, ref) => {
         appearance: "none",
         alignItems: "center",
         outline: 0,
-        transition: "all 250ms",
         ...styles.button,
       }}
     />

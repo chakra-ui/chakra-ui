@@ -1,22 +1,27 @@
+import { tabsAnatomy as parts } from "@chakra-ui/anatomy"
+import type {
+  PartsStyleFunction,
+  PartsStyleInterpolation,
+  PartsStyleObject,
+  SystemStyleFunction,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
 import { getColor, mode } from "@chakra-ui/theme-tools"
 
-const parts = ["root", "tablist", "tab", "tabpanels", "tabpanel", "indicator"]
-
-type Dict = Record<string, any>
-
-function baseStyleRoot(props: Dict) {
+const baseStyleRoot: SystemStyleFunction = (props) => {
   const { orientation } = props
   return {
     display: orientation === "vertical" ? "flex" : "block",
   }
 }
 
-function baseStyleTab(props: Dict) {
+const baseStyleTab: SystemStyleFunction = (props) => {
   const { isFitted } = props
 
   return {
     flex: isFitted ? 1 : undefined,
-    transition: "all 0.2s",
+    transitionProperty: "common",
+    transitionDuration: "normal",
     _focus: {
       zIndex: 1,
       boxShadow: "outline",
@@ -24,7 +29,7 @@ function baseStyleTab(props: Dict) {
   }
 }
 
-function baseStyleTablist(props: Dict) {
+const baseStyleTablist: SystemStyleFunction = (props) => {
   const { align = "start", orientation } = props
 
   const alignments = {
@@ -39,16 +44,18 @@ function baseStyleTablist(props: Dict) {
   }
 }
 
-const baseStyleTabpanel = { p: 4 }
+const baseStyleTabpanel: SystemStyleObject = {
+  p: 4,
+}
 
-const baseStyle = (props: Dict) => ({
+const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   root: baseStyleRoot(props),
   tab: baseStyleTab(props),
   tablist: baseStyleTablist(props),
   tabpanel: baseStyleTabpanel,
 })
 
-const sizes = {
+const sizes: Record<string, PartsStyleObject<typeof parts>> = {
   sm: {
     tab: {
       py: 1,
@@ -72,7 +79,7 @@ const sizes = {
   },
 }
 
-function variantLine(props: Dict) {
+const variantLine: PartsStyleFunction<typeof parts> = (props) => {
   const { colorScheme: c, orientation } = props
   const isVertical = orientation === "vertical"
   const borderProp = orientation === "vertical" ? "borderStart" : "borderBottom"
@@ -102,7 +109,7 @@ function variantLine(props: Dict) {
   }
 }
 
-function variantEnclosed(props: Dict) {
+const variantEnclosed: PartsStyleFunction<typeof parts> = (props) => {
   const { colorScheme: c } = props
   return {
     tab: {
@@ -124,7 +131,7 @@ function variantEnclosed(props: Dict) {
   }
 }
 
-function variantEnclosedColored(props: Dict) {
+const variantEnclosedColored: PartsStyleFunction<typeof parts> = (props) => {
   const { colorScheme: c } = props
   return {
     tab: {
@@ -136,7 +143,7 @@ function variantEnclosedColored(props: Dict) {
         marginEnd: "-1px",
       },
       _selected: {
-        bg: mode(`#fff`, "gray.800")(props),
+        bg: mode("#fff", "gray.800")(props),
         color: mode(`${c}.600`, `${c}.300`)(props),
         borderColor: "inherit",
         borderTopColor: "currentColor",
@@ -151,7 +158,7 @@ function variantEnclosedColored(props: Dict) {
   }
 }
 
-function variantSoftRounded(props: Dict) {
+const variantSoftRounded: PartsStyleFunction<typeof parts> = (props) => {
   const { colorScheme: c, theme } = props
   return {
     tab: {
@@ -166,7 +173,7 @@ function variantSoftRounded(props: Dict) {
   }
 }
 
-function variantSolidRounded(props: Dict) {
+const variantSolidRounded: PartsStyleFunction<typeof parts> = (props) => {
   const { colorScheme: c } = props
   return {
     tab: {
@@ -181,9 +188,9 @@ function variantSolidRounded(props: Dict) {
   }
 }
 
-const variantUnstyled = {}
+const variantUnstyled: PartsStyleObject<typeof parts> = {}
 
-const variants = {
+const variants: Record<string, PartsStyleInterpolation<typeof parts>> = {
   line: variantLine,
   enclosed: variantEnclosed,
   "enclosed-colored": variantEnclosedColored,
@@ -199,7 +206,7 @@ const defaultProps = {
 }
 
 export default {
-  parts,
+  parts: parts.keys,
   baseStyle,
   sizes,
   variants,

@@ -1,18 +1,18 @@
 import { useDisclosure, useEventListener, useId } from "@chakra-ui/hooks"
-import {
-  Placement,
-  usePopper,
-  UsePopperProps,
-  popperCSSVars,
-} from "@chakra-ui/popper"
-import { callAllHandlers, px } from "@chakra-ui/utils"
+import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
+import { callAllHandlers, px } from "@chakra-ui/utils"
 import * as React from "react"
 
 export interface UseTooltipProps
   extends Pick<
     UsePopperProps,
-    "modifiers" | "gutter" | "offset" | "arrowPadding"
+    | "modifiers"
+    | "gutter"
+    | "offset"
+    | "arrowPadding"
+    | "direction"
+    | "placement"
   > {
   /**
    * Delay (in ms) before showing the tooltip
@@ -41,10 +41,6 @@ export interface UseTooltipProps
    * Callback to run when the tooltip hides
    */
   onClose?(): void
-  /**
-   * The Popper.js placement of the tooltip
-   */
-  placement?: Placement
   /**
    * Custom `id` to use in place of `uuid`
    */
@@ -81,6 +77,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     isDisabled,
     gutter,
     offset,
+    direction,
     ...htmlProps
   } = props
 
@@ -103,6 +100,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     modifiers,
     gutter,
     offset,
+    direction,
   })
 
   const tooltipId = useId(id, "tooltip")
@@ -159,7 +157,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
    * React regarding the onMouseLeave polyfill.
    * @see https://github.com/facebook/react/issues/11972
    */
-  useEventListener("mouseleave", closeWithDelay, ref.current)
+  useEventListener("mouseleave", closeWithDelay, () => ref.current)
 
   const getTriggerProps: PropGetter = React.useCallback(
     (props = {}, _ref = null) => {

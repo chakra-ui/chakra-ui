@@ -8,6 +8,7 @@ import {
   useMultiStyleConfig,
   useStyles,
   HTMLChakraProps,
+  SystemStyleObject,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
@@ -130,16 +131,21 @@ export interface StatProps
 
 export const Stat = forwardRef<StatProps, "div">((props, ref) => {
   const styles = useMultiStyleConfig("Stat", props)
+  const statStyles: SystemStyleObject = {
+    position: "relative",
+    flex: "1 1 0%",
+    ...styles.container,
+  }
+
   const { className, children, ...rest } = omitThemingProps(props)
 
   return (
     <StylesProvider value={styles}>
       <chakra.div
-        className={cx("chakra-stat", className)}
         ref={ref}
-        position="relative"
-        flex="1 1 0%"
         {...rest}
+        className={cx("chakra-stat", className)}
+        __css={statStyles}
       >
         <dl>{children}</dl>
       </chakra.div>
@@ -151,7 +157,7 @@ if (__DEV__) {
   Stat.displayName = "Stat"
 }
 
-interface StatGroupProps extends HTMLChakraProps<"div"> {}
+export interface StatGroupProps extends HTMLChakraProps<"div"> {}
 
 export const StatGroup = forwardRef<StatGroupProps, "div">((props, ref) => (
   <chakra.div

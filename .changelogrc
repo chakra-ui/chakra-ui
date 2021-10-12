@@ -1,0 +1,41 @@
+## 05-10-2021
+
+**Button** `v1.4.4`
+
+- Added missing `@chakra-ui/react-utils` import
+
+**Slider** `v1.4.0`
+
+- Move hard-coded styles to slider's theme
+- Add support for multithumb slider. We now have `useRangeSlider`, `RangeSlider`
+  and `RangeSlider*` components
+
+```jsx live=false
+<RangeSlider>
+  <RangeSliderTrack>
+    <RangeSliderFilledTrack />
+  </RangeSliderTrack>
+  <RangeSliderThumb index={0} />
+  <RangeSliderThumb index={1} />
+</RangeSlider>
+```
+
+**Transition** `v1.3.5`
+
+- Updated transition variants for drawer animations to prevent it from
+  disappearing when placement conditionally changes
+
+**Cli** `v1.5.2`
+
+- Fixed an issue where the CLI failed with
+  `SyntaxError: JSON5: invalid character`.
+
+**Theme** `v1.10.3`
+
+- Refactor slider theme from slider.tsx to slider's theme
+
+**Toast** `v1.3.1`
+
+- Allow alerts rendered by useToast and createStandaloneToast to be discovered by
+  role and accessible name (e.g. using Testing Library
+  [ByRole](https://testing-library.com/docs/queries/byrole/)).

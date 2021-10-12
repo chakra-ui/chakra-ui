@@ -1,5 +1,115 @@
 # Change Log
 
+## 1.10.3
+
+### Patch Changes
+
+- [`b769e88f9`](https://github.com/chakra-ui/chakra-ui/commit/b769e88f977a4e2a8641de57beefd8220bc5dffa)
+  [#4740](https://github.com/chakra-ui/chakra-ui/pull/4740) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Refactor slider theme from
+  slider.tsx to slider's theme
+
+## 1.10.2
+
+### Patch Changes
+
+- [`09577b088`](https://github.com/chakra-ui/chakra-ui/commit/09577b088272075f6f183bbb34d5639ac5e68cc0)
+  [#4708](https://github.com/chakra-ui/chakra-ui/pull/4708) Thanks
+  [@hiroppy](https://github.com/hiroppy)! - Replace `tinycolor2` with
+  `@ctrl/tinycolor` to get better tree-shaking benefits
+
+- Updated dependencies
+  [[`09577b088`](https://github.com/chakra-ui/chakra-ui/commit/09577b088272075f6f183bbb34d5639ac5e68cc0),
+  [`a096ccdde`](https://github.com/chakra-ui/chakra-ui/commit/a096ccdde87a52919cd6e39d985c0dd1154ffbd7),
+  [`a02b0de8b`](https://github.com/chakra-ui/chakra-ui/commit/a02b0de8b14acb8282cabafe5cef885e8da0b8fb)]:
+  - @chakra-ui/theme-tools@1.2.1
+  - @chakra-ui/anatomy@1.0.1
+
+## 1.10.1
+
+### Patch Changes
+
+- [`633df562f`](https://github.com/chakra-ui/chakra-ui/commit/633df562f4ab22ae5406d5a5cda7661171fc8a65)
+  [#4576](https://github.com/chakra-ui/chakra-ui/pull/4576) Thanks
+  [@takethefake](https://github.com/takethefake)! - Added `overview:"visible"`
+  to `baseStyle` of `TagLabel` to avoid clipped text
+
+- Updated dependencies
+  [[`01c913309`](https://github.com/chakra-ui/chakra-ui/commit/01c913309819c342806307291d2d60aea0122ecf)]:
+  - @chakra-ui/theme-tools@1.2.0
+
+## 1.10.0
+
+### Minor Changes
+
+- [`ff4dc7c38`](https://github.com/chakra-ui/chakra-ui/commit/ff4dc7c38310367c0e89522db9e88ae069cb6c2b)
+  [#4317](https://github.com/chakra-ui/chakra-ui/pull/4317) Thanks
+  [@bhishp](https://github.com/bhishp)! - Added a `container` part to the
+  `FormControl` component theme, allowing the root `FormControl` element to be
+  themed.
+
+  ```jsx
+  import { extendTheme } from "@chakra-ui/react"
+
+  export const theme = extendTheme({
+    components: {
+      Form: {
+        variants: {
+          // create a variant named "custom"
+          custom: {
+            // style the root `FormControl` element
+            container: {
+              color: "white",
+              bg: "blue.900",
+            },
+          },
+        },
+      },
+    },
+  })
+  ```
+
+### Patch Changes
+
+- [`2d9942d3b`](https://github.com/chakra-ui/chakra-ui/commit/2d9942d3b7221cfe9a74aefa54ec0b6451bd961b)
+  [#4539](https://github.com/chakra-ui/chakra-ui/pull/4539) Thanks
+  [@takethefake](https://github.com/takethefake)! - Add `container`-part to Stat
+  styleConfig
+
+* [`46d0fb099`](https://github.com/chakra-ui/chakra-ui/commit/46d0fb099f415f7f3556c657ecd05e35ec68a9de)
+  [#4463](https://github.com/chakra-ui/chakra-ui/pull/4463) Thanks
+  [@takethefake](https://github.com/takethefake)! - Modals with `size:full` have
+  no vertical margin
+
+* Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+  - @chakra-ui/theme-tools@1.1.9
+
+## 1.9.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+  - @chakra-ui/theme-tools@1.1.8
+
+## 1.9.1
+
+### Patch Changes
+
+- [`cbf8bbdf0`](https://github.com/chakra-ui/chakra-ui/commit/cbf8bbdf02eff45a57a28307ec9c3137ce845420)
+  [#4157](https://github.com/chakra-ui/chakra-ui/pull/4157) Thanks
+  [@vcastroi](https://github.com/vcastroi)! - Fix an issue where the distance to
+  the next element below a textarea was too large in some browsers.
+
+* [`afb9b3cfa`](https://github.com/chakra-ui/chakra-ui/commit/afb9b3cfa87076ed8897b7edd4a9d9f1e1701721)
+  [#4103](https://github.com/chakra-ui/chakra-ui/pull/4103) Thanks
+  [@with-heart](https://github.com/with-heart)! - Update transitions to use
+  theme tokens and remove outline transitions
+
 ## 1.9.0
 
 ### Minor Changes

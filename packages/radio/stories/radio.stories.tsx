@@ -161,3 +161,17 @@ export function CustomRadioCard() {
     </Stack>
   )
 }
+
+export function DisabledRadioGroup() {
+  return (
+    <RadioGroup isDisabled>
+      <Radio value="one">One</Radio>
+      <Radio value="two" isDisabled>
+        Two
+      </Radio>
+      <Radio value="three" isDisabled={false}>
+        Three
+      </Radio>
+    </RadioGroup>
+  )
+}

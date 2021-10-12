@@ -1,10 +1,12 @@
+import { alertAnatomy as parts } from "@chakra-ui/anatomy"
 import { getColor, mode, transparentize } from "@chakra-ui/theme-tools"
+import type {
+  PartsStyleObject,
+  PartsStyleFunction,
+  StyleFunctionProps,
+} from "@chakra-ui/theme-tools"
 
-type Dict = Record<string, any>
-
-const parts = ["container", "title", "description", "icon"]
-
-const baseStyle = {
+const baseStyle: PartsStyleObject<typeof parts> = {
   container: {
     px: 4,
     py: 3,
@@ -25,14 +27,14 @@ const baseStyle = {
   },
 }
 
-function getBg(props: Dict) {
+function getBg(props: StyleFunctionProps): string {
   const { theme, colorScheme: c } = props
   const lightBg = getColor(theme, `${c}.100`, c)
   const darkBg = transparentize(`${c}.200`, 0.16)(theme)
   return mode(lightBg, darkBg)(props)
 }
 
-function variantSubtle(props: Dict) {
+const variantSubtle: PartsStyleFunction<typeof parts> = (props) => {
   const { colorScheme: c } = props
   return {
     container: { bg: getBg(props) },
@@ -40,7 +42,7 @@ function variantSubtle(props: Dict) {
   }
 }
 
-function variantLeftAccent(props: Dict) {
+const variantLeftAccent: PartsStyleFunction<typeof parts> = (props) => {
   const { colorScheme: c } = props
   return {
     container: {
@@ -55,7 +57,7 @@ function variantLeftAccent(props: Dict) {
   }
 }
 
-function variantTopAccent(props: Dict) {
+const variantTopAccent: PartsStyleFunction<typeof parts> = (props) => {
   const { colorScheme: c } = props
   return {
     container: {
@@ -70,7 +72,7 @@ function variantTopAccent(props: Dict) {
   }
 }
 
-function variantSolid(props: Dict) {
+const variantSolid: PartsStyleFunction<typeof parts> = (props) => {
   const { colorScheme: c } = props
   return {
     container: {
@@ -93,7 +95,7 @@ const defaultProps = {
 }
 
 export default {
-  parts,
+  parts: parts.keys,
   baseStyle,
   variants,
   defaultProps,

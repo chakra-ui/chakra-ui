@@ -1,9 +1,9 @@
 import components from "./components"
 import foundations from "./foundations"
 import styles from "./styles"
-import { ThemeConfig, ThemeDirection } from "./theme.types"
+import type { ThemeConfig, ThemeDirection } from "./theme.types"
 
-const direction = "ltr" as ThemeDirection
+const direction: ThemeDirection = "ltr"
 
 const config: ThemeConfig = {
   useSystemColorMode: false,

@@ -1,24 +1,41 @@
+import { createContext } from "@chakra-ui/react-utils"
 import {
   chakra,
   forwardRef,
+  HTMLChakraProps,
   SystemStyleObject,
   useStyles,
   useTheme,
-  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { Slide, SlideOptions } from "@chakra-ui/transition"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/react-utils"
 import * as React from "react"
 import { Modal, ModalFocusScope, ModalProps, useModalContext } from "./modal"
 
 const [DrawerContextProvider, useDrawerContext] = createContext<DrawerOptions>()
 
+type LogicalPlacement = "start" | "end"
+type LogicalPlacementMap = Record<
+  LogicalPlacement,
+  { ltr: SlideOptions["direction"]; rtl: SlideOptions["direction"] }
+>
+type DrawerPlacement = SlideOptions["direction"] | LogicalPlacement
+
+const placementMap: LogicalPlacementMap = {
+  start: { ltr: "left", rtl: "right" },
+  end: { ltr: "right", rtl: "left" },
+}
+
+function getDrawerPlacement(placement: DrawerPlacement, dir: "ltr" | "rtl") {
+  if (!placement) return
+  return placementMap[placement]?.[dir] ?? placement
+}
+
 interface DrawerOptions {
   /**
    * The placement of the drawer
    */
-  placement?: SlideOptions["direction"]
+  placement?: DrawerPlacement
   /**
    * If `true` and drawer's placement is `top` or `bottom`,
    * the drawer will occupy the viewport height (100vh)
@@ -26,23 +43,22 @@ interface DrawerOptions {
   isFullHeight?: boolean
 }
 
-export interface DrawerProps extends Omit<ModalProps, "scrollBehavior"> {
-  /**
-   * The placement of the drawer
-   */
-  placement?: SlideOptions["direction"]
-  /**
-   * If `true` and drawer's placement is `top` or `bottom`,
-   * the drawer will occupy the viewport height (100vh)
-   */
-  isFullHeight?: boolean
-}
+export interface DrawerProps
+  extends DrawerOptions,
+    Omit<ModalProps, "scrollBehavior" | "motionPreset" | "isCentered"> {}
 
 export function Drawer(props: DrawerProps) {
-  const { isOpen, onClose, placement = "right", children, ...rest } = props
+  const {
+    isOpen,
+    onClose,
+    placement: placementProp = "right",
+    children,
+    ...rest
+  } = props
 
   const theme = useTheme()
   const drawerStyleConfig = theme.components?.Drawer
+  const placement = getDrawerPlacement(placementProp, theme.direction)
 
   return (
     <DrawerContextProvider value={{ placement }}>
@@ -58,7 +74,7 @@ export function Drawer(props: DrawerProps) {
   )
 }
 
-const StyleSlide = chakra(Slide)
+const StyledSlide = chakra(Slide)
 
 export interface DrawerContentProps extends HTMLChakraProps<"section"> {}
 
@@ -111,7 +127,7 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
         __css={dialogContainerStyles}
       >
         <ModalFocusScope>
-          <StyleSlide
+          <StyledSlide
             direction={placement}
             in={isOpen}
             className={_className}
@@ -119,7 +135,7 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
             __css={dialogStyles}
           >
             {children}
-          </StyleSlide>
+          </StyledSlide>
         </ModalFocusScope>
       </chakra.div>
     )

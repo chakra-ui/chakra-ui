@@ -29,6 +29,7 @@ import {
   getOwnerDocument,
   isActiveElement,
   isArray,
+  isHTMLElement,
   isString,
   LazyBehavior,
   normalizeEventKey,
@@ -102,6 +103,19 @@ export interface UseMenuProps extends UsePopperProps, UseDisclosureProps {
    * @default "unmount"
    */
   lazyBehavior?: LazyBehavior
+  /**
+   * If `rtl`, poper placement positions will be flipped i.e. 'top-right' will
+   * become 'top-left' and vice-verse
+   */
+  direction?: "ltr" | "rtl"
+  /*
+   * If `true`, the menu will be positioned when it mounts
+   * (even if it's not open).
+   *
+   * Note 🚨: We don't recommend using this in a menu/popover intensive UI or page
+   * as it might affect scrolling performance.
+   */
+  computePositionOnMount?: boolean
 }
 
 /**
@@ -123,9 +137,10 @@ export function useMenu(props: UseMenuProps = {}) {
     onOpen: onOpenProp,
     placement = "bottom-start",
     lazyBehavior = "unmount",
+    direction,
+    computePositionOnMount,
     ...popperProps
   } = props
-
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure({
     isOpen: isOpenProp,
     defaultIsOpen,
@@ -140,13 +155,10 @@ export function useMenu(props: UseMenuProps = {}) {
   const buttonRef = React.useRef<HTMLButtonElement>(null)
 
   useOutsideClick({
+    enabled: isOpen && closeOnBlur,
     ref: menuRef,
     handler: (event) => {
-      if (
-        isOpen &&
-        closeOnBlur &&
-        !buttonRef.current?.contains(event.target as HTMLElement)
-      ) {
+      if (!buttonRef.current?.contains(event.target as HTMLElement)) {
         onClose()
       }
     },
@@ -157,8 +169,9 @@ export function useMenu(props: UseMenuProps = {}) {
    */
   const popper = usePopper({
     ...popperProps,
-    enabled: isOpen,
+    enabled: isOpen || computePositionOnMount,
     placement,
+    direction,
   })
 
   const [focusedIndex, setFocusedIndex] = React.useState(-1)
@@ -230,9 +243,15 @@ export function useMenu(props: UseMenuProps = {}) {
 
     const node = descendants.item(focusedIndex)?.node
     if (node) {
-      focus(node, { selectTextIfInput: false })
+      focus(node, { selectTextIfInput: false, preventScroll: false })
     }
   }, [isOpen, focusedIndex, descendants])
+
+  React.useEffect(() => {
+    if (!isOpen) return
+    if (autoSelect) openAndFocusFirstItem()
+    else openAndFocusMenu()
+  }, [isOpen, autoSelect, openAndFocusFirstItem, openAndFocusMenu])
 
   return {
     openAndFocusMenu,
@@ -282,24 +301,7 @@ export function useMenuButton(
 ) {
   const menu = useMenuContext()
 
-  const {
-    isOpen,
-    onClose,
-    autoSelect,
-    popper,
-    openAndFocusFirstItem,
-    openAndFocusLastItem,
-    openAndFocusMenu,
-  } = menu
-
-  const onClick = React.useCallback(() => {
-    if (isOpen) {
-      onClose()
-    } else {
-      const action = autoSelect ? openAndFocusFirstItem : openAndFocusMenu
-      action()
-    }
-  }, [autoSelect, isOpen, onClose, openAndFocusFirstItem, openAndFocusMenu])
+  const { onToggle, popper, openAndFocusFirstItem, openAndFocusLastItem } = menu
 
   const onKeyDown = React.useCallback(
     (event: React.KeyboardEvent) => {
@@ -329,15 +331,17 @@ export function useMenuButton(
     "aria-expanded": menu.isOpen,
     "aria-haspopup": "menu" as React.AriaAttributes["aria-haspopup"],
     "aria-controls": menu.menuId,
-    onClick: callAllHandlers(props.onClick, onClick),
+    onClick: callAllHandlers(props.onClick, onToggle),
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
   }
 }
 
-function isTargetMenuItem(event: Pick<MouseEvent, "target">) {
-  const target = event.target as HTMLElement
+function isTargetMenuItem(target: EventTarget | null) {
   // this will catch `menuitem`, `menuitemradio`, `menuitemcheckbox`
-  return !!target.getAttribute("role")?.startsWith("menuitem")
+  return (
+    isHTMLElement(target) &&
+    !!target.getAttribute("role")?.startsWith("menuitem")
+  )
 }
 
 /* -------------------------------------------------------------------------------------------------
@@ -384,7 +388,8 @@ export function useMenuList(
    * to printable keyboard character press
    */
   const createTypeaheadHandler = useShortcut({
-    preventDefault: (event) => event.key !== " " && isTargetMenuItem(event),
+    preventDefault: (event) =>
+      event.key !== " " && isTargetMenuItem(event.target),
   })
 
   const onKeyDown = React.useCallback(
@@ -429,7 +434,7 @@ export function useMenuList(
         }
       })
 
-      if (isTargetMenuItem(event)) {
+      if (isTargetMenuItem(event.target)) {
         onTypeahead(event)
       }
     },
@@ -575,7 +580,7 @@ export function useMenuItem(
   const onClick = React.useCallback(
     (event: React.MouseEvent) => {
       onClickProp?.(event)
-      if (!isTargetMenuItem(event)) return
+      if (!isTargetMenuItem(event.currentTarget)) return
       /**
        * Close menu and parent menus, allowing the MenuItem
        * to override its parent menu's `closeOnSelect` prop.
@@ -594,9 +599,13 @@ export function useMenuItem(
   useUpdateEffect(() => {
     if (!isOpen) return
     if (isFocused && !trulyDisabled && ref.current) {
-      focus(ref.current, { nextTick: true, selectTextIfInput: false })
+      focus(ref.current, {
+        nextTick: true,
+        selectTextIfInput: false,
+        preventScroll: false,
+      })
     } else if (menuRef.current && !isActiveElement(menuRef.current)) {
-      focus(menuRef.current)
+      focus(menuRef.current, { preventScroll: false })
     }
   }, [isFocused, trulyDisabled, menuRef, isOpen])
 

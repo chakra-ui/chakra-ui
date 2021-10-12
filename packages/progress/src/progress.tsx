@@ -22,7 +22,7 @@ export interface ProgressLabelProps extends HTMLChakraProps<"div"> {}
 
 /**
  * ProgressLabel is used to show the numeric value of the progress.
- * @see Docs https://chakra-ui.com/docs/feedback/progress
+ * @see Docs https://chakra-ui.com/progress
  */
 export const ProgressLabel: React.FC<ProgressLabelProps> = (props) => {
   const styles = useStyles()
@@ -52,7 +52,7 @@ export interface ProgressFilledTrackProps
  * The progress component that visually indicates the current level of the progress bar.
  * It applies `background-color` and changes its width.
  *
- * @see Docs https://chakra-ui.com/docs/components/progress
+ * @see Docs https://chakra-ui.com/progress
  */
 const ProgressFilledTrack: React.FC<ProgressFilledTrackProps> = (props) => {
   const { min, max, value, isIndeterminate, ...rest } = props
@@ -122,7 +122,7 @@ export interface ProgressProps
  * It includes accessible attributes to help assistive technologies understand
  * and speak the progress values.
  *
- * @see Docs https://chakra-ui.com/docs/components/progress
+ * @see Docs https://chakra-ui.com/progress
  */
 export const Progress: React.FC<ProgressProps> = (props) => {
   const {
@@ -145,7 +145,7 @@ export const Progress: React.FC<ProgressProps> = (props) => {
     propBorderRadius ??
     (styles.track?.borderRadius as string | number | undefined)
 
-  const stripAnimation = { animation: `${stripe} 1s linear infinite` }
+  const stripeAnimation = { animation: `${stripe} 1s linear infinite` }
 
   /**
    * We should not use stripe if it is `indeterminate`
@@ -158,7 +158,7 @@ export const Progress: React.FC<ProgressProps> = (props) => {
    * Generate styles for stripe and stripe animation
    */
   const css: Interpolation<any> = {
-    ...(shouldAnimateStripe && stripAnimation),
+    ...(shouldAnimateStripe && stripeAnimation),
     ...(isIndeterminate && {
       position: "absolute",
       willChange: "left",

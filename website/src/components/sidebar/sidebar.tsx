@@ -1,7 +1,7 @@
 import NextLink from "next/link"
 import { useRouter } from "next/router"
 import * as React from "react"
-import _ from "lodash"
+import sortBy from "lodash/sortBy"
 import {
   Badge,
   Box,
@@ -18,13 +18,7 @@ import { Routes } from "utils/get-route-context"
 import { convertBackticksToInlineCode } from "utils/convert-backticks-to-inline-code"
 import SidebarCategory from "./sidebar-category"
 import SidebarLink from "./sidebar-link"
-import {
-  BlogIcon,
-  DocsIcon,
-  GuidesIcon,
-  TeamIcon,
-  ResourcesIcon,
-} from "./sidebar-icons"
+import { DocsIcon, GuidesIcon, TeamIcon, ResourcesIcon } from "./sidebar-icons"
 
 export type SidebarContentProps = Routes & {
   pathname?: string
@@ -64,7 +58,7 @@ export function SidebarContent(props: SidebarContentProps) {
               const opened = selected || lvl2.open
 
               const sortedRoutes = !!lvl2.sort
-                ? _.sortBy(lvl2.routes, (i) => i.title)
+                ? sortBy(lvl2.routes, (i) => i.title)
                 : lvl2.routes
 
               return (
@@ -150,11 +144,6 @@ const mainNavLinks = [
     icon: <TeamIcon />,
     href: "/team",
     label: "Team",
-  },
-  {
-    icon: <BlogIcon />,
-    href: "/blog",
-    label: "Blog",
   },
 ]
 

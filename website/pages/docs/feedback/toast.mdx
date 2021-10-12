@@ -124,6 +124,40 @@ function ClosingToastExample() {
 }
 ```
 
+## Updating Toasts
+
+Toasts' options can be updated, by passing an `id` and the new `options` to the
+`update` instance method.
+
+```jsx
+function UpdatingToastExample() {
+  const toast = useToast()
+  const toastIdRef = React.useRef()
+
+  function update() {
+    if (toastIdRef.current) {
+      toast.update(toastIdRef.current, { description: "new text" })
+    }
+  }
+
+  function addToast() {
+    toastIdRef.current = toast({ description: "some text" })
+  }
+
+  return (
+    <Stack isInline spacing={2}>
+      <Button onClick={addToast} type="button">
+        Toast
+      </Button>
+
+      <Button onClick={update} type="button" variant="outline">
+        Update last toast
+      </Button>
+    </Stack>
+  )
+}
+```
+
 ## Status
 
 You can use `status` to change the color of your toasts.
@@ -256,6 +290,10 @@ function PreventDuplicateExample() {
 
 Use `createStandaloneToast` to create toasts from outside of your React
 Components.
+
+> 🚨 If you're using a custom theme, you **must** pass it in the arguments to
+> `createStandaloneToast`. If you don't, the default theme will be applied,
+> causing the font size of your page to shift when the toast is open.
 
 ```js
 import { createStandaloneToast } from "@chakra-ui/react"

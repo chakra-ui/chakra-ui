@@ -1,5 +1,31 @@
 # Change Log
 
+## 2.3.0
+
+### Minor Changes
+
+- [`4146a9051`](https://github.com/chakra-ui/chakra-ui/commit/4146a9051a5151532503e31c464193e9d118dd26)
+  [#3837](https://github.com/chakra-ui/chakra-ui/pull/3837) Thanks
+  [@mcha-dev](https://github.com/mcha-dev)! - `usePopper` now accepts a
+  `direction` prop so it can handle placement for RTL languages. Values such as
+  `top-start`, `top-end`, `bottom-start` and `bottom-end` will be flipped
+  depending on the theme's direction value.
+
+  In addition to the default `popper.js` placement, you can pass `start-start`,
+  `start-end`, `end-start` and `end-end`. This will resolve to the equivalent
+  `popper.js` placement as well.
+
+## 2.2.1
+
+### Patch Changes
+
+- [`5afa7ef49`](https://github.com/chakra-ui/chakra-ui/commit/5afa7ef49c7e3b01bce932e252865226b9511b39)
+  [#4180](https://github.com/chakra-ui/chakra-ui/pull/4180) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Wrap force update within
+  a function to prevent null scenarios
+  - Add default `inset` value to prevent overflow in scenarios where `enabled`
+    is `false` (i.e. when the popper is not visible)
+
 ## 2.2.0
 
 ### Minor Changes

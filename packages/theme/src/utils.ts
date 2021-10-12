@@ -1,5 +1,5 @@
 import { isObject } from "@chakra-ui/utils"
-import { ChakraTheme } from "./theme.types"
+import type { ChakraTheme } from "./theme.types"
 
 export const requiredChakraThemeKeys: (keyof ChakraTheme)[] = [
   "borders",

@@ -98,7 +98,7 @@ export interface CircularProgressProps
  * It is built using `svg` and `circle` components with support for
  * theming and `indeterminate` state
  *
- * @see Docs https://chakra-ui.com/docs/feedback/circular-progress
+ * @see Docs https://chakra-ui.com/circularprogress
  * @todo add theming support for circular progress
  */
 export const CircularProgress: React.FC<CircularProgressProps> = (props) => {
@@ -142,7 +142,9 @@ export const CircularProgress: React.FC<CircularProgressProps> = (props) => {
     : {
         strokeDashoffset: 66,
         strokeDasharray,
-        transition: `stroke-dasharray 0.6s ease 0s, stroke 0.6s ease`,
+        transitionProperty: "stroke-dasharray, stroke",
+        transitionDuration: "0.6s",
+        transitionTimingFunction: "ease",
       }
 
   const rootStyles: SystemStyleObject = {

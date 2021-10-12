@@ -14,7 +14,10 @@ import {
 } from "./use-radio-group"
 
 export interface RadioGroupContext
-  extends Pick<UseRadioGroupReturn, "onChange" | "value" | "name">,
+  extends Pick<
+      UseRadioGroupReturn,
+      "onChange" | "value" | "name" | "isDisabled" | "isFocusable"
+    >,
     Omit<ThemingProps<"Radio">, "orientation"> {}
 
 const [
@@ -44,10 +47,19 @@ export interface RadioGroupProps
  * Used for multiple radios which are bound in one group,
  * and it indicates which option is selected.
  *
- * @see Docs https://chakra-ui.com/docs/form/radio
+ * @see Docs https://chakra-ui.com/radio
  */
 export const RadioGroup = forwardRef<RadioGroupProps, "div">((props, ref) => {
-  const { colorScheme, size, variant, children, className, ...rest } = props
+  const {
+    colorScheme,
+    size,
+    variant,
+    children,
+    className,
+    isDisabled,
+    isFocusable,
+    ...rest
+  } = props
 
   const { value, onChange, getRootProps, name, htmlProps } = useRadioGroup(rest)
 
@@ -59,8 +71,19 @@ export const RadioGroup = forwardRef<RadioGroupProps, "div">((props, ref) => {
       colorScheme,
       value,
       variant,
+      isDisabled,
+      isFocusable,
     }),
-    [size, name, onChange, colorScheme, value, variant],
+    [
+      name,
+      size,
+      onChange,
+      colorScheme,
+      value,
+      variant,
+      isDisabled,
+      isFocusable,
+    ],
   )
 
   const groupProps = getRootProps(htmlProps, ref)

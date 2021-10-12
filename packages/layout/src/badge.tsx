@@ -17,7 +17,7 @@ export interface BadgeProps
  * React component used to display notifications, messages, or
  * statuses in different shapes and sizes.
  *
- * @see Docs https://chakra-ui.com/docs/data-display/badge
+ * @see Docs https://chakra-ui.com/badge
  */
 export const Badge = forwardRef<BadgeProps, "span">((props, ref) => {
   const styles = useStyleConfig("Badge", props)

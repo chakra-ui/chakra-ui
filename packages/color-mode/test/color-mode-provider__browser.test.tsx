@@ -1,18 +1,25 @@
 import React from "react"
 import { render } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import {
-  mockIsBrowser,
   createMockStorageManager,
   defaultThemeOptions,
   getColorModeButton,
   DummyComponent,
 } from "./utils"
 import * as colorModeUtils from "../src/color-mode.utils"
-import userEvent from "@testing-library/user-event"
+
+jest.mock("@chakra-ui/utils", () => {
+  const actual = jest.requireActual("@chakra-ui/utils")
+
+  return {
+    ...actual,
+    isBrowser: true,
+  }
+})
 
 beforeEach(() => {
   jest.resetAllMocks()
-  mockIsBrowser(true)
 })
 
 describe("<ColorModeProvider /> localStorage browser", () => {

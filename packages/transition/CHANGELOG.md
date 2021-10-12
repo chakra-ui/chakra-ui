@@ -1,5 +1,41 @@
 # Change Log
 
+## 1.3.5
+
+### Patch Changes
+
+- [`eafb21e18`](https://github.com/chakra-ui/chakra-ui/commit/eafb21e1883cf40bfe44e143714d9a480a0cc7da)
+  [#4744](https://github.com/chakra-ui/chakra-ui/pull/4744) Thanks
+  [@rohankokane](https://github.com/rohankokane)! - Updated transition variants
+  for drawer animations to prevent it from disappearing when placement
+  conditionally changes
+
+## 1.3.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+
+## 1.3.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+
+## 1.3.2
+
+### Patch Changes
+
+- [`e8da4c65f`](https://github.com/chakra-ui/chakra-ui/commit/e8da4c65f026f636ea26d11b7aaed63f2babf00d)
+  [#4069](https://github.com/chakra-ui/chakra-ui/pull/4069) Thanks
+  [@lazarnikolov94](https://github.com/lazarnikolov94)! - Fixing an issue in the
+  Collapse transition's enter animation in case of `unmountOnExit`
+
 ## 1.3.1
 
 ### Patch Changes
