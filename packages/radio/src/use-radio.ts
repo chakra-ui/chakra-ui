@@ -256,6 +256,14 @@ export function useRadio(props: UseRadioProps = {}) {
     "data-invalid": dataAttr(isInvalid),
   })
 
+  const getRootProps: PropGetter = (pros, ref = null) => ({
+    ...props,
+    ref,
+    "data-disabled": dataAttr(isDisabled),
+    "data-checked": dataAttr(isChecked),
+    "data-invalid": dataAttr(isInvalid),
+  })
+
   return {
     state: {
       isInvalid,
@@ -270,6 +278,7 @@ export function useRadio(props: UseRadioProps = {}) {
     getCheckboxProps,
     getInputProps,
     getLabelProps,
+    getRootProps,
     htmlProps,
   }
 }

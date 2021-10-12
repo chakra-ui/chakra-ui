@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { FormControl } from "@chakra-ui/react"
-import { fireEvent, render } from "@chakra-ui/test-utils"
+import { fireEvent, render, waitFor } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Radio, useRadioGroup, UseRadioGroupProps, RadioGroup } from "../src"
 
@@ -91,13 +91,13 @@ test("Uncontrolled RadioGroup - should not check if group disabled", () => {
   expect(radioThree).not.toBeDisabled()
 
   fireEvent.click(radioOne)
-  expect(radioOne).not.toBeChecked()
+  waitFor(() => expect(radioOne).not.toBeChecked())
   fireEvent.click(radioOneFocusable)
-  expect(radioOneFocusable).not.toBeChecked()
+  waitFor(() => expect(radioOneFocusable).not.toBeChecked())
   fireEvent.click(radioTwo)
-  expect(radioTwo).not.toBeChecked()
+  waitFor(() => expect(radioTwo).not.toBeChecked())
   fireEvent.click(radioTwoFocusable)
-  expect(radioTwoFocusable).not.toBeChecked()
+  waitFor(() => expect(radioTwoFocusable).not.toBeChecked())
   fireEvent.click(radioThree)
   expect(radioThree).toBeChecked()
 })
