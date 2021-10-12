@@ -37,6 +37,9 @@ async function readTheme(themeFilePath: string) {
     tsNode.register({
       // use the TS projects own tsconfig file
       project: tsConfig.configFileAbsolutePath,
+      compilerOptions: {
+        module: "CommonJS",
+      },
     })
 
     /**
