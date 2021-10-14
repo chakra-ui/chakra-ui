@@ -1,5 +1,23 @@
 # Change Log
 
+## 1.3.11
+
+### Patch Changes
+
+- [`6c935424e`](https://github.com/chakra-ui/chakra-ui/commit/6c935424ea3b1f348c690457a5eecea8cf1b5d28)
+  [#4788](https://github.com/chakra-ui/chakra-ui/pull/4788) Thanks
+  [@takethefake](https://github.com/takethefake)! - Add support for styling the
+  container element based on the radio state
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`a9d1dc4ac`](https://github.com/chakra-ui/chakra-ui/commit/a9d1dc4ac874825f292d874ad4eadaf060fed436),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/hooks@1.6.1
+  - @chakra-ui/form-control@1.4.2
+  - @chakra-ui/visually-hidden@1.0.15
+
 ## 1.3.10
 
 ### Patch Changes

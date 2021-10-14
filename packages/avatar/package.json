@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/avatar",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "description": "A React component used to show users avatar or initials",
   "keywords": [
     "component",
@@ -55,13 +55,13 @@
     "lint:types": "tsc --noEmit"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.7.3",
+    "@chakra-ui/system": "1.7.4",
     "react": "^17.0.1"
   },
   "dependencies": {
-    "@chakra-ui/image": "1.0.20",
+    "@chakra-ui/image": "1.0.21",
     "@chakra-ui/react-utils": "1.1.2",
-    "@chakra-ui/utils": "1.8.2"
+    "@chakra-ui/utils": "1.8.3"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=1.0.0",

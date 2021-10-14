@@ -1,5 +1,67 @@
 # Change Log
 
+## 1.6.10
+
+### Patch Changes
+
+- [`1cfa2be4b`](https://github.com/chakra-ui/chakra-ui/commit/1cfa2be4b443ae4af8e5ec208cfe2c0fde23dde3)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! -
+
+- Updated dependencies
+  [[`6c935424e`](https://github.com/chakra-ui/chakra-ui/commit/6c935424ea3b1f348c690457a5eecea8cf1b5d28),
+  [`d557a080b`](https://github.com/chakra-ui/chakra-ui/commit/d557a080be9704293344fedd938eb14dbb5c643c),
+  [`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`a9d1dc4ac`](https://github.com/chakra-ui/chakra-ui/commit/a9d1dc4ac874825f292d874ad4eadaf060fed436),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd),
+  [`126bf17db`](https://github.com/chakra-ui/chakra-ui/commit/126bf17db67d6226e6d48c57ef3b69e5504eaada),
+  [`00ef98a33`](https://github.com/chakra-ui/chakra-ui/commit/00ef98a335a96b4db10bed9e2620f0b839203096)]:
+  - @chakra-ui/radio@1.3.11
+  - @chakra-ui/popover@1.8.5
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/hooks@1.6.1
+  - @chakra-ui/slider@1.4.1
+  - @chakra-ui/modal@1.9.2
+  - @chakra-ui/checkbox@1.5.8
+  - @chakra-ui/accordion@1.3.8
+  - @chakra-ui/alert@1.2.8
+  - @chakra-ui/avatar@1.2.11
+  - @chakra-ui/breadcrumb@1.2.9
+  - @chakra-ui/button@1.4.5
+  - @chakra-ui/close-button@1.1.12
+  - @chakra-ui/control-box@1.0.16
+  - @chakra-ui/counter@1.1.10
+  - @chakra-ui/editable@1.2.10
+  - @chakra-ui/react-env@1.0.7
+  - @chakra-ui/form-control@1.4.2
+  - @chakra-ui/icon@1.1.12
+  - @chakra-ui/image@1.0.21
+  - @chakra-ui/input@1.2.11
+  - @chakra-ui/layout@1.4.10
+  - @chakra-ui/live-region@1.0.15
+  - @chakra-ui/media-query@1.1.3
+  - @chakra-ui/menu@1.7.6
+  - @chakra-ui/number-input@1.2.11
+  - @chakra-ui/pin-input@1.6.6
+  - @chakra-ui/portal@1.2.10
+  - @chakra-ui/progress@1.1.15
+  - @chakra-ui/provider@1.6.9
+  - @chakra-ui/select@1.1.16
+  - @chakra-ui/skeleton@1.1.19
+  - @chakra-ui/spinner@1.1.13
+  - @chakra-ui/stat@1.1.13
+  - @chakra-ui/switch@1.2.11
+  - @chakra-ui/system@1.7.4
+  - @chakra-ui/table@1.2.7
+  - @chakra-ui/tabs@1.5.6
+  - @chakra-ui/tag@1.1.13
+  - @chakra-ui/textarea@1.1.15
+  - @chakra-ui/theme@1.10.4
+  - @chakra-ui/toast@1.3.2
+  - @chakra-ui/tooltip@1.3.12
+  - @chakra-ui/transition@1.3.6
+  - @chakra-ui/visually-hidden@1.0.15
+
 ## 1.6.9
 
 ### Patch Changes

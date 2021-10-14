@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/number-input",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "description": "An accessible numeric input alternative to <input type='number' />",
   "keywords": [
     "theme",
@@ -59,15 +59,15 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/counter": "1.1.9",
-    "@chakra-ui/form-control": "1.4.1",
-    "@chakra-ui/hooks": "1.6.0",
-    "@chakra-ui/icon": "1.1.11",
+    "@chakra-ui/counter": "1.1.10",
+    "@chakra-ui/form-control": "1.4.2",
+    "@chakra-ui/hooks": "1.6.1",
+    "@chakra-ui/icon": "1.1.12",
     "@chakra-ui/react-utils": "1.1.2",
-    "@chakra-ui/utils": "1.8.2"
+    "@chakra-ui/utils": "1.8.3"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.7.3",
+    "@chakra-ui/system": "1.7.4",
     "react": "^17.0.1"
   },
   "peerDependencies": {
