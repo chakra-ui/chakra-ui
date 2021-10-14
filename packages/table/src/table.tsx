@@ -8,8 +8,20 @@ import {
   useMultiStyleConfig,
   useStyles,
 } from "@chakra-ui/system"
+import { useColorModeValue } from "@chakra-ui/color-mode"
+import { ThemeTypings } from "@chakra-ui/styled-system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
+
+interface TableInfo {
+  hoverColorScheme: ThemeTypings["colorSchemes"] | (string & {}) | undefined
+  hoverRow: boolean
+}
+
+const TableInfoContext = React.createContext<TableInfo>({
+  hoverColorScheme: undefined,
+  hoverRow: false,
+})
 
 export interface TableContainerProps extends HTMLChakraProps<"div"> {}
 
@@ -36,21 +48,43 @@ export const TableContainer = forwardRef<TableContainerProps, "div">(
 
 export interface TableProps
   extends HTMLChakraProps<"table">,
-    ThemingProps<"Table"> {}
+    ThemingProps<"Table"> {
+  /**
+   * When set, use the provided color scheme for the table cell that
+   * the user is currently hovering over.
+   */
+  hoverColorScheme?: ThemeTypings["colorSchemes"] | (string & {})
+  /**
+   * Extend the hoverColorScheme to the entire table row.
+   * @default false
+   */
+  hoverRow?: boolean
+}
 
 export const Table = forwardRef<TableProps, "table">((props, ref) => {
   const styles = useMultiStyleConfig("Table", props)
-  const { className, ...tableProps } = omitThemingProps(props)
+  const {
+    className,
+    hoverColorScheme,
+    hoverRow = false,
+    ...tableProps
+  } = omitThemingProps(props)
+  const tableInfo = {
+    hoverColorScheme,
+    hoverRow,
+  }
 
   return (
     <StylesProvider value={styles}>
-      <chakra.table
-        role="table"
-        ref={ref}
-        __css={styles.table}
-        className={cx("chakra-table", className)}
-        {...tableProps}
-      />
+      <TableInfoContext.Provider value={tableInfo}>
+        <chakra.table
+          role="table"
+          ref={ref}
+          __css={styles.table}
+          className={cx("chakra-table", className)}
+          {...tableProps}
+        />
+      </TableInfoContext.Provider>
     </StylesProvider>
   )
 })
@@ -132,8 +166,19 @@ export const Th = forwardRef<TableColumnHeaderProps, "th">(
 export interface TableRowProps extends HTMLChakraProps<"tr"> {}
 export const Tr = forwardRef<TableRowProps, "tr">((props, ref) => {
   const styles = useStyles()
+  const { hoverColorScheme: cs, hoverRow } = React.useContext(TableInfoContext)
+  const hoverBg = useColorModeValue(`${cs}.200`, `${cs}.700`)
+  const hover = cs && hoverRow ? { background: hoverBg } : undefined
 
-  return <chakra.tr role="row" {...props} ref={ref} __css={styles.tr} />
+  return (
+    <chakra.tr
+      role="row"
+      _hover={hover}
+      {...props}
+      ref={ref}
+      __css={styles.tr}
+    />
+  )
 })
 
 export interface TableCellProps extends HTMLChakraProps<"td"> {
@@ -145,10 +190,14 @@ export interface TableCellProps extends HTMLChakraProps<"td"> {
 export const Td = forwardRef<TableCellProps, "td">(
   ({ isNumeric, ...rest }, ref) => {
     const styles = useStyles()
+    const { hoverColorScheme: cs } = React.useContext(TableInfoContext)
+    const hoverBg = useColorModeValue(`${cs}.200`, `${cs}.700`)
+    const hover = cs ? { background: hoverBg } : undefined
 
     return (
       <chakra.td
         role="gridcell"
+        _hover={hover}
         {...rest}
         ref={ref}
         __css={styles.td}

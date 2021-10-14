@@ -107,3 +107,6 @@ export const withOverflow = () => (
     <SimpleTable />
   </TableContainer>
 )
+
+export const hoverCell = () => <SimpleTable hoverColorScheme="blue" />
+export const hoverRow = () => <SimpleTable hoverColorScheme="blue" hoverRow />
