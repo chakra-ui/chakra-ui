@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/modal",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "description": "An accessible dialog (modal) component for React & Chakra UI",
   "keywords": [
     "react",
@@ -60,18 +60,18 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/close-button": "1.1.11",
-    "@chakra-ui/focus-lock": "1.1.10",
-    "@chakra-ui/hooks": "1.6.0",
-    "@chakra-ui/portal": "1.2.9",
+    "@chakra-ui/close-button": "1.1.12",
+    "@chakra-ui/focus-lock": "1.1.11",
+    "@chakra-ui/hooks": "1.6.1",
+    "@chakra-ui/portal": "1.2.10",
     "@chakra-ui/react-utils": "1.1.2",
-    "@chakra-ui/transition": "1.3.5",
-    "@chakra-ui/utils": "1.8.2",
+    "@chakra-ui/transition": "1.3.6",
+    "@chakra-ui/utils": "1.8.3",
     "aria-hidden": "^1.1.1",
     "react-remove-scroll": "2.4.1"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.7.3",
+    "@chakra-ui/system": "1.7.4",
     "framer-motion": "^4.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"

@@ -1,5 +1,21 @@
 # Change Log
 
+## 1.8.5
+
+### Patch Changes
+
+- [`d557a080b`](https://github.com/chakra-ui/chakra-ui/commit/d557a080be9704293344fedd938eb14dbb5c643c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `computePositionOnMount` didn't work without explict value
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`a9d1dc4ac`](https://github.com/chakra-ui/chakra-ui/commit/a9d1dc4ac874825f292d874ad4eadaf060fed436),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/hooks@1.6.1
+  - @chakra-ui/close-button@1.1.12
+
 ## 1.8.4
 
 ### Patch Changes

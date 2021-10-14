@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.8.3
+
+### Patch Changes
+
+- [`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669)
+  [#4795](https://github.com/chakra-ui/chakra-ui/pull/4795) Thanks
+  [@Toxiapo](https://github.com/Toxiapo)! - Fixed iframe bug on firefox when
+  using `getRelatedTarget` function
+
+* [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)
+  [#4803](https://github.com/chakra-ui/chakra-ui/pull/4803) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where pan-event
+  utils don't work within iframe
+
 ## 1.8.2
 
 ### Patch Changes

@@ -1,5 +1,22 @@
 # Change Log
 
+## 1.5.8
+
+### Patch Changes
+
+- [`00ef98a33`](https://github.com/chakra-ui/chakra-ui/commit/00ef98a335a96b4db10bed9e2620f0b839203096)
+  [#4642](https://github.com/chakra-ui/chakra-ui/pull/4642) Thanks
+  [@takethefake](https://github.com/takethefake)! - Fix issue where `tabIndex`
+  property isn't passed to the underlying input element
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`a9d1dc4ac`](https://github.com/chakra-ui/chakra-ui/commit/a9d1dc4ac874825f292d874ad4eadaf060fed436),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/hooks@1.6.1
+  - @chakra-ui/visually-hidden@1.0.15
+
 ## 1.5.7
 
 ### Patch Changes

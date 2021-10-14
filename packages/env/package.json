@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react-env",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Component and hook for handling window and document object in iframe or ssr environment",
   "keywords": [
     "dom",
@@ -53,7 +53,7 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.8.2"
+    "@chakra-ui/utils": "1.8.3"
   },
   "peerDependencies": {
     "react": ">=16.8.6"

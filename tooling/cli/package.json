@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/cli",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "Generate theme typings for autocomplete",
   "keywords": [
     "theme",
@@ -48,7 +48,7 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/utils": "^1.8.1",
+    "@chakra-ui/utils": "^1.8.3",
     "cli-check-node": "^1.3.4",
     "cli-handle-unhandled": "^1.1.1",
     "cli-welcome": "^2.2.2",
