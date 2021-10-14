@@ -1,41 +1,36 @@
-## 05-10-2021
+## 14-10-2021
 
-**Button** `v1.4.4`
+`@chakra-ui/react@1.6.10`
 
-- Added missing `@chakra-ui/react-utils` import
+**Radio** `v1.3.11`
 
-**Slider** `v1.4.0`
+- Add support for styling the container element based on the radio state
 
-- Move hard-coded styles to slider's theme
-- Add support for multithumb slider. We now have `useRangeSlider`, `RangeSlider`
-  and `RangeSlider*` components
+**Popover** `v1.8.5`
 
-```jsx live=false
-<RangeSlider>
-  <RangeSliderTrack>
-    <RangeSliderFilledTrack />
-  </RangeSliderTrack>
-  <RangeSliderThumb index={0} />
-  <RangeSliderThumb index={1} />
-</RangeSlider>
-```
+- Fix issue where `computePositionOnMount` didn't work without explict value
 
-**Transition** `v1.3.5`
+**Utils** `v1.8.3`
 
-- Updated transition variants for drawer animations to prevent it from
-  disappearing when placement conditionally changes
+- Fixed iframe bug on firefox when using `getRelatedTarget` function
+- Fix issue where pan-event utils don't work within iframe
 
-**Cli** `v1.5.2`
+**Hooks** `v1.6.1`
 
-- Fixed an issue where the CLI failed with
-  `SyntaxError: JSON5: invalid character`.
+- Forward `threshold` options from `usePanSession` to `PanSession` class
 
-**Theme** `v1.10.3`
+**Slider** `v1.4.1`
 
-- Refactor slider theme from slider.tsx to slider's theme
+- Fix issue where value can't be changed when range-slider thumbs are stacked
 
-**Toast** `v1.3.1`
+**Modal** `v1.9.2`
 
-- Allow alerts rendered by useToast and createStandaloneToast to be discovered by
-  role and accessible name (e.g. using Testing Library
-  [ByRole](https://testing-library.com/docs/queries/byrole/)).
+- Fix issue where modal doesn't close when the escape key is pressed and `closeOnOverlayClick` is `false`
+
+**Cli** `v1.5.3`
+
+- Fixed an issue where the CLI tokens command exited unexpectedly with: `SyntaxError: Cannot use import statement outside a module`
+
+**Checkbox** `v1.5.8`
+
+- Fix issue where `tabIndex` property isn't passed to the underlying input element
