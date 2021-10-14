@@ -2,5 +2,4 @@
 "@chakra-ui/checkbox": patch
 ---
 
-If a `tabIndex`-property is passed to `Checkbox` the value is passed down to the
-input-component.
+Fix issue where `tabIndex` property isn't passed to the underlying input element

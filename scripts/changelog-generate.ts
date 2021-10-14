@@ -23,7 +23,9 @@ function getReleaseSummary(
 ) {
   const formattedChangesets = release.changesets.map((changeset) => {
     const { summary } = changesets.find((cs) => cs.id === changeset) ?? {}
-    return summary?.trim().startsWith("-") ? summary : `- ${summary} \n`
+    return !summary || summary?.trim().startsWith("-")
+      ? summary
+      : `- ${summary} \n`
   })
 
   const subPackageName = `**${getPackageName(release.name)}** \`v${

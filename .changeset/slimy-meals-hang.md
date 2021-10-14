@@ -1,0 +1,3 @@
+---
+"@chakra-ui/react": patch
+---

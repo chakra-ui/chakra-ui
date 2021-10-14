@@ -2,4 +2,4 @@
 "@chakra-ui/modal": patch
 ---
 
-fix escape key down when clicking in overlay
+Fix issue where modal doesn't close when the escape key is pressed and `closeOnOverlayClick` is `false`
