@@ -7,9 +7,9 @@ type IdContextValue = {
   current: number
 }
 
-const defaultIdContext: IdContextValue = {
+export const defaultIdContext: IdContextValue = {
   prefix: Math.round(Math.random() * 10000000000),
-  current: 0,
+  current: 1,
 }
 
 const IdContext = React.createContext<IdContextValue>(defaultIdContext)
@@ -20,7 +20,7 @@ export const IdProvider: React.FC = React.memo(({ children }) => {
   const context: IdContextValue = React.useMemo(
     () => ({
       prefix: isRoot ? 0 : ++currentContext.prefix,
-      current: 0,
+      current: 1,
     }),
     [isRoot, currentContext],
   )
@@ -28,14 +28,24 @@ export const IdProvider: React.FC = React.memo(({ children }) => {
   return React.createElement(IdContext.Provider, { value: context }, children)
 })
 
+const genId = (context: IdContextValue) => context.current++
+
 export function useId(idProp?: string, prefix?: string): string {
   const context = React.useContext(IdContext)
+  /*
+      We get the current id by context and generate a new id inside useEffect so that the side effects occur during the commit phase,
+      Doing this prevents the side effects from being called twice when used with strict mode (render() in function component is the function body), which ends up making the server with the client not synchronized
+  */
+  const [id, setId] = React.useState(context.current)
+
+  React.useEffect(() => {
+    setId(genId(context))
+  }, [context])
+
   return React.useMemo(
-    () =>
-      idProp ||
-      [prefix, context.prefix, ++context.current].filter(Boolean).join("-"),
+    () => idProp || [prefix, context.prefix, id].filter(Boolean).join("-"),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [idProp, prefix],
+    [idProp, prefix, id],
   )
 }
 
