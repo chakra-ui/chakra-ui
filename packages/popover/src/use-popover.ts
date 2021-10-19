@@ -305,7 +305,16 @@ export function usePopover(props: UsePopoverProps = {}) {
          * @see https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html
          */
         triggerProps.onFocus = callAllHandlers(props.onFocus, onOpen)
-        triggerProps.onBlur = callAllHandlers(props.onBlur, onClose)
+        triggerProps.onBlur = callAllHandlers(props.onBlur, (event) => {
+          const relatedTarget = getRelatedTarget(event)
+          const isTargetPopover = contains(popoverRef.current, relatedTarget)
+          const isTargetTrigger = contains(triggerRef.current, relatedTarget)
+          const isValidBlur = !isTargetPopover && !isTargetTrigger
+
+          if (isOpen && closeOnBlur && isValidBlur) {
+            onClose()
+          }
+        })
 
         /**
          * Any content that shows on hover or focus must be dismissible.
