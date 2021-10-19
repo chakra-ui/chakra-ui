@@ -11,7 +11,6 @@ const defaultConfig = {
   }),
   experimental: {
     optimizeFonts: true,
-    modern: true,
   },
   redirects: require("./next-redirect"),
 }
