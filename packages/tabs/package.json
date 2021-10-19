@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/tabs",
-  "version": "1.5.5",
+  "version": "1.5.6",
   "description": "Accessible Tabs component for React and Chakra UI",
   "keywords": [
     "react",
@@ -62,14 +62,14 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/clickable": "1.1.7",
+    "@chakra-ui/clickable": "1.1.8",
     "@chakra-ui/descendant": "2.0.1",
-    "@chakra-ui/hooks": "1.6.0",
+    "@chakra-ui/hooks": "1.6.1",
     "@chakra-ui/react-utils": "1.1.2",
-    "@chakra-ui/utils": "1.8.2"
+    "@chakra-ui/utils": "1.8.3"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.7.3",
+    "@chakra-ui/system": "1.7.4",
     "react": "^17.0.1"
   },
   "peerDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/theme",
-  "version": "1.10.3",
+  "version": "1.10.4",
   "description": "The default theme for chakra components",
   "keywords": [
     "theme",
@@ -53,14 +53,14 @@
   },
   "dependencies": {
     "@chakra-ui/anatomy": "1.0.1",
-    "@chakra-ui/theme-tools": "1.2.1",
-    "@chakra-ui/utils": "1.8.2"
+    "@chakra-ui/theme-tools": "1.2.2",
+    "@chakra-ui/utils": "1.8.3"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=1.0.0"
   },
   "devDependencies": {
-    "@chakra-ui/cli": "1.5.2",
-    "@chakra-ui/system": "1.7.3"
+    "@chakra-ui/cli": "1.5.3",
+    "@chakra-ui/system": "1.7.4"
   }
 }

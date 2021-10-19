@@ -1,5 +1,20 @@
 # @chakra-ui/cli
 
+## 1.5.3
+
+### Patch Changes
+
+- [`e0a004b45`](https://github.com/chakra-ui/chakra-ui/commit/e0a004b450a76915477ab3da687cf311e96c7494)
+  [#4818](https://github.com/chakra-ui/chakra-ui/pull/4818) Thanks
+  [@igorwessel](https://github.com/igorwessel)! - Fixed an issue where the CLI
+  tokens command exited unexpectedly with:
+  `SyntaxError: Cannot use import statement outside a module`
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+
 ## 1.5.2
 
 ### Patch Changes

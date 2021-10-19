@@ -1,5 +1,25 @@
 # Change Log
 
+## 1.9.2
+
+### Patch Changes
+
+- [`126bf17db`](https://github.com/chakra-ui/chakra-ui/commit/126bf17db67d6226e6d48c57ef3b69e5504eaada)
+  [#4823](https://github.com/chakra-ui/chakra-ui/pull/4823) Thanks
+  [@antoniel](https://github.com/antoniel)! - Fix issue where modal doesn't
+  close when the escape key is pressed and `closeOnOverlayClick` is `false`
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`a9d1dc4ac`](https://github.com/chakra-ui/chakra-ui/commit/a9d1dc4ac874825f292d874ad4eadaf060fed436),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/hooks@1.6.1
+  - @chakra-ui/close-button@1.1.12
+  - @chakra-ui/focus-lock@1.1.11
+  - @chakra-ui/portal@1.2.10
+  - @chakra-ui/transition@1.3.6
+
 ## 1.9.1
 
 ### Patch Changes
