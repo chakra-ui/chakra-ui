@@ -138,7 +138,7 @@ export function useMenu(props: UseMenuProps = {}) {
     placement = "bottom-start",
     lazyBehavior = "unmount",
     direction,
-    computePositionOnMount,
+    computePositionOnMount = false,
     ...popperProps
   } = props
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure({
