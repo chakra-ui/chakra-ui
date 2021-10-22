@@ -13,7 +13,7 @@ const styleMatch = /none|hidden|dotted|dashed|solid|double|groove|ridge|inset|ou
  * raw values.
  */
 export function parseBorder(value: string, key = "border") {
-  const css = {}
+  const css: Record<string, string> = {}
 
   const split = value.split(" ")
   const [style] = matchString(value, styleMatch) || [""]
