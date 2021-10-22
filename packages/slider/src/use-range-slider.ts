@@ -361,6 +361,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
   }
 
   const onPan = (event: AnyPointerEvent) => {
+    if (activeIndex == -1) return;
     const pointValue = getValueFromPointer(event) || 0
     setActiveIndex(activeIndex)
     actions.setValueAtIndex(activeIndex, pointValue)
