@@ -92,7 +92,8 @@ type MotionPreset = "slideInBottom" | "slideInRight" | "scale" | "none"
 export interface ModalProps
   extends UseModalProps,
     ModalOptions,
-    ThemingProps<"Modal"> {
+    ThemingProps<"Modal">,
+    HTMLChakraProps<"div"> {
   children: React.ReactNode
   /**
    *  If `true`, the modal will be centered on screen.
