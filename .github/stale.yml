@@ -2,10 +2,6 @@
 daysUntilStale: 30
 # Number of days of inactivity before a stale issue is closed
 daysUntilClose: 5
-# Only issues or pull requests with all of these labels are check if stale.
-onlyLabels:
-  - "Status: Awaiting Response ⏳"
-  - "Status: Needs Reproduction ♺"
 # Issues with these labels will never be considered stale
 exemptLabels: []
 # Label to use when marking an issue as stale
