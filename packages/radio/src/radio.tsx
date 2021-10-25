@@ -92,7 +92,7 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
   const checkboxProps = getCheckboxProps(otherProps)
   const inputProps = getInputProps({}, ref)
   const labelProps = getLabelProps()
-  const rootProps = Object.assign(layoutProps, getRootProps())
+  const rootProps = Object.assign({}, layoutProps, getRootProps())
 
   const rootStyles = {
     width: isFullWidth ? "full" : undefined,

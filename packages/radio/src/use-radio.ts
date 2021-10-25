@@ -256,7 +256,7 @@ export function useRadio(props: UseRadioProps = {}) {
     "data-invalid": dataAttr(isInvalid),
   })
 
-  const getRootProps: PropGetter = (pros, ref = null) => ({
+  const getRootProps: PropGetter = (props, ref = null) => ({
     ...props,
     ref,
     "data-disabled": dataAttr(isDisabled),
