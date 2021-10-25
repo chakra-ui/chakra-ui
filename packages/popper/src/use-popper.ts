@@ -19,7 +19,7 @@ export interface UsePopperProps {
    * The main and cross-axis offset to displace popper element
    * from its reference element.
    */
-  offset?: [crossAxis: number, mainAxis: number]
+  offset?: [number, number]
   /**
    * The distance or margin between the reference and popper.
    * It is used internally to create an `offset` modifier.
