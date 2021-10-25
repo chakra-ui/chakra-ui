@@ -155,7 +155,7 @@ test("should derive values from surrounding FormControl", () => {
   expect(radio).toHaveAttribute("id", "radio")
   expect(radio).toHaveAttribute("aria-invalid", "true")
   expect(radio).toHaveAttribute("aria-required", "true")
-  expect(radio).toHaveAttribute("aria-readonly", "true")
+  expect(radio).toHaveAttribute("data-readonly", "")
   expect(radio).toHaveAttribute("aria-invalid", "true")
 
   fireEvent.focus(radio)

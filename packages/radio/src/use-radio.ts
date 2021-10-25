@@ -222,8 +222,8 @@ export function useRadio(props: UseRadioProps = {}) {
         required: isRequired,
         "aria-invalid": ariaAttr(isInvalid),
         "aria-disabled": ariaAttr(trulyDisabled),
-        "aria-readonly": ariaAttr(isReadOnly),
         "aria-required": ariaAttr(isRequired),
+        "data-readonly": dataAttr(isReadOnly),
         style: visuallyHiddenStyle,
       }
     },
