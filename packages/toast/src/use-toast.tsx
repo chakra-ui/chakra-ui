@@ -74,6 +74,10 @@ export interface UseToastOptions {
    * Callback function to run side effects after the toast has closed.
    */
   onCloseComplete?: () => void
+  /**
+   * Optional style overrides for the container wrapping the toast component.
+   */
+  wrapperStyle?: React.CSSProperties
 }
 
 type UseToastOptionsNormalized = WithoutLogicalPosition<UseToastOptions>

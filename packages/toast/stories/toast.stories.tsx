@@ -248,6 +248,20 @@ export const UseToastWithDefaults = () => {
   return <Button onClick={() => toast()}>toast</Button>
 }
 
+export const UseToastWithCustomWrapperStyle = () => {
+  const toast = useToast({
+    position: "top",
+    title: "Wrapper style is updated",
+    wrapperStyle: {
+      width: "800px",
+      maxWidth: "100%",
+      border: "20px solid red",
+    },
+  })
+
+  return <Button onClick={() => toast()}>toast</Button>
+}
+
 export const useToastCustomRenderUpdate = () => {
   const [id, setId] = React.useState(null)
   const toast = useToast()
