@@ -193,6 +193,7 @@ const breakpoints = createBreakpoints({
   md: "768px",
   lg: "960px",
   xl: "1200px",
+  "2xl": "1536px",
 })
 
 // 3. Extend the theme
@@ -203,6 +204,10 @@ function Example() {
   return <Box width={{ base: "100%", sm: "50%", md: "25%" }} />
 }
 ```
+
+> Note: If you're using **pixels** as breakpoint values make sure to **always**
+> provide a value for the `2xl` breakpoint, which by its default pixels value is
+> **"1536px"**.
 
 ## Demo
 
