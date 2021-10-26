@@ -54,6 +54,14 @@ const baseStyleFooter: SystemStyleObject = {
   borderTopWidth: "1px",
 }
 
+const baseStyleCloseButton: SystemStyleObject = {
+  position: "absolute",
+  borderRadius: "md",
+  top: 1,
+  insetEnd: 2,
+  padding: 2,
+}
+
 const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   popper: baseStylePopper,
   content: baseStyleContent(props),
@@ -61,6 +69,7 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   body: baseStyleBody,
   footer: baseStyleFooter,
   arrow: {},
+  closeButton: baseStyleCloseButton,
 })
 
 export default {

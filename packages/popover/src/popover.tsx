@@ -183,15 +183,13 @@ export type PopoverCloseButtonProps = CloseButtonProps
 
 export const PopoverCloseButton: React.FC<CloseButtonProps> = (props) => {
   const { onClose } = usePopoverContext()
+  const styles = useStyles()
   return (
     <CloseButton
       size="sm"
       onClick={onClose}
-      position="absolute"
-      borderRadius="md"
-      top="0.25rem"
-      insetEnd="0.5rem"
-      padding="0.5rem"
+      className={cx("chakra-popover__close-btn", props.className)}
+      __css={styles.closeButton}
       {...props}
     />
   )
