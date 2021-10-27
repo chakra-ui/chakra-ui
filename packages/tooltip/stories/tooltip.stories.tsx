@@ -1,6 +1,7 @@
 import { Modal, ModalContent, ModalOverlay } from "@chakra-ui/modal"
 import { Portal } from "@chakra-ui/portal"
 import { chakra } from "@chakra-ui/system"
+import { HStack } from "@chakra-ui/react"
 import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
 import { Tooltip, useTooltip } from "../src"
@@ -242,6 +243,31 @@ export const withAutoPlacement = () => (
       Can't Touch This
     </button>
   </Tooltip>
+)
+
+export const withMotionPreset = () => (
+  <HStack spacing="48px">
+    <Tooltip label="Hello world">Default</Tooltip>
+    <Tooltip label="Hello world" motionPreset="none">
+      None
+    </Tooltip>
+    <Tooltip label="Hello world" motionPreset="slideInTop" placement="top">
+      Top
+    </Tooltip>
+    <Tooltip
+      label="Hello world"
+      motionPreset="slideInBottom"
+      placement="bottom"
+    >
+      Bottom
+    </Tooltip>
+    <Tooltip label="Hello world" motionPreset="slideInLeft" placement="left">
+      Left
+    </Tooltip>
+    <Tooltip label="Hello world" motionPreset="slideInRight" placement="right">
+      Right
+    </Tooltip>
+  </HStack>
 )
 
 declare module "csstype" {

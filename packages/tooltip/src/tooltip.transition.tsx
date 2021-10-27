@@ -27,4 +27,16 @@ export const transitions = {
     ...slideFadeConfig,
     custom: { offsetX: 0, offsetY: -20 },
   },
+  slideInBottom: {
+    ...slideFadeConfig,
+    custom: { offsetX: 0, offsetY: 20 },
+  },
+  slideInLeft: {
+    ...slideFadeConfig,
+    custom: { offsetX: -20, offsetY: 0 },
+  },
+  slideInRight: {
+    ...slideFadeConfig,
+    custom: { offsetX: 20, offsetY: 0 },
+  },
 }

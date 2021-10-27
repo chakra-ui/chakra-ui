@@ -16,7 +16,13 @@ import * as React from "react"
 import { transitions } from "./tooltip.transition"
 import { useTooltip, UseTooltipProps } from "./use-tooltip"
 
-type MotionPreset = "slideInTop" | "scale" | "none"
+type MotionPreset =
+  | "slideInTop"
+  | "slideInBottom"
+  | "slideInLeft"
+  | "slideInRight"
+  | "scale"
+  | "none"
 
 export interface TooltipProps
   extends HTMLChakraProps<"div">,
