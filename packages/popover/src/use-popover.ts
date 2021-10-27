@@ -307,9 +307,7 @@ export function usePopover(props: UsePopoverProps = {}) {
         triggerProps.onFocus = callAllHandlers(props.onFocus, onOpen)
         triggerProps.onBlur = callAllHandlers(props.onBlur, (event) => {
           const relatedTarget = getRelatedTarget(event)
-          const isTargetPopover = contains(popoverRef.current, relatedTarget)
-          const isTargetTrigger = contains(triggerRef.current, relatedTarget)
-          const isValidBlur = !isTargetPopover && !isTargetTrigger
+          const isValidBlur = !contains(popoverRef.current, relatedTarget)
 
           if (isOpen && closeOnBlur && isValidBlur) {
             onClose()
@@ -357,6 +355,7 @@ export function usePopover(props: UsePopoverProps = {}) {
       referenceRef,
       onToggle,
       onOpen,
+      closeOnBlur,
       onClose,
       openDelay,
       closeDelay,
