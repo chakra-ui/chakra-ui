@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "@chakra-ui/hooks": "1.6.1",
+    "@chakra-ui/react-env": "1.0.7",
     "@chakra-ui/utils": "1.8.3"
   },
   "peerDependencies": {
