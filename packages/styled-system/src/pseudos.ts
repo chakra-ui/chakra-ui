@@ -3,6 +3,7 @@ import { AnyFunction, objectKeys } from "@chakra-ui/utils"
 const group = {
   hover: (selector: string) => `${selector}:hover &, ${selector}[data-hover] &`,
   focus: (selector: string) => `${selector}:focus &, ${selector}[data-focus] &`,
+  focusVisible: (selector: string) => `${selector}:focus-visible &`,
   active: (selector: string) =>
     `${selector}:active &, ${selector}[data-active] &`,
   disabled: (selector: string) =>
@@ -182,6 +183,7 @@ export const pseudoSelectors = {
    * Styles to apply when parent is focused
    */
   _groupFocus: toGroup(group.focus),
+  _groupFocusVisible: toGroup(group.focusVisible),
   /**
    * Styles to apply when parent is active
    */
