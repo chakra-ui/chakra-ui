@@ -5,8 +5,9 @@ import {
   addListener,
   ColorMode,
   getColorScheme,
-  root,
+  getColorModeVar,
   syncBodyClassName,
+  setColorModeVar,
 } from "./color-mode.utils"
 import { localStorageManager, StorageManager } from "./storage-manager"
 
@@ -72,7 +73,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
       : initialColorMode,
   )
 
-  const { document } = useEnvironment()
+  const env = useEnvironment()
 
   React.useEffect(() => {
     /**
@@ -87,20 +88,19 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     if (isBrowser && colorModeManager.type === "localStorage") {
       const mode = useSystemColorMode
         ? getColorScheme(initialColorMode)
-        : root.get() || colorModeManager.get()
+        : getColorModeVar(env.document) || colorModeManager.get()
 
       if (mode) {
         rawSetColorMode(mode)
       }
     }
-  }, [colorModeManager, useSystemColorMode, initialColorMode])
+  }, [colorModeManager, useSystemColorMode, initialColorMode, env])
 
   React.useEffect(() => {
     const isDark = colorMode === "dark"
-
-    syncBodyClassName(isDark, document)
-    root.set(isDark ? "dark" : "light")
-  }, [colorMode, document])
+    syncBodyClassName(document, isDark)
+    setColorModeVar(env.document, isDark ? "dark" : "light")
+  }, [colorMode, env])
 
   const setColorMode = React.useCallback(
     (value: ColorMode) => {
@@ -115,16 +115,16 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   }, [colorMode, setColorMode])
 
   React.useEffect(() => {
-    let removeListener: any
+    let removeListener: VoidFunction
     if (useSystemColorMode) {
-      removeListener = addListener(setColorMode)
+      removeListener = addListener(env.window, setColorMode)
     }
     return () => {
       if (removeListener && useSystemColorMode) {
         removeListener()
       }
     }
-  }, [setColorMode, useSystemColorMode])
+  }, [setColorMode, useSystemColorMode, env])
 
   // presence of `value` indicates a controlled context
   const context = React.useMemo(

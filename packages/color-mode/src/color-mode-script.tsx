@@ -46,9 +46,7 @@ interface ColorModeScriptProps {
  * to help prevent flash of color mode that can happen during page load.
  */
 export const ColorModeScript = (props: ColorModeScriptProps) => {
-  const { initialColorMode = "light" } = props
-  const html = `(${String(setScript)})('${initialColorMode}')`
-  return (
-    <script nonce={props.nonce} dangerouslySetInnerHTML={{ __html: html }} />
-  )
+  const { initialColorMode = "light", nonce } = props
+  const __html = `(${String(setScript)})('${initialColorMode}')`
+  return <script nonce={nonce} dangerouslySetInnerHTML={{ __html }} />
 }

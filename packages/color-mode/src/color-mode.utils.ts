@@ -1,4 +1,4 @@
-import { isBrowser, noop } from "@chakra-ui/utils"
+import { noop } from "@chakra-ui/utils"
 
 const classNames = {
   light: "chakra-ui-light",
@@ -14,13 +14,11 @@ const mockBody = {
   classList: { add: noop, remove: noop },
 }
 
-const getBody = (document: Document) => (isBrowser ? document.body : mockBody)
-
 /**
  * Function to add/remove class from `body` based on color mode
  */
-export function syncBodyClassName(isDark: boolean, document: Document) {
-  const body = getBody(document)
+export function syncBodyClassName(doc: Document, isDark: boolean) {
+  const body = doc.body ?? globalThis?.document.body ?? mockBody
   body.classList.add(isDark ? classNames.dark : classNames.light)
   body.classList.remove(isDark ? classNames.light : classNames.dark)
 }
@@ -53,12 +51,11 @@ export function getColorScheme(fallback?: ColorMode) {
  * Adds system os color mode listener, and run the callback
  * once preference changes
  */
-export function addListener(fn: Function) {
-  if (!("matchMedia" in window)) {
-    return noop
-  }
+export function addListener(_win: Window, fn: Function) {
+  const win = _win ?? globalThis.window
+  if (!("matchMedia" in win)) return noop
 
-  const mediaQueryList = window.matchMedia(queries.dark)
+  const mediaQueryList = win.matchMedia(queries.dark)
 
   const listener = () => {
     fn(mediaQueryList.matches ? "dark" : "light")
@@ -72,14 +69,14 @@ export function addListener(fn: Function) {
   }
 }
 
-export const root = {
-  get: () =>
-    document.documentElement.style.getPropertyValue(
-      "--chakra-ui-color-mode",
-    ) as ColorMode,
-  set: (mode: ColorMode) => {
-    if (isBrowser) {
-      document.documentElement.style.setProperty("--chakra-ui-color-mode", mode)
-    }
-  },
+const COLOR_MODE_VAR = "--chakra-ui-color-mode"
+
+export function getColorModeVar(_doc: Document) {
+  const doc = _doc ?? globalThis?.document
+  return doc.documentElement.style.getPropertyValue(COLOR_MODE_VAR) as ColorMode
+}
+
+export function setColorModeVar(_doc: Document, colorMode: ColorMode) {
+  const doc = _doc ?? globalThis?.document
+  doc.documentElement.style.setProperty(COLOR_MODE_VAR, colorMode)
 }
