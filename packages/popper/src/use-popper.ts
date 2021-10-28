@@ -108,7 +108,7 @@ export type ArrowCSSVarProps = {
 export function usePopper(props: UsePopperProps = {}) {
   const {
     enabled = true,
-    modifiers = [],
+    modifiers,
     placement: placementProp = "bottom",
     strategy = "absolute",
     arrowPadding = 8,
@@ -167,7 +167,7 @@ export function usePopper(props: UsePopperProps = {}) {
           options: { boundary },
         },
         // allow users override internal modifiers
-        ...modifiers,
+        ...(modifiers ?? []),
       ],
       strategy,
     })
