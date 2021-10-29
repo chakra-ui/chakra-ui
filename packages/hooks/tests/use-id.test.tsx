@@ -11,13 +11,13 @@ describe("useId", () => {
   test("first time used, should return id 1", () => {
     const { result } = renderHook(() => useId())
 
-    expect(result.current).toMatch(/\d+-1/)
+    expect(result.current).toBe("1")
   })
 
   test("when call again need to increment id generated, should return id 2", () => {
     const { result } = renderHook(() => useId())
 
-    expect(result.current).toMatch(/\d+-2/)
+    expect(result.current).toBe("2")
   })
 
   test("when pass idProp, should return idProp", () => {
@@ -29,7 +29,7 @@ describe("useId", () => {
   test("when not pass idProp but pass prefix, should return prefix + current id incremented (is 4, because useId was called 4 times)", () => {
     const { result } = renderHook(() => useId(undefined, "button"))
 
-    expect(result.current).toMatch(/button-\d+-4/)
+    expect(result.current).toBe("button-4")
   })
 
   test("when pass idProp and prefix, should return idProp", () => {
@@ -98,11 +98,11 @@ describe("useId", () => {
     test("need to maintain the same id in hydrate", () => {
       const { result, hydrate } = renderHookSSR(() => useId())
 
-      expect(result.current).toMatch(/\d+-6/)
+      expect(result.current).toBe("6")
 
       hydrate()
 
-      expect(result.current).toMatch(/\d+-6/)
+      expect(result.current).toBe("6")
     })
   })
 })
@@ -113,8 +113,8 @@ describe("useIds", () => {
 
     expect(result.current).toEqual(
       expect.arrayContaining([
-        expect.stringMatching(/button-\d+-7/),
-        expect.stringMatching(/menu-\d+-7/),
+        expect.stringContaining("button-7"),
+        expect.stringContaining("menu-7"),
       ]),
     )
   })
