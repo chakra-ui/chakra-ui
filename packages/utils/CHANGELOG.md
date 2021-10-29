@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.8.4
+
+### Patch Changes
+
+- [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)
+  [#4873](https://github.com/chakra-ui/chakra-ui/pull/4873) Thanks
+  [@Nfinished](https://github.com/Nfinished)! - fix: always use fromEntries
+  polyfill from @chakra-ui/utils #4872
+
 ## 1.8.3
 
 ### Patch Changes

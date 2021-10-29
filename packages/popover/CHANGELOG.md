@@ -1,5 +1,23 @@
 # Change Log
 
+## 1.9.0
+
+### Minor Changes
+
+- [`e31439c98`](https://github.com/chakra-ui/chakra-ui/commit/e31439c985d71ba0b37197b18a393b0fe5cf79a4)
+  [#4929](https://github.com/chakra-ui/chakra-ui/pull/4929) Thanks
+  [@Mattinton](https://github.com/Mattinton)! - Made PopoverCloseButton
+  themeable
+
+### Patch Changes
+
+- Updated dependencies
+  [[`5fe9b552b`](https://github.com/chakra-ui/chakra-ui/commit/5fe9b552bcae55935d1ab8ffde86b701075e6e6a),
+  [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/hooks@1.6.2
+  - @chakra-ui/utils@1.8.4
+  - @chakra-ui/close-button@1.1.13
+
 ## 1.8.5
 
 ### Patch Changes

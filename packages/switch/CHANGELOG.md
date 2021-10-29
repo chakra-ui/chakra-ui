@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.2.12
+
+### Patch Changes
+
+- [`f5b00bdc2`](https://github.com/chakra-ui/chakra-ui/commit/f5b00bdc26d107c68469c9d15914cf6280fd7fd1)
+  [#4950](https://github.com/chakra-ui/chakra-ui/pull/4950) Thanks
+  [@JTBrinkmann](https://github.com/JTBrinkmann)! - Fix issue where focusing the
+  Switch could lead to unexpected page scrolls.
+
+- Updated dependencies
+  [[`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/utils@1.8.4
+  - @chakra-ui/checkbox@1.5.9
+
 ## 1.2.11
 
 ### Patch Changes

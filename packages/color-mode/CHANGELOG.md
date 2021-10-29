@@ -1,5 +1,21 @@
 # Change Log
 
+## 1.1.14
+
+### Patch Changes
+
+- [`8f315ea5d`](https://github.com/chakra-ui/chakra-ui/commit/8f315ea5d694e0130dc2e3187ac53320cf1adcd1)
+  [#4936](https://github.com/chakra-ui/chakra-ui/pull/4936) Thanks
+  [@cschroeter](https://github.com/cschroeter)! - Use @chakra-ui/react-env to
+  determine the correct body
+
+- Updated dependencies
+  [[`5fe9b552b`](https://github.com/chakra-ui/chakra-ui/commit/5fe9b552bcae55935d1ab8ffde86b701075e6e6a),
+  [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/hooks@1.6.2
+  - @chakra-ui/utils@1.8.4
+  - @chakra-ui/react-env@1.0.8
+
 ## 1.1.13
 
 ### Patch Changes

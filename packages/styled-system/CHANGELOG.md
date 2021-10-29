@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.13.0
+
+### Minor Changes
+
+- [`38b5bc627`](https://github.com/chakra-ui/chakra-ui/commit/38b5bc627c98fed4b7a55c45820785a4905c081e)
+  [#4939](https://github.com/chakra-ui/chakra-ui/pull/4939) Thanks
+  [@bohdan-sviripa](https://github.com/bohdan-sviripa)! - Added
+  \_groupFocusVisible style prop
+
+### Patch Changes
+
+- Updated dependencies
+  [[`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/utils@1.8.4
+
 ## 1.12.3
 
 ### Patch Changes

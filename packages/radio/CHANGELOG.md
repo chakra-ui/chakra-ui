@@ -1,5 +1,26 @@
 # Change Log
 
+## 1.3.12
+
+### Patch Changes
+
+- [`a1c41dceb`](https://github.com/chakra-ui/chakra-ui/commit/a1c41dceb0a7126f797333149ba1b4081cc47b74)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  props are duplicated on child label and span elements
+
+* [`45e3a8b4b`](https://github.com/chakra-ui/chakra-ui/commit/45e3a8b4bd117d5339c02da3d81a943ef193ce1f)
+  [#4866](https://github.com/chakra-ui/chakra-ui/pull/4866) Thanks
+  [@takethefake](https://github.com/takethefake)! - #4851 Removed aria-readonly
+  from checkbox in favor of wcag 4.1.2
+
+* Updated dependencies
+  [[`5fe9b552b`](https://github.com/chakra-ui/chakra-ui/commit/5fe9b552bcae55935d1ab8ffde86b701075e6e6a),
+  [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/hooks@1.6.2
+  - @chakra-ui/utils@1.8.4
+  - @chakra-ui/form-control@1.4.3
+  - @chakra-ui/visually-hidden@1.0.16
+
 ## 1.3.11
 
 ### Patch Changes
