@@ -15,7 +15,7 @@
     "require": "./dist/index.cjs",
     "default": "./dist/index.modern.js"
   },
-  "main": "/dist/index.cjs",
+  "main": "dist/index.cjs",
   "module": "dist/index.module.js",
   "files": [
     "dist"
