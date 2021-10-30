@@ -13,16 +13,14 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
+  "type": "module",
+  "source": "src/index.ts",
   "exports": {
-    ".": {
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
-    }
+    "require": "./dist/index.cjs",
+    "default": "./dist/index.modern.js"
   },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.module.js",
   "files": [
     "dist"
   ],
@@ -39,8 +37,8 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "start": "nodemon --watch src --exec yarn build -e ts,tsx",
-    "build": "concurrently yarn:build:*",
+    "start": "microbundle watch --format modern",
+    "build": "microbundle --jsx React.createElement --format modern,esm,cjs",
     "test": "jest --env=jsdom --passWithNoTests",
     "lint": "concurrently yarn:lint:*",
     "version": "yarn build",

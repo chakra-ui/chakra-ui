@@ -6,16 +6,14 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "sideEffects": false,
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
+  "type": "module",
+  "source": "src/index.ts",
   "exports": {
-    ".": {
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
-    }
+    "require": "./dist/index.cjs",
+    "default": "./dist/index.modern.js"
   },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.module.js",
   "files": [
     "dist"
   ],
@@ -29,11 +27,8 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "start": "nodemon --watch src --exec yarn build -e ts,tsx",
-    "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
-    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
-    "build": "concurrently yarn:build:*",
+    "start": "microbundle watch --format modern",
+    "build": "microbundle --jsx React.createElement --format modern,esm,cjs",
     "test": "jest --env=jsdom --passWithNoTests",
     "test:cov": "yarn test --coverage",
     "lint:src": "eslint src --fix --ext .ts,.tsx --config ../../.eslintrc",

@@ -14,8 +14,6 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
-  "sideEffects": false,
   "exports": {
     ".": {
       "require": "./dist/cjs/index.js",
@@ -23,8 +21,10 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
+  "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
@@ -38,8 +38,8 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "start": "nodemon --watch src --exec yarn build -e ts,tsx",
-    "build": "concurrently yarn:build:*",
+    "start": "microbundle watch --format modern",
+    "build": "microbundle --jsx React.createElement --format modern,esm,cjs",
     "test": "jest --env=jsdom --passWithNoTests",
     "lint": "concurrently yarn:lint:*",
     "version": "yarn build",
