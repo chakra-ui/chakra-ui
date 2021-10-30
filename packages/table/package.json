@@ -24,15 +24,18 @@
   "license": "MIT",
   "type": "module",
   "source": "src/index.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.module.js",
+  "types": "dist/index.d.ts",
   "exports": {
     "require": "./dist/index.cjs",
     "default": "./dist/index.modern.js"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.module.js",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
+  "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },

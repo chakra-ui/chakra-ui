@@ -2,17 +2,23 @@
   "name": "@chakra-ui/react",
   "version": "1.6.10",
   "description": "Responsive and accessible React UI components built with React and Emotion",
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
   "type": "module",
   "source": "src/index.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.module.js",
+  "types": "dist/index.d.ts",
   "exports": {
     "require": "./dist/index.cjs",
     "default": "./dist/index.modern.js"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.module.js",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
+  "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
@@ -86,9 +92,6 @@
     "react": ">=16.8.6",
     "react-dom": ">=16.8.6"
   },
-  "author": "Segun Adebayo <sage@adebayosegun.com>",
-  "license": "MIT",
-  "homepage": "https://chakra-ui.com/",
   "repository": {
     "type": "git",
     "url": "https://github.com/chakra-ui/chakra-ui",
