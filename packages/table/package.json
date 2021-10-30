@@ -19,7 +19,6 @@
     "aria",
     "aria table"
   ],
-  "sideEffects": false,
   "author": "Tim Kolberger <tim@kolberger.eu>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",

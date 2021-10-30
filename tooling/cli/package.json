@@ -12,7 +12,6 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/index.js",
-  "sideEffects": false,
   "exports": {
     ".": {
       "require": "./dist/index.js"

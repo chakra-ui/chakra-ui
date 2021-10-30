@@ -5,7 +5,6 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "sideEffects": false,
   "type": "module",
   "source": "src/index.ts",
   "exports": {

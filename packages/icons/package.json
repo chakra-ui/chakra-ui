@@ -13,7 +13,6 @@
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.module.js",
-  "sideEffects": false,
   "files": [
     "dist"
   ],
