@@ -43,7 +43,7 @@
     "test": "jest --env=jsdom --passWithNoTests",
     "lint": "concurrently yarn:lint:*",
     "version": "yarn build",
-    "postbuild": "chakra-cli tokens dist/cjs/index.js",
+    "postbuild": "chakra-cli tokens dist/index.cjs",
     "test:cov": "yarn test --coverage",
     "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
     "lint:types": "tsc --noEmit"
