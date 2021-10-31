@@ -1,5 +1,130 @@
 # Change Log
 
+## 2.1.3
+
+### Patch Changes
+
+- [`4841d36e1`](https://github.com/chakra-ui/chakra-ui/commit/4841d36e16e855f34a47e9624853055741c479f7)
+  [#4862](https://github.com/chakra-ui/chakra-ui/pull/4862) Thanks
+  [@mbrookson](https://github.com/mbrookson)! - Fix Switch colourScheme docs
+
+- Updated dependencies
+  [[`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/react@1.6.11
+  - @chakra-ui/theme-tools@1.2.3
+  - @chakra-ui/utils@1.8.4
+  - @chakra-ui/props-docs@1.0.36
+
+## 2.1.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd),
+  [`1cfa2be4b`](https://github.com/chakra-ui/chakra-ui/commit/1cfa2be4b443ae4af8e5ec208cfe2c0fde23dde3),
+  [`e0a004b45`](https://github.com/chakra-ui/chakra-ui/commit/e0a004b450a76915477ab3da687cf311e96c7494)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/react@1.6.10
+  - @chakra-ui/cli@1.5.3
+  - @chakra-ui/theme-tools@1.2.2
+  - @chakra-ui/props-docs@1.0.35
+
+## 2.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`236efcbf5`](https://github.com/chakra-ui/chakra-ui/commit/236efcbf562a966d5a3fcd0a778ee404b379d41d)]:
+  - @chakra-ui/cli@1.5.2
+  - @chakra-ui/react@1.6.9
+  - @chakra-ui/props-docs@1.0.34
+
+## 2.1.0
+
+### Minor Changes
+
+- [`3612559a7`](https://github.com/chakra-ui/chakra-ui/commit/3612559a7b373e6dc60fc2b025c314842f0ff1e5)
+  [#4687](https://github.com/chakra-ui/chakra-ui/pull/4687) Thanks
+  [@lazarnikolov94](https://github.com/lazarnikolov94)! - Added egghead course
+  banner in Getting Started page
+
+### Patch Changes
+
+- Updated dependencies
+  [[`09577b088`](https://github.com/chakra-ui/chakra-ui/commit/09577b088272075f6f183bbb34d5639ac5e68cc0),
+  [`c96f44e16`](https://github.com/chakra-ui/chakra-ui/commit/c96f44e1660fd0430eac0e003f1e807873776b15)]:
+  - @chakra-ui/theme-tools@1.2.1
+  - @chakra-ui/cli@1.5.1
+  - @chakra-ui/react@1.6.8
+  - @chakra-ui/props-docs@1.0.33
+
+## 2.0.0
+
+### Major Changes
+
+- [`2418de87b`](https://github.com/chakra-ui/chakra-ui/commit/2418de87ba12cfffda24ebbf32476fb09d3d82bd)
+  Thanks [@MasterGordon](https://github.com/MasterGordon)! - Removed blog since
+  nobody has written any articles.
+
+### Minor Changes
+
+- [`e3bad39bc`](https://github.com/chakra-ui/chakra-ui/commit/e3bad39bc5cee0332fe15113a619b2c1f498bb94)
+  [#4615](https://github.com/chakra-ui/chakra-ui/pull/4615) Thanks
+  [@shubhsk88](https://github.com/shubhsk88)! - - Included the example in
+  Tooltip for forwardref
+  - Automate the changelog generation process
+
+### Patch Changes
+
+- [`ed0ce623f`](https://github.com/chakra-ui/chakra-ui/commit/ed0ce623ffe2a0f9b88480bdea97468896b3a802)
+  [#4568](https://github.com/chakra-ui/chakra-ui/pull/4568) Thanks
+  [@lazarnikolov94](https://github.com/lazarnikolov94)! - Fixed the sidebar
+  links' active state
+
+- Updated dependencies
+  [[`01c913309`](https://github.com/chakra-ui/chakra-ui/commit/01c913309819c342806307291d2d60aea0122ecf),
+  [`52640a1fd`](https://github.com/chakra-ui/chakra-ui/commit/52640a1fd9089e3c0ffc5dc8e42fcfa7a5752904),
+  [`e7a732755`](https://github.com/chakra-ui/chakra-ui/commit/e7a732755e8b2447d3193225ba8265f78a9d1d81)]:
+  - @chakra-ui/theme-tools@1.2.0
+  - @chakra-ui/react@1.6.7
+  - @chakra-ui/props-docs@1.0.32
+
+## 1.3.2
+
+### Patch Changes
+
+- [`f5d7a458b`](https://github.com/chakra-ui/chakra-ui/commit/f5d7a458b69feb725c7a4ba333a960aba8e6ef4b)
+  [#4493](https://github.com/chakra-ui/chakra-ui/pull/4493) Thanks
+  [@takethefake](https://github.com/takethefake)! - - Migrated from
+  `next-mdx-enhanced` to `next-mdx-remote`
+  - Generate Headings from `mdx` before rendering instead of rendered
+    `React.Element`
+  - removed `getUserData` generation if there is an `author` mentioned in
+    frontmatter because we partially ran into rate limits from `octokit/rest`
+    but didn't used the data at all
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+  - @chakra-ui/react@1.6.6
+  - @chakra-ui/theme-tools@1.1.9
+  - @chakra-ui/props-docs@1.0.31
+
+## 1.3.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`7d9cb190c`](https://github.com/chakra-ui/chakra-ui/commit/7d9cb190cda3b9b58fbd159662402f37fcf7f087),
+  [`211d94de3`](https://github.com/chakra-ui/chakra-ui/commit/211d94de397e4e7c91cfe70a3bafa905c7506cbf),
+  [`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/cli@1.5.0
+  - @chakra-ui/utils@1.8.1
+  - @chakra-ui/react@1.6.5
+  - @chakra-ui/theme-tools@1.1.8
+  - @chakra-ui/props-docs@1.0.30
+
 ## 1.3.0
 
 ### Minor Changes

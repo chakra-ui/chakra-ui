@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/popper",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "A React component and hooks wrapper for popper.js",
   "keywords": [
     "react",
@@ -36,7 +36,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chakra-ui/chakra-ui.git"
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/popper"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"

@@ -27,6 +27,7 @@ export function ToastExample() {
           if (toast.isActive(id)) return
           toast({
             id,
+            position: "top-start",
             title: "Error Connecting...",
             description: "You do not have permissions to perform this action.",
             status: "error",

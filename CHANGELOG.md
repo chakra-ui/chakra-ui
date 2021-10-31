@@ -13,6 +13,451 @@ To better understand the changelog, here are some legends we use:
 - 💥 Breaking
 - 🚀 Feature
 - 🐛 Bug fix
+- 🛠 Refactor
+
+<!-- CHANGELOG:INSERT -->
+
+## 14-10-2021
+
+`@chakra-ui/react@1.6.10`
+
+**Radio** `v1.3.11`
+
+- Add support for styling the container element based on the radio state
+
+**Popover** `v1.8.5`
+
+- Fix issue where `computePositionOnMount` didn't work without explict value
+
+**Utils** `v1.8.3`
+
+- Fixed iframe bug on firefox when using `getRelatedTarget` function
+- Fix issue where pan-event utils don't work within iframe
+
+**Hooks** `v1.6.1`
+
+- Forward `threshold` options from `usePanSession` to `PanSession` class
+
+**Slider** `v1.4.1`
+
+- Fix issue where value can't be changed when range-slider thumbs are stacked
+
+**Modal** `v1.9.2`
+
+- Fix issue where modal doesn't close when the escape key is pressed and `closeOnOverlayClick` is `false`
+
+**Cli** `v1.5.3`
+
+- Fixed an issue where the CLI tokens command exited unexpectedly with: `SyntaxError: Cannot use import statement outside a module`
+
+**Checkbox** `v1.5.8`
+
+- Fix issue where `tabIndex` property isn't passed to the underlying input element
+
+
+## 05-10-2021
+
+**Button** `v1.4.4`
+
+- Added missing `@chakra-ui/react-utils` import
+
+**Slider** `v1.4.0`
+
+- Move hard-coded styles to slider's theme
+- Add support for multithumb slider. We now have `useRangeSlider`, `RangeSlider`
+  and `RangeSlider*` components
+
+```jsx live=false
+<RangeSlider>
+  <RangeSliderTrack>
+    <RangeSliderFilledTrack />
+  </RangeSliderTrack>
+  <RangeSliderThumb index={0} />
+  <RangeSliderThumb index={1} />
+</RangeSlider>
+```
+
+**Transition** `v1.3.5`
+
+- Updated transition variants for drawer animations to prevent it from
+  disappearing when placement conditionally changes
+
+**Cli** `v1.5.2`
+
+- Fixed an issue where the CLI failed with
+  `SyntaxError: JSON5: invalid character`.
+
+**Theme** `v1.10.3`
+
+- Refactor slider theme from slider.tsx to slider's theme
+
+**Toast** `v1.3.1`
+
+- Allow alerts rendered by useToast and createStandaloneToast to be discovered by
+  role and accessible name (e.g. using Testing Library
+  [ByRole](https://testing-library.com/docs/queries/byrole/)).
+
+
+## 20-09-2021
+
+**Theme Tools** `v1.2.1`
+
+- Replace `tinycolor2` with `@ctrl/tinycolor` to get better tree-shaking
+  benefits
+
+**Theme** `v1.10.2`
+
+- Replace `tinycolor2` with `@ctrl/tinycolor` to get better tree-shaking
+  benefits
+
+**Checkbox** `v1.5.7`
+
+- Add state `data-*` attributes to the checkbox `container` to allow user style
+  the `_checked`, `_invalid` and `_disabled` states
+
+**Slider** `v1.3.0`
+
+- Add `RTL` support by using the theme's direction ("ltr" or "rtl") to set the
+  default `isReversed` property when the `orientation` is `horizontal`
+
+**Modal** `v1.9.0`
+
+- **Drawer:** Add support for RTL-aware placement values. You can now pass
+  `start` and `end` values. The drawer will use `left/right` placement depending
+  on the specified `theme.direction` value.
+- **Drawer**: omit the `motionPreset` prop type since `Drawer` only implements
+  the `Slide` transition, unlike `Modal` that allows you switch its motion
+  preset.
+
+**Image** `v1.0.20`
+
+- Fix issue where onload doesn't get called when using srcset
+- If the user doesn't provide a `fallbackSrc` or a `fallback` `ignoreFallback`
+  is applied by default
+
+**Anatomy** `v1.0.1`
+
+- Add missing breadcrumb part
+- Add container part to checkbox
+
+**Popper** `v2.3.0`
+
+- `usePopper` now accepts a `direction` prop so it can handle placement for RTL
+  languages. Values such as `top-start`, `top-end`, `bottom-start` and
+  `bottom-end` will be flipped depending on the theme's direction value.
+
+In addition to the default `popper.js` placement, you can pass `start-start`,
+`start-end`, `end-start` and `end-end`. This will resolve to the equivalent
+`popper.js` placement as well.
+
+**Cli** `v1.5.1`
+
+- Fixed an issue where the CLI did not resolve custom tsconfig paths.
+
+🚨 Please note that only the first alias target from the string array will be
+resolved.
+
+```json live=false
+// tsconfig.json
+{
+  //...
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@alias/*": ["target/*"]
+      //           ^-- only the first target will be resolved
+    }
+  }
+}
+```
+
+**Avatar** `v1.2.10`
+
+- Fix issue where avatar blinks during API call due to its fallback logic. You
+  can disable the fallback logic by setting `ignoreFallback`, just like you can
+  with the `Image` component
+
+**Toast** `v1.3.0`
+
+- Add support for RTL-aware `position` values. You can now use `top-start`,
+  `top-end`, `bottom-start` and `bottom-end` values. The toast will flip
+  depending on the `direction` provided in the theme.
+
+**Provider** `v1.6.8`
+
+- Resolve dependency issues caused by previous release
+- Add `ChakraProviderProps` type what was removed in previous release
+
+**Menu** `v1.7.4`
+
+- Fix issue where keyboard navigation doesn't work when `MenuButton` isn't
+  rendered. This is useful in scenarios where you want the menu to be triggered
+  by a command or right-click.
+
+**Button** `v1.4.3`
+
+- Fix issue where composing `Button` with framer-motion's `motion` factory
+  breaks animation/transition
+
+**Select** `v1.1.15`
+
+- The disabled state of the `SelectIcon` can be reflected by a disabled
+  `FormControl` or by the `isDisabled`-flag of the `select` field
+
+
+## 29-08-2021
+
+`@chakra-ui/react@1.6.7`
+
+- Move ChakraProvider to a separate package `@chakra-ui/provider`
+- Loosen types of `extendTheme` to allow recent TS compiler to work and avoid
+  `Type instantiation is excessively deep and possibly infinite` errors.
+
+This might lead to a slightly degraded autocomplete experience when extended the
+theme but we promise to revisit the typings and API very soon.
+
+> In the meantime, please use `ThemeOverrides` type to provide
+
+**Slider** `v1.2.9`
+
+- Fix issue where slider thumb gets focus when `onChangeEnd` changes.
+- Call `onChangeStart`/ `onChangeEnd` when clicking somewhere in the
+  `SliderTrack` without dragging the `DragHandle`
+
+**Skeleton** `v1.1.18`
+
+- Don't animate when skeleton was previously loaded
+
+**System** `v1.7.3`
+
+- Update `useStyleConfig` to read parts array from the new anatomy class
+
+**Theme Tools** `v1.2.0`
+
+- Add new helpers to the `theme-tools` package to make the process of creating
+  component themes less cumbersome.
+
+- `cssVar` - function to create css vars
+- `calc` - function that makes it easy to create the css calc string
+- `anatomy`- function to define and extend component parts
+
+Creating a CSS variable in the theme
+
+```jsx live=false
+import { cssVar, calc } from "@chakra-ui/theme-tools"
+
+const $width = cssVar("slider-width")
+const $height = cssVar("slider-height")
+
+const $diff = calc($width).subtract($height).toString()
+
+$width.variable // => '--slider-width'
+$width.reference // => 'var(--slider-width)'
+```
+
+Create a component anatomy
+
+```jsx live=false
+import { anatomy }  from "@chakra-ui/theme-tools"
+import type { PartsStyle } from "@chakra-ui/theme-tools"
+
+const btn = anatomy("button").parts("label", "container")
+
+const newBtn = btn.extend("icon") //  extend button to include icon part
+
+// Using the anatomy in component theme
+const baseStyle: PartsStyle<typeof newBtn> = {
+  // auto-complete for the component parts
+  icon: {...},
+  label: {...}
+}
+```
+
+Added `PartsStyleObject` and `PartStyleFunction` types for easy creation of
+type-safe, multipart component styles.
+
+**Radio** `v1.3.10`
+
+- Add `isDisabled` to `RadioGroup` to make it possible to disable all `Radio`
+  inside `RadioGroup`
+- Add `isFocusable` to `RadioGroup` to make it possible to define the
+  `focusable`-state for all `Radio` inside a `RadioGroup`
+
+**Provider** `v1.6.7`
+
+- Move ChakraProvider to a separate package `@chakra-ui/provider`
+
+**Hooks** `v1.6.0`
+
+- Added an enabled prop to the `useOutsideClick` hook to conditionally attach
+  event handlers.
+
+- Updated the `useMenu` hook to only enable the `useOutsideClick` hook when the
+  menu is open.
+
+**Toast** `v1.2.11`
+
+- Add correct variant type to `UseToastOptions`
+
+**Layout** `v1.4.9`
+
+- Fix url for `LinkBox` component
+
+**Theme** `v1.10.1`
+
+- Added `overview:"visible"` to `baseStyle` of `TagLabel` to avoid clipped text
+
+## 09-08-2021
+
+`@chakra-ui/react@1.6.6`
+
+**Form Control** `v1.4.0`
+
+- 🚀 Added a `container` part to the `FormControl` component theme, allowing the
+  root FormControl element to be themed.
+
+```jsx live=false
+import { extendTheme } from "@chakra-ui/react"
+
+export const theme = extendTheme({
+  components: {
+    Form: {
+      variants: {
+        // create a variant named "custom"
+        custom: {
+          // style the root `FormControl` element
+          container: {
+            color: "white",
+            bg: "blue.900",
+          },
+        },
+      },
+    },
+  },
+})
+```
+
+- 🛠 Remove code that was added as a workaround for pre-releases of React
+  concurrent mode.
+
+- 🐛 If an `aria-describedby` property is passed it will be joined with the id's
+  from helper text and error message instead of being overwritten.
+
+**Theme** `v1.10.0`
+
+- 🚀 Added a container part to the FormControl component theme, allowing the
+  root FormControl element to be themed.
+
+- 🐛 Fixed issue where modals with `size=full` have vertical margins.
+
+**Button** `v1.4.2`
+
+🐛 Resolved an issue where a `Button` in loading state didn't consider the width
+of `leftIcon` and `rightIcon`, resulting in layout shifts when the button leaves
+the loading state. Buttons now render with the same width regardless of state.
+
+**Checkbox** `v1.5.5`
+
+🛠 Remove code that was added as a workaround for pre-releases of React
+concurrent mode.
+
+**Layout** `v1.4.8`
+
+**Stack**: 🐛 Ensure that when cloning children, their provided keys are
+preferred over index. This prevents them from being destroyed and recreated when
+a child's position in the list changes.
+
+**Menu** `v1.7.2`
+
+🐛 MenuList scroll to next MenuItem on keyboard navigation when there is a
+defined maxHeight on MenuList.
+
+Fix issues when rendering chakra components in different window
+
+**NumberInput** `v1.2.9`
+
+🛠 Remove code that was added as a workaround for pre-releases of React
+concurrent mode.
+
+**Radio** `v1.3.9`
+
+🛠 Remove code that was added as a workaround for pre-releases of React
+concurrent mode.
+
+**Slider** `v1.2.8`
+
+🐛 Fix issue where slider thumb doesn't show active state in firefox
+
+**Stat** `v1.1.12`
+
+🚀 Add container part to Stat styleConfig
+
+**Styled System** `v1.12.2`
+
+- 🐛 Corrected `parseGradient` function so that it checks for CSS functions.
+  Previously, using the CSS calc function would result in invalid CSS being
+  generated. The expectation is that:
+
+```jsx live=false
+<Heading bgGradient="linear(to-r, green.200, pink.500 calc(20px + 20px))">
+  Chakra-UI: Create accessible React apps with speed
+</Heading>
+functions similar to linear-gradient which handles using a CSS function
+
+<Heading
+  bgImage="linear-gradient(
+    to right,
+    var(--chakra-colors-green-200)),
+    var(--chakra-colors-pink-500 calc(20px + 20px))"
+>
+  Chakra-UI: Create accessible React apps with speed
+</Heading>
+```
+
+- 🐛 Grid props type definitions now correctly reflect the implemented behavior
+  in regard to tokens.
+
+**System** `v1.7.2`
+
+🐛 Fix type definitions for `apply` prop. The `apply` prop supports responsive
+styles:
+
+```jsx live=false
+// Before: type error, expects `string` for `apply`
+<Text apply={{ sm: 'styles.h3', lg: 'styles.h4' }}>
+
+// After: no type error, expects `ResponsiveValue<string>` for `apply`
+<Text apply={{ sm: 'styles.h3', lg: 'styles.h4' }}>
+```
+
+**Tooltip** `v1.3.9`
+
+🐛 Fix tooltips not closing when `openDelay` is set
+
+**Utils** `v1.8.2`
+
+- Remove code that was added as a workaround for pre-releases of React
+  concurrent mode.
+- 🐛 Fix issues when rendering chakra components in different window
+
+## 08-07-2021
+
+`@chakra-ui/react@1.6.5`
+
+**CLI** `@1.5.0`
+
+- 🚀 Enable esModuleInterop for `chakra-cli tokens`
+- 🐛 Token generation supports non valid JS keys for components
+
+**Utils** `v@1.8.1`
+
+- 🐛 Fixed a circular dependency which was causing warnings when bundling Chakra
+  with `rollup`.
+
+**System** `v@1.7.1`
+
+- 🐛 Fix issue where undefined style props (such as `borderRadius`) would not
+  fallback to the default styles
 
 ## 16-06-2021
 

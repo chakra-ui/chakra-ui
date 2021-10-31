@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/layout",
-  "version": "1.4.6",
+  "version": "1.4.11",
   "description": "Chakra UI layout components that give you massive speed",
   "keywords": [
     "layout",
@@ -38,7 +38,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chakra-ui/chakra-ui.git"
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/layout"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
@@ -58,12 +59,12 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/icon": "1.1.9",
+    "@chakra-ui/icon": "1.1.13",
     "@chakra-ui/react-utils": "1.1.2",
-    "@chakra-ui/utils": "1.8.0"
+    "@chakra-ui/utils": "1.8.4"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.7.0",
+    "@chakra-ui/system": "1.7.5",
     "react": "^17.0.1"
   },
   "peerDependencies": {

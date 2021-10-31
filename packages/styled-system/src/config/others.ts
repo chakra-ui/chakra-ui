@@ -79,6 +79,13 @@ export interface OtherProps {
   textStyle?: Token<string & {}, "textStyles">
   /**
    * Apply theme-aware style objects in `theme`
+   *
+   * @example
+   * ```jsx
+   * <Box apply="styles.h3">This is a div</Box>
+   * ```
+   *
+   * This will apply styles defined in `theme.styles.h3`
    */
   apply?: ResponsiveValue<string>
 }

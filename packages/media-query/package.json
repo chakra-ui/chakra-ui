@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/media-query",
-  "version": "1.1.0",
+  "version": "1.1.4",
   "description": "A React hook for changing properties or visibility of a component based on css media query",
   "keywords": [
     "chakra ui",
@@ -32,7 +32,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chakra-ui/chakra-ui.git"
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/media-query"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
@@ -52,12 +53,12 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/react-env": "1.0.4",
-    "@chakra-ui/utils": "1.8.0"
+    "@chakra-ui/react-env": "1.0.8",
+    "@chakra-ui/utils": "1.8.4"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.7.0",
-    "@chakra-ui/test-utils": "1.0.29",
+    "@chakra-ui/system": "1.7.5",
+    "@chakra-ui/test-utils": "1.0.36",
     "@chakra-ui/theme": "*",
     "jest-matchmedia-mock": "^1.0.1",
     "react": "^17.0.1"

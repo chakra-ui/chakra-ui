@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/portal",
-  "version": "1.2.6",
+  "version": "1.2.11",
   "description": "React component used to render children outside the DOM hierarchy of the parent component",
   "keywords": [
     "react",
@@ -32,7 +32,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chakra-ui/chakra-ui.git"
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/portal"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
@@ -52,9 +53,9 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "1.5.3",
+    "@chakra-ui/hooks": "1.6.2",
     "@chakra-ui/react-utils": "1.1.2",
-    "@chakra-ui/utils": "1.8.0"
+    "@chakra-ui/utils": "1.8.4"
   },
   "peerDependencies": {
     "react": ">=16.8.6",

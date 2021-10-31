@@ -2,6 +2,7 @@ import { Button } from "@chakra-ui/button"
 import { Image } from "@chakra-ui/image"
 import { Portal } from "@chakra-ui/portal"
 import { chakra } from "@chakra-ui/system"
+import { Modal, ModalBody, ModalContent, ModalOverlay } from "@chakra-ui/modal"
 import * as React from "react"
 import {
   FaChevronDown,
@@ -445,5 +446,85 @@ export const MenuWithInput = () => {
         <MenuItem>Menu 4</MenuItem>
       </MenuList>
     </Menu>
+  )
+}
+
+export const MenuWithOverflowingContent = () => {
+  return (
+    <Menu>
+      <MenuButton>Welcome</MenuButton>
+      <MenuList maxHeight="200px" overflowY="hidden">
+        <MenuItem>Menu 1</MenuItem>
+        <MenuItem>Menu 2</MenuItem>
+        <MenuItem>Menu 3</MenuItem>
+        <MenuItem>Menu 4</MenuItem>
+        <MenuItem>Menu 5</MenuItem>
+        <MenuItem>Menu 6</MenuItem>
+        <MenuItem>Menu 7</MenuItem>
+        <MenuItem>Menu 8</MenuItem>
+        <MenuItem>Menu 9</MenuItem>
+        <MenuItem>Menu 10</MenuItem>
+        <MenuItem>Menu 11</MenuItem>
+        <MenuItem>Menu 12</MenuItem>
+      </MenuList>
+    </Menu>
+  )
+}
+
+export const MenuPerformanceTest = () => {
+  return [...Array(100)].map((_, index) => (
+    <div key={index}>
+      <Menu eventListeners={false}>
+        <MenuButton>Menu {index + 1}</MenuButton>
+        <MenuList>
+          <MenuItem>Menu 1</MenuItem>
+          <MenuItem>Menu 2</MenuItem>
+          <MenuItem>Menu 3</MenuItem>
+        </MenuList>
+      </Menu>
+    </div>
+  ))
+}
+
+export const WithoutMenuButton = () => {
+  const [isOpen, setOpen] = React.useState(false)
+  const open = () => setOpen(true)
+  const close = () => setOpen(false)
+
+  React.useEffect(() => {
+    const listener = (ev) => {
+      if ((ev.metaKey || ev.ctrlKey) && ev.code === "KeyK") {
+        ev.preventDefault()
+        open()
+      }
+    }
+    window.addEventListener("keydown", listener)
+    return () => window.removeEventListener("keydown", listener)
+  }, [])
+
+  return (
+    <>
+      <Modal
+        onClose={close}
+        isOpen={isOpen}
+        isCentered
+        motionPreset="slideInBottom"
+      >
+        <ModalOverlay />
+        <ModalContent minHeight={100} background="none" boxShadow="none">
+          <ModalBody display="flex" justifyContent="center" alignItems="center">
+            <Menu isOpen closeOnSelect onClose={close}>
+              <MenuList paddingY={5}>
+                <MenuItem>
+                  Saves or updates the code in Stately Registry
+                </MenuItem>
+                <MenuItem>Visualizes the current editor code</MenuItem>
+              </MenuList>
+            </Menu>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+      <p>Press Cmd + K to open</p>
+    </>
   )
 }

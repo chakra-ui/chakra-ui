@@ -9,12 +9,18 @@ const formatter = Intl.NumberFormat("en", {
 
 // "https://api.npms.io/v2/package/@chakra-ui%2Freact"
 export async function getGithubStars() {
-  const repo = await octokit.repos.get({
-    owner: "chakra-ui",
-    repo: "chakra-ui",
-  })
+  let count: number
 
-  const count = repo.data.stargazers_count
+  try {
+    const repo = await octokit.repos.get({
+      owner: "chakra-ui",
+      repo: "chakra-ui",
+    })
+    count = repo.data.stargazers_count
+  } catch (error) {
+    console.log(error.toString())
+    count = 19_700
+  }
 
   return {
     count,

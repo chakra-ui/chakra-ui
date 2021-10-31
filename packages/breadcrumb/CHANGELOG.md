@@ -1,5 +1,45 @@
 # Change Log
 
+## 1.2.10
+
+### Patch Changes
+
+- [`9d46d04d6`](https://github.com/chakra-ui/chakra-ui/commit/9d46d04d685ba5ce0a90220c544a1924b56e1af3)
+  [#4949](https://github.com/chakra-ui/chakra-ui/pull/4949) Thanks
+  [@Andarist](https://github.com/Andarist)! - `href` attribute will no longer be
+  set on the inner element of the `BreadcrumbLink` if the parent
+  `BreadcrumbItem` has `isCurrentPage` prop set to true. Such a `BreadcrumbLink`
+  is not an actual link and it ends up being a `span` (by default).
+- Updated dependencies
+  [[`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/utils@1.8.4
+
+## 1.2.9
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+
+## 1.2.8
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+
+## 1.2.7
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+
 ## 1.2.6
 
 ### Patch Changes

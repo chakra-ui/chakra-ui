@@ -3,14 +3,12 @@ import {
   createPopper,
   Instance,
   Modifier,
-  Placement,
   VirtualElement,
 } from "@popperjs/core"
 import { useCallback, useEffect, useRef } from "react"
 import * as customModifiers from "./modifiers"
+import { getPopperPlacement, PlacementWithLogical } from "./popper.placement"
 import { cssVars, getEventListenerOptions } from "./utils"
-
-export type { Placement }
 
 export interface UsePopperProps {
   /**
@@ -72,7 +70,7 @@ export interface UsePopperProps {
    * The placement of the popper relative to its reference.
    * @default "bottom"
    */
-  placement?: Placement
+  placement?: PlacementWithLogical
   /**
    * Array of popper.js modifiers. Check the docs to see
    * the list of possible modifiers you can pass.
@@ -80,6 +78,13 @@ export interface UsePopperProps {
    * @see Docs https://popper.js.org/docs/v2/modifiers/
    */
   modifiers?: Array<Partial<Modifier<string, any>>>
+
+  /**
+   * Theme direction `ltr` or `rtl`. Popper's placement will
+   * be set accordingly
+   * @default "ltr"
+   */
+  direction?: "ltr" | "rtl"
 }
 
 export type ArrowCSSVarProps = {
@@ -103,7 +108,7 @@ export type ArrowCSSVarProps = {
 export function usePopper(props: UsePopperProps = {}) {
   const {
     enabled = true,
-    modifiers = [],
+    modifiers,
     placement: placementProp = "bottom",
     strategy = "absolute",
     arrowPadding = 8,
@@ -114,11 +119,13 @@ export function usePopper(props: UsePopperProps = {}) {
     boundary = "clippingParents",
     preventOverflow = true,
     matchWidth,
+    direction = "ltr",
   } = props
 
   const reference = useRef<Element | VirtualElement | null>(null)
   const popper = useRef<HTMLElement | null>(null)
   const instance = useRef<Instance | null>(null)
+  const placement = getPopperPlacement(placementProp, direction)
 
   const cleanup = useRef(() => {})
 
@@ -129,7 +136,7 @@ export function usePopper(props: UsePopperProps = {}) {
     cleanup.current?.()
 
     instance.current = createPopper(reference.current, popper.current, {
-      placement: placementProp,
+      placement,
       modifiers: [
         customModifiers.innerArrow,
         customModifiers.positionArrow,
@@ -160,7 +167,7 @@ export function usePopper(props: UsePopperProps = {}) {
           options: { boundary },
         },
         // allow users override internal modifiers
-        ...modifiers,
+        ...(modifiers ?? []),
       ],
       strategy,
     })
@@ -170,8 +177,8 @@ export function usePopper(props: UsePopperProps = {}) {
 
     cleanup.current = instance.current.destroy
   }, [
+    placement,
     enabled,
-    placementProp,
     modifiers,
     matchWidth,
     eventListeners,

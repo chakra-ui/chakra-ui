@@ -1,13 +1,17 @@
-const parts = ["preview", "input"]
+import { editableAnatomy as parts } from "@chakra-ui/anatomy"
+import type {
+  PartsStyleObject,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
 
-const baseStylePreview = {
+const baseStylePreview: SystemStyleObject = {
   borderRadius: "md",
   py: "3px",
   transitionProperty: "common",
   transitionDuration: "normal",
 }
 
-const baseStyleInput = {
+const baseStyleInput: SystemStyleObject = {
   borderRadius: "md",
   py: "3px",
   transitionProperty: "common",
@@ -17,12 +21,12 @@ const baseStyleInput = {
   _placeholder: { opacity: 0.6 },
 }
 
-const baseStyle = {
+const baseStyle: PartsStyleObject<typeof parts> = {
   preview: baseStylePreview,
   input: baseStyleInput,
 }
 
 export default {
-  parts,
+  parts: parts.keys,
   baseStyle,
 }

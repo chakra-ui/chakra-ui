@@ -1,5 +1,79 @@
 # Change Log
 
+## 1.13.0
+
+### Minor Changes
+
+- [`38b5bc627`](https://github.com/chakra-ui/chakra-ui/commit/38b5bc627c98fed4b7a55c45820785a4905c081e)
+  [#4939](https://github.com/chakra-ui/chakra-ui/pull/4939) Thanks
+  [@bohdan-sviripa](https://github.com/bohdan-sviripa)! - Added
+  \_groupFocusVisible style prop
+
+### Patch Changes
+
+- Updated dependencies
+  [[`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/utils@1.8.4
+
+## 1.12.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+
+## 1.12.2
+
+### Patch Changes
+
+- [`1d4b1f874`](https://github.com/chakra-ui/chakra-ui/commit/1d4b1f87498c2d843cd21c24e86085d812a1de07)
+  [#4460](https://github.com/chakra-ui/chakra-ui/pull/4460) Thanks
+  [@primos63](https://github.com/primos63)! - Corrected parseGradient function
+  so that it checks for CSS functions.
+
+  Previously, using the CSS `calc` function would result in invalid CSS being
+  generated.
+
+  The expectation is that
+
+  ```jsx
+  <Heading bgGradient="linear(to-r, green.200, pink.500 calc(20px + 20px))">
+    Chakra-UI: Create accessible React apps with speed
+  </Heading>
+  ```
+
+  functions similar to `linear-gradient` which handles using a CSS function
+
+  ```jsx
+  <Heading
+    bgImage="linear-gradient(
+      to right,
+      var(--chakra-colors-green-200)),
+      var(--chakra-colors-pink-500 calc(20px + 20px))"
+  >
+    Chakra-UI: Create accessible React apps with speed
+  </Heading>
+  ```
+
+* [`270b71ebb`](https://github.com/chakra-ui/chakra-ui/commit/270b71ebbb2bd9007d2e138e432675991d94f18d)
+  [#4368](https://github.com/chakra-ui/chakra-ui/pull/4368) Thanks
+  [@avendiart](https://github.com/avendiart)! - Grid props type definitions now
+  correclty reflect the implemented behavior in regard to tokens.
+* Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+
+## 1.12.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+
 ## 1.12.0
 
 ### Minor Changes

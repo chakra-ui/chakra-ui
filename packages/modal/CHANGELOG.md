@@ -1,5 +1,101 @@
 # Change Log
 
+## 1.9.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`5fe9b552b`](https://github.com/chakra-ui/chakra-ui/commit/5fe9b552bcae55935d1ab8ffde86b701075e6e6a),
+  [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/hooks@1.6.2
+  - @chakra-ui/utils@1.8.4
+  - @chakra-ui/portal@1.2.11
+  - @chakra-ui/close-button@1.1.13
+  - @chakra-ui/focus-lock@1.1.12
+  - @chakra-ui/transition@1.3.7
+
+## 1.9.2
+
+### Patch Changes
+
+- [`126bf17db`](https://github.com/chakra-ui/chakra-ui/commit/126bf17db67d6226e6d48c57ef3b69e5504eaada)
+  [#4823](https://github.com/chakra-ui/chakra-ui/pull/4823) Thanks
+  [@antoniel](https://github.com/antoniel)! - Fix issue where modal doesn't
+  close when the escape key is pressed and `closeOnOverlayClick` is `false`
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`a9d1dc4ac`](https://github.com/chakra-ui/chakra-ui/commit/a9d1dc4ac874825f292d874ad4eadaf060fed436),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/hooks@1.6.1
+  - @chakra-ui/close-button@1.1.12
+  - @chakra-ui/focus-lock@1.1.11
+  - @chakra-ui/portal@1.2.10
+  - @chakra-ui/transition@1.3.6
+
+## 1.9.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`eafb21e18`](https://github.com/chakra-ui/chakra-ui/commit/eafb21e1883cf40bfe44e143714d9a480a0cc7da)]:
+  - @chakra-ui/transition@1.3.5
+
+## 1.9.0
+
+### Minor Changes
+
+- [`8c61e75ec`](https://github.com/chakra-ui/chakra-ui/commit/8c61e75ec6da4ca6ce0fe413034f6aed7f685977)
+  [#3837](https://github.com/chakra-ui/chakra-ui/pull/3837) Thanks
+  [@mcha-dev](https://github.com/mcha-dev)! - **Drawer:** Add support for
+  RTL-aware placement values. You can now pass `start` and `end` values. The
+  drawer will use `left/right` placement depending on the specified
+  `theme.direction` value.
+
+### Patch Changes
+
+- [`c1d1029bc`](https://github.com/chakra-ui/chakra-ui/commit/c1d1029bca08a9774fc3ca8d2e04a1cc5b58a43b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **Drawer**: omit
+  the `motionPreset` prop type since `Drawer` only implements the `Slide`
+  transition, unlike `Modal` that allows you switch its motion preset.
+
+## 1.8.11
+
+### Patch Changes
+
+- Updated dependencies
+  [[`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130)]:
+  - @chakra-ui/hooks@1.6.0
+  - @chakra-ui/portal@1.2.9
+
+## 1.8.10
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+  - @chakra-ui/close-button@1.1.11
+  - @chakra-ui/focus-lock@1.1.10
+  - @chakra-ui/hooks@1.5.5
+  - @chakra-ui/portal@1.2.8
+  - @chakra-ui/transition@1.3.4
+
+## 1.8.9
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+  - @chakra-ui/close-button@1.1.10
+  - @chakra-ui/focus-lock@1.1.9
+  - @chakra-ui/hooks@1.5.4
+  - @chakra-ui/portal@1.2.7
+  - @chakra-ui/transition@1.3.3
+
 ## 1.8.8
 
 ### Patch Changes

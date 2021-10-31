@@ -1,8 +1,9 @@
+import type { SystemStyleObject } from "@chakra-ui/theme-tools"
 import Badge from "./badge"
 
 const { variants, defaultProps } = Badge
 
-const baseStyle = {
+const baseStyle: SystemStyleObject = {
   fontFamily: "mono",
   fontSize: "sm",
   px: "0.2em",

@@ -8,16 +8,17 @@ import {
 } from "./utils"
 import * as colorModeUtils from "../src/color-mode.utils"
 
-beforeEach(() => {
-  jest.resetAllMocks()
-})
-
 jest.mock("@chakra-ui/utils", () => {
   const actual = jest.requireActual("@chakra-ui/utils")
+
   return {
     ...actual,
     isBrowser: false,
   }
+})
+
+beforeEach(() => {
+  jest.resetAllMocks()
 })
 
 describe("<ColorModeProvider /> localStorage server", () => {

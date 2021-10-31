@@ -41,7 +41,7 @@ export interface LinkBoxProps extends HTMLChakraProps<"div"> {}
 /**
  * `LinkBox` is used to wrap content areas within a link while ensuring semantic html
  *
- * @see Docs https://www.chakra-ui.com/docs/link-overlay
+ * @see Docs https://chakra-ui.com/docs/navigation/link-overlay
  * @see Resources https://www.sarasoueidan.com/blog/nested-links
  */
 export const LinkBox = forwardRef<LinkBoxProps, "div">((props, ref) => {

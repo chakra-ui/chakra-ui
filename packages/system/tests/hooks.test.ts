@@ -18,6 +18,10 @@ const mockBlue = {
   500: "mockBlue.500",
 }
 
+const mockSpace = {
+  "1.5": "0.375rem",
+}
+
 const setupMock = () => {
   jest.spyOn(system, "useTheme").mockReturnValueOnce(
     toCSSVar({
@@ -25,6 +29,7 @@ const setupMock = () => {
         red: mockRed,
         blue: mockBlue,
       },
+      space: mockSpace,
     }),
   )
 }
@@ -41,6 +46,14 @@ describe("useToken", () => {
 
     expect(result.current).not.toBeInstanceOf(Array)
     expect(result.current).toStrictEqual(mockRed[100])
+  })
+
+  test("resolves a value which contains a dot", () => {
+    setupMock()
+    const { result } = renderHook(() => useToken("space", "1.5"))
+
+    expect(result.current).not.toBeInstanceOf(Array)
+    expect(result.current).toStrictEqual(mockSpace["1.5"])
   })
 
   test("resolves multiple values", () => {

@@ -15,7 +15,6 @@ import {
   minSafeInteger,
   StringOrNumber,
   normalizeEventKey,
-  scheduleMicrotask,
 } from "@chakra-ui/utils"
 import { mergeRefs, PropGetter, EventKeyMap } from "@chakra-ui/react-utils"
 import * as React from "react"
@@ -453,9 +452,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       autoCorrect: "off",
       onChange: callAllHandlers(props.onChange, onChange),
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-      onFocus: callAllHandlers(props.onFocus, onFocusProp, () =>
-        scheduleMicrotask(setFocused.on),
-      ),
+      onFocus: callAllHandlers(props.onFocus, onFocusProp, setFocused.on),
       onBlur: callAllHandlers(props.onBlur, onBlurProp, onInputBlur),
     }),
     [

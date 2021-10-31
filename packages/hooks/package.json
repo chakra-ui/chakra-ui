@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/hooks",
-  "version": "1.5.3",
+  "version": "1.6.2",
   "description": "React hooks for Chakra components",
   "keywords": [
     "hooks",
@@ -30,7 +30,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chakra-ui/chakra-ui.git"
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/hooks"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
@@ -51,7 +52,7 @@
   },
   "dependencies": {
     "@chakra-ui/react-utils": "1.1.2",
-    "@chakra-ui/utils": "1.8.0",
+    "@chakra-ui/utils": "1.8.4",
     "compute-scroll-into-view": "1.0.14",
     "copy-to-clipboard": "3.3.1"
   },

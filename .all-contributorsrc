@@ -1799,7 +1799,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/922234?v=4",
       "profile": "https://medium.com/@tomchentw",
       "contributions": [
-        "doc"
+        "doc",
+        "infra"
       ]
     },
     {
@@ -1931,6 +1932,81 @@
       "profile": "http://monae.me",
       "contributions": [
         "code"
+      ]
+    },
+    {
+      "login": "wadewadewadewadewadewade",
+      "name": "Wade McDaniel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23270394?v=4",
+      "profile": "https://github.com/wadewadewadewadewadewade",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "MasterGordon",
+      "name": "Gordon Goldbach",
+      "avatar_url": "https://avatars.githubusercontent.com/u/18127395?v=4",
+      "profile": "https://github.com/MasterGordon",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "bhishp",
+      "name": "Bhish",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12024258?v=4",
+      "profile": "https://github.com/bhishp",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "soloamilkar",
+      "name": "Amilkar Munoz",
+      "avatar_url": "https://avatars.githubusercontent.com/u/71573508?v=4",
+      "profile": "http://amilkar.dev",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "samarmohan",
+      "name": "Samar Mohan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/71091489?v=4",
+      "profile": "https://book-worm-1.herokuapp.com/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "joaorodrs",
+      "name": "João Paulo Rodrigues",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64229622?v=4",
+      "profile": "https://joaopaulo-developer.vercel.app/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "averyfreeman",
+      "name": "Avery Freeman",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1308847?v=4",
+      "profile": "http://develmonk.com",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "takethefake",
+      "name": "Daniel Schulz",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3123354?v=4",
+      "profile": "http://schulz.codes",
+      "contributions": [
+        "bug",
+        "code",
+        "doc",
+        "ideas"
       ]
     }
   ],

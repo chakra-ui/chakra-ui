@@ -3,7 +3,7 @@ import { isFunction, __DEV__ } from "@chakra-ui/utils"
 import ReachAlert from "@reach/alert"
 import { motion, useIsPresent, Variants } from "framer-motion"
 import * as React from "react"
-import { ToastOptions } from "./toast.types"
+import type { ToastOptions } from "./toast.types"
 import { getToastStyle } from "./toast.utils"
 
 /**

@@ -43,7 +43,7 @@ This enables component composition:
 ### Usage
 
 ```jsx
-import { createDescendantContext } from "@descendants/react"
+import { createDescendantContext } from "@chakra-ui/descendant"
 import * as React from "react"
 
 const [

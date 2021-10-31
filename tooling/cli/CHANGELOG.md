@@ -1,5 +1,75 @@
 # @chakra-ui/cli
 
+## 1.5.3
+
+### Patch Changes
+
+- [`e0a004b45`](https://github.com/chakra-ui/chakra-ui/commit/e0a004b450a76915477ab3da687cf311e96c7494)
+  [#4818](https://github.com/chakra-ui/chakra-ui/pull/4818) Thanks
+  [@igorwessel](https://github.com/igorwessel)! - Fixed an issue where the CLI
+  tokens command exited unexpectedly with:
+  `SyntaxError: Cannot use import statement outside a module`
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+
+## 1.5.2
+
+### Patch Changes
+
+- [`236efcbf5`](https://github.com/chakra-ui/chakra-ui/commit/236efcbf562a966d5a3fcd0a778ee404b379d41d)
+  [#4781](https://github.com/chakra-ui/chakra-ui/pull/4781) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue where the
+  CLI failed with `SyntaxError: JSON5: invalid character`.
+
+## 1.5.1
+
+### Patch Changes
+
+- [`c96f44e16`](https://github.com/chakra-ui/chakra-ui/commit/c96f44e1660fd0430eac0e003f1e807873776b15)
+  [#4725](https://github.com/chakra-ui/chakra-ui/pull/4725) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue where the
+  CLI did not resolve custom tsconfig paths.
+
+  🚨 Please note that only the first alias target from the string array will be
+  resolved.
+
+  ```json5
+  // tsconfig.json
+  {
+    //...
+    compilerOptions: {
+      baseUrl: "src",
+      paths: {
+        "@alias/*": ["target/*"],
+        //           ^-- only the first target will be resolved
+      },
+    },
+  }
+  ```
+
+## 1.5.0
+
+### Minor Changes
+
+- [`211d94de3`](https://github.com/chakra-ui/chakra-ui/commit/211d94de397e4e7c91cfe70a3bafa905c7506cbf)
+  [#4258](https://github.com/chakra-ui/chakra-ui/pull/4258) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Enable esModuleInterop for
+  `chakra-cli tokens`
+
+### Patch Changes
+
+- [`7d9cb190c`](https://github.com/chakra-ui/chakra-ui/commit/7d9cb190cda3b9b58fbd159662402f37fcf7f087)
+  [#4214](https://github.com/chakra-ui/chakra-ui/pull/4214) Thanks
+  [@npirotte](https://github.com/npirotte)! - Token generation supports non
+  valid JS keys for components
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+
 ## 1.4.0
 
 ### Minor Changes

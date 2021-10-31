@@ -1,5 +1,61 @@
 # Change Log
 
+## 1.6.2
+
+### Patch Changes
+
+- [`5fe9b552b`](https://github.com/chakra-ui/chakra-ui/commit/5fe9b552bcae55935d1ab8ffde86b701075e6e6a)
+  [#4822](https://github.com/chakra-ui/chakra-ui/pull/4822) Thanks
+  [@takethefake](https://github.com/takethefake)! - used useCallbackRef for
+  onOpenProp/onCloseProp in useDisclosure
+
+- Updated dependencies
+  [[`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/utils@1.8.4
+
+## 1.6.1
+
+### Patch Changes
+
+- [`a9d1dc4ac`](https://github.com/chakra-ui/chakra-ui/commit/a9d1dc4ac874825f292d874ad4eadaf060fed436)
+  [#4803](https://github.com/chakra-ui/chakra-ui/pull/4803) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Forward `threshold`
+  options from `usePanSession` to `PanSession` class
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+
+## 1.6.0
+
+### Minor Changes
+
+- [`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130)
+  [#4595](https://github.com/chakra-ui/chakra-ui/pull/4595) Thanks
+  [@margalit](https://github.com/margalit)! - - Added an enabled prop to the
+  `useOutsideClick` hook to conditionally attach event handlers.
+
+  - Updated the `useMenu` hook to only enable the `useOutsideClick` hook when
+    the menu is open.
+
+## 1.5.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+
+## 1.5.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+
 ## 1.5.3
 
 ### Patch Changes

@@ -95,11 +95,12 @@ interface ScrollableElement {
 
 function getScrollableElements(element: HTMLElement): ScrollableElement[] {
   const doc = getOwnerDocument(element)
+  const win = doc.defaultView ?? window
   let parent = element.parentNode
   const scrollableElements: ScrollableElement[] = []
   const rootScrollingElement = doc.scrollingElement || doc.documentElement
 
-  while (parent instanceof HTMLElement && parent !== rootScrollingElement) {
+  while (parent instanceof win.HTMLElement && parent !== rootScrollingElement) {
     if (
       parent.offsetHeight < parent.scrollHeight ||
       parent.offsetWidth < parent.scrollWidth
@@ -113,7 +114,7 @@ function getScrollableElements(element: HTMLElement): ScrollableElement[] {
     parent = parent.parentNode
   }
 
-  if (rootScrollingElement instanceof HTMLElement) {
+  if (rootScrollingElement instanceof win.HTMLElement) {
     scrollableElements.push({
       element: rootScrollingElement,
       scrollTop: rootScrollingElement.scrollTop,

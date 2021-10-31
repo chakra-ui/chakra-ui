@@ -10,6 +10,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   useStyles,
+  useTheme,
 } from "@chakra-ui/system"
 import { cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -39,7 +40,8 @@ export const Popover: React.FC<PopoverProps> = (props) => {
   const styles = useMultiStyleConfig("Popover", props)
 
   const { children, ...rest } = omitThemingProps(props)
-  const context = usePopover(rest)
+  const theme = useTheme()
+  const context = usePopover({ ...rest, direction: theme.direction })
 
   return (
     <PopoverProvider value={context}>
@@ -181,15 +183,13 @@ export type PopoverCloseButtonProps = CloseButtonProps
 
 export const PopoverCloseButton: React.FC<CloseButtonProps> = (props) => {
   const { onClose } = usePopoverContext()
+  const styles = useStyles()
   return (
     <CloseButton
       size="sm"
       onClick={onClose}
-      position="absolute"
-      borderRadius="md"
-      top="0.25rem"
-      insetEnd="0.5rem"
-      padding="0.5rem"
+      className={cx("chakra-popover__close-btn", props.className)}
+      __css={styles.closeButton}
       {...props}
     />
   )

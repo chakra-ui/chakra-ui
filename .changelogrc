@@ -1,0 +1,36 @@
+## 14-10-2021
+
+`@chakra-ui/react@1.6.10`
+
+**Radio** `v1.3.11`
+
+- Add support for styling the container element based on the radio state
+
+**Popover** `v1.8.5`
+
+- Fix issue where `computePositionOnMount` didn't work without explict value
+
+**Utils** `v1.8.3`
+
+- Fixed iframe bug on firefox when using `getRelatedTarget` function
+- Fix issue where pan-event utils don't work within iframe
+
+**Hooks** `v1.6.1`
+
+- Forward `threshold` options from `usePanSession` to `PanSession` class
+
+**Slider** `v1.4.1`
+
+- Fix issue where value can't be changed when range-slider thumbs are stacked
+
+**Modal** `v1.9.2`
+
+- Fix issue where modal doesn't close when the escape key is pressed and `closeOnOverlayClick` is `false`
+
+**Cli** `v1.5.3`
+
+- Fixed an issue where the CLI tokens command exited unexpectedly with: `SyntaxError: Cannot use import statement outside a module`
+
+**Checkbox** `v1.5.8`
+
+- Fix issue where `tabIndex` property isn't passed to the underlying input element

@@ -1,4 +1,3 @@
-import React from "react"
 import { screen } from "@chakra-ui/test-utils"
 import { createStandaloneToast } from "../src"
 
@@ -14,7 +13,7 @@ test("Standalone toast renders correctly", async () => {
     isClosable: true,
   })
 
-  const allByTitle = await screen.findAllByText(title)
+  const allByTitle = await screen.findAllByRole("alert", { name: title })
   const allByDescription = await screen.findAllByText(description)
 
   expect(allByTitle).toHaveLength(1)

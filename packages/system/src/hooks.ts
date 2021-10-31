@@ -3,7 +3,6 @@ import { SystemStyleObject } from "@chakra-ui/styled-system"
 import {
   Dict,
   filterUndefined,
-  memoizedGet as get,
   mergeWith,
   runIfFn,
   StringOrNumber,
@@ -18,6 +17,17 @@ export function useChakra<T extends Dict = Dict>() {
   const colorModeResult = useColorMode()
   const theme = useTheme() as T
   return { ...colorModeResult, theme }
+}
+
+// inspired from ./css.ts : resolveTokenValue
+const resolveTokenValue = <T extends StringOrNumber>(
+  theme: Dict,
+  tokenValue: T,
+  fallbackValue: any,
+) => {
+  if (tokenValue == null) return tokenValue
+  const getValue = (val: T) => theme.__cssMap?.[val]?.value
+  return getValue(tokenValue) ?? getValue(fallbackValue) ?? fallbackValue
 }
 
 export function useToken<T extends StringOrNumber>(
@@ -35,12 +45,12 @@ export function useToken<T extends StringOrNumber>(
 
     return token.map((token, index) => {
       const path = `${scale}.${token}`
-      return get(theme, path, fallbackArr[index] ?? token)
+      return resolveTokenValue(theme, path, fallbackArr[index] ?? token)
     })
   }
 
   const path = `${scale}.${token}`
-  return get(theme, path, fallback ?? token)
+  return resolveTokenValue(theme, path, fallback)
 }
 
 export function useProps<P extends ThemingProps>(

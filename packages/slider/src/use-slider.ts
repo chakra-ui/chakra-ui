@@ -6,7 +6,6 @@ import {
   useIds,
   useLatestRef,
   usePanGesture,
-  usePrevious,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
 import { EventKeyMap, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
@@ -24,7 +23,7 @@ import {
   valueToPercent,
 } from "@chakra-ui/utils"
 import { CSSProperties, useCallback, useMemo, useRef } from "react"
-import { getPartsStyle } from "./slider-utils"
+import { getStyles, getIsReversed } from "./slider-utils"
 
 export interface UseSliderProps {
   /**
@@ -60,15 +59,15 @@ export interface UseSliderProps {
    */
   isReversed?: boolean
   /**
-   * function gets called whenever the user starts dragging the slider handle
+   * Function called when the user starts selecting a new value (by dragging or clicking)
    */
   onChangeStart?(value: number): void
   /**
-   * function gets called whenever the user stops dragging the slider handle.
+   * Function called when the user is done selecting a new value (by dragging or clicking)
    */
   onChangeEnd?(value: number): void
   /**
-   * function gets called whenever the slider handle is being dragged or clicked
+   * Function called whenever the slider value changes  (by dragging or clicking)
    */
   onChange?(value: number): void
   /**
@@ -113,6 +112,7 @@ export interface UseSliderProps {
    * ID of the element that serves as label for the slider
    */
   "aria-labelledby"?: string
+  direction?: "ltr" | "rtl"
 }
 
 /**
@@ -131,7 +131,8 @@ export function useSlider(props: UseSliderProps) {
     onChange,
     value: valueProp,
     defaultValue,
-    isReversed,
+    isReversed: isReversedProp,
+    direction = "ltr",
     orientation = "horizontal",
     id: idProp,
     isDisabled,
@@ -152,6 +153,12 @@ export function useSlider(props: UseSliderProps) {
   const onChangeEnd = useCallbackRef(onChangeEndProp)
   const getAriaValueText = useCallbackRef(getAriaValueTextProp)
 
+  const isReversed = getIsReversed({
+    isReversed: isReversedProp,
+    direction,
+    orientation,
+  })
+
   /**
    * Enable the slider handle controlled and uncontrolled scenarios
    */
@@ -162,7 +169,6 @@ export function useSlider(props: UseSliderProps) {
   })
 
   const [isDragging, setDragging] = useBoolean()
-  const prevIsDragging = usePrevious(isDragging)
 
   const [isFocused, setFocused] = useBoolean()
   const eventSourceRef = useRef<"pointer" | "keyboard" | null>(null)
@@ -180,7 +186,7 @@ export function useSlider(props: UseSliderProps) {
 
   const reversedValue = max - value + min
   const trackValue = isReversed ? reversedValue : value
-  const trackPercent = valueToPercent(trackValue, min, max)
+  const thumbPercent = valueToPercent(trackValue, min, max)
 
   const isVertical = orientation === "vertical"
 
@@ -308,15 +314,20 @@ export function useSlider(props: UseSliderProps) {
   /**
    * Compute styles for all component parts.
    */
-  const { thumbStyle, rootStyle, trackStyle, innerTrackStyle } = useMemo(() => {
+  const {
+    getThumbStyle,
+    rootStyle,
+    trackStyle,
+    innerTrackStyle,
+  } = useMemo(() => {
     const thumbRect = thumbBoxModel?.borderBox ?? { width: 0, height: 0 }
-    return getPartsStyle({
+    return getStyles({
       isReversed,
       orientation,
-      thumbRect,
-      trackPercent,
+      thumbRects: [thumbRect],
+      thumbPercents: [thumbPercent],
     })
-  }, [isReversed, orientation, thumbBoxModel?.borderBox, trackPercent])
+  }, [isReversed, orientation, thumbBoxModel?.borderBox, thumbPercent])
 
   const focusThumb = useCallback(() => {
     if (thumbRef.current && focusThumbOnChange) {
@@ -327,9 +338,9 @@ export function useSlider(props: UseSliderProps) {
   useUpdateEffect(() => {
     focusThumb()
     if (eventSourceRef.current === "keyboard") {
-      onChangeEndProp?.(valueRef.current)
+      onChangeEnd?.(valueRef.current)
     }
-  }, [value, onChangeEndProp])
+  }, [value, onChangeEnd])
 
   const setValueFromPointer = (event: AnyPointerEvent) => {
     const nextValue = getValueFromPointer(event)
@@ -341,28 +352,20 @@ export function useSlider(props: UseSliderProps) {
   usePanGesture(rootRef, {
     onPanSessionStart(event) {
       if (!isInteractive) return
+      setDragging.on()
+      focusThumb()
       setValueFromPointer(event)
+      onChangeStart?.(valueRef.current)
     },
     onPanSessionEnd() {
       if (!isInteractive) return
-      if (!prevIsDragging && prevRef.current !== valueRef.current) {
-        onChangeEnd?.(valueRef.current)
-        prevRef.current = valueRef.current
-      }
-    },
-    onPanStart() {
-      if (!isInteractive) return
-      setDragging.on()
-      onChangeStart?.(valueRef.current)
+      setDragging.off()
+      onChangeEnd?.(valueRef.current)
+      prevRef.current = valueRef.current
     },
     onPan(event) {
       if (!isInteractive) return
       setValueFromPointer(event)
-    },
-    onPanEnd() {
-      if (!isInteractive) return
-      setDragging.off()
-      onChangeEnd?.(valueRef.current)
     },
   })
 
@@ -427,29 +430,29 @@ export function useSlider(props: UseSliderProps) {
       "aria-labelledby": ariaLabel ? undefined : ariaLabelledBy,
       style: {
         ...props.style,
-        ...thumbStyle,
+        ...getThumbStyle(0),
       },
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
       onFocus: callAllHandlers(props.onFocus, setFocused.on),
       onBlur: callAllHandlers(props.onBlur, setFocused.off),
     }),
     [
+      isInteractive,
+      thumbId,
+      isDragging,
+      valueText,
+      min,
+      max,
+      value,
+      orientation,
+      isDisabled,
+      isReadOnly,
       ariaLabel,
       ariaLabelledBy,
-      isDisabled,
-      isDragging,
-      isReadOnly,
-      isInteractive,
-      max,
-      min,
+      getThumbStyle,
       onKeyDown,
-      orientation,
-      setFocused.off,
       setFocused.on,
-      thumbId,
-      thumbStyle,
-      value,
-      valueText,
+      setFocused.off,
     ],
   )
 

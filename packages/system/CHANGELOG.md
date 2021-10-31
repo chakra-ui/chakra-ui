@@ -1,5 +1,86 @@
 # Change Log
 
+## 1.7.5
+
+### Patch Changes
+
+- [`ed79a9cfb`](https://github.com/chakra-ui/chakra-ui/commit/ed79a9cfb35fec67bfe95bbc2a04a11d0d00fbfe)
+  [#4842](https://github.com/chakra-ui/chakra-ui/pull/4842) Thanks
+  [@takethefake](https://github.com/takethefake)! - Fixed a bug in `useToken`
+  where it wasn't possible to resolve some tokens which contain dots like
+  `useToken('space','1.5')`. (see #4834)
+- Updated dependencies
+  [[`38b5bc627`](https://github.com/chakra-ui/chakra-ui/commit/38b5bc627c98fed4b7a55c45820785a4905c081e),
+  [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f),
+  [`8f315ea5d`](https://github.com/chakra-ui/chakra-ui/commit/8f315ea5d694e0130dc2e3187ac53320cf1adcd1)]:
+  - @chakra-ui/styled-system@1.13.0
+  - @chakra-ui/utils@1.8.4
+  - @chakra-ui/color-mode@1.1.14
+
+## 1.7.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/color-mode@1.1.13
+  - @chakra-ui/styled-system@1.12.3
+
+## 1.7.3
+
+### Patch Changes
+
+- [`01c913309`](https://github.com/chakra-ui/chakra-ui/commit/01c913309819c342806307291d2d60aea0122ecf)
+  [#4611](https://github.com/chakra-ui/chakra-ui/pull/4611) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Update `useStyleConfig` to
+  read parts array from the new anatomy class
+
+- Updated dependencies []:
+  - @chakra-ui/color-mode@1.1.12
+
+## 1.7.2
+
+### Patch Changes
+
+- [`d3d85956c`](https://github.com/chakra-ui/chakra-ui/commit/d3d85956c776b4768cfe21dabcf9292e01875d74)
+  [#4511](https://github.com/chakra-ui/chakra-ui/pull/4511) Thanks
+  [@jrolfs](https://github.com/jrolfs)! - Fix type definitions for `apply` prop.
+
+  The `apply` prop supports responsive styles:
+
+  ```tsx
+  // Before: type error, expects `string` for `apply`
+  <Text apply={{ sm: 'styles.h3', lg: 'styles.h4' }}>
+
+  // After: no type error, expects `ResponsiveValue<string>` for `apply`
+  <Text apply={{ sm: 'styles.h3', lg: 'styles.h4' }}>
+  ```
+
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`1d4b1f874`](https://github.com/chakra-ui/chakra-ui/commit/1d4b1f87498c2d843cd21c24e86085d812a1de07),
+  [`270b71ebb`](https://github.com/chakra-ui/chakra-ui/commit/270b71ebbb2bd9007d2e138e432675991d94f18d),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+  - @chakra-ui/styled-system@1.12.2
+  - @chakra-ui/color-mode@1.1.11
+
+## 1.7.1
+
+### Patch Changes
+
+- [`56e99313e`](https://github.com/chakra-ui/chakra-ui/commit/56e99313e1177978c9842e55696be15c5bbfe8d9)
+  [#4265](https://github.com/chakra-ui/chakra-ui/pull/4265) Thanks
+  [@m0nae](https://github.com/m0nae)! - Fix issue where undefined style props
+  (such as `borderRadius`) would not fallback to the default styles
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+  - @chakra-ui/color-mode@1.1.10
+  - @chakra-ui/styled-system@1.12.1
+
 ## 1.7.0
 
 ### Minor Changes

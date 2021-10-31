@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { FormControl } from "@chakra-ui/react"
-import { fireEvent, render } from "@chakra-ui/test-utils"
+import { fireEvent, render, waitFor } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { Radio, useRadioGroup, UseRadioGroupProps } from "../src"
+import { Radio, useRadioGroup, UseRadioGroupProps, RadioGroup } from "../src"
 
 test("works with Radio component", () => {
   const Component = (props: UseRadioGroupProps = {}) => {
@@ -39,6 +39,67 @@ test("uncontrolled: correctly manages state", () => {
   // changes checked on click
   fireEvent.click(utils.getByLabelText("b"))
   expect(utils.getByLabelText("b")).toBeChecked()
+})
+
+test("Uncontrolled RadioGroup - should not check if group disabled", () => {
+  const Component = () => (
+    <RadioGroup isDisabled isFocusable={false}>
+      <Radio value="one">One</Radio>
+      <Radio value="one-focus" isFocusable>
+        One Focusable
+      </Radio>
+      <Radio value="two" isDisabled>
+        Two
+      </Radio>
+      <Radio value="two-focus" isDisabled isFocusable>
+        Two Focusable
+      </Radio>
+      <Radio value="three" isDisabled={false}>
+        Three
+      </Radio>
+    </RadioGroup>
+  )
+  const { container } = render(<Component />)
+  const [
+    radioOne,
+    radioOneFocusable,
+    radioTwo,
+    radioTwoFocusable,
+    radioThree,
+  ] = Array.from(container.querySelectorAll("input"))
+
+  const [
+    radioOneSpan,
+    radioOneSpanFocusable,
+    radioTwoSpan,
+    radioTwoSpanFocusable,
+    radioThreeSpan,
+  ] = Array.from(container.querySelectorAll(".chakra-radio__control"))
+
+  // since `RadioGroup` has `isDisabled={true}` all radio spans should be disabled
+  expect(radioOneSpan).toHaveAttribute("data-disabled", "")
+  expect(radioOneSpanFocusable).toHaveAttribute("data-disabled", "")
+  expect(radioTwoSpan).toHaveAttribute("data-disabled", "")
+  expect(radioTwoSpanFocusable).toHaveAttribute("data-disabled", "")
+  expect(radioThreeSpan).not.toHaveAttribute("data-disabled") // radioThree isn't disabled at all
+
+  // to be truly disabled on the input field the condition `!isFocusable && isDisabled` has to be truthy
+  expect(radioOne).toBeDisabled()
+  expect(radioOneFocusable).not.toBeDisabled() // because it is still focusable
+  expect(radioTwo).toBeDisabled()
+  expect(radioTwoFocusable).not.toBeDisabled() // because it is still focusable
+  expect(radioThree).not.toBeDisabled()
+
+  fireEvent.click(radioOne)
+  waitFor(() => expect(radioOne).not.toBeChecked())
+  fireEvent.click(radioOneFocusable)
+  waitFor(() => expect(radioOneFocusable).not.toBeChecked())
+  fireEvent.click(radioTwo)
+  waitFor(() => expect(radioTwo).not.toBeChecked())
+  fireEvent.click(radioTwoFocusable)
+  waitFor(() => expect(radioTwoFocusable).not.toBeChecked())
+  fireEvent.click(radioThree)
+  expect(radioThree).toBeChecked()
 })
 
 test("controlled: correctly manages state", () => {

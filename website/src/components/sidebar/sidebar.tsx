@@ -1,7 +1,7 @@
 import NextLink from "next/link"
 import { useRouter } from "next/router"
 import * as React from "react"
-import _ from "lodash"
+import sortBy from "lodash/sortBy"
 import {
   Badge,
   Box,
@@ -18,13 +18,7 @@ import { Routes } from "utils/get-route-context"
 import { convertBackticksToInlineCode } from "utils/convert-backticks-to-inline-code"
 import SidebarCategory from "./sidebar-category"
 import SidebarLink from "./sidebar-link"
-import {
-  BlogIcon,
-  DocsIcon,
-  GuidesIcon,
-  TeamIcon,
-  ResourcesIcon,
-} from "./sidebar-icons"
+import { DocsIcon, GuidesIcon, TeamIcon, ResourcesIcon } from "./sidebar-icons"
 
 export type SidebarContentProps = Routes & {
   pathname?: string
@@ -33,6 +27,7 @@ export type SidebarContentProps = Routes & {
 
 export function SidebarContent(props: SidebarContentProps) {
   const { routes, pathname, contentRef } = props
+  const color = useColorModeValue("gray.700", "inherit")
   return (
     <>
       {routes.map((lvl1, idx) => {
@@ -45,7 +40,7 @@ export function SidebarContent(props: SidebarContentProps) {
                 my="1.25rem"
                 textTransform="uppercase"
                 letterSpacing="wider"
-                color={useColorModeValue("gray.700", "inherit")}
+                color={color}
               >
                 {lvl1.title}
               </chakra.h4>
@@ -63,8 +58,8 @@ export function SidebarContent(props: SidebarContentProps) {
               const selected = pathname.startsWith(lvl2.path)
               const opened = selected || lvl2.open
 
-              const sortedRoutes = !!lvl2.sort
-                ? _.sortBy(lvl2.routes, (i) => i.title)
+              const sortedRoutes = lvl2.sort
+                ? sortBy(lvl2.routes, (i) => i.title)
                 : lvl2.routes
 
               return (
@@ -150,11 +145,6 @@ const mainNavLinks = [
     icon: <TeamIcon />,
     href: "/team",
     label: "Team",
-  },
-  {
-    icon: <BlogIcon />,
-    href: "/blog",
-    label: "Blog",
   },
 ]
 

@@ -2,12 +2,13 @@ import { objectKeys } from "@chakra-ui/utils"
 import { AnimatePresence } from "framer-motion"
 import * as React from "react"
 import { Toast } from "./toast"
+import { ToastPosition } from "./toast.placement"
 import type {
   CloseAllToastsOptions,
   ToastId,
   ToastMessage,
   ToastOptions,
-  ToastPosition,
+  ToastState,
 } from "./toast.types"
 import { findToast, getToastPosition } from "./toast.utils"
 
@@ -23,8 +24,6 @@ interface Props {
   notify: (methods: ToastMethods) => void
 }
 
-type State = { [K in ToastPosition]: ToastOptions[] }
-
 type CreateToastOptions = Partial<
   Pick<
     ToastOptions,
@@ -36,7 +35,7 @@ type CreateToastOptions = Partial<
  * Manages the creation, and removal of toasts
  * across all corners ("top", "bottom", etc.)
  */
-export class ToastManager extends React.Component<Props, State> {
+export class ToastManager extends React.Component<Props, ToastState> {
   /**
    * Static id counter to create unique ids
    * for each toast
@@ -46,7 +45,7 @@ export class ToastManager extends React.Component<Props, State> {
   /**
    * State to track all the toast across all positions
    */
-  state: State = {
+  state: ToastState = {
     top: [],
     "top-left": [],
     "top-right": [],

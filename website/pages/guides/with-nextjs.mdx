@@ -10,14 +10,22 @@ and accessibly.
 
 **The way to setup Chakra with Next.js shown in this Guide:**
 
-## Chakra-v1
-
-To get started, install the core Chakra UI package:
+This guide assumes you already have a pretty standard NextJS setup. You can create a blank nextjs project by doing
 
 ```zsh
-npm i @chakra-ui/react
+npx create-next-app my-project
 # or
-yarn add @chakra-ui/react
+yarn create next-app my-project
+```
+
+## Chakra
+
+To get started, install the core Chakra UI package :
+
+```zsh
+npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4
+# or
+yarn add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4
 ```
 
 After installation, you'll need to add Chakra providers
@@ -41,3 +49,4 @@ function MyApp({ Component, pageProps }) {
 }
 export default MyApp
 ```
+

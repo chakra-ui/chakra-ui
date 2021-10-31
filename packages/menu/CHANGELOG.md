@@ -1,5 +1,102 @@
 # Change Log
 
+## 1.7.7
+
+### Patch Changes
+
+- [`98fdadd9d`](https://github.com/chakra-ui/chakra-ui/commit/98fdadd9df76369770a017ff1338fa2d9764a84e)
+  [#4822](https://github.com/chakra-ui/chakra-ui/pull/4822) Thanks
+  [@takethefake](https://github.com/takethefake)! - Fixed an error where the
+  onOpen was called multiple/infinite times
+
+* [`c28d9232d`](https://github.com/chakra-ui/chakra-ui/commit/c28d9232df555e88d149c17f2116600350c83b14)
+  [#4888](https://github.com/chakra-ui/chakra-ui/pull/4888) Thanks
+  [@dodas](https://github.com/dodas)! - Fix issue where computePositionOnMount
+  didn't work without explict value
+
+* Updated dependencies
+  [[`5fe9b552b`](https://github.com/chakra-ui/chakra-ui/commit/5fe9b552bcae55935d1ab8ffde86b701075e6e6a),
+  [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/hooks@1.6.2
+  - @chakra-ui/utils@1.8.4
+  - @chakra-ui/clickable@1.1.9
+  - @chakra-ui/transition@1.3.7
+
+## 1.7.6
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`a9d1dc4ac`](https://github.com/chakra-ui/chakra-ui/commit/a9d1dc4ac874825f292d874ad4eadaf060fed436),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/hooks@1.6.1
+  - @chakra-ui/clickable@1.1.8
+  - @chakra-ui/transition@1.3.6
+
+## 1.7.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`eafb21e18`](https://github.com/chakra-ui/chakra-ui/commit/eafb21e1883cf40bfe44e143714d9a480a0cc7da)]:
+  - @chakra-ui/transition@1.3.5
+
+## 1.7.4
+
+### Patch Changes
+
+- [`19d9abe75`](https://github.com/chakra-ui/chakra-ui/commit/19d9abe75cf863468b70362ce7eee90f0ad94d29)
+  [#4691](https://github.com/chakra-ui/chakra-ui/pull/4691) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where keyboard
+  navigation doesn't work when `MenuButton` isn't rendered. This is useful in
+  scenarios where you want the menu to be triggered by a command or right-click.
+- Updated dependencies
+  [[`4146a9051`](https://github.com/chakra-ui/chakra-ui/commit/4146a9051a5151532503e31c464193e9d118dd26)]:
+  - @chakra-ui/popper@2.3.0
+
+## 1.7.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130)]:
+  - @chakra-ui/hooks@1.6.0
+
+## 1.7.2
+
+### Patch Changes
+
+- [`6dadb97db`](https://github.com/chakra-ui/chakra-ui/commit/6dadb97db74fb9e559c41770b8c99e1a9ed08577)
+  [#4514](https://github.com/chakra-ui/chakra-ui/pull/4514) Thanks
+  [@takethefake](https://github.com/takethefake)! - MenuList scroll to next
+  MenuItem on KeyboardNavigation when there is a defined maxHeight on MenuList
+
+* [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)
+  [#4458](https://github.com/chakra-ui/chakra-ui/pull/4458) Thanks
+  [@agundermann](https://github.com/agundermann)! - Fix issues when rendering
+  chakra components in different window
+
+* Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+  - @chakra-ui/clickable@1.1.7
+  - @chakra-ui/hooks@1.5.5
+  - @chakra-ui/transition@1.3.4
+
+## 1.7.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+  - @chakra-ui/clickable@1.1.6
+  - @chakra-ui/hooks@1.5.4
+  - @chakra-ui/transition@1.3.3
+
 ## 1.7.0
 
 ### Minor Changes

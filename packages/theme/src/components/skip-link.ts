@@ -1,6 +1,7 @@
+import type { SystemStyleFunction } from "@chakra-ui/theme-tools"
 import { mode } from "@chakra-ui/theme-tools"
 
-const baseStyle = (props: Record<string, any>) => ({
+const baseStyle: SystemStyleFunction = (props) => ({
   borderRadius: "md",
   fontWeight: "semibold",
   _focus: {

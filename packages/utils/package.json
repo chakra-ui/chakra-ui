@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/utils",
-  "version": "1.8.0",
+  "version": "1.8.4",
   "description": "Common utilties and types for Chakra UI",
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -24,7 +24,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chakra-ui/chakra-ui.git"
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/utils"
   },
   "scripts": {
     "prebuild": "rimraf dist",

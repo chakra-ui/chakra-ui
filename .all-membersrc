@@ -2,37 +2,47 @@
   "members": [
     {
       "login": "segunadebayo",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/6916170?v=4",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6916170?v=4",
       "url": "https://github.com/segunadebayo",
-      "blog": "",
+      "blog": "https://twitter.com/thesegunadebayo",
       "name": "Segun Adebayo",
       "bio": "Building @chakra-ui ⚡️. Design Systems and UI Engineer",
       "twitter_username": "thesegunadebayo",
-      "location": "Lagos, Nigeria"
+      "location": "Dubai, United Arab Emirates"
+    },
+    {
+      "login": "carwack",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16015740?v=4",
+      "url": "https://github.com/carwack",
+      "blog": "",
+      "name": "Sybren W",
+      "bio": null,
+      "twitter_username": "Carwack",
+      "location": null
     },
     {
       "login": "codebender828",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/21237954?v=4",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21237954?v=4",
       "url": "https://github.com/codebender828",
       "blog": "https://jbakebwa.dev",
       "name": "Jonathan Bakebwa",
-      "bio": "Building @chakra-ui/vue  |\r\nCo-founder, UI Engineer @Akkadu  ",
+      "bio": "Building @chakra-ui/vue  |\r\nCo-founder, Software Engineer, rct.ai",
       "twitter_username": "codebender828",
       "location": "Beijing Institute of Technology, Beijing, CN"
     },
     {
-      "login": "dombavetta",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/33183744?v=4",
-      "url": "https://github.com/dombavetta",
-      "blog": "",
-      "name": "Dom Bavetta",
-      "bio": null,
+      "login": "cschroeter",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1846056?v=4",
+      "url": "https://github.com/cschroeter",
+      "blog": "https://cschroeter.net",
+      "name": "Christian Schröter",
+      "bio": "Happy Hacking ✌️",
       "twitter_username": null,
-      "location": null
+      "location": "Germany, Karlsruhe"
     },
     {
       "login": "estheragbaje",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/53586167?v=4",
+      "avatar_url": "https://avatars.githubusercontent.com/u/53586167?v=4",
       "url": "https://github.com/estheragbaje",
       "blog": "https://estheragbaje.dev/",
       "name": "Folasade Agbaje",
@@ -41,28 +51,28 @@
       "location": "Lagos, Nigeria"
     },
     {
-      "login": "jmiazga",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/181441?v=4",
-      "url": "https://github.com/jmiazga",
-      "blog": "http://jasonmiazga.com",
-      "name": "Jason Miazga",
-      "bio": "Senior Developer at VNDLY | Organizer for Momentum Developer Conference and Cincinnati Software Craftsmanship meetup\r\n\r\n\r\n",
-      "twitter_username": "jmiazga",
-      "location": "Cincinnati, OH"
-    },
-    {
       "login": "koca",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/342666?v=4",
+      "avatar_url": "https://avatars.githubusercontent.com/u/342666?v=4",
       "url": "https://github.com/koca",
       "blog": "mesut.dev",
-      "name": "Mesut",
-      "bio": "Core @chakra-ui\r\nSenior Frontend Developer @onediocom\r\n#JS #VUE",
+      "name": "Mesut Koca",
+      "bio": "Core @chakra-ui\r\nSenior Frontend Developer \r\n#JS #VUE",
       "twitter_username": "imesutkoca",
       "location": null
     },
     {
+      "login": "lazarnikolov94",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5396211?v=4",
+      "url": "https://github.com/lazarnikolov94",
+      "blog": "https://nikolovlazar.com",
+      "name": "Lazar Nikolov",
+      "bio": "core @codechem & @chakra-ui | Full-stack Dev | UI Designer 🔴 Streaming Web Dev on Twitch",
+      "twitter_username": "NikolovLazar",
+      "location": "Skopje, Macedonia"
+    },
+    {
       "login": "ljosberinn",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/29307652?v=4",
+      "avatar_url": "https://avatars.githubusercontent.com/u/29307652?v=4",
       "url": "https://github.com/ljosberinn",
       "blog": "https://gerritalex.de",
       "name": "Gerrit Alex",
@@ -71,32 +81,42 @@
       "location": "Munich, Bavaria"
     },
     {
+      "login": "peoray",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23735423?v=4",
+      "url": "https://github.com/peoray",
+      "blog": "https://peoray.dev",
+      "name": "Emmanuel Raymond",
+      "bio": "Full-stack software engineer specializing in modern JavaScript. ",
+      "twitter_username": "peoray_",
+      "location": "Nigeria"
+    },
+    {
+      "login": "takethefake",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3123354?v=4",
+      "url": "https://github.com/takethefake",
+      "blog": "schulz.codes",
+      "name": "Daniel Schulz",
+      "bio": "DevOps Engineer at DB Systel",
+      "twitter_username": "takethefake",
+      "location": "Germany"
+    },
+    {
       "login": "TimKolberger",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/16899513?v=4",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16899513?v=4",
       "url": "https://github.com/TimKolberger",
       "blog": "https://kolberger.eu",
       "name": "Tim Kolberger",
-      "bio": null,
+      "bio": "DevOps Engineer at DB Systel | maintainer @chakra-ui |\r\n[React, nodeJS, GraphQL, ...❤️]",
       "twitter_username": "TimKolberger",
       "location": "Darmstadt, Germany"
     },
     {
-      "login": "tioluwani94",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/11310046?v=4",
-      "url": "https://github.com/tioluwani94",
-      "blog": "",
-      "name": "Tioluwani Kolawole",
-      "bio": "Frontend/React developer",
-      "twitter_username": null,
-      "location": "Lagos, Nigeria"
-    },
-    {
       "login": "with-heart",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/1954752?v=4",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1954752?v=4",
       "url": "https://github.com/with-heart",
-      "blog": "http://chanchan.io",
-      "name": "Mark Chandler",
-      "bio": "User Experience Developer at VNDLY. Obsessed with React, UX, component libraries, GraphQL, and AWS.",
+      "blog": "https://with-heart.me/",
+      "name": "with-heart",
+      "bio": "Open Source-ist. Digital gardener. Chakra UI core team member. Developer DAO site maintainer.",
       "twitter_username": "grow_love",
       "location": "Cincinnati, Ohio"
     }
