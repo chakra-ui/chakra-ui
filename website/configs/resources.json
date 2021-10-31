@@ -1,6 +1,14 @@
 {
   "data": [
     {
+      "heading": "How To Build an Advanced Multipart Component with Chakra UI",
+      "type": "blog",
+      "tags": ["Vite", "Advanced", "Theming" "v1.6"],
+      "author": "Lennart Jörgens",
+      "description": "Learn how to create a custom made container component that supports light/dark mode, variants, sizes, and color schemes.",
+      "url": "https://www.lekoarts.de/react/how-to-build-an-advanced-multipart-component-with-chakra-ui"
+    },
+    {
       "heading": "How to Integrate Chakra UI in React App",
       "type": "blog",
       "tags": ["Create React App", "Dark Mode", "v0.8"],
