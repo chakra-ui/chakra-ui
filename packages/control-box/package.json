@@ -40,7 +40,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "start": "microbundle watch --format modern",
-    "build": "microbundle --jsx React.createElement --format modern,esm,cjs",
+    "build": "microbundle --jsx React.createElement --jsxFragment React.Fragment --format modern,esm,cjs",
     "test": "jest --env=jsdom --passWithNoTests",
     "test:cov": "yarn test --coverage",
     "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
