@@ -85,7 +85,7 @@
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
-    "framer-motion": "3.x || 4.x",
+    "framer-motion": "3.x || 4.x || 5.x",
     "react": ">=16.8.6",
     "react-dom": ">=16.8.6"
   },
