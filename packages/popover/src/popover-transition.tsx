@@ -1,5 +1,11 @@
 import { chakra, HTMLChakraProps } from "@chakra-ui/system"
-import { HTMLMotionProps, motion, Variant } from "framer-motion"
+import {
+  domAnimation,
+  HTMLMotionProps,
+  LazyMotion,
+  m,
+  Variant,
+} from "framer-motion"
 import { mergeWith } from "@chakra-ui/utils"
 import React from "react"
 import { usePopoverContext } from "./popover-context"
@@ -56,7 +62,7 @@ const scaleFade: MotionVariants = {
   },
 }
 
-const Section = motion(chakra.section)
+const Section = m(chakra.section)
 
 export interface PopoverTransitionProps
   extends HTMLMotionChakraProps<"section"> {}
@@ -65,13 +71,15 @@ export const PopoverTransition = React.forwardRef(
   (props: HTMLMotionChakraProps<"section">, ref: React.Ref<any>) => {
     const { isOpen } = usePopoverContext()
     return (
-      <Section
-        ref={ref}
-        variants={mergeVariants(props.variants)}
-        {...props}
-        initial={false}
-        animate={isOpen ? "enter" : "exit"}
-      />
+      <LazyMotion features={domAnimation}>
+        <Section
+          ref={ref}
+          variants={mergeVariants(props.variants)}
+          {...props}
+          initial={false}
+          animate={isOpen ? "enter" : "exit"}
+        />
+      </LazyMotion>
     )
   },
 )

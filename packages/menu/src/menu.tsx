@@ -14,7 +14,13 @@ import {
   useTheme,
 } from "@chakra-ui/system"
 import { cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
-import { CustomDomComponent, motion, Variants } from "framer-motion"
+import {
+  CustomDomComponent,
+  domAnimation,
+  LazyMotion,
+  m,
+  Variants,
+} from "framer-motion"
 import * as React from "react"
 import {
   MenuDescendantsProvider,
@@ -149,9 +155,7 @@ const motionVariants: Variants = {
 
 // @future: only call `motion(chakra.div)` when we drop framer-motion v3 support
 const MotionDiv: CustomDomComponent<PropsOf<typeof chakra.div>> =
-  "custom" in motion
-    ? (motion as any).custom(chakra.div)
-    : (motion as any)(chakra.div)
+  "custom" in m ? (m as any).custom(chakra.div) : (m as any)(chakra.div)
 
 export const MenuList = forwardRef<MenuListProps, "div">((props, ref) => {
   const { rootProps, ...rest } = props
@@ -163,27 +167,29 @@ export const MenuList = forwardRef<MenuListProps, "div">((props, ref) => {
   const styles = useStyles()
 
   return (
-    <chakra.div
-      {...positionerProps}
-      __css={{ zIndex: props.zIndex ?? styles.list?.zIndex }}
-    >
-      <MotionDiv
-        {...menulistProps}
-        /**
-         * We could call this on either `onAnimationComplete` or `onUpdate`.
-         * It seems the re-focusing works better with the `onUpdate`
-         */
-        onUpdate={onTransitionEnd}
-        className={cx("chakra-menu__menu-list", menulistProps.className)}
-        variants={motionVariants}
-        initial={false}
-        animate={isOpen ? "enter" : "exit"}
-        __css={{
-          outline: 0,
-          ...styles.list,
-        }}
-      />
-    </chakra.div>
+    <LazyMotion features={domAnimation}>
+      <chakra.div
+        {...positionerProps}
+        __css={{ zIndex: props.zIndex ?? styles.list?.zIndex }}
+      >
+        <MotionDiv
+          {...menulistProps}
+          /**
+           * We could call this on either `onAnimationComplete` or `onUpdate`.
+           * It seems the re-focusing works better with the `onUpdate`
+           */
+          onUpdate={onTransitionEnd}
+          className={cx("chakra-menu__menu-list", menulistProps.className)}
+          variants={motionVariants}
+          initial={false}
+          animate={isOpen ? "enter" : "exit"}
+          __css={{
+            outline: 0,
+            ...styles.list,
+          }}
+        />
+      </chakra.div>
+    </LazyMotion>
   )
 })
 

@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/system"
 import { isString, omit, pick, __DEV__, getCSSVar } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, domAnimation, LazyMotion, m } from "framer-motion"
 import * as React from "react"
 import { scale } from "./tooltip.transition"
 import { useTooltip, UseTooltipProps } from "./use-tooltip"
@@ -52,7 +52,7 @@ export interface TooltipProps
   portalProps?: Pick<PortalProps, "appendToParentPortal" | "containerRef">
 }
 
-const StyledTooltip = chakra(motion.div)
+const StyledTooltip = chakra(m.div)
 
 /**
  * Tooltips display informative text when users hover, focus on, or tap an element.
@@ -137,31 +137,35 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
                 pointerEvents: "none",
               }}
             >
-              <StyledTooltip
-                variants={scale}
-                {...(tooltipProps as any)}
-                initial="exit"
-                animate="enter"
-                exit="exit"
-                __css={styles}
-              >
-                {label}
-                {hasAriaLabel && (
-                  <VisuallyHidden {...hiddenProps}>{ariaLabel}</VisuallyHidden>
-                )}
-                {hasArrow && (
-                  <chakra.div
-                    data-popper-arrow
-                    className="chakra-tooltip__arrow-wrapper"
-                  >
+              <LazyMotion features={domAnimation}>
+                <StyledTooltip
+                  variants={scale}
+                  {...(tooltipProps as any)}
+                  initial="exit"
+                  animate="enter"
+                  exit="exit"
+                  __css={styles}
+                >
+                  {label}
+                  {hasAriaLabel && (
+                    <VisuallyHidden {...hiddenProps}>
+                      {ariaLabel}
+                    </VisuallyHidden>
+                  )}
+                  {hasArrow && (
                     <chakra.div
-                      data-popper-arrow-inner
-                      className="chakra-tooltip__arrow"
-                      __css={{ bg: styles.bg }}
-                    />
-                  </chakra.div>
-                )}
-              </StyledTooltip>
+                      data-popper-arrow
+                      className="chakra-tooltip__arrow-wrapper"
+                    >
+                      <chakra.div
+                        data-popper-arrow-inner
+                        className="chakra-tooltip__arrow"
+                        __css={{ bg: styles.bg }}
+                      />
+                    </chakra.div>
+                  )}
+                </StyledTooltip>
+              </LazyMotion>
             </chakra.div>
           </Portal>
         )}

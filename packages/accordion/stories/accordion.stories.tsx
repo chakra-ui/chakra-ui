@@ -169,6 +169,7 @@ const data = [
 ]
 
 export function Bug_2160() {
+  // see: https://github.com/chakra-ui/chakra-ui/issues/2160
   const inputRef = React.useRef<HTMLInputElement>()
   const [displayData, setDisplayData] = React.useState(data)
   const [filter, setFilter] = React.useState("")
@@ -194,6 +195,10 @@ export function Bug_2160() {
 
   return (
     <chakra.div padding={4}>
+      <Text>
+        Accordion (when used as filterable list of items) is not stealing focus
+        from input field.
+      </Text>
       <chakra.div mt={3} mb={12}>
         <chakra.input
           ref={inputRef}

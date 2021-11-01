@@ -1,12 +1,16 @@
 import { chakra, PropsOf } from "@chakra-ui/system"
-import { AnimatePresence, CustomDomComponent, motion } from "framer-motion"
+import {
+  AnimatePresence,
+  CustomDomComponent,
+  domAnimation,
+  LazyMotion,
+  m,
+} from "framer-motion"
 import * as React from "react"
 
 // @future: only call `motion(chakra.svg)` when we drop framer-motion v3 support
 const MotionSvg: CustomDomComponent<PropsOf<typeof chakra.svg>> =
-  "custom" in motion
-    ? (motion as any).custom(chakra.svg)
-    : (motion as any)(chakra.svg)
+  "custom" in m ? (m as any).custom(chakra.svg) : (m as any)(chakra.svg)
 
 const CheckIcon = (props: PropsOf<typeof MotionSvg>) => (
   <MotionSvg
@@ -61,27 +65,29 @@ const IndeterminateIcon = (props: PropsOf<typeof MotionSvg>) => (
 )
 
 const CheckboxTransition = ({ open, children }: any) => (
-  <AnimatePresence initial={false}>
-    {open && (
-      <motion.div
-        variants={{
-          unchecked: { scale: 0.5 },
-          checked: { scale: 1 },
-        }}
-        initial="unchecked"
-        animate="checked"
-        exit="unchecked"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100%",
-        }}
-      >
-        {children}
-      </motion.div>
-    )}
-  </AnimatePresence>
+  <LazyMotion features={domAnimation}>
+    <AnimatePresence initial={false}>
+      {open && (
+        <m.div
+          variants={{
+            unchecked: { scale: 0.5 },
+            checked: { scale: 1 },
+          }}
+          initial="unchecked"
+          animate="checked"
+          exit="unchecked"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+          }}
+        >
+          {children}
+        </m.div>
+      )}
+    </AnimatePresence>
+  </LazyMotion>
 )
 
 export interface CheckboxIconProps extends PropsOf<typeof MotionSvg> {

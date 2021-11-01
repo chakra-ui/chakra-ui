@@ -1,5 +1,5 @@
 import { useDisclosure } from "@chakra-ui/hooks"
-import { motion, Variants } from "framer-motion"
+import { domAnimation, LazyMotion, m, Variants } from "framer-motion"
 import * as React from "react"
 import { usePopper } from "../src"
 
@@ -62,26 +62,28 @@ export const WithTransition = () => {
         Toggle
       </button>
       <div ref={popperRef} style={{ "--popper-arrow-bg": "red" }}>
-        <motion.div
-          transition={{
-            duration: 0.15,
-            easings: "easeInOut",
-          }}
-          variants={slide}
-          initial={false}
-          animate={isOpen ? "enter" : "exit"}
-          style={{
-            background: bg,
-            width: 200,
-            transformOrigin: "var(--popper-transform-origin)",
-            borderRadius: 4,
-          }}
-        >
-          Testing
-          <div data-popper-arrow="">
-            <div data-popper-arrow-inner="" />
-          </div>
-        </motion.div>
+        <LazyMotion features={domAnimation}>
+          <m.div
+            transition={{
+              duration: 0.15,
+              easings: "easeInOut",
+            }}
+            variants={slide}
+            initial={false}
+            animate={isOpen ? "enter" : "exit"}
+            style={{
+              background: bg,
+              width: 200,
+              transformOrigin: "var(--popper-transform-origin)",
+              borderRadius: 4,
+            }}
+          >
+            Testing
+            <div data-popper-arrow="">
+              <div data-popper-arrow-inner="" />
+            </div>
+          </m.div>
+        </LazyMotion>
       </div>
     </>
   )

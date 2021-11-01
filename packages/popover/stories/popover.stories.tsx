@@ -15,6 +15,7 @@ import {
 } from "../src"
 
 export function PopoverExample() {
+  // not working before this PR.
   const { getTriggerProps, getPopoverProps, onClose } = usePopover()
 
   return (

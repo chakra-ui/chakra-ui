@@ -1,7 +1,7 @@
 import { Modal, ModalContent, ModalOverlay } from "@chakra-ui/modal"
 import { Portal } from "@chakra-ui/portal"
 import { chakra } from "@chakra-ui/system"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, domAnimation, LazyMotion, m } from "framer-motion"
 import * as React from "react"
 import { Tooltip, useTooltip } from "../src"
 
@@ -80,37 +80,39 @@ export const WithTransition = () => {
         {isOpen && (
           <Portal>
             <div {...getTooltipPositionerProps()}>
-              <motion.div
-                initial="exit"
-                animate="enter"
-                exit="exit"
-                {...(getTooltipProps() as any)}
-              >
-                <motion.div
-                  transition={{
-                    duration: 0.12,
-                    ease: [0.4, 0, 0.2, 1],
-                    bounce: 0.5,
-                  }}
-                  variants={{
-                    exit: { scale: 0.9, opacity: 0 },
-                    enter: { scale: 1, opacity: 1 },
-                  }}
-                  style={{
-                    transformOrigin: "var(--popper-transform-origin)",
-                    background: "tomato",
-                    "--popper-arrow-bg": "tomato",
-                    color: "white",
-                    borderRadius: "4px",
-                    padding: "0.5em 1em",
-                  }}
+              <LazyMotion features={domAnimation}>
+                <m.div
+                  initial="exit"
+                  animate="enter"
+                  exit="exit"
+                  {...(getTooltipProps() as any)}
                 >
-                  Fade! This is tooltip
-                  <div data-popper-arrow>
-                    <div data-popper-arrow-inner />
-                  </div>
-                </motion.div>
-              </motion.div>
+                  <m.div
+                    transition={{
+                      duration: 0.12,
+                      ease: [0.4, 0, 0.2, 1],
+                      bounce: 0.5,
+                    }}
+                    variants={{
+                      exit: { scale: 0.9, opacity: 0 },
+                      enter: { scale: 1, opacity: 1 },
+                    }}
+                    style={{
+                      transformOrigin: "var(--popper-transform-origin)",
+                      background: "tomato",
+                      "--popper-arrow-bg": "tomato",
+                      color: "white",
+                      borderRadius: "4px",
+                      padding: "0.5em 1em",
+                    }}
+                  >
+                    Fade! This is tooltip
+                    <div data-popper-arrow>
+                      <div data-popper-arrow-inner />
+                    </div>
+                  </m.div>
+                </m.div>
+              </LazyMotion>
             </div>
           </Portal>
         )}

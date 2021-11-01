@@ -11,7 +11,13 @@ import {
   useColorModeValue,
   useUpdateEffect,
 } from "@chakra-ui/react"
-import { AnimatePresence, motion, useElementScroll } from "framer-motion"
+import {
+  AnimatePresence,
+  domAnimation,
+  LazyMotion,
+  m,
+  useElementScroll,
+} from "framer-motion"
 import useRouteChanged from "hooks/use-route-changed"
 import { getRoutes } from "layouts/mdx"
 import NextLink from "next/link"
@@ -89,59 +95,61 @@ export function MobileNavContent(props: MobileNavContentProps) {
 
   return (
     <AnimatePresence>
-      {isOpen && (
-        <RemoveScroll forwardProps>
-          <motion.div
-            transition={{ duration: 0.08 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <Flex
-              direction="column"
-              w="100%"
-              bg={useColorModeValue("white", "gray.800")}
-              h="100vh"
-              overflow="auto"
-              pos="absolute"
-              top="0"
-              left="0"
-              zIndex={20}
-              pb="8"
+      <LazyMotion features={domAnimation}>
+        {isOpen && (
+          <RemoveScroll forwardProps>
+            <m.div
+              transition={{ duration: 0.08 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
             >
-              <Box>
-                <Flex justify="space-between" px="6" pt="5" pb="4">
-                  <Logo sx={{ rect: { fill: "teal.300" } }} />
-                  <HStack spacing="5">
-                    <SponsorButton display="flex" />
-                    <CloseButton ref={closeBtnRef} onClick={onClose} />
-                  </HStack>
-                </Flex>
-                <Box px="6" pb="6" pt="2" shadow={shadow}>
-                  <HStack>
-                    <NavLink href="/docs/getting-started">Docs</NavLink>
-                    <NavLink href="/guides/integrations/with-cra">
-                      Guides
-                    </NavLink>
-                    <NavLink href="/team">Team</NavLink>
-                  </HStack>
-                </Box>
-              </Box>
-
-              <ScrollView
-                onScroll={(scrolled) => {
-                  setShadow(scrolled ? "md" : undefined)
-                }}
+              <Flex
+                direction="column"
+                w="100%"
+                bg={useColorModeValue("white", "gray.800")}
+                h="100vh"
+                overflow="auto"
+                pos="absolute"
+                top="0"
+                left="0"
+                zIndex={20}
+                pb="8"
               >
-                <SidebarContent
-                  pathname={pathname}
-                  routes={getRoutes(pathname)}
-                />
-              </ScrollView>
-            </Flex>
-          </motion.div>
-        </RemoveScroll>
-      )}
+                <Box>
+                  <Flex justify="space-between" px="6" pt="5" pb="4">
+                    <Logo sx={{ rect: { fill: "teal.300" } }} />
+                    <HStack spacing="5">
+                      <SponsorButton display="flex" />
+                      <CloseButton ref={closeBtnRef} onClick={onClose} />
+                    </HStack>
+                  </Flex>
+                  <Box px="6" pb="6" pt="2" shadow={shadow}>
+                    <HStack>
+                      <NavLink href="/docs/getting-started">Docs</NavLink>
+                      <NavLink href="/guides/integrations/with-cra">
+                        Guides
+                      </NavLink>
+                      <NavLink href="/team">Team</NavLink>
+                    </HStack>
+                  </Box>
+                </Box>
+
+                <ScrollView
+                  onScroll={(scrolled) => {
+                    setShadow(scrolled ? "md" : undefined)
+                  }}
+                >
+                  <SidebarContent
+                    pathname={pathname}
+                    routes={getRoutes(pathname)}
+                  />
+                </ScrollView>
+              </Flex>
+            </m.div>
+          </RemoveScroll>
+        )}
+      </LazyMotion>
     </AnimatePresence>
   )
 }
@@ -156,7 +164,7 @@ const ScrollView = (props: BoxProps & { onScroll?: any }) => {
   }, [scrollY])
 
   useUpdateEffect(() => {
-    onScroll?.(y > 5 ? true : false)
+    onScroll?.(y > 5)
   }, [y])
 
   return (

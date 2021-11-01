@@ -1,4 +1,4 @@
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import * as React from "react"
 import { usePopper } from "../src"
 
@@ -121,7 +121,7 @@ export const WithAnimation = () => {
         Trigger
       </button>
       <div {...getPopperProps()}>
-        <motion.div
+        <m.div
           style={{
             transformOrigin,
             background: "red",
@@ -143,7 +143,7 @@ export const WithAnimation = () => {
             <div {...getArrowInnerProps()} />
           </div>
           Popper
-        </motion.div>
+        </m.div>
       </div>
     </div>
   )
