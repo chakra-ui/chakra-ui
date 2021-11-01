@@ -137,6 +137,11 @@ export default theme
 That's it! When you use the Button from Chakra, these updates will be
 automatically applied.
 
+> When styling/overwriting the theme for a component be sure that it is really a
+> single component with only one part, since you otherwise need to name the part
+> that should be affected by your change when styling
+> [multipart components](/docs/theming/component-style#styling-multipart-components).
+
 ```jsx live=false
 <Button size="xl" variant="with-shadow">
   Welcome
