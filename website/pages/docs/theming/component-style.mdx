@@ -293,9 +293,10 @@ you need to be aware of.
   `variants`.
 
 > **Pro tip 💡**:
-> If you're looking for a list of parts of a multipart component you can check it by clicking on the
-> **"View theme source"** button at the top of the documentation page for that
-> certain component. Check out [this](https://chakra-ui.com/docs/overlay/modal) example.
+> If you're looking for a list of parts of a multipart component
+> you can check it by clicking on the **"View theme source"** button at the top
+> of the documentation page for that certain component. Check out
+> [this](https://chakra-ui.com/docs/overlay/modal) example.
 
 Here's what the style config for multipart components looks like:
 
@@ -346,6 +347,24 @@ const Menu = {
         fontSize: "0.875rem",
         px: 3,
         py: 2,
+      },
+    },
+  },
+  variants: {
+    bold: {
+      item: {
+        fontWeight: "bold",
+      },
+      menu: {
+        boxShadow: "xl",
+      },
+    },
+    colorful: {
+      item: {
+        color: "orange.600",
+      },
+      menu: {
+        bg: "orange.100",
       },
     },
   },
