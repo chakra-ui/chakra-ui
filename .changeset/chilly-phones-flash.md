@@ -16,7 +16,7 @@ with `.peer` or `data-peer`) attribute.
 
 The peer properties you can apply are `_peerHover`, `_peerFocus`,
 `_peerFocusVisible`, `_peerActive`, `_peerInvalid`,
-`_peerChecked`,`_peerFocusWithin`, `_peerPlaceholderShown`
+`_peerChecked`,`_peerFocusWithin`, `_peerPlaceholderShown`, `_peerDisabled`
 
 ### New style props
 
