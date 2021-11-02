@@ -28,8 +28,8 @@ function renderComponent(props: NumberInputProps = {}) {
 const CUSTOM_FLOATING_POINT_REGEX = /^[Ee0-9+\-.,]$/
 const testNumberInputCustomFormat = {
   isValidCharacter: (v: string) => CUSTOM_FLOATING_POINT_REGEX.test(v),
-  parseValue: (value: string) => value?.replace(",", "."),
-  formatValue: (value: string | number) => {
+  parse: (value: string) => value?.replace(",", "."),
+  format: (value: string | number) => {
     if (!value) return value.toString()
     return value.toString().replace(".", ",")
   },
