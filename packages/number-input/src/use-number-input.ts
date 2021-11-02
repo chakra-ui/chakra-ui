@@ -5,19 +5,20 @@ import {
   useEventListener,
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
+import { EventKeyMap, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import {
   ariaAttr,
   callAllHandlers,
   focus,
-  isBrowser,
+  getOwnerDocument,
   isNull,
   maxSafeInteger,
   minSafeInteger,
-  StringOrNumber,
   normalizeEventKey,
+  StringOrNumber,
 } from "@chakra-ui/utils"
-import { mergeRefs, PropGetter, EventKeyMap } from "@chakra-ui/react-utils"
 import * as React from "react"
+import { useAttributeObserver } from "./use-attr-observer"
 import { useSpinner } from "./use-spinner"
 import {
   isFloatingPointNumericCharacter,
@@ -161,6 +162,8 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
   const [isFocused, setFocused] = useBoolean()
 
   const inputRef = React.useRef<HTMLInputElement>(null)
+  const incrementButtonRef = React.useRef<HTMLButtonElement>(null)
+  const decrementButtonRef = React.useRef<HTMLButtonElement>(null)
 
   /**
    * Sync state with uncontrolled form libraries like `react-hook-form`.
@@ -201,12 +204,17 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    */
   const spinner = useSpinner(increment, decrement)
 
+  useAttributeObserver(incrementButtonRef, "disabled", spinner.stop)
+  useAttributeObserver(decrementButtonRef, "disabled", spinner.stop)
+
   /**
    * The `onChange` handler filters out any character typed
    * that isn't floating point compatible.
    */
   const onChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
+      const evt = event.nativeEvent as InputEvent
+      if (evt.isComposing) return
       updateFn(sanitize(event.target.value))
     },
     [updateFn],
@@ -214,6 +222,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
   const onKeyDown = React.useCallback(
     (event: React.KeyboardEvent) => {
+      if (event.nativeEvent.isComposing) return
       /**
        * only allow valid numeric keys
        */
@@ -272,9 +281,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    */
   const ariaValueText = React.useMemo(() => {
     const text = getAriaValueTextProp?.(counter.value)
-    if (!isNull(text)) {
-      return text
-    }
+    if (!isNull(text)) return text
 
     const defaultText = counter.value.toString()
     // empty string is an invalid ARIA attribute value
@@ -338,15 +345,11 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     [focusInput, spinner],
   )
 
-  const pointerDown =
-    isBrowser && !!document.documentElement.ontouchstart
-      ? "onTouchStart"
-      : "onMouseDown"
-
   useEventListener(
     "wheel",
     (event) => {
-      const isInputFocused = document.activeElement === inputRef.current
+      const doc = getOwnerDocument(inputRef.current)
+      const isInputFocused = doc.activeElement === inputRef.current
       if (!allowMouseWheel || !isInputFocused) return
 
       event.preventDefault()
@@ -369,25 +372,17 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       const disabled = isDisabled || (keepWithinRange && counter.isAtMax)
       return {
         ...props,
-        ref,
+        ref: mergeRefs(ref, incrementButtonRef),
         role: "button",
         tabIndex: -1,
-        [pointerDown]: callAllHandlers(props[pointerDown], spinUp),
-        onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
-        onMouseLeave: callAllHandlers(props.onMouseUp, spinner.stop),
-        onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
+        onPointerDown: callAllHandlers(props.onPointerDown, spinUp),
+        onPointerLeave: callAllHandlers(props.onMouseUp, spinner.stop),
+        onPointerUp: callAllHandlers(props.onPointerUp, spinner.stop),
         disabled,
         "aria-disabled": ariaAttr(disabled),
       }
     },
-    [
-      pointerDown,
-      counter.isAtMax,
-      keepWithinRange,
-      spinUp,
-      spinner.stop,
-      isDisabled,
-    ],
+    [counter.isAtMax, keepWithinRange, spinUp, spinner.stop, isDisabled],
   )
 
   const getDecrementButtonProps: PropGetter = React.useCallback(
@@ -395,25 +390,17 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       const disabled = isDisabled || (keepWithinRange && counter.isAtMin)
       return {
         ...props,
-        ref,
+        ref: mergeRefs(ref, decrementButtonRef),
         role: "button",
         tabIndex: -1,
-        [pointerDown]: callAllHandlers(props[pointerDown], spinDown),
-        onMouseLeave: callAllHandlers(props.onMouseLeave, spinner.stop),
-        onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
-        onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
+        onPointerDown: callAllHandlers(props.onPointerDown, spinDown),
+        onPointerLeave: callAllHandlers(props.onMouseUp, spinner.stop),
+        onPointerUp: callAllHandlers(props.onPointerUp, spinner.stop),
         disabled,
         "aria-disabled": ariaAttr(disabled),
       }
     },
-    [
-      pointerDown,
-      counter.isAtMin,
-      keepWithinRange,
-      spinDown,
-      spinner.stop,
-      isDisabled,
-    ],
+    [counter.isAtMin, keepWithinRange, spinDown, spinner.stop, isDisabled],
   )
 
   const getInputProps: PropGetter<
