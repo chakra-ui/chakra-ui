@@ -51,8 +51,8 @@ the recommended `addEventListener` and `removeEventListener` calls.
 
 **Color Mode** `v1.2.0`
 
-- Added possibility to use the system preferred color scheme as value for
-  `initialColorMode`, while still respecting a user's previous choice.
+Added possibility to use the system preferred color scheme as value for
+`initialColorMode`, while still respecting a user's previous choice.
 
 As long as the user does not manually select a color mode through a website
 interaction, the theme will change when the system preference changes.
