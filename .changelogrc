@@ -1,36 +1,68 @@
-## 14-10-2021
+## 03-11-2021
 
-`@chakra-ui/react@1.6.10`
+`@chakra-ui/react@1.6.12`
 
-**Radio** `v1.3.11`
+- Allow usage of `framer-motion` 5.x in `peerDependency`
 
-- Add support for styling the container element based on the radio state
+**Radio** `v1.3.13`
 
-**Popover** `v1.8.5`
+- Improve types defined for `getRadioprops`
 
-- Fix issue where `computePositionOnMount` didn't work without explict value
+**Checkbox** `v1.5.10`
 
-**Utils** `v1.8.3`
+- Allow usage of `framer-motion` 5.x in `peerDependency`
 
-- Fixed iframe bug on firefox when using `getRelatedTarget` function
-- Fix issue where pan-event utils don't work within iframe
+**Menu** `v1.7.8`
 
-**Hooks** `v1.6.1`
+- Allow usage of `framer-motion` 5.x in `peerDependency`
 
-- Forward `threshold` options from `usePanSession` to `PanSession` class
+**Modal** `v1.9.4`
 
-**Slider** `v1.4.1`
+- Allow usage of `framer-motion` 5.x in `peerDependency`
 
-- Fix issue where value can't be changed when range-slider thumbs are stacked
+**Popover** `v1.9.1`
 
-**Modal** `v1.9.2`
+- Allow usage of `framer-motion` 5.x in `peerDependency`
 
-- Fix issue where modal doesn't close when the escape key is pressed and `closeOnOverlayClick` is `false`
+**Theme** `v1.11.1`
 
-**Cli** `v1.5.3`
+- Allow usage of `framer-motion` 5.x in `peerDependency`
 
-- Fixed an issue where the CLI tokens command exited unexpectedly with: `SyntaxError: Cannot use import statement outside a module`
+**Toast** `v1.3.4`
 
-**Checkbox** `v1.5.8`
+- Allow usage of `framer-motion` 5.x in `peerDependency`
 
-- Fix issue where `tabIndex` property isn't passed to the underlying input element
+**Tooltip** `v1.3.14`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Transition** `v1.3.8`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Media Query** `v1.1.5`
+
+- Corrected eslint errors.
+- Fix an issue where the `useMediaQuery` was not updating the array of booleans
+  correctly when resizing the viewport.
+
+It also removes deprecated calls `addListener` and `removeListener` in favor of
+the recommended `addEventListener` and `removeEventListener` calls.
+
+**Color Mode** `v1.2.0`
+
+- Added possibility to use the system preferred color scheme as value for
+  `initialColorMode`, while still respecting a user's previous choice.
+
+As long as the user does not manually select a color mode through a website
+interaction, the theme will change when the system preference changes.
+
+This would easily allow for an implementation where the user can choose between
+`light`, `dark` and `system` by simply setting the `initialColorMode` setting to
+`system` and presenting the user with the three options.
+
+**Popper** `v2.3.1`
+
+- Remove default `[]` value for modifiers and moved it into `createPopper`
+  definition. This allows memoized modifiers to work correctly in user-land when
+  used with `useCallback`.
