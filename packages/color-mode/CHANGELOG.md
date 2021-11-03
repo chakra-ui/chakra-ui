@@ -1,5 +1,22 @@
 # Change Log
 
+## 1.2.0
+
+### Minor Changes
+
+- [`71f80b67c`](https://github.com/chakra-ui/chakra-ui/commit/71f80b67c094d905c87bdc5c1766787c1543ebe7)
+  [#4634](https://github.com/chakra-ui/chakra-ui/pull/4634) Thanks
+  [@SkySails](https://github.com/SkySails)! - Added possibility to use the
+  system preferred color scheme as value for `initialColorMode`, while still
+  respecting a user's previous choice.
+
+  As long as the user does not manually select a color mode through a website
+  interaction, the theme will change when the system preference changes.
+
+  This would easily allow for an implementation where the user can choose
+  between `light`, `dark` and `system` by simply setting the `initialColorMode`
+  setting to `system` and presenting the user with the three options.
+
 ## 1.1.14
 
 ### Patch Changes

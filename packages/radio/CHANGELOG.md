@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.3.13
+
+### Patch Changes
+
+- [`5f531c51f`](https://github.com/chakra-ui/chakra-ui/commit/5f531c51febf45230ff8267fab4145711a99b99b)
+  [#4967](https://github.com/chakra-ui/chakra-ui/pull/4967) Thanks
+  [@takethefake](https://github.com/takethefake)! - Improve types defined for
+  `getRadioprops`
+
 ## 1.3.12
 
 ### Patch Changes

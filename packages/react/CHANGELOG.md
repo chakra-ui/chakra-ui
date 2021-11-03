@@ -1,5 +1,37 @@
 # Change Log
 
+## 1.6.12
+
+### Patch Changes
+
+- [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)
+  [#4965](https://github.com/chakra-ui/chakra-ui/pull/4965) Thanks
+  [@takethefake](https://github.com/takethefake)! - Allow usage of
+  `framer-motion` 5.x in `peerDependency`
+
+- Updated dependencies
+  [[`5f531c51f`](https://github.com/chakra-ui/chakra-ui/commit/5f531c51febf45230ff8267fab4145711a99b99b),
+  [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135),
+  [`97bad87c7`](https://github.com/chakra-ui/chakra-ui/commit/97bad87c7b8b4ff31f705a9d55b392385d921a33),
+  [`c3f016149`](https://github.com/chakra-ui/chakra-ui/commit/c3f01614929d2f68a39cf78111d17f4f4c684706),
+  [`f2df9cfc1`](https://github.com/chakra-ui/chakra-ui/commit/f2df9cfc1c3c2ef3f3b74ec2849079fd726cd84c)]:
+  - @chakra-ui/radio@1.3.13
+  - @chakra-ui/checkbox@1.5.10
+  - @chakra-ui/menu@1.7.8
+  - @chakra-ui/modal@1.9.4
+  - @chakra-ui/popover@1.9.1
+  - @chakra-ui/theme@1.11.1
+  - @chakra-ui/toast@1.3.4
+  - @chakra-ui/tooltip@1.3.14
+  - @chakra-ui/transition@1.3.8
+  - @chakra-ui/media-query@1.1.5
+  - @chakra-ui/popper@2.3.1
+  - @chakra-ui/switch@1.2.13
+  - @chakra-ui/accordion@1.3.10
+  - @chakra-ui/skeleton@1.1.21
+  - @chakra-ui/system@1.7.6
+  - @chakra-ui/provider@1.6.11
+
 ## 1.6.11
 
 ### Patch Changes

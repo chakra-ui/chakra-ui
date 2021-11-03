@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/provider",
-  "version": "1.6.10",
+  "version": "1.6.11",
   "description": "Theme and components agnostic ChakraProvider",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -38,7 +38,7 @@
     "@chakra-ui/hooks": "1.6.2",
     "@chakra-ui/portal": "1.2.11",
     "@chakra-ui/react-env": "1.0.8",
-    "@chakra-ui/system": "1.7.5",
+    "@chakra-ui/system": "1.7.6",
     "@chakra-ui/utils": "1.8.4"
   },
   "peerDependencies": {
