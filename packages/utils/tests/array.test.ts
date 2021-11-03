@@ -49,16 +49,6 @@ describe("remove and add operations", () => {
     expect(result).toEqual([1, 3, 4, 5, 6, 7, 8])
   })
 
-  test("should remove item at index", () => {
-    const result = removeIndex(array, 1)
-    expect(result).toEqual([1, 3, 4, 5, 6, 7, 8])
-  })
-
-  test("should add new item to end of array", () => {
-    const result = addItem(array, 9)
-    expect(result).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9])
-  })
-
   test("should add new item to end of array", () => {
     const result = addItem(array, 9)
     expect(result).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9])

@@ -66,7 +66,7 @@ test("should convert to css variables", () => {
   `)
 })
 
-test("should convert to css variables", () => {
+test("should convert to css variables - 2", () => {
   expect(
     toCSSVar({
       space: [8, 12, 16, 33],

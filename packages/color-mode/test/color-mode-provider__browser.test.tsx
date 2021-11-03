@@ -1,11 +1,11 @@
-import React from "react"
+import * as React from "react"
 import { render } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import {
   createMockStorageManager,
   defaultThemeOptions,
-  getColorModeButton,
   DummyComponent,
+  getColorModeButton,
 } from "./utils"
 import * as colorModeUtils from "../src/color-mode.utils"
 
