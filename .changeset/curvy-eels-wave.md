@@ -10,4 +10,4 @@
 "@chakra-ui/transition": patch
 ---
 
-Allow usage of framer-motion 5.x as peerDependency
+Allow usage of `framer-motion` 5.x in `peerDependency`

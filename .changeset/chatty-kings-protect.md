@@ -2,4 +2,4 @@
 "@chakra-ui/radio": patch
 ---
 
-Added type support for getRadioprops
+Improve types defined for `getRadioprops`

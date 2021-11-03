@@ -2,4 +2,4 @@
 "@chakra-ui/docs": patch
 ---
 
-chore(website): Add article about multipart components
+Add new article about multipart components
