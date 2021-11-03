@@ -23,6 +23,12 @@ To get dark mode working correctly, you need to do two things:
    your application should start with to either `light`, `dark` or `system`. It
    is `light` by default.
 
+> **Note:** When using `system` as initial color mode, the theme will change
+> with the system preference. However, if another theme is manually selected by
+> the user then that theme will be used on the next page load. To reset it to
+> system preference, simply remove the `chakra-ui-color-mode` entry from
+> localStorage.
+
 ### Updating the theme config
 
 The theme config for color mode has 2 options:
@@ -74,7 +80,7 @@ export default theme
 
 ### Adding the `ColorModeScript`
 
-The color mode script needs to added before the `body` tag for local storage
+The color mode script needs to be added before the content inside the `body` tag for local storage
 syncing to work correctly.
 
 > When setting the initial color mode, we recommend adding it as a config to
