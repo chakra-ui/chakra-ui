@@ -1,5 +1,12 @@
 # @chakra-ui/provider
 
+## 1.6.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/system@1.7.6
+
 ## 1.6.10
 
 ### Patch Changes

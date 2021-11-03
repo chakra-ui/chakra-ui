@@ -1,5 +1,24 @@
 # Change Log
 
+## 2.1.4
+
+### Patch Changes
+
+- [`a22b9d5c7`](https://github.com/chakra-ui/chakra-ui/commit/a22b9d5c7455784aca632adc619633b52e53f589)
+  [#4973](https://github.com/chakra-ui/chakra-ui/pull/4973) Thanks
+  [@takethefake](https://github.com/takethefake)! - Add a more detailed
+  explanation on how to style multipart-components
+
+* [`7fef508af`](https://github.com/chakra-ui/chakra-ui/commit/7fef508afe005daff23d03c3bc4872181e431562)
+  [#4961](https://github.com/chakra-ui/chakra-ui/pull/4961) Thanks
+  [@LekoArts](https://github.com/LekoArts)! - Add new article about multipart
+  components
+
+* Updated dependencies
+  [[`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)]:
+  - @chakra-ui/react@1.6.12
+  - @chakra-ui/props-docs@1.0.37
+
 ## 2.1.3
 
 ### Patch Changes
