@@ -1,11 +1,11 @@
-import { parseMarkdownFile, fileToPath, removePrefix } from "@docusaurus/utils"
-import path from "path"
+import { fileToPath, parseMarkdownFile, removePrefix } from "@docusaurus/utils"
+import fs from "fs"
 //@ts-ignore
 import toc from "markdown-toc"
-import { v4 as uuid } from "uuid"
-import shell from "shelljs"
-import fs from "graceful-fs"
+import path from "path"
 import prettier from "prettier"
+import shell from "shelljs"
+import { v4 as uuid } from "uuid"
 
 interface ResultType {
   content: string

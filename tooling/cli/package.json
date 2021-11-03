@@ -44,7 +44,7 @@
     "module-alias": "^2.2.2",
     "ora": "^5.3.0",
     "regenerator-runtime": "^0.13.7",
-    "ts-node": "10.1.0",
+    "ts-node": "10.4.0",
     "tsconfig-paths": "^3.11.0",
     "update-notifier": "^5.0.1"
   },
