@@ -21,6 +21,7 @@
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
     "directory": "packages/test-utils"
   },
+  "preconstruct": {},
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
@@ -41,6 +42,5 @@
   "devDependencies": {
     "react": "^17.0.1"
   },
-  "types": "dist/chakra-ui-test-utils.cjs.d.ts",
-  "typings": "dist/chakra-ui-test-utils.cjs.d.ts"
+  "types": "dist/chakra-ui-test-utils.cjs.d.ts"
 }

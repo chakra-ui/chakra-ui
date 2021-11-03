@@ -21,16 +21,10 @@
   "main": "dist/chakra-ui-accordion.cjs.js",
   "module": "dist/chakra-ui-accordion.esm.js",
   "types": "dist/chakra-ui-accordion.cjs.d.ts",
-  "typings": "dist/chakra-ui-accordion.cjs.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/chakra-ui-accordion.cjs.js",
-      "default": "./dist/chakra-ui-accordion.esm.js"
-    }
-  },
   "files": [
     "dist"
   ],
+  "preconstruct": {},
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
@@ -42,20 +36,6 @@
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
-  },
-  "scripts": {
-    "prebuild": "rimraf dist",
-    "start": "nodemon --watch src --exec yarn build -e ts,tsx",
-    "build": "concurrently yarn:build:*",
-    "test": "jest --env=jsdom --passWithNoTests",
-    "lint": "concurrently yarn:lint:*",
-    "version": "yarn build",
-    "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
-    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
-    "test:cov": "yarn test --coverage",
-    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
-    "lint:types": "tsc --noEmit"
   },
   "dependencies": {
     "@chakra-ui/descendant": "2.0.1",

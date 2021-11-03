@@ -19,13 +19,7 @@
   "main": "dist/chakra-ui-skeleton.cjs.js",
   "module": "dist/chakra-ui-skeleton.esm.js",
   "types": "dist/chakra-ui-skeleton.cjs.d.ts",
-  "typings": "dist/chakra-ui-skeleton.cjs.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/chakra-ui-skeleton.cjs.js",
-      "default": "./dist/chakra-ui-skeleton.esm.js"
-    }
-  },
+  "preconstruct": {},
   "files": [
     "dist"
   ],
@@ -39,19 +33,6 @@
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
-  },
-  "scripts": {
-    "prebuild": "rimraf dist",
-    "start": "nodemon --exec yarn build --watch src",
-    "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
-    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
-    "build": "concurrently yarn:build:*",
-    "test": "jest --env=jsdom --passWithNoTests",
-    "test:cov": "yarn test --coverage",
-    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
-    "lint:types": "tsc --noEmit",
-    "lint": "concurrently yarn:lint:*"
   },
   "dependencies": {
     "@chakra-ui/hooks": "1.6.2",
