@@ -17,7 +17,8 @@
   "types": "dist/chakra-ui-theme-tools.cjs.d.ts",
   "preconstruct": {},
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

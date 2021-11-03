@@ -25,7 +25,8 @@
   "types": "dist/chakra-ui-visually-hidden.cjs.d.ts",
   "preconstruct": {},
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

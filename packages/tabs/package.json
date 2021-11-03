@@ -28,7 +28,8 @@
   "types": "dist/chakra-ui-tabs.cjs.d.ts",
   "preconstruct": {},
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

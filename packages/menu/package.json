@@ -21,7 +21,8 @@
   "types": "dist/chakra-ui-menu.cjs.d.ts",
   "preconstruct": {},
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

@@ -21,7 +21,8 @@
   "module": "dist/chakra-ui-styled-system.esm.js",
   "types": "dist/chakra-ui-styled-system.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "preconstruct": {},
   "publishConfig": {

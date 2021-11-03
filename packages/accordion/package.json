@@ -22,7 +22,8 @@
   "module": "dist/chakra-ui-accordion.esm.js",
   "types": "dist/chakra-ui-accordion.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "preconstruct": {},
   "sideEffects": false,

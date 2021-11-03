@@ -19,7 +19,8 @@
   "types": "dist/chakra-ui-radio.cjs.d.ts",
   "preconstruct": {},
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

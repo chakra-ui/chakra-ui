@@ -20,7 +20,8 @@
   "types": "dist/chakra-ui-button.cjs.d.ts",
   "preconstruct": {},
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

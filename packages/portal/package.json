@@ -19,7 +19,8 @@
   "types": "dist/chakra-ui-portal.cjs.d.ts",
   "preconstruct": {},
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

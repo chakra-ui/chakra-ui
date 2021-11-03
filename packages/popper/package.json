@@ -23,7 +23,8 @@
   "types": "dist/chakra-ui-popper.cjs.d.ts",
   "preconstruct": {},
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

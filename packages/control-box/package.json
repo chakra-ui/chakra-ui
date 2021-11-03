@@ -16,7 +16,8 @@
   "module": "dist/chakra-ui-control-box.esm.js",
   "types": "dist/chakra-ui-control-box.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "preconstruct": {},
   "publishConfig": {
