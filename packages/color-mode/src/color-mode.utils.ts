@@ -44,6 +44,7 @@ export const queries = {
 export const lightQuery = queries.light
 export const darkQuery = queries.dark
 
+// check on system preference if it can't find any use fallback
 export function getColorScheme(fallback?: ColorMode) {
   const isDark = getMediaQuery(queries.dark) ?? fallback === "dark"
   return isDark ? "dark" : "light"
@@ -61,7 +62,6 @@ export function addListener(
   }
 
   const mediaQueryList = window.matchMedia(queries.dark)
-
   const listener = () => {
     fn(mediaQueryList.matches ? "dark" : "light", true)
   }
@@ -77,7 +77,7 @@ export const root = {
   get: () =>
     document.documentElement.style.getPropertyValue(
       "--chakra-ui-color-mode",
-    ) as ColorMode,
+    ) as ColorMode | "",
   set: (mode: ColorMode) => {
     if (isBrowser) {
       document.documentElement.style.setProperty("--chakra-ui-color-mode", mode)
