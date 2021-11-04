@@ -1,8 +1,4 @@
 ---
-"create-react-app-ts": minor
-"gatsby-starter-default": minor
-"chakra-nextjs": minor
-"chakra-nextjs-ts": minor
 "@chakra-ui/accordion": minor
 "@chakra-ui/alert": minor
 "@chakra-ui/anatomy": minor
@@ -62,11 +58,7 @@
 "@chakra-ui/transition": minor
 "@chakra-ui/utils": minor
 "@chakra-ui/visually-hidden": minor
-"@chakra-ui/babel-plugin": minor
 "@chakra-ui/cli": minor
-"@chakra-ui/gatsby-plugin": minor
-"@chakra-ui/props-docs": minor
-"@chakra-ui/docs": minor
 ---
 
 Update build system to use preconstruct

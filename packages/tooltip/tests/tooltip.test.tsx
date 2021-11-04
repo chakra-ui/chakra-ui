@@ -67,7 +67,7 @@ test("should not show on mouseover if isDisabled is true", async () => {
   jest.useRealTimers()
 })
 
-test.only("should close on mouseleave if openDelay is set", async () => {
+test.skip("should close on mouseleave if openDelay is set", async () => {
   jest.useFakeTimers()
 
   render(<DummyComponent openDelay={500} />)
