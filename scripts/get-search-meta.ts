@@ -30,7 +30,8 @@ interface TOCResultItem {
 const websiteRoot = "website/pages"
 
 async function getMDXMeta(file: string) {
-  const { content, frontMatter } = await parseMarkdownFile(file)
+  const { content, frontMatter: _frontMatter } = await parseMarkdownFile(file)
+  const frontMatter = _frontMatter as Record<string, any>
   const tableOfContent = toc(content)
   const json = tableOfContent.json as TOCResultItem[]
   const slug = fileToPath(file)
