@@ -58,7 +58,6 @@
 "@chakra-ui/transition": minor
 "@chakra-ui/utils": minor
 "@chakra-ui/visually-hidden": minor
-"@chakra-ui/cli": minor
 ---
 
 Update build system to use preconstruct

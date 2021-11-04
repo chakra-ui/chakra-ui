@@ -20,7 +20,6 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
-    "declarationMap": true,
     "incremental": true
   },
   "include": ["packages", "scripts", "tooling", "website"],

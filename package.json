@@ -18,8 +18,7 @@
   },
   "preconstruct": {
     "packages": [
-      "packages/*",
-      "tooling/cli"
+      "packages/*"
     ]
   },
   "repository": {
@@ -38,10 +37,11 @@
     "csb:install": "yarn && ts-node scripts/csb.ts",
     "prestart": "yarn && yarn bootstrap",
     "build:babel": "yarn pkg babel-plugin build",
+    "build:cli": "yarn pkg @chakra-ui/cli build",
     "build:templates": "ts-node -T scripts/build-templates.ts",
-    "build": "yarn build:babel && preconstruct build",
-    "postbuild": "yarn pkg props-docs build",
-    "test": "jest",
+    "build:prop-docs": "yarn pkg props-docs build",
+    "build": "yarn build:babel && yarn build:cli && preconstruct build",
+    "test": "jest --maxWorkers=50%",
     "test:ci": "jest --runInBand",
     "lint": "eslint packages/**/src/ --ext .ts,.tsx --config .eslintrc",
     "lint:types": "lerna run lint:types --no-private --stream",
@@ -64,9 +64,8 @@
     "notify:release": "yarn changelog:write && yarn discord && yarn changelog:commit",
     "docs": "yarn workspace @chakra-ui/docs",
     "docs:deploy": "yarn build && yarn docs:build && cp -r website/public .",
-    "docs:build": "yarn search-meta:gen && yarn docs build",
-    "docs:dev": "yarn docs dev",
-    "docs:start": "yarn docs start"
+    "docs:build": "yarn search-meta:gen && yarn build:prop-docs && yarn docs build",
+    "docs:dev": "yarn build:prop-docs && yarn docs dev"
   },
   "resolutions": {
     "**/react": "17.0.2",

@@ -14,9 +14,7 @@
   "author": "Tim Kolberger <tim@kolberger.eu>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-cli.cjs.js",
-  "module": "dist/chakra-ui-cli.esm.js",
-  "types": "dist/chakra-ui-cli.cjs.d.ts",
+  "main": "dist/index.js",
   "sideEffects": false,
   "files": [
     "dist",
@@ -34,6 +32,11 @@
   },
   "bin": {
     "chakra-cli": "bin/index.js"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist --source-maps",
+    "dev": "node bin/index.js tokens ../../website/theme.ts"
   },
   "dependencies": {
     "@chakra-ui/utils": "^1.8.3",
