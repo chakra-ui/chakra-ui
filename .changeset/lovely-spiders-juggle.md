@@ -60,4 +60,28 @@
 "@chakra-ui/visually-hidden": minor
 ---
 
-Update build system to use preconstruct
+Update build system we use from a custom babel cli setup to
+[preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx
+// Won't work 🎇
+import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+
+// Works ✅
+import { useOutsideClick } from "@chakra-ui/hooks"
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
