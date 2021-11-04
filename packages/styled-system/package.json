@@ -37,5 +37,6 @@
   "dependencies": {
     "@chakra-ui/utils": "1.8.4",
     "csstype": "^3.0.9"
-  }
+  },
+  "sideEffects": false
 }

@@ -39,5 +39,6 @@
   "peerDependencies": {
     "@chakra-ui/system": ">=1.0.0",
     "react": ">=16.8.6"
-  }
+  },
+  "sideEffects": false
 }
