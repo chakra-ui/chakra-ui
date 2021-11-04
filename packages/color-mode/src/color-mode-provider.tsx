@@ -97,7 +97,6 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
 
   React.useEffect(() => {
     const isDark = colorMode === "dark"
-
     syncBodyClassName(isDark, document)
     root.set(isDark ? "dark" : "light")
   }, [colorMode, document])
