@@ -2,7 +2,6 @@
  * Write the packages to `.codesandbox/ci.json`
  */
 
-//@ts-expect-error
 import editJson from "edit-json-file"
 import shell from "shelljs"
 
