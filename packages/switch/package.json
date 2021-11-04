@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/switch",
-  "version": "1.2.12",
+  "version": "1.2.13",
   "description": "A React component to view and switch between on or off states.",
   "keywords": [
     "switch",
@@ -35,11 +35,11 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/checkbox": "1.5.9",
+    "@chakra-ui/checkbox": "1.5.10",
     "@chakra-ui/utils": "1.8.4"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.7.5",
+    "@chakra-ui/system": "1.7.6",
     "react": "^17.0.1"
   },
   "peerDependencies": {

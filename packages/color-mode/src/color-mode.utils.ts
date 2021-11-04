@@ -53,7 +53,9 @@ export function getColorScheme(fallback?: ColorMode) {
  * Adds system os color mode listener, and run the callback
  * once preference changes
  */
-export function addListener(fn: Function) {
+export function addListener(
+  fn: (cm: ColorMode, isListenerEvent: true) => unknown,
+) {
   if (!("matchMedia" in window)) {
     return noop
   }
@@ -61,14 +63,13 @@ export function addListener(fn: Function) {
   const mediaQueryList = window.matchMedia(queries.dark)
 
   const listener = () => {
-    fn(mediaQueryList.matches ? "dark" : "light")
+    fn(mediaQueryList.matches ? "dark" : "light", true)
   }
 
-  listener()
-  mediaQueryList.addListener(listener)
+  mediaQueryList.addEventListener("change", listener)
 
   return () => {
-    mediaQueryList.removeListener(listener)
+    mediaQueryList.removeEventListener("change", listener)
   }
 }
 

@@ -17,6 +17,130 @@ To better understand the changelog, here are some legends we use:
 
 <!-- CHANGELOG:INSERT -->
 
+## 03-11-2021
+
+`@chakra-ui/react@1.6.12`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Radio** `v1.3.13`
+
+- Improve types defined for `getRadioprops`
+
+**Checkbox** `v1.5.10`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Menu** `v1.7.8`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Modal** `v1.9.4`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Popover** `v1.9.1`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Theme** `v1.11.1`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Toast** `v1.3.4`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Tooltip** `v1.3.14`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Transition** `v1.3.8`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Media Query** `v1.1.5`
+
+- Corrected eslint errors.
+- Fix an issue where the `useMediaQuery` was not updating the array of booleans
+  correctly when resizing the viewport.
+
+It also removes deprecated calls `addListener` and `removeListener` in favor of
+the recommended `addEventListener` and `removeEventListener` calls.
+
+**Color Mode** `v1.2.0`
+
+Added possibility to use the system preferred color scheme as value for
+`initialColorMode`, while still respecting a user's previous choice.
+
+As long as the user does not manually select a color mode through a website
+interaction, the theme will change when the system preference changes.
+
+This would easily allow for an implementation where the user can choose between
+`light`, `dark` and `system` by simply setting the `initialColorMode` setting to
+`system` and presenting the user with the three options.
+
+**Popper** `v2.3.1`
+
+- Remove default `[]` value for modifiers and moved it into `createPopper`
+  definition. This allows memoized modifiers to work correctly in user-land when
+  used with `useCallback`.
+
+## 31-10-2021
+
+`@chakra-ui/react@1.6.11`
+
+**Anatomy** `v1.1.0`
+
+- Add `closeButton` to popover component parts
+
+**Styled System** `v.1.13.0`
+
+- Add `_groupFocusVisible` pseudo style props
+
+**Breadcrumb** `v1.2.10`
+
+- `href` attribute will no longer be set on the inner element of the
+  `BreadcrumbLink` if the parent `BreadcrumbItem` has `isCurrentPage` prop set
+  to `true`. Such a `BreadcrumbLink` is not an actual link and it ends up being
+  a span (by default).
+
+**Color Mode** `v1.1.14`
+
+- Use the correct owner document when appending styles to `document.body`
+
+**Hooks** `v.1.6.2`
+
+- Fix potential infinite loop in `useDisclosure`'s `onOpen` and `onClose`
+  callbacks. The fix is to wrap the callbacks in `useCallbackRef`
+
+**Menu** `v1.7.7`
+
+- Fixed an error where the `onOpen` was called multiple/infinite times
+- Fix issue where `computePositionOnMount` didn't work without explict value
+
+**Radio** `v1.3.12`
+
+- Fix issue where props are duplicated on child label and span elements
+- Removed `aria-readonly` from checkbox in favor of WCAG `4.1.2`
+
+**Utils** `v1.8.4`
+
+- Use `fromEntries` polyfill from `@chakra-ui/utils`
+
+**Switch** `v1.2.12`
+
+- Fix issue where focusing the `Switch` could lead to unexpected page scrolls.
+
+**System** `v1.7.5`
+
+- Fixed a bug in `useToken` where it wasn't possible to resolve some tokens
+  which contain dots like `useToken('space','1.5')`
+
+**Gatsby Plugin** `2.0.2`
+
+- Update `peerDependencies` to support new version
+
 ## 14-10-2021
 
 `@chakra-ui/react@1.6.10`
@@ -44,16 +168,18 @@ To better understand the changelog, here are some legends we use:
 
 **Modal** `v1.9.2`
 
-- Fix issue where modal doesn't close when the escape key is pressed and `closeOnOverlayClick` is `false`
+- Fix issue where modal doesn't close when the escape key is pressed and
+  `closeOnOverlayClick` is `false`
 
 **Cli** `v1.5.3`
 
-- Fixed an issue where the CLI tokens command exited unexpectedly with: `SyntaxError: Cannot use import statement outside a module`
+- Fixed an issue where the CLI tokens command exited unexpectedly with:
+  `SyntaxError: Cannot use import statement outside a module`
 
 **Checkbox** `v1.5.8`
 
-- Fix issue where `tabIndex` property isn't passed to the underlying input element
-
+- Fix issue where `tabIndex` property isn't passed to the underlying input
+  element
 
 ## 05-10-2021
 
@@ -93,10 +219,9 @@ To better understand the changelog, here are some legends we use:
 
 **Toast** `v1.3.1`
 
-- Allow alerts rendered by useToast and createStandaloneToast to be discovered by
-  role and accessible name (e.g. using Testing Library
+- Allow alerts rendered by useToast and createStandaloneToast to be discovered
+  by role and accessible name (e.g. using Testing Library
   [ByRole](https://testing-library.com/docs/queries/byrole/)).
-
 
 ## 20-09-2021
 
@@ -203,7 +328,6 @@ resolved.
 
 - The disabled state of the `SelectIcon` can be reflected by a disabled
   `FormControl` or by the `isDisabled`-flag of the `select` field
-
 
 ## 29-08-2021
 

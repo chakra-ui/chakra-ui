@@ -1,5 +1,22 @@
 # Change Log
 
+## 1.1.5
+
+### Patch Changes
+
+- [`97bad87c7`](https://github.com/chakra-ui/chakra-ui/commit/97bad87c7b8b4ff31f705a9d55b392385d921a33)
+  [#4807](https://github.com/chakra-ui/chakra-ui/pull/4807) Thanks
+  [@primos63](https://github.com/primos63)! - Corrected eslint errors.
+
+* [`f2df9cfc1`](https://github.com/chakra-ui/chakra-ui/commit/f2df9cfc1c3c2ef3f3b74ec2849079fd726cd84c)
+  [#4807](https://github.com/chakra-ui/chakra-ui/pull/4807) Thanks
+  [@primos63](https://github.com/primos63)! - Fix an issue where the
+  `useMediaQuery` was not updating the array of booleans correctly when resizing
+  the viewport.
+
+  It also removes deprecated calls `addListener` and `removeListener` in favor
+  of the recommended `addEventListener` and `removeEventListener` calls.
+
 ## 1.1.4
 
 ### Patch Changes

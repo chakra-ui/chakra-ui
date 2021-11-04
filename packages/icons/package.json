@@ -30,7 +30,7 @@
     "react": ">=16.8.6"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.7.5",
+    "@chakra-ui/system": "1.7.6",
     "react": "^17.0.1"
   },
   "dependencies": {
