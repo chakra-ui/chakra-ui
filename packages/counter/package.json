@@ -20,7 +20,6 @@
   "main": "dist/chakra-ui-counter.cjs.js",
   "module": "dist/chakra-ui-counter.esm.js",
   "types": "dist/chakra-ui-counter.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

@@ -15,7 +15,6 @@
   "main": "dist/chakra-ui-theme.cjs.js",
   "module": "dist/chakra-ui-theme.esm.js",
   "types": "dist/chakra-ui-theme.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

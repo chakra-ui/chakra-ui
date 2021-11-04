@@ -26,7 +26,6 @@
   "main": "dist/chakra-ui-tabs.cjs.js",
   "module": "dist/chakra-ui-tabs.esm.js",
   "types": "dist/chakra-ui-tabs.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

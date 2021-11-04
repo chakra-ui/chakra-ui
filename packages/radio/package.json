@@ -17,7 +17,6 @@
   "main": "dist/chakra-ui-radio.cjs.js",
   "module": "dist/chakra-ui-radio.esm.js",
   "types": "dist/chakra-ui-radio.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

@@ -19,7 +19,6 @@
   "main": "dist/chakra-ui-skeleton.cjs.js",
   "module": "dist/chakra-ui-skeleton.esm.js",
   "types": "dist/chakra-ui-skeleton.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

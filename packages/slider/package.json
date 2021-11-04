@@ -26,7 +26,6 @@
   "main": "dist/chakra-ui-slider.cjs.js",
   "module": "dist/chakra-ui-slider.esm.js",
   "types": "dist/chakra-ui-slider.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

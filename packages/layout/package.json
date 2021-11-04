@@ -23,7 +23,6 @@
   "main": "dist/chakra-ui-layout.cjs.js",
   "module": "dist/chakra-ui-layout.esm.js",
   "types": "dist/chakra-ui-layout.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

@@ -17,7 +17,6 @@
   "main": "dist/chakra-ui-toast.cjs.js",
   "module": "dist/chakra-ui-toast.esm.js",
   "types": "dist/chakra-ui-toast.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

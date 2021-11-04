@@ -20,7 +20,6 @@
   "main": "dist/chakra-ui-editable.cjs.js",
   "module": "dist/chakra-ui-editable.esm.js",
   "types": "dist/chakra-ui-editable.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

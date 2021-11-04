@@ -15,7 +15,6 @@
   "module": "dist/chakra-ui-react-utils.esm.js",
   "types": "dist/chakra-ui-react-utils.cjs.d.ts",
   "sideEffects": false,
-  "preconstruct": {},
   "files": [
     "dist"
   ],

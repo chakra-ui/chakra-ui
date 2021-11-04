@@ -22,7 +22,6 @@
   "main": "dist/chakra-ui-color-mode.cjs.js",
   "module": "dist/chakra-ui-color-mode.esm.js",
   "types": "dist/chakra-ui-color-mode.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

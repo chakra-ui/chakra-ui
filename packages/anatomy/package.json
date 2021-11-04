@@ -15,7 +15,6 @@
   "module": "dist/chakra-ui-anatomy.esm.js",
   "types": "dist/types/index.d.ts",
   "sideEffects": false,
-  "preconstruct": {},
   "files": [
     "dist"
   ],

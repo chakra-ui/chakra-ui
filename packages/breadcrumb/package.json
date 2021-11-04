@@ -17,7 +17,6 @@
   "main": "dist/chakra-ui-breadcrumb.cjs.js",
   "module": "dist/chakra-ui-breadcrumb.esm.js",
   "types": "dist/chakra-ui-breadcrumb.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

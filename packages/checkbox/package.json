@@ -22,7 +22,6 @@
   "main": "dist/chakra-ui-checkbox.cjs.js",
   "module": "dist/chakra-ui-checkbox.esm.js",
   "types": "dist/chakra-ui-checkbox.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

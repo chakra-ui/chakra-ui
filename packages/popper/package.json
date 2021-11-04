@@ -21,7 +21,6 @@
   "main": "dist/chakra-ui-popper.cjs.js",
   "module": "dist/chakra-ui-popper.esm.js",
   "types": "dist/chakra-ui-popper.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

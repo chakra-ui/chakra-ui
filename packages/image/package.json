@@ -18,7 +18,6 @@
   "main": "dist/chakra-ui-image.cjs.js",
   "module": "dist/chakra-ui-image.esm.js",
   "types": "dist/chakra-ui-image.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

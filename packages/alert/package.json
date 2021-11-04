@@ -17,7 +17,6 @@
   "main": "dist/chakra-ui-alert.cjs.js",
   "module": "dist/chakra-ui-alert.esm.js",
   "types": "dist/chakra-ui-alert.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

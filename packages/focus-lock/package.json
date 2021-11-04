@@ -16,7 +16,6 @@
   "main": "dist/chakra-ui-focus-lock.cjs.js",
   "module": "dist/chakra-ui-focus-lock.esm.js",
   "types": "dist/chakra-ui-focus-lock.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

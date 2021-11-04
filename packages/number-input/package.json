@@ -23,7 +23,6 @@
   "main": "dist/chakra-ui-number-input.cjs.js",
   "module": "dist/chakra-ui-number-input.esm.js",
   "types": "dist/chakra-ui-number-input.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

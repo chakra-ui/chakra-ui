@@ -20,7 +20,6 @@
   "main": "dist/chakra-ui-form-control.cjs.js",
   "module": "dist/chakra-ui-form-control.esm.js",
   "types": "dist/chakra-ui-form-control.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

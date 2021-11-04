@@ -18,7 +18,6 @@
   "main": "dist/chakra-ui-select.cjs.js",
   "module": "dist/chakra-ui-select.esm.js",
   "types": "dist/chakra-ui-select.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

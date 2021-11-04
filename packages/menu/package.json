@@ -19,7 +19,6 @@
   "main": "dist/chakra-ui-menu.cjs.js",
   "module": "dist/chakra-ui-menu.esm.js",
   "types": "dist/chakra-ui-menu.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

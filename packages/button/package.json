@@ -18,7 +18,6 @@
   "main": "dist/chakra-ui-button.cjs.js",
   "module": "dist/chakra-ui-button.esm.js",
   "types": "dist/chakra-ui-button.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

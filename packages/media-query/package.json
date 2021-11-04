@@ -17,7 +17,6 @@
   "main": "dist/chakra-ui-media-query.cjs.js",
   "module": "dist/chakra-ui-media-query.esm.js",
   "types": "dist/chakra-ui-media-query.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

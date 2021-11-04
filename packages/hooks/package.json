@@ -15,7 +15,6 @@
   "main": "dist/chakra-ui-hooks.cjs.js",
   "module": "dist/chakra-ui-hooks.esm.js",
   "types": "dist/chakra-ui-hooks.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

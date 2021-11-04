@@ -20,7 +20,6 @@
   "main": "dist/chakra-ui-skip-nav.cjs.js",
   "module": "dist/chakra-ui-skip-nav.esm.js",
   "types": "dist/chakra-ui-skip-nav.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

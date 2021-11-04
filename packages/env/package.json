@@ -17,7 +17,6 @@
   "module": "dist/chakra-ui-react-env.esm.js",
   "types": "dist/chakra-ui-react-env.cjs.d.ts",
   "sideEffects": false,
-  "preconstruct": {},
   "files": [
     "dist"
   ],

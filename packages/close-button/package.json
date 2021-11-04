@@ -16,7 +16,6 @@
   "main": "dist/chakra-ui-close-button.cjs.js",
   "module": "dist/chakra-ui-close-button.esm.js",
   "types": "dist/chakra-ui-close-button.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

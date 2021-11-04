@@ -21,7 +21,6 @@
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
     "directory": "packages/test-utils"
   },
-  "preconstruct": {},
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },

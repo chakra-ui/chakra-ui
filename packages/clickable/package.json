@@ -16,7 +16,6 @@
   "main": "dist/chakra-ui-clickable.cjs.js",
   "module": "dist/chakra-ui-clickable.esm.js",
   "types": "dist/chakra-ui-clickable.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

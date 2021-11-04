@@ -18,7 +18,6 @@
   "files": [
     "dist"
   ],
-  "preconstruct": {},
   "publishConfig": {
     "access": "public"
   },

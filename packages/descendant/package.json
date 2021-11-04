@@ -19,7 +19,6 @@
   "main": "dist/chakra-ui-descendant.cjs.js",
   "module": "dist/chakra-ui-descendant.esm.js",
   "types": "dist/chakra-ui-descendant.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],

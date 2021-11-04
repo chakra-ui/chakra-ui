@@ -24,7 +24,6 @@
   "main": "dist/chakra-ui-modal.cjs.js",
   "module": "dist/chakra-ui-modal.esm.js",
   "types": "dist/chakra-ui-modal.cjs.d.ts",
-  "preconstruct": {},
   "files": [
     "dist"
   ],
