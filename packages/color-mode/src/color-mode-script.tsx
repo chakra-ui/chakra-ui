@@ -1,25 +1,27 @@
 import * as React from "react"
-import { ConfigColorMode } from "./color-mode-provider"
+import { storageKey } from "./storage-manager"
+import { ColorModePreference } from "./color-mode-provider"
 
-function setScript(initialValue: ConfigColorMode) {
+type Mode = ColorModePreference | undefined
+
+function setScript(initialValue: Mode, storageKey: string) {
   const mql = window.matchMedia("(prefers-color-scheme: dark)")
   const systemPreference = mql.matches ? "dark" : "light"
 
-  let persistedPreference: ConfigColorMode
+  let persistedPreference: Mode
 
   try {
-    persistedPreference = localStorage.getItem(
-      "chakra-ui-color-mode",
-    ) as ConfigColorMode
+    persistedPreference = localStorage.getItem(storageKey) as Mode
   } catch (error) {
-    console.log(
+    console.warn(
       "Chakra UI: localStorage is not available. Color mode persistence might not work as expected",
+      error,
     )
   }
 
   const isInStorage = typeof persistedPreference === "string"
 
-  let colorMode: ConfigColorMode
+  let colorMode: Mode
 
   if (isInStorage) {
     colorMode = persistedPreference
@@ -34,7 +36,7 @@ function setScript(initialValue: ConfigColorMode) {
 }
 
 interface ColorModeScriptProps {
-  initialColorMode?: ConfigColorMode
+  initialColorMode?: Mode
   /**
    * Optional nonce that will be passed to the created `<script>` tag.
    */
@@ -47,7 +49,7 @@ interface ColorModeScriptProps {
  */
 export const ColorModeScript = (props: ColorModeScriptProps) => {
   const { initialColorMode = "light" } = props
-  const html = `(${String(setScript)})('${initialColorMode}')`
+  const html = `(${String(setScript)})('${initialColorMode}','${storageKey}')` // prettier-ignore
   return (
     <script nonce={props.nonce} dangerouslySetInnerHTML={{ __html: html }} />
   )

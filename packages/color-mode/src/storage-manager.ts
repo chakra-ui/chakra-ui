@@ -8,7 +8,7 @@ type MaybeColorMode = ColorMode | undefined
 
 export interface StorageManager {
   get(init?: ColorMode): MaybeColorMode
-  set(value: ColorMode): void
+  set(value: ColorMode | undefined): void
   type: "cookie" | "localStorage"
 }
 
@@ -31,7 +31,11 @@ export const localStorageManager: StorageManager = {
   set(value) {
     if (!hasSupport()) return
     try {
-     localStorage.setItem(storageKey, value)
+      if (value) {
+        localStorage.setItem(storageKey, value)
+      } else {
+        localStorage.removeItem(storageKey)
+      }
     } catch (error) {
       if (__DEV__) {
         console.log(error)
