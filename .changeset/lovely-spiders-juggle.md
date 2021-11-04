@@ -74,7 +74,7 @@ you'll notice that the this doesn't work anymore.
 
 Here's how to resolve it:
 
-```jsx
+```jsx live=false
 // Won't work 🎇
 import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
 
