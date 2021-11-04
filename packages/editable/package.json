@@ -22,8 +22,7 @@
   "types": "dist/chakra-ui-editable.cjs.d.ts",
   "preconstruct": {},
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

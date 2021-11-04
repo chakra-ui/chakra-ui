@@ -18,8 +18,7 @@
   "types": "dist/chakra-ui-progress.cjs.d.ts",
   "preconstruct": {},
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

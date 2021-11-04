@@ -17,8 +17,7 @@
   "types": "dist/chakra-ui-spinner.cjs.d.ts",
   "preconstruct": {},
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

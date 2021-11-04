@@ -24,8 +24,7 @@
   "types": "dist/chakra-ui-checkbox.cjs.d.ts",
   "preconstruct": {},
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

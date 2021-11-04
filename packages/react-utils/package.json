@@ -17,8 +17,7 @@
   "sideEffects": false,
   "preconstruct": {},
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

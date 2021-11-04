@@ -18,8 +18,7 @@
   "types": "dist/chakra-ui-close-button.cjs.d.ts",
   "preconstruct": {},
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

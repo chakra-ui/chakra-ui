@@ -6,8 +6,7 @@
   "module": "dist/chakra-ui-react.esm.js",
   "types": "dist/chakra-ui-react.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "sideEffects": false,
   "publishConfig": {

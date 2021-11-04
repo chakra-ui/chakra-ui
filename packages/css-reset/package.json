@@ -18,8 +18,7 @@
   "types": "dist/chakra-ui-css-reset.cjs.d.ts",
   "preconstruct": {},
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

@@ -18,8 +18,7 @@
   "types": "dist/chakra-ui-icon.cjs.d.ts",
   "preconstruct": {},
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

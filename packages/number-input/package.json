@@ -25,8 +25,7 @@
   "types": "dist/chakra-ui-number-input.cjs.d.ts",
   "preconstruct": {},
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

@@ -19,8 +19,7 @@
   "types": "dist/chakra-ui-popover.cjs.d.ts",
   "preconstruct": {},
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

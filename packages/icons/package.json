@@ -10,8 +10,7 @@
   "module": "dist/chakra-ui-icons.esm.js",
   "sideEffects": false,
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "preconstruct": {},
   "publishConfig": {
