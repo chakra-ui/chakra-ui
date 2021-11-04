@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import {
   Box,
   BoxProps,
@@ -245,7 +246,7 @@ const HomePage = ({ members, sponsors, githubStars }: HomePageProps) => {
                 bg={useColorModeValue("teal.50", "whiteAlpha.200")}
                 rounded="md"
               >
-                <Box as="span" mr="1" role="img">
+                <Box as="span" mr="1" role="img" aria-label="Love">
                   💖
                 </Box>{" "}
                 Your company
