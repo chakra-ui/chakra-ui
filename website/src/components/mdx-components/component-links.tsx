@@ -59,6 +59,7 @@ function ComponentLinks(props: ComponentLinksProps) {
   const { theme, github, npm, storybook, ...rest } = props
 
   const githubRepoUrl = "https://github.com/chakra-ui/chakra-ui"
+  const githubIconColor = useColorModeValue("gray.600", "inherit")
 
   const githubLink = (github?.url || github?.package) && (
     <WrapItem>
@@ -67,7 +68,7 @@ function ComponentLinks(props: ComponentLinksProps) {
           github.url || `${githubRepoUrl}/tree/main/packages/${github.package}`
         }
         icon={FaGithub}
-        iconColor={useColorModeValue("gray.600", "inherit")}
+        iconColor={githubIconColor}
         iconSize="1rem"
       >
         View source
@@ -101,12 +102,14 @@ function ComponentLinks(props: ComponentLinksProps) {
     </WrapItem>
   )
 
+  const themeIconColor = useColorModeValue("gray.600", "inherit")
+
   const themeComponentLink = theme && (
     <WrapItem>
       <ComponentLink
         url={`${githubRepoUrl}/tree/main/packages/theme/src/components/${theme.componentName}.ts`}
         icon={FaGithub}
-        iconColor={useColorModeValue("gray.600", "inherit")}
+        iconColor={themeIconColor}
         iconSize="1rem"
       >
         View theme source

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { SearchIcon } from "@chakra-ui/icons"
 import {
   Box,
@@ -40,9 +41,8 @@ function OptionText(props: any) {
           {text}
         </Box>
       )
-    } else {
-      return text
     }
+    return text
   })
 
   return highlightedText
@@ -128,14 +128,18 @@ function OmniSearch() {
     return () => {
       router.events.off("routeChangeComplete", modal.onClose)
     }
-  }, [])
+  }, [modal.onClose, router.events])
 
   useEventListener("keydown", (event) => {
     const isMac = /(Mac|iPhone|iPod|iPad)/i.test(navigator?.platform)
     const hotkey = isMac ? "metaKey" : "ctrlKey"
     if (event?.key?.toLowerCase() === "k" && event[hotkey]) {
       event.preventDefault()
-      modal.isOpen ? modal.onClose() : modal.onOpen()
+      if (modal.isOpen) {
+        modal.onClose()
+      } else {
+        modal.onOpen()
+      }
     }
   })
 
@@ -143,17 +147,14 @@ function OmniSearch() {
     if (modal.isOpen && query.length > 0) {
       setQuery("")
     }
-  }, [modal.isOpen])
+  }, [modal.isOpen, query])
 
-  const results = React.useMemo(
-    function getResults() {
-      if (query.length < 2) return []
-      return matchSorter(searchData, query, {
-        keys: ["hierarchy.lvl1", "hierarchy.lvl2", "hierarchy.lvl3", "content"],
-      }).slice(0, 20)
-    },
-    [query],
-  )
+  const results = React.useMemo(() => {
+    if (query.length < 2) return []
+    return matchSorter(searchData, query, {
+      keys: ["hierarchy.lvl1", "hierarchy.lvl2", "hierarchy.lvl3", "content"],
+    }).slice(0, 20)
+  }, [query])
 
   const onKeyDown = React.useCallback(
     (e: React.KeyboardEvent) => {
@@ -185,9 +186,11 @@ function OmniSearch() {
           router.push(results[active].url)
           break
         }
+        default:
+          break
       }
     },
-    [active, results, router],
+    [active, results, router, modal],
   )
 
   const onKeyUp = React.useCallback((e: React.KeyboardEvent) => {
@@ -198,7 +201,10 @@ function OmniSearch() {
       case "Shift": {
         e.preventDefault()
         setShouldCloseModal(false)
+        break
       }
+      default:
+        break
     }
   }, [])
 

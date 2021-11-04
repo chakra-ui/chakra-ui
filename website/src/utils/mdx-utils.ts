@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import path from "path"
 import execa from "execa"
 import format from "date-fns/format"
