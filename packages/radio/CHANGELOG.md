@@ -1,5 +1,72 @@
 # Change Log
 
+## 1.3.13
+
+### Patch Changes
+
+- [`5f531c51f`](https://github.com/chakra-ui/chakra-ui/commit/5f531c51febf45230ff8267fab4145711a99b99b)
+  [#4967](https://github.com/chakra-ui/chakra-ui/pull/4967) Thanks
+  [@takethefake](https://github.com/takethefake)! - Improve types defined for
+  `getRadioprops`
+
+## 1.3.12
+
+### Patch Changes
+
+- [`a1c41dceb`](https://github.com/chakra-ui/chakra-ui/commit/a1c41dceb0a7126f797333149ba1b4081cc47b74)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  props are duplicated on child label and span elements
+
+* [`45e3a8b4b`](https://github.com/chakra-ui/chakra-ui/commit/45e3a8b4bd117d5339c02da3d81a943ef193ce1f)
+  [#4866](https://github.com/chakra-ui/chakra-ui/pull/4866) Thanks
+  [@takethefake](https://github.com/takethefake)! - #4851 Removed aria-readonly
+  from checkbox in favor of wcag 4.1.2
+
+* Updated dependencies
+  [[`5fe9b552b`](https://github.com/chakra-ui/chakra-ui/commit/5fe9b552bcae55935d1ab8ffde86b701075e6e6a),
+  [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/hooks@1.6.2
+  - @chakra-ui/utils@1.8.4
+  - @chakra-ui/form-control@1.4.3
+  - @chakra-ui/visually-hidden@1.0.16
+
+## 1.3.11
+
+### Patch Changes
+
+- [`6c935424e`](https://github.com/chakra-ui/chakra-ui/commit/6c935424ea3b1f348c690457a5eecea8cf1b5d28)
+  [#4788](https://github.com/chakra-ui/chakra-ui/pull/4788) Thanks
+  [@takethefake](https://github.com/takethefake)! - Add support for styling the
+  container element based on the radio state
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`a9d1dc4ac`](https://github.com/chakra-ui/chakra-ui/commit/a9d1dc4ac874825f292d874ad4eadaf060fed436),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/hooks@1.6.1
+  - @chakra-ui/form-control@1.4.2
+  - @chakra-ui/visually-hidden@1.0.15
+
+## 1.3.10
+
+### Patch Changes
+
+- [`b41191868`](https://github.com/chakra-ui/chakra-ui/commit/b4119186862a11959e7a3af0c1963ec0d7a10b88)
+  [#4552](https://github.com/chakra-ui/chakra-ui/pull/4552) Thanks
+  [@takethefake](https://github.com/takethefake)! - Add `isDisabled` to
+  `RadioGroup` to make it possible to disable all `Radio` inside `RadioGroup`
+
+* [`a48449550`](https://github.com/chakra-ui/chakra-ui/commit/a484495501970cba793b709505c714c2b12304d6)
+  [#4552](https://github.com/chakra-ui/chakra-ui/pull/4552) Thanks
+  [@takethefake](https://github.com/takethefake)! - Add `isFocusable` to
+  `RadioGroup` to make it possible to define the `focusable`-state for all
+  `Radio` inside a `RadioGroup`
+* Updated dependencies
+  [[`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130)]:
+  - @chakra-ui/hooks@1.6.0
+  - @chakra-ui/form-control@1.4.1
+
 ## 1.3.9
 
 ### Patch Changes

@@ -1,4 +1,5 @@
 import { tableAnatomy as parts } from "@chakra-ui/anatomy"
+
 import { mode } from "@chakra-ui/theme-tools"
 import type {
   PartsStyleFunction,

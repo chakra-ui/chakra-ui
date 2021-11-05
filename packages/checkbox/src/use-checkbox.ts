@@ -96,6 +96,8 @@ export interface UseCheckboxProps {
   "aria-labelledby"?: string
   "aria-invalid"?: true | undefined
   "aria-describedby"?: string
+
+  tabIndex?: number
 }
 
 /**
@@ -121,6 +123,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     id,
     onBlur,
     onFocus,
+    tabIndex = undefined,
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
     "aria-invalid": ariaInvalid,
@@ -292,8 +295,10 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         }
       }),
       "data-disabled": dataAttr(isDisabled),
+      "data-checked": dataAttr(isChecked),
+      "data-invalid": dataAttr(isInvalid),
     }),
-    [htmlProps, isDisabled, rootIsLabelElement],
+    [htmlProps, isDisabled, isChecked, isInvalid, rootIsLabelElement],
   )
 
   const getInputProps: PropGetter = useCallback(
@@ -305,6 +310,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         name,
         value,
         id,
+        tabIndex,
         onChange: callAllHandlers(props.onChange, handleChange),
         onBlur: callAllHandlers(props.onBlur, onBlurProp, setFocused.off),
         onFocus: callAllHandlers(props.onFocus, onFocusProp, setFocused.on),
@@ -343,6 +349,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       isInvalid,
       ariaDescribedBy,
       isDisabled,
+      tabIndex,
     ],
   )
 

@@ -5,6 +5,15 @@ package: "@chakra-ui/hooks"
 
 `useClipboard` is a custom hook that handles copying content to clipboard.
 
+## Arguments
+
+The `useClipboard` hook takes the following arguments:
+
+| Name               | Type                 | Required | Description                                                                                                |
+| ------------------ | -------------------- | -------- | ---------------------------------------------------------------------------------------------------------- |
+| `text`             | `string`             | `true`   | The text or value that is to be copied.                                                                    |
+| `optionsOrTimeout` | `number` or `object` | `false`  | The timeout as a `number` or an `object` containing 2 properties: `timeout` and `format` for the MIME type |
+
 ## Return value
 
 The `useClipboard` hook returns an object with the following fields:

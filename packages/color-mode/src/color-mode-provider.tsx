@@ -1,11 +1,12 @@
+import { useEnvironment } from "@chakra-ui/react-env"
 import { isBrowser, noop, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import {
   addListener,
   ColorMode,
   getColorScheme,
-  syncBodyClassName,
   root,
+  syncBodyClassName,
 } from "./color-mode.utils"
 import { localStorageManager, StorageManager } from "./storage-manager"
 
@@ -78,7 +79,10 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
       : initialColorMode,
   )
 
+
   const colorMode: ColorMode = colorModePreference === "dark" ? "dark" : "light"
+
+  const { document } = useEnvironment()
 
   React.useEffect(() => {
     /**
@@ -104,9 +108,9 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   React.useEffect(() => {
     const isDark = colorMode === "dark"
 
-    syncBodyClassName(isDark)
+    syncBodyClassName(isDark, document)
     root.set(isDark ? "dark" : "light")
-  }, [colorMode])
+  }, [colorMode, document])
 
   const setColorMode = React.useCallback(
     (mode: ColorModePreference, isListenerEvent = false) => {

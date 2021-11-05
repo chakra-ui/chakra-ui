@@ -1,5 +1,57 @@
 # Change Log
 
+## 1.2.0
+
+### Minor Changes
+
+- [`71f80b67c`](https://github.com/chakra-ui/chakra-ui/commit/71f80b67c094d905c87bdc5c1766787c1543ebe7)
+  [#4634](https://github.com/chakra-ui/chakra-ui/pull/4634) Thanks
+  [@SkySails](https://github.com/SkySails)! - Added possibility to use the
+  system preferred color scheme as value for `initialColorMode`, while still
+  respecting a user's previous choice.
+
+  As long as the user does not manually select a color mode through a website
+  interaction, the theme will change when the system preference changes.
+
+  This would easily allow for an implementation where the user can choose
+  between `light`, `dark` and `system` by simply setting the `initialColorMode`
+  setting to `system` and presenting the user with the three options.
+
+## 1.1.14
+
+### Patch Changes
+
+- [`8f315ea5d`](https://github.com/chakra-ui/chakra-ui/commit/8f315ea5d694e0130dc2e3187ac53320cf1adcd1)
+  [#4936](https://github.com/chakra-ui/chakra-ui/pull/4936) Thanks
+  [@cschroeter](https://github.com/cschroeter)! - Use @chakra-ui/react-env to
+  determine the correct body
+
+- Updated dependencies
+  [[`5fe9b552b`](https://github.com/chakra-ui/chakra-ui/commit/5fe9b552bcae55935d1ab8ffde86b701075e6e6a),
+  [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/hooks@1.6.2
+  - @chakra-ui/utils@1.8.4
+  - @chakra-ui/react-env@1.0.8
+
+## 1.1.13
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`a9d1dc4ac`](https://github.com/chakra-ui/chakra-ui/commit/a9d1dc4ac874825f292d874ad4eadaf060fed436),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/hooks@1.6.1
+
+## 1.1.12
+
+### Patch Changes
+
+- Updated dependencies
+  [[`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130)]:
+  - @chakra-ui/hooks@1.6.0
+
 ## 1.1.11
 
 ### Patch Changes

@@ -1,5 +1,41 @@
 # Change Log
 
+## 1.1.5
+
+### Patch Changes
+
+- [`97bad87c7`](https://github.com/chakra-ui/chakra-ui/commit/97bad87c7b8b4ff31f705a9d55b392385d921a33)
+  [#4807](https://github.com/chakra-ui/chakra-ui/pull/4807) Thanks
+  [@primos63](https://github.com/primos63)! - Corrected eslint errors.
+
+* [`f2df9cfc1`](https://github.com/chakra-ui/chakra-ui/commit/f2df9cfc1c3c2ef3f3b74ec2849079fd726cd84c)
+  [#4807](https://github.com/chakra-ui/chakra-ui/pull/4807) Thanks
+  [@primos63](https://github.com/primos63)! - Fix an issue where the
+  `useMediaQuery` was not updating the array of booleans correctly when resizing
+  the viewport.
+
+  It also removes deprecated calls `addListener` and `removeListener` in favor
+  of the recommended `addEventListener` and `removeEventListener` calls.
+
+## 1.1.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/utils@1.8.4
+  - @chakra-ui/react-env@1.0.8
+
+## 1.1.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/react-env@1.0.7
+
 ## 1.1.2
 
 ### Patch Changes

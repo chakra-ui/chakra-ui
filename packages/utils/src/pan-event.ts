@@ -6,16 +6,17 @@
  */
 
 import sync, { cancelSync, getFrameData } from "framesync"
+import { getEventWindow } from "./dom"
+import { distance, noop, pipe } from "./function"
 import {
-  isMouseEvent,
-  extractEventInfo,
   addPointerEvent,
   AnyPointerEvent,
+  extractEventInfo,
+  isMouseEvent,
+  isMultiTouchEvent,
   Point,
   PointerEventInfo,
-  isMultiTouchEvent,
 } from "./pointer-event"
-import { pipe, distance, noop } from "./function"
 
 /**
  * The event information passed to pan event handlers like `onPan`, `onPanStart`.
@@ -84,6 +85,11 @@ export interface PanSessionHandlers {
 
 type PanSessionHistory = TimestampedPoint[]
 
+export type PanSessionOptions = {
+  threshold?: number
+  window?: Window
+}
+
 /**
  * @internal
  *
@@ -116,11 +122,15 @@ export class PanSession {
    */
   private threshold = 3
 
+  private win: typeof globalThis
+
   constructor(
     event: AnyPointerEvent,
     handlers: Partial<PanSessionHandlers>,
     threshold?: number,
   ) {
+    this.win = getEventWindow(event)
+
     // If we have more than one touch, don't start detecting this gesture
     if (isMultiTouchEvent(event)) return
 
@@ -146,9 +156,9 @@ export class PanSession {
 
     // attach event listeners and return a single function to remove them all
     this.removeListeners = pipe(
-      addPointerEvent(window, "pointermove", this.onPointerMove),
-      addPointerEvent(window, "pointerup", this.onPointerUp),
-      addPointerEvent(window, "pointercancel", this.onPointerUp),
+      addPointerEvent(this.win, "pointermove", this.onPointerMove),
+      addPointerEvent(this.win, "pointerup", this.onPointerUp),
+      addPointerEvent(this.win, "pointercancel", this.onPointerUp),
     )
   }
 

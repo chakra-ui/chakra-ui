@@ -1,5 +1,53 @@
 # Change Log
 
+## 1.7.6
+
+### Patch Changes
+
+- Updated dependencies
+  [[`71f80b67c`](https://github.com/chakra-ui/chakra-ui/commit/71f80b67c094d905c87bdc5c1766787c1543ebe7)]:
+  - @chakra-ui/color-mode@1.2.0
+
+## 1.7.5
+
+### Patch Changes
+
+- [`ed79a9cfb`](https://github.com/chakra-ui/chakra-ui/commit/ed79a9cfb35fec67bfe95bbc2a04a11d0d00fbfe)
+  [#4842](https://github.com/chakra-ui/chakra-ui/pull/4842) Thanks
+  [@takethefake](https://github.com/takethefake)! - Fixed a bug in `useToken`
+  where it wasn't possible to resolve some tokens which contain dots like
+  `useToken('space','1.5')`. (see #4834)
+- Updated dependencies
+  [[`38b5bc627`](https://github.com/chakra-ui/chakra-ui/commit/38b5bc627c98fed4b7a55c45820785a4905c081e),
+  [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f),
+  [`8f315ea5d`](https://github.com/chakra-ui/chakra-ui/commit/8f315ea5d694e0130dc2e3187ac53320cf1adcd1)]:
+  - @chakra-ui/styled-system@1.13.0
+  - @chakra-ui/utils@1.8.4
+  - @chakra-ui/color-mode@1.1.14
+
+## 1.7.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/color-mode@1.1.13
+  - @chakra-ui/styled-system@1.12.3
+
+## 1.7.3
+
+### Patch Changes
+
+- [`01c913309`](https://github.com/chakra-ui/chakra-ui/commit/01c913309819c342806307291d2d60aea0122ecf)
+  [#4611](https://github.com/chakra-ui/chakra-ui/pull/4611) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Update `useStyleConfig` to
+  read parts array from the new anatomy class
+
+- Updated dependencies []:
+  - @chakra-ui/color-mode@1.1.12
+
 ## 1.7.2
 
 ### Patch Changes

@@ -93,7 +93,7 @@ syncing to work correctly.
 
 For Next.js, you need to add the `ColorModeScript` to the `_document.js` file.
 
-```jsx live=false ln={16}
+```jsx live=false ln={14}
 // pages/_document.js
 
 import { ColorModeScript } from "@chakra-ui/react"
@@ -106,6 +106,7 @@ export default class Document extends NextDocument {
       <Html lang="en">
         <Head />
         <body>
+          {/* 👇 Here's the script */}
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Main />
           <NextScript />
@@ -121,9 +122,10 @@ export default class Document extends NextDocument {
 For Create React App, you need to add the `ColorModeScript` to the `index.js`
 file.
 
-```jsx live=false ln={10}
+```jsx live=false ln={11}
 // index.js
 
+import { ColorModeScript } from "@chakra-ui/react"
 import ReactDOM from "react-dom"
 import App from "./App"
 import theme from "./theme"

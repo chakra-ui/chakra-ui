@@ -1,5 +1,31 @@
 # Change Log
 
+## 1.2.12
+
+### Patch Changes
+
+- Updated dependencies
+  [[`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/utils@1.8.4
+  - @chakra-ui/form-control@1.4.3
+
+## 1.2.11
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/form-control@1.4.2
+
+## 1.2.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@1.4.1
+
 ## 1.2.9
 
 ### Patch Changes

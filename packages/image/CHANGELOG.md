@@ -1,5 +1,47 @@
 # Change Log
 
+## 1.0.22
+
+### Patch Changes
+
+- Updated dependencies
+  [[`5fe9b552b`](https://github.com/chakra-ui/chakra-ui/commit/5fe9b552bcae55935d1ab8ffde86b701075e6e6a),
+  [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/hooks@1.6.2
+  - @chakra-ui/utils@1.8.4
+
+## 1.0.21
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`a9d1dc4ac`](https://github.com/chakra-ui/chakra-ui/commit/a9d1dc4ac874825f292d874ad4eadaf060fed436),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/hooks@1.6.1
+
+## 1.0.20
+
+### Patch Changes
+
+- [`a1ca91b76`](https://github.com/chakra-ui/chakra-ui/commit/a1ca91b769000a9d4e6badb5bce46cd5e4035106)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  onload doesn't get called when using srcset
+
+* [`11eebac4c`](https://github.com/chakra-ui/chakra-ui/commit/11eebac4cc951c3af65ebdf4ec0f70b8fe9d0f63)
+  [#4659](https://github.com/chakra-ui/chakra-ui/pull/4659) Thanks
+  [@takethefake](https://github.com/takethefake)! - If the user doesn't provide
+  a `fallbackSrc` or a `fallback` `ignoreFallback` is applied by default
+
+## 1.0.19
+
+### Patch Changes
+
+- Updated dependencies
+  [[`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130)]:
+  - @chakra-ui/hooks@1.6.0
+
 ## 1.0.18
 
 ### Patch Changes

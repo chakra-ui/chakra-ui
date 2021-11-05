@@ -14,13 +14,13 @@ const mockBody = {
   classList: { add: noop, remove: noop },
 }
 
-const getBody = () => (isBrowser ? document.body : mockBody)
+const getBody = (document: Document) => (isBrowser ? document.body : mockBody)
 
 /**
  * Function to add/remove class from `body` based on color mode
  */
-export function syncBodyClassName(isDark: boolean) {
-  const body = getBody()
+export function syncBodyClassName(isDark: boolean, document: Document) {
+  const body = getBody(document)
   body.classList.add(isDark ? classNames.dark : classNames.light)
   body.classList.remove(isDark ? classNames.light : classNames.dark)
 }

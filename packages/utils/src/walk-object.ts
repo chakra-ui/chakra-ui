@@ -1,4 +1,5 @@
 import { isArray, isObject } from "./assertion"
+import { fromEntries } from "./object"
 
 export type WalkObjectPredicate<Leaf = unknown> = (
   value: unknown,
@@ -23,7 +24,7 @@ export function walkObject<Target, LeafType>(
     }
 
     if (isObject(value)) {
-      return Object.fromEntries(
+      return fromEntries(
         Object.entries(value).map(([key, child]) => [
           key,
           inner(child, [...path, key]),

@@ -253,6 +253,8 @@ export const ModalContent = forwardRef<ModalContentProps, "section">(
         <chakra.div
           {...containerProps}
           className="chakra-modal__content-container"
+          // tabindex="-1" means that the element is not reachable via sequential keyboard navigation, @see #4686
+          tabIndex={-1}
           __css={dialogContainerStyles}
         >
           <ModalTransition

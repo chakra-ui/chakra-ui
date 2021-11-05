@@ -1,5 +1,87 @@
 # Change Log
 
+## 1.2.3
+
+### Patch Changes
+
+- [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)
+  [#4873](https://github.com/chakra-ui/chakra-ui/pull/4873) Thanks
+  [@Nfinished](https://github.com/Nfinished)! - fix: always use fromEntries
+  polyfill from @chakra-ui/utils #4872
+
+- Updated dependencies
+  [[`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/utils@1.8.4
+
+## 1.2.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+
+## 1.2.1
+
+### Patch Changes
+
+- [`09577b088`](https://github.com/chakra-ui/chakra-ui/commit/09577b088272075f6f183bbb34d5639ac5e68cc0)
+  [#4708](https://github.com/chakra-ui/chakra-ui/pull/4708) Thanks
+  [@hiroppy](https://github.com/hiroppy)! - Replace `tinycolor2` with
+  `@ctrl/tinycolor` to get better tree-shaking benefits
+
+## 1.2.0
+
+### Minor Changes
+
+- [`01c913309`](https://github.com/chakra-ui/chakra-ui/commit/01c913309819c342806307291d2d60aea0122ecf)
+  [#4611](https://github.com/chakra-ui/chakra-ui/pull/4611) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Add new helpers to the
+  `theme-tools` package to make the process of creating component themes less
+  cumbersome.
+
+  - `cssVar` - function to create css vars
+  - `calc` - function that makes it easy to create the css calc string
+  - `anatomy`- function to define and extend component parts
+
+  Creating a CSS variable in the theme
+
+  ```jsx
+  import { cssVar, calc } from "@chakra-ui/theme-tools"
+
+  const $width = cssVar("slider-width")
+  const $height = cssVar("slider-height")
+
+  const $diff = calc($width)
+    .subtract($height)
+    .toString()
+
+  $width.variable // => '--slider-width'
+  $width.reference // => 'var(--slider-width)'
+  ```
+
+  Create a component anatomy
+
+  ```jsx
+  import { anatomy }  from "@chakra-ui/theme-tools"
+  import type { PartsStyle } from "@chakra-ui/theme-tools"
+
+  const btn = anatomy("button").parts("label", "container")
+
+  const newBtn = btn.extend("icon") //  extend button to include icon part
+
+  // Using the anatomy in component theme
+  const baseStyle: PartsStyle<typeof newBtn> = {
+    // auto-complete for the component parts
+    icon: {...},
+    label: {...}
+  }
+  ```
+
+  Added `PartsStyleObject` and `PartStyleFunction` types for easy creation of
+  type-safe, multipart component styles.
+
 ## 1.1.9
 
 ### Patch Changes

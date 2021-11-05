@@ -1,6 +1,5 @@
 {
   "recommendations": [
-    "vespa-dev-works.jestrunit",
     "formulahendry.auto-close-tag",
     "formulahendry.auto-rename-tag",
     "dbaeumer.vscode-eslint",

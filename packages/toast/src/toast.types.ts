@@ -1,13 +1,4 @@
-/**
- * List of available toast positions
- */
-export type ToastPosition =
-  | "top"
-  | "top-right"
-  | "top-left"
-  | "bottom"
-  | "bottom-right"
-  | "bottom-left"
+import { ToastPosition } from "./toast.placement"
 
 export interface RenderProps {
   /**
@@ -65,10 +56,14 @@ export interface ToastOptions {
   requestClose?: boolean
 }
 
-export type ToastState = { [K in ToastPosition]: ToastOptions[] }
+export type ToastState = {
+  [K in ToastPosition]: ToastOptions[]
+}
 
 export type Status = "default" | "success" | "error" | "warning" | "info"
 
-export type UpdateFn = (val: ToastState) => void
+export type UpdateFn = (state: ToastState) => void
 
-export type CloseAllToastsOptions = { positions?: ToastPosition[] }
+export type CloseAllToastsOptions = {
+  positions?: ToastPosition[]
+}

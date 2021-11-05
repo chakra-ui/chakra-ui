@@ -1,5 +1,32 @@
 # Change Log
 
+## 1.4.11
+
+### Patch Changes
+
+- Updated dependencies
+  [[`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/utils@1.8.4
+  - @chakra-ui/icon@1.1.13
+
+## 1.4.10
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/icon@1.1.12
+
+## 1.4.9
+
+### Patch Changes
+
+- [`83eecb75f`](https://github.com/chakra-ui/chakra-ui/commit/83eecb75f5bec58ea60e800122ce63c3d96c6a25)
+  [#4560](https://github.com/chakra-ui/chakra-ui/pull/4560) Thanks
+  [@take](https://github.com/take)! - Fix url for `LinkBox` component
+
 ## 1.4.8
 
 ### Patch Changes

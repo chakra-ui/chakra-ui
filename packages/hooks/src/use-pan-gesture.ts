@@ -15,6 +15,7 @@ export interface UsePanGestureProps {
   onPanEnd?: PanEventHandler
   onPanSessionStart?: PanEventHandler
   onPanSessionEnd?: PanEventHandler
+  threshold?: number
 }
 
 export function usePanGesture(
@@ -27,6 +28,7 @@ export function usePanGesture(
     onPanEnd,
     onPanSessionStart,
     onPanSessionEnd,
+    threshold,
   } = props
 
   const hasPanEvents = Boolean(
@@ -51,7 +53,7 @@ export function usePanGesture(
   })
 
   function onPointerDown(event: AnyPointerEvent) {
-    panSession.current = new PanSession(event, handlers)
+    panSession.current = new PanSession(event, handlers, threshold)
   }
 
   usePointerEvent(

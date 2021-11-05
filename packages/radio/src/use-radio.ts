@@ -222,8 +222,8 @@ export function useRadio(props: UseRadioProps = {}) {
         required: isRequired,
         "aria-invalid": ariaAttr(isInvalid),
         "aria-disabled": ariaAttr(trulyDisabled),
-        "aria-readonly": ariaAttr(isReadOnly),
         "aria-required": ariaAttr(isRequired),
+        "data-readonly": dataAttr(isReadOnly),
         style: visuallyHiddenStyle,
       }
     },
@@ -256,6 +256,14 @@ export function useRadio(props: UseRadioProps = {}) {
     "data-invalid": dataAttr(isInvalid),
   })
 
+  const getRootProps: PropGetter = (props, ref = null) => ({
+    ...props,
+    ref,
+    "data-disabled": dataAttr(isDisabled),
+    "data-checked": dataAttr(isChecked),
+    "data-invalid": dataAttr(isInvalid),
+  })
+
   return {
     state: {
       isInvalid,
@@ -270,6 +278,7 @@ export function useRadio(props: UseRadioProps = {}) {
     getCheckboxProps,
     getInputProps,
     getLabelProps,
+    getRootProps,
     htmlProps,
   }
 }

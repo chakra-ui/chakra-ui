@@ -1,9 +1,9 @@
 import {
   act,
-  testA11y,
   fireEvent,
   render,
   screen,
+  testA11y,
   waitForElementToBeRemoved,
 } from "@chakra-ui/test-utils"
 import * as React from "react"

@@ -7,6 +7,8 @@ import {
   useState,
 } from "react"
 
+type NativeImageProps = ImgHTMLAttributes<HTMLImageElement>
+
 export interface UseImageProps {
   /**
    * The image `src` attribute
@@ -23,11 +25,11 @@ export interface UseImageProps {
   /**
    * A callback for when the image `src` has been loaded
    */
-  onLoad?(event: React.SyntheticEvent<HTMLImageElement, Event>): void
+  onLoad?: NativeImageProps["onLoad"]
   /**
    * A callback for when there was an error loading the image `src`
    */
-  onError?(error: string | React.SyntheticEvent<HTMLImageElement, Event>): void
+  onError?: NativeImageProps["onError"]
   /**
    * If `true`, opt out of the `fallbackSrc` logic and use as `img`
    */
@@ -36,7 +38,8 @@ export interface UseImageProps {
    * The key used to set the crossOrigin on the HTMLImageElement into which the image will be loaded.
    * This tells the browser to request cross-origin access when trying to download the image data.
    */
-  crossOrigin?: ImgHTMLAttributes<any>["crossOrigin"]
+  crossOrigin?: NativeImageProps["crossOrigin"]
+  loading?: NativeImageProps["loading"]
 }
 
 type Status = "loading" | "failed" | "pending" | "loaded"
@@ -61,6 +64,7 @@ type ImageEvent = React.SyntheticEvent<HTMLImageElement, Event>
  */
 export function useImage(props: UseImageProps) {
   const {
+    loading,
     src,
     srcSet,
     onLoad,
@@ -84,20 +88,11 @@ export function useImage(props: UseImageProps) {
     flush()
 
     const img = new Image()
-
     img.src = src
-
-    if (crossOrigin) {
-      img.crossOrigin = crossOrigin
-    }
-
-    if (srcSet) {
-      img.srcset = srcSet
-    }
-
-    if (sizes) {
-      img.sizes = sizes
-    }
+    if (crossOrigin) img.crossOrigin = crossOrigin
+    if (srcSet) img.srcset = srcSet
+    if (sizes) img.sizes = sizes
+    if (loading) img.loading = loading
 
     img.onload = (event) => {
       flush()
@@ -111,7 +106,7 @@ export function useImage(props: UseImageProps) {
     }
 
     imageRef.current = img
-  }, [src, crossOrigin, srcSet, sizes, onLoad, onError])
+  }, [src, crossOrigin, srcSet, sizes, onLoad, onError, loading])
 
   const flush = () => {
     if (imageRef.current) {

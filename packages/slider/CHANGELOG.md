@@ -1,5 +1,86 @@
 # Change Log
 
+## 1.4.2
+
+### Patch Changes
+
+- [`9d845f2d2`](https://github.com/chakra-ui/chakra-ui/commit/9d845f2d22d9b8a7e392bda08073c847ab748491)
+  [#4852](https://github.com/chakra-ui/chakra-ui/pull/4852) Thanks
+  [@antenna-three](https://github.com/antenna-three)! - Fix issue where sliding
+  on a range slider without focusing sometimes fail.
+
+- Updated dependencies
+  [[`5fe9b552b`](https://github.com/chakra-ui/chakra-ui/commit/5fe9b552bcae55935d1ab8ffde86b701075e6e6a),
+  [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/hooks@1.6.2
+  - @chakra-ui/utils@1.8.4
+
+## 1.4.1
+
+### Patch Changes
+
+- [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)
+  [#4803](https://github.com/chakra-ui/chakra-ui/pull/4803) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where value
+  can't be changed when range-slider thumbs are stacked
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`a9d1dc4ac`](https://github.com/chakra-ui/chakra-ui/commit/a9d1dc4ac874825f292d874ad4eadaf060fed436),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/hooks@1.6.1
+
+## 1.4.0
+
+### Minor Changes
+
+- [`b769e88f9`](https://github.com/chakra-ui/chakra-ui/commit/b769e88f977a4e2a8641de57beefd8220bc5dffa)
+  [#4740](https://github.com/chakra-ui/chakra-ui/pull/4740) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Move hard-coded styles
+  to slider's theme
+
+  - Add support for multithumb slider. We now have `useRangeSlider`,
+    `RangeSlider` and `RangeSlider*` components
+
+  ```jsx live=false
+  <RangeSlider>
+    <RangeSliderTrack>
+      <RangeSliderFilledTrack />
+    </RangeSliderTrack>
+    <RangeSliderThumb index={0} />
+    <RangeSliderThumb index={1} />
+  </RangeSlider>
+  ```
+
+## 1.3.0
+
+### Minor Changes
+
+- [`74fada62b`](https://github.com/chakra-ui/chakra-ui/commit/74fada62b9e2cc389615855a8ad48041f2c45973)
+  [#3837](https://github.com/chakra-ui/chakra-ui/pull/3837) Thanks
+  [@mcha-dev](https://github.com/mcha-dev)! - Add `RTL` support by using the
+  theme's direction ("ltr" or "rtl") to set the default `isReversed` property
+  when the `orientation` is `horizontal`
+
+## 1.2.9
+
+### Patch Changes
+
+- [`ed8301181`](https://github.com/chakra-ui/chakra-ui/commit/ed830118114231624eb1538f183134a5741a16f7)
+  [#4564](https://github.com/chakra-ui/chakra-ui/pull/4564) Thanks
+  [@trabuchhobbes](https://github.com/trabuchhobbes)! - Fix issue where slider
+  thumb gets focus when `onChangeEnd` changes.
+
+* [`6532f97eb`](https://github.com/chakra-ui/chakra-ui/commit/6532f97eb13105e126881f709f48f1270ac7f5c9)
+  [#4575](https://github.com/chakra-ui/chakra-ui/pull/4575) Thanks
+  [@takethefake](https://github.com/takethefake)! - Call `onChangeStart`/
+  `onChangeEnd` when clicking somewhere in the `SliderTrack` without dragging
+  the `DragHandle`
+* Updated dependencies
+  [[`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130)]:
+  - @chakra-ui/hooks@1.6.0
+
 ## 1.2.8
 
 ### Patch Changes

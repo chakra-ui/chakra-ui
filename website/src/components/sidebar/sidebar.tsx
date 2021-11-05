@@ -27,6 +27,7 @@ export type SidebarContentProps = Routes & {
 
 export function SidebarContent(props: SidebarContentProps) {
   const { routes, pathname, contentRef } = props
+  const color = useColorModeValue("gray.700", "inherit")
   return (
     <>
       {routes.map((lvl1, idx) => {
@@ -39,7 +40,7 @@ export function SidebarContent(props: SidebarContentProps) {
                 my="1.25rem"
                 textTransform="uppercase"
                 letterSpacing="wider"
-                color={useColorModeValue("gray.700", "inherit")}
+                color={color}
               >
                 {lvl1.title}
               </chakra.h4>
@@ -57,7 +58,7 @@ export function SidebarContent(props: SidebarContentProps) {
               const selected = pathname.startsWith(lvl2.path)
               const opened = selected || lvl2.open
 
-              const sortedRoutes = !!lvl2.sort
+              const sortedRoutes = lvl2.sort
                 ? sortBy(lvl2.routes, (i) => i.title)
                 : lvl2.routes
 

@@ -1,5 +1,46 @@
 # Change Log
 
+## 1.4.6
+
+### Patch Changes
+
+- Updated dependencies
+  [[`5fe9b552b`](https://github.com/chakra-ui/chakra-ui/commit/5fe9b552bcae55935d1ab8ffde86b701075e6e6a),
+  [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/hooks@1.6.2
+  - @chakra-ui/utils@1.8.4
+  - @chakra-ui/spinner@1.1.14
+
+## 1.4.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`a9d1dc4ac`](https://github.com/chakra-ui/chakra-ui/commit/a9d1dc4ac874825f292d874ad4eadaf060fed436),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/hooks@1.6.1
+  - @chakra-ui/spinner@1.1.13
+
+## 1.4.4
+
+### Patch Changes
+
+- [`21531b59d`](https://github.com/chakra-ui/chakra-ui/commit/21531b59dba938be1b4ee9d3a5f43f4e10d3f783)
+  [#4767](https://github.com/chakra-ui/chakra-ui/pull/4767) Thanks
+  [@gluck](https://github.com/gluck)! - Added missing `@chakra-ui/react-utils`
+  import
+
+## 1.4.3
+
+### Patch Changes
+
+- [`87ffdd1cb`](https://github.com/chakra-ui/chakra-ui/commit/87ffdd1cb615e9d4bc8a9af66fb6ae9ef1563caf)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  composing `Button` with framer-motion's `motion` factory breaks
+  animation/transition
+
 ## 1.4.2
 
 ### Patch Changes

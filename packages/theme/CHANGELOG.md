@@ -1,5 +1,80 @@
 # Change Log
 
+## 1.11.1
+
+### Patch Changes
+
+- [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)
+  [#4965](https://github.com/chakra-ui/chakra-ui/pull/4965) Thanks
+  [@takethefake](https://github.com/takethefake)! - Allow usage of
+  `framer-motion` 5.x in `peerDependency`
+
+## 1.11.0
+
+### Minor Changes
+
+- [`e31439c98`](https://github.com/chakra-ui/chakra-ui/commit/e31439c985d71ba0b37197b18a393b0fe5cf79a4)
+  [#4929](https://github.com/chakra-ui/chakra-ui/pull/4929) Thanks
+  [@Mattinton](https://github.com/Mattinton)! - Made PopoverCloseButton
+  themeable
+
+### Patch Changes
+
+- Updated dependencies
+  [[`e31439c98`](https://github.com/chakra-ui/chakra-ui/commit/e31439c985d71ba0b37197b18a393b0fe5cf79a4),
+  [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/anatomy@1.1.0
+  - @chakra-ui/theme-tools@1.2.3
+  - @chakra-ui/utils@1.8.4
+
+## 1.10.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/theme-tools@1.2.2
+
+## 1.10.3
+
+### Patch Changes
+
+- [`b769e88f9`](https://github.com/chakra-ui/chakra-ui/commit/b769e88f977a4e2a8641de57beefd8220bc5dffa)
+  [#4740](https://github.com/chakra-ui/chakra-ui/pull/4740) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Refactor slider theme from
+  slider.tsx to slider's theme
+
+## 1.10.2
+
+### Patch Changes
+
+- [`09577b088`](https://github.com/chakra-ui/chakra-ui/commit/09577b088272075f6f183bbb34d5639ac5e68cc0)
+  [#4708](https://github.com/chakra-ui/chakra-ui/pull/4708) Thanks
+  [@hiroppy](https://github.com/hiroppy)! - Replace `tinycolor2` with
+  `@ctrl/tinycolor` to get better tree-shaking benefits
+
+- Updated dependencies
+  [[`09577b088`](https://github.com/chakra-ui/chakra-ui/commit/09577b088272075f6f183bbb34d5639ac5e68cc0),
+  [`a096ccdde`](https://github.com/chakra-ui/chakra-ui/commit/a096ccdde87a52919cd6e39d985c0dd1154ffbd7),
+  [`a02b0de8b`](https://github.com/chakra-ui/chakra-ui/commit/a02b0de8b14acb8282cabafe5cef885e8da0b8fb)]:
+  - @chakra-ui/theme-tools@1.2.1
+  - @chakra-ui/anatomy@1.0.1
+
+## 1.10.1
+
+### Patch Changes
+
+- [`633df562f`](https://github.com/chakra-ui/chakra-ui/commit/633df562f4ab22ae5406d5a5cda7661171fc8a65)
+  [#4576](https://github.com/chakra-ui/chakra-ui/pull/4576) Thanks
+  [@takethefake](https://github.com/takethefake)! - Added `overview:"visible"`
+  to `baseStyle` of `TagLabel` to avoid clipped text
+
+- Updated dependencies
+  [[`01c913309`](https://github.com/chakra-ui/chakra-ui/commit/01c913309819c342806307291d2d60aea0122ecf)]:
+  - @chakra-ui/theme-tools@1.2.0
+
 ## 1.10.0
 
 ### Minor Changes

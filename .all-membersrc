@@ -4,11 +4,21 @@
       "login": "segunadebayo",
       "avatar_url": "https://avatars.githubusercontent.com/u/6916170?v=4",
       "url": "https://github.com/segunadebayo",
-      "blog": "",
+      "blog": "https://twitter.com/thesegunadebayo",
       "name": "Segun Adebayo",
       "bio": "Building @chakra-ui ⚡️. Design Systems and UI Engineer",
       "twitter_username": "thesegunadebayo",
       "location": "Dubai, United Arab Emirates"
+    },
+    {
+      "login": "carwack",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16015740?v=4",
+      "url": "https://github.com/carwack",
+      "blog": "",
+      "name": "Sybren W",
+      "bio": null,
+      "twitter_username": "Carwack",
+      "location": null
     },
     {
       "login": "codebender828",
@@ -16,7 +26,7 @@
       "url": "https://github.com/codebender828",
       "blog": "https://jbakebwa.dev",
       "name": "Jonathan Bakebwa",
-      "bio": "Building @chakra-ui/vue  |\r\nCo-founder, UI Engineer @Akkadu  ",
+      "bio": "Building @chakra-ui/vue  |\r\nCo-founder, Software Engineer, rct.ai",
       "twitter_username": "codebender828",
       "location": "Beijing Institute of Technology, Beijing, CN"
     },
@@ -45,8 +55,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/342666?v=4",
       "url": "https://github.com/koca",
       "blog": "mesut.dev",
-      "name": "Mesut",
-      "bio": "Core @chakra-ui\r\nSenior Frontend Developer @onediocom\r\n#JS #VUE",
+      "name": "Mesut Koca",
+      "bio": "Core @chakra-ui\r\nSenior Frontend Developer \r\n#JS #VUE",
       "twitter_username": "imesutkoca",
       "location": null
     },
@@ -81,6 +91,16 @@
       "location": "Nigeria"
     },
     {
+      "login": "takethefake",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3123354?v=4",
+      "url": "https://github.com/takethefake",
+      "blog": "schulz.codes",
+      "name": "Daniel Schulz",
+      "bio": "DevOps Engineer at DB Systel",
+      "twitter_username": "takethefake",
+      "location": "Germany"
+    },
+    {
       "login": "TimKolberger",
       "avatar_url": "https://avatars.githubusercontent.com/u/16899513?v=4",
       "url": "https://github.com/TimKolberger",
@@ -96,7 +116,7 @@
       "url": "https://github.com/with-heart",
       "blog": "https://with-heart.me/",
       "name": "with-heart",
-      "bio": "Open Source-ist. Digital gardener. Chakra UI core team member.",
+      "bio": "Open Source-ist. Digital gardener. Chakra UI core team member. Developer DAO site maintainer.",
       "twitter_username": "grow_love",
       "location": "Cincinnati, Ohio"
     }

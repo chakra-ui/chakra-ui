@@ -104,6 +104,11 @@ export interface UseMenuProps extends UsePopperProps, UseDisclosureProps {
    */
   lazyBehavior?: LazyBehavior
   /**
+   * If `rtl`, poper placement positions will be flipped i.e. 'top-right' will
+   * become 'top-left' and vice-verse
+   */
+  direction?: "ltr" | "rtl"
+  /*
    * If `true`, the menu will be positioned when it mounts
    * (even if it's not open).
    *
@@ -132,22 +137,59 @@ export function useMenu(props: UseMenuProps = {}) {
     onOpen: onOpenProp,
     placement = "bottom-start",
     lazyBehavior = "unmount",
-    computePositionOnMount,
+    direction,
+    computePositionOnMount = false,
     ...popperProps
   } = props
-
-  const { isOpen, onOpen, onClose, onToggle } = useDisclosure({
-    isOpen: isOpenProp,
-    defaultIsOpen,
-    onClose: onCloseProp,
-    onOpen: onOpenProp,
-  })
-
   /**
    * Prepare the reference to the menu and disclosure
    */
   const menuRef = React.useRef<HTMLDivElement>(null)
   const buttonRef = React.useRef<HTMLButtonElement>(null)
+
+  /**
+   * Context to register all menu item nodes
+   */
+  const descendants = useMenuDescendants()
+
+  const focusMenu = React.useCallback(() => {
+    focus(menuRef.current, {
+      nextTick: true,
+      selectTextIfInput: false,
+    })
+  }, [])
+
+  const focusFirstItem = React.useCallback(() => {
+    const id = setTimeout(() => {
+      const first = descendants.firstEnabled()
+      if (first) setFocusedIndex(first.index)
+    })
+    timeoutIds.current.add(id)
+  }, [descendants])
+
+  const focusLastItem = React.useCallback(() => {
+    const id = setTimeout(() => {
+      const last = descendants.lastEnabled()
+      if (last) setFocusedIndex(last.index)
+    })
+    timeoutIds.current.add(id)
+  }, [descendants])
+
+  const onOpenInternal = React.useCallback(() => {
+    onOpenProp?.()
+    if (autoSelect) {
+      focusFirstItem()
+    } else {
+      focusMenu()
+    }
+  }, [autoSelect, focusFirstItem, focusMenu, onOpenProp])
+
+  const { isOpen, onOpen, onClose, onToggle } = useDisclosure({
+    isOpen: isOpenProp,
+    defaultIsOpen,
+    onClose: onCloseProp,
+    onOpen: onOpenInternal,
+  })
 
   useOutsideClick({
     enabled: isOpen && closeOnBlur,
@@ -166,14 +208,10 @@ export function useMenu(props: UseMenuProps = {}) {
     ...popperProps,
     enabled: isOpen || computePositionOnMount,
     placement,
+    direction,
   })
 
   const [focusedIndex, setFocusedIndex] = React.useState(-1)
-
-  /**
-   * Context to register all menu item nodes
-   */
-  const descendants = useMenuDescendants()
 
   /**
    * Focus the button when we close the menu
@@ -197,11 +235,8 @@ export function useMenu(props: UseMenuProps = {}) {
 
   const openAndFocusMenu = React.useCallback(() => {
     onOpen()
-    focus(menuRef.current, {
-      nextTick: true,
-      selectTextIfInput: false,
-    })
-  }, [onOpen, menuRef])
+    focusMenu()
+  }, [onOpen, focusMenu])
 
   const timeoutIds = React.useRef<Set<number>>(new Set([]))
 
@@ -212,21 +247,13 @@ export function useMenu(props: UseMenuProps = {}) {
 
   const openAndFocusFirstItem = React.useCallback(() => {
     onOpen()
-    const id = setTimeout(() => {
-      const first = descendants.firstEnabled()
-      if (first) setFocusedIndex(first.index)
-    })
-    timeoutIds.current.add(id)
-  }, [onOpen, setFocusedIndex, descendants])
+    focusFirstItem()
+  }, [focusFirstItem, onOpen])
 
   const openAndFocusLastItem = React.useCallback(() => {
     onOpen()
-    const id = setTimeout(() => {
-      const last = descendants.lastEnabled()
-      if (last) setFocusedIndex(last.index)
-    })
-    timeoutIds.current.add(id)
-  }, [onOpen, setFocusedIndex, descendants])
+    focusLastItem()
+  }, [onOpen, focusLastItem])
 
   const refocus = React.useCallback(() => {
     const doc = getOwnerDocument(menuRef.current)
@@ -289,24 +316,7 @@ export function useMenuButton(
 ) {
   const menu = useMenuContext()
 
-  const {
-    isOpen,
-    onClose,
-    autoSelect,
-    popper,
-    openAndFocusFirstItem,
-    openAndFocusLastItem,
-    openAndFocusMenu,
-  } = menu
-
-  const onClick = React.useCallback(() => {
-    if (isOpen) {
-      onClose()
-    } else {
-      const action = autoSelect ? openAndFocusFirstItem : openAndFocusMenu
-      action()
-    }
-  }, [autoSelect, isOpen, onClose, openAndFocusFirstItem, openAndFocusMenu])
+  const { onToggle, popper, openAndFocusFirstItem, openAndFocusLastItem } = menu
 
   const onKeyDown = React.useCallback(
     (event: React.KeyboardEvent) => {
@@ -336,7 +346,7 @@ export function useMenuButton(
     "aria-expanded": menu.isOpen,
     "aria-haspopup": "menu" as React.AriaAttributes["aria-haspopup"],
     "aria-controls": menu.menuId,
-    onClick: callAllHandlers(props.onClick, onClick),
+    onClick: callAllHandlers(props.onClick, onToggle),
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
   }
 }
