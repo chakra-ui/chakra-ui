@@ -11,7 +11,10 @@ module.exports = {
     "^.+\\.(ts|tsx|js|jsx)?$": "@swc-node/jest",
   },
   transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
-  setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
+  setupFilesAfterEnv: [
+    "@testing-library/jest-dom/extend-expect",
+    "./scripts/setup-test.ts",
+  ],
   globals: {
     "ts-jest": {
       tsconfig: "tsconfig.json",
