@@ -238,7 +238,7 @@ export function useMenu(props: UseMenuProps = {}) {
     focusMenu()
   }, [onOpen, focusMenu])
 
-  const timeoutIds = React.useRef<Set<number>>(new Set([]))
+  const timeoutIds = React.useRef<Set<any>>(new Set([]))
 
   useUnmountEffect(() => {
     timeoutIds.current.forEach((id) => clearTimeout(id))

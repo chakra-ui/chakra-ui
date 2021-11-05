@@ -18,7 +18,7 @@ test("should return data attribute value from boolean", () => {
 
 test("should return aria attribute value from boolean", () => {
   const isDisabled = false
-  expect(ariaAttr(isDisabled)).toBe(undefined)
+  expect(ariaAttr(isDisabled)).toBeUndefined()
 })
 
 test("should get document object", () => {

@@ -1,5 +1,12 @@
 import React from "react"
-import { Grid, Button, Text, useClipboard, useToast } from "@chakra-ui/react"
+import {
+  Grid,
+  Button,
+  Text,
+  useClipboard,
+  useToast,
+  useUpdateEffect,
+} from "@chakra-ui/react"
 import * as icons from "@chakra-ui/icons"
 
 const iconList = {
@@ -64,6 +71,13 @@ const iconList = {
 }
 
 const IconsList = () => {
+  const [icon, setIcon] = React.useState("")
+  const { onCopy } = useClipboard(icon)
+
+  useUpdateEffect(() => {
+    onCopy()
+  }, [icon])
+
   const toast = useToast()
 
   return (
@@ -74,11 +88,8 @@ const IconsList = () => {
     >
       {Object.keys(iconList).map((key, i) => {
         const Icon = iconList[key]
-        const { onCopy } = useClipboard(key)
-
         const onCopyIcon = () => {
-          onCopy()
-
+          setIcon(key)
           toast({
             title: `'${key}' copied to clipboard`,
             status: "success",

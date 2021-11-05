@@ -10,16 +10,9 @@
   "author": "Tim Kolberger <tim@kolberger.eu>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
-    }
-  },
+  "main": "dist/chakra-ui-props-docs.cjs.js",
+  "module": "dist/chakra-ui-props-docs.esm.js",
+  "types": "dist/chakra-ui-props-docs.d.ts",
   "files": [
     "dist"
   ],
@@ -35,25 +28,14 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "postbuild": "node dist/cjs/build.js",
-    "start": "nodemon --watch src --exec yarn build -e ts,tsx",
-    "build": "concurrently yarn:build:*",
-    "test": "jest --env=jsdom --passWithNoTests",
-    "lint": "concurrently yarn:lint:*",
-    "version": "yarn build",
-    "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
-    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
-    "test:cov": "yarn test --coverage",
-    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
-    "lint:types": "tsc --noEmit"
+    "build": "ts-node -T src/build.ts"
   },
   "dependencies": {
     "@chakra-ui/react": "1.6.12",
     "@chakra-ui/styled-system": "1.13.0",
     "glob": "^7.1.6",
     "mkdirp": "^1.0.4",
-    "react-docgen-typescript": "^1.20.5",
+    "react-docgen-typescript": "^2.1.0",
     "regenerator-runtime": "^0.13.7"
   },
   "devDependencies": {

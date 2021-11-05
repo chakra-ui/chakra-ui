@@ -2,7 +2,7 @@ import checkNode from "cli-check-node"
 import welcome from "cli-welcome"
 import updateNotifier from "update-notifier"
 import unhandledError from "cli-handle-unhandled"
-import * as pkgJSON from "../../package.json"
+import pkgJSON from "../../package.json"
 
 export async function initCLI() {
   checkNode(`12`)

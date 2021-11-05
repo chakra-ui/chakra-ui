@@ -5,6 +5,9 @@
   "keywords": [
     "theme",
     "theming",
+    "typings",
+    "generator",
+    "chakra ui",
     "ui mode",
     "ui"
   ],
@@ -13,11 +16,6 @@
   "license": "MIT",
   "main": "dist/index.js",
   "sideEffects": false,
-  "exports": {
-    ".": {
-      "require": "./dist/index.js"
-    }
-  },
   "files": [
     "dist",
     "bin"
@@ -37,15 +35,8 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "start": "nodemon --watch src --exec 'yarn build; yarn dev' -e ts,tsx",
-    "dev": "node bin/index.js tokens ../../website/theme.ts",
-    "test": "jest --env=jsdom --passWithNoTests",
-    "lint": "concurrently yarn:lint:*",
-    "version": "yarn build",
     "build": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist --source-maps",
-    "test:cov": "yarn test --coverage",
-    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
-    "lint:types": "tsc --noEmit"
+    "dev": "node bin/index.js tokens ../../website/theme.ts"
   },
   "dependencies": {
     "@chakra-ui/utils": "^1.8.3",
@@ -56,7 +47,7 @@
     "module-alias": "^2.2.2",
     "ora": "^5.3.0",
     "regenerator-runtime": "^0.13.7",
-    "ts-node": "9.1.1",
+    "ts-node": "10.4.0",
     "tsconfig-paths": "^3.11.0",
     "update-notifier": "^5.0.1"
   },

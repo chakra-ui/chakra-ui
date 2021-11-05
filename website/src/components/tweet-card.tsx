@@ -3,7 +3,6 @@ import * as React from "react"
 
 interface TweetCardProps {
   name: string
-  image: string
   handle: string
   date: string
   url: string

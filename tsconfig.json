@@ -8,6 +8,7 @@
     "moduleResolution": "node",
     "skipLibCheck": true,
     "strict": true,
+    "isolatedModules": true,
     "noFallthroughCasesInSwitch": true,
     "suppressImplicitAnyIndexErrors": true,
     "noImplicitAny": true,
@@ -19,7 +20,7 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
-    "declarationMap": true
+    "incremental": true
   },
   "include": ["packages", "scripts", "tooling", "website"],
   "exclude": ["node_modules"],

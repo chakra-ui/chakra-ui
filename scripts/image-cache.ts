@@ -45,7 +45,7 @@ export class AvatarCache {
       }
 
       const body = await response.buffer()
-      return this.processImage(body, outputFileSlug)
+      return await this.processImage(body, outputFileSlug)
     } catch (error) {
       console.error(`Error processing ${url}\nError: ${error}`)
     }
@@ -55,7 +55,7 @@ export class AvatarCache {
     const { width, outputDirectory } = this
     const output = `${outputDirectory}/${outputFileSlug}`
 
-    const img = sharp(body).resize({ width: width, withoutEnlargement: true })
+    const img = sharp(body).resize({ width, withoutEnlargement: true })
     const metadata = await img.metadata()
 
     await this.toJpeg(img, metadata, `${output}.jpg`)

@@ -26,9 +26,23 @@ const excludedPropNames = propNames.concat([
   "css",
 ])
 
-const rootDir = path.join(__dirname, "..", "..", "..", "..")
+const rootDir = path.join(__dirname, "..", "..", "..")
 const sourcePath = path.join(rootDir, "packages")
-const outputPath = path.join(__dirname, "..", "components")
+const outputPath = path.join(__dirname, "..", "dist", "components")
+
+const cjsIndexFilePath = path.join(
+  __dirname,
+  "..",
+  "dist",
+  "chakra-ui-props-docs.cjs.js",
+)
+
+const esmIndexFilePath = path.join(
+  __dirname,
+  "..",
+  "dist",
+  "chakra-ui-props-docs.esm.js",
+)
 
 const tsConfigPath = path.join(sourcePath, "..", "tsconfig.json")
 
@@ -129,7 +143,7 @@ function extractComponentInfo(docs: ComponentDoc[]) {
       displayName: def.displayName,
       fileName,
       exportName,
-      importPath: `../components/${fileName}`,
+      importPath: `./components/${fileName}`,
     })
     return acc
   }, [] as ComponentInfo[])
@@ -150,7 +164,6 @@ function writeComponentInfoFiles(componentInfo: ComponentInfo[]) {
  * Create and write the index file in CJS format
  */
 function writeIndexCJS(componentInfo: ComponentInfo[]) {
-  const cjsIndexFilePath = path.join(__dirname, "index.js")
   const cjsExports = componentInfo.map(
     ({ displayName, importPath }) =>
       `module.exports['${displayName}'] = require('${importPath}')`,
@@ -162,8 +175,6 @@ function writeIndexCJS(componentInfo: ComponentInfo[]) {
  * Create and write the index file in ESM format
  */
 function writeIndexESM(componentInfo: ComponentInfo[]) {
-  const esmIndexFilePath = path.join(__dirname, "..", "esm", "index.js")
-
   const esmPropImports = componentInfo
     .map(
       ({ exportName, importPath }) =>

@@ -19,7 +19,7 @@ jobs:
       - name: Enable node
         uses: actions/setup-node@master
         with:
-          node-version: 12.x
+          node-version: 14.x
 
       - name: Load Yarn cache
         uses: actions/cache@v2
@@ -30,7 +30,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile && yarn bootstrap
+        run: yarn install --frozen-lockfile
 
       - name: Build packages
         run: yarn build

@@ -86,7 +86,6 @@ This would easily allow for an implementation where the user can choose between
   definition. This allows memoized modifiers to work correctly in user-land when
   used with `useCallback`.
 
-
 ## 31-10-2021
 
 `@chakra-ui/react@1.6.11`

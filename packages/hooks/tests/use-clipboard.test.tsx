@@ -4,7 +4,9 @@ import { invoke, renderHook } from "@chakra-ui/test-utils"
 import { useClipboard } from "../src"
 
 jest.mock("copy-to-clipboard")
+
 jest.useFakeTimers()
+jest.spyOn(global, "setTimeout")
 
 const text = "lorem ipsum"
 
@@ -24,5 +26,5 @@ test.each`
   })
 
   expect(copy).toBeCalledWith(text, {})
-  expect(setTimeout).toHaveBeenCalledWith(expect.anything(), expected)
+  expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), expected)
 })
