@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@chakra-ui/utils": "1.8.4",
-    "react-focus-lock": "2.5.0"
+    "react-focus-lock": "2.5.2"
   },
   "peerDependencies": {
     "react": ">=16.8.6"
