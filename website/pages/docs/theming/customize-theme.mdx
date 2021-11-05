@@ -197,6 +197,15 @@ const overrides = extendTheme({
     }),
   },
 })
+
+//Provide the customized theme to `ChakraProvider` component at the root of your app
+
+//index.js
+import theme from "./theme";
+
+<ChakraProvider theme={theme}>
+  <App />
+</ChakraProvider>
 ```
 
 ## Scaling out your project
