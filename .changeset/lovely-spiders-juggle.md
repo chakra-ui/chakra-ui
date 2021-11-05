@@ -58,6 +58,7 @@
 "@chakra-ui/transition": minor
 "@chakra-ui/utils": minor
 "@chakra-ui/visually-hidden": minor
+"@chakra-ui/cli": minor
 ---
 
 Update build system we use from a custom babel cli setup to

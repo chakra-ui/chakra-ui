@@ -8,7 +8,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@chakra-ui/machine": "*",
     "@chakra-ui/react": "*",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",

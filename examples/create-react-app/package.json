@@ -3,7 +3,6 @@
   "version": "1.1.0",
   "private": true,
   "dependencies": {
-    "@chakra-ui/machine": "*",
     "@chakra-ui/react": "*",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",

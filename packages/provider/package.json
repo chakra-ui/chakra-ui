@@ -4,7 +4,7 @@
   "description": "Theme and components agnostic ChakraProvider",
   "main": "dist/chakra-ui-provider.cjs.js",
   "module": "dist/chakra-ui-provider.esm.js",
-  "types": "dist/types/index.d.ts",
+  "types": "dist/chakra-ui-provider.cjs.d.ts",
   "files": [
     "dist"
   ],

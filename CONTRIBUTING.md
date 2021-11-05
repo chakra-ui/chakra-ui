@@ -18,7 +18,7 @@ git clone https://github.com/<your_github_username>/chakra-ui.git
 cd chakra-ui
 ```
 
-1. Setup all the dependencies and packages by running `yarn`. This command will
+3. Setup all the dependencies and packages by running `yarn`. This command will
    install dependencies and bootstrap the repo using `preconstruct`
 
 > If you run into any issues during this step, kindly reach out to the Chakra UI
@@ -59,46 +59,7 @@ end with `.stories.tsx`.
 
 **`yarn test`**: run test for all component packages.
 
-**`yarn test:pkg <package>`**: run test for specific component package.
-
 **`yarn release`**: publish changed packages.
-
-**`yarn lint:pkg <package>`**: Run the lint command for specific component
-package
-
-#### Package Aliasing and Yarn Workspace
-
-Since we're using Preconstruct, ManyPkg and Yarn workspaces, this enables us to
-run commands within component packages directly from the root.
-
-Each component is named this way: `@chakra-ui/[component]`. Let's say we want to
-build the button component. Here's how to do it:
-
-```bash
-yarn workspace @chakra-ui/button build
-
-# or
-
-yarn manykpg run @chakra-ui/button build
-```
-
-**Shortcut:** To make this shorter and more convenient, we've added an alias for
-each component in the root `package.json`. Now you can simply do:
-
-```bash
-# to build
-yarn pkg tabs build
-
-# to test
-yarn pkg tabs test
-yarn pkg tabs test --watch
-
-# to lint
-yarn pkg tabs lint
-```
-
-This alias is particularly useful when you're working on a specific component
-and want to avoid running the command for all components.
 
 ### Documentation
 

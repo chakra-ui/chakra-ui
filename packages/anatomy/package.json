@@ -13,7 +13,7 @@
   "license": "MIT",
   "main": "dist/chakra-ui-anatomy.cjs.js",
   "module": "dist/chakra-ui-anatomy.esm.js",
-  "types": "dist/types/index.d.ts",
+  "types": "dist//chakra-ui-anatomy.cjs.d.ts",
   "sideEffects": false,
   "files": [
     "dist"
