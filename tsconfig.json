@@ -22,7 +22,7 @@
     "downlevelIteration": true,
     "incremental": true
   },
-  "include": ["packages", "scripts", "tooling", "website"],
+  "include": ["packages", "scripts", "tooling"],
   "exclude": ["node_modules"],
   "ts-node": {
     "compilerOptions": {
