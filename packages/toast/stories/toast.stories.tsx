@@ -1,10 +1,10 @@
 import * as React from "react"
+import { theme as base } from "@chakra-ui/theme"
 import { Button, ButtonGroup } from "@chakra-ui/button"
 import { chakra, useColorMode } from "@chakra-ui/system"
 import { Alert } from "@chakra-ui/alert"
 import { Text } from "@chakra-ui/layout"
 import { createStandaloneToast, useToast } from "../src"
-import theme from "../../../website/theme"
 
 export default {
   title: "Toast",
@@ -288,7 +288,16 @@ export const useToastCustomRenderUpdate = () => {
 }
 
 export function StandAloneToast() {
-  const toast = createStandaloneToast({ theme })
+  const toast = createStandaloneToast({
+    theme: {
+      ...base,
+      colors: {
+        green: {
+          500: "#67BF3C",
+        },
+      },
+    },
+  })
   const toast2 = createStandaloneToast()
   return (
     <>
