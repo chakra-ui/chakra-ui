@@ -347,9 +347,14 @@ export function useRangeSlider(props: UseRangeSliderProps) {
   const onPanSessionStart = (event: AnyPointerEvent) => {
     const pointValue = getValueFromPointer(event) || 0
     const distances = value.map((val) => Math.abs(val - pointValue))
-    const isThumbStacked = new Set(distances).size !== distances.length
     const closest = Math.min(...distances)
     let index = distances.indexOf(closest)
+
+    // check if the clicked thumb is stacked by checking if there are multiple
+    // thumbs at the same distance
+    const isThumbStacked =
+      distances.filter((distance) => distance === closest).length > 1
+
     // when two thumbs are stacked and the user clicks at a point larger than
     // their values, pick the next closest thumb
     if (isThumbStacked && pointValue > value[index]) {
@@ -361,7 +366,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
   }
 
   const onPan = (event: AnyPointerEvent) => {
-    if (activeIndex == -1) return;
+    if (activeIndex == -1) return
     const pointValue = getValueFromPointer(event) || 0
     setActiveIndex(activeIndex)
     actions.setValueAtIndex(activeIndex, pointValue)
