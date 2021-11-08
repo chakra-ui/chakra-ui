@@ -167,6 +167,11 @@ export interface AvatarProps
     AvatarOptions,
     ThemingProps<"Avatar"> {
   iconLabel?: string
+  /**
+   * If `true`, opt out of the avatar's `fallback` logic and
+   * renders the `img` at all times.
+   */
+  ignoreFallback?: boolean
 }
 
 /**
@@ -188,6 +193,7 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
     loading,
     children,
     borderColor,
+    ignoreFallback,
     ...rest
   } = omitThemingProps(props)
 
@@ -219,6 +225,7 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
           borderRadius={borderRadius}
           icon={icon}
           iconLabel={iconLabel}
+          ignoreFallback={ignoreFallback}
         />
         {children}
       </StylesProvider>
@@ -246,12 +253,13 @@ const AvatarImage: React.FC<AvatarImageProps> = (props) => {
     loading,
     iconLabel,
     icon = <DefaultIcon />,
+    ignoreFallback,
   } = props
 
   /**
    * use the image hook to only show the image when it has loaded
    */
-  const status = useImage({ src, onError })
+  const status = useImage({ src, onError, ignoreFallback })
 
   const hasLoaded = status === "loaded"
 

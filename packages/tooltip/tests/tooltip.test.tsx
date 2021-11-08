@@ -1,14 +1,13 @@
 import {
   act,
-  testA11y,
   fireEvent,
   render,
   screen,
+  testA11y,
   waitForElementToBeRemoved,
 } from "@chakra-ui/test-utils"
 import * as React from "react"
-import type { TooltipProps } from "../src"
-import { Tooltip } from "../src"
+import { Tooltip, TooltipProps } from "../src"
 
 const buttonLabel = "Hover me"
 const tooltipLabel = "tooltip label"
@@ -64,6 +63,34 @@ test("should not show on mouseover if isDisabled is true", async () => {
   })
 
   expect(screen.queryByText(tooltipLabel)).not.toBeInTheDocument()
+
+  jest.useRealTimers()
+})
+
+test.skip("should close on mouseleave if openDelay is set", async () => {
+  jest.useFakeTimers()
+
+  render(<DummyComponent openDelay={500} />)
+
+  act(() => {
+    fireEvent.mouseOver(screen.getByText(buttonLabel))
+  })
+
+  jest.advanceTimersByTime(200)
+  expect(screen.queryByText(tooltipLabel)).not.toBeInTheDocument()
+
+  act(() => {
+    jest.advanceTimersByTime(500)
+  })
+
+  expect(screen.queryByText(tooltipLabel)).toBeInTheDocument()
+
+  act(() => {
+    fireEvent.mouseLeave(screen.getByText(buttonLabel))
+    jest.advanceTimersByTime(200)
+  })
+
+  await waitForElementToBeRemoved(() => screen.queryByText(tooltipLabel))
 
   jest.useRealTimers()
 })

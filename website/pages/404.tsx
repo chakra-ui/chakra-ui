@@ -21,7 +21,10 @@ const NotFoundPage = () => {
       >
         <Heading>404 | Page Not Found</Heading>
         <Text fontSize={{ md: "xl" }}>
-          You just hit a route that doesn&#39;t exist... the sadness.😢
+          You just hit a route that doesn&#39;t exist... the sadness.
+          <span role="img" aria-label="smile">
+            😢
+          </span>
         </Text>
         <NextLink href="/" passHref>
           <Button

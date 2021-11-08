@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { SearchIcon } from "@chakra-ui/icons"
 import {
   Box,
@@ -28,6 +29,7 @@ function OptionText(props: any) {
   const chunks = findAll({
     searchWords,
     textToHighlight,
+    autoEscape: true,
   })
 
   const highlightedText = chunks.map((chunk) => {
@@ -39,9 +41,8 @@ function OptionText(props: any) {
           {text}
         </Box>
       )
-    } else {
-      return text
     }
+    return text
   })
 
   return highlightedText
@@ -115,6 +116,7 @@ function OmniSearch() {
   const router = useRouter()
   const [query, setQuery] = React.useState("")
   const [active, setActive] = React.useState(0)
+  const [shouldCloseModal, setShouldCloseModal] = React.useState(true)
   const menu = useDisclosure()
   const modal = useDisclosure()
   const [menuNodes] = React.useState(() => new MultiRef<number, HTMLElement>())
@@ -126,6 +128,7 @@ function OmniSearch() {
     return () => {
       router.events.off("routeChangeComplete", modal.onClose)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEventListener("keydown", (event) => {
@@ -133,7 +136,11 @@ function OmniSearch() {
     const hotkey = isMac ? "metaKey" : "ctrlKey"
     if (event?.key?.toLowerCase() === "k" && event[hotkey]) {
       event.preventDefault()
-      modal.isOpen ? modal.onClose() : modal.onOpen()
+      if (modal.isOpen) {
+        modal.onClose()
+      } else {
+        modal.onOpen()
+      }
     }
   })
 
@@ -141,17 +148,15 @@ function OmniSearch() {
     if (modal.isOpen && query.length > 0) {
       setQuery("")
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modal.isOpen])
 
-  const results = React.useMemo(
-    function getResults() {
-      if (query.length < 2) return []
-      return matchSorter(searchData, query, {
-        keys: ["hierarchy.lvl1", "hierarchy.lvl2", "hierarchy.lvl3", "content"],
-      }).slice(0, 20)
-    },
-    [query],
-  )
+  const results = React.useMemo(() => {
+    if (query.length < 2) return []
+    return matchSorter(searchData, query, {
+      keys: ["hierarchy.lvl1", "hierarchy.lvl2", "hierarchy.lvl3", "content"],
+    }).slice(0, 20)
+  }, [query])
 
   const onKeyDown = React.useCallback(
     (e: React.KeyboardEvent) => {
@@ -171,15 +176,39 @@ function OmniSearch() {
           }
           break
         }
+        case "Control":
+        case "Alt":
+        case "Shift": {
+          e.preventDefault()
+          setShouldCloseModal(true)
+          break
+        }
         case "Enter": {
           modal.onClose()
           router.push(results[active].url)
           break
         }
+        default:
+          break
       }
     },
-    [active, results, router],
+    [active, results, router, modal],
   )
+
+  const onKeyUp = React.useCallback((e: React.KeyboardEvent) => {
+    eventRef.current = "keyboard"
+    switch (e.key) {
+      case "Control":
+      case "Alt":
+      case "Shift": {
+        e.preventDefault()
+        setShouldCloseModal(false)
+        break
+      }
+      default:
+        break
+    }
+  }, [])
 
   useUpdateEffect(() => {
     setActive(0)
@@ -242,6 +271,7 @@ function OmniSearch() {
                 menu.onOpen()
               }}
               onKeyDown={onKeyDown}
+              onKeyUp={onKeyUp}
             />
             <Center pos="absolute" left={7} h="68px">
               <SearchIcon color="teal.500" boxSize="20px" />
@@ -262,68 +292,71 @@ function OmniSearch() {
                     const isLvl1 = item.type === "lvl1"
 
                     return (
-                      <Link key={item.id} href={item.url}>
-                        <Box
-                          id={`search-item-${index}`}
-                          as="li"
-                          aria-selected={selected ? true : undefined}
-                          cursor="pointer"
-                          onMouseEnter={() => {
-                            setActive(index)
-                            eventRef.current = "mouse"
-                          }}
-                          onClick={() => {
-                            modal.onClose()
-                          }}
-                          ref={menuNodes.ref(index)}
-                          role="option"
-                          key={item.id}
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            minH: 16,
-                            mt: 2,
-                            px: 4,
-                            py: 2,
-                            rounded: "lg",
-                            bg: "gray.100",
-                            ".chakra-ui-dark &": { bg: "gray.600" },
-                            _selected: {
-                              bg: "teal.500",
-                              color: "white",
-                              mark: {
+                      <Link key={item.id} href={item.url} passHref>
+                        <a>
+                          <Box
+                            id={`search-item-${index}`}
+                            as="li"
+                            aria-selected={selected ? true : undefined}
+                            onMouseEnter={() => {
+                              setActive(index)
+                              eventRef.current = "mouse"
+                            }}
+                            onClick={() => {
+                              if (shouldCloseModal) {
+                                modal.onClose()
+                              }
+                            }}
+                            ref={menuNodes.ref(index)}
+                            role="option"
+                            key={item.id}
+                            sx={{
+                              display: "flex",
+                              alignItems: "center",
+                              minH: 16,
+                              mt: 2,
+                              px: 4,
+                              py: 2,
+                              rounded: "lg",
+                              bg: "gray.100",
+                              ".chakra-ui-dark &": { bg: "gray.600" },
+                              _selected: {
+                                bg: "teal.500",
                                 color: "white",
-                                textDecoration: "underline",
+                                mark: {
+                                  color: "white",
+                                  textDecoration: "underline",
+                                },
                               },
-                            },
-                          }}
-                        >
-                          {isLvl1 ? (
-                            <DocIcon opacity={0.4} />
-                          ) : (
-                            <HashIcon opacity={0.4} />
-                          )}
-
-                          <Box flex="1" ml="4">
-                            {!isLvl1 && (
-                              <Box
-                                fontWeight="medium"
-                                fontSize="xs"
-                                opacity={0.7}
-                              >
-                                {item.hierarchy.lvl1}
-                              </Box>
+                            }}
+                          >
+                            {isLvl1 ? (
+                              <DocIcon opacity={0.4} />
+                            ) : (
+                              <HashIcon opacity={0.4} />
                             )}
-                            <Box fontWeight="semibold">
-                              <OptionText
-                                searchWords={[query]}
-                                textToHighlight={item.content}
-                              />
-                            </Box>
-                          </Box>
 
-                          <EnterIcon opacity={0.5} />
-                        </Box>
+                            <Box flex="1" ml="4">
+                              {!isLvl1 && (
+                                <Box
+                                  fontWeight="medium"
+                                  fontSize="xs"
+                                  opacity={0.7}
+                                >
+                                  {item.hierarchy.lvl1}
+                                </Box>
+                              )}
+                              <Box fontWeight="semibold">
+                                <OptionText
+                                  searchWords={[query]}
+                                  textToHighlight={item.content}
+                                />
+                              </Box>
+                            </Box>
+
+                            <EnterIcon opacity={0.5} />
+                          </Box>
+                        </a>
                       </Link>
                     )
                   })}

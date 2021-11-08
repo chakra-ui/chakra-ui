@@ -222,3 +222,26 @@ test("has the correct data attributes", async () => {
   expect(label).toHaveAttribute("data-invalid")
   expect(label).toHaveAttribute("data-readonly")
 })
+
+test("can provide a custom aria-describedby reference", () => {
+  const { rerender } = render(<Input aria-describedby="reference" />)
+  expect(screen.getByRole("textbox")).toHaveAttribute(
+    "aria-describedby",
+    "reference",
+  )
+
+  rerender(
+    <FormControl id="name">
+      <Input aria-describedby="name-expanded-helptext" />
+      <FormHelperText>Please enter your name!</FormHelperText>
+      <p id="name-expanded-helptext">
+        Sometimes it can be really helpfull to enter a name, trust me.
+      </p>
+    </FormControl>,
+  )
+
+  expect(screen.getByRole("textbox")).toHaveAttribute(
+    "aria-describedby",
+    "name-expanded-helptext name-helptext",
+  )
+})

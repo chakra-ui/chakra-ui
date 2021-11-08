@@ -1,6 +1,10 @@
-const parts = ["container", "item", "link", "separator"]
+import { breadcrumbAnatomy as parts } from "@chakra-ui/anatomy"
+import type {
+  PartsStyleObject,
+  SystemStyleObject,
+} from "@chakra-ui/theme-tools"
 
-const baseStyleLink = {
+const baseStyleLink: SystemStyleObject = {
   transitionProperty: "common",
   transitionDuration: "fast",
   transitionTimingFunction: "ease-out",
@@ -16,11 +20,11 @@ const baseStyleLink = {
   },
 }
 
-const baseStyle = {
+const baseStyle: PartsStyleObject<typeof parts> = {
   link: baseStyleLink,
 }
 
 export default {
-  parts,
+  parts: parts.keys,
   baseStyle,
 }

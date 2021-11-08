@@ -1,9 +1,10 @@
 import * as ComponentProps from "@chakra-ui/props-docs"
-import { chakra, Code, HStack, Stack, theme, Tag, Flex } from "@chakra-ui/react"
+import { chakra, Code, Flex, HStack, Stack, theme } from "@chakra-ui/react"
 import Link from "next/link"
 import * as React from "react"
 import { convertBackticksToInlineCode } from "utils/convert-backticks-to-inline-code"
-import MDXComponents from "./mdx-components"
+import { InlineCode } from "components/mdx-components/inline-code"
+import { Anchor } from "components/mdx-components/anchor"
 
 /**
  * A map of components that use foreign theme key.
@@ -108,18 +109,18 @@ Remove the use of <PropsTable of="${of}" /> for this component in the docs.`,
             <Flex>
               <div className="row">Type</div>
               <div className="cell">
-                <MDXComponents.inlineCode whiteSpace="wrap" fontSize="0.8em">
+                <InlineCode whiteSpace="wrap" fontSize="0.8em">
                   {prop.type}
-                </MDXComponents.inlineCode>
+                </InlineCode>
               </div>
             </Flex>
             {prop.defaultValue && (
               <Flex>
                 <div className="row">Default</div>
                 <div className="cell">
-                  <MDXComponents.inlineCode whiteSpace="wrap" fontSize="0.8em">
+                  <InlineCode whiteSpace="wrap" fontSize="0.8em">
                     {prop.defaultValue}
-                  </MDXComponents.inlineCode>
+                  </InlineCode>
                 </div>
               </Flex>
             )}
@@ -144,13 +145,13 @@ function makePropsTable({ of, omit, only }: MakePropsTableOptions) {
 
   const featNotImplemented = (feat: string) => (
     <>
-      {feat} for <MDXComponents.inlineCode>{of}</MDXComponents.inlineCode> are
-      not implemented in the default theme. You can{" "}
+      {feat} for <InlineCode>{of}</InlineCode> are not implemented in the
+      default theme. You can{" "}
       <Link
         href="/docs/theming/customize-theme#customizing-component-styles"
         passHref
       >
-        <MDXComponents.a>extend the theme</MDXComponents.a>
+        <Anchor>extend the theme</Anchor>
       </Link>{" "}
       to implement them.
     </>
@@ -236,60 +237,3 @@ const omitGenericThemableType = (type: string) =>
     .split(" | ")
     .filter((type) => type !== TYPE_GENERIC_THEMABLE)
     .join(" | ")
-
-function PropTableV1(props: any) {
-  const { data } = props
-  return (
-    <MDXComponents.table>
-      <thead>
-        <tr>
-          <MDXComponents.th>Name</MDXComponents.th>
-          <MDXComponents.th>Type</MDXComponents.th>
-          <MDXComponents.th>Description</MDXComponents.th>
-          <MDXComponents.th>Default</MDXComponents.th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((prop) => (
-          <tr key={prop.name}>
-            <MDXComponents.td>{prop.name}</MDXComponents.td>
-            <MDXComponents.td>
-              {prop.required && (
-                <Tag
-                  size="sm"
-                  colorScheme="red"
-                  px={1}
-                  mr="0.125rem"
-                  verticalAlign="baseline"
-                >
-                  required
-                </Tag>
-              )}
-              <MDXComponents.inlineCode
-                whiteSpace="wrap"
-                d="inline-block"
-                lineHeight="tall"
-              >
-                {prop.type}
-              </MDXComponents.inlineCode>
-            </MDXComponents.td>
-            <MDXComponents.td>{prop.description}</MDXComponents.td>
-            <MDXComponents.td>
-              {prop.defaultValue ? (
-                <MDXComponents.inlineCode
-                  whiteSpace="wrap"
-                  d="inline-block"
-                  lineHeight="tall"
-                >
-                  {prop.defaultValue}
-                </MDXComponents.inlineCode>
-              ) : (
-                "-"
-              )}
-            </MDXComponents.td>
-          </tr>
-        ))}
-      </tbody>
-    </MDXComponents.table>
-  )
-}

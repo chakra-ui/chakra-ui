@@ -1,5 +1,51 @@
 # Change Log
 
+## 1.8.4
+
+### Patch Changes
+
+- [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)
+  [#4873](https://github.com/chakra-ui/chakra-ui/pull/4873) Thanks
+  [@Nfinished](https://github.com/Nfinished)! - fix: always use fromEntries
+  polyfill from @chakra-ui/utils #4872
+
+## 1.8.3
+
+### Patch Changes
+
+- [`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669)
+  [#4795](https://github.com/chakra-ui/chakra-ui/pull/4795) Thanks
+  [@Toxiapo](https://github.com/Toxiapo)! - Fixed iframe bug on firefox when
+  using `getRelatedTarget` function
+
+* [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)
+  [#4803](https://github.com/chakra-ui/chakra-ui/pull/4803) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where pan-event
+  utils don't work within iframe
+
+## 1.8.2
+
+### Patch Changes
+
+- [`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0)
+  [#4437](https://github.com/chakra-ui/chakra-ui/pull/4437) Thanks
+  [@Toxiapo](https://github.com/Toxiapo)! - Remove code that was added as a
+  workaround for pre-releases of React concurrent mode.
+
+* [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)
+  [#4458](https://github.com/chakra-ui/chakra-ui/pull/4458) Thanks
+  [@agundermann](https://github.com/agundermann)! - Fix issues when rendering
+  chakra components in different window
+
+## 1.8.1
+
+### Patch Changes
+
+- [`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)
+  [#4305](https://github.com/chakra-ui/chakra-ui/pull/4305) Thanks
+  [@MasterGordon](https://github.com/MasterGordon)! - Fixed a circular
+  dependency which was causing warnings when bundling Chakra with `rollup`.
+
 ## 1.8.0
 
 ### Minor Changes

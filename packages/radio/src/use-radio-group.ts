@@ -22,6 +22,16 @@ export interface UseRadioGroupProps {
    */
   onChange?(nextValue: string): void
   /**
+   * If `true`, all wrapped radio inputs will be disabled
+   */
+  isDisabled?: boolean
+
+  /**
+   * If `true` and `isDisabled` is true, all wrapped radio inputs will remain
+   * focusable but not interactive.
+   */
+  isFocusable?: boolean
+  /**
    * The `name` attribute forwarded to each `radio` element
    */
   name?: string
@@ -36,7 +46,18 @@ export interface UseRadioGroupProps {
 
 type RadioPropGetter = PropGetter<
   HTMLInputElement,
-  { onChange?: (e: EventOrValue) => void; value?: StringOrNumber } & Omit<
+  {
+    onChange?: (e: EventOrValue) => void
+    value?: StringOrNumber
+    /**
+     * checked is defined if isNative=true
+     */
+    checked?: boolean
+    /**
+     * isChecked is defined if isNative=false
+     */
+    isChecked?: boolean
+  } & Omit<
     React.InputHTMLAttributes<HTMLInputElement>,
     "onChange" | "size" | "value"
   >
@@ -51,6 +72,8 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     value: valueProp,
     defaultValue,
     name: nameProp,
+    isDisabled,
+    isFocusable,
     isNative,
     ...htmlProps
   } = props
@@ -137,6 +160,8 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     setValue,
     value,
     onChange,
+    isDisabled,
+    isFocusable,
     htmlProps,
   }
 }

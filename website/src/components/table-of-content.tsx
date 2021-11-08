@@ -1,6 +1,5 @@
 import * as React from "react"
 import { useScrollSpy } from "hooks/use-scrollspy"
-import { Heading } from "utils/get-headings"
 import {
   Box,
   ListItem,
@@ -10,6 +9,7 @@ import {
   useColorModeValue,
   BoxProps,
 } from "@chakra-ui/react"
+import { Heading } from "components/page-container"
 
 interface TableOfContentProps extends BoxProps {
   headings: Heading[]
@@ -23,6 +23,8 @@ function TableOfContent(props: TableOfContentProps) {
       rootMargin: "0% 0% -24% 0%",
     },
   )
+  const linkColor = useColorModeValue("gray.600", "gray.400")
+  const hoverColor = useColorModeValue("gray.900", "gray.600")
   return (
     <Box
       as="nav"
@@ -62,10 +64,8 @@ function TableOfContent(props: TableOfContentProps) {
               fontWeight={id === activeId ? "bold" : "medium"}
               href={`#${id}`}
               aria-current={id === activeId ? "location" : undefined}
-              color={useColorModeValue("gray.600", "gray.400")}
-              _hover={{
-                color: useColorModeValue("gray.900", "gray.600"),
-              }}
+              color={linkColor}
+              _hover={{ color: hoverColor }}
             >
               {text}
             </chakra.a>

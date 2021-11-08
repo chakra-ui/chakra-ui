@@ -1,23 +1,27 @@
-const baseStyle = {
-  width: "var(--spinner-size)",
-  height: "var(--spinner-size)",
+import { cssVar, SystemStyleObject } from "@chakra-ui/theme-tools"
+
+const $size = cssVar("spinner-size")
+
+const baseStyle: SystemStyleObject = {
+  width: [$size.reference],
+  height: [$size.reference],
 }
 
-const sizes = {
+const sizes: Record<string, SystemStyleObject> = {
   xs: {
-    "--spinner-size": "0.75rem",
+    [$size.variable]: "0.75rem",
   },
   sm: {
-    "--spinner-size": "1rem",
+    [$size.variable]: "1rem",
   },
   md: {
-    "--spinner-size": "1.5rem",
+    [$size.variable]: "1.5rem",
   },
   lg: {
-    "--spinner-size": "2rem",
+    [$size.variable]: "2rem",
   },
   xl: {
-    "--spinner-size": "3rem",
+    [$size.variable]: "3rem",
   },
 }
 

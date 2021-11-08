@@ -1,5 +1,100 @@
 # Change Log
 
+## 1.3.14
+
+### Patch Changes
+
+- [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)
+  [#4965](https://github.com/chakra-ui/chakra-ui/pull/4965) Thanks
+  [@takethefake](https://github.com/takethefake)! - Allow usage of
+  `framer-motion` 5.x in `peerDependency`
+
+- Updated dependencies
+  [[`c3f016149`](https://github.com/chakra-ui/chakra-ui/commit/c3f01614929d2f68a39cf78111d17f4f4c684706)]:
+  - @chakra-ui/popper@2.3.1
+
+## 1.3.13
+
+### Patch Changes
+
+- Updated dependencies
+  [[`5fe9b552b`](https://github.com/chakra-ui/chakra-ui/commit/5fe9b552bcae55935d1ab8ffde86b701075e6e6a),
+  [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/hooks@1.6.2
+  - @chakra-ui/utils@1.8.4
+  - @chakra-ui/portal@1.2.11
+  - @chakra-ui/visually-hidden@1.0.16
+
+## 1.3.12
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`a9d1dc4ac`](https://github.com/chakra-ui/chakra-ui/commit/a9d1dc4ac874825f292d874ad4eadaf060fed436),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/hooks@1.6.1
+  - @chakra-ui/portal@1.2.10
+  - @chakra-ui/visually-hidden@1.0.15
+
+## 1.3.11
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4146a9051`](https://github.com/chakra-ui/chakra-ui/commit/4146a9051a5151532503e31c464193e9d118dd26)]:
+  - @chakra-ui/popper@2.3.0
+
+## 1.3.10
+
+### Patch Changes
+
+- Updated dependencies
+  [[`28af4c030`](https://github.com/chakra-ui/chakra-ui/commit/28af4c0308e234871548c0857e946e33ff18a130)]:
+  - @chakra-ui/hooks@1.6.0
+  - @chakra-ui/portal@1.2.9
+
+## 1.3.9
+
+### Patch Changes
+
+- [`df57f448f`](https://github.com/chakra-ui/chakra-ui/commit/df57f448ff1de6eded6647f73950e8978612316c)
+  [#4442](https://github.com/chakra-ui/chakra-ui/pull/4442) Thanks
+  [@5ebastianMeier](https://github.com/5ebastianMeier)! - Fix tooltips not
+  closing when openDelay is set
+
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/utils@1.8.2
+  - @chakra-ui/hooks@1.5.5
+  - @chakra-ui/portal@1.2.8
+  - @chakra-ui/visually-hidden@1.0.14
+
+## 1.3.8
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+  - @chakra-ui/hooks@1.5.4
+  - @chakra-ui/portal@1.2.7
+  - @chakra-ui/visually-hidden@1.0.13
+
+## 1.3.7
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4c157e320`](https://github.com/chakra-ui/chakra-ui/commit/4c157e320a73b08eb89a44831a7cf434fb403bad),
+  [`aa374ffcb`](https://github.com/chakra-ui/chakra-ui/commit/aa374ffcb4003efd88eb6a62e10723ea9fbfa3d0),
+  [`5afa7ef49`](https://github.com/chakra-ui/chakra-ui/commit/5afa7ef49c7e3b01bce932e252865226b9511b39)]:
+  - @chakra-ui/portal@1.2.6
+  - @chakra-ui/hooks@1.5.3
+  - @chakra-ui/popper@2.2.1
+
 ## 1.3.6
 
 ### Patch Changes

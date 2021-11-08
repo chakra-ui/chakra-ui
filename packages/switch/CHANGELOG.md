@@ -1,5 +1,81 @@
 # Change Log
 
+## 1.2.13
+
+### Patch Changes
+
+- Updated dependencies
+  [[`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)]:
+  - @chakra-ui/checkbox@1.5.10
+
+## 1.2.12
+
+### Patch Changes
+
+- [`f5b00bdc2`](https://github.com/chakra-ui/chakra-ui/commit/f5b00bdc26d107c68469c9d15914cf6280fd7fd1)
+  [#4950](https://github.com/chakra-ui/chakra-ui/pull/4950) Thanks
+  [@JTBrinkmann](https://github.com/JTBrinkmann)! - Fix issue where focusing the
+  Switch could lead to unexpected page scrolls.
+
+- Updated dependencies
+  [[`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/utils@1.8.4
+  - @chakra-ui/checkbox@1.5.9
+
+## 1.2.11
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd),
+  [`00ef98a33`](https://github.com/chakra-ui/chakra-ui/commit/00ef98a335a96b4db10bed9e2620f0b839203096)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/checkbox@1.5.8
+
+## 1.2.10
+
+### Patch Changes
+
+- Updated dependencies
+  [[`726105acb`](https://github.com/chakra-ui/chakra-ui/commit/726105acb38f34290fff53d2dc520b5fbd299061)]:
+  - @chakra-ui/checkbox@1.5.7
+
+## 1.2.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/checkbox@1.5.6
+
+## 1.2.8
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4c1071969`](https://github.com/chakra-ui/chakra-ui/commit/4c1071969a9b41a952b374f9990ac0bb89d24fa0),
+  [`43f66097b`](https://github.com/chakra-ui/chakra-ui/commit/43f66097b39f1c37a4627dd6ca8a85555f35b95c)]:
+  - @chakra-ui/checkbox@1.5.5
+  - @chakra-ui/utils@1.8.2
+
+## 1.2.7
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
+  - @chakra-ui/utils@1.8.1
+  - @chakra-ui/checkbox@1.5.4
+
+## 1.2.6
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4c157e320`](https://github.com/chakra-ui/chakra-ui/commit/4c157e320a73b08eb89a44831a7cf434fb403bad),
+  [`afb9b3cfa`](https://github.com/chakra-ui/chakra-ui/commit/afb9b3cfa87076ed8897b7edd4a9d9f1e1701721)]:
+  - @chakra-ui/checkbox@1.5.3
+
 ## 1.2.5
 
 ### Patch Changes

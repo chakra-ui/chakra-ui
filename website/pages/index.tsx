@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import {
   Box,
   BoxProps,
@@ -245,7 +246,7 @@ const HomePage = ({ members, sponsors, githubStars }: HomePageProps) => {
                 bg={useColorModeValue("teal.50", "whiteAlpha.200")}
                 rounded="md"
               >
-                <Box as="span" mr="1" role="img">
+                <Box as="span" mr="1" role="img" aria-label="Love">
                   💖
                 </Box>{" "}
                 Your company
@@ -359,7 +360,7 @@ const HomePage = ({ members, sponsors, githubStars }: HomePageProps) => {
             >
               <StatBox
                 icon={FiDownload}
-                title="250K"
+                title="488K"
                 description="Downloads per month"
               />
               <StatBox
@@ -369,7 +370,7 @@ const HomePage = ({ members, sponsors, githubStars }: HomePageProps) => {
               />
               <StatBox
                 icon={FiUsers}
-                title="7"
+                title={members.length.toString()}
                 description="Core contributors"
               />
               <StatBox

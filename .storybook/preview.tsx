@@ -52,6 +52,10 @@ const withChakra = (StoryFn: Function, context: StoryContext) => {
   const { direction } = context.globals
   const dir = direction.toLowerCase()
 
+  React.useEffect(() => {
+    document.documentElement.dir = dir
+  }, [dir])
+
   return (
     <ChakraProvider theme={extendTheme({ direction: dir })}>
       <div dir={dir} id="story-wrapper" style={{ minHeight: "100vh" }}>

@@ -1,8 +1,4 @@
-import defaultTheme, {
-  ChakraTheme,
-  isChakraTheme,
-  Theme,
-} from "@chakra-ui/theme"
+import { theme, ChakraTheme, isChakraTheme, Theme } from "@chakra-ui/theme"
 import {
   AnyFunction,
   Dict,
@@ -35,9 +31,8 @@ type DeepThemeExtension<BaseTheme, ThemeType> = {
     : CloneKey<ThemeType, Key>
 }
 
-export declare type ThemeOverride<
-  BaseTheme = Theme
-> = DeepPartial<ChakraTheme> & DeepThemeExtension<BaseTheme, ChakraTheme> & Dict
+export declare type ThemeOverride<BaseTheme = Theme> =
+  DeepPartial<ChakraTheme> & DeepThemeExtension<BaseTheme, ChakraTheme> & Dict
 
 export type ThemeExtension<Override extends ThemeOverride = ThemeOverride> = (
   themeOverride: Override,
@@ -45,14 +40,18 @@ export type ThemeExtension<Override extends ThemeOverride = ThemeOverride> = (
 
 export type BaseThemeWithExtensions<
   BaseTheme extends ChakraTheme,
-  Extensions extends readonly [...any]
+  Extensions extends readonly [...any],
 > = BaseTheme &
   (Extensions extends [infer L, ...infer R]
     ? L extends AnyFunction
       ? ReturnType<L> & BaseThemeWithExtensions<BaseTheme, R>
       : L & BaseThemeWithExtensions<BaseTheme, R>
     : Extensions)
+
 /**
+ * NOTE: This got too complex to manage and it's not worth the extra complexity.
+ * We'll re-evaluate this API in the future releases.
+ *
  * Function to override or customize the Chakra UI theme conveniently.
  * First extension overrides the baseTheme and following extensions override the preceding extensions.
  *
@@ -71,14 +70,10 @@ export type BaseThemeWithExtensions<
  *   baseTheme // optional
  * )
  */
-export function extendTheme<
-  BaseTheme extends ChakraTheme = Theme,
-  Extensions extends (
-    | BaseTheme
-    | ThemeOverride<BaseTheme>
-    | ThemeExtension<ThemeOverride<BaseTheme>>
-  )[] = (ThemeOverride<BaseTheme> | ThemeExtension<ThemeOverride<BaseTheme>>)[]
->(...extensions: [...Extensions]) {
+
+export function extendTheme(
+  ...extensions: Array<Dict | ((theme: Dict) => Dict)>
+): Dict {
   let overrides = [...extensions]
   let baseTheme = extensions[extensions.length - 1]
 
@@ -90,24 +85,20 @@ export function extendTheme<
   ) {
     overrides = overrides.slice(0, overrides.length - 1)
   } else {
-    baseTheme = (defaultTheme as unknown) as BaseTheme
+    baseTheme = theme
   }
 
   return pipe(
     ...overrides.map(
-      (extension) => (
-        prevTheme: BaseThemeWithExtensions<BaseTheme, Extensions>,
-      ) =>
+      (extension) => (prevTheme: any) =>
         isFunction(extension)
           ? (extension as any)(prevTheme)
           : mergeThemeOverride(prevTheme, extension),
     ),
-  )(baseTheme as BaseThemeWithExtensions<BaseTheme, Extensions>)
+  )(baseTheme)
 }
 
-export function mergeThemeOverride<BaseTheme extends ChakraTheme = ChakraTheme>(
-  ...overrides: ThemeOverride<BaseTheme>[]
-): ThemeOverride<BaseTheme> {
+export function mergeThemeOverride(...overrides: any[]): any {
   return mergeWith({}, ...overrides, mergeThemeCustomizer)
 }
 

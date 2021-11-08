@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/counter",
-  "version": "1.1.5",
+  "version": "1.1.11",
   "description": "A React hook for managing counters",
   "keywords": [
     "counter",
@@ -17,16 +17,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
-    }
-  },
+  "main": "dist/chakra-ui-counter.cjs.js",
+  "module": "dist/chakra-ui-counter.esm.js",
+  "types": "dist/chakra-ui-counter.cjs.d.ts",
   "files": [
     "dist"
   ],
@@ -35,28 +28,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chakra-ui/chakra-ui.git"
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/counter"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
-  "scripts": {
-    "prebuild": "rimraf dist",
-    "start": "nodemon --watch src --exec yarn build -e ts,tsx",
-    "build": "concurrently yarn:build:*",
-    "test": "jest --env=jsdom --passWithNoTests",
-    "lint": "concurrently yarn:lint:*",
-    "version": "yarn build",
-    "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
-    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
-    "test:cov": "yarn test --coverage",
-    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
-    "lint:types": "tsc --noEmit"
-  },
   "dependencies": {
-    "@chakra-ui/hooks": "1.5.2",
-    "@chakra-ui/utils": "1.8.0"
+    "@chakra-ui/hooks": "1.6.2",
+    "@chakra-ui/utils": "1.8.4"
   },
   "peerDependencies": {
     "react": ">=16.8.6"

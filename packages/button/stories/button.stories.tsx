@@ -10,6 +10,7 @@ import * as React from "react"
 import { FaFacebook, FaTwitter } from "react-icons/fa"
 import { MdBuild, MdCall } from "react-icons/md"
 import { BeatLoader } from "react-spinners"
+import { motion } from "framer-motion"
 import { Button, ButtonGroup, IconButton } from "../src"
 
 export default {
@@ -82,6 +83,9 @@ export const withVariants = () => (
       Button
     </Button>
     <Button colorScheme="teal" variant="link">
+      Button
+    </Button>
+    <Button colorScheme="teal" variant="unstyled">
       Button
     </Button>
   </HStack>
@@ -251,3 +255,38 @@ export const socialButton = () => (
     </Button>
   </Stack>
 )
+
+const motionConfig = {
+  initial: false,
+  transition: {
+    type: "spring",
+    duration: 2,
+    bounce: 0,
+  },
+}
+
+const MotionButton = motion(Button)
+const BG_GRADIENT_SOFT = `linear-gradient(to right, #fa8080, #F40000)`
+const BG_GRADIENT_SOFT_REVERSED = `linear-gradient(to right, #F40000, #fa8080)`
+
+export const WithMotion = () => {
+  const [binary, setBinary] = React.useState(false)
+  return (
+    <>
+      <Button onClick={() => setBinary((binary) => !binary)}>
+        Toggle binary state: {String(binary)}
+      </Button>
+      <MotionButton
+        {...motionConfig}
+        animate={{
+          scale: binary ? 1.2 : 1,
+          backgroundImage: binary
+            ? BG_GRADIENT_SOFT
+            : BG_GRADIENT_SOFT_REVERSED,
+        }}
+      >
+        ({String(binary)}) Doesn't work
+      </MotionButton>
+    </>
+  )
+}

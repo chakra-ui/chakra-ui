@@ -1,5 +1,6 @@
+/* eslint-disable react/jsx-pascal-case */
 import { isObject } from "@chakra-ui/utils"
-import MDXComponents from "components/mdx-components"
+import { MDXComponents } from "components/mdx-components"
 
 /**
  * Replace the code blocks wrapped in backticks

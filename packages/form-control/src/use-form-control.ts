@@ -18,6 +18,8 @@ export interface UseFormControlProps<T extends HTMLElement>
  *
  * It provides a convenient way to control a form fields, validation
  * and helper text.
+ *
+ * @internal
  */
 export function useFormControl<T extends HTMLElement>(
   props: UseFormControlProps<T>,
@@ -41,6 +43,9 @@ export function useFormControl<T extends HTMLElement>(
   }
 }
 
+/**
+ * @internal
+ */
 export function useFormControlProps<T extends HTMLElement>(
   props: UseFormControlProps<T>,
 ) {
@@ -60,7 +65,9 @@ export function useFormControlProps<T extends HTMLElement>(
     ...rest
   } = props
 
-  const labelIds: string[] = []
+  const labelIds: string[] = props["aria-describedby"]
+    ? [props["aria-describedby"]]
+    : []
 
   // Error message must be described first in all scenarios.
   if (field?.hasFeedbackText && field?.isInvalid) {

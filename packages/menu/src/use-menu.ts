@@ -29,6 +29,7 @@ import {
   getOwnerDocument,
   isActiveElement,
   isArray,
+  isHTMLElement,
   isString,
   LazyBehavior,
   normalizeEventKey,
@@ -102,6 +103,19 @@ export interface UseMenuProps extends UsePopperProps, UseDisclosureProps {
    * @default "unmount"
    */
   lazyBehavior?: LazyBehavior
+  /**
+   * If `rtl`, poper placement positions will be flipped i.e. 'top-right' will
+   * become 'top-left' and vice-verse
+   */
+  direction?: "ltr" | "rtl"
+  /*
+   * If `true`, the menu will be positioned when it mounts
+   * (even if it's not open).
+   *
+   * Note 🚨: We don't recommend using this in a menu/popover intensive UI or page
+   * as it might affect scrolling performance.
+   */
+  computePositionOnMount?: boolean
 }
 
 /**
@@ -123,30 +137,65 @@ export function useMenu(props: UseMenuProps = {}) {
     onOpen: onOpenProp,
     placement = "bottom-start",
     lazyBehavior = "unmount",
+    direction,
+    computePositionOnMount = false,
     ...popperProps
   } = props
-
-  const { isOpen, onOpen, onClose, onToggle } = useDisclosure({
-    isOpen: isOpenProp,
-    defaultIsOpen,
-    onClose: onCloseProp,
-    onOpen: onOpenProp,
-  })
-
   /**
    * Prepare the reference to the menu and disclosure
    */
   const menuRef = React.useRef<HTMLDivElement>(null)
   const buttonRef = React.useRef<HTMLButtonElement>(null)
 
+  /**
+   * Context to register all menu item nodes
+   */
+  const descendants = useMenuDescendants()
+
+  const focusMenu = React.useCallback(() => {
+    focus(menuRef.current, {
+      nextTick: true,
+      selectTextIfInput: false,
+    })
+  }, [])
+
+  const focusFirstItem = React.useCallback(() => {
+    const id = setTimeout(() => {
+      const first = descendants.firstEnabled()
+      if (first) setFocusedIndex(first.index)
+    })
+    timeoutIds.current.add(id)
+  }, [descendants])
+
+  const focusLastItem = React.useCallback(() => {
+    const id = setTimeout(() => {
+      const last = descendants.lastEnabled()
+      if (last) setFocusedIndex(last.index)
+    })
+    timeoutIds.current.add(id)
+  }, [descendants])
+
+  const onOpenInternal = React.useCallback(() => {
+    onOpenProp?.()
+    if (autoSelect) {
+      focusFirstItem()
+    } else {
+      focusMenu()
+    }
+  }, [autoSelect, focusFirstItem, focusMenu, onOpenProp])
+
+  const { isOpen, onOpen, onClose, onToggle } = useDisclosure({
+    isOpen: isOpenProp,
+    defaultIsOpen,
+    onClose: onCloseProp,
+    onOpen: onOpenInternal,
+  })
+
   useOutsideClick({
+    enabled: isOpen && closeOnBlur,
     ref: menuRef,
     handler: (event) => {
-      if (
-        isOpen &&
-        closeOnBlur &&
-        !buttonRef.current?.contains(event.target as HTMLElement)
-      ) {
+      if (!buttonRef.current?.contains(event.target as HTMLElement)) {
         onClose()
       }
     },
@@ -157,16 +206,12 @@ export function useMenu(props: UseMenuProps = {}) {
    */
   const popper = usePopper({
     ...popperProps,
-    enabled: isOpen,
+    enabled: isOpen || computePositionOnMount,
     placement,
+    direction,
   })
 
   const [focusedIndex, setFocusedIndex] = React.useState(-1)
-
-  /**
-   * Context to register all menu item nodes
-   */
-  const descendants = useMenuDescendants()
 
   /**
    * Focus the button when we close the menu
@@ -190,13 +235,10 @@ export function useMenu(props: UseMenuProps = {}) {
 
   const openAndFocusMenu = React.useCallback(() => {
     onOpen()
-    focus(menuRef.current, {
-      nextTick: true,
-      selectTextIfInput: false,
-    })
-  }, [onOpen, menuRef])
+    focusMenu()
+  }, [onOpen, focusMenu])
 
-  const timeoutIds = React.useRef<Set<number>>(new Set([]))
+  const timeoutIds = React.useRef<Set<any>>(new Set([]))
 
   useUnmountEffect(() => {
     timeoutIds.current.forEach((id) => clearTimeout(id))
@@ -205,21 +247,13 @@ export function useMenu(props: UseMenuProps = {}) {
 
   const openAndFocusFirstItem = React.useCallback(() => {
     onOpen()
-    const id = setTimeout(() => {
-      const first = descendants.firstEnabled()
-      if (first) setFocusedIndex(first.index)
-    })
-    timeoutIds.current.add(id)
-  }, [onOpen, setFocusedIndex, descendants])
+    focusFirstItem()
+  }, [focusFirstItem, onOpen])
 
   const openAndFocusLastItem = React.useCallback(() => {
     onOpen()
-    const id = setTimeout(() => {
-      const last = descendants.lastEnabled()
-      if (last) setFocusedIndex(last.index)
-    })
-    timeoutIds.current.add(id)
-  }, [onOpen, setFocusedIndex, descendants])
+    focusLastItem()
+  }, [onOpen, focusLastItem])
 
   const refocus = React.useCallback(() => {
     const doc = getOwnerDocument(menuRef.current)
@@ -230,7 +264,7 @@ export function useMenu(props: UseMenuProps = {}) {
 
     const node = descendants.item(focusedIndex)?.node
     if (node) {
-      focus(node, { selectTextIfInput: false })
+      focus(node, { selectTextIfInput: false, preventScroll: false })
     }
   }, [isOpen, focusedIndex, descendants])
 
@@ -282,24 +316,7 @@ export function useMenuButton(
 ) {
   const menu = useMenuContext()
 
-  const {
-    isOpen,
-    onClose,
-    autoSelect,
-    popper,
-    openAndFocusFirstItem,
-    openAndFocusLastItem,
-    openAndFocusMenu,
-  } = menu
-
-  const onClick = React.useCallback(() => {
-    if (isOpen) {
-      onClose()
-    } else {
-      const action = autoSelect ? openAndFocusFirstItem : openAndFocusMenu
-      action()
-    }
-  }, [autoSelect, isOpen, onClose, openAndFocusFirstItem, openAndFocusMenu])
+  const { onToggle, popper, openAndFocusFirstItem, openAndFocusLastItem } = menu
 
   const onKeyDown = React.useCallback(
     (event: React.KeyboardEvent) => {
@@ -329,16 +346,16 @@ export function useMenuButton(
     "aria-expanded": menu.isOpen,
     "aria-haspopup": "menu" as React.AriaAttributes["aria-haspopup"],
     "aria-controls": menu.menuId,
-    onClick: callAllHandlers(props.onClick, onClick),
+    onClick: callAllHandlers(props.onClick, onToggle),
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
   }
 }
 
-function isTargetMenuItem(event: Pick<MouseEvent, "currentTarget">) {
+function isTargetMenuItem(target: EventTarget | null) {
   // this will catch `menuitem`, `menuitemradio`, `menuitemcheckbox`
   return (
-    event.currentTarget instanceof HTMLElement &&
-    !!event.currentTarget.getAttribute("role")?.startsWith("menuitem")
+    isHTMLElement(target) &&
+    !!target.getAttribute("role")?.startsWith("menuitem")
   )
 }
 
@@ -386,7 +403,8 @@ export function useMenuList(
    * to printable keyboard character press
    */
   const createTypeaheadHandler = useShortcut({
-    preventDefault: (event) => event.key !== " " && isTargetMenuItem(event),
+    preventDefault: (event) =>
+      event.key !== " " && isTargetMenuItem(event.target),
   })
 
   const onKeyDown = React.useCallback(
@@ -431,7 +449,7 @@ export function useMenuList(
         }
       })
 
-      if (isTargetMenuItem(event)) {
+      if (isTargetMenuItem(event.target)) {
         onTypeahead(event)
       }
     },
@@ -577,7 +595,7 @@ export function useMenuItem(
   const onClick = React.useCallback(
     (event: React.MouseEvent) => {
       onClickProp?.(event)
-      if (!isTargetMenuItem(event)) return
+      if (!isTargetMenuItem(event.currentTarget)) return
       /**
        * Close menu and parent menus, allowing the MenuItem
        * to override its parent menu's `closeOnSelect` prop.
@@ -596,9 +614,13 @@ export function useMenuItem(
   useUpdateEffect(() => {
     if (!isOpen) return
     if (isFocused && !trulyDisabled && ref.current) {
-      focus(ref.current, { nextTick: true, selectTextIfInput: false })
+      focus(ref.current, {
+        nextTick: true,
+        selectTextIfInput: false,
+        preventScroll: false,
+      })
     } else if (menuRef.current && !isActiveElement(menuRef.current)) {
-      focus(menuRef.current)
+      focus(menuRef.current, { preventScroll: false })
     }
   }, [isFocused, trulyDisabled, menuRef, isOpen])
 

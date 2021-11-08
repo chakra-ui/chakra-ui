@@ -71,12 +71,11 @@ export { axe }
 
 export * from "@testing-library/react"
 
-export {
-  act as invoke,
-  renderHook,
+export type {
   RenderHookOptions,
   RenderHookResult,
 } from "@testing-library/react-hooks"
+export { act as invoke, renderHook } from "@testing-library/react-hooks"
 
 export { default as userEvent } from "@testing-library/user-event"
 

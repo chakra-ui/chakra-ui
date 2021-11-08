@@ -1,14 +1,21 @@
-import { ColorMode, ColorModeOptions, ThemingProps } from "@chakra-ui/system"
-import { Breakpoints, Styles } from "@chakra-ui/theme-tools"
-import { Dict } from "@chakra-ui/utils"
-import { StyleObjectOrFn, SystemStyleObject } from "@chakra-ui/styled-system"
+import type { StyleObjectOrFn } from "@chakra-ui/styled-system"
+import type {
+  ColorMode,
+  ColorModeOptions,
+  ThemingProps,
+} from "@chakra-ui/system"
+import type {
+  Breakpoints,
+  PartsStyleInterpolation,
+  Styles,
+  SystemStyleInterpolation,
+} from "@chakra-ui/theme-tools"
+import type { Dict } from "@chakra-ui/utils"
 
-export type RecursiveProperty<Nested = string | number> =
-  | RecursiveObject<Nested>
-  | Nested
+export type RecursiveProperty<T = string | number> = RecursiveObject<T> | T
 
-export interface RecursiveObject<Nested = string | number> {
-  [property: string]: RecursiveProperty<Nested>
+export interface RecursiveObject<T = string | number> {
+  [property: string]: RecursiveProperty<T>
 }
 
 export interface ThemeConfig extends ColorModeOptions {
@@ -33,47 +40,49 @@ export interface ColorHues {
   800: string
   900: string
 }
+
 export type Colors = RecursiveObject<
   Record<string, Partial<ColorHues>> | string
 >
+
 export type ThemeDirection = "ltr" | "rtl"
 
 export interface ComponentDefaultProps
   extends Omit<ThemingProps, "styleConfig">,
     Dict {}
 
-export interface ThemeComponentProps<Theme extends ChakraTheme = ChakraTheme>
-  extends Dict,
-    Omit<ThemingProps, "styleConfig"> {
+export interface ThemeComponentProps<T extends ChakraTheme = ChakraTheme>
+  extends Omit<ThemingProps, "styleConfig"> {
   colorMode: ColorMode
-  theme: Theme
+  theme: T
+  [x: string]: any
 }
 
-export type ThemeComponentFunction<
-  Style,
-  Theme extends ChakraTheme = ChakraTheme
-> = (props: ThemeComponentProps<Theme>) => Style
+export type ThemeComponentFunction<S, T extends ChakraTheme = ChakraTheme> = (
+  props: ThemeComponentProps<T>,
+) => S
 
-export type ThemingPropsThunk<Style, Theme extends ChakraTheme = ChakraTheme> =
-  | Style
-  | ThemeComponentFunction<Style, Theme>
+export type ThemingPropsThunk<S, T extends ChakraTheme = ChakraTheme> =
+  | S
+  | ThemeComponentFunction<S, T>
 
 export interface SystemStyleObjectRecord {
   [key: string]: StyleObjectOrFn
 }
 
 export interface ComponentSingleStyleConfig {
-  baseStyle?: ThemingPropsThunk<SystemStyleObject>
-  sizes?: Record<string, ThemingPropsThunk<SystemStyleObject>>
-  variants?: Record<string, ThemingPropsThunk<SystemStyleObject>>
+  parts?: never
+  baseStyle?: SystemStyleInterpolation
+  sizes?: Record<string, SystemStyleInterpolation>
+  variants?: Record<string, SystemStyleInterpolation>
   defaultProps?: ComponentDefaultProps
 }
 
 export interface ComponentMultiStyleConfig {
   parts: string[]
-  baseStyle?: ThemingPropsThunk<SystemStyleObjectRecord>
-  sizes?: Record<string, ThemingPropsThunk<SystemStyleObjectRecord>>
-  variants?: Record<string, ThemingPropsThunk<SystemStyleObjectRecord>>
+  baseStyle?: PartsStyleInterpolation
+  sizes?: Record<string, PartsStyleInterpolation>
+  variants?: Record<string, PartsStyleInterpolation>
   defaultProps?: ComponentDefaultProps
 }
 

@@ -4,6 +4,7 @@ import { IoLogoTwitter, IoLogoLinkedin } from "react-icons/io"
 import { FaYoutube } from "react-icons/fa"
 import { MdEmail } from "react-icons/md"
 import { DiGithubBadge } from "react-icons/di"
+import { VercelCallout } from "./vercel-callout"
 
 type FooterLinkProps = {
   icon?: React.ElementType
@@ -57,7 +58,7 @@ const NigeriaFlag = (props) => (
   >
     <title>Nigeria</title>
     <g>
-      <rect x="16" y="6" fill="#E6E6E6" width="16" height="36"></rect>{" "}
+      <rect x="16" y="6" fill="#E6E6E6" width="16" height="36" />{" "}
       <path
         fill="#078754"
         d="M48,40c0,1.105-0.895,2-2,2H32V6h14c1.105,0,2,0.895,2,2V40z"
@@ -84,6 +85,7 @@ export const Footer = () => (
         <FooterLink key={link.href} {...link} />
       ))}
     </Stack>
+    <VercelCallout />
   </Box>
 )
 
