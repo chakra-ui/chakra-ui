@@ -190,7 +190,7 @@ export function createStandaloneToast({
 export function useToast(options?: UseToastOptions) {
   const { theme, setColorMode, toggleColorMode, colorMode } = useChakra()
 
-  const [toastOptions] = React.useState(options)
+  const toastOptions = React.useRef(options)
 
   return React.useMemo(
     () =>
