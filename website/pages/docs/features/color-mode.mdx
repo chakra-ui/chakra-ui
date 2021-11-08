@@ -55,7 +55,8 @@ const theme = extendTheme({ config })
 export default theme
 ```
 
-For typescript, you need to explicitly describe the theme config type as `ThemeConfig` object.
+For typescript, you need to explicitly describe the theme config type as
+`ThemeConfig` object.
 
 ```jsx live=false
 // theme.ts
@@ -64,7 +65,7 @@ For typescript, you need to explicitly describe the theme config type as `ThemeC
 import { extendTheme, ThemeConfig } from "@chakra-ui/react"
 
 // 2. Add your color mode config
-const config : ThemeConfig = {
+const config: ThemeConfig = {
   initialColorMode: "light",
   useSystemColorMode: false,
 }
@@ -78,10 +79,41 @@ export default theme
 > Remember to pass your custom `theme` to the `ChakraProvider`, otherwise your
 > color mode config won't be taken into consideration.
 
+#### Behavior of ColorMode
+
+The current hierarchy how the color mode is defined is as follows:
+
+- if `useSystemColorMode` is true `system`-color will be used as default -
+  `initialColorMode` is the fallback if system color mode can't be resolved
+
+- if `--chakra-ui-color-mode` is defined through e.g. `ColorModeScript` / after
+  modification/initial load of the colorMode this value will be used
+
+- if `colorModeManager` = `localStorage` and a value is defined for
+  `chakra-ui-color-mode` this will be used
+
+- if `initialColorMode` = `system` system-color will be used as default -
+  `initialColorMode` is the fallback if system color mode isn't resolved
+
+- if `initialColorMode` = `'light'|'dark'` the corresponding value will be used
+
+We currently accept 3 different values for `initialColorMode`:
+`light`,`dark`,`system`
+
+#### Difference between `initialColorMode='system'` and `useSystemColorMode`
+
+if `useSystemColorMode=true` we will always try to match the users
+`system`-color and fallback to `initialColorMode` With this behavior the
+colorMode toggle won't have any effect.
+
+if `initialColorMode='system'` we will as well always try to match the users
+`system`-color and fallback to `light`. after the user has toggled the value,
+this value will be used.
+
 ### Adding the `ColorModeScript`
 
-The color mode script needs to be added before the content inside the `body` tag for local storage
-syncing to work correctly.
+The color mode script needs to be added before the content inside the `body` tag
+for local storage syncing to work correctly.
 
 > When setting the initial color mode, we recommend adding it as a config to
 > your theme and reference that in the `ColorModeScript`.
@@ -142,7 +174,8 @@ ReactDOM.render(
 
 #### For Gatsby
 
-Install `@chakra-ui/gatsby-plugin` into your project. You can read more in the [Chakra UI + Gatsby guide](/guides/integrations/with-gatsby).
+Install `@chakra-ui/gatsby-plugin` into your project. You can read more in the
+[Chakra UI + Gatsby guide](/guides/integrations/with-gatsby).
 
 ## Changing Color Mode
 
@@ -295,11 +328,11 @@ export function getServerSideProps({ req }) {
 import { Chakra } from "../src/Chakra"
 
 export default function App({ Component, pageProps }) {
-    return (
-    	<Chakra cookies={pageProps.cookies}>
-    		<Component {...pageProps} />
-    	</Chakra>
-    );
+  return (
+    <Chakra cookies={pageProps.cookies}>
+      <Component {...pageProps} />
+    </Chakra>
+  )
 }
 
 // e.g pages/index.js
@@ -311,9 +344,9 @@ export default function Index() {
 export { getServerSideProps } from "./Chakra"
 ```
 
-> If you need to know the name of the Chakra cookie for specific reasons,
-> it's `chakra-ui-color-mode`. Also, if you use `colorModeManager`, you can
-> avoid adding the `<ColorModeScript />` to `_document.js`.
+> If you need to know the name of the Chakra cookie for specific reasons, it's
+> `chakra-ui-color-mode`. Also, if you use `colorModeManager`, you can avoid
+> adding the `<ColorModeScript />` to `_document.js`.
 
 > **Important:** if you're using `Next.js 9.3` or newer, the Next.js team
 > recommends avoiding `getInitialProps`. The following example is for Next 9.2
