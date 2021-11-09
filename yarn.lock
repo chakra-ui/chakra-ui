@@ -8412,6 +8412,11 @@ chownr@^2.0.0:
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-2.0.0.tgz#15bfbe53d2eab4cf70f18a8cd68ebe5b3cb1dece"
   integrity sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==
 
+chromatic@^6.0.5:
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/chromatic/-/chromatic-6.0.5.tgz#fa5612bcf498ebb3dc6bbdd633b16ad9c53ed3d3"
+  integrity sha512-jYoU9WOLX8hx6oRWYgr2aH1O46BpWMdBIZvON7SgUTxh9fFpsQqQ9dp2tvowwpsw/d73DGYnpX0+h/St78+kXg==
+
 chrome-trace-event@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/chrome-trace-event/-/chrome-trace-event-1.0.3.tgz#1015eced4741e15d06664a957dbbf50d041e26ac"
