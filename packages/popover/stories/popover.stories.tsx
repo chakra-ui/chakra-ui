@@ -1,9 +1,12 @@
 import { Button, ButtonGroup } from "@chakra-ui/button"
-import { useInterval } from "@chakra-ui/hooks"
+import { Radio, RadioGroup } from "@chakra-ui/radio"
+import { Input } from "@chakra-ui/input"
+import { useBoolean, useInterval } from "@chakra-ui/hooks"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import {
   Popover,
+  PopoverAnchor,
   PopoverArrow,
   PopoverBody,
   PopoverCloseButton,
@@ -190,6 +193,48 @@ export function WithLazyPopoverMounted() {
           <p>
             Timer: <Interval />
           </p>
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
+  )
+}
+
+export function WithPopoverAnchor() {
+  const [isEditing, setIsEditing] = useBoolean()
+  const [color, setColor] = React.useState("red")
+
+  return (
+    <Popover
+      isOpen={isEditing}
+      onOpen={setIsEditing.on}
+      onClose={setIsEditing.off}
+      closeOnBlur={false}
+      isLazy
+      lazyBehavior="keepMounted"
+    >
+      <PopoverAnchor>
+        <Input
+          color={color}
+          w="auto"
+          display="inline-flex"
+          isDisabled={!isEditing}
+          defaultValue="Popover Anchor"
+        />
+      </PopoverAnchor>
+
+      <PopoverTrigger>
+        <Button colorScheme="pink">{isEditing ? "Save" : "Edit"}</Button>
+      </PopoverTrigger>
+
+      <PopoverContent>
+        <PopoverBody>
+          Colors:
+          <RadioGroup value={color} onChange={(newColor) => setColor(newColor)}>
+            <Radio value="red">red</Radio>
+            <Radio value="blue">blue</Radio>
+            <Radio value="green">green</Radio>
+            <Radio value="purple">purple</Radio>
+          </RadioGroup>
         </PopoverBody>
       </PopoverContent>
     </Popover>
