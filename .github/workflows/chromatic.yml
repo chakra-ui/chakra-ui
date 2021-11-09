@@ -19,6 +19,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@master
+        with:
+          fetch-depth: 0
 
       - name: Enable node
         uses: actions/setup-node@master
