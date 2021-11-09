@@ -4,7 +4,7 @@ import { chakra, DarkMode } from "@chakra-ui/system"
 import { Stack } from "@chakra-ui/layout"
 
 export default {
-  title: "Skeleton",
+  title: "Components / Feedback / Skeleton",
   decorators: [
     (story: Function) => (
       <chakra.div maxW="md" mt="40px" mx="auto">

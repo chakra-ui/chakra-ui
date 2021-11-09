@@ -2,7 +2,7 @@ import * as React from "react"
 import { Badge } from "../src"
 
 export default {
-  title: "Badge",
+  title: "Components / Data Display / Badge",
 }
 
 export const Basic = () => <Badge>Success</Badge>

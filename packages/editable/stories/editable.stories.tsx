@@ -1,15 +1,15 @@
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
-import { useEditable } from "../src"
 import {
+  useEditable,
   Editable,
   EditableInput,
   EditablePreview,
   useEditableControls,
-} from "../src/editable"
+} from "../src"
 
 export default {
-  title: "Editable",
+  title: "Components / Forms / Editable",
   decorators: [
     (Story: Function) => (
       <chakra.div maxW="400px" mt="40px" mx="auto">

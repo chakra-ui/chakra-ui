@@ -5,7 +5,7 @@ export * from "./hover.stories"
 export * from "./popover.stories"
 
 export default {
-  title: "Popover",
+  title: "Components / Overlay / Popover",
   decorators: [
     (story: Function) => (
       <chakra.div mx="auto" maxW="400px" mt="200px">

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import { Switch } from "../src"
 
 export default {
-  title: "Switch",
+  title: "Components / Forms / Switch",
   decorators: [
     (story: Function) => (
       <chakra.div maxWidth="lg" mx="auto" mt={6} p={6}>
