@@ -47,7 +47,7 @@
     "lint": "eslint packages/**/src/ --ext .ts,.tsx --config .eslintrc",
     "prestorybook": "rimraf node_modules/.cache/storybook && yarn build:babel",
     "storybook": "start-storybook -p 6006",
-    "storybook:export": "sb extract",
+    "storybook:extract": "sb extract",
     "build:storybook": "build-storybook",
     "clean": "yarn clean-dist && rimraf node_modules",
     "clean-dist": "manypkg exec rimraf dist",
