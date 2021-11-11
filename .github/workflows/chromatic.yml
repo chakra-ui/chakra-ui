@@ -41,13 +41,11 @@ jobs:
       - name: Build packages
         run: yarn build
 
-        # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
         uses: chromaui/action@v1
-        # Chromatic GitHub Action options
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          buildScriptName: build:storybook
+          buildScriptName: build:storybook-chromatic
+          onlyChanged: true
           exitOnceUploaded: true
