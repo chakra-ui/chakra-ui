@@ -1,68 +1,1715 @@
-## 03-11-2021
+## 09-11-2021
 
-`@chakra-ui/react@1.6.12`
+`@chakra-ui/react@1.7.0`
 
-- Allow usage of `framer-motion` 5.x in `peerDependency`
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
 
-**Radio** `v1.3.13`
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
 
-- Improve types defined for `getRadioprops`
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
 
-**Checkbox** `v1.5.10`
+Here's how to resolve it:
 
-- Allow usage of `framer-motion` 5.x in `peerDependency`
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
 
-**Menu** `v1.7.8`
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
 
-- Allow usage of `framer-motion` 5.x in `peerDependency`
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
 
-**Modal** `v1.9.4`
+**Select** `v1.2.0`
 
-- Allow usage of `framer-motion` 5.x in `peerDependency`
+- Fixed an styling issue where it was not possible to customize the icon spacing of the `Select` component.
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
 
-**Popover** `v1.9.1`
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
 
-- Allow usage of `framer-motion` 5.x in `peerDependency`
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
 
-**Theme** `v1.11.1`
+Here's how to resolve it:
 
-- Allow usage of `framer-motion` 5.x in `peerDependency`
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
 
-**Toast** `v1.3.4`
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
 
-- Allow usage of `framer-motion` 5.x in `peerDependency`
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
 
-**Tooltip** `v1.3.14`
+**Theme** `v1.12.0`
 
-- Allow usage of `framer-motion` 5.x in `peerDependency`
+- Fixed an styling issue where it was not possible to customize the icon spacing of the `Select` component.
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
 
-**Transition** `v1.3.8`
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
 
-- Allow usage of `framer-motion` 5.x in `peerDependency`
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
 
-**Media Query** `v1.1.5`
+Here's how to resolve it:
 
-- Corrected eslint errors.
-- Fix an issue where the `useMediaQuery` was not updating the array of booleans
-  correctly when resizing the viewport.
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
 
-It also removes deprecated calls `addListener` and `removeListener` in favor of
-the recommended `addEventListener` and `removeEventListener` calls.
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
 
-**Color Mode** `v1.2.0`
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
 
-Added possibility to use the system preferred color scheme as value for
-`initialColorMode`, while still respecting a user's previous choice.
+**Slider** `v1.5.0`
 
-As long as the user does not manually select a color mode through a website
-interaction, the theme will change when the system preference changes.
+- fixed the bug in RangeSlider where an index out of bounds error would occur
+  incase of stacked thumb
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
 
-This would easily allow for an implementation where the user can choose between
-`light`, `dark` and `system` by simply setting the `initialColorMode` setting to
-`system` and presenting the user with the three options.
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
 
-**Popper** `v2.3.1`
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
 
-- Remove default `[]` value for modifiers and moved it into `createPopper`
-  definition. This allows memoized modifiers to work correctly in user-land when
-  used with `useCallback`.
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Modal** `v1.10.0`
+
+- `react-focus-lock@2.5.1` includes a dependency update of `focus-lock` from
+  `0.8.1` -> `0.9.1`. The change in `focus-lock` includes a fix for performance in
+  JSDOM: https://github.com/theKashey/focus-lock/pull/24
+
+JSDOM is used when testing react components in jest and other unit testing
+frameworks. In particular, when used with `@testing-library/react` for
+simulating real user input.
+
+Locally tested on an Apple M1 Air using a moderately complex `<Modal>` component
+(which contained inputs, `react-hook-form` usage, etc). Before this change:
+20,149ms After this change: 2,347ms
+
+Approx. 10x performance increase.
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Accordion** `v1.4.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Alert** `v1.3.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Anatomy** `v1.2.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Avatar** `v1.3.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Breadcrumb** `v1.3.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Button** `v1.5.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Checkbox** `v1.6.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Clickable** `v1.2.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Close Button** `v1.2.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Color Mode** `v1.3.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+- Fixed color mode behavior priority in the following order:
+
+- if `useSystemColorMode` is true system-color will be used as default - initial
+  colormode is the fallback if system color mode isn't resolved
+
+- if `--chakra-ui-color-mode` is defined through e.g. `ColorModeScript` this
+  will be used
+
+- if `colorModeManager` = `localStorage` and a value is defined for
+  `chakra-ui-color-mode` this will be used
+
+- if `initialColorMode` = `system` system-color will be used as default -
+  initial colormode is the fallback if system color mode isn't resolved
+
+- if `initialColorMode` = `'light'|'dark'` the corresponding value will be used
+
+**Control Box** `v1.1.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Counter** `v1.2.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Css Reset** `v1.1.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Descendant** `v2.1.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Editable** `v1.3.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**React Env** `v1.1.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Focus Lock** `v1.2.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Form Control** `v1.5.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Hooks** `v1.7.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Icon** `v1.2.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Icons** `v1.1.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Image** `v1.1.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Input** `v1.3.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Layout** `v1.5.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Live Region** `v1.1.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Media Query** `v1.2.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Menu** `v1.8.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Number Input** `v1.3.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Pin Input** `v1.7.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Popover** `v1.10.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Popper** `v2.4.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Portal** `v1.3.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Progress** `v1.2.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Provider** `v1.7.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Radio** `v1.4.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**React Utils** `v1.2.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Skeleton** `v1.2.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Skip Nav** `v1.2.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Spinner** `v1.2.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Stat** `v1.2.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Styled System** `v1.14.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Switch** `v1.3.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**System** `v1.8.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Table** `v1.3.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Tabs** `v1.6.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Tag** `v1.2.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Test Utils** `v1.1.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Textarea** `v1.2.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Theme Tools** `v1.3.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Toast** `v1.4.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Tooltip** `v1.4.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Transition** `v1.4.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Utils** `v1.9.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Visually Hidden** `v1.1.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Cli** `v1.6.0`
+
+- Update build system we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from '@chakra-ui/hooks/dist/use-outside-click';
+
+// Works ✅
+import { useOutsideClick } from '@chakra-ui/hooks';
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
