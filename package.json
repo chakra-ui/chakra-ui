@@ -57,7 +57,7 @@
     "search-meta:gen": "ts-node scripts/get-search-meta.ts",
     "changelog:gen": "ts-node scripts/changelog-generate.ts",
     "changelog:write": "ts-node scripts/changelog-write.ts",
-    "changelog:commit": "git add .CHANGELOG.md && git commit -am 'docs: add changelog' && git push",
+    "changelog:commit": "git add CHANGELOG.md && git commit -am 'docs: add changelog' && git push",
     "discord": "ts-node scripts/discord.ts",
     "create:pkg": "ts-node scripts/plopfile.ts",
     "release": "changeset publish",
