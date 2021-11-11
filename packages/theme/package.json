@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/theme",
-  "version": "1.11.1",
+  "version": "1.12.0",
   "description": "The default theme for chakra components",
   "keywords": [
     "theme",
@@ -30,15 +30,15 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/anatomy": "1.1.0",
-    "@chakra-ui/theme-tools": "1.2.3",
-    "@chakra-ui/utils": "1.8.4"
+    "@chakra-ui/anatomy": "1.2.0",
+    "@chakra-ui/theme-tools": "1.3.0",
+    "@chakra-ui/utils": "1.9.0"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=1.0.0"
   },
   "devDependencies": {
-    "@chakra-ui/cli": "1.5.3",
-    "@chakra-ui/system": "1.7.6"
+    "@chakra-ui/cli": "1.6.0",
+    "@chakra-ui/system": "1.8.0"
   }
 }

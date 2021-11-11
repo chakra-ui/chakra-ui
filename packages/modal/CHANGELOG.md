@@ -1,5 +1,68 @@
 # Change Log
 
+## 1.10.0
+
+### Minor Changes
+
+- [#4991](https://github.com/chakra-ui/chakra-ui/pull/4991)
+  [`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update build system
+  we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+  The previous build system transpiles the code in `src` directory to `dist/esm`
+  and `dist/cjs` keeping the same file structure. The new build system merges
+  all files in `src` and transpiles to a single `esm` and `cjs` file.
+
+  **Potential Breaking Change:** The side effect of this is that, if you
+  imported any function, component or hook using the **undocumented** approach
+  like
+  `import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+  you'll notice that the this doesn't work anymore.
+
+  Here's how to resolve it:
+
+  ```jsx live=false
+  // Won't work 🎇
+  import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+
+  // Works ✅
+  import { useOutsideClick } from "@chakra-ui/hooks"
+  ```
+
+  If this affected your project, we recommend that you import hooks, functions
+  or components the way it's shown in the documentation. This will help keep
+  your project future-proof.
+
+### Patch Changes
+
+- [#4995](https://github.com/chakra-ui/chakra-ui/pull/4995)
+  [`802e0a4d2`](https://github.com/chakra-ui/chakra-ui/commit/802e0a4d2762eebd39bb337442609fc2ff75841e)
+  Thanks [@jesstelford](https://github.com/jesstelford)! -
+  `react-focus-lock@2.5.1` includes a dependency update of `focus-lock` from
+  `0.8.1` -> `0.9.1`. The change in `focus-lock` includes a fix for performance
+  in JSDOM: https://github.com/theKashey/focus-lock/pull/24
+
+  JSDOM is used when testing react components in jest and other unit testing
+  frameworks. In particular, when used with `@testing-library/react` for
+  simulating real user input.
+
+  Locally tested on an Apple M1 Air using a moderately complex `<Modal>`
+  component (which contained inputs, `react-hook-form` usage, etc). Before this
+  change: 20,149ms After this change: 2,347ms
+
+  Approx. 10x performance increase.
+
+- Updated dependencies
+  [[`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)]:
+  - @chakra-ui/close-button@1.2.0
+  - @chakra-ui/focus-lock@1.2.0
+  - @chakra-ui/hooks@1.7.0
+  - @chakra-ui/portal@1.3.0
+  - @chakra-ui/react-utils@1.2.0
+  - @chakra-ui/transition@1.4.0
+  - @chakra-ui/utils@1.9.0
+
 ## 1.9.4
 
 ### Patch Changes

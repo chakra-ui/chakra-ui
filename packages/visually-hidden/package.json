@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/visually-hidden",
-  "version": "1.0.16",
+  "version": "1.1.0",
   "description": "A React component that visually hides its content",
   "keywords": [
     "react",
@@ -38,11 +38,11 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.7.6",
+    "@chakra-ui/system": "1.8.0",
     "react": "^17.0.1"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.8.4"
+    "@chakra-ui/utils": "1.9.0"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=1.0.0",

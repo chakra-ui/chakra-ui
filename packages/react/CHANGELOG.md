@@ -1,5 +1,94 @@
 # Change Log
 
+## 1.7.0
+
+### Minor Changes
+
+- [#4991](https://github.com/chakra-ui/chakra-ui/pull/4991)
+  [`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update build system
+  we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+  The previous build system transpiles the code in `src` directory to `dist/esm`
+  and `dist/cjs` keeping the same file structure. The new build system merges
+  all files in `src` and transpiles to a single `esm` and `cjs` file.
+
+  **Potential Breaking Change:** The side effect of this is that, if you
+  imported any function, component or hook using the **undocumented** approach
+  like
+  `import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+  you'll notice that the this doesn't work anymore.
+
+  Here's how to resolve it:
+
+  ```jsx live=false
+  // Won't work 🎇
+  import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+
+  // Works ✅
+  import { useOutsideClick } from "@chakra-ui/hooks"
+  ```
+
+  If this affected your project, we recommend that you import hooks, functions
+  or components the way it's shown in the documentation. This will help keep
+  your project future-proof.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0dd56ab1b`](https://github.com/chakra-ui/chakra-ui/commit/0dd56ab1b1ec3abab20ac6d8449757ad40138f29),
+  [`c7277cdf7`](https://github.com/chakra-ui/chakra-ui/commit/c7277cdf715626926b3c12cfdc62a230b00609f0),
+  [`802e0a4d2`](https://github.com/chakra-ui/chakra-ui/commit/802e0a4d2762eebd39bb337442609fc2ff75841e),
+  [`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)]:
+  - @chakra-ui/select@1.2.0
+  - @chakra-ui/theme@1.12.0
+  - @chakra-ui/slider@1.5.0
+  - @chakra-ui/modal@1.10.0
+  - @chakra-ui/accordion@1.4.0
+  - @chakra-ui/alert@1.3.0
+  - @chakra-ui/avatar@1.3.0
+  - @chakra-ui/breadcrumb@1.3.0
+  - @chakra-ui/button@1.5.0
+  - @chakra-ui/checkbox@1.6.0
+  - @chakra-ui/close-button@1.2.0
+  - @chakra-ui/control-box@1.1.0
+  - @chakra-ui/counter@1.2.0
+  - @chakra-ui/css-reset@1.1.0
+  - @chakra-ui/editable@1.3.0
+  - @chakra-ui/react-env@1.1.0
+  - @chakra-ui/form-control@1.5.0
+  - @chakra-ui/hooks@1.7.0
+  - @chakra-ui/icon@1.2.0
+  - @chakra-ui/image@1.1.0
+  - @chakra-ui/input@1.3.0
+  - @chakra-ui/layout@1.5.0
+  - @chakra-ui/live-region@1.1.0
+  - @chakra-ui/media-query@1.2.0
+  - @chakra-ui/menu@1.8.0
+  - @chakra-ui/number-input@1.3.0
+  - @chakra-ui/pin-input@1.7.0
+  - @chakra-ui/popover@1.10.0
+  - @chakra-ui/popper@2.4.0
+  - @chakra-ui/portal@1.3.0
+  - @chakra-ui/progress@1.2.0
+  - @chakra-ui/provider@1.7.0
+  - @chakra-ui/radio@1.4.0
+  - @chakra-ui/skeleton@1.2.0
+  - @chakra-ui/spinner@1.2.0
+  - @chakra-ui/stat@1.2.0
+  - @chakra-ui/switch@1.3.0
+  - @chakra-ui/system@1.8.0
+  - @chakra-ui/table@1.3.0
+  - @chakra-ui/tabs@1.6.0
+  - @chakra-ui/tag@1.2.0
+  - @chakra-ui/textarea@1.2.0
+  - @chakra-ui/toast@1.4.0
+  - @chakra-ui/tooltip@1.4.0
+  - @chakra-ui/transition@1.4.0
+  - @chakra-ui/utils@1.9.0
+  - @chakra-ui/visually-hidden@1.1.0
+
 ## 1.6.12
 
 ### Patch Changes
