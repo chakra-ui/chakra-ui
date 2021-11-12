@@ -18,7 +18,7 @@
   },
   "preconstruct": {
     "packages": [
-      "packages/!(test-utils)/*"
+      "packages/*"
     ]
   },
   "repository": {
