@@ -17,6 +17,24 @@ To better understand the changelog, here are some legends we use:
 
 <!-- CHANGELOG:INSERT -->
 
+## 12-11-2021
+
+`@chakra-ui/react@1.7.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Cra Template Typescript** `v1.1.1`
+
+- Bump TypeScript version
+
+**Media Query** `v1.2.1`
+
+- Fix issue where `useColorModePreference` returned incorrect values due to
+  array destructuring.
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
 ## 09-11-2021
 
 `@chakra-ui/react@1.7.0`
