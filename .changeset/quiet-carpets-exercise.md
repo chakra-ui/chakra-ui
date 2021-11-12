@@ -2,4 +2,5 @@
 "@chakra-ui/media-query": patch
 ---
 
-Resolve preferred color mode correctly
+Fix issue where `useColorModePreference` returned incorrect values due to array
+destructuring.

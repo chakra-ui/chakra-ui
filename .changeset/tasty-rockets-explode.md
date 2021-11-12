@@ -59,4 +59,5 @@
 "@chakra-ui/visually-hidden": patch
 ---
 
-: Properly transpile soruces for older browsers
+Update babel config to transpile soruces for older browsers. This fixes issues
+with CRA and Storybook.
