@@ -1,81 +1,297 @@
-## 09-11-2021
+## 12-11-2021
 
-`@chakra-ui/react@1.7.0`
+`@chakra-ui/react@1.7.1`
 
-Update build system we use from a custom babel cli setup to
-[preconstruct](https://preconstruct.tools/).
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
 
-The previous build system transpiles the code in `src` directory to `dist/esm`
-and `dist/cjs` keeping the same file structure. The new build system merges all
-files in `src` and transpiles to a single `esm` and `cjs` file.
+**Cra Template Typescript** `v1.1.1`
 
-**Potential Breaking Change:** The side effect of this is that, if you imported
-any function, component or hook using the **undocumented** approach like
-`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
-you'll notice that the this doesn't work anymore.
+- Bump TypeScript version
 
-Here's how to resolve it:
+**Media Query** `v1.2.1`
 
-```jsx live=false
-// Won't work 🎇
-import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+- Fix issue where `useColorModePreference` returned incorrect values due to array
+  destructuring.
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
 
-// Works ✅
-import { useOutsideClick } from "@chakra-ui/hooks"
-```
+**Accordion** `v1.4.1`
 
-If this affected your project, we recommend that you import hooks, functions or
-components the way it's shown in the documentation. This will help keep your
-project future-proof.
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
 
-**Color Mode** `v1.3.0`
+**Alert** `v1.3.1`
 
-Fixed color mode behavior priority in the following order:
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
 
-- If `useSystemColorMode` is `true`, the system's color mode will be used as
-  default and we'll fallback to the `initialColorMode` if system color mode
-  isn't resolved.
+**Anatomy** `v1.2.1`
 
-- If `--chakra-ui-color-mode` is defined through e.g. `ColorModeScript` this
-  will be used.
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
 
-- If local storage is used as the `colorModeManager` and a value is defined for
-  `chakra-ui-color-mode`, this will be used.
+**Avatar** `v1.3.1`
 
-- if `initialColorMode` is set to `system`, the system's color mode will be used
-  as default and we'll fallback to the `initialColorMode` if system color mode
-  isn't resolved.
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
 
-- if `initialColorMode` is set to `'light'` or `'dark'`, the corresponding value
-  will be used.
+**Breadcrumb** `v1.3.1`
 
-**Modal** `v1.10.0`, **Focus Lock** `v1.2.0`
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
 
-- `react-focus-lock@2.5.1` includes a dependency update of `focus-lock` from
-  `0.8.1` -> `0.9.1`. The change in `focus-lock` includes a fix for performance
-  in JSDOM: https://github.com/theKashey/focus-lock/pull/24
+**Button** `v1.5.1`
 
-JSDOM is used when testing react components in jest and other unit testing
-frameworks. In particular, when used with `@testing-library/react` for
-simulating real user input.
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
 
-Locally tested on an Apple M1 Air using a moderately complex `<Modal>` component
-(which contained inputs, `react-hook-form` usage, etc). Before this change:
-20,149ms After this change: 2,347ms
+**Checkbox** `v1.6.1`
 
-Approx. 10x performance increase.
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
 
-**Select** `v1.2.0`
+**Clickable** `v1.2.1`
 
-- Fixed an styling issue where it was not possible to customize the icon spacing
-  of the `Select` component.
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
 
-**Theme** `v1.12.0`
+**Close Button** `v1.2.1`
 
-- Fixed an styling issue where it was not possible to customize the icon spacing
-  of the `Select` component.
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
 
-**Slider** `v1.5.0`
+**Color Mode** `v1.3.1`
 
-- Fixed the bug in `RangeSlider` where an index out of bounds error would occur
-  incase of stacked thumbs.
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Control Box** `v1.1.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Counter** `v1.2.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Css Reset** `v1.1.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Descendant** `v2.1.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Editable** `v1.3.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**React Env** `v1.1.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Focus Lock** `v1.2.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Form Control** `v1.5.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Hooks** `v1.7.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Icon** `v1.2.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Icons** `v1.1.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Image** `v1.1.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Input** `v1.3.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Layout** `v1.5.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Live Region** `v1.1.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Menu** `v1.8.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Modal** `v1.10.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Number Input** `v1.3.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Pin Input** `v1.7.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Popover** `v1.10.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Popper** `v2.4.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Portal** `v1.3.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Progress** `v1.2.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Provider** `v1.7.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Radio** `v1.4.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**React Utils** `v1.2.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Select** `v1.2.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Skeleton** `v1.2.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Skip Nav** `v1.2.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Slider** `v1.5.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Spinner** `v1.2.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Stat** `v1.2.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Styled System** `v1.14.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Switch** `v1.3.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**System** `v1.8.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Table** `v1.3.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Tabs** `v1.6.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Tag** `v1.2.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Textarea** `v1.2.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Theme** `v1.12.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Theme Tools** `v1.3.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Toast** `v1.4.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Tooltip** `v1.4.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Transition** `v1.4.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Utils** `v1.9.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Visually Hidden** `v1.1.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
