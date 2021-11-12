@@ -27,7 +27,8 @@
   "module": "dist/chakra-ui-tabs.esm.js",
   "types": "dist/chakra-ui-tabs.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

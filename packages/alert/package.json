@@ -18,7 +18,8 @@
   "module": "dist/chakra-ui-alert.esm.js",
   "types": "dist/chakra-ui-alert.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

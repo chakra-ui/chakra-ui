@@ -18,7 +18,8 @@
   "module": "dist/chakra-ui-popover.esm.js",
   "types": "dist/chakra-ui-popover.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

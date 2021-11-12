@@ -17,7 +17,8 @@
   "module": "dist/chakra-ui-clickable.esm.js",
   "types": "dist/chakra-ui-clickable.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

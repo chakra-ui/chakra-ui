@@ -17,7 +17,8 @@
   "module": "dist/chakra-ui-close-button.esm.js",
   "types": "dist/chakra-ui-close-button.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

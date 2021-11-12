@@ -10,7 +10,8 @@
   "module": "dist/chakra-ui-utils.esm.js",
   "types": "dist/chakra-ui-utils.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

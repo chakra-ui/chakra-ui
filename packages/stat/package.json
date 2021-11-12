@@ -19,7 +19,8 @@
   "module": "dist/chakra-ui-stat.esm.js",
   "types": "dist/chakra-ui-stat.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

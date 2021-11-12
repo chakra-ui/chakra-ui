@@ -18,7 +18,8 @@
   "module": "dist/chakra-ui-transition.esm.js",
   "types": "dist/chakra-ui-transition.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

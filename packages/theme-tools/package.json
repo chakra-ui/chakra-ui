@@ -16,7 +16,8 @@
   "module": "dist/chakra-ui-theme-tools.esm.js",
   "types": "dist/chakra-ui-theme-tools.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

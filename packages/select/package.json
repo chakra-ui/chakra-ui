@@ -19,7 +19,8 @@
   "module": "dist/chakra-ui-select.esm.js",
   "types": "dist/chakra-ui-select.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"
