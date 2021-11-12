@@ -1,5 +1,24 @@
 # Change Log
 
+## 1.2.1
+
+### Patch Changes
+
+- [#5074](https://github.com/chakra-ui/chakra-ui/pull/5074)
+  [`042994eb0`](https://github.com/chakra-ui/chakra-ui/commit/042994eb0866e4f49cc286f64f54962f613a4423)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Fix issue where
+  `useColorModePreference` returned incorrect values due to array destructuring.
+
+* [#5075](https://github.com/chakra-ui/chakra-ui/pull/5075)
+  [`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Update babel config to
+  transpile soruces for older browsers. This fixes issues with CRA and
+  Storybook.
+* Updated dependencies
+  [[`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)]:
+  - @chakra-ui/react-env@1.1.1
+  - @chakra-ui/utils@1.9.1
+
 ## 1.2.0
 
 ### Minor Changes

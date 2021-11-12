@@ -1,5 +1,65 @@
 # Change Log
 
+## 1.7.1
+
+### Patch Changes
+
+- [#5075](https://github.com/chakra-ui/chakra-ui/pull/5075)
+  [`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Update babel config to
+  transpile soruces for older browsers. This fixes issues with CRA and
+  Storybook.
+- Updated dependencies
+  [[`042994eb0`](https://github.com/chakra-ui/chakra-ui/commit/042994eb0866e4f49cc286f64f54962f613a4423),
+  [`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)]:
+  - @chakra-ui/media-query@1.2.1
+  - @chakra-ui/accordion@1.4.1
+  - @chakra-ui/alert@1.3.1
+  - @chakra-ui/avatar@1.3.1
+  - @chakra-ui/breadcrumb@1.3.1
+  - @chakra-ui/button@1.5.1
+  - @chakra-ui/checkbox@1.6.1
+  - @chakra-ui/close-button@1.2.1
+  - @chakra-ui/control-box@1.1.1
+  - @chakra-ui/counter@1.2.1
+  - @chakra-ui/css-reset@1.1.1
+  - @chakra-ui/editable@1.3.1
+  - @chakra-ui/react-env@1.1.1
+  - @chakra-ui/form-control@1.5.1
+  - @chakra-ui/hooks@1.7.1
+  - @chakra-ui/icon@1.2.1
+  - @chakra-ui/image@1.1.1
+  - @chakra-ui/input@1.3.1
+  - @chakra-ui/layout@1.5.1
+  - @chakra-ui/live-region@1.1.1
+  - @chakra-ui/menu@1.8.1
+  - @chakra-ui/modal@1.10.1
+  - @chakra-ui/number-input@1.3.1
+  - @chakra-ui/pin-input@1.7.1
+  - @chakra-ui/popover@1.10.1
+  - @chakra-ui/popper@2.4.1
+  - @chakra-ui/portal@1.3.1
+  - @chakra-ui/progress@1.2.1
+  - @chakra-ui/provider@1.7.1
+  - @chakra-ui/radio@1.4.1
+  - @chakra-ui/select@1.2.1
+  - @chakra-ui/skeleton@1.2.1
+  - @chakra-ui/slider@1.5.1
+  - @chakra-ui/spinner@1.2.1
+  - @chakra-ui/stat@1.2.1
+  - @chakra-ui/switch@1.3.1
+  - @chakra-ui/system@1.8.1
+  - @chakra-ui/table@1.3.1
+  - @chakra-ui/tabs@1.6.1
+  - @chakra-ui/tag@1.2.1
+  - @chakra-ui/textarea@1.2.1
+  - @chakra-ui/theme@1.12.1
+  - @chakra-ui/toast@1.4.1
+  - @chakra-ui/tooltip@1.4.1
+  - @chakra-ui/transition@1.4.1
+  - @chakra-ui/utils@1.9.1
+  - @chakra-ui/visually-hidden@1.1.1
+
 ## 1.7.0
 
 ### Minor Changes
