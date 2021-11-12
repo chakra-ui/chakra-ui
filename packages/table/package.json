@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/table",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Table component for React and Chakra UI",
   "keywords": [
     "react",
@@ -42,13 +42,13 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.9.0"
+    "@chakra-ui/utils": "1.9.1"
   },
   "devDependencies": {
-    "@chakra-ui/button": "1.5.0",
-    "@chakra-ui/icons": "1.1.0",
-    "@chakra-ui/system": "1.8.0",
-    "@chakra-ui/test-utils": "1.1.0",
+    "@chakra-ui/button": "1.5.1",
+    "@chakra-ui/icons": "1.1.1",
+    "@chakra-ui/system": "1.8.1",
+    "@chakra-ui/test-utils": "1.1.1",
     "react": "^17.0.1"
   },
   "peerDependencies": {
