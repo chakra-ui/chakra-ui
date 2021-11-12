@@ -21,7 +21,8 @@
   "module": "dist/chakra-ui-counter.esm.js",
   "types": "dist/chakra-ui-counter.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

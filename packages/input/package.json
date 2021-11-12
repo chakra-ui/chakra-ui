@@ -19,7 +19,8 @@
   "module": "dist/chakra-ui-input.esm.js",
   "types": "dist/chakra-ui-input.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

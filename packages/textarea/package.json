@@ -19,7 +19,8 @@
   "module": "dist/chakra-ui-textarea.esm.js",
   "types": "dist/chakra-ui-textarea.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

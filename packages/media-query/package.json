@@ -18,7 +18,8 @@
   "module": "dist/chakra-ui-media-query.esm.js",
   "types": "dist/chakra-ui-media-query.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

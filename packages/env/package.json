@@ -18,7 +18,8 @@
   "types": "dist/chakra-ui-react-env.cjs.d.ts",
   "sideEffects": false,
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

@@ -20,7 +20,8 @@
   "module": "dist/chakra-ui-avatar.esm.js",
   "types": "dist/chakra-ui-avatar.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

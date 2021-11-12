@@ -16,7 +16,8 @@
   "module": "dist/chakra-ui-spinner.esm.js",
   "types": "dist/chakra-ui-spinner.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

@@ -18,7 +18,8 @@
   "module": "dist/chakra-ui-tag.esm.js",
   "types": "dist/chakra-ui-tag.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

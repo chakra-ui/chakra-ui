@@ -23,7 +23,8 @@
   "module": "dist/chakra-ui-checkbox.esm.js",
   "types": "dist/chakra-ui-checkbox.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

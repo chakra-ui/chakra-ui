@@ -21,7 +21,8 @@
   "module": "dist/chakra-ui-skip-nav.esm.js",
   "types": "dist/chakra-ui-skip-nav.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

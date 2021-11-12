@@ -19,7 +19,8 @@
   "module": "dist/chakra-ui-tooltip.esm.js",
   "types": "dist/chakra-ui-tooltip.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

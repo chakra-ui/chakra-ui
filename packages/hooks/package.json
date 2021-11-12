@@ -16,7 +16,8 @@
   "module": "dist/chakra-ui-hooks.esm.js",
   "types": "dist/chakra-ui-hooks.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

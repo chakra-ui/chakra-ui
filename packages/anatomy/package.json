@@ -16,7 +16,8 @@
   "types": "dist//chakra-ui-anatomy.cjs.d.ts",
   "sideEffects": false,
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

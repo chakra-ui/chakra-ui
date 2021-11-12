@@ -19,7 +19,8 @@
   "module": "dist/chakra-ui-live-region.esm.js",
   "types": "dist/chakra-ui-live-region.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"
