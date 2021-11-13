@@ -43,6 +43,7 @@ export interface UseCheckboxProps {
   /**
    * If `true`, the checkbox is marked as invalid.
    * Changes style of unchecked state.
+   * In case of `switch` component there will be no change in style.
    */
   isInvalid?: boolean
   /**
