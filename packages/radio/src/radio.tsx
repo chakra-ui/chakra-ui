@@ -99,6 +99,7 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
     display: "inline-flex",
     alignItems: "center",
     verticalAlign: "top",
+    cursor: "pointer",
     ...styles.container,
   }
 
