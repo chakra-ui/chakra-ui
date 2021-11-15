@@ -17,6 +17,106 @@ To better understand the changelog, here are some legends we use:
 
 <!-- CHANGELOG:INSERT -->
 
+## 12-11-2021
+
+`@chakra-ui/react@1.7.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Cra Template Typescript** `v1.1.1`
+
+- Bump TypeScript version
+
+**Media Query** `v1.2.1`
+
+- Fix issue where `useColorModePreference` returned incorrect values due to
+  array destructuring.
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+## 09-11-2021
+
+`@chakra-ui/react@1.7.0`
+
+Update build system we use from a custom babel cli setup to
+[preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+
+// Works ✅
+import { useOutsideClick } from "@chakra-ui/hooks"
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Color Mode** `v1.3.0`
+
+Fixed color mode behavior priority in the following order:
+
+- If `useSystemColorMode` is `true`, the system's color mode will be used as
+  default and we'll fallback to the `initialColorMode` if system color mode
+  isn't resolved.
+
+- If `--chakra-ui-color-mode` is defined through e.g. `ColorModeScript` this
+  will be used.
+
+- If local storage is used as the `colorModeManager` and a value is defined for
+  `chakra-ui-color-mode`, this will be used.
+
+- if `initialColorMode` is set to `system`, the system's color mode will be used
+  as default and we'll fallback to the `initialColorMode` if system color mode
+  isn't resolved.
+
+- if `initialColorMode` is set to `'light'` or `'dark'`, the corresponding value
+  will be used.
+
+**Modal** `v1.10.0`, **Focus Lock** `v1.2.0`
+
+- `react-focus-lock@2.5.1` includes a dependency update of `focus-lock` from
+  `0.8.1` -> `0.9.1`. The change in `focus-lock` includes a fix for performance
+  in JSDOM: https://github.com/theKashey/focus-lock/pull/24
+
+JSDOM is used when testing react components in jest and other unit testing
+frameworks. In particular, when used with `@testing-library/react` for
+simulating real user input.
+
+Locally tested on an Apple M1 Air using a moderately complex `<Modal>` component
+(which contained inputs, `react-hook-form` usage, etc). Before this change:
+20,149ms After this change: 2,347ms
+
+Approx. 10x performance increase.
+
+**Select** `v1.2.0`
+
+- Fixed an styling issue where it was not possible to customize the icon spacing
+  of the `Select` component.
+
+**Theme** `v1.12.0`
+
+- Fixed an styling issue where it was not possible to customize the icon spacing
+  of the `Select` component.
+
+**Slider** `v1.5.0`
+
+- Fixed the bug in `RangeSlider` where an index out of bounds error would occur
+  incase of stacked thumbs.
+
 ## 03-11-2021
 
 `@chakra-ui/react@1.6.12`

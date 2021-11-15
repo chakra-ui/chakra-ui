@@ -1,5 +1,82 @@
 # Change Log
 
+## 1.3.1
+
+### Patch Changes
+
+- [#5075](https://github.com/chakra-ui/chakra-ui/pull/5075)
+  [`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Update babel config to
+  transpile soruces for older browsers. This fixes issues with CRA and
+  Storybook.
+- Updated dependencies
+  [[`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)]:
+  - @chakra-ui/react-env@1.1.1
+  - @chakra-ui/hooks@1.7.1
+  - @chakra-ui/utils@1.9.1
+
+## 1.3.0
+
+### Minor Changes
+
+- [#4991](https://github.com/chakra-ui/chakra-ui/pull/4991)
+  [`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update build system
+  we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+  The previous build system transpiles the code in `src` directory to `dist/esm`
+  and `dist/cjs` keeping the same file structure. The new build system merges
+  all files in `src` and transpiles to a single `esm` and `cjs` file.
+
+  **Potential Breaking Change:** The side effect of this is that, if you
+  imported any function, component or hook using the **undocumented** approach
+  like
+  `import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+  you'll notice that the this doesn't work anymore.
+
+  Here's how to resolve it:
+
+  ```jsx live=false
+  // Won't work 🎇
+  import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+
+  // Works ✅
+  import { useOutsideClick } from "@chakra-ui/hooks"
+  ```
+
+  If this affected your project, we recommend that you import hooks, functions
+  or components the way it's shown in the documentation. This will help keep
+  your project future-proof.
+
+### Patch Changes
+
+- [#4989](https://github.com/chakra-ui/chakra-ui/pull/4989)
+  [`013c90d89`](https://github.com/chakra-ui/chakra-ui/commit/013c90d8928698debc6112365fbd62b85a1d7e92)
+  Thanks [@takethefake](https://github.com/takethefake)! - Fixed color mode
+  behavior priority in the following order:
+
+  - if `useSystemColorMode` is true system-color will be used as default -
+    initial colormode is the fallback if system color mode isn't resolved
+
+  - if `--chakra-ui-color-mode` is defined through e.g. `ColorModeScript` this
+    will be used
+
+  - if `colorModeManager` = `localStorage` and a value is defined for
+    `chakra-ui-color-mode` this will be used
+
+  - if `initialColorMode` = `system` system-color will be used as default -
+    initial colormode is the fallback if system color mode isn't resolved
+
+  - if `initialColorMode` = `'light'|'dark'` the corresponding value will be
+    used
+
+- Updated dependencies
+  [[`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)]:
+  - @chakra-ui/react-env@1.1.0
+  - @chakra-ui/hooks@1.7.0
+  - @chakra-ui/utils@1.9.0
+
 ## 1.2.0
 
 ### Minor Changes

@@ -15,7 +15,6 @@ module.exports = {
         bugfixes: true,
         modules: cjs ? "commonjs" : false,
         loose: true,
-        targets: "> 1%, not dead, not ie 11, not op_mini all",
       },
     ],
   ],

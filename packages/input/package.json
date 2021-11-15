@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/input",
-  "version": "1.2.12",
+  "version": "1.3.1",
   "description": "A React component for input text field",
   "keywords": [
     "react",
@@ -19,7 +19,8 @@
   "module": "dist/chakra-ui-input.esm.js",
   "types": "dist/chakra-ui-input.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"
@@ -33,12 +34,12 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/form-control": "1.4.3",
-    "@chakra-ui/react-utils": "1.1.2",
-    "@chakra-ui/utils": "1.8.4"
+    "@chakra-ui/form-control": "1.5.1",
+    "@chakra-ui/react-utils": "1.2.1",
+    "@chakra-ui/utils": "1.9.1"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.7.6",
+    "@chakra-ui/system": "1.8.1",
     "react": "^17.0.1"
   },
   "peerDependencies": {

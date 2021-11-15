@@ -1,13 +1,12 @@
 import { useFormControlContext } from "@chakra-ui/form-control"
 import { useBoolean, useControllableProp, useId } from "@chakra-ui/hooks"
-import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
+import { PropGetter } from "@chakra-ui/react-utils"
 import { ariaAttr, callAllHandlers, dataAttr, warn } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import {
   ChangeEvent,
   SyntheticEvent,
   useCallback,
-  useRef,
   useState,
 } from "react"
 import { useRadioGroupContext } from "./radio-group"
@@ -116,8 +115,6 @@ export function useRadio(props: UseRadioProps = {}) {
   const [isHovered, setHovering] = useBoolean()
   const [isActive, setActive] = useBoolean()
 
-  const ref = useRef<HTMLInputElement>(null)
-
   const [isCheckedState, setChecked] = useState(Boolean(defaultChecked))
 
   const [isControlled, isChecked] = useControllableProp(
@@ -201,13 +198,13 @@ export function useRadio(props: UseRadioProps = {}) {
   const { onFocus, onBlur } = formControl ?? {}
 
   const getInputProps: PropGetter<HTMLInputElement> = useCallback(
-    (props = {}, forwardedRef = null) => {
+    (props = {}, ref = null) => {
       const trulyDisabled = isDisabled && !isFocusable
 
       return {
         ...props,
         id,
-        ref: mergeRefs(forwardedRef, ref),
+        ref,
         type: "radio",
         name,
         value,

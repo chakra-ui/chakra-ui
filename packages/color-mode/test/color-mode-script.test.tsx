@@ -1,5 +1,5 @@
 import { setScript } from "../src"
-import { ConfigColorMode } from "../dist/types"
+import { ConfigColorMode } from "../dist/chakra-ui-color-mode.cjs"
 
 describe("color-mode-script", () => {
   it.each(

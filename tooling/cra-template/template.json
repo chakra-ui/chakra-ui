@@ -1,7 +1,7 @@
 {
   "package": {
     "dependencies": {
-      "@chakra-ui/react": "^1.0.0",
+      "@chakra-ui/react": "latest",
       "@emotion/react": "^11.0.0",
       "@emotion/styled": "^11.0.0",
       "react-icons": "^3.0.0",

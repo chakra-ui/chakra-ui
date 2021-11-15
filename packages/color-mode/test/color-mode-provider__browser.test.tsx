@@ -1,6 +1,5 @@
-import { act, render } from "@testing-library/react"
-import React from "react"
-import { render, cleanup } from "@testing-library/react"
+/* eslint-disable global-require */
+import { act, cleanup, render } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import * as React from "react"
 import { ColorModeProvider } from "../src"
@@ -60,7 +59,7 @@ describe("<ColorModeProvider /> localStorage browser", () => {
       { system: "dark", initial: "system", useSystem: true, expect: "dark" },
     ].map((item) => ({
       ...item,
-      toString: () => "case: " + JSON.stringify(item),
+      toString: () => `case: ${JSON.stringify(item)}`,
     })),
   )("%s", (result) => {
     const { ColorModeProvider } = require("../src/color-mode-provider")
@@ -69,7 +68,7 @@ describe("<ColorModeProvider /> localStorage browser", () => {
 
     jest
       .spyOn(colorModeUtils.root, "get")
-      // @ts-expect-error only happens if value doesn't exist
+      // only happens if value doesn't exist
       .mockReturnValue("")
     const mockLocalStorageManager = createMockStorageManager(
       "localStorage",
@@ -148,7 +147,7 @@ test("prefers useSystemColorMode over root property", () => {
 test("prefers root property over localStorage", () => {
   const rootGetSpy = jest
     .spyOn(colorModeUtils.root, "get")
-    // @ts-expect-error only happens if value doesn't exist, e.g. CSR
+    // only happens if value doesn't exist, e.g. CSR
     .mockReturnValueOnce("")
 
   const mockLocalStorageManager = createMockStorageManager(

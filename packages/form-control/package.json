@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/form-control",
-  "version": "1.4.3",
+  "version": "1.5.1",
   "description": "React component to provide validation states to form fields",
   "keywords": [
     "field",
@@ -21,7 +21,8 @@
   "module": "dist/chakra-ui-form-control.esm.js",
   "types": "dist/chakra-ui-form-control.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"
@@ -35,13 +36,13 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "1.6.2",
-    "@chakra-ui/icon": "1.1.13",
-    "@chakra-ui/react-utils": "1.1.2",
-    "@chakra-ui/utils": "1.8.4"
+    "@chakra-ui/hooks": "1.7.1",
+    "@chakra-ui/icon": "1.2.1",
+    "@chakra-ui/react-utils": "1.2.1",
+    "@chakra-ui/utils": "1.9.1"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.7.6",
+    "@chakra-ui/system": "1.8.1",
     "react": "^17.0.1"
   },
   "peerDependencies": {
