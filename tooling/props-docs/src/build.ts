@@ -188,7 +188,7 @@ ${esmPropExports}`,
 
 function writeTypes(componentInfo: ComponentInfo[]) {
   const typeExports = componentInfo
-    .map(({ exportName }) => `export declare const ${exportName}:  PropDoc`)
+    .map(({ exportName }) => `export declare const ${exportName}: PropDoc`)
     .join("\n")
 
   const baseType = `
