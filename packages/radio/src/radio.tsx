@@ -12,7 +12,7 @@ import { callAll, split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useRadioGroupContext } from "./radio-group"
 import { useRadio, UseRadioProps } from "./use-radio"
-import { stylePropNames } from "../../styled-system/src/system"
+import { stylePropNames } from "@chakra-ui/styled-system"
 
 type Omitted = "onChange" | "defaultChecked" | "checked"
 interface BaseControlProps extends Omit<HTMLChakraProps<"div">, Omitted> {}
@@ -76,7 +76,6 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
     getInputProps,
     getCheckboxProps,
     getLabelProps,
-    getRootProps,
     htmlProps,
   } = useRadio({
     ...rest,
@@ -92,7 +91,6 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
   const checkboxProps = getCheckboxProps(otherProps)
   const inputProps = getInputProps({}, ref)
   const labelProps = getLabelProps()
-  const rootProps = Object.assign({}, layoutProps, getRootProps())
 
   const rootStyles = {
     width: isFullWidth ? "full" : undefined,
