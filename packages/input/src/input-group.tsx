@@ -50,10 +50,15 @@ export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
     /**
      * Make it possible to override the size and variant from `Input`
      */
+
+    const themingSize = child.props?.size || props.size
+    const themingVariant = child.props?.variant || props.variant
     const theming = {
-      size: child.props?.size || props.size,
-      variant: child.props?.variant || props.variant,
+      ...(themingSize && { size: themingSize }),
+      ...(themingVariant && { variant: themingVariant }),
     }
+
+    console.log(child.props)
 
     return child.type.id !== "Input"
       ? React.cloneElement(child, theming)
