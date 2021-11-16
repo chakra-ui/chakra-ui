@@ -21,7 +21,7 @@ function toInlineCode(input: string) {
     )
 }
 
-export function convertBackticksToInlineCode(input?: string) {
+export function convertBackticksToInlineCode(input?: string | JSX.Element) {
   if (!input) return ""
   return isObject(input) ? input : toInlineCode(input)
 }
