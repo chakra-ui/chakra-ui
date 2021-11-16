@@ -1,5 +1,4 @@
-import { setScript } from "../src"
-import { ConfigColorMode } from "../dist/chakra-ui-color-mode.cjs"
+import { setScript, ConfigColorMode } from "../src"
 
 describe("color-mode-script", () => {
   it.each(
@@ -16,12 +15,10 @@ describe("color-mode-script", () => {
     })),
   )("%s", (entry) => {
     const systemIsDarkMode = entry.system === "dark"
-    const documentMock = jest.fn()
-    Object.defineProperty(document, "documentElement", {
-      writable: true,
-      configurable: true,
-      value: { style: { setProperty: documentMock } },
-    })
+    const documentMock = jest.spyOn(
+      document.documentElement.style,
+      "setProperty",
+    )
     global.matchMedia = jest.fn().mockImplementation((query) => {
       if (query === "(prefers-color-scheme: dark)") {
         return {
