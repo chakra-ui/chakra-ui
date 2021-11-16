@@ -49,8 +49,8 @@ jobs:
       - name: Build packages
         run: yarn build
 
-      # - name: Build CRA templates
-      #   run: yarn build:templates ../cra-templates
+      - name: Build prop docs
+        run: yarn build:prop-docs
 
       - name: Run tests
         run: yarn test:ci

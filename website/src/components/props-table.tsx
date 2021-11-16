@@ -19,7 +19,7 @@ export type PropsTableProps = {
   /**
    * displayName of the target component
    */
-  of: string
+  of: keyof typeof ComponentProps
   /**
    * prop names to omit
    */
@@ -43,11 +43,10 @@ const PropsTable = ({
   ],
   only,
 }: PropsTableProps) => {
-  const propList = React.useMemo(() => makePropsTable({ of, omit, only }), [
-    of,
-    omit,
-    only,
-  ])
+  const propList = React.useMemo(
+    () => makePropsTable({ of, omit, only }),
+    [of, omit, only],
+  )
 
   if (!propList.length) {
     // this error breaks the build to notify you when there would be an empty table
@@ -138,7 +137,7 @@ interface MakePropsTableOptions extends PropsTableProps {}
 const TYPE_GENERIC_THEMABLE = "(string & {})"
 
 function makePropsTable({ of, omit, only }: MakePropsTableOptions) {
-  const props = ComponentProps[of]?.props as Record<string, any>
+  const props = ComponentProps[of]?.props
 
   const themeKey = themeComponentKeyAliases[of] ?? of
   const componentTheme = theme.components[themeKey]

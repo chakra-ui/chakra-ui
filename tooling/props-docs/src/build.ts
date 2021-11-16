@@ -30,19 +30,11 @@ const rootDir = path.join(__dirname, "..", "..", "..")
 const sourcePath = path.join(rootDir, "packages")
 const outputPath = path.join(__dirname, "..", "dist", "components")
 
-const cjsIndexFilePath = path.join(
-  __dirname,
-  "..",
-  "dist",
-  "chakra-ui-props-docs.cjs.js",
-)
+const basePath = path.join(__dirname, "..", "dist")
 
-const esmIndexFilePath = path.join(
-  __dirname,
-  "..",
-  "dist",
-  "chakra-ui-props-docs.esm.js",
-)
+const cjsIndexFilePath = path.join(basePath, "chakra-ui-props-docs.cjs.js")
+const esmIndexFilePath = path.join(basePath, "chakra-ui-props-docs.esm.js")
+const typeFilePath = path.join(basePath, "chakra-ui-props-docs.cjs.d.ts")
 
 const tsConfigPath = path.join(sourcePath, "..", "tsconfig.json")
 
@@ -65,6 +57,7 @@ export async function main() {
   log("Writing index files...")
   writeIndexCJS(componentInfo)
   writeIndexESM(componentInfo)
+  writeTypes(componentInfo)
 
   log(`Processed ${componentInfo.length} components`)
 }
@@ -191,6 +184,48 @@ function writeIndexESM(componentInfo: ComponentInfo[]) {
     `${esmPropImports}
 ${esmPropExports}`,
   )
+}
+
+function writeTypes(componentInfo: ComponentInfo[]) {
+  const typeExports = componentInfo
+    .map(({ exportName }) => `export declare const ${exportName}: PropDoc`)
+    .join("\n")
+
+  const baseType = `
+    export interface Parent {
+        fileName: string;
+        name: string;
+    }
+
+    export interface Declaration {
+        fileName: string;
+        name: string;
+    }
+
+    export interface DefaultProps {
+        defaultValue?: any;
+        description: string | JSX.Element;
+        name: string;
+        parent: Parent;
+        declarations: Declaration[];
+        required: boolean;
+        type: { name: string };
+    }
+
+    export interface PropDoc {
+        tags: { see: string };
+        filePath: string;
+        description: string | JSX.Element;
+        displayName: string;
+        methods: any[];
+        props: {
+          defaultProps?: DefaultProps;
+          components?: DefaultProps;
+        };
+    }
+  `
+
+  writeFileSync(typeFilePath, `${baseType}\n${typeExports}`)
 }
 
 function log(...args: unknown[]) {
