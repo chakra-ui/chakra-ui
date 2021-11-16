@@ -198,7 +198,7 @@ export const WithInputElementBug = () => {
   )
 }
 
-export const CustomInputProps = () => {
+export const InputGroupCustomInputProps = () => {
   return (
     <>
       <InputGroup>
