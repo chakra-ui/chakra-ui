@@ -195,3 +195,18 @@ export function WithLazyPopoverMounted() {
     </Popover>
   )
 }
+
+export function HoverTrigger() {
+  return (
+    <Popover trigger="hover">
+      <PopoverTrigger>
+        <Button>Hover or Click</Button>
+      </PopoverTrigger>
+      <PopoverContent>
+        <PopoverBody>
+          <Button>Click here</Button>
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
+  )
+}
