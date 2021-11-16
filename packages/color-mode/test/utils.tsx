@@ -16,6 +16,22 @@ export const DummyComponent = () => {
   )
 }
 
+var renderCount = 0
+
+export const resetCounter = () => {
+  renderCount = 0
+}
+
+export const MemoizedComponent = React.memo(() => {
+  renderCount = renderCount + 1
+  return <div data-testid="rendered">{renderCount}</div>
+})
+
+export const RegularComponent = () => {
+  renderCount = renderCount + 1
+  return <div data-testid="rendered">{renderCount}</div>
+}
+
 export const getColorModeButton = () => screen.getByRole("button")
 
 export const defaultThemeOptions = theme.config as Required<ColorModeOptions>

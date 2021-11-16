@@ -176,12 +176,18 @@ if (__DEV__) {
 /**
  * Locks the color mode to `dark`, without any way to change it.
  */
-export const DarkMode: React.FC = (props) => (
-  <ColorModeContext.Provider
-    value={{ colorMode: "dark", toggleColorMode: noop, setColorMode: noop }}
-    {...props}
-  />
-)
+export const DarkMode: React.FC = (props) => {
+  const context = React.useMemo<ColorModeContextType>(
+    () => ({
+      colorMode: "dark",
+      toggleColorMode: noop,
+      setColorMode: noop,
+    }),
+    [],
+  )
+
+  return <ColorModeContext.Provider value={context} {...props} />
+}
 
 if (__DEV__) {
   DarkMode.displayName = "DarkMode"
@@ -190,12 +196,18 @@ if (__DEV__) {
 /**
  * Locks the color mode to `light` without any way to change it.
  */
-export const LightMode: React.FC = (props) => (
-  <ColorModeContext.Provider
-    value={{ colorMode: "light", toggleColorMode: noop, setColorMode: noop }}
-    {...props}
-  />
-)
+export const LightMode: React.FC = (props) => {
+  const context = React.useMemo<ColorModeContextType>(
+    () => ({
+      colorMode: "light",
+      toggleColorMode: noop,
+      setColorMode: noop,
+    }),
+    [],
+  )
+
+  return <ColorModeContext.Provider value={context} {...props} />
+}
 
 if (__DEV__) {
   LightMode.displayName = "LightMode"
