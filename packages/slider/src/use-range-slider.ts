@@ -352,13 +352,15 @@ export function useRangeSlider(props: UseRangeSliderProps) {
 
     // check if the clicked thumb is stacked by checking if there are multiple
     // thumbs at the same distance
-    const isThumbStacked =
-      distances.filter((distance) => distance === closest).length > 1
+    const thumbsAtPosition = distances.filter(
+      (distance) => distance === closest,
+    )
+    const isThumbStacked = thumbsAtPosition.length > 1
 
     // when two thumbs are stacked and the user clicks at a point larger than
-    // their values, pick the next closest thumb
+    // their values, pick the last thumb with the greatest index
     if (isThumbStacked && pointValue > value[index]) {
-      index++
+      index = thumbsAtPosition.length - 1
     }
     setActiveIndex(index)
     actions.setValueAtIndex(index, pointValue)
