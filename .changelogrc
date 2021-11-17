@@ -1,17 +1,23 @@
-## 12-11-2021
+## 17-11-2021
 
-`@chakra-ui/react@1.7.1`
+**Props Docs** `v1.0.40`
 
-- Update babel config to transpile soruces for older browsers. This fixes issues
-  with CRA and Storybook.
+- Fix issue where package doesn't include a `dist` folder and doesn't work when
+  installed from npm.
 
-**Cra Template Typescript** `v1.1.1`
+**Radio** `v1.4.2`
 
-- Bump TypeScript version
+- Add cursor `pointer` to the radio container
 
-**Media Query** `v1.2.1`
+**Slider** `v1.5.2`
 
-- Fix issue where `useColorModePreference` returned incorrect values due to
-  array destructuring.
-- Update babel config to transpile soruces for older browsers. This fixes issues
-  with CRA and Storybook.
+- Fixed a bug where a thumb would not move in case of stacked thumbs
+
+**Color Mode** `v1.3.2`
+
+- Fixed flaky color-mode test
+- Fixed issue where `DarkMode` and `LightMode` elements rerenders their children
+  even if the child is memoized.
+
+`<LightMode>` and `<DarkMode>` components are now memoized to prevent
+unnecessary rendering of their child components.
