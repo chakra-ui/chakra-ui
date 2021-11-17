@@ -5,7 +5,7 @@ import { BrowserRouter, Link } from "react-router-dom"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "../src"
 
 export default {
-  title: "Breadcrumb",
+  title: "Components / Navigation / Breadcrumb",
 }
 
 export const Default = () => (

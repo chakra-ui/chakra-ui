@@ -3,7 +3,7 @@ import * as React from "react"
 import { usePopper } from "../src"
 
 export default {
-  title: "Popper v2",
+  title: "System / Popper v2",
 }
 
 export const ExamplePopper = () => {

@@ -7,7 +7,7 @@ import { createStandaloneToast, useToast } from "../src"
 import theme from "../../../website/theme"
 
 export default {
-  title: "Toast",
+  title: "Components / Feedback / Toast",
   decorators: [
     (Story: Function) => (
       <>

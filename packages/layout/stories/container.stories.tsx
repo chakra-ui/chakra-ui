@@ -3,7 +3,7 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 import { Container } from "../src"
 
 export default {
-  title: "Container",
+  title: "Components / Layout / Container",
 }
 
 export const basic = () => (

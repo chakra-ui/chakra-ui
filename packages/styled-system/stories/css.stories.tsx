@@ -5,7 +5,7 @@ import * as React from "react"
 import { css, SystemProps, toCSSVar } from "../src"
 
 export default {
-  title: "css",
+  title: "System / css",
 }
 
 const Box = styled("div")((props: any) => css(props.css)(props.theme))

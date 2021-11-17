@@ -12,7 +12,7 @@ import {
 } from "../src"
 
 export default {
-  title: "Table / Simple",
+  title: "Components / Data Display / Table / Simple",
 }
 
 const SimpleTable = (props: TableProps) => (

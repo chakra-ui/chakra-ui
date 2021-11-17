@@ -2,7 +2,7 @@ import * as React from "react"
 import { AspectRatio, Box } from "../src"
 
 export default {
-  title: "AspectRatio",
+  title: "Components / Layout / AspectRatio",
 }
 
 /**

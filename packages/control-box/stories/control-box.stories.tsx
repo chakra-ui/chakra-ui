@@ -1,11 +1,11 @@
 import * as React from "react"
 import VisuallyHidden from "@chakra-ui/visually-hidden"
-import { ControlBox } from "../src"
 import { chakra } from "@chakra-ui/system"
 import { CheckIcon } from "@chakra-ui/icons"
+import { ControlBox } from "../src"
 
 export default {
-  title: "Control Box",
+  title: "Components / Forms / Control Box",
 }
 
 const Box = chakra.div

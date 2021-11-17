@@ -2,7 +2,7 @@ import * as React from "react"
 import { Badge, Wrap, WrapItem } from "../src"
 
 export default {
-  title: "Wrap",
+  title: "Components / Layout / Wrap",
 }
 
 export const basic = () => (

@@ -3,7 +3,7 @@ import { BrowserRouter, Link as ReactRouterLink } from "react-router-dom"
 import { Link, LinkOverlay, LinkBox } from "../src"
 
 export default {
-  title: "Link",
+  title: "Components / Navigation / Link",
 }
 
 /**

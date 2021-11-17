@@ -6,7 +6,7 @@ import { StarIcon } from "@chakra-ui/icons"
 import { Table, TableCellProps, Tbody, Td, Th, Thead, Tr } from "../src"
 
 export default {
-  title: "Table / React Table",
+  title: "Components / Data Display / Table / React Table",
 }
 
 export const ReactTable = () => {
@@ -59,13 +59,8 @@ export const ReactTable = () => {
     [],
   )
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable({ columns, data })
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable({ columns, data })
 
   return (
     <Table {...getTableProps()}>
