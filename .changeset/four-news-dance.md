@@ -2,4 +2,4 @@
 "@chakra-ui/radio": patch
 ---
 
-Make default cursor pointer
+Add cursor `pointer` to the radio container
