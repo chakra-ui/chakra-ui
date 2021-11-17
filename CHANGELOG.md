@@ -17,6 +17,30 @@ To better understand the changelog, here are some legends we use:
 
 <!-- CHANGELOG:INSERT -->
 
+## 17-11-2021
+
+**Props Docs** `v1.0.40`
+
+- Fix issue where package doesn't include a `dist` folder and doesn't work when
+  installed from npm.
+
+**Radio** `v1.4.2`
+
+- Add cursor `pointer` to the radio container
+
+**Slider** `v1.5.2`
+
+- Fixed a bug where a thumb would not move in case of stacked thumbs
+
+**Color Mode** `v1.3.2`
+
+- Fixed flaky color-mode test
+- Fixed issue where `DarkMode` and `LightMode` elements rerenders their children
+  even if the child is memoized.
+
+`<LightMode>` and `<DarkMode>` components are now memoized to prevent
+unnecessary rendering of their child components.
+
 ## 12-11-2021
 
 `@chakra-ui/react@1.7.1`
