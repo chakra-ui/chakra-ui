@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.7.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`e29634a07`](https://github.com/chakra-ui/chakra-ui/commit/e29634a07544f36e753d942ad8008b0198eddc53),
+  [`002e3a488`](https://github.com/chakra-ui/chakra-ui/commit/002e3a48887c2ceb37bafceb8d4aa248b8dfa22f)]:
+  - @chakra-ui/radio@1.4.2
+  - @chakra-ui/slider@1.5.2
+  - @chakra-ui/system@1.8.2
+  - @chakra-ui/provider@1.7.2
+  - @chakra-ui/skeleton@1.2.2
+
 ## 1.7.1
 
 ### Patch Changes

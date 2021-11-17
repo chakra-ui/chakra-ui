@@ -1,5 +1,23 @@
 # Change Log
 
+## 1.3.2
+
+### Patch Changes
+
+- [#5105](https://github.com/chakra-ui/chakra-ui/pull/5105)
+  [`35d90e9fd`](https://github.com/chakra-ui/chakra-ui/commit/35d90e9fd7c1df59a8882b8c68283ff7a026541b)
+  Thanks [@takethefake](https://github.com/takethefake)! - Fixed flaky
+  color-mode test
+
+* [#5107](https://github.com/chakra-ui/chakra-ui/pull/5107)
+  [`514cf24a6`](https://github.com/chakra-ui/chakra-ui/commit/514cf24a62b13a9c2a9ad64806f00b0a4cbe540e)
+  Thanks [@primos63](https://github.com/primos63)! - Fixed issue where
+  `DarkMode` and `LightMode` elements rerenders their children even if the child
+  is memoized.
+
+  `<LightMode>` and `<DarkMode>` components are now memoized to prevent
+  unnecessary rendering of their child components.
+
 ## 1.3.1
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.4.2
+
+### Patch Changes
+
+- [#5096](https://github.com/chakra-ui/chakra-ui/pull/5096)
+  [`e29634a07`](https://github.com/chakra-ui/chakra-ui/commit/e29634a07544f36e753d942ad8008b0198eddc53)
+  Thanks [@anubra266](https://github.com/anubra266)! - Add cursor `pointer` to
+  the radio container
+
 ## 1.4.1
 
 ### Patch Changes
