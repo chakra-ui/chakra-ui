@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.5.2
+
+### Patch Changes
+
+- [#5081](https://github.com/chakra-ui/chakra-ui/pull/5081)
+  [`002e3a488`](https://github.com/chakra-ui/chakra-ui/commit/002e3a48887c2ceb37bafceb8d4aa248b8dfa22f)
+  Thanks [@burhanuday](https://github.com/burhanuday)! - Fixed a bug where a
+  thumb would not move in case of stacked thumbs
+
 ## 1.5.1
 
 ### Patch Changes
