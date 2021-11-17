@@ -58,7 +58,6 @@ export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
       ...(themingVariant && { variant: themingVariant }),
     }
 
-    console.log(child.props)
 
     return child.type.id !== "Input"
       ? React.cloneElement(child, theming)
