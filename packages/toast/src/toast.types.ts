@@ -57,7 +57,7 @@ export interface ToastOptions {
   /**
    * Optional style overrides for the toast component.
    */
-  wrapperStyle?: React.CSSProperties
+  containerStyle?: React.CSSProperties
 }
 
 export type ToastState = {

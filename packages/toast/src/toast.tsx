@@ -68,7 +68,7 @@ export const Toast: React.FC<ToastProps> = (props) => {
     requestClose = false,
     position = "bottom",
     duration = 5000,
-    wrapperStyle = {},
+    containerStyle = {},
   } = props
 
   const [delay, setDelay] = React.useState(duration)
@@ -122,7 +122,7 @@ export const Toast: React.FC<ToastProps> = (props) => {
           maxWidth: 560,
           minWidth: 300,
           margin: "0.5rem",
-          ...wrapperStyle,
+          ...containerStyle,
         }}
       >
         {isFunction(message) ? message({ id, onClose: close }) : message}

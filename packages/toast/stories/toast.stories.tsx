@@ -248,11 +248,11 @@ export const UseToastWithDefaults = () => {
   return <Button onClick={() => toast()}>toast</Button>
 }
 
-export const UseToastWithCustomWrapperStyle = () => {
+export const UseToastWithCustomContainerStyle = () => {
   const toast = useToast({
     position: "top",
-    title: "Wrapper style is updated",
-    wrapperStyle: {
+    title: "Container style is updated",
+    containerStyle: {
       width: "800px",
       maxWidth: "100%",
       border: "20px solid red",
