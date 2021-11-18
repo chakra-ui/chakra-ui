@@ -22,7 +22,7 @@ import {
 } from "../src"
 
 export default {
-  title: "Accordion",
+  title: "Components / Disclosure / Accordion",
   decorators: [(story: Function) => <Container>{story()}</Container>],
 }
 

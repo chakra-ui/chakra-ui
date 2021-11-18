@@ -12,7 +12,7 @@ import {
 } from "../src"
 
 export default {
-  title: "System",
+  title: "System / Core",
 }
 
 const MotionBox = motion(chakra.div)

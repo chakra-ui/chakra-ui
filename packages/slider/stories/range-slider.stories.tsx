@@ -9,7 +9,7 @@ import {
 } from "../src"
 
 export default {
-  title: "Range Slider",
+  title: "Components / Forms / Range Slider",
   decorators: [
     (story: Function) => (
       <chakra.div maxWidth="400px" height="300px" mx="auto" mt="40px">

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/cra-template-typescript",
-  "version": "1.1.1",
+  "version": "1.1.0",
   "main": "template.json",
   "keywords": [
     "chakra",
@@ -11,6 +11,9 @@
     "template",
     "typescript"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "The official Chakra+TypeScript template for Create React App.",
   "repository": {
     "type": "git",

@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.8.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`35d90e9fd`](https://github.com/chakra-ui/chakra-ui/commit/35d90e9fd7c1df59a8882b8c68283ff7a026541b),
+  [`514cf24a6`](https://github.com/chakra-ui/chakra-ui/commit/514cf24a62b13a9c2a9ad64806f00b0a4cbe540e)]:
+  - @chakra-ui/color-mode@1.3.2
+
 ## 1.8.1
 
 ### Patch Changes

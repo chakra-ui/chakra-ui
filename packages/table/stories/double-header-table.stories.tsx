@@ -12,7 +12,7 @@ import {
 } from "../src"
 
 export default {
-  title: "Table / Double Header",
+  title: "Components / Data Display / Table / Double Header",
 }
 
 const DoubleHeaderTable = (props: TableProps) => (

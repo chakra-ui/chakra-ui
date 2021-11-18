@@ -5,10 +5,10 @@ import Frame from "react-frame-component"
 import { useEnvironment, EnvironmentProvider } from ".."
 
 export default {
-  title: "Environment",
+  title: "System / Environment",
 }
 
-const Portal = ({ children }) => {
+const Portal: React.FC = ({ children }) => {
   const env = useEnvironment()
   return createPortal(children, env.document.body)
 }

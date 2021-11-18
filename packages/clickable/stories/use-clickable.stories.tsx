@@ -6,14 +6,15 @@ import { useClickable, UseClickableProps } from "../src"
 export type ClickableProps = Merge<UseClickableProps, HTMLChakraProps<"button">>
 
 const Clickable: React.FC<ClickableProps> = forwardRef((props, ref) => {
-  const clickable = useClickable({ ...props, ref } as any) as HTMLChakraProps<
-    "button"
-  >
+  const clickable = useClickable({
+    ...props,
+    ref,
+  } as any) as HTMLChakraProps<"button">
   return <chakra.button display="inline-flex" {...clickable} />
 })
 
 export default {
-  title: "Clickable",
+  title: "System / Clickable",
 }
 
 export const button = () => (

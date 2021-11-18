@@ -3,7 +3,7 @@ import { Md3DRotation } from "react-icons/md"
 import { Icon, IconProps } from "../src"
 
 export default {
-  title: "Icon",
+  title: "Components / Media and Icons / Icon",
 }
 
 export const Basic = () => <Icon fontSize="24px" />

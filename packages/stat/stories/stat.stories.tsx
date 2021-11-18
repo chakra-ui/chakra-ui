@@ -9,7 +9,7 @@ import {
 } from "../src"
 
 export default {
-  title: "Stat",
+  title: "Components / Data Display / Stat",
 }
 
 /**

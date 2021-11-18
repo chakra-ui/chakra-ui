@@ -27,6 +27,9 @@
     "template",
     "template.json"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "lint": "eslint template/src"
   }

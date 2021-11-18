@@ -3,7 +3,7 @@ import * as React from "react"
 import { Textarea } from "../src"
 
 export default {
-  title: "Textarea",
+  title: "Components / Forms / Textarea",
   decorators: [
     (story: Function) => (
       <chakra.div maxW="500px" mt="40px" mx="auto">
