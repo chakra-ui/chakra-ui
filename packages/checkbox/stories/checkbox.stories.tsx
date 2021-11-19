@@ -22,6 +22,18 @@ export const CheckboxWithHooks = () => {
 
 export const Basic = () => <Checkbox colorScheme="red">Hello</Checkbox>
 
+export const StyledCheckbox = () => (
+  <Checkbox
+    background="gray.100"
+    border="1px"
+    borderColor="gray.300"
+    colorScheme="gray"
+    padding={4}
+  >
+    Checkbox
+  </Checkbox>
+)
+
 export const BasicWithDisableFalse = () => (
   <Checkbox isDisabled={false} colorScheme="red">
     Hello
