@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "description": "The official Storybook Addon for Chakra UI",
   "main": "dist/preset.js",
+  "types": "dist/types/index.d.ts",
+  "typings": "dist/types/index.d.ts",
   "files": [
     "dist",
     "README.md"
@@ -17,7 +19,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chakra-ui/chakra-ui.git"
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "tooling/storybook-addon"
   },
   "keywords": [
     "storybook-addon",
@@ -32,15 +35,13 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "devDependencies": {
+    "@chakra-ui/react": "^1.4.1",
+    "react": "^17.0.1"
+  },
   "peerDependencies": {
-    "@chakra-ui/react": "1.x",
-    "@storybook/addons": "^6.3.6",
-    "@storybook/api": "^6.3.6",
-    "@storybook/components": "^6.3.6",
-    "@storybook/core-events": "^6.3.6",
-    "@storybook/theming": "^6.3.6",
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0"
+    "@chakra-ui/react": "^1.0.0",
+    "react": "16.x || 17.x"
   },
   "peerDependenciesMeta": {
     "react": {
@@ -54,10 +55,15 @@
     "access": "public"
   },
   "storybook": {
-    "displayName": "Chakra UI Theme",
+    "displayName": "Chakra UI",
     "supportedFrameworks": [
       "react"
     ],
-    "icon": "https://raw.githubusercontent.com/ngxCoder/chakra-ui/create-storybook-addon-v2/tooling/storybook-addon/assets/logo.png"
+    "unsupportedFrameworks": [
+      "Vue",
+      "Angular",
+      "Svelte"
+    ],
+    "icon": "https://raw.githubusercontent.com/chakra-ui/chakra-ui/main/logo/logomark-colored.svg"
   }
 }
