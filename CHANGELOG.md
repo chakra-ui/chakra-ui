@@ -1988,7 +1988,7 @@ This also works for the component theme as well.
   set to false. Menu now uses this option to not update its position while it's
   closed.
 
-**Stlyed System** `v1.5.0`
+**Styled System** `v1.5.0`
 
 - 🚀 Move `srOnly` prop to styled system props. This will deprecate the need for
   the visually hidden package. Less is more!
