@@ -39,6 +39,8 @@ export const flexbox: Config = {
   placeContent: true,
   placeSelf: true,
   gap: t.space("gap"),
+  rowGap: t.space("rowGap"),
+  columnGap: t.space("columnGap"),
 }
 
 Object.assign(flexbox, {
@@ -147,7 +149,23 @@ export interface FlexboxProps {
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/gap)
    */
-  gap?: Token<CSS.Property.Gap<Length>>
+  gap?: Token<CSS.Property.Gap<Length>, "space">
+  /**
+   * The CSS `row-gap` property.
+   *
+   * It sets the size of the gap (gutter) between an element's grid rows.
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/row-gap)
+   */
+  rowGap?: Token<CSS.Property.RowGap<Length>, "space">
+  /**
+   * The CSS `column-gap` property.
+   *
+   * It sets the size of the gap (gutter) between an element's columns.
+   *
+   * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/column-gap)
+   */
+  columnGap?: Token<CSS.Property.ColumnGap<Length>, "space">
   /**
    * The CSS `justify-self` property.
    *

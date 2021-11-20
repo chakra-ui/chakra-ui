@@ -2,7 +2,7 @@ import * as React from "react"
 import { Box, Flex } from "../src"
 
 export default {
-  title: "Flex",
+  title: "Components / Layout / Flex",
 }
 
 export const Vertical = () => (
