@@ -1,1 +1,4 @@
-export const decorators = [];
+import ChakraProviderWrapper from "../components/ChakraProviderWrapper";
+
+
+export const decorators = [ChakraProviderWrapper];
