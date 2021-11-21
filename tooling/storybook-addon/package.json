@@ -10,12 +10,11 @@
     "README.md"
   ],
   "scripts": {
-    "storybook": "npm run build && npm run build-storybook && start-storybook -p 6006 --no-manager-cache --quiet",
-    "build-storybook": "build-storybook",
-    "build": "tsc --build",
-    "clean": "tsc --build --clean",
-    "lint": "eslint .",
-    "start": "tsc --watch"
+    "clean": "rimraf ./dist",
+    "prebuild": "npm run clean",
+    "build": "concurrently yarn:build:*",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist --source-maps",
+    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types"
   },
   "repository": {
     "type": "git",
@@ -37,6 +36,7 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "devDependencies": {
     "@chakra-ui/react": "^1.4.1",
+    "concurrently": "^6.4.0",
     "react": "^17.0.1"
   },
   "peerDependencies": {
