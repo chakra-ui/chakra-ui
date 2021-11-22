@@ -143,6 +143,7 @@ export function usePopover(props: UsePopoverProps = {}) {
 
   const { isOpen, onClose, onOpen, onToggle } = useDisclosure(props)
 
+  const anchorRef = useRef<HTMLElement>(null)
   const triggerRef = useRef<HTMLElement>(null)
   const popoverRef = useRef<HTMLElement>(null)
 
@@ -279,14 +280,37 @@ export function usePopover(props: UsePopoverProps = {}) {
     [isOpen, getPopperProps],
   )
 
+  const getAnchorProps: PropGetter = useCallback(
+    (props, _ref = null) => {
+      const anchorProps: HTMLProps = {
+        ...props,
+        // If anchor is rendered, it is used as reference.
+        ref: mergeRefs(_ref, anchorRef, referenceRef),
+      }
+
+      return anchorProps
+    },
+    [anchorRef, referenceRef],
+  )
+
   const openTimeout = useRef<number>()
   const closeTimeout = useRef<number>()
+
+  const maybeReferenceRef = useCallback(
+    (node: Element) => {
+      // Don't override referenceRef in case the PopoverAnchor is rendered.
+      if (anchorRef.current == null) {
+        referenceRef(node)
+      }
+    },
+    [referenceRef],
+  )
 
   const getTriggerProps: PropGetter = useCallback(
     (props = {}, _ref = null) => {
       const triggerProps: HTMLProps = {
         ...props,
-        ref: mergeRefs(triggerRef, _ref, referenceRef),
+        ref: mergeRefs(triggerRef, _ref, maybeReferenceRef),
         id: triggerId,
         "aria-haspopup": "dialog",
         "aria-expanded": isOpen,
@@ -345,7 +369,7 @@ export function usePopover(props: UsePopoverProps = {}) {
       isOpen,
       popoverId,
       trigger,
-      referenceRef,
+      maybeReferenceRef,
       onToggle,
       onOpen,
       onClose,
@@ -391,6 +415,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     forceUpdate,
     isOpen,
     onClose,
+    getAnchorProps,
     getArrowProps,
     getArrowInnerProps,
     getPopoverPositionerProps,
