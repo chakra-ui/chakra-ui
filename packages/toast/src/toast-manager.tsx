@@ -27,7 +27,12 @@ interface Props {
 type CreateToastOptions = Partial<
   Pick<
     ToastOptions,
-    "status" | "duration" | "position" | "id" | "onCloseComplete"
+    | "status"
+    | "duration"
+    | "position"
+    | "id"
+    | "onCloseComplete"
+    | "containerStyle"
   >
 >
 
@@ -167,6 +172,7 @@ export class ToastManager extends React.Component<Props, ToastState> {
       onRequestRemove: () => this.removeToast(String(id), position),
       status: options.status,
       requestClose: false,
+      containerStyle: options.containerStyle,
     }
   }
 
