@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/system"
 import defaultTheme from "@chakra-ui/theme"
 import { isFunction, noop } from "@chakra-ui/utils"
+import { useLatestRef } from "@chakra-ui/hooks"
 import * as React from "react"
 import { toast } from "./toast.class"
 import {
@@ -208,7 +209,7 @@ export function createStandaloneToast({
 export function useToast(options?: UseToastOptions) {
   const { theme, setColorMode, toggleColorMode, colorMode } = useChakra()
 
-  const toastOptions = React.useRef(options)
+  const toastOptions = useLatestRef(options)
 
   return React.useMemo(() => {
     return createStandaloneToast({
@@ -218,7 +219,7 @@ export function useToast(options?: UseToastOptions) {
       toggleColorMode,
       defaultOptions: toastOptions.current,
     })
-  }, [theme, setColorMode, toggleColorMode, colorMode])
+  }, [theme, setColorMode, toggleColorMode, colorMode, toastOptions])
 }
 
 export default useToast
