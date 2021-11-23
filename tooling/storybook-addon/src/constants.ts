@@ -1,1 +1,1 @@
-export const ADDON_ID = "storybook/chakra-ui";
+export const ADDON_ID = "@chakra-ui/storybook-addon"

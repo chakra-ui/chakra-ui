@@ -2,19 +2,16 @@
   "name": "@chakra-ui/storybook-addon",
   "version": "0.1.0",
   "description": "The official Storybook Addon for Chakra UI",
-  "main": "dist/preset.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
+  "main": "dist/chakra-ui-storybook-addon.cjs.js",
+  "types": "dist/chakra-ui-storybook-addon.cjs.d.ts",
+  "typings": "dist/chakra-ui-storybook-addon.cjs.d.ts",
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "preset"
   ],
   "scripts": {
-    "clean": "rimraf ./dist",
-    "prebuild": "npm run clean",
-    "build": "concurrently yarn:build:*",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist --source-maps",
-    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types"
+    "clean": "rimraf ./dist"
   },
   "repository": {
     "type": "git",
@@ -35,12 +32,18 @@
   },
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "devDependencies": {
+    "@chakra-ui/icons": "*",
     "@chakra-ui/react": "^1.4.1",
     "concurrently": "^6.4.0",
     "react": "^17.0.1"
   },
+  "dependencies": {
+    "webpack-merge": "^5.0.0"
+  },
   "peerDependencies": {
-    "@chakra-ui/react": "^1.0.0",
+    "@chakra-ui/icons": "1.x",
+    "@chakra-ui/react": "1.x",
+    "@storybook/addons": "6.x",
     "react": "16.x || 17.x"
   },
   "peerDependenciesMeta": {
@@ -65,5 +68,13 @@
       "Svelte"
     ],
     "icon": "https://raw.githubusercontent.com/chakra-ui/chakra-ui/main/logo/logomark-colored.svg"
+  },
+  "preconstruct": {
+    "entrypoints": [
+      "index.ts",
+      "preset/index.ts",
+      "preset/register.ts",
+      "preset/decorators.ts"
+    ]
   }
 }
