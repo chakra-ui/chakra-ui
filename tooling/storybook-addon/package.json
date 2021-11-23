@@ -34,6 +34,7 @@
   "devDependencies": {
     "@chakra-ui/icons": "*",
     "@chakra-ui/react": "^1.4.1",
+    "@storybook/addons": "~6.3.12",
     "concurrently": "^6.4.0",
     "react": "^17.0.1"
   },
