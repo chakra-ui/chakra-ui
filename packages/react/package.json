@@ -91,7 +91,7 @@
   ],
   "storybook": {
     "title": "Chakra UI",
-    "url": "https://chakra-ui.netlify.app"
+    "url": "https://storybook.chakra-ui.com"
   },
   "devDependencies": {
     "@emotion/react": "^11.4.0",
