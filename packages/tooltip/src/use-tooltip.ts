@@ -135,11 +135,11 @@ export function useTooltip(props: UseTooltipProps = {}) {
     }
   }, [closeOnMouseDown, closeWithDelay])
 
-  const onKeyDown = (event: KeyboardEvent) => {
+  const onKeyDown = React.useCallback((event: KeyboardEvent) => {
     if (isOpen && event.key === "Escape") {
       closeWithDelay()
     }
-  }
+  }, [isOpen, closeWithDelay])
 
   useEventListener("keydown", onKeyDown)
 
