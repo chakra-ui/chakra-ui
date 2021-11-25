@@ -20,11 +20,9 @@ import { useBreakpoint } from "./use-breakpoint"
 export function useBreakpointValue<T = any>(
   values: Record<string, T> | T[],
   defaultBreakpoint?: string,
-): T | undefined {
+): T {
   const breakpoint = useBreakpoint(defaultBreakpoint)
   const theme = useTheme()
-
-  if (!breakpoint) return undefined
 
   /**
    * Get the non-number breakpoint keys from the provided breakpoints
