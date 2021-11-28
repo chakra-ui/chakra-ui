@@ -10,7 +10,7 @@ import {
 } from "../src"
 
 export default {
-  title: "Radio",
+  title: "Components / Forms / Radio",
   decorators: [(story: Function) => <Container mt="40px">{story()}</Container>],
 }
 

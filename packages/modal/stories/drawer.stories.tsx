@@ -9,7 +9,7 @@ import {
 } from "../src/drawer"
 
 export default {
-  title: "Modal / Drawer",
+  title: "Components / Overlay / Modal / Drawer",
 }
 
 export const DrawerExample = () => {

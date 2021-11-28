@@ -2,7 +2,7 @@ import * as React from "react"
 import { useCounter } from "../src"
 
 export default {
-  title: "Counter",
+  title: "System / Counter",
 }
 
 export function Basic() {

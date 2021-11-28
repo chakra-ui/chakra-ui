@@ -12,7 +12,7 @@ import Frame from "react-frame-component"
 import { Portal, PortalManager } from "../src"
 
 export default {
-  title: "Portal",
+  title: "Components / Others / Portal",
 }
 
 export const BasicPortal = () => (

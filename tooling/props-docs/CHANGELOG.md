@@ -1,5 +1,35 @@
 # Change Log
 
+## 1.0.40
+
+### Patch Changes
+
+- [#5100](https://github.com/chakra-ui/chakra-ui/pull/5100)
+  [`6f3924296`](https://github.com/chakra-ui/chakra-ui/commit/6f39242964dd9bd7cf9f38d2b11e7b3c68ee9203)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  package doesn't include a `dist` folder and doesn't work when installed from
+  npm.
+- Updated dependencies []:
+  - @chakra-ui/react@1.7.2
+
+## 1.0.39
+
+### Patch Changes
+
+- Updated dependencies
+  [[`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)]:
+  - @chakra-ui/react@1.7.1
+  - @chakra-ui/styled-system@1.14.1
+
+## 1.0.38
+
+### Patch Changes
+
+- Updated dependencies
+  [[`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)]:
+  - @chakra-ui/react@1.7.0
+  - @chakra-ui/styled-system@1.14.0
+
 ## 1.0.37
 
 ### Patch Changes

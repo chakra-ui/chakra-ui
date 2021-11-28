@@ -10,7 +10,7 @@ import * as React from "react"
 import { Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs } from "../src"
 
 export default {
-  title: "Tabs",
+  title: "Components / Disclosure / Tabs",
   decorators: [
     (story: Function) => (
       <chakra.div maxWidth="500px" mt="100px" mx="auto">

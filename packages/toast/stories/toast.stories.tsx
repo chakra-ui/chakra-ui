@@ -7,7 +7,7 @@ import { Text } from "@chakra-ui/layout"
 import { createStandaloneToast, useToast } from "../src"
 
 export default {
-  title: "Toast",
+  title: "Components / Feedback / Toast",
   decorators: [
     (Story: Function) => (
       <>
@@ -243,6 +243,20 @@ export const UseToastWithDefaults = () => {
   const toast = useToast({
     position: "top-right",
     title: "asdf",
+  })
+
+  return <Button onClick={() => toast()}>toast</Button>
+}
+
+export const UseToastWithCustomContainerStyle = () => {
+  const toast = useToast({
+    position: "top",
+    title: "Container style is updated",
+    containerStyle: {
+      width: "800px",
+      maxWidth: "100%",
+      border: "20px solid red",
+    },
   })
 
   return <Button onClick={() => toast()}>toast</Button>

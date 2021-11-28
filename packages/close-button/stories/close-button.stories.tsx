@@ -2,7 +2,7 @@ import * as React from "react"
 import { CloseButton } from "../src"
 
 export default {
-  title: "CloseButton",
+  title: "Components / Data Display / CloseButton",
 }
 
 /**

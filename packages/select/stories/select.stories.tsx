@@ -3,7 +3,7 @@ import * as React from "react"
 import { Select } from "../src"
 
 export default {
-  title: "Select",
+  title: "Components / Forms / Select",
   decorators: [
     (story: Function) => (
       <Container maxWidth="400px" mt="40px">
