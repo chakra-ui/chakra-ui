@@ -146,6 +146,11 @@ information on how to use our official `create-react-app` templates.
 Feel like contributing? That's awesome! We have a
 [contributing guide](./CONTRIBUTING.md) to help guide you.
 
+Our docsite lives in a
+[separate repo](https://github.com/chakra-ui/chakra-ui-docs). If you're
+interested in contributing to the documentation, check out the
+[docsite contribution guide](https://github.com/chakra-ui/chakra-ui-docs/blob/main/CONTRIBUTING.md).
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people

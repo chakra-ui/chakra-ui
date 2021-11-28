@@ -4,6 +4,7 @@
 
 The `toast` function now exposes a `containerStyle` property you can use to
 override the default styles for the toast container.
+
 ```jsx live=false
 function Example() {
   // Via instantiation
@@ -21,7 +22,7 @@ function Example() {
       onClick={() => {
         toast({
           containerStyle: {
-            maxWidth: '100%',
+            maxWidth: "100%",
           },
         })
       }}
@@ -30,3 +31,4 @@ function Example() {
     </Button>
   )
 }
+```

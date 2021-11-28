@@ -3,12 +3,7 @@ import { useBoolean, useControllableProp, useId } from "@chakra-ui/hooks"
 import { PropGetter } from "@chakra-ui/react-utils"
 import { ariaAttr, callAllHandlers, dataAttr, warn } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
-import {
-  ChangeEvent,
-  SyntheticEvent,
-  useCallback,
-  useState,
-} from "react"
+import { ChangeEvent, SyntheticEvent, useCallback, useState } from "react"
 import { useRadioGroupContext } from "./radio-group"
 
 /**

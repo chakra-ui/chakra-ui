@@ -5,8 +5,7 @@
     "packages": [
       "packages/*",
       "examples/*",
-      "tooling/*",
-      "website"
+      "tooling/*"
     ],
     "nohoist": [
       "@emotion/core/types",
@@ -52,8 +51,6 @@
     "clean-dist": "manypkg exec rimraf dist",
     "bootstrap": "preconstruct validate",
     "commit": "git-cz",
-    "members:gen": "ts-node scripts/all-members.ts",
-    "avatars:gen": "ts-node scripts/avatars.ts",
     "search-meta:gen": "ts-node scripts/get-search-meta.ts",
     "changelog:gen": "ts-node scripts/changelog-generate.ts",
     "changelog:write": "ts-node scripts/changelog-write.ts",
@@ -61,11 +58,7 @@
     "discord": "ts-node scripts/discord.ts",
     "create:pkg": "ts-node scripts/plopfile.ts",
     "release": "changeset publish",
-    "notify:release": "yarn changelog:write && yarn discord && yarn changelog:commit",
-    "docs": "yarn workspace @chakra-ui/docs",
-    "docs:deploy": "yarn build && yarn docs:build && cp -r website/public .",
-    "docs:build": "yarn search-meta:gen && yarn build:prop-docs && yarn docs build",
-    "docs:dev": "yarn build:prop-docs && yarn docs dev"
+    "notify:release": "yarn changelog:write && yarn discord && yarn changelog:commit"
   },
   "resolutions": {
     "**/react": "17.0.2",
@@ -114,7 +107,6 @@
     "@types/uuid": "8.3.1",
     "@typescript-eslint/eslint-plugin": "5.3.0",
     "@typescript-eslint/parser": "5.3.0",
-    "all-contributors-cli": "6.20.0",
     "babel-eslint": "10.1.0",
     "bundlesize": "0.18.1",
     "chalk": "4.1.2",
