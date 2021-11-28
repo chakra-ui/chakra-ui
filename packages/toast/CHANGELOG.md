@@ -1,5 +1,49 @@
 # Change Log
 
+## 1.5.0
+
+### Minor Changes
+
+- [#4922](https://github.com/chakra-ui/chakra-ui/pull/4922)
+  [`98b9fbecb`](https://github.com/chakra-ui/chakra-ui/commit/98b9fbecb20118553e92009b84a887ffdb35ba28)
+  Thanks [@karrui](https://github.com/karrui)! - The `toast` function now
+  exposes a `containerStyle` property you can use to override the default styles
+  for the toast container.
+
+  ```jsx live=false
+  function Example() {
+    // Via instantiation
+    const toast = useToast({
+      position: "top",
+      title: "Container style is customizable",
+      containerStyle: {
+        maxWidth: "100%",
+      },
+    })
+
+    // Or via trigger
+    return (
+      <Button
+        onClick={() => {
+          toast({
+            containerStyle: {
+              maxWidth: "100%",
+            },
+          })
+        }}
+      >
+        Click me to show toast with custom container style.
+      </Button>
+    )
+  }
+  ```
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/alert@1.3.2
+  - @chakra-ui/close-button@1.2.2
+
 ## 1.4.1
 
 ### Patch Changes

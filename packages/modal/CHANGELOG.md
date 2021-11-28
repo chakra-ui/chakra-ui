@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.10.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/close-button@1.2.2
+
 ## 1.10.1
 
 ### Patch Changes

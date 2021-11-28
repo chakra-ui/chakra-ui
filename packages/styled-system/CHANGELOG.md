@@ -1,5 +1,16 @@
 # Change Log
 
+## 1.15.0
+
+### Minor Changes
+
+- [#5123](https://github.com/chakra-ui/chakra-ui/pull/5123)
+  [`26d2a547b`](https://github.com/chakra-ui/chakra-ui/commit/26d2a547bca20e197f352c7492e3cad197b513e6)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Add support for
+  style props `gap`, `columnGap` and `rowGap`. Those CSS properties are valid in
+  a grid or flex context. For further information see
+  https://developer.mozilla.org/en-US/docs/Web/CSS/gap.
+
 ## 1.14.1
 
 ### Patch Changes

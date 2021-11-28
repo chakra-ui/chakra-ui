@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.11.0
+
+### Minor Changes
+
+- [#5044](https://github.com/chakra-ui/chakra-ui/pull/5044)
+  [`f4fd9441e`](https://github.com/chakra-ui/chakra-ui/commit/f4fd9441eae40d135dfe9ae911a9b4547b4647f5)
+  Thanks [@dodas](https://github.com/dodas)! - Add `PopoverAnchor` component
+  which allows you to set the Popover reference point without acting as a
+  trigger.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/close-button@1.2.2
+
 ## 1.10.1
 
 ### Patch Changes
