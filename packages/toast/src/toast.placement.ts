@@ -39,6 +39,6 @@ export function getToastPlacement(
     "bottom-end": { ltr: "bottom-right", rtl: "bottom-left" },
   }
 
-  const logical = logicals[position]
+  const logical = logicals[position as never]
   return logical?.[dir] ?? position
 }
