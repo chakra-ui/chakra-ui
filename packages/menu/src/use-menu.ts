@@ -63,7 +63,9 @@ export const [MenuProvider, useMenuContext] = createContext<
  * useMenu hook
  * -----------------------------------------------------------------------------------------------*/
 
-export interface UseMenuProps extends UsePopperProps, UseDisclosureProps {
+export interface UseMenuProps
+  extends Omit<UsePopperProps, "enabled">,
+    UseDisclosureProps {
   /**
    * If `true`, the menu will close when a menu item is
    * clicked

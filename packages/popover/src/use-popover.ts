@@ -23,7 +23,7 @@ const TRIGGER = {
   hover: "hover",
 } as const
 
-export interface UsePopoverProps extends UsePopperProps {
+export interface UsePopoverProps extends Omit<UsePopperProps, "enabled"> {
   /**
    * The html `id` attribute of the popover.
    * If not provided, we generate a unique id.
