@@ -22,13 +22,14 @@ export function useEventListener<K extends keyof DocumentEventMap>(
   env?: EventListenerEnv,
   options?: boolean | AddEventListenerOptions,
 ) {
-  if (!handler) {
-    return () => {}
-  }
   const listener = useCallbackRef(handler) as EventListener
 
   React.useEffect(() => {
     const node = runIfFn(env) ?? document
+
+    if (!handler) {
+      return () => {}
+    }
 
     node.addEventListener(event, listener, options)
     return () => {
