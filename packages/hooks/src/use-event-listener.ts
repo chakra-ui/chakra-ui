@@ -35,7 +35,7 @@ export function useEventListener<K extends keyof DocumentEventMap>(
     return () => {
       node.removeEventListener(event, listener, options)
     }
-  }, [event, env, options, listener])
+  }, [event, env, options, listener, handler])
 
   return () => {
     const node = runIfFn(env) ?? document
