@@ -18,10 +18,13 @@ export type EventListenerEnv = (() => DocumentOrElement) | DocumentOrElement
  */
 export function useEventListener<K extends keyof DocumentEventMap>(
   event: K | (string & {}),
-  handler: (event: DocumentEventMap[K]) => void,
+  handler?: (event: DocumentEventMap[K]) => void,
   env?: EventListenerEnv,
   options?: boolean | AddEventListenerOptions,
 ) {
+  if (!handler) {
+    return () => {}
+  }
   const listener = useCallbackRef(handler) as EventListener
 
   React.useEffect(() => {
