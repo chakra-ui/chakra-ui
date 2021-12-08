@@ -2,4 +2,4 @@
 "@chakra-ui/media-query": patch
 ---
 
-Corrected and optimized useMediaQuery hook.
+Improved performance and behavior of `useMediaQuery` hook.

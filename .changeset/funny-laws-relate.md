@@ -2,4 +2,4 @@
 "@chakra-ui/styled-system": patch
 ---
 
-fix gradient parser when a position is specified
+Fix issue where `bgGradient` parser doesn't work when a position is specified
