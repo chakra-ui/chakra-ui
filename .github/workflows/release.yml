@@ -8,7 +8,6 @@ on:
       - "packages/**"
     branches:
       - main
-      - next
 
 jobs:
   release:
@@ -25,7 +24,7 @@ jobs:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
 
-      - name: Setup Node.js 12.x
+      - name: Setup Node.js
         uses: actions/setup-node@master
         with:
           node-version: 14.x
@@ -56,10 +55,33 @@ jobs:
         run: yarn test:ci
 
       - name: Publish packages
+        id: changesets
         uses: changesets/action@master
         with:
           publish: yarn release
-          commit: "chore(release): version packages"
+          commit: "ci(changesets): version packages"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release Snapshot @rc tag
+        if: steps.changesets.outputs.published != "true"
+        run: |
+          yarn version:rc
+          yarn release:rc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Discord Notification
+        if: steps.changesets.outputs.published == "true"
+        id: discord-notification
+        run: yarn discord
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+
+      - name: Update Changelog
+        if: steps.changesets.outputs.published == "true"
+        run: |
+          yarn changelog:write
+          yarn changlog:commit
