@@ -85,6 +85,9 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile --ignore-engines
 
+      - name: Build packages
+        run: yarn build
+
       - name: Publish Canary
         run: |
           yarn version:canary
