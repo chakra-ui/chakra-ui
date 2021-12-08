@@ -15,7 +15,7 @@
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "@types/faker": "^5.1.5",
-    "@types/node": "^16.11.6",
+    "@types/node": "^16.11.12",
     "@types/react": "^17.0.15",
     "@types/react-dom": "^17.0.9",
     "faker": "^5.1.0",

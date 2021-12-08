@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "1.7.2",
-    "@emotion/jest": "^11.5.0",
+    "@emotion/jest": "^11.6.0",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "7.0.2",
