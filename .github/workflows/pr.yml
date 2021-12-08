@@ -88,6 +88,9 @@ jobs:
       - name: Build packages
         run: yarn build
 
+      - name: Build prop docs
+        run: yarn build:prop-docs
+
       - name: Publish Canary
         run: |
           yarn version:canary
