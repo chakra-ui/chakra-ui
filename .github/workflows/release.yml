@@ -48,7 +48,15 @@ jobs:
       - name: Setup CI Git User
         run: |
           git config --global user.email "joseshegs@gmail.com"
-          git config --global user.name "Sage"
+          git config --global user.name "Segun Adebayo"
+
+      - name: Create .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Build packages
         run: yarn build
