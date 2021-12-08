@@ -25,12 +25,12 @@ jobs:
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
 
       - name: Enable node
-        uses: actions/setup-node@master
+        uses: actions/setup-node@v2
         with:
-          node-version: 14.x
+          node-version: 15.x
 
       - name: Load Yarn cache
         uses: actions/cache@v2
@@ -67,10 +67,10 @@ jobs:
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
 
       - name: Enable node
-        uses: actions/setup-node@master
+        uses: actions/setup-node@v2
         with:
           node-version: 14.x
 
