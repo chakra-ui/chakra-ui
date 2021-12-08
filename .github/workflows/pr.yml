@@ -30,7 +30,7 @@ jobs:
       - name: Enable node
         uses: actions/setup-node@v2
         with:
-          node-version: 15.x
+          node-version: 16.x
 
       - name: Load Yarn cache
         uses: actions/cache@v2
@@ -41,7 +41,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile --ignore-engines
 
       - name: Build packages
         run: yarn build
@@ -72,7 +72,7 @@ jobs:
       - name: Enable node
         uses: actions/setup-node@v2
         with:
-          node-version: 15.x
+          node-version: 16.x
 
       - name: Load Yarn cache
         uses: actions/cache@v2
@@ -83,7 +83,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile --ignore-engines
 
       - name: Publish Canary
         run: |
