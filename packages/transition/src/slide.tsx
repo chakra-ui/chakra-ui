@@ -93,7 +93,6 @@ export const Slide = React.forwardRef<HTMLDivElement, SlideProps>(
       <AnimatePresence custom={custom}>
         {show && (
           <motion.div
-            ref={ref}
             initial="exit"
             className={cx("chakra-slide", className)}
             animate={animate}
@@ -102,6 +101,7 @@ export const Slide = React.forwardRef<HTMLDivElement, SlideProps>(
             variants={variants as _Variants}
             style={computedStyle}
             {...rest}
+            ref={ref}
           />
         )}
       </AnimatePresence>
