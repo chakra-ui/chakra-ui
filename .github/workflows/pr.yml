@@ -86,33 +86,26 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Publish Canary
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          publish: yarn release:canary
-          commit: "ci(changesets): version packages"
+        run: |
+          yarn version:canary
+          yarn release:canary
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Compute new packages info
-        id: packagesData
-        if: success() && steps.changesets.outputs.published == 'true'
-        run: |
-          echo "::set-output name=count::$(echo ${{toJson(steps.changesets.outputs.publishedPackages)}} | jq '. | length')"
-          echo "::set-output name=packageList::$(echo ${{toJson(steps.changesets.outputs.publishedPackages)}} | jq 'reduce .[] as $item (""; . + "#### \($item.name)@\($item.version)\n```\nnpm install \($item.name)@canary\n```\n")')
+      - name: Get released version
+        id: version
+        run:
+          echo ::set-output name=version::$(node -p
+          "require('./packages/react/package.json').version")
 
-      - name: Comment
+      - name: Create comment
         uses: marocchino/sticky-pull-request-comment@v2
-        if: success() && steps.changesets.outputs.published == 'true'
         with:
           header: "canary-release"
           message: |
-            ### :package: Canary Packages Published
+            #### :package: Canary Packages Published
 
-            Latest commit: ${{ github.event.pull_request.head.sha }}
+            Published ${{ steps.version.outputs.version }}</summary>
 
-            <details>
-               <summary>Published ${{ steps.packagesData.outputs.count }} packages</summary>
-              ${{ fromJSON(steps.packagesData.outputs.packageList) }}
-            </details>
+            > Latest commit: ${{ github.event.pull_request.head.sha }}

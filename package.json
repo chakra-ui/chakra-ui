@@ -27,7 +27,6 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "license": "MIT",
   "scripts": {
-    "pkg": "manypkg run",
     "prepare": "husky install",
     "fix:pkgs": "manypkg fix",
     "version:pkgs": "changeset version",
@@ -37,7 +36,6 @@
     "prestart": "yarn && yarn bootstrap",
     "build:babel": "yarn pkg babel-plugin build",
     "build:cli": "yarn pkg @chakra-ui/cli build",
-    "build:templates": "ts-node -T scripts/build-templates.ts",
     "build:prop-docs": "yarn pkg props-docs build",
     "build:tokens": "chakra-cli tokens packages/theme",
     "build": "yarn build:babel && yarn build:cli && preconstruct build && yarn build:tokens",
@@ -67,8 +65,7 @@
   "resolutions": {
     "**/react": "17.0.2",
     "**/react-dom": "17.0.2",
-    "@popperjs/core": "2.9.3",
-    "minipass": "2.8.5"
+    "@popperjs/core": "2.9.3"
   },
   "version": "1.0.0",
   "dependencies": {
@@ -99,8 +96,6 @@
     "@storybook/theming": "^6.3.12",
     "@swc-node/jest": "^1.3.5",
     "@types/edit-json-file": "^1.6.1",
-    "@types/imagemin": "8.0.0",
-    "@types/imagemin-jpegtran": "5.0.1",
     "@types/jest": "^27.0.2",
     "@types/mkdirp": "1.0.2",
     "@types/node": "^16.11.6",
@@ -109,7 +104,6 @@
     "@types/react-router-dom": "5.3.2",
     "@types/react-table": "7.7.7",
     "@types/shelljs": "0.8.9",
-    "@types/uuid": "8.3.1",
     "@typescript-eslint/eslint-plugin": "5.3.0",
     "@typescript-eslint/parser": "5.3.0",
     "babel-eslint": "10.1.0",
@@ -133,12 +127,9 @@
     "eslint-plugin-react": "7.22.0",
     "eslint-plugin-react-hooks": "4.2.0",
     "eslint-plugin-testing-library": "3.9.2",
-    "esm": "3.2.25",
     "execa": "5.1.1",
     "framer-motion": "^4.0.0",
     "husky": "^7.0.4",
-    "imagemin": "7.0.1",
-    "imagemin-jpegtran": "7.0.0",
     "inquirer": "7.3.3",
     "jest": "27.3.1",
     "jest-environment-jsdom": "^27.3.1",
@@ -146,10 +137,7 @@
     "lint-staged": "11.2.6",
     "listr": "0.14.3",
     "lodash": "^4.17.21",
-    "markdown-toc": "1.2.0",
     "mkdirp": "^1.0.4",
-    "node-fetch": "3.0.0",
-    "pkg-dir": "^4.2.0",
     "plop": "2.7.6",
     "prettier": "^2.4.1",
     "react": "^17.0.1",
@@ -163,11 +151,9 @@
     "react-table": "7.7.0",
     "react-test-renderer": "^17.0.2",
     "rimraf": "3.0.2",
-    "sharp": "0.29.2",
     "shelljs": "0.8.4",
     "storybook-addon-performance": "0.16.1",
     "ts-node": "10.4.0",
-    "typescript": "^4.3.5",
-    "uuid": "8.3.2"
+    "typescript": "^4.3.5"
   }
 }
