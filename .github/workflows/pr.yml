@@ -91,6 +91,11 @@ jobs:
       - name: Build prop docs
         run: yarn build:prop-docs
 
+      - name: Setup CI Git User
+        run: |
+          git config --global user.email "joseshegs@gmail.com"
+          git config --global user.name "Sage"
+
       - name: Publish Canary
         run: |
           yarn version:canary
