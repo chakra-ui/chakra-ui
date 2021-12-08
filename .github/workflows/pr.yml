@@ -12,6 +12,7 @@ on:
 
 jobs:
   build:
+    name: Build, Lint and Test
     runs-on: ubuntu-latest
     steps:
       - name: Cancel previous runs
@@ -86,7 +87,7 @@ jobs:
 
       - name: Publish Canary
         id: changesets
-        uses: changesets/action@master
+        uses: changesets/action@v1
         with:
           publish: yarn release:canary
         env:

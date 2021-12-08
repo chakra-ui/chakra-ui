@@ -61,7 +61,7 @@ jobs:
 
       - name: Publish packages
         id: changesets
-        uses: changesets/action@master
+        uses: changesets/action@v1
         with:
           publish: yarn release
           commit: "ci(changesets): version packages"
