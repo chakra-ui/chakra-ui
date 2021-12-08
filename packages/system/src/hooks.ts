@@ -25,11 +25,7 @@ const resolveBreakpointValue = <T extends StringOrNumber>(
   fallbackValue: any,
 ) => {
   if (tokenValue === null) return tokenValue
-
-  const getValue =
-    typeof tokenValue === "number"
-      ? (val: T) => theme.__breakpoints?.asArray?.[val]
-      : (val: T) => theme.__breakpoints?.asObject?.[val]
+  const getValue = (val: T) => theme.__breakpoints?.asArray?.[val]
   return getValue(tokenValue) ?? getValue(fallbackValue) ?? fallbackValue
 }
 
@@ -40,12 +36,7 @@ const resolveTokenValue = <T extends StringOrNumber>(
   fallbackValue: any,
 ) => {
   if (tokenValue == null) return tokenValue
-  const scale = tokenValue.toString().split(".")[0]
-  const getValue =
-    scale !== "breakpoints"
-      ? (val: T) => theme.__cssMap?.[val]?.value
-      : (val: T) => theme.__breakpoints?.[val]?.value
-  // const getValue = (val: T) => theme.__cssMap?.[val]?.value
+  const getValue = (val: T) => theme.__cssMap?.[val]?.value
   return getValue(tokenValue) ?? getValue(fallbackValue) ?? fallbackValue
 }
 

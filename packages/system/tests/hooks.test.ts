@@ -125,25 +125,4 @@ describe("useToken", () => {
       mockBreakpoints["lg"],
     ])
   })
-
-  test("resolves a single breakpoint index", () => {
-    setupMock()
-
-    const { result } = renderHook(() => useToken("breakpoints", 1))
-
-    expect(result.current).not.toBeInstanceOf(Array)
-    expect(result.current).toStrictEqual(mockBreakpoints["sm"])
-  })
-
-  test("resolves multiple breakpoint indices", () => {
-    setupMock()
-
-    const { result } = renderHook(() => useToken("breakpoints", [0, 2]))
-
-    expect(result.current).toHaveLength(2)
-    expect(result.current).toStrictEqual([
-      mockBreakpoints["base"],
-      mockBreakpoints["md"],
-    ])
-  })
 })
