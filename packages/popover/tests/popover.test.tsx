@@ -1,5 +1,11 @@
 import * as React from "react"
-import { fireEvent, render, screen, waitFor } from "@chakra-ui/test-utils"
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  userEvent,
+} from "@chakra-ui/test-utils"
 import { usePopover, UsePopoverProps } from "../src"
 
 const Component = (props: UsePopoverProps) => {
@@ -99,4 +105,69 @@ test("load content lazily", async () => {
 
   // content should still be visible
   expect(content).toBeInTheDocument()
+})
+
+// For testing focus interaction, use another component with a focusable element inside.
+const FocusTestComponent = (props: UsePopoverProps) => {
+  const {
+    getTriggerProps,
+    getPopoverProps,
+    getPopoverPositionerProps,
+    onClose,
+  } = usePopover(props)
+
+  return (
+    <div>
+      <button type="button" {...getTriggerProps()}>
+        Open
+      </button>
+      <div {...getPopoverPositionerProps()}>
+        <div
+          {...getPopoverProps({
+            children: (
+              <div data-testid="content" tabIndex={0}>
+                Popover content
+                <button type="button" data-testid="InnerButton">
+                  Inner Button
+                </button>
+              </div>
+            ),
+          })}
+        />
+      </div>
+      <button type="button" onClick={onClose}>
+        Close
+      </button>
+    </div>
+  )
+}
+
+test("when 'trigger'='hover', keep content visible while the tab focus is inside a popover", async () => {
+  const utils = render(<FocusTestComponent trigger="hover" />)
+
+  const openButton = utils.getByText(/open/i)
+  const content = utils.queryByText(/content/i)
+  const innerButton = utils.queryByText(/inner/i)
+  const closeButton = utils.getByText(/close/i)
+
+  expect(document.body).toHaveFocus()
+
+  userEvent.tab()
+
+  expect(openButton).toHaveFocus()
+
+  // open the popover and it will have focus and be visible.
+  userEvent.tab()
+  expect(content).toHaveFocus()
+  expect(content).toBeVisible()
+
+  // move focus to next focusable element. Popover should be visible still.
+  userEvent.tab()
+  expect(innerButton).toHaveFocus()
+  expect(innerButton).toBeVisible()
+
+  // Close the popover. This should make Popover invisible.
+  userEvent.tab()
+  expect(closeButton).toHaveFocus()
+  expect(content).not.toBeVisible()
 })
