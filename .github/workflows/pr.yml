@@ -90,6 +90,7 @@ jobs:
         uses: changesets/action@v1
         with:
           publish: yarn release:canary
+          commit: "ci(changesets): version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
