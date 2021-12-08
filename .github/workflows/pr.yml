@@ -14,6 +14,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Get Yarn cache path
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -51,6 +56,11 @@ jobs:
     runs-on: ubuntu-latest
     if: contains( github.event.pull_request.labels.*.name, 'release:canary' )
     steps:
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Get Yarn cache path
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
