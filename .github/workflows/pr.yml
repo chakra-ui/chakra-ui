@@ -91,10 +91,13 @@ jobs:
       - name: Build prop docs
         run: yarn build:prop-docs
 
-      - name: Setup CI Git User
+      - name: Create .npmrc
         run: |
-          git config --global user.email "joseshegs@gmail.com"
-          git config --global user.name "Sage"
+          cat << EOF > "$HOME/.npmrc"
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish Canary
         run: |
