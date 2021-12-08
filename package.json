@@ -27,6 +27,7 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "license": "MIT",
   "scripts": {
+    "pkg": "manypkg run",
     "prepare": "husky install",
     "fix:pkgs": "manypkg fix",
     "version:pkgs": "changeset version",
