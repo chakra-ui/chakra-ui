@@ -84,10 +84,11 @@ jobs:
       - name: Build prop docs
         run: yarn build:prop-docs
 
-      - name: Configure yarn
+      - name: Configure npm
         run: |
-          yarn config set npmAuthToken $NPM_TOKEN
-          yarn config set npmAlwaysAuth true
+          cat << EOF > "$HOME/.npmrc"
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 

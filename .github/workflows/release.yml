@@ -21,7 +21,7 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v2
         with:
-          access_token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -46,10 +46,11 @@ jobs:
           git config --global user.email "joseshegs@gmail.com"
           git config --global user.name "Segun Adebayo"
 
-      - name: Configure yarn
+      - name: Configure npm
         run: |
-          yarn config set npmAuthToken $NPM_TOKEN
-          yarn config set npmAlwaysAuth true
+          cat << EOF > "$HOME/.npmrc"
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
