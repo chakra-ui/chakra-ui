@@ -73,7 +73,8 @@ jobs:
       - name: Release to @dev tag
         if: steps.changesets.outputs.published != 'true'
         run: |
-          yarn changeset version --snapshot
+          git checkout main
+          yarn changeset version --snapshot dev
           yarn changeset publish --tag dev
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
