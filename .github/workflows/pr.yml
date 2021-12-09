@@ -15,19 +15,14 @@ jobs:
     name: Build, Lint and Test
     runs-on: ubuntu-latest
     steps:
-      - name: Cancel previous runs
-        uses: styfle/cancel-workflow-action@0.9.1
-        with:
-          access_token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Get Yarn cache path
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - name: Checkout
+      - name: Checkout branch
         uses: actions/checkout@v2
 
-      - name: Enable node
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 16.x
@@ -42,6 +37,8 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile --ignore-engines
+        env:
+          CI: true
 
       - name: Build packages
         run: yarn build
@@ -53,23 +50,19 @@ jobs:
         run: yarn test:ci
 
   release:
-    name: Release Snapshot (if labelled)
+    name: Release Snapshot
     runs-on: ubuntu-latest
-    if: contains( github.event.pull_request.labels.*.name, 'release:canary' )
     steps:
-      - name: Cancel previous runs
-        uses: styfle/cancel-workflow-action@0.9.1
-        with:
-          access_token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Get Yarn cache path
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - name: Checkout
+      - name: Checkout Repo
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-      - name: Enable node
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 16.x
@@ -91,18 +84,17 @@ jobs:
       - name: Build prop docs
         run: yarn build:prop-docs
 
-      - name: Create .npmrc
+      - name: Configure yarn
         run: |
-          cat << EOF > "$HOME/.npmrc"
-            //registry.npmjs.org/:_authToken=$NPM_TOKEN
-          EOF
+          yarn config set npmAuthToken $NPM_TOKEN
+          yarn config set npmAlwaysAuth true
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish Canary
+      - name: Release to @pr channel
         run: |
-          yarn version:canary
-          yarn release:canary
+          yarn changeset version --snapshot pr
+          yarn changeset publish --tag pr
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -116,10 +108,10 @@ jobs:
       - name: Create comment
         uses: marocchino/sticky-pull-request-comment@v2
         with:
-          header: "canary-release"
+          header: "pr-release"
           message: |
-            #### :package: Canary Packages Published
+            #### :package: A new release has been made for this pull request
 
-            Published ${{ steps.version.outputs.version }}</summary>
+            To play around with this release, you can install `@chakra-ui/react@${{ steps.version.outputs.version }}` in your project
 
             > Latest commit: ${{ github.event.pull_request.head.sha }}

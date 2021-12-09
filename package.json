@@ -57,11 +57,7 @@
     "changelog:commit": "git add CHANGELOG.md && git commit -am 'docs: add changelog' && git push",
     "discord": "ts-node scripts/discord.ts",
     "create:pkg": "ts-node scripts/plopfile.ts",
-    "release": "changeset publish",
-    "version:canary": "changeset version --snapshot canary",
-    "release:canary": "changeset publish --tag canary",
-    "version:rc": "changeset version --snapshot rc",
-    "release:rc": "changeset publish --tag rc"
+    "release": "changeset publish"
   },
   "resolutions": {
     "**/react": "17.0.2",
