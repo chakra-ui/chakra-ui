@@ -71,7 +71,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Release to @dev tag
-        if: steps.changesets.outputs.published != "true"
+        if: steps.changesets.outputs.published != 'true'
         run: |
           yarn changeset version --snapshot
           yarn changeset publish --tag dev
@@ -80,13 +80,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Discord notification
-        if: steps.changesets.outputs.published == "true"
+        if: steps.changesets.outputs.published == 'true'
         run: yarn discord
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
 
       - name: Update changelog
-        if: steps.changesets.outputs.published == "true"
+        if: steps.changesets.outputs.published == 'true'
         run: |
           yarn changelog:write
           yarn changlog:commit
