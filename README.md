@@ -438,6 +438,9 @@ Thanks goes to these wonderful people
     <td align="center"><a href="http://schulz.codes"><img src="https://avatars.githubusercontent.com/u/3123354?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Daniel Schulz</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Atakethefake" title="Bug reports">🐛</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=takethefake" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=takethefake" title="Documentation">📖</a> <a href="#ideas-takethefake" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="http://michaelkilbane.com"><img src="https://avatars.githubusercontent.com/u/21234729?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Michael Kilbane</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=MichaelKilbane" title="Code">💻</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://ngxcoder.dev/"><img src="https://avatars.githubusercontent.com/u/87735757?v=4?s=64" width="64px;" alt=""/><br /><sub><b>ngxCoder</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=ngxCoder" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
