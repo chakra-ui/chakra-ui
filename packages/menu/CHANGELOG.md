@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.8.2
+
+### Patch Changes
+
+- [`cd0b7996b`](https://github.com/chakra-ui/chakra-ui/commit/cd0b7996b3f9df999cd87371f1a4a1384a10063e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `enabled` TS type was exposed to popover and menu from `UsePopperProps`. This
+  was resolved by omitting `enabled` from the type
+- Updated dependencies
+  [[`39846457e`](https://github.com/chakra-ui/chakra-ui/commit/39846457e241e6af3d18c77cdc0ba02857fe7462)]:
+  - @chakra-ui/transition@1.4.2
+
 ## 1.8.1
 
 ### Patch Changes

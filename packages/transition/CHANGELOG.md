@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.4.2
+
+### Patch Changes
+
+- [#5130](https://github.com/chakra-ui/chakra-ui/pull/5130)
+  [`39846457e`](https://github.com/chakra-ui/chakra-ui/commit/39846457e241e6af3d18c77cdc0ba02857fe7462)
+  Thanks [@georgekrax](https://github.com/georgekrax)! - Fixed issue where the
+  `ref` of `Slider` returns `null` due to prop override
+
 ## 1.4.1
 
 ### Patch Changes

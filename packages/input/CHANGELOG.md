@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.3.2
+
+### Patch Changes
+
+- [#5106](https://github.com/chakra-ui/chakra-ui/pull/5106)
+  [`ba76b8125`](https://github.com/chakra-ui/chakra-ui/commit/ba76b8125a533b0642b12ad6388774785ad026ac)
+  Thanks [@anubra266](https://github.com/anubra266)! - Fixed an issue where
+  `InputGroup` passes undefined `size` and `variant` props which overrides the
+  ones defined by default in a custom `Input` component.
+- Updated dependencies []:
+  - @chakra-ui/form-control@1.5.2
+
 ## 1.3.1
 
 ### Patch Changes

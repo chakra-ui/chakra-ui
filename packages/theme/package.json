@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/theme",
-  "version": "1.12.1",
+  "version": "1.12.2",
   "description": "The default theme for chakra components",
   "keywords": [
     "theme",
@@ -40,6 +40,6 @@
   },
   "devDependencies": {
     "@chakra-ui/cli": "1.6.0",
-    "@chakra-ui/system": "1.8.2"
+    "@chakra-ui/system": "1.8.3"
   }
 }

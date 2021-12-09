@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.4.2
+
+### Patch Changes
+
+- [#5139](https://github.com/chakra-ui/chakra-ui/pull/5139)
+  [`c20aa919e`](https://github.com/chakra-ui/chakra-ui/commit/c20aa919e4fa4d89a2c9be603fa60f851576558b)
+  Thanks [@mlajtos](https://github.com/mlajtos)! - Prevent `onKeyDown` callback
+  from de/registering on every call of `useTooltip`
+
 ## 1.4.1
 
 ### Patch Changes

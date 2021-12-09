@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/textarea",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Textarea React component for Chakra UI",
   "keywords": [
     "theme",
@@ -34,11 +34,11 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/form-control": "1.5.1",
+    "@chakra-ui/form-control": "1.5.2",
     "@chakra-ui/utils": "1.9.1"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.8.2",
+    "@chakra-ui/system": "1.8.3",
     "react": "^17.0.1"
   },
   "peerDependencies": {

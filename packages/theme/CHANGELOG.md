@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.12.2
+
+### Patch Changes
+
+- [`f15099adc`](https://github.com/chakra-ui/chakra-ui/commit/f15099adc60150781607288dbe12133c2fb84e38)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  tokens autocomplete don't show up anymore except user runs the cli command.
+
 ## 1.12.1
 
 ### Patch Changes

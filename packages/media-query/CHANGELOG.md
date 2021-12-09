@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.2.2
+
+### Patch Changes
+
+- [#5135](https://github.com/chakra-ui/chakra-ui/pull/5135)
+  [`53e2df4f9`](https://github.com/chakra-ui/chakra-ui/commit/53e2df4f9cbe7fc2fad69d1ee49a1e788811467a)
+  Thanks [@primos63](https://github.com/primos63)! - Improved performance and
+  behavior of `useMediaQuery` hook.
+
 ## 1.2.1
 
 ### Patch Changes

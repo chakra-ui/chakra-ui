@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/system",
-  "version": "1.8.2",
+  "version": "1.8.3",
   "description": "Chakra UI system primitives",
   "keywords": [
     "system",
@@ -37,7 +37,7 @@
   "dependencies": {
     "@chakra-ui/color-mode": "1.3.2",
     "@chakra-ui/react-utils": "1.2.1",
-    "@chakra-ui/styled-system": "1.14.1",
+    "@chakra-ui/styled-system": "1.15.0",
     "@chakra-ui/utils": "1.9.1",
     "react-fast-compare": "3.2.0"
   },
