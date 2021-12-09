@@ -1,5 +1,21 @@
 # Change Log
 
+## 1.8.3
+
+### Patch Changes
+
+- [#5117](https://github.com/chakra-ui/chakra-ui/pull/5117)
+  [`586eb6090`](https://github.com/chakra-ui/chakra-ui/commit/586eb6090fe9013936cd83a61bb5091814bcb906)
+  Thanks [@primos63](https://github.com/primos63)! - Allow retrieving breakpoint
+  tokens when using useToken
+
+- Updated dependencies
+  [[`26d2a547b`](https://github.com/chakra-ui/chakra-ui/commit/26d2a547bca20e197f352c7492e3cad197b513e6),
+  [`73235af10`](https://github.com/chakra-ui/chakra-ui/commit/73235af10d8868786ec58778dda9a42b8d275599),
+  [`f15099adc`](https://github.com/chakra-ui/chakra-ui/commit/f15099adc60150781607288dbe12133c2fb84e38),
+  [`a1d5e7bfa`](https://github.com/chakra-ui/chakra-ui/commit/a1d5e7bfae1b4cc749e14eed4977ae423b8bce2c)]:
+  - @chakra-ui/styled-system@1.15.0
+
 ## 1.8.2
 
 ### Patch Changes

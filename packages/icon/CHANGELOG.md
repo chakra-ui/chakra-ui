@@ -1,5 +1,21 @@
 # Change Log
 
+## 2.0.0
+
+### Major Changes
+
+- [#5129](https://github.com/chakra-ui/chakra-ui/pull/5129)
+  [`17400aff6`](https://github.com/chakra-ui/chakra-ui/commit/17400aff62601c1b70dcc4e60af1fadf3915f3e0)
+  Thanks [@zgid123](https://github.com/zgid123)! - Auto assign `key` when
+  passing array of paths to `createIcon`
+
+  ```jsx live=false
+  const HeartIcon = createIcon({
+    displayName: "HeartIcon",
+    path: [<path stroke="none" d="..." fill="none" />, <path d="..." />],
+  })
+  ```
+
 ## 1.2.1
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/transition",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Common transition components for Chakra UI",
   "sideEffects": false,
   "keywords": [
