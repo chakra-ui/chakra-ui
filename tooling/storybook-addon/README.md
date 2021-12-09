@@ -2,8 +2,8 @@
 
 Use Chakra UI in your Storybook stories.
 
-Wraps each of your stories with [`ChakraProvider`][chakraprovider] which can be
-configured using Storybook parameters.
+This Plugin wraps each of your stories with [`ChakraProvider`][chakraprovider]
+which can be configured using Storybook parameters.
 
 ## Installation
 
@@ -63,6 +63,7 @@ for more information.
 
 ## Color Mode Switch
 
-You will be able to toggle your color mode with the button in the top right corner as you can see below:
+You will be able to toggle your color mode with the button in the top right
+corner as you can see below:
 
 ![dark-mode](https://user-images.githubusercontent.com/87735757/142751123-77a39f2f-9277-4b11-b030-8a879d4b909b.gif)
