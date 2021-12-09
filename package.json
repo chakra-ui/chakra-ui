@@ -17,7 +17,8 @@
   },
   "preconstruct": {
     "packages": [
-      "packages/*"
+      "packages/*",
+      "tooling/storybook-addon"
     ]
   },
   "repository": {

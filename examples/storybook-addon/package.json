@@ -1,0 +1,20 @@
+{
+  "name": "storybook-addon",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.16.0",
+    "@storybook/addon-actions": "~6.3.12",
+    "@storybook/react": "~6.3.12"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "babel-loader": "^8.2.3"
+  },
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  }
+}
