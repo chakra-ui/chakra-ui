@@ -17,6 +17,136 @@ To better understand the changelog, here are some legends we use:
 
 <!-- CHANGELOG:INSERT -->
 
+## 09-12-2021
+
+`@chakra-ui/react@1.7.3`
+
+- Update storybook url configuration for `@chakra-ui/react` to
+  [https://storybook.chakra-ui.com](https://storybook.chakra-ui.com)
+
+**Layout** `v1.6.0`
+
+- Add support for style props `gap`, `columnGap` and `rowGap`. Those CSS
+  properties are valid in a grid or flex context
+
+> For further information see
+> [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/gap)
+
+- Fix TS issue with Grid component due to the native `gap`, `rowGap` and
+  `columnGap` we added to styled system.
+
+**Styled System** `v1.15.0`
+
+- Add support for style props `gap`, `columnGap` and `rowGap`. Those CSS
+  properties are valid in a grid or flex context
+
+> For further information see
+> [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/gap)
+
+- Fix issue where `bgGradient` parser doesn't work when a position is specified
+- Fix issue where tokens autocomplete don't show up anymore except user runs the
+  cli command.
+- Fixed issue where multi-value `inset` property doesn't work.
+
+**Menu** `v1.8.2`
+
+- Fix issue where `enabled` TS type was exposed to popover and menu from
+  `UsePopperProps`. This was resolved by omitting `enabled` from the type
+
+**Popover** `v1.11.0`
+
+- Fix issue where `enabled` TS type was exposed to popover and menu from
+  `UsePopperProps`. This was resolved by omitting `enabled` from the type
+- Fix issue where `Popover` will be `display:none` when inner element focused.
+- Add `PopoverAnchor` component which allows you to set the `Popover` reference
+  point without acting as a trigger.
+
+```jsx live=false
+<Popover>
+  {/* triggers the popover to open/close */}
+  <PopoverTrigger>
+    <button>Trigger</button>
+  </PopoverTrigger>
+  {/* popover will be positioned relative to this */}
+  <PopoverAnchor>
+    <Box width="40px" height="40px" />
+  </PopoverAnchor>
+  <PopoverContent>Hello World</PopoverContent>
+</Popover>
+```
+
+**Input** `v1.3.2`
+
+- Fixed an issue where `InputGroup` passes undefined `size` and `variant` props
+  which overrides the ones defined by default in a custom `Input` component.
+
+**System** `v1.8.3`
+
+- Allow retrieving breakpoint tokens when using useToken
+
+**Theme** `v1.12.2`
+
+- Fix issue where tokens autocomplete don't show up anymore except user runs the
+  cli command.
+
+**Toast** `v1.5.0`
+
+- The `toast` function now exposes a `containerStyle` property you can use to
+  override the default styles for the toast container.
+
+```jsx live=false
+function Example() {
+  // Via instantiation
+  const toast = useToast({
+    position: "top",
+    title: "Container style is customizable",
+    containerStyle: {
+      maxWidth: "100%",
+    },
+  })
+
+  // Or via trigger
+  return (
+    <Button
+      onClick={() => {
+        toast({
+          containerStyle: {
+            maxWidth: "100%",
+          },
+        })
+      }}
+    >
+      Click me to show toast with custom container style.
+    </Button>
+  )
+}
+```
+
+- Fix TS issue with toast placement utility
+
+**Tooltip** `v1.4.2`
+
+- Prevent `onKeyDown` callback from de/registering on every call of `useTooltip`
+
+**Media Query** `v1.2.2`
+
+- Improved performance and behavior of `useMediaQuery` hook.
+
+**Transition** `v1.4.2`
+
+- Fixed issue where the `ref` of `Slider` returns `null` due to prop override
+
+**Icon** `v2.0.0`
+
+- Auto assign `key` when passing array of paths to `createIcon`
+
+```jsx live=false
+const HeartIcon = createIcon({
+  displayName: "HeartIcon",
+  path: [<path stroke="none" d="..." fill="none" />, <path d="..." />],
+})
+```
+
 ## 17-11-2021
 
 **Props Docs** `v1.0.40`
