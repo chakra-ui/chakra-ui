@@ -2,11 +2,6 @@ name: PR Workflow
 
 on:
   pull_request:
-    types:
-      - opened
-      - synchronize
-      - labeled
-      - reopened
     branches:
       - main
 
