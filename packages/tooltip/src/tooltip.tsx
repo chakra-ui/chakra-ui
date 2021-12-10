@@ -57,7 +57,7 @@ const StyledTooltip = chakra(motion.div)
 /**
  * Tooltips display informative text when users hover, focus on, or tap an element.
  *
- * @see Docs     https://chakra-ui.com/components/tooltip
+ * @see Docs     https://chakra-ui.com/docs/overlay/tooltip
  * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices/#tooltip
  */
 export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
