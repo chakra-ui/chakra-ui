@@ -33,6 +33,19 @@ export function useBreakpoint(defaultBreakpoint?: string) {
   )
 
   const [currentBreakpoint, setCurrentBreakpoint] = React.useState(() => {
+    if (env.window.matchMedia) {
+      let maxBreakpoint
+      mediaQueries.forEach(({ query, ...breakpoint }) => {
+        const mediaQuery = env.window.matchMedia(query)
+        if (mediaQuery.matches) {
+          maxBreakpoint = breakpoint
+        }
+      })
+      if (maxBreakpoint) {
+        return maxBreakpoint
+      }
+    }
+
     if (!defaultBreakpoint) {
       return undefined
     }
