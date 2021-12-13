@@ -126,7 +126,7 @@ describe("Theme typings", () => {
     `)
   })
 
-  it("should not omit empty unions", async () => {
+  it("should emit empty scales as loose type", async () => {
     const themeInterface = await createThemeTypingsInterface(
       {},
       {
@@ -164,18 +164,18 @@ describe("Theme typings", () => {
   it("should emit empty strict unions as never", async () => {
     const themeInterface = await createThemeTypingsInterface(smallTheme, {
       config: themeKeyConfiguration,
-      strict: true,
+      strictComponentTypes: true,
     })
 
     expect(themeInterface).toMatchInlineSnapshot(`
       "// regenerate by running
       // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
       export interface ThemeTypings {
-        blur: never
-        borders: \\"sm\\" | \\"md\\"
-        borderStyles: never
-        borderWidths: never
-        breakpoints: \\"sm\\" | \\"md\\"
+        blur: (string & {})
+        borders: \\"sm\\" | \\"md\\" | (string & {})
+        borderStyles: (string & {})
+        borderWidths: (string & {})
+        breakpoints: \\"sm\\" | \\"md\\" | (string & {})
         colors:
           | \\"niceColor\\"
           | \\"suchWowColor\\"
@@ -190,65 +190,27 @@ describe("Theme typings", () => {
           | \\"onlyColorSchemeColor.800\\"
           | \\"onlyColorSchemeColor.900\\"
           | \\"such.deep.color\\"
-        colorSchemes: \\"onlyColorSchemeColor\\"
-        fonts: \\"sm\\" | \\"md\\"
-        fontSizes: \\"sm\\" | \\"md\\"
-        fontWeights: \\"sm\\" | \\"md\\"
-        layerStyles: \\"red\\" | \\"blue\\"
-        letterSpacings: \\"sm\\" | \\"md\\"
-        lineHeights: \\"sm\\" | \\"md\\"
-        radii: \\"sm\\" | \\"md\\"
-        shadows: \\"sm\\" | \\"md\\"
-        sizes: \\"sm\\" | \\"md\\"
-        space: \\"sm\\" | \\"-sm\\" | \\"md\\" | \\"-md\\"
-        textStyles: \\"small\\" | \\"large\\"
-        transition: \\"sm\\" | \\"md\\"
-        zIndices: \\"sm\\" | \\"md\\"
+          | (string & {})
+        colorSchemes: \\"onlyColorSchemeColor\\" | (string & {})
+        fonts: \\"sm\\" | \\"md\\" | (string & {})
+        fontSizes: \\"sm\\" | \\"md\\" | (string & {})
+        fontWeights: \\"sm\\" | \\"md\\" | (string & {})
+        layerStyles: \\"red\\" | \\"blue\\" | (string & {})
+        letterSpacings: \\"sm\\" | \\"md\\" | (string & {})
+        lineHeights: \\"sm\\" | \\"md\\" | (string & {})
+        radii: \\"sm\\" | \\"md\\" | (string & {})
+        shadows: \\"sm\\" | \\"md\\" | (string & {})
+        sizes: \\"sm\\" | \\"md\\" | (string & {})
+        space: \\"sm\\" | \\"-sm\\" | \\"md\\" | \\"-md\\" | (string & {})
+        textStyles: \\"small\\" | \\"large\\" | (string & {})
+        transition: \\"sm\\" | \\"md\\" | (string & {})
+        zIndices: \\"sm\\" | \\"md\\" | (string & {})
         components: {
           Button: {
             sizes: \\"sm\\"
             variants: \\"extraordinary\\" | \\"awesome\\" | \\"unused\\"
           }
         }
-      }
-      "
-    `)
-  })
-
-  it("should emit empty strict unions as never", async () => {
-    const themeInterface = await createThemeTypingsInterface(
-      {},
-      {
-        config: themeKeyConfiguration,
-        strict: true,
-      },
-    )
-
-    expect(themeInterface).toMatchInlineSnapshot(`
-      "// regenerate by running
-      // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
-      export interface ThemeTypings {
-        blur: never
-        borders: never
-        borderStyles: never
-        borderWidths: never
-        breakpoints: never
-        colors: never
-        colorSchemes: never
-        fonts: never
-        fontSizes: never
-        fontWeights: never
-        layerStyles: never
-        letterSpacings: never
-        lineHeights: never
-        radii: never
-        shadows: never
-        sizes: never
-        space: never
-        textStyles: never
-        transition: never
-        zIndices: never
-        components: {}
       }
       "
     `)
