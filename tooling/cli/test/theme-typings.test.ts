@@ -76,10 +76,95 @@ const smallTheme: Record<string, unknown> = {
 
 describe("Theme typings", () => {
   it("should create typings for a theme", async () => {
-    const themeUnderTest = smallTheme
-
-    const themeInterface = await createThemeTypingsInterface(themeUnderTest, {
+    const themeInterface = await createThemeTypingsInterface(smallTheme, {
       config: themeKeyConfiguration,
+    })
+
+    expect(themeInterface).toMatchInlineSnapshot(`
+      "// regenerate by running
+      // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
+      export interface ThemeTypings {
+        borders: \\"sm\\" | \\"md\\" | (string & {})
+        breakpoints: \\"sm\\" | \\"md\\" | (string & {})
+        colors:
+          | \\"niceColor\\"
+          | \\"suchWowColor\\"
+          | \\"onlyColorSchemeColor.50\\"
+          | \\"onlyColorSchemeColor.100\\"
+          | \\"onlyColorSchemeColor.200\\"
+          | \\"onlyColorSchemeColor.300\\"
+          | \\"onlyColorSchemeColor.400\\"
+          | \\"onlyColorSchemeColor.500\\"
+          | \\"onlyColorSchemeColor.600\\"
+          | \\"onlyColorSchemeColor.700\\"
+          | \\"onlyColorSchemeColor.800\\"
+          | \\"onlyColorSchemeColor.900\\"
+          | \\"such.deep.color\\"
+          | (string & {})
+        colorSchemes: \\"onlyColorSchemeColor\\" | (string & {})
+        fonts: \\"sm\\" | \\"md\\" | (string & {})
+        fontSizes: \\"sm\\" | \\"md\\" | (string & {})
+        fontWeights: \\"sm\\" | \\"md\\" | (string & {})
+        layerStyles: \\"red\\" | \\"blue\\" | (string & {})
+        letterSpacings: \\"sm\\" | \\"md\\" | (string & {})
+        lineHeights: \\"sm\\" | \\"md\\" | (string & {})
+        radii: \\"sm\\" | \\"md\\" | (string & {})
+        shadows: \\"sm\\" | \\"md\\" | (string & {})
+        sizes: \\"sm\\" | \\"md\\" | (string & {})
+        space: \\"sm\\" | \\"-sm\\" | \\"md\\" | \\"-md\\" | (string & {})
+        textStyles: \\"small\\" | \\"large\\" | (string & {})
+        transition: \\"sm\\" | \\"md\\" | (string & {})
+        zIndices: \\"sm\\" | \\"md\\" | (string & {})
+        components: {
+          Button: {
+            sizes: \\"sm\\" | (string & {})
+            variants: \\"extraordinary\\" | \\"awesome\\" | \\"unused\\" | (string & {})
+          }
+        }
+      }
+      "
+    `)
+  })
+
+  it("should not omit empty unions", async () => {
+    const themeInterface = await createThemeTypingsInterface(
+      {},
+      {
+        config: themeKeyConfiguration,
+      },
+    )
+
+    expect(themeInterface).toMatchInlineSnapshot(`
+      "// regenerate by running
+      // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
+      export interface ThemeTypings {
+        borders: string & {}
+        breakpoints: string & {}
+        colors: string & {}
+        colorSchemes: string & {}
+        fonts: string & {}
+        fontSizes: string & {}
+        fontWeights: string & {}
+        layerStyles: string & {}
+        letterSpacings: string & {}
+        lineHeights: string & {}
+        radii: string & {}
+        shadows: string & {}
+        sizes: string & {}
+        space: string & {}
+        textStyles: string & {}
+        transition: string & {}
+        zIndices: string & {}
+        components: {}
+      }
+      "
+    `)
+  })
+
+  it("should emit empty strict unions as never", async () => {
+    const themeInterface = await createThemeTypingsInterface(smallTheme, {
+      config: themeKeyConfiguration,
+      strict: true,
     })
 
     expect(themeInterface).toMatchInlineSnapshot(`
@@ -130,12 +215,14 @@ describe("Theme typings", () => {
     `)
   })
 
-  it("should not omit empty unions", async () => {
-    const themeUnderTest = {}
-
-    const themeInterface = await createThemeTypingsInterface(themeUnderTest, {
-      config: themeKeyConfiguration,
-    })
+  it("should emit empty strict unions as never", async () => {
+    const themeInterface = await createThemeTypingsInterface(
+      {},
+      {
+        config: themeKeyConfiguration,
+        strict: true,
+      },
+    )
 
     expect(themeInterface).toMatchInlineSnapshot(`
       "// regenerate by running

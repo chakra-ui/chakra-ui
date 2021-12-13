@@ -14,12 +14,14 @@ const writeFileAsync = promisify(writeFile)
 
 async function runTemplateWorker({
   themeFile,
+  strict,
 }: {
   themeFile: string
+  strict?: boolean
 }): Promise<string> {
   const worker = fork(
     path.join(__dirname, "..", "..", "scripts", "read-theme-file.worker.js"),
-    [themeFile],
+    [themeFile].concat(strict ? "--strict" : []),
     {
       stdio: ["pipe", "pipe", "pipe", "ipc"],
       cwd: process.cwd(),
@@ -43,13 +45,15 @@ async function runTemplateWorker({
 export async function generateThemeTypings({
   themeFile,
   out,
+  strict,
 }: {
   themeFile: string
   out: string
+  strict?: boolean
 }) {
   const spinner = ora("Generating chakra theme typings").start()
   try {
-    const template = await runTemplateWorker({ themeFile })
+    const template = await runTemplateWorker({ themeFile, strict })
     const outPath = await resolveOutputPath(out)
 
     spinner.info()

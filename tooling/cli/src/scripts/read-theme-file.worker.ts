@@ -99,6 +99,7 @@ async function readTheme(themeFilePath: string) {
  */
 async function run() {
   const themeFile = process.argv[2]
+  const strict = process.argv.includes("--strict")
 
   if (!themeFile) {
     throw new Error("No path to theme file provided.")
@@ -112,6 +113,7 @@ async function run() {
 
   const template = await createThemeTypingsInterface(theme, {
     config: themeKeyConfiguration,
+    strict,
   })
 
   if (process.send) {

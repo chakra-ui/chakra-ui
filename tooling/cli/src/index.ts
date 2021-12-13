@@ -16,9 +16,10 @@ export async function run() {
       "--out <path>",
       `output file e.g. ${path.join(...themeInterfaceDestination)}`,
     )
+    .option(" --strict", "Generate strict types")
     .action(async (themeFile: string, command: Command) => {
-      const { out } = command.opts()
-      await generateThemeTypings({ themeFile, out })
+      const { out, strict } = command.opts()
+      await generateThemeTypings({ themeFile, out, strict })
     })
 
   program.on("--help", () => {

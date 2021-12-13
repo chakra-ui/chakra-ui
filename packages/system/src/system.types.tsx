@@ -10,12 +10,12 @@ import * as React from "react"
 
 export interface ThemingProps<ThemeComponent extends string = string> {
   variant?: ThemeComponent extends keyof ThemeTypings["components"]
-    ? ThemeTypings["components"][ThemeComponent]["variants"] | (string & {})
-    : string
+    ? ThemeTypings["components"][ThemeComponent]["variants"]
+    : never
   size?: ThemeComponent extends keyof ThemeTypings["components"]
-    ? ThemeTypings["components"][ThemeComponent]["sizes"] | (string & {})
-    : string
-  colorScheme?: ThemeTypings["colorSchemes"] | (string & {})
+    ? ThemeTypings["components"][ThemeComponent]["sizes"]
+    : never
+  colorScheme?: ThemeTypings["colorSchemes"]
   orientation?: "vertical" | "horizontal"
   styleConfig?: Dict
 }
@@ -56,19 +56,19 @@ export type PropsOf<T extends As> = React.ComponentPropsWithoutRef<T> & {
 
 export type OmitCommonProps<
   Target,
-  OmitAdditionalProps extends keyof any = never
+  OmitAdditionalProps extends keyof any = never,
 > = Omit<Target, "transition" | "as" | "color" | OmitAdditionalProps>
 
 export type RightJoinProps<
   SourceProps extends object = {},
-  OverrideProps extends object = {}
+  OverrideProps extends object = {},
 > = OmitCommonProps<SourceProps, keyof OverrideProps> & OverrideProps
 
 export type MergeWithAs<
   ComponentProps extends object,
   AsProps extends object,
   AdditionalProps extends object = {},
-  AsComponent extends As = As
+  AsComponent extends As = As,
 > = RightJoinProps<ComponentProps, AdditionalProps> &
   RightJoinProps<AsProps, AdditionalProps> & {
     as?: AsComponent
