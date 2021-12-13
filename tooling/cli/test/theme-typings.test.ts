@@ -161,7 +161,7 @@ describe("Theme typings", () => {
     `)
   })
 
-  it("should emit empty strict unions as never", async () => {
+  it("should emit strict component types", async () => {
     const themeInterface = await createThemeTypingsInterface(smallTheme, {
       config: themeKeyConfiguration,
       strictComponentTypes: true,
