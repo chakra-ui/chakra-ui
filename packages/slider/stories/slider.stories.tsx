@@ -9,7 +9,7 @@ import {
 } from "../src"
 
 export default {
-  title: "Slider",
+  title: "Components / Forms / Slider",
   decorators: [
     (story: Function) => (
       <chakra.div maxWidth="400px" height="300px" mx="auto" mt="40px">
@@ -24,7 +24,7 @@ export const SliderBug = () => {
     <Slider
       defaultValue={10}
       min={0}
-      max={20}
+      max={60}
       step={5}
       onChangeStart={console.log}
       onChangeEnd={console.log}

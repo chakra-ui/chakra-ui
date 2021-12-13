@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { FormControl } from "@chakra-ui/react"
-import { fireEvent, render } from "@chakra-ui/test-utils"
+import { fireEvent, render, waitFor } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Radio, useRadioGroup, UseRadioGroupProps, RadioGroup } from "../src"
 
@@ -41,7 +41,7 @@ test("uncontrolled: correctly manages state", () => {
   expect(utils.getByLabelText("b")).toBeChecked()
 })
 
-test("Uncontrolled RadioGroup - should not check if group disabled", () => {
+test.only("Uncontrolled RadioGroup - should not check if group disabled", async () => {
   const Component = () => (
     <RadioGroup isDisabled isFocusable={false}>
       <Radio value="one">One</Radio>
@@ -60,13 +60,8 @@ test("Uncontrolled RadioGroup - should not check if group disabled", () => {
     </RadioGroup>
   )
   const { container } = render(<Component />)
-  const [
-    radioOne,
-    radioOneFocusable,
-    radioTwo,
-    radioTwoFocusable,
-    radioThree,
-  ] = Array.from(container.querySelectorAll("input"))
+  const [radioOne, radioOneFocusable, radioTwo, radioTwoFocusable, radioThree] =
+    Array.from(container.querySelectorAll("input"))
 
   const [
     radioOneSpan,
@@ -91,13 +86,13 @@ test("Uncontrolled RadioGroup - should not check if group disabled", () => {
   expect(radioThree).not.toBeDisabled()
 
   fireEvent.click(radioOne)
-  expect(radioOne).not.toBeChecked()
+  await waitFor(() => expect(radioOne).not.toBeChecked())
   fireEvent.click(radioOneFocusable)
-  expect(radioOneFocusable).not.toBeChecked()
+  await waitFor(() => expect(radioOneFocusable).not.toBeChecked())
   fireEvent.click(radioTwo)
-  expect(radioTwo).not.toBeChecked()
+  await waitFor(() => expect(radioTwo).not.toBeChecked())
   fireEvent.click(radioTwoFocusable)
-  expect(radioTwoFocusable).not.toBeChecked()
+  await waitFor(() => expect(radioTwoFocusable).not.toBeChecked())
   fireEvent.click(radioThree)
   expect(radioThree).toBeChecked()
 })

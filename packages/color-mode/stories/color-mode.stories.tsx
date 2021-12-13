@@ -2,7 +2,7 @@ import * as React from "react"
 import { useColorModeValue } from "../src"
 
 export default {
-  title: "Color Mode",
+  title: "System / Color Mode",
 }
 
 export const BasicExample = () => {

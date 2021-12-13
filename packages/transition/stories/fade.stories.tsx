@@ -3,7 +3,7 @@ import * as React from "react"
 import { Fade, FadeProps } from "../src/fade"
 
 export default {
-  title: "Transition / Fade",
+  title: "Components / Transition / Fade",
 }
 
 const Example = (props: FadeProps) => {

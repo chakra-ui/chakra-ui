@@ -61,7 +61,7 @@ export interface BreadcrumbLinkProps extends HTMLChakraProps<"a"> {
  */
 export const BreadcrumbLink = forwardRef<BreadcrumbLinkProps, "a">(
   (props, ref) => {
-    const { isCurrentPage, as, className, ...rest } = props
+    const { isCurrentPage, as, className, href, ...rest } = props
     const styles = useStyles()
 
     const sharedProps = {
@@ -77,7 +77,7 @@ export const BreadcrumbLink = forwardRef<BreadcrumbLinkProps, "a">(
       )
     }
 
-    return <chakra.a __css={styles.link} {...sharedProps} />
+    return <chakra.a __css={styles.link} href={href} {...sharedProps} />
   },
 )
 

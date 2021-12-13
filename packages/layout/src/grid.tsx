@@ -9,7 +9,9 @@ import { filterUndefined, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { BoxProps } from "./box"
 
-export interface GridProps extends HTMLChakraProps<"div">, GridOptions {}
+export interface GridProps
+  extends Omit<HTMLChakraProps<"div">, keyof GridOptions>,
+    GridOptions {}
 
 /**
  * React component used to create grid layouts.
@@ -158,15 +160,8 @@ function spanFn(span?: ResponsiveValue<number | "auto">) {
 }
 
 export const GridItem = forwardRef<GridItemProps, "div">((props, ref) => {
-  const {
-    colSpan,
-    colStart,
-    colEnd,
-    rowEnd,
-    rowSpan,
-    rowStart,
-    ...rest
-  } = props
+  const { colSpan, colStart, colEnd, rowEnd, rowSpan, rowStart, ...rest } =
+    props
 
   const styles = filterUndefined({
     gridColumn: spanFn(colSpan),

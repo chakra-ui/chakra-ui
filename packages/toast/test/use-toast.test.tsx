@@ -30,7 +30,7 @@ test("can accept default options", async () => {
     result.current()
   })
 
-  const allByTitle = await screen.findAllByText(title)
+  const allByTitle = await screen.findAllByRole("alert", { name: title })
   const allByDescription = await screen.findAllByText(description)
 
   expect(allByTitle).toHaveLength(1)
@@ -55,7 +55,7 @@ test("can override default options", async () => {
     result.current({ title, description })
   })
 
-  const allByTitle = await screen.findAllByText(title)
+  const allByTitle = await screen.findAllByRole("alert", { name: title })
   const allByDescription = await screen.findAllByText(description)
 
   expect(allByTitle).toHaveLength(1)

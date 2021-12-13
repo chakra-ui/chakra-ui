@@ -1,15 +1,9 @@
 import { useFormControlContext } from "@chakra-ui/form-control"
 import { useBoolean, useControllableProp, useId } from "@chakra-ui/hooks"
-import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
+import { PropGetter } from "@chakra-ui/react-utils"
 import { ariaAttr, callAllHandlers, dataAttr, warn } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
-import {
-  ChangeEvent,
-  SyntheticEvent,
-  useCallback,
-  useRef,
-  useState,
-} from "react"
+import { ChangeEvent, SyntheticEvent, useCallback, useState } from "react"
 import { useRadioGroupContext } from "./radio-group"
 
 /**
@@ -116,8 +110,6 @@ export function useRadio(props: UseRadioProps = {}) {
   const [isHovered, setHovering] = useBoolean()
   const [isActive, setActive] = useBoolean()
 
-  const ref = useRef<HTMLInputElement>(null)
-
   const [isCheckedState, setChecked] = useState(Boolean(defaultChecked))
 
   const [isControlled, isChecked] = useControllableProp(
@@ -201,13 +193,13 @@ export function useRadio(props: UseRadioProps = {}) {
   const { onFocus, onBlur } = formControl ?? {}
 
   const getInputProps: PropGetter<HTMLInputElement> = useCallback(
-    (props = {}, forwardedRef = null) => {
+    (props = {}, ref = null) => {
       const trulyDisabled = isDisabled && !isFocusable
 
       return {
         ...props,
         id,
-        ref: mergeRefs(forwardedRef, ref),
+        ref,
         type: "radio",
         name,
         value,
@@ -222,8 +214,8 @@ export function useRadio(props: UseRadioProps = {}) {
         required: isRequired,
         "aria-invalid": ariaAttr(isInvalid),
         "aria-disabled": ariaAttr(trulyDisabled),
-        "aria-readonly": ariaAttr(isReadOnly),
         "aria-required": ariaAttr(isRequired),
+        "data-readonly": dataAttr(isReadOnly),
         style: visuallyHiddenStyle,
       }
     },
@@ -256,6 +248,14 @@ export function useRadio(props: UseRadioProps = {}) {
     "data-invalid": dataAttr(isInvalid),
   })
 
+  const getRootProps: PropGetter = (props, ref = null) => ({
+    ...props,
+    ref,
+    "data-disabled": dataAttr(isDisabled),
+    "data-checked": dataAttr(isChecked),
+    "data-invalid": dataAttr(isInvalid),
+  })
+
   return {
     state: {
       isInvalid,
@@ -270,6 +270,7 @@ export function useRadio(props: UseRadioProps = {}) {
     getCheckboxProps,
     getInputProps,
     getLabelProps,
+    getRootProps,
     htmlProps,
   }
 }

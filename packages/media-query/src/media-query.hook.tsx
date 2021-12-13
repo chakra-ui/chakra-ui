@@ -14,7 +14,7 @@ export function usePrefersReducedMotion(): boolean {
  * React hook for getting the user's color mode preference.
  */
 export function useColorModePreference(): "dark" | "light" | undefined {
-  const [isDark, isLight] = useMediaQuery([
+  const [isLight, isDark] = useMediaQuery([
     "(prefers-color-scheme: light)",
     "(prefers-color-scheme: dark)",
   ])

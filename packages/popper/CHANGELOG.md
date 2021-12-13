@@ -1,5 +1,83 @@
 # Change Log
 
+## 2.4.1
+
+### Patch Changes
+
+- [#5075](https://github.com/chakra-ui/chakra-ui/pull/5075)
+  [`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Update babel config to
+  transpile soruces for older browsers. This fixes issues with CRA and
+  Storybook.
+- Updated dependencies
+  [[`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)]:
+  - @chakra-ui/react-utils@1.2.1
+
+## 2.4.0
+
+### Minor Changes
+
+- [#4991](https://github.com/chakra-ui/chakra-ui/pull/4991)
+  [`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update build system
+  we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+  The previous build system transpiles the code in `src` directory to `dist/esm`
+  and `dist/cjs` keeping the same file structure. The new build system merges
+  all files in `src` and transpiles to a single `esm` and `cjs` file.
+
+  **Potential Breaking Change:** The side effect of this is that, if you
+  imported any function, component or hook using the **undocumented** approach
+  like
+  `import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+  you'll notice that the this doesn't work anymore.
+
+  Here's how to resolve it:
+
+  ```jsx live=false
+  // Won't work 🎇
+  import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+
+  // Works ✅
+  import { useOutsideClick } from "@chakra-ui/hooks"
+  ```
+
+  If this affected your project, we recommend that you import hooks, functions
+  or components the way it's shown in the documentation. This will help keep
+  your project future-proof.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)]:
+  - @chakra-ui/react-utils@1.2.0
+
+## 2.3.1
+
+### Patch Changes
+
+- [`c3f016149`](https://github.com/chakra-ui/chakra-ui/commit/c3f01614929d2f68a39cf78111d17f4f4c684706)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Remove default `[]`
+  value for modifiers and moved it into `createPopper` definition. This allows
+  memoized modifiers to work correctly in user-land when used with
+  `useCallback`.
+
+## 2.3.0
+
+### Minor Changes
+
+- [`4146a9051`](https://github.com/chakra-ui/chakra-ui/commit/4146a9051a5151532503e31c464193e9d118dd26)
+  [#3837](https://github.com/chakra-ui/chakra-ui/pull/3837) Thanks
+  [@mcha-dev](https://github.com/mcha-dev)! - `usePopper` now accepts a
+  `direction` prop so it can handle placement for RTL languages. Values such as
+  `top-start`, `top-end`, `bottom-start` and `bottom-end` will be flipped
+  depending on the theme's direction value.
+
+  In addition to the default `popper.js` placement, you can pass `start-start`,
+  `start-end`, `end-start` and `end-end`. This will resolve to the equivalent
+  `popper.js` placement as well.
+
 ## 2.2.1
 
 ### Patch Changes

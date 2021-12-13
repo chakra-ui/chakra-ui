@@ -3,7 +3,7 @@ import { isFunction, __DEV__ } from "@chakra-ui/utils"
 import ReachAlert from "@reach/alert"
 import { motion, useIsPresent, Variants } from "framer-motion"
 import * as React from "react"
-import { ToastOptions } from "./toast.types"
+import type { ToastOptions } from "./toast.types"
 import { getToastStyle } from "./toast.utils"
 
 /**
@@ -68,6 +68,7 @@ export const Toast: React.FC<ToastProps> = (props) => {
     requestClose = false,
     position = "bottom",
     duration = 5000,
+    containerStyle = {},
   } = props
 
   const [delay, setDelay] = React.useState(duration)
@@ -121,6 +122,7 @@ export const Toast: React.FC<ToastProps> = (props) => {
           maxWidth: 560,
           minWidth: 300,
           margin: "0.5rem",
+          ...containerStyle,
         }}
       >
         {isFunction(message) ? message({ id, onClose: close }) : message}

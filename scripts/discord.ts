@@ -45,7 +45,9 @@ function start() {
       await Discord.Util.delayFor(1000)
       spinner.start("Reading Changelog.md...")
 
-      const content = fs.readFileSync(".changelogrc").toString()
+      let content = fs.readFileSync(".changelogrc").toString()
+      content = ["**New Release Update :tada:**", content].join("\n\n")
+
       spinner.succeed().start("Posting Changelog content to #annoucement")
 
       const msgs = Discord.Util.splitMessage(content)

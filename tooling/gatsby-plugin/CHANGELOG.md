@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.0.2
+
+### Patch Changes
+
+- [`f44a66c42`](https://github.com/chakra-ui/chakra-ui/commit/f44a66c42f75f66fdb73e08fe6bdcc9129a98c27)
+  [#4898](https://github.com/chakra-ui/chakra-ui/pull/4898) Thanks
+  [@LekoArts](https://github.com/LekoArts)! - fix(gatsby-plugin): Update
+  peerDependencies
+
+  Update `peerDependencies` to include Gatsby 4
+
 ## 2.0.1
 
 ### Patch Changes

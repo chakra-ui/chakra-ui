@@ -2,7 +2,7 @@ import * as React from "react"
 import { Stack, StackDivider, Box, Heading, Text, Divider } from "../src"
 
 export default {
-  title: "Stack",
+  title: "Components / Layout / Stack",
 }
 
 export const Vertical = () => (

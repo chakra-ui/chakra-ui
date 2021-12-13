@@ -31,6 +31,9 @@ const baseStyleContainer: SystemStyleFunction = (props) => {
   const { orientation } = props
 
   return {
+    display: "inline-block",
+    position: "relative",
+    cursor: "pointer",
     _disabled: {
       opacity: 0.6,
       cursor: "default",
@@ -46,6 +49,7 @@ const baseStyleContainer: SystemStyleFunction = (props) => {
 
 const baseStyleTrack: SystemStyleFunction = (props) => {
   return {
+    overflow: "hidden",
     borderRadius: "sm",
     bg: mode("gray.200", "whiteAlpha.200")(props),
     _disabled: {
@@ -56,6 +60,11 @@ const baseStyleTrack: SystemStyleFunction = (props) => {
 
 const baseStyleThumb: SystemStyleFunction = (props) => {
   return {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+    outline: 0,
     zIndex: 1,
     borderRadius: "full",
     bg: "white",
@@ -74,6 +83,8 @@ const baseStyleFilledTrack: SystemStyleFunction = (props) => {
   const { colorScheme: c } = props
 
   return {
+    width: "inherit",
+    height: "inherit",
     bg: mode(`${c}.500`, `${c}.200`)(props),
   }
 }

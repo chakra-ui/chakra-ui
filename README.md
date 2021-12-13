@@ -93,11 +93,11 @@ To use Chakra UI components, all you need to do is install the
 `@chakra-ui/react` package and its peer dependencies:
 
 ```sh
-$ yarn add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4
+$ yarn add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^5
 
 # or
 
-$ npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4
+$ npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^5
 ```
 
 ## Usage
@@ -145,6 +145,11 @@ information on how to use our official `create-react-app` templates.
 
 Feel like contributing? That's awesome! We have a
 [contributing guide](./CONTRIBUTING.md) to help guide you.
+
+Our docsite lives in a
+[separate repo](https://github.com/chakra-ui/chakra-ui-docs). If you're
+interested in contributing to the documentation, check out the
+[docsite contribution guide](https://github.com/chakra-ui/chakra-ui-docs/blob/main/CONTRIBUTING.md).
 
 ## Contributors ✨
 
@@ -431,6 +436,10 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://joaopaulo-developer.vercel.app/"><img src="https://avatars.githubusercontent.com/u/64229622?v=4?s=64" width="64px;" alt=""/><br /><sub><b>João Paulo Rodrigues</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=joaorodrs" title="Documentation">📖</a></td>
     <td align="center"><a href="http://develmonk.com"><img src="https://avatars.githubusercontent.com/u/1308847?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Avery Freeman</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=averyfreeman" title="Documentation">📖</a></td>
     <td align="center"><a href="http://schulz.codes"><img src="https://avatars.githubusercontent.com/u/3123354?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Daniel Schulz</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Atakethefake" title="Bug reports">🐛</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=takethefake" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=takethefake" title="Documentation">📖</a> <a href="#ideas-takethefake" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="http://michaelkilbane.com"><img src="https://avatars.githubusercontent.com/u/21234729?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Michael Kilbane</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=MichaelKilbane" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://ngxcoder.dev/"><img src="https://avatars.githubusercontent.com/u/87735757?v=4?s=64" width="64px;" alt=""/><br /><sub><b>ngxCoder</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=ngxCoder" title="Code">💻</a></td>
   </tr>
 </table>
 

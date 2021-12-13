@@ -18,7 +18,7 @@ In modern web development, we have lots of solutions and architectures that have
 tried to unify how components are styled. We've seen CSS architectures like BEM,
 SMACSS, etc, and frameworks like theme-ui, and Tailwind CSS.
 
-While these solutions work great, we think there still a sheer amount of work
+While these solutions work great, we still think there is a sheer amount of work
 required to create a fully customizable, theme-aware component.
 
 ## Solutions
@@ -28,7 +28,7 @@ required to create a fully customizable, theme-aware component.
 Chakra provides enhanced JSX elements that can be styled directly via props, or
 can accept the common `sx` prop for custom styles.
 
-We'll provide a chakra function, just like styled-component. Users can create
+We'll provide a chakra function, just like styled-components. Users can create
 any component using the `chakra.[element]`. The resulting component will be a
 styled component and have all system props.
 
@@ -65,8 +65,8 @@ components have the following modifiers:
 - Color mode (Optional): Components also change their visual styles based on the
   user preferred color mode (light or dark)
 
-Our goal with this component API to design a common interface to style any
-component give these characteristics. Here's how it works:
+Our goal with this component API is to design a common interface to style any
+component given these characteristics. Here's how it works:
 
 ```jsx
 // 1. create a component schema in your theme

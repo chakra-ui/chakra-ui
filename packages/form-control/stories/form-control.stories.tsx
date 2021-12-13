@@ -11,7 +11,7 @@ import {
 } from "../src"
 
 export default {
-  title: "FormControl",
+  title: "Components / Forms / FormControl",
   decorators: [
     (story: Function) => (
       <chakra.div mx="auto" mt="40px" maxW="400px">

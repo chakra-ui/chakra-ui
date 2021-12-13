@@ -57,3 +57,33 @@ test("separator can be changed", () => {
   )
   expect(screen.getAllByText("-")).toHaveLength(1)
 })
+
+test("breadcrumb link has its href attribute correctly set", () => {
+  render(
+    <Breadcrumb>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbItem isCurrentPage>
+        <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
+      </BreadcrumbItem>
+    </Breadcrumb>,
+  )
+  const breadcrumbLink = screen.getByText("Link 1")
+  expect(breadcrumbLink.getAttribute("href")).toBe("#")
+})
+
+test("current page link doesn't have href attribute set", () => {
+  render(
+    <Breadcrumb>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbItem isCurrentPage>
+        <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
+      </BreadcrumbItem>
+    </Breadcrumb>,
+  )
+  const currentPageLink = screen.getByText("Link 2")
+  expect(currentPageLink.getAttribute("href")).toBe(null)
+})

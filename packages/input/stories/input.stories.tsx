@@ -7,7 +7,7 @@ import {
 import { CheckIcon, PhoneIcon } from "@chakra-ui/icons"
 import { useDisclosure } from "@chakra-ui/hooks"
 import { Stack } from "@chakra-ui/layout"
-import { chakra } from "@chakra-ui/system"
+import { chakra, forwardRef } from "@chakra-ui/system"
 import * as React from "react"
 import {
   Input,
@@ -16,10 +16,11 @@ import {
   InputLeftElement,
   InputRightAddon,
   InputRightElement,
+  InputProps,
 } from "../src"
 
 export default {
-  title: "Input",
+  title: "Components / Forms / Input",
   decorators: [
     (story: Function) => (
       <chakra.div maxW="560px" mx="auto" mt="40px">
@@ -196,3 +197,18 @@ export const WithInputElementBug = () => {
     </>
   )
 }
+
+export const InputGroupCustomInputProps = () => {
+  return (
+    <>
+      <InputGroup>
+        <CustomInput m="10px" placeholder="should be flushed" />
+      </InputGroup>
+      <CustomInput m="10px" placeholder="is flushed" />
+    </>
+  )
+}
+
+const CustomInput = forwardRef<InputProps, "input">((props, ref) => (
+  <Input ref={ref} color="gray.600" variant="flushed" {...props} />
+))

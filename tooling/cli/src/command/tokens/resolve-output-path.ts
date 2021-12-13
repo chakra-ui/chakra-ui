@@ -9,7 +9,8 @@ export const themeInterfaceDestination = [
   "@chakra-ui",
   "styled-system",
   "dist",
-  "types",
+  "declarations",
+  "src",
   "theming.types.d.ts",
 ]
 

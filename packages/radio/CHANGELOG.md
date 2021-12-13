@@ -1,5 +1,130 @@
 # Change Log
 
+## 1.4.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@1.5.2
+
+## 1.4.2
+
+### Patch Changes
+
+- [#5096](https://github.com/chakra-ui/chakra-ui/pull/5096)
+  [`e29634a07`](https://github.com/chakra-ui/chakra-ui/commit/e29634a07544f36e753d942ad8008b0198eddc53)
+  Thanks [@anubra266](https://github.com/anubra266)! - Add cursor `pointer` to
+  the radio container
+
+## 1.4.1
+
+### Patch Changes
+
+- [#5075](https://github.com/chakra-ui/chakra-ui/pull/5075)
+  [`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Update babel config to
+  transpile soruces for older browsers. This fixes issues with CRA and
+  Storybook.
+- Updated dependencies
+  [[`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)]:
+  - @chakra-ui/form-control@1.5.1
+  - @chakra-ui/hooks@1.7.1
+  - @chakra-ui/react-utils@1.2.1
+  - @chakra-ui/utils@1.9.1
+  - @chakra-ui/visually-hidden@1.1.1
+
+## 1.4.0
+
+### Minor Changes
+
+- [#4991](https://github.com/chakra-ui/chakra-ui/pull/4991)
+  [`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update build system
+  we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+  The previous build system transpiles the code in `src` directory to `dist/esm`
+  and `dist/cjs` keeping the same file structure. The new build system merges
+  all files in `src` and transpiles to a single `esm` and `cjs` file.
+
+  **Potential Breaking Change:** The side effect of this is that, if you
+  imported any function, component or hook using the **undocumented** approach
+  like
+  `import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+  you'll notice that the this doesn't work anymore.
+
+  Here's how to resolve it:
+
+  ```jsx live=false
+  // Won't work 🎇
+  import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+
+  // Works ✅
+  import { useOutsideClick } from "@chakra-ui/hooks"
+  ```
+
+  If this affected your project, we recommend that you import hooks, functions
+  or components the way it's shown in the documentation. This will help keep
+  your project future-proof.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)]:
+  - @chakra-ui/form-control@1.5.0
+  - @chakra-ui/hooks@1.7.0
+  - @chakra-ui/react-utils@1.2.0
+  - @chakra-ui/utils@1.9.0
+  - @chakra-ui/visually-hidden@1.1.0
+
+## 1.3.13
+
+### Patch Changes
+
+- [`5f531c51f`](https://github.com/chakra-ui/chakra-ui/commit/5f531c51febf45230ff8267fab4145711a99b99b)
+  [#4967](https://github.com/chakra-ui/chakra-ui/pull/4967) Thanks
+  [@takethefake](https://github.com/takethefake)! - Improve types defined for
+  `getRadioprops`
+
+## 1.3.12
+
+### Patch Changes
+
+- [`a1c41dceb`](https://github.com/chakra-ui/chakra-ui/commit/a1c41dceb0a7126f797333149ba1b4081cc47b74)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  props are duplicated on child label and span elements
+
+* [`45e3a8b4b`](https://github.com/chakra-ui/chakra-ui/commit/45e3a8b4bd117d5339c02da3d81a943ef193ce1f)
+  [#4866](https://github.com/chakra-ui/chakra-ui/pull/4866) Thanks
+  [@takethefake](https://github.com/takethefake)! - #4851 Removed aria-readonly
+  from checkbox in favor of wcag 4.1.2
+
+* Updated dependencies
+  [[`5fe9b552b`](https://github.com/chakra-ui/chakra-ui/commit/5fe9b552bcae55935d1ab8ffde86b701075e6e6a),
+  [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/hooks@1.6.2
+  - @chakra-ui/utils@1.8.4
+  - @chakra-ui/form-control@1.4.3
+  - @chakra-ui/visually-hidden@1.0.16
+
+## 1.3.11
+
+### Patch Changes
+
+- [`6c935424e`](https://github.com/chakra-ui/chakra-ui/commit/6c935424ea3b1f348c690457a5eecea8cf1b5d28)
+  [#4788](https://github.com/chakra-ui/chakra-ui/pull/4788) Thanks
+  [@takethefake](https://github.com/takethefake)! - Add support for styling the
+  container element based on the radio state
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`a9d1dc4ac`](https://github.com/chakra-ui/chakra-ui/commit/a9d1dc4ac874825f292d874ad4eadaf060fed436),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/hooks@1.6.1
+  - @chakra-ui/form-control@1.4.2
+  - @chakra-ui/visually-hidden@1.0.15
+
 ## 1.3.10
 
 ### Patch Changes

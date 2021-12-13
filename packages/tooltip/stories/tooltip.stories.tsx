@@ -6,7 +6,7 @@ import * as React from "react"
 import { Tooltip, useTooltip } from "../src"
 
 export default {
-  title: "Tooltip",
+  title: "Components / Overlay / Tooltip",
   decorators: [
     (story: Function) => (
       <chakra.div maxWidth="400px" mx="auto" mt="200px">

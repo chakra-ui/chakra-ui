@@ -2008,6 +2008,24 @@
         "doc",
         "ideas"
       ]
+    },
+    {
+      "login": "MichaelKilbane",
+      "name": "Michael Kilbane",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21234729?v=4",
+      "profile": "http://michaelkilbane.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ngxCoder",
+      "name": "ngxCoder",
+      "avatar_url": "https://avatars.githubusercontent.com/u/87735757?v=4",
+      "profile": "https://ngxcoder.dev/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

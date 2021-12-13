@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/styled-system",
-  "version": "1.12.2",
+  "version": "1.15.0",
   "description": "Style function for css-in-js building component libraries",
   "keywords": [
     "theme",
@@ -17,18 +17,12 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
-    }
-  },
+  "main": "dist/chakra-ui-styled-system.cjs.js",
+  "module": "dist/chakra-ui-styled-system.esm.js",
+  "types": "dist/chakra-ui-styled-system.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"
@@ -41,21 +35,9 @@
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
-  "scripts": {
-    "prebuild": "rimraf dist",
-    "start": "nodemon --exec yarn build --watch src -e ts,tsx",
-    "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
-    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
-    "build": "concurrently yarn:build:*",
-    "test": "jest --env=jsdom --passWithNoTests",
-    "test:cov": "yarn test --coverage",
-    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
-    "lint:types": "tsc --noEmit",
-    "lint": "concurrently yarn:lint:*"
-  },
   "dependencies": {
-    "@chakra-ui/utils": "1.8.2",
-    "csstype": "^3.0.6"
-  }
+    "@chakra-ui/utils": "1.9.1",
+    "csstype": "^3.0.9"
+  },
+  "sideEffects": false
 }

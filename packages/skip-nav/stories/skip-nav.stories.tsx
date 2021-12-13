@@ -2,7 +2,7 @@ import * as React from "react"
 import { SkipNavContent, SkipNavLink } from "../src"
 
 export default {
-  title: "Skip Nav",
+  title: "Components / Navigation / Skip Nav",
 }
 
 export const BasicExample = () => (

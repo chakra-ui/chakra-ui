@@ -1,5 +1,95 @@
 # @chakra-ui/cli
 
+## 1.6.0
+
+### Minor Changes
+
+- [#4991](https://github.com/chakra-ui/chakra-ui/pull/4991)
+  [`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update build system
+  we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+  The previous build system transpiles the code in `src` directory to `dist/esm`
+  and `dist/cjs` keeping the same file structure. The new build system merges
+  all files in `src` and transpiles to a single `esm` and `cjs` file.
+
+  **Potential Breaking Change:** The side effect of this is that, if you
+  imported any function, component or hook using the **undocumented** approach
+  like
+  `import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+  you'll notice that the this doesn't work anymore.
+
+  Here's how to resolve it:
+
+  ```jsx live=false
+  // Won't work 🎇
+  import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+
+  // Works ✅
+  import { useOutsideClick } from "@chakra-ui/hooks"
+  ```
+
+  If this affected your project, we recommend that you import hooks, functions
+  or components the way it's shown in the documentation. This will help keep
+  your project future-proof.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)]:
+  - @chakra-ui/utils@1.9.0
+
+## 1.5.3
+
+### Patch Changes
+
+- [`e0a004b45`](https://github.com/chakra-ui/chakra-ui/commit/e0a004b450a76915477ab3da687cf311e96c7494)
+  [#4818](https://github.com/chakra-ui/chakra-ui/pull/4818) Thanks
+  [@igorwessel](https://github.com/igorwessel)! - Fixed an issue where the CLI
+  tokens command exited unexpectedly with:
+  `SyntaxError: Cannot use import statement outside a module`
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+
+## 1.5.2
+
+### Patch Changes
+
+- [`236efcbf5`](https://github.com/chakra-ui/chakra-ui/commit/236efcbf562a966d5a3fcd0a778ee404b379d41d)
+  [#4781](https://github.com/chakra-ui/chakra-ui/pull/4781) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue where the
+  CLI failed with `SyntaxError: JSON5: invalid character`.
+
+## 1.5.1
+
+### Patch Changes
+
+- [`c96f44e16`](https://github.com/chakra-ui/chakra-ui/commit/c96f44e1660fd0430eac0e003f1e807873776b15)
+  [#4725](https://github.com/chakra-ui/chakra-ui/pull/4725) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue where the
+  CLI did not resolve custom tsconfig paths.
+
+  🚨 Please note that only the first alias target from the string array will be
+  resolved.
+
+  ```json5
+  // tsconfig.json
+  {
+    //...
+    compilerOptions: {
+      baseUrl: "src",
+      paths: {
+        "@alias/*": ["target/*"],
+        //           ^-- only the first target will be resolved
+      },
+    },
+  }
+  ```
+
 ## 1.5.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.1.1
+
+### Patch Changes
+
+- [#5075](https://github.com/chakra-ui/chakra-ui/pull/5075)
+  [`5166335b2`](https://github.com/chakra-ui/chakra-ui/commit/5166335b27313313c4c8d3f9d5afbf3f709ddc22)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Bump TypeScript version
+
 ## 1.1.0
 
 ### Minor Changes

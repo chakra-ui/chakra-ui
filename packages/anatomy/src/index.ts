@@ -91,7 +91,7 @@ export const pinInputAnatomy = anatomy("pininput").parts("field")
 
 export const popoverAnatomy = anatomy("popover")
   .parts("content", "header", "body", "footer")
-  .extend("popper", "arrow")
+  .extend("popper", "arrow", "closeButton")
 
 export const progressAnatomy = anatomy("progress").parts(
   "label",
