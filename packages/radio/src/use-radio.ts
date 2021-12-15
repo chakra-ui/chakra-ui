@@ -70,6 +70,10 @@ export interface UseRadioProps {
    * @internal
    */
   "data-radiogroup"?: any
+  /**
+   * Refers to the `id` of the element that labels the radio element.
+   */
+  "aria-describedby"?: string
 }
 
 export function useRadio(props: UseRadioProps = {}) {
@@ -87,6 +91,7 @@ export function useRadio(props: UseRadioProps = {}) {
     value,
     id: idProp,
     "data-radiogroup": dataRadioGroup,
+    "aria-describedby": ariaDescribedBy,
     ...htmlProps
   } = props
 
@@ -216,6 +221,7 @@ export function useRadio(props: UseRadioProps = {}) {
         "aria-disabled": ariaAttr(trulyDisabled),
         "aria-required": ariaAttr(isRequired),
         "data-readonly": dataAttr(isReadOnly),
+        "aria-describedby": ariaDescribedBy,
         style: visuallyHiddenStyle,
       }
     },
@@ -235,6 +241,7 @@ export function useRadio(props: UseRadioProps = {}) {
       isReadOnly,
       isRequired,
       isInvalid,
+      ariaDescribedBy,
     ],
   )
 
