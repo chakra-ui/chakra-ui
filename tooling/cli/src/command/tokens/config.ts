@@ -1,7 +1,10 @@
 import { ThemeKeyOptions } from "./create-theme-typings-interface"
 
 export const themeKeyConfiguration: ThemeKeyOptions[] = [
+  { key: "blur" },
   { key: "borders" },
+  { key: "borderStyles" },
+  { key: "borderWidths" },
   { key: "breakpoints", filter: (value) => Number.isNaN(Number(value)) },
   { key: "colors", maxScanDepth: 3 },
   { key: "fonts" },
