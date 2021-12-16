@@ -1,17 +1,19 @@
 import {
   css,
-  isStyleProp,
-  isOtherProp,
+  othersPropNames,
+  stylePropNames,
   StyleProps,
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
 import {
   filterUndefined,
-  objectFilter,
   mergeWith,
   runIfFn,
+  split,
+  pick,
 } from "@chakra-ui/utils"
 import _styled, { CSSObject, FunctionInterpolation } from "@emotion/styled"
+import { Config } from "../../styled-system/src/utils/prop-config"
 import { shouldForwardProp } from "./should-forward-prop"
 import { As, ChakraComponent, ChakraProps, PropsOf } from "./system.types"
 import { domElements, DOMElements } from "./system.utils"
@@ -44,35 +46,38 @@ interface GetStyleObject {
  * behaviors. Right now, the `sx` prop has the highest priority so the resolved
  * fontSize will be `40px`
  */
-export const toCSSObject: GetStyleObject = ({ baseStyle }) => (props) => {
-  const { theme, css: cssProp, __css, sx, ...rest } = props
-  const stylePrecedence = []
+export const toCSSObject: GetStyleObject =
+  ({ baseStyle }) =>
+  (props) => {
+    const { theme, css: cssProp, __css, sx, ...rest } = props
 
-  // Styles are applied by precedence (lowest to highest)
-  //   __css
-  //   baseStyle
-  //   other (apply, layerStyles, textStyles)
-  //   styleProps
-  //   sx
-  //   css
-  stylePrecedence.push({ ...__css })
-  stylePrecedence.push(Object.assign({}, runIfFn(baseStyle, props)))
-  stylePrecedence.push(objectFilter(rest, (_, prop) => isOtherProp(prop)))
+    const [otherProps, imdStyleProps]: [
+      otherProps: Config,
+      styleDomProps: Config,
+    ] = split(rest, othersPropNames)
+    const styleProps: Config = filterUndefined(
+      pick(imdStyleProps, stylePropNames),
+    )
+    const stylePrecedence: any[] = []
 
-  const styleProps = objectFilter(
-    rest,
-    (_, prop) => isStyleProp(prop) && !isOtherProp(prop),
-  )
-  stylePrecedence.push(filterUndefined(styleProps))
+    // Styles are applied by precedence (lowest to highest)
+    //   __css
+    //   baseStyle
+    //   other (apply, layerStyles, textStyles)
+    //   styleProps
+    //   sx
+    stylePrecedence.push(__css)
+    stylePrecedence.push(runIfFn(baseStyle, props))
+    stylePrecedence.push(otherProps)
+    stylePrecedence.push(styleProps)
+    stylePrecedence.push(sx)
 
-  stylePrecedence.push({ ...sx })
+    const computedCSS = stylePrecedence.reduce((accStyle: any, style: any) => {
+      return mergeWith(accStyle, css(style)(theme))
+    }, {})
 
-  const computedCSS = stylePrecedence.reduce((accStyle: any, style: any) => {
-    return mergeWith(accStyle, css(style)(theme))
-  }, {})
-
-  return cssProp ? [computedCSS, cssProp] : computedCSS
-}
+    return cssProp ? [computedCSS, cssProp] : computedCSS
+  }
 
 interface StyledOptions {
   shouldForwardProp?(prop: string): boolean
@@ -118,8 +123,7 @@ type ChakraFactory = {
   ): ChakraComponent<T, P>
 }
 
-export const chakra = (styled as unknown) as ChakraFactory &
-  HTMLChakraComponents
+export const chakra = styled as unknown as ChakraFactory & HTMLChakraComponents
 
 domElements.forEach((tag) => {
   chakra[tag] = chakra(tag)

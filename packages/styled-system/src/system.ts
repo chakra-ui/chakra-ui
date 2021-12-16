@@ -1,4 +1,4 @@
-import { mergeWith, objectKeys } from "@chakra-ui/utils"
+import { mergeWith, objectKeys, omit } from "@chakra-ui/utils"
 import {
   background,
   border,
@@ -11,6 +11,7 @@ import {
   layout,
   list,
   others,
+  othersPropNames,
   position,
   ring,
   space,
@@ -19,9 +20,10 @@ import {
   transition,
   typography,
 } from "./config"
-import { pseudoPropNames, pseudoSelectors } from "./pseudos"
+import { pseudoPropNames } from "./pseudos"
+import { Config } from "./utils/prop-config"
 
-export const systemProps = mergeWith(
+export const systemProps: Config = mergeWith(
   {},
   background,
   border,
@@ -47,7 +49,8 @@ const layoutSystem = Object.assign({}, space, layout, flexbox, grid, position)
 export const layoutPropNames = objectKeys(layoutSystem)
 
 export const propNames = [...objectKeys(systemProps), ...pseudoPropNames]
-const styleProps = { ...systemProps, ...pseudoSelectors }
 
-export const isStyleProp = (prop: string) => prop in styleProps
-export const isOtherProp = (prop: string) => prop in others
+export const stylePropNames = [
+  ...objectKeys(omit(systemProps, othersPropNames)),
+  ...pseudoPropNames,
+]

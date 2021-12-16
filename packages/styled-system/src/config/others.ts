@@ -1,4 +1,4 @@
-import { memoizedGet as get } from "@chakra-ui/utils"
+import { memoizedGet as get, objectKeys } from "@chakra-ui/utils"
 import { Config } from "../utils/prop-config"
 import { ResponsiveValue, Token } from "../utils/types"
 
@@ -77,3 +77,5 @@ export interface OtherProps {
    */
   apply?: ResponsiveValue<string>
 }
+
+export const othersPropNames = objectKeys(others)
