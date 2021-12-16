@@ -57,11 +57,6 @@ end with `.stories.tsx`.
 
 **`yarn release`**: publish changed packages.
 
-### Documentation
-
-The documentation site is built with Next.js. If you'd like to contribute to the
-docs, simply run `yarn build`, and `yarn docs:dev`
-
 ### Storybook
 
 Build components in isolation with Storybook using `yarn storybook`
