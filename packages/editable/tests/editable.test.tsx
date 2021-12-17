@@ -211,3 +211,16 @@ test("can submit on blur", () => {
   fireEvent.blur(input)
   expect(onSubmit).toHaveBeenCalledWith("testing")
 })
+
+test("startWithEditView when true focuses on the input ", () => {
+  render(
+    <Editable startWithEditView={true} defaultValue="Chakra testing">
+      <EditablePreview />
+      <EditableInput data-testid="input" />
+    </Editable>,
+  )
+
+  const input = screen.getByTestId("input")
+
+  expect(document.activeElement === input).toBe(true)
+})
