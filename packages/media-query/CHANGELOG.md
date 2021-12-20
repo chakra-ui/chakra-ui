@@ -1,5 +1,91 @@
 # Change Log
 
+## 1.2.2
+
+### Patch Changes
+
+- [#5135](https://github.com/chakra-ui/chakra-ui/pull/5135)
+  [`53e2df4f9`](https://github.com/chakra-ui/chakra-ui/commit/53e2df4f9cbe7fc2fad69d1ee49a1e788811467a)
+  Thanks [@primos63](https://github.com/primos63)! - Improved performance and
+  behavior of `useMediaQuery` hook.
+
+## 1.2.1
+
+### Patch Changes
+
+- [#5074](https://github.com/chakra-ui/chakra-ui/pull/5074)
+  [`042994eb0`](https://github.com/chakra-ui/chakra-ui/commit/042994eb0866e4f49cc286f64f54962f613a4423)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Fix issue where
+  `useColorModePreference` returned incorrect values due to array destructuring.
+
+* [#5075](https://github.com/chakra-ui/chakra-ui/pull/5075)
+  [`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Update babel config to
+  transpile soruces for older browsers. This fixes issues with CRA and
+  Storybook.
+* Updated dependencies
+  [[`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)]:
+  - @chakra-ui/react-env@1.1.1
+  - @chakra-ui/utils@1.9.1
+
+## 1.2.0
+
+### Minor Changes
+
+- [#4991](https://github.com/chakra-ui/chakra-ui/pull/4991)
+  [`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update build system
+  we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+  The previous build system transpiles the code in `src` directory to `dist/esm`
+  and `dist/cjs` keeping the same file structure. The new build system merges
+  all files in `src` and transpiles to a single `esm` and `cjs` file.
+
+  **Potential Breaking Change:** The side effect of this is that, if you
+  imported any function, component or hook using the **undocumented** approach
+  like
+  `import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+  you'll notice that the this doesn't work anymore.
+
+  Here's how to resolve it:
+
+  ```jsx live=false
+  // Won't work 🎇
+  import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+
+  // Works ✅
+  import { useOutsideClick } from "@chakra-ui/hooks"
+  ```
+
+  If this affected your project, we recommend that you import hooks, functions
+  or components the way it's shown in the documentation. This will help keep
+  your project future-proof.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)]:
+  - @chakra-ui/react-env@1.1.0
+  - @chakra-ui/utils@1.9.0
+
+## 1.1.5
+
+### Patch Changes
+
+- [`97bad87c7`](https://github.com/chakra-ui/chakra-ui/commit/97bad87c7b8b4ff31f705a9d55b392385d921a33)
+  [#4807](https://github.com/chakra-ui/chakra-ui/pull/4807) Thanks
+  [@primos63](https://github.com/primos63)! - Corrected eslint errors.
+
+* [`f2df9cfc1`](https://github.com/chakra-ui/chakra-ui/commit/f2df9cfc1c3c2ef3f3b74ec2849079fd726cd84c)
+  [#4807](https://github.com/chakra-ui/chakra-ui/pull/4807) Thanks
+  [@primos63](https://github.com/primos63)! - Fix an issue where the
+  `useMediaQuery` was not updating the array of booleans correctly when resizing
+  the viewport.
+
+  It also removes deprecated calls `addListener` and `removeListener` in favor
+  of the recommended `addEventListener` and `removeEventListener` calls.
+
 ## 1.1.4
 
 ### Patch Changes

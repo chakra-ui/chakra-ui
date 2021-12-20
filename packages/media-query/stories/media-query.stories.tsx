@@ -5,7 +5,7 @@ import Frame from "react-frame-component"
 import { Hide, Show, useBreakpoint, useBreakpointValue } from "../src"
 
 export default {
-  title: "Breakpoints",
+  title: "System / Breakpoints",
 }
 
 export const show = () => (

@@ -23,7 +23,7 @@ const TRIGGER = {
   hover: "hover",
 } as const
 
-export interface UsePopoverProps extends UsePopperProps {
+export interface UsePopoverProps extends Omit<UsePopperProps, "enabled"> {
   /**
    * The html `id` attribute of the popover.
    * If not provided, we generate a unique id.
@@ -143,6 +143,7 @@ export function usePopover(props: UsePopoverProps = {}) {
 
   const { isOpen, onClose, onOpen, onToggle } = useDisclosure(props)
 
+  const anchorRef = useRef<HTMLElement>(null)
   const triggerRef = useRef<HTMLElement>(null)
   const popoverRef = useRef<HTMLElement>(null)
 
@@ -279,14 +280,37 @@ export function usePopover(props: UsePopoverProps = {}) {
     [isOpen, getPopperProps],
   )
 
+  const getAnchorProps: PropGetter = useCallback(
+    (props, _ref = null) => {
+      const anchorProps: HTMLProps = {
+        ...props,
+        // If anchor is rendered, it is used as reference.
+        ref: mergeRefs(_ref, anchorRef, referenceRef),
+      }
+
+      return anchorProps
+    },
+    [anchorRef, referenceRef],
+  )
+
   const openTimeout = useRef<number>()
   const closeTimeout = useRef<number>()
+
+  const maybeReferenceRef = useCallback(
+    (node: Element) => {
+      // Don't override referenceRef in case the PopoverAnchor is rendered.
+      if (anchorRef.current == null) {
+        referenceRef(node)
+      }
+    },
+    [referenceRef],
+  )
 
   const getTriggerProps: PropGetter = useCallback(
     (props = {}, _ref = null) => {
       const triggerProps: HTMLProps = {
         ...props,
-        ref: mergeRefs(triggerRef, _ref, referenceRef),
+        ref: mergeRefs(triggerRef, _ref, maybeReferenceRef),
         id: triggerId,
         "aria-haspopup": "dialog",
         "aria-expanded": isOpen,
@@ -305,7 +329,14 @@ export function usePopover(props: UsePopoverProps = {}) {
          * @see https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html
          */
         triggerProps.onFocus = callAllHandlers(props.onFocus, onOpen)
-        triggerProps.onBlur = callAllHandlers(props.onBlur, onClose)
+        triggerProps.onBlur = callAllHandlers(props.onBlur, (event) => {
+          const relatedTarget = getRelatedTarget(event)
+          const isValidBlur = !contains(popoverRef.current, relatedTarget)
+
+          if (isOpen && closeOnBlur && isValidBlur) {
+            onClose()
+          }
+        })
 
         /**
          * Any content that shows on hover or focus must be dismissible.
@@ -345,9 +376,10 @@ export function usePopover(props: UsePopoverProps = {}) {
       isOpen,
       popoverId,
       trigger,
-      referenceRef,
+      maybeReferenceRef,
       onToggle,
       onOpen,
+      closeOnBlur,
       onClose,
       openDelay,
       closeDelay,
@@ -391,6 +423,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     forceUpdate,
     isOpen,
     onClose,
+    getAnchorProps,
     getArrowProps,
     getArrowInnerProps,
     getPopoverPositionerProps,

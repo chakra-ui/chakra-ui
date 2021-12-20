@@ -1,15 +1,9 @@
 import { useFormControlContext } from "@chakra-ui/form-control"
 import { useBoolean, useControllableProp, useId } from "@chakra-ui/hooks"
-import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
+import { PropGetter } from "@chakra-ui/react-utils"
 import { ariaAttr, callAllHandlers, dataAttr, warn } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
-import {
-  ChangeEvent,
-  SyntheticEvent,
-  useCallback,
-  useRef,
-  useState,
-} from "react"
+import { ChangeEvent, SyntheticEvent, useCallback, useState } from "react"
 import { useRadioGroupContext } from "./radio-group"
 
 /**
@@ -76,6 +70,10 @@ export interface UseRadioProps {
    * @internal
    */
   "data-radiogroup"?: any
+  /**
+   * Refers to the `id` of the element that labels the radio element.
+   */
+  "aria-describedby"?: string
 }
 
 export function useRadio(props: UseRadioProps = {}) {
@@ -93,6 +91,7 @@ export function useRadio(props: UseRadioProps = {}) {
     value,
     id: idProp,
     "data-radiogroup": dataRadioGroup,
+    "aria-describedby": ariaDescribedBy,
     ...htmlProps
   } = props
 
@@ -115,8 +114,6 @@ export function useRadio(props: UseRadioProps = {}) {
   const [isFocused, setFocused] = useBoolean()
   const [isHovered, setHovering] = useBoolean()
   const [isActive, setActive] = useBoolean()
-
-  const ref = useRef<HTMLInputElement>(null)
 
   const [isCheckedState, setChecked] = useState(Boolean(defaultChecked))
 
@@ -201,13 +198,13 @@ export function useRadio(props: UseRadioProps = {}) {
   const { onFocus, onBlur } = formControl ?? {}
 
   const getInputProps: PropGetter<HTMLInputElement> = useCallback(
-    (props = {}, forwardedRef = null) => {
+    (props = {}, ref = null) => {
       const trulyDisabled = isDisabled && !isFocusable
 
       return {
         ...props,
         id,
-        ref: mergeRefs(forwardedRef, ref),
+        ref,
         type: "radio",
         name,
         value,
@@ -224,6 +221,7 @@ export function useRadio(props: UseRadioProps = {}) {
         "aria-disabled": ariaAttr(trulyDisabled),
         "aria-required": ariaAttr(isRequired),
         "data-readonly": dataAttr(isReadOnly),
+        "aria-describedby": ariaDescribedBy,
         style: visuallyHiddenStyle,
       }
     },
@@ -243,6 +241,7 @@ export function useRadio(props: UseRadioProps = {}) {
       isReadOnly,
       isRequired,
       isInvalid,
+      ariaDescribedBy,
     ],
   )
 

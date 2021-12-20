@@ -7,7 +7,7 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx, filterUndefined, __DEV__ } from "@chakra-ui/utils"
 import { getValidChildren } from "@chakra-ui/react-utils"
 import * as React from "react"
 
@@ -50,10 +50,11 @@ export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
     /**
      * Make it possible to override the size and variant from `Input`
      */
-    const theming = {
+
+    const theming = filterUndefined({
       size: child.props?.size || props.size,
       variant: child.props?.variant || props.variant,
-    }
+    })
 
     return child.type.id !== "Input"
       ? React.cloneElement(child, theming)

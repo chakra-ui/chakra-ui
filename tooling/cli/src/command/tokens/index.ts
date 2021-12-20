@@ -59,7 +59,9 @@ export async function generateThemeTypings({
     spinner.succeed("Done")
   } catch (e) {
     spinner.fail("An error occurred")
-    console.error(e.message)
+    if (e instanceof Error) {
+      console.error(e.message)
+    }
   } finally {
     spinner.stop()
   }

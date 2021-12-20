@@ -46,7 +46,18 @@ export interface UseRadioGroupProps {
 
 type RadioPropGetter = PropGetter<
   HTMLInputElement,
-  { onChange?: (e: EventOrValue) => void; value?: StringOrNumber } & Omit<
+  {
+    onChange?: (e: EventOrValue) => void
+    value?: StringOrNumber
+    /**
+     * checked is defined if isNative=true
+     */
+    checked?: boolean
+    /**
+     * isChecked is defined if isNative=false
+     */
+    isChecked?: boolean
+  } & Omit<
     React.InputHTMLAttributes<HTMLInputElement>,
     "onChange" | "size" | "value"
   >

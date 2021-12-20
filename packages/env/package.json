@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react-env",
-  "version": "1.0.8",
+  "version": "1.1.1",
   "description": "Component and hook for handling window and document object in iframe or ssr environment",
   "keywords": [
     "dom",
@@ -13,19 +13,13 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
+  "main": "dist/chakra-ui-react-env.cjs.js",
+  "module": "dist/chakra-ui-react-env.esm.js",
+  "types": "dist/chakra-ui-react-env.cjs.d.ts",
   "sideEffects": false,
-  "exports": {
-    ".": {
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
-    }
-  },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"
@@ -38,22 +32,8 @@
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
-  "scripts": {
-    "prebuild": "rimraf dist",
-    "start": "nodemon --watch src --exec yarn build -e ts,tsx",
-    "build": "concurrently yarn:build:*",
-    "test": "jest --env=jsdom --passWithNoTests",
-    "lint": "concurrently yarn:lint:*",
-    "version": "yarn build",
-    "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
-    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
-    "test:cov": "yarn test --coverage",
-    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
-    "lint:types": "tsc --noEmit"
-  },
   "dependencies": {
-    "@chakra-ui/utils": "1.8.4"
+    "@chakra-ui/utils": "1.9.1"
   },
   "peerDependencies": {
     "react": ">=16.8.6"

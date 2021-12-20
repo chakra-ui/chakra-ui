@@ -4,7 +4,7 @@ import * as React from "react"
 import { Spinner } from "../src"
 
 export default {
-  title: "Spinner",
+  title: "Components / Feedback / Spinner",
 }
 
 export const basic = () => <Spinner />

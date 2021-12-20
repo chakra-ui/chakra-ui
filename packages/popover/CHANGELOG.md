@@ -1,5 +1,118 @@
 # Change Log
 
+## 1.11.0
+
+### Minor Changes
+
+- [#5044](https://github.com/chakra-ui/chakra-ui/pull/5044)
+  [`f4fd9441e`](https://github.com/chakra-ui/chakra-ui/commit/f4fd9441eae40d135dfe9ae911a9b4547b4647f5)
+  Thanks [@dodas](https://github.com/dodas)! - Add `PopoverAnchor` component
+  which allows you to set the `Popover` reference point without acting as a
+  trigger.
+
+  ```jsx live=false
+  <Popover>
+    {/* triggers the popover to open/close */}
+    <PopoverTrigger>
+      <button>Trigger</button>
+    </PopoverTrigger>
+    {/* popover will be positioned relative to this */}
+    <PopoverAnchor>
+      <Box width="40px" height="40px" />
+    </PopoverAnchor>
+    <PopoverContent>Hello World</PopoverContent>
+  </Popover>
+  ```
+
+### Patch Changes
+
+- [`cd0b7996b`](https://github.com/chakra-ui/chakra-ui/commit/cd0b7996b3f9df999cd87371f1a4a1384a10063e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `enabled` TS type was exposed to popover and menu from `UsePopperProps`. This
+  was resolved by omitting `enabled` from the type
+
+* [#4877](https://github.com/chakra-ui/chakra-ui/pull/4877)
+  [`d139cc151`](https://github.com/chakra-ui/chakra-ui/commit/d139cc1515141ecec527653aa6dfc4eecf2cdcb4)
+  Thanks [@noyanyan](https://github.com/noyanyan)! - Fix issue where `Popover`
+  will be `display:none` when inner element focused.
+
+* Updated dependencies []:
+  - @chakra-ui/close-button@1.2.2
+
+## 1.10.1
+
+### Patch Changes
+
+- [#5075](https://github.com/chakra-ui/chakra-ui/pull/5075)
+  [`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Update babel config to
+  transpile soruces for older browsers. This fixes issues with CRA and
+  Storybook.
+- Updated dependencies
+  [[`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)]:
+  - @chakra-ui/close-button@1.2.1
+  - @chakra-ui/hooks@1.7.1
+  - @chakra-ui/popper@2.4.1
+  - @chakra-ui/react-utils@1.2.1
+  - @chakra-ui/utils@1.9.1
+
+## 1.10.0
+
+### Minor Changes
+
+- [#4991](https://github.com/chakra-ui/chakra-ui/pull/4991)
+  [`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update build system
+  we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+  The previous build system transpiles the code in `src` directory to `dist/esm`
+  and `dist/cjs` keeping the same file structure. The new build system merges
+  all files in `src` and transpiles to a single `esm` and `cjs` file.
+
+  **Potential Breaking Change:** The side effect of this is that, if you
+  imported any function, component or hook using the **undocumented** approach
+  like
+  `import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+  you'll notice that the this doesn't work anymore.
+
+  Here's how to resolve it:
+
+  ```jsx live=false
+  // Won't work 🎇
+  import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+
+  // Works ✅
+  import { useOutsideClick } from "@chakra-ui/hooks"
+  ```
+
+  If this affected your project, we recommend that you import hooks, functions
+  or components the way it's shown in the documentation. This will help keep
+  your project future-proof.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)]:
+  - @chakra-ui/close-button@1.2.0
+  - @chakra-ui/hooks@1.7.0
+  - @chakra-ui/popper@2.4.0
+  - @chakra-ui/react-utils@1.2.0
+  - @chakra-ui/utils@1.9.0
+
+## 1.9.1
+
+### Patch Changes
+
+- [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)
+  [#4965](https://github.com/chakra-ui/chakra-ui/pull/4965) Thanks
+  [@takethefake](https://github.com/takethefake)! - Allow usage of
+  `framer-motion` 5.x in `peerDependency`
+
+- Updated dependencies
+  [[`c3f016149`](https://github.com/chakra-ui/chakra-ui/commit/c3f01614929d2f68a39cf78111d17f4f4c684706)]:
+  - @chakra-ui/popper@2.3.1
+
 ## 1.9.0
 
 ### Minor Changes

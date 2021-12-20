@@ -1,5 +1,76 @@
 # Change Log
 
+## 1.4.2
+
+### Patch Changes
+
+- [#5130](https://github.com/chakra-ui/chakra-ui/pull/5130)
+  [`39846457e`](https://github.com/chakra-ui/chakra-ui/commit/39846457e241e6af3d18c77cdc0ba02857fe7462)
+  Thanks [@georgekrax](https://github.com/georgekrax)! - Fixed issue where the
+  `ref` of `Slider` returns `null` due to prop override
+
+## 1.4.1
+
+### Patch Changes
+
+- [#5075](https://github.com/chakra-ui/chakra-ui/pull/5075)
+  [`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Update babel config to
+  transpile soruces for older browsers. This fixes issues with CRA and
+  Storybook.
+- Updated dependencies
+  [[`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)]:
+  - @chakra-ui/utils@1.9.1
+
+## 1.4.0
+
+### Minor Changes
+
+- [#4991](https://github.com/chakra-ui/chakra-ui/pull/4991)
+  [`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update build system
+  we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+  The previous build system transpiles the code in `src` directory to `dist/esm`
+  and `dist/cjs` keeping the same file structure. The new build system merges
+  all files in `src` and transpiles to a single `esm` and `cjs` file.
+
+  **Potential Breaking Change:** The side effect of this is that, if you
+  imported any function, component or hook using the **undocumented** approach
+  like
+  `import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+  you'll notice that the this doesn't work anymore.
+
+  Here's how to resolve it:
+
+  ```jsx live=false
+  // Won't work 🎇
+  import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+
+  // Works ✅
+  import { useOutsideClick } from "@chakra-ui/hooks"
+  ```
+
+  If this affected your project, we recommend that you import hooks, functions
+  or components the way it's shown in the documentation. This will help keep
+  your project future-proof.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)]:
+  - @chakra-ui/utils@1.9.0
+
+## 1.3.8
+
+### Patch Changes
+
+- [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)
+  [#4965](https://github.com/chakra-ui/chakra-ui/pull/4965) Thanks
+  [@takethefake](https://github.com/takethefake)! - Allow usage of
+  `framer-motion` 5.x in `peerDependency`
+
 ## 1.3.7
 
 ### Patch Changes

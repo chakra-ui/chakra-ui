@@ -1,5 +1,76 @@
 # Change Log
 
+## 1.5.2
+
+### Patch Changes
+
+- [#5081](https://github.com/chakra-ui/chakra-ui/pull/5081)
+  [`002e3a488`](https://github.com/chakra-ui/chakra-ui/commit/002e3a48887c2ceb37bafceb8d4aa248b8dfa22f)
+  Thanks [@burhanuday](https://github.com/burhanuday)! - Fixed a bug where a
+  thumb would not move in case of stacked thumbs
+
+## 1.5.1
+
+### Patch Changes
+
+- [#5075](https://github.com/chakra-ui/chakra-ui/pull/5075)
+  [`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Update babel config to
+  transpile soruces for older browsers. This fixes issues with CRA and
+  Storybook.
+- Updated dependencies
+  [[`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)]:
+  - @chakra-ui/hooks@1.7.1
+  - @chakra-ui/react-utils@1.2.1
+  - @chakra-ui/utils@1.9.1
+
+## 1.5.0
+
+### Minor Changes
+
+- [#4991](https://github.com/chakra-ui/chakra-ui/pull/4991)
+  [`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update build system
+  we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+  The previous build system transpiles the code in `src` directory to `dist/esm`
+  and `dist/cjs` keeping the same file structure. The new build system merges
+  all files in `src` and transpiles to a single `esm` and `cjs` file.
+
+  **Potential Breaking Change:** The side effect of this is that, if you
+  imported any function, component or hook using the **undocumented** approach
+  like
+  `import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+  you'll notice that the this doesn't work anymore.
+
+  Here's how to resolve it:
+
+  ```jsx live=false
+  // Won't work 🎇
+  import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+
+  // Works ✅
+  import { useOutsideClick } from "@chakra-ui/hooks"
+  ```
+
+  If this affected your project, we recommend that you import hooks, functions
+  or components the way it's shown in the documentation. This will help keep
+  your project future-proof.
+
+### Patch Changes
+
+- [#5020](https://github.com/chakra-ui/chakra-ui/pull/5020)
+  [`c7277cdf7`](https://github.com/chakra-ui/chakra-ui/commit/c7277cdf715626926b3c12cfdc62a230b00609f0)
+  Thanks [@burhanuday](https://github.com/burhanuday)! - fixed the bug in
+  RangeSlider where an index out of bounds error would occur incase of stacked
+  thumb
+- Updated dependencies
+  [[`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)]:
+  - @chakra-ui/hooks@1.7.0
+  - @chakra-ui/react-utils@1.2.0
+  - @chakra-ui/utils@1.9.0
+
 ## 1.4.2
 
 ### Patch Changes

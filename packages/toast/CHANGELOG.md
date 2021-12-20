@@ -1,5 +1,135 @@
 # Change Log
 
+## 1.5.0
+
+### Minor Changes
+
+- [#4922](https://github.com/chakra-ui/chakra-ui/pull/4922)
+  [`98b9fbecb`](https://github.com/chakra-ui/chakra-ui/commit/98b9fbecb20118553e92009b84a887ffdb35ba28)
+  Thanks [@karrui](https://github.com/karrui)! - The `toast` function now
+  exposes a `containerStyle` property you can use to override the default styles
+  for the toast container.
+
+  ```jsx live=false
+  function Example() {
+    // Via instantiation
+    const toast = useToast({
+      position: "top",
+      title: "Container style is customizable",
+      containerStyle: {
+        maxWidth: "100%",
+      },
+    })
+
+    // Or via trigger
+    return (
+      <Button
+        onClick={() => {
+          toast({
+            containerStyle: {
+              maxWidth: "100%",
+            },
+          })
+        }}
+      >
+        Click me to show toast with custom container style.
+      </Button>
+    )
+  }
+  ```
+
+### Patch Changes
+
+- [`b4decca9a`](https://github.com/chakra-ui/chakra-ui/commit/b4decca9afb62c4e353a6a9329d2afd279906fa6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix TS issue with
+  toast placement utility
+
+- Updated dependencies
+  [[`f15099adc`](https://github.com/chakra-ui/chakra-ui/commit/f15099adc60150781607288dbe12133c2fb84e38),
+  [`39846457e`](https://github.com/chakra-ui/chakra-ui/commit/39846457e241e6af3d18c77cdc0ba02857fe7462)]:
+  - @chakra-ui/theme@1.12.2
+  - @chakra-ui/transition@1.4.2
+  - @chakra-ui/alert@1.3.2
+  - @chakra-ui/close-button@1.2.2
+
+## 1.4.1
+
+### Patch Changes
+
+- [#5075](https://github.com/chakra-ui/chakra-ui/pull/5075)
+  [`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Update babel config to
+  transpile soruces for older browsers. This fixes issues with CRA and
+  Storybook.
+- Updated dependencies
+  [[`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)]:
+  - @chakra-ui/alert@1.3.1
+  - @chakra-ui/close-button@1.2.1
+  - @chakra-ui/hooks@1.7.1
+  - @chakra-ui/theme@1.12.1
+  - @chakra-ui/transition@1.4.1
+  - @chakra-ui/utils@1.9.1
+
+## 1.4.0
+
+### Minor Changes
+
+- [#4991](https://github.com/chakra-ui/chakra-ui/pull/4991)
+  [`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update build system
+  we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+  The previous build system transpiles the code in `src` directory to `dist/esm`
+  and `dist/cjs` keeping the same file structure. The new build system merges
+  all files in `src` and transpiles to a single `esm` and `cjs` file.
+
+  **Potential Breaking Change:** The side effect of this is that, if you
+  imported any function, component or hook using the **undocumented** approach
+  like
+  `import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+  you'll notice that the this doesn't work anymore.
+
+  Here's how to resolve it:
+
+  ```jsx live=false
+  // Won't work 🎇
+  import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+
+  // Works ✅
+  import { useOutsideClick } from "@chakra-ui/hooks"
+  ```
+
+  If this affected your project, we recommend that you import hooks, functions
+  or components the way it's shown in the documentation. This will help keep
+  your project future-proof.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0dd56ab1b`](https://github.com/chakra-ui/chakra-ui/commit/0dd56ab1b1ec3abab20ac6d8449757ad40138f29),
+  [`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)]:
+  - @chakra-ui/theme@1.12.0
+  - @chakra-ui/alert@1.3.0
+  - @chakra-ui/close-button@1.2.0
+  - @chakra-ui/hooks@1.7.0
+  - @chakra-ui/transition@1.4.0
+  - @chakra-ui/utils@1.9.0
+
+## 1.3.4
+
+### Patch Changes
+
+- [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)
+  [#4965](https://github.com/chakra-ui/chakra-ui/pull/4965) Thanks
+  [@takethefake](https://github.com/takethefake)! - Allow usage of
+  `framer-motion` 5.x in `peerDependency`
+
+- Updated dependencies
+  [[`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)]:
+  - @chakra-ui/theme@1.11.1
+  - @chakra-ui/transition@1.3.8
+
 ## 1.3.3
 
 ### Patch Changes

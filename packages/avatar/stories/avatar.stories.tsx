@@ -4,7 +4,7 @@ import { Stack, Box } from "@chakra-ui/layout"
 import { PropsOf } from "@chakra-ui/system"
 
 export default {
-  title: "Avatar",
+  title: "Components / Media and Icons / Avatar",
   decorators: [
     (Story: any) => (
       <Box mx="auto" maxW="500px" mt="40px">

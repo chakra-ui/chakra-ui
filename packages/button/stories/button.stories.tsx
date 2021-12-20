@@ -14,7 +14,7 @@ import { motion } from "framer-motion"
 import { Button, ButtonGroup, IconButton } from "../src"
 
 export default {
-  title: "Button",
+  title: "Components / Forms / Button",
   decorators: [
     (Story: any) => (
       <Container mt="40px">

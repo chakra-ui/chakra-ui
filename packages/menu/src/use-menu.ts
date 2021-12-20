@@ -63,7 +63,9 @@ export const [MenuProvider, useMenuContext] = createContext<
  * useMenu hook
  * -----------------------------------------------------------------------------------------------*/
 
-export interface UseMenuProps extends UsePopperProps, UseDisclosureProps {
+export interface UseMenuProps
+  extends Omit<UsePopperProps, "enabled">,
+    UseDisclosureProps {
   /**
    * If `true`, the menu will close when a menu item is
    * clicked
@@ -238,7 +240,7 @@ export function useMenu(props: UseMenuProps = {}) {
     focusMenu()
   }, [onOpen, focusMenu])
 
-  const timeoutIds = React.useRef<Set<number>>(new Set([]))
+  const timeoutIds = React.useRef<Set<any>>(new Set([]))
 
   useUnmountEffect(() => {
     timeoutIds.current.forEach((id) => clearTimeout(id))

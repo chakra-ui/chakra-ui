@@ -5,7 +5,7 @@ import * as React from "react"
 import { Checkbox, CheckboxGroup, useCheckbox } from "../src"
 
 export default {
-  title: "Checkbox",
+  title: "Components / Forms / Checkbox",
   decorators: [(story: Function) => <Container mt="40px">{story()}</Container>],
 }
 

@@ -4,7 +4,7 @@ import {
   HTMLMotionProps,
   motion,
   MotionStyle,
-  Variants as _Variants,
+  Variants as TVariants,
 } from "framer-motion"
 import * as React from "react"
 import {
@@ -93,15 +93,15 @@ export const Slide = React.forwardRef<HTMLDivElement, SlideProps>(
       <AnimatePresence custom={custom}>
         {show && (
           <motion.div
+            {...rest}
             ref={ref}
             initial="exit"
             className={cx("chakra-slide", className)}
             animate={animate}
             exit="exit"
             custom={custom}
-            variants={variants as _Variants}
+            variants={variants as TVariants}
             style={computedStyle}
-            {...rest}
           />
         )}
       </AnimatePresence>

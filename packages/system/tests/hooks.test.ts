@@ -1,4 +1,5 @@
 import { renderHook } from "@chakra-ui/test-utils"
+import { createBreakpoints } from "../../theme-tools"
 import { toCSSVar, useToken } from "../src"
 import * as system from "../src/providers"
 
@@ -22,6 +23,14 @@ const mockSpace = {
   "1.5": "0.375rem",
 }
 
+const mockBreakpoints = createBreakpoints({
+  sm: "30em",
+  md: "48em",
+  lg: "62em",
+  xl: "80em",
+  "2xl": "96em",
+})
+
 const setupMock = () => {
   jest.spyOn(system, "useTheme").mockReturnValueOnce(
     toCSSVar({
@@ -30,6 +39,7 @@ const setupMock = () => {
         blue: mockBlue,
       },
       space: mockSpace,
+      breakpoints: mockBreakpoints,
     }),
   )
 }
@@ -92,6 +102,27 @@ describe("useToken", () => {
       "foo",
       "bar",
       "baz",
+    ])
+  })
+
+  test("resolves a single breakpoint string value", () => {
+    setupMock()
+
+    const { result } = renderHook(() => useToken("breakpoints", "md"))
+
+    expect(result.current).not.toBeInstanceOf(Array)
+    expect(result.current).toStrictEqual(mockBreakpoints["md"])
+  })
+
+  test("resolves multiple breakpoint string values", () => {
+    setupMock()
+
+    const { result } = renderHook(() => useToken("breakpoints", ["sm", "lg"]))
+
+    expect(result.current).toHaveLength(2)
+    expect(result.current).toStrictEqual([
+      mockBreakpoints["sm"],
+      mockBreakpoints["lg"],
     ])
   })
 })

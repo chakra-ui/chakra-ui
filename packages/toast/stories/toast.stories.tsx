@@ -1,13 +1,13 @@
 import * as React from "react"
+import { theme as base } from "@chakra-ui/theme"
 import { Button, ButtonGroup } from "@chakra-ui/button"
 import { chakra, useColorMode } from "@chakra-ui/system"
 import { Alert } from "@chakra-ui/alert"
 import { Text } from "@chakra-ui/layout"
 import { createStandaloneToast, useToast } from "../src"
-import theme from "../../../website/theme"
 
 export default {
-  title: "Toast",
+  title: "Components / Feedback / Toast",
   decorators: [
     (Story: Function) => (
       <>
@@ -248,6 +248,20 @@ export const UseToastWithDefaults = () => {
   return <Button onClick={() => toast()}>toast</Button>
 }
 
+export const UseToastWithCustomContainerStyle = () => {
+  const toast = useToast({
+    position: "top",
+    title: "Container style is updated",
+    containerStyle: {
+      width: "800px",
+      maxWidth: "100%",
+      border: "20px solid red",
+    },
+  })
+
+  return <Button onClick={() => toast()}>toast</Button>
+}
+
 export const useToastCustomRenderUpdate = () => {
   const [id, setId] = React.useState(null)
   const toast = useToast()
@@ -288,7 +302,16 @@ export const useToastCustomRenderUpdate = () => {
 }
 
 export function StandAloneToast() {
-  const toast = createStandaloneToast({ theme })
+  const toast = createStandaloneToast({
+    theme: {
+      ...base,
+      colors: {
+        green: {
+          500: "#67BF3C",
+        },
+      },
+    },
+  })
   const toast2 = createStandaloneToast()
   return (
     <>

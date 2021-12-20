@@ -1,5 +1,87 @@
 # Change Log
 
+## 1.15.0
+
+### Minor Changes
+
+- [#5123](https://github.com/chakra-ui/chakra-ui/pull/5123)
+  [`26d2a547b`](https://github.com/chakra-ui/chakra-ui/commit/26d2a547bca20e197f352c7492e3cad197b513e6)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Add support for
+  style props `gap`, `columnGap` and `rowGap`. Those CSS properties are valid in
+  a grid or flex context
+
+  > For further information see
+  > [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/gap)
+
+### Patch Changes
+
+- [#4970](https://github.com/chakra-ui/chakra-ui/pull/4970)
+  [`73235af10`](https://github.com/chakra-ui/chakra-ui/commit/73235af10d8868786ec58778dda9a42b8d275599)
+  Thanks [@giuseppelt](https://github.com/giuseppelt)! - Fix issue where
+  `bgGradient` parser doesn't work when a position is specified
+
+* [`f15099adc`](https://github.com/chakra-ui/chakra-ui/commit/f15099adc60150781607288dbe12133c2fb84e38)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  tokens autocomplete don't show up anymore except user runs the cli command.
+
+- [#5192](https://github.com/chakra-ui/chakra-ui/pull/5192)
+  [`a1d5e7bfa`](https://github.com/chakra-ui/chakra-ui/commit/a1d5e7bfae1b4cc749e14eed4977ae423b8bce2c)
+  Thanks [@selrond](https://github.com/selrond)! - Fixed issue where multi-value
+  `inset` property doesn't work.
+
+## 1.14.1
+
+### Patch Changes
+
+- [#5075](https://github.com/chakra-ui/chakra-ui/pull/5075)
+  [`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Update babel config to
+  transpile soruces for older browsers. This fixes issues with CRA and
+  Storybook.
+- Updated dependencies
+  [[`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)]:
+  - @chakra-ui/utils@1.9.1
+
+## 1.14.0
+
+### Minor Changes
+
+- [#4991](https://github.com/chakra-ui/chakra-ui/pull/4991)
+  [`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update build system
+  we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+  The previous build system transpiles the code in `src` directory to `dist/esm`
+  and `dist/cjs` keeping the same file structure. The new build system merges
+  all files in `src` and transpiles to a single `esm` and `cjs` file.
+
+  **Potential Breaking Change:** The side effect of this is that, if you
+  imported any function, component or hook using the **undocumented** approach
+  like
+  `import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+  you'll notice that the this doesn't work anymore.
+
+  Here's how to resolve it:
+
+  ```jsx live=false
+  // Won't work 🎇
+  import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+
+  // Works ✅
+  import { useOutsideClick } from "@chakra-ui/hooks"
+  ```
+
+  If this affected your project, we recommend that you import hooks, functions
+  or components the way it's shown in the documentation. This will help keep
+  your project future-proof.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)]:
+  - @chakra-ui/utils@1.9.0
+
 ## 1.13.0
 
 ### Minor Changes

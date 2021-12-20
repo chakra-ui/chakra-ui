@@ -2,7 +2,7 @@ import React from "react"
 import { Container, Divider } from ".."
 
 export default {
-  title: "Divider",
+  title: "Components / Data Display / Divider",
   decorators: [
     (Story: Function) => (
       <Container p={4} height="300px">

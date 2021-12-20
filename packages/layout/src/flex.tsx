@@ -62,16 +62,8 @@ export interface FlexProps extends HTMLChakraProps<"div">, FlexOptions {}
  * @see Docs https://chakra-ui.com/flex
  */
 export const Flex = forwardRef<FlexProps, "div">((props, ref) => {
-  const {
-    direction,
-    align,
-    justify,
-    wrap,
-    basis,
-    grow,
-    shrink,
-    ...rest
-  } = props
+  const { direction, align, justify, wrap, basis, grow, shrink, ...rest } =
+    props
 
   const styles = {
     display: "flex",

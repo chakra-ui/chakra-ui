@@ -130,10 +130,11 @@ export const Select = forwardRef<SelectProps, "select">((props, ref) => {
     color,
   }
 
-  const fieldStyles: SystemStyleObject = mergeWith({}, styles.field, {
-    paddingEnd: "2rem",
-    _focus: { zIndex: "unset" },
-  })
+  const fieldStyles: SystemStyleObject = mergeWith(
+    { paddingEnd: "2rem" },
+    styles.field,
+    { _focus: { zIndex: "unset" } },
+  )
 
   return (
     <chakra.div

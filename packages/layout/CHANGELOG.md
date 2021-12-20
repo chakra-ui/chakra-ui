@@ -1,5 +1,85 @@
 # Change Log
 
+## 1.6.0
+
+### Minor Changes
+
+- [#5123](https://github.com/chakra-ui/chakra-ui/pull/5123)
+  [`26d2a547b`](https://github.com/chakra-ui/chakra-ui/commit/26d2a547bca20e197f352c7492e3cad197b513e6)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Add support for
+  style props `gap`, `columnGap` and `rowGap`. Those CSS properties are valid in
+  a grid or flex context
+
+  > For further information see
+  > [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/gap)
+
+### Patch Changes
+
+- [`f565841c6`](https://github.com/chakra-ui/chakra-ui/commit/f565841c6215a5a187dc4ea18d9188277ff2ce4e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix TS issue with
+  Grid component due to the native `gap`, `rowGap` and `columnGap` we added to
+  styled system.
+- Updated dependencies
+  [[`17400aff6`](https://github.com/chakra-ui/chakra-ui/commit/17400aff62601c1b70dcc4e60af1fadf3915f3e0)]:
+  - @chakra-ui/icon@2.0.0
+
+## 1.5.1
+
+### Patch Changes
+
+- [#5075](https://github.com/chakra-ui/chakra-ui/pull/5075)
+  [`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Update babel config to
+  transpile soruces for older browsers. This fixes issues with CRA and
+  Storybook.
+- Updated dependencies
+  [[`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)]:
+  - @chakra-ui/icon@1.2.1
+  - @chakra-ui/react-utils@1.2.1
+  - @chakra-ui/utils@1.9.1
+
+## 1.5.0
+
+### Minor Changes
+
+- [#4991](https://github.com/chakra-ui/chakra-ui/pull/4991)
+  [`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update build system
+  we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+  The previous build system transpiles the code in `src` directory to `dist/esm`
+  and `dist/cjs` keeping the same file structure. The new build system merges
+  all files in `src` and transpiles to a single `esm` and `cjs` file.
+
+  **Potential Breaking Change:** The side effect of this is that, if you
+  imported any function, component or hook using the **undocumented** approach
+  like
+  `import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+  you'll notice that the this doesn't work anymore.
+
+  Here's how to resolve it:
+
+  ```jsx live=false
+  // Won't work 🎇
+  import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+
+  // Works ✅
+  import { useOutsideClick } from "@chakra-ui/hooks"
+  ```
+
+  If this affected your project, we recommend that you import hooks, functions
+  or components the way it's shown in the documentation. This will help keep
+  your project future-proof.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)]:
+  - @chakra-ui/icon@1.2.0
+  - @chakra-ui/react-utils@1.2.0
+  - @chakra-ui/utils@1.9.0
+
 ## 1.4.11
 
 ### Patch Changes

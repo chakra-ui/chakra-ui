@@ -1,5 +1,248 @@
 # Change Log
 
+## 1.7.3
+
+### Patch Changes
+
+- [#5133](https://github.com/chakra-ui/chakra-ui/pull/5133)
+  [`6efe10f21`](https://github.com/chakra-ui/chakra-ui/commit/6efe10f21077992acf0edd0a97f8d877bf97180c)
+  Thanks [@yoannfleurydev](https://github.com/yoannfleurydev)! - Update
+  storybook url configuration for `@chakra-ui/react` to
+  [https://storybook.chakra-ui.com](https://storybook.chakra-ui.com)
+- Updated dependencies
+  [[`26d2a547b`](https://github.com/chakra-ui/chakra-ui/commit/26d2a547bca20e197f352c7492e3cad197b513e6),
+  [`cd0b7996b`](https://github.com/chakra-ui/chakra-ui/commit/cd0b7996b3f9df999cd87371f1a4a1384a10063e),
+  [`ba76b8125`](https://github.com/chakra-ui/chakra-ui/commit/ba76b8125a533b0642b12ad6388774785ad026ac),
+  [`d139cc151`](https://github.com/chakra-ui/chakra-ui/commit/d139cc1515141ecec527653aa6dfc4eecf2cdcb4),
+  [`586eb6090`](https://github.com/chakra-ui/chakra-ui/commit/586eb6090fe9013936cd83a61bb5091814bcb906),
+  [`f565841c6`](https://github.com/chakra-ui/chakra-ui/commit/f565841c6215a5a187dc4ea18d9188277ff2ce4e),
+  [`f15099adc`](https://github.com/chakra-ui/chakra-ui/commit/f15099adc60150781607288dbe12133c2fb84e38),
+  [`98b9fbecb`](https://github.com/chakra-ui/chakra-ui/commit/98b9fbecb20118553e92009b84a887ffdb35ba28),
+  [`c20aa919e`](https://github.com/chakra-ui/chakra-ui/commit/c20aa919e4fa4d89a2c9be603fa60f851576558b),
+  [`53e2df4f9`](https://github.com/chakra-ui/chakra-ui/commit/53e2df4f9cbe7fc2fad69d1ee49a1e788811467a),
+  [`b4decca9a`](https://github.com/chakra-ui/chakra-ui/commit/b4decca9afb62c4e353a6a9329d2afd279906fa6),
+  [`39846457e`](https://github.com/chakra-ui/chakra-ui/commit/39846457e241e6af3d18c77cdc0ba02857fe7462),
+  [`f4fd9441e`](https://github.com/chakra-ui/chakra-ui/commit/f4fd9441eae40d135dfe9ae911a9b4547b4647f5),
+  [`17400aff6`](https://github.com/chakra-ui/chakra-ui/commit/17400aff62601c1b70dcc4e60af1fadf3915f3e0)]:
+  - @chakra-ui/layout@1.6.0
+  - @chakra-ui/menu@1.8.2
+  - @chakra-ui/popover@1.11.0
+  - @chakra-ui/input@1.3.2
+  - @chakra-ui/system@1.8.3
+  - @chakra-ui/theme@1.12.2
+  - @chakra-ui/toast@1.5.0
+  - @chakra-ui/tooltip@1.4.2
+  - @chakra-ui/media-query@1.2.2
+  - @chakra-ui/transition@1.4.2
+  - @chakra-ui/icon@2.0.0
+  - @chakra-ui/accordion@1.4.2
+  - @chakra-ui/alert@1.3.2
+  - @chakra-ui/close-button@1.2.2
+  - @chakra-ui/form-control@1.5.2
+  - @chakra-ui/modal@1.10.2
+  - @chakra-ui/number-input@1.3.2
+  - @chakra-ui/provider@1.7.3
+  - @chakra-ui/radio@1.4.3
+  - @chakra-ui/select@1.2.2
+  - @chakra-ui/skeleton@1.2.3
+  - @chakra-ui/stat@1.2.2
+  - @chakra-ui/tag@1.2.2
+  - @chakra-ui/textarea@1.2.2
+
+## 1.7.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`e29634a07`](https://github.com/chakra-ui/chakra-ui/commit/e29634a07544f36e753d942ad8008b0198eddc53),
+  [`002e3a488`](https://github.com/chakra-ui/chakra-ui/commit/002e3a48887c2ceb37bafceb8d4aa248b8dfa22f)]:
+  - @chakra-ui/radio@1.4.2
+  - @chakra-ui/slider@1.5.2
+  - @chakra-ui/system@1.8.2
+  - @chakra-ui/provider@1.7.2
+  - @chakra-ui/skeleton@1.2.2
+
+## 1.7.1
+
+### Patch Changes
+
+- [#5075](https://github.com/chakra-ui/chakra-ui/pull/5075)
+  [`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Update babel config to
+  transpile soruces for older browsers. This fixes issues with CRA and
+  Storybook.
+- Updated dependencies
+  [[`042994eb0`](https://github.com/chakra-ui/chakra-ui/commit/042994eb0866e4f49cc286f64f54962f613a4423),
+  [`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)]:
+  - @chakra-ui/media-query@1.2.1
+  - @chakra-ui/accordion@1.4.1
+  - @chakra-ui/alert@1.3.1
+  - @chakra-ui/avatar@1.3.1
+  - @chakra-ui/breadcrumb@1.3.1
+  - @chakra-ui/button@1.5.1
+  - @chakra-ui/checkbox@1.6.1
+  - @chakra-ui/close-button@1.2.1
+  - @chakra-ui/control-box@1.1.1
+  - @chakra-ui/counter@1.2.1
+  - @chakra-ui/css-reset@1.1.1
+  - @chakra-ui/editable@1.3.1
+  - @chakra-ui/react-env@1.1.1
+  - @chakra-ui/form-control@1.5.1
+  - @chakra-ui/hooks@1.7.1
+  - @chakra-ui/icon@1.2.1
+  - @chakra-ui/image@1.1.1
+  - @chakra-ui/input@1.3.1
+  - @chakra-ui/layout@1.5.1
+  - @chakra-ui/live-region@1.1.1
+  - @chakra-ui/menu@1.8.1
+  - @chakra-ui/modal@1.10.1
+  - @chakra-ui/number-input@1.3.1
+  - @chakra-ui/pin-input@1.7.1
+  - @chakra-ui/popover@1.10.1
+  - @chakra-ui/popper@2.4.1
+  - @chakra-ui/portal@1.3.1
+  - @chakra-ui/progress@1.2.1
+  - @chakra-ui/provider@1.7.1
+  - @chakra-ui/radio@1.4.1
+  - @chakra-ui/select@1.2.1
+  - @chakra-ui/skeleton@1.2.1
+  - @chakra-ui/slider@1.5.1
+  - @chakra-ui/spinner@1.2.1
+  - @chakra-ui/stat@1.2.1
+  - @chakra-ui/switch@1.3.1
+  - @chakra-ui/system@1.8.1
+  - @chakra-ui/table@1.3.1
+  - @chakra-ui/tabs@1.6.1
+  - @chakra-ui/tag@1.2.1
+  - @chakra-ui/textarea@1.2.1
+  - @chakra-ui/theme@1.12.1
+  - @chakra-ui/toast@1.4.1
+  - @chakra-ui/tooltip@1.4.1
+  - @chakra-ui/transition@1.4.1
+  - @chakra-ui/utils@1.9.1
+  - @chakra-ui/visually-hidden@1.1.1
+
+## 1.7.0
+
+### Minor Changes
+
+- [#4991](https://github.com/chakra-ui/chakra-ui/pull/4991)
+  [`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update build system
+  we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+  The previous build system transpiles the code in `src` directory to `dist/esm`
+  and `dist/cjs` keeping the same file structure. The new build system merges
+  all files in `src` and transpiles to a single `esm` and `cjs` file.
+
+  **Potential Breaking Change:** The side effect of this is that, if you
+  imported any function, component or hook using the **undocumented** approach
+  like
+  `import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+  you'll notice that the this doesn't work anymore.
+
+  Here's how to resolve it:
+
+  ```jsx live=false
+  // Won't work 🎇
+  import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+
+  // Works ✅
+  import { useOutsideClick } from "@chakra-ui/hooks"
+  ```
+
+  If this affected your project, we recommend that you import hooks, functions
+  or components the way it's shown in the documentation. This will help keep
+  your project future-proof.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0dd56ab1b`](https://github.com/chakra-ui/chakra-ui/commit/0dd56ab1b1ec3abab20ac6d8449757ad40138f29),
+  [`c7277cdf7`](https://github.com/chakra-ui/chakra-ui/commit/c7277cdf715626926b3c12cfdc62a230b00609f0),
+  [`802e0a4d2`](https://github.com/chakra-ui/chakra-ui/commit/802e0a4d2762eebd39bb337442609fc2ff75841e),
+  [`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)]:
+  - @chakra-ui/select@1.2.0
+  - @chakra-ui/theme@1.12.0
+  - @chakra-ui/slider@1.5.0
+  - @chakra-ui/modal@1.10.0
+  - @chakra-ui/accordion@1.4.0
+  - @chakra-ui/alert@1.3.0
+  - @chakra-ui/avatar@1.3.0
+  - @chakra-ui/breadcrumb@1.3.0
+  - @chakra-ui/button@1.5.0
+  - @chakra-ui/checkbox@1.6.0
+  - @chakra-ui/close-button@1.2.0
+  - @chakra-ui/control-box@1.1.0
+  - @chakra-ui/counter@1.2.0
+  - @chakra-ui/css-reset@1.1.0
+  - @chakra-ui/editable@1.3.0
+  - @chakra-ui/react-env@1.1.0
+  - @chakra-ui/form-control@1.5.0
+  - @chakra-ui/hooks@1.7.0
+  - @chakra-ui/icon@1.2.0
+  - @chakra-ui/image@1.1.0
+  - @chakra-ui/input@1.3.0
+  - @chakra-ui/layout@1.5.0
+  - @chakra-ui/live-region@1.1.0
+  - @chakra-ui/media-query@1.2.0
+  - @chakra-ui/menu@1.8.0
+  - @chakra-ui/number-input@1.3.0
+  - @chakra-ui/pin-input@1.7.0
+  - @chakra-ui/popover@1.10.0
+  - @chakra-ui/popper@2.4.0
+  - @chakra-ui/portal@1.3.0
+  - @chakra-ui/progress@1.2.0
+  - @chakra-ui/provider@1.7.0
+  - @chakra-ui/radio@1.4.0
+  - @chakra-ui/skeleton@1.2.0
+  - @chakra-ui/spinner@1.2.0
+  - @chakra-ui/stat@1.2.0
+  - @chakra-ui/switch@1.3.0
+  - @chakra-ui/system@1.8.0
+  - @chakra-ui/table@1.3.0
+  - @chakra-ui/tabs@1.6.0
+  - @chakra-ui/tag@1.2.0
+  - @chakra-ui/textarea@1.2.0
+  - @chakra-ui/toast@1.4.0
+  - @chakra-ui/tooltip@1.4.0
+  - @chakra-ui/transition@1.4.0
+  - @chakra-ui/utils@1.9.0
+  - @chakra-ui/visually-hidden@1.1.0
+
+## 1.6.12
+
+### Patch Changes
+
+- [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)
+  [#4965](https://github.com/chakra-ui/chakra-ui/pull/4965) Thanks
+  [@takethefake](https://github.com/takethefake)! - Allow usage of
+  `framer-motion` 5.x in `peerDependency`
+
+- Updated dependencies
+  [[`5f531c51f`](https://github.com/chakra-ui/chakra-ui/commit/5f531c51febf45230ff8267fab4145711a99b99b),
+  [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135),
+  [`97bad87c7`](https://github.com/chakra-ui/chakra-ui/commit/97bad87c7b8b4ff31f705a9d55b392385d921a33),
+  [`c3f016149`](https://github.com/chakra-ui/chakra-ui/commit/c3f01614929d2f68a39cf78111d17f4f4c684706),
+  [`f2df9cfc1`](https://github.com/chakra-ui/chakra-ui/commit/f2df9cfc1c3c2ef3f3b74ec2849079fd726cd84c)]:
+  - @chakra-ui/radio@1.3.13
+  - @chakra-ui/checkbox@1.5.10
+  - @chakra-ui/menu@1.7.8
+  - @chakra-ui/modal@1.9.4
+  - @chakra-ui/popover@1.9.1
+  - @chakra-ui/theme@1.11.1
+  - @chakra-ui/toast@1.3.4
+  - @chakra-ui/tooltip@1.3.14
+  - @chakra-ui/transition@1.3.8
+  - @chakra-ui/media-query@1.1.5
+  - @chakra-ui/popper@2.3.1
+  - @chakra-ui/switch@1.2.13
+  - @chakra-ui/accordion@1.3.10
+  - @chakra-ui/skeleton@1.1.21
+  - @chakra-ui/system@1.7.6
+  - @chakra-ui/provider@1.6.11
+
 ## 1.6.11
 
 ### Patch Changes

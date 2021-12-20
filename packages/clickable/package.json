@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/clickable",
-  "version": "1.1.9",
+  "version": "1.2.1",
   "description": "React hook and component that implements native button interactions",
   "keywords": [
     "chakra ui",
@@ -13,18 +13,12 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
-    }
-  },
+  "main": "dist/chakra-ui-clickable.cjs.js",
+  "module": "dist/chakra-ui-clickable.esm.js",
+  "types": "dist/chakra-ui-clickable.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"
@@ -37,23 +31,9 @@
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
-  "scripts": {
-    "prebuild": "rimraf dist",
-    "start": "nodemon --watch src --exec yarn build -e ts,tsx",
-    "build": "concurrently yarn:build:*",
-    "test": "jest --env=jsdom --passWithNoTests",
-    "lint": "concurrently yarn:lint:*",
-    "version": "yarn build",
-    "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
-    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
-    "test:cov": "yarn test --coverage",
-    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
-    "lint:types": "tsc --noEmit"
-  },
   "dependencies": {
-    "@chakra-ui/react-utils": "1.1.2",
-    "@chakra-ui/utils": "1.8.4"
+    "@chakra-ui/react-utils": "1.2.1",
+    "@chakra-ui/utils": "1.9.1"
   },
   "peerDependencies": {
     "react": ">=16.8.6"

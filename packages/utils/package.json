@@ -1,23 +1,17 @@
 {
   "name": "@chakra-ui/utils",
-  "version": "1.8.4",
+  "version": "1.9.1",
   "description": "Common utilties and types for Chakra UI",
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "sideEffects": false,
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
-    }
-  },
+  "main": "dist/chakra-ui-utils.cjs.js",
+  "module": "dist/chakra-ui-utils.esm.js",
+  "types": "dist/chakra-ui-utils.cjs.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"
@@ -26,19 +20,6 @@
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
     "directory": "packages/utils"
-  },
-  "scripts": {
-    "prebuild": "rimraf dist",
-    "start": "nodemon --watch src --exec yarn build -e ts,tsx",
-    "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
-    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
-    "build": "concurrently yarn:build:*",
-    "test": "jest --env=jsdom --passWithNoTests",
-    "test:cov": "yarn test --coverage",
-    "lint:src": "eslint src --fix --ext .ts,.tsx --config ../../.eslintrc",
-    "lint:types": "tsc --noEmit",
-    "lint": "concurrently yarn:lint:*"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
