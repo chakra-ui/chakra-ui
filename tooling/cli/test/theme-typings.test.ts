@@ -86,7 +86,10 @@ describe("Theme typings", () => {
       "// regenerate by running
       // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
       export interface ThemeTypings {
+        blur: never
         borders: \\"sm\\" | \\"md\\"
+        borderStyles: never
+        borderWidths: never
         breakpoints: \\"sm\\" | \\"md\\"
         colors:
           | \\"niceColor\\"
@@ -138,7 +141,10 @@ describe("Theme typings", () => {
       "// regenerate by running
       // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
       export interface ThemeTypings {
+        blur: never
         borders: never
+        borderStyles: never
+        borderWidths: never
         breakpoints: never
         colors: never
         colorSchemes: never

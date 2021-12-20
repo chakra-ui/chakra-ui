@@ -125,7 +125,7 @@ test("should move the correct thumb when user clicks the track in case of stacke
 
   const clickCoordinates = { clientX: 20, clientY: 10 }
 
-  await act(() => {
+  act(() => {
     userEvent.click(rangeSliderTrack, clickCoordinates)
   })
 
