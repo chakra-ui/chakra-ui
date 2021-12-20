@@ -31,6 +31,9 @@ const SimpleSlider = (props: {
 )
 
 test("passes a11y test", async () => {
+  Object.defineProperty(window, "requestAnimationFrame", {
+    value: jest.fn((cb) => cb()),
+  })
   await testA11y(<SimpleSlider />)
 })
 
