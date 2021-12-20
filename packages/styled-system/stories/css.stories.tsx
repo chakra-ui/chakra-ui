@@ -102,3 +102,15 @@ export const TextAndLayerStyles = () => {
     </ThemeProvider>
   )
 }
+
+export const peerSelector = () => {
+  return (
+    <div>
+      <input data-peer />
+      <Box css={{ _peerFocus: { color: "red" } }}>Test 1</Box>
+      <Box css={{ _peerFocus: { color: "green", fontWeight: "bold" } }}>
+        Test 2
+      </Box>
+    </div>
+  )
+}
