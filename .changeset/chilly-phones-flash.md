@@ -7,7 +7,7 @@
 You can now style an element based on the state of its general sibling (marked
 with `.peer` or `data-peer`) attribute.
 
-```jsx
+```jsx live=false
 <>
   <input type="checkbox" data-peer />
   <Box bg="white" _peerFocus={{ bg: "green.400" }} />
