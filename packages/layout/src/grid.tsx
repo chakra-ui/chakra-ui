@@ -110,6 +110,9 @@ export interface GridOptions {
   /**
    * Short hand prop for `gridArea`
    * @type SystemProps["gridArea"]
+   * @deprecated
+   * Use `GridItem` with the `area` prop instead. Will be removed in a future
+   * version.
    */
   area?: SystemProps["gridArea"]
   /**
@@ -125,6 +128,11 @@ export interface GridOptions {
 }
 
 export interface GridItemProps extends BoxProps {
+  /**
+   * Short hand prop for `gridArea`
+   * @type SystemProps["gridArea"]
+   */
+  area?: SystemProps["gridArea"]
   /**
    * The number of columns the grid item should `span`.
    * @type ResponsiveValue<number | "auto">
@@ -160,10 +168,19 @@ function spanFn(span?: ResponsiveValue<number | "auto">) {
 }
 
 export const GridItem = forwardRef<GridItemProps, "div">((props, ref) => {
-  const { colSpan, colStart, colEnd, rowEnd, rowSpan, rowStart, ...rest } =
-    props
+  const {
+    area,
+    colSpan,
+    colStart,
+    colEnd,
+    rowEnd,
+    rowSpan,
+    rowStart,
+    ...rest
+  } = props
 
   const styles = filterUndefined({
+    gridArea: area,
     gridColumn: spanFn(colSpan),
     gridRow: spanFn(rowSpan),
     gridColumnStart: colStart,
