@@ -260,3 +260,20 @@ test("accepts custom icon", () => {
 
   expect(screen.getByTestId("custom-icon")).toBeInTheDocument()
 })
+
+test("can pass tabIndex directly to input component", () => {
+  const { container } = render(
+    <>
+      <Checkbox tabIndex={-1} isFocusable={false}>
+        Not Focusable with provided tabIndex
+      </Checkbox>
+      <Checkbox isFocusable={false}>Not Focusable</Checkbox>
+    </>,
+  )
+  const [checkboxOne, checkboxTwo] = Array.from(
+    container.querySelectorAll("input"),
+  )
+
+  expect(checkboxOne).toHaveAttribute("tabIndex", "-1")
+  expect(checkboxTwo).not.toHaveAttribute("tabIndex")
+})

@@ -2,7 +2,7 @@ import * as React from "react"
 import { Box, Circle, Flex, Kbd, Spacer, Square } from "../src"
 
 export default {
-  title: "Box",
+  title: "Components / Layout / Box",
 }
 
 export const basic = () => (

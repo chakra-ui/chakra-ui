@@ -2,7 +2,7 @@ import * as React from "react"
 import { Code } from "../src"
 
 export default {
-  title: "Code",
+  title: "Components / Data Display / Code",
 }
 
 export const Basic = () => (

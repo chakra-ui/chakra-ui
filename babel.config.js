@@ -1,32 +1,21 @@
 const BABEL_ENV = process.env.BABEL_ENV
-const isCommonJS = BABEL_ENV !== undefined && BABEL_ENV === "cjs"
-const isESM = BABEL_ENV !== undefined && BABEL_ENV === "esm"
+const cjs = BABEL_ENV !== undefined && BABEL_ENV === "cjs"
 
-module.exports = function (api) {
-  api.cache(true)
-
-  const presets = [
-    [
-      "@babel/env",
-      {
-        loose: true,
-        modules: isCommonJS ? "commonjs" : false,
-        targets: {
-          esmodules: isESM ? true : undefined,
-        },
-      },
-    ],
+module.exports = {
+  plugins: [
+    "@chakra-ui/babel-plugin",
+    ["@babel/plugin-proposal-class-properties", { loose: true }],
+  ],
+  presets: [
     "@babel/preset-typescript",
     "@babel/preset-react",
-  ]
-
-  const plugins = [
-    "@chakra-ui/babel-plugin",
-    "@babel/plugin-proposal-class-properties",
-  ]
-
-  return {
-    presets,
-    plugins,
-  }
+    [
+      "@babel/preset-env",
+      {
+        bugfixes: true,
+        modules: cjs ? "commonjs" : false,
+        loose: true,
+      },
+    ],
+  ],
 }

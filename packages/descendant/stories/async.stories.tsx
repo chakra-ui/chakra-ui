@@ -5,7 +5,7 @@ import * as React from "react"
 import createDescendantContext from "../src"
 
 export default {
-  title: "Descendants / Async",
+  title: "System / Descendants / Async",
 }
 
 const [

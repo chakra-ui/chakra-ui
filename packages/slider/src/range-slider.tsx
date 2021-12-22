@@ -23,14 +23,12 @@ interface RangeSliderContext
   name?: string | string[]
 }
 
-const [
-  RangeSliderProvider,
-  useRangeSliderContext,
-] = createContext<RangeSliderContext>({
-  name: "SliderContext",
-  errorMessage:
-    "useSliderContext: `context` is undefined. Seems you forgot to wrap all slider components within <RangeSlider />",
-})
+const [RangeSliderProvider, useRangeSliderContext] =
+  createContext<RangeSliderContext>({
+    name: "SliderContext",
+    errorMessage:
+      "useSliderContext: `context` is undefined. Seems you forgot to wrap all slider components within <RangeSlider />",
+  })
 
 export { RangeSliderProvider, useRangeSliderContext }
 
@@ -53,10 +51,10 @@ export const RangeSlider = forwardRef<RangeSliderProps, "div">((props, ref) => {
   ownProps.direction = direction
 
   const { getRootProps, ...context } = useRangeSlider(ownProps)
-  const ctx = React.useMemo(() => ({ ...context, name: props.name }), [
-    context,
-    props.name,
-  ])
+  const ctx = React.useMemo(
+    () => ({ ...context, name: props.name }),
+    [context, props.name],
+  )
 
   return (
     <RangeSliderProvider value={ctx}>
@@ -125,6 +123,7 @@ export const RangeSliderTrack = forwardRef<RangeSliderTrackProps, "div">(
         {...trackProps}
         className={cx("chakra-slider__track", props.className)}
         __css={styles.track}
+        data-testid="chakra-range-slider-track"
       />
     )
   },

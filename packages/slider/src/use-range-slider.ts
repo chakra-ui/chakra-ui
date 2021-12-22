@@ -114,6 +114,12 @@ export interface UseRangeSliderProps {
    * The writing mode
    */
   direction?: "ltr" | "rtl"
+  /**
+   * The minimum distance between slider thumbs. Useful for preventing
+   * the thumbs from being too close together.
+   * @default 0
+   */
+  minStepsBetweenThumbs?: number
 }
 
 /**
@@ -147,6 +153,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
     "aria-labelledby": ariaLabelledBy,
     name,
     focusThumbOnChange = true,
+    minStepsBetweenThumbs = 0,
     ...htmlProps
   } = props
 
@@ -180,8 +187,10 @@ export function useRangeSlider(props: UseRangeSliderProps) {
 
   const initialValue = useRef(valueState)
   const value = valueState.map((val) => clampValue(val, min, max))
-  const valueBounds = getValueBounds(value, min, max)
   const valueRef = useLatestRef(value)
+
+  const spacing = minStepsBetweenThumbs * step
+  const valueBounds = getValueBounds(value, min, max, spacing)
 
   const reversedValue = value.map((val) => max - val + min)
   const thumbValues = isReversed ? reversedValue : value
@@ -339,13 +348,27 @@ export function useRangeSlider(props: UseRangeSliderProps) {
     const pointValue = getValueFromPointer(event) || 0
     const distances = value.map((val) => Math.abs(val - pointValue))
     const closest = Math.min(...distances)
-    const index = distances.indexOf(closest)
+    let index = distances.indexOf(closest)
+
+    // check if the clicked thumb is stacked by checking if there are multiple
+    // thumbs at the same distance
+    const thumbsAtPosition = distances.filter(
+      (distance) => distance === closest,
+    )
+    const isThumbStacked = thumbsAtPosition.length > 1
+
+    // when two thumbs are stacked and the user clicks at a point larger than
+    // their values, pick the last thumb with the greatest index
+    if (isThumbStacked && pointValue > value[index]) {
+      index = thumbsAtPosition.length - 1
+    }
     setActiveIndex(index)
     actions.setValueAtIndex(index, pointValue)
     focusThumb(index)
   }
 
   const onPan = (event: AnyPointerEvent) => {
+    if (activeIndex == -1) return
     const pointValue = getValueFromPointer(event) || 0
     setActiveIndex(activeIndex)
     actions.setValueAtIndex(activeIndex, pointValue)
@@ -553,8 +576,14 @@ export function useRangeSlider(props: UseRangeSliderProps) {
 
 export type UseRangeSliderReturn = ReturnType<typeof useRangeSlider>
 
-const getValueBounds = (arr: number[], min: number, max: number) =>
-  arr.map((v, i) => ({
-    min: arr[i - 1] ?? min,
-    max: arr[i + 1] ?? max,
-  }))
+const getValueBounds = (
+  arr: number[],
+  min: number,
+  max: number,
+  spacing: number,
+) =>
+  arr.map((v, i) => {
+    const _min = i === 0 ? min : arr[i - 1] + spacing
+    const _max = i === arr.length - 1 ? max : arr[i + 1] - spacing
+    return { min: _min, max: _max }
+  })

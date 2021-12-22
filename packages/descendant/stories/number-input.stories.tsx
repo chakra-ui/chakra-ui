@@ -3,7 +3,7 @@ import * as React from "react"
 import createDescendantContext from "../src"
 
 export default {
-  title: "Descendants / NumberInput",
+  title: "System / Descendants / NumberInput",
 }
 
 const [

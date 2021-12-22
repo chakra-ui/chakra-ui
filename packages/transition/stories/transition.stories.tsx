@@ -1,10 +1,9 @@
 import { useBoolean } from "@chakra-ui/hooks"
 import * as React from "react"
-import { SlideFade } from "../src/slide-fade"
-import { ScaleFade } from "../src/scale-fade"
+import { SlideFade, ScaleFade } from "../src"
 
 export default {
-  title: "Transition / Offset Slide",
+  title: "Components / Others / Transition / Offset Slide",
 }
 
 export const _SlideFade = () => {

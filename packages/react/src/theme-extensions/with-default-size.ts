@@ -1,5 +1,5 @@
 import { ThemingProps } from "@chakra-ui/system"
-import { Dict, isObject } from "@chakra-ui/utils"
+import { Dict, isObject, fromEntries } from "@chakra-ui/utils"
 import { mergeThemeOverride, ThemeExtension } from "../extend-theme"
 
 export function withDefaultSize({
@@ -19,7 +19,7 @@ export function withDefaultSize({
     }
 
     return mergeThemeOverride(theme, {
-      components: Object.fromEntries(
+      components: fromEntries(
         names.map((componentName) => {
           const withSize = {
             defaultProps: {

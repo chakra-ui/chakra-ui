@@ -53,7 +53,7 @@ export const Slider = forwardRef<SliderProps, "div">((props, ref) => {
       <StylesProvider value={styles}>
         <chakra.div
           {...rootProps}
-          className="chakra-slider"
+          className={cx("chakra-slider", props.className)}
           __css={styles.container}
         >
           {props.children}
@@ -127,7 +127,7 @@ export const SliderFilledTrack = forwardRef<SliderInnerTrackProps, "div">(
     return (
       <chakra.div
         {...trackProps}
-        className="chakra-slider__filled-track"
+        className={cx("chakra-slider__filled-track", props.className)}
         __css={styles.filledTrack}
       />
     )

@@ -4,7 +4,7 @@ import * as React from "react"
 import { Progress, ProgressLabel } from "../src"
 
 export default {
-  title: "Linear Progress",
+  title: "Components / Feedback / Linear Progress",
   decorators: [
     (story: Function) => (
       <chakra.div maxW="500px" mt="40px" mx="auto">

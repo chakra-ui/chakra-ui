@@ -20,30 +20,51 @@ export function useMediaQuery(query: string | string[]): boolean[] {
     ),
   )
 
+  // Specifying matches in the dependency list will cause the event listeners
+  // to unload and then load each time the dependency changes. This causes
+  // Media Query Events to be missed. The event listeners should only be unloaded
+  // when the component unloads.
   useSafeLayoutEffect(() => {
     if (!isSupported) return undefined
 
     const mediaQueryList = queries.map((query) => env.window.matchMedia(query))
 
-    const listenerList = mediaQueryList.map((mediaQuery, index) => {
-      const listener = () =>
-        setMatches((prev) =>
-          prev.map((prevValue, idx) =>
-            index === idx ? !!mediaQuery.matches : prevValue,
-          ),
+    const listenerList = mediaQueryList.map((_, index) => {
+      const listener = (mqlEvent: MediaQueryListEvent) => {
+        const queryIndex = mediaQueryList.findIndex(
+          (mediaQuery) => mediaQuery.media === mqlEvent.media,
         )
 
-      mediaQuery.addListener(listener)
+        // As the event listener is on the media query list, any time the
+        // listener is called, we know there is a change. There's no need
+        // to compare the previous matches with current. Using
+        // setMatches(matches => {...}) provides access to the current matches
+        // state.  Trying to access matches outside the setMatches function
+        // would provide data from the the time of instantiation (stale).
+
+        setMatches((matches) => {
+          const currentMatches = matches.map((x) => x)
+          currentMatches[queryIndex] = mqlEvent.matches
+          return currentMatches
+        })
+      }
+
+      // Listening to the 'change' event on the Media Query List Object
+      // is more performant as the callback is only invoked when a specified
+      // media query is matched. Using addEventListener on the window object
+      // to listen for the resize event will call the callback on every
+      // viewport resize.
+      mediaQueryList[index].addEventListener("change", listener)
 
       return listener
     })
 
     return () => {
-      mediaQueryList.forEach((mediaQuery, index) => {
-        mediaQuery.removeListener(listenerList[index])
+      mediaQueryList.forEach((_, index) => {
+        mediaQueryList[index].removeEventListener("change", listenerList[index])
       })
     }
-  }, [query])
+  }, [])
 
   return matches
 }

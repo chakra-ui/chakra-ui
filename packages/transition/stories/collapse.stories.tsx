@@ -5,7 +5,7 @@ import { Bar } from "react-chartjs-2"
 import { Collapse, CollapseProps } from "../src/collapse"
 
 export default {
-  title: "Transition / Collapse",
+  title: "Components / Transition / Collapse",
 }
 
 export const BarChartExample = () => {

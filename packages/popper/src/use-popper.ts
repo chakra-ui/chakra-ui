@@ -19,7 +19,7 @@ export interface UsePopperProps {
    * The main and cross-axis offset to displace popper element
    * from its reference element.
    */
-  offset?: [crossAxis: number, mainAxis: number]
+  offset?: [number, number]
   /**
    * The distance or margin between the reference and popper.
    * It is used internally to create an `offset` modifier.
@@ -108,7 +108,7 @@ export type ArrowCSSVarProps = {
 export function usePopper(props: UsePopperProps = {}) {
   const {
     enabled = true,
-    modifiers = [],
+    modifiers,
     placement: placementProp = "bottom",
     strategy = "absolute",
     arrowPadding = 8,
@@ -167,7 +167,7 @@ export function usePopper(props: UsePopperProps = {}) {
           options: { boundary },
         },
         // allow users override internal modifiers
-        ...modifiers,
+        ...(modifiers ?? []),
       ],
       strategy,
     })

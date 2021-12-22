@@ -5,6 +5,7 @@ import type {
   SystemStyleFunction,
   SystemStyleObject,
 } from "@chakra-ui/theme-tools"
+import { mergeWith } from "@chakra-ui/utils"
 import { mode } from "@chakra-ui/theme-tools"
 import Input from "./input"
 
@@ -38,13 +39,27 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   icon: baseStyleIcon,
 })
 
-const sizes: Record<string, PartsStyleObject<typeof parts>> = {
-  ...Input.sizes,
-  xs: {
-    ...Input.sizes.xs,
-    icon: { insetEnd: "0.25rem" },
+const iconSpacing = { paddingInlineEnd: "2rem" }
+
+const sizes: Record<string, PartsStyleObject<typeof parts>> = mergeWith(
+  {},
+  Input.sizes,
+  {
+    lg: {
+      field: iconSpacing,
+    },
+    md: {
+      field: iconSpacing,
+    },
+    sm: {
+      field: iconSpacing,
+    },
+    xs: {
+      field: iconSpacing,
+      icon: { insetEnd: "0.25rem" },
+    },
   },
-}
+)
 
 export default {
   parts: parts.keys,

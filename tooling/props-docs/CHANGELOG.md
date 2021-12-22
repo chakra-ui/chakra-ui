@@ -1,5 +1,75 @@
 # Change Log
 
+## 1.0.41
+
+### Patch Changes
+
+- Updated dependencies
+  [[`26d2a547b`](https://github.com/chakra-ui/chakra-ui/commit/26d2a547bca20e197f352c7492e3cad197b513e6),
+  [`73235af10`](https://github.com/chakra-ui/chakra-ui/commit/73235af10d8868786ec58778dda9a42b8d275599),
+  [`6efe10f21`](https://github.com/chakra-ui/chakra-ui/commit/6efe10f21077992acf0edd0a97f8d877bf97180c),
+  [`f15099adc`](https://github.com/chakra-ui/chakra-ui/commit/f15099adc60150781607288dbe12133c2fb84e38),
+  [`a1d5e7bfa`](https://github.com/chakra-ui/chakra-ui/commit/a1d5e7bfae1b4cc749e14eed4977ae423b8bce2c)]:
+  - @chakra-ui/styled-system@1.15.0
+  - @chakra-ui/react@1.7.3
+
+## 1.0.40
+
+### Patch Changes
+
+- [#5100](https://github.com/chakra-ui/chakra-ui/pull/5100)
+  [`6f3924296`](https://github.com/chakra-ui/chakra-ui/commit/6f39242964dd9bd7cf9f38d2b11e7b3c68ee9203)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  package doesn't include a `dist` folder and doesn't work when installed from
+  npm.
+- Updated dependencies []:
+  - @chakra-ui/react@1.7.2
+
+## 1.0.39
+
+### Patch Changes
+
+- Updated dependencies
+  [[`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)]:
+  - @chakra-ui/react@1.7.1
+  - @chakra-ui/styled-system@1.14.1
+
+## 1.0.38
+
+### Patch Changes
+
+- Updated dependencies
+  [[`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)]:
+  - @chakra-ui/react@1.7.0
+  - @chakra-ui/styled-system@1.14.0
+
+## 1.0.37
+
+### Patch Changes
+
+- Updated dependencies
+  [[`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)]:
+  - @chakra-ui/react@1.6.12
+
+## 1.0.36
+
+### Patch Changes
+
+- Updated dependencies
+  [[`38b5bc627`](https://github.com/chakra-ui/chakra-ui/commit/38b5bc627c98fed4b7a55c45820785a4905c081e),
+  [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/styled-system@1.13.0
+  - @chakra-ui/react@1.6.11
+
+## 1.0.35
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1cfa2be4b`](https://github.com/chakra-ui/chakra-ui/commit/1cfa2be4b443ae4af8e5ec208cfe2c0fde23dde3)]:
+  - @chakra-ui/react@1.6.10
+  - @chakra-ui/styled-system@1.12.3
+
 ## 1.0.34
 
 ### Patch Changes

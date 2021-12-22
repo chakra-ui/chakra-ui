@@ -11,6 +11,9 @@
     "template",
     "typescript"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "The official Chakra+TypeScript template for Create React App.",
   "repository": {
     "type": "git",

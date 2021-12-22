@@ -9,7 +9,7 @@ import {
 } from "../src"
 
 export default {
-  title: "Range Slider",
+  title: "Components / Forms / Range Slider",
   decorators: [
     (story: Function) => (
       <chakra.div maxWidth="400px" height="300px" mx="auto" mt="40px">
@@ -28,8 +28,9 @@ export const HookUsage = () => {
     getTrackProps,
   } = useRangeSlider({
     direction: useTheme().direction,
-    defaultValue: [40, 80],
-    onChange: (v) => console.log(v.toString()),
+    defaultValue: [10, 40],
+    minStepsBetweenThumbs: 5,
+    // onChange: (v) => console.log(v.toStri     ng()),
   })
 
   return (

@@ -1,5 +1,132 @@
 # Change Log
 
+## 1.8.2
+
+### Patch Changes
+
+- [`cd0b7996b`](https://github.com/chakra-ui/chakra-ui/commit/cd0b7996b3f9df999cd87371f1a4a1384a10063e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `enabled` TS type was exposed to popover and menu from `UsePopperProps`. This
+  was resolved by omitting `enabled` from the type
+- Updated dependencies
+  [[`39846457e`](https://github.com/chakra-ui/chakra-ui/commit/39846457e241e6af3d18c77cdc0ba02857fe7462)]:
+  - @chakra-ui/transition@1.4.2
+
+## 1.8.1
+
+### Patch Changes
+
+- [#5075](https://github.com/chakra-ui/chakra-ui/pull/5075)
+  [`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Update babel config to
+  transpile soruces for older browsers. This fixes issues with CRA and
+  Storybook.
+- Updated dependencies
+  [[`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)]:
+  - @chakra-ui/clickable@1.2.1
+  - @chakra-ui/descendant@2.1.1
+  - @chakra-ui/hooks@1.7.1
+  - @chakra-ui/popper@2.4.1
+  - @chakra-ui/react-utils@1.2.1
+  - @chakra-ui/transition@1.4.1
+  - @chakra-ui/utils@1.9.1
+
+## 1.8.0
+
+### Minor Changes
+
+- [#4991](https://github.com/chakra-ui/chakra-ui/pull/4991)
+  [`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update build system
+  we use from a custom babel cli setup to
+  [preconstruct](https://preconstruct.tools/).
+
+  The previous build system transpiles the code in `src` directory to `dist/esm`
+  and `dist/cjs` keeping the same file structure. The new build system merges
+  all files in `src` and transpiles to a single `esm` and `cjs` file.
+
+  **Potential Breaking Change:** The side effect of this is that, if you
+  imported any function, component or hook using the **undocumented** approach
+  like
+  `import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+  you'll notice that the this doesn't work anymore.
+
+  Here's how to resolve it:
+
+  ```jsx live=false
+  // Won't work 🎇
+  import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+
+  // Works ✅
+  import { useOutsideClick } from "@chakra-ui/hooks"
+  ```
+
+  If this affected your project, we recommend that you import hooks, functions
+  or components the way it's shown in the documentation. This will help keep
+  your project future-proof.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)]:
+  - @chakra-ui/clickable@1.2.0
+  - @chakra-ui/descendant@2.1.0
+  - @chakra-ui/hooks@1.7.0
+  - @chakra-ui/popper@2.4.0
+  - @chakra-ui/react-utils@1.2.0
+  - @chakra-ui/transition@1.4.0
+  - @chakra-ui/utils@1.9.0
+
+## 1.7.8
+
+### Patch Changes
+
+- [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)
+  [#4965](https://github.com/chakra-ui/chakra-ui/pull/4965) Thanks
+  [@takethefake](https://github.com/takethefake)! - Allow usage of
+  `framer-motion` 5.x in `peerDependency`
+
+- Updated dependencies
+  [[`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135),
+  [`c3f016149`](https://github.com/chakra-ui/chakra-ui/commit/c3f01614929d2f68a39cf78111d17f4f4c684706)]:
+  - @chakra-ui/transition@1.3.8
+  - @chakra-ui/popper@2.3.1
+
+## 1.7.7
+
+### Patch Changes
+
+- [`98fdadd9d`](https://github.com/chakra-ui/chakra-ui/commit/98fdadd9df76369770a017ff1338fa2d9764a84e)
+  [#4822](https://github.com/chakra-ui/chakra-ui/pull/4822) Thanks
+  [@takethefake](https://github.com/takethefake)! - Fixed an error where the
+  onOpen was called multiple/infinite times
+
+* [`c28d9232d`](https://github.com/chakra-ui/chakra-ui/commit/c28d9232df555e88d149c17f2116600350c83b14)
+  [#4888](https://github.com/chakra-ui/chakra-ui/pull/4888) Thanks
+  [@dodas](https://github.com/dodas)! - Fix issue where computePositionOnMount
+  didn't work without explict value
+
+* Updated dependencies
+  [[`5fe9b552b`](https://github.com/chakra-ui/chakra-ui/commit/5fe9b552bcae55935d1ab8ffde86b701075e6e6a),
+  [`cd0893c56`](https://github.com/chakra-ui/chakra-ui/commit/cd0893c561d8c72b69db7c03d10adae752468a4f)]:
+  - @chakra-ui/hooks@1.6.2
+  - @chakra-ui/utils@1.8.4
+  - @chakra-ui/clickable@1.1.9
+  - @chakra-ui/transition@1.3.7
+
+## 1.7.6
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
+  [`a9d1dc4ac`](https://github.com/chakra-ui/chakra-ui/commit/a9d1dc4ac874825f292d874ad4eadaf060fed436),
+  [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
+  - @chakra-ui/utils@1.8.3
+  - @chakra-ui/hooks@1.6.1
+  - @chakra-ui/clickable@1.1.8
+  - @chakra-ui/transition@1.3.6
+
 ## 1.7.5
 
 ### Patch Changes

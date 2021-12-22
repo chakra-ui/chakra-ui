@@ -1,17 +1,19 @@
 module.exports = {
-  preset: "ts-jest",
   testEnvironment: "jsdom",
+  collectCoverageFrom: ["packages/**/*.{ts,tsx}"],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
   modulePathIgnorePatterns: [
-    "<rootDir>/website/.cache",
     "<rootDir>/examples",
     "<rootDir>/tooling/cra-template*",
   ],
   transform: {
-    "^.+\\.(ts|tsx)?$": "ts-jest/dist",
+    "^.+\\.(ts|tsx|js|jsx)?$": "@swc-node/jest",
   },
   transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
-  setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
+  setupFilesAfterEnv: [
+    "@testing-library/jest-dom/extend-expect",
+    "./scripts/setup-test.ts",
+  ],
   globals: {
     "ts-jest": {
       tsconfig: "tsconfig.json",

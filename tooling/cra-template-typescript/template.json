@@ -1,7 +1,7 @@
 {
   "package": {
     "dependencies": {
-      "@chakra-ui/react": "^1.0.0",
+      "@chakra-ui/react": "latest",
       "@emotion/react": "^11.0.0",
       "@emotion/styled": "^11.0.0",
       "framer-motion": "^4.0.0",
@@ -13,7 +13,7 @@
       "@types/react": "^16.9.0",
       "@types/react-dom": "^16.9.0",
       "@types/jest": "^25.0.0",
-      "typescript": "^3.9.5",
+      "typescript": "^4.3.5",
       "web-vitals": "^0.2.2"
     }
   }

@@ -63,7 +63,9 @@ export const [MenuProvider, useMenuContext] = createContext<
  * useMenu hook
  * -----------------------------------------------------------------------------------------------*/
 
-export interface UseMenuProps extends UsePopperProps, UseDisclosureProps {
+export interface UseMenuProps
+  extends Omit<UsePopperProps, "enabled">,
+    UseDisclosureProps {
   /**
    * If `true`, the menu will close when a menu item is
    * clicked
@@ -138,21 +140,58 @@ export function useMenu(props: UseMenuProps = {}) {
     placement = "bottom-start",
     lazyBehavior = "unmount",
     direction,
-    computePositionOnMount,
+    computePositionOnMount = false,
     ...popperProps
   } = props
-  const { isOpen, onOpen, onClose, onToggle } = useDisclosure({
-    isOpen: isOpenProp,
-    defaultIsOpen,
-    onClose: onCloseProp,
-    onOpen: onOpenProp,
-  })
-
   /**
    * Prepare the reference to the menu and disclosure
    */
   const menuRef = React.useRef<HTMLDivElement>(null)
   const buttonRef = React.useRef<HTMLButtonElement>(null)
+
+  /**
+   * Context to register all menu item nodes
+   */
+  const descendants = useMenuDescendants()
+
+  const focusMenu = React.useCallback(() => {
+    focus(menuRef.current, {
+      nextTick: true,
+      selectTextIfInput: false,
+    })
+  }, [])
+
+  const focusFirstItem = React.useCallback(() => {
+    const id = setTimeout(() => {
+      const first = descendants.firstEnabled()
+      if (first) setFocusedIndex(first.index)
+    })
+    timeoutIds.current.add(id)
+  }, [descendants])
+
+  const focusLastItem = React.useCallback(() => {
+    const id = setTimeout(() => {
+      const last = descendants.lastEnabled()
+      if (last) setFocusedIndex(last.index)
+    })
+    timeoutIds.current.add(id)
+  }, [descendants])
+
+  const onOpenInternal = React.useCallback(() => {
+    onOpenProp?.()
+    if (autoSelect) {
+      focusFirstItem()
+    } else {
+      focusMenu()
+    }
+  }, [autoSelect, focusFirstItem, focusMenu, onOpenProp])
+
+  const { isOpen, onOpen, onClose, onToggle } = useDisclosure({
+    isOpen: isOpenProp,
+    defaultIsOpen,
+    onClose: onCloseProp,
+    onOpen: onOpenInternal,
+  })
 
   useOutsideClick({
     enabled: isOpen && closeOnBlur,
@@ -177,11 +216,6 @@ export function useMenu(props: UseMenuProps = {}) {
   const [focusedIndex, setFocusedIndex] = React.useState(-1)
 
   /**
-   * Context to register all menu item nodes
-   */
-  const descendants = useMenuDescendants()
-
-  /**
    * Focus the button when we close the menu
    */
   useUpdateEffect(() => {
@@ -203,13 +237,10 @@ export function useMenu(props: UseMenuProps = {}) {
 
   const openAndFocusMenu = React.useCallback(() => {
     onOpen()
-    focus(menuRef.current, {
-      nextTick: true,
-      selectTextIfInput: false,
-    })
-  }, [onOpen, menuRef])
+    focusMenu()
+  }, [onOpen, focusMenu])
 
-  const timeoutIds = React.useRef<Set<number>>(new Set([]))
+  const timeoutIds = React.useRef<Set<any>>(new Set([]))
 
   useUnmountEffect(() => {
     timeoutIds.current.forEach((id) => clearTimeout(id))
@@ -218,21 +249,13 @@ export function useMenu(props: UseMenuProps = {}) {
 
   const openAndFocusFirstItem = React.useCallback(() => {
     onOpen()
-    const id = setTimeout(() => {
-      const first = descendants.firstEnabled()
-      if (first) setFocusedIndex(first.index)
-    })
-    timeoutIds.current.add(id)
-  }, [onOpen, setFocusedIndex, descendants])
+    focusFirstItem()
+  }, [focusFirstItem, onOpen])
 
   const openAndFocusLastItem = React.useCallback(() => {
     onOpen()
-    const id = setTimeout(() => {
-      const last = descendants.lastEnabled()
-      if (last) setFocusedIndex(last.index)
-    })
-    timeoutIds.current.add(id)
-  }, [onOpen, setFocusedIndex, descendants])
+    focusLastItem()
+  }, [onOpen, focusLastItem])
 
   const refocus = React.useCallback(() => {
     const doc = getOwnerDocument(menuRef.current)
@@ -246,12 +269,6 @@ export function useMenu(props: UseMenuProps = {}) {
       focus(node, { selectTextIfInput: false, preventScroll: false })
     }
   }, [isOpen, focusedIndex, descendants])
-
-  React.useEffect(() => {
-    if (!isOpen) return
-    if (autoSelect) openAndFocusFirstItem()
-    else openAndFocusMenu()
-  }, [isOpen, autoSelect, openAndFocusFirstItem, openAndFocusMenu])
 
   return {
     openAndFocusMenu,
