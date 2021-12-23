@@ -15,6 +15,9 @@ import { RunOptions } from "axe-core"
 export {
   act as invokeSSR,
   renderHook as renderHookSSR,
+} from "@testing-library/react-hooks/server"
+
+export type {
   RenderHookOptions as renderHookOptionsSSR,
   RenderHookResult as renderHookResultSSR,
 } from "@testing-library/react-hooks/server"
