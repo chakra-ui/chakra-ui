@@ -37,12 +37,12 @@ export const ButtonSpinner: React.FC<ButtonSpinnerProps> = (props) => {
       display: "flex",
       alignItems: "center",
       position: label ? "relative" : "absolute",
-      [marginProp]: label ? "0.5rem" : 0,
+      [marginProp]: label ? spacing : 0,
       fontSize: "1em",
       lineHeight: "normal",
       ...__css,
     }),
-    [__css, label, marginProp],
+    [__css, label, marginProp, spacing],
   )
 
   return (
