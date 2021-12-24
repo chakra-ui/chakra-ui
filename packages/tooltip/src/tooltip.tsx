@@ -73,14 +73,22 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
     hasArrow,
     bg,
     portalProps,
+    background,
+    backgroundColor,
+    bgColor,
     ...rest
   } = ownProps
 
-  if (bg) {
-    styles.bg = bg
-    styles[popperCSSVars.arrowBg.var] = getCSSVar(theme, "colors", bg)
-  }
+  const userDefinedBg = background ?? backgroundColor ?? bg ?? bgColor
 
+  if (userDefinedBg) {
+    styles.bg = userDefinedBg
+    styles[popperCSSVars.arrowBg.var] = getCSSVar(
+      theme,
+      "colors",
+      userDefinedBg,
+    )
+  }
   const tooltip = useTooltip({ ...rest, direction: theme.direction })
 
   const shouldWrap = isString(children) || shouldWrapChildren
