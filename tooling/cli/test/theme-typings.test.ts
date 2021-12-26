@@ -84,7 +84,10 @@ describe("Theme typings", () => {
       "// regenerate by running
       // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
       export interface ThemeTypings {
+        blur: string & {}
         borders: \\"sm\\" | \\"md\\" | (string & {})
+        borderStyles: string & {}
+        borderWidths: string & {}
         breakpoints: \\"sm\\" | \\"md\\" | (string & {})
         colors:
           | \\"niceColor\\"
@@ -138,7 +141,10 @@ describe("Theme typings", () => {
       "// regenerate by running
       // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
       export interface ThemeTypings {
+        blur: string & {}
         borders: string & {}
+        borderStyles: string & {}
+        borderWidths: string & {}
         breakpoints: string & {}
         colors: string & {}
         colorSchemes: string & {}
@@ -171,10 +177,10 @@ describe("Theme typings", () => {
       "// regenerate by running
       // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
       export interface ThemeTypings {
-        blur: (string & {})
+        blur: string & {}
         borders: \\"sm\\" | \\"md\\" | (string & {})
-        borderStyles: (string & {})
-        borderWidths: (string & {})
+        borderStyles: string & {}
+        borderWidths: string & {}
         breakpoints: \\"sm\\" | \\"md\\" | (string & {})
         colors:
           | \\"niceColor\\"
