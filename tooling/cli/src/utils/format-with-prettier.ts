@@ -1,25 +1,13 @@
-import type { format, resolveConfig } from "prettier"
+import { format, resolveConfig } from "prettier"
 
-const createFormatFileWithPrettier = (prettier: {
-  format: typeof format
-  resolveConfig: typeof resolveConfig
-}) => async (content: string) => {
-  const prettierConfig = await prettier.resolveConfig(process.cwd())
-  return prettier.format(String(content), {
+async function createFormatFileWithPrettier(content: string) {
+  const prettierConfig = await resolveConfig(process.cwd())
+  return format(String(content), {
     ...prettierConfig,
     parser: "typescript",
   })
 }
 
 export async function formatWithPrettierIfAvailable(content: string) {
-  let prettier
-  try {
-    // eslint-disable-next-line global-require
-    prettier = require("prettier")
-  } catch {
-    // silent exit if prettier is not installed
-    return content
-  }
-
-  return createFormatFileWithPrettier(prettier)(content)
+  return createFormatFileWithPrettier(content)
 }
