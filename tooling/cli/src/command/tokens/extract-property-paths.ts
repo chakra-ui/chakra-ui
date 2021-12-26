@@ -1,25 +1,35 @@
 import { isObject } from "@chakra-ui/utils"
 
+const AutoCompleteStringType = "(string & {})"
+
 function wrapWithQuotes(value: unknown) {
   return `"${value}"`
 }
 
-function printUnionType(values: string[]) {
+function printUnionType(values: string[], strict = false) {
   if (!values.length) {
-    return "never"
+    return strict ? "never" : AutoCompleteStringType
   }
 
-  return values.map(wrapWithQuotes).join(" | ")
+  return values
+    .map(wrapWithQuotes)
+    .concat(strict ? [] : [AutoCompleteStringType])
+    .join(" | ")
 }
 
 /**
  * @example
  * { colors: ['red.500', 'green.500'] } => `colors: "red.500" | "green.500"`
  */
-export function printUnionMap(unions: Record<string, string[]>) {
+export function printUnionMap(
+  unions: Record<string, string[]>,
+  strict = false,
+) {
   return Object.entries(unions)
     .sort(([a], [b]) => a.localeCompare(b))
-    .map(([targetKey, union]) => `${targetKey}: ${printUnionType(union)};`)
+    .map(
+      ([targetKey, union]) => `${targetKey}: ${printUnionType(union, strict)};`,
+    )
     .join("\n")
 }
 

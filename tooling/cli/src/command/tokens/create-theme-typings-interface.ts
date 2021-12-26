@@ -39,11 +39,12 @@ export interface ThemeKeyOptions {
 
 export interface CreateThemeTypingsInterfaceOptions {
   config: ThemeKeyOptions[]
+  strictComponentTypes?: boolean
 }
 
 export async function createThemeTypingsInterface(
   theme: Record<string, unknown>,
-  { config }: CreateThemeTypingsInterfaceOptions,
+  { config, strictComponentTypes = false }: CreateThemeTypingsInterfaceOptions,
 ) {
   const unions = config.reduce(
     (
@@ -74,7 +75,7 @@ export async function createThemeTypingsInterface(
 // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
 export interface ThemeTypings {
   ${printUnionMap({ ...unions, textStyles, layerStyles, colorSchemes })}
-  ${printComponentTypes(componentTypes)}
+  ${printComponentTypes(componentTypes, strictComponentTypes)}
 }
 
 `
