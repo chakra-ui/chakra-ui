@@ -148,7 +148,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
       )}
 
       {isLoading ? (
-        loadingText || (
+        (loadingText &&  <chakra.span>{loadingText}</chakra.span>) || (
           <chakra.span opacity={0}>
             <ButtonContent {...contentProps} />
           </chakra.span>
@@ -182,10 +182,11 @@ type ButtonContentProps = Pick<
 
 function ButtonContent(props: ButtonContentProps) {
   const { leftIcon, rightIcon, children, iconSpacing } = props
+  const isString = typeof children === "string"
   return (
     <>
       {leftIcon && <ButtonIcon marginEnd={iconSpacing}>{leftIcon}</ButtonIcon>}
-      {children}
+      {isString ? <chakra.span>{children}</chakra.span> : children}
       {rightIcon && (
         <ButtonIcon marginStart={iconSpacing}>{rightIcon}</ButtonIcon>
       )}
