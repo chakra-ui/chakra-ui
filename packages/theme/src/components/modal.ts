@@ -83,7 +83,14 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
 function getSize(value: string): PartsStyleObject<typeof parts> {
   if (value === "full") {
     return {
-      dialog: { maxW: "100vw", minH: "100vh", my: 0 },
+      dialog: {
+        maxW: "100vw",
+        minH: "100vh",
+        "@supports(min-height: -webkit-fill-available)": {
+          minH: "-webkit-fill-available",
+        },
+        my: 0,
+      },
     }
   }
   return {
