@@ -513,7 +513,7 @@ export function useMenuPositioner(props: any = {}) {
  * -----------------------------------------------------------------------------------------------*/
 
 export interface UseMenuItemProps
-  extends Omit<React.HTMLAttributes<Element>, "color"> {
+  extends Omit<React.HTMLAttributes<Element>, "color" | "disabled"> {
   /**
    * If `true`, the menuitem will be disabled
    */
