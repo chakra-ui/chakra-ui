@@ -10,6 +10,7 @@ const baseStyleText: SystemStyleFunction = (props) => {
     color: mode("red.500", "red.300")(props),
     mt: 2,
     fontSize: "sm",
+    lineHeight: "normal",
   }
 }
 
