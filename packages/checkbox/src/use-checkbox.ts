@@ -11,6 +11,7 @@ import React, {
   ChangeEvent,
   KeyboardEvent,
   useCallback,
+  useEffect,
   useRef,
   useState,
 } from "react"
@@ -188,6 +189,12 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       inputRef.current.indeterminate = Boolean(isIndeterminate)
     }
   }, [isIndeterminate])
+
+  useEffect(() => {
+    if (isDisabled) {
+      setFocused.off()
+    }
+  }, [isDisabled, setFocused])
 
   const trulyDisabled = isDisabled && !isFocusable
 
