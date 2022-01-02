@@ -3,6 +3,7 @@ import {
   useCallbackRef,
   useControllableProp,
   useSafeLayoutEffect,
+  useUpdateEffect,
 } from "@chakra-ui/hooks"
 import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import { callAllHandlers, dataAttr, focus, warn } from "@chakra-ui/utils"
@@ -11,7 +12,6 @@ import React, {
   ChangeEvent,
   KeyboardEvent,
   useCallback,
-  useEffect,
   useRef,
   useState,
 } from "react"
@@ -190,7 +190,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     }
   }, [isIndeterminate])
 
-  useEffect(() => {
+  useUpdateEffect(() => {
     if (isDisabled) {
       setFocused.off()
     }
