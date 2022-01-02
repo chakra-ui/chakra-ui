@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.12.3
+
+### Patch Changes
+
+- [#5298](https://github.com/chakra-ui/chakra-ui/pull/5298)
+  [`3199b7242`](https://github.com/chakra-ui/chakra-ui/commit/3199b724237c56dc3a9c25811a88b2bea1b36ce9)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Ensure consistent
+  line height for `FormErrorMessage` and `FormHelperText`
+
+* [#5297](https://github.com/chakra-ui/chakra-ui/pull/5297)
+  [`eb5850687`](https://github.com/chakra-ui/chakra-ui/commit/eb5850687e0984d95c3dd06e57716188c69cae42)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue
+  where the `ModalFooter` was out of the viewport for `size="full"`.
+
 ## 1.12.2
 
 ### Patch Changes

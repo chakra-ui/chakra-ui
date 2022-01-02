@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.7.2
+
+### Patch Changes
+
+- [#5237](https://github.com/chakra-ui/chakra-ui/pull/5237)
+  [`801008e27`](https://github.com/chakra-ui/chakra-ui/commit/801008e276812a6f94f2f5dc634bcbfe01d23026)
+  Thanks [@navarroaxel](https://github.com/navarroaxel)! - Add a comment about
+  `useState` alternative
+
+* [#4835](https://github.com/chakra-ui/chakra-ui/pull/4835)
+  [`8a0e5bdbc`](https://github.com/chakra-ui/chakra-ui/commit/8a0e5bdbccb7fa10dd4cd7b909ca60991fce81a0)
+  Thanks [@igorwessel](https://github.com/igorwessel)! - Fixed a issue where
+  `useId` generated inconsistent id values between client and server (SSR).
+
 ## 1.7.1
 
 ### Patch Changes
