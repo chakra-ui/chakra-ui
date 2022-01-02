@@ -2,4 +2,5 @@
 "@chakra-ui/hooks": patch
 ---
 
-Fixed a issue where ID generated is not matching with Client ID when using SSR.
+Fixed a issue where `useId` generated inconsistent id values between client and
+server (SSR).

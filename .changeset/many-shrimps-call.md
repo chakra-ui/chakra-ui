@@ -14,7 +14,7 @@ npm i -D @chakra-ui/storybook-addon
 
 Add the addon to your configuration in `.storybook/main.js`:
 
-```js
+```js live=false
 module.exports = {
   addons: ["@chakra-ui/storybook-addon"],
 }

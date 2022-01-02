@@ -10,7 +10,7 @@ generate strict component type for the theming props `variant` and `size`.
 chakra-cli tokens --strict-component-types
 ```
 
-```tsx
+```tsx live=false
 // before
 <Button variant="abc" />
 // valid type but variant is not available in the theme

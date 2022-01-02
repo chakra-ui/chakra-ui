@@ -2,4 +2,5 @@
 "@chakra-ui/checkbox": patch
 ---
 
-fix(checkbox): remove focus styles when disabled
+Fix issue where focus styles persists when `isDisabled` is set to `true` and
+checkbox has focus.
