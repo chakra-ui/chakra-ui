@@ -6,10 +6,21 @@ import {
   fireEvent,
   RenderResult,
 } from "@testing-library/react"
+
 import * as React from "react"
 import { toHaveNoViolations, axe } from "jest-axe"
 import { createSerializer } from "@emotion/jest"
 import { RunOptions } from "axe-core"
+
+export {
+  act as invokeSSR,
+  renderHook as renderHookSSR,
+} from "@testing-library/react-hooks/server"
+
+export type {
+  RenderHookOptions as renderHookOptionsSSR,
+  RenderHookResult as renderHookResultSSR,
+} from "@testing-library/react-hooks/server"
 
 expect.addSnapshotSerializer(createSerializer())
 expect.extend(toHaveNoViolations)
