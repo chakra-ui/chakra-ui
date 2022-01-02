@@ -18,6 +18,7 @@ import {
   transform,
   transition,
   typography,
+  scroll,
 } from "./config"
 import { pseudoPropNames, pseudoSelectors } from "./pseudos"
 
@@ -36,6 +37,7 @@ export const systemProps = mergeWith(
   position,
   effect,
   space,
+  scroll,
   typography,
   textDecoration,
   transform,
