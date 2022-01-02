@@ -1,129 +1,160 @@
-## 09-12-2021
+## 02-01-2022
 
-`@chakra-ui/react@1.7.3`
+**Styled System** `v1.16.0`
 
-- Update storybook url configuration for `@chakra-ui/react` to
-  [https://storybook.chakra-ui.com](https://storybook.chakra-ui.com)
+- ### Add support peer pseudo style props
 
-**Layout** `v1.6.0`
-
-- Add support for style props `gap`, `columnGap` and `rowGap`. Those CSS
-  properties are valid in a grid or flex context
-
-> For further information see
-> [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/gap)
-
-- Fix TS issue with Grid component due to the native `gap`, `rowGap` and
-  `columnGap` we added to styled system.
-
-**Styled System** `v1.15.0`
-
-- Add support for style props `gap`, `columnGap` and `rowGap`. Those CSS
-  properties are valid in a grid or flex context
-
-> For further information see
-> [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/gap)
-
-- Fix issue where `bgGradient` parser doesn't work when a position is specified
-- Fix issue where tokens autocomplete don't show up anymore except user runs the
-  cli command.
-- Fixed issue where multi-value `inset` property doesn't work.
-
-**Menu** `v1.8.2`
-
-- Fix issue where `enabled` TS type was exposed to popover and menu from
-  `UsePopperProps`. This was resolved by omitting `enabled` from the type
-
-**Popover** `v1.11.0`
-
-- Fix issue where `enabled` TS type was exposed to popover and menu from
-  `UsePopperProps`. This was resolved by omitting `enabled` from the type
-- Fix issue where `Popover` will be `display:none` when inner element focused.
-- Add `PopoverAnchor` component which allows you to set the `Popover` reference
-  point without acting as a trigger.
+You can now style an element based on the state of its general sibling (marked
+with `.peer` or `data-peer`) attribute.
 
 ```jsx live=false
-<Popover>
-  {/* triggers the popover to open/close */}
-  <PopoverTrigger>
-    <button>Trigger</button>
-  </PopoverTrigger>
-  {/* popover will be positioned relative to this */}
-  <PopoverAnchor>
-    <Box width="40px" height="40px" />
-  </PopoverAnchor>
-  <PopoverContent>Hello World</PopoverContent>
-</Popover>
+<>
+  <input type="checkbox" data-peer />
+  <Box bg="white" _peerFocus={{ bg: 'green.400' }} />
+</>
 ```
 
-**Input** `v1.3.2`
+The peer properties you can apply are `_peerHover`, `_peerFocus`,
+`_peerFocusVisible`, `_peerActive`, `_peerInvalid`,
+`_peerChecked`,`_peerFocusWithin`, `_peerPlaceholderShown`, `_peerDisabled`
 
-- Fixed an issue where `InputGroup` passes undefined `size` and `variant` props
-  which overrides the ones defined by default in a custom `Input` component.
+### New style props
 
-**System** `v1.8.3`
+Added `_placeholderShown` pseudo props for styling elements when sibling inputs
+have placeholder shown.
 
-- Allow retrieving breakpoint tokens when using useToken
+Added `_ltr` pseudo props for styling elements in LTR writing mode. This is
+useful for products with RTL first approach.
 
-**Theme** `v1.12.2`
+Added `_mediaReduceMotion` pseudo props to apply reduce motion styles to
+elements. This is useful when you need to remove CSS animations/transitions.
 
-- Fix issue where tokens autocomplete don't show up anymore except user runs the
-  cli command.
+- Adds style props for CSS scroll behavior properties: `scrollPadding`,
+  `scrollMargin`, `scrollSnapAlign`, etc...
 
-**Toast** `v1.5.0`
+Here's a full list of properties:
 
-- The `toast` function now exposes a `containerStyle` property you can use to
-  override the default styles for the toast container.
+- **Scroll Behavior:** `scrollBehavior`, `scrollSnapAlign`, `scrollSnapStop`,
+  `scrollSnapType`
 
-```jsx live=false
-function Example() {
-  // Via instantiation
-  const toast = useToast({
-    position: 'top',
-    title: 'Container style is customizable',
-    containerStyle: {
-      maxWidth: '100%',
-    },
-  });
+- **Scroll Margin:** `scrollMargin`, `scrollMarginTop`, `scrollMarginBottom`,
+  `scrollMarginLeft`, `scrollMarginRight`, `scrollMarginX`, `scrollMarginY`
 
-  // Or via trigger
-  return (
-    <Button
-      onClick={() => {
-        toast({
-          containerStyle: {
-            maxWidth: '100%',
-          },
-        });
-      }}
-    >
-      Click me to show toast with custom container style.
-    </Button>
-  );
-}
+- **Scroll Padding:** `scrollPadding`, `scrollPaddingTop`,
+  `scrollPaddingBottom`, `scrollPaddingLeft`, `scrollPaddingRight`,
+  `scrollPaddingX`, `scrollPaddingY`
+
+**System** `v1.9.0`
+
+- Use the feature flag `--strict-component-types` for `@chakra-ui/cli tokens` to
+  generate strict component type for the theming props `variant` and `size`.
+
+```bash
+chakra-cli tokens --strict-component-types
 ```
 
-- Fix TS issue with toast placement utility
+```tsx live=false
+// before
+<Button variant="abc" />
+// valid type but variant is not available in the theme
 
-**Tooltip** `v1.4.2`
-
-- Prevent `onKeyDown` callback from de/registering on every call of `useTooltip`
-
-**Media Query** `v1.2.2`
-
-- Improved performance and behavior of `useMediaQuery` hook.
-
-**Transition** `v1.4.2`
-
-- Fixed issue where the `ref` of `Slider` returns `null` due to prop override
-
-**Icon** `v2.0.0`
-
-- Auto assign `key` when passing array of paths to `createIcon`
-
-```jsx live=false
-const HeartIcon = createIcon({
-  displayName: 'HeartIcon',
-  path: [<path stroke="none" d="..." fill="none" />, <path d="..." />],
-});
+// after
+<Button variant="abc" /> // invalid
+// Type '"abc"' is not assignable to type '"link" | "outline" | "ghost" | "solid" | "unstyled" | undefined'.
 ```
+
+**Cli** `v1.7.0`
+
+- Use the feature flag `--strict-component-types` for `@chakra-ui/cli tokens` to
+  generate strict component type for the theming props `variant` and `size`.
+
+```bash
+chakra-cli tokens --strict-component-types
+```
+
+```tsx live=false
+// before
+<Button variant="abc" />
+// valid type but variant is not available in the theme
+
+// after
+<Button variant="abc" /> // invalid
+// Type '"abc"' is not assignable to type '"link" | "outline" | "ghost" | "solid" | "unstyled" | undefined'.
+```
+
+- Fixed an issue where the cli fails when `prettier` is not installed
+- Added token scales `blur`, `borderStyles` and `borderWidths`.
+
+**Slider** `v1.5.3`
+
+- Allow classNames specified on `Slider` and `SliderFilledTrack` to be added to
+  the class list
+
+**Hooks** `v1.7.2`
+
+- Add a comment about `useState` alternative
+- Fixed a issue where `useId` generated inconsistent id values between client and
+  server (SSR).
+
+**Storybook Addon** `v1.0.0`
+
+- The official Storybook Addon for Chakra UI.
+
+```sh
+yarn add -D @chakra-ui/storybook-addon
+```
+
+```sh
+npm i -D @chakra-ui/storybook-addon
+```
+
+Add the addon to your configuration in `.storybook/main.js`:
+
+```js live=false
+module.exports = {
+  addons: ['@chakra-ui/storybook-addon'],
+};
+```
+
+**Checkbox** `v1.6.2`
+
+- Fix issue where focus styles persists when `isDisabled` is set to `true` and
+  checkbox has focus.
+
+**Radio** `v1.4.4`
+
+- Add `aria-describedby` to the radio props to improve accessibility
+
+**Menu** `v1.8.3`
+
+- Omit `disabled` and `aria-disabled` props from `MenuItemProps` types
+
+**Theme** `v1.12.3`
+
+- Ensure consistent line height for `FormErrorMessage` and `FormHelperText`
+- Fixed an issue where the `ModalFooter` was out of the viewport for
+  `size="full"`.
+
+**Editable** `v1.3.2`
+
+- When the `Editable` component has its `startsWithEditView` set to `true`, then
+  focus should be set to the `EditableInput` element when the component is
+  mounted.
+
+**Tooltip** `v1.4.3`
+
+- Fix broken link in Tooltip's JSDoc comment
+
+**Layout** `v1.7.0`
+
+- Improve error message when using `ListItem` without wrapping in `List`.
+
+**Media Query** `v1.2.3`
+
+- `useBreakpointValue` returns the correct value on first tick, if `matchMedia` is
+  available
+
+**Test Utils** `v1.1.4`
+
+- Upgrade `@testing-library/react-hooks` to test SSR. This was used to debug and
+  fix issues with the `useId` hook.
