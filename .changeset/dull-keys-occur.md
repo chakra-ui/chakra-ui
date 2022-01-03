@@ -1,5 +1,6 @@
 ---
 "@chakra-ui/styled-system": minor
+"@chakra-ui/theme": patch
 ---
 
 Introducing **semantic tokens**

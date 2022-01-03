@@ -4,7 +4,7 @@ import { Union } from "../utils"
 export type SemanticValue<
   Conditions extends string,
   Token extends string = string,
-> = Union<Token> | Partial<Record<Conditions, Union<Token>>>
+> = Union<Token> | Partial<Record<"default" | Conditions, Union<Token>>>
 
 export type PlainToken = { isSemantic: false; value: string | number }
 export type SemanticToken = {
