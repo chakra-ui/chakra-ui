@@ -347,3 +347,36 @@ export function StandAloneToast() {
     </>
   )
 }
+
+export const AsyncToast = () => {
+  const toast = useToast()
+
+  const getResolve = () =>
+    new Promise<string>((resolve) => setTimeout(() => resolve("hello"), 2000))
+
+  const getReject = () =>
+    new Promise<string>((_, reject) => setTimeout(() => reject(), 2000))
+  const promiseOptions = {
+    loading: {
+      title: "Please wait ...",
+      duration: null,
+    },
+    success: {
+      title: "Wait is over you won!",
+    },
+    error: {
+      title: "Wait is over you loose",
+    },
+  }
+
+  return (
+    <ButtonGroup>
+      <Button onClick={() => toast.promise(getResolve(), promiseOptions)}>
+        Async toast [success]
+      </Button>
+      <Button onClick={() => toast.promise(getReject(), promiseOptions)}>
+        Async toast [error]
+      </Button>
+    </ButtonGroup>
+  )
+}

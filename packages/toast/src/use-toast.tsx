@@ -61,6 +61,8 @@ export interface UseToastOptions extends ThemingProps<"Alert"> {
   containerStyle?: React.CSSProperties
 }
 
+type UseToastPromiseOption = Omit<ToastOptions, "status">
+
 /**
  * React hook used to create a function that can be used
  * to show toasts in an application.
@@ -104,7 +106,21 @@ export function useToast(defaultOptions?: UseToastOptions) {
       })
     }
 
-    toast.isActive = latestToastContextRef.current.isActive
+    toast.promise = (
+      promise: Promise<any>,
+      options: {
+        success: UseToastPromiseOption
+        error: UseToastPromiseOption
+        loading: UseToastPromiseOption
+      },
+  ) => {
+    const id = toast({ ...options.loading, status: "loading", duration: null })
+    promise
+        .then((data) => toast.update(id, { ...options.success, data, status: "success" }))
+        .catch((error) => toast.update(id, { ...options.error, error, status: "error" }))
+  }
+
+  toast.isActive = latestToastContextRef.current.isActive
 
     return toast
   }, [defaultOptions, latestToastContextRef, theme.direction])
