@@ -1,7 +1,8 @@
-import { Dict, walkObject } from "@chakra-ui/utils"
-import { ThemeScale } from "./theme-tokens"
+import { Dict, isObject, mergeWith } from "@chakra-ui/utils"
 import { calc, Operand } from "./calc"
 import { cssVar } from "./css-var"
+import { FlatToken, FlatTokens } from "./flatten-tokens"
+import { pseudoSelectors } from "../pseudos"
 
 export interface CreateThemeVarsOptions {
   cssVarPrefix?: string
@@ -12,86 +13,97 @@ export interface ThemeVars {
   cssMap: Dict
 }
 
-export function createThemeVars(target: Dict, options: CreateThemeVarsOptions) {
-  const context: ThemeVars = {
-    cssMap: {},
-    cssVars: {},
-  }
-
-  walkObject(target, (value, path) => {
-    // firstKey will be e.g. "space"
-    const [firstKey] = path
-
-    const handler = tokenHandlerMap[firstKey] ?? tokenHandlerMap.defaultHandler
-
-    const { cssVars, cssMap } = handler(path, value, options)
-    Object.assign(context.cssVars, cssVars)
-    Object.assign(context.cssMap, cssMap)
-  })
-
-  return context
+/**
+ * Convert a token name to a css variable
+ *
+ * @example
+ * tokenToCssVar('colors.red.500', 'chakra')
+ * => {
+ *   variable: '--chakra-colors-red-500',
+ *   reference: 'var(--chakra-colors-red-500)'
+ * }
+ */
+function tokenToCssVar(token: string | number, prefix?: string) {
+  return cssVar(String(token).replace(/\./g, "-"), undefined, prefix)
 }
 
-type TokenHandler = (
-  keys: string[],
-  value: unknown | { reference: string },
+export function createThemeVars(
+  flatTokens: FlatTokens,
   options: CreateThemeVarsOptions,
-) => ThemeVars
+) {
+  let cssVars = {}
+  const cssMap = {}
 
-/**
- * Define transformation handlers for ThemeScale
- */
-const tokenHandlerMap: Partial<Record<ThemeScale, TokenHandler>> & {
-  defaultHandler: TokenHandler
-} = {
-  space: (keys, value, options) => {
-    const properties = tokenHandlerMap.defaultHandler(keys, value, options)
-    const [firstKey, ...referenceKeys] = keys
+  for (const [token, tokenValue] of Object.entries<FlatToken>(flatTokens)) {
+    const { isSemantic, value } = tokenValue
+    const { variable, reference } = tokenToCssVar(token, options?.cssVarPrefix)
 
-    const negativeLookupKey = `${firstKey}.-${referenceKeys.join(".")}`
-    const negativeVarKey = keys.join("-")
-    const { variable, reference } = cssVar(
-      negativeVarKey,
-      undefined,
-      options.cssVarPrefix,
-    )
-
-    const negativeValue = calc.negate(value as Operand)
-    const varRef = calc.negate(reference)
-
-    return {
-      cssVars: properties.cssVars,
-      cssMap: {
-        ...properties.cssMap,
-        [negativeLookupKey]: {
-          value: `${negativeValue}`,
-          var: `${variable}`,
-          varRef,
-        },
-      },
-    }
-  },
-  defaultHandler: (keys, value, options) => {
-    const lookupKey = keys.join(".")
-    const varKey = keys.join("-")
-
-    const { variable, reference } = cssVar(
-      varKey,
-      undefined,
-      options.cssVarPrefix,
-    )
-
-    return {
-      cssVars: {
-        [variable]: value,
-      },
-      cssMap: {
-        [lookupKey]: {
-          value,
+    if (!isSemantic) {
+      if (token.startsWith("space")) {
+        const keys = token.split(".")
+        const [firstKey, ...referenceKeys] = keys
+        /** @example space.-4 */
+        const negativeLookupKey = `${firstKey}.-${referenceKeys.join(".")}`
+        const negativeValue = calc.negate(value as Operand)
+        const negatedReference = calc.negate(reference)
+        cssMap[negativeLookupKey] = {
+          value: negativeValue,
           var: variable,
-          varRef: reference,
-        },
-      },
+          varRef: negatedReference,
+        }
+      }
+
+      cssVars[variable] = value
+      cssMap[token] = {
+        value,
+        var: variable,
+        varRef: reference,
+      }
+      continue
     }
-  },
+
+    const lookupToken = (maybeToken: string) => {
+      const scale = String(token).split(".")[0]
+      const withScale = [scale, maybeToken].join(".")
+      /** @example flatTokens['space.4'] === '16px' */
+      const resolvedTokenValue = flatTokens[withScale]
+      if (!resolvedTokenValue) return maybeToken
+      const { reference } = tokenToCssVar(withScale, options?.cssVarPrefix)
+      return reference
+    }
+
+    const normalizedValue = isObject(value) ? value : { default: value }
+
+    cssVars = mergeWith(
+      cssVars,
+      Object.entries(normalizedValue).reduce(
+        (acc, [conditionAlias, conditionValue]) => {
+          const maybeReference = lookupToken(conditionValue)
+          if (conditionAlias === "default") {
+            acc[variable] = maybeReference
+            return acc
+          }
+
+          /** @example { _dark: "#fff" } => { '.chakra-ui-dark': "#fff" } */
+          const conditionSelector =
+            pseudoSelectors?.[conditionAlias] ?? conditionAlias
+          acc[conditionSelector] = { [variable]: maybeReference }
+
+          return acc
+        },
+        {} as any,
+      ),
+    )
+
+    cssMap[token] = {
+      value: reference,
+      var: variable,
+      varRef: reference,
+    }
+  }
+
+  return {
+    cssVars,
+    cssMap,
+  }
 }
