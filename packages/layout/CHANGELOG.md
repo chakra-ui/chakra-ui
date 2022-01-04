@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.7.0
+
+### Minor Changes
+
+- [#5137](https://github.com/chakra-ui/chakra-ui/pull/5137)
+  [`e624a277a`](https://github.com/chakra-ui/chakra-ui/commit/e624a277ac7f75af9ec5c1d2cc010b54c165f430)
+  Thanks [@Patrick-Ullrich](https://github.com/Patrick-Ullrich)! - Improve error
+  message when using `ListItem` without wrapping in `List`.
+
 ## 1.6.0
 
 ### Minor Changes

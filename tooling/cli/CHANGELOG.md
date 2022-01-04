@@ -1,5 +1,41 @@
 # @chakra-ui/cli
 
+## 1.7.0
+
+### Minor Changes
+
+- [#5243](https://github.com/chakra-ui/chakra-ui/pull/5243)
+  [`ae6fd7a25`](https://github.com/chakra-ui/chakra-ui/commit/ae6fd7a25c543d089d500e328596b399d85afe8e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Use the feature
+  flag `--strict-component-types` for `@chakra-ui/cli tokens` to generate strict
+  component type for the theming props `variant` and `size`.
+
+  ```bash
+  chakra-cli tokens --strict-component-types
+  ```
+
+  ```tsx live=false
+  // before
+  <Button variant="abc" />
+  // valid type but variant is not available in the theme
+
+  // after
+  <Button variant="abc" /> // invalid
+  // Type '"abc"' is not assignable to type '"link" | "outline" | "ghost" | "solid" | "unstyled" | undefined'.
+  ```
+
+* [#5244](https://github.com/chakra-ui/chakra-ui/pull/5244)
+  [`3f1d7cf1c`](https://github.com/chakra-ui/chakra-ui/commit/3f1d7cf1ce85e8d741035ed2f40b4da59268b4ef)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Added token scales
+  `blur`, `borderStyles` and `borderWidths`.
+
+### Patch Changes
+
+- [#5225](https://github.com/chakra-ui/chakra-ui/pull/5225)
+  [`e9bbe3bd1`](https://github.com/chakra-ui/chakra-ui/commit/e9bbe3bd1d15dacc9edbefa4e4321404558faf39)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue
+  where the cli fails when `prettier` is not installed
+
 ## 1.6.0
 
 ### Minor Changes

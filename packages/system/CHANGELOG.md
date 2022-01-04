@@ -1,5 +1,37 @@
 # Change Log
 
+## 1.9.0
+
+### Minor Changes
+
+- [#5243](https://github.com/chakra-ui/chakra-ui/pull/5243)
+  [`ae6fd7a25`](https://github.com/chakra-ui/chakra-ui/commit/ae6fd7a25c543d089d500e328596b399d85afe8e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Use the feature
+  flag `--strict-component-types` for `@chakra-ui/cli tokens` to generate strict
+  component type for the theming props `variant` and `size`.
+
+  ```bash
+  chakra-cli tokens --strict-component-types
+  ```
+
+  ```tsx live=false
+  // before
+  <Button variant="abc" />
+  // valid type but variant is not available in the theme
+
+  // after
+  <Button variant="abc" /> // invalid
+  // Type '"abc"' is not assignable to type '"link" | "outline" | "ghost" | "solid" | "unstyled" | undefined'.
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d5461a452`](https://github.com/chakra-ui/chakra-ui/commit/d5461a4522aaee47b91a1a432601556e334a71c3),
+  [`213f61026`](https://github.com/chakra-ui/chakra-ui/commit/213f61026766d32f78b78dc2ccb2b2fdc472aab1)]:
+  - @chakra-ui/styled-system@1.16.0
+  - @chakra-ui/color-mode@1.3.3
+
 ## 1.8.3
 
 ### Patch Changes
