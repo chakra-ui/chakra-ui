@@ -10,16 +10,25 @@ Semantic tokens provide the ability to create css variables which can change
 with a CSS condition.
 
 ```tsx
-extendTheme({
+import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+
+const customTheme = extendTheme({
   colors: {
     900: "#171923",
   },
 })
-;<Text color="gray.900">will always be gray.900</Text>
+
+const App = () => (
+  <ChakraProvider theme={customTheme}>
+    <Text color="gray.900">will always be gray.900</Text>
+  </ChakraProvider>
+)
 ```
 
 ```tsx
-extendTheme({
+import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+
+const customTheme = extendTheme({
   colors: {
     50: "#F7FAFC",
     900: "#171923",
@@ -33,12 +42,19 @@ extendTheme({
     },
   },
 })
-;<Text color="text">
-  will be gray.900 in light mode and gray.900 in dark mode
-</Text>
+
+const App = () => (
+  <ChakraProvider theme={customTheme}>
+    <Text color="text">
+      will be gray.900 in light mode and gray.900 in dark mode
+    </Text>
+  </ChakraProvider>
+)
 ```
 
 ```tsx
+import { extendTheme } from "@chakra-ui/react"
+
 const theme = extendTheme({
   colors: {
     red: {
