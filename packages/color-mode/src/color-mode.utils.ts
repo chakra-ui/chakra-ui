@@ -75,12 +75,13 @@ export function addListener(
 
 export const root = {
   get: () =>
-    document.documentElement.style.getPropertyValue(
+    (document.documentElement.style.getPropertyValue(
       "--chakra-ui-color-mode",
-    ) as ColorMode | "",
+    ) || document.documentElement.dataset.theme) as ColorMode | "",
   set: (mode: ColorMode) => {
     if (isBrowser) {
       document.documentElement.style.setProperty("--chakra-ui-color-mode", mode)
+      document.documentElement.setAttribute("data-theme", mode)
     }
   },
 }
