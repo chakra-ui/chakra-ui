@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.2.3
+
+### Patch Changes
+
+- [#5234](https://github.com/chakra-ui/chakra-ui/pull/5234)
+  [`bc2613a9a`](https://github.com/chakra-ui/chakra-ui/commit/bc2613a9ab8273c844ed071947164f0a82ad9ea4)
+  Thanks [@nxtman123](https://github.com/nxtman123)! - `useBreakpointValue`
+  returns the correct value on first tick, if `matchMedia` is available
+
 ## 1.2.2
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.3.2
+
+### Patch Changes
+
+- [#5259](https://github.com/chakra-ui/chakra-ui/pull/5259)
+  [`032c2e543`](https://github.com/chakra-ui/chakra-ui/commit/032c2e543a6c492aca2b0e78adb652a5ae631540)
+  Thanks [@primos63](https://github.com/primos63)! - When the `Editable`
+  component has its `startsWithEditView` set to `true`, then focus should be set
+  to the `EditableInput` element when the component is mounted.
+- Updated dependencies
+  [[`801008e27`](https://github.com/chakra-ui/chakra-ui/commit/801008e276812a6f94f2f5dc634bcbfe01d23026),
+  [`8a0e5bdbc`](https://github.com/chakra-ui/chakra-ui/commit/8a0e5bdbccb7fa10dd4cd7b909ca60991fce81a0)]:
+  - @chakra-ui/hooks@1.7.2
+
 ## 1.3.1
 
 ### Patch Changes

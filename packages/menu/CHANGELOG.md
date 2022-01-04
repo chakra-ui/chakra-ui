@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.8.3
+
+### Patch Changes
+
+- [#5296](https://github.com/chakra-ui/chakra-ui/pull/5296)
+  [`94da4e986`](https://github.com/chakra-ui/chakra-ui/commit/94da4e9868a73794ba2256ff1de1916b2487cd03)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Omit `disabled` and
+  `aria-disabled` props from `MenuItemProps` types
+
+- Updated dependencies
+  [[`801008e27`](https://github.com/chakra-ui/chakra-ui/commit/801008e276812a6f94f2f5dc634bcbfe01d23026),
+  [`8a0e5bdbc`](https://github.com/chakra-ui/chakra-ui/commit/8a0e5bdbccb7fa10dd4cd7b909ca60991fce81a0)]:
+  - @chakra-ui/hooks@1.7.2
+
 ## 1.8.2
 
 ### Patch Changes

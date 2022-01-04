@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.1.4
+
+### Patch Changes
+
+- [#4835](https://github.com/chakra-ui/chakra-ui/pull/4835)
+  [`12c31713c`](https://github.com/chakra-ui/chakra-ui/commit/12c31713c8c5df11bd7e3a16a5cf94311513dc2b)
+  Thanks [@igorwessel](https://github.com/igorwessel)! - Upgrade
+  `@testing-library/react-hooks` to test SSR. This was used to debug and fix
+  issues with the `useId` hook.
+- Updated dependencies []:
+  - @chakra-ui/react@1.7.4
+
 ## 1.1.3
 
 ### Patch Changes
