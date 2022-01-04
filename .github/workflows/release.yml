@@ -90,4 +90,4 @@ jobs:
         if: steps.changesets.outputs.published == 'true'
         run: |
           yarn changelog:write
-          yarn changlog:commit
+          yarn changelog:commit

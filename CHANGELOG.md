@@ -17,6 +17,169 @@ To better understand the changelog, here are some legends we use:
 
 <!-- CHANGELOG:INSERT -->
 
+## 02-01-2022
+
+`@chakra-ui/react@1.7.4`
+
+**Styled System** `v1.16.0`
+
+- ### Add support peer pseudo style props
+
+You can now style an element based on the state of its general sibling (marked
+with `.peer` or `data-peer`) attribute.
+
+```jsx live=false
+<>
+  <input type="checkbox" data-peer />
+  <Box bg="white" _peerFocus={{ bg: "green.400" }} />
+</>
+```
+
+The peer properties you can apply are `_peerHover`, `_peerFocus`,
+`_peerFocusVisible`, `_peerActive`, `_peerInvalid`,
+`_peerChecked`,`_peerFocusWithin`, `_peerPlaceholderShown`, `_peerDisabled`
+
+### New style props
+
+Added `_placeholderShown` pseudo props for styling elements when sibling inputs
+have placeholder shown.
+
+Added `_ltr` pseudo props for styling elements in LTR writing mode. This is
+useful for products with RTL first approach.
+
+Added `_mediaReduceMotion` pseudo props to apply reduce motion styles to
+elements. This is useful when you need to remove CSS animations/transitions.
+
+- Adds style props for CSS scroll behavior properties: `scrollPadding`,
+  `scrollMargin`, `scrollSnapAlign`, etc...
+
+Here's a full list of properties:
+
+- **Scroll Behavior:** `scrollBehavior`, `scrollSnapAlign`, `scrollSnapStop`,
+  `scrollSnapType`
+
+- **Scroll Margin:** `scrollMargin`, `scrollMarginTop`, `scrollMarginBottom`,
+  `scrollMarginLeft`, `scrollMarginRight`, `scrollMarginX`, `scrollMarginY`
+
+- **Scroll Padding:** `scrollPadding`, `scrollPaddingTop`,
+  `scrollPaddingBottom`, `scrollPaddingLeft`, `scrollPaddingRight`,
+  `scrollPaddingX`, `scrollPaddingY`
+
+**System** `v1.9.0`
+
+- Use the feature flag `--strict-component-types` for `@chakra-ui/cli tokens` to
+  generate strict component type for the theming props `variant` and `size`.
+
+```bash
+chakra-cli tokens --strict-component-types
+```
+
+```tsx live=false
+// before
+<Button variant="abc" />
+// valid type but variant is not available in the theme
+
+// after
+<Button variant="abc" /> // invalid
+// Type '"abc"' is not assignable to type '"link" | "outline" | "ghost" | "solid" | "unstyled" | undefined'.
+```
+
+**Cli** `v1.7.0`
+
+- Use the feature flag `--strict-component-types` for `@chakra-ui/cli tokens` to
+  generate strict component type for the theming props `variant` and `size`.
+
+```bash
+chakra-cli tokens --strict-component-types
+```
+
+```tsx live=false
+// before
+<Button variant="abc" />
+// valid type but variant is not available in the theme
+
+// after
+<Button variant="abc" /> // invalid
+// Type '"abc"' is not assignable to type '"link" | "outline" | "ghost" | "solid" | "unstyled" | undefined'.
+```
+
+- Fixed an issue where the cli fails when `prettier` is not installed
+- Added token scales `blur`, `borderStyles` and `borderWidths`.
+
+**Slider** `v1.5.3`
+
+- Allow classNames specified on `Slider` and `SliderFilledTrack` to be added to
+  the class list
+
+**Hooks** `v1.7.2`
+
+- Add a comment about `useState` alternative
+- Fixed a issue where `useId` generated inconsistent id values between client
+  and server (SSR).
+
+**Storybook Addon** `v1.0.0`
+
+- The official Storybook Addon for Chakra UI.
+
+```sh
+yarn add -D @chakra-ui/storybook-addon
+```
+
+```sh
+npm i -D @chakra-ui/storybook-addon
+```
+
+Add the addon to your configuration in `.storybook/main.js`:
+
+```js live=false
+module.exports = {
+  addons: ["@chakra-ui/storybook-addon"],
+}
+```
+
+**Checkbox** `v1.6.2`
+
+- Fix issue where focus styles persists when `isDisabled` is set to `true` and
+  checkbox has focus.
+
+**Radio** `v1.4.4`
+
+- Add `aria-describedby` to the radio props to improve accessibility
+
+**Menu** `v1.8.3`
+
+- Omit `disabled` and `aria-disabled` props from `MenuItemProps` types
+
+**Theme** `v1.12.3`
+
+- Ensure consistent line height for `FormErrorMessage` and `FormHelperText`
+- Fixed an issue where the `ModalFooter` was out of the viewport for
+  `size="full"`.
+
+**Editable** `v1.3.2`
+
+- When the `Editable` component has its `startsWithEditView` set to `true`, then
+  focus should be set to the `EditableInput` element when the component is
+  mounted.
+
+**Tooltip** `v1.4.3`
+
+- Fix broken link in Tooltip's JSDoc comment
+
+**Layout** `v1.7.0`
+
+- Improve error message when using `ListItem` without wrapping in `List`.
+
+**Media Query** `v1.2.3`
+
+- `useBreakpointValue` returns the correct value on first tick, if `matchMedia`
+  is available
+
+**Test Utils** `v1.1.4`
+
+- Upgrade `@testing-library/react-hooks` to test SSR. This was used to debug and
+  fix issues with the `useId` hook.
+
 ## 09-12-2021
 
 `@chakra-ui/react@1.7.3`
