@@ -8,7 +8,7 @@ import { Dict } from "@chakra-ui/utils"
 import { Interpolation } from "@emotion/react"
 import * as React from "react"
 
-export interface ThemingProps<ThemeComponent extends string = string> {
+export interface ThemingProps<ThemeComponent extends string = any> {
   variant?: ThemeComponent extends keyof ThemeTypings["components"]
     ? ThemeTypings["components"][ThemeComponent]["variants"]
     : never
