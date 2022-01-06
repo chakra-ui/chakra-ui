@@ -42,7 +42,6 @@
     "webpack-merge": "^5.0.0"
   },
   "peerDependencies": {
-    "@chakra-ui/icons": "1.x",
     "@chakra-ui/react": "1.x",
     "@storybook/addons": "6.x",
     "react": "16.x || 17.x"
