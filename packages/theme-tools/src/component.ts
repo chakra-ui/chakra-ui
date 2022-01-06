@@ -6,9 +6,9 @@ import { Dict, runIfFn } from "@chakra-ui/utils"
  * -----------------------------------------------------------------------------*/
 
 export interface StyleConfig {
-  baseStyle?: SystemStyleObject | SystemStyleFunction
-  sizes?: { [size: string]: SystemStyleObject | SystemStyleFunction }
-  variants?: { [variant: string]: SystemStyleObject | SystemStyleFunction }
+  baseStyle?: SystemStyleObject | SystemStyleFunction
+  sizes?: { [size: string]: SystemStyleObject | SystemStyleFunction }
+  variants?: { [variant: string]: SystemStyleObject | SystemStyleFunction }
   defaultProps?: {
     size?: string
     variant?: string
