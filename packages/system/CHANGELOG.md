@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.9.1
+
+### Patch Changes
+
+- [#5342](https://github.com/chakra-ui/chakra-ui/pull/5342)
+  [`d2d9af846`](https://github.com/chakra-ui/chakra-ui/commit/d2d9af8464d627d0ab854ad64a42d3c0be81d67d)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an TypeScript
+  issue where the ThemingProps type was too strict
+
 ## 1.9.0
 
 ### Minor Changes

@@ -1,5 +1,21 @@
 # Change Log
 
+## 1.7.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`11fa4e8bf`](https://github.com/chakra-ui/chakra-ui/commit/11fa4e8bfdce0a964c3fe7ccbc340a4601b4c832),
+  [`a54757cd9`](https://github.com/chakra-ui/chakra-ui/commit/a54757cd9ef8f72b3a69428ec9012a8c318acfab),
+  [`5f9407742`](https://github.com/chakra-ui/chakra-ui/commit/5f940774223c5b747a5b6eccff7657eabbe34776),
+  [`d2d9af846`](https://github.com/chakra-ui/chakra-ui/commit/d2d9af8464d627d0ab854ad64a42d3c0be81d67d)]:
+  - @chakra-ui/modal@1.10.4
+  - @chakra-ui/avatar@1.3.3
+  - @chakra-ui/layout@1.7.1
+  - @chakra-ui/system@1.9.1
+  - @chakra-ui/provider@1.7.5
+  - @chakra-ui/skeleton@1.2.5
+
 ## 1.7.4
 
 ### Patch Changes

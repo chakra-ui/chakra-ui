@@ -47,8 +47,8 @@
   "devDependencies": {
     "@chakra-ui/button": "1.5.2",
     "@chakra-ui/icons": "1.1.2",
-    "@chakra-ui/system": "1.9.0",
-    "@chakra-ui/test-utils": "1.1.4",
+    "@chakra-ui/system": "1.9.1",
+    "@chakra-ui/test-utils": "1.1.5",
     "react": "^17.0.1"
   },
   "peerDependencies": {

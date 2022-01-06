@@ -1,5 +1,27 @@
 # Change Log
 
+## 1.7.1
+
+### Patch Changes
+
+- [#5276](https://github.com/chakra-ui/chakra-ui/pull/5276)
+  [`5f9407742`](https://github.com/chakra-ui/chakra-ui/commit/5f940774223c5b747a5b6eccff7657eabbe34776)
+  Thanks [@prashanth-cpaul](https://github.com/prashanth-cpaul)! - ### Add
+  support for `area` prop on `GridItem`
+
+  Deprecated `area` prop on `Grid` and added support for `area` prop to be used
+  with `GridItem` instead. This allows for usage of `GridItem`'s that have named
+  template areas to be used in conjunction with a `Grid` that has a defined
+  template area.
+
+  ```jsx live=false
+  <Grid templateAreas='"one two three"'>
+    <GridItem area="one">one</Grid>
+    <GridItem area="two">two</Grid>
+    <GridItem area="three">three</Grid>
+  </Grid>
+  ```
+
 ## 1.7.0
 
 ### Minor Changes
