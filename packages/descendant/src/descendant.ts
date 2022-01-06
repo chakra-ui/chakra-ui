@@ -31,7 +31,7 @@ export type Descendant<T, K> = DescendantOptions<K> & {
  */
 export class DescendantsManager<
   T extends HTMLElement,
-  K extends Record<string, any> = {}
+  K extends Record<string, any> = {},
 > {
   private descendants = new Map<T, Descendant<T, K>>()
 
@@ -61,7 +61,7 @@ export class DescendantsManager<
     this.descendants.forEach((descendant) => {
       const index = descendants.indexOf(descendant.node)
       descendant.index = index
-      descendant.node.dataset.index = descendant.index.toString()
+      descendant.node.dataset["index"] = descendant.index.toString()
     })
   }
 
