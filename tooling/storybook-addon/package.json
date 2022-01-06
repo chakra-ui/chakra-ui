@@ -32,13 +32,13 @@
   },
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "devDependencies": {
-    "@chakra-ui/icons": "*",
     "@chakra-ui/react": "^1.7.4",
     "@storybook/addons": "~6.3.12",
     "concurrently": "^6.4.0",
     "react": "^17.0.1"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^1.1.1",
     "webpack-merge": "^5.0.0"
   },
   "peerDependencies": {
