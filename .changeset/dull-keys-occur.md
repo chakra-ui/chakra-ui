@@ -46,7 +46,7 @@ const customTheme = extendTheme({
 const App = () => (
   <ChakraProvider theme={customTheme}>
     <Text color="text">
-      will be gray.900 in light mode and gray.900 in dark mode
+      will be gray.900 in light mode and gray.50 in dark mode
     </Text>
   </ChakraProvider>
 )
