@@ -80,6 +80,11 @@ export const root = {
     ) || document.documentElement.dataset.theme) as ColorMode | "",
   set: (mode: ColorMode) => {
     if (isBrowser) {
+      /**
+       * @deprecated
+       * The CSS variable `--chakra-ui-color-mode` will be removed in the next major release
+       * Please use the `data-theme` attribute to determine the current color mode
+       */
       document.documentElement.style.setProperty("--chakra-ui-color-mode", mode)
       document.documentElement.setAttribute("data-theme", mode)
     }
