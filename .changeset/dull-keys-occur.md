@@ -9,7 +9,7 @@ Introducing **semantic tokens**
 Semantic tokens provide the ability to create css variables which can change
 with a CSS condition.
 
-```tsx
+```tsx live=false
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 
 const customTheme = extendTheme({
@@ -25,7 +25,7 @@ const App = () => (
 )
 ```
 
-```tsx
+```tsx live=false
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 
 const customTheme = extendTheme({
@@ -52,7 +52,7 @@ const App = () => (
 )
 ```
 
-```tsx
+```tsx live=false
 import { extendTheme } from "@chakra-ui/react"
 
 const theme = extendTheme({
