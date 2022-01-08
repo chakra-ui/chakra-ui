@@ -1,4 +1,4 @@
-import { flatten } from "@chakra-ui/utils"
+import { flatten, fromEntries } from "@chakra-ui/utils"
 import { Union } from "../utils"
 
 export type SemanticValue<
@@ -24,16 +24,18 @@ export function flattenTokens<T extends FlattenTokensParam>({
   tokens,
   semanticTokens,
 }: T) {
-  return Object.fromEntries([
-    ...Object.entries(flatten(tokens) ?? {}).map(([token, value]) => {
+  const tokenEntries = Object.entries(flatten(tokens) ?? {}).map(
+    ([token, value]) => {
       const enhancedToken = { isSemantic: false, value }
-      return [token, enhancedToken]
-    }),
-    ...Object.entries(flatten(semanticTokens, 1) ?? {}).map(
-      ([token, value]) => {
-        const enhancedToken = { isSemantic: true, value }
-        return [token, enhancedToken]
-      },
-    ),
-  ]) as FlatTokens
+      return [token, enhancedToken] as [string, PlainToken]
+    },
+  )
+  const semanticTokenEntries = Object.entries(
+    flatten(semanticTokens, 1) ?? {},
+  ).map(([token, value]) => {
+    const enhancedToken = { isSemantic: true, value }
+    return [token, enhancedToken] as [string, SemanticToken]
+  })
+
+  return fromEntries([...tokenEntries, ...semanticTokenEntries]) as FlatTokens
 }
