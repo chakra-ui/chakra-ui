@@ -492,7 +492,7 @@ export const WithoutMenuButton = () => {
   const close = () => setOpen(false)
 
   React.useEffect(() => {
-    const listener = (ev) => {
+    const listener = (ev: KeyboardEvent) => {
       if ((ev.metaKey || ev.ctrlKey) && ev.code === "KeyK") {
         ev.preventDefault()
         open()

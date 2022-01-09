@@ -188,7 +188,7 @@ export const WithReactHookForm = () => {
           console.log("blurred")
         }}
       >
-        <NumberInputField ref={register} />
+        <NumberInputField ref={register as any} />
         <NumberInputStepper>
           <NumberIncrementStepper />
           <NumberDecrementStepper />
