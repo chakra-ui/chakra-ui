@@ -30,7 +30,7 @@ export interface ButtonGroupProps
   spacing?: SystemProps["marginRight"]
 }
 
-interface ButtonGroupContext extends ThemingProps<"ButtonGroup"> {
+interface ButtonGroupContext extends ThemingProps<"Button"> {
   isDisabled?: boolean
 }
 
@@ -57,7 +57,7 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">((props, ref) => {
 
   const _className = cx("chakra-button__group", className)
 
-  const context = React.useMemo(
+  const context: ButtonGroupContext = React.useMemo(
     () => ({ size, colorScheme, variant, isDisabled }),
     [size, colorScheme, variant, isDisabled],
   )
