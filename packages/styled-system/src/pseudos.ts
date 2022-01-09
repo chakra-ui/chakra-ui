@@ -263,9 +263,9 @@ export const pseudoSelectors = {
    */
   _placeholder: "&::placeholder",
   /**
-   * Styles for CSS Selector `&::placeholder-shown`.
+   * Styles for CSS Selector `&:placeholder-shown`.
    */
-  _placeholderShown: "&::placeholder-shown",
+  _placeholderShown: "&:placeholder-shown",
   /**
    * Styles for CSS Selector `&:fullscreen`.
    */
