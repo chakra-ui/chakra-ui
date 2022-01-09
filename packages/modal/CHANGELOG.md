@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.10.4
+
+### Patch Changes
+
+- [#5341](https://github.com/chakra-ui/chakra-ui/pull/5341)
+  [`11fa4e8bf`](https://github.com/chakra-ui/chakra-ui/commit/11fa4e8bfdce0a964c3fe7ccbc340a4601b4c832)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Update
+  `DrawerProps` type to include `ThemingProps` for the Drawer component
+
 ## 1.10.3
 
 ### Patch Changes

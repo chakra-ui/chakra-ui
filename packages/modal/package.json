@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/modal",
-  "version": "1.10.3",
+  "version": "1.10.4",
   "description": "An accessible dialog (modal) component for React & Chakra UI",
   "keywords": [
     "react",
@@ -51,7 +51,7 @@
     "react-remove-scroll": "2.4.1"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.9.0",
+    "@chakra-ui/system": "1.9.1",
     "framer-motion": "^4.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.2"

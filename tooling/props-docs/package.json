@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/props-docs",
-  "version": "1.0.42",
+  "version": "1.0.43",
   "description": "Extracts prop types for documentation purposes",
   "keywords": [
     "docs",
@@ -31,7 +31,7 @@
     "build": "ts-node -T src/build.ts"
   },
   "dependencies": {
-    "@chakra-ui/react": "1.7.4",
+    "@chakra-ui/react": "1.7.5",
     "@chakra-ui/styled-system": "1.16.0",
     "glob": "^7.1.6",
     "mkdirp": "^1.0.4",

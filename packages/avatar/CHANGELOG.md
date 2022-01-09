@@ -1,5 +1,16 @@
 # Change Log
 
+## 1.3.3
+
+### Patch Changes
+
+- [#5319](https://github.com/chakra-ui/chakra-ui/pull/5319)
+  [`a54757cd9`](https://github.com/chakra-ui/chakra-ui/commit/a54757cd9ef8f72b3a69428ec9012a8c318acfab)
+  Thanks [@igorwessel](https://github.com/igorwessel)! - Added the prop `srcSet`
+  to the `<Avatar />` and `<AvatarImage />` components to allow responsive image
+  sources.
+  [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset)
+
 ## 1.3.2
 
 ### Patch Changes
