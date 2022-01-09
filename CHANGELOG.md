@@ -17,6 +17,43 @@ To better understand the changelog, here are some legends we use:
 
 <!-- CHANGELOG:INSERT -->
 
+## 06-01-2022
+
+**Modal** `v1.10.4`
+
+- Update `DrawerProps` type to include `ThemingProps` for the Drawer component
+
+**Avatar** `v1.3.3`
+
+- Added the prop `srcSet` to the `<Avatar />` and `<AvatarImage />` components
+  to allow responsive image sources.
+  [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset)
+
+**Layout** `v1.7.1`
+
+- ### Add support for `area` prop on `GridItem`
+
+Deprecated `area` prop on `Grid` and added support for `area` prop to be used
+with `GridItem` instead. This allows for usage of `GridItem`'s that have named
+template areas to be used in conjunction with a `Grid` that has a defined
+template area.
+
+```jsx live=false
+<Grid templateAreas='"one two three"'>
+   <GridItem area='one'>one</Grid>
+   <GridItem area='two'>two</Grid>
+   <GridItem area='three'>three</Grid>
+</Grid>
+```
+
+**Storybook Addon** `v1.0.1`
+
+- Added dependency to @chakra-ui/icons
+
+**System** `v1.9.1`
+
+- Fixed an TypeScript issue where the ThemingProps type was too strict
+
 ## 02-01-2022
 
 `@chakra-ui/react@1.7.4`
