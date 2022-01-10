@@ -21,7 +21,7 @@ export const ButtonSpinner: React.FC<ButtonSpinnerProps> = (props) => {
   const {
     label,
     placement,
-    spacing = "0.5",
+    spacing = "0.5rem",
     children = <Spinner color="currentColor" width="1em" height="1em" />,
     className,
     __css,
