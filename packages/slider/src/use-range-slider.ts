@@ -360,7 +360,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
     // when two thumbs are stacked and the user clicks at a point larger than
     // their values, pick the last thumb with the greatest index
     if (isThumbStacked && pointValue > value[index]) {
-      index = thumbsAtPosition.length - 1
+      index = index + thumbsAtPosition.length - 1
     }
     setActiveIndex(index)
     actions.setValueAtIndex(index, pointValue)
