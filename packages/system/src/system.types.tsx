@@ -11,10 +11,10 @@ import * as React from "react"
 export interface ThemingProps<ThemeComponent extends string = any> {
   variant?: ThemeComponent extends keyof ThemeTypings["components"]
     ? ThemeTypings["components"][ThemeComponent]["variants"]
-    : never
+    : string
   size?: ThemeComponent extends keyof ThemeTypings["components"]
     ? ThemeTypings["components"][ThemeComponent]["sizes"]
-    : never
+    : string
   colorScheme?: ThemeTypings["colorSchemes"]
   orientation?: "vertical" | "horizontal"
   styleConfig?: Dict
