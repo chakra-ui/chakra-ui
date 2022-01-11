@@ -21,7 +21,7 @@ Usage: chakra-cli tokens [options]
 
 Options:
   --out <path>  output directory e.g.
-                node_modules/@chakra-ui/styled-system/dist/types/theming.types.d.ts
+                node_modules/@chakra-ui/styled-system/dist/declarations/src/theming.types.d.ts
   -h, --help    display help for command
 
 Example call:
