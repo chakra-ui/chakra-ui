@@ -19,6 +19,8 @@ To better understand the changelog, here are some legends we use:
 
 ## 06-01-2022
 
+`@chakra-ui/react@1.7.5`
+
 **Modal** `v1.10.4`
 
 - Update `DrawerProps` type to include `ThemingProps` for the Drawer component
