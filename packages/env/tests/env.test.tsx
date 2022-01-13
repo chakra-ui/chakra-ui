@@ -3,3 +3,5 @@ describe("useEnv", () => {
     expect(true).toBeTruthy()
   })
 })
+
+export {}

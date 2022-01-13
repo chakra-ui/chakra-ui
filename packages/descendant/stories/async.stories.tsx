@@ -10,7 +10,7 @@ export default {
 
 const [
   DescendantsProvider,
-  useDescendantsContext,
+  _useDescendantsContext,
   useDescendants,
   useDescendant,
 ] = createDescendantContext<HTMLDivElement, { value?: string }>()
@@ -20,7 +20,7 @@ function Select({ children }: { children?: React.ReactNode }) {
   const count = descendants.count()
 
   React.useEffect(() => {
-    descendants.last().node.focus()
+    descendants.last()?.node.focus()
   }, [descendants, count])
 
   return (
@@ -41,7 +41,7 @@ function Option({ value, disabled }: { value?: string; disabled?: boolean }) {
       data-value={value}
       onKeyDown={(event) => {
         if (event.key === "ArrowDown") {
-          descendants.next(index).node.focus()
+          descendants.next(index)?.node.focus()
         }
       }}
     >

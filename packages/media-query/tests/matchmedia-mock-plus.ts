@@ -78,6 +78,7 @@ export default class MatchMedia {
     window.addEventListener("resize", () => this.handleResize())
   }
 
+  // eslint-disable-next-line class-methods-use-this
   private compileQuery(query: string) {
     type UnitsReplaceType = ($0: string, $1: string, $2: UnitType) => string
 
@@ -142,7 +143,7 @@ export default class MatchMedia {
 
   private evalQuery(query: string): boolean {
     const result = !!(
-      // eslint-disable-next-line no-new-func
+      // eslint-disable-next-line no-new-func,@typescript-eslint/no-implied-eval
       new Function("media", this.compileQuery(query))({
         width: window.innerWidth,
         height: window.innerHeight,
@@ -171,12 +172,12 @@ export default class MatchMedia {
         this.prevMatchMap.set(query, matches)
 
         const mqListEvent: Partial<MediaQueryListEvent> = {
-          matches: matches,
+          matches,
           media: query,
         }
 
         listeners.forEach((listener) => {
-          listener?.call(
+          ;(listener as Function)?.call(
             this.mediaQueryList,
             mqListEvent as MediaQueryListEvent,
           )

@@ -1,10 +1,11 @@
 import * as React from "react"
-import { render, wait } from "@chakra-ui/test-utils"
+import { render } from "@chakra-ui/test-utils"
 import { LiveRegion, LiveRegionOptions } from ".."
 
 test("LiveRegion creates a container and has the proper aria and role attributes", () => {
   render(<div />)
 
+  // eslint-disable-next-line no-new
   new LiveRegion()
   const region = document.getElementById("chakra-a11y-live-region")
 
@@ -24,6 +25,8 @@ test("LiveRegion creates a container using the provided options", () => {
     "aria-relevant": "removals",
     "aria-atomic": "false",
   }
+
+  // eslint-disable-next-line no-new
   new LiveRegion(options)
   const region = document.getElementById("some-id")
 

@@ -1,7 +1,7 @@
 import { HStack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
-import { useForm } from "react-hook-form"
+import { useForm, SubmitHandler } from "react-hook-form"
 import { Switch } from "../src"
 
 export default {
@@ -74,7 +74,7 @@ export const WithReactHookForm = () => {
     defaultValues,
   })
 
-  function onSubmit(values) {
+  const onSubmit: SubmitHandler<any> = (values) => {
     alert(JSON.stringify(values, null, 2))
   }
 

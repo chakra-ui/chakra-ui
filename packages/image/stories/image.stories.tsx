@@ -92,12 +92,12 @@ export const WithSrcSet = () => {
   const firstRef = React.useRef<HTMLImageElement>(null)
   const secondRef = React.useRef<HTMLImageElement>(null)
 
-  const firstLog = (e) => {
-    console.log(1, "Image", e.type, firstRef.current.currentSrc)
+  const firstLog = (e: any) => {
+    console.log(1, "Image", e.type, firstRef.current?.currentSrc)
   }
 
-  const secondLog = (e) => {
-    console.log(2, "Img", e.type, secondRef.current.currentSrc)
+  const secondLog = (e: any) => {
+    console.log(2, "Img", e.type, secondRef.current?.currentSrc)
   }
 
   return (
