@@ -101,6 +101,18 @@ export interface UseCheckboxProps {
   tabIndex?: number
 }
 
+export interface CheckboxState {
+  isInvalid: boolean | undefined
+  isFocused: boolean
+  isChecked: boolean
+  isActive: boolean
+  isHovered: boolean
+  isIndeterminate: boolean | undefined
+  isDisabled: boolean | undefined
+  isReadOnly: boolean | undefined
+  isRequired: boolean | undefined
+}
+
 /**
  * useCheckbox that provides all the state and focus management logic
  * for a checkbox. It is consumed by the `Checkbox` component
@@ -373,18 +385,20 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     [isChecked, isDisabled, isInvalid],
   )
 
+  const state: CheckboxState = {
+    isInvalid,
+    isFocused,
+    isChecked,
+    isActive,
+    isHovered,
+    isIndeterminate,
+    isDisabled,
+    isReadOnly,
+    isRequired,
+  }
+
   return {
-    state: {
-      isInvalid,
-      isFocused,
-      isChecked,
-      isActive,
-      isHovered,
-      isIndeterminate,
-      isDisabled,
-      isReadOnly,
-      isRequired,
-    },
+    state,
     getRootProps,
     getCheckboxProps,
     getInputProps,
