@@ -441,6 +441,7 @@ Thanks goes to these wonderful people
   <tr>
     <td align="center"><a href="https://ngxcoder.dev/"><img src="https://avatars.githubusercontent.com/u/87735757?v=4?s=64" width="64px;" alt=""/><br /><sub><b>ngxCoder</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=ngxCoder" title="Code">💻</a></td>
     <td align="center"><a href="https://www.selbekk.io"><img src="https://avatars.githubusercontent.com/u/1307267?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Kristofer Giltvedt Selbekk</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=selbekk" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://johann-ehlers.eu"><img src="https://avatars.githubusercontent.com/u/21695702?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Johann Ehlers</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=noobinthisgame" title="Documentation">📖</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=noobinthisgame" title="Code">💻</a></td>
   </tr>
 </table>
 
