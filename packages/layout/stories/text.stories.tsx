@@ -21,10 +21,7 @@ const theme = extendTheme({
 // see https://github.com/chakra-ui/chakra-ui/issues/2464
 export const withVariant = () => (
   <ChakraProvider theme={theme}>
-    <Text
-      // @ts-expect-error Text has no variants in default theme. Use @chakra-ui/cli to generate theme typings.
-      variant="customCaps"
-    >
+    <Text variant="customCaps">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, sapiente.
     </Text>
   </ChakraProvider>
@@ -33,11 +30,7 @@ export const withVariant = () => (
 // see https://github.com/chakra-ui/chakra-ui/issues/2464
 export const overrideVariant = () => (
   <ChakraProvider theme={theme}>
-    <Text
-      // @ts-expect-error Text has no variants in default theme. Use @chakra-ui/cli to generate theme typings.
-      variant="customCaps"
-      casing="lowercase"
-    >
+    <Text variant="customCaps" casing="lowercase">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, sapiente.
     </Text>
   </ChakraProvider>
