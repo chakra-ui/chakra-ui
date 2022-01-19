@@ -296,6 +296,29 @@ export function usePopover(props: UsePopoverProps = {}) {
   const openTimeout = useRef<number>()
   const closeTimeout = useRef<number>()
 
+  const initOpenDelay = useCallback(() => {
+    // Sometimes the user can initiate the popover with multiple DOM events
+    // such as onFocus and onMouseEnter
+    if (openTimeout.current) {
+      clearTimeout(openTimeout.current)
+    }
+    isHoveringRef.current = true
+    openTimeout.current = window.setTimeout(onOpen, openDelay)
+  }, [onOpen, openDelay])
+  const initCloseDelay = useCallback(() => {
+    isHoveringRef.current = false
+    if (openTimeout.current) {
+      clearTimeout(openTimeout.current)
+      openTimeout.current = undefined
+    }
+
+    closeTimeout.current = window.setTimeout(() => {
+      if (isHoveringRef.current === false) {
+        onClose()
+      }
+    }, closeDelay)
+  }, [onClose, closeDelay])
+
   const maybeReferenceRef = useCallback(
     (node: Element) => {
       // Don't override referenceRef in case the PopoverAnchor is rendered.
@@ -328,13 +351,13 @@ export function usePopover(props: UsePopoverProps = {}) {
          *
          * @see https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html
          */
-        triggerProps.onFocus = callAllHandlers(props.onFocus, onOpen)
+        triggerProps.onFocus = callAllHandlers(props.onFocus, initOpenDelay)
         triggerProps.onBlur = callAllHandlers(props.onBlur, (event) => {
           const relatedTarget = getRelatedTarget(event)
           const isValidBlur = !contains(popoverRef.current, relatedTarget)
 
           if (isOpen && closeOnBlur && isValidBlur) {
-            onClose()
+            initCloseDelay()
           }
         })
 
@@ -348,25 +371,15 @@ export function usePopover(props: UsePopoverProps = {}) {
           }
         })
 
-        triggerProps.onMouseEnter = callAllHandlers(props.onMouseEnter, () => {
-          isHoveringRef.current = true
-          openTimeout.current = window.setTimeout(onOpen, openDelay)
-        })
+        triggerProps.onMouseEnter = callAllHandlers(
+          props.onMouseEnter,
+          initOpenDelay,
+        )
 
-        triggerProps.onMouseLeave = callAllHandlers(props.onMouseLeave, () => {
-          isHoveringRef.current = false
-
-          if (openTimeout.current) {
-            clearTimeout(openTimeout.current)
-            openTimeout.current = undefined
-          }
-
-          closeTimeout.current = window.setTimeout(() => {
-            if (isHoveringRef.current === false) {
-              onClose()
-            }
-          }, closeDelay)
-        })
+        triggerProps.onMouseLeave = callAllHandlers(
+          props.onMouseLeave,
+          initCloseDelay,
+        )
       }
 
       return triggerProps
@@ -383,6 +396,8 @@ export function usePopover(props: UsePopoverProps = {}) {
       onClose,
       openDelay,
       closeDelay,
+      initCloseDelay,
+      initOpenDelay,
     ],
   )
 
