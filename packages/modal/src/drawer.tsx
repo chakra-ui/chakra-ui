@@ -4,6 +4,7 @@ import {
   forwardRef,
   HTMLChakraProps,
   SystemStyleObject,
+  ThemingProps,
   useStyles,
   useTheme,
 } from "@chakra-ui/system"
@@ -45,7 +46,11 @@ interface DrawerOptions {
 
 export interface DrawerProps
   extends DrawerOptions,
-    Omit<ModalProps, "scrollBehavior" | "motionPreset" | "isCentered"> {}
+    ThemingProps<"Drawer">,
+    Omit<
+      ModalProps,
+      "scrollBehavior" | "motionPreset" | "isCentered" | keyof ThemingProps
+    > {}
 
 export function Drawer(props: DrawerProps) {
   const {
@@ -86,11 +91,8 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
   (props, ref) => {
     const { className, children, ...rest } = props
 
-    const {
-      getDialogProps,
-      getDialogContainerProps,
-      isOpen,
-    } = useModalContext()
+    const { getDialogProps, getDialogContainerProps, isOpen } =
+      useModalContext()
 
     const dialogProps = getDialogProps(rest, ref) as any
     const containerProps = getDialogContainerProps()

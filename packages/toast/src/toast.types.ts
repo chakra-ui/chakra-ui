@@ -54,6 +54,10 @@ export interface ToastOptions {
    * anyone else, but documented regardless.
    */
   requestClose?: boolean
+  /**
+   * Optional style overrides for the toast component.
+   */
+  containerStyle?: React.CSSProperties
 }
 
 export type ToastState = {

@@ -8,11 +8,11 @@ import { useSafeLayoutEffect, cast } from "./utils"
  * React hook that initializes the DescendantsManager
  */
 function useDescendants<T extends HTMLElement = HTMLElement, K = {}>() {
-  const [descendants] = useState(() => new DescendantsManager<T, K>())
+  const descendants = useRef(new DescendantsManager<T, K>())
   useSafeLayoutEffect(() => {
-    return () => descendants.destroy()
+    return () => descendants.current.destroy()
   })
-  return descendants
+  return descendants.current
 }
 
 export interface UseDescendantsReturn
@@ -26,13 +26,12 @@ export interface UseDescendantsReturn
   NB:  I recommend using `createDescendantContext` below
  * -----------------------------------------------------------------------------------------------*/
 
-const [
-  DescendantsContextProvider,
-  useDescendantsContext,
-] = createContext<UseDescendantsReturn>({
-  name: "DescendantsProvider",
-  errorMessage: "useDescendantsContext must be used within DescendantsProvider",
-})
+const [DescendantsContextProvider, useDescendantsContext] =
+  createContext<UseDescendantsReturn>({
+    name: "DescendantsProvider",
+    errorMessage:
+      "useDescendantsContext must be used within DescendantsProvider",
+  })
 
 /**
  * @internal
@@ -82,7 +81,7 @@ function useDescendant<T extends HTMLElement = HTMLElement, K = {}>(
 
 export function createDescendantContext<
   T extends HTMLElement = HTMLElement,
-  K = {}
+  K = {},
 >() {
   type ContextProviderType = React.Provider<DescendantsManager<T, K>>
   const ContextProvider = cast<ContextProviderType>(DescendantsContextProvider)

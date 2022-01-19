@@ -2,14 +2,13 @@
   "name": "gatsby-starter-default",
   "private": true,
   "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.3.0",
+  "version": "0.3.6",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "@chakra-ui/gatsby-plugin": "*",
-    "@chakra-ui/machine": "*",
     "@chakra-ui/react": "*",
-    "@emotion/react": "^11.1.4",
-    "@emotion/styled": "^11.0.0",
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
     "framer-motion": "^4.0.0",
     "gatsby": "^3.0.0",
     "gatsby-image": "^2.8.0",
@@ -21,11 +20,11 @@
     "gatsby-transformer-sharp": "^3.3.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0"
   },
   "devDependencies": {
-    "prettier": "^2.2.1"
+    "prettier": "^2.4.1"
   },
   "keywords": [
     "gatsby"

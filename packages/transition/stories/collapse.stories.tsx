@@ -2,10 +2,10 @@ import * as React from "react"
 import { useBoolean } from "@chakra-ui/hooks"
 import { Bar } from "react-chartjs-2"
 
-import { Collapse, CollapseProps } from "../src/collapse"
+import { Collapse, CollapseProps } from "../src"
 
 export default {
-  title: "Transition / Collapse",
+  title: "Components / Transition / Collapse",
 }
 
 export const BarChartExample = () => {
@@ -53,7 +53,12 @@ export const BarChartExample = () => {
     <>
       <button onClick={toggle}>Toggle Collapse</button>
       <Collapse in={open} unmountOnExit>
-        <Bar type="bar" data={data} options={options} />
+        <Bar
+          type="bar"
+          data={data}
+          // @ts-expect-error
+          options={options}
+        />
       </Collapse>
     </>
   )

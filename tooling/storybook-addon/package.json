@@ -1,0 +1,80 @@
+{
+  "name": "@chakra-ui/storybook-addon",
+  "version": "1.0.1",
+  "description": "The official Storybook Addon for Chakra UI",
+  "main": "dist/chakra-ui-storybook-addon.cjs.js",
+  "types": "dist/chakra-ui-storybook-addon.cjs.d.ts",
+  "typings": "dist/chakra-ui-storybook-addon.cjs.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "preset"
+  ],
+  "scripts": {
+    "clean": "rimraf ./dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "tooling/storybook-addon"
+  },
+  "keywords": [
+    "storybook-addon",
+    "chakra-ui",
+    "storybook",
+    "addons",
+    "dark-mode"
+  ],
+  "author": "Andres Tuñón <andressp@ngxcoder.dev>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "devDependencies": {
+    "@chakra-ui/react": "^1.7.5",
+    "@storybook/addons": "~6.3.12",
+    "concurrently": "^6.4.0",
+    "react": "^17.0.1"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^1.1.1",
+    "webpack-merge": "^5.0.0"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": "1.x",
+    "@storybook/addons": "6.x",
+    "react": "16.x || 17.x"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "storybook": {
+    "displayName": "Chakra UI",
+    "supportedFrameworks": [
+      "react"
+    ],
+    "unsupportedFrameworks": [
+      "Vue",
+      "Angular",
+      "Svelte"
+    ],
+    "icon": "https://raw.githubusercontent.com/chakra-ui/chakra-ui/main/logo/logomark-colored.svg"
+  },
+  "preconstruct": {
+    "entrypoints": [
+      "index.ts",
+      "preset/index.ts",
+      "preset/register.ts",
+      "preset/decorators.ts"
+    ]
+  }
+}

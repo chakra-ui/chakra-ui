@@ -8,6 +8,7 @@
     "moduleResolution": "node",
     "skipLibCheck": true,
     "strict": true,
+    "isolatedModules": true,
     "noFallthroughCasesInSwitch": true,
     "suppressImplicitAnyIndexErrors": true,
     "noImplicitAny": true,
@@ -19,10 +20,11 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
+    "incremental": true,
     "declarationMap": true
   },
-  "include": ["packages", "scripts", "tooling", "website"],
-  "exclude": ["node_modules"],
+  "include": ["@types", "packages", "scripts", "tooling"],
+  "exclude": ["**/node_modules", "**/template*"],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS",

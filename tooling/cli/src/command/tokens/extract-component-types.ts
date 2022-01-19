@@ -35,12 +35,13 @@ function escapeComponentName(componentName: string) {
 
 export function printComponentTypes(
   componentTypes: Record<string, ComponentType>,
+  strict = false,
 ) {
   const types = Object.entries(componentTypes)
     .map(
       ([componentName, unions]) =>
         `${escapeComponentName(componentName)}: {
-  ${printUnionMap(unions)}
+  ${printUnionMap(unions, strict)}
 }`,
     )
     .join(`\n`)

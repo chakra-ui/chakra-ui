@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
+import { ChangeEvent } from "react"
 import {
   Accordion,
   AccordionButton,
@@ -22,7 +23,7 @@ import {
 } from "../src"
 
 export default {
-  title: "Accordion",
+  title: "Components / Disclosure / Accordion",
   decorators: [(story: Function) => <Container>{story()}</Container>],
 }
 
@@ -169,7 +170,7 @@ const data = [
 ]
 
 export function Bug_2160() {
-  const inputRef = React.useRef<HTMLInputElement>()
+  const inputRef = React.useRef<HTMLInputElement>(null)
   const [displayData, setDisplayData] = React.useState(data)
   const [filter, setFilter] = React.useState("")
 
@@ -188,7 +189,7 @@ export function Bug_2160() {
     inputRef.current?.focus()
   }, [displayData])
 
-  function onInputChange(e) {
+  function onInputChange(e: ChangeEvent<HTMLInputElement>) {
     setFilter(e.target.value)
   }
 

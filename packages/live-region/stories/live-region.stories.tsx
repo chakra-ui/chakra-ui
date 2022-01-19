@@ -2,7 +2,7 @@ import * as React from "react"
 import { useLiveRegion } from "../src"
 
 export default {
-  title: "Live Region",
+  title: "Components / Disclosure / Live Region",
 }
 
 export function PoliteExample() {

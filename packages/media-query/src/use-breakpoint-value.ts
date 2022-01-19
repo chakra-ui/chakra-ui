@@ -18,7 +18,7 @@ import { useBreakpoint } from "./use-breakpoint"
  * const width = useBreakpointValue({ base: '150px', md: '250px' })
  */
 export function useBreakpointValue<T = any>(
-  values: Record<string, T> | T[],
+  values: Partial<Record<string, T>> | T[],
   defaultBreakpoint?: string,
 ): T | undefined {
   const breakpoint = useBreakpoint(defaultBreakpoint)
@@ -32,10 +32,10 @@ export function useBreakpointValue<T = any>(
   const breakpoints = Object.keys(theme.breakpoints)
 
   const obj = isArray(values)
-    ? fromEntries<Record<string, T>>(
-        Object.entries(
-          arrayToObjectNotation(values, breakpoints),
-        ).map(([key, value]) => [key, value]),
+    ? fromEntries<Partial<Record<string, T>>>(
+        Object.entries(arrayToObjectNotation(values, breakpoints)).map(
+          ([key, value]) => [key, value],
+        ),
       )
     : values
 

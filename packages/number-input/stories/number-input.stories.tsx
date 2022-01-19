@@ -21,7 +21,7 @@ import {
 } from "../src"
 
 export default {
-  title: "NumberInput",
+  title: "Components / Forms / NumberInput",
   decorators: [
     (story: Function) => (
       <chakra.div maxW="400px" mt="40px" mx="auto">
@@ -188,7 +188,7 @@ export const WithReactHookForm = () => {
           console.log("blurred")
         }}
       >
-        <NumberInputField ref={register} />
+        <NumberInputField ref={register as any} />
         <NumberInputStepper>
           <NumberIncrementStepper />
           <NumberDecrementStepper />

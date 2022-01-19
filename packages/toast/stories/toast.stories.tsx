@@ -1,13 +1,14 @@
 import * as React from "react"
+import { theme as base } from "@chakra-ui/theme"
 import { Button, ButtonGroup } from "@chakra-ui/button"
 import { chakra, useColorMode } from "@chakra-ui/system"
 import { Alert } from "@chakra-ui/alert"
 import { Text } from "@chakra-ui/layout"
-import { createStandaloneToast, useToast } from "../src"
-import theme from "../../../website/theme"
+import { useLatestRef } from "@chakra-ui/hooks"
+import { createStandaloneToast, ToastId, useToast } from "../src"
 
 export default {
-  title: "Toast",
+  title: "Components / Feedback / Toast",
   decorators: [
     (Story: Function) => (
       <>
@@ -248,14 +249,29 @@ export const UseToastWithDefaults = () => {
   return <Button onClick={() => toast()}>toast</Button>
 }
 
+export const UseToastWithCustomContainerStyle = () => {
+  const toast = useToast({
+    position: "top",
+    title: "Container style is updated",
+    containerStyle: {
+      width: "800px",
+      maxWidth: "100%",
+      border: "20px solid red",
+    },
+  })
+
+  return <Button onClick={() => toast()}>toast</Button>
+}
+
 export const useToastCustomRenderUpdate = () => {
-  const [id, setId] = React.useState(null)
+  const [id, setId] = React.useState<ToastId | null>(null)
   const toast = useToast()
+  const latestToastRef = useLatestRef(toast)
 
   React.useEffect(() => {
     if (id) {
       const timeout = setTimeout(() => {
-        toast.update(id, {
+        latestToastRef.current.update(id, {
           render: () => (
             <ButtonGroup>
               <Button variant="outline">outline button after update</Button>
@@ -270,7 +286,7 @@ export const useToastCustomRenderUpdate = () => {
 
       return () => clearTimeout(timeout)
     }
-  }, [id])
+  }, [id, latestToastRef])
 
   return (
     <Button
@@ -279,7 +295,7 @@ export const useToastCustomRenderUpdate = () => {
           render: () => <Button variant="solid">solid button initially</Button>,
         })
 
-        setId(id)
+        setId(id ?? null)
       }}
     >
       toast
@@ -288,7 +304,16 @@ export const useToastCustomRenderUpdate = () => {
 }
 
 export function StandAloneToast() {
-  const toast = createStandaloneToast({ theme })
+  const toast = createStandaloneToast({
+    theme: {
+      ...base,
+      colors: {
+        green: {
+          500: "#67BF3C",
+        },
+      },
+    },
+  })
   const toast2 = createStandaloneToast()
   return (
     <>

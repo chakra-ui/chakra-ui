@@ -40,6 +40,7 @@ export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
   const containerStyles: SystemStyleObject = React.useMemo(
     () => ({
       display: "inline-block",
+      position: "relative",
       verticalAlign: "middle",
       lineHeight: "normal",
       ...styles.container,

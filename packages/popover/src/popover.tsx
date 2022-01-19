@@ -61,6 +61,22 @@ if (__DEV__) {
 }
 
 /**
+ * PopoverAnchor is element that is used as the positioning reference
+ * for the popover.
+ */
+export const PopoverAnchor: React.FC = (props) => {
+  // enforce a single child
+  const child: any = React.Children.only(props.children)
+  const { getAnchorProps } = usePopoverContext()
+
+  return React.cloneElement(child, getAnchorProps(child.props, child.ref))
+}
+
+if (__DEV__) {
+  PopoverAnchor.displayName = "PopoverAnchor"
+}
+
+/**
  * PopoverTrigger opens the popover's content. It must be an interactive element
  * such as `button` or `a`.
  */
@@ -183,15 +199,13 @@ export type PopoverCloseButtonProps = CloseButtonProps
 
 export const PopoverCloseButton: React.FC<CloseButtonProps> = (props) => {
   const { onClose } = usePopoverContext()
+  const styles = useStyles()
   return (
     <CloseButton
       size="sm"
       onClick={onClose}
-      position="absolute"
-      borderRadius="md"
-      top="0.25rem"
-      insetEnd="0.5rem"
-      padding="0.5rem"
+      className={cx("chakra-popover__close-btn", props.className)}
+      __css={styles.closeButton}
       {...props}
     />
   )

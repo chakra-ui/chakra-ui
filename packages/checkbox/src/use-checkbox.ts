@@ -3,6 +3,7 @@ import {
   useCallbackRef,
   useControllableProp,
   useSafeLayoutEffect,
+  useUpdateEffect,
 } from "@chakra-ui/hooks"
 import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import { callAllHandlers, dataAttr, focus, warn } from "@chakra-ui/utils"
@@ -96,6 +97,20 @@ export interface UseCheckboxProps {
   "aria-labelledby"?: string
   "aria-invalid"?: true | undefined
   "aria-describedby"?: string
+
+  tabIndex?: number
+}
+
+export interface CheckboxState {
+  isInvalid: boolean | undefined
+  isFocused: boolean
+  isChecked: boolean
+  isActive: boolean
+  isHovered: boolean
+  isIndeterminate: boolean | undefined
+  isDisabled: boolean | undefined
+  isReadOnly: boolean | undefined
+  isRequired: boolean | undefined
 }
 
 /**
@@ -121,6 +136,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     id,
     onBlur,
     onFocus,
+    tabIndex = undefined,
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
     "aria-invalid": ariaInvalid,
@@ -185,6 +201,12 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       inputRef.current.indeterminate = Boolean(isIndeterminate)
     }
   }, [isIndeterminate])
+
+  useUpdateEffect(() => {
+    if (isDisabled) {
+      setFocused.off()
+    }
+  }, [isDisabled, setFocused])
 
   const trulyDisabled = isDisabled && !isFocusable
 
@@ -307,6 +329,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         name,
         value,
         id,
+        tabIndex,
         onChange: callAllHandlers(props.onChange, handleChange),
         onBlur: callAllHandlers(props.onBlur, onBlurProp, setFocused.off),
         onFocus: callAllHandlers(props.onFocus, onFocusProp, setFocused.on),
@@ -345,6 +368,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       isInvalid,
       ariaDescribedBy,
       isDisabled,
+      tabIndex,
     ],
   )
 
@@ -361,18 +385,20 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     [isChecked, isDisabled, isInvalid],
   )
 
+  const state: CheckboxState = {
+    isInvalid,
+    isFocused,
+    isChecked,
+    isActive,
+    isHovered,
+    isIndeterminate,
+    isDisabled,
+    isReadOnly,
+    isRequired,
+  }
+
   return {
-    state: {
-      isInvalid,
-      isFocused,
-      isChecked,
-      isActive,
-      isHovered,
-      isIndeterminate,
-      isDisabled,
-      isReadOnly,
-      isRequired,
-    },
+    state,
     getRootProps,
     getCheckboxProps,
     getInputProps,

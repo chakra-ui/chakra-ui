@@ -12,7 +12,7 @@ import { Avatar } from "@chakra-ui/avatar"
 import { MdSettings } from "react-icons/md"
 
 export default {
-  title: "Tag",
+  title: "Components / Data Display / Tag",
   decorators: [
     (story: Function) => (
       <chakra.div maxW="600px" mx="auto" mt="40px">

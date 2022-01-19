@@ -2,7 +2,7 @@ import * as React from "react"
 import { VisuallyHidden, VisuallyHiddenInput } from "../src"
 
 export default {
-  title: "Visually Hidden",
+  title: "Components / Disclosure / Visually Hidden",
 }
 
 export const hiddenSpan = () => (

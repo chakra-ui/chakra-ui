@@ -1,11 +1,11 @@
 import { HStack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
-import { useForm } from "react-hook-form"
+import { useForm, SubmitHandler } from "react-hook-form"
 import { Switch } from "../src"
 
 export default {
-  title: "Switch",
+  title: "Components / Forms / Switch",
   decorators: [
     (story: Function) => (
       <chakra.div maxWidth="lg" mx="auto" mt={6} p={6}>
@@ -74,15 +74,15 @@ export const WithReactHookForm = () => {
     defaultValues,
   })
 
-  function onSubmit(values) {
+  const onSubmit: SubmitHandler<any> = (values) => {
     alert(JSON.stringify(values, null, 2))
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input name="name" placeholder="name" ref={register} />
-      {/* <input type="checkbox" name="boolean" ref={register} /> */}
-      <Switch name="boolean" ref={register} />
+      <input placeholder="name" {...register("name")} />
+      {/* <input type="checkbox" {...register("boolean")} /> */}
+      <Switch {...register("boolean")} />
       <button type="submit">Submit</button>
     </form>
   )

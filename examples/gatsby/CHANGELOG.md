@@ -1,5 +1,50 @@
 # gatsby-starter-default
 
+## 0.3.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@1.7.5
+
+## 0.3.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@1.7.4
+
+## 0.3.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`6efe10f21`](https://github.com/chakra-ui/chakra-ui/commit/6efe10f21077992acf0edd0a97f8d877bf97180c)]:
+  - @chakra-ui/react@1.7.3
+
+## 0.3.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@1.7.2
+
+## 0.3.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`b28142946`](https://github.com/chakra-ui/chakra-ui/commit/b281429462a099b7fd7f9352e837cd28d1a2da0e)]:
+  - @chakra-ui/react@1.7.1
+
+## 0.3.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)]:
+  - @chakra-ui/react@1.7.0
+
 ## 0.3.0
 
 ### Minor Changes

@@ -10,7 +10,7 @@ function analyzeCSSValue(value: number | string) {
 }
 
 export function px(value: number | string | null): string | null {
-  if (value == null) return value
+  if (value == null) return value as string | null
   const { unitless } = analyzeCSSValue(value)
   return unitless || isNumber(value) ? `${value}px` : value
 }

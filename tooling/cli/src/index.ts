@@ -16,9 +16,17 @@ export async function run() {
       "--out <path>",
       `output file e.g. ${path.join(...themeInterfaceDestination)}`,
     )
+    .option(
+      "--strict-component-types",
+      "Generate strict types for props variant and size",
+    )
     .action(async (themeFile: string, command: Command) => {
-      const { out } = command.opts()
-      await generateThemeTypings({ themeFile, out })
+      const { out, strictComponentTypes } = command.opts()
+      await generateThemeTypings({
+        themeFile,
+        out,
+        strictComponentTypes,
+      })
     })
 
   program.on("--help", () => {

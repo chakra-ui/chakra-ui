@@ -3,7 +3,7 @@ import * as React from "react"
 import { usePopper } from "../src"
 
 export default {
-  title: "Popper v2",
+  title: "System / Popper v2",
 }
 
 export const ExamplePopper = () => {
@@ -58,14 +58,15 @@ function debounce(func: any, wait: number, immediate?: any) {
 
 export const VirtualElement = () => {
   function generateGetBoundingClientRect(x = 200, y = 400) {
-    return () => ({
-      width: 0,
-      height: 0,
-      top: y,
-      right: x,
-      bottom: y,
-      left: x,
-    })
+    return () =>
+      ({
+        width: 0,
+        height: 0,
+        top: y,
+        right: x,
+        bottom: y,
+        left: x,
+      } as DOMRect)
   }
 
   const [node, setNode] = React.useState({

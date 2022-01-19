@@ -2008,6 +2008,43 @@
         "doc",
         "ideas"
       ]
+    },
+    {
+      "login": "MichaelKilbane",
+      "name": "Michael Kilbane",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21234729?v=4",
+      "profile": "http://michaelkilbane.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ngxCoder",
+      "name": "ngxCoder",
+      "avatar_url": "https://avatars.githubusercontent.com/u/87735757?v=4",
+      "profile": "https://ngxcoder.dev/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "selbekk",
+      "name": "Kristofer Giltvedt Selbekk",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1307267?v=4",
+      "profile": "https://www.selbekk.io",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "noobinthisgame",
+      "name": "Johann Ehlers",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21695702?v=4",
+      "profile": "http://johann-ehlers.eu",
+      "contributions": [
+        "doc",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

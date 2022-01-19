@@ -5,7 +5,7 @@ import * as React from "react"
 import { css, SystemProps, toCSSVar } from "../src"
 
 export default {
-  title: "css",
+  title: "System / css",
 }
 
 const Box = styled("div")((props: any) => css(props.css)(props.theme))
@@ -100,5 +100,17 @@ export const TextAndLayerStyles = () => {
         publishing industries for previewing layouts and visual mockups.
       </Box>
     </ThemeProvider>
+  )
+}
+
+export const peerSelector = () => {
+  return (
+    <div>
+      <input data-peer />
+      <Box css={{ _peerFocus: { color: "red" } }}>Test 1</Box>
+      <Box css={{ _peerFocus: { color: "green", fontWeight: "bold" } }}>
+        Test 2
+      </Box>
+    </div>
   )
 }

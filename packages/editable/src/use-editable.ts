@@ -2,6 +2,7 @@ import {
   useControllableState,
   useFocusOnPointerDown,
   useUpdateEffect,
+  useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
 import { EventKeyMap, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import {
@@ -126,6 +127,14 @@ export function useEditable(props: UseEditableProps = {}) {
   })
 
   const isInteractive = !isEditing || !isDisabled
+
+  useSafeLayoutEffect(() => {
+    if (isEditing) {
+      focus(inputRef.current, {
+        selectTextIfInput: selectAllOnFocus,
+      })
+    }
+  }, [])
 
   useUpdateEffect(() => {
     if (!isEditing) {

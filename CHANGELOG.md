@@ -17,6 +17,626 @@ To better understand the changelog, here are some legends we use:
 
 <!-- CHANGELOG:INSERT -->
 
+## 06-01-2022
+
+`@chakra-ui/react@1.7.5`
+
+**Modal** `v1.10.4`
+
+- Update `DrawerProps` type to include `ThemingProps` for the Drawer component
+
+**Avatar** `v1.3.3`
+
+- Added the prop `srcSet` to the `<Avatar />` and `<AvatarImage />` components
+  to allow responsive image sources.
+  [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset)
+
+**Layout** `v1.7.1`
+
+- ### Add support for `area` prop on `GridItem`
+
+Deprecated `area` prop on `Grid` and added support for `area` prop to be used
+with `GridItem` instead. This allows for usage of `GridItem`'s that have named
+template areas to be used in conjunction with a `Grid` that has a defined
+template area.
+
+```jsx live=false
+<Grid templateAreas='"one two three"'>
+   <GridItem area='one'>one</Grid>
+   <GridItem area='two'>two</Grid>
+   <GridItem area='three'>three</Grid>
+</Grid>
+```
+
+**Storybook Addon** `v1.0.1`
+
+- Added dependency to @chakra-ui/icons
+
+**System** `v1.9.1`
+
+- Fixed an TypeScript issue where the ThemingProps type was too strict
+
+## 02-01-2022
+
+`@chakra-ui/react@1.7.4`
+
+**Styled System** `v1.16.0`
+
+- ### Add support peer pseudo style props
+
+You can now style an element based on the state of its general sibling (marked
+with `.peer` or `data-peer`) attribute.
+
+```jsx live=false
+<>
+  <input type="checkbox" data-peer />
+  <Box bg="white" _peerFocus={{ bg: "green.400" }} />
+</>
+```
+
+The peer properties you can apply are `_peerHover`, `_peerFocus`,
+`_peerFocusVisible`, `_peerActive`, `_peerInvalid`,
+`_peerChecked`,`_peerFocusWithin`, `_peerPlaceholderShown`, `_peerDisabled`
+
+### New style props
+
+Added `_placeholderShown` pseudo props for styling elements when sibling inputs
+have placeholder shown.
+
+Added `_ltr` pseudo props for styling elements in LTR writing mode. This is
+useful for products with RTL first approach.
+
+Added `_mediaReduceMotion` pseudo props to apply reduce motion styles to
+elements. This is useful when you need to remove CSS animations/transitions.
+
+- Adds style props for CSS scroll behavior properties: `scrollPadding`,
+  `scrollMargin`, `scrollSnapAlign`, etc...
+
+Here's a full list of properties:
+
+- **Scroll Behavior:** `scrollBehavior`, `scrollSnapAlign`, `scrollSnapStop`,
+  `scrollSnapType`
+
+- **Scroll Margin:** `scrollMargin`, `scrollMarginTop`, `scrollMarginBottom`,
+  `scrollMarginLeft`, `scrollMarginRight`, `scrollMarginX`, `scrollMarginY`
+
+- **Scroll Padding:** `scrollPadding`, `scrollPaddingTop`,
+  `scrollPaddingBottom`, `scrollPaddingLeft`, `scrollPaddingRight`,
+  `scrollPaddingX`, `scrollPaddingY`
+
+**System** `v1.9.0`
+
+- Use the feature flag `--strict-component-types` for `@chakra-ui/cli tokens` to
+  generate strict component type for the theming props `variant` and `size`.
+
+```bash
+chakra-cli tokens --strict-component-types
+```
+
+```tsx live=false
+// before
+<Button variant="abc" />
+// valid type but variant is not available in the theme
+
+// after
+<Button variant="abc" /> // invalid
+// Type '"abc"' is not assignable to type '"link" | "outline" | "ghost" | "solid" | "unstyled" | undefined'.
+```
+
+**Cli** `v1.7.0`
+
+- Use the feature flag `--strict-component-types` for `@chakra-ui/cli tokens` to
+  generate strict component type for the theming props `variant` and `size`.
+
+```bash
+chakra-cli tokens --strict-component-types
+```
+
+```tsx live=false
+// before
+<Button variant="abc" />
+// valid type but variant is not available in the theme
+
+// after
+<Button variant="abc" /> // invalid
+// Type '"abc"' is not assignable to type '"link" | "outline" | "ghost" | "solid" | "unstyled" | undefined'.
+```
+
+- Fixed an issue where the cli fails when `prettier` is not installed
+- Added token scales `blur`, `borderStyles` and `borderWidths`.
+
+**Slider** `v1.5.3`
+
+- Allow classNames specified on `Slider` and `SliderFilledTrack` to be added to
+  the class list
+
+**Hooks** `v1.7.2`
+
+- Add a comment about `useState` alternative
+- Fixed a issue where `useId` generated inconsistent id values between client
+  and server (SSR).
+
+**Storybook Addon** `v1.0.0`
+
+- The official Storybook Addon for Chakra UI.
+
+```sh
+yarn add -D @chakra-ui/storybook-addon
+```
+
+```sh
+npm i -D @chakra-ui/storybook-addon
+```
+
+Add the addon to your configuration in `.storybook/main.js`:
+
+```js live=false
+module.exports = {
+  addons: ["@chakra-ui/storybook-addon"],
+}
+```
+
+**Checkbox** `v1.6.2`
+
+- Fix issue where focus styles persists when `isDisabled` is set to `true` and
+  checkbox has focus.
+
+**Radio** `v1.4.4`
+
+- Add `aria-describedby` to the radio props to improve accessibility
+
+**Menu** `v1.8.3`
+
+- Omit `disabled` and `aria-disabled` props from `MenuItemProps` types
+
+**Theme** `v1.12.3`
+
+- Ensure consistent line height for `FormErrorMessage` and `FormHelperText`
+- Fixed an issue where the `ModalFooter` was out of the viewport for
+  `size="full"`.
+
+**Editable** `v1.3.2`
+
+- When the `Editable` component has its `startsWithEditView` set to `true`, then
+  focus should be set to the `EditableInput` element when the component is
+  mounted.
+
+**Tooltip** `v1.4.3`
+
+- Fix broken link in Tooltip's JSDoc comment
+
+**Layout** `v1.7.0`
+
+- Improve error message when using `ListItem` without wrapping in `List`.
+
+**Media Query** `v1.2.3`
+
+- `useBreakpointValue` returns the correct value on first tick, if `matchMedia`
+  is available
+
+**Test Utils** `v1.1.4`
+
+- Upgrade `@testing-library/react-hooks` to test SSR. This was used to debug and
+  fix issues with the `useId` hook.
+
+## 09-12-2021
+
+`@chakra-ui/react@1.7.3`
+
+- Update storybook url configuration for `@chakra-ui/react` to
+  [https://storybook.chakra-ui.com](https://storybook.chakra-ui.com)
+
+**Layout** `v1.6.0`
+
+- Add support for style props `gap`, `columnGap` and `rowGap`. Those CSS
+  properties are valid in a grid or flex context
+
+> For further information see
+> [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/gap)
+
+- Fix TS issue with Grid component due to the native `gap`, `rowGap` and
+  `columnGap` we added to styled system.
+
+**Styled System** `v1.15.0`
+
+- Add support for style props `gap`, `columnGap` and `rowGap`. Those CSS
+  properties are valid in a grid or flex context
+
+> For further information see
+> [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/gap)
+
+- Fix issue where `bgGradient` parser doesn't work when a position is specified
+- Fix issue where tokens autocomplete don't show up anymore except user runs the
+  cli command.
+- Fixed issue where multi-value `inset` property doesn't work.
+
+**Menu** `v1.8.2`
+
+- Fix issue where `enabled` TS type was exposed to popover and menu from
+  `UsePopperProps`. This was resolved by omitting `enabled` from the type
+
+**Popover** `v1.11.0`
+
+- Fix issue where `enabled` TS type was exposed to popover and menu from
+  `UsePopperProps`. This was resolved by omitting `enabled` from the type
+- Fix issue where `Popover` will be `display:none` when inner element focused.
+- Add `PopoverAnchor` component which allows you to set the `Popover` reference
+  point without acting as a trigger.
+
+```jsx live=false
+<Popover>
+  {/* triggers the popover to open/close */}
+  <PopoverTrigger>
+    <button>Trigger</button>
+  </PopoverTrigger>
+  {/* popover will be positioned relative to this */}
+  <PopoverAnchor>
+    <Box width="40px" height="40px" />
+  </PopoverAnchor>
+  <PopoverContent>Hello World</PopoverContent>
+</Popover>
+```
+
+**Input** `v1.3.2`
+
+- Fixed an issue where `InputGroup` passes undefined `size` and `variant` props
+  which overrides the ones defined by default in a custom `Input` component.
+
+**System** `v1.8.3`
+
+- Allow retrieving breakpoint tokens when using useToken
+
+**Theme** `v1.12.2`
+
+- Fix issue where tokens autocomplete don't show up anymore except user runs the
+  cli command.
+
+**Toast** `v1.5.0`
+
+- The `toast` function now exposes a `containerStyle` property you can use to
+  override the default styles for the toast container.
+
+```jsx live=false
+function Example() {
+  // Via instantiation
+  const toast = useToast({
+    position: "top",
+    title: "Container style is customizable",
+    containerStyle: {
+      maxWidth: "100%",
+    },
+  })
+
+  // Or via trigger
+  return (
+    <Button
+      onClick={() => {
+        toast({
+          containerStyle: {
+            maxWidth: "100%",
+          },
+        })
+      }}
+    >
+      Click me to show toast with custom container style.
+    </Button>
+  )
+}
+```
+
+- Fix TS issue with toast placement utility
+
+**Tooltip** `v1.4.2`
+
+- Prevent `onKeyDown` callback from de/registering on every call of `useTooltip`
+
+**Media Query** `v1.2.2`
+
+- Improved performance and behavior of `useMediaQuery` hook.
+
+**Transition** `v1.4.2`
+
+- Fixed issue where the `ref` of `Slider` returns `null` due to prop override
+
+**Icon** `v2.0.0`
+
+- Auto assign `key` when passing array of paths to `createIcon`
+
+```jsx live=false
+const HeartIcon = createIcon({
+  displayName: "HeartIcon",
+  path: [<path stroke="none" d="..." fill="none" />, <path d="..." />],
+})
+```
+
+## 17-11-2021
+
+**Props Docs** `v1.0.40`
+
+- Fix issue where package doesn't include a `dist` folder and doesn't work when
+  installed from npm.
+
+**Radio** `v1.4.2`
+
+- Add cursor `pointer` to the radio container
+
+**Slider** `v1.5.2`
+
+- Fixed a bug where a thumb would not move in case of stacked thumbs
+
+**Color Mode** `v1.3.2`
+
+- Fixed flaky color-mode test
+- Fixed issue where `DarkMode` and `LightMode` elements rerenders their children
+  even if the child is memoized.
+
+`<LightMode>` and `<DarkMode>` components are now memoized to prevent
+unnecessary rendering of their child components.
+
+## 12-11-2021
+
+`@chakra-ui/react@1.7.1`
+
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+**Cra Template Typescript** `v1.1.1`
+
+- Bump TypeScript version
+
+**Media Query** `v1.2.1`
+
+- Fix issue where `useColorModePreference` returned incorrect values due to
+  array destructuring.
+- Update babel config to transpile soruces for older browsers. This fixes issues
+  with CRA and Storybook.
+
+## 09-11-2021
+
+`@chakra-ui/react@1.7.0`
+
+Update build system we use from a custom babel cli setup to
+[preconstruct](https://preconstruct.tools/).
+
+The previous build system transpiles the code in `src` directory to `dist/esm`
+and `dist/cjs` keeping the same file structure. The new build system merges all
+files in `src` and transpiles to a single `esm` and `cjs` file.
+
+**Potential Breaking Change:** The side effect of this is that, if you imported
+any function, component or hook using the **undocumented** approach like
+`import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+you'll notice that the this doesn't work anymore.
+
+Here's how to resolve it:
+
+```jsx live=false
+// Won't work 🎇
+import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+
+// Works ✅
+import { useOutsideClick } from "@chakra-ui/hooks"
+```
+
+If this affected your project, we recommend that you import hooks, functions or
+components the way it's shown in the documentation. This will help keep your
+project future-proof.
+
+**Color Mode** `v1.3.0`
+
+Fixed color mode behavior priority in the following order:
+
+- If `useSystemColorMode` is `true`, the system's color mode will be used as
+  default and we'll fallback to the `initialColorMode` if system color mode
+  isn't resolved.
+
+- If `--chakra-ui-color-mode` is defined through e.g. `ColorModeScript` this
+  will be used.
+
+- If local storage is used as the `colorModeManager` and a value is defined for
+  `chakra-ui-color-mode`, this will be used.
+
+- if `initialColorMode` is set to `system`, the system's color mode will be used
+  as default and we'll fallback to the `initialColorMode` if system color mode
+  isn't resolved.
+
+- if `initialColorMode` is set to `'light'` or `'dark'`, the corresponding value
+  will be used.
+
+**Modal** `v1.10.0`, **Focus Lock** `v1.2.0`
+
+- `react-focus-lock@2.5.1` includes a dependency update of `focus-lock` from
+  `0.8.1` -> `0.9.1`. The change in `focus-lock` includes a fix for performance
+  in JSDOM: https://github.com/theKashey/focus-lock/pull/24
+
+JSDOM is used when testing react components in jest and other unit testing
+frameworks. In particular, when used with `@testing-library/react` for
+simulating real user input.
+
+Locally tested on an Apple M1 Air using a moderately complex `<Modal>` component
+(which contained inputs, `react-hook-form` usage, etc). Before this change:
+20,149ms After this change: 2,347ms
+
+Approx. 10x performance increase.
+
+**Select** `v1.2.0`
+
+- Fixed an styling issue where it was not possible to customize the icon spacing
+  of the `Select` component.
+
+**Theme** `v1.12.0`
+
+- Fixed an styling issue where it was not possible to customize the icon spacing
+  of the `Select` component.
+
+**Slider** `v1.5.0`
+
+- Fixed the bug in `RangeSlider` where an index out of bounds error would occur
+  incase of stacked thumbs.
+
+## 03-11-2021
+
+`@chakra-ui/react@1.6.12`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Radio** `v1.3.13`
+
+- Improve types defined for `getRadioprops`
+
+**Checkbox** `v1.5.10`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Menu** `v1.7.8`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Modal** `v1.9.4`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Popover** `v1.9.1`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Theme** `v1.11.1`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Toast** `v1.3.4`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Tooltip** `v1.3.14`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Transition** `v1.3.8`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Media Query** `v1.1.5`
+
+- Corrected eslint errors.
+- Fix an issue where the `useMediaQuery` was not updating the array of booleans
+  correctly when resizing the viewport.
+
+It also removes deprecated calls `addListener` and `removeListener` in favor of
+the recommended `addEventListener` and `removeEventListener` calls.
+
+**Color Mode** `v1.2.0`
+
+Added possibility to use the system preferred color scheme as value for
+`initialColorMode`, while still respecting a user's previous choice.
+
+As long as the user does not manually select a color mode through a website
+interaction, the theme will change when the system preference changes.
+
+This would easily allow for an implementation where the user can choose between
+`light`, `dark` and `system` by simply setting the `initialColorMode` setting to
+`system` and presenting the user with the three options.
+
+**Popper** `v2.3.1`
+
+- Remove default `[]` value for modifiers and moved it into `createPopper`
+  definition. This allows memoized modifiers to work correctly in user-land when
+  used with `useCallback`.
+
+## 31-10-2021
+
+`@chakra-ui/react@1.6.11`
+
+**Anatomy** `v1.1.0`
+
+- Add `closeButton` to popover component parts
+
+**Styled System** `v.1.13.0`
+
+- Add `_groupFocusVisible` pseudo style props
+
+**Breadcrumb** `v1.2.10`
+
+- `href` attribute will no longer be set on the inner element of the
+  `BreadcrumbLink` if the parent `BreadcrumbItem` has `isCurrentPage` prop set
+  to `true`. Such a `BreadcrumbLink` is not an actual link and it ends up being
+  a span (by default).
+
+**Color Mode** `v1.1.14`
+
+- Use the correct owner document when appending styles to `document.body`
+
+**Hooks** `v.1.6.2`
+
+- Fix potential infinite loop in `useDisclosure`'s `onOpen` and `onClose`
+  callbacks. The fix is to wrap the callbacks in `useCallbackRef`
+
+**Menu** `v1.7.7`
+
+- Fixed an error where the `onOpen` was called multiple/infinite times
+- Fix issue where `computePositionOnMount` didn't work without explict value
+
+**Radio** `v1.3.12`
+
+- Fix issue where props are duplicated on child label and span elements
+- Removed `aria-readonly` from checkbox in favor of WCAG `4.1.2`
+
+**Utils** `v1.8.4`
+
+- Use `fromEntries` polyfill from `@chakra-ui/utils`
+
+**Switch** `v1.2.12`
+
+- Fix issue where focusing the `Switch` could lead to unexpected page scrolls.
+
+**System** `v1.7.5`
+
+- Fixed a bug in `useToken` where it wasn't possible to resolve some tokens
+  which contain dots like `useToken('space','1.5')`
+
+**Gatsby Plugin** `2.0.2`
+
+- Update `peerDependencies` to support new version
+
+## 14-10-2021
+
+`@chakra-ui/react@1.6.10`
+
+**Radio** `v1.3.11`
+
+- Add support for styling the container element based on the radio state
+
+**Popover** `v1.8.5`
+
+- Fix issue where `computePositionOnMount` didn't work without explict value
+
+**Utils** `v1.8.3`
+
+- Fixed iframe bug on firefox when using `getRelatedTarget` function
+- Fix issue where pan-event utils don't work within iframe
+
+**Hooks** `v1.6.1`
+
+- Forward `threshold` options from `usePanSession` to `PanSession` class
+
+**Slider** `v1.4.1`
+
+- Fix issue where value can't be changed when range-slider thumbs are stacked
+
+**Modal** `v1.9.2`
+
+- Fix issue where modal doesn't close when the escape key is pressed and
+  `closeOnOverlayClick` is `false`
+
+**Cli** `v1.5.3`
+
+- Fixed an issue where the CLI tokens command exited unexpectedly with:
+  `SyntaxError: Cannot use import statement outside a module`
+
+**Checkbox** `v1.5.8`
+
+- Fix issue where `tabIndex` property isn't passed to the underlying input
+  element
+
 ## 05-10-2021
 
 **Button** `v1.4.4`
@@ -55,10 +675,9 @@ To better understand the changelog, here are some legends we use:
 
 **Toast** `v1.3.1`
 
-- Allow alerts rendered by useToast and createStandaloneToast to be discovered by
-  role and accessible name (e.g. using Testing Library
+- Allow alerts rendered by useToast and createStandaloneToast to be discovered
+  by role and accessible name (e.g. using Testing Library
   [ByRole](https://testing-library.com/docs/queries/byrole/)).
-
 
 ## 20-09-2021
 
@@ -165,7 +784,6 @@ resolved.
 
 - The disabled state of the `SelectIcon` can be reflected by a disabled
   `FormControl` or by the `isDisabled`-flag of the `select` field
-
 
 ## 29-08-2021
 
@@ -1702,7 +2320,7 @@ This also works for the component theme as well.
   set to false. Menu now uses this option to not update its position while it's
   closed.
 
-**Stlyed System** `v1.5.0`
+**Styled System** `v1.5.0`
 
 - 🚀 Move `srOnly` prop to styled system props. This will deprecate the need for
   the visually hidden package. Less is more!

@@ -4,7 +4,7 @@ import * as React from "react"
 import { usePopper } from "../src"
 
 export default {
-  title: "Popper",
+  title: "System / Popper",
 }
 
 export const Basic = () => {

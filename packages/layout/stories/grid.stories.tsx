@@ -1,40 +1,62 @@
 import * as React from "react"
-import { Box, GridItem, SimpleGrid } from "../src"
+import { GridItem, Grid } from "../src"
 
 export default {
-  title: "SimpleGrid",
+  title: "Components / Layout / Grid",
 }
 
-export const WithColumns = () => (
-  <SimpleGrid columns={[2, null, 3]} spacing="40px">
-    <Box bg="tomato" height="200px" />
-    <Box bg="tomato" height="200px" />
-    <Box bg="tomato" height="200px" />
-    <Box bg="tomato" height="200px" />
-    <Box bg="tomato" height="200px" />
-  </SimpleGrid>
+export const WithTemplateColumns = () => (
+  <Grid templateColumns="repeat(5, 1fr)" gap={4}>
+    <GridItem bg="tomato" height="200px" />
+    <GridItem bg="tomato" height="200px" />
+    <GridItem bg="tomato" height="200px" />
+    <GridItem bg="tomato" height="200px" />
+    <GridItem bg="tomato" height="200px" />
+  </Grid>
 )
 
-export const WithAutofit = () => (
-  <SimpleGrid minChildWidth="300px" spacing="40px">
-    <Box bg="tomato" height="200px" />
-    <Box bg="tomato" height="200px" />
-    <Box bg="tomato" height="200px" />
-    <Box bg="tomato" height="200px" />
-    <Box bg="tomato" height="200px" />
-  </SimpleGrid>
+export const WithTemplateRows = () => (
+  <Grid templateRows="repeat(2, 1fr)" gap={4}>
+    <GridItem bg="tomato" height="200px" />
+    <GridItem bg="tomato" height="200px" />
+    <GridItem bg="tomato" height="200px" />
+    <GridItem bg="tomato" height="200px" />
+    <GridItem bg="tomato" height="200px" />
+  </Grid>
 )
 
-export const WithColSpan = () => (
-  <SimpleGrid
-    columns={{ base: 2, md: 4 }}
-    spacing={{ base: "24px", md: "40px" }}
-  >
-    <GridItem bg="green.500" colSpan={{ base: 1, md: 3 }}>
-      Column 1
-    </GridItem>
-    <GridItem bg="pink.500" colSpan={{ base: 1, md: 1 }}>
-      Column 2
-    </GridItem>
-  </SimpleGrid>
+export const WithTemplateRowsAndColumns = () => (
+  <Grid templateRows="repeat(2, 1fr)" templateColumns="repeat(3, 1fr)" gap={4}>
+    <GridItem bg="tomato" height="200px" />
+    <GridItem bg="tomato" height="200px" />
+    <GridItem bg="tomato" height="200px" />
+    <GridItem bg="tomato" height="200px" />
+    <GridItem bg="tomato" height="200px" />
+  </Grid>
 )
+
+export const WithTemplateAreas = () => {
+  const gridTemplateAreas = `
+    "one one two three"
+    "four five five three"
+  `
+  return (
+    <Grid templateAreas={gridTemplateAreas} gap={4}>
+      <GridItem bg="green.500" area="one">
+        one
+      </GridItem>
+      <GridItem bg="pink.500" area="two">
+        two
+      </GridItem>
+      <GridItem bg="red.500" area="three">
+        three
+      </GridItem>
+      <GridItem bg="teal.500" area="four">
+        four
+      </GridItem>
+      <GridItem bg="yellow.500" area="five">
+        five
+      </GridItem>
+    </Grid>
+  )
+}

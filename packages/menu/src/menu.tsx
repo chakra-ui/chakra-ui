@@ -252,8 +252,13 @@ interface MenuItemOptions
 
 type HTMLAttributes = React.HTMLAttributes<HTMLElement>
 
+/**
+ * Use prop `isDisabled` instead
+ */
+type IsDisabledProps = "disabled" | "aria-disabled"
+
 export interface MenuItemProps
-  extends HTMLChakraProps<"button">,
+  extends Omit<HTMLChakraProps<"button">, IsDisabledProps>,
     MenuItemOptions {}
 
 export const MenuItem = forwardRef<MenuItemProps, "button">((props, ref) => {

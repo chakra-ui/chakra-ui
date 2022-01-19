@@ -1,26 +1,25 @@
 {
   "name": "create-react-app-ts",
-  "version": "1.1.0",
+  "version": "1.1.6",
   "private": true,
   "dependencies": {
-    "@chakra-ui/machine": "*",
     "@chakra-ui/react": "*",
-    "@emotion/react": "^11.1.4",
-    "@emotion/styled": "^11.0.0",
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
     "framer-motion": "^4.0.0",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-icons": "^4.1.0"
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.2.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.11.8",
-    "@testing-library/react": "^11.2.2",
-    "@types/jest": "^26.0.19",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/react": "^12.1.2",
+    "@types/jest": "^27.0.3",
+    "@types/react": "^17.0.15",
+    "@types/react-dom": "^17.0.9",
     "eslint-config-react-app": "^6.0.0",
     "react-scripts": "^4.0.1",
-    "typescript": "^4.1.3"
+    "typescript": "^4.3.5"
   },
   "scripts": {
     "start": "react-scripts start",

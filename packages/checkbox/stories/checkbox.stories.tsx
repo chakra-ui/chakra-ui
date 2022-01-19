@@ -5,7 +5,7 @@ import * as React from "react"
 import { Checkbox, CheckboxGroup, useCheckbox } from "../src"
 
 export default {
-  title: "Checkbox",
+  title: "Components / Forms / Checkbox",
   decorators: [(story: Function) => <Container mt="40px">{story()}</Container>],
 }
 
@@ -33,6 +33,17 @@ export const Disabled = () => <Checkbox isDisabled>Disabled</Checkbox>
 export const Readonly = () => <Checkbox isReadOnly>Readonly</Checkbox>
 
 export const Invalid = () => <Checkbox isInvalid>Invalid</Checkbox>
+export const NotFocusable = () => (
+  <>
+    <Checkbox isFocusable={false}>not focusable</Checkbox>
+    <Checkbox isFocusable={false} isDisabled>
+      disabled and not focusable (truly disabled)
+    </Checkbox>
+    <Checkbox tabIndex={-1} isFocusable={false}>
+      Not Focusable with provided tabIndex
+    </Checkbox>
+  </>
+)
 
 export const WithIconColor = () => (
   <Checkbox iconColor="yellow.400">I love chakra</Checkbox>
