@@ -1,4 +1,8 @@
-import type { StyleObjectOrFn } from "@chakra-ui/styled-system"
+import type {
+  StyleObjectOrFn,
+  SemanticValue,
+  Pseudos,
+} from "@chakra-ui/styled-system"
 import type {
   ColorMode,
   ColorModeOptions,
@@ -115,6 +119,9 @@ interface Foundations extends Typography {
 }
 
 export interface ChakraTheme extends Foundations {
+  semanticTokens?: Partial<
+    Record<keyof Foundations, Record<string, SemanticValue<keyof Pseudos>>>
+  >
   components: ThemeComponents
   config: ThemeConfig
   direction: ThemeDirection

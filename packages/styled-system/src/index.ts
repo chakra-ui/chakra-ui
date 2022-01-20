@@ -4,6 +4,7 @@ export * from "./system.types"
 export * from "./theming.types"
 export * from "./system"
 export * from "./create-theme-vars"
+export * from "./pseudos"
 export type {
   ResponsiveValue,
   ResponsiveObject,
