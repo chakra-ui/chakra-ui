@@ -41,9 +41,15 @@
     "@chakra-ui/utils": "1.10.0"
   },
   "peerDependencies": {
+    "@chakra-ui/theme": ">=1.0.0",
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
     "react": ">=16.8.6"
   },
   "devDependencies": {
+    "@chakra-ui/theme": "*",
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
     "react": "^17.0.1"
   }
 }
