@@ -5,6 +5,7 @@ import {
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
 import { EventKeyMap, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
+import { HTMLChakraProps } from "@chakra-ui/system"
 import {
   ariaAttr,
   callAllHandlers,
@@ -256,7 +257,10 @@ export function useEditable(props: UseEditableProps = {}) {
     ],
   )
 
-  const getInputProps: PropGetter = useCallback(
+  const getInputProps: PropGetter<
+    HTMLInputElement,
+    HTMLChakraProps<"input">
+  > = useCallback(
     (props = {}, ref = null) => ({
       ...props,
       hidden: !isEditing,
@@ -272,7 +276,10 @@ export function useEditable(props: UseEditableProps = {}) {
     [isDisabled, isEditing, onBlur, onChange, onKeyDown, placeholder, value],
   )
 
-  const getTextareaProps: PropGetter = useCallback(
+  const getTextareaProps: PropGetter<
+    HTMLTextAreaElement,
+    HTMLChakraProps<"textarea">
+  > = useCallback(
     (props = {}, ref = null) => ({
       ...props,
       hidden: !isEditing,

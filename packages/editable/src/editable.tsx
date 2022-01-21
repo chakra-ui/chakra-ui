@@ -140,7 +140,7 @@ export const EditableInput = forwardRef<EditableInputProps, "input">(
     const { getInputProps } = useEditableContext()
     const styles = useStyles()
 
-    const inputProps = getInputProps(props, ref) as HTMLChakraProps<"input">
+    const inputProps = getInputProps(props, ref)
     const _className = cx("chakra-editable__input", props.className)
 
     return (
@@ -173,10 +173,7 @@ export const EditableTextarea = forwardRef<EditableTextareaProps, "textarea">(
     const { getTextareaProps } = useEditableContext()
     const styles = useStyleConfig("Textarea", props)
 
-    const textareaProps = getTextareaProps(
-      props,
-      ref,
-    ) as HTMLChakraProps<"textarea">
+    const textareaProps = getTextareaProps(props, ref)
     const _className = cx("chakra-editable__textarea", props.className)
 
     return (
@@ -200,13 +197,8 @@ if (__DEV__) {
  * React hook use to gain access to the editable state and actions.
  */
 export function useEditableState() {
-  const {
-    isEditing,
-    onSubmit,
-    onCancel,
-    onEdit,
-    isDisabled,
-  } = useEditableContext()
+  const { isEditing, onSubmit, onCancel, onEdit, isDisabled } =
+    useEditableContext()
 
   return {
     isEditing,
