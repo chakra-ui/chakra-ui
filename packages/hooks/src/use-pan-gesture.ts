@@ -18,8 +18,8 @@ export interface UsePanGestureProps {
   threshold?: number
 }
 
-export function usePanGesture(
-  ref: React.RefObject<HTMLElement>,
+export function usePanGesture<T extends HTMLElement>(
+  ref: React.RefObject<T>,
   props: UsePanGestureProps,
 ) {
   const {

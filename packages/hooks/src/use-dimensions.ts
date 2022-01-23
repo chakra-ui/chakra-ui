@@ -8,8 +8,8 @@ import { useSafeLayoutEffect } from "./use-safe-layout-effect"
  * @param ref ref of the component to measure
  * @param observe if `true`, resize and scroll observers will be turned on
  */
-export function useDimensions(
-  ref: React.RefObject<HTMLElement>,
+export function useDimensions<T extends HTMLElement>(
+  ref: React.RefObject<T>,
   observe?: boolean,
 ) {
   const [dimensions, setDimensions] = React.useState<BoxModel | null>(null)

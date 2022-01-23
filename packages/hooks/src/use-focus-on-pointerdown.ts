@@ -9,9 +9,9 @@ import {
 import { RefObject } from "react"
 import { usePointerEvent } from "./use-pointer-event"
 
-export interface UseFocusOnMouseDownProps {
+export interface UseFocusOnMouseDownProps<T extends HTMLElement> {
   enabled?: boolean
-  ref: RefObject<HTMLElement>
+  ref: RefObject<T>
   elements?: Array<RefObject<HTMLElement> | HTMLElement | null>
 }
 
@@ -24,7 +24,9 @@ export interface UseFocusOnMouseDownProps {
  *
  * @internal
  */
-export function useFocusOnPointerDown(props: UseFocusOnMouseDownProps) {
+export function useFocusOnPointerDown<T extends HTMLElement>(
+  props: UseFocusOnMouseDownProps<T>,
+) {
   const { ref, elements, enabled } = props
 
   const isSafari = detectBrowser("Safari")
