@@ -97,5 +97,5 @@ export function useSpinner(increment: Function, decrement: Function) {
    */
   useUnmountEffect(removeTimeout)
 
-  return { up, down, stop }
+  return { up, down, stop, isSpinning }
 }
