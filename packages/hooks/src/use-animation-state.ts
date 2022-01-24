@@ -2,7 +2,7 @@ import { getOwnerWindow } from "@chakra-ui/utils"
 import { RefObject, useEffect, useState } from "react"
 import { useEventListener } from "./use-event-listener"
 
-type UseAnimationStateProps = {
+export type UseAnimationStateProps = {
   isOpen: boolean
   ref: RefObject<HTMLElement>
 }
