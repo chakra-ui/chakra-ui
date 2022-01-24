@@ -88,7 +88,27 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Check if PR author is Org member
+        id: membercheck
+        uses: actions/github-scripts@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            let member
+            try {
+              const response = await github.rest.repos.checkCollaborator({
+                username: context.actor,
+                owner: 'chakra-ui',
+                repo: 'chakra-ui',
+              })
+              member = response.data === undefined
+            } catch {
+              member = false
+            }
+            return member
+
       - name: Release to @pr channel
+        if: steps.membercheck.outputs.result == 'true'
         run: |
           yarn changeset version --snapshot pr
           yarn changeset publish --tag pr
@@ -98,11 +118,13 @@ jobs:
 
       - name: Get released version
         id: version
+        if: steps.membercheck.outputs.result == 'true'
         run:
           echo ::set-output name=version::$(node -p
           "require('./packages/react/package.json').version")
 
       - name: Create comment
+        if: steps.membercheck.outputs.result == 'true'
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: "pr-release"
