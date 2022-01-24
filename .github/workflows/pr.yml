@@ -102,6 +102,7 @@ jobs:
                 repo: 'chakra-ui',
               })
               member = response.data === undefined
+              console.log({ actor: context.actor, isMember: member })
             } catch {
               member = false
             }
