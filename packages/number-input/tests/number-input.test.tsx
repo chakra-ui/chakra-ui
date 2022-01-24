@@ -57,12 +57,12 @@ test("should increment on press increment button", () => {
   const upBtn = getByTestId("up-btn")
   const input = getByTestId("input")
 
-  fireEvent.mouseDown(upBtn)
+  fireEvent.pointerDown(upBtn)
   // since the input's value is empty, this will set it to `step`
   // which is `1` by default
   expect(input).toHaveValue("1")
 
-  fireEvent.mouseDown(upBtn)
+  fireEvent.pointerDown(upBtn)
   expect(input).toHaveValue("2")
 })
 
@@ -188,7 +188,7 @@ test("should focus input on spin", () => {
   const input = getByTestId("input")
   const upBtn = getByTestId("up-btn")
 
-  fireEvent.mouseDown(upBtn)
+  fireEvent.pointerDown(upBtn)
   expect(input).toHaveValue("1")
 
   // for some reason, .toHaveFocus assertion doesn't work

@@ -15,9 +15,13 @@ describe("color-mode-script", () => {
     })),
   )("%s", (entry) => {
     const systemIsDarkMode = entry.system === "dark"
-    const documentMock = jest.spyOn(
+    const documentStyleMock = jest.spyOn(
       document.documentElement.style,
       "setProperty",
+    )
+    const documentSetAttributeMock = jest.spyOn(
+      document.documentElement,
+      "setAttribute",
     )
     global.matchMedia = jest.fn().mockImplementation((query) => {
       if (query === "(prefers-color-scheme: dark)") {
@@ -27,8 +31,13 @@ describe("color-mode-script", () => {
       }
     })
     setScript(entry.initial as ConfigColorMode)
-    expect(documentMock).toHaveBeenCalledWith(
+    expect(documentStyleMock).toHaveBeenCalledWith(
       "--chakra-ui-color-mode",
+      entry.expect,
+    )
+
+    expect(documentSetAttributeMock).toHaveBeenCalledWith(
+      "data-theme",
       entry.expect,
     )
   })

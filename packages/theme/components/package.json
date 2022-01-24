@@ -1,0 +1,4 @@
+{
+  "main": "dist/chakra-ui-theme-components.cjs.js",
+  "module": "dist/chakra-ui-theme-components.esm.js"
+}

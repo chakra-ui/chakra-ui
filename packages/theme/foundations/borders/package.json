@@ -1,0 +1,4 @@
+{
+  "main": "dist/chakra-ui-theme-foundations-borders.cjs.js",
+  "module": "dist/chakra-ui-theme-foundations-borders.esm.js"
+}
