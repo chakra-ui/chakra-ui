@@ -1,0 +1,4 @@
+{
+  "main": "dist/chakra-ui-theme-foundations-z-index.cjs.js",
+  "module": "dist/chakra-ui-theme-foundations-z-index.esm.js"
+}

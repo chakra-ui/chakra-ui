@@ -1,0 +1,4 @@
+{
+  "main": "dist/chakra-ui-theme-foundations-spacing.cjs.js",
+  "module": "dist/chakra-ui-theme-foundations-spacing.esm.js"
+}

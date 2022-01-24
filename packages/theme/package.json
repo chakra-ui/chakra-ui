@@ -17,8 +17,39 @@
   "types": "dist/chakra-ui-theme.cjs.d.ts",
   "files": [
     "dist",
-    "src"
+    "src",
+    "components",
+    "foundations",
+    "foundations/blur",
+    "foundations/borders",
+    "foundations/breakpoints",
+    "foundations/colors",
+    "foundations/radius",
+    "foundations/shadows",
+    "foundations/sizes",
+    "foundations/spacing",
+    "foundations/typography",
+    "foundations/transition",
+    "foundations/z-index"
   ],
+  "preconstruct": {
+    "entrypoints": [
+      "index.ts",
+      "components/index.ts",
+      "foundations/index.ts",
+      "foundations/blur.ts",
+      "foundations/borders.ts",
+      "foundations/breakpoints.ts",
+      "foundations/colors.ts",
+      "foundations/radius.ts",
+      "foundations/shadows.ts",
+      "foundations/sizes.ts",
+      "foundations/spacing.ts",
+      "foundations/typography.ts",
+      "foundations/transition.ts",
+      "foundations/z-index.ts"
+    ]
+  },
   "publishConfig": {
     "access": "public"
   },
