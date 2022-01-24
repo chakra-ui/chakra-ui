@@ -29,7 +29,8 @@
   "license": "MIT",
   "scripts": {
     "pkg": "manypkg run",
-    "prepare": "husky install && preconstruct dev",
+    "dev": "preconstruct dev",
+    "prepare": "husky install",
     "fix:pkgs": "manypkg fix",
     "version:pkgs": "changeset version",
     "clean:emotion-types": "rimraf node_modules/@emotion/core/types",
