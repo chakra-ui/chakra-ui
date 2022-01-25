@@ -1,3 +1,0 @@
----
-"@chakra-ui/react": minor
----

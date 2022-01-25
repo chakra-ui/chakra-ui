@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.2.4
+
+### Patch Changes
+
+- [#5355](https://github.com/chakra-ui/chakra-ui/pull/5355)
+  [`22171af7f`](https://github.com/chakra-ui/chakra-ui/commit/22171af7f78b41d37171dbd4d1307ef82ea880b6)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Update typings for
+  useBreakpointValue parameter
+
+- Updated dependencies
+  [[`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3)]:
+  - @chakra-ui/utils@1.10.0
+  - @chakra-ui/react-env@1.1.2
+
 ## 1.2.3
 
 ### Patch Changes
