@@ -1,5 +1,132 @@
 # Change Log
 
+## 1.13.0
+
+### Minor Changes
+
+- [#5316](https://github.com/chakra-ui/chakra-ui/pull/5316)
+  [`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Introducing
+  **semantic tokens**
+
+  Semantic tokens provide the ability to create css variables which can change
+  with a CSS condition.
+
+  ```tsx live=false
+  import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+
+  const customTheme = extendTheme({
+    colors: {
+      900: "#171923",
+    },
+  })
+
+  const App = () => (
+    <ChakraProvider theme={customTheme}>
+      <Text color="gray.900">will always be gray.900</Text>
+    </ChakraProvider>
+  )
+  ```
+
+  ```tsx live=false
+  import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+
+  const customTheme = extendTheme({
+    colors: {
+      50: "#F7FAFC",
+      900: "#171923",
+    },
+    semanticTokens: {
+      colors: {
+        text: {
+          default: "gray.900",
+          _dark: "gray.50",
+        },
+      },
+    },
+  })
+
+  const App = () => (
+    <ChakraProvider theme={customTheme}>
+      <Text color="text">
+        will be gray.900 in light mode and gray.50 in dark mode
+      </Text>
+    </ChakraProvider>
+  )
+  ```
+
+  ```tsx live=false
+  import { extendTheme } from "@chakra-ui/react"
+
+  const theme = extendTheme({
+    colors: {
+      red: {
+        100: "#ff0010",
+        400: "#ff0040",
+        500: "#ff0050",
+        700: "#ff0070",
+        800: "#ff0080",
+      },
+    },
+    semanticTokens: {
+      colors: {
+        error: "red.500", // create a token alias
+        success: "red.100",
+        primary: {
+          // set variable conditionally with pseudo selectors like `_dark` and `_light`
+          // use `default` to define fallback value
+          default: "red.500",
+          _dark: "red.400",
+        },
+        secondary: {
+          default: "red.800",
+          _dark: "red.700",
+        },
+      },
+    },
+  })
+  ```
+
+* [#5419](https://github.com/chakra-ui/chakra-ui/pull/5419)
+  [`a5f3bfce8`](https://github.com/chakra-ui/chakra-ui/commit/a5f3bfce846b44c9a4bdcd0bb80c17eb38da75a7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add entrypoints to
+  the different parts of the theme (colors, fonts, components, spacing, etc.)
+
+  ```jsx live=false
+  // Now you can use only colors from the theme
+  import colors from "@chakra-ui/theme/foundations/colors"
+  ```
+
+  Here's a table of the theme parts and entrypoints
+
+  | Part        | Entrypoint                                  |
+  | ----------- | ------------------------------------------- |
+  | components  | `"@chakra-ui/theme/components"`             |
+  | foundations | `"@chakra-ui/theme/foundations"`            |
+  | colors      | `"@chakra-ui/theme/foundations/colors"`     |
+  | sizes       | `"@chakra-ui/theme/foundations/sizes"`      |
+  | spacing     | `"@chakra-ui/theme/foundations/spacing"`    |
+  | typography  | `"@chakra-ui/theme/foundations/typography"` |
+  | radius      | `"@chakra-ui/theme/foundations/radius"`     |
+  | shadows     | `"@chakra-ui/theme/foundations/shadows"`    |
+  | transition  | `"@chakra-ui/theme/foundations/transition"` |
+  | zIndex      | `"@chakra-ui/theme/foundations/z-index"`    |
+  | blur        | `"@chakra-ui/theme/foundations/blur"`       |
+  | borders     | `"@chakra-ui/theme/foundations/borders"`    |
+
+### Patch Changes
+
+- [#5371](https://github.com/chakra-ui/chakra-ui/pull/5371)
+  [`c393dd268`](https://github.com/chakra-ui/chakra-ui/commit/c393dd26808a06a8a6bd19839f4b2f1995157315)
+  Thanks [@selbekk](https://github.com/selbekk)! - refactoring(theme): Simplify
+  exports
+
+- Updated dependencies
+  [[`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3),
+  [`ebf1d98be`](https://github.com/chakra-ui/chakra-ui/commit/ebf1d98be17128e62b0ee7867da3698781a5974d)]:
+  - @chakra-ui/utils@1.10.0
+  - @chakra-ui/theme-tools@1.3.2
+
 ## 1.12.3
 
 ### Patch Changes

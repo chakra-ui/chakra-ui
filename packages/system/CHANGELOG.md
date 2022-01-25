@@ -1,5 +1,30 @@
 # Change Log
 
+## 1.10.0
+
+### Minor Changes
+
+- [#5358](https://github.com/chakra-ui/chakra-ui/pull/5358)
+  [`4944a4a2b`](https://github.com/chakra-ui/chakra-ui/commit/4944a4a2b0160b23d4e06f767c809565ff1d5b35)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Add React component
+  `<CSSVars root=":host, :root" />` to allow rehoisting CSS vars
+
+### Patch Changes
+
+- [#5374](https://github.com/chakra-ui/chakra-ui/pull/5374)
+  [`5a845d5f5`](https://github.com/chakra-ui/chakra-ui/commit/5a845d5f535ba886063e3f4099a27d0794084c54)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Updated type
+  `ThemingProps` to allow string values for the props `variant` and `size` even
+  on components which are not in the default theme.
+- Updated dependencies
+  [[`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3),
+  [`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3),
+  [`3b4117781`](https://github.com/chakra-ui/chakra-ui/commit/3b41177812c927c0ee37c7c0006a09f9ca031108),
+  [`bb7eb18da`](https://github.com/chakra-ui/chakra-ui/commit/bb7eb18daa015efee56d55519c2ce727d5bb776a)]:
+  - @chakra-ui/styled-system@1.17.0
+  - @chakra-ui/color-mode@1.4.0
+  - @chakra-ui/utils@1.10.0
+
 ## 1.9.1
 
 ### Patch Changes
