@@ -141,6 +141,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
           className="chakra-button__spinner--start"
           label={loadingText}
           placement="start"
+          spacing={iconSpacing}
         >
           {spinner}
         </ButtonSpinner>
@@ -161,6 +162,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
           className="chakra-button__spinner--end"
           label={loadingText}
           placement="end"
+          spacing={iconSpacing}
         >
           {spinner}
         </ButtonSpinner>
