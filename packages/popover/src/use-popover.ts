@@ -5,6 +5,7 @@ import {
   useFocusOnShow,
   useIds,
 } from "@chakra-ui/hooks"
+import { useAnimationState } from "@chakra-ui/hooks/use-animation-state"
 import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { HTMLProps, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import {
@@ -176,6 +177,8 @@ export function usePopover(props: UsePopoverProps = {}) {
     enabled: isOpen || !!computePositionOnMount,
   })
 
+  const animated = useAnimationState({ isOpen, ref: popoverRef })
+
   useFocusOnPointerDown({
     enabled: isOpen,
     ref: triggerRef,
@@ -197,7 +200,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     hasBeenSelected: hasBeenOpened.current,
     isLazy,
     lazyBehavior,
-    isSelected: isOpen,
+    isSelected: animated.present,
   })
 
   const getPopoverProps: PropGetter = useCallback(
@@ -422,6 +425,7 @@ export function usePopover(props: UsePopoverProps = {}) {
   return {
     forceUpdate,
     isOpen,
+    onAnimationComplete: animated.onComplete,
     onClose,
     getAnchorProps,
     getArrowProps,

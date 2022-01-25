@@ -17,8 +17,15 @@
   "types": "dist/chakra-ui-hooks.cjs.d.ts",
   "files": [
     "dist",
-    "src"
+    "src",
+    "use-animation-state"
   ],
+  "preconstruct": {
+    "entrypoints": [
+      "index.ts",
+      "use-animation-state.ts"
+    ]
+  },
   "publishConfig": {
     "access": "public"
   },

@@ -1,0 +1,4 @@
+{
+  "main": "dist/chakra-ui-hooks-use-animation-state.cjs.js",
+  "module": "dist/chakra-ui-hooks-use-animation-state.esm.js"
+}

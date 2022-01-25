@@ -29,6 +29,7 @@
   "license": "MIT",
   "scripts": {
     "pkg": "manypkg run",
+    "dev": "preconstruct dev",
     "prepare": "husky install",
     "fix:pkgs": "manypkg fix",
     "version:pkgs": "changeset version",
