@@ -17,6 +17,365 @@ To better understand the changelog, here are some legends we use:
 
 <!-- CHANGELOG:INSERT -->
 
+## 25-01-2022
+
+`@chakra-ui/react@1.8.0`
+
+**Number Input** `v1.4.0`
+
+- Add support for custom `format`, `parse` and character validation callbacks.
+- Fix issue where number input doesn't leave the spinning state when inc/dec
+  button is disabled
+
+**Styled System** `v1.17.0`
+
+- Introducing **semantic tokens**
+
+Semantic tokens provide the ability to create css variables which can change
+with a CSS condition.
+
+```tsx live=false
+import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+
+const customTheme = extendTheme({
+  colors: {
+    900: "#171923",
+  },
+})
+
+const App = () => (
+  <ChakraProvider theme={customTheme}>
+    <Text color="gray.900">will always be gray.900</Text>
+  </ChakraProvider>
+)
+```
+
+```tsx live=false
+import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+
+const customTheme = extendTheme({
+  colors: {
+    50: "#F7FAFC",
+    900: "#171923",
+  },
+  semanticTokens: {
+    colors: {
+      text: {
+        default: "gray.900",
+        _dark: "gray.50",
+      },
+    },
+  },
+})
+
+const App = () => (
+  <ChakraProvider theme={customTheme}>
+    <Text color="text">
+      will be gray.900 in light mode and gray.50 in dark mode
+    </Text>
+  </ChakraProvider>
+)
+```
+
+```tsx live=false
+import { extendTheme } from "@chakra-ui/react"
+
+const theme = extendTheme({
+  colors: {
+    red: {
+      100: "#ff0010",
+      400: "#ff0040",
+      500: "#ff0050",
+      700: "#ff0070",
+      800: "#ff0080",
+    },
+  },
+  semanticTokens: {
+    colors: {
+      error: "red.500", // create a token alias
+      success: "red.100",
+      primary: {
+        // set variable conditionally with pseudo selectors like `_dark` and `_light`
+        // use `default` to define fallback value
+        default: "red.500",
+        _dark: "red.400",
+      },
+      secondary: {
+        default: "red.800",
+        _dark: "red.700",
+      },
+    },
+  },
+})
+```
+
+- Updated the `_placeholderShown` selector
+- Export TypeScript types ResponsiveObject and ResponsiveArray
+
+**Theme** `v1.13.0`
+
+- Introducing **semantic tokens**
+
+Semantic tokens provide the ability to create css variables which can change
+with a CSS condition.
+
+```tsx live=false
+import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+
+const customTheme = extendTheme({
+  colors: {
+    900: "#171923",
+  },
+})
+
+const App = () => (
+  <ChakraProvider theme={customTheme}>
+    <Text color="gray.900">will always be gray.900</Text>
+  </ChakraProvider>
+)
+```
+
+```tsx live=false
+import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+
+const customTheme = extendTheme({
+  colors: {
+    50: "#F7FAFC",
+    900: "#171923",
+  },
+  semanticTokens: {
+    colors: {
+      text: {
+        default: "gray.900",
+        _dark: "gray.50",
+      },
+    },
+  },
+})
+
+const App = () => (
+  <ChakraProvider theme={customTheme}>
+    <Text color="text">
+      will be gray.900 in light mode and gray.50 in dark mode
+    </Text>
+  </ChakraProvider>
+)
+```
+
+```tsx live=false
+import { extendTheme } from "@chakra-ui/react"
+
+const theme = extendTheme({
+  colors: {
+    red: {
+      100: "#ff0010",
+      400: "#ff0040",
+      500: "#ff0050",
+      700: "#ff0070",
+      800: "#ff0080",
+    },
+  },
+  semanticTokens: {
+    colors: {
+      error: "red.500", // create a token alias
+      success: "red.100",
+      primary: {
+        // set variable conditionally with pseudo selectors like `_dark` and `_light`
+        // use `default` to define fallback value
+        default: "red.500",
+        _dark: "red.400",
+      },
+      secondary: {
+        default: "red.800",
+        _dark: "red.700",
+      },
+    },
+  },
+})
+```
+
+- refactoring(theme): Simplify exports
+- Add entrypoints to the different parts of the theme (colors, fonts,
+  components, spacing, etc.)
+
+```jsx live=false
+// Now you can use only colors from the theme
+import colors from "@chakra-ui/theme/foundations/colors"
+```
+
+Here's a table of the theme parts and entrypoints
+
+| Part        | Entrypoint                                  |
+| ----------- | ------------------------------------------- |
+| components  | `"@chakra-ui/theme/components"`             |
+| foundations | `"@chakra-ui/theme/foundations"`            |
+| colors      | `"@chakra-ui/theme/foundations/colors"`     |
+| sizes       | `"@chakra-ui/theme/foundations/sizes"`      |
+| spacing     | `"@chakra-ui/theme/foundations/spacing"`    |
+| typography  | `"@chakra-ui/theme/foundations/typography"` |
+| radius      | `"@chakra-ui/theme/foundations/radius"`     |
+| shadows     | `"@chakra-ui/theme/foundations/shadows"`    |
+| transition  | `"@chakra-ui/theme/foundations/transition"` |
+| zIndex      | `"@chakra-ui/theme/foundations/z-index"`    |
+| blur        | `"@chakra-ui/theme/foundations/blur"`       |
+| borders     | `"@chakra-ui/theme/foundations/borders"`    |
+
+**Color Mode** `v1.4.0`
+
+- Introducing **semantic tokens**
+
+Semantic tokens provide the ability to create css variables which can change
+with a CSS condition.
+
+```tsx live=false
+import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+
+const customTheme = extendTheme({
+  colors: {
+    900: "#171923",
+  },
+})
+
+const App = () => (
+  <ChakraProvider theme={customTheme}>
+    <Text color="gray.900">will always be gray.900</Text>
+  </ChakraProvider>
+)
+```
+
+```tsx live=false
+import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+
+const customTheme = extendTheme({
+  colors: {
+    50: "#F7FAFC",
+    900: "#171923",
+  },
+  semanticTokens: {
+    colors: {
+      text: {
+        default: "gray.900",
+        _dark: "gray.50",
+      },
+    },
+  },
+})
+
+const App = () => (
+  <ChakraProvider theme={customTheme}>
+    <Text color="text">
+      will be gray.900 in light mode and gray.50 in dark mode
+    </Text>
+  </ChakraProvider>
+)
+```
+
+```tsx live=false
+import { extendTheme } from "@chakra-ui/react"
+
+const theme = extendTheme({
+  colors: {
+    red: {
+      100: "#ff0010",
+      400: "#ff0040",
+      500: "#ff0050",
+      700: "#ff0070",
+      800: "#ff0080",
+    },
+  },
+  semanticTokens: {
+    colors: {
+      error: "red.500", // create a token alias
+      success: "red.100",
+      primary: {
+        // set variable conditionally with pseudo selectors like `_dark` and `_light`
+        // use `default` to define fallback value
+        default: "red.500",
+        _dark: "red.400",
+      },
+      secondary: {
+        default: "red.800",
+        _dark: "red.700",
+      },
+    },
+  },
+})
+```
+
+**System** `v1.10.0`
+
+- Add React component `<CSSVars root=":host, :root" />` to allow rehoisting CSS
+  vars
+- Updated type `ThemingProps` to allow string values for the props `variant` and
+  `size` even on components which are not in the default theme.
+
+**Popover** `v1.11.2`
+
+- Fix issue where the content of a lazy popover or menu gets unmounted before
+  (framer-motion) animation ends leading to a janky user experience.
+
+**Menu** `v1.8.4`
+
+- Fix issue where the content of a lazy popover or menu gets unmounted before
+  (framer-motion) animation ends leading to a janky user experience.
+
+**Media Query** `v1.2.4`
+
+- Update typings for useBreakpointValue parameter
+
+**Hooks** `v1.8.0`
+
+- Add `useAnimationState` hook to help track motion component animations. Used
+  in popopover and menu lazy modes
+- fix useConst types when using init function
+
+**Cli** `v1.7.1`
+
+- Update README to reflect the change of the default `--out` path to
+  `node_modules/@chakra-ui/styled-system/dist/declarations/src/theming.types.d.ts`
+
+**Slider** `v1.5.4`
+
+- fix a minor edge-case for calculating the `index` in use-range-slider
+
+**Button** `v1.5.3`
+
+- Fixed ThemingProps typings for ButtonGroup
+- Fixed an issue where the `iconSpacing` for the `<ButtonSpinner />` was
+  hardcoded.
+
+**Utils** `v1.10.0`
+
+- Add helper function `flatten`
+
+```ts
+import { flatten } from "@chakra-ui/utils"
+
+flatten({ space: [0, 1, 2, 4, 8, 16, 32] })
+/** =>
+{
+  "space.0": 0,
+  "space.1": 1,
+  "space.2": 2,
+  "space.3": 4,
+  "space.4": 8,
+  "space.5": 16,
+  "space.6": 32,
+}
+*/
+```
+
+**Theme Tools** `v1.3.2`
+
+- Allow style function types to be part of `StyleConfig` and `MultiStyleConfig`
+  types to reflect the possible usage of style functions instead of style
+  objects.
+
+**Checkbox** `v1.6.3`
+
+- Added a `CheckboxState` type to the `useCheckbox` hook to improve usability
+  and documentation
+
 ## 06-01-2022
 
 `@chakra-ui/react@1.7.5`
