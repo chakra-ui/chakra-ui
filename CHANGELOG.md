@@ -10,6 +10,13 @@ experience.
 
 <!-- CHANGELOG:INSERT -->
 
+## 26-01-2022
+
+**Color Mode** `v1.4.1`
+
+- Fixed an issue where the ColorModeScript tried to access a non-existent
+  variable
+
 ## 25-01-2022
 
 `@chakra-ui/react@1.8.0`
