@@ -42,7 +42,7 @@
     "@chakra-ui/visually-hidden": "1.1.2"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.10.0",
+    "@chakra-ui/system": "1.10.1",
     "framer-motion": "^4.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.2"
