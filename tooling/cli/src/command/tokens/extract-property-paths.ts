@@ -36,7 +36,7 @@ export function printUnionMap(
 /**
  * Extract recursively all property paths with a max depth
  */
-export function extractPropertyPaths(target: unknown, maxDepth = 1) {
+export function extractPropertyPaths(target: unknown, maxDepth = 3) {
   if ((!isObject(target) && !Array.isArray(target)) || !maxDepth) {
     return []
   }
