@@ -54,14 +54,22 @@ export function useMediaQuery(query: string | string[]): boolean[] {
       // media query is matched. Using addEventListener on the window object
       // to listen for the resize event will call the callback on every
       // viewport resize.
-      mediaQueryList[index].addEventListener("change", listener)
+      if(mediaQueryList[index].addEventListener) {
+        mediaQueryList[index].addEventListener("change", listener);
+      } else {
+        mediaQueryList[index].addListener(listener);
+      }
 
       return listener
     })
 
     return () => {
       mediaQueryList.forEach((_, index) => {
-        mediaQueryList[index].removeEventListener("change", listenerList[index])
+        if(mediaQueryList[index].removeEventListener) {
+          mediaQueryList[index].removeEventListener("change", listenerList[index]);
+        } else {
+          mediaQueryList[index].removeListener(listenerList[index]);
+        }
       })
     }
   }, [])
