@@ -1,6 +1,5 @@
 import * as React from "react"
 import { ColorMode, ConfigColorMode } from "./color-mode-provider"
-import { root } from "./color-mode.utils"
 
 export function setScript(initialValue: ConfigColorMode) {
   const mql = window.matchMedia("(prefers-color-scheme: dark)")
@@ -29,7 +28,14 @@ export function setScript(initialValue: ConfigColorMode) {
   }
 
   if (colorMode) {
-    root.set(colorMode)
+    /**
+     * Keep in sync with `root.set() {@file ./color-mode.utils.ts}
+     */
+    document.documentElement.style.setProperty(
+      "--chakra-ui-color-mode",
+      colorMode,
+    )
+    document.documentElement.setAttribute("data-theme", colorMode)
   }
 }
 

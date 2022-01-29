@@ -1,5 +1,30 @@
 # Change Log
 
+## 1.4.0
+
+### Minor Changes
+
+- [#4982](https://github.com/chakra-ui/chakra-ui/pull/4982)
+  [`7a136f5a8`](https://github.com/chakra-ui/chakra-ui/commit/7a136f5a8f81a2500995705875fb88accd147db1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  custom `format`, `parse` and character validation callbacks.
+
+### Patch Changes
+
+- [#4982](https://github.com/chakra-ui/chakra-ui/pull/4982)
+  [`e4f5ee819`](https://github.com/chakra-ui/chakra-ui/commit/e4f5ee8195280316d11a27140affcdbb15aa356a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  number input doesn't leave the spinning state when inc/dec button is disabled
+- Updated dependencies
+  [[`cbad002e7`](https://github.com/chakra-ui/chakra-ui/commit/cbad002e7bdb439a0dfeada82ebfb5b529e145fe),
+  [`6e259a1f7`](https://github.com/chakra-ui/chakra-ui/commit/6e259a1f7008a00f7be096e6b315cb9d62ef9748),
+  [`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3)]:
+  - @chakra-ui/hooks@1.8.0
+  - @chakra-ui/utils@1.10.0
+  - @chakra-ui/form-control@1.5.4
+  - @chakra-ui/icon@2.0.1
+  - @chakra-ui/counter@1.2.3
+
 ## 1.3.3
 
 ### Patch Changes

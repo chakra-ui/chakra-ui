@@ -12,7 +12,7 @@ import {
   useStyles,
   useTheme,
 } from "@chakra-ui/system"
-import { cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
+import { callAll, cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { PopoverProvider, usePopoverContext } from "./popover-context"
 import { PopoverTransition, PopoverTransitionProps } from "./popover-transition"
@@ -99,7 +99,8 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
   (props, ref) => {
     const { rootProps, ...contentProps } = props
 
-    const { getPopoverProps, getPopoverPositionerProps } = usePopoverContext()
+    const { getPopoverProps, getPopoverPositionerProps, onAnimationComplete } =
+      usePopoverContext()
 
     const styles = useStyles()
     const contentStyles: SystemStyleObject = {
@@ -117,6 +118,10 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
       >
         <PopoverTransition
           {...getPopoverProps(contentProps, ref)}
+          onAnimationComplete={callAll(
+            onAnimationComplete,
+            contentProps.onAnimationComplete,
+          )}
           className={cx("chakra-popover__content", props.className)}
           __css={contentStyles}
         />

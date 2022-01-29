@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/hooks",
-  "version": "1.7.2",
+  "version": "1.8.0",
   "description": "React hooks for Chakra components",
   "keywords": [
     "hooks",
@@ -17,8 +17,15 @@
   "types": "dist/chakra-ui-hooks.cjs.d.ts",
   "files": [
     "dist",
-    "src"
+    "src",
+    "use-animation-state"
   ],
+  "preconstruct": {
+    "entrypoints": [
+      "index.ts",
+      "use-animation-state.ts"
+    ]
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -32,7 +39,7 @@
   },
   "dependencies": {
     "@chakra-ui/react-utils": "1.2.1",
-    "@chakra-ui/utils": "1.9.1",
+    "@chakra-ui/utils": "1.10.0",
     "compute-scroll-into-view": "1.0.14",
     "copy-to-clipboard": "3.3.1"
   },

@@ -2045,6 +2045,15 @@
         "doc",
         "code"
       ]
+    },
+    {
+      "login": "lukasbach",
+      "name": "Lukas Bach",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4140121?v=4",
+      "profile": "http://lukasbach.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

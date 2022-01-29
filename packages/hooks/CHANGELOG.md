@@ -1,5 +1,26 @@
 # Change Log
 
+## 1.8.0
+
+### Minor Changes
+
+- [#5442](https://github.com/chakra-ui/chakra-ui/pull/5442)
+  [`cbad002e7`](https://github.com/chakra-ui/chakra-ui/commit/cbad002e7bdb439a0dfeada82ebfb5b529e145fe)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add
+  `useAnimationState` hook to help track motion component animations. Used in
+  popopover and menu lazy modes
+
+### Patch Changes
+
+- [#5445](https://github.com/chakra-ui/chakra-ui/pull/5445)
+  [`6e259a1f7`](https://github.com/chakra-ui/chakra-ui/commit/6e259a1f7008a00f7be096e6b315cb9d62ef9748)
+  Thanks [@rjokelai](https://github.com/rjokelai)! - fix useConst types when
+  using init function
+
+- Updated dependencies
+  [[`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3)]:
+  - @chakra-ui/utils@1.10.0
+
 ## 1.7.2
 
 ### Patch Changes

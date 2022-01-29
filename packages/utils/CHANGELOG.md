@@ -1,5 +1,31 @@
 # Change Log
 
+## 1.10.0
+
+### Minor Changes
+
+- [#5316](https://github.com/chakra-ui/chakra-ui/pull/5316)
+  [`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Add helper function
+  `flatten`
+
+  ```ts
+  import { flatten } from "@chakra-ui/utils"
+
+  flatten({ space: [0, 1, 2, 4, 8, 16, 32] })
+  /** =>
+  {
+    "space.0": 0,
+    "space.1": 1,
+    "space.2": 2,
+    "space.3": 4,
+    "space.4": 8,
+    "space.5": 16,
+    "space.6": 32,
+  }
+  */
+  ```
+
 ## 1.9.1
 
 ### Patch Changes
