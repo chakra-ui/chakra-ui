@@ -9,6 +9,7 @@ const baseStylePreview: SystemStyleObject = {
   py: "3px",
   transitionProperty: "common",
   transitionDuration: "normal",
+  minWidth: "2px",
 }
 
 const baseStyleInput: SystemStyleObject = {
