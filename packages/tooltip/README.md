@@ -21,8 +21,8 @@ import { Tooltip } from "@chakra-ui/react"
 
 ## Usage
 
-If the `children` of Tooltip is a string, we wrap with in a `span` with
-`tabIndex` set to `0`, to ensure it meets the accessibility requirements.
+If the `children` of Tooltip is a string, it will be wrapped with a focusable
+`span` element to ensure the Tooltip meets accessibility requirements.
 
 ```jsx
 <Tooltip label="Hey, I'm here!">Hover me</Tooltip>
