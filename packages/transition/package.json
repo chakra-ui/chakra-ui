@@ -36,7 +36,7 @@
     "@chakra-ui/utils": "1.10.0"
   },
   "peerDependencies": {
-    "framer-motion": "3.x || 4.x || 5.x",
+    "framer-motion": "3.x || 4.x || 5.x || 6.x",
     "react": ">=16.8.6"
   },
   "devDependencies": {
