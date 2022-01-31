@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "@chakra-ui/icon": "2.0.1",
+    "@chakra-ui/media-query": "1.2.4",
     "@chakra-ui/react-utils": "1.2.1",
     "@chakra-ui/utils": "1.10.0"
   },

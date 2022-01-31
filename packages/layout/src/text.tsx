@@ -1,3 +1,4 @@
+import { useBreakpointValue } from "@chakra-ui/media-query"
 import {
   chakra,
   forwardRef,
@@ -28,6 +29,8 @@ export interface TextProps extends HTMLChakraProps<"p">, ThemingProps<"Text"> {
   casing?: SystemProps["textTransform"]
 }
 
+const defaultNoOfLines = 3
+
 /**
  * Used to render texts or paragraphs.
  *
@@ -35,9 +38,14 @@ export interface TextProps extends HTMLChakraProps<"p">, ThemingProps<"Text"> {
  */
 export const Text = forwardRef<TextProps, "p">((props, ref) => {
   const styles = useStyleConfig("Text", props)
-  const { className, align, decoration, casing, ...rest } = omitThemingProps(
-    props,
-  )
+  const {
+    className,
+    align,
+    decoration,
+    casing,
+    noOfLines = [],
+    ...rest
+  } = omitThemingProps(props)
 
   const aliasedProps = filterUndefined({
     textAlign: props.align,
@@ -45,11 +53,17 @@ export const Text = forwardRef<TextProps, "p">((props, ref) => {
     textTransform: props.casing,
   })
 
+  const noOfLinesValue =
+    useBreakpointValue(
+      typeof noOfLines === "number" ? [noOfLines] : noOfLines,
+    ) || defaultNoOfLines
+
   return (
     <chakra.p
       ref={ref}
       className={cx("chakra-text", props.className)}
       {...aliasedProps}
+      noOfLines={noOfLinesValue}
       {...rest}
       __css={styles}
     />
