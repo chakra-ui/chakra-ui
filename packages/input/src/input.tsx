@@ -6,11 +6,28 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
+  PropsOf,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-interface InputOptions {
+interface NativeInputOptions {
+  /**
+   * The native HTML `size` attribute to be passed to the `input`
+   */
+  htmlSize?: number
+}
+
+interface NativeInputProps extends PropsOf<"input">, NativeInputOptions {}
+
+const NativeInput = React.forwardRef(
+  (props: NativeInputProps, ref: React.Ref<any>) => {
+    const { htmlSize, ...rest } = props
+    return <input size={htmlSize} ref={ref} {...rest} />
+  },
+)
+
+interface InputOptions extends NativeInputOptions {
   /**
    * The border color when the input is focused. Use color keys in `theme.colors`
    * @example
@@ -47,15 +64,23 @@ export interface InputProps
  * Element that allows users enter single valued data.
  */
 export const Input = forwardRef<InputProps, "input">((props, ref) => {
-  const styles = useMultiStyleConfig("Input", props)
-  const ownProps = omitThemingProps(props)
+  const { htmlSize, ...rest } = props
+
+  const styles = useMultiStyleConfig("Input", rest)
+  const ownProps = omitThemingProps(rest)
   const input = useFormControl<HTMLInputElement>(ownProps)
   const _className = cx("chakra-input", props.className)
 
+  // This is used to remove the default width=100% when size is set, which otherwise conflicts
+  const { width, ...fieldStyles } = styles.field
+  const cssStyles = htmlSize ? { ...fieldStyles } : { ...styles.field }
+
   return (
     <chakra.input
+      as={NativeInput}
+      htmlSize={htmlSize}
       {...input}
-      __css={styles.field}
+      __css={{ ...cssStyles }}
       ref={ref}
       className={_className}
     />
