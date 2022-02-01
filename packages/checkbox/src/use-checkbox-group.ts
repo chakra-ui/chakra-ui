@@ -85,7 +85,8 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
       const checkedKey = isNative ? "checked" : "isChecked"
       return {
         ...props,
-        [checkedKey]: value.includes(props.value),
+        [checkedKey]:
+          value.includes(props.value) || value.includes(`${props.value}`),
         onChange: handleChange,
       }
     },

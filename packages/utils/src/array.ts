@@ -26,7 +26,7 @@ export function addItem<T>(array: T[], item: T): T[] {
 }
 
 export function removeItem<T>(array: T[], item: T): T[] {
-  return array.filter((eachItem) => eachItem !== item)
+  return array.filter((eachItem) => eachItem != item)
 }
 
 /**
