@@ -6,28 +6,11 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
-  PropsOf,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-interface NativeInputOptions {
-  /**
-   * The native HTML `size` attribute to be passed to the `input`
-   */
-  htmlSize?: number
-}
-
-interface NativeInputProps extends PropsOf<"input">, NativeInputOptions {}
-
-const NativeInput = React.forwardRef(
-  (props: NativeInputProps, ref: React.Ref<any>) => {
-    const { htmlSize, ...rest } = props
-    return <input size={htmlSize} ref={ref} {...rest} />
-  },
-)
-
-interface InputOptions extends NativeInputOptions {
+interface InputOptions {
   /**
    * The border color when the input is focused. Use color keys in `theme.colors`
    * @example
@@ -48,6 +31,10 @@ interface InputOptions extends NativeInputOptions {
    *  please use the props `maxWidth` or `width` to configure
    */
   isFullWidth?: boolean
+  /**
+   * The native HTML `size` attribute to be passed to the `input`
+   */
+  htmlSize?: number
 }
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"
@@ -77,10 +64,9 @@ export const Input = forwardRef<InputProps, "input">((props, ref) => {
 
   return (
     <chakra.input
-      as={NativeInput}
-      htmlSize={htmlSize}
+      size={htmlSize}
       {...input}
-      __css={{ ...cssStyles }}
+      __css={cssStyles}
       ref={ref}
       className={_className}
     />
