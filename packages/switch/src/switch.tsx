@@ -42,7 +42,7 @@ export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
       display: "inline-block",
       position: "relative",
       verticalAlign: "middle",
-      lineHeight: "normal",
+      lineHeight: 0,
       ...styles.container,
     }),
     [styles.container],
