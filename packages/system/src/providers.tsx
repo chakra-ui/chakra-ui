@@ -34,12 +34,17 @@ export const ThemeProvider = (props: ThemeProviderProps) => {
 export interface CSSVarsProps {
   /**
    * The element to attach the CSS custom properties to.
-   * @default ":host, :root"
+   * Re-hoist CSS vars by attaching `data-css-vars-root={true}` to a DOM element.
+   * @example <div data-css-vars-root={true}></div>
+   *
+   * @default ":host, :root, [data-css-vars-root=true]"
    */
   root?: string
 }
 
-export const CSSVars = ({ root = ":host, :root" }: CSSVarsProps) => (
+export const CSSVars = ({
+  root = ":host, :root, [data-css-vars-root=true]",
+}: CSSVarsProps) => (
   <Global styles={(theme: any) => ({ [root]: theme.__cssVars })} />
 )
 
