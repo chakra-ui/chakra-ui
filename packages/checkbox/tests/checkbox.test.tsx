@@ -15,6 +15,7 @@ import {
   CheckboxGroupProps,
   useCheckbox,
   UseCheckboxProps,
+  useCheckboxGroup,
 } from "../src"
 
 it("passes a11y test", async () => {
@@ -276,4 +277,71 @@ test("can pass tabIndex directly to input component", () => {
 
   expect(checkboxOne).toHaveAttribute("tabIndex", "-1")
   expect(checkboxTwo).not.toHaveAttribute("tabIndex")
+})
+
+test("useCheckboxGroup can handle both strings and numbers", () => {
+  const Group = () => {
+    const { value, getCheckboxProps } = useCheckboxGroup({
+      defaultValue: [2, 3],
+    })
+
+    return (
+      <div>
+        <p id="value">{value.sort().join(", ")}</p>
+        <Checkbox {...getCheckboxProps({ value: 1 })} />
+        <Checkbox {...getCheckboxProps({ value: "2" })} />
+        <Checkbox {...getCheckboxProps({ value: 3 })} />
+      </div>
+    )
+  }
+
+  const { container } = render(<Group />)
+
+  {
+    const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
+      container.querySelectorAll("input"),
+    )
+    const values = container.querySelector("p")?.innerHTML
+    expect(values).toMatch("2, 3")
+    expect(checkboxOne).not.toBeChecked()
+    expect(checkboxTwo).toBeChecked()
+    expect(checkboxThree).toBeChecked()
+  }
+
+  {
+    const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
+      container.querySelectorAll("input"),
+    )
+    fireEvent.click(checkboxOne)
+    const values = container.querySelector("p")?.innerHTML
+    expect(values).toMatch("1, 2, 3")
+    expect(checkboxOne).toBeChecked()
+    expect(checkboxTwo).toBeChecked()
+    expect(checkboxThree).toBeChecked()
+  }
+
+  {
+    const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
+      container.querySelectorAll("input"),
+    )
+    fireEvent.click(checkboxTwo)
+    fireEvent.click(checkboxThree)
+    const values = container.querySelector("p")?.innerHTML
+    expect(values).toMatch("1")
+    expect(checkboxOne).toBeChecked()
+    expect(checkboxTwo).not.toBeChecked()
+    expect(checkboxThree).not.toBeChecked()
+  }
+
+  {
+    const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
+      container.querySelectorAll("input"),
+    )
+    fireEvent.click(checkboxOne)
+    const values = container.querySelector("p")?.innerHTML
+    expect(values).toMatch("")
+    expect(checkboxOne).not.toBeChecked()
+    expect(checkboxTwo).not.toBeChecked()
+    expect(checkboxThree).not.toBeChecked()
+  }
 })
