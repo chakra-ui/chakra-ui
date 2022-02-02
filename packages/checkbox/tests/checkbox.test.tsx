@@ -297,51 +297,33 @@ test("useCheckboxGroup can handle both strings and numbers", () => {
 
   const { container } = render(<Group />)
 
-  {
-    const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
-      container.querySelectorAll("input"),
-    )
-    const values = container.querySelector("p")?.innerHTML
-    expect(values).toMatch("2, 3")
-    expect(checkboxOne).not.toBeChecked()
-    expect(checkboxTwo).toBeChecked()
-    expect(checkboxThree).toBeChecked()
-  }
+  const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
+    container.querySelectorAll("input"),
+  )
 
-  {
-    const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
-      container.querySelectorAll("input"),
-    )
-    fireEvent.click(checkboxOne)
-    const values = container.querySelector("p")?.innerHTML
-    expect(values).toMatch("1, 2, 3")
-    expect(checkboxOne).toBeChecked()
-    expect(checkboxTwo).toBeChecked()
-    expect(checkboxThree).toBeChecked()
-  }
+  const values = container.querySelector("p")
 
-  {
-    const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
-      container.querySelectorAll("input"),
-    )
-    fireEvent.click(checkboxTwo)
-    fireEvent.click(checkboxThree)
-    const values = container.querySelector("p")?.innerHTML
-    expect(values).toMatch("1")
-    expect(checkboxOne).toBeChecked()
-    expect(checkboxTwo).not.toBeChecked()
-    expect(checkboxThree).not.toBeChecked()
-  }
+  expect(values?.innerHTML).toMatch("2, 3")
+  expect(checkboxOne).not.toBeChecked()
+  expect(checkboxTwo).toBeChecked()
+  expect(checkboxThree).toBeChecked()
 
-  {
-    const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
-      container.querySelectorAll("input"),
-    )
-    fireEvent.click(checkboxOne)
-    const values = container.querySelector("p")?.innerHTML
-    expect(values).toMatch("")
-    expect(checkboxOne).not.toBeChecked()
-    expect(checkboxTwo).not.toBeChecked()
-    expect(checkboxThree).not.toBeChecked()
-  }
+  fireEvent.click(checkboxOne)
+  expect(values?.innerHTML).toMatch("1, 2, 3")
+  expect(checkboxOne).toBeChecked()
+  expect(checkboxTwo).toBeChecked()
+  expect(checkboxThree).toBeChecked()
+
+  fireEvent.click(checkboxTwo)
+  fireEvent.click(checkboxThree)
+  expect(values?.innerHTML).toMatch("1")
+  expect(checkboxOne).toBeChecked()
+  expect(checkboxTwo).not.toBeChecked()
+  expect(checkboxThree).not.toBeChecked()
+
+  fireEvent.click(checkboxOne)
+  expect(values?.innerHTML).toMatch("")
+  expect(checkboxOne).not.toBeChecked()
+  expect(checkboxTwo).not.toBeChecked()
+  expect(checkboxThree).not.toBeChecked()
 })
