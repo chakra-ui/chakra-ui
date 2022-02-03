@@ -220,10 +220,9 @@ export const FormControl = forwardRef<FormControlProps, "div">((props, ref) => {
   )
 
   const className = cx("chakra-form-control", props.className)
-  const contextValue = React.useMemo(() => context, [context])
 
   return (
-    <FormControlProvider value={contextValue}>
+    <FormControlProvider value={context}>
       <StylesProvider value={styles}>
         <chakra.div
           {...getRootProps({}, ref)}
