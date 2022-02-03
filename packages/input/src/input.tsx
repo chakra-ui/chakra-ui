@@ -58,15 +58,11 @@ export const Input = forwardRef<InputProps, "input">((props, ref) => {
   const input = useFormControl<HTMLInputElement>(ownProps)
   const _className = cx("chakra-input", props.className)
 
-  // This is used to remove the default width=100% when size is set, which otherwise conflicts
-  const { width, ...fieldStyles } = styles.field
-  const cssStyles = htmlSize ? { ...fieldStyles } : { ...styles.field }
-
   return (
     <chakra.input
       size={htmlSize}
       {...input}
-      __css={cssStyles}
+      __css={styles.field}
       ref={ref}
       className={_className}
     />
