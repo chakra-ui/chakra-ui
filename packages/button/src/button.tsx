@@ -9,7 +9,7 @@ import {
   ThemingProps,
   useStyleConfig,
 } from "@chakra-ui/system"
-import { cx, dataAttr, mergeWith, __DEV__ } from "@chakra-ui/utils"
+import { cx, dataAttr, mergeWith, __DEV__, isString } from "@chakra-ui/utils"
 import * as React from "react"
 import { useButtonGroup } from "./button-group"
 import { ButtonSpinner } from "./button-spinner"
@@ -147,7 +147,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
       )}
 
       {isLoading ? (
-        (loadingText &&  <chakra.span>{loadingText}</chakra.span>) || (
+        (loadingText && <chakra.span>{loadingText}</chakra.span>) || (
           <chakra.span opacity={0}>
             <ButtonContent {...contentProps} />
           </chakra.span>
@@ -180,11 +180,10 @@ type ButtonContentProps = Pick<
 
 function ButtonContent(props: ButtonContentProps) {
   const { leftIcon, rightIcon, children, iconSpacing } = props
-  const isString = typeof children === "string"
   return (
     <>
       {leftIcon && <ButtonIcon marginEnd={iconSpacing}>{leftIcon}</ButtonIcon>}
-      {isString ? <chakra.span>{children}</chakra.span> : children}
+      {isString(children) ? <chakra.span>{children}</chakra.span> : children}
       {rightIcon && (
         <ButtonIcon marginStart={iconSpacing}>{rightIcon}</ButtonIcon>
       )}
