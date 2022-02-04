@@ -69,6 +69,8 @@ export async function generateThemeTypings({
     if (e instanceof Error) {
       console.error(e.message)
     }
+    spinner.stop()
+    process.exit(1)
   } finally {
     spinner.stop()
   }
