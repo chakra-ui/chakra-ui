@@ -2054,6 +2054,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "nikolovlazar",
+      "name": "Lazar Nikolov",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5396211?v=4",
+      "profile": "https://nikolovlazar.com",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,

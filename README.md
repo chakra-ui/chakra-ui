@@ -443,6 +443,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://www.selbekk.io"><img src="https://avatars.githubusercontent.com/u/1307267?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Kristofer Giltvedt Selbekk</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=selbekk" title="Documentation">📖</a></td>
     <td align="center"><a href="http://johann-ehlers.eu"><img src="https://avatars.githubusercontent.com/u/21695702?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Johann Ehlers</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=noobinthisgame" title="Documentation">📖</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=noobinthisgame" title="Code">💻</a></td>
     <td align="center"><a href="http://lukasbach.com"><img src="https://avatars.githubusercontent.com/u/4140121?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Lukas Bach</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=lukasbach" title="Code">💻</a></td>
+    <td align="center"><a href="https://nikolovlazar.com"><img src="https://avatars.githubusercontent.com/u/5396211?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Lazar Nikolov</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Anikolovlazar" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
