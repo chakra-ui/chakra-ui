@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/button",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "A React component that is a base button.",
   "keywords": [
     "button",
@@ -34,14 +34,14 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.10.1",
+    "@chakra-ui/system": "1.10.2",
     "react": "^17.0.1"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "1.8.0",
+    "@chakra-ui/hooks": "1.8.1",
     "@chakra-ui/react-utils": "1.2.1",
-    "@chakra-ui/spinner": "1.2.2",
-    "@chakra-ui/utils": "1.10.0"
+    "@chakra-ui/spinner": "1.2.3",
+    "@chakra-ui/utils": "1.10.1"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=1.0.0",

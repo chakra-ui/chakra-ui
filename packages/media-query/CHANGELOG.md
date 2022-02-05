@@ -1,5 +1,22 @@
 # Change Log
 
+## 2.0.0
+
+### Major Changes
+
+- [#5474](https://github.com/chakra-ui/chakra-ui/pull/5474)
+  [`85aec4f7a`](https://github.com/chakra-ui/chakra-ui/commit/85aec4f7abbd7a289e7ad82c3dcfc465d84184ed)
+  Thanks [@Edjevw12](https://github.com/Edjevw12)! - Support useMediaQuery for
+  older browsers. Conditionally check if the MediaQueryList object supports the
+  addEventListener() method, else fallback to the legacy .addListener() method.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b)]:
+  - @chakra-ui/utils@1.10.1
+  - @chakra-ui/react-env@1.1.3
+
 ## 1.2.4
 
 ### Patch Changes

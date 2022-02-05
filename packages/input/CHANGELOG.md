@@ -1,5 +1,27 @@
 # Change Log
 
+## 1.4.0
+
+### Minor Changes
+
+- [#5507](https://github.com/chakra-ui/chakra-ui/pull/5507)
+  [`e390806b2`](https://github.com/chakra-ui/chakra-ui/commit/e390806b2603abb97fb5e151abd46710291025d9)
+  Thanks [@noobinthisgame](https://github.com/noobinthisgame)! - Add new prop
+  `htmlSize` to `Input` to allow the usage of the native input attribute `size`.
+
+### Patch Changes
+
+- [#5516](https://github.com/chakra-ui/chakra-ui/pull/5516)
+  [`01a939464`](https://github.com/chakra-ui/chakra-ui/commit/01a939464a28d20ab27b38864dbc5a44078d7314)
+  Thanks [@selbekk](https://github.com/selbekk)! - Apply theme styles for
+  `InputLeftElement` and `InputRightElement`.
+
+- Updated dependencies
+  [[`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b),
+  [`f149c6c9a`](https://github.com/chakra-ui/chakra-ui/commit/f149c6c9aa04b8c0abebaa6ac8dc72c7f8ceed35)]:
+  - @chakra-ui/utils@1.10.1
+  - @chakra-ui/form-control@1.5.5
+
 ## 1.3.4
 
 ### Patch Changes
