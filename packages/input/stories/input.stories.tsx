@@ -57,6 +57,8 @@ export const WithSizes = () => (
   </Stack>
 )
 
+export const WithNativeSize = () => <Input htmlSize={4} width="auto" p="0" />
+
 export const WithStates = () => (
   <Stack align="start">
     <Input placeholder="Idle" />

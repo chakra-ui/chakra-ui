@@ -45,3 +45,9 @@ test("Readonly input renders correctly", () => {
 
   expect(screen.getByRole("textbox")).toHaveAttribute("aria-readonly", "true")
 })
+
+test("Input with native size renders correctly", () => {
+  render(<Input htmlSize={4} />)
+
+  expect(screen.getByRole("textbox")).toHaveAttribute("size", "4")
+})

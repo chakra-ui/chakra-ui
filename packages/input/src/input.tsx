@@ -31,6 +31,10 @@ interface InputOptions {
    *  please use the props `maxWidth` or `width` to configure
    */
   isFullWidth?: boolean
+  /**
+   * The native HTML `size` attribute to be passed to the `input`
+   */
+  htmlSize?: number
 }
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"
@@ -47,13 +51,16 @@ export interface InputProps
  * Element that allows users enter single valued data.
  */
 export const Input = forwardRef<InputProps, "input">((props, ref) => {
-  const styles = useMultiStyleConfig("Input", props)
-  const ownProps = omitThemingProps(props)
+  const { htmlSize, ...rest } = props
+
+  const styles = useMultiStyleConfig("Input", rest)
+  const ownProps = omitThemingProps(rest)
   const input = useFormControl<HTMLInputElement>(ownProps)
   const _className = cx("chakra-input", props.className)
 
   return (
     <chakra.input
+      size={htmlSize}
       {...input}
       __css={styles.field}
       ref={ref}
