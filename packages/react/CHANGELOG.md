@@ -1,5 +1,64 @@
 # Change Log
 
+## 1.8.3
+
+### Patch Changes
+
+- [#5536](https://github.com/chakra-ui/chakra-ui/pull/5536)
+  [`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process.
+
+- Updated dependencies
+  [[`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)]:
+  - @chakra-ui/accordion@1.4.6
+  - @chakra-ui/alert@1.3.5
+  - @chakra-ui/avatar@1.3.6
+  - @chakra-ui/breadcrumb@1.3.4
+  - @chakra-ui/button@1.5.5
+  - @chakra-ui/checkbox@1.6.5
+  - @chakra-ui/close-button@1.2.5
+  - @chakra-ui/control-box@1.1.4
+  - @chakra-ui/counter@1.2.5
+  - @chakra-ui/css-reset@1.1.2
+  - @chakra-ui/editable@1.3.5
+  - @chakra-ui/react-env@1.1.4
+  - @chakra-ui/form-control@1.5.6
+  - @chakra-ui/hooks@1.8.2
+  - @chakra-ui/icon@2.0.3
+  - @chakra-ui/image@1.1.5
+  - @chakra-ui/input@1.4.1
+  - @chakra-ui/layout@1.7.4
+  - @chakra-ui/live-region@1.1.4
+  - @chakra-ui/media-query@2.0.1
+  - @chakra-ui/menu@1.8.6
+  - @chakra-ui/modal@1.10.7
+  - @chakra-ui/number-input@1.4.2
+  - @chakra-ui/pin-input@1.7.5
+  - @chakra-ui/popover@1.11.4
+  - @chakra-ui/popper@2.4.2
+  - @chakra-ui/portal@1.3.5
+  - @chakra-ui/progress@1.2.4
+  - @chakra-ui/provider@1.7.9
+  - @chakra-ui/radio@1.4.7
+  - @chakra-ui/select@1.2.6
+  - @chakra-ui/skeleton@1.2.9
+  - @chakra-ui/slider@1.5.6
+  - @chakra-ui/spinner@1.2.4
+  - @chakra-ui/stat@1.2.5
+  - @chakra-ui/switch@1.3.5
+  - @chakra-ui/system@1.10.3
+  - @chakra-ui/table@1.3.4
+  - @chakra-ui/tabs@1.6.5
+  - @chakra-ui/tag@1.2.5
+  - @chakra-ui/textarea@1.2.6
+  - @chakra-ui/theme@1.13.2
+  - @chakra-ui/toast@1.5.4
+  - @chakra-ui/tooltip@1.4.6
+  - @chakra-ui/transition@1.4.5
+  - @chakra-ui/utils@1.10.2
+  - @chakra-ui/visually-hidden@1.1.4
+
 ## 1.8.2
 
 ### Patch Changes
