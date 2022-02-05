@@ -1,5 +1,90 @@
-## 26-01-2022
+## 05-02-2022
 
-**Color Mode** `v1.4.1`
+`@chakra-ui/react@1.8.2`
 
-- Fixed an issue where the ColorModeScript tried to access a non-existent variable
+- allow framer motion v6 as peer dependency
+
+**Input** `v1.4.0`
+
+- Add new prop `htmlSize` to `Input` to allow the usage of the native input
+  attribute `size`.
+- Apply theme styles for `InputLeftElement` and `InputRightElement`.
+
+**Media Query** `v2.0.0`
+
+- Support useMediaQuery for older browsers. Conditionally check if the
+  MediaQueryList object supports the addEventListener() method, else fallback to
+  the legacy .addListener() method.
+
+**Cli** `v1.8.0`
+
+- Fixed an internal version number mismatch
+- When the [Chakra CLI](https://chakra-ui.com/docs/theming/advanced#theme-typings)
+  fails to generate theme typings, it now exits with a status code of `1`. This
+  resolves an issue where failures exited with a success status code.
+- Increased scan depth for tokens in cli tooling
+
+**Tooltip** `v1.4.5`
+
+- Fix an issue where arrow tooltip background color only consider bg props. It
+  considers `bg`, `background`, `bgColor` and `backgroundColor` now.
+- allow framer motion v6 as peer dependency
+
+**Accordion** `v1.4.5`
+
+- allow framer motion v6 as peer dependency
+- Add missing peer dependencies
+
+**Checkbox** `v1.6.4`
+
+- allow framer motion v6 as peer dependency
+- Fixing a bug that happens when using the useCheckboxGroup hook with number
+  values instead of string values
+
+**Menu** `v1.8.5`
+
+- allow framer motion v6 as peer dependency
+
+**Modal** `v1.10.6`
+
+- allow framer motion v6 as peer dependency
+
+**Popover** `v1.11.3`
+
+- allow framer motion v6 as peer dependency
+
+**Switch** `v1.3.4`
+
+- allow framer motion v6 as peer dependency
+- Add missing peer dependencies
+
+**Toast** `v1.5.3`
+
+- allow framer motion v6 as peer dependency
+- Fixed an issue where the `useToast` function returned a new object on every
+  render.
+
+**Transition** `v1.4.4`
+
+- allow framer motion v6 as peer dependency
+
+**Utils** `v1.10.1`
+
+- Fixing a bug that happens when using the useCheckboxGroup hook with number
+  values instead of string values
+
+**System** `v1.10.2`
+
+- Disallow props that do not exist in the prop interface
+
+**Form Control** `v1.5.5`
+
+- Remove redundant `useMemo` from `FormControl`
+
+**Anatomy** `v1.2.2`
+
+- Add missing peer dependencies
+
+**Skeleton** `v1.2.8`
+
+- Add missing peer dependencies
