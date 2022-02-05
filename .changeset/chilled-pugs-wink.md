@@ -2,4 +2,5 @@
 "@chakra-ui/input": minor
 ---
 
-Add htmlProp to enable the usage of the native input size prop
+Add new prop `htmlSize` to `Input` to allow the usage of the native input
+attribute `size`.

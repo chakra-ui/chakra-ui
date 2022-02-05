@@ -5,4 +5,4 @@
 "@chakra-ui/switch": patch
 ---
 
-fix: add missing peer dependencies
+Add missing peer dependencies
