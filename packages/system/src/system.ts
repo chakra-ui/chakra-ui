@@ -55,7 +55,7 @@ export const toCSSObject: GetStyleObject =
     return cssProp ? [computedCSS, cssProp] : computedCSS
   }
 
-interface StyledOptions extends Dict<unknown> {
+export interface StyledOptionsChakra extends Dict {
   shouldForwardProp?(prop: string): boolean
   label?: string
   baseStyle?:
@@ -63,12 +63,9 @@ interface StyledOptions extends Dict<unknown> {
     | ((props: StyleResolverProps) => SystemStyleObject)
 }
 
-// alias StyledOptions to prevent type clash with emotion in user land
-export type ChakraStyledOptions = StyledOptions
-
 export function styled<T extends As, P = {}>(
   component: T,
-  options?: StyledOptions,
+  options?: StyledOptionsChakra,
 ) {
   const { baseStyle, ...styledOptions } = options ?? {}
 

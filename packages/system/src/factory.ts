@@ -1,11 +1,11 @@
 import { DOMElements } from "./system.utils"
-import { ChakraStyledOptions, HTMLChakraComponents, styled } from "./system"
+import { StyledOptionsChakra, HTMLChakraComponents, styled } from "./system"
 import { As, ChakraComponent } from "./system.types"
 
 type ChakraFactory = {
   <T extends As, P = {}>(
     component: T,
-    options?: ChakraStyledOptions,
+    options?: StyledOptionsChakra,
   ): ChakraComponent<T, P>
 }
 
@@ -13,7 +13,7 @@ function factory() {
   const cache = new Map<DOMElements, ChakraComponent<DOMElements>>()
 
   return new Proxy(styled, {
-    apply(target, thisArg, argArray: [DOMElements, ChakraStyledOptions]) {
+    apply(target, thisArg, argArray: [DOMElements, StyledOptionsChakra]) {
       return styled(...argArray)
     },
     get(_, element: DOMElements) {
