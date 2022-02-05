@@ -12,6 +12,12 @@ experience.
 
 ## 05-02-2022
 
+`@chakra-ui/react@1.8.3`
+
+- fixed an issue where the release process was not working
+
+## 05-02-2022
+
 `@chakra-ui/react@1.8.2`
 
 - allow framer motion v6 as peer dependency
