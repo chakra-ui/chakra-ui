@@ -13,9 +13,18 @@ function factory() {
   const cache = new Map<DOMElements, ChakraComponent<DOMElements>>()
 
   return new Proxy(styled, {
+    /**
+     * @example
+     * const Div = chakra("div")
+     * const WithChakra = chakra(AnotherComponent)
+     */
     apply(target, thisArg, argArray: [DOMElements, ChakraStyledOptions]) {
       return styled(...argArray)
     },
+    /**
+     * @example
+     * <chakra.div />
+     */
     get(_, element: DOMElements) {
       if (!cache.has(element)) {
         cache.set(element, styled(element))
