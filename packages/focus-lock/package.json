@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/focus-lock",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "React focus lock for all Chakra components",
   "keywords": [
     "react focus lock",
@@ -32,7 +32,7 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.10.1",
+    "@chakra-ui/utils": "1.10.2",
     "react-focus-lock": "2.5.2"
   },
   "peerDependencies": {

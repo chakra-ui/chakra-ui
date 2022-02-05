@@ -1,5 +1,24 @@
 # Change Log
 
+## 1.10.7
+
+### Patch Changes
+
+- [#5536](https://github.com/chakra-ui/chakra-ui/pull/5536)
+  [`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process.
+
+- Updated dependencies
+  [[`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)]:
+  - @chakra-ui/close-button@1.2.5
+  - @chakra-ui/focus-lock@1.2.4
+  - @chakra-ui/hooks@1.8.2
+  - @chakra-ui/portal@1.3.5
+  - @chakra-ui/react-utils@1.2.2
+  - @chakra-ui/transition@1.4.5
+  - @chakra-ui/utils@1.10.2
+
 ## 1.10.6
 
 ### Patch Changes
