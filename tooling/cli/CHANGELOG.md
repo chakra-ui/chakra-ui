@@ -1,5 +1,31 @@
 # @chakra-ui/cli
 
+## 1.8.0
+
+### Minor Changes
+
+- [#5472](https://github.com/chakra-ui/chakra-ui/pull/5472)
+  [`5bfb298bc`](https://github.com/chakra-ui/chakra-ui/commit/5bfb298bc01ba49486056a72b040ab0e068dd904)
+  Thanks [@lukasbach](https://github.com/lukasbach)! - Increased scan depth for
+  tokens in cli tooling
+
+### Patch Changes
+
+- [#5486](https://github.com/chakra-ui/chakra-ui/pull/5486)
+  [`4e26a300c`](https://github.com/chakra-ui/chakra-ui/commit/4e26a300caa60b4739e09520a3112802ebe535b9)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an internal
+  version number mismatch
+
+* [#5527](https://github.com/chakra-ui/chakra-ui/pull/5527)
+  [`b6ccf0dd2`](https://github.com/chakra-ui/chakra-ui/commit/b6ccf0dd2e3b72a5b50c9e1c00f1e6e3f3b68690)
+  Thanks [@with-heart](https://github.com/with-heart)! - When the
+  [Chakra CLI](https://chakra-ui.com/docs/theming/advanced#theme-typings) fails
+  to generate theme typings, it now exits with a status code of `1`. This
+  resolves an issue where failures exited with a success status code.
+* Updated dependencies
+  [[`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b)]:
+  - @chakra-ui/utils@1.10.1
+
 ## 1.7.1
 
 ### Patch Changes

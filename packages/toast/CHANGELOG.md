@@ -1,5 +1,28 @@
 # Change Log
 
+## 1.5.3
+
+### Patch Changes
+
+- [#5499](https://github.com/chakra-ui/chakra-ui/pull/5499)
+  [`f1d024749`](https://github.com/chakra-ui/chakra-ui/commit/f1d02474983dc8277e767dc729abc3cbb02cfe10)
+  Thanks [@noobinthisgame](https://github.com/noobinthisgame)! - allow framer
+  motion v6 as peer dependency
+
+* [#5493](https://github.com/chakra-ui/chakra-ui/pull/5493)
+  [`6d2affcdd`](https://github.com/chakra-ui/chakra-ui/commit/6d2affcdd390fe013eff684569573200b97e9e88)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue
+  where the `useToast` function returned a new object on every render.
+* Updated dependencies
+  [[`f1d024749`](https://github.com/chakra-ui/chakra-ui/commit/f1d02474983dc8277e767dc729abc3cbb02cfe10),
+  [`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b)]:
+  - @chakra-ui/transition@1.4.4
+  - @chakra-ui/utils@1.10.1
+  - @chakra-ui/theme@1.13.1
+  - @chakra-ui/alert@1.3.4
+  - @chakra-ui/close-button@1.2.4
+  - @chakra-ui/hooks@1.8.1
+
 ## 1.5.2
 
 ### Patch Changes

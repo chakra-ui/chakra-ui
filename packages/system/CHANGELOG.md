@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.10.2
+
+### Patch Changes
+
+- [#5195](https://github.com/chakra-ui/chakra-ui/pull/5195)
+  [`78251dab8`](https://github.com/chakra-ui/chakra-ui/commit/78251dab83e34747b719ee746394ec43aeceffef)
+  Thanks [@andrewmtam](https://github.com/andrewmtam)! - Disallow props that do
+  not exist in the prop interface
+
+- Updated dependencies
+  [[`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b)]:
+  - @chakra-ui/utils@1.10.1
+  - @chakra-ui/color-mode@1.4.2
+  - @chakra-ui/styled-system@1.17.1
+
 ## 1.10.1
 
 ### Patch Changes

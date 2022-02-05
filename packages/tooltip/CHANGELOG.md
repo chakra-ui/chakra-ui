@@ -1,5 +1,26 @@
 # Change Log
 
+## 1.4.5
+
+### Patch Changes
+
+- [`f6578a1b7`](https://github.com/chakra-ui/chakra-ui/commit/f6578a1b76546c9432d9bcf06acead17d68c62b1)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fix an issue where
+  arrow tooltip background color only consider bg props. It considers `bg`,
+  `background`, `bgColor` and `backgroundColor` now.
+
+* [#5499](https://github.com/chakra-ui/chakra-ui/pull/5499)
+  [`f1d024749`](https://github.com/chakra-ui/chakra-ui/commit/f1d02474983dc8277e767dc729abc3cbb02cfe10)
+  Thanks [@noobinthisgame](https://github.com/noobinthisgame)! - allow framer
+  motion v6 as peer dependency
+
+* Updated dependencies
+  [[`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b)]:
+  - @chakra-ui/utils@1.10.1
+  - @chakra-ui/hooks@1.8.1
+  - @chakra-ui/portal@1.3.4
+  - @chakra-ui/visually-hidden@1.1.3
+
 ## 1.4.4
 
 ### Patch Changes

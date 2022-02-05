@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.10.1
+
+### Patch Changes
+
+- [#5502](https://github.com/chakra-ui/chakra-ui/pull/5502)
+  [`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b)
+  Thanks [@nikolovlazar](https://github.com/nikolovlazar)! - Fixing a bug that
+  happens when using the useCheckboxGroup hook with number values instead of
+  string values
+
 ## 1.10.0
 
 ### Minor Changes
