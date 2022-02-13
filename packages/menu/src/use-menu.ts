@@ -1,6 +1,7 @@
 import { useClickable } from "@chakra-ui/clickable"
 import { createDescendantContext } from "@chakra-ui/descendant"
 import {
+  useAnimationState,
   useControllableState,
   useDisclosure,
   UseDisclosureProps,
@@ -12,7 +13,6 @@ import {
   useUnmountEffect,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
-import { useAnimationState } from "@chakra-ui/hooks/use-animation-state"
 import { usePopper, UsePopperProps } from "@chakra-ui/popper"
 import {
   createContext,
