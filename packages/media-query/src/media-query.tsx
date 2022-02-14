@@ -46,11 +46,11 @@ export interface ShowProps {
    */
   breakpoint?: string
   /**
-   * A value from the `breakpoints` section in the theme. Will render `children` from that breakpoint and below. Similar to `max-width`. Default breakpoint values: `sm`, `md`, `lg`, `xl`, `2xl`.
+   * A value from the `breakpoints` section in the theme. Will render `children` from that breakpoint and below. Default breakpoint values: `sm`, `md`, `lg`, `xl`, `2xl`.
    */
   below?: string
   /**
-   * A value from the `breakpoints` section in the theme. Will render `children` from that breakpoint and above. Similar to `min-width`. Default breakpoint values: `sm`, `md`, `lg`, `xl`, `2xl`.
+   * A value from the `breakpoints` section in the theme. Will render `children` from that breakpoint and above. Default breakpoint values: `sm`, `md`, `lg`, `xl`, `2xl`.
    */
   above?: string
   children?: React.ReactNode
