@@ -24,12 +24,12 @@ export interface Breakpoint {
  * to get the default breakpoint value from the user-agent
  */
 export function useBreakpoint(defaultBreakpoint?: string) {
-  const { breakpoints } = useTheme()
+  const { __breakpoints } = useTheme()
   const env = useEnvironment()
 
   const mediaQueries = React.useMemo(
-    () => createMediaQueries({ base: "0px", ...breakpoints }),
-    [breakpoints],
+    () => createMediaQueries(__breakpoints?.asObject ?? {}),
+    [__breakpoints],
   )
 
   const [currentBreakpoint, setCurrentBreakpoint] = React.useState(() => {
@@ -92,11 +92,6 @@ export function useBreakpoint(defaultBreakpoint?: string) {
       // push the media query list handleChange
       // so we can use it to remove Listener
       listeners.add({ mediaQuery, handleChange })
-
-      return () => {
-        // clean up 1
-        mediaQuery.removeListener(handleChange)
-      }
     })
 
     return () => {
@@ -106,7 +101,7 @@ export function useBreakpoint(defaultBreakpoint?: string) {
       })
       listeners.clear()
     }
-  }, [mediaQueries, breakpoints, update, env.window])
+  }, [mediaQueries, __breakpoints, update, env.window])
 
   return current
 }
