@@ -4,7 +4,12 @@ import {
   StyleProps,
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
-import { filterUndefined, objectFilter, runIfFn } from "@chakra-ui/utils"
+import {
+  filterUndefined,
+  objectFilter,
+  runIfFn,
+  mergeWith,
+} from "@chakra-ui/utils"
 import _styled, { CSSObject, FunctionInterpolation } from "@emotion/styled"
 import { shouldForwardProp } from "./should-forward-prop"
 import { As, ChakraComponent, ChakraProps, PropsOf } from "./system.types"
@@ -38,20 +43,22 @@ interface GetStyleObject {
  * behaviors. Right now, the `sx` prop has the highest priority so the resolved
  * fontSize will be `40px`
  */
-export const toCSSObject: GetStyleObject = ({ baseStyle }) => (props) => {
-  const { theme, css: cssProp, __css, sx, ...rest } = props
-  const styleProps = objectFilter(rest, (_, prop) => isStyleProp(prop))
-  const finalBaseStyle = runIfFn(baseStyle, props)
-  const finalStyles = Object.assign(
-    {},
-    __css,
-    finalBaseStyle,
-    filterUndefined(styleProps),
-    sx,
-  )
-  const computedCSS = css(finalStyles)(props.theme)
-  return cssProp ? [computedCSS, cssProp] : computedCSS
-}
+export const toCSSObject: GetStyleObject =
+  ({ baseStyle }) =>
+  (props) => {
+    const { theme, css: cssProp, __css, sx, ...rest } = props
+    const styleProps = objectFilter(rest, (_, prop) => isStyleProp(prop))
+    const finalBaseStyle = runIfFn(baseStyle, props)
+    const finalStyles = mergeWith(
+      {},
+      __css,
+      finalBaseStyle,
+      filterUndefined(styleProps),
+      sx,
+    )
+    const computedCSS = css(finalStyles)(props.theme)
+    return cssProp ? [computedCSS, cssProp] : computedCSS
+  }
 
 interface StyledOptions {
   shouldForwardProp?(prop: string): boolean
@@ -97,8 +104,7 @@ type ChakraFactory = {
   ): ChakraComponent<T, P>
 }
 
-export const chakra = (styled as unknown) as ChakraFactory &
-  HTMLChakraComponents
+export const chakra = styled as unknown as ChakraFactory & HTMLChakraComponents
 
 domElements.forEach((tag) => {
   chakra[tag] = chakra(tag)

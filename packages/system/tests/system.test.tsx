@@ -1,6 +1,7 @@
 import { render } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { chakra } from "../src"
+import { chakra, toCSSObject } from "../src"
+import { theme } from "@chakra-ui/theme"
 
 const consoleSpy = jest.spyOn(console, "error").mockImplementation(() => {})
 
@@ -17,4 +18,18 @@ test("should allow custom should forward props", () => {
    * React-DOM should show an error about `isBig` getting to the DOM
    */
   expect(consoleSpy).toHaveBeenCalled()
+})
+
+test("allows overwriting of pseudo selectors", () => {
+  expect(
+    toCSSObject({})({
+      theme,
+      __css: { _selected: { bg: "yellow.500" } },
+      _selected: { bg: "red.500" },
+    }),
+  ).toEqual({
+    "&[aria-selected=true], &[data-selected]": {
+      background: "red.500",
+    },
+  })
 })

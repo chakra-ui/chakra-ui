@@ -260,3 +260,22 @@ export const withinDrawer = () => (
     </DrawerOverlay>
   </Drawer>
 )
+
+export const pseudoOverwrite = () => (
+  <>
+    <Tabs variant="enclosed" orientation="horizontal">
+      <TabList>
+        <Tab
+          _selected={{
+            bg: "yellow", // same here
+          }}
+        >
+          tab2
+        </Tab>
+      </TabList>
+      <TabPanels>
+        <TabPanel>content2</TabPanel>
+      </TabPanels>
+    </Tabs>
+  </>
+)
