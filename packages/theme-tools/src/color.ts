@@ -48,12 +48,11 @@ export const isLight = (color: string) => (theme: Dict) =>
  * @param color - the color in hex, rgb, or hsl
  * @param opacity - the amount of opacity the color should have (0-1)
  */
-export const transparentize = (color: string, opacity: number) => (
-  theme: Dict,
-) => {
-  const raw = getColor(theme, color)
-  return new TinyColor(raw).setAlpha(opacity).toRgbString()
-}
+export const transparentize =
+  (color: string, opacity: number) => (theme: Dict) => {
+    const raw = getColor(theme, color)
+    return new TinyColor(raw).setAlpha(opacity).toRgbString()
+  }
 
 /**
  * Add white to a color
@@ -110,12 +109,9 @@ export const contrast = (fg: string, bg: string) => (theme: Dict) =>
  * @param fg - the foreground or text color
  * @param bg - the background color
  */
-export const isAccessible = (
-  textColor: string,
-  bgColor: string,
-  options?: WCAG2Parms,
-) => (theme: Dict) =>
-  isReadable(getColor(theme, bgColor), getColor(theme, textColor), options)
+export const isAccessible =
+  (textColor: string, bgColor: string, options?: WCAG2Parms) => (theme: Dict) =>
+    isReadable(getColor(theme, bgColor), getColor(theme, textColor), options)
 
 export const complementary = (color: string) => (theme: Dict) =>
   new TinyColor(getColor(theme, color)).complement().toHexString()

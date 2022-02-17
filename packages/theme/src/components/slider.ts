@@ -5,7 +5,7 @@ import type {
   SystemStyleFunction,
   SystemStyleObject,
 } from "@chakra-ui/theme-tools"
-import { mode, orient } from "@chakra-ui/theme-tools"
+import { orient } from "@chakra-ui/theme-tools"
 
 function thumbOrientation(props: StyleFunctionProps): SystemStyleObject {
   return orient({
@@ -47,15 +47,27 @@ const baseStyleContainer: SystemStyleFunction = (props) => {
   }
 }
 
-const baseStyleTrack: SystemStyleFunction = (props) => {
-  return {
-    overflow: "hidden",
-    borderRadius: "sm",
-    bg: mode("gray.200", "whiteAlpha.200")(props),
-    _disabled: {
-      bg: mode("gray.300", "whiteAlpha.300")(props),
+const baseStyleTrack: SystemStyleObject = {
+  overflow: "hidden",
+  borderRadius: "sm",
+
+  _disabled: {
+    _light: {
+      bg: "gray.300",
     },
-  }
+
+    _dark: {
+      bg: "whiteAlpha.300",
+    },
+  },
+
+  _light: {
+    bg: "gray.200",
+  },
+
+  _dark: {
+    bg: "whiteAlpha.200",
+  },
 }
 
 const baseStyleThumb: SystemStyleFunction = (props) => {
@@ -85,13 +97,20 @@ const baseStyleFilledTrack: SystemStyleFunction = (props) => {
   return {
     width: "inherit",
     height: "inherit",
-    bg: mode(`${c}.500`, `${c}.200`)(props),
+
+    _light: {
+      bg: `${c}.500`,
+    },
+
+    _dark: {
+      bg: `${c}.200`,
+    },
   }
 }
 
 const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   container: baseStyleContainer(props),
-  track: baseStyleTrack(props),
+  track: baseStyleTrack,
   thumb: baseStyleThumb(props),
   filledTrack: baseStyleFilledTrack(props),
 })

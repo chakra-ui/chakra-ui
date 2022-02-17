@@ -1,5 +1,5 @@
 import { avatarAnatomy as parts } from "@chakra-ui/anatomy"
-import { isDark, mode, randomColor } from "@chakra-ui/theme-tools"
+import { isDark, randomColor, SystemStyleObject } from "@chakra-ui/theme-tools"
 import type {
   PartsStyleFunction,
   PartsStyleObject,
@@ -7,19 +7,28 @@ import type {
 } from "@chakra-ui/theme-tools"
 import themeSizes from "../foundations/sizes"
 
-const baseStyleBadge: SystemStyleFunction = (props) => {
-  return {
-    transform: "translate(25%, 25%)",
-    borderRadius: "full",
-    border: "0.2em solid",
-    borderColor: mode("white", "gray.800")(props),
-  }
+const baseStyleBadge: SystemStyleObject = {
+  transform: "translate(25%, 25%)",
+  borderRadius: "full",
+  border: "0.2em solid",
+
+  _light: {
+    borderColor: "white",
+  },
+
+  _dark: {
+    borderColor: "gray.800",
+  },
 }
 
-const baseStyleExcessLabel: SystemStyleFunction = (props) => {
-  return {
-    bg: mode("gray.200", "whiteAlpha.400")(props),
-  }
+const baseStyleExcessLabel: SystemStyleObject = {
+  _light: {
+    bg: "gray.200",
+  },
+
+  _dark: {
+    bg: "whiteAlpha.400",
+  },
 }
 
 const baseStyleContainer: SystemStyleFunction = (props) => {
@@ -30,19 +39,27 @@ const baseStyleContainer: SystemStyleFunction = (props) => {
   let color = "white"
   if (!isBgDark) color = "gray.800"
 
-  const borderColor = mode("white", "gray.800")(props)
+  const borderColorLight = "white"
+  const borderColorDark = "gray.800"
 
   return {
     bg,
     color,
-    borderColor,
     verticalAlign: "top",
+
+    _light: {
+      borderColor: borderColorLight,
+    },
+
+    _dark: {
+      borderColor: borderColorDark,
+    },
   }
 }
 
 const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
-  badge: baseStyleBadge(props),
-  excessLabel: baseStyleExcessLabel(props),
+  badge: baseStyleBadge,
+  excessLabel: baseStyleExcessLabel,
   container: baseStyleContainer(props),
 })
 

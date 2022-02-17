@@ -1,11 +1,9 @@
 import { numberInputAnatomy as parts } from "@chakra-ui/anatomy"
 import type {
-  PartsStyleFunction,
   PartsStyleObject,
-  SystemStyleFunction,
   SystemStyleObject,
 } from "@chakra-ui/theme-tools"
-import { calc, cssVar, mode } from "@chakra-ui/theme-tools"
+import { calc, cssVar } from "@chakra-ui/theme-tools"
 import typography from "../foundations/typography"
 import Input from "./input"
 
@@ -27,27 +25,37 @@ const baseStyleStepperGroup: SystemStyleObject = {
   width: [$stepperWidth.reference],
 }
 
-const baseStyleStepper: SystemStyleFunction = (props) => {
-  return {
-    borderStart: "1px solid",
-    borderStartColor: mode("inherit", "whiteAlpha.300")(props),
-    color: mode("inherit", "whiteAlpha.800")(props),
-    _active: {
-      bg: mode("gray.200", "whiteAlpha.300")(props),
+const baseStyleStepper: SystemStyleObject = {
+  borderStart: "1px solid",
+  _active: {
+    _light: {
+      bg: "gray.200",
     },
-    _disabled: {
-      opacity: 0.4,
-      cursor: "not-allowed",
+
+    _dark: {
+      bg: "whiteAlpha.300",
     },
-  }
+  },
+  _disabled: {
+    opacity: 0.4,
+    cursor: "not-allowed",
+  },
+  _light: {
+    borderStartColor: "inherit",
+    color: "inherit",
+  },
+  _dark: {
+    borderStartColor: "whiteAlpha.300",
+    color: "whiteAlpha.800",
+  },
 }
 
-const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
+const baseStyle: PartsStyleObject<typeof parts> = {
   root: baseStyleRoot,
   field: baseStyleField,
   stepperGroup: baseStyleStepperGroup,
-  stepper: baseStyleStepper(props),
-})
+  stepper: baseStyleStepper,
+}
 
 type Size = "xs" | "sm" | "md" | "lg"
 

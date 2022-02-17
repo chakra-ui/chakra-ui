@@ -5,7 +5,7 @@ import type {
   SystemStyleFunction,
   SystemStyleObject,
 } from "@chakra-ui/theme-tools"
-import { mode } from "@chakra-ui/theme-tools"
+import "@chakra-ui/theme-tools"
 
 const baseStyleOverlay: SystemStyleObject = {
   bg: "blackAlpha.600",
@@ -29,12 +29,18 @@ const baseStyleDialog: SystemStyleFunction = (props) => {
 
   return {
     borderRadius: "md",
-    bg: mode("white", "gray.700")(props),
     color: "inherit",
     my: "3.75rem",
     zIndex: "modal",
     maxH: scrollBehavior === "inside" ? "calc(100% - 7.5rem)" : undefined,
-    boxShadow: mode("lg", "dark-lg")(props),
+    _light: {
+      bg: "white",
+      boxShadow: "lg",
+    },
+    _dark: {
+      bg: "gray.700",
+      boxShadow: "dark-lg",
+    },
   }
 }
 

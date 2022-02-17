@@ -1,10 +1,9 @@
 import { popoverAnatomy as parts } from "@chakra-ui/anatomy"
 import type {
-  PartsStyleFunction,
-  SystemStyleFunction,
+  PartsStyleObject,
   SystemStyleObject,
 } from "@chakra-ui/theme-tools"
-import { cssVar, mode } from "@chakra-ui/theme-tools"
+import { cssVar } from "@chakra-ui/theme-tools"
 
 const $popperBg = cssVar("popper-bg")
 
@@ -15,26 +14,36 @@ const baseStylePopper: SystemStyleObject = {
   zIndex: 10,
 }
 
-const baseStyleContent: SystemStyleFunction = (props) => {
-  const bg = mode("white", "gray.700")(props)
-  const shadowColor = mode("gray.200", "whiteAlpha.300")(props)
+const contentBgLight = "white"
+const contentBgDark = "gray.700"
+const contentShadowColorLight = "whiteAlpha.300"
+const contentShadowColorDark = "gray.200"
 
-  return {
-    [$popperBg.variable]: `colors.${bg}`,
-    bg: $popperBg.reference,
-    [$arrowBg.variable]: $popperBg.reference,
-    [$arrowShadowColor.variable]: `colors.${shadowColor}`,
-    width: "xs",
-    border: "1px solid",
-    borderColor: "inherit",
-    borderRadius: "md",
-    boxShadow: "sm",
-    zIndex: "inherit",
-    _focus: {
-      outline: 0,
-      boxShadow: "outline",
-    },
-  }
+const baseStyleContent: SystemStyleObject = {
+  [$arrowBg.variable]: $popperBg.reference,
+  width: "xs",
+  border: "1px solid",
+  borderColor: "inherit",
+  borderRadius: "md",
+  boxShadow: "sm",
+  zIndex: "inherit",
+
+  _focus: {
+    outline: 0,
+    boxShadow: "outline",
+  },
+
+  _light: {
+    bg: contentBgLight,
+    [$popperBg.variable]: `colors.${contentBgLight}`,
+    [$arrowShadowColor.variable]: `colors.${contentShadowColorDark}`,
+  },
+
+  _dark: {
+    bg: contentBgDark,
+    [$popperBg.variable]: `colors.${contentBgDark}`,
+    [$arrowShadowColor.variable]: `colors.${contentShadowColorLight}`,
+  },
 }
 
 const baseStyleHeader: SystemStyleObject = {
@@ -62,15 +71,15 @@ const baseStyleCloseButton: SystemStyleObject = {
   padding: 2,
 }
 
-const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
+const baseStyle: PartsStyleObject<typeof parts> = {
   popper: baseStylePopper,
-  content: baseStyleContent(props),
+  content: baseStyleContent,
   header: baseStyleHeader,
   body: baseStyleBody,
   footer: baseStyleFooter,
   arrow: {},
   closeButton: baseStyleCloseButton,
-})
+}
 
 export default {
   parts: parts.keys,

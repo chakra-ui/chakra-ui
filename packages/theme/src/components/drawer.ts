@@ -5,7 +5,7 @@ import type {
   SystemStyleFunction,
   SystemStyleObject,
 } from "@chakra-ui/theme-tools"
-import { mode } from "@chakra-ui/theme-tools"
+import "@chakra-ui/theme-tools"
 
 /**
  * Since the `maxWidth` prop references theme.sizes internally,
@@ -40,9 +40,15 @@ const baseStyleDialog: SystemStyleFunction = (props) => {
     ...(isFullHeight && { height: "100vh" }),
     zIndex: "modal",
     maxH: "100vh",
-    bg: mode("white", "gray.700")(props),
     color: "inherit",
-    boxShadow: mode("lg", "dark-lg")(props),
+    _light: {
+      bg: "white",
+      boxShadow: "lg",
+    },
+    _dark: {
+      bg: "gray.700",
+      boxShadow: "dark-lg",
+    },
   }
 }
 

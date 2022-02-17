@@ -2,7 +2,6 @@ import { progressAnatomy as parts } from "@chakra-ui/anatomy"
 import {
   generateStripe,
   getColor,
-  mode,
   PartsStyleFunction,
   PartsStyleObject,
   StyleFunctionProps,
@@ -15,14 +14,12 @@ import type {
 function filledStyle(props: StyleFunctionProps): SystemStyleObject {
   const { colorScheme: c, theme: t, isIndeterminate, hasStripe } = props
 
-  const stripeStyle = mode(
-    generateStripe(),
-    generateStripe("1rem", "rgba(0,0,0,0.1)"),
-  )(props)
+  const stripeStyleLight = generateStripe()
+  const stripeStyleDark = generateStripe("1rem", "rgba(0,0,0,0.1)")
+  const bgColorDark = `${c}.200`
+  const bgColorLight = `${c}.500`
 
-  const bgColor = mode(`${c}.500`, `${c}.200`)(props)
-
-  const gradient = `linear-gradient(
+  const gradient = (bgColor: string) => `linear-gradient(
     to right,
     transparent 0%,
     ${getColor(t, bgColor)} 50%,
@@ -32,8 +29,26 @@ function filledStyle(props: StyleFunctionProps): SystemStyleObject {
   const addStripe = !isIndeterminate && hasStripe
 
   return {
-    ...(addStripe && stripeStyle),
-    ...(isIndeterminate ? { bgImage: gradient } : { bgColor }),
+    ...(isIndeterminate
+      ? {
+          _dark: {
+            bgImage: gradient(bgColorDark),
+          },
+          _light: {
+            bgImage: gradient(bgColorLight),
+          },
+        }
+      : {
+          _light: {
+            bgColor: bgColorLight,
+            ...(addStripe && stripeStyleLight),
+          },
+
+          _dark: {
+            bgColor: bgColorDark,
+            ...(addStripe && stripeStyleDark),
+          },
+        }),
   }
 }
 
@@ -44,10 +59,14 @@ const baseStyleLabel: SystemStyleObject = {
   color: "white",
 }
 
-const baseStyleTrack: SystemStyleFunction = (props) => {
-  return {
-    bg: mode("gray.100", "whiteAlpha.300")(props),
-  }
+const baseStyleTrack: SystemStyleObject = {
+  _light: {
+    bg: "gray.100",
+  },
+
+  _dark: {
+    bg: "whiteAlpha.300",
+  },
 }
 
 const baseStyleFilledTrack: SystemStyleFunction = (props) => {
@@ -61,7 +80,7 @@ const baseStyleFilledTrack: SystemStyleFunction = (props) => {
 const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   label: baseStyleLabel,
   filledTrack: baseStyleFilledTrack(props),
-  track: baseStyleTrack(props),
+  track: baseStyleTrack,
 })
 
 const sizes: Record<string, PartsStyleObject<typeof parts>> = {

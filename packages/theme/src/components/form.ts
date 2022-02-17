@@ -1,31 +1,41 @@
 import { formAnatomy as parts } from "@chakra-ui/anatomy"
 import type {
-  PartsStyleFunction,
-  SystemStyleFunction,
+  PartsStyleObject,
+  SystemStyleObject,
 } from "@chakra-ui/theme-tools"
-import { mode } from "@chakra-ui/theme-tools"
+import "@chakra-ui/theme-tools"
 
-const baseStyleRequiredIndicator: SystemStyleFunction = (props) => {
-  return {
-    marginStart: 1,
-    color: mode("red.500", "red.300")(props),
-  }
+const baseStyleRequiredIndicator: SystemStyleObject = {
+  marginStart: 1,
+
+  _light: {
+    color: "red.500",
+  },
+
+  _dark: {
+    color: "red.300",
+  },
 }
 
-const baseStyleHelperText: SystemStyleFunction = (props) => {
-  return {
-    mt: 2,
-    color: mode("gray.500", "whiteAlpha.600")(props),
-    lineHeight: "normal",
-    fontSize: "sm",
-  }
+const baseStyleHelperText: SystemStyleObject = {
+  mt: 2,
+  lineHeight: "normal",
+  fontSize: "sm",
+
+  _light: {
+    color: "gray.500",
+  },
+
+  _dark: {
+    color: "whiteAlpha.600",
+  },
 }
 
-const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
+const baseStyle: PartsStyleObject<typeof parts> = {
   container: { width: "100%", position: "relative" },
-  requiredIndicator: baseStyleRequiredIndicator(props),
-  helperText: baseStyleHelperText(props),
-})
+  requiredIndicator: baseStyleRequiredIndicator,
+  helperText: baseStyleHelperText,
+}
 
 export default {
   parts: parts.keys,

@@ -5,7 +5,7 @@ import type {
   SystemStyleFunction,
   SystemStyleObject,
 } from "@chakra-ui/theme-tools"
-import { calc, cssVar, mode } from "@chakra-ui/theme-tools"
+import { calc, cssVar } from "@chakra-ui/theme-tools"
 
 const $width = cssVar("switch-track-width")
 const $height = cssVar("switch-track-height")
@@ -25,16 +25,32 @@ const baseStyleTrack: SystemStyleFunction = (props) => {
     height: [$height.reference],
     transitionProperty: "common",
     transitionDuration: "fast",
-    bg: mode("gray.300", "whiteAlpha.400")(props),
+
     _focus: {
       boxShadow: "outline",
     },
+
     _disabled: {
       opacity: 0.4,
       cursor: "not-allowed",
     },
+
     _checked: {
-      bg: mode(`${c}.500`, `${c}.200`)(props),
+      _light: {
+        bg: `${c}.500`,
+      },
+
+      _dark: {
+        bg: `${c}.200`,
+      },
+    },
+
+    _light: {
+      bg: "gray.300",
+    },
+
+    _dark: {
+      bg: "whiteAlpha.400",
     },
   }
 }

@@ -1,24 +1,31 @@
-import { mode, cssVar, SystemStyleFunction } from "@chakra-ui/theme-tools"
+import { cssVar, SystemStyleObject } from "@chakra-ui/theme-tools"
 
 const $bg = cssVar("tooltip-bg")
 const $arrowBg = cssVar("popper-arrow-bg")
 
-const baseStyle: SystemStyleFunction = (props) => {
-  const bg = mode("gray.700", "gray.300")(props)
-  return {
-    [$bg.variable]: `colors.${bg}`,
-    px: "8px",
-    py: "2px",
-    bg: [$bg.reference],
-    [$arrowBg.variable]: [$bg.reference],
-    color: mode("whiteAlpha.900", "gray.900")(props),
-    borderRadius: "sm",
-    fontWeight: "medium",
-    fontSize: "sm",
-    boxShadow: "md",
-    maxW: "320px",
-    zIndex: "tooltip",
-  }
+const bgLight = "gray.700"
+const bgDark = "gray.300"
+
+const baseStyle: SystemStyleObject = {
+  px: "8px",
+  py: "2px",
+  [$arrowBg.variable]: [$bg.reference],
+  borderRadius: "sm",
+  fontWeight: "medium",
+  fontSize: "sm",
+  boxShadow: "md",
+  maxW: "320px",
+  zIndex: "tooltip",
+  _light: {
+    bg: bgLight,
+    color: "whiteAlpha.900",
+    [$bg.variable]: `colors.${bgLight}`,
+  },
+  _dark: {
+    bg: bgDark,
+    color: "gray.900",
+    [$bg.variable]: `colors.${bgDark}`,
+  },
 }
 
 export default {

@@ -1,25 +1,35 @@
 import { selectAnatomy as parts } from "@chakra-ui/anatomy"
 import type {
-  PartsStyleFunction,
   PartsStyleObject,
-  SystemStyleFunction,
   SystemStyleObject,
 } from "@chakra-ui/theme-tools"
 import { mergeWith } from "@chakra-ui/utils"
-import { mode } from "@chakra-ui/theme-tools"
+import "@chakra-ui/theme-tools"
 import Input from "./input"
 
-const baseStyleField: SystemStyleFunction = (props) => {
-  return {
-    ...Input.baseStyle.field,
-    bg: mode("white", "gray.700")(props),
-    appearance: "none",
-    paddingBottom: "1px",
-    lineHeight: "normal",
-    "> option, > optgroup": {
-      bg: mode("white", "gray.700")(props),
+const baseStyleField: SystemStyleObject = {
+  ...Input.baseStyle.field,
+  appearance: "none",
+  paddingBottom: "1px",
+  lineHeight: "normal",
+
+  "> option, > optgroup": {
+    _light: {
+      bg: "white",
     },
-  }
+
+    _dark: {
+      bg: "gray.700",
+    },
+  },
+
+  _light: {
+    bg: "white",
+  },
+
+  _dark: {
+    bg: "gray.700",
+  },
 }
 
 const baseStyleIcon: SystemStyleObject = {
@@ -34,10 +44,10 @@ const baseStyleIcon: SystemStyleObject = {
   },
 }
 
-const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
-  field: baseStyleField(props),
+const baseStyle: PartsStyleObject<typeof parts> = {
+  field: baseStyleField,
   icon: baseStyleIcon,
-})
+}
 
 const iconSpacing = { paddingInlineEnd: "2rem" }
 

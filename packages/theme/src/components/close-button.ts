@@ -1,32 +1,40 @@
-import type {
-  SystemStyleFunction,
-  SystemStyleObject,
-} from "@chakra-ui/theme-tools"
-import { cssVar, mode } from "@chakra-ui/theme-tools"
+import type { SystemStyleObject } from "@chakra-ui/theme-tools"
+import { cssVar } from "@chakra-ui/theme-tools"
 
 const $size = cssVar("close-button-size")
 
-const baseStyle: SystemStyleFunction = (props) => {
-  const hoverBg = mode(`blackAlpha.100`, `whiteAlpha.100`)(props)
-  const activeBg = mode(`blackAlpha.200`, `whiteAlpha.200`)(props)
+const baseStyle: SystemStyleObject = {
+  w: [$size.reference],
+  h: [$size.reference],
+  borderRadius: "md",
+  transitionProperty: "common",
+  transitionDuration: "normal",
+  _disabled: {
+    opacity: 0.4,
+    cursor: "not-allowed",
+    boxShadow: "none",
+  },
+  _hover: {
+    _light: {
+      bg: `blackAlpha.100`,
+    },
 
-  return {
-    w: [$size.reference],
-    h: [$size.reference],
-    borderRadius: "md",
-    transitionProperty: "common",
-    transitionDuration: "normal",
-    _disabled: {
-      opacity: 0.4,
-      cursor: "not-allowed",
-      boxShadow: "none",
+    _dark: {
+      bg: `whiteAlpha.100`,
     },
-    _hover: { bg: hoverBg },
-    _active: { bg: activeBg },
-    _focus: {
-      boxShadow: "outline",
+  },
+  _active: {
+    _light: {
+      bg: `blackAlpha.200`,
     },
-  }
+
+    _dark: {
+      bg: `whiteAlpha.200`,
+    },
+  },
+  _focus: {
+    boxShadow: "outline",
+  },
 }
 
 const sizes: Record<string, SystemStyleObject> = {

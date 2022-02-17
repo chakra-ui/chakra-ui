@@ -1,45 +1,64 @@
 import { menuAnatomy as parts } from "@chakra-ui/anatomy"
 import type {
-  PartsStyleFunction,
-  SystemStyleFunction,
+  PartsStyleObject,
   SystemStyleObject,
 } from "@chakra-ui/theme-tools"
-import { mode } from "@chakra-ui/theme-tools"
+import "@chakra-ui/theme-tools"
 
-const baseStyleList: SystemStyleFunction = (props) => {
-  return {
-    bg: mode("#fff", "gray.700")(props),
-    boxShadow: mode("sm", "dark-lg")(props),
-    color: "inherit",
-    minW: "3xs",
-    py: "2",
-    zIndex: 1,
-    borderRadius: "md",
-    borderWidth: "1px",
-  }
+const baseStyleList: SystemStyleObject = {
+  color: "inherit",
+  minW: "3xs",
+  py: "2",
+  zIndex: 1,
+  borderRadius: "md",
+  borderWidth: "1px",
+  _light: {
+    bg: "#fff",
+    boxShadow: "sm",
+  },
+  _dark: {
+    bg: "gray.700",
+    boxShadow: "dark-lg",
+  },
 }
 
-const baseStyleItem: SystemStyleFunction = (props) => {
-  return {
-    py: "0.4rem",
-    px: "0.8rem",
-    transitionProperty: "background",
-    transitionDuration: "ultra-fast",
-    transitionTimingFunction: "ease-in",
-    _focus: {
-      bg: mode("gray.100", "whiteAlpha.100")(props),
+const baseStyleItem: SystemStyleObject = {
+  py: "0.4rem",
+  px: "0.8rem",
+  transitionProperty: "background",
+  transitionDuration: "ultra-fast",
+  transitionTimingFunction: "ease-in",
+  _focus: {
+    _light: {
+      bg: "gray.100",
     },
-    _active: {
-      bg: mode("gray.200", "whiteAlpha.200")(props),
+
+    _dark: {
+      bg: "whiteAlpha.100",
     },
-    _expanded: {
-      bg: mode("gray.100", "whiteAlpha.100")(props),
+  },
+  _active: {
+    _light: {
+      bg: "gray.200",
     },
-    _disabled: {
-      opacity: 0.4,
-      cursor: "not-allowed",
+
+    _dark: {
+      bg: "whiteAlpha.200",
     },
-  }
+  },
+  _expanded: {
+    _light: {
+      bg: "gray.100",
+    },
+
+    _dark: {
+      bg: "whiteAlpha.100",
+    },
+  },
+  _disabled: {
+    opacity: 0.4,
+    cursor: "not-allowed",
+  },
 }
 
 const baseStyleGroupTitle: SystemStyleObject = {
@@ -66,14 +85,14 @@ const baseStyleButton: SystemStyleObject = {
   transitionDuration: "normal",
 }
 
-const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
+const baseStyle: PartsStyleObject<typeof parts> = {
   button: baseStyleButton,
-  list: baseStyleList(props),
-  item: baseStyleItem(props),
+  list: baseStyleList,
+  item: baseStyleItem,
   groupTitle: baseStyleGroupTitle,
   command: baseStyleCommand,
   divider: baseStyleDivider,
-})
+}
 
 export default {
   parts: parts.keys,

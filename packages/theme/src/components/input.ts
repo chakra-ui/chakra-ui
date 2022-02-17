@@ -4,7 +4,7 @@ import type {
   PartsStyleObject,
   SystemStyleObject,
 } from "@chakra-ui/theme-tools"
-import { getColor, mode } from "@chakra-ui/theme-tools"
+import { getColor } from "@chakra-ui/theme-tools"
 
 const baseStyle: PartsStyleObject<typeof parts> = {
   field: {
@@ -70,14 +70,21 @@ const sizes: Record<string, PartsStyleObject<typeof parts>> = {
 function getDefaults(props: Record<string, any>) {
   const { focusBorderColor: fc, errorBorderColor: ec } = props
   return {
-    focusBorderColor: fc || mode("blue.500", "blue.300")(props),
-    errorBorderColor: ec || mode("red.500", "red.300")(props),
+    focusBorderColorLight: fc || "blue.500",
+    errorBorderColorLight: ec || "red.500",
+    focusBorderColorDark: fc || "blue.300",
+    errorBorderColorDark: ec || "red.300",
   }
 }
 
 const variantOutline: PartsStyleFunction<typeof parts> = (props) => {
   const { theme } = props
-  const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
+  const {
+    focusBorderColorLight: fcL,
+    errorBorderColorLight: ecL,
+    focusBorderColorDark: fcD,
+    errorBorderColorDark: ecD,
+  } = getDefaults(props)
 
   return {
     field: {
@@ -85,7 +92,13 @@ const variantOutline: PartsStyleFunction<typeof parts> = (props) => {
       borderColor: "inherit",
       bg: "inherit",
       _hover: {
-        borderColor: mode("gray.300", "whiteAlpha.400")(props),
+        _light: {
+          borderColor: "gray.300",
+        },
+
+        _dark: {
+          borderColor: "whiteAlpha.400",
+        },
       },
       _readOnly: {
         boxShadow: "none !important",
@@ -96,62 +109,126 @@ const variantOutline: PartsStyleFunction<typeof parts> = (props) => {
         cursor: "not-allowed",
       },
       _invalid: {
-        borderColor: getColor(theme, ec),
-        boxShadow: `0 0 0 1px ${getColor(theme, ec)}`,
+        _light: {
+          borderColor: getColor(theme, ecL),
+          boxShadow: `0 0 0 1px ${getColor(theme, ecL)}`,
+        },
+        _dark: {
+          borderColor: getColor(theme, ecD),
+          boxShadow: `0 0 0 1px ${getColor(theme, ecD)}`,
+        },
       },
       _focus: {
         zIndex: 1,
-        borderColor: getColor(theme, fc),
-        boxShadow: `0 0 0 1px ${getColor(theme, fc)}`,
+        _light: {
+          borderColor: getColor(theme, fcL),
+          boxShadow: `0 0 0 1px ${getColor(theme, fcL)}`,
+        },
+        _dark: {
+          borderColor: getColor(theme, fcD),
+          boxShadow: `0 0 0 1px ${getColor(theme, fcD)}`,
+        },
       },
     },
     addon: {
       border: "1px solid",
-      borderColor: mode("inherit", "whiteAlpha.50")(props),
-      bg: mode("gray.100", "whiteAlpha.300")(props),
+      _light: {
+        borderColor: "inherit",
+        bg: "gray.100",
+      },
+      _dark: {
+        borderColor: "whiteAlpha.50",
+        bg: "whiteAlpha.300",
+      },
     },
   }
 }
 
 const variantFilled: PartsStyleFunction<typeof parts> = (props) => {
   const { theme } = props
-  const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
+
+  const {
+    focusBorderColorLight: fcL,
+    errorBorderColorLight: ecL,
+    focusBorderColorDark: fcD,
+    errorBorderColorDark: ecD,
+  } = getDefaults(props)
 
   return {
     field: {
       border: "2px solid",
       borderColor: "transparent",
-      bg: mode("gray.100", "whiteAlpha.50")(props),
+
       _hover: {
-        bg: mode("gray.200", "whiteAlpha.100")(props),
+        _light: {
+          bg: "gray.200",
+        },
+
+        _dark: {
+          bg: "whiteAlpha.100",
+        },
       },
+
       _readOnly: {
         boxShadow: "none !important",
         userSelect: "all",
       },
+
       _disabled: {
         opacity: 0.4,
         cursor: "not-allowed",
       },
+
       _invalid: {
-        borderColor: getColor(theme, ec),
+        _light: {
+          borderColor: getColor(theme, ecL),
+        },
+        _dark: {
+          borderColor: getColor(theme, ecD),
+        },
       },
+
       _focus: {
         bg: "transparent",
-        borderColor: getColor(theme, fc),
+        _light: {
+          borderColor: getColor(theme, fcL),
+        },
+        _dark: {
+          borderColor: getColor(theme, fcD),
+        },
+      },
+
+      _light: {
+        bg: "gray.100",
+      },
+
+      _dark: {
+        bg: "whiteAlpha.50",
       },
     },
     addon: {
       border: "2px solid",
       borderColor: "transparent",
-      bg: mode("gray.100", "whiteAlpha.50")(props),
+
+      _light: {
+        bg: "gray.100",
+      },
+
+      _dark: {
+        bg: "whiteAlpha.50",
+      },
     },
   }
 }
 
 const variantFlushed: PartsStyleFunction<typeof parts> = (props) => {
   const { theme } = props
-  const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
+  const {
+    focusBorderColorLight: fcL,
+    errorBorderColorLight: ecL,
+    focusBorderColorDark: fcD,
+    errorBorderColorDark: ecD,
+  } = getDefaults(props)
 
   return {
     field: {
@@ -165,12 +242,24 @@ const variantFlushed: PartsStyleFunction<typeof parts> = (props) => {
         userSelect: "all",
       },
       _invalid: {
-        borderColor: getColor(theme, ec),
-        boxShadow: `0px 1px 0px 0px ${getColor(theme, ec)}`,
+        _light: {
+          borderColor: getColor(theme, ecL),
+          boxShadow: `0px 1px 0px 0px ${getColor(theme, ecL)}`,
+        },
+        _dark: {
+          borderColor: getColor(theme, ecD),
+          boxShadow: `0px 1px 0px 0px ${getColor(theme, ecD)}`,
+        },
       },
       _focus: {
-        borderColor: getColor(theme, fc),
-        boxShadow: `0px 1px 0px 0px ${getColor(theme, fc)}`,
+        _light: {
+          borderColor: getColor(theme, fcL),
+          boxShadow: `0px 1px 0px 0px ${getColor(theme, fcL)}`,
+        },
+        _dark: {
+          borderColor: getColor(theme, fcD),
+          boxShadow: `0px 1px 0px 0px ${getColor(theme, fcD)}`,
+        },
       },
     },
     addon: {

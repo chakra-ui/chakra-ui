@@ -1,6 +1,6 @@
 import { tableAnatomy as parts } from "@chakra-ui/anatomy"
 
-import { mode } from "@chakra-ui/theme-tools"
+import "@chakra-ui/theme-tools"
 import type {
   PartsStyleFunction,
   PartsStyleObject,
@@ -42,18 +42,39 @@ const variantSimple: PartsStyleFunction<typeof parts> = (props) => {
 
   return {
     th: {
-      color: mode("gray.600", "gray.400")(props),
       borderBottom: "1px",
-      borderColor: mode(`${c}.100`, `${c}.700`)(props),
       ...numericStyles,
+
+      _light: {
+        color: "gray.600",
+        borderColor: `${c}.100`,
+      },
+
+      _dark: {
+        color: "gray.400",
+        borderColor: `${c}.700`,
+      },
     },
     td: {
       borderBottom: "1px",
-      borderColor: mode(`${c}.100`, `${c}.700`)(props),
       ...numericStyles,
+
+      _light: {
+        borderColor: `${c}.100`,
+      },
+
+      _dark: {
+        borderColor: `${c}.700`,
+      },
     },
     caption: {
-      color: mode("gray.600", "gray.100")(props),
+      _light: {
+        color: "gray.600",
+      },
+
+      _dark: {
+        color: "gray.100",
+      },
     },
     tfoot: {
       tr: {
@@ -70,28 +91,62 @@ const variantStripe: PartsStyleFunction<typeof parts> = (props) => {
 
   return {
     th: {
-      color: mode("gray.600", "gray.400")(props),
       borderBottom: "1px",
-      borderColor: mode(`${c}.100`, `${c}.700`)(props),
       ...numericStyles,
+
+      _light: {
+        color: "gray.600",
+        borderColor: `${c}.100`,
+      },
+
+      _dark: {
+        color: "gray.400",
+        borderColor: `${c}.700`,
+      },
     },
     td: {
       borderBottom: "1px",
-      borderColor: mode(`${c}.100`, `${c}.700`)(props),
       ...numericStyles,
+
+      _light: {
+        borderColor: `${c}.100`,
+      },
+
+      _dark: {
+        borderColor: `${c}.700`,
+      },
     },
     caption: {
-      color: mode("gray.600", "gray.100")(props),
+      _light: {
+        color: "gray.600",
+      },
+
+      _dark: {
+        color: "gray.100",
+      },
     },
     tbody: {
       tr: {
         "&:nth-of-type(odd)": {
           "th, td": {
             borderBottomWidth: "1px",
-            borderColor: mode(`${c}.100`, `${c}.700`)(props),
+
+            _light: {
+              borderColor: `${c}.100`,
+            },
+
+            _dark: {
+              borderColor: `${c}.700`,
+            },
           },
           td: {
-            background: mode(`${c}.100`, `${c}.700`)(props),
+            _light: {
+              background: `${c}.100`,
+            },
+
+            _dark: {
+              background: `${c}.700`,
+            },
           },
         },
       },

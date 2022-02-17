@@ -1,5 +1,5 @@
 import { alertAnatomy as parts } from "@chakra-ui/anatomy"
-import { getColor, mode, transparentize } from "@chakra-ui/theme-tools"
+import { getColor, transparentize } from "@chakra-ui/theme-tools"
 import type {
   PartsStyleObject,
   PartsStyleFunction,
@@ -27,18 +27,34 @@ const baseStyle: PartsStyleObject<typeof parts> = {
   },
 }
 
-function getBg(props: StyleFunctionProps): string {
+function getBg(props: StyleFunctionProps, mode: "dark" | "light"): string {
   const { theme, colorScheme: c } = props
-  const lightBg = getColor(theme, `${c}.100`, c)
-  const darkBg = transparentize(`${c}.200`, 0.16)(theme)
-  return mode(lightBg, darkBg)(props)
+  if (mode === "dark") {
+    return transparentize(`${c}.200`, 0.16)(theme)
+  }
+  return getColor(theme, `${c}.100`, c)
 }
 
 const variantSubtle: PartsStyleFunction<typeof parts> = (props) => {
   const { colorScheme: c } = props
   return {
-    container: { bg: getBg(props) },
-    icon: { color: mode(`${c}.500`, `${c}.200`)(props) },
+    container: {
+      _light: {
+        bg: getBg(props, "light"),
+      },
+      _dark: {
+        bg: getBg(props, "dark"),
+      },
+    },
+    icon: {
+      _light: {
+        color: `${c}.500`,
+      },
+
+      _dark: {
+        color: `${c}.200`,
+      },
+    },
   }
 }
 
@@ -48,11 +64,25 @@ const variantLeftAccent: PartsStyleFunction<typeof parts> = (props) => {
     container: {
       paddingStart: 3,
       borderStartWidth: "4px",
-      borderStartColor: mode(`${c}.500`, `${c}.200`)(props),
-      bg: getBg(props),
+
+      _light: {
+        bg: getBg(props, "light"),
+        borderStartColor: `${c}.500`,
+      },
+
+      _dark: {
+        bg: getBg(props, "dark"),
+        borderStartColor: `${c}.200`,
+      },
     },
     icon: {
-      color: mode(`${c}.500`, `${c}.200`)(props),
+      _light: {
+        color: `${c}.500`,
+      },
+
+      _dark: {
+        color: `${c}.200`,
+      },
     },
   }
 }
@@ -63,11 +93,25 @@ const variantTopAccent: PartsStyleFunction<typeof parts> = (props) => {
     container: {
       pt: 2,
       borderTopWidth: "4px",
-      borderTopColor: mode(`${c}.500`, `${c}.200`)(props),
-      bg: getBg(props),
+
+      _light: {
+        bg: getBg(props, "light"),
+        borderTopColor: `${c}.500`,
+      },
+
+      _dark: {
+        bg: getBg(props, "dark"),
+        borderTopColor: `${c}.200`,
+      },
     },
     icon: {
-      color: mode(`${c}.500`, `${c}.200`)(props),
+      _light: {
+        color: `${c}.500`,
+      },
+
+      _dark: {
+        color: `${c}.200`,
+      },
     },
   }
 }
@@ -76,8 +120,14 @@ const variantSolid: PartsStyleFunction<typeof parts> = (props) => {
   const { colorScheme: c } = props
   return {
     container: {
-      bg: mode(`${c}.500`, `${c}.200`)(props),
-      color: mode(`white`, `gray.900`)(props),
+      _light: {
+        bg: `${c}.500`,
+        color: `white`,
+      },
+      _dark: {
+        bg: `${c}.200`,
+        color: `gray.900`,
+      },
     },
   }
 }

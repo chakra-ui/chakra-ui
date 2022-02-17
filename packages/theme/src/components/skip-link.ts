@@ -1,7 +1,7 @@
-import type { SystemStyleFunction } from "@chakra-ui/theme-tools"
-import { mode } from "@chakra-ui/theme-tools"
+import type { SystemStyleObject } from "@chakra-ui/theme-tools"
+import "@chakra-ui/theme-tools"
 
-const baseStyle: SystemStyleFunction = (props) => ({
+const baseStyle: SystemStyleObject = {
   borderRadius: "md",
   fontWeight: "semibold",
   _focus: {
@@ -10,9 +10,16 @@ const baseStyle: SystemStyleFunction = (props) => ({
     position: "fixed",
     top: "1.5rem",
     insetStart: "1.5rem",
-    bg: mode("white", "gray.700")(props),
+
+    _light: {
+      bg: "white",
+    },
+
+    _dark: {
+      bg: "gray.700",
+    },
   },
-})
+}
 
 export default {
   baseStyle,

@@ -5,7 +5,7 @@ import type {
   SystemStyleFunction,
   SystemStyleObject,
 } from "@chakra-ui/theme-tools"
-import { mode } from "@chakra-ui/theme-tools"
+import "@chakra-ui/theme-tools"
 
 const baseStyleControl: SystemStyleFunction = (props) => {
   const { colorScheme: c } = props
@@ -20,31 +20,67 @@ const baseStyleControl: SystemStyleFunction = (props) => {
     color: "white",
 
     _checked: {
-      bg: mode(`${c}.500`, `${c}.200`)(props),
-      borderColor: mode(`${c}.500`, `${c}.200`)(props),
-      color: mode("white", "gray.900")(props),
-
       _hover: {
-        bg: mode(`${c}.600`, `${c}.300`)(props),
-        borderColor: mode(`${c}.600`, `${c}.300`)(props),
+        _light: {
+          bg: `${c}.600`,
+          borderColor: `${c}.600`,
+        },
+        _dark: {
+          bg: `${c}.300`,
+          borderColor: `${c}.300`,
+        },
       },
 
       _disabled: {
-        borderColor: mode("gray.200", "transparent")(props),
-        bg: mode("gray.200", "whiteAlpha.300")(props),
-        color: mode("gray.500", "whiteAlpha.500")(props),
+        _light: {
+          borderColor: "gray.200",
+          bg: "gray.200",
+          color: "gray.500",
+        },
+
+        _dark: {
+          borderColor: "transparent",
+          bg: "whiteAlpha.300",
+          color: "whiteAlpha.500",
+        },
+      },
+
+      _light: {
+        bg: `${c}.500`,
+        borderColor: `${c}.500`,
+        color: "white",
+      },
+
+      _dark: {
+        bg: `${c}.200`,
+        borderColor: `${c}.200`,
+        color: "gray.900",
       },
     },
 
     _indeterminate: {
-      bg: mode(`${c}.500`, `${c}.200`)(props),
-      borderColor: mode(`${c}.500`, `${c}.200`)(props),
-      color: mode("white", "gray.900")(props),
+      _light: {
+        bg: `${c}.500`,
+        borderColor: `${c}.500`,
+        color: "white",
+      },
+
+      _dark: {
+        bg: `${c}.200`,
+        borderColor: `${c}.200`,
+        color: "gray.900",
+      },
     },
 
     _disabled: {
-      bg: mode("gray.100", "whiteAlpha.100")(props),
-      borderColor: mode("gray.100", "transparent")(props),
+      _light: {
+        bg: "gray.100",
+        borderColor: "gray.100",
+      },
+      _dark: {
+        bg: "whiteAlpha.100",
+        borderColor: "transparent",
+      },
     },
 
     _focus: {
@@ -52,7 +88,13 @@ const baseStyleControl: SystemStyleFunction = (props) => {
     },
 
     _invalid: {
-      borderColor: mode("red.500", "red.300")(props),
+      _light: {
+        borderColor: "red.500",
+      },
+
+      _dark: {
+        borderColor: "red.300",
+      },
     },
   }
 }
