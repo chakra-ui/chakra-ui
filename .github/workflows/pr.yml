@@ -47,6 +47,7 @@ jobs:
 
   release:
     name: Release Snapshot
+    if: ${{ false }} # disable for now. See https://github.com/chakra-ui/chakra-ui/issues/5603#issuecomment-1043351537
     runs-on: ubuntu-latest
     steps:
       - name: Get Yarn cache path
