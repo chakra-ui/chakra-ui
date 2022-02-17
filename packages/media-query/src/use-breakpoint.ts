@@ -1,18 +1,6 @@
+import React from "react"
 import { useEnvironment } from "@chakra-ui/react-env"
 import { useTheme } from "@chakra-ui/system"
-import React from "react"
-import createMediaQueries from "./create-media-query"
-
-interface Listener {
-  mediaQuery: MediaQueryList
-  handleChange: () => void
-}
-
-export interface Breakpoint {
-  breakpoint: string
-  maxWidth?: string
-  minWidth: string
-}
 
 /**
  * React hook used to get the current responsive media breakpoint.
@@ -24,89 +12,73 @@ export interface Breakpoint {
  * to get the default breakpoint value from the user-agent
  */
 export function useBreakpoint(defaultBreakpoint?: string) {
-  const { breakpoints } = useTheme()
+  const { __breakpoints } = useTheme()
   const env = useEnvironment()
 
-  const mediaQueries = React.useMemo(
-    () => createMediaQueries({ base: "0px", ...breakpoints }),
-    [breakpoints],
+  const queries = React.useMemo(
+    () =>
+      __breakpoints?.details.map(({ minMaxQuery, breakpoint }) => ({
+        breakpoint,
+        query: minMaxQuery.replace("@media screen and ", ""),
+      })) ?? [],
+    [__breakpoints],
   )
 
   const [currentBreakpoint, setCurrentBreakpoint] = React.useState(() => {
     if (env.window.matchMedia) {
-      let maxBreakpoint
-      mediaQueries.forEach(({ query, ...breakpoint }) => {
-        const mediaQuery = env.window.matchMedia(query)
-        if (mediaQuery.matches) {
-          maxBreakpoint = breakpoint
-        }
-      })
-      if (maxBreakpoint) {
-        return maxBreakpoint
-      }
+      // set correct breakpoint on first render
+      const matchingBreakpointDetail = queries.find(
+        ({ query }) => env.window.matchMedia(query).matches,
+      )
+      return matchingBreakpointDetail?.breakpoint
     }
 
-    if (!defaultBreakpoint) {
-      return undefined
-    }
-
-    const mediaQuery = mediaQueries.find(
-      ({ breakpoint }) => breakpoint === defaultBreakpoint,
-    )
-
-    if (mediaQuery) {
-      const { query, ...breakpoint } = mediaQuery
-      return breakpoint
+    if (defaultBreakpoint) {
+      // use fallback if available
+      const fallbackBreakpointDetail = queries.find(
+        ({ breakpoint }) => breakpoint === defaultBreakpoint,
+      )
+      return fallbackBreakpointDetail?.breakpoint
     }
 
     return undefined
   })
 
-  const current = currentBreakpoint?.breakpoint
+  React.useEffect(() => {
+    const allUnregisterFns = queries.map(({ breakpoint, query }) => {
+      const mediaQueryList = env.window.matchMedia(query)
 
-  const update = React.useCallback(
-    (query: MediaQueryList, breakpoint: Breakpoint) => {
-      if (query.matches && current !== breakpoint.breakpoint) {
+      if (mediaQueryList.matches) {
         setCurrentBreakpoint(breakpoint)
       }
-    },
-    [current],
-  )
 
-  React.useEffect(() => {
-    const listeners = new Set<Listener>()
-
-    mediaQueries.forEach(({ query, ...breakpoint }) => {
-      const mediaQuery = env.window.matchMedia(query)
-
-      // trigger an initial update to determine media query
-      update(mediaQuery, breakpoint)
-
-      const handleChange = () => {
-        update(mediaQuery, breakpoint)
+      const handleChange = (ev: MediaQueryListEvent) => {
+        if (ev.matches) {
+          setCurrentBreakpoint(breakpoint)
+        }
       }
 
-      // add media query-listener
-      mediaQuery.addListener(handleChange)
+      // add media query listener
+      if (typeof mediaQueryList.addEventListener === "function") {
+        mediaQueryList.addEventListener("change", handleChange)
+      } else {
+        mediaQueryList.addListener(handleChange)
+      }
 
-      // push the media query list handleChange
-      // so we can use it to remove Listener
-      listeners.add({ mediaQuery, handleChange })
-
+      // return unregister fn
       return () => {
-        // clean up 1
-        mediaQuery.removeListener(handleChange)
+        if (typeof mediaQueryList.removeEventListener === "function") {
+          mediaQueryList.removeEventListener("change", handleChange)
+        } else {
+          mediaQueryList.removeListener(handleChange)
+        }
       }
     })
 
     return () => {
-      // clean up 2: for safety
-      listeners.forEach(({ mediaQuery, handleChange }) => {
-        mediaQuery.removeListener(handleChange)
-      })
-      listeners.clear()
+      allUnregisterFns.forEach((unregister) => unregister())
     }
-  }, [mediaQueries, breakpoints, update, env.window])
+  }, [queries, __breakpoints, env.window])
 
-  return current
+  return currentBreakpoint
 }
