@@ -15,7 +15,7 @@ interface CreateIconOptions {
    */
   path?: React.ReactElement | React.ReactElement[]
   /**
-   * If the has a single path, simply copy the path's `d` attribute
+   * If the `svg` has a single path, simply copy the path's `d` attribute
    */
   d?: string
   /**
