@@ -9,11 +9,13 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
+  extendTheme,
   useDisclosure,
 } from "@chakra-ui/react"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import { ChangeEvent } from "react"
+import { ChakraProvider } from "@chakra-ui/provider"
 import {
   Accordion,
   AccordionButton,
@@ -322,5 +324,33 @@ export const WithDisabledAccordionItem = () => {
         <AccordionPanel>Five Content</AccordionPanel>
       </AccordionItem>
     </Accordion>
+  )
+}
+
+export const OverridableAccordionContainer = () => {
+  return (
+    <ChakraProvider
+      theme={extendTheme({
+        components: {
+          Accordion: {
+            baseStyle: {
+              root: {
+                backgroundColor: "red",
+              },
+              container: {
+                backgroundColor: "green",
+              },
+            },
+          },
+        },
+      })}
+    >
+      <Accordion allowToggle>
+        <AccordionItem>
+          <AccordionButton>This should be green</AccordionButton>
+          <AccordionPanel>Turns out it's red</AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+    </ChakraProvider>
   )
 }
