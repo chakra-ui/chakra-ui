@@ -128,6 +128,20 @@ export const WithDisabledButFocusableItem = () => (
   </Menu>
 )
 
+export const WithInitialFocus = () => (
+  <Menu initialFocusIndex={2}>
+    <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
+      Open menu
+    </MenuButton>
+    <MenuList>
+      <MenuItem>Menu 1</MenuItem>
+      <MenuItem>Menu 2</MenuItem>
+      <MenuItem>Menu 3 (initially focused)</MenuItem>
+      <MenuItem>Menu 4</MenuItem>
+    </MenuList>
+  </Menu>
+)
+
 export const WithTogglableMenuItems = () => {
   const [items, setItems] = React.useState<
     {

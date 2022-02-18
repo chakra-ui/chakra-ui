@@ -119,6 +119,12 @@ export interface UseMenuProps
    * as it might affect scrolling performance.
    */
   computePositionOnMount?: boolean
+  /**
+   * If set, the initially focused item will be the item with the given index.
+   * Keyboard navigation will start out at this item. If not set, the first item
+   * will be focused.
+   */
+  initialFocusIndex?: number;
 }
 
 /**
@@ -142,6 +148,7 @@ export function useMenu(props: UseMenuProps = {}) {
     lazyBehavior = "unmount",
     direction,
     computePositionOnMount = false,
+    initialFocusIndex = -1,
     ...popperProps
   } = props
   /**
@@ -214,7 +221,7 @@ export function useMenu(props: UseMenuProps = {}) {
     direction,
   })
 
-  const [focusedIndex, setFocusedIndex] = React.useState(-1)
+  const [focusedIndex, setFocusedIndex] = React.useState(initialFocusIndex)
 
   /**
    * Focus the button when we close the menu
