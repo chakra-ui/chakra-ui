@@ -18,6 +18,10 @@ export interface FormLabelProps
    * @type React.ReactElement
    */
   requiredIndicator?: React.ReactElement
+  /**
+   * @type React.ReactNode
+   */
+  optionalIndicator?: React.ReactNode
 }
 
 /**
@@ -37,6 +41,7 @@ export const FormLabel = forwardRef<FormLabelProps, "label">(
       className,
       children,
       requiredIndicator = <RequiredIndicator />,
+      optionalIndicator = null,
       ...rest
     } = props
 
@@ -54,7 +59,7 @@ export const FormLabel = forwardRef<FormLabelProps, "label">(
         }}
       >
         {children}
-        {field?.isRequired ? requiredIndicator : null}
+        {field?.isRequired ? requiredIndicator : optionalIndicator}
       </chakra.label>
     )
   },
