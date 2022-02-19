@@ -9,6 +9,7 @@ import {
   userEvent,
 } from "@chakra-ui/test-utils"
 import * as React from "react"
+import { FormControl, FormLabel } from "@chakra-ui/form-control"
 import {
   Checkbox,
   CheckboxGroup,
@@ -326,4 +327,205 @@ test("useCheckboxGroup can handle both strings and numbers", () => {
   expect(checkboxOne).not.toBeChecked()
   expect(checkboxTwo).not.toBeChecked()
   expect(checkboxThree).not.toBeChecked()
+})
+
+test("Uncontrolled FormControl - should not check if form-control disabled", () => {
+  const { container } = render(
+    <FormControl isDisabled mt={4}>
+      <FormLabel>Disabled Opt-in Example</FormLabel>
+      <CheckboxGroup>
+        <Checkbox value="1">Disabled Opt-in 1</Checkbox>
+        <Checkbox value="2" isDisabled>
+          Disabled Opt-in 2
+        </Checkbox>
+        <Checkbox value="3" isDisabled={false}>
+          Disabled Opt-in 3
+        </Checkbox>
+      </CheckboxGroup>
+      <CheckboxGroup isDisabled={false}>
+        <Checkbox value="1">Disabled Opt-in 1</Checkbox>
+        <Checkbox value="2" isDisabled>
+          Disabled Opt-in 2
+        </Checkbox>
+        <Checkbox value="3" isDisabled={false}>
+          Disabled Opt-in 3
+        </Checkbox>
+      </CheckboxGroup>
+    </FormControl>,
+  )
+
+  const [
+    checkboxOne,
+    checkboxTwo,
+    checkboxThree,
+    checkboxFour,
+    checkboxFive,
+    checkboxSix,
+  ] = Array.from(container.querySelectorAll("input"))
+
+  expect(checkboxOne).toBeDisabled()
+  expect(checkboxTwo).toBeDisabled()
+  expect(checkboxThree).not.toBeDisabled()
+
+  expect(checkboxFour).not.toBeDisabled()
+  expect(checkboxFive).toBeDisabled()
+  expect(checkboxSix).not.toBeDisabled()
+
+  fireEvent.click(checkboxOne)
+  fireEvent.click(checkboxTwo)
+  fireEvent.click(checkboxThree)
+
+  fireEvent.click(checkboxFour)
+  fireEvent.click(checkboxFive)
+  fireEvent.click(checkboxSix)
+
+  expect(checkboxOne).not.toBeChecked()
+  expect(checkboxTwo).not.toBeChecked()
+  expect(checkboxThree).toBeChecked()
+
+  expect(checkboxFour).toBeChecked()
+  expect(checkboxFive).not.toBeChecked()
+  expect(checkboxSix).toBeChecked()
+})
+
+test("Uncontrolled FormControl - mark label as invalid", () => {
+  const { container } = render(
+    <FormControl isInvalid mt={4}>
+      <FormLabel>Invalid Opt-in Example</FormLabel>
+      <CheckboxGroup>
+        <Checkbox value="1">Invalid Opt-in 1</Checkbox>
+        <Checkbox value="2" isInvalid>
+          Invalid Opt-in 2
+        </Checkbox>
+        <Checkbox value="3" isInvalid={false}>
+          Invalid Opt-in 3
+        </Checkbox>
+      </CheckboxGroup>
+    </FormControl>,
+  )
+
+  const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
+    container.querySelectorAll("input"),
+  )
+
+  expect(checkboxOne).toHaveAttribute("aria-invalid", "true")
+  expect(checkboxTwo).toHaveAttribute("aria-invalid", "true")
+  expect(checkboxThree).toHaveAttribute("aria-invalid", "false")
+
+  const [labelOne, labelTwo, labelThree] = Array.from(
+    container.querySelectorAll("span.chakra-checkbox__label"),
+  )
+
+  expect(labelOne).toHaveAttribute("data-invalid", "")
+  expect(labelTwo).toHaveAttribute("data-invalid", "")
+  expect(labelThree).not.toHaveAttribute("data-invalid")
+
+  const [controlOne, controlTwo, controlThree] = Array.from(
+    container.querySelectorAll("span.chakra-checkbox__control"),
+  )
+
+  expect(controlOne).toHaveAttribute("data-invalid", "")
+  expect(controlTwo).toHaveAttribute("data-invalid", "")
+  expect(controlThree).not.toHaveAttribute("data-invalid")
+})
+
+test("Uncontrolled FormControl - mark label required", () => {
+  const { container } = render(
+    <FormControl isRequired mt={4}>
+      <FormLabel>Required Opt-in Example</FormLabel>
+      <CheckboxGroup>
+        <Checkbox value="1">Required Opt-in 1</Checkbox>
+        <Checkbox value="2" isRequired>
+          Required Opt-in 2
+        </Checkbox>
+        <Checkbox value="3" isRequired={false}>
+          Required Opt-in 3
+        </Checkbox>
+      </CheckboxGroup>
+    </FormControl>,
+  )
+
+  const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
+    container.querySelectorAll("input"),
+  )
+
+  expect(checkboxOne).toBeRequired()
+  expect(checkboxTwo).toBeRequired()
+  expect(checkboxThree).not.toBeRequired()
+})
+
+test("Uncontrolled FormControl - mark readonly", () => {
+  const { container } = render(
+    <FormControl isReadOnly mt={4}>
+      <FormLabel>ReadOnly Opt-in Example</FormLabel>
+      <CheckboxGroup>
+        <Checkbox value="1">ReadOnly Opt-in 1</Checkbox>
+        <Checkbox value="2" isReadOnly>
+          ReadOnly Opt-in 2
+        </Checkbox>
+        <Checkbox value="3" isReadOnly={false}>
+          ReadOnly Opt-in 3
+        </Checkbox>
+      </CheckboxGroup>
+    </FormControl>,
+  )
+
+  const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
+    container.querySelectorAll("input"),
+  )
+
+  expect(checkboxOne).toHaveAttribute("readOnly")
+  expect(checkboxTwo).toHaveAttribute("readOnly")
+  expect(checkboxThree).not.toHaveAttribute("readOnly")
+
+  const [controlOne, controlTwo, controlThree] = Array.from(
+    container.querySelectorAll("span.chakra-checkbox__control"),
+  )
+
+  expect(controlOne).toHaveAttribute("data-readonly", "")
+  expect(controlTwo).toHaveAttribute("data-readonly", "")
+  expect(controlThree).not.toHaveAttribute("data-readonly")
+})
+
+test("Uncontrolled FormControl - calls all onFocus EventHandler", () => {
+  const formControlOnFocusMock = jest.fn()
+  const checkboxOnFocusMock = jest.fn()
+
+  const { container } = render(
+    <FormControl mt={4} onFocus={formControlOnFocusMock}>
+      <FormLabel>onFocus xample</FormLabel>
+      <CheckboxGroup>
+        <Checkbox value="1" onFocus={checkboxOnFocusMock}>
+          onFocus Opt-in 1
+        </Checkbox>
+      </CheckboxGroup>
+    </FormControl>,
+  )
+
+  const [checkboxOne] = Array.from(container.querySelectorAll("input"))
+  fireEvent.focus(checkboxOne)
+  expect(formControlOnFocusMock).toHaveBeenCalled()
+  expect(checkboxOnFocusMock).toHaveBeenCalled()
+})
+
+test("Uncontrolled FormControl - calls all onBlur EventHandler", () => {
+  const formControlOnBlurMock = jest.fn()
+  const checkboxOnBlurMock = jest.fn()
+
+  const { container } = render(
+    <FormControl mt={4} onBlur={formControlOnBlurMock}>
+      <FormLabel>onBlur Example</FormLabel>
+      <CheckboxGroup>
+        <Checkbox value="1" onBlur={checkboxOnBlurMock}>
+          onBlur EOpt-in 1
+        </Checkbox>
+      </CheckboxGroup>
+    </FormControl>,
+  )
+
+  const [checkboxOne] = Array.from(container.querySelectorAll("input"))
+  fireEvent.focus(checkboxOne)
+  fireEvent.blur(checkboxOne)
+  expect(formControlOnBlurMock).toHaveBeenCalled()
+  expect(checkboxOnBlurMock).toHaveBeenCalled()
 })
