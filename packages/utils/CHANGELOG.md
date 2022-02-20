@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.10.3
+
+### Patch Changes
+
+- [#5576](https://github.com/chakra-ui/chakra-ui/pull/5576)
+  [`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue
+  where `queryString()` created invalid media queries when min and max were set.
+
 ## 1.10.2
 
 ### Patch Changes

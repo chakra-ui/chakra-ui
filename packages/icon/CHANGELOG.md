@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.0.4
+
+### Patch Changes
+
+- [#5597](https://github.com/chakra-ui/chakra-ui/pull/5597)
+  [`c2bcba11c`](https://github.com/chakra-ui/chakra-ui/commit/c2bcba11ca60c175b35dff10a922e600c3fd065c)
+  Thanks [@m4x3d](https://github.com/m4x3d)! - Add missing word in comment of
+  `CreateIconOptions`
+
+- Updated dependencies
+  [[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+
 ## 2.0.3
 
 ### Patch Changes

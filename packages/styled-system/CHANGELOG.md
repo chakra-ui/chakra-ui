@@ -1,5 +1,57 @@
 # Change Log
 
+## 1.18.0
+
+### Minor Changes
+
+- [#5579](https://github.com/chakra-ui/chakra-ui/pull/5579)
+  [`b0da6e666`](https://github.com/chakra-ui/chakra-ui/commit/b0da6e6665234c1584403f7f7251390c3a9433c8)
+  Thanks [@jrolfs](https://github.com/jrolfs)! - Modify theme types to make it
+  possible to customize token types via TypeScript module augmentation and
+  declaration merging in addition to allowing customization via the Chakra CLI.
+
+  This makes it possible to do the following:
+
+  - Distribute custom types with a component library based on Chakra
+  - Customize theme types by hand
+  - Version control your theme types
+
+  To customize themes using the new mechanism, augment the `CustomThemeTypings`
+  type in a definitions file such as `types/chakra.d.ts`:
+
+  > ⚠️ NOTE: your `CustomThemeTypings` _must_ implement/extend
+  > `BaseThemeTypings`, otherwise the types will fall back to the default Chakra
+  > types (or custom output from **@chakra-ui/cli**)
+
+  ```ts
+  import { BaseThemeTypings } from "@chakra-ui/styled-system";
+
+  type DefaultSizes = 'small' | 'medium' | 'large';
+
+  declare module "@chakra-ui/styled-system" {
+    export interface CustomThemeTypings extends BaseThemeTypings {
+      // Example custom `borders` tokens
+      borders: 'none' | 'thin' | 'thick';
+      // ...
+      // Other custom tokens
+      // ...
+      components: {
+        Button: {
+          // Example custom component sizes and variants
+          sizes: DefaultSizes;
+          variants: 'solid' | 'outline' | 'wacky' | 'chill';
+        };
+        // ...
+       }
+    }
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+
 ## 1.17.2
 
 ### Patch Changes

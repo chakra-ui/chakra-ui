@@ -1,5 +1,21 @@
 # Change Log
 
+## 1.13.3
+
+### Patch Changes
+
+- [#5595](https://github.com/chakra-ui/chakra-ui/pull/5595)
+  [`0542b8a53`](https://github.com/chakra-ui/chakra-ui/commit/0542b8a53425093f18fd86d2b55220d3fa20253a)
+  Thanks [@takethefake](https://github.com/takethefake)! - Add a new multi style
+  part `root` to the Accordion component. It is applied to the topmost DOM
+  element.
+- Updated dependencies
+  [[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`0542b8a53`](https://github.com/chakra-ui/chakra-ui/commit/0542b8a53425093f18fd86d2b55220d3fa20253a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/anatomy@1.2.4
+  - @chakra-ui/theme-tools@1.3.5
+
 ## 1.13.2
 
 ### Patch Changes
