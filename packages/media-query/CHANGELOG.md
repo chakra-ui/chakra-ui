@@ -1,5 +1,29 @@
 # Change Log
 
+## 2.0.2
+
+### Patch Changes
+
+- [#5574](https://github.com/chakra-ui/chakra-ui/pull/5574)
+  [`eca771a9a`](https://github.com/chakra-ui/chakra-ui/commit/eca771a9ad53edc52365f70eb0e6b19bc54d8e18)
+  Thanks [@nikolovlazar](https://github.com/nikolovlazar)! - Added props
+  descriptions to Show / Hide components
+
+* [#5576](https://github.com/chakra-ui/chakra-ui/pull/5576)
+  [`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue
+  where the hook `useBreakpoint` did not update after the first page load.
+
+- [#5625](https://github.com/chakra-ui/chakra-ui/pull/5625)
+  [`99c92df93`](https://github.com/chakra-ui/chakra-ui/commit/99c92df9331e6a0c5667b77e5a605343efccc6b3)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue
+  where the `useBreakpointValue` hook did not work as expected with custom
+  breakpoints
+- Updated dependencies
+  [[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/react-env@1.1.5
+
 ## 2.0.1
 
 ### Patch Changes

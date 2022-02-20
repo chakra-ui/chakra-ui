@@ -1,5 +1,23 @@
 # Change Log
 
+## 1.10.8
+
+### Patch Changes
+
+- [#5422](https://github.com/chakra-ui/chakra-ui/pull/5422)
+  [`5aa79f81c`](https://github.com/chakra-ui/chakra-ui/commit/5aa79f81c71b1ac28d1ee18b4cc28c908b68cbfb)
+  Thanks [@dqn](https://github.com/dqn)! - Fix `useAriaHidden` hook dependency
+  to make it work as expected
+
+- Updated dependencies
+  [[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/close-button@1.2.6
+  - @chakra-ui/focus-lock@1.2.5
+  - @chakra-ui/hooks@1.8.3
+  - @chakra-ui/portal@1.3.6
+  - @chakra-ui/transition@1.4.6
+
 ## 1.10.7
 
 ### Patch Changes
