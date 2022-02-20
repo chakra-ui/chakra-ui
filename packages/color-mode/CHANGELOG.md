@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.4.5
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/react-env@1.1.6
+  - @chakra-ui/hooks@1.8.4
+  - @chakra-ui/utils@1.10.4
+
 ## 1.4.4
 
 ### Patch Changes

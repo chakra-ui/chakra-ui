@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/spinner",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "A React component for displaying spinners and loaders",
   "keywords": [
     "spinner",
@@ -31,11 +31,11 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.10.3",
-    "@chakra-ui/visually-hidden": "1.1.5"
+    "@chakra-ui/utils": "1.10.4",
+    "@chakra-ui/visually-hidden": "1.1.6"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.11.0",
+    "@chakra-ui/system": "1.11.1",
     "react": "^17.0.1"
   },
   "peerDependencies": {

@@ -1,5 +1,63 @@
 # Change Log
 
+## 1.8.5
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/accordion@1.4.8
+  - @chakra-ui/alert@1.3.7
+  - @chakra-ui/avatar@1.3.8
+  - @chakra-ui/breadcrumb@1.3.6
+  - @chakra-ui/button@1.5.7
+  - @chakra-ui/checkbox@1.6.7
+  - @chakra-ui/close-button@1.2.7
+  - @chakra-ui/control-box@1.1.6
+  - @chakra-ui/counter@1.2.7
+  - @chakra-ui/css-reset@1.1.3
+  - @chakra-ui/editable@1.3.7
+  - @chakra-ui/react-env@1.1.6
+  - @chakra-ui/form-control@1.5.8
+  - @chakra-ui/hooks@1.8.4
+  - @chakra-ui/icon@2.0.5
+  - @chakra-ui/image@1.1.7
+  - @chakra-ui/input@1.4.3
+  - @chakra-ui/layout@1.7.6
+  - @chakra-ui/live-region@1.1.6
+  - @chakra-ui/media-query@2.0.3
+  - @chakra-ui/menu@1.8.8
+  - @chakra-ui/modal@1.10.9
+  - @chakra-ui/number-input@1.4.4
+  - @chakra-ui/pin-input@1.7.7
+  - @chakra-ui/popover@1.11.6
+  - @chakra-ui/popper@2.4.3
+  - @chakra-ui/portal@1.3.7
+  - @chakra-ui/progress@1.2.6
+  - @chakra-ui/provider@1.7.11
+  - @chakra-ui/radio@1.4.9
+  - @chakra-ui/select@1.2.8
+  - @chakra-ui/skeleton@1.2.11
+  - @chakra-ui/slider@1.5.8
+  - @chakra-ui/spinner@1.2.6
+  - @chakra-ui/stat@1.2.7
+  - @chakra-ui/switch@1.3.7
+  - @chakra-ui/system@1.11.1
+  - @chakra-ui/table@1.3.6
+  - @chakra-ui/tabs@1.6.7
+  - @chakra-ui/tag@1.2.7
+  - @chakra-ui/textarea@1.2.8
+  - @chakra-ui/theme@1.13.4
+  - @chakra-ui/toast@1.5.6
+  - @chakra-ui/tooltip@1.4.8
+  - @chakra-ui/transition@1.4.7
+  - @chakra-ui/utils@1.10.4
+  - @chakra-ui/visually-hidden@1.1.6
+
 ## 1.8.4
 
 ### Patch Changes
