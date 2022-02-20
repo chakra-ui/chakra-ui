@@ -1,5 +1,5 @@
 import { AnalyzeBreakpointsReturn, Dict } from "@chakra-ui/utils"
-import { ThemeTypings } from "../theming.types"
+import { ThemeTypings } from "../theme.types"
 
 export type ResponsiveArray<T> = Array<T | null>
 
@@ -15,7 +15,7 @@ export type Union<T> = T | (string & {})
 
 export type Token<
   CSSType,
-  ThemeKey = unknown
+  ThemeKey = unknown,
 > = ThemeKey extends keyof ThemeTypings
   ? ResponsiveValue<Union<CSSType | ThemeTypings[ThemeKey]>>
   : ResponsiveValue<CSSType>
