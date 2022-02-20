@@ -2,353 +2,144 @@
 
 `@chakra-ui/react@1.8.5`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Create React App Ts** `v1.1.12`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Gatsby Starter Default** `v0.3.12`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Chakra Nextjs** `v1.1.12`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Chakra Nextjs Ts** `v1.1.12`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Storybook Addon** `v1.0.2`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Accordion** `v1.4.8`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Alert** `v1.3.7`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Anatomy** `v1.2.5`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Avatar** `v1.3.8`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Breadcrumb** `v1.3.6`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Button** `v1.5.7`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Checkbox** `v1.6.7`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Clickable** `v1.2.6`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Close Button** `v1.2.7`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Color Mode** `v1.4.5`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Control Box** `v1.1.6`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Counter** `v1.2.7`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Css Reset** `v1.1.3`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Descendant** `v2.1.3`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Editable** `v1.3.7`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **React Env** `v1.1.6`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Focus Lock** `v1.2.6`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Form Control** `v1.5.8`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Hooks** `v1.8.4`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Icon** `v2.0.5`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Icons** `v1.1.7`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Image** `v1.1.7`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Input** `v1.4.3`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Layout** `v1.7.6`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Live Region** `v1.1.6`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Media Query** `v2.0.3`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Menu** `v1.8.8`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Modal** `v1.10.9`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Number Input** `v1.4.4`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Pin Input** `v1.7.7`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Popover** `v1.11.6`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Popper** `v2.4.3`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Portal** `v1.3.7`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Progress** `v1.2.6`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Provider** `v1.7.11`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Radio** `v1.4.9`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **React Utils** `v1.2.3`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Select** `v1.2.8`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Skeleton** `v1.2.11`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Skip Nav** `v1.2.6`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Slider** `v1.5.8`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Spinner** `v1.2.6`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Stat** `v1.2.7`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Styled System** `v1.18.1`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Switch** `v1.3.7`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **System** `v1.11.1`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Table** `v1.3.6`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Tabs** `v1.6.7`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Tag** `v1.2.7`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Textarea** `v1.2.8`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Theme** `v1.13.4`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Theme Tools** `v1.3.6`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Toast** `v1.5.6`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Tooltip** `v1.4.8`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Transition** `v1.4.7`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Utils** `v1.10.4`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Visually Hidden** `v1.1.6`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Babel Plugin** `v1.0.2`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Cli** `v1.8.2`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Cra Template** `v1.1.2`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Cra Template Typescript** `v1.1.2`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Gatsby Plugin** `v2.0.4`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Props Docs** `v1.0.49`
 
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
-
 **Storybook Addon** `v1.0.3`
-
-- Bumped patch version for every package to fix release process. Root cause was a
-  bug in our CI configuration.
 
 **Test Utils** `v1.1.11`
 
