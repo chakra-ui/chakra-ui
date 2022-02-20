@@ -10,6 +10,111 @@ experience.
 
 <!-- CHANGELOG:INSERT -->
 
+## 20-02-2022
+
+**Switch** `v1.3.6`
+
+- Fixed a UI issue where the Switch component rendered a few pixels off the
+  baseline.
+
+**Media Query** `v2.0.2`
+
+- Added props descriptions to Show / Hide components
+- Fixed an issue where the hook `useBreakpoint` did not update after the first
+  page load.
+- Fixed an issue where the `useBreakpointValue` hook did not work as expected
+  with custom breakpoints
+
+**Checkbox** `v1.6.6`
+
+- Add `FormControl` support for `useCheckbox`
+
+**Styled System** `v1.18.0`
+
+- Modify theme types to make it possible to customize token types via TypeScript
+  module augmentation and declaration merging in addition to allowing
+  customization via the Chakra CLI.
+
+This makes it possible to do the following:
+
+- Distribute custom types with a component library based on Chakra
+- Customize theme types by hand
+- Version control your theme types
+
+To customize themes using the new mechanism, augment the `CustomThemeTypings`
+type in a definitions file such as `types/chakra.d.ts`:
+
+> ⚠️ NOTE: your `CustomThemeTypings` _must_ implement/extend `BaseThemeTypings`,
+> otherwise the types will fall back to the default Chakra types (or custom
+> output from **@chakra-ui/cli**)
+
+```ts
+import { BaseThemeTypings } from "@chakra-ui/styled-system";
+
+type DefaultSizes = 'small' | 'medium' | 'large';
+
+declare module "@chakra-ui/styled-system" {
+  export interface CustomThemeTypings extends BaseThemeTypings {
+    // Example custom `borders` tokens
+    borders: 'none' | 'thin' | 'thick';
+    // ...
+    // Other custom tokens
+    // ...
+    components: {
+      Button: {
+        // Example custom component sizes and variants
+        sizes: DefaultSizes;
+        variants: 'solid' | 'outline' | 'wacky' | 'chill';
+      };
+      // ...
+     }
+  }
+```
+
+**Utils** `v1.10.3`
+
+- Fixed an issue where `queryString()` created invalid media queries when min
+  and max were set.
+
+**Modal** `v1.10.8`
+
+- Fix `useAriaHidden` hook dependency to make it work as expected
+
+**Icon** `v2.0.4`
+
+- Add missing word in comment of `CreateIconOptions`
+
+**System** `v1.11.0`
+
+- Allow all `JSX.IntrinsicElements` for the chakra factory. This allows to use
+  [every DOM element](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/30a2f70db2f9ac223fd923ff1f8bcc175c082fd0/types/react/index.d.ts#L3111-L3288)
+  with the shorthand version:
+
+```jsx live=false
+<chakra.header>Header</chakra.header>
+<chakra.main>Main</chakra.main>
+<chakra.footer>Many more</chakra.footer>
+```
+
+**Tag** `v1.2.6`
+
+- Change order of aria-label prop on TagCloseButton to be over-writable
+
+**Anatomy** `v1.2.4`
+
+- Add a new multi style part `root` to the Accordion component. It is applied to
+  the topmost DOM element.
+
+**Accordion** `v1.4.7`
+
+- Add a new multi style part `root` to the Accordion component. It is applied to
+  the topmost DOM element.
+
+**Theme** `v1.13.3`
+
+- Add a new multi style part `root` to the Accordion component. It is applied to
+  the topmost DOM element.
+
 ## 05-02-2022
 
 `@chakra-ui/react@1.8.3`
