@@ -59,7 +59,9 @@ end with `.stories.tsx`.
 
 ### Storybook
 
-Build components in isolation with Storybook using `yarn storybook`
+Build components in isolation with Storybook. When using Storybook, the build
+process needs to be run separately. Run `yarn build && yarn preconstruct watch`
+in one terminal and then `yarn storybook` in a second terminal.
 
 ## Think you found a bug?
 
