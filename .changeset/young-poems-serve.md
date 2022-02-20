@@ -1,10 +1,8 @@
 ---
+"@chakra-ui/anatomy": patch
 "@chakra-ui/accordion": patch
 "@chakra-ui/theme": patch
 ---
 
-Updated style config for `Accordion` & `AccordionItem` (see
-https://github.com/chakra-ui/chakra-ui/issues/5593)
-
-This change introduces `styles.root` for styling the `Accordion`.
-`styles.container` is still used for `AccordionItem`
+Add a new multi style part `root` to the Accordion component. It is applied to
+the topmost DOM element.
