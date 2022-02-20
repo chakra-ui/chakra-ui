@@ -27,9 +27,9 @@ export function useBreakpointValue<T = any>(
   if (!breakpoint) return undefined
 
   /**
-   * Get the non-number breakpoint keys from the provided breakpoints
+   * Get the sorted breakpoint keys from the provided breakpoints
    */
-  const breakpoints = Object.keys(theme.breakpoints)
+  const breakpoints = Array.from(theme.__breakpoints?.keys || [])
 
   const obj = isArray(values)
     ? fromEntries<Partial<Record<string, T>>>(
