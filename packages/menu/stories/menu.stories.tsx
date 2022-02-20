@@ -261,6 +261,28 @@ export const withMenuRadio = () => (
   </Menu>
 )
 
+export const withDisabledIconInMenuRadio = () => (
+  <Menu closeOnSelect={false}>
+    <MenuButton as={Button} variant="solid" colorScheme="teal" size="sm">
+      Open menu
+    </MenuButton>
+
+    <MenuList minWidth="240px">
+      <MenuOptionGroup title="Country" type="checkbox">
+        <MenuItemOption icon={null} value="email">
+          Email
+        </MenuItemOption>
+        <MenuItemOption icon={null} value="phone">
+          Phone
+        </MenuItemOption>
+        <MenuItemOption icon={null} value="country">
+          Country
+        </MenuItemOption>
+      </MenuOptionGroup>
+    </MenuList>
+  </Menu>
+)
+
 export const WithInternalState = () => (
   <Menu>
     {({ isOpen }) => (
