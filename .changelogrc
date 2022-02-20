@@ -1,90 +1,104 @@
-## 05-02-2022
+## 20-02-2022
 
-`@chakra-ui/react@1.8.2`
+**Switch** `v1.3.6`
 
-- allow framer motion v6 as peer dependency
+- Fixed a UI issue where the Switch component rendered a few pixels off the
+  baseline.
 
-**Input** `v1.4.0`
+**Media Query** `v2.0.2`
 
-- Add new prop `htmlSize` to `Input` to allow the usage of the native input
-  attribute `size`.
-- Apply theme styles for `InputLeftElement` and `InputRightElement`.
+- Added props descriptions to Show / Hide components
+- Fixed an issue where the hook `useBreakpoint` did not update after the first
+  page load.
+- Fixed an issue where the `useBreakpointValue` hook did not work as expected with
+  custom breakpoints
 
-**Media Query** `v2.0.0`
+**Checkbox** `v1.6.6`
 
-- Support useMediaQuery for older browsers. Conditionally check if the
-  MediaQueryList object supports the addEventListener() method, else fallback to
-  the legacy .addListener() method.
+- Add `FormControl` support for `useCheckbox`
 
-**Cli** `v1.8.0`
+**Styled System** `v1.18.0`
 
-- Fixed an internal version number mismatch
-- When the [Chakra CLI](https://chakra-ui.com/docs/theming/advanced#theme-typings)
-  fails to generate theme typings, it now exits with a status code of `1`. This
-  resolves an issue where failures exited with a success status code.
-- Increased scan depth for tokens in cli tooling
+- Modify theme types to make it possible to customize token types via TypeScript
+  module augmentation and declaration merging in addition to allowing
+  customization via the Chakra CLI.
 
-**Tooltip** `v1.4.5`
+This makes it possible to do the following:
 
-- Fix an issue where arrow tooltip background color only consider bg props. It
-  considers `bg`, `background`, `bgColor` and `backgroundColor` now.
-- allow framer motion v6 as peer dependency
+- Distribute custom types with a component library based on Chakra
+- Customize theme types by hand
+- Version control your theme types
 
-**Accordion** `v1.4.5`
+To customize themes using the new mechanism, augment the `CustomThemeTypings`
+type in a definitions file such as `types/chakra.d.ts`:
 
-- allow framer motion v6 as peer dependency
-- Add missing peer dependencies
+> ⚠️ NOTE: your `CustomThemeTypings` _must_ implement/extend `BaseThemeTypings`,
+> otherwise the types will fall back to the default Chakra types (or custom
+> output from **@chakra-ui/cli**)
 
-**Checkbox** `v1.6.4`
+```ts
+import { BaseThemeTypings } from "@chakra-ui/styled-system";
 
-- allow framer motion v6 as peer dependency
-- Fixing a bug that happens when using the useCheckboxGroup hook with number
-  values instead of string values
+type DefaultSizes = 'small' | 'medium' | 'large';
 
-**Menu** `v1.8.5`
+declare module "@chakra-ui/styled-system" {
+  export interface CustomThemeTypings extends BaseThemeTypings {
+    // Example custom `borders` tokens
+    borders: 'none' | 'thin' | 'thick';
+    // ...
+    // Other custom tokens
+    // ...
+    components: {
+      Button: {
+        // Example custom component sizes and variants
+        sizes: DefaultSizes;
+        variants: 'solid' | 'outline' | 'wacky' | 'chill';
+      };
+      // ...
+     }
+  }
+```
 
-- allow framer motion v6 as peer dependency
+**Utils** `v1.10.3`
 
-**Modal** `v1.10.6`
+- Fixed an issue where `queryString()` created invalid media queries when min and
+  max were set.
 
-- allow framer motion v6 as peer dependency
+**Modal** `v1.10.8`
 
-**Popover** `v1.11.3`
+- Fix `useAriaHidden` hook dependency to make it work as expected
 
-- allow framer motion v6 as peer dependency
+**Icon** `v2.0.4`
 
-**Switch** `v1.3.4`
+- Add missing word in comment of `CreateIconOptions`
 
-- allow framer motion v6 as peer dependency
-- Add missing peer dependencies
+**System** `v1.11.0`
 
-**Toast** `v1.5.3`
+- Allow all `JSX.IntrinsicElements` for the chakra factory. This allows to use
+  [every DOM element](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/30a2f70db2f9ac223fd923ff1f8bcc175c082fd0/types/react/index.d.ts#L3111-L3288)
+  with the shorthand version:
 
-- allow framer motion v6 as peer dependency
-- Fixed an issue where the `useToast` function returned a new object on every
-  render.
+```jsx live=false
+<chakra.header>Header</chakra.header>
+<chakra.main>Main</chakra.main>
+<chakra.footer>Many more</chakra.footer>
+```
 
-**Transition** `v1.4.4`
+**Tag** `v1.2.6`
 
-- allow framer motion v6 as peer dependency
+- Change order of aria-label prop on TagCloseButton to be over-writable
 
-**Utils** `v1.10.1`
+**Anatomy** `v1.2.4`
 
-- Fixing a bug that happens when using the useCheckboxGroup hook with number
-  values instead of string values
+- Add a new multi style part `root` to the Accordion component. It is applied to
+  the topmost DOM element.
 
-**System** `v1.10.2`
+**Accordion** `v1.4.7`
 
-- Disallow props that do not exist in the prop interface
+- Add a new multi style part `root` to the Accordion component. It is applied to
+  the topmost DOM element.
 
-**Form Control** `v1.5.5`
+**Theme** `v1.13.3`
 
-- Remove redundant `useMemo` from `FormControl`
-
-**Anatomy** `v1.2.2`
-
-- Add missing peer dependencies
-
-**Skeleton** `v1.2.8`
-
-- Add missing peer dependencies
+- Add a new multi style part `root` to the Accordion component. It is applied to
+  the topmost DOM element.
