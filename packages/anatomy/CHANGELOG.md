@@ -1,5 +1,29 @@
 # @chakra-ui/anatomy
 
+## 1.2.5
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/theme-tools@1.3.6
+
+## 1.2.4
+
+### Patch Changes
+
+- [#5595](https://github.com/chakra-ui/chakra-ui/pull/5595)
+  [`0542b8a53`](https://github.com/chakra-ui/chakra-ui/commit/0542b8a53425093f18fd86d2b55220d3fa20253a)
+  Thanks [@takethefake](https://github.com/takethefake)! - Add a new multi style
+  part `root` to the Accordion component. It is applied to the topmost DOM
+  element.
+- Updated dependencies []:
+  - @chakra-ui/theme-tools@1.3.5
+
 ## 1.2.3
 
 ### Patch Changes
