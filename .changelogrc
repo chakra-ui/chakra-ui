@@ -1,104 +1,356 @@
 ## 20-02-2022
 
-**Switch** `v1.3.6`
+`@chakra-ui/react@1.8.5`
 
-- Fixed a UI issue where the Switch component rendered a few pixels off the
-  baseline.
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
 
-**Media Query** `v2.0.2`
+**Create React App Ts** `v1.1.12`
 
-- Added props descriptions to Show / Hide components
-- Fixed an issue where the hook `useBreakpoint` did not update after the first
-  page load.
-- Fixed an issue where the `useBreakpointValue` hook did not work as expected with
-  custom breakpoints
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
 
-**Checkbox** `v1.6.6`
+**Gatsby Starter Default** `v0.3.12`
 
-- Add `FormControl` support for `useCheckbox`
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
 
-**Styled System** `v1.18.0`
+**Chakra Nextjs** `v1.1.12`
 
-- Modify theme types to make it possible to customize token types via TypeScript
-  module augmentation and declaration merging in addition to allowing
-  customization via the Chakra CLI.
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
 
-This makes it possible to do the following:
+**Chakra Nextjs Ts** `v1.1.12`
 
-- Distribute custom types with a component library based on Chakra
-- Customize theme types by hand
-- Version control your theme types
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
 
-To customize themes using the new mechanism, augment the `CustomThemeTypings`
-type in a definitions file such as `types/chakra.d.ts`:
+**Storybook Addon** `v1.0.2`
 
-> ⚠️ NOTE: your `CustomThemeTypings` _must_ implement/extend `BaseThemeTypings`,
-> otherwise the types will fall back to the default Chakra types (or custom
-> output from **@chakra-ui/cli**)
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
 
-```ts
-import { BaseThemeTypings } from "@chakra-ui/styled-system";
+**Accordion** `v1.4.8`
 
-type DefaultSizes = 'small' | 'medium' | 'large';
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
 
-declare module "@chakra-ui/styled-system" {
-  export interface CustomThemeTypings extends BaseThemeTypings {
-    // Example custom `borders` tokens
-    borders: 'none' | 'thin' | 'thick';
-    // ...
-    // Other custom tokens
-    // ...
-    components: {
-      Button: {
-        // Example custom component sizes and variants
-        sizes: DefaultSizes;
-        variants: 'solid' | 'outline' | 'wacky' | 'chill';
-      };
-      // ...
-     }
-  }
-```
+**Alert** `v1.3.7`
 
-**Utils** `v1.10.3`
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
 
-- Fixed an issue where `queryString()` created invalid media queries when min and
-  max were set.
+**Anatomy** `v1.2.5`
 
-**Modal** `v1.10.8`
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
 
-- Fix `useAriaHidden` hook dependency to make it work as expected
+**Avatar** `v1.3.8`
 
-**Icon** `v2.0.4`
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
 
-- Add missing word in comment of `CreateIconOptions`
+**Breadcrumb** `v1.3.6`
 
-**System** `v1.11.0`
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
 
-- Allow all `JSX.IntrinsicElements` for the chakra factory. This allows to use
-  [every DOM element](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/30a2f70db2f9ac223fd923ff1f8bcc175c082fd0/types/react/index.d.ts#L3111-L3288)
-  with the shorthand version:
+**Button** `v1.5.7`
 
-```jsx live=false
-<chakra.header>Header</chakra.header>
-<chakra.main>Main</chakra.main>
-<chakra.footer>Many more</chakra.footer>
-```
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
 
-**Tag** `v1.2.6`
+**Checkbox** `v1.6.7`
 
-- Change order of aria-label prop on TagCloseButton to be over-writable
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
 
-**Anatomy** `v1.2.4`
+**Clickable** `v1.2.6`
 
-- Add a new multi style part `root` to the Accordion component. It is applied to
-  the topmost DOM element.
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
 
-**Accordion** `v1.4.7`
+**Close Button** `v1.2.7`
 
-- Add a new multi style part `root` to the Accordion component. It is applied to
-  the topmost DOM element.
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
 
-**Theme** `v1.13.3`
+**Color Mode** `v1.4.5`
 
-- Add a new multi style part `root` to the Accordion component. It is applied to
-  the topmost DOM element.
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Control Box** `v1.1.6`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Counter** `v1.2.7`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Css Reset** `v1.1.3`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Descendant** `v2.1.3`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Editable** `v1.3.7`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**React Env** `v1.1.6`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Focus Lock** `v1.2.6`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Form Control** `v1.5.8`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Hooks** `v1.8.4`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Icon** `v2.0.5`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Icons** `v1.1.7`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Image** `v1.1.7`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Input** `v1.4.3`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Layout** `v1.7.6`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Live Region** `v1.1.6`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Media Query** `v2.0.3`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Menu** `v1.8.8`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Modal** `v1.10.9`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Number Input** `v1.4.4`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Pin Input** `v1.7.7`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Popover** `v1.11.6`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Popper** `v2.4.3`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Portal** `v1.3.7`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Progress** `v1.2.6`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Provider** `v1.7.11`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Radio** `v1.4.9`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**React Utils** `v1.2.3`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Select** `v1.2.8`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Skeleton** `v1.2.11`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Skip Nav** `v1.2.6`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Slider** `v1.5.8`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Spinner** `v1.2.6`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Stat** `v1.2.7`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Styled System** `v1.18.1`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Switch** `v1.3.7`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**System** `v1.11.1`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Table** `v1.3.6`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Tabs** `v1.6.7`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Tag** `v1.2.7`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Textarea** `v1.2.8`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Theme** `v1.13.4`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Theme Tools** `v1.3.6`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Toast** `v1.5.6`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Tooltip** `v1.4.8`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Transition** `v1.4.7`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Utils** `v1.10.4`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Visually Hidden** `v1.1.6`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Babel Plugin** `v1.0.2`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Cli** `v1.8.2`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Cra Template** `v1.1.2`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Cra Template Typescript** `v1.1.2`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Gatsby Plugin** `v2.0.4`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Props Docs** `v1.0.49`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Storybook Addon** `v1.0.3`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
+
+**Test Utils** `v1.1.11`
+
+- Bumped patch version for every package to fix release process. Root cause was a
+  bug in our CI configuration.
