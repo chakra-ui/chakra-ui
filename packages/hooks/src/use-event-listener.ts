@@ -28,7 +28,7 @@ export function useEventListener<K extends keyof DocumentEventMap>(
     const node = runIfFn(env) ?? document
 
     if (!handler) {
-      return () => {}
+      return
     }
 
     node.addEventListener(event, listener, options)
