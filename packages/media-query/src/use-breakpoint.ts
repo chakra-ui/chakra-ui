@@ -30,7 +30,9 @@ export function useBreakpoint(defaultBreakpoint?: string) {
       const matchingBreakpointDetail = queries.find(
         ({ query }) => env.window.matchMedia(query).matches,
       )
-      return matchingBreakpointDetail?.breakpoint
+      if (matchingBreakpointDetail) {
+        return matchingBreakpointDetail.breakpoint
+      }
     }
 
     if (defaultBreakpoint) {
@@ -38,7 +40,9 @@ export function useBreakpoint(defaultBreakpoint?: string) {
       const fallbackBreakpointDetail = queries.find(
         ({ breakpoint }) => breakpoint === defaultBreakpoint,
       )
-      return fallbackBreakpointDetail?.breakpoint
+      if (fallbackBreakpointDetail) {
+        return fallbackBreakpointDetail.breakpoint
+      }
     }
 
     return undefined
