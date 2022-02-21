@@ -7,7 +7,8 @@ export const breakpoints = createBreakpoints({
   md: "200px",
   lg: "300px",
   xl: "400px",
-  customBreakpoint: "500px",
+  "2xl": "500px",
+  customBreakpoint: "600px",
 })
 
 export const theme = extendTheme({ breakpoints })
@@ -18,5 +19,6 @@ export const queries = {
   md: "(min-width: 200px) and (max-width: 299px)",
   lg: "(min-width: 300px) and (max-width: 399px)",
   xl: "(min-width: 400px) and (max-width: 499px)",
-  customBreakpoint: "(min-width: 500px)",
+  "2xl": "(min-width: 500px) and (max-width: 599px)",
+  customBreakpoint: "(min-width: 600px)",
 }
