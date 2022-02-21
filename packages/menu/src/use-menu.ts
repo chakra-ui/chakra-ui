@@ -567,7 +567,6 @@ export function useMenuItem(
     menuRef,
     isOpen,
     menuId,
-    initialFocusIndex,
   } = menu
 
   const ref = React.useRef<HTMLDivElement>(null)

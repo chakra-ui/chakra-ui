@@ -463,3 +463,22 @@ test("MenuList direction flips in rtl", () => {
     "top-start",
   )
 })
+
+test("supports initial focus", async () => {
+  render(
+    <Menu initialFocusIndex={2}>
+      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuList>
+        <MenuItem>Menu 0</MenuItem>
+        <MenuItem>Menu 1</MenuItem>
+        <MenuItem>Menu 2</MenuItem>
+        <MenuItem>Menu 3</MenuItem>
+      </MenuList>
+    </Menu>,
+  )
+
+  const openMenuButton = screen.getByRole("button")
+  const focusItem = screen.getByText("Menu 2")
+  fireEvent.click(openMenuButton)
+  await waitFor(() => expect(focusItem).toHaveAttribute("tabindex", "0"))
+})
