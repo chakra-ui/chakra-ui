@@ -38,4 +38,4 @@ export { default as Tabs } from "./tabs"
 export { default as Tag } from "./tag"
 export { default as Textarea } from "./textarea"
 export { default as Tooltip } from "./tooltip"
-
+export { default as Prose } from "./prose"

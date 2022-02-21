@@ -1,0 +1,47 @@
+{
+  "name": "@chakra-ui/prose",
+  "version": "0.0.1",
+  "description": "A React component that adds ready-made styles for rendering remote HTML content.",
+  "keywords": [
+    "react",
+    "chakra-ui",
+    "component",
+    "prose",
+    "typography"
+  ],
+  "sideEffects": false,
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "dist/chakra-ui-prose.cjs.js",
+  "module": "dist/chakra-ui-prose.esm.js",
+  "types": "dist/chakra-ui-prose.cjs.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/prose"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "devDependencies": {
+    "@chakra-ui/system": "1.10.3",
+    "react": "^17.0.1"
+  },
+  "dependencies": {
+    "@chakra-ui/hooks": "1.8.2",
+    "@chakra-ui/react-utils": "1.2.2",
+    "@chakra-ui/utils": "1.10.2"
+  },
+  "peerDependencies": {
+    "@chakra-ui/system": ">=1.0.0",
+    "react": ">=16.8.6"
+  }
+}
