@@ -124,7 +124,7 @@ export interface UseMenuProps
    * Keyboard navigation will start out at this item. If not set, the first item
    * will be focused.
    */
-  initialFocusIndex?: number;
+  initialFocusIndex?: number
 }
 
 /**
@@ -148,7 +148,7 @@ export function useMenu(props: UseMenuProps = {}) {
     lazyBehavior = "unmount",
     direction,
     computePositionOnMount = false,
-    initialFocusIndex = -1,
+    initialFocusIndex,
     ...popperProps
   } = props
   /**
@@ -169,13 +169,13 @@ export function useMenu(props: UseMenuProps = {}) {
     })
   }, [])
 
-  const focusFirstItem = React.useCallback(() => {
+  const focusInitialItem = React.useCallback(() => {
     const id = setTimeout(() => {
-      const first = descendants.firstEnabled()
-      if (first) setFocusedIndex(first.index)
+      const itemIndex = initialFocusIndex ?? descendants.firstEnabled()?.index
+      if (itemIndex) setFocusedIndex(itemIndex)
     })
     timeoutIds.current.add(id)
-  }, [descendants])
+  }, [descendants, initialFocusIndex])
 
   const focusLastItem = React.useCallback(() => {
     const id = setTimeout(() => {
@@ -188,11 +188,11 @@ export function useMenu(props: UseMenuProps = {}) {
   const onOpenInternal = React.useCallback(() => {
     onOpenProp?.()
     if (autoSelect) {
-      focusFirstItem()
+      focusInitialItem()
     } else {
       focusMenu()
     }
-  }, [autoSelect, focusFirstItem, focusMenu, onOpenProp])
+  }, [autoSelect, focusInitialItem, focusMenu, onOpenProp])
 
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure({
     isOpen: isOpenProp,
@@ -221,7 +221,7 @@ export function useMenu(props: UseMenuProps = {}) {
     direction,
   })
 
-  const [focusedIndex, setFocusedIndex] = React.useState(initialFocusIndex)
+  const [focusedIndex, setFocusedIndex] = React.useState(-1)
 
   /**
    * Focus the button when we close the menu
@@ -259,8 +259,8 @@ export function useMenu(props: UseMenuProps = {}) {
 
   const openAndFocusFirstItem = React.useCallback(() => {
     onOpen()
-    focusFirstItem()
-  }, [focusFirstItem, onOpen])
+    focusInitialItem()
+  }, [focusInitialItem, onOpen])
 
   const openAndFocusLastItem = React.useCallback(() => {
     onOpen()
@@ -305,6 +305,7 @@ export function useMenu(props: UseMenuProps = {}) {
     setFocusedIndex,
     isLazy,
     lazyBehavior,
+    initialFocusIndex,
   }
 }
 
@@ -566,6 +567,7 @@ export function useMenuItem(
     menuRef,
     isOpen,
     menuId,
+    initialFocusIndex,
   } = menu
 
   const ref = React.useRef<HTMLDivElement>(null)
@@ -603,7 +605,7 @@ export function useMenuItem(
       if (isDisabled) return
       setFocusedIndex(-1)
     },
-    [setFocusedIndex, isDisabled, onMouseLeaveProp],
+    [onMouseLeaveProp, isDisabled, setFocusedIndex],
   )
 
   const onClick = React.useCallback(
