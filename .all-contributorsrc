@@ -2063,6 +2063,16 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "ishowta",
+      "name": "iwata",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7393198?v=4",
+      "profile": "https://iwata.love",
+      "contributions": [
+        "bug",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
