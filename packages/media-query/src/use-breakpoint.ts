@@ -25,23 +25,24 @@ export function useBreakpoint(defaultBreakpoint?: string) {
   )
 
   const [currentBreakpoint, setCurrentBreakpoint] = React.useState(() => {
-    if (env.window.matchMedia) {
-      // set correct breakpoint on first render
-      const matchingBreakpointDetail = queries.find(
-        ({ query }) => env.window.matchMedia(query).matches,
-      )
-      if (matchingBreakpointDetail) {
-        return matchingBreakpointDetail.breakpoint
-      }
-    }
-
     if (defaultBreakpoint) {
-      // use fallback if available
+      // use default breakpoint to ensure render consistency in SSR + CSR environments
+      // => first render on the client has to match the render on the server
       const fallbackBreakpointDetail = queries.find(
         ({ breakpoint }) => breakpoint === defaultBreakpoint,
       )
       if (fallbackBreakpointDetail) {
         return fallbackBreakpointDetail.breakpoint
+      }
+    }
+
+    if (env.window.matchMedia) {
+      // set correct breakpoint on first render if no default breakpoint was provided
+      const matchingBreakpointDetail = queries.find(
+        ({ query }) => env.window.matchMedia(query).matches,
+      )
+      if (matchingBreakpointDetail) {
+        return matchingBreakpointDetail.breakpoint
       }
     }
 
