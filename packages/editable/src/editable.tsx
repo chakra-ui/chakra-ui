@@ -181,7 +181,7 @@ export const EditableTextarea = forwardRef<EditableTextareaProps, "textarea">(
         __css={{
           outline: 0,
           ...commonStyles,
-          ...styles,
+          ...styles.textarea,
         }}
         className={_className}
       />
