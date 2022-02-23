@@ -8,7 +8,6 @@ import {
   useMultiStyleConfig,
   useStyles,
   HTMLChakraProps,
-  useStyleConfig,
 } from "@chakra-ui/system"
 import { cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { createContext, MaybeRenderProp } from "@chakra-ui/react-utils"
@@ -171,7 +170,7 @@ export interface EditableTextareaProps extends HTMLChakraProps<"textarea"> {}
 export const EditableTextarea = forwardRef<EditableTextareaProps, "textarea">(
   (props, ref) => {
     const { getTextareaProps } = useEditableContext()
-    const styles = useStyleConfig("Textarea", props)
+    const styles = useStyles()
 
     const textareaProps = getTextareaProps(props, ref)
     const _className = cx("chakra-editable__textarea", props.className)
