@@ -8,7 +8,7 @@ import { useBreakpoint } from "./use-breakpoint"
  * provided responsive values object.
  *
  * @param values
- * @param [defaultBreakpoint="base"] default breakpoint name
+ * @param [defaultBreakpoint] default breakpoint name
  * (in non-window environments like SSR)
  *
  * For SSR, you can use a package like [is-mobile](https://github.com/kaimallea/isMobile)
@@ -19,7 +19,7 @@ import { useBreakpoint } from "./use-breakpoint"
  */
 export function useBreakpointValue<T = any>(
   values: Partial<Record<string, T>> | T[],
-  defaultBreakpoint = "base", // default value ensures SSR+CSR consistency
+  defaultBreakpoint?: string,
 ): T | undefined {
   const breakpoint = useBreakpoint(defaultBreakpoint)
   const theme = useTheme()

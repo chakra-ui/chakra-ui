@@ -5,13 +5,15 @@ import { useTheme } from "@chakra-ui/system"
 /**
  * React hook used to get the current responsive media breakpoint.
  *
- * @param defaultBreakpoint default breakpoint name
+ * @param [defaultBreakpoint="base"] default breakpoint name
  * (in non-window environments like SSR)
  *
  * For SSR, you can use a package like [is-mobile](https://github.com/kaimallea/isMobile)
  * to get the default breakpoint value from the user-agent
  */
-export function useBreakpoint(defaultBreakpoint?: string) {
+export function useBreakpoint(
+  defaultBreakpoint = "base", // default value ensures SSR+CSR consistency
+) {
   const { __breakpoints } = useTheme()
   const env = useEnvironment()
 
