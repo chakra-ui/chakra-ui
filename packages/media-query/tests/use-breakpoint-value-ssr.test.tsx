@@ -1,8 +1,17 @@
 import React from "react"
 import { renderToStaticMarkup } from "react-dom/server"
-import { ThemeProvider } from "@chakra-ui/system"
+import { ChakraProvider } from "@chakra-ui/react"
 import { theme } from "./test-data"
 import { useBreakpointValue } from "../src"
+
+jest.mock("@chakra-ui/utils", () => ({
+  ...jest.requireActual("@chakra-ui/utils"),
+  isBrowser: false,
+}))
+
+beforeEach(() => {
+  jest.resetAllMocks()
+})
 
 describe("with defaultBreakpoint", () => {
   // To clean up erroneous console warnings from react, we temporarliy force
@@ -100,9 +109,9 @@ function ssrRenderWithDefaultBreakpoint(
   defaultBreakpoint: string,
 ) {
   return renderToStaticMarkup(
-    <ThemeProvider theme={theme}>
+    <ChakraProvider theme={theme}>
       <TestComponent values={values} defaultBreakpoint={defaultBreakpoint} />
-    </ThemeProvider>,
+    </ChakraProvider>,
   )
 }
 
