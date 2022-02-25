@@ -8,7 +8,7 @@ import { useBreakpoint } from "./use-breakpoint"
  * provided responsive values object.
  *
  * @param values
- * @param defaultBreakpoint default breakpoint name
+ * @param [defaultBreakpoint] default breakpoint name
  * (in non-window environments like SSR)
  *
  * For SSR, you can use a package like [is-mobile](https://github.com/kaimallea/isMobile)

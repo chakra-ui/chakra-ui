@@ -17,19 +17,20 @@ describe("with object", () => {
   })
 
   const values = {
-    base: "base",
-    sm: "sm",
-    md: "md",
-    lg: "lg",
-    xl: "xl",
-    customBreakpoint: "customBreakpoint",
+    base: "__base__",
+    sm: "__sm__",
+    md: "__md__",
+    lg: "__lg__",
+    xl: "__xl__",
+    "2xl": "__2xl__",
+    customBreakpoint: "__customBreakpoint__",
   }
 
   test("uses base value if smaller than sm", () => {
     renderWithQuery(values, queries.base)
 
     Object.keys(values).forEach((key) => {
-      if (key === "base") {
+      if (key === "__base__") {
         expect(screen.getByText(key)).toBeInTheDocument()
       } else {
         expect(screen.queryByText(key)).not.toBeInTheDocument()
@@ -41,7 +42,7 @@ describe("with object", () => {
     renderWithQuery(values, queries.sm)
 
     Object.keys(values).forEach((key) => {
-      if (key === "sm") {
+      if (key === "__sm__") {
         expect(screen.getByText(key)).toBeInTheDocument()
       } else {
         expect(screen.queryByText(key)).not.toBeInTheDocument()
@@ -53,7 +54,7 @@ describe("with object", () => {
     renderWithQuery(values, queries.md)
 
     Object.keys(values).forEach((key) => {
-      if (key === "md") {
+      if (key === "__md__") {
         expect(screen.getByText(key)).toBeInTheDocument()
       } else {
         expect(screen.queryByText(key)).not.toBeInTheDocument()
@@ -65,7 +66,7 @@ describe("with object", () => {
     renderWithQuery(values, queries.lg)
 
     Object.keys(values).forEach((key) => {
-      if (key === "lg") {
+      if (key === "__lg__") {
         expect(screen.getByText(key)).toBeInTheDocument()
       } else {
         expect(screen.queryByText(key)).not.toBeInTheDocument()
@@ -77,7 +78,19 @@ describe("with object", () => {
     renderWithQuery(values, queries.xl)
 
     Object.keys(values).forEach((key) => {
-      if (key === "xl") {
+      if (key === "__xl__") {
+        expect(screen.getByText(key)).toBeInTheDocument()
+      } else {
+        expect(screen.queryByText(key)).not.toBeInTheDocument()
+      }
+    })
+  })
+
+  test("2xl", () => {
+    renderWithQuery(values, queries.xl)
+
+    Object.keys(values).forEach((key) => {
+      if (key === "__2xl__") {
         expect(screen.getByText(key)).toBeInTheDocument()
       } else {
         expect(screen.queryByText(key)).not.toBeInTheDocument()
@@ -89,7 +102,7 @@ describe("with object", () => {
     renderWithQuery(values, queries.customBreakpoint)
 
     Object.keys(values).forEach((key) => {
-      if (key === "customBreakpoint") {
+      if (key === "__customBreakpoint__") {
         expect(screen.getByText(key)).toBeInTheDocument()
       } else {
         expect(screen.queryByText(key)).not.toBeInTheDocument()
@@ -118,6 +131,7 @@ describe("with array", () => {
     "value2",
     "value3",
     "value4",
+    "value5",
     "anotherValue",
     "customBreakpoint",
   ]
@@ -165,6 +179,18 @@ describe("with array", () => {
 
   test("xl", () => {
     renderWithQuery(values, queries.xl)
+
+    values.forEach((value) => {
+      if (value === "value5") {
+        expect(screen.getByText(value)).toBeInTheDocument()
+      } else {
+        expect(screen.queryByText(value)).not.toBeInTheDocument()
+      }
+    })
+  })
+
+  test("2xl", () => {
+    renderWithQuery(values, queries["2xl"])
 
     values.forEach((value) => {
       if (value === "anotherValue") {
