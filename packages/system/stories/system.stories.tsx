@@ -4,6 +4,8 @@ import { Text } from "@chakra-ui/layout"
 import { motion } from "framer-motion"
 import {
   chakra,
+  LightMode,
+  DarkMode,
   PropsOf,
   ThemeProvider,
   ThemingProps,
@@ -193,5 +195,24 @@ export const WithCSSVarToken = () => {
     >
       <div className="banner">banner</div>
     </chakra.div>
+  )
+}
+
+export const WithSemanticToken = () => {
+  return (
+    <div>
+      <chakra.p color="semantic">I am in the default color mode</chakra.p>
+      <LightMode withSemanticTokens>
+        <chakra.p color="semantic">I am forced to light mode</chakra.p>
+      </LightMode>
+      <DarkMode withSemanticTokens>
+        <chakra.p color="semantic">I am forced to dark mode</chakra.p>
+        <LightMode withSemanticTokens>
+          <chakra.p pl="4" color="semantic">
+            I am nested and forced to light mode
+          </chakra.p>
+        </LightMode>
+      </DarkMode>
+    </div>
   )
 }

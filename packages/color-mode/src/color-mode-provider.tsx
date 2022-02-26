@@ -1,5 +1,5 @@
 import { useEnvironment } from "@chakra-ui/react-env"
-import { isBrowser, noop, __DEV__ } from "@chakra-ui/utils"
+import { __DEV__, isBrowser, noop } from "@chakra-ui/utils"
 import * as React from "react"
 import {
   addListener,
@@ -18,7 +18,7 @@ export interface ColorModeOptions {
   useSystemColorMode?: boolean
 }
 
-interface ColorModeContextType {
+export interface ColorModeContextType {
   colorMode: ColorMode
   toggleColorMode: () => void
   setColorMode: (value: any) => void
@@ -171,46 +171,6 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
 
 if (__DEV__) {
   ColorModeProvider.displayName = "ColorModeProvider"
-}
-
-/**
- * Locks the color mode to `dark`, without any way to change it.
- */
-export const DarkMode: React.FC = (props) => {
-  const context = React.useMemo<ColorModeContextType>(
-    () => ({
-      colorMode: "dark",
-      toggleColorMode: noop,
-      setColorMode: noop,
-    }),
-    [],
-  )
-
-  return <ColorModeContext.Provider value={context} {...props} />
-}
-
-if (__DEV__) {
-  DarkMode.displayName = "DarkMode"
-}
-
-/**
- * Locks the color mode to `light` without any way to change it.
- */
-export const LightMode: React.FC = (props) => {
-  const context = React.useMemo<ColorModeContextType>(
-    () => ({
-      colorMode: "light",
-      toggleColorMode: noop,
-      setColorMode: noop,
-    }),
-    [],
-  )
-
-  return <ColorModeContext.Provider value={context} {...props} />
-}
-
-if (__DEV__) {
-  LightMode.displayName = "LightMode"
 }
 
 /**

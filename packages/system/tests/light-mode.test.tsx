@@ -1,17 +1,17 @@
-import { render } from "@testing-library/react"
+import * as React from "react"
+import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import React from "react"
-import { LightMode } from "../src/color-mode-provider"
+import { LightMode } from "../src"
 import {
   DummyComponent,
   getColorModeButton,
   MemoizedComponent,
   RegularComponent,
   resetCounter,
-} from "./utils"
+} from "./color-mode-component.utils"
 
 const MemoTest = () => {
-  const [_, setRenderCount] = React.useState(0)
+  const [, setRenderCount] = React.useState(0)
 
   return (
     <>
@@ -24,7 +24,7 @@ const MemoTest = () => {
 }
 
 const NoMemoTest = () => {
-  const [_, setRenderCount] = React.useState(0)
+  const [, setRenderCount] = React.useState(0)
 
   return (
     <>
@@ -55,6 +55,13 @@ describe("<LightMode />", () => {
     userEvent.click(button)
 
     expect(getColorModeButton()).toHaveTextContent("light")
+  })
+
+  test("renders a DOM element with data-theme attribute when withSemanticTokens prop is set", async () => {
+    const label = "Test Component"
+    render(<LightMode withSemanticTokens>{label}</LightMode>)
+    const element = await screen.findByText(label)
+    expect(element).toHaveAttribute("data-theme", "light")
   })
 
   test("memoized component renders once", () => {

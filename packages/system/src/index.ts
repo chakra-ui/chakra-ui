@@ -1,4 +1,5 @@
 export * from "@chakra-ui/color-mode"
+export * from "./color-mode-components"
 export * from "@chakra-ui/styled-system"
 export { keyframes } from "@emotion/react"
 export type { Interpolation } from "@emotion/react"
