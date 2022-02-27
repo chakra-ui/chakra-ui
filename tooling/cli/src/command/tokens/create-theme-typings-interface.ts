@@ -19,7 +19,7 @@ export interface ThemeKeyOptions {
    * @example
    * union: gray.500
    * level: 1---|2--|
-   * @default 1
+   * @default 3
    */
   maxScanDepth?: number
   /**
@@ -52,13 +52,24 @@ export async function createThemeTypingsInterface(
       { key, maxScanDepth, filter = () => true, flatMap = (value) => value },
     ) => {
       const target = theme[key]
+
+      allUnions[key] = []
+
       if (isObject(target) || Array.isArray(target)) {
         allUnions[key] = extractPropertyPaths(target, maxScanDepth)
           .filter(filter)
           .flatMap(flatMap)
-      } else {
-        allUnions[key] = []
       }
+
+      if (isObject(theme.semanticTokens)) {
+        // semantic tokens do not allow nesting, we just need to extract the keys
+        const semanticTokenKeys = extractPropertyKeys(theme.semanticTokens, key)
+          .filter(filter)
+          .flatMap(flatMap)
+
+        allUnions[key].push(...semanticTokenKeys)
+      }
+
       return allUnions
     },
     {} as Record<string, string[]>,
