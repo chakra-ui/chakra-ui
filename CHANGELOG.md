@@ -10,6 +10,65 @@ experience.
 
 <!-- CHANGELOG:INSERT -->
 
+## 28-02-2022
+
+**Anatomy** `v1.3.0`
+
+- Add `textarea` part to `editableAnatomy`
+
+**Cli** `v1.9.0`
+
+- The CLI tokens command now includes semantic tokens in the generated
+  ThemeTypings
+
+**Editable** `v1.4.0`
+
+- Added the component `EditableTextarea` to `Editable`. Use the textarea element
+  to handle multi line text input in an editable context.
+
+```tsx live=false
+<Editable defaultValue="Change me" onChange={console.log}>
+  <EditablePreview />
+  <EditableTextarea />
+</Editable>
+```
+
+**Layout** `v1.7.7`
+
+- Fixed zIndex in LinkOverlay so that content in LinkBox can have an opacity
+  below 1
+
+**Color Mode** `v1.4.6`
+
+- Adds a runtime safeguard for `ColorModeScript`.
+
+**Theme** `v1.14.0`
+
+- Add styles for new `textarea` element in `Editable`
+
+**Media Query** `v2.0.4`
+
+- Fixed an issue that undefined is returned when calling the hook
+  `useBreakpoint` with `defaultValue` specified in SSR
+
+- Fixed an issue where the value of `useBreakpointValue` in CSR did not match
+  SSR.
+
+**Hooks** `v1.8.5`
+
+- Fixed an issue where the prop `isLazy` did not work as expected. This was
+  achieved by updating the hook `useAnimationState`.
+
+**Popover** `v1.11.7`
+
+- Fixed an issue where the prop `isLazy` did not work as expected. This was
+  achieved by updating the hook `useAnimationState`.
+
+**Menu** `v1.8.9`
+
+- Fixed bug where passing `null` as value of `icon` prop in `MenuOptionItem`
+  still rendered the icon.
+
 ## 20-02-2022
 
 `@chakra-ui/react@1.8.5`
