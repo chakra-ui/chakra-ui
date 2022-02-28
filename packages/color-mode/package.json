@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/color-mode",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "React component and hooks for handling light and dark mode.",
   "keywords": [
     "react",
@@ -38,7 +38,7 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "1.8.4",
+    "@chakra-ui/hooks": "1.8.5",
     "@chakra-ui/react-env": "1.1.6",
     "@chakra-ui/utils": "1.10.4"
   },

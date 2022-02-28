@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.3.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/image@1.1.8
+
 ## 1.3.8
 
 ### Patch Changes

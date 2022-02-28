@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/toast",
-  "version": "1.5.6",
+  "version": "1.5.7",
   "description": "description",
   "keywords": [
     "theme",
@@ -35,14 +35,14 @@
   "dependencies": {
     "@chakra-ui/alert": "1.3.7",
     "@chakra-ui/close-button": "1.2.7",
-    "@chakra-ui/hooks": "1.8.4",
-    "@chakra-ui/theme": "1.13.4",
+    "@chakra-ui/hooks": "1.8.5",
+    "@chakra-ui/theme": "1.14.0",
     "@chakra-ui/transition": "1.4.7",
     "@chakra-ui/utils": "1.10.4",
     "@reach/alert": "0.13.2"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.11.1",
+    "@chakra-ui/system": "1.11.2",
     "framer-motion": "^4.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.2"

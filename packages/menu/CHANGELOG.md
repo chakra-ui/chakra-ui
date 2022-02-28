@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.8.9
+
+### Patch Changes
+
+- [#5631](https://github.com/chakra-ui/chakra-ui/pull/5631)
+  [`e4da6359d`](https://github.com/chakra-ui/chakra-ui/commit/e4da6359d0a007a4b23959b0b8feed6231a947b6)
+  Thanks [@anubra266](https://github.com/anubra266)! - Fixed bug where passing
+  `null` as value of `icon` prop in `MenuOptionItem` still rendered the icon.
+- Updated dependencies
+  [[`5cd5cff35`](https://github.com/chakra-ui/chakra-ui/commit/5cd5cff35e4837539d83a2157a07585d461b0aac)]:
+  - @chakra-ui/hooks@1.8.5
+
 ## 1.8.8
 
 ### Patch Changes

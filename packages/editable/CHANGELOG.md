@@ -1,5 +1,28 @@
 # Change Log
 
+## 1.4.0
+
+### Minor Changes
+
+- [#4443](https://github.com/chakra-ui/chakra-ui/pull/4443)
+  [`fbe946223`](https://github.com/chakra-ui/chakra-ui/commit/fbe94622357e22acaf8bab0eae33ceae663d7a5b)
+  Thanks [@heozeop](https://github.com/heozeop)! - Added the component
+  `EditableTextarea` to `Editable`. Use the textarea element to handle multi
+  line text input in an editable context.
+
+  ```tsx live=false
+  <Editable defaultValue="Change me" onChange={console.log}>
+    <EditablePreview />
+    <EditableTextarea />
+  </Editable>
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`5cd5cff35`](https://github.com/chakra-ui/chakra-ui/commit/5cd5cff35e4837539d83a2157a07585d461b0aac)]:
+  - @chakra-ui/hooks@1.8.5
+
 ## 1.3.7
 
 ### Patch Changes

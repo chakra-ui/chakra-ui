@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.8.5
+
+### Patch Changes
+
+- [#5623](https://github.com/chakra-ui/chakra-ui/pull/5623)
+  [`5cd5cff35`](https://github.com/chakra-ui/chakra-ui/commit/5cd5cff35e4837539d83a2157a07585d461b0aac)
+  Thanks [@Brennvo](https://github.com/Brennvo)! - Fixed an issue where the prop
+  `isLazy` did not work as expected. This was achieved by updating the hook
+  `useAnimationState`.
+
 ## 1.8.4
 
 ### Patch Changes
