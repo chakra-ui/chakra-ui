@@ -17,6 +17,9 @@
   <a href="https://discord.gg/chakra-ui">
     <img alt="Discord" src="https://img.shields.io/discord/660863154703695893.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" />
   </a>
+  <a href="https://www.nerdydata.com/reports/chakra-ui/e27a8eef-9f63-422d-b8b9-680e69c41f54">
+    <img alt="NerdyData Usage" src="https://badges.nerdydata.com/e27a8eef-9f63-422d-b8b9-680e69c41f54" />
+  </a>
 </p>
 <br />
 
