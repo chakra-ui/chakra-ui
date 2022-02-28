@@ -59,7 +59,11 @@ export const drawerAnatomy = anatomy("drawer")
   .parts("overlay", "dialogContainer", "dialog")
   .extend("header", "closeButton", "body", "footer")
 
-export const editableAnatomy = anatomy("editable").parts("preview", "input")
+export const editableAnatomy = anatomy("editable").parts(
+  "preview",
+  "input",
+  "textarea",
+)
 
 export const formAnatomy = anatomy("form").parts(
   "container",

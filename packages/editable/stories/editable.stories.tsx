@@ -5,6 +5,7 @@ import {
   Editable,
   EditableInput,
   EditablePreview,
+  EditableTextarea,
   useEditableControls,
 } from "../src"
 
@@ -105,5 +106,22 @@ export const CodeSandboxTopbar = () => {
         <EditablePreview />
       </Editable>
     </chakra.div>
+  )
+}
+
+export const TextareaAsInput = () => {
+  return (
+    <Editable
+      defaultValue="Hello!!"
+      fontSize="xl"
+      textAlign="center"
+      isPreviewFocusable={false}
+      submitOnBlur={false}
+      onChange={console.log}
+    >
+      <EditablePreview />
+      <EditableTextarea />
+      <EditableControls />
+    </Editable>
   )
 }
