@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.4.6
+
+### Patch Changes
+
+- [#5639](https://github.com/chakra-ui/chakra-ui/pull/5639)
+  [`001751162`](https://github.com/chakra-ui/chakra-ui/commit/001751162dd1922d8ab53820f405665f0785f196)
+  Thanks [@sQVe](https://github.com/sQVe)! - Adds a runtime safeguard for
+  `ColorModeScript`.
+
+- Updated dependencies
+  [[`5cd5cff35`](https://github.com/chakra-ui/chakra-ui/commit/5cd5cff35e4837539d83a2157a07585d461b0aac)]:
+  - @chakra-ui/hooks@1.8.5
+
 ## 1.4.5
 
 ### Patch Changes

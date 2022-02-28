@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.0.4
+
+### Patch Changes
+
+- [#5651](https://github.com/chakra-ui/chakra-ui/pull/5651)
+  [`d6bed344f`](https://github.com/chakra-ui/chakra-ui/commit/d6bed344f30af50c84d3ed802ec3f0c981586588)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - - Fixed an issue
+  that undefined is returned when calling the hook `useBreakpoint` with
+  `defaultValue` specified in SSR
+
+  - Fixed an issue where the value of `useBreakpointValue` in CSR did not match
+    SSR.
+
 ## 2.0.3
 
 ### Patch Changes

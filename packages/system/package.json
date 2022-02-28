@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/system",
-  "version": "1.11.1",
+  "version": "1.11.2",
   "description": "Chakra UI system primitives",
   "keywords": [
     "system",
@@ -35,7 +35,7 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/color-mode": "1.4.5",
+    "@chakra-ui/color-mode": "1.4.6",
     "@chakra-ui/react-utils": "1.2.3",
     "@chakra-ui/styled-system": "1.18.1",
     "@chakra-ui/utils": "1.10.4",

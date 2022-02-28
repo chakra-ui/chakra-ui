@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.7.7
+
+### Patch Changes
+
+- [#5632](https://github.com/chakra-ui/chakra-ui/pull/5632)
+  [`e4a990d41`](https://github.com/chakra-ui/chakra-ui/commit/e4a990d41ec4e48a3d92840e0d74cbbf4b17670c)
+  Thanks [@m4x3d](https://github.com/m4x3d)! - Fixed zIndex in LinkOverlay so
+  that content in LinkBox can have an opacity below 1
+
 ## 1.7.6
 
 ### Patch Changes

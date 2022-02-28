@@ -1,5 +1,14 @@
 # @chakra-ui/anatomy
 
+## 1.3.0
+
+### Minor Changes
+
+- [#4443](https://github.com/chakra-ui/chakra-ui/pull/4443)
+  [`fbe946223`](https://github.com/chakra-ui/chakra-ui/commit/fbe94622357e22acaf8bab0eae33ceae663d7a5b)
+  Thanks [@heozeop](https://github.com/heozeop)! - Add `textarea` part to
+  `editableAnatomy`
+
 ## 1.2.5
 
 ### Patch Changes
