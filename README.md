@@ -445,6 +445,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="http://lukasbach.com"><img src="https://avatars.githubusercontent.com/u/4140121?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Lukas Bach</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=lukasbach" title="Code">💻</a></td>
     <td align="center"><a href="https://nikolovlazar.com"><img src="https://avatars.githubusercontent.com/u/5396211?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Lazar Nikolov</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Anikolovlazar" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://iwata.love"><img src="https://avatars.githubusercontent.com/u/7393198?v=4?s=64" width="64px;" alt=""/><br /><sub><b>iwata</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Aishowta" title="Bug reports">🐛</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=ishowta" title="Code">💻</a></td>
+    <td align="center"><a href="https://shining-cerise-a8f.notion.site/Crispy-4f6d4f0c15d64b9abfdaf73a0dffdf63"><img src="https://avatars.githubusercontent.com/u/29042329?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Lee seung chan</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=heozeop" title="Code">💻</a></td>
   </tr>
 </table>
 
