@@ -221,4 +221,72 @@ describe("Theme typings", () => {
       "
     `)
   })
+
+  it("should include semantic tokens", async () => {
+    const themeInterface = await createThemeTypingsInterface(
+      {
+        colors: {
+          gray: {
+            50: "lightgray",
+            900: "darkgray",
+          },
+          red: {
+            400: "lightred",
+            500: "red",
+          },
+        },
+        semanticTokens: {
+          colors: {
+            text: {
+              default: "gray.900",
+              _dark: "gray.50",
+            },
+            "feedback.error": {
+              default: "red.500",
+              _dark: "red.400",
+            },
+          },
+        },
+      },
+      {
+        config: themeKeyConfiguration,
+      },
+    )
+
+    expect(themeInterface).toMatchInlineSnapshot(`
+      "// regenerate by running
+      // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
+      export interface ThemeTypings {
+        blur: string & {}
+        borders: string & {}
+        borderStyles: string & {}
+        borderWidths: string & {}
+        breakpoints: string & {}
+        colors:
+          | \\"gray.50\\"
+          | \\"gray.900\\"
+          | \\"red.400\\"
+          | \\"red.500\\"
+          | \\"text\\"
+          | \\"feedback.error\\"
+          | (string & {})
+        colorSchemes: string & {}
+        fonts: string & {}
+        fontSizes: string & {}
+        fontWeights: string & {}
+        layerStyles: string & {}
+        letterSpacings: string & {}
+        lineHeights: string & {}
+        radii: string & {}
+        shadows: string & {}
+        sizes: string & {}
+        space: string & {}
+        textStyles: string & {}
+        transition: string & {}
+        zIndices: string & {}
+        components: {}
+      }
+      "
+    `)
+  })
 })
