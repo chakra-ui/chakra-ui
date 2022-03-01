@@ -96,7 +96,7 @@ const baseStyle: SystemStyleFunction = (props) => {
         my: 3,
 
         "::marker": {
-          color: mode("gray.600", "gray.400")(props),
+          color: mode("gray.500", "gray.400")(props),
         },
       },
     },
