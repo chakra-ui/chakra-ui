@@ -44,6 +44,8 @@ export interface UseImageProps {
 
 type Status = "loading" | "failed" | "pending" | "loaded"
 
+export type FallbackStrategy = "onError" | "beforeLoadOrError"
+
 type ImageEvent = React.SyntheticEvent<HTMLImageElement, Event>
 
 /**
@@ -137,5 +139,12 @@ export function useImage(props: UseImageProps) {
    */
   return ignoreFallback ? "loaded" : status
 }
+
+export const shouldShowFallbackImage = (
+  status: Status,
+  fallbackStrategy: FallbackStrategy,
+) =>
+  (status !== "loaded" && fallbackStrategy === "beforeLoadOrError") ||
+  (status === "failed" && fallbackStrategy === "onError")
 
 export type UseImageReturn = ReturnType<typeof useImage>
