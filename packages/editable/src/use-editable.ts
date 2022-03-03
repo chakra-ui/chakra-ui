@@ -161,6 +161,10 @@ export function useEditable(props: UseEditableProps = {}) {
     }
   }, [isInteractive])
 
+  const onUpdatePrevValue = useCallback(() => {
+    setPrevValue(value)
+  }, [value])
+
   const onCancel = useCallback(() => {
     setIsEditing(false)
     setValue(prevValue)
@@ -247,7 +251,7 @@ export function useEditable(props: UseEditableProps = {}) {
         hidden: isEditing,
         "aria-disabled": ariaAttr(isDisabled),
         tabIndex,
-        onFocus: callAllHandlers(props.onFocus, onEdit),
+        onFocus: callAllHandlers(props.onFocus, onEdit, onUpdatePrevValue),
       }
     },
     [
@@ -257,6 +261,7 @@ export function useEditable(props: UseEditableProps = {}) {
       isPreviewFocusable,
       isValueEmpty,
       onEdit,
+      onUpdatePrevValue,
       placeholder,
       value,
     ],
@@ -277,8 +282,18 @@ export function useEditable(props: UseEditableProps = {}) {
       onBlur: callAllHandlers(props.onBlur, onBlur),
       onChange: callAllHandlers(props.onChange, onChange),
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+      onFocus: callAllHandlers(props.onFocus, onUpdatePrevValue),
     }),
-    [isDisabled, isEditing, onBlur, onChange, onKeyDown, placeholder, value],
+    [
+      isDisabled,
+      isEditing,
+      onBlur,
+      onChange,
+      onKeyDown,
+      onUpdatePrevValue,
+      placeholder,
+      value,
+    ],
   )
 
   const getTextareaProps: PropGetterV2<
@@ -296,6 +311,7 @@ export function useEditable(props: UseEditableProps = {}) {
       onBlur: callAllHandlers(props.onBlur, onBlur),
       onChange: callAllHandlers(props.onChange, onChange),
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDownWithoutSubmit),
+      onFocus: callAllHandlers(props.onFocus, onUpdatePrevValue),
     }),
     [
       isDisabled,
@@ -303,6 +319,7 @@ export function useEditable(props: UseEditableProps = {}) {
       onBlur,
       onChange,
       onKeyDownWithoutSubmit,
+      onUpdatePrevValue,
       placeholder,
       value,
     ],

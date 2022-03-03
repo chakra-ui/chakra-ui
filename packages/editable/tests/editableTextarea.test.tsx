@@ -6,7 +6,12 @@ import {
   userEvent,
 } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { Editable, EditablePreview, EditableTextarea } from "../src"
+import {
+  Editable,
+  EditableInput,
+  EditablePreview,
+  EditableTextarea,
+} from "../src"
 
 test("matches snapshot", () => {
   render(
@@ -209,3 +214,55 @@ test("editable textarea can submit on blur", () => {
   fireEvent.blur(textarea)
   expect(onSubmit).toHaveBeenCalledWith("testing")
 })
+test.each([
+  { startWithEditView: true, text: undefined },
+  { startWithEditView: false, text: undefined },
+  { startWithEditView: true, text: "Bob" },
+  { startWithEditView: false, text: "Bob" },
+])(
+  "controlled: sets value toPrevValue onCancel, startWithEditView: $startWithEditView",
+  ({ startWithEditView, text }) => {
+    const Component = () => {
+      const [name, setName] = React.useState("")
+
+      React.useEffect(() => {
+        setName("John")
+      }, [])
+
+      return (
+        <Editable
+          value={name}
+          startWithEditView={startWithEditView}
+          onChange={(value) => {
+            setName(value)
+          }}
+          onSubmit={(value) => {
+            setName(value)
+          }}
+          onCancel={(value) => {
+            setName(value)
+          }}
+          placeholder="Enter your name"
+        >
+          <EditablePreview data-testid="preview" />
+          <EditableTextarea data-testid="input" />
+        </Editable>
+      )
+    }
+
+    render(<Component />)
+    const input = screen.getByTestId("input")
+    const preview = screen.getByTestId("preview")
+    if (!startWithEditView) {
+      fireEvent.focus(preview)
+    } else {
+      fireEvent.focus(input)
+    }
+    if (text) {
+      userEvent.type(input, text)
+    }
+    fireEvent.keyDown(input, { key: "Escape" })
+
+    expect(preview).toHaveTextContent("John")
+  },
+)
