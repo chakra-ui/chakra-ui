@@ -217,7 +217,7 @@ export function useToast(options?: UseToastOptions) {
       colorMode,
       setColorMode,
       toggleColorMode,
-      defaultOptions: toastOptions.current,
+      defaultOptions: { ...defaults, ...toastOptions.current },
     })
   }, [theme, setColorMode, toggleColorMode, colorMode, toastOptions])
 }
