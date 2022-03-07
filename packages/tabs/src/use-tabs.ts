@@ -276,7 +276,7 @@ export interface UseTabProps
  */
 export function useTab<P extends UseTabProps>(props: P) {
   const { isDisabled, isFocusable, ...htmlProps } = props
-  // test
+
   const { setSelectedIndex, isManual, id, setFocusedIndex, selectedIndex } =
     useTabsContext()
 
