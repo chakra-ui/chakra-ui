@@ -10,6 +10,8 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  ModalProps,
+  useImperativeModal,
 } from "../src"
 
 const Button = chakra("button", {
@@ -193,6 +195,58 @@ export const FullWithLongContent = () => {
           </ModalFooter>
         </ModalContent>
       </Modal>
+    </>
+  )
+}
+
+export const ImperativeModal = () => {
+  const ExampleModal: React.FC<
+    Omit<ModalProps, "children"> & {
+      onCancel: () => void
+      onConfirm: () => void
+    }
+  > = (props) => {
+    return (
+      <Modal {...props}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>Just an example Body</ModalBody>
+
+          <ModalFooter>
+            <Button mr={3} onClick={props.onConfirm}>
+              Confirm
+            </Button>
+            <Button onClick={props.onCancel}>Cancel</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    )
+  }
+
+  const [modalNode, openModal] = useImperativeModal()
+
+  const onClick = async () => {
+    // render a modal inside a function and get the result back from it
+    const modalResult = await openModal<boolean>(({ onClose }) => (
+      <ExampleModal
+        isOpen
+        onClose={() => onClose(false)}
+        onCancel={() => onClose(false)}
+        onConfirm={() => onClose(true)}
+      />
+    ))
+    if (modalResult) {
+      alert("user confirmed alert")
+    } else {
+      alert("user canceled alert")
+    }
+  }
+  return (
+    <>
+      {modalNode}
+      <Button onClick={onClick}>Click me to open a modal imperatively</Button>
     </>
   )
 }
