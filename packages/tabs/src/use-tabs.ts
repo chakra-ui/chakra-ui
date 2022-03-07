@@ -276,7 +276,7 @@ export interface UseTabProps
  */
 export function useTab<P extends UseTabProps>(props: P) {
   const { isDisabled, isFocusable, ...htmlProps } = props
-
+  // test
   const { setSelectedIndex, isManual, id, setFocusedIndex, selectedIndex } =
     useTabsContext()
 
@@ -444,7 +444,7 @@ export function useTabIndicator(): React.CSSProperties {
 
   return {
     position: "absolute",
-    transitionProperty: "left, right, top, bottom, width",
+    transitionProperty: "left, right, top, bottom, height, width",
     transitionDuration: hasMeasured ? "200ms" : "0ms",
     transitionTimingFunction: "cubic-bezier(0, 0, 0.2, 1)",
     ...rect,

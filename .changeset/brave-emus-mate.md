@@ -2,4 +2,4 @@
 "@chakra-ui/tabs": patch
 ---
 
-Include width in TabIndicator transition properties
+Add height & width to the TabIndicator transition properties
