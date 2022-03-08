@@ -31,8 +31,10 @@ export interface SimpleGridProps extends GridProps, SimpleGridOptions {}
 /**
  * SimpleGrid
  *
- * React component make that providers a simpler interface, and
- * make its easy to create responsive grid layouts.
+ * React component that uses the `Grid` component and provides
+ * a simpler interface to create responsive grid layouts.
+ * 
+ * Provides props that easily define columns and spacing.
  *
  * @see Docs https://chakra-ui.com/simplegrid
  */
