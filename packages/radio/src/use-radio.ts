@@ -76,6 +76,17 @@ export interface UseRadioProps {
   "aria-describedby"?: string
 }
 
+export interface RadioState {
+  isInvalid: boolean | undefined
+  isFocused: boolean
+  isChecked: boolean
+  isActive: boolean
+  isHovered: boolean
+  isDisabled: boolean | undefined
+  isReadOnly: boolean | undefined
+  isRequired: boolean | undefined
+}
+
 export function useRadio(props: UseRadioProps = {}) {
   const {
     defaultIsChecked,
@@ -163,7 +174,7 @@ export function useRadio(props: UseRadioProps = {}) {
     [setActive],
   )
 
-  const getCheckboxProps: PropGetter = useCallback(
+  const getRadioProps: PropGetter = useCallback(
     (props = {}, ref = null) => ({
       ...props,
       ref,
@@ -263,18 +274,21 @@ export function useRadio(props: UseRadioProps = {}) {
     "data-invalid": dataAttr(isInvalid),
   })
 
+  const state: RadioState = {
+    isInvalid,
+    isFocused,
+    isChecked,
+    isActive,
+    isHovered,
+    isDisabled,
+    isReadOnly,
+    isRequired,
+  }
+
   return {
-    state: {
-      isInvalid,
-      isFocused,
-      isChecked,
-      isActive,
-      isHovered,
-      isDisabled,
-      isReadOnly,
-      isRequired,
-    },
-    getCheckboxProps,
+    state,
+    // the function is renamed to getRadioProps to make the code more consistent. It is renamed towards outside because otherwise this would produce a breaking change
+    getCheckboxProps: getRadioProps,
     getInputProps,
     getLabelProps,
     getRootProps,
@@ -283,7 +297,7 @@ export function useRadio(props: UseRadioProps = {}) {
 }
 
 /**
- * Prevent `onBlur` being fired when the checkbox label is touched
+ * Prevent `onBlur` being fired when the radio label is touched
  */
 function stop(event: SyntheticEvent) {
   event.preventDefault()
