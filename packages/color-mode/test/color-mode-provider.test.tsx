@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import React from "react"
-import { ColorModeProvider } from "../src"
+import { ColorModeProvider } from "../src/color-mode-provider"
 import * as colorModeUtils from "../src/color-mode.utils"
 import {
   defaultThemeOptions,

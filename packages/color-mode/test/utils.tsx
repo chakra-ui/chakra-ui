@@ -1,14 +1,12 @@
-import * as React from "react"
 import theme from "@chakra-ui/theme"
 import { screen } from "@testing-library/react"
-import {
-  useColorMode,
-  ColorModeOptions,
-  ColorMode,
-  StorageManager,
-} from "../src"
+import React from "react"
+import { ColorModeOptions } from "../src/color-mode-provider"
+import type { ColorMode } from "../src/color-mode.utils"
+import type { StorageManager } from "../src/storage-manager"
 
 export const DummyComponent = () => {
+  const { useColorMode } = require("../src/color-mode-provider")
   const { colorMode, toggleColorMode } = useColorMode()
 
   return (
@@ -16,6 +14,22 @@ export const DummyComponent = () => {
       {colorMode}
     </button>
   )
+}
+
+var renderCount = 0
+
+export const resetCounter = () => {
+  renderCount = 0
+}
+
+export const MemoizedComponent = React.memo(() => {
+  renderCount = renderCount + 1
+  return <div data-testid="rendered">{renderCount}</div>
+})
+
+export const RegularComponent = () => {
+  renderCount = renderCount + 1
+  return <div data-testid="rendered">{renderCount}</div>
 }
 
 export const getColorModeButton = () => screen.getByRole("button")
