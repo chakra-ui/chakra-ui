@@ -1,11 +1,5 @@
 import { useCallbackRef, useControllableState } from "@chakra-ui/hooks"
-import {
-  addItem,
-  Dict,
-  removeItem,
-  StringOrNumber,
-  isInputEvent,
-} from "@chakra-ui/utils"
+import { addItem, Dict, StringOrNumber, isInputEvent } from "@chakra-ui/utils"
 import { ChangeEvent, useCallback } from "react"
 
 type EventOrValue = ChangeEvent<HTMLInputElement> | StringOrNumber
@@ -73,7 +67,7 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
 
       const nextValue = isChecked
         ? addItem(value, selectedValue)
-        : removeItem(value, selectedValue)
+        : value.filter((v) => String(v) !== String(selectedValue))
 
       setValue(nextValue)
     },
@@ -85,7 +79,7 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
       const checkedKey = isNative ? "checked" : "isChecked"
       return {
         ...props,
-        [checkedKey]: value.includes(props.value),
+        [checkedKey]: value.some((val) => String(props.value) === String(val)),
         onChange: handleChange,
       }
     },

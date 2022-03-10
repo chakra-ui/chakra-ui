@@ -1,5 +1,125 @@
 # Change Log
 
+## 1.7.7
+
+### Patch Changes
+
+- [#5632](https://github.com/chakra-ui/chakra-ui/pull/5632)
+  [`e4a990d41`](https://github.com/chakra-ui/chakra-ui/commit/e4a990d41ec4e48a3d92840e0d74cbbf4b17670c)
+  Thanks [@m4x3d](https://github.com/m4x3d)! - Fixed zIndex in LinkOverlay so
+  that content in LinkBox can have an opacity below 1
+
+## 1.7.6
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/icon@2.0.5
+  - @chakra-ui/react-utils@1.2.3
+  - @chakra-ui/utils@1.10.4
+
+## 1.7.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`c2bcba11c`](https://github.com/chakra-ui/chakra-ui/commit/c2bcba11ca60c175b35dff10a922e600c3fd065c)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/icon@2.0.4
+
+## 1.7.4
+
+### Patch Changes
+
+- [#5536](https://github.com/chakra-ui/chakra-ui/pull/5536)
+  [`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process.
+
+- Updated dependencies
+  [[`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)]:
+  - @chakra-ui/icon@2.0.3
+  - @chakra-ui/react-utils@1.2.2
+  - @chakra-ui/utils@1.10.2
+
+## 1.7.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b)]:
+  - @chakra-ui/utils@1.10.1
+  - @chakra-ui/icon@2.0.2
+
+## 1.7.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3)]:
+  - @chakra-ui/utils@1.10.0
+  - @chakra-ui/icon@2.0.1
+
+## 1.7.1
+
+### Patch Changes
+
+- [#5276](https://github.com/chakra-ui/chakra-ui/pull/5276)
+  [`5f9407742`](https://github.com/chakra-ui/chakra-ui/commit/5f940774223c5b747a5b6eccff7657eabbe34776)
+  Thanks [@prashanth-cpaul](https://github.com/prashanth-cpaul)! - ### Add
+  support for `area` prop on `GridItem`
+
+  Deprecated `area` prop on `Grid` and added support for `area` prop to be used
+  with `GridItem` instead. This allows for usage of `GridItem`'s that have named
+  template areas to be used in conjunction with a `Grid` that has a defined
+  template area.
+
+  ```jsx live=false
+  <Grid templateAreas='"one two three"'>
+    <GridItem area="one">one</Grid>
+    <GridItem area="two">two</Grid>
+    <GridItem area="three">three</Grid>
+  </Grid>
+  ```
+
+## 1.7.0
+
+### Minor Changes
+
+- [#5137](https://github.com/chakra-ui/chakra-ui/pull/5137)
+  [`e624a277a`](https://github.com/chakra-ui/chakra-ui/commit/e624a277ac7f75af9ec5c1d2cc010b54c165f430)
+  Thanks [@Patrick-Ullrich](https://github.com/Patrick-Ullrich)! - Improve error
+  message when using `ListItem` without wrapping in `List`.
+
+## 1.6.0
+
+### Minor Changes
+
+- [#5123](https://github.com/chakra-ui/chakra-ui/pull/5123)
+  [`26d2a547b`](https://github.com/chakra-ui/chakra-ui/commit/26d2a547bca20e197f352c7492e3cad197b513e6)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Add support for
+  style props `gap`, `columnGap` and `rowGap`. Those CSS properties are valid in
+  a grid or flex context
+
+  > For further information see
+  > [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/gap)
+
+### Patch Changes
+
+- [`f565841c6`](https://github.com/chakra-ui/chakra-ui/commit/f565841c6215a5a187dc4ea18d9188277ff2ce4e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix TS issue with
+  Grid component due to the native `gap`, `rowGap` and `columnGap` we added to
+  styled system.
+- Updated dependencies
+  [[`17400aff6`](https://github.com/chakra-ui/chakra-ui/commit/17400aff62601c1b70dcc4e60af1fadf3915f3e0)]:
+  - @chakra-ui/icon@2.0.0
+
 ## 1.5.1
 
 ### Patch Changes

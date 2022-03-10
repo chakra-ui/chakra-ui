@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/transition",
-  "version": "1.4.1",
+  "version": "1.4.7",
   "description": "Common transition components for Chakra UI",
   "sideEffects": false,
   "keywords": [
@@ -33,10 +33,10 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.9.1"
+    "@chakra-ui/utils": "1.10.4"
   },
   "peerDependencies": {
-    "framer-motion": "3.x || 4.x || 5.x",
+    "framer-motion": "3.x || 4.x || 5.x || 6.x",
     "react": ">=16.8.6"
   },
   "devDependencies": {

@@ -2,8 +2,15 @@ import {
   useControllableState,
   useFocusOnPointerDown,
   useUpdateEffect,
+  useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
-import { EventKeyMap, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
+import {
+  EventKeyMap,
+  mergeRefs,
+  PropGetter,
+  PropGetterV2,
+} from "@chakra-ui/react-utils"
+import { HTMLChakraProps } from "@chakra-ui/system"
 import {
   ariaAttr,
   callAllHandlers,
@@ -112,7 +119,7 @@ export function useEditable(props: UseEditableProps = {}) {
   /**
    * Ref to help focus the input in edit mode
    */
-  const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
   const previewRef = useRef<any>(null)
 
   const editButtonRef = useRef<HTMLButtonElement>(null)
@@ -126,6 +133,14 @@ export function useEditable(props: UseEditableProps = {}) {
   })
 
   const isInteractive = !isEditing || !isDisabled
+
+  useSafeLayoutEffect(() => {
+    if (isEditing) {
+      focus(inputRef.current, {
+        selectTextIfInput: selectAllOnFocus,
+      })
+    }
+  }, [])
 
   useUpdateEffect(() => {
     if (!isEditing) {
@@ -159,8 +174,8 @@ export function useEditable(props: UseEditableProps = {}) {
   }, [value, onSubmitProp])
 
   const onChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValue(event.target.value)
+    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setValue(event.currentTarget.value)
     },
     [setValue],
   )
@@ -186,6 +201,24 @@ export function useEditable(props: UseEditableProps = {}) {
       }
     },
     [onCancel, onSubmit],
+  )
+
+  const onKeyDownWithoutSubmit = useCallback(
+    (event: React.KeyboardEvent) => {
+      const eventKey = normalizeEventKey(event)
+
+      const keyMap: EventKeyMap = {
+        Escape: onCancel,
+      }
+
+      const action = keyMap[eventKey]
+
+      if (action) {
+        event.preventDefault()
+        action(event)
+      }
+    },
+    [onCancel],
   )
 
   const isValueEmpty = isEmpty(value)
@@ -229,7 +262,10 @@ export function useEditable(props: UseEditableProps = {}) {
     ],
   )
 
-  const getInputProps: PropGetter = useCallback(
+  const getInputProps: PropGetterV2<
+    "input",
+    HTMLChakraProps<"input">
+  > = useCallback(
     (props = {}, ref = null) => ({
       ...props,
       hidden: !isEditing,
@@ -243,6 +279,33 @@ export function useEditable(props: UseEditableProps = {}) {
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
     }),
     [isDisabled, isEditing, onBlur, onChange, onKeyDown, placeholder, value],
+  )
+
+  const getTextareaProps: PropGetterV2<
+    "textarea",
+    HTMLChakraProps<"textarea">
+  > = useCallback(
+    (props = {}, ref = null) => ({
+      ...props,
+      hidden: !isEditing,
+      placeholder,
+      ref: mergeRefs(ref, inputRef),
+      disabled: isDisabled,
+      "aria-disabled": ariaAttr(isDisabled),
+      value,
+      onBlur: callAllHandlers(props.onBlur, onBlur),
+      onChange: callAllHandlers(props.onChange, onChange),
+      onKeyDown: callAllHandlers(props.onKeyDown, onKeyDownWithoutSubmit),
+    }),
+    [
+      isDisabled,
+      isEditing,
+      onBlur,
+      onChange,
+      onKeyDownWithoutSubmit,
+      placeholder,
+      value,
+    ],
   )
 
   const getEditButtonProps: PropGetter = useCallback(
@@ -289,6 +352,7 @@ export function useEditable(props: UseEditableProps = {}) {
     onSubmit,
     getPreviewProps,
     getInputProps,
+    getTextareaProps,
     getEditButtonProps,
     getSubmitButtonProps,
     getCancelButtonProps,

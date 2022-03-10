@@ -1,5 +1,118 @@
 # Change Log
 
+## 2.0.4
+
+### Patch Changes
+
+- [#5651](https://github.com/chakra-ui/chakra-ui/pull/5651)
+  [`d6bed344f`](https://github.com/chakra-ui/chakra-ui/commit/d6bed344f30af50c84d3ed802ec3f0c981586588)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - - Fixed an issue
+  that undefined is returned when calling the hook `useBreakpoint` with
+  `defaultValue` specified in SSR
+
+  - Fixed an issue where the value of `useBreakpointValue` in CSR did not match
+    SSR.
+
+## 2.0.3
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/react-env@1.1.6
+  - @chakra-ui/utils@1.10.4
+
+## 2.0.2
+
+### Patch Changes
+
+- [#5574](https://github.com/chakra-ui/chakra-ui/pull/5574)
+  [`eca771a9a`](https://github.com/chakra-ui/chakra-ui/commit/eca771a9ad53edc52365f70eb0e6b19bc54d8e18)
+  Thanks [@nikolovlazar](https://github.com/nikolovlazar)! - Added props
+  descriptions to Show / Hide components
+
+* [#5576](https://github.com/chakra-ui/chakra-ui/pull/5576)
+  [`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue
+  where the hook `useBreakpoint` did not update after the first page load.
+
+- [#5625](https://github.com/chakra-ui/chakra-ui/pull/5625)
+  [`99c92df93`](https://github.com/chakra-ui/chakra-ui/commit/99c92df9331e6a0c5667b77e5a605343efccc6b3)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue
+  where the `useBreakpointValue` hook did not work as expected with custom
+  breakpoints
+- Updated dependencies
+  [[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/react-env@1.1.5
+
+## 2.0.1
+
+### Patch Changes
+
+- [#5536](https://github.com/chakra-ui/chakra-ui/pull/5536)
+  [`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process.
+
+- Updated dependencies
+  [[`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)]:
+  - @chakra-ui/react-env@1.1.4
+  - @chakra-ui/utils@1.10.2
+
+## 2.0.0
+
+### Major Changes
+
+- [#5474](https://github.com/chakra-ui/chakra-ui/pull/5474)
+  [`85aec4f7a`](https://github.com/chakra-ui/chakra-ui/commit/85aec4f7abbd7a289e7ad82c3dcfc465d84184ed)
+  Thanks [@Edjevw12](https://github.com/Edjevw12)! - Support useMediaQuery for
+  older browsers. Conditionally check if the MediaQueryList object supports the
+  addEventListener() method, else fallback to the legacy .addListener() method.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b)]:
+  - @chakra-ui/utils@1.10.1
+  - @chakra-ui/react-env@1.1.3
+
+## 1.2.4
+
+### Patch Changes
+
+- [#5355](https://github.com/chakra-ui/chakra-ui/pull/5355)
+  [`22171af7f`](https://github.com/chakra-ui/chakra-ui/commit/22171af7f78b41d37171dbd4d1307ef82ea880b6)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Update typings for
+  useBreakpointValue parameter
+
+- Updated dependencies
+  [[`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3)]:
+  - @chakra-ui/utils@1.10.0
+  - @chakra-ui/react-env@1.1.2
+
+## 1.2.3
+
+### Patch Changes
+
+- [#5234](https://github.com/chakra-ui/chakra-ui/pull/5234)
+  [`bc2613a9a`](https://github.com/chakra-ui/chakra-ui/commit/bc2613a9ab8273c844ed071947164f0a82ad9ea4)
+  Thanks [@nxtman123](https://github.com/nxtman123)! - `useBreakpointValue`
+  returns the correct value on first tick, if `matchMedia` is available
+
+## 1.2.2
+
+### Patch Changes
+
+- [#5135](https://github.com/chakra-ui/chakra-ui/pull/5135)
+  [`53e2df4f9`](https://github.com/chakra-ui/chakra-ui/commit/53e2df4f9cbe7fc2fad69d1ee49a1e788811467a)
+  Thanks [@primos63](https://github.com/primos63)! - Improved performance and
+  behavior of `useMediaQuery` hook.
+
 ## 1.2.1
 
 ### Patch Changes

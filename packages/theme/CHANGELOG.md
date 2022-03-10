@@ -1,5 +1,225 @@
 # Change Log
 
+## 1.14.0
+
+### Minor Changes
+
+- [#4443](https://github.com/chakra-ui/chakra-ui/pull/4443)
+  [`fbe946223`](https://github.com/chakra-ui/chakra-ui/commit/fbe94622357e22acaf8bab0eae33ceae663d7a5b)
+  Thanks [@heozeop](https://github.com/heozeop)! - Add styles for new `textarea`
+  element in `Editable`
+
+### Patch Changes
+
+- Updated dependencies
+  [[`fbe946223`](https://github.com/chakra-ui/chakra-ui/commit/fbe94622357e22acaf8bab0eae33ceae663d7a5b)]:
+  - @chakra-ui/anatomy@1.3.0
+
+## 1.13.4
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/anatomy@1.2.5
+  - @chakra-ui/theme-tools@1.3.6
+  - @chakra-ui/utils@1.10.4
+
+## 1.13.3
+
+### Patch Changes
+
+- [#5595](https://github.com/chakra-ui/chakra-ui/pull/5595)
+  [`0542b8a53`](https://github.com/chakra-ui/chakra-ui/commit/0542b8a53425093f18fd86d2b55220d3fa20253a)
+  Thanks [@takethefake](https://github.com/takethefake)! - Add a new multi style
+  part `root` to the Accordion component. It is applied to the topmost DOM
+  element.
+- Updated dependencies
+  [[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`0542b8a53`](https://github.com/chakra-ui/chakra-ui/commit/0542b8a53425093f18fd86d2b55220d3fa20253a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/anatomy@1.2.4
+  - @chakra-ui/theme-tools@1.3.5
+
+## 1.13.2
+
+### Patch Changes
+
+- [#5536](https://github.com/chakra-ui/chakra-ui/pull/5536)
+  [`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process.
+
+- Updated dependencies
+  [[`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)]:
+  - @chakra-ui/anatomy@1.2.3
+  - @chakra-ui/theme-tools@1.3.4
+  - @chakra-ui/utils@1.10.2
+
+## 1.13.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b),
+  [`98c5ec2bc`](https://github.com/chakra-ui/chakra-ui/commit/98c5ec2bc37fc0764446c3e4df816131418c14e1)]:
+  - @chakra-ui/utils@1.10.1
+  - @chakra-ui/anatomy@1.2.2
+  - @chakra-ui/theme-tools@1.3.3
+
+## 1.13.0
+
+### Minor Changes
+
+- [#5316](https://github.com/chakra-ui/chakra-ui/pull/5316)
+  [`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Introducing
+  **semantic tokens**
+
+  Semantic tokens provide the ability to create css variables which can change
+  with a CSS condition.
+
+  ```tsx live=false
+  import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+
+  const customTheme = extendTheme({
+    colors: {
+      900: "#171923",
+    },
+  })
+
+  const App = () => (
+    <ChakraProvider theme={customTheme}>
+      <Text color="gray.900">will always be gray.900</Text>
+    </ChakraProvider>
+  )
+  ```
+
+  ```tsx live=false
+  import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+
+  const customTheme = extendTheme({
+    colors: {
+      50: "#F7FAFC",
+      900: "#171923",
+    },
+    semanticTokens: {
+      colors: {
+        text: {
+          default: "gray.900",
+          _dark: "gray.50",
+        },
+      },
+    },
+  })
+
+  const App = () => (
+    <ChakraProvider theme={customTheme}>
+      <Text color="text">
+        will be gray.900 in light mode and gray.50 in dark mode
+      </Text>
+    </ChakraProvider>
+  )
+  ```
+
+  ```tsx live=false
+  import { extendTheme } from "@chakra-ui/react"
+
+  const theme = extendTheme({
+    colors: {
+      red: {
+        100: "#ff0010",
+        400: "#ff0040",
+        500: "#ff0050",
+        700: "#ff0070",
+        800: "#ff0080",
+      },
+    },
+    semanticTokens: {
+      colors: {
+        error: "red.500", // create a token alias
+        success: "red.100",
+        primary: {
+          // set variable conditionally with pseudo selectors like `_dark` and `_light`
+          // use `default` to define fallback value
+          default: "red.500",
+          _dark: "red.400",
+        },
+        secondary: {
+          default: "red.800",
+          _dark: "red.700",
+        },
+      },
+    },
+  })
+  ```
+
+* [#5419](https://github.com/chakra-ui/chakra-ui/pull/5419)
+  [`a5f3bfce8`](https://github.com/chakra-ui/chakra-ui/commit/a5f3bfce846b44c9a4bdcd0bb80c17eb38da75a7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add entrypoints to
+  the different parts of the theme (colors, fonts, components, spacing, etc.)
+
+  ```jsx live=false
+  // Now you can use only colors from the theme
+  import colors from "@chakra-ui/theme/foundations/colors"
+  ```
+
+  Here's a table of the theme parts and entrypoints
+
+  | Part        | Entrypoint                                  |
+  | ----------- | ------------------------------------------- |
+  | components  | `"@chakra-ui/theme/components"`             |
+  | foundations | `"@chakra-ui/theme/foundations"`            |
+  | colors      | `"@chakra-ui/theme/foundations/colors"`     |
+  | sizes       | `"@chakra-ui/theme/foundations/sizes"`      |
+  | spacing     | `"@chakra-ui/theme/foundations/spacing"`    |
+  | typography  | `"@chakra-ui/theme/foundations/typography"` |
+  | radius      | `"@chakra-ui/theme/foundations/radius"`     |
+  | shadows     | `"@chakra-ui/theme/foundations/shadows"`    |
+  | transition  | `"@chakra-ui/theme/foundations/transition"` |
+  | zIndex      | `"@chakra-ui/theme/foundations/z-index"`    |
+  | blur        | `"@chakra-ui/theme/foundations/blur"`       |
+  | borders     | `"@chakra-ui/theme/foundations/borders"`    |
+
+### Patch Changes
+
+- [#5371](https://github.com/chakra-ui/chakra-ui/pull/5371)
+  [`c393dd268`](https://github.com/chakra-ui/chakra-ui/commit/c393dd26808a06a8a6bd19839f4b2f1995157315)
+  Thanks [@selbekk](https://github.com/selbekk)! - refactoring(theme): Simplify
+  exports
+
+- Updated dependencies
+  [[`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3),
+  [`ebf1d98be`](https://github.com/chakra-ui/chakra-ui/commit/ebf1d98be17128e62b0ee7867da3698781a5974d)]:
+  - @chakra-ui/utils@1.10.0
+  - @chakra-ui/theme-tools@1.3.2
+
+## 1.12.3
+
+### Patch Changes
+
+- [#5298](https://github.com/chakra-ui/chakra-ui/pull/5298)
+  [`3199b7242`](https://github.com/chakra-ui/chakra-ui/commit/3199b724237c56dc3a9c25811a88b2bea1b36ce9)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Ensure consistent
+  line height for `FormErrorMessage` and `FormHelperText`
+
+* [#5297](https://github.com/chakra-ui/chakra-ui/pull/5297)
+  [`eb5850687`](https://github.com/chakra-ui/chakra-ui/commit/eb5850687e0984d95c3dd06e57716188c69cae42)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue
+  where the `ModalFooter` was out of the viewport for `size="full"`.
+
+## 1.12.2
+
+### Patch Changes
+
+- [`f15099adc`](https://github.com/chakra-ui/chakra-ui/commit/f15099adc60150781607288dbe12133c2fb84e38)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  tokens autocomplete don't show up anymore except user runs the cli command.
+
 ## 1.12.1
 
 ### Patch Changes

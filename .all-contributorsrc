@@ -2017,6 +2017,71 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "ngxCoder",
+      "name": "ngxCoder",
+      "avatar_url": "https://avatars.githubusercontent.com/u/87735757?v=4",
+      "profile": "https://ngxcoder.dev/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "selbekk",
+      "name": "Kristofer Giltvedt Selbekk",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1307267?v=4",
+      "profile": "https://www.selbekk.io",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "noobinthisgame",
+      "name": "Johann Ehlers",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21695702?v=4",
+      "profile": "http://johann-ehlers.eu",
+      "contributions": [
+        "doc",
+        "code"
+      ]
+    },
+    {
+      "login": "lukasbach",
+      "name": "Lukas Bach",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4140121?v=4",
+      "profile": "http://lukasbach.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "nikolovlazar",
+      "name": "Lazar Nikolov",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5396211?v=4",
+      "profile": "https://nikolovlazar.com",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "ishowta",
+      "name": "iwata",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7393198?v=4",
+      "profile": "https://iwata.love",
+      "contributions": [
+        "bug",
+        "code"
+      ]
+    },
+    {
+      "login": "heozeop",
+      "name": "Lee seung chan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/29042329?v=4",
+      "profile": "https://shining-cerise-a8f.notion.site/Crispy-4f6d4f0c15d64b9abfdaf73a0dffdf63",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

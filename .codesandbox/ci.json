@@ -2,7 +2,9 @@
   "node": "14",
   "installCommand": "csb:install",
   "buildCommand": "build",
-  "sandboxes": ["/examples/create-react-app"],
+  "sandboxes": [
+    "/examples/create-react-app"
+  ],
   "packages": [
     "packages/accordion",
     "packages/alert",

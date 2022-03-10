@@ -1,5 +1,94 @@
 # Change Log
 
+## 1.1.12
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@1.8.6
+
+## 1.1.11
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/react@1.8.5
+
+## 1.1.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@1.8.4
+
+## 1.1.9
+
+### Patch Changes
+
+- [#5536](https://github.com/chakra-ui/chakra-ui/pull/5536)
+  [`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process.
+
+- Updated dependencies
+  [[`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)]:
+  - @chakra-ui/react@1.8.3
+
+## 1.1.8
+
+### Patch Changes
+
+- Updated dependencies
+  [[`f1d024749`](https://github.com/chakra-ui/chakra-ui/commit/f1d02474983dc8277e767dc729abc3cbb02cfe10)]:
+  - @chakra-ui/react@1.8.2
+
+## 1.1.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@1.8.1
+
+## 1.1.6
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1b31b374c`](https://github.com/chakra-ui/chakra-ui/commit/1b31b374cbf413a551b8bd288da69e35c6bb8379)]:
+  - @chakra-ui/react@1.8.0
+
+## 1.1.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@1.7.5
+
+## 1.1.4
+
+### Patch Changes
+
+- [#4835](https://github.com/chakra-ui/chakra-ui/pull/4835)
+  [`12c31713c`](https://github.com/chakra-ui/chakra-ui/commit/12c31713c8c5df11bd7e3a16a5cf94311513dc2b)
+  Thanks [@igorwessel](https://github.com/igorwessel)! - Upgrade
+  `@testing-library/react-hooks` to test SSR. This was used to debug and fix
+  issues with the `useId` hook.
+- Updated dependencies []:
+  - @chakra-ui/react@1.7.4
+
+## 1.1.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`6efe10f21`](https://github.com/chakra-ui/chakra-ui/commit/6efe10f21077992acf0edd0a97f8d877bf97180c)]:
+  - @chakra-ui/react@1.7.3
+
 ## 1.1.2
 
 ### Patch Changes

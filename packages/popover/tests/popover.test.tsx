@@ -1,5 +1,11 @@
 import * as React from "react"
-import { fireEvent, render, screen, waitFor } from "@chakra-ui/test-utils"
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  userEvent,
+} from "@chakra-ui/test-utils"
 import { usePopover, UsePopoverProps } from "../src"
 
 const Component = (props: UsePopoverProps) => {
@@ -78,12 +84,59 @@ test("can close the popover by pressing escape", async () => {
   // utils.getByRole("dialog", { hidden: true })
 })
 
-test("load content lazily", async () => {
-  const utils = render(<Component isLazy lazyBehavior="keepMounted" />)
+type LazyPopoverContentProps = {
+  mockFn: () => Promise<any>
+}
+
+const LazyPopoverContent = (props: LazyPopoverContentProps) => {
+  const { mockFn } = props
+  React.useEffect(() => {
+    mockFn()
+  }, [])
+  return <p data-testid="lazy-content">Lazy content</p>
+}
+
+const LazyPopoverComponent = (
+  props: UsePopoverProps & LazyPopoverContentProps,
+) => {
+  const {
+    getTriggerProps,
+    getPopoverProps,
+    getPopoverPositionerProps,
+    onClose,
+  } = usePopover(props)
+
+  return (
+    <div>
+      <button type="button" {...getTriggerProps()}>
+        Open
+      </button>
+      <div {...getPopoverPositionerProps()}>
+        <div
+          {...getPopoverProps({
+            children: (
+              <div data-testid="content" tabIndex={0}>
+                <LazyPopoverContent mockFn={props.mockFn} />
+              </div>
+            ),
+          })}
+        />
+      </div>
+      <button type="button" onClick={onClose}>
+        Close
+      </button>
+    </div>
+  )
+}
+
+test("loads content lazily and unmounts the component from the DOM", async () => {
+  const mock = jest.fn()
+  const utils = render(<LazyPopoverComponent isLazy mockFn={mock} />)
 
   // by default, content should not be visible
   let content = screen.queryByTestId("content")
   expect(content).not.toBeInTheDocument()
+  expect(mock).toHaveBeenCalledTimes(0)
 
   // open the popover
   fireEvent.click(utils.getByText(/open/i))
@@ -91,12 +144,124 @@ test("load content lazily", async () => {
   const dialog = await utils.findByRole("dialog")
   content = screen.queryByTestId("content")
 
-  // content should now be visible
+  // content should now be in the DOM
   expect(content).toBeInTheDocument()
+  expect(content).toBeVisible()
+  expect(mock).toHaveBeenCalledTimes(1)
 
   // close the popover with escape
   fireEvent.keyDown(dialog, { key: "Escape" })
+  expect(content).not.toBeInTheDocument()
+  expect(content).not.toBeVisible()
 
-  // content should still be visible
+  // ensure that when popover reopens, it also
+  // gets remounted
+  fireEvent.click(utils.getByText(/open/i))
+  await utils.findByRole("dialog")
+
+  content = screen.queryByTestId("content")
   expect(content).toBeInTheDocument()
+  expect(content).toBeVisible()
+  expect(mock).toHaveBeenCalledTimes(2)
+})
+
+test("loads content lazily and persists the component in the DOM", async () => {
+  const mock = jest.fn()
+  const utils = render(
+    <LazyPopoverComponent isLazy lazyBehavior="keepMounted" mockFn={mock} />,
+  )
+
+  // by default, content should not be visible
+  let content = screen.queryByTestId("content")
+  expect(content).not.toBeInTheDocument()
+  expect(mock).toHaveBeenCalledTimes(0)
+
+  // open the popover
+  fireEvent.click(utils.getByText(/open/i))
+
+  const dialog = await utils.findByRole("dialog")
+  content = screen.queryByTestId("content")
+
+  // content should now be in the DOM
+  expect(content).toBeInTheDocument()
+  expect(mock).toHaveBeenCalledTimes(1)
+
+  // close the popover with escape
+  fireEvent.keyDown(dialog, { key: "Escape" })
+  expect(content).toBeInTheDocument()
+  expect(content).not.toBeVisible()
+
+  // ensure that when popover reopens, it is
+  // not remounting
+  fireEvent.click(utils.getByText(/open/i))
+  await utils.findByRole("dialog")
+
+  content = screen.queryByTestId("content")
+  expect(content).toBeInTheDocument()
+  expect(mock).toHaveBeenCalledTimes(1)
+})
+
+// For testing focus interaction, use another component with a focusable element inside.
+const FocusTestComponent = (props: UsePopoverProps) => {
+  const {
+    getTriggerProps,
+    getPopoverProps,
+    getPopoverPositionerProps,
+    onClose,
+  } = usePopover(props)
+
+  return (
+    <div>
+      <button type="button" {...getTriggerProps()}>
+        Open
+      </button>
+      <div {...getPopoverPositionerProps()}>
+        <div
+          {...getPopoverProps({
+            children: (
+              <div data-testid="content" tabIndex={0}>
+                Popover content
+                <button type="button" data-testid="InnerButton">
+                  Inner Button
+                </button>
+              </div>
+            ),
+          })}
+        />
+      </div>
+      <button type="button" onClick={onClose}>
+        Close
+      </button>
+    </div>
+  )
+}
+
+test("when 'trigger'='hover', keep content visible while the tab focus is inside a popover", async () => {
+  const utils = render(<FocusTestComponent trigger="hover" />)
+
+  const openButton = utils.getByText(/open/i)
+  const content = utils.queryByText(/content/i)
+  const innerButton = utils.queryByText(/inner/i)
+  const closeButton = utils.getByText(/close/i)
+
+  expect(document.body).toHaveFocus()
+
+  userEvent.tab()
+
+  expect(openButton).toHaveFocus()
+
+  // open the popover and it will have focus and be visible.
+  userEvent.tab()
+  expect(content).toHaveFocus()
+  expect(content).toBeVisible()
+
+  // move focus to next focusable element. Popover should be visible still.
+  userEvent.tab()
+  expect(innerButton).toHaveFocus()
+  expect(innerButton).toBeVisible()
+
+  // Close the popover. This should make Popover invisible.
+  userEvent.tab()
+  expect(closeButton).toHaveFocus()
+  expect(content).not.toBeVisible()
 })

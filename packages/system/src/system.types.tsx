@@ -8,14 +8,14 @@ import { Dict } from "@chakra-ui/utils"
 import { Interpolation } from "@emotion/react"
 import * as React from "react"
 
-export interface ThemingProps<ThemeComponent extends string = string> {
+export interface ThemingProps<ThemeComponent extends string = any> {
   variant?: ThemeComponent extends keyof ThemeTypings["components"]
-    ? ThemeTypings["components"][ThemeComponent]["variants"] | (string & {})
+    ? ThemeTypings["components"][ThemeComponent]["variants"]
     : string
   size?: ThemeComponent extends keyof ThemeTypings["components"]
-    ? ThemeTypings["components"][ThemeComponent]["sizes"] | (string & {})
+    ? ThemeTypings["components"][ThemeComponent]["sizes"]
     : string
-  colorScheme?: ThemeTypings["colorSchemes"] | (string & {})
+  colorScheme?: ThemeTypings["colorSchemes"]
   orientation?: "vertical" | "horizontal"
   styleConfig?: Dict
 }
@@ -56,26 +56,26 @@ export type PropsOf<T extends As> = React.ComponentPropsWithoutRef<T> & {
 
 export type OmitCommonProps<
   Target,
-  OmitAdditionalProps extends keyof any = never
+  OmitAdditionalProps extends keyof any = never,
 > = Omit<Target, "transition" | "as" | "color" | OmitAdditionalProps>
 
 export type RightJoinProps<
   SourceProps extends object = {},
-  OverrideProps extends object = {}
+  OverrideProps extends object = {},
 > = OmitCommonProps<SourceProps, keyof OverrideProps> & OverrideProps
 
 export type MergeWithAs<
   ComponentProps extends object,
   AsProps extends object,
   AdditionalProps extends object = {},
-  AsComponent extends As = As
+  AsComponent extends As = As,
 > = RightJoinProps<ComponentProps, AdditionalProps> &
   RightJoinProps<AsProps, AdditionalProps> & {
     as?: AsComponent
   }
 
 export type ComponentWithAs<Component extends As, Props extends object = {}> = {
-  <AsComponent extends As>(
+  <AsComponent extends As = Component>(
     props: MergeWithAs<
       React.ComponentProps<Component>,
       React.ComponentProps<AsComponent>,

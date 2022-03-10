@@ -1,5 +1,274 @@
 # Change Log
 
+## 1.18.1
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/utils@1.10.4
+
+## 1.18.0
+
+### Minor Changes
+
+- [#5579](https://github.com/chakra-ui/chakra-ui/pull/5579)
+  [`b0da6e666`](https://github.com/chakra-ui/chakra-ui/commit/b0da6e6665234c1584403f7f7251390c3a9433c8)
+  Thanks [@jrolfs](https://github.com/jrolfs)! - Modify theme types to make it
+  possible to customize token types via TypeScript module augmentation and
+  declaration merging in addition to allowing customization via the Chakra CLI.
+
+  This makes it possible to do the following:
+
+  - Distribute custom types with a component library based on Chakra
+  - Customize theme types by hand
+  - Version control your theme types
+
+  To customize themes using the new mechanism, augment the `CustomThemeTypings`
+  type in a definitions file such as `types/chakra.d.ts`:
+
+  > ⚠️ NOTE: your `CustomThemeTypings` _must_ implement/extend
+  > `BaseThemeTypings`, otherwise the types will fall back to the default Chakra
+  > types (or custom output from **@chakra-ui/cli**)
+
+  ```ts
+  import { BaseThemeTypings } from "@chakra-ui/styled-system";
+
+  type DefaultSizes = 'small' | 'medium' | 'large';
+
+  declare module "@chakra-ui/styled-system" {
+    export interface CustomThemeTypings extends BaseThemeTypings {
+      // Example custom `borders` tokens
+      borders: 'none' | 'thin' | 'thick';
+      // ...
+      // Other custom tokens
+      // ...
+      components: {
+        Button: {
+          // Example custom component sizes and variants
+          sizes: DefaultSizes;
+          variants: 'solid' | 'outline' | 'wacky' | 'chill';
+        };
+        // ...
+       }
+    }
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+
+## 1.17.2
+
+### Patch Changes
+
+- [#5536](https://github.com/chakra-ui/chakra-ui/pull/5536)
+  [`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process.
+
+- Updated dependencies
+  [[`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)]:
+  - @chakra-ui/utils@1.10.2
+
+## 1.17.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b)]:
+  - @chakra-ui/utils@1.10.1
+
+## 1.17.0
+
+### Minor Changes
+
+- [#5316](https://github.com/chakra-ui/chakra-ui/pull/5316)
+  [`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Introducing
+  **semantic tokens**
+
+  Semantic tokens provide the ability to create css variables which can change
+  with a CSS condition.
+
+  ```tsx live=false
+  import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+
+  const customTheme = extendTheme({
+    colors: {
+      900: "#171923",
+    },
+  })
+
+  const App = () => (
+    <ChakraProvider theme={customTheme}>
+      <Text color="gray.900">will always be gray.900</Text>
+    </ChakraProvider>
+  )
+  ```
+
+  ```tsx live=false
+  import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+
+  const customTheme = extendTheme({
+    colors: {
+      50: "#F7FAFC",
+      900: "#171923",
+    },
+    semanticTokens: {
+      colors: {
+        text: {
+          default: "gray.900",
+          _dark: "gray.50",
+        },
+      },
+    },
+  })
+
+  const App = () => (
+    <ChakraProvider theme={customTheme}>
+      <Text color="text">
+        will be gray.900 in light mode and gray.50 in dark mode
+      </Text>
+    </ChakraProvider>
+  )
+  ```
+
+  ```tsx live=false
+  import { extendTheme } from "@chakra-ui/react"
+
+  const theme = extendTheme({
+    colors: {
+      red: {
+        100: "#ff0010",
+        400: "#ff0040",
+        500: "#ff0050",
+        700: "#ff0070",
+        800: "#ff0080",
+      },
+    },
+    semanticTokens: {
+      colors: {
+        error: "red.500", // create a token alias
+        success: "red.100",
+        primary: {
+          // set variable conditionally with pseudo selectors like `_dark` and `_light`
+          // use `default` to define fallback value
+          default: "red.500",
+          _dark: "red.400",
+        },
+        secondary: {
+          default: "red.800",
+          _dark: "red.700",
+        },
+      },
+    },
+  })
+  ```
+
+* [#5355](https://github.com/chakra-ui/chakra-ui/pull/5355)
+  [`bb7eb18da`](https://github.com/chakra-ui/chakra-ui/commit/bb7eb18daa015efee56d55519c2ce727d5bb776a)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Export TypeScript
+  types ResponsiveObject and ResponsiveArray
+
+### Patch Changes
+
+- [#5359](https://github.com/chakra-ui/chakra-ui/pull/5359)
+  [`3b4117781`](https://github.com/chakra-ui/chakra-ui/commit/3b41177812c927c0ee37c7c0006a09f9ca031108)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Updated the
+  `_placeholderShown` selector
+
+- Updated dependencies
+  [[`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3)]:
+  - @chakra-ui/utils@1.10.0
+
+## 1.16.0
+
+### Minor Changes
+
+- [#4979](https://github.com/chakra-ui/chakra-ui/pull/4979)
+  [`d5461a452`](https://github.com/chakra-ui/chakra-ui/commit/d5461a4522aaee47b91a1a432601556e334a71c3)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ### Add support
+  peer pseudo style props
+
+  You can now style an element based on the state of its general sibling (marked
+  with `.peer` or `data-peer`) attribute.
+
+  ```jsx live=false
+  <>
+    <input type="checkbox" data-peer />
+    <Box bg="white" _peerFocus={{ bg: "green.400" }} />
+  </>
+  ```
+
+  The peer properties you can apply are `_peerHover`, `_peerFocus`,
+  `_peerFocusVisible`, `_peerActive`, `_peerInvalid`,
+  `_peerChecked`,`_peerFocusWithin`, `_peerPlaceholderShown`, `_peerDisabled`
+
+  ### New style props
+
+  Added `_placeholderShown` pseudo props for styling elements when sibling
+  inputs have placeholder shown.
+
+  Added `_ltr` pseudo props for styling elements in LTR writing mode. This is
+  useful for products with RTL first approach.
+
+  Added `_mediaReduceMotion` pseudo props to apply reduce motion styles to
+  elements. This is useful when you need to remove CSS animations/transitions.
+
+* [#5307](https://github.com/chakra-ui/chakra-ui/pull/5307)
+  [`213f61026`](https://github.com/chakra-ui/chakra-ui/commit/213f61026766d32f78b78dc2ccb2b2fdc472aab1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Adds style props
+  for CSS scroll behavior properties: `scrollPadding`, `scrollMargin`,
+  `scrollSnapAlign`, etc...
+
+  Here's a full list of properties:
+
+  - **Scroll Behavior:** `scrollBehavior`, `scrollSnapAlign`, `scrollSnapStop`,
+    `scrollSnapType`
+
+  - **Scroll Margin:** `scrollMargin`, `scrollMarginTop`, `scrollMarginBottom`,
+    `scrollMarginLeft`, `scrollMarginRight`, `scrollMarginX`, `scrollMarginY`
+
+  - **Scroll Padding:** `scrollPadding`, `scrollPaddingTop`,
+    `scrollPaddingBottom`, `scrollPaddingLeft`, `scrollPaddingRight`,
+    `scrollPaddingX`, `scrollPaddingY`
+
+## 1.15.0
+
+### Minor Changes
+
+- [#5123](https://github.com/chakra-ui/chakra-ui/pull/5123)
+  [`26d2a547b`](https://github.com/chakra-ui/chakra-ui/commit/26d2a547bca20e197f352c7492e3cad197b513e6)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Add support for
+  style props `gap`, `columnGap` and `rowGap`. Those CSS properties are valid in
+  a grid or flex context
+
+  > For further information see
+  > [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/gap)
+
+### Patch Changes
+
+- [#4970](https://github.com/chakra-ui/chakra-ui/pull/4970)
+  [`73235af10`](https://github.com/chakra-ui/chakra-ui/commit/73235af10d8868786ec58778dda9a42b8d275599)
+  Thanks [@giuseppelt](https://github.com/giuseppelt)! - Fix issue where
+  `bgGradient` parser doesn't work when a position is specified
+
+* [`f15099adc`](https://github.com/chakra-ui/chakra-ui/commit/f15099adc60150781607288dbe12133c2fb84e38)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  tokens autocomplete don't show up anymore except user runs the cli command.
+
+- [#5192](https://github.com/chakra-ui/chakra-ui/pull/5192)
+  [`a1d5e7bfa`](https://github.com/chakra-ui/chakra-ui/commit/a1d5e7bfae1b4cc749e14eed4977ae423b8bce2c)
+  Thanks [@selrond](https://github.com/selrond)! - Fixed issue where multi-value
+  `inset` property doesn't work.
+
 ## 1.14.1
 
 ### Patch Changes

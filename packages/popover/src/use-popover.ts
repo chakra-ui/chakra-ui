@@ -5,6 +5,7 @@ import {
   useFocusOnShow,
   useIds,
 } from "@chakra-ui/hooks"
+import { useAnimationState } from "@chakra-ui/hooks/use-animation-state"
 import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { HTMLProps, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import {
@@ -23,7 +24,7 @@ const TRIGGER = {
   hover: "hover",
 } as const
 
-export interface UsePopoverProps extends UsePopperProps {
+export interface UsePopoverProps extends Omit<UsePopperProps, "enabled"> {
   /**
    * The html `id` attribute of the popover.
    * If not provided, we generate a unique id.
@@ -176,6 +177,8 @@ export function usePopover(props: UsePopoverProps = {}) {
     enabled: isOpen || !!computePositionOnMount,
   })
 
+  const animated = useAnimationState({ isOpen, ref: popoverRef })
+
   useFocusOnPointerDown({
     enabled: isOpen,
     ref: triggerRef,
@@ -197,7 +200,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     hasBeenSelected: hasBeenOpened.current,
     isLazy,
     lazyBehavior,
-    isSelected: isOpen,
+    isSelected: animated.present,
   })
 
   const getPopoverProps: PropGetter = useCallback(
@@ -329,7 +332,14 @@ export function usePopover(props: UsePopoverProps = {}) {
          * @see https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html
          */
         triggerProps.onFocus = callAllHandlers(props.onFocus, onOpen)
-        triggerProps.onBlur = callAllHandlers(props.onBlur, onClose)
+        triggerProps.onBlur = callAllHandlers(props.onBlur, (event) => {
+          const relatedTarget = getRelatedTarget(event)
+          const isValidBlur = !contains(popoverRef.current, relatedTarget)
+
+          if (isOpen && closeOnBlur && isValidBlur) {
+            onClose()
+          }
+        })
 
         /**
          * Any content that shows on hover or focus must be dismissible.
@@ -372,6 +382,7 @@ export function usePopover(props: UsePopoverProps = {}) {
       maybeReferenceRef,
       onToggle,
       onOpen,
+      closeOnBlur,
       onClose,
       openDelay,
       closeDelay,
@@ -414,6 +425,7 @@ export function usePopover(props: UsePopoverProps = {}) {
   return {
     forceUpdate,
     isOpen,
+    onAnimationComplete: animated.onComplete,
     onClose,
     getAnchorProps,
     getArrowProps,

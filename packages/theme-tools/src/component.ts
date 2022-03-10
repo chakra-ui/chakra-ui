@@ -6,9 +6,9 @@ import { Dict, runIfFn } from "@chakra-ui/utils"
  * -----------------------------------------------------------------------------*/
 
 export interface StyleConfig {
-  baseStyle?: SystemStyleObject
-  sizes?: { [size: string]: SystemStyleObject }
-  variants?: { [variant: string]: SystemStyleObject }
+  baseStyle?: SystemStyleObject | SystemStyleFunction
+  sizes?: { [size: string]: SystemStyleObject | SystemStyleFunction }
+  variants?: { [variant: string]: SystemStyleObject | SystemStyleFunction }
   defaultProps?: {
     size?: string
     variant?: string
@@ -20,7 +20,7 @@ export interface StyleConfig {
 type Anatomy = { __type: string }
 
 export interface MultiStyleConfig<T extends Anatomy = Anatomy> {
-  baseStyle?: PartsStyleObject<T>
+  baseStyle?: PartsStyleObject<T> | PartsStyleFunction<T>
   sizes?: { [size: string]: PartsStyleObject<T> | PartsStyleFunction<T> }
   variants?: { [variant: string]: PartsStyleObject<T> | PartsStyleFunction<T> }
   defaultProps?: StyleConfig["defaultProps"]

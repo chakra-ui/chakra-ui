@@ -146,6 +146,11 @@ information on how to use our official `create-react-app` templates.
 Feel like contributing? That's awesome! We have a
 [contributing guide](./CONTRIBUTING.md) to help guide you.
 
+Our docsite lives in a
+[separate repo](https://github.com/chakra-ui/chakra-ui-docs). If you're
+interested in contributing to the documentation, check out the
+[docsite contribution guide](https://github.com/chakra-ui/chakra-ui-docs/blob/main/CONTRIBUTING.md).
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people
@@ -432,6 +437,15 @@ Thanks goes to these wonderful people
     <td align="center"><a href="http://develmonk.com"><img src="https://avatars.githubusercontent.com/u/1308847?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Avery Freeman</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=averyfreeman" title="Documentation">📖</a></td>
     <td align="center"><a href="http://schulz.codes"><img src="https://avatars.githubusercontent.com/u/3123354?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Daniel Schulz</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Atakethefake" title="Bug reports">🐛</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=takethefake" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=takethefake" title="Documentation">📖</a> <a href="#ideas-takethefake" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="http://michaelkilbane.com"><img src="https://avatars.githubusercontent.com/u/21234729?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Michael Kilbane</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=MichaelKilbane" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://ngxcoder.dev/"><img src="https://avatars.githubusercontent.com/u/87735757?v=4?s=64" width="64px;" alt=""/><br /><sub><b>ngxCoder</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=ngxCoder" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.selbekk.io"><img src="https://avatars.githubusercontent.com/u/1307267?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Kristofer Giltvedt Selbekk</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=selbekk" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://johann-ehlers.eu"><img src="https://avatars.githubusercontent.com/u/21695702?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Johann Ehlers</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=noobinthisgame" title="Documentation">📖</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=noobinthisgame" title="Code">💻</a></td>
+    <td align="center"><a href="http://lukasbach.com"><img src="https://avatars.githubusercontent.com/u/4140121?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Lukas Bach</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=lukasbach" title="Code">💻</a></td>
+    <td align="center"><a href="https://nikolovlazar.com"><img src="https://avatars.githubusercontent.com/u/5396211?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Lazar Nikolov</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Anikolovlazar" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://iwata.love"><img src="https://avatars.githubusercontent.com/u/7393198?v=4?s=64" width="64px;" alt=""/><br /><sub><b>iwata</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Aishowta" title="Bug reports">🐛</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=ishowta" title="Code">💻</a></td>
+    <td align="center"><a href="https://shining-cerise-a8f.notion.site/Crispy-4f6d4f0c15d64b9abfdaf73a0dffdf63"><img src="https://avatars.githubusercontent.com/u/29042329?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Lee seung chan</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=heozeop" title="Code">💻</a></td>
   </tr>
 </table>
 

@@ -1,5 +1,169 @@
 # Change Log
 
+## 1.5.7
+
+### Patch Changes
+
+- Updated dependencies
+  [[`fbe946223`](https://github.com/chakra-ui/chakra-ui/commit/fbe94622357e22acaf8bab0eae33ceae663d7a5b),
+  [`5cd5cff35`](https://github.com/chakra-ui/chakra-ui/commit/5cd5cff35e4837539d83a2157a07585d461b0aac)]:
+  - @chakra-ui/theme@1.14.0
+  - @chakra-ui/hooks@1.8.5
+
+## 1.5.6
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/alert@1.3.7
+  - @chakra-ui/close-button@1.2.7
+  - @chakra-ui/hooks@1.8.4
+  - @chakra-ui/theme@1.13.4
+  - @chakra-ui/transition@1.4.7
+  - @chakra-ui/utils@1.10.4
+
+## 1.5.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`0542b8a53`](https://github.com/chakra-ui/chakra-ui/commit/0542b8a53425093f18fd86d2b55220d3fa20253a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/theme@1.13.3
+  - @chakra-ui/alert@1.3.6
+  - @chakra-ui/close-button@1.2.6
+  - @chakra-ui/hooks@1.8.3
+  - @chakra-ui/transition@1.4.6
+
+## 1.5.4
+
+### Patch Changes
+
+- [#5536](https://github.com/chakra-ui/chakra-ui/pull/5536)
+  [`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process.
+
+- Updated dependencies
+  [[`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)]:
+  - @chakra-ui/alert@1.3.5
+  - @chakra-ui/close-button@1.2.5
+  - @chakra-ui/hooks@1.8.2
+  - @chakra-ui/theme@1.13.2
+  - @chakra-ui/transition@1.4.5
+  - @chakra-ui/utils@1.10.2
+
+## 1.5.3
+
+### Patch Changes
+
+- [#5499](https://github.com/chakra-ui/chakra-ui/pull/5499)
+  [`f1d024749`](https://github.com/chakra-ui/chakra-ui/commit/f1d02474983dc8277e767dc729abc3cbb02cfe10)
+  Thanks [@noobinthisgame](https://github.com/noobinthisgame)! - allow framer
+  motion v6 as peer dependency
+
+* [#5493](https://github.com/chakra-ui/chakra-ui/pull/5493)
+  [`6d2affcdd`](https://github.com/chakra-ui/chakra-ui/commit/6d2affcdd390fe013eff684569573200b97e9e88)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue
+  where the `useToast` function returned a new object on every render.
+* Updated dependencies
+  [[`f1d024749`](https://github.com/chakra-ui/chakra-ui/commit/f1d02474983dc8277e767dc729abc3cbb02cfe10),
+  [`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b)]:
+  - @chakra-ui/transition@1.4.4
+  - @chakra-ui/utils@1.10.1
+  - @chakra-ui/theme@1.13.1
+  - @chakra-ui/alert@1.3.4
+  - @chakra-ui/close-button@1.2.4
+  - @chakra-ui/hooks@1.8.1
+
+## 1.5.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3),
+  [`cbad002e7`](https://github.com/chakra-ui/chakra-ui/commit/cbad002e7bdb439a0dfeada82ebfb5b529e145fe),
+  [`6e259a1f7`](https://github.com/chakra-ui/chakra-ui/commit/6e259a1f7008a00f7be096e6b315cb9d62ef9748),
+  [`c393dd268`](https://github.com/chakra-ui/chakra-ui/commit/c393dd26808a06a8a6bd19839f4b2f1995157315),
+  [`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3),
+  [`a5f3bfce8`](https://github.com/chakra-ui/chakra-ui/commit/a5f3bfce846b44c9a4bdcd0bb80c17eb38da75a7)]:
+  - @chakra-ui/theme@1.13.0
+  - @chakra-ui/hooks@1.8.0
+  - @chakra-ui/utils@1.10.0
+  - @chakra-ui/alert@1.3.3
+  - @chakra-ui/close-button@1.2.3
+  - @chakra-ui/transition@1.4.3
+
+## 1.5.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`801008e27`](https://github.com/chakra-ui/chakra-ui/commit/801008e276812a6f94f2f5dc634bcbfe01d23026),
+  [`3199b7242`](https://github.com/chakra-ui/chakra-ui/commit/3199b724237c56dc3a9c25811a88b2bea1b36ce9),
+  [`8a0e5bdbc`](https://github.com/chakra-ui/chakra-ui/commit/8a0e5bdbccb7fa10dd4cd7b909ca60991fce81a0),
+  [`eb5850687`](https://github.com/chakra-ui/chakra-ui/commit/eb5850687e0984d95c3dd06e57716188c69cae42)]:
+  - @chakra-ui/hooks@1.7.2
+  - @chakra-ui/theme@1.12.3
+
+## 1.5.0
+
+### Minor Changes
+
+- [#4922](https://github.com/chakra-ui/chakra-ui/pull/4922)
+  [`98b9fbecb`](https://github.com/chakra-ui/chakra-ui/commit/98b9fbecb20118553e92009b84a887ffdb35ba28)
+  Thanks [@karrui](https://github.com/karrui)! - The `toast` function now
+  exposes a `containerStyle` property you can use to override the default styles
+  for the toast container.
+
+  ```jsx live=false
+  function Example() {
+    // Via instantiation
+    const toast = useToast({
+      position: "top",
+      title: "Container style is customizable",
+      containerStyle: {
+        maxWidth: "100%",
+      },
+    })
+
+    // Or via trigger
+    return (
+      <Button
+        onClick={() => {
+          toast({
+            containerStyle: {
+              maxWidth: "100%",
+            },
+          })
+        }}
+      >
+        Click me to show toast with custom container style.
+      </Button>
+    )
+  }
+  ```
+
+### Patch Changes
+
+- [`b4decca9a`](https://github.com/chakra-ui/chakra-ui/commit/b4decca9afb62c4e353a6a9329d2afd279906fa6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix TS issue with
+  toast placement utility
+
+- Updated dependencies
+  [[`f15099adc`](https://github.com/chakra-ui/chakra-ui/commit/f15099adc60150781607288dbe12133c2fb84e38),
+  [`39846457e`](https://github.com/chakra-ui/chakra-ui/commit/39846457e241e6af3d18c77cdc0ba02857fe7462)]:
+  - @chakra-ui/theme@1.12.2
+  - @chakra-ui/transition@1.4.2
+  - @chakra-ui/alert@1.3.2
+  - @chakra-ui/close-button@1.2.2
+
 ## 1.4.1
 
 ### Patch Changes

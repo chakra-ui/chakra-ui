@@ -19,6 +19,7 @@ import type {
   TransformProps,
   TransitionProps,
   TypographyProps,
+  ScrollProps,
 } from "./config"
 import { Pseudos } from "./pseudos"
 import { ResponsiveValue } from "./utils/types"
@@ -39,6 +40,7 @@ export interface StyleProps
     ListProps,
     PositionProps,
     RingProps,
+    ScrollProps,
     InteractivityProps,
     TextDecorationProps,
     OtherProps {}

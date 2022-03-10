@@ -1,8 +1,19 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import { FormControl, FormLabel } from "@chakra-ui/form-control"
 import { Icon } from "@chakra-ui/icon"
-import { Container, Divider, Heading, Stack } from "@chakra-ui/layout"
+import {
+  Container,
+  Divider,
+  Heading,
+  Stack,
+  HStack,
+  Flex,
+  Box,
+  Text,
+} from "@chakra-ui/layout"
+import { chakra } from "@chakra-ui/system"
 import * as React from "react"
-import { Checkbox, CheckboxGroup, useCheckbox } from "../src"
+import { Checkbox, CheckboxGroup, useCheckbox, useCheckboxGroup } from "../src"
 
 export default {
   title: "Components / Forms / Checkbox",
@@ -220,5 +231,122 @@ export const ControlledCheckboxGroup = () => {
         <Checkbox value="three">Three</Checkbox>
       </Stack>
     </CheckboxGroup>
+  )
+}
+
+export const CustomCheckboxGroup = () => {
+  function CustomCheckbox(props: any) {
+    const {
+      state,
+      getCheckboxProps,
+      getInputProps,
+      getLabelProps,
+      htmlProps,
+    } = useCheckbox(props)
+
+    return (
+      <chakra.label
+        display="flex"
+        flexDirection="row"
+        alignItems="center"
+        gridColumnGap={2}
+        maxW="40"
+        bg="green.50"
+        border="1px solid"
+        borderColor="green.500"
+        rounded="lg"
+        px={3}
+        py={1}
+        cursor="pointer"
+        {...htmlProps}
+      >
+        <input {...getInputProps()} hidden />
+        <Flex
+          alignItems="center"
+          justifyContent="center"
+          border="2px solid"
+          borderColor="green.500"
+          w={4}
+          h={4}
+          {...getCheckboxProps()}
+        >
+          {state.isChecked && <Box w={2} h={2} bg="green.500" />}
+        </Flex>
+        <Text {...getLabelProps()}>Click me for {props.value}</Text>
+      </chakra.label>
+    )
+  }
+
+  const { value, getCheckboxProps } = useCheckboxGroup({
+    defaultValue: [2],
+  })
+
+  return (
+    <Stack>
+      <Text>The selected checkboxes are: {value.sort().join(" and ")}</Text>
+      <CustomCheckbox {...getCheckboxProps({ value: 1 })} />
+      <CustomCheckbox {...getCheckboxProps({ value: 2 })} />
+      <CustomCheckbox {...getCheckboxProps({ value: 3 })} />
+    </Stack>
+  )
+}
+export const WithFormControl = () => {
+  return (
+    <>
+      <FormControl id="optIn">
+        <FormLabel>Opt-in Example</FormLabel>
+        <CheckboxGroup defaultValue={["1", "3"]}>
+          <HStack>
+            <Checkbox value="1">Opt-in 1</Checkbox>
+            <Checkbox value="2">Opt-in 2</Checkbox>
+            <Checkbox value="3">Opt-in 3</Checkbox>
+          </HStack>
+        </CheckboxGroup>
+      </FormControl>
+
+      <FormControl id="optInInvalid" isInvalid mt={4}>
+        <FormLabel>Invalid Opt-in Example</FormLabel>
+        <CheckboxGroup defaultValue={["2", "3"]}>
+          <Stack spacing={2}>
+            <Checkbox value="1">Invalid Opt-in 1</Checkbox>
+            <Checkbox value="2">Invalid Opt-in 2</Checkbox>
+            <Checkbox value="3">Invalid Opt-in 3</Checkbox>
+          </Stack>
+        </CheckboxGroup>
+      </FormControl>
+
+      <FormControl id="optInDisabled" isDisabled mt={4}>
+        <FormLabel>Disabled Opt-in Example</FormLabel>
+        <CheckboxGroup defaultValue={["2", "3"]}>
+          <Stack spacing={2}>
+            <Checkbox value="1">Disabled Opt-in 1</Checkbox>
+            <Checkbox value="2">Disabled Opt-in 2</Checkbox>
+            <Checkbox value="3">Disabled Opt-in 3</Checkbox>
+          </Stack>
+        </CheckboxGroup>
+      </FormControl>
+
+      <FormControl id="optInReadonly" isReadOnly mt={4}>
+        <FormLabel>Readonly Opt-in Example</FormLabel>
+        <CheckboxGroup defaultValue={["2", "3"]}>
+          <Stack spacing={2}>
+            <Checkbox value="1">Readonly Opt-in 1</Checkbox>
+            <Checkbox value="2">Readonly Opt-in 2</Checkbox>
+            <Checkbox value="3">Readonly Opt-in 3</Checkbox>
+          </Stack>
+        </CheckboxGroup>
+      </FormControl>
+
+      <FormControl id="optInRequired" isRequired mt={4}>
+        <FormLabel>Required Opt-in Example</FormLabel>
+        <CheckboxGroup defaultValue={["2", "3"]}>
+          <Stack spacing={2}>
+            <Checkbox value="1">Required Opt-in 1</Checkbox>
+            <Checkbox value="2">Required Opt-in 2</Checkbox>
+            <Checkbox value="3">Required Opt-in 3</Checkbox>
+          </Stack>
+        </CheckboxGroup>
+      </FormControl>
+    </>
   )
 }

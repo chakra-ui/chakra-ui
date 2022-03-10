@@ -1,5 +1,121 @@
 # Change Log
 
+## 1.4.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`5cd5cff35`](https://github.com/chakra-ui/chakra-ui/commit/5cd5cff35e4837539d83a2157a07585d461b0aac)]:
+  - @chakra-ui/hooks@1.8.5
+  - @chakra-ui/counter@1.2.8
+  - @chakra-ui/form-control@1.5.9
+
+## 1.4.4
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/counter@1.2.7
+  - @chakra-ui/form-control@1.5.8
+  - @chakra-ui/hooks@1.8.4
+  - @chakra-ui/icon@2.0.5
+  - @chakra-ui/react-utils@1.2.3
+  - @chakra-ui/utils@1.10.4
+
+## 1.4.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`c2bcba11c`](https://github.com/chakra-ui/chakra-ui/commit/c2bcba11ca60c175b35dff10a922e600c3fd065c)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/icon@2.0.4
+  - @chakra-ui/counter@1.2.6
+  - @chakra-ui/form-control@1.5.7
+  - @chakra-ui/hooks@1.8.3
+
+## 1.4.2
+
+### Patch Changes
+
+- [#5536](https://github.com/chakra-ui/chakra-ui/pull/5536)
+  [`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process.
+
+- Updated dependencies
+  [[`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)]:
+  - @chakra-ui/counter@1.2.5
+  - @chakra-ui/form-control@1.5.6
+  - @chakra-ui/hooks@1.8.2
+  - @chakra-ui/icon@2.0.3
+  - @chakra-ui/react-utils@1.2.2
+  - @chakra-ui/utils@1.10.2
+
+## 1.4.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b),
+  [`f149c6c9a`](https://github.com/chakra-ui/chakra-ui/commit/f149c6c9aa04b8c0abebaa6ac8dc72c7f8ceed35)]:
+  - @chakra-ui/utils@1.10.1
+  - @chakra-ui/form-control@1.5.5
+  - @chakra-ui/counter@1.2.4
+  - @chakra-ui/hooks@1.8.1
+  - @chakra-ui/icon@2.0.2
+
+## 1.4.0
+
+### Minor Changes
+
+- [#4982](https://github.com/chakra-ui/chakra-ui/pull/4982)
+  [`7a136f5a8`](https://github.com/chakra-ui/chakra-ui/commit/7a136f5a8f81a2500995705875fb88accd147db1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  custom `format`, `parse` and character validation callbacks.
+
+### Patch Changes
+
+- [#4982](https://github.com/chakra-ui/chakra-ui/pull/4982)
+  [`e4f5ee819`](https://github.com/chakra-ui/chakra-ui/commit/e4f5ee8195280316d11a27140affcdbb15aa356a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  number input doesn't leave the spinning state when inc/dec button is disabled
+- Updated dependencies
+  [[`cbad002e7`](https://github.com/chakra-ui/chakra-ui/commit/cbad002e7bdb439a0dfeada82ebfb5b529e145fe),
+  [`6e259a1f7`](https://github.com/chakra-ui/chakra-ui/commit/6e259a1f7008a00f7be096e6b315cb9d62ef9748),
+  [`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3)]:
+  - @chakra-ui/hooks@1.8.0
+  - @chakra-ui/utils@1.10.0
+  - @chakra-ui/form-control@1.5.4
+  - @chakra-ui/icon@2.0.1
+  - @chakra-ui/counter@1.2.3
+
+## 1.3.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`801008e27`](https://github.com/chakra-ui/chakra-ui/commit/801008e276812a6f94f2f5dc634bcbfe01d23026),
+  [`8a0e5bdbc`](https://github.com/chakra-ui/chakra-ui/commit/8a0e5bdbccb7fa10dd4cd7b909ca60991fce81a0)]:
+  - @chakra-ui/hooks@1.7.2
+  - @chakra-ui/form-control@1.5.3
+  - @chakra-ui/counter@1.2.2
+
+## 1.3.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`17400aff6`](https://github.com/chakra-ui/chakra-ui/commit/17400aff62601c1b70dcc4e60af1fadf3915f3e0)]:
+  - @chakra-ui/icon@2.0.0
+  - @chakra-ui/form-control@1.5.2
+
 ## 1.3.1
 
 ### Patch Changes

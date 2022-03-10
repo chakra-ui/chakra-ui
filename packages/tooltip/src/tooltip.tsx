@@ -57,7 +57,7 @@ const StyledTooltip = chakra(motion.div)
 /**
  * Tooltips display informative text when users hover, focus on, or tap an element.
  *
- * @see Docs     https://chakra-ui.com/components/tooltip
+ * @see Docs     https://chakra-ui.com/docs/overlay/tooltip
  * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices/#tooltip
  */
 export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
@@ -73,14 +73,22 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
     hasArrow,
     bg,
     portalProps,
+    background,
+    backgroundColor,
+    bgColor,
     ...rest
   } = ownProps
 
-  if (bg) {
-    styles.bg = bg
-    styles[popperCSSVars.arrowBg.var] = getCSSVar(theme, "colors", bg)
-  }
+  const userDefinedBg = background ?? backgroundColor ?? bg ?? bgColor
 
+  if (userDefinedBg) {
+    styles.bg = userDefinedBg
+    styles[popperCSSVars.arrowBg.var] = getCSSVar(
+      theme,
+      "colors",
+      userDefinedBg,
+    )
+  }
   const tooltip = useTooltip({ ...rest, direction: theme.direction })
 
   const shouldWrap = isString(children) || shouldWrapChildren

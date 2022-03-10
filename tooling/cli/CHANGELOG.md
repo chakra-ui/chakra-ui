@@ -1,5 +1,115 @@
 # @chakra-ui/cli
 
+## 1.9.0
+
+### Minor Changes
+
+- [#5662](https://github.com/chakra-ui/chakra-ui/pull/5662)
+  [`a1e4d7951`](https://github.com/chakra-ui/chakra-ui/commit/a1e4d7951090c9622003e9176005ad3c038fdccc)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - The CLI tokens
+  command now includes semantic tokens in the generated ThemeTypings
+
+## 1.8.2
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/utils@1.10.4
+
+## 1.8.1
+
+### Patch Changes
+
+- [#5536](https://github.com/chakra-ui/chakra-ui/pull/5536)
+  [`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process.
+
+- Updated dependencies
+  [[`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)]:
+  - @chakra-ui/utils@1.10.2
+
+## 1.8.0
+
+### Minor Changes
+
+- [#5472](https://github.com/chakra-ui/chakra-ui/pull/5472)
+  [`5bfb298bc`](https://github.com/chakra-ui/chakra-ui/commit/5bfb298bc01ba49486056a72b040ab0e068dd904)
+  Thanks [@lukasbach](https://github.com/lukasbach)! - Increased scan depth for
+  tokens in cli tooling
+
+### Patch Changes
+
+- [#5486](https://github.com/chakra-ui/chakra-ui/pull/5486)
+  [`4e26a300c`](https://github.com/chakra-ui/chakra-ui/commit/4e26a300caa60b4739e09520a3112802ebe535b9)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an internal
+  version number mismatch
+
+* [#5527](https://github.com/chakra-ui/chakra-ui/pull/5527)
+  [`b6ccf0dd2`](https://github.com/chakra-ui/chakra-ui/commit/b6ccf0dd2e3b72a5b50c9e1c00f1e6e3f3b68690)
+  Thanks [@with-heart](https://github.com/with-heart)! - When the
+  [Chakra CLI](https://chakra-ui.com/docs/theming/advanced#theme-typings) fails
+  to generate theme typings, it now exits with a status code of `1`. This
+  resolves an issue where failures exited with a success status code.
+* Updated dependencies
+  [[`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b)]:
+  - @chakra-ui/utils@1.10.1
+
+## 1.7.1
+
+### Patch Changes
+
+- [#5372](https://github.com/chakra-ui/chakra-ui/pull/5372)
+  [`472612e7a`](https://github.com/chakra-ui/chakra-ui/commit/472612e7aea64de64c6744365f7d5c6a97bcc438)
+  Thanks [@selbekk](https://github.com/selbekk)! - Update README to reflect the
+  change of the default `--out` path to
+  `node_modules/@chakra-ui/styled-system/dist/declarations/src/theming.types.d.ts`
+
+- Updated dependencies
+  [[`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3)]:
+  - @chakra-ui/utils@1.10.0
+
+## 1.7.0
+
+### Minor Changes
+
+- [#5243](https://github.com/chakra-ui/chakra-ui/pull/5243)
+  [`ae6fd7a25`](https://github.com/chakra-ui/chakra-ui/commit/ae6fd7a25c543d089d500e328596b399d85afe8e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Use the feature
+  flag `--strict-component-types` for `@chakra-ui/cli tokens` to generate strict
+  component type for the theming props `variant` and `size`.
+
+  ```bash
+  chakra-cli tokens --strict-component-types
+  ```
+
+  ```tsx live=false
+  // before
+  <Button variant="abc" />
+  // valid type but variant is not available in the theme
+
+  // after
+  <Button variant="abc" /> // invalid
+  // Type '"abc"' is not assignable to type '"link" | "outline" | "ghost" | "solid" | "unstyled" | undefined'.
+  ```
+
+* [#5244](https://github.com/chakra-ui/chakra-ui/pull/5244)
+  [`3f1d7cf1c`](https://github.com/chakra-ui/chakra-ui/commit/3f1d7cf1ce85e8d741035ed2f40b4da59268b4ef)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Added token scales
+  `blur`, `borderStyles` and `borderWidths`.
+
+### Patch Changes
+
+- [#5225](https://github.com/chakra-ui/chakra-ui/pull/5225)
+  [`e9bbe3bd1`](https://github.com/chakra-ui/chakra-ui/commit/e9bbe3bd1d15dacc9edbefa4e4321404558faf39)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue
+  where the cli fails when `prettier` is not installed
+
 ## 1.6.0
 
 ### Minor Changes

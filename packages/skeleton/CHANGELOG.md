@@ -1,5 +1,134 @@
 # Change Log
 
+## 1.2.12
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d6bed344f`](https://github.com/chakra-ui/chakra-ui/commit/d6bed344f30af50c84d3ed802ec3f0c981586588),
+  [`5cd5cff35`](https://github.com/chakra-ui/chakra-ui/commit/5cd5cff35e4837539d83a2157a07585d461b0aac)]:
+  - @chakra-ui/media-query@2.0.4
+  - @chakra-ui/hooks@1.8.5
+  - @chakra-ui/system@1.11.2
+
+## 1.2.11
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/hooks@1.8.4
+  - @chakra-ui/media-query@2.0.3
+  - @chakra-ui/system@1.11.1
+  - @chakra-ui/utils@1.10.4
+
+## 1.2.10
+
+### Patch Changes
+
+- Updated dependencies
+  [[`eca771a9a`](https://github.com/chakra-ui/chakra-ui/commit/eca771a9ad53edc52365f70eb0e6b19bc54d8e18),
+  [`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`e5e0f255c`](https://github.com/chakra-ui/chakra-ui/commit/e5e0f255c95f5e41c3b17adbda28fd09f7251642),
+  [`99c92df93`](https://github.com/chakra-ui/chakra-ui/commit/99c92df9331e6a0c5667b77e5a605343efccc6b3)]:
+  - @chakra-ui/media-query@2.0.2
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/system@1.11.0
+  - @chakra-ui/hooks@1.8.3
+
+## 1.2.9
+
+### Patch Changes
+
+- [#5536](https://github.com/chakra-ui/chakra-ui/pull/5536)
+  [`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process.
+
+- Updated dependencies
+  [[`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)]:
+  - @chakra-ui/hooks@1.8.2
+  - @chakra-ui/media-query@2.0.1
+  - @chakra-ui/system@1.10.3
+  - @chakra-ui/utils@1.10.2
+
+## 1.2.8
+
+### Patch Changes
+
+- [#5432](https://github.com/chakra-ui/chakra-ui/pull/5432)
+  [`98c5ec2bc`](https://github.com/chakra-ui/chakra-ui/commit/98c5ec2bc37fc0764446c3e4df816131418c14e1)
+  Thanks [@Methuselah96](https://github.com/Methuselah96)! - Add missing peer
+  dependencies
+
+- Updated dependencies
+  [[`85aec4f7a`](https://github.com/chakra-ui/chakra-ui/commit/85aec4f7abbd7a289e7ad82c3dcfc465d84184ed),
+  [`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b),
+  [`78251dab8`](https://github.com/chakra-ui/chakra-ui/commit/78251dab83e34747b719ee746394ec43aeceffef)]:
+  - @chakra-ui/media-query@2.0.0
+  - @chakra-ui/utils@1.10.1
+  - @chakra-ui/system@1.10.2
+  - @chakra-ui/hooks@1.8.1
+
+## 1.2.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/system@1.10.1
+
+## 1.2.6
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4944a4a2b`](https://github.com/chakra-ui/chakra-ui/commit/4944a4a2b0160b23d4e06f767c809565ff1d5b35),
+  [`22171af7f`](https://github.com/chakra-ui/chakra-ui/commit/22171af7f78b41d37171dbd4d1307ef82ea880b6),
+  [`cbad002e7`](https://github.com/chakra-ui/chakra-ui/commit/cbad002e7bdb439a0dfeada82ebfb5b529e145fe),
+  [`6e259a1f7`](https://github.com/chakra-ui/chakra-ui/commit/6e259a1f7008a00f7be096e6b315cb9d62ef9748),
+  [`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3),
+  [`5a845d5f5`](https://github.com/chakra-ui/chakra-ui/commit/5a845d5f535ba886063e3f4099a27d0794084c54)]:
+  - @chakra-ui/system@1.10.0
+  - @chakra-ui/media-query@1.2.4
+  - @chakra-ui/hooks@1.8.0
+  - @chakra-ui/utils@1.10.0
+
+## 1.2.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d2d9af846`](https://github.com/chakra-ui/chakra-ui/commit/d2d9af8464d627d0ab854ad64a42d3c0be81d67d)]:
+  - @chakra-ui/system@1.9.1
+
+## 1.2.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ae6fd7a25`](https://github.com/chakra-ui/chakra-ui/commit/ae6fd7a25c543d089d500e328596b399d85afe8e),
+  [`801008e27`](https://github.com/chakra-ui/chakra-ui/commit/801008e276812a6f94f2f5dc634bcbfe01d23026),
+  [`8a0e5bdbc`](https://github.com/chakra-ui/chakra-ui/commit/8a0e5bdbccb7fa10dd4cd7b909ca60991fce81a0),
+  [`bc2613a9a`](https://github.com/chakra-ui/chakra-ui/commit/bc2613a9ab8273c844ed071947164f0a82ad9ea4)]:
+  - @chakra-ui/system@1.9.0
+  - @chakra-ui/hooks@1.7.2
+  - @chakra-ui/media-query@1.2.3
+
+## 1.2.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`586eb6090`](https://github.com/chakra-ui/chakra-ui/commit/586eb6090fe9013936cd83a61bb5091814bcb906),
+  [`53e2df4f9`](https://github.com/chakra-ui/chakra-ui/commit/53e2df4f9cbe7fc2fad69d1ee49a1e788811467a)]:
+  - @chakra-ui/system@1.8.3
+  - @chakra-ui/media-query@1.2.2
+
 ## 1.2.2
 
 ### Patch Changes

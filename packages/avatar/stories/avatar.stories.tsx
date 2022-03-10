@@ -71,6 +71,25 @@ export const WithSizes = () => (
   </Stack>
 )
 
+export const WithSrcSet = () => {
+  const small =
+    "https://accelerated.atoms.crystallize.digital/snowball/images/PalmaSpeedJusterteBilder-15/_resized_300.jpg"
+  const medium =
+    "https://accelerated.atoms.crystallize.digital/snowball/images/PalmaSpeedJusterteBilder-15/_resized_768.jpg"
+  const large =
+    "https://accelerated.atoms.crystallize.digital/snowball/images/PalmaSpeedJusterteBilder-15/_resized_1280.jpg"
+  const xlarge =
+    "https://accelerated.atoms.crystallize.digital/snowball/images/PalmaSpeedJusterteBilder-15/_resized_3200.jpg"
+
+  return (
+    <Avatar
+      name="Uchiha Itachi"
+      src={small}
+      srcSet={`${small} 300w, ${medium} 768w, ${large} 1280w, ${xlarge} 3200w`}
+    />
+  )
+}
+
 /**
  * Use the AvatarGroup component to stack
  * multiple avatars and add some space between them

@@ -12,6 +12,7 @@ import {
   useUnmountEffect,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
+import { useAnimationState } from "@chakra-ui/hooks/use-animation-state"
 import { usePopper, UsePopperProps } from "@chakra-ui/popper"
 import {
   createContext,
@@ -63,7 +64,9 @@ export const [MenuProvider, useMenuContext] = createContext<
  * useMenu hook
  * -----------------------------------------------------------------------------------------------*/
 
-export interface UseMenuProps extends UsePopperProps, UseDisclosureProps {
+export interface UseMenuProps
+  extends Omit<UsePopperProps, "enabled">,
+    UseDisclosureProps {
   /**
    * If `true`, the menu will close when a menu item is
    * clicked
@@ -228,6 +231,8 @@ export function useMenu(props: UseMenuProps = {}) {
     shouldFocus: true,
   })
 
+  const animationState = useAnimationState({ isOpen, ref: menuRef })
+
   /**
    * Generate unique ids for menu's list and button
    */
@@ -273,6 +278,7 @@ export function useMenu(props: UseMenuProps = {}) {
     openAndFocusFirstItem,
     openAndFocusLastItem,
     onTransitionEnd: refocus,
+    unstable__animationState: animationState,
     descendants,
     popper,
     buttonId,
@@ -394,6 +400,7 @@ export function useMenuList(
     menuId,
     isLazy,
     lazyBehavior,
+    unstable__animationState: animated,
   } = menu
 
   const descendants = useMenuDescendantsContext()
@@ -471,7 +478,7 @@ export function useMenuList(
     hasBeenSelected: hasBeenOpened.current,
     isLazy,
     lazyBehavior,
-    isSelected: isOpen,
+    isSelected: animated.present,
   })
 
   return {
@@ -511,7 +518,7 @@ export function useMenuPositioner(props: any = {}) {
  * -----------------------------------------------------------------------------------------------*/
 
 export interface UseMenuItemProps
-  extends Omit<React.HTMLAttributes<Element>, "color"> {
+  extends Omit<React.HTMLAttributes<Element>, "color" | "disabled"> {
   /**
    * If `true`, the menuitem will be disabled
    */

@@ -8,7 +8,7 @@ import { useBreakpoint } from "./use-breakpoint"
  * provided responsive values object.
  *
  * @param values
- * @param defaultBreakpoint default breakpoint name
+ * @param [defaultBreakpoint] default breakpoint name
  * (in non-window environments like SSR)
  *
  * For SSR, you can use a package like [is-mobile](https://github.com/kaimallea/isMobile)
@@ -18,7 +18,7 @@ import { useBreakpoint } from "./use-breakpoint"
  * const width = useBreakpointValue({ base: '150px', md: '250px' })
  */
 export function useBreakpointValue<T = any>(
-  values: Record<string, T> | T[],
+  values: Partial<Record<string, T>> | T[],
   defaultBreakpoint?: string,
 ): T | undefined {
   const breakpoint = useBreakpoint(defaultBreakpoint)
@@ -27,15 +27,15 @@ export function useBreakpointValue<T = any>(
   if (!breakpoint) return undefined
 
   /**
-   * Get the non-number breakpoint keys from the provided breakpoints
+   * Get the sorted breakpoint keys from the provided breakpoints
    */
-  const breakpoints = Object.keys(theme.breakpoints)
+  const breakpoints = Array.from(theme.__breakpoints?.keys || [])
 
   const obj = isArray(values)
-    ? fromEntries<Record<string, T>>(
-        Object.entries(
-          arrayToObjectNotation(values, breakpoints),
-        ).map(([key, value]) => [key, value]),
+    ? fromEntries<Partial<Record<string, T>>>(
+        Object.entries(arrayToObjectNotation(values, breakpoints)).map(
+          ([key, value]) => [key, value],
+        ),
       )
     : values
 

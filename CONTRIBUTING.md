@@ -22,7 +22,7 @@ cd chakra-ui
    install dependencies and bootstrap the repo using `preconstruct`
 
 > If you run into any issues during this step, kindly reach out to the Chakra UI
-> React team here: https://discord.gg/dQHfcWF
+> React team here: https://discord.gg/chakra-ui
 
 ## Development
 
@@ -40,8 +40,6 @@ that can be consumed in isolation.
   testing
 - [Testing Library](https://testing-library.com/) for testing components and
   hooks
-- [Nextjs](https://www.nextjs.org/) for a blazing fast documentation website.
-  versioning and changelogs
 - [Changeset](https://github.com/atlassian/changesets) for changes
   documentation, changelog generation, and release management.
 
@@ -53,22 +51,17 @@ cross-component development and builds all components.
 **`yarn storybook`**: starts storybook server and loads stories in files that
 end with `.stories.tsx`.
 
-**`yarn docs:dev`**: run the documentation site locally.
-
 **`yarn build`**: run build for all component packages.
 
 **`yarn test`**: run test for all component packages.
 
 **`yarn release`**: publish changed packages.
 
-### Documentation
-
-The documentation site is built with Next.js. If you'd like to contribute to the
-docs, simply run `yarn build`, and `yarn docs:dev`
-
 ### Storybook
 
-Build components in isolation with Storybook using `yarn storybook`
+Build components in isolation with Storybook. When using Storybook, the build
+process needs to be run separately. Run `yarn build && yarn preconstruct watch`
+in one terminal and then `yarn storybook` in a second terminal.
 
 ## Think you found a bug?
 
@@ -156,27 +149,14 @@ All commits that fix bugs or add features need a test.
 ## Want to write a blog post or tutorial
 
 That would be amazing! Reach out to the core team here:
-https://discord.gg/dQHfcWF. We would love to support you any way we can.
+https://discord.gg/chakra-ui. We would love to support you any way we can.
 
 ## Want to help improve the docs?
 
-By default, the GitHub REST API has an anonymous user rate limit. This can be
-hit during heavy local docs development if the server is frequently restarted.
-
-Creating a GitHub token and storing it as the `GITHUB_TOKEN` environment
-variable allows the user to avoid the limit.
-
-Visit
-https://github.com/settings/tokens/new?description=Chakra+website+development to
-create a new personal access token. After creating the token, be sure to copy
-the token string to your clipboard.
-
-You'll then run the following command in the terminal that you'll start the docs
-from:
-
-```sh
-export GITHUB_TOKEN=<PASTE YOUR TOKEN HERE>
-```
+Our docsite lives in a
+[separate repo](https://github.com/chakra-ui/chakra-ui-docs). If you're
+interested in contributing to the documentation, check out the
+[docsite contribution guide](https://github.com/chakra-ui/chakra-ui-docs/blob/main/CONTRIBUTING.md).
 
 ## License
 

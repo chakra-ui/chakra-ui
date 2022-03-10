@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/anatomy",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "The anatony of all chakra components",
   "keywords": [
     "theme",
@@ -31,6 +31,12 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/theme-tools": "^1.3.1"
+    "@chakra-ui/theme-tools": "^1.3.6"
+  },
+  "peerDependencies": {
+    "@chakra-ui/system": ">=1.0.0"
+  },
+  "devDependencies": {
+    "@chakra-ui/system": "1.11.2"
   }
 }

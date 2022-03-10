@@ -2,6 +2,7 @@ import { EnvironmentProvider } from "@chakra-ui/react-env"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import Frame from "react-frame-component"
+import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 import { Hide, Show, useBreakpoint, useBreakpointValue } from "../src"
 
 export default {
@@ -44,7 +45,7 @@ export const BreakpointHook = () => {
 
 export const BreakpointValueHook = () => {
   const width = useBreakpointValue({ base: "150px", md: "250px" })
-  const color = useBreakpointValue(["red.500", null, "green.500"])
+  const color = useBreakpointValue(["red.500", undefined, "green.500"])
   return (
     <chakra.div bg={color} mx="auto" width={width}>
       I'm {width} wide
@@ -75,3 +76,27 @@ const BreakpointValue = () => {
   })
   return <p>Breakpoint: {breakpoint}</p>
 }
+
+const NestedBreakpointValueWithCustomBreakpoint = () => {
+  const bp = useBreakpoint()
+  const isMobile = useBreakpointValue({
+    base: true,
+    md: false,
+  })
+
+  return (
+    <>
+      <p>Breakpoint: {bp}</p>
+      <p>isMobile: {String(isMobile)}</p>
+      <i>Expect isMobile to be true util "md" breakpoint is hit</i>
+    </>
+  )
+}
+
+export const BreakpointValueWithCustomBreakpoint = () => (
+  <ChakraProvider
+    theme={extendTheme({ breakpoints: { preSm: "28em", postSm: "36em" } })}
+  >
+    <NestedBreakpointValueWithCustomBreakpoint />
+  </ChakraProvider>
+)

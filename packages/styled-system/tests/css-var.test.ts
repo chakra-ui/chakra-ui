@@ -1,4 +1,4 @@
-import { toCSSVar } from "../src/create-theme-vars"
+import { toCSSVar } from "../src"
 
 test("should convert to css variables", () => {
   expect(
@@ -381,6 +381,133 @@ test("should convert transition tokens", () => {
       "transition": Object {
         "property": Object {
           "colors": "background-color, background",
+        },
+      },
+    }
+  `)
+})
+
+test("should convert semantic tokens", () => {
+  const theme = {
+    colors: {
+      red: {
+        100: "#ff0010",
+        400: "#ff0040",
+        500: "#ff0050",
+        700: "#ff0070",
+        800: "#ff0080",
+      },
+    },
+    semanticTokens: {
+      colors: {
+        primary: {
+          default: "red.500",
+          _dark: "red.400",
+        },
+        secondary: {
+          default: "red.800",
+          _dark: "red.700",
+        },
+        error: "red.500",
+        success: "red.100",
+      },
+    },
+  }
+
+  expect(toCSSVar(theme)).toMatchInlineSnapshot(`
+    Object {
+      "__breakpoints": null,
+      "__cssMap": Object {
+        "colors.error": Object {
+          "value": "var(--colors-error)",
+          "var": "--colors-error",
+          "varRef": "var(--colors-error)",
+        },
+        "colors.primary": Object {
+          "value": "var(--colors-primary)",
+          "var": "--colors-primary",
+          "varRef": "var(--colors-primary)",
+        },
+        "colors.red.100": Object {
+          "value": "#ff0010",
+          "var": "--colors-red-100",
+          "varRef": "var(--colors-red-100)",
+        },
+        "colors.red.400": Object {
+          "value": "#ff0040",
+          "var": "--colors-red-400",
+          "varRef": "var(--colors-red-400)",
+        },
+        "colors.red.500": Object {
+          "value": "#ff0050",
+          "var": "--colors-red-500",
+          "varRef": "var(--colors-red-500)",
+        },
+        "colors.red.700": Object {
+          "value": "#ff0070",
+          "var": "--colors-red-700",
+          "varRef": "var(--colors-red-700)",
+        },
+        "colors.red.800": Object {
+          "value": "#ff0080",
+          "var": "--colors-red-800",
+          "varRef": "var(--colors-red-800)",
+        },
+        "colors.secondary": Object {
+          "value": "var(--colors-secondary)",
+          "var": "--colors-secondary",
+          "varRef": "var(--colors-secondary)",
+        },
+        "colors.success": Object {
+          "value": "var(--colors-success)",
+          "var": "--colors-success",
+          "varRef": "var(--colors-success)",
+        },
+      },
+      "__cssVars": Object {
+        "--chakra-ring-color": "rgba(66, 153, 225, 0.6)",
+        "--chakra-ring-inset": "var(--chakra-empty,/*!*/ /*!*/)",
+        "--chakra-ring-offset-color": "#fff",
+        "--chakra-ring-offset-shadow": "0 0 #0000",
+        "--chakra-ring-offset-width": "0px",
+        "--chakra-ring-shadow": "0 0 #0000",
+        "--chakra-space-x-reverse": "0",
+        "--chakra-space-y-reverse": "0",
+        "--colors-error": "var(--colors-red-500)",
+        "--colors-primary": "var(--colors-red-500)",
+        "--colors-red-100": "#ff0010",
+        "--colors-red-400": "#ff0040",
+        "--colors-red-500": "#ff0050",
+        "--colors-red-700": "#ff0070",
+        "--colors-red-800": "#ff0080",
+        "--colors-secondary": "var(--colors-red-800)",
+        "--colors-success": "var(--colors-red-100)",
+        ".chakra-ui-dark &, [data-theme=dark] &, &[data-theme=dark]": Object {
+          "--colors-primary": "var(--colors-red-400)",
+          "--colors-secondary": "var(--colors-red-700)",
+        },
+      },
+      "colors": Object {
+        "red": Object {
+          "100": "#ff0010",
+          "400": "#ff0040",
+          "500": "#ff0050",
+          "700": "#ff0070",
+          "800": "#ff0080",
+        },
+      },
+      "semanticTokens": Object {
+        "colors": Object {
+          "error": "red.500",
+          "primary": Object {
+            "_dark": "red.400",
+            "default": "red.500",
+          },
+          "secondary": Object {
+            "_dark": "red.700",
+            "default": "red.800",
+          },
+          "success": "red.100",
         },
       },
     }

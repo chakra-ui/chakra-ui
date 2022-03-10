@@ -26,13 +26,12 @@ export interface UseDescendantsReturn
   NB:  I recommend using `createDescendantContext` below
  * -----------------------------------------------------------------------------------------------*/
 
-const [
-  DescendantsContextProvider,
-  useDescendantsContext,
-] = createContext<UseDescendantsReturn>({
-  name: "DescendantsProvider",
-  errorMessage: "useDescendantsContext must be used within DescendantsProvider",
-})
+const [DescendantsContextProvider, useDescendantsContext] =
+  createContext<UseDescendantsReturn>({
+    name: "DescendantsProvider",
+    errorMessage:
+      "useDescendantsContext must be used within DescendantsProvider",
+  })
 
 /**
  * @internal
@@ -57,7 +56,7 @@ function useDescendant<T extends HTMLElement = HTMLElement, K = {}>(
 
   useSafeLayoutEffect(() => {
     if (!ref.current) return
-    const dataIndex = Number(ref.current.dataset.index)
+    const dataIndex = Number(ref.current.dataset["index"])
     if (index != dataIndex && !Number.isNaN(dataIndex)) {
       setIndex(dataIndex)
     }
@@ -82,7 +81,7 @@ function useDescendant<T extends HTMLElement = HTMLElement, K = {}>(
 
 export function createDescendantContext<
   T extends HTMLElement = HTMLElement,
-  K = {}
+  K = {},
 >() {
   type ContextProviderType = React.Provider<DescendantsManager<T, K>>
   const ContextProvider = cast<ContextProviderType>(DescendantsContextProvider)

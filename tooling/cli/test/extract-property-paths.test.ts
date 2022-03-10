@@ -63,18 +63,40 @@ describe("Extract Property Paths", () => {
 
   it("should print TS union", () => {
     const union = { key: ["value1", "value2"] }
+    const strict = false
 
-    const interfacePartial = printUnionMap(union)
+    const interfacePartial = printUnionMap(union, strict)
+
+    expect(interfacePartial).toMatchInlineSnapshot(
+      `"key: \\"value1\\" | \\"value2\\" | (string & {});"`,
+    )
+  })
+
+  it("should print strict TS union", () => {
+    const union = { key: ["value1", "value2"] }
+    const strict = true
+
+    const interfacePartial = printUnionMap(union, strict)
 
     expect(interfacePartial).toMatchInlineSnapshot(
       `"key: \\"value1\\" | \\"value2\\";"`,
     )
   })
 
-  it("should print type never for empty array", () => {
+  it("should print type (string & {}) for empty array", () => {
     const union = { key: [] }
+    const strict = false
 
-    const interfacePartial = printUnionMap(union)
+    const interfacePartial = printUnionMap(union, strict)
+
+    expect(interfacePartial).toMatchInlineSnapshot(`"key: (string & {});"`)
+  })
+
+  it("should print type never for empty array in strict mode", () => {
+    const union = { key: [] }
+    const strict = true
+
+    const interfacePartial = printUnionMap(union, strict)
 
     expect(interfacePartial).toMatchInlineSnapshot(`"key: never;"`)
   })

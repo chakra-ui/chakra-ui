@@ -64,7 +64,12 @@ export function parseGradient(value: string | null | undefined, theme: Dict) {
     // else, get and transform the color token or css value
     const key = `colors.${_color}`
     const color = key in theme.__cssMap ? theme.__cssMap[key].varRef : _color
-    return _stopOrFunc ? [color, _stopOrFunc].join(" ") : color
+    return _stopOrFunc
+      ? [
+          color,
+          ...(Array.isArray(_stopOrFunc) ? _stopOrFunc : [_stopOrFunc]),
+        ].join(" ")
+      : color
   })
 
   return `${_type}(${_values.join(", ")})`

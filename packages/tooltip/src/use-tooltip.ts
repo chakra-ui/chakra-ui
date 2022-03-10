@@ -93,20 +93,16 @@ export function useTooltip(props: UseTooltipProps = {}) {
     onClose: onCloseProp,
   })
 
-  const {
-    referenceRef,
-    getPopperProps,
-    getArrowInnerProps,
-    getArrowProps,
-  } = usePopper({
-    enabled: isOpen,
-    placement,
-    arrowPadding,
-    modifiers,
-    gutter,
-    offset,
-    direction,
-  })
+  const { referenceRef, getPopperProps, getArrowInnerProps, getArrowProps } =
+    usePopper({
+      enabled: isOpen,
+      placement,
+      arrowPadding,
+      modifiers,
+      gutter,
+      offset,
+      direction,
+    })
 
   const tooltipId = useId(id, "tooltip")
 
@@ -140,11 +136,14 @@ export function useTooltip(props: UseTooltipProps = {}) {
     }
   }, [closeOnMouseDown, closeWithDelay])
 
-  const onKeyDown = React.useCallback((event: KeyboardEvent) => {
-    if (isOpen && event.key === "Escape") {
-      closeWithDelay()
-    }
-  }, [isOpen, closeWithDelay])
+  const onKeyDown = React.useCallback(
+    (event: KeyboardEvent) => {
+      if (isOpen && event.key === "Escape") {
+        closeWithDelay()
+      }
+    },
+    [isOpen, closeWithDelay],
+  )
 
   useEventListener("keydown", closeOnEsc ? onKeyDown : undefined)
 

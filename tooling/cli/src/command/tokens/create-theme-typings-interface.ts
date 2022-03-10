@@ -19,7 +19,7 @@ export interface ThemeKeyOptions {
    * @example
    * union: gray.500
    * level: 1---|2--|
-   * @default 1
+   * @default 3
    */
   maxScanDepth?: number
   /**
@@ -39,11 +39,12 @@ export interface ThemeKeyOptions {
 
 export interface CreateThemeTypingsInterfaceOptions {
   config: ThemeKeyOptions[]
+  strictComponentTypes?: boolean
 }
 
 export async function createThemeTypingsInterface(
   theme: Record<string, unknown>,
-  { config }: CreateThemeTypingsInterfaceOptions,
+  { config, strictComponentTypes = false }: CreateThemeTypingsInterfaceOptions,
 ) {
   const unions = config.reduce(
     (
@@ -51,13 +52,24 @@ export async function createThemeTypingsInterface(
       { key, maxScanDepth, filter = () => true, flatMap = (value) => value },
     ) => {
       const target = theme[key]
+
+      allUnions[key] = []
+
       if (isObject(target) || Array.isArray(target)) {
         allUnions[key] = extractPropertyPaths(target, maxScanDepth)
           .filter(filter)
           .flatMap(flatMap)
-      } else {
-        allUnions[key] = []
       }
+
+      if (isObject(theme.semanticTokens)) {
+        // semantic tokens do not allow nesting, we just need to extract the keys
+        const semanticTokenKeys = extractPropertyKeys(theme.semanticTokens, key)
+          .filter(filter)
+          .flatMap(flatMap)
+
+        allUnions[key].push(...semanticTokenKeys)
+      }
+
       return allUnions
     },
     {} as Record<string, string[]>,
@@ -74,7 +86,7 @@ export async function createThemeTypingsInterface(
 // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
 export interface ThemeTypings {
   ${printUnionMap({ ...unions, textStyles, layerStyles, colorSchemes })}
-  ${printComponentTypes(componentTypes)}
+  ${printComponentTypes(componentTypes, strictComponentTypes)}
 }
 
 `

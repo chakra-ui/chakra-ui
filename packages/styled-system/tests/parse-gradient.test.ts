@@ -115,6 +115,21 @@ describe("linear gradient", () => {
   })
 })
 
+describe("radial gradient", () => {
+  test("should parse gradient with a named position", () => {
+    expect(
+      parseGradient("radial(circle at center, #fff, #000)", theme),
+    ).toMatchInlineSnapshot(`"radial-gradient(circle at center, #fff, #000)"`)
+  })
+  test("should parse gradient with a position", () => {
+    expect(
+      parseGradient("radial(farthest-corner at 50% 50%, #fff, #000)", theme),
+    ).toMatchInlineSnapshot(
+      `"radial-gradient(farthest-corner at 50% 50%, #fff, #000)"`,
+    )
+  })
+})
+
 describe("conic gradient", () => {
   test("basic value", () => {
     expect(parseGradient("conic(#fff, #000)", theme)).toMatchInlineSnapshot(

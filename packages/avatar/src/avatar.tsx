@@ -183,6 +183,7 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
 
   const {
     src,
+    srcSet,
     name,
     showBorder,
     borderRadius = "full",
@@ -218,6 +219,7 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
       <StylesProvider value={styles}>
         <AvatarImage
           src={src}
+          srcSet={srcSet}
           loading={loading}
           onError={onError}
           getInitials={getInitials}
@@ -246,6 +248,7 @@ interface AvatarImageProps
 const AvatarImage: React.FC<AvatarImageProps> = (props) => {
   const {
     src,
+    srcSet,
     onError,
     getInitials,
     name,
@@ -293,6 +296,7 @@ const AvatarImage: React.FC<AvatarImageProps> = (props) => {
   return (
     <chakra.img
       src={src}
+      srcSet={srcSet}
       alt={name}
       className="chakra-avatar__img"
       loading={loading}

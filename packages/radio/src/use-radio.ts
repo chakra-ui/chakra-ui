@@ -3,12 +3,7 @@ import { useBoolean, useControllableProp, useId } from "@chakra-ui/hooks"
 import { PropGetter } from "@chakra-ui/react-utils"
 import { ariaAttr, callAllHandlers, dataAttr, warn } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
-import {
-  ChangeEvent,
-  SyntheticEvent,
-  useCallback,
-  useState,
-} from "react"
+import { ChangeEvent, SyntheticEvent, useCallback, useState } from "react"
 import { useRadioGroupContext } from "./radio-group"
 
 /**
@@ -75,6 +70,10 @@ export interface UseRadioProps {
    * @internal
    */
   "data-radiogroup"?: any
+  /**
+   * Refers to the `id` of the element that labels the radio element.
+   */
+  "aria-describedby"?: string
 }
 
 export function useRadio(props: UseRadioProps = {}) {
@@ -92,6 +91,7 @@ export function useRadio(props: UseRadioProps = {}) {
     value,
     id: idProp,
     "data-radiogroup": dataRadioGroup,
+    "aria-describedby": ariaDescribedBy,
     ...htmlProps
   } = props
 
@@ -221,6 +221,7 @@ export function useRadio(props: UseRadioProps = {}) {
         "aria-disabled": ariaAttr(trulyDisabled),
         "aria-required": ariaAttr(isRequired),
         "data-readonly": dataAttr(isReadOnly),
+        "aria-describedby": ariaDescribedBy,
         style: visuallyHiddenStyle,
       }
     },
@@ -240,6 +241,7 @@ export function useRadio(props: UseRadioProps = {}) {
       isReadOnly,
       isRequired,
       isInvalid,
+      ariaDescribedBy,
     ],
   )
 

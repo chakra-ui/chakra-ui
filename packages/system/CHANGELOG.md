@@ -1,5 +1,175 @@
 # Change Log
 
+## 1.11.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`001751162`](https://github.com/chakra-ui/chakra-ui/commit/001751162dd1922d8ab53820f405665f0785f196)]:
+  - @chakra-ui/color-mode@1.4.6
+
+## 1.11.1
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/color-mode@1.4.5
+  - @chakra-ui/react-utils@1.2.3
+  - @chakra-ui/styled-system@1.18.1
+  - @chakra-ui/utils@1.10.4
+
+## 1.11.0
+
+### Minor Changes
+
+- [#5508](https://github.com/chakra-ui/chakra-ui/pull/5508)
+  [`e5e0f255c`](https://github.com/chakra-ui/chakra-ui/commit/e5e0f255c95f5e41c3b17adbda28fd09f7251642)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Allow all
+  `JSX.IntrinsicElements` for the chakra factory. This allows to use
+  [every DOM element](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/30a2f70db2f9ac223fd923ff1f8bcc175c082fd0/types/react/index.d.ts#L3111-L3288)
+  with the shorthand version:
+
+  ```jsx live=false
+  <chakra.header>Header</chakra.header>
+  <chakra.main>Main</chakra.main>
+  <chakra.footer>Many more</chakra.footer>
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`b0da6e666`](https://github.com/chakra-ui/chakra-ui/commit/b0da6e6665234c1584403f7f7251390c3a9433c8),
+  [`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/styled-system@1.18.0
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/color-mode@1.4.4
+
+## 1.10.3
+
+### Patch Changes
+
+- [#5536](https://github.com/chakra-ui/chakra-ui/pull/5536)
+  [`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process.
+
+- Updated dependencies
+  [[`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)]:
+  - @chakra-ui/color-mode@1.4.3
+  - @chakra-ui/react-utils@1.2.2
+  - @chakra-ui/styled-system@1.17.2
+  - @chakra-ui/utils@1.10.2
+
+## 1.10.2
+
+### Patch Changes
+
+- [#5195](https://github.com/chakra-ui/chakra-ui/pull/5195)
+  [`78251dab8`](https://github.com/chakra-ui/chakra-ui/commit/78251dab83e34747b719ee746394ec43aeceffef)
+  Thanks [@andrewmtam](https://github.com/andrewmtam)! - Disallow props that do
+  not exist in the prop interface
+
+- Updated dependencies
+  [[`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b)]:
+  - @chakra-ui/utils@1.10.1
+  - @chakra-ui/color-mode@1.4.2
+  - @chakra-ui/styled-system@1.17.1
+
+## 1.10.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1bd1f2ffe`](https://github.com/chakra-ui/chakra-ui/commit/1bd1f2ffef44d810a099b001be98e3bfa229ddad)]:
+  - @chakra-ui/color-mode@1.4.1
+
+## 1.10.0
+
+### Minor Changes
+
+- [#5358](https://github.com/chakra-ui/chakra-ui/pull/5358)
+  [`4944a4a2b`](https://github.com/chakra-ui/chakra-ui/commit/4944a4a2b0160b23d4e06f767c809565ff1d5b35)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Add React component
+  `<CSSVars root=":host, :root" />` to allow rehoisting CSS vars
+
+### Patch Changes
+
+- [#5374](https://github.com/chakra-ui/chakra-ui/pull/5374)
+  [`5a845d5f5`](https://github.com/chakra-ui/chakra-ui/commit/5a845d5f535ba886063e3f4099a27d0794084c54)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Updated type
+  `ThemingProps` to allow string values for the props `variant` and `size` even
+  on components which are not in the default theme.
+- Updated dependencies
+  [[`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3),
+  [`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3),
+  [`3b4117781`](https://github.com/chakra-ui/chakra-ui/commit/3b41177812c927c0ee37c7c0006a09f9ca031108),
+  [`bb7eb18da`](https://github.com/chakra-ui/chakra-ui/commit/bb7eb18daa015efee56d55519c2ce727d5bb776a)]:
+  - @chakra-ui/styled-system@1.17.0
+  - @chakra-ui/color-mode@1.4.0
+  - @chakra-ui/utils@1.10.0
+
+## 1.9.1
+
+### Patch Changes
+
+- [#5342](https://github.com/chakra-ui/chakra-ui/pull/5342)
+  [`d2d9af846`](https://github.com/chakra-ui/chakra-ui/commit/d2d9af8464d627d0ab854ad64a42d3c0be81d67d)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an TypeScript
+  issue where the ThemingProps type was too strict
+
+## 1.9.0
+
+### Minor Changes
+
+- [#5243](https://github.com/chakra-ui/chakra-ui/pull/5243)
+  [`ae6fd7a25`](https://github.com/chakra-ui/chakra-ui/commit/ae6fd7a25c543d089d500e328596b399d85afe8e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Use the feature
+  flag `--strict-component-types` for `@chakra-ui/cli tokens` to generate strict
+  component type for the theming props `variant` and `size`.
+
+  ```bash
+  chakra-cli tokens --strict-component-types
+  ```
+
+  ```tsx live=false
+  // before
+  <Button variant="abc" />
+  // valid type but variant is not available in the theme
+
+  // after
+  <Button variant="abc" /> // invalid
+  // Type '"abc"' is not assignable to type '"link" | "outline" | "ghost" | "solid" | "unstyled" | undefined'.
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d5461a452`](https://github.com/chakra-ui/chakra-ui/commit/d5461a4522aaee47b91a1a432601556e334a71c3),
+  [`213f61026`](https://github.com/chakra-ui/chakra-ui/commit/213f61026766d32f78b78dc2ccb2b2fdc472aab1)]:
+  - @chakra-ui/styled-system@1.16.0
+  - @chakra-ui/color-mode@1.3.3
+
+## 1.8.3
+
+### Patch Changes
+
+- [#5117](https://github.com/chakra-ui/chakra-ui/pull/5117)
+  [`586eb6090`](https://github.com/chakra-ui/chakra-ui/commit/586eb6090fe9013936cd83a61bb5091814bcb906)
+  Thanks [@primos63](https://github.com/primos63)! - Allow retrieving breakpoint
+  tokens when using useToken
+
+- Updated dependencies
+  [[`26d2a547b`](https://github.com/chakra-ui/chakra-ui/commit/26d2a547bca20e197f352c7492e3cad197b513e6),
+  [`73235af10`](https://github.com/chakra-ui/chakra-ui/commit/73235af10d8868786ec58778dda9a42b8d275599),
+  [`f15099adc`](https://github.com/chakra-ui/chakra-ui/commit/f15099adc60150781607288dbe12133c2fb84e38),
+  [`a1d5e7bfa`](https://github.com/chakra-ui/chakra-ui/commit/a1d5e7bfae1b4cc749e14eed4977ae423b8bce2c)]:
+  - @chakra-ui/styled-system@1.15.0
+
 ## 1.8.2
 
 ### Patch Changes

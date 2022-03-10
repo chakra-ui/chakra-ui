@@ -1,5 +1,100 @@
 # Change Log
 
+## 1.4.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@1.5.9
+
+## 1.4.3
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/form-control@1.5.8
+  - @chakra-ui/react-utils@1.2.3
+  - @chakra-ui/utils@1.10.4
+
+## 1.4.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/form-control@1.5.7
+
+## 1.4.1
+
+### Patch Changes
+
+- [#5536](https://github.com/chakra-ui/chakra-ui/pull/5536)
+  [`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process.
+
+- Updated dependencies
+  [[`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)]:
+  - @chakra-ui/form-control@1.5.6
+  - @chakra-ui/react-utils@1.2.2
+  - @chakra-ui/utils@1.10.2
+
+## 1.4.0
+
+### Minor Changes
+
+- [#5507](https://github.com/chakra-ui/chakra-ui/pull/5507)
+  [`e390806b2`](https://github.com/chakra-ui/chakra-ui/commit/e390806b2603abb97fb5e151abd46710291025d9)
+  Thanks [@noobinthisgame](https://github.com/noobinthisgame)! - Add new prop
+  `htmlSize` to `Input` to allow the usage of the native input attribute `size`.
+
+### Patch Changes
+
+- [#5516](https://github.com/chakra-ui/chakra-ui/pull/5516)
+  [`01a939464`](https://github.com/chakra-ui/chakra-ui/commit/01a939464a28d20ab27b38864dbc5a44078d7314)
+  Thanks [@selbekk](https://github.com/selbekk)! - Apply theme styles for
+  `InputLeftElement` and `InputRightElement`.
+
+- Updated dependencies
+  [[`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b),
+  [`f149c6c9a`](https://github.com/chakra-ui/chakra-ui/commit/f149c6c9aa04b8c0abebaa6ac8dc72c7f8ceed35)]:
+  - @chakra-ui/utils@1.10.1
+  - @chakra-ui/form-control@1.5.5
+
+## 1.3.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3)]:
+  - @chakra-ui/utils@1.10.0
+  - @chakra-ui/form-control@1.5.4
+
+## 1.3.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@1.5.3
+
+## 1.3.2
+
+### Patch Changes
+
+- [#5106](https://github.com/chakra-ui/chakra-ui/pull/5106)
+  [`ba76b8125`](https://github.com/chakra-ui/chakra-ui/commit/ba76b8125a533b0642b12ad6388774785ad026ac)
+  Thanks [@anubra266](https://github.com/anubra266)! - Fixed an issue where
+  `InputGroup` passes undefined `size` and `variant` props which overrides the
+  ones defined by default in a custom `Input` component.
+- Updated dependencies []:
+  - @chakra-ui/form-control@1.5.2
+
 ## 1.3.1
 
 ### Patch Changes

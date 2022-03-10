@@ -1,9 +1,11 @@
 import * as React from "react"
-import { ThemeProvider } from "@chakra-ui/system"
 import { render } from "@chakra-ui/test-utils"
 import MatchMediaMock from "jest-matchmedia-mock"
+import { extendTheme, ChakraProvider } from "@chakra-ui/react"
 import { Skeleton, SkeletonText } from "../src"
-import { queries, theme } from "./test-data"
+import { queries, theme as testTheme } from "./test-data"
+
+const theme = extendTheme(testTheme)
 
 let matchMedia: any
 
@@ -37,9 +39,9 @@ test("Change in parent state does not cause animation if already loaded", () => 
       setState(true)
     }, [])
     return (
-      <ThemeProvider theme={theme}>
+      <ChakraProvider theme={theme}>
         <Skeleton isLoaded />
-      </ThemeProvider>
+      </ChakraProvider>
     )
   }
 
@@ -53,5 +55,5 @@ test("Change in parent state does not cause animation if already loaded", () => 
 
 function renderWithQuery(query: string, ui: React.ReactElement) {
   matchMedia.useMediaQuery(query)
-  return render(<ThemeProvider theme={theme}>{ui}</ThemeProvider>)
+  return render(<ChakraProvider theme={theme}>{ui}</ChakraProvider>)
 }

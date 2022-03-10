@@ -1,5 +1,118 @@
 # Change Log
 
+## 1.4.9
+
+### Patch Changes
+
+- Updated dependencies
+  [[`5cd5cff35`](https://github.com/chakra-ui/chakra-ui/commit/5cd5cff35e4837539d83a2157a07585d461b0aac)]:
+  - @chakra-ui/hooks@1.8.5
+  - @chakra-ui/portal@1.3.8
+
+## 1.4.8
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/hooks@1.8.4
+  - @chakra-ui/popper@2.4.3
+  - @chakra-ui/portal@1.3.7
+  - @chakra-ui/react-utils@1.2.3
+  - @chakra-ui/utils@1.10.4
+  - @chakra-ui/visually-hidden@1.1.6
+
+## 1.4.7
+
+### Patch Changes
+
+- Updated dependencies
+  [[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/hooks@1.8.3
+  - @chakra-ui/portal@1.3.6
+  - @chakra-ui/visually-hidden@1.1.5
+
+## 1.4.6
+
+### Patch Changes
+
+- [#5536](https://github.com/chakra-ui/chakra-ui/pull/5536)
+  [`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process.
+
+- Updated dependencies
+  [[`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)]:
+  - @chakra-ui/hooks@1.8.2
+  - @chakra-ui/popper@2.4.2
+  - @chakra-ui/portal@1.3.5
+  - @chakra-ui/react-utils@1.2.2
+  - @chakra-ui/utils@1.10.2
+  - @chakra-ui/visually-hidden@1.1.4
+
+## 1.4.5
+
+### Patch Changes
+
+- [`f6578a1b7`](https://github.com/chakra-ui/chakra-ui/commit/f6578a1b76546c9432d9bcf06acead17d68c62b1)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fix an issue where
+  arrow tooltip background color only consider bg props. It considers `bg`,
+  `background`, `bgColor` and `backgroundColor` now.
+
+* [#5499](https://github.com/chakra-ui/chakra-ui/pull/5499)
+  [`f1d024749`](https://github.com/chakra-ui/chakra-ui/commit/f1d02474983dc8277e767dc729abc3cbb02cfe10)
+  Thanks [@noobinthisgame](https://github.com/noobinthisgame)! - allow framer
+  motion v6 as peer dependency
+
+* Updated dependencies
+  [[`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b)]:
+  - @chakra-ui/utils@1.10.1
+  - @chakra-ui/hooks@1.8.1
+  - @chakra-ui/portal@1.3.4
+  - @chakra-ui/visually-hidden@1.1.3
+
+## 1.4.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`cbad002e7`](https://github.com/chakra-ui/chakra-ui/commit/cbad002e7bdb439a0dfeada82ebfb5b529e145fe),
+  [`6e259a1f7`](https://github.com/chakra-ui/chakra-ui/commit/6e259a1f7008a00f7be096e6b315cb9d62ef9748),
+  [`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3)]:
+  - @chakra-ui/hooks@1.8.0
+  - @chakra-ui/utils@1.10.0
+  - @chakra-ui/visually-hidden@1.1.2
+  - @chakra-ui/portal@1.3.3
+
+## 1.4.3
+
+### Patch Changes
+
+- [#5228](https://github.com/chakra-ui/chakra-ui/pull/5228)
+  [`f05f56b9a`](https://github.com/chakra-ui/chakra-ui/commit/f05f56b9a9abe27947ed32ae39d01602e1be8a76)
+  Thanks [@seancwalsh](https://github.com/seancwalsh)! - Fix broken link in
+  Tooltip's JSDoc comment
+
+- Updated dependencies
+  [[`801008e27`](https://github.com/chakra-ui/chakra-ui/commit/801008e276812a6f94f2f5dc634bcbfe01d23026),
+  [`8a0e5bdbc`](https://github.com/chakra-ui/chakra-ui/commit/8a0e5bdbccb7fa10dd4cd7b909ca60991fce81a0)]:
+  - @chakra-ui/hooks@1.7.2
+  - @chakra-ui/portal@1.3.2
+
+## 1.4.2
+
+### Patch Changes
+
+- [#5139](https://github.com/chakra-ui/chakra-ui/pull/5139)
+  [`c20aa919e`](https://github.com/chakra-ui/chakra-ui/commit/c20aa919e4fa4d89a2c9be603fa60f851576558b)
+  Thanks [@mlajtos](https://github.com/mlajtos)! - Prevent `onKeyDown` callback
+  from de/registering on every call of `useTooltip`
+
 ## 1.4.1
 
 ### Patch Changes

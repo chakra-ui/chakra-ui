@@ -1,7 +1,7 @@
 import { useIds } from "@chakra-ui/hooks"
 import { callAllHandlers } from "@chakra-ui/utils"
 import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
-import { hideOthers, Undo } from "aria-hidden"
+import { hideOthers } from "aria-hidden"
 import {
   KeyboardEvent,
   MouseEvent,
@@ -203,19 +203,14 @@ export function useAriaHidden(
   ref: RefObject<HTMLElement>,
   shouldHide: boolean,
 ) {
+  // save current ref in a local var to trigger the effect on identity change
+  const currentElement = ref.current
+
   useEffect(() => {
-    if (!ref.current) return undefined
+    // keep using `ref.current` inside the effect
+    // it may have changed during render and the execution of the effect
+    if (!ref.current || !shouldHide) return undefined
 
-    let undo: Undo | null = null
-
-    if (shouldHide && ref.current) {
-      undo = hideOthers(ref.current)
-    }
-
-    return () => {
-      if (shouldHide) {
-        undo?.()
-      }
-    }
-  }, [shouldHide, ref])
+    return hideOthers(ref.current)
+  }, [shouldHide, ref, currentElement])
 }

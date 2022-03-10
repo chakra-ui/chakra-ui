@@ -1,5 +1,87 @@
 # Change Log
 
+## 1.6.8
+
+### Patch Changes
+
+- Updated dependencies
+  [[`5cd5cff35`](https://github.com/chakra-ui/chakra-ui/commit/5cd5cff35e4837539d83a2157a07585d461b0aac)]:
+  - @chakra-ui/hooks@1.8.5
+
+## 1.6.7
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/clickable@1.2.6
+  - @chakra-ui/descendant@2.1.3
+  - @chakra-ui/hooks@1.8.4
+  - @chakra-ui/react-utils@1.2.3
+  - @chakra-ui/utils@1.10.4
+
+## 1.6.6
+
+### Patch Changes
+
+- Updated dependencies
+  [[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/clickable@1.2.5
+  - @chakra-ui/hooks@1.8.3
+
+## 1.6.5
+
+### Patch Changes
+
+- [#5536](https://github.com/chakra-ui/chakra-ui/pull/5536)
+  [`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process.
+
+- Updated dependencies
+  [[`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)]:
+  - @chakra-ui/clickable@1.2.4
+  - @chakra-ui/descendant@2.1.2
+  - @chakra-ui/hooks@1.8.2
+  - @chakra-ui/react-utils@1.2.2
+  - @chakra-ui/utils@1.10.2
+
+## 1.6.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b)]:
+  - @chakra-ui/utils@1.10.1
+  - @chakra-ui/clickable@1.2.3
+  - @chakra-ui/hooks@1.8.1
+
+## 1.6.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`cbad002e7`](https://github.com/chakra-ui/chakra-ui/commit/cbad002e7bdb439a0dfeada82ebfb5b529e145fe),
+  [`6e259a1f7`](https://github.com/chakra-ui/chakra-ui/commit/6e259a1f7008a00f7be096e6b315cb9d62ef9748),
+  [`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3)]:
+  - @chakra-ui/hooks@1.8.0
+  - @chakra-ui/utils@1.10.0
+  - @chakra-ui/clickable@1.2.2
+
+## 1.6.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`801008e27`](https://github.com/chakra-ui/chakra-ui/commit/801008e276812a6f94f2f5dc634bcbfe01d23026),
+  [`8a0e5bdbc`](https://github.com/chakra-ui/chakra-ui/commit/8a0e5bdbccb7fa10dd4cd7b909ca60991fce81a0)]:
+  - @chakra-ui/hooks@1.7.2
+
 ## 1.6.1
 
 ### Patch Changes

@@ -3,7 +3,6 @@ module.exports = {
   collectCoverageFrom: ["packages/**/*.{ts,tsx}"],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
   modulePathIgnorePatterns: [
-    "<rootDir>/website/.cache",
     "<rootDir>/examples",
     "<rootDir>/tooling/cra-template*",
   ],

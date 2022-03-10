@@ -5,7 +5,7 @@ import { chakra } from "../src"
 const consoleSpy = jest.spyOn(console, "error").mockImplementation(() => {})
 
 test("should allow custom should forward props", () => {
-  const Div = chakra("div", {
+  const Div = chakra<"div", { sample: string; isBig: string }>("div", {
     shouldForwardProp: (prop) => !["sample"].includes(prop),
   })
   const { getByTestId } = render(

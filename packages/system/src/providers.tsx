@@ -17,27 +17,35 @@ import {
 import * as React from "react"
 
 export interface ThemeProviderProps extends EmotionThemeProviderProps {
-  /**
-   * The element to attach the CSS custom properties to.
-   * @default ":host, :root"
-   */
   cssVarsRoot?: string
 }
 
 export const ThemeProvider = (props: ThemeProviderProps) => {
-  const { cssVarsRoot = ":host, :root", theme, children } = props
+  const { cssVarsRoot, theme, children } = props
   const computedTheme = React.useMemo(() => toCSSVar(theme), [theme])
   return (
     <EmotionThemeProvider theme={computedTheme}>
-      <Global styles={(theme: any) => ({ [cssVarsRoot]: theme.__cssVars })} />
+      <CSSVars root={cssVarsRoot} />
       {children}
     </EmotionThemeProvider>
   )
 }
 
+export interface CSSVarsProps {
+  /**
+   * The element to attach the CSS custom properties to.
+   * @default ":host, :root"
+   */
+  root?: string
+}
+
+export const CSSVars = ({ root = ":host, :root" }: CSSVarsProps) => (
+  <Global styles={(theme: any) => ({ [root]: theme.__cssVars })} />
+)
+
 export function useTheme<T extends object = Dict>() {
   const theme = React.useContext(
-    (ThemeContext as unknown) as React.Context<T | undefined>,
+    ThemeContext as unknown as React.Context<T | undefined>,
   )
   if (!theme) {
     throw Error(

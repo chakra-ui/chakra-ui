@@ -1,5 +1,63 @@
 # @chakra-ui/anatomy
 
+## 1.3.0
+
+### Minor Changes
+
+- [#4443](https://github.com/chakra-ui/chakra-ui/pull/4443)
+  [`fbe946223`](https://github.com/chakra-ui/chakra-ui/commit/fbe94622357e22acaf8bab0eae33ceae663d7a5b)
+  Thanks [@heozeop](https://github.com/heozeop)! - Add `textarea` part to
+  `editableAnatomy`
+
+## 1.2.5
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/theme-tools@1.3.6
+
+## 1.2.4
+
+### Patch Changes
+
+- [#5595](https://github.com/chakra-ui/chakra-ui/pull/5595)
+  [`0542b8a53`](https://github.com/chakra-ui/chakra-ui/commit/0542b8a53425093f18fd86d2b55220d3fa20253a)
+  Thanks [@takethefake](https://github.com/takethefake)! - Add a new multi style
+  part `root` to the Accordion component. It is applied to the topmost DOM
+  element.
+- Updated dependencies []:
+  - @chakra-ui/theme-tools@1.3.5
+
+## 1.2.3
+
+### Patch Changes
+
+- [#5536](https://github.com/chakra-ui/chakra-ui/pull/5536)
+  [`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process.
+
+- Updated dependencies
+  [[`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)]:
+  - @chakra-ui/theme-tools@1.3.4
+
+## 1.2.2
+
+### Patch Changes
+
+- [#5432](https://github.com/chakra-ui/chakra-ui/pull/5432)
+  [`98c5ec2bc`](https://github.com/chakra-ui/chakra-ui/commit/98c5ec2bc37fc0764446c3e4df816131418c14e1)
+  Thanks [@Methuselah96](https://github.com/Methuselah96)! - Add missing peer
+  dependencies
+
+- Updated dependencies []:
+  - @chakra-ui/theme-tools@1.3.3
+
 ## 1.2.1
 
 ### Patch Changes

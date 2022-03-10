@@ -6,7 +6,7 @@ export const position: Config = {
   position: true,
   pos: t.prop("position"),
   zIndex: t.prop("zIndex", "zIndices"),
-  inset: t.spaceT(["top", "right", "bottom", "left"]),
+  inset: t.spaceT("inset"),
   insetX: t.spaceT(["left", "right"]),
   insetInline: t.spaceT("insetInline"),
   insetY: t.spaceT(["top", "bottom"]),
@@ -77,15 +77,15 @@ export interface PositionProps {
   /**
    * The CSS `left`, `right`, `top`, `bottom` property
    */
-  inset?: Token<CSS.Property.Left | number, "sizes">
+  inset?: Token<CSS.Property.Inset | number, "sizes">
   /**
    * The CSS `left`, and `right` property
    */
-  insetX?: Token<CSS.Property.Left | number, "sizes">
+  insetX?: Token<CSS.Property.Inset | number, "sizes">
   /**
    * The CSS `top`, and `bottom` property
    */
-  insetY?: Token<CSS.Property.Left | number, "sizes">
+  insetY?: Token<CSS.Property.Inset | number, "sizes">
   /**
    * The CSS `position` property
    */

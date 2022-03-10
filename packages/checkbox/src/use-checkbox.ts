@@ -1,11 +1,13 @@
+import { useFormControlProps } from "@chakra-ui/form-control"
 import {
   useBoolean,
   useCallbackRef,
   useControllableProp,
   useSafeLayoutEffect,
+  useUpdateEffect,
 } from "@chakra-ui/hooks"
 import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
-import { callAllHandlers, dataAttr, focus, warn } from "@chakra-ui/utils"
+import { callAllHandlers, dataAttr, focus, omit, warn } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import React, {
   ChangeEvent,
@@ -100,6 +102,18 @@ export interface UseCheckboxProps {
   tabIndex?: number
 }
 
+export interface CheckboxState {
+  isInvalid: boolean | undefined
+  isFocused: boolean
+  isChecked: boolean
+  isActive: boolean
+  isHovered: boolean
+  isIndeterminate: boolean | undefined
+  isDisabled: boolean | undefined
+  isReadOnly: boolean | undefined
+  isRequired: boolean | undefined
+}
+
 /**
  * useCheckbox that provides all the state and focus management logic
  * for a checkbox. It is consumed by the `Checkbox` component
@@ -107,29 +121,44 @@ export interface UseCheckboxProps {
  * @see Docs https://chakra-ui.com/checkbox#hooks
  */
 export function useCheckbox(props: UseCheckboxProps = {}) {
+  const formControlProps = useFormControlProps(props)
+  const {
+    isDisabled,
+    isReadOnly,
+    isRequired,
+    isInvalid,
+    id,
+    onBlur,
+    onFocus,
+    "aria-describedby": ariaDescribedBy,
+  } = formControlProps
+
   const {
     defaultIsChecked,
     defaultChecked = defaultIsChecked,
     isChecked: checkedProp,
     isFocusable,
-    isDisabled,
-    isReadOnly,
-    isRequired,
     onChange,
     isIndeterminate,
-    isInvalid,
     name,
     value,
-    id,
-    onBlur,
-    onFocus,
     tabIndex = undefined,
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
     "aria-invalid": ariaInvalid,
-    "aria-describedby": ariaDescribedBy,
-    ...htmlProps
+    ...rest
   } = props
+
+  const htmlProps = omit(rest, [
+    "isDisabled",
+    "isReadOnly",
+    "isRequired",
+    "isInvalid",
+    "id",
+    "onBlur",
+    "onFocus",
+    "aria-describedby",
+  ])
 
   const onChangeProp = useCallbackRef(onChange)
   const onBlurProp = useCallbackRef(onBlur)
@@ -188,6 +217,12 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       inputRef.current.indeterminate = Boolean(isIndeterminate)
     }
   }, [isIndeterminate])
+
+  useUpdateEffect(() => {
+    if (isDisabled) {
+      setFocused.off()
+    }
+  }, [isDisabled, setFocused])
 
   const trulyDisabled = isDisabled && !isFocusable
 
@@ -366,18 +401,20 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     [isChecked, isDisabled, isInvalid],
   )
 
+  const state: CheckboxState = {
+    isInvalid,
+    isFocused,
+    isChecked,
+    isActive,
+    isHovered,
+    isIndeterminate,
+    isDisabled,
+    isReadOnly,
+    isRequired,
+  }
+
   return {
-    state: {
-      isInvalid,
-      isFocused,
-      isChecked,
-      isActive,
-      isHovered,
-      isIndeterminate,
-      isDisabled,
-      isReadOnly,
-      isRequired,
-    },
+    state,
     getRootProps,
     getCheckboxProps,
     getInputProps,

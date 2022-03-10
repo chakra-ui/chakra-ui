@@ -9,7 +9,7 @@ export async function initCLI() {
   await unhandledError()
   welcome({
     title: "Chakra UI CLI",
-    tagLine: `by chakra UI\n${pkgJSON.description}`,
+    tagLine: `by Chakra UI\n${pkgJSON.description}`,
     bgColor: `#319795`,
     color: `#FFFFFF`,
     bold: true,
