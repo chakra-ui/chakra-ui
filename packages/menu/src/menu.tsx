@@ -322,11 +322,11 @@ const CheckIcon: React.FC<PropsOf<"svg">> = (props) => (
 
 export interface MenuItemOptionProps
   extends UseMenuOptionOptions,
-    Omit<MenuItemProps, keyof UseMenuOptionOptions> {
+    Omit<MenuItemProps, keyof UseMenuOptionOptions | "icon"> {
   /**
    * @type React.ReactElement
    */
-  icon?: React.ReactElement
+  icon?: React.ReactElement | null
   /**
    * @type SystemProps["mr"]
    */
@@ -344,13 +344,15 @@ export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
         {...optionProps}
         className={cx("chakra-menu__menuitem-option", rest.className)}
       >
-        <MenuIcon
-          fontSize="0.8em"
-          marginEnd={iconSpacing}
-          opacity={props.isChecked ? 1 : 0}
-        >
-          {icon || <CheckIcon />}
-        </MenuIcon>
+        {icon !== null && (
+          <MenuIcon
+            fontSize="0.8em"
+            marginEnd={iconSpacing}
+            opacity={props.isChecked ? 1 : 0}
+          >
+            {icon || <CheckIcon />}
+          </MenuIcon>
+        )}
         <span style={{ flex: 1 }}>{optionProps.children}</span>
       </StyledMenuItem>
     )

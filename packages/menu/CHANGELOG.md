@@ -1,5 +1,46 @@
 # Change Log
 
+## 1.8.9
+
+### Patch Changes
+
+- [#5631](https://github.com/chakra-ui/chakra-ui/pull/5631)
+  [`e4da6359d`](https://github.com/chakra-ui/chakra-ui/commit/e4da6359d0a007a4b23959b0b8feed6231a947b6)
+  Thanks [@anubra266](https://github.com/anubra266)! - Fixed bug where passing
+  `null` as value of `icon` prop in `MenuOptionItem` still rendered the icon.
+- Updated dependencies
+  [[`5cd5cff35`](https://github.com/chakra-ui/chakra-ui/commit/5cd5cff35e4837539d83a2157a07585d461b0aac)]:
+  - @chakra-ui/hooks@1.8.5
+
+## 1.8.8
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/clickable@1.2.6
+  - @chakra-ui/descendant@2.1.3
+  - @chakra-ui/hooks@1.8.4
+  - @chakra-ui/popper@2.4.3
+  - @chakra-ui/react-utils@1.2.3
+  - @chakra-ui/transition@1.4.7
+  - @chakra-ui/utils@1.10.4
+
+## 1.8.7
+
+### Patch Changes
+
+- Updated dependencies
+  [[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/clickable@1.2.5
+  - @chakra-ui/hooks@1.8.3
+  - @chakra-ui/transition@1.4.6
+
 ## 1.8.6
 
 ### Patch Changes

@@ -5,13 +5,15 @@ import { useTheme } from "@chakra-ui/system"
 /**
  * React hook used to get the current responsive media breakpoint.
  *
- * @param defaultBreakpoint default breakpoint name
+ * @param [defaultBreakpoint="base"] default breakpoint name
  * (in non-window environments like SSR)
  *
  * For SSR, you can use a package like [is-mobile](https://github.com/kaimallea/isMobile)
  * to get the default breakpoint value from the user-agent
  */
-export function useBreakpoint(defaultBreakpoint?: string) {
+export function useBreakpoint(
+  defaultBreakpoint = "base", // default value ensures SSR+CSR consistency
+) {
   const { __breakpoints } = useTheme()
   const env = useEnvironment()
 
@@ -25,20 +27,25 @@ export function useBreakpoint(defaultBreakpoint?: string) {
   )
 
   const [currentBreakpoint, setCurrentBreakpoint] = React.useState(() => {
-    if (env.window.matchMedia) {
-      // set correct breakpoint on first render
-      const matchingBreakpointDetail = queries.find(
-        ({ query }) => env.window.matchMedia(query).matches,
-      )
-      return matchingBreakpointDetail?.breakpoint
-    }
-
     if (defaultBreakpoint) {
-      // use fallback if available
+      // use default breakpoint to ensure render consistency in SSR + CSR environments
+      // => first render on the client has to match the render on the server
       const fallbackBreakpointDetail = queries.find(
         ({ breakpoint }) => breakpoint === defaultBreakpoint,
       )
-      return fallbackBreakpointDetail?.breakpoint
+      if (fallbackBreakpointDetail) {
+        return fallbackBreakpointDetail.breakpoint
+      }
+    }
+
+    if (env.window.matchMedia) {
+      // set correct breakpoint on first render if no default breakpoint was provided
+      const matchingBreakpointDetail = queries.find(
+        ({ query }) => env.window.matchMedia(query).matches,
+      )
+      if (matchingBreakpointDetail) {
+        return matchingBreakpointDetail.breakpoint
+      }
     }
 
     return undefined

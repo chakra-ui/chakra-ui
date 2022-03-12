@@ -2,13 +2,14 @@ import { anatomy } from "@chakra-ui/theme-tools"
 
 /**
  * **Accordion anatomy**
- * - Item: the accordion item contains the button and panel
+ * - Root: the root container of the accordion
+ * - Container: the accordion item contains the button and panel
  * - Button: the button is the trigger for the panel
  * - Panel: the panel is the content of the accordion item
  * - Icon: the expanded/collapsed icon
  */
 export const accordionAnatomy = anatomy("accordion")
-  .parts("container", "item", "button", "panel")
+  .parts("root", "container", "button", "panel")
   .extend("icon")
 
 /**
@@ -58,7 +59,11 @@ export const drawerAnatomy = anatomy("drawer")
   .parts("overlay", "dialogContainer", "dialog")
   .extend("header", "closeButton", "body", "footer")
 
-export const editableAnatomy = anatomy("editable").parts("preview", "input")
+export const editableAnatomy = anatomy("editable").parts(
+  "preview",
+  "input",
+  "textarea",
+)
 
 export const formAnatomy = anatomy("form").parts(
   "container",

@@ -10,6 +10,317 @@ experience.
 
 <!-- CHANGELOG:INSERT -->
 
+## 28-02-2022
+
+**Anatomy** `v1.3.0`
+
+- Add `textarea` part to `editableAnatomy`
+
+**Cli** `v1.9.0`
+
+- The CLI tokens command now includes semantic tokens in the generated
+  ThemeTypings
+
+**Editable** `v1.4.0`
+
+- Added the component `EditableTextarea` to `Editable`. Use the textarea element
+  to handle multi line text input in an editable context.
+
+```tsx live=false
+<Editable defaultValue="Change me" onChange={console.log}>
+  <EditablePreview />
+  <EditableTextarea />
+</Editable>
+```
+
+**Layout** `v1.7.7`
+
+- Fixed zIndex in LinkOverlay so that content in LinkBox can have an opacity
+  below 1
+
+**Color Mode** `v1.4.6`
+
+- Adds a runtime safeguard for `ColorModeScript`.
+
+**Theme** `v1.14.0`
+
+- Add styles for new `textarea` element in `Editable`
+
+**Media Query** `v2.0.4`
+
+- Fixed an issue that undefined is returned when calling the hook
+  `useBreakpoint` with `defaultValue` specified in SSR
+
+- Fixed an issue where the value of `useBreakpointValue` in CSR did not match
+  SSR.
+
+**Hooks** `v1.8.5`
+
+- Fixed an issue where the prop `isLazy` did not work as expected. This was
+  achieved by updating the hook `useAnimationState`.
+
+**Popover** `v1.11.7`
+
+- Fixed an issue where the prop `isLazy` did not work as expected. This was
+  achieved by updating the hook `useAnimationState`.
+
+**Menu** `v1.8.9`
+
+- Fixed bug where passing `null` as value of `icon` prop in `MenuOptionItem`
+  still rendered the icon.
+
+## 20-02-2022
+
+`@chakra-ui/react@1.8.5`
+
+**Create React App Ts** `v1.1.12`
+
+**Gatsby Starter Default** `v0.3.12`
+
+**Chakra Nextjs** `v1.1.12`
+
+**Chakra Nextjs Ts** `v1.1.12`
+
+**Storybook Addon** `v1.0.2`
+
+**Accordion** `v1.4.8`
+
+**Alert** `v1.3.7`
+
+**Anatomy** `v1.2.5`
+
+**Avatar** `v1.3.8`
+
+**Breadcrumb** `v1.3.6`
+
+**Button** `v1.5.7`
+
+**Checkbox** `v1.6.7`
+
+**Clickable** `v1.2.6`
+
+**Close Button** `v1.2.7`
+
+**Color Mode** `v1.4.5`
+
+**Control Box** `v1.1.6`
+
+**Counter** `v1.2.7`
+
+**Css Reset** `v1.1.3`
+
+**Descendant** `v2.1.3`
+
+**Editable** `v1.3.7`
+
+**React Env** `v1.1.6`
+
+**Focus Lock** `v1.2.6`
+
+**Form Control** `v1.5.8`
+
+**Hooks** `v1.8.4`
+
+**Icon** `v2.0.5`
+
+**Icons** `v1.1.7`
+
+**Image** `v1.1.7`
+
+**Input** `v1.4.3`
+
+**Layout** `v1.7.6`
+
+**Live Region** `v1.1.6`
+
+**Media Query** `v2.0.3`
+
+**Menu** `v1.8.8`
+
+**Modal** `v1.10.9`
+
+**Number Input** `v1.4.4`
+
+**Pin Input** `v1.7.7`
+
+**Popover** `v1.11.6`
+
+**Popper** `v2.4.3`
+
+**Portal** `v1.3.7`
+
+**Progress** `v1.2.6`
+
+**Provider** `v1.7.11`
+
+**Radio** `v1.4.9`
+
+**React Utils** `v1.2.3`
+
+**Select** `v1.2.8`
+
+**Skeleton** `v1.2.11`
+
+**Skip Nav** `v1.2.6`
+
+**Slider** `v1.5.8`
+
+**Spinner** `v1.2.6`
+
+**Stat** `v1.2.7`
+
+**Styled System** `v1.18.1`
+
+**Switch** `v1.3.7`
+
+**System** `v1.11.1`
+
+**Table** `v1.3.6`
+
+**Tabs** `v1.6.7`
+
+**Tag** `v1.2.7`
+
+**Textarea** `v1.2.8`
+
+**Theme** `v1.13.4`
+
+**Theme Tools** `v1.3.6`
+
+**Toast** `v1.5.6`
+
+**Tooltip** `v1.4.8`
+
+**Transition** `v1.4.7`
+
+**Utils** `v1.10.4`
+
+**Visually Hidden** `v1.1.6`
+
+**Babel Plugin** `v1.0.2`
+
+**Cli** `v1.8.2`
+
+**Cra Template** `v1.1.2`
+
+**Cra Template Typescript** `v1.1.2`
+
+**Gatsby Plugin** `v2.0.4`
+
+**Props Docs** `v1.0.49`
+
+**Storybook Addon** `v1.0.3`
+
+**Test Utils** `v1.1.11`
+
+- Bumped patch version for every package to fix release process. Root cause was
+  a bug in our CI configuration.
+
+## 20-02-2022
+
+**Switch** `v1.3.6`
+
+- Fixed a UI issue where the Switch component rendered a few pixels off the
+  baseline.
+
+**Media Query** `v2.0.2`
+
+- Added props descriptions to Show / Hide components
+- Fixed an issue where the hook `useBreakpoint` did not update after the first
+  page load.
+- Fixed an issue where the `useBreakpointValue` hook did not work as expected
+  with custom breakpoints
+
+**Checkbox** `v1.6.6`
+
+- Add `FormControl` support for `useCheckbox`
+
+**Styled System** `v1.18.0`
+
+- Modify theme types to make it possible to customize token types via TypeScript
+  module augmentation and declaration merging in addition to allowing
+  customization via the Chakra CLI.
+
+This makes it possible to do the following:
+
+- Distribute custom types with a component library based on Chakra
+- Customize theme types by hand
+- Version control your theme types
+
+To customize themes using the new mechanism, augment the `CustomThemeTypings`
+type in a definitions file such as `types/chakra.d.ts`:
+
+> ⚠️ NOTE: your `CustomThemeTypings` _must_ implement/extend `BaseThemeTypings`,
+> otherwise the types will fall back to the default Chakra types (or custom
+> output from **@chakra-ui/cli**)
+
+```ts
+import { BaseThemeTypings } from "@chakra-ui/styled-system";
+
+type DefaultSizes = 'small' | 'medium' | 'large';
+
+declare module "@chakra-ui/styled-system" {
+  export interface CustomThemeTypings extends BaseThemeTypings {
+    // Example custom `borders` tokens
+    borders: 'none' | 'thin' | 'thick';
+    // ...
+    // Other custom tokens
+    // ...
+    components: {
+      Button: {
+        // Example custom component sizes and variants
+        sizes: DefaultSizes;
+        variants: 'solid' | 'outline' | 'wacky' | 'chill';
+      };
+      // ...
+     }
+  }
+```
+
+**Utils** `v1.10.3`
+
+- Fixed an issue where `queryString()` created invalid media queries when min
+  and max were set.
+
+**Modal** `v1.10.8`
+
+- Fix `useAriaHidden` hook dependency to make it work as expected
+
+**Icon** `v2.0.4`
+
+- Add missing word in comment of `CreateIconOptions`
+
+**System** `v1.11.0`
+
+- Allow all `JSX.IntrinsicElements` for the chakra factory. This allows to use
+  [every DOM element](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/30a2f70db2f9ac223fd923ff1f8bcc175c082fd0/types/react/index.d.ts#L3111-L3288)
+  with the shorthand version:
+
+```jsx live=false
+<chakra.header>Header</chakra.header>
+<chakra.main>Main</chakra.main>
+<chakra.footer>Many more</chakra.footer>
+```
+
+**Tag** `v1.2.6`
+
+- Change order of aria-label prop on TagCloseButton to be over-writable
+
+**Anatomy** `v1.2.4`
+
+- Add a new multi style part `root` to the Accordion component. It is applied to
+  the topmost DOM element.
+
+**Accordion** `v1.4.7`
+
+- Add a new multi style part `root` to the Accordion component. It is applied to
+  the topmost DOM element.
+
+**Theme** `v1.13.3`
+
+- Add a new multi style part `root` to the Accordion component. It is applied to
+  the topmost DOM element.
+
 ## 05-02-2022
 
 `@chakra-ui/react@1.8.3`

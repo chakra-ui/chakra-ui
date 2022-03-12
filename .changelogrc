@@ -1,90 +1,58 @@
-## 05-02-2022
+## 28-02-2022
 
-`@chakra-ui/react@1.8.2`
+**Anatomy** `v1.3.0`
 
-- allow framer motion v6 as peer dependency
+- Add `textarea` part to `editableAnatomy`
 
-**Input** `v1.4.0`
+**Cli** `v1.9.0`
 
-- Add new prop `htmlSize` to `Input` to allow the usage of the native input
-  attribute `size`.
-- Apply theme styles for `InputLeftElement` and `InputRightElement`.
+- The CLI tokens command now includes semantic tokens in the generated
+  ThemeTypings
 
-**Media Query** `v2.0.0`
+**Editable** `v1.4.0`
 
-- Support useMediaQuery for older browsers. Conditionally check if the
-  MediaQueryList object supports the addEventListener() method, else fallback to
-  the legacy .addListener() method.
+- Added the component `EditableTextarea` to `Editable`. Use the textarea element
+  to handle multi line text input in an editable context.
 
-**Cli** `v1.8.0`
+```tsx live=false
+<Editable defaultValue="Change me" onChange={console.log}>
+  <EditablePreview />
+  <EditableTextarea />
+</Editable>
+```
 
-- Fixed an internal version number mismatch
-- When the [Chakra CLI](https://chakra-ui.com/docs/theming/advanced#theme-typings)
-  fails to generate theme typings, it now exits with a status code of `1`. This
-  resolves an issue where failures exited with a success status code.
-- Increased scan depth for tokens in cli tooling
+**Layout** `v1.7.7`
 
-**Tooltip** `v1.4.5`
+- Fixed zIndex in LinkOverlay so that content in LinkBox can have an opacity below
+  1
 
-- Fix an issue where arrow tooltip background color only consider bg props. It
-  considers `bg`, `background`, `bgColor` and `backgroundColor` now.
-- allow framer motion v6 as peer dependency
+**Color Mode** `v1.4.6`
 
-**Accordion** `v1.4.5`
+- Adds a runtime safeguard for `ColorModeScript`.
 
-- allow framer motion v6 as peer dependency
-- Add missing peer dependencies
+**Theme** `v1.14.0`
 
-**Checkbox** `v1.6.4`
+- Add styles for new `textarea` element in `Editable`
 
-- allow framer motion v6 as peer dependency
-- Fixing a bug that happens when using the useCheckboxGroup hook with number
-  values instead of string values
+**Media Query** `v2.0.4`
 
-**Menu** `v1.8.5`
+- Fixed an issue that undefined is returned when calling the hook
+  `useBreakpoint` with `defaultValue` specified in SSR
 
-- allow framer motion v6 as peer dependency
+- Fixed an issue where the value of `useBreakpointValue` in CSR did not match
+  SSR.
 
-**Modal** `v1.10.6`
+**Hooks** `v1.8.5`
 
-- allow framer motion v6 as peer dependency
+- Fixed an issue where the prop `isLazy` did not work as expected.
+  This was achieved by updating the hook `useAnimationState`.
 
-**Popover** `v1.11.3`
+**Popover** `v1.11.7`
 
-- allow framer motion v6 as peer dependency
+- Fixed an issue where the prop `isLazy` did not work as expected.
+  This was achieved by updating the hook `useAnimationState`.
 
-**Switch** `v1.3.4`
+**Menu** `v1.8.9`
 
-- allow framer motion v6 as peer dependency
-- Add missing peer dependencies
-
-**Toast** `v1.5.3`
-
-- allow framer motion v6 as peer dependency
-- Fixed an issue where the `useToast` function returned a new object on every
-  render.
-
-**Transition** `v1.4.4`
-
-- allow framer motion v6 as peer dependency
-
-**Utils** `v1.10.1`
-
-- Fixing a bug that happens when using the useCheckboxGroup hook with number
-  values instead of string values
-
-**System** `v1.10.2`
-
-- Disallow props that do not exist in the prop interface
-
-**Form Control** `v1.5.5`
-
-- Remove redundant `useMemo` from `FormControl`
-
-**Anatomy** `v1.2.2`
-
-- Add missing peer dependencies
-
-**Skeleton** `v1.2.8`
-
-- Add missing peer dependencies
+- Fixed bug where passing `null` as value of `icon` prop in `MenuOptionItem` still
+  rendered the icon.

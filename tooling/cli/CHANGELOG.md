@@ -1,5 +1,26 @@
 # @chakra-ui/cli
 
+## 1.9.0
+
+### Minor Changes
+
+- [#5662](https://github.com/chakra-ui/chakra-ui/pull/5662)
+  [`a1e4d7951`](https://github.com/chakra-ui/chakra-ui/commit/a1e4d7951090c9622003e9176005ad3c038fdccc)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - The CLI tokens
+  command now includes semantic tokens in the generated ThemeTypings
+
+## 1.8.2
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/utils@1.10.4
+
 ## 1.8.1
 
 ### Patch Changes

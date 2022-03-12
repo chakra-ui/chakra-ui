@@ -1,5 +1,34 @@
 # Change Log
 
+## 1.0.50
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@1.8.6
+
+## 1.0.49
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/react@1.8.5
+  - @chakra-ui/styled-system@1.18.1
+
+## 1.0.48
+
+### Patch Changes
+
+- Updated dependencies
+  [[`b0da6e666`](https://github.com/chakra-ui/chakra-ui/commit/b0da6e6665234c1584403f7f7251390c3a9433c8)]:
+  - @chakra-ui/styled-system@1.18.0
+  - @chakra-ui/react@1.8.4
+
 ## 1.0.47
 
 ### Patch Changes

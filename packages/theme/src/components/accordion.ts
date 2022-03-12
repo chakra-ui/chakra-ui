@@ -41,6 +41,7 @@ const baseStyleIcon: SystemStyleObject = {
 }
 
 const baseStyle: PartsStyleObject<typeof parts> = {
+  root: {},
   container: baseStyleContainer,
   button: baseStyleButton,
   panel: baseStylePanel,

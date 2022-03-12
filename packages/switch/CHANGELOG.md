@@ -1,5 +1,39 @@
 # Change Log
 
+## 1.3.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/checkbox@1.6.8
+
+## 1.3.7
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/checkbox@1.6.7
+  - @chakra-ui/utils@1.10.4
+
+## 1.3.6
+
+### Patch Changes
+
+- [#5500](https://github.com/chakra-ui/chakra-ui/pull/5500)
+  [`c5eb9c03c`](https://github.com/chakra-ui/chakra-ui/commit/c5eb9c03cd6925f8624ba48a406205d64000a2d1)
+  Thanks [@kk21](https://github.com/kk21)! - Fixed a UI issue where the Switch
+  component rendered a few pixels off the baseline.
+- Updated dependencies
+  [[`44c9fab5b`](https://github.com/chakra-ui/chakra-ui/commit/44c9fab5b0e34484c9afb858a553d4a2aa30209d),
+  [`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/checkbox@1.6.6
+  - @chakra-ui/utils@1.10.3
+
 ## 1.3.5
 
 ### Patch Changes

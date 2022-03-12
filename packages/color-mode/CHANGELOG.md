@@ -1,5 +1,42 @@
 # Change Log
 
+## 1.4.6
+
+### Patch Changes
+
+- [#5639](https://github.com/chakra-ui/chakra-ui/pull/5639)
+  [`001751162`](https://github.com/chakra-ui/chakra-ui/commit/001751162dd1922d8ab53820f405665f0785f196)
+  Thanks [@sQVe](https://github.com/sQVe)! - Adds a runtime safeguard for
+  `ColorModeScript`.
+
+- Updated dependencies
+  [[`5cd5cff35`](https://github.com/chakra-ui/chakra-ui/commit/5cd5cff35e4837539d83a2157a07585d461b0aac)]:
+  - @chakra-ui/hooks@1.8.5
+
+## 1.4.5
+
+### Patch Changes
+
+- [`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped patch
+  version for every package to fix release process. Root cause was a bug in our
+  CI configuration.
+- Updated dependencies
+  [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
+  - @chakra-ui/react-env@1.1.6
+  - @chakra-ui/hooks@1.8.4
+  - @chakra-ui/utils@1.10.4
+
+## 1.4.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/react-env@1.1.5
+  - @chakra-ui/hooks@1.8.3
+
 ## 1.4.3
 
 ### Patch Changes

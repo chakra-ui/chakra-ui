@@ -95,6 +95,26 @@ export const withIndicator = () => (
   </Tabs>
 )
 
+export const withIndicatorAndLongTabText = () => (
+  <>
+    <Tabs variant="unstyled" isManual>
+      <TabList>
+        <Tab>Tab with long text</Tab>
+        <Tab>Billings</Tab>
+        <Tab>Preferences</Tab>
+        <Tab>Shut Down</Tab>
+      </TabList>
+      <TabIndicator mt="-36px" zIndex={-1} height="34px" bg="green.200" />
+      <TabPanels>
+        <TabPanel>Tab with long text</TabPanel>
+        <TabPanel>Billings</TabPanel>
+        <TabPanel>Preferences</TabPanel>
+        <TabPanel>Shut Down</TabPanel>
+      </TabPanels>
+    </Tabs>
+  </>
+)
+
 export const withVerticalTabs = () => (
   <Tabs orientation="vertical">
     <TabList>

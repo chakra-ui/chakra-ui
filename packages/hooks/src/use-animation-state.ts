@@ -28,7 +28,7 @@ export function useAnimationState(props: UseAnimationStateProps) {
     () => ref.current,
   )
 
-  const hidden = isOpen ? false : !mounted && once
+  const hidden = isOpen ? false : !mounted
 
   return {
     present: !hidden,

@@ -1,74 +1,12 @@
-import { isString, omit, UnionStringArray, __DEV__ } from "@chakra-ui/utils"
+import { isString, omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { ThemingProps } from "./system.types"
 
 /**
- * Carefully selected html elements for chakra components.
+ * All html and svg elements for chakra components.
  * This is mostly for `chakra.<element>` syntax.
  */
-export const domElements = [
-  "a",
-  "b",
-  "article",
-  "aside",
-  "blockquote",
-  "button",
-  "caption",
-  "cite",
-  "circle",
-  "code",
-  "dd",
-  "div",
-  "dl",
-  "dt",
-  "fieldset",
-  "figcaption",
-  "figure",
-  "footer",
-  "form",
-  "h1",
-  "h2",
-  "h3",
-  "h4",
-  "h5",
-  "h6",
-  "header",
-  "hr",
-  "img",
-  "input",
-  "kbd",
-  "label",
-  "li",
-  "main",
-  "mark",
-  "nav",
-  "ol",
-  "p",
-  "path",
-  "pre",
-  "q",
-  "rect",
-  "s",
-  "svg",
-  "section",
-  "select",
-  "strong",
-  "small",
-  "span",
-  "sub",
-  "sup",
-  "table",
-  "tbody",
-  "td",
-  "textarea",
-  "tfoot",
-  "th",
-  "thead",
-  "tr",
-  "ul",
-] as const
-
-export type DOMElements = UnionStringArray<typeof domElements>
+export type DOMElements = keyof JSX.IntrinsicElements
 
 export function omitThemingProps<T extends ThemingProps>(props: T) {
   return omit(props, ["styleConfig", "size", "variant", "colorScheme"])
