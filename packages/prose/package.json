@@ -10,7 +10,7 @@
     "typography"
   ],
   "sideEffects": false,
-  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "author": "Lazar Nikolov <hello@nikolovlazar.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/chakra-ui-prose.cjs.js",

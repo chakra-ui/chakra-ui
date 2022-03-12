@@ -5,6 +5,7 @@ import { getComponentBaseStyle } from ".."
 const baseStyle: SystemStyleFunction = (props) => {
   const { theme } = props
   const headingBase = getComponentBaseStyle(theme, "Heading")
+  const linkBase = getComponentBaseStyle(theme, "Link")
 
   return {
     h1: {
@@ -23,12 +24,14 @@ const baseStyle: SystemStyleFunction = (props) => {
       ...headingBase,
       fontSize: { base: "xl", md: "2xl" },
       fontWeight: 600,
+      mt: { base: 8, md: 10 },
       mb: { base: 3, md: 4 },
     },
     h4: {
       ...headingBase,
       fontSize: { base: "md", md: "lg" },
       fontWeight: 600,
+      mt: { base: 6, md: 8 },
       mb: 2,
     },
     p: {
@@ -36,15 +39,15 @@ const baseStyle: SystemStyleFunction = (props) => {
       fontWeight: "normal",
       fontSize: "md",
       lineHeight: 6,
-      my: 4,
+      my: 6,
     },
     a: {
-      textDecoration: "underline",
-      fontWeight: "semibold",
+      ...linkBase,
+      fontWeight: 500,
     },
     hr: {
       my: { base: 12, md: 14 },
-      borderColor: mode("gray.200", "gray.700")(props),
+      borderColor: mode("gray.200", "gray.600")(props),
     },
     blockquote: {
       paddingStart: 4,
@@ -54,6 +57,7 @@ const baseStyle: SystemStyleFunction = (props) => {
       fontStyle: "italic",
       fontWeight: "semibold",
     },
+
     pre: {
       p: 4,
       rounded: "md",
@@ -63,11 +67,20 @@ const baseStyle: SystemStyleFunction = (props) => {
 
       code: {
         fontWeight: "normal",
+
+        "&::before, &::after": {
+          content: '""',
+        },
       },
     },
     code: {
       fontWeight: "semibold",
+
+      "&::before, &::after": {
+        content: '"`"',
+      },
     },
+
     figure: {
       my: 8,
 
@@ -76,30 +89,25 @@ const baseStyle: SystemStyleFunction = (props) => {
         mt: 3,
       },
     },
+
     ul: {
       paddingStart: 6,
-
-      li: {
-        paddingStart: 2,
-        my: 3,
-
-        "::marker": {
-          color: mode("gray.300", "gray.500")(props),
-        },
-      },
+      listStyleType: "disc",
     },
     ol: {
       paddingStart: 6,
-
-      li: {
-        paddingStart: 2,
-        my: 3,
-
-        "::marker": {
-          color: mode("gray.500", "gray.400")(props),
-        },
-      },
     },
+    li: {
+      paddingStart: 2,
+      my: 3,
+    },
+    "ol>li::marker": {
+      color: mode("gray.500", "gray.400")(props),
+    },
+    "ul>li::marker": {
+      color: mode("gray.300", "gray.500")(props),
+    },
+
     table: {
       width: "full",
       my: 8,
@@ -139,6 +147,23 @@ const baseStyle: SystemStyleFunction = (props) => {
           borderTopColor: mode("gray.300", "gray.600")(props),
         },
       },
+    },
+
+    // Stacking margin resets
+    "h1 + *": {
+      mt: 0,
+    },
+    "h2 + *": {
+      mt: 0,
+    },
+    "h3 + *": {
+      mt: 0,
+    },
+    "h4 + *": {
+      mt: 0,
+    },
+    "hr + *": {
+      mt: 0,
     },
   }
 }
