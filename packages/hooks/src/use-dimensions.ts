@@ -2,16 +2,27 @@ import * as React from "react"
 import { getBox, BoxModel } from "@chakra-ui/utils"
 import { useSafeLayoutEffect } from "./use-safe-layout-effect"
 
+export interface UseDimensionsProps {
+  /**
+   * Ref of the element/component to measure.
+   */
+  ref: React.RefObject<HTMLElement>
+  /**
+   * If true, "resize" and "scroll" observers will be turned on.
+   * Attaches events to the `window` object that update dimensions.
+   */
+  observe?: boolean
+}
+
 /**
- * Reack hook to measure a component's dimensions
+ * React hook to measure a component's dimensions
  *
  * @param ref ref of the component to measure
  * @param observe if `true`, resize and scroll observers will be turned on
  */
-export function useDimensions(
-  ref: React.RefObject<HTMLElement>,
-  observe?: boolean,
-) {
+export function useDimensions(props: UseDimensionsProps) {
+  const { ref, observe } = props
+
   const [dimensions, setDimensions] = React.useState<BoxModel | null>(null)
   const rafId = React.useRef<number>()
 
