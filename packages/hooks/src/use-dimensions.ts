@@ -20,9 +20,10 @@ export interface UseDimensionsProps {
  * @param ref ref of the component to measure
  * @param observe if `true`, resize and scroll observers will be turned on
  */
-export function useDimensions(props: UseDimensionsProps) {
-  const { ref, observe } = props
-
+export function useDimensions(
+  ref: UseDimensionsProps["ref"],
+  observe?: UseDimensionsProps["observe"],
+) {
   const [dimensions, setDimensions] = React.useState<BoxModel | null>(null)
   const rafId = React.useRef<number>()
 
