@@ -16,8 +16,6 @@ export const ColorModeSwitch = (props: Partial<IconButtonProps>) => {
     <IconButton
       size="md"
       position="absolute"
-      top="1rem"
-      right="1rem"
       fontSize="lg"
       aria-label={`Switch to ${nextMode} mode`}
       variant="ghost"
