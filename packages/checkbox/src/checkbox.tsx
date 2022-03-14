@@ -72,6 +72,10 @@ export interface CheckboxProps
    * @default CheckboxIcon
    */
   icon?: React.ReactElement
+  /**
+   * Additional props to be forwarded to the `input` element
+   */
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>
 }
 
 /**
@@ -100,6 +104,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">((props, ref) => {
     isChecked: isCheckedProp,
     isDisabled = group?.isDisabled,
     onChange: onChangeProp,
+    inputProps,
     ...rest
   } = ownProps
 
@@ -150,7 +155,10 @@ export const Checkbox = forwardRef<CheckboxProps, "input">((props, ref) => {
       className={cx("chakra-checkbox", className)}
       {...getRootProps()}
     >
-      <input className="chakra-checkbox__input" {...getInputProps({}, ref)} />
+      <input
+        className="chakra-checkbox__input"
+        {...getInputProps(inputProps, ref)}
+      />
       <CheckboxControl
         __css={styles.control}
         className="chakra-checkbox__control"

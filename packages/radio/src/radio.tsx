@@ -35,6 +35,10 @@ export interface RadioProps
    * please use the props `maxWidth` or `width` to configure
    */
   isFullWidth?: boolean
+  /**
+   * Additional props to be forwarded to the `input` element
+   */
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>
 }
 
 /**
@@ -57,6 +61,7 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
     isFullWidth,
     isDisabled = group?.isDisabled,
     isFocusable = group?.isFocusable,
+    inputProps: htmlInputProps,
     ...rest
   } = ownProps
 
@@ -90,7 +95,7 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
   const [layoutProps, otherProps] = split(htmlProps, layoutPropNames as any)
 
   const checkboxProps = getCheckboxProps(otherProps)
-  const inputProps = getInputProps({}, ref)
+  const inputProps = getInputProps(htmlInputProps, ref)
   const labelProps = getLabelProps()
   const rootProps = Object.assign({}, layoutProps, getRootProps())
 
