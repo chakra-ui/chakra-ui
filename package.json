@@ -114,7 +114,7 @@
     "chart.js": "^3.6.0",
     "commitizen": "4.2.4",
     "cross-env": "7.0.3",
-    "csstype": "^3.0.11",
+    "csstype": "3.0.9",
     "cz-conventional-changelog": "3.3.0",
     "discord.js": "^12.5.3",
     "dotenv-cli": "4.1.0",
