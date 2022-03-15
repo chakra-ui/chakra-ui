@@ -5,21 +5,24 @@ import emotion from "@emotion/styled"
 import { motion } from "framer-motion"
 import { chakra } from "@chakra-ui/react"
 import * as asciichart from "asciichart"
+import * as fs from "fs"
 
 const TITLE_MIN_LENGTH = 32
 
+const cycleMessages: string[] = []
 const suiteResults: number[][] = []
-function printChart() {
+
+function getChart() {
   const colorsOrder = ["cyan", "blue", "lightgray", "lightred"]
-  console.log(`
+  const legend = `
 Plot legend - the higher the better
-Suite color order: ${colorsOrder.slice(0, suiteResults.length - 1).join(", ")}`)
-  console.log(
-    asciichart.plot(suiteResults, {
-      height: 20,
-      colors: colorsOrder.map((c) => asciichart[c]),
-    }),
-  )
+Suite color order: ${colorsOrder.slice(0, suiteResults.length - 1).join(", ")}`
+  const chart = asciichart.plot(suiteResults, {
+    height: 20,
+    colors: colorsOrder.map((c) => asciichart[c]),
+  })
+
+  return [legend, chart].join("\n")
 }
 
 function createSuite(name: string) {
@@ -30,7 +33,9 @@ function createSuite(name: string) {
     })
     .on("error", (e: Error) => console.log(e))
     .on("cycle", (event: Event) => {
-      console.log("▸", String(event.target))
+      const message = String(event.target)
+      console.log("▸", message)
+      cycleMessages.push(message)
     })
     .on("complete", (e: Benchmark.Event) => {
       const durations = Array.from(e.currentTarget as Target[]).flatMap(
@@ -215,8 +220,34 @@ export async function runProfilingSuites() {
       render(<motion.div />)
     })
     .run()
+}
 
-  printChart()
+/**
+ * @example
+ *
+ * ```bash
+ * export CHAKRA_REACT_VERSION=$(grep version packages/react/package.json | awk -F \" '{print $4}')
+ * yarn profile --out benchmark/output-v${CHAKRA_REACT_VERSION}.txt
+ * ```
+ */
+async function main() {
+  console.log("Benchmark of initial render durations")
+  const outIndex = process.argv.findIndex((a) => a.indexOf("--out") !== -1)
+  const out =
+    outIndex !== -1
+      ? process.argv.slice().splice(outIndex + 1, 1)?.[0]
+      : undefined
+
+  await runProfilingSuites()
+
+  const chart = getChart()
+  console.log(chart)
+
+  if (!out) return
+
+  console.log(`\n\nWriting to "${out}"`)
+  const content = cycleMessages.join("\n")
+  fs.writeFileSync(out, content)
 }
 
 if (
@@ -224,8 +255,7 @@ if (
   typeof require !== "undefined" &&
   module === require.main
 ) {
-  console.log("Benchmark of initial render durations")
-  runProfilingSuites().catch((error) => {
+  main().catch((error) => {
     console.error(error)
     process.exit(1)
   })
