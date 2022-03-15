@@ -115,6 +115,10 @@ export interface ModalProps
    * The transition that should be used for the modal
    */
   motionPreset?: MotionPreset
+  /**
+   * Fires when all exiting nodes have completed animating out
+   */
+  onCloseComplete?: () => void
 }
 
 interface ModalContext extends ModalOptions, UseModalReturn {
@@ -153,6 +157,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     preserveScrollBarGap,
     motionPreset,
     lockFocusAcrossFrames,
+    onCloseComplete,
   } = props
 
   const styles = useMultiStyleConfig("Modal", props)
@@ -175,7 +180,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
   return (
     <ModalContextProvider value={context}>
       <StylesProvider value={styles}>
-        <AnimatePresence>
+        <AnimatePresence onExitComplete={onCloseComplete}>
           {context.isOpen && <Portal {...portalProps}>{children}</Portal>}
         </AnimatePresence>
       </StylesProvider>
