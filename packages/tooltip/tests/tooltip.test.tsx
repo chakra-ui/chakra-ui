@@ -5,6 +5,7 @@ import {
   screen,
   testA11y,
   waitForElementToBeRemoved,
+  press,
 } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Tooltip, TooltipProps } from "../src"
@@ -124,4 +125,42 @@ test("should close on mouseleave if shouldWrapChildren is true and child is a di
   })
 
   await waitForElementToBeRemoved(() => screen.getByText(tooltipLabel))
+})
+
+test("shows on mouseover and closes on pressing 'esc'", async () => {
+  render(<DummyComponent />)
+
+  act(() => {
+    fireEvent.mouseOver(screen.getByText(buttonLabel))
+  })
+
+  await screen.findByRole("tooltip")
+
+  expect(screen.getByText(buttonLabel)).toBeInTheDocument()
+  expect(screen.getByRole("tooltip")).toBeInTheDocument()
+
+  act(() => {
+    press.Escape(screen.getByRole("tooltip"))
+  })
+
+  await waitForElementToBeRemoved(() => screen.getByText(tooltipLabel))
+})
+
+test("shows on mouseover and stays on pressing 'esc' if 'closeOnEsc' is false", async () => {
+  render(<DummyComponent closeOnEsc={false} />)
+
+  act(() => {
+    fireEvent.mouseOver(screen.getByText(buttonLabel))
+  })
+
+  await screen.findByRole("tooltip")
+
+  expect(screen.getByText(buttonLabel)).toBeInTheDocument()
+  expect(screen.getByRole("tooltip")).toBeInTheDocument()
+
+  act(() => {
+    press.Escape(screen.getByRole("tooltip"))
+  })
+
+  expect(screen.getByRole("tooltip")).toBeInTheDocument()
 })

@@ -34,6 +34,10 @@ export interface UseTooltipProps
    */
   closeOnMouseDown?: boolean
   /**
+   * If `true`, the tooltip will hide on pressing Esc key
+   */
+   closeOnEsc?: boolean
+  /**
    * Callback to run when the tooltip shows
    */
   onOpen?(): void
@@ -64,6 +68,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     closeDelay = 0,
     closeOnClick = true,
     closeOnMouseDown,
+    closeOnEsc = true,
     onOpen: onOpenProp,
     onClose: onCloseProp,
     placement,
@@ -140,7 +145,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     [isOpen, closeWithDelay],
   )
 
-  useEventListener("keydown", onKeyDown)
+  useEventListener("keydown", closeOnEsc ? onKeyDown : undefined)
 
   React.useEffect(
     () => () => {
