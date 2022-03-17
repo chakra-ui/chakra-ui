@@ -1,9 +1,4 @@
-import {
-  Anatomy,
-  PartsStyleInterpolation,
-  SystemStyleInterpolation,
-} from "@chakra-ui/theme-tools"
-import { Dict, isObject } from "@chakra-ui/utils"
+import { isObject } from "@chakra-ui/utils"
 
 import type { ChakraTheme } from "./theme.types"
 
@@ -36,15 +31,4 @@ export function isChakraTheme(unit: unknown): unit is ChakraTheme {
   return requiredChakraThemeKeys.every((propertyName) =>
     Object.prototype.hasOwnProperty.call(unit, propertyName),
   )
-}
-
-export function getComponentBaseStyle(
-  theme: Dict<any>,
-  componentName: string,
-): SystemStyleInterpolation | PartsStyleInterpolation<Anatomy> | undefined {
-  const { components } = theme
-  const component = components[componentName]
-  const { baseStyle } = component
-
-  return baseStyle
 }

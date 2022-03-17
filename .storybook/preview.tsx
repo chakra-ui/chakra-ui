@@ -10,6 +10,7 @@ import { Parameters, StoryContext } from "@storybook/react"
 import * as React from "react"
 import { FaMoon, FaSun } from "react-icons/fa"
 import { withPerformance } from "storybook-addon-performance"
+import { withProse } from "@chakra-ui/prose"
 
 /**
  * Add global context for RTL-LTR switching
@@ -55,8 +56,10 @@ const withChakra = (StoryFn: Function, context: StoryContext) => {
     document.documentElement.dir = dir
   }, [dir])
 
+  const theme = extendTheme({ direction: dir }, withProse())
+
   return (
-    <ChakraProvider theme={extendTheme({ direction: dir })}>
+    <ChakraProvider theme={theme}>
       <div dir={dir} id="story-wrapper" style={{ minHeight: "100vh" }}>
         <ColorModeToggleBar />
         <StoryFn />
