@@ -1,11 +1,7 @@
 import * as React from "react"
 import { Box, Container } from "@chakra-ui/layout"
-import { ChakraProvider } from "@chakra-ui/provider"
-import { extendTheme } from "@chakra-ui/react"
-import { useColorMode } from "@chakra-ui/color-mode"
 
 import { Prose } from "../src"
-import proseTheme from "../src/theme"
 
 export default {
   title: "Components / Typography / Prose",
@@ -19,14 +15,15 @@ export default {
 }
 
 export const Basic = () => {
-  const { colorMode } = useColorMode()
+  /**
+   * In order to use the Prose component, you need to import the withProse theme extension
+   * and use it in your theme, like so:
+   * import { withProse } from "@chakra-ui/prose"
+   * import { extendTheme } from "@chakra-ui/react"
+   *
+   * const theme = extendTheme({}, withProse());
+   */
   return (
-    // <ChakraProvider
-    //   theme={extendTheme({
-    //     config: { initialColorMode: colorMode },
-    //     components: { Prose: proseTheme },
-    //   })}
-    // >
     <Box>
       <h1>A h1 outside of the Prose</h1>
       <Prose>
@@ -166,6 +163,5 @@ export const Basic = () => {
         </table>
       </Prose>
     </Box>
-    // </ChakraProvider>
   )
 }
