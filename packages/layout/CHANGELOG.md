@@ -82,9 +82,9 @@
 
   ```jsx live=false
   <Grid templateAreas='"one two three"'>
-    <GridItem area="one">one</Grid>
-    <GridItem area="two">two</Grid>
-    <GridItem area="three">three</Grid>
+    <GridItem area="one">one</GridItem>
+    <GridItem area="two">two</GridItem>
+    <GridItem area="three">three</GridItem>
   </Grid>
   ```
 

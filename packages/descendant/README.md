@@ -20,12 +20,12 @@ npm i @chakra-ui/descendant
 
 ## Motivation
 
-Descendants observer is an utility hook for keeping track of descendant elements
+Descendants observer is a utility hook for keeping track of descendant elements
 and their relative indices.
 
-In short, this package allows each item in a list to know it's relative index
-and the parent of the list can keep track of each child, without needing to
-render in a loop and pass each component an index.
+In short, this package allows each item in a list to know its relative index and
+the parent of the list can keep track of each child, without needing to render
+in a loop and pass each component an index.
 
 This enables component composition:
 

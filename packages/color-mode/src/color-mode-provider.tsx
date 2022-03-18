@@ -79,8 +79,8 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
 
   React.useEffect(() => {
     /**
-     * Since we cannot initially retrieve localStorage to due above mentioned
-     * reasons, do so after hydration.
+     * Since we cannot initially retrieve localStorage for the reasons mentioned
+     * above, do so after hydration.
      *
      * Priority:
      * - if `useSystemColorMode` is true system-color will be used as default - initial

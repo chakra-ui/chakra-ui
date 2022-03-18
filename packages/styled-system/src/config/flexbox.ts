@@ -63,7 +63,7 @@ export interface FlexboxProps {
    * The CSS `align-content` property.
    *
    * It defines the distribution of space between and around
-   * content items along a flexbox's cross-axis or a grid's block axis.
+   * content items along a flexbox cross-axis or a grid's block axis.
    *
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/align-content)
    */

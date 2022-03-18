@@ -1,6 +1,6 @@
 # Alert
 
-A react component used to alert users of a particular screen area that needs
+A React component used to alert users of a particular screen area that needs
 user action
 
 ## Installation

@@ -66,7 +66,7 @@ wrap. It is mostly used for button groups, tag group, badge group, and chips.
 </AspectRatio>
 ```
 
-Badge is used to render a badge. It can comes in different variants and color
+Badge is used to render a badge. It can come in different variants and color
 schemes as defined in the `theme.components.Badge`
 
 ```jsx
@@ -83,7 +83,7 @@ Center is used to vertically and horizontally center its child
 </Center>
 ```
 
-Container is used to manage content areas on a website or blog. It center's
+Container is used to manage content areas on a website or blog. It centers
 itself using `margin-left: auto` and `margin-right: auto`. It also applies a
 default max-width of `60ch` (60 characters)
 

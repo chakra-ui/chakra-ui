@@ -11,7 +11,7 @@ export default {
  * in Chakra.
  */
 export const Default = () => (
-  <Link isExternal href="google.com">
+  <Link isExternal href="https://google.com">
     This is a link
   </Link>
 )

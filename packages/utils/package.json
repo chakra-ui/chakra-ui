@@ -1,7 +1,7 @@
 {
   "name": "@chakra-ui/utils",
   "version": "1.10.4",
-  "description": "Common utilties and types for Chakra UI",
+  "description": "Common utilities and types for Chakra UI",
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",

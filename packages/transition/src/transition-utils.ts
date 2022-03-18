@@ -114,7 +114,7 @@ export type WithTransitionConfig<P extends object> = Omit<P, "transition"> & {
    */
   unmountOnExit?: boolean
   /**
-   * Show the component; triggers the enter or exit states
+   * Show the component; triggers when enter or exit states
    */
   in?: boolean
   /**

@@ -41,7 +41,7 @@ export interface UseEditableProps {
   startWithEditView?: boolean
   /**
    * If `true`, the read only view, has a `tabIndex` set to `0`
-   * so it can recieve focus via the keyboard or click.
+   * so it can receive focus via the keyboard or click.
    * @default true
    */
   isPreviewFocusable?: boolean

@@ -34,7 +34,7 @@ test("should override responsive style", () => {
   })
 })
 
-test("should merge reponsive values in textStyles with other responsive styles", () => {
+test("should merge responsive values in textStyles with other responsive styles", () => {
   expect(
     css({
       textStyle: "h1",
@@ -55,7 +55,7 @@ test("should merge reponsive values in textStyles with other responsive styles",
   `)
 })
 
-test("should merge reponsive values in textStyles + override", () => {
+test("should merge responsive values in textStyles + override", () => {
   expect(
     css({
       textStyle: "h1",

@@ -44,7 +44,7 @@ export interface TransformProps {
    */
   translateY?: Token<Length>
   /**
-   * Sets the rotate value of the element
+   * Sets the rotation value of the element
    */
   rotate?: Token<Length>
   /**

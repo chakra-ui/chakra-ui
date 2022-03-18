@@ -97,7 +97,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
   } = omitThemingProps(props)
 
   /**
-   * When button is used within ButtonGroup (i.e flushed with sibling buttons),
+   * When button is used within ButtonGroup (i.e. flushed with sibling buttons),
    * it is important to add a `zIndex` on focus.
    *
    * So let's read the component styles and then add `zIndex` to it.

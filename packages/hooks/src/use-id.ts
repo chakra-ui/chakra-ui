@@ -34,15 +34,14 @@ export function useId(idProp?: string, prefix?: string): string {
     setId(genId(context))
   }, [context])
 
-  return React.useMemo(() => idProp || [prefix, id].filter(Boolean).join("-"), [
-    idProp,
-    prefix,
-    id,
-  ])
+  return React.useMemo(
+    () => idProp || [prefix, id].filter(Boolean).join("-"),
+    [idProp, prefix, id],
+  )
 }
 
 /**
- * Reack hook to generate ids for use in compound components
+ * React hook to generate ids for use in compound components
  *
  * @param idProp the external id passed from the user
  * @param prefixes array of prefixes to use
@@ -64,7 +63,7 @@ export function useIds(idProp?: string, ...prefixes: string[]) {
 }
 
 /**
- * Used to generate an id, and after render, check if that id is rendered so we know
+ * Used to generate an id, and after render, check if that id is rendered, so we know
  * if we can use it in places such as `aria-labelledby`.
  *
  * @param partId - The unique id for the component part

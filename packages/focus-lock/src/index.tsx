@@ -35,8 +35,8 @@ export interface FocusLockProps {
    */
   isDisabled?: boolean
   /**
-   * If `true`, the first focuable element within the `children`
-   * will ne auto-focused once `FocusLock` mounts
+   * If `true`, the first focusable element within the `children`
+   * will auto-focused once `FocusLock` mounts
    */
   autoFocus?: boolean
   /**

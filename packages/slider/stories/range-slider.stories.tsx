@@ -30,7 +30,6 @@ export const HookUsage = () => {
     direction: useTheme().direction,
     defaultValue: [10, 40],
     minStepsBetweenThumbs: 5,
-    // onChange: (v) => console.log(v.toStri     ng()),
   })
 
   return (

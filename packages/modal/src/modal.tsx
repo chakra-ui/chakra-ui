@@ -393,7 +393,7 @@ export const ModalHeader = forwardRef<ModalHeaderProps, "header">(
     const { headerId, setHeaderMounted } = useModalContext()
 
     /**
-     * Notify us if this component was rendered or used
+     * Notify us if this component was rendered or used,
      * so we can append `aria-labelledby` automatically
      */
     React.useEffect(() => {
@@ -439,7 +439,7 @@ export const ModalBody = forwardRef<ModalBodyProps, "div">((props, ref) => {
   const { bodyId, setBodyMounted } = useModalContext()
 
   /**
-   * Notify us if this component was rendered or used
+   * Notify us if this component was rendered or used,
    * so we can append `aria-describedby` automatically
    */
   React.useEffect(() => {

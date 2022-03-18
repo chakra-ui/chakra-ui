@@ -20,8 +20,8 @@ import {
   Alert,
   AlertTitle,
   AlertIcon,
-  AlertDescription
-} from "@chakra-ui/alert
+  AlertDescription,
+} from "@chakra-ui/alert"
 ```
 
 ## Basic usage

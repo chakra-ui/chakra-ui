@@ -11,7 +11,7 @@ export type EventListenerEnv = (() => DocumentOrElement) | DocumentOrElement
  *
  * @param event the event name
  * @param handler the event handler function to execute
- * @param doc the dom environment to execute against (defaults to `document`)
+ * @param env the dom environment to execute against (defaults to `document`)
  * @param options the event listener options
  *
  * @internal

@@ -63,52 +63,52 @@ if (__DEV__) {
 
 export interface GridOptions {
   /**
-   * Short hand prop for `gridTemplateColumns`
+   * Shorthand prop for `gridTemplateColumns`
    * @type SystemProps["gridTemplateColumns"]
    */
   templateColumns?: SystemProps["gridTemplateColumns"]
   /**
-   * Short hand prop for `gridGap`
+   * Shorthand prop for `gridGap`
    * @type SystemProps["gridGap"]
    */
   gap?: SystemProps["gridGap"]
   /**
-   * Short hand prop for `gridRowGap`
+   * Shorthand prop for `gridRowGap`
    * @type SystemProps["gridRowGap"]
    */
   rowGap?: SystemProps["gridRowGap"]
   /**
-   * Short hand prop for `gridColumnGap`
+   * Shorthand prop for `gridColumnGap`
    * @type SystemProps["gridColumnGap"]
    */
   columnGap?: SystemProps["gridColumnGap"]
   /**
-   * Short hand prop for `gridAutoFlow`
+   * Shorthand prop for `gridAutoFlow`
    * @type SystemProps["gridAutoFlow"]
    */
   autoFlow?: SystemProps["gridAutoFlow"]
   /**
-   * Short hand prop for `gridAutoRows`
+   * Shorthand prop for `gridAutoRows`
    * @type SystemProps["gridAutoRows"]
    */
   autoRows?: SystemProps["gridAutoRows"]
   /**
-   * Short hand prop for `gridAutoColumns`
+   * Shorthand prop for `gridAutoColumns`
    * @type SystemProps["gridAutoColumns"]
    */
   autoColumns?: SystemProps["gridAutoColumns"]
   /**
-   * Short hand prop for `gridTemplateRows`
+   * Shorthand prop for `gridTemplateRows`
    * @type SystemProps["gridTemplateRows"]
    */
   templateRows?: SystemProps["gridTemplateRows"]
   /**
-   * Short hand prop for `gridTemplateAreas`
+   * Shorthand prop for `gridTemplateAreas`
    * @type SystemProps["gridTemplateAreas"]
    */
   templateAreas?: SystemProps["gridTemplateAreas"]
   /**
-   * Short hand prop for `gridArea`
+   * Shorthand prop for `gridArea`
    * @type SystemProps["gridArea"]
    * @deprecated
    * Use `GridItem` with the `area` prop instead. Will be removed in a future
@@ -116,12 +116,12 @@ export interface GridOptions {
    */
   area?: SystemProps["gridArea"]
   /**
-   * Short hand prop for `gridColumn`
+   * Shorthand prop for `gridColumn`
    * @type SystemProps["gridColumn"]
    */
   column?: SystemProps["gridColumn"]
   /**
-   * Short hand prop for `gridRow`
+   * Shorthand prop for `gridRow`
    * @type SystemProps["gridRow"]
    */
   row?: SystemProps["gridRow"]
@@ -129,7 +129,7 @@ export interface GridOptions {
 
 export interface GridItemProps extends BoxProps {
   /**
-   * Short hand prop for `gridArea`
+   * Shorthand prop for `gridArea`
    * @type SystemProps["gridArea"]
    */
   area?: SystemProps["gridArea"]

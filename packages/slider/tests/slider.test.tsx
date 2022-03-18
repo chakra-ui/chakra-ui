@@ -115,7 +115,7 @@ test("renders & move correctly when orientation: vertical & isReversed", () => {
   expect(thumb).toHaveAttribute("aria-valuenow", "100")
 })
 
-test("renders with the correct direciton under 'rtl'", () => {
+test("renders with the correct direction under 'rtl'", () => {
   const { getByRole } = render(
     <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
       <SimpleSlider />
@@ -137,7 +137,7 @@ test("renders with the correct direciton under 'rtl'", () => {
   expect(thumb).toHaveAttribute("aria-valuenow", "100")
 })
 
-test("renders with the correct direciton under 'rtl' & isReversed", () => {
+test("renders with the correct direction under 'rtl' & isReversed", () => {
   const { getByRole } = render(
     <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
       <SimpleSlider isReversed />

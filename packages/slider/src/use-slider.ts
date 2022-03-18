@@ -300,13 +300,13 @@ export function useSlider(props: UseSliderProps) {
   )
 
   /**
-   * ARIA (Optional): To define a human readable representation of the value,
+   * ARIA (Optional): To define a human-readable representation of the value,
    * we allow users pass aria-valuetext.
    */
   const valueText = getAriaValueText?.(value) ?? ariaValueText
 
   /**
-   * Measure the dimensions of the thumb so
+   * Measure the dimensions of the thumb, so
    * we can center it within the track properly
    */
   const thumbBoxModel = useDimensions(thumbRef)
@@ -314,20 +314,16 @@ export function useSlider(props: UseSliderProps) {
   /**
    * Compute styles for all component parts.
    */
-  const {
-    getThumbStyle,
-    rootStyle,
-    trackStyle,
-    innerTrackStyle,
-  } = useMemo(() => {
-    const thumbRect = thumbBoxModel?.borderBox ?? { width: 0, height: 0 }
-    return getStyles({
-      isReversed,
-      orientation,
-      thumbRects: [thumbRect],
-      thumbPercents: [thumbPercent],
-    })
-  }, [isReversed, orientation, thumbBoxModel?.borderBox, thumbPercent])
+  const { getThumbStyle, rootStyle, trackStyle, innerTrackStyle } =
+    useMemo(() => {
+      const thumbRect = thumbBoxModel?.borderBox ?? { width: 0, height: 0 }
+      return getStyles({
+        isReversed,
+        orientation,
+        thumbRects: [thumbRect],
+        thumbPercents: [thumbPercent],
+      })
+    }, [isReversed, orientation, thumbBoxModel?.borderBox, thumbPercent])
 
   const focusThumb = useCallback(() => {
     if (thumbRef.current && focusThumbOnChange) {

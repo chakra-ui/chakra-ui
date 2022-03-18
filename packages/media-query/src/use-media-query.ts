@@ -40,7 +40,7 @@ export function useMediaQuery(query: string | string[]): boolean[] {
         // to compare the previous matches with current. Using
         // setMatches(matches => {...}) provides access to the current matches
         // state.  Trying to access matches outside the setMatches function
-        // would provide data from the the time of instantiation (stale).
+        // would provide data from the time of instantiation (stale).
 
         setMatches((matches) => {
           const currentMatches = matches.map((x) => x)

@@ -66,7 +66,7 @@ test("shows spinner and loading text if isLoading and loadingText", () => {
   // expect(screen.queryByTestId("placement-end")).toBeInTheDocument()
   // expect(screen.queryByTestId("placement-start")).not.toBeInTheDocument()
 
-  // Should be abble to use a custom spinner
+  // Should be able to use a custom spinner
   rerender(
     <Button
       isLoading

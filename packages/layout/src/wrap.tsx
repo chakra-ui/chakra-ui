@@ -10,7 +10,7 @@ import * as React from "react"
 
 export interface WrapProps extends HTMLChakraProps<"div"> {
   /**
-   * The space between the each child (even if it wraps)
+   * The space between each child (even if it wraps)
    * @type SystemProps["margin"]
    */
   spacing?: SystemProps["margin"]
