@@ -1,8 +1,8 @@
 import { render, testA11y } from "@chakra-ui/test-utils"
 
-import { basic } from "../stories/prose.stories"
+import { Basic } from "../stories/prose.stories"
 
 test("Prose renders correctly", async () => {
-  const { container } = render(basic())
+  const { container } = render(Basic())
   await testA11y(container)
 })
