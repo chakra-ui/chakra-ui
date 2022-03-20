@@ -236,7 +236,8 @@ export const WithButtonGroup = () => (
 
 export const attachedButtons = () => (
   <ButtonGroup size="sm" isAttached variant="outline">
-    <Button marginEnd="-px">Save</Button>
+    <Button>Save</Button>
+    <Button>Cancel</Button>
     <IconButton
       fontSize="2xl"
       aria-label="Add to friends"
