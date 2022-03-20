@@ -73,6 +73,9 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">((props, ref) => {
       "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
       "> *:not(:first-of-type):last-of-type": { borderStartRadius: 0 },
     }
+    if (variant === "outline") {
+      groupStyles["> *:not(:last-of-type)"] = { marginEnd: "-1px" }
+    }
   } else {
     groupStyles = {
       ...groupStyles,
