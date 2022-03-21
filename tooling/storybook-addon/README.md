@@ -63,7 +63,5 @@ for more information.
 
 ## Color Mode Tool
 
-You will be able to toggle your color mode with the button in the toolbar as you
-can see below:
-
-It try to sync with your theme throught the localstorage key
+You will be able to toggle your color mode with the button in the toolbar. It
+tries to sync with your theme through the localstorage key.
