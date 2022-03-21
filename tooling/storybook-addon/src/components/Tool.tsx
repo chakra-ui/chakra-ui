@@ -10,7 +10,7 @@ export const Tool = () => {
   const [darkMode, setDarkMode] = useAddonState(ADDON_ID, persistedColorMode)
   const channel = addons.getChannel()
 
-  const toggleMyTool = useCallback(
+  const toggleDarkMode = useCallback(
     () => {
       channel.emit(EVENTS.TOGGLE_COLOR_MODE, !darkMode ? "dark" : "light")
       setDarkMode(darkMode => !darkMode)
