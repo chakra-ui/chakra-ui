@@ -38,12 +38,13 @@
     "react": "^17.0.1"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^1.1.7",
     "webpack-merge": "^5.0.0"
   },
   "peerDependencies": {
     "@chakra-ui/react": "1.x",
     "@storybook/addons": "6.x",
+    "@storybook/components": "6.x",
+    "@storybook/api": "6.x",
     "react": "16.x || 17.x"
   },
   "peerDependenciesMeta": {
