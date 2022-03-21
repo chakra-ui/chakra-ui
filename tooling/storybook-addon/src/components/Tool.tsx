@@ -13,7 +13,7 @@ export const Tool = () => {
   const toggleMyTool = useCallback(
     () => {
       channel.emit(EVENTS.TOGGLE_COLOR_MODE, !darkMode ? "dark" : "light")
-      setDarkMode(!darkMode)
+      setDarkMode(darkMode => !darkMode)
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [darkMode],
