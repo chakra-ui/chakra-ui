@@ -5,15 +5,14 @@ import { addons } from "@storybook/addons"
 import { ADDON_ID, TOOL_ID, EVENTS } from "../constants"
 
 export const Tool = () => {
-  const isDarkMode =
-    localStorage.getItem("chakra-ui-color-mode") === "dark"
-  const [darkMode, setDarkMode] = useAddonState(ADDON_ID, persistedColorMode)
+  const isDarkMode = localStorage.getItem("chakra-ui-color-mode") === "dark"
+  const [darkMode, setDarkMode] = useAddonState(ADDON_ID, isDarkMode)
   const channel = addons.getChannel()
 
   const toggleDarkMode = useCallback(
     () => {
       channel.emit(EVENTS.TOGGLE_COLOR_MODE, !darkMode ? "dark" : "light")
-      setDarkMode(darkMode => !darkMode)
+      setDarkMode((darkMode) => !darkMode)
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [darkMode],
@@ -25,7 +24,7 @@ export const Tool = () => {
       active={darkMode}
       css
       title={`Switch to ${darkMode ? "light" : "dark"} mode`}
-      onClick={toggleMyTool}
+      onClick={toggleDarkMode}
     >
       <Icons icon={darkMode ? "circle" : "circlehollow"} />
     </IconButton>
