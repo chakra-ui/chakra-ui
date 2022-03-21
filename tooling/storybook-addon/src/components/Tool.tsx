@@ -5,7 +5,7 @@ import { addons } from "@storybook/addons"
 import { ADDON_ID, TOOL_ID, EVENTS } from "../constants"
 
 export const Tool = () => {
-  const persistedColorMode =
+  const isDarkMode =
     localStorage.getItem("chakra-ui-color-mode") === "dark"
   const [darkMode, setDarkMode] = useAddonState(ADDON_ID, persistedColorMode)
   const channel = addons.getChannel()
