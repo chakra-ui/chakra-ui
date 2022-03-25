@@ -1,5 +1,26 @@
 # Change Log
 
+## 1.5.0
+
+### Minor Changes
+
+- [#5736](https://github.com/chakra-ui/chakra-ui/pull/5736)
+  [`a7be72918`](https://github.com/chakra-ui/chakra-ui/commit/a7be72918f1e74ce20eb31544433e4321caf5c78)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  passing `inputProps` to underlying input element
+
+### Patch Changes
+
+- [#5708](https://github.com/chakra-ui/chakra-ui/pull/5708)
+  [`8e201b9f8`](https://github.com/chakra-ui/chakra-ui/commit/8e201b9f84a914e58cdc9ee90b3e03269fabf4d7)
+  Thanks [@noobinthisgame](https://github.com/noobinthisgame)! - Add type for
+  state returned by use-radio hook
+
+- Updated dependencies
+  [[`73a06ae8c`](https://github.com/chakra-ui/chakra-ui/commit/73a06ae8ce1bee644e10f245edcf2f9f2b773964)]:
+  - @chakra-ui/hooks@1.9.0
+  - @chakra-ui/form-control@1.5.10
+
 ## 1.4.10
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.6.9
+
+### Patch Changes
+
+- [#5665](https://github.com/chakra-ui/chakra-ui/pull/5665)
+  [`63c2bc070`](https://github.com/chakra-ui/chakra-ui/commit/63c2bc070303ecdf4947c896b85bf602381040a4)
+  Thanks [@josulliv101](https://github.com/josulliv101)! - Add height & width to
+  the TabIndicator transition properties
+
+- Updated dependencies
+  [[`73a06ae8c`](https://github.com/chakra-ui/chakra-ui/commit/73a06ae8ce1bee644e10f245edcf2f9f2b773964)]:
+  - @chakra-ui/hooks@1.9.0
+
 ## 1.6.8
 
 ### Patch Changes

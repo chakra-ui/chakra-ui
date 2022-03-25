@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.7.8
+
+### Patch Changes
+
+- [#5679](https://github.com/chakra-ui/chakra-ui/pull/5679)
+  [`1c14e0de8`](https://github.com/chakra-ui/chakra-ui/commit/1c14e0de84a7eb92482ba0ba2e04b27d738af804)
+  Thanks [@m4x3d](https://github.com/m4x3d)! - Fix buttons zIndex within LinkBox
+  and usage of LinkOverlay
+
+* [#5737](https://github.com/chakra-ui/chakra-ui/pull/5737)
+  [`e93b9f8c3`](https://github.com/chakra-ui/chakra-ui/commit/e93b9f8c3e695b56dbf927b37b4b13ded660451b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Remove `noreferrer`
+  attribute from link component
+
 ## 1.7.7
 
 ### Patch Changes

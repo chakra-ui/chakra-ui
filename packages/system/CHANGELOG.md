@@ -1,5 +1,24 @@
 # Change Log
 
+## 1.12.0
+
+### Minor Changes
+
+- [#5532](https://github.com/chakra-ui/chakra-ui/pull/5532)
+  [`cedec803f`](https://github.com/chakra-ui/chakra-ui/commit/cedec803fb05b5d92ef32c67352265fc7636500c)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Added
+  `[data-theme]` to the CSS variables root selector. This allows the semantic
+  tokens to change according to `data-theme="dark"` and `data-theme="light"` DOM
+  element attributes.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`00d5d1516`](https://github.com/chakra-ui/chakra-ui/commit/00d5d151631436777a8dc71a0b46c2be52e71631),
+  [`dc2c578f6`](https://github.com/chakra-ui/chakra-ui/commit/dc2c578f6b9686499911fa77d6b61dd0ced077ea)]:
+  - @chakra-ui/styled-system@1.19.0
+  - @chakra-ui/color-mode@1.4.7
+
 ## 1.11.2
 
 ### Patch Changes

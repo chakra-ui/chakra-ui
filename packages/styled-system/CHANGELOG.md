@@ -1,5 +1,22 @@
 # Change Log
 
+## 1.19.0
+
+### Minor Changes
+
+- [#5532](https://github.com/chakra-ui/chakra-ui/pull/5532)
+  [`00d5d1516`](https://github.com/chakra-ui/chakra-ui/commit/00d5d151631436777a8dc71a0b46c2be52e71631)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Updated `_dark` and
+  `_light` pseudo selectors to allow semantic tokens to change with the
+  `data-theme` attributes.
+
+### Patch Changes
+
+- [#5702](https://github.com/chakra-ui/chakra-ui/pull/5702)
+  [`dc2c578f6`](https://github.com/chakra-ui/chakra-ui/commit/dc2c578f6b9686499911fa77d6b61dd0ced077ea)
+  Thanks [@ardnahcivar](https://github.com/ardnahcivar)! - Added `number` type
+  for text underline offset of text decoration props
+
 ## 1.18.1
 
 ### Patch Changes
