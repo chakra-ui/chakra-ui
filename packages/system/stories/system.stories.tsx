@@ -195,3 +195,22 @@ export const WithCSSVarToken = () => {
     </chakra.div>
   )
 }
+
+export const WithSemanticTokens = () => {
+  return (
+    <div>
+      <chakra.p color="semantic">I am in the default color mode</chakra.p>
+      <div data-theme="light">
+        <chakra.p color="semantic">I am forced to light mode (red)</chakra.p>
+      </div>
+      <div data-theme="dark">
+        <chakra.p color="semantic">I am forced to dark mode (blue)</chakra.p>
+        <div data-theme="light">
+          <chakra.p pl="4" color="semantic">
+            I am nested and forced to light mode (red)
+          </chakra.p>
+        </div>
+      </div>
+    </div>
+  )
+}

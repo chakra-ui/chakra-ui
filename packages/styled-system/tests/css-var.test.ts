@@ -482,7 +482,7 @@ test("should convert semantic tokens", () => {
         "--colors-red-800": "#ff0080",
         "--colors-secondary": "var(--colors-red-800)",
         "--colors-success": "var(--colors-red-100)",
-        ".chakra-ui-dark &, [data-theme=dark] &, &[data-theme=dark]": Object {
+        ".chakra-ui-dark &:not([data-theme]),[data-theme=dark] &:not([data-theme]),&[data-theme=dark]": Object {
           "--colors-primary": "var(--colors-red-400)",
           "--colors-secondary": "var(--colors-red-700)",
         },
