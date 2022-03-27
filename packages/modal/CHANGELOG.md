@@ -1,5 +1,21 @@
 # Change Log
 
+## 1.11.0
+
+### Minor Changes
+
+- [#5402](https://github.com/chakra-ui/chakra-ui/pull/5402)
+  [`232853068`](https://github.com/chakra-ui/chakra-ui/commit/232853068ab9ec95cd123ccf378b044ad7861ba1)
+  Thanks [@ShumRain](https://github.com/ShumRain)! - Add `onCloseComplete` prop
+  to Modal which is called when all DOM nodes of the `Modal` are removed.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`73a06ae8c`](https://github.com/chakra-ui/chakra-ui/commit/73a06ae8ce1bee644e10f245edcf2f9f2b773964)]:
+  - @chakra-ui/hooks@1.9.0
+  - @chakra-ui/portal@1.3.9
+
 ## 1.10.10
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/editable",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "React component used to build inline-editable components",
   "keywords": [
     "chakra ui",
@@ -36,12 +36,12 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "1.8.5",
+    "@chakra-ui/hooks": "1.9.0",
     "@chakra-ui/react-utils": "1.2.3",
     "@chakra-ui/utils": "1.10.4"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.11.2",
+    "@chakra-ui/system": "1.12.0",
     "react": "^17.0.1"
   },
   "peerDependencies": {

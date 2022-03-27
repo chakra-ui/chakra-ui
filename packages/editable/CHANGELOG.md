@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.4.1
+
+### Patch Changes
+
+- [#5684](https://github.com/chakra-ui/chakra-ui/pull/5684)
+  [`6ec09741a`](https://github.com/chakra-ui/chakra-ui/commit/6ec09741acd40eb1835cbf6d02bfae642413b6ef)
+  Thanks [@takethefake](https://github.com/takethefake)! - Call `setPrevValue`
+  `onFocus` to avoid an outdated prev value when the field is controlled
+- Updated dependencies
+  [[`73a06ae8c`](https://github.com/chakra-ui/chakra-ui/commit/73a06ae8ce1bee644e10f245edcf2f9f2b773964)]:
+  - @chakra-ui/hooks@1.9.0
+
 ## 1.4.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.3.9
+
+### Patch Changes
+
+- Updated dependencies
+  [[`a7be72918`](https://github.com/chakra-ui/chakra-ui/commit/a7be72918f1e74ce20eb31544433e4321caf5c78)]:
+  - @chakra-ui/checkbox@1.7.0
+
 ## 1.3.8
 
 ### Patch Changes
