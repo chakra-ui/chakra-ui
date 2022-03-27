@@ -10,6 +10,60 @@ experience.
 
 <!-- CHANGELOG:INSERT -->
 
+## 25-03-2022
+
+**Tabs** `v1.6.9`
+
+- Add height & width to the TabIndicator transition properties
+
+**Checkbox** `v1.7.0`
+
+- Add support for passing `inputProps` to underlying input element
+
+**Radio** `v1.5.0`
+
+- Add support for passing `inputProps` to underlying input element
+- Add type for state returned by use-radio hook
+
+**Editable** `v1.4.1`
+
+- Call `setPrevValue` `onFocus` to avoid an outdated prev value when the field
+  is controlled
+
+**Layout** `v1.7.8`
+
+- Fix buttons zIndex within LinkBox and usage of LinkOverlay
+- Remove `noreferrer` attribute from link component
+
+**Styled System** `v1.19.0`
+
+- Updated `_dark` and `_light` pseudo selectors to allow semantic tokens to
+  change with the `data-theme` attributes.
+- Added `number` type for text underline offset of text decoration props
+
+**Toast** `v1.5.8`
+
+- use default options as well when providing options to useToast
+
+**Hooks** `v1.9.0`
+
+- Control whether Tooltip can be closed with Esc key
+
+**Tooltip** `v1.5.0`
+
+- Control whether Tooltip can be closed with Esc key
+
+**System** `v1.12.0`
+
+- Added `[data-theme]` to the CSS variables root selector. This allows the
+  semantic tokens to change according to `data-theme="dark"` and
+  `data-theme="light"` DOM element attributes.
+
+**Modal** `v1.11.0`
+
+- Add `onCloseComplete` prop to Modal which is called when all DOM nodes of the
+  `Modal` are removed.
+
 ## 28-02-2022
 
 **Anatomy** `v1.3.0`
