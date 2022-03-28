@@ -335,7 +335,8 @@ export interface MenuItemOptionProps
 
 export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
   (props, ref) => {
-    const { icon, iconSpacing = "0.75rem", ...rest } = props
+    // menu option item should always be `type=button`, so we omit `type`
+    const { icon, iconSpacing = "0.75rem", type: _, ...rest } = props
 
     const optionProps = useMenuOption(rest, ref) as HTMLAttributes
 

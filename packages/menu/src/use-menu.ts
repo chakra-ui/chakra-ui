@@ -668,7 +668,7 @@ export interface UseMenuOptionOptions {
 }
 
 export interface UseMenuOptionProps
-  extends UseMenuItemProps,
+  extends Omit<UseMenuItemProps, "type">,
     UseMenuOptionOptions {}
 
 export function useMenuOption(
