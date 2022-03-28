@@ -160,3 +160,11 @@ export const EditableEventHandler = () => {
     </>
   )
 }
+
+export const Disabled = () => (
+  <Editable isDisabled defaultValue="Rasengan ⚡️" fontSize="xl">
+    <EditablePreview />
+    <EditableInput />
+    <EditableControls />
+  </Editable>
+)

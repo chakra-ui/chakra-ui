@@ -214,7 +214,7 @@ test("can submit on blur", () => {
 
 test("startWithEditView when true focuses on the input ", () => {
   render(
-    <Editable startWithEditView={true} defaultValue="Chakra testing">
+    <Editable startWithEditView defaultValue="Chakra testing">
       <EditablePreview />
       <EditableInput data-testid="input" />
     </Editable>,
@@ -277,3 +277,15 @@ test.each([
     expect(preview).toHaveTextContent("John")
   },
 )
+
+test("should not be interactive when disabled", () => {
+  render(
+    <Editable defaultValue="editable" isDisabled>
+      <EditablePreview data-testid="preview" />
+      <EditableInput data-testid="input" />
+    </Editable>,
+  )
+
+  userEvent.click(screen.getByText(/editable/))
+  expect(screen.getByTestId("input")).not.toBeVisible()
+})
