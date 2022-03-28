@@ -287,5 +287,5 @@ test("should not be interactive when disabled", () => {
   )
 
   userEvent.click(screen.getByText(/editable/))
-  expect(screen.findByTestId("input")).not.toBeVisible()
+  expect(screen.getByTestId("input")).not.toBeVisible()
 })
