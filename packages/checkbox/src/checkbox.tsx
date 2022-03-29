@@ -33,9 +33,6 @@ const Label = chakra("label", {
     alignItems: "center",
     verticalAlign: "top",
     position: "relative",
-    _disabled: {
-      cursor: "not-allowed",
-    },
   },
 })
 
