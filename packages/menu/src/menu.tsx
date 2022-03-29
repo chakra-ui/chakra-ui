@@ -121,6 +121,9 @@ if (__DEV__) {
 }
 
 export interface MenuListProps extends HTMLChakraProps<"div"> {
+  /**
+  * Props that get forwarded down to Popper.js.
+  */
   rootProps?: HTMLChakraProps<"div">
 }
 
