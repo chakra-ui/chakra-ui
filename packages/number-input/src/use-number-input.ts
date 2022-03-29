@@ -511,7 +511,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     Pick<
       React.InputHTMLAttributes<HTMLInputElement>,
       "disabled" | "required" | "readOnly"
-    >
+    > & Pick<UseNumberInputProps, "isReadOnly">
   > = React.useCallback(
     (props = {}, ref = null) => ({
       name,
@@ -524,8 +524,8 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       id,
       disabled: isDisabled,
       ...props,
-      readOnly: props.readOnly ?? isReadOnly,
-      "aria-readonly": props.readOnly ?? isReadOnly,
+      readOnly: props.readOnly ?? props.isReadOnly ?? isReadOnly,
+      "aria-readonly": props.readOnly ?? props.isReadOnly ?? isReadOnly,
       "aria-required": props.required ?? isRequired,
       required: props.required ?? isRequired,
       ref: mergeRefs(inputRef, ref),
