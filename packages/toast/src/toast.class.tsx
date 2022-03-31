@@ -1,6 +1,6 @@
 import { isBrowser } from "@chakra-ui/utils"
 import * as React from "react"
-import { render } from "react-dom"
+import * as ReactDom from "react-dom"
 import { ToastMethods, ToastManager } from "./toast-manager"
 import type {
   CloseAllToastsOptions,
@@ -42,7 +42,13 @@ class Toaster {
       portal = div
     }
 
-    render(<ToastManager notify={this.bindFunctions} />, portal)
+    if (typeof ReactDom["createRoot"] === "function") {
+      const toastRoot = ReactDom["createRoot"](portal)
+      toastRoot.render(<ToastManager notify={this.bindFunctions} />)
+    } else {
+      // fallback for React <18
+      ReactDom.render(<ToastManager notify={this.bindFunctions} />, portal)
+    }
   }
 
   private bindFunctions = (methods: ToastMethods) => {
