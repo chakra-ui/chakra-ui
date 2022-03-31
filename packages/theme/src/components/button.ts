@@ -59,6 +59,9 @@ const variantOutline: SystemStyleFunction = (props) => {
   return {
     border: "1px solid",
     borderColor: c === "gray" ? borderColor : "currentColor",
+    ".chakra-button__group[data-attached] > &:not(:last-of-type)": {
+      marginEnd: "-1px",
+    },
     ...variantGhost(props),
   }
 }
