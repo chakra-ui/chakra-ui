@@ -76,9 +76,9 @@ export const Wrap = forwardRef<WrapProps, "div">((props, ref) => {
     }
     return {
       "--chakra-wrap-x-spacing": (theme: Dict) =>
-        mapResponsive(y, (value) => tokenToCSSVar("space", value)(theme)),
-      "--chakra-wrap-y-spacing": (theme: Dict) =>
         mapResponsive(x, (value) => tokenToCSSVar("space", value)(theme)),
+      "--chakra-wrap-y-spacing": (theme: Dict) =>
+        mapResponsive(y, (value) => tokenToCSSVar("space", value)(theme)),
       "--wrap-x-spacing": "calc(var(--chakra-wrap-x-spacing) / 2)",
       "--wrap-y-spacing": "calc(var(--chakra-wrap-y-spacing) / 2)",
       display: "flex",
