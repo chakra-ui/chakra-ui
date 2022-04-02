@@ -5,8 +5,8 @@
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.16.0",
-    "@storybook/addon-actions": "~6.3.12",
-    "@storybook/react": "~6.3.12"
+    "@storybook/addon-actions": "~6.4.19",
+    "@storybook/react": "~6.4.19"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^6.3.12",

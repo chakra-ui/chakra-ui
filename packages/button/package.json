@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@chakra-ui/system": "1.12.1",
-    "react": "^17.0.1"
+    "react": "^18.0.0"
   },
   "dependencies": {
     "@chakra-ui/hooks": "1.9.1",

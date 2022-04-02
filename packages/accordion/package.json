@@ -48,7 +48,7 @@
   "devDependencies": {
     "@chakra-ui/system": "1.12.1",
     "framer-motion": "^4.0.0",
-    "react": "^17.0.1"
+    "react": "^18.0.0"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=1.0.0",

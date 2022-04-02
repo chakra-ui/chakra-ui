@@ -24,7 +24,7 @@ function DummyComponent() {
 }
 
 describe("useColorModeValue", () => {
-  test("given light mode, shows lightValue and toggles", () => {
+  test("given light mode, shows lightValue and toggles", async () => {
     render(
       <ColorModeProvider options={defaultThemeOptions}>
         <DummyComponent />
@@ -36,7 +36,7 @@ describe("useColorModeValue", () => {
     expect(screen.getByTestId("mode")).toHaveTextContent("light")
     expect(button).toHaveTextContent(lightValue)
 
-    userEvent.click(button)
+    await userEvent.click(button)
 
     expect(screen.getByTestId("mode")).toHaveTextContent("dark")
     expect(button).toHaveTextContent(darkValue)

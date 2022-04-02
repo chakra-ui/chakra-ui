@@ -25,19 +25,19 @@
   },
   "dependencies": {
     "@chakra-ui/react": "1.8.8",
-    "@emotion/jest": "^11.6.0",
-    "@testing-library/jest-dom": "^5.15.0",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/react-hooks": "7.0.2",
-    "@testing-library/user-event": "13.5.0",
+    "@emotion/jest": "^11.8.0",
+    "@testing-library/jest-dom": "^5.16.3",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/react-hooks": "8.0.0-alpha.1",
+    "@testing-library/user-event": "14.0.4",
     "@types/jest-axe": "3.5.3",
-    "jest-axe": "5.0.1",
-    "react-test-renderer": "^17.0.2"
+    "jest-axe": "6.0.0",
+    "react-test-renderer": "^18.0.0"
   },
   "peerDependencies": {
     "react": ">=16.8.6"
   },
   "devDependencies": {
-    "react": "^17.0.1"
+    "react": "^18.0.0"
   }
 }

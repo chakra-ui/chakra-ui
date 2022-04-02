@@ -31,7 +31,7 @@ test("should no accessibility issues", async () => {
   )
 })
 
-test("selects the correct tab with keyboard navigation", () => {
+test("selects the correct tab with keyboard navigation", async () => {
   const { getByText, getByRole } = render(
     <Tabs>
       <TabList>
@@ -63,7 +63,7 @@ test("selects the correct tab with keyboard navigation", () => {
 
   const tab3 = getByText("Tab 3")
 
-  userEvent.click(tab1)
+  await userEvent.click(tab1)
   fireEvent.keyDown(tabList, { key: "ArrowRight", code: 39 })
 
   expect(tab2).toHaveFocus()

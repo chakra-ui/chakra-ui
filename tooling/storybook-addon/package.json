@@ -35,7 +35,7 @@
     "@chakra-ui/react": "^1.8.5",
     "@storybook/addons": "~6.3.12",
     "concurrently": "^6.4.0",
-    "react": "^17.0.1"
+    "react": "^18.0.0"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.1.7",
@@ -44,7 +44,7 @@
   "peerDependencies": {
     "@chakra-ui/react": "1.x",
     "@storybook/addons": "6.x",
-    "react": "16.x || 17.x"
+    "react": ">=16.8.6"
   },
   "peerDependenciesMeta": {
     "react": {
