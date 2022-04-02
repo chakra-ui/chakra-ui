@@ -463,3 +463,23 @@ test("MenuList direction flips in rtl", () => {
     "top-start",
   )
 })
+
+test("can override menu item type", async () => {
+  render(
+    <Menu>
+      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuList>
+        <MenuItem type="submit">Submit</MenuItem>
+        <MenuItem as={Button}>Button</MenuItem>
+      </MenuList>
+    </Menu>,
+  )
+
+  const button = screen.getByText("Open menu")
+  fireEvent.click(button)
+
+  const submitOption = screen.getByText("Submit")
+  await waitFor(() => expect(submitOption).toHaveFocus())
+
+  expect(submitOption).toHaveAttribute("type", "submit")
+})
