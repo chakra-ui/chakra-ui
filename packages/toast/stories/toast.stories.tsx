@@ -5,15 +5,15 @@ import { chakra, useColorMode } from "@chakra-ui/system"
 import { Alert } from "@chakra-ui/alert"
 import { Text } from "@chakra-ui/layout"
 import { useLatestRef } from "@chakra-ui/hooks"
-import { createStandaloneToast, ToastId, useToast } from "../src"
+import { createStandaloneToast, ToastId, ToastProvider, useToast } from "../src"
 
 export default {
   title: "Components / Feedback / Toast",
   decorators: [
     (Story: Function) => (
-      <>
+      <ToastProvider>
         <Story />
-      </>
+      </ToastProvider>
     ),
   ],
 }
@@ -28,7 +28,7 @@ export function ToastExample() {
           if (toast.isActive(id)) return
           toast({
             id,
-            position: "top-start",
+            position: "top-left",
             title: "Error Connecting...",
             description: "You do not have permissions to perform this action.",
             status: "error",
@@ -260,7 +260,15 @@ export const UseToastWithCustomContainerStyle = () => {
     },
   })
 
-  return <Button onClick={() => toast()}>toast</Button>
+  return (
+    <Button
+      onClick={() => {
+        toast()
+      }}
+    >
+      toast
+    </Button>
+  )
 }
 
 export const useToastCustomRenderUpdate = () => {
@@ -304,7 +312,7 @@ export const useToastCustomRenderUpdate = () => {
 }
 
 export function StandAloneToast() {
-  const toast = createStandaloneToast({
+  const { ToastContainer, toast } = createStandaloneToast({
     theme: {
       ...base,
       colors: {
@@ -314,9 +322,13 @@ export function StandAloneToast() {
       },
     },
   })
-  const toast2 = createStandaloneToast()
+  const { ToastContainer: ToastContainer2, toast: toast2 } =
+    createStandaloneToast()
+
   return (
     <>
+      <ToastContainer />
+      <ToastContainer2 />
       <Text fontSize="lg" fontWeight="bold">
         This Text matches Theme font
       </Text>

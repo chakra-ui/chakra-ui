@@ -18,17 +18,13 @@ export type ToastPosition = Exclude<
   LogicalToastPosition
 >
 
-export type WithoutLogicalPosition<T> = Omit<T, "position"> & {
-  position?: ToastPosition
-}
-
 type LogicalPlacementMap = Record<
   LogicalToastPosition,
   { ltr: ToastPosition; rtl: ToastPosition }
 >
 
 export function getToastPlacement(
-  position: ToastPositionWithLogical | undefined,
+  position: ToastPosition | undefined,
   dir: "ltr" | "rtl",
 ): ToastPosition | undefined {
   if (!position) return
