@@ -1,4 +1,5 @@
 import {
+  act,
   fireEvent,
   render,
   screen,
@@ -54,14 +55,16 @@ test("uncontrolled: handles callbacks correctly", async () => {
   expect(onEdit).toHaveBeenCalled()
 
   // calls `onChange` with input on change
-  userEvent.type(textarea, "World")
+  await act(() => userEvent.type(textarea, "World"))
   expect(onChange).toHaveBeenCalledWith("Hello World")
 
   // get new line on user press "Enter"
-  userEvent.type(
-    textarea,
-    `
+  await act(() =>
+    userEvent.type(
+      textarea,
+      `
   textarea`,
+    ),
   )
   expect(onChange).toHaveBeenLastCalledWith(`Hello World
   textarea`)
@@ -77,7 +80,7 @@ test("uncontrolled: handles callbacks correctly", async () => {
   expect(onSubmit).not.toHaveBeenCalled()
 })
 
-test("controlled: handles callbacks correctly", () => {
+test("controlled: handles callbacks correctly", async () => {
   const onChange = jest.fn()
   const onCancel = jest.fn()
   const onSubmit = jest.fn()
@@ -111,7 +114,7 @@ test("controlled: handles callbacks correctly", () => {
   expect(onEdit).toHaveBeenCalled()
 
   // calls `onChange` with input on change
-  userEvent.type(textarea, "World")
+  await act(() => userEvent.type(textarea, "World"))
   expect(onChange).toHaveBeenCalledWith("Hello World")
 
   // do not calls `onSubmit`
@@ -121,10 +124,12 @@ test("controlled: handles callbacks correctly", () => {
   expect(textarea).toBeVisible()
 
   // update the input value with new line
-  userEvent.type(
-    textarea,
-    `
+  await act(() =>
+    userEvent.type(
+      textarea,
+      `
   textarea`,
+    ),
   )
   expect(onChange).toHaveBeenCalledWith(`Hello World
   textarea`)
@@ -136,7 +141,7 @@ test("controlled: handles callbacks correctly", () => {
   expect(onCancel).toHaveBeenCalledWith(`Hello `)
 })
 
-test("handles preview and textarea callbacks", () => {
+test("handles preview and textarea callbacks", async () => {
   const onFocus = jest.fn()
   const onBlur = jest.fn()
   const onChange = jest.fn()
@@ -161,7 +166,7 @@ test("handles preview and textarea callbacks", () => {
   expect(onFocus).toHaveBeenCalled()
 
   // calls `onChange` when input is changed
-  userEvent.type(textarea, "World")
+  await act(() => userEvent.type(textarea, "World"))
   expect(onChange).toHaveBeenCalled()
 
   // calls `onKeyDown` when key is pressed in input
@@ -216,7 +221,7 @@ test.each([
   { startWithEditView: false, text: "Bob" },
 ])(
   "controlled: sets value toPrevValue onCancel, startWithEditView: $startWithEditView",
-  ({ startWithEditView, text }) => {
+  async ({ startWithEditView, text }) => {
     const Component = () => {
       const [name, setName] = React.useState("")
 
@@ -254,7 +259,7 @@ test.each([
       fireEvent.focus(input)
     }
     if (text) {
-      userEvent.type(input, text)
+      await act(() => userEvent.type(input, text))
     }
     fireEvent.keyDown(input, { key: "Escape" })
 

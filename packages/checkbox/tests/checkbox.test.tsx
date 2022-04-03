@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import Icon from "@chakra-ui/icon"
 import {
+  act,
   fireEvent,
   render,
   renderHook,
@@ -223,7 +224,7 @@ test("Uncontrolled CheckboxGroup - should not check if group disabled", () => {
   expect(checkboxThree).toBeChecked()
 })
 
-test("uncontrolled CheckboxGroup handles change", () => {
+test("uncontrolled CheckboxGroup handles change", async () => {
   const onChange = jest.fn()
   render(
     <CheckboxGroup defaultValue={["A", "C"]} onChange={onChange}>
@@ -233,7 +234,7 @@ test("uncontrolled CheckboxGroup handles change", () => {
     </CheckboxGroup>,
   )
 
-  userEvent.click(screen.getByLabelText("B"))
+  await act(() => userEvent.click(screen.getByLabelText("B")))
 
   expect(onChange).toHaveBeenCalledTimes(1)
   expect(onChange).toHaveBeenCalledWith(["A", "C", "B"])

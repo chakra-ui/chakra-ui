@@ -1,7 +1,6 @@
-import { render } from "@testing-library/react"
-import userEvent from "@testing-library/user-event"
-import React from "react"
-import { DarkMode } from "../src/color-mode-provider"
+import * as React from "react"
+import { act, userEvent, render } from "@chakra-ui/test-utils"
+import { DarkMode } from "../src"
 import {
   DummyComponent,
   getColorModeButton,
@@ -11,7 +10,7 @@ import {
 } from "./utils"
 
 const MemoTest = () => {
-  const [_, setRenderCount] = React.useState(0)
+  const [, setRenderCount] = React.useState(0)
 
   return (
     <>
@@ -24,7 +23,7 @@ const MemoTest = () => {
 }
 
 const NoMemoTest = () => {
-  const [_, setRenderCount] = React.useState(0)
+  const [, setRenderCount] = React.useState(0)
 
   return (
     <>
@@ -41,7 +40,7 @@ describe("<DarkMode />", () => {
     resetCounter()
   })
 
-  test("is always dark", () => {
+  test("is always dark", async () => {
     render(
       <DarkMode>
         <DummyComponent />
@@ -52,25 +51,25 @@ describe("<DarkMode />", () => {
 
     expect(button).toHaveTextContent("dark")
 
-    userEvent.click(button)
+    await act(() => userEvent.click(button))
 
     expect(getColorModeButton()).toHaveTextContent("dark")
   })
 
-  test("memoized component renders once", () => {
+  test("memoized component renders once", async () => {
     const { getByText, getByTestId } = render(<MemoTest />)
 
-    userEvent.click(getByText("Rerender"))
-    userEvent.click(getByText("Rerender"))
+    await act(() => userEvent.click(getByText("Rerender")))
+    await act(() => userEvent.click(getByText("Rerender")))
 
     expect(getByTestId("rendered")).toHaveTextContent("1")
   })
 
-  test("non memoized component renders multiple", () => {
+  test("non memoized component renders multiple", async () => {
     const { getByText, getByTestId } = render(<NoMemoTest />)
 
-    userEvent.click(getByText("Rerender"))
-    userEvent.click(getByText("Rerender"))
+    await act(() => userEvent.click(getByText("Rerender")))
+    await act(() => userEvent.click(getByText("Rerender")))
 
     expect(getByTestId("rendered")).toHaveTextContent("3")
   })

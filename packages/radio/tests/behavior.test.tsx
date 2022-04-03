@@ -1,17 +1,17 @@
-import { fireEvent, render, screen } from "@chakra-ui/test-utils"
+import { act, render, screen, userEvent } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { RadioGroup, Radio } from "../src"
+import { Radio, RadioGroup } from "../src"
 
-const runTest = () => {
-  const one = screen.getByLabelText("One")
-  const two = screen.getByLabelText("Two")
-  const three = screen.getByLabelText("Three")
+const runTest = async () => {
+  const one = await screen.findByLabelText("One")
+  const two = await screen.findByLabelText("Two")
+  const three = await screen.findByLabelText("Three")
 
   expect(one).toBeChecked()
   expect(two).not.toBeChecked()
   expect(three).not.toBeChecked()
 
-  fireEvent.click(two)
+  await act(() => userEvent.click(two))
 
   expect(one).not.toBeChecked()
   expect(two).toBeChecked()
@@ -19,7 +19,7 @@ const runTest = () => {
 }
 
 describe("RadioGroup", () => {
-  test("uncontrolled", () => {
+  test("uncontrolled", async () => {
     const onChange = jest.fn()
     render(
       <RadioGroup name="radio" defaultValue="1" onChange={onChange}>
@@ -28,11 +28,11 @@ describe("RadioGroup", () => {
         <Radio value="3">Three</Radio>
       </RadioGroup>,
     )
-    runTest()
+    await runTest()
     expect(onChange).toHaveBeenCalledWith("2")
   })
 
-  test("controlled", () => {
+  test("controlled", async () => {
     const Component = () => {
       const [value, setValue] = React.useState("1")
       const onChange = (value: string) => setValue(value)
@@ -46,29 +46,22 @@ describe("RadioGroup", () => {
       )
     }
     render(<Component />)
-    runTest()
+    await runTest()
   })
 })
 
 describe("Radio", () => {
-  test("uncontrolled", () => {
+  test("uncontrolled", async () => {
     render(
-      <>
-        <Radio name="radio" value="1" defaultIsChecked>
-          One
-        </Radio>
-        <Radio name="radio" value="2">
-          Two
-        </Radio>
-        <Radio name="radio" value="3">
-          Three
-        </Radio>
-      </>,
+      <Radio name="radio" value="1" defaultChecked>
+        One
+      </Radio>,
     )
-    runTest()
+    const one = await screen.findByLabelText("One")
+    expect(one).toBeChecked()
   })
 
-  test("controlled", () => {
+  test("controlled", async () => {
     const Component = () => {
       const [value, setValue] = React.useState("1")
       const onChange = (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -104,6 +97,6 @@ describe("Radio", () => {
       )
     }
     render(<Component />)
-    runTest()
+    await runTest()
   })
 })

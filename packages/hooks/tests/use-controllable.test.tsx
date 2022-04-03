@@ -1,4 +1,5 @@
 import {
+  act,
   invoke,
   render,
   renderHook,
@@ -77,11 +78,11 @@ test("onChange does not become stale when callback is updated", async () => {
 
   expect(screen.getByTestId("value")).toHaveTextContent("0")
 
-  userEvent.type(screen.getByRole("textbox"), "5")
+  await act(() => userEvent.type(screen.getByRole("textbox"), "5"))
 
   expect(await screen.findByTestId("value")).toHaveTextContent("5")
 
-  userEvent.type(screen.getByRole("textbox"), "{selectall}1")
+  await act(() => userEvent.type(screen.getByRole("textbox"), "{selectall}1"))
 
   expect(await screen.findByTestId("value")).toHaveTextContent("6")
 })

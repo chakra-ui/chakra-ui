@@ -1,18 +1,18 @@
 /* eslint-disable jsx-a11y/aria-proptypes */
 import * as React from "react"
 import {
+  act,
   press,
   render,
   screen,
   testA11y,
   userEvent,
-  act,
 } from "@chakra-ui/test-utils"
 import {
   RangeSlider,
   RangeSliderFilledTrack,
-  RangeSliderTrack,
   RangeSliderThumb,
+  RangeSliderTrack,
 } from "../src"
 
 const HorizontalSlider = () => {
@@ -110,7 +110,9 @@ test("should set a thumb to its maximum value when pressing the end key", () => 
 test("should move the correct thumb when user clicks the track in case of stacked thumbs", async () => {
   render(<HorizontalSliderWithStackedThumbs />)
 
-  const rangeSliderTrack = screen.getByTestId("chakra-range-slider-track")
+  const rangeSliderTrack = await screen.findByTestId(
+    "chakra-range-slider-track",
+  )
 
   // getBoundingClientRect is not supported by JSDOM
   // its implementation needs to be mocked
@@ -124,11 +126,23 @@ test("should move the correct thumb when user clicks the track in case of stacke
       } as DOMRect),
   )
 
-  const clickCoordinates = { clientX: 20, clientY: 10 }
-
-  act(() => {
-    userEvent.click(rangeSliderTrack, clickCoordinates)
-  })
+  await act(() =>
+    // is there an easier way to click on a specific coordinate?
+    userEvent.click(rangeSliderTrack, {
+      pointerState: {
+        pointerId: 1,
+        pressed: [],
+        position: {
+          mouse: {
+            pointerId: 1,
+            pointerType: "mouse",
+            target: rangeSliderTrack,
+            coords: { clientX: 20, clientY: 10 },
+          },
+        },
+      },
+    }),
+  )
 
   const [firstThumb, secondThumb, thirdThumb] = getThumbs()
 

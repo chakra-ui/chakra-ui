@@ -1,5 +1,11 @@
 import { chakra, forwardRef } from "@chakra-ui/system"
-import { fireEvent, render, screen, userEvent } from "@chakra-ui/test-utils"
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  userEvent,
+} from "@chakra-ui/test-utils"
 import * as React from "react"
 import { useClickable } from "../src"
 
@@ -52,17 +58,17 @@ test("should render when disabled and focusable", () => {
   `)
 })
 
-test("should click correctly", () => {
+test("should click correctly", async () => {
   const fn = jest.fn()
   render(<Clickable onClick={fn}>clickable</Clickable>)
   const clickable = screen.getByText("clickable")
 
   expect(fn).toHaveBeenCalledTimes(0)
-  userEvent.click(clickable)
+  await act(() => userEvent.click(clickable))
   expect(fn).toHaveBeenCalledTimes(1)
 })
 
-test("should not click if disabled", () => {
+test("should not click if disabled", async () => {
   const fn = jest.fn()
 
   render(
@@ -72,7 +78,7 @@ test("should not click if disabled", () => {
   )
 
   const clickable = screen.getByText("clickable")
-  userEvent.click(clickable)
+  await act(() => userEvent.click(clickable))
   expect(fn).toHaveBeenCalledTimes(0)
 })
 

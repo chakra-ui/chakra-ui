@@ -1,10 +1,10 @@
 import {
   render,
   testA11y,
-  fireEvent,
   screen,
   act,
   waitFor,
+  fireEvent,
 } from "@chakra-ui/test-utils"
 import { Portal } from "@chakra-ui/portal"
 import * as React from "react"
@@ -116,7 +116,9 @@ test("does not fire onClick on disabled MenuItem", () => {
   const span = screen.getByText("Delivery")
   const button = span.parentNode!
 
-  fireEvent.click(button)
+  act(() => {
+    fireEvent.click(button)
+  })
 
   expect(onClick).not.toHaveBeenCalled()
 })
@@ -141,7 +143,9 @@ test.skip("allows focusing disabled MenuItems given isFocusable", async () => {
   const span = screen.getByText("Delivery")
   const button = span.parentNode!
 
-  fireEvent.click(button)
+  act(() => {
+    fireEvent.click(button)
+  })
 
   await waitFor(() => expect(button).toHaveFocus())
 })
@@ -163,7 +167,9 @@ test("allows using a Portal to render the MenuList", async () => {
 
   const button = screen.getByRole("button")
 
-  fireEvent.click(button)
+  act(() => {
+    fireEvent.click(button)
+  })
 
   const menu = await screen.findByRole("menu")
 
@@ -189,7 +195,9 @@ test("MenuGroup has correct role ", async () => {
 
   const button = screen.getByRole("button")
 
-  fireEvent.click(button)
+  act(() => {
+    fireEvent.click(button)
+  })
 
   await waitFor(() => expect(screen.getAllByRole("group")).toHaveLength(2))
   expect(screen.getByText("Group 1").nextElementSibling).toBe(
@@ -213,12 +221,14 @@ test("MenuOptionGroup radio", async () => {
     </Menu>,
   )
 
-  const button = screen.getByRole("button")
+  const button = await screen.findByRole("button")
 
-  fireEvent.click(button)
+  act(() => {
+    fireEvent.click(button)
+  })
 
-  await waitFor(() => expect(screen.getByText("Order")).toBeInTheDocument())
-  expect(screen.getAllByRole("menuitemradio")).toHaveLength(2)
+  expect(await screen.findByText("Order")).toBeInTheDocument()
+  expect(await screen.findAllByRole("menuitemradio")).toHaveLength(2)
 })
 
 test("MenuOptionGroup radio defaultValue checked", async () => {
@@ -239,7 +249,9 @@ test("MenuOptionGroup radio defaultValue checked", async () => {
 
   const button = screen.getByRole("button")
 
-  fireEvent.click(button)
+  act(() => {
+    fireEvent.click(button)
+  })
 
   expect(screen.getByText("Option 1").closest("button")).toBeChecked()
 })
@@ -263,14 +275,18 @@ test("MenuOptionGroup checkbox defaultValue single checked", async () => {
 
   const button = screen.getByRole("button")
 
-  fireEvent.click(button)
+  act(() => {
+    fireEvent.click(button)
+  })
 
-  await waitFor(() => expect(screen.getByText("Info")).toBeInTheDocument())
-  expect(screen.getAllByRole("menuitemcheckbox")).toHaveLength(3)
+  expect(await screen.findByText("Info")).toBeInTheDocument()
+  expect(await screen.findAllByRole("menuitemcheckbox")).toHaveLength(3)
 
-  expect(screen.getByText("Email").closest("button")).toBeChecked()
-  expect(screen.getByText("Phone").closest("button")).not.toBeChecked()
-  expect(screen.getByText("Country").closest("button")).not.toBeChecked()
+  expect((await screen.findByText("Email")).closest("button")).toBeChecked()
+  expect((await screen.findByText("Phone")).closest("button")).not.toBeChecked()
+  expect(
+    (await screen.findByText("Country")).closest("button"),
+  ).not.toBeChecked()
 })
 
 test("MenuOptionGroup checkbox defaultValue multiple checked", () => {
@@ -296,7 +312,9 @@ test("MenuOptionGroup checkbox defaultValue multiple checked", () => {
 
   const button = screen.getByRole("button")
 
-  fireEvent.click(button)
+  act(() => {
+    fireEvent.click(button)
+  })
 
   expect(screen.getByText("Email").closest("button")).toBeChecked()
   expect(screen.getByText("Phone").closest("button")).toBeChecked()
@@ -324,7 +342,9 @@ test("exposes internal state as render prop", () => {
 
   const button = screen.getByRole("button")
 
-  fireEvent.click(button)
+  act(() => {
+    fireEvent.click(button)
+  })
 
   expect(screen.getByText("Close")).toBeInTheDocument()
 })
@@ -376,7 +396,9 @@ test("onClose doesn't affect the state of other menus", async () => {
   )
 
   const firstMenuButton = screen.getByText("No 1")
-  fireEvent.click(firstMenuButton.parentElement!)
+  act(() => {
+    fireEvent.click(firstMenuButton.parentElement!)
+  })
   await waitFor(
     () =>
       screen.getByText("No 1").parentElement!.getAttribute("aria-expanded") ===
@@ -386,6 +408,8 @@ test("onClose doesn't affect the state of other menus", async () => {
   const firstMenuItem = screen.getByText("1–A")
   act(() => {
     fireEvent.focus(firstMenuItem)
+  })
+  act(() => {
     fireEvent.click(firstMenuItem)
   })
 
@@ -413,11 +437,17 @@ test("MenuItem can override its parent menu's `closeOnSelect` and keep the menu 
   const menuItemThatDoesNotClose = screen.getByText("I do not close the menu")
   const menuItemThatCloses = screen.getByText("I close the menu")
 
-  fireEvent.click(openMenuButton)
-  fireEvent.click(menuItemThatDoesNotClose)
+  act(() => {
+    fireEvent.click(openMenuButton)
+  })
+  act(() => {
+    fireEvent.click(menuItemThatDoesNotClose)
+  })
   expect(onClose).not.toHaveBeenCalled()
 
-  fireEvent.click(menuItemThatCloses)
+  act(() => {
+    fireEvent.click(menuItemThatCloses)
+  })
   expect(onClose).toHaveBeenCalled()
 })
 
@@ -437,11 +467,17 @@ test("MenuItem can override its parent menu's `closeOnSelect` and close the menu
   const menuItemThatDoesNotClose = screen.getByText("I do not close the menu")
   const menuItemThatCloses = screen.getByText("I close the menu")
 
-  fireEvent.click(openMenuButton)
-  fireEvent.click(menuItemThatDoesNotClose)
+  act(() => {
+    fireEvent.click(openMenuButton)
+  })
+  act(() => {
+    fireEvent.click(menuItemThatDoesNotClose)
+  })
   expect(onClose).not.toHaveBeenCalled()
 
-  fireEvent.click(menuItemThatCloses)
+  act(() => {
+    fireEvent.click(menuItemThatCloses)
+  })
   expect(onClose).toHaveBeenCalled()
 })
 

@@ -1,5 +1,5 @@
 import { FormControl, FormLabel } from "@chakra-ui/form-control"
-import { fireEvent, render, userEvent } from "@chakra-ui/test-utils"
+import { act, fireEvent, render, userEvent } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Switch } from "../src"
 
@@ -7,10 +7,10 @@ test("Uncontrolled - should check and uncheck", async () => {
   const { container } = render(<Switch />)
   const input = container.querySelector("input") as HTMLInputElement
 
-  await userEvent.click(input)
+  await act(() => userEvent.click(input))
   expect(input).toBeChecked()
 
-  await userEvent.click(input)
+  await act(() => userEvent.click(input))
   expect(input).not.toBeChecked()
 })
 
@@ -20,7 +20,7 @@ test("Uncontrolled - should not check if disabled", async () => {
 
   expect(input).toBeDisabled()
 
-  await userEvent.click(input)
+  await act(() => userEvent.click(input))
   expect(input).not.toBeChecked()
 })
 
@@ -46,18 +46,18 @@ test("Controlled - should check and uncheck", async () => {
 
   expect(input).not.toBeChecked()
 
-  await userEvent.click(input)
+  await act(() => userEvent.click(input))
 
   expect(input).toBeChecked()
   expect(onChange).toHaveBeenCalled()
 
-  await userEvent.click(input)
+  await act(() => userEvent.click(input))
 
   expect(input).not.toBeChecked()
   expect(onChange).toHaveBeenCalled()
 })
 
-test("Uncontrolled FormControl - should not check if form-control disabled", () => {
+test("Uncontrolled FormControl - should not check if form-control disabled", async () => {
   const { container } = render(
     <FormControl isDisabled mt={4}>
       <FormLabel>Disabled Opt-in Example</FormLabel>
@@ -75,9 +75,9 @@ test("Uncontrolled FormControl - should not check if form-control disabled", () 
   expect(switchTwo).toBeDisabled()
   expect(switchThree).not.toBeDisabled()
 
-  userEvent.click(switchOne)
-  userEvent.click(switchTwo)
-  userEvent.click(switchThree)
+  await act(() => userEvent.click(switchOne))
+  await act(() => userEvent.click(switchTwo))
+  await act(() => userEvent.click(switchThree))
 
   expect(switchOne).not.toBeChecked()
   expect(switchTwo).not.toBeChecked()

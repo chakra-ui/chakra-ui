@@ -1,5 +1,5 @@
 import * as React from "react"
-import { render, testA11y, waitFor } from "@chakra-ui/test-utils"
+import { act, render, screen, testA11y } from "@chakra-ui/test-utils"
 import { Avatar, AvatarBadge } from "../src"
 
 const DELAY = 0
@@ -13,6 +13,7 @@ const mockImage = (loadState: "load" | "error") => {
     onload: () => void = () => {}
     onerror: () => void = () => {}
     src: string = ""
+
     constructor() {
       setTimeout(() => {
         switch (loadState) {
@@ -67,13 +68,13 @@ test("renders an image", async () => {
   mockImage(LOAD_IMAGE)
   const src = "https://bit.ly/dan-abramov"
   const name = "Dan Abramov"
-  const { container } = render(<Avatar src={src} name={name} />)
+  render(<Avatar src={src} name={name} />)
 
-  await waitFor(() => {
+  act(() => {
     jest.advanceTimersByTime(DELAY)
   })
 
-  const img = container.querySelector("img")
+  const img = await screen.findByRole("img")
   expect(img).toHaveAttribute("src", src)
   expect(img).toHaveAttribute("alt", name)
 })
@@ -85,22 +86,22 @@ test("fires onError if image fails to load", async () => {
   const onErrorFn = jest.fn()
   render(<Avatar src={src} name={name} onError={onErrorFn} />)
 
-  await waitFor(() => {
+  act(() => {
     jest.advanceTimersByTime(DELAY)
   })
 
   expect(onErrorFn).toHaveBeenCalledTimes(1)
 })
 
-test("renders a name avatar if no src", () => {
+test("renders a name avatar if no src", async () => {
   const name = "Dan Abramov"
-  const { getByLabelText } = render(<Avatar name="Dan Abramov" />)
+  render(<Avatar name="Dan Abramov" />)
 
-  const img = getByLabelText(name)
+  const img = await screen.findByLabelText(name)
   expect(img).toHaveTextContent("DA")
 })
 
-test("renders a default avatar if no name or src", () => {
-  const { getByRole } = render(<Avatar />)
-  getByRole("img")
+test("renders a default avatar if no name or src", async () => {
+  render(<Avatar />)
+  await screen.findByRole("img")
 })

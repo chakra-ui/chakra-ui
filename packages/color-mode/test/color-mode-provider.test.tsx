@@ -1,7 +1,6 @@
-import { render } from "@testing-library/react"
-import userEvent from "@testing-library/user-event"
-import React from "react"
-import { ColorModeProvider } from "../src/color-mode-provider"
+import * as React from "react"
+import { act, userEvent, render } from "@chakra-ui/test-utils"
+import { ColorModeProvider } from "../src"
 import * as colorModeUtils from "../src/color-mode.utils"
 import {
   defaultThemeOptions,
@@ -34,7 +33,7 @@ describe("<ColorModeProvider />", () => {
     expect(rootSpy).toHaveBeenCalledTimes(1)
   })
 
-  test("toggleColorMode changes the color", () => {
+  test("toggleColorMode changes the color", async () => {
     render(
       <ColorModeProvider options={defaultThemeOptions}>
         <DummyComponent />
@@ -45,14 +44,14 @@ describe("<ColorModeProvider />", () => {
 
     expect(button).toHaveTextContent(defaultThemeOptions.initialColorMode)
 
-    userEvent.click(button)
+    await act(() => userEvent.click(button))
 
     expect(getColorModeButton()).not.toHaveTextContent(
       defaultThemeOptions.initialColorMode,
     )
   })
 
-  test("is controlled given a value", () => {
+  test("is controlled given a value", async () => {
     const value = "dark"
 
     render(
@@ -65,7 +64,7 @@ describe("<ColorModeProvider />", () => {
 
     expect(button).toHaveTextContent(value)
 
-    userEvent.click(button)
+    await act(() => userEvent.click(button))
 
     expect(getColorModeButton()).toHaveTextContent(value)
   })

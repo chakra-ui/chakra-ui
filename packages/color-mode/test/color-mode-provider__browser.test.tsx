@@ -172,7 +172,7 @@ test("prefers root property over localStorage", () => {
   )
 })
 
-test("onChange sets value to all listeners", () => {
+test("onChange sets value to all listeners", async () => {
   const rootSet = jest.spyOn(colorModeUtils.root, "set")
 
   const mockLocalStorageManager = createMockStorageManager("localStorage")
@@ -189,7 +189,7 @@ test("onChange sets value to all listeners", () => {
   expect(rootSet).toHaveBeenCalledTimes(1)
   expect(mockLocalStorageManager.set).not.toHaveBeenCalled()
 
-  act(() => userEvent.click(getColorModeButton()))
+  await act(() => userEvent.click(getColorModeButton()))
 
   expect(rootSet).toHaveBeenCalledTimes(2)
   expect(rootSet).toHaveBeenCalledWith("dark")
@@ -224,7 +224,7 @@ describe("<ColorModeProvider /> cookie browser", () => {
     expect(rootGetSpy).not.toHaveBeenCalled()
   })
 
-  test("onChange sets value to all listeners", () => {
+  test("onChange sets value to all listeners", async () => {
     const rootSet = jest.spyOn(colorModeUtils.root, "set")
 
     const mockCookieStorageManager = createMockStorageManager("cookie")
@@ -241,7 +241,7 @@ describe("<ColorModeProvider /> cookie browser", () => {
     expect(rootSet).toHaveBeenCalledTimes(1)
     expect(mockCookieStorageManager.set).not.toHaveBeenCalled()
 
-    act(() => userEvent.click(getColorModeButton()))
+    await act(() => userEvent.click(getColorModeButton()))
 
     expect(rootSet).toHaveBeenCalledTimes(2)
     expect(rootSet).toHaveBeenCalledWith("dark")

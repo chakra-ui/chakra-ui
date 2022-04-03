@@ -25,6 +25,7 @@ export interface PopoverProps extends UsePopoverProps, ThemingProps<"Popover"> {
    * The content of the popover. It is usually the `PopoverTrigger`,
    * and `PopoverContent`
    */
+  // eslint-disable-next-line react/no-unused-prop-types
   children?: MaybeRenderProp<{
     isOpen: boolean
     onClose: () => void
@@ -36,7 +37,7 @@ export interface PopoverProps extends UsePopoverProps, ThemingProps<"Popover"> {
  * Popover is used to bring attention to specific user interface elements,
  * typically to suggest an action or to guide users through a new experience.
  */
-export const Popover: React.FC<PopoverProps> = (props) => {
+export const Popover = (props: PopoverProps) => {
   const styles = useMultiStyleConfig("Popover", props)
 
   const { children, ...rest } = omitThemingProps(props)

@@ -1,4 +1,5 @@
 import {
+  act,
   fireEvent,
   render,
   screen,
@@ -37,6 +38,7 @@ test("uncontrolled: handles callbacks correctly", async () => {
   const onCancel = jest.fn()
   const onSubmit = jest.fn()
   const onEdit = jest.fn()
+  const initialValue = "Hello "
 
   render(
     <Editable
@@ -44,7 +46,7 @@ test("uncontrolled: handles callbacks correctly", async () => {
       onCancel={onCancel}
       onSubmit={onSubmit}
       onEdit={onEdit}
-      defaultValue="Hello "
+      defaultValue={initialValue}
     >
       <EditablePreview data-testid="preview" />
       <EditableInput data-testid="input" />
@@ -58,7 +60,12 @@ test("uncontrolled: handles callbacks correctly", async () => {
   expect(onEdit).toHaveBeenCalled()
 
   // calls `onChange` with input on change
-  userEvent.type(input, "World")
+  await act(() =>
+    userEvent.type(input, "World", {
+      initialSelectionStart: 0,
+      initialSelectionEnd: initialValue.length,
+    }),
+  )
   expect(onChange).toHaveBeenCalledWith("World")
 
   // calls `onCancel` with previous value when "esc" pressed
@@ -68,7 +75,7 @@ test("uncontrolled: handles callbacks correctly", async () => {
   fireEvent.focus(preview)
 
   // calls `onChange` with input on change
-  userEvent.type(input, "World")
+  await act(() => userEvent.type(input, "World"))
   expect(onChange).toHaveBeenCalledWith("World")
 
   // calls `onSubmit` with previous value when "enter" pressed after cancelling
@@ -76,14 +83,15 @@ test("uncontrolled: handles callbacks correctly", async () => {
   expect(onSubmit).toHaveBeenCalledWith("Hello World")
 })
 
-test("controlled: handles callbacks correctly", () => {
+test("controlled: handles callbacks correctly", async () => {
   const onChange = jest.fn()
   const onCancel = jest.fn()
   const onSubmit = jest.fn()
   const onEdit = jest.fn()
+  const initialValue = "Hello "
 
   const Component = () => {
-    const [value, setValue] = React.useState("Hello ")
+    const [value, setValue] = React.useState(initialValue)
     return (
       <Editable
         onChange={(val) => {
@@ -112,7 +120,12 @@ test("controlled: handles callbacks correctly", () => {
   // calls `onChange` with new input on change
   // since we called `focus(..)` first, editable will focus and select the text
   // typing will clear the values in input and add the next text.
-  userEvent.type(input, "World")
+  await act(() =>
+    userEvent.type(input, "World", {
+      initialSelectionStart: 0,
+      initialSelectionEnd: initialValue.length,
+    }),
+  )
   expect(onChange).toHaveBeenCalledWith("World")
 
   // calls `onSubmit` with `value`
@@ -123,7 +136,7 @@ test("controlled: handles callbacks correctly", () => {
   fireEvent.focus(preview)
 
   // update the input value
-  userEvent.type(input, "Rasengan")
+  await act(() => userEvent.type(input, "Rasengan"))
 
   // press `Escape`
   fireEvent.keyDown(input, { key: "Escape" })
@@ -132,7 +145,7 @@ test("controlled: handles callbacks correctly", () => {
   expect(onSubmit).toHaveBeenCalledWith("World")
 })
 
-test("handles preview and input callbacks", () => {
+test("handles preview and input callbacks", async () => {
   const onFocus = jest.fn()
   const onBlur = jest.fn()
   const onChange = jest.fn()
@@ -157,7 +170,7 @@ test("handles preview and input callbacks", () => {
   expect(onFocus).toHaveBeenCalled()
 
   // calls `onChange` when input is changed
-  userEvent.type(input, "World")
+  await act(() => userEvent.type(input, "World"))
   expect(onChange).toHaveBeenCalled()
 
   // calls `onKeyDown` when key is pressed in input
@@ -232,7 +245,7 @@ test.each([
   { startWithEditView: false, text: "Bob" },
 ])(
   "controlled: sets value toPrevValue onCancel, startWithEditView: $startWithEditView",
-  ({ startWithEditView, text }) => {
+  async ({ startWithEditView, text }) => {
     const Component = () => {
       const [name, setName] = React.useState("")
 
@@ -270,7 +283,7 @@ test.each([
       fireEvent.focus(input)
     }
     if (text) {
-      userEvent.type(input, text)
+      await act(() => userEvent.type(input, text))
     }
     fireEvent.keyDown(input, { key: "Escape" })
 

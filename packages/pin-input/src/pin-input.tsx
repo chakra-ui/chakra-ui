@@ -35,14 +35,9 @@ interface InputOptions {
 export interface PinInputProps
   extends UsePinInputProps,
     ThemingProps<"PinInput">,
-    InputOptions {
-  /**
-   * The children of the pin input component
-   */
-  children: React.ReactNode
-}
+    React.PropsWithChildren<InputOptions> {}
 
-export const PinInput: React.FC<PinInputProps> = (props) => {
+export const PinInput = (props: PinInputProps) => {
   const styles = useStyleConfig("PinInput", props)
 
   const { children, ...rest } = omitThemingProps(props)

@@ -1,4 +1,5 @@
 import { fireEvent } from "@testing-library/react"
+import { act } from "./index"
 
 export function press(
   key: string,
@@ -8,11 +9,17 @@ export function press(
   if (!element) return
 
   if (document.activeElement !== element) {
-    fireEvent.focus(element)
+    act(() => {
+      fireEvent.focus(element)
+    })
   }
 
-  fireEvent.keyDown(element, { key, ...options })
-  fireEvent.keyUp(element, { key, ...options })
+  act(() => {
+    fireEvent.keyDown(element, { key, ...options })
+  })
+  act(() => {
+    fireEvent.keyUp(element, { key, ...options })
+  })
 }
 
 function createPress(key: string, defaultOptions: KeyboardEventInit = {}) {
