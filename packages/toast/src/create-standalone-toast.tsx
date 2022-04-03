@@ -51,9 +51,7 @@ export function createStandaloneToast({
   setColorMode = defaultStandaloneParam.setColorMode,
   defaultOptions = defaultStandaloneParam.defaultOptions,
 }: CreateStandAloneToastParam = defaultStandaloneParam) {
-  const ref = {
-    current: noop as unknown as CallableToastMethods,
-  }
+  const ref = React.createRef<CallableToastMethods>()
 
   const colorModeContextValue = { colorMode, setColorMode, toggleColorMode }
   const ToastContainer = () => (
@@ -74,24 +72,27 @@ export function createStandaloneToast({
     const normalizedToastOptions = normalizeToastOptions(options)
     const Message = createRenderToast(normalizedToastOptions)
 
-    return ref.current.notify(Message, normalizedToastOptions)
+    return ref.current?.notify(Message, normalizedToastOptions)
   }
-  toast.notify = ref.current.notify
-  toast.closeAll = ref.current.closeAll
-  toast.close = ref.current.close
-  // toasts can only be updated if they have a valid id
+  /**
+   * Toasts can only be updated if they have a valid id
+   */
   toast.update = (id: ToastId, options: Omit<UseToastOptions, "id">) => {
     if (!id) return
 
     const normalizedToastOptions = normalizeToastOptions(options)
     const Message = createRenderToast(normalizedToastOptions)
 
-    ref.current.update(id, {
+    ref.current?.update(id, {
       ...normalizedToastOptions,
       message: Message,
     })
   }
-  toast.isActive = ref.current.isActive
+
+  toast.notify = ref.current?.notify ?? noop
+  toast.closeAll = ref.current?.closeAll ?? noop
+  toast.close = ref.current?.close ?? noop
+  toast.isActive = ref.current?.isActive ?? noop
 
   return {
     ToastContainer,

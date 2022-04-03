@@ -4,7 +4,7 @@ import * as React from "react"
 import { createContext } from "@chakra-ui/react-utils"
 import { Portal } from "@chakra-ui/portal"
 import { ToastWrapperProps, ToastWrapper } from "./toast-wrapper"
-import { ToastPosition } from "./toast.placement"
+import type { ToastPosition } from "./toast.placement"
 import type {
   CloseAllToastsOptions,
   ToastId,
@@ -13,7 +13,7 @@ import type {
   ToastState,
 } from "./toast.types"
 import { findToast, getToastPosition } from "./toast.utils"
-import { UseToastOptions } from "./use-toast"
+import type { UseToastOptions } from "./use-toast"
 
 export interface ToastMethods {
   notify: (message: ToastMessage, options?: CreateToastOptions) => ToastId

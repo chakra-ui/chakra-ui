@@ -9,8 +9,8 @@ import {
 import { chakra } from "@chakra-ui/system"
 import { CloseButton } from "@chakra-ui/close-button"
 import { isFunction } from "@chakra-ui/utils"
-import { UseToastOptions } from "./use-toast"
-import { RenderProps } from "./toast.types"
+import type { UseToastOptions } from "./use-toast"
+import type { RenderProps } from "./toast.types"
 
 export interface ToastProps
   extends UseToastOptions,

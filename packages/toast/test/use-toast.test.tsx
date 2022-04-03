@@ -1,9 +1,11 @@
 import {
-  invoke,
-  renderHook,
+  act,
+  render,
   screen,
+  userEvent,
   waitForElementToBeRemoved,
 } from "@chakra-ui/test-utils"
+import * as React from "react"
 import { ToastProvider, useToast } from "../src"
 
 describe("useToast", () => {
@@ -17,26 +19,23 @@ describe("useToast", () => {
 
     const description = "Something awesome happened"
 
-    const { result } = renderHook(
-      () =>
-        useToast({
-          title,
-          description,
-        }),
-      {
-        wrapper: ToastProvider,
-      },
+    const TestComponent = () => {
+      const toast = useToast()
+      return (
+        <button onClick={() => toast({ title, description })}>Toast</button>
+      )
+    }
+
+    render(
+      <ToastProvider>
+        <TestComponent />
+      </ToastProvider>,
     )
 
-    screen.debug()
+    const button = await screen.findByText("Toast")
+    await act(async () => userEvent.click(button))
 
-    invoke(() => {
-      result.current({ title: "ok" })
-    })
-
-    screen.debug()
-
-    const allByTitle = screen.findAllByRole("alert", { name: title })
+    const allByTitle = await screen.findAllByRole("alert", { name: title })
     const allByDescription = await screen.findAllByText(description)
 
     expect(allByTitle).toHaveLength(1)
@@ -47,21 +46,27 @@ describe("useToast", () => {
     const defaultTitle = "Yay!"
     const defaultDescription = "Something awesome happened"
 
-    const { result } = renderHook(
-      () =>
-        useToast({
-          title: defaultTitle,
-          description: defaultDescription,
-        }),
-      { wrapper: ToastProvider },
-    )
-
     const title = "Hooray!"
     const description = "Something splendid happened"
 
-    invoke(() => {
-      result.current({ title, description })
-    })
+    const TestComponent = () => {
+      const toast = useToast({
+        title: defaultTitle,
+        description: defaultDescription,
+      })
+      return (
+        <button onClick={() => toast({ title, description })}>Toast</button>
+      )
+    }
+
+    render(
+      <ToastProvider>
+        <TestComponent />
+      </ToastProvider>,
+    )
+
+    const button = await screen.findByText("Toast")
+    await act(async () => userEvent.click(button))
 
     const allByTitle = await screen.findAllByRole("alert", { name: title })
     const allByDescription = await screen.findAllByText(description)
