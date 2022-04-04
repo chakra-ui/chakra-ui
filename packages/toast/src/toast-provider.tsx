@@ -3,7 +3,8 @@ import { AnimatePresence, Variants } from "framer-motion"
 import * as React from "react"
 import { createContext } from "@chakra-ui/react-utils"
 import { Portal } from "@chakra-ui/portal"
-import { ToastWrapperProps, ToastWrapper } from "./toast-wrapper"
+import type { CSSProperties } from "react"
+import { ToastComponentProps, ToastComponent } from "./toast-component"
 import type { ToastPosition } from "./toast.placement"
 import type {
   CloseAllToastsOptions,
@@ -51,25 +52,58 @@ const [ToastManagerProvider, useToastManager] = createContext<ToastMethods>({
 
 export { useToastManager }
 
-export type ToastManagerProps = React.PropsWithChildren<{
+export type ToastProviderProps = React.PropsWithChildren<{
+  /**
+   * Default options for `useToast(options)`
+   *
+   * @example
+   * <ToastProvider defaultOptions={{ duration: 10_000, isClosable: true }} />
+   */
   defaultOptions?: UseToastOptions
-  motion?: Variants
-  toastComponent?: React.FC<ToastWrapperProps>
+
+  /**
+   * Customize the default motion config to animate the toasts your way
+   *
+   * @example
+   * const motionVariants =
+   * <ToastProvider motionVariants={motionVariants} />
+   */
+  motionVariants?: Variants
+
+  /**
+   * Are you looking for a way to style the toast? Use a custom `Alert` variant in the theme.
+   * This property overrides the default ToastComponent with your own implementation.
+   *
+   * @example
+   * const CustomToastComponent = (props: ToastComponentProps) => ...
+   * <ToastProvider customToastComponent={CustomToastComponent} />
+   *
+   * @default ToastComponent
+   */
+  customToastComponent?: React.FC<ToastComponentProps>
+
+  /**
+   * Define the margin between toasts
+   *
+   * @default 0.5rem
+   */
+  toastSpacing?: CSSProperties["margin"]
 }>
 
 /**
  * Manages the creation, and removal of toasts
  * across all corners ("top", "bottom", etc.)
  */
-export const ToastProvider = React.forwardRef<ToastMethods, ToastManagerProps>(
-  (props: ToastManagerProps, ref) => {
-    const { children, defaultOptions, motion, toastComponent } = props
+export const ToastProvider = React.forwardRef<ToastMethods, ToastProviderProps>(
+  (props: ToastProviderProps, ref) => {
+    const {
+      children,
+      defaultOptions,
+      motionVariants,
+      customToastComponent: CustomToastComponent = ToastComponent,
+    } = props
 
-    const { areas, getStyle, toast } = useToastProvider({
-      ...defaultOptions,
-      motion,
-      toastComponent,
-    })
+    const { areas, getStyle, toast } = useToastProvider({ defaultOptions })
 
     // attach `toast` methods to the ref of this component
     React.useImperativeHandle(ref, () => toast)
@@ -85,7 +119,11 @@ export const ToastProvider = React.forwardRef<ToastMethods, ToastManagerProps>(
         >
           <AnimatePresence initial={false}>
             {toasts.map((toast) => (
-              <ToastWrapper key={toast.id} {...toast} />
+              <CustomToastComponent
+                key={toast.id}
+                motionVariants={motionVariants}
+                {...toast}
+              />
             ))}
           </AnimatePresence>
         </ul>
@@ -102,7 +140,7 @@ export const ToastProvider = React.forwardRef<ToastMethods, ToastManagerProps>(
 )
 
 function useToastProvider(
-  defaultOptions: Omit<ToastManagerProps, "children"> = {},
+  defaultOptions: Omit<ToastProviderProps, "children"> = {},
 ) {
   /**
    * State to track all the toast across all positions

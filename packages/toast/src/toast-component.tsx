@@ -1,28 +1,12 @@
 import { useTimeout, useUpdateEffect } from "@chakra-ui/hooks"
-import { isFunction, __DEV__ } from "@chakra-ui/utils"
+import { __DEV__, isFunction } from "@chakra-ui/utils"
 import ReachAlert from "@reach/alert"
 import { motion, useIsPresent, Variants } from "framer-motion"
 import * as React from "react"
 import type { ToastOptions } from "./toast.types"
 import { getToastStyle } from "./toast.utils"
+import { ToastProviderProps } from "./toast-provider"
 
-/**
- * @todo After Gerrit refactors this implementation,
- * allow users to change the toast transition direction from
- * a `ToastProvider` component.
- *
- * Here's an API example:
- *
- * ```jsx
- * <ToastProvider
- *   motion={customVariants}
- *   component={CustomToastComponent}
- *   autoCloseTimeout={3000}
- *   toastSpacing={32} // this will control the `margin` value applied
- * >
- * </ToastProvider>
- * ```
- */
 const toastMotionVariants: Variants = {
   initial: (props) => {
     const { position } = props
@@ -57,9 +41,11 @@ const toastMotionVariants: Variants = {
   },
 }
 
-export interface ToastWrapperProps extends ToastOptions {}
+export interface ToastComponentProps
+  extends ToastOptions,
+    Pick<ToastProviderProps, "motionVariants" | "toastSpacing"> {}
 
-export const ToastWrapper: React.FC<ToastWrapperProps> = (props) => {
+export const ToastComponent: React.FC<ToastComponentProps> = (props) => {
   const {
     id,
     message,
@@ -69,6 +55,8 @@ export const ToastWrapper: React.FC<ToastWrapperProps> = (props) => {
     position = "bottom",
     duration = 5000,
     containerStyle = {},
+    motionVariants = toastMotionVariants,
+    toastSpacing = "0.5rem",
   } = props
 
   const [delay, setDelay] = React.useState(duration)
@@ -106,7 +94,7 @@ export const ToastWrapper: React.FC<ToastWrapperProps> = (props) => {
     <motion.li
       layout
       className="chakra-toast"
-      variants={toastMotionVariants}
+      variants={motionVariants}
       initial="initial"
       animate="animate"
       exit="exit"
@@ -121,7 +109,7 @@ export const ToastWrapper: React.FC<ToastWrapperProps> = (props) => {
           pointerEvents: "auto",
           maxWidth: 560,
           minWidth: 300,
-          margin: "0.5rem",
+          margin: toastSpacing,
           ...containerStyle,
         }}
       >
@@ -132,5 +120,5 @@ export const ToastWrapper: React.FC<ToastWrapperProps> = (props) => {
 }
 
 if (__DEV__) {
-  ToastWrapper.displayName = "ToastWrapper"
+  ToastComponent.displayName = "ToastComponent"
 }
