@@ -24,7 +24,7 @@ const Visibility: React.FC<VisibilityProps> = (props) => {
   return rendered as React.ReactElement
 }
 
-export type HideProps = ShowProps
+export interface HideProps extends ShowProps {}
 
 export const Hide: React.FC<HideProps> = (props) => {
   const { children } = props
@@ -40,7 +40,22 @@ if (__DEV__) {
   Hide.displayName = "Hide"
 }
 
-export interface ShowProps {
+export interface ShowProps extends React.PropsWithChildren<UseQueryProps> {}
+
+export const Show = (props: ShowProps) => {
+  const { children } = props
+  const query = useQuery(props)
+  return <Visibility breakpoint={query}>{children}</Visibility>
+}
+
+if (__DEV__) {
+  Show.displayName = "Show"
+}
+
+const getBreakpoint = (theme: Dict, value: any) =>
+  get(theme, `breakpoints.${value}`, value)
+
+export interface UseQueryProps {
   /**
    * A custom css media query that determines when the `children` are rendered.
    * Will render `children` if that query resolves to `true`.
@@ -55,26 +70,6 @@ export interface ShowProps {
    * A value from the `breakpoints` section in the theme. Will render `children`
    * from that breakpoint and above. Default breakpoint values: `sm`, `md`, `lg`, `xl`, `2xl`.
    */
-  above?: string
-  children?: React.ReactNode
-}
-
-export const Show: React.FC<ShowProps> = (props) => {
-  const { children } = props
-  const query = useQuery(props)
-  return <Visibility breakpoint={query}>{children}</Visibility>
-}
-
-if (__DEV__) {
-  Show.displayName = "Show"
-}
-
-const getBreakpoint = (theme: Dict, value: any) =>
-  get(theme, `breakpoints.${value}`, value)
-
-export interface UseQueryProps {
-  breakpoint?: string
-  below?: string
   above?: string
 }
 
