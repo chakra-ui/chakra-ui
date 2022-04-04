@@ -227,14 +227,17 @@ function useToastProvider(
 
         const positionsToClose = positions ?? allPositions
 
-        return positionsToClose.reduce((acc, position) => {
-          acc[position] = prev[position].map((toast) => ({
-            ...toast,
-            requestClose: true,
-          }))
+        return positionsToClose.reduce(
+          (acc, position) => {
+            acc[position] = prev[position].map((toast) => ({
+              ...toast,
+              requestClose: true,
+            }))
 
-          return acc
-        }, {} as ToastState)
+            return acc
+          },
+          { ...prev } as ToastState,
+        )
       })
     }
 
