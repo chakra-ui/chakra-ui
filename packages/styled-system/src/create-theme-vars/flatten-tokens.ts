@@ -1,5 +1,5 @@
 import { flatten, fromEntries } from "@chakra-ui/utils"
-import { Union } from "../utils"
+import type { Union } from "../utils"
 
 export type SemanticValue<
   Conditions extends string,

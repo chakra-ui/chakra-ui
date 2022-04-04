@@ -1,7 +1,7 @@
 import { Dict, isObject, mergeWith } from "@chakra-ui/utils"
 import { calc, Operand } from "./calc"
 import { cssVar } from "./css-var"
-import { FlatToken, FlatTokens } from "./flatten-tokens"
+import type { FlatToken, FlatTokens } from "./flatten-tokens"
 import { pseudoSelectors } from "../pseudos"
 
 export interface CreateThemeVarsOptions {
