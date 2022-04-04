@@ -132,7 +132,7 @@ export function useEditable(props: UseEditableProps = {}) {
     elements: [cancelButtonRef, submitButtonRef],
   })
 
-  const isInteractive = !isEditing || !isDisabled
+  const isInteractive = !isEditing && !isDisabled
 
   useSafeLayoutEffect(() => {
     if (isEditing) {
@@ -332,8 +332,9 @@ export function useEditable(props: UseEditableProps = {}) {
       type: "button",
       onClick: callAllHandlers(props.onClick, onEdit),
       ref: mergeRefs(ref, editButtonRef),
+      disabled: isDisabled,
     }),
-    [onEdit],
+    [onEdit, isDisabled],
   )
 
   const getSubmitButtonProps: PropGetter = useCallback(
@@ -343,8 +344,9 @@ export function useEditable(props: UseEditableProps = {}) {
       ref: mergeRefs(submitButtonRef, ref),
       type: "button",
       onClick: callAllHandlers(props.onClick, onSubmit),
+      disabled: isDisabled,
     }),
-    [onSubmit],
+    [onSubmit, isDisabled],
   )
 
   const getCancelButtonProps: PropGetter = useCallback(
@@ -355,8 +357,9 @@ export function useEditable(props: UseEditableProps = {}) {
       ref: mergeRefs(cancelButtonRef, ref),
       type: "button",
       onClick: callAllHandlers(props.onClick, onCancel),
+      disabled: isDisabled,
     }),
-    [onCancel],
+    [onCancel, isDisabled],
   )
 
   return {

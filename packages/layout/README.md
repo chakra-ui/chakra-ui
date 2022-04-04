@@ -61,9 +61,10 @@ Wrap is used to manage the distribution of child elements that are liable to
 wrap. It is mostly used for button groups, tag group, badge group, and chips.
 
 ```jsx
-<AspectRatio ratio={16 / 9}>
-  <img src="./some-ig-story" alt="Instagram story" />
-</AspectRatio>
+<Wrap spacing={3}>
+  <Box>Box 1</Box>
+  <Box>Box 2</Box>
+</Wrap>
 ```
 
 Badge is used to render a badge. It can come in different variants and color

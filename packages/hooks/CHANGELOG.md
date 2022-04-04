@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.9.0
+
+### Minor Changes
+
+- [#5199](https://github.com/chakra-ui/chakra-ui/pull/5199)
+  [`73a06ae8c`](https://github.com/chakra-ui/chakra-ui/commit/73a06ae8ce1bee644e10f245edcf2f9f2b773964)
+  Thanks [@mlajtos](https://github.com/mlajtos)! - Control whether Tooltip can
+  be closed with Esc key
+
 ## 1.8.5
 
 ### Patch Changes

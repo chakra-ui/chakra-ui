@@ -121,6 +121,9 @@ if (__DEV__) {
 }
 
 export interface MenuListProps extends HTMLChakraProps<"div"> {
+  /**
+  * Props for the root element that positions the menu.
+  */
   rootProps?: HTMLChakraProps<"div">
 }
 
@@ -211,20 +214,23 @@ const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
      * Else, use no type to avoid invalid html, e.g. <a type="button" />
      * Else, fall back to "button"
      */
-    const btnType = rest.as ? type ?? undefined : "button"
+    const btnType = rest.as || type ? type ?? undefined : "button"
 
-    const buttonStyles: SystemStyleObject = {
-      textDecoration: "none",
-      color: "inherit",
-      userSelect: "none",
-      display: "flex",
-      width: "100%",
-      alignItems: "center",
-      textAlign: "start",
-      flex: "0 0 auto",
-      outline: 0,
-      ...styles.item,
-    }
+    const buttonStyles: SystemStyleObject = React.useMemo(
+      () => ({
+        textDecoration: "none",
+        color: "inherit",
+        userSelect: "none",
+        display: "flex",
+        width: "100%",
+        alignItems: "center",
+        textAlign: "start",
+        flex: "0 0 auto",
+        outline: 0,
+        ...styles.item,
+      }),
+      [styles.item],
+    )
 
     return (
       <chakra.button ref={ref} type={btnType} {...rest} __css={buttonStyles} />
@@ -335,6 +341,7 @@ export interface MenuItemOptionProps
 
 export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
   (props, ref) => {
+    // menu option item should always be `type=button`, so we omit `type`
     const { icon, iconSpacing = "0.75rem", ...rest } = props
 
     const optionProps = useMenuOption(rest, ref) as HTMLAttributes

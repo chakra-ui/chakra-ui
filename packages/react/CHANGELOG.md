@@ -1,5 +1,49 @@
 # Change Log
 
+## 1.8.7
+
+### Patch Changes
+
+- Updated dependencies
+  [[`63c2bc070`](https://github.com/chakra-ui/chakra-ui/commit/63c2bc070303ecdf4947c896b85bf602381040a4),
+  [`a7be72918`](https://github.com/chakra-ui/chakra-ui/commit/a7be72918f1e74ce20eb31544433e4321caf5c78),
+  [`6ec09741a`](https://github.com/chakra-ui/chakra-ui/commit/6ec09741acd40eb1835cbf6d02bfae642413b6ef),
+  [`1c14e0de8`](https://github.com/chakra-ui/chakra-ui/commit/1c14e0de84a7eb92482ba0ba2e04b27d738af804),
+  [`e93b9f8c3`](https://github.com/chakra-ui/chakra-ui/commit/e93b9f8c3e695b56dbf927b37b4b13ded660451b),
+  [`9a58c7ab8`](https://github.com/chakra-ui/chakra-ui/commit/9a58c7ab82f334d63dc1d0f528204d1dd172711c),
+  [`73a06ae8c`](https://github.com/chakra-ui/chakra-ui/commit/73a06ae8ce1bee644e10f245edcf2f9f2b773964),
+  [`8e201b9f8`](https://github.com/chakra-ui/chakra-ui/commit/8e201b9f84a914e58cdc9ee90b3e03269fabf4d7),
+  [`cedec803f`](https://github.com/chakra-ui/chakra-ui/commit/cedec803fb05b5d92ef32c67352265fc7636500c),
+  [`232853068`](https://github.com/chakra-ui/chakra-ui/commit/232853068ab9ec95cd123ccf378b044ad7861ba1)]:
+  - @chakra-ui/tabs@1.6.9
+  - @chakra-ui/checkbox@1.7.0
+  - @chakra-ui/radio@1.5.0
+  - @chakra-ui/editable@1.4.1
+  - @chakra-ui/layout@1.7.8
+  - @chakra-ui/toast@1.5.8
+  - @chakra-ui/hooks@1.9.0
+  - @chakra-ui/tooltip@1.5.0
+  - @chakra-ui/system@1.12.0
+  - @chakra-ui/modal@1.11.0
+  - @chakra-ui/switch@1.3.9
+  - @chakra-ui/accordion@1.4.10
+  - @chakra-ui/button@1.5.9
+  - @chakra-ui/counter@1.2.9
+  - @chakra-ui/form-control@1.5.10
+  - @chakra-ui/image@1.1.9
+  - @chakra-ui/menu@1.8.10
+  - @chakra-ui/number-input@1.4.6
+  - @chakra-ui/pin-input@1.7.9
+  - @chakra-ui/popover@1.11.8
+  - @chakra-ui/portal@1.3.9
+  - @chakra-ui/provider@1.7.13
+  - @chakra-ui/skeleton@1.2.13
+  - @chakra-ui/slider@1.5.10
+  - @chakra-ui/avatar@1.3.10
+  - @chakra-ui/input@1.4.5
+  - @chakra-ui/select@1.2.10
+  - @chakra-ui/textarea@1.2.10
+
 ## 1.8.6
 
 ### Patch Changes

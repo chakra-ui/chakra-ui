@@ -56,7 +56,20 @@ const withChakra = (StoryFn: Function, context: StoryContext) => {
   }, [dir])
 
   return (
-    <ChakraProvider theme={extendTheme({ direction: dir })}>
+    <ChakraProvider
+      theme={extendTheme({
+        direction: dir,
+        semanticTokens: {
+          colors: {
+            semantic: {
+              default: "red.500",
+              _light: "red.500",
+              _dark: "blue.400",
+            },
+          },
+        },
+      })}
+    >
       <div dir={dir} id="story-wrapper" style={{ minHeight: "100vh" }}>
         <ColorModeToggleBar />
         <StoryFn />

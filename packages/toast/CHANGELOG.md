@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.5.8
+
+### Patch Changes
+
+- [#5697](https://github.com/chakra-ui/chakra-ui/pull/5697)
+  [`9a58c7ab8`](https://github.com/chakra-ui/chakra-ui/commit/9a58c7ab82f334d63dc1d0f528204d1dd172711c)
+  Thanks [@takethefake](https://github.com/takethefake)! - use default options
+  as well when providing options to useToast
+
+- Updated dependencies
+  [[`73a06ae8c`](https://github.com/chakra-ui/chakra-ui/commit/73a06ae8ce1bee644e10f245edcf2f9f2b773964)]:
+  - @chakra-ui/hooks@1.9.0
+
 ## 1.5.7
 
 ### Patch Changes
