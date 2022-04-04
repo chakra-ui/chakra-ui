@@ -61,3 +61,19 @@ export const responsive = () => (
     <Placeholder />
   </Wrap>
 )
+
+export const horizontalAndVertical = () => (
+  <Wrap spacingY={["0px", "24px"]} spacingX={["4px", "12px"]}>
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+  </Wrap>
+)
