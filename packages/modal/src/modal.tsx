@@ -32,7 +32,8 @@ import { MouseEvent } from "react"
 import { ModalTransition } from "./modal-transition"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
 
-interface ModalOptions extends Pick<FocusLockProps, "lockFocusAcrossFrames"> {
+interface ModalOptions {
+  lockFocusAcrossFrames?: FocusLockProps["lockFocusAcrossFrames"]
   /**
    * If `false`, focus lock will be disabled completely.
    *
