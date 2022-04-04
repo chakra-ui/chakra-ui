@@ -29,6 +29,7 @@ const baseStyleControl: SystemStyleFunction = (props) => {
 
 const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   label: Checkbox.baseStyle(props).label,
+  container: Checkbox.baseStyle(props).container,
   control: baseStyleControl(props),
 })
 

@@ -57,6 +57,10 @@ const baseStyleControl: SystemStyleFunction = (props) => {
   }
 }
 
+const baseStyleContainer: SystemStyleObject = {
+  _disabled: { cursor: "not-allowed" },
+}
+
 const baseStyleLabel: SystemStyleObject = {
   userSelect: "none",
   _disabled: { opacity: 0.4 },
@@ -69,6 +73,7 @@ const baseStyleIcon: SystemStyleObject = {
 
 const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   icon: baseStyleIcon,
+  container: baseStyleContainer,
   control: baseStyleControl(props),
   label: baseStyleLabel,
 })
