@@ -26,7 +26,6 @@ toast({ title: "Chakra UI" })
 import { createStandaloneToast } from "@chakra-ui/toast"
 import * as ReactDOM from "react-dom"
 
-const toastContainerId = "chakra-toast-portal"
 const toastContainerElement = document.createElement("div")
 window.document.body.append(toastContainerElement)
 
@@ -42,7 +41,6 @@ toast({ title: "Chakra UI" })
 import { createStandaloneToast } from "@chakra-ui/toast"
 import * as ReactDOM from "react-dom/client"
 
-const toastContainerId = "chakra-toast-portal"
 const toastContainerElement = document.createElement("div")
 window.document.body.append(toastContainerElement)
 
