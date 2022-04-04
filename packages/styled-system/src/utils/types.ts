@@ -1,5 +1,5 @@
-import { AnalyzeBreakpointsReturn, Dict } from "@chakra-ui/utils"
-import { ThemeTypings } from "../theme.types"
+import type { AnalyzeBreakpointsReturn, Dict } from "@chakra-ui/utils"
+import type { ThemeTypings } from "../theme.types"
 
 export type ResponsiveArray<T> = Array<T | null>
 
@@ -35,3 +35,5 @@ export type CssTheme = WithCSSVar<{
   direction?: "ltr" | "rtl"
   [key: string]: any
 }>
+
+export {}
