@@ -3,7 +3,7 @@ import { ThemingProps, useChakra } from "@chakra-ui/system"
 import * as React from "react"
 import { getToastPlacement, ToastPosition } from "./toast.placement"
 import type { RenderProps, ToastId, ToastOptions } from "./toast.types"
-import { useToastManager } from "./toast-provider"
+import { useToastManager } from "./toast.provider"
 import { createRenderToast } from "./toast"
 
 export interface UseToastOptions extends ThemingProps<"Alert"> {

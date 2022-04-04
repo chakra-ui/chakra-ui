@@ -5,7 +5,7 @@ import { motion, useIsPresent, Variants } from "framer-motion"
 import * as React from "react"
 import type { ToastOptions } from "./toast.types"
 import { getToastStyle } from "./toast.utils"
-import { ToastProviderProps } from "./toast-provider"
+import { ToastProviderProps } from "./toast.provider"
 
 const toastMotionVariants: Variants = {
   initial: (props) => {

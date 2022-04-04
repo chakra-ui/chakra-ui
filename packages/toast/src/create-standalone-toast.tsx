@@ -11,7 +11,8 @@ import {
   CreateToastOptions,
   ToastMethods,
   ToastProvider,
-} from "./toast-provider"
+  ToastProviderProps,
+} from "./toast.provider"
 import { ToastId, ToastMessage } from "./toast.types"
 import { UseToastOptions } from "./use-toast"
 import { createRenderToast } from "./toast"
@@ -22,18 +23,22 @@ const defaults: UseToastOptions = {
   position: "bottom",
   variant: "solid",
 }
-export type CreateStandAloneToastParam = Partial<
-  ReturnType<typeof useChakra> & {
-    setColorMode: (value: ColorMode) => void
-    defaultOptions: UseToastOptions
-  }
->
+
+export interface CreateStandAloneToastParam
+  extends Partial<
+      ReturnType<typeof useChakra> & {
+        setColorMode: (value: ColorMode) => void
+        defaultOptions: UseToastOptions
+      }
+    >,
+    Omit<ToastProviderProps, "children"> {}
 
 export interface CallableToastMethods extends ToastMethods {
   (message: ToastMessage, options?: CreateToastOptions): void
 }
 
-export const defaultStandaloneParam: Required<CreateStandAloneToastParam> = {
+export const defaultStandaloneParam: CreateStandAloneToastParam &
+  Required<Omit<CreateStandAloneToastParam, keyof ToastProviderProps>> = {
   theme: defaultTheme,
   colorMode: "light",
   toggleColorMode: noop,
@@ -50,6 +55,9 @@ export function createStandaloneToast({
   toggleColorMode = defaultStandaloneParam.toggleColorMode,
   setColorMode = defaultStandaloneParam.setColorMode,
   defaultOptions = defaultStandaloneParam.defaultOptions,
+  motionVariants,
+  toastSpacing,
+  customToastComponent,
 }: CreateStandAloneToastParam = defaultStandaloneParam) {
   const ref = React.createRef<CallableToastMethods>()
 
@@ -57,7 +65,13 @@ export function createStandaloneToast({
   const ToastContainer = () => (
     <ThemeProvider theme={theme}>
       <ColorModeContext.Provider value={colorModeContextValue}>
-        <ToastProvider ref={ref} defaultOptions={defaultOptions} />
+        <ToastProvider
+          ref={ref}
+          defaultOptions={defaultOptions}
+          motionVariants={motionVariants}
+          toastSpacing={toastSpacing}
+          customToastComponent={customToastComponent}
+        />
       </ColorModeContext.Provider>
     </ThemeProvider>
   )
