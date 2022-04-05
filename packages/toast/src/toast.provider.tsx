@@ -68,11 +68,11 @@ export type ToastProviderProps = React.PropsWithChildren<{
    *
    * @example
    * const CustomToastComponent = (props: ToastComponentProps) => ...
-   * <ToastProvider customToastComponent={CustomToastComponent} />
+   * <ToastProvider component={CustomToastComponent} />
    *
    * @default ToastComponent
    */
-  customToastComponent?: React.FC<ToastComponentProps>
+  component?: React.FC<ToastComponentProps>
 
   /**
    * Define the margin between toasts
@@ -92,7 +92,7 @@ export const ToastProvider = React.forwardRef<ToastMethods, ToastProviderProps>(
       children,
       defaultOptions,
       motionVariants,
-      customToastComponent: CustomToastComponent = ToastComponent,
+      component: CustomToastComponent = ToastComponent,
     } = props
 
     const { areas, getStyle, toast } = useToastProvider({ defaultOptions })

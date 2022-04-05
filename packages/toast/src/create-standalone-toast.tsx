@@ -57,7 +57,7 @@ export function createStandaloneToast({
   defaultOptions = defaultStandaloneParam.defaultOptions,
   motionVariants,
   toastSpacing,
-  customToastComponent,
+  component,
 }: CreateStandAloneToastParam = defaultStandaloneParam) {
   const ref = React.createRef<CallableToastMethods>()
 
@@ -70,7 +70,7 @@ export function createStandaloneToast({
           defaultOptions={defaultOptions}
           motionVariants={motionVariants}
           toastSpacing={toastSpacing}
-          customToastComponent={customToastComponent}
+          component={component}
         />
       </ColorModeContext.Provider>
     </ThemeProvider>
