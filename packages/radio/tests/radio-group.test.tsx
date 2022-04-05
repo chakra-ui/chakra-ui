@@ -2,6 +2,7 @@
 import { FormControl } from "@chakra-ui/react"
 import { fireEvent, render, waitFor } from "@chakra-ui/test-utils"
 import * as React from "react"
+import { screen } from "@testing-library/react"
 import { Radio, useRadioGroup, UseRadioGroupProps, RadioGroup } from "../src"
 
 test("works with Radio component", () => {
@@ -213,7 +214,7 @@ test("should use unique id when wrapped in FormControl", () => {
       </FormControl>
     )
   }
-  const { getAllByRole } = render(<Component />)
-  const [input1, input2] = getAllByRole("radio")
+  render(<Component />)
+  const [input1, input2] = screen.getAllByRole("radio")
   expect(input1.id === input2.id).toBeFalsy()
 })

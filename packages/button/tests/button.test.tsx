@@ -1,5 +1,6 @@
 import * as React from "react"
-import { render, testA11y, screen } from "@chakra-ui/test-utils"
+import { screen } from "@testing-library/react"
+import { render, testA11y } from "@chakra-ui/test-utils"
 import { EmailIcon, ArrowForwardIcon } from "@chakra-ui/icons"
 import { Button, ButtonGroup } from "../src"
 
@@ -8,23 +9,25 @@ it("passes a11y test", async () => {
 })
 
 test("renders with icons", () => {
-  const { getByText } = render(
+  render(
     <ButtonGroup>
       <Button leftIcon={<EmailIcon />}>Email</Button>
       <Button rightIcon={<ArrowForwardIcon />}>Arrow Forward</Button>
     </ButtonGroup>,
   )
-  expect(getByText("Email")).toBeTruthy()
-  expect(getByText("Arrow Forward")).toBeTruthy()
+
+  expect(screen.getByText("Email")).toBeTruthy()
+  expect(screen.getByText("Arrow Forward")).toBeTruthy()
 })
 
 test("shows spinner if isLoading", () => {
-  const { getByTestId } = render(
+  render(
     <Button data-testid="btn" isLoading>
       Email
     </Button>,
   )
-  expect(getByTestId("btn")).toHaveAttribute("data-loading")
+
+  expect(screen.getByTestId("btn")).toHaveAttribute("data-loading")
 
   // children text is hidden
   expect(screen.getByText("Email")).not.toBeVisible()
@@ -77,7 +80,7 @@ test("shows spinner and loading text if isLoading and loadingText", () => {
       Submit
     </Button>,
   )
-  expect(screen.queryByText(/FakeSpinner/i)).toBeInTheDocument()
+  expect(screen.getByText(/FakeSpinner/i)).toBeInTheDocument()
 })
 
 test("has the proper aria attributes", () => {
@@ -99,48 +102,48 @@ test("has the proper aria attributes", () => {
 })
 
 test("Has the proper type attribute", () => {
-  const { getByTestId, rerender } = render(
-    <Button data-testid="btn">Email</Button>,
-  )
-  expect(getByTestId("btn")).toHaveAttribute("type", "button")
+  const { rerender } = render(<Button data-testid="btn">Email</Button>)
+  expect(screen.getByTestId("btn")).toHaveAttribute("type", "button")
 
   rerender(
     <Button data-testid="btn" type="submit">
       Email
     </Button>,
   )
-  expect(getByTestId("btn")).toHaveAttribute("type", "submit")
+  expect(screen.getByTestId("btn")).toHaveAttribute("type", "submit")
 
   rerender(
     <Button data-testid="btn" as="button">
       Email
     </Button>,
   )
-  expect(getByTestId("btn")).toHaveAttribute("type")
+  expect(screen.getByTestId("btn")).toHaveAttribute("type")
 
   rerender(
     <Button data-testid="btn" as="span">
       Email
     </Button>,
   )
-  expect(getByTestId("btn")).not.toHaveAttribute("type")
+  expect(screen.getByTestId("btn")).not.toHaveAttribute("type")
 })
 
 test("Should be disabled", () => {
-  const { getByRole } = render(
+  render(
     <Button isDisabled data-testid="btn">
       I'm a invalid button
     </Button>,
   )
-  const button = getByRole("button")
+
+  const button = screen.getByRole("button")
   expect(button).toBeDisabled()
 })
 
 test("Should take up full width", () => {
-  const { getByRole } = render(
+  render(
     <Button isFullWidth data-testid="btn">
       i'm a big button
     </Button>,
   )
-  expect(getByRole("button")).toHaveStyle("width: 100%")
+
+  expect(screen.getByRole("button")).toHaveStyle("width: 100%")
 })

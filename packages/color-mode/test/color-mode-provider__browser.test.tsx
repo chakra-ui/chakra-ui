@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-import { act, cleanup, render } from "@testing-library/react"
+import { act, render } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import * as React from "react"
 import { ColorModeProvider } from "../src"
@@ -18,7 +18,6 @@ jest.mock("@chakra-ui/utils", () => ({
 
 beforeEach(() => {
   jest.resetAllMocks()
-  cleanup()
 
   Object.defineProperty(window, "matchMedia", {
     writable: true,

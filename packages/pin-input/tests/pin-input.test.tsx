@@ -1,10 +1,10 @@
 import * as React from "react"
+import { screen } from "@testing-library/react"
 import {
   act,
   render,
   userEvent,
   fireEvent,
-  screen,
   waitFor,
 } from "@chakra-ui/test-utils"
 import {
@@ -119,20 +119,20 @@ test('otp flag enables "one-time-code" autocomplete on fields', () => {
 
 test("Replacing last input calls onComplete correctly", async () => {
   const onComplete = jest.fn()
-  const { getByTestId } = render(<Component onComplete={onComplete} />)
+  render(<Component onComplete={onComplete} />)
 
-  await act(() => userEvent.type(getByTestId("1"), "1"))
-  await act(() => userEvent.type(getByTestId("2"), "2"))
-  await act(() => userEvent.type(getByTestId("3"), "3"))
+  await act(() => userEvent.type(screen.getByTestId("1"), "1"))
+  await act(() => userEvent.type(screen.getByTestId("2"), "2"))
+  await act(() => userEvent.type(screen.getByTestId("3"), "3"))
 
   expect(onComplete).toHaveBeenCalledWith("123")
   onComplete.mockClear()
 
-  await act(() => userEvent.clear(getByTestId("3")))
+  await act(() => userEvent.clear(screen.getByTestId("3")))
 
   expect(onComplete).not.toHaveBeenCalledWith("123")
 
-  await act(() => userEvent.type(getByTestId("3"), "3"))
+  await act(() => userEvent.type(screen.getByTestId("3"), "3"))
 
   expect(onComplete).toHaveBeenCalledWith("123")
 })

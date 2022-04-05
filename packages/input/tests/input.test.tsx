@@ -1,5 +1,6 @@
-import { render, screen, testA11y } from "@chakra-ui/test-utils"
+import { render, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
+import { screen } from "@testing-library/react"
 import { Input, InputGroup, InputLeftElement, InputRightElement } from "../src"
 
 test("passes a11y test", async () => {
@@ -13,7 +14,7 @@ test("passes a11y test", async () => {
 })
 
 test("Elements inside input render correctly", () => {
-  const { getByText } = render(
+  render(
     <InputGroup>
       <InputLeftElement>
         <span>Hello</span>
@@ -24,8 +25,9 @@ test("Elements inside input render correctly", () => {
       </InputRightElement>
     </InputGroup>,
   )
-  expect(getByText("Hello")).toBeInTheDocument()
-  expect(getByText("World")).toBeInTheDocument()
+
+  expect(screen.getByText("Hello")).toBeInTheDocument()
+  expect(screen.getByText("World")).toBeInTheDocument()
 })
 
 test("Invalid input renders correctly", () => {

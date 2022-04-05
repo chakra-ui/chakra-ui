@@ -23,4 +23,3 @@ describe("`forward-ref` prop typings", () => {
     expect(true).toBe(true)
   })
 })
-

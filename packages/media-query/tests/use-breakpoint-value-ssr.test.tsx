@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 import { renderToStaticMarkup } from "react-dom/server"
 import { ChakraProvider } from "@chakra-ui/react"
 import { theme } from "./test-data"

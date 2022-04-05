@@ -7,9 +7,9 @@ import {
   renderHook,
   userEvent,
   press,
-  screen,
 } from "@chakra-ui/test-utils"
 import * as React from "react"
+import { screen } from "@testing-library/react"
 import {
   NumberDecrementStepper,
   NumberIncrementStepper,
@@ -52,10 +52,10 @@ test("should start with empty string", () => {
 })
 
 test("should increment on press increment button", () => {
-  const { getByTestId } = renderComponent()
+  renderComponent()
 
-  const upBtn = getByTestId("up-btn")
-  const input = getByTestId("input")
+  const upBtn = screen.getByTestId("up-btn")
+  const input = screen.getByTestId("input")
 
   fireEvent.pointerDown(upBtn)
   // since the input's value is empty, this will set it to `step`
@@ -94,9 +94,9 @@ test("should increase/decrease with keyboard", () => {
 })
 
 test("should increase/decrease by 10*step on shift+Arrow", () => {
-  const { getByTestId } = renderComponent({ defaultValue: 0 })
+  renderComponent({ defaultValue: 0 })
 
-  const input = getByTestId("input")
+  const input = screen.getByTestId("input")
 
   press.ArrowUp(input)
   expect(input).toHaveValue("1")
@@ -110,13 +110,13 @@ test("should increase/decrease by 10*step on shift+Arrow", () => {
 })
 
 test("should increase/decrease by 0.1*step on ctrl+Arrow", () => {
-  const { getByTestId } = renderComponent({
+  renderComponent({
     defaultValue: 0,
     step: 0.1,
     precision: 2,
   })
 
-  const input = getByTestId("input")
+  const input = screen.getByTestId("input")
 
   press.ArrowUp(input)
   expect(input).toHaveValue("0.10")

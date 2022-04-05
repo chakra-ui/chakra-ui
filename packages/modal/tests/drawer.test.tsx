@@ -43,7 +43,7 @@ it("does not render when isOpen is false", () => {
 it("does renders when isOpen is true", () => {
   render(<SimpleDrawer placement="left" isOpen />)
 
-  expect(screen.queryByRole("dialog")).toBeInTheDocument()
+  expect(screen.getByRole("dialog")).toBeInTheDocument()
 })
 
 it("passes a11y test", async () => {

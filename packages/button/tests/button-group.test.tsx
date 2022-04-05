@@ -1,5 +1,6 @@
 import { testA11y, render } from "@chakra-ui/test-utils"
 import * as React from "react"
+import { screen } from "@testing-library/react"
 import { Button, ButtonGroup } from "../src"
 
 it("passes a11y test", async () => {
@@ -14,16 +15,19 @@ it("passes a11y test", async () => {
 })
 
 test("Should apply spacing", () => {
-  const { getByText } = render(
+  render(
     <ButtonGroup spacing="4rem">
       <Button>Button 1</Button>
       <Button>Button 2</Button>
     </ButtonGroup>,
   )
-  expect(getByText(/Button 2/i)).toHaveStyle({ marginInlineStart: "4rem" })
+
+  expect(screen.getByText(/Button 2/i)).toHaveStyle({
+    marginInlineStart: "4rem",
+  })
 })
 test("Should flush button", () => {
-  const { getByText } = render(
+  render(
     <ButtonGroup isAttached>
       <Button>Button 1</Button>
       <Button>Button 2</Button>
@@ -31,17 +35,18 @@ test("Should flush button", () => {
       <Button>Button 4</Button>
     </ButtonGroup>,
   )
-  expect(getByText(/Button 1/i)).toHaveStyle({
+
+  expect(screen.getByText(/Button 1/i)).toHaveStyle({
     borderTopRightRadius: "0",
     borderBottomRightRadius: "0",
   })
-  expect(getByText(/Button 2/i)).toHaveStyle({
+  expect(screen.getByText(/Button 2/i)).toHaveStyle({
     borderRadius: "0px",
   })
-  expect(getByText(/Button 3/i)).toHaveStyle({
+  expect(screen.getByText(/Button 3/i)).toHaveStyle({
     borderRadius: "0px",
   })
-  expect(getByText(/Button 4/i)).toHaveStyle({
+  expect(screen.getByText(/Button 4/i)).toHaveStyle({
     borderTopLeftRadius: "0",
     borderBottomLeftRadius: "0",
   })

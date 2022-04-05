@@ -76,9 +76,8 @@ test("handles events and callbacks correctly", () => {
     onKeyUp: jest.fn(),
   }
   const Component = () => {
-    const { getCheckboxProps, getInputProps, getRootProps } = useRadio(
-      hookProps,
-    )
+    const { getCheckboxProps, getInputProps, getRootProps } =
+      useRadio(hookProps)
 
     return (
       <label data-testid="container" {...getRootProps()}>

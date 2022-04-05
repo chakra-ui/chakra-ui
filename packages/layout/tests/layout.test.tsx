@@ -1,11 +1,6 @@
-import {
-  fireEvent,
-  render,
-  screen,
-  testA11y,
-  waitFor,
-} from "@chakra-ui/test-utils"
+import { fireEvent, render, testA11y, waitFor } from "@chakra-ui/test-utils"
 import * as React from "react"
+import { screen } from "@testing-library/react"
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 import { Box, Badge, Container, Divider, Flex, Stack } from "../src"
 
@@ -15,12 +10,13 @@ describe("<Box />", () => {
   })
 
   test("as - prop works correctly", () => {
-    const { getByText } = render(
+    render(
       <Box as="a" href="www.google.com">
         Box
       </Box>,
     )
-    expect(getByText("Box").nodeName).toBe("A")
+
+    expect(screen.getByText("Box").nodeName).toBe("A")
   })
 })
 

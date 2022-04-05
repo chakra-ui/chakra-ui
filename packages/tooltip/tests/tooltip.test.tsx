@@ -84,7 +84,7 @@ test.skip("should close on mouseleave if openDelay is set", async () => {
     jest.advanceTimersByTime(500)
   })
 
-  expect(screen.queryByText(tooltipLabel)).toBeInTheDocument()
+  expect(screen.getByText(tooltipLabel)).toBeInTheDocument()
 
   act(() => {
     fireEvent.mouseLeave(screen.getByText(buttonLabel))

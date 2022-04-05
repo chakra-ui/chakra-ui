@@ -1,4 +1,5 @@
 import * as React from "react"
+import { screen } from "@testing-library/react"
 import { render, testA11y } from "@chakra-ui/test-utils"
 import { Progress, CircularProgress } from "../src"
 
@@ -48,11 +49,9 @@ test("CircularProgress renders correctly", async () => {
 })
 
 test("Progress: has the proper aria, data, and role attributes", () => {
-  const { getByRole, rerender } = render(
-    <Progress color="green" size="sm" value={20} />,
-  )
+  const { rerender } = render(<Progress color="green" size="sm" value={20} />)
 
-  let progress = getByRole("progressbar")
+  let progress = screen.getByRole("progressbar")
 
   expect(progress).not.toHaveAttribute("data-indeterminate")
   expect(progress).toHaveAttribute("aria-valuemax", "100")
@@ -63,7 +62,7 @@ test("Progress: has the proper aria, data, and role attributes", () => {
   // rerender as indeterminate
   rerender(<Progress color="green" size="sm" isIndeterminate />)
 
-  progress = getByRole("progressbar")
+  progress = screen.getByRole("progressbar")
 
   expect(progress).toHaveAttribute("data-indeterminate")
   expect(progress).not.toHaveAttribute("aria-valuenow")

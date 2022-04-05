@@ -1,11 +1,12 @@
 import * as React from "react"
+import { screen } from "@testing-library/react"
 import { render, testA11y } from "@chakra-ui/test-utils"
 import { VisuallyHidden } from "../src"
 
 test("should render correctly", async () => {
-  const { getByText } = render(<VisuallyHidden>Click me</VisuallyHidden>)
+  render(<VisuallyHidden>Click me</VisuallyHidden>)
 
-  expect(getByText(/Click me/i)).toMatchInlineSnapshot(`
+  expect(screen.getByText(/Click me/i)).toMatchInlineSnapshot(`
     .emotion-0 {
       border: 0px;
       clip: rect(0px, 0px, 0px, 0px);
@@ -36,7 +37,7 @@ test("should have no accessibility violations", async () => {
 })
 
 test("should render a visually hidden input", async () => {
-  const { getByTestId } = render(
+  render(
     <VisuallyHidden
       data-testid="input"
       as="input"
@@ -45,7 +46,7 @@ test("should render a visually hidden input", async () => {
     />,
   )
 
-  const input = getByTestId("input")
+  const input = screen.getByTestId("input")
 
   expect(input).toBeInstanceOf(HTMLInputElement)
   expect(input).toBeChecked()

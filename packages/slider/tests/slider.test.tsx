@@ -1,6 +1,7 @@
 import { extendTheme, ThemeProvider } from "@chakra-ui/react"
 import { press, render, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
+import { screen } from "@chakra-ui/test-utils"
 import styled from "@emotion/styled"
 import {
   Slider,
@@ -78,9 +79,9 @@ test("passes a11y test", async () => {
 })
 
 test("should move the thumb", () => {
-  const { getByRole } = render(<SimpleSlider />)
+  render(<SimpleSlider />)
 
-  const thumb = getByRole("slider")
+  const thumb = screen.getByRole("slider")
 
   press.ArrowRight(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "11")
@@ -96,11 +97,9 @@ test("should move the thumb", () => {
 })
 
 test("renders & move correctly when orientation: vertical & isReversed", () => {
-  const { getByRole } = render(
-    <SimpleSlider orientation="vertical" isReversed />,
-  )
+  render(<SimpleSlider orientation="vertical" isReversed />)
 
-  const thumb = getByRole("slider")
+  const thumb = screen.getByRole("slider")
 
   press.ArrowUp(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "9")
@@ -116,13 +115,13 @@ test("renders & move correctly when orientation: vertical & isReversed", () => {
 })
 
 test("renders with the correct direction under 'rtl'", () => {
-  const { getByRole } = render(
+  render(
     <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
       <SimpleSlider />
     </ThemeProvider>,
   )
 
-  const thumb = getByRole("slider")
+  const thumb = screen.getByRole("slider")
 
   press.ArrowRight(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "9")
@@ -138,13 +137,13 @@ test("renders with the correct direction under 'rtl'", () => {
 })
 
 test("renders with the correct direction under 'rtl' & isReversed", () => {
-  const { getByRole } = render(
+  render(
     <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
       <SimpleSlider isReversed />
     </ThemeProvider>,
   )
 
-  const thumb = getByRole("slider")
+  const thumb = screen.getByRole("slider")
 
   press.ArrowRight(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "11")
@@ -160,13 +159,13 @@ test("renders with the correct direction under 'rtl' & isReversed", () => {
 })
 
 test("renders correctly/unaffected by 'rtl' when orientation: vertical", () => {
-  const { getByRole } = render(
+  render(
     <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
       <SimpleSlider orientation="vertical" />
     </ThemeProvider>,
   )
 
-  const thumb = getByRole("slider")
+  const thumb = screen.getByRole("slider")
 
   press.ArrowRight(thumb)
   press.ArrowUp(thumb)
@@ -184,23 +183,23 @@ test("renders correctly/unaffected by 'rtl' when orientation: vertical", () => {
 })
 
 test("should have colors from styled", () => {
-  const { getByTestId } = render(<SimpleStyledSlider />)
-  let sliderElement = getByTestId("slider")
+  render(<SimpleStyledSlider />)
+  let sliderElement = screen.getByTestId("slider")
   let styles = getComputedStyle(sliderElement)
 
   expect(styles.backgroundColor).toBe("pink")
 
-  sliderElement = getByTestId("slider-track")
+  sliderElement = screen.getByTestId("slider-track")
   styles = getComputedStyle(sliderElement)
 
   expect(styles.backgroundColor).toBe("blue")
 
-  sliderElement = getByTestId("slider-filled-track")
+  sliderElement = screen.getByTestId("slider-filled-track")
   styles = getComputedStyle(sliderElement)
 
   expect(styles.backgroundColor).toBe("green")
 
-  sliderElement = getByTestId("slider-thumb")
+  sliderElement = screen.getByTestId("slider-thumb")
   styles = getComputedStyle(sliderElement)
 
   expect(styles.backgroundColor).toBe("red")

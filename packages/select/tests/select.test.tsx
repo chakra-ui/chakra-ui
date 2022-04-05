@@ -1,4 +1,5 @@
 import * as React from "react"
+import { screen } from "@testing-library/react"
 import { render, testA11y } from "@chakra-ui/test-utils"
 import { FormControl } from "@chakra-ui/form-control"
 import { ChakraProvider, extendTheme, theme } from "@chakra-ui/react"
@@ -24,8 +25,8 @@ test("renders a placeholder option", () => {
 })
 
 test("renders an icon by default", () => {
-  const { getByRole } = render(<Select />)
-  const icon = getByRole("presentation", { hidden: true })
+  render(<Select />)
+  const icon = screen.getByRole("presentation", { hidden: true })
 
   expect(icon).toHaveAttribute("aria-hidden", "true")
   expect(icon).toHaveClass("chakra-select__icon")

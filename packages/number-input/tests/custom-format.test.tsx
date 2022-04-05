@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { act, fireEvent, render, userEvent } from "@chakra-ui/test-utils"
 import * as React from "react"
+import { screen } from "@testing-library/react"
 import {
   NumberDecrementStepper,
   NumberIncrementStepper,
@@ -36,16 +37,16 @@ const testNumberInputCustomFormat = {
 }
 
 it("should apply custom format", async () => {
-  const { getByTestId } = renderComponent({
+  renderComponent({
     defaultValue: 0,
     step: 0.65,
     precision: 2,
     ...testNumberInputCustomFormat,
   })
 
-  const input = getByTestId("input")
-  const incBtn = getByTestId("up-btn")
-  const decBtn = getByTestId("down-btn")
+  const input = screen.getByTestId("input")
+  const incBtn = screen.getByTestId("up-btn")
+  const decBtn = screen.getByTestId("down-btn")
 
   expect(input).toHaveValue("0,00")
   await act(() => userEvent.click(incBtn))

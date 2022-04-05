@@ -1,4 +1,5 @@
 import * as React from "react"
+import { screen } from "@testing-library/react"
 import { render, testA11y } from "@chakra-ui/test-utils"
 import {
   StatGroup,
@@ -11,7 +12,7 @@ import {
 
 describe("<StatGroup />", () => {
   it("should renders correctly", () => {
-    const { getByTestId } = render(
+    render(
       <StatGroup data-testid="group">
         <Stat>
           <StatLabel>Sent</StatLabel>
@@ -32,7 +33,8 @@ describe("<StatGroup />", () => {
         </Stat>
       </StatGroup>,
     )
-    expect(getByTestId("group")).toBeTruthy()
+
+    expect(screen.getByTestId("group")).toBeTruthy()
   })
 
   it("should passes a11y test", async () => {
