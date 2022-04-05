@@ -5,7 +5,10 @@
 
 Add support for React 18.
 
-### Breaking changes for `createStandaloneToast`
+> Please note: There are **no breaking changes** to the hook `useToast`. There
+> are only breaking changes to `createStandaloneToast`.
+
+### Breaking changes to `createStandaloneToast`
 
 With React <17 Chakra UI was able to render the toast container DOM element for
 you. To allow Chakra UI to support all React versions >=16.8 you need to render

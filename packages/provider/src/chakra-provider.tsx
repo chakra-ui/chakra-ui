@@ -14,8 +14,6 @@ import {
 } from "@chakra-ui/react-env"
 import * as React from "react"
 import { IdProvider } from "@chakra-ui/hooks"
-import { ToastProvider } from "@chakra-ui/toast"
-import { ToastProviderProps } from "@chakra-ui/toast/src"
 
 export interface ChakraProviderProps
   extends Pick<ThemeProviderProps, "cssVarsRoot"> {
@@ -57,10 +55,6 @@ export interface ChakraProviderProps
    * based on where `ChakraProvider` is rendered.
    */
   environment?: EnvironmentProviderProps["environment"]
-  /**
-   * Provide defaults for `useToast()` usages for `ChakraProvider`s children
-   */
-  toastOptions?: ToastProviderProps
 }
 
 /**
@@ -76,12 +70,11 @@ export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
     theme = {},
     environment,
     cssVarsRoot,
-    toastOptions,
   } = props
 
   const _children = (
     <EnvironmentProvider environment={environment}>
-      <ToastProvider {...toastOptions}>{children}</ToastProvider>
+      {children}
     </EnvironmentProvider>
   )
 
