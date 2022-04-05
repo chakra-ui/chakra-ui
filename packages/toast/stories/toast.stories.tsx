@@ -317,18 +317,15 @@ export function StandAloneToast() {
       ...base,
       colors: {
         green: {
-          500: "#67BF3C",
+          500: "#bf3c3c",
         },
       },
     },
   })
-  const { ToastContainer: ToastContainer2, toast: toast2 } =
-    createStandaloneToast()
-
   return (
     <>
       <ToastContainer />
-      <ToastContainer2 />
+
       <Text fontSize="lg" fontWeight="bold">
         This Text matches Theme font
       </Text>
@@ -348,22 +345,6 @@ export function StandAloneToast() {
           }}
         >
           Standalone Toast With Custom Theme
-        </Button>
-        <Button
-          onClick={() => {
-            toast2({
-              title: "Standalone Toast",
-              description: "Uses default theme",
-              status: "success",
-              duration: 3000,
-              isClosable: true,
-              onCloseComplete: () => {
-                console.log("hello")
-              },
-            })
-          }}
-        >
-          Standalone Toast With Default Theme
         </Button>
       </ButtonGroup>
     </>
