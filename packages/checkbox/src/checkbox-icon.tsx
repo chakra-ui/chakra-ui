@@ -4,7 +4,7 @@ import * as React from "react"
 
 // @future: only call `motion(chakra.svg)` when we drop framer-motion v3 support
 const MotionSvg: CustomDomComponent<PropsOf<typeof chakra.svg>> =
-  "custom" in motion
+  "custom" in motion && typeof motion.custom == "function"
     ? (motion as any).custom(chakra.svg)
     : (motion as any)(chakra.svg)
 
