@@ -1,5 +1,5 @@
 import * as React from "react"
-import { render, userEvent } from "@chakra-ui/test-utils"
+import { render, renderInteractive } from "@chakra-ui/test-utils"
 import { ColorModeProvider } from "../src"
 import * as colorModeUtils from "../src/color-mode.utils"
 import {
@@ -34,7 +34,7 @@ describe("<ColorModeProvider />", () => {
   })
 
   test("toggleColorMode changes the color", async () => {
-    render(
+    const { user } = renderInteractive(
       <ColorModeProvider options={defaultThemeOptions}>
         <DummyComponent />
       </ColorModeProvider>,
@@ -44,7 +44,7 @@ describe("<ColorModeProvider />", () => {
 
     expect(button).toHaveTextContent(defaultThemeOptions.initialColorMode)
 
-    await userEvent.click(button)
+    await user.click(button)
 
     expect(getColorModeButton()).not.toHaveTextContent(
       defaultThemeOptions.initialColorMode,
@@ -54,7 +54,7 @@ describe("<ColorModeProvider />", () => {
   test("is controlled given a value", async () => {
     const value = "dark"
 
-    render(
+    const { user } = renderInteractive(
       <ColorModeProvider options={defaultThemeOptions} value={value}>
         <DummyComponent />
       </ColorModeProvider>,
@@ -64,7 +64,7 @@ describe("<ColorModeProvider />", () => {
 
     expect(button).toHaveTextContent(value)
 
-    await userEvent.click(button)
+    await user.click(button)
 
     expect(getColorModeButton()).toHaveTextContent(value)
   })

@@ -1,6 +1,5 @@
 import * as React from "react"
-import { render, screen } from "@testing-library/react"
-import userEvent from "@testing-library/user-event"
+import { screen, renderInteractive } from "@chakra-ui/test-utils"
 import { ColorModeProvider, useColorMode, useColorModeValue } from "../src"
 import { defaultThemeOptions } from "./utils"
 
@@ -21,7 +20,7 @@ function DummyComponent() {
 
 describe("useColorModeValue", () => {
   test("given light mode, shows lightValue and toggles", async () => {
-    render(
+    const { user } = renderInteractive(
       <ColorModeProvider options={defaultThemeOptions}>
         <DummyComponent />
       </ColorModeProvider>,
@@ -32,7 +31,7 @@ describe("useColorModeValue", () => {
     expect(screen.getByTestId("mode")).toHaveTextContent("light")
     expect(button).toHaveTextContent(lightValue)
 
-    await userEvent.click(button)
+    await user.click(button)
 
     expect(screen.getByTestId("mode")).toHaveTextContent("dark")
     expect(button).toHaveTextContent(darkValue)

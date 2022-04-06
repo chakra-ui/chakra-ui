@@ -1,5 +1,3 @@
-import { render } from "@testing-library/react"
-import userEvent from "@testing-library/user-event"
 import * as React from "react"
 import { ColorModeProvider } from "../src"
 import * as colorModeUtils from "../src/color-mode.utils"
@@ -9,6 +7,7 @@ import {
   DummyComponent,
   getColorModeButton,
 } from "./utils"
+import { render, renderInteractive } from "@chakra-ui/test-utils"
 
 jest.mock("@chakra-ui/utils", () => ({
   ...jest.requireActual("@chakra-ui/utils"),
@@ -175,7 +174,7 @@ test("onChange sets value to all listeners", async () => {
 
   const mockLocalStorageManager = createMockStorageManager("localStorage")
 
-  render(
+  const { user } = renderInteractive(
     <ColorModeProvider
       options={defaultThemeOptions}
       colorModeManager={mockLocalStorageManager}
@@ -187,7 +186,7 @@ test("onChange sets value to all listeners", async () => {
   expect(rootSet).toHaveBeenCalledTimes(1)
   expect(mockLocalStorageManager.set).not.toHaveBeenCalled()
 
-  await userEvent.click(getColorModeButton())
+  await user.click(getColorModeButton())
 
   expect(rootSet).toHaveBeenCalledTimes(2)
   expect(rootSet).toHaveBeenCalledWith("dark")
@@ -227,7 +226,7 @@ describe("<ColorModeProvider /> cookie browser", () => {
 
     const mockCookieStorageManager = createMockStorageManager("cookie")
 
-    render(
+    const { user } = renderInteractive(
       <ColorModeProvider
         options={defaultThemeOptions}
         colorModeManager={mockCookieStorageManager}
@@ -239,7 +238,7 @@ describe("<ColorModeProvider /> cookie browser", () => {
     expect(rootSet).toHaveBeenCalledTimes(1)
     expect(mockCookieStorageManager.set).not.toHaveBeenCalled()
 
-    await userEvent.click(getColorModeButton())
+    await user.click(getColorModeButton())
 
     expect(rootSet).toHaveBeenCalledTimes(2)
     expect(rootSet).toHaveBeenCalledWith("dark")

@@ -1,10 +1,10 @@
 import {
-  act,
   fireEvent,
   render,
+  renderInteractive,
   screen,
   testA11y,
-  userEvent,
+  waitFor,
 } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Editable, EditablePreview, EditableTextarea } from "../src"
@@ -35,7 +35,7 @@ test("uncontrolled: handles callbacks correctly", async () => {
   const onSubmit = jest.fn()
   const onEdit = jest.fn()
 
-  render(
+  const { user } = renderInteractive(
     <Editable
       onChange={onChange}
       onCancel={onCancel}
@@ -52,32 +52,32 @@ test("uncontrolled: handles callbacks correctly", async () => {
 
   // calls `onEdit` when preview is focused
   fireEvent.focus(preview)
-  expect(onEdit).toHaveBeenCalled()
+  await waitFor(() => expect(onEdit).toHaveBeenCalled())
 
   // calls `onChange` with input on change
-  await userEvent.type(textarea, "World")
-  expect(onChange).toHaveBeenCalledWith("Hello World")
+  await user.type(textarea, "World")
+  await waitFor(() => expect(onChange).toHaveBeenCalledWith("Hello World"))
 
   // get new line on user press "Enter"
-  await act(() =>
-    userEvent.type(
-      textarea,
-      `
+  await user.type(
+    textarea,
+    `
   textarea`,
-    ),
   )
-  expect(onChange).toHaveBeenLastCalledWith(`Hello World
-  textarea`)
+  await waitFor(() =>
+    expect(onChange).toHaveBeenLastCalledWith(`Hello World
+  textarea`),
+  )
 
   // calls `onCancel` with previous value when "esc" pressed
   fireEvent.keyDown(textarea, { key: "Escape" })
-  expect(onCancel).toHaveBeenCalledWith("Hello ")
+  await waitFor(() => expect(onCancel).toHaveBeenCalledWith("Hello "))
 
   fireEvent.focus(preview)
 
   // do not calls `onSubmit` with previous value when "enter" pressed after cancelling
   fireEvent.keyDown(textarea, { key: "Enter" })
-  expect(onSubmit).not.toHaveBeenCalled()
+  await waitFor(() => expect(onSubmit).not.toHaveBeenCalled())
 })
 
 test("controlled: handles callbacks correctly", async () => {
@@ -105,40 +105,41 @@ test("controlled: handles callbacks correctly", async () => {
     )
   }
 
-  render(<Component />)
+  const { user } = renderInteractive(<Component />)
   const preview = screen.getByTestId("preview")
   const textarea = screen.getByTestId("textarea")
 
   // calls `onEdit` when preview is focused
   fireEvent.focus(preview)
-  expect(onEdit).toHaveBeenCalled()
+  await waitFor(() => expect(onEdit).toHaveBeenCalled())
 
   // calls `onChange` with input on change
-  await userEvent.type(textarea, "World")
-  expect(onChange).toHaveBeenCalledWith("Hello World")
+  await user.type(textarea, "World")
+  await waitFor(() => expect(onChange).toHaveBeenCalledWith("Hello World"))
 
   // do not calls `onSubmit`
   fireEvent.keyDown(textarea, { key: "Enter" })
-  expect(onSubmit).not.toHaveBeenCalledWith("World")
+  await waitFor(() => expect(onSubmit).not.toHaveBeenCalledWith("World"))
 
-  expect(textarea).toBeVisible()
+  await waitFor(() => expect(textarea).toBeVisible())
 
   // update the input value with new line
-  await act(() =>
-    userEvent.type(
-      textarea,
-      `
+  await user.type(
+    textarea,
+    `
   textarea`,
-    ),
   )
-  expect(onChange).toHaveBeenCalledWith(`Hello World
-  textarea`)
+
+  await waitFor(() =>
+    expect(onChange).toHaveBeenCalledWith(`Hello World
+  textarea`),
+  )
 
   // press `Escape`
   fireEvent.keyDown(textarea, { key: "Escape" })
 
   // calls `onCancel` with previous `value`
-  expect(onCancel).toHaveBeenCalledWith(`Hello `)
+  await waitFor(() => expect(onCancel).toHaveBeenCalledWith(`Hello `))
 })
 
 test("handles preview and textarea callbacks", async () => {
@@ -147,7 +148,7 @@ test("handles preview and textarea callbacks", async () => {
   const onChange = jest.fn()
   const onKeyDown = jest.fn()
 
-  render(
+  const { user } = renderInteractive(
     <Editable defaultValue="Hello ">
       <EditablePreview onFocus={onFocus} data-testid="preview" />
       <EditableTextarea
@@ -166,13 +167,12 @@ test("handles preview and textarea callbacks", async () => {
   expect(onFocus).toHaveBeenCalled()
 
   // calls `onChange` when input is changed
-  await userEvent.type(textarea, "World")
+  await user.type(textarea, "World")
   expect(onChange).toHaveBeenCalled()
 
   // calls `onKeyDown` when key is pressed in input
   fireEvent.keyDown(textarea, { key: "Escape" })
   expect(onKeyDown).toHaveBeenCalled()
-
   expect(textarea).not.toBeVisible()
 })
 
@@ -250,7 +250,7 @@ test.each([
       )
     }
 
-    render(<Component />)
+    const { user } = renderInteractive(<Component />)
     const input = screen.getByTestId("input")
     const preview = screen.getByTestId("preview")
     if (!startWithEditView) {
@@ -259,7 +259,7 @@ test.each([
       fireEvent.focus(input)
     }
     if (text) {
-      await userEvent.type(input, text)
+      await user.type(input, text)
     }
     fireEvent.keyDown(input, { key: "Escape" })
 

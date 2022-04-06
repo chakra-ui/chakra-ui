@@ -2,8 +2,7 @@
 import {
   act,
   fireEvent,
-  render,
-  userEvent,
+  renderInteractive,
   screen,
 } from "@chakra-ui/test-utils"
 import * as React from "react"
@@ -18,7 +17,7 @@ import {
 } from "../src"
 
 function renderComponent(props: NumberInputProps = {}) {
-  return render(
+  return renderInteractive(
     <>
       <label htmlFor="input">Select number:</label>
       <NumberInput id="input" data-testid="root" {...props}>
@@ -43,7 +42,7 @@ const testNumberInputCustomFormat = {
 }
 
 it("should apply custom format", async () => {
-  renderComponent({
+  const { user } = renderComponent({
     defaultValue: 0,
     step: 0.65,
     precision: 2,
@@ -55,17 +54,17 @@ it("should apply custom format", async () => {
   const decBtn = screen.getByTestId("down-btn")
 
   expect(input).toHaveValue("0,00")
-  await userEvent.click(incBtn)
+  await user.click(incBtn)
   expect(input).toHaveValue("0,65")
-  await userEvent.click(incBtn)
+  await user.click(incBtn)
   expect(input).toHaveValue("1,30")
-  await userEvent.click(incBtn)
+  await user.click(incBtn)
   expect(input).toHaveValue("1,95")
-  await userEvent.click(decBtn)
+  await user.click(decBtn)
   expect(input).toHaveValue("1,30")
 
   // on blur, value is clamped using precision
-  await userEvent.type(input, "1234")
+  await user.type(input, "1234")
   expect(input).toHaveValue("1,301234")
   act(() => {
     fireEvent.blur(input)

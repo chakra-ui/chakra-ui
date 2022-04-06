@@ -4,9 +4,9 @@ import {
   fireEvent,
   render,
   renderHook,
+  renderInteractive,
   screen,
   testA11y,
-  userEvent,
 } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { FormControl, FormLabel } from "@chakra-ui/form-control"
@@ -225,7 +225,7 @@ test("Uncontrolled CheckboxGroup - should not check if group disabled", () => {
 
 test("uncontrolled CheckboxGroup handles change", async () => {
   const onChange = jest.fn()
-  render(
+  const { user } = renderInteractive(
     <CheckboxGroup defaultValue={["A", "C"]} onChange={onChange}>
       <Checkbox value="A">A</Checkbox>
       <Checkbox value="B">B</Checkbox>
@@ -233,7 +233,7 @@ test("uncontrolled CheckboxGroup handles change", async () => {
     </CheckboxGroup>,
   )
 
-  await userEvent.click(screen.getByLabelText("B"))
+  await user.click(screen.getByLabelText("B"))
 
   expect(onChange).toHaveBeenCalledTimes(1)
   expect(onChange).toHaveBeenCalledWith(["A", "C", "B"])

@@ -1,10 +1,9 @@
 import {
-  act,
   fireEvent,
   render,
+  renderInteractive,
   screen,
   testA11y,
-  userEvent,
 } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Editable, EditableInput, EditablePreview } from "../src"
@@ -40,7 +39,7 @@ test("uncontrolled: handles callbacks correctly", async () => {
   const onEdit = jest.fn()
   const initialValue = "Hello "
 
-  render(
+  const { user } = renderInteractive(
     <Editable
       onChange={onChange}
       onCancel={onCancel}
@@ -60,12 +59,10 @@ test("uncontrolled: handles callbacks correctly", async () => {
   expect(onEdit).toHaveBeenCalled()
 
   // calls `onChange` with input on change
-  await act(() =>
-    userEvent.type(input, "World", {
-      initialSelectionStart: 0,
-      initialSelectionEnd: initialValue.length,
-    }),
-  )
+  await user.type(input, "World", {
+    initialSelectionStart: 0,
+    initialSelectionEnd: initialValue.length,
+  })
   expect(onChange).toHaveBeenCalledWith("World")
 
   // calls `onCancel` with previous value when "esc" pressed
@@ -75,7 +72,7 @@ test("uncontrolled: handles callbacks correctly", async () => {
   fireEvent.focus(preview)
 
   // calls `onChange` with input on change
-  await userEvent.type(input, "World")
+  await user.type(input, "World")
   expect(onChange).toHaveBeenCalledWith("World")
 
   // calls `onSubmit` with previous value when "enter" pressed after cancelling
@@ -109,7 +106,7 @@ test("controlled: handles callbacks correctly", async () => {
     )
   }
 
-  render(<Component />)
+  const { user } = renderInteractive(<Component />)
   const preview = screen.getByTestId("preview")
   const input = screen.getByTestId("input")
 
@@ -120,12 +117,11 @@ test("controlled: handles callbacks correctly", async () => {
   // calls `onChange` with new input on change
   // since we called `focus(..)` first, editable will focus and select the text
   // typing will clear the values in input and add the next text.
-  await act(() =>
-    userEvent.type(input, "World", {
-      initialSelectionStart: 0,
-      initialSelectionEnd: initialValue.length,
-    }),
-  )
+  await user.type(input, "World", {
+    initialSelectionStart: 0,
+    initialSelectionEnd: initialValue.length,
+  })
+
   expect(onChange).toHaveBeenCalledWith("World")
 
   // calls `onSubmit` with `value`
@@ -136,7 +132,7 @@ test("controlled: handles callbacks correctly", async () => {
   fireEvent.focus(preview)
 
   // update the input value
-  await userEvent.type(input, "Rasengan")
+  await user.type(input, "Rasengan")
 
   // press `Escape`
   fireEvent.keyDown(input, { key: "Escape" })
@@ -151,7 +147,7 @@ test("handles preview and input callbacks", async () => {
   const onChange = jest.fn()
   const onKeyDown = jest.fn()
 
-  render(
+  const { user } = renderInteractive(
     <Editable defaultValue="Hello ">
       <EditablePreview onFocus={onFocus} data-testid="preview" />
       <EditableInput
@@ -170,7 +166,7 @@ test("handles preview and input callbacks", async () => {
   expect(onFocus).toHaveBeenCalled()
 
   // calls `onChange` when input is changed
-  await userEvent.type(input, "World")
+  await user.type(input, "World")
   expect(onChange).toHaveBeenCalled()
 
   // calls `onKeyDown` when key is pressed in input
@@ -274,7 +270,7 @@ test.each([
       )
     }
 
-    render(<Component />)
+    const { user } = renderInteractive(<Component />)
     const input = screen.getByTestId("input")
     const preview = screen.getByTestId("preview")
     if (!startWithEditView) {
@@ -283,7 +279,7 @@ test.each([
       fireEvent.focus(input)
     }
     if (text) {
-      await userEvent.type(input, text)
+      await user.type(input, text)
     }
     fireEvent.keyDown(input, { key: "Escape" })
 
@@ -292,13 +288,13 @@ test.each([
 )
 
 test("should not be interactive when disabled", () => {
-  render(
+  const { user } = renderInteractive(
     <Editable defaultValue="editable" isDisabled>
       <EditablePreview data-testid="preview" />
       <EditableInput data-testid="input" />
     </Editable>,
   )
 
-  userEvent.click(screen.getByText(/editable/))
+  user.click(screen.getByText(/editable/))
   expect(screen.getByTestId("input")).not.toBeVisible()
 })

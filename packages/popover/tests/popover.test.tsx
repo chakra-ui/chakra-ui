@@ -1,10 +1,11 @@
 import * as React from "react"
 import {
+  act,
   fireEvent,
   render,
   screen,
   waitFor,
-  userEvent,
+  renderInteractive,
 } from "@chakra-ui/test-utils"
 import { usePopover, UsePopoverProps } from "../src"
 
@@ -42,7 +43,9 @@ test("has proper aria attributes", async () => {
   expect(trigger).toHaveAttribute("aria-expanded", "false")
 
   // open the popover
-  fireEvent.click(trigger)
+  act(() => {
+    fireEvent.click(trigger)
+  })
 
   await waitFor(() =>
     expect(trigger).toHaveAttribute("aria-haspopup", "dialog"),
@@ -59,11 +62,15 @@ test("can open and close the popover", async () => {
   const utils = render(<Component />)
 
   // open the popover
-  fireEvent.click(utils.getByText(/open/i))
+  act(() => {
+    fireEvent.click(utils.getByText(/open/i))
+  })
 
   // close the popover (since we can click the button, we verify that it is
   // displayed)
-  fireEvent.click(utils.getByText(/close/i))
+  act(() => {
+    fireEvent.click(utils.getByText(/close/i))
+  })
 
   // verify that content isn't displayed after closing
   expect(utils.queryByText(/content/i)).not.toBeVisible()
@@ -73,12 +80,16 @@ test("can close the popover by pressing escape", async () => {
   const utils = render(<Component />)
 
   // open the popover
-  fireEvent.click(utils.getByText(/open/i))
+  act(() => {
+    fireEvent.click(utils.getByText(/open/i))
+  })
 
   const dialog = await utils.findByRole("dialog")
 
   // close the popover with escape
-  fireEvent.keyDown(dialog, { key: "Escape" })
+  act(() => {
+    fireEvent.keyDown(dialog, { key: "Escape" })
+  })
 
   // verify popover is hidden
   // utils.getByRole("dialog", { hidden: true })
@@ -92,7 +103,7 @@ const LazyPopoverContent = (props: LazyPopoverContentProps) => {
   const { mockFn } = props
   React.useEffect(() => {
     mockFn()
-  }, [])
+  }, [mockFn])
   return <p data-testid="lazy-content">Lazy content</p>
 }
 
@@ -115,6 +126,7 @@ const LazyPopoverComponent = (
         <div
           {...getPopoverProps({
             children: (
+              // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
               <div data-testid="content" tabIndex={0}>
                 <LazyPopoverContent mockFn={props.mockFn} />
               </div>
@@ -139,7 +151,9 @@ test("loads content lazily and unmounts the component from the DOM", async () =>
   expect(mock).toHaveBeenCalledTimes(0)
 
   // open the popover
-  fireEvent.click(utils.getByText(/open/i))
+  act(() => {
+    fireEvent.click(utils.getByText(/open/i))
+  })
 
   const dialog = await utils.findByRole("dialog")
   content = screen.queryByTestId("content")
@@ -150,13 +164,17 @@ test("loads content lazily and unmounts the component from the DOM", async () =>
   expect(mock).toHaveBeenCalledTimes(1)
 
   // close the popover with escape
-  fireEvent.keyDown(dialog, { key: "Escape" })
+  act(() => {
+    fireEvent.keyDown(dialog, { key: "Escape" })
+  })
   expect(content).not.toBeInTheDocument()
   expect(content).not.toBeVisible()
 
   // ensure that when popover reopens, it also
   // gets remounted
-  fireEvent.click(utils.getByText(/open/i))
+  act(() => {
+    fireEvent.click(utils.getByText(/open/i))
+  })
   await utils.findByRole("dialog")
 
   content = screen.queryByTestId("content")
@@ -177,7 +195,9 @@ test("loads content lazily and persists the component in the DOM", async () => {
   expect(mock).toHaveBeenCalledTimes(0)
 
   // open the popover
-  fireEvent.click(utils.getByText(/open/i))
+  act(() => {
+    fireEvent.click(utils.getByText(/open/i))
+  })
 
   const dialog = await utils.findByRole("dialog")
   content = screen.queryByTestId("content")
@@ -187,13 +207,17 @@ test("loads content lazily and persists the component in the DOM", async () => {
   expect(mock).toHaveBeenCalledTimes(1)
 
   // close the popover with escape
-  fireEvent.keyDown(dialog, { key: "Escape" })
+  act(() => {
+    fireEvent.keyDown(dialog, { key: "Escape" })
+  })
   expect(content).toBeInTheDocument()
   expect(content).not.toBeVisible()
 
   // ensure that when popover reopens, it is
   // not remounting
-  fireEvent.click(utils.getByText(/open/i))
+  act(() => {
+    fireEvent.click(utils.getByText(/open/i))
+  })
   await utils.findByRole("dialog")
 
   content = screen.queryByTestId("content")
@@ -219,6 +243,7 @@ const FocusTestComponent = (props: UsePopoverProps) => {
         <div
           {...getPopoverProps({
             children: (
+              // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
               <div data-testid="content" tabIndex={0}>
                 Popover content
                 <button type="button" data-testid="InnerButton">
@@ -237,31 +262,31 @@ const FocusTestComponent = (props: UsePopoverProps) => {
 }
 
 test("when 'trigger'='hover', keep content visible while the tab focus is inside a popover", async () => {
-  const utils = render(<FocusTestComponent trigger="hover" />)
+  const { user } = renderInteractive(<FocusTestComponent trigger="hover" />)
 
-  const openButton = utils.getByText(/open/i)
-  const content = utils.queryByText(/content/i)
-  const innerButton = utils.queryByText(/inner/i)
-  const closeButton = utils.getByText(/close/i)
+  const openButton = screen.getByText(/open/i)
+  const content = screen.queryByText(/content/i)
+  const innerButton = screen.queryByText(/inner/i)
+  const closeButton = screen.getByText(/close/i)
 
   expect(document.body).toHaveFocus()
 
-  userEvent.tab()
+  await user.tab()
 
   expect(openButton).toHaveFocus()
 
-  // open the popover, and it will have focus and be visible.
-  userEvent.tab()
+  // open the popover and it will have focus and be visible.
+  await user.tab()
   expect(content).toHaveFocus()
   expect(content).toBeVisible()
 
   // move focus to next focusable element. Popover should be visible still.
-  userEvent.tab()
+  await user.tab()
   expect(innerButton).toHaveFocus()
   expect(innerButton).toBeVisible()
 
   // Close the popover. This should make Popover invisible.
-  userEvent.tab()
+  await user.tab()
   expect(closeButton).toHaveFocus()
   expect(content).not.toBeVisible()
 })

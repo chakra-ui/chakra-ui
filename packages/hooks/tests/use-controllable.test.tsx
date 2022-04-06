@@ -1,9 +1,8 @@
 import {
   invoke,
-  render,
   renderHook,
+  renderInteractive,
   screen,
-  userEvent,
 } from "@chakra-ui/test-utils"
 import React, { useState } from "react"
 import { useControllableState } from "../src"
@@ -73,15 +72,15 @@ test("onChange does not become stale when callback is updated", async () => {
     return <Controllable value={value} onChange={onChange} />
   }
 
-  render(<TestComponent />)
+  const { user } = renderInteractive(<TestComponent />)
 
   expect(screen.getByTestId("value")).toHaveTextContent("0")
 
-  await userEvent.type(screen.getByRole("textbox"), "5")
+  await user.type(screen.getByRole("textbox"), "5")
 
   expect(await screen.findByTestId("value")).toHaveTextContent("5")
 
-  await userEvent.type(screen.getByRole("textbox"), "{selectall}1")
+  await user.type(screen.getByRole("textbox"), "{selectall}1")
 
   expect(await screen.findByTestId("value")).toHaveTextContent("6")
 })

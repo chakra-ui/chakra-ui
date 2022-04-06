@@ -9,24 +9,23 @@ jest.mock("@chakra-ui/utils", () => ({
   isBrowser: false,
 }))
 
+// To clean up erroneous console warnings from react, we temporarily force
+// useLayoutEffect to behave like useEffect. Since neither can run in our SSR
+// tests, it has no functional impact, but stops the huge console dumps that
+// React causes.
+jest.mock("react", () => {
+  const React = jest.requireActual("react")
+  return {
+    ...React,
+    useLayoutEffect: React.useEffect,
+  }
+})
+
 beforeEach(() => {
   jest.resetAllMocks()
 })
 
 describe("with defaultBreakpoint", () => {
-  // To clean up erroneous console warnings from react, we temporarily force
-  // useLayoutEffect to behave like useEffect. Since neither can run in our SSR
-  // tests, it has no functional impact, but stops the huge console dumps that
-  // React causes.
-  let useLayoutEffect: typeof React.useLayoutEffect
-  beforeAll(() => {
-    useLayoutEffect = React.useLayoutEffect
-    React.useLayoutEffect = React.useEffect
-  })
-  afterAll(() => {
-    React.useLayoutEffect = useLayoutEffect
-  })
-
   // NOTE: We do not set up matchMedia as we wish to simulate an SSR environment
   const values = {
     base: "base",
