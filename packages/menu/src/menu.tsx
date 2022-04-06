@@ -1,6 +1,7 @@
 import { MaybeRenderProp } from "@chakra-ui/react-utils"
 import {
   chakra,
+  ChakraComponent,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
@@ -122,8 +123,8 @@ if (__DEV__) {
 
 export interface MenuListProps extends HTMLChakraProps<"div"> {
   /**
-  * Props for the root element that positions the menu.
-  */
+   * Props for the root element that positions the menu.
+   */
   rootProps?: HTMLChakraProps<"div">
 }
 
@@ -150,11 +151,18 @@ const motionVariants: Variants = {
   },
 }
 
+function __motion<T extends ChakraComponent<any, any>>(
+  el: T,
+): CustomDomComponent<PropsOf<T>> {
+  const m = motion as any
+  if ("custom" in m && typeof m.custom === "function") {
+    return m.custom(el)
+  }
+  return m(el)
+}
+
 // @future: only call `motion(chakra.div)` when we drop framer-motion v3 support
-const MenuTransition: CustomDomComponent<PropsOf<typeof chakra.div>> =
-  "custom" in motion && typeof motion.custom == "function"
-    ? (motion as any).custom(chakra.div)
-    : (motion as any)(chakra.div)
+const MenuTransition = __motion(chakra.div)
 
 export const MenuList = forwardRef<MenuListProps, "div">((props, ref) => {
   const { rootProps, ...rest } = props

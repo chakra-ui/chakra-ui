@@ -3,4 +3,5 @@
 "@chakra-ui/menu": patch
 ---
 
-fix: #3618 CRA template fails with newer versions of framer-motion
+Fix issue where Create React App template fails with newer versions of
+`framer-motion`
