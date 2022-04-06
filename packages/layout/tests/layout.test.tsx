@@ -39,7 +39,7 @@ describe("<Container />", () => {
     render(<Container centerContent>This is centered container</Container>)
   })
 
-  test("themeing works correctly", () => {
+  test("theming works correctly", () => {
     const theme = extendTheme({
       components: {
         Container: {

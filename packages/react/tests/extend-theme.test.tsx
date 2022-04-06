@@ -180,7 +180,7 @@ describe("extendTheme", () => {
     extendTheme(override)
   })
 
-  it("should pass typescript lint with non colorhue properties", () => {
+  it("should pass typescript lint with non color hue properties", () => {
     const override: ThemeOverride = {
       colors: {
         grey: {

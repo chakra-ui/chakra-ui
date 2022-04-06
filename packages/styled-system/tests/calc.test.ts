@@ -93,7 +93,7 @@ it("subtract", () => {
   ).toMatchInlineSnapshot(`"calc(10px - 2em - (2 + 6rem))"`)
 })
 
-it("muliply", () => {
+it("multiply", () => {
   expect(calc.multiply(1, 2)).toMatchInlineSnapshot(`"calc(1 * 2)"`)
   expect(calc.multiply(1, 2, 3)).toMatchInlineSnapshot(`"calc(1 * 2 * 3)"`)
   expect(calc.multiply("1", 2, 3 - 4)).toMatchInlineSnapshot(

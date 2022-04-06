@@ -30,7 +30,7 @@ export interface UsePopoverProps extends Omit<UsePopperProps, "enabled"> {
    * If not provided, we generate a unique id.
    *
    * This `id` is also used to auto-generate the `aria-labelledby`
-   * and `aria-decribedby` attributes that points to the `PopoverHeader` and `PopoverBody`
+   * and `aria-describedby` attributes that points to the `PopoverHeader` and `PopoverBody`
    */
   id?: string
   /**

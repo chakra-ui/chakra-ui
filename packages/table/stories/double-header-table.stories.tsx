@@ -72,7 +72,7 @@ const DoubleHeaderTable = (props: TableProps) => (
       <Tr>
         <Th rowSpan={4}>Volume</Th>
         <Td>cubic inches</Td>
-        <Td>millitres (ml)</Td>
+        <Td>millilitres (ml)</Td>
         <Td isNumeric>16.4</Td>
       </Tr>
       <Tr>

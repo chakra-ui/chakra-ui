@@ -41,7 +41,7 @@ export interface FilterProps {
    */
   brightness?: Token<Length>
   /**
-   * Sets the constrast filter value of an element.
+   * Sets the contrast filter value of an element.
    * Value is assigned to `--chakra-contrast` css variable
    */
   contrast?: Token<Length>
@@ -56,7 +56,7 @@ export interface FilterProps {
    */
   invert?: Token<Length>
   /**
-   * Sets the saturate filter value of an element.
+   * Sets the saturation filter value of an element.
    * Value is assigned to `--chakra-saturate` css variable
    */
   saturate?: Token<Length>

@@ -176,7 +176,7 @@ test("should constrain value onBlur", () => {
 
   userEvent.type(input, "34.55")
 
-  // value is beyond max so it should reset to `max`
+  // value is beyond max, so it should reset to `max`
   fireEvent.blur(input)
 
   expect(input).toHaveValue("30.00")
@@ -241,7 +241,7 @@ test("should fallback to min if `e` is typed", () => {
   const { getByTestId } = renderComponent({ max: 30, min: 1 })
   const input = getByTestId("input")
   userEvent.type(input, "e")
-  // value is beyond max so it should reset to `max`
+  // value is beyond max, so it should reset to `max`
   fireEvent.blur(input)
   expect(input).toHaveValue("1")
 })

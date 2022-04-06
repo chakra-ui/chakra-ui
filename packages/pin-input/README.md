@@ -70,7 +70,7 @@ function PinInputHookExample() {
 
 ## Controlled
 
-```jsx
+```tsx
 function ControlledPinInput() {
   const [value, setValue] = React.useState("")
 

@@ -97,7 +97,7 @@ export function getCss(options: GetCSSOptions) {
       rawValue = config?.processResult ? css(rawValue, true) : rawValue
 
       /**
-       * allows us define css properties for RTL and LTR.
+       * allows us to define css properties for RTL and LTR.
        *
        * const marginStart = {
        *   property: theme => theme.direction === "rtl" ? "marginRight": "marginLeft",

@@ -81,7 +81,7 @@ be some notable latency and this might affect the experience for keyboard and
 screen reader users.
 
 In this scenario, you should use a manually activated tab, it moves focus
-without activating the tabs. With focus on a specifc tab, users can activate a
+without activating the tabs. With focus on a specific tab, users can activate a
 tab by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.
 
 ```jsx

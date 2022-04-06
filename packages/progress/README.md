@@ -159,8 +159,8 @@ value accessible to screenreaders.
 ### Spinner
 
 It is more of a “presentational” loading indicator you can use on a page or a
-component, while it’s loading or before it renders. It doesn’t have any semantic
-meaning.
+component, while it’s loading, or before it renders. It doesn't have any
+semantic meaning.
 
 To give meaning to a Spinner/loading indicator, ARIA standards require that you
 mark the area of the component/page that’s loading with `aria-busy=true`.

@@ -3,7 +3,7 @@
 A React hooks wrapper for popper.js to dynamic positioning of containers around
 a reference.
 
-> This is an internal hook of Chakra-UI and it's not covered by semver, and may
+> This is an internal hook of Chakra-UI, and it's not covered by semver, and may
 > cause unexpected or broken application behavior. Use them at your own risk.
 
 ## Installation
@@ -18,8 +18,8 @@ By default, the `usePopper` hook returns props for the popper, reference and
 arrow.
 
 ```jsx
-import { Box } from '@chakra-ui/layout'
-import { Button } from '@chakra-ui/button'
+import { Box } from "@chakra-ui/layout"
+import { Button } from "@chakra-ui/button"
 import { useDisclosure } from "@chakra-ui/hooks"
 import { usePopper } from "@chakra-ui/popper"
 
@@ -76,8 +76,8 @@ const { popperRef, referenceRef } = usePopper({
 
 ### Place the popper next to the reference
 
-You can place the popper next to the reference without margin or distance between them.
-Useful to create an autocomplete or typeahead feature.
+You can place the popper next to the reference without margin or distance
+between them. Useful to create an autocomplete or typeahead feature.
 
 ```jsx
 const { popperRef, referenceRef } = usePopper({
@@ -87,11 +87,12 @@ const { popperRef, referenceRef } = usePopper({
 
 ### Using inside a fixed container
 
-If the reference element is inside a fixed container, you should use the `fixed` strategy.
+If the reference element is inside a fixed container, you should use the `fixed`
+strategy.
 
 ```jsx
 const { popperRef, referenceRef } = usePopper({
-  strategy: 'fixed',
+  strategy: "fixed",
 })
 ```
 
@@ -100,7 +101,7 @@ const { popperRef, referenceRef } = usePopper({
 When add transitions to a popper component, it is usually advised to apply
 popper and transition to different elements.
 
-```jsx
+```tsx
 // 1. Import components
 import { useDisclosure } from "@chakra-ui/hooks"
 import { usePopper } from "@chakra-ui/popper"
@@ -123,9 +124,10 @@ export function Example() {
   }
 
   // 4. Consume the `usePopper` hook
-  const { getPopperProps, getReferenceProps, getArrowProps, transformOrigin } = usePopper({
-    placement: "bottom-start",
-  })
+  const { getPopperProps, getReferenceProps, getArrowProps, transformOrigin } =
+    usePopper({
+      placement: "bottom-start",
+    })
 
   return (
     <>

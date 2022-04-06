@@ -14,7 +14,7 @@ beforeEach(() => {
 })
 
 describe("with defaultBreakpoint", () => {
-  // To clean up erroneous console warnings from react, we temporarliy force
+  // To clean up erroneous console warnings from react, we temporarily force
   // useLayoutEffect to behave like useEffect. Since neither can run in our SSR
   // tests, it has no functional impact, but stops the huge console dumps that
   // React causes.
@@ -27,7 +27,7 @@ describe("with defaultBreakpoint", () => {
     React.useLayoutEffect = useLayoutEffect
   })
 
-  // NOTE: We do not setup matchMedia as we wish to simulate an SSR environment
+  // NOTE: We do not set up matchMedia as we wish to simulate an SSR environment
   const values = {
     base: "base",
     sm: "sm",

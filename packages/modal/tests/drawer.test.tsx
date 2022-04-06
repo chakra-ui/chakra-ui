@@ -66,7 +66,7 @@ it("swaps sides (left/right) under 'rtl' direction", () => {
   expect(screen.queryByRole("dialog")).toHaveStyle("right: 0")
 })
 
-it("renders correctly (top/bottm) under 'rtl' direction", () => {
+it("renders correctly (top/bottom) under 'rtl' direction", () => {
   render(
     <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
       <SimpleDrawer placement="top" isOpen />

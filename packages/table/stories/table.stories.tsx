@@ -68,7 +68,7 @@ const SimpleTable = (props: TableProps) => (
       </Tr>
       <Tr>
         <Td>cubic inches</Td>
-        <Td>millitres (ml)</Td>
+        <Td>millilitres (ml)</Td>
         <Td isNumeric>16.4</Td>
       </Tr>
       <Tr>

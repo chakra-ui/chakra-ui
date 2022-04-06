@@ -16,7 +16,7 @@ export interface StyleConfig {
   }
 }
 
-// minimal represenation of the anatomy object
+// minimal representation of the anatomy object
 type Anatomy = { __type: string }
 
 export interface MultiStyleConfig<T extends Anatomy = Anatomy> {

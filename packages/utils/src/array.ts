@@ -64,7 +64,7 @@ export function getNextIndex(
 }
 
 /**
- * Get's the previous index based on the current index.
+ * Gets the previous index based on the current index.
  * Mostly used for keyboard navigation.
  *
  * @param index - the current index

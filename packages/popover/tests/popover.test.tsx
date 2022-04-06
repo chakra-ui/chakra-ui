@@ -250,7 +250,7 @@ test("when 'trigger'='hover', keep content visible while the tab focus is inside
 
   expect(openButton).toHaveFocus()
 
-  // open the popover and it will have focus and be visible.
+  // open the popover, and it will have focus and be visible.
   userEvent.tab()
   expect(content).toHaveFocus()
   expect(content).toBeVisible()

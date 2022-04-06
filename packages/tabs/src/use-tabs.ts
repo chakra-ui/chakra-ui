@@ -92,7 +92,7 @@ export interface UseTabsProps {
 }
 
 /**
- * Tabs hooks that provides all the states, and accessibility
+ * Tabs hook that provides all the states, and accessibility
  * helpers to keep all things working properly.
  *
  * Its returned object will be passed unto a Context Provider

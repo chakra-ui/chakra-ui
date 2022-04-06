@@ -110,7 +110,7 @@ test("controlled: handles callbacks correctly", () => {
   expect(onEdit).toHaveBeenCalled()
 
   // calls `onChange` with new input on change
-  // since we calld `focus(..)` first, editable will focus and select the text
+  // since we called `focus(..)` first, editable will focus and select the text
   // typing will clear the values in input and add the next text.
   userEvent.type(input, "World")
   expect(onChange).toHaveBeenCalledWith("World")

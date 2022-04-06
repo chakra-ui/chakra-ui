@@ -55,8 +55,8 @@ const ChakraPowered = chakra(YourComponent)
 
 ### Chakra Component API
 
-A way to define themable components in chakra. We believe most re-usable, atomic
-components have the following modifiers:
+A way to define themeable components in chakra. We believe most re-usable,
+atomic components have the following modifiers:
 
 - Size: It has different size variations (small, medium, large)
 - Variant: It has different visual style (outline, solid, ghost)

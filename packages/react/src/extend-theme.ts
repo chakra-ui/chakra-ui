@@ -49,7 +49,7 @@ export type BaseThemeWithExtensions<
     : Extensions)
 
 /**
- * NOTE: This got too complex to manage and it's not worth the extra complexity.
+ * NOTE: This got too complex to manage, and it's not worth the extra complexity.
  * We'll re-evaluate this API in the future releases.
  *
  * Function to override or customize the Chakra UI theme conveniently.

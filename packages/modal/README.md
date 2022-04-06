@@ -31,7 +31,7 @@ import {
 ## Usage
 
 When the modal opens, focus is sent into the modal and set to the first tabbable
-element. If there are no tabbled element, focus is set on the `ModalContent`.
+element. If there are no tabbed element, focus is set on the `ModalContent`.
 
 ```jsx
 function BasicUsage() {
@@ -191,8 +191,8 @@ function AlertDialogExample() {
 
 # Drawer
 
-The Drawer component is a panel that slides out from the edge of the screen.
-It can be useful when you need users to complete a task or view some details
+The Drawer component is a panel that slides out from the edge of the screen. It
+can be useful when you need users to complete a task or view some details
 without leaving the current page.
 
 ## Installation
@@ -223,7 +223,7 @@ import {
 
 ## Usage
 
-By default focus is placed on `DrawerCloseButton` when the drawer opens.
+By default, focus is placed on `DrawerCloseButton` when the drawer opens.
 
 ```jsx
 function DrawerExample() {

@@ -25,7 +25,7 @@ type OmittedTypes = "disabled" | "required" | "readOnly" | "size"
 
 type InputProps = Omit<PropsOf<"input">, OmittedTypes> &
   FormControlOptions & {
-    // Input component as `size` by default so it resolves to `never`
+    // Input component as `size` by default, so it resolves to `never`
     // Omitted it from types in Line 16 and added back here.
     size?: string
   }
@@ -113,6 +113,6 @@ export const StylingFocus: React.FC = () => (
 
 export const FormLabelStandalone = () => (
   <FormLabel fontWeight="bold" color="blue">
-    Not wrapperd by FormControl
+    Not wrapped by FormControl
   </FormLabel>
 )

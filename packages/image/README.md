@@ -17,11 +17,15 @@ import { Image } from "@chakra-ui/image"
 ## Basic Usage
 
 ```jsx
-import React from 'react'
-import { Image } from '@chakra-ui/image'
-​
+import React from "react"
+import { Image } from "@chakra-ui/image"
+
 const Example = () => (
-  <Image src="photo.png"  fallbackSrc="placeholdit.com/200x200" alt="A Placeholder Image" />
+  <Image
+    src="photo.png"
+    fallbackSrc="placeholdit.com/200x200"
+    alt="A Placeholder Image"
+  />
 )
 ```
 

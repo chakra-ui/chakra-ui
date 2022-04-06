@@ -42,7 +42,7 @@ export const isVisible = (toasts: ToastState, id: ToastId) =>
   !!getToastPosition(toasts, id)
 
 /**
- * Get's the styles to be applied to a toast's container
+ * Gets the styles to be applied to a toast's container
  * based on its position in the manager
  */
 export function getToastStyle(position: ToastPosition): React.CSSProperties {

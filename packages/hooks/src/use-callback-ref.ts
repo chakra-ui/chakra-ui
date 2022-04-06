@@ -5,7 +5,8 @@ import { useSafeLayoutEffect } from "./use-safe-layout-effect"
  * React hook to persist any value between renders,
  * but keeps it up-to-date if it changes.
  *
- * @param value the value or function to persist
+ * @param fn the function to persist
+ * @param deps the function dependency list
  */
 export function useCallbackRef<T extends (...args: any[]) => any>(
   fn: T | undefined,

@@ -7,7 +7,7 @@ import {
 import { toast, useToast } from "../src"
 
 beforeEach(async () => {
-  // close all toasts before each tests and wait for them to be removed
+  // close all toasts before each test and wait for them to be removed
   toast.closeAll()
 
   const toasts = screen.queryAllByRole("listitem")

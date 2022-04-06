@@ -34,7 +34,7 @@ const words = [
 
 function logEvents(e: React.MouseEvent | React.KeyboardEvent | undefined) {
   if (e && e.persist) {
-    // Stop react from complaining about unpersisted events.
+    // Stop React from complaining about non-persisting events.
     e.persist()
   }
   console.log(e)

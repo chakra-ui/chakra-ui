@@ -51,7 +51,7 @@ interface FormControlContext extends FormControlOptions {
   label?: string
   /**
    * The custom `id` to use for the form control. This is passed directly to the form element (e.g, Input).
-   * - The form element (e.g Input) gets the `id`
+   * - The form element (e.g. Input) gets the `id`
    * - The form label id: `form-label-${id}`
    * - The form error text id: `form-error-text-${id}`
    * - The form helper text id: `form-helper-text-${id}`
@@ -64,13 +64,11 @@ type FormControlProviderContext = Omit<
   "getRootProps" | "htmlProps"
 >
 
-const [
-  FormControlProvider,
-  useFormControlContext,
-] = createContext<FormControlProviderContext>({
-  strict: false,
-  name: "FormControlContext",
-})
+const [FormControlProvider, useFormControlContext] =
+  createContext<FormControlProviderContext>({
+    strict: false,
+    name: "FormControlContext",
+  })
 
 export { useFormControlContext }
 
@@ -94,13 +92,13 @@ function useFormControlProvider(props: FormControlContext) {
 
   /**
    * Track whether the `FormErrorMessage` has been rendered.
-   * We use this to append its id the the `aria-describedby` of the `input`.
+   * We use this to append its id the `aria-describedby` of the `input`.
    */
   const [hasFeedbackText, setHasFeedbackText] = React.useState(false)
 
   /**
    * Track whether the `FormHelperText` has been rendered.
-   * We use this to append its id the the `aria-describedby` of the `input`.
+   * We use this to append its id the `aria-describedby` of the `input`.
    */
   const [hasHelpText, setHasHelpText] = React.useState(false)
 
@@ -215,9 +213,11 @@ export interface FormControlProps
 export const FormControl = forwardRef<FormControlProps, "div">((props, ref) => {
   const styles = useMultiStyleConfig("Form", props)
   const ownProps = omitThemingProps(props)
-  const { getRootProps, htmlProps: _, ...context } = useFormControlProvider(
-    ownProps,
-  )
+  const {
+    getRootProps,
+    htmlProps: _,
+    ...context
+  } = useFormControlProvider(ownProps)
 
   const className = cx("chakra-form-control", props.className)
 

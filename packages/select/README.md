@@ -113,7 +113,7 @@ The following values are allowed: **sm, md, lg**
 
 ## Controlled Select
 
-```jsx
+```tsx
 const ControlledSelectExample = () => {
   const [value, setValue] = React.useState("")
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

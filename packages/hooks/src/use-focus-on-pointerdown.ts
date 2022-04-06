@@ -20,7 +20,7 @@ export interface UseFocusOnMouseDownProps {
  * across all browsers.
  *
  * It ensures that elements receives focus on pointer down if
- * it's not the active active element.
+ * it's not the active element.
  *
  * @internal
  */
