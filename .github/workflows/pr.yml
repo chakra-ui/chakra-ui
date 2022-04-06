@@ -5,6 +5,7 @@ on:
     types: [opened, synchronize, ready_for_review, edited, closed]
     branches:
       - main
+      - feat/react-18-umbrella
 
 jobs:
   build:
