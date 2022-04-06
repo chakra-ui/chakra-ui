@@ -44,10 +44,6 @@
 - Removed the `area` prop from `Grid` component. Should be passed to the
   `GridItem` instead.
 
-- Radio
-- Textarea
-- Theme
-
 **Styled system**
 
 - Removed the `d` style prop. Use `display` instead.
