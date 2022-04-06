@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.9.1
+
+### Patch Changes
+
+- [#5739](https://github.com/chakra-ui/chakra-ui/pull/5739)
+  [`a3b04dc1a`](https://github.com/chakra-ui/chakra-ui/commit/a3b04dc1ae49ad0d804bddc17fdca3afa218665c)
+  Thanks [@ambar](https://github.com/ambar)! - Improve stability of `useBoolean`
+  hook to ensure setter object reference stays the same
+
 ## 1.9.0
 
 ### Minor Changes

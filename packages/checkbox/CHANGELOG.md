@@ -1,5 +1,24 @@
 # Change Log
 
+## 1.7.1
+
+### Patch Changes
+
+- [#5827](https://github.com/chakra-ui/chakra-ui/pull/5827)
+  [`c220af152`](https://github.com/chakra-ui/chakra-ui/commit/c220af15274377575d03900f0baaa1c0a1400778)
+  Thanks [@Jason-Hendry](https://github.com/Jason-Hendry)! - Fix issue where
+  Create React App template fails with newer versions of `framer-motion`
+
+* [#5790](https://github.com/chakra-ui/chakra-ui/pull/5790)
+  [`b19c89270`](https://github.com/chakra-ui/chakra-ui/commit/b19c892702f029c078f8d5bfaf0f89b573c6cd90)
+  Thanks [@ugogo](https://github.com/ugogo)! - Fix radio cursor when disabled
+
+* Updated dependencies
+  [[`56b7e198b`](https://github.com/chakra-ui/chakra-ui/commit/56b7e198bf1b0b507da0976aef80f600ae7efeb0),
+  [`a3b04dc1a`](https://github.com/chakra-ui/chakra-ui/commit/a3b04dc1ae49ad0d804bddc17fdca3afa218665c)]:
+  - @chakra-ui/form-control@1.6.0
+  - @chakra-ui/hooks@1.9.1
+
 ## 1.7.0
 
 ### Minor Changes

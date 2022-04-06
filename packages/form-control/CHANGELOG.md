@@ -1,5 +1,23 @@
 # Change Log
 
+## 1.6.0
+
+### Minor Changes
+
+- [#5618](https://github.com/chakra-ui/chakra-ui/pull/5618)
+  [`56b7e198b`](https://github.com/chakra-ui/chakra-ui/commit/56b7e198bf1b0b507da0976aef80f600ae7efeb0)
+  Thanks [@takethefake](https://github.com/takethefake)! - Introduced
+  `optionalIndicator` for `FormLabel`
+
+  Similar to the `RequiredIndicator` the `OptionalIndicator` signalizes when a
+  field is optional.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`a3b04dc1a`](https://github.com/chakra-ui/chakra-ui/commit/a3b04dc1ae49ad0d804bddc17fdca3afa218665c)]:
+  - @chakra-ui/hooks@1.9.1
+
 ## 1.5.10
 
 ### Patch Changes

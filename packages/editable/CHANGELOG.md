@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.4.2
+
+### Patch Changes
+
+- [#5780](https://github.com/chakra-ui/chakra-ui/pull/5780)
+  [`4b83824b8`](https://github.com/chakra-ui/chakra-ui/commit/4b83824b8a89e3eb1754af6ff9c330a93d0cdf17)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  editable preview remains interactive even when `isDisabled: true` is passed.
+- Updated dependencies
+  [[`a3b04dc1a`](https://github.com/chakra-ui/chakra-ui/commit/a3b04dc1ae49ad0d804bddc17fdca3afa218665c)]:
+  - @chakra-ui/hooks@1.9.1
+
 ## 1.4.1
 
 ### Patch Changes

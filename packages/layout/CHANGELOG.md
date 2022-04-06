@@ -1,5 +1,25 @@
 # Change Log
 
+## 1.8.0
+
+### Minor Changes
+
+- [#5772](https://github.com/chakra-ui/chakra-ui/pull/5772)
+  [`7fa1e22c6`](https://github.com/chakra-ui/chakra-ui/commit/7fa1e22c63cdd77364a6bb31d7a60459fd945e3c)
+  Thanks [@mix3d](https://github.com/mix3d)! - Add support for vertical and
+  horizontal spacing options in the Wrap component.
+
+  ```jsx live=false
+  <Wrap spacingX="2" spacingY="4">
+    <Box />
+    <Box />
+    <Box />
+    <Box />
+  </Wrap>
+  ```
+
+  > Falls back to the `spacing` prop for by default
+
 ## 1.7.8
 
 ### Patch Changes
