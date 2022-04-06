@@ -33,9 +33,3 @@ export const spacing = {
   80: "20rem",
   96: "24rem",
 }
-
-/**
- * @deprecated
- * Spacing tokens are a part of DefaultChakraTheme['sizes']
- */
-export type Spacing = typeof spacing

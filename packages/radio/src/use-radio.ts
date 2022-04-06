@@ -1,7 +1,7 @@
 import { useFormControlContext } from "@chakra-ui/form-control"
 import { useBoolean, useControllableProp, useId } from "@chakra-ui/hooks"
 import { PropGetter } from "@chakra-ui/react-utils"
-import { ariaAttr, callAllHandlers, dataAttr, warn } from "@chakra-ui/utils"
+import { ariaAttr, callAllHandlers, dataAttr } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import { ChangeEvent, SyntheticEvent, useCallback, useState } from "react"
 import { useRadioGroupContext } from "./radio-group"
@@ -30,13 +30,6 @@ export interface UseRadioProps {
    * You'll need to pass `onChange` to update its value (since it is now controlled)
    */
   isChecked?: boolean
-  /**
-   * If `true`, the radio will be initially checked.
-   *
-   * @deprecated Please use `defaultChecked` which mirrors the default prop
-   * name for radio elements.
-   */
-  defaultIsChecked?: boolean
   /**
    * If `true`, the radio will be initially checked.
    */
@@ -89,8 +82,7 @@ export interface RadioState {
 
 export function useRadio(props: UseRadioProps = {}) {
   const {
-    defaultIsChecked,
-    defaultChecked = defaultIsChecked,
+    defaultChecked,
     isChecked: isCheckedProp,
     isFocusable,
     isDisabled: isDisabledProp,
@@ -132,13 +124,6 @@ export function useRadio(props: UseRadioProps = {}) {
     isCheckedProp,
     isCheckedState,
   )
-
-  warn({
-    condition: !!defaultIsChecked,
-    message:
-      'The "defaultIsChecked" prop has been deprecated and will be removed in a future version. ' +
-      'Please use the "defaultChecked" prop instead, which mirrors default React checkbox behavior.',
-  })
 
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {

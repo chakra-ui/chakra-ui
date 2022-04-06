@@ -5,7 +5,6 @@ import { Button, ButtonProps } from "./button"
 
 type OmittedProps =
   | "leftIcon"
-  | "isFullWidth"
   | "rightIcon"
   | "loadingText"
   | "iconSpacing"

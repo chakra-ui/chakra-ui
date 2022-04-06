@@ -35,10 +35,6 @@ export interface ButtonOptions {
    */
   loadingText?: string
   /**
-   * If `true`, the button will take up the full width of its container.
-   */
-  isFullWidth?: boolean
-  /**
    * The html button type to use.
    */
   type?: "button" | "reset" | "submit"
@@ -82,7 +78,6 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
     isDisabled = group?.isDisabled,
     isLoading,
     isActive,
-    isFullWidth,
     children,
     leftIcon,
     rightIcon,
@@ -114,11 +109,10 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
       whiteSpace: "nowrap",
       verticalAlign: "middle",
       outline: "none",
-      width: isFullWidth ? "100%" : "auto",
       ...styles,
       ...(!!group && { _focus }),
     }
-  }, [styles, group, isFullWidth])
+  }, [styles, group])
 
   const { ref: _ref, type: defaultType } = useButtonType(as)
 
