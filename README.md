@@ -462,7 +462,7 @@ specification. Contributions of any kind welcome!
 
 ## Testing supported by
 
-<img width="200" src="https://marker.io/vendor/img/logo/browserstack-logo.svg" alt="BrowserStack"/>
+<img width="200" src="https://i.imgur.com/eeuDARI.png" alt="BrowserStack"/>
 
 ## License
 
