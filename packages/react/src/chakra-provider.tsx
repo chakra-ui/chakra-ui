@@ -12,6 +12,10 @@ export interface ChakraProviderProps extends BaseChakraProviderProps {
    * Provide defaults for `useToast()` usages for `ChakraProvider`s children
    */
   toastOptions?: ToastProviderProps
+  /**
+   * @inheritDoc
+   */
+  theme?: BaseChakraProviderProps["theme"]
 }
 
 export const ChakraProvider = ({
