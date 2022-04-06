@@ -152,7 +152,7 @@ const motionVariants: Variants = {
 
 // @future: only call `motion(chakra.div)` when we drop framer-motion v3 support
 const MenuTransition: CustomDomComponent<PropsOf<typeof chakra.div>> =
-  "custom" in motion
+  "custom" in motion && typeof motion.custom == "function"
     ? (motion as any).custom(chakra.div)
     : (motion as any)(chakra.div)
 
