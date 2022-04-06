@@ -1,6 +1,11 @@
-import { fireEvent, render, testA11y, waitFor } from "@chakra-ui/test-utils"
+import {
+  fireEvent,
+  render,
+  testA11y,
+  waitFor,
+  screen,
+} from "@chakra-ui/test-utils"
 import * as React from "react"
-import { screen } from "@testing-library/react"
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 import { Box, Badge, Container, Divider, Flex, Stack } from "../src"
 

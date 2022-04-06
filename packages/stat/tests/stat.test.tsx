@@ -1,6 +1,6 @@
 import * as React from "react"
-import { screen } from "@testing-library/react"
-import { render, testA11y } from "@chakra-ui/test-utils"
+
+import { render, testA11y, screen } from "@chakra-ui/test-utils"
 import {
   StatGroup,
   Stat,

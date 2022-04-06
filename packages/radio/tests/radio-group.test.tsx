@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { FormControl } from "@chakra-ui/react"
-import { fireEvent, render, waitFor } from "@chakra-ui/test-utils"
+import { fireEvent, render, waitFor, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { screen } from "@testing-library/react"
+
 import { Radio, useRadioGroup, UseRadioGroupProps, RadioGroup } from "../src"
 
 test("works with Radio component", () => {

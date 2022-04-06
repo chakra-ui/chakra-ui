@@ -1,5 +1,5 @@
 import * as React from "react"
-import { act, userEvent, render } from "@chakra-ui/test-utils"
+import { render, userEvent } from "@chakra-ui/test-utils"
 import { ColorModeProvider } from "../src"
 import * as colorModeUtils from "../src/color-mode.utils"
 import {
@@ -44,7 +44,7 @@ describe("<ColorModeProvider />", () => {
 
     expect(button).toHaveTextContent(defaultThemeOptions.initialColorMode)
 
-    await act(() => userEvent.click(button))
+    await userEvent.click(button)
 
     expect(getColorModeButton()).not.toHaveTextContent(
       defaultThemeOptions.initialColorMode,
@@ -64,7 +64,7 @@ describe("<ColorModeProvider />", () => {
 
     expect(button).toHaveTextContent(value)
 
-    await act(() => userEvent.click(button))
+    await userEvent.click(button)
 
     expect(getColorModeButton()).toHaveTextContent(value)
   })

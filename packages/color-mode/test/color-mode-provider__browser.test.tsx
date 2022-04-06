@@ -1,5 +1,4 @@
-/* eslint-disable global-require */
-import { act, render } from "@testing-library/react"
+import { render } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import * as React from "react"
 import { ColorModeProvider } from "../src"
@@ -188,7 +187,7 @@ test("onChange sets value to all listeners", async () => {
   expect(rootSet).toHaveBeenCalledTimes(1)
   expect(mockLocalStorageManager.set).not.toHaveBeenCalled()
 
-  await act(() => userEvent.click(getColorModeButton()))
+  await userEvent.click(getColorModeButton())
 
   expect(rootSet).toHaveBeenCalledTimes(2)
   expect(rootSet).toHaveBeenCalledWith("dark")
@@ -240,7 +239,7 @@ describe("<ColorModeProvider /> cookie browser", () => {
     expect(rootSet).toHaveBeenCalledTimes(1)
     expect(mockCookieStorageManager.set).not.toHaveBeenCalled()
 
-    await act(() => userEvent.click(getColorModeButton()))
+    await userEvent.click(getColorModeButton())
 
     expect(rootSet).toHaveBeenCalledTimes(2)
     expect(rootSet).toHaveBeenCalledWith("dark")

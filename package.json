@@ -128,7 +128,7 @@
     "eslint-plugin-prettier": "3.3.0",
     "eslint-plugin-react": "7.29.4",
     "eslint-plugin-react-hooks": "4.4.0",
-    "eslint-plugin-testing-library": "5.2.0",
+    "eslint-plugin-testing-library": "5.2.1",
     "execa": "5.1.1",
     "framer-motion": "^4.0.0",
     "husky": "^7.0.4",

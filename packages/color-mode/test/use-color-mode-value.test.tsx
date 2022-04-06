@@ -1,7 +1,7 @@
 import * as React from "react"
-import { act, render, screen } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { ColorModeProvider, useColorModeValue, useColorMode } from "../src"
+import { ColorModeProvider, useColorMode, useColorModeValue } from "../src"
 import { defaultThemeOptions } from "./utils"
 
 const lightValue = "light-value"
@@ -32,7 +32,7 @@ describe("useColorModeValue", () => {
     expect(screen.getByTestId("mode")).toHaveTextContent("light")
     expect(button).toHaveTextContent(lightValue)
 
-    await act(() => userEvent.click(button))
+    await userEvent.click(button)
 
     expect(screen.getByTestId("mode")).toHaveTextContent("dark")
     expect(button).toHaveTextContent(darkValue)

@@ -1,8 +1,9 @@
-import { act, render, screen, userEvent } from "@chakra-ui/test-utils"
+import { render, renderInteractive, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Radio, RadioGroup } from "../src"
 
-const runTest = async () => {
+const runTest = async (ui: React.ReactElement) => {
+  const { user } = renderInteractive(ui)
   const one = await screen.findByLabelText("One")
   const two = await screen.findByLabelText("Two")
   const three = await screen.findByLabelText("Three")
@@ -11,7 +12,7 @@ const runTest = async () => {
   expect(two).not.toBeChecked()
   expect(three).not.toBeChecked()
 
-  await act(() => userEvent.click(two))
+  await user.click(two)
 
   expect(one).not.toBeChecked()
   expect(two).toBeChecked()
@@ -21,14 +22,14 @@ const runTest = async () => {
 describe("RadioGroup", () => {
   test("uncontrolled", async () => {
     const onChange = jest.fn()
-    render(
+    await runTest(
       <RadioGroup name="radio" defaultValue="1" onChange={onChange}>
         <Radio value="1">One</Radio>
         <Radio value="2">Two</Radio>
         <Radio value="3">Three</Radio>
       </RadioGroup>,
     )
-    await runTest()
+
     expect(onChange).toHaveBeenCalledWith("2")
   })
 
@@ -45,8 +46,7 @@ describe("RadioGroup", () => {
         </RadioGroup>
       )
     }
-    render(<Component />)
-    await runTest()
+    await runTest(<Component />)
   })
 })
 
@@ -96,7 +96,6 @@ describe("Radio", () => {
         </>
       )
     }
-    render(<Component />)
-    await runTest()
+    await runTest(<Component />)
   })
 })

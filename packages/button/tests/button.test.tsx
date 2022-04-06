@@ -1,6 +1,5 @@
 import * as React from "react"
-import { screen } from "@testing-library/react"
-import { render, testA11y } from "@chakra-ui/test-utils"
+import { screen, render, testA11y } from "@chakra-ui/test-utils"
 import { EmailIcon, ArrowForwardIcon } from "@chakra-ui/icons"
 import { Button, ButtonGroup } from "../src"
 

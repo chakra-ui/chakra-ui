@@ -1,18 +1,17 @@
 import * as React from "react"
-import { screen } from "@testing-library/react"
 import {
-  act,
-  render,
-  userEvent,
   fireEvent,
+  render,
+  screen,
+  userEvent,
   waitFor,
 } from "@chakra-ui/test-utils"
 import {
+  PinInputDescendantsProvider,
+  PinInputProvider,
   usePinInput,
   usePinInputField,
   UsePinInputProps,
-  PinInputProvider,
-  PinInputDescendantsProvider,
 } from "../src"
 
 function Input(props: any) {
@@ -78,9 +77,9 @@ test("filling out all inputs calls the complete callback", async () => {
   const onComplete = jest.fn()
   const utils = render(<Component onComplete={onComplete} />)
 
-  await act(() => userEvent.type(utils.getByTestId("1"), "1"))
-  await act(() => userEvent.type(utils.getByTestId("2"), "2"))
-  await act(() => userEvent.type(utils.getByTestId("3"), "3"))
+  await userEvent.type(utils.getByTestId("1"), "1")
+  await userEvent.type(utils.getByTestId("2"), "2")
+  await userEvent.type(utils.getByTestId("3"), "3")
 
   expect(onComplete).toHaveBeenCalledWith("123")
 })
@@ -89,8 +88,8 @@ test("can clear all input", async () => {
   const utils = render(<Component />)
 
   // fill out the first two
-  await act(() => userEvent.type(utils.getByTestId("1"), "1"))
-  await act(() => userEvent.type(utils.getByTestId("2"), "2"))
+  await userEvent.type(utils.getByTestId("1"), "1")
+  await userEvent.type(utils.getByTestId("2"), "2")
 
   // click the clear button
   fireEvent.click(utils.getByRole("button"))
@@ -121,18 +120,18 @@ test("Replacing last input calls onComplete correctly", async () => {
   const onComplete = jest.fn()
   render(<Component onComplete={onComplete} />)
 
-  await act(() => userEvent.type(screen.getByTestId("1"), "1"))
-  await act(() => userEvent.type(screen.getByTestId("2"), "2"))
-  await act(() => userEvent.type(screen.getByTestId("3"), "3"))
+  await userEvent.type(screen.getByTestId("1"), "1")
+  await userEvent.type(screen.getByTestId("2"), "2")
+  await userEvent.type(screen.getByTestId("3"), "3")
 
   expect(onComplete).toHaveBeenCalledWith("123")
   onComplete.mockClear()
 
-  await act(() => userEvent.clear(screen.getByTestId("3")))
+  await userEvent.clear(screen.getByTestId("3"))
 
   expect(onComplete).not.toHaveBeenCalledWith("123")
 
-  await act(() => userEvent.type(screen.getByTestId("3"), "3"))
+  await userEvent.type(screen.getByTestId("3"), "3")
 
   expect(onComplete).toHaveBeenCalledWith("123")
 })

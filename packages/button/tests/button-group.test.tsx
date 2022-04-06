@@ -1,6 +1,6 @@
-import { testA11y, render } from "@chakra-ui/test-utils"
+import { testA11y, render, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { screen } from "@testing-library/react"
+
 import { Button, ButtonGroup } from "../src"
 
 it("passes a11y test", async () => {

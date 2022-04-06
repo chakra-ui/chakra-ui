@@ -1,6 +1,5 @@
 import * as React from "react"
-import { screen } from "@testing-library/react"
-import { act, userEvent, render } from "@chakra-ui/test-utils"
+import { render, screen, userEvent } from "@chakra-ui/test-utils"
 import { DarkMode } from "../src"
 import {
   DummyComponent,
@@ -52,7 +51,7 @@ describe("<DarkMode />", () => {
 
     expect(button).toHaveTextContent("dark")
 
-    await act(() => userEvent.click(button))
+    await userEvent.click(button)
 
     expect(getColorModeButton()).toHaveTextContent("dark")
   })
@@ -60,8 +59,8 @@ describe("<DarkMode />", () => {
   test("memoized component renders once", async () => {
     render(<MemoTest />)
 
-    await act(() => userEvent.click(screen.getByText("Rerender")))
-    await act(() => userEvent.click(screen.getByText("Rerender")))
+    await userEvent.click(screen.getByText("Rerender"))
+    await userEvent.click(screen.getByText("Rerender"))
 
     expect(screen.getByTestId("rendered")).toHaveTextContent("1")
   })
@@ -69,8 +68,8 @@ describe("<DarkMode />", () => {
   test("non memoized component renders multiple", async () => {
     render(<NoMemoTest />)
 
-    await act(() => userEvent.click(screen.getByText("Rerender")))
-    await act(() => userEvent.click(screen.getByText("Rerender")))
+    await userEvent.click(screen.getByText("Rerender"))
+    await userEvent.click(screen.getByText("Rerender"))
 
     expect(screen.getByTestId("rendered")).toHaveTextContent("3")
   })

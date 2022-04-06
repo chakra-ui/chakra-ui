@@ -1,6 +1,6 @@
-import { render } from "@chakra-ui/test-utils"
+import { render, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { screen } from "@testing-library/react"
+
 import { Tag, TagCloseButton, TagLabel } from "../src"
 
 test("Tag (only) renders correctly", () => {

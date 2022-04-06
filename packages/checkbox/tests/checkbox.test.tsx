@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import Icon from "@chakra-ui/icon"
 import {
-  act,
   fireEvent,
   render,
   renderHook,
@@ -16,8 +15,8 @@ import {
   CheckboxGroup,
   CheckboxGroupProps,
   useCheckbox,
-  UseCheckboxProps,
   useCheckboxGroup,
+  UseCheckboxProps,
 } from "../src"
 
 it("passes a11y test", async () => {
@@ -234,7 +233,7 @@ test("uncontrolled CheckboxGroup handles change", async () => {
     </CheckboxGroup>,
   )
 
-  await act(() => userEvent.click(screen.getByLabelText("B")))
+  await userEvent.click(screen.getByLabelText("B"))
 
   expect(onChange).toHaveBeenCalledTimes(1)
   expect(onChange).toHaveBeenCalledWith(["A", "C", "B"])

@@ -75,7 +75,7 @@ test("uncontrolled: handles callbacks correctly", async () => {
   fireEvent.focus(preview)
 
   // calls `onChange` with input on change
-  await act(() => userEvent.type(input, "World"))
+  await userEvent.type(input, "World")
   expect(onChange).toHaveBeenCalledWith("World")
 
   // calls `onSubmit` with previous value when "enter" pressed after cancelling
@@ -136,7 +136,7 @@ test("controlled: handles callbacks correctly", async () => {
   fireEvent.focus(preview)
 
   // update the input value
-  await act(() => userEvent.type(input, "Rasengan"))
+  await userEvent.type(input, "Rasengan")
 
   // press `Escape`
   fireEvent.keyDown(input, { key: "Escape" })
@@ -170,7 +170,7 @@ test("handles preview and input callbacks", async () => {
   expect(onFocus).toHaveBeenCalled()
 
   // calls `onChange` when input is changed
-  await act(() => userEvent.type(input, "World"))
+  await userEvent.type(input, "World")
   expect(onChange).toHaveBeenCalled()
 
   // calls `onKeyDown` when key is pressed in input
@@ -283,7 +283,7 @@ test.each([
       fireEvent.focus(input)
     }
     if (text) {
-      await act(() => userEvent.type(input, text))
+      await userEvent.type(input, text)
     }
     fireEvent.keyDown(input, { key: "Escape" })
 

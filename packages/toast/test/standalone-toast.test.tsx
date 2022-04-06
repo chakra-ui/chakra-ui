@@ -1,6 +1,5 @@
 import * as React from "react"
-import { render } from "@chakra-ui/test-utils"
-import { act } from "@testing-library/react"
+import { act, render, screen } from "@chakra-ui/test-utils"
 import { createStandaloneToast } from "../src"
 
 describe("Standalone Toast", () => {

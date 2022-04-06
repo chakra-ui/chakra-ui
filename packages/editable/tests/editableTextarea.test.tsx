@@ -55,7 +55,7 @@ test("uncontrolled: handles callbacks correctly", async () => {
   expect(onEdit).toHaveBeenCalled()
 
   // calls `onChange` with input on change
-  await act(() => userEvent.type(textarea, "World"))
+  await userEvent.type(textarea, "World")
   expect(onChange).toHaveBeenCalledWith("Hello World")
 
   // get new line on user press "Enter"
@@ -114,7 +114,7 @@ test("controlled: handles callbacks correctly", async () => {
   expect(onEdit).toHaveBeenCalled()
 
   // calls `onChange` with input on change
-  await act(() => userEvent.type(textarea, "World"))
+  await userEvent.type(textarea, "World")
   expect(onChange).toHaveBeenCalledWith("Hello World")
 
   // do not calls `onSubmit`
@@ -166,7 +166,7 @@ test("handles preview and textarea callbacks", async () => {
   expect(onFocus).toHaveBeenCalled()
 
   // calls `onChange` when input is changed
-  await act(() => userEvent.type(textarea, "World"))
+  await userEvent.type(textarea, "World")
   expect(onChange).toHaveBeenCalled()
 
   // calls `onKeyDown` when key is pressed in input
@@ -259,7 +259,7 @@ test.each([
       fireEvent.focus(input)
     }
     if (text) {
-      await act(() => userEvent.type(input, text))
+      await userEvent.type(input, text)
     }
     fireEvent.keyDown(input, { key: "Escape" })
 

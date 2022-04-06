@@ -1,11 +1,5 @@
 import { chakra, forwardRef } from "@chakra-ui/system"
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  userEvent,
-} from "@chakra-ui/test-utils"
+import { fireEvent, render, screen, userEvent } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { useClickable } from "../src"
 
@@ -64,7 +58,7 @@ test("should click correctly", async () => {
   const clickable = screen.getByText("clickable")
 
   expect(fn).toHaveBeenCalledTimes(0)
-  await act(() => userEvent.click(clickable))
+  await userEvent.click(clickable)
   expect(fn).toHaveBeenCalledTimes(1)
 })
 
@@ -78,7 +72,7 @@ test("should not click if disabled", async () => {
   )
 
   const clickable = screen.getByText("clickable")
-  await act(() => userEvent.click(clickable))
+  await userEvent.click(clickable)
   expect(fn).toHaveBeenCalledTimes(0)
 })
 

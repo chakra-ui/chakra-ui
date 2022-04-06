@@ -1,7 +1,6 @@
 import { extendTheme, ThemeProvider } from "@chakra-ui/react"
-import { press, render, testA11y } from "@chakra-ui/test-utils"
+import { press, render, testA11y, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { screen } from "@chakra-ui/test-utils"
 import styled from "@emotion/styled"
 import {
   Slider,

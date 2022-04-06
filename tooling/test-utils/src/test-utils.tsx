@@ -11,6 +11,7 @@ import * as React from "react"
 import { toHaveNoViolations, axe } from "jest-axe"
 import { createSerializer } from "@emotion/jest"
 import { RunOptions } from "axe-core"
+import userEvent from "@testing-library/user-event"
 
 export {
   act as invokeSSR,
@@ -63,7 +64,7 @@ export interface TestOptions extends Omit<RenderOptions, "wrapper"> {
  * Custom render for @testing-library/react
  *
  * @see https://testing-library.com/docs/react-testing-library/setup#custom-render
- * @param component the component under test
+ * @param ui the component under test
  * @param options customized test options
  */
 export const render = (
@@ -76,6 +77,32 @@ export const render = (
     </ChakraProvider>,
     options,
   )
+
+type SetupUserEvent = typeof userEvent["setup"]
+export type UserEvent = ReturnType<SetupUserEvent>
+export type UserEventOptions = Parameters<SetupUserEvent>[0]
+
+export interface RenderUserEventOptions extends TestOptions {
+  userEventOptions?: UserEventOptions
+}
+
+/**
+ * Custom render with userEvent for @testing-library/react
+ *
+ * @see https://testing-library.com/docs/user-event/intro#writing-tests-with-userevent
+ * @param ui the component under test
+ * @param options {RenderUserEventOptions} customized test options
+ */
+export const renderInteractive = (
+  ui: UI,
+  { userEventOptions, ...options }: RenderUserEventOptions = {},
+): {
+  user: UserEvent
+  result: RenderResult
+} => ({
+  user: userEvent.setup(userEventOptions),
+  result: render(ui, options),
+})
 
 export { rtlRender }
 export { axe }
