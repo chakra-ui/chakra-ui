@@ -54,7 +54,6 @@ const variants: Variants<CollapseOptions> = {
     delay,
   }) => ({
     ...(animateOpacity && { opacity: isNumeric(startingHeight) ? 1 : 0 }),
-    overflow: "hidden",
     height: startingHeight,
     transitionEnd: transitionEnd?.exit,
     transition:
@@ -123,7 +122,6 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
       animateOpacity,
       transition: !mounted ? { enter: { duration: 0 } } : transition,
       transitionEnd: mergeWith(transitionEnd, {
-        enter: { overflow: "initial" },
         exit: unmountOnExit
           ? undefined
           : {
