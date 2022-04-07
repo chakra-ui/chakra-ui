@@ -1,5 +1,24 @@
 # Change Log
 
+## 1.8.11
+
+### Patch Changes
+
+- [#5782](https://github.com/chakra-ui/chakra-ui/pull/5782)
+  [`a70077ea4`](https://github.com/chakra-ui/chakra-ui/commit/a70077ea4fe64a4ab58a7029c7a62f55684e8241)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  menu items cannot type `type=submit`
+
+* [#5827](https://github.com/chakra-ui/chakra-ui/pull/5827)
+  [`c220af152`](https://github.com/chakra-ui/chakra-ui/commit/c220af15274377575d03900f0baaa1c0a1400778)
+  Thanks [@Jason-Hendry](https://github.com/Jason-Hendry)! - Fix issue where
+  Create React App template fails with newer versions of `framer-motion`
+* Updated dependencies
+  [[`a3b04dc1a`](https://github.com/chakra-ui/chakra-ui/commit/a3b04dc1ae49ad0d804bddc17fdca3afa218665c),
+  [`aaadcd0ed`](https://github.com/chakra-ui/chakra-ui/commit/aaadcd0ed9388417b0b647d75055ede0613d3495)]:
+  - @chakra-ui/hooks@1.9.1
+  - @chakra-ui/transition@1.4.8
+
 ## 1.8.10
 
 ### Patch Changes

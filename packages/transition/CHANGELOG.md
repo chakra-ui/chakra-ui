@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.4.8
+
+### Patch Changes
+
+- [#5783](https://github.com/chakra-ui/chakra-ui/pull/5783)
+  [`aaadcd0ed`](https://github.com/chakra-ui/chakra-ui/commit/aaadcd0ed9388417b0b647d75055ede0613d3495)
+  Thanks [@cadejscroggins](https://github.com/cadejscroggins)! - Fix
+  intermittent Collapse component overflow initial/hidden issue
+
 ## 1.4.7
 
 ### Patch Changes

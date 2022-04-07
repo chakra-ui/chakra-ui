@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.14.1
+
+### Patch Changes
+
+- [#5790](https://github.com/chakra-ui/chakra-ui/pull/5790)
+  [`b19c89270`](https://github.com/chakra-ui/chakra-ui/commit/b19c892702f029c078f8d5bfaf0f89b573c6cd90)
+  Thanks [@ugogo](https://github.com/ugogo)! - Fix radio cursor when disabled
+
 ## 1.14.0
 
 ### Minor Changes
