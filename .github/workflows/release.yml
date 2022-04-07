@@ -97,7 +97,4 @@ jobs:
       - name: Send a dispatch event to chakra-ui-docs
         if: steps.changesets.outputs.published == 'true'
         run: |
-          curl -X POST -u "segunadebayo:${{ secrets.SAGE_PAT }}"
-          -H "Accept: application/vnd.github.everest-preview+json"
-          -H "Content-Type: application/json" https://api.github.com/repos/chakra-ui/chakra-ui-docs/dispatches
-          --data '{"event_type": "build_application"}'
+          curl -X POST -u "segunadebayo:${{ secrets.SAGE_PAT }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/chakra-ui/chakra-ui-docs/dispatches --data '{"event_type": "build_application"}'
