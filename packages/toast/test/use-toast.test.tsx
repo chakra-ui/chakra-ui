@@ -1,63 +1,77 @@
 import {
-  invoke,
-  renderHook,
+  act,
+  render,
   screen,
+  userEvent,
   waitForElementToBeRemoved,
 } from "@chakra-ui/test-utils"
-import { toast, useToast } from "../src"
+import * as React from "react"
+import { ToastProvider, useToast } from "../src"
 
-beforeEach(async () => {
-  // close all toasts before each test and wait for them to be removed
-  toast.closeAll()
-
-  const toasts = screen.queryAllByRole("listitem")
-
-  await Promise.all(toasts.map((toasts) => waitForElementToBeRemoved(toasts)))
-})
-
-test("can accept default options", async () => {
-  const title = "Yay!"
-  const description = "Something awesome happened"
-
-  const { result } = renderHook(() =>
-    useToast({
-      title,
-      description,
-    }),
-  )
-
-  invoke(() => {
-    result.current()
+describe("useToast", () => {
+  beforeEach(async () => {
+    const toasts = screen.queryAllByRole("listitem")
+    await Promise.all(toasts.map((toasts) => waitForElementToBeRemoved(toasts)))
   })
 
-  const allByTitle = await screen.findAllByRole("alert", { name: title })
-  const allByDescription = await screen.findAllByText(description)
+  it("should accept default options", async () => {
+    const title = "Yay!"
 
-  expect(allByTitle).toHaveLength(1)
-  expect(allByDescription).toHaveLength(1)
-})
+    const description = "Something awesome happened"
 
-test("can override default options", async () => {
-  const defaultTitle = "Yay!"
-  const defaultDescription = "Something awesome happened"
+    const TestComponent = () => {
+      const toast = useToast()
+      return (
+        <button onClick={() => toast({ title, description })}>Toast</button>
+      )
+    }
 
-  const { result } = renderHook(() =>
-    useToast({
-      title: defaultTitle,
-      description: defaultDescription,
-    }),
-  )
+    render(
+      <ToastProvider>
+        <TestComponent />
+      </ToastProvider>,
+    )
 
-  const title = "Hooray!"
-  const description = "Something splendid happened"
+    const button = await screen.findByText("Toast")
+    await act(async () => userEvent.click(button))
 
-  invoke(() => {
-    result.current({ title, description })
+    const allByTitle = await screen.findAllByRole("alert", { name: title })
+    const allByDescription = await screen.findAllByText(description)
+
+    expect(allByTitle).toHaveLength(1)
+    expect(allByDescription).toHaveLength(1)
   })
 
-  const allByTitle = await screen.findAllByRole("alert", { name: title })
-  const allByDescription = await screen.findAllByText(description)
+  it("should override default options", async () => {
+    const defaultTitle = "Yay!"
+    const defaultDescription = "Something awesome happened"
 
-  expect(allByTitle).toHaveLength(1)
-  expect(allByDescription).toHaveLength(1)
+    const title = "Hooray!"
+    const description = "Something splendid happened"
+
+    const TestComponent = () => {
+      const toast = useToast({
+        title: defaultTitle,
+        description: defaultDescription,
+      })
+      return (
+        <button onClick={() => toast({ title, description })}>Toast</button>
+      )
+    }
+
+    render(
+      <ToastProvider>
+        <TestComponent />
+      </ToastProvider>,
+    )
+
+    const button = await screen.findByText("Toast")
+    await act(async () => userEvent.click(button))
+
+    const allByTitle = await screen.findAllByRole("alert", { name: title })
+    const allByDescription = await screen.findAllByText(description)
+
+    expect(allByTitle).toHaveLength(1)
+    expect(allByDescription).toHaveLength(1)
+  })
 })

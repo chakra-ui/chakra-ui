@@ -1,3 +1,4 @@
+import type * as React from "react"
 import { ToastPosition } from "./toast.placement"
 
 export interface RenderProps {
