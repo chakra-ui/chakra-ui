@@ -8,7 +8,6 @@ on:
       - "packages/**"
     branches:
       - main
-      - next
 
 jobs:
   release:
