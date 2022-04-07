@@ -74,5 +74,5 @@
     "@chakra-ui/storybook-addon": "1.0.3",
     "@chakra-ui/test-utils": "1.1.14"
   },
-  "changesets": []
+  "changesets": ["new-rivers-fail"]
 }

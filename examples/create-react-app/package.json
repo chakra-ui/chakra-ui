@@ -1,6 +1,6 @@
 {
   "name": "create-react-app-ts",
-  "version": "1.1.15",
+  "version": "1.1.16-next.0",
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "*",

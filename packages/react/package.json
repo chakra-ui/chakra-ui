@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react",
-  "version": "1.8.8",
+  "version": "2.0.0-next.0",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "dist/chakra-ui-react.cjs.js",
   "module": "dist/chakra-ui-react.esm.js",
@@ -56,7 +56,7 @@
     "@chakra-ui/tag": "1.2.7",
     "@chakra-ui/textarea": "1.2.11",
     "@chakra-ui/theme": "1.14.1",
-    "@chakra-ui/toast": "1.5.9",
+    "@chakra-ui/toast": "2.0.0-next.0",
     "@chakra-ui/tooltip": "1.5.1",
     "@chakra-ui/transition": "1.4.8",
     "@chakra-ui/utils": "1.10.4",
