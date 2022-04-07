@@ -1,5 +1,7 @@
 ## 06-04-2022
 
+`@chakra-ui/react@1.8.8`
+
 **Menu** `v1.8.11`
 
 - Fix issue where menu items cannot type `type=submit`
