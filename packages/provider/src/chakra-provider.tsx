@@ -14,7 +14,6 @@ import {
 } from "@chakra-ui/react-env"
 import * as React from "react"
 import { IdProvider } from "@chakra-ui/hooks"
-import { ToastProvider } from "@chakra-ui/toast"
 
 export interface ChakraProviderProps
   extends Pick<ThemeProviderProps, "cssVarsRoot"> {
@@ -75,7 +74,7 @@ export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
 
   const _children = (
     <EnvironmentProvider environment={environment}>
-      <ToastProvider>{children}</ToastProvider>
+      {children}
     </EnvironmentProvider>
   )
 

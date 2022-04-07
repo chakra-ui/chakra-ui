@@ -4,8 +4,7 @@ import {
   ChakraProviderProps as BaseChakraProviderProps,
 } from "@chakra-ui/provider"
 import { theme } from "@chakra-ui/theme"
-import { ToastProvider } from "@chakra-ui/toast"
-import { ToastProviderProps } from "@chakra-ui/toast/src"
+import { ToastProvider, ToastProviderProps } from "@chakra-ui/toast"
 
 export interface ChakraProviderProps extends BaseChakraProviderProps {
   /**
