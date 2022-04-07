@@ -10,6 +10,62 @@ experience.
 
 <!-- CHANGELOG:INSERT -->
 
+## 06-04-2022
+
+`@chakra-ui/react@1.8.8`
+
+**Menu** `v1.8.11`
+
+- Fix issue where menu items cannot type `type=submit`
+- Fix issue where Create React App template fails with newer versions of
+  `framer-motion`
+
+**Editable** `v1.4.2`
+
+- Fix issue where editable preview remains interactive even when
+  `isDisabled: true` is passed.
+
+**Form Control** `v1.6.0`
+
+- Introduced `optionalIndicator` for `FormLabel`
+
+Similar to the `RequiredIndicator` the `OptionalIndicator` signalizes when a
+field is optional.
+
+**Hooks** `v1.9.1`
+
+- Improve stability of `useBoolean` hook to ensure setter object reference stays
+  the same
+
+**Checkbox** `v1.7.1`
+
+- Fix issue where Create React App template fails with newer versions of
+  `framer-motion`
+- Fix radio cursor when disabled
+
+**Layout** `v1.8.0`
+
+- Add support for vertical and horizontal spacing options in the Wrap component.
+
+```jsx live=false
+<Wrap spacingX="2" spacingY="4">
+  <Box />
+  <Box />
+  <Box />
+  <Box />
+</Wrap>
+```
+
+> Falls back to the `spacing` prop for by default
+
+**Theme** `v1.14.1`
+
+- Fix radio cursor when disabled
+
+**Transition** `v1.4.8`
+
+- Fix intermittent Collapse component overflow initial/hidden issue
+
 ## 25-03-2022
 
 **Tabs** `v1.6.9`
