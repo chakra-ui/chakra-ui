@@ -1,52 +1,53 @@
-## 25-03-2022
+## 06-04-2022
 
-**Tabs** `v1.6.9`
+**Menu** `v1.8.11`
 
-- Add height & width to the TabIndicator transition properties
+- Fix issue where menu items cannot type `type=submit`
+- Fix issue where Create React App template fails with newer versions of
+  `framer-motion`
 
-**Checkbox** `v1.7.0`
+**Editable** `v1.4.2`
 
-- Add support for passing `inputProps` to underlying input element
+- Fix issue where editable preview remains interactive even when
+  `isDisabled: true` is passed.
 
-**Radio** `v1.5.0`
+**Form Control** `v1.6.0`
 
-- Add support for passing `inputProps` to underlying input element
-- Add type for state returned by use-radio hook
+- Introduced `optionalIndicator` for `FormLabel`
 
-**Editable** `v1.4.1`
+Similar to the `RequiredIndicator` the `OptionalIndicator` signalizes when a
+field is optional.
 
-- Call `setPrevValue` `onFocus` to avoid an outdated prev value when the field is
-  controlled
+**Hooks** `v1.9.1`
 
-**Layout** `v1.7.8`
+- Improve stability of `useBoolean` hook to ensure setter object reference stays
+  the same
 
-- Fix buttons zIndex within LinkBox and usage of LinkOverlay
-- Remove `noreferrer` attribute from link component
+**Checkbox** `v1.7.1`
 
-**Styled System** `v1.19.0`
+- Fix issue where Create React App template fails with newer versions of
+  `framer-motion`
+- Fix radio cursor when disabled
 
-- Updated `_dark` and `_light` pseudo selectors to allow semantic tokens to change
-  with the `data-theme` attributes.
-- Added `number` type for text underline offset of text decoration props
+**Layout** `v1.8.0`
 
-**Toast** `v1.5.8`
+- Add support for vertical and horizontal spacing options in the Wrap component.
 
-- use default options as well when providing options to useToast
+```jsx live=false
+<Wrap spacingX="2" spacingY="4">
+  <Box />
+  <Box />
+  <Box />
+  <Box />
+</Wrap>
+```
 
-**Hooks** `v1.9.0`
+> Falls back to the `spacing` prop for by default
 
-- Control whether Tooltip can be closed with Esc key
+**Theme** `v1.14.1`
 
-**Tooltip** `v1.5.0`
+- Fix radio cursor when disabled
 
-- Control whether Tooltip can be closed with Esc key
+**Transition** `v1.4.8`
 
-**System** `v1.12.0`
-
-- Added `[data-theme]` to the CSS variables root selector. This allows the
-  semantic tokens to change according to `data-theme="dark"` and
-  `data-theme="light"` DOM element attributes.
-
-**Modal** `v1.11.0`
-
-- Add `onCloseComplete` prop to Modal which is called when all DOM nodes of the `Modal` are removed.
+- Fix intermittent Collapse component overflow initial/hidden issue
