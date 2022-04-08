@@ -24,14 +24,12 @@ interface NumberInputContext extends Omit<UseNumberInputReturn, "htmlProps"> {}
 /**
  * React context used to communicate between components
  */
-const [
-  NumberInputProvider,
-  useNumberInputContext,
-] = createContext<NumberInputContext>({
-  name: "NumberInputContext",
-  errorMessage:
-    "useNumberInputContext: `context` is undefined. Seems you forgot to wrap number-input's components within <NumberInput />",
-})
+const [NumberInputProvider, useNumberInputContext] =
+  createContext<NumberInputContext>({
+    name: "NumberInputContext",
+    errorMessage:
+      "useNumberInputContext: `context` is undefined. Seems you forgot to wrap number-input's components within <NumberInput />",
+  })
 
 interface InputOptions {
   /**
@@ -46,14 +44,6 @@ interface InputOptions {
    * errorBorderColor = "red.500"
    */
   errorBorderColor?: string
-  /**
-   * If `true`, the input element will span the full width of its parent
-   *
-   * @deprecated
-   * This component defaults to 100% width,
-   * please use the props `maxWidth` or `width` to configure
-   */
-  isFullWidth?: boolean
 }
 
 export interface NumberInputProps

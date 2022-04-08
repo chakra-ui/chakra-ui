@@ -10,12 +10,4 @@ const radii = {
   full: "9999px",
 }
 
-/**
- * @deprecated
- * You can derive the Radii type from the DefaultChakraTheme
- *
- * type Radii = DefaultChakraTheme['radii']
- */
-export type Radii = typeof radii
-
 export default radii

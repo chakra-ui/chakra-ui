@@ -135,12 +135,3 @@ test("Should be disabled", () => {
   const button = getByRole("button")
   expect(button).toBeDisabled()
 })
-
-test("Should take up full width", () => {
-  const { getByRole } = render(
-    <Button isFullWidth data-testid="btn">
-      i'm a big button
-    </Button>,
-  )
-  expect(getByRole("button")).toHaveStyle("width: 100%")
-})

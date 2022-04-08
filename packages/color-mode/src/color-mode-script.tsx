@@ -31,10 +31,6 @@ export function setScript(initialValue: ConfigColorMode) {
     /**
      * Keep in sync with `root.set() {@file ./color-mode.utils.ts}
      */
-    document.documentElement.style.setProperty(
-      "--chakra-ui-color-mode",
-      colorMode,
-    )
     document.documentElement.setAttribute("data-theme", colorMode)
   }
 }

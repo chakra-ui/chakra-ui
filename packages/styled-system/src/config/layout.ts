@@ -16,7 +16,6 @@ export const layout: Config = {
   maxInlineSize: t.sizes("maxInlineSize"),
   maxHeight: t.sizes("maxHeight"),
   maxBlockSize: t.sizes("maxBlockSize"),
-  d: t.prop("display"),
   overflow: true,
   overflowX: true,
   overflowY: true,
@@ -54,11 +53,6 @@ export interface LayoutProps {
    * The CSS `display` property
    */
   display?: Token<CSS.Property.Display>
-  /**
-   * The CSS `display` property
-   * @deprecated - Please use `display` instead
-   */
-  d?: Token<CSS.Property.Display>
   /**
    * The CSS `width` property
    */

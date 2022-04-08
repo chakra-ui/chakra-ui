@@ -23,7 +23,6 @@ export interface GridProps
  */
 export const Grid = forwardRef<GridProps, "div">((props, ref) => {
   const {
-    area,
     templateAreas,
     gap,
     rowGap,
@@ -40,7 +39,6 @@ export const Grid = forwardRef<GridProps, "div">((props, ref) => {
 
   const styles = {
     display: "grid",
-    gridArea: area,
     gridTemplateAreas: templateAreas,
     gridGap: gap,
     gridRowGap: rowGap,
@@ -107,14 +105,6 @@ export interface GridOptions {
    * @type SystemProps["gridTemplateAreas"]
    */
   templateAreas?: SystemProps["gridTemplateAreas"]
-  /**
-   * Shorthand prop for `gridArea`
-   * @type SystemProps["gridArea"]
-   * @deprecated
-   * Use `GridItem` with the `area` prop instead. Will be removed in a future
-   * version.
-   */
-  area?: SystemProps["gridArea"]
   /**
    * Shorthand prop for `gridColumn`
    * @type SystemProps["gridColumn"]
