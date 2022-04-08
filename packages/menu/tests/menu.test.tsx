@@ -9,8 +9,15 @@ import {
 import { Portal } from "@chakra-ui/portal"
 import * as React from "react"
 import { Button } from "@chakra-ui/button"
-import { FaSearch, FaTruck, FaUndoAlt, FaUnlink } from "react-icons/fa"
+import {
+  FaSearch,
+  FaTruck,
+  FaUndoAlt,
+  FaUnlink,
+  FaAngleRight,
+} from "react-icons/fa"
 import { extendTheme, ThemeProvider } from "@chakra-ui/react"
+import { Flex, Spacer } from "@chakra-ui/layout"
 import {
   Menu,
   MenuButton,
@@ -482,4 +489,78 @@ test("can override menu item type", async () => {
   await waitFor(() => expect(submitOption).toHaveFocus())
 
   expect(submitOption).toHaveAttribute("type", "submit")
+})
+
+test("Nested menu", () => {
+  render(
+    <Menu isLazy>
+      {({ onClose: onCloseParent }) => (
+        <>
+          <MenuButton as={Button}>Open menu</MenuButton>
+          <MenuList>
+            <MenuItem>Top item 1</MenuItem>
+            <Menu placement="right-end" isLazy>
+              <MenuButton
+                as={MenuItem}
+                // Required to prevent clicking this from triggering a close event
+                closeOnSelect={false}
+              >
+                <Flex alignItems="center">
+                  Open nested
+                  <Spacer />
+                  <FaAngleRight />
+                </Flex>
+              </MenuButton>
+              <MenuList>
+                {/* Manually wire up children to close the parent menu on select (if desired) */}
+                <MenuItem onClick={() => onCloseParent()}>
+                  Nested item 1
+                </MenuItem>
+                <MenuItem onClick={() => onCloseParent()}>
+                  Nested item 2
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </MenuList>
+        </>
+      )}
+    </Menu>,
+  )
+
+  const button = screen.getByText("Open menu")
+  fireEvent.click(button)
+
+  // Submenu initially closed
+  expect(screen.getByText("Open nested")).toBeInTheDocument()
+  expect(screen.queryByText("Nested item 1")).toBeNull()
+  expect(screen.queryByText("Nested item 2")).toBeNull()
+
+  // Open submenu
+  fireEvent.click(screen.getByText("Open nested"))
+  expect(screen.getByText("Nested item 1")).toBeInTheDocument()
+  expect(screen.getByText("Nested item 2")).toBeInTheDocument()
+
+  // Clicking menu again closes submenu
+  fireEvent.click(screen.getByText("Open nested"))
+  expect(screen.queryByText("Nested item 1")).toBeNull()
+
+  // Reopen submenu
+  fireEvent.click(screen.getByText("Open nested"))
+  expect(screen.getByText("Nested item 1")).toBeInTheDocument()
+
+  // With onClick={() => onCloseParent()}, parents get closed
+  fireEvent.click(screen.getByText("Nested item 1"))
+  expect(screen.queryByText("Open nested")).toBeNull()
+
+  // Reopen menu and nested menu
+  fireEvent.click(button)
+  fireEvent.click(screen.getByText("Open nested"))
+  expect(screen.getByText("Nested item 1")).toBeInTheDocument()
+
+  // Click outside closes both menus
+  // useOutsideClick works by listening to mouseDown then mouseUp, not click
+  fireEvent.mouseDown(document.body)
+  fireEvent.mouseUp(document.body)
+  expect(screen.queryByText("Open nested")).toBeNull()
+  expect(screen.queryByText("Nested item 1")).toBeNull()
 })

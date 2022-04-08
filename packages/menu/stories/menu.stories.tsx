@@ -5,6 +5,7 @@ import { chakra } from "@chakra-ui/system"
 import { Modal, ModalBody, ModalContent, ModalOverlay } from "@chakra-ui/modal"
 import * as React from "react"
 import {
+  FaAngleRight,
   FaChevronDown,
   FaSearch,
   FaTruck,
@@ -22,6 +23,7 @@ import {
   MenuOptionGroup,
   useMenuItem,
 } from "../src"
+import { Flex, Spacer } from "@chakra-ui/layout"
 
 const words = [
   "About Visual Studio Code",
@@ -548,5 +550,51 @@ export const WithoutMenuButton = () => {
       </Modal>
       <p>Press Cmd + K to open</p>
     </>
+  )
+}
+
+export const WithNestedMenu = () => {
+  return (
+    <Menu isLazy>
+      {({ onClose: onCloseParent }) => (
+        <>
+          <MenuButton
+            as={Button}
+            variant="solid"
+            size="sm"
+            rightIcon={<FaUnlink />}
+          >
+            Open Wakanda menu
+          </MenuButton>
+          <MenuList>
+            <MenuItem>Top item 1</MenuItem>
+            {/* Menu placement to put submenu to the right */}
+            <Menu placement="right-end" isLazy>
+              <MenuButton
+                as={MenuItem}
+                // Required to prevent clicking this from triggering a close event
+                closeOnSelect={false}
+              >
+                <Flex alignItems="center">
+                  Open nested
+                  <Spacer />
+                  <FaAngleRight />
+                </Flex>
+              </MenuButton>
+              <MenuList>
+                {/* Manually wire up children to close the parent menu on select (if desired) */}
+                <MenuItem onClick={() => onCloseParent()}>
+                  Nested item 1
+                </MenuItem>
+                <MenuItem onClick={() => onCloseParent()}>
+                  Nested item 2
+                </MenuItem>
+              </MenuList>
+            </Menu>
+            <MenuItem>Top Item 2</MenuItem>
+          </MenuList>
+        </>
+      )}
+    </Menu>
   )
 }
