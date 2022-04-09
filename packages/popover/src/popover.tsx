@@ -76,11 +76,21 @@ if (__DEV__) {
   PopoverAnchor.displayName = "PopoverAnchor"
 }
 
+export interface PopoverTriggerProps {
+  /**
+   * The React child to use as the
+   * trigger for the popover
+   */
+  children: React.ReactChild
+}
+
 /**
  * PopoverTrigger opens the popover's content. It must be an interactive element
  * such as `button` or `a`.
  */
-export const PopoverTrigger: React.FC = (props) => {
+export const PopoverTrigger: React.FC<
+  React.PropsWithChildren<PopoverTriggerProps>
+> = (props) => {
   // enforce a single child
   const child: any = React.Children.only(props.children)
   const { getTriggerProps } = usePopoverContext()
