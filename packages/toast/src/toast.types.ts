@@ -1,11 +1,13 @@
 import type * as React from "react"
-import { ToastPosition } from "./toast.placement"
+import type { CSSObject } from "@chakra-ui/system"
+import type { ToastPosition } from "./toast.placement"
 
 export interface RenderProps {
   /**
    * The auto-generated or passed `id` of the toast
    */
   id: ToastId
+
   /**
    * Function to close the toast
    */
@@ -34,10 +36,12 @@ export interface ToastOptions {
    * The status of the toast's alert component.
    */
   status: Status
+
   /**
    * Function that removes the toast from manager's state.
    */
   onRequestRemove(): void
+
   /**
    * Whether a toast is currently in view or not
    */
@@ -46,10 +50,12 @@ export interface ToastOptions {
    * The position of the toast
    */
   position: ToastPosition
+
   /**
    * Callback function to run side effects after the toast has closed.
    */
   onCloseComplete?(): void
+
   /**
    * Internally used to queue closing a toast. Should probably not be used by
    * anyone else, but documented regardless.
@@ -58,7 +64,7 @@ export interface ToastOptions {
   /**
    * Optional style overrides for the toast component.
    */
-  containerStyle?: React.CSSProperties
+  containerStyle?: CSSObject
 }
 
 export type ToastState = {
@@ -72,3 +78,5 @@ export type UpdateFn = (state: ToastState) => void
 export type CloseAllToastsOptions = {
   positions?: ToastPosition[]
 }
+
+export {}

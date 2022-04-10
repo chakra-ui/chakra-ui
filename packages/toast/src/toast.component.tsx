@@ -1,8 +1,8 @@
-import { useTimeout, useUpdateEffect } from "@chakra-ui/hooks"
-import { __DEV__, isFunction } from "@chakra-ui/utils"
-import ReachAlert from "@reach/alert"
-import { motion, useIsPresent, Variants } from "framer-motion"
 import * as React from "react"
+import { useTimeout, useUpdateEffect } from "@chakra-ui/hooks"
+import { __DEV__, runIfFn } from "@chakra-ui/utils"
+import { motion, useIsPresent, Variants } from "framer-motion"
+import { chakra } from "@chakra-ui/system"
 import type { ToastOptions } from "./toast.types"
 import { getToastStyle } from "./toast.utils"
 import { ToastProviderProps } from "./toast.provider"
@@ -45,7 +45,7 @@ export interface ToastComponentProps
   extends ToastOptions,
     Pick<ToastProviderProps, "motionVariants" | "toastSpacing"> {}
 
-export const ToastComponent: React.FC<ToastComponentProps> = (props) => {
+export const ToastComponent = React.memo((props: ToastComponentProps) => {
   const {
     id,
     message,
@@ -54,13 +54,12 @@ export const ToastComponent: React.FC<ToastComponentProps> = (props) => {
     requestClose = false,
     position = "bottom",
     duration = 5000,
-    containerStyle = {},
+    containerStyle,
     motionVariants = toastMotionVariants,
     toastSpacing = "0.5rem",
   } = props
 
   const [delay, setDelay] = React.useState(duration)
-
   const isPresent = useIsPresent()
 
   useUpdateEffect(() => {
@@ -88,7 +87,18 @@ export const ToastComponent: React.FC<ToastComponentProps> = (props) => {
 
   useTimeout(close, delay)
 
-  const style = React.useMemo(() => getToastStyle(position), [position])
+  const containerStyles = React.useMemo(
+    () => ({
+      pointerEvents: "auto",
+      maxWidth: 560,
+      minWidth: 300,
+      margin: toastSpacing,
+      ...containerStyle,
+    }),
+    [containerStyle, toastSpacing],
+  )
+
+  const toastStyle = React.useMemo(() => getToastStyle(position), [position])
 
   return (
     <motion.li
@@ -101,23 +111,20 @@ export const ToastComponent: React.FC<ToastComponentProps> = (props) => {
       onHoverStart={onMouseEnter}
       onHoverEnd={onMouseLeave}
       custom={{ position }}
-      style={style}
+      style={toastStyle}
     >
-      <ReachAlert
+      <chakra.div
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
         className="chakra-toast__inner"
-        style={{
-          pointerEvents: "auto",
-          maxWidth: 560,
-          minWidth: 300,
-          margin: toastSpacing,
-          ...containerStyle,
-        }}
+        __css={containerStyles}
       >
-        {isFunction(message) ? message({ id, onClose: close }) : message}
-      </ReachAlert>
+        {runIfFn(message, { id, onClose: close })}
+      </chakra.div>
     </motion.li>
   )
-}
+})
 
 if (__DEV__) {
   ToastComponent.displayName = "ToastComponent"
