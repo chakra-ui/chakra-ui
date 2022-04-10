@@ -255,7 +255,7 @@ test("accepts custom icon", () => {
   }
 
   render(
-    <Checkbox defaultIsChecked icon={<CustomIcon data-testid="custom-icon" />}>
+    <Checkbox defaultChecked icon={<CustomIcon data-testid="custom-icon" />}>
       hello world
     </Checkbox>,
   )

@@ -54,7 +54,7 @@ describe("Radio", () => {
   test("uncontrolled", () => {
     render(
       <>
-        <Radio name="radio" value="1" defaultIsChecked>
+        <Radio name="radio" value="1" defaultChecked>
           One
         </Radio>
         <Radio name="radio" value="2">
