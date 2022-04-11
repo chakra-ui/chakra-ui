@@ -5,7 +5,7 @@ import { getProgressProps, rotate, spin } from "./progress.utils"
 
 interface CircleProps extends HTMLChakraProps<"circle"> {}
 
-const Circle: React.FC<CircleProps> = (props) => (
+const Circle = (props: CircleProps) => (
   <chakra.circle cx={50} cy={50} r={42} fill="transparent" {...props} />
 )
 
@@ -18,7 +18,7 @@ interface ShapeProps extends HTMLChakraProps<"svg"> {
   isIndeterminate?: boolean
 }
 
-const Shape: React.FC<ShapeProps> = (props) => {
+const Shape = (props: ShapeProps) => {
   const { size, isIndeterminate, ...rest } = props
   return (
     <chakra.svg

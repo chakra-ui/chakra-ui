@@ -5,7 +5,7 @@ import {
   screen,
   renderHookSSR,
 } from "@chakra-ui/test-utils"
-import { IdProvider, useId, useIds } from "../src"
+import { useId, useIds } from "../src"
 
 describe("useId", () => {
   test("first time used, should return id 1", () => {
@@ -55,9 +55,7 @@ describe("useId", () => {
     }
 
     test("unique component using, should return id 1", async () => {
-      render(<Target />, {
-        wrapper: ({ children }) => <IdProvider>{children}</IdProvider>,
-      })
+      render(<Target />)
 
       const [id] = screen.queryAllByText(/id: \d+/)
 
@@ -65,9 +63,7 @@ describe("useId", () => {
     })
 
     test("more than one component using the hook, should to increment the id correctly", async () => {
-      render(<MoreComponentsUsingHook />, {
-        wrapper: ({ children }) => <IdProvider>{children}</IdProvider>,
-      })
+      render(<MoreComponentsUsingHook />)
 
       const [firstTarget, secondTarget] = screen.queryAllByText(/id: \d+/)
 
@@ -82,9 +78,6 @@ describe("useId", () => {
           <Target idProp="52" />
           <Target />
         </>,
-        {
-          wrapper: ({ children }) => <IdProvider>{children}</IdProvider>,
-        },
       )
 
       const [firstTarget, secondTarget] = screen.queryAllByText(/id: \d+/)

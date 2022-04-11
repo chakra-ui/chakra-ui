@@ -1,6 +1,10 @@
+import * as React from "react"
 import { isFunction } from "@chakra-ui/utils"
 
-type ReactRef<T> = React.Ref<T> | React.RefObject<T> | React.MutableRefObject<T>
+export type ReactRef<T> =
+  | React.Ref<T>
+  | React.RefObject<T>
+  | React.MutableRefObject<T>
 
 /**
  * Assigns a value to a ref function or object

@@ -66,6 +66,8 @@
     "notify:release": "yarn changelog:write && yarn discord && yarn changelog:commit"
   },
   "resolutions": {
+    "@types/react": "18.0.1",
+    "@types/react-dom": "18.0.0",
     "**/react": "18.0.0",
     "**/react-dom": "18.0.0",
     "@popperjs/core": "2.9.3"
