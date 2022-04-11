@@ -115,7 +115,6 @@ export const ToastComponent = React.memo((props: ToastComponentProps) => {
     >
       <chakra.div
         role="status"
-        aria-live="polite"
         aria-atomic="true"
         className="chakra-toast__inner"
         __css={containerStyles}

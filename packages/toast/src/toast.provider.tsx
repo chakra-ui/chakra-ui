@@ -105,6 +105,8 @@ export const ToastProvider = React.forwardRef<ToastMethods, ToastProviderProps>(
 
       return (
         <ul
+          role="region"
+          aria-live="polite"
           key={position}
           id={`chakra-toast-manager-${position}`}
           style={getStyle(position)}
