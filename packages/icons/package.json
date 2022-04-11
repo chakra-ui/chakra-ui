@@ -34,6 +34,6 @@
   },
   "dependencies": {
     "@chakra-ui/icon": "2.0.5",
-    "@types/react": "^17.0.15"
+    "@types/react": "^18.0.1"
   }
 }

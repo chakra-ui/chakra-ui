@@ -176,7 +176,7 @@ if (__DEV__) {
 /**
  * Locks the color mode to `dark`, without any way to change it.
  */
-export const DarkMode: React.FC = (props) => {
+export const DarkMode = (props: React.PropsWithChildren<{}>) => {
   const context = React.useMemo<ColorModeContextType>(
     () => ({
       colorMode: "dark",
@@ -196,7 +196,7 @@ if (__DEV__) {
 /**
  * Locks the color mode to `light` without any way to change it.
  */
-export const LightMode: React.FC = (props) => {
+export const LightMode = (props: React.PropsWithChildren<{}>) => {
   const context = React.useMemo<ColorModeContextType>(
     () => ({
       colorMode: "light",
