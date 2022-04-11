@@ -448,7 +448,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://shining-cerise-a8f.notion.site/Crispy-4f6d4f0c15d64b9abfdaf73a0dffdf63"><img src="https://avatars.githubusercontent.com/u/29042329?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Lee seung chan</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=heozeop" title="Code">💻</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/pomSense"><img src="https://avatars.githubusercontent.com/u/35952778?v=4?s=64" width="64px;" alt=""/><br /><sub><b>pomSense</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=pomSense" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/pomSense"><img src="https://avatars.githubusercontent.com/u/35952778?v=4?s=64" width="64px;" alt=""/><br /><sub><b>pomSense</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=pomSense" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=pomSense" title="Tests">⚠️</a></td>
   </tr>
 </table>
 
