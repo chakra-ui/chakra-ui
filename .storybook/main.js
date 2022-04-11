@@ -1,7 +1,3 @@
-const path = require("path")
-
-const toPath = (_path) => path.join(process.cwd(), _path)
-
 module.exports = {
   stories: ["../packages/**/stories/*.stories.tsx"],
   addons: [
@@ -10,20 +6,22 @@ module.exports = {
     "@storybook/addon-storysource",
     "storybook-addon-performance/register",
   ],
+  features: {
+    emotionAlias: false,
+  },
   typescript: {
     reactDocgen: false,
   },
-  webpackFinal: async (config) => {
-    return {
-      ...config,
-      resolve: {
-        ...config.resolve,
-        alias: {
-          ...config.resolve.alias,
-          "@emotion/core": toPath("node_modules/@emotion/react"),
-          "emotion-theming": toPath("node_modules/@emotion/react"),
-        },
-      },
-    }
+  webpackFinal: (config) => {
+    // https://github.com/polkadot-js/extension/issues/621#issuecomment-759341776
+    // framer-motion uses the .mjs notation and we need to include it so that webpack will
+    // transpile it for us correctly (enables using a CJS module inside an ESM).
+    config.module.rules.push({
+      test: /\.mjs$/,
+      include: /node_modules/,
+      type: "javascript/auto",
+    })
+    // Return the altered config
+    return config
   },
 }

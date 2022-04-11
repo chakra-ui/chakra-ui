@@ -64,7 +64,7 @@ if (__DEV__) {
  * PopoverAnchor is element that is used as the positioning reference
  * for the popover.
  */
-export const PopoverAnchor: React.FC = (props) => {
+export const PopoverAnchor = (props: React.PropsWithChildren<{}>) => {
   // enforce a single child
   const child: any = React.Children.only(props.children)
   const { getAnchorProps } = usePopoverContext()
@@ -80,7 +80,7 @@ if (__DEV__) {
  * PopoverTrigger opens the popover's content. It must be an interactive element
  * such as `button` or `a`.
  */
-export const PopoverTrigger: React.FC = (props) => {
+export const PopoverTrigger = (props: React.PropsWithChildren<{}>) => {
   // enforce a single child
   const child: any = React.Children.only(props.children)
   const { getTriggerProps } = usePopoverContext()
