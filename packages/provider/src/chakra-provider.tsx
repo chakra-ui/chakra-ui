@@ -13,7 +13,6 @@ import {
   EnvironmentProviderProps,
 } from "@chakra-ui/react-env"
 import * as React from "react"
-import { IdProvider } from "@chakra-ui/hooks"
 
 export interface ChakraProviderProps
   extends Pick<ThemeProviderProps, "cssVarsRoot"> {
@@ -79,21 +78,19 @@ export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
   )
 
   return (
-    <IdProvider>
-      <ThemeProvider theme={theme as Dict} cssVarsRoot={cssVarsRoot}>
-        <ColorModeProvider
-          colorModeManager={colorModeManager}
-          options={theme.config}
-        >
-          {resetCSS && <CSSReset />}
-          <GlobalStyle />
-          {portalZIndex ? (
-            <PortalManager zIndex={portalZIndex}>{_children}</PortalManager>
-          ) : (
-            _children
-          )}
-        </ColorModeProvider>
-      </ThemeProvider>
-    </IdProvider>
+    <ThemeProvider theme={theme as Dict} cssVarsRoot={cssVarsRoot}>
+      <ColorModeProvider
+        colorModeManager={colorModeManager}
+        options={theme.config}
+      >
+        {resetCSS && <CSSReset />}
+        <GlobalStyle />
+        {portalZIndex ? (
+          <PortalManager zIndex={portalZIndex}>{_children}</PortalManager>
+        ) : (
+          _children
+        )}
+      </ColorModeProvider>
+    </ThemeProvider>
   )
 }
