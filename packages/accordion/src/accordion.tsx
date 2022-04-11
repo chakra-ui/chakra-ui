@@ -95,7 +95,10 @@ const [AccordionItemProvider, useAccordionItemContext] =
   })
 
 export interface AccordionItemProps
-  extends Omit<HTMLChakraProps<"div">, keyof UseAccordionItemProps>,
+  extends Omit<
+      HTMLChakraProps<"div">,
+      keyof UseAccordionItemProps | "children"
+    >,
     UseAccordionItemProps {
   children?: MaybeRenderProp<{
     isExpanded: boolean
