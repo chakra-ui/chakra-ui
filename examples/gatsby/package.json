@@ -7,9 +7,9 @@
   "dependencies": {
     "@chakra-ui/gatsby-plugin": "3.0.0-next.0",
     "@chakra-ui/react": "2.0.0-next.0",
-    "@emotion/react": "^11.4.0",
-    "@emotion/styled": "^11.3.0",
-    "framer-motion": "^4.0.0",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "framer-motion": "^6.2.9",
     "gatsby": "^3.0.0",
     "gatsby-image": "^2.8.0",
     "gatsby-plugin-manifest": "^3.3.0",

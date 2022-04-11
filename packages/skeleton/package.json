@@ -48,8 +48,8 @@
   },
   "devDependencies": {
     "@chakra-ui/theme": "*",
-    "@emotion/react": "^11.4.0",
-    "@emotion/styled": "^11.3.0",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
     "react": "^18.0.0"
   }
 }
