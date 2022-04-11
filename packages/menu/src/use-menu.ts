@@ -577,7 +577,7 @@ export function useMenuItem(
   })
 
   const onMouseEnter = React.useCallback(
-    (event) => {
+    (event: any) => {
       onMouseEnterProp?.(event)
       if (isDisabled) return
       setFocusedIndex(index)
@@ -586,7 +586,7 @@ export function useMenuItem(
   )
 
   const onMouseMove = React.useCallback(
-    (event) => {
+    (event: any) => {
       onMouseMoveProp?.(event)
       if (ref.current && !isActiveElement(ref.current)) {
         onMouseEnter(event)
@@ -596,7 +596,7 @@ export function useMenuItem(
   )
 
   const onMouseLeave = React.useCallback(
-    (event) => {
+    (event: any) => {
       onMouseLeaveProp?.(event)
       if (isDisabled) return
       setFocusedIndex(-1)
