@@ -2,6 +2,7 @@ import React from "react"
 import theme from "@chakra-ui/theme"
 import { Text } from "@chakra-ui/layout"
 import { motion } from "framer-motion"
+import { HTMLChakraProps } from "@chakra-ui/system"
 import {
   chakra,
   PropsOf,
@@ -152,7 +153,7 @@ export const WithLayerStyle = () => (
   </ThemeProvider>
 )
 
-const Div: React.FC = ({ children }) => {
+const Div = ({ children }: HTMLChakraProps<"div">) => {
   const styles = useStyleConfig("Div")
   return <chakra.div sx={styles}>{children}</chakra.div>
 }
