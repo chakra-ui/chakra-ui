@@ -42,6 +42,7 @@
     "build:prop-docs": "yarn pkg props-docs build",
     "build:tokens": "chakra-cli tokens packages/theme",
     "build": "yarn build:babel && yarn build:cli && preconstruct build && yarn build:tokens",
+    "watch": "yarn preconstruct watch",
     "test": "jest --maxWorkers=50%",
     "test:watch": "jest --maxWorkers=25% --watch --onlyChanged",
     "test:ci": "jest --color --runInBand --ci",
