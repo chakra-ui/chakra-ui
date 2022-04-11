@@ -5,6 +5,7 @@ on:
     types: [opened, synchronize, ready_for_review, edited, closed]
     branches:
       - main
+      - next
 
 jobs:
   build:

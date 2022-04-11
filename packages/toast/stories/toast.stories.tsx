@@ -1,21 +1,18 @@
 import * as React from "react"
-import { theme as base } from "@chakra-ui/theme"
+import {
+  createStandaloneToast,
+  ToastId,
+  useToast,
+  theme as base,
+} from "@chakra-ui/react"
 import { Button, ButtonGroup } from "@chakra-ui/button"
 import { chakra, useColorMode } from "@chakra-ui/system"
 import { Alert } from "@chakra-ui/alert"
 import { Text } from "@chakra-ui/layout"
 import { useLatestRef } from "@chakra-ui/hooks"
-import { createStandaloneToast, ToastId, ToastProvider, useToast } from "../src"
 
 export default {
   title: "Components / Feedback / Toast",
-  decorators: [
-    (Story: Function) => (
-      <ToastProvider>
-        <Story />
-      </ToastProvider>
-    ),
-  ],
 }
 
 export function ToastExample() {
