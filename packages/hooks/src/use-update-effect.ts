@@ -11,7 +11,9 @@ export const useUpdateEffect: typeof React.useEffect = (effect, deps) => {
       return effect()
     }
     mounted.current = true
-    return undefined
+    return () => {
+      mounted.current = false
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps)
 
