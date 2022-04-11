@@ -42,7 +42,6 @@
     "@chakra-ui/utils": "1.10.4"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.12.1",
     "framer-motion": "^6.2.9",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
