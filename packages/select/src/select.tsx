@@ -30,7 +30,7 @@ export const SelectField = forwardRef<SelectFieldProps, "select">(
         ref={ref}
         className={cx("chakra-select", className)}
       >
-        {placeholder && <option value="">{placeholder}</option>}
+        {placeholder && <option value="" selected hidden disabled>{placeholder}</option>}
         {children}
       </chakra.select>
     )
