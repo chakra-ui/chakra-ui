@@ -6,6 +6,7 @@ export * from "./accessibility"
 export * from "./hooks"
 export * from "./press"
 export { render } from "./render"
+export { focus, blur } from "./focus"
 
 export const mocks = {
   image: mockImage,

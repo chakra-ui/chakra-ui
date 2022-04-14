@@ -1,4 +1,5 @@
 import $userEvent from "@testing-library/user-event"
+import { act } from "@testing-library/react"
 import { press } from "./press"
 import { sleep } from "./utils"
 
@@ -16,8 +17,10 @@ function patch($value: any) {
       acc[key] = (...args: any[]) => ({ ...patch(value(...args)), press })
     } else {
       acc[key] = async (...args: any[]) => {
-        //@ts-expect-error
-        value(...args)
+        act(() => {
+          //@ts-expect-error
+          value(...args)
+        })
         await sleep()
       }
     }
