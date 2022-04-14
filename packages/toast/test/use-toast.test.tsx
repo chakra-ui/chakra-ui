@@ -1,17 +1,15 @@
-import {
-  act,
-  render,
-  screen,
-  userEvent,
-  waitForElementToBeRemoved,
-} from "@chakra-ui/test-utils"
+import { render, screen, waitFor } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { ToastProvider, useToast } from "../src"
 
 describe("useToast", () => {
   beforeEach(async () => {
     const toasts = screen.queryAllByRole("listitem")
-    await Promise.all(toasts.map((toasts) => waitForElementToBeRemoved(toasts)))
+    await Promise.all(
+      toasts.map((toasts) =>
+        waitFor(() => expect(toasts).not.toBeInTheDocument()),
+      ),
+    )
   })
 
   it("should accept default options", async () => {
@@ -26,14 +24,14 @@ describe("useToast", () => {
       )
     }
 
-    render(
+    const { user } = render(
       <ToastProvider>
         <TestComponent />
       </ToastProvider>,
     )
 
     const button = await screen.findByText("Toast")
-    await act(async () => userEvent.click(button))
+    await user.click(button)
 
     const allByTitle = await screen.findAllByRole("alert", { name: title })
     const allByDescription = await screen.findAllByText(description)
@@ -59,14 +57,14 @@ describe("useToast", () => {
       )
     }
 
-    render(
+    const { user } = render(
       <ToastProvider>
         <TestComponent />
       </ToastProvider>,
     )
 
     const button = await screen.findByText("Toast")
-    await act(async () => userEvent.click(button))
+    await user.click(button)
 
     const allByTitle = await screen.findAllByRole("alert", { name: title })
     const allByDescription = await screen.findAllByText(description)

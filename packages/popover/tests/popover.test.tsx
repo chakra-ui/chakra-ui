@@ -1,11 +1,5 @@
 import * as React from "react"
-import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-  userEvent,
-} from "@chakra-ui/test-utils"
+import { fireEvent, render, screen, waitFor } from "@chakra-ui/test-utils"
 import { usePopover, UsePopoverProps } from "../src"
 
 const Component = (props: UsePopoverProps) => {
@@ -85,14 +79,14 @@ test("can close the popover by pressing escape", async () => {
 })
 
 type LazyPopoverContentProps = {
-  mockFn: () => Promise<any>
+  mockFn: () => any | Promise<any>
 }
 
 const LazyPopoverContent = (props: LazyPopoverContentProps) => {
   const { mockFn } = props
   React.useEffect(() => {
     mockFn()
-  }, [])
+  }, [mockFn])
   return <p data-testid="lazy-content">Lazy content</p>
 }
 
@@ -115,6 +109,7 @@ const LazyPopoverComponent = (
         <div
           {...getPopoverProps({
             children: (
+              // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
               <div data-testid="content" tabIndex={0}>
                 <LazyPopoverContent mockFn={props.mockFn} />
               </div>
@@ -219,6 +214,7 @@ const FocusTestComponent = (props: UsePopoverProps) => {
         <div
           {...getPopoverProps({
             children: (
+              // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
               <div data-testid="content" tabIndex={0}>
                 Popover content
                 <button type="button" data-testid="InnerButton">
@@ -237,31 +233,31 @@ const FocusTestComponent = (props: UsePopoverProps) => {
 }
 
 test("when 'trigger'='hover', keep content visible while the tab focus is inside a popover", async () => {
-  const utils = render(<FocusTestComponent trigger="hover" />)
+  const { user } = render(<FocusTestComponent trigger="hover" />)
 
-  const openButton = utils.getByText(/open/i)
-  const content = utils.queryByText(/content/i)
-  const innerButton = utils.queryByText(/inner/i)
-  const closeButton = utils.getByText(/close/i)
+  const openButton = await screen.findByText(/open/i)
+  const content = await screen.findByText(/content/i)
+  const innerButton = await screen.findByText(/inner/i)
+  const closeButton = await screen.findByText(/close/i)
 
   expect(document.body).toHaveFocus()
 
-  userEvent.tab()
+  await user.tab()
 
   expect(openButton).toHaveFocus()
 
   // open the popover, and it will have focus and be visible.
-  userEvent.tab()
+  await user.tab()
   expect(content).toHaveFocus()
   expect(content).toBeVisible()
 
   // move focus to next focusable element. Popover should be visible still.
-  userEvent.tab()
+  await user.tab()
   expect(innerButton).toHaveFocus()
   expect(innerButton).toBeVisible()
 
   // Close the popover. This should make Popover invisible.
-  userEvent.tab()
+  await user.tab()
   expect(closeButton).toHaveFocus()
   expect(content).not.toBeVisible()
 })

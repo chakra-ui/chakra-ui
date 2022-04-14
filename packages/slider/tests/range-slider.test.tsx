@@ -1,18 +1,17 @@
 /* eslint-disable jsx-a11y/aria-proptypes */
 import * as React from "react"
 import {
+  fireEvent,
   press,
   render,
   screen,
   testA11y,
-  userEvent,
-  act,
 } from "@chakra-ui/test-utils"
 import {
   RangeSlider,
   RangeSliderFilledTrack,
-  RangeSliderTrack,
   RangeSliderThumb,
+  RangeSliderTrack,
 } from "../src"
 
 const HorizontalSlider = () => {
@@ -51,63 +50,63 @@ test("passes a11y test", async () => {
   await testA11y(<HorizontalSlider />)
 })
 
-test("should move the left thumb with an arrow key", () => {
+test("should move the left thumb with an arrow key", async () => {
   render(<HorizontalSlider />)
 
   const [leftThumb] = getThumbs()
 
-  press.ArrowRight(leftThumb)
+  await press.ArrowRight(leftThumb)
   expect(leftThumb).toHaveAttribute("aria-valuenow", "41")
 })
 
-test("should move the right thumb with an arrow key", () => {
+test("should move the right thumb with an arrow key", async () => {
   render(<HorizontalSlider />)
 
   const [, rightThumb] = getThumbs()
 
-  press.ArrowRight(rightThumb)
+  await press.ArrowRight(rightThumb)
   expect(rightThumb).toHaveAttribute("aria-valuenow", "81")
 })
 
-test("should increment a thumb by 10 position pressing the page-up key", () => {
+test("should increment a thumb by 10 position pressing the page-up key", async () => {
   render(<HorizontalSlider />)
 
   const [leftThumb] = getThumbs()
 
-  press.PageUp(leftThumb)
+  await press.PageUp(leftThumb)
   expect(leftThumb).toHaveAttribute("aria-valuenow", "50")
 })
 
-test("should decrement a thumb by 10 position pressing the page-down key", () => {
+test("should decrement a thumb by 10 position pressing the page-down key", async () => {
   render(<HorizontalSlider />)
 
   const [leftThumb] = getThumbs()
 
-  press.PageDown(leftThumb)
+  await press.PageDown(leftThumb)
   expect(leftThumb).toHaveAttribute("aria-valuenow", "30")
 })
 
-test("should set a thumb to its minimum value when pressing the home key", () => {
+test("should set a thumb to its minimum value when pressing the home key", async () => {
   render(<HorizontalSlider />)
 
   const [, rightThumb] = getThumbs()
 
-  press.Home(rightThumb)
+  await press.Home(rightThumb)
   // The minimum value for the right thumb is whatever value
   // the left thumb currently is
   expect(rightThumb).toHaveAttribute("aria-valuenow", "40")
 })
 
-test("should set a thumb to its maximum value when pressing the end key", () => {
+test("should set a thumb to its maximum value when pressing the end key", async () => {
   render(<HorizontalSlider />)
 
   const [, rightThumb] = getThumbs()
 
-  press.End(rightThumb)
+  await press.End(rightThumb)
   expect(rightThumb).toHaveAttribute("aria-valuenow", "100")
 })
 
-test("should move the correct thumb when user clicks the track in case of stacked thumbs", async () => {
+test("should move the correct thumb when user clicks the track in case of stacked thumbs", () => {
   render(<HorizontalSliderWithStackedThumbs />)
 
   const rangeSliderTrack = screen.getByTestId("chakra-range-slider-track")
@@ -126,9 +125,7 @@ test("should move the correct thumb when user clicks the track in case of stacke
 
   const clickCoordinates = { clientX: 20, clientY: 10 }
 
-  act(() => {
-    userEvent.click(rangeSliderTrack, clickCoordinates)
-  })
+  fireEvent.mouseDown(rangeSliderTrack, clickCoordinates)
 
   const [firstThumb, secondThumb, thirdThumb] = getThumbs()
 

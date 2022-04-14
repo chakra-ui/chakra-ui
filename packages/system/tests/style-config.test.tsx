@@ -1,5 +1,5 @@
-import { rtlRender, render } from "@chakra-ui/test-utils"
 import * as React from "react"
+import { render } from "@chakra-ui/test-utils"
 import { ThemeProvider, useStyleConfig, useProps } from "../src"
 
 test("should resolve styles in theme", async () => {
@@ -8,7 +8,7 @@ test("should resolve styles in theme", async () => {
     return <>{JSON.stringify(styles, null, 2)}</>
   }
 
-  const { asFragment } = rtlRender(
+  const { asFragment } = render(
     <ThemeProvider
       theme={{
         components: {
@@ -31,6 +31,9 @@ test("should resolve styles in theme", async () => {
     >
       <Component />
     </ThemeProvider>,
+    {
+      withChakraProvider: false,
+    },
   )
 
   expect(asFragment()).toMatchInlineSnapshot(`
@@ -54,7 +57,7 @@ test("should resolve multipart styles in theme", async () => {
     return <>{JSON.stringify(styles, null, 2)}</>
   }
 
-  const { asFragment } = rtlRender(
+  const { asFragment } = render(
     <ThemeProvider
       theme={{
         components: {
@@ -96,6 +99,9 @@ test("should resolve multipart styles in theme", async () => {
     >
       <Component />
     </ThemeProvider>,
+    {
+      withChakraProvider: false,
+    },
   )
 
   expect(asFragment()).toMatchInlineSnapshot(`

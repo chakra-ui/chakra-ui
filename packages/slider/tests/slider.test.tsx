@@ -77,45 +77,45 @@ test("passes a11y test", async () => {
   await testA11y(<SimpleSlider />)
 })
 
-test("should move the thumb", () => {
+test("should move the thumb", async () => {
   const { getByRole } = render(<SimpleSlider />)
 
   const thumb = getByRole("slider")
 
-  press.ArrowRight(thumb)
+  await press.ArrowRight(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "11")
 
-  press.ArrowRight(thumb)
+  await press.ArrowRight(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "12")
 
-  press.Home(thumb)
+  await press.Home(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "0")
 
-  press.End(thumb)
+  await press.End(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "100")
 })
 
-test("renders & move correctly when orientation: vertical & isReversed", () => {
+test("renders & move correctly when orientation: vertical & isReversed", async () => {
   const { getByRole } = render(
     <SimpleSlider orientation="vertical" isReversed />,
   )
 
   const thumb = getByRole("slider")
 
-  press.ArrowUp(thumb)
+  await press.ArrowUp(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "9")
 
-  press.ArrowDown(thumb)
+  await press.ArrowDown(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "10")
 
-  press.Home(thumb)
+  await press.Home(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "0")
 
-  press.End(thumb)
+  await press.End(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "100")
 })
 
-test("renders with the correct direction under 'rtl'", () => {
+test("renders with the correct direction under 'rtl'", async () => {
   const { getByRole } = render(
     <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
       <SimpleSlider />
@@ -124,20 +124,20 @@ test("renders with the correct direction under 'rtl'", () => {
 
   const thumb = getByRole("slider")
 
-  press.ArrowRight(thumb)
+  await press.ArrowRight(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "9")
 
-  press.ArrowRight(thumb)
+  await press.ArrowRight(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "8")
 
-  press.Home(thumb)
+  await press.Home(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "0")
 
-  press.End(thumb)
+  await press.End(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "100")
 })
 
-test("renders with the correct direction under 'rtl' & isReversed", () => {
+test("renders with the correct direction under 'rtl' & isReversed", async () => {
   const { getByRole } = render(
     <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
       <SimpleSlider isReversed />
@@ -146,20 +146,20 @@ test("renders with the correct direction under 'rtl' & isReversed", () => {
 
   const thumb = getByRole("slider")
 
-  press.ArrowRight(thumb)
+  await press.ArrowRight(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "11")
 
-  press.ArrowRight(thumb)
+  await press.ArrowRight(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "12")
 
-  press.Home(thumb)
+  await press.Home(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "0")
 
-  press.End(thumb)
+  await press.End(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "100")
 })
 
-test("renders correctly/unaffected by 'rtl' when orientation: vertical", () => {
+test("renders correctly/unaffected by 'rtl' when orientation: vertical", async () => {
   const { getByRole } = render(
     <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
       <SimpleSlider orientation="vertical" />
@@ -168,22 +168,22 @@ test("renders correctly/unaffected by 'rtl' when orientation: vertical", () => {
 
   const thumb = getByRole("slider")
 
-  press.ArrowRight(thumb)
-  press.ArrowUp(thumb)
+  await press.ArrowRight(thumb)
+  await press.ArrowUp(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "12")
 
-  press.ArrowDown(thumb)
-  press.ArrowLeft(thumb)
+  await press.ArrowDown(thumb)
+  await press.ArrowLeft(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "10")
 
-  press.Home(thumb)
+  await press.Home(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "0")
 
-  press.End(thumb)
+  await press.End(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "100")
 })
 
-test("should have colors from styled", () => {
+test("should have colors from styled", async () => {
   const { getByTestId } = render(<SimpleStyledSlider />)
   let sliderElement = getByTestId("slider")
   let styles = getComputedStyle(sliderElement)
