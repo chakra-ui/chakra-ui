@@ -158,7 +158,7 @@
     "rimraf": "3.0.2",
     "shelljs": "0.8.5",
     "storybook-addon-performance": "0.16.1",
-    "ts-node": "10.4.0",
+    "ts-node": "^10.7.0",
     "typescript": "^4.6.3"
   }
 }
