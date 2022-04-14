@@ -77,7 +77,7 @@ describe("fallback + loading strategy", () => {
   })
 
   test("renders a default avatar if no name or src", () => {
-    const { getByRole } = render(<Avatar />)
-    getByRole("img")
+    const tools = render(<Avatar />)
+    expect(tools.getByRole("img")).toHaveClass("chakra-avatar__svg")
   })
 })

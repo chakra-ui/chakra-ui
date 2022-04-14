@@ -1,10 +1,4 @@
-import {
-  fireEvent,
-  render,
-  screen,
-  testA11y,
-  userEvent,
-} from "@chakra-ui/test-utils"
+import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Editable, EditablePreview, EditableTextarea } from "../src"
 
@@ -28,13 +22,13 @@ it("passes a11y test", async () => {
   )
 })
 
-test("uncontrolled: handles callbacks correctly", async () => {
+test.only("uncontrolled: handles callbacks correctly", async () => {
   const onChange = jest.fn()
   const onCancel = jest.fn()
   const onSubmit = jest.fn()
   const onEdit = jest.fn()
 
-  render(
+  const { user } = render(
     <Editable
       onChange={onChange}
       onCancel={onCancel}
@@ -54,14 +48,15 @@ test("uncontrolled: handles callbacks correctly", async () => {
   expect(onEdit).toHaveBeenCalled()
 
   // calls `onChange` with input on change
-  userEvent.type(textarea, "World")
+  await user.type(textarea, "World", { skipClick: true })
   expect(onChange).toHaveBeenCalledWith("Hello World")
 
   // get new line on user press "Enter"
-  userEvent.type(
+  await user.type(
     textarea,
     `
   textarea`,
+    { skipClick: true },
   )
   expect(onChange).toHaveBeenLastCalledWith(`Hello World
   textarea`)
@@ -77,7 +72,7 @@ test("uncontrolled: handles callbacks correctly", async () => {
   expect(onSubmit).not.toHaveBeenCalled()
 })
 
-test("controlled: handles callbacks correctly", () => {
+test("controlled: handles callbacks correctly", async () => {
   const onChange = jest.fn()
   const onCancel = jest.fn()
   const onSubmit = jest.fn()
@@ -102,7 +97,7 @@ test("controlled: handles callbacks correctly", () => {
     )
   }
 
-  render(<Component />)
+  const { user } = render(<Component />)
   const preview = screen.getByTestId("preview")
   const textarea = screen.getByTestId("textarea")
 
@@ -111,7 +106,7 @@ test("controlled: handles callbacks correctly", () => {
   expect(onEdit).toHaveBeenCalled()
 
   // calls `onChange` with input on change
-  userEvent.type(textarea, "World")
+  await user.type(textarea, "World", { skipClick: true })
   expect(onChange).toHaveBeenCalledWith("Hello World")
 
   // do not calls `onSubmit`
@@ -121,7 +116,7 @@ test("controlled: handles callbacks correctly", () => {
   expect(textarea).toBeVisible()
 
   // update the input value with new line
-  userEvent.type(
+  await user.type(
     textarea,
     `
   textarea`,
@@ -136,13 +131,13 @@ test("controlled: handles callbacks correctly", () => {
   expect(onCancel).toHaveBeenCalledWith(`Hello `)
 })
 
-test("handles preview and textarea callbacks", () => {
+test("handles preview and textarea callbacks", async () => {
   const onFocus = jest.fn()
   const onBlur = jest.fn()
   const onChange = jest.fn()
   const onKeyDown = jest.fn()
 
-  render(
+  const { user } = render(
     <Editable defaultValue="Hello ">
       <EditablePreview onFocus={onFocus} data-testid="preview" />
       <EditableTextarea
@@ -161,7 +156,7 @@ test("handles preview and textarea callbacks", () => {
   expect(onFocus).toHaveBeenCalled()
 
   // calls `onChange` when input is changed
-  userEvent.type(textarea, "World")
+  await user.type(textarea, "World", { skipClick: true })
   expect(onChange).toHaveBeenCalled()
 
   // calls `onKeyDown` when key is pressed in input
@@ -216,7 +211,7 @@ test.each([
   { startWithEditView: false, text: "Bob" },
 ])(
   "controlled: sets value toPrevValue onCancel, startWithEditView: $startWithEditView",
-  ({ startWithEditView, text }) => {
+  async ({ startWithEditView, text }) => {
     const Component = () => {
       const [name, setName] = React.useState("")
 
@@ -245,7 +240,7 @@ test.each([
       )
     }
 
-    render(<Component />)
+    const { user } = render(<Component />)
     const input = screen.getByTestId("input")
     const preview = screen.getByTestId("preview")
     if (!startWithEditView) {
@@ -254,7 +249,7 @@ test.each([
       fireEvent.focus(input)
     }
     if (text) {
-      userEvent.type(input, text)
+      await user.type(input, text)
     }
     fireEvent.keyDown(input, { key: "Escape" })
 
