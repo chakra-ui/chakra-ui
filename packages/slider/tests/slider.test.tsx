@@ -1,5 +1,5 @@
 import { extendTheme, ThemeProvider } from "@chakra-ui/react"
-import { press, render, testA11y } from "@chakra-ui/test-utils"
+import { screen, render, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
 import styled from "@emotion/styled"
 import {
@@ -78,108 +78,106 @@ test("passes a11y test", async () => {
 })
 
 test("should move the thumb", async () => {
-  const { getByRole } = render(<SimpleSlider />)
+  const { user } = render(<SimpleSlider />)
 
-  const thumb = getByRole("slider")
+  const thumb = screen.getByRole("slider")
 
-  await press.ArrowRight(thumb)
+  await user.press.ArrowRight(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "11")
 
-  await press.ArrowRight(thumb)
+  await user.press.ArrowRight(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "12")
 
-  await press.Home(thumb)
+  await user.press.Home(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "0")
 
-  await press.End(thumb)
+  await user.press.End(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "100")
 })
 
 test("renders & move correctly when orientation: vertical & isReversed", async () => {
-  const { getByRole } = render(
-    <SimpleSlider orientation="vertical" isReversed />,
-  )
+  const { user } = render(<SimpleSlider orientation="vertical" isReversed />)
 
-  const thumb = getByRole("slider")
+  const thumb = screen.getByRole("slider")
 
-  await press.ArrowUp(thumb)
+  await user.press.ArrowUp(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "9")
 
-  await press.ArrowDown(thumb)
+  await user.press.ArrowDown(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "10")
 
-  await press.Home(thumb)
+  await user.press.Home(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "0")
 
-  await press.End(thumb)
+  await user.press.End(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "100")
 })
 
 test("renders with the correct direction under 'rtl'", async () => {
-  const { getByRole } = render(
+  const { user } = render(
     <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
       <SimpleSlider />
     </ThemeProvider>,
   )
 
-  const thumb = getByRole("slider")
+  const thumb = screen.getByRole("slider")
 
-  await press.ArrowRight(thumb)
+  await user.press.ArrowRight(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "9")
 
-  await press.ArrowRight(thumb)
+  await user.press.ArrowRight(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "8")
 
-  await press.Home(thumb)
+  await user.press.Home(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "0")
 
-  await press.End(thumb)
+  await user.press.End(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "100")
 })
 
 test("renders with the correct direction under 'rtl' & isReversed", async () => {
-  const { getByRole } = render(
+  const { user } = render(
     <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
       <SimpleSlider isReversed />
     </ThemeProvider>,
   )
 
-  const thumb = getByRole("slider")
+  const thumb = screen.getByRole("slider")
 
-  await press.ArrowRight(thumb)
+  await user.press.ArrowRight(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "11")
 
-  await press.ArrowRight(thumb)
+  await user.press.ArrowRight(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "12")
 
-  await press.Home(thumb)
+  await user.press.Home(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "0")
 
-  await press.End(thumb)
+  await user.press.End(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "100")
 })
 
 test("renders correctly/unaffected by 'rtl' when orientation: vertical", async () => {
-  const { getByRole } = render(
+  const { user } = render(
     <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
       <SimpleSlider orientation="vertical" />
     </ThemeProvider>,
   )
 
-  const thumb = getByRole("slider")
+  const thumb = screen.getByRole("slider")
 
-  await press.ArrowRight(thumb)
-  await press.ArrowUp(thumb)
+  await user.press.ArrowRight(thumb)
+  await user.press.ArrowUp(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "12")
 
-  await press.ArrowDown(thumb)
-  await press.ArrowLeft(thumb)
+  await user.press.ArrowDown(thumb)
+  await user.press.ArrowLeft(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "10")
 
-  await press.Home(thumb)
+  await user.press.Home(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "0")
 
-  await press.End(thumb)
+  await user.press.End(thumb)
   expect(thumb).toHaveAttribute("aria-valuenow", "100")
 })
 

@@ -4,7 +4,6 @@ import {
   render,
   screen,
   testA11y,
-  press,
   waitFor,
 } from "@chakra-ui/test-utils"
 import * as React from "react"
@@ -125,7 +124,7 @@ test("should close on mouseleave if shouldWrapChildren is true and child is a di
 })
 
 test("shows on mouseover and closes on pressing 'esc'", async () => {
-  render(<DummyComponent />)
+  const { user } = render(<DummyComponent />)
 
   fireEvent.mouseOver(screen.getByText(buttonLabel))
 
@@ -134,7 +133,7 @@ test("shows on mouseover and closes on pressing 'esc'", async () => {
   expect(screen.getByText(buttonLabel)).toBeInTheDocument()
   expect(screen.getByRole("tooltip")).toBeInTheDocument()
 
-  await press.Escape(screen.getByRole("tooltip"))
+  await user.press.Escape(screen.getByRole("tooltip"))
 
   await waitFor(() =>
     expect(screen.queryByText(tooltipLabel)).not.toBeInTheDocument(),
@@ -142,7 +141,7 @@ test("shows on mouseover and closes on pressing 'esc'", async () => {
 })
 
 test("shows on mouseover and stays on pressing 'esc' if 'closeOnEsc' is false", async () => {
-  render(<DummyComponent closeOnEsc={false} />)
+  const { user } = render(<DummyComponent closeOnEsc={false} />)
 
   fireEvent.mouseOver(screen.getByText(buttonLabel))
 
@@ -151,7 +150,7 @@ test("shows on mouseover and stays on pressing 'esc' if 'closeOnEsc' is false", 
   expect(screen.getByText(buttonLabel)).toBeInTheDocument()
   expect(screen.getByRole("tooltip")).toBeInTheDocument()
 
-  await press.Escape(screen.getByRole("tooltip"))
+  await user.press.Escape(screen.getByRole("tooltip"))
 
   expect(screen.getByRole("tooltip")).toBeInTheDocument()
 })
