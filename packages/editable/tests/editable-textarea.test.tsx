@@ -1,4 +1,10 @@
-import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
+import {
+  fireEvent,
+  render,
+  screen,
+  testA11y,
+  waitFor,
+} from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Editable, EditablePreview, EditableTextarea } from "../src"
 
@@ -22,7 +28,7 @@ it("passes a11y test", async () => {
   )
 })
 
-test.only("uncontrolled: handles callbacks correctly", async () => {
+test("uncontrolled: handles callbacks correctly", async () => {
   const onChange = jest.fn()
   const onCancel = jest.fn()
   const onSubmit = jest.fn()
@@ -56,10 +62,12 @@ test.only("uncontrolled: handles callbacks correctly", async () => {
     textarea,
     `
   textarea`,
-    { skipClick: true },
   )
-  expect(onChange).toHaveBeenLastCalledWith(`Hello World
+
+  await waitFor(() => {
+    expect(onChange).toHaveBeenLastCalledWith(`Hello World
   textarea`)
+  })
 
   // calls `onCancel` with previous value when "esc" pressed
   fireEvent.keyDown(textarea, { key: "Escape" })
@@ -106,8 +114,10 @@ test("controlled: handles callbacks correctly", async () => {
   expect(onEdit).toHaveBeenCalled()
 
   // calls `onChange` with input on change
-  await user.type(textarea, "World", { skipClick: true })
-  expect(onChange).toHaveBeenCalledWith("Hello World")
+  await user.type(textarea, "World")
+  await waitFor(() => {
+    expect(onChange).toHaveBeenCalledWith("Hello World")
+  })
 
   // do not calls `onSubmit`
   fireEvent.keyDown(textarea, { key: "Enter" })
@@ -121,11 +131,14 @@ test("controlled: handles callbacks correctly", async () => {
     `
   textarea`,
   )
-  expect(onChange).toHaveBeenCalledWith(`Hello World
+
+  await waitFor(() => {
+    expect(onChange).toHaveBeenCalledWith(`Hello World
   textarea`)
+  })
 
   // press `Escape`
-  fireEvent.keyDown(textarea, { key: "Escape" })
+  await user.press.Escape(textarea)
 
   // calls `onCancel` with previous `value`
   expect(onCancel).toHaveBeenCalledWith(`Hello `)

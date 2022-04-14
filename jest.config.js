@@ -4,6 +4,7 @@ module.exports = {
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
   modulePathIgnorePatterns: [
     "<rootDir>/examples",
+    "<rootDir>/packages/color-mode",
     "<rootDir>/tooling/cra-template*",
   ],
   transform: {

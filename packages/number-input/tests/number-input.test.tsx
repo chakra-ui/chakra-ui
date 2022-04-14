@@ -166,7 +166,7 @@ test("should call onChange on value change", async () => {
 })
 
 test("should constrain value onBlur", async () => {
-  const { getByTestId, user } = renderComponent({ max: 30 })
+  const { getByTestId, user } = renderComponent({ max: 30, precision: 2 })
 
   const input = getByTestId("input")
 
@@ -174,7 +174,6 @@ test("should constrain value onBlur", async () => {
 
   // value is beyond max, so it should reset to `max`
   fireEvent.blur(input)
-
   expect(input).toHaveValue("30.00")
 })
 
