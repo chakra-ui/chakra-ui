@@ -49,7 +49,7 @@
     "lint": "concurrently yarn:lint:*",
     "lint:eslint": "eslint packages/**/src/ --ext .ts,.tsx --config .eslintrc",
     "lint:types": "tsc --noEmit",
-    "prestorybook": "rimraf node_modules/.cache/storybook && yarn build:babel",
+    "prestorybook": "rimraf node_modules/.cache/storybook && yarn dev",
     "storybook": "start-storybook -p 6006",
     "build:storybook": "build-storybook && sb extract",
     "clean": "yarn clean-dist && rimraf node_modules",
