@@ -1,2 +1,6 @@
-export * from "./test-utils"
+export { act, screen, fireEvent } from "@testing-library/react"
+export * as hooks from "@testing-library/react-hooks"
+export * as ssr from "@testing-library/react-hooks/server"
 export * from "./press"
+export { render } from "./render"
+export * from "./accessibility"

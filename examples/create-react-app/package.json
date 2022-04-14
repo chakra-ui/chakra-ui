@@ -12,9 +12,9 @@
     "react-icons": "^4.2.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.15.0",
-    "@testing-library/react": "^12.1.2",
-    "@types/jest": "^27.0.3",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.0.1",
+    "@types/jest": "^27.4.1",
     "@types/react": "^18.0.1",
     "@types/react-dom": "^18.0.0",
     "eslint-config-react-app": "^6.0.0",
