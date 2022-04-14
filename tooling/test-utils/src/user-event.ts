@@ -1,6 +1,6 @@
 import $userEvent from "@testing-library/user-event"
-import { sleep } from "./utils"
 import { press } from "./press"
+import { sleep } from "./utils"
 
 type Writeable<T> = { -readonly [P in keyof T]: T[P] }
 
