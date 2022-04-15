@@ -1,7 +1,6 @@
-import { render } from "@testing-library/react"
-import userEvent from "@testing-library/user-event"
-import React from "react"
-import { DarkMode } from "../src/color-mode-provider"
+import * as React from "react"
+import { render, screen } from "@chakra-ui/test-utils"
+import { DarkMode } from "../src"
 import {
   DummyComponent,
   getColorModeButton,
@@ -11,7 +10,7 @@ import {
 } from "./utils"
 
 const MemoTest = () => {
-  const [_, setRenderCount] = React.useState(0)
+  const [, setRenderCount] = React.useState(0)
 
   return (
     <>
@@ -24,7 +23,7 @@ const MemoTest = () => {
 }
 
 const NoMemoTest = () => {
-  const [_, setRenderCount] = React.useState(0)
+  const [, setRenderCount] = React.useState(0)
 
   return (
     <>
@@ -41,8 +40,8 @@ describe("<DarkMode />", () => {
     resetCounter()
   })
 
-  test("is always dark", () => {
-    render(
+  test("is always dark", async () => {
+    const { user } = render(
       <DarkMode>
         <DummyComponent />
       </DarkMode>,
@@ -52,26 +51,26 @@ describe("<DarkMode />", () => {
 
     expect(button).toHaveTextContent("dark")
 
-    userEvent.click(button)
+    await user.click(button)
 
     expect(getColorModeButton()).toHaveTextContent("dark")
   })
 
-  test("memoized component renders once", () => {
-    const { getByText, getByTestId } = render(<MemoTest />)
+  test("memoized component renders once", async () => {
+    const { user } = render(<MemoTest />)
 
-    userEvent.click(getByText("Rerender"))
-    userEvent.click(getByText("Rerender"))
+    await user.click(screen.getByText("Rerender"))
+    await user.click(screen.getByText("Rerender"))
 
-    expect(getByTestId("rendered")).toHaveTextContent("1")
+    expect(screen.getByTestId("rendered")).toHaveTextContent("1")
   })
 
-  test("non memoized component renders multiple", () => {
-    const { getByText, getByTestId } = render(<NoMemoTest />)
+  test("non memoized component renders multiple", async () => {
+    const { user } = render(<NoMemoTest />)
 
-    userEvent.click(getByText("Rerender"))
-    userEvent.click(getByText("Rerender"))
+    await user.click(screen.getByText("Rerender"))
+    await user.click(screen.getByText("Rerender"))
 
-    expect(getByTestId("rendered")).toHaveTextContent("3")
+    expect(screen.getByTestId("rendered")).toHaveTextContent("3")
   })
 })

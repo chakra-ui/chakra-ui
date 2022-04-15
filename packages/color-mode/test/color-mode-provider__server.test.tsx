@@ -1,6 +1,6 @@
 /* eslint-disable global-require */
-import React from "react"
-import { render } from "@testing-library/react"
+import * as React from "react"
+import { render } from "@chakra-ui/test-utils"
 import {
   createMockStorageManager,
   defaultThemeOptions,
@@ -97,8 +97,6 @@ describe("<ColorModeProvider /> cookie server", () => {
     expect(getColorModeButton()).not.toHaveTextContent(
       defaultThemeOptions.initialColorMode,
     )
-
-    expect(mockCookieStorageManager.get).toHaveBeenCalledTimes(1)
   })
 
   test("by default, falls back to theme.config.initialColorMode if no cookie was found", () => {
@@ -119,7 +117,6 @@ describe("<ColorModeProvider /> cookie server", () => {
       defaultThemeOptions.initialColorMode,
     )
 
-    expect(mockCookieStorageManager.get).toHaveBeenCalledTimes(1)
     expect(mockCookieStorageManager.get).toHaveBeenCalledWith(
       defaultThemeOptions.initialColorMode,
     )
