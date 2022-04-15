@@ -20,7 +20,7 @@ export const accordionAnatomy = anatomy("accordion")
  */
 export const alertAnatomy = anatomy("alert")
   .parts("title", "description", "container")
-  .extend("icon")
+  .extend("icon", "spinner")
 
 /**
  * **Avatar anatomy**
