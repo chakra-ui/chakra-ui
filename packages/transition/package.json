@@ -37,7 +37,7 @@
   },
   "peerDependencies": {
     "framer-motion": ">=4.0.0",
-    "react": ">=16.8.6"
+    "react": ">=18"
   },
   "devDependencies": {
     "framer-motion": "^6.2.9",

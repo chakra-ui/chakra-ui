@@ -66,8 +66,8 @@
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
     "framer-motion": ">=4.0.0",
-    "react": ">=16.8.6",
-    "react-dom": ">=16.8.6"
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "license": "MIT",

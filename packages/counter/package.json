@@ -40,7 +40,7 @@
     "@chakra-ui/utils": "2.0.0-next.0"
   },
   "peerDependencies": {
-    "react": ">=16.8.6"
+    "react": ">=18"
   },
   "devDependencies": {
     "react": "^18.0.0"
