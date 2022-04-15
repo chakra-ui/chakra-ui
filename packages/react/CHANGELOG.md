@@ -1,5 +1,70 @@
 # Change Log
 
+## 2.0.0-next.1
+
+### Major Changes
+
+- [#5879](https://github.com/chakra-ui/chakra-ui/pull/5879)
+  [`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump all packages
+  to next major for Chakra UI version 2.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1f62d9a65`](https://github.com/chakra-ui/chakra-ui/commit/1f62d9a658f0179e60524f13a21543194f034fe5),
+  [`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f),
+  [`1a47fd27e`](https://github.com/chakra-ui/chakra-ui/commit/1a47fd27e6e37ff5d149e0469888eed0ec306632),
+  [`d0d08141b`](https://github.com/chakra-ui/chakra-ui/commit/d0d08141bee7f7c2f776d01798dfbeccfdde5978),
+  [`3285faddf`](https://github.com/chakra-ui/chakra-ui/commit/3285faddf3019c6951f3823bf38951fbb8accb9e)]:
+  - @chakra-ui/toast@2.0.0-next.1
+  - @chakra-ui/accordion@2.0.0-next.0
+  - @chakra-ui/alert@2.0.0-next.0
+  - @chakra-ui/avatar@2.0.0-next.0
+  - @chakra-ui/breadcrumb@2.0.0-next.0
+  - @chakra-ui/button@2.0.0-next.0
+  - @chakra-ui/checkbox@2.0.0-next.0
+  - @chakra-ui/close-button@2.0.0-next.0
+  - @chakra-ui/control-box@2.0.0-next.0
+  - @chakra-ui/counter@2.0.0-next.0
+  - @chakra-ui/css-reset@2.0.0-next.0
+  - @chakra-ui/editable@2.0.0-next.0
+  - @chakra-ui/react-env@2.0.0-next.0
+  - @chakra-ui/form-control@2.0.0-next.0
+  - @chakra-ui/hooks@2.0.0-next.0
+  - @chakra-ui/icon@3.0.0-next.0
+  - @chakra-ui/image@2.0.0-next.0
+  - @chakra-ui/input@2.0.0-next.0
+  - @chakra-ui/layout@2.0.0-next.0
+  - @chakra-ui/live-region@2.0.0-next.0
+  - @chakra-ui/media-query@3.0.0-next.0
+  - @chakra-ui/menu@2.0.0-next.0
+  - @chakra-ui/modal@2.0.0-next.0
+  - @chakra-ui/number-input@2.0.0-next.0
+  - @chakra-ui/pin-input@2.0.0-next.0
+  - @chakra-ui/popover@2.0.0-next.0
+  - @chakra-ui/popper@3.0.0-next.0
+  - @chakra-ui/portal@2.0.0-next.0
+  - @chakra-ui/progress@2.0.0-next.0
+  - @chakra-ui/provider@2.0.0-next.0
+  - @chakra-ui/radio@2.0.0-next.0
+  - @chakra-ui/select@2.0.0-next.0
+  - @chakra-ui/skeleton@2.0.0-next.0
+  - @chakra-ui/slider@2.0.0-next.0
+  - @chakra-ui/spinner@2.0.0-next.0
+  - @chakra-ui/stat@2.0.0-next.0
+  - @chakra-ui/switch@2.0.0-next.0
+  - @chakra-ui/system@2.0.0-next.0
+  - @chakra-ui/table@2.0.0-next.0
+  - @chakra-ui/tabs@2.0.0-next.0
+  - @chakra-ui/tag@2.0.0-next.0
+  - @chakra-ui/textarea@2.0.0-next.0
+  - @chakra-ui/theme@2.0.0-next.0
+  - @chakra-ui/tooltip@2.0.0-next.0
+  - @chakra-ui/transition@2.0.0-next.0
+  - @chakra-ui/utils@2.0.0-next.0
+  - @chakra-ui/visually-hidden@2.0.0-next.0
+
 ## 2.0.0-next.0
 
 ### Major Changes
