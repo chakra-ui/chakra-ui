@@ -1,5 +1,28 @@
 # Change Log
 
+## 2.0.0-next.0
+
+### Major Changes
+
+- [#5879](https://github.com/chakra-ui/chakra-ui/pull/5879)
+  [`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump all packages
+  to next major for Chakra UI version 2.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f),
+  [`1a47fd27e`](https://github.com/chakra-ui/chakra-ui/commit/1a47fd27e6e37ff5d149e0469888eed0ec306632)]:
+  - @chakra-ui/clickable@2.0.0-next.0
+  - @chakra-ui/descendant@3.0.0-next.0
+  - @chakra-ui/hooks@2.0.0-next.0
+  - @chakra-ui/popper@3.0.0-next.0
+  - @chakra-ui/react-utils@2.0.0-next.0
+  - @chakra-ui/system@2.0.0-next.0
+  - @chakra-ui/transition@2.0.0-next.0
+  - @chakra-ui/utils@2.0.0-next.0
+
 ## 1.8.11
 
 ### Patch Changes
