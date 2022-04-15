@@ -17,7 +17,7 @@ test("focuses an element on render", () => {
   expect(input).toHaveFocus()
 })
 
-it("passes a11y test", async () => {
+test("passes a11y test", async () => {
   await testA11y(
     <FocusLock>
       <button type="button">button 1</button>

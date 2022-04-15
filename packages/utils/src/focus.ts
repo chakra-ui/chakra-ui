@@ -54,8 +54,13 @@ export function focus(
       }
     }
 
-    if (isInputElement(element) && selectTextIfInput) {
-      element.select()
+    if (selectTextIfInput) {
+      if (isInputElement(element)) {
+        element.select()
+      } else if ("setSelectionRange" in element) {
+        const el = element as HTMLInputElement | HTMLTextAreaElement
+        el.setSelectionRange(el.value.length, el.value.length)
+      }
     }
   }
 

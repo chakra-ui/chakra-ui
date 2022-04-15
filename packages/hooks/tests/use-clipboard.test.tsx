@@ -1,5 +1,5 @@
 import copy from "copy-to-clipboard"
-import { invoke, renderHook } from "@chakra-ui/test-utils"
+import { hooks } from "@chakra-ui/test-utils"
 
 import { useClipboard } from "../src"
 
@@ -19,9 +19,9 @@ test.each`
 `("calls setTimeout with proper value", ({ params, expected }) => {
   ;(copy as jest.Mock).mockReturnValue(true)
 
-  const { result } = renderHook(() => useClipboard(text, params))
+  const { result } = hooks.render(() => useClipboard(text, params))
 
-  invoke(() => {
+  hooks.act(() => {
     result.current.onCopy()
   })
 

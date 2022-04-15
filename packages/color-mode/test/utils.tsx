@@ -1,9 +1,8 @@
+/* eslint-disable global-require */
+import * as React from "react"
+import { screen } from "@chakra-ui/test-utils"
 import theme from "@chakra-ui/theme"
-import { screen } from "@testing-library/react"
-import React from "react"
-import { ColorModeOptions } from "../src/color-mode-provider"
-import type { ColorMode } from "../src/color-mode.utils"
-import type { StorageManager } from "../src/storage-manager"
+import { ColorModeOptions, ColorMode, StorageManager } from "../src"
 
 export const DummyComponent = () => {
   const { useColorMode } = require("../src/color-mode-provider")
@@ -16,7 +15,7 @@ export const DummyComponent = () => {
   )
 }
 
-var renderCount = 0
+let renderCount = 0
 
 export const resetCounter = () => {
   renderCount = 0
