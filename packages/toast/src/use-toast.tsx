@@ -1,6 +1,7 @@
 import type { AlertStatus } from "@chakra-ui/alert"
 import { ThemingProps, useChakra } from "@chakra-ui/system"
 import * as React from "react"
+import { useLatestRef } from "@chakra-ui/hooks"
 import { getToastPlacement, ToastPosition } from "./toast.placement"
 import type { RenderProps, ToastId, ToastOptions } from "./toast.types"
 import { useToastManager } from "./toast.provider"
@@ -67,40 +68,46 @@ export interface UseToastOptions extends ThemingProps<"Alert"> {
 export function useToast(defaultOptions?: UseToastOptions) {
   const { theme } = useChakra()
   const toastContext = useToastManager()
+  const latestToastContextRef = useLatestRef(toastContext)
 
-  const normalizeToastOptions = (options?: UseToastOptions) => ({
-    ...defaultOptions,
-    ...options,
-    position: getToastPlacement(options?.position, theme.direction),
-  })
-
-  const toast = (options?: UseToastOptions) => {
-    const normalizedToastOptions = normalizeToastOptions(options)
-    const Message = createRenderToast(normalizedToastOptions)
-    return toastContext.notify(Message, normalizedToastOptions)
-  }
-
-  toast.close = toastContext.close
-  toast.closeAll = toastContext.closeAll
-
-  /**
-   * Toasts can only be updated if they have a valid id
-   */
-  toast.update = (id: ToastId, options: Omit<UseToastOptions, "id">) => {
-    if (!id) return
-
-    const normalizedToastOptions = normalizeToastOptions(options)
-    const Message = createRenderToast(normalizedToastOptions)
-
-    toastContext.update(id, {
-      ...normalizedToastOptions,
-      message: Message,
+  return React.useMemo(() => {
+    const normalizeToastOptions = (options?: UseToastOptions) => ({
+      ...defaultOptions,
+      ...options,
+      position: getToastPlacement(options?.position, theme.direction),
     })
-  }
 
-  toast.isActive = toastContext.isActive
+    const toast = (options?: UseToastOptions) => {
+      const normalizedToastOptions = normalizeToastOptions(options)
+      const Message = createRenderToast(normalizedToastOptions)
+      return latestToastContextRef.current.notify(
+        Message,
+        normalizedToastOptions,
+      )
+    }
 
-  return toast
+    toast.close = latestToastContextRef.current.close
+    toast.closeAll = latestToastContextRef.current.closeAll
+
+    /**
+     * Toasts can only be updated if they have a valid id
+     */
+    toast.update = (id: ToastId, options: Omit<UseToastOptions, "id">) => {
+      if (!id) return
+
+      const normalizedToastOptions = normalizeToastOptions(options)
+      const Message = createRenderToast(normalizedToastOptions)
+
+      latestToastContextRef.current.update(id, {
+        ...normalizedToastOptions,
+        message: Message,
+      })
+    }
+
+    toast.isActive = latestToastContextRef.current.isActive
+
+    return toast
+  }, [defaultOptions, latestToastContextRef, theme.direction])
 }
 
 export default useToast
