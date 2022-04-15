@@ -69,4 +69,4 @@
 "@chakra-ui/test-utils": major
 ---
 
-Bump all packages to next major for Chakra UI version 2
+Bump all packages to next major for Chakra UI version 2.
