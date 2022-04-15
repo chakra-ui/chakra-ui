@@ -1,6 +1,6 @@
 import * as React from "react"
 import { render, screen, waitFor } from "@chakra-ui/test-utils"
-import { useToast } from "../src"
+import { ToastProvider, useToast } from "../src"
 
 describe("useToast", () => {
   beforeEach(async () => {
@@ -24,7 +24,11 @@ describe("useToast", () => {
       )
     }
 
-    const { user } = render(<TestComponent />)
+    const { user } = render(
+      <ToastProvider>
+        <TestComponent />
+      </ToastProvider>,
+    )
 
     const button = await screen.findByText("Toast")
     await user.click(button)
@@ -53,7 +57,11 @@ describe("useToast", () => {
       )
     }
 
-    const { user } = render(<TestComponent />)
+    const { user } = render(
+      <ToastProvider>
+        <TestComponent />
+      </ToastProvider>,
+    )
 
     const button = await screen.findByText("Toast")
     await user.click(button)
@@ -98,7 +106,11 @@ describe("useToast", () => {
       )
     }
 
-    const { user } = render(<TestComponent />)
+    const { user } = render(
+      <ToastProvider>
+        <TestComponent />
+      </ToastProvider>,
+    )
 
     const button = await screen.findByText("Toast")
     await user.click(button)
