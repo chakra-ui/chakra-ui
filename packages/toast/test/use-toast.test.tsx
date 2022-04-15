@@ -77,7 +77,7 @@ describe("useToast", () => {
     const loadingTitle = "Toast is loading"
     const successTitle = "Promise resolved"
     const errorTitle = "Error occurred"
-    const sleepTime = 100
+    const sleepTime = 200
     const dummyPromise = new Promise<{ payload: string }>((r) =>
       setTimeout(r, sleepTime, { payload: successTitle }),
     )
