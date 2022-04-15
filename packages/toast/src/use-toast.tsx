@@ -1,6 +1,7 @@
 import type { AlertStatus } from "@chakra-ui/alert"
 import { ThemingProps, useChakra } from "@chakra-ui/system"
 import * as React from "react"
+import { MaybeFunction, runIfFn } from "@chakra-ui/utils"
 import { useLatestRef } from "@chakra-ui/hooks"
 import { getToastPlacement, ToastPosition } from "./toast.placement"
 import type { RenderProps, ToastId, ToastOptions } from "./toast.types"
@@ -61,6 +62,8 @@ export interface UseToastOptions extends ThemingProps<"Alert"> {
   containerStyle?: React.CSSProperties
 }
 
+type UseToastPromiseOption = Omit<UseToastOptions, "status">
+
 /**
  * React hook used to create a function that can be used
  * to show toasts in an application.
@@ -102,6 +105,37 @@ export function useToast(defaultOptions?: UseToastOptions) {
         ...normalizedToastOptions,
         message: Message,
       })
+    }
+
+    toast.promise = <Result extends any, Err extends Error = Error>(
+      promise: Promise<Result>,
+      options: {
+        success: MaybeFunction<UseToastPromiseOption, [Result]>
+        error: MaybeFunction<UseToastPromiseOption, [Err]>
+        loading: UseToastPromiseOption
+      },
+    ) => {
+      const id = toast({
+        ...options.loading,
+        status: "loading",
+        duration: null,
+      })
+
+      promise
+        .then((data) =>
+          toast.update(id, {
+            status: "success",
+            duration: 5_000,
+            ...runIfFn(options.success, data),
+          }),
+        )
+        .catch((error) =>
+          toast.update(id, {
+            status: "error",
+            duration: 5_000,
+            ...runIfFn(options.error, error),
+          }),
+        )
     }
 
     toast.isActive = latestToastContextRef.current.isActive
