@@ -1,6 +1,5 @@
 /* eslint-disable global-require */
-import { act, cleanup, render } from "@testing-library/react"
-import userEvent from "@testing-library/user-event"
+import { render } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { ColorModeProvider } from "../src"
 import * as colorModeUtils from "../src/color-mode.utils"
@@ -18,7 +17,6 @@ jest.mock("@chakra-ui/utils", () => ({
 
 beforeEach(() => {
   jest.resetAllMocks()
-  cleanup()
 
   Object.defineProperty(window, "matchMedia", {
     writable: true,
@@ -172,12 +170,12 @@ test("prefers root property over localStorage", () => {
   )
 })
 
-test("onChange sets value to all listeners", () => {
+test("onChange sets value to all listeners", async () => {
   const rootSet = jest.spyOn(colorModeUtils.root, "set")
 
   const mockLocalStorageManager = createMockStorageManager("localStorage")
 
-  render(
+  const { user } = render(
     <ColorModeProvider
       options={defaultThemeOptions}
       colorModeManager={mockLocalStorageManager}
@@ -189,7 +187,7 @@ test("onChange sets value to all listeners", () => {
   expect(rootSet).toHaveBeenCalledTimes(1)
   expect(mockLocalStorageManager.set).not.toHaveBeenCalled()
 
-  act(() => userEvent.click(getColorModeButton()))
+  await user.click(getColorModeButton())
 
   expect(rootSet).toHaveBeenCalledTimes(2)
   expect(rootSet).toHaveBeenCalledWith("dark")
@@ -224,12 +222,12 @@ describe("<ColorModeProvider /> cookie browser", () => {
     expect(rootGetSpy).not.toHaveBeenCalled()
   })
 
-  test("onChange sets value to all listeners", () => {
+  test("onChange sets value to all listeners", async () => {
     const rootSet = jest.spyOn(colorModeUtils.root, "set")
 
     const mockCookieStorageManager = createMockStorageManager("cookie")
 
-    render(
+    const { user } = render(
       <ColorModeProvider
         options={defaultThemeOptions}
         colorModeManager={mockCookieStorageManager}
@@ -241,7 +239,7 @@ describe("<ColorModeProvider /> cookie browser", () => {
     expect(rootSet).toHaveBeenCalledTimes(1)
     expect(mockCookieStorageManager.set).not.toHaveBeenCalled()
 
-    act(() => userEvent.click(getColorModeButton()))
+    await user.click(getColorModeButton())
 
     expect(rootSet).toHaveBeenCalledTimes(2)
     expect(rootSet).toHaveBeenCalledWith("dark")

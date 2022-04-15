@@ -1,30 +1,30 @@
 import { FormControl, FormLabel } from "@chakra-ui/form-control"
-import { userEvent, render, fireEvent } from "@chakra-ui/test-utils"
+import { render, fireEvent } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Switch } from "../src"
 
-test("Uncontrolled - should check and uncheck", () => {
-  const { container } = render(<Switch />)
+test("Uncontrolled - should check and uncheck", async () => {
+  const { container, user } = render(<Switch />)
   const input = container.querySelector("input") as HTMLInputElement
 
-  userEvent.click(input)
+  await user.click(input)
   expect(input).toBeChecked()
 
-  userEvent.click(input)
+  await user.click(input)
   expect(input).not.toBeChecked()
 })
 
-test("Uncontrolled - should not check if disabled", () => {
-  const { container } = render(<Switch isDisabled />)
+test("Uncontrolled - should not check if disabled", async () => {
+  const { container, user } = render(<Switch isDisabled />)
   const input = container.querySelector("input") as HTMLInputElement
 
   expect(input).toBeDisabled()
 
-  userEvent.click(input)
+  await user.click(input)
   expect(input).not.toBeChecked()
 })
 
-test("Controlled - should check and uncheck", () => {
+test("Controlled - should check and uncheck", async () => {
   const ControlledSwitch = ({ onChange }: any) => {
     const [checked, setChecked] = React.useState(false)
     return (
@@ -40,25 +40,25 @@ test("Controlled - should check and uncheck", () => {
 
   const onChange = jest.fn()
 
-  const { container } = render(<ControlledSwitch onChange={onChange} />)
+  const { container, user } = render(<ControlledSwitch onChange={onChange} />)
 
   const input = container.querySelector("input") as HTMLInputElement
 
   expect(input).not.toBeChecked()
 
-  userEvent.click(input)
+  await user.click(input)
 
   expect(input).toBeChecked()
   expect(onChange).toHaveBeenCalled()
 
-  userEvent.click(input)
+  await user.click(input)
 
   expect(input).not.toBeChecked()
   expect(onChange).toHaveBeenCalled()
 })
 
-test("Uncontrolled FormControl - should not check if form-control disabled", () => {
-  const { container } = render(
+test("Uncontrolled FormControl - should not check if form-control disabled", async () => {
+  const { container, user } = render(
     <FormControl isDisabled mt={4}>
       <FormLabel>Disabled Opt-in Example</FormLabel>
       <Switch />
@@ -75,9 +75,9 @@ test("Uncontrolled FormControl - should not check if form-control disabled", () 
   expect(switchTwo).toBeDisabled()
   expect(switchThree).not.toBeDisabled()
 
-  userEvent.click(switchOne)
-  userEvent.click(switchTwo)
-  userEvent.click(switchThree)
+  await user.click(switchOne)
+  await user.click(switchTwo)
+  await user.click(switchThree)
 
   expect(switchOne).not.toBeChecked()
   expect(switchTwo).not.toBeChecked()

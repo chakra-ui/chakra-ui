@@ -95,6 +95,7 @@ describe("<Stack />", () => {
       return () => {
         if (onUnmount) onUnmount(name)
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return <Flex data-testid="fruit">{name}</Flex>
   }
@@ -126,7 +127,7 @@ describe("<Stack />", () => {
             onClick={() => {
               setFruits((prev) => prev.slice(1))
             }}
-            data-testid={`delete-button`}
+            data-testid="delete-button"
           >
             delete first
           </Box>

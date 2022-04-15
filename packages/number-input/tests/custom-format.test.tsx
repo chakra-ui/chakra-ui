@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { fireEvent, render, userEvent } from "@chakra-ui/test-utils"
+import { fireEvent, render, screen, waitFor } from "@chakra-ui/test-utils"
 import * as React from "react"
 import {
   NumberDecrementStepper,
@@ -26,7 +26,7 @@ function renderComponent(props: NumberInputProps = {}) {
 }
 
 const CUSTOM_FLOATING_POINT_REGEX = /^[Ee0-9+\-.,]$/
-const testNumberInputCustomFormat = {
+const options = {
   isValidCharacter: (v: string) => CUSTOM_FLOATING_POINT_REGEX.test(v),
   parse: (value: string) => value?.replace(",", "."),
   format: (value: string | number) => {
@@ -35,31 +35,39 @@ const testNumberInputCustomFormat = {
   },
 }
 
-it("should apply custom format", () => {
-  const { getByTestId } = renderComponent({
+test("should apply custom format", async () => {
+  const { user } = renderComponent({
     defaultValue: 0,
     step: 0.65,
     precision: 2,
-    ...testNumberInputCustomFormat,
+    ...options,
   })
 
-  const input = getByTestId("input")
-  const incBtn = getByTestId("up-btn")
-  const decBtn = getByTestId("down-btn")
+  const input = screen.getByTestId("input")
+  const incBtn = screen.getByTestId("up-btn")
 
   expect(input).toHaveValue("0,00")
-  userEvent.click(incBtn)
+
+  await user.click(incBtn)
   expect(input).toHaveValue("0,65")
-  userEvent.click(incBtn)
+
+  await user.click(incBtn)
   expect(input).toHaveValue("1,30")
-  userEvent.click(incBtn)
+
+  await user.click(incBtn)
   expect(input).toHaveValue("1,95")
-  userEvent.click(decBtn)
+
+  const decBtn = screen.getByTestId("down-btn")
+
+  await user.click(decBtn)
   expect(input).toHaveValue("1,30")
 
   // on blur, value is clamped using precision
-  userEvent.type(input, "1234")
-  expect(input).toHaveValue("1,301234")
+  await user.type(input, "1234")
+  await waitFor(() => {
+    expect(input).toHaveValue("1,301234")
+  })
+
   fireEvent.blur(input)
   expect(input).toHaveValue("1,30")
 })
