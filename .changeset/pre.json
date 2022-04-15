@@ -74,5 +74,12 @@
     "@chakra-ui/storybook-addon": "1.0.3",
     "@chakra-ui/test-utils": "1.1.14"
   },
-  "changesets": ["new-rivers-fail"]
+  "changesets": [
+    "forty-plums-attend",
+    "green-moose-care",
+    "lovely-donkeys-heal",
+    "new-rivers-fail",
+    "polite-planets-travel",
+    "strong-years-behave"
+  ]
 }
