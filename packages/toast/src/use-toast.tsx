@@ -107,8 +107,6 @@ export function useToast(defaultOptions?: UseToastOptions) {
       })
     }
 
-    // toast.promise(promise, {loading: {title: "Loading..."}, success: data =>({ title: data.user.title }), error: err => ({title: "Failed to fetch"}))
-
     toast.promise = <Result extends any, Err extends Error = Error>(
       promise: Promise<Result>,
       options: {
@@ -127,12 +125,14 @@ export function useToast(defaultOptions?: UseToastOptions) {
         .then((data) =>
           toast.update(id, {
             status: "success",
+            duration: 5_000,
             ...runIfFn(options.success, data),
           }),
         )
         .catch((error) =>
           toast.update(id, {
             status: "error",
+            duration: 5_000,
             ...runIfFn(options.error, error),
           }),
         )
