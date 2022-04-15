@@ -1,6 +1,7 @@
 import type { AlertStatus } from "@chakra-ui/alert"
 import { ThemingProps, useChakra } from "@chakra-ui/system"
 import * as React from "react"
+import { MaybeFunction, runIfFn } from "@chakra-ui/utils"
 import { useLatestRef } from "@chakra-ui/hooks"
 import { getToastPlacement, ToastPosition } from "./toast.placement"
 import type { RenderProps, ToastId, ToastOptions } from "./toast.types"
@@ -61,7 +62,7 @@ export interface UseToastOptions extends ThemingProps<"Alert"> {
   containerStyle?: React.CSSProperties
 }
 
-type UseToastPromiseOption = Omit<ToastOptions, "status">
+type UseToastPromiseOption = Omit<UseToastOptions, "status">
 
 /**
  * React hook used to create a function that can be used
@@ -106,21 +107,38 @@ export function useToast(defaultOptions?: UseToastOptions) {
       })
     }
 
-    toast.promise = (
-      promise: Promise<any>,
+    // toast.promise(promise, {loading: {title: "Loading..."}, success: data =>({ title: data.user.title }), error: err => ({title: "Failed to fetch"}))
+
+    toast.promise = <Result extends any, Err extends Error = Error>(
+      promise: Promise<Result>,
       options: {
-        success: UseToastPromiseOption
-        error: UseToastPromiseOption
+        success: MaybeFunction<UseToastPromiseOption, [Result]>
+        error: MaybeFunction<UseToastPromiseOption, [Err]>
         loading: UseToastPromiseOption
       },
-  ) => {
-    const id = toast({ ...options.loading, status: "loading", duration: null })
-    promise
-        .then((data) => toast.update(id, { ...options.success, data, status: "success" }))
-        .catch((error) => toast.update(id, { ...options.error, error, status: "error" }))
-  }
+    ) => {
+      const id = toast({
+        ...options.loading,
+        status: "loading",
+        duration: null,
+      })
 
-  toast.isActive = latestToastContextRef.current.isActive
+      promise
+        .then((data) =>
+          toast.update(id, {
+            status: "success",
+            ...runIfFn(options.success, data),
+          }),
+        )
+        .catch((error) =>
+          toast.update(id, {
+            status: "error",
+            ...runIfFn(options.error, error),
+          }),
+        )
+    }
+
+    toast.isActive = latestToastContextRef.current.isActive
 
     return toast
   }, [defaultOptions, latestToastContextRef, theme.direction])
