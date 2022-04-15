@@ -18,7 +18,7 @@ describe("<ColorModeProvider />", () => {
       </ColorModeProvider>,
     )
 
-    expect(syncBodyClassNameSpy).toHaveBeenCalledTimes(1)
+    expect(syncBodyClassNameSpy).toHaveBeenCalled()
   })
 
   test("sets custom attribute on root", () => {
@@ -30,7 +30,7 @@ describe("<ColorModeProvider />", () => {
       </ColorModeProvider>,
     )
 
-    expect(rootSpy).toHaveBeenCalledTimes(1)
+    expect(rootSpy).toHaveBeenCalled()
   })
 
   test("toggleColorMode changes the color", async () => {
