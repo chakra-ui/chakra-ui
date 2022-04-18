@@ -235,7 +235,11 @@ export function useEditable(props: UseEditableProps = {}) {
       const isValidBlur = !targetIsCancel && !targetIsSubmit
 
       if (isValidBlur) {
-        submitOnBlur ? onSubmit(): onCancel()
+        if (submitOnBlur) { 
+            onSubmit()
+        } else {
+            onCancel() 
+        }
       }
     },
     [submitOnBlur, onSubmit],
