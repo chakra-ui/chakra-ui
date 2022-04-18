@@ -1,8 +1,8 @@
+import { ThemeProvider } from "@chakra-ui/system"
 import React from "react"
 import { renderToStaticMarkup } from "react-dom/server"
-import { ChakraProvider } from "@chakra-ui/react"
-import { theme } from "./test-data"
 import { useBreakpointValue } from "../src"
+import { theme } from "./test-data"
 
 jest.mock("@chakra-ui/utils", () => ({
   ...jest.requireActual("@chakra-ui/utils"),
@@ -14,21 +14,8 @@ beforeEach(() => {
 })
 
 describe("with defaultBreakpoint", () => {
-  // To clean up erroneous console warnings from react, we temporarily force
-  // useLayoutEffect to behave like useEffect. Since neither can run in our SSR
-  // tests, it has no functional impact, but stops the huge console dumps that
-  // React causes.
-  let useLayoutEffect: typeof React.useLayoutEffect
-  beforeAll(() => {
-    useLayoutEffect = React.useLayoutEffect
-    React.useLayoutEffect = React.useEffect
-  })
-  afterAll(() => {
-    React.useLayoutEffect = useLayoutEffect
-  })
-
   // NOTE: We do not set up matchMedia as we wish to simulate an SSR environment
-  const values = {
+  const breakpoints = {
     base: "base",
     sm: "sm",
     md: "md",
@@ -38,9 +25,9 @@ describe("with defaultBreakpoint", () => {
   }
 
   test("sm", () => {
-    const html = ssrRenderWithDefaultBreakpoint(values, "sm")
+    const html = ssrRenderWithDefaultBreakpoint(breakpoints, "sm")
 
-    Object.keys(values).forEach((key) => {
+    Object.keys(breakpoints).forEach((key) => {
       if (key === "sm") {
         expect(html).toContain(key)
       } else {
@@ -50,9 +37,9 @@ describe("with defaultBreakpoint", () => {
   })
 
   test("md", () => {
-    const html = ssrRenderWithDefaultBreakpoint(values, "md")
+    const html = ssrRenderWithDefaultBreakpoint(breakpoints, "md")
 
-    Object.keys(values).forEach((key) => {
+    Object.keys(breakpoints).forEach((key) => {
       if (key === "md") {
         expect(html).toContain(key)
       } else {
@@ -62,9 +49,9 @@ describe("with defaultBreakpoint", () => {
   })
 
   test("lg", () => {
-    const html = ssrRenderWithDefaultBreakpoint(values, "lg")
+    const html = ssrRenderWithDefaultBreakpoint(breakpoints, "lg")
 
-    Object.keys(values).forEach((key) => {
+    Object.keys(breakpoints).forEach((key) => {
       if (key === "lg") {
         expect(html).toContain(key)
       } else {
@@ -74,9 +61,9 @@ describe("with defaultBreakpoint", () => {
   })
 
   test("xl", () => {
-    const html = ssrRenderWithDefaultBreakpoint(values, "xl")
+    const html = ssrRenderWithDefaultBreakpoint(breakpoints, "xl")
 
-    Object.keys(values).forEach((key) => {
+    Object.keys(breakpoints).forEach((key) => {
       if (key === "xl") {
         expect(html).toContain(key)
       } else {
@@ -86,9 +73,9 @@ describe("with defaultBreakpoint", () => {
   })
 
   test("customBreakpoint", () => {
-    const html = ssrRenderWithDefaultBreakpoint(values, "customBreakpoint")
+    const html = ssrRenderWithDefaultBreakpoint(breakpoints, "customBreakpoint")
 
-    Object.keys(values).forEach((key) => {
+    Object.keys(breakpoints).forEach((key) => {
       if (key === "customBreakpoint") {
         expect(html).toContain(key)
       } else {
@@ -98,30 +85,33 @@ describe("with defaultBreakpoint", () => {
   })
 
   test("base value is used if no breakpoint matches", () => {
-    const values = { base: "base", md: "md" }
-    const html = ssrRenderWithDefaultBreakpoint(values, "sm")
+    const breakpoints = { base: "base", md: "md" }
+    const html = ssrRenderWithDefaultBreakpoint(breakpoints, "sm")
     expect(html).toContain("base")
   })
 })
 
 function ssrRenderWithDefaultBreakpoint(
-  values: any,
+  breakpoints: any,
   defaultBreakpoint: string,
 ) {
   return renderToStaticMarkup(
-    <ChakraProvider theme={theme}>
-      <TestComponent values={values} defaultBreakpoint={defaultBreakpoint} />
-    </ChakraProvider>,
+    <ThemeProvider theme={theme}>
+      <TestComponent
+        breakpoints={breakpoints}
+        defaultBreakpoint={defaultBreakpoint}
+      />
+    </ThemeProvider>,
   )
 }
 
 const TestComponent = ({
-  values,
+  breakpoints,
   defaultBreakpoint = undefined,
 }: {
-  values: any
+  breakpoints: any
   defaultBreakpoint?: string
 }) => {
-  const value = useBreakpointValue(values, defaultBreakpoint)
+  const value = useBreakpointValue(breakpoints, defaultBreakpoint)
   return <>{value}</>
 }
