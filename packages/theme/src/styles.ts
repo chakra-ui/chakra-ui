@@ -11,7 +11,7 @@ const styles: Styles = {
       lineHeight: "base",
     },
     "*::placeholder": {
-      color: mode("gray.400", "whiteAlpha.400")(props),
+      color: mode("gray.500", "whiteAlpha.400")(props),
     },
     "*, *::before, &::after": {
       borderColor: mode("gray.200", "whiteAlpha.300")(props),
