@@ -38,8 +38,8 @@
     "@chakra-ui/utils": "2.0.0-next.0"
   },
   "peerDependencies": {
-    "react": ">=16.8.6",
-    "react-dom": ">=16.8.6"
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "devDependencies": {
     "@types/react-frame-component": "^4.1.1",

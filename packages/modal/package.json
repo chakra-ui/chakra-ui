@@ -59,7 +59,7 @@
   "peerDependencies": {
     "@chakra-ui/system": ">=2.0.0-next.0",
     "framer-motion": ">=4.0.0",
-    "react": ">=16.8.6",
-    "react-dom": ">=16.8.6"
+    "react": ">=18",
+    "react-dom": ">=18"
   }
 }
