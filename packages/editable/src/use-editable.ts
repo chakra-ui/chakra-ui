@@ -235,14 +235,14 @@ export function useEditable(props: UseEditableProps = {}) {
       const isValidBlur = !targetIsCancel && !targetIsSubmit
 
       if (isValidBlur) {
-        if (submitOnBlur) { 
-            onSubmit()
+        if (submitOnBlur) {
+          onSubmit()
         } else {
-            onCancel() 
+          onCancel()
         }
       }
     },
-    [submitOnBlur, onSubmit],
+    [submitOnBlur, onSubmit, onCancel],
   )
 
   const getPreviewProps: PropGetter = useCallback(
