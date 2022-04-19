@@ -1,63 +1,24 @@
 import * as React from "react"
-import { ColorMode, ConfigColorMode } from "./color-mode-provider"
 
-export type ScriptOptions = {
-  fallback: ConfigColorMode
-  doc?: Document
+interface ColorModeScriptProps {
+  type?: "localStorage" | "cookie"
+  initialColorMode?: "light" | "dark" | "system"
   storageKey?: string
 }
 
-export function setScript(options: ScriptOptions) {
+export function ColorModeScript(props: ColorModeScriptProps = {}) {
   const {
-    doc = document,
+    initialColorMode = "system",
+    type = "localStorage",
     storageKey = "chakra-ui-color-mode",
-    fallback,
-  } = options
-  const win = doc.defaultView ?? window
-  const mql = win.matchMedia("(prefers-color-scheme: dark)")
-  const systemValue = mql.matches ? "dark" : "light"
-  let value: ColorMode | null = systemValue
-  try {
-    value = win.localStorage.getItem(storageKey) as ColorMode | null
-  } catch (error) {
-    console.log(
-      "Chakra UI: localStorage is not available. Color mode persistence might not work as expected",
-    )
-  }
+  } = props
 
-  let colorMode: ColorMode
+  const init = initialColorMode
+  const k = storageKey
 
-  if (value) colorMode = value
-  else if (fallback === "system") colorMode = systemValue
-  else colorMode = fallback ?? systemValue
+  const cookieScript = `!function(){try {var d=document.documentElement;var ck=document.cookie.match(new RegExp(\`(^| )${k}=([^;]+)\`));var e=ck && ck[2];if(!e)return document.cookie=\`${k}=${init}; max-age=31536000; path=/\`,d.setAttribute('data-theme', ${init});if("system"===e){var t="(prefers-color-scheme: dark)",m=window.matchMedia(t);m.media!==t||m.matches?d.setAttribute('data-theme', 'dark'):d.setAttribute('data-theme', 'light')}else d.setAttribute('data-theme', e)}catch(e){}}()`
+  const localStorageScript = `!function(){try {var d=document.documentElement;var e=localstorage.getItem(${k});if(!e)return localstorage.setItem(${k}, ${init}),d.setAttribute('data-theme', ${init});if("system"===e){var t="(prefers-color-scheme: dark)",m=window.matchMedia(t);m.media!==t||m.matches?d.setAttribute('data-theme', 'dark'):d.setAttribute('data-theme', 'light')}else d.setAttribute('data-theme', e)}catch(e){}}()`
 
-  if (colorMode) {
-    doc.documentElement.setAttribute("data-theme", colorMode)
-  }
-}
-
-const VALID_VALUES = ["dark", "light", "system"] as const
-
-export function getScriptInnerHTML(init?: ConfigColorMode) {
-  if (!init || !VALID_VALUES.includes(init)) init = "light"
-  return `(${String(setScript)})('${init}')`
-}
-
-interface ColorModeScriptProps {
-  initialColorMode?: ConfigColorMode
-  nonce?: string
-}
-
-/**
- * Script to add to the root of your application when using localStorage,
- * to help prevent flash of color mode that can happen during page load.
- */
-export function ColorModeScript(props: ColorModeScriptProps) {
-  const { initialColorMode, nonce } = props
-  return (
-    <script
-      nonce={nonce}
-      dangerouslySetInnerHTML={{ __html: getScriptInnerHTML(initialColorMode) }}
-    />
-  )
+  const __html = type === "cookie" ? cookieScript : localStorageScript
+  return <script id="chakra-script" dangerouslySetInnerHTML={{ __html }} />
 }
