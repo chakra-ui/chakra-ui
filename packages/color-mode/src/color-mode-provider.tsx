@@ -40,7 +40,7 @@ export const useColorMode = () => {
 export interface ColorModeProviderProps {
   value?: ColorMode
   children?: React.ReactNode
-  options: ColorModeOptions
+  options?: ColorModeOptions
   colorModeManager?: StorageManager
 }
 
@@ -52,7 +52,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   const {
     value,
     children,
-    options: { useSystemColorMode, initialColorMode },
+    options: { useSystemColorMode, initialColorMode } = {},
     colorModeManager = localStorageManager,
   } = props
 
