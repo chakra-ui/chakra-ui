@@ -1,16 +1,11 @@
 import { useEnvironment } from "@chakra-ui/react-env"
 import { isBrowser, noop, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import {
-  addListener,
-  ColorMode,
-  getColorScheme,
-  root,
-  syncBodyClassName,
-} from "./color-mode.utils"
+import { getColorModeUtils, ColorMode } from "./color-mode.utils"
 import { localStorageManager, StorageManager } from "./storage-manager"
 
 type ConfigColorMode = ColorMode | "system" | undefined
+
 export type { ColorMode, ConfigColorMode }
 
 export interface ColorModeOptions {
@@ -78,49 +73,36 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   const { document } = useEnvironment()
 
   React.useEffect(() => {
-    /**
-     * Since we cannot initially retrieve localStorage for the reasons mentioned
-     * above, do so after hydration.
-     *
-     * Priority:
-     * - if `useSystemColorMode` is true system-color will be used as default - initial
-     * colormode is the fallback if system color mode isn't resolved
-     *
-     * - if `--chakra-ui-color-mode` is defined through e.g. `ColorModeScript` this
-     * will be used
-     *
-     * - if `colorModeManager` = `localStorage` and a value is defined for
-     * `chakra-ui-color-mode` this will be used
-     *
-     * - if `initialColorMode` = `system` system-color will be used as default -
-     * initial colormode is the fallback if system color mode isn't resolved
-     *
-     * - if `initialColorMode` = `'light'|'dark'` the corresponding value will be used
-     */
-    if (isBrowser && colorModeManager.type === "localStorage") {
-      const systemColorWithFallback = getColorScheme(defaultColorMode)
-      if (useSystemColorMode) {
-        return rawSetColorMode(systemColorWithFallback)
-      }
-      const rootGet = root.get()
-      const colorManagerGet = colorModeManager.get()
-      if (rootGet) {
-        return rawSetColorMode(rootGet)
-      }
-      if (colorManagerGet) {
-        return rawSetColorMode(colorManagerGet)
-      }
-      if (initialColorMode === "system") {
-        return rawSetColorMode(systemColorWithFallback)
-      }
+    if (!isBrowser) return
+    const utils = getColorModeUtils({ doc: document })
+
+    if (colorModeManager.type === "localStorage") {
+      const systemValue = utils.getColorScheme(defaultColorMode)
+      if (useSystemColorMode) return rawSetColorMode(systemValue)
+
+      const datasetValue = utils.getValue()
+      if (datasetValue) return rawSetColorMode(datasetValue)
+
+      const managerValue = colorModeManager.get()
+      if (managerValue) return rawSetColorMode(managerValue)
+
+      if (initialColorMode === "system") return rawSetColorMode(systemValue)
+
       return rawSetColorMode(defaultColorMode)
     }
-  }, [colorModeManager, useSystemColorMode, defaultColorMode, initialColorMode])
+  }, [
+    colorModeManager,
+    useSystemColorMode,
+    defaultColorMode,
+    initialColorMode,
+    document,
+  ])
 
   React.useEffect(() => {
-    const isDark = colorMode === "dark"
-    syncBodyClassName(isDark, document)
-    root.set(isDark ? "dark" : "light")
+    const utils = getColorModeUtils({ doc: document })
+    const dark = colorMode === "dark"
+    utils.setClassName(dark)
+    if (colorMode) utils.setValue(colorMode)
   }, [colorMode, document])
 
   const setColorMode = React.useCallback(
@@ -139,18 +121,18 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   }, [colorMode, setColorMode])
 
   React.useEffect(() => {
-    const shouldUseSystemListener =
-      useSystemColorMode || initialColorMode === "system"
-    let removeListener: any
-    if (shouldUseSystemListener) {
-      removeListener = addListener(setColorMode)
-    }
-    return () => {
-      if (removeListener && shouldUseSystemListener) {
-        removeListener()
-      }
-    }
-  }, [setColorMode, useSystemColorMode, initialColorMode])
+    if (!isBrowser) return
+
+    const utils = getColorModeUtils({ doc: document })
+
+    const system = useSystemColorMode || initialColorMode === "system"
+
+    let remove: VoidFunction | undefined
+    if (system) remove = utils.addChangeListener(setColorMode)
+
+    return () => remove?.()
+    //
+  }, [setColorMode, useSystemColorMode, initialColorMode, document])
 
   // presence of `value` indicates a controlled context
   const context = React.useMemo(
