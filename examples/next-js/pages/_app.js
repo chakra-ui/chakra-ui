@@ -1,9 +1,9 @@
-import { ChakraProvider, IdProvider } from "@chakra-ui/react"
+import { Chakra } from "../src/provider"
 
 export default function App({ Component, pageProps }) {
   return (
-    <ChakraProvider>
+    <Chakra>
       <Component {...pageProps} />
-    </ChakraProvider>
+    </Chakra>
   )
 }
