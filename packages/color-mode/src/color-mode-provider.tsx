@@ -1,3 +1,4 @@
+import { useUpdateEffect } from "@chakra-ui/hooks"
 import { useEnvironment } from "@chakra-ui/react-env"
 import { isBrowser, noop, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -76,20 +77,20 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     if (!isBrowser) return
     const utils = getColorModeUtils({ doc: document })
 
-    if (colorModeManager.type === "localStorage") {
-      const systemValue = utils.getColorScheme(defaultColorMode)
-      if (useSystemColorMode) return rawSetColorMode(systemValue)
+    if (colorModeManager.type !== "localStorage") return
 
-      const datasetValue = utils.getValue()
-      if (datasetValue) return rawSetColorMode(datasetValue)
+    const systemValue = utils.getColorScheme(defaultColorMode)
+    if (useSystemColorMode) return rawSetColorMode(systemValue)
 
-      const managerValue = colorModeManager.get()
-      if (managerValue) return rawSetColorMode(managerValue)
+    const datasetValue = utils.getValue()
+    if (datasetValue) return rawSetColorMode(datasetValue)
 
-      if (initialColorMode === "system") return rawSetColorMode(systemValue)
+    const managerValue = colorModeManager.get()
+    if (managerValue) return rawSetColorMode(managerValue)
 
-      return rawSetColorMode(defaultColorMode)
-    }
+    if (initialColorMode === "system") return rawSetColorMode(systemValue)
+
+    return rawSetColorMode(defaultColorMode)
   }, [
     colorModeManager,
     useSystemColorMode,
@@ -98,7 +99,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     document,
   ])
 
-  React.useEffect(() => {
+  useUpdateEffect(() => {
     const utils = getColorModeUtils({ doc: document })
     const dark = colorMode === "dark"
     utils.setClassName(dark)
@@ -122,14 +123,10 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
 
   React.useEffect(() => {
     if (!isBrowser) return
-
     const utils = getColorModeUtils({ doc: document })
-
     const system = useSystemColorMode || initialColorMode === "system"
-
     let remove: VoidFunction | undefined
     if (system) remove = utils.addChangeListener(setColorMode)
-
     return () => remove?.()
     //
   }, [setColorMode, useSystemColorMode, initialColorMode, document])
