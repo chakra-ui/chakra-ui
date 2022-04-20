@@ -69,16 +69,12 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     if (!isBrowser) return
     const utils = getColorModeUtils({ doc: document })
 
-    const systemValue = utils.getColorScheme(defaultColorMode)
-
-    if (useSystemColorMode) {
-      return rawSetColorMode(systemValue)
-    }
-
     const managerValue = colorModeManager.get()
     if (managerValue) {
       return rawSetColorMode(managerValue)
     }
+
+    const systemValue = utils.getColorScheme(defaultColorMode)
 
     if (initialColorMode === "system") {
       return rawSetColorMode(systemValue)
@@ -99,7 +95,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     const dark = colorMode === "dark"
     utils.setClassName(dark)
 
-    if (colorMode && colorMode !== colorModeManager.get()) {
+    if (colorMode) {
       utils.setDataset(colorMode)
       colorModeManager.set(colorMode)
     }

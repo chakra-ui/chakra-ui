@@ -25,7 +25,8 @@ export function getColorModeUtils(options: UtilOptions = {}) {
   const utils = {
     setDataset: (value: ColorMode) => {
       const cleanup = preventTransition ? utils.preventTransition() : undefined
-      docEl.setAttribute("data-theme", value)
+      docEl.dataset.theme = value
+      docEl.style.colorScheme = value
       cleanup?.()
     },
     body,
