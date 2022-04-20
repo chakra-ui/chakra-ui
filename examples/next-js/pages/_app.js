@@ -1,9 +1,20 @@
-import { Chakra } from "../src/provider"
+import {
+  ChakraProvider,
+  cookieStorageManager,
+  extendTheme,
+} from "@chakra-ui/react"
+
+const theme = extendTheme({
+  config: {
+    initialColorMode: "system",
+    useSystemColorMode: true,
+  },
+})
 
 export default function App({ Component, pageProps }) {
   return (
-    <Chakra>
+    <ChakraProvider colorModeManager={cookieStorageManager} theme={theme}>
       <Component {...pageProps} />
-    </Chakra>
+    </ChakraProvider>
   )
 }
