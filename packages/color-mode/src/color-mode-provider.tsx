@@ -59,16 +59,8 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
 
   const defaultColorMode = initialColorMode === "dark" ? "dark" : "light"
 
-  /**
-   * Only attempt to retrieve if we're on the server. Else this will result
-   * in a hydration mismatch warning and partially invalid visuals.
-   *
-   * Else fallback safely to `theme.config.initialColormode` (default light)
-   */
   const [colorMode, rawSetColorMode] = React.useState<ColorMode | undefined>(
-    colorModeManager.type === "cookie"
-      ? colorModeManager.get(defaultColorMode)
-      : defaultColorMode,
+    defaultColorMode,
   )
 
   const { document } = useEnvironment()
@@ -77,18 +69,20 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     if (!isBrowser) return
     const utils = getColorModeUtils({ doc: document })
 
-    if (colorModeManager.type !== "localStorage") return
-
     const systemValue = utils.getColorScheme(defaultColorMode)
-    if (useSystemColorMode) return rawSetColorMode(systemValue)
 
-    const datasetValue = utils.getValue()
-    if (datasetValue) return rawSetColorMode(datasetValue)
+    if (useSystemColorMode) {
+      return rawSetColorMode(systemValue)
+    }
 
     const managerValue = colorModeManager.get()
-    if (managerValue) return rawSetColorMode(managerValue)
+    if (managerValue) {
+      return rawSetColorMode(managerValue)
+    }
 
-    if (initialColorMode === "system") return rawSetColorMode(systemValue)
+    if (initialColorMode === "system") {
+      return rawSetColorMode(systemValue)
+    }
 
     return rawSetColorMode(defaultColorMode)
   }, [
@@ -101,46 +95,35 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
 
   useUpdateEffect(() => {
     const utils = getColorModeUtils({ doc: document })
+
     const dark = colorMode === "dark"
     utils.setClassName(dark)
-    if (colorMode) utils.setValue(colorMode)
+
+    if (colorMode && colorMode !== colorModeManager.get()) {
+      utils.setDataset(colorMode)
+      colorModeManager.set(colorMode)
+    }
   }, [colorMode, document])
 
-  const setColorMode = React.useCallback(
-    (value: ColorMode, isListenerEvent = false) => {
-      if (!isListenerEvent) {
-        colorModeManager.set(value)
-      } else if (colorModeManager.get() && !useSystemColorMode) return
-
-      rawSetColorMode(value)
-    },
-    [colorModeManager, useSystemColorMode],
-  )
-
   const toggleColorMode = React.useCallback(() => {
-    setColorMode(colorMode === "light" ? "dark" : "light")
-  }, [colorMode, setColorMode])
+    rawSetColorMode((prev) => (prev === "light" ? "dark" : "light"))
+  }, [])
 
   React.useEffect(() => {
     if (!isBrowser) return
     const utils = getColorModeUtils({ doc: document })
     const system = useSystemColorMode || initialColorMode === "system"
-    let remove: VoidFunction | undefined
-    if (system) {
-      remove = utils.addChangeListener(setColorMode)
-    }
-    return () => remove?.()
-    //
-  }, [setColorMode, useSystemColorMode, initialColorMode, document])
+    return system ? utils.addListener(rawSetColorMode) : noop
+  }, [useSystemColorMode, initialColorMode, document])
 
   // presence of `value` indicates a controlled context
   const context = React.useMemo(
     () => ({
       colorMode: (value ?? colorMode) as ColorMode,
       toggleColorMode: value ? noop : toggleColorMode,
-      setColorMode: value ? noop : setColorMode,
+      setColorMode: value ? noop : rawSetColorMode,
     }),
-    [colorMode, setColorMode, toggleColorMode, value],
+    [colorMode, toggleColorMode, value],
   )
 
   return (

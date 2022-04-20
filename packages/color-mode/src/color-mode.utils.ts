@@ -23,8 +23,7 @@ export function getColorModeUtils(options: UtilOptions = {}) {
   const docEl = doc.documentElement
 
   const utils = {
-    getValue: () => docEl.dataset.theme as ColorMode | undefined,
-    setValue: (value: ColorMode) => {
+    setDataset: (value: ColorMode) => {
       const cleanup = preventTransition ? utils.preventTransition() : undefined
       docEl.setAttribute("data-theme", value)
       cleanup?.()
@@ -41,18 +40,10 @@ export function getColorModeUtils(options: UtilOptions = {}) {
       const dark = utils.query(queries.dark).matches ?? fallback === "dark"
       return dark ? "dark" : "light"
     },
-    addStorageListener(key: string, fn: (colorMode: ColorMode | null) => void) {
-      const handleStorage = (e: StorageEvent) => {
-        if (e.key !== key) return
-        fn(e.newValue as ColorMode | null)
-      }
-      win.addEventListener("storage", handleStorage)
-      return () => win.removeEventListener("storage", handleStorage)
-    },
-    addChangeListener(fn: (cm: ColorMode, isListenerEvent: true) => unknown) {
+    addListener(fn: (cm: ColorMode) => unknown) {
       const mql = utils.query(queries.dark)
       const listener = (e: MediaQueryListEvent) => {
-        fn(e.matches ? "dark" : "light", true)
+        fn(e.matches ? "dark" : "light")
       }
       mql.addEventListener("change", listener)
       return () => mql.removeEventListener("change", listener)
