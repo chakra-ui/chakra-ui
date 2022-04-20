@@ -1,8 +1,6 @@
 /* eslint-disable global-require */
-import * as React from "react"
 import { screen } from "@chakra-ui/test-utils"
-import theme from "@chakra-ui/theme"
-import { ColorModeOptions, ColorMode, StorageManager } from "../src"
+import * as React from "react"
 
 export const DummyComponent = () => {
   const { useColorMode } = require("../src/color-mode-provider")
@@ -22,26 +20,51 @@ export const resetCounter = () => {
 }
 
 export const MemoizedComponent = React.memo(() => {
-  renderCount = renderCount + 1
+  renderCount++
   return <div data-testid="rendered">{renderCount}</div>
 })
 
 export const RegularComponent = () => {
-  renderCount = renderCount + 1
+  renderCount++
   return <div data-testid="rendered">{renderCount}</div>
 }
 
 export const getColorModeButton = () => screen.getByRole("button")
 
-export const defaultThemeOptions = theme.config as Required<ColorModeOptions>
+export const defaultThemeOptions = {
+  useSystemColorMode: false,
+  initialColorMode: "light",
+  cssVarPrefix: "chakra",
+} as const
 
-export const createMockStorageManager = (
-  type: StorageManager["type"],
-  get?: ColorMode,
-): StorageManager => {
-  return {
-    get: jest.fn().mockImplementation((init) => get ?? init),
-    set: jest.fn(),
-    type,
-  }
+export function mockMatchMedia(query: string) {
+  Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    value: () => {
+      return {
+        matches: query === "dark",
+        media: "(prefers-color-scheme: dark)",
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      }
+    },
+  })
+}
+
+export function mockLocalStorage(colorMode: string) {
+  Object.defineProperty(window, "localStorage", {
+    writable: true,
+    value: {
+      getItem: () => colorMode,
+      setItem: jest.fn(),
+    },
+  })
+}
+
+export function mockCookieStorage(colorMode: string | null) {
+  Object.defineProperty(document, "cookie", {
+    writable: true,
+    value: colorMode ? `chakra-ui-color-mode=${colorMode}` : "",
+  })
 }

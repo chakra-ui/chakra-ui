@@ -1,71 +1,146 @@
-import * as React from "react"
 import { render } from "@chakra-ui/test-utils"
-import { ColorModeProvider } from "../src"
-import * as colorModeUtils from "../src/color-mode.utils"
+import * as React from "react"
+import { ColorModeProvider, cookieStorageManager } from "../src"
 import {
   defaultThemeOptions,
   DummyComponent,
   getColorModeButton,
+  mockCookieStorage,
+  mockLocalStorage,
+  mockMatchMedia,
 } from "./utils"
 
-describe("<ColorModeProvider />", () => {
-  test("sets class on body", () => {
-    const syncBodyClassNameSpy = jest.spyOn(colorModeUtils, "syncBodyClassName")
+jest.mock("@chakra-ui/utils", () => ({
+  ...jest.requireActual("@chakra-ui/utils"),
+  isBrowser: true,
+}))
 
+describe("<ColorModeProvider /> localStorage browser", () => {
+  it.each(
+    [
+      { system: "light", initial: "light", useSystem: false, expect: "light" },
+      { system: "dark", initial: "light", useSystem: false, expect: "light" },
+      //
+      { system: "light", initial: "dark", useSystem: false, expect: "dark" },
+      { system: "dark", initial: "dark", useSystem: false, expect: "dark" },
+      { system: "light", initial: "system", useSystem: false, expect: "light" },
+      //
+      { system: "dark", initial: "system", useSystem: false, expect: "dark" },
+
+      { system: "light", initial: "light", useSystem: true, expect: "light" },
+      //
+      { system: "dark", initial: "light", useSystem: true, expect: "dark" },
+      { system: "light", initial: "dark", useSystem: true, expect: "light" },
+      //
+      { system: "dark", initial: "dark", useSystem: true, expect: "dark" },
+      { system: "light", initial: "system", useSystem: true, expect: "light" },
+      //
+      { system: "dark", initial: "system", useSystem: true, expect: "dark" },
+    ].map((item) => ({
+      ...item,
+      toString: () => `case: ${JSON.stringify(item)}`,
+    })),
+  )("%s", (result) => {
+    mockMatchMedia(result.system)
+    const options = {
+      useSystemColorMode: result.useSystem,
+      initialColorMode: result.initial as any,
+    }
+    render(
+      <ColorModeProvider options={options}>
+        <DummyComponent />
+      </ColorModeProvider>,
+    )
+    expect(getColorModeButton()).toHaveTextContent(result.expect)
+  })
+})
+
+describe("Config options", () => {
+  test("by default, picks from theme.config.initialColorMode", () => {
     render(
       <ColorModeProvider options={defaultThemeOptions}>
         <DummyComponent />
       </ColorModeProvider>,
     )
 
-    expect(syncBodyClassNameSpy).toHaveBeenCalled()
+    expect(getColorModeButton()).toHaveTextContent(
+      defaultThemeOptions.initialColorMode,
+    )
   })
 
-  test("sets custom attribute on root", () => {
-    const rootSpy = jest.spyOn(colorModeUtils.root, "set")
-
+  test("prefers useSystemColorMode over root property", () => {
+    mockMatchMedia("dark")
     render(
-      <ColorModeProvider options={defaultThemeOptions}>
+      <ColorModeProvider
+        options={{ ...defaultThemeOptions, useSystemColorMode: true }}
+      >
         <DummyComponent />
       </ColorModeProvider>,
     )
-
-    expect(rootSpy).toHaveBeenCalled()
-  })
-
-  test("toggleColorMode changes the color", async () => {
-    const { user } = render(
-      <ColorModeProvider options={defaultThemeOptions}>
-        <DummyComponent />
-      </ColorModeProvider>,
-    )
-
-    const button = getColorModeButton()
-
-    expect(button).toHaveTextContent(defaultThemeOptions.initialColorMode)
-
-    await user.click(button)
 
     expect(getColorModeButton()).not.toHaveTextContent(
       defaultThemeOptions.initialColorMode,
     )
   })
 
-  test("is controlled given a value", async () => {
-    const value = "dark"
+  test.only("prefers `data-theme` property over localStorage", () => {
+    document.documentElement.dataset.theme = "pinky"
+    mockMatchMedia("light")
+    mockLocalStorage("system")
 
-    const { user } = render(
-      <ColorModeProvider options={defaultThemeOptions} value={value}>
+    render(
+      <ColorModeProvider options={defaultThemeOptions}>
         <DummyComponent />
       </ColorModeProvider>,
     )
 
-    const button = getColorModeButton()
+    expect(getColorModeButton()).toHaveTextContent("pinky")
+  })
 
-    expect(button).toHaveTextContent(value)
+  test("clicking the color mode toggle changes the mode", async () => {
+    mockMatchMedia("dark")
+    const { user } = render(
+      <ColorModeProvider options={defaultThemeOptions}>
+        <DummyComponent />
+      </ColorModeProvider>,
+    )
+    await user.click(getColorModeButton())
+    expect(getColorModeButton()).toHaveTextContent("dark")
+  })
 
-    await user.click(button)
+  describe("<ColorModeProvider /> cookie manager", () => {
+    test.only("by default, picks from cookie", () => {
+      mockMatchMedia("light")
+      mockCookieStorage("dark")
 
-    expect(getColorModeButton()).toHaveTextContent(value)
+      render(
+        <ColorModeProvider
+          options={defaultThemeOptions}
+          colorModeManager={cookieStorageManager}
+        >
+          <DummyComponent />
+        </ColorModeProvider>,
+      )
+
+      expect(getColorModeButton()).toHaveTextContent("dark")
+    })
+
+    test("color mode can be changed", async () => {
+      mockMatchMedia("light")
+      mockCookieStorage(null)
+
+      const { user } = render(
+        <ColorModeProvider
+          options={defaultThemeOptions}
+          colorModeManager={cookieStorageManager}
+        >
+          <DummyComponent />
+        </ColorModeProvider>,
+      )
+      await user.click(getColorModeButton())
+
+      expect(getColorModeButton()).toHaveTextContent("dark")
+      expect(cookieStorageManager.get()).toEqual("dark")
+    })
   })
 })

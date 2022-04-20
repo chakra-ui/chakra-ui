@@ -126,7 +126,9 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     const utils = getColorModeUtils({ doc: document })
     const system = useSystemColorMode || initialColorMode === "system"
     let remove: VoidFunction | undefined
-    if (system) remove = utils.addChangeListener(setColorMode)
+    if (system) {
+      remove = utils.addChangeListener(setColorMode)
+    }
     return () => remove?.()
     //
   }, [setColorMode, useSystemColorMode, initialColorMode, document])

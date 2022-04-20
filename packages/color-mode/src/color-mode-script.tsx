@@ -13,13 +13,16 @@ export function getScriptSrc(props: ColorModeScriptProps = {}) {
     storageKey = "chakra-ui-color-mode",
   } = props
 
-  const init = `'${initialColorMode}'`
-  const k = `'${storageKey}'`
+  const isCookie = type === "cookie"
 
-  const cookieScript = `!function(){try {var d=document.documentElement;var ck=document.cookie.match(new RegExp(\`(^| )${k}=([^;]+)\`));var e=ck && ck[2];if(!e)return document.cookie=\`${k}=${init}; max-age=31536000; path=/\`,d.setAttribute('data-theme', ${init});if("system"===e){var t="(prefers-color-scheme: dark)",m=window.matchMedia(t);m.media!==t||m.matches?d.setAttribute('data-theme', 'dark'):d.setAttribute('data-theme', 'light')}else d.setAttribute('data-theme', e)}catch(e){}}()`
-  const localStorageScript = `!function(){try {var d=document.documentElement;var e=localStorage.getItem(${k});if(!e)return localStorage.setItem(${k}, ${init}),d.setAttribute('data-theme', ${init});if("system"===e){var t="(prefers-color-scheme: dark)",m=window.matchMedia(t);m.media!==t||m.matches?d.setAttribute('data-theme', 'dark'):d.setAttribute('data-theme', 'light')}else d.setAttribute('data-theme', e)}catch(e){}}()`
+  const init = isCookie ? initialColorMode : `'${initialColorMode}'`
+  const k = isCookie ? storageKey : `'${storageKey}'`
 
-  return type === "cookie" ? cookieScript : localStorageScript
+  const cookieScript = `!function(){try{var t="(prefers-color-scheme: dark)", e=window.matchMedia(t).matches?"dark":"light", d=document.documentElement;var ck=document.cookie.match(new RegExp(\`(^| )${k}=([^;]+)\`));var m=ck && ck[2]; if(!m) return document.cookie=\`${k}=${init}; max-age=31536000; path=/\`,d.dataset.theme="system"==='${init}'?e:'${init}';d.dataset.theme="system"===m?e:m}catch(t){}}()`
+
+  const localStorageScript = `!function(){try{var t="(prefers-color-scheme: dark)",e=window.matchMedia(t).matches?"dark":"light",d=document.documentElement,m=localStorage.getItem(${k});if(!m)return localStorage.setItem(${k},${init}),d.dataset.theme="system"===${init}?e:${init};d.dataset.theme="system"===m?e:m}catch(t){}}()`
+
+  return isCookie ? cookieScript : localStorageScript
 }
 
 export function ColorModeScript(props: ColorModeScriptProps = {}) {

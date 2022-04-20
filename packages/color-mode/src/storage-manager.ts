@@ -8,7 +8,7 @@ type MaybeColorMode = ColorMode | undefined
 export interface StorageManager {
   type: "cookie" | "localStorage"
   get(init?: ColorMode): MaybeColorMode
-  set(value: ColorMode): void
+  set(value: ColorMode | ""): void
 }
 
 export function createLocalStorageManager(key: string): StorageManager {
@@ -45,8 +45,8 @@ export function createCookieStorageManager(key: string): StorageManager {
     get(init?) {
       if (!isBrowser) return init
       const match = document.cookie.match(new RegExp(`(^| )${key}=([^;]+)`))
-      const maybeValue = match?.[2] as ColorMode
-      return maybeValue ?? init
+      const value = match?.[2] ?? init
+      return value as MaybeColorMode
     },
     set(value) {
       if (!isBrowser) return
