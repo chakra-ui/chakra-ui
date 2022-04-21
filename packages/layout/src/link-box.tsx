@@ -57,7 +57,7 @@ export const LinkBox = forwardRef<LinkBoxProps, "div">((props, ref) => {
         /* Elevate the links, abbreviations and buttons up */
         "a[href]:not(.chakra-linkbox__overlay), abbr[title], button": {
           position: "relative",
-          zIndex: 1,
+          zIndex: 2,
         },
       }}
     />
