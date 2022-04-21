@@ -73,5 +73,13 @@
     "prefer-object-spread": "off",
     "arrow-body-style": "off",
     "react/sort-comp": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "parserOptions": {
+        "project": ["tsconfig.json"]
+      }
+    }
+  ]
 }
