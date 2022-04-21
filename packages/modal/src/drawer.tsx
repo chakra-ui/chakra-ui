@@ -27,8 +27,12 @@ const placementMap: LogicalPlacementMap = {
   end: { ltr: "right", rtl: "left" },
 }
 
-function getDrawerPlacement(placement: DrawerPlacement, dir: "ltr" | "rtl") {
+function getDrawerPlacement(
+  placement: DrawerPlacement | undefined,
+  dir: "ltr" | "rtl",
+) {
   if (!placement) return
+  //@ts-expect-error
   return placementMap[placement]?.[dir] ?? placement
 }
 

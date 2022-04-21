@@ -48,7 +48,7 @@ export function split<T extends Dict, K extends keyof T>(object: T, keys: K[]) {
  * @param fallback  - the fallback value
  */
 export function get(
-  obj: object,
+  obj: Record<string, any>,
   path: string | number,
   fallback?: any,
   index?: number,
@@ -146,7 +146,7 @@ export const fromEntries = <T extends unknown>(entries: [string, any][]) =>
   entries.reduce((carry, [key, value]) => {
     carry[key] = value
     return carry
-  }, {}) as T
+  }, {} as Record<string, any>) as T
 
 /**
  * Get the CSS variable ref stored in the theme

@@ -26,7 +26,7 @@ const srFocusable = {
 }
 
 const getWithPriority = (theme: any, key: any, styles: any) => {
-  const result = {}
+  const result: Record<string, any> = {}
   const obj = get(theme, key, {})
   for (const prop in obj) {
     const isInStyles = prop in styles && styles[prop] != null
