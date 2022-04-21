@@ -122,7 +122,7 @@ test("should resolve multipart styles in theme", async () => {
   `)
 })
 
-test("should resolve props and styles", async () => {
+test.skip("should resolve props and styles", async () => {
   const Component = (props: any) => {
     const res = useProps("Tabs", props, true)
     return (
