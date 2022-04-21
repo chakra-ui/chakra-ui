@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/anatomy",
-  "version": "2.0.0-next.0",
+  "version": "2.0.0-next.1",
   "description": "The anatomy of all chakra components",
   "keywords": [
     "theme",
@@ -31,12 +31,12 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/theme-tools": "^2.0.0-next.0"
+    "@chakra-ui/theme-tools": "^2.0.0-next.1"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=2.0.0-next.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "2.0.0-next.0"
+    "@chakra-ui/system": "2.0.0-next.1"
   }
 }

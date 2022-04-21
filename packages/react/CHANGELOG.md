@@ -1,5 +1,71 @@
 # Change Log
 
+## 2.0.0-next.2
+
+### Major Changes
+
+- [#5882](https://github.com/chakra-ui/chakra-ui/pull/5882)
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump peer
+  depencency to React and ReactDOM to >=18
+
+### Patch Changes
+
+- Updated dependencies
+  [[`3e6ac56be`](https://github.com/chakra-ui/chakra-ui/commit/3e6ac56be82a6117e4dee484be0956e35fc58ed1),
+  [`ad84d8efc`](https://github.com/chakra-ui/chakra-ui/commit/ad84d8efc7602909488272c214167794e66a0581),
+  [`ef6a22549`](https://github.com/chakra-ui/chakra-ui/commit/ef6a22549ef93093602ca2913fa6defe6f617df0),
+  [`bb68fee19`](https://github.com/chakra-ui/chakra-ui/commit/bb68fee196815ae69c32c28b485b57a81005e7c6),
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196),
+  [`258fd9a61`](https://github.com/chakra-ui/chakra-ui/commit/258fd9a617d9224a0d6626399aad2b59efa15ace)]:
+  - @chakra-ui/theme@2.0.0-next.1
+  - @chakra-ui/react-env@2.0.0-next.1
+  - @chakra-ui/editable@2.0.0-next.1
+  - @chakra-ui/accordion@2.0.0-next.1
+  - @chakra-ui/alert@2.0.0-next.1
+  - @chakra-ui/avatar@2.0.0-next.1
+  - @chakra-ui/breadcrumb@2.0.0-next.1
+  - @chakra-ui/button@2.0.0-next.1
+  - @chakra-ui/checkbox@2.0.0-next.1
+  - @chakra-ui/close-button@2.0.0-next.1
+  - @chakra-ui/control-box@2.0.0-next.1
+  - @chakra-ui/counter@2.0.0-next.1
+  - @chakra-ui/css-reset@2.0.0-next.1
+  - @chakra-ui/form-control@2.0.0-next.1
+  - @chakra-ui/hooks@2.0.0-next.1
+  - @chakra-ui/icon@3.0.0-next.1
+  - @chakra-ui/image@2.0.0-next.1
+  - @chakra-ui/input@2.0.0-next.1
+  - @chakra-ui/layout@2.0.0-next.1
+  - @chakra-ui/live-region@2.0.0-next.1
+  - @chakra-ui/media-query@3.0.0-next.1
+  - @chakra-ui/menu@2.0.0-next.1
+  - @chakra-ui/modal@2.0.0-next.1
+  - @chakra-ui/number-input@2.0.0-next.1
+  - @chakra-ui/pin-input@2.0.0-next.1
+  - @chakra-ui/popover@2.0.0-next.1
+  - @chakra-ui/popper@3.0.0-next.1
+  - @chakra-ui/portal@2.0.0-next.1
+  - @chakra-ui/progress@2.0.0-next.1
+  - @chakra-ui/provider@2.0.0-next.1
+  - @chakra-ui/radio@2.0.0-next.1
+  - @chakra-ui/select@2.0.0-next.1
+  - @chakra-ui/skeleton@2.0.0-next.1
+  - @chakra-ui/slider@2.0.0-next.1
+  - @chakra-ui/spinner@2.0.0-next.1
+  - @chakra-ui/stat@2.0.0-next.1
+  - @chakra-ui/switch@2.0.0-next.1
+  - @chakra-ui/system@2.0.0-next.1
+  - @chakra-ui/table@2.0.0-next.1
+  - @chakra-ui/tabs@2.0.0-next.1
+  - @chakra-ui/tag@2.0.0-next.1
+  - @chakra-ui/textarea@2.0.0-next.1
+  - @chakra-ui/toast@2.0.0-next.2
+  - @chakra-ui/tooltip@2.0.0-next.1
+  - @chakra-ui/transition@2.0.0-next.1
+  - @chakra-ui/utils@2.0.0-next.1
+  - @chakra-ui/visually-hidden@2.0.0-next.1
+
 ## 2.0.0-next.1
 
 ### Major Changes
