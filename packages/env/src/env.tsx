@@ -1,5 +1,11 @@
 import { isBrowser, __DEV__ } from "@chakra-ui/utils"
-import React, { createContext, useContext, useMemo, useState } from "react"
+import React, {
+  createContext,
+  useContext,
+  useMemo,
+  useState,
+  startTransition,
+} from "react"
 import { ssrDocument } from "./mock-document"
 import { ssrWindow } from "./mock-window"
 
@@ -42,18 +48,18 @@ export function EnvironmentProvider(props: EnvironmentProviderProps) {
     return env as Environment
   }, [node, environmentProp])
 
-  const showEnvGetter = !node && !environmentProp
-
   return (
     <EnvironmentContext.Provider value={context}>
       {children}
-      {showEnvGetter && (
-        <span
-          ref={(el) => {
+      <span
+        hidden
+        className="chakra-env"
+        ref={(el) => {
+          startTransition(() => {
             if (el) setNode(el)
-          }}
-        />
-      )}
+          })
+        }}
+      />
     </EnvironmentContext.Provider>
   )
 }
