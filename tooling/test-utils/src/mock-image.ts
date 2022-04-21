@@ -14,10 +14,10 @@ export function mockImage() {
     src = ""
     alt = ""
     hasAttribute(name: string) {
-      return !!this[name]
+      return name in this
     }
     getAttribute(name: string) {
-      return this[name]
+      return name in this ? (this as any)[name] : null
     }
     constructor() {
       setTimeout(() => {

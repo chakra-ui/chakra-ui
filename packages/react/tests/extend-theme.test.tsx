@@ -252,7 +252,7 @@ describe("extendTheme", () => {
   })
 
   it("should not extend with function that is inherited", () => {
-    // eslint-disable-next-line no-extend-native
+    //@ts-ignore eslint-disable-next-line no-extend-native
     Array.prototype["customFunction"] = () => {}
 
     const override = {
@@ -265,7 +265,7 @@ describe("extendTheme", () => {
     }
 
     const customTheme = extendTheme(override)
-
+    // @ts-expect-error
     delete Array.prototype["customFunction"]
 
     expect((customTheme.breakpoints as any).customFunction).toBeUndefined()

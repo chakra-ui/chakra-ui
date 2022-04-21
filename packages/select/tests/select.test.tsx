@@ -120,7 +120,8 @@ describe.each(Object.keys(theme.components.Select.sizes))(
       const select = container.querySelector("select") as HTMLElement
 
       expect(select).toHaveStyle({
-        "padding-inline-end": sizes[size].field.paddingInlineEnd,
+        "padding-inline-end":
+          sizes[size as keyof typeof sizes].field.paddingInlineEnd,
       })
     })
   },

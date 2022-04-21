@@ -25,7 +25,7 @@ export function getBoxShadow(placement: Placement) {
     return `1px -1px 1px 0 var(--popper-arrow-shadow-color)`
 }
 
-const transforms = {
+const transforms: Record<string, string> = {
   top: "bottom center",
   "top-start": "bottom left",
   "top-end": "bottom right",

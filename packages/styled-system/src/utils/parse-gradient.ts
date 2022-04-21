@@ -42,7 +42,7 @@ export function parseGradient(value: string | null | undefined, theme: Dict) {
 
   const direction =
     maybeDirection in directionMap
-      ? directionMap[maybeDirection]
+      ? (directionMap as any)[maybeDirection]
       : maybeDirection
 
   stops.unshift(direction)
