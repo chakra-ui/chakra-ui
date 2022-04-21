@@ -29,7 +29,6 @@ export function getColorModeUtils(options: UtilOptions = {}) {
       docEl.style.colorScheme = value
       cleanup?.()
     },
-    body,
     setClassName(dark: boolean) {
       body.classList.add(dark ? classNames.dark : classNames.light)
       body.classList.remove(dark ? classNames.light : classNames.dark)
