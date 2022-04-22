@@ -19,10 +19,8 @@ export const ColorModeTool = () => {
   }, [channel, darkMode, setDarkMode])
 
   return (
-    // @ts-expect-error TS2604: JSX element type 'IconButton' does not have any construct or call signatures.
     <IconButton
       active={darkMode}
-      css
       title={`Set color mode to ${darkMode ? "light" : "dark"}`}
       onClick={toggleDarkMode}
     >

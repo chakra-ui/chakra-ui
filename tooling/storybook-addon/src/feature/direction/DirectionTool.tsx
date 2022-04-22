@@ -19,7 +19,6 @@ export const DirectionTool = () => {
   }, [setDirection, targetDirection])
 
   return (
-    // @ts-expect-error TS2604: JSX element type 'IconButton' does not have any construct or call signatures.
     <IconButton
       active={direction === "rtl"}
       title={`Set layout direction to ${targetDirection}`}
