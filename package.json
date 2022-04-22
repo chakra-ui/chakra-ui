@@ -118,6 +118,7 @@
     "chalk": "4.1.2",
     "chart.js": "^3.6.0",
     "commitizen": "4.2.4",
+    "concurrently": "^7.1.0",
     "cross-env": "7.0.3",
     "csstype": "3.0.9",
     "cz-conventional-changelog": "3.3.0",
