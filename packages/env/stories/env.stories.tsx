@@ -8,7 +8,7 @@ export default {
   title: "System / Environment",
 }
 
-const Portal: React.FC = ({ children }) => {
+const Portal = ({ children }: React.PropsWithChildren<{}>) => {
   const env = useEnvironment()
   return createPortal(children, env.document.body)
 }

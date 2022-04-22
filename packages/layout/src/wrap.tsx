@@ -10,10 +10,20 @@ import * as React from "react"
 
 export interface WrapProps extends HTMLChakraProps<"div"> {
   /**
-   * The space between the each child (even if it wraps)
+   * The space between each child (even if it wraps)
    * @type SystemProps["margin"]
    */
   spacing?: SystemProps["margin"]
+  /**
+   * The horizontal space between the each child (even if it wraps). Defaults to `spacing` if not defined.
+   * @type SystemProps["margin"]
+   */
+  spacingX?: SystemProps["margin"]
+  /**
+   * The vertical space between the each child (even if it wraps). Defaults to `spacing` if not defined.
+   * @type SystemProps["margin"]
+   */
+  spacingY?: SystemProps["margin"]
   /**
    * The `justify-content` value (for cross-axis alignment)
    * @type SystemProps["justifyContent"]
@@ -48,6 +58,8 @@ export interface WrapProps extends HTMLChakraProps<"div"> {
 export const Wrap = forwardRef<WrapProps, "div">((props, ref) => {
   const {
     spacing = "0.5rem",
+    spacingX,
+    spacingY,
     children,
     justify,
     direction,
@@ -57,11 +69,18 @@ export const Wrap = forwardRef<WrapProps, "div">((props, ref) => {
     ...rest
   } = props
 
-  const styles = React.useMemo(
-    () => ({
-      "--chakra-wrap-spacing": (theme: Dict) =>
-        mapResponsive(spacing, (value) => tokenToCSSVar("space", value)(theme)),
-      "--wrap-spacing": "calc(var(--chakra-wrap-spacing) / 2)",
+  const styles = React.useMemo(() => {
+    const { spacingX: x = spacing, spacingY: y = spacing } = {
+      spacingX,
+      spacingY,
+    }
+    return {
+      "--chakra-wrap-x-spacing": (theme: Dict) =>
+        mapResponsive(x, (value) => tokenToCSSVar("space", value)(theme)),
+      "--chakra-wrap-y-spacing": (theme: Dict) =>
+        mapResponsive(y, (value) => tokenToCSSVar("space", value)(theme)),
+      "--wrap-x-spacing": "calc(var(--chakra-wrap-x-spacing) / 2)",
+      "--wrap-y-spacing": "calc(var(--chakra-wrap-y-spacing) / 2)",
       display: "flex",
       flexWrap: "wrap",
       justifyContent: justify,
@@ -69,13 +88,13 @@ export const Wrap = forwardRef<WrapProps, "div">((props, ref) => {
       flexDirection: direction,
       listStyleType: "none",
       padding: "0",
-      margin: "calc(var(--wrap-spacing) * -1)",
+      margin:
+        "calc(var(--wrap-y-spacing) * -1) calc(var(--wrap-x-spacing) * -1)",
       "& > *:not(style)": {
-        margin: "var(--wrap-spacing)",
+        margin: "var(--wrap-y-spacing) var(--wrap-x-spacing)",
       },
-    }),
-    [spacing, justify, align, direction],
-  )
+    }
+  }, [spacing, spacingX, spacingY, justify, align, direction])
 
   const childrenToRender = shouldWrapChildren
     ? React.Children.map(children, (child, index) => (

@@ -1,5 +1,70 @@
 # Change Log
 
+## 2.0.0-next.1
+
+### Major Changes
+
+- [#5882](https://github.com/chakra-ui/chakra-ui/pull/5882)
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump peer
+  depencency to React and ReactDOM to >=18
+
+### Patch Changes
+
+- [#5859](https://github.com/chakra-ui/chakra-ui/pull/5859)
+  [`bb68fee19`](https://github.com/chakra-ui/chakra-ui/commit/bb68fee196815ae69c32c28b485b57a81005e7c6)
+  Thanks [@s97712](https://github.com/s97712)! - Fix issue where `onCancel` was
+  not called when the input is blurred and `submitOnBlur` is `false`
+
+- Updated dependencies
+  [[`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)]:
+  - @chakra-ui/hooks@2.0.0-next.1
+  - @chakra-ui/react-utils@2.0.0-next.1
+  - @chakra-ui/utils@2.0.0-next.1
+
+## 2.0.0-next.0
+
+### Major Changes
+
+- [#5879](https://github.com/chakra-ui/chakra-ui/pull/5879)
+  [`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump all packages
+  to next major for Chakra UI version 2.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f),
+  [`1a47fd27e`](https://github.com/chakra-ui/chakra-ui/commit/1a47fd27e6e37ff5d149e0469888eed0ec306632)]:
+  - @chakra-ui/hooks@2.0.0-next.0
+  - @chakra-ui/react-utils@2.0.0-next.0
+  - @chakra-ui/system@2.0.0-next.0
+  - @chakra-ui/utils@2.0.0-next.0
+
+## 1.4.2
+
+### Patch Changes
+
+- [#5780](https://github.com/chakra-ui/chakra-ui/pull/5780)
+  [`4b83824b8`](https://github.com/chakra-ui/chakra-ui/commit/4b83824b8a89e3eb1754af6ff9c330a93d0cdf17)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  editable preview remains interactive even when `isDisabled: true` is passed.
+- Updated dependencies
+  [[`a3b04dc1a`](https://github.com/chakra-ui/chakra-ui/commit/a3b04dc1ae49ad0d804bddc17fdca3afa218665c)]:
+  - @chakra-ui/hooks@1.9.1
+
+## 1.4.1
+
+### Patch Changes
+
+- [#5684](https://github.com/chakra-ui/chakra-ui/pull/5684)
+  [`6ec09741a`](https://github.com/chakra-ui/chakra-ui/commit/6ec09741acd40eb1835cbf6d02bfae642413b6ef)
+  Thanks [@takethefake](https://github.com/takethefake)! - Call `setPrevValue`
+  `onFocus` to avoid an outdated prev value when the field is controlled
+- Updated dependencies
+  [[`73a06ae8c`](https://github.com/chakra-ui/chakra-ui/commit/73a06ae8ce1bee644e10f245edcf2f9f2b773964)]:
+  - @chakra-ui/hooks@1.9.0
+
 ## 1.4.0
 
 ### Minor Changes

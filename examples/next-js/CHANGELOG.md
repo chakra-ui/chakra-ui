@@ -1,5 +1,57 @@
 # Change Log
 
+## 2.0.0-next.2
+
+### Major Changes
+
+- [#5882](https://github.com/chakra-ui/chakra-ui/pull/5882)
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump peer
+  depencency to React and ReactDOM to >=18
+
+### Patch Changes
+
+- Updated dependencies
+  [[`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)]:
+  - @chakra-ui/react@2.0.0-next.2
+
+## 2.0.0-next.1
+
+### Major Changes
+
+- [#5879](https://github.com/chakra-ui/chakra-ui/pull/5879)
+  [`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump all packages
+  to next major for Chakra UI version 2.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)]:
+  - @chakra-ui/react@2.0.0-next.1
+
+## 1.1.16-next.0
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c7a1a53ac`](https://github.com/chakra-ui/chakra-ui/commit/c7a1a53ace53020e23c1b92d48ff16d8d8e95709)]:
+  - @chakra-ui/react@2.0.0-next.0
+
+## 1.1.15
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@1.8.8
+
+## 1.1.14
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@1.8.7
+
 ## 1.1.13
 
 ### Patch Changes

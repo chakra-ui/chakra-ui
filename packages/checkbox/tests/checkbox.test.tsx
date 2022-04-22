@@ -1,31 +1,19 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import Icon from "@chakra-ui/icon"
-import {
-  fireEvent,
-  render,
-  renderHook,
-  screen,
-  testA11y,
-  userEvent,
-} from "@chakra-ui/test-utils"
-import * as React from "react"
 import { FormControl, FormLabel } from "@chakra-ui/form-control"
+import Icon from "@chakra-ui/icon"
+import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
+import * as React from "react"
 import {
   Checkbox,
   CheckboxGroup,
   CheckboxGroupProps,
   useCheckbox,
-  UseCheckboxProps,
   useCheckboxGroup,
+  UseCheckboxProps,
 } from "../src"
 
 it("passes a11y test", async () => {
   await testA11y(<Checkbox>label</Checkbox>)
-})
-
-test("useCheckbox should return object", () => {
-  const { result } = renderHook(() => useCheckbox())
-  expect(typeof result.current).toBe("object")
 })
 
 test("Uncontrolled - should check and uncheck", () => {
@@ -233,7 +221,7 @@ test("uncontrolled CheckboxGroup handles change", () => {
     </CheckboxGroup>,
   )
 
-  userEvent.click(screen.getByLabelText("B"))
+  fireEvent.click(screen.getByLabelText("B"))
 
   expect(onChange).toHaveBeenCalledTimes(1)
   expect(onChange).toHaveBeenCalledWith(["A", "C", "B"])
@@ -255,7 +243,7 @@ test("accepts custom icon", () => {
   }
 
   render(
-    <Checkbox defaultIsChecked icon={<CustomIcon data-testid="custom-icon" />}>
+    <Checkbox defaultChecked icon={<CustomIcon data-testid="custom-icon" />}>
       hello world
     </Checkbox>,
   )

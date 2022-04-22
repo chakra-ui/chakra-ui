@@ -46,8 +46,10 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   container: baseStyleContainer(props),
 })
 
-function getSize(size: string): PartsStyleObject<typeof parts> {
-  const themeSize = themeSizes[size]
+function getSize(
+  size: keyof typeof themeSizes | "100%",
+): PartsStyleObject<typeof parts> {
+  const themeSize = size !== "100%" ? themeSizes[size] : undefined
   return {
     container: {
       width: size,
@@ -66,13 +68,13 @@ function getSize(size: string): PartsStyleObject<typeof parts> {
 }
 
 const sizes = {
-  "2xs": getSize("4"),
-  xs: getSize("6"),
-  sm: getSize("8"),
-  md: getSize("12"),
-  lg: getSize("16"),
-  xl: getSize("24"),
-  "2xl": getSize("32"),
+  "2xs": getSize(4),
+  xs: getSize(6),
+  sm: getSize(8),
+  md: getSize(12),
+  lg: getSize(16),
+  xl: getSize(24),
+  "2xl": getSize(32),
   full: getSize("100%"),
 }
 

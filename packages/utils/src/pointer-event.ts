@@ -12,7 +12,7 @@ type PointType = "page" | "client"
 export function isMouseEvent(event: AnyPointerEvent): event is MouseEvent {
   const win = getEventWindow(event)
 
-  // PointerEvent inherits from MouseEvent so we can't use a straight instanceof check.
+  // PointerEvent inherits from MouseEvent, so we can't use a straight instanceof check.
   if (
     typeof win.PointerEvent !== "undefined" &&
     event instanceof win.PointerEvent
@@ -149,10 +149,10 @@ export function getPointerEventName(name: string): string {
     return name
   }
   if (supportsTouchEvents()) {
-    return touchEventNames[name]
+    return (touchEventNames as any)[name]
   }
   if (supportsMouseEvents()) {
-    return mouseEventNames[name]
+    return (mouseEventNames as any)[name]
   }
 
   return name

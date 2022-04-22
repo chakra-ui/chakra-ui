@@ -30,14 +30,12 @@ export type PinInputContext = Omit<UsePinInputReturn, "descendants"> & {
   isInvalid?: boolean
 }
 
-export const [
-  PinInputProvider,
-  usePinInputContext,
-] = createContext<PinInputContext>({
-  name: "PinInputContext",
-  errorMessage:
-    "usePinInputContext: `context` is undefined. Seems you forgot to all pin input fields within `<PinInput />`",
-})
+export const [PinInputProvider, usePinInputContext] =
+  createContext<PinInputContext>({
+    name: "PinInputContext",
+    errorMessage:
+      "usePinInputContext: `context` is undefined. Seems you forgot to all pin input fields within `<PinInput />`",
+  })
 
 /* -------------------------------------------------------------------------------------------------
  * usePinInput hook
@@ -49,7 +47,7 @@ export interface UsePinInputProps {
    */
   autoFocus?: boolean
   /**
-   * The value of the the pin input. This is the value
+   * The value of the pin input. This is the value
    * that will be returned when the pin input is filled
    */
   value?: string

@@ -1,4 +1,6 @@
 export * from "./use-toast"
-export { toast } from "./toast.class"
+export * from "./toast.provider"
 export * from "./toast.types"
-export type { ToastPosition, ToastPositionWithLogical } from "./toast.placement"
+export * from "./toast.placement"
+export * from "./create-standalone-toast"
+export * from "./toast"

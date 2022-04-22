@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { RadioGroup, Radio } from "../src"
+import { Radio, RadioGroup } from "../src"
 
 const runTest = () => {
   const one = screen.getByLabelText("One")
@@ -19,7 +19,7 @@ const runTest = () => {
 }
 
 describe("RadioGroup", () => {
-  test("uncontrolled", () => {
+  test("uncontrolled", async () => {
     const onChange = jest.fn()
     render(
       <RadioGroup name="radio" defaultValue="1" onChange={onChange}>
@@ -51,23 +51,6 @@ describe("RadioGroup", () => {
 })
 
 describe("Radio", () => {
-  test("uncontrolled", () => {
-    render(
-      <>
-        <Radio name="radio" value="1" defaultIsChecked>
-          One
-        </Radio>
-        <Radio name="radio" value="2">
-          Two
-        </Radio>
-        <Radio name="radio" value="3">
-          Three
-        </Radio>
-      </>,
-    )
-    runTest()
-  })
-
   test("controlled", () => {
     const Component = () => {
       const [value, setValue] = React.useState("1")

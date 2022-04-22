@@ -15,10 +15,6 @@ describe("color-mode-script", () => {
     })),
   )("%s", (entry) => {
     const systemIsDarkMode = entry.system === "dark"
-    const documentStyleMock = jest.spyOn(
-      document.documentElement.style,
-      "setProperty",
-    )
     const documentSetAttributeMock = jest.spyOn(
       document.documentElement,
       "setAttribute",
@@ -31,11 +27,6 @@ describe("color-mode-script", () => {
       }
     })
     setScript(entry.initial as ConfigColorMode)
-    expect(documentStyleMock).toHaveBeenCalledWith(
-      "--chakra-ui-color-mode",
-      entry.expect,
-    )
-
     expect(documentSetAttributeMock).toHaveBeenCalledWith(
       "data-theme",
       entry.expect,

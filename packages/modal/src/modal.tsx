@@ -115,6 +115,10 @@ export interface ModalProps
    * The transition that should be used for the modal
    */
   motionPreset?: MotionPreset
+  /**
+   * Fires when all exiting nodes have completed animating out
+   */
+  onCloseComplete?: () => void
 }
 
 interface ModalContext extends ModalOptions, UseModalReturn {
@@ -153,6 +157,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     preserveScrollBarGap,
     motionPreset,
     lockFocusAcrossFrames,
+    onCloseComplete,
   } = props
 
   const styles = useMultiStyleConfig("Modal", props)
@@ -175,7 +180,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
   return (
     <ModalContextProvider value={context}>
       <StylesProvider value={styles}>
-        <AnimatePresence>
+        <AnimatePresence onExitComplete={onCloseComplete}>
           {context.isOpen && <Portal {...portalProps}>{children}</Portal>}
         </AnimatePresence>
       </StylesProvider>
@@ -388,7 +393,7 @@ export const ModalHeader = forwardRef<ModalHeaderProps, "header">(
     const { headerId, setHeaderMounted } = useModalContext()
 
     /**
-     * Notify us if this component was rendered or used
+     * Notify us if this component was rendered or used,
      * so we can append `aria-labelledby` automatically
      */
     React.useEffect(() => {
@@ -434,7 +439,7 @@ export const ModalBody = forwardRef<ModalBodyProps, "div">((props, ref) => {
   const { bodyId, setBodyMounted } = useModalContext()
 
   /**
-   * Notify us if this component was rendered or used
+   * Notify us if this component was rendered or used,
    * so we can append `aria-describedby` automatically
    */
   React.useEffect(() => {

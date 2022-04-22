@@ -1,5 +1,147 @@
 # Change Log
 
+## 2.0.0-next.2
+
+### Major Changes
+
+- [#5882](https://github.com/chakra-ui/chakra-ui/pull/5882)
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump peer
+  depencency to React and ReactDOM to >=18
+
+### Patch Changes
+
+- Updated dependencies
+  [[`3e6ac56be`](https://github.com/chakra-ui/chakra-ui/commit/3e6ac56be82a6117e4dee484be0956e35fc58ed1),
+  [`ef6a22549`](https://github.com/chakra-ui/chakra-ui/commit/ef6a22549ef93093602ca2913fa6defe6f617df0),
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)]:
+  - @chakra-ui/theme@2.0.0-next.1
+  - @chakra-ui/alert@2.0.0-next.1
+  - @chakra-ui/close-button@2.0.0-next.1
+  - @chakra-ui/hooks@2.0.0-next.1
+  - @chakra-ui/portal@2.0.0-next.1
+  - @chakra-ui/react-utils@2.0.0-next.1
+  - @chakra-ui/system@2.0.0-next.1
+  - @chakra-ui/transition@2.0.0-next.1
+  - @chakra-ui/utils@2.0.0-next.1
+
+## 2.0.0-next.1
+
+### Major Changes
+
+- [#5879](https://github.com/chakra-ui/chakra-ui/pull/5879)
+  [`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump all packages
+  to next major for Chakra UI version 2.
+
+### Patch Changes
+
+- [#5850](https://github.com/chakra-ui/chakra-ui/pull/5850)
+  [`1f62d9a65`](https://github.com/chakra-ui/chakra-ui/commit/1f62d9a658f0179e60524f13a21543194f034fe5)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Removed dependency
+  to @reach-ui/alert
+
+* [#5873](https://github.com/chakra-ui/chakra-ui/pull/5873)
+  [`3285faddf`](https://github.com/chakra-ui/chakra-ui/commit/3285faddf3019c6951f3823bf38951fbb8accb9e)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Added memoization
+  to the toast function from `useToast`
+
+* Updated dependencies
+  [[`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f),
+  [`1a47fd27e`](https://github.com/chakra-ui/chakra-ui/commit/1a47fd27e6e37ff5d149e0469888eed0ec306632)]:
+  - @chakra-ui/alert@2.0.0-next.0
+  - @chakra-ui/close-button@2.0.0-next.0
+  - @chakra-ui/hooks@2.0.0-next.0
+  - @chakra-ui/portal@2.0.0-next.0
+  - @chakra-ui/react-utils@2.0.0-next.0
+  - @chakra-ui/system@2.0.0-next.0
+  - @chakra-ui/theme@2.0.0-next.0
+  - @chakra-ui/transition@2.0.0-next.0
+  - @chakra-ui/utils@2.0.0-next.0
+
+## 2.0.0-next.0
+
+### Major Changes
+
+- [#5797](https://github.com/chakra-ui/chakra-ui/pull/5797)
+  [`c7a1a53ac`](https://github.com/chakra-ui/chakra-ui/commit/c7a1a53ace53020e23c1b92d48ff16d8d8e95709)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Add support for
+  React 18.
+
+  > Please note: There are **no breaking changes** to the hook `useToast`. There
+  > are only breaking changes to `createStandaloneToast`.
+
+  ### Breaking changes to `createStandaloneToast`
+
+  With React <17 Chakra UI was able to render the toast container DOM element
+  for you. To allow Chakra UI to support all React versions >=16.8 you need to
+  render the DOM element in your application code.
+
+  #### before
+
+  ```ts
+  import { createStandaloneToast } from "@chakra-ui/toast"
+
+  const toast = createStandaloneToast()
+  toast({ title: "Chakra UI" })
+  ```
+
+  #### with React 17
+
+  ```tsx
+  import { createStandaloneToast } from "@chakra-ui/toast"
+  import * as ReactDOM from "react-dom"
+
+  const toastContainerElement = document.createElement("div")
+  window.document.body.append(toastContainerElement)
+
+  const { ToastContainer, toast } = createStandaloneToast()
+  ReactDOM.render(<ToastContainer />, toastContainerElement)
+
+  toast({ title: "Chakra UI" })
+  ```
+
+  #### with React 18
+
+  ```tsx
+  import { createStandaloneToast } from "@chakra-ui/toast"
+  import * as ReactDOM from "react-dom/client"
+
+  const toastContainerElement = document.createElement("div")
+  window.document.body.append(toastContainerElement)
+
+  const { ToastContainer, toast } = createStandaloneToast()
+  const root = ReactDOM.createRoot(toastContainerElement)
+  root.render(<ToastContainer />)
+
+  toast({ title: "Chakra UI" })
+  ```
+
+## 1.5.9
+
+### Patch Changes
+
+- Updated dependencies
+  [[`a3b04dc1a`](https://github.com/chakra-ui/chakra-ui/commit/a3b04dc1ae49ad0d804bddc17fdca3afa218665c),
+  [`b19c89270`](https://github.com/chakra-ui/chakra-ui/commit/b19c892702f029c078f8d5bfaf0f89b573c6cd90),
+  [`aaadcd0ed`](https://github.com/chakra-ui/chakra-ui/commit/aaadcd0ed9388417b0b647d75055ede0613d3495)]:
+  - @chakra-ui/hooks@1.9.1
+  - @chakra-ui/theme@1.14.1
+  - @chakra-ui/transition@1.4.8
+
+## 1.5.8
+
+### Patch Changes
+
+- [#5697](https://github.com/chakra-ui/chakra-ui/pull/5697)
+  [`9a58c7ab8`](https://github.com/chakra-ui/chakra-ui/commit/9a58c7ab82f334d63dc1d0f528204d1dd172711c)
+  Thanks [@takethefake](https://github.com/takethefake)! - use default options
+  as well when providing options to useToast
+
+- Updated dependencies
+  [[`73a06ae8c`](https://github.com/chakra-ui/chakra-ui/commit/73a06ae8ce1bee644e10f245edcf2f9f2b773964)]:
+  - @chakra-ui/hooks@1.9.0
+
 ## 1.5.7
 
 ### Patch Changes

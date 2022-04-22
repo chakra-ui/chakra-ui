@@ -50,7 +50,7 @@ Pass the `colorScheme` prop to change the background color of the tag component
 ## With icon
 
 The tag component can contain an Icon. This is done by using the `TagIcon`
-component withtin the tag component.
+component within the tag component.
 
 ```jsx
 <>

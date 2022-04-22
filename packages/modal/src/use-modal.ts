@@ -91,7 +91,7 @@ export function useModal(props: UseModalProps) {
    */
   useAriaHidden(dialogRef, isOpen && useInert)
   /**
-   * Hook use to manage multiple or nested modals
+   * Hook used to manage multiple or nested modals
    */
   useModalManager(dialogRef, isOpen)
 

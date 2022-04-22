@@ -1,7 +1,7 @@
 import { useFormControlContext } from "@chakra-ui/form-control"
 import { useBoolean, useControllableProp, useId } from "@chakra-ui/hooks"
 import { PropGetter } from "@chakra-ui/react-utils"
-import { ariaAttr, callAllHandlers, dataAttr, warn } from "@chakra-ui/utils"
+import { ariaAttr, callAllHandlers, dataAttr } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import { ChangeEvent, SyntheticEvent, useCallback, useState } from "react"
 import { useRadioGroupContext } from "./radio-group"
@@ -30,13 +30,6 @@ export interface UseRadioProps {
    * You'll need to pass `onChange` to update its value (since it is now controlled)
    */
   isChecked?: boolean
-  /**
-   * If `true`, the radio will be initially checked.
-   *
-   * @deprecated Please use `defaultChecked` which mirrors the default prop
-   * name for radio elements.
-   */
-  defaultIsChecked?: boolean
   /**
    * If `true`, the radio will be initially checked.
    */
@@ -76,10 +69,20 @@ export interface UseRadioProps {
   "aria-describedby"?: string
 }
 
+export interface RadioState {
+  isInvalid: boolean | undefined
+  isFocused: boolean
+  isChecked: boolean
+  isActive: boolean
+  isHovered: boolean
+  isDisabled: boolean | undefined
+  isReadOnly: boolean | undefined
+  isRequired: boolean | undefined
+}
+
 export function useRadio(props: UseRadioProps = {}) {
   const {
-    defaultIsChecked,
-    defaultChecked = defaultIsChecked,
+    defaultChecked,
     isChecked: isCheckedProp,
     isFocusable,
     isDisabled: isDisabledProp,
@@ -122,13 +125,6 @@ export function useRadio(props: UseRadioProps = {}) {
     isCheckedState,
   )
 
-  warn({
-    condition: !!defaultIsChecked,
-    message:
-      'The "defaultIsChecked" prop has been deprecated and will be removed in a future version. ' +
-      'Please use the "defaultChecked" prop instead, which mirrors default React checkbox behavior.',
-  })
-
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       if (isReadOnly || isDisabled) {
@@ -163,7 +159,7 @@ export function useRadio(props: UseRadioProps = {}) {
     [setActive],
   )
 
-  const getCheckboxProps: PropGetter = useCallback(
+  const getRadioProps: PropGetter = useCallback(
     (props = {}, ref = null) => ({
       ...props,
       ref,
@@ -263,18 +259,21 @@ export function useRadio(props: UseRadioProps = {}) {
     "data-invalid": dataAttr(isInvalid),
   })
 
+  const state: RadioState = {
+    isInvalid,
+    isFocused,
+    isChecked,
+    isActive,
+    isHovered,
+    isDisabled,
+    isReadOnly,
+    isRequired,
+  }
+
   return {
-    state: {
-      isInvalid,
-      isFocused,
-      isChecked,
-      isActive,
-      isHovered,
-      isDisabled,
-      isReadOnly,
-      isRequired,
-    },
-    getCheckboxProps,
+    state,
+    // the function is renamed to getRadioProps to make the code more consistent. It is renamed towards outside because otherwise this would produce a breaking change
+    getCheckboxProps: getRadioProps,
     getInputProps,
     getLabelProps,
     getRootProps,
@@ -283,7 +282,7 @@ export function useRadio(props: UseRadioProps = {}) {
 }
 
 /**
- * Prevent `onBlur` being fired when the checkbox label is touched
+ * Prevent `onBlur` being fired when the radio label is touched
  */
 function stop(event: SyntheticEvent) {
   event.preventDefault()

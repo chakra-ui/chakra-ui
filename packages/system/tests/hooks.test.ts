@@ -1,4 +1,4 @@
-import { renderHook } from "@chakra-ui/test-utils"
+import { hooks } from "@chakra-ui/test-utils"
 import { createBreakpoints } from "../../theme-tools"
 import { toCSSVar, useToken } from "../src"
 import * as system from "../src/providers"
@@ -52,7 +52,7 @@ describe("useToken", () => {
   test("resolves a single value", () => {
     setupMock()
 
-    const { result } = renderHook(() => useToken("colors", "red.100"))
+    const { result } = hooks.render(() => useToken("colors", "red.100"))
 
     expect(result.current).not.toBeInstanceOf(Array)
     expect(result.current).toStrictEqual(mockRed[100])
@@ -60,7 +60,7 @@ describe("useToken", () => {
 
   test("resolves a value which contains a dot", () => {
     setupMock()
-    const { result } = renderHook(() => useToken("space", "1.5"))
+    const { result } = hooks.render(() => useToken("space", "1.5"))
 
     expect(result.current).not.toBeInstanceOf(Array)
     expect(result.current).toStrictEqual(mockSpace["1.5"])
@@ -69,7 +69,7 @@ describe("useToken", () => {
   test("resolves multiple values", () => {
     setupMock()
 
-    const { result } = renderHook(() =>
+    const { result } = hooks.render(() =>
       useToken("colors", ["red.100", "blue.300"]),
     )
 
@@ -82,7 +82,7 @@ describe("useToken", () => {
 
     const input = ["foo", "bar", "baz"]
 
-    const { result } = renderHook(() => useToken("colors", input))
+    const { result } = hooks.render(() => useToken("colors", input))
 
     expect(result.current).toHaveLength(input.length)
     expect(result.current).toStrictEqual(input)
@@ -91,7 +91,7 @@ describe("useToken", () => {
   test("known and unknown values mixed", () => {
     setupMock()
 
-    const { result } = renderHook(() =>
+    const { result } = hooks.render(() =>
       useToken("colors", ["red.100", "blue.300", "foo", "bar", "baz"]),
     )
 
@@ -108,7 +108,7 @@ describe("useToken", () => {
   test("resolves a single breakpoint string value", () => {
     setupMock()
 
-    const { result } = renderHook(() => useToken("breakpoints", "md"))
+    const { result } = hooks.render(() => useToken("breakpoints", "md"))
 
     expect(result.current).not.toBeInstanceOf(Array)
     expect(result.current).toStrictEqual(mockBreakpoints["md"])
@@ -117,7 +117,7 @@ describe("useToken", () => {
   test("resolves multiple breakpoint string values", () => {
     setupMock()
 
-    const { result } = renderHook(() => useToken("breakpoints", ["sm", "lg"]))
+    const { result } = hooks.render(() => useToken("breakpoints", ["sm", "lg"]))
 
     expect(result.current).toHaveLength(2)
     expect(result.current).toStrictEqual([

@@ -33,7 +33,7 @@ interface AvatarOptions {
    */
   showBorder?: boolean
   /**
-   * The badge at the bottom right corner of the avatar.
+   * The badge in the bottom right corner of the avatar.
    */
   children?: React.ReactNode
   /**

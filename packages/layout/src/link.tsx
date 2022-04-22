@@ -37,7 +37,7 @@ export const Link = forwardRef<LinkProps, "a">((props, ref) => {
   return (
     <chakra.a
       target={isExternal ? "_blank" : undefined}
-      rel={isExternal ? "noopener noreferrer" : undefined}
+      rel={isExternal ? "noopener" : undefined}
       ref={ref}
       className={cx("chakra-link", className)}
       {...rest}

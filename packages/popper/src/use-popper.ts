@@ -132,7 +132,7 @@ export function usePopper(props: UsePopperProps = {}) {
   const setupPopper = useCallback(() => {
     if (!enabled || !reference.current || !popper.current) return
 
-    // If popper instance exists, destroy it so we can create a new one
+    // If popper instance exists, destroy it, so we can create a new one
     cleanup.current?.()
 
     instance.current = createPopper(reference.current, popper.current, {

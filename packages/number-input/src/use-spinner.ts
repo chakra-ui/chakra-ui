@@ -56,7 +56,7 @@ export function useSpinner(increment: Function, decrement: Function) {
 
   // Function to activate the spinning and increment the value
   const up = useCallback(() => {
-    // increment the first fime
+    // increment the first time
     if (runOnce) {
       increment()
     }
@@ -71,7 +71,7 @@ export function useSpinner(increment: Function, decrement: Function) {
 
   // Function to activate the spinning and increment the value
   const down = useCallback(() => {
-    // decrement the first fime
+    // decrement the first time
     if (runOnce) {
       decrement()
     }
@@ -84,7 +84,7 @@ export function useSpinner(increment: Function, decrement: Function) {
     }, CONTINUOUS_CHANGE_DELAY)
   }, [decrement, runOnce])
 
-  // Function to stop spinng (useful for mouseup, keyup handlers)
+  // Function to stop spinning (useful for mouseup, keyup handlers)
   const stop = useCallback(() => {
     setRunOnce(true)
     setIsSpinning(false)

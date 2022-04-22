@@ -39,9 +39,13 @@ export interface CSSVarsProps {
   root?: string
 }
 
-export const CSSVars = ({ root = ":host, :root" }: CSSVarsProps) => (
-  <Global styles={(theme: any) => ({ [root]: theme.__cssVars })} />
-)
+export const CSSVars = ({ root = ":host, :root" }: CSSVarsProps) => {
+  /**
+   * Append color mode selector to allow semantic tokens to change according to the color mode
+   */
+  const selector = [root, `[data-theme]`].join(",")
+  return <Global styles={(theme: any) => ({ [selector]: theme.__cssVars })} />
+}
 
 export function useTheme<T extends object = Dict>() {
   const theme = React.useContext(

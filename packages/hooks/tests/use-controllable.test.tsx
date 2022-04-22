@@ -1,21 +1,15 @@
-import {
-  invoke,
-  render,
-  renderHook,
-  screen,
-  userEvent,
-} from "@chakra-ui/test-utils"
+import { render, screen, hooks } from "@chakra-ui/test-utils"
 import React, { useState } from "react"
 import { useControllableState } from "../src"
 
 test("should be uncontrolled when defaultValue is passed", () => {
-  const { result } = renderHook(() =>
+  const { result } = hooks.render(() =>
     useControllableState({ defaultValue: "testing" }),
   )
   const [value] = result.current
   expect(value).toBe("testing")
 
-  invoke(() => {
+  hooks.act(() => {
     const [, setValue] = result.current
     setValue("naruto")
   })
@@ -25,13 +19,13 @@ test("should be uncontrolled when defaultValue is passed", () => {
 })
 
 test("should be controlled when value is passed", () => {
-  const { result } = renderHook(() =>
+  const { result } = hooks.render(() =>
     useControllableState({ value: "testing" }),
   )
   const [value] = result.current
   expect(value).toBe("testing")
 
-  invoke(() => {
+  hooks.act(() => {
     const [, setValue] = result.current
     setValue("naruto")
   })
@@ -73,15 +67,15 @@ test("onChange does not become stale when callback is updated", async () => {
     return <Controllable value={value} onChange={onChange} />
   }
 
-  render(<TestComponent />)
+  const { user } = render(<TestComponent />)
 
   expect(screen.getByTestId("value")).toHaveTextContent("0")
 
-  userEvent.type(screen.getByRole("textbox"), "5")
+  await user.type(screen.getByRole("textbox"), "5")
 
   expect(await screen.findByTestId("value")).toHaveTextContent("5")
 
-  userEvent.type(screen.getByRole("textbox"), "{selectall}1")
+  await user.type(screen.getByRole("textbox"), "{selectall}1")
 
   expect(await screen.findByTestId("value")).toHaveTextContent("6")
 })

@@ -1,3 +1,4 @@
+import * as React from "react"
 import {
   css,
   isStyleProp,
@@ -86,8 +87,6 @@ export type HTMLChakraComponents = {
 
 export type HTMLChakraProps<T extends As> = Omit<
   PropsOf<T>,
-  T extends "svg"
-    ? "ref" | "children" | keyof StyleProps
-    : "ref" | keyof StyleProps
+  "ref" | keyof StyleProps
 > &
   ChakraProps & { as?: As }

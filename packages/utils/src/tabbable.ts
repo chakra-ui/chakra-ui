@@ -28,7 +28,7 @@ export function isInputElement(
 ): element is HTMLInputElement {
   return (
     isHTMLElement(element) &&
-    element.tagName.toLowerCase() === "input" &&
+    element.localName === "input" &&
     "select" in element
   )
 }

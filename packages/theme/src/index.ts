@@ -21,12 +21,6 @@ export const theme = {
 
 export type Theme = typeof theme
 
-/**
- * @deprecated
- * Duplicate theme type. Please use `Theme`
- */
-export type DefaultChakraTheme = Theme
-
 export * from "./theme.types"
 export * from "./utils"
 

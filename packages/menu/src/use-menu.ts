@@ -532,6 +532,10 @@ export interface UseMenuItemProps
    * Overrides the parent menu's `closeOnSelect` prop.
    */
   closeOnSelect?: boolean
+  /**
+   * The type of the menuitem.
+   */
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"]
 }
 
 export function useMenuItem(
@@ -546,6 +550,7 @@ export function useMenuItem(
     isDisabled,
     isFocusable,
     closeOnSelect,
+    type: typeProp,
     ...htmlProps
   } = props
 
@@ -572,7 +577,7 @@ export function useMenuItem(
   })
 
   const onMouseEnter = React.useCallback(
-    (event) => {
+    (event: any) => {
       onMouseEnterProp?.(event)
       if (isDisabled) return
       setFocusedIndex(index)
@@ -581,7 +586,7 @@ export function useMenuItem(
   )
 
   const onMouseMove = React.useCallback(
-    (event) => {
+    (event: any) => {
       onMouseMoveProp?.(event)
       if (ref.current && !isActiveElement(ref.current)) {
         onMouseEnter(event)
@@ -591,7 +596,7 @@ export function useMenuItem(
   )
 
   const onMouseLeave = React.useCallback(
-    (event) => {
+    (event: any) => {
       onMouseLeaveProp?.(event)
       if (isDisabled) return
       setFocusedIndex(-1)
@@ -644,6 +649,7 @@ export function useMenuItem(
   return {
     ...htmlProps,
     ...clickableProps,
+    type: typeProp ?? (clickableProps as any).type,
     id,
     role: "menuitem",
     tabIndex: isFocused ? 0 : -1,
@@ -662,7 +668,7 @@ export interface UseMenuOptionOptions {
 }
 
 export interface UseMenuOptionProps
-  extends UseMenuItemProps,
+  extends Omit<UseMenuItemProps, "type">,
     UseMenuOptionOptions {}
 
 export function useMenuOption(

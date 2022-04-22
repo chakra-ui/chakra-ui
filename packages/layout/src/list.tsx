@@ -21,12 +21,12 @@ const [StylesProvider, useStyles] = createContext<Dict<SystemStyleObject>>({
 
 interface ListOptions {
   /**
-   * Short hand prop for `listStyleType`
+   * Shorthand prop for `listStyleType`
    * @type SystemProps["listStyleType"]
    */
   styleType?: SystemProps["listStyleType"]
   /**
-   * Short hand prop for `listStylePosition`
+   * Shorthand prop for `listStylePosition`
    * @type SystemProps["listStylePosition"]
    */
   stylePosition?: SystemProps["listStylePosition"]

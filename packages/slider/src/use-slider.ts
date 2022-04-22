@@ -8,7 +8,12 @@ import {
   usePanGesture,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
-import { EventKeyMap, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
+import {
+  EventKeyMap,
+  mergeRefs,
+  PropGetter,
+  ReactRef,
+} from "@chakra-ui/react-utils"
 import {
   AnyPointerEvent,
   ariaAttr,
@@ -210,7 +215,7 @@ export function useSlider(props: UseSliderProps) {
    */
 
   const getValueFromPointer = useCallback(
-    (event) => {
+    (event: any) => {
       if (!trackRef.current) return
       eventSourceRef.current = "pointer"
       const trackRect = getBox(trackRef.current).borderBox
@@ -300,13 +305,13 @@ export function useSlider(props: UseSliderProps) {
   )
 
   /**
-   * ARIA (Optional): To define a human readable representation of the value,
+   * ARIA (Optional): To define a human-readable representation of the value,
    * we allow users pass aria-valuetext.
    */
   const valueText = getAriaValueText?.(value) ?? ariaValueText
 
   /**
-   * Measure the dimensions of the thumb so
+   * Measure the dimensions of the thumb, so
    * we can center it within the track properly
    */
   const thumbBoxModel = useDimensions(thumbRef)
@@ -314,20 +319,16 @@ export function useSlider(props: UseSliderProps) {
   /**
    * Compute styles for all component parts.
    */
-  const {
-    getThumbStyle,
-    rootStyle,
-    trackStyle,
-    innerTrackStyle,
-  } = useMemo(() => {
-    const thumbRect = thumbBoxModel?.borderBox ?? { width: 0, height: 0 }
-    return getStyles({
-      isReversed,
-      orientation,
-      thumbRects: [thumbRect],
-      thumbPercents: [thumbPercent],
-    })
-  }, [isReversed, orientation, thumbBoxModel?.borderBox, thumbPercent])
+  const { getThumbStyle, rootStyle, trackStyle, innerTrackStyle } =
+    useMemo(() => {
+      const thumbRect = thumbBoxModel?.borderBox ?? { width: 0, height: 0 }
+      return getStyles({
+        isReversed,
+        orientation,
+        thumbRects: [thumbRect],
+        thumbPercents: [thumbPercent],
+      })
+    }, [isReversed, orientation, thumbBoxModel?.borderBox, thumbPercent])
 
   const focusThumb = useCallback(() => {
     if (thumbRef.current && focusThumbOnChange) {
@@ -412,7 +413,7 @@ export function useSlider(props: UseSliderProps) {
   )
 
   const getThumbProps: PropGetter = useCallback(
-    (props = {}, ref = null) => ({
+    (props = {}, ref: ReactRef<any> = null) => ({
       ...props,
       ref: mergeRefs(ref, thumbRef),
       role: "slider",

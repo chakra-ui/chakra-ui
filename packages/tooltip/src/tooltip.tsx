@@ -21,7 +21,7 @@ export interface TooltipProps
     ThemingProps<"Tooltip">,
     UseTooltipProps {
   /**
-   * The react component to use as the
+   * The React component to use as the
    * trigger for the tooltip
    */
   children: React.ReactNode
@@ -125,8 +125,8 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
   const hiddenProps = pick(_tooltipProps, ["role", "id"])
 
   /**
-   * If the `label` is empty, there's no
-   * point showing the tooltip. Let's simply return back the children
+   * If the `label` is empty, there's no point showing the tooltip.
+   * Let's simply return the children
    */
   if (!label) {
     return <>{children}</>

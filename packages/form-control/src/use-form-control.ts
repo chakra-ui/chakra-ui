@@ -10,6 +10,7 @@ export interface UseFormControlProps<T extends HTMLElement>
   disabled?: boolean
   readOnly?: boolean
   required?: boolean
+  "aria-describedby"?: string
 }
 
 /**
@@ -24,13 +25,8 @@ export interface UseFormControlProps<T extends HTMLElement>
 export function useFormControl<T extends HTMLElement>(
   props: UseFormControlProps<T>,
 ) {
-  const {
-    isDisabled,
-    isInvalid,
-    isReadOnly,
-    isRequired,
-    ...rest
-  } = useFormControlProps(props)
+  const { isDisabled, isInvalid, isReadOnly, isRequired, ...rest } =
+    useFormControlProps(props)
 
   return {
     ...rest,

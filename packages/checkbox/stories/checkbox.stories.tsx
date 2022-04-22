@@ -63,10 +63,10 @@ export const WithIconColor = () => (
 export const withColorScheme = () => {
   return (
     <Stack>
-      <Checkbox defaultIsChecked colorScheme="red">
+      <Checkbox defaultChecked colorScheme="red">
         Hello world
       </Checkbox>
-      <Checkbox defaultIsChecked>Hello world</Checkbox>
+      <Checkbox defaultChecked>Hello world</Checkbox>
     </Stack>
   )
 }
@@ -236,13 +236,8 @@ export const ControlledCheckboxGroup = () => {
 
 export const CustomCheckboxGroup = () => {
   function CustomCheckbox(props: any) {
-    const {
-      state,
-      getCheckboxProps,
-      getInputProps,
-      getLabelProps,
-      htmlProps,
-    } = useCheckbox(props)
+    const { state, getCheckboxProps, getInputProps, getLabelProps, htmlProps } =
+      useCheckbox(props)
 
     return (
       <chakra.label

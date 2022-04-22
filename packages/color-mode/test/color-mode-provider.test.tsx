@@ -1,7 +1,6 @@
-import { render } from "@testing-library/react"
-import userEvent from "@testing-library/user-event"
-import React from "react"
-import { ColorModeProvider } from "../src/color-mode-provider"
+import * as React from "react"
+import { render } from "@chakra-ui/test-utils"
+import { ColorModeProvider } from "../src"
 import * as colorModeUtils from "../src/color-mode.utils"
 import {
   defaultThemeOptions,
@@ -19,7 +18,7 @@ describe("<ColorModeProvider />", () => {
       </ColorModeProvider>,
     )
 
-    expect(syncBodyClassNameSpy).toHaveBeenCalledTimes(1)
+    expect(syncBodyClassNameSpy).toHaveBeenCalled()
   })
 
   test("sets custom attribute on root", () => {
@@ -31,11 +30,11 @@ describe("<ColorModeProvider />", () => {
       </ColorModeProvider>,
     )
 
-    expect(rootSpy).toHaveBeenCalledTimes(1)
+    expect(rootSpy).toHaveBeenCalled()
   })
 
-  test("toggleColorMode changes the color", () => {
-    render(
+  test("toggleColorMode changes the color", async () => {
+    const { user } = render(
       <ColorModeProvider options={defaultThemeOptions}>
         <DummyComponent />
       </ColorModeProvider>,
@@ -45,17 +44,17 @@ describe("<ColorModeProvider />", () => {
 
     expect(button).toHaveTextContent(defaultThemeOptions.initialColorMode)
 
-    userEvent.click(button)
+    await user.click(button)
 
     expect(getColorModeButton()).not.toHaveTextContent(
       defaultThemeOptions.initialColorMode,
     )
   })
 
-  test("is controlled given a value", () => {
+  test("is controlled given a value", async () => {
     const value = "dark"
 
-    render(
+    const { user } = render(
       <ColorModeProvider options={defaultThemeOptions} value={value}>
         <DummyComponent />
       </ColorModeProvider>,
@@ -65,7 +64,7 @@ describe("<ColorModeProvider />", () => {
 
     expect(button).toHaveTextContent(value)
 
-    userEvent.click(button)
+    await user.click(button)
 
     expect(getColorModeButton()).toHaveTextContent(value)
   })

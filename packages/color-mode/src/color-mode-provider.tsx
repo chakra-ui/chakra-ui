@@ -79,8 +79,8 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
 
   React.useEffect(() => {
     /**
-     * Since we cannot initially retrieve localStorage to due above mentioned
-     * reasons, do so after hydration.
+     * Since we cannot initially retrieve localStorage for the reasons mentioned
+     * above, do so after hydration.
      *
      * Priority:
      * - if `useSystemColorMode` is true system-color will be used as default - initial
@@ -176,7 +176,7 @@ if (__DEV__) {
 /**
  * Locks the color mode to `dark`, without any way to change it.
  */
-export const DarkMode: React.FC = (props) => {
+export const DarkMode = (props: React.PropsWithChildren<{}>) => {
   const context = React.useMemo<ColorModeContextType>(
     () => ({
       colorMode: "dark",
@@ -196,7 +196,7 @@ if (__DEV__) {
 /**
  * Locks the color mode to `light` without any way to change it.
  */
-export const LightMode: React.FC = (props) => {
+export const LightMode = (props: React.PropsWithChildren<{}>) => {
   const context = React.useMemo<ColorModeContextType>(
     () => ({
       colorMode: "light",

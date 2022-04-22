@@ -33,7 +33,7 @@ import {
 
 When using this component, ensure the children passed to `PopoverTrigger` is
 focusable, user can tab to it using their keyboard, and it can take a `ref`. It
-is critical for accessiblity.
+is critical for accessibility.
 
 > **A11y:** When the Popover opens, focus is sent to the `PopoverContent`. When
 > it closes, focus is returned to the trigger.

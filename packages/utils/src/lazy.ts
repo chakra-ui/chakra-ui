@@ -25,7 +25,7 @@ export function determineLazyBehavior(options: DetermineLazyBehaviorOptions) {
   // if not lazy, always render the disclosure's content
   if (!isLazy) return true
 
-  // if the diclosure is selected, render the disclosure's content
+  // if the disclosure is selected, render the disclosure's content
   if (isSelected) return true
 
   // if the disclosure was selected but not active, keep its content active

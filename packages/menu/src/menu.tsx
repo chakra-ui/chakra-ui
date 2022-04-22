@@ -1,6 +1,7 @@
 import { MaybeRenderProp } from "@chakra-ui/react-utils"
 import {
   chakra,
+  ChakraComponent,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
@@ -121,6 +122,9 @@ if (__DEV__) {
 }
 
 export interface MenuListProps extends HTMLChakraProps<"div"> {
+  /**
+   * Props for the root element that positions the menu.
+   */
   rootProps?: HTMLChakraProps<"div">
 }
 
@@ -147,11 +151,18 @@ const motionVariants: Variants = {
   },
 }
 
+function __motion<T extends ChakraComponent<any, any>>(
+  el: T,
+): CustomDomComponent<PropsOf<T>> {
+  const m = motion as any
+  if ("custom" in m && typeof m.custom === "function") {
+    return m.custom(el)
+  }
+  return m(el)
+}
+
 // @future: only call `motion(chakra.div)` when we drop framer-motion v3 support
-const MenuTransition: CustomDomComponent<PropsOf<typeof chakra.div>> =
-  "custom" in motion
-    ? (motion as any).custom(chakra.div)
-    : (motion as any)(chakra.div)
+const MenuTransition = __motion(chakra.div)
 
 export const MenuList = forwardRef<MenuListProps, "div">((props, ref) => {
   const { rootProps, ...rest } = props
@@ -211,20 +222,23 @@ const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
      * Else, use no type to avoid invalid html, e.g. <a type="button" />
      * Else, fall back to "button"
      */
-    const btnType = rest.as ? type ?? undefined : "button"
+    const btnType = rest.as || type ? type ?? undefined : "button"
 
-    const buttonStyles: SystemStyleObject = {
-      textDecoration: "none",
-      color: "inherit",
-      userSelect: "none",
-      display: "flex",
-      width: "100%",
-      alignItems: "center",
-      textAlign: "start",
-      flex: "0 0 auto",
-      outline: 0,
-      ...styles.item,
-    }
+    const buttonStyles: SystemStyleObject = React.useMemo(
+      () => ({
+        textDecoration: "none",
+        color: "inherit",
+        userSelect: "none",
+        display: "flex",
+        width: "100%",
+        alignItems: "center",
+        textAlign: "start",
+        flex: "0 0 auto",
+        outline: 0,
+        ...styles.item,
+      }),
+      [styles.item],
+    )
 
     return (
       <chakra.button ref={ref} type={btnType} {...rest} __css={buttonStyles} />
@@ -335,6 +349,7 @@ export interface MenuItemOptionProps
 
 export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
   (props, ref) => {
+    // menu option item should always be `type=button`, so we omit `type`
     const { icon, iconSpacing = "0.75rem", ...rest } = props
 
     const optionProps = useMenuOption(rest, ref) as HTMLAttributes

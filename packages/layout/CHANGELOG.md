@@ -1,5 +1,116 @@
 # Change Log
 
+## 2.0.0-next.1
+
+### Major Changes
+
+- [#5882](https://github.com/chakra-ui/chakra-ui/pull/5882)
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump peer
+  depencency to React and ReactDOM to >=18
+
+### Patch Changes
+
+- Updated dependencies
+  [[`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)]:
+  - @chakra-ui/icon@3.0.0-next.1
+  - @chakra-ui/react-utils@2.0.0-next.1
+  - @chakra-ui/utils@2.0.0-next.1
+
+## 2.0.0-next.0
+
+### Major Changes
+
+- [#5879](https://github.com/chakra-ui/chakra-ui/pull/5879)
+  [`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump all packages
+  to next major for Chakra UI version 2.
+
+* [#5828](https://github.com/chakra-ui/chakra-ui/pull/5828)
+  [`1a47fd27e`](https://github.com/chakra-ui/chakra-ui/commit/1a47fd27e6e37ff5d149e0469888eed0ec306632)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ### Remove
+  deprecations
+
+  **Affected components or packages:**
+
+  **Button, Icon Button, Input, NumberInput, Radio, Checkbox, Select**
+
+  - Removed the `isFullWidth` deprecation. Use `width=full` or `width=100%`
+
+  **Checkbox**
+
+  - Removed `defaultIsChecked`. Use `defaultChecked`
+
+  **Color mode**
+
+  - Removed references to `--chakra-ui-color-mode`. Use `data-theme` property
+    instead
+
+  **Hooks**
+
+  - Removed `useEventCallback` hook
+
+  **Input / NumberInput**
+
+  - Removed the `isFullWidth` deprecation. Use `width=full` or `width=100%`
+
+  **Grid**
+
+  - Removed the `area` prop from `Grid` component. Should be passed to the
+    `GridItem` instead.
+
+  **Styled system**
+
+  - Removed the `d` style prop. Use `display` instead.
+  - Removed the `isTruncated` style prop. Use `noOfLines={1}` instead.
+
+  **Theme**
+
+  - Removed deprecated types.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)]:
+  - @chakra-ui/icon@3.0.0-next.0
+  - @chakra-ui/react-utils@2.0.0-next.0
+  - @chakra-ui/system@2.0.0-next.0
+  - @chakra-ui/utils@2.0.0-next.0
+
+## 1.8.0
+
+### Minor Changes
+
+- [#5772](https://github.com/chakra-ui/chakra-ui/pull/5772)
+  [`7fa1e22c6`](https://github.com/chakra-ui/chakra-ui/commit/7fa1e22c63cdd77364a6bb31d7a60459fd945e3c)
+  Thanks [@mix3d](https://github.com/mix3d)! - Add support for vertical and
+  horizontal spacing options in the Wrap component.
+
+  ```jsx live=false
+  <Wrap spacingX="2" spacingY="4">
+    <Box />
+    <Box />
+    <Box />
+    <Box />
+  </Wrap>
+  ```
+
+  > Falls back to the `spacing` prop for by default
+
+## 1.7.8
+
+### Patch Changes
+
+- [#5679](https://github.com/chakra-ui/chakra-ui/pull/5679)
+  [`1c14e0de8`](https://github.com/chakra-ui/chakra-ui/commit/1c14e0de84a7eb92482ba0ba2e04b27d738af804)
+  Thanks [@m4x3d](https://github.com/m4x3d)! - Fix buttons zIndex within LinkBox
+  and usage of LinkOverlay
+
+* [#5737](https://github.com/chakra-ui/chakra-ui/pull/5737)
+  [`e93b9f8c3`](https://github.com/chakra-ui/chakra-ui/commit/e93b9f8c3e695b56dbf927b37b4b13ded660451b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Remove `noreferrer`
+  attribute from link component
+
 ## 1.7.7
 
 ### Patch Changes
@@ -82,9 +193,9 @@
 
   ```jsx live=false
   <Grid templateAreas='"one two three"'>
-    <GridItem area="one">one</Grid>
-    <GridItem area="two">two</Grid>
-    <GridItem area="three">three</Grid>
+    <GridItem area="one">one</GridItem>
+    <GridItem area="two">two</GridItem>
+    <GridItem area="three">three</GridItem>
   </Grid>
   ```
 

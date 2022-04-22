@@ -64,3 +64,14 @@ export const DocsExample = () => {
     </div>
   )
 }
+
+export const LoadingExample = () => {
+  return (
+    <div>
+      <Alert status="loading">
+        <AlertIcon />
+        We are loading something
+      </Alert>
+    </div>
+  )
+}

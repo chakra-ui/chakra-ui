@@ -28,13 +28,9 @@ export interface RadioProps
    */
   spacing?: SystemProps["marginLeft"]
   /**
-   * If `true`, the radio will occupy the full width of its parent container
-   *
-   * @deprecated
-   * This component defaults to 100% width,
-   * please use the props `maxWidth` or `width` to configure
+   * Additional props to be forwarded to the `input` element
    */
-  isFullWidth?: boolean
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>
 }
 
 /**
@@ -54,9 +50,9 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
   const {
     spacing = "0.5rem",
     children,
-    isFullWidth,
     isDisabled = group?.isDisabled,
     isFocusable = group?.isFocusable,
+    inputProps: htmlInputProps,
     ...rest
   } = ownProps
 
@@ -90,12 +86,11 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
   const [layoutProps, otherProps] = split(htmlProps, layoutPropNames as any)
 
   const checkboxProps = getCheckboxProps(otherProps)
-  const inputProps = getInputProps({}, ref)
+  const inputProps = getInputProps(htmlInputProps, ref)
   const labelProps = getLabelProps()
   const rootProps = Object.assign({}, layoutProps, getRootProps())
 
   const rootStyles = {
-    width: isFullWidth ? "full" : undefined,
     display: "inline-flex",
     alignItems: "center",
     verticalAlign: "top",

@@ -8,6 +8,7 @@ import {
   EditableTextarea,
   useEditableControls,
 } from "../src"
+import { Heading } from "@chakra-ui/layout"
 
 export default {
   title: "Components / Forms / Editable",
@@ -125,3 +126,45 @@ export const TextareaAsInput = () => {
     </Editable>
   )
 }
+
+export const EditableEventHandler = () => {
+  const [name, setName] = React.useState("")
+  console.log("State 'name' is ", name)
+
+  React.useEffect(() => {
+    setName("John")
+  }, [])
+
+  return (
+    <>
+      <Heading>Name State=[{name}]</Heading>
+      <Editable
+        value={name}
+        onChange={(value) => {
+          console.log("onChange called with ", value)
+          setName(value)
+        }}
+        onSubmit={(value) => {
+          console.log("onSubmit called with ", value)
+          setName(value)
+        }}
+        onCancel={(value) => {
+          console.log("onCancel called with ", value)
+          setName(value)
+        }}
+        placeholder="Enter your name"
+      >
+        <EditablePreview />
+        <EditableInput />
+      </Editable>
+    </>
+  )
+}
+
+export const Disabled = () => (
+  <Editable isDisabled defaultValue="Rasengan ⚡️" fontSize="xl">
+    <EditablePreview />
+    <EditableInput />
+    <EditableControls />
+  </Editable>
+)

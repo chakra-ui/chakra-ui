@@ -6,7 +6,7 @@ import { flattenTokens } from "./flatten-tokens"
 
 export function toCSSVar<T extends Dict>(rawTheme: T) {
   /**
-   * In the case the theme has already been converted to css-var (e.g extending the theme),
+   * In the case the theme has already been converted to css-var (e.g. extending the theme),
    * we can omit the computed css vars and recompute it for the extended theme.
    */
   const theme = omitVars(rawTheme)

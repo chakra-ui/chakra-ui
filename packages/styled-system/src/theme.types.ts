@@ -33,9 +33,9 @@ export interface BaseThemeTypings {
  * @example
  * ```ts
  * import { BaseThemeTypings } from "@chakra-ui/styled-system";
- * 
+ *
  * type DefaultSizes = 'small' | 'medium' | 'large';
- * 
+ *
  * declare module "@chakra-ui/styled-system" {
  *   export interface CustomThemeTypings extends BaseThemeTypings {
  *     // Example custom `borders` tokens
@@ -48,10 +48,11 @@ export interface BaseThemeTypings {
  *         // Example custom component sizes and variants
  *         sizes: DefaultSizes;
  *         variants: 'solid' | 'outline' | 'wacky' | 'chill';
- *       };
+ *       },
  *       // ...
  *      }
  *   }
+ * }
  * ```
  *
  * @see https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation

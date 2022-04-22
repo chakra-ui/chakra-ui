@@ -31,8 +31,8 @@ export function createThemeVars(
   flatTokens: FlatTokens,
   options: CreateThemeVarsOptions,
 ) {
-  let cssVars = {}
-  const cssMap = {}
+  let cssVars: Record<string, any> = {}
+  const cssMap: Record<string, any> = {}
 
   for (const [token, tokenValue] of Object.entries<FlatToken>(flatTokens)) {
     const { isSemantic, value } = tokenValue
@@ -86,7 +86,7 @@ export function createThemeVars(
 
           /** @example { _dark: "#fff" } => { '.chakra-ui-dark': "#fff" } */
           const conditionSelector =
-            pseudoSelectors?.[conditionAlias] ?? conditionAlias
+            (pseudoSelectors as any)?.[conditionAlias] ?? conditionAlias
           acc[conditionSelector] = { [variable]: maybeReference }
 
           return acc

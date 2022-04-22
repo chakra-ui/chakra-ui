@@ -40,7 +40,7 @@ import {
 By default, only one accordion can be visible at a time, and it can't be
 toggled.
 
-**Note 🚨**: Each accordion button must be wrapped in an heading tag, that is
+**Note 🚨**: Each accordion button must be wrapped in a heading tag, that is
 appropriate for the information architecture of the page.
 
 ```jsx

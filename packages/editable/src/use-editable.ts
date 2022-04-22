@@ -41,7 +41,7 @@ export interface UseEditableProps {
   startWithEditView?: boolean
   /**
    * If `true`, the read only view, has a `tabIndex` set to `0`
-   * so it can recieve focus via the keyboard or click.
+   * so it can receive focus via the keyboard or click.
    * @default true
    */
   isPreviewFocusable?: boolean
@@ -132,7 +132,7 @@ export function useEditable(props: UseEditableProps = {}) {
     elements: [cancelButtonRef, submitButtonRef],
   })
 
-  const isInteractive = !isEditing || !isDisabled
+  const isInteractive = !isEditing && !isDisabled
 
   useSafeLayoutEffect(() => {
     if (isEditing) {
@@ -160,6 +160,10 @@ export function useEditable(props: UseEditableProps = {}) {
       setIsEditing(true)
     }
   }, [isInteractive])
+
+  const onUpdatePrevValue = useCallback(() => {
+    setPrevValue(value)
+  }, [value])
 
   const onCancel = useCallback(() => {
     setIsEditing(false)
@@ -230,11 +234,15 @@ export function useEditable(props: UseEditableProps = {}) {
       const targetIsSubmit = contains(submitButtonRef.current, relatedTarget)
       const isValidBlur = !targetIsCancel && !targetIsSubmit
 
-      if (isValidBlur && submitOnBlur) {
-        onSubmit()
+      if (isValidBlur) {
+        if (submitOnBlur) {
+          onSubmit()
+        } else {
+          onCancel()
+        }
       }
     },
-    [submitOnBlur, onSubmit],
+    [submitOnBlur, onSubmit, onCancel],
   )
 
   const getPreviewProps: PropGetter = useCallback(
@@ -247,7 +255,7 @@ export function useEditable(props: UseEditableProps = {}) {
         hidden: isEditing,
         "aria-disabled": ariaAttr(isDisabled),
         tabIndex,
-        onFocus: callAllHandlers(props.onFocus, onEdit),
+        onFocus: callAllHandlers(props.onFocus, onEdit, onUpdatePrevValue),
       }
     },
     [
@@ -257,6 +265,7 @@ export function useEditable(props: UseEditableProps = {}) {
       isPreviewFocusable,
       isValueEmpty,
       onEdit,
+      onUpdatePrevValue,
       placeholder,
       value,
     ],
@@ -277,8 +286,18 @@ export function useEditable(props: UseEditableProps = {}) {
       onBlur: callAllHandlers(props.onBlur, onBlur),
       onChange: callAllHandlers(props.onChange, onChange),
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+      onFocus: callAllHandlers(props.onFocus, onUpdatePrevValue),
     }),
-    [isDisabled, isEditing, onBlur, onChange, onKeyDown, placeholder, value],
+    [
+      isDisabled,
+      isEditing,
+      onBlur,
+      onChange,
+      onKeyDown,
+      onUpdatePrevValue,
+      placeholder,
+      value,
+    ],
   )
 
   const getTextareaProps: PropGetterV2<
@@ -296,6 +315,7 @@ export function useEditable(props: UseEditableProps = {}) {
       onBlur: callAllHandlers(props.onBlur, onBlur),
       onChange: callAllHandlers(props.onChange, onChange),
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDownWithoutSubmit),
+      onFocus: callAllHandlers(props.onFocus, onUpdatePrevValue),
     }),
     [
       isDisabled,
@@ -303,6 +323,7 @@ export function useEditable(props: UseEditableProps = {}) {
       onBlur,
       onChange,
       onKeyDownWithoutSubmit,
+      onUpdatePrevValue,
       placeholder,
       value,
     ],
@@ -315,8 +336,9 @@ export function useEditable(props: UseEditableProps = {}) {
       type: "button",
       onClick: callAllHandlers(props.onClick, onEdit),
       ref: mergeRefs(ref, editButtonRef),
+      disabled: isDisabled,
     }),
-    [onEdit],
+    [onEdit, isDisabled],
   )
 
   const getSubmitButtonProps: PropGetter = useCallback(
@@ -326,8 +348,9 @@ export function useEditable(props: UseEditableProps = {}) {
       ref: mergeRefs(submitButtonRef, ref),
       type: "button",
       onClick: callAllHandlers(props.onClick, onSubmit),
+      disabled: isDisabled,
     }),
-    [onSubmit],
+    [onSubmit, isDisabled],
   )
 
   const getCancelButtonProps: PropGetter = useCallback(
@@ -338,8 +361,9 @@ export function useEditable(props: UseEditableProps = {}) {
       ref: mergeRefs(cancelButtonRef, ref),
       type: "button",
       onClick: callAllHandlers(props.onClick, onCancel),
+      disabled: isDisabled,
     }),
-    [onCancel],
+    [onCancel, isDisabled],
   )
 
   return {

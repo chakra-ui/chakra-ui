@@ -42,13 +42,13 @@ export function split<T extends Dict, K extends keyof T>(object: T, keys: K[]) {
 
 /**
  * Get value from a deeply nested object using a string path.
- * Memoizes the value.
+ * Memorizes the value.
  * @param obj - the object
  * @param path - the string path
- * @param def  - the fallback value
+ * @param fallback  - the fallback value
  */
 export function get(
-  obj: object,
+  obj: Record<string, any>,
   path: string | number,
   fallback?: any,
   index?: number,
@@ -137,16 +137,16 @@ export const filterUndefined = (object: Dict) =>
   objectFilter(object, (val) => val !== null && val !== undefined)
 
 export const objectKeys = <T extends Dict>(obj: T) =>
-  (Object.keys(obj) as unknown) as (keyof T)[]
+  Object.keys(obj) as unknown as (keyof T)[]
 
 /**
- * Object.entries polyfill for Nodev10 compatibility
+ * Object.entries polyfill for Node v10 compatibility
  */
 export const fromEntries = <T extends unknown>(entries: [string, any][]) =>
   entries.reduce((carry, [key, value]) => {
     carry[key] = value
     return carry
-  }, {}) as T
+  }, {} as Record<string, any>) as T
 
 /**
  * Get the CSS variable ref stored in the theme

@@ -11,14 +11,14 @@ export type EventListenerEnv = (() => DocumentOrElement) | DocumentOrElement
  *
  * @param event the event name
  * @param handler the event handler function to execute
- * @param doc the dom environment to execute against (defaults to `document`)
+ * @param env the dom environment to execute against (defaults to `document`)
  * @param options the event listener options
  *
  * @internal
  */
 export function useEventListener<K extends keyof DocumentEventMap>(
   event: K | (string & {}),
-  handler: (event: DocumentEventMap[K]) => void,
+  handler?: (event: DocumentEventMap[K]) => void,
   env?: EventListenerEnv,
   options?: boolean | AddEventListenerOptions,
 ) {
@@ -27,11 +27,15 @@ export function useEventListener<K extends keyof DocumentEventMap>(
   React.useEffect(() => {
     const node = runIfFn(env) ?? document
 
+    if (!handler) {
+      return
+    }
+
     node.addEventListener(event, listener, options)
     return () => {
       node.removeEventListener(event, listener, options)
     }
-  }, [event, env, options, listener])
+  }, [event, env, options, listener, handler])
 
   return () => {
     const node = runIfFn(env) ?? document

@@ -217,8 +217,10 @@ test("MenuOptionGroup radio", async () => {
 
   fireEvent.click(button)
 
-  await waitFor(() => expect(screen.getByText("Order")).toBeInTheDocument())
-  expect(screen.getAllByRole("menuitemradio")).toHaveLength(2)
+  const title = await screen.findByText("Order")
+  expect(title).toBeInTheDocument()
+  const options = await screen.findAllByRole("menuitemradio")
+  expect(options).toHaveLength(2)
 })
 
 test("MenuOptionGroup radio defaultValue checked", async () => {
@@ -238,7 +240,6 @@ test("MenuOptionGroup radio defaultValue checked", async () => {
   )
 
   const button = screen.getByRole("button")
-
   fireEvent.click(button)
 
   expect(screen.getByText("Option 1").closest("button")).toBeChecked()
@@ -265,12 +266,15 @@ test("MenuOptionGroup checkbox defaultValue single checked", async () => {
 
   fireEvent.click(button)
 
-  await waitFor(() => expect(screen.getByText("Info")).toBeInTheDocument())
-  expect(screen.getAllByRole("menuitemcheckbox")).toHaveLength(3)
+  expect(await screen.findByText("Info")).toBeInTheDocument()
 
-  expect(screen.getByText("Email").closest("button")).toBeChecked()
-  expect(screen.getByText("Phone").closest("button")).not.toBeChecked()
-  expect(screen.getByText("Country").closest("button")).not.toBeChecked()
+  const items = await screen.findAllByRole("menuitemcheckbox")
+  expect(items).toHaveLength(3)
+
+  const [email, phone, country] = await screen.findAllByRole("menuitemcheckbox")
+  expect(email).toBeChecked()
+  expect(phone).not.toBeChecked()
+  expect(country).not.toBeChecked()
 })
 
 test("MenuOptionGroup checkbox defaultValue multiple checked", () => {
@@ -462,4 +466,24 @@ test("MenuList direction flips in rtl", () => {
   expect(menuList.parentElement!.getAttribute("data-popper-placement")).toEqual(
     "top-start",
   )
+})
+
+test("can override menu item type", async () => {
+  render(
+    <Menu>
+      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuList>
+        <MenuItem type="submit">Submit</MenuItem>
+        <MenuItem as={Button}>Button</MenuItem>
+      </MenuList>
+    </Menu>,
+  )
+
+  const button = screen.getByText("Open menu")
+  fireEvent.click(button)
+
+  const submitOption = screen.getByText("Submit")
+  await waitFor(() => expect(submitOption).toHaveFocus())
+
+  expect(submitOption).toHaveAttribute("type", "submit")
 })

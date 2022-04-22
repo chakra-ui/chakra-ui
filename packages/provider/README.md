@@ -21,7 +21,7 @@ npm i @chakra-ui/provider
 ## Usage
 
 As the default theme and config is not included, you will need a theme object
-folowing the [system-ui specification](https://system-ui.com/theme/), augmented
+following the [system-ui specification](https://system-ui.com/theme/), augmented
 with the following configuration properties.
 
 More details on ChakraProvider's available props can be found

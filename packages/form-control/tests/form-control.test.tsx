@@ -245,3 +245,14 @@ test("can provide a custom aria-describedby reference", () => {
     "name-expanded-helptext name-helptext",
   )
 })
+
+test("it renders the optionalIndicator in FormLabel if it is provided", () => {
+  render(
+    <FormControl isRequired={false}>
+      <FormLabel optionalIndicator=" (optional)">Test</FormLabel>
+      <Input />
+    </FormControl>,
+  )
+
+  expect(screen.getByText("Test (optional)")).toBeInTheDocument()
+})

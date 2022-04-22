@@ -34,7 +34,7 @@ export function getPopperPlacement(
   placement: PlacementWithLogical,
   dir: "ltr" | "rtl" = "ltr",
 ): Placement {
-  const value = (logicals[placement]?.[dir] || placement) as Placement
+  const value = ((logicals as any)[placement]?.[dir] || placement) as Placement
   if (dir === "ltr") return value
-  return opposites[placement] ?? value
+  return (opposites as any)[placement] ?? value
 }
