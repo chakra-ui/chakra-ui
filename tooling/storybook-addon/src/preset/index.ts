@@ -1,5 +1,3 @@
-import { withEmotionVersionFallback } from "./emotion-fallback"
-
 export function config(entry = []) {
   return [
     ...entry,
@@ -15,5 +13,14 @@ export function managerEntries(entry = []) {
 }
 
 export function webpackFinal(config: any) {
-  return withEmotionVersionFallback(config)
+  // https://github.com/polkadot-js/extension/issues/621#issuecomment-759341776
+  // framer-motion uses the .mjs notation and we need to include it so that webpack will
+  // transpile it for us correctly (enables using a CJS module inside an ESM).
+  config.module.rules.push({
+    test: /\.mjs$/,
+    include: /node_modules/,
+    type: "javascript/auto",
+  })
+
+  return config
 }
