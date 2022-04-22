@@ -1,5 +1,31 @@
 # Change Log
 
+## 2.0.0-next.1
+
+### Major Changes
+
+- [#5882](https://github.com/chakra-ui/chakra-ui/pull/5882)
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump peer
+  depencency to React and ReactDOM to >=18
+
+### Patch Changes
+
+- [`3e6ac56be`](https://github.com/chakra-ui/chakra-ui/commit/3e6ac56be82a6117e4dee484be0956e35fc58ed1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix typescript
+  errors
+
+* [#5892](https://github.com/chakra-ui/chakra-ui/pull/5892)
+  [`ef6a22549`](https://github.com/chakra-ui/chakra-ui/commit/ef6a22549ef93093602ca2913fa6defe6f617df0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Improve
+  accessibility of input placeholders
+
+* Updated dependencies
+  [[`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)]:
+  - @chakra-ui/anatomy@2.0.0-next.1
+  - @chakra-ui/theme-tools@2.0.0-next.1
+  - @chakra-ui/utils@2.0.0-next.1
+
 ## 2.0.0-next.0
 
 ### Major Changes
