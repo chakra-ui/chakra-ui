@@ -1,5 +1,3 @@
-import { withEmotionVersionFallback } from "./emotion-fallback"
-
 export function config(entry = []) {
   return [
     ...entry,
@@ -12,8 +10,4 @@ export function managerEntries(entry = []) {
     ...entry,
     require.resolve("@chakra-ui/storybook-addon/preset/register"),
   ]
-}
-
-export function webpackFinal(config: any) {
-  return withEmotionVersionFallback(config)
 }

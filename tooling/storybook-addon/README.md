@@ -7,22 +7,33 @@ which can be configured using Storybook parameters.
 
 ## Installation
 
-### yarn
+### 1. Install Webpack 5 manager for Storybook
+
+```sh
+ yarn add -D @storybook/builder-webpack5 @storybook/manager-webpack5
+ # or
+ npm i -D @storybook/builder-webpack5 @storybook/manager-webpack5
+```
+
+### 2. Install Chakra UI Addon
 
 ```sh
 yarn add -D @chakra-ui/storybook-addon
-```
-
-### npm
-
-```sh
+# or
 npm i -D @chakra-ui/storybook-addon
 ```
+
+### 3. Configure Storybook
 
 Add the addon to your configuration in `.storybook/main.js`:
 
 ```js
 module.exports = {
+  // storybook will use webpack-5 (prevents errors related to .mjs)
+  core: { builder: "webpack5" },
+  // ensure single instance of emotion
+  features: { emotionAlias: false },
+  // install chakra storybook addon
   addons: ["@chakra-ui/storybook-addon"],
 }
 ```
