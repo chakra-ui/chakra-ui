@@ -58,10 +58,37 @@ overriding them at the component or story when necessary. See the
 [Storybook Parameters documentation](https://storybook.js.org/docs/react/writing-stories/parameters)
 for more information.
 
-[chakraprovider]:
-  https://chakra-ui.com/docs/getting-started#chakraprovider-props
-
 ## Color Mode Tool
 
 You will be able to toggle your color mode with the button in the toolbar. It
 tries to sync with your theme through the localstorage key.
+
+## Story Controls for Theme Components
+
+Get controls for the theming props `variant`, `size` and `colorScheme` in your
+stories with `getThemingArgTypes(theme, componentName)`.
+
+```tsx
+import { Meta, StoryFn } from "@storybook/react"
+import { getThemingArgTypes } from "@chakra-ui/storybook-addon"
+import { theme } from "<your-theme>"
+
+export default {
+  title: "Components / Forms / Button",
+  // get controls for `variant`, `size` and `colorScheme`
+  argTypes: getThemingArgTypes(theme, "Button"),
+} as Meta
+
+interface StoryProps extends ThemingProps<"Button"> {}
+
+export const Basic: StoryFn<StoryProps> = (props) => (
+  <Button {...props}>Button</Button>
+)
+```
+
+This will render input fields to choose the theming prop values:
+
+![Storybook screenshot with controls tab](theming-arg-types.png)
+
+[chakraprovider]:
+  https://chakra-ui.com/docs/getting-started#chakraprovider-props
