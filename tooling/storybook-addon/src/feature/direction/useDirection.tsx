@@ -2,6 +2,9 @@ import * as React from "react"
 import { addons } from "@storybook/addons"
 import { EVENTS } from "../../constants"
 
+/**
+ * Sync the layout direction to the html element
+ */
 export const useDirection = (initialDirection: "ltr" | "rtl" = "ltr") => {
   const [direction, setDirection] = React.useState(
     initialDirection.toLowerCase(),
@@ -20,5 +23,5 @@ export const useDirection = (initialDirection: "ltr" | "rtl" = "ltr") => {
     }
   }, [setDirection])
 
-  return [direction, setDirection]
+  return direction
 }

@@ -12,9 +12,9 @@ export const ChakraProviderDecorator = (
     parameters: { chakra: chakraParams },
   } = context
   const direction = useDirection(chakraParams.theme?.direction)
-  const themeWithDirectionOverride = extendTheme(
-    { direction },
-    chakraParams.theme,
+  const themeWithDirectionOverride = React.useMemo(
+    () => extendTheme({ direction }, chakraParams.theme),
+    [chakraParams.theme, direction],
   )
 
   return (

@@ -5,6 +5,9 @@ import { IconButton } from "@storybook/components"
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons"
 import { ADDON_ID, EVENTS } from "../../constants"
 
+/**
+ * This component is rendered in the Storybook toolbar
+ */
 export const DirectionTool = () => {
   const [direction, setDirection] = useAddonState(
     `${ADDON_ID}/direction`,
