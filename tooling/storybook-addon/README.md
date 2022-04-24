@@ -19,11 +19,15 @@ yarn add -D @chakra-ui/storybook-addon
 npm i -D @chakra-ui/storybook-addon
 ```
 
-Add the addon to your configuration in `.storybook/main.js`:
+Add the addon to your configuration in `.storybook/main.js` and disable the
+emotion alias (available with Storybook >6.4).
 
 ```js
 module.exports = {
   addons: ["@chakra-ui/storybook-addon"],
+  features: {
+    emotionAlias: false,
+  },
 }
 ```
 
