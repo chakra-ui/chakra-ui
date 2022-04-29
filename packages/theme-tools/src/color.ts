@@ -7,6 +7,34 @@ import {
 } from "@ctrl/tinycolor"
 import { memoizedGet as get, Dict, isEmptyObject } from "@chakra-ui/utils"
 
+const value = `(?:[-\\+]?\\d*\\.\\d+%?)|(?:[-\\+]?\\d+%?)`
+
+const threeValues = `[\\s|\\(]+(${value})[,|\\s]+(${value})[,|\\s]+(${value})\\s*\\)?`
+const fourValues = `[\\s|\\(]+(${value})[,|\\s]+(${value})[,|\\s]+(${value})[,|\\s]+(${value})\\s*\\)?`
+
+const matchers: Record<string, RegExp> = {
+  name: /^[a-z]+$/,
+  rgb: new RegExp(String("rgb").concat(threeValues)),
+  rgba: new RegExp(String("rgba").concat(fourValues)),
+  hsl: new RegExp(String("hsl").concat(threeValues)),
+  hsla: new RegExp(String("hsla").concat(fourValues)),
+  hsv: new RegExp(String("hsv").concat(threeValues)),
+  hsva: new RegExp(String("hsva").concat(fourValues)),
+  hex3: /^#?([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/,
+  hex6: /^#?([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/,
+}
+
+const colorIsValid = (color: string) => {
+  const trimmedColor = color.trim()
+
+  for (const key in matchers) {
+    if (matchers[key].exec(trimmedColor)) {
+      return true
+    }
+    return false
+  }
+}
+
 /**
  * Get the color raw value from theme
  * @param theme - the theme object
@@ -14,23 +42,29 @@ import { memoizedGet as get, Dict, isEmptyObject } from "@chakra-ui/utils"
  * @param fallback - the fallback color
  */
 export const getColor = (theme: Dict, color: string, fallback?: string) => {
-  const hex = get(theme, `colors.${color}`, color)
-  const { isValid } = new TinyColor(hex)
-  return isValid ? hex : fallback
+  const value = get(theme, `colors.${color}`, color)
+  const isValid = colorIsValid(value)
+  return isValid ? value : fallback
 }
 
 /**
  * Determines if the tone of given color is "light" or "dark"
+ *
+ * @deprecated This will be removed in the next major release.
+ *
  * @param color - the color in hex, rgb, or hsl
  */
 export const tone = (color: string) => (theme: Dict) => {
   const hex = getColor(theme, color)
-  const isDark = new TinyColor(hex).isDark()
+  const isDark = new TinyColor(hex).isDark() // TODO replace by brightness < 128
   return isDark ? "dark" : "light"
 }
 
 /**
  * Determines if a color tone is "dark"
+ *
+ * @deprecated This will be removed in the next major release.
+ *
  * @param color - the color in hex, rgb, or hsl
  */
 export const isDark = (color: string) => (theme: Dict) =>
@@ -38,6 +72,9 @@ export const isDark = (color: string) => (theme: Dict) =>
 
 /**
  * Determines if a color tone is "light"
+ *
+ * @deprecated This will be removed in the next major release.
+ *
  * @param color - the color in hex, rgb, or hsl
  */
 export const isLight = (color: string) => (theme: Dict) =>
@@ -45,17 +82,23 @@ export const isLight = (color: string) => (theme: Dict) =>
 
 /**
  * Make a color transparent
+ *
+ * @deprecated This will be removed in the next major release.
+ *
  * @param color - the color in hex, rgb, or hsl
  * @param opacity - the amount of opacity the color should have (0-1)
  */
 export const transparentize =
   (color: string, opacity: number) => (theme: Dict) => {
     const raw = getColor(theme, color)
-    return new TinyColor(raw).setAlpha(opacity).toRgbString()
+    return new TinyColor(raw).setAlpha(opacity).toRgbString() // TODO replace with return rgba(r, b, g , opacity)
   }
 
 /**
  * Add white to a color
+ *
+ * @deprecated This will be removed in the next major release.
+ *
  * @param color - the color in hex, rgb, or hsl
  * @param amount - the amount white to add (0-100)
  */
@@ -66,6 +109,9 @@ export const whiten = (color: string, amount: number) => (theme: Dict) => {
 
 /**
  * Add black to a color
+ *
+ * @deprecated This will be removed in the next major release.
+ *
  * @param color - the color in hex, rgb, or hsl
  * @param amount - the amount black to add (0-100)
  */
@@ -76,6 +122,9 @@ export const blacken = (color: string, amount: number) => (theme: Dict) => {
 
 /**
  * Darken a specified color
+ *
+ * @deprecated This will be removed in the next major release.
+ *
  * @param color - the color in hex, rgb, or hsl
  * @param amount - the amount to darken (0-100)
  */
@@ -86,6 +135,9 @@ export const darken = (color: string, amount: number) => (theme: Dict) => {
 
 /**
  * Lighten a specified color
+ *
+ * @deprecated This will be removed in the next major release.
+ *
  * @param color - the color in hex, rgb, or hsl
  * @param amount - the amount to lighten (0-100)
  */
@@ -95,6 +147,8 @@ export const lighten = (color: string, amount: number) => (theme: Dict) =>
 /**
  * Checks the contract ratio of between 2 colors,
  * based on the Web Content Accessibility Guidelines (Version 2.0).
+ *
+ * @deprecated This will be removed in the next major release.
  *
  * @param fg - the foreground or text color
  * @param bg - the background color
@@ -106,6 +160,8 @@ export const contrast = (fg: string, bg: string) => (theme: Dict) =>
  * Checks if a color meets the Web Content Accessibility
  * Guidelines (Version 2.0) for contrast ratio.
  *
+ * @deprecated This will be removed in the next major release.
+ *
  * @param textColor - the foreground or text color
  * @param bgColor - the background color
  * @param options
@@ -114,6 +170,10 @@ export const isAccessible =
   (textColor: string, bgColor: string, options?: WCAG2Parms) => (theme: Dict) =>
     isReadable(getColor(theme, bgColor), getColor(theme, textColor), options)
 
+/**
+ *
+ * @deprecated This will be removed in the next major release.
+ */
 export const complementary = (color: string) => (theme: Dict) =>
   new TinyColor(getColor(theme, color)).complement().toHexString()
 
@@ -148,6 +208,11 @@ interface RandomColorOptions {
   colors?: string[]
 }
 
+/**
+ *
+ * @deprecated This will be removed in the next major release.
+ *
+ */
 export function randomColor(opts?: RandomColorOptions) {
   const fallback = random().toHexString()
 

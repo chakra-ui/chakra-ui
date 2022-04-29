@@ -1,5 +1,5 @@
 import { alertAnatomy as parts } from "@chakra-ui/anatomy"
-import { getColor, mode, transparentize } from "@chakra-ui/theme-tools"
+import { getColor, mode } from "@chakra-ui/theme-tools"
 import type {
   PartsStyleObject,
   PartsStyleFunction,
@@ -36,7 +36,7 @@ const baseStyle: PartsStyleObject<typeof parts> = {
 function getBg(props: StyleFunctionProps): string {
   const { theme, colorScheme: c } = props
   const lightBg = getColor(theme, `${c}.100`, c)
-  const darkBg = transparentize(`${c}.200`, 0.16)(theme)
+  const darkBg = getColor(theme, `${c}.900`, c)
   return mode(lightBg, darkBg)(props)
 }
 

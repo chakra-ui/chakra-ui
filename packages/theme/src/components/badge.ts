@@ -1,4 +1,4 @@
-import { getColor, mode, transparentize } from "@chakra-ui/theme-tools"
+import { getColor, mode } from "@chakra-ui/theme-tools"
 import type {
   SystemStyleFunction,
   SystemStyleObject,
@@ -13,26 +13,32 @@ const baseStyle: SystemStyleObject = {
 }
 
 const variantSolid: SystemStyleFunction = (props) => {
-  const { colorScheme: c, theme } = props
-  const dark = transparentize(`${c}.500`, 0.6)(theme)
+  const { colorScheme: c } = props
   return {
-    bg: mode(`${c}.500`, dark)(props),
+    bg: mode(`${c}.500`, `${c}.700`)(props),
     color: mode(`white`, `whiteAlpha.800`)(props),
   }
 }
 
 const variantSubtle: SystemStyleFunction = (props) => {
-  const { colorScheme: c, theme } = props
-  const darkBg = transparentize(`${c}.200`, 0.16)(theme)
+  const { colorScheme: c } = props
+
+  if (c === "gray") {
+    return {
+      bg: mode(`${c}.100`, `${c}.600`)(props),
+      color: mode(`${c}.800`, `${c}.100`)(props),
+    }
+  }
+
   return {
-    bg: mode(`${c}.100`, darkBg)(props),
+    bg: mode(`${c}.100`, `${c}.800`)(props),
     color: mode(`${c}.800`, `${c}.200`)(props),
   }
 }
 
 const variantOutline: SystemStyleFunction = (props) => {
   const { colorScheme: c, theme } = props
-  const darkColor = transparentize(`${c}.200`, 0.8)(theme)
+  const darkColor = getColor(theme, `${c}.300`)
   const lightColor = getColor(theme, `${c}.500`)
   const color = mode(lightColor, darkColor)(props)
 

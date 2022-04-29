@@ -1,7 +1,7 @@
 import * as React from "react"
-import { Avatar, AvatarBadge, AvatarGroup } from "../src"
 import { Stack, Box } from "@chakra-ui/layout"
 import { PropsOf } from "@chakra-ui/system"
+import { Avatar, AvatarBadge, AvatarGroup } from "../src"
 
 export default {
   title: "Components / Media and Icons / Avatar",
@@ -19,6 +19,14 @@ export const Basic = () => (
     <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
     <Avatar name="Christian Nwamba" src="https://bit.ly/code-beast" />
     <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
+  </Stack>
+)
+
+export const BasicWithoutSrc = () => (
+  <Stack direction="row">
+    <Avatar name="Dan Abrahmov" />
+    <Avatar name="Christian Nwamba" />
+    <Avatar name="Segun Adebayo" />
   </Stack>
 )
 
