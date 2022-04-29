@@ -2,8 +2,8 @@ import { render, fireEvent } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { useOutsideClick } from "../src"
 
-const OutsideClicker = ({ onOutsideClick }) => {
-  const ref = React.useRef()
+const OutsideClicker = ({ onOutsideClick }: { onOutsideClick: () => void }) => {
+  const ref = React.useRef<HTMLDivElement>(null)
   useOutsideClick({
     ref,
     handler: onOutsideClick,
@@ -24,7 +24,7 @@ test("should register clicks on other elements, the body, and the document", asy
   const element = getByText("Element")
   const outsideElement = getByText("Outside")
 
-  const click = (el) => {
+  const click = (el: Node) => {
     fireEvent.mouseDown(el)
     fireEvent.mouseUp(el)
   }
