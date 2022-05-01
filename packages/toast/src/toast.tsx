@@ -37,7 +37,7 @@ export const Toast: React.FC<ToastProps> = (props) => {
       width="auto"
       aria-labelledby={alertTitleId}
     >
-      {icon || <AlertIcon />}
+      <AlertIcon>{icon}</AlertIcon>
       <chakra.div flex="1" maxWidth="100%">
         {title && <AlertTitle id={alertTitleId}>{title}</AlertTitle>}
         {description && (
