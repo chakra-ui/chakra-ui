@@ -19,8 +19,7 @@
   "module": "dist/chakra-ui-switch.esm.js",
   "types": "dist/chakra-ui-switch.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

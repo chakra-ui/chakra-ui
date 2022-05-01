@@ -24,8 +24,7 @@
   "module": "dist/chakra-ui-number-input.esm.js",
   "types": "dist/chakra-ui-number-input.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

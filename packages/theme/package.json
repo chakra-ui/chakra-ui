@@ -17,7 +17,6 @@
   "types": "dist/chakra-ui-theme.cjs.d.ts",
   "files": [
     "dist",
-    "src",
     "components",
     "foundations",
     "foundations/blur",
