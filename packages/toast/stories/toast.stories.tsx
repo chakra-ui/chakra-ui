@@ -409,8 +409,8 @@ export const ToastWidthCustomIcon = () => {
       <Button
         onClick={() =>
           toast.update(id, {
-            title: "You have reached me 🥳!!!",
-            description: "You now have permissions to perform this action.",
+            title: "You have reached me!!!",
+            icon: <span>🥳</span>,
             duration: 3000,
           })
         }
