@@ -18,8 +18,7 @@
   "module": "dist/chakra-ui-radio.esm.js",
   "types": "dist/chakra-ui-radio.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

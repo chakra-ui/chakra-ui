@@ -20,8 +20,7 @@
   "module": "dist/chakra-ui-menu.esm.js",
   "types": "dist/chakra-ui-menu.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

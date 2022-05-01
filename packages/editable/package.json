@@ -21,8 +21,7 @@
   "module": "dist/chakra-ui-editable.esm.js",
   "types": "dist/chakra-ui-editable.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

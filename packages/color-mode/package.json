@@ -23,8 +23,7 @@
   "module": "dist/chakra-ui-color-mode.esm.js",
   "types": "dist/chakra-ui-color-mode.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

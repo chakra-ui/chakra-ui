@@ -19,8 +19,7 @@
   "module": "dist/chakra-ui-image.esm.js",
   "types": "dist/chakra-ui-image.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

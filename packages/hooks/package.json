@@ -17,7 +17,6 @@
   "types": "dist/chakra-ui-hooks.cjs.d.ts",
   "files": [
     "dist",
-    "src",
     "use-animation-state"
   ],
   "preconstruct": {
