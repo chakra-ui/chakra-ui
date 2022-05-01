@@ -1,10 +1,4 @@
-import {
-  TinyColor,
-  readability,
-  isReadable,
-  random,
-  WCAG2Parms,
-} from "@ctrl/tinycolor"
+import { TinyColor, readability, isReadable, WCAG2Parms } from "@ctrl/tinycolor"
 import { memoizedGet as get, Dict, isEmptyObject } from "@chakra-ui/utils"
 
 const value = `(?:[-\\+]?\\d*\\.\\d+%?)|(?:[-\\+]?\\d+%?)`
@@ -50,22 +44,27 @@ export const getColor = (theme: Dict, color: string, fallback?: string) => {
 /**
  * Determines if the tone of given color is "light" or "dark"
  *
- * @deprecated This will be removed in the next major release.
- *
- * @param color - the color in hex, rgb, or hsl
+ * @param color - the color in hex
  */
 export const tone = (color: string) => (theme: Dict) => {
-  const hex = getColor(theme, color)
-  const isDark = new TinyColor(hex).isDark() // TODO replace by brightness < 128
-  return isDark ? "dark" : "light"
+  const hex: string = getColor(theme, color)
+
+  const hexArray = Array.from(hex).slice(1)
+  const rgb = [...hexArray.slice(0, 3).map((x) => parseInt(x, 16))] as [
+    number,
+    number,
+    number,
+  ]
+
+  const brightness = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000
+
+  return brightness > 128 ? "dark" : "light"
 }
 
 /**
  * Determines if a color tone is "dark"
  *
- * @deprecated This will be removed in the next major release.
- *
- * @param color - the color in hex, rgb, or hsl
+ * @param color - the color in hex
  */
 export const isDark = (color: string) => (theme: Dict) =>
   tone(color)(theme) === "dark"
@@ -73,9 +72,7 @@ export const isDark = (color: string) => (theme: Dict) =>
 /**
  * Determines if a color tone is "light"
  *
- * @deprecated This will be removed in the next major release.
- *
- * @param color - the color in hex, rgb, or hsl
+ * @param color - the color in hex
  */
 export const isLight = (color: string) => (theme: Dict) =>
   tone(color)(theme) === "light"
@@ -208,13 +205,8 @@ interface RandomColorOptions {
   colors?: string[]
 }
 
-/**
- *
- * @deprecated This will be removed in the next major release.
- *
- */
 export function randomColor(opts?: RandomColorOptions) {
-  const fallback = random().toHexString()
+  const fallback = randomHex()
 
   if (!opts || isEmptyObject(opts)) {
     return fallback
@@ -263,4 +255,8 @@ function randomColorFromList(str: string, list: string[]) {
 
 function randomFromList(list: string[]) {
   return list[Math.floor(Math.random() * list.length)]
+}
+
+function randomHex() {
+  return Math.floor(Math.random() * 16777215).toString(16)
 }

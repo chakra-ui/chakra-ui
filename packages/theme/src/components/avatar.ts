@@ -1,5 +1,5 @@
 import { avatarAnatomy as parts } from "@chakra-ui/anatomy"
-import { mode } from "@chakra-ui/theme-tools"
+import { isDark, mode, randomColor } from "@chakra-ui/theme-tools"
 import type {
   PartsStyleFunction,
   PartsStyleObject,
@@ -23,27 +23,19 @@ const baseStyleExcessLabel: SystemStyleFunction = (props) => {
 }
 
 const baseStyleContainer: SystemStyleFunction = (props) => {
-  const { theme } = props
+  const { name, theme } = props
 
-  const colors = Object.keys(theme.colors).filter(
-    (c) =>
-      ![
-        "whiteAlpha",
-        "blackAlpha",
-        "white",
-        "black",
-        "transparent",
-        "current",
-      ].includes(c),
-  )
+  const bg = name ? randomColor({ string: name }) : "gray.400"
+  const isBgDark = isDark(bg)(theme)
 
-  const bgColor = colors[Math.floor(Math.random() * colors.length)]
+  let color = "white"
+  if (!isBgDark) color = "gray.800"
 
   const borderColor = mode("white", "gray.800")(props)
 
   return {
-    bg: mode(`${bgColor}.300`, `${bgColor}.700`)(props),
-    color: mode("gray.800", "white")(props),
+    bg,
+    color,
     borderColor,
     verticalAlign: "top",
   }
