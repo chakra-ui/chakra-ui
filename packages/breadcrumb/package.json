@@ -18,8 +18,7 @@
   "module": "dist/chakra-ui-breadcrumb.esm.js",
   "types": "dist/chakra-ui-breadcrumb.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

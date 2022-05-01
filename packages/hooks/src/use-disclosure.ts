@@ -54,7 +54,7 @@ export function useDisclosure(props: UseDisclosureProps = {}) {
     isControlled,
     getButtonProps: (props: any = {}) => ({
       ...props,
-      "aria-expanded": "true",
+      "aria-expanded": isOpen,
       "aria-controls": id,
       onClick: callAllHandlers(props.onClick, onToggle),
     }),

@@ -24,8 +24,7 @@
   "module": "dist/chakra-ui-visually-hidden.esm.js",
   "types": "dist/chakra-ui-visually-hidden.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
