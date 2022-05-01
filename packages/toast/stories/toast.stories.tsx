@@ -380,3 +380,44 @@ export const AsyncToast = () => {
     </ButtonGroup>
   )
 }
+
+export const ToastWidthCustomIcon = () => {
+  const toast = useToast()
+  const id = "toast-with-custom-icon"
+
+  return (
+    <ButtonGroup>
+      <Button
+        onClick={() => {
+          if (toast.isActive(id)) return
+          toast({
+            id,
+            position: "top-left",
+            title: "Message me",
+            icon: <span>💬</span>,
+            duration: null,
+            isClosable: true,
+            onCloseComplete: () => {
+              console.log("hello")
+            },
+          })
+        }}
+      >
+        Show Toast
+      </Button>
+      <Button onClick={() => toast.closeAll()}>Close all</Button>
+      <Button
+        onClick={() =>
+          toast.update(id, {
+            title: "You have reached me 🥳!!!",
+            description: "You now have permissions to perform this action.",
+            duration: 3000,
+          })
+        }
+      >
+        Update
+      </Button>
+      <Button onClick={() => toast.close(id)}>Close One</Button>
+    </ButtonGroup>
+  )
+} 
