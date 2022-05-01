@@ -381,7 +381,7 @@ export const AsyncToast = () => {
   )
 }
 
-export const ToastWidthCustomIcon = () => {
+export const ToastWithCustomIcon = () => {
   const toast = useToast()
   const id = "toast-with-custom-icon"
 
