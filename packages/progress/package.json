@@ -17,8 +17,7 @@
   "module": "dist/chakra-ui-progress.esm.js",
   "types": "dist/chakra-ui-progress.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

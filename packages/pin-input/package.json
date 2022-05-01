@@ -19,8 +19,7 @@
   "module": "dist/chakra-ui-pin-input.esm.js",
   "types": "dist/chakra-ui-pin-input.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

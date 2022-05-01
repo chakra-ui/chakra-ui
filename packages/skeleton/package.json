@@ -20,8 +20,7 @@
   "module": "dist/chakra-ui-skeleton.esm.js",
   "types": "dist/chakra-ui-skeleton.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

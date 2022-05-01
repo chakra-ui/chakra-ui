@@ -25,8 +25,7 @@
   "module": "dist/chakra-ui-modal.esm.js",
   "types": "dist/chakra-ui-modal.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
