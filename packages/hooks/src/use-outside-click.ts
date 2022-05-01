@@ -81,7 +81,7 @@ function isValidEvent(event: any, ref: React.RefObject<HTMLElement>) {
   // if the event target is no longer in the document
   if (target) {
     const doc = getOwnerDocument(target)
-    if (!doc.body.contains(target)) return false
+    if (!doc.contains(target)) return false
   }
 
   return !ref.current?.contains(target)
