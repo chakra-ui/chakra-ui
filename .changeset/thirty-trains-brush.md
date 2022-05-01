@@ -71,4 +71,5 @@
 "@chakra-ui/test-utils": major
 ---
 
-Bump peer depencency to React and ReactDOM to >=18
+- Bump peer dependency to React and ReactDOM to >=18
+- Omit `src` directory from being published to npm
