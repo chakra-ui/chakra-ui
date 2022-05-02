@@ -19,7 +19,7 @@ export interface ToastProps
 }
 
 export const Toast: React.FC<ToastProps> = (props) => {
-  const { status, variant, id, title, isClosable, onClose, description } = props
+  const { status, variant, id, title, isClosable, onClose, description, icon } = props
 
   const alertTitleId =
     typeof id !== "undefined" ? `toast-${id}-title` : undefined
@@ -37,7 +37,7 @@ export const Toast: React.FC<ToastProps> = (props) => {
       width="auto"
       aria-labelledby={alertTitleId}
     >
-      <AlertIcon />
+      <AlertIcon>{icon}</AlertIcon>
       <chakra.div flex="1" maxWidth="100%">
         {title && <AlertTitle id={alertTitleId}>{title}</AlertTitle>}
         {description && (

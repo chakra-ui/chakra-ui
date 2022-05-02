@@ -132,7 +132,7 @@ export const AlertIcon: React.FC<AlertIconProps> = (props) => {
       className={cx("chakra-alert__icon", props.className)}
       __css={css}
     >
-      <BaseIcon h="100%" w="100%" />
+      {props.children || <BaseIcon h="100%" w="100%" />}
     </chakra.span>
   )
 }
