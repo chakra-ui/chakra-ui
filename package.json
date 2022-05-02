@@ -100,6 +100,7 @@
     "@storybook/react": "~6.5.0-alpha.64",
     "@storybook/theming": "~6.5.0-alpha.64",
     "@swc-node/jest": "^1.3.5",
+    "@swc/core": "^1.2.174",
     "@types/edit-json-file": "^1.6.1",
     "@types/jest": "^27.4.1",
     "@types/mkdirp": "1.0.2",
