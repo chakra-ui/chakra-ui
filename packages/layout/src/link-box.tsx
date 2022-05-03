@@ -27,7 +27,7 @@ export const LinkOverlay = forwardRef<LinkOverlayProps, "a">((props, ref) => {
           position: "absolute",
           top: 0,
           left: 0,
-          zIndex: 1,
+          zIndex: 0,
           width: "100%",
           height: "100%",
         },
@@ -54,8 +54,8 @@ export const LinkBox = forwardRef<LinkBoxProps, "div">((props, ref) => {
       {...rest}
       className={cx("chakra-linkbox", className)}
       __css={{
-        /* Elevate the links, abbreviations and buttons up */
-        "a[href]:not(.chakra-linkbox__overlay), abbr[title], button": {
+        /* Elevate the links and abbreviations up */
+        "a[href]:not(.chakra-linkbox__overlay), abbr[title]": {
           position: "relative",
           zIndex: 1,
         },
