@@ -109,10 +109,11 @@ export function useToastProvider(
       setAreas((prevState) => {
         const nextState = { ...prevState }
         const { position, index } = findToast(nextState, id)
+        const toast = nextState[position][index]
 
-        if (position && index !== -1) {
+        if (position && index !== -1 && toast) {
           nextState[position][index] = {
-            ...nextState[position][index],
+            ...toast,
             ...options,
           }
         }
