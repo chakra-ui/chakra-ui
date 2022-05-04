@@ -61,12 +61,12 @@ function getSize(size: FontSize): PartsStyleObject<typeof parts> {
     xs: "sm",
   }
 
-  const _fontSize = (sizeStyle.field?.fontSize ?? "md") as FontSize
+  const _fontSize = (sizeStyle?.field?.fontSize ?? "md") as FontSize
   const fontSize = typography.fontSizes[_fontSize]
 
   return {
     field: {
-      ...sizeStyle.field,
+      ...sizeStyle?.field,
       paddingInlineEnd: $inputPadding.reference,
       verticalAlign: "top",
     },
