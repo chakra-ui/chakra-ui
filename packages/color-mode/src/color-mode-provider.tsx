@@ -2,7 +2,7 @@ import { useUpdateEffect } from "@chakra-ui/hooks"
 import { useEnvironment } from "@chakra-ui/react-env"
 import { isBrowser, noop, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { getColorModeUtils, ColorMode } from "./color-mode.utils"
+import { ColorMode, getColorModeUtils } from "./color-mode.utils"
 import { localStorageManager, StorageManager } from "./storage-manager"
 
 type ConfigColorMode = ColorMode | "system" | undefined
@@ -70,26 +70,21 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     const utils = getColorModeUtils({ doc: document })
 
     const managerValue = colorModeManager.get()
+
     if (managerValue) {
-     rawSetColorMode(managerValue)
-     return
+      rawSetColorMode(managerValue)
+      return
     }
 
     const systemValue = utils.getColorScheme(defaultColorMode)
 
     if (initialColorMode === "system") {
-     rawSetColorMode(systemValue)
-     return
+      rawSetColorMode(systemValue)
+      return
     }
 
-    return rawSetColorMode(defaultColorMode)
-  }, [
-    colorModeManager,
-    useSystemColorMode,
-    defaultColorMode,
-    initialColorMode,
-    document,
-  ])
+    rawSetColorMode(defaultColorMode)
+  }, [colorModeManager, defaultColorMode, initialColorMode, document])
 
   useUpdateEffect(() => {
     const utils = getColorModeUtils({ doc: document })
