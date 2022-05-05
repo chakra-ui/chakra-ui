@@ -70,21 +70,6 @@ describe("Config options", () => {
     )
   })
 
-  test("prefers useSystemColorMode over root property", () => {
-    mockMatchMedia("dark")
-    render(
-      <ColorModeProvider
-        options={{ ...defaultThemeOptions, useSystemColorMode: true }}
-      >
-        <DummyComponent />
-      </ColorModeProvider>,
-    )
-
-    expect(getColorModeButton()).not.toHaveTextContent(
-      defaultThemeOptions.initialColorMode,
-    )
-  })
-
   test("clicking the color mode toggle changes the mode", async () => {
     mockMatchMedia("dark")
     const { user } = render(
