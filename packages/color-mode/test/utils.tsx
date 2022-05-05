@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-import { screen } from "@chakra-ui/test-utils"
+import { mocks, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
 
 export const DummyComponent = () => {
@@ -38,33 +38,13 @@ export const defaultThemeOptions = {
 } as const
 
 export function mockMatchMedia(query: string) {
-  Object.defineProperty(window, "matchMedia", {
-    writable: true,
-    value: () => {
-      return {
-        matches: query === "dark",
-        media: "(prefers-color-scheme: dark)",
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
-      }
-    },
-  })
+  mocks.matchMedia("(prefers-color-scheme: dark)", query === "dark")
 }
 
 export function mockLocalStorage(colorMode: string) {
-  Object.defineProperty(window, "localStorage", {
-    writable: true,
-    value: {
-      getItem: () => colorMode,
-      setItem: jest.fn(),
-    },
-  })
+  mocks.localStorage(colorMode)
 }
 
 export function mockCookieStorage(colorMode: string | null) {
-  Object.defineProperty(document, "cookie", {
-    writable: true,
-    value: colorMode ? `chakra-ui-color-mode=${colorMode}` : "",
-  })
+  mocks.cookie("chakra-ui-color-mode", colorMode)
 }
