@@ -100,6 +100,7 @@
     "@storybook/react": "~6.5.0-alpha.64",
     "@storybook/theming": "~6.5.0-alpha.64",
     "@swc-node/jest": "^1.3.5",
+    "@swc/core": "^1.2.177",
     "@types/edit-json-file": "^1.6.1",
     "@types/jest": "^27.4.1",
     "@types/mkdirp": "1.0.2",
@@ -158,7 +159,7 @@
     "rimraf": "3.0.2",
     "shelljs": "0.8.5",
     "storybook-addon-performance": "0.16.1",
-    "ts-node": "10.4.0",
+    "ts-node": "^10.7.0",
     "typescript": "^4.6.3"
   }
 }
