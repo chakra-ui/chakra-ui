@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.0.0-next.2
+
+### Patch Changes
+
+- [#5963](https://github.com/chakra-ui/chakra-ui/pull/5963)
+  [`520221efe`](https://github.com/chakra-ui/chakra-ui/commit/520221efe89e6bfce6f5d009790fe4f823918b38)
+  Thanks [@RunDevelopment](https://github.com/RunDevelopment)! - Make
+  `leastDestructiveRef` non-nullable
+
+- Updated dependencies
+  [[`8991ac13e`](https://github.com/chakra-ui/chakra-ui/commit/8991ac13e5ec71cc1fbd09610981913b7efe9798),
+  [`d32aea176`](https://github.com/chakra-ui/chakra-ui/commit/d32aea176b66b4d5206df10530c011f8eaa2e42d)]:
+  - @chakra-ui/hooks@2.0.0-next.2
+  - @chakra-ui/portal@2.0.0-next.2
+
 ## 2.0.0-next.1
 
 ### Major Changes

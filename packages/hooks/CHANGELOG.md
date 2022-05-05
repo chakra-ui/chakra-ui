@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.0.0-next.2
+
+### Patch Changes
+
+- [#5940](https://github.com/chakra-ui/chakra-ui/pull/5940)
+  [`8991ac13e`](https://github.com/chakra-ui/chakra-ui/commit/8991ac13e5ec71cc1fbd09610981913b7efe9798)
+  Thanks [@morellodev](https://github.com/morellodev)! - [useDisclosure] Return
+  a dynamic "aria-hidden" value from getButtonProps #5939
+
+* [#5954](https://github.com/chakra-ui/chakra-ui/pull/5954)
+  [`d32aea176`](https://github.com/chakra-ui/chakra-ui/commit/d32aea176b66b4d5206df10530c011f8eaa2e42d)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue
+  where `useOutsideClick` ignored clicks outside of the `body` element
+
 ## 2.0.0-next.1
 
 ### Major Changes

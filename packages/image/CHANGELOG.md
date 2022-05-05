@@ -1,5 +1,25 @@
 # Change Log
 
+## 2.0.0-next.2
+
+### Patch Changes
+
+- [#5680](https://github.com/chakra-ui/chakra-ui/pull/5680)
+  [`9081a8ae9`](https://github.com/chakra-ui/chakra-ui/commit/9081a8ae9243a32b71942d6a0b9ba5a2b3fb9fe6)
+  Thanks [@takethefake](https://github.com/takethefake)! - Added
+  `fallbackStrategies` for `Image` to provide different behaviors when to
+  display/load the `fallback`
+
+  - `beforeLoadOrError` is the default strategy and previous behaviour of
+    `Image` which displays/loads the placeholder when `loading` the
+    `src`/`srcSet` and on `error`
+  - `onError` strategy displays/loads the fallback image only on `error`
+
+- Updated dependencies
+  [[`8991ac13e`](https://github.com/chakra-ui/chakra-ui/commit/8991ac13e5ec71cc1fbd09610981913b7efe9798),
+  [`d32aea176`](https://github.com/chakra-ui/chakra-ui/commit/d32aea176b66b4d5206df10530c011f8eaa2e42d)]:
+  - @chakra-ui/hooks@2.0.0-next.2
+
 ## 2.0.0-next.1
 
 ### Major Changes
