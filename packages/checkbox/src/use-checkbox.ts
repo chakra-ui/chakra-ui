@@ -249,6 +249,18 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     }
   }, [inputRef.current])
 
+  /**
+   * HTMLFormElement.reset() should reset the checkbox state
+   */
+  useSafeLayoutEffect(() => {
+    if (!inputRef.current) return
+    if (inputRef.current.form) {
+      inputRef.current.form.onreset = () => {
+        setCheckedState(!!defaultChecked)
+      }
+    }
+  }, [inputRef.current])
+
   const getCheckboxProps: PropGetter = useCallback(
     (props = {}, forwardedRef = null) => {
       const onPressDown = (event: React.MouseEvent) => {
