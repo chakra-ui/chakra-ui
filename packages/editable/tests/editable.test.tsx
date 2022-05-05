@@ -1,4 +1,10 @@
-import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
+import {
+  fireEvent,
+  render,
+  screen,
+  testA11y,
+  waitFor,
+} from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Editable, EditableInput, EditablePreview } from "../src"
 
@@ -53,7 +59,7 @@ test("uncontrolled: handles callbacks correctly", async () => {
 
   // calls `onChange` with input on change
   await user.type(input, "World")
-  expect(onChange).toHaveBeenCalled()
+  await waitFor(() => expect(onChange).toHaveBeenCalled())
 
   // calls `onCancel` with previous value when "esc" pressed
   fireEvent.keyDown(input, { key: "Escape" })
@@ -63,7 +69,7 @@ test("uncontrolled: handles callbacks correctly", async () => {
 
   // calls `onChange` with input on change
   await user.type(input, "World")
-  expect(onChange).toHaveBeenCalled()
+  await waitFor(() => expect(onChange).toHaveBeenCalledWith("Hello World"))
 
   // calls `onSubmit` with previous value when "enter" pressed after cancelling
   fireEvent.keyDown(input, { key: "Enter" })
@@ -77,7 +83,7 @@ test("controlled: handles callbacks correctly", async () => {
   const onEdit = jest.fn()
 
   const Component = () => {
-    const [value, setValue] = React.useState("Hello ")
+    const [value, setValue] = React.useState("")
     return (
       <Editable
         onChange={(val) => {
@@ -106,8 +112,8 @@ test("controlled: handles callbacks correctly", async () => {
   // calls `onChange` with new input on change
   // since we called `focus(..)` first, editable will focus and select the text
   // typing will clear the values in input and add the next text.
-  await user.type(input, "World", { skipClick: true })
-  expect(onChange).toHaveBeenCalledWith("World")
+  await user.type(input, "World")
+  await waitFor(() => expect(onChange).toHaveBeenCalledWith("World"))
 
   // calls `onSubmit` with `value`
   fireEvent.keyDown(input, { key: "Enter" })
@@ -152,7 +158,7 @@ test("handles preview and input callbacks", async () => {
 
   // calls `onChange` when input is changed
   await user.type(input, "World")
-  expect(onChange).toHaveBeenCalled()
+  await waitFor(() => expect(onChange).toHaveBeenCalled())
 
   // calls `onKeyDown` when key is pressed in input
   fireEvent.keyDown(input, { key: "Escape" })

@@ -6,6 +6,7 @@ import {
   render,
   hooks,
   screen,
+  waitFor,
 } from "@chakra-ui/test-utils"
 import * as React from "react"
 import {
@@ -148,7 +149,7 @@ test("should behave properly with precision value", async () => {
 
   // on blur, value is clamped using precision
   await user.type(input, "1234")
-  expect(input).toHaveValue("1.301234")
+  await waitFor(() => expect(input).toHaveValue("1.301234"))
   fireEvent.blur(input)
   expect(input).toHaveValue("1.30")
 })
