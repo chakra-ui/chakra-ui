@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.0.0-next.2
+
+### Patch Changes
+
+- [#5953](https://github.com/chakra-ui/chakra-ui/pull/5953)
+  [`8a57d75f2`](https://github.com/chakra-ui/chakra-ui/commit/8a57d75f2a311b0732bcf0360ef6501da05654a8)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - When using the
+  focus-visible package, you can now opt out of the automatic focus style
+  override by adding `data-focus-visible-disabled` to a DOM element.
+
 ## 2.0.0-next.1
 
 ### Major Changes

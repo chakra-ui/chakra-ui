@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.0-next.2
+
+### Minor Changes
+
+- [#5964](https://github.com/chakra-ui/chakra-ui/pull/5964)
+  [`eab820e23`](https://github.com/chakra-ui/chakra-ui/commit/eab820e23d4b24c3fc693d7aacd09a5704bf75df)
+  Thanks [@m4x3d](https://github.com/m4x3d)! - Restore zIndex of LinkOverlay
+  from LinkBox
+
 ## 2.0.0-next.1
 
 ### Major Changes

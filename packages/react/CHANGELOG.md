@@ -1,5 +1,51 @@
 # Change Log
 
+## 2.0.0-next.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`9081a8ae9`](https://github.com/chakra-ui/chakra-ui/commit/9081a8ae9243a32b71942d6a0b9ba5a2b3fb9fe6),
+  [`c81db13ce`](https://github.com/chakra-ui/chakra-ui/commit/c81db13cef3db40b54822169faeb2568f1c2aa73),
+  [`a4b2f5d01`](https://github.com/chakra-ui/chakra-ui/commit/a4b2f5d01fbd49d889edc66503c362ef91686522),
+  [`520221efe`](https://github.com/chakra-ui/chakra-ui/commit/520221efe89e6bfce6f5d009790fe4f823918b38),
+  [`eab820e23`](https://github.com/chakra-ui/chakra-ui/commit/eab820e23d4b24c3fc693d7aacd09a5704bf75df),
+  [`8991ac13e`](https://github.com/chakra-ui/chakra-ui/commit/8991ac13e5ec71cc1fbd09610981913b7efe9798),
+  [`8a57d75f2`](https://github.com/chakra-ui/chakra-ui/commit/8a57d75f2a311b0732bcf0360ef6501da05654a8),
+  [`125a1709a`](https://github.com/chakra-ui/chakra-ui/commit/125a1709a0840e844613db0fd55da8b3e4add0b9),
+  [`407dde8f5`](https://github.com/chakra-ui/chakra-ui/commit/407dde8f5ba3d09e160d411fdad05def0f537ef5),
+  [`d32aea176`](https://github.com/chakra-ui/chakra-ui/commit/d32aea176b66b4d5206df10530c011f8eaa2e42d)]:
+  - @chakra-ui/image@2.0.0-next.2
+  - @chakra-ui/alert@2.0.0-next.2
+  - @chakra-ui/popover@2.0.0-next.2
+  - @chakra-ui/modal@2.0.0-next.2
+  - @chakra-ui/layout@2.0.0-next.2
+  - @chakra-ui/hooks@2.0.0-next.2
+  - @chakra-ui/css-reset@2.0.0-next.2
+  - @chakra-ui/toast@2.0.0-next.3
+  - @chakra-ui/avatar@2.0.0-next.2
+  - @chakra-ui/accordion@2.0.0-next.2
+  - @chakra-ui/button@2.0.0-next.2
+  - @chakra-ui/checkbox@2.0.0-next.2
+  - @chakra-ui/counter@2.0.0-next.2
+  - @chakra-ui/editable@2.0.0-next.2
+  - @chakra-ui/form-control@2.0.0-next.2
+  - @chakra-ui/menu@2.0.0-next.2
+  - @chakra-ui/number-input@2.0.0-next.2
+  - @chakra-ui/pin-input@2.0.0-next.2
+  - @chakra-ui/portal@2.0.0-next.2
+  - @chakra-ui/radio@2.0.0-next.2
+  - @chakra-ui/skeleton@2.0.0-next.2
+  - @chakra-ui/slider@2.0.0-next.2
+  - @chakra-ui/tabs@2.0.0-next.2
+  - @chakra-ui/tooltip@2.0.0-next.2
+  - @chakra-ui/provider@2.0.0-next.2
+  - @chakra-ui/system@2.0.0-next.2
+  - @chakra-ui/switch@2.0.0-next.2
+  - @chakra-ui/input@2.0.0-next.2
+  - @chakra-ui/select@2.0.0-next.2
+  - @chakra-ui/textarea@2.0.0-next.2
+
 ## 2.0.0-next.2
 
 ### Major Changes

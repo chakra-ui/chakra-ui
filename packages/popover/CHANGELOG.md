@@ -1,5 +1,24 @@
 # Change Log
 
+## 2.0.0-next.2
+
+### Patch Changes
+
+- [#5811](https://github.com/chakra-ui/chakra-ui/pull/5811)
+  [`a4b2f5d01`](https://github.com/chakra-ui/chakra-ui/commit/a4b2f5d01fbd49d889edc66503c362ef91686522)
+  Thanks [@Brennvo](https://github.com/Brennvo)! - Fixed an issue where the
+  Popover closes if the selection overflows the Popover size
+
+* [#5942](https://github.com/chakra-ui/chakra-ui/pull/5942)
+  [`125a1709a`](https://github.com/chakra-ui/chakra-ui/commit/125a1709a0840e844613db0fd55da8b3e4add0b9)
+  Thanks [@HamdyD](https://github.com/HamdyD)! - Add a reference to popover
+  close button
+
+* Updated dependencies
+  [[`8991ac13e`](https://github.com/chakra-ui/chakra-ui/commit/8991ac13e5ec71cc1fbd09610981913b7efe9798),
+  [`d32aea176`](https://github.com/chakra-ui/chakra-ui/commit/d32aea176b66b4d5206df10530c011f8eaa2e42d)]:
+  - @chakra-ui/hooks@2.0.0-next.2
+
 ## 2.0.0-next.1
 
 ### Major Changes

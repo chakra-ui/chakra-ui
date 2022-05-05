@@ -1,5 +1,12 @@
 # @chakra-ui/storybook-addon
 
+## 2.0.0-next.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@2.0.0-next.3
+
 ## 2.0.0-next.2
 
 ### Major Changes

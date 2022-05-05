@@ -1,5 +1,41 @@
 # Change Log
 
+## 2.0.0-next.3
+
+### Minor Changes
+
+- [#5951](https://github.com/chakra-ui/chakra-ui/pull/5951)
+  [`407dde8f5`](https://github.com/chakra-ui/chakra-ui/commit/407dde8f5ba3d09e160d411fdad05def0f537ef5)
+  Thanks [@haneenmahd](https://github.com/haneenmahd)! - Added support for
+  custom icons in a toast:
+
+  ```tsx
+  const toast = useToast()
+  return (
+    <Button
+      onClick={() => {
+        toast({
+          title: "Message me",
+          icon: "💬",
+        })
+      }}
+    >
+      Show Toast with custom icon
+    </Button>
+  )
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c81db13ce`](https://github.com/chakra-ui/chakra-ui/commit/c81db13cef3db40b54822169faeb2568f1c2aa73),
+  [`8991ac13e`](https://github.com/chakra-ui/chakra-ui/commit/8991ac13e5ec71cc1fbd09610981913b7efe9798),
+  [`d32aea176`](https://github.com/chakra-ui/chakra-ui/commit/d32aea176b66b4d5206df10530c011f8eaa2e42d)]:
+  - @chakra-ui/alert@2.0.0-next.2
+  - @chakra-ui/hooks@2.0.0-next.2
+  - @chakra-ui/portal@2.0.0-next.2
+  - @chakra-ui/system@2.0.0-next.2
+
 ## 2.0.0-next.2
 
 ### Major Changes
