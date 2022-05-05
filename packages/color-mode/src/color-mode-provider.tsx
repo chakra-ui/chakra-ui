@@ -78,7 +78,8 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     const systemValue = utils.getColorScheme(defaultColorMode)
 
     if (initialColorMode === "system") {
-      return rawSetColorMode(systemValue)
+     rawSetColorMode(systemValue)
+     return
     }
 
     return rawSetColorMode(defaultColorMode)
