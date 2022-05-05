@@ -19,11 +19,15 @@ yarn add -D @chakra-ui/storybook-addon
 npm i -D @chakra-ui/storybook-addon
 ```
 
-Add the addon to your configuration in `.storybook/main.js`:
+Add the addon to your configuration in `.storybook/main.js` and disable the
+emotion alias (available with Storybook >6.4).
 
 ```js
 module.exports = {
   addons: ["@chakra-ui/storybook-addon"],
+  features: {
+    emotionAlias: false,
+  },
 }
 ```
 
@@ -58,12 +62,37 @@ overriding them at the component or story when necessary. See the
 [Storybook Parameters documentation](https://storybook.js.org/docs/react/writing-stories/parameters)
 for more information.
 
+## Color Mode Tool
+
+You will be able to toggle your color mode with the button in the toolbar. It
+tries to sync with your theme through the localstorage key.
+
+## Story Controls for Theme Components
+
+Get controls for the theming props `variant`, `size` and `colorScheme` in your
+stories with `getThemingArgTypes(theme, componentName)`.
+
+```tsx
+import { Meta, StoryFn } from "@storybook/react"
+import { getThemingArgTypes } from "@chakra-ui/storybook-addon"
+import { theme } from "<your-theme>"
+
+export default {
+  title: "Components / Forms / Button",
+  // get controls for `variant`, `size` and `colorScheme`
+  argTypes: getThemingArgTypes(theme, "Button"),
+} as Meta
+
+interface StoryProps extends ThemingProps<"Button"> {}
+
+export const Basic: StoryFn<StoryProps> = (props) => (
+  <Button {...props}>Button</Button>
+)
+```
+
+This will render input fields to choose the theming prop values:
+
+![Storybook screenshot with controls tab](theming-arg-types.png)
+
 [chakraprovider]:
   https://chakra-ui.com/docs/getting-started#chakraprovider-props
-
-## Color Mode Switch
-
-You will be able to toggle your color mode with the button in the top right
-corner as you can see below:
-
-![dark-mode](https://user-images.githubusercontent.com/87735757/142751123-77a39f2f-9277-4b11-b030-8a879d4b909b.gif)
