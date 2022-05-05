@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Badge, Wrap, WrapItem } from "../src"
+import { Badge, Box, Text, Wrap, WrapItem } from "../src"
 
 export default {
   title: "Components / Layout / Wrap",
@@ -31,7 +31,7 @@ const Placeholder = (props: any) => (
 )
 
 export const placeholder = () => (
-  <Wrap spacing={5}>
+  <Wrap bg="pink" spacing={5}>
     <Placeholder />
     <Placeholder />
     <Placeholder />
@@ -63,7 +63,7 @@ export const responsive = () => (
 )
 
 export const horizontalAndVertical = () => (
-  <Wrap spacingY={["0px", "24px"]} spacingX={["4px", "12px"]}>
+  <Wrap bg="pink" spacingY={["0px", "24px"]} spacingX={["4px", "12px"]}>
     <Placeholder />
     <Placeholder />
     <Placeholder />
@@ -76,4 +76,26 @@ export const horizontalAndVertical = () => (
     <Placeholder />
     <Placeholder />
   </Wrap>
+)
+
+export const withZeroXSpacing = () => (
+  <Box>
+    <Text>Welcome</Text>
+    <Box bg="pink">
+      <Wrap maxW="200px" spacingX={20} spacingY={4}>
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+      </Wrap>
+    </Box>
+    <Text>Welcome</Text>
+  </Box>
 )
