@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.0.0-next.2
+
+### Patch Changes
+
+- [#5969](https://github.com/chakra-ui/chakra-ui/pull/5969)
+  [`6b969b41d`](https://github.com/chakra-ui/chakra-ui/commit/6b969b41dad850fa061613b3d50f50b8a15265a7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  matchWidth doesn't work as expected due to the fixed `min-width: max-content`
+  style attached to the element
+
 ## 3.0.0-next.1
 
 ### Major Changes
