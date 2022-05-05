@@ -1,8 +1,8 @@
 import * as React from "react"
-import { useAddonState } from "@storybook/api"
+import { useAddonState, useGlobals } from "@storybook/api"
 import { addons } from "@storybook/addons"
 import { IconButton } from "@storybook/components"
-import { ADDON_ID, EVENTS } from "../../constants"
+import { DIRECTION_TOOL_ID, EVENTS } from "../../constants"
 
 const LTRIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -12,6 +12,9 @@ const LTRIcon = (props: React.SVGProps<SVGSVGElement>) => (
     viewBox="0 0 24 24"
     height="1em"
     width="1em"
+    style={{
+      transform: "scale(1.2)",
+    }}
     {...props}
   >
     <path fill="none" d="M0 0h24v24H0V0z" />
@@ -27,6 +30,9 @@ const RTLIcon = (props: React.SVGProps<SVGSVGElement>) => (
     viewBox="0 0 24 24"
     height="1em"
     width="1em"
+    style={{
+      transform: "scale(1.2)",
+    }}
     {...props}
   >
     <path fill="none" d="M0 0h24v24H0V0z" />
@@ -38,11 +44,15 @@ const RTLIcon = (props: React.SVGProps<SVGSVGElement>) => (
  * This component is rendered in the Storybook toolbar
  */
 export const DirectionTool = () => {
+  const [globals, setGlobals] = useGlobals()
   const [direction, setDirection] = useAddonState(
-    `${ADDON_ID}/direction`,
-    "ltr",
+    DIRECTION_TOOL_ID,
+    globals[DIRECTION_TOOL_ID] ?? "ltr",
   )
   const targetDirection = direction !== "ltr" ? "ltr" : "rtl"
+  React.useEffect(() => {
+    setGlobals({ [DIRECTION_TOOL_ID]: direction })
+  }, [direction, setGlobals])
 
   const toggleDirection = React.useCallback(() => {
     const channel = addons.getChannel()
@@ -56,7 +66,7 @@ export const DirectionTool = () => {
       title={`Set layout direction to ${targetDirection}`}
       onClick={toggleDirection}
     >
-      {targetDirection === "ltr" ? <RTLIcon /> : <LTRIcon />}
+      {targetDirection === "ltr" ? <LTRIcon /> : <RTLIcon />}
     </IconButton>
   )
 }
