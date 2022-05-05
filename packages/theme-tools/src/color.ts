@@ -12,6 +12,8 @@ import { memoizedGet as get, Dict, isEmptyObject } from "@chakra-ui/utils"
  * @param theme - the theme object
  * @param color - the color path ("green.200")
  * @param fallback - the fallback color
+ *
+ * @deprecated This will be removed in the next major release.
  */
 export const getColor = (theme: Dict, color: string, fallback?: string) => {
   const hex = get(theme, `colors.${color}`, color)
@@ -22,6 +24,8 @@ export const getColor = (theme: Dict, color: string, fallback?: string) => {
 /**
  * Determines if the tone of given color is "light" or "dark"
  * @param color - the color in hex, rgb, or hsl
+ *
+ * @deprecated This will be removed in the next major release.
  */
 export const tone = (color: string) => (theme: Dict) => {
   const hex = getColor(theme, color)
@@ -32,6 +36,8 @@ export const tone = (color: string) => (theme: Dict) => {
 /**
  * Determines if a color tone is "dark"
  * @param color - the color in hex, rgb, or hsl
+ *
+ * @deprecated This will be removed in the next major release.
  */
 export const isDark = (color: string) => (theme: Dict) =>
   tone(color)(theme) === "dark"
@@ -39,6 +45,8 @@ export const isDark = (color: string) => (theme: Dict) =>
 /**
  * Determines if a color tone is "light"
  * @param color - the color in hex, rgb, or hsl
+ *
+ * @deprecated This will be removed in the next major release.
  */
 export const isLight = (color: string) => (theme: Dict) =>
   tone(color)(theme) === "light"
@@ -47,6 +55,8 @@ export const isLight = (color: string) => (theme: Dict) =>
  * Make a color transparent
  * @param color - the color in hex, rgb, or hsl
  * @param opacity - the amount of opacity the color should have (0-1)
+ *
+ * @deprecated This will be removed in the next major release.
  */
 export const transparentize =
   (color: string, opacity: number) => (theme: Dict) => {
@@ -58,6 +68,8 @@ export const transparentize =
  * Add white to a color
  * @param color - the color in hex, rgb, or hsl
  * @param amount - the amount white to add (0-100)
+ *
+ * @deprecated This will be removed in the next major release.
  */
 export const whiten = (color: string, amount: number) => (theme: Dict) => {
   const raw = getColor(theme, color)
@@ -68,6 +80,8 @@ export const whiten = (color: string, amount: number) => (theme: Dict) => {
  * Add black to a color
  * @param color - the color in hex, rgb, or hsl
  * @param amount - the amount black to add (0-100)
+ *
+ * @deprecated This will be removed in the next major release.
  */
 export const blacken = (color: string, amount: number) => (theme: Dict) => {
   const raw = getColor(theme, color)
@@ -78,6 +92,8 @@ export const blacken = (color: string, amount: number) => (theme: Dict) => {
  * Darken a specified color
  * @param color - the color in hex, rgb, or hsl
  * @param amount - the amount to darken (0-100)
+ *
+ * @deprecated This will be removed in the next major release.
  */
 export const darken = (color: string, amount: number) => (theme: Dict) => {
   const raw = getColor(theme, color)
@@ -88,6 +104,8 @@ export const darken = (color: string, amount: number) => (theme: Dict) => {
  * Lighten a specified color
  * @param color - the color in hex, rgb, or hsl
  * @param amount - the amount to lighten (0-100)
+ *
+ * @deprecated This will be removed in the next major release.
  */
 export const lighten = (color: string, amount: number) => (theme: Dict) =>
   new TinyColor(getColor(theme, color)).lighten(amount).toHexString()
@@ -98,6 +116,8 @@ export const lighten = (color: string, amount: number) => (theme: Dict) =>
  *
  * @param fg - the foreground or text color
  * @param bg - the background color
+ *
+ * @deprecated This will be removed in the next major release.
  */
 export const contrast = (fg: string, bg: string) => (theme: Dict) =>
   readability(getColor(theme, bg), getColor(theme, fg))
@@ -109,11 +129,17 @@ export const contrast = (fg: string, bg: string) => (theme: Dict) =>
  * @param textColor - the foreground or text color
  * @param bgColor - the background color
  * @param options
+ *
+ * @deprecated This will be removed in the next major release.
  */
 export const isAccessible =
   (textColor: string, bgColor: string, options?: WCAG2Parms) => (theme: Dict) =>
     isReadable(getColor(theme, bgColor), getColor(theme, textColor), options)
 
+/**
+ *
+ * @deprecated This will be removed in the next major release.
+ */
 export const complementary = (color: string) => (theme: Dict) =>
   new TinyColor(getColor(theme, color)).complement().toHexString()
 
