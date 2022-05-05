@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.0-next.2
+
+### Patch Changes
+
+- [#5935](https://github.com/chakra-ui/chakra-ui/pull/5935)
+  [`5193a00c8`](https://github.com/chakra-ui/chakra-ui/commit/5193a00c8838eeb2715ce825f89f9f4dfab9a0c8)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Update `csstype` package to
+  fix typings error for `colorAdjust` property
+
 ## 2.0.0-next.1
 
 ### Major Changes

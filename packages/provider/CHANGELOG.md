@@ -1,5 +1,15 @@
 # @chakra-ui/provider
 
+## 2.0.0-next.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`8a57d75f2`](https://github.com/chakra-ui/chakra-ui/commit/8a57d75f2a311b0732bcf0360ef6501da05654a8)]:
+  - @chakra-ui/css-reset@2.0.0-next.2
+  - @chakra-ui/portal@2.0.0-next.2
+  - @chakra-ui/system@2.0.0-next.2
+
 ## 2.0.0-next.1
 
 ### Major Changes

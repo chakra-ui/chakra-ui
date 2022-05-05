@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.0.0-next.2
+
+### Patch Changes
+
+- [#5951](https://github.com/chakra-ui/chakra-ui/pull/5951)
+  [`c81db13ce`](https://github.com/chakra-ui/chakra-ui/commit/c81db13cef3db40b54822169faeb2568f1c2aa73)
+  Thanks [@haneenmahd](https://github.com/haneenmahd)! - The `AlertIcon`
+  component accepts custom icons as React children
+
+  ```jsx
+  <AlertIcon>
+    <MyCustomIcon />
+  </AlertIcon>
+  ```
+
 ## 2.0.0-next.1
 
 ### Major Changes
