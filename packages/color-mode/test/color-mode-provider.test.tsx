@@ -29,8 +29,8 @@ describe("<ColorModeProvider /> localStorage browser", () => {
 
       { system: "light", initial: "light", useSystem: true, expect: "light" },
       //
-      { system: "dark", initial: "light", useSystem: true, expect: "dark" },
-      { system: "light", initial: "dark", useSystem: true, expect: "light" },
+      { system: "dark", initial: "light", useSystem: true, expect: "light" },
+      { system: "light", initial: "dark", useSystem: true, expect: "dark" },
       //
       { system: "dark", initial: "dark", useSystem: true, expect: "dark" },
       { system: "light", initial: "system", useSystem: true, expect: "light" },
@@ -42,6 +42,8 @@ describe("<ColorModeProvider /> localStorage browser", () => {
     })),
   )("%s", (result) => {
     mockMatchMedia(result.system)
+    mockLocalStorage("")
+
     const options = {
       useSystemColorMode: result.useSystem,
       initialColorMode: result.initial as any,
@@ -83,20 +85,6 @@ describe("Config options", () => {
     )
   })
 
-  test.only("prefers `data-theme` property over localStorage", () => {
-    document.documentElement.dataset.theme = "pinky"
-    mockMatchMedia("light")
-    mockLocalStorage("system")
-
-    render(
-      <ColorModeProvider options={defaultThemeOptions}>
-        <DummyComponent />
-      </ColorModeProvider>,
-    )
-
-    expect(getColorModeButton()).toHaveTextContent("pinky")
-  })
-
   test("clicking the color mode toggle changes the mode", async () => {
     mockMatchMedia("dark")
     const { user } = render(
@@ -109,7 +97,7 @@ describe("Config options", () => {
   })
 
   describe("<ColorModeProvider /> cookie manager", () => {
-    test.only("by default, picks from cookie", () => {
+    test("by default, picks from cookie", () => {
       mockMatchMedia("light")
       mockCookieStorage("dark")
 
