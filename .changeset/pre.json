@@ -72,14 +72,21 @@
     "@chakra-ui/gatsby-plugin": "2.0.4",
     "@chakra-ui/props-docs": "1.0.52",
     "@chakra-ui/storybook-addon": "1.0.3",
-    "@chakra-ui/test-utils": "1.1.14"
+    "@chakra-ui/test-utils": "1.1.14",
+    "vite-ts": "0.0.0"
   },
   "changesets": [
     "forty-plums-attend",
     "green-moose-care",
+    "honest-eggs-sparkle",
+    "hungry-owls-matter",
     "lovely-donkeys-heal",
     "new-rivers-fail",
     "polite-planets-travel",
-    "strong-years-behave"
+    "pretty-terms-attend",
+    "quiet-ligers-tease",
+    "strong-years-behave",
+    "thirty-trains-brush",
+    "three-dogs-breathe"
   ]
 }

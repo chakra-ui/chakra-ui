@@ -1,5 +1,25 @@
 # Change Log
 
+## 2.0.0-next.1
+
+### Major Changes
+
+- [#5882](https://github.com/chakra-ui/chakra-ui/pull/5882)
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump peer
+  depencency to React and ReactDOM to >=18
+
+### Patch Changes
+
+- Updated dependencies
+  [[`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)]:
+  - @chakra-ui/descendant@3.0.0-next.1
+  - @chakra-ui/hooks@2.0.0-next.1
+  - @chakra-ui/icon@3.0.0-next.1
+  - @chakra-ui/react-utils@2.0.0-next.1
+  - @chakra-ui/transition@2.0.0-next.1
+  - @chakra-ui/utils@2.0.0-next.1
+
 ## 2.0.0-next.0
 
 ### Major Changes

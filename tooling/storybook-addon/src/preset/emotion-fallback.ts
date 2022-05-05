@@ -10,7 +10,7 @@ export function withEmotionVersionFallback(config: any) {
       acc[packageName] = require.resolve(alias)
     }
     return acc
-  }, {})
+  }, {} as Record<string, string>)
 
   return merge(config, { resolve: { alias } })
 }

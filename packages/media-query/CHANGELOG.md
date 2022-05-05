@@ -1,5 +1,30 @@
 # Change Log
 
+## 3.0.0-next.1
+
+### Major Changes
+
+- [#5882](https://github.com/chakra-ui/chakra-ui/pull/5882)
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump peer
+  depencency to React and ReactDOM to >=18
+
+### Patch Changes
+
+- [#5891](https://github.com/chakra-ui/chakra-ui/pull/5891)
+  [`258fd9a61`](https://github.com/chakra-ui/chakra-ui/commit/258fd9a617d9224a0d6626399aad2b59efa15ace)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Refactored the
+  `useMediaQuery` hook to be more resilient and cross-browser friendly.
+
+  - Add support for fallback values to `useMediaQuery` to help users provide SSR
+    friendly fallback when using width queries.
+
+- Updated dependencies
+  [[`ad84d8efc`](https://github.com/chakra-ui/chakra-ui/commit/ad84d8efc7602909488272c214167794e66a0581),
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)]:
+  - @chakra-ui/react-env@2.0.0-next.1
+  - @chakra-ui/utils@2.0.0-next.1
+
 ## 3.0.0-next.0
 
 ### Major Changes

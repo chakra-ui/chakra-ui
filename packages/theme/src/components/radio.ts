@@ -13,7 +13,7 @@ const baseStyleControl: SystemStyleFunction = (props) => {
     ...control,
     borderRadius: "full",
     _checked: {
-      ...control["_checked"],
+      ...(control as any)["_checked"],
       _before: {
         content: `""`,
         display: "inline-block",

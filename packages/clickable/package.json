@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/clickable",
-  "version": "2.0.0-next.0",
+  "version": "2.0.0-next.1",
   "description": "React hook and component that implements native button interactions",
   "keywords": [
     "chakra ui",
@@ -17,8 +17,7 @@
   "module": "dist/chakra-ui-clickable.esm.js",
   "types": "dist/chakra-ui-clickable.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -32,8 +31,8 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/react-utils": "2.0.0-next.0",
-    "@chakra-ui/utils": "2.0.0-next.0"
+    "@chakra-ui/react-utils": "2.0.0-next.1",
+    "@chakra-ui/utils": "2.0.0-next.1"
   },
   "peerDependencies": {
     "react": ">=18"

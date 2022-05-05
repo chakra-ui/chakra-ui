@@ -63,7 +63,8 @@ async function readTheme(themeFilePath: string) {
       // @alias = baseUrl/target/
       acc[jsAlias] = path.join(tsConfig.absoluteBaseUrl, firstTarget)
       return acc
-    }, {})
+    }, {} as Record<string, string>)
+
     moduleAlias.addAliases(aliases)
   } else {
     // it is a JS project

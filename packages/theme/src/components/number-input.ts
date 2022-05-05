@@ -49,20 +49,20 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   stepper: baseStyleStepper(props),
 })
 
-type Size = "xs" | "sm" | "md" | "lg"
+type FontSize = keyof typeof typography.fontSizes
 
-function getSize(size: Size): PartsStyleObject<typeof parts> {
+function getSize(size: FontSize): PartsStyleObject<typeof parts> {
   const sizeStyle = Input.sizes[size]
 
-  const radius: Record<Size, string> = {
+  const radius: Partial<Record<FontSize, string>> = {
     lg: "md",
     md: "md",
     sm: "sm",
     xs: "sm",
   }
 
-  const _fontSize = sizeStyle.field?.fontSize ?? "md"
-  const fontSize = typography.fontSizes[_fontSize.toString()]
+  const _fontSize = (sizeStyle.field?.fontSize ?? "md") as FontSize
+  const fontSize = typography.fontSizes[_fontSize]
 
   return {
     field: {

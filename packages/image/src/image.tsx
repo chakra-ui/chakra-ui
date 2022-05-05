@@ -7,7 +7,12 @@ import {
 } from "@chakra-ui/system"
 import { omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { useImage, UseImageProps } from "./use-image"
+import {
+  FallbackStrategy,
+  shouldShowFallbackImage,
+  useImage,
+  UseImageProps,
+} from "./use-image"
 
 interface NativeImageOptions {
   /**
@@ -69,6 +74,16 @@ interface ImageOptions extends NativeImageOptions {
    * If `true`, opt out of the `fallbackSrc` logic and use as `img`
    */
   ignoreFallback?: boolean
+
+  /**
+   * @see https://github.com/chakra-ui/chakra-ui/issues/5581
+   *
+   *
+   * - beforeLoadOrError(default): loads the fallbackImage while loading the src
+   * - onError: loads the fallbackImage only if there is an error fetching the src
+   *
+   */
+  fallbackStrategy?: FallbackStrategy
 }
 
 export interface ImageProps
@@ -93,31 +108,42 @@ export const Image = forwardRef<ImageProps, "img">((props, ref) => {
     loading,
     ignoreFallback,
     crossOrigin,
+    fallbackStrategy = "beforeLoadOrError",
     ...rest
   } = props
 
+  const providedFallback = fallbackSrc !== undefined || fallback !== undefined
   /**
    * Defer to native `img` tag if `loading` prop is passed
    * @see https://github.com/chakra-ui/chakra-ui/issues/1027
+   *
+   * shouldIgnoreFallbackImage determines if we have the possibility to render a fallback image
    */
-  const shouldIgnore =
+  const shouldIgnoreFallbackImage =
     loading != null ||
+    // use can opt out of fallback image
     ignoreFallback ||
-    (fallbackSrc === undefined && fallback === undefined) // if the user doesn't provide any kind of fallback we should ignore it
+    // if the user doesn't provide any kind of fallback we should ignore it
+    !providedFallback
 
+  /**
+   * returns `loaded` if fallback is ignored
+   */
   const status = useImage({
     ...props,
-    ignoreFallback: shouldIgnore,
+    ignoreFallback: shouldIgnoreFallbackImage,
   })
+
+  const showFallbackImage = shouldShowFallbackImage(status, fallbackStrategy)
 
   const shared = {
     ref,
     objectFit: fit,
     objectPosition: align,
-    ...(shouldIgnore ? rest : omit(rest, ["onError", "onLoad"])),
+    ...(shouldIgnoreFallbackImage ? rest : omit(rest, ["onError", "onLoad"])),
   }
 
-  if (status !== "loaded") {
+  if (showFallbackImage) {
     /**
      * If user passed a custom fallback component,
      * let's render it here.

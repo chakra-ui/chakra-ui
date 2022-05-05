@@ -54,8 +54,10 @@ test("uncontrolled: handles callbacks correctly", async () => {
   expect(onEdit).toHaveBeenCalled()
 
   // calls `onChange` with input on change
-  await user.type(textarea, "World", { skipClick: true })
-  expect(onChange).toHaveBeenCalledWith("Hello World")
+  await user.type(textarea, "World")
+  await waitFor(() => {
+    expect(onChange).toHaveBeenCalledWith("Hello World")
+  })
 
   // get new line on user press "Enter"
   await user.type(
@@ -169,7 +171,7 @@ test("handles preview and textarea callbacks", async () => {
   expect(onFocus).toHaveBeenCalled()
 
   // calls `onChange` when input is changed
-  await user.type(textarea, "World", { skipClick: true })
+  await user.type(textarea, "World")
   expect(onChange).toHaveBeenCalled()
 
   // calls `onKeyDown` when key is pressed in input

@@ -43,7 +43,10 @@ export function getStackStyles(options: Options) {
 
   return {
     flexDirection: direction,
-    [selector]: mapResponsive(direction, (value) => directionStyles[value]),
+    [selector]: mapResponsive(
+      direction,
+      (value: keyof typeof directionStyles) => directionStyles[value],
+    ),
   }
 }
 
@@ -78,6 +81,9 @@ export function getDividerStyles(options: Options) {
   }
 
   return {
-    "&": mapResponsive(direction, (value) => dividerStyles[value]),
+    "&": mapResponsive(
+      direction,
+      (value: keyof typeof dividerStyles) => dividerStyles[value],
+    ),
   }
 }

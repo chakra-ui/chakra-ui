@@ -149,10 +149,10 @@ export function getPointerEventName(name: string): string {
     return name
   }
   if (supportsTouchEvents()) {
-    return touchEventNames[name]
+    return (touchEventNames as any)[name]
   }
   if (supportsMouseEvents()) {
-    return mouseEventNames[name]
+    return (mouseEventNames as any)[name]
   }
 
   return name

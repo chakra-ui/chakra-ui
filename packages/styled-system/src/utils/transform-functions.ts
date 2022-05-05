@@ -46,7 +46,7 @@ export const transformFunctions = {
     return !isNumber(value) || value > 1 ? value : `${value * 100}%`
   },
   float(value: any, theme: Dict) {
-    const map = { left: "right", right: "left" }
+    const map = { left: "right", right: "left" } as any
     return theme.direction === "rtl" ? map[value] : value
   },
   degree(value: any) {
@@ -77,8 +77,8 @@ export const transformFunctions = {
       : { outline: value }
   },
   flexDirection(value: any) {
-    const { space, divide } = flexDirectionTemplate[value] ?? {}
-    const result = { flexDirection: value }
+    const { space, divide } = (flexDirectionTemplate as any)[value] ?? {}
+    const result: Record<string, any> = { flexDirection: value }
     if (space) result[space] = 1
     if (divide) result[divide] = 1
     return result

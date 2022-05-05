@@ -32,7 +32,7 @@ const baseStyleTab: SystemStyleFunction = (props) => {
 const baseStyleTablist: SystemStyleFunction = (props) => {
   const { align = "start", orientation } = props
 
-  const alignments = {
+  const alignments: Record<string, string> = {
     end: "flex-end",
     center: "center",
     start: "flex-start",
