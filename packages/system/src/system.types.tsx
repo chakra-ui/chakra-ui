@@ -22,10 +22,6 @@ export interface ThemingProps<ThemeComponent extends string = any> {
 
 export interface ChakraProps extends SystemProps {
   /**
-   * if `true`, it'll render an ellipsis when the text exceeds the width of the viewport or maxWidth set.
-   */
-  isTruncated?: boolean
-  /**
    * Used to truncate text at a specific number of lines
    */
   noOfLines?: ResponsiveValue<number>
