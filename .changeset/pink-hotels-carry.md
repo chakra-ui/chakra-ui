@@ -2,4 +2,5 @@
 "@chakra-ui/hooks": patch
 ---
 
-[useDisclosure] Return a dynamic "aria-hidden" value from getButtonProps #5939
+Fixed issue in `useDisclosure` where `aria-expanded` in `getButtonProps`
+returned a fixed value.
