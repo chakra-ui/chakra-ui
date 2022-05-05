@@ -240,3 +240,19 @@ export function WithPopoverAnchor() {
     </Popover>
   )
 }
+
+export const WithMatchWidth = () => (
+  <Popover matchWidth>
+    <PopoverTrigger>
+      <Button w="400px">Long Content</Button>
+    </PopoverTrigger>
+    <PopoverContent w="full">
+      <PopoverBody>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+      </PopoverBody>
+    </PopoverContent>
+  </Popover>
+)
