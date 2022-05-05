@@ -141,7 +141,10 @@ export function usePopper(props: UsePopperProps = {}) {
         customModifiers.innerArrow,
         customModifiers.positionArrow,
         customModifiers.transformOrigin,
-        { ...customModifiers.matchWidth, enabled: !!matchWidth },
+        {
+          ...customModifiers.matchWidth,
+          enabled: !!matchWidth,
+        },
         {
           name: "eventListeners",
           ...getEventListenerOptions(eventListeners),
@@ -235,11 +238,11 @@ export function usePopper(props: UsePopperProps = {}) {
       style: {
         ...props.style,
         position: strategy,
-        minWidth: "max-content",
+        minWidth: matchWidth ? undefined : "max-content",
         inset: "0 auto auto 0",
       },
     }),
-    [strategy, popperRef],
+    [strategy, popperRef, matchWidth],
   )
 
   const getArrowProps = useCallback<PropGetterV2<"div", ArrowCSSVarProps>>(
