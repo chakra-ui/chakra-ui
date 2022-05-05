@@ -49,7 +49,7 @@ export interface TagLabelProps extends HTMLChakraProps<"span"> {}
 
 export const TagLabel = forwardRef<TagLabelProps, "span">((props, ref) => {
   const styles = useStyles()
-  return <chakra.span ref={ref} isTruncated {...props} __css={styles.label} />
+  return <chakra.span ref={ref} noOfLines={1} {...props} __css={styles.label} />
 })
 
 if (__DEV__) {

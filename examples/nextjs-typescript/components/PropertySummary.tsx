@@ -15,7 +15,7 @@ export const PropertySummary = ({ property }: { property: Property }) => {
     <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
       <Image src={property.imageUrl} alt={property.imageAlt} />
       <Box p="6">
-        <Box d="flex" alignItems="baseline">
+        <Box display="flex" alignItems="baseline">
           {property.isNew && (
             <Badge borderRadius="full" px="2" colorScheme="teal" mr="2">
               New
@@ -37,7 +37,7 @@ export const PropertySummary = ({ property }: { property: Property }) => {
           fontWeight="semibold"
           as="h4"
           lineHeight="tight"
-          isTruncated
+          noOfLines={1}
         >
           {property.title}
         </Box>
