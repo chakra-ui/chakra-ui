@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.0.0-next.3
+
+### Patch Changes
+
+- [#5970](https://github.com/chakra-ui/chakra-ui/pull/5970)
+  [`0f10f9555`](https://github.com/chakra-ui/chakra-ui/commit/0f10f9555a07106bb3737f7e900c36d81507c926)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  setting zero value for either x or y causes all spacing to be collapse (and
+  not work)
+
 ## 2.0.0-next.2
 
 ### Minor Changes
