@@ -8,9 +8,10 @@ export const ChakraProviderWrapper = (
   context: StoryContext,
 ) => {
   const { chakra } = context.parameters
+  const { hideColorModeSwitch } = chakra
   return (
     <ChakraProvider {...chakra}>
-      <ColorModeSwitch />
+      {!hideColorModeSwitch && <ColorModeSwitch />}
       <Story {...context} />
     </ChakraProvider>
   )
