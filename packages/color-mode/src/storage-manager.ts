@@ -1,61 +1,58 @@
-import { __DEV__ } from "@chakra-ui/utils"
+import { isBrowser, __DEV__ } from "@chakra-ui/utils"
 import { ColorMode } from "./color-mode.utils"
 
-const hasSupport = () => typeof Storage !== "undefined"
-export const storageKey = "chakra-ui-color-mode"
+export const STORAGE_KEY = "chakra-ui-color-mode"
 
 type MaybeColorMode = ColorMode | undefined
 
 export interface StorageManager {
-  get(init?: ColorMode): MaybeColorMode
-  set(value: ColorMode): void
   type: "cookie" | "localStorage"
+  get(init?: ColorMode): MaybeColorMode
+  set(value: ColorMode | ""): void
 }
 
-/**
- * Simple object to handle read-write to localStorage
- */
-export const localStorageManager: StorageManager = {
-  get(init?) {
-    if (!hasSupport()) return init
-    try {
-      const value = localStorage.getItem(storageKey) as MaybeColorMode
-      return value ?? init
-    } catch (error) {
-      if (__DEV__) {
-        console.log(error)
+export function createLocalStorageManager(key: string): StorageManager {
+  return {
+    get(init?) {
+      if (!isBrowser) return init
+      try {
+        const value = localStorage.getItem(key) as MaybeColorMode
+        return value ?? init
+      } catch (error) {
+        if (__DEV__) console.log(error)
+        return init
       }
-      return init
-    }
-  },
-  set(value) {
-    if (!hasSupport()) return
-    try {
-     localStorage.setItem(storageKey, value)
-    } catch (error) {
-      if (__DEV__) {
-        console.log(error)
+    },
+    set(value) {
+      if (!isBrowser) return
+      try {
+        localStorage.setItem(key, value)
+      } catch (error) {
+        if (__DEV__) {
+          console.log(error)
+        }
       }
-    }
-  },
-  type: "localStorage",
+    },
+    type: "localStorage",
+  }
 }
 
-/**
- * Simple object to handle read-write to cookies
- */
-export const cookieStorageManager = (cookies = ""): StorageManager => ({
-  get(init?) {
-    const match = cookies.match(new RegExp(`(^| )${storageKey}=([^;]+)`))
+export const localStorageManager = createLocalStorageManager(STORAGE_KEY)
 
-    if (match) {
-      return match[2] as ColorMode
-    }
+export function createCookieStorageManager(key: string): StorageManager {
+  return {
+    type: "cookie",
+    get(init?) {
+      if (!isBrowser) return init
+      const match = document.cookie.match(new RegExp(`(^| )${key}=([^;]+)`))
+      const value = match?.[2] ?? init
+      return value as MaybeColorMode
+    },
+    set(value) {
+      if (!isBrowser) return
+      document.cookie = `${key}=${value}; max-age=31536000; path=/`
+    },
+  }
+}
 
-    return init
-  },
-  set(value) {
-    document.cookie = `${storageKey}=${value}; max-age=31536000; path=/`
-  },
-  type: "cookie",
-})
+export const cookieStorageManager = createCookieStorageManager(STORAGE_KEY)

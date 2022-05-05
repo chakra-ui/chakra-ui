@@ -1,8 +1,6 @@
 /* eslint-disable global-require */
+import { mocks, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { screen } from "@chakra-ui/test-utils"
-import theme from "@chakra-ui/theme"
-import { ColorModeOptions, ColorMode, StorageManager } from "../src"
 
 export const DummyComponent = () => {
   const { useColorMode } = require("../src/color-mode-provider")
@@ -22,26 +20,31 @@ export const resetCounter = () => {
 }
 
 export const MemoizedComponent = React.memo(() => {
-  renderCount = renderCount + 1
+  renderCount++
   return <div data-testid="rendered">{renderCount}</div>
 })
 
 export const RegularComponent = () => {
-  renderCount = renderCount + 1
+  renderCount++
   return <div data-testid="rendered">{renderCount}</div>
 }
 
 export const getColorModeButton = () => screen.getByRole("button")
 
-export const defaultThemeOptions = theme.config as Required<ColorModeOptions>
+export const defaultThemeOptions = {
+  useSystemColorMode: false,
+  initialColorMode: "light",
+  cssVarPrefix: "chakra",
+} as const
 
-export const createMockStorageManager = (
-  type: StorageManager["type"],
-  get?: ColorMode,
-): StorageManager => {
-  return {
-    get: jest.fn().mockImplementation((init) => get ?? init),
-    set: jest.fn(),
-    type,
-  }
+export function mockMatchMedia(query: string) {
+  mocks.matchMedia("(prefers-color-scheme: dark)", query === "dark")
+}
+
+export function mockLocalStorage(colorMode: string) {
+  mocks.localStorage(colorMode)
+}
+
+export function mockCookieStorage(colorMode: string | null) {
+  mocks.cookie("chakra-ui-color-mode", colorMode)
 }
