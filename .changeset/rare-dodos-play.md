@@ -52,7 +52,8 @@ new precedence is as follows:
     `matchMedia`
   - Else, we use the initial value as is.
 - If user specifies `useSystemColorMode: true`, then we'll subscribe to color
-  mode changes from the Operating system
+  mode changes from the operating system. It is no longer used to determine the
+  initial color mode. To achieve that, please use `initialColorMode: "system"`
 
 Removed `--chakra-ui-color-mode` CSS variable and use `data-theme` attribute on
 the `html` element.
