@@ -5,6 +5,7 @@ import {
   DummyComponent,
   getColorModeButton,
   MemoizedComponent,
+  mockMatchMedia,
   RegularComponent,
   resetCounter,
 } from "./utils"
@@ -38,6 +39,7 @@ const NoMemoTest = () => {
 describe("<DarkMode />", () => {
   beforeEach(() => {
     resetCounter()
+    mockMatchMedia("light")
   })
 
   test("is always dark", async () => {

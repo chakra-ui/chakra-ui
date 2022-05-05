@@ -1,6 +1,7 @@
-import { setScript, ConfigColorMode } from "../src"
+import { getScriptSrc, ConfigColorMode, cookieStorageManager } from "../src"
+import { mockMatchMedia } from "./utils"
 
-describe("color-mode-script", () => {
+describe("localStorage: color-mode-script", () => {
   it.each(
     [
       { system: "light", initial: "light", expect: "light" },
@@ -14,22 +15,44 @@ describe("color-mode-script", () => {
       toString: () => `case: ${JSON.stringify(item)}`,
     })),
   )("%s", (entry) => {
-    const systemIsDarkMode = entry.system === "dark"
-    const documentSetAttributeMock = jest.spyOn(
-      document.documentElement,
-      "setAttribute",
-    )
-    global.matchMedia = jest.fn().mockImplementation((query) => {
-      if (query === "(prefers-color-scheme: dark)") {
-        return {
-          matches: systemIsDarkMode,
-        }
-      }
+    mockMatchMedia(entry.system)
+    localStorage.removeItem("chakra-ui-color-mode")
+
+    const script = document.createElement("script")
+    script.innerHTML = getScriptSrc({
+      initialColorMode: entry.initial as ConfigColorMode,
+      type: "localStorage",
     })
-    setScript(entry.initial as ConfigColorMode)
-    expect(documentSetAttributeMock).toHaveBeenCalledWith(
-      "data-theme",
-      entry.expect,
-    )
+    document.body.prepend(script)
+
+    expect(document.documentElement.dataset.theme).toEqual(entry.expect)
+  })
+})
+
+describe("cookie: color-mode-script", () => {
+  it.each(
+    [
+      { system: "light", initial: "light", expect: "light" },
+      { system: "dark", initial: "light", expect: "light" },
+      { system: "light", initial: "dark", expect: "dark" },
+      { system: "dark", initial: "dark", expect: "dark" },
+      { system: "light", initial: "system", expect: "light" },
+      { system: "dark", initial: "system", expect: "dark" },
+    ].map((item) => ({
+      ...item,
+      toString: () => `case: ${JSON.stringify(item)}`,
+    })),
+  )("%s", (entry) => {
+    mockMatchMedia(entry.system)
+    cookieStorageManager.set("")
+
+    const script = document.createElement("script")
+    script.innerHTML = getScriptSrc({
+      initialColorMode: entry.initial as ConfigColorMode,
+      type: "cookie",
+    })
+    document.body.prepend(script)
+
+    expect(document.documentElement.dataset.theme).toEqual(entry.expect)
   })
 })
