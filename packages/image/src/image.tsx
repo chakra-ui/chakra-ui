@@ -74,7 +74,6 @@ interface ImageOptions extends NativeImageOptions {
    * If `true`, opt out of the `fallbackSrc` logic and use as `img`
    */
   ignoreFallback?: boolean
-
   /**
    * @see https://github.com/chakra-ui/chakra-ui/issues/5581
    *
@@ -84,6 +83,11 @@ interface ImageOptions extends NativeImageOptions {
    *
    */
   fallbackStrategy?: FallbackStrategy
+  /**
+   * Defining which referrer is sent when fetching the resource.
+   * @type React.HTMLAttributeReferrerPolicy
+   */
+  referrerPolicy?: React.HTMLAttributeReferrerPolicy
 }
 
 export interface ImageProps
@@ -109,6 +113,7 @@ export const Image = forwardRef<ImageProps, "img">((props, ref) => {
     ignoreFallback,
     crossOrigin,
     fallbackStrategy = "beforeLoadOrError",
+    referrerPolicy,
     ...rest
   } = props
 
@@ -168,6 +173,7 @@ export const Image = forwardRef<ImageProps, "img">((props, ref) => {
       crossOrigin={crossOrigin}
       loading={loading}
       className="chakra-image"
+      referrerPolicy={referrerPolicy}
       {...shared}
     />
   )
