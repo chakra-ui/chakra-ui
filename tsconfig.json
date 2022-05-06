@@ -19,12 +19,5 @@
     "declarationMap": true
   },
   "include": ["@types", "packages", "scripts", "tooling"],
-  "exclude": ["**/node_modules", "**/template*"],
-  "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS",
-      "resolveJsonModule": true,
-      "noImplicitAny": false
-    }
-  }
+  "exclude": ["**/node_modules", "**/template*"]
 }

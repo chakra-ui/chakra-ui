@@ -1,7 +1,7 @@
 import "regenerator-runtime/runtime"
 import path from "path"
 import fs from "fs"
-import * as tsNode from "ts-node"
+import * as swcNode from "@swc-node/register/register"
 import * as tsConfigPaths from "tsconfig-paths"
 import moduleAlias from "module-alias"
 import { isObject } from "@chakra-ui/utils"
@@ -34,11 +34,11 @@ async function readTheme(themeFilePath: string) {
 
   const tsConfig = tsConfigPaths.loadConfig(absoluteThemeDir)
   if (tsConfig.resultType === "success") {
-    tsNode.register({
+    swcNode.register({
       // use the TS projects own tsconfig file
       project: tsConfig.configFileAbsolutePath,
       compilerOptions: {
-        module: "CommonJS",
+        module: ["CommonJS"],
       },
     })
 
@@ -75,7 +75,7 @@ async function readTheme(themeFilePath: string) {
       "bin",
       "tsconfig.json",
     )
-    tsNode.register({
+    swcNode.register({
       project: defaultProject,
     })
   }

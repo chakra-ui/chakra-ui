@@ -1,13 +1,10 @@
 {
-  // these options are used by ts-node
+  // these options are used by swc-node
   "compilerOptions": {
     "module": "commonjs",
     "allowJs": true,
     "strict": false,
     "noImplicitAny": false,
     "esModuleInterop": true
-  },
-  "ts-node": {
-    "transpileOnly": true
   }
 }
