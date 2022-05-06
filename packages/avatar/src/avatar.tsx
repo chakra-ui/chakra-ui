@@ -67,6 +67,11 @@ interface AvatarOptions {
    * Function to get the initials to display
    */
   getInitials?: (name: string) => string
+  /**
+   * Defining which referrer is sent when fetching the resource.
+   * @type React.HTMLAttributeReferrerPolicy
+   */
+  referrerPolicy?: React.HTMLAttributeReferrerPolicy
 }
 
 export interface AvatarBadgeProps extends HTMLChakraProps<"div"> {}
@@ -252,6 +257,7 @@ const AvatarImage: React.FC<AvatarImageProps> = (props) => {
     onError,
     getInitials,
     name,
+    referrerPolicy,
     borderRadius,
     loading,
     iconLabel,
@@ -298,6 +304,7 @@ const AvatarImage: React.FC<AvatarImageProps> = (props) => {
       src={src}
       srcSet={srcSet}
       alt={name}
+      referrerPolicy={referrerPolicy}
       className="chakra-avatar__img"
       loading={loading}
       __css={{
