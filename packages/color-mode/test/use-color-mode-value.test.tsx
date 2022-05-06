@@ -1,7 +1,7 @@
 import * as React from "react"
 import { render, screen } from "@chakra-ui/test-utils"
 import { ColorModeProvider, useColorModeValue, useColorMode } from "../src"
-import { defaultThemeOptions } from "./utils"
+import { defaultThemeOptions, mockMatchMedia } from "./utils"
 
 const lightValue = "light-value"
 const darkValue = "dark-value"
@@ -19,6 +19,10 @@ function DummyComponent() {
 }
 
 describe("useColorModeValue", () => {
+  beforeEach(() => {
+    mockMatchMedia("dark")
+  })
+
   test("given light mode, shows lightValue and toggles", async () => {
     const { user } = render(
       <ColorModeProvider options={defaultThemeOptions}>

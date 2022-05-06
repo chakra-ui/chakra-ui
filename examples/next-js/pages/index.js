@@ -13,7 +13,6 @@ import {
   Container,
 } from "@chakra-ui/react"
 import Head from "next/head"
-import { Chakra } from "../src/Chakra"
 import { useState } from "react"
 
 function Switcher() {
@@ -38,43 +37,39 @@ const InputGrouper = () => {
 }
 
 const Home = () => (
-  <Chakra>
-    <Container>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+  <Container>
+    <Head>
+      <title>Create Next App</title>
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
 
-      <main>
-        <chakra.div fontSize="20px">Welcome to chakra</chakra.div>
-        <Image
-          src="https://bit.ly/sage-adebayo"
-          fallbackSrc="https://via.placeholder.com/240"
-          fit="cover"
-          width="400px"
-          height="300px"
-        />
+    <main>
+      <chakra.div fontSize="20px">Welcome to chakra</chakra.div>
+      <Image
+        src="https://bit.ly/sage-adebayo"
+        fallbackSrc="https://via.placeholder.com/240"
+        fit="cover"
+        width="400px"
+        height="300px"
+      />
 
-        <chakra.div bg="gray.800" padding={4}>
-          <DarkMode>
-            <Button colorScheme="green">Welcome</Button>
-          </DarkMode>
-        </chakra.div>
+      <chakra.div bg="gray.800" padding={4}>
+        <Button colorScheme="green">Welcome</Button>
+      </chakra.div>
 
-        <Input type="tel" placeholder="Phone number" />
+      <Input type="tel" placeholder="Phone number" />
 
-        <InputGrouper />
+      <InputGrouper />
 
-        <Switcher />
+      <Switcher />
 
-        <Stack direction="row" spacing="40px">
-          <div>Welcome home</div>
-          <div>Welcome home</div>
-          <div>Welcome home</div>
-        </Stack>
-      </main>
-    </Container>
-  </Chakra>
+      <Stack direction="row" spacing="40px">
+        <div>Welcome home</div>
+        <div>Welcome home</div>
+        <div>Welcome home</div>
+      </Stack>
+    </main>
+  </Container>
 )
 
 export default Home

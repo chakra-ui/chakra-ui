@@ -41,7 +41,7 @@ test("uncontrolled: correctly manages state", () => {
   expect(utils.getByLabelText("b")).toBeChecked()
 })
 
-test.only("Uncontrolled RadioGroup - should not check if group disabled", async () => {
+test("Uncontrolled RadioGroup - should not check if group disabled", async () => {
   const Component = () => (
     <RadioGroup isDisabled isFocusable={false}>
       <Radio value="one">One</Radio>
