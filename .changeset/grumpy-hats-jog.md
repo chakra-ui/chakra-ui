@@ -4,6 +4,7 @@
 "chakra-nextjs": major
 "chakra-nextjs-ts": major
 "storybook-addon": major
+"vite-ts": major
 "@chakra-ui/accordion": major
 "@chakra-ui/alert": major
 "@chakra-ui/anatomy": major
@@ -71,4 +72,4 @@
 "@chakra-ui/test-utils": major
 ---
 
-Bump peer dependency to React and ReactDOM to >=18
+Omit `src` directory from being published to npm
