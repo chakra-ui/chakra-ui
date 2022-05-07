@@ -28,8 +28,8 @@ components that make it super easy to create websites and apps.
 It's the https://chakra-ui.com website for the latest version of Chakra UI. For
 older versions head over here
 
-- v0: https://v0.chakra-ui.com
 - v1: https://v1.chakra-ui.com
+- v0: https://v0.chakra-ui.com
 
 ## Features 🚀
 
