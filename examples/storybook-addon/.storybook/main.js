@@ -1,11 +1,14 @@
 module.exports = {
-  "stories": [
+  stories: [
     "../../../packages/**/stories/**/*.stories.mdx",
-    "../../../packages/**/stories/**/*.stories.@(js|jsx|ts|tsx)"
+    "../../../packages/**/stories/**/*.stories.@(js|jsx|ts|tsx)",
   ],
-  "addons": [
+  addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "../../../tooling/storybook-addon/"
-  ]
+    "@chakra-ui/storybook-addon",
+  ],
+  features: {
+    emotionAlias: false,
+  },
 }
