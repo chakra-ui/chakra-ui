@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/cli",
-  "version": "2.0.0-next.1",
+  "version": "2.0.0-next.2",
   "description": "Generate theme typings for autocomplete",
   "keywords": [
     "theme",
@@ -39,7 +39,7 @@
     "dev": "node bin/index.js tokens ../../website/theme.ts"
   },
   "dependencies": {
-    "@chakra-ui/utils": "^2.0.0-next.1",
+    "@chakra-ui/utils": "^2.0.0-next.2",
     "@swc/core": "^1.2.177",
     "cli-check-node": "^1.3.4",
     "cli-handle-unhandled": "^1.1.1",

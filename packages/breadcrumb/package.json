@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/breadcrumb",
-  "version": "2.0.0-next.1",
+  "version": "2.0.0-next.2",
   "description": "A React component used for navigation, with each item acting as a link",
   "keywords": [
     "breadcrumbs",
@@ -32,12 +32,12 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "devDependencies": {
-    "@chakra-ui/system": "2.0.0-next.3",
+    "@chakra-ui/system": "2.0.0-next.4",
     "react": "^18.0.0"
   },
   "dependencies": {
-    "@chakra-ui/react-utils": "2.0.0-next.1",
-    "@chakra-ui/utils": "2.0.0-next.1"
+    "@chakra-ui/react-utils": "2.0.0-next.2",
+    "@chakra-ui/utils": "2.0.0-next.2"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=2.0.0-next.0",

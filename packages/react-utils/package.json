@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react-utils",
-  "version": "2.0.0-next.1",
+  "version": "2.0.0-next.2",
   "description": "React utilities and helpers for Chakra UI",
   "keywords": [
     "theme",
@@ -30,7 +30,7 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/utils": "^2.0.0-next.1"
+    "@chakra-ui/utils": "^2.0.0-next.2"
   },
   "peerDependencies": {
     "react": ">=18"
