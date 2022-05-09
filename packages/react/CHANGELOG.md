@@ -1,5 +1,66 @@
 # Change Log
 
+## 2.0.0-next.5
+
+### Major Changes
+
+- [#5989](https://github.com/chakra-ui/chakra-ui/pull/5989)
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Omit `src`
+  directory from being published to npm
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)]:
+  - @chakra-ui/accordion@2.0.0-next.3
+  - @chakra-ui/alert@2.0.0-next.3
+  - @chakra-ui/avatar@2.0.0-next.3
+  - @chakra-ui/breadcrumb@2.0.0-next.2
+  - @chakra-ui/button@2.0.0-next.3
+  - @chakra-ui/checkbox@2.0.0-next.3
+  - @chakra-ui/close-button@2.0.0-next.2
+  - @chakra-ui/control-box@2.0.0-next.2
+  - @chakra-ui/counter@2.0.0-next.3
+  - @chakra-ui/css-reset@2.0.0-next.3
+  - @chakra-ui/editable@2.0.0-next.3
+  - @chakra-ui/react-env@2.0.0-next.2
+  - @chakra-ui/form-control@2.0.0-next.3
+  - @chakra-ui/hooks@2.0.0-next.3
+  - @chakra-ui/icon@3.0.0-next.2
+  - @chakra-ui/image@2.0.0-next.3
+  - @chakra-ui/input@2.0.0-next.3
+  - @chakra-ui/layout@2.0.0-next.4
+  - @chakra-ui/live-region@2.0.0-next.2
+  - @chakra-ui/media-query@3.0.0-next.2
+  - @chakra-ui/menu@2.0.0-next.4
+  - @chakra-ui/modal@2.0.0-next.3
+  - @chakra-ui/number-input@2.0.0-next.3
+  - @chakra-ui/pin-input@2.0.0-next.3
+  - @chakra-ui/popover@2.0.0-next.4
+  - @chakra-ui/popper@3.0.0-next.3
+  - @chakra-ui/portal@2.0.0-next.3
+  - @chakra-ui/progress@2.0.0-next.2
+  - @chakra-ui/provider@2.0.0-next.4
+  - @chakra-ui/radio@2.0.0-next.3
+  - @chakra-ui/select@2.0.0-next.3
+  - @chakra-ui/skeleton@2.0.0-next.4
+  - @chakra-ui/slider@2.0.0-next.3
+  - @chakra-ui/spinner@2.0.0-next.2
+  - @chakra-ui/stat@2.0.0-next.2
+  - @chakra-ui/switch@2.0.0-next.3
+  - @chakra-ui/system@2.0.0-next.4
+  - @chakra-ui/table@2.0.0-next.2
+  - @chakra-ui/tabs@2.0.0-next.3
+  - @chakra-ui/tag@2.0.0-next.2
+  - @chakra-ui/textarea@2.0.0-next.3
+  - @chakra-ui/theme@2.0.0-next.2
+  - @chakra-ui/toast@2.0.0-next.5
+  - @chakra-ui/tooltip@2.0.0-next.4
+  - @chakra-ui/transition@2.0.0-next.2
+  - @chakra-ui/utils@2.0.0-next.2
+  - @chakra-ui/visually-hidden@2.0.0-next.2
+
 ## 2.0.0-next.4
 
 ### Patch Changes

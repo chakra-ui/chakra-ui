@@ -1,5 +1,25 @@
 # @chakra-ui/storybook-addon
 
+## 2.0.0-next.5
+
+### Major Changes
+
+- [#5989](https://github.com/chakra-ui/chakra-ui/pull/5989)
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Omit `src`
+  directory from being published to npm
+
+### Patch Changes
+
+- [#5990](https://github.com/chakra-ui/chakra-ui/pull/5990)
+  [`dfc759a5e`](https://github.com/chakra-ui/chakra-ui/commit/dfc759a5eae79b6147a0dfcbafb71ea398021861)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue
+  where the storybook addon did not use the default theme if none was provided
+- Updated dependencies
+  [[`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)]:
+  - @chakra-ui/icons@2.0.0-next.2
+  - @chakra-ui/react@2.0.0-next.5
+
 ## 2.0.0-next.4
 
 ### Major Changes

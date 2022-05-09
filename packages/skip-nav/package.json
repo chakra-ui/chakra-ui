@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/skip-nav",
-  "version": "2.0.0-next.1",
+  "version": "2.0.0-next.2",
   "description": "Skip navigation links for screen reader and keyboard users",
   "keywords": [
     "skip link",
@@ -35,11 +35,11 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "devDependencies": {
-    "@chakra-ui/system": "2.0.0-next.3",
+    "@chakra-ui/system": "2.0.0-next.4",
     "react": "^18.0.0"
   },
   "dependencies": {
-    "@chakra-ui/utils": "2.0.0-next.1"
+    "@chakra-ui/utils": "2.0.0-next.2"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=2.0.0-next.0",

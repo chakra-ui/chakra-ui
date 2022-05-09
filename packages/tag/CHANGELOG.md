@@ -1,5 +1,21 @@
 # Change Log
 
+## 2.0.0-next.2
+
+### Major Changes
+
+- [#5989](https://github.com/chakra-ui/chakra-ui/pull/5989)
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Omit `src`
+  directory from being published to npm
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)]:
+  - @chakra-ui/icon@3.0.0-next.2
+  - @chakra-ui/utils@2.0.0-next.2
+
 ## 2.0.0-next.1
 
 ### Major Changes
