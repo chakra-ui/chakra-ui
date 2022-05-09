@@ -1,5 +1,21 @@
 # storybook-addon
 
+## 2.0.0-next.2
+
+### Major Changes
+
+- [#5989](https://github.com/chakra-ui/chakra-ui/pull/5989)
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Omit `src`
+  directory from being published to npm
+
+### Patch Changes
+
+- Updated dependencies
+  [[`dfc759a5e`](https://github.com/chakra-ui/chakra-ui/commit/dfc759a5eae79b6147a0dfcbafb71ea398021861),
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)]:
+  - @chakra-ui/storybook-addon@2.0.0-next.5
+
 ## 2.0.0-next.1
 
 ### Major Changes
