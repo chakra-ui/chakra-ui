@@ -517,3 +517,47 @@ test("Uncontrolled FormControl - calls all onBlur EventHandler", () => {
   expect(formControlOnBlurMock).toHaveBeenCalled()
   expect(checkboxOnBlurMock).toHaveBeenCalled()
 })
+
+test("On form reset checkbox should reset to its default state i.e. checked", () => {
+  const Component = () => (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+        e.currentTarget.reset()
+      }}
+    >
+      <label htmlFor="myCheckbox">My Checkbox</label>
+      <Checkbox id="myCheckbox" defaultChecked />
+      <button type="submit">Reset</button>
+    </form>
+  )
+
+  const { container } = render(<Component />)
+  const [checkboxOne] = Array.from(container.querySelectorAll("input"))
+  const [submitBtn] = Array.from(container.querySelectorAll("button"))
+  fireEvent.click(checkboxOne)
+  submitBtn.click()
+  expect(checkboxOne).toBeChecked()
+})
+
+test("On form reset checkbox should reset to its default state i.e. unchecked", () => {
+  const Component = () => (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+        e.currentTarget.reset()
+      }}
+    >
+      <label htmlFor="myCheckbox">My Checkbox</label>
+      <Checkbox id="myCheckbox" />
+      <button type="submit">Reset</button>
+    </form>
+  )
+
+  const { container } = render(<Component />)
+  const [checkboxOne] = Array.from(container.querySelectorAll("input"))
+  const [submitBtn] = Array.from(container.querySelectorAll("button"))
+  fireEvent.click(checkboxOne)
+  submitBtn.click()
+  expect(checkboxOne).not.toBeChecked()
+})
