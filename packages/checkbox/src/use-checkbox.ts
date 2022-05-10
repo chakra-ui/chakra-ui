@@ -259,7 +259,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         setCheckedState(!!defaultChecked)
       }
     }
-  }, [inputRef.current])
+  }, [])
 
   const getCheckboxProps: PropGetter = useCallback(
     (props = {}, forwardedRef = null) => {
