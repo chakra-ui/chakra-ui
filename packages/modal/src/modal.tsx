@@ -119,6 +119,11 @@ export interface ModalProps
    * Fires when all exiting nodes have completed animating out
    */
   onCloseComplete?: () => void
+  /**
+   * Private property for internal use to check the placement
+   * of drawer
+   */
+  _drawerPlacement?: "top" | "bottom" | "left" | "right"
 }
 
 interface ModalContext extends ModalOptions, UseModalReturn {
@@ -158,9 +163,15 @@ export const Modal: React.FC<ModalProps> = (props) => {
     motionPreset,
     lockFocusAcrossFrames,
     onCloseComplete,
+    size,
+    _drawerPlacement,
   } = props
 
-  const styles = useMultiStyleConfig("Modal", props)
+  let styles = useMultiStyleConfig("Modal", props)
+
+  if (size && (_drawerPlacement === "top" || _drawerPlacement === "bottom")) {
+    styles = { ...styles, dialog: { ...styles.dialog, h: size } }
+  }
   const modal = useModal(props)
 
   const context = {

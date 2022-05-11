@@ -75,6 +75,7 @@ export function Drawer(props: DrawerProps) {
         isOpen={isOpen}
         onClose={onClose}
         styleConfig={drawerStyleConfig}
+        _drawerPlacement={placement}
         {...rest}
       >
         {children}
