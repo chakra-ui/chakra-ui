@@ -31,7 +31,9 @@ function start() {
     spinner.succeed("Client logged in")
     spinner.start("Setting up client...")
 
-    const guild = client.guilds.cache.find((guild) => guild.name === "Chakra")
+    const guild = client.guilds.cache.find(
+      (guild) => guild.name === "Chakra UI",
+    )
 
     if (guild) {
       spinner.succeed("Found guild: Chakra")
