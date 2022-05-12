@@ -1,5 +1,37 @@
 # Change Log
 
+## 3.0.0
+
+### Major Changes
+
+- [#5879](https://github.com/chakra-ui/chakra-ui/pull/5879)
+  [`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump all packages
+  to next major for Chakra UI version 2.
+
+* [#5989](https://github.com/chakra-ui/chakra-ui/pull/5989)
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Omit `src`
+  directory from being published to npm
+
+- [#5882](https://github.com/chakra-ui/chakra-ui/pull/5882)
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump peer
+  dependency to React and ReactDOM to >=18
+
+### Patch Changes
+
+- [#5969](https://github.com/chakra-ui/chakra-ui/pull/5969)
+  [`6b969b41d`](https://github.com/chakra-ui/chakra-ui/commit/6b969b41dad850fa061613b3d50f50b8a15265a7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  matchWidth doesn't work as expected due to the fixed `min-width: max-content`
+  style attached to the element
+- Updated dependencies
+  [[`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f),
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7),
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)]:
+  - @chakra-ui/react-utils@2.0.0
+
 ## 3.0.0-next.3
 
 ### Major Changes
