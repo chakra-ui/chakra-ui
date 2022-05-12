@@ -1,5 +1,86 @@
 # @chakra-ui/storybook-addon
 
+## 2.0.0
+
+### Major Changes
+
+- [#5879](https://github.com/chakra-ui/chakra-ui/pull/5879)
+  [`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump all packages
+  to next major for Chakra UI version 2.
+
+* [#5989](https://github.com/chakra-ui/chakra-ui/pull/5989)
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Omit `src`
+  directory from being published to npm
+
+- [#5922](https://github.com/chakra-ui/chakra-ui/pull/5922)
+  [`9b3f71ed3`](https://github.com/chakra-ui/chakra-ui/commit/9b3f71ed358f8e0f5a795a02a861a13fa966b341)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bumped the
+  supported version of storybook to >6.4 to support other bundlers than webpack.
+
+  Disable the new Storybook feature flag `emotionAlias` to prevent version
+  mismatch issues with emotion:
+
+  ```js live=false
+  module.exports = {
+    addons: ["@chakra-ui/storybook-addon"],
+    features: {
+      emotionAlias: false,
+    },
+  }
+  ```
+
+  The ColorMode Toggle moved to the Storybook toolbar together with a new layout
+  direction toggle (ltr/rtl).
+
+  A new helper function extracts the ArgTypes for a given Chakra UI component.
+  You can quickly preview all variants, sizes and colorSchemes of your
+  components which are present in your Chakra UI Theme.
+
+  ```tsx
+  // button.stories.tsx
+  import { getThemingArgTypes } from "@chakra-ui/storybook-addon"
+  import { theme } from "<your-theme>"
+
+  export default {
+    title: "Components / Forms / Button",
+    argTypes: getThemingArgTypes(theme, "Button"),
+  }
+
+  interface StoryProps extends ThemingProps<"Button"> {}
+
+  export const Basic: StoryFn<StoryProps> = (props) => (
+    <Button {...props}>Button</Button>
+  )
+  ```
+
+* [#5882](https://github.com/chakra-ui/chakra-ui/pull/5882)
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump peer
+  dependency to React and ReactDOM to >=18
+
+### Minor Changes
+
+- [#5922](https://github.com/chakra-ui/chakra-ui/pull/5922)
+  [`9b3f71ed3`](https://github.com/chakra-ui/chakra-ui/commit/9b3f71ed358f8e0f5a795a02a861a13fa966b341)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Replace the button
+  on the corner with a toggle tool
+
+### Patch Changes
+
+- [#5990](https://github.com/chakra-ui/chakra-ui/pull/5990)
+  [`dfc759a5e`](https://github.com/chakra-ui/chakra-ui/commit/dfc759a5eae79b6147a0dfcbafb71ea398021861)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue
+  where the storybook addon did not use the default theme if none was provided
+- Updated dependencies
+  [[`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f),
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7),
+  [`c7a1a53ac`](https://github.com/chakra-ui/chakra-ui/commit/c7a1a53ace53020e23c1b92d48ff16d8d8e95709),
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)]:
+  - @chakra-ui/icons@2.0.0
+  - @chakra-ui/react@2.0.0
+
 ## 2.0.0-next.5
 
 ### Major Changes
