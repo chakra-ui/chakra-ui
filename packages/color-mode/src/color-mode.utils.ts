@@ -1,39 +1,8 @@
-import { isBrowser, noop } from "@chakra-ui/utils"
+export type ColorMode = "light" | "dark"
 
 const classNames = {
   light: "chakra-ui-light",
   dark: "chakra-ui-dark",
-}
-
-export type ColorMode = "light" | "dark"
-
-/**
- * SSR: Graceful fallback for the `body` element
- */
-const mockBody = {
-  classList: { add: noop, remove: noop },
-}
-
-const getBody = (document: Document) => (isBrowser ? document.body : mockBody)
-
-/**
- * Function to add/remove class from `body` based on color mode
- */
-export function syncBodyClassName(isDark: boolean, document: Document) {
-  const body = getBody(document)
-  body.classList.add(isDark ? classNames.dark : classNames.light)
-  body.classList.remove(isDark ? classNames.light : classNames.dark)
-}
-
-/**
- * Check if JS media query matches the query string passed
- */
-function getMediaQuery(query: string) {
-  const mediaQueryList = window.matchMedia?.(query)
-  if (!mediaQueryList) {
-    return undefined
-  }
-  return !!mediaQueryList.media === mediaQueryList.matches
 }
 
 export const queries = {
@@ -41,52 +10,61 @@ export const queries = {
   dark: "(prefers-color-scheme: dark)",
 }
 
-export const lightQuery = queries.light
-export const darkQuery = queries.dark
-
-// check on system preference if it can't find any use fallback
-export function getColorScheme(fallback?: ColorMode) {
-  const isDark = getMediaQuery(queries.dark) ?? fallback === "dark"
-  return isDark ? "dark" : "light"
+type UtilOptions = {
+  doc?: Document
+  preventTransition?: boolean
 }
 
-/**
- * Adds system os color mode listener, and run the callback
- * once preference changes
- */
-export function addListener(
-  fn: (cm: ColorMode, isListenerEvent: true) => unknown,
-) {
-  if (!("matchMedia" in window)) {
-    return noop
+export function getColorModeUtils(options: UtilOptions = {}) {
+  const { doc = document, preventTransition = true } = options
+
+  const body = doc.body
+  const win = doc.defaultView ?? window
+  const docEl = doc.documentElement
+
+  const utils = {
+    setDataset: (value: ColorMode) => {
+      const cleanup = preventTransition ? utils.preventTransition() : undefined
+      docEl.dataset.theme = value
+      docEl.style.colorScheme = value
+      cleanup?.()
+    },
+    setClassName(dark: boolean) {
+      body.classList.add(dark ? classNames.dark : classNames.light)
+      body.classList.remove(dark ? classNames.light : classNames.dark)
+    },
+    query(query: string) {
+      return win.matchMedia(query)
+    },
+    getColorScheme(fallback?: ColorMode) {
+      const dark = utils.query(queries.dark).matches ?? fallback === "dark"
+      return dark ? "dark" : "light"
+    },
+    addListener(fn: (cm: ColorMode) => unknown) {
+      const mql = utils.query(queries.dark)
+      const listener = (e: MediaQueryListEvent) => {
+        fn(e.matches ? "dark" : "light")
+      }
+      mql.addEventListener("change", listener)
+      return () => mql.removeEventListener("change", listener)
+    },
+    preventTransition() {
+      const css = doc.createElement("style")
+      css.appendChild(
+        doc.createTextNode(
+          `*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}`,
+        ),
+      )
+      doc.head.appendChild(css)
+
+      return () => {
+        ;(() => win.getComputedStyle(doc.body))()
+        win.setTimeout(() => {
+          doc.head.removeChild(css)
+        }, 1)
+      }
+    },
   }
 
-  const mediaQueryList = window.matchMedia(queries.dark)
-  const listener = () => {
-    fn(mediaQueryList.matches ? "dark" : "light", true)
-  }
-
-  mediaQueryList.addEventListener("change", listener)
-
-  return () => {
-    mediaQueryList.removeEventListener("change", listener)
-  }
-}
-
-export const root = {
-  get: () =>
-    (document.documentElement.style.getPropertyValue(
-      "--chakra-ui-color-mode",
-    ) || document.documentElement.dataset.theme) as ColorMode | "",
-  set: (mode: ColorMode) => {
-    if (isBrowser) {
-      /**
-       * @deprecated
-       * The CSS variable `--chakra-ui-color-mode` will be removed in the next major release
-       * Please use the `data-theme` attribute to determine the current color mode
-       */
-      document.documentElement.style.setProperty("--chakra-ui-color-mode", mode)
-      document.documentElement.setAttribute("data-theme", mode)
-    }
-  },
+  return utils
 }

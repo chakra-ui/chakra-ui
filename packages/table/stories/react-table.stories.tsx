@@ -42,7 +42,7 @@ export const ReactTable = () => {
       },
       {
         Header: "Action",
-        Cell: ({ row }) => (
+        Cell: ({ row }: any) => (
           <ButtonGroup size="sm" isAttached>
             <Button minW="15ch" justifyContent="flex-start">
               Open {row.original["col1"]}

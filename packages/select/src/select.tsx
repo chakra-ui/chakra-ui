@@ -57,14 +57,6 @@ interface SelectOptions extends FormControlOptions {
    */
   errorBorderColor?: string
   /**
-   * If `true`, the select element will span the full width of its parent
-   *
-   * @deprecated
-   * This component defaults to 100% width,
-   * please use the props `maxWidth` or `width` to configure
-   */
-  isFullWidth?: boolean
-  /**
    * The placeholder for the select. We render an `<option/>` element that has
    * empty value.
    *
@@ -115,7 +107,6 @@ export const Select = forwardRef<SelectProps, "select">((props, ref) => {
     minHeight,
     iconColor,
     iconSize,
-    isFullWidth,
     ...rest
   } = omitThemingProps(props)
 

@@ -1,38 +1,8 @@
 // This implementation is heavily inspired by react-aria's implementation
-
 import * as React from "react"
 
-type IdContextValue = {
-  current: number
-}
-
-const defaultIdContext: IdContextValue = {
-  current: 1,
-}
-
-const IdContext = React.createContext<IdContextValue>(defaultIdContext)
-
-export const IdProvider: React.FC = React.memo(({ children }) => {
-  return React.createElement(
-    IdContext.Provider,
-    { value: { current: 1 } },
-    children,
-  )
-})
-
-const genId = (context: IdContextValue) => context.current++
-
 export function useId(idProp?: string, prefix?: string): string {
-  const context = React.useContext(IdContext)
-  /*
-      We get the current id by context and generate a new id inside useEffect so that the side effects occur during the commit phase,
-      Doing this prevents the side effects from being called twice when used with strict mode (render() in function component is the function body), which ends up making the server with the client not synchronized
-  */
-  const [id, setId] = React.useState(context.current)
-
-  React.useEffect(() => {
-    setId(genId(context))
-  }, [context])
+  const id = React.useId()
 
   return React.useMemo(
     () => idProp || [prefix, id].filter(Boolean).join("-"),

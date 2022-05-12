@@ -24,14 +24,6 @@ interface InputOptions {
    */
   errorBorderColor?: string
   /**
-   * If `true`, the input element will span the full width of its parent
-   *
-   * @deprecated
-   * This component defaults to 100% width,
-   *  please use the props `maxWidth` or `width` to configure
-   */
-  isFullWidth?: boolean
-  /**
    * The native HTML `size` attribute to be passed to the `input`
    */
   htmlSize?: number

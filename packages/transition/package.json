@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/transition",
-  "version": "1.4.8",
+  "version": "2.0.0",
   "description": "Common transition components for Chakra UI",
   "sideEffects": false,
   "keywords": [
@@ -18,8 +18,7 @@
   "module": "dist/chakra-ui-transition.esm.js",
   "types": "dist/chakra-ui-transition.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -33,14 +32,14 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.10.4"
+    "@chakra-ui/utils": "2.0.0"
   },
   "peerDependencies": {
-    "framer-motion": "3.x || 4.x || 5.x || 6.x",
-    "react": ">=16.8.6"
+    "framer-motion": ">=4.0.0",
+    "react": ">=18"
   },
   "devDependencies": {
-    "framer-motion": "^4.0.0",
-    "react": "^17.0.1"
+    "framer-motion": "^6.2.9",
+    "react": "^18.0.0"
   }
 }

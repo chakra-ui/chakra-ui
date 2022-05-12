@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/image",
-  "version": "1.1.10",
+  "version": "2.0.0",
   "description": "React component for progressive image loading",
   "keywords": [
     "react",
@@ -19,8 +19,7 @@
   "module": "dist/chakra-ui-image.esm.js",
   "types": "dist/chakra-ui-image.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -34,15 +33,15 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "1.9.1",
-    "@chakra-ui/utils": "1.10.4"
+    "@chakra-ui/hooks": "2.0.0",
+    "@chakra-ui/utils": "2.0.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.12.1",
-    "react": "^17.0.1"
+    "@chakra-ui/system": "2.0.0",
+    "react": "^18.0.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">=1.0.0",
-    "react": ">=16.8.6"
+    "@chakra-ui/system": ">=2.0.0-next.0",
+    "react": ">=18"
   }
 }

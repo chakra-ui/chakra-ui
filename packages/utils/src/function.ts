@@ -2,6 +2,10 @@
 import { isFunction, isNumber, __DEV__ } from "./assertion"
 import { AnyFunction, FunctionArguments } from "./types"
 
+export type MaybeFunction<T, Args extends unknown[] = []> =
+  | T
+  | ((...args: Args) => T)
+
 export function runIfFn<T, U>(
   valueOrFn: T | ((...fnArgs: U[]) => T),
   ...args: U[]
@@ -31,7 +35,13 @@ export function callAll<T extends AnyFunction>(...fns: (T | undefined)[]) {
 export const compose = <T>(
   fn1: (...args: T[]) => T,
   ...fns: Array<(...args: T[]) => T>
-) => fns.reduce((f1, f2) => (...args) => f1(f2(...args)), fn1)
+) =>
+  fns.reduce(
+    (f1, f2) =>
+      (...args) =>
+        f1(f2(...args)),
+    fn1,
+  )
 
 export function once<T extends AnyFunction>(fn?: T | null) {
   let result: any
@@ -67,8 +77,10 @@ export const error = once((options: MessageOptions) => () => {
   }
 })
 
-export const pipe = <R>(...fns: Array<(a: R) => R>) => (v: R) =>
-  fns.reduce((a, b) => b(a), v)
+export const pipe =
+  <R>(...fns: Array<(a: R) => R>) =>
+  (v: R) =>
+    fns.reduce((a, b) => b(a), v)
 
 const distance1D = (a: number, b: number) => Math.abs(a - b)
 type Point = { x: number; y: number }

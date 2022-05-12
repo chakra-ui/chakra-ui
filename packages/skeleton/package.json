@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/skeleton",
-  "version": "1.2.14",
+  "version": "2.0.0",
   "description": "React component to render a placeholders while you wait for content to load",
   "keywords": [
     "skeleton",
@@ -20,8 +20,7 @@
   "module": "dist/chakra-ui-skeleton.esm.js",
   "types": "dist/chakra-ui-skeleton.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -35,21 +34,21 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "1.9.1",
-    "@chakra-ui/media-query": "2.0.4",
-    "@chakra-ui/system": "1.12.1",
-    "@chakra-ui/utils": "1.10.4"
+    "@chakra-ui/hooks": "2.0.0",
+    "@chakra-ui/media-query": "3.0.0",
+    "@chakra-ui/system": "2.0.0",
+    "@chakra-ui/utils": "2.0.0"
   },
   "peerDependencies": {
-    "@chakra-ui/theme": ">=1.0.0",
+    "@chakra-ui/theme": ">=2.0.0-next.0",
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
-    "react": ">=16.8.6"
+    "react": ">=18"
   },
   "devDependencies": {
-    "@chakra-ui/theme": "*",
-    "@emotion/react": "^11.4.0",
-    "@emotion/styled": "^11.3.0",
-    "react": "^17.0.1"
+    "@chakra-ui/theme": "^2.0.0",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "react": "^18.0.0"
   }
 }

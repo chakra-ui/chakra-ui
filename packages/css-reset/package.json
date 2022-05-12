@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/css-reset",
-  "version": "1.1.3",
+  "version": "2.0.0",
   "description": "CSS reset component for Chakra UI",
   "keywords": [
     "theme",
@@ -17,8 +17,7 @@
   "module": "dist/chakra-ui-css-reset.esm.js",
   "types": "dist/chakra-ui-css-reset.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -33,10 +32,10 @@
   },
   "peerDependencies": {
     "@emotion/react": ">=10.0.35",
-    "react": ">=16.8.6"
+    "react": ">=18"
   },
   "devDependencies": {
-    "@emotion/react": "^11.4.0",
-    "react": "^17.0.1"
+    "@emotion/react": "^11.9.0",
+    "react": "^18.0.0"
   }
 }

@@ -1,37 +1,20 @@
 import type { AlertStatus } from "@chakra-ui/alert"
-import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
-} from "@chakra-ui/alert"
-import { CloseButton } from "@chakra-ui/close-button"
-import {
-  chakra,
-  ColorMode,
-  ColorModeContext,
-  ThemeProvider,
-  useChakra,
-} from "@chakra-ui/system"
-import defaultTheme from "@chakra-ui/theme"
-import { isFunction, noop } from "@chakra-ui/utils"
-import { useLatestRef } from "@chakra-ui/hooks"
+import { ThemingProps, useChakra } from "@chakra-ui/system"
 import * as React from "react"
-import { toast } from "./toast.class"
-import {
-  getToastPlacement,
-  ToastPositionWithLogical,
-  WithoutLogicalPosition,
-} from "./toast.placement"
+import { MaybeFunction, runIfFn } from "@chakra-ui/utils"
+import { useLatestRef } from "@chakra-ui/hooks"
+import { getToastPlacement, ToastPosition } from "./toast.placement"
 import type { RenderProps, ToastId, ToastOptions } from "./toast.types"
+import { useToastManager } from "./toast.provider"
+import { createRenderToast } from "./toast"
 
-export interface UseToastOptions {
+export interface UseToastOptions extends ThemingProps<"Alert"> {
   /**
    * The placement of the toast
    *
    * @default "bottom"
    */
-  position?: ToastPositionWithLogical
+  position?: ToastPosition
   /**
    * The delay before the toast hides (in milliseconds)
    * If set to `null`, toast will never dismiss.
@@ -39,11 +22,13 @@ export interface UseToastOptions {
    * @default 5000 ( = 5000ms )
    */
   duration?: ToastOptions["duration"]
+
   /**
    * Render a component toast component.
    * Any component passed will receive 2 props: `id` and `onClose`.
    */
   render?(props: RenderProps): React.ReactNode
+
   /**
    * The title of the toast
    */
@@ -57,13 +42,13 @@ export interface UseToastOptions {
    */
   isClosable?: boolean
   /**
-   * The alert component `variant` to use
-   */
-  variant?: "subtle" | "solid" | "left-accent" | "top-accent" | (string & {})
-  /**
    * The status of the toast.
    */
   status?: AlertStatus
+  /**
+  * A custom icon that will be displayed by the toast.
+  */
+  icon?: React.ReactNode
   /**
    * The `id` of the toast.
    *
@@ -81,145 +66,86 @@ export interface UseToastOptions {
   containerStyle?: React.CSSProperties
 }
 
-type UseToastOptionsNormalized = WithoutLogicalPosition<UseToastOptions>
-
-export type IToast = UseToastOptions
-
-const Toast: React.FC<any> = (props) => {
-  const { status, variant, id, title, isClosable, onClose, description } = props
-
-  const alertTitleId =
-    typeof id !== "undefined" ? `toast-${id}-title` : undefined
-
-  return (
-    <Alert
-      status={status}
-      variant={variant}
-      id={id}
-      alignItems="start"
-      borderRadius="md"
-      boxShadow="lg"
-      paddingEnd={8}
-      textAlign="start"
-      width="auto"
-      aria-labelledby={alertTitleId}
-    >
-      <AlertIcon />
-      <chakra.div flex="1" maxWidth="100%">
-        {title && <AlertTitle id={alertTitleId}>{title}</AlertTitle>}
-        {description && (
-          <AlertDescription display="block">{description}</AlertDescription>
-        )}
-      </chakra.div>
-      {isClosable && (
-        <CloseButton
-          size="sm"
-          onClick={onClose}
-          position="absolute"
-          insetEnd={1}
-          top={1}
-        />
-      )}
-    </Alert>
-  )
-}
-
-const defaults = {
-  duration: 5000,
-  position: "bottom",
-  variant: "solid",
-} as const
-
-export type CreateStandAloneToastParam = Partial<
-  ReturnType<typeof useChakra> & {
-    setColorMode: (value: ColorMode) => void
-    defaultOptions: UseToastOptions
-  }
->
-
-export const defaultStandaloneParam: Required<CreateStandAloneToastParam> = {
-  theme: defaultTheme,
-  colorMode: "light",
-  toggleColorMode: noop,
-  setColorMode: noop,
-  defaultOptions: defaults,
-}
-/**
- * Create a toast from outside of React Components
- */
-export function createStandaloneToast({
-  theme = defaultStandaloneParam.theme,
-  colorMode = defaultStandaloneParam.colorMode,
-  toggleColorMode = defaultStandaloneParam.toggleColorMode,
-  setColorMode = defaultStandaloneParam.setColorMode,
-  defaultOptions = defaultStandaloneParam.defaultOptions,
-}: CreateStandAloneToastParam = defaultStandaloneParam) {
-  const renderWithProviders = (
-    props: React.PropsWithChildren<RenderProps>,
-    options: UseToastOptionsNormalized,
-  ) => (
-    <ThemeProvider theme={theme}>
-      <ColorModeContext.Provider
-        value={{ colorMode, setColorMode, toggleColorMode }}
-      >
-        {isFunction(options.render) ? (
-          options.render(props)
-        ) : (
-          <Toast {...props} {...options} />
-        )}
-      </ColorModeContext.Provider>
-    </ThemeProvider>
-  )
-
-  const toastImpl = (options?: UseToastOptions) => {
-    const opts = { ...defaultOptions, ...options } as UseToastOptionsNormalized
-    opts.position = getToastPlacement(opts.position, theme.direction)
-
-    const Message: React.FC<RenderProps> = (props) =>
-      renderWithProviders(props, opts)
-
-    return toast.notify(Message, opts)
-  }
-
-  toastImpl.close = toast.close
-  toastImpl.closeAll = toast.closeAll
-
-  // toasts can only be updated if they have a valid id
-  toastImpl.update = (id: ToastId, options: Omit<UseToastOptions, "id">) => {
-    if (!id) return
-
-    const opts = { ...defaultOptions, ...options } as UseToastOptionsNormalized
-    opts.position = getToastPlacement(opts.position, theme.direction)
-
-    toast.update(id, {
-      ...opts,
-      message: (props) => renderWithProviders(props, opts),
-    })
-  }
-
-  toastImpl.isActive = toast.isActive
-
-  return toastImpl
-}
+type UseToastPromiseOption = Omit<UseToastOptions, "status">
 
 /**
  * React hook used to create a function that can be used
  * to show toasts in an application.
  */
-export function useToast(options?: UseToastOptions) {
-  const { theme, setColorMode, toggleColorMode, colorMode } = useChakra()
-
-  const toastOptions = useLatestRef(options)
+export function useToast(defaultOptions?: UseToastOptions) {
+  const { theme } = useChakra()
+  const toastContext = useToastManager()
+  const latestToastContextRef = useLatestRef(toastContext)
 
   return React.useMemo(() => {
-    return createStandaloneToast({
-      theme,
-      colorMode,
-      setColorMode,
-      toggleColorMode,
-      defaultOptions: { ...defaults, ...toastOptions.current },
+    const normalizeToastOptions = (options?: UseToastOptions) => ({
+      ...defaultOptions,
+      ...options,
+      position: getToastPlacement(options?.position, theme.direction),
     })
-  }, [theme, setColorMode, toggleColorMode, colorMode, toastOptions])
+
+    const toast = (options?: UseToastOptions) => {
+      const normalizedToastOptions = normalizeToastOptions(options)
+      const Message = createRenderToast(normalizedToastOptions)
+      return latestToastContextRef.current.notify(
+        Message,
+        normalizedToastOptions,
+      )
+    }
+
+    toast.close = latestToastContextRef.current.close
+    toast.closeAll = latestToastContextRef.current.closeAll
+
+    /**
+     * Toasts can only be updated if they have a valid id
+     */
+    toast.update = (id: ToastId, options: Omit<UseToastOptions, "id">) => {
+      if (!id) return
+
+      const normalizedToastOptions = normalizeToastOptions(options)
+      const Message = createRenderToast(normalizedToastOptions)
+
+      latestToastContextRef.current.update(id, {
+        ...normalizedToastOptions,
+        message: Message,
+      })
+    }
+
+    toast.promise = <Result extends any, Err extends Error = Error>(
+      promise: Promise<Result>,
+      options: {
+        success: MaybeFunction<UseToastPromiseOption, [Result]>
+        error: MaybeFunction<UseToastPromiseOption, [Err]>
+        loading: UseToastPromiseOption
+      },
+    ) => {
+      const id = toast({
+        ...options.loading,
+        status: "loading",
+        duration: null,
+      })
+
+      promise
+        .then((data) =>
+          toast.update(id, {
+            status: "success",
+            duration: 5_000,
+            ...runIfFn(options.success, data),
+          }),
+        )
+        .catch((error) =>
+          toast.update(id, {
+            status: "error",
+            duration: 5_000,
+            ...runIfFn(options.error, error),
+          }),
+        )
+    }
+
+    toast.isActive = latestToastContextRef.current.isActive
+
+    return toast
+  }, [defaultOptions, latestToastContextRef, theme.direction])
 }
 
 export default useToast

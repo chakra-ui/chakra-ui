@@ -1,81 +1,66 @@
 import { useEnvironment } from "@chakra-ui/react-env"
 import { isBrowser } from "@chakra-ui/utils"
-import * as React from "react"
+import { useState, useLayoutEffect, useEffect } from "react"
 
-const useSafeLayoutEffect = isBrowser ? React.useLayoutEffect : React.useEffect
+const useSafeLayoutEffect = isBrowser ? useLayoutEffect : useEffect
 
 /**
  * React hook that tracks state of a CSS media query
  *
  * @param query the media query to match
+ * @param defaultValues the default values to match
  */
-export function useMediaQuery(query: string | string[]): boolean[] {
+export function useMediaQuery(
+  query: string | string[],
+  defaultValues?: boolean | boolean[],
+): boolean[] {
   const env = useEnvironment()
+
   const queries = Array.isArray(query) ? query : [query]
-  const isSupported = isBrowser && "matchMedia" in env.window
 
-  const [matches, setMatches] = React.useState(
-    queries.map((query) =>
-      isSupported ? !!env.window.matchMedia(query).matches : false,
-    ),
-  )
+  let defaults = Array.isArray(defaultValues) ? defaultValues : [defaultValues]
+  defaults = defaults.filter((v) => v != null) as boolean[]
 
-  // Specifying matches in the dependency list will cause the event listeners
-  // to unload and then load each time the dependency changes. This causes
-  // Media Query Events to be missed. The event listeners should only be unloaded
-  // when the component unloads.
+  const [value, setValue] = useState(() => {
+    if (!isBrowser) {
+      return queries.map((query, index) => ({
+        media: query,
+        matches: defaults[index] ?? false,
+      }))
+    }
+    return queries.map((query) => ({
+      media: query,
+      matches: env.window.matchMedia(query).matches,
+    }))
+  })
+
   useSafeLayoutEffect(() => {
-    if (!isSupported) return undefined
+    if (!isBrowser) return
 
-    const mediaQueryList = queries.map((query) => env.window.matchMedia(query))
-
-    const listenerList = mediaQueryList.map((_, index) => {
-      const listener = (mqlEvent: MediaQueryListEvent) => {
-        const queryIndex = mediaQueryList.findIndex(
-          (mediaQuery) => mediaQuery.media === mqlEvent.media,
-        )
-
-        // As the event listener is on the media query list, any time the
-        // listener is called, we know there is a change. There's no need
-        // to compare the previous matches with current. Using
-        // setMatches(matches => {...}) provides access to the current matches
-        // state.  Trying to access matches outside the setMatches function
-        // would provide data from the time of instantiation (stale).
-
-        setMatches((matches) => {
-          const currentMatches = matches.map((x) => x)
-          currentMatches[queryIndex] = mqlEvent.matches
-          return currentMatches
+    const handler = (evt: MediaQueryListEvent) => {
+      setValue((prev) => {
+        return prev.slice().map((item) => {
+          if (item.media === evt.media) return { ...item, matches: evt.matches }
+          return item
         })
-      }
+      })
+    }
 
-      // Listening to the 'change' event on the Media Query List Object
-      // is more performant as the callback is only invoked when a specified
-      // media query is matched. Using addEventListener on the window object
-      // to listen for the resize event will call the callback on every
-      // viewport resize.
-      if (typeof mediaQueryList[index].addEventListener === "function") {
-        mediaQueryList[index].addEventListener("change", listener)
-      } else {
-        mediaQueryList[index].addListener(listener)
-      }
+    const mql = queries.map((query) => env.window.matchMedia(query))
 
-      return listener
+    mql.forEach((mql) => {
+      if (typeof mql.addListener === "function") mql.addListener(handler)
+      else mql.addEventListener("change", handler)
     })
 
     return () => {
-      mediaQueryList.forEach((_, index) => {
-        if (typeof mediaQueryList[index].removeEventListener === "function") {
-          mediaQueryList[index].removeEventListener(
-            "change",
-            listenerList[index],
-          )
-        } else {
-          mediaQueryList[index].removeListener(listenerList[index])
-        }
+      mql.forEach((mql) => {
+        if (typeof mql.removeListener === "function")
+          mql.removeListener(handler)
+        else mql.removeEventListener("change", handler)
       })
     }
   }, [])
 
-  return matches
+  return value.map((item) => item.matches)
 }

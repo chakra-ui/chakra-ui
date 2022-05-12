@@ -8,6 +8,7 @@
     "esModuleInterop": true
   },
   "ts-node": {
+    "swc": true,
     "transpileOnly": true
   }
 }

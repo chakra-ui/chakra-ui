@@ -31,15 +31,21 @@ export function useEventListeners(): EventListeners {
   const listeners = React.useRef(new Map())
   const currentListeners = listeners.current
 
-  const add = React.useCallback((el, type, listener, options) => {
-    listeners.current.set(listener, { type, el, options })
-    el.addEventListener(type, listener, options)
-  }, [])
+  const add = React.useCallback(
+    (el: any, type: any, listener: any, options: any) => {
+      listeners.current.set(listener, { type, el, options })
+      el.addEventListener(type, listener, options)
+    },
+    [],
+  )
 
-  const remove = React.useCallback((el, type, listener, options) => {
-    el.removeEventListener(type, listener, options)
-    listeners.current.delete(listener)
-  }, [])
+  const remove = React.useCallback(
+    (el: any, type: any, listener: any, options: any) => {
+      el.removeEventListener(type, listener, options)
+      listeners.current.delete(listener)
+    },
+    [],
+  )
 
   React.useEffect(
     () => () => {

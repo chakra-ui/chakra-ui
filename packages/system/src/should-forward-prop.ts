@@ -9,7 +9,6 @@ const allPropNames = new Set([
   "textStyle",
   "layerStyle",
   "apply",
-  "isTruncated",
   "noOfLines",
   "focusBorderColor",
   "errorBorderColor",

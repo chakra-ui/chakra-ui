@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/system",
-  "version": "1.12.1",
+  "version": "2.0.0",
   "description": "Chakra UI system primitives",
   "keywords": [
     "system",
@@ -20,8 +20,7 @@
   "module": "dist/chakra-ui-system.esm.js",
   "types": "dist/chakra-ui-system.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -35,20 +34,20 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/color-mode": "1.4.8",
-    "@chakra-ui/react-utils": "1.2.3",
-    "@chakra-ui/styled-system": "1.19.0",
-    "@chakra-ui/utils": "1.10.4",
+    "@chakra-ui/color-mode": "2.0.0",
+    "@chakra-ui/react-utils": "2.0.0",
+    "@chakra-ui/styled-system": "2.0.0",
+    "@chakra-ui/utils": "2.0.0",
     "react-fast-compare": "3.2.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
-    "react": ">=16.8.6"
+    "react": ">=18"
   },
   "devDependencies": {
-    "@emotion/react": "^11.4.0",
-    "@emotion/styled": "^11.3.0",
-    "react": "^17.0.1"
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "react": "^18.0.0"
   }
 }

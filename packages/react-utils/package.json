@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react-utils",
-  "version": "1.2.3",
+  "version": "2.0.0",
   "description": "React utilities and helpers for Chakra UI",
   "keywords": [
     "theme",
@@ -16,8 +16,7 @@
   "types": "dist/chakra-ui-react-utils.cjs.d.ts",
   "sideEffects": false,
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -31,12 +30,12 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/utils": "^1.10.4"
+    "@chakra-ui/utils": "^2.0.0"
   },
   "peerDependencies": {
-    "react": ">=16.8.6"
+    "react": ">=18"
   },
   "devDependencies": {
-    "react": "^17.0.1"
+    "react": "^18.0.0"
   }
 }

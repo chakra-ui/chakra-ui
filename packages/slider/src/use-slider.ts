@@ -8,7 +8,12 @@ import {
   usePanGesture,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
-import { EventKeyMap, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
+import {
+  EventKeyMap,
+  mergeRefs,
+  PropGetter,
+  ReactRef,
+} from "@chakra-ui/react-utils"
 import {
   AnyPointerEvent,
   ariaAttr,
@@ -210,7 +215,7 @@ export function useSlider(props: UseSliderProps) {
    */
 
   const getValueFromPointer = useCallback(
-    (event) => {
+    (event: any) => {
       if (!trackRef.current) return
       eventSourceRef.current = "pointer"
       const trackRect = getBox(trackRef.current).borderBox
@@ -408,7 +413,7 @@ export function useSlider(props: UseSliderProps) {
   )
 
   const getThumbProps: PropGetter = useCallback(
-    (props = {}, ref = null) => ({
+    (props = {}, ref: ReactRef<any> = null) => ({
       ...props,
       ref: mergeRefs(ref, thumbRef),
       role: "slider",

@@ -1,21 +1,18 @@
 import * as React from "react"
-import { theme as base } from "@chakra-ui/theme"
+import {
+  createStandaloneToast,
+  ToastId,
+  useToast,
+  theme as base,
+} from "@chakra-ui/react"
 import { Button, ButtonGroup } from "@chakra-ui/button"
 import { chakra, useColorMode } from "@chakra-ui/system"
 import { Alert } from "@chakra-ui/alert"
 import { Text } from "@chakra-ui/layout"
 import { useLatestRef } from "@chakra-ui/hooks"
-import { createStandaloneToast, ToastId, useToast } from "../src"
 
 export default {
   title: "Components / Feedback / Toast",
-  decorators: [
-    (Story: Function) => (
-      <>
-        <Story />
-      </>
-    ),
-  ],
 }
 
 export function ToastExample() {
@@ -28,7 +25,7 @@ export function ToastExample() {
           if (toast.isActive(id)) return
           toast({
             id,
-            position: "top-start",
+            position: "top-left",
             title: "Error Connecting...",
             description: "You do not have permissions to perform this action.",
             status: "error",
@@ -260,7 +257,15 @@ export const UseToastWithCustomContainerStyle = () => {
     },
   })
 
-  return <Button onClick={() => toast()}>toast</Button>
+  return (
+    <Button
+      onClick={() => {
+        toast()
+      }}
+    >
+      toast
+    </Button>
+  )
 }
 
 export const useToastCustomRenderUpdate = () => {
@@ -304,19 +309,20 @@ export const useToastCustomRenderUpdate = () => {
 }
 
 export function StandAloneToast() {
-  const toast = createStandaloneToast({
+  const { ToastContainer, toast } = createStandaloneToast({
     theme: {
       ...base,
       colors: {
         green: {
-          500: "#67BF3C",
+          500: "#bf3c3c",
         },
       },
     },
   })
-  const toast2 = createStandaloneToast()
   return (
     <>
+      <ToastContainer />
+
       <Text fontSize="lg" fontWeight="bold">
         This Text matches Theme font
       </Text>
@@ -337,23 +343,81 @@ export function StandAloneToast() {
         >
           Standalone Toast With Custom Theme
         </Button>
-        <Button
-          onClick={() => {
-            toast2({
-              title: "Standalone Toast",
-              description: "Uses default theme",
-              status: "success",
-              duration: 3000,
-              isClosable: true,
-              onCloseComplete: () => {
-                console.log("hello")
-              },
-            })
-          }}
-        >
-          Standalone Toast With Default Theme
-        </Button>
       </ButtonGroup>
     </>
   )
 }
+
+export const AsyncToast = () => {
+  const toast = useToast()
+
+  const getResolve = () =>
+    new Promise<string>((resolve) => setTimeout(() => resolve("hello"), 2000))
+
+  const getReject = () =>
+    new Promise<string>((_, reject) => setTimeout(() => reject(), 2000))
+  const promiseOptions = {
+    loading: {
+      title: "Please wait ...",
+      duration: null,
+    },
+    success: {
+      title: "Wait is over you won!",
+    },
+    error: {
+      title: "Wait is over you loose",
+    },
+  }
+
+  return (
+    <ButtonGroup>
+      <Button onClick={() => toast.promise(getResolve(), promiseOptions)}>
+        Async toast [success]
+      </Button>
+      <Button onClick={() => toast.promise(getReject(), promiseOptions)}>
+        Async toast [error]
+      </Button>
+    </ButtonGroup>
+  )
+}
+
+export const ToastWithCustomIcon = () => {
+  const toast = useToast()
+  const id = "toast-with-custom-icon"
+
+  return (
+    <ButtonGroup>
+      <Button
+        onClick={() => {
+          if (toast.isActive(id)) return
+          toast({
+            id,
+            position: "top-left",
+            title: "Message me",
+            icon: <span>💬</span>,
+            duration: null,
+            isClosable: true,
+            onCloseComplete: () => {
+              console.log("hello")
+            },
+          })
+        }}
+      >
+        Show Toast
+      </Button>
+      <Button onClick={() => toast.closeAll()}>Close all</Button>
+      <Button
+        onClick={() =>
+          toast.update(id, {
+            title: "You have reached me!!!",
+            icon: <span>🥳</span>,
+            duration: 3000,
+          })
+        }
+      >
+        Update
+      </Button>
+      <Button onClick={() => toast.close(id)}>Close One</Button>
+    </ButtonGroup>
+  )
+} 

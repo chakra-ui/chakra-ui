@@ -1,3 +1,3 @@
-import { ChakraProviderWrapper } from "../components"
+import { ChakraProviderDecorator } from "../feature/decorator/ChakraProviderDecorator"
 
-export const decorators = [ChakraProviderWrapper]
+export const decorators = [ChakraProviderDecorator]

@@ -1,5 +1,316 @@
 # Change Log
 
+## 2.0.0
+
+### Major Changes
+
+- [#5879](https://github.com/chakra-ui/chakra-ui/pull/5879)
+  [`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump all packages
+  to next major for Chakra UI version 2.
+
+* [#5989](https://github.com/chakra-ui/chakra-ui/pull/5989)
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Omit `src`
+  directory from being published to npm
+
+- [#5828](https://github.com/chakra-ui/chakra-ui/pull/5828)
+  [`1a47fd27e`](https://github.com/chakra-ui/chakra-ui/commit/1a47fd27e6e37ff5d149e0469888eed0ec306632)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ### Remove
+  deprecations
+
+  **Affected components or packages:**
+
+  **Button, Icon Button, Input, NumberInput, Radio, Checkbox, Select**
+
+  - Removed the `isFullWidth` deprecation. Use `width=full` or `width=100%`
+
+  **Checkbox**
+
+  - Removed `defaultIsChecked`. Use `defaultChecked`
+
+  **Color mode**
+
+  - Removed references to `--chakra-ui-color-mode`. Use `data-theme` property
+    instead
+
+  **Hooks**
+
+  - Removed `useEventCallback` hook
+
+  **Input / NumberInput**
+
+  - Removed the `isFullWidth` deprecation. Use `width=full` or `width=100%`
+
+  **Grid**
+
+  - Removed the `area` prop from `Grid` component. Should be passed to the
+    `GridItem` instead.
+
+  **Styled system**
+
+  - Removed the `d` style prop. Use `display` instead.
+  - Removed the `isTruncated` style prop. Use `noOfLines={1}` instead.
+
+  **Theme**
+
+  - Removed deprecated types.
+
+* [#5946](https://github.com/chakra-ui/chakra-ui/pull/5946)
+  [`7b5bdcc58`](https://github.com/chakra-ui/chakra-ui/commit/7b5bdcc588fb41aa3288ffaa293514b9d35ebaa4)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Ensure the
+  transition between light/dark modes happens instantly without transition. This
+  helps to avoid a weird UX when switch modes for elements with different
+  `transition` definition on the page.
+
+  Allow user configure the storage key for the provider and script. We now
+  export a `createLocalStorageManager` and `createCookieStorageManager`
+  functions.
+
+  ```jsx
+  const manager = createLocalStorageManager("{storageKey}")
+
+  function App({ Component, pageProps }) {
+    return (
+      <ChakraProvider colorModeManager={manager}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    )
+  }
+  ```
+
+  Add better support for cookie storage to provide better SSG experience. To use
+  cookie script, you can set `type=cookie`.
+
+  > Pro tip: You can also configure the `storageKey` from script as well
+
+  ```jsx
+  import { ColorModeScript } from "@chakra-ui/react"
+  function Document() {
+    return (
+      <Html>
+        <Head>
+          <title>App</title>
+        </Head>
+        <Body>
+          <ColorModeScript type="cookie" />
+          <Main />
+        </Body>
+      </Html>
+    )
+  }
+  ```
+
+  Refactored color mode to behave consistently between provider and script. The
+  new precedence is as follows:
+
+  - Get the color mode value in the specified localStorage or cookie manager
+  - If value doesn't exist, use the `initialColorMode` value specified.
+    - If the initial value is `system`, then we'll compute the color mode using
+      `matchMedia`
+    - Else, we use the initial value as is.
+  - If user specifies `useSystemColorMode: true`, then we'll subscribe to color
+    mode changes from the operating system. It is no longer used to determine
+    the initial color mode. To achieve that, please use
+    `initialColorMode: "system"`
+
+  Removed `--chakra-ui-color-mode` CSS variable and use `data-theme` attribute
+  on the `html` element.
+
+  Added `color-scheme` to the `html` element to ensure native form-elements
+  render in the correct mode.
+
+- [#5882](https://github.com/chakra-ui/chakra-ui/pull/5882)
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump peer
+  dependency to React and ReactDOM to >=18
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f),
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7),
+  [`ad84d8efc`](https://github.com/chakra-ui/chakra-ui/commit/ad84d8efc7602909488272c214167794e66a0581),
+  [`1a47fd27e`](https://github.com/chakra-ui/chakra-ui/commit/1a47fd27e6e37ff5d149e0469888eed0ec306632),
+  [`8991ac13e`](https://github.com/chakra-ui/chakra-ui/commit/8991ac13e5ec71cc1fbd09610981913b7efe9798),
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196),
+  [`d32aea176`](https://github.com/chakra-ui/chakra-ui/commit/d32aea176b66b4d5206df10530c011f8eaa2e42d)]:
+  - @chakra-ui/react-env@2.0.0
+  - @chakra-ui/hooks@2.0.0
+  - @chakra-ui/utils@2.0.0
+
+## 2.0.0-next.4
+
+### Major Changes
+
+- [#5989](https://github.com/chakra-ui/chakra-ui/pull/5989)
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Omit `src`
+  directory from being published to npm
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)]:
+  - @chakra-ui/react-env@2.0.0-next.2
+  - @chakra-ui/hooks@2.0.0-next.3
+  - @chakra-ui/utils@2.0.0-next.2
+
+## 2.0.0-next.3
+
+### Major Changes
+
+- [#5946](https://github.com/chakra-ui/chakra-ui/pull/5946)
+  [`7b5bdcc58`](https://github.com/chakra-ui/chakra-ui/commit/7b5bdcc588fb41aa3288ffaa293514b9d35ebaa4)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Ensure the
+  transition between light/dark modes happens instantly without transition. This
+  helps to avoid a weird UX when switch modes for elements with different
+  `transition` definition on the page.
+
+  Allow user configure the storage key for the provider and script. We now
+  export a `createLocalStorageManager` and `createCookieStorageManager`
+  functions.
+
+  ```jsx
+  const manager = createLocalStorageManager("{storageKey}")
+
+  function App({ Component, pageProps }) {
+    return (
+      <ChakraProvider colorModeManager={manager}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    )
+  }
+  ```
+
+  Add better support for cookie storage to provide better SSG experience. To use
+  cookie script, you can set `type=cookie`.
+
+  > Pro tip: You can also configure the `storageKey` from script as well
+
+  ```jsx
+  import { ColorModeScript } from "@chakra-ui/react"
+  function Document() {
+    return (
+      <Html>
+        <Head>
+          <title>App</title>
+        </Head>
+        <Body>
+          <ColorModeScript type="cookie" />
+          <Main />
+        </Body>
+      </Html>
+    )
+  }
+  ```
+
+  Refactored color mode to behave consistently between provider and script. The
+  new precedence is as follows:
+
+  - Get the color mode value in the specified localStorage or cookie manager
+  - If value doesn't exist, use the `initialColorMode` value specified.
+    - If the initial value is `system`, then we'll compute the color mode using
+      `matchMedia`
+    - Else, we use the initial value as is.
+  - If user specifies `useSystemColorMode: true`, then we'll subscribe to color
+    mode changes from the operating system. It is no longer used to determine
+    the initial color mode. To achieve that, please use
+    `initialColorMode: "system"`
+
+  Removed `--chakra-ui-color-mode` CSS variable and use `data-theme` attribute
+  on the `html` element.
+
+  Added `color-scheme` to the `html` element to ensure native form-elements
+  render in the correct mode.
+
+## 2.0.0-next.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`8991ac13e`](https://github.com/chakra-ui/chakra-ui/commit/8991ac13e5ec71cc1fbd09610981913b7efe9798),
+  [`d32aea176`](https://github.com/chakra-ui/chakra-ui/commit/d32aea176b66b4d5206df10530c011f8eaa2e42d)]:
+  - @chakra-ui/hooks@2.0.0-next.2
+
+## 2.0.0-next.1
+
+### Major Changes
+
+- [#5882](https://github.com/chakra-ui/chakra-ui/pull/5882)
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump peer
+  depencency to React and ReactDOM to >=18
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ad84d8efc`](https://github.com/chakra-ui/chakra-ui/commit/ad84d8efc7602909488272c214167794e66a0581),
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)]:
+  - @chakra-ui/react-env@2.0.0-next.1
+  - @chakra-ui/hooks@2.0.0-next.1
+  - @chakra-ui/utils@2.0.0-next.1
+
+## 2.0.0-next.0
+
+### Major Changes
+
+- [#5879](https://github.com/chakra-ui/chakra-ui/pull/5879)
+  [`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump all packages
+  to next major for Chakra UI version 2.
+
+* [#5828](https://github.com/chakra-ui/chakra-ui/pull/5828)
+  [`1a47fd27e`](https://github.com/chakra-ui/chakra-ui/commit/1a47fd27e6e37ff5d149e0469888eed0ec306632)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ### Remove
+  deprecations
+
+  **Affected components or packages:**
+
+  **Button, Icon Button, Input, NumberInput, Radio, Checkbox, Select**
+
+  - Removed the `isFullWidth` deprecation. Use `width=full` or `width=100%`
+
+  **Checkbox**
+
+  - Removed `defaultIsChecked`. Use `defaultChecked`
+
+  **Color mode**
+
+  - Removed references to `--chakra-ui-color-mode`. Use `data-theme` property
+    instead
+
+  **Hooks**
+
+  - Removed `useEventCallback` hook
+
+  **Input / NumberInput**
+
+  - Removed the `isFullWidth` deprecation. Use `width=full` or `width=100%`
+
+  **Grid**
+
+  - Removed the `area` prop from `Grid` component. Should be passed to the
+    `GridItem` instead.
+
+  **Styled system**
+
+  - Removed the `d` style prop. Use `display` instead.
+  - Removed the `isTruncated` style prop. Use `noOfLines={1}` instead.
+
+  **Theme**
+
+  - Removed deprecated types.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f),
+  [`1a47fd27e`](https://github.com/chakra-ui/chakra-ui/commit/1a47fd27e6e37ff5d149e0469888eed0ec306632)]:
+  - @chakra-ui/react-env@2.0.0-next.0
+  - @chakra-ui/hooks@2.0.0-next.0
+  - @chakra-ui/utils@2.0.0-next.0
+
 ## 1.4.8
 
 ### Patch Changes

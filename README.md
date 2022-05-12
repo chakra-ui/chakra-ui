@@ -25,9 +25,11 @@ components that make it super easy to create websites and apps.
 
 ## Looking for the documentation? 📝
 
-For older versions, head over here => https://v0.chakra-ui.com
+It's the https://chakra-ui.com website for the latest version of Chakra UI. For
+older versions head over here
 
-Latest version (v1) => https://chakra-ui.com
+- v1: https://v1.chakra-ui.com
+- v0: https://v0.chakra-ui.com
 
 ## Features 🚀
 
@@ -93,11 +95,11 @@ To use Chakra UI components, all you need to do is install the
 `@chakra-ui/react` package and its peer dependencies:
 
 ```sh
-$ yarn add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^5
+$ yarn add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
 
 # or
 
-$ npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^5
+$ npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
 ```
 
 ## Usage
@@ -128,6 +130,9 @@ function Example() {
   return <Button>I just consumed some ⚡️Chakra!</Button>
 }
 ```
+
+More guides on how to get started are available
+[here](https://chakra-ui.com/guides/first-steps)
 
 ## CodeSandbox Templates
 
@@ -446,6 +451,9 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://nikolovlazar.com"><img src="https://avatars.githubusercontent.com/u/5396211?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Lazar Nikolov</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Anikolovlazar" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://iwata.love"><img src="https://avatars.githubusercontent.com/u/7393198?v=4?s=64" width="64px;" alt=""/><br /><sub><b>iwata</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/issues?q=author%3Aishowta" title="Bug reports">🐛</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=ishowta" title="Code">💻</a></td>
     <td align="center"><a href="https://shining-cerise-a8f.notion.site/Crispy-4f6d4f0c15d64b9abfdaf73a0dffdf63"><img src="https://avatars.githubusercontent.com/u/29042329?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Lee seung chan</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=heozeop" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/pomSense"><img src="https://avatars.githubusercontent.com/u/35952778?v=4?s=64" width="64px;" alt=""/><br /><sub><b>pomSense</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=pomSense" title="Code">💻</a></td>
   </tr>
 </table>
 

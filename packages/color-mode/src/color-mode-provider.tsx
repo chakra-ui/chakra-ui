@@ -1,16 +1,12 @@
+import { useUpdateEffect } from "@chakra-ui/hooks"
 import { useEnvironment } from "@chakra-ui/react-env"
 import { isBrowser, noop, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import {
-  addListener,
-  ColorMode,
-  getColorScheme,
-  root,
-  syncBodyClassName,
-} from "./color-mode.utils"
+import { ColorMode, getColorModeUtils } from "./color-mode.utils"
 import { localStorageManager, StorageManager } from "./storage-manager"
 
 type ConfigColorMode = ColorMode | "system" | undefined
+
 export type { ColorMode, ConfigColorMode }
 
 export interface ColorModeOptions {
@@ -45,7 +41,7 @@ export const useColorMode = () => {
 export interface ColorModeProviderProps {
   value?: ColorMode
   children?: React.ReactNode
-  options: ColorModeOptions
+  options?: ColorModeOptions
   colorModeManager?: StorageManager
 }
 
@@ -57,109 +53,70 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   const {
     value,
     children,
-    options: { useSystemColorMode, initialColorMode },
+    options: { useSystemColorMode, initialColorMode } = {},
     colorModeManager = localStorageManager,
   } = props
 
   const defaultColorMode = initialColorMode === "dark" ? "dark" : "light"
 
-  /**
-   * Only attempt to retrieve if we're on the server. Else this will result
-   * in a hydration mismatch warning and partially invalid visuals.
-   *
-   * Else fallback safely to `theme.config.initialColormode` (default light)
-   */
   const [colorMode, rawSetColorMode] = React.useState<ColorMode | undefined>(
-    colorModeManager.type === "cookie"
-      ? colorModeManager.get(defaultColorMode)
-      : defaultColorMode,
+    defaultColorMode,
   )
 
   const { document } = useEnvironment()
 
   React.useEffect(() => {
-    /**
-     * Since we cannot initially retrieve localStorage for the reasons mentioned
-     * above, do so after hydration.
-     *
-     * Priority:
-     * - if `useSystemColorMode` is true system-color will be used as default - initial
-     * colormode is the fallback if system color mode isn't resolved
-     *
-     * - if `--chakra-ui-color-mode` is defined through e.g. `ColorModeScript` this
-     * will be used
-     *
-     * - if `colorModeManager` = `localStorage` and a value is defined for
-     * `chakra-ui-color-mode` this will be used
-     *
-     * - if `initialColorMode` = `system` system-color will be used as default -
-     * initial colormode is the fallback if system color mode isn't resolved
-     *
-     * - if `initialColorMode` = `'light'|'dark'` the corresponding value will be used
-     */
-    if (isBrowser && colorModeManager.type === "localStorage") {
-      const systemColorWithFallback = getColorScheme(defaultColorMode)
-      if (useSystemColorMode) {
-        return rawSetColorMode(systemColorWithFallback)
-      }
-      const rootGet = root.get()
-      const colorManagerGet = colorModeManager.get()
-      if (rootGet) {
-        return rawSetColorMode(rootGet)
-      }
-      if (colorManagerGet) {
-        return rawSetColorMode(colorManagerGet)
-      }
-      if (initialColorMode === "system") {
-        return rawSetColorMode(systemColorWithFallback)
-      }
-      return rawSetColorMode(defaultColorMode)
-    }
-  }, [colorModeManager, useSystemColorMode, defaultColorMode, initialColorMode])
+    if (!isBrowser) return
+    const utils = getColorModeUtils({ doc: document })
 
-  React.useEffect(() => {
-    const isDark = colorMode === "dark"
-    syncBodyClassName(isDark, document)
-    root.set(isDark ? "dark" : "light")
+    const managerValue = colorModeManager.get()
+
+    if (managerValue) {
+      rawSetColorMode(managerValue)
+      return
+    }
+
+    const systemValue = utils.getColorScheme(defaultColorMode)
+
+    if (initialColorMode === "system") {
+      rawSetColorMode(systemValue)
+      return
+    }
+
+    rawSetColorMode(defaultColorMode)
+  }, [colorModeManager, defaultColorMode, initialColorMode, document])
+
+  useUpdateEffect(() => {
+    const utils = getColorModeUtils({ doc: document })
+
+    const dark = colorMode === "dark"
+    utils.setClassName(dark)
+
+    if (colorMode) {
+      utils.setDataset(colorMode)
+      colorModeManager.set(colorMode)
+    }
   }, [colorMode, document])
 
-  const setColorMode = React.useCallback(
-    (value: ColorMode, isListenerEvent = false) => {
-      if (!isListenerEvent) {
-        colorModeManager.set(value)
-      } else if (colorModeManager.get() && !useSystemColorMode) return
-
-      rawSetColorMode(value)
-    },
-    [colorModeManager, useSystemColorMode],
-  )
-
   const toggleColorMode = React.useCallback(() => {
-    setColorMode(colorMode === "light" ? "dark" : "light")
-  }, [colorMode, setColorMode])
+    rawSetColorMode((prev) => (prev === "light" ? "dark" : "light"))
+  }, [])
 
   React.useEffect(() => {
-    const shouldUseSystemListener =
-      useSystemColorMode || initialColorMode === "system"
-    let removeListener: any
-    if (shouldUseSystemListener) {
-      removeListener = addListener(setColorMode)
-    }
-    return () => {
-      if (removeListener && shouldUseSystemListener) {
-        removeListener()
-      }
-    }
-  }, [setColorMode, useSystemColorMode, initialColorMode])
+    if (!isBrowser) return
+    const utils = getColorModeUtils({ doc: document })
+    const system = useSystemColorMode || initialColorMode === "system"
+    return system ? utils.addListener(rawSetColorMode) : noop
+  }, [useSystemColorMode, initialColorMode, document])
 
   // presence of `value` indicates a controlled context
   const context = React.useMemo(
     () => ({
       colorMode: (value ?? colorMode) as ColorMode,
       toggleColorMode: value ? noop : toggleColorMode,
-      setColorMode: value ? noop : setColorMode,
+      setColorMode: value ? noop : rawSetColorMode,
     }),
-    [colorMode, setColorMode, toggleColorMode, value],
+    [colorMode, toggleColorMode, value],
   )
 
   return (
@@ -176,7 +133,7 @@ if (__DEV__) {
 /**
  * Locks the color mode to `dark`, without any way to change it.
  */
-export const DarkMode: React.FC = (props) => {
+export const DarkMode = (props: React.PropsWithChildren<{}>) => {
   const context = React.useMemo<ColorModeContextType>(
     () => ({
       colorMode: "dark",
@@ -196,7 +153,7 @@ if (__DEV__) {
 /**
  * Locks the color mode to `light` without any way to change it.
  */
-export const LightMode: React.FC = (props) => {
+export const LightMode = (props: React.PropsWithChildren<{}>) => {
   const context = React.useMemo<ColorModeContextType>(
     () => ({
       colorMode: "light",

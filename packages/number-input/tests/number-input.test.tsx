@@ -4,10 +4,9 @@ import {
   testA11y,
   fireEvent,
   render,
-  renderHook,
-  userEvent,
-  press,
+  hooks,
   screen,
+  waitFor,
 } from "@chakra-ui/test-utils"
 import * as React from "react"
 import {
@@ -47,7 +46,7 @@ test("passes a11y test", async () => {
 })
 
 test("should start with empty string", () => {
-  const { result } = renderHook(() => useNumberInput())
+  const { result } = hooks.render(() => useNumberInput())
   expect(result.current.value).toBe("")
 })
 
@@ -66,51 +65,49 @@ test("should increment on press increment button", () => {
   expect(input).toHaveValue("2")
 })
 
-test("should increase/decrease with keyboard", () => {
-  const { getByTestId } = renderComponent()
+test("should increase/decrease with keyboard", async () => {
+  const { getByTestId, user } = renderComponent()
 
   const input = getByTestId("input")
 
-  input.focus()
-
-  press.ArrowUp(input)
-  press.ArrowUp(input)
-  press.ArrowUp(input)
+  await user.press.ArrowUp(input)
+  await user.press.ArrowUp(input)
+  await user.press.ArrowUp(input)
   expect(input).toHaveValue("3")
 
-  press.ArrowDown(input)
-  press.ArrowDown(input)
-  press.ArrowDown(input)
+  await user.press.ArrowDown(input)
+  await user.press.ArrowDown(input)
+  await user.press.ArrowDown(input)
   expect(input).toHaveValue("0")
 
-  press.ArrowUp(input)
+  await user.press.ArrowUp(input)
   expect(input).toHaveValue("1")
 
-  press.Home(input)
+  await user.press.Home(input)
   expect(input).toHaveValue("-9007199254740991")
 
-  press.End(input)
+  await user.press.End(input)
   expect(input).toHaveValue("9007199254740991")
 })
 
-test("should increase/decrease by 10*step on shift+Arrow", () => {
-  const { getByTestId } = renderComponent({ defaultValue: 0 })
+test("should increase/decrease by 10*step on shift+Arrow", async () => {
+  const { getByTestId, user } = renderComponent({ defaultValue: 0 })
 
   const input = getByTestId("input")
 
-  press.ArrowUp(input)
+  await user.press.ArrowUp(input)
   expect(input).toHaveValue("1")
-  press.ArrowUp(input, { shiftKey: true })
+  await user.press.ArrowUp(input, { shiftKey: true })
   expect(input).toHaveValue("11")
 
-  press.ArrowDown(input, { shiftKey: true })
+  await user.press.ArrowDown(input, { shiftKey: true })
   expect(input).toHaveValue("1")
-  press.ArrowDown(input)
+  await user.press.ArrowDown(input)
   expect(input).toHaveValue("0")
 })
 
-test("should increase/decrease by 0.1*step on ctrl+Arrow", () => {
-  const { getByTestId } = renderComponent({
+test("should increase/decrease by 0.1*step on ctrl+Arrow", async () => {
+  const { getByTestId, user } = renderComponent({
     defaultValue: 0,
     step: 0.1,
     precision: 2,
@@ -118,19 +115,19 @@ test("should increase/decrease by 0.1*step on ctrl+Arrow", () => {
 
   const input = getByTestId("input")
 
-  press.ArrowUp(input)
+  await user.press.ArrowUp(input)
   expect(input).toHaveValue("0.10")
-  press.ArrowUp(input, { ctrlKey: true })
+  await user.press.ArrowUp(input, { ctrlKey: true })
   expect(input).toHaveValue("0.11")
 
-  press.ArrowDown(input, { ctrlKey: true })
+  await user.press.ArrowDown(input, { ctrlKey: true })
   expect(input).toHaveValue("0.10")
-  press.ArrowDown(input)
+  await user.press.ArrowDown(input)
   expect(input).toHaveValue("0.00")
 })
 
-it("should behave properly with precision value", () => {
-  const { getByTestId } = renderComponent({
+test("should behave properly with precision value", async () => {
+  const { getByTestId, user } = renderComponent({
     defaultValue: 0,
     step: 0.65,
     precision: 2,
@@ -141,44 +138,43 @@ it("should behave properly with precision value", () => {
   const decBtn = getByTestId("down-btn")
 
   expect(input).toHaveValue("0.00")
-  userEvent.click(incBtn)
+  await user.click(incBtn)
   expect(input).toHaveValue("0.65")
-  userEvent.click(incBtn)
+  await user.click(incBtn)
   expect(input).toHaveValue("1.30")
-  userEvent.click(incBtn)
+  await user.click(incBtn)
   expect(input).toHaveValue("1.95")
-  userEvent.click(decBtn)
+  await user.click(decBtn)
   expect(input).toHaveValue("1.30")
 
   // on blur, value is clamped using precision
-  userEvent.type(input, "1234")
-  expect(input).toHaveValue("1.301234")
+  await user.type(input, "1234")
+  await waitFor(() => expect(input).toHaveValue("1.301234"))
   fireEvent.blur(input)
   expect(input).toHaveValue("1.30")
 })
 
-test("should call onChange on value change", () => {
+test("should call onChange on value change", async () => {
   const onChange = jest.fn()
-  const { getByTestId } = renderComponent({ onChange })
+  const { getByTestId, user } = renderComponent({ onChange })
 
   const upBtn = getByTestId("up-btn")
 
-  userEvent.click(upBtn)
+  await user.click(upBtn)
 
   expect(onChange).toBeCalled()
   expect(onChange).toBeCalledWith("1", 1)
 })
 
-test("should constrain value onBlur", () => {
-  const { getByTestId } = renderComponent({ max: 30 })
+test("should constrain value onBlur", async () => {
+  const { getByTestId, user } = renderComponent({ max: 30, precision: 2 })
 
   const input = getByTestId("input")
 
-  userEvent.type(input, "34.55")
+  await user.type(input, "34.55")
 
   // value is beyond max, so it should reset to `max`
   fireEvent.blur(input)
-
   expect(input).toHaveValue("30.00")
 })
 
@@ -237,10 +233,10 @@ test("should derive values from surrounding FormControl", () => {
   expect(onBlur).toHaveBeenCalled()
 })
 
-test("should fallback to min if `e` is typed", () => {
-  const { getByTestId } = renderComponent({ max: 30, min: 1 })
+test("should fallback to min if `e` is typed", async () => {
+  const { getByTestId, user } = renderComponent({ max: 30, min: 1 })
   const input = getByTestId("input")
-  userEvent.type(input, "e")
+  await user.type(input, "e")
   // value is beyond max, so it should reset to `max`
   fireEvent.blur(input)
   expect(input).toHaveValue("1")

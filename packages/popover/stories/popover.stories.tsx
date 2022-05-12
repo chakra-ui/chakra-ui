@@ -141,7 +141,7 @@ export function ControlledUsage() {
           <PopoverBody>
             Are you sure you want to continue with your action?
           </PopoverBody>
-          <PopoverFooter d="flex" justifyContent="flex-end">
+          <PopoverFooter display="flex" justifyContent="flex-end">
             <ButtonGroup size="sm">
               <Button variant="outline">Cancel</Button>
               <Button colorScheme="red">Apply</Button>
@@ -240,3 +240,19 @@ export function WithPopoverAnchor() {
     </Popover>
   )
 }
+
+export const WithMatchWidth = () => (
+  <Popover matchWidth>
+    <PopoverTrigger>
+      <Button w="400px">Long Content</Button>
+    </PopoverTrigger>
+    <PopoverContent w="full">
+      <PopoverBody>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+      </PopoverBody>
+    </PopoverContent>
+  </Popover>
+)

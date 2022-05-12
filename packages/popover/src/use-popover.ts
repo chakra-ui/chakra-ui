@@ -242,10 +242,17 @@ export function usePopover(props: UsePopoverProps = {}) {
         popoverProps.onMouseEnter = callAllHandlers(props.onMouseEnter, () => {
           isHoveringRef.current = true
         })
-        popoverProps.onMouseLeave = callAllHandlers(props.onMouseLeave, () => {
-          isHoveringRef.current = false
-          setTimeout(onClose, closeDelay)
-        })
+        popoverProps.onMouseLeave = callAllHandlers(
+          props.onMouseLeave,
+          (event) => {
+            // https://stackoverflow.com/questions/46831247/select-triggers-mouseleave-event-on-parent-element-in-mozilla-firefox
+            if (event.nativeEvent.relatedTarget === null) {
+              return
+            }
+            isHoveringRef.current = false
+            setTimeout(onClose, closeDelay)
+          },
+        )
       }
 
       return popoverProps

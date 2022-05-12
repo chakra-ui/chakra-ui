@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/icon",
-  "version": "2.0.5",
+  "version": "3.0.0",
   "description": "A base React component for icons",
   "keywords": [
     "react",
@@ -17,8 +17,7 @@
   "module": "dist/chakra-ui-icon.esm.js",
   "types": "dist/chakra-ui-icon.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -32,14 +31,14 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.10.4"
+    "@chakra-ui/utils": "2.0.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.12.1",
-    "react": "^17.0.1"
+    "@chakra-ui/system": "2.0.0",
+    "react": "^18.0.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">=1.0.0",
-    "react": ">=16.8.6"
+    "@chakra-ui/system": ">=2.0.0-next.0",
+    "react": ">=18"
   }
 }

@@ -1,5 +1,462 @@
 # Change Log
 
+## 2.0.0
+
+### Major Changes
+
+- [#5879](https://github.com/chakra-ui/chakra-ui/pull/5879)
+  [`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump all packages
+  to next major for Chakra UI version 2.
+
+* [#5989](https://github.com/chakra-ui/chakra-ui/pull/5989)
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Omit `src`
+  directory from being published to npm
+
+- [#5797](https://github.com/chakra-ui/chakra-ui/pull/5797)
+  [`c7a1a53ac`](https://github.com/chakra-ui/chakra-ui/commit/c7a1a53ace53020e23c1b92d48ff16d8d8e95709)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - > Please note:
+  There are **no breaking changes** to the hook `useToast`. There
+
+  > are only breaking changes to `createStandaloneToast`.
+
+  ### Breaking changes to `createStandaloneToast`
+
+  Chakra UI v1 rendered the toast container DOM element for you. In v2 you need
+  to render the `ToastContainer` in your application code. This allows you have
+  only one React root in your application.
+
+  #### @chakra-ui/react v1
+
+  ```ts
+  import { createStandaloneToast } from "@chakra-ui/toast"
+
+  const toast = createStandaloneToast()
+  toast({ title: "Chakra UI" })
+  ```
+
+  #### @chakra-ui/react v2
+
+  ```tsx
+  import * as ReactDOM from "react-dom/client"
+  import { createStandaloneToast } from "@chakra-ui/toast"
+
+  const { ToastContainer, toast } = createStandaloneToast()
+
+  // render the ToastContainer in your React root
+  const rootElement = document.getElementById("root")
+  ReactDOM.createRoot(yourRootElement).render(
+    <>
+      <App />
+      <ToastContainer />
+    </>,
+  )
+
+  toast({ title: "Chakra UI" })
+  ```
+
+* [#5882](https://github.com/chakra-ui/chakra-ui/pull/5882)
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump peer
+  dependency to React and ReactDOM to >=18
+
+### Patch Changes
+
+- Updated dependencies
+  [[`9081a8ae9`](https://github.com/chakra-ui/chakra-ui/commit/9081a8ae9243a32b71942d6a0b9ba5a2b3fb9fe6),
+  [`c81db13ce`](https://github.com/chakra-ui/chakra-ui/commit/c81db13cef3db40b54822169faeb2568f1c2aa73),
+  [`1f62d9a65`](https://github.com/chakra-ui/chakra-ui/commit/1f62d9a658f0179e60524f13a21543194f034fe5),
+  [`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f),
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7),
+  [`3e6ac56be`](https://github.com/chakra-ui/chakra-ui/commit/3e6ac56be82a6117e4dee484be0956e35fc58ed1),
+  [`ad84d8efc`](https://github.com/chakra-ui/chakra-ui/commit/ad84d8efc7602909488272c214167794e66a0581),
+  [`1a47fd27e`](https://github.com/chakra-ui/chakra-ui/commit/1a47fd27e6e37ff5d149e0469888eed0ec306632),
+  [`a4b2f5d01`](https://github.com/chakra-ui/chakra-ui/commit/a4b2f5d01fbd49d889edc66503c362ef91686522),
+  [`520221efe`](https://github.com/chakra-ui/chakra-ui/commit/520221efe89e6bfce6f5d009790fe4f823918b38),
+  [`c7a1a53ac`](https://github.com/chakra-ui/chakra-ui/commit/c7a1a53ace53020e23c1b92d48ff16d8d8e95709),
+  [`eab820e23`](https://github.com/chakra-ui/chakra-ui/commit/eab820e23d4b24c3fc693d7aacd09a5704bf75df),
+  [`8991ac13e`](https://github.com/chakra-ui/chakra-ui/commit/8991ac13e5ec71cc1fbd09610981913b7efe9798),
+  [`8a57d75f2`](https://github.com/chakra-ui/chakra-ui/commit/8a57d75f2a311b0732bcf0360ef6501da05654a8),
+  [`d0d08141b`](https://github.com/chakra-ui/chakra-ui/commit/d0d08141bee7f7c2f776d01798dfbeccfdde5978),
+  [`ef6a22549`](https://github.com/chakra-ui/chakra-ui/commit/ef6a22549ef93093602ca2913fa6defe6f617df0),
+  [`125a1709a`](https://github.com/chakra-ui/chakra-ui/commit/125a1709a0840e844613db0fd55da8b3e4add0b9),
+  [`bb68fee19`](https://github.com/chakra-ui/chakra-ui/commit/bb68fee196815ae69c32c28b485b57a81005e7c6),
+  [`1d5d7b712`](https://github.com/chakra-ui/chakra-ui/commit/1d5d7b712d5643c7abf58ab560278090c0f839c1),
+  [`407dde8f5`](https://github.com/chakra-ui/chakra-ui/commit/407dde8f5ba3d09e160d411fdad05def0f537ef5),
+  [`0f10f9555`](https://github.com/chakra-ui/chakra-ui/commit/0f10f9555a07106bb3737f7e900c36d81507c926),
+  [`3285faddf`](https://github.com/chakra-ui/chakra-ui/commit/3285faddf3019c6951f3823bf38951fbb8accb9e),
+  [`6b969b41d`](https://github.com/chakra-ui/chakra-ui/commit/6b969b41dad850fa061613b3d50f50b8a15265a7),
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196),
+  [`258fd9a61`](https://github.com/chakra-ui/chakra-ui/commit/258fd9a617d9224a0d6626399aad2b59efa15ace),
+  [`d32aea176`](https://github.com/chakra-ui/chakra-ui/commit/d32aea176b66b4d5206df10530c011f8eaa2e42d)]:
+  - @chakra-ui/image@2.0.0
+  - @chakra-ui/alert@2.0.0
+  - @chakra-ui/toast@2.0.0
+  - @chakra-ui/accordion@2.0.0
+  - @chakra-ui/avatar@2.0.0
+  - @chakra-ui/breadcrumb@2.0.0
+  - @chakra-ui/button@2.0.0
+  - @chakra-ui/checkbox@2.0.0
+  - @chakra-ui/close-button@2.0.0
+  - @chakra-ui/control-box@2.0.0
+  - @chakra-ui/counter@2.0.0
+  - @chakra-ui/css-reset@2.0.0
+  - @chakra-ui/editable@2.0.0
+  - @chakra-ui/react-env@2.0.0
+  - @chakra-ui/form-control@2.0.0
+  - @chakra-ui/hooks@2.0.0
+  - @chakra-ui/icon@3.0.0
+  - @chakra-ui/input@2.0.0
+  - @chakra-ui/layout@2.0.0
+  - @chakra-ui/live-region@2.0.0
+  - @chakra-ui/media-query@3.0.0
+  - @chakra-ui/menu@2.0.0
+  - @chakra-ui/modal@2.0.0
+  - @chakra-ui/number-input@2.0.0
+  - @chakra-ui/pin-input@2.0.0
+  - @chakra-ui/popover@2.0.0
+  - @chakra-ui/popper@3.0.0
+  - @chakra-ui/portal@2.0.0
+  - @chakra-ui/progress@2.0.0
+  - @chakra-ui/provider@2.0.0
+  - @chakra-ui/radio@2.0.0
+  - @chakra-ui/select@2.0.0
+  - @chakra-ui/skeleton@2.0.0
+  - @chakra-ui/slider@2.0.0
+  - @chakra-ui/spinner@2.0.0
+  - @chakra-ui/stat@2.0.0
+  - @chakra-ui/switch@2.0.0
+  - @chakra-ui/system@2.0.0
+  - @chakra-ui/table@2.0.0
+  - @chakra-ui/tabs@2.0.0
+  - @chakra-ui/tag@2.0.0
+  - @chakra-ui/textarea@2.0.0
+  - @chakra-ui/theme@2.0.0
+  - @chakra-ui/tooltip@2.0.0
+  - @chakra-ui/transition@2.0.0
+  - @chakra-ui/utils@2.0.0
+  - @chakra-ui/visually-hidden@2.0.0
+
+## 2.0.0-next.5
+
+### Major Changes
+
+- [#5989](https://github.com/chakra-ui/chakra-ui/pull/5989)
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Omit `src`
+  directory from being published to npm
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)]:
+  - @chakra-ui/accordion@2.0.0-next.3
+  - @chakra-ui/alert@2.0.0-next.3
+  - @chakra-ui/avatar@2.0.0-next.3
+  - @chakra-ui/breadcrumb@2.0.0-next.2
+  - @chakra-ui/button@2.0.0-next.3
+  - @chakra-ui/checkbox@2.0.0-next.3
+  - @chakra-ui/close-button@2.0.0-next.2
+  - @chakra-ui/control-box@2.0.0-next.2
+  - @chakra-ui/counter@2.0.0-next.3
+  - @chakra-ui/css-reset@2.0.0-next.3
+  - @chakra-ui/editable@2.0.0-next.3
+  - @chakra-ui/react-env@2.0.0-next.2
+  - @chakra-ui/form-control@2.0.0-next.3
+  - @chakra-ui/hooks@2.0.0-next.3
+  - @chakra-ui/icon@3.0.0-next.2
+  - @chakra-ui/image@2.0.0-next.3
+  - @chakra-ui/input@2.0.0-next.3
+  - @chakra-ui/layout@2.0.0-next.4
+  - @chakra-ui/live-region@2.0.0-next.2
+  - @chakra-ui/media-query@3.0.0-next.2
+  - @chakra-ui/menu@2.0.0-next.4
+  - @chakra-ui/modal@2.0.0-next.3
+  - @chakra-ui/number-input@2.0.0-next.3
+  - @chakra-ui/pin-input@2.0.0-next.3
+  - @chakra-ui/popover@2.0.0-next.4
+  - @chakra-ui/popper@3.0.0-next.3
+  - @chakra-ui/portal@2.0.0-next.3
+  - @chakra-ui/progress@2.0.0-next.2
+  - @chakra-ui/provider@2.0.0-next.4
+  - @chakra-ui/radio@2.0.0-next.3
+  - @chakra-ui/select@2.0.0-next.3
+  - @chakra-ui/skeleton@2.0.0-next.4
+  - @chakra-ui/slider@2.0.0-next.3
+  - @chakra-ui/spinner@2.0.0-next.2
+  - @chakra-ui/stat@2.0.0-next.2
+  - @chakra-ui/switch@2.0.0-next.3
+  - @chakra-ui/system@2.0.0-next.4
+  - @chakra-ui/table@2.0.0-next.2
+  - @chakra-ui/tabs@2.0.0-next.3
+  - @chakra-ui/tag@2.0.0-next.2
+  - @chakra-ui/textarea@2.0.0-next.3
+  - @chakra-ui/theme@2.0.0-next.2
+  - @chakra-ui/toast@2.0.0-next.5
+  - @chakra-ui/tooltip@2.0.0-next.4
+  - @chakra-ui/transition@2.0.0-next.2
+  - @chakra-ui/utils@2.0.0-next.2
+  - @chakra-ui/visually-hidden@2.0.0-next.2
+
+## 2.0.0-next.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0f10f9555`](https://github.com/chakra-ui/chakra-ui/commit/0f10f9555a07106bb3737f7e900c36d81507c926),
+  [`6b969b41d`](https://github.com/chakra-ui/chakra-ui/commit/6b969b41dad850fa061613b3d50f50b8a15265a7)]:
+  - @chakra-ui/layout@2.0.0-next.3
+  - @chakra-ui/popper@3.0.0-next.2
+  - @chakra-ui/system@2.0.0-next.3
+  - @chakra-ui/menu@2.0.0-next.3
+  - @chakra-ui/popover@2.0.0-next.3
+  - @chakra-ui/tooltip@2.0.0-next.3
+  - @chakra-ui/provider@2.0.0-next.3
+  - @chakra-ui/skeleton@2.0.0-next.3
+  - @chakra-ui/toast@2.0.0-next.4
+
+## 2.0.0-next.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`9081a8ae9`](https://github.com/chakra-ui/chakra-ui/commit/9081a8ae9243a32b71942d6a0b9ba5a2b3fb9fe6),
+  [`c81db13ce`](https://github.com/chakra-ui/chakra-ui/commit/c81db13cef3db40b54822169faeb2568f1c2aa73),
+  [`a4b2f5d01`](https://github.com/chakra-ui/chakra-ui/commit/a4b2f5d01fbd49d889edc66503c362ef91686522),
+  [`520221efe`](https://github.com/chakra-ui/chakra-ui/commit/520221efe89e6bfce6f5d009790fe4f823918b38),
+  [`eab820e23`](https://github.com/chakra-ui/chakra-ui/commit/eab820e23d4b24c3fc693d7aacd09a5704bf75df),
+  [`8991ac13e`](https://github.com/chakra-ui/chakra-ui/commit/8991ac13e5ec71cc1fbd09610981913b7efe9798),
+  [`8a57d75f2`](https://github.com/chakra-ui/chakra-ui/commit/8a57d75f2a311b0732bcf0360ef6501da05654a8),
+  [`125a1709a`](https://github.com/chakra-ui/chakra-ui/commit/125a1709a0840e844613db0fd55da8b3e4add0b9),
+  [`407dde8f5`](https://github.com/chakra-ui/chakra-ui/commit/407dde8f5ba3d09e160d411fdad05def0f537ef5),
+  [`d32aea176`](https://github.com/chakra-ui/chakra-ui/commit/d32aea176b66b4d5206df10530c011f8eaa2e42d)]:
+  - @chakra-ui/image@2.0.0-next.2
+  - @chakra-ui/alert@2.0.0-next.2
+  - @chakra-ui/popover@2.0.0-next.2
+  - @chakra-ui/modal@2.0.0-next.2
+  - @chakra-ui/layout@2.0.0-next.2
+  - @chakra-ui/hooks@2.0.0-next.2
+  - @chakra-ui/css-reset@2.0.0-next.2
+  - @chakra-ui/toast@2.0.0-next.3
+  - @chakra-ui/avatar@2.0.0-next.2
+  - @chakra-ui/accordion@2.0.0-next.2
+  - @chakra-ui/button@2.0.0-next.2
+  - @chakra-ui/checkbox@2.0.0-next.2
+  - @chakra-ui/counter@2.0.0-next.2
+  - @chakra-ui/editable@2.0.0-next.2
+  - @chakra-ui/form-control@2.0.0-next.2
+  - @chakra-ui/menu@2.0.0-next.2
+  - @chakra-ui/number-input@2.0.0-next.2
+  - @chakra-ui/pin-input@2.0.0-next.2
+  - @chakra-ui/portal@2.0.0-next.2
+  - @chakra-ui/radio@2.0.0-next.2
+  - @chakra-ui/skeleton@2.0.0-next.2
+  - @chakra-ui/slider@2.0.0-next.2
+  - @chakra-ui/tabs@2.0.0-next.2
+  - @chakra-ui/tooltip@2.0.0-next.2
+  - @chakra-ui/provider@2.0.0-next.2
+  - @chakra-ui/system@2.0.0-next.2
+  - @chakra-ui/switch@2.0.0-next.2
+  - @chakra-ui/input@2.0.0-next.2
+  - @chakra-ui/select@2.0.0-next.2
+  - @chakra-ui/textarea@2.0.0-next.2
+
+## 2.0.0-next.2
+
+### Major Changes
+
+- [#5882](https://github.com/chakra-ui/chakra-ui/pull/5882)
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump peer
+  depencency to React and ReactDOM to >=18
+
+### Patch Changes
+
+- Updated dependencies
+  [[`3e6ac56be`](https://github.com/chakra-ui/chakra-ui/commit/3e6ac56be82a6117e4dee484be0956e35fc58ed1),
+  [`ad84d8efc`](https://github.com/chakra-ui/chakra-ui/commit/ad84d8efc7602909488272c214167794e66a0581),
+  [`ef6a22549`](https://github.com/chakra-ui/chakra-ui/commit/ef6a22549ef93093602ca2913fa6defe6f617df0),
+  [`bb68fee19`](https://github.com/chakra-ui/chakra-ui/commit/bb68fee196815ae69c32c28b485b57a81005e7c6),
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196),
+  [`258fd9a61`](https://github.com/chakra-ui/chakra-ui/commit/258fd9a617d9224a0d6626399aad2b59efa15ace)]:
+  - @chakra-ui/theme@2.0.0-next.1
+  - @chakra-ui/react-env@2.0.0-next.1
+  - @chakra-ui/editable@2.0.0-next.1
+  - @chakra-ui/accordion@2.0.0-next.1
+  - @chakra-ui/alert@2.0.0-next.1
+  - @chakra-ui/avatar@2.0.0-next.1
+  - @chakra-ui/breadcrumb@2.0.0-next.1
+  - @chakra-ui/button@2.0.0-next.1
+  - @chakra-ui/checkbox@2.0.0-next.1
+  - @chakra-ui/close-button@2.0.0-next.1
+  - @chakra-ui/control-box@2.0.0-next.1
+  - @chakra-ui/counter@2.0.0-next.1
+  - @chakra-ui/css-reset@2.0.0-next.1
+  - @chakra-ui/form-control@2.0.0-next.1
+  - @chakra-ui/hooks@2.0.0-next.1
+  - @chakra-ui/icon@3.0.0-next.1
+  - @chakra-ui/image@2.0.0-next.1
+  - @chakra-ui/input@2.0.0-next.1
+  - @chakra-ui/layout@2.0.0-next.1
+  - @chakra-ui/live-region@2.0.0-next.1
+  - @chakra-ui/media-query@3.0.0-next.1
+  - @chakra-ui/menu@2.0.0-next.1
+  - @chakra-ui/modal@2.0.0-next.1
+  - @chakra-ui/number-input@2.0.0-next.1
+  - @chakra-ui/pin-input@2.0.0-next.1
+  - @chakra-ui/popover@2.0.0-next.1
+  - @chakra-ui/popper@3.0.0-next.1
+  - @chakra-ui/portal@2.0.0-next.1
+  - @chakra-ui/progress@2.0.0-next.1
+  - @chakra-ui/provider@2.0.0-next.1
+  - @chakra-ui/radio@2.0.0-next.1
+  - @chakra-ui/select@2.0.0-next.1
+  - @chakra-ui/skeleton@2.0.0-next.1
+  - @chakra-ui/slider@2.0.0-next.1
+  - @chakra-ui/spinner@2.0.0-next.1
+  - @chakra-ui/stat@2.0.0-next.1
+  - @chakra-ui/switch@2.0.0-next.1
+  - @chakra-ui/system@2.0.0-next.1
+  - @chakra-ui/table@2.0.0-next.1
+  - @chakra-ui/tabs@2.0.0-next.1
+  - @chakra-ui/tag@2.0.0-next.1
+  - @chakra-ui/textarea@2.0.0-next.1
+  - @chakra-ui/toast@2.0.0-next.2
+  - @chakra-ui/tooltip@2.0.0-next.1
+  - @chakra-ui/transition@2.0.0-next.1
+  - @chakra-ui/utils@2.0.0-next.1
+  - @chakra-ui/visually-hidden@2.0.0-next.1
+
+## 2.0.0-next.1
+
+### Major Changes
+
+- [#5879](https://github.com/chakra-ui/chakra-ui/pull/5879)
+  [`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump all packages
+  to next major for Chakra UI version 2.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1f62d9a65`](https://github.com/chakra-ui/chakra-ui/commit/1f62d9a658f0179e60524f13a21543194f034fe5),
+  [`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f),
+  [`1a47fd27e`](https://github.com/chakra-ui/chakra-ui/commit/1a47fd27e6e37ff5d149e0469888eed0ec306632),
+  [`d0d08141b`](https://github.com/chakra-ui/chakra-ui/commit/d0d08141bee7f7c2f776d01798dfbeccfdde5978),
+  [`3285faddf`](https://github.com/chakra-ui/chakra-ui/commit/3285faddf3019c6951f3823bf38951fbb8accb9e)]:
+  - @chakra-ui/toast@2.0.0-next.1
+  - @chakra-ui/accordion@2.0.0-next.0
+  - @chakra-ui/alert@2.0.0-next.0
+  - @chakra-ui/avatar@2.0.0-next.0
+  - @chakra-ui/breadcrumb@2.0.0-next.0
+  - @chakra-ui/button@2.0.0-next.0
+  - @chakra-ui/checkbox@2.0.0-next.0
+  - @chakra-ui/close-button@2.0.0-next.0
+  - @chakra-ui/control-box@2.0.0-next.0
+  - @chakra-ui/counter@2.0.0-next.0
+  - @chakra-ui/css-reset@2.0.0-next.0
+  - @chakra-ui/editable@2.0.0-next.0
+  - @chakra-ui/react-env@2.0.0-next.0
+  - @chakra-ui/form-control@2.0.0-next.0
+  - @chakra-ui/hooks@2.0.0-next.0
+  - @chakra-ui/icon@3.0.0-next.0
+  - @chakra-ui/image@2.0.0-next.0
+  - @chakra-ui/input@2.0.0-next.0
+  - @chakra-ui/layout@2.0.0-next.0
+  - @chakra-ui/live-region@2.0.0-next.0
+  - @chakra-ui/media-query@3.0.0-next.0
+  - @chakra-ui/menu@2.0.0-next.0
+  - @chakra-ui/modal@2.0.0-next.0
+  - @chakra-ui/number-input@2.0.0-next.0
+  - @chakra-ui/pin-input@2.0.0-next.0
+  - @chakra-ui/popover@2.0.0-next.0
+  - @chakra-ui/popper@3.0.0-next.0
+  - @chakra-ui/portal@2.0.0-next.0
+  - @chakra-ui/progress@2.0.0-next.0
+  - @chakra-ui/provider@2.0.0-next.0
+  - @chakra-ui/radio@2.0.0-next.0
+  - @chakra-ui/select@2.0.0-next.0
+  - @chakra-ui/skeleton@2.0.0-next.0
+  - @chakra-ui/slider@2.0.0-next.0
+  - @chakra-ui/spinner@2.0.0-next.0
+  - @chakra-ui/stat@2.0.0-next.0
+  - @chakra-ui/switch@2.0.0-next.0
+  - @chakra-ui/system@2.0.0-next.0
+  - @chakra-ui/table@2.0.0-next.0
+  - @chakra-ui/tabs@2.0.0-next.0
+  - @chakra-ui/tag@2.0.0-next.0
+  - @chakra-ui/textarea@2.0.0-next.0
+  - @chakra-ui/theme@2.0.0-next.0
+  - @chakra-ui/tooltip@2.0.0-next.0
+  - @chakra-ui/transition@2.0.0-next.0
+  - @chakra-ui/utils@2.0.0-next.0
+  - @chakra-ui/visually-hidden@2.0.0-next.0
+
+## 2.0.0-next.0
+
+### Major Changes
+
+- [#5797](https://github.com/chakra-ui/chakra-ui/pull/5797)
+  [`c7a1a53ac`](https://github.com/chakra-ui/chakra-ui/commit/c7a1a53ace53020e23c1b92d48ff16d8d8e95709)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Add support for
+  React 18.
+
+  > Please note: There are **no breaking changes** to the hook `useToast`. There
+  > are only breaking changes to `createStandaloneToast`.
+
+  ### Breaking changes to `createStandaloneToast`
+
+  With React <17 Chakra UI was able to render the toast container DOM element
+  for you. To allow Chakra UI to support all React versions >=16.8 you need to
+  render the DOM element in your application code.
+
+  #### before
+
+  ```ts
+  import { createStandaloneToast } from "@chakra-ui/toast"
+
+  const toast = createStandaloneToast()
+  toast({ title: "Chakra UI" })
+  ```
+
+  #### with React 17
+
+  ```tsx
+  import { createStandaloneToast } from "@chakra-ui/toast"
+  import * as ReactDOM from "react-dom"
+
+  const toastContainerElement = document.createElement("div")
+  window.document.body.append(toastContainerElement)
+
+  const { ToastContainer, toast } = createStandaloneToast()
+  ReactDOM.render(<ToastContainer />, toastContainerElement)
+
+  toast({ title: "Chakra UI" })
+  ```
+
+  #### with React 18
+
+  ```tsx
+  import { createStandaloneToast } from "@chakra-ui/toast"
+  import * as ReactDOM from "react-dom/client"
+
+  const toastContainerElement = document.createElement("div")
+  window.document.body.append(toastContainerElement)
+
+  const { ToastContainer, toast } = createStandaloneToast()
+  const root = ReactDOM.createRoot(toastContainerElement)
+  root.render(<ToastContainer />)
+
+  toast({ title: "Chakra UI" })
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c7a1a53ac`](https://github.com/chakra-ui/chakra-ui/commit/c7a1a53ace53020e23c1b92d48ff16d8d8e95709)]:
+  - @chakra-ui/toast@2.0.0-next.0
+
 ## 1.8.8
 
 ### Patch Changes

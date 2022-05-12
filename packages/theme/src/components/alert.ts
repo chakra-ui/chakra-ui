@@ -25,6 +25,12 @@ const baseStyle: PartsStyleObject<typeof parts> = {
     w: 5,
     h: 6,
   },
+  spinner: {
+    flexShrink: 0,
+    marginEnd: 3,
+    w: 5,
+    h: 5,
+  },
 }
 
 function getBg(props: StyleFunctionProps): string {
@@ -39,6 +45,9 @@ const variantSubtle: PartsStyleFunction<typeof parts> = (props) => {
   return {
     container: { bg: getBg(props) },
     icon: { color: mode(`${c}.500`, `${c}.200`)(props) },
+    spinner: {
+      color: mode(`${c}.500`, `${c}.200`)(props),
+    },
   }
 }
 
@@ -54,6 +63,9 @@ const variantLeftAccent: PartsStyleFunction<typeof parts> = (props) => {
     icon: {
       color: mode(`${c}.500`, `${c}.200`)(props),
     },
+    spinner: {
+      color: mode(`${c}.500`, `${c}.200`)(props),
+    },
   }
 }
 
@@ -67,6 +79,9 @@ const variantTopAccent: PartsStyleFunction<typeof parts> = (props) => {
       bg: getBg(props),
     },
     icon: {
+      color: mode(`${c}.500`, `${c}.200`)(props),
+    },
+    spinner: {
       color: mode(`${c}.500`, `${c}.200`)(props),
     },
   }

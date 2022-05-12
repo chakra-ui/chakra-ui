@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/close-button",
-  "version": "1.2.7",
+  "version": "2.0.0",
   "description": "A React and Chakra UI close button component.",
   "keywords": [
     "close-button",
@@ -17,8 +17,7 @@
   "module": "dist/chakra-ui-close-button.esm.js",
   "types": "dist/chakra-ui-close-button.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -32,15 +31,15 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/icon": "2.0.5",
-    "@chakra-ui/utils": "1.10.4"
+    "@chakra-ui/icon": "3.0.0",
+    "@chakra-ui/utils": "2.0.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.12.1",
-    "react": "^17.0.1"
+    "@chakra-ui/system": "2.0.0",
+    "react": "^18.0.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">=1.0.0",
-    "react": ">=16.8.6"
+    "@chakra-ui/system": ">=2.0.0-next.0",
+    "react": ">=18"
   }
 }

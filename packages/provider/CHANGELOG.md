@@ -1,5 +1,113 @@
 # @chakra-ui/provider
 
+## 2.0.0
+
+### Major Changes
+
+- [#5879](https://github.com/chakra-ui/chakra-ui/pull/5879)
+  [`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump all packages
+  to next major for Chakra UI version 2.
+
+* [#5989](https://github.com/chakra-ui/chakra-ui/pull/5989)
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Omit `src`
+  directory from being published to npm
+
+- [#5882](https://github.com/chakra-ui/chakra-ui/pull/5882)
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump peer
+  dependency to React and ReactDOM to >=18
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f),
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7),
+  [`ad84d8efc`](https://github.com/chakra-ui/chakra-ui/commit/ad84d8efc7602909488272c214167794e66a0581),
+  [`8a57d75f2`](https://github.com/chakra-ui/chakra-ui/commit/8a57d75f2a311b0732bcf0360ef6501da05654a8),
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)]:
+  - @chakra-ui/css-reset@2.0.0
+  - @chakra-ui/react-env@2.0.0
+  - @chakra-ui/portal@2.0.0
+  - @chakra-ui/system@2.0.0
+  - @chakra-ui/utils@2.0.0
+
+## 2.0.0-next.4
+
+### Major Changes
+
+- [#5989](https://github.com/chakra-ui/chakra-ui/pull/5989)
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Omit `src`
+  directory from being published to npm
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)]:
+  - @chakra-ui/css-reset@2.0.0-next.3
+  - @chakra-ui/react-env@2.0.0-next.2
+  - @chakra-ui/portal@2.0.0-next.3
+  - @chakra-ui/system@2.0.0-next.4
+  - @chakra-ui/utils@2.0.0-next.2
+
+## 2.0.0-next.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/system@2.0.0-next.3
+
+## 2.0.0-next.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`8a57d75f2`](https://github.com/chakra-ui/chakra-ui/commit/8a57d75f2a311b0732bcf0360ef6501da05654a8)]:
+  - @chakra-ui/css-reset@2.0.0-next.2
+  - @chakra-ui/portal@2.0.0-next.2
+  - @chakra-ui/system@2.0.0-next.2
+
+## 2.0.0-next.1
+
+### Major Changes
+
+- [#5882](https://github.com/chakra-ui/chakra-ui/pull/5882)
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump peer
+  depencency to React and ReactDOM to >=18
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ad84d8efc`](https://github.com/chakra-ui/chakra-ui/commit/ad84d8efc7602909488272c214167794e66a0581),
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)]:
+  - @chakra-ui/react-env@2.0.0-next.1
+  - @chakra-ui/css-reset@2.0.0-next.1
+  - @chakra-ui/portal@2.0.0-next.1
+  - @chakra-ui/system@2.0.0-next.1
+  - @chakra-ui/utils@2.0.0-next.1
+
+## 2.0.0-next.0
+
+### Major Changes
+
+- [#5879](https://github.com/chakra-ui/chakra-ui/pull/5879)
+  [`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump all packages
+  to next major for Chakra UI version 2.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)]:
+  - @chakra-ui/css-reset@2.0.0-next.0
+  - @chakra-ui/react-env@2.0.0-next.0
+  - @chakra-ui/portal@2.0.0-next.0
+  - @chakra-ui/system@2.0.0-next.0
+  - @chakra-ui/utils@2.0.0-next.0
+
 ## 1.7.14
 
 ### Patch Changes

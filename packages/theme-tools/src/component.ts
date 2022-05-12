@@ -78,7 +78,7 @@ export { runIfFn }
 
 export type Styles = GlobalStyles & JSXElementStyles
 
-export function mode(light: any, dark: any) {
+export function mode<T>(light: T, dark: T) {
   return (props: Dict | StyleFunctionProps) =>
     props.colorMode === "dark" ? dark : light
 }

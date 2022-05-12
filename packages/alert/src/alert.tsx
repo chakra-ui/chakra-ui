@@ -12,6 +12,7 @@ import {
 import { cx } from "@chakra-ui/utils"
 import { createContext } from "@chakra-ui/react-utils"
 import * as React from "react"
+import { Spinner } from "@chakra-ui/spinner"
 import { CheckIcon, InfoIcon, WarningIcon } from "./icons"
 
 const STATUSES = {
@@ -19,6 +20,7 @@ const STATUSES = {
   warning: { icon: WarningIcon, colorScheme: "orange" },
   success: { icon: CheckIcon, colorScheme: "green" },
   error: { icon: WarningIcon, colorScheme: "red" },
+  loading: { icon: Spinner, colorScheme: "blue" },
 }
 
 export type AlertStatus = keyof typeof STATUSES
@@ -121,15 +123,16 @@ export const AlertIcon: React.FC<AlertIconProps> = (props) => {
   const { status } = useAlertContext()
   const { icon: BaseIcon } = STATUSES[status]
   const styles = useStyles()
+  const css = status === "loading" ? styles.spinner : styles.icon
 
   return (
     <chakra.span
       display="inherit"
       {...props}
       className={cx("chakra-alert__icon", props.className)}
-      __css={styles.icon}
+      __css={css}
     >
-      <BaseIcon w="100%" h="100%" />
+      {props.children || <BaseIcon h="100%" w="100%" />}
     </chakra.span>
   )
 }

@@ -6,6 +6,7 @@ on:
       - ".changeset/**"
     branches:
       - main
+      - next
 
 jobs:
   daily:

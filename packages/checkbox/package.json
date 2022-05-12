@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/checkbox",
-  "version": "1.7.1",
+  "version": "2.0.0",
   "description": "A React Checkbox component for use in forms",
   "keywords": [
     "react",
@@ -23,8 +23,7 @@
   "module": "dist/chakra-ui-checkbox.esm.js",
   "types": "dist/chakra-ui-checkbox.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -38,20 +37,20 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/form-control": "1.6.0",
-    "@chakra-ui/hooks": "1.9.1",
-    "@chakra-ui/react-utils": "1.2.3",
-    "@chakra-ui/utils": "1.10.4",
-    "@chakra-ui/visually-hidden": "1.1.6"
+    "@chakra-ui/form-control": "2.0.0",
+    "@chakra-ui/hooks": "2.0.0",
+    "@chakra-ui/react-utils": "2.0.0",
+    "@chakra-ui/utils": "2.0.0",
+    "@chakra-ui/visually-hidden": "2.0.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.12.1",
-    "framer-motion": "^4.0.0",
-    "react": "^17.0.1"
+    "@chakra-ui/system": "2.0.0",
+    "framer-motion": "^6.2.9",
+    "react": "^18.0.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">=1.0.0",
-    "framer-motion": "3.x || 4.x || 5.x || 6.x",
-    "react": ">=16.8.6"
+    "@chakra-ui/system": ">=2.0.0-next.0",
+    "framer-motion": ">=4.0.0",
+    "react": ">=18"
   }
 }

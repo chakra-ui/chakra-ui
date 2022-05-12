@@ -1,31 +1,29 @@
 {
   "name": "@chakra-ui/provider",
-  "version": "1.7.14",
+  "version": "2.0.0",
   "description": "Theme and components agnostic ChakraProvider",
   "main": "dist/chakra-ui-provider.cjs.js",
   "module": "dist/chakra-ui-provider.esm.js",
   "types": "dist/chakra-ui-provider.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@chakra-ui/css-reset": "1.1.3",
-    "@chakra-ui/hooks": "1.9.1",
-    "@chakra-ui/portal": "1.3.10",
-    "@chakra-ui/react-env": "1.1.6",
-    "@chakra-ui/system": "1.12.1",
-    "@chakra-ui/utils": "1.10.4"
+    "@chakra-ui/css-reset": "2.0.0",
+    "@chakra-ui/portal": "2.0.0",
+    "@chakra-ui/react-env": "2.0.0",
+    "@chakra-ui/system": "2.0.0",
+    "@chakra-ui/utils": "2.0.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
-    "react": ">=16.8.6",
-    "react-dom": ">=16.8.6"
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "license": "MIT",
@@ -52,9 +50,9 @@
     "url": "https://chakra-ui.netlify.app"
   },
   "devDependencies": {
-    "@emotion/react": "^11.4.0",
-    "@emotion/styled": "^11.3.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.2"
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   }
 }

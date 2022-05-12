@@ -11,65 +11,57 @@ import { FaFacebook, FaTwitter } from "react-icons/fa"
 import { MdBuild, MdCall } from "react-icons/md"
 import { BeatLoader } from "react-spinners"
 import { motion } from "framer-motion"
+import { Meta, StoryFn } from "@storybook/react"
+import { ThemingProps } from "@chakra-ui/system"
+import { theme } from "@chakra-ui/theme"
+import { getThemingArgTypes } from "@chakra-ui/storybook-addon"
+import { pick } from "@chakra-ui/utils"
 import { Button, ButtonGroup, IconButton } from "../src"
 
 export default {
   title: "Components / Forms / Button",
   decorators: [
     (Story: any) => (
-      <Container mt="40px">
+      <Container mt="40px" display="flex" flexWrap="wrap" gap="4">
         <Story />
       </Container>
     ),
   ],
+} as Meta
+
+interface StoryProps extends ThemingProps<"Button"> {
+  children?: React.ReactNode
 }
 
-export const basic = () => (
-  <>
-    <Button colorScheme="gray">Button</Button>
-    <Button colorScheme="red">Button</Button>
-    <Button colorScheme="green">Button</Button>
-    <Button colorScheme="blue">Button</Button>
-    <Button colorScheme="teal">Button</Button>
-    <Button colorScheme="pink">Button</Button>
-    <Button colorScheme="purple">Button</Button>
-    <Button colorScheme="cyan">Button</Button>
-    <Button colorScheme="orange">Button</Button>
-    <Button colorScheme="yellow">Button</Button>
-  </>
-)
+export const basic: StoryFn<StoryProps> = (props) => <Button {...props} />
+basic.argTypes = {
+  ...getThemingArgTypes(theme, "Button"),
+  children: { type: "string" },
+}
+basic.args = {
+  children: "Button",
+}
 
-export const outlines = () => (
+export const outlines: StoryFn<StoryProps> = (props) => (
   <>
-    <Button variant="outline" colorScheme="red">
-      Button
-    </Button>
-    <Button variant="outline" colorScheme="green">
-      Button
-    </Button>
-    <Button variant="outline" colorScheme="blue">
-      Button
-    </Button>
-    <Button variant="outline" colorScheme="teal">
-      Button
-    </Button>
-    <Button variant="outline" colorScheme="pink">
-      Button
-    </Button>
-    <Button variant="outline" colorScheme="purple">
-      Button
-    </Button>
-    <Button variant="outline" colorScheme="cyan">
-      Button
-    </Button>
-    <Button variant="outline" colorScheme="orange">
-      Button
-    </Button>
-    <Button variant="outline" colorScheme="yellow">
-      Button
-    </Button>
+    <Button {...props} variant="outline" colorScheme="red" />
+    <Button {...props} variant="outline" colorScheme="green" />
+    <Button {...props} variant="outline" colorScheme="blue" />
+    <Button {...props} variant="outline" colorScheme="teal" />
+    <Button {...props} variant="outline" colorScheme="pink" />
+    <Button {...props} variant="outline" colorScheme="purple" />
+    <Button {...props} variant="outline" colorScheme="cyan" />
+    <Button {...props} variant="outline" colorScheme="orange" />
+    <Button {...props} variant="outline" colorScheme="yellow" />
   </>
 )
+outlines.argTypes = {
+  ...pick(getThemingArgTypes(theme, "Button") ?? {}, ["size"]),
+  children: { type: "string" },
+}
+outlines.args = {
+  children: "Button",
+}
 
 export const withVariants = () => (
   <HStack spacing="24px">
@@ -236,7 +228,8 @@ export const WithButtonGroup = () => (
 
 export const attachedButtons = () => (
   <ButtonGroup size="sm" isAttached variant="outline">
-    <Button marginEnd="-px">Save</Button>
+    <Button>Save</Button>
+    <Button>Cancel</Button>
     <IconButton
       fontSize="2xl"
       aria-label="Add to friends"

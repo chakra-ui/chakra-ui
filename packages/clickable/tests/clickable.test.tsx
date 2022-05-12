@@ -1,5 +1,5 @@
 import { chakra, forwardRef } from "@chakra-ui/system"
-import { fireEvent, render, screen, userEvent } from "@chakra-ui/test-utils"
+import { fireEvent, render, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { useClickable } from "../src"
 
@@ -8,48 +8,13 @@ const Clickable = forwardRef((props: any, ref) => {
   return <chakra.button display="inline-flex" {...clickable} />
 })
 
-test("should render correctly", () => {
-  render(<Clickable>clickable</Clickable>)
-
-  expect(screen.getByText("clickable")).toMatchInlineSnapshot(`
-    .emotion-0 {
-      display: -webkit-inline-box;
-      display: -webkit-inline-flex;
-      display: -ms-inline-flexbox;
-      display: inline-flex;
-    }
-
-    <button
-      class="emotion-0"
-      type="button"
-    >
-      clickable
-    </button>
-  `)
-})
-
 test("should render when disabled and focusable", () => {
   render(
     <Clickable isDisabled isFocusable>
       clickable
     </Clickable>,
   )
-  expect(screen.getByText("clickable")).toMatchInlineSnapshot(`
-    .emotion-0 {
-      display: -webkit-inline-box;
-      display: -webkit-inline-flex;
-      display: -ms-inline-flexbox;
-      display: inline-flex;
-    }
-
-    <button
-      aria-disabled="true"
-      class="emotion-0"
-      type="button"
-    >
-      clickable
-    </button>
-  `)
+  expect(screen.getByText("clickable")).toHaveAttribute("aria-disabled", "true")
 })
 
 test("should click correctly", () => {
@@ -58,7 +23,7 @@ test("should click correctly", () => {
   const clickable = screen.getByText("clickable")
 
   expect(fn).toHaveBeenCalledTimes(0)
-  userEvent.click(clickable)
+  fireEvent.click(clickable)
   expect(fn).toHaveBeenCalledTimes(1)
 })
 
@@ -72,7 +37,7 @@ test("should not click if disabled", () => {
   )
 
   const clickable = screen.getByText("clickable")
-  userEvent.click(clickable)
+  fireEvent.click(clickable)
   expect(fn).toHaveBeenCalledTimes(0)
 })
 

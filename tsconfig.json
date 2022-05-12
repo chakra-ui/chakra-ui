@@ -10,11 +10,6 @@
     "strict": true,
     "isolatedModules": true,
     "noFallthroughCasesInSwitch": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noImplicitAny": true,
-    "strictFunctionTypes": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
     "jsx": "react",
     "esModuleInterop": true,
     "resolveJsonModule": true,
@@ -30,6 +25,7 @@
       "module": "CommonJS",
       "resolveJsonModule": true,
       "noImplicitAny": false
-    }
+    },
+    "swc": true
   }
 }

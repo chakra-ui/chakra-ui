@@ -3,7 +3,7 @@ import * as React from "react"
 import { Modal, ModalContent, ModalContentProps, ModalProps } from "./modal"
 
 export interface AlertDialogProps extends Omit<ModalProps, "initialFocusRef"> {
-  leastDestructiveRef: ModalProps["initialFocusRef"]
+  leastDestructiveRef: NonNullable<ModalProps["initialFocusRef"]>
 }
 
 export function AlertDialog(props: AlertDialogProps) {

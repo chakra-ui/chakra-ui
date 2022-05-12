@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/toast",
-  "version": "1.5.9",
+  "version": "2.0.0",
   "description": "description",
   "keywords": [
     "theme",
@@ -8,9 +8,7 @@
     "ui mode",
     "ui"
   ],
-  "sideEffects": [
-    "./src/toast.manager.tsx"
-  ],
+  "sideEffects": false,
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
@@ -18,8 +16,7 @@
   "module": "dist/chakra-ui-toast.esm.js",
   "types": "dist/chakra-ui-toast.cjs.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -33,24 +30,24 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/alert": "1.3.7",
-    "@chakra-ui/close-button": "1.2.7",
-    "@chakra-ui/hooks": "1.9.1",
-    "@chakra-ui/theme": "1.14.1",
-    "@chakra-ui/transition": "1.4.8",
-    "@chakra-ui/utils": "1.10.4",
-    "@reach/alert": "0.13.2"
+    "@chakra-ui/alert": "2.0.0",
+    "@chakra-ui/close-button": "2.0.0",
+    "@chakra-ui/hooks": "2.0.0",
+    "@chakra-ui/portal": "2.0.0",
+    "@chakra-ui/react-utils": "2.0.0",
+    "@chakra-ui/system": "2.0.0",
+    "@chakra-ui/theme": "2.0.0",
+    "@chakra-ui/transition": "2.0.0",
+    "@chakra-ui/utils": "2.0.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.12.1",
-    "framer-motion": "^4.0.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.2"
+    "framer-motion": "^6.2.9",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">=1.0.0",
-    "framer-motion": "3.x || 4.x || 5.x || 6.x",
-    "react": ">=16.8.6",
-    "react-dom": ">=16.8.6"
+    "framer-motion": ">=4.0.0",
+    "react": ">=18",
+    "react-dom": ">=18"
   }
 }

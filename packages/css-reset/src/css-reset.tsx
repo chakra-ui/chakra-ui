@@ -271,7 +271,7 @@ export const CSSReset = () => (
         height: auto;
       }
 
-      [data-js-focus-visible] :focus:not([data-focus-visible-added]) {
+      [data-js-focus-visible] :focus:not([data-focus-visible-added]):not([data-focus-visible-disabled]) {
         outline: none;
         box-shadow: none;
       }

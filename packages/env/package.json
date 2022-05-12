@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react-env",
-  "version": "1.1.6",
+  "version": "2.0.0",
   "description": "Component and hook for handling window and document object in iframe or ssr environment",
   "keywords": [
     "dom",
@@ -18,8 +18,7 @@
   "types": "dist/chakra-ui-react-env.cjs.d.ts",
   "sideEffects": false,
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -33,12 +32,12 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.10.4"
+    "@chakra-ui/utils": "2.0.0"
   },
   "peerDependencies": {
-    "react": ">=16.8.6"
+    "react": ">=18"
   },
   "devDependencies": {
-    "react": "^17.0.1"
+    "react": "^18.0.0"
   }
 }

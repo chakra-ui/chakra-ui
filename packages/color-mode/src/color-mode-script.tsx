@@ -1,67 +1,35 @@
 import * as React from "react"
-import { ColorMode, ConfigColorMode } from "./color-mode-provider"
 
-export function setScript(initialValue: ConfigColorMode) {
-  const mql = window.matchMedia("(prefers-color-scheme: dark)")
-  const systemPreference = mql.matches ? "dark" : "light"
-
-  let persistedPreference: ColorMode = systemPreference
-
-  try {
-    persistedPreference = localStorage.getItem(
-      "chakra-ui-color-mode",
-    ) as ColorMode
-  } catch (error) {
-    console.log(
-      "Chakra UI: localStorage is not available. Color mode persistence might not work as expected",
-    )
-  }
-
-  let colorMode: ColorMode
-
-  if (persistedPreference) {
-    colorMode = persistedPreference
-  } else if (initialValue === "system") {
-    colorMode = systemPreference
-  } else {
-    colorMode = initialValue ?? systemPreference
-  }
-
-  if (colorMode) {
-    /**
-     * Keep in sync with `root.set() {@file ./color-mode.utils.ts}
-     */
-    document.documentElement.style.setProperty(
-      "--chakra-ui-color-mode",
-      colorMode,
-    )
-    document.documentElement.setAttribute("data-theme", colorMode)
-  }
+export type ColorModeScriptProps = {
+  type?: "localStorage" | "cookie"
+  initialColorMode?: "light" | "dark" | "system"
+  storageKey?: string
 }
 
-interface ColorModeScriptProps {
-  initialColorMode?: ConfigColorMode
-  /**
-   * Optional nonce that will be passed to the created `<script>` tag.
-   */
-  nonce?: string
+export function getScriptSrc(props: ColorModeScriptProps = {}) {
+  const {
+    initialColorMode = "system",
+    type = "localStorage",
+    storageKey = "chakra-ui-color-mode",
+  } = props
+
+  const isCookie = type === "cookie"
+
+  const init = isCookie ? initialColorMode : `'${initialColorMode}'`
+  const k = isCookie ? storageKey : `'${storageKey}'`
+
+  const cookieScript = `!function(){try{var t="(prefers-color-scheme: dark)", e=window.matchMedia(t).matches?"dark":"light", d=document.documentElement;var ck=document.cookie.match(new RegExp(\`(^| )${k}=([^;]+)\`));var m=ck && ck[2]; if(!m) return document.cookie=\`${k}=${init}; max-age=31536000; path=/\`,d.dataset.theme="system"==='${init}'?e:'${init}';var yy="system"===m?e:m; d.dataset.theme=yy;d.style.colorScheme=yy}catch(t){}}()`
+
+  const localStorageScript = `!function(){try{var t="(prefers-color-scheme: dark)",e=window.matchMedia(t).matches?"dark":"light",d=document.documentElement,m=localStorage.getItem(${k});if(!m)return localStorage.setItem(${k},${init}),d.dataset.theme="system"===${init}?e:${init};var yy="system"===m?e:m; d.dataset.theme=yy;d.style.colorScheme=yy}catch(t){}}()`
+
+  return isCookie ? cookieScript : localStorageScript
 }
 
-/**
- * Script to add to the root of your application when using localStorage,
- * to help prevent flash of color mode that can happen during page load.
- */
-export const ColorModeScript = (props: ColorModeScriptProps) => {
-  let { initialColorMode = "light" } = props
-
-  // Runtime safeguard against invalid color mode values.
-  const validColorModeValues = ["dark", "light", "system"] as const
-  if (!validColorModeValues.includes(initialColorMode)) {
-    initialColorMode = "light"
-  }
-
-  const html = `(${String(setScript)})('${initialColorMode}')`
+export function ColorModeScript(props: ColorModeScriptProps = {}) {
   return (
-    <script nonce={props.nonce} dangerouslySetInnerHTML={{ __html: html }} />
+    <script
+      id="chakra-script"
+      dangerouslySetInnerHTML={{ __html: getScriptSrc(props) }}
+    />
   )
 }

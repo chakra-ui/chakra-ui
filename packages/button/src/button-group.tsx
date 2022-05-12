@@ -87,6 +87,7 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">((props, ref) => {
         role="group"
         __css={groupStyles}
         className={_className}
+        data-attached={isAttached ? "" : undefined}
         {...rest}
       />
     </ButtonGroupProvider>

@@ -45,6 +45,10 @@ export interface WrapProps extends HTMLChakraProps<"div"> {
   shouldWrapChildren?: boolean
 }
 
+function px(value: number | string | null): string | null {
+  return typeof value === "number" ? `${value}px` : value
+}
+
 /**
  * Layout component used to stack elements that differ in length
  * and are liable to wrap.
@@ -76,9 +80,9 @@ export const Wrap = forwardRef<WrapProps, "div">((props, ref) => {
     }
     return {
       "--chakra-wrap-x-spacing": (theme: Dict) =>
-        mapResponsive(x, (value) => tokenToCSSVar("space", value)(theme)),
+        mapResponsive(x, (value) => px(tokenToCSSVar("space", value)(theme))),
       "--chakra-wrap-y-spacing": (theme: Dict) =>
-        mapResponsive(y, (value) => tokenToCSSVar("space", value)(theme)),
+        mapResponsive(y, (value) => px(tokenToCSSVar("space", value)(theme))),
       "--wrap-x-spacing": "calc(var(--chakra-wrap-x-spacing) / 2)",
       "--wrap-y-spacing": "calc(var(--chakra-wrap-y-spacing) / 2)",
       display: "flex",
@@ -103,7 +107,12 @@ export const Wrap = forwardRef<WrapProps, "div">((props, ref) => {
     : children
 
   return (
-    <chakra.div ref={ref} className={cx("chakra-wrap", className)} {...rest}>
+    <chakra.div
+      ref={ref}
+      className={cx("chakra-wrap", className)}
+      overflow="hidden"
+      {...rest}
+    >
       <chakra.ul className="chakra-wrap__list" __css={styles}>
         {childrenToRender}
       </chakra.ul>

@@ -1,5 +1,188 @@
 # Change Log
 
+## 2.0.0
+
+### Major Changes
+
+- [#5879](https://github.com/chakra-ui/chakra-ui/pull/5879)
+  [`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump all packages
+  to next major for Chakra UI version 2.
+
+* [#5989](https://github.com/chakra-ui/chakra-ui/pull/5989)
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Omit `src`
+  directory from being published to npm
+
+- [#5828](https://github.com/chakra-ui/chakra-ui/pull/5828)
+  [`1a47fd27e`](https://github.com/chakra-ui/chakra-ui/commit/1a47fd27e6e37ff5d149e0469888eed0ec306632)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ### Remove
+  deprecations
+
+  **Affected components or packages:**
+
+  **Button, Icon Button, Input, NumberInput, Radio, Checkbox, Select**
+
+  - Removed the `isFullWidth` deprecation. Use `width=full` or `width=100%`
+
+  **Checkbox**
+
+  - Removed `defaultIsChecked`. Use `defaultChecked`
+
+  **Color mode**
+
+  - Removed references to `--chakra-ui-color-mode`. Use `data-theme` property
+    instead
+
+  **Hooks**
+
+  - Removed `useEventCallback` hook
+
+  **Input / NumberInput**
+
+  - Removed the `isFullWidth` deprecation. Use `width=full` or `width=100%`
+
+  **Grid**
+
+  - Removed the `area` prop from `Grid` component. Should be passed to the
+    `GridItem` instead.
+
+  **Styled system**
+
+  - Removed the `d` style prop. Use `display` instead.
+  - Removed the `isTruncated` style prop. Use `noOfLines={1}` instead.
+
+  **Theme**
+
+  - Removed deprecated types.
+
+* [#5882](https://github.com/chakra-ui/chakra-ui/pull/5882)
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump peer
+  dependency to React and ReactDOM to >=18
+
+### Patch Changes
+
+- [`3e6ac56be`](https://github.com/chakra-ui/chakra-ui/commit/3e6ac56be82a6117e4dee484be0956e35fc58ed1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix typescript
+  errors
+
+* [#5892](https://github.com/chakra-ui/chakra-ui/pull/5892)
+  [`ef6a22549`](https://github.com/chakra-ui/chakra-ui/commit/ef6a22549ef93093602ca2913fa6defe6f617df0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Improve
+  accessibility of input placeholders
+
+* Updated dependencies
+  [[`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f),
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7),
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)]:
+  - @chakra-ui/anatomy@2.0.0
+  - @chakra-ui/utils@2.0.0
+  - @chakra-ui/theme-tools@2.0.0
+
+## 2.0.0-next.2
+
+### Major Changes
+
+- [#5989](https://github.com/chakra-ui/chakra-ui/pull/5989)
+  [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Omit `src`
+  directory from being published to npm
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)]:
+  - @chakra-ui/anatomy@2.0.0-next.2
+  - @chakra-ui/theme-tools@2.0.0-next.2
+  - @chakra-ui/utils@2.0.0-next.2
+
+## 2.0.0-next.1
+
+### Major Changes
+
+- [#5882](https://github.com/chakra-ui/chakra-ui/pull/5882)
+  [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump peer
+  depencency to React and ReactDOM to >=18
+
+### Patch Changes
+
+- [`3e6ac56be`](https://github.com/chakra-ui/chakra-ui/commit/3e6ac56be82a6117e4dee484be0956e35fc58ed1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix typescript
+  errors
+
+* [#5892](https://github.com/chakra-ui/chakra-ui/pull/5892)
+  [`ef6a22549`](https://github.com/chakra-ui/chakra-ui/commit/ef6a22549ef93093602ca2913fa6defe6f617df0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Improve
+  accessibility of input placeholders
+
+* Updated dependencies
+  [[`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)]:
+  - @chakra-ui/anatomy@2.0.0-next.1
+  - @chakra-ui/theme-tools@2.0.0-next.1
+  - @chakra-ui/utils@2.0.0-next.1
+
+## 2.0.0-next.0
+
+### Major Changes
+
+- [#5879](https://github.com/chakra-ui/chakra-ui/pull/5879)
+  [`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Bump all packages
+  to next major for Chakra UI version 2.
+
+* [#5828](https://github.com/chakra-ui/chakra-ui/pull/5828)
+  [`1a47fd27e`](https://github.com/chakra-ui/chakra-ui/commit/1a47fd27e6e37ff5d149e0469888eed0ec306632)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ### Remove
+  deprecations
+
+  **Affected components or packages:**
+
+  **Button, Icon Button, Input, NumberInput, Radio, Checkbox, Select**
+
+  - Removed the `isFullWidth` deprecation. Use `width=full` or `width=100%`
+
+  **Checkbox**
+
+  - Removed `defaultIsChecked`. Use `defaultChecked`
+
+  **Color mode**
+
+  - Removed references to `--chakra-ui-color-mode`. Use `data-theme` property
+    instead
+
+  **Hooks**
+
+  - Removed `useEventCallback` hook
+
+  **Input / NumberInput**
+
+  - Removed the `isFullWidth` deprecation. Use `width=full` or `width=100%`
+
+  **Grid**
+
+  - Removed the `area` prop from `Grid` component. Should be passed to the
+    `GridItem` instead.
+
+  **Styled system**
+
+  - Removed the `d` style prop. Use `display` instead.
+  - Removed the `isTruncated` style prop. Use `noOfLines={1}` instead.
+
+  **Theme**
+
+  - Removed deprecated types.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)]:
+  - @chakra-ui/anatomy@2.0.0-next.0
+  - @chakra-ui/system@2.0.0-next.0
+  - @chakra-ui/utils@2.0.0-next.0
+  - @chakra-ui/theme-tools@2.0.0-next.0
+
 ## 1.14.1
 
 ### Patch Changes

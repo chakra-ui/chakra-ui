@@ -45,6 +45,27 @@ test("Should flush button", () => {
     borderTopLeftRadius: "0",
     borderBottomLeftRadius: "0",
   })
+})
 
-  // expect(getByText(/Button 1/i)).toHaveStyle({ borderStartRadius: "0" })
+test("Should flush outline button", () => {
+  const { getByText } = render(
+    <ButtonGroup isAttached variant="outline">
+      <Button>Button 1</Button>
+      <Button>Button 2</Button>
+      <Button>Button 3</Button>
+      <Button>Button 4</Button>
+    </ButtonGroup>,
+  )
+  expect(getByText(/Button 1/i)).toHaveStyle({
+    marginInlineEnd: "-1px",
+  })
+  expect(getByText(/Button 2/i)).toHaveStyle({
+    marginInlineEnd: "-1px",
+  })
+  expect(getByText(/Button 3/i)).toHaveStyle({
+    marginInlineEnd: "-1px",
+  })
+  expect(getByText(/Button 4/i)).toHaveStyle({
+    marginInlineEnd: "",
+  })
 })

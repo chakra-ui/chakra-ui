@@ -1,6 +1,6 @@
 import { useDisclosure, useEventListener, useId } from "@chakra-ui/hooks"
 import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
-import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
+import { mergeRefs, PropGetter, ReactRef } from "@chakra-ui/react-utils"
 import { callAllHandlers, px } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -36,7 +36,7 @@ export interface UseTooltipProps
   /**
    * If `true`, the tooltip will hide on pressing Esc key
    */
-   closeOnEsc?: boolean
+  closeOnEsc?: boolean
   /**
    * Callback to run when the tooltip shows
    */
@@ -208,9 +208,9 @@ export function useTooltip(props: UseTooltipProps = {}) {
   )
 
   const getTooltipProps = React.useCallback(
-    (props = {}, _ref = null) => {
+    (props: any = {}, ref: ReactRef<any> = null) => {
       const tooltipProps = {
-        ref: _ref,
+        ref,
         ...htmlProps,
         ...props,
         id: tooltipId,

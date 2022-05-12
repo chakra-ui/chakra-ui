@@ -15,7 +15,7 @@ const [PortalContextProvider, usePortalContext] = createContext<PortalContext>({
 const PORTAL_CLASSNAME = "chakra-portal"
 const PORTAL_SELECTOR = `.chakra-portal`
 
-const Container: React.FC<{ zIndex: number }> = (props) => (
+const Container = (props: React.PropsWithChildren<{ zIndex: number }>) => (
   <div
     className="chakra-portal-zIndex"
     style={{
@@ -35,7 +35,9 @@ const Container: React.FC<{ zIndex: number }> = (props) => (
 /**
  * Portal that uses `document.body` as container
  */
-const DefaultPortal: React.FC<{ appendToParentPortal?: boolean }> = (props) => {
+const DefaultPortal = (
+  props: React.PropsWithChildren<{ appendToParentPortal?: boolean }>,
+) => {
   const { appendToParentPortal, children } = props
 
   const tempNode = React.useRef<HTMLDivElement | null>(null)
@@ -86,7 +88,7 @@ const DefaultPortal: React.FC<{ appendToParentPortal?: boolean }> = (props) => {
   )
 }
 
-interface ContainerPortalProps {
+interface ContainerPortalProps extends React.PropsWithChildren<{}> {
   containerRef: React.RefObject<HTMLElement | null>
   appendToParentPortal?: boolean
 }
@@ -94,7 +96,7 @@ interface ContainerPortalProps {
 /**
  * Portal that uses a custom container
  */
-const ContainerPortal: React.FC<ContainerPortalProps> = (props) => {
+const ContainerPortal = (props: ContainerPortalProps) => {
   const { children, containerRef, appendToParentPortal } = props
   const containerEl = containerRef.current
   const host = containerEl ?? (isBrowser ? document.body : undefined)

@@ -1,12 +1,11 @@
-import * as React from "react"
 import {
-  render,
   fireEvent,
+  screen,
+  render,
   testA11y,
-  press,
   waitFor,
 } from "@chakra-ui/test-utils"
-import { PortalManager } from "@chakra-ui/portal"
+import * as React from "react"
 import {
   Modal,
   ModalBody,
@@ -17,11 +16,8 @@ import {
   ModalOverlay,
 } from "../src"
 
-const renderWithPortal = (ui: React.ReactElement) =>
-  render(<PortalManager>{ui}</PortalManager>)
-
 test("should have no accessibility violations", async () => {
-  const { container } = renderWithPortal(
+  const { container } = render(
     <Modal isOpen onClose={jest.fn()}>
       <ModalOverlay />
       <ModalContent>
@@ -37,7 +33,7 @@ test("should have no accessibility violations", async () => {
 })
 
 test("should have the proper 'aria' attributes", () => {
-  const tools = renderWithPortal(
+  const tools = render(
     <Modal isOpen onClose={jest.fn()}>
       <ModalOverlay />
       <ModalContent data-testid="modal">
@@ -73,7 +69,7 @@ test("should have the proper 'aria' attributes", () => {
 test("should fire 'onClose' callback when close button is clicked", () => {
   const onClose = jest.fn()
 
-  const tools = renderWithPortal(
+  const tools = render(
     <Modal isOpen onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
@@ -91,28 +87,45 @@ test("should fire 'onClose' callback when close button is clicked", () => {
   expect(onClose).toHaveBeenCalled()
 })
 
-test('clicking overlay or pressing "esc" calls the onClose callback', () => {
-  const onClose = jest.fn()
-  renderWithPortal(
-    <Modal isOpen onClose={onClose}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Modal header</ModalHeader>
-        <ModalBody>Modal body</ModalBody>
-      </ModalContent>
-    </Modal>,
-  )
+describe("closing the modal", () => {
+  test("clicking overlay calls the onClose callback", async () => {
+    const onClose = jest.fn()
+    render(
+      <Modal isOpen onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal header</ModalHeader>
+          <ModalBody>Modal body</ModalBody>
+        </ModalContent>
+      </Modal>,
+    )
 
-  const [overlay] = Array.from(
-    document.getElementsByClassName("chakra-modal__content-container"),
-  )
+    const dialog = await screen.findByRole("dialog")
+    const overlay = dialog.parentElement
 
-  // Not working in tests but working in browser. I'm guessing this is due to focus-trap
-  // fireEvent.click(overlay as HTMLElement)
-  // expect(onClose).toHaveBeenCalled()
+    if (overlay) {
+      // an extra mousedown is required to get onOverlayClick function in `useModal` to work
+      fireEvent.mouseDown(overlay)
+      fireEvent.click(overlay)
+      expect(onClose).toHaveBeenCalled()
+    }
+  })
 
-  press.Escape(overlay as HTMLElement)
-  expect(onClose).toHaveBeenCalled()
+  test("pressing escape key calls the onClose callback", async () => {
+    const onClose = jest.fn()
+    const { user } = render(
+      <Modal isOpen onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal header</ModalHeader>
+          <ModalBody>Modal body</ModalBody>
+        </ModalContent>
+      </Modal>,
+    )
+
+    await user.press.Escape(document.activeElement!)
+    expect(onClose).toHaveBeenCalled()
+  })
 })
 
 test("focuses the initial focus ref when opened", () => {
@@ -142,7 +155,7 @@ test("focuses the initial focus ref when opened", () => {
       </>
     )
   }
-  const tools = renderWithPortal(<Component />)
+  const tools = render(<Component />)
 
   /**
    * User clicks button to open the modal
@@ -184,7 +197,7 @@ test("should return focus to button when closed", async () => {
       </>
     )
   }
-  const tools = renderWithPortal(<Component />)
+  const tools = render(<Component />)
   const button = tools.getByTestId("button")
 
   // make sure button isn't focused at the start

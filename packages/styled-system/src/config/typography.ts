@@ -26,17 +26,6 @@ export const typography: Config = {
     },
     property: "--chakra-line-clamp",
   },
-  isTruncated: {
-    transform(value) {
-      if (value === true) {
-        return {
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          whiteSpace: "nowrap",
-        }
-      }
-    },
-  },
 }
 
 /**
@@ -96,9 +85,4 @@ export interface TypographyProps {
    * Used to visually truncate a text after a number of lines.
    */
   noOfLines?: ResponsiveValue<number>
-  /**
-   * If `true`, it clamps truncate a text after one line.
-   * @deprecated - Use `noOfLines` instead
-   */
-  isTruncated?: boolean
 }

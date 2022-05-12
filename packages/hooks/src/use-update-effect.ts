@@ -5,15 +5,23 @@ import * as React from "react"
  * It doesn't invoke on mount
  */
 export const useUpdateEffect: typeof React.useEffect = (effect, deps) => {
-  const mounted = React.useRef(false)
+  const renderCycleRef = React.useRef(false)
+  const effectCycleRef = React.useRef(false)
+
   React.useEffect(() => {
-    if (mounted.current) {
+    const isMounted = renderCycleRef.current
+    const shouldRun = isMounted && effectCycleRef.current
+    if (shouldRun) {
       return effect()
     }
-    mounted.current = true
-    return undefined
+    effectCycleRef.current = true
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps)
 
-  return mounted.current
+  React.useEffect(() => {
+    renderCycleRef.current = true
+    return () => {
+      renderCycleRef.current = false
+    }
+  }, [])
 }
