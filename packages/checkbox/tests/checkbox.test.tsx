@@ -528,11 +528,11 @@ test("On reseting form, checkbox should reset to its default state i.e., checked
   )
 
   const { container } = render(<Component />)
-  const [checkboxOne] = Array.from(container.querySelectorAll("input"))
-  const [submitBtn] = Array.from(container.querySelectorAll("button"))
-  fireEvent.click(checkboxOne)
-  submitBtn.click()
-  expect(checkboxOne).toBeChecked()
+  const [checkbox] = Array.from(container.querySelectorAll("input"))
+  const [resetBtn] = Array.from(container.querySelectorAll("button"))
+  fireEvent.click(checkbox)
+  resetBtn.click()
+  expect(checkbox).toBeChecked()
 })
 
 test("On reseting form, checkbox should reset to its default state i.e., unchecked", () => {
@@ -545,9 +545,9 @@ test("On reseting form, checkbox should reset to its default state i.e., uncheck
   )
 
   const { container } = render(<Component />)
-  const [checkboxOne] = Array.from(container.querySelectorAll("input"))
-  const [submitBtn] = Array.from(container.querySelectorAll("button"))
-  fireEvent.click(checkboxOne)
-  submitBtn.click()
-  expect(checkboxOne).not.toBeChecked()
+  const [checkbox] = Array.from(container.querySelectorAll("input"))
+  const [resetBtn] = Array.from(container.querySelectorAll("button"))
+  fireEvent.click(checkbox)
+  resetBtn.click()
+  expect(checkbox).not.toBeChecked()
 })
