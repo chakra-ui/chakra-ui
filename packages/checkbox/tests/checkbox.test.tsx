@@ -520,15 +520,10 @@ test("Uncontrolled FormControl - calls all onBlur EventHandler", () => {
 
 test("On reseting form, checkbox should reset to its default state i.e., checked", () => {
   const Component = () => (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault()
-        e.currentTarget.reset()
-      }}
-    >
+    <form>
       <label htmlFor="myCheckbox">My Checkbox</label>
       <Checkbox id="myCheckbox" defaultChecked />
-      <button type="submit">Reset</button>
+      <button type="reset">Reset</button>
     </form>
   )
 
@@ -542,15 +537,10 @@ test("On reseting form, checkbox should reset to its default state i.e., checked
 
 test("On reseting form, checkbox should reset to its default state i.e., unchecked", () => {
   const Component = () => (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault()
-        e.currentTarget.reset()
-      }}
-    >
+    <form>
       <label htmlFor="myCheckbox">My Checkbox</label>
       <Checkbox id="myCheckbox" />
-      <button type="submit">Reset</button>
+      <button type="reset">Reset</button>
     </form>
   )
 
