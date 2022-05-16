@@ -11,30 +11,25 @@ export const queries = {
 }
 
 type UtilOptions = {
-  doc?: Document
   preventTransition?: boolean
 }
 
 export function getColorModeUtils(options: UtilOptions = {}) {
-  const { doc = document, preventTransition = true } = options
-
-  const body = doc.body
-  const win = doc.defaultView ?? window
-  const docEl = doc.documentElement
+  const { preventTransition = true } = options
 
   const utils = {
     setDataset: (value: ColorMode) => {
       const cleanup = preventTransition ? utils.preventTransition() : undefined
-      docEl.dataset.theme = value
-      docEl.style.colorScheme = value
+      document.documentElement.dataset.theme = value
+      document.documentElement.style.colorScheme = value
       cleanup?.()
     },
     setClassName(dark: boolean) {
-      body.classList.add(dark ? classNames.dark : classNames.light)
-      body.classList.remove(dark ? classNames.light : classNames.dark)
+      document.body.classList.add(dark ? classNames.dark : classNames.light)
+      document.body.classList.remove(dark ? classNames.light : classNames.dark)
     },
     query(query: string) {
-      return win.matchMedia(query)
+      return window.matchMedia(query)
     },
     getColorScheme(fallback?: ColorMode) {
       const dark = utils.query(queries.dark).matches ?? fallback === "dark"
@@ -49,18 +44,18 @@ export function getColorModeUtils(options: UtilOptions = {}) {
       return () => mql.removeEventListener("change", listener)
     },
     preventTransition() {
-      const css = doc.createElement("style")
+      const css = document.createElement("style")
       css.appendChild(
-        doc.createTextNode(
+        document.createTextNode(
           `*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}`,
         ),
       )
-      doc.head.appendChild(css)
+      document.head.appendChild(css)
 
       return () => {
-        ;(() => win.getComputedStyle(doc.body))()
-        win.setTimeout(() => {
-          doc.head.removeChild(css)
+        ;(() => window.getComputedStyle(document.body))()
+        window.setTimeout(() => {
+          document.head.removeChild(css)
         }, 1)
       }
     },
