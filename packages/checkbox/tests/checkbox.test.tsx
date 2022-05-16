@@ -517,3 +517,35 @@ test("Uncontrolled FormControl - calls all onBlur EventHandler", () => {
   expect(formControlOnBlurMock).toHaveBeenCalled()
   expect(checkboxOnBlurMock).toHaveBeenCalled()
 })
+
+test("On reseting form, checkbox should reset to its default state i.e., checked", () => {
+  const { getByRole } = render(
+    <form>
+      <label htmlFor="myCheckbox">My Checkbox</label>
+      <Checkbox id="myCheckbox" defaultChecked />
+      <button type="reset">Reset</button>
+    </form>,
+  )
+  const resetBtn = getByRole("button")
+  const checkbox = getByRole("checkbox")
+  fireEvent.click(checkbox)
+  resetBtn.click()
+  expect(checkbox).toBeChecked()
+})
+
+test("On reseting form, checkbox should reset to its default state i.e., unchecked", () => {
+  const { getByRole } = render(
+    <form>
+      <label htmlFor="myCheckbox">My Checkbox</label>
+      <Checkbox id="myCheckbox" />
+      <button type="reset" name="resetBtn">
+        Reset
+      </button>
+    </form>,
+  )
+  const resetBtn = getByRole("button")
+  const checkbox = getByRole("checkbox")
+  fireEvent.click(checkbox)
+  resetBtn.click()
+  expect(checkbox).not.toBeChecked()
+})
