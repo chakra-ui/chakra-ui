@@ -1,11 +1,11 @@
 {
   "name": "storybook-addon",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.16.0",
-    "@chakra-ui/storybook-addon": "2.0.0",
+    "@chakra-ui/storybook-addon": "2.0.1",
     "@storybook/addon-actions": "~6.5.0-alpha.64",
     "@storybook/react": "~6.5.0-alpha.64"
   },
