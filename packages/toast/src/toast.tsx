@@ -19,7 +19,16 @@ export interface ToastProps
 }
 
 export const Toast: React.FC<ToastProps> = (props) => {
-  const { status, variant, id, title, isClosable, onClose, description, icon } = props
+  const {
+    status,
+    variant = "solid",
+    id,
+    title,
+    isClosable,
+    onClose,
+    description,
+    icon,
+  } = props
 
   const alertTitleId =
     typeof id !== "undefined" ? `toast-${id}-title` : undefined
