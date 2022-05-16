@@ -60,7 +60,8 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   const defaultColorMode = initialColorMode === "dark" ? "dark" : "light"
 
   const [colorMode, rawSetColorMode] = React.useState<ColorMode | undefined>(
-    colorModeManager.get() || defaultColorMode,
+    colorModeManager.type === "cookie"
+      ? colorModeManager.get(defaultColorMode) : defaultColorMode
   )
 
   const { document } = useEnvironment()
