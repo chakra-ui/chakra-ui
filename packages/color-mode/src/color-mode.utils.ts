@@ -5,11 +5,6 @@ const classNames = {
   dark: "chakra-ui-dark",
 }
 
-export const queries = {
-  light: "(prefers-color-scheme: light)",
-  dark: "(prefers-color-scheme: dark)",
-}
-
 type UtilOptions = {
   preventTransition?: boolean
 }
@@ -28,15 +23,15 @@ export function getColorModeUtils(options: UtilOptions = {}) {
       document.body.classList.add(dark ? classNames.dark : classNames.light)
       document.body.classList.remove(dark ? classNames.light : classNames.dark)
     },
-    query(query: string) {
-      return window.matchMedia(query)
+    query() {
+      return window.matchMedia("(prefers-color-scheme: dark)")
     },
-    getColorScheme(fallback?: ColorMode) {
-      const dark = utils.query(queries.dark).matches ?? fallback === "dark"
+    getSystemTheme(fallback?: ColorMode) {
+      const dark = utils.query().matches ?? fallback === "dark"
       return dark ? "dark" : "light"
     },
     addListener(fn: (cm: ColorMode) => unknown) {
-      const mql = utils.query(queries.dark)
+      const mql = utils.query()
       const listener = (e: MediaQueryListEvent) => {
         fn(e.matches ? "dark" : "light")
       }

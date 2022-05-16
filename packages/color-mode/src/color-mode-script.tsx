@@ -39,11 +39,15 @@ export function getScriptSrc(props: ColorModeScriptProps = {}) {
   return isCookie ? cookieScript : localStorageScript
 }
 
-export function ColorModeScript(props: ColorModeScriptProps = {}) {
-  return (
-    <script
-      id="chakra-script"
-      dangerouslySetInnerHTML={{ __html: getScriptSrc(props) }}
-    />
-  )
-}
+export const ColorModeScript = React.memo(
+  (props: ColorModeScriptProps = {}) => {
+    return (
+      <script
+        id="chakra-script"
+        dangerouslySetInnerHTML={{ __html: getScriptSrc(props) }}
+      />
+    )
+  },
+  // Never re-render this component
+  () => true,
+)

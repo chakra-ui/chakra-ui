@@ -11,6 +11,7 @@ export type { ColorMode, ConfigColorMode }
 export interface ColorModeOptions {
   initialColorMode?: ConfigColorMode
   useSystemColorMode?: boolean
+  disableTransitionOnChange?: boolean
 }
 
 interface ColorModeContextType {
@@ -24,8 +25,6 @@ export const ColorModeContext = React.createContext({} as ColorModeContextType)
 if (__DEV__) {
   ColorModeContext.displayName = "ColorModeContext"
 }
-
-const utils = getColorModeUtils()
 
 /**
  * React hook that reads from `ColorModeProvider` context
@@ -46,6 +45,10 @@ export interface ColorModeProviderProps {
   colorModeManager?: StorageManager
 }
 
+function getTheme(manager: StorageManager, fallback?: ColorMode) {
+  return manager.type === "cookie" ? manager.get(fallback) : fallback
+}
+
 /**
  * Provides context for the color mode based on config in `theme`
  * Returns the color mode and function to toggle the color mode
@@ -54,16 +57,37 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   const {
     value,
     children,
-    options: { useSystemColorMode, initialColorMode } = {},
+    options: {
+      useSystemColorMode,
+      initialColorMode,
+      disableTransitionOnChange,
+    } = {},
     colorModeManager = localStorageManager,
   } = props
 
   const defaultColorMode = initialColorMode === "dark" ? "dark" : "light"
 
-  const [colorMode, rawSetColorMode] = React.useState<ColorMode | undefined>(
-    colorModeManager.type === "cookie"
-      ? colorModeManager.get(defaultColorMode) : defaultColorMode
+  const [colorMode, rawSetColorMode] = React.useState(() =>
+    getTheme(colorModeManager, defaultColorMode),
   )
+
+  const [resolvedColorMode, setResolvedColorMode] = React.useState(() =>
+    getTheme(colorModeManager, defaultColorMode),
+  )
+
+  const { getSystemTheme, setClassName, setDataset, addListener } =
+    React.useMemo(
+      () => getColorModeUtils({ preventTransition: disableTransitionOnChange }),
+      [disableTransitionOnChange],
+    )
+
+  React.useEffect(() => {
+    if (initialColorMode === "system") {
+      const systemValue = getSystemTheme(defaultColorMode)
+      setResolvedColorMode(systemValue)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   React.useEffect(() => {
     if (!isBrowser) return
@@ -75,7 +99,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
       return
     }
 
-    const systemValue = utils.getColorScheme(defaultColorMode)
+    const systemValue = getSystemTheme(defaultColorMode)
 
     if (initialColorMode === "system") {
       rawSetColorMode(systemValue)
@@ -84,13 +108,13 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
 
     rawSetColorMode(defaultColorMode)
     //
-  }, [colorModeManager, defaultColorMode, initialColorMode])
+  }, [colorModeManager, defaultColorMode, initialColorMode, getSystemTheme])
 
   useUpdateEffect(() => {
-    utils.setClassName(colorMode === "dark")
+    setClassName(colorMode === "dark")
 
     if (colorMode) {
-      utils.setDataset(colorMode)
+      setDataset(colorMode)
       colorModeManager.set(colorMode)
     }
   }, [colorMode])
@@ -99,25 +123,38 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     rawSetColorMode((prev) => (prev === "light" ? "dark" : "light"))
   }, [])
 
+  const setColorMode = React.useCallback(
+    (value: ColorMode | "system") => {
+      let resolved = value
+      if (resolved === "system") {
+        resolved = getSystemTheme()
+      }
+      rawSetColorMode(resolved)
+    },
+    [getSystemTheme],
+  )
+
   React.useEffect(() => {
-    //
     if (!isBrowser) return
 
     const system = useSystemColorMode || initialColorMode === "system"
 
     if (system) {
-      return utils.addListener(rawSetColorMode)
+      return addListener(rawSetColorMode)
     }
-  }, [useSystemColorMode, initialColorMode])
+  }, [useSystemColorMode, initialColorMode, addListener])
+
+  const resolvedValue =
+    initialColorMode === "system" ? resolvedColorMode : colorMode
 
   // presence of `value` indicates a controlled context
   const context = React.useMemo(
     () => ({
-      colorMode: (value ?? colorMode) as ColorMode,
+      colorMode: value ?? (resolvedValue as ColorMode),
       toggleColorMode: value ? noop : toggleColorMode,
-      setColorMode: value ? noop : rawSetColorMode,
+      setColorMode: value ? noop : setColorMode,
     }),
-    [colorMode, toggleColorMode, value],
+    [resolvedValue, toggleColorMode, setColorMode, value],
   )
 
   return (
