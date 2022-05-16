@@ -6,16 +6,30 @@ export type ColorModeScriptProps = {
   storageKey?: string
 }
 
+const VALID_VALUES = new Set(["dark", "light", "system"])
+
+/**
+ * runtime safe-guard against invalid color mode values
+ */
+function normalize(initialColorMode: "light" | "dark" | "system") {
+  let value = initialColorMode
+  if (!VALID_VALUES.has(value)) value = "light"
+  return value
+}
+
 export function getScriptSrc(props: ColorModeScriptProps = {}) {
   const {
-    initialColorMode = "system",
+    initialColorMode = "light",
     type = "localStorage",
     storageKey = "chakra-ui-color-mode",
   } = props
 
+  // runtime safe-guard against invalid color mode values
+  const mode = normalize(initialColorMode)
+
   const isCookie = type === "cookie"
 
-  const init = isCookie ? initialColorMode : `'${initialColorMode}'`
+  const init = isCookie ? mode : `'${mode}'`
   const k = isCookie ? storageKey : `'${storageKey}'`
 
   const cookieScript = `!function(){try{var t="(prefers-color-scheme: dark)", e=window.matchMedia(t).matches?"dark":"light", d=document.documentElement;var ck=document.cookie.match(new RegExp(\`(^| )${k}=([^;]+)\`));var m=ck && ck[2]; if(!m) return document.cookie=\`${k}=${init}; max-age=31536000; path=/\`,d.dataset.theme="system"==='${init}'?e:'${init}';var yy="system"===m?e:m; d.dataset.theme=yy;d.style.colorScheme=yy}catch(t){}}()`
