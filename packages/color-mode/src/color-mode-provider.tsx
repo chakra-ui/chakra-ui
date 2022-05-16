@@ -1,5 +1,5 @@
-import { useUpdateEffect } from "@chakra-ui/hooks"
-import { isBrowser, noop, __DEV__ } from "@chakra-ui/utils"
+import { useSafeLayoutEffect } from "@chakra-ui/hooks"
+import { noop, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { ColorMode, getColorModeUtils } from "./color-mode.utils"
 import { localStorageManager, StorageManager } from "./storage-manager"
@@ -72,7 +72,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   )
 
   const [resolvedColorMode, setResolvedColorMode] = React.useState(() =>
-    getTheme(colorModeManager, defaultColorMode),
+    getTheme(colorModeManager),
   )
 
   const { getSystemTheme, setClassName, setDataset, addListener } =
@@ -81,71 +81,56 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
       [disableTransitionOnChange],
     )
 
-  React.useEffect(() => {
+  const resolvedValue =
+    initialColorMode === "system" ? resolvedColorMode : colorMode
+
+  useSafeLayoutEffect(() => {
     if (initialColorMode === "system") {
-      const systemValue = getSystemTheme(defaultColorMode)
-      setResolvedColorMode(systemValue)
+      setResolvedColorMode(getSystemTheme())
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  React.useEffect(() => {
-    if (!isBrowser) return
-
+  useSafeLayoutEffect(() => {
     const managerValue = colorModeManager.get()
 
     if (managerValue) {
-      rawSetColorMode(managerValue)
+      setColorMode(managerValue)
       return
     }
-
-    const systemValue = getSystemTheme(defaultColorMode)
 
     if (initialColorMode === "system") {
-      rawSetColorMode(systemValue)
+      setColorMode("system")
       return
     }
 
-    rawSetColorMode(defaultColorMode)
+    setColorMode(defaultColorMode)
     //
   }, [colorModeManager, defaultColorMode, initialColorMode, getSystemTheme])
 
-  useUpdateEffect(() => {
-    setClassName(colorMode === "dark")
-
-    if (colorMode) {
-      setDataset(colorMode)
-      colorModeManager.set(colorMode)
-    }
-  }, [colorMode])
-
   const toggleColorMode = React.useCallback(() => {
-    rawSetColorMode((prev) => (prev === "light" ? "dark" : "light"))
-  }, [])
+    setColorMode(resolvedValue === "dark" ? "light" : "dark")
+  }, [resolvedValue])
 
   const setColorMode = React.useCallback(
     (value: ColorMode | "system") => {
-      let resolved = value
-      if (resolved === "system") {
-        resolved = getSystemTheme()
-      }
+      //
+      const resolved = value === "system" ? getSystemTheme() : value
       rawSetColorMode(resolved)
+
+      setClassName(resolved === "dark")
+      setDataset(resolved)
+
+      colorModeManager.set(value)
     },
     [getSystemTheme],
   )
 
   React.useEffect(() => {
-    if (!isBrowser) return
-
-    const system = useSystemColorMode || initialColorMode === "system"
-
-    if (system) {
-      return addListener(rawSetColorMode)
+    if (useSystemColorMode) {
+      return addListener(setColorMode)
     }
   }, [useSystemColorMode, initialColorMode, addListener])
-
-  const resolvedValue =
-    initialColorMode === "system" ? resolvedColorMode : colorMode
 
   // presence of `value` indicates a controlled context
   const context = React.useMemo(

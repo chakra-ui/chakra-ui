@@ -8,32 +8,26 @@ type MaybeColorMode = ColorMode | undefined
 export interface StorageManager {
   type: "cookie" | "localStorage"
   get(init?: ColorMode): MaybeColorMode
-  set(value: ColorMode | ""): void
+  set(value: ColorMode | "system"): void
 }
 
 export function createLocalStorageManager(key: string): StorageManager {
   return {
+    type: "localStorage",
     get(init?) {
       if (!isBrowser) return init
+      let value: any
       try {
-        const value = localStorage.getItem(key) as MaybeColorMode
-        return value ?? init
-      } catch (error) {
-        if (__DEV__) console.log(error)
-        return init
-      }
+        value = localStorage.getItem(key) || init
+      } catch (e) {}
+
+      return value || init
     },
     set(value) {
-      if (!isBrowser) return
       try {
         localStorage.setItem(key, value)
-      } catch (error) {
-        if (__DEV__) {
-          console.log(error)
-        }
-      }
+      } catch (e) {}
     },
-    type: "localStorage",
   }
 }
 
@@ -49,7 +43,6 @@ export function createCookieStorageManager(key: string): StorageManager {
       return value as MaybeColorMode
     },
     set(value) {
-      if (!isBrowser) return
       document.cookie = `${key}=${value}; max-age=31536000; path=/`
     },
   }
