@@ -25,6 +25,11 @@
   "files": [
     "dist"
   ],
+  "scripts": {
+    "ls:minify": "esbuild script-src/localstorage.js --minify --outfile=script-src/localstorage.min.js",
+    "cookie:minify": "esbuild script-src/cookiestorage.js --minify --outfile=script-src/cookiestorage.min.js",
+    "minify": "yarn ls:minify && yarn cookie:minify"
+  },
   "publishConfig": {
     "access": "public"
   },
