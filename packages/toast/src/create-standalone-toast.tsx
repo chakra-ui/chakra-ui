@@ -79,7 +79,10 @@ export function createStandaloneToast({
   const normalizeToastOptions = (options?: UseToastOptions) => ({
     ...defaultOptions,
     ...options,
-    position: getToastPlacement(options?.position, theme.direction),
+    position: getToastPlacement(
+      options?.position ?? defaultOptions?.position,
+      theme.direction,
+    ),
   })
 
   const toast = (options?: UseToastOptions) => {
