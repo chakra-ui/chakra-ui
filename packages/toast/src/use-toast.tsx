@@ -46,8 +46,8 @@ export interface UseToastOptions extends ThemingProps<"Alert"> {
    */
   status?: AlertStatus
   /**
-  * A custom icon that will be displayed by the toast.
-  */
+   * A custom icon that will be displayed by the toast.
+   */
   icon?: React.ReactNode
   /**
    * The `id` of the toast.
