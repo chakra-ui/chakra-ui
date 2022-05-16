@@ -519,34 +519,32 @@ test("Uncontrolled FormControl - calls all onBlur EventHandler", () => {
 })
 
 test("On reseting form, checkbox should reset to its default state i.e., checked", () => {
-  const Component = () => (
+  const { getByRole } = render(
     <form>
       <label htmlFor="myCheckbox">My Checkbox</label>
       <Checkbox id="myCheckbox" defaultChecked />
       <button type="reset">Reset</button>
-    </form>
+    </form>,
   )
-
-  const { container } = render(<Component />)
-  const [checkbox] = Array.from(container.querySelectorAll("input"))
-  const [resetBtn] = Array.from(container.querySelectorAll("button"))
+  const resetBtn = getByRole("button")
+  const checkbox = getByRole("checkbox")
   fireEvent.click(checkbox)
   resetBtn.click()
   expect(checkbox).toBeChecked()
 })
 
 test("On reseting form, checkbox should reset to its default state i.e., unchecked", () => {
-  const Component = () => (
+  const { getByRole } = render(
     <form>
       <label htmlFor="myCheckbox">My Checkbox</label>
       <Checkbox id="myCheckbox" />
-      <button type="reset">Reset</button>
-    </form>
+      <button type="reset" name="resetBtn">
+        Reset
+      </button>
+    </form>,
   )
-
-  const { container } = render(<Component />)
-  const [checkbox] = Array.from(container.querySelectorAll("input"))
-  const [resetBtn] = Array.from(container.querySelectorAll("button"))
+  const resetBtn = getByRole("button")
+  const checkbox = getByRole("checkbox")
   fireEvent.click(checkbox)
   resetBtn.click()
   expect(checkbox).not.toBeChecked()
