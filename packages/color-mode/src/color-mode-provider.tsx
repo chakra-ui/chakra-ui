@@ -1,5 +1,4 @@
 import { useUpdateEffect } from "@chakra-ui/hooks"
-import { useEnvironment } from "@chakra-ui/react-env"
 import { isBrowser, noop, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { ColorMode, getColorModeUtils } from "./color-mode.utils"
@@ -25,6 +24,8 @@ export const ColorModeContext = React.createContext({} as ColorModeContextType)
 if (__DEV__) {
   ColorModeContext.displayName = "ColorModeContext"
 }
+
+const utils = getColorModeUtils()
 
 /**
  * React hook that reads from `ColorModeProvider` context
@@ -63,11 +64,8 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     defaultColorMode,
   )
 
-  const { document } = useEnvironment()
-
   React.useEffect(() => {
     if (!isBrowser) return
-    const utils = getColorModeUtils({ doc: document })
 
     const managerValue = colorModeManager.get()
 
@@ -84,30 +82,32 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     }
 
     rawSetColorMode(defaultColorMode)
-  }, [colorModeManager, defaultColorMode, initialColorMode, document])
+    //
+  }, [colorModeManager, defaultColorMode, initialColorMode])
 
   useUpdateEffect(() => {
-    const utils = getColorModeUtils({ doc: document })
-
-    const dark = colorMode === "dark"
-    utils.setClassName(dark)
+    utils.setClassName(colorMode === "dark")
 
     if (colorMode) {
       utils.setDataset(colorMode)
       colorModeManager.set(colorMode)
     }
-  }, [colorMode, document])
+  }, [colorMode])
 
   const toggleColorMode = React.useCallback(() => {
     rawSetColorMode((prev) => (prev === "light" ? "dark" : "light"))
   }, [])
 
   React.useEffect(() => {
+    //
     if (!isBrowser) return
-    const utils = getColorModeUtils({ doc: document })
+
     const system = useSystemColorMode || initialColorMode === "system"
-    return system ? utils.addListener(rawSetColorMode) : noop
-  }, [useSystemColorMode, initialColorMode, document])
+
+    if (system) {
+      return utils.addListener(rawSetColorMode)
+    }
+  }, [useSystemColorMode, initialColorMode])
 
   // presence of `value` indicates a controlled context
   const context = React.useMemo(
