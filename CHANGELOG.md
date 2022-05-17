@@ -12,6 +12,14 @@ experience.
 
 ## 17-05-2022
 
+`@chakra-ui/react@2.0.2`
+
+**Color Mode** `v2.0.2`
+
+- Fix return value of color mode script
+
+## 17-05-2022
+
 `@chakra-ui/react@2.0.1`
 
 **Toast** `v2.0.1`
