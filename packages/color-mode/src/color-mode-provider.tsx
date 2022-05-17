@@ -84,6 +84,20 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   const resolvedValue =
     initialColorMode === "system" ? resolvedColorMode : colorMode
 
+  const setColorMode = React.useCallback(
+    (value: ColorMode | "system") => {
+      //
+      const resolved = value === "system" ? getSystemTheme() : value
+      rawSetColorMode(resolved)
+
+      setClassName(resolved === "dark")
+      setDataset(resolved)
+
+      colorModeManager.set(value)
+    },
+    [colorModeManager, getSystemTheme, setClassName, setDataset],
+  )
+
   useSafeLayoutEffect(() => {
     if (initialColorMode === "system") {
       setResolvedColorMode(getSystemTheme())
@@ -110,27 +124,13 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
 
   const toggleColorMode = React.useCallback(() => {
     setColorMode(resolvedValue === "dark" ? "light" : "dark")
-  }, [resolvedValue])
-
-  const setColorMode = React.useCallback(
-    (value: ColorMode | "system") => {
-      //
-      const resolved = value === "system" ? getSystemTheme() : value
-      rawSetColorMode(resolved)
-
-      setClassName(resolved === "dark")
-      setDataset(resolved)
-
-      colorModeManager.set(value)
-    },
-    [getSystemTheme],
-  )
+  }, [resolvedValue, setColorMode])
 
   React.useEffect(() => {
     if (useSystemColorMode) {
       return addListener(setColorMode)
     }
-  }, [useSystemColorMode, initialColorMode, addListener])
+  }, [useSystemColorMode, addListener, setColorMode])
 
   // presence of `value` indicates a controlled context
   const context = React.useMemo(
