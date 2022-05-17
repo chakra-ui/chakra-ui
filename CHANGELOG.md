@@ -10,6 +10,64 @@ experience.
 
 <!-- CHANGELOG:INSERT -->
 
+## 17-05-2022
+
+`@chakra-ui/react@2.0.1`
+
+**Toast** `v2.0.1`
+
+- Revert toast's default variant to `solid`
+
+**Color Mode** `v2.0.1`
+
+- Improve SSR for color mode by adding `manager.get()` in the default state
+
+- Add support `disableTransitionOnChange` option in `ColorModeProvider` and
+  `theme.config` to control whether the transition of all elements should be
+  temporarily disabled while the color mode changes.
+
+- Expose `cookieStorageManagerSSR` for users who prefer to manage color mode
+  server-side. If you use this, there's no need for the `ColorModeScript`
+
+````jsx live=false
+function App({ Component, pageProps }) {
+  // get the `cookie` from each page `getServerSideProps` return value
+  // Note: the implementation is up to you
+  const manager = cookieStorageManagerSSR(pageProps.cookie)
+  return (
+    <ChakraProvider manager={manager}>
+      <Component />
+    </ChakraProvider>
+  )
+}
+```- We now provide a way to customize the localStorage / cookie storage key
+
+```jsx live=false
+import { createLocalStorageManager } from "@chakra-ui/react"
+
+const manager = createLocalStorageManager("my-key")
+
+// in root
+function App() {
+  return <ChakraProvider colorModeManager={manager} />
+}
+
+// in script
+function Document() {
+  return <ColorModeScript storageKey="my-key" />
+}
+````
+
+- Fix inconsistent handling across provider and script
+
+**Checkbox** `v2.0.1`
+
+- Fix issue where checkbox doesn't reset the the form reset event is triggered
+
+**Theme** `v2.0.1`
+
+- Refactor global theme to use semantic token to prevent flash of white
+
 ## 12-05-2022
 
 `@chakra-ui/react@2.0.0`
