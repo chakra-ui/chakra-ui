@@ -1,6 +1,5 @@
-import { useUpdateEffect } from "@chakra-ui/hooks"
-import { useEnvironment } from "@chakra-ui/react-env"
-import { isBrowser, noop, __DEV__ } from "@chakra-ui/utils"
+import { useSafeLayoutEffect } from "@chakra-ui/hooks"
+import { noop, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { ColorMode, getColorModeUtils } from "./color-mode.utils"
 import { localStorageManager, StorageManager } from "./storage-manager"
@@ -12,6 +11,7 @@ export type { ColorMode, ConfigColorMode }
 export interface ColorModeOptions {
   initialColorMode?: ConfigColorMode
   useSystemColorMode?: boolean
+  disableTransitionOnChange?: boolean
 }
 
 interface ColorModeContextType {
@@ -30,7 +30,7 @@ if (__DEV__) {
  * React hook that reads from `ColorModeProvider` context
  * Returns the color mode and function to toggle it
  */
-export const useColorMode = () => {
+export function useColorMode() {
   const context = React.useContext(ColorModeContext)
   if (context === undefined) {
     throw new Error("useColorMode must be used within a ColorModeProvider")
@@ -45,6 +45,12 @@ export interface ColorModeProviderProps {
   colorModeManager?: StorageManager
 }
 
+function getTheme(manager: StorageManager, fallback?: ColorMode) {
+  return manager.type === "cookie" && manager.ssr
+    ? manager.get(fallback)
+    : fallback
+}
+
 /**
  * Provides context for the color mode based on config in `theme`
  * Returns the color mode and function to toggle the color mode
@@ -53,71 +59,88 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   const {
     value,
     children,
-    options: { useSystemColorMode, initialColorMode } = {},
+    options: {
+      useSystemColorMode,
+      initialColorMode,
+      disableTransitionOnChange,
+    } = {},
     colorModeManager = localStorageManager,
   } = props
 
   const defaultColorMode = initialColorMode === "dark" ? "dark" : "light"
 
-  const [colorMode, rawSetColorMode] = React.useState<ColorMode | undefined>(
-    colorModeManager.type === "cookie"
-      ? colorModeManager.get(defaultColorMode) : defaultColorMode
+  const [colorMode, rawSetColorMode] = React.useState(() =>
+    getTheme(colorModeManager, defaultColorMode),
   )
 
-  const { document } = useEnvironment()
+  const [resolvedColorMode, setResolvedColorMode] = React.useState(() =>
+    getTheme(colorModeManager),
+  )
 
-  React.useEffect(() => {
-    if (!isBrowser) return
-    const utils = getColorModeUtils({ doc: document })
+  const { getSystemTheme, setClassName, setDataset, addListener } =
+    React.useMemo(
+      () => getColorModeUtils({ preventTransition: disableTransitionOnChange }),
+      [disableTransitionOnChange],
+    )
 
+  const resolvedValue =
+    initialColorMode === "system" && !colorMode ? resolvedColorMode : colorMode
+
+  const setColorMode = React.useCallback(
+    (value: ColorMode | "system") => {
+      //
+      const resolved = value === "system" ? getSystemTheme() : value
+      rawSetColorMode(resolved)
+
+      setClassName(resolved === "dark")
+      setDataset(resolved)
+
+      colorModeManager.set(resolved)
+    },
+    [colorModeManager, getSystemTheme, setClassName, setDataset],
+  )
+
+  useSafeLayoutEffect(() => {
+    if (initialColorMode === "system") {
+      setResolvedColorMode(getSystemTheme())
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useSafeLayoutEffect(() => {
     const managerValue = colorModeManager.get()
 
     if (managerValue) {
-      rawSetColorMode(managerValue)
+      setColorMode(managerValue)
       return
     }
-
-    const systemValue = utils.getColorScheme(defaultColorMode)
 
     if (initialColorMode === "system") {
-      rawSetColorMode(systemValue)
+      setColorMode("system")
       return
     }
 
-    rawSetColorMode(defaultColorMode)
-  }, [colorModeManager, defaultColorMode, initialColorMode, document])
-
-  useUpdateEffect(() => {
-    const utils = getColorModeUtils({ doc: document })
-
-    const dark = colorMode === "dark"
-    utils.setClassName(dark)
-
-    if (colorMode) {
-      utils.setDataset(colorMode)
-      colorModeManager.set(colorMode)
-    }
-  }, [colorMode, document])
+    setColorMode(defaultColorMode)
+    //
+  }, [colorModeManager, defaultColorMode, initialColorMode, getSystemTheme])
 
   const toggleColorMode = React.useCallback(() => {
-    rawSetColorMode((prev) => (prev === "light" ? "dark" : "light"))
-  }, [])
+    setColorMode(resolvedValue === "dark" ? "light" : "dark")
+  }, [resolvedValue, setColorMode])
 
   React.useEffect(() => {
-    if (!isBrowser) return
-    const utils = getColorModeUtils({ doc: document })
-    const system = useSystemColorMode || initialColorMode === "system"
-    return system ? utils.addListener(rawSetColorMode) : noop
-  }, [useSystemColorMode, initialColorMode, document])
+    if (!useSystemColorMode) return
+    return addListener(setColorMode)
+  }, [useSystemColorMode, addListener, setColorMode])
 
   // presence of `value` indicates a controlled context
   const context = React.useMemo(
     () => ({
-      colorMode: (value ?? colorMode) as ColorMode,
+      colorMode: value ?? (resolvedValue as ColorMode),
       toggleColorMode: value ? noop : toggleColorMode,
-      setColorMode: value ? noop : rawSetColorMode,
+      setColorMode: value ? noop : setColorMode,
     }),
-    [colorMode, toggleColorMode, value],
+    [resolvedValue, toggleColorMode, setColorMode, value],
   )
 
   return (

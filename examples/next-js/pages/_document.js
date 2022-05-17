@@ -1,21 +1,16 @@
 import { ColorModeScript } from "@chakra-ui/react"
-import NextDocument, { Html, Head, Main, NextScript } from "next/document"
+import { Head, Html, Main, NextScript } from "next/document"
+import { colorModeConfig } from "../lib/color-mode-utils"
 
-export default class Document extends NextDocument {
-  static getInitialProps(ctx) {
-    return NextDocument.getInitialProps(ctx)
-  }
-
-  render() {
-    return (
-      <Html>
-        <Head />
-        <body>
-          <ColorModeScript initialColorMode="system" type="cookie" />
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
-  }
+export default function Document() {
+  return (
+    <Html>
+      <Head />
+      <body>
+        <ColorModeScript initialColorMode={colorModeConfig.initialColorMode} />
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  )
 }

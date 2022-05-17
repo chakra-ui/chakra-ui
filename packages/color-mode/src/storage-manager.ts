@@ -1,4 +1,4 @@
-import { isBrowser, __DEV__ } from "@chakra-ui/utils"
+import { isBrowser } from "@chakra-ui/utils"
 import { ColorMode } from "./color-mode.utils"
 
 export const STORAGE_KEY = "chakra-ui-color-mode"
@@ -7,52 +7,62 @@ type MaybeColorMode = ColorMode | undefined
 
 export interface StorageManager {
   type: "cookie" | "localStorage"
+  ssr?: boolean
   get(init?: ColorMode): MaybeColorMode
-  set(value: ColorMode | ""): void
+  set(value: ColorMode | "system"): void
 }
 
 export function createLocalStorageManager(key: string): StorageManager {
   return {
+    ssr: false,
+    type: "localStorage",
     get(init?) {
       if (!isBrowser) return init
+      let value: any
       try {
-        const value = localStorage.getItem(key) as MaybeColorMode
-        return value ?? init
-      } catch (error) {
-        if (__DEV__) console.log(error)
-        return init
+        value = localStorage.getItem(key) || init
+      } catch (e) {
+        // no op
       }
+
+      return value || init
     },
     set(value) {
-      if (!isBrowser) return
       try {
         localStorage.setItem(key, value)
-      } catch (error) {
-        if (__DEV__) {
-          console.log(error)
-        }
+      } catch (e) {
+        // no op
       }
     },
-    type: "localStorage",
   }
 }
 
 export const localStorageManager = createLocalStorageManager(STORAGE_KEY)
 
-export function createCookieStorageManager(key: string): StorageManager {
+function parseCookie(cookie: string, key: string): MaybeColorMode {
+  const match = cookie.match(new RegExp(`(^| )${key}=([^;]+)`))
+  return match?.[2] as MaybeColorMode
+}
+
+export function createCookieStorageManager(
+  key: string,
+  cookie?: string,
+): StorageManager {
   return {
+    ssr: !!cookie,
     type: "cookie",
-    get(init?) {
+    get(init?): MaybeColorMode {
+      if (cookie) return parseCookie(cookie, key)
       if (!isBrowser) return init
-      const match = document.cookie.match(new RegExp(`(^| )${key}=([^;]+)`))
-      const value = match?.[2] ?? init
-      return value as MaybeColorMode
+      return parseCookie(document.cookie, key) || init
     },
     set(value) {
-      if (!isBrowser) return
       document.cookie = `${key}=${value}; max-age=31536000; path=/`
     },
   }
 }
 
 export const cookieStorageManager = createCookieStorageManager(STORAGE_KEY)
+
+export const cookieStorageManagerSSR = (cookie: string) =>
+  createCookieStorageManager(STORAGE_KEY, cookie)

@@ -44,6 +44,7 @@ describe("cookie: color-mode-script", () => {
     })),
   )("%s", (entry) => {
     mockMatchMedia(entry.system)
+    //@ts-ignore
     cookieStorageManager.set("")
 
     const script = document.createElement("script")
