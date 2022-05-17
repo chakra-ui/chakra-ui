@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- [`7eaf538a4`](https://github.com/chakra-ui/chakra-ui/commit/7eaf538a4db9e168408e114f80a2c2898cf4fd47)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  checkbox doesn't reset the the form reset event is triggered
+
 ## 2.0.0
 
 ### Major Changes
