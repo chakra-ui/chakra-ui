@@ -21,6 +21,7 @@
 
       root.style.colorScheme = _value
       root.dataset.theme = _value
+      return _value
     }
 
     var cookie = document.cookie.match(new RegExp(`(^| )${key}=([^;]+)`))
