@@ -21,6 +21,8 @@
 
       root.style.colorScheme = _value
       root.dataset.theme = _value
+
+      return _value
     }
 
     var stored = localStorage.getItem(key)
