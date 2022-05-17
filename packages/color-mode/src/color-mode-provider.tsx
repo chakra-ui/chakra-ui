@@ -30,7 +30,7 @@ if (__DEV__) {
  * React hook that reads from `ColorModeProvider` context
  * Returns the color mode and function to toggle it
  */
-export const useColorMode = () => {
+export function useColorMode() {
   const context = React.useContext(ColorModeContext)
   if (context === undefined) {
     throw new Error("useColorMode must be used within a ColorModeProvider")
