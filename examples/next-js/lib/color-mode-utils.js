@@ -2,7 +2,7 @@ import { setCookies, getCookie } from "cookies-next"
 import { STORAGE_KEY } from "@chakra-ui/react"
 
 export const colorModeConfig = {
-  initialColorMode: "dark",
+  initialColorMode: "light",
   useSystemColorMode: true,
 }
 
