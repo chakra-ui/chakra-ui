@@ -1,0 +1,11 @@
+{
+  "version": "2.0.1",
+  "releaseUrl": "https://github.com/chakra-ui/chakra-ui/releases/tag/@chakra-ui/react@2.0.1",
+  "patches": [
+    "- Revert toast's default variant to `solid` \n",
+    "- Improve SSR for color mode by adding `manager.get()` in the default state\n\n- Add support `disableTransitionOnChange` option in `ColorModeProvider` and\n  `theme.config` to control whether the transition of all elements should be\n  temporarily disabled while the color mode changes.\n\n- Expose `cookieStorageManagerSSR` for users who prefer to manage color mode\n  server-side. If you use this, there's no need for the `ColorModeScript`\n\n```jsx live=false\nfunction App({ Component, pageProps }) {\n  // get the `cookie` from each page `getServerSideProps` return value\n  // Note: the implementation is up to you\n  const manager = cookieStorageManagerSSR(pageProps.cookie)\n  return (\n    <ChakraProvider manager={manager}>\n      <Component />\n    </ChakraProvider>\n  )\n}\n```",
+    "- We now provide a way to customize the localStorage / cookie storage key\n\n```jsx live=false\nimport { createLocalStorageManager } from \"@chakra-ui/react\"\n\nconst manager = createLocalStorageManager(\"my-key\")\n\n// in root\nfunction App() {\n  return <ChakraProvider colorModeManager={manager} />\n}\n\n// in script\nfunction Document() {\n  return <ColorModeScript storageKey=\"my-key\" />\n}\n``` \n",
+    "- Fix inconsistent handling across provider and script \n"
+  ],
+  "features": []
+}
