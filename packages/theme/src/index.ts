@@ -1,5 +1,6 @@
 import * as components from "./components"
 import foundations from "./foundations"
+import { semanticTokens } from "./semantic-tokens"
 import styles from "./styles"
 import type { ThemeConfig, ThemeDirection } from "./theme.types"
 
@@ -12,6 +13,7 @@ const config: ThemeConfig = {
 }
 
 export const theme = {
+  semanticTokens,
   direction,
   ...foundations,
   components,

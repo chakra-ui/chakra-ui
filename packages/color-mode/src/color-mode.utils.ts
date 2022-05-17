@@ -48,10 +48,15 @@ export function getColorModeUtils(options: UtilOptions = {}) {
       document.head.appendChild(css)
 
       return () => {
+        // force a reflow
         ;(() => window.getComputedStyle(document.body))()
-        window.setTimeout(() => {
-          document.head.removeChild(css)
-        }, 1)
+
+        // wait for next tick
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            document.head.removeChild(css)
+          })
+        })
       }
     },
   }

@@ -1,23 +1,23 @@
-import { mode, Styles } from "@chakra-ui/theme-tools"
+import { Styles } from "@chakra-ui/theme-tools"
 
 const styles: Styles = {
-  global: (props) => ({
+  global: {
     body: {
       fontFamily: "body",
-      color: mode("gray.800", "whiteAlpha.900")(props),
-      bg: mode("white", "gray.800")(props),
+      color: "chakra-body-text",
+      bg: "chakra-body-bg",
       transitionProperty: "background-color",
       transitionDuration: "normal",
       lineHeight: "base",
     },
     "*::placeholder": {
-      color: mode("gray.500", "whiteAlpha.400")(props),
+      color: "chakra-placeholder-color",
     },
     "*, *::before, &::after": {
-      borderColor: mode("gray.200", "whiteAlpha.300")(props),
+      borderColor: "chakra-border-color",
       wordWrap: "break-word",
     },
-  }),
+  },
 }
 
 export default styles
