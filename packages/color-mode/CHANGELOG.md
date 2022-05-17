@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.0.2
+
+### Patch Changes
+
+- [`a9727167c`](https://github.com/chakra-ui/chakra-ui/commit/a9727167c9529f5512717ccf162fdeefe37c5d8f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix return value of
+  color mode script
+
 ## 2.0.1
 
 ### Patch Changes
