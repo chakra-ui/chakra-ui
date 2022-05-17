@@ -2,4 +2,4 @@
 "@chakra-ui/toast": patch
 ---
 
-Set default variant for the toast to `solid`
+Revert toast's default variant to `solid`
