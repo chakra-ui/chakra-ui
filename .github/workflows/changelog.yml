@@ -51,6 +51,9 @@ jobs:
       - name: Generate the new changelog
         run: yarn changelog:gen
 
+      - name: Generate Twitter Post
+        run: yarn twitter:gen
+
       - name: Commit changelog
         run: |
           git add .
