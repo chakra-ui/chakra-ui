@@ -210,6 +210,17 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     }
   }, [isDisabled, setFocused])
 
+  /**
+   * HTMLFormElement.reset() should reset the checkbox state
+   */
+  useSafeLayoutEffect(() => {
+    const el = inputRef.current
+    if (!el?.form) return
+    el.form.onreset = () => {
+      setCheckedState(!!defaultChecked)
+    }
+  }, [])
+
   const trulyDisabled = isDisabled && !isFocusable
 
   const onKeyDown = useCallback(
