@@ -21,8 +21,6 @@
 
       root.style.colorScheme = _value
       root.dataset.theme = _value
-
-      return _value
     }
 
     var cookie = document.cookie.match(new RegExp(`(^| )${key}=([^;]+)`))
@@ -31,7 +29,8 @@
     if (stored) {
       apply(stored)
     } else {
-      document.cookie = `${key}=${apply(init)}; max-age=31536000; path=/`
+      apply(init)
+      document.cookie = `${key}=${init}; max-age=31536000; path=/`
     }
   } catch (err) {}
 })()

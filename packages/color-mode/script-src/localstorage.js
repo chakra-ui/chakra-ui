@@ -21,8 +21,6 @@
 
       root.style.colorScheme = _value
       root.dataset.theme = _value
-
-      return _value
     }
 
     var stored = localStorage.getItem(key)
@@ -30,7 +28,8 @@
     if (stored) {
       apply(stored)
     } else {
-      localStorage.setItem(key, apply(init))
+      apply(init)
+      localStorage.setItem(key, init)
     }
   } catch (err) {}
 })()

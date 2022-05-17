@@ -29,9 +29,9 @@ export function getScriptSrc(props: ColorModeScriptProps = {}) {
 
   const isCookie = type === "cookie"
 
-  const cookieScript = `(function(){try{var a=function(o){var l="(prefers-color-scheme: dark)",v=window.matchMedia(l).matches?"dark":"light",e=o==="system"?v:o,d=document.documentElement,m=document.body,i="chakra-ui-light",n="chakra-ui-dark",s=e==="dark";return m.classList.add(s?n:i),m.classList.remove(s?i:n),d.style.colorScheme=e,d.dataset.theme=e,e},u=a,h="${init}",r="${key}",t=document.cookie.match(new RegExp("(^| )".concat(r,"=([^;]+)"))),c=t?t[2]:null;c?a(c):document.cookie="".concat(r,"=").concat(a(h),"; max-age=31536000; path=/")}catch(a){}})();`
+  const cookieScript = `(function(){try{var a=function(d){var n="(prefers-color-scheme: dark)",v=window.matchMedia(n).matches?"dark":"light",e=d==="system"?v:d,m=document.documentElement,s=document.body,h="chakra-ui-light",i="chakra-ui-dark",l=e==="dark";s.classList.add(l?i:h),s.classList.remove(l?h:i),m.style.colorScheme=e,m.dataset.theme=e},u=a,r="${init}",t="${key}",c=document.cookie.match(new RegExp("(^| )".concat(t,"=([^;]+)"))),o=c?c[2]:null;o?a(o):(a(r),document.cookie="".concat(t,"=").concat(r,"; max-age=31536000; path=/"))}catch(a){}})();`
 
-  const localStorageScript = `(function(){try{var a=function(c){var v="(prefers-color-scheme: dark)",h=window.matchMedia(v).matches?"dark":"light",r=c==="system"?h:c,o=document.documentElement,s=document.body,l="chakra-ui-light",d="chakra-ui-dark",i=r==="dark";return s.classList.add(i?d:l),s.classList.remove(i?l:d),o.style.colorScheme=r,o.dataset.theme=r,r},n=a,m="${init}",e="${key}",t=localStorage.getItem(e);t?a(t):localStorage.setItem(e,a(m))}catch(a){}})();`
+  const localStorageScript = `(function(){try{var a=function(o){var v="(prefers-color-scheme: dark)",h=window.matchMedia(v).matches?"dark":"light",e=o==="system"?h:o,s=document.documentElement,l=document.body,d="chakra-ui-light",m="chakra-ui-dark",i=e==="dark";l.classList.add(i?m:d),l.classList.remove(i?d:m),s.style.colorScheme=e,s.dataset.theme=e},n=a,r="${init}",t="${key}",c=localStorage.getItem(t);c?a(c):(a(r),localStorage.setItem(t,r))}catch(a){}})();`
 
   const fn = isCookie ? cookieScript : localStorageScript
   return `!${fn}`.trim()
