@@ -1,16 +1,15 @@
 import {
-  chakra,
-  DarkMode,
-  useColorMode,
-  useColorModeValue,
   Button,
+  chakra,
+  Container,
   Image,
   Input,
   InputGroup,
   InputLeftElement,
   InputRightElement,
   Stack,
-  Container,
+  useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react"
 import Head from "next/head"
 import { useState } from "react"

@@ -1,19 +1,13 @@
-import {
-  ChakraProvider,
-  cookieStorageManager,
-  extendTheme,
-} from "@chakra-ui/react"
+import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+import { colorModeConfig } from "../lib/color-mode-utils"
 
 const theme = extendTheme({
-  config: {
-    initialColorMode: "system",
-    useSystemColorMode: true,
-  },
+  config: colorModeConfig,
 })
 
-export default function App({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }) {
   return (
-    <ChakraProvider colorModeManager={cookieStorageManager} theme={theme}>
+    <ChakraProvider theme={theme}>
       <Component {...pageProps} />
     </ChakraProvider>
   )
