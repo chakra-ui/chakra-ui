@@ -28,8 +28,7 @@
     if (stored) {
       apply(stored)
     } else {
-      apply(init)
-      localStorage.setItem(key, init)
+      localStorage.setItem(key, apply(init))
     }
   } catch (err) {}
 })()

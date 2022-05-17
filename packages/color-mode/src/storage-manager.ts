@@ -37,14 +37,20 @@ export function createLocalStorageManager(key: string): StorageManager {
 
 export const localStorageManager = createLocalStorageManager(STORAGE_KEY)
 
-export function createCookieStorageManager(key: string): StorageManager {
+function parseCookie(cookie: string, key: string): MaybeColorMode {
+  const match = cookie.match(new RegExp(`(^| )${key}=([^;]+)`))
+  return match?.[2] as MaybeColorMode
+}
+
+export function createCookieStorageManager(
+  key: string,
+  cookie?: string,
+): StorageManager {
   return {
     type: "cookie",
-    get(init?) {
-      if (!isBrowser) return init
-      const match = document.cookie.match(new RegExp(`(^| )${key}=([^;]+)`))
-      const value = match?.[2] ?? init
-      return value as MaybeColorMode
+    get(init?): MaybeColorMode {
+      if (cookie) return parseCookie(cookie, key)
+      return parseCookie(document.cookie, key) || init
     },
     set(value) {
       document.cookie = `${key}=${value}; max-age=31536000; path=/`
@@ -53,3 +59,6 @@ export function createCookieStorageManager(key: string): StorageManager {
 }
 
 export const cookieStorageManager = createCookieStorageManager(STORAGE_KEY)
+
+export const cookieStorageManagerFn = (cookie: string) =>
+  createCookieStorageManager(STORAGE_KEY, cookie)

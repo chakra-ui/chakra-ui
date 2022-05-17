@@ -29,8 +29,7 @@
     if (stored) {
       apply(stored)
     } else {
-      apply(init)
-      document.cookie = `${key}=${init}; max-age=31536000; path=/`
+      document.cookie = `${key}=${apply(init)}; max-age=31536000; path=/`
     }
   } catch (err) {}
 })()

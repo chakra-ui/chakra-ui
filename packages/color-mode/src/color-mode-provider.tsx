@@ -85,15 +85,15 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     initialColorMode === "system" && !colorMode ? resolvedColorMode : colorMode
 
   const setColorMode = React.useCallback(
-    (value: ColorMode | "system", raw?: ColorMode) => {
+    (value: ColorMode | "system") => {
       //
-      const resolved = value === "system" ? raw || getSystemTheme() : value
+      const resolved = value === "system" ? getSystemTheme() : value
       rawSetColorMode(resolved)
 
       setClassName(resolved === "dark")
       setDataset(resolved)
 
-      colorModeManager.set(value)
+      colorModeManager.set(resolved)
     },
     [colorModeManager, getSystemTheme, setClassName, setDataset],
   )
@@ -128,7 +128,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
 
   React.useEffect(() => {
     if (!useSystemColorMode) return
-    return addListener((value) => setColorMode("system", value))
+    return addListener(setColorMode)
   }, [useSystemColorMode, addListener, setColorMode])
 
   // presence of `value` indicates a controlled context
