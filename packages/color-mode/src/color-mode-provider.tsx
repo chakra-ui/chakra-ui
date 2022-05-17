@@ -46,7 +46,9 @@ export interface ColorModeProviderProps {
 }
 
 function getTheme(manager: StorageManager, fallback?: ColorMode) {
-  return manager.type === "cookie" ? manager.get(fallback) : fallback
+  return manager.type === "cookie" && manager.ssr
+    ? manager.get(fallback)
+    : fallback
 }
 
 /**

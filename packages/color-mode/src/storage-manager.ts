@@ -7,12 +7,14 @@ type MaybeColorMode = ColorMode | undefined
 
 export interface StorageManager {
   type: "cookie" | "localStorage"
+  ssr?: boolean
   get(init?: ColorMode): MaybeColorMode
   set(value: ColorMode | "system"): void
 }
 
 export function createLocalStorageManager(key: string): StorageManager {
   return {
+    ssr: false,
     type: "localStorage",
     get(init?) {
       if (!isBrowser) return init
@@ -47,9 +49,11 @@ export function createCookieStorageManager(
   cookie?: string,
 ): StorageManager {
   return {
+    ssr: !!cookie,
     type: "cookie",
     get(init?): MaybeColorMode {
       if (cookie) return parseCookie(cookie, key)
+      if (!isBrowser) return init
       return parseCookie(document.cookie, key) || init
     },
     set(value) {
@@ -60,5 +64,5 @@ export function createCookieStorageManager(
 
 export const cookieStorageManager = createCookieStorageManager(STORAGE_KEY)
 
-export const cookieStorageManagerFn = (cookie: string) =>
+export const cookieStorageManagerSSR = (cookie: string) =>
   createCookieStorageManager(STORAGE_KEY, cookie)
