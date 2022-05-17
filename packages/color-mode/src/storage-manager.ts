@@ -1,4 +1,4 @@
-import { isBrowser, __DEV__ } from "@chakra-ui/utils"
+import { isBrowser } from "@chakra-ui/utils"
 import { ColorMode } from "./color-mode.utils"
 
 export const STORAGE_KEY = "chakra-ui-color-mode"
@@ -19,14 +19,18 @@ export function createLocalStorageManager(key: string): StorageManager {
       let value: any
       try {
         value = localStorage.getItem(key) || init
-      } catch (e) {}
+      } catch (e) {
+        // no op
+      }
 
       return value || init
     },
     set(value) {
       try {
         localStorage.setItem(key, value)
-      } catch (e) {}
+      } catch (e) {
+        // no op
+      }
     },
   }
 }
