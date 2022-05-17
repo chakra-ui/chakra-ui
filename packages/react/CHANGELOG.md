@@ -1,5 +1,21 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`3996f46d1`](https://github.com/chakra-ui/chakra-ui/commit/3996f46d1b6e3b4997542e6d3367387ed73d3f8d),
+  [`7eaf538a4`](https://github.com/chakra-ui/chakra-ui/commit/7eaf538a4db9e168408e114f80a2c2898cf4fd47),
+  [`a9099c106`](https://github.com/chakra-ui/chakra-ui/commit/a9099c106edf0364d36feedfc066c5523cb7c7c8)]:
+  - @chakra-ui/toast@2.0.1
+  - @chakra-ui/checkbox@2.0.1
+  - @chakra-ui/theme@2.0.1
+  - @chakra-ui/system@2.0.1
+  - @chakra-ui/switch@2.0.1
+  - @chakra-ui/provider@2.0.1
+  - @chakra-ui/skeleton@2.0.1
+
 ## 2.0.0
 
 ### Major Changes

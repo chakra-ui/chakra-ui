@@ -1,5 +1,60 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- [#6030](https://github.com/chakra-ui/chakra-ui/pull/6030)
+  [`17aeb7185`](https://github.com/chakra-ui/chakra-ui/commit/17aeb7185b7439e04abec843df186fc2b1869d6f)
+  Thanks [@RagOfJoes](https://github.com/RagOfJoes)! - - Improve SSR for color
+  mode by adding `manager.get()` in the default state
+
+  - Add support `disableTransitionOnChange` option in `ColorModeProvider` and
+    `theme.config` to control whether the transition of all elements should be
+    temporarily disabled while the color mode changes.
+
+  - Expose `cookieStorageManagerSSR` for users who prefer to manage color mode
+    server-side. If you use this, there's no need for the `ColorModeScript`
+
+  ```jsx live=false
+  function App({ Component, pageProps }) {
+    // get the `cookie` from each page `getServerSideProps` return value
+    // Note: the implementation is up to you
+    const manager = cookieStorageManagerSSR(pageProps.cookie)
+    return (
+      <ChakraProvider manager={manager}>
+        <Component />
+      </ChakraProvider>
+    )
+  }
+  ```
+
+* [#6035](https://github.com/chakra-ui/chakra-ui/pull/6035)
+  [`b7bdbb482`](https://github.com/chakra-ui/chakra-ui/commit/b7bdbb482e8a1c5725596401a0c4bc29c009a0ad)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - We now provide a
+  way to customize the localStorage / cookie storage key
+
+  ```jsx live=false
+  import { createLocalStorageManager } from "@chakra-ui/react"
+
+  const manager = createLocalStorageManager("my-key")
+
+  // in root
+  function App() {
+    return <ChakraProvider colorModeManager={manager} />
+  }
+
+  // in script
+  function Document() {
+    return <ColorModeScript storageKey="my-key" />
+  }
+  ```
+
+- [#6035](https://github.com/chakra-ui/chakra-ui/pull/6035)
+  [`fb99cd7a8`](https://github.com/chakra-ui/chakra-ui/commit/fb99cd7a87d00614a66e17a35c91dc0e02262ece)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix inconsistent
+  handling across provider and script
+
 ## 2.0.0
 
 ### Major Changes

@@ -50,7 +50,7 @@
     "react-remove-scroll": "^2.5.3"
   },
   "devDependencies": {
-    "@chakra-ui/system": "2.0.0",
+    "@chakra-ui/system": "2.0.1",
     "framer-motion": "^6.2.9",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"

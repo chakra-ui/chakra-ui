@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- [#6038](https://github.com/chakra-ui/chakra-ui/pull/6038)
+  [`a9099c106`](https://github.com/chakra-ui/chakra-ui/commit/a9099c106edf0364d36feedfc066c5523cb7c7c8)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor global
+  theme to use semantic token to prevent flash of white
+
 ## 2.0.0
 
 ### Major Changes
