@@ -9,12 +9,16 @@ import { Interpolation } from "@emotion/react"
 import * as React from "react"
 
 export interface ThemingProps<ThemeComponent extends string = any> {
-  variant?: ThemeComponent extends keyof ThemeTypings["components"]
-    ? ThemeTypings["components"][ThemeComponent]["variants"]
-    : string
-  size?: ThemeComponent extends keyof ThemeTypings["components"]
-    ? ThemeTypings["components"][ThemeComponent]["sizes"]
-    : string
+  variant?: ResponsiveValue<
+    ThemeComponent extends keyof ThemeTypings["components"]
+      ? ThemeTypings["components"][ThemeComponent]["variants"]
+      : string
+  >
+  size?: ResponsiveValue<
+    ThemeComponent extends keyof ThemeTypings["components"]
+      ? ThemeTypings["components"][ThemeComponent]["sizes"]
+      : string
+  >
   colorScheme?: ThemeTypings["colorSchemes"]
   orientation?: "vertical" | "horizontal"
   styleConfig?: Dict
