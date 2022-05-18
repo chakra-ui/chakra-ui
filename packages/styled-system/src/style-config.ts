@@ -97,8 +97,8 @@ export function resolveStyleConfig(config: Config) {
     return mergeWith(
       result,
       runIfFn(config.baseStyle ?? {}, props),
-      recipe(config, "variants", variant, props),
       recipe(config, "sizes", size, props),
+      recipe(config, "variants", variant, props),
     )
   }
 }
