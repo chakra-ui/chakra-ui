@@ -1,6 +1,4 @@
-/* eslint-disable no-nested-ternary */
-import { Dict, isArray, mergeWith, runIfFn } from "@chakra-ui/utils"
-import { isObject } from "lodash"
+import { Dict, isArray, mergeWith, runIfFn, isObject } from "@chakra-ui/utils"
 import { ResponsiveValue, WithCSSVar } from "./utils"
 
 type Theme = WithCSSVar<Dict>
