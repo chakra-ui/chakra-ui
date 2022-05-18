@@ -12,7 +12,7 @@ type Config = {
 
 type ValueType = ResponsiveValue<string | boolean>
 
-function createRecipe(theme: Theme) {
+function createStyleConfigResolver(theme: Theme) {
   const breakpointUtil = theme.__breakpoints
   return function recipe(
     config: Config,
@@ -92,7 +92,7 @@ type Values = {
 export function resolveStyleConfig(config: Config) {
   return (props: Values) => {
     const { variant, size, theme } = props
-    const recipe = createRecipe(theme)
+    const recipe = createStyleConfigResolver(theme)
     const result: Dict = {}
     return mergeWith(
       result,

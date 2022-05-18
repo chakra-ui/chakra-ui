@@ -1,6 +1,7 @@
 import * as React from "react"
 import { render } from "@chakra-ui/test-utils"
 import { ThemeProvider, useStyleConfig, useProps } from "../src"
+import { createTheme } from "./theme"
 
 test("should resolve styles in theme", async () => {
   const Component = () => {
@@ -10,7 +11,7 @@ test("should resolve styles in theme", async () => {
 
   const { asFragment } = render(
     <ThemeProvider
-      theme={{
+      theme={createTheme({
         components: {
           Button: {
             baseStyle: {
@@ -27,7 +28,7 @@ test("should resolve styles in theme", async () => {
             },
           },
         },
-      }}
+      })}
     >
       <Component />
     </ThemeProvider>,
@@ -59,7 +60,7 @@ test("should resolve multipart styles in theme", async () => {
 
   const { asFragment } = render(
     <ThemeProvider
-      theme={{
+      theme={createTheme({
         components: {
           Tabs: {
             parts: ["tablist", "tabpanel", "tab"],
@@ -95,7 +96,7 @@ test("should resolve multipart styles in theme", async () => {
             },
           },
         },
-      }}
+      })}
     >
       <Component />
     </ThemeProvider>,

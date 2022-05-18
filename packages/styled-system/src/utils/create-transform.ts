@@ -27,7 +27,7 @@ export const tokenToCSSVar =
         ? theme.__cssMap[key].varRef
         : value
 
-    return transformed + (important ? " !important" : "")
+    return important ? `${transformed} !important` : transformed
   }
 
 export function createTransform(options: CreateTransformOptions) {
