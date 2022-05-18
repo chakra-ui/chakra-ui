@@ -20,7 +20,6 @@ import { getToastPlacement } from "./toast.placement"
 
 const defaults: UseToastOptions = {
   duration: 5000,
-  position: "bottom",
   variant: "solid",
 }
 

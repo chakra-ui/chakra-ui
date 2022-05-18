@@ -24,10 +24,9 @@ type LogicalPlacementMap = Record<
 >
 
 export function getToastPlacement(
-  position: ToastPosition | undefined,
+  position: ToastPosition = "bottom",
   dir: "ltr" | "rtl",
 ): ToastPosition | undefined {
-  if (!position) return
   const logicals: LogicalPlacementMap = {
     "top-start": { ltr: "top-left", rtl: "top-right" },
     "top-end": { ltr: "top-right", rtl: "top-left" },
