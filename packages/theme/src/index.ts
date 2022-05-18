@@ -1,4 +1,4 @@
-import * as components from "./components"
+import components from "./components"
 import foundations from "./foundations"
 import { semanticTokens } from "./semantic-tokens"
 import styles from "./styles"
