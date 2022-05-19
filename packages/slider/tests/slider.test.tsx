@@ -1,5 +1,5 @@
 import { extendTheme, ThemeProvider } from "@chakra-ui/react"
-import { screen, render, testA11y } from "@chakra-ui/test-utils"
+import { screen, render, testA11y, fireEvent } from "@chakra-ui/test-utils"
 import * as React from "react"
 import styled from "@emotion/styled"
 import {
@@ -202,4 +202,34 @@ test("should have colors from styled", async () => {
   styles = getComputedStyle(sliderElement)
 
   expect(styles.backgroundColor).toBe("red")
+})
+
+const DisabledSlider = (props: {
+  defaultValue?: number
+  isReversed?: boolean
+  orientation?: UseSliderProps["orientation"]
+}) => (
+  <Slider
+    data-testid="slider"
+    aria-label="slider-2"
+    colorScheme="red"
+    orientation={props.orientation}
+    isReversed={props.isReversed || undefined}
+    defaultValue={props.defaultValue || defaultValue}
+    isDisabled
+  >
+    <SliderTrack>
+      <SliderFilledTrack />
+    </SliderTrack>
+    <SliderThumb />
+  </Slider>
+)
+
+test("should have a `not-allowed` cursor when disabled", async () => {
+  const { getByTestId } = render(<DisabledSlider />)
+  const sliderElement = getByTestId("slider")
+
+  fireEvent.mouseDown(sliderElement)
+  const styles = getComputedStyle(sliderElement)
+  expect(styles.cursor).toBe("not-allowed")
 })
