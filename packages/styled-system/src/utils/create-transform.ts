@@ -11,7 +11,7 @@ interface CreateTransformOptions {
 const isImportant = (value: string) => /!(important)?$/.test(value)
 
 const withoutImportant = (value: string) =>
-  value.replace(/(!|!important)$/, "").trim()
+  value.replace(/!(important)?$/, "").trim()
 
 export const tokenToCSSVar =
   (scale: ThemeScale, value: any) => (theme: Dict) => {
