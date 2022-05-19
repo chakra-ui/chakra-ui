@@ -8,7 +8,7 @@ interface CreateTransformOptions {
   transform?: Transform
 }
 
-const isImportant = (value: string) => /(!|important)$/.test(value)
+const isImportant = (value: string) => /!(important)?$/.test(value)
 
 const withoutImportant = (value: string) =>
   value.replace(/(!|!important)$/, "").trim()
