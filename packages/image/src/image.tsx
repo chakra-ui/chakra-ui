@@ -84,6 +84,11 @@ interface ImageOptions extends NativeImageOptions {
    *
    */
   fallbackStrategy?: FallbackStrategy
+  /**
+   * Defining which referrer is sent when fetching the resource.
+   * @type React.HTMLAttributeReferrerPolicy
+   */
+  referrerPolicy?: React.HTMLAttributeReferrerPolicy
 }
 
 export interface ImageProps
@@ -109,6 +114,7 @@ export const Image = forwardRef<ImageProps, "img">((props, ref) => {
     ignoreFallback,
     crossOrigin,
     fallbackStrategy = "beforeLoadOrError",
+    referrerPolicy,
     ...rest
   } = props
 
@@ -167,6 +173,7 @@ export const Image = forwardRef<ImageProps, "img">((props, ref) => {
       srcSet={srcSet}
       crossOrigin={crossOrigin}
       loading={loading}
+      referrerPolicy={referrerPolicy}
       className="chakra-image"
       {...shared}
     />
