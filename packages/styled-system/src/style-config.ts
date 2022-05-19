@@ -12,9 +12,15 @@ type Config = {
 
 type ValueType = ResponsiveValue<string | boolean>
 
-function createStyleConfigResolver(theme: Theme) {
+function normalize(value: ValueType | undefined, toArray: (val: any) => any[]) {
+  if (isArray(value)) return value
+  if (isObject(value)) return toArray(value)
+  if (value != null) return [value]
+}
+
+function createResolver(theme: Theme) {
   const breakpointUtil = theme.__breakpoints
-  return function recipe(
+  return function resolver(
     config: Config,
     prop: "variants" | "sizes",
     value: ValueType | undefined,
@@ -25,10 +31,7 @@ function createStyleConfigResolver(theme: Theme) {
 
     const result: Dict = {}
 
-    let normalized: any[] | undefined
-    if (isArray(value)) normalized = value
-    else if (isObject(value)) normalized = breakpointUtil.toArrayValue(value)
-    else if (value !== null) normalized = [value]
+    const normalized = normalize(value, breakpointUtil.toArrayValue)
 
     if (!normalized) return result
 
@@ -47,11 +50,9 @@ function createStyleConfigResolver(theme: Theme) {
 
       if (last && isMultipart) {
         config.parts?.forEach((part) => {
-          if (isSingle) {
-            mergeWith(result, { [part]: styles[part] })
-          } else {
-            mergeWith(result, { [part]: { [key.minWQuery]: styles[part] } })
-          }
+          mergeWith(result, {
+            [part]: isSingle ? styles[part] : { [key.minWQuery]: styles[part] },
+          })
         })
         continue
       }
@@ -67,11 +68,11 @@ function createStyleConfigResolver(theme: Theme) {
 
       if (isMultipart) {
         config.parts?.forEach((part) => {
-          if (isSingle) {
-            mergeWith(result, { [part]: styles[part] })
-          } else {
-            mergeWith(result, { [part]: { [key.minMaxQuery]: styles[part] } })
-          }
+          mergeWith(result, {
+            [part]: isSingle
+              ? styles[part]
+              : { [key.minMaxQuery]: styles[part] },
+          })
         })
         continue
       }
@@ -92,10 +93,9 @@ type Values = {
 export function resolveStyleConfig(config: Config) {
   return (props: Values) => {
     const { variant, size, theme } = props
-    const recipe = createStyleConfigResolver(theme)
-    const result: Dict = {}
+    const recipe = createResolver(theme)
     return mergeWith(
-      result,
+      {},
       runIfFn(config.baseStyle ?? {}, props),
       recipe(config, "sizes", size, props),
       recipe(config, "variants", variant, props),
