@@ -10,6 +10,7 @@ const baseStyleContainer: SystemStyleObject = {
   fontWeight: "medium",
   lineHeight: 1.2,
   outline: 0,
+  borderRadius: "md",
   _focus: {
     boxShadow: "outline",
   },
@@ -54,7 +55,6 @@ const sizes: Record<string, PartsStyleObject<typeof parts>> = {
       minW: "1.25rem",
       fontSize: "xs",
       px: 2,
-      borderRadius: "md",
     },
     closeButton: {
       marginEnd: "-2px",
@@ -66,7 +66,6 @@ const sizes: Record<string, PartsStyleObject<typeof parts>> = {
       minH: "1.5rem",
       minW: "1.5rem",
       fontSize: "sm",
-      borderRadius: "md",
       px: 2,
     },
   },
@@ -75,7 +74,6 @@ const sizes: Record<string, PartsStyleObject<typeof parts>> = {
       minH: 8,
       minW: 8,
       fontSize: "md",
-      borderRadius: "md",
       px: 3,
     },
   },
