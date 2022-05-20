@@ -27,7 +27,7 @@ export function getToastPlacement(
   position: ToastPosition | undefined,
   dir: "ltr" | "rtl",
 ): ToastPosition | undefined {
-  if (!position) return
+  const computedPosition = position ?? "bottom"
   const logicals: LogicalPlacementMap = {
     "top-start": { ltr: "top-left", rtl: "top-right" },
     "top-end": { ltr: "top-right", rtl: "top-left" },
@@ -35,6 +35,6 @@ export function getToastPlacement(
     "bottom-end": { ltr: "bottom-right", rtl: "bottom-left" },
   }
 
-  const logical = logicals[position as keyof typeof logicals]
-  return logical?.[dir] ?? position
+  const logical = logicals[computedPosition as keyof typeof logicals]
+  return logical?.[dir] ?? computedPosition
 }

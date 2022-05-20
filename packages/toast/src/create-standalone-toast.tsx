@@ -20,7 +20,6 @@ import { getToastPlacement } from "./toast.placement"
 
 const defaults: UseToastOptions = {
   duration: 5000,
-  position: "bottom",
   variant: "solid",
 }
 
@@ -79,7 +78,10 @@ export function createStandaloneToast({
   const normalizeToastOptions = (options?: UseToastOptions) => ({
     ...defaultOptions,
     ...options,
-    position: getToastPlacement(options?.position, theme.direction),
+    position: getToastPlacement(
+      options?.position ?? defaultOptions?.position,
+      theme.direction,
+    ),
   })
 
   const toast = (options?: UseToastOptions) => {

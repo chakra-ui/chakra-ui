@@ -46,8 +46,8 @@ export interface UseToastOptions extends ThemingProps<"Alert"> {
    */
   status?: AlertStatus
   /**
-  * A custom icon that will be displayed by the toast.
-  */
+   * A custom icon that will be displayed by the toast.
+   */
   icon?: React.ReactNode
   /**
    * The `id` of the toast.
@@ -81,7 +81,10 @@ export function useToast(defaultOptions?: UseToastOptions) {
     const normalizeToastOptions = (options?: UseToastOptions) => ({
       ...defaultOptions,
       ...options,
-      position: getToastPlacement(options?.position, theme.direction),
+      position: getToastPlacement(
+        options?.position ?? defaultOptions?.position,
+        theme.direction,
+      ),
     })
 
     const toast = (options?: UseToastOptions) => {
