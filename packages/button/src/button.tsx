@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import { useMergeRefs } from "@chakra-ui/hooks"
 import {
   chakra,
@@ -142,17 +141,17 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
         </ButtonSpinner>
       )}
 
-      {isLoading ? (
-        loadingText ? (
-          <span className="chakra-button__loading-text">{loadingText}</span>
-        ) : (
-          <chakra.span opacity={0}>
-            <ButtonContent {...contentProps} />
-          </chakra.span>
-        )
-      ) : (
-        <ButtonContent {...contentProps} />
+      {isLoading && loadingText && (
+        <span className="chakra-button__loading-text">{loadingText}</span>
       )}
+
+      {isLoading && !loadingText && (
+        <chakra.span opacity={0}>
+          <ButtonContent {...contentProps} />
+        </chakra.span>
+      )}
+
+      {!isLoading && <ButtonContent {...contentProps} />}
 
       {isLoading && spinnerPlacement === "end" && (
         <ButtonSpinner
