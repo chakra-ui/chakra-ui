@@ -142,7 +142,9 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
       )}
 
       {isLoading && loadingText && (
-        <span className="chakra-button__loading-text">{loadingText}</span>
+        <chakra.span className="chakra-button__loading-text" display="contents">
+          {loadingText}
+        </chakra.span>
       )}
 
       {isLoading && !loadingText && (
@@ -181,7 +183,9 @@ function ButtonContent(props: ButtonContentProps) {
   return (
     <>
       {leftIcon && <ButtonIcon marginEnd={iconSpacing}>{leftIcon}</ButtonIcon>}
-      <span className="chakra-button__content">{children}</span>
+      <chakra.span className="chakra-button__content" display="contents">
+        {children}
+      </chakra.span>
       {rightIcon && (
         <ButtonIcon marginStart={iconSpacing}>{rightIcon}</ButtonIcon>
       )}
