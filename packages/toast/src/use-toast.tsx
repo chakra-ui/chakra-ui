@@ -2,11 +2,10 @@ import type { AlertStatus } from "@chakra-ui/alert"
 import { ThemingProps, useChakra } from "@chakra-ui/system"
 import * as React from "react"
 import { MaybeFunction, runIfFn } from "@chakra-ui/utils"
-import { useLatestRef } from "@chakra-ui/hooks"
 import { getToastPlacement, ToastPosition } from "./toast.placement"
 import type { RenderProps, ToastId, ToastOptions } from "./toast.types"
-import { useToastManager } from "./toast.provider"
 import { createRenderToast } from "./toast"
+import { toastStore } from "./toast.store"
 
 export interface UseToastOptions extends ThemingProps<"Alert"> {
   /**
@@ -74,8 +73,6 @@ type UseToastPromiseOption = Omit<UseToastOptions, "status">
  */
 export function useToast(defaultOptions?: UseToastOptions) {
   const { theme } = useChakra()
-  const toastContext = useToastManager()
-  const latestToastContextRef = useLatestRef(toastContext)
 
   return React.useMemo(() => {
     const normalizeToastOptions = (options?: UseToastOptions) => ({
@@ -90,28 +87,11 @@ export function useToast(defaultOptions?: UseToastOptions) {
     const toast = (options?: UseToastOptions) => {
       const normalizedToastOptions = normalizeToastOptions(options)
       const Message = createRenderToast(normalizedToastOptions)
-      return latestToastContextRef.current.notify(
-        Message,
-        normalizedToastOptions,
-      )
+      return toastStore.notify(Message, normalizedToastOptions)
     }
 
-    toast.close = latestToastContextRef.current.close
-    toast.closeAll = latestToastContextRef.current.closeAll
-
-    /**
-     * Toasts can only be updated if they have a valid id
-     */
     toast.update = (id: ToastId, options: Omit<UseToastOptions, "id">) => {
-      if (!id) return
-
-      const normalizedToastOptions = normalizeToastOptions(options)
-      const Message = createRenderToast(normalizedToastOptions)
-
-      latestToastContextRef.current.update(id, {
-        ...normalizedToastOptions,
-        message: Message,
-      })
+      toastStore.update(id, normalizeToastOptions(options))
     }
 
     toast.promise = <Result extends any, Err extends Error = Error>(
@@ -145,10 +125,12 @@ export function useToast(defaultOptions?: UseToastOptions) {
         )
     }
 
-    toast.isActive = latestToastContextRef.current.isActive
+    toast.closeAll = toastStore.closeAll
+    toast.close = toastStore.close
+    toast.isActive = toastStore.isActive
 
     return toast
-  }, [defaultOptions, latestToastContextRef, theme.direction])
+  }, [defaultOptions, theme.direction])
 }
 
 export default useToast

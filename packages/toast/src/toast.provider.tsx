@@ -2,7 +2,6 @@ import { objectKeys } from "@chakra-ui/utils"
 import { AnimatePresence, Variants } from "framer-motion"
 import type { CSSProperties } from "react"
 import * as React from "react"
-import { createContext } from "@chakra-ui/react-utils"
 import { Portal } from "@chakra-ui/portal"
 import { ToastComponent, ToastComponentProps } from "./toast.component"
 import type {
@@ -12,16 +11,29 @@ import type {
   ToastOptions,
 } from "./toast.types"
 import type { UseToastOptions } from "./use-toast"
-import { useToastProvider } from "./use-toast-provider"
+import { toastStore } from "./toast.store"
+import { getToastListStyle } from "./toast.utils"
 
 export interface ToastMethods {
+  /**
+   * Function to actually create a toast and add it
+   * to state at the specified position
+   */
   notify: (message: ToastMessage, options?: CreateToastOptions) => ToastId
+  /**
+   * Close all toasts at once.
+   * If given positions, will only close those.
+   */
   closeAll: (options?: CloseAllToastsOptions) => void
+  /**
+   * Requests to close a toast based on its id and position
+   */
   close: (id: ToastId) => void
-  update: (
-    id: ToastId,
-    options: CreateToastOptions & { message?: ToastMessage },
-  ) => void
+  /**
+   * Update a specific toast with new options based on the
+   * passed `id`
+   */
+  update: (id: ToastId, options: Omit<UseToastOptions, "id">) => void
   isActive: (id: ToastId) => boolean
 }
 
@@ -36,13 +48,6 @@ export type CreateToastOptions = Partial<
     | "containerStyle"
   >
 >
-
-const [ToastManagerProvider, useToastManager] = createContext<ToastMethods>({
-  strict: true,
-  name: "ToastManagerContext",
-})
-
-export { useToastManager }
 
 export type ToastProviderProps = React.PropsWithChildren<{
   /**
@@ -86,49 +91,45 @@ export type ToastProviderProps = React.PropsWithChildren<{
  * Manages the creation, and removal of toasts
  * across all corners ("top", "bottom", etc.)
  */
-export const ToastProvider = React.forwardRef<ToastMethods, ToastProviderProps>(
-  (props: ToastProviderProps, ref) => {
-    const {
-      children,
-      defaultOptions,
-      motionVariants,
-      component: CustomToastComponent = ToastComponent,
-    } = props
+export const ToastProvider = (props: ToastProviderProps) => {
+  React.useSyncExternalStore(toastStore.subscribe, toastStore.getState)
 
-    const { areas, getStyle, toast } = useToastProvider({ defaultOptions })
+  const {
+    children,
+    motionVariants,
+    component: CustomToastComponent = ToastComponent,
+  } = props
 
-    // attach `toast` methods to the ref of this component for `createStandaloneToast`
-    React.useImperativeHandle(ref, () => toast)
+  const areas = toastStore.getState()
 
-    const toastList = objectKeys(areas).map((position) => {
-      const toasts = areas[position]
-
-      return (
-        <ul
-          role="region"
-          aria-live="polite"
-          key={position}
-          id={`chakra-toast-manager-${position}`}
-          style={getStyle(position)}
-        >
-          <AnimatePresence initial={false}>
-            {toasts.map((toast) => (
-              <CustomToastComponent
-                key={toast.id}
-                motionVariants={motionVariants}
-                {...toast}
-              />
-            ))}
-          </AnimatePresence>
-        </ul>
-      )
-    })
+  const toastList = objectKeys(areas).map((position) => {
+    const toasts = areas[position]
 
     return (
-      <ToastManagerProvider value={toast}>
-        {children}
-        <Portal>{toastList}</Portal>
-      </ToastManagerProvider>
+      <ul
+        role="region"
+        aria-live="polite"
+        key={position}
+        id={`chakra-toast-manager-${position}`}
+        style={getToastListStyle(position)}
+      >
+        <AnimatePresence initial={false}>
+          {toasts.map((toast) => (
+            <CustomToastComponent
+              key={toast.id}
+              motionVariants={motionVariants}
+              {...toast}
+            />
+          ))}
+        </AnimatePresence>
+      </ul>
     )
-  },
-)
+  })
+
+  return (
+    <>
+      {children}
+      <Portal>{toastList}</Portal>
+    </>
+  )
+}
