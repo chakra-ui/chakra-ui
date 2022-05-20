@@ -14,16 +14,18 @@ it("passes a11y test", async () => {
 })
 
 test("Should apply spacing", () => {
-  const { getByText } = render(
+  const { getByRole } = render(
     <ButtonGroup spacing="4rem">
       <Button>Button 1</Button>
       <Button>Button 2</Button>
     </ButtonGroup>,
   )
-  expect(getByText(/Button 2/i)).toHaveStyle({ marginInlineStart: "4rem" })
+  expect(getByRole("button", { name: "Button 2" })).toHaveStyle({
+    marginInlineStart: "4rem",
+  })
 })
 test("Should flush button", () => {
-  const { getByText } = render(
+  const { getByRole } = render(
     <ButtonGroup isAttached>
       <Button>Button 1</Button>
       <Button>Button 2</Button>
@@ -31,24 +33,24 @@ test("Should flush button", () => {
       <Button>Button 4</Button>
     </ButtonGroup>,
   )
-  expect(getByText(/Button 1/i)).toHaveStyle({
+  expect(getByRole("button", { name: "Button 1" })).toHaveStyle({
     borderTopRightRadius: "0",
     borderBottomRightRadius: "0",
   })
-  expect(getByText(/Button 2/i)).toHaveStyle({
+  expect(getByRole("button", { name: "Button 2" })).toHaveStyle({
     borderRadius: "0px",
   })
-  expect(getByText(/Button 3/i)).toHaveStyle({
+  expect(getByRole("button", { name: "Button 3" })).toHaveStyle({
     borderRadius: "0px",
   })
-  expect(getByText(/Button 4/i)).toHaveStyle({
+  expect(getByRole("button", { name: "Button 4" })).toHaveStyle({
     borderTopLeftRadius: "0",
     borderBottomLeftRadius: "0",
   })
 })
 
 test("Should flush outline button", () => {
-  const { getByText } = render(
+  const { getByRole } = render(
     <ButtonGroup isAttached variant="outline">
       <Button>Button 1</Button>
       <Button>Button 2</Button>
@@ -56,16 +58,16 @@ test("Should flush outline button", () => {
       <Button>Button 4</Button>
     </ButtonGroup>,
   )
-  expect(getByText(/Button 1/i)).toHaveStyle({
+  expect(getByRole("button", { name: "Button 1" })).toHaveStyle({
     marginInlineEnd: "-1px",
   })
-  expect(getByText(/Button 2/i)).toHaveStyle({
+  expect(getByRole("button", { name: "Button 2" })).toHaveStyle({
     marginInlineEnd: "-1px",
   })
-  expect(getByText(/Button 3/i)).toHaveStyle({
+  expect(getByRole("button", { name: "Button 3" })).toHaveStyle({
     marginInlineEnd: "-1px",
   })
-  expect(getByText(/Button 4/i)).toHaveStyle({
+  expect(getByRole("button", { name: "Button 4" })).toHaveStyle({
     marginInlineEnd: "",
   })
 })
