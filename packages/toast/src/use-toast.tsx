@@ -1,11 +1,9 @@
 import type { AlertStatus } from "@chakra-ui/alert"
 import { ThemingProps, useChakra } from "@chakra-ui/system"
 import * as React from "react"
-import { MaybeFunction, runIfFn } from "@chakra-ui/utils"
-import { getToastPlacement, ToastPosition } from "./toast.placement"
 import type { RenderProps, ToastId, ToastOptions } from "./toast.types"
-import { createRenderToast } from "./toast"
-import { toastStore } from "./toast.store"
+import { createToastFn } from "./toast"
+import { ToastPosition } from "./toast.placement"
 
 export interface UseToastOptions extends ThemingProps<"Alert"> {
   /**
@@ -65,8 +63,6 @@ export interface UseToastOptions extends ThemingProps<"Alert"> {
   containerStyle?: React.CSSProperties
 }
 
-type UseToastPromiseOption = Omit<UseToastOptions, "status">
-
 /**
  * React hook used to create a function that can be used
  * to show toasts in an application.
@@ -74,63 +70,10 @@ type UseToastPromiseOption = Omit<UseToastOptions, "status">
 export function useToast(defaultOptions?: UseToastOptions) {
   const { theme } = useChakra()
 
-  return React.useMemo(() => {
-    const normalizeToastOptions = (options?: UseToastOptions) => ({
-      ...defaultOptions,
-      ...options,
-      position: getToastPlacement(
-        options?.position ?? defaultOptions?.position,
-        theme.direction,
-      ),
-    })
-
-    const toast = (options?: UseToastOptions) => {
-      const normalizedToastOptions = normalizeToastOptions(options)
-      const Message = createRenderToast(normalizedToastOptions)
-      return toastStore.notify(Message, normalizedToastOptions)
-    }
-
-    toast.update = (id: ToastId, options: Omit<UseToastOptions, "id">) => {
-      toastStore.update(id, normalizeToastOptions(options))
-    }
-
-    toast.promise = <Result extends any, Err extends Error = Error>(
-      promise: Promise<Result>,
-      options: {
-        success: MaybeFunction<UseToastPromiseOption, [Result]>
-        error: MaybeFunction<UseToastPromiseOption, [Err]>
-        loading: UseToastPromiseOption
-      },
-    ) => {
-      const id = toast({
-        ...options.loading,
-        status: "loading",
-        duration: null,
-      })
-
-      promise
-        .then((data) =>
-          toast.update(id, {
-            status: "success",
-            duration: 5_000,
-            ...runIfFn(options.success, data),
-          }),
-        )
-        .catch((error) =>
-          toast.update(id, {
-            status: "error",
-            duration: 5_000,
-            ...runIfFn(options.error, error),
-          }),
-        )
-    }
-
-    toast.closeAll = toastStore.closeAll
-    toast.close = toastStore.close
-    toast.isActive = toastStore.isActive
-
-    return toast
-  }, [defaultOptions, theme.direction])
+  return React.useMemo(
+    () => createToastFn(theme.direction, defaultOptions),
+    [defaultOptions, theme.direction],
+  )
 }
 
 export default useToast

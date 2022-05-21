@@ -8,11 +8,8 @@ import {
 import defaultTheme from "@chakra-ui/theme"
 import * as React from "react"
 import { ToastProvider, ToastProviderProps } from "./toast.provider"
-import type { ToastId } from "./toast.types"
 import { UseToastOptions } from "./use-toast"
-import { createRenderToast } from "./toast"
-import { getToastPlacement } from "./toast.placement"
-import { toastStore } from "./toast.store"
+import { createToastFn } from "./toast"
 
 const defaults: UseToastOptions = {
   duration: 5000,
@@ -64,31 +61,8 @@ export function createStandaloneToast({
     </ThemeProvider>
   )
 
-  const normalizeToastOptions = (options?: UseToastOptions) => ({
-    ...defaultOptions,
-    ...options,
-    position: getToastPlacement(
-      options?.position ?? defaultOptions?.position,
-      theme.direction,
-    ),
-  })
-
-  const toast = (options?: UseToastOptions) => {
-    const normalizedToastOptions = normalizeToastOptions(options)
-    const Message = createRenderToast(normalizedToastOptions)
-    return toastStore.notify(Message, normalizedToastOptions)
-  }
-
-  toast.update = (id: ToastId, options: Omit<UseToastOptions, "id">) => {
-    toastStore.update(id, normalizeToastOptions(options))
-  }
-
-  toast.closeAll = toastStore.closeAll
-  toast.close = toastStore.close
-  toast.isActive = toastStore.isActive
-
   return {
     ToastContainer,
-    toast,
+    toast: createToastFn(theme.direction, defaultOptions),
   }
 }
