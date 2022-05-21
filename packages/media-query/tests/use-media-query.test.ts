@@ -22,7 +22,7 @@ describe("with useMediaQuery", () => {
     matchMedia.clear()
   })
 
-  test("should report the correct media query match on window resize", () => {
+  test("should report the correct media query match on window resize", async () => {
     const { result } = renderHook(() =>
       useMediaQuery([
         "(max-width: 410px)",

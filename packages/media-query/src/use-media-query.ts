@@ -1,6 +1,6 @@
 import { useEnvironment } from "@chakra-ui/react-env"
-import { isBrowser } from "@chakra-ui/utils"
-import { useState, useLayoutEffect, useEffect } from "react"
+import { isBrowser, isFunction } from "@chakra-ui/utils"
+import { useEffect, useLayoutEffect, useState } from "react"
 
 const useSafeLayoutEffect = isBrowser ? useLayoutEffect : useEffect
 
@@ -22,20 +22,22 @@ export function useMediaQuery(
   defaults = defaults.filter((v) => v != null) as boolean[]
 
   const [value, setValue] = useState(() => {
-    if (!isBrowser) {
-      return queries.map((query, index) => ({
-        media: query,
-        matches: defaults[index] ?? false,
-      }))
-    }
-    return queries.map((query) => ({
+    return queries.map((query, index) => ({
       media: query,
-      matches: env.window.matchMedia(query).matches,
+      matches: defaults[index] ?? false,
     }))
   })
 
   useSafeLayoutEffect(() => {
-    if (!isBrowser) return
+    // set initial matches
+    setValue(
+      queries.map((query) => ({
+        media: query,
+        matches: env.window.matchMedia(query).matches,
+      })),
+    )
+
+    const mql = queries.map((query) => env.window.matchMedia(query))
 
     const handler = (evt: MediaQueryListEvent) => {
       setValue((prev) => {
@@ -46,17 +48,14 @@ export function useMediaQuery(
       })
     }
 
-    const mql = queries.map((query) => env.window.matchMedia(query))
-
     mql.forEach((mql) => {
-      if (typeof mql.addListener === "function") mql.addListener(handler)
+      if (isFunction(mql.addListener)) mql.addListener(handler)
       else mql.addEventListener("change", handler)
     })
 
     return () => {
       mql.forEach((mql) => {
-        if (typeof mql.removeListener === "function")
-          mql.removeListener(handler)
+        if (isFunction(mql.removeListener)) mql.removeListener(handler)
         else mql.removeEventListener("change", handler)
       })
     }
