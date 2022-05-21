@@ -101,7 +101,7 @@ function Document() {
 
 - The `AlertIcon` component accepts custom icons as React children
 
-```jsx
+```jsx live=false
 <AlertIcon>
   <MyCustomIcon />
 </AlertIcon>
