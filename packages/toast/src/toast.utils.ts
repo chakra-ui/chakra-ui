@@ -13,7 +13,7 @@ export const findById = (arr: ToastOptions[], id: ToastId) =>
  * the id and return its position and index
  */
 export function findToast(toasts: ToastState, id: ToastId) {
-  const position = getToastPosition(toasts, id) as ToastPosition
+  const position = getToastPosition(toasts, id)
 
   const index = position
     ? toasts[position].findIndex((toast) => toast.id === id)
