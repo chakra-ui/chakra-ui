@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- [#6057](https://github.com/chakra-ui/chakra-ui/pull/6057)
+  [`b56f16f4e`](https://github.com/chakra-ui/chakra-ui/commit/b56f16f4eb7c30716e3ae25666d35a8f9b09e9f8)
+  Thanks [@jaqas](https://github.com/jaqas)! - Add referrerPolicy prop to Avatar
+  & Image Components
+
+- Updated dependencies
+  [[`b56f16f4e`](https://github.com/chakra-ui/chakra-ui/commit/b56f16f4eb7c30716e3ae25666d35a8f9b09e9f8)]:
+  - @chakra-ui/image@2.0.1
+
 ## 2.0.0
 
 ### Major Changes

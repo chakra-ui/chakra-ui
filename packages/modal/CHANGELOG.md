@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`754649da8`](https://github.com/chakra-ui/chakra-ui/commit/754649da8696fdd98f9087d0312eba780dcc070c)]:
+  - @chakra-ui/focus-lock@2.0.1
+
 ## 2.0.0
 
 ### Major Changes

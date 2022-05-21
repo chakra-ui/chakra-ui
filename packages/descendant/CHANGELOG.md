@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.0.1
+
+### Patch Changes
+
+- [#6046](https://github.com/chakra-ui/chakra-ui/pull/6046)
+  [`3319eca8b`](https://github.com/chakra-ui/chakra-ui/commit/3319eca8bf02b892ea345a68294110919e2963cb)
+  Thanks [@Averethel](https://github.com/Averethel)! - Ensure types used by
+  other chakra packages are properly exported and imported so that `src`
+  directory is not referenced in the emitted type declarations.
+
 ## 3.0.0
 
 ### Major Changes

@@ -1,5 +1,21 @@
 # Change Log
 
+## 2.0.2
+
+### Patch Changes
+
+- [#6046](https://github.com/chakra-ui/chakra-ui/pull/6046)
+  [`3319eca8b`](https://github.com/chakra-ui/chakra-ui/commit/3319eca8bf02b892ea345a68294110919e2963cb)
+  Thanks [@Averethel](https://github.com/Averethel)! - Ensure types used by
+  other chakra packages are properly exported and imported so that `src`
+  directory is not referenced in the emitted type declarations.
+
+* [#6056](https://github.com/chakra-ui/chakra-ui/pull/6056)
+  [`c93f5c90b`](https://github.com/chakra-ui/chakra-ui/commit/c93f5c90b0784584a8aef54fd912afa52f549016)
+  Thanks [@johannespein](https://github.com/johannespein)! - Tag component
+  variants borderRadius was overwriting baseStyle eventhough borderRadius was
+  same for all variants. borderRadius is now part of the baseStyle
+
 ## 2.0.1
 
 ### Patch Changes

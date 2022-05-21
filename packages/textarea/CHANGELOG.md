@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- [#6050](https://github.com/chakra-ui/chakra-ui/pull/6050)
+  [`3992e50d3`](https://github.com/chakra-ui/chakra-ui/commit/3992e50d368535e89e6c3547b5414d192f58b7fb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix ESLint warnings
+  and errors
+
 ## 2.0.0
 
 ### Major Changes
