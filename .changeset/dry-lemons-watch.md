@@ -1,6 +1,7 @@
 ---
 "@chakra-ui/styled-system": minor
 "@chakra-ui/system": minor
+"@chakra-ui/react": minor
 ---
 
 Add support for responsive variants and sizes.
