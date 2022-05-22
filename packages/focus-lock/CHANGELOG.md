@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- [#6043](https://github.com/chakra-ui/chakra-ui/pull/6043)
+  [`754649da8`](https://github.com/chakra-ui/chakra-ui/commit/754649da8696fdd98f9087d0312eba780dcc070c)
+  Thanks [@Methuselah96](https://github.com/Methuselah96)! - Upgrade dependency
+  `react-focus-lock` to be compatible with React 18
+
 ## 2.0.0
 
 ### Major Changes

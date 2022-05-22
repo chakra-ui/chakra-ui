@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.0.1
+
+### Patch Changes
+
+- [#6069](https://github.com/chakra-ui/chakra-ui/pull/6069)
+  [`a799a4467`](https://github.com/chakra-ui/chakra-ui/commit/a799a4467704c9489427df896ffdeae42de99505)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix regression in
+  use-media-query hook in SSR envrionments where it throws hydration mismatch
+
 ## 3.0.0
 
 ### Major Changes

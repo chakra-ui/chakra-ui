@@ -1,5 +1,21 @@
 # Change Log
 
+## 2.0.3
+
+### Patch Changes
+
+- [#6051](https://github.com/chakra-ui/chakra-ui/pull/6051)
+  [`1cea9022b`](https://github.com/chakra-ui/chakra-ui/commit/1cea9022bede29a4b9c27b76e73fea8a670bf70c)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Fix regression with the
+  default toast position. It now defaults to `bottom` as described in docs
+
+- Updated dependencies
+  [[`3319eca8b`](https://github.com/chakra-ui/chakra-ui/commit/3319eca8bf02b892ea345a68294110919e2963cb),
+  [`ddea8d143`](https://github.com/chakra-ui/chakra-ui/commit/ddea8d143e76c0e4758e6ea4b4d881f88b34452d),
+  [`c93f5c90b`](https://github.com/chakra-ui/chakra-ui/commit/c93f5c90b0784584a8aef54fd912afa52f549016)]:
+  - @chakra-ui/theme@2.0.2
+  - @chakra-ui/system@2.1.0
+
 ## 2.0.2
 
 ### Patch Changes
