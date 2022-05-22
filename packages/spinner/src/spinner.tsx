@@ -23,6 +23,7 @@ const spin = keyframes({
 interface SpinnerOptions {
   /**
    * The color of the empty area in the spinner
+   * @default "transparent"
    */
   emptyColor?: string
   /**
@@ -31,6 +32,7 @@ interface SpinnerOptions {
   color?: string
   /**
    * The thickness of the spinner
+   * @default "2px"
    * @example
    * ```jsx
    * <Spinner thickness="4px"/>
@@ -39,6 +41,7 @@ interface SpinnerOptions {
   thickness?: string
   /**
    * The speed of the spinner.
+   * @default "0.45s"
    * @example
    * ```jsx
    * <Spinner speed="0.2s"/>
@@ -48,6 +51,7 @@ interface SpinnerOptions {
   /**
    * For accessibility, it is important to add a fallback loading text.
    * This text will be visible to screen readers.
+   * @default "Loading..."
    */
   label?: string
 }

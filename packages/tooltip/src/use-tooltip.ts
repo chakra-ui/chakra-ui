@@ -26,6 +26,7 @@ export interface UseTooltipProps
   closeDelay?: number
   /**
    * If `true`, the tooltip will hide on click
+   * @default true
    */
   closeOnClick?: boolean
   /**
@@ -35,6 +36,7 @@ export interface UseTooltipProps
   closeOnMouseDown?: boolean
   /**
    * If `true`, the tooltip will hide on pressing Esc key
+   * @default true
    */
   closeOnEsc?: boolean
   /**
@@ -58,6 +60,9 @@ export interface UseTooltipProps
    */
   defaultIsOpen?: boolean
   isDisabled?: boolean
+  /**
+   * @default 10
+   */
   arrowSize?: number
   arrowShadowColor?: string
 }

@@ -48,20 +48,24 @@ export interface UsePopoverProps extends Omit<UsePopperProps, "enabled"> {
   /**
    * If `true`, focus will be returned to the element that triggers the popover
    * when it closes
+   * @default true
    */
   returnFocusOnClose?: boolean
   /**
    * If `true`, focus will be transferred to the first interactive element
    * when the popover opens
+   * @default true
    */
   autoFocus?: boolean
   /**
    * If `true`, the popover will close when you blur out it by
    * clicking outside or tabbing out
+   * @default true
    */
   closeOnBlur?: boolean
   /**
    * If `true`, the popover will close when you hit the `Esc` key
+   * @default true
    */
   closeOnEsc?: boolean
   /**
@@ -88,9 +92,17 @@ export interface UsePopoverProps extends Omit<UsePopperProps, "enabled"> {
    *
    * `click` - means the popover will open on click or
    * press `Enter` to `Space` on keyboard
+   *
+   * @default "click"
    */
   trigger?: keyof typeof TRIGGER
+  /**
+   * @default 200
+   */
   openDelay?: number
+  /**
+   * @default 200
+   */
   closeDelay?: number
   /**
    * Performance 🚀:

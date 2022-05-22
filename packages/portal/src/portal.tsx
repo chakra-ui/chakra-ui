@@ -149,6 +149,8 @@ export interface PortalProps {
    *
    * If `false`, the portal will always append to `document.body`
    * regardless of nesting. It is used to opt out of portal nesting.
+   *
+   * @default true
    */
   appendToParentPortal?: boolean
 }

@@ -53,6 +53,7 @@ export interface UsePopperProps {
   /**
    * If provided, determines whether the popper will reposition itself on `scroll`
    * and `resize` of the window.
+   * @default true
    */
   eventListeners?: boolean | { scroll?: boolean; resize?: boolean }
   /**
@@ -78,7 +79,6 @@ export interface UsePopperProps {
    * @see Docs https://popper.js.org/docs/v2/modifiers/
    */
   modifiers?: Array<Partial<Modifier<string, any>>>
-
   /**
    * Theme direction `ltr` or `rtl`. Popper's placement will
    * be set accordingly

@@ -40,6 +40,7 @@ export const [
 export interface UseTabsProps {
   /**
    * The orientation of the tab list.
+   * @default "horizontal"
    */
   orientation?: "vertical" | "horizontal"
   /**
@@ -87,6 +88,7 @@ export interface UseTabsProps {
    * The writing mode direction.
    *
    * - When in RTL, the left and right navigation is flipped
+   * @default "ltr"
    */
   direction?: "rtl" | "ltr"
 }
