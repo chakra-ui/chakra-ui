@@ -135,6 +135,9 @@ https://www.conventionalcommits.org/ or check out the
    [Learn more about Changeset](https://github.com/atlassian/changesets/tree/master/packages/cli).
    Please note that you might have to run `git fetch origin main:master` (where
    origin will be your fork on GitHub) before `yarn changeset` works.
+5. Also, if you provide `jsx` snippets to the changeset, please turn off the
+   live preview by doing the following at the beginning of the snippet:
+   ` ```jsx live=false`
 
 > If you made minor changes like CI config, prettier, etc, you can run
 > `yarn changeset add --empty` to generate an empty changeset file to document
