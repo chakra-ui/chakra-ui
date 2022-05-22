@@ -314,7 +314,7 @@ return (
 Allow user configure the storage key for the provider and script. We now export
 a `createLocalStorageManager` and `createCookieStorageManager` functions.
 
-```jsx
+```jsx live=false
 const manager = createLocalStorageManager("{storageKey}")
 
 function App({ Component, pageProps }) {
@@ -331,7 +331,7 @@ cookie script, you can set `type=cookie`.
 
 > Pro tip: You can also configure the `storageKey` from script as well
 
-```jsx
+```jsx live=false
 import { ColorModeScript } from "@chakra-ui/react"
 function Document() {
   return (
