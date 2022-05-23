@@ -11,10 +11,9 @@ import isEqual from "react-fast-compare"
 import { useChakra } from "./hooks"
 import { ThemingProps } from "./system.types"
 
-export function useStyleConfig(
-  themeKey: string,
-  props: ThemingProps & Dict = {},
-) {
+type StylesRef = SystemStyleObject | Record<string, SystemStyleObject>
+
+function useStyleConfigImpl(themeKey: string, props: ThemingProps & Dict = {}) {
   const { styleConfig: styleConfigProp, ...rest } = props
 
   const { theme, colorMode } = useChakra()
@@ -30,7 +29,6 @@ export function useStyleConfig(
   /**
    * Store the computed styles in a `ref` to avoid unneeded re-computation
    */
-  type StylesRef = SystemStyleObject | Record<string, SystemStyleObject>
   const stylesRef = useRef<StylesRef>({})
 
   if (styleConfig) {
@@ -47,4 +45,19 @@ export function useStyleConfig(
   return stylesRef.current
 }
 
-export const useMultiStyleConfig = useStyleConfig
+export function useStyleConfig(
+  themeKey: string,
+  props: ThemingProps & Dict = {},
+) {
+  return useStyleConfigImpl(themeKey, props) as SystemStyleObject
+}
+
+export function useMultiStyleConfig(
+  themeKey: string,
+  props: ThemingProps & Dict = {},
+) {
+  return useStyleConfigImpl(themeKey, props) as Record<
+    string,
+    SystemStyleObject
+  >
+}
