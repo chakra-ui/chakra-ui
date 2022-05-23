@@ -13,6 +13,18 @@ import { ThemingProps } from "./system.types"
 
 export function useStyleConfig(
   themeKey: string,
+  props: ThemingProps & Dict,
+  opts: { isMultiPart: true },
+): Record<string, SystemStyleObject>
+
+export function useStyleConfig(
+  themeKey: string,
+  props?: ThemingProps & Dict,
+  opts?: { isMultiPart?: boolean },
+): SystemStyleObject
+
+export function useStyleConfig(
+  themeKey: string,
   props: ThemingProps & Dict = {},
 ) {
   const { styleConfig: styleConfigProp, ...rest } = props
@@ -47,4 +59,9 @@ export function useStyleConfig(
   return stylesRef.current
 }
 
-export const useMultiStyleConfig = useStyleConfig
+export function useMultiStyleConfig(
+  themeKey: string,
+  props: ThemingProps & Dict = {},
+) {
+  return useStyleConfig(themeKey, props, { isMultiPart: true })
+}
