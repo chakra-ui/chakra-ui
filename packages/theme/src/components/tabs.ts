@@ -26,6 +26,10 @@ const baseStyleTab: SystemStyleFunction = (props) => {
       zIndex: 1,
       boxShadow: "outline",
     },
+    _disabled: {
+      cursor: "not-allowed",
+      opacity: 0.4,
+    },
   }
 }
 
@@ -102,8 +106,6 @@ const variantLine: PartsStyleFunction<typeof parts> = (props) => {
         bg: mode("gray.200", "whiteAlpha.300")(props),
       },
       _disabled: {
-        opacity: 0.4,
-        cursor: "not-allowed",
         _active: { bg: "none" },
       },
     },
@@ -122,10 +124,6 @@ const variantEnclosed: PartsStyleFunction<typeof parts> = (props) => {
         color: mode(`${c}.600`, `${c}.300`)(props),
         borderColor: "inherit",
         borderBottomColor: mode(`white`, `gray.800`)(props),
-      },
-      _disabled: {
-        cursor: "not-allowed",
-        opacity: 0.4,
       },
     },
     tablist: {
@@ -154,10 +152,6 @@ const variantEnclosedColored: PartsStyleFunction<typeof parts> = (props) => {
         borderTopColor: "currentColor",
         borderBottomColor: "transparent",
       },
-      _disabled: {
-        cursor: "not-allowed",
-        opacity: 0.4,
-      },
     },
     tablist: {
       mb: "-1px",
@@ -178,10 +172,6 @@ const variantSoftRounded: PartsStyleFunction<typeof parts> = (props) => {
         color: getColor(theme, `${c}.700`),
         bg: getColor(theme, `${c}.100`),
       },
-      _disabled: {
-        cursor: "not-allowed",
-        opacity: 0.4,
-      },
     },
   }
 }
@@ -196,10 +186,6 @@ const variantSolidRounded: PartsStyleFunction<typeof parts> = (props) => {
       _selected: {
         color: mode(`#fff`, "gray.800")(props),
         bg: mode(`${c}.600`, `${c}.300`)(props),
-      },
-      _disabled: {
-        cursor: "not-allowed",
-        opacity: 0.4,
       },
     },
   }
