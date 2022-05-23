@@ -80,6 +80,7 @@ test("should work correctly", () => {
   ).toMatchInlineSnapshot(`
     Array [
       Object {
+        "_minW": "-1px",
         "breakpoint": "base",
         "maxW": "319px",
         "maxWQuery": "@media screen and (max-width: 319px)",
@@ -88,6 +89,7 @@ test("should work correctly", () => {
         "minWQuery": "@media screen and (min-width: 0px)",
       },
       Object {
+        "_minW": "319px",
         "breakpoint": "sm",
         "maxW": "639px",
         "maxWQuery": "@media screen and (max-width: 639px)",
@@ -96,6 +98,7 @@ test("should work correctly", () => {
         "minWQuery": "@media screen and (min-width: 320px)",
       },
       Object {
+        "_minW": "639px",
         "breakpoint": "md",
         "maxW": "999px",
         "maxWQuery": "@media screen and (max-width: 999px)",
@@ -104,6 +107,7 @@ test("should work correctly", () => {
         "minWQuery": "@media screen and (min-width: 640px)",
       },
       Object {
+        "_minW": "999px",
         "breakpoint": "lg",
         "maxW": "3999px",
         "maxWQuery": "@media screen and (max-width: 3999px)",
@@ -112,6 +116,7 @@ test("should work correctly", () => {
         "minWQuery": "@media screen and (min-width: 1000px)",
       },
       Object {
+        "_minW": "3999px",
         "breakpoint": "xl",
         "maxW": undefined,
         "maxWQuery": "@media screen",
@@ -137,6 +142,7 @@ test("should work with createBreakpoint output", () => {
   ).toMatchInlineSnapshot(`
     Array [
       Object {
+        "_minW": "-0.0635em",
         "breakpoint": "base",
         "maxW": "319px",
         "maxWQuery": "@media screen and (max-width: 319px)",
@@ -145,6 +151,7 @@ test("should work with createBreakpoint output", () => {
         "minWQuery": "@media screen and (min-width: 0em)",
       },
       Object {
+        "_minW": "319px",
         "breakpoint": "sm",
         "maxW": "639px",
         "maxWQuery": "@media screen and (max-width: 639px)",
@@ -153,6 +160,7 @@ test("should work with createBreakpoint output", () => {
         "minWQuery": "@media screen and (min-width: 320px)",
       },
       Object {
+        "_minW": "639px",
         "breakpoint": "md",
         "maxW": "999px",
         "maxWQuery": "@media screen and (max-width: 999px)",
@@ -161,6 +169,7 @@ test("should work with createBreakpoint output", () => {
         "minWQuery": "@media screen and (min-width: 640px)",
       },
       Object {
+        "_minW": "999px",
         "breakpoint": "lg",
         "maxW": "3999px",
         "maxWQuery": "@media screen and (max-width: 3999px)",
@@ -169,6 +178,7 @@ test("should work with createBreakpoint output", () => {
         "minWQuery": "@media screen and (min-width: 1000px)",
       },
       Object {
+        "_minW": "3999px",
         "breakpoint": "xl",
         "maxW": undefined,
         "maxWQuery": "@media screen",
