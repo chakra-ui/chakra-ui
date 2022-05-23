@@ -43,7 +43,7 @@ function subtract(value: string) {
     : value.replace(/(\d+\.?\d*)/u, (m) => `${parseFloat(m) + factor}`)
 }
 
-function queryString(min: string | null, max?: string) {
+export function toMediaQueryString(min: string | null, max?: string) {
   const query = ["@media screen"]
 
   if (min) query.push("and", `(min-width: ${px(min)})`)
@@ -65,12 +65,13 @@ export function analyzeBreakpoints(breakpoints: Dict) {
       let [, maxW] = entry[index + 1] ?? []
       maxW = parseFloat(maxW) > 0 ? subtract(maxW) : undefined
       return {
+        _minW: subtract(minW),
         breakpoint,
         minW,
         maxW,
-        maxWQuery: queryString(null, maxW),
-        minWQuery: queryString(minW),
-        minMaxQuery: queryString(minW, maxW),
+        maxWQuery: toMediaQueryString(null, maxW),
+        minWQuery: toMediaQueryString(minW),
+        minMaxQuery: toMediaQueryString(minW, maxW),
       }
     })
 
@@ -87,7 +88,10 @@ export function analyzeBreakpoints(breakpoints: Dict) {
     asObject: sortBps(breakpoints),
     asArray: normalize(breakpoints),
     details: queries,
-    media: [null, ...normalized.map((minW) => queryString(minW)).slice(1)],
+    media: [
+      null,
+      ...normalized.map((minW) => toMediaQueryString(minW)).slice(1),
+    ],
     toArrayValue(test: Dict) {
       if (!isObject(test)) {
         throw new Error("toArrayValue: value must be an object")

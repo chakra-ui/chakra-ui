@@ -650,3 +650,22 @@ test("transition tokens are replaced correctly", () => {
     }
   `)
 })
+
+test("should resolve !important syntax", () => {
+  expect(css({ background: "red.100!important" })(theme))
+    .toMatchInlineSnapshot(`
+    Object {
+      "background": "red.100 !important",
+    }
+  `)
+  expect(css({ background: "red.100!" })(theme)).toMatchInlineSnapshot(`
+    Object {
+      "background": "red.100 !important",
+    }
+  `)
+  expect(css({ background: "#fff !important" })(theme)).toMatchInlineSnapshot(`
+    Object {
+      "background": "#fff !important",
+    }
+  `)
+})
