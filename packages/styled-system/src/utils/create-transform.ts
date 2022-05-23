@@ -15,6 +15,7 @@ const withoutImportant = (value: string) =>
 
 export const tokenToCSSVar =
   (scale: ThemeScale, value: any) => (theme: Dict) => {
+    const type = typeof value
     const valueStr = String(value)
 
     const important = isImportant(valueStr)
@@ -29,7 +30,9 @@ export const tokenToCSSVar =
         ? theme.__cssMap[key].varRef
         : valueWithoutImportant
 
-    return important ? `${transformed} !important` : transformed
+    if (important) return `${transformed} !important`
+
+    return type === "number" ? parseFloat(transformed) : transformed
   }
 
 export function createTransform(options: CreateTransformOptions) {
