@@ -21,6 +21,7 @@ interface ScaleFadeOptions {
   initialScale?: number
   /**
    * If `true`, the element will transition back to exit state
+   * @default true
    */
   reverse?: boolean
 }

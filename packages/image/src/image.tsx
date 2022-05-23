@@ -76,12 +76,11 @@ interface ImageOptions extends NativeImageOptions {
   ignoreFallback?: boolean
 
   /**
-   * @see https://github.com/chakra-ui/chakra-ui/issues/5581
-   *
-   *
    * - beforeLoadOrError(default): loads the fallbackImage while loading the src
    * - onError: loads the fallbackImage only if there is an error fetching the src
    *
+   * @default "beforeLoadOrError"
+   * @see Issue https://github.com/chakra-ui/chakra-ui/issues/5581
    */
   fallbackStrategy?: FallbackStrategy
   /**

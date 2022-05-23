@@ -50,7 +50,7 @@ export interface UseModalProps {
    *
    * This is commonly known as making the other elements **inert**
    *
-   *  @default true
+   * @default true
    */
   useInert?: boolean
 }

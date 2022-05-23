@@ -55,7 +55,7 @@ export interface UseSliderProps {
    */
   defaultValue?: number
   /**
-   * orientation of the slider
+   * Orientation of the slider
    * @default "horizontal"
    */
   orientation?: "horizontal" | "vertical"
@@ -117,6 +117,10 @@ export interface UseSliderProps {
    * ID of the element that serves as label for the slider
    */
   "aria-labelledby"?: string
+  /**
+   * The writing mode
+   * @default "ltr"
+   */
   direction?: "ltr" | "rtl"
 }
 

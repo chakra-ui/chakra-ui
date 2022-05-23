@@ -38,6 +38,7 @@ const [AlertProvider, useAlertContext] = createContext<AlertContext>({
 interface AlertOptions {
   /**
    * The status of the alert
+   * @default "info"
    */
   status?: AlertStatus
 }

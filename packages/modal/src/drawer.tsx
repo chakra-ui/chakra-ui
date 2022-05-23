@@ -39,6 +39,7 @@ function getDrawerPlacement(
 interface DrawerOptions {
   /**
    * The placement of the drawer
+   * @default "right"
    */
   placement?: DrawerPlacement
   /**

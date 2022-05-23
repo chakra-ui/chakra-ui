@@ -44,14 +44,17 @@ interface CircularProgressOptions {
   size?: StringOrNumber
   /**
    * Maximum value defining 100% progress made (must be higher than 'min')
+   * @default 100
    */
   max?: number
   /**
    * Minimum value defining 'no progress' (must be lower than 'max')
+   * @default 0
    */
   min?: number
   /**
    * This defines the stroke width of the svg circle.
+   * @default "10px"
    */
   thickness?: StringOrNumber
   /**

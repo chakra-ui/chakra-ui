@@ -87,10 +87,12 @@ interface ProgressOptions {
   value?: number
   /**
    * The minimum value of the progress
+   * @default 0
    */
   min?: number
   /**
    * The maximum value of the progress
+   * @default 100
    */
   max?: number
   /**

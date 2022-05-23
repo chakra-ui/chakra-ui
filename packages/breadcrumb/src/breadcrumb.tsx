@@ -160,11 +160,13 @@ if (__DEV__) {
 export interface BreadcrumbOptions {
   /**
    * The visual separator between each breadcrumb item
+   * @default "/"
    * @type string | React.ReactElement
    */
   separator?: string | React.ReactElement
   /**
    * The left and right margin applied to the separator
+   * @default "0.5rem"
    * @type SystemProps["mx"]
    */
   spacing?: SystemProps["mx"]

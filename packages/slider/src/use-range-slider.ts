@@ -53,7 +53,7 @@ export interface UseRangeSliderProps {
    */
   defaultValue?: number[]
   /**
-   * orientation of the slider
+   * Orientation of the slider
    * @default "horizontal"
    */
   orientation?: "horizontal" | "vertical"
@@ -123,6 +123,7 @@ export interface UseRangeSliderProps {
   "aria-labelledby"?: string[]
   /**
    * The writing mode
+   * @default "ltr"
    */
   direction?: "ltr" | "rtl"
   /**

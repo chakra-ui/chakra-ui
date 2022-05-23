@@ -67,12 +67,12 @@ interface ModalOptions extends Pick<FocusLockProps, "lockFocusAcrossFrames"> {
   returnFocusOnClose?: boolean
   /**
    * If `true`, scrolling will be disabled on the `body` when the modal opens.
-   *  @default true
+   * @default true
    */
   blockScrollOnMount?: boolean
   /**
    * Handle zoom/pinch gestures on iOS devices when scroll locking is enabled.
-   * Defaults to `false`.
+   * @default false.
    */
   allowPinchZoom?: boolean
   /**
@@ -113,6 +113,7 @@ export interface ModalProps
   portalProps?: Pick<PortalProps, "appendToParentPortal" | "containerRef">
   /**
    * The transition that should be used for the modal
+   * @default "scale"
    */
   motionPreset?: MotionPreset
   /**
