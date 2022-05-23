@@ -1,4 +1,11 @@
-import { Dict, isArray, mergeWith, runIfFn, isObject } from "@chakra-ui/utils"
+import {
+  Dict,
+  isArray,
+  mergeWith,
+  runIfFn,
+  isObject,
+  toMediaQueryString,
+} from "@chakra-ui/utils"
 import { ResponsiveValue, WithCSSVar } from "./utils"
 
 type Theme = WithCSSVar<Dict>
@@ -16,6 +23,14 @@ function normalize(value: ValueType | undefined, toArray: (val: any) => any[]) {
   if (isArray(value)) return value
   if (isObject(value)) return toArray(value)
   if (value != null) return [value]
+}
+
+//given [ 'sm', null, null, 'md' ] and i'm at "sm", find the next index that has non-null value
+function getNextIndex(values: string[], i: number) {
+  for (let j = i + 1; j < values.length; j++) {
+    if (values[j] != null) return j
+  }
+  return -1
 }
 
 function createResolver(theme: Theme) {
@@ -42,42 +57,29 @@ function createResolver(theme: Theme) {
 
     for (let i = 0; i < len; i++) {
       const key = breakpointUtil.details[i]
+      const nextKey = breakpointUtil.details[getNextIndex(normalized, i)]
+      const query = toMediaQueryString(key.minW, nextKey?._minW)
+
       const styles = runIfFn(config[prop]?.[normalized[i]], props)
 
       if (!styles) continue
 
-      const last = i === len - 1
-
-      if (last && isMultipart) {
-        config.parts?.forEach((part) => {
-          mergeWith(result, {
-            [part]: isSingle ? styles[part] : { [key.minWQuery]: styles[part] },
-          })
-        })
-        continue
-      }
-
-      if (last && !isMultipart) {
-        if (isSingle) {
-          mergeWith(result, styles)
-        } else {
-          result[key.minWQuery] = styles
-        }
-        continue
-      }
-
       if (isMultipart) {
         config.parts?.forEach((part) => {
           mergeWith(result, {
-            [part]: isSingle
-              ? styles[part]
-              : { [key.minMaxQuery]: styles[part] },
+            [part]: isSingle ? styles[part] : { [query]: styles[part] },
           })
         })
         continue
       }
 
-      result[key.minMaxQuery] = styles
+      if (!isMultipart) {
+        if (isSingle) mergeWith(result, styles)
+        else result[query] = styles
+        continue
+      }
+
+      result[query] = styles
     }
 
     return result

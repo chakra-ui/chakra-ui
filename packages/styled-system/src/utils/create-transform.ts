@@ -18,14 +18,16 @@ export const tokenToCSSVar =
     const valueStr = String(value)
 
     const important = isImportant(valueStr)
-    const _value = withoutImportant(valueStr)
+    const valueWithoutImportant = withoutImportant(valueStr)
 
-    const key = scale ? `${scale}.${_value}` : _value
+    const key = scale
+      ? `${scale}.${valueWithoutImportant}`
+      : valueWithoutImportant
 
     const transformed =
       isObject(theme.__cssMap) && key in theme.__cssMap
         ? theme.__cssMap[key].varRef
-        : value
+        : valueWithoutImportant
 
     return important ? `${transformed} !important` : transformed
   }
