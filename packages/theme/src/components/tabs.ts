@@ -26,6 +26,10 @@ const baseStyleTab: SystemStyleFunction = (props) => {
       zIndex: 1,
       boxShadow: "outline",
     },
+    _disabled: {
+      cursor: "not-allowed",
+      opacity: 0.4,
+    },
   }
 }
 
@@ -102,8 +106,7 @@ const variantLine: PartsStyleFunction<typeof parts> = (props) => {
         bg: mode("gray.200", "whiteAlpha.300")(props),
       },
       _disabled: {
-        opacity: 0.4,
-        cursor: "not-allowed",
+        _active: { bg: "none" },
       },
     },
   }
