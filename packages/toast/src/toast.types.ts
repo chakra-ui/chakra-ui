@@ -43,10 +43,6 @@ export interface ToastOptions {
   onRequestRemove(): void
 
   /**
-   * Whether a toast is currently in view or not
-   */
-  showing: boolean
-  /**
    * The position of the toast
    */
   position: ToastPosition
