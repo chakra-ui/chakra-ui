@@ -1,10 +1,8 @@
 {
-  "version": "2.1.1",
-  "releaseUrl": "https://github.com/chakra-ui/chakra-ui/releases/tag/@chakra-ui/react@2.1.1",
+  "version": "2.1.2",
+  "releaseUrl": "https://github.com/chakra-ui/chakra-ui/releases/tag/@chakra-ui/react@2.1.2",
   "patches": [
-    "- Refactor toast provider to not wrap entire app to prevent unneeded re-renders \n",
-    "- Expose `toMediaQuery` internal function for use in the styled system package \n",
-    "- Update version of react packages and fix ts error \n"
+    "- Fix SSR errors with toast and `use-sync-external-store` due to lack of `getServerSnapshot` \n"
   ],
   "features": []
 }
