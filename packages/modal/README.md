@@ -194,7 +194,7 @@ function AlertDialogExample() {
 Using the above example will throw a typescript error. You'll want to modify the type of the `useRef` hook to the HTML element you're placing the focus on and default the value to null.
 
 
-```jsx
+```tsx
   const cancelRef = React.useRef<HTMLButtonElement>(null)
 ```
 
