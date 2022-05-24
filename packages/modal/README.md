@@ -189,6 +189,16 @@ function AlertDialogExample() {
 }
 ```
 
+## Usage with Typescript
+
+Using the above example will throw a typescript error. You'll want to modify the type of the `useRef` hook to the HTML element you're placing the focus on and default the value to null.
+
+
+```tsx
+  const cancelRef = React.useRef<HTMLButtonElement>(null)
+```
+
+
 # Drawer
 
 The Drawer component is a panel that slides out from the edge of the screen. It
