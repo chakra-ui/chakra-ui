@@ -1,13 +1,10 @@
 {
-  "version": "2.1.0",
-  "releaseUrl": "https://github.com/chakra-ui/chakra-ui/releases/tag/@chakra-ui/react@2.1.0",
+  "version": "2.1.1",
+  "releaseUrl": "https://github.com/chakra-ui/chakra-ui/releases/tag/@chakra-ui/react@2.1.1",
   "patches": [
-    "- Ensure types used by other chakra packages are properly exported and imported so\nthat `src` directory is not referenced in the emitted type declarations. \n",
-    "- Tag component variants borderRadius was overwriting baseStyle eventhough\nborderRadius was same for all variants. borderRadius is now part of the\nbaseStyle \n",
-    "- Fix ESLint warnings and errors \n"
+    "- Refactor toast provider to not wrap entire app to prevent unneeded re-renders \n",
+    "- Expose `toMediaQuery` internal function for use in the styled system package \n",
+    "- Update version of react packages and fix ts error \n"
   ],
-  "features": [
-    "- Ensure types used by other chakra packages are properly exported and imported so\nthat `src` directory is not referenced in the emitted type declarations. \n",
-    "- Add support for responsive variants and sizes.\n\n```jsx live=false\n<Button variant={[\"sm\", \"lg\"]}>Click me</Button>\n```\n\nAdd support for `!important` in token values as an escape hatch for overriding\nproperties in responsive variants/sizes.\n\n```jsx live=false\n<Button variant={[\"sm\", \"lg\"]} fontSize=\"lg !important\">\n  Click me\n</Button>\n```\n\n**Notes**\n\n- Based on how this is designed, there's no support for responsive `colorScheme`\n  since it is technically not a variant\n- When using responsive sizes and variants, overriding properties via props\n  might not work as expected. We use native CSS media queries to enable this\n  feature so there's no \"magic\" under the hood. If you really want to override\n  properties, you can consider using the important syntax \n"
-  ]
+  "features": []
 }
