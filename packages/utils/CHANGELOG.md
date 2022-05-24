@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- [#6089](https://github.com/chakra-ui/chakra-ui/pull/6089)
+  [`f77e3c98f`](https://github.com/chakra-ui/chakra-ui/commit/f77e3c98f72fa17353e9fdad4c51810e83d9cb1c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Expose
+  `toMediaQuery` internal function for use in the styled system package
+
 ## 2.0.0
 
 ### Major Changes

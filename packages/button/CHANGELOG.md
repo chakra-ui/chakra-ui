@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`f77e3c98f`](https://github.com/chakra-ui/chakra-ui/commit/f77e3c98f72fa17353e9fdad4c51810e83d9cb1c),
+  [`703ff594f`](https://github.com/chakra-ui/chakra-ui/commit/703ff594f826207a7b3d37663caaad365212b23e)]:
+  - @chakra-ui/utils@2.0.1
+  - @chakra-ui/spinner@2.0.1
+  - @chakra-ui/hooks@2.0.1
+
 ## 2.0.0
 
 ### Major Changes

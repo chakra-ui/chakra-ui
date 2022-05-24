@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.0.3
+
+### Patch Changes
+
+- [#6063](https://github.com/chakra-ui/chakra-ui/pull/6063)
+  [`695c528c9`](https://github.com/chakra-ui/chakra-ui/commit/695c528c91d403667055e4fb7aeeb2f05cbb4d1f)
+  Thanks [@SpencerDuball](https://github.com/SpencerDuball)! - Tab: Add visual
+  feedback for disabled state in all variants.
+
+- Updated dependencies
+  [[`f77e3c98f`](https://github.com/chakra-ui/chakra-ui/commit/f77e3c98f72fa17353e9fdad4c51810e83d9cb1c)]:
+  - @chakra-ui/utils@2.0.1
+  - @chakra-ui/theme-tools@2.0.1
+
 ## 2.0.2
 
 ### Patch Changes
