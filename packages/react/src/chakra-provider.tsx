@@ -19,7 +19,8 @@ export const ChakraProvider = ({
   ...restProps
 }: ChakraProviderProps) => (
   <BaseChakraProvider {...restProps}>
-    <ToastProvider {...toastOptions}>{children}</ToastProvider>
+    {children}
+    <ToastProvider {...toastOptions} />
   </BaseChakraProvider>
 )
 
