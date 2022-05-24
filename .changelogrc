@@ -1,119 +1,95 @@
-## 21-05-2022
+## 24-05-2022
 
-`@chakra-ui/react@2.1.0`
+`@chakra-ui/react@2.1.1`
 
-- Ensure types used by other chakra packages are properly exported and imported so
-  that `src` directory is not referenced in the emitted type declarations.
-- Add support for responsive variants and sizes.
+- Refactor toast provider to not wrap entire app to prevent unneeded re-renders
 
-```jsx live=false
-<Button variant={['sm', 'lg']}>Click me</Button>
-```
+**Utils** `v2.0.1`
 
-Add support for `!important` in token values as an escape hatch for overriding
-properties in responsive variants/sizes.
+- Expose `toMediaQuery` internal function for use in the styled system package
 
-```jsx live=false
-<Button variant={['sm', 'lg']} fontSize="lg !important">
-  Click me
-</Button>
-```
+**Cra Template Typescript** `v2.0.1`
 
-**Notes**
+- Update version of react packages and fix ts error
 
-- Based on how this is designed, there's no support for responsive `colorScheme`
-  since it is technically not a variant
-- When using responsive sizes and variants, overriding properties via props
-  might not work as expected. We use native CSS media queries to enable this
-  feature so there's no "magic" under the hood. If you really want to override
-  properties, you can consider using the important syntax
+**Cra Template** `v2.0.1`
 
-**Descendant** `v3.0.1`
+- Update version of react packages and fix ts error
 
-- Ensure types used by other chakra packages are properly exported and imported so
-  that `src` directory is not referenced in the emitted type declarations.
+**Toast** `v2.0.4`
 
-**Theme** `v2.0.2`
+- Refactor toast internal architecture to fix issues with toast instance methods
+  and `createStandaloneToast`
 
-- Ensure types used by other chakra packages are properly exported and imported so
-  that `src` directory is not referenced in the emitted type declarations.
-- Tag component variants borderRadius was overwriting baseStyle eventhough
-  borderRadius was same for all variants. borderRadius is now part of the
-  baseStyle
+**Alert** `v2.0.1`
 
-**Styled System** `v2.1.0`
+- Improve TS doc comments to include the `@default`value for prop types
 
-- Add support for responsive variants and sizes.
+**Avatar** `v2.0.2`
 
-```jsx live=false
-<Button variant={['sm', 'lg']}>Click me</Button>
-```
+- Improve TS doc comments to include the `@default`value for prop types
 
-Add support for `!important` in token values as an escape hatch for overriding
-properties in responsive variants/sizes.
+**Breadcrumb** `v2.0.1`
 
-```jsx live=false
-<Button variant={['sm', 'lg']} fontSize="lg !important">
-  Click me
-</Button>
-```
+- Improve TS doc comments to include the `@default`value for prop types
 
-**Notes**
+**Image** `v2.0.2`
 
-- Based on how this is designed, there's no support for responsive `colorScheme`
-  since it is technically not a variant
-- When using responsive sizes and variants, overriding properties via props
-  might not work as expected. We use native CSS media queries to enable this
-  feature so there's no "magic" under the hood. If you really want to override
-  properties, you can consider using the important syntax
+- Improve TS doc comments to include the `@default`value for prop types
 
-**System** `v2.1.0`
+**Modal** `v2.0.2`
 
-- Add support for responsive variants and sizes.
+- Improve TS doc comments to include the `@default`value for prop types
 
-```jsx live=false
-<Button variant={['sm', 'lg']}>Click me</Button>
-```
+**Popover** `v2.0.1`
 
-Add support for `!important` in token values as an escape hatch for overriding
-properties in responsive variants/sizes.
+- Improve TS doc comments to include the `@default`value for prop types
 
-```jsx live=false
-<Button variant={['sm', 'lg']} fontSize="lg !important">
-  Click me
-</Button>
-```
+**Popper** `v3.0.1`
 
-**Notes**
+- Improve TS doc comments to include the `@default`value for prop types
 
-- Based on how this is designed, there's no support for responsive `colorScheme`
-  since it is technically not a variant
-- When using responsive sizes and variants, overriding properties via props
-  might not work as expected. We use native CSS media queries to enable this
-  feature so there's no "magic" under the hood. If you really want to override
-  properties, you can consider using the important syntax
+**Portal** `v2.0.1`
 
-**Textarea** `v2.0.1`
+- Improve TS doc comments to include the `@default`value for prop types
 
-- Fix ESLint warnings and errors
+**Progress** `v2.0.1`
 
-**Avatar** `v2.0.1`
+- Improve TS doc comments to include the `@default`value for prop types
 
-- Add referrerPolicy prop to Avatar & Image Components
+**Slider** `v2.0.1`
 
-**Image** `v2.0.1`
+- Improve TS doc comments to include the `@default`value for prop types
 
-- Add referrerPolicy prop to Avatar & Image Components
+**Spinner** `v2.0.1`
 
-**Media Query** `v3.0.1`
+- Improve TS doc comments to include the `@default`value for prop types
 
-- Fix regression in use-media-query hook in SSR envrionments where it throws
-  hydration mismatch
+**Tabs** `v2.0.2`
 
-**Toast** `v2.0.3`
+- Improve TS doc comments to include the `@default`value for prop types
 
-- Fix regression with the default toast position. It now defaults to `bottom` as described in docs
+**Tooltip** `v2.0.1`
 
-**Focus Lock** `v2.0.1`
+- Improve TS doc comments to include the `@default`value for prop types
 
-- Upgrade dependency `react-focus-lock` to be compatible with React 18
+**Transition** `v2.0.1`
+
+- Improve TS doc comments to include the `@default`value for prop types
+
+**Theme** `v2.0.3`
+
+- Tab: Add visual feedback for disabled state in all variants.
+
+**System** `v2.1.1`
+
+- Revert type updates for use-style-config
+- Fix media query calculations for responsive variants and sizes
+- Fix issue where values with `!important` can resolve to a double `!important`
+  being added
+
+**Styled System** `v2.1.1`
+
+- Fix media query calculations for responsive variants and sizes
+- Fix issue where values with `!important` can resolve to a double `!important`
+  being added
