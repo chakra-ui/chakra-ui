@@ -10,6 +10,102 @@ experience.
 
 <!-- CHANGELOG:INSERT -->
 
+## 24-05-2022
+
+`@chakra-ui/react@2.1.1`
+
+- Refactor toast provider to not wrap entire app to prevent unneeded re-renders
+
+**Utils** `v2.0.1`
+
+- Expose `toMediaQuery` internal function for use in the styled system package
+
+**Cra Template Typescript** `v2.0.1`
+
+- Update version of react packages and fix ts error
+
+**Cra Template** `v2.0.1`
+
+- Update version of react packages and fix ts error
+
+**Toast** `v2.0.4`
+
+- Refactor toast internal architecture to fix issues with toast instance methods
+  and `createStandaloneToast`
+
+**Alert** `v2.0.1`
+
+- Improve TS doc comments to include the `@default`value for prop types
+
+**Avatar** `v2.0.2`
+
+- Improve TS doc comments to include the `@default`value for prop types
+
+**Breadcrumb** `v2.0.1`
+
+- Improve TS doc comments to include the `@default`value for prop types
+
+**Image** `v2.0.2`
+
+- Improve TS doc comments to include the `@default`value for prop types
+
+**Modal** `v2.0.2`
+
+- Improve TS doc comments to include the `@default`value for prop types
+
+**Popover** `v2.0.1`
+
+- Improve TS doc comments to include the `@default`value for prop types
+
+**Popper** `v3.0.1`
+
+- Improve TS doc comments to include the `@default`value for prop types
+
+**Portal** `v2.0.1`
+
+- Improve TS doc comments to include the `@default`value for prop types
+
+**Progress** `v2.0.1`
+
+- Improve TS doc comments to include the `@default`value for prop types
+
+**Slider** `v2.0.1`
+
+- Improve TS doc comments to include the `@default`value for prop types
+
+**Spinner** `v2.0.1`
+
+- Improve TS doc comments to include the `@default`value for prop types
+
+**Tabs** `v2.0.2`
+
+- Improve TS doc comments to include the `@default`value for prop types
+
+**Tooltip** `v2.0.1`
+
+- Improve TS doc comments to include the `@default`value for prop types
+
+**Transition** `v2.0.1`
+
+- Improve TS doc comments to include the `@default`value for prop types
+
+**Theme** `v2.0.3`
+
+- Tab: Add visual feedback for disabled state in all variants.
+
+**System** `v2.1.1`
+
+- Revert type updates for use-style-config
+- Fix media query calculations for responsive variants and sizes
+- Fix issue where values with `!important` can resolve to a double `!important`
+  being added
+
+**Styled System** `v2.1.1`
+
+- Fix media query calculations for responsive variants and sizes
+- Fix issue where values with `!important` can resolve to a double `!important`
+  being added
+
 ## 21-05-2022
 
 `@chakra-ui/react@2.1.0`
