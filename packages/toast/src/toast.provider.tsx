@@ -95,6 +95,7 @@ export const ToastProvider = (props: ToastProviderProps) => {
   const state = React.useSyncExternalStore(
     toastStore.subscribe,
     toastStore.getState,
+    toastStore.getState,
   )
 
   const {
