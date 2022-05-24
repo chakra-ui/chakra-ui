@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.0.1
+
+### Patch Changes
+
+- [#6079](https://github.com/chakra-ui/chakra-ui/pull/6079)
+  [`703ff594f`](https://github.com/chakra-ui/chakra-ui/commit/703ff594f826207a7b3d37663caaad365212b23e)
+  Thanks [@chr-ge](https://github.com/chr-ge)! - Improve TS doc comments to
+  include the `@default`value for prop types
+
 ## 3.0.0
 
 ### Major Changes

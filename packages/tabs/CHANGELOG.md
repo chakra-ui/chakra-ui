@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.0.2
+
+### Patch Changes
+
+- [#6079](https://github.com/chakra-ui/chakra-ui/pull/6079)
+  [`703ff594f`](https://github.com/chakra-ui/chakra-ui/commit/703ff594f826207a7b3d37663caaad365212b23e)
+  Thanks [@chr-ge](https://github.com/chr-ge)! - Improve TS doc comments to
+  include the `@default`value for prop types
+
+- Updated dependencies
+  [[`f77e3c98f`](https://github.com/chakra-ui/chakra-ui/commit/f77e3c98f72fa17353e9fdad4c51810e83d9cb1c)]:
+  - @chakra-ui/utils@2.0.1
+  - @chakra-ui/clickable@2.0.1
+  - @chakra-ui/hooks@2.0.1
+
 ## 2.0.1
 
 ### Patch Changes

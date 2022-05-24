@@ -1,5 +1,27 @@
 # Change Log
 
+## 2.1.1
+
+### Patch Changes
+
+- [#6085](https://github.com/chakra-ui/chakra-ui/pull/6085)
+  [`7e05d36cf`](https://github.com/chakra-ui/chakra-ui/commit/7e05d36cf1c65142e035d43142488792911f8a7f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Revert type updates
+  for use-style-config
+
+* [#6089](https://github.com/chakra-ui/chakra-ui/pull/6089)
+  [`f77e3c98f`](https://github.com/chakra-ui/chakra-ui/commit/f77e3c98f72fa17353e9fdad4c51810e83d9cb1c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Fix media query
+  calculations for responsive variants and sizes
+  - Fix issue where values with `!important` can resolve to a double
+    `!important` being added
+* Updated dependencies
+  [[`f77e3c98f`](https://github.com/chakra-ui/chakra-ui/commit/f77e3c98f72fa17353e9fdad4c51810e83d9cb1c),
+  [`f77e3c98f`](https://github.com/chakra-ui/chakra-ui/commit/f77e3c98f72fa17353e9fdad4c51810e83d9cb1c)]:
+  - @chakra-ui/utils@2.0.1
+  - @chakra-ui/styled-system@2.1.1
+  - @chakra-ui/color-mode@2.0.3
+
 ## 2.1.0
 
 ### Minor Changes

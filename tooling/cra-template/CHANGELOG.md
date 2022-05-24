@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- [#6075](https://github.com/chakra-ui/chakra-ui/pull/6075)
+  [`4ce8aca59`](https://github.com/chakra-ui/chakra-ui/commit/4ce8aca593f51f7f0c0c90317cc6100bb0eb32c2)
+  Thanks [@fredckl](https://github.com/fredckl)! - Update version of react
+  packages and fix ts error
+
 ## 2.0.0
 
 ### Major Changes
