@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.5
+
+### Patch Changes
+
+- [#6097](https://github.com/chakra-ui/chakra-ui/pull/6097)
+  [`5dd3c8534`](https://github.com/chakra-ui/chakra-ui/commit/5dd3c85345872f789cf82009167b69896f789731)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Fix SSR errors with toast and
+  `use-sync-external-store` due to lack of `getServerSnapshot`
+
 ## 2.0.4
 
 ### Patch Changes
