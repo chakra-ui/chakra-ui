@@ -12,6 +12,15 @@ experience.
 
 ## 24-05-2022
 
+`@chakra-ui/react@2.1.2`
+
+**Toast** `v2.0.5`
+
+- Fix SSR errors with toast and `use-sync-external-store` due to lack of
+  `getServerSnapshot`
+
+## 24-05-2022
+
 `@chakra-ui/react@2.1.1`
 
 - Refactor toast provider to not wrap entire app to prevent unneeded re-renders
