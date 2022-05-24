@@ -92,7 +92,10 @@ export type ToastProviderProps = React.PropsWithChildren<{
  * across all corners ("top", "bottom", etc.)
  */
 export const ToastProvider = (props: ToastProviderProps) => {
-  React.useSyncExternalStore(toastStore.subscribe, toastStore.getState)
+  const state = React.useSyncExternalStore(
+    toastStore.subscribe,
+    toastStore.getState,
+  )
 
   const {
     children,
@@ -100,10 +103,8 @@ export const ToastProvider = (props: ToastProviderProps) => {
     component: CustomToastComponent = ToastComponent,
   } = props
 
-  const areas = toastStore.getState()
-
-  const toastList = objectKeys(areas).map((position) => {
-    const toasts = areas[position]
+  const toastList = objectKeys(state).map((position) => {
+    const toasts = state[position]
 
     return (
       <ul
