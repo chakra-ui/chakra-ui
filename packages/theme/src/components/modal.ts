@@ -90,6 +90,7 @@ function getSize(value: string): PartsStyleObject<typeof parts> {
           minH: "-webkit-fill-available",
         },
         my: 0,
+        borderRadius: "none",
       },
     }
   }
