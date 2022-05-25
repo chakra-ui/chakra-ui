@@ -47,6 +47,7 @@ function parseCookie(cookie: string, key: string): MaybeColorMode {
 export function createCookieStorageManager(
   key: string,
   cookie?: string,
+  domain?: string,
 ): StorageManager {
   return {
     ssr: !!cookie,
@@ -57,7 +58,7 @@ export function createCookieStorageManager(
       return parseCookie(document.cookie, key) || init
     },
     set(value) {
-      document.cookie = `${key}=${value}; max-age=31536000; path=/`
+      document.cookie = `${key}=${value};${domain ? ` domain=${domain};` : ''} max-age=31536000; path=/`
     },
   }
 }
