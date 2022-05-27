@@ -117,7 +117,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
   const exitTimeout = React.useRef<number>()
 
   const openWithDelay = React.useCallback(() => {
-    if (!isDisabled) {
+    if (!isDisabled && !enterTimeout.current) {
       enterTimeout.current = window.setTimeout(onOpen, openDelay)
     }
   }, [isDisabled, onOpen, openDelay])
@@ -125,6 +125,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
   const closeWithDelay = React.useCallback(() => {
     if (enterTimeout.current) {
       clearTimeout(enterTimeout.current)
+      enterTimeout.current = undefined
     }
     exitTimeout.current = window.setTimeout(onClose, closeDelay)
   }, [closeDelay, onClose])
