@@ -131,16 +131,16 @@ export function useTooltip(props: UseTooltipProps = {}) {
   }, [closeDelay, onClose])
 
   const onClick = React.useCallback(() => {
-    if (closeOnClick) {
+    if (isOpen && closeOnClick) {
       closeWithDelay()
     }
-  }, [closeOnClick, closeWithDelay])
+  }, [closeOnClick, closeWithDelay, isOpen])
 
   const onMouseDown = React.useCallback(() => {
-    if (closeOnMouseDown) {
+    if (isOpen && closeOnMouseDown) {
       closeWithDelay()
     }
-  }, [closeOnMouseDown, closeWithDelay])
+  }, [closeOnMouseDown, closeWithDelay, isOpen])
 
   const onKeyDown = React.useCallback(
     (event: KeyboardEvent) => {
