@@ -40,6 +40,8 @@ async function readTheme(themeFilePath: string) {
       compilerOptions: {
         module: "CommonJS",
       },
+      transpileOnly: true,
+      swc: true,
     })
 
     /**
