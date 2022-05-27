@@ -1,13 +1,15 @@
 import { format, resolveConfig } from "prettier"
 
-async function createFormatFileWithPrettier(content: string) {
-  const prettierConfig = await resolveConfig(process.cwd())
-  return format(String(content), {
-    ...prettierConfig,
-    parser: "typescript",
-  })
-}
-
 export async function formatWithPrettierIfAvailable(content: string) {
-  return createFormatFileWithPrettier(content)
+  const prettierConfig = await resolveConfig(process.cwd())
+
+  try {
+    return format(String(content), {
+      ...prettierConfig,
+      parser: "typescript",
+    })
+  } catch {
+    // prettier fails when no tsconfig.json is found
+    return String(content)
+  }
 }
