@@ -114,7 +114,9 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
 
   return (
     <chakra.label className="chakra-radio" {...rootProps} __css={rootStyles}>
-      <input className="chakra-radio__input" {...inputProps} />
+      <chakra.div position="relative">
+        <input className="chakra-radio__input" {...inputProps} />
+      </chakra.div>
       <chakra.span
         className="chakra-radio__control"
         {...checkboxProps}
