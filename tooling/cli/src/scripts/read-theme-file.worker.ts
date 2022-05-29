@@ -40,6 +40,8 @@ async function readTheme(themeFilePath: string) {
       compilerOptions: {
         module: "CommonJS",
       },
+      transpileOnly: true,
+      swc: true,
     })
 
     /**
@@ -124,11 +126,13 @@ async function run() {
   }
 }
 
-run().catch((e) => {
+run().catch((e: Error) => {
+  const err = `${e.toString()}\n${e.stack}`
+
   if (process.send) {
-    process.send({ err: e.toString() })
+    process.send({ err })
   } else {
-    process.stderr.write(e.message)
+    process.stderr.write(err)
   }
   process.exit(1)
 })

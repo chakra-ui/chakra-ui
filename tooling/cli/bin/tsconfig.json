@@ -2,6 +2,7 @@
   // these options are used by ts-node
   "compilerOptions": {
     "module": "commonjs",
+    "baseUrl": "./",
     "allowJs": true,
     "strict": false,
     "noImplicitAny": false,

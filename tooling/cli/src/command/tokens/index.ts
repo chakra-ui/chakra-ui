@@ -46,10 +46,12 @@ export async function generateThemeTypings({
   themeFile,
   out,
   strictComponentTypes,
+  onError,
 }: {
   themeFile: string
   out: string
   strictComponentTypes?: boolean
+  onError?: () => void
 }) {
   const spinner = ora("Generating chakra theme typings").start()
   try {
@@ -70,7 +72,7 @@ export async function generateThemeTypings({
       console.error(e.message)
     }
     spinner.stop()
-    process.exit(1)
+    onError?.()
   } finally {
     spinner.stop()
   }
