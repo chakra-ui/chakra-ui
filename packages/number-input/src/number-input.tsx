@@ -1,13 +1,12 @@
 import { useFormControlProps } from "@chakra-ui/form-control"
 import {
   chakra,
+  createStylesProvider,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
-  StylesProvider,
   ThemingProps,
   useMultiStyleConfig,
-  useStyles,
 } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 import { createContext } from "@chakra-ui/react-utils"
@@ -18,6 +17,8 @@ import {
   UseNumberInputProps,
   UseNumberInputReturn,
 } from "./use-number-input"
+
+const [StylesProvider, useStyles] = createStylesProvider("NumberInput")
 
 interface NumberInputContext extends Omit<UseNumberInputReturn, "htmlProps"> {}
 

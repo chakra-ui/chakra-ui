@@ -5,13 +5,18 @@ import {
   HTMLChakraProps,
   SystemStyleObject,
   ThemingProps,
-  useStyles,
   useTheme,
 } from "@chakra-ui/system"
 import { Slide, SlideOptions } from "@chakra-ui/transition"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { Modal, ModalFocusScope, ModalProps, useModalContext } from "./modal"
+import {
+  Modal,
+  ModalFocusScope,
+  ModalProps,
+  useModalContext,
+  useModalStyles,
+} from "./modal"
 
 const [DrawerContextProvider, useDrawerContext] = createContext<DrawerOptions>()
 
@@ -104,7 +109,7 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
 
     const _className = cx("chakra-modal__content", className)
 
-    const styles = useStyles()
+    const styles = useModalStyles()
 
     const dialogStyles: SystemStyleObject = {
       display: "flex",

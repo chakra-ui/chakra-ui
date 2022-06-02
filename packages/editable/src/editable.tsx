@@ -2,12 +2,11 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  StylesProvider,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  useStyles,
   HTMLChakraProps,
+  createStylesProvider,
 } from "@chakra-ui/system"
 import { cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { createContext, MaybeRenderProp } from "@chakra-ui/react-utils"
@@ -17,6 +16,8 @@ import {
   UseEditableProps,
   UseEditableReturn,
 } from "./use-editable"
+
+const [StylesProvider, useStyles] = createStylesProvider("Editable")
 
 type EditableContext = Omit<UseEditableReturn, "htmlProps">
 

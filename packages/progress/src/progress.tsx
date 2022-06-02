@@ -2,12 +2,11 @@ import {
   chakra,
   Interpolation,
   omitThemingProps,
-  StylesProvider,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  useStyles,
   HTMLChakraProps,
+  createStylesProvider,
 } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -17,6 +16,8 @@ import {
   progress,
   stripe,
 } from "./progress.utils"
+
+const [StylesProvider, useStyles] = createStylesProvider("Progress")
 
 export interface ProgressLabelProps extends HTMLChakraProps<"div"> {}
 

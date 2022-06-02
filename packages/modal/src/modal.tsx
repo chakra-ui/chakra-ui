@@ -1,16 +1,16 @@
 import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
 import { FocusLock, FocusLockProps } from "@chakra-ui/focus-lock"
 import { Portal, PortalProps } from "@chakra-ui/portal"
+import { createContext } from "@chakra-ui/react-utils"
 import {
   chakra,
   ChakraProps,
+  createStylesProvider,
   forwardRef,
   HTMLChakraProps,
-  StylesProvider,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  useStyles,
 } from "@chakra-ui/system"
 import { fadeConfig } from "@chakra-ui/transition"
 import {
@@ -19,7 +19,6 @@ import {
   FocusableElement,
   __DEV__,
 } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/react-utils"
 import {
   AnimatePresence,
   HTMLMotionProps,
@@ -27,10 +26,13 @@ import {
   usePresence,
 } from "framer-motion"
 import * as React from "react"
-import { RemoveScroll } from "react-remove-scroll"
 import { MouseEvent } from "react"
+import { RemoveScroll } from "react-remove-scroll"
 import { ModalTransition } from "./modal-transition"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
+
+const [StylesProvider, useStyles] = createStylesProvider("Modal")
+export const useModalStyles = useStyles
 
 interface ModalOptions extends Pick<FocusLockProps, "lockFocusAcrossFrames"> {
   /**

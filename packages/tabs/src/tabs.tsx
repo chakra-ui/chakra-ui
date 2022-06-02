@@ -2,12 +2,11 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  StylesProvider,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  useStyles,
   HTMLChakraProps,
+  createStylesProvider,
 } from "@chakra-ui/system"
 import { cx, omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -24,6 +23,8 @@ import {
   useTabs,
   UseTabsProps,
 } from "./use-tabs"
+
+const [StylesProvider, useStyles] = createStylesProvider("Tabs")
 
 interface TabsOptions {
   /**

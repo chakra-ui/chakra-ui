@@ -1,8 +1,8 @@
 import { Icon, IconProps } from "@chakra-ui/icon"
-import { createContext, getValidChildren } from "@chakra-ui/react-utils"
-import { SystemStyleObject } from "@chakra-ui/styled-system"
+import { getValidChildren } from "@chakra-ui/react-utils"
 import {
   chakra,
+  createStylesProvider,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
@@ -10,14 +10,10 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { Dict, __DEV__ } from "@chakra-ui/utils"
+import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-const [StylesProvider, useStyles] = createContext<Dict<SystemStyleObject>>({
-  name: "StylesContext",
-  errorMessage:
-    "useStyles: `styles` is undefined. Seems you forgot to wrap the components in a `<*List />` ",
-})
+const [StylesProvider, useStyles] = createStylesProvider("List")
 
 interface ListOptions {
   /**

@@ -2,11 +2,11 @@ import {
   chakra,
   forwardRef,
   SystemStyleObject,
-  useStyles,
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
+import { useInputGroupStyles } from "./input-group"
 
 export interface InputElementProps extends HTMLChakraProps<"div"> {
   placement?: "left" | "right"
@@ -26,7 +26,7 @@ const StyledElement = chakra("div", {
 const InputElement = forwardRef<InputElementProps, "div">((props, ref) => {
   const { placement = "left", ...rest } = props
 
-  const styles = useStyles()
+  const styles = useInputGroupStyles()
   const input: any = styles.field
 
   const attr = placement === "left" ? "insetStart" : "insetEnd"

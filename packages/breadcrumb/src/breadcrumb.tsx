@@ -2,17 +2,18 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  StylesProvider,
   SystemProps,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  useStyles,
   HTMLChakraProps,
+  createStylesProvider,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { getValidChildren } from "@chakra-ui/react-utils"
 import * as React from "react"
+
+const [StylesProvider, useStyles] = createStylesProvider("Breadcrumb")
 
 export interface BreadcrumbSeparatorProps extends HTMLChakraProps<"div"> {
   /**

@@ -3,16 +3,17 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  StylesProvider,
   ThemingProps,
   useMultiStyleConfig,
-  useStyles,
   HTMLChakraProps,
   SystemStyleObject,
+  createStylesProvider,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
+
+const [StylesProvider, useStyles] = createStylesProvider("Stat")
 
 export interface StatLabelProps extends HTMLChakraProps<"dt"> {}
 
