@@ -20,6 +20,7 @@ export interface ThemingProps<ThemeComponent extends string = any> {
       : string
   >
   colorScheme?: ThemeTypings["colorSchemes"]
+  colorSchemeHues?: ThemeTypings["colorSchemeHues"]
   orientation?: "vertical" | "horizontal"
   styleConfig?: Dict
 }

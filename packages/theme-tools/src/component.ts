@@ -36,6 +36,7 @@ export type { SystemStyleObject }
 
 export type StyleFunctionProps = {
   colorScheme: string
+  colorSchemeHues: Dict
   colorMode: "light" | "dark"
   orientation?: "horizontal" | "vertical"
   theme: Dict

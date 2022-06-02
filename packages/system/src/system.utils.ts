@@ -9,7 +9,13 @@ import { ThemingProps } from "./system.types"
 export type DOMElements = keyof JSX.IntrinsicElements
 
 export function omitThemingProps<T extends ThemingProps>(props: T) {
-  return omit(props, ["styleConfig", "size", "variant", "colorScheme"])
+  return omit(props, [
+    "styleConfig",
+    "size",
+    "variant",
+    "colorScheme",
+    "colorSchemeHues",
+  ])
 }
 
 export default function isTag(target: any) {

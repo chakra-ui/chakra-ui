@@ -26,7 +26,9 @@ const baseStyle: SystemStyleObject = {
 }
 
 const variantGhost: SystemStyleFunction = (props) => {
-  const { colorScheme: c, theme } = props
+  const { colorScheme: c, colorSchemeHues: ch, theme } = props
+
+  console.log("ch", ch)
 
   if (c === "gray") {
     return {
@@ -38,17 +40,17 @@ const variantGhost: SystemStyleFunction = (props) => {
     }
   }
 
-  const darkHoverBg = transparentize(`${c}.200`, 0.12)(theme)
-  const darkActiveBg = transparentize(`${c}.200`, 0.24)(theme)
+  const darkHoverBg = transparentize(`${c}.${ch._hover.bg[1]}`, 0.12)(theme)
+  const darkActiveBg = transparentize(`${c}.${ch._active.bg[1]}`, 0.24)(theme)
 
   return {
-    color: mode(`${c}.600`, `${c}.200`)(props),
+    color: mode(`${c}.${ch.color[0]}`, `${c}.${ch.color[1]}`)(props),
     bg: "transparent",
     _hover: {
-      bg: mode(`${c}.50`, darkHoverBg)(props),
+      bg: mode(`${c}.${ch._hover.bg[0]}`, darkHoverBg)(props),
     },
     _active: {
-      bg: mode(`${c}.100`, darkActiveBg)(props),
+      bg: mode(`${c}.${ch._active.bg[0]}`, darkActiveBg)(props),
     },
   }
 }
@@ -197,6 +199,15 @@ const defaultProps = {
   variant: "solid",
   size: "md",
   colorScheme: "gray",
+  colorSchemeHues: {
+    color: ["600", "200"],
+    _hover: {
+      bg: ["50", "200"],
+    },
+    _active: {
+      bg: ["100", "200"],
+    },
+  },
 }
 
 export default {

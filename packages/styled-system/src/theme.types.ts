@@ -1,3 +1,4 @@
+import { SystemStyleObject } from "./system.types"
 import type { ThemeTypings as GeneratedThemeTypings } from "./theming.types"
 
 export interface BaseThemeTypings {
@@ -5,6 +6,7 @@ export interface BaseThemeTypings {
   colors: string
   breakpoints: string
   colorSchemes: string
+  colorSchemeHues: SystemStyleObject
   fonts: string
   fontSizes: string
   fontWeights: string
