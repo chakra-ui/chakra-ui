@@ -159,4 +159,5 @@ export {
   ModalFooter as DrawerFooter,
   ModalHeader as DrawerHeader,
   ModalOverlay as DrawerOverlay,
+  useDrawerContext,
 } from "./modal"
