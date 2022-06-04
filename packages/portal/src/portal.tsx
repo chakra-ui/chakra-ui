@@ -3,6 +3,7 @@ import { isBrowser, __DEV__ } from "@chakra-ui/utils"
 import { createContext } from "@chakra-ui/react-utils"
 import * as React from "react"
 import { createPortal } from "react-dom"
+import { useEnvironment } from "@chakra-ui/react-env"
 import { usePortalManager } from "./portal-manager"
 
 type PortalContext = HTMLDivElement | null
@@ -40,23 +41,20 @@ const DefaultPortal = (
 ) => {
   const { appendToParentPortal, children } = props
 
-  const tempNode = React.useRef<HTMLDivElement | null>(null)
   const portal = React.useRef<HTMLDivElement | null>(null)
-
   const forceUpdate = useForceUpdate()
-
   const parentPortal = usePortalContext()
+  const { document } = useEnvironment()
   const manager = usePortalManager()
 
   useSafeLayoutEffect(() => {
-    if (!tempNode.current) return
-
-    const doc = tempNode.current!.ownerDocument
-    const host = appendToParentPortal ? parentPortal ?? doc.body : doc.body
+    const host = appendToParentPortal
+      ? parentPortal ?? document.body
+      : document.body
 
     if (!host) return
 
-    portal.current = doc.createElement("div")
+    portal.current = document.createElement("div")
     portal.current.className = PORTAL_CLASSNAME
 
     host.appendChild(portal.current)
@@ -76,15 +74,14 @@ const DefaultPortal = (
     children
   )
 
-  return portal.current ? (
+  return (
+    portal.current &&
     createPortal(
       <PortalContextProvider value={portal.current}>
         {_children}
       </PortalContextProvider>,
       portal.current,
     )
-  ) : (
-    <span ref={tempNode} />
   )
 }
 
