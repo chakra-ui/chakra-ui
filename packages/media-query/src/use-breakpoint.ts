@@ -22,10 +22,7 @@ export function useBreakpoint(
     }),
   )
 
-  const values = useMediaQuery(
-    breakpoints.map((bp) => bp.query),
-    breakpoints.map((bp) => bp.breakpoint === defaultBreakpoint),
-  )
+  const values = useMediaQuery(breakpoints.map((bp) => bp.query))
 
   const index = values.findIndex((value) => value == true)
   return breakpoints[index]?.breakpoint ?? defaultBreakpoint
