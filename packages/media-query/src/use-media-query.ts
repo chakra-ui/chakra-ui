@@ -1,6 +1,6 @@
 import { useEnvironment } from "@chakra-ui/react-env"
 import { isBrowser, isFunction } from "@chakra-ui/utils"
-import { useEffect, useLayoutEffect, useState } from "react"
+import { startTransition, useEffect, useLayoutEffect, useState } from "react"
 
 const useSafeLayoutEffect = isBrowser ? useLayoutEffect : useEffect
 
@@ -40,12 +40,14 @@ export function useMediaQuery(
   useSafeLayoutEffect(() => {
     // set initial matches
     if (ssr) {
-      setValue(
-        queries.map((query) => ({
-          media: query,
-          matches: env.window.matchMedia(query).matches,
-        })),
-      )
+      startTransition(() => {
+        setValue(
+          queries.map((query) => ({
+            media: query,
+            matches: env.window.matchMedia(query).matches,
+          })),
+        )
+      })
     }
 
     const mql = queries.map((query) => env.window.matchMedia(query))

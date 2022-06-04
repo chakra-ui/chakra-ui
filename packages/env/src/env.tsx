@@ -4,6 +4,7 @@ import React, {
   useContext,
   useMemo,
   useState,
+  useEffect,
   startTransition,
 } from "react"
 import { ssrDocument } from "./mock-document"
@@ -40,6 +41,9 @@ export function EnvironmentProvider(props: EnvironmentProviderProps) {
   const { children, environment: environmentProp } = props
   const [node, setNode] = useState<HTMLElement | null>(null)
 
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+
   const context = useMemo(() => {
     const doc = node?.ownerDocument
     const win = node?.ownerDocument.defaultView
@@ -51,15 +55,15 @@ export function EnvironmentProvider(props: EnvironmentProviderProps) {
   return (
     <EnvironmentContext.Provider value={context}>
       {children}
-      <span
-        hidden
-        className="chakra-env"
-        ref={(el) => {
-          startTransition(() => {
-            if (el) setNode(el)
-          })
-        }}
-      />
+      {mounted && (
+        <span
+          ref={(el) => {
+            startTransition(() => {
+              if (el) setNode(el)
+            })
+          }}
+        />
+      )}
     </EnvironmentContext.Provider>
   )
 }
