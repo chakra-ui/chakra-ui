@@ -61,7 +61,7 @@ export const pseudoSelectors = {
    * Styles to apply when this element has received focus via tabbing
    * - CSS Selector `&:focus-visible`
    */
-  _focusVisible: "&:focus-visible",
+  _focusVisible: "&:focus-visible, &[data-focus-visible]",
   /**
    * Styles to apply when this element is disabled. The passed styles are applied to these CSS selectors:
    * - `&[aria-disabled=true]`
