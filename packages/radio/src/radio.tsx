@@ -95,6 +95,7 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
     alignItems: "center",
     verticalAlign: "top",
     cursor: "pointer",
+    position: "relative",
     ...styles.container,
   }
 
