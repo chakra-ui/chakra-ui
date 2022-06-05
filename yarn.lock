@@ -7010,6 +7010,11 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
+"@zag-js/focus-visible@dev":
+  version "0.0.0-dev-20220604230945"
+  resolved "https://registry.yarnpkg.com/@zag-js/focus-visible/-/focus-visible-0.0.0-dev-20220604230945.tgz#b6427d3181b4c3089d279a96a7a159bae128807d"
+  integrity sha512-/iV4A51ImV8y5N6y5tuKzSIZATE0UsGMmnWDmLUyQ/46eKHxYzkVMeatfV1CHuMUOW/zRKgM2sUznjnrS+vomA==
+
 JSONStream@^1.0.4:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/JSONStream/-/JSONStream-1.3.5.tgz#3208c1f08d3a4d99261ab64f92302bc15e111ca0"
