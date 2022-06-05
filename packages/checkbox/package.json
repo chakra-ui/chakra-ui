@@ -41,7 +41,8 @@
     "@chakra-ui/hooks": "2.0.1",
     "@chakra-ui/react-utils": "2.0.0",
     "@chakra-ui/utils": "2.0.1",
-    "@chakra-ui/visually-hidden": "2.0.1"
+    "@chakra-ui/visually-hidden": "2.0.1",
+    "@zag-js/focus-visible": "dev"
   },
   "devDependencies": {
     "@chakra-ui/system": "2.1.1",
