@@ -1,7 +1,5 @@
-import * as React from "react"
-import { Parameters, Story } from "@storybook/react"
-import { withPerformance } from "storybook-addon-performance"
 import { extendTheme } from "@chakra-ui/react"
+import { Parameters, Story } from "@storybook/react"
 
 export const parameters: Parameters = {
   options: {
@@ -25,4 +23,4 @@ export const parameters: Parameters = {
   },
 }
 
-export const decorators = [withPerformance]
+export const decorators = []

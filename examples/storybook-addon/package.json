@@ -6,11 +6,11 @@
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@chakra-ui/storybook-addon": "3.0.2",
-    "@storybook/addon-actions": "~6.5.0-alpha.64",
-    "@storybook/react": "~6.5.0-alpha.64"
+    "@storybook/addon-actions": "^6.5.6",
+    "@storybook/react": "^6.5.6"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-essentials": "^6.5.6",
     "@storybook/addon-links": "^6.3.12",
     "babel-loader": "^8.2.3"
   },
