@@ -2,14 +2,18 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  StylesProvider,
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
+  createStylesProvider,
 } from "@chakra-ui/system"
 import { cx, filterUndefined, __DEV__ } from "@chakra-ui/utils"
 import { getValidChildren } from "@chakra-ui/react-utils"
 import * as React from "react"
+
+const [StylesProvider, useStyles] = createStylesProvider("InputGroup")
+
+export const useInputGroupStyles = useStyles
 
 export interface InputGroupProps
   extends HTMLChakraProps<"div">,

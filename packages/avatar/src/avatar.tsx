@@ -1,22 +1,21 @@
 import type { ImageProps } from "@chakra-ui/image"
 import { useImage } from "@chakra-ui/image"
-import type {
+import {
   ChakraComponent,
   SystemProps,
   SystemStyleObject,
   ThemingProps,
   HTMLChakraProps,
-} from "@chakra-ui/system"
-import {
+  createStylesProvider,
   chakra,
   forwardRef,
   omitThemingProps,
-  StylesProvider,
   useMultiStyleConfig,
-  useStyles,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
+
+const [StylesProvider, useStyles] = createStylesProvider("Avatar")
 
 interface AvatarOptions {
   /**

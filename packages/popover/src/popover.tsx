@@ -2,14 +2,13 @@ import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
 import { MaybeRenderProp } from "@chakra-ui/react-utils"
 import {
   chakra,
+  createStylesProvider,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
-  StylesProvider,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  useStyles,
   useTheme,
 } from "@chakra-ui/system"
 import { callAll, cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
@@ -19,6 +18,8 @@ import { PopoverTransition, PopoverTransitionProps } from "./popover-transition"
 import { usePopover, UsePopoverProps } from "./use-popover"
 
 export { usePopoverContext }
+
+const [StylesProvider, useStyles] = createStylesProvider("Popover")
 
 export interface PopoverProps extends UsePopoverProps, ThemingProps<"Popover"> {
   /**

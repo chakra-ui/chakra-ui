@@ -63,8 +63,8 @@ test("only displays error icon and message when invalid", () => {
       <RequiredIndicator />
       <Input placeholder="Name" />
       <FormHelperText>Enter your name please!</FormHelperText>
-      <FormErrorIcon data-testid="icon" />
       <FormErrorMessage data-testid="message">
+        <FormErrorIcon data-testid="icon" />
         Your name is invalid
       </FormErrorMessage>
     </FormControl>,
@@ -79,8 +79,8 @@ test("only displays error icon and message when invalid", () => {
       <RequiredIndicator />
       <Input placeholder="Name" />
       <FormHelperText>Enter your name please!</FormHelperText>
-      <FormErrorIcon data-testid="icon" />
       <FormErrorMessage data-testid="message">
+        <FormErrorIcon data-testid="icon" />
         Your name is invalid
       </FormErrorMessage>
     </FormControl>,

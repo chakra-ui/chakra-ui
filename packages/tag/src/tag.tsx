@@ -3,15 +3,16 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  StylesProvider,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  useStyles,
   HTMLChakraProps,
+  createStylesProvider,
 } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
+
+const [StylesProvider, useStyles] = createStylesProvider("Tag")
 
 export interface TagProps
   extends HTMLChakraProps<"span">,

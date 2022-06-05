@@ -2,16 +2,15 @@ import { MaybeRenderProp } from "@chakra-ui/react-utils"
 import {
   chakra,
   ChakraComponent,
+  createStylesProvider,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
   PropsOf,
-  StylesProvider,
   SystemProps,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  useStyles,
   useTheme,
 } from "@chakra-ui/system"
 import { callAll, cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
@@ -33,6 +32,8 @@ import {
   useMenuPositioner,
   UseMenuProps,
 } from "./use-menu"
+
+const [StylesProvider, useStyles] = createStylesProvider("Menu")
 
 export interface MenuProps extends UseMenuProps, ThemingProps<"Menu"> {
   children: MaybeRenderProp<{

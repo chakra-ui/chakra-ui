@@ -60,12 +60,16 @@ export function useTheme<T extends object = Dict>() {
   return theme as WithCSSVar<T>
 }
 
-const [StylesProvider, useStyles] = createContext<Dict<SystemStyleObject>>({
-  name: "StylesContext",
-  errorMessage:
-    "useStyles: `styles` is undefined. Seems you forgot to wrap the components in `<StylesProvider />` ",
-})
-export { StylesProvider, useStyles }
+/**
+ * Helper function that creates context with a standardized errorMessage related to the component
+ * @param componentName
+ * @returns [StylesProvider, useStyles]
+ */
+export const createStylesProvider = (componentName: string) =>
+  createContext<Dict<SystemStyleObject>>({
+    name: `${componentName}StylesContext`,
+    errorMessage: `useStyles: "styles" is undefined. Seems you forgot to wrap the components in "<${componentName} />" `,
+  })
 
 /**
  * Applies styles defined in `theme.styles.global` globally

@@ -5,11 +5,10 @@ import {
   omitThemingProps,
   ThemingProps,
   useStyleConfig,
-  useStyles,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { useFormControlContext } from "./form-control"
+import { useFormControlContext, useFormControlStyles } from "./form-control"
 
 export interface FormLabelProps
   extends HTMLChakraProps<"label">,
@@ -78,7 +77,7 @@ export interface RequiredIndicatorProps extends HTMLChakraProps<"span"> {}
 export const RequiredIndicator = forwardRef<RequiredIndicatorProps, "span">(
   (props, ref) => {
     const field = useFormControlContext()
-    const styles = useStyles()
+    const styles = useFormControlStyles()
 
     if (!field?.isRequired) return null
 
