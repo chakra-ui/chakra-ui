@@ -14,9 +14,7 @@ interface ChakraProps {
 export const Chakra = ({ children, cookies }: ChakraProps) => {
   return (
     <ChakraProvider
-      colorModeManager={
-        cookies ? cookieStorageManager(cookies) : localStorageManager
-      }
+      colorModeManager={cookies ? cookieStorageManager : localStorageManager}
     >
       {children}
     </ChakraProvider>

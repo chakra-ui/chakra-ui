@@ -1,7 +1,7 @@
 {
   "name": "chakra-nextjs-ts",
   "version": "2.0.5",
-  "private": "true",
+  "private": true,
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -14,11 +14,10 @@
     "@chakra-ui/theme-tools": "^2.0.1",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
-    "@types/faker": "^5.1.5",
+    "@faker-js/faker": "^7.1.0",
     "@types/node": "^16.11.12",
     "@types/react": "^18.0.1",
     "@types/react-dom": "^18.0.0",
-    "faker": "^5.1.0",
     "framer-motion": "^6.2.9",
     "next": "^12.1.0",
     "react": "^18.0.0",

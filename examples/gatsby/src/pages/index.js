@@ -30,9 +30,11 @@ const InputGrouper = () => {
   return (
     <>
       <InputGroup maxWidth="400px">
-        <InputLeftElement color="gray.300" fontSize="1.2em" children="$23" />
+        <InputLeftElement color="gray.300" fontSize="1.2em">
+          $23
+        </InputLeftElement>
         <Input placeholder="Enter amount" />
-        {bool && <InputRightElement children={"C"} />}
+        {bool && <InputRightElement>C</InputRightElement>}
       </InputGroup>
       <button onClick={() => setBool(s => !s)}>Toggle Right Element</button>
       <br />
@@ -58,7 +60,7 @@ const IndexPage = () => (
           </DarkMode>
         </chakra.div>
         <InputGroup>
-          <InputLeftElement children={"+234"} />
+          <InputLeftElement>+234</InputLeftElement>
           <Input type="tel" placeholder="Phone number" />
         </InputGroup>
         <InputGrouper />
@@ -76,7 +78,7 @@ const IndexPage = () => (
           <GatsbyImage />
         </div>
         <Link to="/page-2/">Go to page 2</Link> <br />
-        <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
+        <Link to="/using-typescript/">Go to &quot;Using TypeScript&quot;</Link>
       </main>
     </Container>
   </Layout>
