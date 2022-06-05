@@ -1,6 +1,12 @@
 module.exports = {
   core: {
-    builder: "webpack5",
+    builder: {
+      name: "webpack5",
+      options: {
+        lazyCompilation: true,
+        fsCache: true,
+      },
+    },
   },
   stories: ["../packages/**/stories/*.stories.tsx"],
   addons: [
@@ -9,9 +15,6 @@ module.exports = {
     "@storybook/addon-storysource",
     "@chakra-ui/storybook-addon",
   ],
-  features: {
-    emotionAlias: false,
-  },
   typescript: {
     reactDocgen: false,
   },
