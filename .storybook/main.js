@@ -15,9 +15,6 @@ module.exports = {
     "@storybook/addon-storysource",
     "@chakra-ui/storybook-addon",
   ],
-  features: {
-    emotionAlias: false,
-  },
   typescript: {
     reactDocgen: false,
   },
