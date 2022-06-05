@@ -394,7 +394,11 @@ export const ToastWithCustomIcon = () => {
             id,
             position: "top-left",
             title: "Message me",
-            icon: <span>💬</span>,
+            icon: (
+              <span role="img" aria-label="icon">
+                💬
+              </span>
+            ),
             duration: null,
             isClosable: true,
             onCloseComplete: () => {
@@ -410,7 +414,11 @@ export const ToastWithCustomIcon = () => {
         onClick={() =>
           toast.update(id, {
             title: "You have reached me!!!",
-            icon: <span>🥳</span>,
+            icon: (
+              <span role="img" aria-label="icon">
+                🥳
+              </span>
+            ),
             duration: 3000,
           })
         }

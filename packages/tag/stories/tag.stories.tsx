@@ -1,15 +1,15 @@
+import { Avatar } from "@chakra-ui/avatar"
 import { AddIcon } from "@chakra-ui/icons"
+import { chakra } from "@chakra-ui/system"
 import * as React from "react"
+import { MdSettings } from "react-icons/md"
 import {
   Tag,
-  TagLeftIcon,
-  TagLabel,
-  TagRightIcon,
   TagCloseButton,
+  TagLabel,
+  TagLeftIcon,
+  TagRightIcon,
 } from "../src"
-import { chakra } from "@chakra-ui/system"
-import { Avatar } from "@chakra-ui/avatar"
-import { MdSettings } from "react-icons/md"
 
 export default {
   title: "Components / Data Display / Tag",

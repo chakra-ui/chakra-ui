@@ -1,14 +1,14 @@
+import { Heading } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import {
-  useEditable,
   Editable,
   EditableInput,
   EditablePreview,
   EditableTextarea,
+  useEditable,
   useEditableControls,
 } from "../src"
-import { Heading } from "@chakra-ui/layout"
 
 export default {
   title: "Components / Forms / Editable",

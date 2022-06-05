@@ -1,5 +1,5 @@
+import { Grid, Text, VStack } from "@chakra-ui/react"
 import * as React from "react"
-import { VStack, Text, Grid } from "@chakra-ui/react"
 import type { IconProps } from "../src"
 import * as AllIcons from "../src"
 
@@ -8,7 +8,7 @@ export default {
 }
 
 export const Icons = () => (
-  <Grid gap="8" gridTemplateColumns={`repeat(auto-fill, minmax(8rem, 1fr))`}>
+  <Grid gap="8" gridTemplateColumns="repeat(auto-fill, minmax(8rem, 1fr))">
     {Object.entries(AllIcons).map(([key, value]) => {
       if (key === "createIcon") {
         return null

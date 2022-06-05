@@ -1,14 +1,14 @@
 import * as React from "react"
+import { FaAccessibleIcon, FaCheck, FaPhone } from "react-icons/fa"
 import {
-  List,
-  ListItem,
   Box,
-  Text,
+  List,
   ListIcon,
+  ListItem,
   OrderedList,
+  Text,
   UnorderedList,
 } from "../src"
-import { FaCheck, FaPhone, FaAccessibleIcon } from "react-icons/fa"
 
 export default {
   title: "Components / Data Display / List",
