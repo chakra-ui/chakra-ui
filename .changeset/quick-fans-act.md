@@ -1,5 +1,5 @@
 ---
-"@chakra-ui/modal": patch
+"@chakra-ui/radio": patch
 ---
 
 Fix a bug in chromium browsers where the modal position would change when
