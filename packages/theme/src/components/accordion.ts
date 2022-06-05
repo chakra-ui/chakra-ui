@@ -16,7 +16,7 @@ const baseStyleButton: SystemStyleObject = {
   transitionProperty: "common",
   transitionDuration: "normal",
   fontSize: "1rem",
-  _focus: {
+  _focusVisible: {
     boxShadow: "outline",
   },
   _hover: {

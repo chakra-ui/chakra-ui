@@ -4,7 +4,7 @@ import { mode } from "@chakra-ui/theme-tools"
 const baseStyle: SystemStyleFunction = (props) => ({
   borderRadius: "md",
   fontWeight: "semibold",
-  _focus: {
+  _focusVisible: {
     boxShadow: "outline",
     padding: "1rem",
     position: "fixed",

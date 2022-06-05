@@ -17,7 +17,7 @@ const baseStyleInput: SystemStyleObject = {
   transitionProperty: "common",
   transitionDuration: "normal",
   width: "full",
-  _focus: { boxShadow: "outline" },
+  _focusVisible: { boxShadow: "outline" },
   _placeholder: { opacity: 0.6 },
 }
 
@@ -27,7 +27,7 @@ const baseStyleTextarea: SystemStyleObject = {
   transitionProperty: "common",
   transitionDuration: "normal",
   width: "full",
-  _focus: { boxShadow: "outline" },
+  _focusVisible: { boxShadow: "outline" },
   _placeholder: { opacity: 0.6 },
 }
 

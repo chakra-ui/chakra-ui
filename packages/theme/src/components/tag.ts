@@ -11,7 +11,7 @@ const baseStyleContainer: SystemStyleObject = {
   lineHeight: 1.2,
   outline: 0,
   borderRadius: "md",
-  _focus: {
+  _focusVisible: {
     boxShadow: "outline",
   },
 }
@@ -34,7 +34,7 @@ const baseStyleCloseButton: SystemStyleObject = {
   _disabled: {
     opacity: 0.4,
   },
-  _focus: {
+  _focusVisible: {
     boxShadow: "outline",
     bg: "rgba(0, 0, 0, 0.14)",
   },

@@ -10,7 +10,7 @@ const baseStyle: SystemStyleObject = {
   fontWeight: "semibold",
   transitionProperty: "common",
   transitionDuration: "normal",
-  _focus: {
+  _focusVisible: {
     boxShadow: "outline",
   },
   _disabled: {
