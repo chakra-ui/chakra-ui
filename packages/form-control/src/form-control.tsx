@@ -1,7 +1,7 @@
 import { useBoolean, useId } from "@chakra-ui/hooks"
 import {
   chakra,
-  createStylesProvider,
+  createStylesContext,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react-utils"
 import * as React from "react"
 
-const [StylesProvider, useStyles] = createStylesProvider("FormControl")
+const [StylesProvider, useStyles] = createStylesContext("FormControl")
 
 export const useFormControlStyles = useStyles
 

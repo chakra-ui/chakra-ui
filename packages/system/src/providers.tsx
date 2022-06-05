@@ -65,7 +65,7 @@ export function useTheme<T extends object = Dict>() {
  * @param componentName
  * @returns [StylesProvider, useStyles]
  */
-export const createStylesProvider = (componentName: string) =>
+export const createStylesContext = (componentName: string) =>
   createContext<Dict<SystemStyleObject>>({
     name: `${componentName}StylesContext`,
     errorMessage: `useStyles: "styles" is undefined. Seems you forgot to wrap the components in "<${componentName} />" `,

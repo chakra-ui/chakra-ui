@@ -6,7 +6,7 @@ import {
   SystemStyleObject,
   ThemingProps,
   HTMLChakraProps,
-  createStylesProvider,
+  createStylesContext,
   chakra,
   forwardRef,
   omitThemingProps,
@@ -15,7 +15,7 @@ import {
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-const [StylesProvider, useStyles] = createStylesProvider("Avatar")
+const [StylesProvider, useStyles] = createStylesContext("Avatar")
 
 interface AvatarOptions {
   /**

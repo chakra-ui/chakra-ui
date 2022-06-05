@@ -7,13 +7,13 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
   SystemStyleObject,
-  createStylesProvider,
+  createStylesContext,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 
-const [StylesProvider, useStyles] = createStylesProvider("Stat")
+const [StylesProvider, useStyles] = createStylesContext("Stat")
 
 export interface StatLabelProps extends HTMLChakraProps<"dt"> {}
 

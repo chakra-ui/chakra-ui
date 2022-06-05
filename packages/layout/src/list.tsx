@@ -2,7 +2,7 @@ import { Icon, IconProps } from "@chakra-ui/icon"
 import { getValidChildren } from "@chakra-ui/react-utils"
 import {
   chakra,
-  createStylesProvider,
+  createStylesContext,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
@@ -13,7 +13,7 @@ import {
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-const [StylesProvider, useStyles] = createStylesProvider("List")
+const [StylesProvider, useStyles] = createStylesContext("List")
 
 interface ListOptions {
   /**

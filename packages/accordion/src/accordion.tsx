@@ -7,7 +7,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
-  createStylesProvider,
+  createStylesContext,
 } from "@chakra-ui/system"
 import { Collapse } from "@chakra-ui/transition"
 import { cx, Omit, runIfFn, __DEV__ } from "@chakra-ui/utils"
@@ -24,7 +24,7 @@ import {
   AccordionDescendantsProvider,
 } from "./use-accordion"
 
-const [StylesProvider, useStyles] = createStylesProvider("Accordion")
+const [StylesProvider, useStyles] = createStylesContext("Accordion")
 
 /* -------------------------------------------------------------------------------------------------
  * Accordion - The wrapper that provides context for all accordion items

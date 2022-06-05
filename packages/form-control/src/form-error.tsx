@@ -1,7 +1,7 @@
 import Icon, { IconProps } from "@chakra-ui/icon"
 import {
   chakra,
-  createStylesProvider,
+  createStylesContext,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
@@ -12,7 +12,7 @@ import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useFormControlContext } from "./form-control"
 
-const [StylesProvider, useStyles] = createStylesProvider("FormError")
+const [StylesProvider, useStyles] = createStylesContext("FormError")
 
 export interface FormErrorMessageProps
   extends HTMLChakraProps<"div">,

@@ -1,7 +1,7 @@
 import { createContext } from "@chakra-ui/react-utils"
 import {
   chakra,
-  createStylesProvider,
+  createStylesContext,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
@@ -22,7 +22,7 @@ const [SliderProvider, useSliderContext] = createContext<SliderContext>({
     "useSliderContext: `context` is undefined. Seems you forgot to wrap all slider components within <Slider />",
 })
 
-const [StylesProvider, useStyles] = createStylesProvider("Slider")
+const [StylesProvider, useStyles] = createStylesContext("Slider")
 
 export { SliderProvider, useSliderContext }
 

@@ -6,7 +6,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
-  createStylesProvider,
+  createStylesContext,
 } from "@chakra-ui/system"
 import { cx, omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -24,7 +24,7 @@ import {
   UseTabsProps,
 } from "./use-tabs"
 
-const [StylesProvider, useStyles] = createStylesProvider("Tabs")
+const [StylesProvider, useStyles] = createStylesContext("Tabs")
 
 interface TabsOptions {
   /**

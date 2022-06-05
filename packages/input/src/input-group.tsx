@@ -5,13 +5,13 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
-  createStylesProvider,
+  createStylesContext,
 } from "@chakra-ui/system"
 import { cx, filterUndefined, __DEV__ } from "@chakra-ui/utils"
 import { getValidChildren } from "@chakra-ui/react-utils"
 import * as React from "react"
 
-const [StylesProvider, useStyles] = createStylesProvider("InputGroup")
+const [StylesProvider, useStyles] = createStylesContext("InputGroup")
 
 export const useInputGroupStyles = useStyles
 

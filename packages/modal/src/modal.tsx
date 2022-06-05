@@ -5,7 +5,7 @@ import { createContext } from "@chakra-ui/react-utils"
 import {
   chakra,
   ChakraProps,
-  createStylesProvider,
+  createStylesContext,
   forwardRef,
   HTMLChakraProps,
   SystemStyleObject,
@@ -31,7 +31,7 @@ import { RemoveScroll } from "react-remove-scroll"
 import { ModalTransition } from "./modal-transition"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
 
-const [StylesProvider, useStyles] = createStylesProvider("Modal")
+const [StylesProvider, useStyles] = createStylesContext("Modal")
 export const useModalStyles = useStyles
 
 interface ModalOptions extends Pick<FocusLockProps, "lockFocusAcrossFrames"> {

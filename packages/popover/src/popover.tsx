@@ -2,7 +2,7 @@ import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
 import { MaybeRenderProp } from "@chakra-ui/react-utils"
 import {
   chakra,
-  createStylesProvider,
+  createStylesContext,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
@@ -19,7 +19,7 @@ import { usePopover, UsePopoverProps } from "./use-popover"
 
 export { usePopoverContext }
 
-const [StylesProvider, useStyles] = createStylesProvider("Popover")
+const [StylesProvider, useStyles] = createStylesContext("Popover")
 
 export interface PopoverProps extends UsePopoverProps, ThemingProps<"Popover"> {
   /**

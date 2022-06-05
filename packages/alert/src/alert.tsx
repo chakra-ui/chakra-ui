@@ -6,7 +6,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
-  createStylesProvider,
+  createStylesContext,
 } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/utils"
 import { createContext } from "@chakra-ui/react-utils"
@@ -14,7 +14,7 @@ import * as React from "react"
 import { Spinner } from "@chakra-ui/spinner"
 import { CheckIcon, InfoIcon, WarningIcon } from "./icons"
 
-const [StylesProvider, useStyles] = createStylesProvider("Alert")
+const [StylesProvider, useStyles] = createStylesContext("Alert")
 
 const STATUSES = {
   info: { icon: InfoIcon, colorScheme: "blue" },

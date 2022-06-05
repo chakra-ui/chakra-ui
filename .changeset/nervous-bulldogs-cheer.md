@@ -20,4 +20,5 @@
 "@chakra-ui/tag": patch
 ---
 
-Improve error messaging around style provider factory
+Improve error messaging around style provider factory by creating a custom
+`createStylesContext` function.
