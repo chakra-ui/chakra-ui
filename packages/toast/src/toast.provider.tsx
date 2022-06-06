@@ -2,7 +2,7 @@ import { objectKeys } from "@chakra-ui/utils"
 import { AnimatePresence, Variants } from "framer-motion"
 import type { CSSProperties } from "react"
 import * as React from "react"
-import { Portal } from "@chakra-ui/portal"
+import { Portal, PortalProps } from "@chakra-ui/portal"
 import { ToastComponent, ToastComponentProps } from "./toast.component"
 import type {
   CloseAllToastsOptions,
@@ -85,6 +85,10 @@ export type ToastProviderProps = React.PropsWithChildren<{
    * @default 0.5rem
    */
   toastSpacing?: CSSProperties["margin"]
+  /**
+   * Props to be forwarded to the portal component
+   */
+  portalProps?: Pick<PortalProps, "appendToParentPortal" | "containerRef">
 }>
 
 /**
@@ -101,8 +105,13 @@ export const ToastProvider = (props: ToastProviderProps) => {
   const {
     children,
     motionVariants,
-    component: CustomToastComponent = ToastComponent,
+    component: Component = ToastComponent,
+    portalProps,
   } = props
+
+  const isAnyToastActive = React.useMemo(() => {
+    return objectKeys(state).some((position) => state[position].length > 0)
+  }, [state])
 
   const toastList = objectKeys(state).map((position) => {
     const toasts = state[position]
@@ -117,7 +126,7 @@ export const ToastProvider = (props: ToastProviderProps) => {
       >
         <AnimatePresence initial={false}>
           {toasts.map((toast) => (
-            <CustomToastComponent
+            <Component
               key={toast.id}
               motionVariants={motionVariants}
               {...toast}
@@ -131,7 +140,7 @@ export const ToastProvider = (props: ToastProviderProps) => {
   return (
     <>
       {children}
-      <Portal>{toastList}</Portal>
+      {isAnyToastActive && <Portal {...portalProps}>{toastList}</Portal>}
     </>
   )
 }
