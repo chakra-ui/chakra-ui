@@ -1,5 +1,26 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [#6153](https://github.com/chakra-ui/chakra-ui/pull/6153)
+  [`bcbfcbcce`](https://github.com/chakra-ui/chakra-ui/commit/bcbfcbcceebe6749d0e8fe6ebddb566121fdff25)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Remove annoying
+  focus outline by leveraging focus visible
+
+### Patch Changes
+
+- [`06f29f8cd`](https://github.com/chakra-ui/chakra-ui/commit/06f29f8cdbb10ff1da523e0d0e958b9990d041e1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+  to resolve deps issues
+
+- Updated dependencies
+  [[`06f29f8cd`](https://github.com/chakra-ui/chakra-ui/commit/06f29f8cdbb10ff1da523e0d0e958b9990d041e1)]:
+  - @chakra-ui/anatomy@2.0.1
+  - @chakra-ui/theme-tools@2.0.2
+  - @chakra-ui/utils@2.0.2
+
 ## 2.0.3
 
 ### Patch Changes

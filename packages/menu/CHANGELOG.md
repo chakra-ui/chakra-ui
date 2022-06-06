@@ -1,5 +1,28 @@
 # Change Log
 
+## 2.0.3
+
+### Patch Changes
+
+- [`06f29f8cd`](https://github.com/chakra-ui/chakra-ui/commit/06f29f8cdbb10ff1da523e0d0e958b9990d041e1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+  to resolve deps issues
+
+* [#6137](https://github.com/chakra-ui/chakra-ui/pull/6137)
+  [`7de782f04`](https://github.com/chakra-ui/chakra-ui/commit/7de782f0485656a6d10099339da509084cb3ee88)
+  Thanks [@Patrick-Ullrich](https://github.com/Patrick-Ullrich)! - Improve error
+  messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+* Updated dependencies
+  [[`06f29f8cd`](https://github.com/chakra-ui/chakra-ui/commit/06f29f8cdbb10ff1da523e0d0e958b9990d041e1)]:
+  - @chakra-ui/clickable@2.0.2
+  - @chakra-ui/descendant@3.0.2
+  - @chakra-ui/hooks@2.0.2
+  - @chakra-ui/popper@3.0.2
+  - @chakra-ui/react-utils@2.0.1
+  - @chakra-ui/transition@2.0.2
+  - @chakra-ui/utils@2.0.2
+
 ## 2.0.2
 
 ### Patch Changes

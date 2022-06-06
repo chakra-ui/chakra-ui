@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.0.6
+
+### Patch Changes
+
+- [`06f29f8cd`](https://github.com/chakra-ui/chakra-ui/commit/06f29f8cdbb10ff1da523e0d0e958b9990d041e1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+  to resolve deps issues
+
+- Updated dependencies
+  [[`400a2091a`](https://github.com/chakra-ui/chakra-ui/commit/400a2091a9463cedb697b32d1ff182c238cd4754),
+  [`06f29f8cd`](https://github.com/chakra-ui/chakra-ui/commit/06f29f8cdbb10ff1da523e0d0e958b9990d041e1)]:
+  - @chakra-ui/react@2.2.0
+  - @chakra-ui/icons@2.0.2
+  - @chakra-ui/theme-tools@2.0.2
+
 ## 2.0.5
 
 ### Patch Changes

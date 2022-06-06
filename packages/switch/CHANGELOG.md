@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.0.3
+
+### Patch Changes
+
+- [`06f29f8cd`](https://github.com/chakra-ui/chakra-ui/commit/06f29f8cdbb10ff1da523e0d0e958b9990d041e1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+  to resolve deps issues
+
+- Updated dependencies
+  [[`bcbfcbcce`](https://github.com/chakra-ui/chakra-ui/commit/bcbfcbcceebe6749d0e8fe6ebddb566121fdff25),
+  [`06f29f8cd`](https://github.com/chakra-ui/chakra-ui/commit/06f29f8cdbb10ff1da523e0d0e958b9990d041e1),
+  [`bcbfcbcce`](https://github.com/chakra-ui/chakra-ui/commit/bcbfcbcceebe6749d0e8fe6ebddb566121fdff25)]:
+  - @chakra-ui/checkbox@2.1.0
+  - @chakra-ui/utils@2.0.2
+
 ## 2.0.2
 
 ### Patch Changes

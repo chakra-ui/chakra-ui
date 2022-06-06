@@ -1,5 +1,27 @@
 # Change Log
 
+## 2.0.2
+
+### Patch Changes
+
+- [`06f29f8cd`](https://github.com/chakra-ui/chakra-ui/commit/06f29f8cdbb10ff1da523e0d0e958b9990d041e1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+  to resolve deps issues
+
+* [#6119](https://github.com/chakra-ui/chakra-ui/pull/6119)
+  [`424090429`](https://github.com/chakra-ui/chakra-ui/commit/424090429d856c3703231003790b90e4f96dae35)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Fix a bug in chromium
+  browsers where the modal position would change when focusing on the radio
+  button in the modal which has some long content.
+* Updated dependencies
+  [[`06f29f8cd`](https://github.com/chakra-ui/chakra-ui/commit/06f29f8cdbb10ff1da523e0d0e958b9990d041e1),
+  [`7de782f04`](https://github.com/chakra-ui/chakra-ui/commit/7de782f0485656a6d10099339da509084cb3ee88)]:
+  - @chakra-ui/form-control@2.0.2
+  - @chakra-ui/hooks@2.0.2
+  - @chakra-ui/react-utils@2.0.1
+  - @chakra-ui/utils@2.0.2
+  - @chakra-ui/visually-hidden@2.0.2
+
 ## 2.0.1
 
 ### Patch Changes

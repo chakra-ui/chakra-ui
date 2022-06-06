@@ -1,5 +1,82 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- [#6153](https://github.com/chakra-ui/chakra-ui/pull/6153)
+  [`400a2091a`](https://github.com/chakra-ui/chakra-ui/commit/400a2091a9463cedb697b32d1ff182c238cd4754)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Ensure components
+  show focus outline only when interacting with the keyboard.
+
+  - Migrate components to use `_focusVisible` instead of `_focus` selectors to
+    indicate focus.
+
+  🚨 NOTE: This might be a potential breaking change for consumers who use the
+  `extendTheme` with the `_focus` styles. Kindly migrate to `_focusVisible`.
+
+### Patch Changes
+
+- [`06f29f8cd`](https://github.com/chakra-ui/chakra-ui/commit/06f29f8cdbb10ff1da523e0d0e958b9990d041e1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+  to resolve deps issues
+
+- Updated dependencies
+  [[`bcbfcbcce`](https://github.com/chakra-ui/chakra-ui/commit/bcbfcbcceebe6749d0e8fe6ebddb566121fdff25),
+  [`b6083bb16`](https://github.com/chakra-ui/chakra-ui/commit/b6083bb16bf1f39332302d71a59bc59f886ea4eb),
+  [`95bcaf1ff`](https://github.com/chakra-ui/chakra-ui/commit/95bcaf1ffbf2ad499a50c31b55847a314ce95069),
+  [`06f29f8cd`](https://github.com/chakra-ui/chakra-ui/commit/06f29f8cdbb10ff1da523e0d0e958b9990d041e1),
+  [`7de782f04`](https://github.com/chakra-ui/chakra-ui/commit/7de782f0485656a6d10099339da509084cb3ee88),
+  [`424090429`](https://github.com/chakra-ui/chakra-ui/commit/424090429d856c3703231003790b90e4f96dae35),
+  [`bcbfcbcce`](https://github.com/chakra-ui/chakra-ui/commit/bcbfcbcceebe6749d0e8fe6ebddb566121fdff25)]:
+  - @chakra-ui/checkbox@2.1.0
+  - @chakra-ui/theme@2.1.0
+  - @chakra-ui/modal@2.0.3
+  - @chakra-ui/media-query@3.1.0
+  - @chakra-ui/accordion@2.0.3
+  - @chakra-ui/alert@2.0.2
+  - @chakra-ui/avatar@2.0.3
+  - @chakra-ui/breadcrumb@2.0.2
+  - @chakra-ui/button@2.0.2
+  - @chakra-ui/close-button@2.0.2
+  - @chakra-ui/control-box@2.0.2
+  - @chakra-ui/counter@2.0.2
+  - @chakra-ui/css-reset@2.0.1
+  - @chakra-ui/editable@2.0.2
+  - @chakra-ui/react-env@2.0.2
+  - @chakra-ui/form-control@2.0.2
+  - @chakra-ui/hooks@2.0.2
+  - @chakra-ui/icon@3.0.2
+  - @chakra-ui/image@2.0.3
+  - @chakra-ui/input@2.0.2
+  - @chakra-ui/layout@2.0.2
+  - @chakra-ui/live-region@2.0.2
+  - @chakra-ui/menu@2.0.3
+  - @chakra-ui/number-input@2.0.2
+  - @chakra-ui/pin-input@2.0.3
+  - @chakra-ui/popover@2.0.2
+  - @chakra-ui/popper@3.0.2
+  - @chakra-ui/portal@2.0.2
+  - @chakra-ui/progress@2.0.2
+  - @chakra-ui/provider@2.0.5
+  - @chakra-ui/radio@2.0.2
+  - @chakra-ui/select@2.0.2
+  - @chakra-ui/skeleton@2.0.5
+  - @chakra-ui/slider@2.0.2
+  - @chakra-ui/spinner@2.0.2
+  - @chakra-ui/stat@2.0.2
+  - @chakra-ui/switch@2.0.3
+  - @chakra-ui/system@2.1.2
+  - @chakra-ui/table@2.0.2
+  - @chakra-ui/tabs@2.0.3
+  - @chakra-ui/tag@2.0.2
+  - @chakra-ui/textarea@2.0.3
+  - @chakra-ui/toast@2.0.6
+  - @chakra-ui/tooltip@2.0.2
+  - @chakra-ui/transition@2.0.2
+  - @chakra-ui/utils@2.0.2
+  - @chakra-ui/visually-hidden@2.0.2
+
 ## 2.1.2
 
 ### Patch Changes
