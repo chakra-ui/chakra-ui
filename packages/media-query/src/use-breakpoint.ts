@@ -1,18 +1,20 @@
 import { useTheme } from "@chakra-ui/system"
+import { isObject } from "@chakra-ui/utils"
 import { useMediaQuery } from "./use-media-query"
+
+export type UseBreakpointOptions = {
+  ssr?: boolean
+  fallback?: string
+}
 
 /**
  * React hook used to get the current responsive media breakpoint.
  *
- * @param [defaultBreakpoint="base"] default breakpoint name
- * (in non-window environments like SSR)
- *
  * For SSR, you can use a package like [is-mobile](https://github.com/kaimallea/isMobile)
- * to get the default breakpoint value from the user-agent
+ * to get the default breakpoint value from the user-agent.
  */
-export function useBreakpoint(
-  defaultBreakpoint = "base", // default value ensures SSR+CSR consistency
-) {
+export function useBreakpoint(arg?: string | UseBreakpointOptions) {
+  const opts = isObject(arg) ? arg : { fallback: arg ?? "base" }
   const theme = useTheme()
 
   const breakpoints = theme.__breakpoints!.details.map(
@@ -22,11 +24,12 @@ export function useBreakpoint(
     }),
   )
 
+  const fallback = breakpoints.map((bp) => bp.breakpoint === opts.fallback)
   const values = useMediaQuery(
     breakpoints.map((bp) => bp.query),
-    breakpoints.map((bp) => bp.breakpoint === defaultBreakpoint),
+    { fallback, ssr: opts.ssr },
   )
 
   const index = values.findIndex((value) => value == true)
-  return breakpoints[index]?.breakpoint ?? defaultBreakpoint
+  return breakpoints[index]?.breakpoint ?? opts.fallback
 }

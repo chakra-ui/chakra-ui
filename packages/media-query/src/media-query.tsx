@@ -4,6 +4,7 @@ import * as React from "react"
 import { useMediaQuery } from "./use-media-query"
 
 interface VisibilityProps {
+  ssr?: boolean
   breakpoint: string
   hide?: boolean
   children: React.ReactNode
@@ -16,8 +17,8 @@ interface VisibilityProps {
  * children based on the current breakpoint
  */
 const Visibility: React.FC<VisibilityProps> = (props) => {
-  const { breakpoint, hide, children } = props
-  const [show] = useMediaQuery(breakpoint)
+  const { breakpoint, hide, children, ssr } = props
+  const [show] = useMediaQuery(breakpoint, { ssr })
   const isVisible = hide ? !show : show
 
   const rendered = isVisible ? children : null
@@ -27,10 +28,10 @@ const Visibility: React.FC<VisibilityProps> = (props) => {
 export type HideProps = ShowProps
 
 export const Hide: React.FC<HideProps> = (props) => {
-  const { children } = props
+  const { children, ssr } = props
   const query = useQuery(props)
   return (
-    <Visibility breakpoint={query} hide>
+    <Visibility breakpoint={query} hide ssr={ssr}>
       {children}
     </Visibility>
   )
@@ -56,13 +57,18 @@ export interface ShowProps {
    * from that breakpoint and above. Default breakpoint values: `sm`, `md`, `lg`, `xl`, `2xl`.
    */
   above?: string
+  ssr?: boolean
   children?: React.ReactNode
 }
 
 export const Show: React.FC<ShowProps> = (props) => {
-  const { children } = props
+  const { children, ssr } = props
   const query = useQuery(props)
-  return <Visibility breakpoint={query}>{children}</Visibility>
+  return (
+    <Visibility breakpoint={query} ssr={ssr}>
+      {children}
+    </Visibility>
+  )
 }
 
 if (__DEV__) {

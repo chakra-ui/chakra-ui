@@ -4,38 +4,49 @@ import { useEffect, useLayoutEffect, useState } from "react"
 
 const useSafeLayoutEffect = isBrowser ? useLayoutEffect : useEffect
 
+export type UseMediaQueryOptions = {
+  fallback?: boolean | boolean[]
+  ssr?: boolean
+}
+
 /**
  * React hook that tracks state of a CSS media query
  *
  * @param query the media query to match
- * @param defaultValues the default values to match
+ * @param options the mediq query options { fallback, ssr }
  */
 export function useMediaQuery(
   query: string | string[],
-  defaultValues?: boolean | boolean[],
+  options: UseMediaQueryOptions = {},
 ): boolean[] {
+  const { ssr = true, fallback } = options
+
   const env = useEnvironment()
 
   const queries = Array.isArray(query) ? query : [query]
 
-  let defaults = Array.isArray(defaultValues) ? defaultValues : [defaultValues]
-  defaults = defaults.filter((v) => v != null) as boolean[]
+  let fallbackValues = Array.isArray(fallback) ? fallback : [fallback]
+  fallbackValues = fallbackValues.filter((v) => v != null) as boolean[]
 
   const [value, setValue] = useState(() => {
     return queries.map((query, index) => ({
       media: query,
-      matches: defaults[index] ?? false,
+      matches: ssr
+        ? !!fallbackValues[index]
+        : env.window.matchMedia(query).matches,
     }))
   })
 
   useSafeLayoutEffect(() => {
     // set initial matches
-    setValue(
-      queries.map((query) => ({
-        media: query,
-        matches: env.window.matchMedia(query).matches,
-      })),
-    )
+    if (ssr) {
+      setValue(
+        queries.map((query) => ({
+          media: query,
+          matches: env.window.matchMedia(query).matches,
+        })),
+      )
+    }
 
     const mql = queries.map((query) => env.window.matchMedia(query))
 
