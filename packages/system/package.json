@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/system",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Chakra UI system primitives",
   "keywords": [
     "system",
@@ -34,10 +34,10 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/color-mode": "2.0.3",
-    "@chakra-ui/react-utils": "2.0.0",
-    "@chakra-ui/styled-system": "2.1.1",
-    "@chakra-ui/utils": "2.0.1",
+    "@chakra-ui/color-mode": "2.0.4",
+    "@chakra-ui/react-utils": "2.0.1",
+    "@chakra-ui/styled-system": "2.2.0",
+    "@chakra-ui/utils": "2.0.2",
     "react-fast-compare": "3.2.0"
   },
   "peerDependencies": {

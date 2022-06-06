@@ -1,5 +1,22 @@
 # Change Log
 
+## 2.0.5
+
+### Patch Changes
+
+- [`06f29f8cd`](https://github.com/chakra-ui/chakra-ui/commit/06f29f8cdbb10ff1da523e0d0e958b9990d041e1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+  to resolve deps issues
+
+- Updated dependencies
+  [[`95bcaf1ff`](https://github.com/chakra-ui/chakra-ui/commit/95bcaf1ffbf2ad499a50c31b55847a314ce95069),
+  [`06f29f8cd`](https://github.com/chakra-ui/chakra-ui/commit/06f29f8cdbb10ff1da523e0d0e958b9990d041e1),
+  [`7de782f04`](https://github.com/chakra-ui/chakra-ui/commit/7de782f0485656a6d10099339da509084cb3ee88)]:
+  - @chakra-ui/media-query@3.1.0
+  - @chakra-ui/hooks@2.0.2
+  - @chakra-ui/system@2.1.2
+  - @chakra-ui/utils@2.0.2
+
 ## 2.0.4
 
 ### Patch Changes
