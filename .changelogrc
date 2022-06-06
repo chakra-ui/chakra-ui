@@ -1,7 +1,390 @@
-## 24-05-2022
+## 06-06-2022
 
-`@chakra-ui/react@2.1.2`
+`@chakra-ui/react@2.2.0`
 
-**Toast** `v2.0.5`
+- Ensure components show focus outline only when interacting with the keyboard.
+- Migrate components to use `_focusVisible` instead of `_focus` selectors to
+  indicate focus.
 
-- Fix SSR errors with toast and `use-sync-external-store` due to lack of `getServerSnapshot`
+🚨 NOTE: This might be a potential breaking change for consumers who use the
+`extendTheme` with the `_focus` styles. Kindly migrate to `_focusVisible`.- Bump all packages to resolve deps issues
+
+**Checkbox** `v2.1.0`
+
+- Remove annoying focus outline by leveraging focus visible
+- Bump all packages to resolve deps issues
+- Track focus visible and add `data-focus-visible` to `getCheckboxProps`
+
+**Styled System** `v2.2.0`
+
+- Remove annoying focus outline by leveraging focus visible
+- Bump all packages to resolve deps issues
+- Add support for styling `data-focus-visible` using the `_focusVisible` pseudo
+  prop
+
+**Theme** `v2.1.0`
+
+- Remove annoying focus outline by leveraging focus visible
+- Bump all packages to resolve deps issues
+
+**Modal** `v2.0.3`
+
+- Fix shifting screen when opening modal
+- Bump all packages to resolve deps issues
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+**Media Query** `v3.1.0`
+
+- Add support for client-side rendered (CSR) apps to get the correct value on
+  first render.
+
+> Affected hooks: `useMediaQuery`, `useBreakpoint`, `useBreakpointValue`.
+
+These hooks are built work in server-side rendering (SSR) applications by
+default. You might notice a quick flash of incorrect media query value when you
+use them.
+
+If you're creating a CSR-only app, you can now leverage the `ssr` argument to
+get the correct value on first render.
+
+```jsx live=false
+const [isMobile] = useMediaQuery('(max-width: 768px)', {
+  // you can now pass `ssr: false`
+  ssr: false,
+});
+
+const buttonSize = useBreakpointValue(
+  { base: 'sm', lg: 'md' },
+  // you can now pass `ssr: false`
+  { ssr: false }
+);
+
+// you can now pass `ssr: false`
+const breakpoint = useBreakpoint({ ssr: false });
+```
+
+- Bump all packages to resolve deps issues
+
+**Create React App Ts** `v2.0.6`
+
+- Bump all packages to resolve deps issues
+
+**Gatsby Starter Default** `v1.0.6`
+
+- Bump all packages to resolve deps issues
+
+**Chakra Nextjs** `v2.0.6`
+
+- Bump all packages to resolve deps issues
+
+**Chakra Nextjs Ts** `v2.0.6`
+
+- Bump all packages to resolve deps issues
+
+**Storybook Addon** `v2.0.6`
+
+- Bump all packages to resolve deps issues
+
+**Vite Ts** `v1.0.1`
+
+- Bump all packages to resolve deps issues
+
+**Accordion** `v2.0.3`
+
+- Bump all packages to resolve deps issues
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+**Alert** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+**Anatomy** `v2.0.1`
+
+- Bump all packages to resolve deps issues
+
+**Avatar** `v2.0.3`
+
+- Bump all packages to resolve deps issues
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+**Breadcrumb** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+**Button** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Clickable** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Close Button** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Color Mode** `v2.0.4`
+
+- Bump all packages to resolve deps issues
+
+**Control Box** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Counter** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Css Reset** `v2.0.1`
+
+- Bump all packages to resolve deps issues
+
+**Descendant** `v3.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Editable** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+**React Env** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Focus Lock** `v2.0.3`
+
+- Bump all packages to resolve deps issues
+
+**Form Control** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+**Hooks** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Icon** `v3.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Icons** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Image** `v2.0.3`
+
+- Bump all packages to resolve deps issues
+
+**Input** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+**Layout** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+**Live Region** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Menu** `v2.0.3`
+
+- Bump all packages to resolve deps issues
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+**Number Input** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+**Pin Input** `v2.0.3`
+
+- Bump all packages to resolve deps issues
+
+**Popover** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+**Popper** `v3.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Portal** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Progress** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+**Provider** `v2.0.5`
+
+- Bump all packages to resolve deps issues
+
+**Radio** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+- Fix a bug in chromium browsers where the modal position would change when
+  focusing on the radio button in the modal which has some long content.
+
+**React Utils** `v2.0.1`
+
+- Bump all packages to resolve deps issues
+
+**Select** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Skeleton** `v2.0.5`
+
+- Bump all packages to resolve deps issues
+
+**Skip Nav** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Slider** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+**Spinner** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Stat** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+**Switch** `v2.0.3`
+
+- Bump all packages to resolve deps issues
+
+**System** `v2.1.2`
+
+- Bump all packages to resolve deps issues
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+**Table** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+**Tabs** `v2.0.3`
+
+- Bump all packages to resolve deps issues
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+**Tag** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+**Textarea** `v2.0.3`
+
+- Bump all packages to resolve deps issues
+
+**Theme Tools** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Toast** `v2.0.6`
+
+- Bump all packages to resolve deps issues
+
+**Tooltip** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Transition** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Utils** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Visually Hidden** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Babel Plugin** `v1.0.3`
+
+- Bump all packages to resolve deps issues
+
+**Cli** `v2.1.0`
+
+- Bump all packages to resolve deps issues
+- New watch flag for the tokens command. You can specify a directory path to watch
+  for changes. It defaults to the parent dir of `<source>`, e.g.
+  `src/theme/theme.ts` => `src/theme`.
+
+```shell
+> chakra-cli tokens src/theme/theme.ts --watch
+
+> chakra-cli tokens --help
+Usage: chakra-cli tokens [options] <source>
+
+Options:
+  --out <path>              output file e.g. node_modules/@chakra-ui/styled-system/dist/declarations/src/theming.types.d.ts
+  --strict-component-types  Generate strict types for props variant and size
+  --watch [path]            Watch directory for changes and rebuild
+  -h, --help                display help for command
+
+```
+
+- Fixed an issue where the tokens command failed with
+  `SyntaxError: Undefined label 'e'`.
+
+**Cra Template** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Cra Template Typescript** `v2.0.2`
+
+- Bump all packages to resolve deps issues
+
+**Gatsby Plugin** `v3.0.1`
+
+- Bump all packages to resolve deps issues
+
+**Props Docs** `v2.0.6`
+
+- Bump all packages to resolve deps issues
+
+**Storybook Addon** `v4.0.0`
+
+- Bump all packages to resolve deps issues
+- Update storybook dependency
+
+**Test Utils** `v2.0.6`
+
+- Bump all packages to resolve deps issues
