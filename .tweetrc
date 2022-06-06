@@ -1,8 +1,16 @@
 {
-  "version": "2.1.2",
-  "releaseUrl": "https://github.com/chakra-ui/chakra-ui/releases/tag/@chakra-ui/react@2.1.2",
+  "version": "2.2.0",
+  "releaseUrl": "https://github.com/chakra-ui/chakra-ui/releases/tag/@chakra-ui/react@2.2.0",
   "patches": [
-    "- Fix SSR errors with toast and `use-sync-external-store` due to lack of `getServerSnapshot` \n"
+    "- Fix shifting screen when opening modal \n",
+    "- Bump all packages to resolve deps issues \n",
+    "- Improve error messaging around style provider factory by creating a custom\n`createStylesContext` function. \n"
   ],
-  "features": []
+  "features": [
+    "- Ensure components show focus outline only when interacting with the keyboard.\n- Migrate components to use `_focusVisible` instead of `_focus` selectors to\n  indicate focus.\n\n🚨 NOTE: This might be a potential breaking change for consumers who use the\n`extendTheme` with the `_focus` styles. Kindly migrate to `_focusVisible`.",
+    "- Bump all packages to resolve deps issues \n",
+    "- Remove annoying focus outline by leveraging focus visible \n",
+    "- Track focus visible and add `data-focus-visible` to `getCheckboxProps` \n",
+    "- Add support for styling `data-focus-visible` using the `_focusVisible` pseudo\nprop \n"
+  ]
 }
