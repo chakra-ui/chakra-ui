@@ -13,9 +13,11 @@ import React, {
   ChangeEvent,
   KeyboardEvent,
   useCallback,
+  useEffect,
   useRef,
   useState,
 } from "react"
+import { trackFocusVisible } from "@zag-js/focus-visible"
 
 export interface UseCheckboxProps {
   /**
@@ -157,9 +159,14 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   const onBlurProp = useCallbackRef(onBlur)
   const onFocusProp = useCallbackRef(onFocus)
 
+  const [isFocusVisible, setIsFocusVisible] = useState(false)
   const [isFocused, setFocused] = useBoolean()
   const [isHovered, setHovered] = useBoolean()
   const [isActive, setActive] = useBoolean()
+
+  useEffect(() => {
+    return trackFocusVisible(setIsFocusVisible)
+  }, [])
 
   const inputRef = useRef<HTMLInputElement>(null)
   const [rootIsLabelElement, setRootIsLabelElement] = useState(true)
@@ -276,6 +283,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         "data-hover": dataAttr(isHovered),
         "data-checked": dataAttr(isChecked),
         "data-focus": dataAttr(isFocused),
+        "data-focus-visible": dataAttr(isFocused && isFocusVisible),
         "data-indeterminate": dataAttr(isIndeterminate),
         "data-disabled": dataAttr(isDisabled),
         "data-invalid": dataAttr(isInvalid),
@@ -292,6 +300,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       isChecked,
       isDisabled,
       isFocused,
+      isFocusVisible,
       isHovered,
       isIndeterminate,
       isInvalid,

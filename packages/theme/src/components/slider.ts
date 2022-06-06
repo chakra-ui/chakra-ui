@@ -73,7 +73,7 @@ const baseStyleThumb: SystemStyleFunction = (props) => {
     borderColor: "transparent",
     transitionProperty: "transform",
     transitionDuration: "normal",
-    _focus: { boxShadow: "outline" },
+    _focusVisible: { boxShadow: "outline" },
     _disabled: { bg: "gray.300" },
     ...thumbOrientation(props),
   }

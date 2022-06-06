@@ -22,7 +22,7 @@ const baseStyleTab: SystemStyleFunction = (props) => {
     flex: isFitted ? 1 : undefined,
     transitionProperty: "common",
     transitionDuration: "normal",
-    _focus: {
+    _focusVisible: {
       zIndex: 1,
       boxShadow: "outline",
     },

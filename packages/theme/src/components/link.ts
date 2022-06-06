@@ -11,7 +11,7 @@ const baseStyle: SystemStyleObject = {
   _hover: {
     textDecoration: "underline",
   },
-  _focus: {
+  _focusVisible: {
     boxShadow: "outline",
   },
 }

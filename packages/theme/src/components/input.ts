@@ -99,7 +99,7 @@ const variantOutline: PartsStyleFunction<typeof parts> = (props) => {
         borderColor: getColor(theme, ec),
         boxShadow: `0 0 0 1px ${getColor(theme, ec)}`,
       },
-      _focus: {
+      _focusVisible: {
         zIndex: 1,
         borderColor: getColor(theme, fc),
         boxShadow: `0 0 0 1px ${getColor(theme, fc)}`,
@@ -136,7 +136,7 @@ const variantFilled: PartsStyleFunction<typeof parts> = (props) => {
       _invalid: {
         borderColor: getColor(theme, ec),
       },
-      _focus: {
+      _focusVisible: {
         bg: "transparent",
         borderColor: getColor(theme, fc),
       },
@@ -168,7 +168,7 @@ const variantFlushed: PartsStyleFunction<typeof parts> = (props) => {
         borderColor: getColor(theme, ec),
         boxShadow: `0px 1px 0px 0px ${getColor(theme, ec)}`,
       },
-      _focus: {
+      _focusVisible: {
         borderColor: getColor(theme, fc),
         boxShadow: `0px 1px 0px 0px ${getColor(theme, fc)}`,
       },

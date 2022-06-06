@@ -47,7 +47,7 @@ const baseStyleControl: SystemStyleFunction = (props) => {
       borderColor: mode("gray.100", "transparent")(props),
     },
 
-    _focus: {
+    _focusVisible: {
       boxShadow: "outline",
     },
 
