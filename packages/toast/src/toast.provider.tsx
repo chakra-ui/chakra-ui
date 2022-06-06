@@ -109,10 +109,6 @@ export const ToastProvider = (props: ToastProviderProps) => {
     portalProps,
   } = props
 
-  const isAnyToastActive = React.useMemo(() => {
-    return objectKeys(state).some((position) => state[position].length > 0)
-  }, [state])
-
   const toastList = objectKeys(state).map((position) => {
     const toasts = state[position]
 
@@ -140,7 +136,7 @@ export const ToastProvider = (props: ToastProviderProps) => {
   return (
     <>
       {children}
-      {isAnyToastActive && <Portal {...portalProps}>{toastList}</Portal>}
+      <Portal {...portalProps}>{toastList}</Portal>
     </>
   )
 }
