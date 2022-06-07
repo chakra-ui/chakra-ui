@@ -13,7 +13,7 @@ export type UseMediaQueryOptions = {
  * React hook that tracks state of a CSS media query
  *
  * @param query the media query to match
- * @param options the mediq query options { fallback, ssr }
+ * @param options the media query options { fallback, ssr }
  */
 export function useMediaQuery(
   query: string | string[],
