@@ -10,6 +10,20 @@ experience.
 
 <!-- CHANGELOG:INSERT -->
 
+## 07-06-2022
+
+`@chakra-ui/react@2.2.1`
+
+**Toast** `v2.1.0`
+
+- Add support for `portalProps` in toast provider. When using with the
+  `ChakraProvider`, this can be configure in the `toastOptions`
+
+**System** `v2.1.3`
+
+- Fixed a regression where useStyles and StylesProvider was removed from
+  `@chakra-ui/system`
+
 ## 06-06-2022
 
 `@chakra-ui/react@2.2.0`
