@@ -61,6 +61,25 @@ export function useTheme<T extends object = Dict>() {
 }
 
 /**
+ * @deprecated - Prefer to use `createStylesContext` to provide better error messages
+ *
+ * @example
+ *
+ * ```jsx
+ * import { createStylesContext } from "@chakra-ui/react"
+ *
+ * const [StylesProvider, useStyles] = createStylesContext("Component")
+ * ```
+ */
+const [StylesProvider, useStyles] = createContext<Dict<SystemStyleObject>>({
+  name: "StylesContext",
+  errorMessage:
+    "useStyles: `styles` is undefined. Seems you forgot to wrap the components in `<StylesProvider />` ",
+})
+
+export { StylesProvider, useStyles }
+
+/**
  * Helper function that creates context with a standardized errorMessage related to the component
  * @param componentName
  * @returns [StylesProvider, useStyles]
