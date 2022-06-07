@@ -1,5 +1,21 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [#6159](https://github.com/chakra-ui/chakra-ui/pull/6159)
+  [`54acea27b`](https://github.com/chakra-ui/chakra-ui/commit/54acea27baf8a8ac4a9f5346d95fe6aecda92f74)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add support for
+  `portalProps` in toast provider. When using with the `ChakraProvider`, this
+  can be configure in the `toastOptions`
+
+### Patch Changes
+
+- Updated dependencies
+  [[`f9a84d637`](https://github.com/chakra-ui/chakra-ui/commit/f9a84d6370f0f460f491c36c53077c2087eb7580)]:
+  - @chakra-ui/system@2.1.3
+
 ## 2.0.6
 
 ### Patch Changes

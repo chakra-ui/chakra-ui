@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.1.3
+
+### Patch Changes
+
+- [#6162](https://github.com/chakra-ui/chakra-ui/pull/6162)
+  [`f9a84d637`](https://github.com/chakra-ui/chakra-ui/commit/f9a84d6370f0f460f491c36c53077c2087eb7580)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fixed a regression
+  where useStyles and StylesProvider was removed from `@chakra-ui/system`
+
 ## 2.1.2
 
 ### Patch Changes
