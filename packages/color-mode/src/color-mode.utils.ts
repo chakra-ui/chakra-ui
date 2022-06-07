@@ -1,3 +1,5 @@
+import { isFunction } from "@chakra-ui/utils"
+
 export type ColorMode = "light" | "dark"
 
 const classNames = {
@@ -35,8 +37,14 @@ export function getColorModeUtils(options: UtilOptions = {}) {
       const listener = (e: MediaQueryListEvent) => {
         fn(e.matches ? "dark" : "light")
       }
-      mql.addEventListener("change", listener)
-      return () => mql.removeEventListener("change", listener)
+
+      if (isFunction(mql.addListener)) mql.addListener(listener)
+      else mql.addEventListener("change", listener)
+
+      return () => {
+        if (isFunction(mql.removeListener)) mql.removeListener(listener)
+        else mql.removeEventListener("change", listener)
+      }
     },
     preventTransition() {
       const css = document.createElement("style")
