@@ -3,7 +3,7 @@ import * as path from "path"
 import { Command, program } from "commander"
 import chokidar from "chokidar"
 import { isString } from "@chakra-ui/utils"
-import throttle from "lodash/throttle"
+import throttle from "lodash.throttle"
 import { initCLI } from "./utils/init-cli"
 import {
   generateThemeTypings,
