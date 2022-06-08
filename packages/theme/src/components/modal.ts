@@ -109,6 +109,8 @@ const sizes = {
   "4xl": getSize("4xl"),
   "5xl": getSize("5xl"),
   "6xl": getSize("6xl"),
+  "7xl": getSize("7xl"),
+  "8xl": getSize("8xl"),
   full: getSize("full"),
 }
 
