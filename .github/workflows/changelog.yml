@@ -8,8 +8,15 @@ on:
       - main
       # - next
 
+permissions:
+  contents: read
+
 jobs:
   daily:
+    permissions:
+      actions: write  # for styfle/cancel-workflow-action to cancel/stop running workflows
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     if: ${{ 'chakra-ui/chakra-ui' == github.repository }}
     runs-on: ubuntu-latest
     steps:
