@@ -1,5 +1,5 @@
 import * as React from "react"
-import { render, testA11y, screen } from "@chakra-ui/test-utils"
+import { focus, render, testA11y, screen } from "@chakra-ui/test-utils"
 import {
   Accordion,
   AccordionButton,
@@ -86,10 +86,12 @@ test("arrow up & down moves focus to next/previous accordion", async () => {
   const first = screen.getByText("Section 1 title")
   const second = screen.getByText("Section 2 title")
 
-  await user.press.ArrowDown(first)
+  focus(first)
+
+  await user.keyboard("[ArrowDown]")
   expect(second).toHaveFocus()
 
-  await user.press.ArrowUp(second)
+  await user.keyboard("[ArrowUp]")
   expect(first).toHaveFocus()
 })
 
@@ -122,10 +124,12 @@ test("home & end keys moves focus to first/last accordion", async () => {
   const first = screen.getByText("First section")
   const last = screen.getByText("Last section")
 
-  await user.press.Home(first)
+  focus(first)
+
+  await user.keyboard("[Home]")
   expect(first).toHaveFocus()
 
-  await user.press.End(first)
+  await user.keyboard("[End]")
   expect(last).toHaveFocus()
 })
 
@@ -266,13 +270,13 @@ test("tab moves focus to the next focusable element", async () => {
   const second = screen.getByText("Second section")
   const last = screen.getByText("Last section")
 
-  await user.press.Tab()
+  await user.keyboard("[Tab]")
   expect(first).toHaveFocus()
 
-  await user.press.Tab()
+  await user.keyboard("[Tab]")
   expect(second).toHaveFocus()
 
-  await user.press.Tab()
+  await user.keyboard("[Tab]")
   expect(last).toHaveFocus()
 })
 
