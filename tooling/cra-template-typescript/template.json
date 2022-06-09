@@ -14,7 +14,7 @@
       "@types/node": "^12.0.0",
       "@types/react": "^18.0.9",
       "@types/react-dom": "^18.0.4",
-      "@types/jest": "^25.0.0",
+      "@types/jest": "^28.1.1",
       "typescript": "^4.6.3",
       "web-vitals": "^0.2.2"
     }
