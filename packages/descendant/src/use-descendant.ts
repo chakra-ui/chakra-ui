@@ -7,7 +7,7 @@ import { useSafeLayoutEffect, cast } from "./utils"
  * @internal
  * React hook that initializes the DescendantsManager
  */
-function useDescendants<T extends HTMLElement = HTMLElement, K = {}>() {
+function useDescendants<T extends HTMLElement = HTMLElement, K extends Record<string, any> = {}>() {
   const descendants = useRef(new DescendantsManager<T, K>())
   useSafeLayoutEffect(() => {
     return () => descendants.current.destroy()
@@ -81,7 +81,7 @@ function useDescendant<T extends HTMLElement = HTMLElement, K = {}>(
 
 export function createDescendantContext<
   T extends HTMLElement = HTMLElement,
-  K = {},
+  K extends Record<string, any> = {},
 >() {
   type ContextProviderType = React.Provider<DescendantsManager<T, K>>
   const ContextProvider = cast<ContextProviderType>(DescendantsContextProvider)
