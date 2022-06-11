@@ -32,7 +32,7 @@ export interface SkeletonOptions {
    */
   speed?: number
   /**
-   * The fadeIn duration in seconds
+   * The fadeIn duration in seconds. Requires `isLoaded` toggled to `true` in order to see the transition.
    *
    * @default
    * 0.4
