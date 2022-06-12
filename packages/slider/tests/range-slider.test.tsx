@@ -2,7 +2,7 @@
 import * as React from "react"
 import {
   fireEvent,
-  press,
+  focus,
   render,
   screen,
   testA11y,
@@ -51,58 +51,69 @@ test("passes a11y test", async () => {
 })
 
 test("should move the left thumb with an arrow key", async () => {
-  render(<HorizontalSlider />)
+  const { user } = render(<HorizontalSlider />)
 
   const [leftThumb] = getThumbs()
 
-  await press.ArrowRight(leftThumb)
+  focus(leftThumb)
+
+  await user.keyboard("[ArrowRight]")
   expect(leftThumb).toHaveAttribute("aria-valuenow", "41")
 })
 
 test("should move the right thumb with an arrow key", async () => {
-  render(<HorizontalSlider />)
+  const { user } = render(<HorizontalSlider />)
 
   const [, rightThumb] = getThumbs()
 
-  await press.ArrowRight(rightThumb)
+  focus(rightThumb)
+
+  await user.keyboard("[ArrowRight]")
   expect(rightThumb).toHaveAttribute("aria-valuenow", "81")
 })
 
 test("should increment a thumb by 10 position pressing the page-up key", async () => {
-  render(<HorizontalSlider />)
+  const { user } = render(<HorizontalSlider />)
 
   const [leftThumb] = getThumbs()
 
-  await press.PageUp(leftThumb)
+  focus(leftThumb)
+
+  await user.keyboard("[PageUp]")
   expect(leftThumb).toHaveAttribute("aria-valuenow", "50")
 })
 
 test("should decrement a thumb by 10 position pressing the page-down key", async () => {
-  render(<HorizontalSlider />)
+  const { user } = render(<HorizontalSlider />)
 
   const [leftThumb] = getThumbs()
+  focus(leftThumb)
 
-  await press.PageDown(leftThumb)
+  await user.keyboard("[PageDown]")
   expect(leftThumb).toHaveAttribute("aria-valuenow", "30")
 })
 
 test("should set a thumb to its minimum value when pressing the home key", async () => {
-  render(<HorizontalSlider />)
+  const { user } = render(<HorizontalSlider />)
 
   const [, rightThumb] = getThumbs()
+  focus(rightThumb)
 
-  await press.Home(rightThumb)
+  await user.keyboard("[Home]")
+
   // The minimum value for the right thumb is whatever value
   // the left thumb currently is
   expect(rightThumb).toHaveAttribute("aria-valuenow", "40")
 })
 
 test("should set a thumb to its maximum value when pressing the end key", async () => {
-  render(<HorizontalSlider />)
+  const { user } = render(<HorizontalSlider />)
 
   const [, rightThumb] = getThumbs()
+  focus(rightThumb)
 
-  await press.End(rightThumb)
+  await user.keyboard("[End]")
+
   expect(rightThumb).toHaveAttribute("aria-valuenow", "100")
 })
 
