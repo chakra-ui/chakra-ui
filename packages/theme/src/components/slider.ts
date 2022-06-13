@@ -15,6 +15,9 @@ function thumbOrientation(props: StyleFunctionProps): SystemStyleObject {
       transform: `translateX(-50%)`,
       _active: {
         transform: `translateX(-50%) scale(1.15)`,
+        _disabled: {
+          transform: `translateX(-50%)`,
+        },
       },
     },
     horizontal: {
@@ -22,6 +25,9 @@ function thumbOrientation(props: StyleFunctionProps): SystemStyleObject {
       transform: `translateY(-50%)`,
       _active: {
         transform: `translateY(-50%) scale(1.15)`,
+        _disabled: {
+          transform: `translateY(-50%)`,
+        },
       },
     },
   })
@@ -36,8 +42,8 @@ const baseStyleContainer: SystemStyleFunction = (props) => {
     cursor: "pointer",
     _disabled: {
       opacity: 0.6,
-      cursor: "default",
-      pointerEvents: "none",
+      cursor: "not-allowed",
+      pointerEvents: "auto",
     },
     ...orient({
       orientation,
