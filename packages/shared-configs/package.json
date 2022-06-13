@@ -1,5 +1,6 @@
 {
   "name": "@chakra-ui/shared-configs",
+  "private": true,
   "version": "0.0.0",
   "license": "MIT",
   "files": [

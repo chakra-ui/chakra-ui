@@ -32,7 +32,7 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "dependencies": {
-    "@chakra-ui/provider": "2.2.1",
+    "@chakra-ui/provider": "2.0.6",
     "@emotion/jest": "^11.9.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.0.1",
