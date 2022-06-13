@@ -1,3 +1,3 @@
 {
-  "extends": "@chakra-ui/shared-configs/tsconfig/node.json"
+  "extends": "../../configs/tsconfig/node.json"
 }
