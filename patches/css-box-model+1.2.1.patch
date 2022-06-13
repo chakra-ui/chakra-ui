@@ -1,0 +1,15 @@
+diff --git a/node_modules/css-box-model/src/index.d.ts b/node_modules/css-box-model/src/index.d.ts
+index 38c9a58..7b83c2d 100644
+--- a/node_modules/css-box-model/src/index.d.ts
++++ b/node_modules/css-box-model/src/index.d.ts
+@@ -1,4 +1,4 @@
+-declare module 'css-box-model' {
++
+   export type Position = {
+     x: number;
+     y: number;
+@@ -56,4 +56,3 @@ declare module 'css-box-model' {
+   ) => BoxModel;
+ 
+   export const getBox: (el: Element) => BoxModel;
+-}

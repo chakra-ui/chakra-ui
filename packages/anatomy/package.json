@@ -11,9 +11,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-anatomy.cjs.js",
-  "module": "dist/chakra-ui-anatomy.esm.js",
-  "types": "dist//chakra-ui-anatomy.cjs.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "sideEffects": false,
   "files": [
     "dist"
@@ -28,6 +28,15 @@
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts",
+    "dev": "tsup src/index.ts",
+    "lint": "TIMING=1 eslint src/**/*.ts* --fix",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "ls:minify": "esbuild script-src/localstorage.js --minify --outfile=script-src/localstorage.min.js",
+    "cookie:minify": "esbuild script-src/cookiestorage.js --minify --outfile=script-src/cookiestorage.min.js",
+    "minify": "yarn ls:minify && yarn cookie:minify"
   },
   "dependencies": {
     "@chakra-ui/theme-tools": "^2.0.2"

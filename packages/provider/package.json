@@ -2,12 +2,18 @@
   "name": "@chakra-ui/provider",
   "version": "2.0.6",
   "description": "Theme and components agnostic ChakraProvider",
-  "main": "dist/chakra-ui-provider.cjs.js",
-  "module": "dist/chakra-ui-provider.esm.js",
-  "types": "dist/chakra-ui-provider.cjs.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "scripts": {
+    "build": "tsup src/index.tsx",
+    "dev": "tsup src/index.tsx",
+    "lint": "TIMING=1 eslint src/**/*.ts* --fix",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
   "sideEffects": false,
   "publishConfig": {
     "access": "public"

@@ -1,0 +1,9 @@
+{
+  "name": "@chakra-ui/shared-configs",
+  "version": "0.0.0",
+  "license": "MIT",
+  "files": [
+    "tsconfig",
+    "tsup"
+  ]
+}

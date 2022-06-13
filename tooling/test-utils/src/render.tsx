@@ -1,4 +1,4 @@
-import { ChakraProvider } from "@chakra-ui/react"
+import { ChakraProvider } from "@chakra-ui/provider"
 import "@testing-library/jest-dom/extend-expect"
 import { render as rtlRender, RenderOptions } from "@testing-library/react"
 import { toHaveNoViolations } from "jest-axe"

@@ -2,15 +2,21 @@
   "name": "@chakra-ui/react",
   "version": "2.2.1",
   "description": "Responsive and accessible React UI components built with React and Emotion",
-  "main": "dist/chakra-ui-react.cjs.js",
-  "module": "dist/chakra-ui-react.esm.js",
-  "types": "dist/chakra-ui-react.cjs.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "build": "tsup src/index.tsx",
+    "dev": "tsup src/index.tsx",
+    "lint": "TIMING=1 eslint src/**/*.ts* --fix",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "dependencies": {
     "@chakra-ui/accordion": "2.0.3",

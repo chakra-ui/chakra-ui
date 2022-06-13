@@ -20,9 +20,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-number-input.cjs.js",
-  "module": "dist/chakra-ui-number-input.esm.js",
-  "types": "dist/chakra-ui-number-input.cjs.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -36,6 +36,12 @@
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts",
+    "dev": "tsup src/index.ts",
+    "lint": "TIMING=1 eslint src/**/*.ts* --fix",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "dependencies": {
     "@chakra-ui/counter": "2.0.2",
