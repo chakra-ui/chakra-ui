@@ -140,7 +140,7 @@ test("controlled: handles callbacks correctly", async () => {
   })
 
   // press `Escape`
-  await user.press.Escape(textarea)
+  await user.keyboard("[Escape]")
 
   // calls `onCancel` with previous `value`
   expect(onCancel).toHaveBeenCalledWith(`Hello `)

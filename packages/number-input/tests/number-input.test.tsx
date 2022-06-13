@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { FormControl, FormHelperText, FormLabel } from "@chakra-ui/form-control"
 import {
+  focus,
   testA11y,
   fireEvent,
   render,
@@ -70,23 +71,21 @@ test("should increase/decrease with keyboard", async () => {
 
   const input = getByTestId("input")
 
-  await user.press.ArrowUp(input)
-  await user.press.ArrowUp(input)
-  await user.press.ArrowUp(input)
+  focus(input)
+
+  await user.keyboard("[ArrowUp>3/]")
   expect(input).toHaveValue("3")
 
-  await user.press.ArrowDown(input)
-  await user.press.ArrowDown(input)
-  await user.press.ArrowDown(input)
+  await user.keyboard("[ArrowDown>3/]")
   expect(input).toHaveValue("0")
 
-  await user.press.ArrowUp(input)
+  await user.keyboard("[ArrowUp]")
   expect(input).toHaveValue("1")
 
-  await user.press.Home(input)
+  await user.keyboard("[Home]")
   expect(input).toHaveValue("-9007199254740991")
 
-  await user.press.End(input)
+  await user.keyboard("[End]")
   expect(input).toHaveValue("9007199254740991")
 })
 
@@ -95,14 +94,16 @@ test("should increase/decrease by 10*step on shift+Arrow", async () => {
 
   const input = getByTestId("input")
 
-  await user.press.ArrowUp(input)
+  focus(input)
+
+  await user.keyboard("[ArrowUp]")
   expect(input).toHaveValue("1")
-  await user.press.ArrowUp(input, { shiftKey: true })
+  await user.keyboard("[ShiftLeft>][ArrowUp][/ShiftLeft]")
   expect(input).toHaveValue("11")
 
-  await user.press.ArrowDown(input, { shiftKey: true })
+  await user.keyboard("[ShiftLeft>][ArrowDown][/ShiftLeft]")
   expect(input).toHaveValue("1")
-  await user.press.ArrowDown(input)
+  await user.keyboard("[ArrowDown]")
   expect(input).toHaveValue("0")
 })
 
@@ -115,14 +116,14 @@ test("should increase/decrease by 0.1*step on ctrl+Arrow", async () => {
 
   const input = getByTestId("input")
 
-  await user.press.ArrowUp(input)
+  await user.type(input, "[ArrowUp]")
   expect(input).toHaveValue("0.10")
-  await user.press.ArrowUp(input, { ctrlKey: true })
+  await user.keyboard("[ControlLeft>][ArrowUp][/ControlLeft]")
   expect(input).toHaveValue("0.11")
 
-  await user.press.ArrowDown(input, { ctrlKey: true })
+  await user.keyboard("[ControlLeft>][ArrowDown][/ControlLeft]")
   expect(input).toHaveValue("0.10")
-  await user.press.ArrowDown(input)
+  await user.keyboard("[ArrowDown]")
   expect(input).toHaveValue("0.00")
 })
 

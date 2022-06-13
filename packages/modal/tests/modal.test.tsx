@@ -123,7 +123,7 @@ describe("closing the modal", () => {
       </Modal>,
     )
 
-    await user.press.Escape(document.activeElement!)
+    await user.keyboard("[Escape]")
     expect(onClose).toHaveBeenCalled()
   })
 })
