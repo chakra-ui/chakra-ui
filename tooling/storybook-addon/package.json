@@ -74,12 +74,10 @@
     ],
     "icon": "https://raw.githubusercontent.com/chakra-ui/chakra-ui/main/logo/logomark-colored.svg"
   },
-  "preconstruct": {
-    "entrypoints": [
-      "index.ts",
-      "preset/index.ts",
-      "preset/register.ts",
-      "preset/decorators.ts"
-    ]
-  }
+  "entrypoints": [
+    "index.ts",
+    "preset/index.ts",
+    "preset/register.ts",
+    "preset/decorators.ts"
+  ]
 }

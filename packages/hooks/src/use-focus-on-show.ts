@@ -1,10 +1,8 @@
-import {
-  contains,
-  focus,
-  FocusableElement,
-  getAllFocusable,
-  isRefObject,
-} from "@chakra-ui/utils"
+import { focus } from "@chakra-ui/utils/focus"
+import { FocusableElement } from "@chakra-ui/utils/tabbable"
+import { isRefObject } from "@chakra-ui/utils/assertion"
+import { contains } from "@chakra-ui/utils/dom"
+import { getAllFocusable } from "@chakra-ui/utils/dom-query"
 import React, { useCallback } from "react"
 import { useEventListener } from "./use-event-listener"
 import { useUpdateEffect } from "./use-update-effect"

@@ -1,5 +1,6 @@
 import * as React from "react"
-import { hasFocusWithin, focus } from "@chakra-ui/utils"
+import { focus } from "@chakra-ui/utils/focus"
+import { hasFocusWithin } from "@chakra-ui/utils/tabbable"
 import { useUpdateEffect } from "./use-update-effect"
 
 export type UseFocusEffectOptions = {

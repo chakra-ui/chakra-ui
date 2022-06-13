@@ -1,4 +1,4 @@
-import { getOwnerWindow } from "@chakra-ui/utils"
+import { getOwnerWindow } from "@chakra-ui/utils/dom"
 import { RefObject, useEffect, useState } from "react"
 import { useEventListener } from "./use-event-listener"
 

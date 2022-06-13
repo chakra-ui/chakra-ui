@@ -1,4 +1,5 @@
-import { defineConfig } from "tsup"
-import defaultConfig from "../shared-configs/tsup/tsup.config"
+import { getTsupConfig } from "../../configs/tsup/tsup.config"
 
-export default defineConfig(defaultConfig)
+export default getTsupConfig({
+  outDir: "dist-use-outside-click",
+})

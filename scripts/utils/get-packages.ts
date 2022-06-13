@@ -16,6 +16,6 @@ export function getPreconstructPackages() {
 }
 
 export function getWorkspacePackages() {
-  const packages = getPackageJson(".").get("workspace.packages")
+  const packages = getPackageJson(".").get("workspaces.packages")
   return prepare(packages)
 }

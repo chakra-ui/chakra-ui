@@ -1,4 +1,4 @@
-import { runIfFn } from "@chakra-ui/utils"
+import { runIfFn } from "@chakra-ui/utils/function"
 import * as React from "react"
 import { useCallbackRef } from "./use-callback-ref"
 

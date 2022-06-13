@@ -3,7 +3,7 @@ import {
   getPointerEventName,
   wrapPointerEventHandler,
   EventListenerWithPointInfo,
-} from "@chakra-ui/utils"
+} from "@chakra-ui/utils/pointer-event"
 import * as React from "react"
 
 interface EventListeners {

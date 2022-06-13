@@ -11,9 +11,11 @@ const defaultConfig: Options = {
 
 export const getTsupConfig = (overrideConfig?: Options) => {
   const cwd = process.cwd()
+  const entries = getEntrypoints(cwd)
+
   return defineConfig({
     ...defaultConfig,
-    entry: getEntrypoints(cwd),
+    entry: entries,
     ...overrideConfig,
   })
 }

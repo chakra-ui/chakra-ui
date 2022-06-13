@@ -1,10 +1,6 @@
-import {
-  contains,
-  focus,
-  FocusableElement,
-  getActiveElement,
-  isTabbable,
-} from "@chakra-ui/utils"
+import { FocusableElement, isTabbable } from "@chakra-ui/utils/tabbable"
+import { focus } from "@chakra-ui/utils/focus"
+import { contains, getActiveElement } from "@chakra-ui/utils/dom"
 import { RefObject } from "react"
 import { useUpdateEffect } from "./use-update-effect"
 

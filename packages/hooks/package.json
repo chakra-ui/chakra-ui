@@ -19,12 +19,7 @@
     "dist",
     "use-animation-state"
   ],
-  "preconstruct": {
-    "entrypoints": [
-      "index.ts",
-      "use-animation-state.ts"
-    ]
-  },
+  "entrypoints": true,
   "publishConfig": {
     "access": "public"
   },
@@ -40,19 +35,184 @@
     "react": ">=18"
   },
   "scripts": {
-    "build": "tsup src/index.ts",
-    "dev": "tsup src/index.ts",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "lint": "TIMING=1 eslint src/**/*.ts* --fix",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "dependencies": {
     "compute-scroll-into-view": "1.0.14",
-    "@chakra-ui/utils": "2.0.2",
     "copy-to-clipboard": "3.3.1"
   },
   "devDependencies": {
+    "@chakra-ui/utils": "2.0.2",
     "@chakra-ui/shared-configs": "0.0.0",
     "react": "^18.0.0",
     "tsup": "^6.1.2"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./use-animation-state": {
+      "import": "./dist/use-animation-state.mjs",
+      "require": "./dist/use-animation-state.js",
+      "types": "./dist/use-animation-state.d.ts"
+    },
+    "./use-boolean": {
+      "import": "./dist/use-boolean.mjs",
+      "require": "./dist/use-boolean.js",
+      "types": "./dist/use-boolean.d.ts"
+    },
+    "./use-callback-ref": {
+      "import": "./dist/use-callback-ref.mjs",
+      "require": "./dist/use-callback-ref.js",
+      "types": "./dist/use-callback-ref.d.ts"
+    },
+    "./use-clipboard": {
+      "import": "./dist/use-clipboard.mjs",
+      "require": "./dist/use-clipboard.js",
+      "types": "./dist/use-clipboard.d.ts"
+    },
+    "./use-const": {
+      "import": "./dist/use-const.mjs",
+      "require": "./dist/use-const.js",
+      "types": "./dist/use-const.d.ts"
+    },
+    "./use-controllable": {
+      "import": "./dist/use-controllable.mjs",
+      "require": "./dist/use-controllable.js",
+      "types": "./dist/use-controllable.d.ts"
+    },
+    "./use-dimensions": {
+      "import": "./dist/use-dimensions.mjs",
+      "require": "./dist/use-dimensions.js",
+      "types": "./dist/use-dimensions.d.ts"
+    },
+    "./use-disclosure": {
+      "import": "./dist/use-disclosure.mjs",
+      "require": "./dist/use-disclosure.js",
+      "types": "./dist/use-disclosure.d.ts"
+    },
+    "./use-event-listener-map": {
+      "import": "./dist/use-event-listener-map.mjs",
+      "require": "./dist/use-event-listener-map.js",
+      "types": "./dist/use-event-listener-map.d.ts"
+    },
+    "./use-event-listener": {
+      "import": "./dist/use-event-listener.mjs",
+      "require": "./dist/use-event-listener.js",
+      "types": "./dist/use-event-listener.d.ts"
+    },
+    "./use-focus-effect": {
+      "import": "./dist/use-focus-effect.mjs",
+      "require": "./dist/use-focus-effect.js",
+      "types": "./dist/use-focus-effect.d.ts"
+    },
+    "./use-focus-on-hide": {
+      "import": "./dist/use-focus-on-hide.mjs",
+      "require": "./dist/use-focus-on-hide.js",
+      "types": "./dist/use-focus-on-hide.d.ts"
+    },
+    "./use-focus-on-pointerdown": {
+      "import": "./dist/use-focus-on-pointerdown.mjs",
+      "require": "./dist/use-focus-on-pointerdown.js",
+      "types": "./dist/use-focus-on-pointerdown.d.ts"
+    },
+    "./use-focus-on-show": {
+      "import": "./dist/use-focus-on-show.mjs",
+      "require": "./dist/use-focus-on-show.js",
+      "types": "./dist/use-focus-on-show.d.ts"
+    },
+    "./use-force-update": {
+      "import": "./dist/use-force-update.mjs",
+      "require": "./dist/use-force-update.js",
+      "types": "./dist/use-force-update.d.ts"
+    },
+    "./use-id": {
+      "import": "./dist/use-id.mjs",
+      "require": "./dist/use-id.js",
+      "types": "./dist/use-id.d.ts"
+    },
+    "./use-interval": {
+      "import": "./dist/use-interval.mjs",
+      "require": "./dist/use-interval.js",
+      "types": "./dist/use-interval.d.ts"
+    },
+    "./use-latest-ref": {
+      "import": "./dist/use-latest-ref.mjs",
+      "require": "./dist/use-latest-ref.js",
+      "types": "./dist/use-latest-ref.d.ts"
+    },
+    "./use-merge-refs": {
+      "import": "./dist/use-merge-refs.mjs",
+      "require": "./dist/use-merge-refs.js",
+      "types": "./dist/use-merge-refs.d.ts"
+    },
+    "./use-mouse-down-ref": {
+      "import": "./dist/use-mouse-down-ref.mjs",
+      "require": "./dist/use-mouse-down-ref.js",
+      "types": "./dist/use-mouse-down-ref.d.ts"
+    },
+    "./use-outside-click": {
+      "import": "./dist/use-outside-click.mjs",
+      "require": "./dist/use-outside-click.js",
+      "types": "./dist/use-outside-click.d.ts"
+    },
+    "./use-pan-gesture": {
+      "import": "./dist/use-pan-gesture.mjs",
+      "require": "./dist/use-pan-gesture.js",
+      "types": "./dist/use-pan-gesture.d.ts"
+    },
+    "./use-pointer-event": {
+      "import": "./dist/use-pointer-event.mjs",
+      "require": "./dist/use-pointer-event.js",
+      "types": "./dist/use-pointer-event.d.ts"
+    },
+    "./use-previous": {
+      "import": "./dist/use-previous.mjs",
+      "require": "./dist/use-previous.js",
+      "types": "./dist/use-previous.d.ts"
+    },
+    "./use-safe-layout-effect": {
+      "import": "./dist/use-safe-layout-effect.mjs",
+      "require": "./dist/use-safe-layout-effect.js",
+      "types": "./dist/use-safe-layout-effect.d.ts"
+    },
+    "./use-shortcut": {
+      "import": "./dist/use-shortcut.mjs",
+      "require": "./dist/use-shortcut.js",
+      "types": "./dist/use-shortcut.d.ts"
+    },
+    "./use-timeout": {
+      "import": "./dist/use-timeout.mjs",
+      "require": "./dist/use-timeout.js",
+      "types": "./dist/use-timeout.d.ts"
+    },
+    "./use-unmount-effect": {
+      "import": "./dist/use-unmount-effect.mjs",
+      "require": "./dist/use-unmount-effect.js",
+      "types": "./dist/use-unmount-effect.d.ts"
+    },
+    "./use-update-effect": {
+      "import": "./dist/use-update-effect.mjs",
+      "require": "./dist/use-update-effect.js",
+      "types": "./dist/use-update-effect.d.ts"
+    },
+    "./use-why-update": {
+      "import": "./dist/use-why-update.mjs",
+      "require": "./dist/use-why-update.js",
+      "types": "./dist/use-why-update.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/*.d.ts"
+      ]
+    }
   }
 }

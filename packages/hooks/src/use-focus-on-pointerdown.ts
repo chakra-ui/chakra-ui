@@ -1,11 +1,8 @@
-import {
-  contains,
-  detectBrowser,
-  focus,
-  getOwnerDocument,
-  isActiveElement,
-  isRefObject,
-} from "@chakra-ui/utils"
+import { focus } from "@chakra-ui/utils/focus"
+import { contains, getOwnerDocument } from "@chakra-ui/utils/dom"
+import { isActiveElement } from "@chakra-ui/utils/tabbable"
+import { isRefObject } from "@chakra-ui/utils/assertion"
+import { detectBrowser } from "@chakra-ui/utils/user-agent"
 import { RefObject } from "react"
 import { usePointerEvent } from "./use-pointer-event"
 
@@ -30,7 +27,7 @@ export function useFocusOnPointerDown(props: UseFocusOnMouseDownProps) {
   const isSafari = detectBrowser("Safari")
   const doc = () => getOwnerDocument(ref.current)
 
-  usePointerEvent(doc, "pointerdown", (event) => {
+  usePointerEvent(doc, "pointerdown", (event: any) => {
     if (!isSafari || !enabled) return
     const target = event.target as HTMLElement
 

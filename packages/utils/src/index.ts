@@ -1,9 +1,6 @@
-import { getBox, type BoxModel } from "css-box-model"
-
-export { getBox }
-export type { BoxModel }
 export * from "./array"
 export * from "./assertion"
+export * from "./box-model"
 export * from "./breakpoint"
 export * from "./dom"
 export * from "./dom-query"

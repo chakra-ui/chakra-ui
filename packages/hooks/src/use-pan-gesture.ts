@@ -1,10 +1,10 @@
+import { AnyPointerEvent } from "@chakra-ui/utils/pointer-event"
 import {
-  AnyPointerEvent,
-  noop,
   PanEventHandler,
   PanSession,
   PanSessionHandlers,
-} from "@chakra-ui/utils"
+} from "@chakra-ui/utils/pan-event"
+import { noop } from "@chakra-ui/utils/function"
 import React, { useEffect, useRef } from "react"
 import { usePointerEvent } from "./use-pointer-event"
 import { useUnmountEffect } from "./use-unmount-effect"

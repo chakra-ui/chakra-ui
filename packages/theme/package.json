@@ -31,24 +31,22 @@
     "foundations/transition",
     "foundations/z-index"
   ],
-  "preconstruct": {
-    "entrypoints": [
-      "index.ts",
-      "components/index.ts",
-      "foundations/index.ts",
-      "foundations/blur.ts",
-      "foundations/borders.ts",
-      "foundations/breakpoints.ts",
-      "foundations/colors.ts",
-      "foundations/radius.ts",
-      "foundations/shadows.ts",
-      "foundations/sizes.ts",
-      "foundations/spacing.ts",
-      "foundations/typography.ts",
-      "foundations/transition.ts",
-      "foundations/z-index.ts"
-    ]
-  },
+  "entrypoints": [
+    "src/index.ts",
+    "src/components/index.ts",
+    "src/foundations/index.ts",
+    "src/foundations/blur.ts",
+    "src/foundations/borders.ts",
+    "src/foundations/breakpoints.ts",
+    "src/foundations/colors.ts",
+    "src/foundations/radius.ts",
+    "src/foundations/shadows.ts",
+    "src/foundations/sizes.ts",
+    "src/foundations/spacing.ts",
+    "src/foundations/typography.ts",
+    "src/foundations/transition.ts",
+    "src/foundations/z-index.ts"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -61,8 +59,8 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "scripts": {
-    "build": "tsup src/index.ts",
-    "dev": "tsup src/index.ts",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "lint": "TIMING=1 eslint src/**/*.ts* --fix",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
@@ -77,5 +75,85 @@
   "devDependencies": {
     "@chakra-ui/cli": "2.1.0",
     "@chakra-ui/system": "2.1.3"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./components": {
+      "import": "./dist/components/index.mjs",
+      "require": "./dist/components/index.js",
+      "types": "./dist/components/index.d.ts"
+    },
+    "./foundations": {
+      "import": "./dist/foundations/index.mjs",
+      "require": "./dist/foundations/index.js",
+      "types": "./dist/foundations/index.d.ts"
+    },
+    "./foundations/blur": {
+      "import": "./dist/foundations/blur.mjs",
+      "require": "./dist/foundations/blur.js",
+      "types": "./dist/foundations/blur.d.ts"
+    },
+    "./foundations/borders": {
+      "import": "./dist/foundations/borders.mjs",
+      "require": "./dist/foundations/borders.js",
+      "types": "./dist/foundations/borders.d.ts"
+    },
+    "./foundations/breakpoints": {
+      "import": "./dist/foundations/breakpoints.mjs",
+      "require": "./dist/foundations/breakpoints.js",
+      "types": "./dist/foundations/breakpoints.d.ts"
+    },
+    "./foundations/colors": {
+      "import": "./dist/foundations/colors.mjs",
+      "require": "./dist/foundations/colors.js",
+      "types": "./dist/foundations/colors.d.ts"
+    },
+    "./foundations/radius": {
+      "import": "./dist/foundations/radius.mjs",
+      "require": "./dist/foundations/radius.js",
+      "types": "./dist/foundations/radius.d.ts"
+    },
+    "./foundations/shadows": {
+      "import": "./dist/foundations/shadows.mjs",
+      "require": "./dist/foundations/shadows.js",
+      "types": "./dist/foundations/shadows.d.ts"
+    },
+    "./foundations/sizes": {
+      "import": "./dist/foundations/sizes.mjs",
+      "require": "./dist/foundations/sizes.js",
+      "types": "./dist/foundations/sizes.d.ts"
+    },
+    "./foundations/spacing": {
+      "import": "./dist/foundations/spacing.mjs",
+      "require": "./dist/foundations/spacing.js",
+      "types": "./dist/foundations/spacing.d.ts"
+    },
+    "./foundations/typography": {
+      "import": "./dist/foundations/typography.mjs",
+      "require": "./dist/foundations/typography.js",
+      "types": "./dist/foundations/typography.d.ts"
+    },
+    "./foundations/transition": {
+      "import": "./dist/foundations/transition.mjs",
+      "require": "./dist/foundations/transition.js",
+      "types": "./dist/foundations/transition.d.ts"
+    },
+    "./foundations/z-index": {
+      "import": "./dist/foundations/z-index.mjs",
+      "require": "./dist/foundations/z-index.js",
+      "types": "./dist/foundations/z-index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/*.d.ts"
+      ]
+    }
   }
 }
