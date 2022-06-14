@@ -1,0 +1,4 @@
+{
+  "main": "dist/function.js",
+  "module": "dist/function.mjs"
+}

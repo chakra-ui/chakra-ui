@@ -1,0 +1,4 @@
+{
+  "main": "dist/tabbable.js",
+  "module": "dist/tabbable.mjs"
+}

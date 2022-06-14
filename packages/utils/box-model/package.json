@@ -1,0 +1,4 @@
+{
+  "main": "dist/box-model.js",
+  "module": "dist/box-model.mjs"
+}

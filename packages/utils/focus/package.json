@@ -1,0 +1,4 @@
+{
+  "main": "dist/focus.js",
+  "module": "dist/focus.mjs"
+}

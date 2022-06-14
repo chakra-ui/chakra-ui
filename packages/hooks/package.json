@@ -46,7 +46,6 @@
   },
   "devDependencies": {
     "@chakra-ui/utils": "2.0.2",
-    "@chakra-ui/shared-configs": "0.0.0",
     "react": "^18.0.0",
     "tsup": "^6.1.2"
   },

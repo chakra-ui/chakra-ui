@@ -1,5 +1,5 @@
 import { type Options, defineConfig } from "tsup"
-import { getEntrypoints } from "./entrypoints"
+// import { getEntrypoints } from "./entrypoints"
 
 const defaultConfig: Options = {
   name: "tsup",
@@ -10,12 +10,8 @@ const defaultConfig: Options = {
 }
 
 export const getTsupConfig = (overrideConfig?: Options) => {
-  const cwd = process.cwd()
-  const entries = getEntrypoints(cwd)
+  // const cwd = process.cwd()
+  // const entries = getEntrypoints(cwd)
 
-  return defineConfig({
-    ...defaultConfig,
-    entry: entries,
-    ...overrideConfig,
-  })
+  return defineConfig({ ...defaultConfig, ...overrideConfig })
 }

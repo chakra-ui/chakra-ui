@@ -1,0 +1,4 @@
+{
+  "main": "dist/flatten.js",
+  "module": "dist/flatten.mjs"
+}

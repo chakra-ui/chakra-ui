@@ -1,0 +1,4 @@
+{
+  "main": "dist/assertion.js",
+  "module": "dist/assertion.mjs"
+}

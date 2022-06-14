@@ -1,0 +1,4 @@
+{
+  "main": "dist/user-agent.js",
+  "module": "dist/user-agent.mjs"
+}

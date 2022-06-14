@@ -1,0 +1,4 @@
+{
+  "main": "dist/lazy.js",
+  "module": "dist/lazy.mjs"
+}

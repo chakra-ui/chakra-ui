@@ -1,0 +1,4 @@
+{
+  "main": "dist/array.js",
+  "module": "dist/array.mjs"
+}

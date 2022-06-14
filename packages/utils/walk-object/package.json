@@ -1,0 +1,4 @@
+{
+  "main": "dist/walk-object.js",
+  "module": "dist/walk-object.mjs"
+}

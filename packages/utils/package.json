@@ -11,7 +11,27 @@
   "types": "./dist/index.d.ts",
   "entrypoints": true,
   "files": [
-    "dist/**"
+    "dist/**",
+    "array",
+    "assertion",
+    "box-model",
+    "breakpoint",
+    "dom-query",
+    "dom",
+    "flatten",
+    "focus",
+    "function",
+    "index",
+    "lazy",
+    "number",
+    "object",
+    "pan-event",
+    "pointer-event",
+    "responsive",
+    "tabbable",
+    "types",
+    "user-agent",
+    "walk-object"
   ],
   "publishConfig": {
     "access": "public"
@@ -25,10 +45,15 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "scripts": {
-    "build": "tsup",
+    "build": "tsup src/index.ts",
+    "entrypoints": "ts-node ../../scripts/entry.ts",
+    "postbuild": "yarn entrypoints build",
     "dev": "tsup --watch",
     "lint": "TIMING=1 eslint src/**/*.ts* --fix",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+    "clean:entry": "yarn entrypoints clean",
+    "files": "yarn entrypoints files",
+    "clean:files": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "clean": "concurrently \"yarn clean:entry\" \"yarn clean:files\""
   },
   "dependencies": {
     "@types/lodash.mergewith": "4.6.6",
@@ -37,120 +62,6 @@
     "lodash.mergewith": "4.6.2"
   },
   "devDependencies": {
-    "@chakra-ui/shared-configs": "*",
     "tsup": "^6.1.2"
-  },
-  "exports": {
-    "./array": {
-      "import": "./dist/array.mjs",
-      "require": "./dist/array.js",
-      "types": "./dist/array.d.ts"
-    },
-    "./assertion": {
-      "import": "./dist/assertion.mjs",
-      "require": "./dist/assertion.js",
-      "types": "./dist/assertion.d.ts"
-    },
-    "./box-model": {
-      "import": "./dist/box-model.mjs",
-      "require": "./dist/box-model.js",
-      "types": "./dist/box-model.d.ts"
-    },
-    "./breakpoint": {
-      "import": "./dist/breakpoint.mjs",
-      "require": "./dist/breakpoint.js",
-      "types": "./dist/breakpoint.d.ts"
-    },
-    "./dom-query": {
-      "import": "./dist/dom-query.mjs",
-      "require": "./dist/dom-query.js",
-      "types": "./dist/dom-query.d.ts"
-    },
-    "./dom": {
-      "import": "./dist/dom.mjs",
-      "require": "./dist/dom.js",
-      "types": "./dist/dom.d.ts"
-    },
-    "./flatten": {
-      "import": "./dist/flatten.mjs",
-      "require": "./dist/flatten.js",
-      "types": "./dist/flatten.d.ts"
-    },
-    "./focus": {
-      "import": "./dist/focus.mjs",
-      "require": "./dist/focus.js",
-      "types": "./dist/focus.d.ts"
-    },
-    "./function": {
-      "import": "./dist/function.mjs",
-      "require": "./dist/function.js",
-      "types": "./dist/function.d.ts"
-    },
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./lazy": {
-      "import": "./dist/lazy.mjs",
-      "require": "./dist/lazy.js",
-      "types": "./dist/lazy.d.ts"
-    },
-    "./number": {
-      "import": "./dist/number.mjs",
-      "require": "./dist/number.js",
-      "types": "./dist/number.d.ts"
-    },
-    "./object": {
-      "import": "./dist/object.mjs",
-      "require": "./dist/object.js",
-      "types": "./dist/object.d.ts"
-    },
-    "./pan-event": {
-      "import": "./dist/pan-event.mjs",
-      "require": "./dist/pan-event.js",
-      "types": "./dist/pan-event.d.ts"
-    },
-    "./pointer-event": {
-      "import": "./dist/pointer-event.mjs",
-      "require": "./dist/pointer-event.js",
-      "types": "./dist/pointer-event.d.ts"
-    },
-    "./responsive": {
-      "import": "./dist/responsive.mjs",
-      "require": "./dist/responsive.js",
-      "types": "./dist/responsive.d.ts"
-    },
-    "./tabbable": {
-      "import": "./dist/tabbable.mjs",
-      "require": "./dist/tabbable.js",
-      "types": "./dist/tabbable.d.ts"
-    },
-    "./types": {
-      "import": "./dist/types.mjs",
-      "require": "./dist/types.js",
-      "types": "./dist/types.d.ts"
-    },
-    "./user-agent": {
-      "import": "./dist/user-agent.mjs",
-      "require": "./dist/user-agent.js",
-      "types": "./dist/user-agent.d.ts"
-    },
-    "./walk-object": {
-      "import": "./dist/walk-object.mjs",
-      "require": "./dist/walk-object.js",
-      "types": "./dist/walk-object.d.ts"
-    },
-    "./package.json": "./package.json"
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "dist/*.d.ts"
-      ],
-      ".": [
-        "dist/index.d.ts"
-      ]
-    }
   }
 }

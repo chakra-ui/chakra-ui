@@ -17,7 +17,7 @@
     "downlevelIteration": true,
     "declarationMap": true
   },
-  "include": ["@types", "packages", "scripts", "tooling"],
+  "include": ["@types", "packages", "scripts", "tooling", "sandbox.ts"],
   "exclude": ["**/node_modules", "**/template*"],
   "ts-node": {
     "compilerOptions": {
