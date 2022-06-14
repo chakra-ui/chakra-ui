@@ -199,6 +199,7 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
     children,
     borderColor,
     ignoreFallback,
+    __css,
     ...rest
   } = omitThemingProps(props)
 
@@ -207,6 +208,7 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
     borderWidth: showBorder ? "2px" : undefined,
     ...baseStyle,
     ...styles.container,
+    ...__css,
   }
 
   if (borderColor) {
