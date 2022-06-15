@@ -529,7 +529,7 @@ test("On reseting form, checkbox should reset to its default state i.e., checked
   const resetBtn = getByRole("button")
   const checkbox = getByRole("checkbox")
   fireEvent.click(checkbox)
-  resetBtn.click()
+  fireEvent.click(resetBtn)
   expect(checkbox).toBeChecked()
 })
 
@@ -546,6 +546,6 @@ test("On reseting form, checkbox should reset to its default state i.e., uncheck
   const resetBtn = getByRole("button")
   const checkbox = getByRole("checkbox")
   fireEvent.click(checkbox)
-  resetBtn.click()
+  fireEvent.click(resetBtn)
   expect(checkbox).not.toBeChecked()
 })

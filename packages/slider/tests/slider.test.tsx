@@ -1,5 +1,5 @@
 import { extendTheme, ThemeProvider } from "@chakra-ui/react"
-import { screen, render, testA11y } from "@chakra-ui/test-utils"
+import { focus, screen, render, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
 import styled from "@emotion/styled"
 import {
@@ -82,16 +82,18 @@ test("should move the thumb", async () => {
 
   const thumb = screen.getByRole("slider")
 
-  await user.press.ArrowRight(thumb)
+  focus(thumb)
+
+  await user.keyboard("[ArrowRight]")
   expect(thumb).toHaveAttribute("aria-valuenow", "11")
 
-  await user.press.ArrowRight(thumb)
+  await user.keyboard("[ArrowRight]")
   expect(thumb).toHaveAttribute("aria-valuenow", "12")
 
-  await user.press.Home(thumb)
+  await user.keyboard("[Home]")
   expect(thumb).toHaveAttribute("aria-valuenow", "0")
 
-  await user.press.End(thumb)
+  await user.keyboard("[End]")
   expect(thumb).toHaveAttribute("aria-valuenow", "100")
 })
 
@@ -100,16 +102,18 @@ test("renders & move correctly when orientation: vertical & isReversed", async (
 
   const thumb = screen.getByRole("slider")
 
-  await user.press.ArrowUp(thumb)
+  focus(thumb)
+
+  await user.keyboard("[ArrowUp]")
   expect(thumb).toHaveAttribute("aria-valuenow", "9")
 
-  await user.press.ArrowDown(thumb)
+  await user.keyboard("[ArrowDown]")
   expect(thumb).toHaveAttribute("aria-valuenow", "10")
 
-  await user.press.Home(thumb)
+  await user.keyboard("[Home]")
   expect(thumb).toHaveAttribute("aria-valuenow", "0")
 
-  await user.press.End(thumb)
+  await user.keyboard("[End]")
   expect(thumb).toHaveAttribute("aria-valuenow", "100")
 })
 
@@ -122,16 +126,18 @@ test("renders with the correct direction under 'rtl'", async () => {
 
   const thumb = screen.getByRole("slider")
 
-  await user.press.ArrowRight(thumb)
+  focus(thumb)
+
+  await user.keyboard("[ArrowRight]")
   expect(thumb).toHaveAttribute("aria-valuenow", "9")
 
-  await user.press.ArrowRight(thumb)
+  await user.keyboard("[ArrowRight]")
   expect(thumb).toHaveAttribute("aria-valuenow", "8")
 
-  await user.press.Home(thumb)
+  await user.keyboard("[Home]")
   expect(thumb).toHaveAttribute("aria-valuenow", "0")
 
-  await user.press.End(thumb)
+  await user.keyboard("[End]")
   expect(thumb).toHaveAttribute("aria-valuenow", "100")
 })
 
@@ -144,16 +150,18 @@ test("renders with the correct direction under 'rtl' & isReversed", async () => 
 
   const thumb = screen.getByRole("slider")
 
-  await user.press.ArrowRight(thumb)
+  focus(thumb)
+
+  await user.keyboard("[ArrowRight]")
   expect(thumb).toHaveAttribute("aria-valuenow", "11")
 
-  await user.press.ArrowRight(thumb)
+  await user.keyboard("[ArrowRight]")
   expect(thumb).toHaveAttribute("aria-valuenow", "12")
 
-  await user.press.Home(thumb)
+  await user.keyboard("[Home]")
   expect(thumb).toHaveAttribute("aria-valuenow", "0")
 
-  await user.press.End(thumb)
+  await user.keyboard("[End]")
   expect(thumb).toHaveAttribute("aria-valuenow", "100")
 })
 
@@ -166,18 +174,20 @@ test("renders correctly/unaffected by 'rtl' when orientation: vertical", async (
 
   const thumb = screen.getByRole("slider")
 
-  await user.press.ArrowRight(thumb)
-  await user.press.ArrowUp(thumb)
+  focus(thumb)
+
+  await user.keyboard("[ArrowRight]")
+  await user.keyboard("[ArrowUp]")
   expect(thumb).toHaveAttribute("aria-valuenow", "12")
 
-  await user.press.ArrowDown(thumb)
-  await user.press.ArrowLeft(thumb)
+  await user.keyboard("[ArrowDown]")
+  await user.keyboard("[ArrowLeft]")
   expect(thumb).toHaveAttribute("aria-valuenow", "10")
 
-  await user.press.Home(thumb)
+  await user.keyboard("[Home]")
   expect(thumb).toHaveAttribute("aria-valuenow", "0")
 
-  await user.press.End(thumb)
+  await user.keyboard("[End]")
   expect(thumb).toHaveAttribute("aria-valuenow", "100")
 })
 

@@ -46,6 +46,7 @@
     "cli-handle-unhandled": "^1.1.1",
     "cli-welcome": "^2.2.2",
     "commander": "^6.2.1",
+    "lodash.throttle": "^4.1.1",
     "module-alias": "^2.2.2",
     "ora": "^5.3.0",
     "prettier": "^2.4.1",
@@ -55,6 +56,7 @@
     "update-notifier": "^5.0.1"
   },
   "devDependencies": {
+    "@types/lodash.throttle": "^4.1.7",
     "@types/module-alias": "^2.0.1",
     "@types/ora": "^3.2.0",
     "@types/update-notifier": "5.0.0"

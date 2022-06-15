@@ -133,7 +133,7 @@ test("shows on mouseover and closes on pressing 'esc'", async () => {
   expect(screen.getByText(buttonLabel)).toBeInTheDocument()
   expect(screen.getByRole("tooltip")).toBeInTheDocument()
 
-  await user.press.Escape(screen.getByRole("tooltip"))
+  await user.keyboard("[Escape]")
 
   await waitFor(() =>
     expect(screen.queryByText(tooltipLabel)).not.toBeInTheDocument(),
@@ -150,7 +150,7 @@ test("shows on mouseover and stays on pressing 'esc' if 'closeOnEsc' is false", 
   expect(screen.getByText(buttonLabel)).toBeInTheDocument()
   expect(screen.getByRole("tooltip")).toBeInTheDocument()
 
-  await user.press.Escape(screen.getByRole("tooltip"))
+  await user.keyboard("[Escape]")
 
   expect(screen.getByRole("tooltip")).toBeInTheDocument()
 })
