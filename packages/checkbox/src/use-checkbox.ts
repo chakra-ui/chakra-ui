@@ -272,7 +272,9 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       const onPressDown = (event: React.MouseEvent) => {
         // On mousedown, the input blurs and returns focus to the `body`,
         // we need to prevent this. Native checkboxes keeps focus on `input`
-        event.preventDefault()
+        if (isFocused) {
+          event.preventDefault()
+        }
         setActive.on()
       }
 
