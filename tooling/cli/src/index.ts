@@ -23,9 +23,10 @@ export async function run() {
       "--strict-component-types",
       "Generate strict types for props variant and size",
     )
+    .option("--no-format", "Disable auto formatting")
     .option("--watch [path]", "Watch directory for changes and rebuild")
-    .action(async (themeFile: string, command: Command) => {
-      const { out, strictComponentTypes, watch } = command.opts()
+    .action(async (themeFile, command) => {
+      const { out, strictComponentTypes, format, watch } = command.opts()
 
       if (watch) {
         const watchPath = isString(watch) ? watch : path.dirname(themeFile)
@@ -35,6 +36,7 @@ export async function run() {
             themeFile,
             out,
             strictComponentTypes,
+            format,
           })
           console.timeEnd("Duration")
           console.info(new Date().toLocaleString())
@@ -51,6 +53,7 @@ export async function run() {
         themeFile,
         out,
         strictComponentTypes,
+        format,
         onError: () => process.exit(1),
       })
     })
