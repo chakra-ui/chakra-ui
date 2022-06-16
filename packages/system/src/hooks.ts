@@ -13,7 +13,7 @@ function getBreakpointValue<T extends StringOrNumber>(
   value: T,
   fallback: any,
 ) {
-  if (value === null) return value
+  if (value == null) return value
   const getValue = (val: T) => theme.__breakpoints?.asArray?.[val]
   return getValue(value) ?? getValue(fallback) ?? fallback
 }
@@ -28,29 +28,31 @@ function getTokenValue<T extends StringOrNumber>(
   return getValue(value) ?? getValue(fallback) ?? fallback
 }
 
-export function useToken<T extends StringOrNumber>(
+export function useToken<T extends StringOrNumber | StringOrNumber[]>(
   scale: string,
-  token: T | T[],
-  fallback?: T | T[],
+  token: T,
+  fallback?: T,
 ) {
-  return getToken(scale, token, fallback)(useTheme())
+  const theme = useTheme()
+  return getToken(scale, token, fallback)(theme)
 }
 
-export function getToken<T extends StringOrNumber>(
+export function getToken<T extends StringOrNumber | StringOrNumber[]>(
   scale: string,
-  token: T | T[],
-  fallback?: T | T[],
-) {
+  token: T,
+  fallback?: T,
+): (theme: Dict) => T {
   const _token = Array.isArray(token) ? token : [token]
   const _fallback = Array.isArray(fallback) ? fallback : [fallback]
   return (theme: Dict<any>) => {
     const fallbackArr = _fallback.filter(Boolean) as T[]
-    return _token.map((token, index) => {
+    const result = _token.map((token, index) => {
       if (scale === "breakpoints") {
         return getBreakpointValue(theme, token, fallbackArr[index] ?? token)
       }
       const path = `${scale}.${token}`
       return getTokenValue(theme, path, fallbackArr[index] ?? token)
     })
+    return Array.isArray(token) ? result : result[0]
   }
 }
