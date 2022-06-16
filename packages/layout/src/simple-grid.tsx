@@ -1,5 +1,16 @@
-import { ResponsiveValue, forwardRef } from "@chakra-ui/system"
-import { mapResponsive, isNumber, isNull, __DEV__ } from "@chakra-ui/utils"
+import {
+  forwardRef,
+  getToken,
+  ResponsiveValue,
+  useTheme,
+} from "@chakra-ui/system"
+import {
+  Dict,
+  isNull,
+  isNumber,
+  mapResponsive,
+  __DEV__,
+} from "@chakra-ui/utils"
 import * as React from "react"
 import { Grid, GridProps } from "./grid"
 
@@ -33,7 +44,7 @@ export interface SimpleGridProps extends GridProps, SimpleGridOptions {}
  *
  * React component that uses the `Grid` component and provides
  * a simpler interface to create responsive grid layouts.
- * 
+ *
  * Provides props that easily define columns and spacing.
  *
  * @see Docs https://chakra-ui.com/simplegrid
@@ -41,8 +52,9 @@ export interface SimpleGridProps extends GridProps, SimpleGridOptions {}
 export const SimpleGrid = forwardRef<SimpleGridProps, "div">((props, ref) => {
   const { columns, spacingX, spacingY, spacing, minChildWidth, ...rest } = props
 
+  const theme = useTheme()
   const templateColumns = minChildWidth
-    ? widthToColumns(minChildWidth)
+    ? widthToColumns(minChildWidth, theme)
     : countToColumns(columns)
 
   return (
@@ -65,10 +77,11 @@ function toPx(n: string | number) {
   return isNumber(n) ? `${n}px` : n
 }
 
-function widthToColumns(width: any) {
-  return mapResponsive(width, (value) =>
-    isNull(value) ? null : `repeat(auto-fit, minmax(${toPx(value)}, 1fr))`,
-  )
+function widthToColumns(width: any, theme: Dict) {
+  return mapResponsive(width, (value) => {
+    const _value = getToken("sizes", value, toPx(value))(theme)
+    return isNull(value) ? null : `repeat(auto-fit, minmax(${_value}, 1fr))`
+  })
 }
 
 function countToColumns(count: any) {
