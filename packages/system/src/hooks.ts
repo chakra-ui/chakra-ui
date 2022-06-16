@@ -8,25 +8,24 @@ export function useChakra<T extends Dict = Dict>() {
   return { ...colorModeResult, theme }
 }
 
-const resolveBreakpointValue = <T extends StringOrNumber>(
+function getBreakpointValue<T extends StringOrNumber>(
   theme: Dict,
-  tokenValue: T,
-  fallbackValue: any,
-) => {
-  if (tokenValue === null) return tokenValue
+  value: T,
+  fallback: any,
+) {
+  if (value === null) return value
   const getValue = (val: T) => theme.__breakpoints?.asArray?.[val]
-  return getValue(tokenValue) ?? getValue(fallbackValue) ?? fallbackValue
+  return getValue(value) ?? getValue(fallback) ?? fallback
 }
 
-// inspired from ./css.ts : resolveTokenValue
-const resolveTokenValue = <T extends StringOrNumber>(
+function getTokenValue<T extends StringOrNumber>(
   theme: Dict,
-  tokenValue: T,
-  fallbackValue: any,
-) => {
-  if (tokenValue == null) return tokenValue
+  value: T,
+  fallback: any,
+) {
+  if (value == null) return value
   const getValue = (val: T) => theme.__cssMap?.[val]?.value
-  return getValue(tokenValue) ?? getValue(fallbackValue) ?? fallbackValue
+  return getValue(value) ?? getValue(fallback) ?? fallback
 }
 
 export function useToken<T extends StringOrNumber>(
@@ -48,10 +47,10 @@ export function getToken<T extends StringOrNumber>(
     const fallbackArr = _fallback.filter(Boolean) as T[]
     return _token.map((token, index) => {
       if (scale === "breakpoints") {
-        return resolveBreakpointValue(theme, token, fallbackArr[index] ?? token)
+        return getBreakpointValue(theme, token, fallbackArr[index] ?? token)
       }
       const path = `${scale}.${token}`
-      return resolveTokenValue(theme, path, fallbackArr[index] ?? token)
+      return getTokenValue(theme, path, fallbackArr[index] ?? token)
     })
   }
 }
