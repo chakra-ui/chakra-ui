@@ -54,7 +54,7 @@ export async function generateThemeTypings({
   onError,
 }: {
   themeFile: string
-  out: string
+  out?: string
   strictComponentTypes?: boolean
   format?: boolean
   onError?: () => void

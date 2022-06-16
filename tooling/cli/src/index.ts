@@ -1,6 +1,6 @@
 import "regenerator-runtime/runtime"
 import * as path from "path"
-import { Command, program } from "commander"
+import { program } from "commander"
 import chokidar from "chokidar"
 import { isString } from "@chakra-ui/utils"
 import throttle from "lodash.throttle"
@@ -9,6 +9,13 @@ import {
   generateThemeTypings,
   themeInterfaceDestination,
 } from "./command/tokens"
+
+type OptionsType = {
+  out?: string
+  strictComponentTypes?: boolean
+  format: boolean
+  watch?: string
+}
 
 export async function run() {
   await initCLI()
@@ -25,8 +32,8 @@ export async function run() {
     )
     .option("--no-format", "Disable auto formatting")
     .option("--watch [path]", "Watch directory for changes and rebuild")
-    .action(async (themeFile, command) => {
-      const { out, strictComponentTypes, format, watch } = command.opts()
+    .action(async (themeFile: string, options: OptionsType) => {
+      const { out, strictComponentTypes, format, watch } = options
 
       if (watch) {
         const watchPath = isString(watch) ? watch : path.dirname(themeFile)
