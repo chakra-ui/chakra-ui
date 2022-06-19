@@ -1,4 +1,3 @@
-import CSSReset from "@chakra-ui/css-reset"
 import { PortalManager } from "@chakra-ui/portal"
 import {
   ColorModeProvider,
@@ -27,10 +26,14 @@ export interface ChakraProviderProps
    */
   portalZIndex?: number
   /**
+   * @deprecated
+   * This prop does not have any effect - the global CSS reset was replaced by a local, element specific CSS reset.
+   * It will be removed with the next major version.
+   *
+   * @default false
+   *
    * If `true`, `CSSReset` component will be mounted to help
    * you reset browser styles
-   *
-   * @default true
    */
   resetCSS?: boolean
   /**
@@ -65,7 +68,6 @@ export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
     children,
     colorModeManager,
     portalZIndex,
-    resetCSS = true,
     theme = {},
     environment,
     cssVarsRoot,
@@ -83,7 +85,6 @@ export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
         colorModeManager={colorModeManager}
         options={theme.config}
       >
-        {resetCSS && <CSSReset />}
         <GlobalStyle />
         {portalZIndex ? (
           <PortalManager zIndex={portalZIndex}>{_children}</PortalManager>
