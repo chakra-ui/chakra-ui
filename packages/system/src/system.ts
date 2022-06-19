@@ -7,6 +7,7 @@ import {
 } from "@chakra-ui/styled-system"
 import { Dict, filterUndefined, objectFilter, runIfFn } from "@chakra-ui/utils"
 import _styled, { CSSObject, FunctionInterpolation } from "@emotion/styled"
+import { getCssResetForElement } from "@chakra-ui/css-reset"
 import { shouldForwardProp } from "./should-forward-prop"
 import { As, ChakraComponent, ChakraProps, PropsOf } from "./system.types"
 import { DOMElements } from "./system.utils"
@@ -23,6 +24,11 @@ interface GetStyleObject {
     baseStyle?:
       | SystemStyleObject
       | ((props: StyleResolverProps) => SystemStyleObject)
+    /**
+     * DOM element to apply CSS reset styles for.
+     * Value should be equal to <chakra.X>, but will be possibly overridden by `as` prop.
+     */
+    element?: keyof JSX.IntrinsicElements
   }): FunctionInterpolation<StyleResolverProps>
 }
 
@@ -40,13 +46,13 @@ interface GetStyleObject {
  * fontSize will be `40px`
  */
 export const toCSSObject: GetStyleObject =
-  ({ baseStyle }) =>
+  ({ baseStyle, element }) =>
   (props) => {
-    const { theme, css: cssProp, __css, sx, ...rest } = props
+    const { theme, css: cssProp, __css, sx, as = element, ...rest } = props
     const styleProps = objectFilter(rest, (_, prop) => isStyleProp(prop))
     const finalBaseStyle = runIfFn(baseStyle, props)
     const finalStyles = Object.assign(
-      {},
+      getCssResetForElement(as),
       __css,
       finalBaseStyle,
       filterUndefined(styleProps),
@@ -74,7 +80,10 @@ export function styled<T extends As, P = {}>(
     styledOptions.shouldForwardProp = shouldForwardProp
   }
 
-  const styleObject = toCSSObject({ baseStyle })
+  const styleObject = toCSSObject({
+    baseStyle,
+    element: String(component) as keyof JSX.IntrinsicElements,
+  })
   return _styled(
     component as React.ComponentType<any>,
     styledOptions,

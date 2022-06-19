@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@chakra-ui/color-mode": "2.0.4",
+    "@chakra-ui/css-reset": "2.0.1",
     "@chakra-ui/react-utils": "2.0.1",
     "@chakra-ui/styled-system": "2.2.0",
     "@chakra-ui/utils": "2.0.2",

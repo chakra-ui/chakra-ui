@@ -1,2 +1,2 @@
-export * from "./css-reset"
+export * from "./element-reset"
 export { default } from "./css-reset"

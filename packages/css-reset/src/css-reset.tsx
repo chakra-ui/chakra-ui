@@ -1,6 +1,10 @@
 import { Global } from "@emotion/react"
 import * as React from "react"
 
+/**
+ * @deprecated
+ * The global CSS reset will be removed in favor of a local, element specific CSS reset.
+ */
 export const CSSReset = () => (
   <Global
     styles={`

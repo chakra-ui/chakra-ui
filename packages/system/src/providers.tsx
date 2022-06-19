@@ -15,6 +15,7 @@ import {
   ThemeProviderProps as EmotionThemeProviderProps,
 } from "@emotion/react"
 import * as React from "react"
+import { globalCssResets } from "@chakra-ui/css-reset"
 
 export interface ThemeProviderProps extends EmotionThemeProviderProps {
   cssVarsRoot?: string
@@ -102,7 +103,7 @@ export const GlobalStyle = () => {
         const styleObjectOrFn = get(theme, "styles.global")
         const globalStyles = runIfFn(styleObjectOrFn, { theme, colorMode })
         if (!globalStyles) return undefined
-        const styles = css(globalStyles)(theme)
+        const styles = css({ ...globalCssResets, ...globalStyles })(theme)
         return styles as Interpolation<{}>
       }}
     />
