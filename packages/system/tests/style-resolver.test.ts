@@ -59,6 +59,16 @@ test("should resolve styles correctly", () => {
   expect(result).toMatchInlineSnapshot(`
     Array [
       Object {
+        "&::after": Object {
+          "borderStyle": "solid",
+          "borderWidth": "0",
+          "boxSizing": "border-box",
+        },
+        "&::before": Object {
+          "borderStyle": "solid",
+          "borderWidth": "0",
+          "boxSizing": "border-box",
+        },
         "&:hover, &[data-hover]": Object {
           "&::before": Object {
             "content": "",
@@ -81,6 +91,9 @@ test("should resolve styles correctly", () => {
         "WebkitLineClamp": "var(--chakra-line-clamp)",
         "background": "tomato",
         "backgroundPosition": "top left",
+        "borderStyle": "solid",
+        "borderWidth": "0",
+        "boxSizing": "border-box",
         "color": "var(--chakra-colors-pink-300)",
         "display": "-webkit-box",
         "fontSize": "10px",
@@ -105,7 +118,20 @@ test("should resolve styles correctly", () => {
 
   expect(result).toMatchInlineSnapshot(`
     Object {
+      "&::after": Object {
+        "borderStyle": "solid",
+        "borderWidth": "0",
+        "boxSizing": "border-box",
+      },
+      "&::before": Object {
+        "borderStyle": "solid",
+        "borderWidth": "0",
+        "boxSizing": "border-box",
+      },
       "background": "var(--chakra-colors-pink-300)",
+      "borderStyle": "solid",
+      "borderWidth": "0",
+      "boxSizing": "border-box",
       "color": "var(--chakra-colors-pink-300)",
     }
   `)
@@ -125,7 +151,20 @@ test("should override padding correctly", () => {
 
   expect(result).toMatchInlineSnapshot(`
     Object {
+      "&::after": Object {
+        "borderStyle": "solid",
+        "borderWidth": "0",
+        "boxSizing": "border-box",
+      },
+      "&::before": Object {
+        "borderStyle": "solid",
+        "borderWidth": "0",
+        "boxSizing": "border-box",
+      },
       "background": "pinkish",
+      "borderStyle": "solid",
+      "borderWidth": "0",
+      "boxSizing": "border-box",
       "color": "var(--chakra-colors-green-300)",
       "marginRight": "var(--chakra-space-5)",
       "paddingInlineEnd": "var(--chakra-space-4)",
