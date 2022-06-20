@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.1.1
+
+### Patch Changes
+
+- [#6194](https://github.com/chakra-ui/chakra-ui/pull/6194)
+  [`dd621e46d`](https://github.com/chakra-ui/chakra-ui/commit/dd621e46d73b4b267a8cf2d31879a36e85f701d1)
+  Thanks [@anubra266](https://github.com/anubra266)! - fixed issue where switch
+  cannot be toggled when text is selectedd
+
 ## 2.1.0
 
 ### Minor Changes

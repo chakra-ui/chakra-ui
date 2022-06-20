@@ -1,5 +1,42 @@
 # Change Log
 
+## 2.2.2
+
+### Patch Changes
+
+- [#5764](https://github.com/chakra-ui/chakra-ui/pull/5764)
+  [`612529653`](https://github.com/chakra-ui/chakra-ui/commit/61252965371f1abc5bc6680c14bbd08f97667ea9)
+  Thanks [@m4x3d](https://github.com/m4x3d)! - Remove internal usage of
+  createBreakpoints function
+
+- Updated dependencies
+  [[`592360188`](https://github.com/chakra-ui/chakra-ui/commit/592360188eb080d957ef67457c908f992da210ae),
+  [`370f2db01`](https://github.com/chakra-ui/chakra-ui/commit/370f2db0116206373f02756ac4b4b1f3b9cf0151),
+  [`104eead49`](https://github.com/chakra-ui/chakra-ui/commit/104eead495b2d5997beeb2bb797f4bc1d562f59e),
+  [`612529653`](https://github.com/chakra-ui/chakra-ui/commit/61252965371f1abc5bc6680c14bbd08f97667ea9),
+  [`198904c02`](https://github.com/chakra-ui/chakra-ui/commit/198904c02577ddcc37b97af58cf4693072e4cde8),
+  [`dd621e46d`](https://github.com/chakra-ui/chakra-ui/commit/dd621e46d73b4b267a8cf2d31879a36e85f701d1),
+  [`450e96a2b`](https://github.com/chakra-ui/chakra-ui/commit/450e96a2b7e275143cccbbab115b1ec8e0bb4e1d),
+  [`733aa4b7f`](https://github.com/chakra-ui/chakra-ui/commit/733aa4b7fedbee2ff3aee3e75ac43dba33abea0f),
+  [`1015ec2b1`](https://github.com/chakra-ui/chakra-ui/commit/1015ec2b1b2608e78b6b33434e8a641dd05efcbe)]:
+  - @chakra-ui/skeleton@2.0.7
+  - @chakra-ui/toast@3.0.0
+  - @chakra-ui/system@2.2.0
+  - @chakra-ui/media-query@3.1.1
+  - @chakra-ui/theme@2.1.1
+  - @chakra-ui/layout@2.0.3
+  - @chakra-ui/checkbox@2.1.1
+  - @chakra-ui/tooltip@2.0.3
+  - @chakra-ui/radio@2.0.3
+  - @chakra-ui/modal@2.1.0
+  - @chakra-ui/accordion@2.0.4
+  - @chakra-ui/menu@2.0.4
+  - @chakra-ui/pin-input@2.0.4
+  - @chakra-ui/progress@2.0.3
+  - @chakra-ui/provider@2.0.7
+  - @chakra-ui/switch@2.0.4
+  - @chakra-ui/tabs@2.0.4
+
 ## 2.2.1
 
 ### Patch Changes
