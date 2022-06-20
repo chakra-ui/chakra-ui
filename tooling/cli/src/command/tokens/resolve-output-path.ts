@@ -45,7 +45,9 @@ async function resolveThemingDefinitionPath(): Promise<string | undefined> {
 /**
  * Find the location of the default target file or resolve the given path
  */
-export async function resolveOutputPath(overridePath: string): Promise<string> {
+export async function resolveOutputPath(
+  overridePath?: string,
+): Promise<string> {
   if (overridePath) {
     return path.resolve(process.cwd(), overridePath)
   }
