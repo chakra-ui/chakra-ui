@@ -1,17 +1,18 @@
 import { selectAnatomy as parts } from "@chakra-ui/anatomy"
-import type {
-  PartsStyleFunction,
-  PartsStyleObject,
-  SystemStyleFunction,
-  SystemStyleObject,
-} from "@chakra-ui/theme-tools"
-import { mergeWith } from "@chakra-ui/utils"
+import {
+  createMultiStyleConfigHelpers,
+  defineStyle,
+} from "@chakra-ui/styled-system"
 import { mode } from "@chakra-ui/theme-tools"
-import Input from "./input"
+import { mergeWith } from "@chakra-ui/utils"
+import { inputTheme } from "./input"
 
-const baseStyleField: SystemStyleFunction = (props) => {
+const { defineMultiStyleConfig, definePartsStyle } =
+  createMultiStyleConfigHelpers(parts.keys)
+
+const baseStyleField = defineStyle((props) => {
   return {
-    ...Input.baseStyle.field,
+    ...inputTheme.baseStyle?.field,
     bg: mode("white", "gray.700")(props),
     appearance: "none",
     paddingBottom: "1px",
@@ -20,9 +21,9 @@ const baseStyleField: SystemStyleFunction = (props) => {
       bg: mode("white", "gray.700")(props),
     },
   }
-}
+})
 
-const baseStyleIcon: SystemStyleObject = {
+const baseStyleIcon = defineStyle({
   width: "1.5rem",
   height: "100%",
   insetEnd: "0.5rem",
@@ -32,39 +33,36 @@ const baseStyleIcon: SystemStyleObject = {
   _disabled: {
     opacity: 0.5,
   },
-}
-
-const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
-  field: baseStyleField(props),
-  icon: baseStyleIcon,
 })
 
-const iconSpacing = { paddingInlineEnd: "2rem" }
+const baseStyle = definePartsStyle((props) => ({
+  field: baseStyleField(props),
+  icon: baseStyleIcon,
+}))
 
-const sizes: Record<string, PartsStyleObject<typeof parts>> = mergeWith(
-  {},
-  Input.sizes,
-  {
-    lg: {
-      field: iconSpacing,
-    },
-    md: {
-      field: iconSpacing,
-    },
-    sm: {
-      field: iconSpacing,
-    },
-    xs: {
-      field: iconSpacing,
-      icon: { insetEnd: "0.25rem" },
-    },
+const iconSpacing = defineStyle({
+  paddingInlineEnd: "2rem",
+})
+
+const sizes = mergeWith({}, inputTheme.sizes, {
+  lg: {
+    field: iconSpacing,
   },
-)
+  md: {
+    field: iconSpacing,
+  },
+  sm: {
+    field: iconSpacing,
+  },
+  xs: {
+    field: iconSpacing,
+    icon: { insetEnd: "0.25rem" },
+  },
+})
 
-export default {
-  parts: parts.keys,
+export const selectTheme = defineMultiStyleConfig({
   baseStyle,
   sizes,
-  variants: Input.variants,
-  defaultProps: Input.defaultProps,
-}
+  variants: inputTheme.variants,
+  defaultProps: inputTheme.defaultProps,
+})

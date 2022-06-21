@@ -1,64 +1,21 @@
-import { SystemStyleObject } from "@chakra-ui/system"
+import type {
+  SystemStyleObject,
+  StyleFunctionProps,
+  SystemStyleInterpolation,
+} from "@chakra-ui/system"
 import { Dict, runIfFn } from "@chakra-ui/utils"
 
-/* -----------------------------------------------------------------------------
- * Style Configuration definition for components
- * -----------------------------------------------------------------------------*/
-
-export interface StyleConfig {
-  baseStyle?: SystemStyleObject | SystemStyleFunction
-  sizes?: { [size: string]: SystemStyleObject | SystemStyleFunction }
-  variants?: { [variant: string]: SystemStyleObject | SystemStyleFunction }
-  defaultProps?: {
-    size?: string
-    variant?: string
-    colorScheme?: string
-  }
-}
-
-// minimal representation of the anatomy object
-type Anatomy = { __type: string }
-
-export interface MultiStyleConfig<T extends Anatomy = Anatomy> {
-  baseStyle?: PartsStyleObject<T> | PartsStyleFunction<T>
-  sizes?: { [size: string]: PartsStyleObject<T> | PartsStyleFunction<T> }
-  variants?: { [variant: string]: PartsStyleObject<T> | PartsStyleFunction<T> }
-  defaultProps?: StyleConfig["defaultProps"]
-}
-
-/* -----------------------------------------------------------------------------
- * Style Functions used in the theme
-   - Single part components: use SystemStyleObject or SystemStyleFunction
-   - Multi part components: use PartsStyleObject or PartsStyleFunction
- * -----------------------------------------------------------------------------*/
-
-export type { SystemStyleObject }
-
-export type StyleFunctionProps = {
-  colorScheme: string
-  colorMode: "light" | "dark"
-  orientation?: "horizontal" | "vertical"
-  theme: Dict
-  [key: string]: any
-}
-
-export type SystemStyleFunction = (
-  props: StyleFunctionProps,
-) => SystemStyleObject
-
-export type SystemStyleInterpolation = SystemStyleObject | SystemStyleFunction
-
-export type PartsStyleObject<T extends Anatomy = Anatomy> = Partial<
-  Record<T["__type"], SystemStyleObject>
->
-
-export type PartsStyleFunction<T extends Anatomy = Anatomy> = (
-  props: StyleFunctionProps,
-) => PartsStyleObject<T>
-
-export type PartsStyleInterpolation<T extends Anatomy = Anatomy> =
-  | PartsStyleObject<T>
-  | PartsStyleFunction<T>
+export type {
+  StyleConfig,
+  MultiStyleConfig,
+  SystemStyleObject,
+  StyleFunctionProps,
+  SystemStyleFunction,
+  SystemStyleInterpolation,
+  PartsStyleObject,
+  PartsStyleFunction,
+  PartsStyleInterpolation,
+} from "@chakra-ui/system"
 
 /* -----------------------------------------------------------------------------
  * Global Style object definitions
@@ -83,10 +40,10 @@ export function mode<T>(light: T, dark: T) {
     props.colorMode === "dark" ? dark : light
 }
 
-export function orient(options: {
+export function orient<T>(options: {
   orientation?: "vertical" | "horizontal"
-  vertical: SystemStyleObject
-  horizontal: SystemStyleObject
+  vertical: T
+  horizontal: T
 }) {
   const { orientation, vertical, horizontal } = options
   if (!orientation) return {}

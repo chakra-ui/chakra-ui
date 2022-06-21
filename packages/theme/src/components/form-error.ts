@@ -1,32 +1,34 @@
 import { formErrorAnatomy as parts } from "@chakra-ui/anatomy"
-import type {
-  PartsStyleFunction,
-  SystemStyleFunction,
-} from "@chakra-ui/theme-tools"
-import { mode } from "@chakra-ui/theme-tools"
+import {
+  createMultiStyleConfigHelpers,
+  defineStyle,
+} from "@chakra-ui/styled-system"
+import { mode, runIfFn } from "@chakra-ui/theme-tools"
 
-const baseStyleText: SystemStyleFunction = (props) => {
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(parts.keys)
+
+const baseStyleText = defineStyle((props) => {
   return {
     color: mode("red.500", "red.300")(props),
     mt: 2,
     fontSize: "sm",
     lineHeight: "normal",
   }
-}
+})
 
-const baseStyleIcon: SystemStyleFunction = (props) => {
+const baseStyleIcon = defineStyle((props) => {
   return {
     marginEnd: "0.5em",
     color: mode("red.500", "red.300")(props),
   }
-}
-
-const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
-  text: baseStyleText(props),
-  icon: baseStyleIcon(props),
 })
 
-export default {
-  parts: parts.keys,
+const baseStyle = definePartsStyle((props) => ({
+  text: runIfFn(baseStyleText, props),
+  icon: runIfFn(baseStyleIcon, props),
+}))
+
+export const formErrorTheme = defineMultiStyleConfig({
   baseStyle,
-}
+})

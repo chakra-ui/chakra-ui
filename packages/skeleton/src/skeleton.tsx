@@ -66,6 +66,14 @@ const fade = keyframes({
   to: { opacity: 1 },
 })
 
+const startColor = "var(--skeleton-start-color)"
+const endColor = "var(--skeleton-end-color)"
+
+const bgFade = keyframes({
+  from: { borderColor: startColor, background: startColor },
+  to: { borderColor: endColor, background: endColor },
+})
+
 const useIsFirstRender = () => {
   const isFirstRender = React.useRef(true)
 
@@ -109,7 +117,15 @@ export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
   }
 
   return (
-    <StyledSkeleton ref={ref} className={_className} {...rest} __css={styles} />
+    <StyledSkeleton
+      ref={ref}
+      className={_className}
+      {...rest}
+      __css={{
+        ...styles,
+        animation: `${speed}s linear infinite alternate ${bgFade}`,
+      }}
+    />
   )
 })
 

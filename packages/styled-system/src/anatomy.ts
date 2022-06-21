@@ -1,9 +1,10 @@
 import { fromEntries } from "@chakra-ui/utils"
+
 /**
  * Used to define the anatomy/parts of a component in a way that provides
  * a consistent API for `className`, css selector and `theming`.
  */
-export class Anatomy<T extends string = string> {
+class Anatomy<T extends string = string> {
   private map: Record<T, Part> = {} as Record<T, Part>
   private called = false
 
@@ -32,7 +33,7 @@ export class Anatomy<T extends string = string> {
     for (const part of values) {
       ;(this.map as any)[part] = this.toPart(part)
     }
-    return (this as unknown) as Omit<Anatomy<V>, "parts">
+    return this as unknown as Omit<Anatomy<V>, "parts">
   }
 
   /**
@@ -43,7 +44,7 @@ export class Anatomy<T extends string = string> {
       if (part in this.map) continue
       ;(this.map as any)[part] = this.toPart(part)
     }
-    return (this as unknown) as Omit<Anatomy<T | U>, "parts">
+    return this as unknown as Omit<Anatomy<T | U>, "parts">
   }
 
   /**
