@@ -1,5 +1,18 @@
 # @chakra-ui/cli
 
+## 2.1.1
+
+### Patch Changes
+
+- [#6208](https://github.com/chakra-ui/chakra-ui/pull/6208)
+  [`8798b3527`](https://github.com/chakra-ui/chakra-ui/commit/8798b352711d6436b537733db7c64730f31a1c47)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Add --no-format option
+
+* [#6172](https://github.com/chakra-ui/chakra-ui/pull/6172)
+  [`a15f43ecc`](https://github.com/chakra-ui/chakra-ui/commit/a15f43eccf08054515f26aa33cae5992fca4d77e)
+  Thanks [@MYKEU](https://github.com/MYKEU)! - Fix issue where CLI crashed due
+  to lodash throttle dependency
+
 ## 2.1.0
 
 ### Minor Changes

@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.0.3
+
+### Patch Changes
+
+- [#6182](https://github.com/chakra-ui/chakra-ui/pull/6182)
+  [`7d96e0466`](https://github.com/chakra-ui/chakra-ui/commit/7d96e0466fbe1b2d45e95e12e466feb304397eda)
+  Thanks [@RyanCavanaugh](https://github.com/RyanCavanaugh)! - Apply type
+  constraints to `useDescendants` hook for improved TypeScript 4.8 support
+
 ## 3.0.2
 
 ### Patch Changes
