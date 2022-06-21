@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.1.1
+
+### Patch Changes
+
+- [#5764](https://github.com/chakra-ui/chakra-ui/pull/5764)
+  [`612529653`](https://github.com/chakra-ui/chakra-ui/commit/61252965371f1abc5bc6680c14bbd08f97667ea9)
+  Thanks [@m4x3d](https://github.com/m4x3d)! - Remove internal usage of
+  createBreakpoints function
+
+- Updated dependencies
+  [[`612529653`](https://github.com/chakra-ui/chakra-ui/commit/61252965371f1abc5bc6680c14bbd08f97667ea9)]:
+  - @chakra-ui/theme-tools@2.0.3
+
 ## 2.1.0
 
 ### Minor Changes

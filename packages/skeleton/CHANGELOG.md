@@ -1,5 +1,25 @@
 # Change Log
 
+## 2.0.7
+
+### Patch Changes
+
+- [#6178](https://github.com/chakra-ui/chakra-ui/pull/6178)
+  [`592360188`](https://github.com/chakra-ui/chakra-ui/commit/592360188eb080d957ef67457c908f992da210ae)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - extend doc
+  for `fadeDuration` prop
+
+* [#5764](https://github.com/chakra-ui/chakra-ui/pull/5764)
+  [`612529653`](https://github.com/chakra-ui/chakra-ui/commit/61252965371f1abc5bc6680c14bbd08f97667ea9)
+  Thanks [@m4x3d](https://github.com/m4x3d)! - Remove internal usage of
+  createBreakpoints function
+
+* Updated dependencies
+  [[`104eead49`](https://github.com/chakra-ui/chakra-ui/commit/104eead495b2d5997beeb2bb797f4bc1d562f59e),
+  [`612529653`](https://github.com/chakra-ui/chakra-ui/commit/61252965371f1abc5bc6680c14bbd08f97667ea9)]:
+  - @chakra-ui/system@2.2.0
+  - @chakra-ui/media-query@3.1.1
+
 ## 2.0.6
 
 ### Patch Changes

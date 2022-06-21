@@ -12,7 +12,7 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@chakra-ui/react": "2.2.1",
+    "@chakra-ui/react": "2.2.2",
     "@types/react": "^18.0.1",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^1.3.0",

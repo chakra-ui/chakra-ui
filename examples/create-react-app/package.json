@@ -1,9 +1,9 @@
 {
   "name": "create-react-app-ts",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "private": true,
   "dependencies": {
-    "@chakra-ui/react": "2.2.1",
+    "@chakra-ui/react": "2.2.2",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "framer-motion": "^6.2.9",
