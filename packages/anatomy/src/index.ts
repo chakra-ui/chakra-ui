@@ -1,4 +1,4 @@
-import { anatomy } from "@chakra-ui/theme-tools"
+import { anatomy } from "@chakra-ui/styled-system"
 
 /**
  * **Accordion anatomy**

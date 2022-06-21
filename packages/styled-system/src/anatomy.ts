@@ -4,7 +4,7 @@ import { fromEntries } from "@chakra-ui/utils"
  * Used to define the anatomy/parts of a component in a way that provides
  * a consistent API for `className`, css selector and `theming`.
  */
-class Anatomy<T extends string = string> {
+export class Anatomy<T extends string = string> {
   private map: Record<T, Part> = {} as Record<T, Part>
   private called = false
 

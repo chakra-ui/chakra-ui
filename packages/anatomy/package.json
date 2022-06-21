@@ -29,13 +29,10 @@
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
-  "dependencies": {
-    "@chakra-ui/theme-tools": "^2.0.3"
-  },
   "peerDependencies": {
-    "@chakra-ui/system": ">=2.0.0-next.0"
+    "@chakra-ui/styled-system": ">=2.0.0-next.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "2.2.0"
+    "@chakra-ui/styled-system": "2.2.1"
   }
 }
