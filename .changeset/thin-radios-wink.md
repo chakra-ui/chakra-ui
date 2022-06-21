@@ -3,4 +3,4 @@
 "@chakra-ui/theme": patch
 ---
 
-Restructure to use the new helpers from styled-system
+Refactor to use the new helpers from `styled-system` package
