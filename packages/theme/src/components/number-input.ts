@@ -52,8 +52,8 @@ const baseStyle = definePartsStyle((props) => ({
 type FontSize = keyof typeof typography.fontSizes
 
 function getSize(size: FontSize) {
-  //@ts-ignore
-  const sizeStyle = Input.sizes?.[size] ?? {}
+  //@ts-expect-error
+  const sizeStyle = inputTheme.sizes?.[size]
 
   const radius: Partial<Record<FontSize, string>> = {
     lg: "md",
