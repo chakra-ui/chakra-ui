@@ -2,8 +2,8 @@
 "@chakra-ui/styled-system": minor
 ---
 
-Add `defineStyle` and `defineStyleConfig` to improve the the TypeScript
-authoring experience of style objects and single part component themes.
+Add `defineStyle` and `defineStyleConfig` to improve the TypeScript authoring
+experience of style objects and single part component themes.
 
 ```jsx live=false
 import { defineStyleConfig, defineStyle } from "@chakra-ui/styled-system"
