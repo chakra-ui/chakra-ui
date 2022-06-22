@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.3
+
+### Patch Changes
+
+- [#6115](https://github.com/chakra-ui/chakra-ui/pull/6115)
+  [`450e96a2b`](https://github.com/chakra-ui/chakra-ui/commit/450e96a2b7e275143cccbbab115b1ec8e0bb4e1d)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Avoid rendering multiple
+  tooltips so that they are not appeared after opening a modal
+
 ## 2.0.2
 
 ### Patch Changes

@@ -16,7 +16,7 @@ export const WithColumns = () => (
 )
 
 export const WithAutofit = () => (
-  <SimpleGrid minChildWidth="300px" spacing="40px">
+  <SimpleGrid minChildWidth="sm" spacing="40px">
     <Box bg="tomato" height="200px" />
     <Box bg="tomato" height="200px" />
     <Box bg="tomato" height="200px" />

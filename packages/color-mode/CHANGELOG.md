@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [#6167](https://github.com/chakra-ui/chakra-ui/pull/6167)
+  [`bd2683306`](https://github.com/chakra-ui/chakra-ui/commit/bd2683306db6af272c43982ecd947182bde8b727)
+  Thanks [@ianmcdaniel](https://github.com/ianmcdaniel)! - Check if the
+  MediaQueryList object supports the addEventListener() method, else fallback to
+  the legacy .addListener() method.
+
 ## 2.0.4
 
 ### Patch Changes

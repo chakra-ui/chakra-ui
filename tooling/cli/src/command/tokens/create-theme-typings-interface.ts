@@ -40,11 +40,16 @@ export interface ThemeKeyOptions {
 export interface CreateThemeTypingsInterfaceOptions {
   config: ThemeKeyOptions[]
   strictComponentTypes?: boolean
+  format?: boolean
 }
 
 export async function createThemeTypingsInterface(
   theme: Record<string, unknown>,
-  { config, strictComponentTypes = false }: CreateThemeTypingsInterfaceOptions,
+  {
+    config,
+    strictComponentTypes = false,
+    format = true,
+  }: CreateThemeTypingsInterfaceOptions,
 ) {
   const unions = config.reduce(
     (
@@ -91,5 +96,5 @@ export interface ThemeTypings {
 
 `
 
-  return formatWithPrettierIfAvailable(template)
+  return format ? formatWithPrettierIfAvailable(template) : template
 }

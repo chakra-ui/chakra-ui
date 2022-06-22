@@ -1,16 +1,9 @@
-import React from "react"
-import theme from "@chakra-ui/theme"
 import { Text } from "@chakra-ui/layout"
-import { motion } from "framer-motion"
 import { HTMLChakraProps } from "@chakra-ui/system"
-import {
-  chakra,
-  PropsOf,
-  ThemeProvider,
-  ThemingProps,
-  useProps,
-  useStyleConfig,
-} from "../src"
+import theme from "@chakra-ui/theme"
+import { motion } from "framer-motion"
+import React from "react"
+import { chakra, ThemeProvider, useStyleConfig } from "../src"
 
 export default {
   title: "System / Core",
@@ -79,25 +72,6 @@ export const withTextStyles = () => (
       Welcome text
     </Text>
   </ThemeProvider>
-)
-
-const Comp = (props: PropsOf<typeof chakra.div> & ThemingProps) => {
-  const res = useProps("Badge", props)
-  return <chakra.div {...res.props} __css={res.styles} />
-}
-
-export const WithUseProps = () => (
-  <Comp
-    bg="green.500"
-    d="inline-block"
-    color="white"
-    textTransform="lowercase"
-    onClick={() => {
-      console.log("welcome home")
-    }}
-  >
-    Welcome home
-  </Comp>
 )
 
 export const WithGradient = () => (

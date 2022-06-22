@@ -3,7 +3,14 @@ import { useBoolean, useControllableProp, useId } from "@chakra-ui/hooks"
 import { PropGetter } from "@chakra-ui/react-utils"
 import { ariaAttr, callAllHandlers, dataAttr } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
-import { ChangeEvent, SyntheticEvent, useCallback, useState } from "react"
+import { trackFocusVisible } from "@zag-js/focus-visible"
+import {
+  ChangeEvent,
+  SyntheticEvent,
+  useCallback,
+  useEffect,
+  useState,
+} from "react"
 import { useRadioGroupContext } from "./radio-group"
 
 /**
@@ -114,6 +121,7 @@ export function useRadio(props: UseRadioProps = {}) {
   const isRequired = isRequiredProp ?? formControl?.isRequired
   const isInvalid = isInvalidProp ?? formControl?.isInvalid
 
+  const [isFocusVisible, setIsFocusVisible] = useState(false)
   const [isFocused, setFocused] = useBoolean()
   const [isHovered, setHovering] = useBoolean()
   const [isActive, setActive] = useBoolean()
@@ -124,6 +132,10 @@ export function useRadio(props: UseRadioProps = {}) {
     isCheckedProp,
     isCheckedState,
   )
+
+  useEffect(() => {
+    return trackFocusVisible(setIsFocusVisible)
+  }, [])
 
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -169,6 +181,7 @@ export function useRadio(props: UseRadioProps = {}) {
       "data-invalid": dataAttr(isInvalid),
       "data-checked": dataAttr(isChecked),
       "data-focus": dataAttr(isFocused),
+      "data-focus-visible": dataAttr(isFocused && isFocusVisible),
       "data-readonly": dataAttr(isReadOnly),
       "aria-hidden": true,
       onMouseDown: callAllHandlers(props.onMouseDown, setActive.on),
@@ -188,6 +201,7 @@ export function useRadio(props: UseRadioProps = {}) {
       setActive.off,
       setHovering.on,
       setHovering.off,
+      isFocusVisible,
     ],
   )
 

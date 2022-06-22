@@ -9,7 +9,6 @@ import type {
   ThemingProps,
 } from "@chakra-ui/system"
 import type {
-  Breakpoints,
   PartsStyleInterpolation,
   Styles,
   SystemStyleInterpolation,
@@ -108,7 +107,7 @@ interface Typography {
 
 interface Foundations extends Typography {
   borders: RecursiveObject
-  breakpoints: Breakpoints<Dict>
+  breakpoints: Dict
   colors: Colors
   radii: RecursiveObject
   shadows: RecursiveObject<string>

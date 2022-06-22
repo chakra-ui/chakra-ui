@@ -1,5 +1,5 @@
-import { css } from "../src/css"
 import { toCSSVar } from "../src/create-theme-vars"
+import { css } from "../src/css"
 
 const theme = toCSSVar({
   breakpoints: {
@@ -349,30 +349,6 @@ test("padding shorthand does not collide with nested p selector", () => {
     }
   `)
 })
-
-// test.skip("ignores array values longer than breakpoints", () => {
-//   // intentionally not using createBreakpoints here
-//   // because you can't just slice off it
-//   const customBreakpoints: any = ["0em", "32em", "40em"]
-//   customBreakpoints.base = customBreakpoints[0]
-//   customBreakpoints.sm = customBreakpoints[1]
-//   customBreakpoints.lg = customBreakpoints[2]
-
-//   const result = css({
-//     width: [32, 64, 128, 256, 512],
-//   })({
-//     breakpoints: customBreakpoints,
-//   })
-//   expect(result).toEqual({
-//     width: 32,
-//     "@media screen and (min-width: 32em)": {
-//       width: 64,
-//     },
-//     "@media screen and (min-width: 40em)": {
-//       width: 128,
-//     },
-//   })
-// })
 
 test("functional values can return responsive arrays", () => {
   const result = css({
