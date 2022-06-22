@@ -1,6 +1,6 @@
 import { useEnvironment } from "@chakra-ui/react-env"
 import { isBrowser, isFunction } from "@chakra-ui/utils"
-import { startTransition, useEffect, useLayoutEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useMemo, useState } from "react"
 
 const useSafeLayoutEffect = isBrowser ? useLayoutEffect : useEffect
 
@@ -23,7 +23,10 @@ export function useMediaQuery(
 
   const env = useEnvironment()
 
-  const queries = Array.isArray(query) ? query : [query]
+  const queries = useMemo(
+    () => (Array.isArray(query) ? query : [query]),
+    [query],
+  )
 
   let fallbackValues = Array.isArray(fallback) ? fallback : [fallback]
   fallbackValues = fallbackValues.filter((v) => v != null) as boolean[]
@@ -37,19 +40,18 @@ export function useMediaQuery(
     }))
   })
 
-  useSafeLayoutEffect(() => {
+  useEffect(() => {
     // set initial matches
-    if (ssr) {
-      startTransition(() => {
-        setValue(
-          queries.map((query) => ({
-            media: query,
-            matches: env.window.matchMedia(query).matches,
-          })),
-        )
-      })
-    }
+    setValue(
+      queries.map((query) => ({
+        media: query,
+        matches: env.window.matchMedia(query).matches,
+      })),
+    )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
+  useSafeLayoutEffect(() => {
     const mql = queries.map((query) => env.window.matchMedia(query))
 
     const handler = (evt: MediaQueryListEvent) => {

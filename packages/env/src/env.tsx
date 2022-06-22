@@ -5,7 +5,6 @@ import React, {
   useMemo,
   useState,
   useEffect,
-  startTransition,
 } from "react"
 import { ssrDocument } from "./mock-document"
 import { ssrWindow } from "./mock-window"
@@ -58,9 +57,7 @@ export function EnvironmentProvider(props: EnvironmentProviderProps) {
       {mounted && (
         <span
           ref={(el) => {
-            startTransition(() => {
-              if (el) setNode(el)
-            })
+            if (el) setNode(el)
           }}
         />
       )}

@@ -91,9 +91,7 @@ const DefaultPortal = (
   ) : (
     <span
       ref={(el) => {
-        React.startTransition(() => {
-          if (el) setTempNode(el)
-        })
+        if (el) setTempNode(el)
       }}
     />
   )
