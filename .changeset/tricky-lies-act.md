@@ -21,14 +21,14 @@ const button = defineStyleConfig({
 })
 ```
 
-Add `createMultiStyleConfigHelper` factory that provides functions that help
+Add `createMultiStyleConfigHelpers` factory that provides functions that help
 improve the TypeScript authoring experience of multipart component themes.
 
 ```jsx live=false
-import { createMultiStyleConfigHelper } from "@chakra-ui/styled-sytem"
+import { createMultiStyleConfigHelpers } from "@chakra-ui/styled-sytem"
 
 // create scoped helpers for that defined parts
-const helpers = createMultiStyleConfigHelper(["button", "label"])
+const helpers = createMultiStyleConfigHelpers(["button", "label"])
 const { definePartsStyle, defineMultiStyleConfig } = helpers
 
 // authoring styles for each part
