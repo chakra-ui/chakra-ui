@@ -5,6 +5,10 @@ export type MaybeRenderProp<P> =
   | React.ReactNode
   | ((props: P) => React.ReactNode)
 
+export type MaybeRenderPropElement<P> =
+  | React.ReactElement
+  | ((props: P) => React.ReactElement)
+
 type WithoutStyleAttr<T> = Omit<T, "color" | "width" | "height">
 
 export type HTMLProps<T = any> = WithoutStyleAttr<React.HTMLAttributes<T>> &

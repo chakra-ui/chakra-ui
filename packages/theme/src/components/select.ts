@@ -1,70 +1,192 @@
-import { selectAnatomy as parts } from "@chakra-ui/anatomy"
-import type {
-  PartsStyleFunction,
-  PartsStyleObject,
-  SystemStyleFunction,
-  SystemStyleObject,
-} from "@chakra-ui/theme-tools"
-import { mergeWith } from "@chakra-ui/utils"
-import { mode } from "@chakra-ui/theme-tools"
-import Input from "./input"
+import { ComponentMultiStyleConfig } from "@chakra-ui/react"
 
-const baseStyleField: SystemStyleFunction = (props) => {
-  return {
-    ...Input.baseStyle.field,
-    bg: mode("white", "gray.700")(props),
-    appearance: "none",
-    paddingBottom: "1px",
-    lineHeight: "normal",
-    "> option, > optgroup": {
-      bg: mode("white", "gray.700")(props),
+const SelectStyles: ComponentMultiStyleConfig = {
+  parts: ["wrapper", "input", "button", "menu", "option", "popover"],
+  baseStyle: ({ isOpen, colorScheme, invalid }) => ({
+    wrapper: {
+      position: "relative",
+      minWidth: "211px",
     },
-  }
-}
-
-const baseStyleIcon: SystemStyleObject = {
-  width: "1.5rem",
-  height: "100%",
-  insetEnd: "0.5rem",
-  position: "relative",
-  color: "currentColor",
-  fontSize: "1.25rem",
-  _disabled: {
-    opacity: 0.5,
+    input: {
+      display: "none",
+      width: "100%",
+    },
+    button: {
+      justifyContent: "space-between",
+      alignItems: "center",
+      p: "12px 20px",
+      h: 0,
+      fontSize: "14px",
+      fontWeight: 400,
+      bg: "none",
+      width: "100%",
+      borderRadius: "4px",
+      borderWidth: "1px",
+      borderColor: isOpen ? "blue.600" : "gray.200",
+      height: "100%",
+      _disabled: {
+        bg: "gray.100",
+        color: "gray.600",
+        _hover: {
+          borderColor: "gray.100",
+          bg: "gray.300",
+          cursor: "not-allowed",
+        },
+      },
+      ...(invalid && {
+        borderColor: "red.600",
+        color: "red.700",
+        _hover: {
+          borderColor: "red.600",
+        },
+      }),
+      _hover: {
+        bg: "none",
+        borderColor: "blue.600",
+      },
+      _active: {
+        bg: "none",
+      },
+      _focus: {
+        borderColor: "blue.600",
+        _hover: {
+          borderColor: "blue.700",
+        },
+      },
+      ".chakra-select__button-label": {
+        flex: 1,
+        textAlign: "left",
+      },
+    },
+    menu: {
+      width: "100%",
+      maxHeight: "211px",
+      overflowY: "auto",
+      margin: "3px 0 0",
+      position: "absolute",
+      zIndex: "1000",
+      listStyle: "none",
+      padding: 0,
+      background: "white",
+      borderWidth: isOpen ? "1px" : 0,
+      borderStyle: "solid",
+      borderColor: "gray.200",
+      borderRadius: "8px",
+    },
+    option: {
+      p: "8px 20px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      ".chakra-select__option-label": {
+        flex: 1,
+        px: "8px",
+      },
+      _hover: {
+        bg: `${colorScheme}.50`,
+        color: `${colorScheme}.600`,
+      },
+      _focus: {
+        outline: "none",
+        boxShadow: "none",
+        bg: `${colorScheme}.50`,
+        color: `${colorScheme}.600`,
+      },
+      "&.chakra-option-disabled": {
+        bg: "gray.100",
+        color: "gray.600",
+        cursor: "not-allowed",
+      },
+      "&.chakra-select__option-active": {
+        color: "white",
+        backgroundColor: `${colorScheme}.600`,
+        fontWeight: "semibold",
+        _hover: {
+          color: "white",
+          bg: `${colorScheme}.700`,
+        },
+      },
+    },
+    popover: {
+      width: "100%",
+      _focus: {
+        boxShadow: "none",
+      },
+    },
+  }),
+  variants: {
+    filled: ({ invalid, colorScheme }) => ({
+      button: {
+        border: "none",
+        bg: "gray.50",
+        color: "gray.600",
+        _hover: {
+          border: "none",
+          bg: "blue.50",
+          color: "blue.600",
+        },
+        _focus: {
+          border: "1px solid",
+          bg: "none",
+          color: `${colorScheme}.600`,
+          _hover: {
+            border: "1px solid",
+            bg: "none",
+            color: `${colorScheme}.700`,
+          },
+        },
+        _disabled: {
+          border: "none",
+          bg: "blackAlpha.50",
+          color: "gray.500",
+          _hover: {
+            border: "none",
+            bg: "gray.100",
+            color: "gray.600",
+          },
+        },
+        ...(invalid && {
+          border: "none",
+          bg: "red.100",
+          color: "red.600",
+          _hover: {
+            border: "none",
+            bg: "red.200",
+            color: "red.800",
+          },
+        }),
+      },
+      option: {
+        "&.chakra-option-disabled": {
+          color: "gray.500",
+          cursor: "not-allowed",
+        },
+      },
+    }),
   },
-}
-
-const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
-  field: baseStyleField(props),
-  icon: baseStyleIcon,
-})
-
-const iconSpacing = { paddingInlineEnd: "2rem" }
-
-const sizes: Record<string, PartsStyleObject<typeof parts>> = mergeWith(
-  {},
-  Input.sizes,
-  {
-    lg: {
-      field: iconSpacing,
+  sizes: {
+    sm: {
+      button: {
+        height: "32px",
+        fontSize: "12px",
+      },
     },
     md: {
-      field: iconSpacing,
+      button: {
+        height: "42px",
+      },
     },
-    sm: {
-      field: iconSpacing,
-    },
-    xs: {
-      field: iconSpacing,
-      icon: { insetEnd: "0.25rem" },
+    lg: {
+      button: {
+        height: "50px",
+        fontSize: "16px",
+      },
     },
   },
-)
-
-export default {
-  parts: parts.keys,
-  baseStyle,
-  sizes,
-  variants: Input.variants,
-  defaultProps: Input.defaultProps,
+  defaultProps: {
+    isOpen: false,
+    colorScheme: "blue",
+  },
 }
+
+export default SelectStyles
