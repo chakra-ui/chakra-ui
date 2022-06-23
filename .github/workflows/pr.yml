@@ -92,7 +92,7 @@ jobs:
 
       - name: Check if PR author is Org member
         id: membercheck
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
