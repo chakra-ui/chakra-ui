@@ -60,7 +60,7 @@ jobs:
           git diff --staged --quiet || git commit -m "docs(changelog): $GITHUB_SHA"
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v4
         with:
           delete-branch: true
           title: "docs: update .changelogrc"
