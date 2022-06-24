@@ -1,4 +1,3 @@
-import { createBreakpoints } from "@chakra-ui/theme-tools"
 import { extendTheme, ThemeOverride } from "../src/extend-theme"
 
 describe("extendTheme", () => {
@@ -256,12 +255,12 @@ describe("extendTheme", () => {
     Array.prototype["customFunction"] = () => {}
 
     const override = {
-      breakpoints: createBreakpoints({
+      breakpoints: {
         sm: "1",
         md: "1",
         lg: "1",
         xl: "1",
-      }),
+      },
     }
 
     const customTheme = extendTheme(override)
@@ -273,13 +272,13 @@ describe("extendTheme", () => {
 
   it("should allow custom breakpoints", () => {
     const override = {
-      breakpoints: createBreakpoints({
+      breakpoints: {
         sm: "1px",
         md: "2px",
         lg: "3px",
         xl: "4px",
         phone: "5px",
-      }),
+      },
     }
 
     const customTheme = extendTheme(override)

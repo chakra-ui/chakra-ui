@@ -34,7 +34,7 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "devDependencies": {
-    "@chakra-ui/system": "2.1.3",
+    "@chakra-ui/system": "2.2.0",
     "react": "^18.0.0"
   },
   "dependencies": {

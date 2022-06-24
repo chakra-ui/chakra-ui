@@ -165,3 +165,5 @@ export {
   ModalHeader as DrawerHeader,
   ModalOverlay as DrawerOverlay,
 } from "./modal"
+
+export { useDrawerContext };

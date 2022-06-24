@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [#6142](https://github.com/chakra-ui/chakra-ui/pull/6142)
+  [`1015ec2b1`](https://github.com/chakra-ui/chakra-ui/commit/1015ec2b1b2608e78b6b33434e8a641dd05efcbe)
+  Thanks [@selbekk](https://github.com/selbekk)! - Export `useDrawerContext`
+  hook
+
 ## 2.0.3
 
 ### Patch Changes

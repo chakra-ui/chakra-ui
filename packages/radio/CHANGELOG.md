@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.3
+
+### Patch Changes
+
+- [#6201](https://github.com/chakra-ui/chakra-ui/pull/6201)
+  [`733aa4b7f`](https://github.com/chakra-ui/chakra-ui/commit/733aa4b7fedbee2ff3aee3e75ac43dba33abea0f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  radio doesn't show focus when interacting with keyboard
+
 ## 2.0.2
 
 ### Patch Changes

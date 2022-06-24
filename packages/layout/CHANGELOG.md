@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.3
+
+### Patch Changes
+
+- [#6200](https://github.com/chakra-ui/chakra-ui/pull/6200)
+  [`198904c02`](https://github.com/chakra-ui/chakra-ui/commit/198904c02577ddcc37b97af58cf4693072e4cde8)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - SimpleGrid: Fix
+  issue where `minChildWidth` doesn't work with size tokens
+
 ## 2.0.2
 
 ### Patch Changes
