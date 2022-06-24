@@ -40,7 +40,7 @@ const DefaultPortal = (
 ) => {
   const { appendToParentPortal, children } = props
 
-  const tempNode = React.useRef<HTMLDivElement | null>(null)
+  const [tempNode, setTempNode] = React.useState<HTMLElement | null>(null)
   const portal = React.useRef<HTMLDivElement | null>(null)
 
   const forceUpdate = useForceUpdate()
@@ -48,10 +48,13 @@ const DefaultPortal = (
   const parentPortal = usePortalContext()
   const manager = usePortalManager()
 
-  useSafeLayoutEffect(() => {
-    if (!tempNode.current) return
+  const [mounted, setMounted] = React.useState(false)
+  React.useEffect(() => setMounted(true), [])
 
-    const doc = tempNode.current!.ownerDocument
+  useSafeLayoutEffect(() => {
+    if (!tempNode) return
+
+    const doc = tempNode.ownerDocument
     const host = appendToParentPortal ? parentPortal ?? doc.body : doc.body
 
     if (!host) return
@@ -68,7 +71,9 @@ const DefaultPortal = (
         host.removeChild(portalNode)
       }
     }
-  }, [])
+  }, [tempNode])
+
+  if (!mounted) return null
 
   const _children = manager?.zIndex ? (
     <Container zIndex={manager?.zIndex}>{children}</Container>
@@ -84,7 +89,11 @@ const DefaultPortal = (
       portal.current,
     )
   ) : (
-    <span ref={tempNode} />
+    <span
+      ref={(el) => {
+        if (el) setTempNode(el)
+      }}
+    />
   )
 }
 
