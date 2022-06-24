@@ -1,11 +1,9 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react"
-import { Box, Divider, Text } from "@chakra-ui/react"
+import { chakra, Stack } from "@chakra-ui/react"
 import {
   AddIcon,
   ChatIcon,
   CheckIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
   CopyIcon,
   MinusIcon,
   PhoneIcon,
@@ -14,7 +12,7 @@ import React from "react"
 import SelectOption from "../src/components/Select/components/select-option.component"
 import Select from "../src/components/Select/select.component"
 import SelectMenu from "../src/components/Select/components/select-menu.component"
-import SelectButton from "../src/components/Select/components/select-button.component"
+import SelectTrigger from "../src/components/Select/components/select-trigger.component"
 import { SelectValue } from "../src/components/Select/interfaces/select.interface"
 
 const selectStories: ComponentMeta<typeof Select> = {
@@ -206,154 +204,128 @@ const selectStories: ComponentMeta<typeof Select> = {
       expanded: true,
     },
   },
+  decorators: [
+    (story: Function) => (
+      <chakra.div maxW="560px" mx="auto" mt="40px">
+        {story()}
+      </chakra.div>
+    ),
+  ],
 }
 
-const ExampleContainer = ({
-  header,
-  children,
-}: {
-  header: string
-  children: React.ReactNode
-}) => {
+export const Default: ComponentStory<typeof Select> = () => {
+  const [value, setValue] = React.useState<SelectValue>()
+
   return (
-    <Box m={15}>
-      <Text as="h2">{header}</Text>
-      <Divider mb={5} />
-      <Box>{children}</Box>
-    </Box>
+    <Stack>
+      {[{}, { isDisabled: true }, { invalid: true }].map((props) => (
+        <Select
+          placeholder="Select an option..."
+          value={value}
+          onChange={setValue}
+          {...props}
+        >
+          <SelectTrigger />
+          <SelectMenu>
+            <SelectOption value="value-1">Option 1</SelectOption>
+            <SelectOption value="value-2">Option 2</SelectOption>
+            <SelectOption value="value-3">Option 3</SelectOption>
+          </SelectMenu>
+        </Select>
+      ))}
+    </Stack>
   )
 }
 
-export const SelectComponent: ComponentStory<typeof Select> = (props) => {
-  const [value, onChange] = React.useState<SelectValue>()
-
+export const WithLeftTriggerIcon: ComponentStory<typeof Select> = () => {
   return (
-    <Box>
-      <Text as="h1">Select component</Text>
-      <Divider mb={10} />
-      <Box>Selected: {value}</Box>
-      <Select {...props} value={value} onChange={onChange} placeholder="Select">
-        <SelectButton />
-        <SelectMenu>
-          <SelectOption value="value-1">Option 1</SelectOption>
-          <SelectOption value="value-2">Option 2</SelectOption>
-          <SelectOption value="value-3">Option 3</SelectOption>
-        </SelectMenu>
-      </Select>
-      <Divider my={10} />
-      <Text as="h1">Examples</Text>
-      <ExampleContainer header="1. Selector with left icon">
-        <Select
-          value={value}
-          onChange={onChange}
-          placeholder="Please select value"
-        >
-          <SelectButton leftIcon={<CopyIcon />} />
-          <SelectMenu>
-            <SelectOption value="value-1">Option 1</SelectOption>
-            <SelectOption value="value-2">Option 2</SelectOption>
-            <SelectOption value="value-3">Option 3</SelectOption>
-          </SelectMenu>
-        </Select>
-      </ExampleContainer>
-      <ExampleContainer header="2. Selector with custom right icon">
-        <Select
-          value={value}
-          onChange={onChange}
-          placeholder="Please select value"
-        >
-          <SelectButton
-            rightIcon={(isOpen) => (isOpen ? <MinusIcon /> : <AddIcon />)}
-          />
-          <SelectMenu>
-            <SelectOption value="value-1">Option 1</SelectOption>
-            <SelectOption value="value-2">Option 2</SelectOption>
-            <SelectOption value="value-3">Option 3</SelectOption>
-          </SelectMenu>
-        </Select>
-      </ExampleContainer>
-      <ExampleContainer header="3. Select options with icon">
-        <Select
-          leftIcon={<ChatIcon />}
-          rightIcon={({ isSelected }) => isSelected && <CheckIcon />}
-          value={value}
-          onChange={onChange}
-          placeholder="Please select value"
-        >
-          <SelectButton />
-          <SelectMenu>
-            <SelectOption value="value-1">Option 1</SelectOption>
-            <SelectOption value="value-2">Option 2</SelectOption>
-            <SelectOption value="value-3">Option 3</SelectOption>
-          </SelectMenu>
-        </Select>
-      </ExampleContainer>
-      <ExampleContainer header="4. Select options with custom icon">
-        <Select
-          value={value}
-          onChange={onChange}
-          placeholder="Please select value"
-        >
-          <SelectButton />
-          <SelectMenu>
-            <SelectOption value="value-1" leftIcon={<PhoneIcon />}>
-              Option 1
-            </SelectOption>
-            <SelectOption value="value-2" leftIcon={<ChatIcon />}>
-              Option 2
-            </SelectOption>
-            <SelectOption value="value-3" leftIcon={<CopyIcon />}>
-              Option 3
-            </SelectOption>
-          </SelectMenu>
-        </Select>
-      </ExampleContainer>
-      <ExampleContainer header="5. Select custom button (trigger)">
-        <Select
-          value={value}
-          onChange={onChange}
-          placeholder="Please select value"
-        >
-          <SelectButton
-            rightIcon={(isOpen: boolean) =>
-              isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />
-            }
-          >
-            Trigger
-          </SelectButton>
-          <SelectMenu>
-            <SelectOption value="value-1">Option 1</SelectOption>
-            <SelectOption value="value-2">Option 2</SelectOption>
-            <SelectOption value="value-3">Option 3</SelectOption>
-          </SelectMenu>
-        </Select>
-      </ExampleContainer>
-      <ExampleContainer header="6. Select with render props">
-        <Select
-          value={value}
-          onChange={onChange}
-          placeholder="Please select value"
-        >
-          {({ isOpen, option }) => (
-            <>
-              <SelectButton
-                rightIcon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-              >
-                Selected: {option?.label ?? "none"}
-              </SelectButton>
-              <SelectMenu>
-                <SelectOption value="value-1">Option 1</SelectOption>
-                <SelectOption value="value-2">Option 2</SelectOption>
-                <SelectOption value="value-3">Option 3</SelectOption>
-              </SelectMenu>
-            </>
-          )}
-        </Select>
-      </ExampleContainer>
-    </Box>
+    <Select placeholder="Select an option...">
+      <SelectTrigger leftIcon={<CopyIcon />} />
+      <SelectMenu>
+        <SelectOption value="value-1">Option 1</SelectOption>
+        <SelectOption value="value-2">Option 2</SelectOption>
+        <SelectOption value="value-3">Option 3</SelectOption>
+      </SelectMenu>
+    </Select>
   )
 }
 
-SelectComponent.storyName = "Select"
+export const WithCustomRightTriggerIcon: ComponentStory<typeof Select> = () => {
+  return (
+    <Select placeholder="Select an option...">
+      <SelectTrigger
+        rightIcon={(isOpen) => (isOpen ? <MinusIcon /> : <AddIcon />)}
+      />
+      <SelectMenu>
+        <SelectOption value="value-1">Option 1</SelectOption>
+        <SelectOption value="value-2">Option 2</SelectOption>
+        <SelectOption value="value-3">Option 3</SelectOption>
+      </SelectMenu>
+    </Select>
+  )
+}
+
+export const WithOptionGlobalIcon: ComponentStory<typeof Select> = () => {
+  return (
+    <Select
+      leftIcon={<ChatIcon />}
+      rightIcon={({ isSelected }) => isSelected && <CheckIcon />}
+      placeholder="Please select value"
+    >
+      <SelectTrigger />
+      <SelectMenu>
+        <SelectOption value="value-1">Option 1</SelectOption>
+        <SelectOption value="value-2">Option 2</SelectOption>
+        <SelectOption value="value-3">Option 3</SelectOption>
+      </SelectMenu>
+    </Select>
+  )
+}
+
+export const WithOptionIcons: ComponentStory<typeof Select> = () => {
+  return (
+    <Select
+      leftIcon={<ChatIcon />}
+      rightIcon={({ isSelected }) => isSelected && <CheckIcon />}
+      placeholder="Please select value"
+    >
+      <SelectTrigger />
+      <SelectMenu>
+        <SelectOption value="value-1" leftIcon={<PhoneIcon />}>
+          Option 1
+        </SelectOption>
+        <SelectOption value="value-2" leftIcon={<ChatIcon />}>
+          Option 2
+        </SelectOption>
+        <SelectOption value="value-3" leftIcon={<CopyIcon />}>
+          Option 3
+        </SelectOption>
+      </SelectMenu>
+    </Select>
+  )
+}
+
+export const WithCustomTrigger: ComponentStory<typeof Select> = () => {
+  return (
+    <Select
+      leftIcon={<ChatIcon />}
+      rightIcon={({ isSelected }) => isSelected && <CheckIcon />}
+      placeholder="Please select value"
+    >
+      <SelectTrigger>Static Custom Trigger</SelectTrigger>
+      <SelectMenu>
+        <SelectOption value="value-1" leftIcon={<PhoneIcon />}>
+          Option 1
+        </SelectOption>
+        <SelectOption value="value-2" leftIcon={<ChatIcon />}>
+          Option 2
+        </SelectOption>
+        <SelectOption value="value-3" leftIcon={<CopyIcon />}>
+          Option 3
+        </SelectOption>
+      </SelectMenu>
+    </Select>
+  )
+}
 
 export default selectStories

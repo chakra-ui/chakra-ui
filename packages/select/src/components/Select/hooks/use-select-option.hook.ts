@@ -14,7 +14,7 @@ const useSelectOption = (option: SelectOption) => {
     options,
     onClose,
     addOption,
-    updateOption,
+    removeOption,
   } = useSelectContext()
   const ref = React.createRef<HTMLLIElement>()
   const prevOption = usePrevious(option)
@@ -25,22 +25,13 @@ const useSelectOption = (option: SelectOption) => {
   )
 
   const index = React.useMemo(() => {
-    return options.findIndex((item) => item.value === option.value)
+    return [...options].findIndex((item) => item.value === option.value)
   }, [options, option])
 
   React.useEffect(() => {
-    if (!prevOption) {
-      addOption(option)
-    } else if (prevOption.value !== option.value) {
-      updateOption(option, prevOption)
-    }
-  }, [prevOption, option, addOption, updateOption])
-
-  React.useEffect(() => {
-    if (isSelected) {
-      setOption(option)
-    }
-  }, [isSelected, option, setOption])
+    addOption(option)
+    return () => removeOption(option)
+  }, [prevOption, option, addOption, removeOption])
 
   React.useEffect(() => {
     if (activeIndex !== -1 && activeIndex === index) {

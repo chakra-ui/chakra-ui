@@ -23,10 +23,11 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
       className="chakra-select__select-menu"
       as="ul"
       __css={styles.menu}
+      hidden={!isOpen}
       {...containerProps}
       {...restProps}
     >
-      {isOpen && children}
+      {children}
     </Box>
   )
 }

@@ -1,9 +1,8 @@
-import { BoxProps } from "@chakra-ui/react"
 import { KeyboardEvent } from "react"
 import { SelectKeyboardKey } from "../enums/select.enum"
 import { useSelectContext } from "../select.component"
 
-const useSelectMenu = (): BoxProps => {
+const useSelectMenu = () => {
   const {
     selectId,
     readonly,

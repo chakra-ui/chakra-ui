@@ -1,8 +1,8 @@
-import { Input, InputProps } from "@chakra-ui/react"
+import { chakra, ChakraProps } from "@chakra-ui/react"
 import React from "react"
 import { useSelectContext, useSelectStyles } from "../select.component"
 
-interface SelectInputProps extends InputProps {
+interface SelectInputProps extends ChakraProps {
   name?: string
 }
 
@@ -12,7 +12,7 @@ const SelectInput = React.forwardRef<HTMLInputElement, SelectInputProps>(
     const { value } = useSelectContext()
 
     return (
-      <Input
+      <chakra.input
         {...restProps}
         ref={forwardRef}
         __css={styles.input}

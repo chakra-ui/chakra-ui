@@ -1,5 +1,5 @@
 import React, { useCallback } from "react"
-import { useIds, usePrevious } from "@chakra-ui/react"
+import { useControllableState, useIds } from "@chakra-ui/react"
 import {
   SelectControlProps,
   SelectOption,
@@ -21,12 +21,16 @@ const useSelect = ({
 }: UseSelectProps) => {
   const [open, setOpen] = React.useState<boolean>()
   const [option, setOption] = React.useState<SelectOption>()
-  const [value, setValue] = React.useState<SelectValue>()
+  const [value, setValue] = useControllableState<SelectValue>({
+    value: currentValue,
+    defaultValue,
+    onChange,
+  })
 
-  const [options, setOptions] = React.useState<SelectOption[]>([])
+  const [options, setOptions] = React.useState<Set<SelectOption>>(
+    new Set<SelectOption>(),
+  )
   const [activeIndex, setActiveIndex] = React.useState<number>(-1)
-
-  const prevValue = usePrevious(value)
 
   const [selectId] = useIds(restProps.id, "chakra-select")
 
@@ -35,22 +39,12 @@ const useSelect = ({
       return
     }
 
-    return `chakra-select-option-${activeIndex}`
+    return `chakra-select__option-${activeIndex}`
   }, [activeIndex])
 
   const isOpenStatus = React.useMemo(() => {
     return open && !restProps.isDisabled
   }, [open, restProps.isDisabled])
-
-  React.useEffect(() => {
-    setValue(defaultValue)
-  }, [defaultValue])
-
-  React.useEffect(() => {
-    if (prevValue === value && currentValue !== value) {
-      setValue(currentValue)
-    }
-  }, [value, prevValue, currentValue])
 
   React.useEffect(() => {
     setOpen(isOpen)
@@ -63,57 +57,40 @@ const useSelect = ({
 
   const onSelectClose = useCallback(() => {
     setOpen(false)
-    setOptions([])
     setActiveIndex(-1)
     onClose?.()
   }, [onClose])
 
-  const onValueChange = React.useCallback(
-    (newValue: SelectValue) => {
-      if (value !== newValue) {
-        onChange?.(newValue)
-        setValue(newValue)
-      }
-    },
-    [value, setValue, onChange],
-  )
-
   const onOptionChange = React.useCallback(
     (newOption: SelectOption) => {
-      if (newOption.value !== value) {
-        setOption(newOption)
-        onValueChange(newOption.value)
+      setOption(newOption)
+      setValue(newOption.value)
 
-        if (closeOnSelect) onSelectClose()
-      }
+      if (closeOnSelect) onSelectClose()
     },
-    [value, onValueChange, closeOnSelect, onSelectClose],
+    [setValue, closeOnSelect, onSelectClose],
   )
 
   const addOption = React.useCallback(
     (option: SelectOption) => {
-      setOptions((prevState) => [...prevState, option])
+      setOptions((options) => new Set(options).add(option))
     },
     [setOptions],
   )
 
-  const updateOption = React.useCallback(
-    (newOption: SelectOption, prevOption: SelectOption) => {
-      setOptions((prevState) => [
-        ...prevState.map((item) => {
-          if (item.value === prevOption.value) {
-            return newOption
-          }
-
-          return item
-        }),
-      ])
+  const removeOption = React.useCallback(
+    (option: SelectOption) => {
+      setOptions((options) => {
+        const newOptions = new Set(options)
+        newOptions.delete(option)
+        return newOptions
+      })
     },
     [setOptions],
   )
 
   const onNextOption = () => {
-    if (options.length - 1 > activeIndex) {
+    if (options.size - 1 > activeIndex) {
       setActiveIndex((prevIndex) => prevIndex + 1)
 
       return
@@ -129,7 +106,7 @@ const useSelect = ({
       return
     }
 
-    setActiveIndex(options.length - 1)
+    setActiveIndex(options.size - 1)
   }
 
   const onToggle = () => {
@@ -148,10 +125,9 @@ const useSelect = ({
     options,
     onOpen: onSelectOpen,
     onClose: onSelectClose,
-    onChange: onValueChange,
     setOption: onOptionChange,
     addOption,
-    updateOption,
+    removeOption,
     onNextOption,
     onPrevOption,
     onToggle,
