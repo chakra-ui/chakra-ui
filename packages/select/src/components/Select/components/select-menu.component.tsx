@@ -11,7 +11,6 @@ export interface SelectMenuProps extends BoxProps {
 
 const SelectMenu: React.FC<SelectMenuProps> = ({
   children,
-  sx,
   rootStyles,
   ...restProps
 }) => {
@@ -23,7 +22,7 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
     <Box
       className="chakra-select__select-menu"
       as="ul"
-      sx={{ ...styles.menu, ...sx }}
+      __css={styles.menu}
       {...containerProps}
       {...restProps}
     >

@@ -1,53 +1,58 @@
-import { Button, ButtonProps, Box } from "@chakra-ui/react"
+import { Button, ButtonProps, chakra } from "@chakra-ui/react"
 import React from "react"
 import { runIfFn } from "@chakra-ui/utils"
 import { MaybeRenderPropElement } from "@chakra-ui/react-utils"
+import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons"
 import { useSelectContext, useSelectStyles } from "../select.component"
 import useSelectButton from "../hooks/use-select-button.hook"
 
 export interface SelectButtonProps
   extends Omit<ButtonProps, "leftIcon" | "rightIcon"> {
-  children: React.ReactNode
   leftIcon?: MaybeRenderPropElement<boolean>
   rightIcon?: MaybeRenderPropElement<boolean>
 }
 
 const SelectButton = React.forwardRef<HTMLButtonElement, SelectButtonProps>(
   (
-    { leftIcon, rightIcon, children, sx, onClick, ...restProps },
+    {
+      leftIcon: leftIconProp,
+      rightIcon: rightIconProp,
+      children,
+      onClick,
+      ...restProps
+    },
     forwardRef,
   ) => {
     const styles = useSelectStyles()
-    const { isOpen = false } = useSelectContext()
+    const {
+      isOpen = false,
+      option,
+      placeholder,
+      hideDefaultChevron,
+    } = useSelectContext()
+
+    const defaultRightIcon = (isOpen: boolean) =>
+      isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />
     const buttonProps = useSelectButton({ onClick, forwardRef })
 
-    const renderLeftIcon = () => {
-      if (!leftIcon) {
-        return
-      }
-
-      return runIfFn(leftIcon, isOpen)
-    }
-    const renderRightIcon = () => {
-      if (!rightIcon) {
-        return
-      }
-
-      return runIfFn(rightIcon, isOpen)
-    }
+    const leftIcon = runIfFn(rightIconProp, isOpen)
+    const rightIcon = runIfFn(
+      rightIconProp ?? (!hideDefaultChevron ? defaultRightIcon : undefined),
+      isOpen,
+    )
 
     return (
       <Button
         className="chakra-select__select-button"
-        sx={{ ...styles.button, ...sx }}
-        leftIcon={renderLeftIcon()}
-        rightIcon={renderRightIcon()}
+        __css={styles.button}
+        leftIcon={leftIcon}
+        rightIcon={rightIcon}
         {...buttonProps}
         {...restProps}
       >
-        <Box className="chakra-select__button-label" as="span">
-          {children}
-        </Box>
+        <chakra.span className="chakra-select__button-label">
+          {option?.label ?? placeholder}
+        </chakra.span>
       </Button>
     )
   },

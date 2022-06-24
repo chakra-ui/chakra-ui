@@ -14,7 +14,6 @@ import React from "react"
 import SelectOption from "../src/components/Select/components/select-option.component"
 import Select from "../src/components/Select/select.component"
 import SelectMenu from "../src/components/Select/components/select-menu.component"
-import SelectSelector from "../src/components/Select/components/select-selector.component"
 import SelectButton from "../src/components/Select/components/select-button.component"
 import { SelectValue } from "../src/components/Select/interfaces/select.interface"
 
@@ -234,7 +233,7 @@ export const SelectComponent: ComponentStory<typeof Select> = (props) => {
       <Divider mb={10} />
       <Box>Selected: {value}</Box>
       <Select {...props} value={value} onChange={onChange} placeholder="Select">
-        <SelectSelector />
+        <SelectButton />
         <SelectMenu>
           <SelectOption value="value-1">Option 1</SelectOption>
           <SelectOption value="value-2">Option 2</SelectOption>
@@ -249,7 +248,7 @@ export const SelectComponent: ComponentStory<typeof Select> = (props) => {
           onChange={onChange}
           placeholder="Please select value"
         >
-          <SelectSelector leftIcon={<CopyIcon />} />
+          <SelectButton leftIcon={<CopyIcon />} />
           <SelectMenu>
             <SelectOption value="value-1">Option 1</SelectOption>
             <SelectOption value="value-2">Option 2</SelectOption>
@@ -263,7 +262,7 @@ export const SelectComponent: ComponentStory<typeof Select> = (props) => {
           onChange={onChange}
           placeholder="Please select value"
         >
-          <SelectSelector
+          <SelectButton
             rightIcon={(isOpen) => (isOpen ? <MinusIcon /> : <AddIcon />)}
           />
           <SelectMenu>
@@ -281,7 +280,7 @@ export const SelectComponent: ComponentStory<typeof Select> = (props) => {
           onChange={onChange}
           placeholder="Please select value"
         >
-          <SelectSelector />
+          <SelectButton />
           <SelectMenu>
             <SelectOption value="value-1">Option 1</SelectOption>
             <SelectOption value="value-2">Option 2</SelectOption>
@@ -295,7 +294,7 @@ export const SelectComponent: ComponentStory<typeof Select> = (props) => {
           onChange={onChange}
           placeholder="Please select value"
         >
-          <SelectSelector />
+          <SelectButton />
           <SelectMenu>
             <SelectOption value="value-1" leftIcon={<PhoneIcon />}>
               Option 1

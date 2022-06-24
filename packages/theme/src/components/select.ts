@@ -78,6 +78,7 @@ const SelectStyles: ComponentMultiStyleConfig = {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
+      cursor: "default",
       ".chakra-select__option-label": {
         flex: 1,
         px: "8px",
@@ -92,7 +93,7 @@ const SelectStyles: ComponentMultiStyleConfig = {
         bg: `${colorScheme}.50`,
         color: `${colorScheme}.600`,
       },
-      "&.chakra-option-disabled": {
+      "&.chakra-select__option-disabled": {
         bg: "gray.100",
         color: "gray.600",
         cursor: "not-allowed",
@@ -157,7 +158,7 @@ const SelectStyles: ComponentMultiStyleConfig = {
         }),
       },
       option: {
-        "&.chakra-option-disabled": {
+        "&.chakra-select__option-disabled": {
           color: "gray.500",
           cursor: "not-allowed",
         },

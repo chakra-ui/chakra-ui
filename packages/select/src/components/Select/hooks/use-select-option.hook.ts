@@ -16,7 +16,7 @@ const useSelectOption = (option: SelectOption) => {
     addOption,
     updateOption,
   } = useSelectContext()
-  const ref = React.createRef<HTMLDivElement>()
+  const ref = React.createRef<HTMLLIElement>()
   const prevOption = usePrevious(option)
 
   const isSelected = React.useMemo(

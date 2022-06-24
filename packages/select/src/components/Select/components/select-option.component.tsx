@@ -1,20 +1,64 @@
-import { Box, BoxProps } from "@chakra-ui/react"
+import { Box, chakra, ChakraProps } from "@chakra-ui/react"
 import { cx, runIfFn } from "@chakra-ui/utils"
 import React from "react"
 import { MaybeRenderProp } from "@chakra-ui/react-utils"
 import {
   SelectOption as SelectOptionInterface,
+  SelectOptionIconRenderProps,
   SelectValue,
 } from "../interfaces/select.interface"
 import useSelectOption from "../hooks/use-select-option.hook"
 import { useSelectContext, useSelectStyles } from "../select.component"
 
-export interface SelectOptionProps extends BoxProps {
+export interface SelectOptionProps extends ChakraProps {
   value: SelectValue
   children: React.ReactNode
   isDisabled?: boolean
   leftIcon?: MaybeRenderProp<boolean>
   rightIcon?: MaybeRenderProp<boolean>
+}
+
+interface SelectOptionIconProps {
+  icon?: MaybeRenderProp<boolean>
+  globalIcon?: MaybeRenderProp<SelectOptionIconRenderProps>
+  isSelected: boolean
+  option: SelectOptionInterface
+}
+
+const SelectOptionIcon: React.FC<SelectOptionIconProps> = ({
+  icon,
+  globalIcon,
+  option,
+  isSelected,
+}) => {
+  if (!icon && !globalIcon) return null
+  return (
+    <chakra.span className="chakra-select__option-icon">
+      {runIfFn(icon, isSelected) ?? runIfFn(globalIcon, { option, isSelected })}
+    </chakra.span>
+  )
+}
+
+interface SelectOptionContentProps {
+  leftIcon?: MaybeRenderProp<boolean>
+  rightIcon?: MaybeRenderProp<boolean>
+  globalLeftIcon?: MaybeRenderProp<SelectOptionIconRenderProps>
+  globalRightIcon?: MaybeRenderProp<SelectOptionIconRenderProps>
+  children: React.ReactNode
+}
+
+const SelectOptionContent: React.FC<SelectOptionContentProps> = ({
+  leftIcon,
+  rightIcon,
+  globalLeftIcon,
+  globalRightIcon,
+  children,
+}) => {
+  if (!leftIcon && !rightIcon && !globalLeftIcon && !globalRightIcon) {
+    return <>{children}</>
+  }
+
+  return <Box className="chakra-select__option-label">{children}</Box>
 }
 
 const SelectOption: React.FC<SelectOptionProps> = ({
@@ -23,7 +67,6 @@ const SelectOption: React.FC<SelectOptionProps> = ({
   leftIcon,
   rightIcon,
   isDisabled,
-  sx,
   ...restProps
 }) => {
   const styles = useSelectStyles()
@@ -33,56 +76,38 @@ const SelectOption: React.FC<SelectOptionProps> = ({
     useSelectContext()
   const { isSelected, ...optionProps } = useSelectOption(option)
 
-  const renderLeftIcon = (): React.ReactNode | undefined => {
-    if (!leftIcon && !globalLeftIcon) {
-      return
-    }
-
-    return (
-      <Box as="span" className="chakra-select__option-icon">
-        {runIfFn(leftIcon, isSelected) ??
-          runIfFn(globalLeftIcon, { option, isSelected })}
-      </Box>
-    )
-  }
-
-  const renderRightIcon = (): React.ReactNode | undefined => {
-    if (!rightIcon && !globalRightIcon) {
-      return
-    }
-
-    return (
-      <Box as="span" className="chakra-select__option-icon">
-        {runIfFn(rightIcon, isSelected) ??
-          runIfFn(globalRightIcon, { option, isSelected })}
-      </Box>
-    )
-  }
-
-  const renderContent = (): React.ReactNode => {
-    if (!leftIcon && !rightIcon && !globalLeftIcon && !globalRightIcon) {
-      return children
-    }
-
-    return <Box className="chakra-select__option-label">{children}</Box>
-  }
-
   return (
-    <Box
+    <chakra.li
       className={cx(
-        "chakra-select__select-option",
+        "chakra-select__option",
         isSelected && "chakra-select__option-active",
-        isDisabled && "chakra-option-disabled",
+        isDisabled && "chakra-select__option-disabled",
       )}
-      as="li"
-      sx={{ ...styles.option, ...sx }}
+      __css={styles.option}
       {...optionProps}
       {...restProps}
     >
-      {renderLeftIcon()}
-      {renderContent()}
-      {renderRightIcon()}
-    </Box>
+      <SelectOptionIcon
+        icon={leftIcon}
+        globalIcon={globalLeftIcon}
+        isSelected={isSelected}
+        option={option}
+      />
+      <SelectOptionContent
+        leftIcon={leftIcon}
+        rightIcon={rightIcon}
+        globalLeftIcon={globalLeftIcon}
+        globalRightIcon={globalRightIcon}
+      >
+        {children}
+      </SelectOptionContent>
+      <SelectOptionIcon
+        icon={rightIcon}
+        globalIcon={globalRightIcon}
+        isSelected={isSelected}
+        option={option}
+      />
+    </chakra.li>
   )
 }
 

@@ -7,7 +7,7 @@ interface SelectInputProps extends InputProps {
 }
 
 const SelectInput = React.forwardRef<HTMLInputElement, SelectInputProps>(
-  ({ name, sx, ...restProps }, forwardRef) => {
+  ({ name, ...restProps }, forwardRef) => {
     const styles = useSelectStyles()
     const { value } = useSelectContext()
 
@@ -15,7 +15,7 @@ const SelectInput = React.forwardRef<HTMLInputElement, SelectInputProps>(
       <Input
         {...restProps}
         ref={forwardRef}
-        sx={{ ...styles.input, ...sx }}
+        __css={styles.input}
         readOnly
         name={name}
         value={value || ""}
