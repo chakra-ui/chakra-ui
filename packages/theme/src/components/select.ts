@@ -86,9 +86,11 @@ const SelectStyles: ComponentMultiStyleConfig = {
         },
         _hover: {
           bg: mode("gray.100", "whiteAlpha.100")(props),
+          outline: "none",
         },
         _focus: {
           bg: mode("gray.100", "whiteAlpha.100")(props),
+          outline: "none",
         },
         "&.chakra-select__option-disabled": {
           bg: "gray.100",

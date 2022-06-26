@@ -50,7 +50,7 @@ const useSelectTrigger = ({ onClick, forwardRef }: UseSelectTriggerProps) => {
   }
 
   const onKeyDown = (event: KeyboardEvent) => {
-    event.preventDefault()
+    if (isOpen) event.preventDefault()
   }
 
   const onButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
