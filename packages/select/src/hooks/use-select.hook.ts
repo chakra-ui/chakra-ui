@@ -1,11 +1,11 @@
 import React, { useCallback } from "react"
-import { useControllableState, useIds } from "@chakra-ui/react"
+import { useControllableState, useIds } from "@chakra-ui/hooks"
 import {
   SelectControlProps,
   SelectOption,
   SelectRenderProps,
   SelectValue,
-} from "../interfaces/select.interface"
+} from "../select.interface"
 
 export type UseSelectProps = SelectControlProps & SelectRenderProps
 

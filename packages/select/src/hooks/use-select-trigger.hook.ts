@@ -1,8 +1,7 @@
-import { useMergeRefs } from "@chakra-ui/react"
-import { useFocusOnHide } from "@chakra-ui/hooks"
+import { useFocusOnHide, useMergeRefs } from "@chakra-ui/hooks"
 import React, { KeyboardEvent, useMemo } from "react"
-import { SelectKeyboardKey } from "../enums/select.enum"
-import { useSelectContext } from "../select.component"
+import { SelectKeyboardKey } from "../enums/select-keyboard-key"
+import { useSelectContext } from "../select"
 
 interface UseSelectTriggerProps {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void

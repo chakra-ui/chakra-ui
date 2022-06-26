@@ -1,8 +1,9 @@
-import { Box, BoxProps } from "@chakra-ui/react"
+import { Box, BoxProps } from "@chakra-ui/layout"
 import React from "react"
 import { SystemStyleObject } from "@chakra-ui/styled-system"
+import { __DEV__ } from "@chakra-ui/utils"
 import useSelectMenu from "../hooks/use-select-menu.hook"
-import { useSelectContext, useSelectStyles } from "../select.component"
+import { useSelectContext, useSelectStyles } from "../select"
 
 export interface SelectMenuProps extends BoxProps {
   children: React.ReactNode
@@ -30,6 +31,10 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
       {children}
     </Box>
   )
+}
+
+if (__DEV__) {
+  SelectMenu.displayName = "SelectMenu"
 }
 
 export default SelectMenu

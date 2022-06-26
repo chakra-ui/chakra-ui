@@ -1,1 +1,7 @@
 export * from "./select"
+export * from "./components/select-input.component"
+export * from "./components/select-menu.component"
+export * from "./components/select-option.component"
+export * from "./components/select-trigger.component"
+export * from "./hooks/use-select.hook"
+export * from "./simple-select"

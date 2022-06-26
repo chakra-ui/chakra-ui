@@ -1,6 +1,6 @@
 import { KeyboardEvent } from "react"
-import { SelectKeyboardKey } from "../enums/select.enum"
-import { useSelectContext } from "../select.component"
+import { SelectKeyboardKey } from "../enums/select-keyboard-key"
+import { useSelectContext } from "../select"
 
 const useSelectMenu = () => {
   const {

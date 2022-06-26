@@ -1,8 +1,8 @@
-import { usePrevious } from "@chakra-ui/react"
+import { usePrevious } from "@chakra-ui/hooks"
 import React, { KeyboardEvent } from "react"
-import { SelectOption } from "../interfaces/select.interface"
-import { SelectKeyboardKey } from "../enums/select.enum"
-import { useSelectContext } from "../select.component"
+import { SelectOption } from "../select.interface"
+import { SelectKeyboardKey } from "../enums/select-keyboard-key"
+import { useSelectContext } from "../select"
 
 const useSelectOption = (option: SelectOption) => {
   const {

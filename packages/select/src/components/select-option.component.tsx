@@ -1,14 +1,15 @@
-import { Box, chakra, ChakraProps } from "@chakra-ui/react"
-import { cx, runIfFn } from "@chakra-ui/utils"
+import { cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import React from "react"
 import { MaybeRenderProp } from "@chakra-ui/react-utils"
+import { chakra, ChakraProps } from "@chakra-ui/system"
+import { Box } from "@chakra-ui/layout"
 import {
   SelectOption as SelectOptionInterface,
   SelectOptionIconRenderProps,
   SelectValue,
-} from "../interfaces/select.interface"
+} from "../select.interface"
 import useSelectOption from "../hooks/use-select-option.hook"
-import { useSelectContext, useSelectStyles } from "../select.component"
+import { useSelectContext, useSelectStyles } from "../select"
 
 export interface SelectOptionProps extends ChakraProps {
   value: SelectValue
@@ -109,6 +110,10 @@ const SelectOption: React.FC<SelectOptionProps> = ({
       />
     </chakra.li>
   )
+}
+
+if (__DEV__) {
+  SelectOption.displayName = "SelectOption"
 }
 
 export default SelectOption

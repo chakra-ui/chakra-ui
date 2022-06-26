@@ -1,9 +1,10 @@
-import { Button, ButtonProps, chakra } from "@chakra-ui/react"
 import React from "react"
-import { runIfFn } from "@chakra-ui/utils"
+import { runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { MaybeRenderPropElement } from "@chakra-ui/react-utils"
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons"
-import { useSelectContext, useSelectStyles } from "../select.component"
+import { Button, ButtonProps } from "@chakra-ui/button"
+import { chakra } from "@chakra-ui/system"
+import { useSelectContext, useSelectStyles } from "../select"
 import useSelectTrigger from "../hooks/use-select-trigger.hook"
 
 export interface SelectButtonProps
@@ -59,6 +60,8 @@ const SelectTrigger = React.forwardRef<HTMLButtonElement, SelectButtonProps>(
   },
 )
 
-SelectTrigger.displayName = "SelectTrigger"
+if (__DEV__) {
+  SelectTrigger.displayName = "SelectTrigger"
+}
 
 export default SelectTrigger

@@ -1,4 +1,4 @@
-import { useSelectContext } from "../select.component"
+import { useSelectContext } from "../select"
 
 const useSelectLabel = () => {
   const { id } = useSelectContext()
