@@ -95,7 +95,7 @@ export interface SimpleSelectProps
  */
 export const SimpleSelect = forwardRef<SimpleSelectProps, "select">(
   (props, ref) => {
-    const styles = useMultiStyleConfig("Select", props)
+    const styles = useMultiStyleConfig("SimpleSelect", props)
 
     const {
       rootProps,

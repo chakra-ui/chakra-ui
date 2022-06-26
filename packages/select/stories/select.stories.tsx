@@ -16,7 +16,7 @@ import SelectTrigger from "../src/components/select-trigger.component"
 import { SelectValue } from "../src/select.interface"
 
 const selectStories: ComponentMeta<typeof Select> = {
-  title: "Components/Select",
+  title: "Components / Forms / Select",
   component: Select,
   argTypes: {
     children: {

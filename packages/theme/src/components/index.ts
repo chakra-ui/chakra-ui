@@ -27,6 +27,7 @@ import Popover from "./popover"
 import Progress from "./progress"
 import Radio from "./radio"
 import Select from "./select"
+import SimpleSelect from "./simple-select"
 import Skeleton from "./skeleton"
 import SkipLink from "./skip-link"
 import Slider from "./slider"
@@ -68,6 +69,7 @@ export { default as Popover } from "./popover"
 export { default as Progress } from "./progress"
 export { default as Radio } from "./radio"
 export { default as Select } from "./select"
+export { default as SimpleSelect } from "./simple-select"
 export { default as Skeleton } from "./skeleton"
 export { default as SkipLink } from "./skip-link"
 export { default as Slider } from "./slider"
@@ -109,6 +111,7 @@ export default {
   Progress,
   Radio,
   Select,
+  SimpleSelect,
   Skeleton,
   SkipLink,
   Slider,

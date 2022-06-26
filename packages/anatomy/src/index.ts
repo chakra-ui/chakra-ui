@@ -110,7 +110,18 @@ export const radioAnatomy = anatomy("radio").parts(
   "label",
 )
 
-export const selectAnatomy = anatomy("select").parts("field", "icon")
+export const simpleSelectAnatomy = anatomy("simple-select").parts(
+  "field",
+  "icon",
+)
+
+export const selectAnatomy = anatomy("select").parts(
+  "wrapper",
+  "input",
+  "trigger",
+  "menu",
+  "option",
+)
 
 export const sliderAnatomy = anatomy("slider").parts(
   "container",
