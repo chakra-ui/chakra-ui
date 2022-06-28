@@ -132,11 +132,17 @@ export type WithTransitionConfig<P extends object> = Omit<P, "transition"> & {
 }
 
 export const withDelay = {
-  enter: (transition: Transition, delay?: number | DelayConfig) => ({
+  enter: (
+    transition: Transition,
+    delay?: number | DelayConfig,
+  ): Transition & { delay: number | undefined } => ({
     ...transition,
     delay: isNumber(delay) ? delay : delay?.["enter"],
   }),
-  exit: (transition: Transition, delay?: number | DelayConfig) => ({
+  exit: (
+    transition: Transition,
+    delay?: number | DelayConfig,
+  ): Transition & { delay: number | undefined } => ({
     ...transition,
     delay: isNumber(delay) ? delay : delay?.["exit"],
   }),
