@@ -42,6 +42,10 @@ const NativeImage = React.forwardRef(
   },
 )
 
+if (__DEV__) {
+  NativeImage.displayName = "NativeImage"
+}
+
 interface ImageOptions extends NativeImageOptions {
   /**
    * Fallback image `src` to show if image is loading or image fails.

@@ -2,30 +2,22 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 10,
-    "ecmaFeatures": {
-      "jsx": true
-    }
+    "ecmaVersion": 10
   },
   "extends": [
     "plugin:import/recommended",
     "plugin:import/typescript",
+    "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "airbnb-typescript",
-    "prettier",
-    "prettier/react",
-    "prettier/@typescript-eslint"
-  ],
-  "plugins": [
-    "react-hooks",
-    "@typescript-eslint/eslint-plugin",
-    "testing-library"
+    "prettier"
   ],
   "env": {
     "es6": true,
     "browser": true,
     "node": true
   },
+  "plugins": ["@typescript-eslint/eslint-plugin", "testing-library"],
   "rules": {
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-use-before-define": "off",
@@ -34,6 +26,7 @@
     "jsx-a11y/no-autofocus": "off",
     "react/forbid-prop-types": "off",
     "import/prefer-default-export": "off",
+    "import/export": "off",
     "no-underscore-dangle": "off",
     "no-shadow": "off",
     "no-plusplus": "off",

@@ -6,15 +6,15 @@
   },
   "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
     "ecmaVersion": 2018,
     "sourceType": "module",
     "allowImportExportEverywhere": true
   },
-  "extends": ["plugin:react/recommended", "plugin:prettier/recommended"],
-  "plugins": ["react"],
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "prettier"
+  ],
   "rules": {
     "react/prop-types": "off",
     "prettier/prettier": [
