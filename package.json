@@ -147,7 +147,7 @@
     "lodash": "^4.17.21",
     "mkdirp": "^1.0.4",
     "plop": "2.7.6",
-    "prettier": "^2.4.1",
+    "prettier": "^2.7.1",
     "react": "^18.0.0",
     "react-chartjs-2": "^3.3.0",
     "react-dom": "^18.0.0",
