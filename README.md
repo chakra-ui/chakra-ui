@@ -143,7 +143,7 @@ More guides on how to get started are available
 
 ## `create-react-app` Templates
 
-[Check out our guide](https://chakra-ui.com/guides/integrations/with-cra) for
+[Check out our guide](https://chakra-ui.com/getting-started/cra-guide) for
 information on how to use our official `create-react-app` templates.
 
 ## Contributing

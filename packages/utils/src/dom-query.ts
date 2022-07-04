@@ -20,14 +20,14 @@ const focusableElList = [
 
 const focusableElSelector = focusableElList.join()
 
+const isVisible = (el: HTMLElement) => el.offsetWidth > 0 && el.offsetHeight > 0
+
 export function getAllFocusable<T extends HTMLElement>(container: T) {
   const focusableEls = Array.from(
     container.querySelectorAll<T>(focusableElSelector),
   )
   focusableEls.unshift(container)
-  return focusableEls
-    .filter(isFocusable)
-    .filter((el) => window.getComputedStyle(el).display !== "none")
+  return focusableEls.filter((el) => isFocusable(el) && isVisible(el))
 }
 
 export function getFirstFocusable<T extends HTMLElement>(container: T) {
