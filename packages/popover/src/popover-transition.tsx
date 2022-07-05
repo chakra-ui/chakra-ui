@@ -1,6 +1,6 @@
 import { chakra, HTMLChakraProps } from "@chakra-ui/system"
 import { HTMLMotionProps, motion, Variant } from "framer-motion"
-import { mergeWith } from "@chakra-ui/utils"
+import { mergeWith, __DEV__ } from "@chakra-ui/utils"
 import React from "react"
 import { usePopoverContext } from "./popover-context"
 
@@ -78,4 +78,8 @@ export const PopoverTransition = React.forwardRef(
 
 PopoverTransition.defaultProps = {
   variants: scaleFade,
+}
+
+if (__DEV__) {
+  PopoverTransition.displayName = "PopoverTransition"
 }
