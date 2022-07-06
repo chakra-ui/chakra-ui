@@ -350,7 +350,12 @@ export function usePopover(props: UsePopoverProps = {}) {
          *
          * @see https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html
          */
-        triggerProps.onFocus = callAllHandlers(props.onFocus, onOpen)
+        triggerProps.onFocus = callAllHandlers(props.onFocus, () => {
+          // If openTimeout.current does not exist, the user is using keyboard focus (not mouse hover/click)
+          if (openTimeout.current === undefined) {
+            onOpen()
+          }
+        })
         triggerProps.onBlur = callAllHandlers(props.onBlur, (event) => {
           const relatedTarget = getRelatedTarget(event)
           const isValidBlur = !contains(popoverRef.current, relatedTarget)
