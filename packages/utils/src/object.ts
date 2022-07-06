@@ -70,7 +70,7 @@ type Get = (
   index?: number,
 ) => any
 
-export const memoize = (fn: Get) => {
+export const memoize = /* @__PURE__ */ (fn: Get) => {
   const cache = new WeakMap()
 
   const memoizedFn: Get = (obj, path, fallback, index) => {
@@ -98,7 +98,7 @@ export const memoize = (fn: Get) => {
   return memoizedFn
 }
 
-export const memoizedGet = memoize(get)
+export const memoizedGet = /* @__PURE__ */ memoize(get)
 
 /**
  * Get value from deeply nested object, based on path
