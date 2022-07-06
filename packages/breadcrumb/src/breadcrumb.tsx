@@ -14,6 +14,7 @@ import { getValidChildren } from "@chakra-ui/react-utils"
 import * as React from "react"
 
 const [StylesProvider, useStyles] = createStylesContext("Breadcrumb")
+export const useBreadcrumbStyles = useStyles
 
 export interface BreadcrumbSeparatorProps extends HTMLChakraProps<"div"> {
   /**

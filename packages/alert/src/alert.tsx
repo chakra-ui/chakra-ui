@@ -15,6 +15,7 @@ import { Spinner } from "@chakra-ui/spinner"
 import { CheckIcon, InfoIcon, WarningIcon } from "./icons"
 
 const [StylesProvider, useStyles] = createStylesContext("Alert")
+export const useAlertStyles = useStyles
 
 const STATUSES = {
   info: { icon: InfoIcon, colorScheme: "blue" },

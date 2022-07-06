@@ -19,6 +19,7 @@ import {
 } from "./use-number-input"
 
 const [StylesProvider, useStyles] = createStylesContext("NumberInput")
+export const useNumberInputStyles = useStyles
 
 interface NumberInputContext extends Omit<UseNumberInputReturn, "htmlProps"> {}
 
