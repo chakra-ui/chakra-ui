@@ -39,6 +39,7 @@ async function readTheme(themeFilePath: string) {
       project: tsConfig.configFileAbsolutePath,
       compilerOptions: {
         module: "CommonJS",
+        esModuleInterop: true,
       },
       transpileOnly: true,
       swc: true,
