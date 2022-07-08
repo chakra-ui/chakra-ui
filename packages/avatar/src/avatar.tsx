@@ -16,6 +16,7 @@ import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
 const [StylesProvider, useStyles] = createStylesContext("Avatar")
+export const useAvatarStyles = useStyles
 
 interface AvatarOptions {
   /**

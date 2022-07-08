@@ -11,6 +11,7 @@ import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
 const [StylesProvider, useStyles] = createStylesContext("Table")
+export const useTableStyles = useStyles
 
 export interface TableContainerProps extends HTMLChakraProps<"div"> {}
 

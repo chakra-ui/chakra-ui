@@ -18,6 +18,7 @@ import {
 } from "./progress.utils"
 
 const [StylesProvider, useStyles] = createStylesContext("Progress")
+export const useProgressStyles = useStyles
 
 export interface ProgressLabelProps extends HTMLChakraProps<"div"> {}
 

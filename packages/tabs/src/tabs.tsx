@@ -25,6 +25,7 @@ import {
 } from "./use-tabs"
 
 const [StylesProvider, useStyles] = createStylesContext("Tabs")
+export const useTabsStyles = useStyles
 
 interface TabsOptions {
   /**

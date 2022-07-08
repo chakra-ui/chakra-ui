@@ -13,6 +13,7 @@ import * as React from "react"
 import { useFormControlContext } from "./form-control"
 
 const [StylesProvider, useStyles] = createStylesContext("FormError")
+export const useFormErrorStyles = useStyles
 
 export interface FormErrorMessageProps
   extends HTMLChakraProps<"div">,

@@ -20,6 +20,7 @@ import { usePopover, UsePopoverProps } from "./use-popover"
 export { usePopoverContext }
 
 const [StylesProvider, useStyles] = createStylesContext("Popover")
+export const usePopoverStyles = useStyles
 
 export interface PopoverProps extends UsePopoverProps, ThemingProps<"Popover"> {
   /**
