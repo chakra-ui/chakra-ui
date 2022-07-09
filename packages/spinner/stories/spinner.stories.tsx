@@ -1,5 +1,5 @@
 import { ThemeProvider, useTheme } from "@chakra-ui/system"
-import { mergeWith } from "@chakra-ui/utils"
+import mergeWith from "lodash.mergewith"
 import * as React from "react"
 import { Spinner } from "../src"
 
