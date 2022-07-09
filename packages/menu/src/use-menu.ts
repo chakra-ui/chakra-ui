@@ -11,8 +11,8 @@ import {
   useShortcut,
   useUnmountEffect,
   useUpdateEffect,
+  useAnimationState,
 } from "@chakra-ui/hooks"
-import { useAnimationState } from "@chakra-ui/hooks/use-animation-state"
 import { usePopper, UsePopperProps } from "@chakra-ui/popper"
 import {
   createContext,

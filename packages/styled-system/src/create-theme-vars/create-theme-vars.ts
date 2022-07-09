@@ -1,4 +1,5 @@
-import { Dict, isObject, mergeWith } from "@chakra-ui/utils"
+import { Dict, isObject } from "@chakra-ui/utils"
+import mergeWith from "lodash.mergewith"
 import { calc, Operand } from "./calc"
 import { cssVar } from "./css-var"
 import { FlatToken, FlatTokens } from "./flatten-tokens"
@@ -78,6 +79,7 @@ export function createThemeVars(
       cssVars,
       Object.entries(normalizedValue).reduce(
         (acc, [conditionAlias, conditionValue]) => {
+          // @ts-ignore
           const maybeReference = lookupToken(conditionValue)
           if (conditionAlias === "default") {
             acc[variable] = maybeReference

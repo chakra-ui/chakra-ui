@@ -1,8 +1,10 @@
 import { isNotNumber } from "./assertion"
 import { warn } from "./function"
 
-export const minSafeInteger = Number.MIN_SAFE_INTEGER || -9007199254740991
-export const maxSafeInteger = Number.MAX_SAFE_INTEGER || 9007199254740991
+export const minSafeInteger =
+  /*@__PURE__*/ Number.MIN_SAFE_INTEGER || -9007199254740991
+export const maxSafeInteger =
+  /*@__PURE__*/ Number.MAX_SAFE_INTEGER || 9007199254740991
 
 function toNumber(value: any) {
   const num = parseFloat(value)

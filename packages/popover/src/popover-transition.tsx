@@ -1,8 +1,9 @@
 import { chakra, HTMLChakraProps } from "@chakra-ui/system"
 import { HTMLMotionProps, motion, Variant } from "framer-motion"
-import { mergeWith, __DEV__ } from "@chakra-ui/utils"
+import { __DEV__ } from "@chakra-ui/utils"
 import React from "react"
 import { usePopoverContext } from "./popover-context"
+import mergeWith from "lodash.mergewith"
 
 // TODO: consider moving this to some util
 type HTMLMotionChakraProps<T extends keyof React.ReactHTML> = Omit<

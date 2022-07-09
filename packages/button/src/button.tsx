@@ -9,7 +9,8 @@ import {
   ThemingProps,
   useStyleConfig,
 } from "@chakra-ui/system"
-import { cx, dataAttr, mergeWith, __DEV__ } from "@chakra-ui/utils"
+import mergeWith from "lodash.mergewith"
+import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useButtonGroup } from "./button-group"
 import { ButtonSpinner } from "./button-spinner"
@@ -98,6 +99,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
    * So let's read the component styles and then add `zIndex` to it.
    */
   const buttonStyles: SystemStyleObject = React.useMemo(() => {
+    // @ts-ignore
     const _focus = mergeWith({}, styles?.["_focus"] ?? {}, { zIndex: 1 })
     return {
       display: "inline-flex",

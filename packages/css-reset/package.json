@@ -13,9 +13,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-css-reset.cjs.js",
-  "module": "dist/chakra-ui-css-reset.esm.js",
-  "types": "dist/chakra-ui-css-reset.cjs.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -29,6 +29,9 @@
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format=cjs,esm --dts"
   },
   "peerDependencies": {
     "@emotion/react": ">=10.0.35",

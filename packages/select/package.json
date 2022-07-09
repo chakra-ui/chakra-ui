@@ -15,9 +15,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-select.cjs.js",
-  "module": "dist/chakra-ui-select.esm.js",
-  "types": "dist/chakra-ui-select.cjs.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -32,12 +32,17 @@
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
+  "scripts": {
+    "build": "tsup src/index.ts --format=cjs,esm --dts"
+  },
   "dependencies": {
     "@chakra-ui/form-control": "2.0.2",
-    "@chakra-ui/utils": "2.0.2"
+    "lodash.mergewith": "4.6.2"
   },
   "devDependencies": {
     "@chakra-ui/system": "2.2.0",
+    "@chakra-ui/utils": "2.0.2",
+    "@types/lodash.mergewith": "^4.6.7",
     "react": "^18.0.0"
   },
   "peerDependencies": {

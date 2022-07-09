@@ -16,9 +16,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-skeleton.cjs.js",
-  "module": "dist/chakra-ui-skeleton.esm.js",
-  "types": "dist/chakra-ui-skeleton.cjs.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -33,22 +33,28 @@
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
+  "scripts": {
+    "build": "tsup src/index.ts --format=cjs,esm --dts"
+  },
   "dependencies": {
-    "@chakra-ui/hooks": "2.0.2",
     "@chakra-ui/media-query": "3.1.1",
-    "@chakra-ui/system": "2.2.0",
-    "@chakra-ui/utils": "2.0.2"
+    "lodash.mergewith": "4.6.2"
   },
   "peerDependencies": {
+    "@chakra-ui/system": "2.2.0",
     "@chakra-ui/theme": ">=2.0.0-next.0",
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
     "react": ">=18"
   },
   "devDependencies": {
+    "@chakra-ui/hooks": "2.0.2",
+    "@chakra-ui/system": "2.2.0",
     "@chakra-ui/theme": "^2.1.1",
+    "@chakra-ui/utils": "2.0.2",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@types/lodash.mergewith": "^4.6.7",
     "react": "^18.0.0"
   }
 }

@@ -1,4 +1,5 @@
-import { cx, mergeWith, warn, __DEV__ } from "@chakra-ui/utils"
+import { cx, warn, __DEV__ } from "@chakra-ui/utils"
+import mergeWith from "lodash.mergewith"
 import {
   AnimatePresence,
   HTMLMotionProps,

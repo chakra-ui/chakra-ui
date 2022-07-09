@@ -7,7 +7,8 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { mergeWith, __DEV__ } from "@chakra-ui/utils"
+import { __DEV__ } from "@chakra-ui/utils"
+import mergeWith from "lodash.mergewith"
 import * as React from "react"
 
 export interface SkipNavLinkProps

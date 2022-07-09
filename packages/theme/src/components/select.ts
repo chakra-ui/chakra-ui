@@ -5,7 +5,7 @@ import type {
   SystemStyleFunction,
   SystemStyleObject,
 } from "@chakra-ui/theme-tools"
-import { mergeWith } from "@chakra-ui/utils"
+import mergeWith from "lodash.mergewith"
 import { mode } from "@chakra-ui/theme-tools"
 import Input from "./input"
 

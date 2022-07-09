@@ -79,7 +79,7 @@ export function isEmpty(value: any): boolean {
   return false
 }
 
-export const __DEV__ = process.env.NODE_ENV !== "production"
+export const __DEV__ = /*@__PURE__*/ process.env.NODE_ENV !== "production"
 
 export function isRefObject(val: any): val is { current: any } {
   return "current" in val

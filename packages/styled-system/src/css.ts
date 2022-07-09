@@ -1,11 +1,5 @@
-import {
-  Dict,
-  isCssVar,
-  isObject,
-  isString,
-  mergeWith as merge,
-  runIfFn,
-} from "@chakra-ui/utils"
+import { Dict, isCssVar, isObject, isString, runIfFn } from "@chakra-ui/utils"
+import mergeWith from "lodash.mergewith"
 import * as CSS from "csstype"
 import { pseudoSelectors } from "./pseudos"
 import { systemProps as systemPropConfigs } from "./system"
@@ -81,7 +75,11 @@ export function getCss(options: GetCSSOptions) {
 
       if (isObject(value)) {
         computedStyles[key] = computedStyles[key] ?? {}
-        computedStyles[key] = merge({}, computedStyles[key], css(value, true))
+        computedStyles[key] = mergeWith(
+          {},
+          computedStyles[key],
+          css(value, true),
+        )
         continue
       }
 
@@ -107,7 +105,7 @@ export function getCss(options: GetCSSOptions) {
 
       if (!nested && config?.static) {
         const staticStyles = runIfFn(config.static, theme)
-        computedStyles = merge({}, computedStyles, staticStyles)
+        computedStyles = mergeWith({}, computedStyles, staticStyles)
       }
 
       if (configProperty && Array.isArray(configProperty)) {
@@ -119,7 +117,7 @@ export function getCss(options: GetCSSOptions) {
 
       if (configProperty) {
         if (configProperty === "&" && isObject(rawValue)) {
-          computedStyles = merge({}, computedStyles, rawValue)
+          computedStyles = mergeWith({}, computedStyles, rawValue)
         } else {
           computedStyles[configProperty as string] = rawValue
         }
@@ -127,7 +125,7 @@ export function getCss(options: GetCSSOptions) {
       }
 
       if (isObject(rawValue)) {
-        computedStyles = merge({}, computedStyles, rawValue)
+        computedStyles = mergeWith({}, computedStyles, rawValue)
         continue
       }
 

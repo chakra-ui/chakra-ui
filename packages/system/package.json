@@ -16,9 +16,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-system.cjs.js",
-  "module": "dist/chakra-ui-system.esm.js",
-  "types": "dist/chakra-ui-system.cjs.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -33,11 +33,13 @@
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
+  "scripts": {
+    "build": "tsup src/index.ts --format=cjs,esm --dts"
+  },
   "dependencies": {
     "@chakra-ui/color-mode": "2.1.0",
-    "@chakra-ui/react-utils": "2.0.1",
     "@chakra-ui/styled-system": "2.2.1",
-    "@chakra-ui/utils": "2.0.2",
+    "lodash.mergewith": "4.6.2",
     "react-fast-compare": "3.2.0"
   },
   "peerDependencies": {
@@ -46,8 +48,11 @@
     "react": ">=18"
   },
   "devDependencies": {
+    "@chakra-ui/react-utils": "2.0.1",
+    "@chakra-ui/utils": "2.0.2",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@types/lodash.mergewith": "^4.6.7",
     "react": "^18.0.0"
   }
 }

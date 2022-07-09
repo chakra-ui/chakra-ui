@@ -10,7 +10,8 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, mergeWith, split, __DEV__, dataAttr } from "@chakra-ui/utils"
+import { cx, split, __DEV__, dataAttr } from "@chakra-ui/utils"
+import mergeWith from "lodash.mergewith"
 import * as React from "react"
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"

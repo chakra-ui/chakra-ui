@@ -1,4 +1,5 @@
-import { mergeWith, objectKeys } from "@chakra-ui/utils"
+import { objectKeys } from "@chakra-ui/utils"
+import mergeWith from "lodash.mergewith"
 import {
   background,
   border,

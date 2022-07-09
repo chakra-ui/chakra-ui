@@ -2,15 +2,18 @@
   "name": "@chakra-ui/react",
   "version": "2.2.2",
   "description": "Responsive and accessible React UI components built with React and Emotion",
-  "main": "dist/chakra-ui-react.cjs.js",
-  "module": "dist/chakra-ui-react.esm.js",
-  "types": "dist/chakra-ui-react.cjs.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "build": "tsup src/index.tsx --format=cjs,esm --dts"
   },
   "dependencies": {
     "@chakra-ui/accordion": "2.0.4",
@@ -59,7 +62,16 @@
     "@chakra-ui/tooltip": "2.0.3",
     "@chakra-ui/transition": "2.0.2",
     "@chakra-ui/utils": "2.0.2",
-    "@chakra-ui/visually-hidden": "2.0.2"
+    "@chakra-ui/visually-hidden": "2.0.2",
+    "lodash.mergewith": "4.6.2"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@types/lodash.mergewith": "^4.6.7",
+    "framer-motion": "^6.2.9",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
@@ -91,12 +103,5 @@
   "storybook": {
     "title": "Chakra UI",
     "url": "https://storybook.chakra-ui.com"
-  },
-  "devDependencies": {
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "framer-motion": "^6.2.9",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
   }
 }

@@ -45,7 +45,9 @@ export const Textarea = forwardRef<TextareaProps, "textarea">((props, ref) => {
 
   const textareaProps = useFormControl<HTMLTextAreaElement>(rest)
 
-  const textareaStyles = rows ? omit(styles, omitted) : styles
+  const textareaStyles = rows
+    ? omit(styles, omitted as (keyof typeof styles)[])
+    : styles
 
   return (
     <chakra.textarea

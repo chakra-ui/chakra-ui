@@ -14,9 +14,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-media-query.cjs.js",
-  "module": "dist/chakra-ui-media-query.esm.js",
-  "types": "dist/chakra-ui-media-query.cjs.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -31,14 +31,15 @@
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
-  "dependencies": {
-    "@chakra-ui/react-env": "2.0.2",
-    "@chakra-ui/utils": "2.0.2"
+  "scripts": {
+    "build": "tsup src/index.ts --format=cjs,esm --dts"
   },
   "devDependencies": {
+    "@chakra-ui/react-env": "2.0.2",
     "@chakra-ui/system": "2.2.0",
     "@chakra-ui/test-utils": "2.0.8",
     "@chakra-ui/theme": "2.1.1",
+    "@chakra-ui/utils": "2.0.2",
     "jest-matchmedia-mock": "^1.1.0",
     "react": "^18.0.0"
   },

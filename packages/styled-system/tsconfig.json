@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": ["src"],
+  "compilerOptions": {
+    "strict": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "ES2018",
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "emitDeclarationOnly": true,
+    "declaration": true
+  }
+}

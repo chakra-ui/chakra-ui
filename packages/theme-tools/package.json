@@ -12,9 +12,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-theme-tools.cjs.js",
-  "module": "dist/chakra-ui-theme-tools.esm.js",
-  "types": "dist/chakra-ui-theme-tools.cjs.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -29,14 +29,18 @@
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
+  "scripts": {
+    "build": "tsup src/index.ts --format=cjs,esm --dts"
+  },
   "dependencies": {
-    "@chakra-ui/utils": "2.0.2",
     "@ctrl/tinycolor": "^3.4.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">=2.0.0-next.0"
+    "@chakra-ui/system": ">=2.0.0-next.0",
+    "@chakra-ui/utils": "2.0.2"
   },
   "devDependencies": {
-    "@chakra-ui/system": "2.2.0"
+    "@chakra-ui/system": "2.2.0",
+    "@chakra-ui/utils": "2.0.2"
   }
 }

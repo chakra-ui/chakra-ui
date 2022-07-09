@@ -3,7 +3,7 @@ import { isArray, isObject } from "./assertion"
 import { objectKeys } from "./object"
 import { Dict } from "./types"
 
-export const breakpoints = Object.freeze([
+export const breakpoints = /*@__PURE__*/ Object.freeze([
   "base",
   "sm",
   "md",

@@ -1,11 +1,11 @@
 import {
   Dict,
   isArray,
-  mergeWith,
   runIfFn,
   isObject,
   toMediaQueryString,
 } from "@chakra-ui/utils"
+import mergeWith from "lodash.mergewith"
 import { ResponsiveValue, WithCSSVar } from "./utils"
 
 type Theme = WithCSSVar<Dict>

@@ -63,14 +63,14 @@ type MessageOptions = {
   message: string
 }
 
-export const warn = once((options: MessageOptions) => () => {
+export const warn = /* @__PURE__ */ once((options: MessageOptions) => () => {
   const { condition, message } = options
   if (condition && __DEV__) {
     console.warn(message)
   }
 })
 
-export const error = once((options: MessageOptions) => () => {
+export const error = /* @__PURE__ */ once((options: MessageOptions) => () => {
   const { condition, message } = options
   if (condition && __DEV__) {
     console.error(message)

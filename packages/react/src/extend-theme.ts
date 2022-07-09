@@ -1,11 +1,6 @@
 import { theme, ChakraTheme, isChakraTheme, Theme } from "@chakra-ui/theme"
-import {
-  AnyFunction,
-  Dict,
-  isFunction,
-  mergeWith,
-  pipe,
-} from "@chakra-ui/utils"
+import { AnyFunction, Dict, isFunction, pipe } from "@chakra-ui/utils"
+import mergeWith from "lodash.mergewith"
 
 type CloneKey<Target, Key> = Key extends keyof Target ? Target[Key] : unknown
 

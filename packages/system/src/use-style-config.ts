@@ -3,9 +3,9 @@ import {
   Dict,
   filterUndefined,
   memoizedGet as get,
-  mergeWith,
   omit,
 } from "@chakra-ui/utils"
+import mergeWith from "lodash.mergewith"
 import { useRef } from "react"
 import isEqual from "react-fast-compare"
 import { useChakra } from "./hooks"
