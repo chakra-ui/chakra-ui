@@ -144,6 +144,10 @@ export interface BorderProps {
   /**
    * The CSS `border` property
    */
+  br?: Token<CSS.Property.BorderRadius | number, "radii">
+  /**
+   * The CSS `border` property
+   */
   border?: Token<CSS.Property.Border | number, "borders">
   /**
    * The CSS `border-width` property
