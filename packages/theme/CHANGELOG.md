@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.1.2
+
+### Patch Changes
+
+- [#6106](https://github.com/chakra-ui/chakra-ui/pull/6106)
+  [`be7a20f15`](https://github.com/chakra-ui/chakra-ui/commit/be7a20f155e571a24cb99f28a5b9a60fa3b80a61)
+  Thanks [@RubenSmn](https://github.com/RubenSmn)! - Add border radius of zero
+  to the default full size modal
+
+- Updated dependencies
+  [[`36ef37d58`](https://github.com/chakra-ui/chakra-ui/commit/36ef37d58220dffc4b8e35c31fdcc57042e9a859),
+  [`6c15ec2c2`](https://github.com/chakra-ui/chakra-ui/commit/6c15ec2c2a32a36ecc2d169308379a6825619543)]:
+  - @chakra-ui/utils@2.0.3
+  - @chakra-ui/theme-tools@2.0.4
+
 ## 2.1.1
 
 ### Patch Changes

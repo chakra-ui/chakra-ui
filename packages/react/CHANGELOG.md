@@ -1,5 +1,65 @@
 # Change Log
 
+## 2.2.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`8bfeefbb5`](https://github.com/chakra-ui/chakra-ui/commit/8bfeefbb562fc5ada4757309db6b951c421342ad),
+  [`47478edbe`](https://github.com/chakra-ui/chakra-ui/commit/47478edbefe1a4b74421f5a64ea9953d2d867ff3),
+  [`ba5fc0883`](https://github.com/chakra-ui/chakra-ui/commit/ba5fc08834469b9de52b449e4fc3ff5217a627a3),
+  [`36ef37d58`](https://github.com/chakra-ui/chakra-ui/commit/36ef37d58220dffc4b8e35c31fdcc57042e9a859),
+  [`b6aa32a4b`](https://github.com/chakra-ui/chakra-ui/commit/b6aa32a4b4af82e42d98a9afa427174ab4cb4ab7),
+  [`be7a20f15`](https://github.com/chakra-ui/chakra-ui/commit/be7a20f155e571a24cb99f28a5b9a60fa3b80a61),
+  [`3d8e095df`](https://github.com/chakra-ui/chakra-ui/commit/3d8e095dfc696b3d903455319231e77d1c21d875),
+  [`6c15ec2c2`](https://github.com/chakra-ui/chakra-ui/commit/6c15ec2c2a32a36ecc2d169308379a6825619543),
+  [`778919455`](https://github.com/chakra-ui/chakra-ui/commit/7789194552404db8fe576c4d82ccfd0b940dd401)]:
+  - @chakra-ui/accordion@2.0.5
+  - @chakra-ui/alert@2.0.3
+  - @chakra-ui/avatar@2.0.4
+  - @chakra-ui/breadcrumb@2.0.3
+  - @chakra-ui/editable@2.0.3
+  - @chakra-ui/form-control@2.0.3
+  - @chakra-ui/menu@2.0.5
+  - @chakra-ui/number-input@2.0.3
+  - @chakra-ui/popover@2.0.3
+  - @chakra-ui/progress@2.0.4
+  - @chakra-ui/slider@2.0.3
+  - @chakra-ui/stat@2.0.3
+  - @chakra-ui/table@2.0.3
+  - @chakra-ui/tabs@2.0.5
+  - @chakra-ui/tag@2.0.3
+  - @chakra-ui/image@2.0.4
+  - @chakra-ui/modal@2.1.1
+  - @chakra-ui/utils@2.0.3
+  - @chakra-ui/transition@2.0.3
+  - @chakra-ui/theme@2.1.2
+  - @chakra-ui/react-env@2.0.3
+  - @chakra-ui/media-query@3.1.2
+  - @chakra-ui/portal@2.0.3
+  - @chakra-ui/layout@2.1.0
+  - @chakra-ui/toast@3.0.1
+  - @chakra-ui/checkbox@2.1.2
+  - @chakra-ui/input@2.0.3
+  - @chakra-ui/radio@2.0.4
+  - @chakra-ui/select@2.0.3
+  - @chakra-ui/textarea@2.0.4
+  - @chakra-ui/button@2.0.3
+  - @chakra-ui/close-button@2.0.3
+  - @chakra-ui/control-box@2.0.3
+  - @chakra-ui/counter@2.0.3
+  - @chakra-ui/hooks@2.0.3
+  - @chakra-ui/icon@3.0.3
+  - @chakra-ui/live-region@2.0.3
+  - @chakra-ui/pin-input@2.0.5
+  - @chakra-ui/provider@2.0.8
+  - @chakra-ui/skeleton@2.0.8
+  - @chakra-ui/spinner@2.0.3
+  - @chakra-ui/switch@2.0.5
+  - @chakra-ui/system@2.2.1
+  - @chakra-ui/tooltip@2.0.4
+  - @chakra-ui/visually-hidden@2.0.3
+
 ## 2.2.2
 
 ### Patch Changes

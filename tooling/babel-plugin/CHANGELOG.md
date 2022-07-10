@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.0.4
+
+### Patch Changes
+
+- [#6267](https://github.com/chakra-ui/chakra-ui/pull/6267)
+  [`47478edbe`](https://github.com/chakra-ui/chakra-ui/commit/47478edbefe1a4b74421f5a64ea9953d2d867ff3)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Update ESlint packages and
+  config
+
 ## 1.0.3
 
 ### Patch Changes
