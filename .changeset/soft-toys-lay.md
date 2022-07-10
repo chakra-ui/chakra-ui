@@ -4,4 +4,4 @@
 "@chakra-ui/portal": patch
 ---
 
-Fix hydration issues when using Suspense
+Fix hydration issues when using `Suspense`

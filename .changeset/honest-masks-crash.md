@@ -4,4 +4,4 @@
 "@chakra-ui/popover": patch
 ---
 
-add displayName to components using forwardRef
+Add `displayName` to components using `forwardRef`

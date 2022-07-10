@@ -2,4 +2,4 @@
 "@chakra-ui/utils": patch
 ---
 
-fix(utils): avoid TypeError in getCSSVar when theme is an empty object
+Fix `TypeError` in `getCSSVar` when the theme is an empty object

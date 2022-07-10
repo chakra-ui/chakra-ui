@@ -2,4 +2,5 @@
 "@chakra-ui/popover": patch
 ---
 
-Do not open the popover with a mouse click if trigger is hover.
+Fix issue where popover opens when mouse click opens the popover and trigget is
+set to `hover`.

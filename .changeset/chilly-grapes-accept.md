@@ -4,4 +4,4 @@
 "@chakra-ui/cra-template": patch
 ---
 
-Tweak eslintrc
+Update ESlint packages and config
