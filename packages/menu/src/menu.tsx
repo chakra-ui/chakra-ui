@@ -34,6 +34,7 @@ import {
 } from "./use-menu"
 
 const [StylesProvider, useStyles] = createStylesContext("Menu")
+export const useMenuStyles = useStyles
 
 export interface MenuProps extends UseMenuProps, ThemingProps<"Menu"> {
   children: MaybeRenderProp<{

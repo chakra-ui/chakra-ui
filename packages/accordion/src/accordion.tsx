@@ -25,6 +25,7 @@ import {
 } from "./use-accordion"
 
 const [StylesProvider, useStyles] = createStylesContext("Accordion")
+export const useAccordionStyles = useStyles
 
 /* -------------------------------------------------------------------------------------------------
  * Accordion - The wrapper that provides context for all accordion items

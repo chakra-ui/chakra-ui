@@ -39,6 +39,7 @@ async function readTheme(themeFilePath: string) {
       project: tsConfig.configFileAbsolutePath,
       compilerOptions: {
         module: "CommonJS",
+        esModuleInterop: true,
       },
       transpileOnly: true,
       swc: true,
@@ -85,7 +86,7 @@ async function readTheme(themeFilePath: string) {
   try {
     await fs.promises.stat(absoluteThemePath)
 
-    return importTheme(absoluteThemePath)
+    return await importTheme(absoluteThemePath)
   } catch (statError) {
     try {
       return importTheme(require.resolve(themeFilePath, { paths: [cwd] }))
