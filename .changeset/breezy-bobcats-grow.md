@@ -16,4 +16,5 @@
 "@chakra-ui/tag": patch
 ---
 
-export useStyles with component namespace
+Export `useStyles` equivalent for multipart component styles. Accordion exports
+`useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
