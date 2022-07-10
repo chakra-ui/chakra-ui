@@ -1,4 +1,5 @@
 import { ChakraProvider } from "@chakra-ui/provider"
+import { theme } from "@chakra-ui/theme"
 import "@testing-library/jest-dom/extend-expect"
 import { render as rtlRender, RenderOptions } from "@testing-library/react"
 import { toHaveNoViolations } from "jest-axe"
@@ -25,7 +26,7 @@ export function render(
     : React.Fragment
 
   const result = rtlRender(
-    <MaybeChakraProvider>
+    <MaybeChakraProvider {...(withChakraProvider && { theme })}>
       <Wrapper>{ui}</Wrapper>
     </MaybeChakraProvider>,
     rtlOptions,

@@ -34,7 +34,6 @@
     "clean:emotion-types": "rimraf node_modules/@emotion/core/types",
     "postinstall": "yarn clean:emotion-types && manypkg check",
     "csb:install": "yarn && ts-node scripts/csb.ts",
-    "prestart": "yarn && yarn bootstrap",
     "build:babel": "yarn pkg babel-plugin build",
     "build:cli": "yarn pkg @chakra-ui/cli build",
     "build:prop-docs": "yarn pkg props-docs build",

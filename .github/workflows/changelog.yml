@@ -41,7 +41,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile && yarn bootstrap
+        run: yarn install --frozen-lockfile
 
       - name: Setup Git
         run: |
