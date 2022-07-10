@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/menu",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "A React component to render accessible menus",
   "keywords": [
     "menu",
@@ -34,16 +34,16 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/clickable": "2.0.2",
+    "@chakra-ui/clickable": "2.0.3",
     "@chakra-ui/descendant": "3.0.3",
-    "@chakra-ui/hooks": "2.0.2",
+    "@chakra-ui/hooks": "2.0.3",
     "@chakra-ui/popper": "3.0.2",
     "@chakra-ui/react-utils": "2.0.1",
-    "@chakra-ui/transition": "2.0.2",
-    "@chakra-ui/utils": "2.0.2"
+    "@chakra-ui/transition": "2.0.3",
+    "@chakra-ui/utils": "2.0.3"
   },
   "devDependencies": {
-    "@chakra-ui/system": "2.2.0",
+    "@chakra-ui/system": "2.2.1",
     "framer-motion": "^6.2.9",
     "react": "^18.0.0"
   },

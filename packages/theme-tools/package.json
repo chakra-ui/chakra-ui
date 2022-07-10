@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/theme-tools",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Set of helpers that makes theming and styling easier",
   "keywords": [
     "theme",
@@ -30,13 +30,13 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/utils": "2.0.2",
+    "@chakra-ui/utils": "2.0.3",
     "@ctrl/tinycolor": "^3.4.0"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=2.0.0-next.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "2.2.0"
+    "@chakra-ui/system": "2.2.1"
   }
 }

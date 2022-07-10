@@ -1,5 +1,23 @@
 # Change Log
 
+## 2.0.5
+
+### Patch Changes
+
+- [#6281](https://github.com/chakra-ui/chakra-ui/pull/6281)
+  [`8bfeefbb5`](https://github.com/chakra-ui/chakra-ui/commit/8bfeefbb562fc5ada4757309db6b951c421342ad)
+  Thanks [@ShumRain](https://github.com/ShumRain)! - Export `useStyles`
+  equivalent for multipart component styles. Accordion exports
+  `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+- Updated dependencies
+  [[`36ef37d58`](https://github.com/chakra-ui/chakra-ui/commit/36ef37d58220dffc4b8e35c31fdcc57042e9a859),
+  [`b6aa32a4b`](https://github.com/chakra-ui/chakra-ui/commit/b6aa32a4b4af82e42d98a9afa427174ab4cb4ab7),
+  [`6c15ec2c2`](https://github.com/chakra-ui/chakra-ui/commit/6c15ec2c2a32a36ecc2d169308379a6825619543)]:
+  - @chakra-ui/utils@2.0.3
+  - @chakra-ui/transition@2.0.3
+  - @chakra-ui/hooks@2.0.3
+  - @chakra-ui/icon@3.0.3
+
 ## 2.0.4
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/live-region",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Aria live region for React components",
   "keywords": [
     "aria",
@@ -33,7 +33,7 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/utils": "2.0.2"
+    "@chakra-ui/utils": "2.0.3"
   },
   "peerDependencies": {
     "react": ">=18"

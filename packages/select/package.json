@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/select",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "description",
   "keywords": [
     "theme",
@@ -33,11 +33,11 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/form-control": "2.0.2",
-    "@chakra-ui/utils": "2.0.2"
+    "@chakra-ui/form-control": "2.0.3",
+    "@chakra-ui/utils": "2.0.3"
   },
   "devDependencies": {
-    "@chakra-ui/system": "2.2.0",
+    "@chakra-ui/system": "2.2.1",
     "react": "^18.0.0"
   },
   "peerDependencies": {
