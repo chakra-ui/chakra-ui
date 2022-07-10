@@ -20,8 +20,8 @@
     "@chakra-ui/utils": "2.0.3"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.0.0",
-    "@emotion/styled": "^11.0.0",
+    "@emotion/react": ">=11.0.0",
+    "@emotion/styled": ">=11.0.0",
     "react": ">=18",
     "react-dom": ">=18"
   },

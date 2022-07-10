@@ -34,7 +34,7 @@
     "build": "tsup src/index.ts --format=cjs,esm --dts"
   },
   "peerDependencies": {
-    "@emotion/react": ">=10.0.35",
+    "@emotion/react": ">=11.0.0",
     "react": ">=18"
   },
   "devDependencies": {
