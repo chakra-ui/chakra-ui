@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.0.3
+
+### Patch Changes
+
+- [#6275](https://github.com/chakra-ui/chakra-ui/pull/6275)
+  [`36ef37d58`](https://github.com/chakra-ui/chakra-ui/commit/36ef37d58220dffc4b8e35c31fdcc57042e9a859)
+  Thanks [@Philzen](https://github.com/Philzen)! - Fix `TypeError` in
+  `getCSSVar` when the theme is an empty object
+
+* [#6257](https://github.com/chakra-ui/chakra-ui/pull/6257)
+  [`6c15ec2c2`](https://github.com/chakra-ui/chakra-ui/commit/6c15ec2c2a32a36ecc2d169308379a6825619543)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `getFocusables` causes excessive repaint due to computed style calls
+
 ## 2.0.2
 
 ### Patch Changes

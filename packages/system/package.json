@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/system",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Chakra UI system primitives",
   "keywords": [
     "system",
@@ -37,19 +37,19 @@
     "build": "tsup src/index.ts --format=cjs,esm --dts"
   },
   "dependencies": {
-    "@chakra-ui/color-mode": "2.1.0",
-    "@chakra-ui/styled-system": "2.2.1",
+    "@chakra-ui/color-mode": "2.1.1",
+    "@chakra-ui/styled-system": "2.2.2",
     "lodash.mergewith": "4.6.2",
     "react-fast-compare": "3.2.0"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.0.0",
-    "@emotion/styled": "^11.0.0",
+    "@emotion/react": ">=11.0.0",
+    "@emotion/styled": ">=11.0.0",
     "react": ">=18"
   },
   "devDependencies": {
     "@chakra-ui/react-utils": "2.0.1",
-    "@chakra-ui/utils": "2.0.2",
+    "@chakra-ui/utils": "2.0.3",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@types/lodash.mergewith": "^4.6.7",

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/hooks",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "React hooks for Chakra components",
   "keywords": [
     "hooks",
@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@chakra-ui/react-utils": "2.0.1",
-    "@chakra-ui/utils": "2.0.2",
+    "@chakra-ui/utils": "2.0.3",
     "react": "^18.0.0"
   }
 }

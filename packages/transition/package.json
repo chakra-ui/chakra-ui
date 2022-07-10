@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/transition",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Common transition components for Chakra UI",
   "sideEffects": false,
   "keywords": [
@@ -42,7 +42,7 @@
     "react": ">=18"
   },
   "devDependencies": {
-    "@chakra-ui/utils": "2.0.2",
+    "@chakra-ui/utils": "2.0.3",
     "@types/lodash.mergewith": "^4.6.7",
     "framer-motion": "^6.2.9",
     "react": "^18.0.0"

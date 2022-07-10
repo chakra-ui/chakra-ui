@@ -1,5 +1,31 @@
 # Change Log
 
+## 2.0.3
+
+### Patch Changes
+
+- [#6281](https://github.com/chakra-ui/chakra-ui/pull/6281)
+  [`8bfeefbb5`](https://github.com/chakra-ui/chakra-ui/commit/8bfeefbb562fc5ada4757309db6b951c421342ad)
+  Thanks [@ShumRain](https://github.com/ShumRain)! - Export `useStyles`
+  equivalent for multipart component styles. Accordion exports
+  `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+* [#6267](https://github.com/chakra-ui/chakra-ui/pull/6267)
+  [`47478edbe`](https://github.com/chakra-ui/chakra-ui/commit/47478edbefe1a4b74421f5a64ea9953d2d867ff3)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Add `displayName` to
+  components using `forwardRef`
+
+- [#6109](https://github.com/chakra-ui/chakra-ui/pull/6109)
+  [`ba5fc0883`](https://github.com/chakra-ui/chakra-ui/commit/ba5fc08834469b9de52b449e4fc3ff5217a627a3)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Fix issue where popover opens
+  when mouse click opens the popover and trigget is set to `hover`.
+- Updated dependencies
+  [[`36ef37d58`](https://github.com/chakra-ui/chakra-ui/commit/36ef37d58220dffc4b8e35c31fdcc57042e9a859),
+  [`6c15ec2c2`](https://github.com/chakra-ui/chakra-ui/commit/6c15ec2c2a32a36ecc2d169308379a6825619543)]:
+  - @chakra-ui/utils@2.0.3
+  - @chakra-ui/close-button@2.0.3
+  - @chakra-ui/hooks@2.0.3
+
 ## 2.0.2
 
 ### Patch Changes

@@ -18,6 +18,7 @@ import {
 } from "./use-editable"
 
 const [StylesProvider, useStyles] = createStylesContext("Editable")
+export const useEditableStyles = useStyles
 
 type EditableContext = Omit<UseEditableReturn, "htmlProps">
 

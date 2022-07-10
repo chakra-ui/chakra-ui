@@ -23,6 +23,7 @@ const [SliderProvider, useSliderContext] = createContext<SliderContext>({
 })
 
 const [StylesProvider, useStyles] = createStylesContext("Slider")
+export const useSliderStyles = useStyles
 
 export { SliderProvider, useSliderContext }
 

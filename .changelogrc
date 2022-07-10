@@ -1,71 +1,152 @@
-## 20-06-2022
+## 10-07-2022
 
-`@chakra-ui/react@2.2.2`
+`@chakra-ui/react@2.2.3`
 
-- Remove internal usage of createBreakpoints function
+**Accordion** `v2.0.5`
 
-**Skeleton** `v2.0.7`
+- Export `useStyles` equivalent for multipart component styles. Accordion exports
+  `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
 
-- extend doc for `fadeDuration` prop
-- Remove internal usage of createBreakpoints function
+**Alert** `v2.0.3`
 
-**Color Mode** `v2.1.0`
+- Export `useStyles` equivalent for multipart component styles. Accordion exports
+  `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
 
-- Check if the MediaQueryList object supports the addEventListener() method, else
-  fallback to the legacy .addListener() method.
+**Avatar** `v2.0.4`
 
-**Cli** `v2.1.1`
+- Export `useStyles` equivalent for multipart component styles. Accordion exports
+  `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
 
-- Add --no-format option
-- Fix issue where CLI crashed due to lodash throttle dependency
+**Breadcrumb** `v2.0.3`
 
-**Toast** `v3.0.0`
+- Export `useStyles` equivalent for multipart component styles. Accordion exports
+  `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
 
-- Move `@chakra-ui/system` to peer dependency
+**Editable** `v2.0.3`
 
-**System** `v2.2.0`
+- Export `useStyles` equivalent for multipart component styles. Accordion exports
+  `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
 
-- Extract and export `getToken` function from `useToken`
-- Improve parameter types for `useToken`- Remove internal usage of createBreakpoints function
+**Form Control** `v2.0.3`
 
-**Media Query** `v3.1.1`
+- Export `useStyles` equivalent for multipart component styles. Accordion exports
+  `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
 
-- Remove internal usage of createBreakpoints function
+**Menu** `v2.0.5`
 
-**Styled System** `v2.2.1`
+- Export `useStyles` equivalent for multipart component styles. Accordion exports
+  `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
 
-- Remove internal usage of createBreakpoints function
+**Number Input** `v2.0.3`
 
-**Theme** `v2.1.1`
+- Export `useStyles` equivalent for multipart component styles. Accordion exports
+  `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
 
-- Remove internal usage of createBreakpoints function
+**Popover** `v2.0.3`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion exports
+  `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+- Add `displayName` to components using `forwardRef`
+- Fix issue where popover opens when mouse click opens the popover and trigget is
+  set to `hover`.
+
+**Progress** `v2.0.4`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion exports
+  `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Slider** `v2.0.3`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion exports
+  `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Stat** `v2.0.3`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion exports
+  `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Table** `v2.0.3`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion exports
+  `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Tabs** `v2.0.5`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion exports
+  `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Tag** `v2.0.3`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion exports
+  `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Gatsby Starter Default** `v1.0.9`
+
+- Update ESlint packages and config
+
+**Babel Plugin** `v1.0.4`
+
+- Update ESlint packages and config
+
+**Cra Template** `v2.0.3`
+
+- Update ESlint packages and config
+
+**Image** `v2.0.4`
+
+- Add `displayName` to components using `forwardRef`
+
+**Modal** `v2.1.1`
+
+- Add `displayName` to components using `forwardRef`
+
+**Cli** `v2.1.2`
+
+- Fix importing of the default exported theme
+- Update dependencies
+
+**Utils** `v2.0.3`
+
+- Fix `TypeError` in `getCSSVar` when the theme is an empty object
+- Fix issue where `getFocusables` causes excessive repaint due to computed style
+  calls
+
+**Chakra Nextjs Ts** `v2.0.9`
+
+- Update dependencies
+
+**Transition** `v2.0.3`
+
+- Fix emitted types that were incompatible with latest `framer-motion` release
+
+**Theme** `v2.1.2`
+
 - Add border radius of zero to the default full size modal
 
-**Theme Tools** `v2.0.3`
+**React Env** `v2.0.3`
 
-- Remove internal usage of createBreakpoints function
+- Fix hydration issues when using `Suspense`
 
-**Layout** `v2.0.3`
+**Media Query** `v3.1.2`
 
-- SimpleGrid: Fix issue where `minChildWidth` doesn't work with size tokens
+- Fix hydration issues when using `Suspense`
 
-**Descendant** `v3.0.3`
+**Portal** `v2.0.3`
 
-- Apply type constraints to `useDescendants` hook for improved TypeScript 4.8 support
+- Fix hydration issues when using `Suspense`
 
-**Checkbox** `v2.1.1`
+**Layout** `v2.1.0`
 
-- fixed issue where switch cannot be toggled when text is selectedd
+- Add new highlight text component to emphasize any part of a string with the
+  `mark` tag.
 
-**Tooltip** `v2.0.3`
-
-- Avoid rendering multiple tooltips so that they are not appeared after opening a
-  modal
-
-**Radio** `v2.0.3`
-
-- Fix issue where radio doesn't show focus when interacting with keyboard
-
-**Modal** `v2.1.0`
-
-- Export `useDrawerContext` hook
+```jsx live=false
+<Text fontWeight="semibold">
+  <Highlight
+    query={'with speed'}
+    styles={{ px: '2', py: '1', rounded: 'full', bg: 'teal.100' }}
+  >
+    Create accessible React apps with speed
+  </Highlight>
+</Text>
+```

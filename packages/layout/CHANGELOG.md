@@ -1,5 +1,32 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [`778919455`](https://github.com/chakra-ui/chakra-ui/commit/7789194552404db8fe576c4d82ccfd0b940dd401)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add new highlight
+  text component to emphasize any part of a string with the `mark` tag.
+
+  ```jsx live=false
+  <Text fontWeight="semibold">
+    <Highlight
+      query={"with speed"}
+      styles={{ px: "2", py: "1", rounded: "full", bg: "teal.100" }}
+    >
+      Create accessible React apps with speed
+    </Highlight>
+  </Text>
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`36ef37d58`](https://github.com/chakra-ui/chakra-ui/commit/36ef37d58220dffc4b8e35c31fdcc57042e9a859),
+  [`6c15ec2c2`](https://github.com/chakra-ui/chakra-ui/commit/6c15ec2c2a32a36ecc2d169308379a6825619543)]:
+  - @chakra-ui/utils@2.0.3
+  - @chakra-ui/icon@3.0.3
+
 ## 2.0.3
 
 ### Patch Changes

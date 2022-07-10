@@ -14,6 +14,7 @@ import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 
 const [StylesProvider, useStyles] = createStylesContext("Stat")
+export const useStatStyles = useStyles
 
 export interface StatLabelProps extends HTMLChakraProps<"dt"> {}
 

@@ -14,6 +14,7 @@ import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
 const [StylesProvider, useStyles] = createStylesContext("List")
+export const useListStyles = useStyles
 
 interface ListOptions {
   /**

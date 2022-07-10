@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/styled-system",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Style function for css-in-js building component libraries",
   "keywords": [
     "theme",
@@ -43,7 +43,7 @@
     "lodash.mergewith": "4.6.2"
   },
   "devDependencies": {
-    "@chakra-ui/utils": "2.0.2",
+    "@chakra-ui/utils": "2.0.3",
     "@types/lodash.mergewith": "^4.6.7"
   },
   "sideEffects": false

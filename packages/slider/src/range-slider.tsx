@@ -30,6 +30,7 @@ const [RangeSliderProvider, useRangeSliderContext] =
   })
 
 const [StylesProvider, useStyles] = createStylesContext("RangeSlider")
+export const useRangeSliderStyles = useStyles
 
 export { RangeSliderProvider, useRangeSliderContext }
 
