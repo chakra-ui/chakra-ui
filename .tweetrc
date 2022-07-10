@@ -1,16 +1,10 @@
 {
-  "version": "2.2.2",
-  "releaseUrl": "https://github.com/chakra-ui/chakra-ui/releases/tag/@chakra-ui/react@2.2.2",
+  "version": "2.2.3",
+  "releaseUrl": "https://github.com/chakra-ui/chakra-ui/releases/tag/@chakra-ui/react@2.2.3",
   "patches": [
-    "- Remove internal usage of createBreakpoints function \n",
-    "- extend doc for `fadeDuration` prop \n",
-    "- Add --no-format option \n",
-    "- Fix issue where CLI crashed due to lodash throttle dependency \n"
+    "- Export `useStyles` equivalent for multipart component styles. Accordion exports\n`useAccordionStyles`, Alert exports `useAlertStyles`, and so on. \n"
   ],
   "features": [
-    "- Check if the MediaQueryList object supports the addEventListener() method, else\nfallback to the legacy .addListener() method. \n",
-    "- Extract and export `getToken` function from `useToken`\n- Improve parameter types for `useToken`",
-    "- Remove internal usage of createBreakpoints function \n",
-    "- Export `useDrawerContext` hook \n"
+    "- Add new highlight text component to emphasize any part of a string with the\n`mark` tag.\n\n```jsx live=false\n<Text fontWeight=\"semibold\">\n  <Highlight\n    query={\"with speed\"}\n    styles={{ px: \"2\", py: \"1\", rounded: \"full\", bg: \"teal.100\" }}\n  >\n    Create accessible React apps with speed\n  </Highlight>\n</Text>\n``` \n"
   ]
 }
