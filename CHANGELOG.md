@@ -10,6 +10,159 @@ experience.
 
 <!-- CHANGELOG:INSERT -->
 
+## 10-07-2022
+
+`@chakra-ui/react@2.2.3`
+
+**Accordion** `v2.0.5`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion
+  exports `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Alert** `v2.0.3`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion
+  exports `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Avatar** `v2.0.4`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion
+  exports `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Breadcrumb** `v2.0.3`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion
+  exports `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Editable** `v2.0.3`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion
+  exports `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Form Control** `v2.0.3`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion
+  exports `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Menu** `v2.0.5`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion
+  exports `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Number Input** `v2.0.3`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion
+  exports `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Popover** `v2.0.3`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion
+  exports `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+- Add `displayName` to components using `forwardRef`
+- Fix issue where popover opens when mouse click opens the popover and trigget
+  is set to `hover`.
+
+**Progress** `v2.0.4`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion
+  exports `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Slider** `v2.0.3`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion
+  exports `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Stat** `v2.0.3`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion
+  exports `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Table** `v2.0.3`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion
+  exports `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Tabs** `v2.0.5`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion
+  exports `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Tag** `v2.0.3`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion
+  exports `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+
+**Gatsby Starter Default** `v1.0.9`
+
+- Update ESlint packages and config
+
+**Babel Plugin** `v1.0.4`
+
+- Update ESlint packages and config
+
+**Cra Template** `v2.0.3`
+
+- Update ESlint packages and config
+
+**Image** `v2.0.4`
+
+- Add `displayName` to components using `forwardRef`
+
+**Modal** `v2.1.1`
+
+- Add `displayName` to components using `forwardRef`
+
+**Cli** `v2.1.2`
+
+- Fix importing of the default exported theme
+- Update dependencies
+
+**Utils** `v2.0.3`
+
+- Fix `TypeError` in `getCSSVar` when the theme is an empty object
+- Fix issue where `getFocusables` causes excessive repaint due to computed style
+  calls
+
+**Chakra Nextjs Ts** `v2.0.9`
+
+- Update dependencies
+
+**Transition** `v2.0.3`
+
+- Fix emitted types that were incompatible with latest `framer-motion` release
+
+**Theme** `v2.1.2`
+
+- Add border radius of zero to the default full size modal
+
+**React Env** `v2.0.3`
+
+- Fix hydration issues when using `Suspense`
+
+**Media Query** `v3.1.2`
+
+- Fix hydration issues when using `Suspense`
+
+**Portal** `v2.0.3`
+
+- Fix hydration issues when using `Suspense`
+
+**Layout** `v2.1.0`
+
+- Add new highlight text component to emphasize any part of a string with the
+  `mark` tag.
+
+```jsx live=false
+<Text fontWeight="semibold">
+  <Highlight
+    query={"with speed"}
+    styles={{ px: "2", py: "1", rounded: "full", bg: "teal.100" }}
+  >
+    Create accessible React apps with speed
+  </Highlight>
+</Text>
+```
+
 ## 07-06-2022
 
 `@chakra-ui/react@2.2.1`
