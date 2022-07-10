@@ -30,7 +30,7 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "scripts": {
-    "build": "tsup src/index.ts src/use-animation-state.ts --format=cjs,esm --dts"
+    "build": "tsup src/index.ts --format=cjs,esm --dts"
   },
   "dependencies": {
     "compute-scroll-into-view": "1.0.14",
