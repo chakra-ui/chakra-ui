@@ -48,7 +48,7 @@ const DefaultPortal = (
   const parentPortal = usePortalContext()
   const manager = usePortalManager()
 
-  const [mounted, setMounted] = React.useState(false)
+  const [, setMounted] = React.useState(false)
   React.useEffect(() => setMounted(true), [])
 
   useSafeLayoutEffect(() => {
@@ -72,8 +72,6 @@ const DefaultPortal = (
       }
     }
   }, [tempNode])
-
-  if (!mounted) return null
 
   const _children = manager?.zIndex ? (
     <Container zIndex={manager?.zIndex}>{children}</Container>
