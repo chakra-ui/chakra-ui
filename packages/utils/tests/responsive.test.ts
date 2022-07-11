@@ -142,7 +142,7 @@ test("should work with createBreakpoint output", () => {
   ).toMatchInlineSnapshot(`
     Array [
       Object {
-        "_minW": "-0.0635em",
+        "_minW": "-0.0625em",
         "breakpoint": "base",
         "maxW": "319px",
         "maxWQuery": "@media screen and (max-width: 319px)",
