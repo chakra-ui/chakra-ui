@@ -19,7 +19,7 @@
     "@types/react": "^18.0.1",
     "@types/react-dom": "^18.0.0",
     "framer-motion": "^6.2.9",
-    "next": "^12.1.0",
+    "next": "^12.2.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-icons": "^4.2.0",

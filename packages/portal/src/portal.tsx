@@ -44,12 +44,11 @@ const DefaultPortal = (
   const portal = React.useRef<HTMLDivElement | null>(null)
 
   const forceUpdate = useForceUpdate()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  React.useEffect(forceUpdate, [])
 
   const parentPortal = usePortalContext()
   const manager = usePortalManager()
-
-  const [mounted, setMounted] = React.useState(false)
-  React.useEffect(() => setMounted(true), [])
 
   useSafeLayoutEffect(() => {
     if (!tempNode) return
@@ -72,8 +71,6 @@ const DefaultPortal = (
       }
     }
   }, [tempNode])
-
-  if (!mounted) return null
 
   const _children = manager?.zIndex ? (
     <Container zIndex={manager?.zIndex}>{children}</Container>
