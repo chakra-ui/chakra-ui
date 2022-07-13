@@ -10,6 +10,46 @@ experience.
 
 <!-- CHANGELOG:INSERT -->
 
+## 13-07-2022
+
+`@chakra-ui/react@2.2.4`
+
+**Chakra Nextjs** `v2.0.10`
+
+- add portal example
+- update to Next.js 12.2.2
+
+**Portal** `v2.0.4`
+
+- Fix portal to render children
+
+**Media Query** `v3.2.0`
+
+- fix getClosestValue to return nullable closest break point value
+
+**Chakra Nextjs Ts** `v2.0.10`
+
+- update to Next.js 12.2.2
+- add color mode config and suspense
+
+**Styled System** `v2.2.3`
+
+- Fix incorrect breakpoint calculation which excluded some viewport widths from
+  media query coverage
+
+**Utils** `v2.0.4`
+
+- Fix incorrect breakpoint calculation which excluded some viewport widths from
+  media query coverage
+
+**Color Mode** `v2.1.2`
+
+- fix hydration issue
+
+**React Env** `v2.0.4`
+
+- fix hydration issue
+
 ## 10-07-2022
 
 `@chakra-ui/react@2.2.3`
