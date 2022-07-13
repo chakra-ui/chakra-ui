@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.0.4
+
+### Patch Changes
+
+- [#6303](https://github.com/chakra-ui/chakra-ui/pull/6303)
+  [`46b495455`](https://github.com/chakra-ui/chakra-ui/commit/46b495455fc416b166db18f5098ede7752b2e3ba)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Fix portal to render children
+
+- Updated dependencies
+  [[`c11743b47`](https://github.com/chakra-ui/chakra-ui/commit/c11743b47f38f8f38a21b120add3a9cf765b81ee)]:
+  - @chakra-ui/utils@2.0.4
+  - @chakra-ui/hooks@2.0.4
+
 ## 2.0.3
 
 ### Patch Changes

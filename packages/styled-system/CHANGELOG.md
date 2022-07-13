@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.2.3
+
+### Patch Changes
+
+- [#6301](https://github.com/chakra-ui/chakra-ui/pull/6301)
+  [`c11743b47`](https://github.com/chakra-ui/chakra-ui/commit/c11743b47f38f8f38a21b120add3a9cf765b81ee)
+  Thanks [@effectivetom](https://github.com/effectivetom)! - Fix incorrect
+  breakpoint calculation which excluded some viewport widths from media query
+  coverage
+- Updated dependencies
+  [[`c11743b47`](https://github.com/chakra-ui/chakra-ui/commit/c11743b47f38f8f38a21b120add3a9cf765b81ee)]:
+  - @chakra-ui/utils@2.0.4
+
 ## 2.2.2
 
 ### Patch Changes

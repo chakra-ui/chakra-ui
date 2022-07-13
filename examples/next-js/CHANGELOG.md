@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.0.10
+
+### Patch Changes
+
+- [#6303](https://github.com/chakra-ui/chakra-ui/pull/6303)
+  [`46b495455`](https://github.com/chakra-ui/chakra-ui/commit/46b495455fc416b166db18f5098ede7752b2e3ba)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - add portal example
+
+* [#6303](https://github.com/chakra-ui/chakra-ui/pull/6303)
+  [`46b495455`](https://github.com/chakra-ui/chakra-ui/commit/46b495455fc416b166db18f5098ede7752b2e3ba)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - update to Next.js 12.2.2
+
+* Updated dependencies []:
+  - @chakra-ui/react@2.2.4
+
 ## 2.0.9
 
 ### Patch Changes
