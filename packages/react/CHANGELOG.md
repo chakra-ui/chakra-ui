@@ -1,5 +1,60 @@
 # Change Log
 
+## 2.2.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`46b495455`](https://github.com/chakra-ui/chakra-ui/commit/46b495455fc416b166db18f5098ede7752b2e3ba),
+  [`4beff94be`](https://github.com/chakra-ui/chakra-ui/commit/4beff94be65026ddb1d8c06c9e96f9eae195f352),
+  [`c11743b47`](https://github.com/chakra-ui/chakra-ui/commit/c11743b47f38f8f38a21b120add3a9cf765b81ee),
+  [`fb3c09325`](https://github.com/chakra-ui/chakra-ui/commit/fb3c09325d7bf58aed13c6d0fb1f72b92ff0ef3a)]:
+  - @chakra-ui/portal@2.0.4
+  - @chakra-ui/media-query@3.2.0
+  - @chakra-ui/utils@2.0.4
+  - @chakra-ui/react-env@2.0.4
+  - @chakra-ui/modal@2.1.2
+  - @chakra-ui/provider@2.0.9
+  - @chakra-ui/toast@3.0.2
+  - @chakra-ui/tooltip@2.0.5
+  - @chakra-ui/skeleton@2.0.9
+  - @chakra-ui/system@2.2.2
+  - @chakra-ui/accordion@2.0.6
+  - @chakra-ui/alert@2.0.4
+  - @chakra-ui/avatar@2.0.5
+  - @chakra-ui/breadcrumb@2.0.4
+  - @chakra-ui/button@2.0.4
+  - @chakra-ui/checkbox@2.1.3
+  - @chakra-ui/close-button@2.0.4
+  - @chakra-ui/control-box@2.0.4
+  - @chakra-ui/counter@2.0.4
+  - @chakra-ui/editable@2.0.4
+  - @chakra-ui/form-control@2.0.4
+  - @chakra-ui/hooks@2.0.4
+  - @chakra-ui/icon@3.0.4
+  - @chakra-ui/image@2.0.5
+  - @chakra-ui/input@2.0.4
+  - @chakra-ui/layout@2.1.1
+  - @chakra-ui/live-region@2.0.4
+  - @chakra-ui/menu@2.0.6
+  - @chakra-ui/number-input@2.0.4
+  - @chakra-ui/pin-input@2.0.6
+  - @chakra-ui/popover@2.0.4
+  - @chakra-ui/progress@2.0.5
+  - @chakra-ui/radio@2.0.5
+  - @chakra-ui/select@2.0.4
+  - @chakra-ui/slider@2.0.4
+  - @chakra-ui/spinner@2.0.4
+  - @chakra-ui/stat@2.0.4
+  - @chakra-ui/switch@2.0.6
+  - @chakra-ui/table@2.0.4
+  - @chakra-ui/tabs@2.0.6
+  - @chakra-ui/tag@2.0.4
+  - @chakra-ui/textarea@2.0.5
+  - @chakra-ui/theme@2.1.3
+  - @chakra-ui/transition@2.0.4
+  - @chakra-ui/visually-hidden@2.0.4
+
 ## 2.2.3
 
 ### Patch Changes

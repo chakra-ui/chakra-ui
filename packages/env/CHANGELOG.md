@@ -1,5 +1,17 @@
 # @chakra-ui/react-env
 
+## 2.0.4
+
+### Patch Changes
+
+- [#6309](https://github.com/chakra-ui/chakra-ui/pull/6309)
+  [`fb3c09325`](https://github.com/chakra-ui/chakra-ui/commit/fb3c09325d7bf58aed13c6d0fb1f72b92ff0ef3a)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - fix hydration issue
+
+- Updated dependencies
+  [[`c11743b47`](https://github.com/chakra-ui/chakra-ui/commit/c11743b47f38f8f38a21b120add3a9cf765b81ee)]:
+  - @chakra-ui/utils@2.0.4
+
 ## 2.0.3
 
 ### Patch Changes

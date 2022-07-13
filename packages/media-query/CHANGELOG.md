@@ -1,5 +1,22 @@
 # Change Log
 
+## 3.2.0
+
+### Minor Changes
+
+- [#6308](https://github.com/chakra-ui/chakra-ui/pull/6308)
+  [`4beff94be`](https://github.com/chakra-ui/chakra-ui/commit/4beff94be65026ddb1d8c06c9e96f9eae195f352)
+  Thanks [@n-harada](https://github.com/n-harada)! - fix getClosestValue to
+  return nullable closest break point value
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c11743b47`](https://github.com/chakra-ui/chakra-ui/commit/c11743b47f38f8f38a21b120add3a9cf765b81ee),
+  [`fb3c09325`](https://github.com/chakra-ui/chakra-ui/commit/fb3c09325d7bf58aed13c6d0fb1f72b92ff0ef3a)]:
+  - @chakra-ui/utils@2.0.4
+  - @chakra-ui/react-env@2.0.4
+
 ## 3.1.2
 
 ### Patch Changes
