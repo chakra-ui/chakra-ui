@@ -1,6 +1,7 @@
 import { isBrowser, __DEV__ } from "@chakra-ui/utils"
 import React, {
   createContext,
+  startTransition,
   useContext,
   useMemo,
   useState,
@@ -57,7 +58,9 @@ export function EnvironmentProvider(props: EnvironmentProviderProps) {
       {mounted && (
         <span
           ref={(el) => {
-            if (el) setNode(el)
+            startTransition(() => {
+              if (el) setNode(el)
+            })
           }}
         />
       )}

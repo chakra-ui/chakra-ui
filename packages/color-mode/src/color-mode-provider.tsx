@@ -107,7 +107,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useSafeLayoutEffect(() => {
+  React.useEffect(() => {
     const managerValue = colorModeManager.get()
 
     if (managerValue) {
@@ -121,8 +121,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     }
 
     setColorMode(defaultColorMode)
-    //
-  }, [colorModeManager, defaultColorMode, initialColorMode, getSystemTheme])
+  }, [colorModeManager, defaultColorMode, initialColorMode, setColorMode])
 
   const toggleColorMode = React.useCallback(() => {
     setColorMode(resolvedValue === "dark" ? "light" : "dark")
