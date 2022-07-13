@@ -1,10 +1,12 @@
 {
-  "version": "2.2.3",
-  "releaseUrl": "https://github.com/chakra-ui/chakra-ui/releases/tag/@chakra-ui/react@2.2.3",
+  "version": "2.2.4",
+  "releaseUrl": "https://github.com/chakra-ui/chakra-ui/releases/tag/@chakra-ui/react@2.2.4",
   "patches": [
-    "- Export `useStyles` equivalent for multipart component styles. Accordion exports\n`useAccordionStyles`, Alert exports `useAlertStyles`, and so on. \n"
+    "- add portal example \n",
+    "- update to Next.js 12.2.2 \n",
+    "- Fix portal to render children \n"
   ],
   "features": [
-    "- Add new highlight text component to emphasize any part of a string with the\n`mark` tag.\n\n```jsx live=false\n<Text fontWeight=\"semibold\">\n  <Highlight\n    query={\"with speed\"}\n    styles={{ px: \"2\", py: \"1\", rounded: \"full\", bg: \"teal.100\" }}\n  >\n    Create accessible React apps with speed\n  </Highlight>\n</Text>\n``` \n"
+    "- fix getClosestValue to return nullable closest break point value \n"
   ]
 }
