@@ -1,4 +1,5 @@
 import { Dict, isObject, runIfFn } from "@chakra-ui/utils"
+import { CssTheme } from "./types"
 
 /**
  * Expands an array or object syntax responsive style.
@@ -10,7 +11,7 @@ import { Dict, isObject, runIfFn } from "@chakra-ui/utils"
  *
  * // => { mx: 1, "@media(min-width:<sm>)": { mx: 2 } }
  */
-export const expandResponsive = (styles: Dict) => (theme: Dict) => {
+export const expandResponsive = (styles: Dict) => (theme: CssTheme) => {
   /**
    * Before any style can be processed, the user needs to call `toCSSVar`
    * which analyzes the theme's breakpoint and appends a `__breakpoints` property
@@ -25,9 +26,7 @@ export const expandResponsive = (styles: Dict) => (theme: Dict) => {
 
   for (const key in styles) {
     let value = runIfFn(styles[key], theme)
-
     if (value == null) continue
-
     // converts the object responsive syntax to array syntax
     value = isObject(value) && isResponsive(value) ? toArrayValue(value) : value
 
@@ -36,24 +35,18 @@ export const expandResponsive = (styles: Dict) => (theme: Dict) => {
       continue
     }
 
-    const queries = value.slice(0, medias.length).length
-
-    for (let index = 0; index < queries; index += 1) {
+    value.slice(0, medias.length).forEach((val, index) => {
       const media = medias?.[index]
 
       if (!media) {
-        computedStyles[key] = value[index]
-        continue
+        computedStyles[key] = val
+        return
       }
 
-      computedStyles[media] = computedStyles[media] || {}
-
-      if (value[index] == null) {
-        continue
-      }
-
-      computedStyles[media][key] = value[index]
-    }
+      computedStyles[media] ??= {}
+      if (val == null) return
+      computedStyles[media][key] = val
+    })
   }
 
   return computedStyles
