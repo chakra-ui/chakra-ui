@@ -3,7 +3,6 @@ import * as CSS from "csstype"
 import { pseudoSelectors } from "./pseudos"
 import { systemProps as systemPropConfigs } from "./system"
 import { StyleObjectOrFn } from "./system.types"
-import { expandResponsive } from "./utils/expand-responsive"
 import { Config } from "./utils/prop-config"
 import { CssTheme } from "./utils/types"
 
@@ -32,9 +31,18 @@ interface GetCSSOptions {
 export function getCss(options: GetCSSOptions) {
   const { configs = {}, pseudos = {}, theme } = options
 
+  /**
+   * Before any style can be processed, the user needs to call `toCSSVar`
+   * which analyzes the theme's breakpoint and appends a `__breakpoints` property
+   * to the theme with more details of the breakpoints.
+   *
+   * To learn more, go here: packages/utils/src/breakpoint.ts #analyzeBreakpoints
+   */
+  if (!theme.__breakpoints) return () => ({})
+  const { isResponsive, toArrayValue, media: medias } = theme.__breakpoints
+
   const css = (stylesOrFn: Dict, nested = false) => {
-    const _styles = runIfFn(stylesOrFn, theme)
-    const styles = expandResponsive(_styles)(theme)
+    const styles = runIfFn(stylesOrFn, theme)
 
     let computedStyles: Dict = {}
 
@@ -44,6 +52,45 @@ export function getCss(options: GetCSSOptions) {
        * boxShadow: theme => `0 2px 2px ${theme.colors.red}`
        */
       let value = runIfFn(styles[key], theme)
+      if (value == null) continue
+
+      if (Array.isArray(value) || (isObject(value) && isResponsive(value))) {
+        let values = Array.isArray(value) ? value : toArrayValue(value)
+        values = values.slice(0, medias.length)
+
+        for (let index = 0; index < values.length; index++) {
+          const media = medias[index]
+          const val = values[index]
+
+          if (media) {
+            if (val == null) {
+              computedStyles[media] ??= {}
+            } else {
+              computedStyles[media] = Object.assign(
+                {},
+                computedStyles[media],
+                css({ [key]: val }, true),
+              )
+            }
+          } else {
+            computedStyles = Object.assign(
+              {},
+              computedStyles,
+              css({ ...styles, [key]: val }, false),
+            )
+          }
+        }
+
+        continue
+      }
+
+      /**
+       * converts pseudo shorthands to valid selector
+       * "_hover" => "&:hover"
+       */
+      if (key in pseudos) {
+        key = pseudos[key]
+      }
 
       /**
        * allows the user to use theme tokens in css vars
@@ -56,17 +103,12 @@ export function getCss(options: GetCSSOptions) {
         value = resolveTokenValue(theme, value)
       }
 
-      /**
-       * converts pseudo shorthands to valid selector
-       * "_hover" => "&:hover"
-       */
-      if (key in pseudos) {
-        key = pseudos[key]
-      }
-
       if (isObject(value)) {
-        computedStyles[key] ??= {}
-        Object.assign(computedStyles[key], css(value, true))
+        computedStyles[key] = Object.assign(
+          {},
+          computedStyles[key],
+          css(value, true),
+        )
         continue
       }
 
@@ -75,7 +117,8 @@ export function getCss(options: GetCSSOptions) {
         config = { property: key }
       }
       if (!nested && config?.static) {
-        Object.assign(computedStyles, runIfFn(config.static, theme))
+        const staticStyles = runIfFn(config.static, theme)
+        computedStyles = Object.assign({}, computedStyles, staticStyles)
       }
 
       let rawValue = config?.transform?.(value, theme, styles) ?? value
@@ -90,7 +133,7 @@ export function getCss(options: GetCSSOptions) {
       rawValue = config?.processResult ? css(rawValue, true) : rawValue
 
       if (isObject(rawValue)) {
-        Object.assign(computedStyles, rawValue)
+        computedStyles = Object.assign({}, computedStyles, rawValue)
         continue
       }
 
@@ -111,7 +154,7 @@ export function getCss(options: GetCSSOptions) {
         }
 
         if (configProperty === "&" && isObject(rawValue)) {
-          Object.assign(computedStyles, rawValue)
+          computedStyles = Object.assign({}, computedStyles, rawValue)
         } else {
           computedStyles[configProperty] = rawValue
         }
