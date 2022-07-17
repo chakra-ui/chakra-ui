@@ -18,4 +18,7 @@ module.exports = {
   typescript: {
     reactDocgen: false,
   },
+  reactOptions: {
+    strictMode: true,
+  },
 }
