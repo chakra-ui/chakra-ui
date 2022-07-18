@@ -19,6 +19,7 @@ module.exports = {
     reactDocgen: false,
   },
   reactOptions: {
+    fastRefresh: true,
     strictMode: true,
   },
 }
