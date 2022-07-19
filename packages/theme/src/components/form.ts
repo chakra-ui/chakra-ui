@@ -15,7 +15,7 @@ const baseStyleRequiredIndicator: SystemStyleFunction = (props) => {
 const baseStyleHelperText: SystemStyleFunction = (props) => {
   return {
     mt: 2,
-    color: mode("gray.500", "whiteAlpha.600")(props),
+    color: mode("gray.600", "whiteAlpha.600")(props),
     lineHeight: "normal",
     fontSize: "sm",
   }
