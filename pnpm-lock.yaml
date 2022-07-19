@@ -12,6 +12,7 @@ importers:
       '@babel/preset-react': ^7.16.0
       '@babel/preset-typescript': ^7.16.0
       '@babel/runtime': ^7.16.3
+      '@chakra-ui/storybook-addon': workspace:*
       '@changesets/changelog-github': 0.4.2
       '@changesets/cli': 2.18.1
       '@commitlint/cli': 14.1.0
@@ -20,7 +21,6 @@ importers:
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
       '@jest/types': 28.1.1
-      '@manypkg/cli': 0.19.1
       '@preconstruct/cli': ^2.1.5
       '@storybook/addon-a11y': ^6.5.6
       '@storybook/addon-essentials': ^6.5.6
@@ -81,6 +81,7 @@ importers:
       '@babel/preset-react': 7.18.6_@babel+core@7.18.9
       '@babel/preset-typescript': 7.18.6_@babel+core@7.18.9
       '@babel/runtime': 7.18.9
+      '@chakra-ui/storybook-addon': link:tooling/storybook-addon
       '@changesets/changelog-github': 0.4.2
       '@changesets/cli': 2.18.1
       '@commitlint/cli': 14.1.0
@@ -89,7 +90,6 @@ importers:
       '@emotion/react': 11.9.3_szkdlbnthht4v3jvm76fn7u6na
       '@emotion/styled': 11.9.3_y2x62d5bbinncmisoeyv36jqse
       '@jest/types': 28.1.1
-      '@manypkg/cli': 0.19.1
       '@preconstruct/cli': 2.2.1
       '@storybook/addon-a11y': 6.5.9_biqbaboplfbrettd7655fr4n2y
       '@storybook/addon-essentials': 6.5.9_5w56lgyv3jx26oejjy2m64hhoi
@@ -144,7 +144,7 @@ importers:
 
   examples/create-react-app:
     specifiers:
-      '@chakra-ui/react': 2.2.4
+      '@chakra-ui/react': workspace:*
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
       '@testing-library/jest-dom': ^5.16.4
@@ -179,8 +179,8 @@ importers:
 
   examples/gatsby:
     specifiers:
-      '@chakra-ui/gatsby-plugin': 3.0.1
-      '@chakra-ui/react': 2.2.4
+      '@chakra-ui/gatsby-plugin': workspace:*
+      '@chakra-ui/react': workspace:*
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
       framer-motion: ^6.2.9
@@ -220,7 +220,7 @@ importers:
 
   examples/next-js:
     specifiers:
-      '@chakra-ui/react': 2.2.4
+      '@chakra-ui/react': workspace:*
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
       cookies-next: ^2.0.4
@@ -240,9 +240,9 @@ importers:
 
   examples/nextjs-typescript:
     specifiers:
-      '@chakra-ui/icons': ^2.0.4
-      '@chakra-ui/react': 2.2.4
-      '@chakra-ui/theme-tools': ^2.0.5
+      '@chakra-ui/icons': workspace:*
+      '@chakra-ui/react': workspace:*
+      '@chakra-ui/theme-tools': workspace:*
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
       '@faker-js/faker': ^7.1.0
@@ -275,7 +275,7 @@ importers:
   examples/storybook-addon:
     specifiers:
       '@babel/core': ^7.16.0
-      '@chakra-ui/storybook-addon': 4.0.4
+      '@chakra-ui/storybook-addon': workspace:*
       '@storybook/addon-actions': ^6.5.6
       '@storybook/addon-essentials': ^6.5.6
       '@storybook/addon-links': ^6.3.12
@@ -293,7 +293,7 @@ importers:
 
   examples/vite-ts:
     specifiers:
-      '@chakra-ui/react': 2.2.4
+      '@chakra-ui/react': workspace:*
       '@types/react': ^18.0.1
       '@types/react-dom': ^18.0.0
       '@vitejs/plugin-react': ^1.3.0
@@ -396,9 +396,12 @@ importers:
       '@chakra-ui/hooks': workspace:*
       '@chakra-ui/react-utils': workspace:*
       '@chakra-ui/spinner': workspace:*
+      '@chakra-ui/storybook-addon': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/utils': workspace:*
+      framer-motion: ^6.2.9
       react: ^18.0.0
+      react-icons: ^4.2.0
       react-spinners: 0.11.0
     dependencies:
       '@chakra-ui/hooks': link:../hooks
@@ -406,8 +409,11 @@ importers:
       '@chakra-ui/spinner': link:../spinner
       '@chakra-ui/utils': link:../utils
     devDependencies:
+      '@chakra-ui/storybook-addon': link:../../tooling/storybook-addon
       '@chakra-ui/system': link:../system
+      framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
+      react-icons: 4.4.0_react@18.2.0
       react-spinners: 0.11.0_react@18.2.0
 
   packages/checkbox:
@@ -579,11 +585,13 @@ importers:
       '@chakra-ui/system': workspace:*
       '@chakra-ui/utils': workspace:*
       react: ^18.0.0
+      react-icons: ^4.2.0
     dependencies:
       '@chakra-ui/utils': link:../utils
     devDependencies:
       '@chakra-ui/system': link:../system
       react: 18.2.0
+      react-icons: 4.4.0_react@18.2.0
 
   packages/icons:
     specifiers:
@@ -633,6 +641,7 @@ importers:
       '@chakra-ui/system': workspace:*
       '@chakra-ui/utils': workspace:*
       react: ^18.0.0
+      react-icons: ^4.2.0
       react-router-dom: 6.0.0
     dependencies:
       '@chakra-ui/icon': link:../icon
@@ -641,6 +650,7 @@ importers:
     devDependencies:
       '@chakra-ui/system': link:../system
       react: 18.2.0
+      react-icons: 4.4.0_react@18.2.0
       react-router-dom: 6.0.0_react@18.2.0
 
   packages/live-region:
@@ -683,6 +693,7 @@ importers:
       '@chakra-ui/utils': workspace:*
       framer-motion: ^6.2.9
       react: ^18.0.0
+      react-icons: ^4.2.0
     dependencies:
       '@chakra-ui/clickable': link:../clickable
       '@chakra-ui/descendant': link:../descendant
@@ -695,6 +706,7 @@ importers:
       '@chakra-ui/system': link:../system
       framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
+      react-icons: 4.4.0_react@18.2.0
 
   packages/modal:
     specifiers:
@@ -781,6 +793,7 @@ importers:
       '@chakra-ui/utils': workspace:*
       framer-motion: ^6.2.9
       react: ^18.0.0
+      react-icons: ^4.2.0
     dependencies:
       '@chakra-ui/close-button': link:../close-button
       '@chakra-ui/hooks': link:../hooks
@@ -791,23 +804,26 @@ importers:
       '@chakra-ui/system': link:../system
       framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
+      react-icons: 4.4.0_react@18.2.0
 
   packages/popper:
     specifiers:
       '@chakra-ui/react-utils': workspace:*
       '@popperjs/core': ^2.9.3
+      framer-motion: ^6.2.9
       react: ^18.0.0
     dependencies:
       '@chakra-ui/react-utils': link:../react-utils
       '@popperjs/core': 2.11.5
     devDependencies:
+      framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
 
   packages/portal:
     specifiers:
-      '@chakra-ui/hooks': 2.0.4
-      '@chakra-ui/react-utils': 2.0.1
-      '@chakra-ui/utils': 2.0.4
+      '@chakra-ui/hooks': workspace:*
+      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/utils': workspace:*
       '@types/react-frame-component': ^4.1.1
       react: ^18.0.0
       react-dom: ^18.0.0
@@ -824,9 +840,9 @@ importers:
 
   packages/progress:
     specifiers:
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/theme-tools': 2.0.5
-      '@chakra-ui/utils': 2.0.4
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/theme-tools': workspace:*
+      '@chakra-ui/utils': workspace:*
       react: ^18.0.0
     dependencies:
       '@chakra-ui/theme-tools': link:../theme-tools
@@ -837,11 +853,11 @@ importers:
 
   packages/provider:
     specifiers:
-      '@chakra-ui/css-reset': 2.0.1
-      '@chakra-ui/portal': 2.0.4
-      '@chakra-ui/react-env': 2.0.4
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/utils': 2.0.4
+      '@chakra-ui/css-reset': workspace:*
+      '@chakra-ui/portal': workspace:*
+      '@chakra-ui/react-env': workspace:*
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/utils': workspace:*
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
       react: ^18.0.0
@@ -860,12 +876,12 @@ importers:
 
   packages/radio:
     specifiers:
-      '@chakra-ui/form-control': 2.0.4
-      '@chakra-ui/hooks': 2.0.4
-      '@chakra-ui/react-utils': 2.0.1
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/utils': 2.0.4
-      '@chakra-ui/visually-hidden': 2.0.4
+      '@chakra-ui/form-control': workspace:*
+      '@chakra-ui/hooks': workspace:*
+      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/utils': workspace:*
+      '@chakra-ui/visually-hidden': workspace:*
       '@zag-js/focus-visible': 0.1.0
       react: ^18.0.0
     dependencies:
@@ -881,53 +897,53 @@ importers:
 
   packages/react:
     specifiers:
-      '@chakra-ui/accordion': 2.0.6
-      '@chakra-ui/alert': 2.0.4
-      '@chakra-ui/avatar': 2.0.5
-      '@chakra-ui/breadcrumb': 2.0.4
-      '@chakra-ui/button': 2.0.4
-      '@chakra-ui/checkbox': 2.1.3
-      '@chakra-ui/close-button': 2.0.4
-      '@chakra-ui/control-box': 2.0.4
-      '@chakra-ui/counter': 2.0.4
-      '@chakra-ui/css-reset': 2.0.1
-      '@chakra-ui/editable': 2.0.4
-      '@chakra-ui/form-control': 2.0.4
-      '@chakra-ui/hooks': 2.0.4
-      '@chakra-ui/icon': 3.0.4
-      '@chakra-ui/image': 2.0.5
-      '@chakra-ui/input': 2.0.4
-      '@chakra-ui/layout': 2.1.1
-      '@chakra-ui/live-region': 2.0.4
-      '@chakra-ui/media-query': 3.2.0
-      '@chakra-ui/menu': 2.0.6
-      '@chakra-ui/modal': 2.1.2
-      '@chakra-ui/number-input': 2.0.4
-      '@chakra-ui/pin-input': 2.0.6
-      '@chakra-ui/popover': 2.0.4
-      '@chakra-ui/popper': 3.0.2
-      '@chakra-ui/portal': 2.0.4
-      '@chakra-ui/progress': 2.0.5
-      '@chakra-ui/provider': 2.0.9
-      '@chakra-ui/radio': 2.0.5
-      '@chakra-ui/react-env': 2.0.4
-      '@chakra-ui/select': 2.0.4
-      '@chakra-ui/skeleton': 2.0.9
-      '@chakra-ui/slider': 2.0.4
-      '@chakra-ui/spinner': 2.0.4
-      '@chakra-ui/stat': 2.0.4
-      '@chakra-ui/switch': 2.0.6
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/table': 2.0.4
-      '@chakra-ui/tabs': 2.0.6
-      '@chakra-ui/tag': 2.0.4
-      '@chakra-ui/textarea': 2.0.5
-      '@chakra-ui/theme': 2.1.3
-      '@chakra-ui/toast': 3.0.2
-      '@chakra-ui/tooltip': 2.0.5
-      '@chakra-ui/transition': 2.0.4
-      '@chakra-ui/utils': 2.0.4
-      '@chakra-ui/visually-hidden': 2.0.4
+      '@chakra-ui/accordion': workspace:*
+      '@chakra-ui/alert': workspace:*
+      '@chakra-ui/avatar': workspace:*
+      '@chakra-ui/breadcrumb': workspace:*
+      '@chakra-ui/button': workspace:*
+      '@chakra-ui/checkbox': workspace:*
+      '@chakra-ui/close-button': workspace:*
+      '@chakra-ui/control-box': workspace:*
+      '@chakra-ui/counter': workspace:*
+      '@chakra-ui/css-reset': workspace:*
+      '@chakra-ui/editable': workspace:*
+      '@chakra-ui/form-control': workspace:*
+      '@chakra-ui/hooks': workspace:*
+      '@chakra-ui/icon': workspace:*
+      '@chakra-ui/image': workspace:*
+      '@chakra-ui/input': workspace:*
+      '@chakra-ui/layout': workspace:*
+      '@chakra-ui/live-region': workspace:*
+      '@chakra-ui/media-query': workspace:*
+      '@chakra-ui/menu': workspace:*
+      '@chakra-ui/modal': workspace:*
+      '@chakra-ui/number-input': workspace:*
+      '@chakra-ui/pin-input': workspace:*
+      '@chakra-ui/popover': workspace:*
+      '@chakra-ui/popper': workspace:*
+      '@chakra-ui/portal': workspace:*
+      '@chakra-ui/progress': workspace:*
+      '@chakra-ui/provider': workspace:*
+      '@chakra-ui/radio': workspace:*
+      '@chakra-ui/react-env': workspace:*
+      '@chakra-ui/select': workspace:*
+      '@chakra-ui/skeleton': workspace:*
+      '@chakra-ui/slider': workspace:*
+      '@chakra-ui/spinner': workspace:*
+      '@chakra-ui/stat': workspace:*
+      '@chakra-ui/switch': workspace:*
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/table': workspace:*
+      '@chakra-ui/tabs': workspace:*
+      '@chakra-ui/tag': workspace:*
+      '@chakra-ui/textarea': workspace:*
+      '@chakra-ui/theme': workspace:*
+      '@chakra-ui/toast': workspace:*
+      '@chakra-ui/tooltip': workspace:*
+      '@chakra-ui/transition': workspace:*
+      '@chakra-ui/utils': workspace:*
+      '@chakra-ui/visually-hidden': workspace:*
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
       framer-motion: ^6.2.9
@@ -990,7 +1006,7 @@ importers:
 
   packages/react-utils:
     specifiers:
-      '@chakra-ui/utils': ^2.0.2
+      '@chakra-ui/utils': workspace:*
       react: ^18.0.0
     dependencies:
       '@chakra-ui/utils': link:../utils
@@ -999,9 +1015,9 @@ importers:
 
   packages/select:
     specifiers:
-      '@chakra-ui/form-control': 2.0.4
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/utils': 2.0.4
+      '@chakra-ui/form-control': workspace:*
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/utils': workspace:*
       react: ^18.0.0
     dependencies:
       '@chakra-ui/form-control': link:../form-control
@@ -1012,11 +1028,11 @@ importers:
 
   packages/skeleton:
     specifiers:
-      '@chakra-ui/hooks': 2.0.4
-      '@chakra-ui/media-query': 3.2.0
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/theme': ^2.1.3
-      '@chakra-ui/utils': 2.0.4
+      '@chakra-ui/hooks': workspace:*
+      '@chakra-ui/media-query': workspace:*
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/theme': workspace:*
+      '@chakra-ui/utils': workspace:*
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
       react: ^18.0.0
@@ -1033,8 +1049,8 @@ importers:
 
   packages/skip-nav:
     specifiers:
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/utils': 2.0.4
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/utils': workspace:*
       react: ^18.0.0
     dependencies:
       '@chakra-ui/utils': link:../utils
@@ -1044,10 +1060,10 @@ importers:
 
   packages/slider:
     specifiers:
-      '@chakra-ui/hooks': 2.0.4
-      '@chakra-ui/react-utils': 2.0.1
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/utils': 2.0.4
+      '@chakra-ui/hooks': workspace:*
+      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/utils': workspace:*
       react: ^18.0.0
     dependencies:
       '@chakra-ui/hooks': link:../hooks
@@ -1059,9 +1075,9 @@ importers:
 
   packages/spinner:
     specifiers:
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/utils': 2.0.4
-      '@chakra-ui/visually-hidden': 2.0.4
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/utils': workspace:*
+      '@chakra-ui/visually-hidden': workspace:*
       react: ^18.0.0
     dependencies:
       '@chakra-ui/utils': link:../utils
@@ -1072,10 +1088,10 @@ importers:
 
   packages/stat:
     specifiers:
-      '@chakra-ui/icon': 3.0.4
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/utils': 2.0.4
-      '@chakra-ui/visually-hidden': 2.0.4
+      '@chakra-ui/icon': workspace:*
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/utils': workspace:*
+      '@chakra-ui/visually-hidden': workspace:*
       react: ^18.0.0
     dependencies:
       '@chakra-ui/icon': link:../icon
@@ -1087,7 +1103,7 @@ importers:
 
   packages/styled-system:
     specifiers:
-      '@chakra-ui/utils': 2.0.4
+      '@chakra-ui/utils': workspace:*
       csstype: ^3.0.11
     dependencies:
       '@chakra-ui/utils': link:../utils
@@ -1095,9 +1111,9 @@ importers:
 
   packages/switch:
     specifiers:
-      '@chakra-ui/checkbox': 2.1.3
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/utils': 2.0.4
+      '@chakra-ui/checkbox': workspace:*
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/utils': workspace:*
       framer-motion: ^6.2.9
       react: ^18.0.0
       react-hook-form: 7.18.1
@@ -1112,12 +1128,13 @@ importers:
 
   packages/system:
     specifiers:
-      '@chakra-ui/color-mode': 2.1.2
-      '@chakra-ui/react-utils': 2.0.1
-      '@chakra-ui/styled-system': 2.2.3
-      '@chakra-ui/utils': 2.0.4
+      '@chakra-ui/color-mode': workspace:*
+      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/styled-system': workspace:*
+      '@chakra-ui/utils': workspace:*
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
+      framer-motion: ^6.2.9
       react: ^18.0.0
       react-fast-compare: 3.2.0
     dependencies:
@@ -1129,15 +1146,16 @@ importers:
     devDependencies:
       '@emotion/react': 11.9.3_react@18.2.0
       '@emotion/styled': 11.9.3_jhgplt4fmhans76oq3ok5iox2u
+      framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
 
   packages/table:
     specifiers:
-      '@chakra-ui/button': 2.0.4
-      '@chakra-ui/icons': 2.0.4
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/test-utils': 2.0.10
-      '@chakra-ui/utils': 2.0.4
+      '@chakra-ui/button': workspace:*
+      '@chakra-ui/icons': workspace:*
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/test-utils': workspace:*
+      '@chakra-ui/utils': workspace:*
       '@types/react-table': 7.7.9
       react: ^18.0.0
       react-table: 7.7.0
@@ -1154,12 +1172,12 @@ importers:
 
   packages/tabs:
     specifiers:
-      '@chakra-ui/clickable': 2.0.4
-      '@chakra-ui/descendant': 3.0.3
-      '@chakra-ui/hooks': 2.0.4
-      '@chakra-ui/react-utils': 2.0.1
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/utils': 2.0.4
+      '@chakra-ui/clickable': workspace:*
+      '@chakra-ui/descendant': workspace:*
+      '@chakra-ui/hooks': workspace:*
+      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/utils': workspace:*
       react: ^18.0.0
     dependencies:
       '@chakra-ui/clickable': link:../clickable
@@ -1173,22 +1191,24 @@ importers:
 
   packages/tag:
     specifiers:
-      '@chakra-ui/icon': 3.0.4
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/utils': 2.0.4
+      '@chakra-ui/icon': workspace:*
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/utils': workspace:*
       react: ^18.0.0
+      react-icons: ^4.2.0
     dependencies:
       '@chakra-ui/icon': link:../icon
       '@chakra-ui/utils': link:../utils
     devDependencies:
       '@chakra-ui/system': link:../system
       react: 18.2.0
+      react-icons: 4.4.0_react@18.2.0
 
   packages/textarea:
     specifiers:
-      '@chakra-ui/form-control': 2.0.4
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/utils': 2.0.4
+      '@chakra-ui/form-control': workspace:*
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/utils': workspace:*
       react: ^18.0.0
     dependencies:
       '@chakra-ui/form-control': link:../form-control
@@ -1199,11 +1219,11 @@ importers:
 
   packages/theme:
     specifiers:
-      '@chakra-ui/anatomy': 2.0.1
-      '@chakra-ui/cli': 2.1.2
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/theme-tools': 2.0.5
-      '@chakra-ui/utils': 2.0.4
+      '@chakra-ui/anatomy': workspace:*
+      '@chakra-ui/cli': workspace:*
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/theme-tools': workspace:*
+      '@chakra-ui/utils': workspace:*
     dependencies:
       '@chakra-ui/anatomy': link:../anatomy
       '@chakra-ui/theme-tools': link:../theme-tools
@@ -1214,8 +1234,8 @@ importers:
 
   packages/theme-tools:
     specifiers:
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/utils': 2.0.4
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/utils': workspace:*
       '@ctrl/tinycolor': ^3.4.0
     dependencies:
       '@chakra-ui/utils': link:../utils
@@ -1225,15 +1245,15 @@ importers:
 
   packages/toast:
     specifiers:
-      '@chakra-ui/alert': 2.0.4
-      '@chakra-ui/close-button': 2.0.4
-      '@chakra-ui/hooks': 2.0.4
-      '@chakra-ui/portal': 2.0.4
-      '@chakra-ui/react-utils': 2.0.1
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/theme': 2.1.3
-      '@chakra-ui/transition': 2.0.4
-      '@chakra-ui/utils': 2.0.4
+      '@chakra-ui/alert': workspace:*
+      '@chakra-ui/close-button': workspace:*
+      '@chakra-ui/hooks': workspace:*
+      '@chakra-ui/portal': workspace:*
+      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/theme': workspace:*
+      '@chakra-ui/transition': workspace:*
+      '@chakra-ui/utils': workspace:*
       framer-motion: ^6.2.9
       react: ^18.0.0
       react-dom: ^18.0.0
@@ -1254,13 +1274,13 @@ importers:
 
   packages/tooltip:
     specifiers:
-      '@chakra-ui/hooks': 2.0.4
-      '@chakra-ui/popper': 3.0.2
-      '@chakra-ui/portal': 2.0.4
-      '@chakra-ui/react-utils': 2.0.1
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/utils': 2.0.4
-      '@chakra-ui/visually-hidden': 2.0.4
+      '@chakra-ui/hooks': workspace:*
+      '@chakra-ui/popper': workspace:*
+      '@chakra-ui/portal': workspace:*
+      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/utils': workspace:*
+      '@chakra-ui/visually-hidden': workspace:*
       framer-motion: ^6.2.9
       react: ^18.0.0
       react-dom: ^18.0.0
@@ -1279,7 +1299,7 @@ importers:
 
   packages/transition:
     specifiers:
-      '@chakra-ui/utils': 2.0.4
+      '@chakra-ui/utils': workspace:*
       framer-motion: ^6.2.9
       react: ^18.0.0
       react-chartjs-2: ^3.3.0
@@ -1304,8 +1324,8 @@ importers:
 
   packages/visually-hidden:
     specifiers:
-      '@chakra-ui/system': 2.2.2
-      '@chakra-ui/utils': 2.0.4
+      '@chakra-ui/system': workspace:*
+      '@chakra-ui/utils': workspace:*
       react: ^18.0.0
     dependencies:
       '@chakra-ui/utils': link:../utils
@@ -1326,7 +1346,7 @@ importers:
 
   tooling/cli:
     specifiers:
-      '@chakra-ui/utils': ^2.0.3
+      '@chakra-ui/utils': workspace:*
       '@swc/core': ^1.2.177
       '@types/lodash.throttle': ^4.1.7
       '@types/module-alias': ^2.0.1
@@ -1378,7 +1398,7 @@ importers:
 
   tooling/gatsby-plugin:
     specifiers:
-      '@chakra-ui/react': 2.2.4
+      '@chakra-ui/react': workspace:*
       gatsby: ^3.0.0
     devDependencies:
       '@chakra-ui/react': link:../../packages/react
@@ -1386,8 +1406,8 @@ importers:
 
   tooling/props-docs:
     specifiers:
-      '@chakra-ui/react': 2.2.4
-      '@chakra-ui/styled-system': 2.2.3
+      '@chakra-ui/react': workspace:*
+      '@chakra-ui/styled-system': workspace:*
       '@types/glob': ^7.1.3
       glob: ^7.1.6
       mkdirp: ^1.0.4
@@ -1405,8 +1425,8 @@ importers:
 
   tooling/storybook-addon:
     specifiers:
-      '@chakra-ui/icons': ^2.0.4
-      '@chakra-ui/react': ^2.2.4
+      '@chakra-ui/icons': workspace:*
+      '@chakra-ui/react': workspace:*
       '@storybook/addons': ^6.5.6
       '@storybook/api': ^6.5.6
       '@storybook/components': ^6.5.6
@@ -1426,7 +1446,8 @@ importers:
 
   tooling/test-utils:
     specifiers:
-      '@chakra-ui/react': 2.2.4
+      '@chakra-ui/provider': workspace:*
+      '@chakra-ui/theme': workspace:*
       '@emotion/jest': ^11.9.3
       '@testing-library/jest-dom': ^5.16.4
       '@testing-library/react': ^13.3.0
@@ -1437,7 +1458,8 @@ importers:
       react: ^18.0.0
       react-test-renderer: ^18.1.0
     dependencies:
-      '@chakra-ui/react': link:../../packages/react
+      '@chakra-ui/provider': link:../../packages/provider
+      '@chakra-ui/theme': link:../../packages/theme
       '@emotion/jest': 11.9.4
       '@testing-library/jest-dom': 5.16.4
       '@testing-library/react': 13.3.0_react@18.2.0
@@ -3175,10 +3197,6 @@ packages:
       chalk: 2.4.2
       fs-extra: 7.0.1
       p-filter: 2.1.0
-    dev: false
-
-  /@changesets/types/0.4.0:
-    resolution: {integrity: sha512-TclHHKDVYQ8rJGZgVeWiF7c91yWzTTWdPagltgutelGu/Psup5PQlUq6svx7S8suj+jXcaE34yEEsfIvzXXB2Q==}
     dev: false
 
   /@changesets/types/4.1.0:
@@ -5057,29 +5075,6 @@ packages:
   /@leichtgewicht/ip-codec/2.0.4:
     resolution: {integrity: sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==}
     dev: true
-
-  /@manypkg/cli/0.19.1:
-    resolution: {integrity: sha512-EXBPPh6wYSKmSD5DdUjNG2rc55C2G/poIJ0D3O8tnk83o3nZh8g94JwN5/AumbSsDZ0yagmkS+DChNlRhIUG7w==}
-    hasBin: true
-    dependencies:
-      '@babel/runtime': 7.18.9
-      '@manypkg/get-packages': 1.1.3
-      chalk: 2.4.2
-      detect-indent: 6.1.0
-      find-up: 4.1.0
-      fs-extra: 8.1.0
-      get-workspaces: 0.6.0
-      normalize-path: 3.0.0
-      p-limit: 2.3.0
-      package-json: 6.5.0
-      parse-github-url: 1.0.2
-      sembear: 0.5.2
-      semver: 6.3.0
-      spawndamnit: 2.0.0
-      validate-npm-package-name: 3.0.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
 
   /@manypkg/find-root/1.1.0:
     resolution: {integrity: sha512-mki5uBvhHzO8kYYix/WRy2WX8S3B5wdVSc9D6KcU5lQNglP2yt58/VfLuAK49glRXChosY8ap2oJ1qgma3GUVA==}
@@ -8839,7 +8834,6 @@ packages:
       '@testing-library/dom': 8.16.0
       '@types/react-dom': 18.0.6
       react: 18.2.0
-    dev: false
 
   /@testing-library/user-event/14.3.0:
     resolution: {integrity: sha512-P02xtBBa8yMaLhK8CzJCIns8rqwnF6FxhR9zs810flHOBXUYCFjLd8Io1rQrAkQRWEmW2PGdZIEdMxf/KLsqFA==}
@@ -11470,10 +11464,6 @@ packages:
 
   /builtin-status-codes/3.0.0:
     resolution: {integrity: sha512-HpGFw18DgFWlncDfjTa2rcQ4W88O1mC8e8yZ2AvQY5KDaktSTwo+KRf6nHK6FRI5FyRyb/5T6+TSxfP7QyGsmQ==}
-
-  /builtins/1.0.3:
-    resolution: {integrity: sha512-uYBjakWipfaO/bXI7E8rq6kpwHRZK5cNYrUv2OzZSI/FvmdMyXJ2tG9dKcjEC5YHmHpUAwsargWIZNWdxb/bnQ==}
-    dev: false
 
   /busboy/0.2.14:
     resolution: {integrity: sha512-InWFDomvlkEj+xWLBfU3AvnbVYqeTWmQopiW0tWWEy5yehYm2YkGEc59sUmw/4ty5Zj/b0WHGs1LgecuBSBGrg==}
@@ -16844,17 +16834,6 @@ packages:
     resolution: {integrity: sha512-Ln0UQDlxH1BapMu3GPtf7CuYNwRZf2gwCuPqbyG6pB8WfmFpzqcy4xtAaAMUhnNqjMKTiCPZG2oMT3YSx8U2NA==}
     engines: {node: '>=0.10.0'}
 
-  /get-workspaces/0.6.0:
-    resolution: {integrity: sha512-EWfuENHoxNGk4xoel0jJdm/nhm8oMGQYRsTWJDqrHaj7jyebSckZI0TwQaeWX1rzqpMLULYFrdxhYJPI1l2j3w==}
-    dependencies:
-      '@changesets/types': 0.4.0
-      fs-extra: 7.0.1
-      globby: 9.2.0
-      read-yaml-file: 1.1.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /gifwrap/0.9.4:
     resolution: {integrity: sha512-MDMwbhASQuVeD4JKd1fKgNgCRL3fGqMM4WaqpNhWO0JiMOAjbQdumbs4BbBZEy9/M00EHEjKN3HieVhCUlwjeQ==}
     dependencies:
@@ -21972,12 +21951,6 @@ packages:
       path-root: 0.1.1
     dev: false
 
-  /parse-github-url/1.0.2:
-    resolution: {integrity: sha512-kgBf6avCbO3Cn6+RnzRGLkUsv4ZVqv/VfAYkRsyBcgkshNvVBkRn1FEZcW0Jb+npXQWm2vHPnnOqFteZxRRGNw==}
-    engines: {node: '>=0.10.0'}
-    hasBin: true
-    dev: false
-
   /parse-glob/3.0.4:
     resolution: {integrity: sha512-FC5TeK0AwXzq3tUBFtH74naWkPQCEWs4K+xMxWZBlKDWu0bVHXGZa+KKqxKidd7xwhdZ19ZNuF2uO1M/r196HA==}
     engines: {node: '>=0.10.0'}
@@ -23850,7 +23823,6 @@ packages:
       react: '*'
     dependencies:
       react: 18.2.0
-    dev: false
 
   /react-inspector/5.1.1:
     resolution: {integrity: sha512-GURDaYzoLbW8pMGXwYPDBIv6nqei4kK7LPRZ9q9HCZF54wqXz/dnylBp/kfE9XmekBhHvLDdcYeyIwSrvtOiWg==}
@@ -24939,13 +24911,6 @@ packages:
     dependencies:
       node-forge: 1.3.1
     dev: true
-
-  /sembear/0.5.2:
-    resolution: {integrity: sha512-Ij1vCAdFgWABd7zTg50Xw1/p0JgESNxuLlneEAsmBrKishA06ulTTL/SHGmNy2Zud7+rKrHTKNI6moJsn1ppAQ==}
-    dependencies:
-      '@types/semver': 6.2.3
-      semver: 6.3.0
-    dev: false
 
   /semver-compare/1.0.0:
     resolution: {integrity: sha512-YM3/ITh2MJ5MtzaM429anh+x2jiLVjqILF4m4oyQB18W7Ggea7BfqdH/wGMK7dDiMghv/6WG7znWMwUDzJiXow==}
@@ -27235,12 +27200,6 @@ packages:
     dependencies:
       spdx-correct: 3.1.1
       spdx-expression-parse: 3.0.1
-    dev: false
-
-  /validate-npm-package-name/3.0.0:
-    resolution: {integrity: sha512-M6w37eVCMMouJ9V/sdPGnC5H4uDr73/+xdq0FBLO3TFFX1+7wiUY6Es328NN+y43tmY+doUdN9g9J21vqB7iLw==}
-    dependencies:
-      builtins: 1.0.3
     dev: false
 
   /value-or-promise/1.0.6:

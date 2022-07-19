@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { FormControl, FormLabel } from "@chakra-ui/form-control"
 import Icon from "@chakra-ui/icon"
 import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"

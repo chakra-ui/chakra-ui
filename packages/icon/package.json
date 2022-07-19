@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
+    "react-icons": "^4.2.0",
     "react": "^18.0.0"
   },
   "peerDependencies": {

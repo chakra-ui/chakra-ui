@@ -34,6 +34,9 @@
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/storybook-addon": "workspace:*",
+    "framer-motion": "^6.2.9",
+    "react-icons": "^4.2.0",
     "react-spinners": "0.11.0",
     "react": "^18.0.0"
   },

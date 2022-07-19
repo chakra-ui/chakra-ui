@@ -43,6 +43,7 @@
     "react": ">=18"
   },
   "devDependencies": {
+    "framer-motion": "^6.2.9",
     "react": "^18.0.0"
   }
 }

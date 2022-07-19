@@ -53,12 +53,8 @@ export const BarChartExample = () => {
     <>
       <button onClick={toggle}>Toggle Collapse</button>
       <Collapse in={open} unmountOnExit>
-        <Bar
-          type="bar"
-          data={data}
-          // @ts-expect-error
-          options={options}
-        />
+        {/* @ts-ignore */}
+        <Bar type="bar" data={data} options={options} />
       </Collapse>
     </>
   )
