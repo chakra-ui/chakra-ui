@@ -32,19 +32,19 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/form-control": "2.0.4",
-    "@chakra-ui/hooks": "2.0.4",
-    "@chakra-ui/react-utils": "2.0.1",
-    "@chakra-ui/utils": "2.0.4",
-    "@chakra-ui/visually-hidden": "2.0.4",
+    "@chakra-ui/form-control": "workspace:*",
+    "@chakra-ui/hooks": "workspace:*",
+    "@chakra-ui/react-utils": "workspace:*",
+    "@chakra-ui/utils": "workspace:*",
+    "@chakra-ui/visually-hidden": "workspace:*",
     "@zag-js/focus-visible": "0.1.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "2.2.2",
+    "@chakra-ui/system": "workspace:*",
     "react": "^18.0.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">=2.0.0-next.0",
+    "@chakra-ui/system": ">=2.0.0",
     "react": ">=18"
   }
 }

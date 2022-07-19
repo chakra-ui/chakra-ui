@@ -33,17 +33,18 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "devDependencies": {
-    "@chakra-ui/system": "2.2.2",
+    "@chakra-ui/system": "workspace:*",
+    "react-spinners": "0.11.0",
     "react": "^18.0.0"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "2.0.4",
-    "@chakra-ui/react-utils": "2.0.1",
-    "@chakra-ui/spinner": "2.0.4",
-    "@chakra-ui/utils": "2.0.4"
+    "@chakra-ui/hooks": "workspace:*",
+    "@chakra-ui/react-utils": "workspace:*",
+    "@chakra-ui/spinner": "workspace:*",
+    "@chakra-ui/utils": "workspace:*"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">=2.0.0-next.0",
+    "@chakra-ui/system": ">=2.0.0",
     "react": ">=18"
   }
 }

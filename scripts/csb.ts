@@ -3,13 +3,14 @@
  */
 
 import editJson from "edit-json-file"
-import shell from "shelljs"
+import fs from "fs"
 
 const ciJson = editJson(".codesandbox/ci.json")
 
-const packages = shell
-  .ls("-d", "packages/*")
-  .filter((p) => !p.endsWith("test-utils"))
+// get all files in package/* excluding test-utils/
+const packages = fs
+  .readdirSync("package")
+  .filter((file) => !file.includes("test-utils"))
 
 ciJson.set("packages", packages)
 ciJson.save()

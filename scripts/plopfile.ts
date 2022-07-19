@@ -1,5 +1,5 @@
 import nodePlop, { ActionType } from "node-plop"
-import shell from "shelljs"
+import { spawn } from "child_process"
 import capitalize from "lodash/capitalize"
 import camelCase from "lodash/camelCase"
 
@@ -74,7 +74,7 @@ async function createPackage() {
 
 async function run() {
   await createPackage()
-  shell.exec("yarn")
+  spawn("pnpm", ["install"], { stdio: "inherit" })
 }
 
 run()

@@ -36,7 +36,7 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/react-utils": "2.0.1",
+    "@chakra-ui/react-utils": "workspace:*",
     "@popperjs/core": "^2.9.3"
   },
   "peerDependencies": {
