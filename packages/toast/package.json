@@ -12,9 +12,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-toast.cjs.js",
-  "module": "dist/chakra-ui-toast.esm.js",
-  "types": "dist/chakra-ui-toast.cjs.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -50,5 +50,11 @@
     "framer-motion": ">=4.0.0",
     "react": ">=18",
     "react-dom": ">=18"
+  },
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit"
   }
 }

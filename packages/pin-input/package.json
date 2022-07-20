@@ -15,9 +15,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-pin-input.cjs.js",
-  "module": "dist/chakra-ui-pin-input.esm.js",
-  "types": "dist/chakra-ui-pin-input.cjs.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -45,5 +45,11 @@
   "peerDependencies": {
     "@chakra-ui/system": ">=2.0.0",
     "react": ">=18"
+  },
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit"
   }
 }

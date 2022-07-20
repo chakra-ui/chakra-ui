@@ -18,9 +18,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-popper.cjs.js",
-  "module": "dist/chakra-ui-popper.esm.js",
-  "types": "dist/chakra-ui-popper.cjs.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -45,5 +45,11 @@
   "devDependencies": {
     "framer-motion": "^6.2.9",
     "react": "^18.0.0"
+  },
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit"
   }
 }

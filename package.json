@@ -14,19 +14,20 @@
     ]
   },
   "scripts": {
-    "dev": "pnpm build:babel && preconstruct dev",
+    "# dev": "pnpm build:babel && preconstruct dev",
     "prepare": "husky install",
     "version:pkgs": "changeset version",
     "clean:emotion-types": "rimraf node_modules/@emotion/core/types",
     "postinstall": "pnpm clean:emotion-types",
-    "csb:install": "pnpm && ts-node scripts/csb.ts",
     "prestart": "pnpm && pnpm bootstrap",
     "build:babel": "pnpm --filter=*babel-plugin build",
     "build:cli": "pnpm --filter=@chakra-ui/cli build",
     "build:prop-docs": "pnpm --filter=*props-docs build",
     "build:tokens": "chakra-cli tokens packages/theme",
-    "build": "pnpm build:babel && pnpm build:cli && preconstruct build && pnpm build:tokens",
-    "watch": "pnpm preconstruct watch",
+    "# build": "pnpm build:babel && pnpm build:cli && preconstruct build && pnpm build:tokens",
+    "dev": "turbo run build --filter=./packages/*",
+    "build": "turbo run build --filter=./packages/*",
+    "typecheck": "turbo run typecheck --filter=./packages/*",
     "test": "jest --maxWorkers=50%",
     "test:watch": "jest --maxWorkers=25% --watch --onlyChanged",
     "test:ci": "jest --color --runInBand --ci",
@@ -119,6 +120,7 @@
     "rimraf": "3.0.2",
     "ts-node": "^10.7.0",
     "twitter-api-client": "^1.5.2",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "unbuild": "0.7.4"
   }
 }

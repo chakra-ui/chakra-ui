@@ -12,9 +12,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-theme-tools.cjs.js",
-  "module": "dist/chakra-ui-theme-tools.esm.js",
-  "types": "dist/chakra-ui-theme-tools.cjs.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -38,5 +38,11 @@
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*"
+  },
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit"
   }
 }

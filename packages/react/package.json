@@ -2,9 +2,9 @@
   "name": "@chakra-ui/react",
   "version": "2.2.4",
   "description": "Responsive and accessible React UI components built with React and Emotion",
-  "main": "dist/chakra-ui-react.cjs.js",
-  "module": "dist/chakra-ui-react.esm.js",
-  "types": "dist/chakra-ui-react.cjs.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -98,5 +98,11 @@
     "framer-motion": "^6.2.9",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
+  },
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit"
   }
 }

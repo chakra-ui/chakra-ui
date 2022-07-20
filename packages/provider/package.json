@@ -2,9 +2,9 @@
   "name": "@chakra-ui/provider",
   "version": "2.0.9",
   "description": "Theme and components agnostic ChakraProvider",
-  "main": "dist/chakra-ui-provider.cjs.js",
-  "module": "dist/chakra-ui-provider.esm.js",
-  "types": "dist/chakra-ui-provider.cjs.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -54,5 +54,11 @@
     "@emotion/styled": "^11.8.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
+  },
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit"
   }
 }

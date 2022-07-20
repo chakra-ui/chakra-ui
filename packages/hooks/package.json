@@ -12,9 +12,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-hooks.cjs.js",
-  "module": "dist/chakra-ui-hooks.esm.js",
-  "types": "dist/chakra-ui-hooks.cjs.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "use-animation-state"
@@ -47,5 +47,11 @@
   },
   "devDependencies": {
     "react": "^18.0.0"
+  },
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit"
   }
 }

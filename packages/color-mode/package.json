@@ -19,16 +19,17 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-color-mode.cjs.js",
-  "module": "dist/chakra-ui-color-mode.esm.js",
-  "types": "dist/chakra-ui-color-mode.cjs.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "ls:minify": "esbuild script-src/localstorage.js --minify --outfile=script-src/localstorage.min.js",
-    "cookie:minify": "esbuild script-src/cookiestorage.js --minify --outfile=script-src/cookiestorage.min.js",
-    "minify": "yarn ls:minify && yarn cookie:minify"
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit"
   },
   "publishConfig": {
     "access": "public"
