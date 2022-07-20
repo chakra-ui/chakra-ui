@@ -38,6 +38,10 @@
     "@chakra-ui/utils": "workspace:*",
     "csstype": "^3.0.11"
   },
+  "devDependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1"
+  },
   "sideEffects": false,
   "scripts": {
     "build": "unbuild",
