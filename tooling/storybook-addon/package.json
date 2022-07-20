@@ -2,9 +2,9 @@
   "name": "@chakra-ui/storybook-addon",
   "version": "4.0.4",
   "description": "The official Storybook Addon for Chakra UI",
-  "main": "dist/chakra-ui-storybook-addon.cjs.js",
-  "types": "dist/chakra-ui-storybook-addon.cjs.d.ts",
-  "typings": "dist/chakra-ui-storybook-addon.cjs.d.ts",
+  "main": "dist/index.cjs",
+  "types": "dist/index.mjs",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist",
     "preset",
@@ -12,7 +12,10 @@
     "theming-arg-types.png"
   ],
   "scripts": {
-    "clean": "rimraf ./dist"
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
@@ -37,7 +40,6 @@
     "@storybook/addons": "^6.5.6",
     "@storybook/api": "^6.5.6",
     "@storybook/components": "^6.5.6",
-    "concurrently": "^6.4.0",
     "react": "^18.0.0"
   },
   "dependencies": {
@@ -73,13 +75,5 @@
       "Svelte"
     ],
     "icon": "https://raw.githubusercontent.com/chakra-ui/chakra-ui/main/logo/logomark-colored.svg"
-  },
-  "preconstruct": {
-    "entrypoints": [
-      "index.ts",
-      "preset/index.ts",
-      "preset/register.ts",
-      "preset/decorators.ts"
-    ]
   }
 }
