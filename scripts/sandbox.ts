@@ -12,7 +12,6 @@ async function main() {
           typecheck: "tsc --noEmit",
         },
       }
-
       return fs.writeFile(
         `${pkg.dir}/package.json`,
         JSON.stringify(tsConfig, null, 2),

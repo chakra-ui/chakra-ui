@@ -16,15 +16,8 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
-    "dist",
-    "use-animation-state"
+    "dist"
   ],
-  "preconstruct": {
-    "entrypoints": [
-      "index.ts",
-      "use-animation-state.ts"
-    ]
-  },
   "publishConfig": {
     "access": "public"
   },
