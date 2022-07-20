@@ -1,14 +1,9 @@
 module.exports = {
   core: {
-    builder: {
-      name: "webpack5",
-      options: {
-        lazyCompilation: true,
-        fsCache: true,
-      },
-    },
+    builder: "@storybook/builder-webpack5",
+    disableTelemetry: true,
   },
-  stories: ["../packages/**/stories/*.stories.tsx"],
+  stories: ["../packages/accordion/stories/*.stories.tsx"],
   addons: [
     "@storybook/addon-a11y",
     "@storybook/addon-essentials",

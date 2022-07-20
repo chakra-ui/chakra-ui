@@ -1,5 +1,4 @@
 {
   "main": "../dist/preset/index.cjs",
-  "module": "../dist/preset/index.mjs",
-  "types": "../dist/preset/index.d.ts"
+  "module": "../dist/preset/index.mjs"
 }

@@ -1,5 +1,4 @@
 {
   "main": "../../dist/preset/register.cjs",
-  "module": "../../dist/preset/register.mjs",
-  "types": "../../dist/preset/register.d.ts"
+  "module": "../../dist/preset/register.mjs"
 }

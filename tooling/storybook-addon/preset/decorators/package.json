@@ -1,5 +1,4 @@
 {
   "main": "../../dist/preset/decorators.cjs",
-  "module": "../../dist/preset/decorators.mjs",
-  "types": "../../dist/preset/decorators.d.ts"
+  "module": "../../dist/preset/decorators.mjs"
 }
