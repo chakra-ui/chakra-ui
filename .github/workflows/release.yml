@@ -13,8 +13,35 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
+  props:
+    name: Docs Gen
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+
+      - name: Install
+        uses: ./.github/composite-actions/install
+
+      - name: Generate docs
+        run: pnpm build:prop-docs
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+
+      - name: Install
+        uses: ./.github/composite-actions/install
+
+      - name: Build
+        run: pnpm build
+
   release:
     name: Release
+    needs: [build, props]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
@@ -25,12 +52,6 @@ jobs:
 
       - name: Install
         uses: ./.github/composite-actions/install
-
-      - name: Build packages
-        run: pnpm build
-
-      - name: Build prop docs
-        run: pnpm build:prop-docs
 
       - name: Create release Pull Request or publish to NPM
         id: changesets
