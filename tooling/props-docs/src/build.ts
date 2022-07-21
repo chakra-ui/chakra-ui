@@ -32,9 +32,9 @@ const outputPath = path.join(__dirname, "..", "dist", "components")
 
 const basePath = path.join(__dirname, "..", "dist")
 
-const cjsIndexFilePath = path.join(basePath, "chakra-ui-props-docs.cjs.js")
-const esmIndexFilePath = path.join(basePath, "chakra-ui-props-docs.esm.js")
-const typeFilePath = path.join(basePath, "chakra-ui-props-docs.cjs.d.ts")
+const cjsIndexFilePath = path.join(basePath, "index.cjs")
+const esmIndexFilePath = path.join(basePath, "index.mjs")
+const typeFilePath = path.join(basePath, "index.d.ts")
 
 const tsConfigPath = path.join(sourcePath, "..", "tsconfig.json")
 

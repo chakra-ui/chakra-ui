@@ -15,7 +15,7 @@
     "dist"
   ],
   "scripts": {
-    "prepublish": "yarn build",
+    "prepublish": "pnpm build",
     "lint": "eslint --ext .js src",
     "test": "jest --passWithNoTests",
     "build": "babel src -d dist"
