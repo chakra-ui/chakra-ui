@@ -1445,6 +1445,7 @@ importers:
     specifiers:
       '@chakra-ui/provider': workspace:*
       '@chakra-ui/theme': workspace:*
+      '@chakra-ui/utils': workspace:*
       '@emotion/jest': ^11.9.3
       '@testing-library/jest-dom': ^5.16.4
       '@testing-library/react': ^13.3.0
@@ -1457,6 +1458,7 @@ importers:
     dependencies:
       '@chakra-ui/provider': link:../../packages/provider
       '@chakra-ui/theme': link:../../packages/theme
+      '@chakra-ui/utils': link:../../packages/utils
       '@emotion/jest': 11.9.4
       '@testing-library/jest-dom': 5.16.4
       '@testing-library/react': 13.3.0_react@18.2.0
