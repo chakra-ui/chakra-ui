@@ -212,7 +212,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
   const isVertical = orientation === "vertical"
 
   const [thumbRects, setThumbRects] = useState(
-    Array.from({ length: value.length }).map(() => ({ width: 0, height: 0 })),
+    Array.from({ length: value.length }).map(() => ({ width: -1, height: -1 })),
   )
 
   useEffect(() => {
@@ -226,8 +226,17 @@ export function useRangeSlider(props: UseRangeSliderProps) {
       height: el.offsetHeight,
     }))
 
-    if (rects.length) setThumbRects(rects)
-  }, [])
+    // Keep updating thumbRects until width and height matches the width and height from thumbs
+    for (let i = 0; i < rects.length; i++) {
+      if (
+        rects[i].width !== thumbRects[i].width ||
+        rects[i].height !== thumbRects[i].height
+      ) {
+        setThumbRects(rects)
+        break
+      }
+    }
+  }, [thumbRects])
 
   /**
    * Let's keep a reference to the slider track and thumb
