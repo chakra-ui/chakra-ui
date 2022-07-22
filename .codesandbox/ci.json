@@ -1,7 +1,5 @@
 {
-  "node": "14",
-  "installCommand": "csb:install",
-  "buildCommand": "build",
+  "node": "16",
   "sandboxes": ["/examples/create-react-app"],
   "packages": ["packages/**"]
 }
