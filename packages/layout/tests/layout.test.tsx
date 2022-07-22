@@ -7,7 +7,16 @@ import {
 } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
-import { Box, Badge, Container, Divider, Flex, Stack } from "../src"
+import {
+  Box,
+  Badge,
+  Container,
+  Divider,
+  Flex,
+  Stack,
+  useHighlight,
+} from "../src"
+import { renderHook } from "@testing-library/react-hooks"
 
 describe("<Box />", () => {
   test("passes a11y test", async () => {
@@ -163,5 +172,46 @@ describe("<Divider />", () => {
 
   test("overrides the theming props", () => {
     render(<Divider variant="dashed" />)
+  })
+})
+
+describe("<Highlight/>", () => {
+  test.each([[], ""])(
+    "useHighlight returns no matches if queries is empty %p ",
+    (query) => {
+      const { result } = renderHook(() =>
+        useHighlight({
+          query: query,
+          text: "this is an ordinary text which should not have any matches",
+        }),
+      )
+      expect(result.current).toHaveLength(0)
+    },
+  )
+
+  test("useHighlight matches correctly", () => {
+    const query = ["", "text"]
+    const { result } = renderHook(() =>
+      useHighlight({
+        query: query,
+        text: "this is an ordinary text which should have one match ",
+      }),
+    )
+    expect(result.current).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "match": false,
+          "text": "this is an ordinary ",
+        },
+        Object {
+          "match": true,
+          "text": "text",
+        },
+        Object {
+          "match": false,
+          "text": " which should have one match ",
+        },
+      ]
+    `)
   })
 })
