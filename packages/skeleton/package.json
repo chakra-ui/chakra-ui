@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "@chakra-ui/theme": "workspace:*",
+    "@chakra-ui/layout": "workspace:*",
     "@chakra-ui/provider": "workspace:*",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",

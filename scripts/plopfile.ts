@@ -1,9 +1,13 @@
 import nodePlop, { ActionType } from "node-plop"
 import { spawn } from "child_process"
-import capitalize from "lodash/capitalize"
-import camelCase from "lodash/camelCase"
 
-const plop = nodePlop("plop-templates/plopfile.hbs")
+const capitalize = (str: string) => {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
+const camelCase = (str: string) => {
+  return str.replace(/[-_](\w)/g, (_, c) => c.toUpperCase())
+}
 
 const workspaces = [
   "packages",
@@ -21,6 +25,8 @@ interface Answers {
 }
 
 async function createPackage() {
+  const plop = await nodePlop("plop-templates/plopfile.hbs")
+
   plop.setHelper("capitalize", (text) => {
     return capitalize(camelCase(text))
   })

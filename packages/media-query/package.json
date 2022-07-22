@@ -39,8 +39,10 @@
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/test-utils": "workspace:*",
     "@chakra-ui/theme": "workspace:*",
+    "@types/react-frame-component": "^4.1.1",
     "jest-matchmedia-mock": "^1.1.0",
     "@testing-library/react-hooks": "8.0.0",
+    "react-frame-component": "^5.2.3",
     "react": "^18.0.0"
   },
   "peerDependencies": {

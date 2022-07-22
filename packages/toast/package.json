@@ -40,6 +40,7 @@
     "@chakra-ui/utils": "workspace:*"
   },
   "devDependencies": {
+    "@testing-library/react": "13.3.0",
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/button": "workspace:*",
     "@chakra-ui/layout": "workspace:*",
