@@ -58,5 +58,5 @@ jobs:
       - name: Install
         uses: ./.github/composite-actions/install
 
-      - name: Run ESLint
+      - name: Run typecheck
         run: pnpm typecheck

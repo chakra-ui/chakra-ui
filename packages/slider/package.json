@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
+    "@emotion/styled": "^11.8.1",
     "react": "^18.0.0"
   },
   "peerDependencies": {
