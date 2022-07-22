@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/layout": "workspace:*",
     "react": "^18.0.0"
   },
   "dependencies": {

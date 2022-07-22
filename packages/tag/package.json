@@ -37,6 +37,8 @@
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/icons": "workspace:*",
+    "@chakra-ui/avatar": "workspace:*",
     "react-icons": "^4.2.0",
     "react": "^18.0.0"
   },

@@ -38,6 +38,7 @@
     "react": ">=18"
   },
   "devDependencies": {
+    "@chakra-ui/system": "workspace:*",
     "react": "^18.0.0"
   },
   "scripts": {

@@ -6,7 +6,7 @@ import {
   waitFor,
 } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+// import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 import { Box, Badge, Container, Divider, Flex, Stack } from "../src"
 
 describe("<Box />", () => {
@@ -39,26 +39,26 @@ describe("<Container />", () => {
     render(<Container centerContent>This is centered container</Container>)
   })
 
-  test("theming works correctly", () => {
-    const theme = extendTheme({
-      components: {
-        Container: {
-          variants: {
-            customBackground: {
-              bgColor: "red.500",
-            },
-          },
-        },
-      },
-    })
-    render(
-      <ChakraProvider theme={theme}>
-        <Container variant="customBackground">
-          This is container has a red background
-        </Container>
-      </ChakraProvider>,
-    )
-  })
+  // test("theming works correctly", () => {
+  //   const theme = extendTheme({
+  //     components: {
+  //       Container: {
+  //         variants: {
+  //           customBackground: {
+  //             bgColor: "red.500",
+  //           },
+  //         },
+  //       },
+  //     },
+  //   })
+  //   render(
+  //     <ChakraProvider theme={theme}>
+  //       <Container variant="customBackground">
+  //         This is container has a red background
+  //       </Container>
+  //     </ChakraProvider>,
+  //   )
+  // })
 })
 
 describe("<Flex />", () => {

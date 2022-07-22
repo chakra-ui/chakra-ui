@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/modal": "workspace:*",
     "framer-motion": "^6.2.9",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"

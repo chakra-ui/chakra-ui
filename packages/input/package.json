@@ -39,6 +39,9 @@
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/icons": "workspace:*",
+    "@chakra-ui/layout": "workspace:*",
+    "@chakra-ui/hooks": "workspace:*",
     "react": "^18.0.0"
   },
   "peerDependencies": {

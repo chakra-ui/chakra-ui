@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/modal": "workspace:*",
     "react": "^18.0.0"
   },
   "peerDependencies": {

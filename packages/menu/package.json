@@ -44,6 +44,12 @@
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/image": "workspace:*",
+    "@chakra-ui/modal": "workspace:*",
+    "@chakra-ui/provider": "workspace:*",
+    "@chakra-ui/portal": "workspace:*",
+    "@chakra-ui/theme": "workspace:*",
+    "@chakra-ui/button": "workspace:*",
     "react-icons": "^4.2.0",
     "framer-motion": "^6.2.9",
     "react": "^18.0.0"
