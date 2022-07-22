@@ -19,13 +19,11 @@ export interface UseToastOptions extends ThemingProps<"Alert"> {
    * @default 5000 ( = 5000ms )
    */
   duration?: ToastOptions["duration"]
-
   /**
    * Render a component toast component.
    * Any component passed will receive 2 props: `id` and `onClose`.
    */
   render?(props: RenderProps): React.ReactNode
-
   /**
    * The title of the toast
    */

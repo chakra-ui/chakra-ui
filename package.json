@@ -46,6 +46,7 @@
     "@changesets/changelog-github": "0.4.2",
     "@changesets/cli": "2.18.1",
     "@chakra-ui/storybook-addon": "workspace:*",
+    "@chakra-ui/test-utils": "workspace:*",
     "@commitlint/cli": "14.1.0",
     "@commitlint/config-conventional": "14.1.0",
     "@storybook/addon-a11y": "^6.5.9",

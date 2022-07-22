@@ -16,6 +16,7 @@ importers:
       '@babel/preset-typescript': ^7.18.6
       '@babel/runtime': ^7.18.9
       '@chakra-ui/storybook-addon': workspace:*
+      '@chakra-ui/test-utils': workspace:*
       '@changesets/changelog-github': 0.4.2
       '@changesets/cli': 2.18.1
       '@commitlint/cli': 14.1.0
@@ -76,6 +77,7 @@ importers:
       '@babel/preset-typescript': 7.18.6_@babel+core@7.18.9
       '@babel/runtime': 7.18.9
       '@chakra-ui/storybook-addon': link:tooling/storybook-addon
+      '@chakra-ui/test-utils': link:tooling/test-utils
       '@changesets/changelog-github': 0.4.2
       '@changesets/cli': 2.18.1
       '@commitlint/cli': 14.1.0
@@ -408,7 +410,7 @@ importers:
       '@chakra-ui/system': workspace:*
       '@chakra-ui/utils': workspace:*
       '@chakra-ui/visually-hidden': workspace:*
-      '@zag-js/focus-visible': 0.1.3
+      '@zag-js/focus-visible': 0.1.0
       framer-motion: ^6.2.9
       react: ^18.2.0
     dependencies:
@@ -417,7 +419,7 @@ importers:
       '@chakra-ui/react-utils': link:../react-utils
       '@chakra-ui/utils': link:../utils
       '@chakra-ui/visually-hidden': link:../visually-hidden
-      '@zag-js/focus-visible': 0.1.3
+      '@zag-js/focus-visible': 0.1.0
     devDependencies:
       '@chakra-ui/system': link:../system
       framer-motion: 6.5.1_react@18.2.0
@@ -9962,10 +9964,6 @@ packages:
 
   /@zag-js/focus-visible/0.1.0:
     resolution: {integrity: sha512-PeaBcTmdZWcFf7n1aM+oiOdZc+sy14qi0emPIeUuGMTjbP0xLGrZu43kdpHnWSXy7/r4Ubp/vlg50MCV8+9Isg==}
-    dev: false
-
-  /@zag-js/focus-visible/0.1.3:
-    resolution: {integrity: sha512-OXHSB1ti2syloJP9NksGy7nQUVjDb4CaRslOzXIpUOwyypG5rSjN73cFOCq3jv26fyRG9BtCaQ69d4o4XoB3uQ==}
     dev: false
 
   /JSONStream/1.3.5:

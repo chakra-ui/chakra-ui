@@ -1,6 +1,5 @@
 import { hooks } from "@chakra-ui/test-utils"
 import { toCSSVar, useToken } from "../src"
-import * as system from "../src/providers"
 
 const mockRed = {
   100: "mockRed.100",
@@ -30,18 +29,18 @@ const mockBreakpoints = {
   "2xl": "96em",
 }
 
-const setupMock = () => {
-  jest.spyOn(system, "useTheme").mockReturnValueOnce(
-    toCSSVar({
-      colors: {
-        red: mockRed,
-        blue: mockBlue,
-      },
-      space: mockSpace,
-      breakpoints: mockBreakpoints,
-    }),
-  )
-}
+const mockValue = toCSSVar({
+  colors: {
+    red: mockRed,
+    blue: mockBlue,
+  },
+  space: mockSpace,
+  breakpoints: mockBreakpoints,
+})
+
+jest.mock("../src/use-theme", () => ({
+  useTheme: () => mockValue,
+}))
 
 describe("useToken", () => {
   afterEach(() => {
@@ -49,8 +48,6 @@ describe("useToken", () => {
   })
 
   test("resolves a single value", () => {
-    setupMock()
-
     const { result } = hooks.render(() => useToken("colors", "red.100"))
 
     expect(result.current).not.toBeInstanceOf(Array)
@@ -58,7 +55,6 @@ describe("useToken", () => {
   })
 
   test("resolves a value which contains a dot", () => {
-    setupMock()
     const { result } = hooks.render(() => useToken("space", "1.5"))
 
     expect(result.current).not.toBeInstanceOf(Array)
@@ -66,8 +62,6 @@ describe("useToken", () => {
   })
 
   test("resolves multiple values", () => {
-    setupMock()
-
     const { result } = hooks.render(() =>
       useToken("colors", ["red.100", "blue.300"]),
     )
@@ -77,8 +71,6 @@ describe("useToken", () => {
   })
 
   test("unknown values resolve as fallbacks", () => {
-    setupMock()
-
     const input = ["foo", "bar", "baz"]
 
     const { result } = hooks.render(() => useToken("colors", input))
@@ -88,8 +80,6 @@ describe("useToken", () => {
   })
 
   test("known and unknown values mixed", () => {
-    setupMock()
-
     const { result } = hooks.render(() =>
       useToken("colors", ["red.100", "blue.300", "foo", "bar", "baz"]),
     )
@@ -105,8 +95,6 @@ describe("useToken", () => {
   })
 
   test("resolves a single breakpoint string value", () => {
-    setupMock()
-
     const { result } = hooks.render(() => useToken("breakpoints", "md"))
 
     expect(result.current).not.toBeInstanceOf(Array)
@@ -114,8 +102,6 @@ describe("useToken", () => {
   })
 
   test("resolves multiple breakpoint string values", () => {
-    setupMock()
-
     const { result } = hooks.render(() => useToken("breakpoints", ["sm", "lg"]))
 
     expect(result.current).toHaveLength(2)

@@ -1,16 +1,10 @@
 import { useColorMode } from "@chakra-ui/color-mode"
-import {
-  css,
-  SystemStyleObject,
-  toCSSVar,
-  WithCSSVar,
-} from "@chakra-ui/styled-system"
-import { Dict, memoizedGet as get, runIfFn } from "@chakra-ui/utils"
 import { createContext } from "@chakra-ui/react-utils"
+import { css, SystemStyleObject, toCSSVar } from "@chakra-ui/styled-system"
+import { Dict, memoizedGet as get, runIfFn } from "@chakra-ui/utils"
 import {
   Global,
   Interpolation,
-  ThemeContext,
   ThemeProvider as EmotionThemeProvider,
   ThemeProviderProps as EmotionThemeProviderProps,
 } from "@emotion/react"
@@ -45,19 +39,6 @@ export const CSSVars = ({ root = ":host, :root" }: CSSVarsProps) => {
    */
   const selector = [root, `[data-theme]`].join(",")
   return <Global styles={(theme: any) => ({ [selector]: theme.__cssVars })} />
-}
-
-export function useTheme<T extends object = Dict>() {
-  const theme = React.useContext(
-    ThemeContext as unknown as React.Context<T | undefined>,
-  )
-  if (!theme) {
-    throw Error(
-      "useTheme: `theme` is undefined. Seems you forgot to wrap your app in `<ChakraProvider />` or `<ThemeProvider />`",
-    )
-  }
-
-  return theme as WithCSSVar<T>
 }
 
 /**

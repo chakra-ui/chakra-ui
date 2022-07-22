@@ -48,14 +48,16 @@ interface AlertOptions {
 export interface AlertProps
   extends HTMLChakraProps<"div">,
     AlertOptions,
-    ThemingProps<"Alert"> {}
+    ThemingProps<"Alert"> {
+  addRole?: boolean
+}
 
 /**
  * Alert is used to communicate the state or status of a
  * page, feature or action
  */
 export const Alert = forwardRef<AlertProps, "div">((props, ref) => {
-  const { status = "info", ...rest } = omitThemingProps(props)
+  const { status = "info", addRole = true, ...rest } = omitThemingProps(props)
   const colorScheme = props.colorScheme ?? STATUSES[status].colorScheme
 
   const styles = useMultiStyleConfig("Alert", { ...props, colorScheme })
@@ -73,7 +75,7 @@ export const Alert = forwardRef<AlertProps, "div">((props, ref) => {
     <AlertProvider value={{ status }}>
       <StylesProvider value={styles}>
         <chakra.div
-          role="alert"
+          role={addRole ? "alert" : undefined}
           ref={ref}
           {...rest}
           className={cx("chakra-alert", props.className)}
