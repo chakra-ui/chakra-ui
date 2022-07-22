@@ -34,9 +34,15 @@
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
+  "sideEffects": false,
+  "scripts": {
+    "benchmark": "node benchmarks/benchmark.js"
+  },
   "dependencies": {
     "@chakra-ui/utils": "2.0.4",
     "csstype": "^3.0.11"
   },
-  "sideEffects": false
+  "devDependencies": {
+    "cronometro": "^1.1.0"
+  }
 }
