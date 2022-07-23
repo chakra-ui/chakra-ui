@@ -3,7 +3,7 @@ import {
   SystemStyleInterpolation,
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
-import { Dict, runIfFn } from "@chakra-ui/utils"
+import { Dict } from "@chakra-ui/utils"
 
 /* -----------------------------------------------------------------------------
  * Global Style object definitions

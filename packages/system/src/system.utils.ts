@@ -1,4 +1,4 @@
-import { isString, omit, __DEV__ } from "@chakra-ui/utils"
+import { isString, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
 /**
