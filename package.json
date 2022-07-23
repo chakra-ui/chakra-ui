@@ -49,6 +49,7 @@
     "@changesets/get-release-plan": "3.0.11",
     "@chakra-ui/storybook-addon": "workspace:*",
     "@chakra-ui/test-utils": "workspace:*",
+    "@chakra-ui/cli": "workspace:*",
     "@commitlint/cli": "14.1.0",
     "@commitlint/config-conventional": "14.1.0",
     "@storybook/addon-a11y": "^6.5.9",
