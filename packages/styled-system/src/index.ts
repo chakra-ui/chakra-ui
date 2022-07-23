@@ -5,11 +5,8 @@ export * from "./pseudos"
 export * from "./style-config"
 export * from "./system"
 export * from "./system.types"
-export type {
-  BaseThemeTypings,
-  CustomThemeTypings,
-  ThemeTypings,
-} from "./theme.types"
+export type { BaseThemeTypings } from "./shared.types"
+export type { CustomThemeTypings, ThemeTypings } from "./theme.types"
 export type {
   ResponsiveArray,
   ResponsiveObject,
