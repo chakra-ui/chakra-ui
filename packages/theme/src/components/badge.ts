@@ -2,7 +2,7 @@ import { getColor, mode, transparentize } from "@chakra-ui/theme-tools"
 import type {
   SystemStyleFunction,
   SystemStyleObject,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/styled-system"
 
 const baseStyle: SystemStyleObject = {
   px: 1,

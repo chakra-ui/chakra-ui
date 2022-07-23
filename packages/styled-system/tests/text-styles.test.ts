@@ -1,8 +1,8 @@
-import defaultTheme from "@chakra-ui/theme"
+// import defaultTheme from "@chakra-ui/theme"
 import { toCSSVar, css } from "../src"
 
 const theme = toCSSVar({
-  ...defaultTheme,
+  // ...defaultTheme,
   textStyles: {
     big: {
       fontSize: "40px",

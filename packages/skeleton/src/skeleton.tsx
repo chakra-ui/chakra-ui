@@ -54,6 +54,16 @@ const StyledSkeleton = chakra("div", {
   },
 })
 
+const useIsFirstRender = () => {
+  const isFirstRender = React.useRef(true)
+
+  React.useEffect(() => {
+    isFirstRender.current = false
+  }, [])
+
+  return isFirstRender.current
+}
+
 export type ISkeleton = SkeletonOptions
 
 export interface SkeletonProps
@@ -66,15 +76,13 @@ const fade = keyframes({
   to: { opacity: 1 },
 })
 
-const useIsFirstRender = () => {
-  const isFirstRender = React.useRef(true)
+const startColor = "var(--skeleton-start-color)"
+const endColor = "var(--skeleton-end-color)"
 
-  React.useEffect(() => {
-    isFirstRender.current = false
-  }, [])
-
-  return isFirstRender.current
-}
+const bgFade = keyframes({
+  from: { borderColor: startColor, background: startColor },
+  to: { borderColor: endColor, background: endColor },
+})
 
 export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
   const styles = useStyleConfig("Skeleton", props)
@@ -109,7 +117,15 @@ export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
   }
 
   return (
-    <StyledSkeleton ref={ref} className={_className} {...rest} __css={styles} />
+    <StyledSkeleton
+      ref={ref}
+      className={_className}
+      {...rest}
+      __css={{
+        ...styles,
+        animation: `${speed}s linear infinite alternate ${bgFade}`,
+      }}
+    />
   )
 })
 

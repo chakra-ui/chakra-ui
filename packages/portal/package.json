@@ -42,9 +42,6 @@
   },
   "devDependencies": {
     "@chakra-ui/button": "workspace:*",
-    "@chakra-ui/menu": "workspace:*",
-    "@chakra-ui/popover": "workspace:*",
-    "@chakra-ui/tooltip": "workspace:*",
     "@testing-library/react": "13.3.0",
     "@types/react-frame-component": "^4.1.1",
     "react": "^18.0.0",

@@ -1,7 +1,7 @@
 import type {
   SystemStyleFunction,
   SystemStyleObject,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/styled-system"
 import { cssVar, mode } from "@chakra-ui/theme-tools"
 
 const $size = cssVar("close-button-size")

@@ -1,4 +1,3 @@
-import { fromEntries } from "@chakra-ui/utils"
 /**
  * Used to define the anatomy/parts of a component in a way that provides
  * a consistent API for `className`, css selector and `theming`.
@@ -50,7 +49,7 @@ export function anatomy<T extends string = string>(
    * Get all selectors for the component anatomy
    */
   function selectors() {
-    const value = fromEntries(
+    const value = Object.fromEntries(
       Object.entries(map).map(([key, part]) => [key, (part as any).selector]),
     )
     return value as Record<T, string>
@@ -60,7 +59,7 @@ export function anatomy<T extends string = string>(
    * Get all classNames for the component anatomy
    */
   function classnames() {
-    const value = fromEntries(
+    const value = Object.fromEntries(
       Object.entries(map).map(([key, part]) => [key, (part as any).className]),
     )
     return value as Record<T, string>

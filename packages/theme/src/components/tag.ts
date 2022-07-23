@@ -3,7 +3,7 @@ import type {
   PartsStyleInterpolation,
   PartsStyleObject,
   SystemStyleObject,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/styled-system"
 import Badge from "./badge"
 
 const baseStyleContainer: SystemStyleObject = {
