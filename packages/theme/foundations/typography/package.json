@@ -1,5 +1,5 @@
 {
-  "main": "../../dist/foundations/typography.cjs",
+  "main": "../../dist/foundations/typography.js",
   "module": "../../dist/foundations/typography.mjs",
   "types": "../../dist/foundations/typography.d.ts"
 }

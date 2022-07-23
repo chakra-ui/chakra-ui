@@ -1,5 +1,5 @@
 {
-  "main": "../../dist/foundations/borders.cjs",
+  "main": "../../dist/foundations/borders.js",
   "module": "../../dist/foundations/borders.mjs",
   "types": "../../dist/foundations/borders.d.ts"
 }

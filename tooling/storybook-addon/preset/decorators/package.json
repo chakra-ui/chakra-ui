@@ -1,4 +1,4 @@
 {
-  "main": "../../dist/preset/decorators.cjs",
+  "main": "../../dist/preset/decorators.js",
   "module": "../../dist/preset/decorators.mjs"
 }

@@ -1,5 +1,5 @@
 {
-  "main": "../../dist/foundations/spacing.cjs",
+  "main": "../../dist/foundations/spacing.js",
   "module": "../../dist/foundations/spacing.mjs",
   "types": "../../dist/foundations/spacing.d.ts"
 }

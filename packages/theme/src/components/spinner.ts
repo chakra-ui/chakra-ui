@@ -1,4 +1,5 @@
-import { cssVar, SystemStyleObject } from "@chakra-ui/styled-system"
+import { SystemStyleObject } from "@chakra-ui/styled-system"
+import { cssVar } from "@chakra-ui/theme-tools"
 
 const $size = cssVar("spinner-size")
 

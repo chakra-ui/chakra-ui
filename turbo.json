@@ -6,8 +6,11 @@
       "outputs": ["dist/**", "node_modules/.cache/.tsbuildinfo"],
       "dependsOn": ["^build"]
     },
-    "dev": {
+    "build:fast": {
       "outputs": ["dist/**"],
+      "dependsOn": ["^build:fast"]
+    },
+    "dev": {
       "cache": false
     },
     "typecheck": {

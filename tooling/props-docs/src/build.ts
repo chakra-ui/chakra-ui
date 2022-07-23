@@ -32,7 +32,7 @@ const outputPath = path.join(__dirname, "..", "dist", "components")
 
 const basePath = path.join(__dirname, "..", "dist")
 
-const cjsIndexFilePath = path.join(basePath, "index.cjs")
+const cjsIndexFilePath = path.join(basePath, "index.js")
 const esmIndexFilePath = path.join(basePath, "index.mjs")
 const typeFilePath = path.join(basePath, "index.d.ts")
 

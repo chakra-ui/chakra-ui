@@ -1,5 +1,5 @@
 {
-  "main": "../../dist/foundations/shadows.cjs",
+  "main": "../../dist/foundations/shadows.js",
   "module": "../../dist/foundations/shadows.mjs",
   "types": "../../dist/foundations/shadows.d.ts"
 }

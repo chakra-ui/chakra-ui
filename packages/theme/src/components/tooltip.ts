@@ -1,5 +1,5 @@
-import { cssVar, SystemStyleFunction } from "@chakra-ui/styled-system"
-import { mode } from "@chakra-ui/theme-tools"
+import { SystemStyleFunction } from "@chakra-ui/styled-system"
+import { mode, cssVar } from "@chakra-ui/theme-tools"
 
 const $bg = cssVar("tooltip-bg")
 const $arrowBg = cssVar("popper-arrow-bg")

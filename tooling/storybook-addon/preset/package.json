@@ -1,4 +1,4 @@
 {
-  "main": "../dist/preset/index.cjs",
+  "main": "../dist/preset/index.js",
   "module": "../dist/preset/index.mjs"
 }

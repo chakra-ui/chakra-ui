@@ -1,5 +1,5 @@
-import { cssVar, SystemStyleFunction } from "@chakra-ui/styled-system"
-import { getColor, mode } from "@chakra-ui/theme-tools"
+import type { SystemStyleFunction } from "@chakra-ui/styled-system"
+import { getColor, mode, cssVar } from "@chakra-ui/theme-tools"
 
 const $startColor = cssVar("skeleton-start-color")
 const $endColor = cssVar("skeleton-end-color")
