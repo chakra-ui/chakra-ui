@@ -242,16 +242,19 @@ export const ModalContent = forwardRef<ModalContentProps, "section">(
     }
 
     const dialogContainerStyles: SystemStyleObject = {
-      display: "flex",
       width: "100vw",
       height: "100vh",
-      "@supports(height: -webkit-fill-available)": {
-        height: "-webkit-fill-available",
-      },
       position: "fixed",
       left: 0,
       top: 0,
       ...styles.dialogContainer,
+    }
+
+    const scrollWrapperStyles: SystemStyleObject = {
+      display: "flex",
+      width: "100vw",
+      minHeight: "100vh",
+      ...styles.scrollWrapper,
     }
 
     const { motionPreset } = useModalContext()
@@ -265,14 +268,16 @@ export const ModalContent = forwardRef<ModalContentProps, "section">(
           tabIndex={-1}
           __css={dialogContainerStyles}
         >
-          <ModalTransition
-            preset={motionPreset}
-            className={_className}
-            {...dialogProps}
-            __css={dialogStyles}
-          >
-            {children}
-          </ModalTransition>
+          <chakra.div __css={scrollWrapperStyles}>
+            <ModalTransition
+              preset={motionPreset}
+              className={_className}
+              {...dialogProps}
+              __css={dialogStyles}
+            >
+              {children}
+            </ModalTransition>
+          </chakra.div>
         </chakra.div>
       </ModalFocusScope>
     )

@@ -13,14 +13,22 @@ const baseStyleOverlay: SystemStyleObject = {
 }
 
 const baseStyleDialogContainer: SystemStyleFunction = (props) => {
+  const { scrollBehavior } = props
+
+  return {
+    zIndex: "modal",
+    overflow: scrollBehavior === "inside" ? "hidden" : "auto",
+  }
+}
+
+const baseStyleScrollWrapper: SystemStyleFunction = (props) => {
   const { isCentered, scrollBehavior } = props
 
   return {
     display: "flex",
-    zIndex: "modal",
     justifyContent: "center",
+    height: scrollBehavior === "inside" ? "100vh" : "auto",
     alignItems: isCentered ? "center" : "flex-start",
-    overflow: scrollBehavior === "inside" ? "hidden" : "auto",
   }
 }
 
@@ -69,6 +77,7 @@ const baseStyleFooter: SystemStyleObject = {
 const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   overlay: baseStyleOverlay,
   dialogContainer: baseStyleDialogContainer(props),
+  scrollWrapper: baseStyleScrollWrapper(props),
   dialog: baseStyleDialog(props),
   header: baseStyleHeader,
   closeButton: baseStyleCloseButton,
