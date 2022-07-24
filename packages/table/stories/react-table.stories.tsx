@@ -1,24 +1,28 @@
 /* eslint-disable react/jsx-key */
 import * as React from "react"
 import {
-  ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
+  type ColumnDef,
+  type RowData,
 } from "@tanstack/react-table"
 import { Button, ButtonGroup, IconButton } from "@chakra-ui/button"
 import { StarIcon } from "@chakra-ui/icons"
-import { Table, TableCellProps, Tbody, Td, Th, Thead, Tr } from "../src"
+import { Table, Tbody, Td, Th, Thead, Tr } from "../src"
 
-declare module "@tanstack/table-core" {
-  interface ColumnMeta extends TableCellProps {}
+declare module "@tanstack/react-table" {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  interface ColumnMeta<TData extends RowData, TValue> {
+    isNumeric: boolean
+  }
 }
 
 export default {
   title: "Components / Data Display / Table / React Table",
 }
 
-type Data = TableCellProps & {
+type Data = {
   col1: string
   col2: number
 }

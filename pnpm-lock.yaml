@@ -1272,7 +1272,7 @@ importers:
       '@chakra-ui/system': workspace:*
       '@chakra-ui/test-utils': workspace:*
       '@chakra-ui/utils': workspace:*
-      '@tanstack/react-table': ^8.2.6
+      '@tanstack/react-table': ^8.3.3
       react: ^18.2.0
     dependencies:
       '@chakra-ui/react-utils': link:../react-utils
