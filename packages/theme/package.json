@@ -44,10 +44,10 @@
     "@chakra-ui/styled-system": "workspace:*"
   },
   "scripts": {
-    "build": "tsup src/**/*.ts --format=esm,cjs --dts",
+    "build": "tsup src/ --format=esm,cjs --dts",
     "dev": "pnpm build -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src/**/*.ts --format=esm,cjs"
+    "build:fast": "tsup src/ --format=esm,cjs"
   }
 }
