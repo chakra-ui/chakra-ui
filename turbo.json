@@ -3,7 +3,7 @@
   "baseBranch": "origin/main",
   "pipeline": {
     "build": {
-      "outputs": ["dist/**", "node_modules/.cache/.tsbuildinfo"],
+      "outputs": ["dist/**"],
       "dependsOn": ["^build"]
     },
     "build:fast": {
@@ -14,7 +14,7 @@
       "cache": false
     },
     "typecheck": {
-      "outputs": ["node_modules/.cache/.tsbuildinfo"],
+      "cache": false,
       "dependsOn": ["^typecheck"]
     }
   },

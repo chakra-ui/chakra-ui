@@ -17,7 +17,7 @@
     "build:prop-docs": "pnpm --filter=*props-docs build",
     "postbuild": "pnpm build:tokens",
     "dev": "turbo run dev --filter=!./examples/*",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "turbo run typecheck --filter=!./examples/*",
     "test": "jest",
     "lint": "eslint packages/**/src/ --ext .ts,.tsx --config .eslintrc",
     "build:addon": "cd tooling/storybook-addon && pnpm build",
