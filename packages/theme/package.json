@@ -19,6 +19,10 @@
     "dist"
   ],
   "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
     "./*": "./*",
     "./components": {
       "require": "./dist/components/index.js",

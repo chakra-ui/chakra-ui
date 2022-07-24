@@ -7,11 +7,13 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "preset",
-    "README.md",
     "theming-arg-types.png"
   ],
   "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
     "./*": "./*",
     "./preset": {
       "require": "./dist/preset/index.js",
