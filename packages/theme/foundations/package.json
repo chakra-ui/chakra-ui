@@ -1,5 +1,0 @@
-{
-  "main": "../../dist/foundations/index.js",
-  "module": "../../dist/foundations/index.mjs",
-  "types": "../../dist/foundations/index.d.ts"
-}

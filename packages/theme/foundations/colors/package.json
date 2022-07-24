@@ -1,5 +1,0 @@
-{
-  "main": "../../dist/foundations/colors.js",
-  "module": "../../dist/foundations/colors.mjs",
-  "types": "../../dist/foundations/colors.d.ts"
-}

@@ -1,5 +1,0 @@
-{
-  "main": "../../dist/foundations/sizes.js",
-  "module": "../../dist/foundations/sizes.mjs",
-  "types": "../../dist/foundations/sizes.d.ts"
-}

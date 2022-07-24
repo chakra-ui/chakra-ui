@@ -1,5 +1,0 @@
-{
-  "main": "../../dist/foundations/blur.js",
-  "module": "../../dist/foundations/blur.mjs",
-  "types": "../../dist/foundations/blur.d.ts"
-}
