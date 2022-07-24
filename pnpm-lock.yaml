@@ -1370,6 +1370,45 @@ importers:
     devDependencies:
       '@chakra-ui/styled-system': link:../styled-system
 
+  packages/theme/components:
+    specifiers: {}
+
+  packages/theme/foundations:
+    specifiers: {}
+
+  packages/theme/foundations/blur:
+    specifiers: {}
+
+  packages/theme/foundations/borders:
+    specifiers: {}
+
+  packages/theme/foundations/breakpoints:
+    specifiers: {}
+
+  packages/theme/foundations/colors:
+    specifiers: {}
+
+  packages/theme/foundations/radius:
+    specifiers: {}
+
+  packages/theme/foundations/shadows:
+    specifiers: {}
+
+  packages/theme/foundations/sizes:
+    specifiers: {}
+
+  packages/theme/foundations/spacing:
+    specifiers: {}
+
+  packages/theme/foundations/transition:
+    specifiers: {}
+
+  packages/theme/foundations/typography:
+    specifiers: {}
+
+  packages/theme/foundations/z-index:
+    specifiers: {}
+
   packages/toast:
     specifiers:
       '@chakra-ui/alert': workspace:*
@@ -1438,14 +1477,12 @@ importers:
       '@chakra-ui/utils': workspace:*
       framer-motion: ^6.2.9
       react: ^18.2.0
-      react-chartjs-2: ^3.3.0
     dependencies:
       '@chakra-ui/utils': link:../utils
     devDependencies:
       '@chakra-ui/hooks': link:../hooks
       framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
-      react-chartjs-2: 3.3.0_react@18.2.0
 
   packages/utils:
     specifiers:
@@ -1582,6 +1619,15 @@ importers:
       '@storybook/api': 6.5.9_react@18.2.0
       '@storybook/components': 6.5.9_react@18.2.0
       react: 18.2.0
+
+  tooling/storybook-addon/preset:
+    specifiers: {}
+
+  tooling/storybook-addon/preset/decorators:
+    specifiers: {}
+
+  tooling/storybook-addon/preset/register:
+    specifiers: {}
 
   tooling/test-utils:
     specifiers:
@@ -23707,15 +23753,6 @@ packages:
       raf: 3.4.1
       regenerator-runtime: 0.13.9
       whatwg-fetch: 3.6.2
-    dev: true
-
-  /react-chartjs-2/3.3.0_react@18.2.0:
-    resolution: {integrity: sha512-4Mt0SR2aiUbWi/4762odRBYSnbNKSs4HWc0o3IW43py5bMfmfpeZU95w6mbvtuLZH/M3GsPJMU8DvDc+5U9blQ==}
-    peerDependencies:
-      chart.js: ^3.5.0
-      react: ^16.8.0 || ^17.0.0
-    dependencies:
-      react: 18.2.0
     dev: true
 
   /react-clientside-effect/1.2.6_react@18.2.0:
