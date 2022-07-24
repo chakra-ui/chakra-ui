@@ -306,7 +306,7 @@ importers:
       react: ^18.2.0
       react-dom: ^18.2.0
       typescript: ^4.7.4
-      vite: ^3.0.1
+      vite: ^3.0.2
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
