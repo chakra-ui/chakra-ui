@@ -4,7 +4,7 @@ import type {
   PartsStyleObject,
   PartsStyleFunction,
   StyleFunctionProps,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/styled-system"
 
 const baseStyle: PartsStyleObject<typeof parts> = {
   container: {

@@ -4,7 +4,7 @@ import type {
   PartsStyleObject,
   SystemStyleFunction,
   SystemStyleObject,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/styled-system"
 import { mode } from "@chakra-ui/theme-tools"
 
 /**

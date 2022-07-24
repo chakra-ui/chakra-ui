@@ -1,11 +1,10 @@
 import { tableAnatomy as parts } from "@chakra-ui/anatomy"
-
 import { mode } from "@chakra-ui/theme-tools"
 import type {
   PartsStyleFunction,
   PartsStyleObject,
   SystemStyleObject,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/styled-system"
 
 const baseStyle: PartsStyleObject<typeof parts> = {
   table: {

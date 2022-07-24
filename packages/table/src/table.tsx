@@ -1,17 +1,24 @@
 import {
   chakra,
-  createStylesContext,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
   ThemingProps,
   useMultiStyleConfig,
+  SystemStyleObject,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx, __DEV__, Dict } from "@chakra-ui/utils"
+import { createContext } from "@chakra-ui/react-utils"
 import * as React from "react"
 
-const [StylesProvider, useStyles] = createStylesContext("Table")
-export const useTableStyles = useStyles
+const [TableStylesProvider, useTableStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `TableStylesContext`,
+  errorMessage: `useTableStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Table />" `,
+})
+
+export { useTableStyles }
 
 export interface TableContainerProps extends HTMLChakraProps<"div"> {}
 
@@ -45,7 +52,7 @@ export const Table = forwardRef<TableProps, "table">((props, ref) => {
   const { className, ...tableProps } = omitThemingProps(props)
 
   return (
-    <StylesProvider value={styles}>
+    <TableStylesProvider value={styles}>
       <chakra.table
         role="table"
         ref={ref}
@@ -53,7 +60,7 @@ export const Table = forwardRef<TableProps, "table">((props, ref) => {
         className={cx("chakra-table", className)}
         {...tableProps}
       />
-    </StylesProvider>
+    </TableStylesProvider>
   )
 })
 
@@ -72,7 +79,7 @@ export interface TableCaptionProps extends HTMLChakraProps<"caption"> {
 export const TableCaption = forwardRef<TableCaptionProps, "caption">(
   (props, ref) => {
     const { placement = "bottom", ...rest } = props
-    const styles = useStyles()
+    const styles = useTableStyles()
     return (
       <chakra.caption
         {...rest}
@@ -93,21 +100,21 @@ if (__DEV__) {
 export interface TableHeadProps extends HTMLChakraProps<"thead"> {}
 
 export const Thead = forwardRef<TableHeadProps, "thead">((props, ref) => {
-  const styles = useStyles()
+  const styles = useTableStyles()
   return <chakra.thead {...props} ref={ref} __css={styles.thead} />
 })
 
 export interface TableBodyProps extends HTMLChakraProps<"tbody"> {}
 
 export const Tbody = forwardRef<TableBodyProps, "tbody">((props, ref) => {
-  const styles = useStyles()
+  const styles = useTableStyles()
   return <chakra.tbody {...props} ref={ref} __css={styles.tbody} />
 })
 
 export interface TableFooterProps extends HTMLChakraProps<"tfoot"> {}
 
 export const Tfoot = forwardRef<TableFooterProps, "tfoot">((props, ref) => {
-  const styles = useStyles()
+  const styles = useTableStyles()
   return <chakra.tfoot {...props} ref={ref} __css={styles.tfoot} />
 })
 
@@ -119,7 +126,7 @@ export interface TableColumnHeaderProps extends HTMLChakraProps<"th"> {
 }
 export const Th = forwardRef<TableColumnHeaderProps, "th">(
   ({ isNumeric, ...rest }, ref) => {
-    const styles = useStyles()
+    const styles = useTableStyles()
     return (
       <chakra.th
         {...rest}
@@ -133,7 +140,7 @@ export const Th = forwardRef<TableColumnHeaderProps, "th">(
 
 export interface TableRowProps extends HTMLChakraProps<"tr"> {}
 export const Tr = forwardRef<TableRowProps, "tr">((props, ref) => {
-  const styles = useStyles()
+  const styles = useTableStyles()
 
   return <chakra.tr role="row" {...props} ref={ref} __css={styles.tr} />
 })
@@ -146,7 +153,7 @@ export interface TableCellProps extends HTMLChakraProps<"td"> {
 }
 export const Td = forwardRef<TableCellProps, "td">(
   ({ isNumeric, ...rest }, ref) => {
-    const styles = useStyles()
+    const styles = useTableStyles()
 
     return (
       <chakra.td

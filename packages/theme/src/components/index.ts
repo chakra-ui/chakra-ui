@@ -79,7 +79,8 @@ export { default as Tabs } from "./tabs"
 export { default as Tag } from "./tag"
 export { default as Textarea } from "./textarea"
 export { default as Tooltip } from "./tooltip"
-export default {
+
+const components: Record<string, any> = {
   Accordion,
   Alert,
   Avatar,
@@ -121,3 +122,5 @@ export default {
   Textarea,
   Tooltip,
 }
+
+export default components

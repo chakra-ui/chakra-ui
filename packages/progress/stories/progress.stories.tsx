@@ -1,5 +1,5 @@
 import { chakra } from "@chakra-ui/system"
-import { extendTheme, useTheme, ThemeProvider } from "@chakra-ui/react"
+// import { extendTheme, useTheme, ThemeProvider } from "@chakra-ui/react"
 import * as React from "react"
 import { Progress, ProgressLabel } from "../src"
 
@@ -50,26 +50,26 @@ export const withCustomBorderRadius = () => (
   <Progress value={20} borderRadius="4px" />
 )
 
-export const WithThemeBorderRadiusOverride = () => {
-  const theme = useTheme()
-  const extendedTheme = extendTheme(
-    {
-      components: {
-        Progress: {
-          baseStyle: {
-            track: {
-              borderRadius: "md",
-            },
-          },
-        },
-      },
-    },
-    theme as any,
-  )
+// export const WithThemeBorderRadiusOverride = () => {
+//   const theme = useTheme()
+//   const extendedTheme = extendTheme(
+//     {
+//       components: {
+//         Progress: {
+//           baseStyle: {
+//             track: {
+//               borderRadius: "md",
+//             },
+//           },
+//         },
+//       },
+//     },
+//     theme as any,
+//   )
 
-  return (
-    <ThemeProvider theme={extendedTheme}>
-      <Progress value={50} />
-    </ThemeProvider>
-  )
-}
+//   return (
+//     <ThemeProvider theme={extendedTheme}>
+//       <Progress value={50} />
+//     </ThemeProvider>
+//   )
+// }

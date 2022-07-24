@@ -6,9 +6,8 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
-  createStylesContext,
 } from "@chakra-ui/system"
-import { cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
+import { cx, runIfFn, __DEV__, Dict } from "@chakra-ui/utils"
 import { createContext, MaybeRenderProp } from "@chakra-ui/react-utils"
 import * as React from "react"
 import {
@@ -17,8 +16,14 @@ import {
   UseEditableReturn,
 } from "./use-editable"
 
-const [StylesProvider, useStyles] = createStylesContext("Editable")
-export const useEditableStyles = useStyles
+const [EditableStylesProvider, useEditableStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `EditableStylesContext`,
+  errorMessage: `useEditableStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Editable />" `,
+})
+
+export { useEditableStyles }
 
 type EditableContext = Omit<UseEditableReturn, "htmlProps">
 
@@ -71,7 +76,7 @@ export const Editable = forwardRef<EditableProps, "div">((props, ref) => {
 
   return (
     <EditableProvider value={context}>
-      <StylesProvider value={styles}>
+      <EditableStylesProvider value={styles}>
         <chakra.div
           ref={ref}
           {...(htmlProps as HTMLChakraProps<"div">)}
@@ -79,7 +84,7 @@ export const Editable = forwardRef<EditableProps, "div">((props, ref) => {
         >
           {children}
         </chakra.div>
-      </StylesProvider>
+      </EditableStylesProvider>
     </EditableProvider>
   )
 })
@@ -105,7 +110,7 @@ export interface EditablePreviewProps extends HTMLChakraProps<"div"> {}
 export const EditablePreview = forwardRef<EditablePreviewProps, "span">(
   (props, ref) => {
     const { getPreviewProps } = useEditableContext()
-    const styles = useStyles()
+    const styles = useEditableStyles()
 
     const previewProps = getPreviewProps(props, ref) as HTMLChakraProps<"span">
     const _className = cx("chakra-editable__preview", props.className)
@@ -139,7 +144,7 @@ export interface EditableInputProps extends HTMLChakraProps<"input"> {}
 export const EditableInput = forwardRef<EditableInputProps, "input">(
   (props, ref) => {
     const { getInputProps } = useEditableContext()
-    const styles = useStyles()
+    const styles = useEditableStyles()
 
     const inputProps = getInputProps(props, ref)
     const _className = cx("chakra-editable__input", props.className)
@@ -172,7 +177,7 @@ export interface EditableTextareaProps extends HTMLChakraProps<"textarea"> {}
 export const EditableTextarea = forwardRef<EditableTextareaProps, "textarea">(
   (props, ref) => {
     const { getTextareaProps } = useEditableContext()
-    const styles = useStyles()
+    const styles = useEditableStyles()
 
     const textareaProps = getTextareaProps(props, ref)
     const _className = cx("chakra-editable__textarea", props.className)

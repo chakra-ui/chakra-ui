@@ -1,4 +1,8 @@
-import { SystemStyleObject, resolveStyleConfig } from "@chakra-ui/styled-system"
+import {
+  SystemStyleObject,
+  resolveStyleConfig,
+  ThemingProps,
+} from "@chakra-ui/styled-system"
 import {
   Dict,
   filterUndefined,
@@ -9,7 +13,6 @@ import {
 import { useRef } from "react"
 import isEqual from "react-fast-compare"
 import { useChakra } from "./hooks"
-import { ThemingProps } from "./system.types"
 
 type StylesRef = SystemStyleObject | Record<string, SystemStyleObject>
 

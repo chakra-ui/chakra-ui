@@ -1,22 +1,28 @@
 import type { ImageProps } from "@chakra-ui/image"
 import { useImage } from "@chakra-ui/image"
+import { createContext } from "@chakra-ui/react-utils"
 import {
+  chakra,
   ChakraComponent,
+  forwardRef,
+  HTMLChakraProps,
+  omitThemingProps,
   SystemProps,
   SystemStyleObject,
   ThemingProps,
-  HTMLChakraProps,
-  createStylesContext,
-  chakra,
-  forwardRef,
-  omitThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx, Dict, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-const [StylesProvider, useStyles] = createStylesContext("Avatar")
-export const useAvatarStyles = useStyles
+const [AvatarStylesProvider, useAvatarStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `AvatarStylesContext`,
+  errorMessage: `useAvatarStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Avatar />" `,
+})
+
+export { useAvatarStyles }
 
 interface AvatarOptions {
   /**
@@ -81,7 +87,7 @@ export interface AvatarBadgeProps extends HTMLChakraProps<"div"> {}
  * or bottom-right corner of an avatar.
  */
 export const AvatarBadge = forwardRef<AvatarBadgeProps, "div">((props, ref) => {
-  const styles = useStyles()
+  const styles = useAvatarStyles()
 
   const badgeStyles: SystemStyleObject = {
     position: "absolute",
@@ -123,7 +129,7 @@ interface AvatarNameProps
  */
 const AvatarName: React.FC<AvatarNameProps> = (props) => {
   const { name, getInitials, ...rest } = props
-  const styles = useStyles()
+  const styles = useAvatarStyles()
 
   return (
     <chakra.div role="img" aria-label={name} {...rest} __css={styles.label}>
@@ -221,7 +227,7 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
       className={cx("chakra-avatar", props.className)}
       __css={avatarStyles}
     >
-      <StylesProvider value={styles}>
+      <AvatarStylesProvider value={styles}>
         <AvatarImage
           src={src}
           srcSet={srcSet}
@@ -235,7 +241,7 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
           ignoreFallback={ignoreFallback}
         />
         {children}
-      </StylesProvider>
+      </AvatarStylesProvider>
     </chakra.span>
   )
 })

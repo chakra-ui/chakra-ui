@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@chakra-ui/react": "2.2.4",
+    "@chakra-ui/react": "workspace:*",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "cookies-next": "^2.0.4",

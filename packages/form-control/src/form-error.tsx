@@ -1,20 +1,26 @@
 import Icon, { IconProps } from "@chakra-ui/icon"
+import { createContext } from "@chakra-ui/react-utils"
 import {
   chakra,
-  createStylesContext,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
+  SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx, Dict, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useFormControlContext } from "./form-control"
 
-const [StylesProvider, useStyles] = createStylesContext("FormError")
-export const useFormErrorStyles = useStyles
+const [FormErrorStylesProvider, useFormErrorStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `FormErrorStylesContext`,
+  errorMessage: `useFormErrorStyles returned is 'undefined'. Seems you forgot to wrap the components in "<FormError />" `,
+})
 
+export { useFormErrorStyles }
 export interface FormErrorMessageProps
   extends HTMLChakraProps<"div">,
     ThemingProps<"FormErrorMessage"> {}
@@ -32,7 +38,7 @@ export const FormErrorMessage = forwardRef<FormErrorMessageProps, "div">(
     if (!field?.isInvalid) return null
 
     return (
-      <StylesProvider value={styles}>
+      <FormErrorStylesProvider value={styles}>
         <chakra.div
           {...field?.getErrorMessageProps(ownProps, ref)}
           className={cx("chakra-form__error-message", props.className)}
@@ -42,7 +48,7 @@ export const FormErrorMessage = forwardRef<FormErrorMessageProps, "div">(
             ...styles.text,
           }}
         />
-      </StylesProvider>
+      </FormErrorStylesProvider>
     )
   },
 )
@@ -56,7 +62,7 @@ if (__DEV__) {
  * a field has incorrect values.
  */
 export const FormErrorIcon = forwardRef<IconProps, "svg">((props, ref) => {
-  const styles = useStyles()
+  const styles = useFormErrorStyles()
   const field = useFormControlContext()
 
   if (!field?.isInvalid) return null

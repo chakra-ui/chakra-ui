@@ -45,6 +45,7 @@ export const Textarea = forwardRef<TextareaProps, "textarea">((props, ref) => {
 
   const textareaProps = useFormControl<HTMLTextAreaElement>(rest)
 
+  //@ts-ignore
   const textareaStyles = rows ? omit(styles, omitted) : styles
 
   return (

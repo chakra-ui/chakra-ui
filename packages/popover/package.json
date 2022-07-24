@@ -14,9 +14,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-popover.cjs.js",
-  "module": "dist/chakra-ui-popover.esm.js",
-  "types": "dist/chakra-ui-popover.cjs.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -32,20 +32,32 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/close-button": "2.0.4",
-    "@chakra-ui/hooks": "2.0.4",
-    "@chakra-ui/popper": "3.0.2",
-    "@chakra-ui/react-utils": "2.0.1",
-    "@chakra-ui/utils": "2.0.4"
+    "@chakra-ui/close-button": "workspace:*",
+    "@chakra-ui/hooks": "workspace:*",
+    "@chakra-ui/popper": "workspace:*",
+    "@chakra-ui/react-utils": "workspace:*",
+    "@chakra-ui/utils": "workspace:*"
   },
   "devDependencies": {
-    "@chakra-ui/system": "2.2.2",
+    "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/button": "workspace:*",
+    "@chakra-ui/layout": "workspace:*",
+    "@chakra-ui/radio": "workspace:*",
+    "@chakra-ui/input": "workspace:*",
+    "react-icons": "^4.2.0",
     "framer-motion": "^6.2.9",
     "react": "^18.0.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">=2.0.0-next.0",
+    "@chakra-ui/system": ">=2.0.0",
     "framer-motion": ">=4.0.0",
     "react": ">=18"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format=esm,cjs --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/index.ts --format=esm,cjs"
   }
 }

@@ -1,4 +1,5 @@
 {
-  "main": "dist/chakra-ui-theme-foundations-breakpoints.cjs.js",
-  "module": "dist/chakra-ui-theme-foundations-breakpoints.esm.js"
+  "main": "../../dist/foundations/breakpoints.js",
+  "module": "../../dist/foundations/breakpoints.mjs",
+  "types": "../../dist/foundations/breakpoints.d.ts"
 }

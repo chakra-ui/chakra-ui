@@ -16,9 +16,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-system.cjs.js",
-  "module": "dist/chakra-ui-system.esm.js",
-  "types": "dist/chakra-ui-system.cjs.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -34,10 +34,10 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/color-mode": "2.1.2",
-    "@chakra-ui/react-utils": "2.0.1",
-    "@chakra-ui/styled-system": "2.2.3",
-    "@chakra-ui/utils": "2.0.4",
+    "@chakra-ui/color-mode": "workspace:*",
+    "@chakra-ui/react-utils": "workspace:*",
+    "@chakra-ui/styled-system": "workspace:*",
+    "@chakra-ui/utils": "workspace:*",
     "react-fast-compare": "3.2.0"
   },
   "peerDependencies": {
@@ -46,8 +46,17 @@
     "react": ">=18"
   },
   "devDependencies": {
+    "@chakra-ui/theme": "workspace:*",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "framer-motion": "^6.2.9",
     "react": "^18.0.0"
+  },
+  "scripts": {
+    "build": "tsup src/ --format=esm,cjs --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/ --format=esm,cjs"
   }
 }

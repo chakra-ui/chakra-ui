@@ -4,7 +4,7 @@ import type {
   PartsStyleFunction,
   PartsStyleObject,
   SystemStyleFunction,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/styled-system"
 import themeSizes from "../foundations/sizes"
 
 const baseStyleBadge: SystemStyleFunction = (props) => {

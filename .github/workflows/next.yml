@@ -1,4 +1,4 @@
-name: Next Workflow
+name: Release (Next)
 
 on:
   push:
@@ -9,81 +9,51 @@ on:
     branches:
       - next
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Get Yarn cache path
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
       - name: Checkout branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
           token: ${{ secrets.SAGE_PAT }}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16.x
-
-      - name: Load Yarn cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile --ignore-engines
-        env:
-          CI: true
-
-      - name: Setup git user (for changelog step)
-        run: |
-          git config --global user.email "joseshegs@gmail.com"
-          git config --global user.name "Segun Adebayo"
-
-      - name: Configure npm
-        run: |
-          cat << EOF > "$HOME/.npmrc"
-            //registry.npmjs.org/:_authToken=$NPM_TOKEN
-          EOF
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Install
+        uses: ./.github/composite-actions/install
 
       - name: Build packages
-        run: yarn build
+        run: pnpm build
 
       - name: Build prop docs
-        run: yarn build:prop-docs
+        run: pnpm build:prop-docs
 
       - name: Create release Pull Request or publish to NPM
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: yarn release
+          publish: pnpm release
           commit: "ci(changesets): version packages"
           title: "ci(changesets): version packages"
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Release to @next-dev tag
         if: steps.changesets.outputs.published != 'true'
         run: |
-          git checkout main
-          yarn changeset version --snapshot next-dev
-          yarn changeset publish --tag next-dev
+          pnpm changeset version --snapshot next-dev
+          pnpm changeset publish --tag next-dev
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update changelog
         if: steps.changesets.outputs.published == 'true'
         run: |
-          yarn changelog:write
-          yarn changelog:commit
+          pnpm changelog:write
+          pnpm changelog:commit

@@ -78,15 +78,18 @@ export interface RecursiveCSSSelector<D> {
 export type RecursiveCSSObject<D> = D &
   (D | RecursivePseudo<D> | RecursiveCSSSelector<D>)
 
-export type CSSObject = RecursiveCSSObject<CSSWithMultiValues>
+export type SystemStyleObject = RecursiveCSSObject<CSSWithMultiValues>
 
-export type SystemStyleObject = CSSObject
+/**
+ * @deprecated use `SystemStyleObject` instead
+ */
+export type CSSObject = SystemStyleObject & {}
 
 export interface FunctionCSSInterpolation {
   (theme: Dict): CSSObject
 }
 
-export type StyleObjectOrFn = CSSObject | FunctionCSSInterpolation
+export type StyleObjectOrFn = SystemStyleObject | FunctionCSSInterpolation
 
 type PseudoProps = {
   [K in keyof Pseudos]?: SystemStyleObject

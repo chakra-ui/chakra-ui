@@ -1,4 +1,5 @@
 {
-  "main": "dist/chakra-ui-theme-foundations-shadows.cjs.js",
-  "module": "dist/chakra-ui-theme-foundations-shadows.esm.js"
+  "main": "../../dist/foundations/shadows.js",
+  "module": "../../dist/foundations/shadows.mjs",
+  "types": "../../dist/foundations/shadows.d.ts"
 }

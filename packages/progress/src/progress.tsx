@@ -6,9 +6,9 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
-  createStylesContext,
 } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
+import { __DEV__, Dict } from "@chakra-ui/utils"
+import { createContext } from "@chakra-ui/react-utils"
 import * as React from "react"
 import {
   getProgressProps,
@@ -17,8 +17,14 @@ import {
   stripe,
 } from "./progress.utils"
 
-const [StylesProvider, useStyles] = createStylesContext("Progress")
-export const useProgressStyles = useStyles
+const [ProgressStylesProvider, useProgressStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `ProgressStylesContext`,
+  errorMessage: `useProgressStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Progress />" `,
+})
+
+export { useProgressStyles }
 
 export interface ProgressLabelProps extends HTMLChakraProps<"div"> {}
 
@@ -27,7 +33,7 @@ export interface ProgressLabelProps extends HTMLChakraProps<"div"> {}
  * @see Docs https://chakra-ui.com/progress
  */
 export const ProgressLabel: React.FC<ProgressLabelProps> = (props) => {
-  const styles = useStyles()
+  const styles = useProgressStyles()
   const labelStyles: SystemStyleObject = {
     top: "50%",
     left: "50%",
@@ -60,7 +66,7 @@ const ProgressFilledTrack: React.FC<ProgressFilledTrackProps> = (props) => {
   const { min, max, value, isIndeterminate, ...rest } = props
   const progress = getProgressProps({ value, min, max, isIndeterminate })
 
-  const styles = useStyles()
+  const styles = useProgressStyles()
   const trackStyles = {
     height: "100%",
     ...styles.filledTrack,
@@ -179,7 +185,7 @@ export const Progress: React.FC<ProgressProps> = (props) => {
 
   return (
     <chakra.div borderRadius={borderRadius} __css={trackStyles} {...rest}>
-      <StylesProvider value={styles}>
+      <ProgressStylesProvider value={styles}>
         <ProgressFilledTrack
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
@@ -191,7 +197,7 @@ export const Progress: React.FC<ProgressProps> = (props) => {
           borderRadius={borderRadius}
         />
         {children}
-      </StylesProvider>
+      </ProgressStylesProvider>
     </chakra.div>
   )
 }

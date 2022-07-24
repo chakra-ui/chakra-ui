@@ -83,6 +83,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
 
   if (userDefinedBg) {
     styles.bg = userDefinedBg
+    // @ts-ignore
     styles[popperCSSVars.arrowBg.var] = getCSSVar(
       theme,
       "colors",

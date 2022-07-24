@@ -7,10 +7,9 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
-  createStylesContext,
 } from "@chakra-ui/system"
 import { Collapse } from "@chakra-ui/transition"
-import { cx, Omit, runIfFn, __DEV__ } from "@chakra-ui/utils"
+import { cx, Omit, Dict, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { createContext, MaybeRenderProp } from "@chakra-ui/react-utils"
 import * as React from "react"
 import {
@@ -24,8 +23,14 @@ import {
   AccordionDescendantsProvider,
 } from "./use-accordion"
 
-const [StylesProvider, useStyles] = createStylesContext("Accordion")
-export const useAccordionStyles = useStyles
+const [AccordionStylesProvider, useAccordionStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `AccordionStylesContext`,
+  errorMessage: `useAccordionStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Accordion />" `,
+})
+
+export { useAccordionStyles }
 
 /* -------------------------------------------------------------------------------------------------
  * Accordion - The wrapper that provides context for all accordion items
@@ -63,7 +68,7 @@ export const Accordion = forwardRef<AccordionProps, "div">(
     return (
       <AccordionDescendantsProvider value={descendants}>
         <AccordionProvider value={ctx}>
-          <StylesProvider value={styles}>
+          <AccordionStylesProvider value={styles}>
             <chakra.div
               ref={ref}
               {...htmlProps}
@@ -72,7 +77,7 @@ export const Accordion = forwardRef<AccordionProps, "div">(
             >
               {children}
             </chakra.div>
-          </StylesProvider>
+          </AccordionStylesProvider>
         </AccordionProvider>
       </AccordionDescendantsProvider>
     )
@@ -119,7 +124,7 @@ export const AccordionItem = forwardRef<AccordionItemProps, "div">(
     const { children, className } = props
     const { htmlProps, ...context } = useAccordionItem(props)
 
-    const styles = useStyles()
+    const styles = useAccordionStyles()
     const containerStyles: SystemStyleObject = {
       ...styles.container,
       overflowAnchor: "none",
@@ -175,7 +180,7 @@ export const AccordionButton = forwardRef<AccordionButtonProps, "button">(
     const { getButtonProps } = useAccordionItemContext()
     const buttonProps = getButtonProps(props, ref)
 
-    const styles = useStyles()
+    const styles = useAccordionStyles()
     const buttonStyles: SystemStyleObject = {
       display: "flex",
       alignItems: "center",
@@ -219,7 +224,7 @@ export const AccordionPanel = forwardRef<AccordionPanelProps, "div">(
     const panelProps = getPanelProps(props, ref)
 
     const _className = cx("chakra-accordion__panel", props.className)
-    const styles = useStyles()
+    const styles = useAccordionStyles()
 
     if (!reduceMotion) {
       delete panelProps.hidden
@@ -254,7 +259,7 @@ export const AccordionIcon: React.FC<IconProps> = (props) => {
   const { reduceMotion } = useAccordionContext()
 
   const _className = cx("chakra-accordion__icon", props.className)
-  const styles = useStyles()
+  const styles = useAccordionStyles()
 
   const iconStyles: SystemStyleObject = {
     opacity: isDisabled ? 0.4 : 1,

@@ -1,5 +1,5 @@
 import type * as React from "react"
-import type { CSSObject } from "@chakra-ui/system"
+import type { SystemStyleObject } from "@chakra-ui/system"
 import type { ToastPosition } from "./toast.placement"
 
 export interface RenderProps {
@@ -60,7 +60,7 @@ export interface ToastOptions {
   /**
    * Optional style overrides for the toast component.
    */
-  containerStyle?: CSSObject
+  containerStyle?: SystemStyleObject
 }
 
 export type ToastState = {
