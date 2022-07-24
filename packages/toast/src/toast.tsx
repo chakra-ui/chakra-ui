@@ -152,3 +152,5 @@ export function createToastFn(
 
   return toast
 }
+
+export type CreateToastFnReturn = ReturnType<typeof createToastFn>
