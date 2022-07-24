@@ -6,53 +6,27 @@ on:
       - ".changeset/**"
     branches:
       - main
-      # - next
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   daily:
     if: ${{ 'chakra-ui/chakra-ui' == github.repository }}
     runs-on: ubuntu-latest
     steps:
-      - name: Cancel previous runs
-        uses: styfle/cancel-workflow-action@0.10.0
-        with:
-          access_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Get Yarn cache path
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
       - name: Checkout
-        uses: actions/checkout@master
-        with:
-          ref: main
+        uses: actions/checkout@v3
 
-      - name: Enable node
-        uses: actions/setup-node@master
-        with:
-          node-version: 14.x
-
-      - name: Load Yarn cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile && yarn bootstrap
-
-      - name: Setup Git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Install
+        uses: ./.github/composite-actions/install
 
       - name: Generate the new changelog
-        run: yarn changelog:gen
+        run: pnpm changelog:gen
 
       - name: Generate Twitter Post
-        run: yarn twitter:gen
+        run: pnpm twitter:gen
 
       - name: Commit changelog
         run: |

@@ -1,10 +1,6 @@
 import * as React from "react"
-import {
-  createStandaloneToast,
-  ToastId,
-  useToast,
-  theme as base,
-} from "@chakra-ui/react"
+import { theme as base } from "@chakra-ui/theme"
+import { useToast, createStandaloneToast, ToastId } from "../src"
 import { Button, ButtonGroup } from "@chakra-ui/button"
 import { chakra, useColorMode } from "@chakra-ui/system"
 import { Alert } from "@chakra-ui/alert"

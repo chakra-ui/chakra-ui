@@ -3,7 +3,7 @@ import type {
   PartsStyleFunction,
   SystemStyleFunction,
   SystemStyleObject,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/styled-system"
 import { cssVar, mode } from "@chakra-ui/theme-tools"
 
 const $popperBg = cssVar("popper-bg")

@@ -1,16 +1,12 @@
 import { progressAnatomy as parts } from "@chakra-ui/anatomy"
 import {
-  generateStripe,
-  getColor,
-  mode,
+  SystemStyleObject,
+  SystemStyleFunction,
   PartsStyleFunction,
   PartsStyleObject,
   StyleFunctionProps,
-} from "@chakra-ui/theme-tools"
-import type {
-  SystemStyleObject,
-  SystemStyleFunction,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/styled-system"
+import { generateStripe, getColor, mode } from "@chakra-ui/theme-tools"
 
 function filledStyle(props: StyleFunctionProps): SystemStyleObject {
   const { colorScheme: c, theme: t, isIndeterminate, hasStripe } = props

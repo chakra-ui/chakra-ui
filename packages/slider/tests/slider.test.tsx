@@ -1,4 +1,5 @@
-import { extendTheme, ThemeProvider } from "@chakra-ui/react"
+import { ChakraProvider } from "@chakra-ui/provider"
+import { theme as baseTheme } from "@chakra-ui/theme"
 import { focus, screen, render, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
 import styled from "@emotion/styled"
@@ -11,6 +12,8 @@ import {
 } from "../src"
 
 const defaultValue = 10
+
+const themeRtl = { ...baseTheme, direction: "rtl" }
 
 const SimpleSlider = (props: {
   defaultValue?: number
@@ -119,9 +122,9 @@ test("renders & move correctly when orientation: vertical & isReversed", async (
 
 test("renders with the correct direction under 'rtl'", async () => {
   const { user } = render(
-    <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
+    <ChakraProvider theme={themeRtl}>
       <SimpleSlider />
-    </ThemeProvider>,
+    </ChakraProvider>,
   )
 
   const thumb = screen.getByRole("slider")
@@ -143,9 +146,9 @@ test("renders with the correct direction under 'rtl'", async () => {
 
 test("renders with the correct direction under 'rtl' & isReversed", async () => {
   const { user } = render(
-    <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
+    <ChakraProvider theme={themeRtl}>
       <SimpleSlider isReversed />
-    </ThemeProvider>,
+    </ChakraProvider>,
   )
 
   const thumb = screen.getByRole("slider")
@@ -167,9 +170,9 @@ test("renders with the correct direction under 'rtl' & isReversed", async () => 
 
 test("renders correctly/unaffected by 'rtl' when orientation: vertical", async () => {
   const { user } = render(
-    <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
+    <ChakraProvider theme={themeRtl}>
       <SimpleSlider orientation="vertical" />
-    </ThemeProvider>,
+    </ChakraProvider>,
   )
 
   const thumb = screen.getByRole("slider")

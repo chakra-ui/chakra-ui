@@ -4,7 +4,7 @@ import type {
   PartsStyleObject,
   SystemStyleFunction,
   SystemStyleObject,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/styled-system"
 import { calc, cssVar, mode } from "@chakra-ui/theme-tools"
 import typography from "../foundations/typography"
 import Input from "./input"

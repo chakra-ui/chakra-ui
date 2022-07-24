@@ -1,3 +1,4 @@
 {
-  "main": "dist/chakra-ui-storybook-addon-preset-register.cjs.js"
+  "main": "../../dist/preset/register.js",
+  "module": "../../dist/preset/register.mjs"
 }

@@ -1,15 +1,15 @@
 import { useFormControlProps } from "@chakra-ui/form-control"
+import { createContext } from "@chakra-ui/react-utils"
 import {
   chakra,
-  createStylesContext,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
+  SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { __DEV__, cx } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/react-utils"
+import { cx, Dict, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { TriangleDownIcon, TriangleUpIcon } from "./icons"
 import {
@@ -18,8 +18,14 @@ import {
   UseNumberInputReturn,
 } from "./use-number-input"
 
-const [StylesProvider, useStyles] = createStylesContext("NumberInput")
-export const useNumberInputStyles = useStyles
+const [NumberInputStylesProvider, useNumberInputStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `NumberInputStylesContext`,
+  errorMessage: `useNumberInputStyles returned is 'undefined'. Seems you forgot to wrap the components in "<NumberInput />" `,
+})
+
+export { useNumberInputStyles }
 
 interface NumberInputContext extends Omit<UseNumberInputReturn, "htmlProps"> {}
 
@@ -75,7 +81,7 @@ export const NumberInput = forwardRef<NumberInputProps, "div">((props, ref) => {
 
   return (
     <NumberInputProvider value={ctx}>
-      <StylesProvider value={styles}>
+      <NumberInputStylesProvider value={styles}>
         <chakra.div
           {...htmlProps}
           ref={ref}
@@ -86,7 +92,7 @@ export const NumberInput = forwardRef<NumberInputProps, "div">((props, ref) => {
             ...styles.root,
           }}
         />
-      </StylesProvider>
+      </NumberInputStylesProvider>
     </NumberInputProvider>
   )
 })
@@ -109,7 +115,7 @@ export interface NumberInputStepperProps extends HTMLChakraProps<"div"> {}
  */
 export const NumberInputStepper = forwardRef<NumberInputStepperProps, "div">(
   (props, ref) => {
-    const styles = useStyles()
+    const styles = useNumberInputStyles()
     return (
       <chakra.div
         aria-hidden
@@ -153,7 +159,7 @@ export const NumberInputField = forwardRef<NumberInputFieldProps, "input">(
     const { getInputProps } = useNumberInputContext()
 
     const input = getInputProps(props, ref)
-    const styles = useStyles()
+    const styles = useNumberInputStyles()
 
     return (
       <chakra.input
@@ -199,7 +205,7 @@ export const NumberDecrementStepper = forwardRef<
   NumberDecrementStepperProps,
   "div"
 >((props, ref) => {
-  const styles = useStyles()
+  const styles = useNumberInputStyles()
   const { getDecrementButtonProps } = useNumberInputContext()
   const decrement = getDecrementButtonProps(props, ref)
 
@@ -229,7 +235,7 @@ export const NumberIncrementStepper = forwardRef<
 >((props, ref) => {
   const { getIncrementButtonProps } = useNumberInputContext()
   const increment = getIncrementButtonProps(props, ref)
-  const styles = useStyles()
+  const styles = useNumberInputStyles()
 
   return (
     <StyledStepper {...increment} __css={styles.stepper}>

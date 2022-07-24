@@ -15,9 +15,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-textarea.cjs.js",
-  "module": "dist/chakra-ui-textarea.esm.js",
-  "types": "dist/chakra-ui-textarea.cjs.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -33,15 +33,22 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/form-control": "2.0.4",
-    "@chakra-ui/utils": "2.0.4"
+    "@chakra-ui/form-control": "workspace:*",
+    "@chakra-ui/utils": "workspace:*"
   },
   "devDependencies": {
-    "@chakra-ui/system": "2.2.2",
+    "@chakra-ui/system": "workspace:*",
     "react": "^18.0.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">=2.0.0-next.0",
+    "@chakra-ui/system": ">=2.0.0",
     "react": ">=18"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format=esm,cjs --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/index.ts --format=esm,cjs"
   }
 }

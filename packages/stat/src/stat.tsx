@@ -1,25 +1,31 @@
 import { Icon, IconProps } from "@chakra-ui/icon"
+import { createContext } from "@chakra-ui/react-utils"
 import {
   chakra,
   forwardRef,
+  HTMLChakraProps,
   omitThemingProps,
+  SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  HTMLChakraProps,
-  SystemStyleObject,
-  createStylesContext,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx, Dict, __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 
-const [StylesProvider, useStyles] = createStylesContext("Stat")
-export const useStatStyles = useStyles
+const [StatStylesProvider, useStatStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `StatStylesContext`,
+  errorMessage: `useStatStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Stat />" `,
+})
+
+export { useStatStyles }
 
 export interface StatLabelProps extends HTMLChakraProps<"dt"> {}
 
 export const StatLabel = forwardRef<StatLabelProps, "dt">((props, ref) => {
-  const styles = useStyles()
+  const styles = useStatStyles()
   return (
     <chakra.dt
       ref={ref}
@@ -38,7 +44,7 @@ export interface StatHelpTextProps extends HTMLChakraProps<"dd"> {}
 
 export const StatHelpText = forwardRef<StatHelpTextProps, "dd">(
   (props, ref) => {
-    const styles = useStyles()
+    const styles = useStatStyles()
 
     return (
       <chakra.dd
@@ -58,7 +64,7 @@ if (__DEV__) {
 export interface StatNumberProps extends HTMLChakraProps<"dd"> {}
 
 export const StatNumber = forwardRef<StatNumberProps, "dd">((props, ref) => {
-  const styles = useStyles()
+  const styles = useStatStyles()
   return (
     <chakra.dd
       ref={ref}
@@ -109,7 +115,7 @@ export interface StatArrowProps extends IconProps {
 
 export const StatArrow: React.FC<StatArrowProps> = (props) => {
   const { type, "aria-label": ariaLabel, ...rest } = props
-  const styles = useStyles()
+  const styles = useStatStyles()
 
   const IconComponent = type === "increase" ? StatUpArrow : StatDownArrow
   const defaultAriaLabel = type === "increase" ? "increased by" : "decreased by"
@@ -142,7 +148,7 @@ export const Stat = forwardRef<StatProps, "div">((props, ref) => {
   const { className, children, ...rest } = omitThemingProps(props)
 
   return (
-    <StylesProvider value={styles}>
+    <StatStylesProvider value={styles}>
       <chakra.div
         ref={ref}
         {...rest}
@@ -151,7 +157,7 @@ export const Stat = forwardRef<StatProps, "div">((props, ref) => {
       >
         <dl>{children}</dl>
       </chakra.div>
-    </StylesProvider>
+    </StatStylesProvider>
   )
 })
 

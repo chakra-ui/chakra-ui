@@ -14,9 +14,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-portal.cjs.js",
-  "module": "dist/chakra-ui-portal.esm.js",
-  "types": "dist/chakra-ui-portal.cjs.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -32,18 +32,27 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "2.0.4",
-    "@chakra-ui/react-utils": "2.0.1",
-    "@chakra-ui/utils": "2.0.4"
+    "@chakra-ui/hooks": "workspace:*",
+    "@chakra-ui/react-utils": "workspace:*",
+    "@chakra-ui/utils": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
   },
   "devDependencies": {
+    "@chakra-ui/button": "workspace:*",
+    "@testing-library/react": "13.3.0",
     "@types/react-frame-component": "^4.1.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-frame-component": "^4.1.3"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format=esm,cjs --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/index.ts --format=esm,cjs"
   }
 }

@@ -99,7 +99,7 @@ export const WithTransition = () => {
                   style={{
                     transformOrigin: "var(--popper-transform-origin)",
                     background: "tomato",
-                    "--popper-arrow-bg": "tomato",
+                    ["--popper-arrow-bg" as string]: "tomato",
                     color: "white",
                     borderRadius: "4px",
                     padding: "0.5em 1em",
@@ -243,9 +243,3 @@ export const withAutoPlacement = () => (
     </button>
   </Tooltip>
 )
-
-declare module "csstype" {
-  interface Properties {
-    [k: string]: any
-  }
-}

@@ -33,7 +33,7 @@ describe("useToast", () => {
     const button = await screen.findByText("Toast")
     await user.click(button)
 
-    const allByTitle = await screen.findAllByRole("alert", { name: title })
+    const allByTitle = await screen.findAllByText(title)
     const allByDescription = await screen.findAllByText(description)
 
     expect(allByTitle).toHaveLength(1)
@@ -66,7 +66,7 @@ describe("useToast", () => {
     const button = await screen.findByText("Toast")
     await user.click(button)
 
-    const allByTitle = await screen.findAllByRole("alert", { name: title })
+    const allByTitle = await screen.findAllByText(title)
     const allByDescription = await screen.findAllByText(description)
 
     expect(allByTitle).toHaveLength(1)
@@ -77,7 +77,7 @@ describe("useToast", () => {
     const loadingTitle = "Toast is loading"
     const successTitle = "Promise resolved"
     const errorTitle = "Error occurred"
-    const sleepTime = 200
+    const sleepTime = 500
     const dummyPromise = new Promise<{ payload: string }>((r) =>
       setTimeout(r, sleepTime, { payload: successTitle }),
     )
@@ -112,17 +112,13 @@ describe("useToast", () => {
       </ToastProvider>,
     )
 
-    const button = await screen.findByText("Toast")
+    const button = screen.getByText("Toast")
     await user.click(button)
 
-    const loadingToast = await screen.findByRole("alert", {
-      name: loadingTitle,
-    })
-    expect(loadingToast).toBeInTheDocument()
+    const loadingText = await screen.findByText(loadingTitle)
+    expect(loadingText).toBeInTheDocument()
 
-    const successToast = await screen.findByRole("alert", {
-      name: successTitle,
-    })
-    expect(successToast).toBeInTheDocument()
+    const successText = await screen.findByText(successTitle)
+    expect(successText).toBeInTheDocument()
   })
 })

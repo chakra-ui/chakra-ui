@@ -2,7 +2,7 @@ import { statAnatomy as parts } from "@chakra-ui/anatomy"
 import type {
   PartsStyleObject,
   SystemStyleObject,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/styled-system"
 
 const baseStyleLabel: SystemStyleObject = {
   fontWeight: "medium",
