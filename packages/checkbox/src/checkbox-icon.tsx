@@ -1,13 +1,8 @@
 import { useFramerMotion } from "@chakra-ui/react"
 import { chakra, PropsOf } from "@chakra-ui/system"
-import { motion } from "framer-motion"
 import * as React from "react"
 
-function getMotionSvg() {
-  return motion(chakra.svg)
-}
-
-function useMotionSvg(): ReturnType<typeof getMotionSvg> {
+function useMotionSvg() {
   const framerMotion = useFramerMotion()
 
   if (!framerMotion) {
