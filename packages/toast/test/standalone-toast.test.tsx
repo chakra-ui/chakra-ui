@@ -20,7 +20,7 @@ describe("Standalone Toast", () => {
       })
     })
 
-    const allByTitle = await screen.findAllByRole("alert", { name: title })
+    const allByTitle = await screen.findAllByText(title)
     const allByDescription = await screen.findAllByText(description)
 
     expect(allByTitle).toHaveLength(1)

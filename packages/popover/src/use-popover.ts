@@ -4,8 +4,8 @@ import {
   useFocusOnPointerDown,
   useFocusOnShow,
   useIds,
+  useAnimationState,
 } from "@chakra-ui/hooks"
-import { useAnimationState } from "@chakra-ui/hooks/use-animation-state"
 import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { HTMLProps, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import {

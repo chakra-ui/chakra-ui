@@ -13,9 +13,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-focus-lock.cjs.js",
-  "module": "dist/chakra-ui-focus-lock.esm.js",
-  "types": "dist/chakra-ui-focus-lock.cjs.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -31,7 +31,7 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/utils": "2.0.4",
+    "@chakra-ui/utils": "workspace:*",
     "react-focus-lock": "^2.9.1"
   },
   "peerDependencies": {
@@ -39,5 +39,12 @@
   },
   "devDependencies": {
     "react": "^18.0.0"
+  },
+  "scripts": {
+    "build": "tsup src/ --format=esm,cjs --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/ --format=esm,cjs"
   }
 }

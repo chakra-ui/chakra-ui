@@ -5,7 +5,6 @@ import { createContext } from "@chakra-ui/react-utils"
 import {
   chakra,
   ChakraProps,
-  createStylesContext,
   forwardRef,
   HTMLChakraProps,
   SystemStyleObject,
@@ -16,6 +15,7 @@ import { fadeConfig } from "@chakra-ui/transition"
 import {
   callAllHandlers,
   cx,
+  Dict,
   FocusableElement,
   __DEV__,
 } from "@chakra-ui/utils"
@@ -31,8 +31,14 @@ import { RemoveScroll } from "react-remove-scroll"
 import { ModalTransition } from "./modal-transition"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
 
-const [StylesProvider, useStyles] = createStylesContext("Modal")
-export const useModalStyles = useStyles
+const [ModalStylesProvider, useModalStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `ModalStylesContext`,
+  errorMessage: `useModalStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Modal />" `,
+})
+
+export { ModalContextProvider, useModalContext, useModalStyles }
 
 interface ModalOptions extends Pick<FocusLockProps, "lockFocusAcrossFrames"> {
   /**
@@ -138,8 +144,6 @@ const [ModalContextProvider, useModalContext] = createContext<ModalContext>({
     "useModalContext: `context` is undefined. Seems you forgot to wrap modal components in `<Modal />`",
 })
 
-export { ModalContextProvider, useModalContext }
-
 /**
  * Modal provides context, theming, and accessibility properties
  * to all other modal components.
@@ -182,11 +186,11 @@ export const Modal: React.FC<ModalProps> = (props) => {
 
   return (
     <ModalContextProvider value={context}>
-      <StylesProvider value={styles}>
+      <ModalStylesProvider value={styles}>
         <AnimatePresence onExitComplete={onCloseComplete}>
           {context.isOpen && <Portal {...portalProps}>{children}</Portal>}
         </AnimatePresence>
-      </StylesProvider>
+      </ModalStylesProvider>
     </ModalContextProvider>
   )
 }
@@ -230,7 +234,7 @@ export const ModalContent = forwardRef<ModalContentProps, "section">(
 
     const _className = cx("chakra-modal__content", className)
 
-    const styles = useStyles()
+    const styles = useModalStyles()
 
     const dialogStyles: SystemStyleObject = {
       display: "flex",
@@ -351,7 +355,7 @@ export const ModalOverlay = forwardRef<ModalOverlayProps, "div">(
     const { className, transition, ...rest } = props
     const _className = cx("chakra-modal__overlay", className)
 
-    const styles = useStyles()
+    const styles = useModalStyles()
     const overlayStyle: SystemStyleObject = {
       pos: "fixed",
       left: "0",
@@ -406,7 +410,7 @@ export const ModalHeader = forwardRef<ModalHeaderProps, "header">(
 
     const _className = cx("chakra-modal__header", className)
 
-    const styles = useStyles()
+    const styles = useModalStyles()
     const headerStyles: SystemStyleObject = {
       flex: 0,
       ...styles.header,
@@ -451,7 +455,7 @@ export const ModalBody = forwardRef<ModalBodyProps, "div">((props, ref) => {
   }, [setBodyMounted])
 
   const _className = cx("chakra-modal__body", className)
-  const styles = useStyles()
+  const styles = useModalStyles()
 
   return (
     <chakra.div
@@ -479,7 +483,7 @@ export const ModalFooter = forwardRef<ModalFooterProps, "footer">(
     const { className, ...rest } = props
     const _className = cx("chakra-modal__footer", className)
 
-    const styles = useStyles()
+    const styles = useModalStyles()
     const footerStyles: SystemStyleObject = {
       display: "flex",
       alignItems: "center",
@@ -515,7 +519,7 @@ export const ModalCloseButton = forwardRef<CloseButtonProps, "button">(
 
     const _className = cx("chakra-modal__close-btn", className)
 
-    const styles = useStyles()
+    const styles = useModalStyles()
 
     return (
       <CloseButton

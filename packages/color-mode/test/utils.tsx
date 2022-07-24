@@ -19,7 +19,7 @@ export const resetCounter = () => {
   renderCount = 0
 }
 
-export const MemoizedComponent = React.memo(() => {
+export const MemoizedComponent = React.memo(function MemoizedComponent() {
   renderCount++
   return <div data-testid="rendered">{renderCount}</div>
 })

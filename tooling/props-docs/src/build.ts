@@ -2,7 +2,7 @@ import "regenerator-runtime/runtime"
 import glob from "glob"
 import path from "path"
 import { promisify } from "util"
-import { writeFileSync } from "fs"
+import { promises as fs } from "fs"
 import * as docgen from "react-docgen-typescript"
 import { ComponentDoc } from "react-docgen-typescript"
 import mkdirp from "mkdirp"
@@ -32,9 +32,9 @@ const outputPath = path.join(__dirname, "..", "dist", "components")
 
 const basePath = path.join(__dirname, "..", "dist")
 
-const cjsIndexFilePath = path.join(basePath, "chakra-ui-props-docs.cjs.js")
-const esmIndexFilePath = path.join(basePath, "chakra-ui-props-docs.esm.js")
-const typeFilePath = path.join(basePath, "chakra-ui-props-docs.cjs.d.ts")
+const cjsIndexFilePath = path.join(basePath, "index.js")
+const esmIndexFilePath = path.join(basePath, "index.mjs")
+const typeFilePath = path.join(basePath, "index.d.ts")
 
 const tsConfigPath = path.join(sourcePath, "..", "tsconfig.json")
 
@@ -52,12 +52,14 @@ export async function main() {
   const componentInfo = extractComponentInfo(parsedInfo)
 
   log("Writing component info files...")
-  writeComponentInfoFiles(componentInfo)
+  await writeComponentInfoFiles(componentInfo)
 
   log("Writing index files...")
-  writeIndexCJS(componentInfo)
-  writeIndexESM(componentInfo)
-  writeTypes(componentInfo)
+  await Promise.all([
+    writeIndexCJS(componentInfo),
+    writeIndexESM(componentInfo),
+    writeTypes(componentInfo),
+  ])
 
   log(`Processed ${componentInfo.length} components`)
 }
@@ -71,11 +73,16 @@ if (require.main === module) {
  * Find all TypeScript files which could contain component definitions
  */
 async function findComponentFiles() {
-  const tsFiles = await globAsync("react/**/src/**/*.@(ts|tsx)", {
+  return globAsync("react/**/src/**/*.@(ts|tsx)", {
     cwd: sourcePath,
+    ignore: [
+      "**/stories/**",
+      "**/theme/**",
+      "**/utils/**",
+      "**/system/**",
+      "**/index.ts",
+    ],
   })
-
-  return tsFiles.filter((f) => !f.includes("stories"))
 }
 
 /**
@@ -145,29 +152,31 @@ function extractComponentInfo(docs: ComponentDoc[]) {
 /**
  * Write component info as JSON to disk
  */
-function writeComponentInfoFiles(componentInfo: ComponentInfo[]) {
-  for (const info of componentInfo) {
-    const filePath = path.join(outputPath, info.fileName)
-    const content = JSON.stringify(info.def)
-    writeFileSync(filePath, content)
-  }
+async function writeComponentInfoFiles(componentInfo: ComponentInfo[]) {
+  return Promise.all(
+    componentInfo.map((info) => {
+      const filePath = path.join(outputPath, info.fileName)
+      const content = JSON.stringify(info.def)
+      return fs.writeFile(filePath, content)
+    }),
+  )
 }
 
 /**
  * Create and write the index file in CJS format
  */
-function writeIndexCJS(componentInfo: ComponentInfo[]) {
+async function writeIndexCJS(componentInfo: ComponentInfo[]) {
   const cjsExports = componentInfo.map(
     ({ displayName, importPath }) =>
       `module.exports['${displayName}'] = require('${importPath}')`,
   )
-  writeFileSync(cjsIndexFilePath, cjsExports.join("\n"))
+  return fs.writeFile(cjsIndexFilePath, cjsExports.join("\n"))
 }
 
 /**
  * Create and write the index file in ESM format
  */
-function writeIndexESM(componentInfo: ComponentInfo[]) {
+async function writeIndexESM(componentInfo: ComponentInfo[]) {
   const esmPropImports = componentInfo
     .map(
       ({ exportName, importPath }) =>
@@ -179,14 +188,14 @@ function writeIndexESM(componentInfo: ComponentInfo[]) {
     .map(({ exportName }) => `export const ${exportName} = ${exportName}Import`)
     .join("\n")
 
-  writeFileSync(
+  return fs.writeFile(
     esmIndexFilePath,
     `${esmPropImports}
 ${esmPropExports}`,
   )
 }
 
-function writeTypes(componentInfo: ComponentInfo[]) {
+async function writeTypes(componentInfo: ComponentInfo[]) {
   const typeExports = componentInfo
     .map(({ exportName }) => `export declare const ${exportName}: PropDoc`)
     .join("\n")
@@ -225,7 +234,7 @@ function writeTypes(componentInfo: ComponentInfo[]) {
     }
   `
 
-  writeFileSync(typeFilePath, `${baseType}\n${typeExports}`)
+  return fs.writeFile(typeFilePath, `${baseType}\n${typeExports}`)
 }
 
 function log(...args: unknown[]) {

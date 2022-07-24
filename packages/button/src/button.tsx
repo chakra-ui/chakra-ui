@@ -98,6 +98,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
    * So let's read the component styles and then add `zIndex` to it.
    */
   const buttonStyles: SystemStyleObject = React.useMemo(() => {
+    // @ts-ignore
     const _focus = mergeWith({}, styles?.["_focus"] ?? {}, { zIndex: 1 })
     return {
       display: "inline-flex",

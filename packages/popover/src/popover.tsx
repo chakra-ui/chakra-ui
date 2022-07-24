@@ -1,8 +1,7 @@
 import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
-import { MaybeRenderProp } from "@chakra-ui/react-utils"
+import { createContext, MaybeRenderProp } from "@chakra-ui/react-utils"
 import {
   chakra,
-  createStylesContext,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
@@ -11,16 +10,20 @@ import {
   useMultiStyleConfig,
   useTheme,
 } from "@chakra-ui/system"
-import { callAll, cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
+import { callAll, cx, Dict, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { PopoverProvider, usePopoverContext } from "./popover-context"
 import { PopoverTransition, PopoverTransitionProps } from "./popover-transition"
 import { usePopover, UsePopoverProps } from "./use-popover"
 
-export { usePopoverContext }
+const [PopoverStylesProvider, usePopoverStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `PopoverStylesContext`,
+  errorMessage: `usePopoverStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Popover />" `,
+})
 
-const [StylesProvider, useStyles] = createStylesContext("Popover")
-export const usePopoverStyles = useStyles
+export { usePopoverContext, usePopoverStyles }
 
 export interface PopoverProps extends UsePopoverProps, ThemingProps<"Popover"> {
   /**
@@ -47,13 +50,13 @@ export const Popover: React.FC<PopoverProps> = (props) => {
 
   return (
     <PopoverProvider value={context}>
-      <StylesProvider value={styles}>
+      <PopoverStylesProvider value={styles}>
         {runIfFn(children, {
           isOpen: context.isOpen,
           onClose: context.onClose,
           forceUpdate: context.forceUpdate,
         })}
-      </StylesProvider>
+      </PopoverStylesProvider>
     </PopoverProvider>
   )
 }
@@ -104,7 +107,7 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
     const { getPopoverProps, getPopoverPositionerProps, onAnimationComplete } =
       usePopoverContext()
 
-    const styles = useStyles()
+    const styles = usePopoverStyles()
     const contentStyles: SystemStyleObject = {
       position: "relative",
       display: "flex",
@@ -146,7 +149,7 @@ export const PopoverHeader = forwardRef<PopoverHeaderProps, "header">(
   (props, ref) => {
     const { getHeaderProps } = usePopoverContext()
 
-    const styles = useStyles()
+    const styles = usePopoverStyles()
 
     return (
       <chakra.header
@@ -171,7 +174,7 @@ export interface PopoverBodyProps extends HTMLChakraProps<"div"> {}
 export const PopoverBody = forwardRef<PopoverBodyProps, "div">((props, ref) => {
   const { getBodyProps } = usePopoverContext()
 
-  const styles = useStyles()
+  const styles = usePopoverStyles()
 
   return (
     <chakra.div
@@ -188,7 +191,7 @@ if (__DEV__) {
 export interface PopoverFooterProps extends HTMLChakraProps<"footer"> {}
 
 export const PopoverFooter: React.FC<PopoverFooterProps> = (props) => {
-  const styles = useStyles()
+  const styles = usePopoverStyles()
   return (
     <chakra.footer
       {...props}
@@ -207,7 +210,7 @@ export type PopoverCloseButtonProps = CloseButtonProps
 export const PopoverCloseButton = forwardRef<CloseButtonProps, "button">(
   (props, ref) => {
     const { onClose } = usePopoverContext()
-    const styles = useStyles()
+    const styles = usePopoverStyles()
     return (
       <CloseButton
         size="sm"
@@ -230,7 +233,7 @@ export interface PopoverArrowProps extends HTMLChakraProps<"div"> {}
 export const PopoverArrow: React.FC<PopoverArrowProps> = (props) => {
   const { bg, bgColor, backgroundColor } = props
   const { getArrowProps, getArrowInnerProps } = usePopoverContext()
-  const styles = useStyles()
+  const styles = usePopoverStyles()
   const arrowBg = bg ?? bgColor ?? backgroundColor
   return (
     <chakra.div

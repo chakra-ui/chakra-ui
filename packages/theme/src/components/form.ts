@@ -2,7 +2,7 @@ import { formAnatomy as parts } from "@chakra-ui/anatomy"
 import type {
   PartsStyleFunction,
   SystemStyleFunction,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/styled-system"
 import { mode } from "@chakra-ui/theme-tools"
 
 const baseStyleRequiredIndicator: SystemStyleFunction = (props) => {

@@ -1,8 +1,7 @@
-import { MaybeRenderProp } from "@chakra-ui/react-utils"
+import { createContext, MaybeRenderProp } from "@chakra-ui/react-utils"
 import {
   chakra,
   ChakraComponent,
-  createStylesContext,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
@@ -13,7 +12,7 @@ import {
   useMultiStyleConfig,
   useTheme,
 } from "@chakra-ui/system"
-import { callAll, cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
+import { callAll, cx, Dict, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { CustomDomComponent, motion, Variants } from "framer-motion"
 import * as React from "react"
 import {
@@ -33,8 +32,14 @@ import {
   UseMenuProps,
 } from "./use-menu"
 
-const [StylesProvider, useStyles] = createStylesContext("Menu")
-export const useMenuStyles = useStyles
+const [MenuStylesProvider, useMenuStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `MenuStylesContext`,
+  errorMessage: `useMenuStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Menu />" `,
+})
+
+export { useMenuStyles }
 
 export interface MenuProps extends UseMenuProps, ThemingProps<"Menu"> {
   children: MaybeRenderProp<{
@@ -62,9 +67,9 @@ export const Menu: React.FC<MenuProps> = (props) => {
   return (
     <MenuDescendantsProvider value={descendants}>
       <MenuProvider value={context}>
-        <StylesProvider value={styles}>
+        <MenuStylesProvider value={styles}>
           {runIfFn(children, { isOpen, onClose, forceUpdate })}
-        </StylesProvider>
+        </MenuStylesProvider>
       </MenuProvider>
     </MenuDescendantsProvider>
   )
@@ -77,7 +82,7 @@ if (__DEV__) {
 export interface MenuButtonProps extends HTMLChakraProps<"button"> {}
 
 const StyledMenuButton = forwardRef<MenuButtonProps, "button">((props, ref) => {
-  const styles = useStyles()
+  const styles = useMenuStyles()
   return (
     <chakra.button
       ref={ref}
@@ -177,7 +182,7 @@ export const MenuList = forwardRef<MenuListProps, "div">((props, ref) => {
   const ownProps = useMenuList(rest, ref) as any
   const positionerProps = useMenuPositioner(rootProps)
 
-  const styles = useStyles()
+  const styles = useMenuStyles()
 
   return (
     <chakra.div
@@ -217,7 +222,7 @@ export interface StyledMenuItemProps extends HTMLChakraProps<"button"> {}
 const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
   (props, ref) => {
     const { type, ...rest } = props
-    const styles = useStyles()
+    const styles = useMenuStyles()
 
     /**
      * Given another component, use its type if present
@@ -408,7 +413,7 @@ export const MenuGroup = forwardRef<MenuGroupProps, "div">((props, ref) => {
   const { title, children, className, ...rest } = props
 
   const _className = cx("chakra-menu__group__title", className)
-  const styles = useStyles()
+  const styles = useMenuStyles()
 
   return (
     <div ref={ref} className="chakra-menu__group" role="group">
@@ -430,7 +435,7 @@ export interface MenuCommandProps extends HTMLChakraProps<"span"> {}
 
 export const MenuCommand = forwardRef<MenuCommandProps, "span">(
   (props, ref) => {
-    const styles = useStyles()
+    const styles = useMenuStyles()
     return (
       <chakra.span
         ref={ref}
@@ -482,7 +487,7 @@ export interface MenuDividerProps extends HTMLChakraProps<"hr"> {}
 
 export const MenuDivider: React.FC<MenuDividerProps> = (props) => {
   const { className, ...rest } = props
-  const styles = useStyles()
+  const styles = useMenuStyles()
   return (
     <chakra.hr
       role="separator"

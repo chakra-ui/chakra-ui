@@ -16,9 +16,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-descendant.cjs.js",
-  "module": "dist/chakra-ui-descendant.esm.js",
-  "types": "dist/chakra-ui-descendant.cjs.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -34,12 +34,21 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/react-utils": "^2.0.1"
+    "@chakra-ui/react-utils": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18"
   },
   "devDependencies": {
+    "@chakra-ui/hooks": "workspace:*",
+    "@chakra-ui/system": "workspace:*",
     "react": "^18.0.0"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format=esm,cjs --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/index.ts --format=esm,cjs"
   }
 }

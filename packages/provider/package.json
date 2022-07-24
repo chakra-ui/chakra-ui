@@ -2,9 +2,9 @@
   "name": "@chakra-ui/provider",
   "version": "2.0.9",
   "description": "Theme and components agnostic ChakraProvider",
-  "main": "dist/chakra-ui-provider.cjs.js",
-  "module": "dist/chakra-ui-provider.esm.js",
-  "types": "dist/chakra-ui-provider.cjs.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -13,11 +13,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@chakra-ui/css-reset": "2.0.1",
-    "@chakra-ui/portal": "2.0.4",
-    "@chakra-ui/react-env": "2.0.4",
-    "@chakra-ui/system": "2.2.2",
-    "@chakra-ui/utils": "2.0.4"
+    "@chakra-ui/css-reset": "workspace:*",
+    "@chakra-ui/portal": "workspace:*",
+    "@chakra-ui/react-env": "workspace:*",
+    "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/utils": "workspace:*"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
@@ -54,5 +54,12 @@
     "@emotion/styled": "^11.8.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format=esm,cjs --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/index.ts --format=esm,cjs"
   }
 }

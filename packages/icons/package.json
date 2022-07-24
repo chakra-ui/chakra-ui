@@ -5,9 +5,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-icons.cjs.js",
-  "types": "dist/chakra-ui-icons.cjs.d.ts",
-  "module": "dist/chakra-ui-icons.esm.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.mjs",
   "sideEffects": false,
   "files": [
     "dist"
@@ -24,15 +24,23 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">=2.0.0-next.0",
+    "@chakra-ui/system": ">=2.0.0",
     "react": ">=18"
   },
   "devDependencies": {
-    "@chakra-ui/system": "2.2.2",
+    "@types/react": "^18.0.1",
+    "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/layout": "workspace:*",
     "react": "^18.0.0"
   },
   "dependencies": {
-    "@chakra-ui/icon": "3.0.4",
-    "@types/react": "^18.0.1"
+    "@chakra-ui/icon": "workspace:*"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format=esm,cjs --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/index.ts --format=esm,cjs"
   }
 }

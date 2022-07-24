@@ -1,6 +1,5 @@
 import { objectKeys } from "@chakra-ui/utils"
 import { AnimatePresence, Variants } from "framer-motion"
-import type { CSSProperties } from "react"
 import * as React from "react"
 import { Portal, PortalProps } from "@chakra-ui/portal"
 import { ToastComponent, ToastComponentProps } from "./toast.component"
@@ -84,7 +83,7 @@ export type ToastProviderProps = React.PropsWithChildren<{
    *
    * @default 0.5rem
    */
-  toastSpacing?: CSSProperties["margin"]
+  toastSpacing?: string | number
   /**
    * Props to be forwarded to the portal component
    */
