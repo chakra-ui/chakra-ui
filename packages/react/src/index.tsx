@@ -1,5 +1,6 @@
 export * from "./chakra-provider"
 export * from "./chakra-composable-provider"
+export * from "./framer-motion-provider"
 export * from "./extend-theme"
 export * from "./theme-extensions"
 export * from "@chakra-ui/accordion"

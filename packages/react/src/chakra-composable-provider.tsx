@@ -5,10 +5,12 @@ import {
 } from "@chakra-ui/provider"
 import { theme } from "@chakra-ui/theme"
 import { ToastProvider, ToastProviderProps } from "@chakra-ui/toast"
+import { FramerMotionProvider } from "./framer-motion-provider"
+import { AnimatePresence, motion } from "framer-motion"
 
 type ChakraFeature = {
   id: string
-  Provider: React.ComponentType
+  Provider: React.ComponentType<React.PropsWithChildren<{}>>
 }
 
 export function createToastFeature(
@@ -16,8 +18,19 @@ export function createToastFeature(
 ): ChakraFeature {
   return {
     id: "toast",
-    Provider() {
-      return <ToastProvider {...toastOptions} />
+    Provider(props) {
+      return <ToastProvider {...props} {...toastOptions} />
+    },
+  }
+}
+
+export function createAnimationFeature(): ChakraFeature {
+  return {
+    id: "animation",
+    Provider(props) {
+      const methods = React.useMemo(() => ({ motion, AnimatePresence }), [])
+
+      return <FramerMotionProvider {...props} methods={methods} />
     },
   }
 }
@@ -32,10 +45,9 @@ export const ChakraComposableProvider = ({
   ...restProps
 }: ChakraComposableProviderProps) => (
   <BaseChakraProvider {...restProps}>
-    {children}
-    {features.map((feature) => (
-      <feature.Provider key={feature.id} />
-    ))}
+    {features.reduce((prev, feature) => {
+      return <feature.Provider key={feature.id}>{prev}</feature.Provider>
+    }, children)}
   </BaseChakraProvider>
 )
 

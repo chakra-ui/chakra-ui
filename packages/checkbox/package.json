@@ -50,6 +50,7 @@
     "react": "^18.0.0"
   },
   "peerDependencies": {
+    "@chakra-ui/react": ">=2.0.0-next.0",
     "@chakra-ui/system": ">=2.0.0-next.0",
     "framer-motion": ">=4.0.0",
     "react": ">=18"
