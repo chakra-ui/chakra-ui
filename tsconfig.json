@@ -16,7 +16,7 @@
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
     "incremental": true,
-    "declarationMap": true
+    "preserveSymlinks": true
   },
   "include": ["@types", "packages", "scripts", "tooling"],
   "exclude": ["**/node_modules", "**/template*"],

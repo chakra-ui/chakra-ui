@@ -924,11 +924,13 @@ importers:
 
   packages/progress:
     specifiers:
+      '@chakra-ui/react-utils': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/theme-tools': workspace:*
       '@chakra-ui/utils': workspace:*
       react: ^18.2.0
     dependencies:
+      '@chakra-ui/react-utils': link:../react-utils
       '@chakra-ui/theme-tools': link:../theme-tools
       '@chakra-ui/utils': link:../utils
     devDependencies:
@@ -1189,12 +1191,14 @@ importers:
   packages/stat:
     specifiers:
       '@chakra-ui/icon': workspace:*
+      '@chakra-ui/react-utils': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/utils': workspace:*
       '@chakra-ui/visually-hidden': workspace:*
       react: ^18.2.0
     dependencies:
       '@chakra-ui/icon': link:../icon
+      '@chakra-ui/react-utils': link:../react-utils
       '@chakra-ui/utils': link:../utils
       '@chakra-ui/visually-hidden': link:../visually-hidden
     devDependencies:
@@ -1264,6 +1268,7 @@ importers:
     specifiers:
       '@chakra-ui/button': workspace:*
       '@chakra-ui/icons': workspace:*
+      '@chakra-ui/react-utils': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/test-utils': workspace:*
       '@chakra-ui/utils': workspace:*
@@ -1271,6 +1276,7 @@ importers:
       react: ^18.2.0
       react-table: 7.7.0
     dependencies:
+      '@chakra-ui/react-utils': link:../react-utils
       '@chakra-ui/utils': link:../utils
     devDependencies:
       '@chakra-ui/button': link:../button
@@ -1307,12 +1313,14 @@ importers:
       '@chakra-ui/avatar': workspace:*
       '@chakra-ui/icon': workspace:*
       '@chakra-ui/icons': workspace:*
+      '@chakra-ui/react-utils': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/utils': workspace:*
       react: ^18.2.0
       react-icons: ^4.2.0
     dependencies:
       '@chakra-ui/icon': link:../icon
+      '@chakra-ui/react-utils': link:../react-utils
       '@chakra-ui/utils': link:../utils
     devDependencies:
       '@chakra-ui/avatar': link:../avatar

@@ -6,16 +6,12 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
-  createStylesContext,
 } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/utils"
+import { cx, Dict } from "@chakra-ui/utils"
 import { createContext } from "@chakra-ui/react-utils"
 import * as React from "react"
 import { Spinner } from "@chakra-ui/spinner"
 import { CheckIcon, InfoIcon, WarningIcon } from "./icons"
-
-const [StylesProvider, useStyles] = createStylesContext("Alert")
-export const useAlertStyles = useStyles
 
 const STATUSES = {
   info: { icon: InfoIcon, colorScheme: "blue" },
@@ -36,6 +32,15 @@ const [AlertProvider, useAlertContext] = createContext<AlertContext>({
   errorMessage:
     "useAlertContext: `context` is undefined. Seems you forgot to wrap alert components in `<Alert />`",
 })
+
+const [AlertStylesProvider, useAlertStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `AlertStylesContext`,
+  errorMessage: `useAlertStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Alert />" `,
+})
+
+export { useAlertStyles }
 
 interface AlertOptions {
   /**
@@ -73,7 +78,7 @@ export const Alert = forwardRef<AlertProps, "div">((props, ref) => {
 
   return (
     <AlertProvider value={{ status }}>
-      <StylesProvider value={styles}>
+      <AlertStylesProvider value={styles}>
         <chakra.div
           role={addRole ? "alert" : undefined}
           ref={ref}
@@ -81,7 +86,7 @@ export const Alert = forwardRef<AlertProps, "div">((props, ref) => {
           className={cx("chakra-alert", props.className)}
           __css={alertStyles}
         />
-      </StylesProvider>
+      </AlertStylesProvider>
     </AlertProvider>
   )
 })
@@ -89,7 +94,7 @@ export const Alert = forwardRef<AlertProps, "div">((props, ref) => {
 export interface AlertTitleProps extends HTMLChakraProps<"div"> {}
 
 export const AlertTitle = forwardRef<AlertTitleProps, "div">((props, ref) => {
-  const styles = useStyles()
+  const styles = useAlertStyles()
 
   return (
     <chakra.div
@@ -105,7 +110,7 @@ export interface AlertDescriptionProps extends HTMLChakraProps<"div"> {}
 
 export const AlertDescription = forwardRef<AlertDescriptionProps, "div">(
   (props, ref) => {
-    const styles = useStyles()
+    const styles = useAlertStyles()
     const descriptionStyles: SystemStyleObject = {
       display: "inline",
       ...styles.description,
@@ -127,7 +132,7 @@ export interface AlertIconProps extends HTMLChakraProps<"span"> {}
 export const AlertIcon: React.FC<AlertIconProps> = (props) => {
   const { status } = useAlertContext()
   const { icon: BaseIcon } = STATUSES[status]
-  const styles = useStyles()
+  const styles = useAlertStyles()
   const css = status === "loading" ? styles.spinner : styles.icon
 
   return (

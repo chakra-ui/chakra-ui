@@ -7,14 +7,19 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
-  createStylesContext,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
-import { getValidChildren } from "@chakra-ui/react-utils"
+import { cx, __DEV__, Dict } from "@chakra-ui/utils"
+import { getValidChildren, createContext } from "@chakra-ui/react-utils"
 import * as React from "react"
 
-const [StylesProvider, useStyles] = createStylesContext("Breadcrumb")
-export const useBreadcrumbStyles = useStyles
+const [BreadcrumbStylesProvider, useBreadcrumbStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `BreadcrumbStylesContext`,
+  errorMessage: `useBreadcrumbStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Breadcrumb />" `,
+})
+
+export { useBreadcrumbStyles }
 
 export interface BreadcrumbSeparatorProps extends HTMLChakraProps<"div"> {
   /**
@@ -30,7 +35,7 @@ export const BreadcrumbSeparator = forwardRef<BreadcrumbSeparatorProps, "span">(
   (props, ref) => {
     const { spacing, ...rest } = props
 
-    const styles = useStyles()
+    const styles = useBreadcrumbStyles()
     const separatorStyles: SystemStyleObject = {
       mx: spacing,
       ...styles.separator,
@@ -64,7 +69,7 @@ export interface BreadcrumbLinkProps extends HTMLChakraProps<"a"> {
 export const BreadcrumbLink = forwardRef<BreadcrumbLinkProps, "a">(
   (props, ref) => {
     const { isCurrentPage, as, className, href, ...rest } = props
-    const styles = useStyles()
+    const styles = useBreadcrumbStyles()
 
     const sharedProps = {
       ref,
@@ -133,7 +138,7 @@ export const BreadcrumbItem = forwardRef<BreadcrumbItemProps, "li">(
       return child
     })
 
-    const styles = useStyles()
+    const styles = useBreadcrumbStyles()
     const itemStyles: SystemStyleObject = {
       display: "inline-flex",
       alignItems: "center",
@@ -218,9 +223,9 @@ export const Breadcrumb = forwardRef<BreadcrumbProps, "nav">((props, ref) => {
       __css={styles.container}
       {...rest}
     >
-      <StylesProvider value={styles}>
+      <BreadcrumbStylesProvider value={styles}>
         <chakra.ol className="chakra-breadcrumb__list">{clones}</chakra.ol>
-      </StylesProvider>
+      </BreadcrumbStylesProvider>
     </chakra.nav>
   )
 })

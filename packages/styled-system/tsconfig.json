@@ -2,10 +2,6 @@
   "extends": "../../tsconfig.json",
   "include": ["src", "index.ts"],
   "compilerOptions": {
-    "outDir": "dist",
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "declarationMap": false,
     "tsBuildInfoFile": "node_modules/.cache/.tsbuildinfo"
   }
 }

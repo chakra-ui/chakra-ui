@@ -26,5 +26,6 @@ const allPropNames = new Set([
  */
 const validHTMLProps = new Set(["htmlWidth", "htmlHeight", "htmlSize"])
 
-export const shouldForwardProp = (prop: string): boolean =>
-  validHTMLProps.has(prop) || !allPropNames.has(prop)
+export function shouldForwardProp(prop: string): boolean {
+  return validHTMLProps.has(prop) || !allPropNames.has(prop)
+}

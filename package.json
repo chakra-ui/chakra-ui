@@ -11,7 +11,7 @@
     "prepare": "husky install",
     "clean:emotion-types": "rimraf node_modules/@emotion/core/types",
     "postinstall": "pnpm clean:emotion-types",
-    "build:tokens": "DEBUG=* chakra-cli tokens packages/theme/src --out packages/styled-system/dist/theming.types.d.ts",
+    "build:tokens": "chakra-cli tokens packages/theme/src --out packages/styled-system/dist/src/theming.types.d.ts",
     "build": "turbo run build --filter=!./examples/* --filter=!*props-docs",
     "build:fast": "turbo run build:fast --filter=!./examples/* --filter=!*props-docs",
     "build:prop-docs": "pnpm --filter=*props-docs build",

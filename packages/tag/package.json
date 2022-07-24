@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@chakra-ui/icon": "workspace:*",
+    "@chakra-ui/react-utils": "workspace:*",
     "@chakra-ui/utils": "workspace:*"
   },
   "devDependencies": {
