@@ -1,10 +1,12 @@
 import * as React from "react"
-import {
-  ChakraProvider as BaseChakraProvider,
-  ChakraProviderProps as BaseChakraProviderProps,
-} from "@chakra-ui/provider"
+import { ChakraProviderProps as BaseChakraProviderProps } from "@chakra-ui/provider"
 import { theme } from "@chakra-ui/theme"
-import { ToastProvider, ToastProviderProps } from "@chakra-ui/toast"
+import { ToastProviderProps } from "@chakra-ui/toast"
+import {
+  ChakraComposableProvider,
+  createAnimationFeature,
+  createToastFeature,
+} from "./chakra-composable-provider"
 
 export interface ChakraProviderProps extends BaseChakraProviderProps {
   /**
@@ -13,16 +15,26 @@ export interface ChakraProviderProps extends BaseChakraProviderProps {
   toastOptions?: ToastProviderProps
 }
 
+const animationFeature = createAnimationFeature()
+
 export const ChakraProvider = ({
   children,
   toastOptions,
   ...restProps
-}: ChakraProviderProps) => (
-  <BaseChakraProvider {...restProps}>
-    {children}
-    <ToastProvider {...toastOptions} />
-  </BaseChakraProvider>
-)
+}: ChakraProviderProps) => {
+  const toastFeature = React.useMemo(() => {
+    return createToastFeature(toastOptions)
+  }, [toastOptions])
+
+  return (
+    <ChakraComposableProvider
+      {...restProps}
+      features={[toastFeature, animationFeature]}
+    >
+      {children}
+    </ChakraComposableProvider>
+  )
+}
 
 ChakraProvider.defaultProps = {
   theme,
