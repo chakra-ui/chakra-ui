@@ -1,5 +1,5 @@
 import { ChevronRightIcon } from "@chakra-ui/icons"
-import { extendTheme, ThemeProvider, useTheme } from "@chakra-ui/react"
+// import { extendTheme, ThemeProvider, useTheme } from "@chakra-ui/react"
 import * as React from "react"
 import { BrowserRouter, Link } from "react-router-dom"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "../src"
@@ -60,57 +60,57 @@ export const SeparatorV2 = () => (
   </Breadcrumb>
 )
 
-export const WithThemeOverrides = () => {
-  const currentTheme = useTheme()
-  const theme = extendTheme(
-    {
-      components: {
-        Breadcrumb: {
-          baseStyle: {
-            container: {
-              borderWidth: 4,
-              padding: 2,
-            },
-            item: {
-              borderWidth: 2,
-              borderRadius: "full",
-              textTransform: "uppercase",
-            },
-            link: {
-              color: "red.500",
-              "&[aria-current=page]": {
-                color: "blue.500",
-              },
-            },
-            separator: {
-              borderWidth: 4,
-              borderColor: "red.300",
-            },
-          },
-        },
-      },
-    },
-    currentTheme,
-  )
+// export const WithThemeOverrides = () => {
+//   const currentTheme = useTheme()
+//   const theme = extendTheme(
+//     {
+//       components: {
+//         Breadcrumb: {
+//           baseStyle: {
+//             container: {
+//               borderWidth: 4,
+//               padding: 2,
+//             },
+//             item: {
+//               borderWidth: 2,
+//               borderRadius: "full",
+//               textTransform: "uppercase",
+//             },
+//             link: {
+//               color: "red.500",
+//               "&[aria-current=page]": {
+//                 color: "blue.500",
+//               },
+//             },
+//             separator: {
+//               borderWidth: 4,
+//               borderColor: "red.300",
+//             },
+//           },
+//         },
+//       },
+//     },
+//     currentTheme,
+//   )
 
-  return (
-    <ThemeProvider theme={theme}>
-      <Breadcrumb
-        spacing="8px"
-        separator={<ChevronRightIcon color="gray.300" />}
-      >
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
+//   return (
+//     <ThemeProvider theme={theme}>
+//       <Breadcrumb
+//         spacing="8px"
+//         separator={<ChevronRightIcon color="gray.300" />}
+//       >
+//         <BreadcrumbItem>
+//           <BreadcrumbLink href="/">Home</BreadcrumbLink>
+//         </BreadcrumbItem>
 
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/about">About</BreadcrumbLink>
-        </BreadcrumbItem>
+//         <BreadcrumbItem>
+//           <BreadcrumbLink href="/about">About</BreadcrumbLink>
+//         </BreadcrumbItem>
 
-        <BreadcrumbItem isCurrentPage>
-          <BreadcrumbLink href="/contact">Contact</BreadcrumbLink>
-        </BreadcrumbItem>
-      </Breadcrumb>
-    </ThemeProvider>
-  )
-}
+//         <BreadcrumbItem isCurrentPage>
+//           <BreadcrumbLink href="/contact">Contact</BreadcrumbLink>
+//         </BreadcrumbItem>
+//       </Breadcrumb>
+//     </ThemeProvider>
+//   )
+// }

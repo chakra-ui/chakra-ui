@@ -2,7 +2,7 @@ import type { AlertStatus } from "@chakra-ui/alert"
 import { ThemingProps, useChakra } from "@chakra-ui/system"
 import * as React from "react"
 import type { RenderProps, ToastId, ToastOptions } from "./toast.types"
-import { createToastFn } from "./toast"
+import { createToastFn, CreateToastFnReturn } from "./toast"
 import { ToastPosition } from "./toast.placement"
 
 export interface UseToastOptions extends ThemingProps<"Alert"> {
@@ -19,13 +19,11 @@ export interface UseToastOptions extends ThemingProps<"Alert"> {
    * @default 5000 ( = 5000ms )
    */
   duration?: ToastOptions["duration"]
-
   /**
    * Render a component toast component.
    * Any component passed will receive 2 props: `id` and `onClose`.
    */
   render?(props: RenderProps): React.ReactNode
-
   /**
    * The title of the toast
    */
@@ -67,7 +65,9 @@ export interface UseToastOptions extends ThemingProps<"Alert"> {
  * React hook used to create a function that can be used
  * to show toasts in an application.
  */
-export function useToast(defaultOptions?: UseToastOptions) {
+export function useToast(
+  defaultOptions?: UseToastOptions,
+): CreateToastFnReturn {
   const { theme } = useChakra()
 
   return React.useMemo(

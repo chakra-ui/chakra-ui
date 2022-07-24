@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "esnext",
     "module": "esnext",
     "lib": ["dom", "esnext"],
     "declaration": true,
@@ -14,9 +14,7 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "downlevelIteration": true,
-    "incremental": true,
-    "declarationMap": true
+    "downlevelIteration": true
   },
   "include": ["@types", "packages", "scripts", "tooling"],
   "exclude": ["**/node_modules", "**/template*"],

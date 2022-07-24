@@ -1,6 +1,6 @@
 import { useColorMode } from "@chakra-ui/color-mode"
 import { Dict, StringOrNumber } from "@chakra-ui/utils"
-import { useTheme } from "./providers"
+import { useTheme } from "./use-theme"
 
 export function useChakra<T extends Dict = Dict>() {
   const colorModeResult = useColorMode()

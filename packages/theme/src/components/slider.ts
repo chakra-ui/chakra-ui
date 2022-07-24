@@ -4,7 +4,7 @@ import type {
   StyleFunctionProps,
   SystemStyleFunction,
   SystemStyleObject,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/styled-system"
 import { mode, orient } from "@chakra-ui/theme-tools"
 
 function thumbOrientation(props: StyleFunctionProps): SystemStyleObject {

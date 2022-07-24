@@ -1,5 +1,4 @@
-import defaultTheme from "@chakra-ui/theme"
-import { Global, ThemeProvider } from "@emotion/react"
+import { Global, ThemeProvider, useTheme } from "@emotion/react"
 import styled from "@emotion/styled"
 import * as React from "react"
 import { css, resolveStyleConfig, toCSSVar } from "../src"
@@ -11,9 +10,8 @@ export default {
 
 const Box = styled("div")((props: any) => css(props.css)(props.theme))
 
-const theme = toCSSVar(defaultTheme)
-
 export const responsiveButton = () => {
+  const theme = toCSSVar(useTheme())
   const styles = recipe({
     theme,
     variant: ["solid", "outline", "link"],
@@ -30,14 +28,20 @@ export const responsiveButton = () => {
 }
 
 export const multipartAlert = () => {
+  const defaultTheme = useTheme() as Record<string, any>
+
   const props = {
     variant: ["left-accent", "top-accent", "subtle"],
     colorScheme: "red",
-    theme,
+    theme: defaultTheme,
   }
-  const styles = resolveStyleConfig(defaultTheme.components.Alert)(props)
+
+  const alertTheme = defaultTheme.components.Alert
+  //@ts-ignore
+  const styles = resolveStyleConfig(alertTheme)(props)
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={defaultTheme}>
       <pre style={{ fontSize: "small" }}>{JSON.stringify(styles, null, 2)}</pre>
       <Global styles={(theme: any) => ({ ":root": theme.__cssVars })} />
       <Box css={styles.container}>

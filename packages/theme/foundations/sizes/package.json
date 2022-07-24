@@ -1,4 +1,5 @@
 {
-  "main": "dist/chakra-ui-theme-foundations-sizes.cjs.js",
-  "module": "dist/chakra-ui-theme-foundations-sizes.esm.js"
+  "main": "../../dist/foundations/sizes.js",
+  "module": "../../dist/foundations/sizes.mjs",
+  "types": "../../dist/foundations/sizes.d.ts"
 }

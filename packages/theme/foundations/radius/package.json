@@ -1,4 +1,5 @@
 {
-  "main": "dist/chakra-ui-theme-foundations-radius.cjs.js",
-  "module": "dist/chakra-ui-theme-foundations-radius.esm.js"
+  "main": "../../dist/foundations/radius.js",
+  "module": "../../dist/foundations/radius.mjs",
+  "types": "../../dist/foundations/radius.d.ts"
 }

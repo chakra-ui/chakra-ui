@@ -23,9 +23,9 @@
   "author": "Tim Kolberger <tim@kolberger.eu>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-table.cjs.js",
-  "module": "dist/chakra-ui-table.esm.js",
-  "types": "dist/chakra-ui-table.cjs.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -41,17 +41,27 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/utils": "2.0.4"
+    "@chakra-ui/utils": "workspace:*",
+    "@chakra-ui/react-utils": "workspace:*"
   },
   "devDependencies": {
-    "@chakra-ui/button": "2.0.4",
-    "@chakra-ui/icons": "2.0.4",
-    "@chakra-ui/system": "2.2.2",
-    "@chakra-ui/test-utils": "2.0.10",
+    "@chakra-ui/button": "workspace:*",
+    "@chakra-ui/icons": "workspace:*",
+    "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/test-utils": "workspace:*",
+    "@types/react-table": "7.7.9",
+    "react-table": "7.7.0",
     "react": "^18.0.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">=2.0.0-next.0",
+    "@chakra-ui/system": ">=2.0.0",
     "react": ">=18"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format=esm,cjs --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/index.ts --format=esm,cjs"
   }
 }

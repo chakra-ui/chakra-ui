@@ -12,19 +12,12 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-hooks.cjs.js",
-  "module": "dist/chakra-ui-hooks.esm.js",
-  "types": "dist/chakra-ui-hooks.cjs.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
-    "dist",
-    "use-animation-state"
+    "dist"
   ],
-  "preconstruct": {
-    "entrypoints": [
-      "index.ts",
-      "use-animation-state.ts"
-    ]
-  },
   "publishConfig": {
     "access": "public"
   },
@@ -37,8 +30,8 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/react-utils": "2.0.1",
-    "@chakra-ui/utils": "2.0.4",
+    "@chakra-ui/react-utils": "workspace:*",
+    "@chakra-ui/utils": "workspace:*",
     "compute-scroll-into-view": "1.0.14",
     "copy-to-clipboard": "3.3.1"
   },
@@ -47,5 +40,12 @@
   },
   "devDependencies": {
     "react": "^18.0.0"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format=esm,cjs --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/index.ts --format=esm,cjs"
   }
 }

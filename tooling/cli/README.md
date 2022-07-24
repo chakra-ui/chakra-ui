@@ -15,14 +15,16 @@ npx @chakra-ui/cli tokens <@your-org/chakra-theme-package>
 ```
 
 ```sh
-$ npx @chakra-ui/cli --help
+$ npx @chakra-ui/cli tokens --help
 
-Usage: chakra-cli tokens [options]
+Usage: chakra-cli tokens [options] <source>
 
 Options:
-  --out <path>  output directory e.g.
-                node_modules/@chakra-ui/styled-system/dist/declarations/src/theming.types.d.ts
-  -h, --help    display help for command
+  --out <path>              output file e.g. node_modules/@chakra-ui/styled-system/dist/declarations/src/theming.types.d.ts
+  --strict-component-types  Generate strict types for props variant and size
+  --no-format               Disable auto formatting
+  --watch [path]            Watch directory for changes and rebuild
+  -h, --help                display help for command
 
 Example call:
   $ chakra-cli tokens theme.ts

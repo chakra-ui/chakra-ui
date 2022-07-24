@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { FormControl, FormHelperText, FormLabel } from "@chakra-ui/form-control"
 import { fireEvent, render, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
@@ -76,9 +75,8 @@ test("handles events and callbacks correctly", () => {
     onKeyUp: jest.fn(),
   }
   const Component = () => {
-    const { getCheckboxProps, getInputProps, getRootProps } = useRadio(
-      hookProps,
-    )
+    const { getCheckboxProps, getInputProps, getRootProps } =
+      useRadio(hookProps)
 
     return (
       <label data-testid="container" {...getRootProps()}>

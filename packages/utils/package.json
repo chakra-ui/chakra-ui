@@ -6,9 +6,9 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "sideEffects": false,
-  "main": "dist/chakra-ui-utils.cjs.js",
-  "module": "dist/chakra-ui-utils.esm.js",
-  "types": "dist/chakra-ui-utils.cjs.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -22,6 +22,13 @@
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format=esm,cjs --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/index.ts --format=esm,cjs"
   },
   "dependencies": {
     "@types/lodash.mergewith": "4.6.6",

@@ -31,7 +31,7 @@ export const ExamplePopper = () => {
             data-popper-arrow=""
             style={{
               background: "yellow",
-              "--popper-arrow-size": "10px",
+              ["--popper-arrow-size" as string]: "10px",
             }}
           />
           Popper
@@ -97,12 +97,6 @@ export const VirtualElement = () => {
       <div ref={popperRef}>Some popper</div>
     </div>
   )
-}
-
-declare module "csstype" {
-  interface Properties {
-    [k: string]: any
-  }
 }
 
 export const WithAnimation = () => {

@@ -15,20 +15,21 @@
     "dist"
   ],
   "scripts": {
-    "prepublish": "yarn build",
+    "prepublish": "pnpm build",
     "lint": "eslint --ext .js src",
     "test": "jest --passWithNoTests",
     "build": "babel src -d dist"
   },
   "dependencies": {
-    "@babel/helper-annotate-as-pure": "^7.12.10",
-    "@babel/helper-plugin-utils": "^7.10.4"
+    "@babel/helper-annotate-as-pure": "^7.18.6",
+    "@babel/helper-plugin-utils": "^7.18.9"
   },
   "peerDependencies": {
-    "@babel/core": "^7.12.10"
+    "@babel/core": "^7.18.9"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.0"
+    "@babel/cli": "^7.18.9",
+    "@babel/core": "^7.18.9"
   },
   "jest": {
     "testEnvironment": "node",

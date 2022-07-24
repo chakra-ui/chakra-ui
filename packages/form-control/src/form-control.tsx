@@ -1,25 +1,30 @@
 import { useBoolean, useId } from "@chakra-ui/hooks"
 import {
-  chakra,
-  createStylesContext,
-  forwardRef,
-  HTMLChakraProps,
-  omitThemingProps,
-  ThemingProps,
-  useMultiStyleConfig,
-} from "@chakra-ui/system"
-import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils"
-import {
   createContext,
   mergeRefs,
   PropGetter,
   PropGetterV2,
 } from "@chakra-ui/react-utils"
+import {
+  chakra,
+  forwardRef,
+  HTMLChakraProps,
+  omitThemingProps,
+  SystemStyleObject,
+  ThemingProps,
+  useMultiStyleConfig,
+} from "@chakra-ui/system"
+import { cx, dataAttr, Dict, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-const [StylesProvider, useStyles] = createStylesContext("FormControl")
+const [FormControlStylesProvider, useFormControlStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `FormControlStylesContext`,
+  errorMessage: `useFormControlStyles returned is 'undefined'. Seems you forgot to wrap the components in "<FormControl />" `,
+})
 
-export const useFormControlStyles = useStyles
+export { useFormControlContext, useFormControlStyles }
 
 export interface FormControlOptions {
   /**
@@ -72,8 +77,6 @@ const [FormControlProvider, useFormControlContext] =
     strict: false,
     name: "FormControlContext",
   })
-
-export { useFormControlContext }
 
 function useFormControlProvider(props: FormControlContext) {
   const {
@@ -226,13 +229,13 @@ export const FormControl = forwardRef<FormControlProps, "div">((props, ref) => {
 
   return (
     <FormControlProvider value={context}>
-      <StylesProvider value={styles}>
+      <FormControlStylesProvider value={styles}>
         <chakra.div
           {...getRootProps({}, ref)}
           className={className}
           __css={styles["container"]}
         />
-      </StylesProvider>
+      </FormControlStylesProvider>
     </FormControlProvider>
   )
 })
@@ -252,7 +255,7 @@ export interface HelpTextProps extends HTMLChakraProps<"div"> {}
  */
 export const FormHelperText = forwardRef<HelpTextProps, "div">((props, ref) => {
   const field = useFormControlContext()
-  const styles = useStyles()
+  const styles = useFormControlStyles()
   const className = cx("chakra-form__helper-text", props.className)
   return (
     <chakra.div

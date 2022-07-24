@@ -1,9 +1,7 @@
-import { Text } from "@chakra-ui/layout"
-import { HTMLChakraProps } from "@chakra-ui/system"
-import theme from "@chakra-ui/theme"
+// import theme from "@chakra-ui/theme"
 import { motion } from "framer-motion"
 import React from "react"
-import { chakra, ThemeProvider, useStyleConfig } from "../src"
+import { chakra, ThemeProvider, useStyleConfig, HTMLChakraProps } from "../src"
 
 export default {
   title: "System / Core",
@@ -45,34 +43,35 @@ export const withHeading = () => (
   </div>
 )
 
-export const withTextStyles = () => (
-  <ThemeProvider
-    theme={{
-      ...theme,
-      textStyles: {
-        h1: {
-          fontSize: ["48px", "72px"],
-          fontWeight: "bold",
-          lineHeight: "110%",
-          letterSpacing: "-0.01em",
+export const withTextStyles = () => {
+  return (
+    <ThemeProvider
+      theme={{
+        textStyles: {
+          h1: {
+            fontSize: ["48px", "72px"],
+            fontWeight: "bold",
+            lineHeight: "110%",
+            letterSpacing: "-0.01em",
+          },
+          h2: {
+            fontSize: ["36px", "48px"],
+            fontWeight: "light",
+            lineHeight: "110%",
+            letterSpacing: "-0.01em",
+          },
         },
-        h2: {
-          fontSize: ["36px", "48px"],
-          fontWeight: "light",
-          lineHeight: "110%",
-          letterSpacing: "-0.01em",
-        },
-      },
-    }}
-  >
-    <chakra.h1 textStyle="h2" color="red.300">
-      Welcome
-    </chakra.h1>
-    <Text textStyle="h1" color="green.200">
-      Welcome text
-    </Text>
-  </ThemeProvider>
-)
+      }}
+    >
+      <chakra.h1 textStyle="h2" color="red.300">
+        Welcome
+      </chakra.h1>
+      <chakra.p textStyle="h1" color="green.200">
+        Welcome text
+      </chakra.p>
+    </ThemeProvider>
+  )
+}
 
 export const WithGradient = () => (
   <>

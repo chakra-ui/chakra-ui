@@ -1,4 +1,5 @@
 {
-  "main": "dist/chakra-ui-theme-components.cjs.js",
-  "module": "dist/chakra-ui-theme-components.esm.js"
+  "main": "../../dist/components/index.js",
+  "module": "../../dist/components/index.mjs",
+  "types": "../../dist/components/index.d.ts"
 }

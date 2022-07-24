@@ -1,19 +1,24 @@
+import { createContext, getValidChildren } from "@chakra-ui/react-utils"
 import {
   chakra,
   forwardRef,
+  HTMLChakraProps,
   omitThemingProps,
+  SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  HTMLChakraProps,
-  createStylesContext,
 } from "@chakra-ui/system"
-import { cx, filterUndefined, __DEV__ } from "@chakra-ui/utils"
-import { getValidChildren } from "@chakra-ui/react-utils"
+import { cx, Dict, filterUndefined, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-const [StylesProvider, useStyles] = createStylesContext("InputGroup")
+const [InputGroupStylesProvider, useInputGroupStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `InputGroupStylesContext`,
+  errorMessage: `useInputGroupStyles returned is 'undefined'. Seems you forgot to wrap the components in "<InputGroup />" `,
+})
 
-export const useInputGroupStyles = useStyles
+export { useInputGroupStyles }
 
 export interface InputGroupProps
   extends HTMLChakraProps<"div">,
@@ -79,7 +84,9 @@ export const InputGroup = forwardRef<InputGroupProps, "div">((props, ref) => {
       }}
       {...rest}
     >
-      <StylesProvider value={styles}>{clones}</StylesProvider>
+      <InputGroupStylesProvider value={styles}>
+        {clones}
+      </InputGroupStylesProvider>
     </chakra.div>
   )
 })

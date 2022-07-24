@@ -1,7 +1,7 @@
 // @ts-check
 
 const { isMainThread } = require("worker_threads")
-const { css, toCSSVar } = require("@chakra-ui/styled-system")
+const { css, toCSSVar } = require("../dist")
 
 const theme = toCSSVar({
   breakpoints: {

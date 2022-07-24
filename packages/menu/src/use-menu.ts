@@ -11,8 +11,8 @@ import {
   useShortcut,
   useUnmountEffect,
   useUpdateEffect,
+  useAnimationState,
 } from "@chakra-ui/hooks"
-import { useAnimationState } from "@chakra-ui/hooks/use-animation-state"
 import { usePopper, UsePopperProps } from "@chakra-ui/popper"
 import {
   createContext,
@@ -207,7 +207,7 @@ export function useMenu(props: UseMenuProps = {}) {
   /**
    * Add some popper.js for dynamic positioning
    */
-  const popper = usePopper({
+  const popper: any = usePopper({
     ...popperProps,
     enabled: isOpen || computePositionOnMount,
     placement,
@@ -382,7 +382,7 @@ export interface UseMenuListProps
 export function useMenuList(
   props: UseMenuListProps = {},
   ref: React.Ref<any> = null,
-) {
+): React.HTMLAttributes<HTMLElement> & React.RefAttributes<HTMLElement> {
   const menu = useMenuContext()
 
   if (!menu) {

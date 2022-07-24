@@ -1,20 +1,28 @@
 import { Icon, IconProps } from "@chakra-ui/icon"
-import { getValidChildren } from "@chakra-ui/react-utils"
-import {
-  chakra,
-  createStylesContext,
-  forwardRef,
+import { createContext, getValidChildren } from "@chakra-ui/react-utils"
+import type {
   HTMLChakraProps,
-  omitThemingProps,
   SystemProps,
   ThemingProps,
+} from "@chakra-ui/system"
+import {
+  chakra,
+  forwardRef,
+  omitThemingProps,
+  SystemStyleObject,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
+import { Dict, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-const [StylesProvider, useStyles] = createStylesContext("List")
-export const useListStyles = useStyles
+const [ListStylesProvider, useListStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `ListStylesContext`,
+  errorMessage: `useListStyles returned is 'undefined'. Seems you forgot to wrap the components in "<List />" `,
+})
+
+export { useListStyles }
 
 interface ListOptions {
   /**
@@ -61,7 +69,7 @@ export const List = forwardRef<ListProps, "ul">((props, ref) => {
   const spacingStyle = spacing ? { [selector]: { mt: spacing } } : {}
 
   return (
-    <StylesProvider value={styles}>
+    <ListStylesProvider value={styles}>
       <chakra.ul
         ref={ref}
         listStyleType={styleType}
@@ -76,7 +84,7 @@ export const List = forwardRef<ListProps, "ul">((props, ref) => {
       >
         {validChildren}
       </chakra.ul>
-    </StylesProvider>
+    </ListStylesProvider>
   )
 })
 
@@ -114,7 +122,7 @@ export interface ListItemProps extends HTMLChakraProps<"li"> {}
  * Used to render a list item
  */
 export const ListItem = forwardRef<ListItemProps, "li">((props, ref) => {
-  const styles = useStyles()
+  const styles = useListStyles()
 
   return <chakra.li ref={ref} {...props} __css={styles.item} />
 })
@@ -129,7 +137,7 @@ if (__DEV__) {
  * Used to render an icon beside the list item text
  */
 export const ListIcon = forwardRef<IconProps, "svg">((props, ref) => {
-  const styles = useStyles()
+  const styles = useListStyles()
 
   return <Icon ref={ref} role="presentation" {...props} __css={styles.icon} />
 })

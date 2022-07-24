@@ -4,7 +4,7 @@ import type {
   PartsStyleObject,
   SystemStyleFunction,
   SystemStyleObject,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/styled-system"
 import { mergeWith } from "@chakra-ui/utils"
 import { mode } from "@chakra-ui/theme-tools"
 import Input from "./input"

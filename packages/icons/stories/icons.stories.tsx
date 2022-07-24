@@ -1,4 +1,4 @@
-import { Grid, Text, VStack } from "@chakra-ui/react"
+import { Grid, Text, VStack } from "@chakra-ui/layout"
 import * as React from "react"
 import type { IconProps } from "../src"
 import * as AllIcons from "../src"

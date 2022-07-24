@@ -1,4 +1,5 @@
 {
-  "main": "dist/chakra-ui-theme-foundations-typography.cjs.js",
-  "module": "dist/chakra-ui-theme-foundations-typography.esm.js"
+  "main": "../../dist/foundations/typography.js",
+  "module": "../../dist/foundations/typography.mjs",
+  "types": "../../dist/foundations/typography.d.ts"
 }
