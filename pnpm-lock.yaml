@@ -304,7 +304,7 @@ importers:
       react: ^18.2.0
       react-dom: ^18.2.0
       typescript: ^4.7.4
-      vite: ^3.0.2
+      vite: ^3.0.3
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -312,9 +312,9 @@ importers:
       '@chakra-ui/react': link:../../packages/react
       '@types/react': 18.0.15
       '@types/react-dom': 18.0.6
-      '@vitejs/plugin-react': 2.0.0_vite@3.0.2
+      '@vitejs/plugin-react': 2.0.0_vite@3.0.3
       typescript: 4.7.4
-      vite: 3.0.2
+      vite: 3.0.3
 
   packages/accordion:
     specifiers:
@@ -10551,7 +10551,7 @@ packages:
     dependencies:
       resolve: 1.22.1
 
-  /@vitejs/plugin-react/2.0.0_vite@3.0.2:
+  /@vitejs/plugin-react/2.0.0_vite@3.0.3:
     resolution: {integrity: sha512-zHkRR+X4zqEPNBbKV2FvWSxK7Q6crjMBVIAYroSU8Nbb4M3E5x4qOiLoqJBHtXgr27kfednXjkwr3lr8jS6Wrw==}
     engines: {node: '>=14.18.0'}
     peerDependencies:
@@ -10564,7 +10564,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.18.6_@babel+core@7.18.9
       magic-string: 0.26.2
       react-refresh: 0.14.0
-      vite: 3.0.2
+      vite: 3.0.3
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -27468,8 +27468,8 @@ packages:
       unist-util-stringify-position: 2.0.3
       vfile-message: 2.0.4
 
-  /vite/3.0.2:
-    resolution: {integrity: sha512-TAqydxW/w0U5AoL5AsD9DApTvGb2iNbGs3sN4u2VdT1GFkQVUfgUldt+t08TZgi23uIauh1TUOQJALduo9GXqw==}
+  /vite/3.0.3:
+    resolution: {integrity: sha512-sDIpIcl3mv1NUaSzZwiXGEy1ZoWwwC2vkxUHY6yiDacR6zf//ZFuBJrozO62gedpE43pmxnLATNR5IYUdAEkMQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
