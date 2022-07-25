@@ -18,6 +18,8 @@
     "postbuild": "pnpm build:tokens",
     "dev": "turbo run dev --filter=!./examples/*",
     "typecheck": "tsc --noEmit",
+    "build:theme": "cd packages/theme && pnpm build:fast",
+    "pretest": "pnpm build:theme",
     "test": "jest",
     "lint": "eslint packages/**/src/ --ext .ts,.tsx --config .eslintrc",
     "build:addon": "cd tooling/storybook-addon && pnpm build",

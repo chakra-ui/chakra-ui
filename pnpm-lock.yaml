@@ -1370,45 +1370,6 @@ importers:
     devDependencies:
       '@chakra-ui/styled-system': link:../styled-system
 
-  packages/theme/components:
-    specifiers: {}
-
-  packages/theme/foundations:
-    specifiers: {}
-
-  packages/theme/foundations/blur:
-    specifiers: {}
-
-  packages/theme/foundations/borders:
-    specifiers: {}
-
-  packages/theme/foundations/breakpoints:
-    specifiers: {}
-
-  packages/theme/foundations/colors:
-    specifiers: {}
-
-  packages/theme/foundations/radius:
-    specifiers: {}
-
-  packages/theme/foundations/shadows:
-    specifiers: {}
-
-  packages/theme/foundations/sizes:
-    specifiers: {}
-
-  packages/theme/foundations/spacing:
-    specifiers: {}
-
-  packages/theme/foundations/transition:
-    specifiers: {}
-
-  packages/theme/foundations/typography:
-    specifiers: {}
-
-  packages/theme/foundations/z-index:
-    specifiers: {}
-
   packages/toast:
     specifiers:
       '@chakra-ui/alert': workspace:*
@@ -1619,15 +1580,6 @@ importers:
       '@storybook/api': 6.5.9_react@18.2.0
       '@storybook/components': 6.5.9_react@18.2.0
       react: 18.2.0
-
-  tooling/storybook-addon/preset:
-    specifiers: {}
-
-  tooling/storybook-addon/preset/decorators:
-    specifiers: {}
-
-  tooling/storybook-addon/preset/register:
-    specifiers: {}
 
   tooling/test-utils:
     specifiers:

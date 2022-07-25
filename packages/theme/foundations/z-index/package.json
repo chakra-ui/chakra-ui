@@ -1,5 +1,0 @@
-{
-  "main": "../../dist/foundations/z-index.js",
-  "module": "../../dist/foundations/z-index.mjs",
-  "types": "../../dist/foundations/z-index.d.ts"
-}

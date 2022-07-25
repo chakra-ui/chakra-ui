@@ -1,5 +1,0 @@
-{
-  "main": "../../dist/foundations/transition.js",
-  "module": "../../dist/foundations/transition.mjs",
-  "types": "../../dist/foundations/transition.d.ts"
-}
