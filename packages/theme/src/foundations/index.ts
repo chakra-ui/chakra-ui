@@ -10,7 +10,7 @@ import typography from "./typography"
 import zIndices from "./z-index"
 import blur from "./blur"
 
-const foundations = {
+export const foundations = {
   breakpoints,
   zIndices,
   radii,
@@ -23,5 +23,3 @@ const foundations = {
   borders,
   transition,
 }
-
-export default foundations

@@ -1,5 +1,0 @@
-{
-  "main": "../../dist/foundations/breakpoints.js",
-  "module": "../../dist/foundations/breakpoints.mjs",
-  "types": "../../dist/foundations/breakpoints.d.ts"
-}

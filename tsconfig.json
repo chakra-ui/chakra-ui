@@ -16,7 +16,7 @@
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true
   },
-  "include": ["@types", "packages", "scripts", "tooling"],
+  "include": ["@types", "packages", "scripts", "tooling", "plopfile.ts"],
   "exclude": ["**/node_modules", "**/template*"],
   "ts-node": {
     "compilerOptions": {

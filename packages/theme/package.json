@@ -16,10 +16,41 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
-    "dist",
-    "components/**",
-    "foundations/**"
+    "dist"
   ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs",
+        "import": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js",
+        "require": "./dist/index.js"
+      }
+    },
+    "./*": "./*",
+    "./components": {
+      "require": "./dist/components/index.js",
+      "import": "./dist/components/index.mjs"
+    },
+    "./foundations": {
+      "require": "./dist/foundations/index.js",
+      "import": "./dist/foundations/index.mjs"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "components": [
+        "./dist/components/index.d.ts"
+      ],
+      "foundations": [
+        "./dist/foundations/index.d.ts"
+      ]
+    }
+  },
   "publishConfig": {
     "access": "public"
   },

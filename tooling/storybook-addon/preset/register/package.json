@@ -1,4 +1,0 @@
-{
-  "main": "../../dist/preset/register.js",
-  "module": "../../dist/preset/register.mjs"
-}

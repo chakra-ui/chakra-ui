@@ -4,12 +4,43 @@
   "description": "The official Storybook Addon for Chakra UI",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "preset",
-    "README.md",
     "theming-arg-types.png"
   ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./*": "./*",
+    "./preset": {
+      "require": "./dist/preset/index.js",
+      "import": "./dist/preset/index.mjs"
+    },
+    "./preset/decorators": {
+      "require": "./dist/preset/decorators.js",
+      "import": "./dist/preset/decorators.mjs"
+    },
+    "./preset/register": {
+      "require": "./dist/preset/register.js",
+      "import": "./dist/preset/register.mjs"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "preset": [
+        "./dist/preset/index.d.ts"
+      ],
+      "preset/decorators": [
+        "./dist/preset/decorators.d.ts"
+      ],
+      "preset/register": [
+        "./dist/preset/register.d.ts"
+      ]
+    }
+  },
   "scripts": {
     "build": "tsup --dts",
     "dev": "pnpm build -- --watch",
