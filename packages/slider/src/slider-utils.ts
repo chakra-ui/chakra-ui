@@ -45,10 +45,14 @@ export function getStyles(options: {
     ...orient({
       orientation,
       vertical: {
-        bottom: `calc(${thumbPercents[i]}% - ${thumbRects[i].height / 2}px)`,
+        bottom: `calc(${thumbPercents[i]}% - ${
+          (thumbRects[i] || thumbRects[0]).height / 2
+        }px)`,
       },
       horizontal: {
-        left: `calc(${thumbPercents[i]}% - ${thumbRects[i].width / 2}px)`,
+        left: `calc(${thumbPercents[i]}% - ${
+          (thumbRects[i] || thumbRects[0]).width / 2
+        }px)`,
       },
     }),
   })

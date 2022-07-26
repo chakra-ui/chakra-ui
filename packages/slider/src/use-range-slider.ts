@@ -227,7 +227,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
     }))
 
     if (rects.length) setThumbRects(rects)
-  }, [])
+  }, [value.length])
 
   /**
    * Let's keep a reference to the slider track and thumb
