@@ -1,9 +1,37 @@
 import { useEnvironment } from "@chakra-ui/react-env"
-import { useEffect, useState } from "react"
+import { runIfFn } from "@chakra-ui/shared-utils"
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react"
 
 export type UseMediaQueryOptions = {
   fallback?: boolean | boolean[]
   ssr?: boolean
+}
+
+/** Proxy of `useState` that only updates the state if it has changes */
+function useSmartState<S>(
+  initialState: S | (() => S),
+  /** Comparitor that should return `true` if `curr` has changes from `prev` */
+  hasChanged: (prev: S, curr: S) => boolean,
+): [S, Dispatch<SetStateAction<S>>] {
+  const [state, setState] = useState<S>(initialState)
+
+  const smartSetState = useCallback(
+    (state: SetStateAction<S>) =>
+      setState((prev) => {
+        const curr = runIfFn(state, prev)
+
+        return hasChanged(prev, curr) ? curr : prev
+      }),
+    [hasChanged],
+  )
+
+  return [state, smartSetState]
 }
 
 /**
@@ -27,14 +55,25 @@ export function useMediaQuery(
   let fallbackValues = Array.isArray(fallback) ? fallback : [fallback]
   fallbackValues = fallbackValues.filter((v) => v != null) as boolean[]
 
-  const [value, setValue] = useState(() => {
+  const hasChanged = useCallback(
+    (
+      a: { media: string; matches: boolean }[],
+      b: { media: string; matches: boolean }[],
+    ) =>
+      a.some(
+        (aVal, i) => aVal.media !== b[i].media || aVal.matches !== b[i].matches,
+      ),
+    [],
+  )
+
+  const [value, setValue] = useSmartState(() => {
     return queries.map((query, index) => ({
       media: query,
       matches: ssr
         ? !!fallbackValues[index]
         : getWindow().matchMedia(query).matches,
     }))
-  })
+  }, hasChanged)
 
   useEffect(() => {
     const win = getWindow()
