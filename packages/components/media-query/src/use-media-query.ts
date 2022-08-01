@@ -69,9 +69,9 @@ export function useMediaQuery(
   const [value, setValue] = useSmartState(() => {
     return queries.map((query, index) => ({
       media: query,
-      matches: ssr
-        ? !!fallbackValues[index]
-        : getWindow().matchMedia(query).matches,
+      matches:
+        getWindow()?.matchMedia?.(query).matches ??
+        (ssr && !!fallbackValues[index]),
     }))
   }, hasChanged)
 
