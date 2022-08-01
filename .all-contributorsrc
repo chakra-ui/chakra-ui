@@ -2091,6 +2091,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "be-student",
+      "name": "be-student",
+      "avatar_url": "https://avatars.githubusercontent.com/u/80899085?v=4",
+      "profile": "https://github.com/be-student",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
