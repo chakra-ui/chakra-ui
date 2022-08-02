@@ -26,14 +26,21 @@ export const WithHook = () => {
 
   return (
     <Heading>
-      {chunks.map(({ match, text }) => {
+      {chunks.map(({ match, text }, index) => {
         if (!match) return text
         return text === "in seconds" ? (
-          <Box as="u" fontFamily="NewYork">
+          <Box key={index} as="u" fontFamily="NewYork">
             {text}
           </Box>
         ) : (
-          <Mark bg="teal.200" rounded="full" fontFamily="NewYork" px="2" py="1">
+          <Mark
+            key={index}
+            bg="teal.200"
+            rounded="full"
+            fontFamily="NewYork"
+            px="2"
+            py="1"
+          >
             {text}
           </Mark>
         )
@@ -59,6 +66,7 @@ export const MarketingExample = () => {
       {chunks.map((chunk, index) => {
         return chunk.match ? (
           <Mark
+            key={index}
             sx={{ fontStyle: "italic", color: "red.500", position: "relative" }}
           >
             {chunk.text}
