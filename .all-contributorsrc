@@ -2125,7 +2125,13 @@
       "login": "vadimdemedes",
       "name": "Vadim Demedes",
       "avatar_url": "https://avatars.githubusercontent.com/u/697676?v=4",
-      "profile": "https://vadimdemedes.com",
+      "profile": "https://vadimdemedes.com"
+    },
+    {
+      "login": "tenkir",
+      "name": "Jonathan Blair",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3649828?v=4",
+      "profile": "https://github.com/tenkir",
       "contributions": [
         "code"
       ]
