@@ -2100,6 +2100,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "itkrt2y",
+      "name": "Tatsuya Itakura",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2343568?v=4",
+      "profile": "http://itkrt2y.dev",
+      "contributions": [
+        "code",
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7,
