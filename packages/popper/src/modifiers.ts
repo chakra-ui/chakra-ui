@@ -1,5 +1,5 @@
 import { Placement, Modifier, State } from "@popperjs/core"
-import { getBoxShadow, toTransformOrigin, cssVars } from "./utils"
+import { getBorder, getOffset, toTransformOrigin, cssVars } from "./utils"
 
 /* -------------------------------------------------------------------------------------------------
  The match width modifier sets the popper width to match the reference.
@@ -25,7 +25,7 @@ export const matchWidth: Modifier<"matchWidth", any> = {
 /* -------------------------------------------------------------------------------------------------
   The transform origin modifier sets the css `transformOrigin` value of the popper
   based on the dynamic placement state of the popper.
-  
+
   Useful when we need to animate/transition the popper.
 * -----------------------------------------------------------------------------------------------*/
 
@@ -131,6 +131,9 @@ const setInnerArrowStyles = (state: State) => {
 
   if (!inner) return
 
+  const border = getBorder(state.placement)
+  const offset = getOffset(state.placement)
+
   Object.assign(inner.style, {
     transform: "rotate(45deg)",
     background: cssVars.arrowBg.varRef,
@@ -140,6 +143,7 @@ const setInnerArrowStyles = (state: State) => {
     height: "100%",
     position: "absolute",
     zIndex: "inherit",
-    boxShadow: getBoxShadow(state.placement),
+    ...border,
+    ...offset,
   })
 }

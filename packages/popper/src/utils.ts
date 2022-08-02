@@ -14,15 +14,52 @@ export const cssVars = {
   arrowOffset: toVar("--popper-arrow-offset"),
 } as const
 
-export function getBoxShadow(placement: Placement) {
-  if (placement.includes("top"))
-    return `1px 1px 1px 0 var(--popper-arrow-shadow-color)`
-  if (placement.includes("bottom"))
-    return `-1px -1px 1px 0 var(--popper-arrow-shadow-color)`
-  if (placement.includes("right"))
-    return `-1px 1px 1px 0 var(--popper-arrow-shadow-color)`
-  if (placement.includes("left"))
-    return `1px -1px 1px 0 var(--popper-arrow-shadow-color)`
+export function getOffset(placement: Placement) {
+  const distance = "-.5px"
+
+  if (placement.includes("top")) {
+    return {
+      bottom: distance,
+    }
+  } else if (placement.includes("bottom")) {
+    return {
+      top: distance,
+    }
+  } else if (placement.includes("right")) {
+    return {
+      left: distance,
+    }
+  } else if (placement.includes("left")) {
+    return {
+      right: distance,
+    }
+  }
+}
+
+export function getBorder(placement: Placement) {
+  const borderDefinition = `1px solid var(--popper-arrow-shadow-color)`
+
+  if (placement.includes("top")) {
+    return {
+      borderBottom: borderDefinition,
+      borderRight: borderDefinition,
+    }
+  } else if (placement.includes("bottom")) {
+    return {
+      borderTop: borderDefinition,
+      borderLeft: borderDefinition,
+    }
+  } else if (placement.includes("right")) {
+    return {
+      borderBottom: borderDefinition,
+      borderLeft: borderDefinition,
+    }
+  } else if (placement.includes("left")) {
+    return {
+      borderTop: borderDefinition,
+      borderRight: borderDefinition,
+    }
+  }
 }
 
 const transforms: Record<string, string> = {
