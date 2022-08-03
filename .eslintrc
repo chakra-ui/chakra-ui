@@ -40,7 +40,6 @@
     "react/no-children-prop": "off",
     "consistent-return": "off",
     "react/state-in-constructor": "off",
-    "no-restricted-syntax": "off",
     "no-continue": "off",
     "eqeqeq": "off",
     "react/destructuring-assignment": "off",
@@ -65,7 +64,14 @@
     "import/no-named-as-default": "off",
     "prefer-object-spread": "off",
     "arrow-body-style": "off",
-    "react/sort-comp": "off"
+    "react/sort-comp": "off",
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "ImportDeclaration[specifiers.0.type='ImportNamespaceSpecifier'][source.value=/^react(-dom)?$/]",
+        "message": "test"
+      }
+    ]
   },
   "overrides": [
     {
