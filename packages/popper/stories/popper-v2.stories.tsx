@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import * as React from "react"
+import React from "react"
 import { usePopper } from "../src"
 
 export default {

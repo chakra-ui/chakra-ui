@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@chakra-ui/test-utils"
-import * as React from "react"
+import React from "react"
 import {
   NumberDecrementStepper,
   NumberIncrementStepper,

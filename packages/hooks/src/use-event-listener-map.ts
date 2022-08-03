@@ -4,7 +4,7 @@ import {
   wrapPointerEventHandler,
   EventListenerWithPointInfo,
 } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 
 interface EventListeners {
   add<K extends keyof DocumentEventMap>(

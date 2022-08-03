@@ -1,6 +1,6 @@
 import { forwardRef } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 import { Icon, IconProps } from "./icon"
 
 interface CreateIconOptions {

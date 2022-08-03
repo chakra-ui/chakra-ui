@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/system"
 import { cx, __DEV__, Dict } from "@chakra-ui/utils"
 import { getValidChildren, createContext } from "@chakra-ui/react-utils"
-import * as React from "react"
+import React from "react"
 
 const [BreadcrumbStylesProvider, useBreadcrumbStyles] = createContext<
   Dict<SystemStyleObject>

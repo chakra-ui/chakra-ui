@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import * as React from "react"
+import React from "react"
 import { chakra, forwardRef } from ".."
 
 /**
@@ -23,4 +23,3 @@ describe("`forward-ref` prop typings", () => {
     expect(true).toBe(true)
   })
 })
-

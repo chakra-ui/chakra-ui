@@ -10,7 +10,7 @@ import {
   SystemStyleObject,
 } from "@chakra-ui/system"
 import { cx, __DEV__, Dict } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 import {
   useRangeSlider,
   UseRangeSliderProps,

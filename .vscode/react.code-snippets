@@ -24,7 +24,7 @@
   "Import react": {
     "scope": "javascriptreact,typescriptreact",
     "prefix": "imr",
-    "body": "import * as React from 'react'",
+    "body": "import React from 'react'",
     "description": "Import react"
   },
   "Add JSX Codeblock": {

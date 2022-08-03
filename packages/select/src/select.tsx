@@ -11,7 +11,7 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, mergeWith, split, __DEV__, dataAttr } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"
 

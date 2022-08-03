@@ -18,7 +18,7 @@ import {
   normalizeEventKey,
   StringOrNumber,
 } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 import { useAttributeObserver } from "./use-attr-observer"
 import { useSpinner } from "./use-spinner"
 

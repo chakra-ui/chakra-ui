@@ -10,7 +10,7 @@ import {
   SystemProps,
 } from "@chakra-ui/system"
 import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 
 export interface SwitchProps
   extends Omit<UseCheckboxProps, "isIndeterminate">,

@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 
 /**
  * React hook to persist any value between renders,

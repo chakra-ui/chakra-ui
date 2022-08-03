@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { render, fireEvent, screen, testA11y } from "@chakra-ui/test-utils"
 import { FocusLock } from "../src"
 

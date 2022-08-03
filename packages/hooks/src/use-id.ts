@@ -1,5 +1,5 @@
 // This implementation is heavily inspired by react-aria's implementation
-import * as React from "react"
+import React from "react"
 
 export function useId(idProp?: string, prefix?: string): string {
   const id = React.useId()

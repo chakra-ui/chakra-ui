@@ -1,5 +1,5 @@
 import { createIcon } from "@chakra-ui/icon"
-import * as React from "react"
+import React from "react"
 
 export const SmallCloseIcon = createIcon({
   displayName: "SmallCloseIcon",

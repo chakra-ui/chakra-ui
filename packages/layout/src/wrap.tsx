@@ -6,7 +6,7 @@ import {
   tokenToCSSVar,
 } from "@chakra-ui/system"
 import { cx, Dict, mapResponsive, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 
 export interface WrapProps extends HTMLChakraProps<"div"> {
   /**

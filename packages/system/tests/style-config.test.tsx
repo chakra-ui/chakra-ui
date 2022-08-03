@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { render } from "@chakra-ui/test-utils"
 import { ThemeProvider, useStyleConfig } from "../src"
 import { createTheme } from "./theme"

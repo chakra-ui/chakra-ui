@@ -1,5 +1,5 @@
 import { render } from "@chakra-ui/test-utils"
-import * as React from "react"
+import React from "react"
 import { Tag, TagCloseButton, TagLabel } from "../src"
 
 test("Tag (only) renders correctly", () => {

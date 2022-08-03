@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { getValidChildren } from "@chakra-ui/react-utils"
-import * as React from "react"
+import React from "react"
 import type { StackDirection } from "./stack.utils"
 import { getDividerStyles, getStackStyles, selector } from "./stack.utils"
 
@@ -114,10 +114,10 @@ export const Stack = forwardRef<StackProps, "div">((props, ref) => {
 
   const direction = isInline ? "row" : directionProp ?? "column"
 
-  const styles = React.useMemo(() => getStackStyles({ direction, spacing }), [
-    direction,
-    spacing,
-  ])
+  const styles = React.useMemo(
+    () => getStackStyles({ direction, spacing }),
+    [direction, spacing],
+  )
 
   const dividerStyle = React.useMemo(
     () => getDividerStyles({ spacing, direction }),

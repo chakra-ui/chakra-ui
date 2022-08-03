@@ -11,7 +11,7 @@ import {
   Text,
 } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
-import * as React from "react"
+import React from "react"
 import { Checkbox, CheckboxGroup, useCheckbox, useCheckboxGroup } from "../src"
 
 export default {

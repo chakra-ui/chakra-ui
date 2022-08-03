@@ -1,6 +1,6 @@
 import { FormControl, FormLabel } from "@chakra-ui/form-control"
 import { render, fireEvent } from "@chakra-ui/test-utils"
-import * as React from "react"
+import React from "react"
 import { Switch } from "../src"
 
 test("Uncontrolled - should check and uncheck", async () => {

@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { render } from "@chakra-ui/test-utils"
 import MatchMediaMock from "jest-matchmedia-mock"
 import { ChakraProvider } from "@chakra-ui/provider"

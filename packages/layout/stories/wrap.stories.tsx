@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { Badge, Box, Text, Wrap, WrapItem } from "../src"
 
 export default {

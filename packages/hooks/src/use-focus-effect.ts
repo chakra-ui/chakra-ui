@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { hasFocusWithin, focus } from "@chakra-ui/utils"
 import { useUpdateEffect } from "./use-update-effect"
 

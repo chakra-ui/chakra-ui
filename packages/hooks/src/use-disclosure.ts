@@ -1,5 +1,5 @@
 import { callAllHandlers } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 import { useControllableProp } from "./use-controllable"
 import { useId } from "./use-id"
 import { useCallbackRef } from "./use-callback-ref"

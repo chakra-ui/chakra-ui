@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 
 export function useUnmountEffect(fn: () => void, deps: any[] = []) {
   return React.useEffect(

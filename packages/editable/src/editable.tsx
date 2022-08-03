@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/system"
 import { cx, runIfFn, __DEV__, Dict } from "@chakra-ui/utils"
 import { createContext, MaybeRenderProp } from "@chakra-ui/react-utils"
-import * as React from "react"
+import React from "react"
 import {
   useEditable,
   UseEditableProps,

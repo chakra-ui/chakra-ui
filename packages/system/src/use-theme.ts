@@ -1,7 +1,7 @@
 import { WithCSSVar } from "@chakra-ui/styled-system"
 import { Dict } from "@chakra-ui/utils"
 import { ThemeContext } from "@emotion/react"
-import * as React from "react"
+import React from "react"
 
 export function useTheme<T extends object = Dict>() {
   const theme = React.useContext(

@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/react-utils"
 import { __DEV__, Dict } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 
 const [TagStylesProvider, useTagStyles] = createContext<
   Dict<SystemStyleObject>

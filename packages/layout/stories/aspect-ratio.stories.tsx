@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { AspectRatio, Box } from "../src"
 
 export default {

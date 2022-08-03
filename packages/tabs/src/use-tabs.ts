@@ -20,7 +20,7 @@ import {
   LazyBehavior,
   normalizeEventKey,
 } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 
 /* -------------------------------------------------------------------------------------------------
  * Create context to track descendants and their indices

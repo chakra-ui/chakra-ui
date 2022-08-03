@@ -11,7 +11,7 @@ import {
   mapResponsive,
   __DEV__,
 } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 import { Grid, GridProps } from "./grid"
 
 interface SimpleGridOptions {

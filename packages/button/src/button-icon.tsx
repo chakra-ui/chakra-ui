@@ -1,6 +1,6 @@
 import { chakra, HTMLChakraProps } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 
 export const ButtonIcon: React.FC<HTMLChakraProps<"span">> = (props) => {
   const { children, className, ...rest } = props

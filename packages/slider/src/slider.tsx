@@ -10,7 +10,7 @@ import {
   useTheme,
 } from "@chakra-ui/system"
 import { cx, Dict, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 import { useSlider, UseSliderProps, UseSliderReturn } from "./use-slider"
 
 interface SliderContext

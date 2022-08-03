@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 
 export function useWhyDidYouUpdate(name: string, props: any) {
   const previousProps = React.useRef<any>()

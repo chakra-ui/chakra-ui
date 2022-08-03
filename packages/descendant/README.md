@@ -44,7 +44,7 @@ This enables component composition:
 
 ```jsx
 import { createDescendantContext } from "@chakra-ui/descendant"
-import * as React from "react"
+import React from "react"
 
 const [
   DescendantsProvider,

@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/system"
 import { callAll, cx, Dict, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { CustomDomComponent, motion, Variants } from "framer-motion"
-import * as React from "react"
+import React from "react"
 import {
   MenuDescendantsProvider,
   MenuProvider,

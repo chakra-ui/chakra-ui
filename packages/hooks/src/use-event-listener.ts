@@ -1,5 +1,5 @@
 import { runIfFn } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 import { useCallbackRef } from "./use-callback-ref"
 
 type DocumentOrElement = Document | HTMLElement | null

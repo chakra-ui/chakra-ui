@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { useBoolean } from "@chakra-ui/hooks"
 
 import { Collapse, CollapseProps } from "../src"

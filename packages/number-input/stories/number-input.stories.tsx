@@ -1,5 +1,5 @@
 import { chakra } from "@chakra-ui/system"
-import * as React from "react"
+import React from "react"
 import Lorem from "react-lorem-component"
 import { Button } from "@chakra-ui/button"
 import { Input } from "@chakra-ui/input"

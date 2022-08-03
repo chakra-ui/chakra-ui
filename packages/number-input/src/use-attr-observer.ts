@@ -1,5 +1,5 @@
 import { getOwnerWindow } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 
 export function useAttributeObserver(
   ref: React.RefObject<HTMLElement | null>,

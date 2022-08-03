@@ -1,6 +1,6 @@
 import type { AlertStatus } from "@chakra-ui/alert"
 import { ThemingProps, useChakra } from "@chakra-ui/system"
-import * as React from "react"
+import React from "react"
 import type { RenderProps, ToastId, ToastOptions } from "./toast.types"
 import { createToastFn, CreateToastFnReturn } from "./toast"
 import { ToastPosition } from "./toast.placement"

@@ -1,6 +1,6 @@
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { noop, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 import { ColorMode, getColorModeUtils } from "./color-mode.utils"
 import { localStorageManager, StorageManager } from "./storage-manager"
 

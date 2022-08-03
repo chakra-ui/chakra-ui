@@ -13,7 +13,7 @@ import {
   useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { Dict, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 
 const [ListStylesProvider, useListStyles] = createContext<
   Dict<SystemStyleObject>

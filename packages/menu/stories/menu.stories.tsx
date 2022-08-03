@@ -3,7 +3,7 @@ import { Image } from "@chakra-ui/image"
 import { Portal } from "@chakra-ui/portal"
 import { chakra } from "@chakra-ui/system"
 import { Modal, ModalBody, ModalContent, ModalOverlay } from "@chakra-ui/modal"
-import * as React from "react"
+import React from "react"
 import {
   FaChevronDown,
   FaSearch,

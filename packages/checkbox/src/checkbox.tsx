@@ -10,7 +10,7 @@ import {
   useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { callAll, cx, Omit, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 import { useCheckboxGroupContext } from "./checkbox-group"
 import { CheckboxIcon } from "./checkbox-icon"
 import { useCheckbox, UseCheckboxProps } from "./use-checkbox"

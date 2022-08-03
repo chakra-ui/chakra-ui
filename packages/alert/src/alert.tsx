@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/system"
 import { cx, Dict } from "@chakra-ui/utils"
 import { createContext } from "@chakra-ui/react-utils"
-import * as React from "react"
+import React from "react"
 import { Spinner } from "@chakra-ui/spinner"
 import { CheckIcon, InfoIcon, WarningIcon } from "./icons"
 

@@ -9,7 +9,7 @@ import {
   useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { cx, Dict, filterUndefined, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 
 const [InputGroupStylesProvider, useInputGroupStyles] = createContext<
   Dict<SystemStyleObject>

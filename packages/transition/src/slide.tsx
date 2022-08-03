@@ -6,7 +6,7 @@ import {
   MotionStyle,
   Variants as TVariants,
 } from "framer-motion"
-import * as React from "react"
+import React from "react"
 import {
   SlideDirection,
   slideTransition,

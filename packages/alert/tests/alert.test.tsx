@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { render, testA11y, screen } from "@chakra-ui/test-utils"
 import { Alert, AlertDescription, AlertIcon, AlertTitle } from "../src"
 

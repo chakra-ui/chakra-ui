@@ -11,7 +11,7 @@ import {
   useTheme,
 } from "@chakra-ui/system"
 import { callAll, cx, Dict, runIfFn, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 import { PopoverProvider, usePopoverContext } from "./popover-context"
 import { PopoverTransition, PopoverTransitionProps } from "./popover-transition"
 import { usePopover, UsePopoverProps } from "./use-popover"

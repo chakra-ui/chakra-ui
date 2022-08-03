@@ -1,6 +1,6 @@
 import { Heading } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
-import * as React from "react"
+import React from "react"
 import {
   Editable,
   EditableInput,

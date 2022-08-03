@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 
 /**
  * Checks if the key pressed is a printable character

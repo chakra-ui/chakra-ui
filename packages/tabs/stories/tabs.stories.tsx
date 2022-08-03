@@ -6,7 +6,7 @@ import {
   DrawerOverlay,
 } from "@chakra-ui/modal"
 import { chakra } from "@chakra-ui/system"
-import * as React from "react"
+import React from "react"
 import { Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs } from "../src"
 
 export default {

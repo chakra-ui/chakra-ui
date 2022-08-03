@@ -48,7 +48,7 @@ The following values are allowed: **top-right, top, top-left, bottom-right,
 bottom, bottom-left**
 
 ```jsx
-import * as React from "react"
+import React from "react"
 import useToast from "@chakra-ui/toast"
 
 const Position = () => {
@@ -71,7 +71,7 @@ invoking the `toast` function.
 > screen.
 
 ```jsx
-import * as React from "react"
+import React from "react"
 import useToast from "@chakra-ui/toast"
 
 const Duration = () => {
@@ -131,7 +131,7 @@ To prevent duplicates, you can check if a given toast is active by calling
 `toast.isActive(id)` like the snippet below. Or, you can use a custom `toastId`:
 
 ```js
-import * as React from "react"
+import React from "react"
 import useToast from "@chakra-ui/toast"
 
 const Example = () => {
@@ -159,7 +159,7 @@ When you update a toast, the toast options and the content are inherited but
 don't worry you can update them.
 
 ```js
-import * as React from "react"
+import React from "react"
 import useToast from "@chakra-ui/toast"
 
 const Update = () => {

@@ -8,7 +8,7 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { mergeWith, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 
 export interface SkipNavLinkProps
   extends HTMLChakraProps<"a">,

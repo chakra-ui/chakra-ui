@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { theme as base } from "@chakra-ui/theme"
 import { useToast, createStandaloneToast, ToastId } from "../src"
 import { Button, ButtonGroup } from "@chakra-ui/button"

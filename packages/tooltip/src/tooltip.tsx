@@ -12,7 +12,7 @@ import {
 import { isString, omit, pick, __DEV__, getCSSVar } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import { AnimatePresence, motion } from "framer-motion"
-import * as React from "react"
+import React from "react"
 import { scale } from "./tooltip.transition"
 import { useTooltip, UseTooltipProps } from "./use-tooltip"
 

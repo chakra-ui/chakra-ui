@@ -1,6 +1,6 @@
 import { objectKeys } from "@chakra-ui/utils"
 import { AnimatePresence, Variants } from "framer-motion"
-import * as React from "react"
+import React from "react"
 import { Portal, PortalProps } from "@chakra-ui/portal"
 import { ToastComponent, ToastComponentProps } from "./toast.component"
 import type {

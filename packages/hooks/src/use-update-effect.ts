@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 
 /**
  * React effect hook that invokes only on update.

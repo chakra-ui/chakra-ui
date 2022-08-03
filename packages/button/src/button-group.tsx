@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { createContext } from "@chakra-ui/react-utils"
-import * as React from "react"
+import React from "react"
 
 export interface ButtonGroupProps
   extends HTMLChakraProps<"div">,

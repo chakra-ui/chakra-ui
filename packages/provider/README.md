@@ -28,7 +28,7 @@ More details on ChakraProvider's available props can be found
 [here](https://chakra-ui.com/docs/getting-started#chakraprovider-props)
 
 ```
-import * as React from "react"
+import React from "react"
 
 // 1. import `ChakraProvider` component
 import { ChakraProvider } from "@chakra-ui/provider"

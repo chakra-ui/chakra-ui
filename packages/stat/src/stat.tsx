@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/system"
 import { cx, Dict, __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
-import * as React from "react"
+import React from "react"
 
 const [StatStylesProvider, useStatStyles] = createContext<
   Dict<SystemStyleObject>

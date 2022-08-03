@@ -3,7 +3,7 @@ import { Radio, RadioGroup } from "@chakra-ui/radio"
 import { Input } from "@chakra-ui/input"
 import { useBoolean, useInterval } from "@chakra-ui/hooks"
 import { chakra } from "@chakra-ui/system"
-import * as React from "react"
+import React from "react"
 import {
   Popover,
   PopoverAnchor,

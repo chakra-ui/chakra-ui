@@ -6,7 +6,7 @@ import {
   waitFor,
   hooks,
 } from "@chakra-ui/test-utils"
-import * as React from "react"
+import React from "react"
 // import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 import {
   Box,

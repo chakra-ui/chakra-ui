@@ -7,7 +7,7 @@ import {
   waitFor,
 } from "@chakra-ui/test-utils"
 import { Portal } from "@chakra-ui/portal"
-import * as React from "react"
+import React from "react"
 import { Button } from "@chakra-ui/button"
 import { FaSearch, FaTruck, FaUndoAlt, FaUnlink } from "react-icons/fa"
 import { ChakraProvider } from "@chakra-ui/provider"

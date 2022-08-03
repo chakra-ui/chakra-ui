@@ -6,7 +6,7 @@ import {
   SystemStyleObject,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 
 interface ButtonSpinnerProps extends HTMLChakraProps<"div"> {
   label?: string

@@ -12,7 +12,7 @@ import {
   EnvironmentProvider,
   EnvironmentProviderProps,
 } from "@chakra-ui/react-env"
-import * as React from "react"
+import React from "react"
 
 export interface ChakraProviderProps
   extends Pick<ThemeProviderProps, "cssVarsRoot"> {

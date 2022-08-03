@@ -1,6 +1,6 @@
 import { chakra, PropsOf, ChakraComponent } from "@chakra-ui/system"
 import { AnimatePresence, CustomDomComponent, motion } from "framer-motion"
-import * as React from "react"
+import React from "react"
 
 function __motion<T extends ChakraComponent<any, any>>(
   el: T,

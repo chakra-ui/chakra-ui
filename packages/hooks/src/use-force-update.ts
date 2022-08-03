@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { useUnmountEffect } from "./use-unmount-effect"
 
 export function useForceUpdate() {

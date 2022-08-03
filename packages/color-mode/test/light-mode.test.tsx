@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { render, screen } from "@chakra-ui/test-utils"
 import { LightMode } from "../src"
 import {

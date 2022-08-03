@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { BrowserRouter, Link as ReactRouterLink } from "react-router-dom"
 import { Link, LinkOverlay, LinkBox } from "../src"
 

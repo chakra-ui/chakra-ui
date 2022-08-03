@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { testA11y } from "@chakra-ui/test-utils"
 import { Table, TableCaption, Tbody, Td, Tfoot, Th, Thead, Tr } from "../src"
 

@@ -2,7 +2,7 @@ import { useDisclosure, useEventListener, useId } from "@chakra-ui/hooks"
 import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { mergeRefs, PropGetter, ReactRef } from "@chakra-ui/react-utils"
 import { callAllHandlers, px } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 
 export interface UseTooltipProps
   extends Pick<

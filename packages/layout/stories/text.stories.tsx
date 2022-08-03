@@ -1,4 +1,4 @@
-// import * as React from "react"
+// import React from "react"
 // import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 // import { Text } from "../src"
 

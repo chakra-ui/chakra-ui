@@ -15,7 +15,7 @@ import {
   useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { cx, dataAttr, Dict, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 
 const [FormControlStylesProvider, useFormControlStyles] = createContext<
   Dict<SystemStyleObject>

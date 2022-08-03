@@ -1,7 +1,7 @@
 import { FormControl, FormLabel } from "@chakra-ui/form-control"
 import { HStack, Stack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
-import * as React from "react"
+import React from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { Switch } from "../src"
 

@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { useColorMode } from "@chakra-ui/react"
 import { addons } from "@storybook/addons"
 import { EVENTS } from "../../constants"

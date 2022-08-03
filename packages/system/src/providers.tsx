@@ -8,7 +8,7 @@ import {
   ThemeProvider as EmotionThemeProvider,
   ThemeProviderProps as EmotionThemeProviderProps,
 } from "@emotion/react"
-import * as React from "react"
+import React from "react"
 
 export interface ThemeProviderProps extends EmotionThemeProviderProps {
   cssVarsRoot?: string

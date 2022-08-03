@@ -2,7 +2,7 @@ import { Modal, ModalContent, ModalOverlay } from "@chakra-ui/modal"
 import { Portal } from "@chakra-ui/portal"
 import { chakra } from "@chakra-ui/system"
 import { AnimatePresence, motion } from "framer-motion"
-import * as React from "react"
+import React from "react"
 import { Tooltip, useTooltip } from "../src"
 
 export default {

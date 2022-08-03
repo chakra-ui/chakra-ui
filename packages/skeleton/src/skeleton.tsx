@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/system"
 import { usePrevious } from "@chakra-ui/hooks"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 
 export interface SkeletonOptions {
   /**

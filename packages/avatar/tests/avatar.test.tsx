@@ -1,5 +1,5 @@
 import { mocks, render, testA11y, act } from "@chakra-ui/test-utils"
-import * as React from "react"
+import React from "react"
 import { Avatar, AvatarBadge } from "../src"
 
 describe("accessibility", () => {

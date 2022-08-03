@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { render, screen, waitFor } from "@chakra-ui/test-utils"
 import { ToastProvider, useToast } from "../src"
 

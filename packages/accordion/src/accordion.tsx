@@ -11,7 +11,7 @@ import {
 import { Collapse } from "@chakra-ui/transition"
 import { cx, Omit, Dict, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { createContext, MaybeRenderProp } from "@chakra-ui/react-utils"
-import * as React from "react"
+import React from "react"
 import {
   AccordionProvider,
   useAccordion,

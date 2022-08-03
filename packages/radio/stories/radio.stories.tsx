@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { chakra } from "@chakra-ui/system"
 import { Stack, Wrap, SimpleGrid, Container, WrapItem } from "@chakra-ui/layout"
 import {

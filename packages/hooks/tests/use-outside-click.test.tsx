@@ -1,5 +1,5 @@
 import { render, fireEvent } from "@chakra-ui/test-utils"
-import * as React from "react"
+import React from "react"
 import { useOutsideClick } from "../src"
 
 const OutsideClicker = ({ onOutsideClick }: { onOutsideClick: () => void }) => {

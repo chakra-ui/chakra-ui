@@ -6,7 +6,7 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { filterUndefined, mapResponsive, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 import { BoxProps } from "./box"
 
 export interface GridProps

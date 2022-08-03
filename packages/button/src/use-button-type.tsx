@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 
 export function useButtonType(value?: React.ElementType) {
   const [isButton, setIsButton] = React.useState(!value)

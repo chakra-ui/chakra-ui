@@ -25,7 +25,7 @@ import {
   motion,
   usePresence,
 } from "framer-motion"
-import * as React from "react"
+import React from "react"
 import { MouseEvent } from "react"
 import { RemoveScroll } from "react-remove-scroll"
 import { ModalTransition } from "./modal-transition"

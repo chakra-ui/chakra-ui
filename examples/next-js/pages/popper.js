@@ -1,5 +1,5 @@
 import { usePopper } from "@chakra-ui/popper"
-import * as React from "react"
+import React from "react"
 
 const Page = () => {
   const [isOpen, setIsOpen] = React.useState(true)

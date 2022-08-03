@@ -6,7 +6,7 @@ import {
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { createContext } from "@chakra-ui/react-utils"
-import * as React from "react"
+import React from "react"
 import {
   useRadioGroup,
   UseRadioGroupProps,
@@ -20,13 +20,11 @@ export interface RadioGroupContext
     >,
     Omit<ThemingProps<"Radio">, "orientation"> {}
 
-const [
-  RadioGroupProvider,
-  useRadioGroupContext,
-] = createContext<RadioGroupContext>({
-  name: "RadioGroupContext",
-  strict: false,
-})
+const [RadioGroupProvider, useRadioGroupContext] =
+  createContext<RadioGroupContext>({
+    name: "RadioGroupContext",
+    strict: false,
+  })
 
 export { useRadioGroupContext }
 

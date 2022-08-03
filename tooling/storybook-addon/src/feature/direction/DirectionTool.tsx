@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { useAddonState, useGlobals } from "@storybook/api"
 import { addons } from "@storybook/addons"
 import { IconButton } from "@storybook/components"

@@ -1,5 +1,5 @@
 import { render, screen, testA11y } from "@chakra-ui/test-utils"
-import * as React from "react"
+import React from "react"
 import { Input, InputGroup, InputLeftElement, InputRightElement } from "../src"
 
 test("passes a11y test", async () => {

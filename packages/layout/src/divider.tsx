@@ -7,7 +7,7 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 
 /**
  * Layout component used to visually separate content in a list or group.

@@ -8,7 +8,7 @@ import {
   useStyleConfig,
 } from "@chakra-ui/system"
 import { cx, omit, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 
 interface TextareaOptions {
   /**

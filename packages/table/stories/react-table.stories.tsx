@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import * as React from "react"
+import React from "react"
 import { Column, useTable } from "react-table"
 import { useMemo } from "react"
 import { Button, ButtonGroup, IconButton } from "@chakra-ui/button"

@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { LiveRegion, LiveRegionOptions } from "./live-region"
 
 export function useLiveRegion(options?: LiveRegionOptions) {

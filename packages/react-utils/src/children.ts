@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 
 /**
  * Gets only the valid children of a component,

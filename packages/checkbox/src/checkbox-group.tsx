@@ -1,7 +1,7 @@
 import { ThemingProps } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import { createContext } from "@chakra-ui/react-utils"
-import * as React from "react"
+import React from "react"
 import {
   useCheckboxGroup,
   UseCheckboxGroupProps,
@@ -18,13 +18,11 @@ export interface CheckboxGroupContext
   extends Pick<UseCheckboxGroupReturn, "onChange" | "value" | "isDisabled">,
     Omit<ThemingProps<"Checkbox">, "orientation"> {}
 
-const [
-  CheckboxGroupProvider,
-  useCheckboxGroupContext,
-] = createContext<CheckboxGroupContext>({
-  name: "CheckboxGroupContext",
-  strict: false,
-})
+const [CheckboxGroupProvider, useCheckboxGroupContext] =
+  createContext<CheckboxGroupContext>({
+    name: "CheckboxGroupContext",
+    strict: false,
+  })
 
 export { useCheckboxGroupContext }
 

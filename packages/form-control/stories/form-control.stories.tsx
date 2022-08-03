@@ -1,5 +1,5 @@
 import { chakra, PropsOf, useMultiStyleConfig } from "@chakra-ui/system"
-import * as React from "react"
+import React from "react"
 import {
   FormControlOptions,
   FormControl,

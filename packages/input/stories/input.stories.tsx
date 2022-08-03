@@ -8,7 +8,7 @@ import { CheckIcon, PhoneIcon } from "@chakra-ui/icons"
 import { useDisclosure } from "@chakra-ui/hooks"
 import { Stack } from "@chakra-ui/layout"
 import { chakra, forwardRef } from "@chakra-ui/system"
-import * as React from "react"
+import React from "react"
 import {
   Input,
   InputGroup,

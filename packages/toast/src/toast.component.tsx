@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { useTimeout, useUpdateEffect } from "@chakra-ui/hooks"
 import { __DEV__, runIfFn } from "@chakra-ui/utils"
 import { motion, useIsPresent, Variants } from "framer-motion"

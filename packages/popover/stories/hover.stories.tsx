@@ -1,6 +1,6 @@
 import { IconButton } from "@chakra-ui/button"
 import { Box, Link, Text } from "@chakra-ui/layout"
-import * as React from "react"
+import React from "react"
 import { MdCheck } from "react-icons/md"
 import {
   Popover,

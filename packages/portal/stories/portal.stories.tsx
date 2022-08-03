@@ -7,7 +7,7 @@
 //   PopoverTrigger,
 // } from "@chakra-ui/popover"
 // import { Tooltip } from "@chakra-ui/tooltip"
-import * as React from "react"
+import React from "react"
 import Frame from "react-frame-component"
 import { Portal, PortalManager } from "../src"
 

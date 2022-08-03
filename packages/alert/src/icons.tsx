@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { Icon, IconProps } from "@chakra-ui/icon"
 
 export const CheckIcon: React.FC<IconProps> = (props) => (

@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { chakra } from "@chakra-ui/system"
 
 export * from "./hover.stories"

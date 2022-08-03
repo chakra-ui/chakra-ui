@@ -5,7 +5,7 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, mapResponsive, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 
 interface AspectRatioOptions {
   /**
@@ -61,7 +61,7 @@ export const AspectRatio = forwardRef<AspectRatioProps, "div">((props, ref) => {
         },
         "& > img, & > video": {
           objectFit: "cover",
-        }
+        },
       }}
       {...rest}
     >

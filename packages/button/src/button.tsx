@@ -10,7 +10,7 @@ import {
   useStyleConfig,
 } from "@chakra-ui/system"
 import { cx, dataAttr, mergeWith, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 import { useButtonGroup } from "./button-group"
 import { ButtonSpinner } from "./button-spinner"
 import { ButtonIcon } from "./button-icon"

@@ -2,7 +2,7 @@ import { createDescendantContext } from "@chakra-ui/descendant"
 import { useControllableState, useId } from "@chakra-ui/hooks"
 import { ariaAttr, callAllHandlers, focus } from "@chakra-ui/utils"
 import { createContext, mergeRefs } from "@chakra-ui/react-utils"
-import * as React from "react"
+import React from "react"
 
 /* -------------------------------------------------------------------------------------------------
  * Create context to track descendants and their indices

@@ -13,7 +13,7 @@ import {
   useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { cx, Dict, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 
 const [AvatarStylesProvider, useAvatarStyles] = createContext<
   Dict<SystemStyleObject>

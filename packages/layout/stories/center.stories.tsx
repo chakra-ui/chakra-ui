@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { FaPhone } from "react-icons/fa"
 import { Box, Center } from "../src"
 

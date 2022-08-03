@@ -1,6 +1,6 @@
 import { chakra, SystemStyleObject, HTMLChakraProps } from "@chakra-ui/system"
 import { isUndefined, StringOrNumber, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React from "react"
 import { getProgressProps, rotate, spin } from "./progress.utils"
 
 interface CircleProps extends HTMLChakraProps<"circle"> {}

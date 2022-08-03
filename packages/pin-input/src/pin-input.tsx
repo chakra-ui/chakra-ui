@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { getValidChildren } from "@chakra-ui/react-utils"
-import * as React from "react"
+import React from "react"
 import {
   PinInputDescendantsProvider,
   PinInputProvider,
