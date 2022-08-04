@@ -12,3 +12,4 @@ export {
 } from "./use-editable"
 export { useEditableControls } from "./use-editable-controls"
 export { useEditableState } from "./use-editable-state"
+export { useEditableStyles } from "./editable-context"

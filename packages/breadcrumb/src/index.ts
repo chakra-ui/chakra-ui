@@ -5,3 +5,5 @@ export {
   type BreadcrumbSeparatorProps,
 } from "./breadcrumb-separator"
 export { BreadcrumbLink, type BreadcrumbLinkProps } from "./breadcrumb-link"
+export { useBreadcrumbStyles } from "./breadcrumb-context"
+export type { BreadcrumbOptions } from "./breadcrumb-types"
