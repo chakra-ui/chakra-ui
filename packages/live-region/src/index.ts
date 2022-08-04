@@ -1,2 +1,2 @@
-export * from "./live-region"
-export * from "./use-live-region"
+export { LiveRegion, type LiveRegionOptions } from "./live-region"
+export { useLiveRegion } from "./use-live-region"
