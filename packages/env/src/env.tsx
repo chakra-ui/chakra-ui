@@ -1,5 +1,5 @@
 import { isBrowser, __DEV__ } from "@chakra-ui/utils"
-import React, {
+import {
   createContext,
   startTransition,
   useContext,
