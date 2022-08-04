@@ -1,18 +1,7 @@
-import {
-  chakra,
-  forwardRef,
-  HTMLChakraProps,
-  SystemStyleObject,
-} from "@chakra-ui/system"
+import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { useEditableContext, useEditableStyles } from "./editable-context"
-
-const baseStyles: SystemStyleObject = {
-  fontSize: "inherit",
-  fontWeight: "inherit",
-  textAlign: "inherit",
-  bg: "transparent",
-}
+import { commonStyles } from "./shared"
 
 export interface EditableTextareaProps extends HTMLChakraProps<"textarea"> {}
 
@@ -35,7 +24,7 @@ export const EditableTextarea = forwardRef<EditableTextareaProps, "textarea">(
         {...textareaProps}
         __css={{
           outline: 0,
-          ...baseStyles,
+          ...commonStyles,
           ...styles.textarea,
         }}
         className={_className}

@@ -1,5 +1,7 @@
 export {
   ColorModeProvider,
+  DarkMode,
+  LightMode,
   type ColorModeProviderProps,
 } from "./color-mode-provider"
 export {
@@ -14,4 +16,10 @@ export {
   useColorModeValue,
   ColorModeContext,
 } from "./color-mode-context"
-export type { ColorMode, ColorModeContextType } from "./color-mode-types"
+export type {
+  ColorMode,
+  ColorModeContextType,
+  ConfigColorMode,
+  ColorModeWithSystem,
+} from "./color-mode-types"
+export { getScriptSrc } from "./color-mode-script"
