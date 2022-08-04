@@ -40,6 +40,7 @@
     "react/no-danger": "off",
     "react/button-has-type": "off",
     "react/no-unescaped-entities": "off",
+    "react/react-in-jsx-scope": "off",
     "operator-assignment": "off",
     "prefer-destructuring": "off",
     "react/no-children-prop": "off",
