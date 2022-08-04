@@ -9,4 +9,9 @@ export {
   createLocalStorageManager,
 } from "./storage-manager"
 export { ColorModeScript, type ColorModeScriptProps } from "./color-mode-script"
-export { useColorMode, useColorModeValue } from "./color-mode-context"
+export {
+  useColorMode,
+  useColorModeValue,
+  ColorModeContext,
+} from "./color-mode-context"
+export type { ColorMode, ColorModeContextType } from "./color-mode-types"

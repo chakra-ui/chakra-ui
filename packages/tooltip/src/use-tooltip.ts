@@ -2,7 +2,7 @@ import { useDisclosure, useEventListener, useId } from "@chakra-ui/hooks"
 import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { mergeRefs, PropGetter, ReactRef } from "@chakra-ui/react-utils"
 import { callAllHandlers, px } from "@chakra-ui/utils"
-import * as React from "react"
+import { useCallback, useEffect, useRef } from "react"
 
 export interface UseTooltipProps
   extends Pick<
@@ -111,18 +111,18 @@ export function useTooltip(props: UseTooltipProps = {}) {
 
   const tooltipId = useId(id, "tooltip")
 
-  const ref = React.useRef<any>(null)
+  const ref = useRef<any>(null)
 
-  const enterTimeout = React.useRef<number>()
-  const exitTimeout = React.useRef<number>()
+  const enterTimeout = useRef<number>()
+  const exitTimeout = useRef<number>()
 
-  const openWithDelay = React.useCallback(() => {
+  const openWithDelay = useCallback(() => {
     if (!isDisabled && !enterTimeout.current) {
       enterTimeout.current = window.setTimeout(onOpen, openDelay)
     }
   }, [isDisabled, onOpen, openDelay])
 
-  const closeWithDelay = React.useCallback(() => {
+  const closeWithDelay = useCallback(() => {
     if (enterTimeout.current) {
       clearTimeout(enterTimeout.current)
       enterTimeout.current = undefined
@@ -130,19 +130,19 @@ export function useTooltip(props: UseTooltipProps = {}) {
     exitTimeout.current = window.setTimeout(onClose, closeDelay)
   }, [closeDelay, onClose])
 
-  const onClick = React.useCallback(() => {
+  const onClick = useCallback(() => {
     if (isOpen && closeOnClick) {
       closeWithDelay()
     }
   }, [closeOnClick, closeWithDelay, isOpen])
 
-  const onMouseDown = React.useCallback(() => {
+  const onMouseDown = useCallback(() => {
     if (isOpen && closeOnMouseDown) {
       closeWithDelay()
     }
   }, [closeOnMouseDown, closeWithDelay, isOpen])
 
-  const onKeyDown = React.useCallback(
+  const onKeyDown = useCallback(
     (event: KeyboardEvent) => {
       if (isOpen && event.key === "Escape") {
         closeWithDelay()
@@ -153,7 +153,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
 
   useEventListener("keydown", closeOnEsc ? onKeyDown : undefined)
 
-  React.useEffect(
+  useEffect(
     () => () => {
       clearTimeout(enterTimeout.current)
       clearTimeout(exitTimeout.current)
@@ -169,7 +169,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
    */
   useEventListener("mouseleave", closeWithDelay, () => ref.current)
 
-  const getTriggerProps: PropGetter = React.useCallback(
+  const getTriggerProps: PropGetter = useCallback(
     (props = {}, _ref = null) => {
       const triggerProps = {
         ...props,
@@ -195,7 +195,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     ],
   )
 
-  const getTooltipPositionerProps: PropGetter = React.useCallback(
+  const getTooltipPositionerProps: PropGetter = useCallback(
     (props = {}, forwardedRef = null) =>
       getPopperProps(
         {
@@ -213,7 +213,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     [getPopperProps, arrowSize, arrowShadowColor],
   )
 
-  const getTooltipProps = React.useCallback(
+  const getTooltipProps = useCallback(
     (props: any = {}, ref: ReactRef<any> = null) => {
       const tooltipProps = {
         ref,

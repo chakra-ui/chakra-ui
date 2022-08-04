@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/system"
 import { usePrevious } from "@chakra-ui/hooks"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { useEffect, useRef } from "react"
 
 export interface SkeletonOptions {
   /**
@@ -55,9 +55,9 @@ const StyledSkeleton = chakra("div", {
 })
 
 const useIsFirstRender = () => {
-  const isFirstRender = React.useRef(true)
+  const isFirstRender = useRef(true)
 
-  React.useEffect(() => {
+  useEffect(() => {
     isFirstRender.current = false
   }, [])
 

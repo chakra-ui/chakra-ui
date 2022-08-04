@@ -6,7 +6,6 @@ import {
   useChakra,
 } from "@chakra-ui/system"
 import defaultTheme from "@chakra-ui/theme"
-import * as React from "react"
 import { ToastProvider, ToastProviderProps } from "./toast.provider"
 import { UseToastOptions } from "./use-toast"
 import { createToastFn, CreateToastFnReturn } from "./toast"

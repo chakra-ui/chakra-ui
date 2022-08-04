@@ -1,6 +1,5 @@
 import { objectKeys } from "@chakra-ui/utils"
 import { AnimatePresence, Variants } from "framer-motion"
-import * as React from "react"
 import { Portal, PortalProps } from "@chakra-ui/portal"
 import { ToastComponent, ToastComponentProps } from "./toast.component"
 import type {
@@ -12,6 +11,7 @@ import type {
 import type { UseToastOptions } from "./use-toast"
 import { toastStore } from "./toast.store"
 import { getToastListStyle } from "./toast.utils"
+import { useSyncExternalStore } from "react"
 
 export interface ToastMethods {
   /**
@@ -95,7 +95,7 @@ export type ToastProviderProps = React.PropsWithChildren<{
  * across all corners ("top", "bottom", etc.)
  */
 export const ToastProvider = (props: ToastProviderProps) => {
-  const state = React.useSyncExternalStore(
+  const state = useSyncExternalStore(
     toastStore.subscribe,
     toastStore.getState,
     toastStore.getState,

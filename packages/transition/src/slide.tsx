@@ -6,7 +6,7 @@ import {
   MotionStyle,
   Variants as TVariants,
 } from "framer-motion"
-import * as React from "react"
+import { forwardRef } from "react"
 import {
   SlideDirection,
   slideTransition,
@@ -63,51 +63,52 @@ export interface SlideProps
   extends WithTransitionConfig<HTMLMotionProps<"div">>,
     SlideOptions {}
 
-export const Slide = React.forwardRef<HTMLDivElement, SlideProps>(
-  (props, ref) => {
-    const {
-      direction = "right",
-      style,
-      unmountOnExit,
-      in: isOpen,
-      className,
-      transition,
-      transitionEnd,
-      delay,
-      ...rest
-    } = props
+export const Slide = forwardRef<HTMLDivElement, SlideProps>(function Slide(
+  props,
+  ref,
+) {
+  const {
+    direction = "right",
+    style,
+    unmountOnExit,
+    in: isOpen,
+    className,
+    transition,
+    transitionEnd,
+    delay,
+    ...rest
+  } = props
 
-    const transitionStyles = slideTransition({ direction })
-    const computedStyle: MotionStyle = Object.assign(
-      { position: "fixed" },
-      transitionStyles.position,
-      style,
-    )
+  const transitionStyles = slideTransition({ direction })
+  const computedStyle: MotionStyle = Object.assign(
+    { position: "fixed" },
+    transitionStyles.position,
+    style,
+  )
 
-    const show = unmountOnExit ? isOpen && unmountOnExit : true
-    const animate = isOpen || unmountOnExit ? "enter" : "exit"
+  const show = unmountOnExit ? isOpen && unmountOnExit : true
+  const animate = isOpen || unmountOnExit ? "enter" : "exit"
 
-    const custom = { transitionEnd, transition, direction, delay }
+  const custom = { transitionEnd, transition, direction, delay }
 
-    return (
-      <AnimatePresence custom={custom}>
-        {show && (
-          <motion.div
-            {...rest}
-            ref={ref}
-            initial="exit"
-            className={cx("chakra-slide", className)}
-            animate={animate}
-            exit="exit"
-            custom={custom}
-            variants={variants as TVariants}
-            style={computedStyle}
-          />
-        )}
-      </AnimatePresence>
-    )
-  },
-)
+  return (
+    <AnimatePresence custom={custom}>
+      {show && (
+        <motion.div
+          {...rest}
+          ref={ref}
+          initial="exit"
+          className={cx("chakra-slide", className)}
+          animate={animate}
+          exit="exit"
+          custom={custom}
+          variants={variants as TVariants}
+          style={computedStyle}
+        />
+      )}
+    </AnimatePresence>
+  )
+})
 
 if (__DEV__) {
   Slide.displayName = "Slide"

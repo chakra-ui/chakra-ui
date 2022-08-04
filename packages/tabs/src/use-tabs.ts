@@ -20,7 +20,7 @@ import {
   LazyBehavior,
   normalizeEventKey,
 } from "@chakra-ui/utils"
-import * as React from "react"
+import { cloneElement, useCallback, useEffect, useRef, useState } from "react"
 
 /* -------------------------------------------------------------------------------------------------
  * Create context to track descendants and their indices
@@ -127,7 +127,7 @@ export function useTabs(props: UseTabsProps) {
    *
    * This is why we need to keep track of the `focusedIndex` and `selectedIndex`
    */
-  const [focusedIndex, setFocusedIndex] = React.useState(defaultIndex ?? 0)
+  const [focusedIndex, setFocusedIndex] = useState(defaultIndex ?? 0)
 
   const [selectedIndex, setSelectedIndex] = useControllableState({
     defaultValue: defaultIndex ?? 0,
@@ -138,7 +138,7 @@ export function useTabs(props: UseTabsProps) {
   /**
    * Sync focused `index` with controlled `selectedIndex` (which is the `props.index`)
    */
-  React.useEffect(() => {
+  useEffect(() => {
     if (index != null) {
       setFocusedIndex(index)
     }
@@ -200,7 +200,7 @@ export function useTabList<P extends UseTabListProps>(props: P) {
 
   const descendants = useTabsDescendantsContext()
 
-  const onKeyDown = React.useCallback(
+  const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
       const nextTab = () => {
         const next = descendants.nextEnabled(focusedIndex)
@@ -344,7 +344,7 @@ export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
   const validChildren = getValidChildren(props.children)
 
   const children = validChildren.map((child, index) =>
-    React.cloneElement(child as Child, {
+    cloneElement(child as Child, {
       isSelected: index === selectedIndex,
       id: makeTabPanelId(id, index),
       // Refers to the associated tab element, and also provides an accessible name to the tab panel.
@@ -365,7 +365,7 @@ export function useTabPanel(props: Dict) {
   const { isSelected, id, children, ...htmlProps } = props
   const { isLazy, lazyBehavior } = useTabsContext()
 
-  const hasBeenSelected = React.useRef(false)
+  const hasBeenSelected = useRef(false)
   if (isSelected) {
     hasBeenSelected.current = true
   }
@@ -406,13 +406,13 @@ export function useTabIndicator(): React.CSSProperties {
   const isVertical = orientation === "vertical"
 
   // Get the clientRect of the selected tab
-  const [rect, setRect] = React.useState(() => {
+  const [rect, setRect] = useState(() => {
     if (isHorizontal) return { left: 0, width: 0 }
     if (isVertical) return { top: 0, height: 0 }
     return undefined
   })
 
-  const [hasMeasured, setHasMeasured] = React.useState(false)
+  const [hasMeasured, setHasMeasured] = useState(false)
 
   // Update the selected tab rect when the selectedIndex changes
   useSafeLayoutEffect(() => {

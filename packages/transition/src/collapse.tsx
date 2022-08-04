@@ -5,7 +5,7 @@ import {
   motion,
   Variants as _Variants,
 } from "framer-motion"
-import * as React from "react"
+import { forwardRef, useEffect, useState } from "react"
 import {
   TransitionEasings,
   Variants,
@@ -80,7 +80,7 @@ export interface CollapseProps
   extends WithTransitionConfig<HTMLMotionProps<"div">>,
     CollapseOptions {}
 
-export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
+export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
   (props, ref) => {
     const {
       in: isOpen,
@@ -95,8 +95,8 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
       ...rest
     } = props
 
-    const [mounted, setMounted] = React.useState(false)
-    React.useEffect(() => {
+    const [mounted, setMounted] = useState(false)
+    useEffect(() => {
       const timeout = setTimeout(() => {
         setMounted(true)
       })

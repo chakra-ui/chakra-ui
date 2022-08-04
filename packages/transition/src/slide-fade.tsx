@@ -5,7 +5,7 @@ import {
   motion,
   Variants as _Variants,
 } from "framer-motion"
-import * as React from "react"
+import { forwardRef } from "react"
 import {
   TransitionDefaults,
   Variants,
@@ -73,8 +73,8 @@ export interface SlideFadeProps
   extends SlideFadeOptions,
     WithTransitionConfig<HTMLMotionProps<"div">> {}
 
-export const SlideFade = React.forwardRef<HTMLDivElement, SlideFadeProps>(
-  (props, ref) => {
+export const SlideFade = forwardRef<HTMLDivElement, SlideFadeProps>(
+  function SlideFade(props, ref) {
     const {
       unmountOnExit,
       in: isOpen,

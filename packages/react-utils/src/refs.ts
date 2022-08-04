@@ -1,4 +1,3 @@
-import * as React from "react"
 import { isFunction } from "@chakra-ui/utils"
 
 export type ReactRef<T> =

@@ -11,7 +11,7 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, mergeWith, split, __DEV__, dataAttr } from "@chakra-ui/utils"
-import * as React from "react"
+import { cloneElement, isValidElement } from "react"
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"
 
@@ -21,7 +21,7 @@ export interface SelectFieldProps
 }
 
 export const SelectField = forwardRef<SelectFieldProps, "select">(
-  (props, ref) => {
+  function SelectField(props, ref) {
     const { children, placeholder, className, ...rest } = props
 
     return (
@@ -187,7 +187,7 @@ interface SelectIconProps extends HTMLChakraProps<"div"> {}
 const SelectIcon: React.FC<SelectIconProps> = (props) => {
   const { children = <DefaultIcon />, ...rest } = props
 
-  const clone = React.cloneElement(children as any, {
+  const clone = cloneElement(children as any, {
     role: "presentation",
     className: "chakra-select__icon",
     focusable: false,
@@ -202,7 +202,7 @@ const SelectIcon: React.FC<SelectIconProps> = (props) => {
 
   return (
     <IconWrapper {...rest} className="chakra-select__icon-wrapper">
-      {React.isValidElement(children) ? clone : null}
+      {isValidElement(children) ? clone : null}
     </IconWrapper>
   )
 }
