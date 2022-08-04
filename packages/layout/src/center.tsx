@@ -1,6 +1,5 @@
 import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
 
 export interface CenterProps extends HTMLChakraProps<"div"> {}
 
@@ -52,7 +51,7 @@ const centerStyles = {
  * @see WebDev https://web.dev/centering-in-css/#5.-pop-and-plop
  */
 export const AbsoluteCenter = forwardRef<AbsoluteCenterProps, "div">(
-  (props, ref) => {
+  function AbsoluteCenter(props, ref) {
     const { axis = "both", ...rest } = props
     return (
       <chakra.div

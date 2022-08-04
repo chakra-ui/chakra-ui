@@ -6,7 +6,7 @@ import {
   ThemingProps,
   useStyleConfig,
 } from "@chakra-ui/system"
-import React, { Fragment, useMemo } from "react"
+import { Fragment, useMemo } from "react"
 import { Box } from "./box"
 
 type Chunk = {
@@ -55,7 +55,7 @@ export type HighlightProps = {
 
 export type MarkProps = ThemingProps<"Mark"> & HTMLChakraProps<"mark">
 
-export const Mark = forwardRef<MarkProps, "mark">((props, ref) => {
+export const Mark = forwardRef<MarkProps, "mark">(function Mark(props, ref) {
   const styles = useStyleConfig("Mark", props)
   const ownProps = omitThemingProps(props)
   return (
