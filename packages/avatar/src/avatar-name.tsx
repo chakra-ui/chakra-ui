@@ -16,7 +16,7 @@ interface AvatarNameProps
  * The avatar name container
  */
 
-export const AvatarName: React.FC<AvatarNameProps> = (props) => {
+export function AvatarName(props: AvatarNameProps) {
   const { name, getInitials, ...rest } = props
   const styles = useAvatarStyles()
 
