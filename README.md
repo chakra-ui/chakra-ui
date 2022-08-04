@@ -455,6 +455,7 @@ Thanks goes to these wonderful people
   <tr>
     <td align="center"><a href="https://github.com/pomSense"><img src="https://avatars.githubusercontent.com/u/35952778?v=4?s=64" width="64px;" alt=""/><br /><sub><b>pomSense</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=pomSense" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/be-student"><img src="https://avatars.githubusercontent.com/u/80899085?v=4?s=64" width="64px;" alt=""/><br /><sub><b>be-student</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=be-student" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://itkrt2y.dev"><img src="https://avatars.githubusercontent.com/u/2343568?v=4?s=64" width="64px;" alt=""/><br /><sub><b>Tatsuya Itakura</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=itkrt2y" title="Code">💻</a> <a href="#maintenance-itkrt2y" title="Maintenance">🚧</a></td>
   </tr>
 </table>
 
