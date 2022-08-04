@@ -53,6 +53,12 @@ jobs:
       - name: Install
         uses: ./.github/composite-actions/install
 
+      - name: Create @dev release
+        run: pnpm release:dev
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create release Pull Request or publish to NPM
         id: changesets
         uses: changesets/action@v1
@@ -60,15 +66,6 @@ jobs:
           publish: pnpm release
           commit: "ci(changesets): version packages"
           title: "ci(changesets): version packages"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Release to @dev tag
-        if: steps.changesets.outputs.published != 'true'
-        run: |
-          pnpm changeset version --snapshot dev
-          pnpm changeset publish --tag dev
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
