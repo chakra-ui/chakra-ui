@@ -81,7 +81,9 @@ export function Highlight(props: HighlightProps): JSX.Element {
     <>
       {chunks.map((chunk, index) => {
         return chunk.match ? (
-          <Mark sx={styles}>{chunk.text}</Mark>
+          <Mark key={index} sx={styles}>
+            {chunk.text}
+          </Mark>
         ) : (
           <Fragment key={index}>{chunk.text}</Fragment>
         )
