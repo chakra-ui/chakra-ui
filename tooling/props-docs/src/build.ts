@@ -32,8 +32,8 @@ const outputPath = path.join(__dirname, "..", "dist", "components")
 
 const basePath = path.join(__dirname, "..", "dist")
 
-const cjsIndexFilePath = path.join(basePath, "index.js")
-const esmIndexFilePath = path.join(basePath, "index.mjs")
+const cjsIndexFilePath = path.join(basePath, "index.cjs.js")
+const esmIndexFilePath = path.join(basePath, "index.esm.js")
 const typeFilePath = path.join(basePath, "index.d.ts")
 
 const tsConfigPath = path.join(sourcePath, "..", "tsconfig.json")
