@@ -1,6 +1,5 @@
 import { isFunction } from "@chakra-ui/utils"
-
-export type ColorMode = "light" | "dark"
+import { ColorMode } from "./color-mode-types"
 
 const classNames = {
   light: "chakra-ui-light",
