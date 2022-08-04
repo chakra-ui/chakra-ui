@@ -1,6 +1,6 @@
 import { forwardRef } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { cloneElement, isValidElement } from "react"
 import { Button, ButtonProps } from "./button"
 
 type OmittedProps =
@@ -36,8 +36,8 @@ export const IconButton = forwardRef<IconButtonProps, "button">(
      * Passing the icon as prop or children should work
      */
     const element = icon || children
-    const _children = React.isValidElement(element)
-      ? React.cloneElement(element as any, {
+    const _children = isValidElement(element)
+      ? cloneElement(element as any, {
           "aria-hidden": true,
           focusable: false,
         })

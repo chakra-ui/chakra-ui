@@ -1,4 +1,3 @@
-export * from "./button"
-export * from "./button-group"
-export * from "./icon-button"
-export * from "./button-spinner"
+export { Button, type ButtonProps } from "./button"
+export { ButtonGroup, type ButtonGroupProps } from "./button-group"
+export { IconButton, type IconButtonProps } from "./icon-button"
