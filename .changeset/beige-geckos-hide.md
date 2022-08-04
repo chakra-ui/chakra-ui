@@ -2,4 +2,4 @@
 "@chakra-ui/theme": patch
 ---
 
-fix exports default settings
+Fix `exports` in the `package.json`
