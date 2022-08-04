@@ -5,14 +5,13 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
 import { useInputGroupStyles } from "./input-group"
 
 export interface InputElementProps extends HTMLChakraProps<"div"> {
   placement?: "left" | "right"
 }
 
-const StyledElement = chakra("div", {
+const StyledInputElement = chakra("div", {
   baseStyle: {
     display: "flex",
     alignItems: "center",
@@ -23,7 +22,10 @@ const StyledElement = chakra("div", {
   },
 })
 
-const InputElement = forwardRef<InputElementProps, "div">((props, ref) => {
+const InputElement = forwardRef<InputElementProps, "div">(function InputElement(
+  props,
+  ref,
+) {
   const { placement = "left", ...rest } = props
 
   const styles = useInputGroupStyles()
@@ -39,7 +41,7 @@ const InputElement = forwardRef<InputElementProps, "div">((props, ref) => {
     ...styles.element,
   }
 
-  return <StyledElement ref={ref} __css={elementStyles} {...rest} />
+  return <StyledInputElement ref={ref} __css={elementStyles} {...rest} />
 })
 
 // This is used in `input-group.tsx`
@@ -50,7 +52,7 @@ if (__DEV__) {
 }
 
 export const InputLeftElement = forwardRef<InputElementProps, "div">(
-  (props, ref) => {
+  function InputLeftElement(props, ref) {
     const { className, ...rest } = props
     const _className = cx("chakra-input__left-element", className)
 
@@ -73,7 +75,7 @@ if (__DEV__) {
 }
 
 export const InputRightElement = forwardRef<InputElementProps, "div">(
-  (props, ref) => {
+  function InputRightElement(props, ref) {
     const { className, ...rest } = props
     const _className = cx("chakra-input__right-element", className)
 
