@@ -4,7 +4,7 @@ import {
   wrapPointerEventHandler,
   EventListenerWithPointInfo,
 } from "@chakra-ui/utils"
-import * as React from "react"
+import { useCallback, useEffect, useRef } from "react"
 
 interface EventListeners {
   add<K extends keyof DocumentEventMap>(
@@ -34,27 +34,24 @@ interface EventListeners {
 }
 
 export function useEventListenerMap(): EventListeners {
-  const listeners = React.useRef(new Map())
+  const listeners = useRef(new Map())
   const currentListeners = listeners.current
 
-  const add = React.useCallback(
-    (el: any, type: any, listener: any, options: any) => {
-      const pointerEventListener = wrapPointerEventHandler(
-        listener,
-        type === "pointerdown",
-      )
-      listeners.current.set(listener, {
-        __listener: pointerEventListener,
-        type: getPointerEventName(type),
-        el,
-        options,
-      })
-      el.addEventListener(type, pointerEventListener, options)
-    },
-    [],
-  )
+  const add = useCallback((el: any, type: any, listener: any, options: any) => {
+    const pointerEventListener = wrapPointerEventHandler(
+      listener,
+      type === "pointerdown",
+    )
+    listeners.current.set(listener, {
+      __listener: pointerEventListener,
+      type: getPointerEventName(type),
+      el,
+      options,
+    })
+    el.addEventListener(type, pointerEventListener, options)
+  }, [])
 
-  const remove = React.useCallback(
+  const remove = useCallback(
     (el: any, type: any, listener: any, options: any) => {
       const { __listener: pointerEventListener } =
         listeners.current.get(listener)
@@ -64,7 +61,7 @@ export function useEventListenerMap(): EventListeners {
     [],
   )
 
-  React.useEffect(
+  useEffect(
     () => () => {
       currentListeners.forEach((value, key) => {
         remove(value.el, value.type, key, value.options)

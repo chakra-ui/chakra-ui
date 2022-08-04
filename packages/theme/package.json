@@ -12,8 +12,8 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -22,23 +22,23 @@
     ".": {
       "import": {
         "types": "./dist/index.d.ts",
-        "import": "./dist/index.mjs",
-        "default": "./dist/index.mjs"
+        "import": "./dist/index.esm.js",
+        "default": "./dist/index.esm.js"
       },
       "require": {
         "types": "./dist/index.d.ts",
-        "require": "./dist/index.js",
-        "default": "./dist/index.js"
+        "require": "./dist/index.cjs.js",
+        "default": "./dist/index.cjs.js"
       }
     },
     "./*": "./*",
     "./components": {
-      "require": "./dist/components/index.js",
-      "import": "./dist/components/index.mjs"
+      "require": "./dist/components/index.cjs.js",
+      "import": "./dist/components/index.esm.js"
     },
     "./foundations": {
-      "require": "./dist/foundations/index.js",
-      "import": "./dist/foundations/index.mjs"
+      "require": "./dist/foundations/index.cjs.js",
+      "import": "./dist/foundations/index.esm.js"
     }
   },
   "typesVersions": {
@@ -75,10 +75,10 @@
     "@chakra-ui/styled-system": "workspace:*"
   },
   "scripts": {
-    "build": "tsup src/ --format=esm,cjs --dts",
+    "build": "tsup src/index.ts --dts",
     "dev": "pnpm build -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src/ --format=esm,cjs"
+    "build:fast": "tsup src/index.ts"
   }
 }

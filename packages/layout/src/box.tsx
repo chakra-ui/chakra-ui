@@ -5,7 +5,6 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
 
 export interface BoxProps extends HTMLChakraProps<"div"> {}
 
@@ -38,7 +37,10 @@ export interface SquareProps extends Omit<BoxProps, Omitted> {
   centerContent?: boolean
 }
 
-export const Square = forwardRef<SquareProps, "div">((props, ref) => {
+export const Square = forwardRef<SquareProps, "div">(function Square(
+  props,
+  ref,
+) {
   const { size, centerContent = true, ...rest } = props
 
   const styles: SystemStyleObject = centerContent
@@ -63,7 +65,10 @@ if (__DEV__) {
   Square.displayName = "Square"
 }
 
-export const Circle = forwardRef<SquareProps, "div">((props, ref) => {
+export const Circle = forwardRef<SquareProps, "div">(function Circle(
+  props,
+  ref,
+) {
   const { size, ...rest } = props
   return <Square size={size} ref={ref} borderRadius="9999px" {...rest} />
 })

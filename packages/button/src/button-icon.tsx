@@ -1,12 +1,12 @@
 import { chakra, HTMLChakraProps } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { cloneElement, isValidElement } from "react"
 
-export const ButtonIcon: React.FC<HTMLChakraProps<"span">> = (props) => {
+export function ButtonIcon(props: HTMLChakraProps<"span">) {
   const { children, className, ...rest } = props
 
-  const _children = React.isValidElement(children)
-    ? React.cloneElement(children, {
+  const _children = isValidElement(children)
+    ? cloneElement(children, {
         "aria-hidden": true,
         focusable: false,
       })

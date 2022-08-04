@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import * as React from "react"
+
+import { useMemo } from "react"
 
 type ReactRef<T> = React.Ref<T> | React.MutableRefObject<T>
 
@@ -32,7 +33,7 @@ export function assignRef<T = any>(ref: ReactRef<T> | undefined, value: T) {
  * });
  */
 export function useMergeRefs<T>(...refs: (ReactRef<T> | undefined)[]) {
-  return React.useMemo(() => {
+  return useMemo(() => {
     if (refs.every((ref) => ref == null)) {
       return null
     }

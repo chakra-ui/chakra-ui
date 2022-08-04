@@ -1,4 +1,3 @@
-import * as React from "react"
 import {
   css,
   isStyleProp,
@@ -6,7 +5,10 @@ import {
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
 import { Dict, filterUndefined, objectFilter, runIfFn } from "@chakra-ui/utils"
-import _styled, { CSSObject, FunctionInterpolation } from "@emotion/styled"
+import emotionStyled, {
+  CSSObject,
+  FunctionInterpolation,
+} from "@emotion/styled"
 import { shouldForwardProp } from "./should-forward-prop"
 import { As, ChakraComponent, ChakraProps, PropsOf } from "./system.types"
 import { DOMElements } from "./system.utils"
@@ -75,7 +77,7 @@ export function styled<T extends As, P = {}>(
   }
 
   const styleObject = toCSSObject({ baseStyle })
-  return _styled(
+  return emotionStyled(
     component as React.ComponentType<any>,
     styledOptions,
   )(styleObject) as ChakraComponent<T, P>

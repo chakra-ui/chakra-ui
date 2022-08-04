@@ -10,7 +10,6 @@ import {
   useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { cx, Dict, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
 import { useFormControlContext } from "./form-control"
 
 const [FormErrorStylesProvider, useFormErrorStyles] = createContext<

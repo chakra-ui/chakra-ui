@@ -1,5 +1,5 @@
 import { createContext, mergeRefs } from "@chakra-ui/react-utils"
-import React, { RefCallback, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { DescendantsManager, DescendantOptions } from "./descendant"
 import { useSafeLayoutEffect, cast } from "./utils"
 
@@ -7,7 +7,10 @@ import { useSafeLayoutEffect, cast } from "./utils"
  * @internal
  * React hook that initializes the DescendantsManager
  */
-function useDescendants<T extends HTMLElement = HTMLElement, K extends Record<string, any> = {}>() {
+function useDescendants<
+  T extends HTMLElement = HTMLElement,
+  K extends Record<string, any> = {},
+>() {
   const descendants = useRef(new DescendantsManager<T, K>())
   useSafeLayoutEffect(() => {
     return () => descendants.current.destroy()
@@ -63,8 +66,8 @@ function useDescendant<T extends HTMLElement = HTMLElement, K = {}>(
   })
 
   const refCallback = options
-    ? cast<RefCallback<T>>(descendants.register(options))
-    : cast<RefCallback<T>>(descendants.register)
+    ? cast<React.RefCallback<T>>(descendants.register(options))
+    : cast<React.RefCallback<T>>(descendants.register)
 
   return {
     descendants,

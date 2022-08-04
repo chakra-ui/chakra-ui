@@ -1,8 +1,8 @@
-import * as React from "react"
+import { useCallback, useState } from "react"
 
 export function useButtonType(value?: React.ElementType) {
-  const [isButton, setIsButton] = React.useState(!value)
-  const refCallback = React.useCallback((node: HTMLElement | null) => {
+  const [isButton, setIsButton] = useState(!value)
+  const refCallback = useCallback((node: HTMLElement | null) => {
     if (!node) return
     setIsButton(node.tagName === "BUTTON")
   }, [])

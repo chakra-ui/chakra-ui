@@ -1,8 +1,8 @@
 import { callAllHandlers } from "@chakra-ui/utils"
-import * as React from "react"
 import { useControllableProp } from "./use-controllable"
 import { useId } from "./use-id"
 import { useCallbackRef } from "./use-callback-ref"
+import { useCallback, useState } from "react"
 
 export interface UseDisclosureProps {
   isOpen?: boolean
@@ -22,26 +22,26 @@ export function useDisclosure(props: UseDisclosureProps = {}) {
 
   const onOpenPropCallbackRef = useCallbackRef(onOpenProp)
   const onClosePropCallbackRef = useCallbackRef(onCloseProp)
-  const [isOpenState, setIsOpen] = React.useState(props.defaultIsOpen || false)
+  const [isOpenState, setIsOpen] = useState(props.defaultIsOpen || false)
   const [isControlled, isOpen] = useControllableProp(isOpenProp, isOpenState)
 
   const id = useId(idProp, "disclosure")
 
-  const onClose = React.useCallback(() => {
+  const onClose = useCallback(() => {
     if (!isControlled) {
       setIsOpen(false)
     }
     onClosePropCallbackRef?.()
   }, [isControlled, onClosePropCallbackRef])
 
-  const onOpen = React.useCallback(() => {
+  const onOpen = useCallback(() => {
     if (!isControlled) {
       setIsOpen(true)
     }
     onOpenPropCallbackRef?.()
   }, [isControlled, onOpenPropCallbackRef])
 
-  const onToggle = React.useCallback(() => {
+  const onToggle = useCallback(() => {
     const action = isOpen ? onClose : onOpen
     action()
   }, [isOpen, onOpen, onClose])

@@ -1,6 +1,6 @@
 import { forwardRef } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { Children } from "react"
 import { Icon, IconProps } from "./icon"
 
 interface CreateIconOptions {
@@ -35,7 +35,7 @@ export function createIcon(options: CreateIconOptions) {
     displayName,
     defaultProps = {},
   } = options
-  const path = React.Children.toArray(options.path)
+  const path = Children.toArray(options.path)
 
   const Comp = forwardRef<IconProps, "svg">((props, ref) => (
     <Icon ref={ref} viewBox={viewBox} {...defaultProps} {...props}>

@@ -2,8 +2,8 @@
   "name": "@chakra-ui/provider",
   "version": "2.0.9",
   "description": "Theme and components agnostic ChakraProvider",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -56,10 +56,10 @@
     "react-dom": "^18.0.0"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format=esm,cjs --dts",
+    "build": "JSX=1 tsup src/index.ts --dts",
     "dev": "pnpm build -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src/index.ts --format=esm,cjs"
+    "build:fast": "JSX=1 tsup src/index.ts"
   }
 }

@@ -1,9 +1,9 @@
 import { useForceUpdate, useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { isBrowser, __DEV__ } from "@chakra-ui/utils"
 import { createContext } from "@chakra-ui/react-utils"
-import * as React from "react"
 import { createPortal } from "react-dom"
 import { usePortalManager } from "./portal-manager"
+import { useEffect, useMemo, useRef, useState } from "react"
 
 type PortalContext = HTMLDivElement | null
 
@@ -40,12 +40,12 @@ const DefaultPortal = (
 ) => {
   const { appendToParentPortal, children } = props
 
-  const [tempNode, setTempNode] = React.useState<HTMLElement | null>(null)
-  const portal = React.useRef<HTMLDivElement | null>(null)
+  const [tempNode, setTempNode] = useState<HTMLElement | null>(null)
+  const portal = useRef<HTMLDivElement | null>(null)
 
   const forceUpdate = useForceUpdate()
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  React.useEffect(forceUpdate, [])
+  useEffect(forceUpdate, [])
 
   const parentPortal = usePortalContext()
   const manager = usePortalManager()
@@ -107,7 +107,7 @@ const ContainerPortal = (props: ContainerPortalProps) => {
   const containerEl = containerRef.current
   const host = containerEl ?? (isBrowser ? document.body : undefined)
 
-  const portal = React.useMemo(() => {
+  const portal = useMemo(() => {
     const node = containerEl?.ownerDocument.createElement("div")
     if (node) node.className = PORTAL_CLASSNAME
     return node

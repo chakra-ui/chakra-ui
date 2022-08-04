@@ -10,13 +10,20 @@
     "strict": true,
     "isolatedModules": true,
     "noFallthroughCasesInSwitch": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true
   },
-  "include": ["@types", "packages", "scripts", "tooling", "plopfile.ts"],
+  "include": [
+    "@types",
+    "packages",
+    "scripts",
+    "tooling",
+    "plopfile.ts",
+    "react-shim.js"
+  ],
   "exclude": ["**/node_modules", "**/template*"],
   "ts-node": {
     "compilerOptions": {

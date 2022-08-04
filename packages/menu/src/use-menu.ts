@@ -36,7 +36,7 @@ import {
   normalizeEventKey,
   removeItem,
 } from "@chakra-ui/utils"
-import * as React from "react"
+import { cloneElement, useCallback, useRef, useState } from "react"
 
 /* -------------------------------------------------------------------------------------------------
  * Create context to track descendants and their indices
@@ -147,22 +147,22 @@ export function useMenu(props: UseMenuProps = {}) {
   /**
    * Prepare the reference to the menu and disclosure
    */
-  const menuRef = React.useRef<HTMLDivElement>(null)
-  const buttonRef = React.useRef<HTMLButtonElement>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
 
   /**
    * Context to register all menu item nodes
    */
   const descendants = useMenuDescendants()
 
-  const focusMenu = React.useCallback(() => {
+  const focusMenu = useCallback(() => {
     focus(menuRef.current, {
       nextTick: true,
       selectTextIfInput: false,
     })
   }, [])
 
-  const focusFirstItem = React.useCallback(() => {
+  const focusFirstItem = useCallback(() => {
     const id = setTimeout(() => {
       const first = descendants.firstEnabled()
       if (first) setFocusedIndex(first.index)
@@ -170,7 +170,7 @@ export function useMenu(props: UseMenuProps = {}) {
     timeoutIds.current.add(id)
   }, [descendants])
 
-  const focusLastItem = React.useCallback(() => {
+  const focusLastItem = useCallback(() => {
     const id = setTimeout(() => {
       const last = descendants.lastEnabled()
       if (last) setFocusedIndex(last.index)
@@ -178,7 +178,7 @@ export function useMenu(props: UseMenuProps = {}) {
     timeoutIds.current.add(id)
   }, [descendants])
 
-  const onOpenInternal = React.useCallback(() => {
+  const onOpenInternal = useCallback(() => {
     onOpenProp?.()
     if (autoSelect) {
       focusFirstItem()
@@ -214,7 +214,7 @@ export function useMenu(props: UseMenuProps = {}) {
     direction,
   })
 
-  const [focusedIndex, setFocusedIndex] = React.useState(-1)
+  const [focusedIndex, setFocusedIndex] = useState(-1)
 
   /**
    * Focus the button when we close the menu
@@ -238,29 +238,29 @@ export function useMenu(props: UseMenuProps = {}) {
    */
   const [buttonId, menuId] = useIds(id, `menu-button`, `menu-list`)
 
-  const openAndFocusMenu = React.useCallback(() => {
+  const openAndFocusMenu = useCallback(() => {
     onOpen()
     focusMenu()
   }, [onOpen, focusMenu])
 
-  const timeoutIds = React.useRef<Set<any>>(new Set([]))
+  const timeoutIds = useRef<Set<any>>(new Set([]))
 
   useUnmountEffect(() => {
     timeoutIds.current.forEach((id) => clearTimeout(id))
     timeoutIds.current.clear()
   })
 
-  const openAndFocusFirstItem = React.useCallback(() => {
+  const openAndFocusFirstItem = useCallback(() => {
     onOpen()
     focusFirstItem()
   }, [focusFirstItem, onOpen])
 
-  const openAndFocusLastItem = React.useCallback(() => {
+  const openAndFocusLastItem = useCallback(() => {
     onOpen()
     focusLastItem()
   }, [onOpen, focusLastItem])
 
-  const refocus = React.useCallback(() => {
+  const refocus = useCallback(() => {
     const doc = getOwnerDocument(menuRef.current)
     const hasFocusWithin = menuRef.current?.contains(doc.activeElement)
     const shouldRefocus = isOpen && !hasFocusWithin
@@ -324,7 +324,7 @@ export function useMenuButton(
 
   const { onToggle, popper, openAndFocusFirstItem, openAndFocusLastItem } = menu
 
-  const onKeyDown = React.useCallback(
+  const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
       const eventKey = normalizeEventKey(event)
       const keyMap: EventKeyMap = {
@@ -414,7 +414,7 @@ export function useMenuList(
       event.key !== " " && isTargetMenuItem(event.target),
   })
 
-  const onKeyDown = React.useCallback(
+  const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
       const eventKey = normalizeEventKey(event)
 
@@ -469,7 +469,7 @@ export function useMenuList(
     ],
   )
 
-  const hasBeenOpened = React.useRef(false)
+  const hasBeenOpened = useRef(false)
   if (isOpen) {
     hasBeenOpened.current = true
   }
@@ -566,7 +566,7 @@ export function useMenuItem(
     menuId,
   } = menu
 
-  const ref = React.useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
   const id = `${menuId}-menuitem-${useId()}`
 
   /**
@@ -576,7 +576,7 @@ export function useMenuItem(
     disabled: isDisabled && !isFocusable,
   })
 
-  const onMouseEnter = React.useCallback(
+  const onMouseEnter = useCallback(
     (event: any) => {
       onMouseEnterProp?.(event)
       if (isDisabled) return
@@ -585,7 +585,7 @@ export function useMenuItem(
     [setFocusedIndex, index, isDisabled, onMouseEnterProp],
   )
 
-  const onMouseMove = React.useCallback(
+  const onMouseMove = useCallback(
     (event: any) => {
       onMouseMoveProp?.(event)
       if (ref.current && !isActiveElement(ref.current)) {
@@ -595,7 +595,7 @@ export function useMenuItem(
     [onMouseEnter, onMouseMoveProp],
   )
 
-  const onMouseLeave = React.useCallback(
+  const onMouseLeave = useCallback(
     (event: any) => {
       onMouseLeaveProp?.(event)
       if (isDisabled) return
@@ -604,7 +604,7 @@ export function useMenuItem(
     [setFocusedIndex, isDisabled, onMouseLeaveProp],
   )
 
-  const onClick = React.useCallback(
+  const onClick = useCallback(
     (event: React.MouseEvent) => {
       onClickProp?.(event)
       if (!isTargetMenuItem(event.currentTarget)) return
@@ -716,7 +716,7 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps = {}) {
     onChange: onChangeProp,
   })
 
-  const onChange = React.useCallback(
+  const onChange = useCallback(
     (selectedValue: string) => {
       if (type === "radio" && isString(value)) {
         setValue(selectedValue)
@@ -755,7 +755,7 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps = {}) {
         ? child.props.value === value
         : value.includes(child.props.value)
 
-    return React.cloneElement(child, {
+    return cloneElement(child, {
       type,
       onClick,
       isChecked,

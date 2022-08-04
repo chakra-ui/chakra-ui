@@ -1,42 +1,14 @@
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { noop, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
-import { ColorMode, getColorModeUtils } from "./color-mode.utils"
+import { useCallback, useEffect, useMemo, useState } from "react"
+import { ColorModeContext } from "./color-mode-context"
+import {
+  ColorMode,
+  ColorModeContextType,
+  ColorModeOptions,
+} from "./color-mode-types"
+import { getColorModeUtils } from "./color-mode.utils"
 import { localStorageManager, StorageManager } from "./storage-manager"
-
-type ConfigColorMode = ColorMode | "system" | undefined
-
-export type { ColorMode, ConfigColorMode }
-
-export interface ColorModeOptions {
-  initialColorMode?: ConfigColorMode
-  useSystemColorMode?: boolean
-  disableTransitionOnChange?: boolean
-}
-
-interface ColorModeContextType {
-  colorMode: ColorMode
-  toggleColorMode: () => void
-  setColorMode: (value: any) => void
-}
-
-export const ColorModeContext = React.createContext({} as ColorModeContextType)
-
-if (__DEV__) {
-  ColorModeContext.displayName = "ColorModeContext"
-}
-
-/**
- * React hook that reads from `ColorModeProvider` context
- * Returns the color mode and function to toggle it
- */
-export function useColorMode() {
-  const context = React.useContext(ColorModeContext)
-  if (context === undefined) {
-    throw new Error("useColorMode must be used within a ColorModeProvider")
-  }
-  return context
-}
 
 export interface ColorModeProviderProps {
   value?: ColorMode
@@ -69,24 +41,23 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
 
   const defaultColorMode = initialColorMode === "dark" ? "dark" : "light"
 
-  const [colorMode, rawSetColorMode] = React.useState(() =>
+  const [colorMode, rawSetColorMode] = useState(() =>
     getTheme(colorModeManager, defaultColorMode),
   )
 
-  const [resolvedColorMode, setResolvedColorMode] = React.useState(() =>
+  const [resolvedColorMode, setResolvedColorMode] = useState(() =>
     getTheme(colorModeManager),
   )
 
-  const { getSystemTheme, setClassName, setDataset, addListener } =
-    React.useMemo(
-      () => getColorModeUtils({ preventTransition: disableTransitionOnChange }),
-      [disableTransitionOnChange],
-    )
+  const { getSystemTheme, setClassName, setDataset, addListener } = useMemo(
+    () => getColorModeUtils({ preventTransition: disableTransitionOnChange }),
+    [disableTransitionOnChange],
+  )
 
   const resolvedValue =
     initialColorMode === "system" && !colorMode ? resolvedColorMode : colorMode
 
-  const setColorMode = React.useCallback(
+  const setColorMode = useCallback(
     (value: ColorMode | "system") => {
       //
       const resolved = value === "system" ? getSystemTheme() : value
@@ -107,7 +78,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  React.useEffect(() => {
+  useEffect(() => {
     const managerValue = colorModeManager.get()
 
     if (managerValue) {
@@ -123,17 +94,17 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     setColorMode(defaultColorMode)
   }, [colorModeManager, defaultColorMode, initialColorMode, setColorMode])
 
-  const toggleColorMode = React.useCallback(() => {
+  const toggleColorMode = useCallback(() => {
     setColorMode(resolvedValue === "dark" ? "light" : "dark")
   }, [resolvedValue, setColorMode])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!useSystemColorMode) return
     return addListener(setColorMode)
   }, [useSystemColorMode, addListener, setColorMode])
 
   // presence of `value` indicates a controlled context
-  const context = React.useMemo(
+  const context = useMemo(
     () => ({
       colorMode: value ?? (resolvedValue as ColorMode),
       toggleColorMode: value ? noop : toggleColorMode,
@@ -156,8 +127,8 @@ if (__DEV__) {
 /**
  * Locks the color mode to `dark`, without any way to change it.
  */
-export const DarkMode = (props: React.PropsWithChildren<{}>) => {
-  const context = React.useMemo<ColorModeContextType>(
+export function DarkMode(props: React.PropsWithChildren<{}>) {
+  const context = useMemo<ColorModeContextType>(
     () => ({
       colorMode: "dark",
       toggleColorMode: noop,
@@ -176,8 +147,8 @@ if (__DEV__) {
 /**
  * Locks the color mode to `light` without any way to change it.
  */
-export const LightMode = (props: React.PropsWithChildren<{}>) => {
-  const context = React.useMemo<ColorModeContextType>(
+export function LightMode(props: React.PropsWithChildren<{}>) {
+  const context = useMemo<ColorModeContextType>(
     () => ({
       colorMode: "light",
       toggleColorMode: noop,
@@ -191,24 +162,4 @@ export const LightMode = (props: React.PropsWithChildren<{}>) => {
 
 if (__DEV__) {
   LightMode.displayName = "LightMode"
-}
-
-/**
- * Change value based on color mode.
- *
- * @param light the light mode value
- * @param dark the dark mode value
- *
- * @example
- *
- * ```js
- * const Icon = useColorModeValue(MoonIcon, SunIcon)
- * ```
- */
-export function useColorModeValue<TLight = unknown, TDark = unknown>(
-  light: TLight,
-  dark: TDark,
-) {
-  const { colorMode } = useColorMode()
-  return colorMode === "dark" ? dark : light
 }

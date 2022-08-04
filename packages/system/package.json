@@ -16,8 +16,8 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -53,10 +53,10 @@
     "react": "^18.0.0"
   },
   "scripts": {
-    "build": "tsup src/ --format=esm,cjs --dts",
+    "build": "JSX=1 tsup src/index.ts --dts",
     "dev": "pnpm build -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src/ --format=esm,cjs"
+    "build:fast": "JSX=1 tsup src/index.ts"
   }
 }

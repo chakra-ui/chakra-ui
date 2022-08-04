@@ -7,7 +7,6 @@ import {
   useStyleConfig,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
 import { useFormControlContext, useFormControlStyles } from "./form-control"
 
 export interface FormLabelProps
@@ -31,38 +30,39 @@ export interface FormLabelProps
  *
  * ♿️ Accessibility: Every form field should have a form label.
  */
-export const FormLabel = forwardRef<FormLabelProps, "label">(
-  (passedProps, ref) => {
-    const styles = useStyleConfig("FormLabel", passedProps)
-    const props = omitThemingProps(passedProps)
+export const FormLabel = forwardRef<FormLabelProps, "label">(function FormLabel(
+  passedProps,
+  ref,
+) {
+  const styles = useStyleConfig("FormLabel", passedProps)
+  const props = omitThemingProps(passedProps)
 
-    const {
-      className,
-      children,
-      requiredIndicator = <RequiredIndicator />,
-      optionalIndicator = null,
-      ...rest
-    } = props
+  const {
+    className,
+    children,
+    requiredIndicator = <RequiredIndicator />,
+    optionalIndicator = null,
+    ...rest
+  } = props
 
-    const field = useFormControlContext()
-    const ownProps = field?.getLabelProps(rest, ref) ?? { ref, ...rest }
+  const field = useFormControlContext()
+  const ownProps = field?.getLabelProps(rest, ref) ?? { ref, ...rest }
 
-    return (
-      <chakra.label
-        {...ownProps}
-        className={cx("chakra-form__label", props.className)}
-        __css={{
-          display: "block",
-          textAlign: "start",
-          ...styles,
-        }}
-      >
-        {children}
-        {field?.isRequired ? requiredIndicator : optionalIndicator}
-      </chakra.label>
-    )
-  },
-)
+  return (
+    <chakra.label
+      {...ownProps}
+      className={cx("chakra-form__label", props.className)}
+      __css={{
+        display: "block",
+        textAlign: "start",
+        ...styles,
+      }}
+    >
+      {children}
+      {field?.isRequired ? requiredIndicator : optionalIndicator}
+    </chakra.label>
+  )
+})
 
 if (__DEV__) {
   FormLabel.displayName = "FormLabel"
@@ -75,7 +75,7 @@ export interface RequiredIndicatorProps extends HTMLChakraProps<"span"> {}
  * a field is required.
  */
 export const RequiredIndicator = forwardRef<RequiredIndicatorProps, "span">(
-  (props, ref) => {
+  function RequiredIndicator(props, ref) {
     const field = useFormControlContext()
     const styles = useFormControlStyles()
 
