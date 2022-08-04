@@ -39,10 +39,10 @@ jobs:
       - name: Build
         run: pnpm build
 
-  release:
-    name: Release
-    needs: [build, props]
+  release-dev:
+    name: Release dev
     runs-on: ubuntu-latest
+    needs: [build, props]
     steps:
       - name: Checkout branch
         uses: actions/checkout@v3
@@ -58,6 +58,20 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  release:
+    name: Release
+    needs: [build, props]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.SAGE_PAT }}
+
+      - name: Install
+        uses: ./.github/composite-actions/install
 
       - name: Create release Pull Request or publish to NPM
         id: changesets
