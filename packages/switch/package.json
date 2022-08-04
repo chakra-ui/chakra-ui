@@ -50,10 +50,10 @@
     "react": ">=18"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format=esm,cjs --dts",
+    "build": "tsup src/index.ts --format=esm,cjs --dts --inject react-shim.js",
     "dev": "pnpm build -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src/index.ts --format=esm,cjs"
+    "build:fast": "tsup src/index.ts --format=esm,cjs --inject react-shim.js"
   }
 }
