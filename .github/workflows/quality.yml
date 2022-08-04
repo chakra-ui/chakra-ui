@@ -19,9 +19,6 @@ jobs:
       - name: Build packages
         run: pnpm build
 
-      - name: Lint types and code
-        run: pnpm lint
-
   tests:
     name: Tests
     runs-on: ubuntu-latest
