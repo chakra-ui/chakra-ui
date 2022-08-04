@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useEffect, useRef, useState } from "react"
 
 /**
  * Checks if the key pressed is a printable character
@@ -21,8 +21,8 @@ export interface UseShortcutProps {
 export function useShortcut(props: UseShortcutProps = {}) {
   const { timeout = 300, preventDefault = () => true } = props
 
-  const [keys, setKeys] = React.useState<string[]>([])
-  const timeoutRef = React.useRef<any>()
+  const [keys, setKeys] = useState<string[]>([])
+  const timeoutRef = useRef<any>()
 
   const flush = () => {
     if (timeoutRef.current) {
@@ -39,7 +39,7 @@ export function useShortcut(props: UseShortcutProps = {}) {
     }, timeout)
   }
 
-  React.useEffect(() => flush, [])
+  useEffect(() => flush, [])
 
   type Callback = (keysSoFar: string) => void
 

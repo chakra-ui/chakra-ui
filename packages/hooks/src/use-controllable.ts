@@ -1,5 +1,5 @@
 import { runIfFn } from "@chakra-ui/utils"
-import * as React from "react"
+import { useCallback, useState } from "react"
 import { useCallbackRef } from "./use-callback-ref"
 
 export function useControllableProp<T>(prop: T | undefined, state: T) {
@@ -41,12 +41,12 @@ export function useControllableState<T>(props: UseControllableStateProps<T>) {
   const onChangeProp = useCallbackRef(onChange)
   const shouldUpdateProp = useCallbackRef(shouldUpdate)
 
-  const [valueState, setValue] = React.useState(defaultValue as T)
+  const [valueState, setValue] = useState(defaultValue as T)
 
   const isControlled = valueProp !== undefined
   const value = isControlled ? (valueProp as T) : valueState
 
-  const updateValue = React.useCallback(
+  const updateValue = useCallback(
     (next: React.SetStateAction<T>) => {
       const nextValue = runIfFn(next, value)
 

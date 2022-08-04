@@ -1,5 +1,5 @@
 import { runIfFn } from "@chakra-ui/utils"
-import * as React from "react"
+import { useEffect } from "react"
 import { useCallbackRef } from "./use-callback-ref"
 
 type DocumentOrElement = Document | HTMLElement | null
@@ -24,7 +24,7 @@ export function useEventListener<K extends keyof DocumentEventMap>(
 ) {
   const listener = useCallbackRef(handler) as EventListener
 
-  React.useEffect(() => {
+  useEffect(() => {
     const node = runIfFn(env) ?? document
 
     if (!handler) {
