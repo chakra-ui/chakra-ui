@@ -17,6 +17,11 @@
     "browser": true,
     "node": true
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "plugins": ["@typescript-eslint/eslint-plugin", "testing-library"],
   "rules": {
     "@typescript-eslint/ban-ts-comment": "off",
