@@ -1,5 +1,4 @@
 import { createIcon } from "@chakra-ui/icon"
-import * as React from "react"
 
 export const ArrowLeftIcon = createIcon({
   displayName: "ArrowLeftIcon",

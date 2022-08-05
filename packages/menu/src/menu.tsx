@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/system"
 import { callAll, cx, Dict, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { CustomDomComponent, motion, Variants } from "framer-motion"
-import * as React from "react"
+import { Children, cloneElement, isValidElement, useMemo } from "react"
 import {
   MenuDescendantsProvider,
   MenuProvider,
@@ -60,7 +60,7 @@ export const Menu: React.FC<MenuProps> = (props) => {
   const ownProps = omitThemingProps(props)
   const { direction } = useTheme()
   const { descendants, ...ctx } = useMenu({ ...ownProps, direction })
-  const context = React.useMemo(() => ctx, [ctx])
+  const context = useMemo(() => ctx, [ctx])
 
   const { isOpen, onClose, forceUpdate } = context
 
@@ -231,7 +231,7 @@ const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
      */
     const btnType = rest.as || type ? type ?? undefined : "button"
 
-    const buttonStyles: SystemStyleObject = React.useMemo(
+    const buttonStyles: SystemStyleObject = useMemo(
       () => ({
         textDecoration: "none",
         color: "inherit",
@@ -454,10 +454,10 @@ if (__DEV__) {
 export const MenuIcon: React.FC<HTMLChakraProps<"span">> = (props) => {
   const { className, children, ...rest } = props
 
-  const child = React.Children.only(children)
+  const child = Children.only(children)
 
-  const clone = React.isValidElement(child)
-    ? React.cloneElement(child, {
+  const clone = isValidElement(child)
+    ? cloneElement(child, {
         focusable: "false",
         "aria-hidden": true,
         className: cx("chakra-menu__icon", child.props.className),

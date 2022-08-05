@@ -1,12 +1,11 @@
 import { ariaAttr, callAllHandlers } from "@chakra-ui/utils"
-import { FocusEventHandler } from "react"
 import { FormControlOptions, useFormControlContext } from "./form-control"
 
 export interface UseFormControlProps<T extends HTMLElement>
   extends FormControlOptions {
   id?: string
-  onFocus?: FocusEventHandler<T>
-  onBlur?: FocusEventHandler<T>
+  onFocus?: React.FocusEventHandler<T>
+  onBlur?: React.FocusEventHandler<T>
   disabled?: boolean
   readOnly?: boolean
   required?: boolean

@@ -25,8 +25,7 @@ import {
   motion,
   usePresence,
 } from "framer-motion"
-import * as React from "react"
-import { MouseEvent } from "react"
+import { useEffect } from "react"
 import { RemoveScroll } from "react-remove-scroll"
 import { ModalTransition } from "./modal-transition"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
@@ -310,7 +309,7 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
 
   const [isPresent, safeToRemove] = usePresence()
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isPresent && safeToRemove) {
       setTimeout(safeToRemove)
     }
@@ -403,7 +402,7 @@ export const ModalHeader = forwardRef<ModalHeaderProps, "header">(
      * Notify us if this component was rendered or used,
      * so we can append `aria-labelledby` automatically
      */
-    React.useEffect(() => {
+    useEffect(() => {
       setHeaderMounted(true)
       return () => setHeaderMounted(false)
     }, [setHeaderMounted])
@@ -449,7 +448,7 @@ export const ModalBody = forwardRef<ModalBodyProps, "div">((props, ref) => {
    * Notify us if this component was rendered or used,
    * so we can append `aria-describedby` automatically
    */
-  React.useEffect(() => {
+  useEffect(() => {
     setBodyMounted(true)
     return () => setBodyMounted(false)
   }, [setBodyMounted])
@@ -526,7 +525,7 @@ export const ModalCloseButton = forwardRef<CloseButtonProps, "button">(
         ref={ref}
         __css={styles.closeButton}
         className={_className}
-        onClick={callAllHandlers(onClick, (event: MouseEvent) => {
+        onClick={callAllHandlers(onClick, (event: React.MouseEvent) => {
           event.stopPropagation()
           onClose()
         })}

@@ -15,7 +15,8 @@ module.exports = {
   webpackFinal: async (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      "@chakra-ui/react": path.resolve(__dirname, "../packages/react"),
+      "@chakra-ui/react": path.resolve(__dirname, "../packages/react/src"),
+      "@chakra-ui/theme": path.resolve(__dirname, "../packages/theme/src"),
     }
     config.resolve.extensions.push(".ts", ".tsx")
     return config

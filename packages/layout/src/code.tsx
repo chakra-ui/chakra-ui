@@ -7,7 +7,6 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
 
 export interface CodeProps
   extends HTMLChakraProps<"code">,
@@ -18,7 +17,7 @@ export interface CodeProps
  *
  * @see Docs https://chakra-ui.com/code
  */
-export const Code = forwardRef<CodeProps, "code">((props, ref) => {
+export const Code = forwardRef<CodeProps, "code">(function Code(props, ref) {
   const styles = useStyleConfig("Code", props)
   const { className, ...rest } = omitThemingProps(props)
 

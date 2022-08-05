@@ -7,7 +7,6 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
 
 /**
  * Layout component used to visually separate content in a list or group.
@@ -15,7 +14,10 @@ import * as React from "react"
  *
  * @see Docs https://chakra-ui.com/divider
  */
-export const Divider = forwardRef<DividerProps, "hr">((props, ref) => {
+export const Divider = forwardRef<DividerProps, "hr">(function Divider(
+  props,
+  ref,
+) {
   const {
     borderLeftWidth,
     borderBottomWidth,

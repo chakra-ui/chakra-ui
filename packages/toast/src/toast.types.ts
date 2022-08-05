@@ -1,4 +1,3 @@
-import type * as React from "react"
 import type { SystemStyleObject } from "@chakra-ui/system"
 import type { ToastPosition } from "./toast.placement"
 

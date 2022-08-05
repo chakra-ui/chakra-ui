@@ -1,4 +1,3 @@
-import * as React from "react"
 import {
   ChakraProvider as BaseChakraProvider,
   ChakraProviderProps as BaseChakraProviderProps,

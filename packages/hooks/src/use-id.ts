@@ -1,10 +1,9 @@
-// This implementation is heavily inspired by react-aria's implementation
-import * as React from "react"
+import { useCallback, useId as useReactId, useMemo, useState } from "react"
 
 export function useId(idProp?: string, prefix?: string): string {
-  const id = React.useId()
+  const id = useReactId()
 
-  return React.useMemo(
+  return useMemo(
     () => idProp || [prefix, id].filter(Boolean).join("-"),
     [idProp, prefix, id],
   )
@@ -27,7 +26,7 @@ export function useId(idProp?: string, prefix?: string): string {
  */
 export function useIds(idProp?: string, ...prefixes: string[]) {
   const id = useId(idProp)
-  return React.useMemo(() => {
+  return useMemo(() => {
     return prefixes.map((prefix) => `${prefix}-${id}`)
   }, [id, prefixes])
 }
@@ -42,8 +41,8 @@ export function useIds(idProp?: string, ...prefixes: string[]) {
  * const { ref, id } = useOptionalPart<HTMLInputElement>(`${id}-label`)
  */
 export function useOptionalPart<T = any>(partId: string) {
-  const [id, setId] = React.useState<string | null>(null)
-  const ref = React.useCallback(
+  const [id, setId] = useState<string | null>(null)
+  const ref = useCallback(
     (node: T) => {
       setId(node ? partId : null)
     },

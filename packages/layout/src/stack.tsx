@@ -7,9 +7,9 @@ import {
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { getValidChildren } from "@chakra-ui/react-utils"
-import * as React from "react"
 import type { StackDirection } from "./stack.utils"
 import { getDividerStyles, getStackStyles, selector } from "./stack.utils"
+import { cloneElement, Fragment, useMemo } from "react"
 
 export type { StackDirection }
 
@@ -114,12 +114,12 @@ export const Stack = forwardRef<StackProps, "div">((props, ref) => {
 
   const direction = isInline ? "row" : directionProp ?? "column"
 
-  const styles = React.useMemo(() => getStackStyles({ direction, spacing }), [
-    direction,
-    spacing,
-  ])
+  const styles = useMemo(
+    () => getStackStyles({ direction, spacing }),
+    [direction, spacing],
+  )
 
-  const dividerStyle = React.useMemo(
+  const dividerStyle = useMemo(
     () => getDividerStyles({ spacing, direction }),
     [spacing, direction],
   )
@@ -140,18 +140,17 @@ export const Stack = forwardRef<StackProps, "div">((props, ref) => {
 
         if (!hasDivider) return _child
 
-        const clonedDivider = React.cloneElement(
-          divider as React.ReactElement<any>,
-          { __css: dividerStyle },
-        )
+        const clonedDivider = cloneElement(divider as React.ReactElement<any>, {
+          __css: dividerStyle,
+        })
 
         const _divider = isLast ? null : clonedDivider
 
         return (
-          <React.Fragment key={key}>
+          <Fragment key={key}>
             {_child}
             {_divider}
-          </React.Fragment>
+          </Fragment>
         )
       })
 

@@ -17,6 +17,11 @@
     "browser": true,
     "node": true
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "plugins": ["@typescript-eslint/eslint-plugin", "testing-library"],
   "rules": {
     "@typescript-eslint/ban-ts-comment": "off",
@@ -35,6 +40,7 @@
     "react/no-danger": "off",
     "react/button-has-type": "off",
     "react/no-unescaped-entities": "off",
+    "react/react-in-jsx-scope": "off",
     "operator-assignment": "off",
     "prefer-destructuring": "off",
     "react/no-children-prop": "off",

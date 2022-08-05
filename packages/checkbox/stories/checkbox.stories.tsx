@@ -19,7 +19,7 @@ export default {
   decorators: [(story: Function) => <Container mt="40px">{story()}</Container>],
 }
 
-export const CheckboxWithHooks = () => {
+export const WithHooks = () => {
   const { state, getRootProps, getInputProps, getCheckboxProps } = useCheckbox()
   return (
     <label {...getRootProps()}>
@@ -31,12 +31,6 @@ export const CheckboxWithHooks = () => {
 }
 
 export const Basic = () => <Checkbox colorScheme="red">Hello</Checkbox>
-
-export const BasicWithDisableFalse = () => (
-  <Checkbox isDisabled={false} colorScheme="red">
-    Hello
-  </Checkbox>
-)
 
 export const Disabled = () => <Checkbox isDisabled>Disabled</Checkbox>
 
@@ -59,7 +53,7 @@ export const WithIconColor = () => (
   <Checkbox iconColor="yellow.400">I love chakra</Checkbox>
 )
 
-export const withColorScheme = () => {
+export const WithColorScheme = () => {
   return (
     <Stack>
       <Checkbox defaultChecked colorScheme="red">

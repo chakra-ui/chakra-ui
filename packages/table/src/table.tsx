@@ -9,7 +9,6 @@ import {
 } from "@chakra-ui/system"
 import { cx, __DEV__, Dict } from "@chakra-ui/utils"
 import { createContext } from "@chakra-ui/react-utils"
-import * as React from "react"
 
 const [TableStylesProvider, useTableStyles] = createContext<
   Dict<SystemStyleObject>

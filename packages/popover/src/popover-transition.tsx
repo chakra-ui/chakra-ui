@@ -61,20 +61,21 @@ const Section = motion(chakra.section)
 export interface PopoverTransitionProps
   extends HTMLMotionChakraProps<"section"> {}
 
-export const PopoverTransition = forwardRef(
-  (props: HTMLMotionChakraProps<"section">, ref: React.Ref<any>) => {
-    const { isOpen } = usePopoverContext()
-    return (
-      <Section
-        ref={ref}
-        variants={mergeVariants(props.variants)}
-        {...props}
-        initial={false}
-        animate={isOpen ? "enter" : "exit"}
-      />
-    )
-  },
-) as React.ComponentType<HTMLMotionChakraProps<"section">>
+export const PopoverTransition = forwardRef(function PopoverTransition(
+  props: HTMLMotionChakraProps<"section">,
+  ref: React.Ref<any>,
+) {
+  const { isOpen } = usePopoverContext()
+  return (
+    <Section
+      ref={ref}
+      variants={mergeVariants(props.variants)}
+      {...props}
+      initial={false}
+      animate={isOpen ? "enter" : "exit"}
+    />
+  )
+}) as React.ComponentType<HTMLMotionChakraProps<"section">>
 
 PopoverTransition.defaultProps = {
   variants: scaleFade,
