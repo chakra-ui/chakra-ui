@@ -68,9 +68,9 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "devDependencies": {
     "@chakra-ui/react": "workspace:*",
-    "@storybook/addons": "^6.5.9",
-    "@storybook/api": "^6.5.9",
-    "@storybook/components": "^6.5.9",
+    "@storybook/addons": "^6.5.10",
+    "@storybook/api": "^6.5.10",
+    "@storybook/components": "^6.5.10",
     "react": "^18.0.0"
   },
   "dependencies": {
