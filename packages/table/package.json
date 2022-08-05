@@ -49,8 +49,7 @@
     "@chakra-ui/icons": "workspace:*",
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/test-utils": "workspace:*",
-    "@types/react-table": "7.7.9",
-    "react-table": "7.7.0",
+    "@tanstack/react-table": "^8.5.10",
     "react": "^18.0.0"
   },
   "peerDependencies": {
