@@ -1,18 +1,15 @@
 import { __DEV__ } from "@chakra-ui/utils"
 import { createContext } from "@chakra-ui/react-utils"
-import * as React from "react"
 
 interface PortalManagerContext {
   zIndex?: number
 }
 
-const [
-  PortalManagerContextProvider,
-  usePortalManager,
-] = createContext<PortalManagerContext | null>({
-  strict: false,
-  name: "PortalManagerContext",
-})
+const [PortalManagerContextProvider, usePortalManager] =
+  createContext<PortalManagerContext | null>({
+    strict: false,
+    name: "PortalManagerContext",
+  })
 
 export { usePortalManager }
 

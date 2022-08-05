@@ -1,9 +1,9 @@
-import * as React from "react"
+import { useEffect, useRef } from "react"
 
 export function useWhyDidYouUpdate(name: string, props: any) {
-  const previousProps = React.useRef<any>()
+  const previousProps = useRef<any>()
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (previousProps.current) {
       const allKeys = Object.keys({ ...previousProps.current, ...props })
       const changesObj: Record<string, any> = {}

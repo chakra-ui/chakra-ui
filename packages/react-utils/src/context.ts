@@ -1,4 +1,7 @@
-import * as React from "react"
+import {
+  createContext as createReactContext,
+  useContext as useReactContext,
+} from "react"
 
 export interface CreateContextOptions {
   /**
@@ -34,12 +37,12 @@ export function createContext<ContextType>(options: CreateContextOptions = {}) {
     name,
   } = options
 
-  const Context = React.createContext<ContextType | undefined>(undefined)
+  const Context = createReactContext<ContextType | undefined>(undefined)
 
   Context.displayName = name
 
   function useContext() {
-    const context = React.useContext(Context)
+    const context = useReactContext(Context)
 
     if (!context && strict) {
       const error = new Error(errorMessage)

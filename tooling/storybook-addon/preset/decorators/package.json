@@ -1,4 +1,0 @@
-{
-  "main": "../../dist/preset/decorators.js",
-  "module": "../../dist/preset/decorators.mjs"
-}

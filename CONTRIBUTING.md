@@ -18,7 +18,7 @@ git clone https://github.com/<your_github_username>/chakra-ui.git
 cd chakra-ui
 ```
 
-3. Setup all the dependencies and packages by running `yarn`. This command will
+3. Setup all the dependencies and packages by running `pnpm`. This command will
    install dependencies and bootstrap the repo using `preconstruct`
 
 > If you run into any issues during this step, kindly reach out to the Chakra UI
@@ -45,23 +45,23 @@ that can be consumed in isolation.
 
 ### Commands
 
-**`yarn`**: bootstraps the entire project, symlinks all dependencies for
+**`pnpm install`**: bootstraps the entire project, symlinks all dependencies for
 cross-component development and builds all components.
 
-**`yarn storybook`**: starts storybook server and loads stories in files that
+**`pnpm storybook`**: starts storybook server and loads stories in files that
 end with `.stories.tsx`.
 
-**`yarn build`**: run build for all component packages.
+**`pnpm build`**: run build for all component packages.
 
-**`yarn test`**: run test for all component packages.
+**`pnpm test`**: run test for all component packages.
 
-**`yarn release`**: publish changed packages.
+**`pnpm release`**: publish changed packages.
 
 ### Storybook
 
 Build components in isolation with Storybook. When using Storybook, the build
-process needs to be run separately. Run `yarn build && yarn preconstruct watch`
-in one terminal and then `yarn storybook` in a second terminal.
+process needs to be run separately. Run `pnpm build && pnpm preconstruct watch`
+in one terminal and then `pnpm storybook` in a second terminal.
 
 ## Think you found a bug?
 
@@ -125,22 +125,22 @@ https://www.conventionalcommits.org/ or check out the
 
 3. Make and commit your changes following the
    [commit convention](https://github.com/chakra-ui/chakra-ui/blob/main/CONTRIBUTING.md#commit-convention).
-   As you develop, you can run `yarn pkg <module> build` and
-   `yarn pkg <module> test` to make sure everything works as expected. Please
-   note that you might have to run `yarn boot` first in order to build all
+   As you develop, you can run `pnpm pkg <module> build` and
+   `pnpm pkg <module> test` to make sure everything works as expected. Please
+   note that you might have to run `pnpm boot` first in order to build all
    dependencies.
 
-4. Run `yarn changeset` to create a detailed description of your changes. This
+4. Run `pnpm changeset` to create a detailed description of your changes. This
    will be used to generate a changelog when we publish an update.
    [Learn more about Changeset](https://github.com/atlassian/changesets/tree/master/packages/cli).
    Please note that you might have to run `git fetch origin main:master` (where
-   origin will be your fork on GitHub) before `yarn changeset` works.
+   origin will be your fork on GitHub) before `pnpm changeset` works.
 5. Also, if you provide `jsx` snippets to the changeset, please turn off the
    live preview by doing the following at the beginning of the snippet:
    ` ```jsx live=false`
 
 > If you made minor changes like CI config, prettier, etc, you can run
-> `yarn changeset add --empty` to generate an empty changeset file to document
+> `pnpm changeset add --empty` to generate an empty changeset file to document
 > your changes.
 
 ### Tests

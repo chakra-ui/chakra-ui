@@ -1,5 +1,4 @@
 import { EventKeys, Merge } from "@chakra-ui/utils"
-import React, { ElementType } from "react"
 
 export type MaybeRenderProp<P> =
   | React.ReactNode
@@ -15,7 +14,7 @@ export type PropGetter<T extends HTMLElement = any, P = {}> = (
   ref?: React.Ref<any> | React.RefObject<any>,
 ) => Merge<HTMLProps<T>, P>
 
-export type PropGetterV2<T extends ElementType, P = {}> = (
+export type PropGetterV2<T extends React.ElementType, P = {}> = (
   props?: WithoutStyleAttr<React.ComponentPropsWithoutRef<T>> & P,
   ref?: React.Ref<any> | React.RefObject<any>,
 ) => WithoutStyleAttr<React.ComponentPropsWithRef<T>>

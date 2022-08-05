@@ -12,7 +12,7 @@ import {
 import { isString, omit, pick, __DEV__, getCSSVar } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import { AnimatePresence, motion } from "framer-motion"
-import * as React from "react"
+import { Children, cloneElement } from "react"
 import { scale } from "./tooltip.transition"
 import { useTooltip, UseTooltipProps } from "./use-tooltip"
 
@@ -106,10 +106,10 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
     /**
      * Ensure tooltip has only one child node
      */
-    const child = React.Children.only(children) as React.ReactElement & {
+    const child = Children.only(children) as React.ReactElement & {
       ref?: React.Ref<any>
     }
-    trigger = React.cloneElement(
+    trigger = cloneElement(
       child,
       tooltip.getTriggerProps(child.props, child.ref),
     )

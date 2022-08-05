@@ -6,7 +6,7 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { filterUndefined, mapResponsive, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+
 import { BoxProps } from "./box"
 
 export interface GridProps
@@ -21,7 +21,7 @@ export interface GridProps
  *
  * @see Docs https://chakra-ui.com/grid
  */
-export const Grid = forwardRef<GridProps, "div">((props, ref) => {
+export const Grid = forwardRef<GridProps, "div">(function Grid(props, ref) {
   const {
     templateAreas,
     gap,
@@ -157,7 +157,10 @@ function spanFn(span?: ResponsiveValue<number | "auto">) {
   )
 }
 
-export const GridItem = forwardRef<GridItemProps, "div">((props, ref) => {
+export const GridItem = forwardRef<GridItemProps, "div">(function GridItem(
+  props,
+  ref,
+) {
   const {
     area,
     colSpan,

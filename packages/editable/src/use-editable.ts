@@ -20,7 +20,7 @@ import {
   isEmpty,
   normalizeEventKey,
 } from "@chakra-ui/utils"
-import React, { useCallback, useRef, useState } from "react"
+import { useCallback, useRef, useState } from "react"
 
 export interface UseEditableProps {
   /**

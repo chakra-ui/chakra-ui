@@ -2,14 +2,45 @@
   "name": "@chakra-ui/storybook-addon",
   "version": "4.0.4",
   "description": "The official Storybook Addon for Chakra UI",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "preset",
-    "README.md",
     "theming-arg-types.png"
   ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs.js",
+      "import": "./dist/index.esm.js"
+    },
+    "./*": "./*",
+    "./preset": {
+      "require": "./dist/preset/index.cjs.js",
+      "import": "./dist/preset/index.esm.js"
+    },
+    "./preset/decorators": {
+      "require": "./dist/preset/decorators.cjs.js",
+      "import": "./dist/preset/decorators.esm.js"
+    },
+    "./preset/register": {
+      "require": "./dist/preset/register.cjs.js",
+      "import": "./dist/preset/register.esm.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "preset": [
+        "./dist/preset/index.d.ts"
+      ],
+      "preset/decorators": [
+        "./dist/preset/decorators.d.ts"
+      ],
+      "preset/register": [
+        "./dist/preset/register.d.ts"
+      ]
+    }
+  },
   "scripts": {
     "build": "tsup --dts",
     "dev": "pnpm build -- --watch",

@@ -1,6 +1,6 @@
 import { Styles } from "@chakra-ui/theme-tools"
 
-const styles: Styles = {
+export const styles: Styles = {
   global: {
     body: {
       fontFamily: "body",
@@ -19,5 +19,3 @@ const styles: Styles = {
     },
   },
 }
-
-export default styles

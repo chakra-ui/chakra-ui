@@ -1108,13 +1108,13 @@ return (
 
 - Bump all packages to next major for Chakra UI version 2.
 - Omit `src` directory from being published to npm
-- Removed the `isFullWidth` deprecation. Use `width=full` or `width=100%`
+- Removed the `isFullWidth` deprecation. Use `width='full'` or `width='100%'`
 
 **Checkbox** `v2.0.0`
 
 - Bump all packages to next major for Chakra UI version 2.
 - Omit `src` directory from being published to npm
-- Removed the `isFullWidth` deprecation. Use `width=full` or `width=100%`
+- Removed the `isFullWidth` deprecation. Use `width='full'` or `width='100%'`
 - Removed `defaultIsChecked`. Use `defaultChecked`
 
 **Clickable** `v2.0.0`
@@ -1273,7 +1273,7 @@ environments.
 
 - Bump all packages to next major for Chakra UI version 2.
 - Omit `src` directory from being published to npm
-- Removed the `isFullWidth` deprecation. Use `width=full` or `width=100%`
+- Removed the `isFullWidth` deprecation. Use `width='full'` or `width='100%'`
 
 **Layout** `v2.0.0`
 
@@ -1311,7 +1311,7 @@ environments.
 
 - Bump all packages to next major for Chakra UI version 2.
 - Omit `src` directory from being published to npm
-- Removed the `isFullWidth` deprecation. Use `width=full` or `width=100%`
+- Removed the `isFullWidth` deprecation. Use `width='full'` or `width='100%'`
 
 **Pin Input** `v2.0.0`
 
@@ -1358,7 +1358,7 @@ environments.
 
 - Bump all packages to next major for Chakra UI version 2.
 - Omit `src` directory from being published to npm
-- Removed the `isFullWidth` deprecation. Use `width=full` or `width=100%`
+- Removed the `isFullWidth` deprecation. Use `width='full'` or `width='100%'`
 
 **React Utils** `v2.0.0`
 
@@ -1370,7 +1370,7 @@ environments.
 
 - Bump all packages to next major for Chakra UI version 2.
 - Omit `src` directory from being published to npm
-- Removed the `isFullWidth` deprecation. Use `width=full` or `width=100%`
+- Removed the `isFullWidth` deprecation. Use `width='full'` or `width='100%'`
 
 **Skeleton** `v2.0.0`
 
@@ -1443,7 +1443,7 @@ environments.
 
 - Bump all packages to next major for Chakra UI version 2.
 - Omit `src` directory from being published to npm
-- Removed the `isFullWidth` deprecation. Use `width=full` or `width=100%`
+- Removed the `isFullWidth` deprecation. Use `width='full'` or `width='100%'`
 
 **Theme** `v2.0.0`
 

@@ -1,7 +1,7 @@
 import { dataAttr, isRightClick } from "@chakra-ui/utils"
 import { mergeRefs } from "@chakra-ui/react-utils"
-import * as React from "react"
 import { useEventListeners } from "./use-event-listeners"
+import { useCallback, useState } from "react"
 
 export interface UseClickableProps extends React.HTMLAttributes<HTMLElement> {
   /**
@@ -62,13 +62,13 @@ export function useClickable(props: UseClickableProps = {}) {
   /**
    * We'll use this to track if the element is a button element
    */
-  const [isButton, setIsButton] = React.useState(true)
+  const [isButton, setIsButton] = useState(true)
 
   /**
    * For custom button implementation, we'll use this to track when
    * we mouse down on the button, to enable use style its ":active" style
    */
-  const [isPressed, setIsPressed] = React.useState(false)
+  const [isPressed, setIsPressed] = useState(false)
 
   const listeners = useEventListeners()
 
@@ -85,7 +85,7 @@ export function useClickable(props: UseClickableProps = {}) {
   const tabIndex = isButton ? tabIndexProp : tabIndexProp || 0
   const trulyDisabled = isDisabled && !isFocusable
 
-  const handleClick = React.useCallback(
+  const handleClick = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
       if (isDisabled) {
         event.stopPropagation()
@@ -100,7 +100,7 @@ export function useClickable(props: UseClickableProps = {}) {
     [isDisabled, onClick],
   )
 
-  const onDocumentKeyUp = React.useCallback(
+  const onDocumentKeyUp = useCallback(
     (e: KeyboardEvent) => {
       if (isPressed && isValidElement(e)) {
         e.preventDefault()
@@ -114,7 +114,7 @@ export function useClickable(props: UseClickableProps = {}) {
     [isPressed, listeners],
   )
 
-  const handleKeyDown = React.useCallback(
+  const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLElement>) => {
       onKeyDown?.(event)
 
@@ -151,7 +151,7 @@ export function useClickable(props: UseClickableProps = {}) {
     ],
   )
 
-  const handleKeyUp = React.useCallback(
+  const handleKeyUp = useCallback(
     (event: React.KeyboardEvent<HTMLElement>) => {
       onKeyUp?.(event)
 
@@ -172,7 +172,7 @@ export function useClickable(props: UseClickableProps = {}) {
     [clickOnSpace, isButton, isDisabled, onKeyUp],
   )
 
-  const onDocumentMouseUp = React.useCallback(
+  const onDocumentMouseUp = useCallback(
     (event: MouseEvent) => {
       if (event.button !== 0) return
       setIsPressed(false)
@@ -181,7 +181,7 @@ export function useClickable(props: UseClickableProps = {}) {
     [listeners],
   )
 
-  const handleMouseDown = React.useCallback(
+  const handleMouseDown = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
       if (isRightClick(event)) return
 
@@ -205,7 +205,7 @@ export function useClickable(props: UseClickableProps = {}) {
     [isDisabled, isButton, onMouseDown, listeners, onDocumentMouseUp],
   )
 
-  const handleMouseUp = React.useCallback(
+  const handleMouseUp = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
       if (isRightClick(event)) return
 
@@ -218,7 +218,7 @@ export function useClickable(props: UseClickableProps = {}) {
     [onMouseUp, isButton],
   )
 
-  const handleMouseOver = React.useCallback(
+  const handleMouseOver = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
       if (isDisabled) {
         event.preventDefault()
@@ -230,7 +230,7 @@ export function useClickable(props: UseClickableProps = {}) {
     [isDisabled, onMouseOver],
   )
 
-  const handleMouseLeave = React.useCallback(
+  const handleMouseLeave = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
       if (isPressed) {
         event.preventDefault()

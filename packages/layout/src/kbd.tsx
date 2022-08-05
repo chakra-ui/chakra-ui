@@ -7,7 +7,6 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
 
 export interface KbdProps extends HTMLChakraProps<"kbd">, ThemingProps<"Kbd"> {}
 
@@ -23,7 +22,7 @@ export interface KbdProps extends HTMLChakraProps<"kbd">, ThemingProps<"Kbd"> {}
  *
  * @see Docs https://chakra-ui.com/kbd
  */
-export const Kbd = forwardRef<KbdProps, "kbd">((props, ref) => {
+export const Kbd = forwardRef<KbdProps, "kbd">(function Kbd(props, ref) {
   const styles = useStyleConfig("Kbd", props)
   const { className, ...rest } = omitThemingProps(props)
 

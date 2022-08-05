@@ -1,23 +1,14 @@
 import { Spinner } from "@chakra-ui/spinner"
-import {
-  chakra,
-  HTMLChakraProps,
-  SystemProps,
-  SystemStyleObject,
-} from "@chakra-ui/system"
+import { chakra, HTMLChakraProps, SystemStyleObject } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { useMemo } from "react"
+import { ButtonSpinnerOptions } from "./button-types"
 
-interface ButtonSpinnerProps extends HTMLChakraProps<"div"> {
-  label?: string
-  /**
-   * @type SystemProps["margin"]
-   */
-  spacing?: SystemProps["margin"]
-  placement?: "start" | "end"
-}
+interface ButtonSpinnerProps
+  extends HTMLChakraProps<"div">,
+    ButtonSpinnerOptions {}
 
-export const ButtonSpinner: React.FC<ButtonSpinnerProps> = (props) => {
+export function ButtonSpinner(props: ButtonSpinnerProps) {
   const {
     label,
     placement,
@@ -32,7 +23,7 @@ export const ButtonSpinner: React.FC<ButtonSpinnerProps> = (props) => {
 
   const marginProp = placement === "start" ? "marginEnd" : "marginStart"
 
-  const spinnerStyles: SystemStyleObject = React.useMemo(
+  const spinnerStyles: SystemStyleObject = useMemo(
     () => ({
       display: "flex",
       alignItems: "center",

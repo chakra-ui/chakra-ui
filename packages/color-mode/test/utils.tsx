@@ -3,7 +3,7 @@ import { mocks, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
 
 export const DummyComponent = () => {
-  const { useColorMode } = require("../src/color-mode-provider")
+  const { useColorMode } = require("../src/color-mode-context")
   const { colorMode, toggleColorMode } = useColorMode()
 
   return (

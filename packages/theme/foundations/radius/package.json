@@ -1,5 +1,0 @@
-{
-  "main": "../../dist/foundations/radius.js",
-  "module": "../../dist/foundations/radius.mjs",
-  "types": "../../dist/foundations/radius.d.ts"
-}

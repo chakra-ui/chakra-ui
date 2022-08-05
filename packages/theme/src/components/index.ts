@@ -80,7 +80,7 @@ export { default as Tag } from "./tag"
 export { default as Textarea } from "./textarea"
 export { default as Tooltip } from "./tooltip"
 
-const components: Record<string, any> = {
+export const components: Record<string, any> = {
   Accordion,
   Alert,
   Avatar,
@@ -122,5 +122,3 @@ const components: Record<string, any> = {
   Textarea,
   Tooltip,
 }
-
-export default components
