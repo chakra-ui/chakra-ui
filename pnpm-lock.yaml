@@ -1274,7 +1274,7 @@ importers:
       '@chakra-ui/system': workspace:*
       '@chakra-ui/test-utils': workspace:*
       '@chakra-ui/utils': workspace:*
-      '@tanstack/react-table': ^8.3.3
+      '@tanstack/react-table': ^8.5.10
       react: ^18.2.0
     dependencies:
       '@chakra-ui/react-utils': link:../react-utils
@@ -1284,7 +1284,7 @@ importers:
       '@chakra-ui/icons': link:../icons
       '@chakra-ui/system': link:../system
       '@chakra-ui/test-utils': link:../../tooling/test-utils
-      '@tanstack/react-table': 8.3.3_react@18.2.0
+      '@tanstack/react-table': 8.5.10_react@18.2.0
       react: 18.2.0
 
   packages/tabs:
@@ -9351,19 +9351,19 @@ packages:
     dependencies:
       defer-to-connect: 2.0.1
 
-  /@tanstack/react-table/8.3.3_react@18.2.0:
-    resolution: {integrity: sha512-Zvp40XmxJgage/GKzqQVH38gVRtF5rmLV7WIWE4WZUtKsZgPhU3ZUt7ijc2Nyej8v/KGkF4ja8FA/UITevZA4A==}
+  /@tanstack/react-table/8.5.10_react@18.2.0:
+    resolution: {integrity: sha512-TG+iyqtZD5/N7gCDNM8HJc+ZWbUAkSjv8JaVqk2eYs4xaTUfPnTTsG0vJYqGkoxp8i2GFY78dRx1FDCsctYPGA==}
     engines: {node: '>=12'}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
     dependencies:
-      '@tanstack/table-core': 8.3.3
+      '@tanstack/table-core': 8.5.10
       react: 18.2.0
     dev: true
 
-  /@tanstack/table-core/8.3.3:
-    resolution: {integrity: sha512-Y9lVatqOsQaQBmoKynWIkThC9MN+z4RCP8hSyGPlxI4K1MINFUBswpi3mEg157g0Q9UOXtmt13s7wnoHHfe+2Q==}
+  /@tanstack/table-core/8.5.10:
+    resolution: {integrity: sha512-L1GU/BAF7k50vfk1qDvHkRLhEKSjE46EtCuWRrbdu2UKP4mKClTEeL4/zMr6iefMo8QgWa+Gc0CTVVfYcFLlLA==}
     engines: {node: '>=12'}
     dev: true
 
