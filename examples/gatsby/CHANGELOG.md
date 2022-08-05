@@ -1,5 +1,19 @@
 # gatsby-starter-default
 
+## 1.0.11
+
+### Patch Changes
+
+- [#6339](https://github.com/chakra-ui/chakra-ui/pull/6339)
+  [`b3fb69d2e`](https://github.com/chakra-ui/chakra-ui/commit/b3fb69d2ed971647fb648c8f34ab0ae563f75818)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - update gatsyby packages
+
+- Updated dependencies
+  [[`b3fb69d2e`](https://github.com/chakra-ui/chakra-ui/commit/b3fb69d2ed971647fb648c8f34ab0ae563f75818),
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/gatsby-plugin@3.0.2
+  - @chakra-ui/react@2.2.5
+
 ## 1.0.10
 
 ### Patch Changes

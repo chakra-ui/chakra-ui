@@ -1,5 +1,27 @@
 # Change Log
 
+## 3.0.3
+
+### Patch Changes
+
+- [#6356](https://github.com/chakra-ui/chakra-ui/pull/6356)
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Force release due
+  to change in build configuration
+  - Update package `main` and `module` entries
+- Updated dependencies
+  [[`b67d24d0c`](https://github.com/chakra-ui/chakra-ui/commit/b67d24d0c6d166dfebd74c5a7fd832ddd91a9c69),
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/theme@2.1.4
+  - @chakra-ui/alert@2.0.5
+  - @chakra-ui/close-button@2.0.5
+  - @chakra-ui/hooks@2.0.5
+  - @chakra-ui/portal@2.0.5
+  - @chakra-ui/react-utils@2.0.2
+  - @chakra-ui/system@2.2.3
+  - @chakra-ui/transition@2.0.5
+  - @chakra-ui/utils@2.0.5
+
 ## 3.0.2
 
 ### Patch Changes

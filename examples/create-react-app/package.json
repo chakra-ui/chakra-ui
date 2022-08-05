@@ -1,6 +1,6 @@
 {
   "name": "create-react-app-ts",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "workspace:*",

@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.0.3
+
+### Patch Changes
+
+- [#6339](https://github.com/chakra-ui/chakra-ui/pull/6339)
+  [`b3fb69d2e`](https://github.com/chakra-ui/chakra-ui/commit/b3fb69d2ed971647fb648c8f34ab0ae563f75818)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - update web-vitals
+
 ## 2.0.2
 
 ### Patch Changes

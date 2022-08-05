@@ -1,5 +1,67 @@
 # Change Log
 
+## 2.2.5
+
+### Patch Changes
+
+- [#6356](https://github.com/chakra-ui/chakra-ui/pull/6356)
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Force release due
+  to change in build configuration
+  - Update package `main` and `module` entries
+- Updated dependencies
+  [[`b67d24d0c`](https://github.com/chakra-ui/chakra-ui/commit/b67d24d0c6d166dfebd74c5a7fd832ddd91a9c69),
+  [`cf5d21810`](https://github.com/chakra-ui/chakra-ui/commit/cf5d218104904d321b477858a4d9988506a582f5),
+  [`fcbf5e7a0`](https://github.com/chakra-ui/chakra-ui/commit/fcbf5e7a0855a32add9843f572103aa849f7202a),
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/theme@2.1.4
+  - @chakra-ui/layout@2.1.2
+  - @chakra-ui/accordion@2.0.7
+  - @chakra-ui/alert@2.0.5
+  - @chakra-ui/avatar@2.0.6
+  - @chakra-ui/breadcrumb@2.0.5
+  - @chakra-ui/button@2.0.5
+  - @chakra-ui/checkbox@2.1.4
+  - @chakra-ui/close-button@2.0.5
+  - @chakra-ui/control-box@2.0.5
+  - @chakra-ui/counter@2.0.5
+  - @chakra-ui/css-reset@2.0.2
+  - @chakra-ui/editable@2.0.5
+  - @chakra-ui/react-env@2.0.5
+  - @chakra-ui/form-control@2.0.5
+  - @chakra-ui/hooks@2.0.5
+  - @chakra-ui/icon@3.0.5
+  - @chakra-ui/image@2.0.6
+  - @chakra-ui/input@2.0.5
+  - @chakra-ui/live-region@2.0.5
+  - @chakra-ui/media-query@3.2.1
+  - @chakra-ui/menu@2.0.7
+  - @chakra-ui/modal@2.1.3
+  - @chakra-ui/number-input@2.0.5
+  - @chakra-ui/pin-input@2.0.7
+  - @chakra-ui/popover@2.0.5
+  - @chakra-ui/popper@3.0.3
+  - @chakra-ui/portal@2.0.5
+  - @chakra-ui/progress@2.0.6
+  - @chakra-ui/provider@2.0.10
+  - @chakra-ui/radio@2.0.6
+  - @chakra-ui/select@2.0.5
+  - @chakra-ui/skeleton@2.0.10
+  - @chakra-ui/slider@2.0.5
+  - @chakra-ui/spinner@2.0.5
+  - @chakra-ui/stat@2.0.5
+  - @chakra-ui/switch@2.0.7
+  - @chakra-ui/system@2.2.3
+  - @chakra-ui/table@2.0.5
+  - @chakra-ui/tabs@2.0.7
+  - @chakra-ui/tag@2.0.5
+  - @chakra-ui/textarea@2.0.6
+  - @chakra-ui/toast@3.0.3
+  - @chakra-ui/tooltip@2.0.6
+  - @chakra-ui/transition@2.0.5
+  - @chakra-ui/utils@2.0.5
+  - @chakra-ui/visually-hidden@2.0.5
+
 ## 2.2.4
 
 ### Patch Changes
