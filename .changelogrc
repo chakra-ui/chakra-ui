@@ -1,39 +1,340 @@
-## 13-07-2022
+## 05-08-2022
 
-`@chakra-ui/react@2.2.4`
+`@chakra-ui/react@2.2.5`
 
-**Chakra Nextjs** `v2.0.10`
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
 
-- add portal example
-- update to Next.js 12.2.2
+**Theme** `v2.1.4`
 
-**Portal** `v2.0.4`
+- Fix `exports` in the `package.json`
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
 
-- Fix portal to render children
+**Vite Ts** `v1.0.2`
 
-**Media Query** `v3.2.0`
+- update dependencies
 
-- fix getClosestValue to return nullable closest break point value
+**Layout** `v2.1.2`
 
-**Chakra Nextjs Ts** `v2.0.10`
+- Add missing `key` in `Highlight` component to avoid React warnings
+- Adjust `Highlight` to not show any highlights if `query` is empty
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
 
-- update to Next.js 12.2.2
-- add color mode config and suspense
+**Gatsby Starter Default** `v1.0.11`
 
-**Styled System** `v2.2.3`
+- update gatsyby packages
 
-- Fix incorrect breakpoint calculation which excluded some viewport widths from
-  media query coverage
+**Gatsby Plugin** `v3.0.2`
 
-**Utils** `v2.0.4`
+- update gatsyby packages
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
 
-- Fix incorrect breakpoint calculation which excluded some viewport widths from
-  media query coverage
+**Cra Template** `v2.0.4`
 
-**Color Mode** `v2.1.2`
+- update web-vitals
 
-- fix hydration issue
+**Cra Template Typescript** `v2.0.3`
 
-**React Env** `v2.0.4`
+- update web-vitals
 
-- fix hydration issue
+**Create React App Ts** `v2.0.11`
+
+- Fix `Plugin "react" was conflicted` error
+
+**Accordion** `v2.0.7`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Alert** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Anatomy** `v2.0.2`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Avatar** `v2.0.6`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Breadcrumb** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Button** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Checkbox** `v2.1.4`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Clickable** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Close Button** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Color Mode** `v2.1.3`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Control Box** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Counter** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Css Reset** `v2.0.2`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Descendant** `v3.0.4`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Editable** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**React Env** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Focus Lock** `v2.0.6`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Form Control** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Hooks** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Icon** `v3.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Icons** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Image** `v2.0.6`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Input** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Live Region** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Media Query** `v3.2.1`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Menu** `v2.0.7`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Modal** `v2.1.3`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Number Input** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Pin Input** `v2.0.7`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Popover** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Popper** `v3.0.3`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Portal** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Progress** `v2.0.6`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Provider** `v2.0.10`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Radio** `v2.0.6`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**React Utils** `v2.0.2`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Select** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Skeleton** `v2.0.10`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Skip Nav** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Slider** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Spinner** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Stat** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Styled System** `v2.2.4`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Switch** `v2.0.7`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**System** `v2.2.3`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Table** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Tabs** `v2.0.7`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Tag** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Textarea** `v2.0.6`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Theme Tools** `v2.0.6`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Toast** `v3.0.3`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Tooltip** `v2.0.6`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Transition** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Utils** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Visually Hidden** `v2.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Babel Plugin** `v1.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Cli** `v2.1.3`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Props Docs** `v2.0.11`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
+
+**Storybook Addon** `v4.0.5`
+
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
