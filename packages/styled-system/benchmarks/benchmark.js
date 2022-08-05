@@ -1,7 +1,7 @@
 // @ts-check
 
 const { isMainThread } = require("worker_threads")
-const { css, toCSSVar } = require("../dist")
+const { css, toCSSVar } = require("../dist/index.cjs.js")
 
 const theme = toCSSVar({
   breakpoints: {
