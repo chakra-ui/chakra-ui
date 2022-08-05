@@ -1,5 +1,25 @@
 # Change Log
 
+## 2.1.4
+
+### Patch Changes
+
+- [#6399](https://github.com/chakra-ui/chakra-ui/pull/6399)
+  [`b67d24d0c`](https://github.com/chakra-ui/chakra-ui/commit/b67d24d0c6d166dfebd74c5a7fd832ddd91a9c69)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Fix `exports` in the
+  `package.json`
+
+* [#6356](https://github.com/chakra-ui/chakra-ui/pull/6356)
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Force release due
+  to change in build configuration
+  - Update package `main` and `module` entries
+* Updated dependencies
+  [[`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/anatomy@2.0.2
+  - @chakra-ui/theme-tools@2.0.6
+  - @chakra-ui/utils@2.0.5
+
 ## 2.1.3
 
 ### Patch Changes

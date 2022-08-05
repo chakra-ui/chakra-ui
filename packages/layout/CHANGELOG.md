@@ -1,5 +1,30 @@
 # Change Log
 
+## 2.1.2
+
+### Patch Changes
+
+- [#6410](https://github.com/chakra-ui/chakra-ui/pull/6410)
+  [`cf5d21810`](https://github.com/chakra-ui/chakra-ui/commit/cf5d218104904d321b477858a4d9988506a582f5)
+  Thanks [@brenopolanski](https://github.com/brenopolanski)! - Add missing `key`
+  in `Highlight` component to avoid React warnings
+
+* [#6357](https://github.com/chakra-ui/chakra-ui/pull/6357)
+  [`fcbf5e7a0`](https://github.com/chakra-ui/chakra-ui/commit/fcbf5e7a0855a32add9843f572103aa849f7202a)
+  Thanks [@takethefake](https://github.com/takethefake)! - Adjust `Highlight` to
+  not show any highlights if `query` is empty
+
+- [#6356](https://github.com/chakra-ui/chakra-ui/pull/6356)
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Force release due
+  to change in build configuration
+  - Update package `main` and `module` entries
+- Updated dependencies
+  [[`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/icon@3.0.5
+  - @chakra-ui/react-utils@2.0.2
+  - @chakra-ui/utils@2.0.5
+
 ## 2.1.1
 
 ### Patch Changes
