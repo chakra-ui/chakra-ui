@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.0.11
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/hooks@2.0.6
+  - @chakra-ui/media-query@3.2.2
+  - @chakra-ui/system@2.2.4
+  - @chakra-ui/utils@2.0.6
+
 ## 2.0.10
 
 ### Patch Changes

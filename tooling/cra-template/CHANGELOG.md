@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.5
+
+### Patch Changes
+
+- Force new release
+
 ## 2.0.4
 
 ### Patch Changes

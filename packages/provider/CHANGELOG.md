@@ -1,5 +1,18 @@
 # @chakra-ui/provider
 
+## 2.0.11
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/css-reset@2.0.3
+  - @chakra-ui/react-env@2.0.6
+  - @chakra-ui/portal@2.0.6
+  - @chakra-ui/system@2.2.4
+  - @chakra-ui/utils@2.0.6
+
 ## 2.0.10
 
 ### Patch Changes

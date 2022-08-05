@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.0.8
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/descendant@3.0.5
+  - @chakra-ui/hooks@2.0.6
+  - @chakra-ui/react-utils@2.0.3
+  - @chakra-ui/utils@2.0.6
+
 ## 2.0.7
 
 ### Patch Changes

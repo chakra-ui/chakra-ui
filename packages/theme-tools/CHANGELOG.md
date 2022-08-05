@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.0.7
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/anatomy@2.0.3
+  - @chakra-ui/utils@2.0.6
+
 ## 2.0.6
 
 ### Patch Changes

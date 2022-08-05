@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.0.12
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/react@2.2.6
+  - @chakra-ui/styled-system@2.2.5
+
 ## 2.0.11
 
 ### Patch Changes

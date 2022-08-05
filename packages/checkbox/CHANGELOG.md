@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.1.5
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@2.0.6
+  - @chakra-ui/hooks@2.0.6
+  - @chakra-ui/react-utils@2.0.3
+  - @chakra-ui/utils@2.0.6
+  - @chakra-ui/visually-hidden@2.0.6
+
 ## 2.1.4
 
 ### Patch Changes

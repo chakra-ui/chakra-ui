@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.6
+
+### Patch Changes
+
+- Force new release
+
 ## 1.0.5
 
 ### Patch Changes

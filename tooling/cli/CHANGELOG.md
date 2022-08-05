@@ -1,5 +1,14 @@
 # @chakra-ui/cli
 
+## 2.1.4
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/utils@2.0.6
+
 ## 2.1.3
 
 ### Patch Changes

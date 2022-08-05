@@ -1,5 +1,14 @@
 # @chakra-ui/react-utils
 
+## 2.0.3
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/utils@2.0.6
+
 ## 2.0.2
 
 ### Patch Changes
