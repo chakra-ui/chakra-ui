@@ -1,4 +1,3 @@
-import * as React from "react"
 import ReactFocusLock from "react-focus-lock"
 import {
   __DEV__,
@@ -6,6 +5,7 @@ import {
   focus,
   FocusableElement,
 } from "@chakra-ui/utils"
+import { useCallback } from "react"
 
 export interface FocusLockProps {
   /**
@@ -65,7 +65,7 @@ export const FocusLock: React.FC<FocusLockProps> = (props) => {
     lockFocusAcrossFrames,
   } = props
 
-  const onActivation = React.useCallback(() => {
+  const onActivation = useCallback(() => {
     if (initialFocusRef?.current) {
       initialFocusRef.current.focus()
     } else if (contentRef?.current) {
@@ -76,7 +76,7 @@ export const FocusLock: React.FC<FocusLockProps> = (props) => {
     }
   }, [initialFocusRef, contentRef])
 
-  const onDeactivation = React.useCallback(() => {
+  const onDeactivation = useCallback(() => {
     finalFocusRef?.current?.focus()
   }, [finalFocusRef])
 

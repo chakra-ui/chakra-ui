@@ -1,6 +1,5 @@
 import { chakra, SystemStyleObject, HTMLChakraProps } from "@chakra-ui/system"
-import { isUndefined, StringOrNumber, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { __DEV__ } from "@chakra-ui/utils"
 import { getProgressProps, rotate, spin } from "./progress.utils"
 
 interface CircleProps extends HTMLChakraProps<"circle"> {}
@@ -14,7 +13,7 @@ if (__DEV__) {
 }
 
 interface ShapeProps extends HTMLChakraProps<"svg"> {
-  size?: StringOrNumber
+  size?: string | number
   isIndeterminate?: boolean
 }
 
@@ -41,7 +40,7 @@ interface CircularProgressOptions {
   /**
    * The size of the circular progress in CSS units
    */
-  size?: StringOrNumber
+  size?: string | number
   /**
    * Maximum value defining 100% progress made (must be higher than 'min')
    * @default 100
@@ -56,7 +55,7 @@ interface CircularProgressOptions {
    * This defines the stroke width of the svg circle.
    * @default "10px"
    */
-  thickness?: StringOrNumber
+  thickness?: string | number
   /**
    * Current progress (must be between min/max)
    */
@@ -134,9 +133,8 @@ export const CircularProgress: React.FC<CircularProgressProps> = (props) => {
     ? undefined
     : (progress.percent ?? 0) * 2.64
 
-  const strokeDasharray = isUndefined(determinant)
-    ? undefined
-    : `${determinant} ${264 - determinant}`
+  const strokeDasharray =
+    determinant == null ? undefined : `${determinant} ${264 - determinant}`
 
   const indicatorProps = isIndeterminate
     ? {

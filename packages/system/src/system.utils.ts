@@ -1,5 +1,4 @@
 import { isString, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
 
 /**
  * All html and svg elements for chakra components.

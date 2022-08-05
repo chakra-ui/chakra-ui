@@ -39,6 +39,26 @@ jobs:
       - name: Build
         run: pnpm build
 
+  release-dev:
+    name: Release dev
+    runs-on: ubuntu-latest
+    needs: [build, props]
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.SAGE_PAT }}
+
+      - name: Install
+        uses: ./.github/composite-actions/install
+
+      - name: Create @dev release
+        run: pnpm release:dev
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   release:
     name: Release
     needs: [build, props]
@@ -60,15 +80,6 @@ jobs:
           publish: pnpm release
           commit: "ci(changesets): version packages"
           title: "ci(changesets): version packages"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Release to @dev tag
-        if: steps.changesets.outputs.published != 'true'
-        run: |
-          pnpm changeset version --snapshot dev
-          pnpm changeset publish --tag dev
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

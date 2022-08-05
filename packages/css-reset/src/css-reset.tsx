@@ -1,5 +1,4 @@
 import { Global } from "@emotion/react"
-import * as React from "react"
 
 export const CSSReset = () => (
   <Global

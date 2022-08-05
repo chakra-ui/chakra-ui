@@ -1,5 +1,5 @@
-import * as React from "react"
 import { getBox, BoxModel } from "@chakra-ui/utils"
+import { useRef, useState } from "react"
 import { useSafeLayoutEffect } from "./use-safe-layout-effect"
 
 /**
@@ -12,8 +12,8 @@ export function useDimensions(
   ref: React.RefObject<HTMLElement>,
   observe?: boolean,
 ) {
-  const [dimensions, setDimensions] = React.useState<BoxModel | null>(null)
-  const rafId = React.useRef<number>()
+  const [dimensions, setDimensions] = useState<BoxModel | null>(null)
+  const rafId = useRef<number>()
 
   useSafeLayoutEffect(() => {
     if (!ref.current) return undefined

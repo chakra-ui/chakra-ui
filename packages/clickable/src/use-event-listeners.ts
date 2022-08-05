@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useCallback, useEffect, useRef } from "react"
 
 interface EventListeners {
   add<K extends keyof DocumentEventMap>(
@@ -28,18 +28,15 @@ interface EventListeners {
 }
 
 export function useEventListeners(): EventListeners {
-  const listeners = React.useRef(new Map())
+  const listeners = useRef(new Map())
   const currentListeners = listeners.current
 
-  const add = React.useCallback(
-    (el: any, type: any, listener: any, options: any) => {
-      listeners.current.set(listener, { type, el, options })
-      el.addEventListener(type, listener, options)
-    },
-    [],
-  )
+  const add = useCallback((el: any, type: any, listener: any, options: any) => {
+    listeners.current.set(listener, { type, el, options })
+    el.addEventListener(type, listener, options)
+  }, [])
 
-  const remove = React.useCallback(
+  const remove = useCallback(
     (el: any, type: any, listener: any, options: any) => {
       el.removeEventListener(type, listener, options)
       listeners.current.delete(listener)
@@ -47,7 +44,7 @@ export function useEventListeners(): EventListeners {
     [],
   )
 
-  React.useEffect(
+  useEffect(
     () => () => {
       currentListeners.forEach((value, key) => {
         remove(value.el, value.type, key, value.options)

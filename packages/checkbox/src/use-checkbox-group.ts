@@ -1,34 +1,7 @@
 import { useCallbackRef, useControllableState } from "@chakra-ui/hooks"
-import { addItem, Dict, StringOrNumber, isInputEvent } from "@chakra-ui/utils"
-import { ChangeEvent, useCallback } from "react"
-
-type EventOrValue = ChangeEvent<HTMLInputElement> | StringOrNumber
-
-export interface UseCheckboxGroupProps {
-  /**
-   * The value of the checkbox group
-   */
-  value?: StringOrNumber[]
-  /**
-   * The initial value of the checkbox group
-   */
-  defaultValue?: StringOrNumber[]
-  /**
-   * The callback fired when any children Checkbox is checked or unchecked
-   */
-  onChange?(value: StringOrNumber[]): void
-  /**
-   * If `true`, all wrapped checkbox inputs will be disabled
-   */
-  isDisabled?: boolean
-  /**
-   * If `true`, input elements will receive
-   * `checked` attribute instead of `isChecked`.
-   *
-   * This assumes, you're using native radio inputs
-   */
-  isNative?: boolean
-}
+import { addItem, Dict, isInputEvent } from "@chakra-ui/utils"
+import { useCallback } from "react"
+import { EventOrValue, UseCheckboxGroupProps } from "./checkbox-types"
 
 /**
  * React hook that provides all the state management logic

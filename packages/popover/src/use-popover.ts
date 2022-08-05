@@ -17,7 +17,7 @@ import {
   LazyBehavior,
   px,
 } from "@chakra-ui/utils"
-import { RefObject, useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 const TRIGGER = {
   click: "click",
@@ -44,7 +44,7 @@ export interface UsePopoverProps extends Omit<UsePopperProps, "enabled"> {
   /**
    * The `ref` of the element that should receive focus when the popover opens.
    */
-  initialFocusRef?: RefObject<FocusableElement>
+  initialFocusRef?: React.RefObject<FocusableElement>
   /**
    * If `true`, focus will be returned to the element that triggers the popover
    * when it closes

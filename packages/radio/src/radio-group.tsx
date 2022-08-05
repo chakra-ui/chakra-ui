@@ -6,12 +6,12 @@ import {
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import { createContext } from "@chakra-ui/react-utils"
-import * as React from "react"
 import {
   useRadioGroup,
   UseRadioGroupProps,
   UseRadioGroupReturn,
 } from "./use-radio-group"
+import { useMemo } from "react"
 
 export interface RadioGroupContext
   extends Pick<
@@ -20,13 +20,11 @@ export interface RadioGroupContext
     >,
     Omit<ThemingProps<"Radio">, "orientation"> {}
 
-const [
-  RadioGroupProvider,
-  useRadioGroupContext,
-] = createContext<RadioGroupContext>({
-  name: "RadioGroupContext",
-  strict: false,
-})
+const [RadioGroupProvider, useRadioGroupContext] =
+  createContext<RadioGroupContext>({
+    name: "RadioGroupContext",
+    strict: false,
+  })
 
 export { useRadioGroupContext }
 
@@ -63,7 +61,7 @@ export const RadioGroup = forwardRef<RadioGroupProps, "div">((props, ref) => {
 
   const { value, onChange, getRootProps, name, htmlProps } = useRadioGroup(rest)
 
-  const group = React.useMemo(
+  const group = useMemo(
     () => ({
       name,
       size,

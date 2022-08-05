@@ -1,6 +1,5 @@
 import { chakra } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
 
 /**
  * Styles to visually hide an element

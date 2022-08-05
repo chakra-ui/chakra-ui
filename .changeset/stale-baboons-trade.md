@@ -64,4 +64,5 @@
 "@chakra-ui/storybook-addon": patch
 ---
 
-Force release due to change in build configuration
+- Force release due to change in build configuration
+- Update package `main` and `module` entries
