@@ -11,7 +11,7 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, mergeWith, split, __DEV__, dataAttr } from "@chakra-ui/utils"
-import * as React from "react"
+import { cloneElement, isValidElement } from "react"
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"
 
@@ -21,14 +21,14 @@ export interface SimpleSelectFieldProps
 }
 
 export const SimpleSelectField = forwardRef<SimpleSelectFieldProps, "select">(
-  (props, ref) => {
+  function SimpleSelectField(props, ref) {
     const { children, placeholder, className, ...rest } = props
 
     return (
       <chakra.select
         {...rest}
         ref={ref}
-        className={cx("chakra-select", className)}
+        className={cx("chakra-simple-select", className)}
       >
         {placeholder && <option value="">{placeholder}</option>}
         {children}
@@ -38,26 +38,26 @@ export const SimpleSelectField = forwardRef<SimpleSelectFieldProps, "select">(
 )
 
 if (__DEV__) {
-  SimpleSelectField.displayName = "SelectField"
+  SimpleSelectField.displayName = "SimpleSelectField"
 }
 
 interface RootProps extends Omit<HTMLChakraProps<"div">, "color"> {}
 
-interface SelectOptions extends FormControlOptions {
+interface SimpleSelectOptions extends FormControlOptions {
   /**
-   * The border color when the select is focused. Use color keys in `theme.colors`
+   * The border color when the simple-select is focused. Use color keys in `theme.colors`
    * @example
    * focusBorderColor = "blue.500"
    */
   focusBorderColor?: string
   /**
-   * The border color when the select is invalid. Use color keys in `theme.colors`
+   * The border color when the simple-select is invalid. Use color keys in `theme.colors`
    * @example
    * errorBorderColor = "red.500"
    */
   errorBorderColor?: string
   /**
-   * The placeholder for the select. We render an `<option/>` element that has
+   * The placeholder for the simple-select. We render an `<option/>` element that has
    * empty value.
    *
    * ```jsx
@@ -77,21 +77,21 @@ interface SelectOptions extends FormControlOptions {
 
 export interface SimpleSelectProps
   extends SimpleSelectFieldProps,
-    ThemingProps<"Select">,
-    SelectOptions {
+    ThemingProps<"SimpleSelect">,
+    SimpleSelectOptions {
   /**
    * Props to forward to the root `div` element
    */
   rootProps?: RootProps
   /**
-   * The icon element to use in the select
+   * The icon element to use in the simple-select
    * @type React.ReactElement
    */
   icon?: React.ReactElement<any>
 }
 
 /**
- * React component used to select one item from a list of options.
+ * React component used to simple-select one item from a list of options.
  */
 export const SimpleSelect = forwardRef<SimpleSelectProps, "select">(
   (props, ref) => {
@@ -130,7 +130,7 @@ export const SimpleSelect = forwardRef<SimpleSelectProps, "select">(
 
     return (
       <chakra.div
-        className="chakra-select__wrapper"
+        className="chakra-simple-select__wrapper"
         __css={rootStyles}
         {...layoutProps}
         {...rootProps}
@@ -146,24 +146,24 @@ export const SimpleSelect = forwardRef<SimpleSelectProps, "select">(
           {props.children}
         </SimpleSelectField>
 
-        <SelectIcon
+        <SimpleSelectIcon
           data-disabled={dataAttr(ownProps.disabled)}
           {...((iconColor || color) && { color: iconColor || color })}
           __css={styles.icon}
           {...(iconSize && { fontSize: iconSize })}
         >
           {icon}
-        </SelectIcon>
+        </SimpleSelectIcon>
       </chakra.div>
     )
   },
 )
 
 if (__DEV__) {
-  SimpleSelect.displayName = "Select"
+  SimpleSelect.displayName = "SimpleSelect"
 }
 
-const DefaultIcon: React.FC<PropsOf<"svg">> = (props) => (
+export const DefaultIcon: React.FC<PropsOf<"svg">> = (props) => (
   <svg viewBox="0 0 24 24" {...props}>
     <path
       fill="currentColor"
@@ -184,14 +184,14 @@ const IconWrapper = chakra("div", {
   },
 })
 
-interface SelectIconProps extends HTMLChakraProps<"div"> {}
+interface SimpleSelectIconProps extends HTMLChakraProps<"div"> {}
 
-const SelectIcon: React.FC<SelectIconProps> = (props) => {
+const SimpleSelectIcon: React.FC<SimpleSelectIconProps> = (props) => {
   const { children = <DefaultIcon />, ...rest } = props
 
-  const clone = React.cloneElement(children as any, {
+  const clone = cloneElement(children as any, {
     role: "presentation",
-    className: "chakra-select__icon",
+    className: "chakra-simple-select__icon",
     focusable: false,
     "aria-hidden": true,
     // force icon to adhere to `IconWrapper` styles
@@ -203,12 +203,12 @@ const SelectIcon: React.FC<SelectIconProps> = (props) => {
   })
 
   return (
-    <IconWrapper {...rest} className="chakra-select__icon-wrapper">
-      {React.isValidElement(children) ? clone : null}
+    <IconWrapper {...rest} className="chakra-simple-select__icon-wrapper">
+      {isValidElement(children) ? clone : null}
     </IconWrapper>
   )
 }
 
 if (__DEV__) {
-  SelectIcon.displayName = "SelectIcon"
+  SimpleSelectIcon.displayName = "SimpleSelectIcon"
 }

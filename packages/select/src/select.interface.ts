@@ -1,6 +1,6 @@
 import React from "react"
 import { MaybeRenderProp } from "@chakra-ui/react-utils"
-import { BoxProps } from "@chakra-ui/react"
+import { BoxProps } from "@chakra-ui/layout"
 
 export type SelectValue = string | number
 export type SelectSize = "sm" | "md" | "lg"

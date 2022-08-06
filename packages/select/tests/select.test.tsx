@@ -15,3 +15,8 @@ const TestEnvironment = () => {
     </Select>
   )
 }
+
+test("should pass a11y check", async () => {
+  const { container } = render(<TestEnvironment />)
+  await testA11y(container)
+})

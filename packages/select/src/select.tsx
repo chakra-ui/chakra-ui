@@ -1,7 +1,11 @@
 import React from "react"
 import { createContext, MaybeRenderProp } from "@chakra-ui/react-utils"
 import { runIfFn, __DEV__ } from "@chakra-ui/utils"
-import { createStylesContext, useMultiStyleConfig } from "@chakra-ui/system"
+import {
+  CreateStyleContextReturn,
+  createStylesContext,
+  useMultiStyleConfig,
+} from "@chakra-ui/system"
 import { Box } from "@chakra-ui/layout"
 import { useOutsideClick } from "@chakra-ui/hooks"
 import {
@@ -33,7 +37,7 @@ const [SelectContextProvider, useSelectContext] =
 
 export { SelectContextProvider, useSelectContext }
 
-export const useSelectStyles = useStyles
+export const useSelectStyles: CreateStyleContextReturn[1] = useStyles
 
 export const Select = React.forwardRef<HTMLInputElement, SelectProps>(
   (
