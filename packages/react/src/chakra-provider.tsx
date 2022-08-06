@@ -1,4 +1,3 @@
-import * as React from "react"
 import {
   ChakraProvider as BaseChakraProvider,
   ChakraProviderProps as BaseChakraProviderProps,
@@ -13,16 +12,18 @@ export interface ChakraProviderProps extends BaseChakraProviderProps {
   toastOptions?: ToastProviderProps
 }
 
-export const ChakraProvider = ({
+export function ChakraProvider({
   children,
   toastOptions,
   ...restProps
-}: ChakraProviderProps) => (
-  <BaseChakraProvider {...restProps}>
-    {children}
-    <ToastProvider {...toastOptions} />
-  </BaseChakraProvider>
-)
+}: ChakraProviderProps) {
+  return (
+    <BaseChakraProvider {...restProps}>
+      {children}
+      <ToastProvider {...toastOptions} />
+    </BaseChakraProvider>
+  )
+}
 
 ChakraProvider.defaultProps = {
   theme,

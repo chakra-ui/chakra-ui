@@ -1,4 +1,3 @@
-import * as React from "react"
 import {
   Alert,
   AlertDescription,
@@ -32,27 +31,34 @@ export const Toast: React.FC<ToastProps> = (props) => {
     icon,
   } = props
 
-  const alertTitleId =
-    typeof id !== "undefined" ? `toast-${id}-title` : undefined
+  const ids = id
+    ? {
+        root: `toast-${id}`,
+        title: `toast-${id}-title`,
+        description: `toast-${id}-description`,
+      }
+    : undefined
 
   return (
     <Alert
+      addRole={false}
       status={status}
       variant={variant}
-      id={String(id)}
+      id={ids?.root}
       alignItems="start"
       borderRadius="md"
       boxShadow="lg"
       paddingEnd={8}
       textAlign="start"
       width="auto"
-      aria-labelledby={alertTitleId}
     >
       <AlertIcon>{icon}</AlertIcon>
       <chakra.div flex="1" maxWidth="100%">
-        {title && <AlertTitle id={alertTitleId}>{title}</AlertTitle>}
+        {title && <AlertTitle id={ids?.title}>{title}</AlertTitle>}
         {description && (
-          <AlertDescription display="block">{description}</AlertDescription>
+          <AlertDescription id={ids?.description} display="block">
+            {description}
+          </AlertDescription>
         )}
       </chakra.div>
       {isClosable && (
@@ -145,3 +151,5 @@ export function createToastFn(
 
   return toast
 }
+
+export type CreateToastFnReturn = ReturnType<typeof createToastFn>

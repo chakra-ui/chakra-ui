@@ -1,4 +1,3 @@
-import { createDescendantContext } from "@chakra-ui/descendant"
 import {
   useControllableState,
   useIds,
@@ -20,18 +19,11 @@ import {
   removeItem,
   warn,
 } from "@chakra-ui/utils"
-import React, { useCallback, useRef, useState } from "react"
-
-/* -------------------------------------------------------------------------------------------------
- * Create context to track descendants and their indices
- * -----------------------------------------------------------------------------------------------*/
-
-export const [
-  AccordionDescendantsProvider,
-  useAccordionDescendantsContext,
-  useAccordionDescendants,
+import { useCallback, useRef, useState } from "react"
+import {
   useAccordionDescendant,
-] = createDescendantContext<HTMLButtonElement>()
+  useAccordionDescendants,
+} from "./accordion-context"
 
 /* -------------------------------------------------------------------------------------------------
  * useAccordion - The root react hook that manages all accordion items
@@ -166,14 +158,12 @@ interface AccordionContext
   reduceMotion: boolean
 }
 
-export const [
-  AccordionProvider,
-  useAccordionContext,
-] = createContext<AccordionContext>({
-  name: "AccordionContext",
-  errorMessage:
-    "useAccordionContext: `context` is undefined. Seems you forgot to wrap the accordion components in `<Accordion />`",
-})
+export const [AccordionProvider, useAccordionContext] =
+  createContext<AccordionContext>({
+    name: "AccordionContext",
+    errorMessage:
+      "useAccordionContext: `context` is undefined. Seems you forgot to wrap the accordion components in `<Accordion />`",
+  })
 
 /* -------------------------------------------------------------------------------------------------
  * Hook for a single accordion item

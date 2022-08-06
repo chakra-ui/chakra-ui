@@ -1,8 +1,6 @@
 import { useEnvironment } from "@chakra-ui/react-env"
-import { isBrowser, isFunction } from "@chakra-ui/utils"
-import { useEffect, useLayoutEffect, useState } from "react"
-
-const useSafeLayoutEffect = isBrowser ? useLayoutEffect : useEffect
+import { isFunction } from "@chakra-ui/utils"
+import { useEffect, useState } from "react"
 
 export type UseMediaQueryOptions = {
   fallback?: boolean | boolean[]
@@ -13,7 +11,7 @@ export type UseMediaQueryOptions = {
  * React hook that tracks state of a CSS media query
  *
  * @param query the media query to match
- * @param options the mediq query options { fallback, ssr }
+ * @param options the media query options { fallback, ssr }
  */
 export function useMediaQuery(
   query: string | string[],
@@ -37,16 +35,13 @@ export function useMediaQuery(
     }))
   })
 
-  useSafeLayoutEffect(() => {
-    // set initial matches
-    if (ssr) {
-      setValue(
-        queries.map((query) => ({
-          media: query,
-          matches: env.window.matchMedia(query).matches,
-        })),
-      )
-    }
+  useEffect(() => {
+    setValue(
+      queries.map((query) => ({
+        media: query,
+        matches: env.window.matchMedia(query).matches,
+      })),
+    )
 
     const mql = queries.map((query) => env.window.matchMedia(query))
 
@@ -70,7 +65,8 @@ export function useMediaQuery(
         else mql.removeEventListener("change", handler)
       })
     }
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [env.window])
 
   return value.map((item) => item.matches)
 }

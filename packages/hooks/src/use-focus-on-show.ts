@@ -5,7 +5,7 @@ import {
   getAllFocusable,
   isRefObject,
 } from "@chakra-ui/utils"
-import React, { useCallback } from "react"
+import { useCallback } from "react"
 import { useEventListener } from "./use-event-listener"
 import { useUpdateEffect } from "./use-update-effect"
 

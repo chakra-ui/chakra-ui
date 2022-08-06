@@ -1,4 +1,4 @@
-# Component Name
+# Media Query
 
 A Quick description of the component
 

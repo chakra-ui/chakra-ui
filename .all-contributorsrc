@@ -2091,6 +2091,25 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "be-student",
+      "name": "be-student",
+      "avatar_url": "https://avatars.githubusercontent.com/u/80899085?v=4",
+      "profile": "https://github.com/be-student",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "itkrt2y",
+      "name": "Tatsuya Itakura",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2343568?v=4",
+      "profile": "http://itkrt2y.dev",
+      "contributions": [
+        "code",
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7,

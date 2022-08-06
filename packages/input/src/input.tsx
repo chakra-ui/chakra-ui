@@ -8,7 +8,6 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
 
 interface InputOptions {
   /**
@@ -42,7 +41,10 @@ export interface InputProps
  *
  * Element that allows users enter single valued data.
  */
-export const Input = forwardRef<InputProps, "input">((props, ref) => {
+export const Input = forwardRef<InputProps, "input">(function Input(
+  props,
+  ref,
+) {
   const { htmlSize, ...rest } = props
 
   const styles = useMultiStyleConfig("Input", rest)

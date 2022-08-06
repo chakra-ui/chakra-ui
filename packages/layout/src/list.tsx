@@ -1,19 +1,27 @@
 import { Icon, IconProps } from "@chakra-ui/icon"
-import { getValidChildren } from "@chakra-ui/react-utils"
-import {
-  chakra,
-  createStylesContext,
-  forwardRef,
+import { createContext, getValidChildren } from "@chakra-ui/react-utils"
+import type {
   HTMLChakraProps,
-  omitThemingProps,
   SystemProps,
   ThemingProps,
+} from "@chakra-ui/system"
+import {
+  chakra,
+  forwardRef,
+  omitThemingProps,
+  SystemStyleObject,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { Dict, __DEV__ } from "@chakra-ui/utils"
 
-const [StylesProvider, useStyles] = createStylesContext("List")
+const [ListStylesProvider, useListStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `ListStylesContext`,
+  errorMessage: `useListStyles returned is 'undefined'. Seems you forgot to wrap the components in "<List />" `,
+})
+
+export { useListStyles }
 
 interface ListOptions {
   /**
@@ -43,7 +51,7 @@ export interface ListProps
  *
  * @see Docs https://chakra-ui.com/list
  */
-export const List = forwardRef<ListProps, "ul">((props, ref) => {
+export const List = forwardRef<ListProps, "ul">(function List(props, ref) {
   const styles = useMultiStyleConfig("List", props)
   const {
     children,
@@ -60,7 +68,7 @@ export const List = forwardRef<ListProps, "ul">((props, ref) => {
   const spacingStyle = spacing ? { [selector]: { mt: spacing } } : {}
 
   return (
-    <StylesProvider value={styles}>
+    <ListStylesProvider value={styles}>
       <chakra.ul
         ref={ref}
         listStyleType={styleType}
@@ -75,7 +83,7 @@ export const List = forwardRef<ListProps, "ul">((props, ref) => {
       >
         {validChildren}
       </chakra.ul>
-    </StylesProvider>
+    </ListStylesProvider>
   )
 })
 
@@ -94,7 +102,10 @@ if (__DEV__) {
   OrderedList.displayName = "OrderedList"
 }
 
-export const UnorderedList = forwardRef<ListProps, "ul">((props, ref) => {
+export const UnorderedList = forwardRef<ListProps, "ul">(function UnorderedList(
+  props,
+  ref,
+) {
   const { as, ...rest } = props
   return (
     <List ref={ref} as="ul" styleType="initial" marginStart="1em" {...rest} />
@@ -112,8 +123,11 @@ export interface ListItemProps extends HTMLChakraProps<"li"> {}
  *
  * Used to render a list item
  */
-export const ListItem = forwardRef<ListItemProps, "li">((props, ref) => {
-  const styles = useStyles()
+export const ListItem = forwardRef<ListItemProps, "li">(function ListItem(
+  props,
+  ref,
+) {
+  const styles = useListStyles()
 
   return <chakra.li ref={ref} {...props} __css={styles.item} />
 })
@@ -127,8 +141,11 @@ if (__DEV__) {
  *
  * Used to render an icon beside the list item text
  */
-export const ListIcon = forwardRef<IconProps, "svg">((props, ref) => {
-  const styles = useStyles()
+export const ListIcon = forwardRef<IconProps, "svg">(function ListIcon(
+  props,
+  ref,
+) {
+  const styles = useListStyles()
 
   return <Icon ref={ref} role="presentation" {...props} __css={styles.icon} />
 })

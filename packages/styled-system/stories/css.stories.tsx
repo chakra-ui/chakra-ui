@@ -1,5 +1,4 @@
-import defaultTheme from "@chakra-ui/theme"
-import { Global, ThemeProvider } from "@emotion/react"
+import { Global, ThemeProvider, useTheme } from "@emotion/react"
 import styled from "@emotion/styled"
 import * as React from "react"
 import { css, SystemProps, toCSSVar } from "../src"
@@ -34,8 +33,8 @@ const styles: Styles = {
   },
 }
 
-const theme = toCSSVar(defaultTheme)
 export const cssVars = () => {
+  const theme = toCSSVar(useTheme())
   return (
     <ThemeProvider theme={theme}>
       <Global styles={(t: any) => ({ ":root": t.__cssVars })} />
@@ -84,6 +83,7 @@ export const HoverFocus = () => {
 }
 
 export const TextAndLayerStyles = () => {
+  const defaultTheme = useTheme()
   const theme = {
     ...defaultTheme,
     textStyles: {

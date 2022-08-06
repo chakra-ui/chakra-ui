@@ -1,5 +1,5 @@
 import { isBrowser } from "@chakra-ui/utils"
-import { ColorMode } from "./color-mode.utils"
+import { ColorMode } from "./color-mode-types"
 
 export const STORAGE_KEY = "chakra-ui-color-mode"
 

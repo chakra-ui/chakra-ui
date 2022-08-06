@@ -7,12 +7,18 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
-  createStylesContext,
 } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { createContext } from "@chakra-ui/react-utils"
+import { __DEV__, Dict } from "@chakra-ui/utils"
 
-const [StylesProvider, useStyles] = createStylesContext("Tag")
+const [TagStylesProvider, useTagStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `TagStylesContext`,
+  errorMessage: `useTagStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Tag />" `,
+})
+
+export { useTagStyles }
 
 export interface TagProps
   extends HTMLChakraProps<"span">,
@@ -36,9 +42,9 @@ export const Tag = forwardRef<TagProps, "span">((props, ref) => {
   }
 
   return (
-    <StylesProvider value={styles}>
+    <TagStylesProvider value={styles}>
       <chakra.span ref={ref} {...ownProps} __css={containerStyles} />
-    </StylesProvider>
+    </TagStylesProvider>
   )
 })
 
@@ -49,7 +55,7 @@ if (__DEV__) {
 export interface TagLabelProps extends HTMLChakraProps<"span"> {}
 
 export const TagLabel = forwardRef<TagLabelProps, "span">((props, ref) => {
-  const styles = useStyles()
+  const styles = useTagStyles()
   return <chakra.span ref={ref} noOfLines={1} {...props} __css={styles.label} />
 })
 
@@ -98,7 +104,7 @@ export interface TagCloseButtonProps
 export const TagCloseButton: React.FC<TagCloseButtonProps> = (props) => {
   const { isDisabled, children, ...rest } = props
 
-  const styles = useStyles()
+  const styles = useTagStyles()
 
   const btnStyles: SystemStyleObject = {
     display: "flex",

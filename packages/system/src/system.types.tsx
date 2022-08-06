@@ -1,28 +1,9 @@
-import {
+import type {
   ResponsiveValue,
   SystemProps,
   SystemStyleObject,
-  ThemeTypings,
 } from "@chakra-ui/styled-system"
-import { Dict } from "@chakra-ui/utils"
-import { Interpolation } from "@emotion/react"
-import * as React from "react"
-
-export interface ThemingProps<ThemeComponent extends string = any> {
-  variant?: ResponsiveValue<
-    ThemeComponent extends keyof ThemeTypings["components"]
-      ? ThemeTypings["components"][ThemeComponent]["variants"]
-      : string
-  >
-  size?: ResponsiveValue<
-    ThemeComponent extends keyof ThemeTypings["components"]
-      ? ThemeTypings["components"][ThemeComponent]["sizes"]
-      : string
-  >
-  colorScheme?: ThemeTypings["colorSchemes"]
-  orientation?: "vertical" | "horizontal"
-  styleConfig?: Dict
-}
+import type { Interpolation } from "@emotion/react"
 
 export interface ChakraProps extends SystemProps {
   /**

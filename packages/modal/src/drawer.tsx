@@ -9,7 +9,6 @@ import {
 } from "@chakra-ui/system"
 import { Slide, SlideOptions } from "@chakra-ui/transition"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
 import {
   Modal,
   ModalFocusScope,
@@ -166,4 +165,4 @@ export {
   ModalOverlay as DrawerOverlay,
 } from "./modal"
 
-export { useDrawerContext };
+export { useDrawerContext }

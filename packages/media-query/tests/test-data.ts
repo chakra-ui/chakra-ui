@@ -1,4 +1,4 @@
-import { extendTheme } from "@chakra-ui/react"
+import { theme as baseTheme } from "@chakra-ui/theme"
 
 export const breakpoints = {
   base: "0px",
@@ -10,7 +10,7 @@ export const breakpoints = {
   customBreakpoint: "600px",
 }
 
-export const theme = extendTheme({ breakpoints })
+export const theme = { ...baseTheme, breakpoints }
 
 export const queries = {
   base: "(min-width: 0px) and (max-width: 99px)",

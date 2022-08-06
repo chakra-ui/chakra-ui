@@ -1,4 +1,13 @@
 import { selectAnatomy as parts } from "@chakra-ui/anatomy"
+import type {
+  PartsStyleFunction,
+  PartsStyleObject,
+  SystemStyleFunction,
+  SystemStyleObject,
+} from "@chakra-ui/styled-system"
+import { mergeWith } from "@chakra-ui/utils"
+import { mode } from "@chakra-ui/theme-tools"
+import Input from "./input"
 import { getColor, mode, SystemStyleFunction } from "@chakra-ui/theme-tools"
 import { Input } from "."
 

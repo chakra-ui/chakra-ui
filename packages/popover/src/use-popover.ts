@@ -4,8 +4,8 @@ import {
   useFocusOnPointerDown,
   useFocusOnShow,
   useIds,
+  useAnimationState,
 } from "@chakra-ui/hooks"
-import { useAnimationState } from "@chakra-ui/hooks/use-animation-state"
 import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { HTMLProps, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
 import {
@@ -17,7 +17,7 @@ import {
   LazyBehavior,
   px,
 } from "@chakra-ui/utils"
-import { RefObject, useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 const TRIGGER = {
   click: "click",
@@ -44,7 +44,7 @@ export interface UsePopoverProps extends Omit<UsePopperProps, "enabled"> {
   /**
    * The `ref` of the element that should receive focus when the popover opens.
    */
-  initialFocusRef?: RefObject<FocusableElement>
+  initialFocusRef?: React.RefObject<FocusableElement>
   /**
    * If `true`, focus will be returned to the element that triggers the popover
    * when it closes
@@ -350,7 +350,12 @@ export function usePopover(props: UsePopoverProps = {}) {
          *
          * @see https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html
          */
-        triggerProps.onFocus = callAllHandlers(props.onFocus, onOpen)
+        triggerProps.onFocus = callAllHandlers(props.onFocus, () => {
+          // If openTimeout.current does not exist, the user is using keyboard focus (not mouse hover/click)
+          if (openTimeout.current === undefined) {
+            onOpen()
+          }
+        })
         triggerProps.onBlur = callAllHandlers(props.onBlur, (event) => {
           const relatedTarget = getRelatedTarget(event)
           const isValidBlur = !contains(popoverRef.current, relatedTarget)

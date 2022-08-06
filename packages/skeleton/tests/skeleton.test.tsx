@@ -1,11 +1,9 @@
 import * as React from "react"
 import { render } from "@chakra-ui/test-utils"
 import MatchMediaMock from "jest-matchmedia-mock"
-import { extendTheme, ChakraProvider } from "@chakra-ui/react"
+import { ChakraProvider } from "@chakra-ui/provider"
 import { Skeleton, SkeletonText } from "../src"
-import { queries, theme as testTheme } from "./test-data"
-
-const theme = extendTheme(testTheme)
+import { queries, theme } from "./test-data"
 
 let matchMedia: any
 

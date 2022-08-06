@@ -8,7 +8,6 @@ import {
   useStyleConfig,
 } from "@chakra-ui/system"
 import { cx, omit, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
 
 interface TextareaOptions {
   /**
@@ -45,6 +44,7 @@ export const Textarea = forwardRef<TextareaProps, "textarea">((props, ref) => {
 
   const textareaProps = useFormControl<HTMLTextAreaElement>(rest)
 
+  //@ts-ignore
   const textareaStyles = rows ? omit(styles, omitted) : styles
 
   return (

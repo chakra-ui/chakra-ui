@@ -1,6 +1,5 @@
 import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/utils"
-import * as React from "react"
 
 export interface LinkOverlayProps extends HTMLChakraProps<"a"> {
   /**
@@ -9,32 +8,34 @@ export interface LinkOverlayProps extends HTMLChakraProps<"a"> {
   isExternal?: boolean
 }
 
-export const LinkOverlay = forwardRef<LinkOverlayProps, "a">((props, ref) => {
-  const { isExternal, target, rel, className, ...rest } = props
-  return (
-    <chakra.a
-      {...rest}
-      ref={ref}
-      className={cx("chakra-linkbox__overlay", className)}
-      rel={isExternal ? "noopener noreferrer" : rel}
-      target={isExternal ? "_blank" : target}
-      __css={{
-        position: "static",
-        "&::before": {
-          content: "''",
-          cursor: "inherit",
-          display: "block",
-          position: "absolute",
-          top: 0,
-          left: 0,
-          zIndex: 0,
-          width: "100%",
-          height: "100%",
-        },
-      }}
-    />
-  )
-})
+export const LinkOverlay = forwardRef<LinkOverlayProps, "a">(
+  function LinkOverlay(props, ref) {
+    const { isExternal, target, rel, className, ...rest } = props
+    return (
+      <chakra.a
+        {...rest}
+        ref={ref}
+        className={cx("chakra-linkbox__overlay", className)}
+        rel={isExternal ? "noopener noreferrer" : rel}
+        target={isExternal ? "_blank" : target}
+        __css={{
+          position: "static",
+          "&::before": {
+            content: "''",
+            cursor: "inherit",
+            display: "block",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            zIndex: 0,
+            width: "100%",
+            height: "100%",
+          },
+        }}
+      />
+    )
+  },
+)
 
 export interface LinkBoxProps extends HTMLChakraProps<"div"> {}
 
@@ -44,7 +45,10 @@ export interface LinkBoxProps extends HTMLChakraProps<"div"> {}
  * @see Docs https://chakra-ui.com/docs/navigation/link-overlay
  * @see Resources https://www.sarasoueidan.com/blog/nested-links
  */
-export const LinkBox = forwardRef<LinkBoxProps, "div">((props, ref) => {
+export const LinkBox = forwardRef<LinkBoxProps, "div">(function LinkBox(
+  props,
+  ref,
+) {
   const { className, ...rest } = props
 
   return (

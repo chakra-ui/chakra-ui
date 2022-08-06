@@ -1,16 +1,15 @@
 import { createContext } from "@chakra-ui/react-utils"
 import {
   chakra,
-  createStylesContext,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
+  SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useTheme,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { cx, Dict, __DEV__ } from "@chakra-ui/utils"
 import { useSlider, UseSliderProps, UseSliderReturn } from "./use-slider"
 
 interface SliderContext
@@ -22,8 +21,14 @@ const [SliderProvider, useSliderContext] = createContext<SliderContext>({
     "useSliderContext: `context` is undefined. Seems you forgot to wrap all slider components within <Slider />",
 })
 
-const [StylesProvider, useStyles] = createStylesContext("Slider")
+const [SliderStylesProvider, useSliderStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `SliderStylesContext`,
+  errorMessage: `useSliderStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Slider />" `,
+})
 
+export { useSliderStyles }
 export { SliderProvider, useSliderContext }
 
 export interface SliderProps
@@ -51,7 +56,7 @@ export const Slider = forwardRef<SliderProps, "div">((props, ref) => {
 
   return (
     <SliderProvider value={context}>
-      <StylesProvider value={styles}>
+      <SliderStylesProvider value={styles}>
         <chakra.div
           {...rootProps}
           className={cx("chakra-slider", props.className)}
@@ -60,7 +65,7 @@ export const Slider = forwardRef<SliderProps, "div">((props, ref) => {
           {props.children}
           <input {...inputProps} />
         </chakra.div>
-      </StylesProvider>
+      </SliderStylesProvider>
     </SliderProvider>
   )
 })
@@ -81,7 +86,7 @@ export interface SliderThumbProps extends HTMLChakraProps<"div"> {}
  */
 export const SliderThumb = forwardRef<SliderThumbProps, "div">((props, ref) => {
   const { getThumbProps } = useSliderContext()
-  const styles = useStyles()
+  const styles = useSliderStyles()
   const thumbProps = getThumbProps(props, ref)
 
   return (
@@ -101,7 +106,7 @@ export interface SliderTrackProps extends HTMLChakraProps<"div"> {}
 
 export const SliderTrack = forwardRef<SliderTrackProps, "div">((props, ref) => {
   const { getTrackProps } = useSliderContext()
-  const styles = useStyles()
+  const styles = useSliderStyles()
   const trackProps = getTrackProps(props, ref)
 
   return (
@@ -122,7 +127,7 @@ export interface SliderInnerTrackProps extends HTMLChakraProps<"div"> {}
 export const SliderFilledTrack = forwardRef<SliderInnerTrackProps, "div">(
   (props, ref) => {
     const { getInnerTrackProps } = useSliderContext()
-    const styles = useStyles()
+    const styles = useSliderStyles()
     const trackProps = getInnerTrackProps(props, ref)
 
     return (

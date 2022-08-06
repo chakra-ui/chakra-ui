@@ -1,5 +1,77 @@
 # Change Log
 
+## 2.1.3
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/icon@3.0.6
+  - @chakra-ui/react-utils@2.0.3
+  - @chakra-ui/utils@2.0.6
+
+## 2.1.2
+
+### Patch Changes
+
+- [#6410](https://github.com/chakra-ui/chakra-ui/pull/6410)
+  [`cf5d21810`](https://github.com/chakra-ui/chakra-ui/commit/cf5d218104904d321b477858a4d9988506a582f5)
+  Thanks [@brenopolanski](https://github.com/brenopolanski)! - Add missing `key`
+  in `Highlight` component to avoid React warnings
+
+* [#6357](https://github.com/chakra-ui/chakra-ui/pull/6357)
+  [`fcbf5e7a0`](https://github.com/chakra-ui/chakra-ui/commit/fcbf5e7a0855a32add9843f572103aa849f7202a)
+  Thanks [@takethefake](https://github.com/takethefake)! - Adjust `Highlight` to
+  not show any highlights if `query` is empty
+
+- [#6356](https://github.com/chakra-ui/chakra-ui/pull/6356)
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Force release due
+  to change in build configuration
+  - Update package `main` and `module` entries
+- Updated dependencies
+  [[`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/icon@3.0.5
+  - @chakra-ui/react-utils@2.0.2
+  - @chakra-ui/utils@2.0.5
+
+## 2.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c11743b47`](https://github.com/chakra-ui/chakra-ui/commit/c11743b47f38f8f38a21b120add3a9cf765b81ee)]:
+  - @chakra-ui/utils@2.0.4
+  - @chakra-ui/icon@3.0.4
+
+## 2.1.0
+
+### Minor Changes
+
+- [`778919455`](https://github.com/chakra-ui/chakra-ui/commit/7789194552404db8fe576c4d82ccfd0b940dd401)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add new highlight
+  text component to emphasize any part of a string with the `mark` tag.
+
+  ```jsx live=false
+  <Text fontWeight="semibold">
+    <Highlight
+      query={"with speed"}
+      styles={{ px: "2", py: "1", rounded: "full", bg: "teal.100" }}
+    >
+      Create accessible React apps with speed
+    </Highlight>
+  </Text>
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`36ef37d58`](https://github.com/chakra-ui/chakra-ui/commit/36ef37d58220dffc4b8e35c31fdcc57042e9a859),
+  [`6c15ec2c2`](https://github.com/chakra-ui/chakra-ui/commit/6c15ec2c2a32a36ecc2d169308379a6825619543)]:
+  - @chakra-ui/utils@2.0.3
+  - @chakra-ui/icon@3.0.3
+
 ## 2.0.3
 
 ### Patch Changes

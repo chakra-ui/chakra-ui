@@ -63,7 +63,7 @@ outlines.args = {
   children: "Button",
 }
 
-export const withVariants = () => (
+export const WithVariants = () => (
   <HStack spacing="24px">
     <Button colorScheme="teal" variant="solid">
       Button
@@ -83,7 +83,7 @@ export const withVariants = () => (
   </HStack>
 )
 
-export const withSizes = () => (
+export const WithSizes = () => (
   <HStack>
     <Button colorScheme="blue" size="xs">
       Button
@@ -115,7 +115,7 @@ export const WithIcon = () => (
   </Stack>
 )
 
-export const withReactIcons = () => (
+export const WithReactIcons = () => (
   <Stack direction="row" spacing={4} align="center">
     <Button leftIcon={<MdBuild />} colorScheme="pink" variant="solid">
       Settings
@@ -174,7 +174,7 @@ export const WithLoadingSpinnerPlacement = () => (
   </Stack>
 )
 
-export const withDisabled = () => (
+export const WithDisabled = () => (
   <HStack spacing="24px">
     <Button isDisabled colorScheme="teal" variant="solid">
       Button
@@ -191,7 +191,7 @@ export const withDisabled = () => (
   </HStack>
 )
 
-export const customComposition = () => (
+export const CustomComposition = () => (
   <Button
     size="md"
     height="48px"
@@ -226,7 +226,7 @@ export const WithButtonGroup = () => (
   </ButtonGroup>
 )
 
-export const attachedButtons = () => (
+export const WithAttachedButtons = () => (
   <ButtonGroup size="sm" isAttached variant="outline">
     <Button>Save</Button>
     <Button>Cancel</Button>
@@ -238,7 +238,7 @@ export const attachedButtons = () => (
   </ButtonGroup>
 )
 
-export const socialButton = () => (
+export const WithSocialButton = () => (
   <Stack direction="row">
     <Button colorScheme="facebook" leftIcon={<FaFacebook />}>
       Facebook

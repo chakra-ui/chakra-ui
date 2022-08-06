@@ -1,5 +1,55 @@
 # Change Log
 
+## 2.0.12
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/icons@2.0.6
+  - @chakra-ui/react@2.2.6
+  - @chakra-ui/theme-tools@2.0.7
+
+## 2.0.11
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/icons@2.0.5
+  - @chakra-ui/react@2.2.5
+  - @chakra-ui/theme-tools@2.0.6
+
+## 2.0.10
+
+### Patch Changes
+
+- [#6303](https://github.com/chakra-ui/chakra-ui/pull/6303)
+  [`46b495455`](https://github.com/chakra-ui/chakra-ui/commit/46b495455fc416b166db18f5098ede7752b2e3ba)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - update to Next.js 12.2.2
+
+* [#6309](https://github.com/chakra-ui/chakra-ui/pull/6309)
+  [`fb3c09325`](https://github.com/chakra-ui/chakra-ui/commit/fb3c09325d7bf58aed13c6d0fb1f72b92ff0ef3a)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - add color mode config and
+  suspense
+
+* Updated dependencies []:
+  - @chakra-ui/react@2.2.4
+  - @chakra-ui/theme-tools@2.0.5
+  - @chakra-ui/icons@2.0.4
+
+## 2.0.9
+
+### Patch Changes
+
+- [#6267](https://github.com/chakra-ui/chakra-ui/pull/6267)
+  [`47478edbe`](https://github.com/chakra-ui/chakra-ui/commit/47478edbefe1a4b74421f5a64ea9953d2d867ff3)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Update dependencies
+
+- Updated dependencies []:
+  - @chakra-ui/react@2.2.3
+  - @chakra-ui/theme-tools@2.0.4
+  - @chakra-ui/icons@2.0.3
+
 ## 2.0.8
 
 ### Patch Changes

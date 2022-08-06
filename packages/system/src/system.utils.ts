@@ -1,16 +1,10 @@
-import { isString, omit, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
-import { ThemingProps } from "./system.types"
+import { isString, __DEV__ } from "@chakra-ui/utils"
 
 /**
  * All html and svg elements for chakra components.
  * This is mostly for `chakra.<element>` syntax.
  */
 export type DOMElements = keyof JSX.IntrinsicElements
-
-export function omitThemingProps<T extends ThemingProps>(props: T) {
-  return omit(props, ["styleConfig", "size", "variant", "colorScheme"])
-}
 
 export default function isTag(target: any) {
   return (

@@ -1,4 +1,0 @@
-{
-  "main": "dist/chakra-ui-theme-foundations-colors.cjs.js",
-  "module": "dist/chakra-ui-theme-foundations-colors.esm.js"
-}

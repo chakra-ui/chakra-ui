@@ -4,13 +4,7 @@ import { PropGetter } from "@chakra-ui/react-utils"
 import { ariaAttr, callAllHandlers, dataAttr } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import { trackFocusVisible } from "@zag-js/focus-visible"
-import {
-  ChangeEvent,
-  SyntheticEvent,
-  useCallback,
-  useEffect,
-  useState,
-} from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useRadioGroupContext } from "./radio-group"
 
 /**
@@ -65,7 +59,7 @@ export interface UseRadioProps {
   /**
    * Function called when checked state of the `input` changes
    */
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
   /**
    * @internal
    */
@@ -138,7 +132,7 @@ export function useRadio(props: UseRadioProps = {}) {
   }, [])
 
   const handleChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
+    (event: React.ChangeEvent<HTMLInputElement>) => {
       if (isReadOnly || isDisabled) {
         event.preventDefault()
         return
@@ -298,7 +292,7 @@ export function useRadio(props: UseRadioProps = {}) {
 /**
  * Prevent `onBlur` being fired when the radio label is touched
  */
-function stop(event: SyntheticEvent) {
+function stop(event: React.SyntheticEvent) {
   event.preventDefault()
   event.stopPropagation()
 }

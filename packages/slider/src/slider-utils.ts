@@ -1,5 +1,3 @@
-import type { CSSProperties } from "react"
-
 export function getIds(id: string | number) {
   return {
     root: `slider-root-${id}`,
@@ -16,8 +14,8 @@ type Orientation = "vertical" | "horizontal"
 
 export function orient(options: {
   orientation: Orientation
-  vertical: CSSProperties
-  horizontal: CSSProperties
+  vertical: React.CSSProperties
+  horizontal: React.CSSProperties
 }) {
   const { orientation, vertical, horizontal } = options
   return orientation === "vertical" ? vertical : horizontal
@@ -35,7 +33,7 @@ export function getStyles(options: {
 }) {
   const { orientation, thumbPercents, thumbRects, isReversed } = options
 
-  const getThumbStyle = (i: number): CSSProperties => ({
+  const getThumbStyle = (i: number): React.CSSProperties => ({
     position: "absolute",
     userSelect: "none",
     WebkitUserSelect: "none",
@@ -58,7 +56,7 @@ export function getStyles(options: {
       ? thumbRects.reduce((a, b) => (a.height > b.height ? a : b), zeroRect)
       : thumbRects.reduce((a, b) => (a.width > b.width ? a : b), zeroRect)
 
-  const rootStyle: CSSProperties = {
+  const rootStyle: React.CSSProperties = {
     position: "relative",
     touchAction: "none",
     WebkitTapHighlightColor: "rgba(0,0,0,0)",

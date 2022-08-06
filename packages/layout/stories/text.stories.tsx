@@ -1,37 +1,39 @@
-import * as React from "react"
-import { ChakraProvider, extendTheme } from "@chakra-ui/react"
-import { Text } from "../src"
+// import * as React from "react"
+// import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+// import { Text } from "../src"
 
-export default {
-  title: "Components / Typography / Text",
-}
+// export default {
+//   title: "Components / Typography / Text",
+// }
 
-const theme = extendTheme({
-  components: {
-    Text: {
-      variants: {
-        customCaps: {
-          textTransform: "uppercase",
-        },
-      },
-    },
-  },
-})
+// const theme = extendTheme({
+//   components: {
+//     Text: {
+//       variants: {
+//         customCaps: {
+//           textTransform: "uppercase",
+//         },
+//       },
+//     },
+//   },
+// })
 
-// see https://github.com/chakra-ui/chakra-ui/issues/2464
-export const withVariant = () => (
-  <ChakraProvider theme={theme}>
-    <Text variant="customCaps">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, sapiente.
-    </Text>
-  </ChakraProvider>
-)
+// // see https://github.com/chakra-ui/chakra-ui/issues/2464
+// export const withVariant = () => (
+//   <ChakraProvider theme={theme}>
+//     <Text variant="customCaps">
+//       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, sapiente.
+//     </Text>
+//   </ChakraProvider>
+// )
 
-// see https://github.com/chakra-ui/chakra-ui/issues/2464
-export const overrideVariant = () => (
-  <ChakraProvider theme={theme}>
-    <Text variant="customCaps" casing="lowercase">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, sapiente.
-    </Text>
-  </ChakraProvider>
-)
+// // see https://github.com/chakra-ui/chakra-ui/issues/2464
+// export const overrideVariant = () => (
+//   <ChakraProvider theme={theme}>
+//     <Text variant="customCaps" casing="lowercase">
+//       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, sapiente.
+//     </Text>
+//   </ChakraProvider>
+// )
+
+export {}

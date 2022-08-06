@@ -1,4 +1,3 @@
-import { isNumber } from "@chakra-ui/utils"
 import { Target, TargetAndTransition, Transition } from "framer-motion"
 
 type TargetResolver<P = {}> = (
@@ -132,12 +131,18 @@ export type WithTransitionConfig<P extends object> = Omit<P, "transition"> & {
 }
 
 export const withDelay = {
-  enter: (transition: Transition, delay?: number | DelayConfig) => ({
+  enter: (
+    transition: Transition,
+    delay?: number | DelayConfig,
+  ): Transition & { delay: number | undefined } => ({
     ...transition,
-    delay: isNumber(delay) ? delay : delay?.["enter"],
+    delay: typeof delay === "number" ? delay : delay?.["enter"],
   }),
-  exit: (transition: Transition, delay?: number | DelayConfig) => ({
+  exit: (
+    transition: Transition,
+    delay?: number | DelayConfig,
+  ): Transition & { delay: number | undefined } => ({
     ...transition,
-    delay: isNumber(delay) ? delay : delay?.["exit"],
+    delay: typeof delay === "number" ? delay : delay?.["exit"],
   }),
 }

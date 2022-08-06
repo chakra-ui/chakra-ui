@@ -5,7 +5,7 @@ import {
   PanSession,
   PanSessionHandlers,
 } from "@chakra-ui/utils"
-import React, { useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import { usePointerEvent } from "./use-pointer-event"
 import { useUnmountEffect } from "./use-unmount-effect"
 

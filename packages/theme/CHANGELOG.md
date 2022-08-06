@@ -1,5 +1,60 @@
 # Change Log
 
+## 2.1.5
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/anatomy@2.0.3
+  - @chakra-ui/theme-tools@2.0.7
+  - @chakra-ui/utils@2.0.6
+
+## 2.1.4
+
+### Patch Changes
+
+- [#6399](https://github.com/chakra-ui/chakra-ui/pull/6399)
+  [`b67d24d0c`](https://github.com/chakra-ui/chakra-ui/commit/b67d24d0c6d166dfebd74c5a7fd832ddd91a9c69)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Fix `exports` in the
+  `package.json`
+
+* [#6356](https://github.com/chakra-ui/chakra-ui/pull/6356)
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Force release due
+  to change in build configuration
+  - Update package `main` and `module` entries
+* Updated dependencies
+  [[`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/anatomy@2.0.2
+  - @chakra-ui/theme-tools@2.0.6
+  - @chakra-ui/utils@2.0.5
+
+## 2.1.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c11743b47`](https://github.com/chakra-ui/chakra-ui/commit/c11743b47f38f8f38a21b120add3a9cf765b81ee)]:
+  - @chakra-ui/utils@2.0.4
+  - @chakra-ui/theme-tools@2.0.5
+
+## 2.1.2
+
+### Patch Changes
+
+- [#6106](https://github.com/chakra-ui/chakra-ui/pull/6106)
+  [`be7a20f15`](https://github.com/chakra-ui/chakra-ui/commit/be7a20f155e571a24cb99f28a5b9a60fa3b80a61)
+  Thanks [@RubenSmn](https://github.com/RubenSmn)! - Add border radius of zero
+  to the default full size modal
+
+- Updated dependencies
+  [[`36ef37d58`](https://github.com/chakra-ui/chakra-ui/commit/36ef37d58220dffc4b8e35c31fdcc57042e9a859),
+  [`6c15ec2c2`](https://github.com/chakra-ui/chakra-ui/commit/6c15ec2c2a32a36ecc2d169308379a6825619543)]:
+  - @chakra-ui/utils@2.0.3
+  - @chakra-ui/theme-tools@2.0.4
+
 ## 2.1.1
 
 ### Patch Changes

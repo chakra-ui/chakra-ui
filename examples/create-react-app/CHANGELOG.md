@@ -1,5 +1,39 @@
 # Change Log
 
+## 2.0.12
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@2.2.6
+
+## 2.0.11
+
+### Patch Changes
+
+- [#6399](https://github.com/chakra-ui/chakra-ui/pull/6399)
+  [`b67d24d0c`](https://github.com/chakra-ui/chakra-ui/commit/b67d24d0c6d166dfebd74c5a7fd832ddd91a9c69)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Fix
+  `Plugin "react" was conflicted` error
+
+- Updated dependencies
+  [[`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/react@2.2.5
+
+## 2.0.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@2.2.4
+
+## 2.0.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@2.2.3
+
 ## 2.0.8
 
 ### Patch Changes

@@ -1,5 +1,4 @@
 import { forwardRef } from "@chakra-ui/system"
-import * as React from "react"
 import { Modal, ModalContent, ModalContentProps, ModalProps } from "./modal"
 
 export interface AlertDialogProps extends Omit<ModalProps, "initialFocusRef"> {

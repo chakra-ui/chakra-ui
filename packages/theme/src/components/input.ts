@@ -3,7 +3,7 @@ import type {
   PartsStyleFunction,
   PartsStyleObject,
   SystemStyleObject,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/styled-system"
 import { getColor, mode } from "@chakra-ui/theme-tools"
 
 const baseStyle: PartsStyleObject<typeof parts> = {

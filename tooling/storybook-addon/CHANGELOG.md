@@ -1,5 +1,43 @@
 # @chakra-ui/storybook-addon
 
+## 4.0.6
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/icons@2.0.6
+
+## 4.0.5
+
+### Patch Changes
+
+- [#6356](https://github.com/chakra-ui/chakra-ui/pull/6356)
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Force release due
+  to change in build configuration
+  - Update package `main` and `module` entries
+- Updated dependencies
+  [[`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/icons@2.0.5
+
+## 4.0.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@2.2.4
+  - @chakra-ui/icons@2.0.4
+
+## 4.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@2.2.3
+  - @chakra-ui/icons@2.0.3
+
 ## 4.0.2
 
 ### Patch Changes

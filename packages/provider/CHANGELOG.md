@@ -1,5 +1,61 @@
 # @chakra-ui/provider
 
+## 2.0.11
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/css-reset@2.0.3
+  - @chakra-ui/react-env@2.0.6
+  - @chakra-ui/portal@2.0.6
+  - @chakra-ui/system@2.2.4
+  - @chakra-ui/utils@2.0.6
+
+## 2.0.10
+
+### Patch Changes
+
+- [#6356](https://github.com/chakra-ui/chakra-ui/pull/6356)
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Force release due
+  to change in build configuration
+  - Update package `main` and `module` entries
+- Updated dependencies
+  [[`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/css-reset@2.0.2
+  - @chakra-ui/react-env@2.0.5
+  - @chakra-ui/portal@2.0.5
+  - @chakra-ui/system@2.2.3
+  - @chakra-ui/utils@2.0.5
+
+## 2.0.9
+
+### Patch Changes
+
+- Updated dependencies
+  [[`46b495455`](https://github.com/chakra-ui/chakra-ui/commit/46b495455fc416b166db18f5098ede7752b2e3ba),
+  [`c11743b47`](https://github.com/chakra-ui/chakra-ui/commit/c11743b47f38f8f38a21b120add3a9cf765b81ee),
+  [`fb3c09325`](https://github.com/chakra-ui/chakra-ui/commit/fb3c09325d7bf58aed13c6d0fb1f72b92ff0ef3a)]:
+  - @chakra-ui/portal@2.0.4
+  - @chakra-ui/utils@2.0.4
+  - @chakra-ui/react-env@2.0.4
+  - @chakra-ui/system@2.2.2
+
+## 2.0.8
+
+### Patch Changes
+
+- Updated dependencies
+  [[`36ef37d58`](https://github.com/chakra-ui/chakra-ui/commit/36ef37d58220dffc4b8e35c31fdcc57042e9a859),
+  [`3d8e095df`](https://github.com/chakra-ui/chakra-ui/commit/3d8e095dfc696b3d903455319231e77d1c21d875),
+  [`6c15ec2c2`](https://github.com/chakra-ui/chakra-ui/commit/6c15ec2c2a32a36ecc2d169308379a6825619543)]:
+  - @chakra-ui/utils@2.0.3
+  - @chakra-ui/react-env@2.0.3
+  - @chakra-ui/portal@2.0.3
+  - @chakra-ui/system@2.2.1
+
 ## 2.0.7
 
 ### Patch Changes

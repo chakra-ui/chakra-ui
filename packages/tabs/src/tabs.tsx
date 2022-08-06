@@ -1,3 +1,4 @@
+import { createContext } from "@chakra-ui/react-utils"
 import {
   chakra,
   forwardRef,
@@ -6,10 +7,9 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
-  createStylesContext,
 } from "@chakra-ui/system"
-import { cx, omit, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { cx, omit, __DEV__, Dict } from "@chakra-ui/utils"
+import { useMemo } from "react"
 import {
   TabsDescendantsProvider,
   TabsProvider,
@@ -24,7 +24,14 @@ import {
   UseTabsProps,
 } from "./use-tabs"
 
-const [StylesProvider, useStyles] = createStylesContext("Tabs")
+const [TabsStylesProvider, useTabsStyles] = createContext<
+  Dict<SystemStyleObject>
+>({
+  name: `TabsStylesContext`,
+  errorMessage: `useTabsStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Tabs />" `,
+})
+
+export { useTabsStyles }
 
 interface TabsOptions {
   /**
@@ -50,19 +57,19 @@ export interface TabsProps
  *
  * Provides context and logic for all tabs components.
  */
-export const Tabs = forwardRef<TabsProps, "div">((props, ref) => {
+export const Tabs = forwardRef<TabsProps, "div">(function Tabs(props, ref) {
   const styles = useMultiStyleConfig("Tabs", props)
   const { children, className, ...rest } = omitThemingProps(props)
 
   const { htmlProps, descendants, ...ctx } = useTabs(rest)
-  const context = React.useMemo(() => ctx, [ctx])
+  const context = useMemo(() => ctx, [ctx])
 
   const rootProps = omit(htmlProps as any, ["isFitted"])
 
   return (
     <TabsDescendantsProvider value={descendants}>
       <TabsProvider value={context}>
-        <StylesProvider value={styles}>
+        <TabsStylesProvider value={styles}>
           <chakra.div
             className={cx("chakra-tabs", className)}
             ref={ref}
@@ -71,7 +78,7 @@ export const Tabs = forwardRef<TabsProps, "div">((props, ref) => {
           >
             {children}
           </chakra.div>
-        </StylesProvider>
+        </TabsStylesProvider>
       </TabsProvider>
     </TabsDescendantsProvider>
   )
@@ -87,8 +94,8 @@ export interface TabProps extends UseTabOptions, HTMLChakraProps<"button"> {}
  * Tab button used to activate a specific tab panel. It renders a `button`,
  * and is responsible for automatic and manual selection modes.
  */
-export const Tab = forwardRef<TabProps, "button">((props, ref) => {
-  const styles = useStyles()
+export const Tab = forwardRef<TabProps, "button">(function Tab(props, ref) {
+  const styles = useTabsStyles()
   const tabProps = useTab({ ...props, ref })
 
   const tabStyles: SystemStyleObject = {
@@ -120,10 +127,13 @@ export interface TabListProps
  * TabList is used to manage a list of tab buttons. It renders a `div` by default,
  * and is responsible the keyboard interaction between tabs.
  */
-export const TabList = forwardRef<TabListProps, "div">((props, ref) => {
+export const TabList = forwardRef<TabListProps, "div">(function TabList(
+  props,
+  ref,
+) {
   const tablistProps = useTabList({ ...props, ref })
 
-  const styles = useStyles()
+  const styles = useTabsStyles()
 
   const tablistStyles: SystemStyleObject = {
     display: "flex",
@@ -149,9 +159,12 @@ export interface TabPanelProps extends HTMLChakraProps<"div"> {}
  * TabPanel
  * Used to render the content for a specific tab.
  */
-export const TabPanel = forwardRef<TabPanelProps, "div">((props, ref) => {
+export const TabPanel = forwardRef<TabPanelProps, "div">(function TabPanel(
+  props,
+  ref,
+) {
   const panelProps = useTabPanel({ ...props, ref })
-  const styles = useStyles()
+  const styles = useTabsStyles()
 
   return (
     <chakra.div
@@ -177,9 +190,12 @@ export interface TabPanelsProps extends HTMLChakraProps<"div"> {}
  *
  * It renders a `div` by default.
  */
-export const TabPanels = forwardRef<TabPanelsProps, "div">((props, ref) => {
+export const TabPanels = forwardRef<TabPanelsProps, "div">(function TabPanels(
+  props,
+  ref,
+) {
   const panelsProps = useTabPanels(props)
-  const styles = useStyles()
+  const styles = useTabsStyles()
 
   return (
     <chakra.div
@@ -205,14 +221,14 @@ export interface TabIndicatorProps extends HTMLChakraProps<"div"> {}
  * selected tabs.
  */
 export const TabIndicator = forwardRef<TabIndicatorProps, "div">(
-  (props, ref) => {
+  function TabIndicator(props, ref) {
     const indicatorStyle = useTabIndicator()
     const style = {
       ...props.style,
       ...indicatorStyle,
     }
 
-    const styles = useStyles()
+    const styles = useTabsStyles()
 
     return (
       <chakra.div

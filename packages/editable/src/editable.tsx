@@ -1,31 +1,19 @@
+import { MaybeRenderProp } from "@chakra-ui/react-utils"
 import {
   chakra,
   forwardRef,
+  HTMLChakraProps,
   omitThemingProps,
-  SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  HTMLChakraProps,
-  createStylesContext,
 } from "@chakra-ui/system"
 import { cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
-import { createContext, MaybeRenderProp } from "@chakra-ui/react-utils"
-import * as React from "react"
+import { EditableProvider, EditableStylesProvider } from "./editable-context"
 import {
   useEditable,
   UseEditableProps,
   UseEditableReturn,
 } from "./use-editable"
-
-const [StylesProvider, useStyles] = createStylesContext("Editable")
-
-type EditableContext = Omit<UseEditableReturn, "htmlProps">
-
-const [EditableProvider, useEditableContext] = createContext<EditableContext>({
-  name: "EditableContext",
-  errorMessage:
-    "useEditableContext: context is undefined. Seems you forgot to wrap the editable components in `<Editable />`",
-})
 
 type RenderProps = Pick<
   UseEditableReturn,
@@ -51,7 +39,10 @@ export interface EditableProps
  * The wrapper that provides context and logic for all editable
  * components. It renders a `div`
  */
-export const Editable = forwardRef<EditableProps, "div">((props, ref) => {
+export const Editable = forwardRef<EditableProps, "div">(function Editable(
+  props,
+  ref,
+) {
   const styles = useMultiStyleConfig("Editable", props)
 
   const ownProps = omitThemingProps(props)
@@ -70,7 +61,7 @@ export const Editable = forwardRef<EditableProps, "div">((props, ref) => {
 
   return (
     <EditableProvider value={context}>
-      <StylesProvider value={styles}>
+      <EditableStylesProvider value={styles}>
         <chakra.div
           ref={ref}
           {...(htmlProps as HTMLChakraProps<"div">)}
@@ -78,158 +69,11 @@ export const Editable = forwardRef<EditableProps, "div">((props, ref) => {
         >
           {children}
         </chakra.div>
-      </StylesProvider>
+      </EditableStylesProvider>
     </EditableProvider>
   )
 })
 
 if (__DEV__) {
   Editable.displayName = "Editable"
-}
-
-const commonStyles: SystemStyleObject = {
-  fontSize: "inherit",
-  fontWeight: "inherit",
-  textAlign: "inherit",
-  bg: "transparent",
-}
-
-export interface EditablePreviewProps extends HTMLChakraProps<"div"> {}
-
-/**
- * EditablePreview
- *
- * The `span` used to display the final value, in the `preview` mode
- */
-export const EditablePreview = forwardRef<EditablePreviewProps, "span">(
-  (props, ref) => {
-    const { getPreviewProps } = useEditableContext()
-    const styles = useStyles()
-
-    const previewProps = getPreviewProps(props, ref) as HTMLChakraProps<"span">
-    const _className = cx("chakra-editable__preview", props.className)
-
-    return (
-      <chakra.span
-        {...previewProps}
-        __css={{
-          cursor: "text",
-          display: "inline-block",
-          ...commonStyles,
-          ...styles.preview,
-        }}
-        className={_className}
-      />
-    )
-  },
-)
-
-if (__DEV__) {
-  EditablePreview.displayName = "EditablePreview"
-}
-
-export interface EditableInputProps extends HTMLChakraProps<"input"> {}
-
-/**
- * EditableInput
- *
- * The input used in the `edit` mode
- */
-export const EditableInput = forwardRef<EditableInputProps, "input">(
-  (props, ref) => {
-    const { getInputProps } = useEditableContext()
-    const styles = useStyles()
-
-    const inputProps = getInputProps(props, ref)
-    const _className = cx("chakra-editable__input", props.className)
-
-    return (
-      <chakra.input
-        {...inputProps}
-        __css={{
-          outline: 0,
-          ...commonStyles,
-          ...styles.input,
-        }}
-        className={_className}
-      />
-    )
-  },
-)
-
-if (__DEV__) {
-  EditableInput.displayName = "EditableInput"
-}
-
-export interface EditableTextareaProps extends HTMLChakraProps<"textarea"> {}
-
-/**
- * EditableTextarea
- *
- * The textarea used in the `edit` mode
- */
-export const EditableTextarea = forwardRef<EditableTextareaProps, "textarea">(
-  (props, ref) => {
-    const { getTextareaProps } = useEditableContext()
-    const styles = useStyles()
-
-    const textareaProps = getTextareaProps(props, ref)
-    const _className = cx("chakra-editable__textarea", props.className)
-
-    return (
-      <chakra.textarea
-        {...textareaProps}
-        __css={{
-          outline: 0,
-          ...commonStyles,
-          ...styles.textarea,
-        }}
-        className={_className}
-      />
-    )
-  },
-)
-
-if (__DEV__) {
-  EditableTextarea.displayName = "EditableTextarea"
-}
-/**
- * React hook use to gain access to the editable state and actions.
- */
-export function useEditableState() {
-  const { isEditing, onSubmit, onCancel, onEdit, isDisabled } =
-    useEditableContext()
-
-  return {
-    isEditing,
-    onSubmit,
-    onCancel,
-    onEdit,
-    isDisabled,
-  }
-}
-
-/**
- * React hook use to create controls for the editable component
- */
-export function useEditableControls(): Pick<
-  EditableContext,
-  | "isEditing"
-  | "getEditButtonProps"
-  | "getCancelButtonProps"
-  | "getSubmitButtonProps"
-> {
-  const {
-    isEditing,
-    getEditButtonProps,
-    getCancelButtonProps,
-    getSubmitButtonProps,
-  } = useEditableContext()
-
-  return {
-    isEditing,
-    getEditButtonProps,
-    getCancelButtonProps,
-    getSubmitButtonProps,
-  }
 }

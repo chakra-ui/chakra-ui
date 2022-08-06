@@ -1,19 +1,21 @@
 import type {
-  StyleObjectOrFn,
-  SemanticValue,
-  Pseudos,
-} from "@chakra-ui/styled-system"
-import type {
-  ColorMode,
-  ColorModeOptions,
-  ThemingProps,
-} from "@chakra-ui/system"
-import type {
   PartsStyleInterpolation,
-  Styles,
+  Pseudos,
+  SemanticValue,
+  StyleObjectOrFn,
   SystemStyleInterpolation,
-} from "@chakra-ui/theme-tools"
+  ThemingProps,
+} from "@chakra-ui/styled-system"
+import { Styles } from "@chakra-ui/theme-tools"
 import type { Dict } from "@chakra-ui/utils"
+
+type ColorMode = "light" | "dark"
+
+type ColorModeOptions = {
+  initialColorMode?: "light" | "dark" | "system"
+  useSystemColorMode?: boolean
+  disableTransitionOnChange?: boolean
+}
 
 export type RecursiveProperty<T = string | number> = RecursiveObject<T> | T
 

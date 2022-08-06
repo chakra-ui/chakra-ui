@@ -5,7 +5,7 @@ import {
   motion,
   Variants as _Variants,
 } from "framer-motion"
-import * as React from "react"
+import { forwardRef } from "react"
 import {
   TransitionDefaults,
   Variants,
@@ -55,8 +55,8 @@ export interface ScaleFadeProps
   extends ScaleFadeOptions,
     WithTransitionConfig<HTMLMotionProps<"div">> {}
 
-export const ScaleFade = React.forwardRef<HTMLDivElement, ScaleFadeProps>(
-  (props, ref) => {
+export const ScaleFade = forwardRef<HTMLDivElement, ScaleFadeProps>(
+  function ScaleFade(props, ref) {
     const {
       unmountOnExit,
       in: isOpen,

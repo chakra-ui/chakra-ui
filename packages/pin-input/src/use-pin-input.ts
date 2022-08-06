@@ -2,7 +2,7 @@ import { createDescendantContext } from "@chakra-ui/descendant"
 import { useControllableState, useId } from "@chakra-ui/hooks"
 import { ariaAttr, callAllHandlers, focus } from "@chakra-ui/utils"
 import { createContext, mergeRefs } from "@chakra-ui/react-utils"
-import * as React from "react"
+import { useCallback, useEffect, useState } from "react"
 
 /* -------------------------------------------------------------------------------------------------
  * Create context to track descendants and their indices
@@ -141,8 +141,8 @@ export function usePinInput(props: UsePinInputProps = {}) {
 
   const descendants = usePinInputDescendants()
 
-  const [moveFocus, setMoveFocus] = React.useState(true)
-  const [focusedIndex, setFocusedIndex] = React.useState(-1)
+  const [moveFocus, setMoveFocus] = useState(true)
+  const [focusedIndex, setFocusedIndex] = useState(-1)
 
   const [values, setValues] = useControllableState<string[]>({
     defaultValue: toArray(defaultValue) || [],
@@ -150,7 +150,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
     onChange: (values) => onChange?.(values.join("")),
   })
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (autoFocus) {
       const first = descendants.first()
       if (first) focus(first.node, { nextTick: true })
@@ -159,7 +159,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
     // eslint-disable-next-line
   }, [descendants])
 
-  const focusNext = React.useCallback(
+  const focusNext = useCallback(
     (index: number) => {
       if (!moveFocus || !manageFocus) return
       const next = descendants.next(index, false)
@@ -168,7 +168,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
     [descendants, moveFocus, manageFocus],
   )
 
-  const setValue = React.useCallback(
+  const setValue = useCallback(
     (value: string, index: number) => {
       const nextValues = [...values]
       nextValues[index] = value
@@ -190,29 +190,26 @@ export function usePinInput(props: UsePinInputProps = {}) {
     [values, setValues, focusNext, onComplete, descendants],
   )
 
-  const clear = React.useCallback(() => {
+  const clear = useCallback(() => {
     const values: string[] = Array(descendants.count()).fill("")
     setValues(values)
     const first = descendants.first()
     if (first) focus(first.node)
   }, [descendants, setValues])
 
-  const getNextValue = React.useCallback(
-    (value: string, eventValue: string) => {
-      let nextValue = eventValue
-      if (value?.length > 0) {
-        if (value[0] === eventValue.charAt(0)) {
-          nextValue = eventValue.charAt(1)
-        } else if (value[0] === eventValue.charAt(1)) {
-          nextValue = eventValue.charAt(0)
-        }
+  const getNextValue = useCallback((value: string, eventValue: string) => {
+    let nextValue = eventValue
+    if (value?.length > 0) {
+      if (value[0] === eventValue.charAt(0)) {
+        nextValue = eventValue.charAt(1)
+      } else if (value[0] === eventValue.charAt(1)) {
+        nextValue = eventValue.charAt(0)
       }
-      return nextValue
-    },
-    [],
-  )
+    }
+    return nextValue
+  }, [])
 
-  const getInputProps = React.useCallback(
+  const getInputProps = useCallback(
     (props: InputProps & { index: number }): InputProps => {
       const { index, ...rest } = props
 

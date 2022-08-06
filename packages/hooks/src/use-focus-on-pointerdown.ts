@@ -6,13 +6,12 @@ import {
   isActiveElement,
   isRefObject,
 } from "@chakra-ui/utils"
-import { RefObject } from "react"
 import { usePointerEvent } from "./use-pointer-event"
 
 export interface UseFocusOnMouseDownProps {
   enabled?: boolean
-  ref: RefObject<HTMLElement>
-  elements?: Array<RefObject<HTMLElement> | HTMLElement | null>
+  ref: React.RefObject<HTMLElement>
+  elements?: Array<React.RefObject<HTMLElement> | HTMLElement | null>
 }
 
 /**

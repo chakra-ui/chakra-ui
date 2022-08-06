@@ -2,7 +2,7 @@ import { mode, transparentize } from "@chakra-ui/theme-tools"
 import type {
   SystemStyleObject,
   SystemStyleFunction,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/styled-system"
 
 const baseStyle: SystemStyleObject = {
   lineHeight: "1.2",

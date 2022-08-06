@@ -27,7 +27,7 @@ import {
   roundValueToStep,
   valueToPercent,
 } from "@chakra-ui/utils"
-import { CSSProperties, useCallback, useMemo, useRef } from "react"
+import { useCallback, useMemo, useRef } from "react"
 import { getStyles, getIsReversed } from "./slider-utils"
 
 export interface UseSliderProps {
@@ -531,8 +531,8 @@ export type UseSliderReturn = ReturnType<typeof useSlider>
 
 function orient(options: {
   orientation: UseSliderProps["orientation"]
-  vertical: CSSProperties
-  horizontal: CSSProperties
+  vertical: React.CSSProperties
+  horizontal: React.CSSProperties
 }) {
   const { orientation, vertical, horizontal } = options
   return orientation === "vertical" ? vertical : horizontal
