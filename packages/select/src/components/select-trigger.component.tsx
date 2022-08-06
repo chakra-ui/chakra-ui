@@ -13,7 +13,10 @@ export interface SelectButtonProps
   rightIcon?: MaybeRenderPropElement<boolean>
 }
 
-const SelectTrigger = React.forwardRef<HTMLButtonElement, SelectButtonProps>(
+export const SelectTrigger = React.forwardRef<
+  HTMLButtonElement,
+  SelectButtonProps
+>(
   (
     {
       leftIcon: leftIconProp,
@@ -63,5 +66,3 @@ const SelectTrigger = React.forwardRef<HTMLButtonElement, SelectButtonProps>(
 if (__DEV__) {
   SelectTrigger.displayName = "SelectTrigger"
 }
-
-export default SelectTrigger

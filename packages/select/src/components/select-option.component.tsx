@@ -62,7 +62,7 @@ const SelectOptionContent: React.FC<SelectOptionContentProps> = ({
   return <Box className="chakra-select__option-label">{children}</Box>
 }
 
-const SelectOption: React.FC<SelectOptionProps> = ({
+export const SelectOption: React.FC<SelectOptionProps> = ({
   value,
   children,
   leftIcon,
@@ -115,5 +115,3 @@ const SelectOption: React.FC<SelectOptionProps> = ({
 if (__DEV__) {
   SelectOption.displayName = "SelectOption"
 }
-
-export default SelectOption

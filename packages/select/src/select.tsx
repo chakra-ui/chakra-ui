@@ -10,7 +10,7 @@ import {
   SelectControlProps,
   SelectChildrenProps,
 } from "./select.interface"
-import SelectInput from "./components/select-input.component"
+import { SelectInput } from "./components/select-input.component"
 import useSelect, { UseSelectReturn } from "./hooks/use-select.hook"
 
 export interface SelectProps
@@ -35,7 +35,7 @@ export { SelectContextProvider, useSelectContext }
 
 export const useSelectStyles = useStyles
 
-const Select = React.forwardRef<HTMLInputElement, SelectProps>(
+export const Select = React.forwardRef<HTMLInputElement, SelectProps>(
   (
     {
       name,

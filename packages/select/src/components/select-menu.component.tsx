@@ -10,7 +10,7 @@ export interface SelectMenuProps extends BoxProps {
   rootStyles?: SystemStyleObject
 }
 
-const SelectMenu: React.FC<SelectMenuProps> = ({
+export const SelectMenu: React.FC<SelectMenuProps> = ({
   children,
   rootStyles,
   ...restProps
@@ -36,5 +36,3 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
 if (__DEV__) {
   SelectMenu.displayName = "SelectMenu"
 }
-
-export default SelectMenu

@@ -9,10 +9,7 @@ import {
   PhoneIcon,
 } from "@chakra-ui/icons"
 import React from "react"
-import SelectOption from "../src/components/select-option.component"
-import Select from "../src/select"
-import SelectMenu from "../src/components/select-menu.component"
-import SelectTrigger from "../src/components/select-trigger.component"
+import { SelectOption, Select, SelectMenu, SelectTrigger } from "../src"
 import { SelectValue } from "../src/select.interface"
 
 const selectStories: ComponentMeta<typeof Select> = {

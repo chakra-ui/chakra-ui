@@ -7,7 +7,7 @@ interface SelectInputProps extends ChakraProps {
   name?: string
 }
 
-const SelectInput = React.forwardRef<HTMLInputElement, SelectInputProps>(
+export const SelectInput = React.forwardRef<HTMLInputElement, SelectInputProps>(
   ({ name, ...restProps }, forwardRef) => {
     const styles = useSelectStyles()
     const { value } = useSelectContext()
@@ -28,5 +28,3 @@ const SelectInput = React.forwardRef<HTMLInputElement, SelectInputProps>(
 if (__DEV__) {
   SelectInput.displayName = "SelectInput"
 }
-
-export default SelectInput
