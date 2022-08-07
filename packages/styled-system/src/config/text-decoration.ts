@@ -41,7 +41,9 @@ export interface TextDecorationProps {
   /**
    * The CSS `text-underline-offset` property
    */
-  textUnderlineOffset?: ResponsiveValue<CSS.Property.TextUnderlineOffset | number>
+  textUnderlineOffset?: ResponsiveValue<
+    CSS.Property.TextUnderlineOffset | number
+  >
   /**
    * The `text-shadow` property
    */
