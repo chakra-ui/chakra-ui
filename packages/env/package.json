@@ -32,7 +32,8 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/utils": "workspace:*"
+    "@chakra-ui/utils": "workspace:*",
+    "@chakra-ui/portal": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18"

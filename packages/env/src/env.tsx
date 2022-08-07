@@ -1,4 +1,5 @@
 import { isBrowser, __DEV__ } from "@chakra-ui/utils"
+import { Portal } from "@chakra-ui/portal"
 import {
   createContext,
   startTransition,
@@ -56,13 +57,15 @@ export function EnvironmentProvider(props: EnvironmentProviderProps) {
     <EnvironmentContext.Provider value={context}>
       {children}
       {mounted && (
-        <span
-          ref={(el) => {
-            startTransition(() => {
-              if (el) setNode(el)
-            })
-          }}
-        />
+        <Portal>
+          <span
+            ref={(el) => {
+              startTransition(() => {
+                if (el) setNode(el)
+              })
+            }}
+          />
+        </Portal>
       )}
     </EnvironmentContext.Provider>
   )
