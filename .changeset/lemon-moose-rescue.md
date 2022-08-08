@@ -2,4 +2,4 @@
 "@chakra-ui/color-mode": patch
 ---
 
-export localStorageManager
+Fix regression where `localStorageManager` was not exported
