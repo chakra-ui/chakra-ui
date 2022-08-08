@@ -4,26 +4,18 @@ description: "Sets up Node.js and runs install"
 runs:
   using: composite
   steps:
+    - name: Install dependencies
+      uses: pnpm/action-setup@v2.2.2
+      with:
+        version: 7
+        run_install: true
+
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version-file: ".nvmrc"
         registry-url: "https://registry.npmjs.org"
         cache: "pnpm"
-
-    - name: Prepare cache
-      uses: actions/cache@v2
-      with:
-        path: ~/.pnpm-store
-        key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-
-
-    - name: Install dependencies
-      uses: pnpm/action-setup@v2.2.2
-      with:
-        version: 7
-        run_install: true
 
     - name: Setup Git User
       shell: bash
