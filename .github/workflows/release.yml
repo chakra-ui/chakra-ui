@@ -45,6 +45,8 @@ jobs:
     steps:
       - name: Checkout branch
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Install
         uses: ./.github/composite-actions/install
