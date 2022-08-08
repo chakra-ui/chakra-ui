@@ -36,9 +36,10 @@
     "twitter:gen": "ts-node scripts/twitter-generate.ts",
     "twitter:write": "ts-node scripts/twitter-write.ts",
     "create:pkg": "plop component",
-    "release": "changeset publish",
     "version": "changeset version",
-    "release:dev": "pnpm changeset version --snapshot dev && pnpm changeset publish --tag dev",
+    "release": "changeset publish",
+    "version:dev": "changeset version --snapshot dev",
+    "release:dev": "pnpm changeset publish --tag dev",
     "sandbox": "ts-node scripts/sandbox.ts",
     "notify:release": "npm-run-all changelog:write discord changelog:commit"
   },

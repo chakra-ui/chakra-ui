@@ -4,10 +4,6 @@ description: "Sets up Node.js and runs install"
 runs:
   using: composite
   steps:
-    - uses: pnpm/action-setup@v2.2.2
-      with:
-        version: 7
-
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
@@ -15,14 +11,22 @@ runs:
         registry-url: "https://registry.npmjs.org"
         cache: "pnpm"
 
+    - name: Prepare cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.pnpm-store
+        key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-
+
+    - name: Install dependencies
+      uses: pnpm/action-setup@v2.2.2
+      with:
+        version: 7
+        run_install: true
+
     - name: Setup Git User
       shell: bash
       run: |
         git config --global user.email "joseshegs@gmail.com"
         git config --global user.name "Segun Adebayo"
-
-    - name: Install dependencies
-      shell: bash
-      run: pnpm install
-      env:
-        PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
