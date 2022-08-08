@@ -8,6 +8,7 @@ export {
   cookieStorageManager,
   cookieStorageManagerSSR,
   createCookieStorageManager,
+  localStorageManager,
   createLocalStorageManager,
 } from "./storage-manager"
 export { ColorModeScript, type ColorModeScriptProps } from "./color-mode-script"
