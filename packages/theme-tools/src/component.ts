@@ -35,3 +35,5 @@ export function orient(options: {
   if (!orientation) return {}
   return orientation === "vertical" ? vertical : horizontal
 }
+
+export type { StyleFunctionProps }
