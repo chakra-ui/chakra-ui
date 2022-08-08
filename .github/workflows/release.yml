@@ -55,10 +55,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm release
-          version: pnpm version
           commit: "ci(changesets): version packages"
-          title: "ci(changesets): version packages"
           setupGitUser: false
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
