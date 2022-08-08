@@ -513,15 +513,14 @@ test("returns correct media query 2nd order", () => {
   expect(keys).toMatchInlineSnapshot(`
     Array [
       "flexDirection",
-      "justifyContent",
-      "@media screen and (min-width: 40em)",
-      "@media screen and (min-width: 52em)",
       "color",
       "height",
       "paddingInlineStart",
       "paddingInlineEnd",
       "paddingTop",
       "paddingBottom",
+      "@media screen and (min-width: 40em)",
+      "@media screen and (min-width: 52em)",
     ]
   `)
 })

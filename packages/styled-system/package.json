@@ -40,7 +40,8 @@
   },
   "devDependencies": {
     "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1"
+    "@emotion/styled": "^11.8.1",
+    "cronometro": "^1.1.0"
   },
   "sideEffects": false,
   "scripts": {
@@ -48,6 +49,7 @@
     "dev": "pnpm build -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src/index.ts"
+    "build:fast": "tsup src/index.ts",
+    "benchmark": "node benchmarks/benchmark.js"
   }
 }
