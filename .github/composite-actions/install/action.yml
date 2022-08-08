@@ -8,7 +8,6 @@ runs:
       uses: pnpm/action-setup@v2.2.2
       with:
         version: 7
-        run_install: true
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
@@ -22,3 +21,9 @@ runs:
       run: |
         git config --global user.email "joseshegs@gmail.com"
         git config --global user.name "Segun Adebayo"
+
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install
+      env:
+        PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
