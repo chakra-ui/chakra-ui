@@ -13,7 +13,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   props:
-    name: Docs Gen
+    name: Props Docs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
