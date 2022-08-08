@@ -43,4 +43,4 @@ const win = {
   clearInterval: noop,
 }
 
-export const ssrWindow = (win as unknown) as Window
+export const ssrWindow = win as unknown as Window

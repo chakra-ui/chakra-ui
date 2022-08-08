@@ -22,6 +22,8 @@
     "pretest": "pnpm build:theme",
     "test": "jest",
     "lint": "eslint packages/**/src/ --ext .ts,.tsx --config .eslintrc",
+    "format:check": "prettier --check packages/**/src",
+    "format:write": "prettier --write packages/**/src",
     "build:addon": "cd tooling/storybook-addon && pnpm build",
     "storybook": "pnpm build:addon && start-storybook -p 6006",
     "build:storybook": "pnpm build:addon && build-storybook && sb extract",
