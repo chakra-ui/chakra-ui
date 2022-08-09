@@ -121,4 +121,98 @@ describe("useToast", () => {
     const successText = await screen.findByText(successTitle)
     expect(successText).toBeInTheDocument()
   })
+
+  it("should accept top level options", async () => {
+    const title = "Yay!"
+
+    const description = "Something awesome happened"
+
+    const TestComponent = () => {
+      const toast = useToast()
+      return <button onClick={() => toast()}>Toast</button>
+    }
+
+    const { user } = render(
+      <ToastProvider defaultOptions={{ title, description }}>
+        <TestComponent />
+      </ToastProvider>,
+    )
+
+    const button = await screen.findByText("Toast")
+    await user.click(button)
+
+    const allByTitle = await screen.findAllByText(title)
+    const allByDescription = await screen.findAllByText(description)
+
+    expect(allByTitle).toHaveLength(1)
+    expect(allByDescription).toHaveLength(1)
+  })
+
+  it("toast function should override top level default options", async () => {
+    const defaultTitle = "Yay!"
+    const defaultDescription = "Something awesome happened"
+
+    const title = "Hooray!"
+    const description = "Something splendid happened"
+
+    const TestComponent = () => {
+      const toast = useToast()
+      return (
+        <button onClick={() => toast({ title, description })}>Toast</button>
+      )
+    }
+
+    const { user } = render(
+      <ToastProvider
+        defaultOptions={{
+          title: defaultTitle,
+          description: defaultDescription,
+        }}
+      >
+        <TestComponent />
+      </ToastProvider>,
+    )
+
+    const button = await screen.findByText("Toast")
+    await user.click(button)
+
+    const allByTitle = await screen.findAllByText(title)
+    const allByDescription = await screen.findAllByText(description)
+
+    expect(allByTitle).toHaveLength(1)
+    expect(allByDescription).toHaveLength(1)
+  })
+
+  it("hook's defaults should override top level default options", async () => {
+    const defaultTitle = "Yay!"
+    const defaultDescription = "Something awesome happened"
+
+    const title = "Hooray!"
+    const description = "Something splendid happened"
+
+    const TestComponent = () => {
+      const toast = useToast({ title, description })
+      return <button onClick={() => toast()}>Toast</button>
+    }
+
+    const { user } = render(
+      <ToastProvider
+        defaultOptions={{
+          title: defaultTitle,
+          description: defaultDescription,
+        }}
+      >
+        <TestComponent />
+      </ToastProvider>,
+    )
+
+    const button = await screen.findByText("Toast")
+    await user.click(button)
+
+    const allByTitle = await screen.findAllByText(title)
+    const allByDescription = await screen.findAllByText(description)
+
+    expect(allByTitle).toHaveLength(1)
+    expect(allByDescription).toHaveLength(1)
+  })
 })

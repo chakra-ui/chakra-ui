@@ -19,8 +19,7 @@ export function ChakraProvider({
 }: ChakraProviderProps) {
   return (
     <BaseChakraProvider {...restProps}>
-      {children}
-      <ToastProvider {...toastOptions} />
+      <ToastProvider {...toastOptions}>{children}</ToastProvider>
     </BaseChakraProvider>
   )
 }
