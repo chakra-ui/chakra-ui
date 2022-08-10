@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/button"
-import { useDisclosure } from "@chakra-ui/hooks"
+import { useDisclosure } from "@chakra-ui/react-use-disclosure"
 import { Box, Container } from "@chakra-ui/layout"
 import {
   Drawer,
