@@ -10,6 +10,7 @@ packages/**/.next
 storybook-static
 packages/**/coverage
 packages/**/dist
+hooks/**/dist
 tooling/**/dist
 packages/**/node_modules
 npm-debug.log*
