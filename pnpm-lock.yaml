@@ -320,7 +320,7 @@ importers:
       typescript: 4.7.4
       vite: 3.0.4
 
-  hooks/react-use-size:
+  hooks/use-size:
     specifiers:
       '@zag-js/element-size': 0.1.0
       react: ^18.2.0
