@@ -324,13 +324,19 @@ importers:
     specifiers: {}
 
   hooks/use-callback-ref:
-    specifiers: {}
+    specifiers:
+      react: ^18.2.0
+    devDependencies:
+      react: 18.2.0
 
   hooks/use-controllable-state:
     specifiers:
       '@chakra-ui/react-use-callback-ref': workspace:*
+      react: ^18.2.0
     dependencies:
       '@chakra-ui/react-use-callback-ref': link:../use-callback-ref
+    devDependencies:
+      react: 18.2.0
 
   hooks/use-size:
     specifiers:
@@ -338,6 +344,12 @@ importers:
       react: ^18.2.0
     dependencies:
       '@zag-js/element-size': 0.1.0
+    devDependencies:
+      react: 18.2.0
+
+  hooks/use-update-effect:
+    specifiers:
+      react: ^18.2.0
     devDependencies:
       react: 18.2.0
 

@@ -35,5 +35,11 @@
   },
   "dependencies": {
     "@chakra-ui/react-use-callback-ref": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "react": "^18.0.0"
   }
 }
