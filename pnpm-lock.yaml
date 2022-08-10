@@ -338,6 +338,15 @@ importers:
     devDependencies:
       react: 18.2.0
 
+  hooks/use-event-listener:
+    specifiers:
+      '@chakra-ui/react-use-callback-ref': workspace:*
+      react: ^18.2.0
+    dependencies:
+      '@chakra-ui/react-use-callback-ref': link:../use-callback-ref
+    devDependencies:
+      react: 18.2.0
+
   hooks/use-size:
     specifiers:
       '@zag-js/element-size': 0.1.0
