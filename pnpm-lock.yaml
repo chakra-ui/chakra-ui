@@ -320,6 +320,18 @@ importers:
       typescript: 4.7.4
       vite: 3.0.4
 
+  hooks/context:
+    specifiers: {}
+
+  hooks/use-callback-ref:
+    specifiers: {}
+
+  hooks/use-controllable-state:
+    specifiers:
+      '@chakra-ui/react-use-callback-ref': workspace:*
+    dependencies:
+      '@chakra-ui/react-use-callback-ref': link:../use-callback-ref
+
   hooks/use-size:
     specifiers:
       '@zag-js/element-size': 0.1.0
