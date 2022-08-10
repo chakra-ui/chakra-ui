@@ -21,7 +21,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/use-update-effect"
+    "directory": "hooks/use-update-effect"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
