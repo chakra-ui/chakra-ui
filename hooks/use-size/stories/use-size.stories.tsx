@@ -11,9 +11,11 @@ export function MeasureSize() {
   const size = useSize(ref)
   return (
     <div>
-      <h1>Measure Size</h1>
-      <div ref={ref} style={{ background: "red", border: "1px dashed black" }}>
-        {JSON.stringify(size, null, 4)}
+      <h1>Measured Size: {JSON.stringify(size, null, 4)}</h1>
+      <div ref={ref} style={{ background: "pink", border: "1px dashed black" }}>
+        In publishing and graphic design, Lorem ipsum is a placeholder text
+        commonly used to demonstrate the visual form of a document or a typeface
+        without relying on meaningful content
       </div>
     </div>
   )
