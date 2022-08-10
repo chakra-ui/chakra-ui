@@ -1,11 +1,10 @@
-import { MaybeRenderProp } from "@chakra-ui/react-utils"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
   SystemStyleObject,
 } from "@chakra-ui/system"
-import { cx, Omit, runIfFn, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/utils"
 import { useMemo } from "react"
 import {
   AccordionItemProvider,
@@ -20,10 +19,9 @@ export interface AccordionItemProps
       keyof UseAccordionItemProps | "children"
     >,
     UseAccordionItemProps {
-  children?: MaybeRenderProp<{
-    isExpanded: boolean
-    isDisabled: boolean
-  }>
+  children?:
+    | React.ReactNode
+    | ((props: { isExpanded: boolean; isDisabled: boolean }) => React.ReactNode)
 }
 /**
  * AccordionItem is a single accordion that provides the open-close
@@ -53,18 +51,19 @@ export const AccordionItem = forwardRef<AccordionItemProps, "div">(
           className={cx("chakra-accordion__item", className)}
           __css={containerStyles}
         >
-          {runIfFn(children, {
-            isExpanded: !!context.isOpen,
-            isDisabled: !!context.isDisabled,
-          })}
+          {typeof children === "function"
+            ? children({
+                isExpanded: !!context.isOpen,
+                isDisabled: !!context.isDisabled,
+              })
+            : children}
         </chakra.div>
       </AccordionItemProvider>
     )
   },
 )
-if (__DEV__) {
-  AccordionItem.displayName = "AccordionItem"
-}
+
+AccordionItem.displayName = "AccordionItem"
 
 /**
  * React hook to get the state and actions of an accordion item

@@ -356,6 +356,12 @@ importers:
     devDependencies:
       react: 18.2.0
 
+  hooks/use-merge-refs:
+    specifiers:
+      react: ^18.2.0
+    devDependencies:
+      react: 18.2.0
+
   hooks/use-size:
     specifiers:
       '@zag-js/element-size': 0.1.0
@@ -375,11 +381,12 @@ importers:
     specifiers:
       '@chakra-ui/button': workspace:*
       '@chakra-ui/descendant': workspace:*
-      '@chakra-ui/hooks': workspace:*
       '@chakra-ui/icon': workspace:*
       '@chakra-ui/layout': workspace:*
       '@chakra-ui/modal': workspace:*
-      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/react-context': workspace:*
+      '@chakra-ui/react-use-controllable-state': workspace:*
+      '@chakra-ui/react-use-merge-refs': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/transition': workspace:*
       '@chakra-ui/utils': workspace:*
@@ -387,16 +394,17 @@ importers:
       react: ^18.2.0
     dependencies:
       '@chakra-ui/descendant': link:../descendant
-      '@chakra-ui/hooks': link:../hooks
       '@chakra-ui/icon': link:../icon
-      '@chakra-ui/react-utils': link:../react-utils
+      '@chakra-ui/react-context': link:../../hooks/context
+      '@chakra-ui/react-use-controllable-state': link:../../hooks/use-controllable-state
+      '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
       '@chakra-ui/transition': link:../transition
-      '@chakra-ui/utils': link:../utils
     devDependencies:
       '@chakra-ui/button': link:../button
       '@chakra-ui/layout': link:../layout
       '@chakra-ui/modal': link:../modal
       '@chakra-ui/system': link:../system
+      '@chakra-ui/utils': link:../utils
       framer-motion: 6.5.1_react-dom@18.2.0+react@18.2.0
       react: 18.2.0
 

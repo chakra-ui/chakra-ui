@@ -1,6 +1,6 @@
 import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
 import { Collapse } from "@chakra-ui/transition"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/utils"
 import {
   useAccordionItemContext,
   useAccordionStyles,
@@ -42,6 +42,4 @@ export const AccordionPanel = forwardRef<AccordionPanelProps, "div">(
   },
 )
 
-if (__DEV__) {
-  AccordionPanel.displayName = "AccordionPanel"
-}
+AccordionPanel.displayName = "AccordionPanel"

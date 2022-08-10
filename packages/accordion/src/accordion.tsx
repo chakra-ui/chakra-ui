@@ -6,11 +6,11 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx, Omit, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/utils"
 import { useMemo } from "react"
 import {
-  AccordionStylesProvider,
   AccordionDescendantsProvider,
+  AccordionStylesProvider,
 } from "./accordion-context"
 import {
   AccordionProvider,
@@ -67,6 +67,4 @@ export const Accordion = forwardRef<AccordionProps, "div">(function Accordion(
   )
 })
 
-if (__DEV__) {
-  Accordion.displayName = "Accordion"
-}
+Accordion.displayName = "Accordion"

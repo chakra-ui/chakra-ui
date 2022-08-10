@@ -1,25 +1,8 @@
-import {
-  useControllableState,
-  useIds,
-  useUnmountEffect,
-} from "@chakra-ui/hooks"
-import {
-  createContext,
-  EventKeyMap,
-  mergeRefs,
-  PropGetter,
-} from "@chakra-ui/react-utils"
-import {
-  addItem,
-  callAllHandlers,
-  focus,
-  isArray,
-  isUndefined,
-  normalizeEventKey,
-  removeItem,
-  warn,
-} from "@chakra-ui/utils"
-import { useCallback, useRef, useState } from "react"
+import { createContext } from "@chakra-ui/react-context"
+import { useControllableState } from "@chakra-ui/react-use-controllable-state"
+import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
+import { callAllHandlers, warn } from "@chakra-ui/utils"
+import { useCallback, useEffect, useId, useRef, useState } from "react"
 import {
   useAccordionDescendant,
   useAccordionDescendants,
@@ -91,9 +74,11 @@ export function useAccordion(props: UseAccordionProps) {
    * Reset focused index when accordion unmounts
    * or descendants change
    */
-  useUnmountEffect(() => {
-    setFocusedIndex(-1)
-  })
+  useEffect(() => {
+    return () => {
+      setFocusedIndex(-1)
+    }
+  }, [])
 
   /**
    * Hook that manages the controlled and un-controlled state
@@ -116,16 +101,22 @@ export function useAccordion(props: UseAccordionProps) {
    */
   const getAccordionItemProps = (idx: number | null) => {
     let isOpen = false
+
     if (idx !== null) {
-      isOpen = isArray(index) ? index.includes(idx) : index === idx
+      isOpen = Array.isArray(index) ? index.includes(idx) : index === idx
     }
 
     const onChange = (isOpen: boolean) => {
       if (idx === null) return
 
-      if (allowMultiple && isArray(index)) {
-        const nextState = isOpen ? addItem(index, idx) : removeItem(index, idx)
+      if (allowMultiple && Array.isArray(index)) {
+        //
+        const nextState = isOpen
+          ? index.concat(idx)
+          : index.filter((i) => i !== idx)
+
         setIndex(nextState)
+        //
       } else if (isOpen) {
         setIndex(idx)
       } else if (allowToggle) {
@@ -161,8 +152,8 @@ interface AccordionContext
 export const [AccordionProvider, useAccordionContext] =
   createContext<AccordionContext>({
     name: "AccordionContext",
-    errorMessage:
-      "useAccordionContext: `context` is undefined. Seems you forgot to wrap the accordion components in `<Accordion />`",
+    hookName: "useAccordionContext",
+    providerName: "Accordion",
   })
 
 /* -------------------------------------------------------------------------------------------------
@@ -199,7 +190,11 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   /**
    * Generate unique ids for all accordion item components (button and panel)
    */
-  const [buttonId, panelId] = useIds(id, `accordion-button`, `accordion-panel`)
+  const reactId = useId()
+  const uid = id ?? reactId
+
+  const buttonId = `accordion-button-${uid}`
+  const panelId = `accordion-panel-${uid}`
 
   focusableNotDisabledWarning(props)
 
@@ -238,28 +233,26 @@ export function useAccordionItem(props: UseAccordionItemProps) {
    */
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
-      const eventKey = normalizeEventKey(event)
-
-      const keyMap: EventKeyMap = {
+      const keyMap: Record<string, React.KeyboardEventHandler> = {
         ArrowDown: () => {
           const next = descendants.nextEnabled(index)
-          if (next) focus(next.node)
+          next?.node.focus()
         },
         ArrowUp: () => {
           const prev = descendants.prevEnabled(index)
-          if (prev) focus(prev.node)
+          prev?.node.focus()
         },
         Home: () => {
           const first = descendants.firstEnabled()
-          if (first) focus(first.node)
+          first?.node.focus()
         },
         End: () => {
           const last = descendants.lastEnabled()
-          if (last) focus(last.node)
+          last?.node.focus()
         },
       }
 
-      const action = keyMap[eventKey]
+      const action = keyMap[event.key]
 
       if (action) {
         event.preventDefault()
@@ -277,19 +270,24 @@ export function useAccordionItem(props: UseAccordionItemProps) {
     setFocusedIndex(index)
   }, [setFocusedIndex, index])
 
-  const getButtonProps: PropGetter<HTMLButtonElement> = useCallback(
-    (props = {}, ref = null) => ({
-      ...props,
-      type: "button",
-      ref: mergeRefs(register, buttonRef, ref),
-      id: buttonId,
-      disabled: !!isDisabled,
-      "aria-expanded": !!isOpen,
-      "aria-controls": panelId,
-      onClick: callAllHandlers(props.onClick, onClick),
-      onFocus: callAllHandlers(props.onFocus, onFocus),
-      onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-    }),
+  const getButtonProps = useCallback(
+    function getButtonProps(
+      props: Omit<React.HTMLAttributes<HTMLElement>, "color"> = {},
+      ref: React.Ref<HTMLButtonElement> | null = null,
+    ): React.ComponentProps<"button"> {
+      return {
+        ...props,
+        type: "button",
+        ref: mergeRefs(register, buttonRef, ref),
+        id: buttonId,
+        disabled: !!isDisabled,
+        "aria-expanded": !!isOpen,
+        "aria-controls": panelId,
+        onClick: callAllHandlers(props.onClick, onClick),
+        onFocus: callAllHandlers(props.onFocus, onFocus),
+        onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+      }
+    },
     [
       buttonId,
       isDisabled,
@@ -302,15 +300,20 @@ export function useAccordionItem(props: UseAccordionItemProps) {
     ],
   )
 
-  const getPanelProps: PropGetter = useCallback(
-    (props = {}, ref = null) => ({
-      ...props,
-      ref,
-      role: "region",
-      id: panelId,
-      "aria-labelledby": buttonId,
-      hidden: !isOpen,
-    }),
+  const getPanelProps = useCallback(
+    function getPanelProps<T>(
+      props: Omit<React.HTMLAttributes<T>, "color"> = {},
+      ref: React.Ref<T> | null = null,
+    ): React.HTMLAttributes<T> & React.RefAttributes<T> {
+      return {
+        ...props,
+        ref,
+        role: "region",
+        id: panelId,
+        "aria-labelledby": buttonId,
+        hidden: !isOpen,
+      }
+    },
     [buttonId, isOpen, panelId],
   )
 
@@ -335,7 +338,7 @@ export type UseAccordionItemReturn = ReturnType<typeof useAccordionItem>
 function allowMultipleWarning(props: UseAccordionProps) {
   const index = props.index || props.defaultIndex
   const condition =
-    !isUndefined(index) && !isArray(index) && props.allowMultiple
+    index == null && !Array.isArray(index) && props.allowMultiple
 
   warn({
     condition: !!condition,
