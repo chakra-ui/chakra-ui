@@ -10,7 +10,7 @@ const useSafeLayoutEffect = Boolean(globalThis?.document)
   ? useLayoutEffect
   : useEffect
 
-export function useSize(ref: React.RefObject<HTMLElement | null>) {
+export function useSize<T extends HTMLElement>(ref: React.RefObject<T | null>) {
   const [size, setSize] = useState<Size>()
   useSafeLayoutEffect(() => {
     return trackElementSize(ref.current, setSize)
