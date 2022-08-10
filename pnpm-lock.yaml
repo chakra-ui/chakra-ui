@@ -320,6 +320,15 @@ importers:
       typescript: 4.7.4
       vite: 3.0.4
 
+  hooks/use-size:
+    specifiers:
+      '@zag-js/element-size': 0.1.0
+      react: ^18.2.0
+    dependencies:
+      '@zag-js/element-size': 0.1.0
+    devDependencies:
+      react: 18.2.0
+
   packages/accordion:
     specifiers:
       '@chakra-ui/button': workspace:*
@@ -9351,6 +9360,10 @@ packages:
 
   /@xtuc/long/4.2.2:
     resolution: {integrity: sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==}
+
+  /@zag-js/element-size/0.1.0:
+    resolution: {integrity: sha512-QF8wp0+V8++z+FHXiIw93+zudtubYszOtYbNgK39fg3pi+nCZtuSm4L1jC5QZMatNZ83MfOzyNCfgUubapagJQ==}
+    dev: false
 
   /@zag-js/focus-visible/0.1.0:
     resolution: {integrity: sha512-PeaBcTmdZWcFf7n1aM+oiOdZc+sy14qi0emPIeUuGMTjbP0xLGrZu43kdpHnWSXy7/r4Ubp/vlg50MCV8+9Isg==}

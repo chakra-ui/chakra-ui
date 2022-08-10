@@ -7,6 +7,12 @@ import { useSafeLayoutEffect } from "./use-safe-layout-effect"
  *
  * @param ref ref of the component to measure
  * @param observe if `true`, resize and scroll observers will be turned on
+ *
+ * @deprecated use the `useSize` hook instead
+ *
+ * ```jsx
+ * import { useSize } from "@chakra-ui/react-use-size"
+ * ```
  */
 export function useDimensions(
   ref: React.RefObject<HTMLElement>,
