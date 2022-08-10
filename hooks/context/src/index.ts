@@ -19,7 +19,7 @@ export type CreateContextReturn<T> = [
 ]
 
 function getErrorMessage(hook: string, provider: string) {
-  return `${hook} returned \`undefined\`. Seems you forgot to wrap component within the ${provider}`
+  return `${hook} returned \`undefined\`. Seems you forgot to wrap component within ${provider}`
 }
 
 export function createContext<T>(options: CreateContextOptions<T> = {}) {
