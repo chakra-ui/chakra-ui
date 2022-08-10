@@ -55,8 +55,10 @@ interface Opts {
   transform?: Transform
 }
 
-const getRtl = ({ rtl, ltr }: Opts["property"]) => (theme: Dict) =>
-  theme.direction === "rtl" ? rtl : ltr
+const getRtl =
+  ({ rtl, ltr }: Opts["property"]) =>
+  (theme: Dict) =>
+    theme.direction === "rtl" ? rtl : ltr
 
 export function logical(options: Opts): PropConfig {
   const { property, scale, transform } = options

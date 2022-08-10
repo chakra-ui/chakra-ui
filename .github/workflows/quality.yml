@@ -57,3 +57,16 @@ jobs:
 
       - name: Run typecheck
         run: pnpm typecheck
+
+  prettier:
+    name: Prettier
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+
+      - name: Install
+        uses: ./.github/composite-actions/install
+
+      - name: Run prettier
+        run: pnpm format:check

@@ -24,13 +24,5 @@
     "plopfile.ts",
     "react-shim.js"
   ],
-  "exclude": ["**/node_modules", "**/template*"],
-  "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS",
-      "resolveJsonModule": true,
-      "noImplicitAny": false
-    },
-    "swc": true
-  }
+  "exclude": ["**/node_modules", "**/template*"]
 }

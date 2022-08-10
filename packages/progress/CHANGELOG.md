@@ -1,5 +1,31 @@
 # Change Log
 
+## 2.0.7
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/react-utils@2.0.3
+  - @chakra-ui/theme-tools@2.0.7
+  - @chakra-ui/utils@2.0.6
+
+## 2.0.6
+
+### Patch Changes
+
+- [#6356](https://github.com/chakra-ui/chakra-ui/pull/6356)
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Force release due
+  to change in build configuration
+  - Update package `main` and `module` entries
+- Updated dependencies
+  [[`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/react-utils@2.0.2
+  - @chakra-ui/theme-tools@2.0.6
+  - @chakra-ui/utils@2.0.5
+
 ## 2.0.5
 
 ### Patch Changes

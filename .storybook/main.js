@@ -1,11 +1,19 @@
 const path = require("path")
+const fs = require("fs")
+
+// [Workaround] This logic means `"../packages/*/stories/*.stories.tsx"` but it's much faster.
+const stories = fs
+  .readdirSync("packages")
+  .map((package) => `packages/${package}/stories`)
+  .filter((storyDir) => fs.existsSync(storyDir))
+  .map((storyDir) => `../${storyDir}/*.stories.tsx`)
 
 module.exports = {
   core: {
     builder: "@storybook/builder-webpack5",
     disableTelemetry: true,
   },
-  stories: ["../packages/**/stories/*.stories.tsx"],
+  stories,
   addons: [
     "@storybook/addon-a11y",
     "@storybook/addon-essentials",

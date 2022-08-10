@@ -1,12 +1,10 @@
 {
-  "version": "2.2.4",
-  "releaseUrl": "https://github.com/chakra-ui/chakra-ui/releases/tag/@chakra-ui/react@2.2.4",
+  "version": "2.2.5",
+  "releaseUrl": "https://github.com/chakra-ui/chakra-ui/releases/tag/@chakra-ui/react@2.2.5",
   "patches": [
-    "- add portal example \n",
-    "- update to Next.js 12.2.2 \n",
-    "- Fix portal to render children \n"
+    "- Force release due to change in build configuration\n- Update package `main` and `module` entries",
+    "- Fix `exports` in the `package.json` \n",
+    "- update dependencies \n"
   ],
-  "features": [
-    "- fix getClosestValue to return nullable closest break point value \n"
-  ]
+  "features": []
 }

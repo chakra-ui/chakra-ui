@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/props-docs",
-  "version": "2.0.10",
+  "version": "2.0.12",
   "description": "Extracts prop types for documentation purposes",
   "keywords": [
     "docs",
@@ -28,7 +28,7 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "ts-node -T src/build.ts",
+    "build": "tsx src/build.ts",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit"
   },

@@ -4,7 +4,8 @@ description: "Sets up Node.js and runs install"
 runs:
   using: composite
   steps:
-    - uses: pnpm/action-setup@v2.2.2
+    - name: Install dependencies
+      uses: pnpm/action-setup@v2.2.2
       with:
         version: 7
 
