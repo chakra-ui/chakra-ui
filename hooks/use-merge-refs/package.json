@@ -1,9 +1,9 @@
 {
-  "name": "@chakra-ui/react-context",
+  "name": "@chakra-ui/react-use-merge-refs",
   "version": "1.0.0",
   "description": "",
   "keywords": [
-    "react-use-callback-ref"
+    "use-merge-refs"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -21,7 +21,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/react-use-callback-ref"
+    "directory": "hooks/use-merge-refs"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"

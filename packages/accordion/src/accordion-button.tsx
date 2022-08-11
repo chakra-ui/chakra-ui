@@ -4,7 +4,7 @@ import {
   HTMLChakraProps,
   SystemStyleObject,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/utils"
 import {
   useAccordionItemContext,
   useAccordionStyles,
@@ -43,6 +43,5 @@ export const AccordionButton = forwardRef<AccordionButtonProps, "button">(
     )
   },
 )
-if (__DEV__) {
-  AccordionButton.displayName = "AccordionButton"
-}
+
+AccordionButton.displayName = "AccordionButton"

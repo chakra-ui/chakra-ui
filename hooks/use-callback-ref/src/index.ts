@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useRef } from "react"
+import { useCallback, useEffect, useRef } from "react"
 
 export function useCallbackRef<T extends (...args: any[]) => any>(
   callback: T | undefined,
+  deps: React.DependencyList = [],
 ) {
   const callbackRef = useRef(callback)
 
@@ -9,5 +10,5 @@ export function useCallbackRef<T extends (...args: any[]) => any>(
     callbackRef.current = callback
   })
 
-  return useMemo<T>((...args) => callbackRef.current?.(...args), [])
+  return useCallback(((...args) => callbackRef.current?.(...args)) as T, deps)
 }

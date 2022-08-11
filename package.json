@@ -35,6 +35,7 @@
     "discord": "tsx scripts/discord.ts",
     "twitter:gen": "tsx scripts/twitter-generate.ts",
     "twitter:write": "tsx scripts/twitter-write.ts",
+    "csb": "tsx scripts/csb.ts",
     "create:pkg": "plop component",
     "version": "changeset version",
     "release": "changeset publish",

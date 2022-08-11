@@ -1,6 +1,6 @@
 import { Icon, IconProps } from "@chakra-ui/icon"
 import { SystemStyleObject } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/utils"
 import {
   useAccordionItemContext,
   useAccordionStyles,
@@ -42,6 +42,5 @@ export function AccordionIcon(props: IconProps) {
     </Icon>
   )
 }
-if (__DEV__) {
-  AccordionIcon.displayName = "AccordionIcon"
-}
+
+AccordionIcon.displayName = "AccordionIcon"
