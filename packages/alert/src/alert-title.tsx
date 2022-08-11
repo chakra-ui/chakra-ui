@@ -18,3 +18,5 @@ export const AlertTitle = forwardRef<AlertTitleProps, "div">(
     )
   },
 )
+
+AlertTitle.displayName = "AlertTitle"

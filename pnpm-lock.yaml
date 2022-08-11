@@ -417,19 +417,19 @@ importers:
     specifiers:
       '@chakra-ui/icon': workspace:*
       '@chakra-ui/layout': workspace:*
-      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/react-context': workspace:*
       '@chakra-ui/spinner': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/utils': workspace:*
       react: ^18.2.0
     dependencies:
       '@chakra-ui/icon': link:../icon
-      '@chakra-ui/react-utils': link:../react-utils
+      '@chakra-ui/react-context': link:../../hooks/context
       '@chakra-ui/spinner': link:../spinner
-      '@chakra-ui/utils': link:../utils
     devDependencies:
       '@chakra-ui/layout': link:../layout
       '@chakra-ui/system': link:../system
+      '@chakra-ui/utils': link:../utils
       react: 18.2.0
 
   packages/anatomy:

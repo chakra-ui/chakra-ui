@@ -21,3 +21,5 @@ export function AlertIcon(props: AlertIconProps) {
     </chakra.span>
   )
 }
+
+AlertIcon.displayName = "AlertIcon"

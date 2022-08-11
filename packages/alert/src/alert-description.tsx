@@ -27,3 +27,5 @@ export const AlertDescription = forwardRef<AlertDescriptionProps, "div">(
     )
   },
 )
+
+AlertDescription.displayName = "AlertDescription"
