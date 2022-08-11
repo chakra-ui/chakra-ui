@@ -63,3 +63,5 @@ export const Alert = forwardRef<AlertProps, "div">(function Alert(props, ref) {
     </AlertProvider>
   )
 })
+
+Alert.displayName = "Alert"

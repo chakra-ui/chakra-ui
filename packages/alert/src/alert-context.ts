@@ -1,20 +1,20 @@
 import { SystemStyleObject } from "@chakra-ui/system"
-import { Dict } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/react-utils"
+import { createContext } from "@chakra-ui/react-context"
 import { CheckIcon, InfoIcon, WarningIcon } from "./icons"
 import { Spinner } from "@chakra-ui/spinner"
 
 export const [AlertProvider, useAlertContext] = createContext<AlertContext>({
   name: "AlertContext",
-  errorMessage:
-    "useAlertContext: `context` is undefined. Seems you forgot to wrap alert components in `<Alert />`",
+  hookName: "useAlertContext",
+  providerName: "<Alert />",
 })
 
 export const [AlertStylesProvider, useAlertStyles] = createContext<
-  Dict<SystemStyleObject>
+  Record<string, SystemStyleObject>
 >({
   name: `AlertStylesContext`,
-  errorMessage: `useAlertStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Alert />" `,
+  hookName: `useAlertStyles`,
+  providerName: "<Alert />",
 })
 
 const STATUSES = {
