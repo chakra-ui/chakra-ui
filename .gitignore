@@ -3,6 +3,7 @@
 # website public/ folder (temporary; copied to root for docs:build and vercel compat)
 # public/
 
+dist
 node_modules/
 npm-debug.log
 packages/**/lib
