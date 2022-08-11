@@ -1672,6 +1672,12 @@ importers:
     devDependencies:
       react: 18.2.0
 
+  utilities/extend-theme:
+    specifiers:
+      merge-anything: ^5.0.2
+    dependencies:
+      merge-anything: 5.0.2
+
 packages:
 
   /@ampproject/remapping/2.2.0:
@@ -17101,6 +17107,11 @@ packages:
     dependencies:
       call-bind: 1.0.2
 
+  /is-what/4.1.7:
+    resolution: {integrity: sha512-DBVOQNiPKnGMxRMLIYSwERAS5MVY1B7xYiGnpgctsOFvVDz9f9PFXXxMcTOHuoqYp4NK9qFYQaIC1NRRxLMpBQ==}
+    engines: {node: '>=12.13'}
+    dev: false
+
   /is-whitespace-character/1.0.4:
     resolution: {integrity: sha512-SDweEzfIZM0SJV0EUga669UTKlmL0Pq8Lno0QDQsPnvECB3IM2aP0gdx5TrU0A01MAPfViaZiI2V1QMZLaKK5w==}
 
@@ -19177,6 +19188,14 @@ packages:
       trim-newlines: 3.0.1
       type-fest: 0.18.1
       yargs-parser: 20.2.9
+    dev: false
+
+  /merge-anything/5.0.2:
+    resolution: {integrity: sha512-POPQBWkBC0vxdgzRJ2Mkj4+2NTKbvkHo93ih+jGDhNMLzIw+rYKjO7949hOQM2X7DxMHH1uoUkwWFLIzImw7gA==}
+    engines: {node: '>=12.13'}
+    dependencies:
+      is-what: 4.1.7
+      ts-toolbelt: 9.6.0
     dev: false
 
   /merge-descriptors/1.0.1:
@@ -24772,6 +24791,10 @@ packages:
         optional: true
     dependencies:
       typescript: 4.7.4
+    dev: false
+
+  /ts-toolbelt/9.6.0:
+    resolution: {integrity: sha512-nsZd8ZeNUzukXPlJmTBwUAuABDe/9qtVDelJeT/qW0ow3ZS3BsQJtNkan1802aM9Uf68/Y8ljw86Hu0h5IUW3w==}
     dev: false
 
   /tsconfig-paths/3.14.1:
