@@ -89,7 +89,8 @@ export async function createThemeTypingsInterface(
     // language=ts
     `// regenerate by running
 // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
-export interface ThemeTypings {
+import { BaseThemeTypings } from "./shared.types.js"
+export interface ThemeTypings extends BaseThemeTypings {
   ${printUnionMap({ ...unions, textStyles, layerStyles, colorSchemes })}
   ${printComponentTypes(componentTypes, strictComponentTypes)}
 }
