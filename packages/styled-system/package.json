@@ -45,8 +45,7 @@
   },
   "sideEffects": false,
   "scripts": {
-    "build": "tsup src/index.ts && pnpm build:dts",
-    "build:dts": "tsup --entry src/index.ts --entry src/theming.types.ts --entry src/shared.types.ts --dts-only",
+    "build": "tsup --entry src/index.ts --entry src/theming.types.ts --entry src/shared.types.ts --dts",
     "dev": "pnpm build -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
