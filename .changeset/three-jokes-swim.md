@@ -2,4 +2,4 @@
 "@chakra-ui/react": minor
 ---
 
-Add explicit type declaration for `ChakraProvider.defaultProps`.
+Remove `ChakraProvider.defaultProps` and move logic inside the component.
