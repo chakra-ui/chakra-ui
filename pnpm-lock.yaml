@@ -321,7 +321,10 @@ importers:
       vite: 3.0.4
 
   hooks/context:
-    specifiers: {}
+    specifiers:
+      react: ^18.2.0
+    devDependencies:
+      react: 18.2.0
 
   hooks/use-callback-ref:
     specifiers:
