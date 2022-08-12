@@ -5,7 +5,7 @@ import { promises as fs } from "fs"
 async function main() {
   const pkgs = await findPackages(process.cwd(), {
     includeRoot: false,
-    patterns: ["packages/**", "hooks/**"],
+    patterns: ["packages/**", "hooks/**", "utilities/**"],
   })
 
   const packages = pkgs.map((pkg) => path.relative(process.cwd(), pkg.dir))
