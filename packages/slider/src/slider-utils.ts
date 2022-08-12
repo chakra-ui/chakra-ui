@@ -23,38 +23,49 @@ export function orient(options: {
 
 type Size = { height: number; width: number }
 
-const zeroRect: Size = { width: 0, height: 0 }
+const zeroSize: Size = { width: 0, height: 0 }
+
+const normalize = (a: Size | undefined) => a || zeroSize
 
 export function getStyles(options: {
   orientation: Orientation
   thumbPercents: number[]
-  thumbRects: Size[]
+  thumbRects: Array<Size | undefined>
   isReversed?: boolean
 }) {
   const { orientation, thumbPercents, thumbRects, isReversed } = options
 
-  const getThumbStyle = (i: number): React.CSSProperties => ({
-    position: "absolute",
-    userSelect: "none",
-    WebkitUserSelect: "none",
-    MozUserSelect: "none",
-    msUserSelect: "none",
-    touchAction: "none",
-    ...orient({
-      orientation,
-      vertical: {
-        bottom: `calc(${thumbPercents[i]}% - ${thumbRects[i].height / 2}px)`,
-      },
-      horizontal: {
-        left: `calc(${thumbPercents[i]}% - ${thumbRects[i].width / 2}px)`,
-      },
-    }),
-  })
+  const getThumbStyle = (i: number): React.CSSProperties => {
+    const rect = thumbRects[i] ?? zeroSize
+    return {
+      position: "absolute",
+      userSelect: "none",
+      WebkitUserSelect: "none",
+      MozUserSelect: "none",
+      msUserSelect: "none",
+      touchAction: "none",
+      ...orient({
+        orientation,
+        vertical: {
+          bottom: `calc(${thumbPercents[i]}% - ${rect.height / 2}px)`,
+        },
+        horizontal: {
+          left: `calc(${thumbPercents[i]}% - ${rect.width / 2}px)`,
+        },
+      }),
+    }
+  }
 
   const size =
     orientation === "vertical"
-      ? thumbRects.reduce((a, b) => (a.height > b.height ? a : b), zeroRect)
-      : thumbRects.reduce((a, b) => (a.width > b.width ? a : b), zeroRect)
+      ? thumbRects.reduce(
+          (a, b) => (normalize(a).height > normalize(b).height ? a : b),
+          zeroSize,
+        )
+      : thumbRects.reduce(
+          (a, b) => (normalize(a).width > normalize(b).width ? a : b),
+          zeroSize,
+        )
 
   const rootStyle: React.CSSProperties = {
     position: "relative",
@@ -64,14 +75,18 @@ export function getStyles(options: {
     outline: 0,
     ...orient({
       orientation,
-      vertical: {
-        paddingLeft: size.width / 2,
-        paddingRight: size.width / 2,
-      },
-      horizontal: {
-        paddingTop: size.height / 2,
-        paddingBottom: size.height / 2,
-      },
+      vertical: size
+        ? {
+            paddingLeft: size.width / 2,
+            paddingRight: size.width / 2,
+          }
+        : {},
+      horizontal: size
+        ? {
+            paddingTop: size.height / 2,
+            paddingBottom: size.height / 2,
+          }
+        : {},
     }),
   }
 

@@ -1,19 +1,19 @@
 {
-  "name": "@chakra-ui/{{componentName}}",
+  "name": "@chakra-ui/react-types",
   "version": "2.0.0",
-  "description": "{{description}}",
+  "description": "",
   "keywords": [
-    "{{componentName}}"
+    "react",
+    "types",
+    "shared"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
+  "types": "src/index.d.ts",
   "sideEffects": false,
   "files": [
-    "dist"
+    "src"
   ],
   "publishConfig": {
     "access": "public"
@@ -21,17 +21,10 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "{{outDir}}/{{componentName}}"
+    "directory": "utilities/react-types"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
-  },
-  "scripts": {
-    "build": "tsup src/index.ts --format=esm,cjs --dts",
-    "dev": "pnpm build -- --watch",
-    "clean": "rimraf dist .turbo",
-    "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src/index.ts --format=esm,cjs"
   },
   "peerDependencies": {
     "react": ">=18"

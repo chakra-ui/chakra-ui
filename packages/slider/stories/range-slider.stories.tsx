@@ -98,3 +98,24 @@ export function SteppedHorizontalSlider() {
     </RangeSlider>
   )
 }
+
+export function DynamicSlider() {
+  const [points, setPoints] = React.useState<number[]>([30, 70])
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setPoints([30, 50, 70])
+    }, 1000)
+  }, [])
+
+  return (
+    <RangeSlider value={points} onChange={setPoints}>
+      <RangeSliderTrack>
+        <RangeSliderFilledTrack />
+      </RangeSliderTrack>
+      {points.map((_p, index) => (
+        <RangeSliderThumb key={index} index={index} />
+      ))}
+    </RangeSlider>
+  )
+}
