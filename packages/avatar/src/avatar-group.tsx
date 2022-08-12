@@ -8,7 +8,8 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, filterUndefined, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/utils"
+import { compact } from "@chakra-ui/object-utils"
 import { getValidChildren } from "@chakra-ui/react-utils"
 import { baseStyle } from "./avatar"
 import { cloneElement } from "react"
@@ -81,7 +82,7 @@ export const AvatarGroup = forwardRef<AvatarGroupProps, "div">(
         showBorder: true,
       }
 
-      return cloneElement(child, filterUndefined(childProps))
+      return cloneElement(child, compact(childProps))
     })
 
     const groupStyles: SystemStyleObject = {
@@ -117,6 +118,4 @@ export const AvatarGroup = forwardRef<AvatarGroupProps, "div">(
   },
 )
 
-if (__DEV__) {
-  AvatarGroup.displayName = "AvatarGroup"
-}
+AvatarGroup.displayName = "AvatarGroup"

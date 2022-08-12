@@ -1,6 +1,5 @@
 import { ImageProps, useImage } from "@chakra-ui/image"
 import { chakra, ChakraComponent, SystemStyleObject } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
 import { cloneElement } from "react"
 import { AvatarName } from "./avatar-name"
 
@@ -78,9 +77,8 @@ export function AvatarImage(props: AvatarImageProps) {
     />
   )
 }
-if (__DEV__) {
-  AvatarImage.displayName = "AvatarImage"
-}
+
+AvatarImage.displayName = "AvatarImage"
 
 /**
  * Fallback avatar react component.

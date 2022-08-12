@@ -2,4 +2,4 @@
 "@chakra-ui/utils": patch
 ---
 
-Mark isBrowser as pure to tree-shake when bundling
+Add pure annotation to `isBrowser` to tree-shake when bundling

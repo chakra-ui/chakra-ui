@@ -33,15 +33,17 @@
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
+  "dependencies": {
+    "@chakra-ui/image": "workspace:*",
+    "@chakra-ui/react-context": "workspace:*"
+  },
   "devDependencies": {
+    "@chakra-ui/utils": "workspace:*",
+    "@chakra-ui/object-utils": "workspace:*",
+    "@chakra-ui/react-utils": "workspace:*",
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/layout": "workspace:*",
     "react": "^18.0.0"
-  },
-  "dependencies": {
-    "@chakra-ui/image": "workspace:*",
-    "@chakra-ui/react-utils": "workspace:*",
-    "@chakra-ui/utils": "workspace:*"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=2.0.0",

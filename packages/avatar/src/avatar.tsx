@@ -7,7 +7,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/utils"
 import { AvatarStylesProvider } from "./avatar-context"
 import { AvatarImage, GenericAvatarIcon } from "./avatar-image"
 import { initials } from "./avatar-name"
@@ -97,6 +97,4 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  Avatar.displayName = "Avatar"
-}
+Avatar.displayName = "Avatar"

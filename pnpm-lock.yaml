@@ -439,17 +439,21 @@ importers:
     specifiers:
       '@chakra-ui/image': workspace:*
       '@chakra-ui/layout': workspace:*
+      '@chakra-ui/object-utils': workspace:*
+      '@chakra-ui/react-context': workspace:*
       '@chakra-ui/react-utils': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/utils': workspace:*
       react: ^18.2.0
     dependencies:
       '@chakra-ui/image': link:../image
-      '@chakra-ui/react-utils': link:../react-utils
-      '@chakra-ui/utils': link:../utils
+      '@chakra-ui/react-context': link:../../hooks/context
     devDependencies:
       '@chakra-ui/layout': link:../layout
+      '@chakra-ui/object-utils': link:../../utilities/object-utils
+      '@chakra-ui/react-utils': link:../react-utils
       '@chakra-ui/system': link:../system
+      '@chakra-ui/utils': link:../utils
       react: 18.2.0
 
   packages/breadcrumb:
@@ -1672,11 +1676,14 @@ importers:
     devDependencies:
       react: 18.2.0
 
-  utilities/extend-theme:
+  utilities/merge-utils:
     specifiers:
       merge-anything: ^5.0.2
     dependencies:
       merge-anything: 5.0.2
+
+  utilities/object-utils:
+    specifiers: {}
 
 packages:
 

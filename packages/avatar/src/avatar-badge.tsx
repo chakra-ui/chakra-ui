@@ -4,7 +4,7 @@ import {
   HTMLChakraProps,
   SystemStyleObject,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/utils"
 import { useAvatarStyles } from "./avatar-context"
 
 export interface AvatarBadgeProps extends HTMLChakraProps<"div"> {}
@@ -37,6 +37,5 @@ export const AvatarBadge = forwardRef<AvatarBadgeProps, "div">(
     )
   },
 )
-if (__DEV__) {
-  AvatarBadge.displayName = "AvatarBadge"
-}
+
+AvatarBadge.displayName = "AvatarBadge"

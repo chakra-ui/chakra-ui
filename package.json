@@ -44,7 +44,7 @@
     "sandbox": "tsx scripts/sandbox.ts",
     "notify:release": "npm-run-all changelog:write discord changelog:commit"
   },
-  "version": "1.0.0",
+  "version": "2.0.0",
   "dependencies": {
     "@babel/core": "^7.18.9",
     "@babel/eslint-parser": "^7.18.9",

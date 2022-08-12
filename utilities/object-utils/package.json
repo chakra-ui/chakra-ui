@@ -1,9 +1,11 @@
 {
-  "name": "@chakra-ui/react-use-size",
+  "name": "@chakra-ui/object-utils",
   "version": "2.0.0",
-  "description": "Track an element size over time",
+  "description": "",
   "keywords": [
-    "react-use-size"
+    "object",
+    "utilities",
+    "chakra"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -21,7 +23,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "hooks/react-use-size"
+    "directory": "utilities/object-utils"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
@@ -32,14 +34,5 @@
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src/index.ts --format=esm,cjs"
-  },
-  "dependencies": {
-    "@zag-js/element-size": "0.1.0"
-  },
-  "peerDependencies": {
-    "react": ">=18"
-  },
-  "devDependencies": {
-    "react": "^18.0.0"
   }
 }

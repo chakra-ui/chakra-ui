@@ -3,4 +3,4 @@
 "@chakra-ui/cli": patch
 ---
 
-fix regression where ThemeTypings created by chakra-cli could not be used
+Fix regression where `ThemeTypings` created by chakra-cli could not be used

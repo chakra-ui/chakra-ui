@@ -26,3 +26,5 @@ export function AvatarName(props: AvatarNameProps) {
     </chakra.div>
   )
 }
+
+AvatarName.displayName = "AvatarName"
