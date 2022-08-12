@@ -251,16 +251,20 @@ export function useSlider(props: UseSliderProps) {
 
   const actions = useMemo(
     () => ({
-      stepUp: (step = oneStep) => {
+      stepUp(step = oneStep) {
         const next = isReversed ? value - step : value + step
         constrain(next)
       },
-      stepDown: (step = oneStep) => {
+      stepDown(step = oneStep) {
         const next = isReversed ? value + step : value - step
         constrain(next)
       },
-      reset: () => constrain(defaultValue || 0),
-      stepTo: (value: number) => constrain(value),
+      reset() {
+        constrain(defaultValue || 0)
+      },
+      stepTo(value: number) {
+        constrain(value)
+      },
     }),
     [constrain, isReversed, value, oneStep, defaultValue],
   )
@@ -333,9 +337,7 @@ export function useSlider(props: UseSliderProps) {
     }
   }, [value, onChangeEnd])
 
-  const setValueFromPointer = (
-    event: MouseEvent | TouchEvent | PointerEvent,
-  ) => {
+  function setValueFromPointer(event: MouseEvent | TouchEvent | PointerEvent) {
     const nextValue = getValueFromPointer(event)
     if (nextValue != null && nextValue !== valueRef.current) {
       setValue(nextValue)

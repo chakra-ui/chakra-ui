@@ -1,1 +1,2 @@
-export { UsePanEventProps, usePanEvent } from "./use-pan-event"
+export { usePanEvent } from "./use-pan-event"
+export type { UsePanEventProps } from "./use-pan-event"

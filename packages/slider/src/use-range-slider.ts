@@ -181,16 +181,27 @@ export function useRangeSlider(props: UseRangeSliderProps) {
   const [isDragging, setDragging] = useState(false)
   const [isFocused, setFocused] = useState(false)
   const [activeIndex, setActiveIndex] = useState(-1)
-  const eventSourceRef = useRef<"pointer" | "keyboard" | null>(null)
+
   const isInteractive = !(isDisabled || isReadOnly)
 
   const initialValue = useRef(valueState)
   const value = valueState.map((val) => clampValue(val, min, max))
-  const valueRef = useRef<number[]>([])
-  valueRef.current = value
 
   const spacing = minStepsBetweenThumbs * step
   const valueBounds = getValueBounds(value, min, max, spacing)
+
+  const stateRef = useRef<{
+    eventSource: "pointer" | "keyboard" | null
+    value: number[]
+    valueBounds: Array<{ min: number; max: number }>
+  }>({
+    eventSource: null,
+    value: [],
+    valueBounds: [],
+  })
+
+  stateRef.current.value = value
+  stateRef.current.valueBounds = valueBounds
 
   const reversedValue = value.map((val) => max - val + min)
   const thumbValues = isReversed ? reversedValue : value
@@ -198,9 +209,6 @@ export function useRangeSlider(props: UseRangeSliderProps) {
 
   const isVertical = orientation === "vertical"
 
-  /**
-   * Let's keep a reference to the slider track and thumb
-   */
   const trackRef = useRef<HTMLElement>(null)
   const rootRef = useRef<HTMLElement>(null)
 
@@ -220,7 +228,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
   const getValueFromPointer = useCallback(
     (event: any) => {
       if (!trackRef.current) return
-      eventSourceRef.current = "pointer"
+      stateRef.current.eventSource = "pointer"
       const rect = trackRef.current.getBoundingClientRect()
       const { clientX, clientY } = event.touches?.[0] ?? event
 
@@ -240,29 +248,31 @@ export function useRangeSlider(props: UseRangeSliderProps) {
 
   const actions = useMemo(
     () => ({
-      setValueAtIndex: (index: number, val: number) => {
+      setValueAtIndex(index: number, val: number) {
         if (!isInteractive) return
-        const bounds = valueBounds[index]
+        const bounds = stateRef.current.valueBounds[index]
         val = parseFloat(roundValueToStep(val, bounds.min, oneStep))
         val = clampValue(val, bounds.min, bounds.max)
-        const next = [...value]
+        const next = [...stateRef.current.value]
         next[index] = val
         setValue(next)
       },
       setActiveIndex,
-      stepUp: (index: number, step = oneStep) => {
-        const valueAtIndex = value[index]
+      stepUp(index: number, step = oneStep) {
+        const valueAtIndex = stateRef.current.value[index]
         const next = isReversed ? valueAtIndex - step : valueAtIndex + step
         actions.setValueAtIndex(index, next)
       },
-      stepDown: (index: number, step = oneStep) => {
-        const valueAtIndex = value[index]
+      stepDown(index: number, step = oneStep) {
+        const valueAtIndex = stateRef.current.value[index]
         const next = isReversed ? valueAtIndex + step : valueAtIndex - step
         actions.setValueAtIndex(index, next)
       },
-      reset: () => setValue(initialValue.current),
+      reset() {
+        setValue(initialValue.current)
+      },
     }),
-    [oneStep, value, isReversed, setValue, isInteractive, valueBounds],
+    [oneStep, isReversed, setValue, isInteractive],
   )
 
   /**
@@ -295,7 +305,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
         event.preventDefault()
         event.stopPropagation()
         action(event)
-        eventSourceRef.current = "keyboard"
+        stateRef.current.eventSource = "keyboard"
       }
     },
     [actions, activeIndex, tenSteps, valueBounds],
@@ -330,14 +340,16 @@ export function useRangeSlider(props: UseRangeSliderProps) {
   )
 
   useUpdateEffect(() => {
-    if (eventSourceRef.current === "keyboard") {
-      onChangeEnd?.(valueRef.current)
+    if (stateRef.current.eventSource === "keyboard") {
+      onChangeEnd?.(stateRef.current.value)
     }
   }, [value, onChangeEnd])
 
   const onPanSessionStart = (event: MouseEvent | TouchEvent | PointerEvent) => {
     const pointValue = getValueFromPointer(event) || 0
-    const distances = value.map((val) => Math.abs(val - pointValue))
+    const distances = stateRef.current.value.map((val) =>
+      Math.abs(val - pointValue),
+    )
     const closest = Math.min(...distances)
     let index = distances.indexOf(closest)
 
@@ -350,9 +362,10 @@ export function useRangeSlider(props: UseRangeSliderProps) {
 
     // when two thumbs are stacked and the user clicks at a point larger than
     // their values, pick the last thumb with the greatest index
-    if (isThumbStacked && pointValue > value[index]) {
+    if (isThumbStacked && pointValue > stateRef.current.value[index]) {
       index = index + thumbsAtPosition.length - 1
     }
+
     setActiveIndex(index)
     actions.setValueAtIndex(index, pointValue)
     focusThumb(index)
@@ -371,12 +384,12 @@ export function useRangeSlider(props: UseRangeSliderProps) {
       if (!isInteractive) return
       setDragging(true)
       onPanSessionStart(event)
-      onChangeStart?.(valueRef.current)
+      onChangeStart?.(stateRef.current.value)
     },
     onPanSessionEnd() {
       if (!isInteractive) return
       setDragging(false)
-      onChangeEnd?.(valueRef.current)
+      onChangeEnd?.(stateRef.current.value)
     },
     onPan(event) {
       if (!isInteractive) return

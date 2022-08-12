@@ -1,1 +1,1 @@
-export * from "./src/use-pan-event"
+export * from "./src"
