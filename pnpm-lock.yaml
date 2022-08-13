@@ -365,6 +365,17 @@ importers:
     devDependencies:
       react: 18.2.0
 
+  hooks/use-pan-event:
+    specifiers:
+      '@chakra-ui/event-utils': workspace:*
+      framesync: 5.3.0
+      react: ^18.2.0
+    dependencies:
+      '@chakra-ui/event-utils': link:../../utilities/event-utils
+      framesync: 5.3.0
+    devDependencies:
+      react: 18.2.0
+
   hooks/use-size:
     specifiers:
       '@zag-js/element-size': 0.1.0
@@ -1226,22 +1237,36 @@ importers:
 
   packages/slider:
     specifiers:
-      '@chakra-ui/hooks': workspace:*
+      '@chakra-ui/number-utils': workspace:*
       '@chakra-ui/provider': workspace:*
-      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/react-context': workspace:*
+      '@chakra-ui/react-types': workspace:*
+      '@chakra-ui/react-use-callback-ref': workspace:*
+      '@chakra-ui/react-use-controllable-state': workspace:*
+      '@chakra-ui/react-use-merge-refs': workspace:*
+      '@chakra-ui/react-use-pan-event': workspace:*
+      '@chakra-ui/react-use-size': workspace:*
+      '@chakra-ui/react-use-update-effect': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/theme': workspace:*
       '@chakra-ui/utils': workspace:*
       '@emotion/styled': ^11.8.1
       react: ^18.2.0
     dependencies:
-      '@chakra-ui/hooks': link:../hooks
-      '@chakra-ui/react-utils': link:../react-utils
-      '@chakra-ui/utils': link:../utils
+      '@chakra-ui/number-utils': link:../../utilities/number-utils
+      '@chakra-ui/react-context': link:../../hooks/context
+      '@chakra-ui/react-types': link:../../utilities/react-types
+      '@chakra-ui/react-use-callback-ref': link:../../hooks/use-callback-ref
+      '@chakra-ui/react-use-controllable-state': link:../../hooks/use-controllable-state
+      '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
+      '@chakra-ui/react-use-pan-event': link:../../hooks/use-pan-event
+      '@chakra-ui/react-use-size': link:../../hooks/use-size
+      '@chakra-ui/react-use-update-effect': link:../../hooks/use-update-effect
     devDependencies:
       '@chakra-ui/provider': link:../provider
       '@chakra-ui/system': link:../system
       '@chakra-ui/theme': link:../theme
+      '@chakra-ui/utils': link:../utils
       '@emotion/styled': 11.9.3_96543585b339e7caed3567fc56fe9e68
       react: 18.2.0
 
@@ -1676,14 +1701,26 @@ importers:
     devDependencies:
       react: 18.2.0
 
+  utilities/event-utils:
+    specifiers: {}
+
   utilities/merge-utils:
     specifiers:
       merge-anything: ^5.0.2
     dependencies:
       merge-anything: 5.0.2
 
+  utilities/number-utils:
+    specifiers: {}
+
   utilities/object-utils:
     specifiers: {}
+
+  utilities/react-types:
+    specifiers:
+      react: ^18.2.0
+    devDependencies:
+      react: 18.2.0
 
 packages:
 

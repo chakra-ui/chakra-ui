@@ -8,6 +8,7 @@
     "hooks/use-disclosure",
     "hooks/use-event-listener",
     "hooks/use-merge-refs",
+    "hooks/use-pan-event",
     "hooks/use-size",
     "hooks/use-update-effect",
     "packages/accordion",
@@ -67,6 +68,11 @@
     "packages/tooltip",
     "packages/transition",
     "packages/utils",
-    "packages/visually-hidden"
+    "packages/visually-hidden",
+    "utilities/event-utils",
+    "utilities/merge-utils",
+    "utilities/number-utils",
+    "utilities/object-utils",
+    "utilities/react-types"
   ]
 }

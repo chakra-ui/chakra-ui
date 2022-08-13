@@ -1,4 +1,4 @@
-import { createContext } from "@chakra-ui/react-utils"
+import { createContext } from "@chakra-ui/react-context"
 import {
   chakra,
   forwardRef,
@@ -9,7 +9,7 @@ import {
   useTheme,
   SystemStyleObject,
 } from "@chakra-ui/system"
-import { cx, __DEV__, Dict } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/utils"
 import { useMemo } from "react"
 import {
   useRangeSlider,
@@ -30,7 +30,7 @@ const [RangeSliderProvider, useRangeSliderContext] =
   })
 
 const [RangeSliderStylesProvider, useRangeSliderStyles] = createContext<
-  Dict<SystemStyleObject>
+  Record<string, SystemStyleObject>
 >({
   name: `RangeSliderStylesContext`,
   errorMessage: `useRangeSliderStyles returned is 'undefined'. Seems you forgot to wrap the components in "<RangeSlider />" `,
@@ -85,9 +85,7 @@ RangeSlider.defaultProps = {
   orientation: "horizontal",
 }
 
-if (__DEV__) {
-  RangeSlider.displayName = "RangeSlider"
-}
+RangeSlider.displayName = "RangeSlider"
 
 export interface RangeSliderThumbProps extends HTMLChakraProps<"div"> {
   index: number
@@ -116,9 +114,7 @@ export const RangeSliderThumb = forwardRef<RangeSliderThumbProps, "div">(
   },
 )
 
-if (__DEV__) {
-  RangeSliderThumb.displayName = "RangeSliderThumb"
-}
+RangeSliderThumb.displayName = "RangeSliderThumb"
 
 export interface RangeSliderTrackProps extends HTMLChakraProps<"div"> {}
 
@@ -139,9 +135,7 @@ export const RangeSliderTrack = forwardRef<RangeSliderTrackProps, "div">(
   },
 )
 
-if (__DEV__) {
-  RangeSliderTrack.displayName = "RangeSliderTrack"
-}
+RangeSliderTrack.displayName = "RangeSliderTrack"
 
 export interface RangeSliderInnerTrackProps extends HTMLChakraProps<"div"> {}
 
@@ -162,9 +156,7 @@ export const RangeSliderFilledTrack = forwardRef<
   )
 })
 
-if (__DEV__) {
-  RangeSliderFilledTrack.displayName = "RangeSliderFilledTrack"
-}
+RangeSliderFilledTrack.displayName = "RangeSliderFilledTrack"
 
 export interface RangeSliderMarkProps extends HTMLChakraProps<"div"> {
   value: number
@@ -189,6 +181,4 @@ export const RangeSliderMark = forwardRef<RangeSliderMarkProps, "div">(
   },
 )
 
-if (__DEV__) {
-  RangeSliderMark.displayName = "RangeSliderMark"
-}
+RangeSliderMark.displayName = "RangeSliderMark"

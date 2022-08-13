@@ -1,4 +1,4 @@
-import { createContext } from "@chakra-ui/react-utils"
+import { createContext } from "@chakra-ui/react-context"
 import {
   chakra,
   forwardRef,
@@ -9,7 +9,7 @@ import {
   useMultiStyleConfig,
   useTheme,
 } from "@chakra-ui/system"
-import { cx, Dict, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/utils"
 import { useSlider, UseSliderProps, UseSliderReturn } from "./use-slider"
 
 interface SliderContext
@@ -17,15 +17,16 @@ interface SliderContext
 
 const [SliderProvider, useSliderContext] = createContext<SliderContext>({
   name: "SliderContext",
-  errorMessage:
-    "useSliderContext: `context` is undefined. Seems you forgot to wrap all slider components within <Slider />",
+  hookName: "useSliderContext",
+  providerName: "<Slider />",
 })
 
 const [SliderStylesProvider, useSliderStyles] = createContext<
-  Dict<SystemStyleObject>
+  Record<string, SystemStyleObject>
 >({
   name: `SliderStylesContext`,
-  errorMessage: `useSliderStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Slider />" `,
+  hookName: `useSliderStyles`,
+  providerName: "<Slider />",
 })
 
 export { useSliderStyles }
@@ -74,9 +75,7 @@ Slider.defaultProps = {
   orientation: "horizontal",
 }
 
-if (__DEV__) {
-  Slider.displayName = "Slider"
-}
+Slider.displayName = "Slider"
 
 export interface SliderThumbProps extends HTMLChakraProps<"div"> {}
 
@@ -98,9 +97,7 @@ export const SliderThumb = forwardRef<SliderThumbProps, "div">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  SliderThumb.displayName = "SliderThumb"
-}
+SliderThumb.displayName = "SliderThumb"
 
 export interface SliderTrackProps extends HTMLChakraProps<"div"> {}
 
@@ -118,9 +115,7 @@ export const SliderTrack = forwardRef<SliderTrackProps, "div">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  SliderTrack.displayName = "SliderTrack"
-}
+SliderTrack.displayName = "SliderTrack"
 
 export interface SliderInnerTrackProps extends HTMLChakraProps<"div"> {}
 
@@ -140,9 +135,7 @@ export const SliderFilledTrack = forwardRef<SliderInnerTrackProps, "div">(
   },
 )
 
-if (__DEV__) {
-  SliderFilledTrack.displayName = "SliderFilledTrack"
-}
+SliderFilledTrack.displayName = "SliderFilledTrack"
 
 export interface SliderMarkProps extends HTMLChakraProps<"div"> {
   value: number
@@ -165,6 +158,4 @@ export const SliderMark = forwardRef<SliderMarkProps, "div">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  SliderMark.displayName = "SliderMark"
-}
+SliderMark.displayName = "SliderMark"

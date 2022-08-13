@@ -1,9 +1,9 @@
 {
-  "name": "@chakra-ui/{{componentName}}",
+  "name": "@chakra-ui/event-utils",
   "version": "2.0.0",
-  "description": "{{description}}",
+  "description": "",
   "keywords": [
-    "{{componentName}}"
+    "number-utils"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -21,7 +21,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "{{outDir}}/{{componentName}}"
+    "directory": "utilities/number-utils"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
@@ -32,11 +32,5 @@
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src/index.ts --format=esm,cjs"
-  },
-  "peerDependencies": {
-    "react": ">=18"
-  },
-  "devDependencies": {
-    "react": "^18.0.0"
   }
 }
