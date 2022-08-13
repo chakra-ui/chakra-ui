@@ -1,5 +1,14 @@
 # @chakra-ui/react-env
 
+## 2.0.7
+
+### Patch Changes
+
+- [`239a3cd40`](https://github.com/chakra-ui/chakra-ui/commit/239a3cd403271af66119fdfd28ee8f284cd43e0d)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Omit rendered env
+  span when the environment prop is passed. - Add `id` and `hidden` attributes
+  to the rendered env span
+
 ## 2.0.6
 
 ### Patch Changes

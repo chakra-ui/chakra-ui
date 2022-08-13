@@ -1,5 +1,23 @@
 # Change Log
 
+## 2.0.9
+
+### Patch Changes
+
+- [#6462](https://github.com/chakra-ui/chakra-ui/pull/6462)
+  [`dffc18b17`](https://github.com/chakra-ui/chakra-ui/commit/dffc18b1739ad148922fe98e4335457b298c8862)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Reduce bundle size
+  of accordion by leverage smaller packages
+
+- Updated dependencies
+  [[`70872f2c2`](https://github.com/chakra-ui/chakra-ui/commit/70872f2c2254186bbcc1964897fe660eb1c1b010)]:
+  - @chakra-ui/react-use-controllable-state@2.0.1
+  - @chakra-ui/react-context@2.0.1
+  - @chakra-ui/react-use-merge-refs@2.0.1
+  - @chakra-ui/icon@3.0.7
+  - @chakra-ui/transition@2.0.7
+  - @chakra-ui/descendant@3.0.6
+
 ## 2.0.8
 
 ### Patch Changes

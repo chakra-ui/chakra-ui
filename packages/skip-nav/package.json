@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/skip-nav",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Skip navigation links for screen reader and keyboard users",
   "keywords": [
     "skip link",

@@ -1,5 +1,21 @@
 # Change Log
 
+## 2.1.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`dffc18b17`](https://github.com/chakra-ui/chakra-ui/commit/dffc18b1739ad148922fe98e4335457b298c8862),
+  [`04ff824ac`](https://github.com/chakra-ui/chakra-ui/commit/04ff824ac2f69aaa82d08bf2905ad4667327db12),
+  [`99af1e29f`](https://github.com/chakra-ui/chakra-ui/commit/99af1e29fa7b8c8b0bee217227d05f695a0acb47)]:
+  - @chakra-ui/utils@2.0.7
+  - @chakra-ui/hooks@2.0.7
+  - @chakra-ui/close-button@2.0.7
+  - @chakra-ui/focus-lock@2.0.8
+  - @chakra-ui/portal@2.0.7
+  - @chakra-ui/react-utils@2.0.4
+  - @chakra-ui/transition@2.0.7
+
 ## 2.1.4
 
 ### Patch Changes

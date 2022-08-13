@@ -1,5 +1,21 @@
 # Change Log
 
+## 2.2.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`dffc18b17`](https://github.com/chakra-ui/chakra-ui/commit/dffc18b1739ad148922fe98e4335457b298c8862),
+  [`da7d0cf63`](https://github.com/chakra-ui/chakra-ui/commit/da7d0cf63a693df0a282f9586b7133197a9e53a9),
+  [`e0913e56f`](https://github.com/chakra-ui/chakra-ui/commit/e0913e56f889a5d6ef666b0e8b1e0986955fdba3),
+  [`99af1e29f`](https://github.com/chakra-ui/chakra-ui/commit/99af1e29fa7b8c8b0bee217227d05f695a0acb47),
+  [`67edac24a`](https://github.com/chakra-ui/chakra-ui/commit/67edac24ace3c621ecb8cc32ee545acbedaadd79),
+  [`2c9e085ea`](https://github.com/chakra-ui/chakra-ui/commit/2c9e085eaa0dfd65843951fb8240d595901c87dd)]:
+  - @chakra-ui/utils@2.0.7
+  - @chakra-ui/color-mode@2.1.5
+  - @chakra-ui/styled-system@2.2.6
+  - @chakra-ui/react-utils@2.0.4
+
 ## 2.2.4
 
 ### Patch Changes

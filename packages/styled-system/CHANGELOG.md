@@ -1,5 +1,35 @@
 # Change Log
 
+## 2.2.6
+
+### Patch Changes
+
+- [#6335](https://github.com/chakra-ui/chakra-ui/pull/6335)
+  [`e0913e56f`](https://github.com/chakra-ui/chakra-ui/commit/e0913e56f889a5d6ef666b0e8b1e0986955fdba3)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Improve style computation
+  performance by looping over styles once.
+
+  Previously, we had two steps in the logic (expand responsive and convert to
+  css object). This can be quite expensive with large css objects (or style
+  props).
+
+  We now process both steps in a single pass.
+
+* [#6465](https://github.com/chakra-ui/chakra-ui/pull/6465)
+  [`67edac24a`](https://github.com/chakra-ui/chakra-ui/commit/67edac24ace3c621ecb8cc32ee545acbedaadd79)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Fix regression where
+  `ThemeTypings` created by chakra-cli could not be used
+
+- [#6396](https://github.com/chakra-ui/chakra-ui/pull/6396)
+  [`2c9e085ea`](https://github.com/chakra-ui/chakra-ui/commit/2c9e085eaa0dfd65843951fb8240d595901c87dd)
+  Thanks [@yukukotani](https://github.com/yukukotani)! - Escape symbols in css
+  variable to make it works
+
+- Updated dependencies
+  [[`dffc18b17`](https://github.com/chakra-ui/chakra-ui/commit/dffc18b1739ad148922fe98e4335457b298c8862),
+  [`99af1e29f`](https://github.com/chakra-ui/chakra-ui/commit/99af1e29fa7b8c8b0bee217227d05f695a0acb47)]:
+  - @chakra-ui/utils@2.0.7
+
 ## 2.2.5
 
 ### Patch Changes
