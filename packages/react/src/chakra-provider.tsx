@@ -14,12 +14,12 @@ export interface ChakraProviderProps extends BaseChakraProviderProps {
 
 export function ChakraProvider({
   children,
+  theme = defaultTheme,
   toastOptions,
   ...restProps
 }: ChakraProviderProps) {
-  const theme = restProps.theme ?? defaultTheme
   return (
-    <BaseChakraProvider {...restProps} theme={theme}>
+    <BaseChakraProvider theme={theme} {...restProps}>
       {children}
       <ToastProvider {...toastOptions} />
     </BaseChakraProvider>
