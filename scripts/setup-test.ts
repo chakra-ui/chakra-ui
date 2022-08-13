@@ -23,3 +23,9 @@ if (typeof window.matchMedia !== "function") {
 
 // Workaround https://github.com/jsdom/jsdom/issues/2524#issuecomment-897707183
 global.TextEncoder = require("util").TextEncoder
+
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}))
