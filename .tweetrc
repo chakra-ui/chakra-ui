@@ -1,10 +1,10 @@
 {
-  "version": "2.2.5",
-  "releaseUrl": "https://github.com/chakra-ui/chakra-ui/releases/tag/@chakra-ui/react@2.2.5",
+  "version": "2.2.7",
+  "releaseUrl": "https://github.com/chakra-ui/chakra-ui/releases/tag/@chakra-ui/react@2.2.7",
   "patches": [
-    "- Force release due to change in build configuration\n- Update package `main` and `module` entries",
-    "- Fix `exports` in the `package.json` \n",
-    "- update dependencies \n"
+    "- Remove `ChakraProvider.defaultProps` and move logic inside the component. \n",
+    "- Fix issue with nullish operator in storybook \n",
+    "- Fix regression where `StyleFunctionProps` type was not exported \n"
   ],
   "features": []
 }
