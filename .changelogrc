@@ -1,340 +1,121 @@
-## 05-08-2022
+## 13-08-2022
 
-`@chakra-ui/react@2.2.5`
+`@chakra-ui/react@2.2.7`
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+- Remove `ChakraProvider.defaultProps` and move logic inside the component.
 
-**Theme** `v2.1.4`
+**Storybook Addon** `v4.0.7`
 
-- Fix `exports` in the `package.json`
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+- Fix issue with nullish operator in storybook
 
-**Vite Ts** `v1.0.2`
+**Theme Tools** `v2.0.8`
 
-- update dependencies
+- Fix regression where `StyleFunctionProps` type was not exported
 
-**Layout** `v2.1.2`
+**Theme** `v2.1.6`
 
-- Add missing `key` in `Highlight` component to avoid React warnings
-- Adjust `Highlight` to not show any highlights if `query` is empty
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+- Improve contrast of `FormHelperText` to satisfy accessibility check
+- Fix issue where disabled input with flushed or unstyled variant isn't
+  perceivable.
 
-**Gatsby Starter Default** `v1.0.11`
+**Accordion** `v2.0.9`
 
-- update gatsyby packages
+- Reduce bundle size of accordion by leverage smaller packages
 
-**Gatsby Plugin** `v3.0.2`
+**Utils** `v2.0.7`
 
-- update gatsyby packages
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+- Add pure annotation to utils package
+- Add pure annotation to `isBrowser` to tree-shake when bundling
 
-**Cra Template** `v2.0.4`
+**React Use Update Effect** `v2.0.1`
 
-- update web-vitals
+- Initial release
 
-**Cra Template Typescript** `v2.0.3`
+**Color Mode** `v2.1.5`
 
-- update web-vitals
+- Fix regression where `localStorageManager` was not exported
 
-**Create React App Ts** `v2.0.11`
+**Merge Utils** `v2.0.1`
 
-- Fix `Plugin "react" was conflicted` error
+- Initial release
 
-**Accordion** `v2.0.7`
+**Object Utils** `v2.0.1`
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+- Initial release
 
-**Alert** `v2.0.5`
+**React Env** `v2.0.7`
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+- Omit rendered env span when the environment prop is passed. - Add `id` and
+  `hidden` attributes to the rendered env span
 
-**Anatomy** `v2.0.2`
+**Event Utils** `v2.0.1`
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+- Initial release
 
-**Avatar** `v2.0.6`
+**Number Utils** `v2.0.1`
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+- Initial release
 
-**Breadcrumb** `v2.0.5`
+**React Types** `v2.0.1`
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+- Initial release
 
-**Button** `v2.0.5`
+**React Use Event Listener** `v2.0.1`
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+- Initial release
 
-**Checkbox** `v2.1.4`
+**Styled System** `v2.2.6`
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+- Improve style computation performance by looping over styles once.
 
-**Clickable** `v2.0.5`
+Previously, we had two steps in the logic (expand responsive and convert to css
+object). This can be quite expensive with large css objects (or style props).
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+We now process both steps in a single pass.
 
-**Close Button** `v2.0.5`
+- Fix regression where `ThemeTypings` created by chakra-cli could not be used
+- Escape symbols in css variable to make it works
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+**Alert** `v2.0.7`
 
-**Color Mode** `v2.1.3`
+- Refactor to reduce bundle size
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+**Avatar** `v2.0.8`
 
-**Control Box** `v2.0.5`
+- Refactor to reduce bundle size
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+**Hooks** `v2.0.7`
 
-**Counter** `v2.0.5`
+- Deprecate `useDimensions` in favor of the `useSize` hook
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+**React Use Size** `v2.0.1`
 
-**Css Reset** `v2.0.2`
+- Initial release
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+**React Use Disclosure** `v2.0.1`
 
-**Descendant** `v3.0.4`
+- Initial release
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+**Cli** `v2.1.5`
 
-**Editable** `v2.0.5`
+- Fix regression where `ThemeTypings` created by chakra-cli could not be used
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+**React Use Callback Ref** `v2.0.1`
 
-**React Env** `v2.0.5`
+- Initial release
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+**React Use Controllable State** `v2.0.1`
 
-**Focus Lock** `v2.0.6`
+- Initial release
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+**React Context** `v2.0.1`
 
-**Form Control** `v2.0.5`
+- Initial release
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+**React Use Merge Refs** `v2.0.1`
 
-**Hooks** `v2.0.5`
+- Initial release
 
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+**React Use Pan Event** `v2.0.1`
 
-**Icon** `v3.0.5`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Icons** `v2.0.5`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Image** `v2.0.6`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Input** `v2.0.5`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Live Region** `v2.0.5`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Media Query** `v3.2.1`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Menu** `v2.0.7`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Modal** `v2.1.3`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Number Input** `v2.0.5`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Pin Input** `v2.0.7`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Popover** `v2.0.5`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Popper** `v3.0.3`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Portal** `v2.0.5`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Progress** `v2.0.6`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Provider** `v2.0.10`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Radio** `v2.0.6`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**React Utils** `v2.0.2`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Select** `v2.0.5`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Skeleton** `v2.0.10`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Skip Nav** `v2.0.5`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Slider** `v2.0.5`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Spinner** `v2.0.5`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Stat** `v2.0.5`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Styled System** `v2.2.4`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Switch** `v2.0.7`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**System** `v2.2.3`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Table** `v2.0.5`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Tabs** `v2.0.7`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Tag** `v2.0.5`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Textarea** `v2.0.6`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Theme Tools** `v2.0.6`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Toast** `v3.0.3`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Tooltip** `v2.0.6`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Transition** `v2.0.5`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Utils** `v2.0.5`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Visually Hidden** `v2.0.5`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Babel Plugin** `v1.0.5`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Cli** `v2.1.3`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Props Docs** `v2.0.11`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
-
-**Storybook Addon** `v4.0.5`
-
-- Force release due to change in build configuration
-- Update package `main` and `module` entries
+- Initial release
