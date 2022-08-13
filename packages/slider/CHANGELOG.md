@@ -1,5 +1,24 @@
 # Change Log
 
+## 2.0.7
+
+### Patch Changes
+
+- Updated dependencies
+  [[`3ecbf060e`](https://github.com/chakra-ui/chakra-ui/commit/3ecbf060e5ca4a7e545c206fd9025ad29ca50b43),
+  [`597966e46`](https://github.com/chakra-ui/chakra-ui/commit/597966e46f6d0a8cd3f82eafa3f54d5ca9c97127),
+  [`04ff824ac`](https://github.com/chakra-ui/chakra-ui/commit/04ff824ac2f69aaa82d08bf2905ad4667327db12),
+  [`70872f2c2`](https://github.com/chakra-ui/chakra-ui/commit/70872f2c2254186bbcc1964897fe660eb1c1b010)]:
+  - @chakra-ui/react-use-update-effect@2.0.1
+  - @chakra-ui/number-utils@2.0.1
+  - @chakra-ui/react-types@2.0.1
+  - @chakra-ui/react-use-size@2.0.1
+  - @chakra-ui/react-use-callback-ref@2.0.1
+  - @chakra-ui/react-use-controllable-state@2.0.1
+  - @chakra-ui/react-context@2.0.1
+  - @chakra-ui/react-use-merge-refs@2.0.1
+  - @chakra-ui/react-use-pan-event@2.0.1
+
 ## 2.0.6
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.0.8
+
+### Patch Changes
+
+- [`0822619ee`](https://github.com/chakra-ui/chakra-ui/commit/0822619ee31c52c90b71ace59771c295cd8306ae)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor to reduce
+  bundle size
+
+- Updated dependencies
+  [[`70872f2c2`](https://github.com/chakra-ui/chakra-ui/commit/70872f2c2254186bbcc1964897fe660eb1c1b010)]:
+  - @chakra-ui/react-context@2.0.1
+  - @chakra-ui/image@2.0.8
+
 ## 2.0.7
 
 ### Patch Changes

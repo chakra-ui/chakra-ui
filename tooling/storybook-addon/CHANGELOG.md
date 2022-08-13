@@ -1,5 +1,16 @@
 # @chakra-ui/storybook-addon
 
+## 4.0.7
+
+### Patch Changes
+
+- [`3dc27e05e`](https://github.com/chakra-ui/chakra-ui/commit/3dc27e05e97a1320c4400de6a03feb787160eafb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue with
+  nullish operator in storybook
+
+- Updated dependencies []:
+  - @chakra-ui/icons@2.0.7
+
 ## 4.0.6
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/popper",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "A React component and hooks wrapper for popper.js",
   "keywords": [
     "react",

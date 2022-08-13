@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/switch",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "A React component to view and switch between on or off states.",
   "keywords": [
     "switch",

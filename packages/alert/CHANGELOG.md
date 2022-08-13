@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.0.7
+
+### Patch Changes
+
+- [#6466](https://github.com/chakra-ui/chakra-ui/pull/6466)
+  [`99af1e29f`](https://github.com/chakra-ui/chakra-ui/commit/99af1e29fa7b8c8b0bee217227d05f695a0acb47)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor to reduce
+  bundle size
+
+- Updated dependencies
+  [[`70872f2c2`](https://github.com/chakra-ui/chakra-ui/commit/70872f2c2254186bbcc1964897fe660eb1c1b010)]:
+  - @chakra-ui/react-context@2.0.1
+  - @chakra-ui/icon@3.0.7
+  - @chakra-ui/spinner@2.0.7
+
 ## 2.0.6
 
 ### Patch Changes

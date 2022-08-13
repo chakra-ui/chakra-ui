@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/portal",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "React component used to render children outside the DOM hierarchy of the parent component",
   "keywords": [
     "react",

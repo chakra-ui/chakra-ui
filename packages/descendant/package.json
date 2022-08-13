@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/descendant",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "Register child nodes of a react element for better accessibility",
   "keywords": [
     "dom",

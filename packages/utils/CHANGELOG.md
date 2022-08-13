@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.0.7
+
+### Patch Changes
+
+- [#6462](https://github.com/chakra-ui/chakra-ui/pull/6462)
+  [`dffc18b17`](https://github.com/chakra-ui/chakra-ui/commit/dffc18b1739ad148922fe98e4335457b298c8862)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add pure annotation
+  to utils package
+
+* [#6466](https://github.com/chakra-ui/chakra-ui/pull/6466)
+  [`99af1e29f`](https://github.com/chakra-ui/chakra-ui/commit/99af1e29fa7b8c8b0bee217227d05f695a0acb47)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add pure annotation
+  to `isBrowser` to tree-shake when bundling
+
 ## 2.0.6
 
 ### Patch Changes
