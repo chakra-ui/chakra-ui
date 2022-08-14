@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.0.10
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/clickable@2.0.8
+  - @chakra-ui/descendant@3.0.7
+  - @chakra-ui/hooks@2.0.8
+  - @chakra-ui/popper@3.0.6
+  - @chakra-ui/react-utils@2.0.5
+  - @chakra-ui/transition@2.0.8
+  - @chakra-ui/utils@2.0.8
+
 ## 2.0.9
 
 ### Patch Changes

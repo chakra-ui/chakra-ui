@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.0.9
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/react-context@2.0.2
+  - @chakra-ui/image@2.0.9
+
 ## 2.0.8
 
 ### Patch Changes

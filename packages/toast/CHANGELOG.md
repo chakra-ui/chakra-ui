@@ -1,5 +1,22 @@
 # Change Log
 
+## 3.0.6
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/alert@2.0.8
+  - @chakra-ui/close-button@2.0.8
+  - @chakra-ui/hooks@2.0.8
+  - @chakra-ui/portal@2.0.8
+  - @chakra-ui/react-utils@2.0.5
+  - @chakra-ui/system@2.2.6
+  - @chakra-ui/theme@2.1.7
+  - @chakra-ui/transition@2.0.8
+  - @chakra-ui/utils@2.0.8
+
 ## 3.0.5
 
 ### Patch Changes

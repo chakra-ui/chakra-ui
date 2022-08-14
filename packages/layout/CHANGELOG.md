@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.1.5
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/icon@3.0.8
+  - @chakra-ui/react-utils@2.0.5
+  - @chakra-ui/utils@2.0.8
+
 ## 2.1.4
 
 ### Patch Changes

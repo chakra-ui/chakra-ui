@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.1.6
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/close-button@2.0.8
+  - @chakra-ui/focus-lock@2.0.9
+  - @chakra-ui/hooks@2.0.8
+  - @chakra-ui/portal@2.0.8
+  - @chakra-ui/react-utils@2.0.5
+  - @chakra-ui/transition@2.0.8
+  - @chakra-ui/utils@2.0.8
+
 ## 2.1.5
 
 ### Patch Changes

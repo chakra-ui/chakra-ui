@@ -1,5 +1,22 @@
 # Change Log
 
+## 2.0.8
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/react-context@2.0.2
+  - @chakra-ui/react-use-callback-ref@2.0.2
+  - @chakra-ui/react-use-controllable-state@2.0.2
+  - @chakra-ui/react-use-merge-refs@2.0.2
+  - @chakra-ui/react-use-pan-event@2.0.2
+  - @chakra-ui/react-use-size@2.0.2
+  - @chakra-ui/react-use-update-effect@2.0.2
+  - @chakra-ui/number-utils@2.0.2
+  - @chakra-ui/react-types@2.0.2
+
 ## 2.0.7
 
 ### Patch Changes

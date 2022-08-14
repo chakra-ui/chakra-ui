@@ -1,5 +1,60 @@
 # Change Log
 
+## 2.2.8
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/accordion@2.0.10
+  - @chakra-ui/alert@2.0.8
+  - @chakra-ui/avatar@2.0.9
+  - @chakra-ui/breadcrumb@2.0.8
+  - @chakra-ui/button@2.0.8
+  - @chakra-ui/checkbox@2.1.7
+  - @chakra-ui/close-button@2.0.8
+  - @chakra-ui/control-box@2.0.8
+  - @chakra-ui/counter@2.0.8
+  - @chakra-ui/css-reset@2.0.4
+  - @chakra-ui/editable@2.0.8
+  - @chakra-ui/react-env@2.0.8
+  - @chakra-ui/form-control@2.0.8
+  - @chakra-ui/hooks@2.0.8
+  - @chakra-ui/icon@3.0.8
+  - @chakra-ui/image@2.0.9
+  - @chakra-ui/input@2.0.8
+  - @chakra-ui/layout@2.1.5
+  - @chakra-ui/live-region@2.0.8
+  - @chakra-ui/media-query@3.2.4
+  - @chakra-ui/menu@2.0.10
+  - @chakra-ui/modal@2.1.6
+  - @chakra-ui/number-input@2.0.8
+  - @chakra-ui/pin-input@2.0.10
+  - @chakra-ui/popover@2.0.8
+  - @chakra-ui/popper@3.0.6
+  - @chakra-ui/portal@2.0.8
+  - @chakra-ui/progress@2.0.9
+  - @chakra-ui/provider@2.0.13
+  - @chakra-ui/radio@2.0.9
+  - @chakra-ui/select@2.0.8
+  - @chakra-ui/skeleton@2.0.13
+  - @chakra-ui/slider@2.0.8
+  - @chakra-ui/spinner@2.0.8
+  - @chakra-ui/stat@2.0.8
+  - @chakra-ui/switch@2.0.10
+  - @chakra-ui/system@2.2.6
+  - @chakra-ui/table@2.0.8
+  - @chakra-ui/tabs@2.0.10
+  - @chakra-ui/tag@2.0.8
+  - @chakra-ui/textarea@2.0.9
+  - @chakra-ui/theme@2.1.7
+  - @chakra-ui/toast@3.0.6
+  - @chakra-ui/tooltip@2.0.9
+  - @chakra-ui/transition@2.0.8
+  - @chakra-ui/utils@2.0.8
+  - @chakra-ui/visually-hidden@2.0.8
+
 ## 2.2.7
 
 ### Patch Changes

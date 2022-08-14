@@ -1,5 +1,11 @@
 # @chakra-ui/anatomy
 
+## 2.0.4
+
+### Patch Changes
+
+- Force release
+
 ## 2.0.3
 
 ### Patch Changes

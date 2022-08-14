@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.2.4
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/react-env@2.0.8
+  - @chakra-ui/utils@2.0.8
+
 ## 3.2.3
 
 ### Patch Changes

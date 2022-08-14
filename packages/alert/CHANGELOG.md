@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.0.8
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/react-context@2.0.2
+  - @chakra-ui/icon@3.0.8
+  - @chakra-ui/spinner@2.0.8
+
 ## 2.0.7
 
 ### Patch Changes

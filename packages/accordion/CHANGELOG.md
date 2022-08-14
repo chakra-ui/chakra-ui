@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.0.10
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/react-context@2.0.2
+  - @chakra-ui/react-use-controllable-state@2.0.2
+  - @chakra-ui/react-use-merge-refs@2.0.2
+  - @chakra-ui/descendant@3.0.7
+  - @chakra-ui/icon@3.0.8
+  - @chakra-ui/transition@2.0.8
+
 ## 2.0.9
 
 ### Patch Changes

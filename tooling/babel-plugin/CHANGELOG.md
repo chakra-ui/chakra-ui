@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.7
+
+### Patch Changes
+
+- Force release
+
 ## 1.0.6
 
 ### Patch Changes

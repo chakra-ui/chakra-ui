@@ -1,5 +1,14 @@
 # @chakra-ui/react-use-pan-event
 
+## 2.0.2
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/event-utils@2.0.2
+
 ## 2.0.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @chakra-ui/number-utils
 
+## 2.0.2
+
+### Patch Changes
+
+- Force release
+
 ## 2.0.1
 
 ### Patch Changes

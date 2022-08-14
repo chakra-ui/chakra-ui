@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.2.6
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/color-mode@2.1.6
+  - @chakra-ui/react-utils@2.0.5
+  - @chakra-ui/styled-system@2.2.7
+  - @chakra-ui/utils@2.0.8
+
 ## 2.2.5
 
 ### Patch Changes
