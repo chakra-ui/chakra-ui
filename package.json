@@ -40,7 +40,7 @@
     "version": "changeset version",
     "release": "changeset publish",
     "version:dev": "changeset version --snapshot dev",
-    "release:dev": "pnpm changeset publish --tag dev",
+    "release:dev": "changeset publish --tag dev",
     "sandbox": "tsx scripts/sandbox.ts",
     "notify:release": "npm-run-all changelog:write discord changelog:commit"
   },
