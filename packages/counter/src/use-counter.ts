@@ -33,12 +33,12 @@ export interface UseCounterProps {
   step?: number
   /**
    * The minimum value of the counter
-   * @default -Infinity
+   * @default Number.MIN_SAFE_INTEGER
    */
   min?: number
   /**
    * The maximum value of the counter
-   * @default Infinity
+   * @default Number.MAX_SAFE_INTEGER
    */
   max?: number
   /**
