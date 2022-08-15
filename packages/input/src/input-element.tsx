@@ -18,7 +18,7 @@ const StyledInputElement = chakra("div", {
     justifyContent: "center",
     position: "absolute",
     top: "0",
-    zIndex: 2,
+    zIndex: 1,
   },
 })
 
