@@ -1,4 +1,4 @@
-import { useMergeRefs } from "@chakra-ui/hooks"
+import { useMergeRefs } from "@chakra-ui/react-use-merge-refs"
 import {
   chakra,
   forwardRef,
@@ -8,7 +8,8 @@ import {
   ThemingProps,
   useStyleConfig,
 } from "@chakra-ui/system"
-import { cx, dataAttr, mergeWith, __DEV__ } from "@chakra-ui/utils"
+import { cx, dataAttr } from "@chakra-ui/shared-utils"
+
 import { useMemo } from "react"
 import { useButtonGroup } from "./button-context"
 import { ButtonIcon } from "./button-icon"
@@ -50,7 +51,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
    */
   const buttonStyles: SystemStyleObject = useMemo(() => {
     // @ts-ignore
-    const _focus = mergeWith({}, styles?.["_focus"] ?? {}, { zIndex: 1 })
+    const _focus = { ...styles?.["_focus"], zIndex: 1 }
     return {
       display: "inline-flex",
       appearance: "none",
@@ -117,9 +118,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  Button.displayName = "Button"
-}
+Button.displayName = "Button"
 
 type ButtonContentProps = Pick<
   ButtonProps,

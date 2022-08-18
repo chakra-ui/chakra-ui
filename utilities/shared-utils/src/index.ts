@@ -1,5 +1,3 @@
-import { FunctionArguments } from "./types"
-
 export const cx = (...classNames: any[]) => classNames.filter(Boolean).join(" ")
 
 function isDev() {
@@ -34,6 +32,10 @@ export function runIfFn<T, U>(
   return isFunction(valueOrFn) ? valueOrFn(...args) : valueOrFn
 }
 
+type FunctionArguments<T extends Function> = T extends (...args: infer R) => any
+  ? R
+  : never
+
 export function callAllHandlers<T extends (event: any) => void>(
   ...fns: (T | undefined)[]
 ) {
@@ -47,3 +49,10 @@ export function callAllHandlers<T extends (event: any) => void>(
 
 const isFunction = <T extends Function = Function>(value: any): value is T =>
   typeof value === "function"
+
+type Booleanish = boolean | "true" | "false"
+export const dataAttr = (condition: boolean | undefined) =>
+  (condition ? "" : undefined) as Booleanish
+
+export const ariaAttr = (condition: boolean | undefined) =>
+  condition ? true : undefined

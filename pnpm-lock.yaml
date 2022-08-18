@@ -486,10 +486,11 @@ importers:
 
   packages/button:
     specifiers:
-      '@chakra-ui/hooks': workspace:*
       '@chakra-ui/icons': workspace:*
       '@chakra-ui/layout': workspace:*
-      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/react-context': workspace:*
+      '@chakra-ui/react-use-merge-refs': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/spinner': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/theme': workspace:*
@@ -499,15 +500,16 @@ importers:
       react-icons: ^4.2.0
       react-spinners: 0.11.0
     dependencies:
-      '@chakra-ui/hooks': link:../hooks
-      '@chakra-ui/react-utils': link:../react-utils
+      '@chakra-ui/react-context': link:../../hooks/context
+      '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/spinner': link:../spinner
-      '@chakra-ui/utils': link:../utils
     devDependencies:
       '@chakra-ui/icons': link:../icons
       '@chakra-ui/layout': link:../layout
       '@chakra-ui/system': link:../system
       '@chakra-ui/theme': link:../theme
+      '@chakra-ui/utils': link:../utils
       framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
       react-icons: 4.4.0_react@18.2.0
@@ -11345,7 +11347,7 @@ packages:
   /axios/0.21.4_debug@3.2.7:
     resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
     dependencies:
-      follow-redirects: 1.15.1
+      follow-redirects: 1.15.1_debug@3.2.7
     transitivePeerDependencies:
       - debug
 
@@ -15883,7 +15885,7 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /follow-redirects/1.15.1:
+  /follow-redirects/1.15.1_debug@3.2.7:
     resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
     engines: {node: '>=4.0'}
     peerDependencies:
@@ -15891,6 +15893,8 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dependencies:
+      debug: 3.2.7
 
   /for-in/1.0.2:
     resolution: {integrity: sha512-7EwmXrOjyL+ChxMhmG5lnW9MPt1aIeZEwKhQzoBUdTV0N3zuwWDZYVJatDvZ2OyzPUvdIAZDsCetk3coyMfcnQ==}
@@ -18016,7 +18020,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.1
+      follow-redirects: 1.15.1_debug@3.2.7
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
