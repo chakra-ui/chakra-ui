@@ -17,7 +17,7 @@ type MessageOptions = {
   message: string
 }
 
-export const warn = /* @__PURE__ */ (options: MessageOptions) => () => {
+export const warn = /* @__PURE__ */ (options: MessageOptions) => {
   const { condition, message } = options
   if (condition && __DEV__) {
     console.warn(message)
