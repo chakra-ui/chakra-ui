@@ -8,9 +8,8 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/utils"
+import { cx, getValidChildren } from "@chakra-ui/shared-utils"
 import { compact } from "@chakra-ui/object-utils"
-import { getValidChildren } from "@chakra-ui/react-utils"
 import { baseStyle } from "./avatar"
 import { cloneElement } from "react"
 
