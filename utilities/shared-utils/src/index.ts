@@ -56,3 +56,26 @@ export const dataAttr = (condition: boolean | undefined) =>
 
 export const ariaAttr = (condition: boolean | undefined) =>
   condition ? true : undefined
+
+export function omit<T extends Record<string, any>, K extends keyof T>(
+  object: T,
+  keys: K[],
+) {
+  const result: Record<string, any> = {}
+
+  Object.keys(object).forEach((key) => {
+    if (keys.includes(key as K)) return
+    result[key] = object[key]
+  })
+
+  return result as Omit<T, K>
+}
+
+type AnyFunction<T = any> = (...args: T[]) => any
+export function callAll<T extends AnyFunction>(...fns: (T | undefined)[]) {
+  return function mergedFn(arg: FunctionArguments<T>[0]) {
+    fns.forEach((fn) => {
+      fn?.(arg)
+    })
+  }
+}
