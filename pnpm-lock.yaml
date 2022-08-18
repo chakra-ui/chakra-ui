@@ -402,9 +402,9 @@ importers:
       '@chakra-ui/react-use-controllable-state': workspace:*
       '@chakra-ui/react-use-disclosure': workspace:*
       '@chakra-ui/react-use-merge-refs': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/transition': workspace:*
-      '@chakra-ui/utils': workspace:*
       framer-motion: ^6.2.9
       react: ^18.2.0
     dependencies:
@@ -419,8 +419,8 @@ importers:
       '@chakra-ui/layout': link:../layout
       '@chakra-ui/modal': link:../modal
       '@chakra-ui/react-use-disclosure': link:../../hooks/use-disclosure
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      '@chakra-ui/utils': link:../utils
       framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
 
@@ -1725,10 +1725,7 @@ importers:
       react: 18.2.0
 
   utilities/shared-utils:
-    specifiers:
-      merge-anything: ^5.0.2
-    dependencies:
-      merge-anything: 5.0.2
+    specifiers: {}
 
 packages:
 

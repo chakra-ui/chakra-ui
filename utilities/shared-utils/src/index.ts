@@ -1,7 +1,11 @@
-import { mergeAndCompare } from "merge-anything"
+import { FunctionArguments } from "./types"
 export type Booleanish = boolean | "true" | "false"
 
 export const cx = (...classNames: any[]) => classNames.filter(Boolean).join(" ")
+
+function isDev() {
+  return process.env.NODE_ENV !== "production"
+}
 
 export function isObject(value: any): value is Record<string, any> {
   const type = typeof value
@@ -12,27 +16,38 @@ export function isObject(value: any): value is Record<string, any> {
   )
 }
 
-function mergeFn(origin: any, override: any) {
-  if (typeof origin === "function" || typeof override === "function") {
-    return (...args: any[]) => {
-      const originValue =
-        typeof origin === "function" ? origin(...args) : origin
-      const overrideValue =
-        typeof override === "function" ? override(...args) : override
-      return mergeAndCompare(mergeFn, {}, originValue, overrideValue)
-    }
-  }
-
-  if (Array.isArray(origin) || Array.isArray(override)) {
-    return (origin ?? []).concat(override ?? [])
-  }
-
-  return override
+type MessageOptions = {
+  condition: boolean
+  message: string
 }
 
-export function mergeWith(...overrides: any[]): any {
-  return mergeAndCompare(mergeFn, {}, ...overrides)
+export const warn = (options: MessageOptions) => {
+  const { condition, message } = options
+  if (condition && isDev()) {
+    console.warn(message)
+  }
 }
+
+export function runIfFn<T, U>(
+  valueOrFn: T | ((...fnArgs: U[]) => T),
+  ...args: U[]
+): T {
+  return isFunction(valueOrFn) ? valueOrFn(...args) : valueOrFn
+}
+
+export function callAllHandlers<T extends (event: any) => void>(
+  ...fns: (T | undefined)[]
+) {
+  return function func(event: FunctionArguments<T>[0]) {
+    fns.some((fn) => {
+      fn?.(event)
+      return event?.defaultPrevented
+    })
+  }
+}
+
+const isFunction = <T extends Function = Function>(value: any): value is T =>
+  typeof value === "function"
 
 export const dataAttr = (condition: boolean | undefined) =>
   (condition ? "" : undefined) as Booleanish
