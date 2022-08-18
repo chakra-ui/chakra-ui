@@ -575,8 +575,8 @@ importers:
       react: ^18.2.0
     dependencies:
       '@chakra-ui/hooks': link:../hooks
-      '@chakra-ui/utils': link:../utils
     devDependencies:
+      '@chakra-ui/utils': link:../utils
       react: 18.2.0
 
   packages/control-box:
