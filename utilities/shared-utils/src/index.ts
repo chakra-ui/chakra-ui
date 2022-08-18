@@ -31,7 +31,7 @@ export function runIfFn<T, U>(
   valueOrFn: T | ((...fnArgs: U[]) => T),
   ...args: U[]
 ): T {
-  return typeof valueOrFn === "function" ? valueOrFn(...args) : valueOrFn
+  return isFunction(valueOrFn) ? valueOrFn(...args) : valueOrFn
 }
 
 export function callAllHandlers<T extends (event: any) => void>(
@@ -44,3 +44,6 @@ export function callAllHandlers<T extends (event: any) => void>(
     })
   }
 }
+
+const isFunction = <T extends Function = Function>(value: any): value is T =>
+  typeof value === "function"
