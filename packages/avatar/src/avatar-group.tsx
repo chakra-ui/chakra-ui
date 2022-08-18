@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/utils"
 import { compact } from "@chakra-ui/object-utils"
-import { getValidChildren } from "@chakra-ui/react-utils"
+import { getValidChildren } from "@chakra-ui/react-children-utils"
 import { baseStyle } from "./avatar"
 import { cloneElement } from "react"
 

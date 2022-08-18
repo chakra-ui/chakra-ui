@@ -5,7 +5,7 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import { getValidChildren } from "@chakra-ui/react-utils"
+import { getValidChildren } from "@chakra-ui/react-children-utils"
 import { useBreadcrumbStyles } from "./breadcrumb-context"
 import { BreadcrumbSeparator } from "./breadcrumb-separator"
 import { BreadcrumbLink } from "./breadcrumb-link"

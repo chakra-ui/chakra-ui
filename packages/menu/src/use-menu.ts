@@ -14,12 +14,8 @@ import {
   useAnimationState,
 } from "@chakra-ui/hooks"
 import { usePopper, UsePopperProps } from "@chakra-ui/popper"
-import {
-  createContext,
-  EventKeyMap,
-  getValidChildren,
-  mergeRefs,
-} from "@chakra-ui/react-utils"
+import { createContext, EventKeyMap, mergeRefs } from "@chakra-ui/react-utils"
+import { getValidChildren } from "@chakra-ui/react-children-utils"
 import {
   addItem,
   callAllHandlers,

@@ -45,6 +45,7 @@
     "@chakra-ui/descendant": "workspace:*",
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/react-utils": "workspace:*",
+    "@chakra-ui/react-children-utils": "workspace:*",
     "@chakra-ui/utils": "workspace:*"
   },
   "devDependencies": {

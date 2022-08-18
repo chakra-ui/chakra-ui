@@ -1,4 +1,5 @@
-import { createContext, getValidChildren } from "@chakra-ui/react-utils"
+import { createContext } from "@chakra-ui/react-utils"
+import { getValidChildren } from "@chakra-ui/react-children-utils"
 import {
   chakra,
   forwardRef,

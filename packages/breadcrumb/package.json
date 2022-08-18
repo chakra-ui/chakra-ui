@@ -38,7 +38,7 @@
     "react": "^18.0.0"
   },
   "dependencies": {
-    "@chakra-ui/react-utils": "workspace:*",
+    "@chakra-ui/react-children-utils": "workspace:*",
     "@chakra-ui/utils": "workspace:*"
   },
   "peerDependencies": {

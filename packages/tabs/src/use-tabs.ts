@@ -5,12 +5,8 @@ import {
   useId,
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
-import {
-  createContext,
-  EventKeyMap,
-  getValidChildren,
-  mergeRefs,
-} from "@chakra-ui/react-utils"
+import { createContext, EventKeyMap, mergeRefs } from "@chakra-ui/react-utils"
+import { getValidChildren } from "@chakra-ui/react-children-utils"
 import {
   callAllHandlers,
   determineLazyBehavior,

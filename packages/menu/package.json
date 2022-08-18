@@ -39,6 +39,7 @@
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/popper": "workspace:*",
     "@chakra-ui/react-utils": "workspace:*",
+    "@chakra-ui/react-children-utils": "workspace:*",
     "@chakra-ui/transition": "workspace:*",
     "@chakra-ui/utils": "workspace:*"
   },

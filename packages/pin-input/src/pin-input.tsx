@@ -7,7 +7,7 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import { getValidChildren } from "@chakra-ui/react-utils"
+import { getValidChildren } from "@chakra-ui/react-children-utils"
 import {
   PinInputDescendantsProvider,
   PinInputProvider,

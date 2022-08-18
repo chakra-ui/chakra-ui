@@ -1,4 +1,4 @@
-import { getValidChildren } from "@chakra-ui/react-utils"
+import { getValidChildren } from "@chakra-ui/react-children-utils"
 import {
   chakra,
   forwardRef,
