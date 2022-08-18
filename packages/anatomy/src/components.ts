@@ -77,6 +77,11 @@ export const inputAnatomy = anatomy("input").parts("addon", "field", "element")
 
 export const listAnatomy = anatomy("list").parts("container", "item", "icon")
 
+export const loadingOverlayAnatomy = anatomy("loadingoverlay").parts(
+  "overlay",
+  "text",
+)
+
 export const menuAnatomy = anatomy("menu")
   .parts("button", "list", "item")
   .extend("groupTitle", "command", "divider")

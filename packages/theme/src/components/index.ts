@@ -19,6 +19,7 @@ import Input from "./input"
 import Kbd from "./kbd"
 import Link from "./link"
 import List from "./list"
+import LoadingOverlay from "./loading-overlay"
 import Menu from "./menu"
 import Modal from "./modal"
 import NumberInput from "./number-input"
@@ -60,6 +61,7 @@ export { default as Input } from "./input"
 export { default as Kbd } from "./kbd"
 export { default as Link } from "./link"
 export { default as List } from "./list"
+export { default as LoadingOverlay } from "./loading-overlay"
 export { default as Menu } from "./menu"
 export { default as Modal } from "./modal"
 export { default as NumberInput } from "./number-input"
@@ -102,6 +104,7 @@ export const components: Record<string, any> = {
   Kbd,
   Link,
   List,
+  LoadingOverlay,
   Menu,
   Modal,
   NumberInput,
