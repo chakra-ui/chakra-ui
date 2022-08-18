@@ -8,7 +8,7 @@ import {
   ThemingProps,
   useStyleConfig,
 } from "@chakra-ui/system"
-import { cx, dataAttr, mergeWith } from "@chakra-ui/shared-utils"
+import { cx, dataAttr } from "@chakra-ui/shared-utils"
 
 import { useMemo } from "react"
 import { useButtonGroup } from "./button-context"
@@ -51,7 +51,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
    */
   const buttonStyles: SystemStyleObject = useMemo(() => {
     // @ts-ignore
-    const _focus = mergeWith({}, styles?.["_focus"] ?? {}, { zIndex: 1 })
+    const _focus = { ...styles?.["_focus"], zIndex: 1 }
     return {
       display: "inline-flex",
       appearance: "none",
