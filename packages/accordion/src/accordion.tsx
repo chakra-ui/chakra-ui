@@ -6,7 +6,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 import { useMemo } from "react"
 import {
   AccordionDescendantsProvider,
