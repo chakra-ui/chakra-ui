@@ -5,7 +5,7 @@ import {
   SystemStyleObject,
   ThemingProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 import { useMemo } from "react"
 import { ButtonGroupContext, ButtonGroupProvider } from "./button-context"
 import { ButtonGroupOptions } from "./button-types"
@@ -68,6 +68,4 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
   },
 )
 
-if (__DEV__) {
-  ButtonGroup.displayName = "ButtonGroup"
-}
+ButtonGroup.displayName = "ButtonGroup"
