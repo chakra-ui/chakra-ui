@@ -1,5 +1,5 @@
 import { chakra, HTMLChakraProps } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 import { cloneElement, isValidElement } from "react"
 
 export function ButtonIcon(props: HTMLChakraProps<"span">) {
@@ -27,6 +27,4 @@ export function ButtonIcon(props: HTMLChakraProps<"span">) {
   )
 }
 
-if (__DEV__) {
-  ButtonIcon.displayName = "ButtonIcon"
-}
+ButtonIcon.displayName = "ButtonIcon"

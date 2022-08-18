@@ -32,5 +32,8 @@
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src/index.ts --format=esm,cjs"
+  },
+  "dependencies": {
+    "merge-anything": "^5.0.2"
   }
 }

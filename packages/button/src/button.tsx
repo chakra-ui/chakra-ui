@@ -8,7 +8,8 @@ import {
   ThemingProps,
   useStyleConfig,
 } from "@chakra-ui/system"
-import { cx, dataAttr, mergeWith, __DEV__ } from "@chakra-ui/utils"
+import { cx, dataAttr, mergeWith } from "@chakra-ui/shared-utils"
+
 import { useMemo } from "react"
 import { useButtonGroup } from "./button-context"
 import { ButtonIcon } from "./button-icon"
@@ -117,9 +118,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  Button.displayName = "Button"
-}
+Button.displayName = "Button"
 
 type ButtonContentProps = Pick<
   ButtonProps,

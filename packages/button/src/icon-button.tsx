@@ -1,5 +1,4 @@
 import { forwardRef } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
 import { cloneElement, isValidElement } from "react"
 import { Button, ButtonProps } from "./button"
 
@@ -57,6 +56,4 @@ export const IconButton = forwardRef<IconButtonProps, "button">(
   },
 )
 
-if (__DEV__) {
-  IconButton.displayName = "IconButton"
-}
+IconButton.displayName = "IconButton"
