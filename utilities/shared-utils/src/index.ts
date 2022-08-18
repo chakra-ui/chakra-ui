@@ -1,4 +1,4 @@
-import { AnyFunction, FunctionArguments } from "./types"
+import { FunctionArguments } from "./types"
 
 export const cx = (...classNames: any[]) => classNames.filter(Boolean).join(" ")
 export const __DEV__ = process.env.NODE_ENV !== "production"
