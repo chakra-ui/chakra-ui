@@ -1,4 +1,4 @@
-import { useMergeRefs } from "@chakra-ui/hooks"
+import { useMergeRefs } from "@chakra-ui/react-use-merge-refs"
 import {
   chakra,
   forwardRef,
