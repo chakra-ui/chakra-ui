@@ -79,24 +79,3 @@ export function callAll<T extends AnyFunction>(...fns: (T | undefined)[]) {
     })
   }
 }
-
-type FilterFn<T> = (value: any, key: string, object: T) => boolean
-export function objectFilter<T extends Record<string, any>>(
-  object: T,
-  fn: FilterFn<T>,
-) {
-  const result: Record<string, any> = {}
-
-  Object.keys(object).forEach((key) => {
-    const value = object[key]
-    const shouldPass = fn(value, key, object)
-    if (shouldPass) {
-      result[key] = value
-    }
-  })
-
-  return result
-}
-
-export const filterUndefined = (object: Record<string, any>) =>
-  objectFilter(object, (val) => val !== null && val !== undefined)

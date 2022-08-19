@@ -779,6 +779,7 @@ importers:
       '@chakra-ui/hooks': workspace:*
       '@chakra-ui/icons': workspace:*
       '@chakra-ui/layout': workspace:*
+      '@chakra-ui/object-utils': workspace:*
       '@chakra-ui/react-children-utils': workspace:*
       '@chakra-ui/react-context': workspace:*
       '@chakra-ui/shared-utils': workspace:*
@@ -786,6 +787,7 @@ importers:
       react: ^18.2.0
     dependencies:
       '@chakra-ui/form-control': link:../form-control
+      '@chakra-ui/object-utils': link:../../utilities/object-utils
       '@chakra-ui/react-children-utils': link:../../utilities/react-children-utils
       '@chakra-ui/react-context': link:../../hooks/context
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils

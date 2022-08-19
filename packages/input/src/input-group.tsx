@@ -9,7 +9,8 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx, filterUndefined } from "@chakra-ui/shared-utils"
+import { cx } from "@chakra-ui/shared-utils"
+import { compact } from "@chakra-ui/object-utils"
 import { cloneElement } from "react"
 
 const [InputGroupStylesProvider, useInputGroupStyles] = createContext<
@@ -62,7 +63,7 @@ export const InputGroup = forwardRef<InputGroupProps, "div">(
        * Make it possible to override the size and variant from `Input`
        */
 
-      const theming = filterUndefined({
+      const theming = compact({
         size: child.props?.size || props.size,
         variant: child.props?.variant || props.variant,
       })
