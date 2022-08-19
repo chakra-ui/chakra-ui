@@ -44,7 +44,7 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "workspace:*"
+    "@chakra-ui/react-use-safe-layout-effect": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18"

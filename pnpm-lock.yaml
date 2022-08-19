@@ -586,11 +586,11 @@ importers:
 
   packages/color-mode:
     specifiers:
-      '@chakra-ui/hooks': workspace:*
+      '@chakra-ui/react-use-safe-layout-effect': workspace:*
       '@chakra-ui/utils': workspace:*
       react: ^18.2.0
     dependencies:
-      '@chakra-ui/hooks': link:../hooks
+      '@chakra-ui/react-use-safe-layout-effect': link:../../hooks/use-safe-layout-effect
     devDependencies:
       '@chakra-ui/utils': link:../utils
       react: 18.2.0
@@ -9644,7 +9644,6 @@ packages:
       '@testing-library/dom': 8.16.0
       '@types/react-dom': 18.0.6
       react: 18.2.0
-    dev: false
 
   /@testing-library/user-event/14.3.0:
     resolution: {integrity: sha512-P02xtBBa8yMaLhK8CzJCIns8rqwnF6FxhR9zs810flHOBXUYCFjLd8Io1rQrAkQRWEmW2PGdZIEdMxf/KLsqFA==}
