@@ -7,7 +7,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 import { AvatarStylesProvider } from "./avatar-context"
 import { AvatarImage, GenericAvatarIcon } from "./avatar-image"
 import { initials } from "./avatar-name"

@@ -4,7 +4,6 @@ import {
   HTMLChakraProps,
   SystemStyleObject,
 } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
 import { useBreadcrumbStyles } from "./breadcrumb-context"
 
 export interface BreadcrumbSeparatorProps extends HTMLChakraProps<"div"> {
@@ -38,6 +37,4 @@ export const BreadcrumbSeparator = forwardRef<BreadcrumbSeparatorProps, "span">(
   },
 )
 
-if (__DEV__) {
-  BreadcrumbSeparator.displayName = "BreadcrumbSeparator"
-}
+BreadcrumbSeparator.displayName = "BreadcrumbSeparator"

@@ -376,6 +376,12 @@ importers:
     devDependencies:
       react: 18.2.0
 
+  hooks/use-safe-layout-effect:
+    specifiers:
+      react: ^18.2.0
+    devDependencies:
+      react: 18.2.0
+
   hooks/use-size:
     specifiers:
       '@zag-js/element-size': 0.1.0
@@ -429,9 +435,9 @@ importers:
       '@chakra-ui/icon': workspace:*
       '@chakra-ui/layout': workspace:*
       '@chakra-ui/react-context': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/spinner': workspace:*
       '@chakra-ui/system': workspace:*
-      '@chakra-ui/utils': workspace:*
       react: ^18.2.0
     dependencies:
       '@chakra-ui/icon': link:../icon
@@ -439,8 +445,8 @@ importers:
       '@chakra-ui/spinner': link:../spinner
     devDependencies:
       '@chakra-ui/layout': link:../layout
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      '@chakra-ui/utils': link:../utils
       react: 18.2.0
 
   packages/anatomy:
@@ -451,33 +457,35 @@ importers:
       '@chakra-ui/image': workspace:*
       '@chakra-ui/layout': workspace:*
       '@chakra-ui/object-utils': workspace:*
+      '@chakra-ui/react-children-utils': workspace:*
       '@chakra-ui/react-context': workspace:*
-      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      '@chakra-ui/utils': workspace:*
       react: ^18.2.0
     dependencies:
       '@chakra-ui/image': link:../image
+      '@chakra-ui/react-children-utils': link:../../utilities/react-children-utils
       '@chakra-ui/react-context': link:../../hooks/context
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
     devDependencies:
       '@chakra-ui/layout': link:../layout
       '@chakra-ui/object-utils': link:../../utilities/object-utils
-      '@chakra-ui/react-utils': link:../react-utils
       '@chakra-ui/system': link:../system
-      '@chakra-ui/utils': link:../utils
       react: 18.2.0
 
   packages/breadcrumb:
     specifiers:
       '@chakra-ui/icons': workspace:*
-      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/react-children-utils': workspace:*
+      '@chakra-ui/react-context': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      '@chakra-ui/utils': workspace:*
       react: ^18.2.0
       react-router-dom: 6.0.0
     dependencies:
-      '@chakra-ui/react-utils': link:../react-utils
-      '@chakra-ui/utils': link:../utils
+      '@chakra-ui/react-children-utils': link:../../utilities/react-children-utils
+      '@chakra-ui/react-context': link:../../hooks/context
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
     devDependencies:
       '@chakra-ui/icons': link:../icons
       '@chakra-ui/system': link:../system
@@ -518,21 +526,31 @@ importers:
   packages/checkbox:
     specifiers:
       '@chakra-ui/form-control': workspace:*
-      '@chakra-ui/hooks': workspace:*
       '@chakra-ui/icon': workspace:*
       '@chakra-ui/layout': workspace:*
-      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/react-context': workspace:*
+      '@chakra-ui/react-types': workspace:*
+      '@chakra-ui/react-use-callback-ref': workspace:*
+      '@chakra-ui/react-use-controllable-state': workspace:*
+      '@chakra-ui/react-use-merge-refs': workspace:*
+      '@chakra-ui/react-use-safe-layout-effect': workspace:*
+      '@chakra-ui/react-use-update-effect': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      '@chakra-ui/utils': workspace:*
       '@chakra-ui/visually-hidden': workspace:*
       '@zag-js/focus-visible': 0.1.0
       framer-motion: ^6.2.9
       react: ^18.2.0
     dependencies:
       '@chakra-ui/form-control': link:../form-control
-      '@chakra-ui/hooks': link:../hooks
-      '@chakra-ui/react-utils': link:../react-utils
-      '@chakra-ui/utils': link:../utils
+      '@chakra-ui/react-context': link:../../hooks/context
+      '@chakra-ui/react-types': link:../../utilities/react-types
+      '@chakra-ui/react-use-callback-ref': link:../../hooks/use-callback-ref
+      '@chakra-ui/react-use-controllable-state': link:../../hooks/use-controllable-state
+      '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
+      '@chakra-ui/react-use-safe-layout-effect': link:../../hooks/use-safe-layout-effect
+      '@chakra-ui/react-use-update-effect': link:../../hooks/use-update-effect
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/visually-hidden': link:../visually-hidden
       '@zag-js/focus-visible': 0.1.0
     devDependencies:
@@ -559,11 +577,9 @@ importers:
     specifiers:
       '@chakra-ui/icon': workspace:*
       '@chakra-ui/system': workspace:*
-      '@chakra-ui/utils': workspace:*
       react: ^18.2.0
     dependencies:
       '@chakra-ui/icon': link:../icon
-      '@chakra-ui/utils': link:../utils
     devDependencies:
       '@chakra-ui/system': link:../system
       react: 18.2.0
@@ -583,11 +599,8 @@ importers:
     specifiers:
       '@chakra-ui/icons': workspace:*
       '@chakra-ui/system': workspace:*
-      '@chakra-ui/utils': workspace:*
       '@chakra-ui/visually-hidden': workspace:*
       react: ^18.2.0
-    dependencies:
-      '@chakra-ui/utils': link:../utils
     devDependencies:
       '@chakra-ui/icons': link:../icons
       '@chakra-ui/system': link:../system
@@ -616,11 +629,13 @@ importers:
   packages/descendant:
     specifiers:
       '@chakra-ui/hooks': workspace:*
-      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/react-context': workspace:*
+      '@chakra-ui/react-use-merge-refs': workspace:*
       '@chakra-ui/system': workspace:*
       react: ^18.2.0
     dependencies:
-      '@chakra-ui/react-utils': link:../react-utils
+      '@chakra-ui/react-context': link:../../hooks/context
+      '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
     devDependencies:
       '@chakra-ui/hooks': link:../hooks
       '@chakra-ui/system': link:../system
@@ -9629,6 +9644,7 @@ packages:
       '@testing-library/dom': 8.16.0
       '@types/react-dom': 18.0.6
       react: 18.2.0
+    dev: false
 
   /@testing-library/user-event/14.3.0:
     resolution: {integrity: sha512-P02xtBBa8yMaLhK8CzJCIns8rqwnF6FxhR9zs810flHOBXUYCFjLd8Io1rQrAkQRWEmW2PGdZIEdMxf/KLsqFA==}

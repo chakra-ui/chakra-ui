@@ -8,7 +8,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { callAll, cx, Omit, __DEV__ } from "@chakra-ui/utils"
+import { callAll, cx } from "@chakra-ui/shared-utils"
 import { cloneElement, useMemo } from "react"
 import { useCheckboxGroupContext } from "./checkbox-context"
 import { CheckboxIcon } from "./checkbox-icon"
@@ -157,6 +157,4 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
   )
 })
 
-if (__DEV__) {
-  Checkbox.displayName = "Checkbox"
-}
+Checkbox.displayName = "Checkbox"
