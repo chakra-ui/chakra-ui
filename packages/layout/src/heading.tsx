@@ -6,7 +6,7 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 
 export interface HeadingProps
   extends HTMLChakraProps<"h2">,
@@ -29,6 +29,4 @@ export const Heading = forwardRef<HeadingProps, "h2">(function Heading(
   )
 })
 
-if (__DEV__) {
-  Heading.displayName = "Heading"
-}
+Heading.displayName = "Heading"

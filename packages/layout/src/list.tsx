@@ -1,5 +1,6 @@
 import { Icon, IconProps } from "@chakra-ui/icon"
-import { createContext, getValidChildren } from "@chakra-ui/react-utils"
+import { createContext } from "@chakra-ui/react-context"
+import { getValidChildren } from "@chakra-ui/react-children-utils"
 import type {
   HTMLChakraProps,
   SystemProps,
@@ -12,10 +13,9 @@ import {
   SystemStyleObject,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { Dict, __DEV__ } from "@chakra-ui/utils"
 
 const [ListStylesProvider, useListStyles] = createContext<
-  Dict<SystemStyleObject>
+  Record<string, SystemStyleObject>
 >({
   name: `ListStylesContext`,
   errorMessage: `useListStyles returned is 'undefined'. Seems you forgot to wrap the components in "<List />" `,
@@ -87,9 +87,7 @@ export const List = forwardRef<ListProps, "ul">(function List(props, ref) {
   )
 })
 
-if (__DEV__) {
-  List.displayName = "List"
-}
+List.displayName = "List"
 
 export const OrderedList = forwardRef<ListProps, "ol">((props, ref) => {
   const { as, ...rest } = props
@@ -98,9 +96,7 @@ export const OrderedList = forwardRef<ListProps, "ol">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  OrderedList.displayName = "OrderedList"
-}
+OrderedList.displayName = "OrderedList"
 
 export const UnorderedList = forwardRef<ListProps, "ul">(function UnorderedList(
   props,
@@ -112,9 +108,7 @@ export const UnorderedList = forwardRef<ListProps, "ul">(function UnorderedList(
   )
 })
 
-if (__DEV__) {
-  UnorderedList.displayName = "UnorderedList"
-}
+UnorderedList.displayName = "UnorderedList"
 
 export interface ListItemProps extends HTMLChakraProps<"li"> {}
 
@@ -132,9 +126,7 @@ export const ListItem = forwardRef<ListItemProps, "li">(function ListItem(
   return <chakra.li ref={ref} {...props} __css={styles.item} />
 })
 
-if (__DEV__) {
-  ListItem.displayName = "ListItem"
-}
+ListItem.displayName = "ListItem"
 
 /**
  * ListIcon
@@ -150,6 +142,4 @@ export const ListIcon = forwardRef<IconProps, "svg">(function ListIcon(
   return <Icon ref={ref} role="presentation" {...props} __css={styles.icon} />
 })
 
-if (__DEV__) {
-  ListIcon.displayName = "ListIcon"
-}
+ListIcon.displayName = "ListIcon"
