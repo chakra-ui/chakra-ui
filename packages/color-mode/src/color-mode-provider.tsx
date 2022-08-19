@@ -9,7 +9,7 @@ import {
 import { getColorModeUtils } from "./color-mode.utils"
 import { localStorageManager, StorageManager } from "./storage-manager"
 
-export const noop = () => {}
+const noop = () => {}
 
 export interface ColorModeProviderProps {
   value?: ColorMode
