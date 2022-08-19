@@ -1,13 +1,10 @@
 import { useFormControlProps } from "@chakra-ui/form-control"
-import {
-  useBoolean,
-  useCallbackRef,
-  useControllableProp,
-  useSafeLayoutEffect,
-  useUpdateEffect,
-} from "@chakra-ui/hooks"
-import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
-import { callAllHandlers, dataAttr, focus, omit } from "@chakra-ui/utils"
+import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
+import { useUpdateEffect } from "@chakra-ui/react-use-update-effect"
+import { useCallbackRef } from "@chakra-ui/react-use-callback-ref"
+import type { PropGetter } from "@chakra-ui/react-types"
+import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
+import { callAllHandlers, dataAttr, omit } from "@chakra-ui/shared-utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import { trackFocusVisible } from "@zag-js/focus-visible"
 import { useCallback, useEffect, useRef, useState } from "react"
@@ -63,9 +60,9 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   const onFocusProp = useCallbackRef(onFocus)
 
   const [isFocusVisible, setIsFocusVisible] = useState(false)
-  const [isFocused, setFocused] = useBoolean()
-  const [isHovered, setHovered] = useBoolean()
-  const [isActive, setActive] = useBoolean()
+  const [isFocused, setFocused] = useState(false)
+  const [isHovered, setHovered] = useState(false)
+  const [isActive, setActive] = useState(false)
 
   useEffect(() => {
     return trackFocusVisible(setIsFocusVisible)
@@ -76,10 +73,8 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
 
   const [checkedState, setCheckedState] = useState(!!defaultChecked)
 
-  const [isControlled, isChecked] = useControllableProp(
-    checkedProp,
-    checkedState,
-  )
+  const isControlled = checkedProp !== undefined
+  const isChecked = isControlled ? checkedProp : checkedState
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -116,7 +111,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
 
   useUpdateEffect(() => {
     if (isDisabled) {
-      setFocused.off()
+      setFocused(false)
     }
   }, [isDisabled, setFocused])
 
@@ -136,7 +131,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
       if (event.key === " ") {
-        setActive.on()
+        setActive(true)
       }
     },
     [setActive],
@@ -145,7 +140,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   const onKeyUp = useCallback(
     (event: React.KeyboardEvent) => {
       if (event.key === " ") {
-        setActive.off()
+        setActive(false)
       }
     },
     [setActive],
@@ -178,7 +173,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         if (isFocused) {
           event.preventDefault()
         }
-        setActive.on()
+        setActive(true)
       }
 
       return {
@@ -195,9 +190,13 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         "data-readonly": dataAttr(isReadOnly),
         "aria-hidden": true,
         onMouseDown: callAllHandlers(props.onMouseDown, onPressDown),
-        onMouseUp: callAllHandlers(props.onMouseUp, setActive.off),
-        onMouseEnter: callAllHandlers(props.onMouseEnter, setHovered.on),
-        onMouseLeave: callAllHandlers(props.onMouseLeave, setHovered.off),
+        onMouseUp: callAllHandlers(props.onMouseUp, () => setActive(false)),
+        onMouseEnter: callAllHandlers(props.onMouseEnter, () =>
+          setHovered(true),
+        ),
+        onMouseLeave: callAllHandlers(props.onMouseLeave, () =>
+          setHovered(false),
+        ),
       }
     },
     [
@@ -210,9 +209,6 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       isIndeterminate,
       isInvalid,
       isReadOnly,
-      setActive,
-      setHovered.off,
-      setHovered.on,
     ],
   )
 
@@ -237,7 +233,9 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
          */
         if (!rootIsLabelElement) {
           inputRef.current?.click()
-          focus(inputRef.current, { nextTick: true })
+          requestAnimationFrame(() => {
+            inputRef.current?.focus()
+          })
         }
       }),
       "data-disabled": dataAttr(isDisabled),
@@ -258,8 +256,12 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         id,
         tabIndex,
         onChange: callAllHandlers(props.onChange, handleChange),
-        onBlur: callAllHandlers(props.onBlur, onBlurProp, setFocused.off),
-        onFocus: callAllHandlers(props.onFocus, onFocusProp, setFocused.on),
+        onBlur: callAllHandlers(props.onBlur, onBlurProp, () =>
+          setFocused(false),
+        ),
+        onFocus: callAllHandlers(props.onFocus, onFocusProp, () =>
+          setFocused(true),
+        ),
         onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
         onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
         required: isRequired,
@@ -279,8 +281,6 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       value,
       id,
       handleChange,
-      setFocused.off,
-      setFocused.on,
       onBlurProp,
       onFocusProp,
       onKeyDown,
