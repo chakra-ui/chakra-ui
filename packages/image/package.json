@@ -34,7 +34,8 @@
   },
   "dependencies": {
     "@chakra-ui/react-use-safe-layout-effect": "workspace:*",
-    "@chakra-ui/shared-utils": "workspace:*"
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/object-utils": "workspace:*"
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
