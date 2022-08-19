@@ -8,7 +8,6 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
 
 function CloseIcon(props: IconProps) {
   return (
@@ -68,6 +67,4 @@ export const CloseButton = forwardRef<CloseButtonProps, "button">(
   },
 )
 
-if (__DEV__) {
-  CloseButton.displayName = "CloseButton"
-}
+CloseButton.displayName = "CloseButton"
