@@ -821,10 +821,7 @@ importers:
 
   packages/live-region:
     specifiers:
-      '@chakra-ui/utils': workspace:*
       react: ^18.2.0
-    dependencies:
-      '@chakra-ui/utils': link:../utils
     devDependencies:
       react: 18.2.0
 
