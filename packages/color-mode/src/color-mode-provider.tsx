@@ -1,4 +1,4 @@
-import { useSafeLayoutEffect } from "@chakra-ui/reace-use-safe-lyout-effect"
+import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { ColorModeContext } from "./color-mode-context"
 import {
