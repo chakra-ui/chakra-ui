@@ -42,9 +42,7 @@ export function createIcon(options: CreateIconOptions) {
     </Icon>
   ))
 
-  if (__DEV__) {
-    Comp.displayName = displayName
-  }
+  Comp.displayName = displayName
 
   return Comp
 }
