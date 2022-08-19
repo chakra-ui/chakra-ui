@@ -616,11 +616,13 @@ importers:
   packages/descendant:
     specifiers:
       '@chakra-ui/hooks': workspace:*
-      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/react-context': workspace:*
+      '@chakra-ui/react-use-merge-refs': workspace:*
       '@chakra-ui/system': workspace:*
       react: ^18.2.0
     dependencies:
-      '@chakra-ui/react-utils': link:../react-utils
+      '@chakra-ui/react-context': link:../../hooks/context
+      '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
     devDependencies:
       '@chakra-ui/hooks': link:../hooks
       '@chakra-ui/system': link:../system
