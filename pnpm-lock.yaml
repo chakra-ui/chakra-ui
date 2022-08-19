@@ -734,12 +734,12 @@ importers:
 
   packages/icon:
     specifiers:
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      '@chakra-ui/utils': workspace:*
       react: ^18.2.0
       react-icons: ^4.2.0
     dependencies:
-      '@chakra-ui/utils': link:../utils
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
     devDependencies:
       '@chakra-ui/system': link:../system
       react: 18.2.0
@@ -4131,7 +4131,6 @@ packages:
       invariant: 2.2.4
       prop-types: 15.8.1
       react-lifecycles-compat: 3.0.4
-    dev: true
 
   /@gatsbyjs/reach-router/1.3.7_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-KQ5FvMb4BZUlSo+yQgd4t4WB8vkVPWfKjTpSl+Bx/FZhU6OL4lpwgfX7fXAY/18DogqyJCFiNAjV5eo3rQ5Alw==}
@@ -4144,6 +4143,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-lifecycles-compat: 3.0.4
+    dev: false
 
   /@gatsbyjs/webpack-hot-middleware/2.25.3:
     resolution: {integrity: sha512-ul17OZ8Dlw+ATRbnuU+kwxuAlq9lKbYz/2uBS1FLCdgoPTF1H2heP7HbUbgfMZbfRQNcCG2rMscMnr32ritCDw==}
@@ -11640,7 +11640,7 @@ packages:
     dependencies:
       '@babel/core': 7.18.9
       '@babel/runtime': 7.18.9
-      gatsby: 4.19.2_biqbaboplfbrettd7655fr4n2y
+      gatsby: 4.19.2
       gatsby-core-utils: 3.19.0
 
   /babel-plugin-syntax-object-rest-spread/6.13.0:
@@ -16435,6 +16435,7 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /gatsby-link/4.19.1_xqk4ktfct2mldtt7zqnjb4ueue:
     resolution: {integrity: sha512-LCazIxhPOGHJKJVrr5s3jJHYtmaCnaaHQtW9WS0CWvPkW/zC4rKDXyEn8xDWVYaUnRnXUVDhv4Psp6J+Xqifxg==}
@@ -16448,7 +16449,6 @@ packages:
       '@types/reach__router': 1.3.10
       gatsby-page-utils: 2.19.0
       prop-types: 15.8.1
-    dev: true
 
   /gatsby-page-utils/2.19.0:
     resolution: {integrity: sha512-eYStV4jQbuEBKhatH3yzWA+lmoydJBCZVg6w2GG38eSsgcj9pdep8oQqyQdGFU3dy/HizWmWCv+wW9FIUoVQsQ==}
@@ -16535,7 +16535,7 @@ packages:
       '@sindresorhus/slugify': 1.1.2
       chokidar: 3.5.3
       fs-exists-cached: 1.0.0
-      gatsby: 4.19.2_biqbaboplfbrettd7655fr4n2y
+      gatsby: 4.19.2
       gatsby-core-utils: 3.19.0
       gatsby-page-utils: 2.19.0
       gatsby-plugin-utils: 3.13.0_upd2dfgy6javngtb6zz74pjfdq
@@ -16603,7 +16603,7 @@ packages:
       '@babel/preset-typescript': 7.18.6_@babel+core@7.18.9
       '@babel/runtime': 7.18.9
       babel-plugin-remove-graphql-queries: 4.19.0_dxeruin6mssvjcve62e33yojya
-      gatsby: 4.19.2_biqbaboplfbrettd7655fr4n2y
+      gatsby: 4.19.2
     transitivePeerDependencies:
       - supports-color
 
@@ -16638,7 +16638,7 @@ packages:
       '@babel/runtime': 7.18.9
       '@gatsbyjs/potrace': 2.2.0
       fs-extra: 10.1.0
-      gatsby: 4.19.2_biqbaboplfbrettd7655fr4n2y
+      gatsby: 4.19.2
       gatsby-core-utils: 3.19.0
       gatsby-sharp: 0.13.0
       graphql-compose: 9.0.8_graphql@15.8.0
@@ -16663,6 +16663,7 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /gatsby-react-router-scroll/5.19.0_xqk4ktfct2mldtt7zqnjb4ueue:
     resolution: {integrity: sha512-tl1E2/ger3Aw5Vb5n53i9wCBePYqb2dBilO05pd6FfgKYJveFidQwGzzOn1F9smdWq+5c3KJSTlKJaNYPwn72w==}
@@ -16675,7 +16676,6 @@ packages:
       '@babel/runtime': 7.18.9
       '@gatsbyjs/reach-router': 1.3.7
       prop-types: 15.8.1
-    dev: true
 
   /gatsby-script/1.4.0:
     resolution: {integrity: sha512-+GmHTAfFq/sQWPvl1E8QvApRfxqqamhdqjFo4YloOQRAlDc+e3nMzTzvgj8z3IWqDqlvEfHMnlvQg60E5ThO/A==}
@@ -16683,7 +16683,6 @@ packages:
     peerDependencies:
       react: ^16.9.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.9.0 || ^17.0.0 || ^18.0.0
-    dev: true
 
   /gatsby-script/1.4.0_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-+GmHTAfFq/sQWPvl1E8QvApRfxqqamhdqjFo4YloOQRAlDc+e3nMzTzvgj8z3IWqDqlvEfHMnlvQg60E5ThO/A==}
@@ -16694,6 +16693,7 @@ packages:
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /gatsby-sharp/0.13.0:
     resolution: {integrity: sha512-dGuIuWP3rC7hXl/CgkHEY4WQEW+B9Rsg8uo6u+OumuLnLBxD4vTusEIGctVKzlyIxpENEQylQ7w1JKHX9fOy9g==}
@@ -16972,7 +16972,6 @@ packages:
       - webpack-dev-server
       - webpack-hot-middleware
       - webpack-plugin-serve
-    dev: true
 
   /gatsby/4.19.2_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-e39NL+nEi0GPlE62mz66lwllbR4Baof4l/b187df4tLWZhoUU9mY/flohxPHFH4gxXqD2AqGnJsm/jOXsIKO0g==}
@@ -17172,6 +17171,7 @@ packages:
       - webpack-dev-server
       - webpack-hot-middleware
       - webpack-plugin-serve
+    dev: false
 
   /gauge/3.0.2:
     resolution: {integrity: sha512-+5J6MS/5XksCuXq++uFRsnUd7Ovu1XenbeuIuNRJxYWjgQbPuFhT14lAvsWfqfAmnwluf1OwMjz39HjfLPci0Q==}
