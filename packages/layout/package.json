@@ -39,8 +39,11 @@
   },
   "dependencies": {
     "@chakra-ui/icon": "workspace:*",
-    "@chakra-ui/react-utils": "workspace:*",
-    "@chakra-ui/utils": "workspace:*"
+    "@chakra-ui/react-context": "workspace:*",
+    "@chakra-ui/react-children-utils": "workspace:*",
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/object-utils": "workspace:*",
+    "@chakra-ui/breakpoint-utils": "workspace:*"
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",

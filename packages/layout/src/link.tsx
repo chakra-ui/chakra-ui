@@ -6,7 +6,7 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 
 export interface LinkProps extends HTMLChakraProps<"a">, ThemingProps<"Link"> {
   /**
@@ -45,6 +45,4 @@ export const Link = forwardRef<LinkProps, "a">(function Link(props, ref) {
   )
 })
 
-if (__DEV__) {
-  Link.displayName = "Link"
-}
+Link.displayName = "Link"

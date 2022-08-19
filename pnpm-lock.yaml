@@ -796,17 +796,23 @@ importers:
 
   packages/layout:
     specifiers:
+      '@chakra-ui/breakpoint-utils': workspace:*
       '@chakra-ui/icon': workspace:*
-      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/object-utils': workspace:*
+      '@chakra-ui/react-children-utils': workspace:*
+      '@chakra-ui/react-context': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      '@chakra-ui/utils': workspace:*
       react: ^18.2.0
       react-icons: ^4.2.0
       react-router-dom: 6.0.0
     dependencies:
+      '@chakra-ui/breakpoint-utils': link:../../utilities/breakpoint-utils
       '@chakra-ui/icon': link:../icon
-      '@chakra-ui/react-utils': link:../react-utils
-      '@chakra-ui/utils': link:../utils
+      '@chakra-ui/object-utils': link:../../utilities/object-utils
+      '@chakra-ui/react-children-utils': link:../../utilities/react-children-utils
+      '@chakra-ui/react-context': link:../../hooks/context
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
     devDependencies:
       '@chakra-ui/system': link:../system
       react: 18.2.0
@@ -1735,6 +1741,12 @@ importers:
       jest-axe: 6.0.0
     devDependencies:
       react: 18.2.0
+
+  utilities/breakpoint-utils:
+    specifiers:
+      '@chakra-ui/shared-utils': workspace:*
+    dependencies:
+      '@chakra-ui/shared-utils': link:../shared-utils
 
   utilities/event-utils:
     specifiers: {}

@@ -4,7 +4,9 @@ import {
   ResponsiveValue,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, mapResponsive, __DEV__ } from "@chakra-ui/utils"
+import { mapResponsive } from "@chakra-ui/breakpoint-utils"
+import { cx } from "@chakra-ui/shared-utils"
+
 import { Children } from "react"
 
 interface AspectRatioOptions {
@@ -73,6 +75,4 @@ export const AspectRatio = forwardRef<AspectRatioProps, "div">(function (
   )
 })
 
-if (__DEV__) {
-  AspectRatio.displayName = "AspectRatio"
-}
+AspectRatio.displayName = "AspectRatio"

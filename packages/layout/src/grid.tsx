@@ -5,7 +5,8 @@ import {
   SystemProps,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { filterUndefined, mapResponsive, __DEV__ } from "@chakra-ui/utils"
+import { compact } from "@chakra-ui/object-utils"
+import { mapResponsive } from "@chakra-ui/breakpoint-utils"
 
 import { BoxProps } from "./box"
 
@@ -55,9 +56,7 @@ export const Grid = forwardRef<GridProps, "div">(function Grid(props, ref) {
   return <chakra.div ref={ref} __css={styles} {...rest} />
 })
 
-if (__DEV__) {
-  Grid.displayName = "Grid"
-}
+Grid.displayName = "Grid"
 
 export interface GridOptions {
   /**
@@ -172,7 +171,7 @@ export const GridItem = forwardRef<GridItemProps, "div">(function GridItem(
     ...rest
   } = props
 
-  const styles = filterUndefined({
+  const styles = compact({
     gridArea: area,
     gridColumn: spanFn(colSpan),
     gridRow: spanFn(rowSpan),
