@@ -6,7 +6,7 @@ import {
   ThemingProps,
   useStyleConfig,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 import { useFormControlContext, useFormControlStyles } from "./form-control"
 
 export interface FormLabelProps
@@ -64,9 +64,7 @@ export const FormLabel = forwardRef<FormLabelProps, "label">(function FormLabel(
   )
 })
 
-if (__DEV__) {
-  FormLabel.displayName = "FormLabel"
-}
+FormLabel.displayName = "FormLabel"
 
 export interface RequiredIndicatorProps extends HTMLChakraProps<"span"> {}
 
@@ -93,6 +91,4 @@ export const RequiredIndicator = forwardRef<RequiredIndicatorProps, "span">(
   },
 )
 
-if (__DEV__) {
-  RequiredIndicator.displayName = "RequiredIndicator"
-}
+RequiredIndicator.displayName = "RequiredIndicator"

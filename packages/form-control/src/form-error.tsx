@@ -1,5 +1,5 @@
 import Icon, { IconProps } from "@chakra-ui/icon"
-import { createContext } from "@chakra-ui/react-utils"
+import { createContext } from "@chakra-ui/react-context"
 import {
   chakra,
   forwardRef,
@@ -9,11 +9,11 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx, Dict, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 import { useFormControlContext } from "./form-control"
 
 const [FormErrorStylesProvider, useFormErrorStyles] = createContext<
-  Dict<SystemStyleObject>
+  Record<string, SystemStyleObject>
 >({
   name: `FormErrorStylesContext`,
   errorMessage: `useFormErrorStyles returned is 'undefined'. Seems you forgot to wrap the components in "<FormError />" `,
@@ -52,9 +52,7 @@ export const FormErrorMessage = forwardRef<FormErrorMessageProps, "div">(
   },
 )
 
-if (__DEV__) {
-  FormErrorMessage.displayName = "FormErrorMessage"
-}
+FormErrorMessage.displayName = "FormErrorMessage"
 
 /**
  * Used as the visual indicator that a field is invalid or
@@ -84,6 +82,4 @@ export const FormErrorIcon = forwardRef<IconProps, "svg">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  FormErrorIcon.displayName = "FormErrorIcon"
-}
+FormErrorIcon.displayName = "FormErrorIcon"

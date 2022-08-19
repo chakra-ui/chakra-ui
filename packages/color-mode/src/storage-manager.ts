@@ -1,4 +1,3 @@
-import { isBrowser } from "@chakra-ui/utils"
 import { ColorMode } from "./color-mode-types"
 
 export const STORAGE_KEY = "chakra-ui-color-mode"
@@ -17,7 +16,7 @@ export function createLocalStorageManager(key: string): StorageManager {
     ssr: false,
     type: "localStorage",
     get(init?) {
-      if (!isBrowser) return init
+      if (!globalThis?.document) return init
       let value: any
       try {
         value = localStorage.getItem(key) || init
@@ -53,7 +52,7 @@ export function createCookieStorageManager(
     type: "cookie",
     get(init?): MaybeColorMode {
       if (cookie) return parseCookie(cookie, key)
-      if (!isBrowser) return init
+      if (!globalThis?.document) return init
       return parseCookie(document.cookie, key) || init
     },
     set(value) {
