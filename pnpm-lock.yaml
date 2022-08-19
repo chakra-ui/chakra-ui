@@ -670,11 +670,11 @@ importers:
 
   packages/focus-lock:
     specifiers:
-      '@chakra-ui/utils': workspace:*
+      '@chakra-ui/dom-utils': workspace:*
       react: ^18.2.0
       react-focus-lock: ^2.9.1
     dependencies:
-      '@chakra-ui/utils': link:../utils
+      '@chakra-ui/dom-utils': link:../../utilities/dom-utils
       react-focus-lock: 2.9.1_react@18.2.0
     devDependencies:
       react: 18.2.0
@@ -1714,6 +1714,9 @@ importers:
       jest-axe: 6.0.0
     devDependencies:
       react: 18.2.0
+
+  utilities/dom-utils:
+    specifiers: {}
 
   utilities/event-utils:
     specifiers: {}
@@ -9644,7 +9647,6 @@ packages:
       '@testing-library/dom': 8.16.0
       '@types/react-dom': 18.0.6
       react: 18.2.0
-    dev: false
 
   /@testing-library/user-event/14.3.0:
     resolution: {integrity: sha512-P02xtBBa8yMaLhK8CzJCIns8rqwnF6FxhR9zs810flHOBXUYCFjLd8Io1rQrAkQRWEmW2PGdZIEdMxf/KLsqFA==}
