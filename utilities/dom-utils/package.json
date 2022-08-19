@@ -1,9 +1,9 @@
 {
-  "name": "@chakra-ui/react-children-utils",
+  "name": "@chakra-ui/dom-utils",
   "version": "2.0.0",
   "description": "",
   "keywords": [
-    "react-children-utils"
+    "dom-utils"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -21,7 +21,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "utilities/react-children-utils"
+    "directory": "utilities/dom-utils"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"

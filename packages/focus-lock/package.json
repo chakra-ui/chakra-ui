@@ -31,7 +31,7 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/utils": "workspace:*",
+    "@chakra-ui/dom-utils": "workspace:*",
     "react-focus-lock": "^2.9.1"
   },
   "peerDependencies": {

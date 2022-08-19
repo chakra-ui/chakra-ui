@@ -689,11 +689,11 @@ importers:
 
   packages/focus-lock:
     specifiers:
-      '@chakra-ui/utils': workspace:*
+      '@chakra-ui/dom-utils': workspace:*
       react: ^18.2.0
       react-focus-lock: ^2.9.1
     dependencies:
-      '@chakra-ui/utils': link:../utils
+      '@chakra-ui/dom-utils': link:../../utilities/dom-utils
       react-focus-lock: 2.9.1_react@18.2.0
     devDependencies:
       react: 18.2.0
@@ -1747,6 +1747,9 @@ importers:
       '@chakra-ui/shared-utils': workspace:*
     dependencies:
       '@chakra-ui/shared-utils': link:../shared-utils
+
+  utilities/dom-utils:
+    specifiers: {}
 
   utilities/event-utils:
     specifiers: {}
