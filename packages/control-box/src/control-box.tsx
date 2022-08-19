@@ -1,5 +1,4 @@
 import { chakra, SystemStyleObject, HTMLChakraProps } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
 
 export interface ControlBoxOptions {
   type?: "checkbox" | "radio"
@@ -79,8 +78,6 @@ export const ControlBox: React.FC<ControlBoxProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  ControlBox.displayName = "ControlBox"
-}
+ControlBox.displayName = "ControlBox"
 
 export default ControlBox

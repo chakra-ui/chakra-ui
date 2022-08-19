@@ -583,11 +583,8 @@ importers:
     specifiers:
       '@chakra-ui/icons': workspace:*
       '@chakra-ui/system': workspace:*
-      '@chakra-ui/utils': workspace:*
       '@chakra-ui/visually-hidden': workspace:*
       react: ^18.2.0
-    dependencies:
-      '@chakra-ui/utils': link:../utils
     devDependencies:
       '@chakra-ui/icons': link:../icons
       '@chakra-ui/system': link:../system
