@@ -5,7 +5,7 @@ import {
   forwardRef,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { omit, __DEV__ } from "@chakra-ui/utils"
+import { omit } from "@chakra-ui/shared-utils"
 import {
   FallbackStrategy,
   shouldShowFallbackImage,
@@ -36,9 +36,7 @@ const NativeImage = forwardRef(function NativeImage(
   )
 })
 
-if (__DEV__) {
-  NativeImage.displayName = "NativeImage"
-}
+NativeImage.displayName = "NativeImage"
 
 interface ImageOptions extends NativeImageOptions {
   /**
@@ -187,6 +185,4 @@ export const Img = forwardRef<ImgProps, "img">((props, ref) => (
   <chakra.img ref={ref} as={NativeImage} className="chakra-image" {...props} />
 ))
 
-if (__DEV__) {
-  Image.displayName = "Image"
-}
+Image.displayName = "Image"

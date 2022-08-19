@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@chakra-ui/hooks": "workspace:*",
-    "@chakra-ui/utils": "workspace:*"
+    "@chakra-ui/shared-utils": "workspace:*"
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
