@@ -4,8 +4,8 @@ import {
   SystemStyleObject,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
-import { getValidChildren } from "@chakra-ui/react-utils"
+import { getValidChildren } from "@chakra-ui/react-children-utils"
+import { cx } from "@chakra-ui/shared-utils"
 import { useBreadcrumbStyles } from "./breadcrumb-context"
 import { BreadcrumbSeparator } from "./breadcrumb-separator"
 import { BreadcrumbLink } from "./breadcrumb-link"
@@ -75,6 +75,4 @@ export const BreadcrumbItem = forwardRef<BreadcrumbItemProps, "li">(
     )
   },
 )
-if (__DEV__) {
-  BreadcrumbItem.displayName = "BreadcrumbItem"
-}
+BreadcrumbItem.displayName = "BreadcrumbItem"
