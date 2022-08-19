@@ -1,4 +1,4 @@
-import { MaybeRenderProp } from "@chakra-ui/react-utils"
+import { cx, runIfFn } from "@chakra-ui/shared-utils"
 import {
   chakra,
   forwardRef,
@@ -7,7 +7,6 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx, runIfFn, __DEV__ } from "@chakra-ui/utils"
 import { EditableProvider, EditableStylesProvider } from "./editable-context"
 import {
   useEditable,
@@ -19,6 +18,8 @@ type RenderProps = Pick<
   UseEditableReturn,
   "isEditing" | "onSubmit" | "onCancel" | "onEdit"
 >
+
+type MaybeRenderProp<P> = React.ReactNode | ((props: P) => React.ReactNode)
 
 interface BaseEditableProps
   extends Omit<
@@ -74,6 +75,4 @@ export const Editable = forwardRef<EditableProps, "div">(function Editable(
   )
 })
 
-if (__DEV__) {
-  Editable.displayName = "Editable"
-}
+Editable.displayName = "Editable"
