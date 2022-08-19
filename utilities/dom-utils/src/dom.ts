@@ -1,4 +1,4 @@
-import { Booleanish, EventKeys } from "./types"
+type Booleanish = boolean | "true" | "false"
 
 export function isElement(el: any): el is Element {
   return (
@@ -86,7 +86,7 @@ export function normalizeEventKey(
 
   const eventKey = isArrowKey ? `Arrow${key}` : key
 
-  return eventKey as EventKeys
+  return eventKey
 }
 
 export function getRelatedTarget(
