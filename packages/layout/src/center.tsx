@@ -1,5 +1,4 @@
 import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
 
 export interface CenterProps extends HTMLChakraProps<"div"> {}
 
@@ -17,9 +16,7 @@ export const Center = chakra("div", {
   },
 })
 
-if (__DEV__) {
-  Center.displayName = "Center"
-}
+Center.displayName = "Center"
 
 export interface AbsoluteCenterProps extends HTMLChakraProps<"div"> {
   axis?: "horizontal" | "vertical" | "both"

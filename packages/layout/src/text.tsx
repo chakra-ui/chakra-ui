@@ -7,7 +7,8 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__, filterUndefined } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
+import { compact } from "@chakra-ui/object-utils"
 
 export interface TextProps extends HTMLChakraProps<"p">, ThemingProps<"Text"> {
   /**
@@ -37,7 +38,7 @@ export const Text = forwardRef<TextProps, "p">(function Text(props, ref) {
   const { className, align, decoration, casing, ...rest } =
     omitThemingProps(props)
 
-  const aliasedProps = filterUndefined({
+  const aliasedProps = compact({
     textAlign: props.align,
     textDecoration: props.decoration,
     textTransform: props.casing,
@@ -54,6 +55,4 @@ export const Text = forwardRef<TextProps, "p">(function Text(props, ref) {
   )
 })
 
-if (__DEV__) {
-  Text.displayName = "Text"
-}
+Text.displayName = "Text"
