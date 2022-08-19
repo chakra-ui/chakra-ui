@@ -1,21 +1,19 @@
 {
-  "name": "@chakra-ui/icon",
-  "version": "3.0.8",
-  "description": "A base React component for icons",
+  "name": "@chakra-ui/breakpoint-utils",
+  "version": "2.0.2",
+  "description": "",
   "keywords": [
-    "react",
-    "icon",
-    "svg",
-    "ui",
-    "chakra ui"
+    "breakpoint",
+    "utilities",
+    "chakra"
   ],
-  "sideEffects": false,
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "sideEffects": false,
   "files": [
     "dist"
   ],
@@ -25,28 +23,19 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/icon"
+    "directory": "utilities/breakpoint-utils"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
-  "dependencies": {
-    "@chakra-ui/shared-utils": "workspace:*"
-  },
-  "devDependencies": {
-    "@chakra-ui/system": "workspace:*",
-    "react-icons": "^4.2.0",
-    "react": "^18.0.0"
-  },
-  "peerDependencies": {
-    "@chakra-ui/system": ">=2.0.0",
-    "react": ">=18"
-  },
   "scripts": {
-    "build": "JSX=1 tsup src/index.ts --dts",
+    "build": "tsup src/index.ts --format=esm,cjs --dts",
     "dev": "pnpm build -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "JSX=1 tsup src/index.ts"
+    "build:fast": "tsup src/index.ts --format=esm,cjs"
+  },
+  "dependencies": {
+    "@chakra-ui/shared-utils": "workspace:*"
   }
 }

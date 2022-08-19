@@ -5,8 +5,8 @@ import {
   HTMLChakraProps,
   SystemProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
-import { getValidChildren } from "@chakra-ui/react-utils"
+import { cx } from "@chakra-ui/shared-utils"
+import { getValidChildren } from "@chakra-ui/react-children-utils"
 import type { StackDirection } from "./stack.utils"
 import { getDividerStyles, getStackStyles, selector } from "./stack.utils"
 import { cloneElement, Fragment, useMemo } from "react"
@@ -173,9 +173,7 @@ export const Stack = forwardRef<StackProps, "div">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  Stack.displayName = "Stack"
-}
+Stack.displayName = "Stack"
 
 /**
  * A view that arranges its children in a horizontal line.
@@ -184,9 +182,7 @@ export const HStack = forwardRef<StackProps, "div">((props, ref) => (
   <Stack align="center" {...props} direction="row" ref={ref} />
 ))
 
-if (__DEV__) {
-  HStack.displayName = "HStack"
-}
+HStack.displayName = "HStack"
 
 /**
  * A view that arranges its children in a vertical line.
@@ -195,6 +191,4 @@ export const VStack = forwardRef<StackProps, "div">((props, ref) => (
   <Stack align="center" {...props} direction="column" ref={ref} />
 ))
 
-if (__DEV__) {
-  VStack.displayName = "VStack"
-}
+VStack.displayName = "VStack"

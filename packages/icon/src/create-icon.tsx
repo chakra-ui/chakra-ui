@@ -1,5 +1,4 @@
 import { forwardRef } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
 import { Children } from "react"
 import { Icon, IconProps } from "./icon"
 
@@ -43,9 +42,7 @@ export function createIcon(options: CreateIconOptions) {
     </Icon>
   ))
 
-  if (__DEV__) {
-    Comp.displayName = displayName
-  }
+  Comp.displayName = displayName
 
   return Comp
 }
