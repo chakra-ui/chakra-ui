@@ -1,4 +1,3 @@
-import { isHTMLElement } from "./dom"
 import { isFocusable, isTabbable } from "./tabbable"
 
 const focusableElList = [
@@ -22,8 +21,8 @@ const focusableElSelector = focusableElList.join()
 
 const isVisible = (el: HTMLElement) => el.offsetWidth > 0 && el.offsetHeight > 0
 
-export function getAllFocusable<T extends HTMLElement>(container: T) {
-  const focusableEls = Array.from(
+export function getAllFocusable<T extends HTMLElement>(container: T): T[] {
+  const focusableEls: T[] = Array.from(
     container.querySelectorAll<T>(focusableElSelector),
   )
   focusableEls.unshift(container)
@@ -38,7 +37,7 @@ export function getFirstFocusable<T extends HTMLElement>(container: T) {
 export function getAllTabbable<T extends HTMLElement>(
   container: T,
   fallbackToFocusable?: boolean,
-) {
+): T[] {
   const allFocusable = Array.from(
     container.querySelectorAll<T>(focusableElSelector),
   )
@@ -96,40 +95,4 @@ export function getPreviousTabbable<T extends HTMLElement>(
     allFocusable.find(isTabbable) ||
     (fallbackToFocusable ? slice[0] : null)
   )
-}
-
-export function focusNextTabbable<T extends HTMLElement>(
-  container: T,
-  fallbackToFocusable?: boolean,
-) {
-  const nextTabbable = getNextTabbable(container, fallbackToFocusable)
-  if (nextTabbable && isHTMLElement(nextTabbable)) {
-    nextTabbable.focus()
-  }
-}
-
-export function focusPreviousTabbable<T extends HTMLElement>(
-  container: T,
-  fallbackToFocusable?: boolean,
-) {
-  const previousTabbable = getPreviousTabbable(container, fallbackToFocusable)
-  if (previousTabbable && isHTMLElement(previousTabbable)) {
-    previousTabbable.focus()
-  }
-}
-
-function matches(element: Element, selectors: string): boolean {
-  if ("matches" in element) return element.matches(selectors)
-  if ("msMatchesSelector" in element)
-    return (element as any).msMatchesSelector(selectors)
-  return (element as any).webkitMatchesSelector(selectors)
-}
-
-export function closest<T extends HTMLElement>(element: T, selectors: string) {
-  if ("closest" in element) return element.closest(selectors)
-  do {
-    if (matches(element, selectors)) return element
-    element = (element.parentElement || element.parentNode) as any
-  } while (element !== null && element.nodeType === 1)
-  return null
 }

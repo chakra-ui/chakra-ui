@@ -25,7 +25,8 @@ export function getOwnerWindow(node?: Element | null): typeof globalThis {
 }
 
 export function getOwnerDocument(node?: Element | null): Document {
-  return isElement(node) ? node.ownerDocument ?? document : document
+  if (isElement(node)) return node.ownerDocument
+  return document
 }
 
 export function getEventWindow(event: Event): typeof globalThis {
@@ -40,15 +41,9 @@ export function canUseDOM(): boolean {
   )
 }
 
-export const isBrowser = /* @__PURE__ */ canUseDOM()
-
-export const dataAttr = (condition: boolean | undefined) =>
-  (condition ? "" : undefined) as Booleanish
-
-export const ariaAttr = (condition: boolean | undefined) =>
-  condition ? true : undefined
-
-export const cx = (...classNames: any[]) => classNames.filter(Boolean).join(" ")
+export function isBrowser() {
+  return Boolean(globalThis?.document)
+}
 
 export function getActiveElement(node?: HTMLElement) {
   const doc = getOwnerDocument(node)
@@ -58,45 +53,4 @@ export function getActiveElement(node?: HTMLElement) {
 export function contains(parent: HTMLElement | null, child: HTMLElement) {
   if (!parent) return false
   return parent === child || parent.contains(child)
-}
-
-export function addDomEvent(
-  target: EventTarget,
-  eventName: string,
-  handler: EventListener,
-  options?: AddEventListenerOptions,
-) {
-  target.addEventListener(eventName, handler, options)
-  return () => {
-    target.removeEventListener(eventName, handler, options)
-  }
-}
-
-/**
- * Get the normalized event key across all browsers
- * @param event keyboard event
- */
-export function normalizeEventKey(
-  event: Pick<KeyboardEvent, "key" | "keyCode">,
-) {
-  const { key, keyCode } = event
-
-  const isArrowKey =
-    keyCode >= 37 && keyCode <= 40 && key.indexOf("Arrow") !== 0
-
-  const eventKey = isArrowKey ? `Arrow${key}` : key
-
-  return eventKey
-}
-
-export function getRelatedTarget(
-  event: Pick<FocusEvent, "relatedTarget" | "target" | "currentTarget">,
-) {
-  const target = (event.target ?? event.currentTarget) as HTMLElement
-  const activeElement = getActiveElement(target)
-  return (event.relatedTarget ?? activeElement) as HTMLElement
-}
-
-export function isRightClick(event: Pick<MouseEvent, "button">): boolean {
-  return event.button !== 0
 }
