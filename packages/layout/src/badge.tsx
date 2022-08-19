@@ -6,7 +6,7 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 
 export interface BadgeProps
   extends HTMLChakraProps<"span">,
@@ -37,6 +37,4 @@ export const Badge = forwardRef<BadgeProps, "span">(function Badge(props, ref) {
   )
 })
 
-if (__DEV__) {
-  Badge.displayName = "Badge"
-}
+Badge.displayName = "Badge"

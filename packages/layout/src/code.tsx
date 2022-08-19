@@ -6,7 +6,7 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 
 export interface CodeProps
   extends HTMLChakraProps<"code">,
@@ -34,6 +34,4 @@ export const Code = forwardRef<CodeProps, "code">(function Code(props, ref) {
   )
 })
 
-if (__DEV__) {
-  Code.displayName = "Code"
-}
+Code.displayName = "Code"
