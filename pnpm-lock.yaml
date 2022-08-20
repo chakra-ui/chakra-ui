@@ -1325,10 +1325,12 @@ importers:
     specifiers:
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
+      '@chakra-ui/utils': workspace:*
       react: ^18.2.0
     devDependencies:
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
+      '@chakra-ui/utils': link:../utils
       react: 18.2.0
 
   packages/stat:
@@ -25326,6 +25328,7 @@ packages:
   /unified/9.2.0:
     resolution: {integrity: sha512-vx2Z0vY+a3YoTj8+pttM3tiJHCwY5UFbYdiWrwBEbHmK8pvsPj2rtAX2BFfgXen8T39CJWblWRDT4L5WGXtDdg==}
     dependencies:
+      '@types/unist': 2.0.6
       bail: 1.0.5
       extend: 3.0.2
       is-buffer: 2.0.5
