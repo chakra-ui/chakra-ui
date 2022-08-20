@@ -1065,15 +1065,11 @@ importers:
 
   packages/progress:
     specifiers:
-      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/react-context': workspace:*
       '@chakra-ui/system': workspace:*
-      '@chakra-ui/theme-tools': workspace:*
-      '@chakra-ui/utils': workspace:*
       react: ^18.2.0
     dependencies:
-      '@chakra-ui/react-utils': link:../react-utils
-      '@chakra-ui/theme-tools': link:../theme-tools
-      '@chakra-ui/utils': link:../utils
+      '@chakra-ui/react-context': link:../../hooks/context
     devDependencies:
       '@chakra-ui/system': link:../system
       react: 18.2.0
