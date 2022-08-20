@@ -1246,14 +1246,16 @@ importers:
     specifiers:
       '@chakra-ui/form-control': workspace:*
       '@chakra-ui/layout': workspace:*
+      '@chakra-ui/object-utils': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      '@chakra-ui/utils': workspace:*
       react: ^18.2.0
     dependencies:
       '@chakra-ui/form-control': link:../form-control
-      '@chakra-ui/utils': link:../utils
     devDependencies:
       '@chakra-ui/layout': link:../layout
+      '@chakra-ui/object-utils': link:../../utilities/object-utils
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
       react: 18.2.0
 

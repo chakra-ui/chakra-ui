@@ -10,7 +10,8 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, mergeWith, split, __DEV__, dataAttr } from "@chakra-ui/utils"
+import { cx, dataAttr } from "@chakra-ui/shared-utils"
+import { split } from "@chakra-ui/object-utils"
 import { cloneElement, isValidElement } from "react"
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"
@@ -37,9 +38,7 @@ export const SelectField = forwardRef<SelectFieldProps, "select">(
   },
 )
 
-if (__DEV__) {
-  SelectField.displayName = "SelectField"
-}
+SelectField.displayName = "SelectField"
 
 interface RootProps extends Omit<HTMLChakraProps<"div">, "color"> {}
 
@@ -121,11 +120,14 @@ export const Select = forwardRef<SelectProps, "select">((props, ref) => {
     color,
   }
 
-  const fieldStyles: SystemStyleObject = mergeWith(
-    { paddingEnd: "2rem" },
-    styles.field,
-    { _focus: { zIndex: "unset" } },
-  )
+  const fieldStyles: SystemStyleObject = {
+    paddingEnd: "2rem",
+    ...styles.field,
+    _focus: {
+      zIndex: "unset",
+      ...(styles as any).field["_focus"],
+    },
+  }
 
   return (
     <chakra.div
@@ -157,9 +159,7 @@ export const Select = forwardRef<SelectProps, "select">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  Select.displayName = "Select"
-}
+Select.displayName = "Select"
 
 export const DefaultIcon: React.FC<PropsOf<"svg">> = (props) => (
   <svg viewBox="0 0 24 24" {...props}>
@@ -207,6 +207,4 @@ const SelectIcon: React.FC<SelectIconProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  SelectIcon.displayName = "SelectIcon"
-}
+SelectIcon.displayName = "SelectIcon"
