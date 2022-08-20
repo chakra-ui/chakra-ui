@@ -32,6 +32,7 @@
   "devDependencies": {
     "@chakra-ui/shared-utils": "workspace:*",
     "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/utils": "workspace:*",
     "react": "^18.0.0"
   },
   "peerDependencies": {
