@@ -10,13 +10,10 @@
 "@chakra-ui/react-children-utils": patch
 "@chakra-ui/form-control": patch
 "@chakra-ui/accordion": patch
-"@chakra-ui/shared-utils": patch
 "@chakra-ui/alert": patch
 "@chakra-ui/icon": patch
 "@chakra-ui/input": patch
-"@chakra-ui/shared-utils": patch
 "@chakra-ui/checkbox": patch
-"@chakra-ui/shared-utils": patch
 "@chakra-ui/color-mode": patch
 "@chakra-ui/breadcrumb": patch
 "@chakra-ui/editable": patch
