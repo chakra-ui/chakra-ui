@@ -1597,10 +1597,7 @@ importers:
   packages/visually-hidden:
     specifiers:
       '@chakra-ui/system': workspace:*
-      '@chakra-ui/utils': workspace:*
       react: ^18.2.0
-    dependencies:
-      '@chakra-ui/utils': link:../utils
     devDependencies:
       '@chakra-ui/system': link:../system
       react: 18.2.0
@@ -1746,7 +1743,7 @@ importers:
   utilities/breakpoint-utils:
     specifiers:
       '@chakra-ui/shared-utils': workspace:*
-    dependencies:
+    devDependencies:
       '@chakra-ui/shared-utils': link:../shared-utils
 
   utilities/dom-utils:
