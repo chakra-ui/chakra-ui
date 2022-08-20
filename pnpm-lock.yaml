@@ -714,8 +714,8 @@ importers:
       '@chakra-ui/react-context': link:../../hooks/context
       '@chakra-ui/react-types': link:../../utilities/react-types
       '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
-      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
     devDependencies:
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
       react: 18.2.0
 
