@@ -9,7 +9,7 @@ import {
   HTMLChakraProps,
   SystemProps,
 } from "@chakra-ui/system"
-import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils"
+import { cx, dataAttr } from "@chakra-ui/shared-utils"
 import { useMemo } from "react"
 
 export interface SwitchProps
@@ -104,6 +104,4 @@ export const Switch = forwardRef<SwitchProps, "input">(function Switch(
   )
 })
 
-if (__DEV__) {
-  Switch.displayName = "Switch"
-}
+Switch.displayName = "Switch"
