@@ -368,6 +368,15 @@ importers:
     devDependencies:
       react: 18.2.0
 
+  hooks/use-interval:
+    specifiers:
+      '@chakra-ui/react-use-callback-ref': workspace:*
+      react: ^18.2.0
+    dependencies:
+      '@chakra-ui/react-use-callback-ref': link:../use-callback-ref
+    devDependencies:
+      react: 18.2.0
+
   hooks/use-merge-refs:
     specifiers:
       react: ^18.2.0
@@ -635,13 +644,15 @@ importers:
 
   packages/counter:
     specifiers:
-      '@chakra-ui/hooks': workspace:*
-      '@chakra-ui/utils': workspace:*
+      '@chakra-ui/number-utils': workspace:*
+      '@chakra-ui/react-use-callback-ref': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       react: ^18.2.0
     dependencies:
-      '@chakra-ui/hooks': link:../hooks
-      '@chakra-ui/utils': link:../utils
+      '@chakra-ui/number-utils': link:../../utilities/number-utils
+      '@chakra-ui/react-use-callback-ref': link:../../hooks/use-callback-ref
     devDependencies:
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       react: 18.2.0
 
   packages/css-reset:
@@ -950,27 +961,39 @@ importers:
       '@chakra-ui/button': workspace:*
       '@chakra-ui/counter': workspace:*
       '@chakra-ui/form-control': workspace:*
-      '@chakra-ui/hooks': workspace:*
       '@chakra-ui/icon': workspace:*
       '@chakra-ui/input': workspace:*
       '@chakra-ui/layout': workspace:*
-      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/react-context': workspace:*
+      '@chakra-ui/react-types': workspace:*
+      '@chakra-ui/react-use-callback-ref': workspace:*
+      '@chakra-ui/react-use-event-listener': workspace:*
+      '@chakra-ui/react-use-interval': workspace:*
+      '@chakra-ui/react-use-merge-refs': workspace:*
+      '@chakra-ui/react-use-safe-layout-effect': workspace:*
+      '@chakra-ui/react-use-update-effect': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      '@chakra-ui/utils': workspace:*
       react: ^18.2.0
       react-hook-form: 7.18.1
       react-lorem-component: 0.13.0
     dependencies:
       '@chakra-ui/counter': link:../counter
       '@chakra-ui/form-control': link:../form-control
-      '@chakra-ui/hooks': link:../hooks
       '@chakra-ui/icon': link:../icon
-      '@chakra-ui/react-utils': link:../react-utils
-      '@chakra-ui/utils': link:../utils
+      '@chakra-ui/react-context': link:../../hooks/context
+      '@chakra-ui/react-types': link:../../utilities/react-types
+      '@chakra-ui/react-use-callback-ref': link:../../hooks/use-callback-ref
+      '@chakra-ui/react-use-event-listener': link:../../hooks/use-event-listener
+      '@chakra-ui/react-use-interval': link:../../hooks/use-interval
+      '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
+      '@chakra-ui/react-use-safe-layout-effect': link:../../hooks/use-safe-layout-effect
+      '@chakra-ui/react-use-update-effect': link:../../hooks/use-update-effect
     devDependencies:
       '@chakra-ui/button': link:../button
       '@chakra-ui/input': link:../input
       '@chakra-ui/layout': link:../layout
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
       react: 18.2.0
       react-hook-form: 7.18.1_react@18.2.0
