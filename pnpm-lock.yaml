@@ -406,6 +406,15 @@ importers:
     devDependencies:
       react: 18.2.0
 
+  hooks/use-timeout:
+    specifiers:
+      '@chakra-ui/react-use-callback-ref': workspace:*
+      react: ^18.2.0
+    dependencies:
+      '@chakra-ui/react-use-callback-ref': link:../use-callback-ref
+    devDependencies:
+      react: 18.2.0
+
   hooks/use-update-effect:
     specifiers:
       react: ^18.2.0
@@ -843,7 +852,6 @@ importers:
       '@chakra-ui/react-env': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      '@chakra-ui/test-utils': workspace:*
       '@chakra-ui/theme': workspace:*
       '@testing-library/react-hooks': 8.0.0
       '@types/react-frame-component': ^4.1.1
@@ -856,7 +864,6 @@ importers:
     devDependencies:
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      '@chakra-ui/test-utils': link:../../tooling/test-utils
       '@chakra-ui/theme': link:../theme
       '@testing-library/react-hooks': 8.0.0_08741bd84ef3e6fa073678331eea05f2
       '@types/react-frame-component': 4.1.3
@@ -1523,29 +1530,27 @@ importers:
       '@chakra-ui/hooks': workspace:*
       '@chakra-ui/layout': workspace:*
       '@chakra-ui/portal': workspace:*
-      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/react-use-timeout': workspace:*
+      '@chakra-ui/react-use-update-effect': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/theme': workspace:*
-      '@chakra-ui/transition': workspace:*
-      '@chakra-ui/utils': workspace:*
-      '@testing-library/react': 13.3.0
       framer-motion: ^6.2.9
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
       '@chakra-ui/alert': link:../alert
       '@chakra-ui/close-button': link:../close-button
-      '@chakra-ui/hooks': link:../hooks
       '@chakra-ui/portal': link:../portal
-      '@chakra-ui/react-utils': link:../react-utils
+      '@chakra-ui/react-use-timeout': link:../../hooks/use-timeout
+      '@chakra-ui/react-use-update-effect': link:../../hooks/use-update-effect
       '@chakra-ui/theme': link:../theme
-      '@chakra-ui/transition': link:../transition
-      '@chakra-ui/utils': link:../utils
     devDependencies:
       '@chakra-ui/button': link:../button
+      '@chakra-ui/hooks': link:../hooks
       '@chakra-ui/layout': link:../layout
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      '@testing-library/react': 13.3.0_react-dom@18.2.0+react@18.2.0
       framer-motion: 6.5.1_react-dom@18.2.0+react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0

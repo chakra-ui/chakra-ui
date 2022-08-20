@@ -1,5 +1,6 @@
-import { useTimeout, useUpdateEffect } from "@chakra-ui/hooks"
-import { __DEV__, runIfFn } from "@chakra-ui/utils"
+import { useTimeout } from "@chakra-ui/react-use-timeout"
+import { useUpdateEffect } from "@chakra-ui/react-use-update-effect"
+import { runIfFn } from "@chakra-ui/shared-utils"
 import { motion, useIsPresent, Variants } from "framer-motion"
 import { chakra } from "@chakra-ui/system"
 import type { ToastOptions } from "./toast.types"
@@ -125,6 +126,4 @@ export const ToastComponent = memo((props: ToastComponentProps) => {
   )
 })
 
-if (__DEV__) {
-  ToastComponent.displayName = "ToastComponent"
-}
+ToastComponent.displayName = "ToastComponent"
