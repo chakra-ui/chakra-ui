@@ -55,7 +55,7 @@ export interface InputDOMProps extends IdProps, InputDOMEvents {
 interface DOMElement extends Element, HTMLOrSVGElement {}
 
 type DataAttributes = {
-  [k: string]: any
+  [dataAttr: string]: any
 }
 
 export type DOMAttributes<T = DOMElement> = React.AriaAttributes &
