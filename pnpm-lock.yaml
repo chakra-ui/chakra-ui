@@ -1012,12 +1012,14 @@ importers:
   packages/popper:
     specifiers:
       '@chakra-ui/hooks': workspace:*
-      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/react-types': workspace:*
+      '@chakra-ui/react-use-merge-refs': workspace:*
       '@popperjs/core': ^2.9.3
       framer-motion: ^6.2.9
       react: ^18.2.0
     dependencies:
-      '@chakra-ui/react-utils': link:../react-utils
+      '@chakra-ui/react-types': link:../../utilities/react-types
+      '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
       '@popperjs/core': 2.11.5
     devDependencies:
       '@chakra-ui/hooks': link:../hooks
@@ -1540,24 +1542,30 @@ importers:
     specifiers:
       '@chakra-ui/hooks': workspace:*
       '@chakra-ui/modal': workspace:*
+      '@chakra-ui/object-utils': workspace:*
       '@chakra-ui/popper': workspace:*
       '@chakra-ui/portal': workspace:*
-      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/react-types': workspace:*
+      '@chakra-ui/react-use-disclosure': workspace:*
+      '@chakra-ui/react-use-event-listener': workspace:*
+      '@chakra-ui/react-use-merge-refs': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      '@chakra-ui/utils': workspace:*
-      '@chakra-ui/visually-hidden': workspace:*
       framer-motion: ^6.2.9
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
-      '@chakra-ui/hooks': link:../hooks
       '@chakra-ui/popper': link:../popper
       '@chakra-ui/portal': link:../portal
-      '@chakra-ui/react-utils': link:../react-utils
-      '@chakra-ui/utils': link:../utils
-      '@chakra-ui/visually-hidden': link:../visually-hidden
+      '@chakra-ui/react-types': link:../../utilities/react-types
+      '@chakra-ui/react-use-disclosure': link:../../hooks/use-disclosure
+      '@chakra-ui/react-use-event-listener': link:../../hooks/use-event-listener
+      '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
     devDependencies:
+      '@chakra-ui/hooks': link:../hooks
       '@chakra-ui/modal': link:../modal
+      '@chakra-ui/object-utils': link:../../utilities/object-utils
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
       framer-motion: 6.5.1_react-dom@18.2.0+react@18.2.0
       react: 18.2.0
