@@ -116,19 +116,30 @@ export function useTooltip(props: UseTooltipProps = {}) {
   const enterTimeout = useRef<number>()
   const exitTimeout = useRef<number>()
 
+  const closeNow = useCallback(() => {
+    if (exitTimeout.current) {
+      clearTimeout(exitTimeout.current)
+      exitTimeout.current = undefined
+    }
+    onClose()
+  }, [onClose])
+
+  const dispatchCloseEvent = useCloseEvent(closeNow)
+
   const openWithDelay = useCallback(() => {
     if (!isDisabled && !enterTimeout.current) {
+      dispatchCloseEvent()
       enterTimeout.current = window.setTimeout(onOpen, openDelay)
     }
-  }, [isDisabled, onOpen, openDelay])
+  }, [dispatchCloseEvent, isDisabled, onOpen, openDelay])
 
   const closeWithDelay = useCallback(() => {
     if (enterTimeout.current) {
       clearTimeout(enterTimeout.current)
       enterTimeout.current = undefined
     }
-    exitTimeout.current = window.setTimeout(onClose, closeDelay)
-  }, [closeDelay, onClose])
+    exitTimeout.current = window.setTimeout(closeNow, closeDelay)
+  }, [closeDelay, closeNow])
 
   const onClick = useCallback(() => {
     if (isOpen && closeOnClick) {
@@ -246,3 +257,13 @@ export function useTooltip(props: UseTooltipProps = {}) {
 }
 
 export type UseTooltipReturn = ReturnType<typeof useTooltip>
+
+const closeEventName = "chakra-ui:close-tooltip"
+
+function useCloseEvent(close: () => void) {
+  useEffect(() => {
+    document.addEventListener(closeEventName, close)
+    return () => document.removeEventListener(closeEventName, close)
+  }, [close])
+  return () => document.dispatchEvent(new CustomEvent(closeEventName))
+}
