@@ -119,7 +119,7 @@ export function StatArrow(props: StatArrowProps) {
 
   return (
     <>
-      <chakra.div srOnly>{label}</chakra.div>
+      <chakra.span srOnly>{label}</chakra.span>
       <BaseIcon aria-hidden {...rest} __css={styles.icon} />
     </>
   )

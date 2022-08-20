@@ -7,8 +7,7 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
-import { VisuallyHidden } from "@chakra-ui/visually-hidden"
+import { cx } from "@chakra-ui/shared-utils"
 
 const spin = keyframes({
   "0%": {
@@ -99,11 +98,9 @@ export const Spinner = forwardRef<SpinnerProps, "div">((props, ref) => {
       className={_className}
       {...rest}
     >
-      {label && <VisuallyHidden>{label}</VisuallyHidden>}
+      {label && <chakra.span srOnly>{label}</chakra.span>}
     </chakra.div>
   )
 })
 
-if (__DEV__) {
-  Spinner.displayName = "Spinner"
-}
+Spinner.displayName = "Spinner"
