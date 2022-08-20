@@ -34,25 +34,21 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "workspace:*",
-    "@chakra-ui/media-query": "workspace:*",
-    "@chakra-ui/system": "workspace:*",
-    "@chakra-ui/utils": "workspace:*"
-  },
-  "peerDependencies": {
-    "@chakra-ui/theme": ">=2.0.0",
-    "@emotion/react": "^11.0.0",
-    "@emotion/styled": "^11.0.0",
-    "react": ">=18"
+    "@chakra-ui/react-use-previous": "workspace:*",
+    "@chakra-ui/media-query": "workspace:*"
   },
   "devDependencies": {
-    "@chakra-ui/theme": "workspace:*",
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/system": "workspace:*",
     "@chakra-ui/layout": "workspace:*",
+    "@chakra-ui/theme": "workspace:*",
     "@chakra-ui/provider": "workspace:*",
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
     "jest-matchmedia-mock": "1.1.0",
     "react": "^18.0.0"
+  },
+  "peerDependencies": {
+    "@chakra-ui/system": ">=2.0.0",
+    "react": ">=18"
   },
   "scripts": {
     "build": "JSX=1 tsup src/index.ts --dts",

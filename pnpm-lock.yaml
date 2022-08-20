@@ -1257,28 +1257,24 @@ importers:
 
   packages/skeleton:
     specifiers:
-      '@chakra-ui/hooks': workspace:*
       '@chakra-ui/layout': workspace:*
       '@chakra-ui/media-query': workspace:*
       '@chakra-ui/provider': workspace:*
+      '@chakra-ui/react-use-previous': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/theme': workspace:*
-      '@chakra-ui/utils': workspace:*
-      '@emotion/react': ^11.9.0
-      '@emotion/styled': ^11.8.1
       jest-matchmedia-mock: 1.1.0
       react: ^18.2.0
     dependencies:
-      '@chakra-ui/hooks': link:../hooks
       '@chakra-ui/media-query': link:../media-query
-      '@chakra-ui/system': link:../system
-      '@chakra-ui/utils': link:../utils
+      '@chakra-ui/react-use-previous': link:../../hooks/use-previous
     devDependencies:
       '@chakra-ui/layout': link:../layout
       '@chakra-ui/provider': link:../provider
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
+      '@chakra-ui/system': link:../system
       '@chakra-ui/theme': link:../theme
-      '@emotion/react': 11.9.3_96543585b339e7caed3567fc56fe9e68
-      '@emotion/styled': 11.9.3_c6afed0fa10a1ad1311271315df93091
       jest-matchmedia-mock: 1.1.0_jest@28.1.3
       react: 18.2.0
 
