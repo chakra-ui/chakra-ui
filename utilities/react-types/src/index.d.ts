@@ -69,13 +69,15 @@ export type DOMAttributes<T = DOMElement> = React.AriaAttributes &
 
 export type InputDOMAttributes = InputDOMProps & DOMAttributes<HTMLInputElement>
 
+type Merge<M, N> = Omit<M, keyof N> & N
+
 export type PropGetter<P = Record<string, any>, R = DOMAttributes> = (
-  props?: DOMAttributes & P,
+  props?: Merge<DOMAttributes, P>,
   ref?: React.Ref<any>,
 ) => R & React.RefAttributes<any>
 
 export type RequiredPropGetter<P = Record<string, any>, R = DOMAttributes> = (
-  props: DOMAttributes & P,
+  props: Merge<DOMAttributes, P>,
   ref?: React.Ref<any>,
 ) => R & React.RefAttributes<any>
 
