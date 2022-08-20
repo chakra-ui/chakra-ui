@@ -78,3 +78,7 @@ export type RequiredPropGetter<P = Record<string, any>, R = DOMAttributes> = (
   props: DOMAttributes & P,
   ref?: React.Ref<any>,
 ) => R & React.RefAttributes<any>
+
+export type MaybeRenderProp<P> =
+  | React.ReactNode
+  | ((props: P) => React.ReactNode)

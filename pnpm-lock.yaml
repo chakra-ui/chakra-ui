@@ -985,25 +985,33 @@ importers:
       '@chakra-ui/hooks': workspace:*
       '@chakra-ui/input': workspace:*
       '@chakra-ui/layout': workspace:*
+      '@chakra-ui/lazy-utils': workspace:*
       '@chakra-ui/popper': workspace:*
       '@chakra-ui/radio': workspace:*
-      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/react-context': workspace:*
+      '@chakra-ui/react-types': workspace:*
+      '@chakra-ui/react-use-disclosure': workspace:*
+      '@chakra-ui/react-use-merge-refs': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      '@chakra-ui/utils': workspace:*
       framer-motion: ^6.2.9
       react: ^18.2.0
       react-icons: ^4.2.0
     dependencies:
       '@chakra-ui/close-button': link:../close-button
       '@chakra-ui/hooks': link:../hooks
+      '@chakra-ui/lazy-utils': link:../../utilities/lazy-utils
       '@chakra-ui/popper': link:../popper
-      '@chakra-ui/react-utils': link:../react-utils
-      '@chakra-ui/utils': link:../utils
+      '@chakra-ui/react-context': link:../../hooks/context
+      '@chakra-ui/react-types': link:../../utilities/react-types
+      '@chakra-ui/react-use-disclosure': link:../../hooks/use-disclosure
+      '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
     devDependencies:
       '@chakra-ui/button': link:../button
       '@chakra-ui/input': link:../input
       '@chakra-ui/layout': link:../layout
       '@chakra-ui/radio': link:../radio
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
       framer-motion: 6.5.1_react-dom@18.2.0+react@18.2.0
       react: 18.2.0

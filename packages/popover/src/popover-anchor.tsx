@@ -1,4 +1,3 @@
-import { __DEV__ } from "@chakra-ui/utils"
 import { Children, cloneElement } from "react"
 import { usePopoverContext } from "./popover-context"
 
@@ -14,6 +13,5 @@ export function PopoverAnchor(props: React.PropsWithChildren<{}>) {
 
   return cloneElement(child, getAnchorProps(child.props, child.ref))
 }
-if (__DEV__) {
-  PopoverAnchor.displayName = "PopoverAnchor"
-}
+
+PopoverAnchor.displayName = "PopoverAnchor"
