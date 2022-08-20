@@ -15,7 +15,7 @@ module.exports = {
     builder: "@storybook/builder-webpack5",
     disableTelemetry: true,
   },
-  stories: getStories("transition"),
+  stories: getStories(),
   addons: [
     "@storybook/addon-a11y",
     "@storybook/addon-essentials",
