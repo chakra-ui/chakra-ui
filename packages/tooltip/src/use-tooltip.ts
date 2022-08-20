@@ -1,4 +1,10 @@
-import { useDisclosure, useEventListener, useId } from "@chakra-ui/hooks"
+import {
+  type DocumentOrElement,
+  useDisclosure,
+  useEventListener,
+  useId,
+  useForceUpdate,
+} from "@chakra-ui/hooks"
 import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { mergeRefs, PropGetter, ReactRef } from "@chakra-ui/react-utils"
 import { callAllHandlers, px } from "@chakra-ui/utils"
@@ -111,7 +117,12 @@ export function useTooltip(props: UseTooltipProps = {}) {
 
   const tooltipId = useId(id, "tooltip")
 
-  const ref = useRef<any>(null)
+  const ref = useRef<DocumentOrElement>(null)
+  const doc = ref.current?.ownerDocument
+  const win = doc?.defaultView
+  const forceUpdate = useForceUpdate()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(forceUpdate, []) // Set `doc` and `win`
 
   const enterTimeout = useRef<number>()
   const exitTimeout = useRef<number>()
@@ -124,22 +135,22 @@ export function useTooltip(props: UseTooltipProps = {}) {
     onClose()
   }, [onClose])
 
-  const dispatchCloseEvent = useCloseEvent(closeNow)
+  const dispatchCloseEvent = useCloseEvent(doc, closeNow)
 
   const openWithDelay = useCallback(() => {
     if (!isDisabled && !enterTimeout.current) {
       dispatchCloseEvent()
-      enterTimeout.current = window.setTimeout(onOpen, openDelay)
+      enterTimeout.current = win?.setTimeout(onOpen, openDelay)
     }
-  }, [dispatchCloseEvent, isDisabled, onOpen, openDelay])
+  }, [dispatchCloseEvent, isDisabled, onOpen, openDelay, win])
 
   const closeWithDelay = useCallback(() => {
     if (enterTimeout.current) {
       clearTimeout(enterTimeout.current)
       enterTimeout.current = undefined
     }
-    exitTimeout.current = window.setTimeout(closeNow, closeDelay)
-  }, [closeDelay, closeNow])
+    exitTimeout.current = win?.setTimeout(closeNow, closeDelay)
+  }, [closeDelay, closeNow, win])
 
   const onClick = useCallback(() => {
     if (isOpen && closeOnClick) {
@@ -260,10 +271,10 @@ export type UseTooltipReturn = ReturnType<typeof useTooltip>
 
 const closeEventName = "chakra-ui:close-tooltip"
 
-function useCloseEvent(close: () => void) {
+function useCloseEvent(doc: Document | null | undefined, close: () => void) {
   useEffect(() => {
-    document.addEventListener(closeEventName, close)
-    return () => document.removeEventListener(closeEventName, close)
-  }, [close])
-  return () => document.dispatchEvent(new CustomEvent(closeEventName))
+    doc?.addEventListener(closeEventName, close)
+    return () => doc?.removeEventListener(closeEventName, close)
+  }, [doc, close])
+  return () => doc?.dispatchEvent(new CustomEvent(closeEventName))
 }
