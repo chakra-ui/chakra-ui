@@ -1109,24 +1109,28 @@ importers:
   packages/radio:
     specifiers:
       '@chakra-ui/form-control': workspace:*
-      '@chakra-ui/hooks': workspace:*
       '@chakra-ui/layout': workspace:*
-      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/object-utils': workspace:*
+      '@chakra-ui/react-context': workspace:*
+      '@chakra-ui/react-types': workspace:*
+      '@chakra-ui/react-use-merge-refs': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      '@chakra-ui/utils': workspace:*
       '@chakra-ui/visually-hidden': workspace:*
       '@zag-js/focus-visible': 0.1.0
       react: ^18.2.0
     dependencies:
       '@chakra-ui/form-control': link:../form-control
-      '@chakra-ui/hooks': link:../hooks
-      '@chakra-ui/react-utils': link:../react-utils
-      '@chakra-ui/utils': link:../utils
-      '@chakra-ui/visually-hidden': link:../visually-hidden
+      '@chakra-ui/react-context': link:../../hooks/context
+      '@chakra-ui/react-types': link:../../utilities/react-types
+      '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
       '@zag-js/focus-visible': 0.1.0
     devDependencies:
       '@chakra-ui/layout': link:../layout
+      '@chakra-ui/object-utils': link:../../utilities/object-utils
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
+      '@chakra-ui/visually-hidden': link:../visually-hidden
       react: 18.2.0
 
   packages/react:

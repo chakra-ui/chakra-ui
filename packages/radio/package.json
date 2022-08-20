@@ -33,13 +33,15 @@
   },
   "dependencies": {
     "@chakra-ui/form-control": "workspace:*",
-    "@chakra-ui/hooks": "workspace:*",
-    "@chakra-ui/react-utils": "workspace:*",
-    "@chakra-ui/utils": "workspace:*",
-    "@chakra-ui/visually-hidden": "workspace:*",
+    "@chakra-ui/react-types": "workspace:*",
+    "@chakra-ui/react-context": "workspace:*",
+    "@chakra-ui/react-use-merge-refs": "workspace:*",
     "@zag-js/focus-visible": "0.1.0"
   },
   "devDependencies": {
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/object-utils": "workspace:*",
+    "@chakra-ui/visually-hidden": "workspace:*",
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/layout": "workspace:*",
     "react": "^18.0.0"

@@ -4,8 +4,8 @@ import {
   ThemingProps,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/react-utils"
+import { cx } from "@chakra-ui/shared-utils"
+import { createContext } from "@chakra-ui/react-context"
 import {
   useRadioGroup,
   UseRadioGroupProps,
@@ -84,18 +84,16 @@ export const RadioGroup = forwardRef<RadioGroupProps, "div">((props, ref) => {
     ],
   )
 
-  const groupProps = getRootProps(htmlProps, ref)
-  const _className = cx("chakra-radio-group", className)
-
   return (
     <RadioGroupProvider value={group}>
-      <chakra.div {...groupProps} className={_className}>
+      <chakra.div
+        {...getRootProps(htmlProps as any, ref)}
+        className={cx("chakra-radio-group", className)}
+      >
         {children}
       </chakra.div>
     </RadioGroupProvider>
   )
 })
 
-if (__DEV__) {
-  RadioGroup.displayName = "RadioGroup"
-}
+RadioGroup.displayName = "RadioGroup"
