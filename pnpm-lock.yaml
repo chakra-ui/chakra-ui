@@ -1566,13 +1566,12 @@ importers:
   packages/transition:
     specifiers:
       '@chakra-ui/hooks': workspace:*
-      '@chakra-ui/utils': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       framer-motion: ^6.2.9
       react: ^18.2.0
-    dependencies:
-      '@chakra-ui/utils': link:../utils
     devDependencies:
       '@chakra-ui/hooks': link:../hooks
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       framer-motion: 6.5.1_react-dom@18.2.0+react@18.2.0
       react: 18.2.0
 
