@@ -1,4 +1,3 @@
-import { SystemProps } from "@chakra-ui/system"
 import React, { RefObject, useState } from "react"
 
 export interface UseLoadingOverlayProps {

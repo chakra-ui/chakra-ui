@@ -1,6 +1,5 @@
 import {
   chakra,
-  Spinner,
   ThemingProps,
   ThemeTypings,
   SystemStyleObject,
@@ -9,12 +8,13 @@ import {
   HTMLChakraProps,
   omitThemingProps,
   SystemProps,
-} from "@chakra-ui/react"
+} from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
+import { fadeConfig } from "@chakra-ui/transition"
 
 import { AnimatePresence, motion } from "framer-motion"
 
-import { fadeConfig } from "@chakra-ui/transition"
+import { Spinner } from "./spinner"
 
 import {
   useLoadingOverlay,
