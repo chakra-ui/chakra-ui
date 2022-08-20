@@ -475,10 +475,10 @@ importers:
       '@chakra-ui/image': link:../image
       '@chakra-ui/react-children-utils': link:../../utilities/react-children-utils
       '@chakra-ui/react-context': link:../../hooks/context
-      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
     devDependencies:
       '@chakra-ui/layout': link:../layout
       '@chakra-ui/object-utils': link:../../utilities/object-utils
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
       react: 18.2.0
 
@@ -494,9 +494,9 @@ importers:
     dependencies:
       '@chakra-ui/react-children-utils': link:../../utilities/react-children-utils
       '@chakra-ui/react-context': link:../../hooks/context
-      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
     devDependencies:
       '@chakra-ui/icons': link:../icons
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
       react: 18.2.0
       react-router-dom: 6.0.0_react-dom@18.2.0+react@18.2.0
@@ -519,11 +519,11 @@ importers:
     dependencies:
       '@chakra-ui/react-context': link:../../hooks/context
       '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
-      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/spinner': link:../spinner
     devDependencies:
       '@chakra-ui/icons': link:../icons
       '@chakra-ui/layout': link:../layout
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
       '@chakra-ui/theme': link:../theme
       '@chakra-ui/utils': link:../utils
@@ -537,6 +537,7 @@ importers:
       '@chakra-ui/form-control': workspace:*
       '@chakra-ui/icon': workspace:*
       '@chakra-ui/layout': workspace:*
+      '@chakra-ui/object-utils': workspace:*
       '@chakra-ui/react-context': workspace:*
       '@chakra-ui/react-types': workspace:*
       '@chakra-ui/react-use-callback-ref': workspace:*
@@ -559,12 +560,13 @@ importers:
       '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
       '@chakra-ui/react-use-safe-layout-effect': link:../../hooks/use-safe-layout-effect
       '@chakra-ui/react-use-update-effect': link:../../hooks/use-update-effect
-      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/visually-hidden': link:../visually-hidden
       '@zag-js/focus-visible': 0.1.0
     devDependencies:
       '@chakra-ui/icon': link:../icon
       '@chakra-ui/layout': link:../layout
+      '@chakra-ui/object-utils': link:../../utilities/object-utils
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
       framer-motion: 6.5.1_react-dom@18.2.0+react@18.2.0
       react: 18.2.0

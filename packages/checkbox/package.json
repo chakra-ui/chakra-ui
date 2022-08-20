@@ -45,11 +45,12 @@
     "@chakra-ui/react-use-merge-refs": "workspace:*",
     "@chakra-ui/react-use-update-effect": "workspace:*",
     "@chakra-ui/react-types": "workspace:*",
-    "@chakra-ui/shared-utils": "workspace:*",
     "@chakra-ui/visually-hidden": "workspace:*",
     "@zag-js/focus-visible": "0.1.0"
   },
   "devDependencies": {
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/object-utils": "workspace:*",
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/layout": "workspace:*",
     "@chakra-ui/icon": "workspace:*",
