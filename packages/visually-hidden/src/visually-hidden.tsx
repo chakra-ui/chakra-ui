@@ -1,5 +1,4 @@
 import { chakra } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
 
 /**
  * Styles to visually hide an element
@@ -25,9 +24,7 @@ export const VisuallyHidden = chakra("span", {
   baseStyle: visuallyHiddenStyle,
 })
 
-if (__DEV__) {
-  VisuallyHidden.displayName = "VisuallyHidden"
-}
+VisuallyHidden.displayName = "VisuallyHidden"
 
 /**
  * Visually hidden input component for designing
@@ -38,8 +35,6 @@ export const VisuallyHiddenInput = chakra("input", {
   baseStyle: visuallyHiddenStyle,
 })
 
-if (__DEV__) {
-  VisuallyHiddenInput.displayName = "VisuallyHiddenInput"
-}
+VisuallyHiddenInput.displayName = "VisuallyHiddenInput"
 
 export default VisuallyHidden
