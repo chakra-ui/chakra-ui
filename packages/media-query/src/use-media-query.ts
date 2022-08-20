@@ -1,5 +1,4 @@
 import { useEnvironment } from "@chakra-ui/react-env"
-import { isFunction } from "@chakra-ui/utils"
 import { useEffect, useState } from "react"
 
 export type UseMediaQueryOptions = {
@@ -55,14 +54,20 @@ export function useMediaQuery(
     }
 
     mql.forEach((mql) => {
-      if (isFunction(mql.addListener)) mql.addListener(handler)
-      else mql.addEventListener("change", handler)
+      if (typeof mql.addListener === "function") {
+        mql.addListener(handler)
+      } else {
+        mql.addEventListener("change", handler)
+      }
     })
 
     return () => {
       mql.forEach((mql) => {
-        if (isFunction(mql.removeListener)) mql.removeListener(handler)
-        else mql.removeEventListener("change", handler)
+        if (typeof mql.removeListener === "function") {
+          mql.removeListener(handler)
+        } else {
+          mql.removeEventListener("change", handler)
+        }
       })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
