@@ -36,16 +36,17 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/react-utils": "workspace:*",
+    "@chakra-ui/react-use-merge-refs": "workspace:*",
+    "@chakra-ui/react-types": "workspace:*",
     "@popperjs/core": "^2.9.3"
-  },
-  "peerDependencies": {
-    "react": ">=18"
   },
   "devDependencies": {
     "@chakra-ui/hooks": "workspace:*",
     "framer-motion": "^6.2.9",
     "react": "^18.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18"
   },
   "scripts": {
     "build": "tsup src/index.ts --dts",
