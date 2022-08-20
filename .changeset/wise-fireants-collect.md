@@ -24,6 +24,7 @@
 "@chakra-ui/avatar": patch
 "@chakra-ui/close-button": patch
 "@chakra-ui/textarea": patch
+"@chakra-ui/tag": patch
 ---
 
 Refactor packages to reduce bundle size
