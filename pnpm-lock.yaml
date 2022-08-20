@@ -1403,18 +1403,18 @@ importers:
     specifiers:
       '@chakra-ui/button': workspace:*
       '@chakra-ui/icons': workspace:*
-      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/react-context': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/test-utils': workspace:*
-      '@chakra-ui/utils': workspace:*
       '@tanstack/react-table': ^8.5.10
       react: ^18.2.0
     dependencies:
-      '@chakra-ui/react-utils': link:../react-utils
-      '@chakra-ui/utils': link:../utils
+      '@chakra-ui/react-context': link:../../hooks/context
     devDependencies:
       '@chakra-ui/button': link:../button
       '@chakra-ui/icons': link:../icons
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
       '@chakra-ui/test-utils': link:../../tooling/test-utils
       '@tanstack/react-table': 8.5.10_react-dom@18.2.0+react@18.2.0

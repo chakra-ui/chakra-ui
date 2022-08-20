@@ -7,11 +7,11 @@ import {
   useMultiStyleConfig,
   SystemStyleObject,
 } from "@chakra-ui/system"
-import { cx, __DEV__, Dict } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/react-utils"
+import { cx } from "@chakra-ui/shared-utils"
+import { createContext } from "@chakra-ui/react-context"
 
 const [TableStylesProvider, useTableStyles] = createContext<
-  Dict<SystemStyleObject>
+  Record<string, SystemStyleObject>
 >({
   name: `TableStylesContext`,
   errorMessage: `useTableStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Table />" `,
@@ -63,9 +63,7 @@ export const Table = forwardRef<TableProps, "table">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  Table.displayName = "Table"
-}
+Table.displayName = "Table"
 
 export interface TableCaptionProps extends HTMLChakraProps<"caption"> {
   /**
@@ -92,9 +90,7 @@ export const TableCaption = forwardRef<TableCaptionProps, "caption">(
   },
 )
 
-if (__DEV__) {
-  TableCaption.displayName = "TableCaption"
-}
+TableCaption.displayName = "TableCaption"
 
 export interface TableHeadProps extends HTMLChakraProps<"thead"> {}
 
