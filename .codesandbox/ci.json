@@ -7,8 +7,10 @@
     "hooks/use-controllable-state",
     "hooks/use-disclosure",
     "hooks/use-event-listener",
+    "hooks/use-focus-on-pointer-down",
     "hooks/use-merge-refs",
     "hooks/use-pan-event",
+    "hooks/use-safe-layout-effect",
     "hooks/use-size",
     "hooks/use-update-effect",
     "packages/accordion",
@@ -69,10 +71,14 @@
     "packages/transition",
     "packages/utils",
     "packages/visually-hidden",
+    "utilities/breakpoint-utils",
+    "utilities/dom-utils",
     "utilities/event-utils",
     "utilities/merge-utils",
     "utilities/number-utils",
     "utilities/object-utils",
-    "utilities/react-types"
+    "utilities/react-children-utils",
+    "utilities/react-types",
+    "utilities/shared-utils"
   ]
 }
