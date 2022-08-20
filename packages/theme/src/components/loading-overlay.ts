@@ -24,10 +24,7 @@ const variantFullscreen: PartsStyleFunction<typeof parts> = (props) => {
   return {
     overlay: {
       position: "fixed",
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
+      inset: 0,
       bg: mode("white", "gray.800")(props),
       zIndex: "modal",
     },
@@ -38,10 +35,7 @@ const variantOverlay: PartsStyleFunction<typeof parts> = (props) => {
   return {
     overlay: {
       position: "absolute",
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
+      inset: 0,
       bg: mode("whiteAlpha.300", "blackAlpha.300")(props),
     },
   }
