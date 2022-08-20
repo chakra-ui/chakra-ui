@@ -1,5 +1,5 @@
 import { Icon, IconProps } from "@chakra-ui/icon"
-import { createContext } from "@chakra-ui/react-utils"
+import { createContext } from "@chakra-ui/react-context"
 import {
   chakra,
   forwardRef,
@@ -9,11 +9,10 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx, Dict, __DEV__ } from "@chakra-ui/utils"
-import { VisuallyHidden } from "@chakra-ui/visually-hidden"
+import { cx } from "@chakra-ui/shared-utils"
 
 const [StatStylesProvider, useStatStyles] = createContext<
-  Dict<SystemStyleObject>
+  Record<string, SystemStyleObject>
 >({
   name: `StatStylesContext`,
   errorMessage: `useStatStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Stat />" `,
@@ -38,9 +37,7 @@ export const StatLabel = forwardRef<StatLabelProps, "dt">(function StatLabel(
   )
 })
 
-if (__DEV__) {
-  StatLabel.displayName = "StatLabel"
-}
+StatLabel.displayName = "StatLabel"
 
 export interface StatHelpTextProps extends HTMLChakraProps<"dd"> {}
 
@@ -59,9 +56,7 @@ export const StatHelpText = forwardRef<StatHelpTextProps, "dd">(
   },
 )
 
-if (__DEV__) {
-  StatHelpText.displayName = "StatHelpText"
-}
+StatHelpText.displayName = "StatHelpText"
 
 export interface StatNumberProps extends HTMLChakraProps<"dd"> {}
 
@@ -84,9 +79,7 @@ export const StatNumber = forwardRef<StatNumberProps, "dd">(function StatNumber(
   )
 })
 
-if (__DEV__) {
-  StatNumber.displayName = "StatNumber"
-}
+StatNumber.displayName = "StatNumber"
 
 export const StatDownArrow: React.FC<IconProps> = (props) => (
   <Icon color="red.400" {...props}>
@@ -97,9 +90,7 @@ export const StatDownArrow: React.FC<IconProps> = (props) => (
   </Icon>
 )
 
-if (__DEV__) {
-  StatDownArrow.displayName = "StatDownArrow"
-}
+StatDownArrow.displayName = "StatDownArrow"
 
 export function StatUpArrow(props: IconProps) {
   return (
@@ -112,9 +103,7 @@ export function StatUpArrow(props: IconProps) {
   )
 }
 
-if (__DEV__) {
-  StatUpArrow.displayName = "StatUpArrow"
-}
+StatUpArrow.displayName = "StatUpArrow"
 
 export interface StatArrowProps extends IconProps {
   type?: "increase" | "decrease"
@@ -130,15 +119,13 @@ export function StatArrow(props: StatArrowProps) {
 
   return (
     <>
-      <VisuallyHidden>{label}</VisuallyHidden>
+      <chakra.div srOnly>{label}</chakra.div>
       <BaseIcon aria-hidden {...rest} __css={styles.icon} />
     </>
   )
 }
 
-if (__DEV__) {
-  StatArrow.displayName = "StatArrow"
-}
+StatArrow.displayName = "StatArrow"
 
 export interface StatProps
   extends HTMLChakraProps<"div">,
@@ -168,9 +155,7 @@ export const Stat = forwardRef<StatProps, "div">(function Stat(props, ref) {
   )
 })
 
-if (__DEV__) {
-  Stat.displayName = "Stat"
-}
+Stat.displayName = "Stat"
 
 export interface StatGroupProps extends HTMLChakraProps<"div"> {}
 
@@ -194,6 +179,4 @@ export const StatGroup = forwardRef<StatGroupProps, "div">(function StatGroup(
   )
 })
 
-if (__DEV__) {
-  StatGroup.displayName = "StatGroup"
-}
+StatGroup.displayName = "StatGroup"
