@@ -1,5 +1,5 @@
 import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 import { useInputGroupStyles } from "./input-group"
 
 type Placement = "left" | "right"
@@ -55,9 +55,7 @@ export const InputAddon = forwardRef<InputAddonProps, "div">(
   },
 )
 
-if (__DEV__) {
-  InputAddon.displayName = "InputAddon"
-}
+InputAddon.displayName = "InputAddon"
 
 /**
  * InputLeftAddon
@@ -77,9 +75,7 @@ export const InputLeftAddon = forwardRef<InputAddonProps, "div">(
   },
 )
 
-if (__DEV__) {
-  InputLeftAddon.displayName = "InputLeftAddon"
-}
+InputLeftAddon.displayName = "InputLeftAddon"
 
 // This is used in `input-group.tsx`
 InputLeftAddon.id = "InputLeftAddon"
@@ -102,9 +98,7 @@ export const InputRightAddon = forwardRef<InputAddonProps, "div">(
   },
 )
 
-if (__DEV__) {
-  InputRightAddon.displayName = "InputRightAddon"
-}
+InputRightAddon.displayName = "InputRightAddon"
 
 // This is used in `input-group.tsx`
 InputRightAddon.id = "InputRightAddon"

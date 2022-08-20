@@ -6,7 +6,7 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 
 /**
  * Layout component used to visually separate content in a list or group.
@@ -73,6 +73,4 @@ export interface DividerProps
   orientation?: "horizontal" | "vertical"
 }
 
-if (__DEV__) {
-  Divider.displayName = "Divider"
-}
+Divider.displayName = "Divider"

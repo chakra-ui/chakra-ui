@@ -1,5 +1,4 @@
-import { useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { noop, __DEV__ } from "@chakra-ui/utils"
+import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { ColorModeContext } from "./color-mode-context"
 import {
@@ -9,6 +8,8 @@ import {
 } from "./color-mode-types"
 import { getColorModeUtils } from "./color-mode.utils"
 import { localStorageManager, StorageManager } from "./storage-manager"
+
+const noop = () => {}
 
 export interface ColorModeProviderProps {
   value?: ColorMode
@@ -120,9 +121,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   )
 }
 
-if (__DEV__) {
-  ColorModeProvider.displayName = "ColorModeProvider"
-}
+ColorModeProvider.displayName = "ColorModeProvider"
 
 /**
  * Locks the color mode to `dark`, without any way to change it.
@@ -140,9 +139,7 @@ export function DarkMode(props: React.PropsWithChildren<{}>) {
   return <ColorModeContext.Provider value={context} {...props} />
 }
 
-if (__DEV__) {
-  DarkMode.displayName = "DarkMode"
-}
+DarkMode.displayName = "DarkMode"
 
 /**
  * Locks the color mode to `light` without any way to change it.
@@ -160,6 +157,4 @@ export function LightMode(props: React.PropsWithChildren<{}>) {
   return <ColorModeContext.Provider value={context} {...props} />
 }
 
-if (__DEV__) {
-  LightMode.displayName = "LightMode"
-}
+LightMode.displayName = "LightMode"

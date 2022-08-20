@@ -21,7 +21,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/react-children-utils"
+    "directory": "utilities/react-children-utils"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"

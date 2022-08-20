@@ -1,5 +1,4 @@
 import { ThemingProps } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
 import { useMemo } from "react"
 import { CheckboxGroupProvider } from "./checkbox-context"
 import { UseCheckboxGroupProps } from "./checkbox-types"
@@ -36,6 +35,4 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
   return <CheckboxGroupProvider value={group} children={children} />
 }
 
-if (__DEV__) {
-  CheckboxGroup.displayName = "CheckboxGroup"
-}
+CheckboxGroup.displayName = "CheckboxGroup"

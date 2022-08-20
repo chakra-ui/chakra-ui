@@ -7,7 +7,7 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 
 interface InputOptions {
   /**
@@ -63,9 +63,7 @@ export const Input = forwardRef<InputProps, "input">(function Input(
   )
 })
 
-if (__DEV__) {
-  Input.displayName = "Input"
-}
+Input.displayName = "Input"
 
 // This is used in `input-group.tsx`
 Input.id = "Input"

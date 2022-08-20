@@ -1,12 +1,9 @@
-import { __DEV__ } from "@chakra-ui/utils"
 import { createContext, useContext } from "react"
 import { ColorModeContextType } from "./color-mode-types"
 
 export const ColorModeContext = createContext({} as ColorModeContextType)
 
-if (__DEV__) {
-  ColorModeContext.displayName = "ColorModeContext"
-}
+ColorModeContext.displayName = "ColorModeContext"
 
 /**
  * React hook that reads from `ColorModeProvider` context

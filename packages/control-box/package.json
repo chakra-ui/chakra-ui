@@ -29,9 +29,6 @@
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
-  "dependencies": {
-    "@chakra-ui/utils": "workspace:*"
-  },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/visually-hidden": "workspace:*",

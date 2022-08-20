@@ -1,6 +1,6 @@
 import { Spinner } from "@chakra-ui/spinner"
 import { chakra, HTMLChakraProps, SystemStyleObject } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 import { useMemo } from "react"
 import { ButtonSpinnerOptions } from "./button-types"
 
@@ -42,6 +42,4 @@ export function ButtonSpinner(props: ButtonSpinnerProps) {
     </chakra.div>
   )
 }
-if (__DEV__) {
-  ButtonSpinner.displayName = "ButtonSpinner"
-}
+ButtonSpinner.displayName = "ButtonSpinner"

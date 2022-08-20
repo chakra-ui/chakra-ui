@@ -31,8 +31,7 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/icon": "workspace:*",
-    "@chakra-ui/utils": "workspace:*"
+    "@chakra-ui/icon": "workspace:*"
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",

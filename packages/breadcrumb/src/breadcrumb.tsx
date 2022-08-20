@@ -1,4 +1,5 @@
-import { getValidChildren } from "@chakra-ui/react-utils"
+import { cx } from "@chakra-ui/shared-utils"
+import { getValidChildren } from "@chakra-ui/react-children-utils"
 import {
   chakra,
   forwardRef,
@@ -7,7 +8,6 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
 import { cloneElement } from "react"
 import { BreadcrumbStylesProvider } from "./breadcrumb-context"
 import { BreadcrumbOptions } from "./breadcrumb-types"
@@ -65,6 +65,4 @@ export const Breadcrumb = forwardRef<BreadcrumbProps, "nav">(
   },
 )
 
-if (__DEV__) {
-  Breadcrumb.displayName = "Breadcrumb"
-}
+Breadcrumb.displayName = "Breadcrumb"
