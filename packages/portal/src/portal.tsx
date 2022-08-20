@@ -1,6 +1,5 @@
-import { useForceUpdate, useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { isBrowser, __DEV__ } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/react-utils"
+import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
+import { createContext } from "@chakra-ui/react-context"
 import { createPortal } from "react-dom"
 import { usePortalManager } from "./portal-manager"
 import { useEffect, useMemo, useRef, useState } from "react"
@@ -43,9 +42,8 @@ const DefaultPortal = (
   const [tempNode, setTempNode] = useState<HTMLElement | null>(null)
   const portal = useRef<HTMLDivElement | null>(null)
 
-  const forceUpdate = useForceUpdate()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(forceUpdate, [])
+  const [, forceUpdate] = useState({})
+  useEffect(() => forceUpdate({}), [])
 
   const parentPortal = usePortalContext()
   const manager = usePortalManager()
@@ -62,7 +60,7 @@ const DefaultPortal = (
     portal.current.className = PORTAL_CLASSNAME
 
     host.appendChild(portal.current)
-    forceUpdate()
+    forceUpdate({})
 
     const portalNode = portal.current
     return () => {
@@ -105,7 +103,8 @@ interface ContainerPortalProps extends React.PropsWithChildren<{}> {
 const ContainerPortal = (props: ContainerPortalProps) => {
   const { children, containerRef, appendToParentPortal } = props
   const containerEl = containerRef.current
-  const host = containerEl ?? (isBrowser ? document.body : undefined)
+  const host =
+    containerEl ?? (typeof window !== "undefined" ? document.body : undefined)
 
   const portal = useMemo(() => {
     const node = containerEl?.ownerDocument.createElement("div")
@@ -113,11 +112,8 @@ const ContainerPortal = (props: ContainerPortalProps) => {
     return node
   }, [containerEl])
 
-  const forceUpdate = useForceUpdate()
-
-  useSafeLayoutEffect(() => {
-    forceUpdate()
-  }, [])
+  const [, forceUpdate] = useState({})
+  useSafeLayoutEffect(() => forceUpdate({}), [])
 
   useSafeLayoutEffect(() => {
     if (!portal || !host) return
@@ -186,6 +182,4 @@ Portal.defaultProps = {
 Portal.className = PORTAL_CLASSNAME
 Portal.selector = PORTAL_SELECTOR
 
-if (__DEV__) {
-  Portal.displayName = "Portal"
-}
+Portal.displayName = "Portal"
