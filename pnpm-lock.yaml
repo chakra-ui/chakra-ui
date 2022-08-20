@@ -1477,6 +1477,7 @@ importers:
       '@chakra-ui/react-children-utils': workspace:*
       '@chakra-ui/react-context': workspace:*
       '@chakra-ui/react-use-controllable-state': workspace:*
+      '@chakra-ui/react-use-interval': workspace:*
       '@chakra-ui/react-use-merge-refs': workspace:*
       '@chakra-ui/react-use-safe-layout-effect': workspace:*
       '@chakra-ui/shared-utils': workspace:*
@@ -1493,6 +1494,7 @@ importers:
       '@chakra-ui/react-use-safe-layout-effect': link:../../hooks/use-safe-layout-effect
     devDependencies:
       '@chakra-ui/modal': link:../modal
+      '@chakra-ui/react-use-interval': link:../../hooks/use-interval
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
       react: 18.2.0

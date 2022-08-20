@@ -1,4 +1,4 @@
-import { useInterval } from "@chakra-ui/hooks"
+import { useInterval } from "@chakra-ui/react-use-interval"
 import {
   Drawer,
   DrawerBody,
