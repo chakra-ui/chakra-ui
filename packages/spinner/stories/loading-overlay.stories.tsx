@@ -1,5 +1,5 @@
-import { Box, BoxProps, Heading } from "@chakra-ui/react"
-import { ThemeProvider, useTheme } from "@chakra-ui/system"
+import { Box, BoxProps, Button, Heading } from "@chakra-ui/react"
+import { forwardRef, ThemeProvider, useTheme } from "@chakra-ui/system"
 import { mergeWith } from "@chakra-ui/utils"
 import * as React from "react"
 import { LoadingOverlay, LoadingSpinner, LoadingText } from "../src"
@@ -8,9 +8,10 @@ export default {
   title: "Components / Feedback / LoadingOverlay",
 }
 
-const Card = (props: BoxProps) => {
+const Card = forwardRef<BoxProps, "div">((props, ref) => {
   return (
     <Box
+      ref={ref}
       borderRadius="md"
       borderWidth="1px"
       position="relative"
@@ -18,11 +19,13 @@ const Card = (props: BoxProps) => {
       height="200px"
       p="8"
     >
-      <Heading size="md">Chakra UI</Heading>
+      <Heading size="md" mb="4">
+        Chakra UI
+      </Heading>
       {props.children}
     </Box>
   )
-}
+})
 
 export const Basic = () => (
   <LoadingOverlay>
@@ -30,7 +33,20 @@ export const Basic = () => (
   </LoadingOverlay>
 )
 
-export const FullScreen = () => (
+export const WithText = () => (
+  <LoadingOverlay>
+    <LoadingSpinner />
+    <LoadingText>Loading...</LoadingText>
+  </LoadingOverlay>
+)
+
+export const SpinnerColor = () => (
+  <LoadingOverlay>
+    <LoadingSpinner color="teal.500" />
+  </LoadingOverlay>
+)
+
+export const FullScreenVariant = () => (
   <Card>
     <LoadingOverlay variant="fullscreen">
       <LoadingSpinner />
@@ -38,7 +54,7 @@ export const FullScreen = () => (
   </Card>
 )
 
-export const Overlay = () => (
+export const OverlayVariant = () => (
   <Card>
     <LoadingOverlay variant="overlay">
       <LoadingSpinner />
@@ -46,18 +62,63 @@ export const Overlay = () => (
   </Card>
 )
 
-export const Color = () => (
-  <LoadingOverlay>
-    <LoadingSpinner color="teal.500" />
-  </LoadingOverlay>
-)
+export const WithContainerRef = () => {
+  const containerRef = React.useRef<HTMLDivElement>(null)
 
-export const WithText = () => (
-  <LoadingOverlay>
-    <LoadingSpinner color="teal.500" />
-    <LoadingText>Loading...</LoadingText>
-  </LoadingOverlay>
-)
+  const [isLoading, setLoading] = React.useState(true)
+
+  React.useEffect(() => {
+    let timeout
+    if (isLoading) {
+      timeout = setTimeout(() => {
+        setLoading(false)
+      }, 5000)
+    }
+
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [isLoading])
+
+  return (
+    <Card ref={containerRef}>
+      <Button onClick={() => setLoading(true)}>Refresh</Button>
+      <LoadingOverlay
+        variant="overlay"
+        containerRef={containerRef}
+        isLoading={isLoading}
+      >
+        <LoadingSpinner />
+      </LoadingOverlay>
+    </Card>
+  )
+}
+
+export const WithMotionPreset = () => {
+  const [isLoading, setLoading] = React.useState(true)
+
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false)
+    }, 1000)
+
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [])
+
+  return (
+    <Card>
+      <LoadingOverlay
+        variant="overlay"
+        motionPreset="none"
+        isLoading={isLoading}
+      >
+        <LoadingSpinner />
+      </LoadingOverlay>
+    </Card>
+  )
+}
 
 export const WithCustomStyleConfig = () => {
   const theme = useTheme()

@@ -1,20 +1,25 @@
-import { useState } from "react"
 import {
   chakra,
   Spinner,
   ThemingProps,
   ThemeTypings,
-  SystemProps,
   SystemStyleObject,
   createStylesContext,
   useMultiStyleConfig,
   HTMLChakraProps,
+  omitThemingProps,
+  SystemProps,
 } from "@chakra-ui/react"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 
 import { AnimatePresence, motion } from "framer-motion"
 
 import { fadeConfig } from "@chakra-ui/transition"
+
+import {
+  useLoadingOverlay,
+  UseLoadingOverlayProps,
+} from "./use-loading-overlay"
 
 type Variants = "fill" | "overlay" | "fullscreen"
 
@@ -23,18 +28,13 @@ const [StylesProvider, useStyles] = createStylesContext("LoadingOverlay")
 export const useLoadingOverlayStyles = useStyles
 
 export interface LoadingOverlayProps
-  extends HTMLChakraProps<"div">,
+  extends UseLoadingOverlayProps,
+    HTMLChakraProps<"div">,
     ThemingProps<"LoadingOverlay"> {
-  /**
-   * Show or hide the LoadingOverlay.
-   */
-  isLoading?: boolean
-
   /**
    * Spacing between children
    */
   spacing?: SystemProps["margin"]
-
   /**
    * @type "fill" | "overlay" | "fullscreen"
    * @default "fill"
@@ -42,37 +42,21 @@ export interface LoadingOverlayProps
   variant?: "LoadingOverlay" extends keyof ThemeTypings["components"]
     ? ThemeTypings["components"]["LoadingOverlay"]["variants"]
     : Variants
-
-  /**
-   * The transition that should be used for the overlay
-   * @default "fade"
-   */
-  motionPreset?: "none" | "fade"
-
-  /**
-   * The overlay children
-   */
-  children?: React.ReactNode
 }
 
 const Motion = chakra(motion.div)
 
-/**
- * Show a fullscreen loading animation while your app is loading.
- */
 export const LoadingOverlay: React.FC<LoadingOverlayProps> = (props) => {
   const styles = useMultiStyleConfig("LoadingOverlay", props)
 
   const {
     children,
+    containerRef,
     isLoading = true,
-    variant,
-    size,
-    colorScheme,
     spacing = 2,
     motionPreset,
     ...rest
-  } = props
+  } = omitThemingProps(props)
 
   const overlayStyles: SystemStyleObject = {
     display: "flex",
@@ -83,7 +67,11 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = (props) => {
     ...styles.overlay,
   }
 
-  const [animateInitial] = useState(!isLoading)
+  const { animateInitial } = useLoadingOverlay({
+    containerRef,
+    isLoading,
+    motionPreset,
+  })
 
   const motionProps: any = motionPreset === "none" ? {} : fadeConfig
 
