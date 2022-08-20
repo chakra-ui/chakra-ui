@@ -43,11 +43,15 @@
   "dependencies": {
     "@chakra-ui/clickable": "workspace:*",
     "@chakra-ui/descendant": "workspace:*",
-    "@chakra-ui/hooks": "workspace:*",
-    "@chakra-ui/react-utils": "workspace:*",
-    "@chakra-ui/utils": "workspace:*"
+    "@chakra-ui/react-context": "workspace:*",
+    "@chakra-ui/react-use-safe-layout-effect": "workspace:*",
+    "@chakra-ui/react-use-controllable-state": "workspace:*",
+    "@chakra-ui/react-children-utils": "workspace:*",
+    "@chakra-ui/react-use-merge-refs": "workspace:*",
+    "@chakra-ui/lazy-utils": "workspace:*"
   },
   "devDependencies": {
+    "@chakra-ui/shared-utils": "workspace:*",
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/modal": "workspace:*",
     "react": "^18.0.0"
