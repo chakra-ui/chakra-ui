@@ -1271,10 +1271,7 @@ importers:
   packages/skip-nav:
     specifiers:
       '@chakra-ui/system': workspace:*
-      '@chakra-ui/utils': workspace:*
       react: ^18.2.0
-    dependencies:
-      '@chakra-ui/utils': link:../utils
     devDependencies:
       '@chakra-ui/system': link:../system
       react: 18.2.0

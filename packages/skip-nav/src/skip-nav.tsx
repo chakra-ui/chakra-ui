@@ -7,7 +7,6 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { mergeWith, __DEV__ } from "@chakra-ui/utils"
 
 export interface SkipNavLinkProps
   extends HTMLChakraProps<"a">,
@@ -15,22 +14,26 @@ export interface SkipNavLinkProps
 
 const fallbackId = "chakra-skip-nav"
 
-const baseStyle: SystemStyleObject = {
-  userSelect: "none",
-  border: "0",
-  height: "1px",
-  width: "1px",
-  margin: "-1px",
-  padding: "0",
-  outline: "0",
-  overflow: "hidden",
-  position: "absolute",
-  clip: "rect(0 0 0 0)",
-  _focus: {
-    clip: "auto",
-    width: "auto",
-    height: "auto",
-  },
+function getStyles(styles: any): SystemStyleObject {
+  return {
+    userSelect: "none",
+    border: "0",
+    height: "1px",
+    width: "1px",
+    margin: "-1px",
+    padding: "0",
+    outline: "0",
+    overflow: "hidden",
+    position: "absolute",
+    clip: "rect(0 0 0 0)",
+    ...styles,
+    _focus: {
+      clip: "auto",
+      width: "auto",
+      height: "auto",
+      ...styles["_focus"],
+    },
+  }
 }
 
 /**
@@ -40,16 +43,13 @@ export const SkipNavLink = forwardRef<SkipNavLinkProps, "a">(
   function SkipNavLink(props, ref) {
     const styles = useStyleConfig("SkipLink", props)
     const { id = fallbackId, ...rest } = omitThemingProps(props)
-
-    const linkStyles = mergeWith({}, baseStyle, styles)
-
-    return <chakra.a {...rest} ref={ref} href={`#${id}`} __css={linkStyles} />
+    return (
+      <chakra.a {...rest} ref={ref} href={`#${id}`} __css={getStyles(styles)} />
+    )
   },
 )
 
-if (__DEV__) {
-  SkipNavLink.displayName = "SkipNavLink"
-}
+SkipNavLink.displayName = "SkipNavLink"
 
 export interface SkipNavContentProps extends HTMLChakraProps<"div"> {}
 
@@ -71,6 +71,4 @@ export const SkipNavContent = forwardRef<SkipNavContentProps, "div">(
   },
 )
 
-if (__DEV__) {
-  SkipNavContent.displayName = "SkipNavContent"
-}
+SkipNavContent.displayName = "SkipNavContent"
