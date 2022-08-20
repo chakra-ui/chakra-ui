@@ -32,21 +32,6 @@ export function runIfFn<T, U>(
   return isFunction(valueOrFn) ? valueOrFn(...args) : valueOrFn
 }
 
-type FunctionArguments<T extends Function> = T extends (...args: infer R) => any
-  ? R
-  : never
-
-export function callAllHandlers<T extends (event: any) => void>(
-  ...fns: (T | undefined)[]
-) {
-  return function func(event: FunctionArguments<T>[0]) {
-    fns.some((fn) => {
-      fn?.(event)
-      return event?.defaultPrevented
-    })
-  }
-}
-
 const isFunction = <T extends Function = Function>(value: any): value is T =>
   typeof value === "function"
 
@@ -57,23 +42,23 @@ export const dataAttr = (condition: boolean | undefined) =>
 export const ariaAttr = (condition: boolean | undefined) =>
   condition ? true : undefined
 
-export function omit<T extends Record<string, any>, K extends keyof T>(
-  object: T,
-  keys: K[],
-) {
-  const result: Record<string, any> = {}
-
-  Object.keys(object).forEach((key) => {
-    if (keys.includes(key as K)) return
-    result[key] = object[key]
-  })
-
-  return result as Omit<T, K>
-}
+type Args<T extends Function> = T extends (...args: infer R) => any ? R : never
 
 type AnyFunction<T = any> = (...args: T[]) => any
+
+export function callAllHandlers<T extends (event: any) => void>(
+  ...fns: (T | undefined)[]
+) {
+  return function func(event: Args<T>[0]) {
+    fns.some((fn) => {
+      fn?.(event)
+      return event?.defaultPrevented
+    })
+  }
+}
+
 export function callAll<T extends AnyFunction>(...fns: (T | undefined)[]) {
-  return function mergedFn(arg: FunctionArguments<T>[0]) {
+  return function mergedFn(arg: Args<T>[0]) {
     fns.forEach((fn) => {
       fn?.(arg)
     })

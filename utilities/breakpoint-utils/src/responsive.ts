@@ -1,27 +1,10 @@
 import { isObject } from "@chakra-ui/shared-utils"
 
-function getLastItem<T>(array: T[]): T | undefined {
-  const length = array == null ? 0 : array.length
-  return length ? array[length - 1] : undefined
-}
-
-export const breakpoints = Object.freeze([
-  "base",
-  "sm",
-  "md",
-  "lg",
-  "xl",
-  "2xl",
-])
+const breakpoints = Object.freeze(["base", "sm", "md", "lg", "xl", "2xl"])
 
 export function mapResponsive(prop: any, mapper: (val: any) => any) {
   if (Array.isArray(prop)) {
-    return prop.map((item) => {
-      if (item === null) {
-        return null
-      }
-      return mapper(item)
-    })
+    return prop.map((item) => (item === null ? null : mapper(item)))
   }
 
   if (isObject(prop)) {
@@ -43,9 +26,8 @@ export function objectToArrayNotation(
   bps = breakpoints,
 ) {
   const result = bps.map((br) => obj[br] ?? null)
-  while (getLastItem(result) === null) {
-    result.pop()
-  }
+  const lastItem = result[result.length - 1]
+  while (lastItem === null) result.pop()
   return result
 }
 
@@ -74,5 +56,4 @@ export function isResponsiveObjectLike(
  *
  * This function returns true given a custom array property.
  */
-export const isCustomBreakpoint = (maybeBreakpoint: string) =>
-  Number.isNaN(Number(maybeBreakpoint))
+export const isCustomBreakpoint = (v: string) => Number.isNaN(Number(v))

@@ -32,8 +32,14 @@
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
+  "dependencies": {
+    "@chakra-ui/react-context": "workspace:*",
+    "@chakra-ui/react-use-merge-refs": "workspace:*",
+    "@chakra-ui/spinner": "workspace:*"
+  },
   "devDependencies": {
     "@chakra-ui/utils": "workspace:*",
+    "@chakra-ui/shared-utils": "workspace:*",
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/icons": "workspace:*",
     "@chakra-ui/theme": "workspace:*",
@@ -42,12 +48,6 @@
     "react-icons": "^4.2.0",
     "react-spinners": "0.11.0",
     "react": "^18.0.0"
-  },
-  "dependencies": {
-    "@chakra-ui/react-context": "workspace:*",
-    "@chakra-ui/react-use-merge-refs": "workspace:*",
-    "@chakra-ui/shared-utils": "workspace:*",
-    "@chakra-ui/spinner": "workspace:*"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=2.0.0",

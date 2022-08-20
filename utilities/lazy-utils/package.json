@@ -1,11 +1,11 @@
 {
-  "name": "@chakra-ui/breakpoint-utils",
-  "version": "2.0.2",
-  "description": "",
+  "name": "@chakra-ui/lazy-utils",
+  "version": "2.0.0",
+  "description": "Utility functions for lazy loading disclosure elements",
   "keywords": [
-    "breakpoint",
-    "utilities",
-    "chakra"
+    "lazy",
+    "disclosure",
+    "utils"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -23,7 +23,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "utilities/breakpoint-utils"
+    "directory": "utilities/lazy-utils"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
@@ -34,8 +34,5 @@
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src/index.ts --format=esm,cjs"
-  },
-  "devDependencies": {
-    "@chakra-ui/shared-utils": "workspace:*"
   }
 }
