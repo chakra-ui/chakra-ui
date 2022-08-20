@@ -385,6 +385,12 @@ importers:
     devDependencies:
       react: 18.2.0
 
+  hooks/use-previous:
+    specifiers:
+      react: ^18.2.0
+    devDependencies:
+      react: 18.2.0
+
   hooks/use-safe-layout-effect:
     specifiers:
       react: ^18.2.0
