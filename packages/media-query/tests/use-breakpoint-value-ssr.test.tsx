@@ -6,7 +6,7 @@ import { theme } from "./test-data"
 
 jest.mock("@chakra-ui/shared-utils", () => ({
   ...jest.requireActual("@chakra-ui/shared-utils"),
-  isBrowser: false,
+  isBrowser: () => false,
 }))
 
 beforeEach(() => {
