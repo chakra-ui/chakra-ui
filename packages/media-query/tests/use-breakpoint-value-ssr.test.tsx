@@ -4,11 +4,6 @@ import { renderToStaticMarkup } from "react-dom/server"
 import { useBreakpointValue } from "../src"
 import { theme } from "./test-data"
 
-jest.mock("@chakra-ui/breakpoint-utils", () => ({
-  ...jest.requireActual("@chakra-ui/breakpoint-utils"),
-  isBrowser: false,
-}))
-
 beforeEach(() => {
   jest.resetAllMocks()
 })
