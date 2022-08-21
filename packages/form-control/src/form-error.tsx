@@ -1,4 +1,4 @@
-import Icon, { IconProps } from "@chakra-ui/icon"
+import { type IconProps, Icon } from "@chakra-ui/icon"
 import { createContext } from "@chakra-ui/react-context"
 import {
   chakra,

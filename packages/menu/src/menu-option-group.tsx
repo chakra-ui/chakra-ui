@@ -1,6 +1,6 @@
 import { cx, __DEV__ } from "@chakra-ui/utils"
 
-import { MenuGroupProps, MenuGroup } from "./menu"
+import { type MenuGroupProps, MenuGroup } from "./menu-group"
 import { UseMenuOptionGroupProps, useMenuOptionGroup } from "./use-menu"
 
 export interface MenuOptionGroupProps

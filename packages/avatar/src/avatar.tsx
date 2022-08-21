@@ -9,7 +9,8 @@ import {
 } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/shared-utils"
 import { AvatarStylesProvider } from "./avatar-context"
-import { AvatarImage, GenericAvatarIcon } from "./avatar-image"
+import { AvatarImage } from "./avatar-image"
+import { GenericAvatarIcon } from "./generic-avatar-icon"
 import { initials } from "./avatar-name"
 import { AvatarOptions } from "./avatar-types"
 

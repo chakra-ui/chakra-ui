@@ -1,4 +1,4 @@
-import Icon, { IconProps } from "@chakra-ui/icon"
+import { type IconProps, Icon } from "@chakra-ui/icon"
 import { chakra } from "@chakra-ui/system"
 
 import { useStatStyles } from "./stat"
