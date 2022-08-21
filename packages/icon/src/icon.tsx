@@ -80,3 +80,5 @@ export const Icon = forwardRef<IconProps, "svg">((props, ref) => {
 })
 
 Icon.displayName = "Icon"
+
+export default Icon
