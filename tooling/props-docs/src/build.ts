@@ -73,13 +73,14 @@ if (require.main === module) {
  * Find all TypeScript files which could contain component definitions
  */
 async function findComponentFiles() {
-  return globAsync("react/**/src/**/*.@(ts|tsx)", {
+  return globAsync("**/src/**/*.@(ts|tsx)", {
     cwd: sourcePath,
     ignore: [
-      "**/stories/**",
+      "**/react/**",
       "**/theme/**",
       "**/utils/**",
       "**/system/**",
+      "**/node_modules/**",
       "**/index.ts",
     ],
   })
@@ -106,10 +107,7 @@ function parseInfo(filePaths: string[]) {
     },
   })
 
-  return filePaths.flatMap((file) => {
-    const absoluteFilePath = path.join(sourcePath, file)
-    return parse(absoluteFilePath)
-  })
+  return parse(filePaths.flatMap((file) => path.join(sourcePath, file)))
 }
 
 /**
