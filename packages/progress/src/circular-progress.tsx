@@ -1,5 +1,4 @@
 import { chakra, SystemStyleObject, HTMLChakraProps } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
 import { getProgressProps, rotate, spin } from "./progress.utils"
 
 interface CircleProps extends HTMLChakraProps<"circle"> {}
@@ -8,9 +7,7 @@ const Circle = (props: CircleProps) => (
   <chakra.circle cx={50} cy={50} r={42} fill="transparent" {...props} />
 )
 
-if (__DEV__) {
-  Circle.displayName = "Circle"
-}
+Circle.displayName = "Circle"
 
 interface ShapeProps extends HTMLChakraProps<"svg"> {
   size?: string | number
@@ -32,9 +29,7 @@ const Shape = (props: ShapeProps) => {
   )
 }
 
-if (__DEV__) {
-  Shape.displayName = "Shape"
-}
+Shape.displayName = "Shape"
 
 interface CircularProgressOptions {
   /**
@@ -186,9 +181,7 @@ export const CircularProgress: React.FC<CircularProgressProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  CircularProgress.displayName = "CircularProgress"
-}
+CircularProgress.displayName = "CircularProgress"
 
 /**
  * CircularProgress component label. In most cases it is a numeric indicator
@@ -206,8 +199,6 @@ export const CircularProgressLabel = chakra("div", {
   },
 })
 
-if (__DEV__) {
-  CircularProgressLabel.displayName = "CircularProgressLabel"
-}
+CircularProgressLabel.displayName = "CircularProgressLabel"
 
 export interface CircularProgressLabelProps extends HTMLChakraProps<"div"> {}

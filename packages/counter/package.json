@@ -35,14 +35,15 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "workspace:*",
-    "@chakra-ui/utils": "workspace:*"
+    "@chakra-ui/number-utils": "workspace:*",
+    "@chakra-ui/react-use-callback-ref": "workspace:*"
+  },
+  "devDependencies": {
+    "@chakra-ui/shared-utils": "workspace:*",
+    "react": "^18.0.0"
   },
   "peerDependencies": {
     "react": ">=18"
-  },
-  "devDependencies": {
-    "react": "^18.0.0"
   },
   "scripts": {
     "build": "tsup src/index.ts --dts",

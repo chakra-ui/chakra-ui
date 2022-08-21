@@ -33,10 +33,10 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/checkbox": "workspace:*",
-    "@chakra-ui/utils": "workspace:*"
+    "@chakra-ui/checkbox": "workspace:*"
   },
   "devDependencies": {
+    "@chakra-ui/shared-utils": "workspace:*",
     "@chakra-ui/form-control": "workspace:*",
     "@chakra-ui/layout": "workspace:*",
     "@chakra-ui/system": "workspace:*",

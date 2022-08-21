@@ -1,5 +1,8 @@
 import { keyframes } from "@chakra-ui/system"
-import { isFunction, valueToPercent } from "@chakra-ui/utils"
+
+function valueToPercent(value: number, min: number, max: number) {
+  return ((value - min) * 100) / (max - min)
+}
 
 type Keyframe = ReturnType<typeof keyframes>
 
@@ -64,7 +67,9 @@ export function getProgressProps(options: GetProgressPropsOptions) {
 
   const getAriaValueText = () => {
     if (value == null) return undefined
-    return isFunction(getValueText) ? getValueText(value, percent) : valueText
+    return typeof getValueText === "function"
+      ? getValueText(value, percent)
+      : valueText
   }
 
   return {

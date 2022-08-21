@@ -1,6 +1,13 @@
 import { isObject } from "@chakra-ui/shared-utils"
 
-const breakpoints = Object.freeze(["base", "sm", "md", "lg", "xl", "2xl"])
+export const breakpoints = Object.freeze([
+  "base",
+  "sm",
+  "md",
+  "lg",
+  "xl",
+  "2xl",
+])
 
 export function mapResponsive(prop: any, mapper: (val: any) => any) {
   if (Array.isArray(prop)) {

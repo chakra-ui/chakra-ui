@@ -9,7 +9,8 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { callAll, split, __DEV__ } from "@chakra-ui/utils"
+import { callAll } from "@chakra-ui/shared-utils"
+import { split } from "@chakra-ui/object-utils"
 import { useRadioGroupContext } from "./radio-group"
 import { useRadio, UseRadioProps } from "./use-radio"
 
@@ -133,6 +134,4 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  Radio.displayName = "Radio"
-}
+Radio.displayName = "Radio"

@@ -2,7 +2,7 @@ import { runIfFn } from "@chakra-ui/utils"
 import { useEffect } from "react"
 import { useCallbackRef } from "./use-callback-ref"
 
-export type DocumentOrElement = Document | HTMLElement | null
+type DocumentOrElement = Document | HTMLElement | null
 
 export type EventListenerEnv = (() => DocumentOrElement) | DocumentOrElement
 

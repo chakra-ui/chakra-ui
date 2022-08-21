@@ -1,5 +1,4 @@
-import { __DEV__ } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/react-utils"
+import { createContext } from "@chakra-ui/react-context"
 
 interface PortalManagerContext {
   zIndex?: number
@@ -31,6 +30,4 @@ export function PortalManager(props: PortalManagerProps) {
   )
 }
 
-if (__DEV__) {
-  PortalManager.displayName = "PortalManager"
-}
+PortalManager.displayName = "PortalManager"

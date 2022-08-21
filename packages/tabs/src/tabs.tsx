@@ -1,4 +1,4 @@
-import { createContext } from "@chakra-ui/react-utils"
+import { createContext } from "@chakra-ui/react-context"
 import {
   chakra,
   forwardRef,
@@ -8,7 +8,7 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, omit, __DEV__, Dict } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 import { useMemo } from "react"
 import {
   TabsDescendantsProvider,
@@ -25,7 +25,7 @@ import {
 } from "./use-tabs"
 
 const [TabsStylesProvider, useTabsStyles] = createContext<
-  Dict<SystemStyleObject>
+  Record<string, SystemStyleObject>
 >({
   name: `TabsStylesContext`,
   errorMessage: `useTabsStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Tabs />" `,
@@ -64,7 +64,7 @@ export const Tabs = forwardRef<TabsProps, "div">(function Tabs(props, ref) {
   const { htmlProps, descendants, ...ctx } = useTabs(rest)
   const context = useMemo(() => ctx, [ctx])
 
-  const rootProps = omit(htmlProps as any, ["isFitted"])
+  const { isFitted: _, ...rootProps } = htmlProps as any
 
   return (
     <TabsDescendantsProvider value={descendants}>
@@ -84,9 +84,7 @@ export const Tabs = forwardRef<TabsProps, "div">(function Tabs(props, ref) {
   )
 })
 
-if (__DEV__) {
-  Tabs.displayName = "Tabs"
-}
+Tabs.displayName = "Tabs"
 
 export interface TabProps extends UseTabOptions, HTMLChakraProps<"button"> {}
 
@@ -115,9 +113,7 @@ export const Tab = forwardRef<TabProps, "button">(function Tab(props, ref) {
   )
 })
 
-if (__DEV__) {
-  Tab.displayName = "Tab"
-}
+Tab.displayName = "Tab"
 
 export interface TabListProps
   extends UseTabListProps,
@@ -149,9 +145,7 @@ export const TabList = forwardRef<TabListProps, "div">(function TabList(
   )
 })
 
-if (__DEV__) {
-  TabList.displayName = "TabList"
-}
+TabList.displayName = "TabList"
 
 export interface TabPanelProps extends HTMLChakraProps<"div"> {}
 
@@ -176,9 +170,7 @@ export const TabPanel = forwardRef<TabPanelProps, "div">(function TabPanel(
   )
 })
 
-if (__DEV__) {
-  TabPanel.displayName = "TabPanel"
-}
+TabPanel.displayName = "TabPanel"
 
 export interface TabPanelsProps extends HTMLChakraProps<"div"> {}
 
@@ -208,9 +200,7 @@ export const TabPanels = forwardRef<TabPanelsProps, "div">(function TabPanels(
   )
 })
 
-if (__DEV__) {
-  TabPanels.displayName = "TabPanels"
-}
+TabPanels.displayName = "TabPanels"
 
 export interface TabIndicatorProps extends HTMLChakraProps<"div"> {}
 
@@ -242,6 +232,4 @@ export const TabIndicator = forwardRef<TabIndicatorProps, "div">(
   },
 )
 
-if (__DEV__) {
-  TabIndicator.displayName = "TabIndicator"
-}
+TabIndicator.displayName = "TabIndicator"

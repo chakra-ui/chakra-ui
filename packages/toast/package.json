@@ -32,16 +32,15 @@
   "dependencies": {
     "@chakra-ui/alert": "workspace:*",
     "@chakra-ui/close-button": "workspace:*",
-    "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/portal": "workspace:*",
-    "@chakra-ui/react-utils": "workspace:*",
-    "@chakra-ui/theme": "workspace:*",
-    "@chakra-ui/transition": "workspace:*",
-    "@chakra-ui/utils": "workspace:*"
+    "@chakra-ui/react-use-update-effect": "workspace:*",
+    "@chakra-ui/react-use-timeout": "workspace:*",
+    "@chakra-ui/theme": "workspace:*"
   },
   "devDependencies": {
-    "@testing-library/react": "13.3.0",
+    "@chakra-ui/shared-utils": "workspace:*",
     "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/button": "workspace:*",
     "@chakra-ui/layout": "workspace:*",
     "framer-motion": "^6.2.9",

@@ -40,7 +40,7 @@ const HookTooltip = ({ children }: any) => {
               borderRadius: "4px",
               padding: "0.5em 1em",
               visibility: isOpen ? "visible" : "hidden",
-              "--popper-arrow-bg": "tomato",
+              ["--popper-arrow-bg" as string]: "tomato",
             },
           })}
         >

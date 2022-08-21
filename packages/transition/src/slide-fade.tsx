@@ -1,4 +1,4 @@
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 import {
   AnimatePresence,
   HTMLMotionProps,
@@ -117,6 +117,4 @@ export const SlideFade = forwardRef<HTMLDivElement, SlideFadeProps>(
   },
 )
 
-if (__DEV__) {
-  SlideFade.displayName = "SlideFade"
-}
+SlideFade.displayName = "SlideFade"

@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/alert"
 import { chakra } from "@chakra-ui/system"
 import { CloseButton } from "@chakra-ui/close-button"
-import { isFunction, MaybeFunction, runIfFn } from "@chakra-ui/utils"
+import { runIfFn } from "@chakra-ui/shared-utils"
 import type { UseToastOptions } from "./use-toast"
 import type { RenderProps, ToastId } from "./toast.types"
 import { getToastPlacement } from "./toast.placement"
@@ -81,7 +81,7 @@ export function createRenderToast(
 ) {
   const { render, toastComponent: ToastComponent = Toast } = options
   const renderToast: React.FC<RenderProps> = (props) => {
-    if (isFunction(render)) {
+    if (typeof render === "function") {
       return render(props) as JSX.Element
     }
     return <ToastComponent {...props} {...options} />
@@ -153,3 +153,5 @@ export function createToastFn(
 }
 
 export type CreateToastFnReturn = ReturnType<typeof createToastFn>
+
+type MaybeFunction<T, Args extends unknown[] = []> = T | ((...args: Args) => T)

@@ -1,5 +1,5 @@
-import { useInterval, useUnmountEffect } from "@chakra-ui/hooks"
-import { useCallback, useRef, useState } from "react"
+import { useInterval } from "@chakra-ui/react-use-interval"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 /**
  * When click and hold on a button - the speed of auto changing the value.
@@ -95,7 +95,9 @@ export function useSpinner(increment: Function, decrement: Function) {
    * If the component unmounts while spinning,
    * let's clear the timeout as well
    */
-  useUnmountEffect(removeTimeout)
+  useEffect(() => {
+    return () => removeTimeout()
+  }, [])
 
   return { up, down, stop, isSpinning }
 }
