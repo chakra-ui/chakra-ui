@@ -4,7 +4,7 @@ import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
 import { PropGetter } from "@chakra-ui/react-types"
 import { callAllHandlers } from "@chakra-ui/shared-utils"
-import { useCallback, useEffect, useRef, useId } from "react"
+import { useCallback, useEffect, useRef, useId, type RefObject } from "react"
 
 export interface UseTooltipProps
   extends Pick<
@@ -120,19 +120,34 @@ export function useTooltip(props: UseTooltipProps = {}) {
   const enterTimeout = useRef<number>()
   const exitTimeout = useRef<number>()
 
+  const closeNow = useCallback(() => {
+    if (exitTimeout.current) {
+      clearTimeout(exitTimeout.current)
+      exitTimeout.current = undefined
+    }
+    onClose()
+  }, [onClose])
+
+  const dispatchCloseEvent = useCloseEvent(ref, closeNow)
+
   const openWithDelay = useCallback(() => {
     if (!isDisabled && !enterTimeout.current) {
-      enterTimeout.current = window.setTimeout(onOpen, openDelay)
+      dispatchCloseEvent()
+      enterTimeout.current =
+        ref.current?.ownerDocument?.defaultView?.setTimeout(onOpen, openDelay)
     }
-  }, [isDisabled, onOpen, openDelay])
+  }, [dispatchCloseEvent, isDisabled, onOpen, openDelay])
 
   const closeWithDelay = useCallback(() => {
     if (enterTimeout.current) {
       clearTimeout(enterTimeout.current)
       enterTimeout.current = undefined
     }
-    exitTimeout.current = window.setTimeout(onClose, closeDelay)
-  }, [closeDelay, onClose])
+    exitTimeout.current = ref.current?.ownerDocument?.defaultView?.setTimeout(
+      closeNow,
+      closeDelay,
+    )
+  }, [closeDelay, closeNow])
 
   const onClick = useCallback(() => {
     if (isOpen && closeOnClick) {
@@ -262,3 +277,16 @@ export function useTooltip(props: UseTooltipProps = {}) {
 }
 
 export type UseTooltipReturn = ReturnType<typeof useTooltip>
+
+const closeEventName = "chakra-ui:close-tooltip"
+
+function useCloseEvent(ref: RefObject<Element>, close: () => void) {
+  useEffect(() => {
+    const doc = ref.current?.ownerDocument
+    doc?.addEventListener(closeEventName, close)
+    return () => doc?.removeEventListener(closeEventName, close)
+  }, [close, ref])
+
+  return () =>
+    ref.current?.ownerDocument?.dispatchEvent(new CustomEvent(closeEventName))
+}
