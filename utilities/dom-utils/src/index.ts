@@ -96,3 +96,6 @@ export function getPreviousTabbable<T extends HTMLElement>(
     (fallbackToFocusable ? slice[0] : null)
   )
 }
+
+export * from "./tabbable"
+export * from "./dom"

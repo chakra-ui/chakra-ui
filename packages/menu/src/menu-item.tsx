@@ -1,5 +1,5 @@
 import { forwardRef, HTMLChakraProps, SystemProps } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 
 import { MenuCommand } from "./menu-command"
 import { MenuIcon } from "./menu-icon"
@@ -83,6 +83,4 @@ export const MenuItem = forwardRef<MenuItemProps, "button">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  MenuItem.displayName = "MenuItem"
-}
+MenuItem.displayName = "MenuItem"

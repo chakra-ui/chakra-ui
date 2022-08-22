@@ -36,11 +36,18 @@
   "dependencies": {
     "@chakra-ui/clickable": "workspace:*",
     "@chakra-ui/descendant": "workspace:*",
-    "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/popper": "workspace:*",
-    "@chakra-ui/react-utils": "workspace:*",
+    "@chakra-ui/lazy-utils": "workspace:*",
     "@chakra-ui/transition": "workspace:*",
-    "@chakra-ui/utils": "workspace:*"
+    "@chakra-ui/react-context": "workspace:*",
+    "@chakra-ui/react-children-utils": "workspace:*",
+    "@chakra-ui/react-use-animation-state": "workspace:*",
+    "@chakra-ui/react-use-disclosure": "workspace:*",
+    "@chakra-ui/react-use-focus-effect": "workspace:*",
+    "@chakra-ui/react-use-merge-refs": "workspace:*",
+    "@chakra-ui/react-use-controllable-state": "workspace:*",
+    "@chakra-ui/react-use-outside-click": "workspace:*",
+    "@chakra-ui/react-use-update-effect": "workspace:*"
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
@@ -50,6 +57,7 @@
     "@chakra-ui/portal": "workspace:*",
     "@chakra-ui/theme": "workspace:*",
     "@chakra-ui/button": "workspace:*",
+    "@chakra-ui/shared-utils": "workspace:*",
     "react-icons": "^4.2.0",
     "framer-motion": "^6.2.9",
     "react": "^18.0.0"

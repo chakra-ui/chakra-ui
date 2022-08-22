@@ -1,5 +1,6 @@
 import { HTMLChakraProps, chakra } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
+
 import { Children, cloneElement, isValidElement } from "react"
 
 export const MenuIcon: React.FC<HTMLChakraProps<"span">> = (props) => {
@@ -30,6 +31,4 @@ export const MenuIcon: React.FC<HTMLChakraProps<"span">> = (props) => {
   )
 }
 
-if (__DEV__) {
-  MenuIcon.displayName = "MenuIcon"
-}
+MenuIcon.displayName = "MenuIcon"

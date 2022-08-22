@@ -1,5 +1,4 @@
 import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
 import { useMenuStyles } from "./menu"
 
 export interface MenuCommandProps extends HTMLChakraProps<"span"> {}
@@ -18,6 +17,4 @@ export const MenuCommand = forwardRef<MenuCommandProps, "span">(
   },
 )
 
-if (__DEV__) {
-  MenuCommand.displayName = "MenuCommand"
-}
+MenuCommand.displayName = "MenuCommand"

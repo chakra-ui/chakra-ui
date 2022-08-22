@@ -5,7 +5,8 @@ import {
   HTMLChakraProps,
   chakra,
 } from "@chakra-ui/system"
-import { callAll, cx, __DEV__ } from "@chakra-ui/utils"
+import { cx, callAll } from "@chakra-ui/shared-utils"
+
 import { CustomDomComponent, motion, Variants } from "framer-motion"
 import { useMenuStyles } from "./menu"
 import { useMenuContext, useMenuList, useMenuPositioner } from "./use-menu"
@@ -95,6 +96,4 @@ export const MenuList = forwardRef<MenuListProps, "div">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  MenuList.displayName = "MenuList"
-}
+MenuList.displayName = "MenuList"

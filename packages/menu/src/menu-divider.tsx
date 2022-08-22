@@ -1,5 +1,5 @@
 import { HTMLChakraProps, chakra } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 
 import { useMenuStyles } from "./menu"
 
@@ -19,6 +19,4 @@ export const MenuDivider: React.FC<MenuDividerProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  MenuDivider.displayName = "MenuDivider"
-}
+MenuDivider.displayName = "MenuDivider"
