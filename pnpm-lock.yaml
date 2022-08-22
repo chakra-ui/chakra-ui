@@ -949,13 +949,6 @@ importers:
       '@chakra-ui/descendant': link:../descendant
       '@chakra-ui/lazy-utils': link:../../utilities/lazy-utils
       '@chakra-ui/popper': link:../popper
-      '@chakra-ui/transition': link:../transition
-    devDependencies:
-      '@chakra-ui/button': link:../button
-      '@chakra-ui/image': link:../image
-      '@chakra-ui/modal': link:../modal
-      '@chakra-ui/portal': link:../portal
-      '@chakra-ui/provider': link:../provider
       '@chakra-ui/react-children-utils': link:../../utilities/react-children-utils
       '@chakra-ui/react-context': link:../../hooks/context
       '@chakra-ui/react-use-animation-state': link:../../hooks/use-animation-state
@@ -965,6 +958,13 @@ importers:
       '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
       '@chakra-ui/react-use-outside-click': link:../../hooks/use-outside-click
       '@chakra-ui/react-use-update-effect': link:../../hooks/use-update-effect
+      '@chakra-ui/transition': link:../transition
+    devDependencies:
+      '@chakra-ui/button': link:../button
+      '@chakra-ui/image': link:../image
+      '@chakra-ui/modal': link:../modal
+      '@chakra-ui/portal': link:../portal
+      '@chakra-ui/provider': link:../provider
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
       '@chakra-ui/theme': link:../theme

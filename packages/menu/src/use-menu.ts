@@ -25,6 +25,8 @@ import React, {
   useMemo,
   useEffect,
 } from "react"
+import { useShortcut } from "./use-shortcut"
+import { getNextItemFromSearch } from "./get-next-item-from-search"
 
 /* -------------------------------------------------------------------------------------------------
  * Create context to track descendants and their indices
@@ -718,7 +720,7 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps = {}) {
 
   const onChange = useCallback(
     (selectedValue: string) => {
-      if (type === "radio" && isString(value)) {
+      if (type === "radio" && typeof value === "string") {
         setValue(selectedValue)
       }
 
@@ -773,59 +775,6 @@ export function useMenuState() {
   return { isOpen, onClose }
 }
 
-/**
- * Gets the next item based on a search string
- *
- * @param items array of items
- * @param searchString the search string
- * @param itemToString resolves an item to string
- * @param currentItem the current selected item
- */
-export function getNextItemFromSearch<T>(
-  items: T[],
-  searchString: string,
-  itemToString: (item: T) => string,
-  currentItem: T,
-): T | undefined {
-  if (searchString == null) {
-    return currentItem
-  }
-
-  // If current item doesn't exist, find the item that matches the search string
-  if (!currentItem) {
-    const foundItem = items.find((item) =>
-      itemToString(item).toLowerCase().startsWith(searchString.toLowerCase()),
-    )
-    return foundItem
-  }
-
-  // Filter items for ones that match the search string (case insensitive)
-  const matchingItems = items.filter((item) =>
-    itemToString(item).toLowerCase().startsWith(searchString.toLowerCase()),
-  )
-
-  // If there's a match, let's get the next item to select
-  if (matchingItems.length > 0) {
-    let nextIndex: number
-
-    // If the currentItem is in the available items, we move to the next available option
-    if (matchingItems.includes(currentItem)) {
-      const currentIndex = matchingItems.indexOf(currentItem)
-      nextIndex = currentIndex + 1
-      if (nextIndex === matchingItems.length) {
-        nextIndex = 0
-      }
-      return matchingItems[nextIndex]
-    }
-    // Else, we pick the first item in the available items
-    nextIndex = items.indexOf(matchingItems[0])
-    return items[nextIndex]
-  }
-
-  // a decent fallback to the currentItem
-  return currentItem
-}
-
 function isHTMLElement(el: any): el is HTMLElement {
   if (!isElement(el)) return false
   const win = el.ownerDocument.defaultView ?? window
@@ -839,81 +788,6 @@ function isElement(el: any): el is Element {
     "nodeType" in el &&
     el.nodeType === Node.ELEMENT_NODE
   )
-}
-
-function isString(value: any): value is string {
-  return Object.prototype.toString.call(value) === "[object String]"
-}
-
-/**
- * Checks if the key pressed is a printable character
- * and can be used for shortcut navigation
- */
-function isPrintableCharacter(event: React.KeyboardEvent) {
-  const { key } = event
-  return key.length === 1 || (key.length > 1 && /[^a-zA-Z0-9]/.test(key))
-}
-
-export interface UseShortcutProps {
-  timeout?: number
-  preventDefault?: (event: React.KeyboardEvent) => boolean
-}
-
-/**
- * React hook that provides an enhanced keydown handler,
- * that's used for key navigation within menus, select dropdowns.
- */
-export function useShortcut(props: UseShortcutProps = {}) {
-  const { timeout = 300, preventDefault = () => true } = props
-
-  const [keys, setKeys] = useState<string[]>([])
-  const timeoutRef = useRef<any>()
-
-  const flush = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current)
-      timeoutRef.current = null
-    }
-  }
-
-  const clearKeysAfterDelay = () => {
-    flush()
-    timeoutRef.current = setTimeout(() => {
-      setKeys([])
-      timeoutRef.current = null
-    }, timeout)
-  }
-
-  useEffect(() => flush, [])
-
-  type Callback = (keysSoFar: string) => void
-
-  function onKeyDown(fn: Callback) {
-    return (event: React.KeyboardEvent) => {
-      if (event.key === "Backspace") {
-        const keysCopy = [...keys]
-        keysCopy.pop()
-        setKeys(keysCopy)
-        return
-      }
-
-      if (isPrintableCharacter(event)) {
-        const keysCopy = keys.concat(event.key)
-
-        if (preventDefault(event)) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-
-        setKeys(keysCopy)
-        fn(keysCopy.join(""))
-
-        clearKeysAfterDelay()
-      }
-    }
-  }
-
-  return onKeyDown
 }
 
 function useUnmountEffect(fn: () => void, deps: any[] = []) {
