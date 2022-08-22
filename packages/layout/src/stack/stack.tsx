@@ -1,15 +1,16 @@
 import {
   chakra,
-  ChakraComponent,
   forwardRef,
   HTMLChakraProps,
   SystemProps,
 } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/shared-utils"
 import { getValidChildren } from "@chakra-ui/react-children-utils"
+import { cloneElement, Fragment, useMemo } from "react"
+
 import type { StackDirection } from "./stack.utils"
 import { getDividerStyles, getStackStyles, selector } from "./stack.utils"
-import { cloneElement, Fragment, useMemo } from "react"
+import { StackItem } from "./stack-item"
 
 export type { StackDirection }
 
@@ -53,36 +54,6 @@ interface StackOptions {
    */
   isInline?: boolean
 }
-
-export interface StackDividerProps extends HTMLChakraProps<"div"> {}
-
-export const StackDivider: ChakraComponent<"div"> = (props) => (
-  <chakra.div
-    className="chakra-stack__divider"
-    {...props}
-    __css={{
-      ...props["__css"],
-      borderWidth: 0,
-      alignSelf: "stretch",
-      borderColor: "inherit",
-      width: "auto",
-      height: "auto",
-    }}
-  />
-)
-
-export const StackItem: ChakraComponent<"div"> = (props) => (
-  <chakra.div
-    className="chakra-stack__item"
-    {...props}
-    __css={{
-      display: "inline-block",
-      flex: "0 0 auto",
-      minWidth: 0,
-      ...props["__css"],
-    }}
-  />
-)
 
 export interface StackProps extends HTMLChakraProps<"div">, StackOptions {}
 
@@ -174,21 +145,3 @@ export const Stack = forwardRef<StackProps, "div">((props, ref) => {
 })
 
 Stack.displayName = "Stack"
-
-/**
- * A view that arranges its children in a horizontal line.
- */
-export const HStack = forwardRef<StackProps, "div">((props, ref) => (
-  <Stack align="center" {...props} direction="row" ref={ref} />
-))
-
-HStack.displayName = "HStack"
-
-/**
- * A view that arranges its children in a vertical line.
- */
-export const VStack = forwardRef<StackProps, "div">((props, ref) => (
-  <Stack align="center" {...props} direction="column" ref={ref} />
-))
-
-VStack.displayName = "VStack"

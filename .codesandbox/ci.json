@@ -8,6 +8,7 @@
     "hooks/use-disclosure",
     "hooks/use-event-listener",
     "hooks/use-focus-on-pointer-down",
+    "hooks/use-interval",
     "hooks/use-merge-refs",
     "hooks/use-pan-event",
     "hooks/use-previous",
