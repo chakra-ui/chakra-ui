@@ -10,35 +10,11 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, dataAttr } from "@chakra-ui/shared-utils"
+import { dataAttr } from "@chakra-ui/shared-utils"
 import { split } from "@chakra-ui/object-utils"
 import { cloneElement, isValidElement } from "react"
 
-type Omitted = "disabled" | "required" | "readOnly" | "size"
-
-export interface SelectFieldProps
-  extends Omit<HTMLChakraProps<"select">, Omitted> {
-  isDisabled?: boolean
-}
-
-export const SelectField = forwardRef<SelectFieldProps, "select">(
-  function SelectField(props, ref) {
-    const { children, placeholder, className, ...rest } = props
-
-    return (
-      <chakra.select
-        {...rest}
-        ref={ref}
-        className={cx("chakra-select", className)}
-      >
-        {placeholder && <option value="">{placeholder}</option>}
-        {children}
-      </chakra.select>
-    )
-  },
-)
-
-SelectField.displayName = "SelectField"
+import { SelectField, SelectFieldProps } from "./select-field"
 
 interface RootProps extends Omit<HTMLChakraProps<"div">, "color"> {}
 
