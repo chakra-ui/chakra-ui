@@ -577,7 +577,6 @@ importers:
       react: ^18.2.0
     dependencies:
       '@chakra-ui/form-control': link:../form-control
-      '@chakra-ui/object-utils': link:../../utilities/object-utils
       '@chakra-ui/react-context': link:../../hooks/context
       '@chakra-ui/react-types': link:../../utilities/react-types
       '@chakra-ui/react-use-callback-ref': link:../../hooks/use-callback-ref
