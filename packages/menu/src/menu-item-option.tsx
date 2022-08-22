@@ -5,7 +5,7 @@ import { MenuItemProps } from "./menu-item"
 import { useMenuOption, UseMenuOptionOptions } from "./use-menu"
 import { StyledMenuItem } from "./styled-menu-item"
 import { MenuIcon } from "./menu-icon"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 
 const CheckIcon: React.FC<PropsOf<"svg">> = (props) => (
   <svg viewBox="0 0 14 14" width="1em" height="1em" {...props}>
@@ -58,6 +58,4 @@ export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
 
 MenuItemOption.id = "MenuItemOption"
 
-if (__DEV__) {
-  MenuItemOption.displayName = "MenuItemOption"
-}
+MenuItemOption.displayName = "MenuItemOption"

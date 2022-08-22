@@ -1,5 +1,5 @@
 import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 
 import { useMenuStyles } from "./menu"
 
@@ -23,6 +23,4 @@ export const MenuGroup = forwardRef<MenuGroupProps, "div">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  MenuGroup.displayName = "MenuGroup"
-}
+MenuGroup.displayName = "MenuGroup"

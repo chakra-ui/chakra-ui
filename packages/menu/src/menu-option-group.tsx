@@ -1,4 +1,4 @@
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 
 import { type MenuGroupProps, MenuGroup } from "./menu-group"
 import { UseMenuOptionGroupProps, useMenuOptionGroup } from "./use-menu"
@@ -19,6 +19,4 @@ export const MenuOptionGroup: React.FC<MenuOptionGroupProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  MenuOptionGroup.displayName = "MenuOptionGroup"
-}
+MenuOptionGroup.displayName = "MenuOptionGroup"

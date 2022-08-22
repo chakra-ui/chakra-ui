@@ -1,5 +1,5 @@
 import { forwardRef, HTMLChakraProps, chakra } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 
 import { useMenuStyles } from "./menu"
 import { useMenuButton } from "./use-menu"
@@ -49,6 +49,4 @@ export const MenuButton = forwardRef<MenuButtonProps, "button">(
   },
 )
 
-if (__DEV__) {
-  MenuButton.displayName = "MenuButton"
-}
+MenuButton.displayName = "MenuButton"
