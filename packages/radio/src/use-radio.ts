@@ -1,10 +1,9 @@
 import { useFormControlContext } from "@chakra-ui/form-control"
-import { useBoolean, useControllableProp, useId } from "@chakra-ui/hooks"
-import { PropGetter } from "@chakra-ui/react-utils"
-import { ariaAttr, callAllHandlers, dataAttr } from "@chakra-ui/utils"
+import { InputDOMAttributes, PropGetter } from "@chakra-ui/react-types"
+import { ariaAttr, callAllHandlers, dataAttr } from "@chakra-ui/shared-utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import { trackFocusVisible } from "@zag-js/focus-visible"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState, useId } from "react"
 import { useRadioGroupContext } from "./radio-group"
 
 /**
@@ -99,7 +98,7 @@ export function useRadio(props: UseRadioProps = {}) {
     ...htmlProps
   } = props
 
-  const uuid = useId(undefined, "radio")
+  const uuid = `radio-${useId()}`
 
   const formControl = useFormControlContext()
   const group = useRadioGroupContext()
@@ -116,16 +115,14 @@ export function useRadio(props: UseRadioProps = {}) {
   const isInvalid = isInvalidProp ?? formControl?.isInvalid
 
   const [isFocusVisible, setIsFocusVisible] = useState(false)
-  const [isFocused, setFocused] = useBoolean()
-  const [isHovered, setHovering] = useBoolean()
-  const [isActive, setActive] = useBoolean()
+  const [isFocused, setFocused] = useState(false)
+  const [isHovered, setHovering] = useState(false)
+  const [isActive, setActive] = useState(false)
 
   const [isCheckedState, setChecked] = useState(Boolean(defaultChecked))
 
-  const [isControlled, isChecked] = useControllableProp(
-    isCheckedProp,
-    isCheckedState,
-  )
+  const isControlled = typeof isCheckedProp !== "undefined"
+  const isChecked = isControlled ? isCheckedProp : isCheckedState
 
   useEffect(() => {
     return trackFocusVisible(setIsFocusVisible)
@@ -150,7 +147,7 @@ export function useRadio(props: UseRadioProps = {}) {
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
       if (event.key === " ") {
-        setActive.on()
+        setActive(true)
       }
     },
     [setActive],
@@ -159,7 +156,7 @@ export function useRadio(props: UseRadioProps = {}) {
   const onKeyUp = useCallback(
     (event: React.KeyboardEvent) => {
       if (event.key === " ") {
-        setActive.off()
+        setActive(false)
       }
     },
     [setActive],
@@ -178,10 +175,14 @@ export function useRadio(props: UseRadioProps = {}) {
       "data-focus-visible": dataAttr(isFocused && isFocusVisible),
       "data-readonly": dataAttr(isReadOnly),
       "aria-hidden": true,
-      onMouseDown: callAllHandlers(props.onMouseDown, setActive.on),
-      onMouseUp: callAllHandlers(props.onMouseUp, setActive.off),
-      onMouseEnter: callAllHandlers(props.onMouseEnter, setHovering.on),
-      onMouseLeave: callAllHandlers(props.onMouseLeave, setHovering.off),
+      onMouseDown: callAllHandlers(props.onMouseDown, () => setActive(true)),
+      onMouseUp: callAllHandlers(props.onMouseUp, () => setActive(false)),
+      onMouseEnter: callAllHandlers(props.onMouseEnter, () =>
+        setHovering(true),
+      ),
+      onMouseLeave: callAllHandlers(props.onMouseLeave, () =>
+        setHovering(false),
+      ),
     }),
     [
       isActive,
@@ -191,63 +192,63 @@ export function useRadio(props: UseRadioProps = {}) {
       isChecked,
       isFocused,
       isReadOnly,
-      setActive.on,
-      setActive.off,
-      setHovering.on,
-      setHovering.off,
       isFocusVisible,
     ],
   )
 
   const { onFocus, onBlur } = formControl ?? {}
 
-  const getInputProps: PropGetter<HTMLInputElement> = useCallback(
-    (props = {}, ref = null) => {
-      const trulyDisabled = isDisabled && !isFocusable
+  const getInputProps: PropGetter<InputDOMAttributes, InputDOMAttributes> =
+    useCallback(
+      (props = {}, ref = null) => {
+        const trulyDisabled = isDisabled && !isFocusable
 
-      return {
-        ...props,
+        return {
+          ...props,
+          id,
+          ref,
+          type: "radio",
+          name,
+          value,
+          onChange: callAllHandlers(props.onChange, handleChange),
+          onBlur: callAllHandlers(onBlur, props.onBlur, () =>
+            setFocused(false),
+          ),
+          onFocus: callAllHandlers(onFocus, props.onFocus, () =>
+            setFocused(true),
+          ),
+          onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+          onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
+          checked: isChecked,
+          disabled: trulyDisabled,
+          readOnly: isReadOnly,
+          required: isRequired,
+          "aria-invalid": ariaAttr(isInvalid),
+          "aria-disabled": ariaAttr(trulyDisabled),
+          "aria-required": ariaAttr(isRequired),
+          "data-readonly": dataAttr(isReadOnly),
+          "aria-describedby": ariaDescribedBy,
+          style: visuallyHiddenStyle,
+        }
+      },
+      [
+        isDisabled,
+        isFocusable,
         id,
-        ref,
-        type: "radio",
         name,
         value,
-        onChange: callAllHandlers(props.onChange, handleChange),
-        onBlur: callAllHandlers(onBlur, props.onBlur, setFocused.off),
-        onFocus: callAllHandlers(onFocus, props.onFocus, setFocused.on),
-        onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-        onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
-        checked: isChecked,
-        disabled: trulyDisabled,
-        readOnly: isReadOnly,
-        required: isRequired,
-        "aria-invalid": ariaAttr(isInvalid),
-        "aria-disabled": ariaAttr(trulyDisabled),
-        "aria-required": ariaAttr(isRequired),
-        "data-readonly": dataAttr(isReadOnly),
-        "aria-describedby": ariaDescribedBy,
-        style: visuallyHiddenStyle,
-      }
-    },
-    [
-      isDisabled,
-      isFocusable,
-      id,
-      name,
-      value,
-      handleChange,
-      onBlur,
-      setFocused,
-      onFocus,
-      onKeyDown,
-      onKeyUp,
-      isChecked,
-      isReadOnly,
-      isRequired,
-      isInvalid,
-      ariaDescribedBy,
-    ],
-  )
+        handleChange,
+        onBlur,
+        onFocus,
+        onKeyDown,
+        onKeyUp,
+        isChecked,
+        isReadOnly,
+        isRequired,
+        isInvalid,
+        ariaDescribedBy,
+      ],
+    )
 
   const getLabelProps: PropGetter = (props = {}, ref = null) => ({
     ...props,

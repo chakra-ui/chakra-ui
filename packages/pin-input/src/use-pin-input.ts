@@ -1,8 +1,9 @@
 import { createDescendantContext } from "@chakra-ui/descendant"
-import { useControllableState, useId } from "@chakra-ui/hooks"
-import { ariaAttr, callAllHandlers, focus } from "@chakra-ui/utils"
-import { createContext, mergeRefs } from "@chakra-ui/react-utils"
-import { useCallback, useEffect, useState } from "react"
+import { useControllableState } from "@chakra-ui/react-use-controllable-state"
+import { ariaAttr, callAllHandlers } from "@chakra-ui/shared-utils"
+import { createContext } from "@chakra-ui/react-context"
+import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
+import { useCallback, useEffect, useState, useId } from "react"
 
 /* -------------------------------------------------------------------------------------------------
  * Create context to track descendants and their indices
@@ -153,7 +154,11 @@ export function usePinInput(props: UsePinInputProps = {}) {
   useEffect(() => {
     if (autoFocus) {
       const first = descendants.first()
-      if (first) focus(first.node, { nextTick: true })
+      if (first) {
+        requestAnimationFrame(() => {
+          first.node.focus()
+        })
+      }
     }
     // We don't want to listen for updates to `autoFocus` since it only runs initially
     // eslint-disable-next-line
@@ -163,7 +168,11 @@ export function usePinInput(props: UsePinInputProps = {}) {
     (index: number) => {
       if (!moveFocus || !manageFocus) return
       const next = descendants.next(index, false)
-      if (next) focus(next.node, { nextTick: true })
+      if (next) {
+        requestAnimationFrame(() => {
+          next.node.focus()
+        })
+      }
     },
     [descendants, moveFocus, manageFocus],
   )
@@ -194,7 +203,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
     const values: string[] = Array(descendants.count()).fill("")
     setValues(values)
     const first = descendants.first()
-    if (first) focus(first.node)
+    first?.node?.focus()
   }, [descendants, setValues])
 
   const getNextValue = useCallback((value: string, eventValue: string) => {
@@ -259,7 +268,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
             const prevInput = descendants.prev(index, false)
             if (prevInput) {
               setValue("", index - 1)
-              focus(prevInput.node)
+              prevInput.node?.focus()
               setMoveFocus(true)
             }
           } else {

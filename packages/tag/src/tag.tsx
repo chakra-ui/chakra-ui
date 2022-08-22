@@ -1,18 +1,17 @@
 import { Icon, IconProps } from "@chakra-ui/icon"
+import { createContext } from "@chakra-ui/react-context"
 import {
   chakra,
   forwardRef,
+  HTMLChakraProps,
   omitThemingProps,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  HTMLChakraProps,
 } from "@chakra-ui/system"
-import { createContext } from "@chakra-ui/react-utils"
-import { __DEV__, Dict } from "@chakra-ui/utils"
 
 const [TagStylesProvider, useTagStyles] = createContext<
-  Dict<SystemStyleObject>
+  Record<string, SystemStyleObject>
 >({
   name: `TagStylesContext`,
   errorMessage: `useTagStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Tag />" `,
@@ -48,9 +47,7 @@ export const Tag = forwardRef<TagProps, "span">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  Tag.displayName = "Tag"
-}
+Tag.displayName = "Tag"
 
 export interface TagLabelProps extends HTMLChakraProps<"span"> {}
 
@@ -59,25 +56,19 @@ export const TagLabel = forwardRef<TagLabelProps, "span">((props, ref) => {
   return <chakra.span ref={ref} noOfLines={1} {...props} __css={styles.label} />
 })
 
-if (__DEV__) {
-  TagLabel.displayName = "TagLabel"
-}
+TagLabel.displayName = "TagLabel"
 
 export const TagLeftIcon = forwardRef<IconProps, "svg">((props, ref) => (
   <Icon ref={ref} verticalAlign="top" marginEnd="0.5rem" {...props} />
 ))
 
-if (__DEV__) {
-  TagLeftIcon.displayName = "TagLeftIcon"
-}
+TagLeftIcon.displayName = "TagLeftIcon"
 
 export const TagRightIcon = forwardRef<IconProps, "svg">((props, ref) => (
   <Icon ref={ref} verticalAlign="top" marginStart="0.5rem" {...props} />
 ))
 
-if (__DEV__) {
-  TagRightIcon.displayName = "TagRightIcon"
-}
+TagRightIcon.displayName = "TagRightIcon"
 
 const TagCloseIcon: React.FC<IconProps> = (props) => (
   <Icon verticalAlign="inherit" viewBox="0 0 512 512" {...props}>
@@ -88,9 +79,7 @@ const TagCloseIcon: React.FC<IconProps> = (props) => (
   </Icon>
 )
 
-if (__DEV__) {
-  TagCloseIcon.displayName = "TagCloseIcon"
-}
+TagCloseIcon.displayName = "TagCloseIcon"
 
 export interface TagCloseButtonProps
   extends Omit<HTMLChakraProps<"button">, "disabled"> {
@@ -127,6 +116,4 @@ export const TagCloseButton: React.FC<TagCloseButtonProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  TagCloseButton.displayName = "TagCloseButton"
-}
+TagCloseButton.displayName = "TagCloseButton"

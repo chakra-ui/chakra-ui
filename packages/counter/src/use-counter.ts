@@ -1,12 +1,9 @@
-import { useCallbackRef, useControllableProp } from "@chakra-ui/hooks"
+import { useCallbackRef } from "@chakra-ui/react-use-callback-ref"
 import {
   clampValue,
   countDecimalPlaces,
-  maxSafeInteger,
-  minSafeInteger,
-  StringOrNumber,
   toPrecision,
-} from "@chakra-ui/utils"
+} from "@chakra-ui/number-utils"
 import { useCallback, useState } from "react"
 
 export interface UseCounterProps {
@@ -21,11 +18,11 @@ export interface UseCounterProps {
   /**
    * The initial value of the counter. Should be less than `max` and greater than `min`
    */
-  defaultValue?: StringOrNumber
+  defaultValue?: string | number
   /**
    * The value of the counter. Should be less than `max` and greater than `min`
    */
-  value?: StringOrNumber
+  value?: string | number
   /**
    * The step used to increment or decrement the value
    * @default 1
@@ -61,14 +58,14 @@ export function useCounter(props: UseCounterProps = {}) {
     defaultValue,
     value: valueProp,
     step: stepProp = 1,
-    min = minSafeInteger,
-    max = maxSafeInteger,
+    min = Number.MIN_SAFE_INTEGER,
+    max = Number.MAX_SAFE_INTEGER,
     keepWithinRange = true,
   } = props
 
   const onChangeProp = useCallbackRef(onChange)
 
-  const [valueState, setValue] = useState<StringOrNumber>(() => {
+  const [valueState, setValue] = useState<string | number>(() => {
     if (defaultValue == null) return ""
     return cast(defaultValue, stepProp, precisionProp) ?? ""
   })
@@ -77,14 +74,15 @@ export function useCounter(props: UseCounterProps = {}) {
    * Because the component that consumes this hook can be controlled or uncontrolled
    * we'll keep track of that
    */
-  const [isControlled, value] = useControllableProp(valueProp, valueState)
+  const isControlled = typeof valueProp !== "undefined"
+  const value = isControlled ? valueProp : valueState
 
   const decimalPlaces = getDecimalPlaces(parse(value), stepProp)
 
   const precision = precisionProp ?? decimalPlaces
 
   const update = useCallback(
-    (next: StringOrNumber) => {
+    (next: string | number) => {
       if (next === value) return
       if (!isControlled) {
         setValue(next.toString())
@@ -110,7 +108,7 @@ export function useCounter(props: UseCounterProps = {}) {
 
   const increment = useCallback(
     (step = stepProp) => {
-      let next: StringOrNumber
+      let next: string | number
 
       /**
        * Let's follow the native browser behavior for
@@ -134,7 +132,7 @@ export function useCounter(props: UseCounterProps = {}) {
 
   const decrement = useCallback(
     (step = stepProp) => {
-      let next: StringOrNumber
+      let next: string | number
 
       // Same thing here. We'll follow native implementation
       if (value === "") {
@@ -150,7 +148,7 @@ export function useCounter(props: UseCounterProps = {}) {
   )
 
   const reset = useCallback(() => {
-    let next: StringOrNumber
+    let next: string | number
     if (defaultValue == null) {
       next = ""
     } else {
@@ -160,7 +158,7 @@ export function useCounter(props: UseCounterProps = {}) {
   }, [defaultValue, precisionProp, stepProp, update, min])
 
   const castValue = useCallback(
-    (value: StringOrNumber) => {
+    (value: string | number) => {
       const nextValue = cast(value, stepProp, precision) ?? min
       update(nextValue)
     },
@@ -195,7 +193,7 @@ export function useCounter(props: UseCounterProps = {}) {
 
 export type UseCounterReturn = ReturnType<typeof useCounter>
 
-function parse(value: StringOrNumber) {
+function parse(value: string | number) {
   return parseFloat(value.toString().replace(/[^\w.-]+/g, ""))
 }
 
@@ -203,7 +201,7 @@ function getDecimalPlaces(value: number, step: number) {
   return Math.max(countDecimalPlaces(step), countDecimalPlaces(value))
 }
 
-function cast(value: StringOrNumber, step: number, precision?: number) {
+function cast(value: string | number, step: number, precision?: number) {
   const parsedValue = parse(value)
   if (Number.isNaN(parsedValue)) return undefined
   const decimalPlaces = getDecimalPlaces(parsedValue, step)

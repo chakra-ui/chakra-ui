@@ -1,40 +1,8 @@
 import { chakra, SystemStyleObject, HTMLChakraProps } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
-import { getProgressProps, rotate, spin } from "./progress.utils"
 
-interface CircleProps extends HTMLChakraProps<"circle"> {}
-
-const Circle = (props: CircleProps) => (
-  <chakra.circle cx={50} cy={50} r={42} fill="transparent" {...props} />
-)
-
-if (__DEV__) {
-  Circle.displayName = "Circle"
-}
-
-interface ShapeProps extends HTMLChakraProps<"svg"> {
-  size?: string | number
-  isIndeterminate?: boolean
-}
-
-const Shape = (props: ShapeProps) => {
-  const { size, isIndeterminate, ...rest } = props
-  return (
-    <chakra.svg
-      viewBox="0 0 100 100"
-      __css={{
-        width: size,
-        height: size,
-        animation: isIndeterminate ? `${rotate} 2s linear infinite` : undefined,
-      }}
-      {...rest}
-    />
-  )
-}
-
-if (__DEV__) {
-  Shape.displayName = "Shape"
-}
+import { getProgressProps, spin } from "./progress.utils"
+import { Shape } from "./shape"
+import { Circle } from "./circle"
 
 interface CircularProgressOptions {
   /**
@@ -186,28 +154,4 @@ export const CircularProgress: React.FC<CircularProgressProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  CircularProgress.displayName = "CircularProgress"
-}
-
-/**
- * CircularProgress component label. In most cases it is a numeric indicator
- * of the circular progress component's value
- */
-export const CircularProgressLabel = chakra("div", {
-  baseStyle: {
-    fontSize: "0.24em",
-    top: "50%",
-    left: "50%",
-    width: "100%",
-    textAlign: "center",
-    position: "absolute",
-    transform: "translate(-50%, -50%)",
-  },
-})
-
-if (__DEV__) {
-  CircularProgressLabel.displayName = "CircularProgressLabel"
-}
-
-export interface CircularProgressLabelProps extends HTMLChakraProps<"div"> {}
+CircularProgress.displayName = "CircularProgress"

@@ -16,3 +16,4 @@ export type {
 export { tokenToCSSVar } from "./utils/create-transform"
 export type OmitSpaceXY<T> = Omit<T, "spaceX" | "spaceY">
 export * from "./component.types"
+export { getCSSVar } from "./get-css-var"

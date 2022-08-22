@@ -1,5 +1,5 @@
 import { useFormControlProps } from "@chakra-ui/form-control"
-import { createContext } from "@chakra-ui/react-utils"
+import { createContext } from "@chakra-ui/react-context"
 import {
   chakra,
   forwardRef,
@@ -9,7 +9,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx, Dict, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 import { useMemo } from "react"
 import { TriangleDownIcon, TriangleUpIcon } from "./icons"
 import {
@@ -19,7 +19,7 @@ import {
 } from "./use-number-input"
 
 const [NumberInputStylesProvider, useNumberInputStyles] = createContext<
-  Dict<SystemStyleObject>
+  Record<string, SystemStyleObject>
 >({
   name: `NumberInputStylesContext`,
   errorMessage: `useNumberInputStyles returned is 'undefined'. Seems you forgot to wrap the components in "<NumberInput />" `,
@@ -99,9 +99,7 @@ export const NumberInput = forwardRef<NumberInputProps, "div">(
   },
 )
 
-if (__DEV__) {
-  NumberInput.displayName = "NumberInput"
-}
+NumberInput.displayName = "NumberInput"
 
 export interface NumberInputStepperProps extends HTMLChakraProps<"div"> {}
 
@@ -139,9 +137,7 @@ export const NumberInputStepper = forwardRef<NumberInputStepperProps, "div">(
   },
 )
 
-if (__DEV__) {
-  NumberInputStepper.displayName = "NumberInputStepper"
-}
+NumberInputStepper.displayName = "NumberInputStepper"
 
 export interface NumberInputFieldProps extends HTMLChakraProps<"input"> {}
 
@@ -176,9 +172,7 @@ export const NumberInputField = forwardRef<NumberInputFieldProps, "input">(
   },
 )
 
-if (__DEV__) {
-  NumberInputField.displayName = "NumberInputField"
-}
+NumberInputField.displayName = "NumberInputField"
 
 export const StyledStepper = chakra("div", {
   baseStyle: {
@@ -218,9 +212,7 @@ export const NumberDecrementStepper = forwardRef<
   )
 })
 
-if (__DEV__) {
-  NumberDecrementStepper.displayName = "NumberDecrementStepper"
-}
+NumberDecrementStepper.displayName = "NumberDecrementStepper"
 
 export interface NumberIncrementStepperProps extends HTMLChakraProps<"div"> {}
 
@@ -246,6 +238,4 @@ export const NumberIncrementStepper = forwardRef<
   )
 })
 
-if (__DEV__) {
-  NumberIncrementStepper.displayName = "NumberIncrementStepper"
-}
+NumberIncrementStepper.displayName = "NumberIncrementStepper"

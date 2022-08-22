@@ -1,12 +1,10 @@
 import ReactFocusLock from "react-focus-lock"
-import {
-  __DEV__,
-  getAllFocusable,
-  focus,
-  FocusableElement,
-} from "@chakra-ui/utils"
+import { getAllFocusable } from "@chakra-ui/dom-utils"
 import { useCallback } from "react"
 
+interface FocusableElement {
+  focus(options?: FocusOptions): void
+}
 export interface FocusLockProps {
   /**
    * `ref` of the element to receive focus initially
@@ -71,7 +69,9 @@ export const FocusLock: React.FC<FocusLockProps> = (props) => {
     } else if (contentRef?.current) {
       const focusables = getAllFocusable(contentRef.current)
       if (focusables.length === 0) {
-        focus(contentRef.current, { nextTick: true })
+        requestAnimationFrame(() => {
+          contentRef.current?.focus()
+        })
       }
     }
   }, [initialFocusRef, contentRef])
@@ -97,8 +97,6 @@ export const FocusLock: React.FC<FocusLockProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  FocusLock.displayName = "FocusLock"
-}
+FocusLock.displayName = "FocusLock"
 
 export default FocusLock

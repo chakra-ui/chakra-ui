@@ -8,9 +8,9 @@ import {
   ThemingProps,
   useStyleConfig,
   useTheme,
+  getCSSVar,
 } from "@chakra-ui/system"
-import { isString, omit, pick, __DEV__, getCSSVar } from "@chakra-ui/utils"
-import { VisuallyHidden } from "@chakra-ui/visually-hidden"
+import { omit, pick } from "@chakra-ui/object-utils"
 import { AnimatePresence, motion } from "framer-motion"
 import { Children, cloneElement } from "react"
 import { scale } from "./tooltip.transition"
@@ -83,16 +83,12 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
 
   if (userDefinedBg) {
     styles.bg = userDefinedBg
-    // @ts-ignore
-    styles[popperCSSVars.arrowBg.var] = getCSSVar(
-      theme,
-      "colors",
-      userDefinedBg,
-    )
+    const bgVar = getCSSVar(theme, "colors", userDefinedBg)
+    ;(styles as any)[popperCSSVars.arrowBg.var] = bgVar
   }
   const tooltip = useTooltip({ ...rest, direction: theme.direction })
 
-  const shouldWrap = isString(children) || shouldWrapChildren
+  const shouldWrap = typeof children === "string" || shouldWrapChildren
 
   let trigger: React.ReactElement
 
@@ -156,7 +152,9 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
               >
                 {label}
                 {hasAriaLabel && (
-                  <VisuallyHidden {...hiddenProps}>{ariaLabel}</VisuallyHidden>
+                  <chakra.span srOnly {...hiddenProps}>
+                    {ariaLabel}
+                  </chakra.span>
                 )}
                 {hasArrow && (
                   <chakra.div
@@ -179,6 +177,4 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  Tooltip.displayName = "Tooltip"
-}
+Tooltip.displayName = "Tooltip"

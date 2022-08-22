@@ -1,23 +1,16 @@
 import {
-  useDisclosure,
   useFocusOnHide,
   useFocusOnPointerDown,
   useFocusOnShow,
-  useIds,
   useAnimationState,
 } from "@chakra-ui/hooks"
+import { useDisclosure } from "@chakra-ui/react-use-disclosure"
 import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
-import { HTMLProps, mergeRefs, PropGetter } from "@chakra-ui/react-utils"
-import {
-  callAllHandlers,
-  contains,
-  determineLazyBehavior,
-  FocusableElement,
-  getRelatedTarget,
-  LazyBehavior,
-  px,
-} from "@chakra-ui/utils"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { DOMAttributes, PropGetter } from "@chakra-ui/react-types"
+import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
+import { callAllHandlers } from "@chakra-ui/shared-utils"
+import { lazyDisclosure, LazyMode } from "@chakra-ui/lazy-utils"
+import { useCallback, useEffect, useId, useRef, useState } from "react"
 
 const TRIGGER = {
   click: "click",
@@ -44,7 +37,7 @@ export interface UsePopoverProps extends Omit<UsePopperProps, "enabled"> {
   /**
    * The `ref` of the element that should receive focus when the popover opens.
    */
-  initialFocusRef?: React.RefObject<FocusableElement>
+  initialFocusRef?: React.RefObject<{ focus(): void }>
   /**
    * If `true`, focus will be returned to the element that triggers the popover
    * when it closes
@@ -121,7 +114,7 @@ export interface UsePopoverProps extends Omit<UsePopperProps, "enabled"> {
    *
    * @default "unmount"
    */
-  lazyBehavior?: LazyBehavior
+  lazyBehavior?: LazyMode
   /**
    * If `true`, the popover will be positioned when it mounts
    * (even if it's not open)
@@ -170,13 +163,14 @@ export function usePopover(props: UsePopoverProps = {}) {
   const [hasHeader, setHasHeader] = useState(false)
   const [hasBody, setHasBody] = useState(false)
 
-  const [triggerId, popoverId, headerId, bodyId] = useIds(
-    id,
+  const uuid = useId()
+  const uid = id ?? uuid
+  const [triggerId, popoverId, headerId, bodyId] = [
     "popover-trigger",
     "popover-content",
     "popover-header",
     "popover-body",
-  )
+  ].map((id) => `${id}-${uid}`)
 
   const {
     referenceRef,
@@ -208,21 +202,23 @@ export function usePopover(props: UsePopoverProps = {}) {
     shouldFocus: autoFocus && trigger === TRIGGER.click,
   })
 
-  const shouldRenderChildren = determineLazyBehavior({
-    hasBeenSelected: hasBeenOpened.current,
-    isLazy,
-    lazyBehavior,
+  const shouldRenderChildren = lazyDisclosure({
+    wasSelected: hasBeenOpened.current,
+    enabled: isLazy,
+    mode: lazyBehavior,
     isSelected: animated.present,
   })
 
   const getPopoverProps: PropGetter = useCallback(
     (props = {}, _ref = null) => {
-      const popoverProps: HTMLProps = {
+      const popoverProps: DOMAttributes = {
         ...props,
         style: {
           ...props.style,
           transformOrigin: popperCSSVars.transformOrigin.varRef,
-          [popperCSSVars.arrowSize.var]: arrowSize ? px(arrowSize) : undefined,
+          [popperCSSVars.arrowSize.var]: arrowSize
+            ? `${arrowSize}px`
+            : undefined,
           [popperCSSVars.arrowShadowColor.var]: arrowShadowColor,
         },
         ref: mergeRefs(popoverRef, _ref),
@@ -239,6 +235,7 @@ export function usePopover(props: UsePopoverProps = {}) {
           const relatedTarget = getRelatedTarget(event)
           const targetIsPopover = contains(popoverRef.current, relatedTarget)
           const targetIsTrigger = contains(triggerRef.current, relatedTarget)
+
           const isValidBlur = !targetIsPopover && !targetIsTrigger
 
           if (isOpen && closeOnBlur && isValidBlur) {
@@ -304,13 +301,11 @@ export function usePopover(props: UsePopoverProps = {}) {
 
   const getAnchorProps: PropGetter = useCallback(
     (props, _ref = null) => {
-      const anchorProps: HTMLProps = {
+      return {
         ...props,
         // If anchor is rendered, it is used as reference.
         ref: mergeRefs(_ref, anchorRef, referenceRef),
       }
-
-      return anchorProps
     },
     [anchorRef, referenceRef],
   )
@@ -330,7 +325,7 @@ export function usePopover(props: UsePopoverProps = {}) {
 
   const getTriggerProps: PropGetter = useCallback(
     (props = {}, _ref = null) => {
-      const triggerProps: HTMLProps = {
+      const triggerProps: DOMAttributes = {
         ...props,
         ref: mergeRefs(triggerRef, _ref, maybeReferenceRef),
         id: triggerId,
@@ -463,3 +458,12 @@ export function usePopover(props: UsePopoverProps = {}) {
 }
 
 export type UsePopoverReturn = ReturnType<typeof usePopover>
+
+function contains(parent: HTMLElement | null, child: HTMLElement | null) {
+  return parent === child || parent?.contains(child)
+}
+
+function getRelatedTarget(event: React.FocusEvent) {
+  const activeEl = event.currentTarget.ownerDocument.activeElement
+  return (event.relatedTarget ?? activeEl) as HTMLElement | null
+}

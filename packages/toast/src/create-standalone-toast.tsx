@@ -1,4 +1,3 @@
-import { noop } from "@chakra-ui/utils"
 import {
   ColorMode,
   ColorModeContext,
@@ -28,8 +27,8 @@ export const defaultStandaloneParam: CreateStandAloneToastParam &
   Required<Omit<CreateStandAloneToastParam, keyof ToastProviderProps>> = {
   theme: defaultTheme,
   colorMode: "light",
-  toggleColorMode: noop,
-  setColorMode: noop,
+  toggleColorMode: () => {},
+  setColorMode: () => {},
   defaultOptions: defaults,
 }
 

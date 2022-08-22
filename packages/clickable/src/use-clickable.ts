@@ -1,5 +1,5 @@
-import { dataAttr, isRightClick } from "@chakra-ui/utils"
-import { mergeRefs } from "@chakra-ui/react-utils"
+import { dataAttr } from "@chakra-ui/shared-utils"
+import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
 import { useEventListeners } from "./use-event-listeners"
 import { useCallback, useState } from "react"
 
@@ -183,7 +183,7 @@ export function useClickable(props: UseClickableProps = {}) {
 
   const handleMouseDown = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
-      if (isRightClick(event)) return
+      if (event.button !== 0) return
 
       if (isDisabled) {
         event.stopPropagation()
@@ -207,7 +207,7 @@ export function useClickable(props: UseClickableProps = {}) {
 
   const handleMouseUp = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
-      if (isRightClick(event)) return
+      if (event.button !== 0) return
 
       if (!isButton) {
         setIsPressed(false)

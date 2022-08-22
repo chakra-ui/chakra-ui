@@ -1,5 +1,5 @@
 import { chakra, HTMLChakraProps } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
 
 export interface PopoverArrowProps extends HTMLChakraProps<"div"> {}
@@ -27,6 +27,5 @@ export function PopoverArrow(props: PopoverArrowProps) {
     </chakra.div>
   )
 }
-if (__DEV__) {
-  PopoverArrow.displayName = "PopoverArrow"
-}
+
+PopoverArrow.displayName = "PopoverArrow"

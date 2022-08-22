@@ -1,9 +1,13 @@
-import { useControllableProp, useId } from "@chakra-ui/hooks"
-import { isInputEvent } from "@chakra-ui/utils"
-import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
-import { useCallback, useRef, useState } from "react"
+import { isObject } from "@chakra-ui/shared-utils"
+import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
+import { useCallback, useRef, useState, useId } from "react"
+import { InputDOMAttributes, PropGetter } from "@chakra-ui/react-types"
 
 type EventOrValue = React.ChangeEvent<HTMLInputElement> | string | number
+
+function isInputEvent(value: any): value is { target: HTMLInputElement } {
+  return value && isObject(value) && isObject(value.target)
+}
 
 export interface UseRadioGroupProps {
   /**
@@ -44,25 +48,6 @@ export interface UseRadioGroupProps {
   isNative?: boolean
 }
 
-type RadioPropGetter = PropGetter<
-  HTMLInputElement,
-  {
-    onChange?: (e: EventOrValue) => void
-    value?: string | number
-    /**
-     * checked is defined if isNative=true
-     */
-    checked?: boolean
-    /**
-     * isChecked is defined if isNative=false
-     */
-    isChecked?: boolean
-  } & Omit<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    "onChange" | "size" | "value"
-  >
->
-
 /**
  * React hook to manage a group of radio inputs
  */
@@ -79,7 +64,8 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
   } = props
 
   const [valueState, setValue] = useState<string | number>(defaultValue || "")
-  const [isControlled, value] = useControllableProp(valueProp, valueState)
+  const isControlled = typeof valueProp !== "undefined"
+  const value = isControlled ? valueProp : valueState
 
   const ref = useRef<any>(null)
 
@@ -107,7 +93,8 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
   /**
    * All radio options must use the same name
    */
-  const fallbackName = useId(undefined, `radio`)
+  const uuid = useId()
+  const fallbackName = `radio-${uuid}`
   const name = nameProp || fallbackName
 
   const onChange = useCallback(
@@ -134,7 +121,10 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     [],
   )
 
-  const getRadioProps: RadioPropGetter = useCallback(
+  const getRadioProps: PropGetter<
+    InputDOMAttributes & { isChecked?: boolean },
+    InputDOMAttributes
+  > = useCallback(
     (props = {}, ref = null) => {
       const checkedKey = isNative ? "checked" : "isChecked"
       return {
@@ -142,7 +132,9 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
         ref,
         name,
         [checkedKey]: value != null ? props.value === value : undefined,
-        onChange,
+        onChange(event) {
+          onChange(event as any)
+        },
         "data-radiogroup": true,
       }
     },

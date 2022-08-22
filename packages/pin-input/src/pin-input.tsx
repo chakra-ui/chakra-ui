@@ -6,8 +6,8 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
-import { getValidChildren } from "@chakra-ui/react-utils"
+import { cx } from "@chakra-ui/shared-utils"
+import { getValidChildren } from "@chakra-ui/react-children-utils"
 import {
   PinInputDescendantsProvider,
   PinInputProvider,
@@ -59,9 +59,7 @@ export function PinInput(props: PinInputProps) {
   )
 }
 
-if (__DEV__) {
-  PinInput.displayName = "PinInput"
-}
+PinInput.displayName = "PinInput"
 
 export interface PinInputFieldProps extends HTMLChakraProps<"input"> {}
 
@@ -77,6 +75,4 @@ export const PinInputField = forwardRef<PinInputFieldProps, "input">(
   },
 )
 
-if (__DEV__) {
-  PinInputField.displayName = "PinInputField"
-}
+PinInputField.displayName = "PinInputField"
