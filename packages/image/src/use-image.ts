@@ -1,4 +1,4 @@
-import { useSafeLayoutEffect } from "@chakra-ui/hooks"
+import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
 import { useCallback, useEffect, useRef, useState } from "react"
 
 type NativeImageProps = React.ImgHTMLAttributes<HTMLImageElement>
