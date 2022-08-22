@@ -162,7 +162,7 @@ export function useMenu(props: UseMenuProps = {}) {
 
   const focusMenu = useCallback(() => {
     requestAnimationFrame(() => {
-      menuRef.current?.focus()
+      menuRef.current?.focus({ preventScroll: false })
     })
   }, [])
 
