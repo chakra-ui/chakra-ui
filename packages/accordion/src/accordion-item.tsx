@@ -6,11 +6,7 @@ import {
 } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/shared-utils"
 import { useMemo } from "react"
-import {
-  AccordionItemProvider,
-  useAccordionItemContext,
-  useAccordionStyles,
-} from "./accordion-context"
+import { AccordionItemProvider, useAccordionStyles } from "./accordion-context"
 import { useAccordionItem, UseAccordionItemProps } from "./use-accordion"
 
 export interface AccordionItemProps
@@ -64,11 +60,3 @@ export const AccordionItem = forwardRef<AccordionItemProps, "div">(
 )
 
 AccordionItem.displayName = "AccordionItem"
-
-/**
- * React hook to get the state and actions of an accordion item
- */
-export function useAccordionItemState() {
-  const { isOpen, isDisabled, onClose, onOpen } = useAccordionItemContext()
-  return { isOpen, onClose, isDisabled, onOpen }
-}

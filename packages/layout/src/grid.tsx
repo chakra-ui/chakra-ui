@@ -1,62 +1,9 @@
 import {
   chakra,
   forwardRef,
-  ResponsiveValue,
   SystemProps,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { compact } from "@chakra-ui/object-utils"
-import { mapResponsive } from "@chakra-ui/breakpoint-utils"
-
-import { BoxProps } from "./box"
-
-export interface GridProps
-  extends Omit<HTMLChakraProps<"div">, keyof GridOptions>,
-    GridOptions {}
-
-/**
- * React component used to create grid layouts.
- *
- * It renders a `div` with `display: grid` and
- * comes with helpful style shorthand.
- *
- * @see Docs https://chakra-ui.com/grid
- */
-export const Grid = forwardRef<GridProps, "div">(function Grid(props, ref) {
-  const {
-    templateAreas,
-    gap,
-    rowGap,
-    columnGap,
-    column,
-    row,
-    autoFlow,
-    autoRows,
-    templateRows,
-    autoColumns,
-    templateColumns,
-    ...rest
-  } = props
-
-  const styles = {
-    display: "grid",
-    gridTemplateAreas: templateAreas,
-    gridGap: gap,
-    gridRowGap: rowGap,
-    gridColumnGap: columnGap,
-    gridAutoColumns: autoColumns,
-    gridColumn: column,
-    gridRow: row,
-    gridAutoFlow: autoFlow,
-    gridAutoRows: autoRows,
-    gridTemplateRows: templateRows,
-    gridTemplateColumns: templateColumns,
-  }
-
-  return <chakra.div ref={ref} __css={styles} {...rest} />
-})
-
-Grid.displayName = "Grid"
 
 export interface GridOptions {
   /**
@@ -116,70 +63,50 @@ export interface GridOptions {
   row?: SystemProps["gridRow"]
 }
 
-export interface GridItemProps extends BoxProps {
-  /**
-   * Shorthand prop for `gridArea`
-   * @type SystemProps["gridArea"]
-   */
-  area?: SystemProps["gridArea"]
-  /**
-   * The number of columns the grid item should `span`.
-   * @type ResponsiveValue<number | "auto">
-   */
-  colSpan?: ResponsiveValue<number | "auto">
-  /**
-   * The column number the grid item should start.
-   * @type ResponsiveValue<number | "auto">
-   */
-  colStart?: ResponsiveValue<number | "auto">
-  /**
-   * @type ResponsiveValue<number | "auto">
-   */
-  colEnd?: ResponsiveValue<number | "auto">
-  /**
-   * @type ResponsiveValue<number | "auto">
-   */
-  rowStart?: ResponsiveValue<number | "auto">
-  /**
-   * @type ResponsiveValue<number | "auto">
-   */
-  rowEnd?: ResponsiveValue<number | "auto">
-  /**
-   * @type ResponsiveValue<number | "auto">
-   */
-  rowSpan?: ResponsiveValue<number | "auto">
-}
+export interface GridProps
+  extends Omit<HTMLChakraProps<"div">, keyof GridOptions>,
+    GridOptions {}
 
-function spanFn(span?: ResponsiveValue<number | "auto">) {
-  return mapResponsive(span, (value) =>
-    value === "auto" ? "auto" : `span ${value}/span ${value}`,
-  )
-}
-
-export const GridItem = forwardRef<GridItemProps, "div">(function GridItem(
-  props,
-  ref,
-) {
+/**
+ * React component used to create grid layouts.
+ *
+ * It renders a `div` with `display: grid` and
+ * comes with helpful style shorthand.
+ *
+ * @see Docs https://chakra-ui.com/grid
+ */
+export const Grid = forwardRef<GridProps, "div">(function Grid(props, ref) {
   const {
-    area,
-    colSpan,
-    colStart,
-    colEnd,
-    rowEnd,
-    rowSpan,
-    rowStart,
+    templateAreas,
+    gap,
+    rowGap,
+    columnGap,
+    column,
+    row,
+    autoFlow,
+    autoRows,
+    templateRows,
+    autoColumns,
+    templateColumns,
     ...rest
   } = props
 
-  const styles = compact({
-    gridArea: area,
-    gridColumn: spanFn(colSpan),
-    gridRow: spanFn(rowSpan),
-    gridColumnStart: colStart,
-    gridColumnEnd: colEnd,
-    gridRowStart: rowStart,
-    gridRowEnd: rowEnd,
-  })
+  const styles = {
+    display: "grid",
+    gridTemplateAreas: templateAreas,
+    gridGap: gap,
+    gridRowGap: rowGap,
+    gridColumnGap: columnGap,
+    gridAutoColumns: autoColumns,
+    gridColumn: column,
+    gridRow: row,
+    gridAutoFlow: autoFlow,
+    gridAutoRows: autoRows,
+    gridTemplateRows: templateRows,
+    gridTemplateColumns: templateColumns,
+  }
 
   return <chakra.div ref={ref} __css={styles} {...rest} />
 })
+
+Grid.displayName = "Grid"
