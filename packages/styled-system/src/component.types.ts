@@ -1,4 +1,4 @@
-import { Dict, omit } from "@chakra-ui/utils"
+import { omit } from "@chakra-ui/object-utils"
 import { SystemStyleObject } from "./system.types"
 import { ThemeTypings } from "./theme.types"
 import { ResponsiveValue } from "./utils"
@@ -31,7 +31,7 @@ export type StyleFunctionProps = {
   colorScheme: string
   colorMode: "light" | "dark"
   orientation?: "horizontal" | "vertical"
-  theme: Dict
+  theme: Record<string, any>
   [key: string]: any
 }
 
@@ -69,7 +69,7 @@ export interface ThemingProps<ThemeComponent extends string = any> {
   >
   colorScheme?: ThemeTypings["colorSchemes"]
   orientation?: "vertical" | "horizontal"
-  styleConfig?: Dict
+  styleConfig?: Record<string, any>
 }
 
 export function omitThemingProps<T extends ThemingProps>(props: T) {
