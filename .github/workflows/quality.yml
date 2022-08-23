@@ -6,18 +6,8 @@ on:
       - main
 
 jobs:
-  install:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout branch
-        uses: actions/checkout@v3
-
-      - name: Install
-        uses: ./.github/composite-actions/install
-
   build:
     name: Build
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
@@ -31,7 +21,6 @@ jobs:
 
   tests:
     name: Tests
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
@@ -45,7 +34,6 @@ jobs:
 
   eslint:
     name: ESLint
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
@@ -59,7 +47,6 @@ jobs:
 
   types:
     name: TypeScript
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
@@ -73,7 +60,6 @@ jobs:
 
   prettier:
     name: Prettier
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
