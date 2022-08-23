@@ -1,4 +1,3 @@
-import { Dict, isCssVar, isNumber, isString } from "@chakra-ui/utils"
 import {
   backdropFilterTemplate,
   filterTemplate,
@@ -8,6 +7,10 @@ import {
   flexDirectionTemplate,
 } from "./templates"
 import { gradientTransform, globalSet, isCSSFunction } from "./parse-gradient"
+
+function isCssVar(value: string): boolean {
+  return /^var\(--.+\)$/.test(value)
+}
 
 const analyzeCSSValue = (value: number | string) => {
   const num = parseFloat(value.toString())
@@ -40,19 +43,19 @@ export const transformFunctions = {
   px(value: number | string) {
     if (value == null) return value
     const { unitless } = analyzeCSSValue(value)
-    return unitless || isNumber(value) ? `${value}px` : value
+    return unitless || typeof value === "number" ? `${value}px` : value
   },
   fraction(value: any) {
-    return !isNumber(value) || value > 1 ? value : `${value * 100}%`
+    return !(typeof value === "number") || value > 1 ? value : `${value * 100}%`
   },
-  float(value: any, theme: Dict) {
+  float(value: any, theme: Record<string, any>) {
     const map = { left: "right", right: "left" } as any
     return theme.direction === "rtl" ? map[value] : value
   },
   degree(value: any) {
     if (isCssVar(value) || value == null) return value
-    const unitless = isString(value) && !value.endsWith("deg")
-    return isNumber(value) || unitless ? `${value}deg` : value
+    const unitless = typeof value === "string" && !value.endsWith("deg")
+    return typeof value === "number" || unitless ? `${value}deg` : value
   },
   gradient: gradientTransform,
   blur: wrap("blur"),

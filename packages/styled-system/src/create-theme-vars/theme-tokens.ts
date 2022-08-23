@@ -1,4 +1,4 @@
-import { Dict, pick } from "@chakra-ui/utils"
+import { pick } from "@chakra-ui/object-utils"
 
 const tokens = [
   "colors",
@@ -25,16 +25,16 @@ export type ThemeScale =
   | "transition.property"
   | "transition.easing"
 
-export function extractTokens(theme: Dict) {
+export function extractTokens(theme: Record<string, any>) {
   const _tokens = tokens as unknown as string[]
   return pick(theme, _tokens)
 }
 
-export function extractSemanticTokens(theme: Dict) {
+export function extractSemanticTokens(theme: Record<string, any>) {
   return theme.semanticTokens
 }
 
-export function omitVars(rawTheme: Dict) {
+export function omitVars(rawTheme: Record<string, any>) {
   const { __cssMap, __cssVars, __breakpoints, ...cleanTheme } = rawTheme
   return cleanTheme
 }

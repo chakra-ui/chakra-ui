@@ -1,4 +1,4 @@
-import { Dict, isCssVar, isObject, isString, runIfFn } from "@chakra-ui/utils"
+import { isObject, runIfFn } from "@chakra-ui/shared-utils"
 import * as CSS from "csstype"
 import { pseudoSelectors } from "./pseudos"
 import { systemProps as systemPropConfigs } from "./system"
@@ -6,10 +6,14 @@ import { StyleObjectOrFn } from "./system.types"
 import { Config } from "./utils/prop-config"
 import { CssTheme } from "./utils/types"
 
-const isCSSVariableTokenValue = (key: string, value: any): value is string =>
-  key.startsWith("--") && isString(value) && !isCssVar(value)
+function isCssVar(value: string): boolean {
+  return /^var\(--.+\)$/.test(value)
+}
 
-const resolveTokenValue = (theme: Dict, value: string) => {
+const isCSSVariableTokenValue = (key: string, value: any): value is string =>
+  key.startsWith("--") && typeof value === "string" && !isCssVar(value)
+
+const resolveTokenValue = (theme: Record<string, any>, value: string) => {
   if (value == null) return value
 
   const getVar = (val: string) => theme.__cssMap?.[val]?.varRef
@@ -41,10 +45,10 @@ export function getCss(options: GetCSSOptions) {
   if (!theme.__breakpoints) return () => ({})
   const { isResponsive, toArrayValue, media: medias } = theme.__breakpoints
 
-  const css = (stylesOrFn: Dict, nested = false) => {
+  const css = (stylesOrFn: Record<string, any>, nested = false) => {
     const styles = runIfFn(stylesOrFn, theme)
 
-    let computedStyles: Dict = {}
+    let computedStyles: Record<string, any> = {}
 
     for (let key in styles) {
       /**

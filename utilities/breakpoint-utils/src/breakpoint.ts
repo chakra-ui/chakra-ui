@@ -21,7 +21,7 @@ const sortByBreakpointValue = (a: any[], b: any[]) =>
   parseInt(a[1], 10) > parseInt(b[1], 10) ? 1 : -1
 
 const sortBps = (breakpoints: Record<string, any>): Record<string, any> =>
-  Object.entries(breakpoints).sort(sortByBreakpointValue)
+  Object.fromEntries(Object.entries(breakpoints).sort(sortByBreakpointValue))
 
 function normalize(breakpoints: Record<string, any>) {
   const sorted = sortBps(breakpoints)

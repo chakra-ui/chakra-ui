@@ -1,4 +1,4 @@
-import { memoizedGet as get } from "@chakra-ui/utils"
+import { memoizedGet as get } from "../get"
 import { Config } from "../utils/prop-config"
 import { ResponsiveValue, Token } from "../utils/types"
 

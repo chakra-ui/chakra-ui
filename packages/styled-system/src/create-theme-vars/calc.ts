@@ -1,7 +1,7 @@
 /**
  * Thank you @markdalgleish for this piece of art!
  */
-import { isObject } from "@chakra-ui/utils"
+import { isObject } from "@chakra-ui/shared-utils"
 
 export type Operand = string | number | { reference: string }
 type Operator = "+" | "-" | "*" | "/"

@@ -1,4 +1,3 @@
-import { Dict } from "@chakra-ui/utils"
 import * as CSS from "csstype"
 import type {
   BackgroundProps,
@@ -49,7 +48,7 @@ export interface SystemCSSProperties
   extends CSS.Properties,
     Omit<StyleProps, keyof CSS.Properties> {}
 
-export type ThemeThunk<T> = T | ((theme: Dict) => T)
+export type ThemeThunk<T> = T | ((theme: Record<string, any>) => T)
 
 type PropertyValue<K extends keyof SystemCSSProperties> = ThemeThunk<
   ResponsiveValue<boolean | number | string | SystemCSSProperties[K]>
@@ -86,7 +85,7 @@ export type SystemStyleObject = RecursiveCSSObject<CSSWithMultiValues>
 export type CSSObject = SystemStyleObject & {}
 
 export interface FunctionCSSInterpolation {
-  (theme: Dict): CSSObject
+  (theme: Record<string, any>): CSSObject
 }
 
 export type StyleObjectOrFn = SystemStyleObject | FunctionCSSInterpolation

@@ -1,4 +1,5 @@
-import { mergeWith, objectKeys } from "@chakra-ui/utils"
+import mergeWith from "lodash.mergewith"
+
 import {
   background,
   border,
@@ -46,9 +47,11 @@ export const systemProps = mergeWith(
 )
 
 const layoutSystem = Object.assign({}, space, layout, flexbox, grid, position)
-export const layoutPropNames = objectKeys(layoutSystem)
+export const layoutPropNames = Object.keys(
+  layoutSystem,
+) as (keyof typeof layoutSystem)[]
 
-export const propNames = [...objectKeys(systemProps), ...pseudoPropNames]
+export const propNames = [...Object.keys(systemProps), ...pseudoPropNames]
 const styleProps = { ...systemProps, ...pseudoSelectors }
 
 export const isStyleProp = (prop: string) => prop in styleProps

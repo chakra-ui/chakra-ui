@@ -1443,17 +1443,27 @@ importers:
 
   packages/styled-system:
     specifiers:
-      '@chakra-ui/utils': workspace:*
+      '@chakra-ui/breakpoint-utils': workspace:*
+      '@chakra-ui/merge-utils': workspace:*
+      '@chakra-ui/object-utils': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
+      '@types/lodash.mergewith': 4.6.6
       cronometro: ^1.1.0
       csstype: ^3.0.11
+      lodash.mergewith: 4.6.2
     dependencies:
-      '@chakra-ui/utils': link:../utils
       csstype: 3.1.0
+      lodash.mergewith: 4.6.2
     devDependencies:
+      '@chakra-ui/breakpoint-utils': link:../../utilities/breakpoint-utils
+      '@chakra-ui/merge-utils': link:../../utilities/merge-utils
+      '@chakra-ui/object-utils': link:../../utilities/object-utils
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@emotion/react': 11.9.3_96543585b339e7caed3567fc56fe9e68
       '@emotion/styled': 11.9.3_c6afed0fa10a1ad1311271315df93091
+      '@types/lodash.mergewith': 4.6.6
       cronometro: 1.1.0
 
   packages/switch:
@@ -8823,7 +8833,6 @@ packages:
     resolution: {integrity: sha512-RY/8IaVENjG19rxTZu9Nukqh0W2UrYgmBj5sdns4hWRZaV8PqR7wIKHFKzvOTjo4zVRV7sVI+yFhAJql12Kfqg==}
     dependencies:
       '@types/lodash': 4.14.182
-    dev: false
 
   /@types/lodash.throttle/4.1.7:
     resolution: {integrity: sha512-znwGDpjCHQ4FpLLx19w4OXDqq8+OvREa05H89obtSyXyOFKL3dDjCslsmfBz0T2FU8dmf5Wx1QvogbINiGIu9g==}
