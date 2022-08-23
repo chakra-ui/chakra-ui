@@ -1,7 +1,9 @@
 import { useIds } from "@chakra-ui/hooks"
-import { callAllHandlers } from "@chakra-ui/utils"
-import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
+import { callAllHandlers } from "@chakra-ui/shared-utils"
+import { PropGetter } from "@chakra-ui/react-types"
+import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
 import { hideOthers } from "aria-hidden"
+
 import { useCallback, useEffect, useRef, useState } from "react"
 import { manager, useModalManager } from "./modal-manager"
 
