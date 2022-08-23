@@ -6,8 +6,7 @@ on:
       - main
 
 jobs:
-  build:
-    name: Build
+  install:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
@@ -15,58 +14,58 @@ jobs:
 
       - name: Install
         uses: ./.github/composite-actions/install
+
+  build:
+    name: Build
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
 
       - name: Build packages
         run: pnpm build
 
   tests:
     name: Tests
+    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
         uses: actions/checkout@v3
-
-      - name: Install
-        uses: ./.github/composite-actions/install
 
       - name: Run tests
         run: pnpm test
 
   eslint:
     name: ESLint
+    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
         uses: actions/checkout@v3
-
-      - name: Install
-        uses: ./.github/composite-actions/install
 
       - name: Run ESLint
         run: pnpm lint
 
   types:
     name: TypeScript
+    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
         uses: actions/checkout@v3
-
-      - name: Install
-        uses: ./.github/composite-actions/install
 
       - name: Run typecheck
         run: pnpm typecheck
 
   prettier:
     name: Prettier
+    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
         uses: actions/checkout@v3
-
-      - name: Install
-        uses: ./.github/composite-actions/install
 
       - name: Run prettier
         run: pnpm format:check
