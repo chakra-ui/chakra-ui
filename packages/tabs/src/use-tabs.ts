@@ -321,7 +321,12 @@ export interface UseTabPanelsProps {
   children?: React.ReactNode
 }
 
-const [TabPanelsProvider, useTabPanelsContext] = createContext<any>({})
+const [TabPanelProvider, useTabPanelContext] = createContext<{
+  isSelected: boolean
+  id: string
+  tabId: string
+  selectedIndex: number
+}>({})
 
 /**
  * Tabs hook for managing the visibility of multiple tab panels.
@@ -341,7 +346,7 @@ export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
 
   const children = validChildren.map((child, index) =>
     createElement(
-      TabPanelsProvider,
+      TabPanelProvider,
       {
         value: {
           isSelected: index === selectedIndex,
@@ -366,7 +371,7 @@ export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
 export function useTabPanel(props: Record<string, any>) {
   const { children, ...htmlProps } = props
   const { isLazy, lazyBehavior } = useTabsContext()
-  const { isSelected, id, tabId } = useTabPanelsContext()
+  const { isSelected, id, tabId } = useTabPanelContext()
 
   const hasBeenSelected = useRef(false)
   if (isSelected) {
