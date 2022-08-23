@@ -1,7 +1,7 @@
 import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
 import { FocusLock, FocusLockProps } from "@chakra-ui/focus-lock"
 import { Portal, PortalProps } from "@chakra-ui/portal"
-import { createContext } from "@chakra-ui/react-utils"
+import { createContext } from "@chakra-ui/react-context"
 import {
   chakra,
   ChakraProps,
@@ -12,13 +12,7 @@ import {
   useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { fadeConfig } from "@chakra-ui/transition"
-import {
-  callAllHandlers,
-  cx,
-  Dict,
-  FocusableElement,
-  __DEV__,
-} from "@chakra-ui/utils"
+import { callAllHandlers, cx } from "@chakra-ui/shared-utils"
 import {
   AnimatePresence,
   HTMLMotionProps,
@@ -30,8 +24,12 @@ import { RemoveScroll } from "react-remove-scroll"
 import { ModalTransition } from "./modal-transition"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
 
+interface FocusableElement {
+  focus(options?: FocusOptions): void
+}
+
 const [ModalStylesProvider, useModalStyles] = createContext<
-  Dict<SystemStyleObject>
+  Record<string, SystemStyleObject>
 >({
   name: `ModalStylesContext`,
   errorMessage: `useModalStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Modal />" `,
@@ -205,9 +203,7 @@ Modal.defaultProps = {
   motionPreset: "scale",
 }
 
-if (__DEV__) {
-  Modal.displayName = "Modal"
-}
+Modal.displayName = "Modal"
 
 export interface ModalContentProps extends HTMLChakraProps<"section"> {
   /**
@@ -282,9 +278,7 @@ export const ModalContent = forwardRef<ModalContentProps, "section">(
   },
 )
 
-if (__DEV__) {
-  ModalContent.displayName = "ModalContent"
-}
+ModalContent.displayName = "ModalContent"
 
 interface ModalFocusScopeProps {
   /**
@@ -379,9 +373,7 @@ export const ModalOverlay = forwardRef<ModalOverlayProps, "div">(
   },
 )
 
-if (__DEV__) {
-  ModalOverlay.displayName = "ModalOverlay"
-}
+ModalOverlay.displayName = "ModalOverlay"
 
 export interface ModalHeaderProps extends HTMLChakraProps<"header"> {}
 
@@ -427,9 +419,7 @@ export const ModalHeader = forwardRef<ModalHeaderProps, "header">(
   },
 )
 
-if (__DEV__) {
-  ModalHeader.displayName = "ModalHeader"
-}
+ModalHeader.displayName = "ModalHeader"
 
 export interface ModalBodyProps extends HTMLChakraProps<"div"> {}
 
@@ -467,9 +457,7 @@ export const ModalBody = forwardRef<ModalBodyProps, "div">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  ModalBody.displayName = "ModalBody"
-}
+ModalBody.displayName = "ModalBody"
 
 export interface ModalFooterProps extends HTMLChakraProps<"footer"> {}
 
@@ -501,9 +489,7 @@ export const ModalFooter = forwardRef<ModalFooterProps, "footer">(
   },
 )
 
-if (__DEV__) {
-  ModalFooter.displayName = "ModalFooter"
-}
+ModalFooter.displayName = "ModalFooter"
 
 /**
  * ModalCloseButton is used closes the modal.
@@ -535,6 +521,4 @@ export const ModalCloseButton = forwardRef<CloseButtonProps, "button">(
   },
 )
 
-if (__DEV__) {
-  ModalCloseButton.displayName = "ModalCloseButton"
-}
+ModalCloseButton.displayName = "ModalCloseButton"

@@ -1,8 +1,9 @@
-import { useIds } from "@chakra-ui/hooks"
-import { callAllHandlers } from "@chakra-ui/utils"
-import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
+import { callAllHandlers } from "@chakra-ui/shared-utils"
+import { PropGetter } from "@chakra-ui/react-types"
+import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
 import { hideOthers } from "aria-hidden"
-import { useCallback, useEffect, useRef, useState } from "react"
+
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react"
 import { manager, useModalManager } from "./modal-manager"
 
 export interface UseModalProps {
@@ -205,4 +206,12 @@ export function useAriaHidden(
 
     return hideOthers(ref.current)
   }, [shouldHide, ref, currentElement])
+}
+
+function useIds(idProp?: string, ...prefixes: string[]) {
+  const reactId = useId()
+  const id = idProp || reactId
+  return useMemo(() => {
+    return prefixes.map((prefix) => `${prefix}-${id}`)
+  }, [id, prefixes])
 }
