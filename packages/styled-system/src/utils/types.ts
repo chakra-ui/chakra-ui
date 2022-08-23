@@ -25,7 +25,11 @@ export type CSSMap = Record<
   { value: string; var: string; varRef: string }
 >
 
-export type Transform = (value: any, theme: CssTheme, styles?: Dict) => any
+export type Transform = (
+  value: any,
+  theme: CssTheme,
+  styles?: Record<string, any>,
+) => any
 
 export type WithCSSVar<T> = T & {
   __cssVars: Record<string, any>
