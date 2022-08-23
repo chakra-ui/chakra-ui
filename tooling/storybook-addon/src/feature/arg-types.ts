@@ -16,7 +16,7 @@ export type ThemingArgTypeKey = "variant" | "size" | "colorScheme"
  * Checks if the given color scale object has all required keys: 50, 100, 200...900.
  */
 function validateColorScheme(value: object) {
-  const valueKeys = Object.keys(value ?? {})
+  const valueKeys = Object.keys(value || {})
   return [
     "50",
     "100",
@@ -79,7 +79,7 @@ export function getThemingArgTypes<
     Partial<Pick<ThemingProps<ComponentName>, ThemingArgTypeKey>>
   > = {}
 
-  const variantOptions = Object.keys(component.variants ?? {})
+  const variantOptions = Object.keys(component.variants || {})
   if (variantOptions.length) {
     argTypes.variant = {
       type: { name: "enum", value: variantOptions },
@@ -87,7 +87,7 @@ export function getThemingArgTypes<
     }
   }
 
-  const sizeOptions = Object.keys(component.sizes ?? {})
+  const sizeOptions = Object.keys(component.sizes || {})
   if (sizeOptions.length) {
     argTypes.size = {
       type: { name: "enum", value: sizeOptions },

@@ -1,4 +1,4 @@
-import { cx, mergeWith, warn, __DEV__ } from "@chakra-ui/utils"
+import { cx, warn } from "@chakra-ui/shared-utils"
 import {
   AnimatePresence,
   HTMLMotionProps,
@@ -121,13 +121,15 @@ export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
       endingHeight,
       animateOpacity,
       transition: !mounted ? { enter: { duration: 0 } } : transition,
-      transitionEnd: mergeWith(transitionEnd, {
+      transitionEnd: {
+        enter: transitionEnd?.enter,
         exit: unmountOnExit
-          ? undefined
+          ? transitionEnd?.exit
           : {
+              ...transitionEnd?.exit,
               display: hasStartingHeight ? "block" : "none",
             },
-      }),
+      },
     }
 
     const show = unmountOnExit ? isOpen : true
@@ -157,6 +159,4 @@ export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
   },
 )
 
-if (__DEV__) {
-  Collapse.displayName = "Collapse"
-}
+Collapse.displayName = "Collapse"

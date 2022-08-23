@@ -35,15 +35,16 @@
     "discord": "tsx scripts/discord.ts",
     "twitter:gen": "tsx scripts/twitter-generate.ts",
     "twitter:write": "tsx scripts/twitter-write.ts",
+    "csb": "tsx scripts/csb.ts",
     "create:pkg": "plop component",
     "version": "changeset version",
     "release": "changeset publish",
     "version:dev": "changeset version --snapshot dev",
-    "release:dev": "pnpm changeset publish --tag dev",
+    "release:dev": "changeset publish --tag dev",
     "sandbox": "tsx scripts/sandbox.ts",
     "notify:release": "npm-run-all changelog:write discord changelog:commit"
   },
-  "version": "1.0.0",
+  "version": "2.0.0",
   "dependencies": {
     "@babel/core": "^7.18.9",
     "@babel/eslint-parser": "^7.18.9",

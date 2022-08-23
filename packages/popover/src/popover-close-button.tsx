@@ -1,6 +1,6 @@
 import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
 import { forwardRef } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
 
 export type PopoverCloseButtonProps = CloseButtonProps
@@ -21,6 +21,5 @@ export const PopoverCloseButton = forwardRef<CloseButtonProps, "button">(
     )
   },
 )
-if (__DEV__) {
-  PopoverCloseButton.displayName = "PopoverCloseButton"
-}
+
+PopoverCloseButton.displayName = "PopoverCloseButton"

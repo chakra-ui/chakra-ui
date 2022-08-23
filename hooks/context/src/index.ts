@@ -3,11 +3,13 @@ import {
   useContext as useReactContext,
 } from "react"
 
-export interface CreateContextOptions {
+export interface CreateContextOptions<T> {
   strict?: boolean
   hookName?: string
   providerName?: string
+  errorMessage?: string
   name?: string
+  defaultValue?: T
 }
 
 export type CreateContextReturn<T> = [
@@ -17,15 +19,16 @@ export type CreateContextReturn<T> = [
 ]
 
 function getErrorMessage(hook: string, provider: string) {
-  return `${hook} returned \`undefined\`. Seems you forgot to wrap component within the ${provider}`
+  return `${hook} returned \`undefined\`. Seems you forgot to wrap component within ${provider}`
 }
 
-export function createContext<T>(options: CreateContextOptions = {}) {
+export function createContext<T>(options: CreateContextOptions<T> = {}) {
   const {
+    name,
     strict = true,
     hookName = "useContext",
     providerName = "Provider",
-    name,
+    errorMessage,
   } = options
 
   const Context = createReactContext<T | undefined>(undefined)
@@ -36,7 +39,9 @@ export function createContext<T>(options: CreateContextOptions = {}) {
     const context = useReactContext(Context)
 
     if (!context && strict) {
-      const error = new Error(getErrorMessage(hookName, providerName))
+      const error = new Error(
+        errorMessage ?? getErrorMessage(hookName, providerName),
+      )
       error.name = "ContextError"
       Error.captureStackTrace?.(error, useContext)
       throw error

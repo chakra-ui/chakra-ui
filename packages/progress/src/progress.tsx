@@ -7,8 +7,7 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { __DEV__, Dict } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/react-utils"
+import { createContext } from "@chakra-ui/react-context"
 import {
   getProgressProps,
   GetProgressPropsOptions,
@@ -17,37 +16,13 @@ import {
 } from "./progress.utils"
 
 const [ProgressStylesProvider, useProgressStyles] = createContext<
-  Dict<SystemStyleObject>
+  Record<string, SystemStyleObject>
 >({
   name: `ProgressStylesContext`,
   errorMessage: `useProgressStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Progress />" `,
 })
 
 export { useProgressStyles }
-
-export interface ProgressLabelProps extends HTMLChakraProps<"div"> {}
-
-/**
- * ProgressLabel is used to show the numeric value of the progress.
- * @see Docs https://chakra-ui.com/progress
- */
-export const ProgressLabel: React.FC<ProgressLabelProps> = (props) => {
-  const styles = useProgressStyles()
-  const labelStyles: SystemStyleObject = {
-    top: "50%",
-    left: "50%",
-    width: "100%",
-    textAlign: "center",
-    position: "absolute",
-    transform: "translate(-50%, -50%)",
-    ...styles.label,
-  }
-  return <chakra.div {...props} __css={labelStyles} />
-}
-
-if (__DEV__) {
-  ProgressLabel.displayName = "ProgressLabel"
-}
 
 export interface ProgressFilledTrackProps
   extends HTMLChakraProps<"div">,
@@ -201,6 +176,4 @@ export const Progress: React.FC<ProgressProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  Progress.displayName = "Progress"
-}
+Progress.displayName = "Progress"

@@ -4,7 +4,6 @@ import {
   SystemStyleObject,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
 
 export interface BoxProps extends HTMLChakraProps<"div"> {}
 
@@ -16,9 +15,7 @@ export interface BoxProps extends HTMLChakraProps<"div"> {}
  */
 export const Box = chakra("div")
 
-if (__DEV__) {
-  Box.displayName = "Box"
-}
+Box.displayName = "Box"
 
 /**
  * As a constraint, you can't pass size related props
@@ -61,9 +58,7 @@ export const Square = forwardRef<SquareProps, "div">(function Square(
   )
 })
 
-if (__DEV__) {
-  Square.displayName = "Square"
-}
+Square.displayName = "Square"
 
 export const Circle = forwardRef<SquareProps, "div">(function Circle(
   props,
@@ -73,6 +68,4 @@ export const Circle = forwardRef<SquareProps, "div">(function Circle(
   return <Square size={size} ref={ref} borderRadius="9999px" {...rest} />
 })
 
-if (__DEV__) {
-  Circle.displayName = "Circle"
-}
+Circle.displayName = "Circle"

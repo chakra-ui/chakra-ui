@@ -2,7 +2,7 @@ import {
   ChakraProvider as BaseChakraProvider,
   ChakraProviderProps as BaseChakraProviderProps,
 } from "@chakra-ui/provider"
-import { theme } from "@chakra-ui/theme"
+import { theme as defaultTheme } from "@chakra-ui/theme"
 import { ToastProvider, ToastProviderProps } from "@chakra-ui/toast"
 
 export interface ChakraProviderProps extends BaseChakraProviderProps {
@@ -14,17 +14,14 @@ export interface ChakraProviderProps extends BaseChakraProviderProps {
 
 export function ChakraProvider({
   children,
+  theme = defaultTheme,
   toastOptions,
   ...restProps
 }: ChakraProviderProps) {
   return (
-    <BaseChakraProvider {...restProps}>
+    <BaseChakraProvider theme={theme} {...restProps}>
       {children}
       <ToastProvider {...toastOptions} />
     </BaseChakraProvider>
   )
-}
-
-ChakraProvider.defaultProps = {
-  theme,
 }

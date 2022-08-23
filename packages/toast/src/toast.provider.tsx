@@ -1,4 +1,3 @@
-import { objectKeys } from "@chakra-ui/utils"
 import { AnimatePresence, Variants } from "framer-motion"
 import { Portal, PortalProps } from "@chakra-ui/portal"
 import { ToastComponent, ToastComponentProps } from "./toast.component"
@@ -108,7 +107,8 @@ export const ToastProvider = (props: ToastProviderProps) => {
     portalProps,
   } = props
 
-  const toastList = objectKeys(state).map((position) => {
+  const stateKeys = Object.keys(state) as Array<keyof typeof state>
+  const toastList = stateKeys.map((position) => {
     const toasts = state[position]
 
     return (

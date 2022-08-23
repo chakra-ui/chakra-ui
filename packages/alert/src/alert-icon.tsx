@@ -1,5 +1,5 @@
 import { chakra, HTMLChakraProps } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 import { getStatusIcon, useAlertContext, useAlertStyles } from "./alert-context"
 
 export interface AlertIconProps extends HTMLChakraProps<"span"> {}
@@ -21,3 +21,5 @@ export function AlertIcon(props: AlertIconProps) {
     </chakra.span>
   )
 }
+
+AlertIcon.displayName = "AlertIcon"

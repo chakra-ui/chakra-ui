@@ -1,34 +1,19 @@
+import { usePanEvent } from "@chakra-ui/react-use-pan-event"
+import { useCallbackRef } from "@chakra-ui/react-use-callback-ref"
+import { useUpdateEffect } from "@chakra-ui/react-use-update-effect"
+import { useControllableState } from "@chakra-ui/react-use-controllable-state"
+import { useSize } from "@chakra-ui/react-use-size"
+import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
+import type { PropGetter, RequiredPropGetter } from "@chakra-ui/react-types"
 import {
-  useBoolean,
-  useCallbackRef,
-  useControllableState,
-  useDimensions,
-  useIds,
-  useLatestRef,
-  usePanGesture,
-  useUpdateEffect,
-} from "@chakra-ui/hooks"
-import {
-  EventKeyMap,
-  mergeRefs,
-  PropGetter,
-  ReactRef,
-} from "@chakra-ui/react-utils"
-import {
-  AnyPointerEvent,
-  ariaAttr,
-  callAllHandlers,
   clampValue,
-  dataAttr,
-  focus,
-  getBox,
-  normalizeEventKey,
   percentToValue,
   roundValueToStep,
   valueToPercent,
-} from "@chakra-ui/utils"
-import { useCallback, useMemo, useRef } from "react"
-import { getStyles, getIsReversed } from "./slider-utils"
+} from "@chakra-ui/number-utils"
+import { ariaAttr, callAllHandlers, dataAttr } from "@chakra-ui/utils"
+import { useCallback, useMemo, useRef, useId, useState } from "react"
+import { getIsReversed, getStyles } from "./slider-utils"
 
 export interface UseSliderProps {
   /**
@@ -177,9 +162,9 @@ export function useSlider(props: UseSliderProps) {
     onChange,
   })
 
-  const [isDragging, setDragging] = useBoolean()
+  const [isDragging, setDragging] = useState(false)
+  const [isFocused, setFocused] = useState(false)
 
-  const [isFocused, setFocused] = useBoolean()
   const eventSourceRef = useRef<"pointer" | "keyboard" | null>(null)
 
   const isInteractive = !(isDisabled || isReadOnly)
@@ -189,8 +174,8 @@ export function useSlider(props: UseSliderProps) {
    * or greater than max
    */
   const value = clampValue(computedValue, min, max)
-  const valueRef = useLatestRef(value)
-
+  const valueRef = useRef(-1)
+  valueRef.current = value
   const prevRef = useRef(valueRef.current)
 
   const reversedValue = max - value + min
@@ -202,14 +187,16 @@ export function useSlider(props: UseSliderProps) {
   /**
    * Let's keep a reference to the slider track and thumb
    */
-  const trackRef = useRef<any>(null)
-  const thumbRef = useRef<any>(null)
-  const rootRef = useRef<any>(null)
+  const trackRef = useRef<HTMLElement>(null)
+  const thumbRef = useRef<HTMLElement>(null)
+  const rootRef = useRef<HTMLElement>(null)
 
   /**
    * Generate unique ids for component parts
    */
-  const [thumbId, trackId] = useIds(idProp, `slider-thumb`, `slider-track`)
+  const reactId = useId()
+  const uuid = idProp ?? reactId
+  const [thumbId, trackId] = [`slider-thumb-${uuid}`, `slider-track-${uuid}`]
 
   /**
    * Get relative value of slider from the event by tracking
@@ -222,7 +209,7 @@ export function useSlider(props: UseSliderProps) {
     (event: any) => {
       if (!trackRef.current) return
       eventSourceRef.current = "pointer"
-      const trackRect = getBox(trackRef.current).borderBox
+      const trackRect = trackRef.current.getBoundingClientRect()
       const { clientX, clientY } = event.touches?.[0] ?? event
 
       const diff = isVertical
@@ -264,16 +251,20 @@ export function useSlider(props: UseSliderProps) {
 
   const actions = useMemo(
     () => ({
-      stepUp: (step = oneStep) => {
+      stepUp(step = oneStep) {
         const next = isReversed ? value - step : value + step
         constrain(next)
       },
-      stepDown: (step = oneStep) => {
+      stepDown(step = oneStep) {
         const next = isReversed ? value + step : value - step
         constrain(next)
       },
-      reset: () => constrain(defaultValue || 0),
-      stepTo: (value: number) => constrain(value),
+      reset() {
+        constrain(defaultValue || 0)
+      },
+      stepTo(value: number) {
+        constrain(value)
+      },
     }),
     [constrain, isReversed, value, oneStep, defaultValue],
   )
@@ -284,8 +275,7 @@ export function useSlider(props: UseSliderProps) {
    */
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
-      const eventKey = normalizeEventKey(event)
-      const keyMap: EventKeyMap = {
+      const keyMap: Record<string, React.KeyboardEventHandler> = {
         ArrowRight: () => actions.stepUp(),
         ArrowUp: () => actions.stepUp(),
         ArrowLeft: () => actions.stepDown(),
@@ -296,7 +286,7 @@ export function useSlider(props: UseSliderProps) {
         End: () => constrain(max),
       }
 
-      const action = keyMap[eventKey]
+      const action = keyMap[event.key]
 
       if (action) {
         event.preventDefault()
@@ -318,25 +308,25 @@ export function useSlider(props: UseSliderProps) {
    * Measure the dimensions of the thumb, so
    * we can center it within the track properly
    */
-  const thumbBoxModel = useDimensions(thumbRef)
+  const thumbSize = useSize(thumbRef)
 
   /**
    * Compute styles for all component parts.
    */
   const { getThumbStyle, rootStyle, trackStyle, innerTrackStyle } =
     useMemo(() => {
-      const thumbRect = thumbBoxModel?.borderBox ?? { width: 0, height: 0 }
+      const thumbRect = thumbSize ?? { width: 0, height: 0 }
       return getStyles({
         isReversed,
         orientation,
         thumbRects: [thumbRect],
         thumbPercents: [thumbPercent],
       })
-    }, [isReversed, orientation, thumbBoxModel?.borderBox, thumbPercent])
+    }, [isReversed, orientation, thumbSize, thumbPercent])
 
   const focusThumb = useCallback(() => {
-    if (thumbRef.current && focusThumbOnChange) {
-      setTimeout(() => focus(thumbRef.current))
+    if (focusThumbOnChange) {
+      setTimeout(() => thumbRef.current?.focus())
     }
   }, [focusThumbOnChange])
 
@@ -347,24 +337,24 @@ export function useSlider(props: UseSliderProps) {
     }
   }, [value, onChangeEnd])
 
-  const setValueFromPointer = (event: AnyPointerEvent) => {
+  function setValueFromPointer(event: MouseEvent | TouchEvent | PointerEvent) {
     const nextValue = getValueFromPointer(event)
     if (nextValue != null && nextValue !== valueRef.current) {
       setValue(nextValue)
     }
   }
 
-  usePanGesture(rootRef, {
+  usePanEvent(rootRef, {
     onPanSessionStart(event) {
       if (!isInteractive) return
-      setDragging.on()
+      setDragging(true)
       focusThumb()
       setValueFromPointer(event)
       onChangeStart?.(valueRef.current)
     },
     onPanSessionEnd() {
       if (!isInteractive) return
-      setDragging.off()
+      setDragging(false)
       onChangeEnd?.(valueRef.current)
       prevRef.current = valueRef.current
     },
@@ -375,72 +365,80 @@ export function useSlider(props: UseSliderProps) {
   })
 
   const getRootProps: PropGetter = useCallback(
-    (props = {}, ref = null) => ({
-      ...props,
-      ...htmlProps,
-      ref: mergeRefs(ref, rootRef),
-      tabIndex: -1,
-      "aria-disabled": ariaAttr(isDisabled),
-      "data-focused": dataAttr(isFocused),
-      style: {
-        ...props.style,
-        ...rootStyle,
-      },
-    }),
+    (props = {}, ref = null) => {
+      return {
+        ...props,
+        ...htmlProps,
+        ref: mergeRefs(ref, rootRef),
+        tabIndex: -1,
+        "aria-disabled": ariaAttr(isDisabled),
+        "data-focused": dataAttr(isFocused),
+        style: {
+          ...props.style,
+          ...rootStyle,
+        },
+      }
+    },
     [htmlProps, isDisabled, isFocused, rootStyle],
   )
 
   const getTrackProps: PropGetter = useCallback(
-    (props = {}, ref = null) => ({
-      ...props,
-      ref: mergeRefs(ref, trackRef),
-      id: trackId,
-      "data-disabled": dataAttr(isDisabled),
-      style: {
-        ...props.style,
-        ...trackStyle,
-      },
-    }),
+    (props = {}, ref = null) => {
+      return {
+        ...props,
+        ref: mergeRefs(ref, trackRef),
+        id: trackId,
+        "data-disabled": dataAttr(isDisabled),
+        style: {
+          ...props.style,
+          ...trackStyle,
+        },
+      }
+    },
     [isDisabled, trackId, trackStyle],
   )
 
   const getInnerTrackProps: PropGetter = useCallback(
-    (props = {}, ref = null) => ({
-      ...props,
-      ref,
-      style: {
-        ...props.style,
-        ...innerTrackStyle,
-      },
-    }),
+    (props = {}, ref = null) => {
+      return {
+        ...props,
+        ref,
+        style: {
+          ...props.style,
+          ...innerTrackStyle,
+        },
+      }
+    },
     [innerTrackStyle],
   )
 
   const getThumbProps: PropGetter = useCallback(
-    (props = {}, ref: ReactRef<any> = null) => ({
-      ...props,
-      ref: mergeRefs(ref, thumbRef),
-      role: "slider",
-      tabIndex: isInteractive ? 0 : undefined,
-      id: thumbId,
-      "data-active": dataAttr(isDragging),
-      "aria-valuetext": valueText,
-      "aria-valuemin": min,
-      "aria-valuemax": max,
-      "aria-valuenow": value,
-      "aria-orientation": orientation,
-      "aria-disabled": ariaAttr(isDisabled),
-      "aria-readonly": ariaAttr(isReadOnly),
-      "aria-label": ariaLabel,
-      "aria-labelledby": ariaLabel ? undefined : ariaLabelledBy,
-      style: {
-        ...props.style,
-        ...getThumbStyle(0),
-      },
-      onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-      onFocus: callAllHandlers(props.onFocus, setFocused.on),
-      onBlur: callAllHandlers(props.onBlur, setFocused.off),
-    }),
+    (props = {}, ref = null) => {
+      return {
+        ...props,
+        ref: mergeRefs(ref, thumbRef),
+        role: "slider",
+        tabIndex: isInteractive ? 0 : undefined,
+        id: thumbId,
+        "data-active": dataAttr(isDragging),
+        "aria-valuetext": valueText,
+        "aria-valuemin": min,
+        "aria-valuemax": max,
+        "aria-valuenow": value,
+        "aria-orientation": orientation,
+        "aria-disabled": ariaAttr(isDisabled),
+        "aria-readonly": ariaAttr(isReadOnly),
+        "aria-label": ariaLabel,
+        "aria-labelledby": ariaLabel ? undefined : ariaLabelledBy,
+        style: {
+          ...props.style,
+          ...getThumbStyle(0),
+        },
+        onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+        onFocus: callAllHandlers(props.onFocus, () => setFocused(true)),
+        onBlur: callAllHandlers(props.onBlur, () => setFocused(false)),
+      }
+    },
     [
       isInteractive,
       thumbId,
@@ -456,13 +454,11 @@ export function useSlider(props: UseSliderProps) {
       ariaLabelledBy,
       getThumbStyle,
       onKeyDown,
-      setFocused.on,
-      setFocused.off,
     ],
   )
 
-  const getMarkerProps: PropGetter<any, { value?: any }> = useCallback(
-    (props = {}, ref = null) => {
+  const getMarkerProps: RequiredPropGetter<{ value: number }> = useCallback(
+    (props, ref = null) => {
       const isInRange = !(props.value < min || props.value > max)
       const isHighlighted = value >= props.value
       const markerPercent = valueToPercent(props.value, min, max)
@@ -500,23 +496,21 @@ export function useSlider(props: UseSliderProps) {
     [isDisabled, isReversed, max, min, orientation, value],
   )
 
-  const getInputProps: PropGetter<HTMLInputElement> = useCallback(
-    (props = {}, ref = null) => ({
-      ...props,
-      ref,
-      type: "hidden",
-      value,
-      name,
-    }),
+  const getInputProps: PropGetter = useCallback(
+    (props = {}, ref = null) => {
+      return {
+        ...props,
+        ref,
+        type: "hidden",
+        value,
+        name,
+      }
+    },
     [name, value],
   )
 
   return {
-    state: {
-      value,
-      isFocused,
-      isDragging,
-    },
+    state: { value, isFocused, isDragging },
     actions,
     getRootProps,
     getTrackProps,

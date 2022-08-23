@@ -4,7 +4,7 @@ import {
   SystemStyleObject,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 import { useInputGroupStyles } from "./input-group"
 
 export interface InputElementProps extends HTMLChakraProps<"div"> {
@@ -47,9 +47,7 @@ const InputElement = forwardRef<InputElementProps, "div">(function InputElement(
 // This is used in `input-group.tsx`
 InputElement.id = "InputElement"
 
-if (__DEV__) {
-  InputElement.displayName = "InputElement"
-}
+InputElement.displayName = "InputElement"
 
 export const InputLeftElement = forwardRef<InputElementProps, "div">(
   function InputLeftElement(props, ref) {
@@ -70,9 +68,7 @@ export const InputLeftElement = forwardRef<InputElementProps, "div">(
 // This is used in `input-group.tsx`
 InputLeftElement.id = "InputLeftElement"
 
-if (__DEV__) {
-  InputLeftElement.displayName = "InputLeftElement"
-}
+InputLeftElement.displayName = "InputLeftElement"
 
 export const InputRightElement = forwardRef<InputElementProps, "div">(
   function InputRightElement(props, ref) {
@@ -93,6 +89,4 @@ export const InputRightElement = forwardRef<InputElementProps, "div">(
 // This is used in `input-group.tsx`
 InputRightElement.id = "InputRightElement"
 
-if (__DEV__) {
-  InputRightElement.displayName = "InputRightElement"
-}
+InputRightElement.displayName = "InputRightElement"

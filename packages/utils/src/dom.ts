@@ -40,7 +40,7 @@ export function canUseDOM(): boolean {
   )
 }
 
-export const isBrowser = canUseDOM()
+export const isBrowser = /* @__PURE__ */ canUseDOM()
 
 export const dataAttr = (condition: boolean | undefined) =>
   (condition ? "" : undefined) as Booleanish

@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.4
+
+### Patch Changes
+
+- Force release
+
 ## 3.0.3
 
 ### Patch Changes

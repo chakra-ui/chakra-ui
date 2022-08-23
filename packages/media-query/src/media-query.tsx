@@ -1,5 +1,4 @@
 import { useTheme } from "@chakra-ui/system"
-import { Dict, memoizedGet as get, __DEV__ } from "@chakra-ui/utils"
 import { useMediaQuery } from "./use-media-query"
 
 interface VisibilityProps {
@@ -36,9 +35,7 @@ export function Hide(props: HideProps) {
   )
 }
 
-if (__DEV__) {
-  Hide.displayName = "Hide"
-}
+Hide.displayName = "Hide"
 
 export interface ShowProps {
   /**
@@ -70,12 +67,11 @@ export function Show(props: ShowProps) {
   )
 }
 
-if (__DEV__) {
-  Show.displayName = "Show"
-}
+Show.displayName = "Show"
 
-const getBreakpoint = (theme: Dict, value: any) =>
-  get(theme, `breakpoints.${value}`, value)
+const getBreakpoint = (theme: Record<string, any>, value: any) => {
+  return theme?.breakpoints?.[value] ?? value
+}
 
 export interface UseQueryProps {
   breakpoint?: string

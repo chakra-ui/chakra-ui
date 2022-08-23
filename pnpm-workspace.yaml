@@ -3,3 +3,4 @@ packages:
   - "examples/**"
   - "tooling/**"
   - "hooks/**"
+  - "utilities/**"

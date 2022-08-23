@@ -1,5 +1,5 @@
 import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 import { useEditableContext, useEditableStyles } from "./editable-context"
 import { commonStyles } from "./shared"
 
@@ -32,6 +32,4 @@ export const EditableTextarea = forwardRef<EditableTextareaProps, "textarea">(
     )
   },
 )
-if (__DEV__) {
-  EditableTextarea.displayName = "EditableTextarea"
-}
+EditableTextarea.displayName = "EditableTextarea"

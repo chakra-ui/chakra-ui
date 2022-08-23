@@ -1,4 +1,3 @@
-import { __DEV__ } from "@chakra-ui/utils"
 import { Children, cloneElement } from "react"
 import { usePopoverContext } from "./popover-context"
 
@@ -13,6 +12,5 @@ export function PopoverTrigger(props: { children: React.ReactNode }) {
   const { getTriggerProps } = usePopoverContext()
   return cloneElement(child, getTriggerProps(child.props, child.ref))
 }
-if (__DEV__) {
-  PopoverTrigger.displayName = "PopoverTrigger"
-}
+
+PopoverTrigger.displayName = "PopoverTrigger"

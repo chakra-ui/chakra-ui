@@ -1,4 +1,4 @@
-import { Target, TargetAndTransition, Transition } from "framer-motion"
+import type { Target, TargetAndTransition, Transition } from "framer-motion"
 
 type TargetResolver<P = {}> = (
   props: P & {

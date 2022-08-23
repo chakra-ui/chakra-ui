@@ -1,42 +1,32 @@
 import { useClickable } from "@chakra-ui/clickable"
 import { createDescendantContext } from "@chakra-ui/descendant"
-import {
-  useControllableState,
-  useDisclosure,
-  UseDisclosureProps,
-  useFocusOnHide,
-  useId,
-  useIds,
-  useOutsideClick,
-  useShortcut,
-  useUnmountEffect,
-  useUpdateEffect,
-  useAnimationState,
-} from "@chakra-ui/hooks"
+import { useFocusOnHide } from "@chakra-ui/react-use-focus-effect"
 import { usePopper, UsePopperProps } from "@chakra-ui/popper"
 import {
-  createContext,
-  EventKeyMap,
-  getValidChildren,
-  mergeRefs,
-} from "@chakra-ui/react-utils"
-import {
-  addItem,
-  callAllHandlers,
-  dataAttr,
-  determineLazyBehavior,
-  focus,
-  getNextItemFromSearch,
-  getOwnerDocument,
-  isActiveElement,
-  isArray,
-  isHTMLElement,
-  isString,
-  LazyBehavior,
-  normalizeEventKey,
-  removeItem,
-} from "@chakra-ui/utils"
-import { cloneElement, useCallback, useRef, useState } from "react"
+  useDisclosure,
+  UseDisclosureProps,
+} from "@chakra-ui/react-use-disclosure"
+import { useOutsideClick } from "@chakra-ui/react-use-outside-click"
+import { useAnimationState } from "@chakra-ui/react-use-animation-state"
+import { createContext } from "@chakra-ui/react-context"
+import { getValidChildren } from "@chakra-ui/react-children-utils"
+import { useControllableState } from "@chakra-ui/react-use-controllable-state"
+import { useUpdateEffect } from "@chakra-ui/react-use-update-effect"
+import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
+import { dataAttr, callAllHandlers } from "@chakra-ui/shared-utils"
+import { lazyDisclosure, LazyMode } from "@chakra-ui/lazy-utils"
+
+import React, {
+  cloneElement,
+  useCallback,
+  useRef,
+  useState,
+  useId,
+  useMemo,
+  useEffect,
+} from "react"
+import { useShortcut } from "./use-shortcut"
+import { getNextItemFromSearch } from "./get-next-item-from-search"
 
 /* -------------------------------------------------------------------------------------------------
  * Create context to track descendants and their indices
@@ -105,7 +95,7 @@ export interface UseMenuProps
    *
    * @default "unmount"
    */
-  lazyBehavior?: LazyBehavior
+  lazyBehavior?: LazyMode
   /**
    * If `rtl`, poper placement positions will be flipped i.e. 'top-right' will
    * become 'top-left' and vice-verse
@@ -119,6 +109,23 @@ export interface UseMenuProps
    * as it might affect scrolling performance.
    */
   computePositionOnMount?: boolean
+}
+
+function useIds(idProp?: string, ...prefixes: string[]) {
+  const reactId = useId()
+  const id = idProp || reactId
+  return useMemo(() => {
+    return prefixes.map((prefix) => `${prefix}-${id}`)
+  }, [id, prefixes])
+}
+
+function getOwnerDocument(node?: Element | null): Document {
+  return node?.ownerDocument ?? document
+}
+
+function isActiveElement(element: HTMLElement) {
+  const doc = getOwnerDocument(element)
+  return doc.activeElement === (element as HTMLElement)
 }
 
 /**
@@ -156,9 +163,8 @@ export function useMenu(props: UseMenuProps = {}) {
   const descendants = useMenuDescendants()
 
   const focusMenu = useCallback(() => {
-    focus(menuRef.current, {
-      nextTick: true,
-      selectTextIfInput: false,
+    requestAnimationFrame(() => {
+      menuRef.current?.focus({ preventScroll: false })
     })
   }, [])
 
@@ -268,9 +274,7 @@ export function useMenu(props: UseMenuProps = {}) {
     if (!shouldRefocus) return
 
     const node = descendants.item(focusedIndex)?.node
-    if (node) {
-      focus(node, { selectTextIfInput: false, preventScroll: false })
-    }
+    node?.focus()
   }, [isOpen, focusedIndex, descendants])
 
   return {
@@ -326,8 +330,8 @@ export function useMenuButton(
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
-      const eventKey = normalizeEventKey(event)
-      const keyMap: EventKeyMap = {
+      const eventKey = event.key
+      const keyMap: Record<string, React.KeyboardEventHandler> = {
         Enter: openAndFocusFirstItem,
         ArrowDown: openAndFocusFirstItem,
         ArrowUp: openAndFocusLastItem,
@@ -361,7 +365,7 @@ function isTargetMenuItem(target: EventTarget | null) {
   // this will catch `menuitem`, `menuitemradio`, `menuitemcheckbox`
   return (
     isHTMLElement(target) &&
-    !!target.getAttribute("role")?.startsWith("menuitem")
+    !!target?.getAttribute("role")?.startsWith("menuitem")
   )
 }
 
@@ -416,9 +420,9 @@ export function useMenuList(
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
-      const eventKey = normalizeEventKey(event)
+      const eventKey = event.key
 
-      const keyMap: EventKeyMap = {
+      const keyMap: Record<string, React.KeyboardEventHandler> = {
         Tab: (event) => event.preventDefault(),
         Escape: onClose,
         ArrowDown: () => {
@@ -474,10 +478,10 @@ export function useMenuList(
     hasBeenOpened.current = true
   }
 
-  const shouldRenderChildren = determineLazyBehavior({
-    hasBeenSelected: hasBeenOpened.current,
-    isLazy,
-    lazyBehavior,
+  const shouldRenderChildren = lazyDisclosure({
+    wasSelected: hasBeenOpened.current,
+    enabled: isLazy,
+    mode: lazyBehavior,
     isSelected: animated.present,
   })
 
@@ -626,13 +630,11 @@ export function useMenuItem(
   useUpdateEffect(() => {
     if (!isOpen) return
     if (isFocused && !trulyDisabled && ref.current) {
-      focus(ref.current, {
-        nextTick: true,
-        selectTextIfInput: false,
-        preventScroll: false,
+      requestAnimationFrame(() => {
+        ref.current?.focus()
       })
     } else if (menuRef.current && !isActiveElement(menuRef.current)) {
-      focus(menuRef.current, { preventScroll: false })
+      menuRef.current.focus()
     }
   }, [isFocused, trulyDisabled, menuRef, isOpen])
 
@@ -718,14 +720,14 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps = {}) {
 
   const onChange = useCallback(
     (selectedValue: string) => {
-      if (type === "radio" && isString(value)) {
+      if (type === "radio" && typeof value === "string") {
         setValue(selectedValue)
       }
 
-      if (type === "checkbox" && isArray(value)) {
+      if (type === "checkbox" && Array.isArray(value)) {
         const nextValue = value.includes(selectedValue)
-          ? removeItem(value, selectedValue)
-          : addItem(value, selectedValue)
+          ? value.filter((eachItem) => eachItem !== selectedValue)
+          : [...selectedValue, selectedValue]
 
         setValue(nextValue)
       }
@@ -771,4 +773,27 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps = {}) {
 export function useMenuState() {
   const { isOpen, onClose } = useMenuContext()
   return { isOpen, onClose }
+}
+
+function isHTMLElement(el: any): el is HTMLElement {
+  if (!isElement(el)) return false
+  const win = el.ownerDocument.defaultView ?? window
+  return el instanceof win.HTMLElement
+}
+
+function isElement(el: any): el is Element {
+  return (
+    el != null &&
+    typeof el == "object" &&
+    "nodeType" in el &&
+    el.nodeType === Node.ELEMENT_NODE
+  )
+}
+
+function useUnmountEffect(fn: () => void, deps: any[] = []) {
+  return useEffect(
+    () => () => fn(),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    deps,
+  )
 }

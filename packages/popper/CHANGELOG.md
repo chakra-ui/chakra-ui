@@ -1,5 +1,21 @@
 # Change Log
 
+## 3.0.6
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/react-utils@2.0.5
+
+## 3.0.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react-utils@2.0.4
+
 ## 3.0.4
 
 ### Patch Changes

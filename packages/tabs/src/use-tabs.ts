@@ -1,26 +1,20 @@
 import { useClickable, UseClickableProps } from "@chakra-ui/clickable"
 import { createDescendantContext } from "@chakra-ui/descendant"
-import {
-  useControllableState,
+import { createContext } from "@chakra-ui/react-context"
+import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
+import { useControllableState } from "@chakra-ui/react-use-controllable-state"
+import { getValidChildren } from "@chakra-ui/react-children-utils"
+import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
+import { lazyDisclosure, LazyMode } from "@chakra-ui/lazy-utils"
+import { callAllHandlers } from "@chakra-ui/shared-utils"
+import React, {
+  cloneElement,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
   useId,
-  useSafeLayoutEffect,
-} from "@chakra-ui/hooks"
-import {
-  createContext,
-  EventKeyMap,
-  getValidChildren,
-  mergeRefs,
-} from "@chakra-ui/react-utils"
-import {
-  callAllHandlers,
-  determineLazyBehavior,
-  Dict,
-  focus,
-  isUndefined,
-  LazyBehavior,
-  normalizeEventKey,
-} from "@chakra-ui/utils"
-import { cloneElement, useCallback, useEffect, useRef, useState } from "react"
+} from "react"
 
 /* -------------------------------------------------------------------------------------------------
  * Create context to track descendants and their indices
@@ -83,7 +77,7 @@ export interface UseTabsProps {
    *
    * @default "unmount"
    */
-  lazyBehavior?: LazyBehavior
+  lazyBehavior?: LazyMode
   /**
    * The writing mode direction.
    *
@@ -152,7 +146,9 @@ export function useTabs(props: UseTabsProps) {
   /**
    * Generate a unique id or use user-provided id for the tabs widget
    */
-  const id = useId(props.id, `tabs`)
+  const uuid = useId()
+  const uid = props.id ?? uuid
+  const id = `tabs-${uid}`
 
   return {
     id,
@@ -204,30 +200,30 @@ export function useTabList<P extends UseTabListProps>(props: P) {
     (event: React.KeyboardEvent) => {
       const nextTab = () => {
         const next = descendants.nextEnabled(focusedIndex)
-        if (next) focus(next.node)
+        if (next) next.node?.focus()
       }
       const prevTab = () => {
         const prev = descendants.prevEnabled(focusedIndex)
-        if (prev) focus(prev.node)
+        if (prev) prev.node?.focus()
       }
       const firstTab = () => {
         const first = descendants.firstEnabled()
-        if (first) focus(first.node)
+        if (first) first.node?.focus()
       }
       const lastTab = () => {
         const last = descendants.lastEnabled()
-        if (last) focus(last.node)
+        if (last) last.node?.focus()
       }
 
       const isHorizontal = orientation === "horizontal"
       const isVertical = orientation === "vertical"
 
-      const eventKey = normalizeEventKey(event)
+      const eventKey = event.key
 
       const ArrowStart = direction === "ltr" ? "ArrowLeft" : "ArrowRight"
       const ArrowEnd = direction === "ltr" ? "ArrowRight" : "ArrowLeft"
 
-      const keyMap: EventKeyMap = {
+      const keyMap: Record<string, React.KeyboardEventHandler> = {
         [ArrowStart]: () => isHorizontal && prevTab(),
         [ArrowEnd]: () => isHorizontal && nextTab(),
         ArrowDown: () => isVertical && nextTab(),
@@ -361,7 +357,7 @@ export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
  *
  * @param props props object for the tab panel
  */
-export function useTabPanel(props: Dict) {
+export function useTabPanel(props: Record<string, any>) {
   const { isSelected, id, children, ...htmlProps } = props
   const { isLazy, lazyBehavior } = useTabsContext()
 
@@ -370,11 +366,11 @@ export function useTabPanel(props: Dict) {
     hasBeenSelected.current = true
   }
 
-  const shouldRenderChildren = determineLazyBehavior({
-    hasBeenSelected: hasBeenSelected.current,
+  const shouldRenderChildren = lazyDisclosure({
+    wasSelected: hasBeenSelected.current,
     isSelected,
-    isLazy,
-    lazyBehavior,
+    enabled: isLazy,
+    mode: lazyBehavior,
   })
 
   return {
@@ -416,10 +412,10 @@ export function useTabIndicator(): React.CSSProperties {
 
   // Update the selected tab rect when the selectedIndex changes
   useSafeLayoutEffect(() => {
-    if (isUndefined(selectedIndex)) return undefined
+    if (selectedIndex == null) return
 
     const tab = descendants.item(selectedIndex)
-    if (isUndefined(tab)) return undefined
+    if (tab == null) return
 
     // Horizontal Tab: Calculate width and left distance
     if (isHorizontal) {

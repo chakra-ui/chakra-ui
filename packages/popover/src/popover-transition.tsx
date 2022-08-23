@@ -1,6 +1,5 @@
 import { chakra, HTMLChakraProps, forwardRef } from "@chakra-ui/system"
 import { HTMLMotionProps, motion, Variant } from "framer-motion"
-import { mergeWith, __DEV__ } from "@chakra-ui/utils"
 import React from "react"
 import { usePopoverContext } from "./popover-context"
 
@@ -23,18 +22,20 @@ type HTMLMotionChakraProps<T extends keyof React.ReactHTML> = Omit<
 
 type MotionVariants = Partial<Record<"enter" | "exit", Variant>>
 
-const mergeVariants = (variants?: MotionVariants) => {
+function mergeVariants(variants?: MotionVariants) {
   if (!variants) return
-  return mergeWith(variants, {
+  return {
     enter: {
+      ...variants.enter,
       visibility: "visible",
     },
     exit: {
+      ...variants.exit,
       transitionEnd: {
         visibility: "hidden",
       },
     },
-  })
+  }
 }
 
 const scaleFade: MotionVariants = {
@@ -81,6 +82,4 @@ PopoverTransition.defaultProps = {
   variants: scaleFade,
 }
 
-if (__DEV__) {
-  PopoverTransition.displayName = "PopoverTransition"
-}
+PopoverTransition.displayName = "PopoverTransition"

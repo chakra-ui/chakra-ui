@@ -1,4 +1,3 @@
-import { getOwnerWindow } from "@chakra-ui/utils"
 import { useEffect } from "react"
 
 export function useAttributeObserver(
@@ -9,7 +8,7 @@ export function useAttributeObserver(
 ) {
   useEffect(() => {
     if (!ref.current || !enabled) return
-    const win = getOwnerWindow(ref.current)
+    const win = ref.current.ownerDocument.defaultView ?? window
     const attrs = Array.isArray(attributes) ? attributes : [attributes]
     const obs = new win.MutationObserver((changes) => {
       for (const change of changes) {

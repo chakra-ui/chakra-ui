@@ -9,38 +9,12 @@ on:
     branches:
       - main
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  props:
-    name: Props Docs
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout branch
-        uses: actions/checkout@v3
-
-      - name: Install
-        uses: ./.github/composite-actions/install
-
-      - name: Generate docs
-        run: pnpm build:prop-docs
-
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout branch
-        uses: actions/checkout@v3
-
-      - name: Install
-        uses: ./.github/composite-actions/install
-
-      - name: Build
-        run: pnpm build
-
   release:
     name: Release
-    needs: [build, props]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
@@ -51,10 +25,17 @@ jobs:
       - name: Install
         uses: ./.github/composite-actions/install
 
+      - name: Build
+        run: pnpm build
+
+      - name: Generate docs
+        run: pnpm build:prop-docs
+
       - name: Create release Pull Request or publish to NPM
         id: changesets
         uses: changesets/action@v1
         with:
+          publish: pnpm release
           commit: "ci(changesets): version packages"
           setupGitUser: false
         env:
@@ -70,7 +51,6 @@ jobs:
           pnpm release:dev
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Discord notification

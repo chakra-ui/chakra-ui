@@ -28,7 +28,7 @@ function SampleSpring() {
   return (
     <>
       <Button onClick={onToggle}>Click</Button>
-      <Collapse isOpen={isOpen}>
+      <Collapse in={isOpen}>
         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
         terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
         labore wes anderson cred nesciunt sapiente ea proident.
@@ -48,7 +48,7 @@ function Example() {
 
   return (
     <>
-      <Collapse startingHeight={20} isOpen={show}>
+      <Collapse startingHeight={20} in={show}>
         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
         terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
         labore wes anderson cred nesciunt sapiente ea proident.

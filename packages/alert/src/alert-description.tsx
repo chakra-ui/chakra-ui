@@ -4,7 +4,7 @@ import {
   SystemStyleObject,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 import { useAlertStyles } from "./alert-context"
 
 export interface AlertDescriptionProps extends HTMLChakraProps<"div"> {}
@@ -27,3 +27,5 @@ export const AlertDescription = forwardRef<AlertDescriptionProps, "div">(
     )
   },
 )
+
+AlertDescription.displayName = "AlertDescription"

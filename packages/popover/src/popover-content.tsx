@@ -4,7 +4,7 @@ import {
   HTMLChakraProps,
   SystemStyleObject,
 } from "@chakra-ui/system"
-import { callAll, cx, __DEV__ } from "@chakra-ui/utils"
+import { callAll, cx } from "@chakra-ui/shared-utils"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
 import { PopoverTransition, PopoverTransitionProps } from "./popover-transition"
 
@@ -46,6 +46,5 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
     )
   },
 )
-if (__DEV__) {
-  PopoverContent.displayName = "PopoverContent"
-}
+
+PopoverContent.displayName = "PopoverContent"

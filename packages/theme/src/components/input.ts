@@ -172,6 +172,10 @@ const variantFlushed: PartsStyleFunction<typeof parts> = (props) => {
         borderColor: getColor(theme, fc),
         boxShadow: `0px 1px 0px 0px ${getColor(theme, fc)}`,
       },
+      _disabled: {
+        opacity: 0.4,
+        cursor: "not-allowed",
+      },
     },
     addon: {
       borderBottom: "2px solid",
@@ -188,6 +192,10 @@ const variantUnstyled: PartsStyleObject<typeof parts> = {
     bg: "transparent",
     px: 0,
     height: "auto",
+    _disabled: {
+      opacity: 0.4,
+      cursor: "not-allowed",
+    },
   },
   addon: {
     bg: "transparent",

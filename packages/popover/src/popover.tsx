@@ -1,11 +1,11 @@
-import { MaybeRenderProp } from "@chakra-ui/react-utils"
+import { MaybeRenderProp } from "@chakra-ui/react-types"
 import {
   omitThemingProps,
   ThemingProps,
   useMultiStyleConfig,
   useTheme,
 } from "@chakra-ui/system"
-import { runIfFn, __DEV__ } from "@chakra-ui/utils"
+import { runIfFn } from "@chakra-ui/shared-utils"
 import { PopoverProvider, PopoverStylesProvider } from "./popover-context"
 import { usePopover, UsePopoverProps } from "./use-popover"
 
@@ -45,6 +45,4 @@ export function Popover(props: PopoverProps) {
   )
 }
 
-if (__DEV__) {
-  Popover.displayName = "Popover"
-}
+Popover.displayName = "Popover"

@@ -1,14 +1,14 @@
 import { createDescendantContext } from "@chakra-ui/descendant"
-import { createContext } from "@chakra-ui/react-utils"
+import { createContext } from "@chakra-ui/react-context"
 import { SystemStyleObject } from "@chakra-ui/system"
-import { Dict } from "@chakra-ui/utils"
 import { UseAccordionItemReturn } from "./use-accordion"
 
 export const [AccordionStylesProvider, useAccordionStyles] = createContext<
-  Dict<SystemStyleObject>
+  Record<string, SystemStyleObject>
 >({
-  name: `AccordionStylesContext`,
-  errorMessage: `useAccordionStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Accordion />" `,
+  name: "AccordionStylesContext",
+  hookName: "useAccordionStyles",
+  providerName: "<Accordion />",
 })
 
 type AccordionItemContext = Omit<UseAccordionItemReturn, "htmlProps">
@@ -16,8 +16,8 @@ type AccordionItemContext = Omit<UseAccordionItemReturn, "htmlProps">
 export const [AccordionItemProvider, useAccordionItemContext] =
   createContext<AccordionItemContext>({
     name: "AccordionItemContext",
-    errorMessage:
-      "useAccordionItemContext: `context` is undefined. Seems you forgot to wrap the accordion item parts in `<AccordionItem />` ",
+    hookName: "useAccordionItemContext",
+    providerName: "<AccordionItem />",
   })
 
 /* -------------------------------------------------------------------------------------------------
