@@ -7,13 +7,13 @@ import { getValidChildren } from "@chakra-ui/react-children-utils"
 import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
 import { lazyDisclosure, LazyMode } from "@chakra-ui/lazy-utils"
 import { callAllHandlers } from "@chakra-ui/shared-utils"
-import React, {
-  cloneElement,
+import {
   useCallback,
   useEffect,
   useRef,
   useState,
   useId,
+  createElement,
 } from "react"
 
 /* -------------------------------------------------------------------------------------------------
@@ -177,8 +177,6 @@ export const [TabsProvider, useTabsContext] = createContext<UseTabsReturn>({
     "useTabsContext: `context` is undefined. Seems you forgot to wrap all tabs components within <Tabs />",
 })
 
-type Child = React.ReactElement<any>
-
 export interface UseTabListProps {
   children?: React.ReactNode
   onKeyDown?: React.KeyboardEventHandler
@@ -323,6 +321,13 @@ export interface UseTabPanelsProps {
   children?: React.ReactNode
 }
 
+const [TabPanelProvider, useTabPanelContext] = createContext<{
+  isSelected: boolean
+  id: string
+  tabId: string
+  selectedIndex: number
+}>({})
+
 /**
  * Tabs hook for managing the visibility of multiple tab panels.
  *
@@ -340,12 +345,18 @@ export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
   const validChildren = getValidChildren(props.children)
 
   const children = validChildren.map((child, index) =>
-    cloneElement(child as Child, {
-      isSelected: index === selectedIndex,
-      id: makeTabPanelId(id, index),
-      // Refers to the associated tab element, and also provides an accessible name to the tab panel.
-      "aria-labelledby": makeTabId(id, index),
-    }),
+    createElement(
+      TabPanelProvider,
+      {
+        value: {
+          isSelected: index === selectedIndex,
+          id: makeTabPanelId(id, index),
+          tabId: makeTabId(id, index),
+          selectedIndex,
+        },
+      },
+      child,
+    ),
   )
 
   return { ...props, children }
@@ -358,8 +369,9 @@ export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
  * @param props props object for the tab panel
  */
 export function useTabPanel(props: Record<string, any>) {
-  const { isSelected, id, children, ...htmlProps } = props
+  const { children, ...htmlProps } = props
   const { isLazy, lazyBehavior } = useTabsContext()
+  const { isSelected, id, tabId } = useTabPanelContext()
 
   const hasBeenSelected = useRef(false)
   if (isSelected) {
@@ -379,6 +391,7 @@ export function useTabPanel(props: Record<string, any>) {
     ...htmlProps,
     children: shouldRenderChildren ? children : null,
     role: "tabpanel",
+    "aria-labelledby": tabId,
     hidden: !isSelected,
     id,
   }
