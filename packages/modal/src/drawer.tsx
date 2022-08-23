@@ -1,4 +1,4 @@
-import { createContext } from "@chakra-ui/react-utils"
+import { createContext } from "@chakra-ui/react-context"
 import {
   chakra,
   forwardRef,
@@ -8,7 +8,7 @@ import {
   useTheme,
 } from "@chakra-ui/system"
 import { Slide, SlideOptions } from "@chakra-ui/transition"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 import {
   Modal,
   ModalFocusScope,
@@ -153,9 +153,7 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
   },
 )
 
-if (__DEV__) {
-  DrawerContent.displayName = "DrawerContent"
-}
+DrawerContent.displayName = "DrawerContent"
 
 export {
   ModalBody as DrawerBody,

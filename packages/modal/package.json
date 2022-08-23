@@ -41,16 +41,18 @@
   "dependencies": {
     "@chakra-ui/close-button": "workspace:*",
     "@chakra-ui/focus-lock": "workspace:*",
-    "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/portal": "workspace:*",
-    "@chakra-ui/react-utils": "workspace:*",
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/react-context": "workspace:*",
+    "@chakra-ui/react-types": "workspace:*",
+    "@chakra-ui/react-use-merge-refs": "workspace:*",
     "@chakra-ui/transition": "workspace:*",
-    "@chakra-ui/utils": "workspace:*",
     "aria-hidden": "^1.1.1",
     "react-remove-scroll": "^2.5.4"
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/hooks": "workspace:*",
     "@testing-library/react-hooks": "8.0.0",
     "framer-motion": "^6.2.9",
     "react-lorem-component": "0.13.0",
