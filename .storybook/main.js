@@ -5,7 +5,7 @@ const fs = require("fs")
 function getStories(pkg) {
   const scope = pkg ? [pkg] : fs.readdirSync("packages")
   return scope
-    .map((package) => `packages//components/${package}/stories`)
+    .map((package) => `packages/components/${package}/stories`)
     .filter((storyDir) => fs.existsSync(storyDir))
     .map((storyDir) => `../${storyDir}/*.stories.tsx`)
 }
