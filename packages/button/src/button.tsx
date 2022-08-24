@@ -1,69 +1,21 @@
-import { useMergeRefs } from "@chakra-ui/hooks"
+import { useMergeRefs } from "@chakra-ui/react-use-merge-refs"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
-  SystemProps,
   SystemStyleObject,
   ThemingProps,
   useStyleConfig,
 } from "@chakra-ui/system"
-import { cx, dataAttr, mergeWith, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
-import { useButtonGroup } from "./button-group"
-import { ButtonSpinner } from "./button-spinner"
-import { ButtonIcon } from "./button-icon"
-import { useButtonType } from "./use-button-type"
+import { cx, dataAttr } from "@chakra-ui/shared-utils"
 
-export interface ButtonOptions {
-  /**
-   * If `true`, the button will show a spinner.
-   */
-  isLoading?: boolean
-  /**
-   * If `true`, the button will be styled in its active state.
-   */
-  isActive?: boolean
-  /**
-   * If `true`, the button will be disabled.
-   */
-  isDisabled?: boolean
-  /**
-   * The label to show in the button when `isLoading` is true
-   * If no text is passed, it only shows the spinner
-   */
-  loadingText?: string
-  /**
-   * The html button type to use.
-   */
-  type?: "button" | "reset" | "submit"
-  /**
-   * If added, the button will show an icon before the button's label.
-   * @type React.ReactElement
-   */
-  leftIcon?: React.ReactElement
-  /**
-   * If added, the button will show an icon after the button's label.
-   * @type React.ReactElement
-   */
-  rightIcon?: React.ReactElement
-  /**
-   * The space between the button icon and label.
-   * @type SystemProps["marginRight"]
-   */
-  iconSpacing?: SystemProps["marginRight"]
-  /**
-   * Replace the spinner component when `isLoading` is set to `true`
-   * @type React.ReactElement
-   */
-  spinner?: React.ReactElement
-  /**
-   * It determines the placement of the spinner when isLoading is true
-   * @default "start"
-   */
-  spinnerPlacement?: "start" | "end"
-}
+import { useMemo } from "react"
+import { useButtonGroup } from "./button-context"
+import { ButtonIcon } from "./button-icon"
+import { ButtonSpinner } from "./button-spinner"
+import { ButtonOptions } from "./button-types"
+import { useButtonType } from "./use-button-type"
 
 export interface ButtonProps
   extends HTMLChakraProps<"button">,
@@ -97,8 +49,9 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
    *
    * So let's read the component styles and then add `zIndex` to it.
    */
-  const buttonStyles: SystemStyleObject = React.useMemo(() => {
-    const _focus = mergeWith({}, styles?.["_focus"] ?? {}, { zIndex: 1 })
+  const buttonStyles: SystemStyleObject = useMemo(() => {
+    // @ts-ignore
+    const _focus = { ...styles?.["_focus"], zIndex: 1 }
     return {
       display: "inline-flex",
       appearance: "none",
@@ -165,9 +118,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  Button.displayName = "Button"
-}
+Button.displayName = "Button"
 
 type ButtonContentProps = Pick<
   ButtonProps,

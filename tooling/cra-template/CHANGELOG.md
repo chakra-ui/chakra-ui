@@ -1,5 +1,34 @@
 # Change Log
 
+## 2.0.6
+
+### Patch Changes
+
+- Force release
+
+## 2.0.5
+
+### Patch Changes
+
+- Force new release
+
+## 2.0.4
+
+### Patch Changes
+
+- [#6339](https://github.com/chakra-ui/chakra-ui/pull/6339)
+  [`b3fb69d2e`](https://github.com/chakra-ui/chakra-ui/commit/b3fb69d2ed971647fb648c8f34ab0ae563f75818)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - update web-vitals
+
+## 2.0.3
+
+### Patch Changes
+
+- [#6267](https://github.com/chakra-ui/chakra-ui/pull/6267)
+  [`47478edbe`](https://github.com/chakra-ui/chakra-ui/commit/47478edbefe1a4b74421f5a64ea9953d2d867ff3)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Update ESlint packages and
+  config
+
 ## 2.0.2
 
 ### Patch Changes

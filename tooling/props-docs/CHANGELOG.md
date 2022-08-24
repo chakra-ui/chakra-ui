@@ -1,5 +1,68 @@
 # Change Log
 
+## 2.0.14
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/react@2.2.8
+  - @chakra-ui/styled-system@2.2.7
+
+## 2.0.13
+
+### Patch Changes
+
+- Updated dependencies
+  [[`e0913e56f`](https://github.com/chakra-ui/chakra-ui/commit/e0913e56f889a5d6ef666b0e8b1e0986955fdba3),
+  [`67edac24a`](https://github.com/chakra-ui/chakra-ui/commit/67edac24ace3c621ecb8cc32ee545acbedaadd79),
+  [`2c9e085ea`](https://github.com/chakra-ui/chakra-ui/commit/2c9e085eaa0dfd65843951fb8240d595901c87dd),
+  [`b735aae2e`](https://github.com/chakra-ui/chakra-ui/commit/b735aae2e0daa44bbd3719f06e3146b38512858a)]:
+  - @chakra-ui/styled-system@2.2.6
+  - @chakra-ui/react@2.2.7
+
+## 2.0.12
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/react@2.2.6
+  - @chakra-ui/styled-system@2.2.5
+
+## 2.0.11
+
+### Patch Changes
+
+- [#6356](https://github.com/chakra-ui/chakra-ui/pull/6356)
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Force release due
+  to change in build configuration
+  - Update package `main` and `module` entries
+- Updated dependencies
+  [[`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/react@2.2.5
+  - @chakra-ui/styled-system@2.2.4
+
+## 2.0.10
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c11743b47`](https://github.com/chakra-ui/chakra-ui/commit/c11743b47f38f8f38a21b120add3a9cf765b81ee)]:
+  - @chakra-ui/styled-system@2.2.3
+  - @chakra-ui/react@2.2.4
+
+## 2.0.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@2.2.3
+  - @chakra-ui/styled-system@2.2.2
+
 ## 2.0.8
 
 ### Patch Changes

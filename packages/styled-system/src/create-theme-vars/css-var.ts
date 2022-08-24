@@ -4,21 +4,30 @@ function replaceWhiteSpace(value: string, replaceValue = "-") {
 
 function escape(value: string | number) {
   const valueStr = replaceWhiteSpace(value.toString())
-  if (valueStr.includes("\\.")) return value
+
+  return escapeSymbol(escapeDot(valueStr))
+}
+
+function escapeDot(value: string) {
+  if (value.includes("\\.")) return value
   const isDecimal = !Number.isInteger(parseFloat(value.toString()))
-  return isDecimal ? valueStr.replace(".", `\\.`) : value
+  return isDecimal ? value.replace(".", `\\.`) : value
+}
+
+function escapeSymbol(value: string) {
+  return value.replace(/[!-,/:-@[-^`{-~]/g, "\\$&")
 }
 
 export function addPrefix(value: string, prefix = "") {
-  return [prefix, escape(value)].filter(Boolean).join("-")
+  return [prefix, value].filter(Boolean).join("-")
 }
 
 export function toVarReference(name: string, fallback?: string) {
-  return `var(${escape(name)}${fallback ? `, ${fallback}` : ""})`
+  return `var(${name}${fallback ? `, ${fallback}` : ""})`
 }
 
 export function toVarDefinition(value: string, prefix = "") {
-  return `--${addPrefix(value, prefix)}`
+  return escape(`--${addPrefix(value, prefix)}`)
 }
 
 export function cssVar(name: string, fallback?: string, cssVarPrefix?: string) {

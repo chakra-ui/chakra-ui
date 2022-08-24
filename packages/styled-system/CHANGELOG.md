@@ -1,5 +1,88 @@
 # Change Log
 
+## 2.2.7
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/utils@2.0.8
+
+## 2.2.6
+
+### Patch Changes
+
+- [#6335](https://github.com/chakra-ui/chakra-ui/pull/6335)
+  [`e0913e56f`](https://github.com/chakra-ui/chakra-ui/commit/e0913e56f889a5d6ef666b0e8b1e0986955fdba3)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Improve style computation
+  performance by looping over styles once.
+
+  Previously, we had two steps in the logic (expand responsive and convert to
+  css object). This can be quite expensive with large css objects (or style
+  props).
+
+  We now process both steps in a single pass.
+
+* [#6465](https://github.com/chakra-ui/chakra-ui/pull/6465)
+  [`67edac24a`](https://github.com/chakra-ui/chakra-ui/commit/67edac24ace3c621ecb8cc32ee545acbedaadd79)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Fix regression where
+  `ThemeTypings` created by chakra-cli could not be used
+
+- [#6396](https://github.com/chakra-ui/chakra-ui/pull/6396)
+  [`2c9e085ea`](https://github.com/chakra-ui/chakra-ui/commit/2c9e085eaa0dfd65843951fb8240d595901c87dd)
+  Thanks [@yukukotani](https://github.com/yukukotani)! - Escape symbols in css
+  variable to make it works
+
+- Updated dependencies
+  [[`dffc18b17`](https://github.com/chakra-ui/chakra-ui/commit/dffc18b1739ad148922fe98e4335457b298c8862),
+  [`99af1e29f`](https://github.com/chakra-ui/chakra-ui/commit/99af1e29fa7b8c8b0bee217227d05f695a0acb47)]:
+  - @chakra-ui/utils@2.0.7
+
+## 2.2.5
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/utils@2.0.6
+
+## 2.2.4
+
+### Patch Changes
+
+- [#6356](https://github.com/chakra-ui/chakra-ui/pull/6356)
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Force release due
+  to change in build configuration
+  - Update package `main` and `module` entries
+- Updated dependencies
+  [[`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/utils@2.0.5
+
+## 2.2.3
+
+### Patch Changes
+
+- [#6301](https://github.com/chakra-ui/chakra-ui/pull/6301)
+  [`c11743b47`](https://github.com/chakra-ui/chakra-ui/commit/c11743b47f38f8f38a21b120add3a9cf765b81ee)
+  Thanks [@effectivetom](https://github.com/effectivetom)! - Fix incorrect
+  breakpoint calculation which excluded some viewport widths from media query
+  coverage
+- Updated dependencies
+  [[`c11743b47`](https://github.com/chakra-ui/chakra-ui/commit/c11743b47f38f8f38a21b120add3a9cf765b81ee)]:
+  - @chakra-ui/utils@2.0.4
+
+## 2.2.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`36ef37d58`](https://github.com/chakra-ui/chakra-ui/commit/36ef37d58220dffc4b8e35c31fdcc57042e9a859),
+  [`6c15ec2c2`](https://github.com/chakra-ui/chakra-ui/commit/6c15ec2c2a32a36ecc2d169308379a6825619543)]:
+  - @chakra-ui/utils@2.0.3
+
 ## 2.2.1
 
 ### Patch Changes

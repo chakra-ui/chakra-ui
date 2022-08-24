@@ -4,8 +4,6 @@ import {
   SystemProps,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
 
 export interface FlexOptions {
   /**
@@ -61,7 +59,7 @@ export interface FlexProps extends HTMLChakraProps<"div">, FlexOptions {}
  *
  * @see Docs https://chakra-ui.com/flex
  */
-export const Flex = forwardRef<FlexProps, "div">((props, ref) => {
+export const Flex = forwardRef<FlexProps, "div">(function Flex(props, ref) {
   const { direction, align, justify, wrap, basis, grow, shrink, ...rest } =
     props
 
@@ -79,6 +77,4 @@ export const Flex = forwardRef<FlexProps, "div">((props, ref) => {
   return <chakra.div ref={ref} __css={styles} {...rest} />
 })
 
-if (__DEV__) {
-  Flex.displayName = "Flex"
-}
+Flex.displayName = "Flex"

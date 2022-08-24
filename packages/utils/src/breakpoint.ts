@@ -37,7 +37,7 @@ function subtract(value: string) {
   const factor = value.endsWith("px")
     ? -1
     : // the equivalent of 1px in em using a 16px base
-      -0.0635
+      -0.0625
   return isNumber(value)
     ? `${value + factor}`
     : value.replace(/(\d+\.?\d*)/u, (m) => `${parseFloat(m) + factor}`)
@@ -92,6 +92,12 @@ export function analyzeBreakpoints(breakpoints: Dict) {
       null,
       ...normalized.map((minW) => toMediaQueryString(minW)).slice(1),
     ],
+    /**
+     * Converts the object responsive syntax to array syntax
+     *
+     * @example
+     * toArrayValue({ base: 1, sm: 2, md: 3 }) // => [1, 2, 3]
+     */
     toArrayValue(test: Dict) {
       if (!isObject(test)) {
         throw new Error("toArrayValue: value must be an object")
@@ -102,6 +108,12 @@ export function analyzeBreakpoints(breakpoints: Dict) {
       }
       return result
     },
+    /**
+     * Converts the array responsive syntax to object syntax
+     *
+     * @example
+     * toObjectValue([1, 2, 3]) // => { base: 1, sm: 2, md: 3 }
+     */
     toObjectValue(test: any[]) {
       if (!Array.isArray(test)) {
         throw new Error("toObjectValue: value must be an array")

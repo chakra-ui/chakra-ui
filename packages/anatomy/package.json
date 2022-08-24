@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/anatomy",
-  "version": "2.0.1",
+  "version": "2.0.4",
   "description": "The anatomy of all chakra components",
   "keywords": [
     "theme",
@@ -11,9 +11,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-anatomy.cjs.js",
-  "module": "dist/chakra-ui-anatomy.esm.js",
-  "types": "dist//chakra-ui-anatomy.cjs.d.ts",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
     "dist"
@@ -28,6 +28,13 @@
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/index.ts"
   },
   "peerDependencies": {
     "@chakra-ui/styled-system": ">=2.0.0-next.0"

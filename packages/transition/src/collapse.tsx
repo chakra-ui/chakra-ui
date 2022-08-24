@@ -1,11 +1,11 @@
-import { cx, mergeWith, warn, __DEV__ } from "@chakra-ui/utils"
+import { cx, warn } from "@chakra-ui/shared-utils"
 import {
   AnimatePresence,
   HTMLMotionProps,
   motion,
   Variants as _Variants,
 } from "framer-motion"
-import * as React from "react"
+import { forwardRef, useEffect, useState } from "react"
 import {
   TransitionEasings,
   Variants,
@@ -80,7 +80,7 @@ export interface CollapseProps
   extends WithTransitionConfig<HTMLMotionProps<"div">>,
     CollapseOptions {}
 
-export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
+export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
   (props, ref) => {
     const {
       in: isOpen,
@@ -95,8 +95,8 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
       ...rest
     } = props
 
-    const [mounted, setMounted] = React.useState(false)
-    React.useEffect(() => {
+    const [mounted, setMounted] = useState(false)
+    useEffect(() => {
       const timeout = setTimeout(() => {
         setMounted(true)
       })
@@ -121,13 +121,15 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
       endingHeight,
       animateOpacity,
       transition: !mounted ? { enter: { duration: 0 } } : transition,
-      transitionEnd: mergeWith(transitionEnd, {
+      transitionEnd: {
+        enter: transitionEnd?.enter,
         exit: unmountOnExit
-          ? undefined
+          ? transitionEnd?.exit
           : {
+              ...transitionEnd?.exit,
               display: hasStartingHeight ? "block" : "none",
             },
-      }),
+      },
     }
 
     const show = unmountOnExit ? isOpen : true
@@ -157,6 +159,4 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
   },
 )
 
-if (__DEV__) {
-  Collapse.displayName = "Collapse"
-}
+Collapse.displayName = "Collapse"

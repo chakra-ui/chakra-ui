@@ -1,4 +1,4 @@
-import { Dict, isObject, isString } from "@chakra-ui/utils"
+import { isObject } from "@chakra-ui/shared-utils"
 import type { ThemeScale } from "../create-theme-vars"
 import type { Transform } from "./types"
 
@@ -11,10 +11,10 @@ interface CreateTransformOptions {
 const isImportant = (value: string) => /!(important)?$/.test(value)
 
 const withoutImportant = (value: string | number) =>
-  isString(value) ? value.replace(/!(important)?$/, "").trim() : value
+  typeof value === "string" ? value.replace(/!(important)?$/, "").trim() : value
 
 export const tokenToCSSVar =
-  (scale: ThemeScale, value: any) => (theme: Dict) => {
+  (scale: ThemeScale, value: any) => (theme: Record<string, any>) => {
     const valueStr = String(value)
 
     const important = isImportant(valueStr)

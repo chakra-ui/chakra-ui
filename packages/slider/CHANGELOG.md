@@ -1,5 +1,91 @@
 # Change Log
 
+## 2.0.8
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/react-context@2.0.2
+  - @chakra-ui/react-use-callback-ref@2.0.2
+  - @chakra-ui/react-use-controllable-state@2.0.2
+  - @chakra-ui/react-use-merge-refs@2.0.2
+  - @chakra-ui/react-use-pan-event@2.0.2
+  - @chakra-ui/react-use-size@2.0.2
+  - @chakra-ui/react-use-update-effect@2.0.2
+  - @chakra-ui/number-utils@2.0.2
+  - @chakra-ui/react-types@2.0.2
+
+## 2.0.7
+
+### Patch Changes
+
+- Updated dependencies
+  [[`3ecbf060e`](https://github.com/chakra-ui/chakra-ui/commit/3ecbf060e5ca4a7e545c206fd9025ad29ca50b43),
+  [`597966e46`](https://github.com/chakra-ui/chakra-ui/commit/597966e46f6d0a8cd3f82eafa3f54d5ca9c97127),
+  [`04ff824ac`](https://github.com/chakra-ui/chakra-ui/commit/04ff824ac2f69aaa82d08bf2905ad4667327db12),
+  [`70872f2c2`](https://github.com/chakra-ui/chakra-ui/commit/70872f2c2254186bbcc1964897fe660eb1c1b010)]:
+  - @chakra-ui/react-use-update-effect@2.0.1
+  - @chakra-ui/number-utils@2.0.1
+  - @chakra-ui/react-types@2.0.1
+  - @chakra-ui/react-use-size@2.0.1
+  - @chakra-ui/react-use-callback-ref@2.0.1
+  - @chakra-ui/react-use-controllable-state@2.0.1
+  - @chakra-ui/react-context@2.0.1
+  - @chakra-ui/react-use-merge-refs@2.0.1
+  - @chakra-ui/react-use-pan-event@2.0.1
+
+## 2.0.6
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/hooks@2.0.6
+  - @chakra-ui/react-utils@2.0.3
+  - @chakra-ui/utils@2.0.6
+
+## 2.0.5
+
+### Patch Changes
+
+- [#6356](https://github.com/chakra-ui/chakra-ui/pull/6356)
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Force release due
+  to change in build configuration
+  - Update package `main` and `module` entries
+- Updated dependencies
+  [[`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/hooks@2.0.5
+  - @chakra-ui/react-utils@2.0.2
+  - @chakra-ui/utils@2.0.5
+
+## 2.0.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c11743b47`](https://github.com/chakra-ui/chakra-ui/commit/c11743b47f38f8f38a21b120add3a9cf765b81ee)]:
+  - @chakra-ui/utils@2.0.4
+  - @chakra-ui/hooks@2.0.4
+
+## 2.0.3
+
+### Patch Changes
+
+- [#6281](https://github.com/chakra-ui/chakra-ui/pull/6281)
+  [`8bfeefbb5`](https://github.com/chakra-ui/chakra-ui/commit/8bfeefbb562fc5ada4757309db6b951c421342ad)
+  Thanks [@ShumRain](https://github.com/ShumRain)! - Export `useStyles`
+  equivalent for multipart component styles. Accordion exports
+  `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+- Updated dependencies
+  [[`36ef37d58`](https://github.com/chakra-ui/chakra-ui/commit/36ef37d58220dffc4b8e35c31fdcc57042e9a859),
+  [`6c15ec2c2`](https://github.com/chakra-ui/chakra-ui/commit/6c15ec2c2a32a36ecc2d169308379a6825619543)]:
+  - @chakra-ui/utils@2.0.3
+  - @chakra-ui/hooks@2.0.3
+
 ## 2.0.2
 
 ### Patch Changes

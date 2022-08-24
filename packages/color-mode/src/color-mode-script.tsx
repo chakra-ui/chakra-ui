@@ -1,5 +1,3 @@
-import * as React from "react"
-
 export type ColorModeScriptProps = {
   type?: "localStorage" | "cookie"
   initialColorMode?: "light" | "dark" | "system"

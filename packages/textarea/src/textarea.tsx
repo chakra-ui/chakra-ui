@@ -7,8 +7,8 @@ import {
   ThemingProps,
   useStyleConfig,
 } from "@chakra-ui/system"
-import { cx, omit, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { cx } from "@chakra-ui/shared-utils"
+import { omit } from "@chakra-ui/object-utils"
 
 interface TextareaOptions {
   /**
@@ -45,6 +45,7 @@ export const Textarea = forwardRef<TextareaProps, "textarea">((props, ref) => {
 
   const textareaProps = useFormControl<HTMLTextAreaElement>(rest)
 
+  //@ts-ignore
   const textareaStyles = rows ? omit(styles, omitted) : styles
 
   return (
@@ -58,6 +59,4 @@ export const Textarea = forwardRef<TextareaProps, "textarea">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  Textarea.displayName = "Textarea"
-}
+Textarea.displayName = "Textarea"

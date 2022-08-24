@@ -1,46 +1,17 @@
 import {
   chakra,
-  PropsOf,
   SystemProps,
   forwardRef,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { omit, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { omit } from "@chakra-ui/object-utils"
 import {
   FallbackStrategy,
   shouldShowFallbackImage,
   useImage,
   UseImageProps,
 } from "./use-image"
-
-interface NativeImageOptions {
-  /**
-   * The native HTML `width` attribute to the passed to the `img`
-   */
-  htmlWidth?: string | number
-  /**
-   * The native HTML `height` attribute to the passed to the `img`
-   */
-  htmlHeight?: string | number
-}
-
-interface NativeImageProps extends PropsOf<"img">, NativeImageOptions {}
-
-const NativeImage = React.forwardRef(
-  (props: NativeImageProps, ref: React.Ref<any>) => {
-    const { htmlWidth, htmlHeight, alt, ...rest } = props
-    return (
-      <img
-        width={htmlWidth}
-        height={htmlHeight}
-        ref={ref}
-        alt={alt}
-        {...rest}
-      />
-    )
-  },
-)
+import { NativeImage, NativeImageOptions } from "./native-image"
 
 interface ImageOptions extends NativeImageOptions {
   /**
@@ -101,7 +72,7 @@ export interface ImageProps
  *
  * @see Docs https://chakra-ui.com/image
  */
-export const Image = forwardRef<ImageProps, "img">((props, ref) => {
+export const Image = forwardRef<ImageProps, "img">(function Image(props, ref) {
   const {
     fallbackSrc,
     fallback,
@@ -179,16 +150,4 @@ export const Image = forwardRef<ImageProps, "img">((props, ref) => {
   )
 })
 
-export interface ImgProps extends HTMLChakraProps<"img">, NativeImageOptions {}
-
-/**
- * Fallback component for most SSR users who want to use the native `img` with
- * support for chakra props
- */
-export const Img = forwardRef<ImgProps, "img">((props, ref) => (
-  <chakra.img ref={ref} as={NativeImage} className="chakra-image" {...props} />
-))
-
-if (__DEV__) {
-  Image.displayName = "Image"
-}
+Image.displayName = "Image"

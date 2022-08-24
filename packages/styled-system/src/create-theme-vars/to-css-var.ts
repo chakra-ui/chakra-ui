@@ -1,10 +1,10 @@
-import { analyzeBreakpoints, Dict } from "@chakra-ui/utils"
+import { analyzeBreakpoints } from "@chakra-ui/breakpoint-utils"
 import type { WithCSSVar } from "../utils"
 import { createThemeVars } from "./create-theme-vars"
 import { extractSemanticTokens, extractTokens, omitVars } from "./theme-tokens"
 import { flattenTokens } from "./flatten-tokens"
 
-export function toCSSVar<T extends Dict>(rawTheme: T) {
+export function toCSSVar<T extends Record<string, any>>(rawTheme: T) {
   /**
    * In the case the theme has already been converted to css-var (e.g. extending the theme),
    * we can omit the computed css vars and recompute it for the extended theme.
@@ -31,7 +31,7 @@ export function toCSSVar<T extends Dict>(rawTheme: T) {
     cssVars,
   } = createThemeVars(flatTokens, { cssVarPrefix })
 
-  const defaultCssVars: Dict = {
+  const defaultCssVars: Record<string, any> = {
     "--chakra-ring-inset": "var(--chakra-empty,/*!*/ /*!*/)",
     "--chakra-ring-offset-width": "0px",
     "--chakra-ring-offset-color": "#fff",

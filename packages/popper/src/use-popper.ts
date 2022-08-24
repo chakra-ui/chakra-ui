@@ -1,4 +1,5 @@
-import { mergeRefs, PropGetterV2 } from "@chakra-ui/react-utils"
+import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
+import { PropGetter } from "@chakra-ui/react-types"
 import {
   createPopper,
   Instance,
@@ -215,7 +216,7 @@ export function usePopper(props: UsePopperProps = {}) {
     [setupPopper],
   )
 
-  const getReferenceProps = useCallback<PropGetterV2<"button">>(
+  const getReferenceProps: PropGetter = useCallback(
     (props = {}, ref = null) => ({
       ...props,
       ref: mergeRefs(referenceRef, ref),
@@ -231,7 +232,7 @@ export function usePopper(props: UsePopperProps = {}) {
     [setupPopper],
   )
 
-  const getPopperProps = useCallback<PropGetterV2<"div">>(
+  const getPopperProps: PropGetter = useCallback(
     (props = {}, ref = null) => ({
       ...props,
       ref: mergeRefs(popperRef, ref),
@@ -245,20 +246,17 @@ export function usePopper(props: UsePopperProps = {}) {
     [strategy, popperRef, matchWidth],
   )
 
-  const getArrowProps = useCallback<PropGetterV2<"div", ArrowCSSVarProps>>(
-    (props = {}, ref = null) => {
-      const { size, shadowColor, bg, style, ...rest } = props
-      return {
-        ...rest,
-        ref,
-        "data-popper-arrow": "",
-        style: getArrowStyle(props),
-      }
-    },
-    [],
-  )
+  const getArrowProps: PropGetter = useCallback((props = {}, ref = null) => {
+    const { size, shadowColor, bg, style, ...rest } = props
+    return {
+      ...rest,
+      ref,
+      "data-popper-arrow": "",
+      style: getArrowStyle(props),
+    }
+  }, [])
 
-  const getArrowInnerProps = useCallback<PropGetterV2<"div">>(
+  const getArrowInnerProps: PropGetter = useCallback(
     (props = {}, ref = null) => ({
       ...props,
       ref,

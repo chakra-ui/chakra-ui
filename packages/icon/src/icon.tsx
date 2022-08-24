@@ -4,8 +4,7 @@ import {
   forwardRef,
   SystemStyleObject,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { cx } from "@chakra-ui/shared-utils"
 
 const fallbackIcon = {
   path: (
@@ -80,8 +79,6 @@ export const Icon = forwardRef<IconProps, "svg">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  Icon.displayName = "Icon"
-}
+Icon.displayName = "Icon"
 
 export default Icon

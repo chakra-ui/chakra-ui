@@ -1,6 +1,5 @@
-import { chakra, HTMLChakraProps } from "@chakra-ui/system"
+import { chakra, HTMLChakraProps, forwardRef } from "@chakra-ui/system"
 import { HTMLMotionProps, motion, Variant } from "framer-motion"
-import { mergeWith } from "@chakra-ui/utils"
 import React from "react"
 import { usePopoverContext } from "./popover-context"
 
@@ -23,18 +22,20 @@ type HTMLMotionChakraProps<T extends keyof React.ReactHTML> = Omit<
 
 type MotionVariants = Partial<Record<"enter" | "exit", Variant>>
 
-const mergeVariants = (variants?: MotionVariants) => {
+function mergeVariants(variants?: MotionVariants) {
   if (!variants) return
-  return mergeWith(variants, {
+  return {
     enter: {
+      ...variants.enter,
       visibility: "visible",
     },
     exit: {
+      ...variants.exit,
       transitionEnd: {
         visibility: "hidden",
       },
     },
-  })
+  }
 }
 
 const scaleFade: MotionVariants = {
@@ -61,21 +62,24 @@ const Section = motion(chakra.section)
 export interface PopoverTransitionProps
   extends HTMLMotionChakraProps<"section"> {}
 
-export const PopoverTransition = React.forwardRef(
-  (props: HTMLMotionChakraProps<"section">, ref: React.Ref<any>) => {
-    const { isOpen } = usePopoverContext()
-    return (
-      <Section
-        ref={ref}
-        variants={mergeVariants(props.variants)}
-        {...props}
-        initial={false}
-        animate={isOpen ? "enter" : "exit"}
-      />
-    )
-  },
-)
+export const PopoverTransition = forwardRef(function PopoverTransition(
+  props: HTMLMotionChakraProps<"section">,
+  ref: React.Ref<any>,
+) {
+  const { isOpen } = usePopoverContext()
+  return (
+    <Section
+      ref={ref}
+      variants={mergeVariants(props.variants)}
+      {...props}
+      initial={false}
+      animate={isOpen ? "enter" : "exit"}
+    />
+  )
+}) as React.ComponentType<HTMLMotionChakraProps<"section">>
 
 PopoverTransition.defaultProps = {
   variants: scaleFade,
 }
+
+PopoverTransition.displayName = "PopoverTransition"

@@ -1,9 +1,8 @@
-import { useForceUpdate, useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { isBrowser, __DEV__ } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/react-utils"
-import * as React from "react"
+import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
+import { createContext } from "@chakra-ui/react-context"
 import { createPortal } from "react-dom"
 import { usePortalManager } from "./portal-manager"
+import { useEffect, useMemo, useRef, useState } from "react"
 
 type PortalContext = HTMLDivElement | null
 
@@ -40,18 +39,19 @@ const DefaultPortal = (
 ) => {
   const { appendToParentPortal, children } = props
 
-  const tempNode = React.useRef<HTMLDivElement | null>(null)
-  const portal = React.useRef<HTMLDivElement | null>(null)
+  const [tempNode, setTempNode] = useState<HTMLElement | null>(null)
+  const portal = useRef<HTMLDivElement | null>(null)
 
-  const forceUpdate = useForceUpdate()
+  const [, forceUpdate] = useState({})
+  useEffect(() => forceUpdate({}), [])
 
   const parentPortal = usePortalContext()
   const manager = usePortalManager()
 
   useSafeLayoutEffect(() => {
-    if (!tempNode.current) return
+    if (!tempNode) return
 
-    const doc = tempNode.current!.ownerDocument
+    const doc = tempNode.ownerDocument
     const host = appendToParentPortal ? parentPortal ?? doc.body : doc.body
 
     if (!host) return
@@ -60,7 +60,7 @@ const DefaultPortal = (
     portal.current.className = PORTAL_CLASSNAME
 
     host.appendChild(portal.current)
-    forceUpdate()
+    forceUpdate({})
 
     const portalNode = portal.current
     return () => {
@@ -68,7 +68,7 @@ const DefaultPortal = (
         host.removeChild(portalNode)
       }
     }
-  }, [])
+  }, [tempNode])
 
   const _children = manager?.zIndex ? (
     <Container zIndex={manager?.zIndex}>{children}</Container>
@@ -84,7 +84,11 @@ const DefaultPortal = (
       portal.current,
     )
   ) : (
-    <span ref={tempNode} />
+    <span
+      ref={(el) => {
+        if (el) setTempNode(el)
+      }}
+    />
   )
 }
 
@@ -99,19 +103,17 @@ interface ContainerPortalProps extends React.PropsWithChildren<{}> {
 const ContainerPortal = (props: ContainerPortalProps) => {
   const { children, containerRef, appendToParentPortal } = props
   const containerEl = containerRef.current
-  const host = containerEl ?? (isBrowser ? document.body : undefined)
+  const host =
+    containerEl ?? (typeof window !== "undefined" ? document.body : undefined)
 
-  const portal = React.useMemo(() => {
+  const portal = useMemo(() => {
     const node = containerEl?.ownerDocument.createElement("div")
     if (node) node.className = PORTAL_CLASSNAME
     return node
   }, [containerEl])
 
-  const forceUpdate = useForceUpdate()
-
-  useSafeLayoutEffect(() => {
-    forceUpdate()
-  }, [])
+  const [, forceUpdate] = useState({})
+  useSafeLayoutEffect(() => forceUpdate({}), [])
 
   useSafeLayoutEffect(() => {
     if (!portal || !host) return
@@ -180,6 +182,4 @@ Portal.defaultProps = {
 Portal.className = PORTAL_CLASSNAME
 Portal.selector = PORTAL_SELECTOR
 
-if (__DEV__) {
-  Portal.displayName = "Portal"
-}
+Portal.displayName = "Portal"

@@ -9,8 +9,8 @@ import {
   HTMLChakraProps,
   SystemProps,
 } from "@chakra-ui/system"
-import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { cx, dataAttr } from "@chakra-ui/shared-utils"
+import { useMemo } from "react"
 
 export interface SwitchProps
   extends Omit<UseCheckboxProps, "isIndeterminate">,
@@ -24,7 +24,10 @@ export interface SwitchProps
   spacing?: SystemProps["marginLeft"]
 }
 
-export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
+export const Switch = forwardRef<SwitchProps, "input">(function Switch(
+  props,
+  ref,
+) {
   const styles = useMultiStyleConfig("Switch", props)
 
   const { spacing = "0.5rem", children, ...ownProps } = omitThemingProps(props)
@@ -37,7 +40,7 @@ export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
     getLabelProps,
   } = useCheckbox(ownProps)
 
-  const containerStyles: SystemStyleObject = React.useMemo(
+  const containerStyles: SystemStyleObject = useMemo(
     () => ({
       display: "inline-block",
       position: "relative",
@@ -48,7 +51,7 @@ export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
     [styles.container],
   )
 
-  const trackStyles: SystemStyleObject = React.useMemo(
+  const trackStyles: SystemStyleObject = useMemo(
     () => ({
       display: "inline-flex",
       flexShrink: 0,
@@ -60,7 +63,7 @@ export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
     [styles.track],
   )
 
-  const labelStyles: SystemStyleObject = React.useMemo(
+  const labelStyles: SystemStyleObject = useMemo(
     () => ({
       userSelect: "none",
       marginStart: spacing,
@@ -101,6 +104,4 @@ export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  Switch.displayName = "Switch"
-}
+Switch.displayName = "Switch"

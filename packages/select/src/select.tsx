@@ -10,36 +10,11 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, mergeWith, split, __DEV__, dataAttr } from "@chakra-ui/utils"
-import * as React from "react"
+import { dataAttr } from "@chakra-ui/shared-utils"
+import { split } from "@chakra-ui/object-utils"
+import { cloneElement, isValidElement } from "react"
 
-type Omitted = "disabled" | "required" | "readOnly" | "size"
-
-export interface SelectFieldProps
-  extends Omit<HTMLChakraProps<"select">, Omitted> {
-  isDisabled?: boolean
-}
-
-export const SelectField = forwardRef<SelectFieldProps, "select">(
-  (props, ref) => {
-    const { children, placeholder, className, ...rest } = props
-
-    return (
-      <chakra.select
-        {...rest}
-        ref={ref}
-        className={cx("chakra-select", className)}
-      >
-        {placeholder && <option value="">{placeholder}</option>}
-        {children}
-      </chakra.select>
-    )
-  },
-)
-
-if (__DEV__) {
-  SelectField.displayName = "SelectField"
-}
+import { SelectField, SelectFieldProps } from "./select-field"
 
 interface RootProps extends Omit<HTMLChakraProps<"div">, "color"> {}
 
@@ -121,11 +96,14 @@ export const Select = forwardRef<SelectProps, "select">((props, ref) => {
     color,
   }
 
-  const fieldStyles: SystemStyleObject = mergeWith(
-    { paddingEnd: "2rem" },
-    styles.field,
-    { _focus: { zIndex: "unset" } },
-  )
+  const fieldStyles: SystemStyleObject = {
+    paddingEnd: "2rem",
+    ...styles.field,
+    _focus: {
+      zIndex: "unset",
+      ...(styles as any).field["_focus"],
+    },
+  }
 
   return (
     <chakra.div
@@ -157,9 +135,7 @@ export const Select = forwardRef<SelectProps, "select">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  Select.displayName = "Select"
-}
+Select.displayName = "Select"
 
 export const DefaultIcon: React.FC<PropsOf<"svg">> = (props) => (
   <svg viewBox="0 0 24 24" {...props}>
@@ -187,7 +163,7 @@ interface SelectIconProps extends HTMLChakraProps<"div"> {}
 const SelectIcon: React.FC<SelectIconProps> = (props) => {
   const { children = <DefaultIcon />, ...rest } = props
 
-  const clone = React.cloneElement(children as any, {
+  const clone = cloneElement(children as any, {
     role: "presentation",
     className: "chakra-select__icon",
     focusable: false,
@@ -202,11 +178,9 @@ const SelectIcon: React.FC<SelectIconProps> = (props) => {
 
   return (
     <IconWrapper {...rest} className="chakra-select__icon-wrapper">
-      {React.isValidElement(children) ? clone : null}
+      {isValidElement(children) ? clone : null}
     </IconWrapper>
   )
 }
 
-if (__DEV__) {
-  SelectIcon.displayName = "SelectIcon"
-}
+SelectIcon.displayName = "SelectIcon"

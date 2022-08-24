@@ -1,16 +1,9 @@
-import { useIds } from "@chakra-ui/hooks"
-import { callAllHandlers } from "@chakra-ui/utils"
-import { mergeRefs, PropGetter } from "@chakra-ui/react-utils"
+import { callAllHandlers } from "@chakra-ui/shared-utils"
+import { PropGetter } from "@chakra-ui/react-types"
+import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
 import { hideOthers } from "aria-hidden"
-import {
-  KeyboardEvent,
-  MouseEvent,
-  RefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react"
+
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react"
 import { manager, useModalManager } from "./modal-manager"
 
 export interface UseModalProps {
@@ -97,12 +90,12 @@ export function useModal(props: UseModalProps) {
 
   const mouseDownTarget = useRef<EventTarget | null>(null)
 
-  const onMouseDown = useCallback((event: MouseEvent) => {
+  const onMouseDown = useCallback((event: React.MouseEvent) => {
     mouseDownTarget.current = event.target
   }, [])
 
   const onKeyDown = useCallback(
-    (event: KeyboardEvent) => {
+    (event: React.KeyboardEvent) => {
       if (event.key === "Escape") {
         event.stopPropagation()
 
@@ -129,7 +122,7 @@ export function useModal(props: UseModalProps) {
       "aria-modal": true,
       "aria-labelledby": headerMounted ? headerId : undefined,
       "aria-describedby": bodyMounted ? bodyId : undefined,
-      onClick: callAllHandlers(props.onClick, (event: MouseEvent) =>
+      onClick: callAllHandlers(props.onClick, (event: React.MouseEvent) =>
         event.stopPropagation(),
       ),
     }),
@@ -137,7 +130,7 @@ export function useModal(props: UseModalProps) {
   )
 
   const onOverlayClick = useCallback(
-    (event: MouseEvent) => {
+    (event: React.MouseEvent) => {
       event.stopPropagation()
       /**
        * Make sure the event starts and ends on the same DOM element.
@@ -200,7 +193,7 @@ export type UseModalReturn = ReturnType<typeof useModal>
  * @param shouldHide whether `aria-hidden` should be applied
  */
 export function useAriaHidden(
-  ref: RefObject<HTMLElement>,
+  ref: React.RefObject<HTMLElement>,
   shouldHide: boolean,
 ) {
   // save current ref in a local var to trigger the effect on identity change
@@ -213,4 +206,12 @@ export function useAriaHidden(
 
     return hideOthers(ref.current)
   }, [shouldHide, ref, currentElement])
+}
+
+function useIds(idProp?: string, ...prefixes: string[]) {
+  const reactId = useId()
+  const id = idProp || reactId
+  return useMemo(() => {
+    return prefixes.map((prefix) => `${prefix}-${id}`)
+  }, [id, prefixes])
 }

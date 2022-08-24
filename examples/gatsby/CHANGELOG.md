@@ -1,5 +1,63 @@
 # gatsby-starter-default
 
+## 1.0.14
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@2.2.8
+  - @chakra-ui/gatsby-plugin@3.0.4
+
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies
+  [[`b735aae2e`](https://github.com/chakra-ui/chakra-ui/commit/b735aae2e0daa44bbd3719f06e3146b38512858a)]:
+  - @chakra-ui/react@2.2.7
+  - @chakra-ui/gatsby-plugin@3.0.3
+
+## 1.0.12
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@2.2.6
+  - @chakra-ui/gatsby-plugin@3.0.3
+
+## 1.0.11
+
+### Patch Changes
+
+- [#6339](https://github.com/chakra-ui/chakra-ui/pull/6339)
+  [`b3fb69d2e`](https://github.com/chakra-ui/chakra-ui/commit/b3fb69d2ed971647fb648c8f34ab0ae563f75818)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - update gatsyby packages
+
+- Updated dependencies
+  [[`b3fb69d2e`](https://github.com/chakra-ui/chakra-ui/commit/b3fb69d2ed971647fb648c8f34ab0ae563f75818),
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/gatsby-plugin@3.0.2
+  - @chakra-ui/react@2.2.5
+
+## 1.0.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/react@2.2.4
+
+## 1.0.9
+
+### Patch Changes
+
+- [#6267](https://github.com/chakra-ui/chakra-ui/pull/6267)
+  [`47478edbe`](https://github.com/chakra-ui/chakra-ui/commit/47478edbefe1a4b74421f5a64ea9953d2d867ff3)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Update ESlint packages and
+  config
+
+- Updated dependencies []:
+  - @chakra-ui/react@2.2.3
+
 ## 1.0.8
 
 ### Patch Changes

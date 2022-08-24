@@ -27,7 +27,7 @@ export const Basic = () => {
           style={{
             width: 250,
             background: "red",
-            "--popper-arrow-bg": "red",
+            ["--popper-arrow-bg" as string]: "red",
             padding: 15,
             borderRadius: 6,
           }}
@@ -61,7 +61,7 @@ export const WithTransition = () => {
       <button ref={referenceRef} onClick={onToggle}>
         Toggle
       </button>
-      <div ref={popperRef} style={{ "--popper-arrow-bg": "red" }}>
+      <div ref={popperRef} style={{ ["--popper-arrow-bg" as string]: "red" }}>
         <motion.div
           transition={{
             duration: 0.15,
@@ -85,12 +85,6 @@ export const WithTransition = () => {
       </div>
     </>
   )
-}
-
-declare module "csstype" {
-  interface Properties {
-    [k: string]: any
-  }
 }
 
 export const WithMatchWidth = () => {

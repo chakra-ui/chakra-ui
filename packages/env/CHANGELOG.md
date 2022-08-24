@@ -1,5 +1,68 @@
 # @chakra-ui/react-env
 
+## 2.0.8
+
+### Patch Changes
+
+- Force release
+
+## 2.0.7
+
+### Patch Changes
+
+- [`239a3cd40`](https://github.com/chakra-ui/chakra-ui/commit/239a3cd403271af66119fdfd28ee8f284cd43e0d)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Omit rendered env
+  span when the environment prop is passed. - Add `id` and `hidden` attributes
+  to the rendered env span
+
+## 2.0.6
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/utils@2.0.6
+
+## 2.0.5
+
+### Patch Changes
+
+- [#6356](https://github.com/chakra-ui/chakra-ui/pull/6356)
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Force release due
+  to change in build configuration
+  - Update package `main` and `module` entries
+- Updated dependencies
+  [[`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/utils@2.0.5
+
+## 2.0.4
+
+### Patch Changes
+
+- [#6309](https://github.com/chakra-ui/chakra-ui/pull/6309)
+  [`fb3c09325`](https://github.com/chakra-ui/chakra-ui/commit/fb3c09325d7bf58aed13c6d0fb1f72b92ff0ef3a)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - fix hydration issue
+
+- Updated dependencies
+  [[`c11743b47`](https://github.com/chakra-ui/chakra-ui/commit/c11743b47f38f8f38a21b120add3a9cf765b81ee)]:
+  - @chakra-ui/utils@2.0.4
+
+## 2.0.3
+
+### Patch Changes
+
+- [#6171](https://github.com/chakra-ui/chakra-ui/pull/6171)
+  [`3d8e095df`](https://github.com/chakra-ui/chakra-ui/commit/3d8e095dfc696b3d903455319231e77d1c21d875)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Fix hydration issues when
+  using `Suspense`
+
+- Updated dependencies
+  [[`36ef37d58`](https://github.com/chakra-ui/chakra-ui/commit/36ef37d58220dffc4b8e35c31fdcc57042e9a859),
+  [`6c15ec2c2`](https://github.com/chakra-ui/chakra-ui/commit/6c15ec2c2a32a36ecc2d169308379a6825619543)]:
+  - @chakra-ui/utils@2.0.3
+
 ## 2.0.2
 
 ### Patch Changes

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { fireEvent, render, screen, waitFor } from "@chakra-ui/test-utils"
 import * as React from "react"
 import {

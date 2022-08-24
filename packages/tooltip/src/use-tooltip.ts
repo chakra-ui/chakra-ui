@@ -1,8 +1,16 @@
-import { useDisclosure, useEventListener, useId } from "@chakra-ui/hooks"
+import { useEventListener } from "@chakra-ui/react-use-event-listener"
+import { useDisclosure } from "@chakra-ui/react-use-disclosure"
 import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
-import { mergeRefs, PropGetter, ReactRef } from "@chakra-ui/react-utils"
-import { callAllHandlers, px } from "@chakra-ui/utils"
-import * as React from "react"
+import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
+import { PropGetter } from "@chakra-ui/react-types"
+import { callAllHandlers } from "@chakra-ui/shared-utils"
+import React, {
+  useCallback,
+  useEffect,
+  useRef,
+  useId,
+  type RefObject,
+} from "react"
 
 export interface UseTooltipProps
   extends Pick<
@@ -67,6 +75,12 @@ export interface UseTooltipProps
   arrowShadowColor?: string
 }
 
+const getDoc = (ref: React.RefObject<Element | null>) =>
+  ref.current?.ownerDocument || document
+
+const getWin = (ref: React.RefObject<Element | null>) =>
+  ref.current?.ownerDocument?.defaultView || window
+
 export function useTooltip(props: UseTooltipProps = {}) {
   const {
     openDelay = 0,
@@ -109,40 +123,55 @@ export function useTooltip(props: UseTooltipProps = {}) {
       direction,
     })
 
-  const tooltipId = useId(id, "tooltip")
+  const uuid = useId()
+  const uid = id ?? uuid
+  const tooltipId = `tooltip-${uid}`
 
-  const ref = React.useRef<any>(null)
+  const ref = useRef<Element>(null)
 
-  const enterTimeout = React.useRef<number>()
-  const exitTimeout = React.useRef<number>()
+  const enterTimeout = useRef<number>()
+  const exitTimeout = useRef<number>()
 
-  const openWithDelay = React.useCallback(() => {
-    if (!isDisabled && !enterTimeout.current) {
-      enterTimeout.current = window.setTimeout(onOpen, openDelay)
+  const closeNow = useCallback(() => {
+    if (exitTimeout.current) {
+      clearTimeout(exitTimeout.current)
+      exitTimeout.current = undefined
     }
-  }, [isDisabled, onOpen, openDelay])
+    onClose()
+  }, [onClose])
 
-  const closeWithDelay = React.useCallback(() => {
+  const dispatchCloseEvent = useCloseEvent(ref, closeNow)
+
+  const openWithDelay = useCallback(() => {
+    if (!isDisabled && !enterTimeout.current) {
+      dispatchCloseEvent()
+      const win = getWin(ref)
+      enterTimeout.current = win.setTimeout(onOpen, openDelay)
+    }
+  }, [dispatchCloseEvent, isDisabled, onOpen, openDelay])
+
+  const closeWithDelay = useCallback(() => {
     if (enterTimeout.current) {
       clearTimeout(enterTimeout.current)
       enterTimeout.current = undefined
     }
-    exitTimeout.current = window.setTimeout(onClose, closeDelay)
-  }, [closeDelay, onClose])
+    const win = getWin(ref)
+    exitTimeout.current = win.setTimeout(closeNow, closeDelay)
+  }, [closeDelay, closeNow])
 
-  const onClick = React.useCallback(() => {
+  const onClick = useCallback(() => {
     if (isOpen && closeOnClick) {
       closeWithDelay()
     }
   }, [closeOnClick, closeWithDelay, isOpen])
 
-  const onMouseDown = React.useCallback(() => {
+  const onMouseDown = useCallback(() => {
     if (isOpen && closeOnMouseDown) {
       closeWithDelay()
     }
   }, [closeOnMouseDown, closeWithDelay, isOpen])
 
-  const onKeyDown = React.useCallback(
+  const onKeyDown = useCallback(
     (event: KeyboardEvent) => {
       if (isOpen && event.key === "Escape") {
         closeWithDelay()
@@ -151,9 +180,13 @@ export function useTooltip(props: UseTooltipProps = {}) {
     [isOpen, closeWithDelay],
   )
 
-  useEventListener("keydown", closeOnEsc ? onKeyDown : undefined)
+  useEventListener(
+    () => getDoc(ref),
+    "keydown",
+    closeOnEsc ? onKeyDown : undefined,
+  )
 
-  React.useEffect(
+  useEffect(
     () => () => {
       clearTimeout(enterTimeout.current)
       clearTimeout(exitTimeout.current)
@@ -167,9 +200,9 @@ export function useTooltip(props: UseTooltipProps = {}) {
    * React regarding the onMouseLeave polyfill.
    * @see https://github.com/facebook/react/issues/11972
    */
-  useEventListener("mouseleave", closeWithDelay, () => ref.current)
+  useEventListener(() => ref.current, "mouseleave", closeWithDelay)
 
-  const getTriggerProps: PropGetter = React.useCallback(
+  const getTriggerProps: PropGetter = useCallback(
     (props = {}, _ref = null) => {
       const triggerProps = {
         ...props,
@@ -195,7 +228,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     ],
   )
 
-  const getTooltipPositionerProps: PropGetter = React.useCallback(
+  const getTooltipPositionerProps: PropGetter = useCallback(
     (props = {}, forwardedRef = null) =>
       getPopperProps(
         {
@@ -203,7 +236,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
           style: {
             ...props.style,
             [popperCSSVars.arrowSize.var]: arrowSize
-              ? px(arrowSize)
+              ? `${arrowSize}px`
               : undefined,
             [popperCSSVars.arrowShadowColor.var]: arrowShadowColor,
           },
@@ -213,22 +246,22 @@ export function useTooltip(props: UseTooltipProps = {}) {
     [getPopperProps, arrowSize, arrowShadowColor],
   )
 
-  const getTooltipProps = React.useCallback(
-    (props: any = {}, ref: ReactRef<any> = null) => {
-      const tooltipProps = {
+  const getTooltipProps: PropGetter = useCallback(
+    (props = {}, ref = null) => {
+      const styles: React.CSSProperties = {
+        ...props.style,
+        position: "relative",
+        transformOrigin: popperCSSVars.transformOrigin.varRef,
+      }
+
+      return {
         ref,
         ...htmlProps,
         ...props,
         id: tooltipId,
         role: "tooltip",
-        style: {
-          ...props.style,
-          position: "relative",
-          transformOrigin: popperCSSVars.transformOrigin.varRef,
-        },
+        style: styles,
       }
-
-      return tooltipProps
     },
     [htmlProps, tooltipId],
   )
@@ -246,3 +279,19 @@ export function useTooltip(props: UseTooltipProps = {}) {
 }
 
 export type UseTooltipReturn = ReturnType<typeof useTooltip>
+
+const closeEventName = "chakra-ui:close-tooltip"
+
+function useCloseEvent(ref: RefObject<Element>, close: () => void) {
+  useEffect(() => {
+    const doc = getDoc(ref)
+    doc.addEventListener(closeEventName, close)
+    return () => doc.removeEventListener(closeEventName, close)
+  }, [close, ref])
+
+  return () => {
+    const doc = getDoc(ref)
+    const win = getWin(ref)
+    doc.dispatchEvent(new win.CustomEvent(closeEventName))
+  }
+}

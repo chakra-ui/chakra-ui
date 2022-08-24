@@ -1,4 +1,3 @@
-import { noop } from "@chakra-ui/utils"
 import {
   ColorMode,
   ColorModeContext,
@@ -6,10 +5,9 @@ import {
   useChakra,
 } from "@chakra-ui/system"
 import defaultTheme from "@chakra-ui/theme"
-import * as React from "react"
 import { ToastProvider, ToastProviderProps } from "./toast.provider"
 import { UseToastOptions } from "./use-toast"
-import { createToastFn } from "./toast"
+import { createToastFn, CreateToastFnReturn } from "./toast"
 
 const defaults: UseToastOptions = {
   duration: 5000,
@@ -29,9 +27,14 @@ export const defaultStandaloneParam: CreateStandAloneToastParam &
   Required<Omit<CreateStandAloneToastParam, keyof ToastProviderProps>> = {
   theme: defaultTheme,
   colorMode: "light",
-  toggleColorMode: noop,
-  setColorMode: noop,
+  toggleColorMode: () => {},
+  setColorMode: () => {},
   defaultOptions: defaults,
+}
+
+export type CreateStandaloneToastReturn = {
+  ToastContainer: () => JSX.Element
+  toast: CreateToastFnReturn
 }
 
 /**
@@ -46,7 +49,7 @@ export function createStandaloneToast({
   motionVariants,
   toastSpacing,
   component,
-}: CreateStandAloneToastParam = defaultStandaloneParam) {
+}: CreateStandAloneToastParam = defaultStandaloneParam): CreateStandaloneToastReturn {
   const colorModeContextValue = { colorMode, setColorMode, toggleColorMode }
   const ToastContainer = () => (
     <ThemeProvider theme={theme}>

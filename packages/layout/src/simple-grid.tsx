@@ -4,14 +4,7 @@ import {
   ResponsiveValue,
   useTheme,
 } from "@chakra-ui/system"
-import {
-  Dict,
-  isNull,
-  isNumber,
-  mapResponsive,
-  __DEV__,
-} from "@chakra-ui/utils"
-import * as React from "react"
+import { mapResponsive } from "@chakra-ui/breakpoint-utils"
 import { Grid, GridProps } from "./grid"
 
 interface SimpleGridOptions {
@@ -49,43 +42,44 @@ export interface SimpleGridProps extends GridProps, SimpleGridOptions {}
  *
  * @see Docs https://chakra-ui.com/simplegrid
  */
-export const SimpleGrid = forwardRef<SimpleGridProps, "div">((props, ref) => {
-  const { columns, spacingX, spacingY, spacing, minChildWidth, ...rest } = props
+export const SimpleGrid = forwardRef<SimpleGridProps, "div">(
+  function SimpleGrid(props, ref) {
+    const { columns, spacingX, spacingY, spacing, minChildWidth, ...rest } =
+      props
 
-  const theme = useTheme()
-  const templateColumns = minChildWidth
-    ? widthToColumns(minChildWidth, theme)
-    : countToColumns(columns)
+    const theme = useTheme()
+    const templateColumns = minChildWidth
+      ? widthToColumns(minChildWidth, theme)
+      : countToColumns(columns)
 
-  return (
-    <Grid
-      ref={ref}
-      gap={spacing}
-      columnGap={spacingX}
-      rowGap={spacingY}
-      templateColumns={templateColumns}
-      {...rest}
-    />
-  )
-})
+    return (
+      <Grid
+        ref={ref}
+        gap={spacing}
+        columnGap={spacingX}
+        rowGap={spacingY}
+        templateColumns={templateColumns}
+        {...rest}
+      />
+    )
+  },
+)
 
-if (__DEV__) {
-  SimpleGrid.displayName = "SimpleGrid"
-}
+SimpleGrid.displayName = "SimpleGrid"
 
 function toPx(n: string | number) {
-  return isNumber(n) ? `${n}px` : n
+  return typeof n === "number" ? `${n}px` : n
 }
 
-function widthToColumns(width: any, theme: Dict) {
+function widthToColumns(width: any, theme: Record<string, any>) {
   return mapResponsive(width, (value) => {
     const _value = getToken("sizes", value, toPx(value))(theme)
-    return isNull(value) ? null : `repeat(auto-fit, minmax(${_value}, 1fr))`
+    return value === null ? null : `repeat(auto-fit, minmax(${_value}, 1fr))`
   })
 }
 
 function countToColumns(count: any) {
   return mapResponsive(count, (value) =>
-    isNull(value) ? null : `repeat(${value}, minmax(0, 1fr))`,
+    value === null ? null : `repeat(${value}, minmax(0, 1fr))`,
   )
 }

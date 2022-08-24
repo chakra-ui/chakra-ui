@@ -1,28 +1,22 @@
 import { useColorMode } from "@chakra-ui/color-mode"
-import {
-  css,
-  SystemStyleObject,
-  toCSSVar,
-  WithCSSVar,
-} from "@chakra-ui/styled-system"
+import { createContext, CreateContextReturn } from "@chakra-ui/react-utils"
+import { css, toCSSVar, SystemStyleObject } from "@chakra-ui/styled-system"
 import { Dict, memoizedGet as get, runIfFn } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/react-utils"
 import {
   Global,
   Interpolation,
-  ThemeContext,
   ThemeProvider as EmotionThemeProvider,
   ThemeProviderProps as EmotionThemeProviderProps,
 } from "@emotion/react"
-import * as React from "react"
+import { useMemo } from "react"
 
 export interface ThemeProviderProps extends EmotionThemeProviderProps {
   cssVarsRoot?: string
 }
 
-export const ThemeProvider = (props: ThemeProviderProps) => {
+export function ThemeProvider(props: ThemeProviderProps): JSX.Element {
   const { cssVarsRoot, theme, children } = props
-  const computedTheme = React.useMemo(() => toCSSVar(theme), [theme])
+  const computedTheme = useMemo(() => toCSSVar(theme), [theme])
   return (
     <EmotionThemeProvider theme={computedTheme}>
       <CSSVars root={cssVarsRoot} />
@@ -39,25 +33,12 @@ export interface CSSVarsProps {
   root?: string
 }
 
-export const CSSVars = ({ root = ":host, :root" }: CSSVarsProps) => {
+export function CSSVars({ root = ":host, :root" }: CSSVarsProps): JSX.Element {
   /**
    * Append color mode selector to allow semantic tokens to change according to the color mode
    */
   const selector = [root, `[data-theme]`].join(",")
   return <Global styles={(theme: any) => ({ [selector]: theme.__cssVars })} />
-}
-
-export function useTheme<T extends object = Dict>() {
-  const theme = React.useContext(
-    ThemeContext as unknown as React.Context<T | undefined>,
-  )
-  if (!theme) {
-    throw Error(
-      "useTheme: `theme` is undefined. Seems you forgot to wrap your app in `<ChakraProvider />` or `<ThemeProvider />`",
-    )
-  }
-
-  return theme as WithCSSVar<T>
 }
 
 /**
@@ -84,17 +65,24 @@ export { StylesProvider, useStyles }
  * @param componentName
  * @returns [StylesProvider, useStyles]
  */
-export const createStylesContext = (componentName: string) =>
-  createContext<Dict<SystemStyleObject>>({
+export function createStylesContext(
+  componentName: string,
+): CreateStyleContextReturn {
+  return createContext<Dict<SystemStyleObject>>({
     name: `${componentName}StylesContext`,
     errorMessage: `useStyles: "styles" is undefined. Seems you forgot to wrap the components in "<${componentName} />" `,
   })
+}
+
+export type CreateStyleContextReturn = CreateContextReturn<
+  Dict<SystemStyleObject>
+>
 
 /**
  * Applies styles defined in `theme.styles.global` globally
  * using emotion's `Global` component
  */
-export const GlobalStyle = () => {
+export function GlobalStyle(): JSX.Element {
   const { colorMode } = useColorMode()
   return (
     <Global

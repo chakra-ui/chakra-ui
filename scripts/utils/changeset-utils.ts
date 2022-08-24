@@ -1,6 +1,18 @@
 import getReleasePlan from "@changesets/get-release-plan"
 import { ComprehensiveRelease, NewChangeset } from "@changesets/types"
-import { padStart, startCase } from "lodash"
+
+const startCase = (text: string) => {
+  return text
+    .split("-")
+    .map((word) => {
+      return word.charAt(0).toUpperCase() + word.slice(1)
+    })
+    .join(" ")
+}
+
+const padStart = (text: string, length: number, char: string) => {
+  return text.padStart(length, char)
+}
 
 export const reactPkg = "@chakra-ui/react"
 

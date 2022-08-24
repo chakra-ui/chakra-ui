@@ -1,4 +1,3 @@
-import * as React from "react"
 import { useAddonState } from "@storybook/api"
 import { IconButton } from "@storybook/components"
 import { addons } from "@storybook/addons"

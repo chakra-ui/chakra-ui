@@ -2,7 +2,7 @@ import { EnvironmentProvider } from "@chakra-ui/react-env"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import Frame from "react-frame-component"
-import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+// import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 import { Hide, Show, useBreakpoint, useBreakpointValue } from "../src"
 
 export default {
@@ -77,26 +77,26 @@ const BreakpointValue = () => {
   return <p>Breakpoint: {breakpoint}</p>
 }
 
-const NestedBreakpointValueWithCustomBreakpoint = () => {
-  const bp = useBreakpoint()
-  const isMobile = useBreakpointValue({
-    base: true,
-    md: false,
-  })
+// const NestedBreakpointValueWithCustomBreakpoint = () => {
+//   const bp = useBreakpoint()
+//   const isMobile = useBreakpointValue({
+//     base: true,
+//     md: false,
+//   })
 
-  return (
-    <>
-      <p>Breakpoint: {bp}</p>
-      <p>isMobile: {String(isMobile)}</p>
-      <i>Expect isMobile to be true util "md" breakpoint is hit</i>
-    </>
-  )
-}
+//   return (
+//     <>
+//       <p>Breakpoint: {bp}</p>
+//       <p>isMobile: {String(isMobile)}</p>
+//       <i>Expect isMobile to be true util "md" breakpoint is hit</i>
+//     </>
+//   )
+// }
 
-export const BreakpointValueWithCustomBreakpoint = () => (
-  <ChakraProvider
-    theme={extendTheme({ breakpoints: { preSm: "28em", postSm: "36em" } })}
-  >
-    <NestedBreakpointValueWithCustomBreakpoint />
-  </ChakraProvider>
-)
+// export const BreakpointValueWithCustomBreakpoint = () => (
+//   <ChakraProvider
+//     theme={extendTheme({ breakpoints: { preSm: "28em", postSm: "36em" } })}
+//   >
+//     <NestedBreakpointValueWithCustomBreakpoint />
+//   </ChakraProvider>
+// )

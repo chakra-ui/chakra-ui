@@ -1,5 +1,68 @@
 # @chakra-ui/cli
 
+## 2.1.6
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/utils@2.0.8
+
+## 2.1.5
+
+### Patch Changes
+
+- [#6465](https://github.com/chakra-ui/chakra-ui/pull/6465)
+  [`67edac24a`](https://github.com/chakra-ui/chakra-ui/commit/67edac24ace3c621ecb8cc32ee545acbedaadd79)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Fix regression where
+  `ThemeTypings` created by chakra-cli could not be used
+
+- Updated dependencies
+  [[`dffc18b17`](https://github.com/chakra-ui/chakra-ui/commit/dffc18b1739ad148922fe98e4335457b298c8862),
+  [`99af1e29f`](https://github.com/chakra-ui/chakra-ui/commit/99af1e29fa7b8c8b0bee217227d05f695a0acb47)]:
+  - @chakra-ui/utils@2.0.7
+
+## 2.1.4
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/utils@2.0.6
+
+## 2.1.3
+
+### Patch Changes
+
+- [#6356](https://github.com/chakra-ui/chakra-ui/pull/6356)
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Force release due
+  to change in build configuration
+  - Update package `main` and `module` entries
+- Updated dependencies
+  [[`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/utils@2.0.5
+
+## 2.1.2
+
+### Patch Changes
+
+- [#6286](https://github.com/chakra-ui/chakra-ui/pull/6286)
+  [`a08770bf0`](https://github.com/chakra-ui/chakra-ui/commit/a08770bf04414afdcc5e2c7e8b088c75f5dd949f)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Fix importing of the default
+  exported theme
+
+* [#6267](https://github.com/chakra-ui/chakra-ui/pull/6267)
+  [`47478edbe`](https://github.com/chakra-ui/chakra-ui/commit/47478edbefe1a4b74421f5a64ea9953d2d867ff3)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Update dependencies
+
+* Updated dependencies
+  [[`36ef37d58`](https://github.com/chakra-ui/chakra-ui/commit/36ef37d58220dffc4b8e35c31fdcc57042e9a859),
+  [`6c15ec2c2`](https://github.com/chakra-ui/chakra-ui/commit/6c15ec2c2a32a36ecc2d169308379a6825619543)]:
+  - @chakra-ui/utils@2.0.3
+
 ## 2.1.1
 
 ### Patch Changes

@@ -38,4 +38,4 @@ const doc = {
   },
 }
 
-export const ssrDocument = (doc as unknown) as Document
+export const ssrDocument = doc as unknown as Document

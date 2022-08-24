@@ -1,6 +1,6 @@
 {
   "name": "chakra-nextjs",
-  "version": "2.0.8",
+  "version": "2.0.14",
   "private": true,
   "scripts": {
     "dev": "rimraf .next && next dev",
@@ -8,12 +8,12 @@
     "start": "next start"
   },
   "dependencies": {
-    "@chakra-ui/react": "2.2.2",
+    "@chakra-ui/react": "workspace:*",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "cookies-next": "^2.0.4",
     "framer-motion": "^6.2.9",
-    "next": "^12.1.0",
+    "next": "^12.2.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   }

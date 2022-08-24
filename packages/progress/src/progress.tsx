@@ -6,10 +6,8 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
-  createStylesContext,
 } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { createContext } from "@chakra-ui/react-context"
 import {
   getProgressProps,
   GetProgressPropsOptions,
@@ -17,31 +15,14 @@ import {
   stripe,
 } from "./progress.utils"
 
-const [StylesProvider, useStyles] = createStylesContext("Progress")
+const [ProgressStylesProvider, useProgressStyles] = createContext<
+  Record<string, SystemStyleObject>
+>({
+  name: `ProgressStylesContext`,
+  errorMessage: `useProgressStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Progress />" `,
+})
 
-export interface ProgressLabelProps extends HTMLChakraProps<"div"> {}
-
-/**
- * ProgressLabel is used to show the numeric value of the progress.
- * @see Docs https://chakra-ui.com/progress
- */
-export const ProgressLabel: React.FC<ProgressLabelProps> = (props) => {
-  const styles = useStyles()
-  const labelStyles: SystemStyleObject = {
-    top: "50%",
-    left: "50%",
-    width: "100%",
-    textAlign: "center",
-    position: "absolute",
-    transform: "translate(-50%, -50%)",
-    ...styles.label,
-  }
-  return <chakra.div {...props} __css={labelStyles} />
-}
-
-if (__DEV__) {
-  ProgressLabel.displayName = "ProgressLabel"
-}
+export { useProgressStyles }
 
 export interface ProgressFilledTrackProps
   extends HTMLChakraProps<"div">,
@@ -59,7 +40,7 @@ const ProgressFilledTrack: React.FC<ProgressFilledTrackProps> = (props) => {
   const { min, max, value, isIndeterminate, ...rest } = props
   const progress = getProgressProps({ value, min, max, isIndeterminate })
 
-  const styles = useStyles()
+  const styles = useProgressStyles()
   const trackStyles = {
     height: "100%",
     ...styles.filledTrack,
@@ -178,7 +159,7 @@ export const Progress: React.FC<ProgressProps> = (props) => {
 
   return (
     <chakra.div borderRadius={borderRadius} __css={trackStyles} {...rest}>
-      <StylesProvider value={styles}>
+      <ProgressStylesProvider value={styles}>
         <ProgressFilledTrack
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
@@ -190,11 +171,9 @@ export const Progress: React.FC<ProgressProps> = (props) => {
           borderRadius={borderRadius}
         />
         {children}
-      </StylesProvider>
+      </ProgressStylesProvider>
     </chakra.div>
   )
 }
 
-if (__DEV__) {
-  Progress.displayName = "Progress"
-}
+Progress.displayName = "Progress"

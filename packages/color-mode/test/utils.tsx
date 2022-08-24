@@ -3,7 +3,7 @@ import { mocks, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
 
 export const DummyComponent = () => {
-  const { useColorMode } = require("../src/color-mode-provider")
+  const { useColorMode } = require("../src/color-mode-context")
   const { colorMode, toggleColorMode } = useColorMode()
 
   return (
@@ -19,7 +19,7 @@ export const resetCounter = () => {
   renderCount = 0
 }
 
-export const MemoizedComponent = React.memo(() => {
+export const MemoizedComponent = React.memo(function MemoizedComponent() {
   renderCount++
   return <div data-testid="rendered">{renderCount}</div>
 })

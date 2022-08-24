@@ -1,11 +1,11 @@
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { cx } from "@chakra-ui/shared-utils"
 import {
   AnimatePresence,
   HTMLMotionProps,
   motion,
   Variants as _Variants,
 } from "framer-motion"
-import * as React from "react"
+import { forwardRef } from "react"
 import {
   TransitionDefaults,
   Variants,
@@ -73,8 +73,8 @@ export interface SlideFadeProps
   extends SlideFadeOptions,
     WithTransitionConfig<HTMLMotionProps<"div">> {}
 
-export const SlideFade = React.forwardRef<HTMLDivElement, SlideFadeProps>(
-  (props, ref) => {
+export const SlideFade = forwardRef<HTMLDivElement, SlideFadeProps>(
+  function SlideFade(props, ref) {
     const {
       unmountOnExit,
       in: isOpen,
@@ -117,6 +117,4 @@ export const SlideFade = React.forwardRef<HTMLDivElement, SlideFadeProps>(
   },
 )
 
-if (__DEV__) {
-  SlideFade.displayName = "SlideFade"
-}
+SlideFade.displayName = "SlideFade"

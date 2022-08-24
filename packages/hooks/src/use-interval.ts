@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useEffect } from "react"
 import { useCallbackRef } from "./use-callback-ref"
 
 /**
@@ -10,7 +10,7 @@ import { useCallbackRef } from "./use-callback-ref"
 export function useInterval(callback: () => void, delay: number | null) {
   const fn = useCallbackRef(callback)
 
-  React.useEffect(() => {
+  useEffect(() => {
     let intervalId: number | null = null
     const tick = () => fn()
     if (delay !== null) {

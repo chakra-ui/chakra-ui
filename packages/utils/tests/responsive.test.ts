@@ -1,4 +1,3 @@
-import { createBreakpoints } from "@chakra-ui/theme-tools"
 import {
   analyzeBreakpoints,
   arrayToObjectNotation,
@@ -131,18 +130,17 @@ test("should work correctly", () => {
 // Ensures no breaking change
 test("should work with createBreakpoint output", () => {
   expect(
-    analyzeBreakpoints(
-      createBreakpoints({
-        sm: "320px",
-        md: "640px",
-        lg: "1000px",
-        xl: "4000px",
-      }),
-    )?.details,
+    analyzeBreakpoints({
+      base: "0em",
+      sm: "320px",
+      md: "640px",
+      lg: "1000px",
+      xl: "4000px",
+    })?.details,
   ).toMatchInlineSnapshot(`
     Array [
       Object {
-        "_minW": "-0.0635em",
+        "_minW": "-0.0625em",
         "breakpoint": "base",
         "maxW": "319px",
         "maxWQuery": "@media screen and (max-width: 319px)",

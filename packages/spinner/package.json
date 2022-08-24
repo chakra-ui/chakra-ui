@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/spinner",
-  "version": "2.0.2",
+  "version": "2.0.8",
   "description": "A React component for displaying spinners and loaders",
   "keywords": [
     "spinner",
@@ -12,9 +12,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-spinner.cjs.js",
-  "module": "dist/chakra-ui-spinner.esm.js",
-  "types": "dist/chakra-ui-spinner.cjs.d.ts",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -29,16 +29,21 @@
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
-  "dependencies": {
-    "@chakra-ui/utils": "2.0.2",
-    "@chakra-ui/visually-hidden": "2.0.2"
-  },
   "devDependencies": {
-    "@chakra-ui/system": "2.2.0",
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/utils": "workspace:*",
     "react": "^18.0.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">=2.0.0-next.0",
+    "@chakra-ui/system": ">=2.0.0",
     "react": ">=18"
+  },
+  "scripts": {
+    "build": "JSX=1 tsup src/index.ts --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "JSX=1 tsup src/index.ts"
   }
 }

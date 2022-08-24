@@ -8,9 +8,9 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { usePrevious } from "@chakra-ui/hooks"
-import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { usePrevious } from "@chakra-ui/react-use-previous"
+import { cx } from "@chakra-ui/shared-utils"
+import { useEffect, useRef } from "react"
 
 export interface SkeletonOptions {
   /**
@@ -54,6 +54,16 @@ const StyledSkeleton = chakra("div", {
   },
 })
 
+const useIsFirstRender = () => {
+  const isFirstRender = useRef(true)
+
+  useEffect(() => {
+    isFirstRender.current = false
+  }, [])
+
+  return isFirstRender.current
+}
+
 export type ISkeleton = SkeletonOptions
 
 export interface SkeletonProps
@@ -73,16 +83,6 @@ const bgFade = keyframes({
   from: { borderColor: startColor, background: startColor },
   to: { borderColor: endColor, background: endColor },
 })
-
-const useIsFirstRender = () => {
-  const isFirstRender = React.useRef(true)
-
-  React.useEffect(() => {
-    isFirstRender.current = false
-  }, [])
-
-  return isFirstRender.current
-}
 
 export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
   const styles = useStyleConfig("Skeleton", props)
@@ -134,9 +134,7 @@ Skeleton.defaultProps = {
   speed: 0.8,
 }
 
-if (__DEV__) {
-  Skeleton.displayName = "Skeleton"
-}
+Skeleton.displayName = "Skeleton"
 
 function range(count: number) {
   return Array(count)
@@ -221,15 +219,11 @@ export const SkeletonText: React.FC<SkeletonTextProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  SkeletonText.displayName = "SkeletonText"
-}
+SkeletonText.displayName = "SkeletonText"
 
 export const SkeletonCircle: React.FC<SkeletonProps> = ({
   size = "2rem",
   ...rest
 }) => <Skeleton borderRadius="full" boxSize={size} {...rest} />
 
-if (__DEV__) {
-  SkeletonCircle.displayName = "SkeletonCircle"
-}
+SkeletonCircle.displayName = "SkeletonCircle"

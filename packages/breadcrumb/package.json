@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/breadcrumb",
-  "version": "2.0.2",
+  "version": "2.0.8",
   "description": "A React component used for navigation, with each item acting as a link",
   "keywords": [
     "breadcrumbs",
@@ -14,9 +14,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-breadcrumb.cjs.js",
-  "module": "dist/chakra-ui-breadcrumb.esm.js",
-  "types": "dist/chakra-ui-breadcrumb.cjs.d.ts",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -31,16 +31,26 @@
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
+  "dependencies": {
+    "@chakra-ui/react-children-utils": "workspace:*",
+    "@chakra-ui/react-context": "workspace:*"
+  },
   "devDependencies": {
-    "@chakra-ui/system": "2.2.0",
+    "@chakra-ui/icons": "workspace:*",
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/system": "workspace:*",
+    "react-router-dom": "6.0.0",
     "react": "^18.0.0"
   },
-  "dependencies": {
-    "@chakra-ui/react-utils": "2.0.1",
-    "@chakra-ui/utils": "2.0.2"
-  },
   "peerDependencies": {
-    "@chakra-ui/system": ">=2.0.0-next.0",
+    "@chakra-ui/system": ">=2.0.0",
     "react": ">=18"
+  },
+  "scripts": {
+    "build": "JSX=1 tsup src/index.ts --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "JSX=1 tsup src/index.ts"
   }
 }

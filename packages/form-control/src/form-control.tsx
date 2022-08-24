@@ -1,25 +1,26 @@
-import { useBoolean, useId } from "@chakra-ui/hooks"
+import { createContext } from "@chakra-ui/react-context"
+import { PropGetter } from "@chakra-ui/react-types"
+import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
 import {
   chakra,
-  createStylesContext,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
+  SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils"
-import {
-  createContext,
-  mergeRefs,
-  PropGetter,
-  PropGetterV2,
-} from "@chakra-ui/react-utils"
-import * as React from "react"
+import { cx, dataAttr } from "@chakra-ui/shared-utils"
+import { useCallback, useId, useState } from "react"
 
-const [StylesProvider, useStyles] = createStylesContext("FormControl")
+const [FormControlStylesProvider, useFormControlStyles] = createContext<
+  Record<string, SystemStyleObject>
+>({
+  name: `FormControlStylesContext`,
+  errorMessage: `useFormControlStyles returned is 'undefined'. Seems you forgot to wrap the components in "<FormControl />" `,
+})
 
-export const useFormControlStyles = useStyles
+export { useFormControlContext, useFormControlStyles }
 
 export interface FormControlOptions {
   /**
@@ -73,8 +74,6 @@ const [FormControlProvider, useFormControlContext] =
     name: "FormControlContext",
   })
 
-export { useFormControlContext }
-
 function useFormControlProvider(props: FormControlContext) {
   const {
     id: idProp,
@@ -97,18 +96,18 @@ function useFormControlProvider(props: FormControlContext) {
    * Track whether the `FormErrorMessage` has been rendered.
    * We use this to append its id the `aria-describedby` of the `input`.
    */
-  const [hasFeedbackText, setHasFeedbackText] = React.useState(false)
+  const [hasFeedbackText, setHasFeedbackText] = useState(false)
 
   /**
    * Track whether the `FormHelperText` has been rendered.
    * We use this to append its id the `aria-describedby` of the `input`.
    */
-  const [hasHelpText, setHasHelpText] = React.useState(false)
+  const [hasHelpText, setHasHelpText] = useState(false)
 
   // Track whether the form element (e.g, `input`) has focus.
-  const [isFocused, setFocus] = useBoolean()
+  const [isFocused, setFocus] = useState(false)
 
-  const getHelpTextProps = React.useCallback<PropGetter>(
+  const getHelpTextProps = useCallback<PropGetter>(
     (props = {}, forwardedRef = null) => ({
       id: helpTextId,
       ...props,
@@ -124,7 +123,7 @@ function useFormControlProvider(props: FormControlContext) {
     [helpTextId],
   )
 
-  const getLabelProps = React.useCallback<PropGetterV2<"label">>(
+  const getLabelProps = useCallback<PropGetter>(
     (props = {}, forwardedRef = null) => ({
       ...props,
       ref: forwardedRef,
@@ -138,7 +137,7 @@ function useFormControlProvider(props: FormControlContext) {
     [id, isDisabled, isFocused, isInvalid, isReadOnly, labelId],
   )
 
-  const getErrorMessageProps = React.useCallback<PropGetter>(
+  const getErrorMessageProps = useCallback<PropGetter>(
     (props = {}, forwardedRef = null) => ({
       id: feedbackId,
       ...props,
@@ -155,7 +154,7 @@ function useFormControlProvider(props: FormControlContext) {
     [feedbackId],
   )
 
-  const getRootProps = React.useCallback<PropGetterV2<"div">>(
+  const getRootProps = useCallback<PropGetter>(
     (props = {}, forwardedRef = null) => ({
       ...props,
       ...htmlProps,
@@ -165,7 +164,7 @@ function useFormControlProvider(props: FormControlContext) {
     [htmlProps],
   )
 
-  const getRequiredIndicatorProps = React.useCallback<PropGetter>(
+  const getRequiredIndicatorProps = useCallback<PropGetter>(
     (props = {}, forwardedRef = null) => ({
       ...props,
       ref: forwardedRef,
@@ -182,8 +181,8 @@ function useFormControlProvider(props: FormControlContext) {
     isReadOnly: !!isReadOnly,
     isDisabled: !!isDisabled,
     isFocused: !!isFocused,
-    onFocus: setFocus.on,
-    onBlur: setFocus.off,
+    onFocus: () => setFocus(true),
+    onBlur: () => setFocus(false),
     hasFeedbackText,
     setHasFeedbackText,
     hasHelpText,
@@ -213,33 +212,33 @@ export interface FormControlProps
  * This is commonly used in form elements such as `input`,
  * `select`, `textarea`, etc.
  */
-export const FormControl = forwardRef<FormControlProps, "div">((props, ref) => {
-  const styles = useMultiStyleConfig("Form", props)
-  const ownProps = omitThemingProps(props)
-  const {
-    getRootProps,
-    htmlProps: _,
-    ...context
-  } = useFormControlProvider(ownProps)
+export const FormControl = forwardRef<FormControlProps, "div">(
+  function FormControl(props, ref) {
+    const styles = useMultiStyleConfig("Form", props)
+    const ownProps = omitThemingProps(props)
+    const {
+      getRootProps,
+      htmlProps: _,
+      ...context
+    } = useFormControlProvider(ownProps)
 
-  const className = cx("chakra-form-control", props.className)
+    const className = cx("chakra-form-control", props.className)
 
-  return (
-    <FormControlProvider value={context}>
-      <StylesProvider value={styles}>
-        <chakra.div
-          {...getRootProps({}, ref)}
-          className={className}
-          __css={styles["container"]}
-        />
-      </StylesProvider>
-    </FormControlProvider>
-  )
-})
+    return (
+      <FormControlProvider value={context}>
+        <FormControlStylesProvider value={styles}>
+          <chakra.div
+            {...getRootProps({}, ref)}
+            className={className}
+            __css={styles["container"]}
+          />
+        </FormControlStylesProvider>
+      </FormControlProvider>
+    )
+  },
+)
 
-if (__DEV__) {
-  FormControl.displayName = "FormControl"
-}
+FormControl.displayName = "FormControl"
 
 export interface HelpTextProps extends HTMLChakraProps<"div"> {}
 
@@ -250,19 +249,19 @@ export interface HelpTextProps extends HTMLChakraProps<"div"> {}
  * about the field, such as how it will be used and what
  * types in values should be provided.
  */
-export const FormHelperText = forwardRef<HelpTextProps, "div">((props, ref) => {
-  const field = useFormControlContext()
-  const styles = useStyles()
-  const className = cx("chakra-form__helper-text", props.className)
-  return (
-    <chakra.div
-      {...field?.getHelpTextProps(props, ref)}
-      __css={styles.helperText}
-      className={className}
-    />
-  )
-})
+export const FormHelperText = forwardRef<HelpTextProps, "div">(
+  function FormHelperText(props, ref) {
+    const field = useFormControlContext()
+    const styles = useFormControlStyles()
+    const className = cx("chakra-form__helper-text", props.className)
+    return (
+      <chakra.div
+        {...field?.getHelpTextProps(props, ref)}
+        __css={styles.helperText}
+        className={className}
+      />
+    )
+  },
+)
 
-if (__DEV__) {
-  FormHelperText.displayName = "FormHelperText"
-}
+FormHelperText.displayName = "FormHelperText"

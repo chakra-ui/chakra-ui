@@ -4,8 +4,10 @@ import {
   ResponsiveValue,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, mapResponsive, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { mapResponsive } from "@chakra-ui/breakpoint-utils"
+import { cx } from "@chakra-ui/shared-utils"
+
+import { Children } from "react"
 
 interface AspectRatioOptions {
   /**
@@ -26,11 +28,14 @@ export interface AspectRatioProps
  *
  * @see Docs https://chakra-ui.com/aspectratiobox
  */
-export const AspectRatio = forwardRef<AspectRatioProps, "div">((props, ref) => {
+export const AspectRatio = forwardRef<AspectRatioProps, "div">(function (
+  props,
+  ref,
+) {
   const { ratio = 4 / 3, children, className, ...rest } = props
 
   // enforce single child
-  const child = React.Children.only(children)
+  const child = Children.only(children)
 
   const _className = cx("chakra-aspect-ratio", className)
 
@@ -61,7 +66,7 @@ export const AspectRatio = forwardRef<AspectRatioProps, "div">((props, ref) => {
         },
         "& > img, & > video": {
           objectFit: "cover",
-        }
+        },
       }}
       {...rest}
     >
@@ -70,6 +75,4 @@ export const AspectRatio = forwardRef<AspectRatioProps, "div">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  AspectRatio.displayName = "AspectRatio"
-}
+AspectRatio.displayName = "AspectRatio"

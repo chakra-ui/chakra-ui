@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useEffect } from "react"
 import { useCallbackRef } from "./use-callback-ref"
 
 /**
@@ -13,7 +13,7 @@ export function useTimeout(
 ) {
   const fn = useCallbackRef(callback)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (delay == null) return undefined
 
     let timeoutId: number | null = null

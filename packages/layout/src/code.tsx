@@ -6,8 +6,7 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { cx } from "@chakra-ui/shared-utils"
 
 export interface CodeProps
   extends HTMLChakraProps<"code">,
@@ -18,7 +17,7 @@ export interface CodeProps
  *
  * @see Docs https://chakra-ui.com/code
  */
-export const Code = forwardRef<CodeProps, "code">((props, ref) => {
+export const Code = forwardRef<CodeProps, "code">(function Code(props, ref) {
   const styles = useStyleConfig("Code", props)
   const { className, ...rest } = omitThemingProps(props)
 
@@ -35,6 +34,4 @@ export const Code = forwardRef<CodeProps, "code">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  Code.displayName = "Code"
-}
+Code.displayName = "Code"

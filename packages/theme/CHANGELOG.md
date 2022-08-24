@@ -1,5 +1,90 @@
 # Change Log
 
+## 2.1.7
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/anatomy@2.0.4
+  - @chakra-ui/theme-tools@2.0.9
+  - @chakra-ui/utils@2.0.8
+
+## 2.1.6
+
+### Patch Changes
+
+- [#6346](https://github.com/chakra-ui/chakra-ui/pull/6346)
+  [`2fd5d07eb`](https://github.com/chakra-ui/chakra-ui/commit/2fd5d07eb95e37a8b46257beefc462c97941cb23)
+  Thanks [@quantumomid](https://github.com/quantumomid)! - Improve contrast of
+  `FormHelperText` to satisfy accessibility check
+
+* [`8eb793159`](https://github.com/chakra-ui/chakra-ui/commit/8eb793159fa5f3603db7c385ab1e8c23b67ddbfe)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  disabled input with flushed or unstyled variant isn't perceivable.
+* Updated dependencies
+  [[`c14010b45`](https://github.com/chakra-ui/chakra-ui/commit/c14010b45e9f472ef85b0c2d9d3aaf9f2e78299c),
+  [`dffc18b17`](https://github.com/chakra-ui/chakra-ui/commit/dffc18b1739ad148922fe98e4335457b298c8862),
+  [`99af1e29f`](https://github.com/chakra-ui/chakra-ui/commit/99af1e29fa7b8c8b0bee217227d05f695a0acb47)]:
+  - @chakra-ui/theme-tools@2.0.8
+  - @chakra-ui/utils@2.0.7
+
+## 2.1.5
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/anatomy@2.0.3
+  - @chakra-ui/theme-tools@2.0.7
+  - @chakra-ui/utils@2.0.6
+
+## 2.1.4
+
+### Patch Changes
+
+- [#6399](https://github.com/chakra-ui/chakra-ui/pull/6399)
+  [`b67d24d0c`](https://github.com/chakra-ui/chakra-ui/commit/b67d24d0c6d166dfebd74c5a7fd832ddd91a9c69)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Fix `exports` in the
+  `package.json`
+
+* [#6356](https://github.com/chakra-ui/chakra-ui/pull/6356)
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Force release due
+  to change in build configuration
+  - Update package `main` and `module` entries
+* Updated dependencies
+  [[`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/anatomy@2.0.2
+  - @chakra-ui/theme-tools@2.0.6
+  - @chakra-ui/utils@2.0.5
+
+## 2.1.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c11743b47`](https://github.com/chakra-ui/chakra-ui/commit/c11743b47f38f8f38a21b120add3a9cf765b81ee)]:
+  - @chakra-ui/utils@2.0.4
+  - @chakra-ui/theme-tools@2.0.5
+
+## 2.1.2
+
+### Patch Changes
+
+- [#6106](https://github.com/chakra-ui/chakra-ui/pull/6106)
+  [`be7a20f15`](https://github.com/chakra-ui/chakra-ui/commit/be7a20f155e571a24cb99f28a5b9a60fa3b80a61)
+  Thanks [@RubenSmn](https://github.com/RubenSmn)! - Add border radius of zero
+  to the default full size modal
+
+- Updated dependencies
+  [[`36ef37d58`](https://github.com/chakra-ui/chakra-ui/commit/36ef37d58220dffc4b8e35c31fdcc57042e9a859),
+  [`6c15ec2c2`](https://github.com/chakra-ui/chakra-ui/commit/6c15ec2c2a32a36ecc2d169308379a6825619543)]:
+  - @chakra-ui/utils@2.0.3
+  - @chakra-ui/theme-tools@2.0.4
+
 ## 2.1.1
 
 ### Patch Changes

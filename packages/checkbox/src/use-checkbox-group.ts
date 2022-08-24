@@ -1,33 +1,11 @@
-import { useCallbackRef, useControllableState } from "@chakra-ui/hooks"
-import { addItem, Dict, StringOrNumber, isInputEvent } from "@chakra-ui/utils"
-import { ChangeEvent, useCallback } from "react"
+import { useCallbackRef } from "@chakra-ui/react-use-callback-ref"
+import { useControllableState } from "@chakra-ui/react-use-controllable-state"
+import { isObject } from "@chakra-ui/shared-utils"
+import { useCallback } from "react"
+import { EventOrValue, UseCheckboxGroupProps } from "./checkbox-types"
 
-type EventOrValue = ChangeEvent<HTMLInputElement> | StringOrNumber
-
-export interface UseCheckboxGroupProps {
-  /**
-   * The value of the checkbox group
-   */
-  value?: StringOrNumber[]
-  /**
-   * The initial value of the checkbox group
-   */
-  defaultValue?: StringOrNumber[]
-  /**
-   * The callback fired when any children Checkbox is checked or unchecked
-   */
-  onChange?(value: StringOrNumber[]): void
-  /**
-   * If `true`, all wrapped checkbox inputs will be disabled
-   */
-  isDisabled?: boolean
-  /**
-   * If `true`, input elements will receive
-   * `checked` attribute instead of `isChecked`.
-   *
-   * This assumes, you're using native radio inputs
-   */
-  isNative?: boolean
+function isInputEvent(value: any): value is { target: HTMLInputElement } {
+  return value && isObject(value) && isObject(value.target)
 }
 
 /**
@@ -66,7 +44,7 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
         : eventOrValue
 
       const nextValue = isChecked
-        ? addItem(value, selectedValue)
+        ? [...value, selectedValue]
         : value.filter((v) => String(v) !== String(selectedValue))
 
       setValue(nextValue)
@@ -75,7 +53,7 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
   )
 
   const getCheckboxProps = useCallback(
-    (props: Dict = {}) => {
+    (props: Record<string, any> = {}) => {
       const checkedKey = isNative ? "checked" : "isChecked"
       return {
         ...props,

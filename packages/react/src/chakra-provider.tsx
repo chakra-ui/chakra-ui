@@ -1,9 +1,8 @@
-import * as React from "react"
 import {
   ChakraProvider as BaseChakraProvider,
   ChakraProviderProps as BaseChakraProviderProps,
 } from "@chakra-ui/provider"
-import { theme } from "@chakra-ui/theme"
+import { theme as defaultTheme } from "@chakra-ui/theme"
 import { ToastProvider, ToastProviderProps } from "@chakra-ui/toast"
 
 export interface ChakraProviderProps extends BaseChakraProviderProps {
@@ -13,17 +12,16 @@ export interface ChakraProviderProps extends BaseChakraProviderProps {
   toastOptions?: ToastProviderProps
 }
 
-export const ChakraProvider = ({
+export function ChakraProvider({
   children,
+  theme = defaultTheme,
   toastOptions,
   ...restProps
-}: ChakraProviderProps) => (
-  <BaseChakraProvider {...restProps}>
-    {children}
-    <ToastProvider {...toastOptions} />
-  </BaseChakraProvider>
-)
-
-ChakraProvider.defaultProps = {
-  theme,
+}: ChakraProviderProps) {
+  return (
+    <BaseChakraProvider theme={theme} {...restProps}>
+      {children}
+      <ToastProvider {...toastOptions} />
+    </BaseChakraProvider>
+  )
 }

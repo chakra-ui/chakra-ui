@@ -1,15 +1,9 @@
-import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
-import { Merge } from "@chakra-ui/utils"
+import { chakra, forwardRef } from "@chakra-ui/system"
 import * as React from "react"
-import { useClickable, UseClickableProps } from "../src"
+import { useClickable } from "../src"
 
-export type ClickableProps = Merge<UseClickableProps, HTMLChakraProps<"button">>
-
-const Clickable: React.FC<ClickableProps> = forwardRef((props, ref) => {
-  const clickable = useClickable({
-    ...props,
-    ref,
-  } as any) as HTMLChakraProps<"button">
+const Clickable: React.FC<any> = forwardRef((props, ref) => {
+  const clickable = useClickable({ ...props, ref })
   return <chakra.button display="inline-flex" {...clickable} />
 })
 

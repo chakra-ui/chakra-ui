@@ -1,4 +1,3 @@
-import * as React from "react"
 import {
   Alert,
   AlertDescription,
@@ -8,7 +7,7 @@ import {
 } from "@chakra-ui/alert"
 import { chakra } from "@chakra-ui/system"
 import { CloseButton } from "@chakra-ui/close-button"
-import { isFunction, MaybeFunction, runIfFn } from "@chakra-ui/utils"
+import { runIfFn } from "@chakra-ui/shared-utils"
 import type { UseToastOptions } from "./use-toast"
 import type { RenderProps, ToastId } from "./toast.types"
 import { getToastPlacement } from "./toast.placement"
@@ -32,27 +31,34 @@ export const Toast: React.FC<ToastProps> = (props) => {
     icon,
   } = props
 
-  const alertTitleId =
-    typeof id !== "undefined" ? `toast-${id}-title` : undefined
+  const ids = id
+    ? {
+        root: `toast-${id}`,
+        title: `toast-${id}-title`,
+        description: `toast-${id}-description`,
+      }
+    : undefined
 
   return (
     <Alert
+      addRole={false}
       status={status}
       variant={variant}
-      id={String(id)}
+      id={ids?.root}
       alignItems="start"
       borderRadius="md"
       boxShadow="lg"
       paddingEnd={8}
       textAlign="start"
       width="auto"
-      aria-labelledby={alertTitleId}
     >
       <AlertIcon>{icon}</AlertIcon>
       <chakra.div flex="1" maxWidth="100%">
-        {title && <AlertTitle id={alertTitleId}>{title}</AlertTitle>}
+        {title && <AlertTitle id={ids?.title}>{title}</AlertTitle>}
         {description && (
-          <AlertDescription display="block">{description}</AlertDescription>
+          <AlertDescription id={ids?.description} display="block">
+            {description}
+          </AlertDescription>
         )}
       </chakra.div>
       {isClosable && (
@@ -75,7 +81,7 @@ export function createRenderToast(
 ) {
   const { render, toastComponent: ToastComponent = Toast } = options
   const renderToast: React.FC<RenderProps> = (props) => {
-    if (isFunction(render)) {
+    if (typeof render === "function") {
       return render(props) as JSX.Element
     }
     return <ToastComponent {...props} {...options} />
@@ -145,3 +151,7 @@ export function createToastFn(
 
   return toast
 }
+
+export type CreateToastFnReturn = ReturnType<typeof createToastFn>
+
+type MaybeFunction<T, Args extends unknown[] = []> = T | ((...args: Args) => T)

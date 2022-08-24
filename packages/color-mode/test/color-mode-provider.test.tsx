@@ -10,11 +10,6 @@ import {
   mockMatchMedia,
 } from "./utils"
 
-jest.mock("@chakra-ui/utils", () => ({
-  ...jest.requireActual("@chakra-ui/utils"),
-  isBrowser: true,
-}))
-
 describe("<ColorModeProvider /> localStorage browser", () => {
   it.each(
     [

@@ -1,4 +1,4 @@
-import { breakpoints as defaultBreakPoints } from "@chakra-ui/utils"
+import { breakpoints as defaultBreakPoints } from "@chakra-ui/breakpoint-utils"
 
 export function getClosestValue<T = any>(
   values: Record<string, T>,
@@ -16,7 +16,7 @@ export function getClosestValue<T = any>(
   while (stopIndex >= 0) {
     const key = breakpoints[stopIndex]
 
-    if (values[key] != null) {
+    if (values.hasOwnProperty(key)) {
       index = stopIndex
       break
     }

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/styled-system",
-  "version": "2.2.1",
+  "version": "2.2.7",
   "description": "Style function for css-in-js building component libraries",
   "keywords": [
     "theme",
@@ -17,9 +17,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-styled-system.cjs.js",
-  "module": "dist/chakra-ui-styled-system.esm.js",
-  "types": "dist/chakra-ui-styled-system.cjs.d.ts",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -35,8 +35,26 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/utils": "2.0.2",
-    "csstype": "^3.0.11"
+    "csstype": "^3.0.11",
+    "lodash.mergewith": "4.6.2"
   },
-  "sideEffects": false
+  "devDependencies": {
+    "@chakra-ui/breakpoint-utils": "workspace:*",
+    "@chakra-ui/merge-utils": "workspace:*",
+    "@chakra-ui/object-utils": "workspace:*",
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@types/lodash.mergewith": "4.6.6",
+    "cronometro": "^1.1.0"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup --entry src/index.ts --entry src/theming.types.ts --entry src/shared.types.ts --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/index.ts",
+    "benchmark": "node benchmarks/benchmark.js"
+  }
 }

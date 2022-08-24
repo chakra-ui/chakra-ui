@@ -1,4 +1,4 @@
-import { AnyFunction, objectKeys } from "@chakra-ui/utils"
+type AnyFunction<T = any> = (...args: T[]) => any
 
 const state = {
   hover: (str: string, post: string) =>
@@ -314,4 +314,6 @@ export const pseudoSelectors = {
 
 export type Pseudos = typeof pseudoSelectors
 
-export const pseudoPropNames = objectKeys(pseudoSelectors)
+export const pseudoPropNames = Object.keys(
+  pseudoSelectors,
+) as (keyof typeof pseudoSelectors)[]

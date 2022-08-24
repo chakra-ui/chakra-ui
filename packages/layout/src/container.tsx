@@ -6,8 +6,7 @@ import {
   useStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { cx } from "@chakra-ui/shared-utils"
 
 export interface ContainerProps
   extends HTMLChakraProps<"div">,
@@ -27,7 +26,10 @@ export interface ContainerProps
  *
  * It also sets a default max-width of `60ch` (60 characters).
  */
-export const Container = forwardRef<ContainerProps, "div">((props, ref) => {
+export const Container = forwardRef<ContainerProps, "div">(function Container(
+  props,
+  ref,
+) {
   const { className, centerContent, ...rest } = omitThemingProps(props)
 
   const styles = useStyleConfig("Container", props)
@@ -49,6 +51,4 @@ export const Container = forwardRef<ContainerProps, "div">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  Container.displayName = "Container"
-}
+Container.displayName = "Container"

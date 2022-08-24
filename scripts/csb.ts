@@ -1,15 +1,21 @@
-/**
- * Write the packages to `.codesandbox/ci.json`
- */
+import findPackages from "find-packages"
+import path from "path"
+import { promises as fs } from "fs"
 
-import editJson from "edit-json-file"
-import shell from "shelljs"
+async function main() {
+  const pkgs = await findPackages(process.cwd(), {
+    includeRoot: false,
+    patterns: ["packages/**", "hooks/**", "utilities/**"],
+  })
 
-const ciJson = editJson(".codesandbox/ci.json")
+  const packages = pkgs.map((pkg) => path.relative(process.cwd(), pkg.dir))
 
-const packages = shell
-  .ls("-d", "packages/*")
-  .filter((p) => !p.endsWith("test-utils"))
+  const FILE = ".codesandbox/ci.json"
 
-ciJson.set("packages", packages)
-ciJson.save()
+  const content = await fs.readFile(FILE, "utf8")
+  const json = { ...JSON.parse(content), packages }
+
+  await fs.writeFile(FILE, JSON.stringify(json, null, 2))
+}
+
+main()

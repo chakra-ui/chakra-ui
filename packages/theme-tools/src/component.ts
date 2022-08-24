@@ -2,20 +2,20 @@ import type {
   SystemStyleObject,
   StyleFunctionProps,
   SystemStyleInterpolation,
-} from "@chakra-ui/system"
+} from "@chakra-ui/styled-system"
 import { Dict, runIfFn } from "@chakra-ui/utils"
 
 export type {
   StyleConfig,
   MultiStyleConfig,
   SystemStyleObject,
-  StyleFunctionProps,
+  // StyleFunctionProps,
   SystemStyleFunction,
   SystemStyleInterpolation,
   PartsStyleObject,
   PartsStyleFunction,
   PartsStyleInterpolation,
-} from "@chakra-ui/system"
+} from "@chakra-ui/styled-system"
 
 /* -----------------------------------------------------------------------------
  * Global Style object definitions
@@ -30,8 +30,6 @@ export type GlobalStyles = {
 export type JSXElementStyles = {
   [K in keyof JSX.IntrinsicElements]?: SystemStyleObject
 }
-
-export { runIfFn }
 
 export type Styles = GlobalStyles & JSXElementStyles
 
@@ -49,3 +47,5 @@ export function orient<T>(options: {
   if (!orientation) return {}
   return orientation === "vertical" ? vertical : horizontal
 }
+
+export type { StyleFunctionProps }

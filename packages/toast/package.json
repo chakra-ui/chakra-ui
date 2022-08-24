@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/toast",
-  "version": "3.0.0",
+  "version": "3.0.6",
   "description": "description",
   "keywords": [
     "theme",
@@ -12,9 +12,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/chakra-ui-toast.cjs.js",
-  "module": "dist/chakra-ui-toast.esm.js",
-  "types": "dist/chakra-ui-toast.cjs.d.ts",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -30,25 +30,34 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/alert": "2.0.2",
-    "@chakra-ui/close-button": "2.0.2",
-    "@chakra-ui/hooks": "2.0.2",
-    "@chakra-ui/portal": "2.0.2",
-    "@chakra-ui/react-utils": "2.0.1",
-    "@chakra-ui/theme": "2.1.1",
-    "@chakra-ui/transition": "2.0.2",
-    "@chakra-ui/utils": "2.0.2"
+    "@chakra-ui/alert": "workspace:*",
+    "@chakra-ui/close-button": "workspace:*",
+    "@chakra-ui/portal": "workspace:*",
+    "@chakra-ui/react-use-update-effect": "workspace:*",
+    "@chakra-ui/react-use-timeout": "workspace:*",
+    "@chakra-ui/theme": "workspace:*"
   },
   "devDependencies": {
-    "@chakra-ui/system": "2.2.0",
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/hooks": "workspace:*",
+    "@chakra-ui/button": "workspace:*",
+    "@chakra-ui/layout": "workspace:*",
     "framer-motion": "^6.2.9",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": "2.2.0",
+    "@chakra-ui/system": "2.2.6",
     "framer-motion": ">=4.0.0",
     "react": ">=18",
     "react-dom": ">=18"
+  },
+  "scripts": {
+    "build": "JSX=1 tsup src/index.ts --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "JSX=1 tsup src/index.ts"
   }
 }

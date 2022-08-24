@@ -1,5 +1,5 @@
 import { getOwnerDocument } from "@chakra-ui/utils"
-import React, { RefObject, useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import { useCallbackRef } from "./use-callback-ref"
 
 export interface UseOutsideClickProps {
@@ -10,7 +10,7 @@ export interface UseOutsideClickProps {
   /**
    * The reference to a DOM element.
    */
-  ref: RefObject<HTMLElement>
+  ref: React.RefObject<HTMLElement>
   /**
    * Function invoked when a click is triggered outside the referenced element.
    */

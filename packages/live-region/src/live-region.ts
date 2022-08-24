@@ -1,5 +1,7 @@
-import { isBrowser } from "@chakra-ui/utils"
-
+function isDom() {
+  return Boolean(globalThis?.document)
+}
+const isBrowser = isDom()
 export interface LiveRegionOptions {
   /**
    * A unique id for the created live region element

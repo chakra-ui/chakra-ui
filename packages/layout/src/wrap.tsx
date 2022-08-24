@@ -5,8 +5,9 @@ import {
   SystemProps,
   tokenToCSSVar,
 } from "@chakra-ui/system"
-import { cx, Dict, mapResponsive, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { cx } from "@chakra-ui/shared-utils"
+import { mapResponsive } from "@chakra-ui/breakpoint-utils"
+import { Children, useMemo } from "react"
 
 export interface WrapProps extends HTMLChakraProps<"div"> {
   /**
@@ -59,7 +60,7 @@ function px(value: number | string | null): string | null {
  *
  * @see Docs https://chakra-ui.com/wrap
  */
-export const Wrap = forwardRef<WrapProps, "div">((props, ref) => {
+export const Wrap = forwardRef<WrapProps, "div">(function Wrap(props, ref) {
   const {
     spacing = "0.5rem",
     spacingX,
@@ -73,15 +74,15 @@ export const Wrap = forwardRef<WrapProps, "div">((props, ref) => {
     ...rest
   } = props
 
-  const styles = React.useMemo(() => {
+  const styles = useMemo(() => {
     const { spacingX: x = spacing, spacingY: y = spacing } = {
       spacingX,
       spacingY,
     }
     return {
-      "--chakra-wrap-x-spacing": (theme: Dict) =>
+      "--chakra-wrap-x-spacing": (theme: Record<string, any>) =>
         mapResponsive(x, (value) => px(tokenToCSSVar("space", value)(theme))),
-      "--chakra-wrap-y-spacing": (theme: Dict) =>
+      "--chakra-wrap-y-spacing": (theme: Record<string, any>) =>
         mapResponsive(y, (value) => px(tokenToCSSVar("space", value)(theme))),
       "--wrap-x-spacing": "calc(var(--chakra-wrap-x-spacing) / 2)",
       "--wrap-y-spacing": "calc(var(--chakra-wrap-y-spacing) / 2)",
@@ -101,7 +102,7 @@ export const Wrap = forwardRef<WrapProps, "div">((props, ref) => {
   }, [spacing, spacingX, spacingY, justify, align, direction])
 
   const childrenToRender = shouldWrapChildren
-    ? React.Children.map(children, (child, index) => (
+    ? Children.map(children, (child, index) => (
         <WrapItem key={index}>{child}</WrapItem>
       ))
     : children
@@ -120,13 +121,14 @@ export const Wrap = forwardRef<WrapProps, "div">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  Wrap.displayName = "Wrap"
-}
+Wrap.displayName = "Wrap"
 
 export interface WrapItemProps extends HTMLChakraProps<"li"> {}
 
-export const WrapItem = forwardRef<WrapItemProps, "li">((props, ref) => {
+export const WrapItem = forwardRef<WrapItemProps, "li">(function WrapItem(
+  props,
+  ref,
+) {
   const { className, ...rest } = props
   return (
     <chakra.li
@@ -138,6 +140,4 @@ export const WrapItem = forwardRef<WrapItemProps, "li">((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  WrapItem.displayName = "WrapItem"
-}
+WrapItem.displayName = "WrapItem"

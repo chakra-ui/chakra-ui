@@ -1,5 +1,65 @@
 # Change Log
 
+## 2.0.8
+
+### Patch Changes
+
+- Force release
+
+## 2.0.7
+
+### Patch Changes
+
+- [#6462](https://github.com/chakra-ui/chakra-ui/pull/6462)
+  [`dffc18b17`](https://github.com/chakra-ui/chakra-ui/commit/dffc18b1739ad148922fe98e4335457b298c8862)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add pure annotation
+  to utils package
+
+* [#6466](https://github.com/chakra-ui/chakra-ui/pull/6466)
+  [`99af1e29f`](https://github.com/chakra-ui/chakra-ui/commit/99af1e29fa7b8c8b0bee217227d05f695a0acb47)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add pure annotation
+  to `isBrowser` to tree-shake when bundling
+
+## 2.0.6
+
+### Patch Changes
+
+- Force new release
+
+## 2.0.5
+
+### Patch Changes
+
+- [#6356](https://github.com/chakra-ui/chakra-ui/pull/6356)
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Force release due
+  to change in build configuration
+  - Update package `main` and `module` entries
+
+## 2.0.4
+
+### Patch Changes
+
+- [#6301](https://github.com/chakra-ui/chakra-ui/pull/6301)
+  [`c11743b47`](https://github.com/chakra-ui/chakra-ui/commit/c11743b47f38f8f38a21b120add3a9cf765b81ee)
+  Thanks [@effectivetom](https://github.com/effectivetom)! - Fix incorrect
+  breakpoint calculation which excluded some viewport widths from media query
+  coverage
+
+## 2.0.3
+
+### Patch Changes
+
+- [#6275](https://github.com/chakra-ui/chakra-ui/pull/6275)
+  [`36ef37d58`](https://github.com/chakra-ui/chakra-ui/commit/36ef37d58220dffc4b8e35c31fdcc57042e9a859)
+  Thanks [@Philzen](https://github.com/Philzen)! - Fix `TypeError` in
+  `getCSSVar` when the theme is an empty object
+
+* [#6257](https://github.com/chakra-ui/chakra-ui/pull/6257)
+  [`6c15ec2c2`](https://github.com/chakra-ui/chakra-ui/commit/6c15ec2c2a32a36ecc2d169308379a6825619543)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `getFocusables` causes excessive repaint due to computed style calls
+
 ## 2.0.2
 
 ### Patch Changes

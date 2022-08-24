@@ -1,6 +1,4 @@
-import { isFunction } from "@chakra-ui/utils"
-
-export type ColorMode = "light" | "dark"
+import { ColorMode } from "./color-mode-types"
 
 const classNames = {
   light: "chakra-ui-light",
@@ -38,11 +36,12 @@ export function getColorModeUtils(options: UtilOptions = {}) {
         fn(e.matches ? "dark" : "light")
       }
 
-      if (isFunction(mql.addListener)) mql.addListener(listener)
+      if (typeof mql.addListener === "function") mql.addListener(listener)
       else mql.addEventListener("change", listener)
 
       return () => {
-        if (isFunction(mql.removeListener)) mql.removeListener(listener)
+        if (typeof mql.removeListener === "function")
+          mql.removeListener(listener)
         else mql.removeEventListener("change", listener)
       }
     },

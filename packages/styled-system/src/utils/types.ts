@@ -1,4 +1,4 @@
-import { AnalyzeBreakpointsReturn, Dict } from "@chakra-ui/utils"
+import { AnalyzeBreakpointsReturn } from "@chakra-ui/breakpoint-utils"
 import { ThemeTypings } from "../theme.types"
 
 export type ResponsiveArray<T> = Array<T | null>
@@ -20,18 +20,25 @@ export type Token<
   ? ResponsiveValue<Union<CSSType | ThemeTypings[ThemeKey]>>
   : ResponsiveValue<CSSType>
 
-export type CSSMap = Dict<{ value: string; var: string; varRef: string }>
+export type CSSMap = Record<
+  string,
+  { value: string; var: string; varRef: string }
+>
 
-export type Transform = (value: any, theme: CssTheme, styles?: Dict) => any
+export type Transform = (
+  value: any,
+  theme: CssTheme,
+  styles?: Record<string, any>,
+) => any
 
 export type WithCSSVar<T> = T & {
-  __cssVars: Dict
+  __cssVars: Record<string, any>
   __cssMap: CSSMap
   __breakpoints: AnalyzeBreakpointsReturn
 }
 
 export type CssTheme = WithCSSVar<{
-  breakpoints: Dict
+  breakpoints: Record<string, any>
   direction?: "ltr" | "rtl"
   [key: string]: any
 }>

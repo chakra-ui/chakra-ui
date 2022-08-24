@@ -1,5 +1,118 @@
 # Change Log
 
+## 3.0.6
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/alert@2.0.8
+  - @chakra-ui/close-button@2.0.8
+  - @chakra-ui/hooks@2.0.8
+  - @chakra-ui/portal@2.0.8
+  - @chakra-ui/react-utils@2.0.5
+  - @chakra-ui/system@2.2.6
+  - @chakra-ui/theme@2.1.7
+  - @chakra-ui/transition@2.0.8
+  - @chakra-ui/utils@2.0.8
+
+## 3.0.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`2fd5d07eb`](https://github.com/chakra-ui/chakra-ui/commit/2fd5d07eb95e37a8b46257beefc462c97941cb23),
+  [`dffc18b17`](https://github.com/chakra-ui/chakra-ui/commit/dffc18b1739ad148922fe98e4335457b298c8862),
+  [`8eb793159`](https://github.com/chakra-ui/chakra-ui/commit/8eb793159fa5f3603db7c385ab1e8c23b67ddbfe),
+  [`99af1e29f`](https://github.com/chakra-ui/chakra-ui/commit/99af1e29fa7b8c8b0bee217227d05f695a0acb47),
+  [`04ff824ac`](https://github.com/chakra-ui/chakra-ui/commit/04ff824ac2f69aaa82d08bf2905ad4667327db12),
+  [`99af1e29f`](https://github.com/chakra-ui/chakra-ui/commit/99af1e29fa7b8c8b0bee217227d05f695a0acb47)]:
+  - @chakra-ui/theme@2.1.6
+  - @chakra-ui/utils@2.0.7
+  - @chakra-ui/alert@2.0.7
+  - @chakra-ui/hooks@2.0.7
+  - @chakra-ui/system@2.2.5
+  - @chakra-ui/close-button@2.0.7
+  - @chakra-ui/portal@2.0.7
+  - @chakra-ui/react-utils@2.0.4
+  - @chakra-ui/transition@2.0.7
+
+## 3.0.4
+
+### Patch Changes
+
+- Force new release
+
+- Updated dependencies []:
+  - @chakra-ui/alert@2.0.6
+  - @chakra-ui/close-button@2.0.6
+  - @chakra-ui/hooks@2.0.6
+  - @chakra-ui/portal@2.0.6
+  - @chakra-ui/react-utils@2.0.3
+  - @chakra-ui/system@2.2.4
+  - @chakra-ui/theme@2.1.5
+  - @chakra-ui/transition@2.0.6
+  - @chakra-ui/utils@2.0.6
+
+## 3.0.3
+
+### Patch Changes
+
+- [#6356](https://github.com/chakra-ui/chakra-ui/pull/6356)
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Force release due
+  to change in build configuration
+  - Update package `main` and `module` entries
+- Updated dependencies
+  [[`b67d24d0c`](https://github.com/chakra-ui/chakra-ui/commit/b67d24d0c6d166dfebd74c5a7fd832ddd91a9c69),
+  [`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
+  - @chakra-ui/theme@2.1.4
+  - @chakra-ui/alert@2.0.5
+  - @chakra-ui/close-button@2.0.5
+  - @chakra-ui/hooks@2.0.5
+  - @chakra-ui/portal@2.0.5
+  - @chakra-ui/react-utils@2.0.2
+  - @chakra-ui/system@2.2.3
+  - @chakra-ui/transition@2.0.5
+  - @chakra-ui/utils@2.0.5
+
+## 3.0.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`46b495455`](https://github.com/chakra-ui/chakra-ui/commit/46b495455fc416b166db18f5098ede7752b2e3ba),
+  [`c11743b47`](https://github.com/chakra-ui/chakra-ui/commit/c11743b47f38f8f38a21b120add3a9cf765b81ee)]:
+  - @chakra-ui/portal@2.0.4
+  - @chakra-ui/utils@2.0.4
+  - @chakra-ui/system@2.2.2
+  - @chakra-ui/alert@2.0.4
+  - @chakra-ui/close-button@2.0.4
+  - @chakra-ui/hooks@2.0.4
+  - @chakra-ui/theme@2.1.3
+  - @chakra-ui/transition@2.0.4
+
+## 3.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`8bfeefbb5`](https://github.com/chakra-ui/chakra-ui/commit/8bfeefbb562fc5ada4757309db6b951c421342ad),
+  [`36ef37d58`](https://github.com/chakra-ui/chakra-ui/commit/36ef37d58220dffc4b8e35c31fdcc57042e9a859),
+  [`b6aa32a4b`](https://github.com/chakra-ui/chakra-ui/commit/b6aa32a4b4af82e42d98a9afa427174ab4cb4ab7),
+  [`be7a20f15`](https://github.com/chakra-ui/chakra-ui/commit/be7a20f155e571a24cb99f28a5b9a60fa3b80a61),
+  [`3d8e095df`](https://github.com/chakra-ui/chakra-ui/commit/3d8e095dfc696b3d903455319231e77d1c21d875),
+  [`6c15ec2c2`](https://github.com/chakra-ui/chakra-ui/commit/6c15ec2c2a32a36ecc2d169308379a6825619543)]:
+  - @chakra-ui/alert@2.0.3
+  - @chakra-ui/utils@2.0.3
+  - @chakra-ui/transition@2.0.3
+  - @chakra-ui/theme@2.1.2
+  - @chakra-ui/portal@2.0.3
+  - @chakra-ui/close-button@2.0.3
+  - @chakra-ui/hooks@2.0.3
+  - @chakra-ui/system@2.2.1
+
 ## 3.0.0
 
 ### Patch Changes

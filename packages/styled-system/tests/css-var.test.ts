@@ -513,3 +513,38 @@ test("should convert semantic tokens", () => {
     }
   `)
 })
+
+test("should escape symbols in css var", () => {
+  const theme = {
+    colors: {
+      $red: "#ec0016",
+    },
+  }
+
+  expect(toCSSVar(theme)).toMatchInlineSnapshot(`
+    Object {
+      "__breakpoints": null,
+      "__cssMap": Object {
+        "colors.$red": Object {
+          "value": "#ec0016",
+          "var": "--colors-\\\\$red",
+          "varRef": "var(--colors-\\\\$red)",
+        },
+      },
+      "__cssVars": Object {
+        "--chakra-ring-color": "rgba(66, 153, 225, 0.6)",
+        "--chakra-ring-inset": "var(--chakra-empty,/*!*/ /*!*/)",
+        "--chakra-ring-offset-color": "#fff",
+        "--chakra-ring-offset-shadow": "0 0 #0000",
+        "--chakra-ring-offset-width": "0px",
+        "--chakra-ring-shadow": "0 0 #0000",
+        "--chakra-space-x-reverse": "0",
+        "--chakra-space-y-reverse": "0",
+        "--colors-\\\\$red": "#ec0016",
+      },
+      "colors": Object {
+        "$red": "#ec0016",
+      },
+    }
+  `)
+})

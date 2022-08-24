@@ -1,11 +1,12 @@
-import * as React from "react"
-import { useTimeout, useUpdateEffect } from "@chakra-ui/hooks"
-import { __DEV__, runIfFn } from "@chakra-ui/utils"
+import { useTimeout } from "@chakra-ui/react-use-timeout"
+import { useUpdateEffect } from "@chakra-ui/react-use-update-effect"
+import { runIfFn } from "@chakra-ui/shared-utils"
 import { motion, useIsPresent, Variants } from "framer-motion"
 import { chakra } from "@chakra-ui/system"
 import type { ToastOptions } from "./toast.types"
 import { getToastStyle } from "./toast.utils"
 import { ToastProviderProps } from "./toast.provider"
+import { memo, useEffect, useMemo, useState } from "react"
 
 const toastMotionVariants: Variants = {
   initial: (props) => {
@@ -45,7 +46,7 @@ export interface ToastComponentProps
   extends ToastOptions,
     Pick<ToastProviderProps, "motionVariants" | "toastSpacing"> {}
 
-export const ToastComponent = React.memo((props: ToastComponentProps) => {
+export const ToastComponent = memo((props: ToastComponentProps) => {
   const {
     id,
     message,
@@ -59,7 +60,7 @@ export const ToastComponent = React.memo((props: ToastComponentProps) => {
     toastSpacing = "0.5rem",
   } = props
 
-  const [delay, setDelay] = React.useState(duration)
+  const [delay, setDelay] = useState(duration)
   const isPresent = useIsPresent()
 
   useUpdateEffect(() => {
@@ -79,7 +80,7 @@ export const ToastComponent = React.memo((props: ToastComponentProps) => {
     if (isPresent) onRequestRemove()
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isPresent && requestClose) {
       onRequestRemove()
     }
@@ -87,7 +88,7 @@ export const ToastComponent = React.memo((props: ToastComponentProps) => {
 
   useTimeout(close, delay)
 
-  const containerStyles = React.useMemo(
+  const containerStyles = useMemo(
     () => ({
       pointerEvents: "auto",
       maxWidth: 560,
@@ -98,7 +99,7 @@ export const ToastComponent = React.memo((props: ToastComponentProps) => {
     [containerStyle, toastSpacing],
   )
 
-  const toastStyle = React.useMemo(() => getToastStyle(position), [position])
+  const toastStyle = useMemo(() => getToastStyle(position), [position])
 
   return (
     <motion.li
@@ -125,6 +126,4 @@ export const ToastComponent = React.memo((props: ToastComponentProps) => {
   )
 })
 
-if (__DEV__) {
-  ToastComponent.displayName = "ToastComponent"
-}
+ToastComponent.displayName = "ToastComponent"

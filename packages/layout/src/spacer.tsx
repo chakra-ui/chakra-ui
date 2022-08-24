@@ -1,5 +1,4 @@
 import { chakra, HTMLChakraProps } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
 
 export interface SpacerProps extends HTMLChakraProps<"div"> {}
 
@@ -17,6 +16,4 @@ export const Spacer = chakra("div", {
   },
 })
 
-if (__DEV__) {
-  Spacer.displayName = "Spacer"
-}
+Spacer.displayName = "Spacer"
