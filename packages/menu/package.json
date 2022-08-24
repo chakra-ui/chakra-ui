@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/menu",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "A React component to render accessible menus",
   "keywords": [
     "menu",

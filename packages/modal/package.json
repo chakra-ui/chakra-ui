@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/modal",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "An accessible dialog (modal) component for React & Chakra UI",
   "keywords": [
     "react",

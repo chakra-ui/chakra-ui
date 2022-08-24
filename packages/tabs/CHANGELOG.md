@@ -1,5 +1,33 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [#6541](https://github.com/chakra-ui/chakra-ui/pull/6541)
+  [`35b416761`](https://github.com/chakra-ui/chakra-ui/commit/35b416761841da30194b8967d72049a27d78d099)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Allow wrapping tab
+  panels
+
+### Patch Changes
+
+- [#6508](https://github.com/chakra-ui/chakra-ui/pull/6508)
+  [`445661955`](https://github.com/chakra-ui/chakra-ui/commit/445661955dff1329156b535ef50c7cf27b8663a9)
+  Thanks [@anubra266](https://github.com/anubra266)! - - Initial release of
+  react hooks
+  - Refactor all packages to reduce bundle size
+  - Refactor code for proper prop doc generatation
+- Updated dependencies
+  [[`445661955`](https://github.com/chakra-ui/chakra-ui/commit/445661955dff1329156b535ef50c7cf27b8663a9)]:
+  - @chakra-ui/react-context@2.0.3
+  - @chakra-ui/react-use-controllable-state@2.0.3
+  - @chakra-ui/react-use-merge-refs@2.0.3
+  - @chakra-ui/react-use-safe-layout-effect@2.0.1
+  - @chakra-ui/clickable@2.0.9
+  - @chakra-ui/descendant@3.0.8
+  - @chakra-ui/lazy-utils@2.0.1
+  - @chakra-ui/react-children-utils@2.0.1
+
 ## 2.0.10
 
 ### Patch Changes

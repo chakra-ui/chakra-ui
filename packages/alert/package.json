@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/alert",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "A React component used to alert users of a particular screen area that needs user action",
   "keywords": [
     "alert",
