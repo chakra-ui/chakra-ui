@@ -1,6 +1,6 @@
 ---
-"@chakra-ui/modal": major
-"@chakra-ui/theme": major
+"@chakra-ui/modal": minor
+"@chakra-ui/theme": minor
 ---
 
 add size to modal with reference to theme.sizes
