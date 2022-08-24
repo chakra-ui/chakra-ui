@@ -1,4 +1,3 @@
-export { anatomy } from "./anatomy"
 export * from "./config"
 export * from "./create-theme-vars"
 export * from "./css"
