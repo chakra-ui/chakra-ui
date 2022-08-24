@@ -1,11 +1,14 @@
 import { useMemo } from "react"
-import { DecoratorFunction } from "@storybook/addons"
+import { StoryContext, StoryFn } from "@storybook/addons"
 import { ChakraProvider, extendTheme, theme } from "@chakra-ui/react"
 import { ColorModeSync } from "../color-mode/ColorModeSync"
 import { useDirection } from "../direction/useDirection"
 import { DIRECTION_TOOL_ID } from "../../constants"
 
-export const ChakraProviderDecorator: DecoratorFunction = (story, context) => {
+export function ChakraProviderDecorator(
+  Story: StoryFn<any>,
+  context: StoryContext,
+) {
   const {
     parameters: { chakra: chakraParams },
     globals: { [DIRECTION_TOOL_ID]: globalDirection },
@@ -20,7 +23,7 @@ export const ChakraProviderDecorator: DecoratorFunction = (story, context) => {
   return (
     <ChakraProvider {...chakraParams} theme={themeWithDirectionOverride}>
       <ColorModeSync />
-      {story()}
+      <Story {...context} />
     </ChakraProvider>
   )
 }
