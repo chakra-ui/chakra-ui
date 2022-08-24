@@ -80,7 +80,7 @@ export interface ComponentSingleStyleConfig {
   baseStyle?: SystemStyleInterpolation
   sizes?: Record<string, SystemStyleInterpolation>
   variants?: Record<string, SystemStyleInterpolation>
-  defaultProps?: ComponentDefaultProps
+  defaultProps?: any
 }
 
 export interface ComponentMultiStyleConfig {
@@ -88,7 +88,7 @@ export interface ComponentMultiStyleConfig {
   baseStyle?: PartsStyleInterpolation
   sizes?: Record<string, PartsStyleInterpolation>
   variants?: Record<string, PartsStyleInterpolation>
-  defaultProps?: ComponentDefaultProps
+  defaultProps?: any
 }
 
 export type ComponentStyleConfig =
@@ -96,7 +96,7 @@ export type ComponentStyleConfig =
   | ComponentMultiStyleConfig
 
 export interface ThemeComponents {
-  [componentName: string]: any
+  [componentName: string]: ComponentStyleConfig
 }
 
 interface Typography {
