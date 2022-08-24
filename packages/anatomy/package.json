@@ -35,11 +35,5 @@
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src/index.ts"
-  },
-  "peerDependencies": {
-    "@chakra-ui/styled-system": ">=2.0.0-next.0"
-  },
-  "devDependencies": {
-    "@chakra-ui/styled-system": "2.2.1"
   }
 }
