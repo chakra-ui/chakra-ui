@@ -1,21 +1,7 @@
 import { createContext } from "@chakra-ui/react-context"
-import {
-  chakra,
-  forwardRef,
-  HTMLChakraProps,
-  SystemStyleObject,
-  ThemingProps,
-  useTheme,
-} from "@chakra-ui/system"
-import { Slide, SlideOptions } from "@chakra-ui/transition"
-import { cx } from "@chakra-ui/shared-utils"
-import {
-  Modal,
-  ModalFocusScope,
-  ModalProps,
-  useModalContext,
-  useModalStyles,
-} from "./modal"
+import { ThemingProps, useTheme } from "@chakra-ui/system"
+import { SlideOptions } from "@chakra-ui/transition"
+import { Modal, ModalProps } from "./modal"
 
 const [DrawerContextProvider, useDrawerContext] = createContext<DrawerOptions>()
 
@@ -88,79 +74,10 @@ export function Drawer(props: DrawerProps) {
   )
 }
 
-const StyledSlide = chakra(Slide)
-
-export interface DrawerContentProps extends HTMLChakraProps<"section"> {}
-
-/**
- * ModalContent is used to group modal's content. It has all the
- * necessary `aria-*` properties to indicate that it is a modal
- */
-export const DrawerContent = forwardRef<DrawerContentProps, "section">(
-  (props, ref) => {
-    const { className, children, ...rest } = props
-
-    const { getDialogProps, getDialogContainerProps, isOpen } =
-      useModalContext()
-
-    const dialogProps = getDialogProps(rest, ref) as any
-    const containerProps = getDialogContainerProps()
-
-    const _className = cx("chakra-modal__content", className)
-
-    const styles = useModalStyles()
-
-    const dialogStyles: SystemStyleObject = {
-      display: "flex",
-      flexDirection: "column",
-      position: "relative",
-      width: "100%",
-      outline: 0,
-      ...styles.dialog,
-    }
-
-    const dialogContainerStyles: SystemStyleObject = {
-      display: "flex",
-      width: "100vw",
-      height: "100vh",
-      position: "fixed",
-      left: 0,
-      top: 0,
-      ...styles.dialogContainer,
-    }
-
-    const { placement } = useDrawerContext()
-
-    return (
-      <chakra.div
-        {...containerProps}
-        className="chakra-modal__content-container"
-        __css={dialogContainerStyles}
-      >
-        <ModalFocusScope>
-          <StyledSlide
-            direction={placement}
-            in={isOpen}
-            className={_className}
-            {...dialogProps}
-            __css={dialogStyles}
-          >
-            {children}
-          </StyledSlide>
-        </ModalFocusScope>
-      </chakra.div>
-    )
-  },
-)
-
-DrawerContent.displayName = "DrawerContent"
-
-export {
-  ModalBody as DrawerBody,
-  ModalCloseButton as DrawerCloseButton,
-  ModalFooter as DrawerFooter,
-  ModalHeader as DrawerHeader,
-  ModalOverlay as DrawerOverlay,
-} from "./modal"
+export { ModalBody as DrawerBody } from "./modal-body"
+export { ModalCloseButton as DrawerCloseButton } from "./modal-close-button"
+export { ModalFooter as DrawerFooter } from "./modal-footer"
+export { ModalHeader as DrawerHeader } from "./modal-header"
+export { ModalOverlay as DrawerOverlay } from "./modal-overlay"
 
 export { useDrawerContext }
