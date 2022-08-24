@@ -1,4 +1,13 @@
 export * from "./modal"
+export * from "./modal-body"
+export * from "./modal-close-button"
+export * from "./modal-content"
+export * from "./modal-focus"
+export * from "./modal-footer"
+export * from "./modal-header"
+export * from "./modal-overlay"
+
 export * from "./use-modal"
 export * from "./alert-dialog"
 export * from "./drawer"
+export * from "./drawer-content"
