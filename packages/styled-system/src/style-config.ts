@@ -1,26 +1,21 @@
-import {
-  Dict,
-  isArray,
-  mergeWith,
-  runIfFn,
-  isObject,
-  toMediaQueryString,
-} from "@chakra-ui/utils"
+import { runIfFn, isObject } from "@chakra-ui/shared-utils"
+import mergeWith from "lodash.mergewith"
+import { toMediaQueryString } from "@chakra-ui/breakpoint-utils"
 import { ResponsiveValue, WithCSSVar } from "./utils"
 
-type Theme = WithCSSVar<Dict>
+type Theme = WithCSSVar<Record<string, any>>
 
 type Config = {
   parts?: string[]
-  baseStyle?: Dict
-  variants?: Dict
-  sizes?: Dict
+  baseStyle?: Record<string, any>
+  variants?: Record<string, any>
+  sizes?: Record<string, any>
 }
 
 type ValueType = ResponsiveValue<string | boolean>
 
 function normalize(value: ValueType | undefined, toArray: (val: any) => any[]) {
-  if (isArray(value)) return value
+  if (Array.isArray(value)) return value
   if (isObject(value)) return toArray(value)
   if (value != null) return [value]
 }
@@ -39,12 +34,12 @@ function createResolver(theme: Theme) {
     config: Config,
     prop: "variants" | "sizes",
     value: ValueType | undefined,
-    props: Dict,
+    props: Record<string, any>,
   ) {
     //
     if (!breakpointUtil) return
 
-    const result: Dict = {}
+    const result: Record<string, any> = {}
 
     const normalized = normalize(value, breakpointUtil.toArrayValue)
 

@@ -6,4 +6,4 @@ export {
   mapResponsive,
   breakpoints,
 } from "./responsive"
-export { analyzeBreakpoints, toMediaQueryString } from "./breakpoint"
+export * from "./breakpoint"

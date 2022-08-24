@@ -1,6 +1,5 @@
 import {
   chakra,
-  PropsOf,
   SystemProps,
   forwardRef,
   HTMLChakraProps,
@@ -12,31 +11,7 @@ import {
   useImage,
   UseImageProps,
 } from "./use-image"
-
-interface NativeImageOptions {
-  /**
-   * The native HTML `width` attribute to the passed to the `img`
-   */
-  htmlWidth?: string | number
-  /**
-   * The native HTML `height` attribute to the passed to the `img`
-   */
-  htmlHeight?: string | number
-}
-
-interface NativeImageProps extends PropsOf<"img">, NativeImageOptions {}
-
-const NativeImage = forwardRef(function NativeImage(
-  props: NativeImageProps,
-  ref: React.Ref<any>,
-) {
-  const { htmlWidth, htmlHeight, alt, ...rest } = props
-  return (
-    <img width={htmlWidth} height={htmlHeight} ref={ref} alt={alt} {...rest} />
-  )
-})
-
-NativeImage.displayName = "NativeImage"
+import { NativeImage, NativeImageOptions } from "./native-image"
 
 interface ImageOptions extends NativeImageOptions {
   /**
@@ -174,15 +149,5 @@ export const Image = forwardRef<ImageProps, "img">(function Image(props, ref) {
     />
   )
 })
-
-export interface ImgProps extends HTMLChakraProps<"img">, NativeImageOptions {}
-
-/**
- * Fallback component for most SSR users who want to use the native `img` with
- * support for chakra props
- */
-export const Img = forwardRef<ImgProps, "img">((props, ref) => (
-  <chakra.img ref={ref} as={NativeImage} className="chakra-image" {...props} />
-))
 
 Image.displayName = "Image"

@@ -1,12 +1,7 @@
 import { useDisclosure } from "@chakra-ui/hooks"
 import React from "react"
-import {
-  Drawer,
-  DrawerContent,
-  DrawerBody,
-  DrawerOverlay,
-  DrawerHeader,
-} from "../src/drawer"
+import { Drawer, DrawerBody, DrawerOverlay, DrawerHeader } from "../src/drawer"
+import { DrawerContent } from "../src/drawer-content"
 
 export default {
   title: "Components / Overlay / Modal / Drawer",

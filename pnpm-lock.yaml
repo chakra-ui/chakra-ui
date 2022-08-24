@@ -978,10 +978,12 @@ importers:
       '@chakra-ui/focus-lock': workspace:*
       '@chakra-ui/hooks': workspace:*
       '@chakra-ui/portal': workspace:*
-      '@chakra-ui/react-utils': workspace:*
+      '@chakra-ui/react-context': workspace:*
+      '@chakra-ui/react-types': workspace:*
+      '@chakra-ui/react-use-merge-refs': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/transition': workspace:*
-      '@chakra-ui/utils': workspace:*
       '@testing-library/react-hooks': 8.0.0
       aria-hidden: ^1.1.1
       framer-motion: ^6.2.9
@@ -992,14 +994,16 @@ importers:
     dependencies:
       '@chakra-ui/close-button': link:../close-button
       '@chakra-ui/focus-lock': link:../focus-lock
-      '@chakra-ui/hooks': link:../hooks
       '@chakra-ui/portal': link:../portal
-      '@chakra-ui/react-utils': link:../react-utils
+      '@chakra-ui/react-context': link:../../hooks/context
+      '@chakra-ui/react-types': link:../../utilities/react-types
+      '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
       '@chakra-ui/transition': link:../transition
-      '@chakra-ui/utils': link:../utils
       aria-hidden: 1.1.3
       react-remove-scroll: 2.5.5_react@18.2.0
     devDependencies:
+      '@chakra-ui/hooks': link:../hooks
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
       '@testing-library/react-hooks': 8.0.0_biqbaboplfbrettd7655fr4n2y
       framer-motion: 6.5.1_biqbaboplfbrettd7655fr4n2y
@@ -1439,17 +1443,27 @@ importers:
 
   packages/styled-system:
     specifiers:
-      '@chakra-ui/utils': workspace:*
+      '@chakra-ui/breakpoint-utils': workspace:*
+      '@chakra-ui/merge-utils': workspace:*
+      '@chakra-ui/object-utils': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
+      '@types/lodash.mergewith': 4.6.6
       cronometro: ^1.1.0
       csstype: ^3.0.11
+      lodash.mergewith: 4.6.2
     dependencies:
-      '@chakra-ui/utils': link:../utils
       csstype: 3.1.0
+      lodash.mergewith: 4.6.2
     devDependencies:
+      '@chakra-ui/breakpoint-utils': link:../../utilities/breakpoint-utils
+      '@chakra-ui/merge-utils': link:../../utilities/merge-utils
+      '@chakra-ui/object-utils': link:../../utilities/object-utils
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@emotion/react': 11.9.3
       '@emotion/styled': 11.9.3_@emotion+react@11.9.3
+      '@types/lodash.mergewith': 4.6.6
       cronometro: 1.1.0
 
   packages/switch:
@@ -10100,7 +10114,6 @@ packages:
     resolution: {integrity: sha512-RY/8IaVENjG19rxTZu9Nukqh0W2UrYgmBj5sdns4hWRZaV8PqR7wIKHFKzvOTjo4zVRV7sVI+yFhAJql12Kfqg==}
     dependencies:
       '@types/lodash': 4.14.182
-    dev: false
 
   /@types/lodash.throttle/4.1.7:
     resolution: {integrity: sha512-znwGDpjCHQ4FpLLx19w4OXDqq8+OvREa05H89obtSyXyOFKL3dDjCslsmfBz0T2FU8dmf5Wx1QvogbINiGIu9g==}

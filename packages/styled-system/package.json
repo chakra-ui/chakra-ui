@@ -35,12 +35,17 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/utils": "workspace:*",
-    "csstype": "^3.0.11"
+    "csstype": "^3.0.11",
+    "lodash.mergewith": "4.6.2"
   },
   "devDependencies": {
+    "@chakra-ui/breakpoint-utils": "workspace:*",
+    "@chakra-ui/merge-utils": "workspace:*",
+    "@chakra-ui/object-utils": "workspace:*",
+    "@chakra-ui/shared-utils": "workspace:*",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@types/lodash.mergewith": "4.6.6",
     "cronometro": "^1.1.0"
   },
   "sideEffects": false,

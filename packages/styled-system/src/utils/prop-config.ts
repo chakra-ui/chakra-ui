@@ -1,4 +1,3 @@
-import { Dict } from "@chakra-ui/utils"
 import * as CSS from "csstype"
 import { createTransform } from "./create-transform"
 import { ThemeScale } from "../create-theme-vars"
@@ -16,7 +15,7 @@ export interface PropConfig {
    *
    * It does not get replicated if value is responsive or styles are nested.
    */
-  static?: Dict
+  static?: Record<string, any>
   /**
    * The theme scale this maps to
    */
@@ -57,7 +56,7 @@ interface Opts {
 
 const getRtl =
   ({ rtl, ltr }: Opts["property"]) =>
-  (theme: Dict) =>
+  (theme: Record<string, any>) =>
     theme.direction === "rtl" ? rtl : ltr
 
 export function logical(options: Opts): PropConfig {

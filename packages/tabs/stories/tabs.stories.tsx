@@ -280,3 +280,24 @@ export const withinDrawer = () => (
     </DrawerOverlay>
   </Drawer>
 )
+
+export const WithTabPanelWrapper = () => (
+  <Tabs>
+    <TabList>
+      <Tab>FIrst Tab</Tab>
+      <Tab>Second Tab</Tab>
+      <Tab>Third Tab</Tab>
+    </TabList>
+    <TabPanels>
+      <div>
+        <TabPanel>Tab panel 1</TabPanel>
+      </div>
+      <div>
+        <TabPanel>Tab panel 2</TabPanel>
+      </div>
+      <div>
+        <TabPanel>Tab panel 3</TabPanel>
+      </div>
+    </TabPanels>
+  </Tabs>
+)

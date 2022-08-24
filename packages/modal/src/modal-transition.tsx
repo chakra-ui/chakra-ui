@@ -1,6 +1,5 @@
 import { chakra, ChakraProps } from "@chakra-ui/system"
 import { scaleFadeConfig, slideFadeConfig } from "@chakra-ui/transition"
-import { __DEV__ } from "@chakra-ui/utils"
 import { HTMLMotionProps, motion } from "framer-motion"
 import { forwardRef } from "react"
 
@@ -36,6 +35,4 @@ export const ModalTransition = forwardRef(
   },
 )
 
-if (__DEV__) {
-  ModalTransition.displayName = "ModalTransition"
-}
+ModalTransition.displayName = "ModalTransition"
