@@ -8,7 +8,8 @@ import {
 import { Slide } from "@chakra-ui/transition"
 
 import { useDrawerContext } from "./drawer"
-import { useModalContext, useModalStyles, ModalFocusScope } from "./modal"
+import { useModalContext, useModalStyles } from "./modal"
+import { ModalFocusScope } from "./modal-focus"
 
 const StyledSlide = chakra(Slide)
 
