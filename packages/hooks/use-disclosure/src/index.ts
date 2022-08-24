@@ -28,7 +28,8 @@ export function useDisclosure(props: UseDisclosureProps = {}) {
 
   const isControlled = isOpenProp !== undefined
 
-  const id = idProp ?? `disclosure-${useId()}`
+  const uid = useId()
+  const id = idProp ?? `disclosure-${uid}`
 
   const onClose = useCallback(() => {
     if (!isControlled) {

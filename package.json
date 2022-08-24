@@ -21,7 +21,7 @@
     "build:theme": "cd packages/components/theme && pnpm build:fast",
     "pretest": "pnpm build:theme",
     "test": "jest",
-    "lint": "eslint packages/**/**/src/ --ext .ts,.tsx --config .eslintrc",
+    "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc",
     "format:check": "prettier --check packages/**/**/src",
     "format:write": "prettier --write packages/**/**/src",
     "build:addon": "cd tooling/storybook-addon && pnpm build",

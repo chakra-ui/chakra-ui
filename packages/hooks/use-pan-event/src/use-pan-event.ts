@@ -54,7 +54,8 @@ export function usePanEvent(
     const node = ref.current
     if (!node || !hasPanEvents) return
     return addPointerEvent(node, "pointerdown", onPointerDown)
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasPanEvents])
 
   useEffect(() => {
     return () => {
