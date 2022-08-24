@@ -1,33 +1,14 @@
 import { sliderAnatomy as parts } from "@chakra-ui/anatomy"
-import type {
-  PartsStyleFunction,
-  StyleFunctionProps,
-  SystemStyleFunction,
-  SystemStyleObject,
+import {
+  createMultiStyleConfigHelpers,
+  defineStyle,
 } from "@chakra-ui/styled-system"
 import { mode, orient } from "@chakra-ui/theme-tools"
 
-function thumbOrientation(props: StyleFunctionProps): SystemStyleObject {
-  return orient({
-    orientation: props.orientation,
-    vertical: {
-      left: "50%",
-      transform: `translateX(-50%)`,
-      _active: {
-        transform: `translateX(-50%) scale(1.15)`,
-      },
-    },
-    horizontal: {
-      top: "50%",
-      transform: `translateY(-50%)`,
-      _active: {
-        transform: `translateY(-50%) scale(1.15)`,
-      },
-    },
-  })
-}
+const { defineMultiStyleConfig, definePartsStyle } =
+  createMultiStyleConfigHelpers(parts.keys)
 
-const baseStyleContainer: SystemStyleFunction = (props) => {
+const baseStyleContainer = defineStyle((props) => {
   const { orientation } = props
 
   return {
@@ -45,9 +26,9 @@ const baseStyleContainer: SystemStyleFunction = (props) => {
       horizontal: { w: "100%" },
     }),
   }
-}
+})
 
-const baseStyleTrack: SystemStyleFunction = (props) => {
+const baseStyleTrack = defineStyle((props) => {
   return {
     overflow: "hidden",
     borderRadius: "sm",
@@ -56,9 +37,28 @@ const baseStyleTrack: SystemStyleFunction = (props) => {
       bg: mode("gray.300", "whiteAlpha.300")(props),
     },
   }
-}
+})
 
-const baseStyleThumb: SystemStyleFunction = (props) => {
+const baseStyleThumb = defineStyle((props) => {
+  const { orientation } = props
+  const orientationStyle = orient({
+    orientation,
+    vertical: {
+      left: "50%",
+      transform: `translateX(-50%)`,
+      _active: {
+        transform: `translateX(-50%) scale(1.15)`,
+      },
+    },
+    horizontal: {
+      top: "50%",
+      transform: `translateY(-50%)`,
+      _active: {
+        transform: `translateY(-50%) scale(1.15)`,
+      },
+    },
+  })
+
   return {
     display: "flex",
     alignItems: "center",
@@ -75,11 +75,11 @@ const baseStyleThumb: SystemStyleFunction = (props) => {
     transitionDuration: "normal",
     _focusVisible: { boxShadow: "outline" },
     _disabled: { bg: "gray.300" },
-    ...thumbOrientation(props),
+    ...orientationStyle,
   }
-}
+})
 
-const baseStyleFilledTrack: SystemStyleFunction = (props) => {
+const baseStyleFilledTrack = defineStyle((props) => {
   const { colorScheme: c } = props
 
   return {
@@ -87,16 +87,16 @@ const baseStyleFilledTrack: SystemStyleFunction = (props) => {
     height: "inherit",
     bg: mode(`${c}.500`, `${c}.200`)(props),
   }
-}
+})
 
-const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
+const baseStyle = definePartsStyle((props) => ({
   container: baseStyleContainer(props),
   track: baseStyleTrack(props),
   thumb: baseStyleThumb(props),
   filledTrack: baseStyleFilledTrack(props),
-})
+}))
 
-const sizeLg: PartsStyleFunction<typeof parts> = (props) => {
+const sizeLg = definePartsStyle((props) => {
   return {
     thumb: { w: "16px", h: "16px" },
     track: orient({
@@ -105,9 +105,9 @@ const sizeLg: PartsStyleFunction<typeof parts> = (props) => {
       vertical: { w: "4px" },
     }),
   }
-}
+})
 
-const sizeMd: PartsStyleFunction<typeof parts> = (props) => {
+const sizeMd = definePartsStyle((props) => {
   return {
     thumb: { w: "14px", h: "14px" },
     track: orient({
@@ -116,9 +116,9 @@ const sizeMd: PartsStyleFunction<typeof parts> = (props) => {
       vertical: { w: "4px" },
     }),
   }
-}
+})
 
-const sizeSm: PartsStyleFunction<typeof parts> = (props) => {
+const sizeSm = definePartsStyle((props) => {
   return {
     thumb: { w: "10px", h: "10px" },
     track: orient({
@@ -127,7 +127,7 @@ const sizeSm: PartsStyleFunction<typeof parts> = (props) => {
       vertical: { w: "2px" },
     }),
   }
-}
+})
 
 const sizes = {
   lg: sizeLg,
@@ -135,14 +135,11 @@ const sizes = {
   sm: sizeSm,
 }
 
-const defaultProps = {
-  size: "md",
-  colorScheme: "blue",
-}
-
-export default {
-  parts: parts.keys,
-  sizes,
+export const sliderTheme = defineMultiStyleConfig({
   baseStyle,
-  defaultProps,
-}
+  sizes,
+  defaultProps: {
+    size: "md",
+    colorScheme: "blue",
+  },
+})

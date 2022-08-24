@@ -1,7 +1,7 @@
-import type { SystemStyleFunction } from "@chakra-ui/styled-system"
+import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
 import { mode } from "@chakra-ui/theme-tools"
 
-const baseStyle: SystemStyleFunction = (props) => {
+const baseStyle = defineStyle((props) => {
   return {
     bg: mode("gray.100", "whiteAlpha")(props),
     borderRadius: "md",
@@ -13,8 +13,8 @@ const baseStyle: SystemStyleFunction = (props) => {
     px: "0.4em",
     whiteSpace: "nowrap",
   }
-}
+})
 
-export default {
+export const kbdTheme = defineStyleConfig({
   baseStyle,
-}
+})

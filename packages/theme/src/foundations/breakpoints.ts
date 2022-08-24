@@ -1,6 +1,3 @@
-/**
- * Breakpoints for responsive design
- */
 const breakpoints = {
   base: "0em",
   sm: "30em",

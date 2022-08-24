@@ -7,9 +7,9 @@ import type {
   ThemingProps,
 } from "@chakra-ui/styled-system"
 import { Styles } from "@chakra-ui/theme-tools"
-import type { Dict } from "@chakra-ui/utils"
 
 type ColorMode = "light" | "dark"
+type Dict = Record<string, any>
 
 type ColorModeOptions = {
   initialColorMode?: "light" | "dark" | "system"
@@ -80,7 +80,7 @@ export interface ComponentSingleStyleConfig {
   baseStyle?: SystemStyleInterpolation
   sizes?: Record<string, SystemStyleInterpolation>
   variants?: Record<string, SystemStyleInterpolation>
-  defaultProps?: ComponentDefaultProps
+  defaultProps?: any
 }
 
 export interface ComponentMultiStyleConfig {
@@ -88,7 +88,7 @@ export interface ComponentMultiStyleConfig {
   baseStyle?: PartsStyleInterpolation
   sizes?: Record<string, PartsStyleInterpolation>
   variants?: Record<string, PartsStyleInterpolation>
-  defaultProps?: ComponentDefaultProps
+  defaultProps?: any
 }
 
 export type ComponentStyleConfig =

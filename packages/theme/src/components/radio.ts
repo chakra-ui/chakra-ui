@@ -1,19 +1,22 @@
 import { radioAnatomy as parts } from "@chakra-ui/anatomy"
 import {
-  PartsStyleFunction,
-  PartsStyleObject,
-  SystemStyleFunction,
+  createMultiStyleConfigHelpers,
+  defineStyle,
 } from "@chakra-ui/styled-system"
-import Checkbox from "./checkbox"
+import { runIfFn } from "../utils/run-if-fn"
+import { checkboxTheme } from "./checkbox"
 
-const baseStyleControl: SystemStyleFunction = (props) => {
-  const { control = {} } = Checkbox.baseStyle(props)
+const { defineMultiStyleConfig, definePartsStyle } =
+  createMultiStyleConfigHelpers(parts.keys)
+
+const baseStyleControl = defineStyle((props) => {
+  const controlStyle = runIfFn(checkboxTheme.baseStyle, props)?.control
 
   return {
-    ...control,
+    ...controlStyle,
     borderRadius: "full",
     _checked: {
-      ...(control as any)["_checked"],
+      ...controlStyle?.["_checked"],
       _before: {
         content: `""`,
         display: "inline-block",
@@ -25,37 +28,34 @@ const baseStyleControl: SystemStyleFunction = (props) => {
       },
     },
   }
-}
-
-const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
-  label: Checkbox.baseStyle(props).label,
-  container: Checkbox.baseStyle(props).container,
-  control: baseStyleControl(props),
 })
 
-const sizes: Record<string, PartsStyleObject<typeof parts>> = {
-  md: {
+const baseStyle = definePartsStyle((props) => ({
+  label: checkboxTheme.baseStyle?.(props).label,
+  container: checkboxTheme.baseStyle?.(props).container,
+  control: baseStyleControl(props),
+}))
+
+const sizes = {
+  md: definePartsStyle({
     control: { w: 4, h: 4 },
     label: { fontSize: "md" },
-  },
-  lg: {
+  }),
+  lg: definePartsStyle({
     control: { w: 5, h: 5 },
     label: { fontSize: "lg" },
-  },
-  sm: {
+  }),
+  sm: definePartsStyle({
     control: { width: 3, height: 3 },
     label: { fontSize: "sm" },
-  },
+  }),
 }
 
-const defaultProps = {
-  size: "md",
-  colorScheme: "blue",
-}
-
-export default {
-  parts: parts.keys,
+export const radioTheme = defineMultiStyleConfig({
   baseStyle,
   sizes,
-  defaultProps,
-}
+  defaultProps: {
+    size: "md",
+    colorScheme: "blue",
+  },
+})

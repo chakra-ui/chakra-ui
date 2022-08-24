@@ -1,53 +1,55 @@
-import type {
-  SystemStyleInterpolation,
-  SystemStyleObject,
-} from "@chakra-ui/styled-system"
-import Input from "./input"
+import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
+import { inputTheme } from "./input"
+import { runIfFn } from "../utils/run-if-fn"
 
-const baseStyle: SystemStyleObject = {
-  ...Input.baseStyle.field,
+const baseStyle = defineStyle({
+  ...inputTheme.baseStyle?.field,
   textAlign: "center",
-}
+})
 
-const sizes: Record<string, SystemStyleObject> = {
-  lg: {
+const sizes = {
+  lg: defineStyle({
     fontSize: "lg",
     w: 12,
     h: 12,
     borderRadius: "md",
-  },
-  md: {
+  }),
+  md: defineStyle({
     fontSize: "md",
     w: 10,
     h: 10,
     borderRadius: "md",
-  },
-  sm: {
+  }),
+  sm: defineStyle({
     fontSize: "sm",
     w: 8,
     h: 8,
     borderRadius: "sm",
-  },
-  xs: {
+  }),
+  xs: defineStyle({
     fontSize: "xs",
     w: 6,
     h: 6,
     borderRadius: "sm",
-  },
+  }),
 }
 
-const variants: Record<string, SystemStyleInterpolation> = {
-  outline: (props) => Input.variants.outline(props).field ?? {},
-  flushed: (props) => Input.variants.flushed(props).field ?? {},
-  filled: (props) => Input.variants.filled(props).field ?? {},
-  unstyled: Input.variants.unstyled.field ?? {},
+const variants = {
+  outline: defineStyle(
+    (props) => runIfFn(inputTheme.variants?.outline, props)?.field ?? {},
+  ),
+  flushed: defineStyle(
+    (props) => runIfFn(inputTheme.variants?.flushed, props)?.field ?? {},
+  ),
+  filled: defineStyle(
+    (props) => runIfFn(inputTheme.variants?.filled, props)?.field ?? {},
+  ),
+  unstyled: inputTheme.variants?.unstyled.field ?? {},
 }
 
-const defaultProps = Input.defaultProps
-
-export default {
+export const pinInputTheme = defineStyleConfig({
   baseStyle,
   sizes,
   variants,
-  defaultProps,
-}
+  defaultProps: inputTheme.defaultProps,
+})

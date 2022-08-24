@@ -1,39 +1,41 @@
 import { drawerAnatomy as parts } from "@chakra-ui/anatomy"
-import type {
-  PartsStyleFunction,
-  PartsStyleObject,
-  SystemStyleFunction,
-  SystemStyleObject,
+import {
+  createMultiStyleConfigHelpers,
+  defineStyle,
 } from "@chakra-ui/styled-system"
 import { mode } from "@chakra-ui/theme-tools"
+import { runIfFn } from "../utils/run-if-fn"
+
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(parts.keys)
 
 /**
  * Since the `maxWidth` prop references theme.sizes internally,
  * we can leverage that to size our modals.
  */
-function getSize(value: string): PartsStyleObject<typeof parts> {
+function getSize(value: string) {
   if (value === "full") {
-    return {
+    return definePartsStyle({
       dialog: { maxW: "100vw", h: "100vh" },
-    }
+    })
   }
-  return {
+  return definePartsStyle({
     dialog: { maxW: value },
-  }
+  })
 }
 
-const baseStyleOverlay: SystemStyleObject = {
+const baseStyleOverlay = defineStyle({
   bg: "blackAlpha.600",
   zIndex: "overlay",
-}
+})
 
-const baseStyleDialogContainer: SystemStyleObject = {
+const baseStyleDialogContainer = defineStyle({
   display: "flex",
   zIndex: "modal",
   justifyContent: "center",
-}
+})
 
-const baseStyleDialog: SystemStyleFunction = (props) => {
+const baseStyleDialog = defineStyle((props) => {
   const { isFullHeight } = props
 
   return {
@@ -44,42 +46,42 @@ const baseStyleDialog: SystemStyleFunction = (props) => {
     color: "inherit",
     boxShadow: mode("lg", "dark-lg")(props),
   }
-}
+})
 
-const baseStyleHeader: SystemStyleObject = {
+const baseStyleHeader = defineStyle({
   px: 6,
   py: 4,
   fontSize: "xl",
   fontWeight: "semibold",
-}
+})
 
-const baseStyleCloseButton: SystemStyleObject = {
+const baseStyleCloseButton = defineStyle({
   position: "absolute",
   top: 2,
   insetEnd: 3,
-}
+})
 
-const baseStyleBody: SystemStyleObject = {
+const baseStyleBody = defineStyle({
   px: 6,
   py: 2,
   flex: 1,
   overflow: "auto",
-}
+})
 
-const baseStyleFooter: SystemStyleObject = {
+const baseStyleFooter = defineStyle({
   px: 6,
   py: 4,
-}
+})
 
-const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
+const baseStyle = definePartsStyle((props) => ({
   overlay: baseStyleOverlay,
   dialogContainer: baseStyleDialogContainer,
-  dialog: baseStyleDialog(props),
+  dialog: runIfFn(baseStyleDialog, props),
   header: baseStyleHeader,
   closeButton: baseStyleCloseButton,
   body: baseStyleBody,
   footer: baseStyleFooter,
-})
+}))
 
 const sizes = {
   xs: getSize("xs"),
@@ -90,13 +92,10 @@ const sizes = {
   full: getSize("full"),
 }
 
-const defaultProps = {
-  size: "xs",
-}
-
-export default {
-  parts: parts.keys,
+export const drawerTheme = defineMultiStyleConfig({
   baseStyle,
   sizes,
-  defaultProps,
-}
+  defaultProps: {
+    size: "xs",
+  },
+})

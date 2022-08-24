@@ -1,10 +1,14 @@
-import type { SystemStyleFunction } from "@chakra-ui/styled-system"
-import { getColor, mode, cssVar } from "@chakra-ui/theme-tools"
+import {
+  cssVar,
+  defineStyle,
+  defineStyleConfig,
+} from "@chakra-ui/styled-system"
+import { getColor, mode } from "@chakra-ui/theme-tools"
 
 const $startColor = cssVar("skeleton-start-color")
 const $endColor = cssVar("skeleton-end-color")
 
-const baseStyle: SystemStyleFunction = (props) => {
+const baseStyle = defineStyle((props) => {
   const defaultStartColor = mode("gray.100", "gray.800")(props)
   const defaultEndColor = mode("gray.400", "gray.600")(props)
 
@@ -25,8 +29,8 @@ const baseStyle: SystemStyleFunction = (props) => {
     borderColor: start,
     background: end,
   }
-}
+})
 
-export default {
+export const skeletonTheme = defineStyleConfig({
   baseStyle,
-}
+})

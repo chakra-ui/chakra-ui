@@ -1,6 +1,6 @@
-import type { SystemStyleObject } from "@chakra-ui/styled-system"
+import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
 
-const baseStyle: SystemStyleObject = {
+const baseStyle = defineStyle({
   transitionProperty: "common",
   transitionDuration: "fast",
   transitionTimingFunction: "ease-out",
@@ -14,8 +14,8 @@ const baseStyle: SystemStyleObject = {
   _focusVisible: {
     boxShadow: "outline",
   },
-}
+})
 
-export default {
+export const linkTheme = defineStyleConfig({
   baseStyle,
-}
+})

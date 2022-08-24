@@ -1,37 +1,35 @@
-import { SystemStyleObject } from "@chakra-ui/styled-system"
+import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
 import { cssVar } from "@chakra-ui/theme-tools"
 
 const $size = cssVar("spinner-size")
 
-const baseStyle: SystemStyleObject = {
+const baseStyle = defineStyle({
   width: [$size.reference],
   height: [$size.reference],
-}
+})
 
-const sizes: Record<string, SystemStyleObject> = {
-  xs: {
+const sizes = {
+  xs: defineStyle({
     [$size.variable]: "0.75rem",
-  },
-  sm: {
+  }),
+  sm: defineStyle({
     [$size.variable]: "1rem",
-  },
-  md: {
+  }),
+  md: defineStyle({
     [$size.variable]: "1.5rem",
-  },
-  lg: {
+  }),
+  lg: defineStyle({
     [$size.variable]: "2rem",
-  },
-  xl: {
+  }),
+  xl: defineStyle({
     [$size.variable]: "3rem",
-  },
+  }),
 }
 
-const defaultProps = {
-  size: "md",
-}
-
-export default {
+export const spinnerTheme = defineStyleConfig({
   baseStyle,
   sizes,
-  defaultProps,
-}
+  defaultProps: {
+    size: "md",
+  },
+})

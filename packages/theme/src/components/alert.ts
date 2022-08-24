@@ -1,12 +1,12 @@
 import { alertAnatomy as parts } from "@chakra-ui/anatomy"
+import type { StyleFunctionProps } from "@chakra-ui/styled-system"
+import { createMultiStyleConfigHelpers } from "@chakra-ui/styled-system"
 import { getColor, mode, transparentize } from "@chakra-ui/theme-tools"
-import type {
-  PartsStyleObject,
-  PartsStyleFunction,
-  StyleFunctionProps,
-} from "@chakra-ui/styled-system"
 
-const baseStyle: PartsStyleObject<typeof parts> = {
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(parts.keys)
+
+const baseStyle = definePartsStyle({
   container: {
     px: 4,
     py: 3,
@@ -31,7 +31,7 @@ const baseStyle: PartsStyleObject<typeof parts> = {
     w: 5,
     h: 5,
   },
-}
+})
 
 function getBg(props: StyleFunctionProps): string {
   const { theme, colorScheme: c } = props
@@ -40,7 +40,7 @@ function getBg(props: StyleFunctionProps): string {
   return mode(lightBg, darkBg)(props)
 }
 
-const variantSubtle: PartsStyleFunction<typeof parts> = (props) => {
+const variantSubtle = definePartsStyle((props) => {
   const { colorScheme: c } = props
   return {
     container: { bg: getBg(props) },
@@ -49,9 +49,9 @@ const variantSubtle: PartsStyleFunction<typeof parts> = (props) => {
       color: mode(`${c}.500`, `${c}.200`)(props),
     },
   }
-}
+})
 
-const variantLeftAccent: PartsStyleFunction<typeof parts> = (props) => {
+const variantLeftAccent = definePartsStyle((props) => {
   const { colorScheme: c } = props
   return {
     container: {
@@ -67,9 +67,9 @@ const variantLeftAccent: PartsStyleFunction<typeof parts> = (props) => {
       color: mode(`${c}.500`, `${c}.200`)(props),
     },
   }
-}
+})
 
-const variantTopAccent: PartsStyleFunction<typeof parts> = (props) => {
+const variantTopAccent = definePartsStyle((props) => {
   const { colorScheme: c } = props
   return {
     container: {
@@ -85,9 +85,9 @@ const variantTopAccent: PartsStyleFunction<typeof parts> = (props) => {
       color: mode(`${c}.500`, `${c}.200`)(props),
     },
   }
-}
+})
 
-const variantSolid: PartsStyleFunction<typeof parts> = (props) => {
+const variantSolid = definePartsStyle((props) => {
   const { colorScheme: c } = props
   return {
     container: {
@@ -95,7 +95,7 @@ const variantSolid: PartsStyleFunction<typeof parts> = (props) => {
       color: mode(`white`, `gray.900`)(props),
     },
   }
-}
+})
 
 const variants = {
   subtle: variantSubtle,
@@ -104,14 +104,11 @@ const variants = {
   solid: variantSolid,
 }
 
-const defaultProps = {
-  variant: "subtle",
-  colorScheme: "blue",
-}
-
-export default {
-  parts: parts.keys,
+export const alertTheme = defineMultiStyleConfig({
   baseStyle,
   variants,
-  defaultProps,
-}
+  defaultProps: {
+    variant: "subtle",
+    colorScheme: "blue",
+  },
+})

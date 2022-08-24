@@ -64,13 +64,13 @@
   },
   "dependencies": {
     "@chakra-ui/anatomy": "workspace:*",
-    "@chakra-ui/theme-tools": "workspace:*",
-    "@chakra-ui/utils": "workspace:*"
+    "@chakra-ui/theme-tools": "workspace:*"
   },
   "peerDependencies": {
     "@chakra-ui/styled-system": ">=2.0.0"
   },
   "devDependencies": {
+    "@chakra-ui/shared-utils": "workspace:*",
     "@chakra-ui/cli": "workspace:*",
     "@chakra-ui/styled-system": "workspace:*"
   },

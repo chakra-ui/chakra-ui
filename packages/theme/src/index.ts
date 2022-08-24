@@ -24,6 +24,6 @@ export const theme = {
 export type Theme = typeof theme
 
 export * from "./theme.types"
-export * from "./utils"
+export * from "./utils/is-chakra-theme"
 
 export default theme

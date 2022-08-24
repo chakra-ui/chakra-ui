@@ -1602,29 +1602,33 @@ importers:
     specifiers:
       '@chakra-ui/anatomy': workspace:*
       '@chakra-ui/cli': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/styled-system': workspace:*
       '@chakra-ui/theme-tools': workspace:*
-      '@chakra-ui/utils': workspace:*
     dependencies:
       '@chakra-ui/anatomy': link:../anatomy
       '@chakra-ui/theme-tools': link:../theme-tools
-      '@chakra-ui/utils': link:../utils
     devDependencies:
       '@chakra-ui/cli': link:../../tooling/cli
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/styled-system': link:../styled-system
 
   packages/theme-tools:
     specifiers:
       '@chakra-ui/anatomy': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/styled-system': workspace:*
-      '@chakra-ui/utils': workspace:*
       '@ctrl/tinycolor': ^3.4.0
+      '@types/dlv': ^1.1.2
+      dlv: ^1.1.3
     dependencies:
       '@chakra-ui/anatomy': link:../anatomy
-      '@chakra-ui/utils': link:../utils
       '@ctrl/tinycolor': 3.4.1
     devDependencies:
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/styled-system': link:../styled-system
+      '@types/dlv': 1.1.2
+      dlv: 1.1.3
 
   packages/toast:
     specifiers:
@@ -8662,6 +8666,10 @@ packages:
 
   /@types/debug/0.0.30:
     resolution: {integrity: sha512-orGL5LXERPYsLov6CWs3Fh6203+dXzJkR7OnddIr2514Hsecwc8xRpzCapshBbKFImCsvS/mk6+FWiN5LyZJAQ==}
+
+  /@types/dlv/1.1.2:
+    resolution: {integrity: sha512-OyiZ3jEKu7RtGO1yp9oOdK0cTwZ/10oE9PDJ6fyN3r9T5wkyOcvr6awdugjYdqF6KVO5eUvt7jx7rk2Eylufow==}
+    dev: true
 
   /@types/edit-json-file/1.7.0:
     resolution: {integrity: sha512-yZrbGD4Qp92s6xU80MWBdz9vJE8k8EbO+gLWYb4W1UL9WYVUMOtUr5zvKlKgbcc2veYmFLO9dPnYA9Mxul0lOw==}

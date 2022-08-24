@@ -1,5 +1,5 @@
 import type { ArgTypes } from "@storybook/react"
-import type { ThemingProps, ThemeComponents } from "@chakra-ui/react"
+import type { ThemingProps } from "@chakra-ui/react"
 
 /**
  * `keyof` alternative which omits non-string keys
@@ -65,8 +65,8 @@ function validateColorScheme(value: object) {
  */
 export function getThemingArgTypes<
   Theme extends {
-    colors: object
-    components: ThemeComponents
+    colors: Record<string, any>
+    components: Record<string, any>
   },
   ComponentName extends KeyOf<Theme["components"]>,
 >(theme: Theme, componentName: ComponentName) {

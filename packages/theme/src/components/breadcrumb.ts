@@ -1,10 +1,13 @@
 import { breadcrumbAnatomy as parts } from "@chakra-ui/anatomy"
-import type {
-  PartsStyleObject,
-  SystemStyleObject,
+import {
+  createMultiStyleConfigHelpers,
+  defineStyle,
 } from "@chakra-ui/styled-system"
 
-const baseStyleLink: SystemStyleObject = {
+const { defineMultiStyleConfig, definePartsStyle } =
+  createMultiStyleConfigHelpers(parts.keys)
+
+const baseStyleLink = defineStyle({
   transitionProperty: "common",
   transitionDuration: "fast",
   transitionTimingFunction: "ease-out",
@@ -18,13 +21,12 @@ const baseStyleLink: SystemStyleObject = {
   _focusVisible: {
     boxShadow: "outline",
   },
-}
+})
 
-const baseStyle: PartsStyleObject<typeof parts> = {
+const baseStyle = definePartsStyle({
   link: baseStyleLink,
-}
+})
 
-export default {
-  parts: parts.keys,
+export const breadcrumbTheme = defineMultiStyleConfig({
   baseStyle,
-}
+})

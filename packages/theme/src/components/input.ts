@@ -1,12 +1,14 @@
 import { inputAnatomy as parts } from "@chakra-ui/anatomy"
-import type {
-  PartsStyleFunction,
-  PartsStyleObject,
-  SystemStyleObject,
+import {
+  createMultiStyleConfigHelpers,
+  defineStyle,
 } from "@chakra-ui/styled-system"
 import { getColor, mode } from "@chakra-ui/theme-tools"
 
-const baseStyle: PartsStyleObject<typeof parts> = {
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(parts.keys)
+
+const baseStyle = definePartsStyle({
   field: {
     width: "100%",
     minWidth: 0,
@@ -16,55 +18,52 @@ const baseStyle: PartsStyleObject<typeof parts> = {
     transitionProperty: "common",
     transitionDuration: "normal",
   },
-}
+})
 
-const size: Record<string, SystemStyleObject> = {
-  lg: {
+const size = {
+  lg: defineStyle({
     fontSize: "lg",
     px: 4,
     h: 12,
     borderRadius: "md",
-  },
-
-  md: {
+  }),
+  md: defineStyle({
     fontSize: "md",
     px: 4,
     h: 10,
     borderRadius: "md",
-  },
-
-  sm: {
+  }),
+  sm: defineStyle({
     fontSize: "sm",
     px: 3,
     h: 8,
     borderRadius: "sm",
-  },
-
-  xs: {
+  }),
+  xs: defineStyle({
     fontSize: "xs",
     px: 2,
     h: 6,
     borderRadius: "sm",
-  },
+  }),
 }
 
-const sizes: Record<string, PartsStyleObject<typeof parts>> = {
-  lg: {
+const sizes = {
+  lg: definePartsStyle({
     field: size.lg,
     addon: size.lg,
-  },
-  md: {
+  }),
+  md: definePartsStyle({
     field: size.md,
     addon: size.md,
-  },
-  sm: {
+  }),
+  sm: definePartsStyle({
     field: size.sm,
     addon: size.sm,
-  },
-  xs: {
+  }),
+  xs: definePartsStyle({
     field: size.xs,
     addon: size.xs,
-  },
+  }),
 }
 
 function getDefaults(props: Record<string, any>) {
@@ -75,7 +74,7 @@ function getDefaults(props: Record<string, any>) {
   }
 }
 
-const variantOutline: PartsStyleFunction<typeof parts> = (props) => {
+const variantOutline = definePartsStyle((props) => {
   const { theme } = props
   const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
 
@@ -111,9 +110,9 @@ const variantOutline: PartsStyleFunction<typeof parts> = (props) => {
       bg: mode("gray.100", "whiteAlpha.300")(props),
     },
   }
-}
+})
 
-const variantFilled: PartsStyleFunction<typeof parts> = (props) => {
+const variantFilled = definePartsStyle((props) => {
   const { theme } = props
   const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
 
@@ -147,9 +146,9 @@ const variantFilled: PartsStyleFunction<typeof parts> = (props) => {
       bg: mode("gray.100", "whiteAlpha.50")(props),
     },
   }
-}
+})
 
-const variantFlushed: PartsStyleFunction<typeof parts> = (props) => {
+const variantFlushed = definePartsStyle((props) => {
   const { theme } = props
   const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
 
@@ -185,9 +184,9 @@ const variantFlushed: PartsStyleFunction<typeof parts> = (props) => {
       bg: "transparent",
     },
   }
-}
+})
 
-const variantUnstyled: PartsStyleObject<typeof parts> = {
+const variantUnstyled = definePartsStyle({
   field: {
     bg: "transparent",
     px: 0,
@@ -202,7 +201,7 @@ const variantUnstyled: PartsStyleObject<typeof parts> = {
     px: 0,
     height: "auto",
   },
-}
+})
 
 const variants = {
   outline: variantOutline,
@@ -211,15 +210,12 @@ const variants = {
   unstyled: variantUnstyled,
 }
 
-const defaultProps = {
-  size: "md",
-  variant: "outline",
-}
-
-export default {
-  parts: parts.keys,
+export const inputTheme = defineMultiStyleConfig({
   baseStyle,
   sizes,
   variants,
-  defaultProps,
-}
+  defaultProps: {
+    size: "md",
+    variant: "outline",
+  },
+})

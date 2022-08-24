@@ -1,17 +1,17 @@
-import type { SystemStyleObject } from "@chakra-ui/styled-system"
-import Badge from "./badge"
+import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
+import { badgeTheme } from "./badge"
 
-const { variants, defaultProps } = Badge
+const { variants, defaultProps } = badgeTheme
 
-const baseStyle: SystemStyleObject = {
+const baseStyle = defineStyle({
   fontFamily: "mono",
   fontSize: "sm",
   px: "0.2em",
   borderRadius: "sm",
-}
+})
 
-export default {
+export const codeTheme = defineStyleConfig({
   baseStyle,
   variants,
   defaultProps,
-}
+})
