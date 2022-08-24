@@ -101,7 +101,7 @@ export const Select = forwardRef<SelectProps, "select">((props, ref) => {
     ...styles.field,
     _focus: {
       zIndex: "unset",
-      ...(styles as any).field["_focus"],
+      ...(styles as any).field?.["_focus"],
     },
   }
 
