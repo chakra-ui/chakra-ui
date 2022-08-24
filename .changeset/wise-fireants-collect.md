@@ -1,15 +1,20 @@
 ---
-"@chakra-ui/stat": patch
 "@chakra-ui/react-context": patch
+"@chakra-ui/react-use-animation-state": patch
 "@chakra-ui/react-use-callback-ref": patch
 "@chakra-ui/react-use-controllable-state": patch
 "@chakra-ui/react-use-disclosure": patch
 "@chakra-ui/react-use-event-listener": patch
+"@chakra-ui/react-use-focus-effect": patch
 "@chakra-ui/react-use-focus-on-pointer-down": patch
+"@chakra-ui/react-use-interval": patch
 "@chakra-ui/react-use-merge-refs": patch
+"@chakra-ui/react-use-outside-click": patch
 "@chakra-ui/react-use-pan-event": patch
+"@chakra-ui/react-use-previous": patch
 "@chakra-ui/react-use-safe-layout-effect": patch
 "@chakra-ui/react-use-size": patch
+"@chakra-ui/react-use-timeout": patch
 "@chakra-ui/react-use-update-effect": patch
 "@chakra-ui/accordion": patch
 "@chakra-ui/alert": patch
@@ -54,6 +59,7 @@
 "@chakra-ui/skip-nav": patch
 "@chakra-ui/slider": patch
 "@chakra-ui/spinner": patch
+"@chakra-ui/stat": patch
 "@chakra-ui/styled-system": patch
 "@chakra-ui/switch": patch
 "@chakra-ui/system": patch
@@ -88,4 +94,6 @@
 "@chakra-ui/shared-utils": patch
 ---
 
-Refactor all packages to reduce bundle size
+- Initial release of react hooks
+- Refactor all packages to reduce bundle size
+- Refactor code for proper prop doc generatation
