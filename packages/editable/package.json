@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/editable",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "React component used to build inline-editable components",
   "keywords": [
     "chakra ui",

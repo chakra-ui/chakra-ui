@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/checkbox",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "description": "A React Checkbox component for use in forms",
   "keywords": [
     "react",
