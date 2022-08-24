@@ -3,7 +3,7 @@ const fs = require("fs")
 
 // [Workaround] This logic means `"../packages/components/*/stories/*.stories.tsx"` but it's much faster.
 function getStories(pkg) {
-  const scope = pkg ? [pkg] : fs.readdirSync("packages")
+  const scope = pkg ? [pkg] : fs.readdirSync("packages/components")
   return scope
     .map((package) => `packages/components/${package}/stories`)
     .filter((storyDir) => fs.existsSync(storyDir))
