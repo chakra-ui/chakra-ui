@@ -3,9 +3,10 @@ import {
   createMultiStyleConfigHelpers,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { calc, cssVar, mode, runIfFn } from "@chakra-ui/theme-tools"
+import { calc, cssVar, mode } from "@chakra-ui/theme-tools"
 import typography from "../foundations/typography"
 import { inputTheme } from "./input"
+import { runIfFn } from "../utils/run-if-fn"
 
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
@@ -44,9 +45,9 @@ const baseStyleStepper = defineStyle((props) => {
 
 const baseStyle = definePartsStyle((props) => ({
   root: baseStyleRoot,
-  field: baseStyleField,
+  field: baseStyleField as any,
   stepperGroup: baseStyleStepperGroup,
-  stepper: runIfFn(baseStyleStepper, props),
+  stepper: runIfFn(baseStyleStepper, props) ?? {},
 }))
 
 type FontSize = keyof typeof typography.fontSizes

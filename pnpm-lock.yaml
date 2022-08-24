@@ -1602,15 +1602,15 @@ importers:
     specifiers:
       '@chakra-ui/anatomy': workspace:*
       '@chakra-ui/cli': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/styled-system': workspace:*
       '@chakra-ui/theme-tools': workspace:*
-      '@chakra-ui/utils': workspace:*
     dependencies:
       '@chakra-ui/anatomy': link:../anatomy
       '@chakra-ui/theme-tools': link:../theme-tools
-      '@chakra-ui/utils': link:../utils
     devDependencies:
       '@chakra-ui/cli': link:../../tooling/cli
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/styled-system': link:../styled-system
 
   packages/theme-tools:

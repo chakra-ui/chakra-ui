@@ -4,7 +4,6 @@ import {
   defineStyle,
 } from "@chakra-ui/styled-system"
 import { mode } from "@chakra-ui/theme-tools"
-import { mergeWith } from "@chakra-ui/utils"
 import { inputTheme } from "./input"
 
 const { defineMultiStyleConfig, definePartsStyle } =
@@ -44,21 +43,39 @@ const iconSpacing = defineStyle({
   paddingInlineEnd: "2rem",
 })
 
-const sizes = mergeWith({}, inputTheme.sizes, {
+const sizes = {
   lg: {
-    field: iconSpacing,
+    ...inputTheme.sizes?.lg,
+    field: {
+      ...inputTheme.sizes?.lg.field,
+      ...iconSpacing,
+    },
   },
   md: {
-    field: iconSpacing,
+    ...inputTheme.sizes?.md,
+    field: {
+      ...inputTheme.sizes?.md.field,
+      ...iconSpacing,
+    },
   },
   sm: {
-    field: iconSpacing,
+    ...inputTheme.sizes?.sm,
+    field: {
+      ...inputTheme.sizes?.sm.field,
+      ...iconSpacing,
+    },
   },
   xs: {
-    field: iconSpacing,
-    icon: { insetEnd: "0.25rem" },
+    ...inputTheme.sizes?.xs,
+    field: {
+      ...inputTheme.sizes?.sm.field,
+      ...iconSpacing,
+    },
+    icon: {
+      insetEnd: "0.25rem",
+    },
   },
-})
+}
 
 export const selectTheme = defineMultiStyleConfig({
   baseStyle,

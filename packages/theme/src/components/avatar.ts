@@ -3,8 +3,9 @@ import {
   createMultiStyleConfigHelpers,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { isDark, mode, randomColor, runIfFn } from "@chakra-ui/theme-tools"
+import { isDark, mode, randomColor } from "@chakra-ui/theme-tools"
 import themeSizes from "../foundations/sizes"
+import { runIfFn } from "../utils/run-if-fn"
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys)

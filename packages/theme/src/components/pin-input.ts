@@ -1,6 +1,6 @@
 import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
-import { runIfFn } from "@chakra-ui/theme-tools"
 import { inputTheme } from "./input"
+import { runIfFn } from "../utils/run-if-fn"
 
 const baseStyle = defineStyle({
   ...inputTheme.baseStyle?.field,

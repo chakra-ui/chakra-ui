@@ -10,9 +10,15 @@ const baseStyle = defineStyle({
 })
 
 const variants = {
-  outline: defineStyle((props) => inputTheme.variants?.outline(props).field),
-  flushed: defineStyle((props) => inputTheme.variants?.flushed(props).field),
-  filled: defineStyle((props) => inputTheme.variants?.filled(props).field),
+  outline: defineStyle(
+    (props) => inputTheme.variants?.outline(props).field ?? {},
+  ),
+  flushed: defineStyle(
+    (props) => inputTheme.variants?.flushed(props).field ?? {},
+  ),
+  filled: defineStyle(
+    (props) => inputTheme.variants?.filled(props).field ?? {},
+  ),
   unstyled: inputTheme.variants?.unstyled.field ?? {},
 }
 

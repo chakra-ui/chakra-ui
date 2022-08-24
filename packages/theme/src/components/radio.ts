@@ -3,7 +3,7 @@ import {
   createMultiStyleConfigHelpers,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { runIfFn } from "@chakra-ui/theme-tools"
+import { runIfFn } from "../utils/run-if-fn"
 import { checkboxTheme } from "./checkbox"
 
 const { defineMultiStyleConfig, definePartsStyle } =

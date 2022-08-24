@@ -1,5 +1,6 @@
 import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
-import { mode, runIfFn, transparentize } from "@chakra-ui/theme-tools"
+import { mode, transparentize } from "@chakra-ui/theme-tools"
+import { runIfFn } from "../utils/run-if-fn"
 
 const baseStyle = defineStyle({
   lineHeight: "1.2",
