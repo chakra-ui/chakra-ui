@@ -1,6 +1,7 @@
 packages:
-  - "packages/**"
+  - "packages/utilities/**"
+  - "packages/hooks/**"
+  - "packages/components/**"
+  - "packages/legacy/**"
   - "examples/**"
   - "tooling/**"
-  - "hooks/**"
-  - "utilities/**"
