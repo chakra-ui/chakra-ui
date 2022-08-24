@@ -3,7 +3,6 @@ import type {
   StyleFunctionProps,
   SystemStyleInterpolation,
 } from "@chakra-ui/styled-system"
-import { Dict, runIfFn } from "@chakra-ui/utils"
 
 export type {
   StyleConfig,
@@ -34,7 +33,7 @@ export type JSXElementStyles = {
 export type Styles = GlobalStyles & JSXElementStyles
 
 export function mode<T>(light: T, dark: T) {
-  return (props: Dict | StyleFunctionProps) =>
+  return (props: Record<string, any> | StyleFunctionProps) =>
     props.colorMode === "dark" ? dark : light
 }
 

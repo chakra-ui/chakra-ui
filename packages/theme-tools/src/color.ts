@@ -5,7 +5,10 @@ import {
   random,
   WCAG2Parms,
 } from "@ctrl/tinycolor"
-import { memoizedGet as get, Dict, isEmptyObject } from "@chakra-ui/utils"
+import get from "dlv"
+
+type Dict = { [key: string]: any }
+const isEmptyObject = (obj: any) => Object.keys(obj).length === 0
 
 /**
  * Get the color raw value from theme

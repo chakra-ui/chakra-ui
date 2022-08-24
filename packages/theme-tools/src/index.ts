@@ -1,4 +1,4 @@
-export { anatomy } from "@chakra-ui/styled-system"
+export { anatomy } from "@chakra-ui/anatomy"
 export * from "./color"
 export * from "./component"
 export * from "./create-breakpoints"

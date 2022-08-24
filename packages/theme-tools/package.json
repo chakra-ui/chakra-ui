@@ -31,13 +31,15 @@
   },
   "dependencies": {
     "@chakra-ui/anatomy": "workspace:*",
-    "@chakra-ui/utils": "workspace:*",
     "@ctrl/tinycolor": "^3.4.0"
   },
   "peerDependencies": {
     "@chakra-ui/styled-system": ">=2.0.0"
   },
   "devDependencies": {
+    "dlv": "^1.1.3",
+    "@types/dlv": "^1.1.2",
+    "@chakra-ui/shared-utils": "workspace:*",
     "@chakra-ui/styled-system": "workspace:*"
   },
   "scripts": {
