@@ -1,7 +1,7 @@
 const path = require("path")
 const fs = require("fs")
 
-// [Workaround] This logic means `"../packages/*/stories/*.stories.tsx"` but it's much faster.
+// [Workaround] This logic means `"../packages/components/*/stories/*.stories.tsx"` but it's much faster.
 function getStories(pkg) {
   const scope = pkg ? [pkg] : fs.readdirSync("packages")
   return scope
