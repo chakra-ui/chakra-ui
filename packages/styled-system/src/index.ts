@@ -1,4 +1,4 @@
-export * from "./anatomy"
+export { anatomy } from "./anatomy"
 export * from "./config"
 export * from "./create-theme-vars"
 export * from "./css"
@@ -17,5 +17,5 @@ export type {
 } from "./utils"
 export { tokenToCSSVar } from "./utils/create-transform"
 export type OmitSpaceXY<T> = Omit<T, "spaceX" | "spaceY">
-export * from "./component.types"
 export { getCSSVar } from "./get-css-var"
+export * from "./theming-props"

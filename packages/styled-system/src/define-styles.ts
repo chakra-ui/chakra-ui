@@ -1,5 +1,6 @@
-import { SystemStyleObject } from "@chakra-ui/system"
-import { Dict } from "@chakra-ui/utils"
+import { SystemStyleObject } from "./system.types"
+
+type Dict<T = any> = { [key: string]: T }
 
 // ------------------------------------------------------------------ //
 
