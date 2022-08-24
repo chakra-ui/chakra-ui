@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/provider",
-  "version": "2.0.13",
+  "version": "2.0.14",
   "description": "Theme and components agnostic ChakraProvider",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",

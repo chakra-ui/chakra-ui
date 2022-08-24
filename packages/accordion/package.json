@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/accordion",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "A simple and accessible accordion component for React & Chakra UI",
   "keywords": [
     "react",
