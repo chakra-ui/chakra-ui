@@ -13,7 +13,7 @@ const baseStyleLabel = defineStyle({
 
 const baseStyleHelpText = defineStyle({
   opacity: 0.8,
-  marginBottom: 2,
+  marginBottom: "2",
 })
 
 const baseStyleNumber = defineStyle({
@@ -23,8 +23,8 @@ const baseStyleNumber = defineStyle({
 
 const baseStyleIcon = defineStyle({
   marginEnd: 1,
-  w: "14px",
-  h: "14px",
+  w: "3.5",
+  h: "3.5",
   verticalAlign: "middle",
 })
 

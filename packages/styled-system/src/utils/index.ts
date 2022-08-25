@@ -1,5 +1,6 @@
 import type { ThemeScale } from "../create-theme-vars"
 import { createTransform } from "./create-transform"
+import { pipe } from "./pipe"
 import { logical, PropConfig, toConfig } from "./prop-config"
 import { transformFunctions as transforms } from "./transform-functions"
 
@@ -13,8 +14,8 @@ export const t = {
   colors: toConfig("colors"),
   borders: toConfig("borders"),
   radii: toConfig("radii", transforms.px),
-  space: toConfig("space", transforms.px),
-  spaceT: toConfig("space", transforms.px),
+  space: toConfig("space", pipe(transforms.vh, transforms.px)),
+  spaceT: toConfig("space", pipe(transforms.vh, transforms.px)),
   degreeT(property: PropConfig["property"]) {
     return { property, transform: transforms.degree }
   },
@@ -34,8 +35,8 @@ export const t = {
   propT(property: PropConfig["property"], transform?: PropConfig["transform"]) {
     return { property, transform }
   },
-  sizes: toConfig("sizes", transforms.px),
-  sizesT: toConfig("sizes", transforms.fraction),
+  sizes: toConfig("sizes", pipe(transforms.vh, transforms.px)),
+  sizesT: toConfig("sizes", pipe(transforms.vh, transforms.fraction)),
   shadows: toConfig("shadows"),
   logical,
   blur: toConfig("blur", transforms.blur),

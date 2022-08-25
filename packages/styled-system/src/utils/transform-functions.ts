@@ -40,6 +40,9 @@ export const transformFunctions = {
     if (value === "auto-gpu") return getTransformGpuTemplate()
     return value
   },
+  vh(value: number | string) {
+    return value === "100vh" ? "var(--chakra-vh)" : value
+  },
   px(value: number | string) {
     if (value == null) return value
     const { unitless } = analyzeCSSValue(value)

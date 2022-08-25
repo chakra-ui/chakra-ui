@@ -33,7 +33,7 @@ const baseStyleDialog = defineStyle((props) => {
     borderRadius: "md",
     bg: mode("white", "gray.700")(props),
     color: "inherit",
-    my: "3.75rem",
+    my: "16",
     zIndex: "modal",
     maxH: scrollBehavior === "inside" ? "calc(100% - 7.5rem)" : undefined,
     boxShadow: mode("lg", "dark-lg")(props),
@@ -41,31 +41,31 @@ const baseStyleDialog = defineStyle((props) => {
 })
 
 const baseStyleHeader = defineStyle({
-  px: 6,
-  py: 4,
+  px: "6",
+  py: "4",
   fontSize: "xl",
   fontWeight: "semibold",
 })
 
 const baseStyleCloseButton = defineStyle({
   position: "absolute",
-  top: 2,
-  insetEnd: 3,
+  top: "2",
+  insetEnd: "3",
 })
 
 const baseStyleBody = defineStyle((props) => {
   const { scrollBehavior } = props
   return {
-    px: 6,
-    py: 2,
-    flex: 1,
+    px: "6",
+    py: "2",
+    flex: "1",
     overflow: scrollBehavior === "inside" ? "auto" : undefined,
   }
 })
 
 const baseStyleFooter = defineStyle({
-  px: 6,
-  py: 4,
+  px: "6",
+  py: "4",
 })
 
 const baseStyle = definePartsStyle((props) => ({
@@ -88,11 +88,8 @@ function getSize(value: string) {
       dialog: {
         maxW: "100vw",
         minH: "100vh",
-        "@supports(min-height: -webkit-fill-available)": {
-          minH: "-webkit-fill-available",
-        },
-        my: 0,
-        borderRadius: 0,
+        my: "0",
+        borderRadius: "0",
       },
     })
   }

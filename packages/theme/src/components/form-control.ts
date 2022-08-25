@@ -11,14 +11,14 @@ const { definePartsStyle, defineMultiStyleConfig } =
 
 const baseStyleRequiredIndicator = defineStyle((props) => {
   return {
-    marginStart: 1,
+    marginStart: "1",
     color: mode("red.500", "red.300")(props),
   }
 })
 
 const baseStyleHelperText = defineStyle((props) => {
   return {
-    mt: 2,
+    mt: "2",
     color: mode("gray.600", "whiteAlpha.600")(props),
     lineHeight: "normal",
     fontSize: "sm",
@@ -26,7 +26,10 @@ const baseStyleHelperText = defineStyle((props) => {
 })
 
 const baseStyle = definePartsStyle((props) => ({
-  container: { width: "100%", position: "relative" },
+  container: {
+    width: "100%",
+    position: "relative",
+  },
   requiredIndicator: runIfFn(baseStyleRequiredIndicator, props),
   helperText: runIfFn(baseStyleHelperText, props),
 }))

@@ -62,16 +62,16 @@ const baseStyle = definePartsStyle((props) => ({
 
 const sizes = {
   xs: definePartsStyle({
-    track: { h: "0.25rem" },
+    track: { h: "1" },
   }),
   sm: definePartsStyle({
-    track: { h: "0.5rem" },
+    track: { h: "2" },
   }),
   md: definePartsStyle({
-    track: { h: "0.75rem" },
+    track: { h: "3" },
   }),
   lg: definePartsStyle({
-    track: { h: "1rem" },
+    track: { h: "4" },
   }),
 }
 

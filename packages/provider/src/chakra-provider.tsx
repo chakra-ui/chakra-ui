@@ -1,4 +1,4 @@
-import CSSReset from "@chakra-ui/css-reset"
+import { CSSReset, CSSPolyfill } from "@chakra-ui/css-reset"
 import { PortalManager } from "@chakra-ui/portal"
 import {
   ColorModeProvider,
@@ -82,7 +82,7 @@ export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
         colorModeManager={colorModeManager}
         options={theme.config}
       >
-        {resetCSS && <CSSReset />}
+        {resetCSS ? <CSSReset /> : <CSSPolyfill />}
         <GlobalStyle />
         {portalZIndex ? (
           <PortalManager zIndex={portalZIndex}>{_children}</PortalManager>

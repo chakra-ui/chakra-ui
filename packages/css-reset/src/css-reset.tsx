@@ -1,5 +1,29 @@
 import { Global } from "@emotion/react"
 
+const vhPolyfill = `
+  :root {
+    --chakra-vh: 100vh;
+  }
+
+  @supports (height: -webkit-fill-available) {
+    :root {
+      --chakra-vh: -webkit-fill-available;
+    }
+  }
+
+  @supports (height: -moz-fill-available) {
+    :root {
+      --chakra-vh: -moz-fill-available;
+    }
+  }
+
+  @supports (height: 100lvh) {
+    --chakra-vh: 100lvh;
+  }
+`
+
+export const CSSPolyfill = () => <Global styles={vhPolyfill} />
+
 export const CSSReset = () => (
   <Global
     styles={`
@@ -278,6 +302,8 @@ export const CSSReset = () => (
       select::-ms-expand {
         display: none;
       }
+
+      ${vhPolyfill}
     `}
   />
 )

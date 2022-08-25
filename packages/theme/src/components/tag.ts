@@ -24,13 +24,13 @@ const baseStyleLabel = defineStyle({
 })
 
 const baseStyleCloseButton = defineStyle({
-  fontSize: "18px",
-  w: "1.25rem",
-  h: "1.25rem",
+  fontSize: "lg",
+  w: "5",
+  h: "5",
   transitionProperty: "common",
   transitionDuration: "normal",
   borderRadius: "full",
-  marginStart: "0.375rem",
+  marginStart: "1.5",
   marginEnd: "-1",
   opacity: 0.5,
   _disabled: {
@@ -40,8 +40,12 @@ const baseStyleCloseButton = defineStyle({
     boxShadow: "outline",
     bg: "rgba(0, 0, 0, 0.14)",
   },
-  _hover: { opacity: 0.8 },
-  _active: { opacity: 1 },
+  _hover: {
+    opacity: 0.8,
+  },
+  _active: {
+    opacity: 1,
+  },
 })
 
 const baseStyle = definePartsStyle({
@@ -53,10 +57,10 @@ const baseStyle = definePartsStyle({
 const sizes = {
   sm: definePartsStyle({
     container: {
-      minH: "1.25rem",
-      minW: "1.25rem",
+      minH: "5",
+      minW: "5",
       fontSize: "xs",
-      px: 2,
+      px: "2",
     },
     closeButton: {
       marginEnd: "-2px",
@@ -65,18 +69,18 @@ const sizes = {
   }),
   md: definePartsStyle({
     container: {
-      minH: "1.5rem",
-      minW: "1.5rem",
+      minH: "6",
+      minW: "6",
       fontSize: "sm",
-      px: 2,
+      px: "2",
     },
   }),
   lg: definePartsStyle({
     container: {
-      minH: 8,
-      minW: 8,
+      minH: "8",
+      minW: "8",
       fontSize: "md",
-      px: 3,
+      px: "3",
     },
   }),
 }

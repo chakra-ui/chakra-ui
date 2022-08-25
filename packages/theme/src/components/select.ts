@@ -23,12 +23,12 @@ const baseStyleField = defineStyle((props) => {
 })
 
 const baseStyleIcon = defineStyle({
-  width: "1.5rem",
+  width: "6",
   height: "100%",
-  insetEnd: "0.5rem",
+  insetEnd: "2",
   position: "relative",
   color: "currentColor",
-  fontSize: "1.25rem",
+  fontSize: "xl",
   _disabled: {
     opacity: 0.5,
   },
@@ -40,7 +40,7 @@ const baseStyle = definePartsStyle((props) => ({
 }))
 
 const iconSpacing = defineStyle({
-  paddingInlineEnd: "2rem",
+  paddingInlineEnd: "8",
 })
 
 const sizes = {
@@ -72,7 +72,7 @@ const sizes = {
       ...iconSpacing,
     },
     icon: {
-      insetEnd: "0.25rem",
+      insetEnd: "1",
     },
   },
 }

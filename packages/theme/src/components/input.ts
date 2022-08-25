@@ -17,32 +17,36 @@ const baseStyle = definePartsStyle({
     appearance: "none",
     transitionProperty: "common",
     transitionDuration: "normal",
+    _disabled: {
+      opacity: 0.4,
+      cursor: "not-allowed",
+    },
   },
 })
 
 const size = {
   lg: defineStyle({
     fontSize: "lg",
-    px: 4,
-    h: 12,
+    px: "4",
+    h: "12",
     borderRadius: "md",
   }),
   md: defineStyle({
     fontSize: "md",
-    px: 4,
-    h: 10,
+    px: "4",
+    h: "10",
     borderRadius: "md",
   }),
   sm: defineStyle({
     fontSize: "sm",
-    px: 3,
-    h: 8,
+    px: "3",
+    h: "8",
     borderRadius: "sm",
   }),
   xs: defineStyle({
     fontSize: "xs",
-    px: 2,
-    h: 6,
+    px: "2",
+    h: "6",
     borderRadius: "sm",
   }),
 }
@@ -90,10 +94,6 @@ const variantOutline = definePartsStyle((props) => {
         boxShadow: "none !important",
         userSelect: "all",
       },
-      _disabled: {
-        opacity: 0.4,
-        cursor: "not-allowed",
-      },
       _invalid: {
         borderColor: getColor(theme, ec),
         boxShadow: `0 0 0 1px ${getColor(theme, ec)}`,
@@ -128,10 +128,6 @@ const variantFilled = definePartsStyle((props) => {
         boxShadow: "none !important",
         userSelect: "all",
       },
-      _disabled: {
-        opacity: 0.4,
-        cursor: "not-allowed",
-      },
       _invalid: {
         borderColor: getColor(theme, ec),
       },
@@ -156,8 +152,8 @@ const variantFlushed = definePartsStyle((props) => {
     field: {
       borderBottom: "1px solid",
       borderColor: "inherit",
-      borderRadius: 0,
-      px: 0,
+      borderRadius: "0",
+      px: "0",
       bg: "transparent",
       _readOnly: {
         boxShadow: "none !important",
@@ -171,16 +167,12 @@ const variantFlushed = definePartsStyle((props) => {
         borderColor: getColor(theme, fc),
         boxShadow: `0px 1px 0px 0px ${getColor(theme, fc)}`,
       },
-      _disabled: {
-        opacity: 0.4,
-        cursor: "not-allowed",
-      },
     },
     addon: {
       borderBottom: "2px solid",
       borderColor: "inherit",
-      borderRadius: 0,
-      px: 0,
+      borderRadius: "0",
+      px: "0",
       bg: "transparent",
     },
   }
@@ -189,16 +181,12 @@ const variantFlushed = definePartsStyle((props) => {
 const variantUnstyled = definePartsStyle({
   field: {
     bg: "transparent",
-    px: 0,
+    px: "0",
     height: "auto",
-    _disabled: {
-      opacity: 0.4,
-      cursor: "not-allowed",
-    },
   },
   addon: {
     bg: "transparent",
-    px: 0,
+    px: "0",
     height: "auto",
   },
 })

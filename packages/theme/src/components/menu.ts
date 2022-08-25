@@ -24,8 +24,8 @@ const baseStyleList = defineStyle((props) => {
 
 const baseStyleItem = defineStyle((props) => {
   return {
-    py: "0.4rem",
-    px: "0.8rem",
+    py: "1.5",
+    px: "3",
     transitionProperty: "background",
     transitionDuration: "ultra-fast",
     transitionTimingFunction: "ease-in",
@@ -60,7 +60,7 @@ const baseStyleDivider = defineStyle({
   border: 0,
   borderBottom: "1px solid",
   borderColor: "inherit",
-  my: "0.5rem",
+  my: "2",
   opacity: 0.6,
 })
 

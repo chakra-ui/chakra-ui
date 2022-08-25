@@ -3,8 +3,8 @@ import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
 const baseStyle = defineStyle({
   w: "100%",
   mx: "auto",
-  maxW: "60ch",
-  px: "1rem",
+  maxW: "prose",
+  px: "4",
 })
 
 export const containerTheme = defineStyleConfig({
