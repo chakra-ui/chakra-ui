@@ -14,8 +14,6 @@ const baseStyleIcon = defineStyle({
 })
 
 const baseStyle = definePartsStyle({
-  container: {},
-  item: {},
   icon: baseStyleIcon,
 })
 
