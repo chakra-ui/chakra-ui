@@ -10,19 +10,19 @@ const baseStyle = defineStyle({
 
 const sizes = {
   xs: defineStyle({
-    [$size.variable]: "0.75rem",
+    [$size.variable]: "sizes.3",
   }),
   sm: defineStyle({
-    [$size.variable]: "1rem",
+    [$size.variable]: "sizes.4",
   }),
   md: defineStyle({
-    [$size.variable]: "1.5rem",
+    [$size.variable]: "sizes.6",
   }),
   lg: defineStyle({
-    [$size.variable]: "2rem",
+    [$size.variable]: "sizes.8",
   }),
   xl: defineStyle({
-    [$size.variable]: "3rem",
+    [$size.variable]: "sizes.12",
   }),
 }
 
