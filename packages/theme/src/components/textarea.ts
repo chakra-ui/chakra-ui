@@ -3,8 +3,8 @@ import { inputTheme } from "./input"
 
 const baseStyle = defineStyle({
   ...inputTheme.baseStyle?.field,
-  paddingY: "8px",
-  minHeight: "80px",
+  paddingY: "2",
+  minHeight: "20",
   lineHeight: "short",
   verticalAlign: "top",
 })
