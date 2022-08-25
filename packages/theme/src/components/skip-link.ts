@@ -8,8 +8,8 @@ const baseStyle = defineStyle((props) => ({
     boxShadow: "outline",
     padding: "1rem",
     position: "fixed",
-    top: "1.5rem",
-    insetStart: "1.5rem",
+    top: "6",
+    insetStart: "6",
     bg: mode("white", "gray.700")(props),
   },
 }))
