@@ -1,6 +1,7 @@
 import { checkboxAnatomy as parts } from "@chakra-ui/anatomy"
 import {
   createMultiStyleConfigHelpers,
+  cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
 import { mode } from "@chakra-ui/theme-tools"
@@ -9,11 +10,14 @@ import { runIfFn } from "../utils/run-if-fn"
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys)
 
+const $size = cssVar("checkbox-size")
+
 const baseStyleControl = defineStyle((props) => {
   const { colorScheme: c } = props
 
   return {
-    w: "100%",
+    w: $size.reference,
+    h: $size.reference,
     transitionProperty: "box-shadow",
     transitionDuration: "normal",
     border: "2px solid",
@@ -82,19 +86,19 @@ const baseStyle = definePartsStyle((props) => ({
 
 const sizes = {
   sm: definePartsStyle({
-    control: { h: 3, w: 3 },
+    control: { [$size.variable]: "sizes.3" },
     label: { fontSize: "sm" },
-    icon: { fontSize: "0.45rem" },
+    icon: { fontSize: "3xs" },
   }),
   md: definePartsStyle({
-    control: { w: 4, h: 4 },
+    control: { [$size.variable]: "sizes.4" },
     label: { fontSize: "md" },
-    icon: { fontSize: "0.625rem" },
+    icon: { fontSize: "2xs" },
   }),
   lg: definePartsStyle({
-    control: { w: 5, h: 5 },
+    control: { [$size.variable]: "sizes.5" },
     label: { fontSize: "lg" },
-    icon: { fontSize: "0.625rem" },
+    icon: { fontSize: "2xs" },
   }),
 }
 

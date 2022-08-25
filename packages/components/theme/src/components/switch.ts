@@ -19,7 +19,7 @@ const baseStyleTrack = defineStyle((props) => {
 
   return {
     borderRadius: "full",
-    p: "2px",
+    p: "0.5",
     width: [$width.reference],
     height: [$height.reference],
     transitionProperty: "common",
@@ -66,19 +66,19 @@ const sizes = {
   sm: definePartsStyle({
     container: {
       [$width.variable]: "1.375rem",
-      [$height.variable]: "0.75rem",
+      [$height.variable]: "sizes.3",
     },
   }),
   md: definePartsStyle({
     container: {
       [$width.variable]: "1.875rem",
-      [$height.variable]: "1rem",
+      [$height.variable]: "sizes.4",
     },
   }),
   lg: definePartsStyle({
     container: {
       [$width.variable]: "2.875rem",
-      [$height.variable]: "1.5rem",
+      [$height.variable]: "sizes.6",
     },
   }),
 }

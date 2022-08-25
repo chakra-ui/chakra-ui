@@ -18,7 +18,7 @@ const baseStyleContainer = defineStyle({
 const baseStyleButton = defineStyle({
   transitionProperty: "common",
   transitionDuration: "normal",
-  fontSize: "1rem",
+  fontSize: "md",
   _focusVisible: {
     boxShadow: "outline",
   },
@@ -29,14 +29,14 @@ const baseStyleButton = defineStyle({
     opacity: 0.4,
     cursor: "not-allowed",
   },
-  px: 4,
-  py: 2,
+  px: "4",
+  py: "2",
 })
 
 const baseStylePanel = defineStyle({
-  pt: 2,
-  px: 4,
-  pb: 5,
+  pt: "2",
+  px: "4",
+  pb: "5",
 })
 
 const baseStyleIcon = defineStyle({
@@ -44,7 +44,6 @@ const baseStyleIcon = defineStyle({
 })
 
 const baseStyle = definePartsStyle({
-  root: {},
   container: baseStyleContainer,
   button: baseStyleButton,
   panel: baseStylePanel,

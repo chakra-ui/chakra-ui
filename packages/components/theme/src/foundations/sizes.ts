@@ -18,6 +18,7 @@ const largeSizes = {
   "6xl": "72rem",
   "7xl": "80rem",
   "8xl": "90rem",
+  prose: "60ch",
 }
 
 const container = {

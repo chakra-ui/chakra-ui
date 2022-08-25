@@ -67,7 +67,6 @@ const baseStyle = definePartsStyle((props) => ({
   header: baseStyleHeader,
   body: baseStyleBody,
   footer: baseStyleFooter,
-  arrow: {},
   closeButton: baseStyleCloseButton,
 }))
 

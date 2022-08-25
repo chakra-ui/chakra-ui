@@ -12,7 +12,7 @@ const { definePartsStyle, defineMultiStyleConfig } =
 const baseStyleText = defineStyle((props) => {
   return {
     color: mode("red.500", "red.300")(props),
-    mt: 2,
+    mt: "2",
     fontSize: "sm",
     lineHeight: "normal",
   }

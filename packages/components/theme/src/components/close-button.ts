@@ -28,16 +28,16 @@ const baseStyle = defineStyle((props) => {
 
 const sizes = {
   lg: defineStyle({
-    [$size.variable]: "40px",
-    fontSize: "16px",
+    [$size.variable]: "sizes.10",
+    fontSize: "md",
   }),
   md: defineStyle({
-    [$size.variable]: "32px",
-    fontSize: "12px",
+    [$size.variable]: "sizes.8",
+    fontSize: "xs",
   }),
   sm: defineStyle({
-    [$size.variable]: "24px",
-    fontSize: "10px",
+    [$size.variable]: "sizes.6",
+    fontSize: "2xs",
   }),
 }
 
