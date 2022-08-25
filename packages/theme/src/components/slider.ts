@@ -1,12 +1,16 @@
 import { sliderAnatomy as parts } from "@chakra-ui/anatomy"
 import {
   createMultiStyleConfigHelpers,
+  cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
 import { mode, orient } from "@chakra-ui/theme-tools"
 
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
+
+const $thumbSize = cssVar("slider-thumb-size")
+const $trackSize = cssVar("slider-track-size")
 
 const baseStyleContainer = defineStyle((props) => {
   const { orientation } = props
@@ -29,7 +33,14 @@ const baseStyleContainer = defineStyle((props) => {
 })
 
 const baseStyleTrack = defineStyle((props) => {
+  const orientationStyles = orient({
+    orientation: props.orientation,
+    horizontal: { h: $trackSize.reference },
+    vertical: { w: $trackSize.reference },
+  })
+
   return {
+    ...orientationStyles,
     overflow: "hidden",
     borderRadius: "sm",
     bg: mode("gray.200", "whiteAlpha.200")(props),
@@ -60,6 +71,9 @@ const baseStyleThumb = defineStyle((props) => {
   })
 
   return {
+    ...orientationStyle,
+    w: $thumbSize.reference,
+    h: $thumbSize.reference,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -73,9 +87,12 @@ const baseStyleThumb = defineStyle((props) => {
     borderColor: "transparent",
     transitionProperty: "transform",
     transitionDuration: "normal",
-    _focusVisible: { boxShadow: "outline" },
-    _disabled: { bg: "gray.300" },
-    ...orientationStyle,
+    _focusVisible: {
+      boxShadow: "outline",
+    },
+    _disabled: {
+      bg: "gray.300",
+    },
   }
 })
 
@@ -96,37 +113,25 @@ const baseStyle = definePartsStyle((props) => ({
   filledTrack: baseStyleFilledTrack(props),
 }))
 
-const sizeLg = definePartsStyle((props) => {
-  return {
-    thumb: { w: "16px", h: "16px" },
-    track: orient({
-      orientation: props.orientation,
-      horizontal: { h: "4px" },
-      vertical: { w: "4px" },
-    }),
-  }
+const sizeLg = definePartsStyle({
+  container: {
+    [$thumbSize.variable]: `sizes.4`,
+    [$trackSize.variable]: `sizes.1`,
+  },
 })
 
-const sizeMd = definePartsStyle((props) => {
-  return {
-    thumb: { w: "14px", h: "14px" },
-    track: orient({
-      orientation: props.orientation,
-      horizontal: { h: "4px" },
-      vertical: { w: "4px" },
-    }),
-  }
+const sizeMd = definePartsStyle({
+  container: {
+    [$thumbSize.variable]: `sizes.3.5`,
+    [$trackSize.variable]: `sizes.1`,
+  },
 })
 
-const sizeSm = definePartsStyle((props) => {
-  return {
-    thumb: { w: "10px", h: "10px" },
-    track: orient({
-      orientation: props.orientation,
-      horizontal: { h: "2px" },
-      vertical: { w: "2px" },
-    }),
-  }
+const sizeSm = definePartsStyle({
+  container: {
+    [$thumbSize.variable]: `sizes.2.5`,
+    [$trackSize.variable]: `sizes.0.5`,
+  },
 })
 
 const sizes = {
