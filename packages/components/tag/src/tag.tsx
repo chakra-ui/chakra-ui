@@ -90,7 +90,7 @@ export interface TagCloseButtonProps
  * TagCloseButton is used to close "remove" the tag
  * @see Docs https://chakra-ui.com/tag
  */
-export const TagCloseButton: React.FC<TagCloseButtonProps> = (props) => {
+export const TagCloseButton: forwardRef<TagCloseButtonProps, "button"> = ((props, ref) => {
   const { isDisabled, children, ...rest } = props
 
   const styles = useTagStyles()
@@ -105,6 +105,7 @@ export const TagCloseButton: React.FC<TagCloseButtonProps> = (props) => {
 
   return (
     <chakra.button
+      ref={ref}
       aria-label="close"
       {...rest}
       type="button"
@@ -114,6 +115,6 @@ export const TagCloseButton: React.FC<TagCloseButtonProps> = (props) => {
       {children || <TagCloseIcon />}
     </chakra.button>
   )
-}
+})
 
 TagCloseButton.displayName = "TagCloseButton"
