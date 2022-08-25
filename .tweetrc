@@ -1,13 +1,14 @@
 {
-  "version": "2.2.9",
-  "releaseUrl": "https://github.com/chakra-ui/chakra-ui/releases/tag/@chakra-ui/react@2.2.9",
+  "version": "2.2.10",
+  "releaseUrl": "https://github.com/chakra-ui/chakra-ui/releases/tag/@chakra-ui/react@2.2.10",
   "patches": [
-    "- Initial release of react hooks\n- Refactor all packages to reduce bundle size\n- Refactor code for proper prop doc generatation",
-    "- Fix default values for min and max prop in docs \n",
-    "- Show at most one tooltip at a time \n"
+    "- Fix issue where select theme throws when \"field\" part is not defined \n",
+    "- Refactor alert theme to use css variables \n",
+    "- Refactors the theme to use design tokens and css variables as much as possible.\n\nImprove support for `100vh` values by using a polyfill css variable\n`--chakra-vh`. \n",
+    "- Refactor to use the new helpers from `styled-system` package \n"
   ],
   "features": [
-    "- Allow wrapping tab panels \n",
-    "- Initial release of react hooks\n- Refactor all packages to reduce bundle size\n- Refactor code for proper prop doc generatation"
+    "- Refactors the theme to use design tokens and css variables as much as possible.\n\nImprove support for `100vh` values by using a polyfill css variable\n`--chakra-vh`. \n",
+    "- Add `defineStyle` and `defineStyleConfig` to improve the TypeScript authoring\nexperience of style objects and single part component themes.\n\n```jsx live=false\nimport { defineStyleConfig, defineStyle } from \"@chakra-ui/styled-system\"\n\n// authoring style objects\nconst style = defineStyle({\n  marginTop: \"20px\",\n})\n\n// authoring style configs for single part component\nconst button = defineStyleConfig({\n  baseStyle: {},\n  variants: {},\n  defaultProps: {},\n})\n```\n\nAdd `createMultiStyleConfigHelpers` factory that provides functions that help\nimprove the TypeScript authoring experience of multipart component themes.\n\n```jsx live=false\nimport { createMultiStyleConfigHelpers } from \"@chakra-ui/styled-sytem\"\n\n// create scoped helpers for that defined parts\nconst helpers = createMultiStyleConfigHelpers([\"button\", \"label\"])\nconst { definePartsStyle, defineMultiStyleConfig } = helpers\n\n// authoring styles for each part\nconst outlineVariant = definePartsStyle({\n  button: {},\n  label: {},\n})\n\n// authoring styles for multipart component\nconst accordion = defineMultiStyleConfig({\n  baseStyle: {\n    button: {},\n    label: {},\n  },\n  variants: {\n    outline: outlineVariant,\n  },\n})\n``` \n"
   ]
 }
