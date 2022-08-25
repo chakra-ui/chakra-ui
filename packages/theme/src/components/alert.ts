@@ -15,30 +15,30 @@ const $bg = cssVar("alert-bg")
 const baseStyle = definePartsStyle({
   container: {
     bg: $bg.reference,
-    px: 4,
-    py: 3,
+    px: "4",
+    py: "3",
   },
   title: {
     fontWeight: "bold",
-    lineHeight: 6,
-    marginEnd: 2,
+    lineHeight: "6",
+    marginEnd: "2",
   },
   description: {
-    lineHeight: 6,
+    lineHeight: "6",
   },
   icon: {
     color: $fg.reference,
     flexShrink: 0,
-    marginEnd: 3,
-    w: 5,
-    h: 6,
+    marginEnd: "3",
+    w: "5",
+    h: "6",
   },
   spinner: {
     color: $fg.reference,
     flexShrink: 0,
-    marginEnd: 3,
-    w: 5,
-    h: 5,
+    marginEnd: "3",
+    w: "5",
+    h: "5",
   },
 })
 
