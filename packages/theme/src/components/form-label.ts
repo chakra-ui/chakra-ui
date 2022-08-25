@@ -1,6 +1,6 @@
-import type { SystemStyleObject } from "@chakra-ui/styled-system"
+import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
 
-const baseStyle: SystemStyleObject = {
+const baseStyle = defineStyle({
   fontSize: "md",
   marginEnd: 3,
   mb: 2,
@@ -11,8 +11,8 @@ const baseStyle: SystemStyleObject = {
   _disabled: {
     opacity: 0.4,
   },
-}
+})
 
-export default {
+export const formLabelTheme = defineStyleConfig({
   baseStyle,
-}
+})

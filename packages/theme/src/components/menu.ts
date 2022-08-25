@@ -1,12 +1,15 @@
 import { menuAnatomy as parts } from "@chakra-ui/anatomy"
-import type {
-  PartsStyleFunction,
-  SystemStyleFunction,
-  SystemStyleObject,
+import {
+  createMultiStyleConfigHelpers,
+  defineStyle,
 } from "@chakra-ui/styled-system"
 import { mode } from "@chakra-ui/theme-tools"
+import { runIfFn } from "../utils/run-if-fn"
 
-const baseStyleList: SystemStyleFunction = (props) => {
+const { defineMultiStyleConfig, definePartsStyle } =
+  createMultiStyleConfigHelpers(parts.keys)
+
+const baseStyleList = defineStyle((props) => {
   return {
     bg: mode("#fff", "gray.700")(props),
     boxShadow: mode("sm", "dark-lg")(props),
@@ -17,9 +20,9 @@ const baseStyleList: SystemStyleFunction = (props) => {
     borderRadius: "md",
     borderWidth: "1px",
   }
-}
+})
 
-const baseStyleItem: SystemStyleFunction = (props) => {
+const baseStyleItem = defineStyle((props) => {
   return {
     py: "0.4rem",
     px: "0.8rem",
@@ -40,42 +43,41 @@ const baseStyleItem: SystemStyleFunction = (props) => {
       cursor: "not-allowed",
     },
   }
-}
+})
 
-const baseStyleGroupTitle: SystemStyleObject = {
+const baseStyleGroupTitle = defineStyle({
   mx: 4,
   my: 2,
   fontWeight: "semibold",
   fontSize: "sm",
-}
+})
 
-const baseStyleCommand: SystemStyleObject = {
+const baseStyleCommand = defineStyle({
   opacity: 0.6,
-}
+})
 
-const baseStyleDivider: SystemStyleObject = {
+const baseStyleDivider = defineStyle({
   border: 0,
   borderBottom: "1px solid",
   borderColor: "inherit",
   my: "0.5rem",
   opacity: 0.6,
-}
+})
 
-const baseStyleButton: SystemStyleObject = {
+const baseStyleButton = defineStyle({
   transitionProperty: "common",
   transitionDuration: "normal",
-}
+})
 
-const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
+const baseStyle = definePartsStyle((props) => ({
   button: baseStyleButton,
-  list: baseStyleList(props),
-  item: baseStyleItem(props),
+  list: runIfFn(baseStyleList, props),
+  item: runIfFn(baseStyleItem, props),
   groupTitle: baseStyleGroupTitle,
   command: baseStyleCommand,
   divider: baseStyleDivider,
-})
+}))
 
-export default {
-  parts: parts.keys,
+export const menuTheme = defineMultiStyleConfig({
   baseStyle,
-}
+})

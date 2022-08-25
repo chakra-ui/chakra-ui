@@ -1,13 +1,15 @@
 import { checkboxAnatomy as parts } from "@chakra-ui/anatomy"
-import type {
-  PartsStyleFunction,
-  PartsStyleObject,
-  SystemStyleFunction,
-  SystemStyleObject,
+import {
+  createMultiStyleConfigHelpers,
+  defineStyle,
 } from "@chakra-ui/styled-system"
 import { mode } from "@chakra-ui/theme-tools"
+import { runIfFn } from "../utils/run-if-fn"
 
-const baseStyleControl: SystemStyleFunction = (props) => {
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(parts.keys)
+
+const baseStyleControl = defineStyle((props) => {
   const { colorScheme: c } = props
 
   return {
@@ -55,55 +57,52 @@ const baseStyleControl: SystemStyleFunction = (props) => {
       borderColor: mode("red.500", "red.300")(props),
     },
   }
-}
-
-const baseStyleContainer: SystemStyleObject = {
-  _disabled: { cursor: "not-allowed" },
-}
-
-const baseStyleLabel: SystemStyleObject = {
-  userSelect: "none",
-  _disabled: { opacity: 0.4 },
-}
-
-const baseStyleIcon: SystemStyleObject = {
-  transitionProperty: "transform",
-  transitionDuration: "normal",
-}
-
-const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
-  icon: baseStyleIcon,
-  container: baseStyleContainer,
-  control: baseStyleControl(props),
-  label: baseStyleLabel,
 })
 
-const sizes: Record<string, PartsStyleObject<typeof parts>> = {
-  sm: {
+const baseStyleContainer = defineStyle({
+  _disabled: { cursor: "not-allowed" },
+})
+
+const baseStyleLabel = defineStyle({
+  userSelect: "none",
+  _disabled: { opacity: 0.4 },
+})
+
+const baseStyleIcon = defineStyle({
+  transitionProperty: "transform",
+  transitionDuration: "normal",
+})
+
+const baseStyle = definePartsStyle((props) => ({
+  icon: baseStyleIcon,
+  container: baseStyleContainer,
+  control: runIfFn(baseStyleControl, props),
+  label: baseStyleLabel,
+}))
+
+const sizes = {
+  sm: definePartsStyle({
     control: { h: 3, w: 3 },
     label: { fontSize: "sm" },
     icon: { fontSize: "0.45rem" },
-  },
-  md: {
+  }),
+  md: definePartsStyle({
     control: { w: 4, h: 4 },
     label: { fontSize: "md" },
     icon: { fontSize: "0.625rem" },
-  },
-  lg: {
+  }),
+  lg: definePartsStyle({
     control: { w: 5, h: 5 },
     label: { fontSize: "lg" },
     icon: { fontSize: "0.625rem" },
-  },
+  }),
 }
 
-const defaultProps = {
-  size: "md",
-  colorScheme: "blue",
-}
-
-export default {
-  parts: parts.keys,
+export const checkboxTheme = defineMultiStyleConfig({
   baseStyle,
   sizes,
-  defaultProps,
-}
+  defaultProps: {
+    size: "md",
+    colorScheme: "blue",
+  },
+})

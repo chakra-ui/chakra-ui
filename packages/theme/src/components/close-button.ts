@@ -1,12 +1,9 @@
-import type {
-  SystemStyleFunction,
-  SystemStyleObject,
-} from "@chakra-ui/styled-system"
+import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
 import { cssVar, mode } from "@chakra-ui/theme-tools"
 
 const $size = cssVar("close-button-size")
 
-const baseStyle: SystemStyleFunction = (props) => {
+const baseStyle = defineStyle((props) => {
   const hoverBg = mode(`blackAlpha.100`, `whiteAlpha.100`)(props)
   const activeBg = mode(`blackAlpha.200`, `whiteAlpha.200`)(props)
 
@@ -27,29 +24,27 @@ const baseStyle: SystemStyleFunction = (props) => {
       boxShadow: "outline",
     },
   }
-}
+})
 
-const sizes: Record<string, SystemStyleObject> = {
-  lg: {
+const sizes = {
+  lg: defineStyle({
     [$size.variable]: "40px",
     fontSize: "16px",
-  },
-  md: {
+  }),
+  md: defineStyle({
     [$size.variable]: "32px",
     fontSize: "12px",
-  },
-  sm: {
+  }),
+  sm: defineStyle({
     [$size.variable]: "24px",
     fontSize: "10px",
-  },
+  }),
 }
 
-const defaultProps = {
-  size: "md",
-}
-
-export default {
+export const closeButtonTheme = defineStyleConfig({
   baseStyle,
   sizes,
-  defaultProps,
-}
+  defaultProps: {
+    size: "md",
+  },
+})

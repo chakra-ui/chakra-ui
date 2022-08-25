@@ -1,33 +1,34 @@
 import { numberInputAnatomy as parts } from "@chakra-ui/anatomy"
-import type {
-  PartsStyleFunction,
-  PartsStyleObject,
-  SystemStyleFunction,
-  SystemStyleObject,
+import {
+  createMultiStyleConfigHelpers,
+  defineStyle,
 } from "@chakra-ui/styled-system"
 import { calc, cssVar, mode } from "@chakra-ui/theme-tools"
 import typography from "../foundations/typography"
-import Input from "./input"
+import { inputTheme } from "./input"
+import { runIfFn } from "../utils/run-if-fn"
 
-const { variants, defaultProps } = Input
+const { defineMultiStyleConfig, definePartsStyle } =
+  createMultiStyleConfigHelpers(parts.keys)
 
 const $stepperWidth = cssVar("number-input-stepper-width")
-
 const $inputPadding = cssVar("number-input-input-padding")
 const inputPaddingValue = calc($stepperWidth).add("0.5rem").toString()
 
-const baseStyleRoot: SystemStyleObject = {
+const baseStyleRoot = defineStyle({
   [$stepperWidth.variable]: "24px",
   [$inputPadding.variable]: inputPaddingValue,
-}
+})
 
-const baseStyleField: SystemStyleObject = Input.baseStyle?.field ?? {}
+const baseStyleField = defineStyle(
+  (props) => runIfFn(inputTheme.baseStyle, props)?.field ?? {},
+)
 
-const baseStyleStepperGroup: SystemStyleObject = {
+const baseStyleStepperGroup = defineStyle({
   width: [$stepperWidth.reference],
-}
+})
 
-const baseStyleStepper: SystemStyleFunction = (props) => {
+const baseStyleStepper = defineStyle((props) => {
   return {
     borderStart: "1px solid",
     borderStartColor: mode("inherit", "whiteAlpha.300")(props),
@@ -40,19 +41,20 @@ const baseStyleStepper: SystemStyleFunction = (props) => {
       cursor: "not-allowed",
     },
   }
-}
-
-const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
-  root: baseStyleRoot,
-  field: baseStyleField,
-  stepperGroup: baseStyleStepperGroup,
-  stepper: baseStyleStepper(props),
 })
+
+const baseStyle = definePartsStyle((props) => ({
+  root: baseStyleRoot,
+  field: baseStyleField as any,
+  stepperGroup: baseStyleStepperGroup,
+  stepper: runIfFn(baseStyleStepper, props) ?? {},
+}))
 
 type FontSize = keyof typeof typography.fontSizes
 
-function getSize(size: FontSize): PartsStyleObject<typeof parts> {
-  const sizeStyle = Input.sizes[size]
+function getSize(size: FontSize) {
+  //@ts-expect-error
+  const sizeStyle = inputTheme.sizes?.[size]
 
   const radius: Partial<Record<FontSize, string>> = {
     lg: "md",
@@ -64,7 +66,7 @@ function getSize(size: FontSize): PartsStyleObject<typeof parts> {
   const _fontSize = (sizeStyle.field?.fontSize ?? "md") as FontSize
   const fontSize = typography.fontSizes[_fontSize]
 
-  return {
+  return definePartsStyle({
     field: {
       ...sizeStyle.field,
       paddingInlineEnd: $inputPadding.reference,
@@ -81,7 +83,7 @@ function getSize(size: FontSize): PartsStyleObject<typeof parts> {
         borderTopWidth: 1,
       },
     },
-  }
+  })
 }
 
 const sizes = {
@@ -91,10 +93,9 @@ const sizes = {
   lg: getSize("lg"),
 }
 
-export default {
-  parts: parts.keys,
+export const numberInputTheme = defineMultiStyleConfig({
   baseStyle,
   sizes,
-  variants,
-  defaultProps,
-}
+  variants: inputTheme.variants,
+  defaultProps: inputTheme.defaultProps,
+})

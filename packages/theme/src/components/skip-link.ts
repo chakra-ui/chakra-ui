@@ -1,7 +1,7 @@
-import type { SystemStyleFunction } from "@chakra-ui/styled-system"
+import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
 import { mode } from "@chakra-ui/theme-tools"
 
-const baseStyle: SystemStyleFunction = (props) => ({
+const baseStyle = defineStyle((props) => ({
   borderRadius: "md",
   fontWeight: "semibold",
   _focusVisible: {
@@ -12,8 +12,8 @@ const baseStyle: SystemStyleFunction = (props) => ({
     insetStart: "1.5rem",
     bg: mode("white", "gray.700")(props),
   },
-})
+}))
 
-export default {
+export const skipLinkTheme = defineStyleConfig({
   baseStyle,
-}
+})

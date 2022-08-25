@@ -1,10 +1,13 @@
 {
-  "version": "2.2.7",
-  "releaseUrl": "https://github.com/chakra-ui/chakra-ui/releases/tag/@chakra-ui/react@2.2.7",
+  "version": "2.2.9",
+  "releaseUrl": "https://github.com/chakra-ui/chakra-ui/releases/tag/@chakra-ui/react@2.2.9",
   "patches": [
-    "- Remove `ChakraProvider.defaultProps` and move logic inside the component. \n",
-    "- Fix issue with nullish operator in storybook \n",
-    "- Fix regression where `StyleFunctionProps` type was not exported \n"
+    "- Initial release of react hooks\n- Refactor all packages to reduce bundle size\n- Refactor code for proper prop doc generatation",
+    "- Fix default values for min and max prop in docs \n",
+    "- Show at most one tooltip at a time \n"
   ],
-  "features": []
+  "features": [
+    "- Allow wrapping tab panels \n",
+    "- Initial release of react hooks\n- Refactor all packages to reduce bundle size\n- Refactor code for proper prop doc generatation"
+  ]
 }

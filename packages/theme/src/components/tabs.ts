@@ -1,21 +1,21 @@
 import { tabsAnatomy as parts } from "@chakra-ui/anatomy"
-import type {
-  PartsStyleFunction,
-  PartsStyleInterpolation,
-  PartsStyleObject,
-  SystemStyleFunction,
-  SystemStyleObject,
+import {
+  createMultiStyleConfigHelpers,
+  defineStyle,
 } from "@chakra-ui/styled-system"
 import { getColor, mode } from "@chakra-ui/theme-tools"
 
-const baseStyleRoot: SystemStyleFunction = (props) => {
+const { defineMultiStyleConfig, definePartsStyle } =
+  createMultiStyleConfigHelpers(parts.keys)
+
+const baseStyleRoot = defineStyle((props) => {
   const { orientation } = props
   return {
     display: orientation === "vertical" ? "flex" : "block",
   }
-}
+})
 
-const baseStyleTab: SystemStyleFunction = (props) => {
+const baseStyleTab = defineStyle((props) => {
   const { isFitted } = props
 
   return {
@@ -31,9 +31,9 @@ const baseStyleTab: SystemStyleFunction = (props) => {
       opacity: 0.4,
     },
   }
-}
+})
 
-const baseStyleTablist: SystemStyleFunction = (props) => {
+const baseStyleTablist = defineStyle((props) => {
   const { align = "start", orientation } = props
 
   const alignments: Record<string, string> = {
@@ -46,44 +46,44 @@ const baseStyleTablist: SystemStyleFunction = (props) => {
     justifyContent: alignments[align],
     flexDirection: orientation === "vertical" ? "column" : "row",
   }
-}
+})
 
-const baseStyleTabpanel: SystemStyleObject = {
+const baseStyleTabpanel = defineStyle({
   p: 4,
-}
+})
 
-const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
+const baseStyle = definePartsStyle((props) => ({
   root: baseStyleRoot(props),
   tab: baseStyleTab(props),
   tablist: baseStyleTablist(props),
   tabpanel: baseStyleTabpanel,
-})
+}))
 
-const sizes: Record<string, PartsStyleObject<typeof parts>> = {
-  sm: {
+const sizes = {
+  sm: definePartsStyle({
     tab: {
       py: 1,
       px: 4,
       fontSize: "sm",
     },
-  },
-  md: {
+  }),
+  md: definePartsStyle({
     tab: {
       fontSize: "md",
       py: 2,
       px: 4,
     },
-  },
-  lg: {
+  }),
+  lg: definePartsStyle({
     tab: {
       fontSize: "lg",
       py: 3,
       px: 4,
     },
-  },
+  }),
 }
 
-const variantLine: PartsStyleFunction<typeof parts> = (props) => {
+const variantLine = definePartsStyle((props) => {
   const { colorScheme: c, orientation } = props
   const isVertical = orientation === "vertical"
   const borderProp = orientation === "vertical" ? "borderStart" : "borderBottom"
@@ -110,9 +110,9 @@ const variantLine: PartsStyleFunction<typeof parts> = (props) => {
       },
     },
   }
-}
+})
 
-const variantEnclosed: PartsStyleFunction<typeof parts> = (props) => {
+const variantEnclosed = definePartsStyle((props) => {
   const { colorScheme: c } = props
   return {
     tab: {
@@ -132,9 +132,9 @@ const variantEnclosed: PartsStyleFunction<typeof parts> = (props) => {
       borderColor: "inherit",
     },
   }
-}
+})
 
-const variantEnclosedColored: PartsStyleFunction<typeof parts> = (props) => {
+const variantEnclosedColored = definePartsStyle((props) => {
   const { colorScheme: c } = props
   return {
     tab: {
@@ -159,9 +159,9 @@ const variantEnclosedColored: PartsStyleFunction<typeof parts> = (props) => {
       borderColor: "inherit",
     },
   }
-}
+})
 
-const variantSoftRounded: PartsStyleFunction<typeof parts> = (props) => {
+const variantSoftRounded = definePartsStyle((props) => {
   const { colorScheme: c, theme } = props
   return {
     tab: {
@@ -174,9 +174,9 @@ const variantSoftRounded: PartsStyleFunction<typeof parts> = (props) => {
       },
     },
   }
-}
+})
 
-const variantSolidRounded: PartsStyleFunction<typeof parts> = (props) => {
+const variantSolidRounded = definePartsStyle((props) => {
   const { colorScheme: c } = props
   return {
     tab: {
@@ -189,11 +189,11 @@ const variantSolidRounded: PartsStyleFunction<typeof parts> = (props) => {
       },
     },
   }
-}
+})
 
-const variantUnstyled: PartsStyleObject<typeof parts> = {}
+const variantUnstyled = definePartsStyle({})
 
-const variants: Record<string, PartsStyleInterpolation<typeof parts>> = {
+const variants = {
   line: variantLine,
   enclosed: variantEnclosed,
   "enclosed-colored": variantEnclosedColored,
@@ -202,16 +202,13 @@ const variants: Record<string, PartsStyleInterpolation<typeof parts>> = {
   unstyled: variantUnstyled,
 }
 
-const defaultProps = {
-  size: "md",
-  variant: "line",
-  colorScheme: "blue",
-}
-
-export default {
-  parts: parts.keys,
+export const tabsTheme = defineMultiStyleConfig({
   baseStyle,
   sizes,
   variants,
-  defaultProps,
-}
+  defaultProps: {
+    size: "md",
+    variant: "line",
+    colorScheme: "blue",
+  },
+})

@@ -1,18 +1,21 @@
 import { accordionAnatomy as parts } from "@chakra-ui/anatomy"
-import type {
-  PartsStyleObject,
-  SystemStyleObject,
+import {
+  createMultiStyleConfigHelpers,
+  defineStyle,
 } from "@chakra-ui/styled-system"
 
-const baseStyleContainer: SystemStyleObject = {
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(parts.keys)
+
+const baseStyleContainer = defineStyle({
   borderTopWidth: "1px",
   borderColor: "inherit",
   _last: {
     borderBottomWidth: "1px",
   },
-}
+})
 
-const baseStyleButton: SystemStyleObject = {
+const baseStyleButton = defineStyle({
   transitionProperty: "common",
   transitionDuration: "normal",
   fontSize: "1rem",
@@ -28,27 +31,24 @@ const baseStyleButton: SystemStyleObject = {
   },
   px: 4,
   py: 2,
-}
+})
 
-const baseStylePanel: SystemStyleObject = {
+const baseStylePanel = defineStyle({
   pt: 2,
   px: 4,
   pb: 5,
-}
+})
 
-const baseStyleIcon: SystemStyleObject = {
+const baseStyleIcon = defineStyle({
   fontSize: "1.25em",
-}
+})
 
-const baseStyle: PartsStyleObject<typeof parts> = {
+const baseStyle = definePartsStyle({
   root: {},
   container: baseStyleContainer,
   button: baseStyleButton,
   panel: baseStylePanel,
   icon: baseStyleIcon,
-}
+})
 
-export default {
-  parts: parts.keys,
-  baseStyle,
-}
+export const accordionTheme = defineMultiStyleConfig({ baseStyle })

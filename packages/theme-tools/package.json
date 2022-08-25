@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/theme-tools",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "description": "Set of helpers that makes theming and styling easier",
   "keywords": [
     "theme",
@@ -31,13 +31,15 @@
   },
   "dependencies": {
     "@chakra-ui/anatomy": "workspace:*",
-    "@chakra-ui/utils": "workspace:*",
     "@ctrl/tinycolor": "^3.4.0"
   },
   "peerDependencies": {
     "@chakra-ui/styled-system": ">=2.0.0"
   },
   "devDependencies": {
+    "dlv": "^1.1.3",
+    "@types/dlv": "^1.1.2",
+    "@chakra-ui/shared-utils": "workspace:*",
     "@chakra-ui/styled-system": "workspace:*"
   },
   "scripts": {

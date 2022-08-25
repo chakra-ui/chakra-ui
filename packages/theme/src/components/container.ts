@@ -1,12 +1,12 @@
-import type { SystemStyleObject } from "@chakra-ui/styled-system"
+import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
 
-const baseStyle: SystemStyleObject = {
+const baseStyle = defineStyle({
   w: "100%",
   mx: "auto",
   maxW: "60ch",
   px: "1rem",
-}
+})
 
-export default {
+export const containerTheme = defineStyleConfig({
   baseStyle,
-}
+})

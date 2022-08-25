@@ -1,12 +1,14 @@
 import { tableAnatomy as parts } from "@chakra-ui/anatomy"
-import { mode } from "@chakra-ui/theme-tools"
-import type {
-  PartsStyleFunction,
-  PartsStyleObject,
-  SystemStyleObject,
+import {
+  createMultiStyleConfigHelpers,
+  defineStyle,
 } from "@chakra-ui/styled-system"
+import { mode } from "@chakra-ui/theme-tools"
 
-const baseStyle: PartsStyleObject<typeof parts> = {
+const { defineMultiStyleConfig, definePartsStyle } =
+  createMultiStyleConfigHelpers(parts.keys)
+
+const baseStyle = definePartsStyle({
   table: {
     fontVariantNumeric: "lining-nums tabular-nums",
     borderCollapse: "collapse",
@@ -28,15 +30,15 @@ const baseStyle: PartsStyleObject<typeof parts> = {
     textAlign: "center",
     fontWeight: "medium",
   },
-}
+})
 
-const numericStyles: SystemStyleObject = {
+const numericStyles = defineStyle({
   "&[data-is-numeric=true]": {
     textAlign: "end",
   },
-}
+})
 
-const variantSimple: PartsStyleFunction<typeof parts> = (props) => {
+const variantSimple = definePartsStyle((props) => {
   const { colorScheme: c } = props
 
   return {
@@ -62,9 +64,9 @@ const variantSimple: PartsStyleFunction<typeof parts> = (props) => {
       },
     },
   }
-}
+})
 
-const variantStripe: PartsStyleFunction<typeof parts> = (props) => {
+const variantStripe = definePartsStyle((props) => {
   const { colorScheme: c } = props
 
   return {
@@ -103,16 +105,16 @@ const variantStripe: PartsStyleFunction<typeof parts> = (props) => {
       },
     },
   }
-}
+})
 
 const variants = {
   simple: variantSimple,
   striped: variantStripe,
-  unstyled: {},
+  unstyled: defineStyle({}),
 }
 
-const sizes: Record<string, PartsStyleObject<typeof parts>> = {
-  sm: {
+const sizes = {
+  sm: definePartsStyle({
     th: {
       px: "4",
       py: "1",
@@ -130,8 +132,8 @@ const sizes: Record<string, PartsStyleObject<typeof parts>> = {
       py: "2",
       fontSize: "xs",
     },
-  },
-  md: {
+  }),
+  md: definePartsStyle({
     th: {
       px: "6",
       py: "3",
@@ -148,8 +150,8 @@ const sizes: Record<string, PartsStyleObject<typeof parts>> = {
       py: "2",
       fontSize: "sm",
     },
-  },
-  lg: {
+  }),
+  lg: definePartsStyle({
     th: {
       px: "8",
       py: "4",
@@ -166,19 +168,16 @@ const sizes: Record<string, PartsStyleObject<typeof parts>> = {
       py: "2",
       fontSize: "md",
     },
-  },
+  }),
 }
 
-const defaultProps = {
-  variant: "simple",
-  size: "md",
-  colorScheme: "gray",
-}
-
-export default {
-  parts: parts.keys,
+export const tableTheme = defineMultiStyleConfig({
   baseStyle,
   variants,
   sizes,
-  defaultProps,
-}
+  defaultProps: {
+    variant: "simple",
+    size: "md",
+    colorScheme: "gray",
+  },
+})

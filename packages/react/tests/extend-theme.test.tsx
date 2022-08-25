@@ -264,7 +264,7 @@ describe("extendTheme", () => {
     }
 
     const customTheme = extendTheme(override)
-    // @ts-expect-error
+    // @ts-ignore
     delete Array.prototype["customFunction"]
 
     expect((customTheme.breakpoints as any).customFunction).toBeUndefined()

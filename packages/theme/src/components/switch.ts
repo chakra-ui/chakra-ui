@@ -1,21 +1,20 @@
 import { switchAnatomy as parts } from "@chakra-ui/anatomy"
-import type {
-  PartsStyleFunction,
-  PartsStyleObject,
-  SystemStyleFunction,
-  SystemStyleObject,
+import {
+  createMultiStyleConfigHelpers,
+  defineStyle,
 } from "@chakra-ui/styled-system"
 import { calc, cssVar, mode } from "@chakra-ui/theme-tools"
 
+const { defineMultiStyleConfig, definePartsStyle } =
+  createMultiStyleConfigHelpers(parts.keys)
+
 const $width = cssVar("switch-track-width")
 const $height = cssVar("switch-track-height")
-
 const $diff = cssVar("switch-track-diff")
 const diffValue = calc.subtract($width, $height)
-
 const $translateX = cssVar("switch-thumb-x")
 
-const baseStyleTrack: SystemStyleFunction = (props) => {
+const baseStyleTrack = defineStyle((props) => {
   const { colorScheme: c } = props
 
   return {
@@ -37,9 +36,9 @@ const baseStyleTrack: SystemStyleFunction = (props) => {
       bg: mode(`${c}.500`, `${c}.200`)(props),
     },
   }
-}
+})
 
-const baseStyleThumb: SystemStyleObject = {
+const baseStyleThumb = defineStyle({
   bg: "white",
   transitionProperty: "transform",
   transitionDuration: "normal",
@@ -49,9 +48,9 @@ const baseStyleThumb: SystemStyleObject = {
   _checked: {
     transform: `translateX(${$translateX.reference})`,
   },
-}
+})
 
-const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
+const baseStyle = definePartsStyle((props) => ({
   container: {
     [$diff.variable]: diffValue,
     [$translateX.variable]: $diff.reference,
@@ -61,37 +60,34 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   },
   track: baseStyleTrack(props),
   thumb: baseStyleThumb,
-})
+}))
 
-const sizes: Record<string, PartsStyleObject<typeof parts>> = {
-  sm: {
+const sizes = {
+  sm: definePartsStyle({
     container: {
       [$width.variable]: "1.375rem",
       [$height.variable]: "0.75rem",
     },
-  },
-  md: {
+  }),
+  md: definePartsStyle({
     container: {
       [$width.variable]: "1.875rem",
       [$height.variable]: "1rem",
     },
-  },
-  lg: {
+  }),
+  lg: definePartsStyle({
     container: {
       [$width.variable]: "2.875rem",
       [$height.variable]: "1.5rem",
     },
-  },
+  }),
 }
 
-const defaultProps = {
-  size: "md",
-  colorScheme: "blue",
-}
-
-export default {
-  parts: parts.keys,
+export const switchTheme = defineMultiStyleConfig({
   baseStyle,
   sizes,
-  defaultProps,
-}
+  defaultProps: {
+    size: "md",
+    colorScheme: "blue",
+  },
+})

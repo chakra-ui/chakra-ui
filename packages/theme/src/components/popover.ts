@@ -1,21 +1,20 @@
 import { popoverAnatomy as parts } from "@chakra-ui/anatomy"
-import type {
-  PartsStyleFunction,
-  SystemStyleFunction,
-  SystemStyleObject,
+import {
+  createMultiStyleConfigHelpers,
+  defineStyle,
 } from "@chakra-ui/styled-system"
 import { cssVar, mode } from "@chakra-ui/theme-tools"
 
-const $popperBg = cssVar("popper-bg")
+const { defineMultiStyleConfig, definePartsStyle } =
+  createMultiStyleConfigHelpers(parts.keys)
 
+const $popperBg = cssVar("popper-bg")
 const $arrowBg = cssVar("popper-arrow-bg")
 const $arrowShadowColor = cssVar("popper-arrow-shadow-color")
 
-const baseStylePopper: SystemStyleObject = {
-  zIndex: 10,
-}
+const baseStylePopper = defineStyle({ zIndex: 10 })
 
-const baseStyleContent: SystemStyleFunction = (props) => {
+const baseStyleContent = defineStyle((props) => {
   const bg = mode("white", "gray.700")(props)
   const shadowColor = mode("gray.200", "whiteAlpha.300")(props)
 
@@ -35,34 +34,34 @@ const baseStyleContent: SystemStyleFunction = (props) => {
       boxShadow: "outline",
     },
   }
-}
+})
 
-const baseStyleHeader: SystemStyleObject = {
+const baseStyleHeader = defineStyle({
   px: 3,
   py: 2,
   borderBottomWidth: "1px",
-}
+})
 
-const baseStyleBody: SystemStyleObject = {
+const baseStyleBody = defineStyle({
   px: 3,
   py: 2,
-}
+})
 
-const baseStyleFooter: SystemStyleObject = {
+const baseStyleFooter = defineStyle({
   px: 3,
   py: 2,
   borderTopWidth: "1px",
-}
+})
 
-const baseStyleCloseButton: SystemStyleObject = {
+const baseStyleCloseButton = defineStyle({
   position: "absolute",
   borderRadius: "md",
   top: 1,
   insetEnd: 2,
   padding: 2,
-}
+})
 
-const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
+const baseStyle = definePartsStyle((props) => ({
   popper: baseStylePopper,
   content: baseStyleContent(props),
   header: baseStyleHeader,
@@ -70,9 +69,8 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   footer: baseStyleFooter,
   arrow: {},
   closeButton: baseStyleCloseButton,
-})
+}))
 
-export default {
-  parts: parts.keys,
+export const popoverTheme = defineMultiStyleConfig({
   baseStyle,
-}
+})

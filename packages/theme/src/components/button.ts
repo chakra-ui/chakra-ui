@@ -1,10 +1,8 @@
+import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
 import { mode, transparentize } from "@chakra-ui/theme-tools"
-import type {
-  SystemStyleObject,
-  SystemStyleFunction,
-} from "@chakra-ui/styled-system"
+import { runIfFn } from "../utils/run-if-fn"
 
-const baseStyle: SystemStyleObject = {
+const baseStyle = defineStyle({
   lineHeight: "1.2",
   borderRadius: "md",
   fontWeight: "semibold",
@@ -23,9 +21,9 @@ const baseStyle: SystemStyleObject = {
       bg: "initial",
     },
   },
-}
+})
 
-const variantGhost: SystemStyleFunction = (props) => {
+const variantGhost = defineStyle((props) => {
   const { colorScheme: c, theme } = props
 
   if (c === "gray") {
@@ -51,9 +49,9 @@ const variantGhost: SystemStyleFunction = (props) => {
       bg: mode(`${c}.100`, darkActiveBg)(props),
     },
   }
-}
+})
 
-const variantOutline: SystemStyleFunction = (props) => {
+const variantOutline = defineStyle((props) => {
   const { colorScheme: c } = props
   const borderColor = mode(`gray.200`, `whiteAlpha.300`)(props)
   return {
@@ -62,9 +60,9 @@ const variantOutline: SystemStyleFunction = (props) => {
     ".chakra-button__group[data-attached] > &:not(:last-of-type)": {
       marginEnd: "-1px",
     },
-    ...variantGhost(props),
+    ...runIfFn(variantGhost, props),
   }
-}
+})
 
 type AccessibleColor = {
   bg?: string
@@ -89,7 +87,7 @@ const accessibleColorMap: { [key: string]: AccessibleColor } = {
   },
 }
 
-const variantSolid: SystemStyleFunction = (props) => {
+const variantSolid = defineStyle((props) => {
   const { colorScheme: c } = props
 
   if (c === "gray") {
@@ -127,9 +125,9 @@ const variantSolid: SystemStyleFunction = (props) => {
     },
     _active: { bg: mode(activeBg, `${c}.400`)(props) },
   }
-}
+})
 
-const variantLink: SystemStyleFunction = (props) => {
+const variantLink = defineStyle((props) => {
   const { colorScheme: c } = props
   return {
     padding: 0,
@@ -147,16 +145,16 @@ const variantLink: SystemStyleFunction = (props) => {
       color: mode(`${c}.700`, `${c}.500`)(props),
     },
   }
-}
+})
 
-const variantUnstyled: SystemStyleObject = {
+const variantUnstyled = defineStyle({
   bg: "none",
   color: "inherit",
   display: "inline",
   lineHeight: "inherit",
   m: 0,
   p: 0,
-}
+})
 
 const variants = {
   ghost: variantGhost,
@@ -166,42 +164,40 @@ const variants = {
   unstyled: variantUnstyled,
 }
 
-const sizes: Record<string, SystemStyleObject> = {
-  lg: {
+const sizes = {
+  lg: defineStyle({
     h: 12,
     minW: 12,
     fontSize: "lg",
     px: 6,
-  },
-  md: {
+  }),
+  md: defineStyle({
     h: 10,
     minW: 10,
     fontSize: "md",
     px: 4,
-  },
-  sm: {
+  }),
+  sm: defineStyle({
     h: 8,
     minW: 8,
     fontSize: "sm",
     px: 3,
-  },
-  xs: {
+  }),
+  xs: defineStyle({
     h: 6,
     minW: 6,
     fontSize: "xs",
     px: 2,
-  },
+  }),
 }
 
-const defaultProps = {
-  variant: "solid",
-  size: "md",
-  colorScheme: "gray",
-}
-
-export default {
+export const buttonTheme = defineStyleConfig({
   baseStyle,
   variants,
   sizes,
-  defaultProps,
-}
+  defaultProps: {
+    variant: "solid",
+    size: "md",
+    colorScheme: "gray",
+  },
+})
