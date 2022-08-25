@@ -1,0 +1,58 @@
+{
+  "name": "@chakra-ui/pin-input",
+  "version": "2.0.11",
+  "description": "A React component optimized for entering sequences of digits",
+  "keywords": [
+    "pin",
+    "input",
+    "pin code",
+    "ui",
+    "react",
+    "component",
+    "chakra ui"
+  ],
+  "sideEffects": false,
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/components/pin-input"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "dependencies": {
+    "@chakra-ui/descendant": "workspace:*",
+    "@chakra-ui/react-use-controllable-state": "workspace:*",
+    "@chakra-ui/react-use-merge-refs": "workspace:*",
+    "@chakra-ui/react-children-utils": "workspace:*",
+    "@chakra-ui/react-context": "workspace:*"
+  },
+  "devDependencies": {
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/system": "workspace:*",
+    "react": "^18.0.0"
+  },
+  "peerDependencies": {
+    "@chakra-ui/system": ">=2.0.0",
+    "react": ">=18"
+  },
+  "scripts": {
+    "build": "JSX=1 tsup src/index.ts --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "JSX=1 tsup src/index.ts"
+  }
+}

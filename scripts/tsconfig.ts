@@ -6,7 +6,7 @@ async function main() {
   await Promise.all(
     pkgs.map(async (pkg) => {
       const data = {
-        extends: "../../tsconfig.json",
+        extends: "../../../tsconfig.json",
         include: ["src", "index.ts"],
       }
 

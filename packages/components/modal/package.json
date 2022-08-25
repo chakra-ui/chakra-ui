@@ -1,0 +1,75 @@
+{
+  "name": "@chakra-ui/modal",
+  "version": "2.1.7",
+  "description": "An accessible dialog (modal) component for React & Chakra UI",
+  "keywords": [
+    "react",
+    "react component",
+    "modal",
+    "dialog",
+    "modal dialog",
+    "accessible modal",
+    "aria modal",
+    "a11y modal",
+    "accessible modal",
+    "modal component",
+    "react modal component",
+    "react modal",
+    "chakra"
+  ],
+  "sideEffects": false,
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/components/modal"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "dependencies": {
+    "@chakra-ui/close-button": "workspace:*",
+    "@chakra-ui/focus-lock": "workspace:*",
+    "@chakra-ui/portal": "workspace:*",
+    "@chakra-ui/react-context": "workspace:*",
+    "@chakra-ui/react-types": "workspace:*",
+    "@chakra-ui/react-use-merge-refs": "workspace:*",
+    "@chakra-ui/transition": "workspace:*",
+    "aria-hidden": "^1.1.1",
+    "react-remove-scroll": "^2.5.4"
+  },
+  "devDependencies": {
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/hooks": "workspace:*",
+    "@testing-library/react-hooks": "8.0.0",
+    "framer-motion": "^6.2.9",
+    "react-lorem-component": "0.13.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "peerDependencies": {
+    "@chakra-ui/system": ">=2.0.0",
+    "framer-motion": ">=4.0.0",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "scripts": {
+    "build": "JSX=1 tsup src/index.ts --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "JSX=1 tsup src/index.ts"
+  }
+}

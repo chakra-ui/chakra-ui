@@ -1,0 +1,55 @@
+{
+  "name": "@chakra-ui/descendant",
+  "version": "3.0.8",
+  "description": "Register child nodes of a react element for better accessibility",
+  "keywords": [
+    "dom",
+    "children",
+    "accessibility",
+    "descendants",
+    "child",
+    "hooks",
+    "chakra ui",
+    "react"
+  ],
+  "sideEffects": false,
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/components/descendant"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "dependencies": {
+    "@chakra-ui/react-context": "workspace:*",
+    "@chakra-ui/react-use-merge-refs": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@chakra-ui/hooks": "workspace:*",
+    "@chakra-ui/system": "workspace:*",
+    "react": "^18.0.0"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/index.ts"
+  }
+}

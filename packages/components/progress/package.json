@@ -1,0 +1,51 @@
+{
+  "name": "@chakra-ui/progress",
+  "version": "2.0.10",
+  "description": "Progress bar component for Chakra UI",
+  "keywords": [
+    "theme",
+    "theming",
+    "chakra ui",
+    "progress",
+    "progress bar"
+  ],
+  "sideEffects": false,
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/components/progress"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "dependencies": {
+    "@chakra-ui/react-context": "workspace:*"
+  },
+  "devDependencies": {
+    "@chakra-ui/system": "workspace:*",
+    "react": "^18.0.0"
+  },
+  "peerDependencies": {
+    "@chakra-ui/system": ">=2.0.0",
+    "react": ">=18"
+  },
+  "scripts": {
+    "build": "JSX=1 tsup src/index.ts --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "JSX=1 tsup src/index.ts"
+  }
+}

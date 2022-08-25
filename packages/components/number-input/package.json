@@ -1,0 +1,74 @@
+{
+  "name": "@chakra-ui/number-input",
+  "version": "2.0.9",
+  "description": "An accessible numeric input alternative to <input type='number' />",
+  "keywords": [
+    "theme",
+    "theming",
+    "chakra ui",
+    "accessible",
+    "input",
+    "input number",
+    "numeric input",
+    "stepper input",
+    "input",
+    "number",
+    "spinner",
+    "spin button"
+  ],
+  "sideEffects": false,
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/components/number-input"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "dependencies": {
+    "@chakra-ui/counter": "workspace:*",
+    "@chakra-ui/form-control": "workspace:*",
+    "@chakra-ui/react-use-event-listener": "workspace:*",
+    "@chakra-ui/react-use-update-effect": "workspace:*",
+    "@chakra-ui/react-use-safe-layout-effect": "workspace:*",
+    "@chakra-ui/react-use-callback-ref": "workspace:*",
+    "@chakra-ui/react-use-merge-refs": "workspace:*",
+    "@chakra-ui/react-types": "workspace:*",
+    "@chakra-ui/react-context": "workspace:*",
+    "@chakra-ui/react-use-interval": "workspace:*",
+    "@chakra-ui/icon": "workspace:*"
+  },
+  "devDependencies": {
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/button": "workspace:*",
+    "@chakra-ui/input": "workspace:*",
+    "@chakra-ui/layout": "workspace:*",
+    "react": "^18.0.0",
+    "react-lorem-component": "0.13.0",
+    "react-hook-form": "7.18.1"
+  },
+  "peerDependencies": {
+    "@chakra-ui/system": ">=2.0.0",
+    "react": ">=18"
+  },
+  "scripts": {
+    "build": "JSX=1 tsup src/index.ts --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "JSX=1 tsup src/index.ts"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "name": "@chakra-ui/popper",
+  "version": "3.0.7",
+  "description": "A React component and hooks wrapper for popper.js",
+  "keywords": [
+    "react",
+    "popper",
+    "popover",
+    "tooltips",
+    "popper.js",
+    "positioning",
+    "popperjs-modifier",
+    "ui",
+    "chakra ui",
+    "component"
+  ],
+  "sideEffects": false,
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/components/popper"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "dependencies": {
+    "@chakra-ui/react-use-merge-refs": "workspace:*",
+    "@chakra-ui/react-types": "workspace:*",
+    "@popperjs/core": "^2.9.3"
+  },
+  "devDependencies": {
+    "@chakra-ui/hooks": "workspace:*",
+    "framer-motion": "^6.2.9",
+    "react": "^18.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/index.ts"
+  }
+}

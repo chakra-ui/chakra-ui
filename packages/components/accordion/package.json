@@ -1,0 +1,69 @@
+{
+  "name": "@chakra-ui/accordion",
+  "version": "2.0.11",
+  "description": "A simple and accessible accordion component for React & Chakra UI",
+  "keywords": [
+    "react",
+    "component",
+    "accordion",
+    "chakra",
+    "chakra ui",
+    "collapse",
+    "accessible",
+    "accessibility",
+    "wai-aria",
+    "aria",
+    "a11y"
+  ],
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/components/accordion"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "dependencies": {
+    "@chakra-ui/descendant": "workspace:*",
+    "@chakra-ui/react-use-controllable-state": "workspace:*",
+    "@chakra-ui/react-use-merge-refs": "workspace:*",
+    "@chakra-ui/react-context": "workspace:*",
+    "@chakra-ui/icon": "workspace:*",
+    "@chakra-ui/transition": "workspace:*"
+  },
+  "devDependencies": {
+    "@chakra-ui/layout": "workspace:*",
+    "@chakra-ui/button": "workspace:*",
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/react-use-disclosure": "workspace:*",
+    "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/modal": "workspace:*",
+    "framer-motion": "^6.2.9",
+    "react": "^18.0.0"
+  },
+  "peerDependencies": {
+    "@chakra-ui/system": ">=2.0.0",
+    "framer-motion": ">=4.0.0",
+    "react": ">=18"
+  },
+  "scripts": {
+    "build": "JSX=1 tsup src/index.ts --dts",
+    "build:fast": "JSX=1 tsup src/index.ts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit"
+  }
+}
