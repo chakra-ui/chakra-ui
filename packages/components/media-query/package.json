@@ -26,7 +26,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/media-query"
+    "directory": "packages/components/media-query"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"

@@ -35,7 +35,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/slider"
+    "directory": "packages/components/slider"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"

@@ -31,7 +31,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/chakra-ui/chakra-ui",
-    "directory": "packages/react"
+    "directory": "packages/components/react"
   },
   "keywords": [
     "react",

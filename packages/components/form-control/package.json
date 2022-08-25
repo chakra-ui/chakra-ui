@@ -29,7 +29,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/form-control"
+    "directory": "packages/components/form-control"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"

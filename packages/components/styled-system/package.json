@@ -29,7 +29,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/styled-system"
+    "directory": "packages/components/styled-system"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"

@@ -25,7 +25,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/css-reset"
+    "directory": "packages/components/css-reset"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"

@@ -26,7 +26,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/env"
+    "directory": "packages/components/env"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"

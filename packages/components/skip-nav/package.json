@@ -29,7 +29,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/skip-nav"
+    "directory": "packages/components/skip-nav"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"

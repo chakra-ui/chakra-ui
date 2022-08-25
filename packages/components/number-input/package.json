@@ -32,7 +32,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/number-input"
+    "directory": "packages/components/number-input"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"

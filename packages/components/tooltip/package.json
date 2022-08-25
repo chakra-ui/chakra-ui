@@ -27,7 +27,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/tooltip"
+    "directory": "packages/components/tooltip"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"

@@ -29,7 +29,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/counter"
+    "directory": "packages/components/counter"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
