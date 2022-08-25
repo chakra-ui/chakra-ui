@@ -38,15 +38,15 @@ const baseStyle = definePartsStyle((props) => ({
 
 const sizes = {
   md: definePartsStyle({
-    control: { w: 4, h: 4 },
+    control: { w: "4", h: "4" },
     label: { fontSize: "md" },
   }),
   lg: definePartsStyle({
-    control: { w: 5, h: 5 },
+    control: { w: "5", h: "5" },
     label: { fontSize: "lg" },
   }),
   sm: definePartsStyle({
-    control: { width: 3, height: 3 },
+    control: { width: "3", height: "3" },
     label: { fontSize: "sm" },
   }),
 }

@@ -16,7 +16,7 @@ const $inputPadding = cssVar("number-input-input-padding")
 const inputPaddingValue = calc($stepperWidth).add("0.5rem").toString()
 
 const baseStyleRoot = defineStyle({
-  [$stepperWidth.variable]: "24px",
+  [$stepperWidth.variable]: "sizes.6",
   [$inputPadding.variable]: inputPaddingValue,
 })
 

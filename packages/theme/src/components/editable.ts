@@ -9,14 +9,14 @@ const { definePartsStyle, defineMultiStyleConfig } =
 
 const baseStylePreview = defineStyle({
   borderRadius: "md",
-  py: "3px",
+  py: "1",
   transitionProperty: "common",
   transitionDuration: "normal",
 })
 
 const baseStyleInput = defineStyle({
   borderRadius: "md",
-  py: "3px",
+  py: "1",
   transitionProperty: "common",
   transitionDuration: "normal",
   width: "full",
@@ -26,7 +26,7 @@ const baseStyleInput = defineStyle({
 
 const baseStyleTextarea = defineStyle({
   borderRadius: "md",
-  py: "3px",
+  py: "1",
   transitionProperty: "common",
   transitionDuration: "normal",
   width: "full",

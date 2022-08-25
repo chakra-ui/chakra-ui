@@ -88,9 +88,6 @@ function getSize(value: string) {
       dialog: {
         maxW: "100vw",
         minH: "100vh",
-        "@supports(min-height: -webkit-fill-available)": {
-          minH: "-webkit-fill-available",
-        },
         my: "0",
         borderRadius: "0",
       },

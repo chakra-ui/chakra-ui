@@ -6,7 +6,7 @@ const baseStyle = defineStyle((props) => ({
   fontWeight: "semibold",
   _focusVisible: {
     boxShadow: "outline",
-    padding: "1rem",
+    padding: "4",
     position: "fixed",
     top: "6",
     insetStart: "6",

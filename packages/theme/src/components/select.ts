@@ -23,9 +23,9 @@ const baseStyleField = defineStyle((props) => {
 })
 
 const baseStyleIcon = defineStyle({
-  width: "1.5rem",
+  width: "6",
   height: "100%",
-  insetEnd: "0.5rem",
+  insetEnd: "2",
   position: "relative",
   color: "currentColor",
   fontSize: "xl",
