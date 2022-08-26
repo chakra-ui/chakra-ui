@@ -42,6 +42,8 @@ export function getPrData(pr: PullRequest): PrData {
 
   const body = [
     "---",
+    `title: Version ${version}`,
+    `description: Explore the changelog for Chakra UI version ${version}. Learn about the latest features, bug fixes, and improvements.`,
     `releaseUrl: ${pr.html_url}`,
     `releaseDate: ${date}`,
     `version: ${version}`,
