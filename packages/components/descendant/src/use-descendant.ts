@@ -44,9 +44,10 @@ const [DescendantsContextProvider, useDescendantsContext] =
  * - ref callback to register the descendant
  * - Its enabled index compared to other enabled descendants
  */
-function useDescendant<T extends HTMLElement = HTMLElement, K = {}>(
-  options?: DescendantOptions<K>,
-) {
+function useDescendant<
+  T extends HTMLElement = HTMLElement,
+  K extends Record<string, any> = {},
+>(options?: DescendantOptions<K>) {
   const descendants = useDescendantsContext()
   const [index, setIndex] = useState(-1)
   const ref = useRef<T>(null)
