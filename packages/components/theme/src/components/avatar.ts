@@ -12,7 +12,6 @@ const { definePartsStyle, defineMultiStyleConfig } =
 
 const baseStyleBadge = defineStyle((props) => {
   return {
-    transform: "translate(25%, 25%)",
     borderRadius: "full",
     border: "0.2em solid",
     borderColor: mode("white", "gray.800")(props),
