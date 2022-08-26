@@ -63,7 +63,7 @@ jobs:
       - name: Update changelog
         if: steps.changesets.outputs.published == 'true'
         run: |
-          pnpm changelog:write
+          pnpm changelog:latest
           pnpm changelog:commit
 
       - name: Send a dispatch event to chakra-ui-docs
