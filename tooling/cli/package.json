@@ -60,7 +60,6 @@
     "@types/lodash.throttle": "^4.1.7",
     "@types/module-alias": "^2.0.1",
     "@types/ora": "^3.2.0",
-    "@types/update-notifier": "5.0.0",
-    "cross-env": "7.0.3"
+    "@types/update-notifier": "5.0.0"
   }
 }

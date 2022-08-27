@@ -74,8 +74,7 @@
     "react": "^18.0.0"
   },
   "dependencies": {
-    "@chakra-ui/icons": "workspace:*",
-    "webpack-merge": "^5.0.0"
+    "@chakra-ui/icons": "workspace:*"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.0.0",
