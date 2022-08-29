@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.0.13
+
+### Patch Changes
+
+- [`732195d17`](https://github.com/chakra-ui/chakra-ui/commit/732195d17154e07bc6f4e29ac686b3d2c9140338)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix regression in
+  use menu group state
+
+- Updated dependencies []:
+  - @chakra-ui/clickable@2.0.9
+  - @chakra-ui/descendant@3.0.9
+
 ## 2.0.12
 
 ### Patch Changes
