@@ -1,5 +1,13 @@
 # @chakra-ui/react-use-pan-event
 
+## 2.0.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`7000bb5fe`](https://github.com/chakra-ui/chakra-ui/commit/7000bb5fe432db85ed41aeb0c5d488bbc7da4785)]:
+  - @chakra-ui/event-utils@2.0.4
+
 ## 2.0.3
 
 ### Patch Changes
