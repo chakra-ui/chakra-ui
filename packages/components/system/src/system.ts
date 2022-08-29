@@ -91,8 +91,8 @@ export function styled<T extends As, P = {}>(
     const { colorMode, forced } = useColorMode()
     return React.createElement(Component, {
       ref,
-      ...props,
       "data-theme": forced ? colorMode : undefined,
+      ...props,
     })
   })
 
