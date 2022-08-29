@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.1.1
+
+### Patch Changes
+
+- [`ac6a00aea`](https://github.com/chakra-ui/chakra-ui/commit/ac6a00aea4113c4d77d6568125ddf38b339635b4)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix key warning for
+  tabs component
+
+- Updated dependencies
+  [[`260076e2a`](https://github.com/chakra-ui/chakra-ui/commit/260076e2ac6165c8079c800475b9d7a9ca0f29a2)]:
+  - @chakra-ui/descendant@3.0.9
+  - @chakra-ui/clickable@2.0.9
+
 ## 2.1.0
 
 ### Minor Changes

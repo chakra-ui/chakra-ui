@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.0.10
+
+### Patch Changes
+
+- [`dda7d71bb`](https://github.com/chakra-ui/chakra-ui/commit/dda7d71bbc4b909f89a335b2080d91fc06083559)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  select theme throws when "field" part is not defined
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@2.0.9
+
 ## 2.0.9
 
 ### Patch Changes

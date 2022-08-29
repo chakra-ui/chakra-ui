@@ -1,5 +1,23 @@
 # Change Log
 
+## 3.0.8
+
+### Patch Changes
+
+- [`8b0bd0d58`](https://github.com/chakra-ui/chakra-ui/commit/8b0bd0d5892d91699571b110adee89857078e9e0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  toast double update doesn't work
+
+- Updated dependencies
+  [[`e8f634e0d`](https://github.com/chakra-ui/chakra-ui/commit/e8f634e0d56a9d994aa139c7a36add3d30ede11f),
+  [`5bacbdc2c`](https://github.com/chakra-ui/chakra-ui/commit/5bacbdc2c6f34fd6b8548e1a31c783084d2f775c),
+  [`0cae42007`](https://github.com/chakra-ui/chakra-ui/commit/0cae42007308e94ef9a9fdbae3de259871ca33be),
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7)]:
+  - @chakra-ui/theme@2.1.9
+  - @chakra-ui/system@2.2.8
+  - @chakra-ui/alert@2.0.9
+  - @chakra-ui/close-button@2.0.9
+
 ## 3.0.7
 
 ### Patch Changes
