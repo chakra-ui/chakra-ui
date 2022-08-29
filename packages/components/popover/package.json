@@ -50,6 +50,7 @@
     "@chakra-ui/layout": "workspace:*",
     "@chakra-ui/radio": "workspace:*",
     "@chakra-ui/input": "workspace:*",
+    "@chakra-ui/hooks": "workspace:*",
     "react-icons": "^4.2.0",
     "framer-motion": "^6.2.9",
     "react": "^18.0.0"
