@@ -924,6 +924,7 @@ importers:
     specifiers:
       '@chakra-ui/button': workspace:*
       '@chakra-ui/close-button': workspace:*
+      '@chakra-ui/hooks': workspace:*
       '@chakra-ui/input': workspace:*
       '@chakra-ui/layout': workspace:*
       '@chakra-ui/lazy-utils': workspace:*
@@ -954,6 +955,7 @@ importers:
       '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
     devDependencies:
       '@chakra-ui/button': link:../button
+      '@chakra-ui/hooks': link:../../legacy/hooks
       '@chakra-ui/input': link:../input
       '@chakra-ui/layout': link:../layout
       '@chakra-ui/radio': link:../radio
