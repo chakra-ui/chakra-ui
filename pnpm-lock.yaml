@@ -1796,7 +1796,6 @@ importers:
       cli-handle-unhandled: ^1.1.1
       cli-welcome: ^2.2.2
       commander: ^9.3.0
-      cross-env: 7.0.3
       lodash.throttle: ^4.1.1
       module-alias: ^2.2.2
       ora: ^5.3.0
@@ -1826,7 +1825,6 @@ importers:
       '@types/module-alias': 2.0.1
       '@types/ora': 3.2.0
       '@types/update-notifier': 5.0.0
-      cross-env: 7.0.3
 
   tooling/cra-template:
     specifiers: {}
@@ -1872,10 +1870,8 @@ importers:
       '@storybook/api': ^6.5.6
       '@storybook/components': ^6.5.6
       react: ^18.2.0
-      webpack-merge: ^5.0.0
     dependencies:
       '@chakra-ui/icons': link:../../packages/components/icons
-      webpack-merge: 5.8.0
     devDependencies:
       '@chakra-ui/react': link:../../packages/components/react
       '@storybook/addons': 6.5.9_react@18.2.0
@@ -13399,14 +13395,6 @@ packages:
       acquerello: 1.0.7
       hdr-histogram-js: 3.0.0
       table: 6.8.0
-    dev: true
-
-  /cross-env/7.0.3:
-    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
-    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
-    hasBin: true
-    dependencies:
-      cross-spawn: 7.0.3
     dev: true
 
   /cross-fetch/3.1.4:
