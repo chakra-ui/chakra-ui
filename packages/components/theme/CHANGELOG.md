@@ -1,5 +1,49 @@
 # Change Log
 
+## 2.1.9
+
+### Patch Changes
+
+- [`e8f634e0d`](https://github.com/chakra-ui/chakra-ui/commit/e8f634e0d56a9d994aa139c7a36add3d30ede11f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  changing avatar badge placement.
+
+  The badge placement can be set to `top-start`, `top-end`, `bottom-start` or
+  `bottom-end`.
+
+  ```jsx live=false
+  <Avatar
+    name="Uchiha Itachi"
+    src="https://uinames.com/api/photos/female/18.jpg"
+  >
+    <AvatarBadge placement="top-start" />
+  </Avatar>
+  ```
+
+* [`5bacbdc2c`](https://github.com/chakra-ui/chakra-ui/commit/5bacbdc2c6f34fd6b8548e1a31c783084d2f775c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor alert
+  theme to use css variables
+
+- [#6559](https://github.com/chakra-ui/chakra-ui/pull/6559)
+  [`0cae42007`](https://github.com/chakra-ui/chakra-ui/commit/0cae42007308e94ef9a9fdbae3de259871ca33be)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactors the theme
+  to use design tokens and css variables as much as possible.
+
+  Improve support for `100vh` values by using a polyfill css variable
+  `--chakra-vh`.
+
+* [#6221](https://github.com/chakra-ui/chakra-ui/pull/6221)
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor to use the
+  new helpers from `styled-system` package
+
+* Updated dependencies
+  [[`5e6c3fd65`](https://github.com/chakra-ui/chakra-ui/commit/5e6c3fd652446540a3e9825c0d0f1f556d2e17b8),
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7),
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7)]:
+  - @chakra-ui/anatomy@2.0.6
+  - @chakra-ui/theme-tools@2.0.11
+
 ## 2.1.8
 
 ### Patch Changes

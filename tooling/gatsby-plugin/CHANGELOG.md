@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.0.6
+
+### Patch Changes
+
+- [#6584](https://github.com/chakra-ui/chakra-ui/pull/6584)
+  [`ababbde39`](https://github.com/chakra-ui/chakra-ui/commit/ababbde390f573b254a380a83fb88a4ccd9d0131)
+  Thanks [@nikolovlazar](https://github.com/nikolovlazar)! - Removed default
+  value of portalZIndex
+
 ## 3.0.5
 
 ### Patch Changes
