@@ -46,8 +46,8 @@ function getBg(props: StyleFunctionProps) {
   const { theme, colorScheme: c } = props
   const darkBg = transparentize(`${c}.200`, 0.16)(theme)
   return {
-    light: { [$bg.variable]: `colors.${c}.100` },
-    dark: { [$bg.variable]: darkBg },
+    light: `colors.${c}.100`,
+    dark: darkBg,
   }
 }
 
@@ -57,10 +57,10 @@ const variantSubtle = definePartsStyle((props) => {
   return {
     container: {
       [$fg.variable]: `colors.${c}.500`,
-      ...bg.light,
+      [$bg.variable]: bg.light,
       _dark: {
         [$fg.variable]: `colors.${c}.200`,
-        ...bg.dark,
+        [$bg.variable]: bg.dark,
       },
     },
   }
@@ -72,10 +72,10 @@ const variantLeftAccent = definePartsStyle((props) => {
   return {
     container: {
       [$fg.variable]: `colors.${c}.500`,
-      ...bg.light,
+      [$bg.variable]: bg.light,
       _dark: {
         [$fg.variable]: `colors.${c}.200`,
-        ...bg.dark,
+        [$bg.variable]: bg.dark,
       },
       paddingStart: "3",
       borderStartWidth: "4px",
@@ -90,10 +90,10 @@ const variantTopAccent = definePartsStyle((props) => {
   return {
     container: {
       [$fg.variable]: `colors.${c}.500`,
-      ...bg.light,
+      [$bg.variable]: bg.light,
       _dark: {
         [$fg.variable]: `colors.${c}.200`,
-        ...bg.dark,
+        [$bg.variable]: bg.dark,
       },
       pt: "2",
       borderTopWidth: "4px",
