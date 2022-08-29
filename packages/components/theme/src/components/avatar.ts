@@ -1,27 +1,35 @@
 import { avatarAnatomy as parts } from "@chakra-ui/anatomy"
 import {
   createMultiStyleConfigHelpers,
+  cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { isDark, mode, randomColor } from "@chakra-ui/theme-tools"
+import { isDark, randomColor } from "@chakra-ui/theme-tools"
 import themeSizes from "../foundations/sizes"
 import { runIfFn } from "../utils/run-if-fn"
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys)
 
-const baseStyleBadge = defineStyle((props) => {
-  return {
-    borderRadius: "full",
-    border: "0.2em solid",
-    borderColor: mode("white", "gray.800")(props),
-  }
+const $border = cssVar("avatar-border-color")
+const $bg = cssVar("avatar-bg")
+
+const baseStyleBadge = defineStyle({
+  borderRadius: "full",
+  border: "0.2em solid",
+  [$border.variable]: "white",
+  _dark: {
+    [$border.variable]: "colors.gray.800",
+  },
+  borderColor: $border.reference,
 })
 
-const baseStyleExcessLabel = defineStyle((props) => {
-  return {
-    bg: mode("gray.200", "whiteAlpha.400")(props),
-  }
+const baseStyleExcessLabel = defineStyle({
+  [$bg.variable]: "colors.gray.200",
+  _dark: {
+    [$bg.variable]: "colors.whiteAlpha.400",
+  },
+  bgColor: $bg.reference,
 })
 
 const baseStyleContainer = defineStyle((props) => {
@@ -32,12 +40,14 @@ const baseStyleContainer = defineStyle((props) => {
   let color = "white"
   if (!isBgDark) color = "gray.800"
 
-  const borderColor = mode("white", "gray.800")(props)
-
   return {
     bg,
     color,
-    borderColor,
+    [$border.variable]: "white",
+    _dark: {
+      [$border.variable]: "colors.gray.800",
+    },
+    borderColor: $border.reference,
     verticalAlign: "top",
   }
 })
