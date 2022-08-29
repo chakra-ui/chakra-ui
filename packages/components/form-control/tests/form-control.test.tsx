@@ -235,7 +235,7 @@ test("can provide a custom aria-describedby reference", () => {
       <Input aria-describedby="name-expanded-helptext" />
       <FormHelperText>Please enter your name!</FormHelperText>
       <p id="name-expanded-helptext">
-        Sometimes it can be really helpfull to enter a name, trust me.
+        Sometimes it can be really helpful to enter a name, trust me.
       </p>
     </FormControl>,
   )
