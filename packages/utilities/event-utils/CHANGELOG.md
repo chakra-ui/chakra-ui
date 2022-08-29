@@ -1,5 +1,13 @@
 # @chakra-ui/event-utils
 
+## 2.0.4
+
+### Patch Changes
+
+- [`7000bb5fe`](https://github.com/chakra-ui/chakra-ui/commit/7000bb5fe432db85ed41aeb0c5d488bbc7da4785)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix regression in
+  `addPointerEvent` utility
+
 ## 2.0.3
 
 ### Patch Changes
