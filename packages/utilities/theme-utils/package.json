@@ -36,7 +36,8 @@
     "build:fast": "tsup src/index.ts --format=esm,cjs"
   },
   "devDependencies": {
-    "@chakra-ui/shared-utils": "workspace:*"
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@types/lodash.mergewith": "4.6.6"
   },
   "dependencies": {
     "@chakra-ui/system": "workspace:*",
