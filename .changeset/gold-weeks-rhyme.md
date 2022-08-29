@@ -1,5 +1,6 @@
 ---
 "@chakra-ui/avatar": minor
+"@chakra-ui/react": minor
 "@chakra-ui/theme": patch
 ---
 
