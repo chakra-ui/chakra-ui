@@ -3,8 +3,6 @@ import mergeWith from "lodash.mergewith"
 
 type CloneKey<Target, Key> = Key extends keyof Target ? Target[Key] : unknown
 
-type AnyFunction<T = any> = (...args: T[]) => any
-
 export type DeepPartial<T> = {
   [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P]
 }
@@ -35,6 +33,8 @@ export declare type ThemeOverride<BaseTheme = Theme> =
 export type ThemeExtension<Override extends ThemeOverride = ThemeOverride> = (
   themeOverride: Override,
 ) => Override
+
+type AnyFunction<T = any> = (...args: T[]) => any
 
 export type BaseThemeWithExtensions<
   BaseTheme extends ChakraTheme,
@@ -69,6 +69,10 @@ export type BaseThemeWithExtensions<
  * )
  */
 
+function isFunction<T extends Function = Function>(value: any): value is T {
+  return typeof value === "function"
+}
+
 function pipe<R>(...fns: Array<(a: R) => R>) {
   return (v: R) => fns.reduce((a, b) => b(a), v)
 }
@@ -95,7 +99,7 @@ export function extendTheme(
   return pipe(
     ...overrides.map(
       (extension) => (prevTheme: any) =>
-        typeof extension === "function"
+        isFunction(extension)
           ? (extension as any)(prevTheme)
           : mergeThemeOverride(prevTheme, extension),
     ),
@@ -113,15 +117,13 @@ function mergeThemeCustomizer(
   object: any,
 ) {
   if (
-    (typeof source === "function" || typeof override) === "function" &&
+    (isFunction(source) || isFunction(override)) &&
     Object.prototype.hasOwnProperty.call(object, key)
   ) {
     return (...args: unknown[]) => {
-      const sourceValue =
-        typeof source === "function" ? source(...args) : source
+      const sourceValue = isFunction(source) ? source(...args) : source
 
-      const overrideValue =
-        typeof override === "function" ? override(...args) : override
+      const overrideValue = isFunction(override) ? override(...args) : override
 
       return mergeWith({}, sourceValue, overrideValue, mergeThemeCustomizer)
     }
