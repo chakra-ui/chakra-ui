@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.0.11
+
+### Patch Changes
+
+- [#6221](https://github.com/chakra-ui/chakra-ui/pull/6221)
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactored code to
+  use from `styled-system` package
+
+- Updated dependencies
+  [[`5e6c3fd65`](https://github.com/chakra-ui/chakra-ui/commit/5e6c3fd652446540a3e9825c0d0f1f556d2e17b8),
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7)]:
+  - @chakra-ui/anatomy@2.0.6
+
 ## 2.0.10
 
 ### Patch Changes

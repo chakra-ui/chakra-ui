@@ -1,5 +1,76 @@
 # Change Log
 
+## 2.3.0
+
+### Minor Changes
+
+- [`e8f634e0d`](https://github.com/chakra-ui/chakra-ui/commit/e8f634e0d56a9d994aa139c7a36add3d30ede11f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  changing avatar badge placement.
+
+  The badge placement can be set to `top-start`, `top-end`, `bottom-start` or
+  `bottom-end`.
+
+  ```jsx live=false
+  <Avatar
+    name="Uchiha Itachi"
+    src="https://uinames.com/api/photos/female/18.jpg"
+  >
+    <AvatarBadge placement="top-start" />
+  </Avatar>
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`dda7d71bb`](https://github.com/chakra-ui/chakra-ui/commit/dda7d71bbc4b909f89a335b2080d91fc06083559),
+  [`5e6c3fd65`](https://github.com/chakra-ui/chakra-ui/commit/5e6c3fd652446540a3e9825c0d0f1f556d2e17b8),
+  [`e8f634e0d`](https://github.com/chakra-ui/chakra-ui/commit/e8f634e0d56a9d994aa139c7a36add3d30ede11f),
+  [`5bacbdc2c`](https://github.com/chakra-ui/chakra-ui/commit/5bacbdc2c6f34fd6b8548e1a31c783084d2f775c),
+  [`8b0bd0d58`](https://github.com/chakra-ui/chakra-ui/commit/8b0bd0d5892d91699571b110adee89857078e9e0),
+  [`0cae42007`](https://github.com/chakra-ui/chakra-ui/commit/0cae42007308e94ef9a9fdbae3de259871ca33be),
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7),
+  [`ac6a00aea`](https://github.com/chakra-ui/chakra-ui/commit/ac6a00aea4113c4d77d6568125ddf38b339635b4)]:
+  - @chakra-ui/select@2.0.10
+  - @chakra-ui/slider@2.0.10
+  - @chakra-ui/avatar@2.1.0
+  - @chakra-ui/theme@2.1.9
+  - @chakra-ui/toast@3.0.8
+  - @chakra-ui/css-reset@2.0.6
+  - @chakra-ui/provider@2.0.15
+  - @chakra-ui/skeleton@2.0.15
+  - @chakra-ui/tabs@2.1.1
+  - @chakra-ui/tag@2.0.9
+  - @chakra-ui/button@2.0.9
+  - @chakra-ui/media-query@3.2.5
+  - @chakra-ui/menu@2.0.12
+  - @chakra-ui/system@2.2.8
+  - @chakra-ui/accordion@2.0.12
+  - @chakra-ui/pin-input@2.0.12
+  - @chakra-ui/table@2.0.9
+  - @chakra-ui/alert@2.0.9
+  - @chakra-ui/breadcrumb@2.0.9
+  - @chakra-ui/checkbox@2.1.8
+  - @chakra-ui/close-button@2.0.9
+  - @chakra-ui/control-box@2.0.9
+  - @chakra-ui/editable@2.0.9
+  - @chakra-ui/form-control@2.0.9
+  - @chakra-ui/icon@3.0.9
+  - @chakra-ui/image@2.0.10
+  - @chakra-ui/input@2.0.9
+  - @chakra-ui/layout@2.1.6
+  - @chakra-ui/modal@2.1.7
+  - @chakra-ui/number-input@2.0.9
+  - @chakra-ui/popover@2.0.9
+  - @chakra-ui/progress@2.0.10
+  - @chakra-ui/radio@2.0.10
+  - @chakra-ui/spinner@2.0.9
+  - @chakra-ui/stat@2.0.9
+  - @chakra-ui/switch@2.0.11
+  - @chakra-ui/textarea@2.0.10
+  - @chakra-ui/tooltip@2.0.10
+  - @chakra-ui/visually-hidden@2.0.9
+
 ## 2.2.9
 
 ### Patch Changes

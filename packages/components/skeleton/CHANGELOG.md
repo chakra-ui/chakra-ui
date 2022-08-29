@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.0.15
+
+### Patch Changes
+
+- [#6221](https://github.com/chakra-ui/chakra-ui/pull/6221)
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor to use the
+  new helpers from `styled-system` package
+
+- Updated dependencies []:
+  - @chakra-ui/media-query@3.2.5
+
 ## 2.0.14
 
 ### Patch Changes
