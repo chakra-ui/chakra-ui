@@ -1777,6 +1777,7 @@ importers:
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/theme': workspace:*
+      '@types/lodash.mergewith': 4.6.6
       lodash.mergewith: 4.6.2
     dependencies:
       '@chakra-ui/system': link:../../components/system
@@ -1784,6 +1785,7 @@ importers:
       lodash.mergewith: 4.6.2
     devDependencies:
       '@chakra-ui/shared-utils': link:../shared-utils
+      '@types/lodash.mergewith': 4.6.6
 
   tooling/babel-plugin:
     specifiers:
@@ -10389,7 +10391,7 @@ packages:
   /axios/0.21.4_debug@3.2.7:
     resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
     dependencies:
-      follow-redirects: 1.15.1_debug@3.2.7
+      follow-redirects: 1.15.1
     transitivePeerDependencies:
       - debug
 
@@ -14932,7 +14934,7 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /follow-redirects/1.15.1_debug@3.2.7:
+  /follow-redirects/1.15.1:
     resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
     engines: {node: '>=4.0'}
     peerDependencies:
@@ -14940,8 +14942,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dependencies:
-      debug: 3.2.7
 
   /for-in/1.0.2:
     resolution: {integrity: sha512-7EwmXrOjyL+ChxMhmG5lnW9MPt1aIeZEwKhQzoBUdTV0N3zuwWDZYVJatDvZ2OyzPUvdIAZDsCetk3coyMfcnQ==}
@@ -16761,7 +16761,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.1_debug@3.2.7
+      follow-redirects: 1.15.1
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
