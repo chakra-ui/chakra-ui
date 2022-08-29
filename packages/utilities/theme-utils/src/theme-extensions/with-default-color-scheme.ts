@@ -1,5 +1,5 @@
 import { ThemingProps } from "@chakra-ui/system"
-import { Dict, isObject, fromEntries } from "@chakra-ui/utils"
+import { isObject } from "@chakra-ui/shared-utils"
 import { mergeThemeOverride, ThemeExtension } from "../extend-theme"
 
 export function withDefaultColorScheme({
@@ -7,7 +7,7 @@ export function withDefaultColorScheme({
   components,
 }: {
   colorScheme: ThemingProps["colorScheme"]
-  components?: string[] | Dict
+  components?: string[] | Record<string, any>
 }): ThemeExtension {
   return (theme) => {
     let names = Object.keys(theme.components || {})
@@ -19,7 +19,7 @@ export function withDefaultColorScheme({
     }
 
     return mergeThemeOverride(theme, {
-      components: fromEntries(
+      components: Object.fromEntries(
         names.map((componentName) => {
           const withColorScheme = {
             defaultProps: {

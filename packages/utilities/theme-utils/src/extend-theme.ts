@@ -1,13 +1,9 @@
 import { theme, ChakraTheme, isChakraTheme, Theme } from "@chakra-ui/theme"
-import {
-  AnyFunction,
-  Dict,
-  isFunction,
-  mergeWith,
-  pipe,
-} from "@chakra-ui/utils"
+import mergeWith from "lodash.mergewith"
 
 type CloneKey<Target, Key> = Key extends keyof Target ? Target[Key] : unknown
+
+type AnyFunction<T = any> = (...args: T[]) => any
 
 export type DeepPartial<T> = {
   [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P]
@@ -32,7 +28,9 @@ type DeepThemeExtension<BaseTheme, ThemeType> = {
 }
 
 export declare type ThemeOverride<BaseTheme = Theme> =
-  DeepPartial<ChakraTheme> & DeepThemeExtension<BaseTheme, ChakraTheme> & Dict
+  DeepPartial<ChakraTheme> &
+    DeepThemeExtension<BaseTheme, ChakraTheme> &
+    Record<string, any>
 
 export type ThemeExtension<Override extends ThemeOverride = ThemeOverride> = (
   themeOverride: Override,
@@ -71,9 +69,15 @@ export type BaseThemeWithExtensions<
  * )
  */
 
+function pipe<R>(...fns: Array<(a: R) => R>) {
+  return (v: R) => fns.reduce((a, b) => b(a), v)
+}
+
 export function extendTheme(
-  ...extensions: Array<Dict | ((theme: Dict) => Dict)>
-): Dict {
+  ...extensions: Array<
+    Record<string, any> | ((theme: Record<string, any>) => Record<string, any>)
+  >
+): Record<string, any> {
   let overrides = [...extensions]
   let baseTheme = extensions[extensions.length - 1]
 
@@ -91,7 +95,7 @@ export function extendTheme(
   return pipe(
     ...overrides.map(
       (extension) => (prevTheme: any) =>
-        isFunction(extension)
+        typeof extension === "function"
           ? (extension as any)(prevTheme)
           : mergeThemeOverride(prevTheme, extension),
     ),
@@ -109,13 +113,15 @@ function mergeThemeCustomizer(
   object: any,
 ) {
   if (
-    (isFunction(source) || isFunction(override)) &&
+    (typeof source === "function" || typeof override) === "function" &&
     Object.prototype.hasOwnProperty.call(object, key)
   ) {
     return (...args: unknown[]) => {
-      const sourceValue = isFunction(source) ? source(...args) : source
+      const sourceValue =
+        typeof source === "function" ? source(...args) : source
 
-      const overrideValue = isFunction(override) ? override(...args) : override
+      const overrideValue =
+        typeof override === "function" ? override(...args) : override
 
       return mergeWith({}, sourceValue, overrideValue, mergeThemeCustomizer)
     }
