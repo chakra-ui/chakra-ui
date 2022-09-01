@@ -1,5 +1,9 @@
-import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
-import { mode, transparentize } from "@chakra-ui/theme-tools"
+import {
+  cssVar,
+  defineStyle,
+  defineStyleConfig,
+} from "@chakra-ui/styled-system"
+import { transparentize } from "@chakra-ui/theme-tools"
 import { runIfFn } from "../utils/run-if-fn"
 
 const baseStyle = defineStyle({
@@ -23,16 +27,34 @@ const baseStyle = defineStyle({
   },
 })
 
+const $color = cssVar("button-color")
+const $bg = cssVar("button-background")
+const $borderColor = cssVar("button-border-color")
+
 const variantGhost = defineStyle((props) => {
   const { colorScheme: c, theme } = props
 
   if (c === "gray") {
     return {
-      color: mode(`inherit`, `whiteAlpha.900`)(props),
-      _hover: {
-        bg: mode(`gray.100`, `whiteAlpha.200`)(props),
+      [$color.variable]: "inherit",
+      _dark: {
+        [$color.variable]: "colors.whiteAlpha.900",
       },
-      _active: { bg: mode(`gray.200`, `whiteAlpha.300`)(props) },
+      _hover: {
+        [$bg.variable]: "colors.gray.100",
+        _dark: {
+          [$bg.variable]: "colors.whiteAlpha.200",
+        },
+      },
+      _active: {
+        [$bg.variable]: "colors.gray.200",
+        _dark: {
+          [$bg.variable]: "colors.whiteAlpha.300",
+        },
+      },
+
+      color: $color.reference,
+      bg: $bg.reference,
     }
   }
 
@@ -40,27 +62,48 @@ const variantGhost = defineStyle((props) => {
   const darkActiveBg = transparentize(`${c}.200`, 0.24)(theme)
 
   return {
-    color: mode(`${c}.600`, `${c}.200`)(props),
-    bg: "transparent",
     _hover: {
-      bg: mode(`${c}.50`, darkHoverBg)(props),
+      [$bg.variable]: `colors.${c}.50`,
+      _dark: {
+        [$color.variable]: darkHoverBg,
+      },
     },
     _active: {
-      bg: mode(`${c}.100`, darkActiveBg)(props),
+      [$bg.variable]: `colors.${c}.100`,
+      _dark: {
+        [$color.variable]: darkActiveBg,
+      },
     },
+
+    [$color.variable]: `colors.${c}.600`,
+    [$bg.variable]: "transparent",
+    _dark: {
+      [$color.variable]: `colors.${c}.200`,
+    },
+
+    color: $color.reference,
+    bg: $bg.reference,
   }
 })
 
 const variantOutline = defineStyle((props) => {
   const { colorScheme: c } = props
-  const borderColor = mode(`gray.200`, `whiteAlpha.300`)(props)
+
+  const ghostStyles = runIfFn(variantGhost, props)
+
   return {
-    border: "1px solid",
-    borderColor: c === "gray" ? borderColor : "currentColor",
     ".chakra-button__group[data-attached] > &:not(:last-of-type)": {
       marginEnd: "-1px",
     },
-    ...runIfFn(variantGhost, props),
+    border: "1px solid",
+    [$borderColor.variable]: "colors.gray.200",
+    borderColor: c === "gray" ? $borderColor.reference : "currentColor",
+
+    ...ghostStyles,
+    _dark: {
+      [$borderColor.variable]: "colors.whiteAlpha.300",
+      ...ghostStyles._dark,
+    },
   }
 })
 
@@ -91,17 +134,31 @@ const variantSolid = defineStyle((props) => {
   const { colorScheme: c } = props
 
   if (c === "gray") {
-    const bg = mode(`gray.100`, `whiteAlpha.200`)(props)
-
     return {
-      bg,
+      [$bg.variable]: `colors.gray.100`,
+      _dark: {
+        [$bg.variable]: "colors.whiteAlpha.200",
+      },
       _hover: {
-        bg: mode(`gray.200`, `whiteAlpha.300`)(props),
+        [$bg.variable]: "colors.gray.200",
+        _dark: {
+          [$bg.variable]: "colors.whiteAlpha.300",
+        },
         _disabled: {
-          bg,
+          [$bg.variable]: `colors.gray.100`,
+          _dark: {
+            [$bg.variable]: "colors.whiteAlpha.200",
+          },
         },
       },
-      _active: { bg: mode(`gray.300`, `whiteAlpha.400`)(props) },
+      _active: {
+        [$bg.variable]: "colors.gray.300",
+        _dark: {
+          [$bg.variable]: "colors.whiteAlpha.400",
+        },
+      },
+
+      bg: $bg.reference,
     }
   }
 
@@ -112,18 +169,34 @@ const variantSolid = defineStyle((props) => {
     activeBg = `${c}.700`,
   } = accessibleColorMap[c] ?? {}
 
-  const background = mode(bg, `${c}.200`)(props)
-
   return {
-    bg: background,
-    color: mode(color, `gray.800`)(props),
+    [$bg.variable]: `colors.${bg}`,
+    [$color.variable]: color,
+    _dark: {
+      [$bg.variable]: `colors.${c}.200`,
+      [$color.variable]: "colors.gray.800",
+    },
+
     _hover: {
-      bg: mode(hoverBg, `${c}.300`)(props),
+      [$bg.variable]: `colors.${hoverBg}`,
+      _dark: {
+        [$bg.variable]: `colors.${c}.300`,
+      },
       _disabled: {
-        bg: background,
+        [$bg.variable]: `colors.${bg}`,
+        _dark: {
+          [$color.variable]: `colors.${c}.200`,
+        },
       },
     },
-    _active: { bg: mode(activeBg, `${c}.400`)(props) },
+    _active: {
+      [$bg.variable]: `colors.${activeBg}`,
+      _dark: {
+        [$color.variable]: `colors.${c}.400`,
+      },
+    },
+    bg: $bg.reference,
+    color: $color.reference,
   }
 })
 
@@ -134,7 +207,10 @@ const variantLink = defineStyle((props) => {
     height: "auto",
     lineHeight: "normal",
     verticalAlign: "baseline",
-    color: mode(`${c}.500`, `${c}.200`)(props),
+    [$color.variable]: `colors.${c}.500`,
+    _dark: {
+      [$color.variable]: `colors.${c}.200`,
+    },
     _hover: {
       textDecoration: "underline",
       _disabled: {
@@ -142,8 +218,12 @@ const variantLink = defineStyle((props) => {
       },
     },
     _active: {
-      color: mode(`${c}.700`, `${c}.500`)(props),
+      [$color.variable]: `colors.${c}.700`,
+      _dark: {
+        [$color.variable]: `colors.${c}.500`,
+      },
     },
+    color: $color.reference,
   }
 })
 
