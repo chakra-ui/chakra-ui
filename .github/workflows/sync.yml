@@ -1,0 +1,22 @@
+name: Sync Files
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Run GitHub File Sync
+        uses: Redocly/repo-file-sync-action@master
+        with:
+          GH_PAT: ${{ secrets.SAGE_PAT }}
+          GIT_EMAIL: joseshegs@gmail.com
+          GIT_USERNAME: segunadebayo
+          PR_LABELS: |
+            file-sync
+            automerge

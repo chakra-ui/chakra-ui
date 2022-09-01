@@ -1,0 +1,59 @@
+{
+  "name": "@chakra-ui/media-query",
+  "version": "3.2.5",
+  "description": "A React hook for changing properties or visibility of a component based on css media query",
+  "keywords": [
+    "chakra ui",
+    "breakpoint",
+    "matchMedia",
+    "react",
+    "responsive",
+    "viewport"
+  ],
+  "sideEffects": false,
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/components/media-query"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "dependencies": {
+    "@chakra-ui/react-env": "workspace:*",
+    "@chakra-ui/breakpoint-utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/theme": "workspace:*",
+    "@types/react-frame-component": "^4.1.1",
+    "jest-matchmedia-mock": "^1.1.0",
+    "@testing-library/react-hooks": "8.0.0",
+    "react-frame-component": "^5.2.3",
+    "react": "^18.0.0"
+  },
+  "peerDependencies": {
+    "@chakra-ui/system": ">=2.0.0",
+    "react": ">=18"
+  },
+  "scripts": {
+    "build": "JSX=1 tsup src/index.ts --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "JSX=1 tsup src/index.ts"
+  }
+}

@@ -21,6 +21,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          token: ${{ secrets.SAGE_PAT }}
 
       - name: Install
         uses: ./.github/composite-actions/install
@@ -53,17 +54,17 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Update changelog
+        if: steps.changesets.outputs.published == 'true'
+        run: |
+          pnpm changelog:latest
+          pnpm changelog:commit
+
       - name: Discord notification
         if: steps.changesets.outputs.published == 'true'
         run: pnpm discord
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
-
-      - name: Update changelog
-        if: steps.changesets.outputs.published == 'true'
-        run: |
-          pnpm changelog:write
-          pnpm changelog:commit
 
       - name: Send a dispatch event to chakra-ui-docs
         if: steps.changesets.outputs.published == 'true'

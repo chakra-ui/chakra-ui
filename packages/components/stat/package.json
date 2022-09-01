@@ -1,0 +1,55 @@
+{
+  "name": "@chakra-ui/stat",
+  "version": "2.0.9",
+  "description": "A React component for displaying statistics",
+  "keywords": [
+    "stat",
+    "statistics",
+    "react",
+    "data",
+    "charts",
+    "indicators",
+    "chakra ui"
+  ],
+  "sideEffects": false,
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/components/stat"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "dependencies": {
+    "@chakra-ui/icon": "workspace:*",
+    "@chakra-ui/react-context": "workspace:*"
+  },
+  "devDependencies": {
+    "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/shared-utils": "workspace:*",
+    "react": "^18.0.0"
+  },
+  "peerDependencies": {
+    "@chakra-ui/system": ">=2.0.0",
+    "react": ">=18"
+  },
+  "scripts": {
+    "build": "JSX=1 tsup src/index.ts --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "JSX=1 tsup src/index.ts"
+  }
+}

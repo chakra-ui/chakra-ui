@@ -1,0 +1,72 @@
+{
+  "name": "@chakra-ui/checkbox",
+  "version": "2.1.8",
+  "description": "A React Checkbox component for use in forms",
+  "keywords": [
+    "react",
+    "checkbox",
+    "custom-checkbox",
+    "checkbox-hook",
+    "react hook",
+    "input",
+    "chakra-ui",
+    "use-checkbox",
+    "checkboxGroup",
+    "checkbox-group-hook",
+    "use-checbox-group"
+  ],
+  "sideEffects": false,
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/components/checkbox"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "dependencies": {
+    "@chakra-ui/form-control": "workspace:*",
+    "@chakra-ui/react-context": "workspace:*",
+    "@chakra-ui/react-use-callback-ref": "workspace:*",
+    "@chakra-ui/react-use-controllable-state": "workspace:*",
+    "@chakra-ui/react-use-safe-layout-effect": "workspace:*",
+    "@chakra-ui/react-use-merge-refs": "workspace:*",
+    "@chakra-ui/react-use-update-effect": "workspace:*",
+    "@chakra-ui/react-types": "workspace:*",
+    "@chakra-ui/visually-hidden": "workspace:*",
+    "@zag-js/focus-visible": "0.1.0"
+  },
+  "devDependencies": {
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/object-utils": "workspace:*",
+    "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/layout": "workspace:*",
+    "@chakra-ui/icon": "workspace:*",
+    "framer-motion": "^6.2.9",
+    "react": "^18.0.0"
+  },
+  "peerDependencies": {
+    "@chakra-ui/system": ">=2.0.0",
+    "framer-motion": ">=4.0.0",
+    "react": ">=18"
+  },
+  "scripts": {
+    "build": "JSX=1 tsup src/index.ts --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "JSX=1 tsup src/index.ts"
+  }
+}
