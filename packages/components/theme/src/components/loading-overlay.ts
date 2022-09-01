@@ -1,8 +1,5 @@
 import { loadingOverlayAnatomy as parts } from "@chakra-ui/anatomy"
-import {
-  createMultiStyleConfigHelpers,
-  defineStyle,
-} from "@chakra-ui/styled-system"
+import { createMultiStyleConfigHelpers } from "@chakra-ui/styled-system"
 
 import { mode } from "@chakra-ui/theme-tools"
 
@@ -46,7 +43,6 @@ const variantOverlay = definePartsStyle((props) => {
 })
 
 export const loadingOverlayTheme = defineMultiStyleConfig({
-  parts: parts.keys,
   defaultProps: {
     variant: "fill",
   },
