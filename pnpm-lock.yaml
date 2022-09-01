@@ -1254,14 +1254,24 @@ importers:
 
   packages/components/spinner:
     specifiers:
+      '@chakra-ui/button': workspace:*
+      '@chakra-ui/hooks': workspace:*
+      '@chakra-ui/layout': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
+      '@chakra-ui/transition': workspace:*
       '@chakra-ui/utils': workspace:*
+      framer-motion: ^6.2.9
       react: ^18.2.0
     devDependencies:
+      '@chakra-ui/button': link:../button
+      '@chakra-ui/hooks': link:../../legacy/hooks
+      '@chakra-ui/layout': link:../layout
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
+      '@chakra-ui/transition': link:../transition
       '@chakra-ui/utils': link:../../legacy/utils
+      framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
 
   packages/components/stat:

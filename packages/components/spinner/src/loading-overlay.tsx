@@ -1,3 +1,4 @@
+import { useState } from "react"
 import {
   chakra,
   ThemingProps,
@@ -16,11 +17,6 @@ import { AnimatePresence, motion } from "framer-motion"
 
 import { Spinner } from "./spinner"
 
-import {
-  useLoadingOverlay,
-  UseLoadingOverlayProps,
-} from "./use-loading-overlay"
-
 type Variants = "fill" | "overlay" | "fullscreen"
 
 const [StylesProvider, useStyles] = createStylesContext("LoadingOverlay")
@@ -28,9 +24,19 @@ const [StylesProvider, useStyles] = createStylesContext("LoadingOverlay")
 export const useLoadingOverlayStyles = useStyles
 
 export interface LoadingOverlayProps
-  extends UseLoadingOverlayProps,
-    HTMLChakraProps<"div">,
+  extends HTMLChakraProps<"div">,
     ThemingProps<"LoadingOverlay"> {
+  /**
+   * Show or hide the LoadingOverlay.
+   * @default true
+   */
+  isLoading?: boolean
+
+  /**
+   * The transition that should be used for the overlay
+   * @default "fade"
+   */
+  motionPreset?: "none" | "fade"
   /**
    * Spacing between children
    */
@@ -51,7 +57,6 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = (props) => {
 
   const {
     children,
-    containerRef,
     isLoading = true,
     spacing = 2,
     motionPreset,
@@ -67,11 +72,7 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = (props) => {
     ...styles.overlay,
   }
 
-  const { animateInitial } = useLoadingOverlay({
-    containerRef,
-    isLoading,
-    motionPreset,
-  })
+  const [animateInitial] = useState(!isLoading && motionPreset !== "none")
 
   const motionProps: any = motionPreset === "none" ? {} : fadeConfig
 

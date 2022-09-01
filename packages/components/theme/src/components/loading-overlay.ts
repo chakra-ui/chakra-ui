@@ -16,7 +16,7 @@ const baseStyle = definePartsStyle({
 const variantFill = definePartsStyle((props) => {
   return {
     overlay: {
-      bg: mode("whiteAlpha.300", "blackAlpha.300")(props),
+      bg: mode("whiteAlpha.400", "blackAlpha.400")(props),
     },
   }
 })
@@ -37,7 +37,7 @@ const variantOverlay = definePartsStyle((props) => {
     overlay: {
       position: "absolute",
       inset: 0,
-      bg: mode("whiteAlpha.300", "blackAlpha.300")(props),
+      bg: mode("whiteAlpha.400", "blackAlpha.400")(props),
     },
   }
 })

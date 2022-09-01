@@ -1,4 +1,5 @@
-import { Box, BoxProps, Button, Heading } from "@chakra-ui/react"
+import { Box, BoxProps, Heading } from "@chakra-ui/layout"
+import { Button } from "@chakra-ui/button"
 import { forwardRef, ThemeProvider, useTheme } from "@chakra-ui/system"
 import { mergeWith } from "@chakra-ui/utils"
 import * as React from "react"
@@ -16,7 +17,7 @@ const Card = forwardRef<BoxProps, "div">((props, ref) => {
       borderWidth="1px"
       position="relative"
       width="400px"
-      height="200px"
+      minH="200px"
       p="8"
     >
       <Heading size="md" mb="4">
@@ -54,17 +55,36 @@ export const FullScreenVariant = () => (
   </Card>
 )
 
+export const Custom = () => (
+  <LoadingOverlay variant="fullscreen">
+    <Box
+      display="flex"
+      rounded="md"
+      p="2"
+      bg="blackAlpha.200"
+      alignItems="center"
+    >
+      <LoadingSpinner size="sm" me="2" color="teal.500" />
+      <LoadingText fontSize="sm">Loading...</LoadingText>
+    </Box>
+  </LoadingOverlay>
+)
+
 export const OverlayVariant = () => (
   <Card>
+    <Box fontSize="sm">
+      There are many benefits to a joint design and development system. Not only
+      does it bring benefits to the design team, but it also brings benefits to
+      engineering teams. It makes sure that our experiences have a consistent
+      look and feel, not just in our design specs, but in production
+    </Box>
     <LoadingOverlay variant="overlay">
       <LoadingSpinner />
     </LoadingOverlay>
   </Card>
 )
 
-export const WithContainerRef = () => {
-  const containerRef = React.useRef<HTMLDivElement>(null)
-
+export const WithMotionPreset = () => {
   const [isLoading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
@@ -72,7 +92,7 @@ export const WithContainerRef = () => {
     if (isLoading) {
       timeout = setTimeout(() => {
         setLoading(false)
-      }, 5000)
+      }, 1000)
     }
 
     return () => {
@@ -81,34 +101,17 @@ export const WithContainerRef = () => {
   }, [isLoading])
 
   return (
-    <Card ref={containerRef}>
-      <Button onClick={() => setLoading(true)}>Refresh</Button>
-      <LoadingOverlay
-        variant="overlay"
-        containerRef={containerRef}
-        isLoading={isLoading}
-      >
-        <LoadingSpinner />
-      </LoadingOverlay>
-    </Card>
-  )
-}
-
-export const WithMotionPreset = () => {
-  const [isLoading, setLoading] = React.useState(true)
-
-  React.useEffect(() => {
-    const timeout = setTimeout(() => {
-      setLoading(false)
-    }, 1000)
-
-    return () => {
-      clearTimeout(timeout)
-    }
-  }, [])
-
-  return (
     <Card>
+      <Box fontSize="sm">
+        There are many benefits to a joint design and development system. Not
+        only does it bring benefits to the design team, but it also brings
+        benefits to engineering teams. It makes sure that our experiences have a
+        consistent look and feel, not just in our design specs, but in
+        production
+      </Box>
+
+      <Button onClick={() => setLoading(true)}>Refresh</Button>
+
       <LoadingOverlay
         variant="overlay"
         motionPreset="none"
