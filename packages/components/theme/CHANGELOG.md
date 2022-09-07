@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.1.11
+
+### Patch Changes
+
+- [#6605](https://github.com/chakra-ui/chakra-ui/pull/6605)
+  [`7d7e04d53`](https://github.com/chakra-ui/chakra-ui/commit/7d7e04d53d871e324debe0a2cb3ff44d7dbf3bca)
+  Thanks [@yjkwon07](https://github.com/yjkwon07)! - Fix tooltip theme
+
 ## 2.1.10
 
 ### Patch Changes
