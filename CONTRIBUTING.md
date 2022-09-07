@@ -18,8 +18,8 @@ git clone https://github.com/<your_github_username>/chakra-ui.git
 cd chakra-ui
 ```
 
-3. Setup all the dependencies and packages by running `pnpm`. This command will
-   install dependencies and bootstrap the repo using `preconstruct`
+3. Setup all the dependencies and packages by running `pnpm install`. This
+   command will install dependencies and bootstrap the repo using `preconstruct`
 
 > If you run into any issues during this step, kindly reach out to the Chakra UI
 > React team here: https://discord.gg/chakra-ui
