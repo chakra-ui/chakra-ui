@@ -1,5 +1,21 @@
 # Change Log
 
+## 2.3.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`7d7e04d53`](https://github.com/chakra-ui/chakra-ui/commit/7d7e04d53d871e324debe0a2cb3ff44d7dbf3bca)]:
+  - @chakra-ui/theme@2.1.11
+  - @chakra-ui/button@2.0.9
+  - @chakra-ui/media-query@3.2.5
+  - @chakra-ui/menu@2.0.13
+  - @chakra-ui/skeleton@2.0.15
+  - @chakra-ui/slider@2.0.10
+  - @chakra-ui/system@2.2.9
+  - @chakra-ui/toast@3.0.10
+  - @chakra-ui/table@2.0.9
+
 ## 2.3.1
 
 ### Patch Changes
