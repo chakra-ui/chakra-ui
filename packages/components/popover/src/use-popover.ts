@@ -259,7 +259,7 @@ export function usePopover(props: UsePopoverProps = {}) {
               return
             }
             isHoveringRef.current = false
-            setTimeout(onClose, closeDelay)
+            setTimeout(() => onClose(), closeDelay)
           },
         )
       }
@@ -372,7 +372,7 @@ export function usePopover(props: UsePopoverProps = {}) {
 
         triggerProps.onMouseEnter = callAllHandlers(props.onMouseEnter, () => {
           isHoveringRef.current = true
-          openTimeout.current = window.setTimeout(onOpen, openDelay)
+          openTimeout.current = window.setTimeout(() => onOpen(), openDelay)
         })
 
         triggerProps.onMouseLeave = callAllHandlers(props.onMouseLeave, () => {

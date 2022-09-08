@@ -149,11 +149,13 @@ export interface SliderMarkProps extends HTMLChakraProps<"div"> {
  */
 export const SliderMark = forwardRef<SliderMarkProps, "div">((props, ref) => {
   const { getMarkerProps } = useSliderContext()
+  const styles = useSliderStyles()
   const markProps = getMarkerProps(props, ref)
   return (
     <chakra.div
       {...markProps}
       className={cx("chakra-slider__marker", props.className)}
+      __css={styles.mark}
     />
   )
 })

@@ -117,6 +117,7 @@ export const sliderAnatomy = anatomy("slider").parts(
   "track",
   "thumb",
   "filledTrack",
+  "mark",
 )
 
 export const statAnatomy = anatomy("stat").parts(

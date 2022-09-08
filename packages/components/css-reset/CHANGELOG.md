@@ -1,5 +1,25 @@
 # Change Log
 
+## 2.0.7
+
+### Patch Changes
+
+- [`cc0598ddc`](https://github.com/chakra-ui/chakra-ui/commit/cc0598ddcb2a4e7f84859099556c228c5ff354fe)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix css in 100vh
+  polyfill
+
+## 2.0.6
+
+### Patch Changes
+
+- [#6559](https://github.com/chakra-ui/chakra-ui/pull/6559)
+  [`0cae42007`](https://github.com/chakra-ui/chakra-ui/commit/0cae42007308e94ef9a9fdbae3de259871ca33be)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactors the theme
+  to use design tokens and css variables as much as possible.
+
+  Improve support for `100vh` values by using a polyfill css variable
+  `--chakra-vh`.
+
 ## 2.0.5
 
 ### Patch Changes

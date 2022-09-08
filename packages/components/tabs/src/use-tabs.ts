@@ -348,6 +348,7 @@ export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
     createElement(
       TabPanelProvider,
       {
+        key: index,
         value: {
           isSelected: index === selectedIndex,
           id: makeTabPanelId(id, index),

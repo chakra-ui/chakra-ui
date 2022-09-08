@@ -100,7 +100,7 @@ export type ArrowCSSVarProps = {
    */
   shadowColor?: string
   /**
-   * The background color of teh popper arrow.
+   * The background color of the popper arrow.
    * This sets the `--popper-arrow-bg` css property.
    */
   bg?: string

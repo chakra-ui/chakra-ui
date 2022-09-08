@@ -18,7 +18,9 @@ const vhPolyfill = `
   }
 
   @supports (height: 100lvh) {
-    --chakra-vh: 100lvh;
+    :root {
+      --chakra-vh: 100lvh;
+    }
   }
 `
 

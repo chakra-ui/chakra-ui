@@ -1,14 +1,13 @@
-import { RefObject } from "react"
 import {
-  isTabbable,
-  getAllFocusable,
-  getActiveElement,
   FocusableElement,
+  getActiveElement,
+  getAllFocusable,
+  isTabbable,
 } from "@chakra-ui/dom-utils"
-
-import { useCallback } from "react"
 import { useEventListener } from "@chakra-ui/react-use-event-listener"
 import { useUpdateEffect } from "@chakra-ui/react-use-update-effect"
+import type { RefObject } from "react"
+import { useCallback } from "react"
 
 export interface UseFocusOnHideOptions {
   focusRef: RefObject<FocusableElement>

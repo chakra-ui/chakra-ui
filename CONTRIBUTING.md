@@ -18,8 +18,8 @@ git clone https://github.com/<your_github_username>/chakra-ui.git
 cd chakra-ui
 ```
 
-3. Setup all the dependencies and packages by running `pnpm`. This command will
-   install dependencies and bootstrap the repo using `preconstruct`
+3. Setup all the dependencies and packages by running `pnpm install`. This
+   command will install dependencies.
 
 > If you run into any issues during this step, kindly reach out to the Chakra UI
 > React team here: https://discord.gg/chakra-ui
@@ -32,10 +32,8 @@ that can be consumed in isolation.
 
 ### Tooling
 
-- [Preconstruct](https://preconstruct.tools/) to manage the development and
-  production build of the packages.
-- [Many Pkg](https://github.com/Thinkmill/manypkg) to lint our packages and
-  execute global or package specific commands.
+- [PNPM](https://pnpm.io/) to manage packages and dependecnies
+- [Tsup](https://tsup.egoist.sh/) to bundle packages
 - [Storybook](https://storybook.js.org/) for rapid UI component development and
   testing
 - [Testing Library](https://testing-library.com/) for testing components and
@@ -57,11 +55,7 @@ end with `.stories.tsx`.
 
 **`pnpm release`**: publish changed packages.
 
-### Storybook
-
-Build components in isolation with Storybook. When using Storybook, the build
-process needs to be run separately. Run `pnpm build && pnpm preconstruct watch`
-in one terminal and then `pnpm storybook` in a second terminal.
+**`pnpm storybook`**: run storybook to explore components.
 
 ## Think you found a bug?
 

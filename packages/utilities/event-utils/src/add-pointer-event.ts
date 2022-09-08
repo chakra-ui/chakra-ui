@@ -5,7 +5,8 @@ import { MixedEventListener } from "./types"
 
 function filter(cb: EventListener): EventListener {
   return (event: Event) => {
-    if (!isMouseEvent || (isMouseEvent(event) && event.button === 0)) {
+    const isMouse = isMouseEvent(event)
+    if (!isMouse || (isMouse && event.button === 0)) {
       cb(event)
     }
   }

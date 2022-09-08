@@ -29,10 +29,13 @@ export function findToast(toasts: ToastState, id: ToastId) {
  * Given the toast manager state, finds the position of the toast that
  * matches the `id`
  */
-export const getToastPosition = (toasts: ToastState, id: ToastId) =>
-  Object.values(toasts)
-    .flat()
-    .find((toast) => toast.id === id)?.position
+export function getToastPosition(toasts: ToastState, id: ToastId) {
+  for (const [position, values] of Object.entries(toasts)) {
+    if (findById(values, id)) {
+      return position as ToastPosition
+    }
+  }
+}
 
 /**
  * Given the toast manager state, checks if a specific toast is
