@@ -21,7 +21,6 @@ export function getScriptSrc(props: ColorModeScriptProps = {}) {
     initialColorMode = "light",
     type = "localStorage",
     storageKey: key = "chakra-ui-color-mode",
-    nonce,
   } = props
 
   // runtime safe-guard against invalid color mode values
@@ -40,6 +39,10 @@ export function getScriptSrc(props: ColorModeScriptProps = {}) {
 }
 
 export function ColorModeScript(props: ColorModeScriptProps = {}) {
+  const {
+    nonce,
+  } = props
+
   return (
     <script
       id="chakra-script"
