@@ -165,7 +165,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     }
   }, [closeOnClick, closeWithDelay, isOpen])
 
-  const onMouseDown = useCallback(() => {
+  const onPointerDown = useCallback(() => {
     if (isOpen && closeOnMouseDown) {
       closeWithDelay()
     }
@@ -195,21 +195,21 @@ export function useTooltip(props: UseTooltipProps = {}) {
   )
 
   /**
-   * This allows for catching mouseleave events when the tooltip
+   * This allows for catching pointerleave events when the tooltip
    * trigger is disabled. There's currently a known issue in
-   * React regarding the onMouseLeave polyfill.
+   * React regarding the onPointerLeave polyfill.
    * @see https://github.com/facebook/react/issues/11972
    */
-  useEventListener(() => ref.current, "mouseleave", closeWithDelay)
+  useEventListener(() => ref.current, "pointerleave", closeWithDelay)
 
   const getTriggerProps: PropGetter = useCallback(
     (props = {}, _ref = null) => {
       const triggerProps = {
         ...props,
         ref: mergeRefs(ref, _ref, referenceRef),
-        onMouseEnter: callAllHandlers(props.onMouseEnter, openWithDelay),
+        onPointerEnter: callAllHandlers(props.onPointerEnter, openWithDelay),
         onClick: callAllHandlers(props.onClick, onClick),
-        onMouseDown: callAllHandlers(props.onMouseDown, onMouseDown),
+        onPointerDown: callAllHandlers(props.onPointerDown, onPointerDown),
         onFocus: callAllHandlers(props.onFocus, openWithDelay),
         onBlur: callAllHandlers(props.onBlur, closeWithDelay),
         "aria-describedby": isOpen ? tooltipId : undefined,
@@ -220,7 +220,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     [
       openWithDelay,
       closeWithDelay,
-      onMouseDown,
+      onPointerDown,
       isOpen,
       tooltipId,
       onClick,
