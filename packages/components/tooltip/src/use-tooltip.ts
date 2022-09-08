@@ -38,10 +38,14 @@ export interface UseTooltipProps
    */
   closeOnClick?: boolean
   /**
-   * If `true`, the tooltip will hide while the mouse
-   * is down
+   * If `true`, the tooltip will hide while the mouse is down
+   * @deprecated - use `closeOnPointerDown` instead
    */
   closeOnMouseDown?: boolean
+  /**
+   * If `true`, the tooltip will hide while the pointer is down
+   */
+  closeOnPointerDown?: boolean
   /**
    * If `true`, the tooltip will hide on pressing Esc key
    * @default true
@@ -87,6 +91,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     closeDelay = 0,
     closeOnClick = true,
     closeOnMouseDown,
+    closeOnPointerDown = closeOnMouseDown,
     closeOnEsc = true,
     onOpen: onOpenProp,
     onClose: onCloseProp,
@@ -166,10 +171,10 @@ export function useTooltip(props: UseTooltipProps = {}) {
   }, [closeOnClick, closeWithDelay, isOpen])
 
   const onPointerDown = useCallback(() => {
-    if (isOpen && closeOnMouseDown) {
+    if (isOpen && closeOnPointerDown) {
       closeWithDelay()
     }
-  }, [closeOnMouseDown, closeWithDelay, isOpen])
+  }, [closeOnPointerDown, closeWithDelay, isOpen])
 
   const onKeyDown = useCallback(
     (event: KeyboardEvent) => {
