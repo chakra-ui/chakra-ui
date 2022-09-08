@@ -644,3 +644,17 @@ test("should resolve !important syntax", () => {
     }
   `)
 })
+
+test("assign RGBA color to a cssVar", () => {
+  const styles = {
+    bg: "var(--alert-bg)",
+    "--alert-bg": "rgba(254, 178, 178, 0.16)",
+  }
+
+  expect(css(styles)(theme)).toMatchInlineSnapshot(`
+    Object {
+      "--alert-bg": "rgba(254, 178, 178, 0.16)",
+      "background": "var(--alert-bg)",
+    }
+`)
+})

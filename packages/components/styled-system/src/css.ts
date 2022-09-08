@@ -10,6 +10,10 @@ function isCssVar(value: string): boolean {
   return /^var\(--.+\)$/.test(value)
 }
 
+function isRgbColor(val: string) {
+  return /rgb/i.test(val)
+}
+
 const isCSSVariableTokenValue = (key: string, value: any): value is string =>
   key.startsWith("--") && typeof value === "string" && !isCssVar(value)
 
@@ -19,8 +23,13 @@ const resolveTokenValue = (theme: Record<string, any>, value: string) => {
   const getVar = (val: string) => theme.__cssMap?.[val]?.varRef
   const getValue = (val: string) => getVar(val) ?? val
 
+  if (isRgbColor(value)) {
+    return getValue(value)
+  }
+
   const valueSplit = value.split(",").map((v) => v.trim())
   const [tokenValue, fallbackValue] = valueSplit
+
   value = getVar(tokenValue) ?? getValue(fallbackValue) ?? getValue(value)
 
   return value
@@ -180,5 +189,6 @@ export const css = (styles: StyleObjectOrFn) => (theme: CssTheme) => {
     pseudos: pseudoSelectors,
     configs: systemPropConfigs,
   })
+
   return cssFn(styles)
 }
