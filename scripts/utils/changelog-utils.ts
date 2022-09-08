@@ -30,8 +30,13 @@ const dateFormatOptions: Intl.DateTimeFormatOptions = {
   day: "numeric",
 }
 
-export function getPrData(pr: PullRequest): PrData {
-  const content = pr.body ?? ""
+export function getPrData(pr: PullRequest): PrData | undefined {
+  if (!pr.body) return
+
+  let content = pr.body ?? ""
+  const parts = content.split("# Releases")
+  content = parts[1] || content
+
   const date = new Date(pr.merged_at ?? pr.updated_at).toLocaleDateString(
     "en-US",
     dateFormatOptions,
@@ -39,6 +44,10 @@ export function getPrData(pr: PullRequest): PrData {
 
   const match = content.match(/## @chakra-ui\/react\@(?<version>\d.+)/)
   const version = match?.groups?.version
+
+  const sanitized = content.replace(/<(https?:\/\/.+)>/g, (_, group) => {
+    return `[${group}](${group})`
+  })
 
   const body = [
     "---",
@@ -49,7 +58,7 @@ export function getPrData(pr: PullRequest): PrData {
     `version: ${version}`,
     "---",
     "\n",
-    `${content.split("# Releases\n")[1]}`,
+    `${sanitized}`,
   ]
 
   return {
@@ -101,7 +110,8 @@ export async function getMergedPrs(): Promise<PullRequests> {
   return data.filter((pr) => pr.merged_at)
 }
 
-export async function writePrFile(pr: PrData) {
+export async function writePrFile(pr: PrData | undefined) {
+  if (!pr) return
   if (!fs.existsSync(".changelog")) {
     fs.mkdirSync(".changelog")
   }

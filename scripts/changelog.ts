@@ -11,7 +11,7 @@ import {
 
 async function sync() {
   const prs = await getMergedPrs()
-  const data = prs.map(getPrData)
+  const data = prs.map(getPrData).filter(Boolean) as PrData[]
   await Promise.all([...data.map(writePrFile), manifest.write(data)])
   await writeReadme()
 }
@@ -24,12 +24,14 @@ async function updateFiles(data: PrData) {
 
 async function syncByNumber(prNumber: number) {
   const data = getPrData(await getPrByNumber(prNumber))
+  if (!data) return
   await updateFiles(data)
 }
 
 async function syncLatest() {
   const pr = await getLatestPr()
   const data = getPrData(pr)
+  if (!data) return
   await updateFiles(data)
 }
 

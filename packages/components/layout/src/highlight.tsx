@@ -36,7 +36,7 @@ function buildRegex(query: string[]) {
 function highlightWords({ text, query }: Options): Chunk[] {
   const regex = buildRegex(Array.isArray(query) ? query : [query])
   if (!regex) {
-    return [{ text, match: false}]
+    return [{ text, match: false }]
   }
   const result = text.split(regex).filter(Boolean)
   return result.map((str) => ({ text: str, match: regex.test(str) }))
