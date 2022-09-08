@@ -212,7 +212,10 @@ export function useTooltip(props: UseTooltipProps = {}) {
       const triggerProps = {
         ...props,
         ref: mergeRefs(ref, _ref, referenceRef),
-        onPointerEnter: callAllHandlers(props.onPointerEnter, openWithDelay),
+        onPointerEnter: callAllHandlers(props.onPointerEnter, (e) => {
+          if (e.pointerType === "touch") return
+          openWithDelay()
+        }),
         onClick: callAllHandlers(props.onClick, onClick),
         onPointerDown: callAllHandlers(props.onPointerDown, onPointerDown),
         onFocus: callAllHandlers(props.onFocus, openWithDelay),
