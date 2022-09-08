@@ -68,7 +68,7 @@ const sizes = {
   xs: {
     ...inputTheme.sizes?.xs,
     field: {
-      ...inputTheme.sizes?.sm.field,
+      ...inputTheme.sizes?.xs.field,
       ...iconSpacing,
     },
     icon: {
