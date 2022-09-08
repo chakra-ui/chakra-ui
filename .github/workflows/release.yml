@@ -58,6 +58,7 @@ jobs:
         if: steps.changesets.outputs.published == 'true'
         run: |
           pnpm changelog:latest
+          pnpm changelog:format
           pnpm changelog:commit
 
       - name: Discord notification
