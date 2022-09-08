@@ -152,25 +152,27 @@ export interface NumberInputFieldProps extends HTMLChakraProps<"input"> {}
  *
  * @see Docs http://chakra-ui.com/numberinput
  */
-export const NumberInputField = forwardRef<NumberInputFieldProps, "input">(
-  function NumberInputField(props, ref) {
-    const { getInputProps } = useNumberInputContext()
+export const NumberInputField = forwardRef<
+  NumberInputFieldProps,
+  "input",
+  "checked"
+>(function NumberInputField(props, ref) {
+  const { getInputProps } = useNumberInputContext()
 
-    const input = getInputProps(props, ref)
-    const styles = useNumberInputStyles()
+  const input = getInputProps(props, ref)
+  const styles = useNumberInputStyles()
 
-    return (
-      <chakra.input
-        {...input}
-        className={cx("chakra-numberinput__field", props.className)}
-        __css={{
-          width: "100%",
-          ...styles.field,
-        }}
-      />
-    )
-  },
-)
+  return (
+    <chakra.input
+      {...input}
+      className={cx("chakra-numberinput__field", props.className)}
+      __css={{
+        width: "100%",
+        ...styles.field,
+      }}
+    />
+  )
+})
 
 NumberInputField.displayName = "NumberInputField"
 

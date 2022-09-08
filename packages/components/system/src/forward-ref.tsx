@@ -5,7 +5,11 @@
 import { forwardRef as forwardReactRef } from "react"
 import { As, ComponentWithAs, PropsOf, RightJoinProps } from "./system.types"
 
-export function forwardRef<Props extends object, Component extends As>(
+export function forwardRef<
+  Props extends object,
+  Component extends As,
+  Omitted extends string = never,
+>(
   component: React.ForwardRefRenderFunction<
     any,
     RightJoinProps<PropsOf<Component>, Props> & {
@@ -15,6 +19,7 @@ export function forwardRef<Props extends object, Component extends As>(
 ) {
   return forwardReactRef(component) as unknown as ComponentWithAs<
     Component,
-    Props
+    Props,
+    Omitted
   >
 }

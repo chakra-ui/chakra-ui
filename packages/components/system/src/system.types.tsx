@@ -55,11 +55,15 @@ export type MergeWithAs<
     as?: AsComponent
   }
 
-export type ComponentWithAs<Component extends As, Props extends object = {}> = {
+export type ComponentWithAs<
+  Component extends As,
+  Props extends object = {},
+  Omitted extends string = never,
+> = {
   <AsComponent extends As = Component>(
     props: MergeWithAs<
-      React.ComponentProps<Component>,
-      React.ComponentProps<AsComponent>,
+      Omit<React.ComponentProps<Component>, Omitted>,
+      Omit<React.ComponentProps<AsComponent>, Omitted>,
       Props,
       AsComponent
     >,
