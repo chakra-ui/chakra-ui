@@ -1,5 +1,6 @@
 import { Modal, ModalContent, ModalOverlay } from "@chakra-ui/modal"
 import { Portal } from "@chakra-ui/portal"
+import { Button } from "@chakra-ui/button"
 import { chakra } from "@chakra-ui/system"
 import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
@@ -30,7 +31,7 @@ const HookTooltip = ({ children }: any) => {
 
   return (
     <>
-      <button {...getTriggerProps()}>Hover me</button>
+      <Button {...getTriggerProps()}>Hover me</Button>
       <div {...getTooltipPositionerProps()}>
         <div
           {...getTooltipProps({
@@ -75,7 +76,7 @@ export const WithTransition = () => {
 
   return (
     <>
-      <button {...getTriggerProps()}>Hover me</button>
+      <Button {...getTriggerProps()}>Hover me</Button>
       <AnimatePresence>
         {isOpen && (
           <Portal>
@@ -121,7 +122,7 @@ export const WithTransition = () => {
 
 export const withButton = () => (
   <Tooltip label="This is a chakra tooltip" placement="bottom" hasArrow>
-    <button>Hover me</button>
+    <Button>Hover me</Button>
   </Tooltip>
 )
 
@@ -137,16 +138,16 @@ export const withAriaLabel = () => (
     label="Notifications"
     aria-label="3 Notifications"
   >
-    <button style={{ fontSize: 25 }}>
+    <Button style={{ fontSize: 25 }}>
       <span role="img" aria-label="notification">
         🔔
       </span>
       <span>3</span>
-    </button>
+    </Button>
   </Tooltip>
 )
 
-export const issue607 = () => (
+export const withinFixedContainer = () => (
   <div
     style={{
       position: "fixed",
@@ -165,36 +166,36 @@ export const WithModal = () => {
   const [showDialog, setShowDialog] = React.useState(false)
   return (
     <div>
-      <button onClick={() => setShowDialog(true)}>Show Dialog</button>
+      <Button onClick={() => setShowDialog(true)}>Show Dialog</Button>
       <Modal isOpen={showDialog} onClose={() => setShowDialog(false)}>
         <ModalOverlay />
         <ModalContent height="300px">
           <div>
-            <button onClick={() => setShowDialog(false)}>Close Dialog</button>
+            <Button onClick={() => setShowDialog(false)}>Close Dialog</Button>
             <Tooltip label="Notifications">
-              <button style={{ fontSize: 25 }}>
+              <Button>
                 <span aria-hidden>🔔</span>
-              </button>
+              </Button>
             </Tooltip>
             <Tooltip label="Settings">
-              <button style={{ fontSize: 25 }}>
+              <Button>
                 <span aria-hidden>⚙️</span>
-              </button>
+              </Button>
             </Tooltip>
             <Tooltip label="Your files are safe with us">
-              <button style={{ fontSize: 25 }}>
+              <Button>
                 <span aria-hidden>💾</span> Save
-              </button>
+              </Button>
             </Tooltip>
 
             <div style={{ float: "right" }}>
               <Tooltip label="Notifications" aria-label="3 Notifications">
-                <button style={{ fontSize: 25 }}>
+                <Button>
                   <span role="img" aria-label="Bell">
                     🔔
                   </span>
                   <span>3</span>
-                </button>
+                </Button>
               </Tooltip>
             </div>
           </div>
@@ -206,40 +207,30 @@ export const WithModal = () => {
 
 export const withDisabledButton = () => (
   <Tooltip label="Oh oh oh, oh oh">
-    <button style={{ fontSize: 25, pointerEvents: "all" }} disabled>
-      Can't Touch This
-    </button>
+    <Button isDisabled>Can't Touch This</Button>
   </Tooltip>
 )
 
 export const withWrappedDisabledButton = () => (
   <Tooltip label="Hello world" shouldWrapChildren>
-    <button style={{ fontSize: 25, pointerEvents: "all" }} disabled>
-      Hover me
-    </button>
+    <Button isDisabled>Hover me</Button>
   </Tooltip>
 )
 
 export const withIsOpenProp = () => (
   <Tooltip label="Hello world" isOpen hasArrow>
-    <button style={{ fontSize: 25, pointerEvents: "all" }} disabled>
-      Can't Touch This
-    </button>
+    <Button disabled>Can't Touch This</Button>
   </Tooltip>
 )
 
 export const withDefaultIsOpenProp = () => (
   <Tooltip label="Hello world" defaultIsOpen>
-    <button style={{ fontSize: 25, pointerEvents: "all" }}>
-      Can't Touch This
-    </button>
+    <Button>Can't Touch This</Button>
   </Tooltip>
 )
 
 export const withAutoPlacement = () => (
   <Tooltip label="Hello world" placement="auto" hasArrow>
-    <button style={{ fontSize: 25, pointerEvents: "all" }}>
-      Can't Touch This
-    </button>
+    <Button>Can't Touch This</Button>
   </Tooltip>
 )
