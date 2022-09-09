@@ -41,7 +41,7 @@ export const transformFunctions = {
     return value
   },
   vh(value: number | string) {
-    return value === "100vh" ? "var(--chakra-vh)" : value
+    return value === "$100vh" ? "var(--chakra-vh)" : value
   },
   px(value: number | string) {
     if (value == null) return value

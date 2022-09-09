@@ -2,6 +2,7 @@ import fs from "fs"
 import Discord from "discord.js"
 import { config } from "dotenv"
 import ora from "ora"
+import { outdent } from "outdent"
 
 config()
 
@@ -47,8 +48,15 @@ function start() {
       await Discord.Util.delayFor(1000)
       spinner.start("Reading Changelog.md...")
 
-      let content = fs.readFileSync(".changelogrc").toString()
-      content = ["**New Release Update :tada:**", content].join("\n\n")
+      let [content] = JSON.parse(
+        fs.readFileSync(".changelog/manifest.json", "utf8"),
+      )
+      content = outdent`
+      **New Release Update :tada: v${content.version}**
+      
+      Read the changelog here:
+      https://github.com/chakra-ui/chakra-ui/blob/main/.changelog/v${content.version}.mdx
+      `
 
       spinner.succeed().start("Posting Changelog content to #annoucement")
 

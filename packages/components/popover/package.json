@@ -33,13 +33,15 @@
   },
   "dependencies": {
     "@chakra-ui/close-button": "workspace:*",
-    "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/popper": "workspace:*",
     "@chakra-ui/lazy-utils": "workspace:*",
     "@chakra-ui/react-types": "workspace:*",
     "@chakra-ui/react-use-disclosure": "workspace:*",
     "@chakra-ui/react-use-merge-refs": "workspace:*",
-    "@chakra-ui/react-context": "workspace:*"
+    "@chakra-ui/react-context": "workspace:*",
+    "@chakra-ui/react-use-animation-state": "workspace:*",
+    "@chakra-ui/react-use-focus-effect": "workspace:*",
+    "@chakra-ui/react-use-focus-on-pointer-down": "workspace:*"
   },
   "devDependencies": {
     "@chakra-ui/shared-utils": "workspace:*",
@@ -48,6 +50,7 @@
     "@chakra-ui/layout": "workspace:*",
     "@chakra-ui/radio": "workspace:*",
     "@chakra-ui/input": "workspace:*",
+    "@chakra-ui/hooks": "workspace:*",
     "react-icons": "^4.2.0",
     "framer-motion": "^6.2.9",
     "react": "^18.0.0"

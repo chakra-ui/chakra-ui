@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.0.7
+
+### Patch Changes
+
+- [`cc0598ddc`](https://github.com/chakra-ui/chakra-ui/commit/cc0598ddcb2a4e7f84859099556c228c5ff354fe)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix css in 100vh
+  polyfill
+
 ## 2.0.6
 
 ### Patch Changes

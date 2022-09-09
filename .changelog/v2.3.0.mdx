@@ -1,0 +1,437 @@
+---
+title: Version 2.3.0
+description:
+  Explore the changelog for Chakra UI version 2.3.0. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/6555
+releaseDate: August 29, 2022
+version: 2.3.0
+---
+
+## @chakra-ui/avatar@2.1.0
+
+### Minor Changes
+
+- [`e8f634e0d`](https://github.com/chakra-ui/chakra-ui/commit/e8f634e0d56a9d994aa139c7a36add3d30ede11f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  changing avatar badge placement.
+
+  The badge placement can be set to `top-start`, `top-end`, `bottom-start` or
+  `bottom-end`.
+
+  ```jsx live=false
+  <Avatar
+    name="Uchiha Itachi"
+    src="https://uinames.com/api/photos/female/18.jpg"
+  >
+    <AvatarBadge placement="top-start" />
+  </Avatar>
+  ```
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/image@2.0.10
+
+## @chakra-ui/react@2.3.0
+
+### Minor Changes
+
+- [`e8f634e0d`](https://github.com/chakra-ui/chakra-ui/commit/e8f634e0d56a9d994aa139c7a36add3d30ede11f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  changing avatar badge placement.
+
+  The badge placement can be set to `top-start`, `top-end`, `bottom-start` or
+  `bottom-end`.
+
+  ```jsx live=false
+  <Avatar
+    name="Uchiha Itachi"
+    src="https://uinames.com/api/photos/female/18.jpg"
+  >
+    <AvatarBadge placement="top-start" />
+  </Avatar>
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`dda7d71bb`](https://github.com/chakra-ui/chakra-ui/commit/dda7d71bbc4b909f89a335b2080d91fc06083559),
+  [`5e6c3fd65`](https://github.com/chakra-ui/chakra-ui/commit/5e6c3fd652446540a3e9825c0d0f1f556d2e17b8),
+  [`e8f634e0d`](https://github.com/chakra-ui/chakra-ui/commit/e8f634e0d56a9d994aa139c7a36add3d30ede11f),
+  [`5bacbdc2c`](https://github.com/chakra-ui/chakra-ui/commit/5bacbdc2c6f34fd6b8548e1a31c783084d2f775c),
+  [`8b0bd0d58`](https://github.com/chakra-ui/chakra-ui/commit/8b0bd0d5892d91699571b110adee89857078e9e0),
+  [`0cae42007`](https://github.com/chakra-ui/chakra-ui/commit/0cae42007308e94ef9a9fdbae3de259871ca33be),
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7),
+  [`ac6a00aea`](https://github.com/chakra-ui/chakra-ui/commit/ac6a00aea4113c4d77d6568125ddf38b339635b4)]:
+  - @chakra-ui/select@2.0.10
+  - @chakra-ui/slider@2.0.10
+  - @chakra-ui/avatar@2.1.0
+  - @chakra-ui/theme@2.1.9
+  - @chakra-ui/toast@3.0.8
+  - @chakra-ui/css-reset@2.0.6
+  - @chakra-ui/provider@2.0.15
+  - @chakra-ui/skeleton@2.0.15
+  - @chakra-ui/tabs@2.1.1
+  - @chakra-ui/tag@2.0.9
+  - @chakra-ui/button@2.0.9
+  - @chakra-ui/media-query@3.2.5
+  - @chakra-ui/menu@2.0.12
+  - @chakra-ui/system@2.2.8
+  - @chakra-ui/accordion@2.0.12
+  - @chakra-ui/pin-input@2.0.12
+  - @chakra-ui/table@2.0.9
+  - @chakra-ui/alert@2.0.9
+  - @chakra-ui/breadcrumb@2.0.9
+  - @chakra-ui/checkbox@2.1.8
+  - @chakra-ui/close-button@2.0.9
+  - @chakra-ui/control-box@2.0.9
+  - @chakra-ui/editable@2.0.9
+  - @chakra-ui/form-control@2.0.9
+  - @chakra-ui/icon@3.0.9
+  - @chakra-ui/image@2.0.10
+  - @chakra-ui/input@2.0.9
+  - @chakra-ui/layout@2.1.6
+  - @chakra-ui/modal@2.1.7
+  - @chakra-ui/number-input@2.0.9
+  - @chakra-ui/popover@2.0.9
+  - @chakra-ui/progress@2.0.10
+  - @chakra-ui/radio@2.0.10
+  - @chakra-ui/spinner@2.0.9
+  - @chakra-ui/stat@2.0.9
+  - @chakra-ui/switch@2.0.11
+  - @chakra-ui/textarea@2.0.10
+  - @chakra-ui/tooltip@2.0.10
+  - @chakra-ui/visually-hidden@2.0.9
+
+## @chakra-ui/styled-system@2.3.0
+
+### Minor Changes
+
+- [#6221](https://github.com/chakra-ui/chakra-ui/pull/6221)
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add `defineStyle`
+  and `defineStyleConfig` to improve the TypeScript authoring experience of
+  style objects and single part component themes.
+
+  ```jsx live=false
+  import { defineStyleConfig, defineStyle } from "@chakra-ui/styled-system"
+
+  // authoring style objects
+  const style = defineStyle({
+    marginTop: "20px",
+  })
+
+  // authoring style configs for single part component
+  const button = defineStyleConfig({
+    baseStyle: {},
+    variants: {},
+    defaultProps: {},
+  })
+  ```
+
+  Add `createMultiStyleConfigHelpers` factory that provides functions that help
+  improve the TypeScript authoring experience of multipart component themes.
+
+  ```jsx live=false
+  import { createMultiStyleConfigHelpers } from "@chakra-ui/styled-sytem"
+
+  // create scoped helpers for that defined parts
+  const helpers = createMultiStyleConfigHelpers(["button", "label"])
+  const { definePartsStyle, defineMultiStyleConfig } = helpers
+
+  // authoring styles for each part
+  const outlineVariant = definePartsStyle({
+    button: {},
+    label: {},
+  })
+
+  // authoring styles for multipart component
+  const accordion = defineMultiStyleConfig({
+    baseStyle: {
+      button: {},
+      label: {},
+    },
+    variants: {
+      outline: outlineVariant,
+    },
+  })
+  ```
+
+### Patch Changes
+
+- [#6559](https://github.com/chakra-ui/chakra-ui/pull/6559)
+  [`0cae42007`](https://github.com/chakra-ui/chakra-ui/commit/0cae42007308e94ef9a9fdbae3de259871ca33be)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactors the theme
+  to use design tokens and css variables as much as possible.
+
+  Improve support for `100vh` values by using a polyfill css variable
+  `--chakra-vh`.
+
+## @chakra-ui/accordion@2.0.12
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`260076e2a`](https://github.com/chakra-ui/chakra-ui/commit/260076e2ac6165c8079c800475b9d7a9ca0f29a2)]:
+  - @chakra-ui/descendant@3.0.9
+  - @chakra-ui/icon@3.0.9
+
+## @chakra-ui/anatomy@2.0.6
+
+### Patch Changes
+
+- [`5e6c3fd65`](https://github.com/chakra-ui/chakra-ui/commit/5e6c3fd652446540a3e9825c0d0f1f556d2e17b8)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Allow slider mark
+  to be themable
+
+- [#6221](https://github.com/chakra-ui/chakra-ui/pull/6221)
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update package to
+  use styled-system as dependency
+
+## @chakra-ui/css-reset@2.0.6
+
+### Patch Changes
+
+- [#6559](https://github.com/chakra-ui/chakra-ui/pull/6559)
+  [`0cae42007`](https://github.com/chakra-ui/chakra-ui/commit/0cae42007308e94ef9a9fdbae3de259871ca33be)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactors the theme
+  to use design tokens and css variables as much as possible.
+
+  Improve support for `100vh` values by using a polyfill css variable
+  `--chakra-vh`.
+
+## @chakra-ui/descendant@3.0.9
+
+### Patch Changes
+
+- [#6573](https://github.com/chakra-ui/chakra-ui/pull/6573)
+  [`260076e2a`](https://github.com/chakra-ui/chakra-ui/commit/260076e2ac6165c8079c800475b9d7a9ca0f29a2)
+  Thanks [@EduSantosBrito](https://github.com/EduSantosBrito)! - Fix issue where
+  generic type contraints throws in TypeScript 4.8+
+
+## @chakra-ui/menu@2.0.12
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`260076e2a`](https://github.com/chakra-ui/chakra-ui/commit/260076e2ac6165c8079c800475b9d7a9ca0f29a2)]:
+  - @chakra-ui/descendant@3.0.9
+  - @chakra-ui/clickable@2.0.9
+
+## @chakra-ui/pin-input@2.0.12
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`260076e2a`](https://github.com/chakra-ui/chakra-ui/commit/260076e2ac6165c8079c800475b9d7a9ca0f29a2)]:
+  - @chakra-ui/descendant@3.0.9
+
+## @chakra-ui/provider@2.0.15
+
+### Patch Changes
+
+- [#6559](https://github.com/chakra-ui/chakra-ui/pull/6559)
+  [`0cae42007`](https://github.com/chakra-ui/chakra-ui/commit/0cae42007308e94ef9a9fdbae3de259871ca33be)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactors the theme
+  to use design tokens and css variables as much as possible.
+
+  Improve support for `100vh` values by using a polyfill css variable
+  `--chakra-vh`.
+
+- Updated dependencies
+  \[[`0cae42007`](https://github.com/chakra-ui/chakra-ui/commit/0cae42007308e94ef9a9fdbae3de259871ca33be)]:
+  - @chakra-ui/css-reset@2.0.6
+  - @chakra-ui/system@2.2.8
+
+## @chakra-ui/select@2.0.10
+
+### Patch Changes
+
+- [`dda7d71bb`](https://github.com/chakra-ui/chakra-ui/commit/dda7d71bbc4b909f89a335b2080d91fc06083559)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  select theme throws when "field" part is not defined
+
+- Updated dependencies \[]:
+  - @chakra-ui/form-control@2.0.9
+
+## @chakra-ui/skeleton@2.0.15
+
+### Patch Changes
+
+- [#6221](https://github.com/chakra-ui/chakra-ui/pull/6221)
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor to use the
+  new helpers from `styled-system` package
+
+- Updated dependencies \[]:
+  - @chakra-ui/media-query@3.2.5
+
+## @chakra-ui/slider@2.0.10
+
+### Patch Changes
+
+- [`5e6c3fd65`](https://github.com/chakra-ui/chakra-ui/commit/5e6c3fd652446540a3e9825c0d0f1f556d2e17b8)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Allow slider mark
+  to be themable
+
+- Updated dependencies \[]:
+  - @chakra-ui/react-use-pan-event@2.0.4
+
+## @chakra-ui/system@2.2.8
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`0cae42007`](https://github.com/chakra-ui/chakra-ui/commit/0cae42007308e94ef9a9fdbae3de259871ca33be),
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7)]:
+  - @chakra-ui/styled-system@2.3.0
+
+## @chakra-ui/tabs@2.1.1
+
+### Patch Changes
+
+- [`ac6a00aea`](https://github.com/chakra-ui/chakra-ui/commit/ac6a00aea4113c4d77d6568125ddf38b339635b4)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix key warning for
+  tabs component
+
+- Updated dependencies
+  \[[`260076e2a`](https://github.com/chakra-ui/chakra-ui/commit/260076e2ac6165c8079c800475b9d7a9ca0f29a2)]:
+  - @chakra-ui/descendant@3.0.9
+  - @chakra-ui/clickable@2.0.9
+
+## @chakra-ui/theme@2.1.9
+
+### Patch Changes
+
+- [`e8f634e0d`](https://github.com/chakra-ui/chakra-ui/commit/e8f634e0d56a9d994aa139c7a36add3d30ede11f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  changing avatar badge placement.
+
+  The badge placement can be set to `top-start`, `top-end`, `bottom-start` or
+  `bottom-end`.
+
+  ```jsx live=false
+  <Avatar
+    name="Uchiha Itachi"
+    src="https://uinames.com/api/photos/female/18.jpg"
+  >
+    <AvatarBadge placement="top-start" />
+  </Avatar>
+  ```
+
+- [`5bacbdc2c`](https://github.com/chakra-ui/chakra-ui/commit/5bacbdc2c6f34fd6b8548e1a31c783084d2f775c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor alert
+  theme to use css variables
+
+- [#6559](https://github.com/chakra-ui/chakra-ui/pull/6559)
+  [`0cae42007`](https://github.com/chakra-ui/chakra-ui/commit/0cae42007308e94ef9a9fdbae3de259871ca33be)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactors the theme
+  to use design tokens and css variables as much as possible.
+
+  Improve support for `100vh` values by using a polyfill css variable
+  `--chakra-vh`.
+
+- [#6221](https://github.com/chakra-ui/chakra-ui/pull/6221)
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor to use the
+  new helpers from `styled-system` package
+
+- Updated dependencies
+  \[[`5e6c3fd65`](https://github.com/chakra-ui/chakra-ui/commit/5e6c3fd652446540a3e9825c0d0f1f556d2e17b8),
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7),
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7)]:
+  - @chakra-ui/anatomy@2.0.6
+  - @chakra-ui/theme-tools@2.0.11
+
+## @chakra-ui/theme-tools@2.0.11
+
+### Patch Changes
+
+- [#6221](https://github.com/chakra-ui/chakra-ui/pull/6221)
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactored code to
+  use from `styled-system` package
+
+- Updated dependencies
+  \[[`5e6c3fd65`](https://github.com/chakra-ui/chakra-ui/commit/5e6c3fd652446540a3e9825c0d0f1f556d2e17b8),
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7)]:
+  - @chakra-ui/anatomy@2.0.6
+
+## @chakra-ui/toast@3.0.8
+
+### Patch Changes
+
+- [`8b0bd0d58`](https://github.com/chakra-ui/chakra-ui/commit/8b0bd0d5892d91699571b110adee89857078e9e0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  toast double update doesn't work
+
+- Updated dependencies
+  \[[`e8f634e0d`](https://github.com/chakra-ui/chakra-ui/commit/e8f634e0d56a9d994aa139c7a36add3d30ede11f),
+  [`5bacbdc2c`](https://github.com/chakra-ui/chakra-ui/commit/5bacbdc2c6f34fd6b8548e1a31c783084d2f775c),
+  [`0cae42007`](https://github.com/chakra-ui/chakra-ui/commit/0cae42007308e94ef9a9fdbae3de259871ca33be),
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7)]:
+  - @chakra-ui/theme@2.1.9
+  - @chakra-ui/system@2.2.8
+  - @chakra-ui/alert@2.0.9
+  - @chakra-ui/close-button@2.0.9
+
+## @chakra-ui/react-use-pan-event@2.0.4
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`7000bb5fe`](https://github.com/chakra-ui/chakra-ui/commit/7000bb5fe432db85ed41aeb0c5d488bbc7da4785)]:
+  - @chakra-ui/event-utils@2.0.4
+
+## @chakra-ui/event-utils@2.0.4
+
+### Patch Changes
+
+- [`7000bb5fe`](https://github.com/chakra-ui/chakra-ui/commit/7000bb5fe432db85ed41aeb0c5d488bbc7da4785)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix regression in
+  `addPointerEvent` utility
+
+## @chakra-ui/gatsby-plugin@3.0.6
+
+### Patch Changes
+
+- [#6584](https://github.com/chakra-ui/chakra-ui/pull/6584)
+  [`ababbde39`](https://github.com/chakra-ui/chakra-ui/commit/ababbde390f573b254a380a83fb88a4ccd9d0131)
+  Thanks [@nikolovlazar](https://github.com/nikolovlazar)! - Removed default
+  value of portalZIndex
+
+## @chakra-ui/props-docs@2.0.16
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`e8f634e0d`](https://github.com/chakra-ui/chakra-ui/commit/e8f634e0d56a9d994aa139c7a36add3d30ede11f),
+  [`0cae42007`](https://github.com/chakra-ui/chakra-ui/commit/0cae42007308e94ef9a9fdbae3de259871ca33be),
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7)]:
+  - @chakra-ui/react@2.3.0
+  - @chakra-ui/styled-system@2.3.0
+
+## @chakra-ui/storybook-addon@4.0.10
+
+### Patch Changes
+
+- [#6580](https://github.com/chakra-ui/chakra-ui/pull/6580)
+  [`c22fa1a87`](https://github.com/chakra-ui/chakra-ui/commit/c22fa1a87f18ce43415e5c0f91d5988d476e7a31)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - remove an unused dependency
+
+- Updated dependencies \[]:
+  - @chakra-ui/icons@2.0.9
+
+## @chakra-ui/test-utils@2.0.16
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`e8f634e0d`](https://github.com/chakra-ui/chakra-ui/commit/e8f634e0d56a9d994aa139c7a36add3d30ede11f),
+  [`5bacbdc2c`](https://github.com/chakra-ui/chakra-ui/commit/5bacbdc2c6f34fd6b8548e1a31c783084d2f775c),
+  [`0cae42007`](https://github.com/chakra-ui/chakra-ui/commit/0cae42007308e94ef9a9fdbae3de259871ca33be),
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7)]:
+  - @chakra-ui/theme@2.1.9
+  - @chakra-ui/provider@2.0.15

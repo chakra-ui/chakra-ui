@@ -13,7 +13,6 @@ export const Td = forwardRef<TableCellProps, "td">(
 
     return (
       <chakra.td
-        role="gridcell"
         {...rest}
         ref={ref}
         __css={styles.td}

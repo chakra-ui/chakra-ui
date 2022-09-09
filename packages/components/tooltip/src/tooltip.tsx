@@ -94,7 +94,11 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
 
   if (shouldWrap) {
     trigger = (
-      <chakra.span tabIndex={0} {...tooltip.getTriggerProps()}>
+      <chakra.span
+        display="inline-block"
+        tabIndex={0}
+        {...tooltip.getTriggerProps()}
+      >
         {children}
       </chakra.span>
     )
