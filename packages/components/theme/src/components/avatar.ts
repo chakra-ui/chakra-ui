@@ -43,7 +43,7 @@ const baseStyleContainer = defineStyle((props) => {
   return {
     bg,
     color,
-    [$border.variable]: "white",
+    [$border.variable]: "colors.white",
     _dark: {
       [$border.variable]: "colors.gray.800",
     },
