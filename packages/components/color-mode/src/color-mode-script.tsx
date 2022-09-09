@@ -39,9 +39,7 @@ export function getScriptSrc(props: ColorModeScriptProps = {}) {
 }
 
 export function ColorModeScript(props: ColorModeScriptProps = {}) {
-  const {
-    nonce,
-  } = props
+  const { nonce } = props
 
   return (
     <script
