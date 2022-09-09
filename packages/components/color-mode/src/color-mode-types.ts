@@ -14,6 +14,7 @@ export interface ColorModeOptions {
 }
 
 export interface ColorModeContextType {
+  forced?: boolean
   colorMode: ColorMode
   toggleColorMode: () => void
   setColorMode: (value: any) => void

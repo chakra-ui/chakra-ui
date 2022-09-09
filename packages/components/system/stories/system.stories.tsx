@@ -1,7 +1,12 @@
-// import theme from "@chakra-ui/theme"
+import * as React from "react"
 import { motion } from "framer-motion"
-import React from "react"
-import { chakra, ThemeProvider, useStyleConfig, HTMLChakraProps } from "../src"
+import {
+  chakra,
+  ThemeProvider,
+  useStyleConfig,
+  HTMLChakraProps,
+  DarkMode,
+} from "../src"
 
 export default {
   title: "System / Core",
@@ -186,5 +191,23 @@ export const WithSemanticTokens = () => {
         </div>
       </div>
     </div>
+  )
+}
+
+export const WithColorMode = () => {
+  const styles = useStyleConfig("Badge", {
+    variant: "solid",
+    colorScheme: "blue",
+  })
+  return (
+    <>
+      <chakra.span>Not forced</chakra.span>
+      <DarkMode>
+        <chakra.div bg="gray.800" padding="40px">
+          <chakra.p color="chakra-body-text">Forced color mode</chakra.p>
+          <chakra.span __css={styles}>Badge</chakra.span>
+        </chakra.div>
+      </DarkMode>
+    </>
   )
 }
