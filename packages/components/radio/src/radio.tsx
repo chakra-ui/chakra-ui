@@ -39,7 +39,7 @@ export interface RadioProps
  *
  * @see Docs https://chakra-ui.com/radio
  */
-export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
+export const Radio = forwardRef<RadioProps, "input", Omitted>((props, ref) => {
   const group = useRadioGroupContext()
   const { onChange: onChangeProp, value: valueProp } = props
 

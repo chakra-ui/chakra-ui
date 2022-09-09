@@ -10,7 +10,7 @@ export interface EditableInputProps extends HTMLChakraProps<"input"> {}
  * The input used in the `edit` mode
  */
 
-export const EditableInput = forwardRef<EditableInputProps, "input">(
+export const EditableInput = forwardRef<EditableInputProps, "input", "checked">(
   function EditableInput(props, ref) {
     const { getInputProps } = useEditableContext()
     const styles = useEditableStyles()

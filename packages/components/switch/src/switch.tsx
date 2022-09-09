@@ -24,84 +24,87 @@ export interface SwitchProps
   spacing?: SystemProps["marginLeft"]
 }
 
-export const Switch = forwardRef<SwitchProps, "input">(function Switch(
-  props,
-  ref,
-) {
-  const styles = useMultiStyleConfig("Switch", props)
+export const Switch = forwardRef<SwitchProps, "input", "checked">(
+  function Switch(props, ref) {
+    const styles = useMultiStyleConfig("Switch", props)
 
-  const { spacing = "0.5rem", children, ...ownProps } = omitThemingProps(props)
+    const {
+      spacing = "0.5rem",
+      children,
+      ...ownProps
+    } = omitThemingProps(props)
 
-  const {
-    state,
-    getInputProps,
-    getCheckboxProps,
-    getRootProps,
-    getLabelProps,
-  } = useCheckbox(ownProps)
+    const {
+      state,
+      getInputProps,
+      getCheckboxProps,
+      getRootProps,
+      getLabelProps,
+    } = useCheckbox(ownProps)
 
-  const containerStyles: SystemStyleObject = useMemo(
-    () => ({
-      display: "inline-block",
-      position: "relative",
-      verticalAlign: "middle",
-      lineHeight: 0,
-      ...styles.container,
-    }),
-    [styles.container],
-  )
+    const containerStyles: SystemStyleObject = useMemo(
+      () => ({
+        display: "inline-block",
+        position: "relative",
+        verticalAlign: "middle",
+        lineHeight: 0,
+        ...styles.container,
+      }),
+      [styles.container],
+    )
 
-  const trackStyles: SystemStyleObject = useMemo(
-    () => ({
-      display: "inline-flex",
-      flexShrink: 0,
-      justifyContent: "flex-start",
-      boxSizing: "content-box",
-      cursor: "pointer",
-      ...styles.track,
-    }),
-    [styles.track],
-  )
+    const trackStyles: SystemStyleObject = useMemo(
+      () => ({
+        display: "inline-flex",
+        flexShrink: 0,
+        justifyContent: "flex-start",
+        boxSizing: "content-box",
+        cursor: "pointer",
+        ...styles.track,
+      }),
+      [styles.track],
+    )
 
-  const labelStyles: SystemStyleObject = useMemo(
-    () => ({
-      userSelect: "none",
-      marginStart: spacing,
-      ...styles.label,
-    }),
-    [spacing, styles.label],
-  )
+    const labelStyles: SystemStyleObject = useMemo(
+      () => ({
+        userSelect: "none",
+        marginStart: spacing,
+        ...styles.label,
+      }),
+      [spacing, styles.label],
+    )
 
-  return (
-    <chakra.label
-      {...getRootProps()}
-      className={cx("chakra-switch", props.className)}
-      __css={containerStyles}
-    >
-      <input className="chakra-switch__input" {...getInputProps({}, ref)} />
-      <chakra.span
-        {...getCheckboxProps()}
-        className="chakra-switch__track"
-        __css={trackStyles}
+    return (
+      <chakra.label
+        {...getRootProps()}
+        className={cx("chakra-switch", props.className)}
+        __css={containerStyles}
       >
+        <input className="chakra-switch__input" {...getInputProps({}, ref)} />
         <chakra.span
-          __css={styles.thumb}
-          className="chakra-switch__thumb"
-          data-checked={dataAttr(state.isChecked)}
-          data-hover={dataAttr(state.isHovered)}
-        />
-      </chakra.span>
-      {children && (
-        <chakra.span
-          className="chakra-switch__label"
-          {...getLabelProps()}
-          __css={labelStyles}
+          {...getCheckboxProps()}
+          className="chakra-switch__track"
+          __css={trackStyles}
         >
-          {children}
+          <chakra.span
+            __css={styles.thumb}
+            className="chakra-switch__thumb"
+            data-checked={dataAttr(state.isChecked)}
+            data-hover={dataAttr(state.isHovered)}
+          />
         </chakra.span>
-      )}
-    </chakra.label>
-  )
-})
+        {children && (
+          <chakra.span
+            className="chakra-switch__label"
+            {...getLabelProps()}
+            __css={labelStyles}
+          >
+            {children}
+          </chakra.span>
+        )}
+      </chakra.label>
+    )
+  },
+)
 
 Switch.displayName = "Switch"
