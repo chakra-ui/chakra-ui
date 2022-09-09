@@ -1,0 +1,741 @@
+---
+title: Version 1.8.4
+description:
+  Explore the changelog for Chakra UI version 1.8.4. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/5539
+releaseDate: February 20, 2022
+version: 1.8.4
+---
+
+## @chakra-ui/styled-system@1.18.0
+
+### Minor Changes
+
+- [#5579](https://github.com/chakra-ui/chakra-ui/pull/5579)
+  [`b0da6e666`](https://github.com/chakra-ui/chakra-ui/commit/b0da6e6665234c1584403f7f7251390c3a9433c8)
+  Thanks [@jrolfs](https://github.com/jrolfs)! - Modify theme types to make it
+  possible to customize token types via TypeScript module augmentation and
+  declaration merging in addition to allowing customization via the Chakra CLI.
+
+  This makes it possible to do the following:
+
+  - Distribute custom types with a component library based on Chakra
+  - Customize theme types by hand
+  - Version control your theme types
+
+  To customize themes using the new mechanism, augment the `CustomThemeTypings`
+  type in a definitions file such as `types/chakra.d.ts`:
+
+  > ⚠️ NOTE: your `CustomThemeTypings` _must_ implement/extend
+  > `BaseThemeTypings`, otherwise the types will fall back to the default Chakra
+  > types (or custom output from **@chakra-ui/cli**)
+
+  ```ts
+  import { BaseThemeTypings } from "@chakra-ui/styled-system";
+
+  type DefaultSizes = 'small' | 'medium' | 'large';
+
+  declare module "@chakra-ui/styled-system" {
+    export interface CustomThemeTypings extends BaseThemeTypings {
+      // Example custom `borders` tokens
+      borders: 'none' | 'thin' | 'thick';
+      // ...
+      // Other custom tokens
+      // ...
+      components: {
+        Button: {
+          // Example custom component sizes and variants
+          sizes: DefaultSizes;
+          variants: 'solid' | 'outline' | 'wacky' | 'chill';
+        };
+        // ...
+       }
+    }
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+
+## @chakra-ui/system@1.11.0
+
+### Minor Changes
+
+- [#5508](https://github.com/chakra-ui/chakra-ui/pull/5508)
+  [`e5e0f255c`](https://github.com/chakra-ui/chakra-ui/commit/e5e0f255c95f5e41c3b17adbda28fd09f7251642)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Allow all
+  `JSX.IntrinsicElements` for the chakra factory. This allows to use
+  [every DOM element](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/30a2f70db2f9ac223fd923ff1f8bcc175c082fd0/types/react/index.d.ts#L3111-L3288)
+  with the shorthand version:
+
+  ```jsx live=false
+  <chakra.header>Header</chakra.header>
+  <chakra.main>Main</chakra.main>
+  <chakra.footer>Many more</chakra.footer>
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`b0da6e666`](https://github.com/chakra-ui/chakra-ui/commit/b0da6e6665234c1584403f7f7251390c3a9433c8),
+  [`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/styled-system@1.18.0
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/color-mode@1.4.4
+
+## @chakra-ui/accordion@1.4.7
+
+### Patch Changes
+
+- [#5595](https://github.com/chakra-ui/chakra-ui/pull/5595)
+  [`0542b8a53`](https://github.com/chakra-ui/chakra-ui/commit/0542b8a53425093f18fd86d2b55220d3fa20253a)
+  Thanks [@takethefake](https://github.com/takethefake)! - Add a new multi style
+  part `root` to the Accordion component. It is applied to the topmost DOM
+  element.
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`c2bcba11c`](https://github.com/chakra-ui/chakra-ui/commit/c2bcba11ca60c175b35dff10a922e600c3fd065c)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/icon@2.0.4
+  - @chakra-ui/hooks@1.8.3
+  - @chakra-ui/transition@1.4.6
+
+## @chakra-ui/alert@1.3.6
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`c2bcba11c`](https://github.com/chakra-ui/chakra-ui/commit/c2bcba11ca60c175b35dff10a922e600c3fd065c)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/icon@2.0.4
+
+## @chakra-ui/anatomy@1.2.4
+
+### Patch Changes
+
+- [#5595](https://github.com/chakra-ui/chakra-ui/pull/5595)
+  [`0542b8a53`](https://github.com/chakra-ui/chakra-ui/commit/0542b8a53425093f18fd86d2b55220d3fa20253a)
+  Thanks [@takethefake](https://github.com/takethefake)! - Add a new multi style
+  part `root` to the Accordion component. It is applied to the topmost DOM
+  element.
+- Updated dependencies \[]:
+  - @chakra-ui/theme-tools@1.3.5
+
+## @chakra-ui/avatar@1.3.7
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/image@1.1.6
+
+## @chakra-ui/breadcrumb@1.3.5
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+
+## @chakra-ui/button@1.5.6
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/hooks@1.8.3
+  - @chakra-ui/spinner@1.2.5
+
+## @chakra-ui/checkbox@1.6.6
+
+### Patch Changes
+
+- [#5564](https://github.com/chakra-ui/chakra-ui/pull/5564)
+  [`44c9fab5b`](https://github.com/chakra-ui/chakra-ui/commit/44c9fab5b0e34484c9afb858a553d4a2aa30209d)
+  Thanks [@santialbo](https://github.com/santialbo)! - Add `FormControl` support
+  for `useCheckbox`
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/form-control@1.5.7
+  - @chakra-ui/hooks@1.8.3
+  - @chakra-ui/visually-hidden@1.1.5
+
+## @chakra-ui/clickable@1.2.5
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+
+## @chakra-ui/close-button@1.2.6
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`c2bcba11c`](https://github.com/chakra-ui/chakra-ui/commit/c2bcba11ca60c175b35dff10a922e600c3fd065c)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/icon@2.0.4
+
+## @chakra-ui/color-mode@1.4.4
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/react-env@1.1.5
+  - @chakra-ui/hooks@1.8.3
+
+## @chakra-ui/control-box@1.1.5
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+
+## @chakra-ui/counter@1.2.6
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/hooks@1.8.3
+
+## @chakra-ui/editable@1.3.6
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/hooks@1.8.3
+
+## @chakra-ui/react-env@1.1.5
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+
+## @chakra-ui/focus-lock@1.2.5
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+
+## @chakra-ui/form-control@1.5.7
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`c2bcba11c`](https://github.com/chakra-ui/chakra-ui/commit/c2bcba11ca60c175b35dff10a922e600c3fd065c)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/icon@2.0.4
+  - @chakra-ui/hooks@1.8.3
+
+## @chakra-ui/hooks@1.8.3
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+
+## @chakra-ui/icon@2.0.4
+
+### Patch Changes
+
+- [#5597](https://github.com/chakra-ui/chakra-ui/pull/5597)
+  [`c2bcba11c`](https://github.com/chakra-ui/chakra-ui/commit/c2bcba11ca60c175b35dff10a922e600c3fd065c)
+  Thanks [@m4x3d](https://github.com/m4x3d)! - Add missing word in comment of
+  `CreateIconOptions`
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+
+## @chakra-ui/icons@1.1.6
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`c2bcba11c`](https://github.com/chakra-ui/chakra-ui/commit/c2bcba11ca60c175b35dff10a922e600c3fd065c)]:
+  - @chakra-ui/icon@2.0.4
+
+## @chakra-ui/image@1.1.6
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/hooks@1.8.3
+
+## @chakra-ui/input@1.4.2
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/form-control@1.5.7
+
+## @chakra-ui/layout@1.7.5
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`c2bcba11c`](https://github.com/chakra-ui/chakra-ui/commit/c2bcba11ca60c175b35dff10a922e600c3fd065c)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/icon@2.0.4
+
+## @chakra-ui/live-region@1.1.5
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+
+## @chakra-ui/media-query@2.0.2
+
+### Patch Changes
+
+- [#5574](https://github.com/chakra-ui/chakra-ui/pull/5574)
+  [`eca771a9a`](https://github.com/chakra-ui/chakra-ui/commit/eca771a9ad53edc52365f70eb0e6b19bc54d8e18)
+  Thanks [@nikolovlazar](https://github.com/nikolovlazar)! - Added props
+  descriptions to Show / Hide components
+
+- [#5576](https://github.com/chakra-ui/chakra-ui/pull/5576)
+  [`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue
+  where the hook `useBreakpoint` did not update after the first page load.
+
+- [#5625](https://github.com/chakra-ui/chakra-ui/pull/5625)
+  [`99c92df93`](https://github.com/chakra-ui/chakra-ui/commit/99c92df9331e6a0c5667b77e5a605343efccc6b3)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue
+  where the `useBreakpointValue` hook did not work as expected with custom
+  breakpoints
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/react-env@1.1.5
+
+## @chakra-ui/menu@1.8.7
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/clickable@1.2.5
+  - @chakra-ui/hooks@1.8.3
+  - @chakra-ui/transition@1.4.6
+
+## @chakra-ui/modal@1.10.8
+
+### Patch Changes
+
+- [#5422](https://github.com/chakra-ui/chakra-ui/pull/5422)
+  [`5aa79f81c`](https://github.com/chakra-ui/chakra-ui/commit/5aa79f81c71b1ac28d1ee18b4cc28c908b68cbfb)
+  Thanks [@dqn](https://github.com/dqn)! - Fix `useAriaHidden` hook dependency
+  to make it work as expected
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/close-button@1.2.6
+  - @chakra-ui/focus-lock@1.2.5
+  - @chakra-ui/hooks@1.8.3
+  - @chakra-ui/portal@1.3.6
+  - @chakra-ui/transition@1.4.6
+
+## @chakra-ui/number-input@1.4.3
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`c2bcba11c`](https://github.com/chakra-ui/chakra-ui/commit/c2bcba11ca60c175b35dff10a922e600c3fd065c)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/icon@2.0.4
+  - @chakra-ui/counter@1.2.6
+  - @chakra-ui/form-control@1.5.7
+  - @chakra-ui/hooks@1.8.3
+
+## @chakra-ui/pin-input@1.7.6
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/hooks@1.8.3
+
+## @chakra-ui/popover@1.11.5
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/close-button@1.2.6
+  - @chakra-ui/hooks@1.8.3
+
+## @chakra-ui/portal@1.3.6
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/hooks@1.8.3
+
+## @chakra-ui/progress@1.2.5
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/theme-tools@1.3.5
+
+## @chakra-ui/provider@1.7.10
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`e5e0f255c`](https://github.com/chakra-ui/chakra-ui/commit/e5e0f255c95f5e41c3b17adbda28fd09f7251642)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/system@1.11.0
+  - @chakra-ui/react-env@1.1.5
+  - @chakra-ui/hooks@1.8.3
+  - @chakra-ui/portal@1.3.6
+
+## @chakra-ui/radio@1.4.8
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/form-control@1.5.7
+  - @chakra-ui/hooks@1.8.3
+  - @chakra-ui/visually-hidden@1.1.5
+
+## @chakra-ui/react@1.8.4
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`c5eb9c03c`](https://github.com/chakra-ui/chakra-ui/commit/c5eb9c03cd6925f8624ba48a406205d64000a2d1),
+  [`eca771a9a`](https://github.com/chakra-ui/chakra-ui/commit/eca771a9ad53edc52365f70eb0e6b19bc54d8e18),
+  [`44c9fab5b`](https://github.com/chakra-ui/chakra-ui/commit/44c9fab5b0e34484c9afb858a553d4a2aa30209d),
+  [`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`5aa79f81c`](https://github.com/chakra-ui/chakra-ui/commit/5aa79f81c71b1ac28d1ee18b4cc28c908b68cbfb),
+  [`c2bcba11c`](https://github.com/chakra-ui/chakra-ui/commit/c2bcba11ca60c175b35dff10a922e600c3fd065c),
+  [`e5e0f255c`](https://github.com/chakra-ui/chakra-ui/commit/e5e0f255c95f5e41c3b17adbda28fd09f7251642),
+  [`99c92df93`](https://github.com/chakra-ui/chakra-ui/commit/99c92df9331e6a0c5667b77e5a605343efccc6b3),
+  [`5d4abe4b6`](https://github.com/chakra-ui/chakra-ui/commit/5d4abe4b68bd454389224ac1001084a9929f568b),
+  [`0542b8a53`](https://github.com/chakra-ui/chakra-ui/commit/0542b8a53425093f18fd86d2b55220d3fa20253a)]:
+  - @chakra-ui/switch@1.3.6
+  - @chakra-ui/media-query@2.0.2
+  - @chakra-ui/checkbox@1.6.6
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/modal@1.10.8
+  - @chakra-ui/icon@2.0.4
+  - @chakra-ui/system@1.11.0
+  - @chakra-ui/tag@1.2.6
+  - @chakra-ui/accordion@1.4.7
+  - @chakra-ui/theme@1.13.3
+  - @chakra-ui/skeleton@1.2.10
+  - @chakra-ui/alert@1.3.6
+  - @chakra-ui/avatar@1.3.7
+  - @chakra-ui/breadcrumb@1.3.5
+  - @chakra-ui/button@1.5.6
+  - @chakra-ui/close-button@1.2.6
+  - @chakra-ui/control-box@1.1.5
+  - @chakra-ui/counter@1.2.6
+  - @chakra-ui/editable@1.3.6
+  - @chakra-ui/react-env@1.1.5
+  - @chakra-ui/form-control@1.5.7
+  - @chakra-ui/hooks@1.8.3
+  - @chakra-ui/image@1.1.6
+  - @chakra-ui/input@1.4.2
+  - @chakra-ui/layout@1.7.5
+  - @chakra-ui/live-region@1.1.5
+  - @chakra-ui/menu@1.8.7
+  - @chakra-ui/number-input@1.4.3
+  - @chakra-ui/pin-input@1.7.6
+  - @chakra-ui/popover@1.11.5
+  - @chakra-ui/portal@1.3.6
+  - @chakra-ui/progress@1.2.5
+  - @chakra-ui/provider@1.7.10
+  - @chakra-ui/radio@1.4.8
+  - @chakra-ui/select@1.2.7
+  - @chakra-ui/slider@1.5.7
+  - @chakra-ui/spinner@1.2.5
+  - @chakra-ui/stat@1.2.6
+  - @chakra-ui/table@1.3.5
+  - @chakra-ui/tabs@1.6.6
+  - @chakra-ui/textarea@1.2.7
+  - @chakra-ui/toast@1.5.5
+  - @chakra-ui/tooltip@1.4.7
+  - @chakra-ui/transition@1.4.6
+  - @chakra-ui/visually-hidden@1.1.5
+
+## @chakra-ui/select@1.2.7
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/form-control@1.5.7
+
+## @chakra-ui/skeleton@1.2.10
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`eca771a9a`](https://github.com/chakra-ui/chakra-ui/commit/eca771a9ad53edc52365f70eb0e6b19bc54d8e18),
+  [`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`e5e0f255c`](https://github.com/chakra-ui/chakra-ui/commit/e5e0f255c95f5e41c3b17adbda28fd09f7251642),
+  [`99c92df93`](https://github.com/chakra-ui/chakra-ui/commit/99c92df9331e6a0c5667b77e5a605343efccc6b3)]:
+  - @chakra-ui/media-query@2.0.2
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/system@1.11.0
+  - @chakra-ui/hooks@1.8.3
+
+## @chakra-ui/skip-nav@1.2.5
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+
+## @chakra-ui/slider@1.5.7
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/hooks@1.8.3
+
+## @chakra-ui/spinner@1.2.5
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/visually-hidden@1.1.5
+
+## @chakra-ui/stat@1.2.6
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`c2bcba11c`](https://github.com/chakra-ui/chakra-ui/commit/c2bcba11ca60c175b35dff10a922e600c3fd065c)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/icon@2.0.4
+  - @chakra-ui/visually-hidden@1.1.5
+
+## @chakra-ui/switch@1.3.6
+
+### Patch Changes
+
+- [#5500](https://github.com/chakra-ui/chakra-ui/pull/5500)
+  [`c5eb9c03c`](https://github.com/chakra-ui/chakra-ui/commit/c5eb9c03cd6925f8624ba48a406205d64000a2d1)
+  Thanks [@kk21](https://github.com/kk21)! - Fixed a UI issue where the Switch
+  component rendered a few pixels off the baseline.
+- Updated dependencies
+  \[[`44c9fab5b`](https://github.com/chakra-ui/chakra-ui/commit/44c9fab5b0e34484c9afb858a553d4a2aa30209d),
+  [`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/checkbox@1.6.6
+  - @chakra-ui/utils@1.10.3
+
+## @chakra-ui/table@1.3.5
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+
+## @chakra-ui/tabs@1.6.6
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/clickable@1.2.5
+  - @chakra-ui/hooks@1.8.3
+
+## @chakra-ui/tag@1.2.6
+
+### Patch Changes
+
+- [#5599](https://github.com/chakra-ui/chakra-ui/pull/5599)
+  [`5d4abe4b6`](https://github.com/chakra-ui/chakra-ui/commit/5d4abe4b68bd454389224ac1001084a9929f568b)
+  Thanks [@m4x3d](https://github.com/m4x3d)! - Change order of aria-label prop
+  on TagCloseButton to be over-writable
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`c2bcba11c`](https://github.com/chakra-ui/chakra-ui/commit/c2bcba11ca60c175b35dff10a922e600c3fd065c)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/icon@2.0.4
+
+## @chakra-ui/textarea@1.2.7
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/form-control@1.5.7
+
+## @chakra-ui/theme@1.13.3
+
+### Patch Changes
+
+- [#5595](https://github.com/chakra-ui/chakra-ui/pull/5595)
+  [`0542b8a53`](https://github.com/chakra-ui/chakra-ui/commit/0542b8a53425093f18fd86d2b55220d3fa20253a)
+  Thanks [@takethefake](https://github.com/takethefake)! - Add a new multi style
+  part `root` to the Accordion component. It is applied to the topmost DOM
+  element.
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`0542b8a53`](https://github.com/chakra-ui/chakra-ui/commit/0542b8a53425093f18fd86d2b55220d3fa20253a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/anatomy@1.2.4
+  - @chakra-ui/theme-tools@1.3.5
+
+## @chakra-ui/theme-tools@1.3.5
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+
+## @chakra-ui/toast@1.5.5
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a),
+  [`0542b8a53`](https://github.com/chakra-ui/chakra-ui/commit/0542b8a53425093f18fd86d2b55220d3fa20253a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/theme@1.13.3
+  - @chakra-ui/alert@1.3.6
+  - @chakra-ui/close-button@1.2.6
+  - @chakra-ui/hooks@1.8.3
+  - @chakra-ui/transition@1.4.6
+
+## @chakra-ui/tooltip@1.4.7
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+  - @chakra-ui/hooks@1.8.3
+  - @chakra-ui/portal@1.3.6
+  - @chakra-ui/visually-hidden@1.1.5
+
+## @chakra-ui/transition@1.4.6
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+
+## @chakra-ui/utils@1.10.3
+
+### Patch Changes
+
+- [#5576](https://github.com/chakra-ui/chakra-ui/pull/5576)
+  [`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue
+  where `queryString()` created invalid media queries when min and max were set.
+
+## @chakra-ui/visually-hidden@1.1.5
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`a870e6b94`](https://github.com/chakra-ui/chakra-ui/commit/a870e6b94367b7c6448d5c5c5aa8577e33e15e3a)]:
+  - @chakra-ui/utils@1.10.3
+
+## @chakra-ui/props-docs@1.0.48
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`b0da6e666`](https://github.com/chakra-ui/chakra-ui/commit/b0da6e6665234c1584403f7f7251390c3a9433c8)]:
+  - @chakra-ui/styled-system@1.18.0
+  - @chakra-ui/react@1.8.4
+
+## create-react-app-ts@1.1.11
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@1.8.4
+
+## gatsby-starter-default@0.3.11
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@1.8.4
+
+## chakra-nextjs@1.1.11
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@1.8.4
+
+## chakra-nextjs-ts@1.1.11
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@1.8.4
+  - @chakra-ui/theme-tools@1.3.5
+  - @chakra-ui/icons@1.1.6
+
+## @chakra-ui/test-utils@1.1.10
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@1.8.4

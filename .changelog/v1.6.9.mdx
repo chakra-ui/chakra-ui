@@ -1,0 +1,150 @@
+---
+title: Version 1.6.9
+description:
+  Explore the changelog for Chakra UI version 1.6.9. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/4748
+releaseDate: October 5, 2021
+version: 1.6.9
+---
+
+## @chakra-ui/slider@1.4.0
+
+### Minor Changes
+
+- [`b769e88f9`](https://github.com/chakra-ui/chakra-ui/commit/b769e88f977a4e2a8641de57beefd8220bc5dffa)
+  [#4740](https://github.com/chakra-ui/chakra-ui/pull/4740) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - - Move hard-coded styles
+  to slider's theme
+
+  - Add support for multithumb slider. We now have `useRangeSlider`,
+    `RangeSlider` and `RangeSlider*` components
+
+  ```jsx live=false
+  <RangeSlider>
+    <RangeSliderTrack>
+      <RangeSliderFilledTrack />
+    </RangeSliderTrack>
+    <RangeSliderThumb index={0} />
+    <RangeSliderThumb index={1} />
+  </RangeSlider>
+  ```
+
+## @chakra-ui/accordion@1.3.7
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`eafb21e18`](https://github.com/chakra-ui/chakra-ui/commit/eafb21e1883cf40bfe44e143714d9a480a0cc7da)]:
+  - @chakra-ui/transition@1.3.5
+
+## @chakra-ui/button@1.4.4
+
+### Patch Changes
+
+- [`21531b59d`](https://github.com/chakra-ui/chakra-ui/commit/21531b59dba938be1b4ee9d3a5f43f4e10d3f783)
+  [#4767](https://github.com/chakra-ui/chakra-ui/pull/4767) Thanks
+  [@gluck](https://github.com/gluck)! - Added missing `@chakra-ui/react-utils`
+  import
+
+## @chakra-ui/menu@1.7.5
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`eafb21e18`](https://github.com/chakra-ui/chakra-ui/commit/eafb21e1883cf40bfe44e143714d9a480a0cc7da)]:
+  - @chakra-ui/transition@1.3.5
+
+## @chakra-ui/modal@1.9.1
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`eafb21e18`](https://github.com/chakra-ui/chakra-ui/commit/eafb21e1883cf40bfe44e143714d9a480a0cc7da)]:
+  - @chakra-ui/transition@1.3.5
+
+## @chakra-ui/react@1.6.9
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`21531b59d`](https://github.com/chakra-ui/chakra-ui/commit/21531b59dba938be1b4ee9d3a5f43f4e10d3f783),
+  [`b769e88f9`](https://github.com/chakra-ui/chakra-ui/commit/b769e88f977a4e2a8641de57beefd8220bc5dffa),
+  [`eafb21e18`](https://github.com/chakra-ui/chakra-ui/commit/eafb21e1883cf40bfe44e143714d9a480a0cc7da),
+  [`b769e88f9`](https://github.com/chakra-ui/chakra-ui/commit/b769e88f977a4e2a8641de57beefd8220bc5dffa),
+  [`6f99723f8`](https://github.com/chakra-ui/chakra-ui/commit/6f99723f8b2f170978a34bc4da1dc85228ab4512)]:
+  - @chakra-ui/button@1.4.4
+  - @chakra-ui/slider@1.4.0
+  - @chakra-ui/transition@1.3.5
+  - @chakra-ui/theme@1.10.3
+  - @chakra-ui/toast@1.3.1
+  - @chakra-ui/accordion@1.3.7
+  - @chakra-ui/menu@1.7.5
+  - @chakra-ui/modal@1.9.1
+
+## @chakra-ui/theme@1.10.3
+
+### Patch Changes
+
+- [`b769e88f9`](https://github.com/chakra-ui/chakra-ui/commit/b769e88f977a4e2a8641de57beefd8220bc5dffa)
+  [#4740](https://github.com/chakra-ui/chakra-ui/pull/4740) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Refactor slider theme from
+  slider.tsx to slider's theme
+
+## @chakra-ui/toast@1.3.1
+
+### Patch Changes
+
+- [`6f99723f8`](https://github.com/chakra-ui/chakra-ui/commit/6f99723f8b2f170978a34bc4da1dc85228ab4512)
+  [#4702](https://github.com/chakra-ui/chakra-ui/pull/4702) Thanks
+  [@stefee](https://github.com/stefee)! - Allow alerts rendered by useToast and
+  createStandaloneToast to be discovered by role and accessible name (e.g. using
+  Testing Library [ByRole](https://testing-library.com/docs/queries/byrole/)).
+- Updated dependencies
+  \[[`eafb21e18`](https://github.com/chakra-ui/chakra-ui/commit/eafb21e1883cf40bfe44e143714d9a480a0cc7da),
+  [`b769e88f9`](https://github.com/chakra-ui/chakra-ui/commit/b769e88f977a4e2a8641de57beefd8220bc5dffa)]:
+  - @chakra-ui/transition@1.3.5
+  - @chakra-ui/theme@1.10.3
+
+## @chakra-ui/transition@1.3.5
+
+### Patch Changes
+
+- [`eafb21e18`](https://github.com/chakra-ui/chakra-ui/commit/eafb21e1883cf40bfe44e143714d9a480a0cc7da)
+  [#4744](https://github.com/chakra-ui/chakra-ui/pull/4744) Thanks
+  [@rohankokane](https://github.com/rohankokane)! - Updated transition variants
+  for drawer animations to prevent it from disappearing when placement
+  conditionally changes
+
+## @chakra-ui/cli@1.5.2
+
+### Patch Changes
+
+- [`236efcbf5`](https://github.com/chakra-ui/chakra-ui/commit/236efcbf562a966d5a3fcd0a778ee404b379d41d)
+  [#4781](https://github.com/chakra-ui/chakra-ui/pull/4781) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue where the
+  CLI failed with `SyntaxError: JSON5: invalid character`.
+
+## @chakra-ui/props-docs@1.0.34
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@1.6.9
+
+## @chakra-ui/test-utils@1.0.34
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@1.6.9
+
+## @chakra-ui/docs@2.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`236efcbf5`](https://github.com/chakra-ui/chakra-ui/commit/236efcbf562a966d5a3fcd0a778ee404b379d41d)]:
+  - @chakra-ui/cli@1.5.2
+  - @chakra-ui/react@1.6.9
+  - @chakra-ui/props-docs@1.0.34

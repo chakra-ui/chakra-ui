@@ -1,0 +1,143 @@
+---
+title: Version 1.7.5
+description:
+  Explore the changelog for Chakra UI version 1.7.5. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/5323
+releaseDate: January 9, 2022
+version: 1.7.5
+---
+
+## @chakra-ui/avatar@1.3.3
+
+### Patch Changes
+
+- [#5319](https://github.com/chakra-ui/chakra-ui/pull/5319)
+  [`a54757cd9`](https://github.com/chakra-ui/chakra-ui/commit/a54757cd9ef8f72b3a69428ec9012a8c318acfab)
+  Thanks [@igorwessel](https://github.com/igorwessel)! - Added the prop `srcSet`
+  to the `<Avatar />` and `<AvatarImage />` components to allow responsive image
+  sources.
+  [Read more on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset)
+
+## @chakra-ui/layout@1.7.1
+
+### Patch Changes
+
+- [#5276](https://github.com/chakra-ui/chakra-ui/pull/5276)
+  [`5f9407742`](https://github.com/chakra-ui/chakra-ui/commit/5f940774223c5b747a5b6eccff7657eabbe34776)
+  Thanks [@prashanth-cpaul](https://github.com/prashanth-cpaul)! - ### Add
+  support for `area` prop on `GridItem`
+
+  Deprecated `area` prop on `Grid` and added support for `area` prop to be used
+  with `GridItem` instead. This allows for usage of `GridItem`'s that have named
+  template areas to be used in conjunction with a `Grid` that has a defined
+  template area.
+
+  ```jsx live=false
+  <Grid templateAreas='"one two three"'>
+    <GridItem area="one">one</Grid>
+    <GridItem area="two">two</Grid>
+    <GridItem area="three">three</Grid>
+  </Grid>
+  ```
+
+## @chakra-ui/modal@1.10.4
+
+### Patch Changes
+
+- [#5341](https://github.com/chakra-ui/chakra-ui/pull/5341)
+  [`11fa4e8bf`](https://github.com/chakra-ui/chakra-ui/commit/11fa4e8bfdce0a964c3fe7ccbc340a4601b4c832)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Update
+  `DrawerProps` type to include `ThemingProps` for the Drawer component
+
+## @chakra-ui/provider@1.7.5
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`d2d9af846`](https://github.com/chakra-ui/chakra-ui/commit/d2d9af8464d627d0ab854ad64a42d3c0be81d67d)]:
+  - @chakra-ui/system@1.9.1
+
+## @chakra-ui/react@1.7.5
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`11fa4e8bf`](https://github.com/chakra-ui/chakra-ui/commit/11fa4e8bfdce0a964c3fe7ccbc340a4601b4c832),
+  [`a54757cd9`](https://github.com/chakra-ui/chakra-ui/commit/a54757cd9ef8f72b3a69428ec9012a8c318acfab),
+  [`5f9407742`](https://github.com/chakra-ui/chakra-ui/commit/5f940774223c5b747a5b6eccff7657eabbe34776),
+  [`d2d9af846`](https://github.com/chakra-ui/chakra-ui/commit/d2d9af8464d627d0ab854ad64a42d3c0be81d67d)]:
+  - @chakra-ui/modal@1.10.4
+  - @chakra-ui/avatar@1.3.3
+  - @chakra-ui/layout@1.7.1
+  - @chakra-ui/system@1.9.1
+  - @chakra-ui/provider@1.7.5
+  - @chakra-ui/skeleton@1.2.5
+
+## @chakra-ui/skeleton@1.2.5
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`d2d9af846`](https://github.com/chakra-ui/chakra-ui/commit/d2d9af8464d627d0ab854ad64a42d3c0be81d67d)]:
+  - @chakra-ui/system@1.9.1
+
+## @chakra-ui/system@1.9.1
+
+### Patch Changes
+
+- [#5342](https://github.com/chakra-ui/chakra-ui/pull/5342)
+  [`d2d9af846`](https://github.com/chakra-ui/chakra-ui/commit/d2d9af8464d627d0ab854ad64a42d3c0be81d67d)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Fixed an TypeScript
+  issue where the ThemingProps type was too strict
+
+## @chakra-ui/props-docs@1.0.43
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@1.7.5
+
+## @chakra-ui/storybook-addon@1.0.1
+
+### Patch Changes
+
+- [#5340](https://github.com/chakra-ui/chakra-ui/pull/5340)
+  [`ab247507a`](https://github.com/chakra-ui/chakra-ui/commit/ab247507ab6d30be356b657f652331801e880e52)
+  Thanks [@TimKolberger](https://github.com/TimKolberger)! - Added dependency to
+  @chakra-ui/icons
+
+## create-react-app-ts@1.1.6
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@1.7.5
+
+## gatsby-starter-default@0.3.6
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@1.7.5
+
+## chakra-nextjs@1.1.6
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@1.7.5
+
+## chakra-nextjs-ts@1.1.6
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@1.7.5
+
+## @chakra-ui/test-utils@1.1.5
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@1.7.5

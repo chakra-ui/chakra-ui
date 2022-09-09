@@ -1,0 +1,199 @@
+---
+title: Version 2.0.1
+description:
+  Explore the changelog for Chakra UI version 2.0.1. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/6034
+releaseDate: May 17, 2022
+version: 2.0.1
+---
+
+## storybook-addon@2.0.1
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/storybook-addon@2.0.1
+
+## @chakra-ui/checkbox@2.0.1
+
+### Patch Changes
+
+- [`7eaf538a4`](https://github.com/chakra-ui/chakra-ui/commit/7eaf538a4db9e168408e114f80a2c2898cf4fd47)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  checkbox doesn't reset the the form reset event is triggered
+
+## @chakra-ui/color-mode@2.0.1
+
+### Patch Changes
+
+- [#6030](https://github.com/chakra-ui/chakra-ui/pull/6030)
+  [`17aeb7185`](https://github.com/chakra-ui/chakra-ui/commit/17aeb7185b7439e04abec843df186fc2b1869d6f)
+  Thanks [@RagOfJoes](https://github.com/RagOfJoes)! - - Improve SSR for color
+  mode by adding `manager.get()` in the default state
+
+  - Add support `disableTransitionOnChange` option in `ColorModeProvider` and
+    `theme.config` to control whether the transition of all elements should be
+    temporarily disabled while the color mode changes.
+
+  - Expose `cookieStorageManagerSSR` for users who prefer to manage color mode
+    server-side. If you use this, there's no need for the `ColorModeScript`
+
+  ```jsx live=false
+  function App({ Component, pageProps }) {
+    // get the `cookie` from each page `getServerSideProps` return value
+    // Note: the implementation is up to you
+    const manager = cookieStorageManagerSSR(pageProps.cookie)
+    return (
+      <ChakraProvider manager={manager}>
+        <Component />
+      </ChakraProvider>
+    )
+  }
+  ```
+
+- [#6035](https://github.com/chakra-ui/chakra-ui/pull/6035)
+  [`b7bdbb482`](https://github.com/chakra-ui/chakra-ui/commit/b7bdbb482e8a1c5725596401a0c4bc29c009a0ad)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - We now provide a
+  way to customize the localStorage / cookie storage key
+
+  ```jsx live=false
+  import { createLocalStorageManager } from "@chakra-ui/react"
+
+  const manager = createLocalStorageManager("my-key")
+
+  // in root
+  function App() {
+    return <ChakraProvider colorModeManager={manager} />
+  }
+
+  // in script
+  function Document() {
+    return <ColorModeScript storageKey="my-key" />
+  }
+  ```
+
+- [#6035](https://github.com/chakra-ui/chakra-ui/pull/6035)
+  [`fb99cd7a8`](https://github.com/chakra-ui/chakra-ui/commit/fb99cd7a87d00614a66e17a35c91dc0e02262ece)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix inconsistent
+  handling across provider and script
+
+## @chakra-ui/provider@2.0.1
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/system@2.0.1
+
+## @chakra-ui/react@2.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`3996f46d1`](https://github.com/chakra-ui/chakra-ui/commit/3996f46d1b6e3b4997542e6d3367387ed73d3f8d),
+  [`7eaf538a4`](https://github.com/chakra-ui/chakra-ui/commit/7eaf538a4db9e168408e114f80a2c2898cf4fd47),
+  [`a9099c106`](https://github.com/chakra-ui/chakra-ui/commit/a9099c106edf0364d36feedfc066c5523cb7c7c8)]:
+  - @chakra-ui/toast@2.0.1
+  - @chakra-ui/checkbox@2.0.1
+  - @chakra-ui/theme@2.0.1
+  - @chakra-ui/system@2.0.1
+  - @chakra-ui/switch@2.0.1
+  - @chakra-ui/provider@2.0.1
+  - @chakra-ui/skeleton@2.0.1
+
+## @chakra-ui/skeleton@2.0.1
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/system@2.0.1
+
+## @chakra-ui/switch@2.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`7eaf538a4`](https://github.com/chakra-ui/chakra-ui/commit/7eaf538a4db9e168408e114f80a2c2898cf4fd47)]:
+  - @chakra-ui/checkbox@2.0.1
+
+## @chakra-ui/system@2.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`17aeb7185`](https://github.com/chakra-ui/chakra-ui/commit/17aeb7185b7439e04abec843df186fc2b1869d6f),
+  [`b7bdbb482`](https://github.com/chakra-ui/chakra-ui/commit/b7bdbb482e8a1c5725596401a0c4bc29c009a0ad),
+  [`fb99cd7a8`](https://github.com/chakra-ui/chakra-ui/commit/fb99cd7a87d00614a66e17a35c91dc0e02262ece)]:
+  - @chakra-ui/color-mode@2.0.1
+
+## @chakra-ui/theme@2.0.1
+
+### Patch Changes
+
+- [#6038](https://github.com/chakra-ui/chakra-ui/pull/6038)
+  [`a9099c106`](https://github.com/chakra-ui/chakra-ui/commit/a9099c106edf0364d36feedfc066c5523cb7c7c8)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor global
+  theme to use semantic token to prevent flash of white
+
+## @chakra-ui/toast@2.0.1
+
+### Patch Changes
+
+- [#6037](https://github.com/chakra-ui/chakra-ui/pull/6037)
+  [`3996f46d1`](https://github.com/chakra-ui/chakra-ui/commit/3996f46d1b6e3b4997542e6d3367387ed73d3f8d)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Revert
+  toast's default variant to `solid`
+
+- Updated dependencies
+  \[[`a9099c106`](https://github.com/chakra-ui/chakra-ui/commit/a9099c106edf0364d36feedfc066c5523cb7c7c8)]:
+  - @chakra-ui/theme@2.0.1
+  - @chakra-ui/system@2.0.1
+
+## @chakra-ui/props-docs@2.0.1
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@2.0.1
+
+## @chakra-ui/storybook-addon@2.0.1
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@2.0.1
+
+## create-react-app-ts@2.0.1
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@2.0.1
+
+## gatsby-starter-default@1.0.1
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@2.0.1
+
+## chakra-nextjs@2.0.1
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@2.0.1
+
+## chakra-nextjs-ts@2.0.1
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@2.0.1
+
+## @chakra-ui/test-utils@2.0.1
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@2.0.1

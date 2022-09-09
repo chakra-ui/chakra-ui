@@ -1,0 +1,314 @@
+---
+title: Version 1.6.8
+description:
+  Explore the changelog for Chakra UI version 1.6.8. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/4668
+releaseDate: September 20, 2021
+version: 1.6.8
+---
+
+## @chakra-ui/modal@1.9.0
+
+### Minor Changes
+
+- [`8c61e75ec`](https://github.com/chakra-ui/chakra-ui/commit/8c61e75ec6da4ca6ce0fe413034f6aed7f685977)
+  [#3837](https://github.com/chakra-ui/chakra-ui/pull/3837) Thanks
+  [@mcha-dev](https://github.com/mcha-dev)! - **Drawer:** Add support for
+  RTL-aware placement values. You can now pass `start` and `end` values. The
+  drawer will use `left/right` placement depending on the specified
+  `theme.direction` value.
+
+### Patch Changes
+
+- [`c1d1029bc`](https://github.com/chakra-ui/chakra-ui/commit/c1d1029bca08a9774fc3ca8d2e04a1cc5b58a43b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **Drawer**: omit
+  the `motionPreset` prop type since `Drawer` only implements the `Slide`
+  transition, unlike `Modal` that allows you switch its motion preset.
+
+## @chakra-ui/popper@2.3.0
+
+### Minor Changes
+
+- [`4146a9051`](https://github.com/chakra-ui/chakra-ui/commit/4146a9051a5151532503e31c464193e9d118dd26)
+  [#3837](https://github.com/chakra-ui/chakra-ui/pull/3837) Thanks
+  [@mcha-dev](https://github.com/mcha-dev)! - `usePopper` now accepts a
+  `direction` prop so it can handle placement for RTL languages. Values such as
+  `top-start`, `top-end`, `bottom-start` and `bottom-end` will be flipped
+  depending on the theme's direction value.
+
+  In addition to the default `popper.js` placement, you can pass `start-start`,
+  `start-end`, `end-start` and `end-end`. This will resolve to the equivalent
+  `popper.js` placement as well.
+
+## @chakra-ui/slider@1.3.0
+
+### Minor Changes
+
+- [`74fada62b`](https://github.com/chakra-ui/chakra-ui/commit/74fada62b9e2cc389615855a8ad48041f2c45973)
+  [#3837](https://github.com/chakra-ui/chakra-ui/pull/3837) Thanks
+  [@mcha-dev](https://github.com/mcha-dev)! - Add `RTL` support by using the
+  theme's direction ("ltr" or "rtl") to set the default `isReversed` property
+  when the `orientation` is `horizontal`
+
+## @chakra-ui/toast@1.3.0
+
+### Minor Changes
+
+- [`347294426`](https://github.com/chakra-ui/chakra-ui/commit/347294426c121a05dfaed92c526b588a38310061)
+  [#3837](https://github.com/chakra-ui/chakra-ui/pull/3837) Thanks
+  [@mcha-dev](https://github.com/mcha-dev)! - Add support for RTL-aware
+  `position` values. You can now use `top-start`, `top-end`, `bottom-start` and
+  `bottom-end` values. The toast will flip depending on the `direction` provided
+  in the theme.
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`09577b088`](https://github.com/chakra-ui/chakra-ui/commit/09577b088272075f6f183bbb34d5639ac5e68cc0)]:
+  - @chakra-ui/theme@1.10.2
+
+## @chakra-ui/anatomy@1.0.1
+
+### Patch Changes
+
+- [`a096ccdde`](https://github.com/chakra-ui/chakra-ui/commit/a096ccdde87a52919cd6e39d985c0dd1154ffbd7)
+  [#4721](https://github.com/chakra-ui/chakra-ui/pull/4721) Thanks
+  [@chasinhues](https://github.com/chasinhues)! - Add missing breadcrumb part
+
+- [`a02b0de8b`](https://github.com/chakra-ui/chakra-ui/commit/a02b0de8b14acb8282cabafe5cef885e8da0b8fb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add container part
+  to checkbox
+
+- Updated dependencies
+  \[[`09577b088`](https://github.com/chakra-ui/chakra-ui/commit/09577b088272075f6f183bbb34d5639ac5e68cc0)]:
+  - @chakra-ui/theme-tools@1.2.1
+
+## @chakra-ui/avatar@1.2.10
+
+### Patch Changes
+
+- [`93c99bdd7`](https://github.com/chakra-ui/chakra-ui/commit/93c99bdd77b01f699a70a9fe1ffbfc2f0be5776a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  avatar blinks during API call due to its fallback logic. You can disable the
+  fallback logic by setting `ignoreFallback`, just like you can with the `Image`
+  component
+- Updated dependencies
+  \[[`a1ca91b76`](https://github.com/chakra-ui/chakra-ui/commit/a1ca91b769000a9d4e6badb5bce46cd5e4035106),
+  [`11eebac4c`](https://github.com/chakra-ui/chakra-ui/commit/11eebac4cc951c3af65ebdf4ec0f70b8fe9d0f63)]:
+  - @chakra-ui/image@1.0.20
+
+## @chakra-ui/button@1.4.3
+
+### Patch Changes
+
+- [`87ffdd1cb`](https://github.com/chakra-ui/chakra-ui/commit/87ffdd1cb615e9d4bc8a9af66fb6ae9ef1563caf)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  composing `Button` with framer-motion's `motion` factory breaks
+  animation/transition
+
+## @chakra-ui/checkbox@1.5.7
+
+### Patch Changes
+
+- [`726105acb`](https://github.com/chakra-ui/chakra-ui/commit/726105acb38f34290fff53d2dc520b5fbd299061)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add state `data-*`
+  attributes to the checkbox `container` to allow user style the `_checked`,
+  `_invalid` and `_disabled` states
+
+## @chakra-ui/image@1.0.20
+
+### Patch Changes
+
+- [`a1ca91b76`](https://github.com/chakra-ui/chakra-ui/commit/a1ca91b769000a9d4e6badb5bce46cd5e4035106)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  onload doesn't get called when using srcset
+
+- [`11eebac4c`](https://github.com/chakra-ui/chakra-ui/commit/11eebac4cc951c3af65ebdf4ec0f70b8fe9d0f63)
+  [#4659](https://github.com/chakra-ui/chakra-ui/pull/4659) Thanks
+  [@takethefake](https://github.com/takethefake)! - If the user doesn't provide
+  a `fallbackSrc` or a `fallback` `ignoreFallback` is applied by default
+
+## @chakra-ui/menu@1.7.4
+
+### Patch Changes
+
+- [`19d9abe75`](https://github.com/chakra-ui/chakra-ui/commit/19d9abe75cf863468b70362ce7eee90f0ad94d29)
+  [#4691](https://github.com/chakra-ui/chakra-ui/pull/4691) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where keyboard
+  navigation doesn't work when `MenuButton` isn't rendered. This is useful in
+  scenarios where you want the menu to be triggered by a command or right-click.
+- Updated dependencies
+  \[[`4146a9051`](https://github.com/chakra-ui/chakra-ui/commit/4146a9051a5151532503e31c464193e9d118dd26)]:
+  - @chakra-ui/popper@2.3.0
+
+## @chakra-ui/popover@1.8.4
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`4146a9051`](https://github.com/chakra-ui/chakra-ui/commit/4146a9051a5151532503e31c464193e9d118dd26)]:
+  - @chakra-ui/popper@2.3.0
+
+## @chakra-ui/progress@1.1.14
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`09577b088`](https://github.com/chakra-ui/chakra-ui/commit/09577b088272075f6f183bbb34d5639ac5e68cc0)]:
+  - @chakra-ui/theme-tools@1.2.1
+
+## @chakra-ui/provider@1.6.8
+
+### Patch Changes
+
+- [`17c84be66`](https://github.com/chakra-ui/chakra-ui/commit/17c84be66fcb68e77a838cbb900315caaaf61d26)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Resolve
+  dependency issues caused by previous release
+  - Add `ChakraProviderProps` type what was removed in previous release
+
+## @chakra-ui/react@1.6.8
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`09577b088`](https://github.com/chakra-ui/chakra-ui/commit/09577b088272075f6f183bbb34d5639ac5e68cc0),
+  [`726105acb`](https://github.com/chakra-ui/chakra-ui/commit/726105acb38f34290fff53d2dc520b5fbd299061),
+  [`74fada62b`](https://github.com/chakra-ui/chakra-ui/commit/74fada62b9e2cc389615855a8ad48041f2c45973),
+  [`8c61e75ec`](https://github.com/chakra-ui/chakra-ui/commit/8c61e75ec6da4ca6ce0fe413034f6aed7f685977),
+  [`a1ca91b76`](https://github.com/chakra-ui/chakra-ui/commit/a1ca91b769000a9d4e6badb5bce46cd5e4035106),
+  [`4146a9051`](https://github.com/chakra-ui/chakra-ui/commit/4146a9051a5151532503e31c464193e9d118dd26),
+  [`93c99bdd7`](https://github.com/chakra-ui/chakra-ui/commit/93c99bdd77b01f699a70a9fe1ffbfc2f0be5776a),
+  [`347294426`](https://github.com/chakra-ui/chakra-ui/commit/347294426c121a05dfaed92c526b588a38310061),
+  [`11eebac4c`](https://github.com/chakra-ui/chakra-ui/commit/11eebac4cc951c3af65ebdf4ec0f70b8fe9d0f63),
+  [`17c84be66`](https://github.com/chakra-ui/chakra-ui/commit/17c84be66fcb68e77a838cbb900315caaaf61d26),
+  [`c1d1029bc`](https://github.com/chakra-ui/chakra-ui/commit/c1d1029bca08a9774fc3ca8d2e04a1cc5b58a43b),
+  [`19d9abe75`](https://github.com/chakra-ui/chakra-ui/commit/19d9abe75cf863468b70362ce7eee90f0ad94d29),
+  [`87ffdd1cb`](https://github.com/chakra-ui/chakra-ui/commit/87ffdd1cb615e9d4bc8a9af66fb6ae9ef1563caf),
+  [`fba77bf32`](https://github.com/chakra-ui/chakra-ui/commit/fba77bf32a817e31327e566484c1b1439f14fb42)]:
+  - @chakra-ui/theme@1.10.2
+  - @chakra-ui/checkbox@1.5.7
+  - @chakra-ui/slider@1.3.0
+  - @chakra-ui/modal@1.9.0
+  - @chakra-ui/image@1.0.20
+  - @chakra-ui/popper@2.3.0
+  - @chakra-ui/avatar@1.2.10
+  - @chakra-ui/toast@1.3.0
+  - @chakra-ui/provider@1.6.8
+  - @chakra-ui/menu@1.7.4
+  - @chakra-ui/button@1.4.3
+  - @chakra-ui/select@1.1.15
+  - @chakra-ui/progress@1.1.14
+  - @chakra-ui/switch@1.2.10
+  - @chakra-ui/popover@1.8.4
+  - @chakra-ui/tooltip@1.3.11
+
+## @chakra-ui/select@1.1.15
+
+### Patch Changes
+
+- [`fba77bf32`](https://github.com/chakra-ui/chakra-ui/commit/fba77bf32a817e31327e566484c1b1439f14fb42)
+  [#4660](https://github.com/chakra-ui/chakra-ui/pull/4660) Thanks
+  [@takethefake](https://github.com/takethefake)! - The disabled state of the
+  `SelectIcon` can be reflected by a disabled `FormControl` or by the
+  `isDisabled`-flag of the `select` field
+
+## @chakra-ui/switch@1.2.10
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`726105acb`](https://github.com/chakra-ui/chakra-ui/commit/726105acb38f34290fff53d2dc520b5fbd299061)]:
+  - @chakra-ui/checkbox@1.5.7
+
+## @chakra-ui/theme@1.10.2
+
+### Patch Changes
+
+- [`09577b088`](https://github.com/chakra-ui/chakra-ui/commit/09577b088272075f6f183bbb34d5639ac5e68cc0)
+  [#4708](https://github.com/chakra-ui/chakra-ui/pull/4708) Thanks
+  [@hiroppy](https://github.com/hiroppy)! - Replace `tinycolor2` with
+  `@ctrl/tinycolor` to get better tree-shaking benefits
+
+- Updated dependencies
+  \[[`09577b088`](https://github.com/chakra-ui/chakra-ui/commit/09577b088272075f6f183bbb34d5639ac5e68cc0),
+  [`a096ccdde`](https://github.com/chakra-ui/chakra-ui/commit/a096ccdde87a52919cd6e39d985c0dd1154ffbd7),
+  [`a02b0de8b`](https://github.com/chakra-ui/chakra-ui/commit/a02b0de8b14acb8282cabafe5cef885e8da0b8fb)]:
+  - @chakra-ui/theme-tools@1.2.1
+  - @chakra-ui/anatomy@1.0.1
+
+## @chakra-ui/theme-tools@1.2.1
+
+### Patch Changes
+
+- [`09577b088`](https://github.com/chakra-ui/chakra-ui/commit/09577b088272075f6f183bbb34d5639ac5e68cc0)
+  [#4708](https://github.com/chakra-ui/chakra-ui/pull/4708) Thanks
+  [@hiroppy](https://github.com/hiroppy)! - Replace `tinycolor2` with
+  `@ctrl/tinycolor` to get better tree-shaking benefits
+
+## @chakra-ui/tooltip@1.3.11
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`4146a9051`](https://github.com/chakra-ui/chakra-ui/commit/4146a9051a5151532503e31c464193e9d118dd26)]:
+  - @chakra-ui/popper@2.3.0
+
+## @chakra-ui/cli@1.5.1
+
+### Patch Changes
+
+- [`c96f44e16`](https://github.com/chakra-ui/chakra-ui/commit/c96f44e1660fd0430eac0e003f1e807873776b15)
+  [#4725](https://github.com/chakra-ui/chakra-ui/pull/4725) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Fixed an issue where the
+  CLI did not resolve custom tsconfig paths.
+
+  🚨 Please note that only the first alias target from the string array will be
+  resolved.
+
+  ```json5
+  // tsconfig.json
+  {
+    //...
+    compilerOptions: {
+      baseUrl: "src",
+      paths: {
+        "@alias/*": ["target/*"],
+        //           ^-- only the first target will be resolved
+      },
+    },
+  }
+  ```
+
+## @chakra-ui/props-docs@1.0.33
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@1.6.8
+
+## @chakra-ui/docs@2.1.0
+
+### Minor Changes
+
+- [`3612559a7`](https://github.com/chakra-ui/chakra-ui/commit/3612559a7b373e6dc60fc2b025c314842f0ff1e5)
+  [#4687](https://github.com/chakra-ui/chakra-ui/pull/4687) Thanks
+  [@lazarnikolov94](https://github.com/lazarnikolov94)! - Added egghead course
+  banner in Getting Started page
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`09577b088`](https://github.com/chakra-ui/chakra-ui/commit/09577b088272075f6f183bbb34d5639ac5e68cc0),
+  [`c96f44e16`](https://github.com/chakra-ui/chakra-ui/commit/c96f44e1660fd0430eac0e003f1e807873776b15)]:
+  - @chakra-ui/theme-tools@1.2.1
+  - @chakra-ui/cli@1.5.1
+  - @chakra-ui/react@1.6.8
+  - @chakra-ui/props-docs@1.0.33
+
+## @chakra-ui/test-utils@1.0.33
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/react@1.6.8

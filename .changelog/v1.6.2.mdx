@@ -1,0 +1,334 @@
+---
+title: Version 1.6.2
+description:
+  Explore the changelog for Chakra UI version 1.6.2. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/3965
+releaseDate: May 17, 2021
+version: 1.6.2
+---
+
+## @chakra-ui/machine@1.4.0
+
+### Minor Changes
+
+- [`1d8f8e2d0`](https://github.com/chakra-ui/chakra-ui/commit/1d8f8e2d0afbca738c793727d9cb5ff5b3399582)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - > This is an
+  internal package
+
+  - Add support for state tags and pure `transition` function
+  - Return `service` in `useMachine`
+  - Add machine status to `Machine` class
+  - Add support for `or`, `and` and `not` guard composition for better DX.
+
+## @chakra-ui/styled-system@1.11.0
+
+### Minor Changes
+
+- [`773497896`](https://github.com/chakra-ui/chakra-ui/commit/773497896e65ffbbda10e75b6e0a7bb5b68c853a)
+  [#3997](https://github.com/chakra-ui/chakra-ui/pull/3997) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - **Ring styles**
+
+  Added ring style props to make it easier to style an element's focus ring
+  shadows. Props are `ring`, `ringColor`, `ringOffset`, and `ringOffsetColor`.
+
+  ```jsx live=false
+  // adds a 2px box-shadow with `gray.400` color
+  <Box ring="2px" ringColor="gray.400">
+    Sample
+  </Box>
+
+  // adds main box-shadow + offset box-shadow
+  <Box ring="2px" ringColor="gray.400" ringOffset="3px" ringOffsetColor="white">
+   Sample
+  </Box>
+  ```
+
+  **Filter styles**
+
+  Added css variable based API to apply css filter properties (blur,
+  backdrop-blur) to an element. Props are `filter`, `blur`, `sepia`,
+  `brightness`, `invert`, `saturation`, `backdropFilter`, `backdropBlur`,
+  `sepia`, `saturation`, etc.
+
+  To use this API, you'll need to set `filter` to `auto`, same for
+  `backdropFilter`.
+
+  ```jsx live=false
+  // adds a 3px blur filter to this element
+  <Image src="boruto.png" filter="auto" blur="3px" />
+
+  // adds a 3px blur and 40% saturation filter to this element
+  <Image src="boruto.png" filter="auto" blur="3px" saturation={0.4} />
+  ```
+
+  **Transform styles**
+
+  Added css variable based API to apply css transform properties (translateX,
+  translateY, scale, etc.). Props are `translateX`, `translateY`, `rotate`,
+  `scaleX`, `scaleY`, and `scale`.
+
+  To use this API, you'll need to set `transform` to `auto` or `auto-gpu` (for
+  the GPU accelerated version).
+
+  ```jsx live=false
+  <Circle transform="auto" translateX="4" _hover={{ translateX: "8" }}>
+    <CheckIcon />
+  </Circle>
+  ```
+
+  - Add `mixBlendMode`, `backgroundBlendMode`, and `bgBlendMode` props to apply
+    blend modes to elements
+
+  - Automatic wrapping of `backgroundImage` or `bgImage` props with `url()` so
+    you can just pass the image URL directly.
+
+  ```jsx live=false
+  // You can now do this!
+  <Box bgImage="naruto.png" />
+
+  // This still works
+  <Box bgImage="url(naruto.png)" />
+  ```
+
+  - text decoration styles: Added `textDecorationColor`, `textDecorationLine`,
+    `textDecorationStyles` style props.
+
+  - Add `isolation` style prop to create a new stacking context.
+
+  **High Contrast Mode**
+
+  Fixed issue where setting `outline:0` or `outline:none` and using `box-shadow`
+  for focus outlines don't work in high-contrast mode.
+
+  To fix this, we've added `outline: 2px solid transparent` whenever you set
+  `outline:0` to make your components work in high-constrast mode by default.
+
+  [Learn more](https://sarahmhigley.com/writing/whcm-quick-tips/)
+
+  - Fix the `_dark` pseudo props to map to
+    `.chakra-ui-dark &, [data-theme=dark] &, &[data-theme=dark]`.
+
+  - Added `_light` pseudo props to map to
+    `.chakra-ui-light &, [data-theme=light] &, &[data-theme=light]` for users
+    that prefer to start with dark mode.
+
+  - Added `overscroll`, `overscrollX`, and `overscrollY` style prop to manage
+    overscroll behavior of an container
+
+## @chakra-ui/theme@1.9.0
+
+### Minor Changes
+
+- [`4f1cf6d6b`](https://github.com/chakra-ui/chakra-ui/commit/4f1cf6d6b9de134806c5f24d6b1c49f5aadae9a8)
+  [#3997](https://github.com/chakra-ui/chakra-ui/pull/3997) Thanks
+  [@segunadebayo](https://github.com/segunadebayo)! - Add blur token values for
+  `filter` and `backdropFilter`
+
+  ```json
+  {
+    "none": 0,
+    "sm": "4px",
+    "base": "8px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "24px",
+    "2xl": "40px",
+    "3xl": "64px"
+  }
+  ```
+
+## @chakra-ui/accordion@1.3.2
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`c1f8d90ad`](https://github.com/chakra-ui/chakra-ui/commit/c1f8d90ad7ebd9594e9888010170cda7969f0ded)]:
+  - @chakra-ui/transition@1.3.1
+
+## @chakra-ui/form-control@1.3.6
+
+### Patch Changes
+
+- [`620f0b7d7`](https://github.com/chakra-ui/chakra-ui/commit/620f0b7d756ffb6bfc6ddf0459e96f774ffbb9be)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  FormLabel could not be used without form-control
+
+## @chakra-ui/input@1.2.6
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`620f0b7d7`](https://github.com/chakra-ui/chakra-ui/commit/620f0b7d756ffb6bfc6ddf0459e96f774ffbb9be)]:
+  - @chakra-ui/form-control@1.3.6
+
+## @chakra-ui/menu@1.6.2
+
+### Patch Changes
+
+- [`e190ce1b3`](https://github.com/chakra-ui/chakra-ui/commit/e190ce1b30e17eb0cffaa00c7ec2660d25ba6c23)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  keyboard navigation doesn't work `isLazy` is passed.
+
+- [`8dc0622e8`](https://github.com/chakra-ui/chakra-ui/commit/8dc0622e8a5acda768c694d2daa28a4181d829ad)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  typeaheaad overrides input keydown
+
+- Updated dependencies
+  \[[`c1f8d90ad`](https://github.com/chakra-ui/chakra-ui/commit/c1f8d90ad7ebd9594e9888010170cda7969f0ded)]:
+  - @chakra-ui/transition@1.3.1
+
+## @chakra-ui/modal@1.8.6
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`c1f8d90ad`](https://github.com/chakra-ui/chakra-ui/commit/c1f8d90ad7ebd9594e9888010170cda7969f0ded)]:
+  - @chakra-ui/transition@1.3.1
+
+## @chakra-ui/number-input@1.2.6
+
+### Patch Changes
+
+- [`4a7f8dab7`](https://github.com/chakra-ui/chakra-ui/commit/4a7f8dab7a9c4507bca05d9b9383de26447a7863)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix warning with
+  scroll listener when `allowMouseWheel` is passed
+
+- Updated dependencies
+  \[[`620f0b7d7`](https://github.com/chakra-ui/chakra-ui/commit/620f0b7d756ffb6bfc6ddf0459e96f774ffbb9be)]:
+  - @chakra-ui/form-control@1.3.6
+
+## @chakra-ui/radio@1.3.6
+
+### Patch Changes
+
+- [`f4ad5c7dd`](https://github.com/chakra-ui/chakra-ui/commit/f4ad5c7ddb41824d5ec02908d1daa4a479e8a283)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `Radio` or `useRadio` gets non-unique id when wrapped within `FormControl`.
+- Updated dependencies
+  \[[`620f0b7d7`](https://github.com/chakra-ui/chakra-ui/commit/620f0b7d756ffb6bfc6ddf0459e96f774ffbb9be)]:
+  - @chakra-ui/form-control@1.3.6
+
+## @chakra-ui/react@1.6.2
+
+### Patch Changes
+
+- [`ddd5ef4a1`](https://github.com/chakra-ui/chakra-ui/commit/ddd5ef4a1e9cc988c99b80c26579205ea4c57b2f)
+  [#3985](https://github.com/chakra-ui/chakra-ui/pull/3985) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - `ChakraProvider` now
+  accepts the prop `cssVarsRoot` which defaults to `:host, :root`.
+- Updated dependencies
+  \[[`4f1cf6d6b`](https://github.com/chakra-ui/chakra-ui/commit/4f1cf6d6b9de134806c5f24d6b1c49f5aadae9a8),
+  [`e190ce1b3`](https://github.com/chakra-ui/chakra-ui/commit/e190ce1b30e17eb0cffaa00c7ec2660d25ba6c23),
+  [`8dc0622e8`](https://github.com/chakra-ui/chakra-ui/commit/8dc0622e8a5acda768c694d2daa28a4181d829ad),
+  [`ddd5ef4a1`](https://github.com/chakra-ui/chakra-ui/commit/ddd5ef4a1e9cc988c99b80c26579205ea4c57b2f),
+  [`f4ad5c7dd`](https://github.com/chakra-ui/chakra-ui/commit/f4ad5c7ddb41824d5ec02908d1daa4a479e8a283),
+  [`c1f8d90ad`](https://github.com/chakra-ui/chakra-ui/commit/c1f8d90ad7ebd9594e9888010170cda7969f0ded),
+  [`620f0b7d7`](https://github.com/chakra-ui/chakra-ui/commit/620f0b7d756ffb6bfc6ddf0459e96f774ffbb9be),
+  [`4a7f8dab7`](https://github.com/chakra-ui/chakra-ui/commit/4a7f8dab7a9c4507bca05d9b9383de26447a7863)]:
+  - @chakra-ui/theme@1.9.0
+  - @chakra-ui/menu@1.6.2
+  - @chakra-ui/system@1.6.6
+  - @chakra-ui/radio@1.3.6
+  - @chakra-ui/transition@1.3.1
+  - @chakra-ui/form-control@1.3.6
+  - @chakra-ui/number-input@1.2.6
+  - @chakra-ui/toast@1.2.7
+  - @chakra-ui/accordion@1.3.2
+  - @chakra-ui/input@1.2.6
+  - @chakra-ui/modal@1.8.6
+  - @chakra-ui/select@1.1.10
+  - @chakra-ui/skeleton@1.1.13
+  - @chakra-ui/textarea@1.1.10
+
+## @chakra-ui/select@1.1.10
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`620f0b7d7`](https://github.com/chakra-ui/chakra-ui/commit/620f0b7d756ffb6bfc6ddf0459e96f774ffbb9be)]:
+  - @chakra-ui/form-control@1.3.6
+
+## @chakra-ui/skeleton@1.1.13
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`ddd5ef4a1`](https://github.com/chakra-ui/chakra-ui/commit/ddd5ef4a1e9cc988c99b80c26579205ea4c57b2f)]:
+  - @chakra-ui/system@1.6.6
+
+## @chakra-ui/system@1.6.6
+
+### Patch Changes
+
+- [`ddd5ef4a1`](https://github.com/chakra-ui/chakra-ui/commit/ddd5ef4a1e9cc988c99b80c26579205ea4c57b2f)
+  [#3985](https://github.com/chakra-ui/chakra-ui/pull/3985) Thanks
+  [@TimKolberger](https://github.com/TimKolberger)! - Attach CSS vars to
+  `:host, :root` to fix usage in shadow dom.
+
+- Updated dependencies
+  \[[`773497896`](https://github.com/chakra-ui/chakra-ui/commit/773497896e65ffbbda10e75b6e0a7bb5b68c853a)]:
+  - @chakra-ui/styled-system@1.11.0
+
+## @chakra-ui/textarea@1.1.10
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`620f0b7d7`](https://github.com/chakra-ui/chakra-ui/commit/620f0b7d756ffb6bfc6ddf0459e96f774ffbb9be)]:
+  - @chakra-ui/form-control@1.3.6
+
+## @chakra-ui/toast@1.2.7
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`4f1cf6d6b`](https://github.com/chakra-ui/chakra-ui/commit/4f1cf6d6b9de134806c5f24d6b1c49f5aadae9a8),
+  [`c1f8d90ad`](https://github.com/chakra-ui/chakra-ui/commit/c1f8d90ad7ebd9594e9888010170cda7969f0ded)]:
+  - @chakra-ui/theme@1.9.0
+  - @chakra-ui/transition@1.3.1
+
+## @chakra-ui/transition@1.3.1
+
+### Patch Changes
+
+- [`c1f8d90ad`](https://github.com/chakra-ui/chakra-ui/commit/c1f8d90ad7ebd9594e9888010170cda7969f0ded)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  onAnimationComplete is not forwarded to motion element
+
+## @chakra-ui/gatsby-plugin@2.0.1
+
+### Patch Changes
+
+- [`dee5a15c8`](https://github.com/chakra-ui/chakra-ui/commit/dee5a15c8964607f889a83ebda9bb0e063e034cc)
+  [#4017](https://github.com/chakra-ui/chakra-ui/pull/4017) Thanks
+  [@LekoArts](https://github.com/LekoArts)! - Pass `pluginOptions` correctly to
+  the `ChakraProvider`. Fixes
+  [https://github.com/chakra-ui/chakra-ui/issues/4014](https://github.com/chakra-ui/chakra-ui/issues/4014)
+
+## @chakra-ui/props-docs@1.0.27
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`773497896`](https://github.com/chakra-ui/chakra-ui/commit/773497896e65ffbbda10e75b6e0a7bb5b68c853a),
+  [`ddd5ef4a1`](https://github.com/chakra-ui/chakra-ui/commit/ddd5ef4a1e9cc988c99b80c26579205ea4c57b2f)]:
+  - @chakra-ui/styled-system@1.11.0
+  - @chakra-ui/react@1.6.2
+
+## @chakra-ui/test-utils@1.0.27
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`ddd5ef4a1`](https://github.com/chakra-ui/chakra-ui/commit/ddd5ef4a1e9cc988c99b80c26579205ea4c57b2f)]:
+  - @chakra-ui/react@1.6.2
+
+## @chakra-ui/docs@1.2.6
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`ddd5ef4a1`](https://github.com/chakra-ui/chakra-ui/commit/ddd5ef4a1e9cc988c99b80c26579205ea4c57b2f)]:
+  - @chakra-ui/react@1.6.2
+  - @chakra-ui/props-docs@1.0.27

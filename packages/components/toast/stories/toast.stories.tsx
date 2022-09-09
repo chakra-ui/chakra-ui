@@ -425,3 +425,43 @@ export const ToastWithCustomIcon = () => {
     </ButtonGroup>
   )
 }
+
+export function WithDoubleUpdate() {
+  const toast = useToast()
+  const toastIdRef = React.useRef<ToastId>()
+
+  function updateOne() {
+    if (toastIdRef.current) {
+      toast.update(toastIdRef.current, { description: "1st update" })
+    }
+  }
+
+  function updateTwo() {
+    if (toastIdRef.current) {
+      toast.update(toastIdRef.current, { description: "2nd update" })
+    }
+  }
+
+  function addToast() {
+    toastIdRef.current = toast({
+      position: "bottom-right",
+      description: "some text",
+    })
+  }
+
+  return (
+    <div>
+      <Button onClick={addToast} type="button">
+        Toast
+      </Button>
+
+      <Button onClick={updateOne} type="button" variant="outline">
+        Update last toast
+      </Button>
+
+      <Button onClick={updateTwo} type="button" variant="outline">
+        Update last toast 2
+      </Button>
+    </div>
+  )
+}

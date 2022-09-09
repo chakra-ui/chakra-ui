@@ -22,7 +22,7 @@ interface CreateIconOptions {
    */
   displayName?: string
   /**
-   * Default props automatically passed to the component; overwriteable
+   * Default props automatically passed to the component; overwritable
    */
   defaultProps?: IconProps
 }

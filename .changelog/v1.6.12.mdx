@@ -1,0 +1,265 @@
+---
+title: Version 1.6.12
+description:
+  Explore the changelog for Chakra UI version 1.6.12. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/4957
+releaseDate: November 3, 2021
+version: 1.6.12
+---
+
+## @chakra-ui/color-mode@1.2.0
+
+### Minor Changes
+
+- [`71f80b67c`](https://github.com/chakra-ui/chakra-ui/commit/71f80b67c094d905c87bdc5c1766787c1543ebe7)
+  [#4634](https://github.com/chakra-ui/chakra-ui/pull/4634) Thanks
+  [@SkySails](https://github.com/SkySails)! - Added possibility to use the
+  system preferred color scheme as value for `initialColorMode`, while still
+  respecting a user's previous choice.
+
+  As long as the user does not manually select a color mode through a website
+  interaction, the theme will change when the system preference changes.
+
+  This would easily allow for an implementation where the user can choose
+  between `light`, `dark` and `system` by simply setting the `initialColorMode`
+  setting to `system` and presenting the user with the three options.
+
+## @chakra-ui/accordion@1.3.10
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)]:
+  - @chakra-ui/transition@1.3.8
+
+## @chakra-ui/checkbox@1.5.10
+
+### Patch Changes
+
+- [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)
+  [#4965](https://github.com/chakra-ui/chakra-ui/pull/4965) Thanks
+  [@takethefake](https://github.com/takethefake)! - Allow usage of
+  `framer-motion` 5.x in `peerDependency`
+
+## @chakra-ui/media-query@1.1.5
+
+### Patch Changes
+
+- [`97bad87c7`](https://github.com/chakra-ui/chakra-ui/commit/97bad87c7b8b4ff31f705a9d55b392385d921a33)
+  [#4807](https://github.com/chakra-ui/chakra-ui/pull/4807) Thanks
+  [@primos63](https://github.com/primos63)! - Corrected eslint errors.
+
+- [`f2df9cfc1`](https://github.com/chakra-ui/chakra-ui/commit/f2df9cfc1c3c2ef3f3b74ec2849079fd726cd84c)
+  [#4807](https://github.com/chakra-ui/chakra-ui/pull/4807) Thanks
+  [@primos63](https://github.com/primos63)! - Fix an issue where the
+  `useMediaQuery` was not updating the array of booleans correctly when resizing
+  the viewport.
+
+  It also removes deprecated calls `addListener` and `removeListener` in favor
+  of the recommended `addEventListener` and `removeEventListener` calls.
+
+## @chakra-ui/menu@1.7.8
+
+### Patch Changes
+
+- [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)
+  [#4965](https://github.com/chakra-ui/chakra-ui/pull/4965) Thanks
+  [@takethefake](https://github.com/takethefake)! - Allow usage of
+  `framer-motion` 5.x in `peerDependency`
+
+- Updated dependencies
+  \[[`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135),
+  [`c3f016149`](https://github.com/chakra-ui/chakra-ui/commit/c3f01614929d2f68a39cf78111d17f4f4c684706)]:
+  - @chakra-ui/transition@1.3.8
+  - @chakra-ui/popper@2.3.1
+
+## @chakra-ui/modal@1.9.4
+
+### Patch Changes
+
+- [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)
+  [#4965](https://github.com/chakra-ui/chakra-ui/pull/4965) Thanks
+  [@takethefake](https://github.com/takethefake)! - Allow usage of
+  `framer-motion` 5.x in `peerDependency`
+
+- Updated dependencies
+  \[[`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)]:
+  - @chakra-ui/transition@1.3.8
+
+## @chakra-ui/popover@1.9.1
+
+### Patch Changes
+
+- [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)
+  [#4965](https://github.com/chakra-ui/chakra-ui/pull/4965) Thanks
+  [@takethefake](https://github.com/takethefake)! - Allow usage of
+  `framer-motion` 5.x in `peerDependency`
+
+- Updated dependencies
+  \[[`c3f016149`](https://github.com/chakra-ui/chakra-ui/commit/c3f01614929d2f68a39cf78111d17f4f4c684706)]:
+  - @chakra-ui/popper@2.3.1
+
+## @chakra-ui/popper@2.3.1
+
+### Patch Changes
+
+- [`c3f016149`](https://github.com/chakra-ui/chakra-ui/commit/c3f01614929d2f68a39cf78111d17f4f4c684706)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Remove default `[]`
+  value for modifiers and moved it into `createPopper` definition. This allows
+  memoized modifiers to work correctly in user-land when used with
+  `useCallback`.
+
+## @chakra-ui/provider@1.6.11
+
+### Patch Changes
+
+- Updated dependencies \[]:
+  - @chakra-ui/system@1.7.6
+
+## @chakra-ui/radio@1.3.13
+
+### Patch Changes
+
+- [`5f531c51f`](https://github.com/chakra-ui/chakra-ui/commit/5f531c51febf45230ff8267fab4145711a99b99b)
+  [#4967](https://github.com/chakra-ui/chakra-ui/pull/4967) Thanks
+  [@takethefake](https://github.com/takethefake)! - Improve types defined for
+  `getRadioprops`
+
+## @chakra-ui/react@1.6.12
+
+### Patch Changes
+
+- [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)
+  [#4965](https://github.com/chakra-ui/chakra-ui/pull/4965) Thanks
+  [@takethefake](https://github.com/takethefake)! - Allow usage of
+  `framer-motion` 5.x in `peerDependency`
+
+- Updated dependencies
+  \[[`5f531c51f`](https://github.com/chakra-ui/chakra-ui/commit/5f531c51febf45230ff8267fab4145711a99b99b),
+  [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135),
+  [`97bad87c7`](https://github.com/chakra-ui/chakra-ui/commit/97bad87c7b8b4ff31f705a9d55b392385d921a33),
+  [`c3f016149`](https://github.com/chakra-ui/chakra-ui/commit/c3f01614929d2f68a39cf78111d17f4f4c684706),
+  [`f2df9cfc1`](https://github.com/chakra-ui/chakra-ui/commit/f2df9cfc1c3c2ef3f3b74ec2849079fd726cd84c)]:
+  - @chakra-ui/radio@1.3.13
+  - @chakra-ui/checkbox@1.5.10
+  - @chakra-ui/menu@1.7.8
+  - @chakra-ui/modal@1.9.4
+  - @chakra-ui/popover@1.9.1
+  - @chakra-ui/theme@1.11.1
+  - @chakra-ui/toast@1.3.4
+  - @chakra-ui/tooltip@1.3.14
+  - @chakra-ui/transition@1.3.8
+  - @chakra-ui/media-query@1.1.5
+  - @chakra-ui/popper@2.3.1
+  - @chakra-ui/switch@1.2.13
+  - @chakra-ui/accordion@1.3.10
+  - @chakra-ui/skeleton@1.1.21
+  - @chakra-ui/system@1.7.6
+  - @chakra-ui/provider@1.6.11
+
+## @chakra-ui/skeleton@1.1.21
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`97bad87c7`](https://github.com/chakra-ui/chakra-ui/commit/97bad87c7b8b4ff31f705a9d55b392385d921a33),
+  [`f2df9cfc1`](https://github.com/chakra-ui/chakra-ui/commit/f2df9cfc1c3c2ef3f3b74ec2849079fd726cd84c)]:
+  - @chakra-ui/media-query@1.1.5
+  - @chakra-ui/system@1.7.6
+
+## @chakra-ui/switch@1.2.13
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)]:
+  - @chakra-ui/checkbox@1.5.10
+
+## @chakra-ui/system@1.7.6
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`71f80b67c`](https://github.com/chakra-ui/chakra-ui/commit/71f80b67c094d905c87bdc5c1766787c1543ebe7)]:
+  - @chakra-ui/color-mode@1.2.0
+
+## @chakra-ui/theme@1.11.1
+
+### Patch Changes
+
+- [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)
+  [#4965](https://github.com/chakra-ui/chakra-ui/pull/4965) Thanks
+  [@takethefake](https://github.com/takethefake)! - Allow usage of
+  `framer-motion` 5.x in `peerDependency`
+
+## @chakra-ui/toast@1.3.4
+
+### Patch Changes
+
+- [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)
+  [#4965](https://github.com/chakra-ui/chakra-ui/pull/4965) Thanks
+  [@takethefake](https://github.com/takethefake)! - Allow usage of
+  `framer-motion` 5.x in `peerDependency`
+
+- Updated dependencies
+  \[[`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)]:
+  - @chakra-ui/theme@1.11.1
+  - @chakra-ui/transition@1.3.8
+
+## @chakra-ui/tooltip@1.3.14
+
+### Patch Changes
+
+- [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)
+  [#4965](https://github.com/chakra-ui/chakra-ui/pull/4965) Thanks
+  [@takethefake](https://github.com/takethefake)! - Allow usage of
+  `framer-motion` 5.x in `peerDependency`
+
+- Updated dependencies
+  \[[`c3f016149`](https://github.com/chakra-ui/chakra-ui/commit/c3f01614929d2f68a39cf78111d17f4f4c684706)]:
+  - @chakra-ui/popper@2.3.1
+
+## @chakra-ui/transition@1.3.8
+
+### Patch Changes
+
+- [`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)
+  [#4965](https://github.com/chakra-ui/chakra-ui/pull/4965) Thanks
+  [@takethefake](https://github.com/takethefake)! - Allow usage of
+  `framer-motion` 5.x in `peerDependency`
+
+## @chakra-ui/props-docs@1.0.37
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)]:
+  - @chakra-ui/react@1.6.12
+
+## @chakra-ui/test-utils@1.0.37
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)]:
+  - @chakra-ui/react@1.6.12
+
+## @chakra-ui/docs@2.1.4
+
+### Patch Changes
+
+- [`a22b9d5c7`](https://github.com/chakra-ui/chakra-ui/commit/a22b9d5c7455784aca632adc619633b52e53f589)
+  [#4973](https://github.com/chakra-ui/chakra-ui/pull/4973) Thanks
+  [@takethefake](https://github.com/takethefake)! - Add a more detailed
+  explanation on how to style multipart-components
+
+- [`7fef508af`](https://github.com/chakra-ui/chakra-ui/commit/7fef508afe005daff23d03c3bc4872181e431562)
+  [#4961](https://github.com/chakra-ui/chakra-ui/pull/4961) Thanks
+  [@LekoArts](https://github.com/LekoArts)! - Add new article about multipart
+  components
+
+- Updated dependencies
+  \[[`04774e219`](https://github.com/chakra-ui/chakra-ui/commit/04774e2196b9f3e8edd77f779e8c15981e8d8135)]:
+  - @chakra-ui/react@1.6.12
+  - @chakra-ui/props-docs@1.0.37

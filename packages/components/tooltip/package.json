@@ -41,6 +41,7 @@
     "@chakra-ui/portal": "workspace:*"
   },
   "devDependencies": {
+    "@chakra-ui/button": "workspace:*",
     "@chakra-ui/shared-utils": "workspace:*",
     "@chakra-ui/object-utils": "workspace:*",
     "@chakra-ui/hooks": "workspace:*",

@@ -2,6 +2,7 @@ export type ColorModeScriptProps = {
   type?: "localStorage" | "cookie"
   initialColorMode?: "light" | "dark" | "system"
   storageKey?: string
+  nonce?: string
 }
 
 const VALID_VALUES = new Set(["dark", "light", "system"])
@@ -38,9 +39,14 @@ export function getScriptSrc(props: ColorModeScriptProps = {}) {
 }
 
 export function ColorModeScript(props: ColorModeScriptProps = {}) {
+  const {
+    nonce,
+  } = props
+
   return (
     <script
       id="chakra-script"
+      nonce={nonce}
       dangerouslySetInnerHTML={{ __html: getScriptSrc(props) }}
     />
   )
