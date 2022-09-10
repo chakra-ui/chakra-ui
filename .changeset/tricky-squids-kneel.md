@@ -31,6 +31,6 @@
 
 Add missing component/function docs and relative docsite links.
 
-This allows for all the components or functions detailed in the Chakra docsite
-to have accessible IDE intellisense with direct access to the related Chakra
-site pages.
+Ensures that all Components, functions, and hooks that have detailed pages on
+the Chakra site have corresponding JSDocs and links back to the docsite via IDE
+intellisense.
