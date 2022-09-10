@@ -6,6 +6,11 @@ export interface AlertDialogProps extends Omit<ModalProps, "initialFocusRef"> {
   leastDestructiveRef: NonNullable<ModalProps["initialFocusRef"]>
 }
 
+/**
+ * `AlertDialog` component is used interrupt the user with a mandatory confirmation or action.
+ *
+ * @see Docs https://chakra-ui.com/docs/components/alert-dialog
+ */
 export function AlertDialog(props: AlertDialogProps) {
   const { leastDestructiveRef, ...rest } = props
   return <Modal {...rest} initialFocusRef={leastDestructiveRef} />

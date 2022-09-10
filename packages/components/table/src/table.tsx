@@ -26,6 +26,11 @@ export interface TableProps
     TableOptions,
     ThemingProps<"Table"> {}
 
+/**
+ * The `Table` component is used to organize and display data efficiently. It renders a `<table>` element by default.
+ *
+ * @see Docs https://chakra-ui.com/docs/components/table
+ */
 export const Table = forwardRef<TableProps, "table">((props, ref) => {
   const styles = useMultiStyleConfig("Table", props)
   const { className, ...tableProps } = omitThemingProps(props)

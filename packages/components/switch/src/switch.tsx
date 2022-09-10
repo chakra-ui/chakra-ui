@@ -24,6 +24,11 @@ export interface SwitchProps
   spacing?: SystemProps["marginLeft"]
 }
 
+/**
+ * The `Switch` component is used as an alternative for the checkbox component for switching between "enabled" and "disabled" states.
+ *
+ * @see Docs https://chakra-ui.com/docs/components/switch
+ */
 export const Switch = forwardRef<SwitchProps, "input">(function Switch(
   props,
   ref,

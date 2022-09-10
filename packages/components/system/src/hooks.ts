@@ -28,6 +28,11 @@ function getTokenValue<T extends StringOrNumber>(
   return getValue(value) ?? getValue(fallback) ?? fallback
 }
 
+/**
+ * `useToken` is a custom hook used to resolve design tokens from the theme.
+ *
+ * @see Docs https://chakra-ui.com/docs/hooks/use-token
+ */
 export function useToken<T extends StringOrNumber | StringOrNumber[]>(
   scale: string,
   token: T,

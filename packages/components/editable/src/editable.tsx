@@ -39,6 +39,8 @@ export interface EditableProps
  *
  * The wrapper that provides context and logic for all editable
  * components. It renders a `div`
+ *
+ * @see Docs https://chakra-ui.com/docs/components/editable
  */
 export const Editable = forwardRef<EditableProps, "div">(function Editable(
   props,

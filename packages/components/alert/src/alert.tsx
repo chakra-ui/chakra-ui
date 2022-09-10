@@ -33,6 +33,8 @@ export interface AlertProps
 /**
  * Alert is used to communicate the state or status of a
  * page, feature or action
+ *
+ * @see Docs https://chakra-ui.com/docs/components/alert
  */
 export const Alert = forwardRef<AlertProps, "div">(function Alert(props, ref) {
   const { status = "info", addRole = true, ...rest } = omitThemingProps(props)
