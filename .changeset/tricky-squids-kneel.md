@@ -34,3 +34,5 @@ Add missing component/function docs and relative docsite links.
 Ensures that all Components, functions, and hooks that have detailed pages on
 the Chakra site have corresponding JSDocs and links back to the docsite via IDE
 intellisense.
+
+Includes adding or fixing links within these docs to related WAI-ARIA patterns.
