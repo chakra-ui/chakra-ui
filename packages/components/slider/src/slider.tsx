@@ -42,7 +42,7 @@ export interface SliderProps
  * It provides context and functionality for all slider components
  *
  * @see Docs     https://chakra-ui.com/docs/form/slider
- * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices/#slider
+ * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/slider/
  */
 export const Slider = forwardRef<SliderProps, "div">((props, ref) => {
   const styles = useMultiStyleConfig("Slider", props)

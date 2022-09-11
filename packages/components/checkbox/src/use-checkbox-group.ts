@@ -15,6 +15,7 @@ function isInputEvent(value: any): value is { target: HTMLInputElement } {
  * It is consumed by the `CheckboxGroup` component
  *
  * @see Docs https://chakra-ui.com/docs/hooks/use-checkbox-group
+ * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
  */
 export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
   const {
