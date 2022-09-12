@@ -43,5 +43,5 @@ export function useBreakpointValue<T = any>(
     ...opts,
   })
 
-  return obj[breakpoint ?? opts.fallback]
+  return obj[breakpoint]
 }
