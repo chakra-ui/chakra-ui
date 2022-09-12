@@ -489,7 +489,7 @@ export function useMenuList(
     role: "menu",
     id: menuId,
     style: {
-      ...props.style,
+      ...(props.style as any),
       transformOrigin: "var(--popper-transform-origin)",
     },
     "aria-orientation": "vertical" as React.AriaAttributes["aria-orientation"],
