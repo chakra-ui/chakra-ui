@@ -6,7 +6,8 @@ import { forwardRef } from "react"
 export interface ModalTransitionProps
   extends Omit<HTMLMotionProps<"section">, "color" | "transition">,
     ChakraProps {
-  preset: "slideInBottom" | "slideInRight" | "scale" | "none"
+  preset?: "slideInBottom" | "slideInRight" | "scale" | "none"
+  motionProps?: HTMLMotionProps<"section">
 }
 
 const transitions = {
@@ -25,13 +26,18 @@ const transitions = {
   none: {},
 }
 
-const Motion = chakra(motion.section)
+const MotionSection = chakra(motion.section)
+
+const getMotionProps = (preset: ModalTransitionProps["preset"]) => {
+  return transitions[preset || "none"]
+}
 
 export const ModalTransition = forwardRef(
   (props: ModalTransitionProps, ref: React.Ref<any>) => {
-    const { preset, ...rest } = props
-    const motionProps = transitions[preset]
-    return <Motion ref={ref} {...(motionProps as ChakraProps)} {...rest} />
+    const { preset, motionProps = getMotionProps(preset), ...rest } = props
+    return (
+      <MotionSection ref={ref} {...(motionProps as ChakraProps)} {...rest} />
+    )
   },
 )
 
