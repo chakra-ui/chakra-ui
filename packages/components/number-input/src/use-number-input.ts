@@ -132,7 +132,7 @@ type InputSelection = { start: number | null; end: number | null }
  * It returns prop getters you can use to build your own
  * custom number inputs.
  *
- * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices-1.1/#spinbutton
+ * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/spinbutton/
  * @see Docs     https://www.chakra-ui.com/useNumberInput
  * @see WHATWG   https://html.spec.whatwg.org/multipage/input.html#number-state-(type=number)
  */

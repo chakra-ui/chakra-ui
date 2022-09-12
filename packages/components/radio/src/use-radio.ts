@@ -80,6 +80,11 @@ export interface RadioState {
   isRequired: boolean | undefined
 }
 
+/**
+ * `useRadio` is a custom hook used to provide radio functionality, as well as state and focus management to custom radio components when using it.
+ *
+ * @see Docs https://chakra-ui.com/docs/hooks/use-radio
+ */
 export function useRadio(props: UseRadioProps = {}) {
   const {
     defaultChecked,

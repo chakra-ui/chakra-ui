@@ -19,6 +19,11 @@ export interface ToastProps
   onClose?: () => void
 }
 
+/**
+ * The `Toast` component is used to give feedback to users after an action has taken place.
+ *
+ * @see Docs https://chakra-ui.com/docs/components/toast
+ */
 export const Toast: React.FC<ToastProps> = (props) => {
   const {
     status,

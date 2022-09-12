@@ -2,6 +2,8 @@ import { useMediaQuery, UseMediaQueryOptions } from "./use-media-query"
 
 /**
  * React hook used to get the user's animation preference.
+ *
+ * @see Docs https://chakra-ui.com/docs/hooks/use-prefers-reduced-motion
  */
 export function usePrefersReducedMotion(
   options?: UseMediaQueryOptions,
