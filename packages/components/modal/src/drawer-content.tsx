@@ -11,7 +11,7 @@ import { useDrawerContext } from "./drawer"
 import { useModalContext, useModalStyles } from "./modal"
 import { ModalFocusScope } from "./modal-focus"
 
-const StyledSlide = chakra(Slide)
+const MotionDiv = chakra(Slide)
 
 export interface DrawerContentProps extends HTMLChakraProps<"section"> {}
 
@@ -61,7 +61,7 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
         __css={dialogContainerStyles}
       >
         <ModalFocusScope>
-          <StyledSlide
+          <MotionDiv
             direction={placement}
             in={isOpen}
             className={_className}
@@ -69,7 +69,7 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
             __css={dialogStyles}
           >
             {children}
-          </StyledSlide>
+          </MotionDiv>
         </ModalFocusScope>
       </chakra.div>
     )
