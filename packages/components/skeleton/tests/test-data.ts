@@ -13,10 +13,10 @@ export const breakpoints = {
 export const theme = { ...baseTheme, breakpoints }
 
 export const queries = {
-  base: "(min-width: 0px) and (max-width: 99.98px)",
-  sm: "(min-width: 100px) and (max-width: 199.98px)",
-  md: "(min-width: 200px) and (max-width: 299.98px)",
-  lg: "(min-width: 300px) and (max-width: 399.98px)",
-  xl: "(min-width: 400px) and (max-width: 499.98px)",
+  base: "(min-width: 0px)",
+  sm: "(min-width: 100px)",
+  md: "(min-width: 200px)",
+  lg: "(min-width: 300px)",
+  xl: "(min-width: 400px)",
   customBreakpoint: "(min-width: 500px)",
 }

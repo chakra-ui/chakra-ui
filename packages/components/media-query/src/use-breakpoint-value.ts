@@ -1,8 +1,9 @@
 import { useTheme } from "@chakra-ui/system"
 import { isObject } from "@chakra-ui/shared-utils"
 import { arrayToObjectNotation } from "@chakra-ui/breakpoint-utils"
-import { getClosestValue } from "./media-query.utils"
 import { useBreakpoint, UseBreakpointOptions } from "./use-breakpoint"
+
+type UseBreakpointValueOptions = Omit<UseBreakpointOptions, "breakpoints">
 
 /**
  * React hook for getting the value for the current breakpoint from the
@@ -18,26 +19,29 @@ import { useBreakpoint, UseBreakpointOptions } from "./use-breakpoint"
  */
 export function useBreakpointValue<T = any>(
   values: Partial<Record<string, T>> | T[],
-  arg?: UseBreakpointOptions | string,
+  arg?: UseBreakpointValueOptions | string,
 ): T | undefined {
   const opts = isObject(arg) ? arg : { fallback: arg ?? "base" }
-  const breakpoint = useBreakpoint(opts)
   const theme = useTheme()
-
-  if (!breakpoint) return
 
   /**
    * Get the sorted breakpoint keys from the provided breakpoints
    */
-  const breakpoints = Array.from(theme.__breakpoints?.keys || [])
+  const allBreakpoints = Array.from(theme.__breakpoints?.keys || [])
 
   const obj = Array.isArray(values)
     ? Object.fromEntries<any>(
-        Object.entries(arrayToObjectNotation(values, breakpoints)).map(
+        Object.entries(arrayToObjectNotation(values, allBreakpoints)).map(
           ([key, value]) => [key, value],
         ),
       )
     : values
 
-  return getClosestValue(obj, breakpoint, breakpoints)
+  const breakpoint = useBreakpoint({
+    // Only check the breakpoints that we have values for
+    breakpoints: Object.keys(obj),
+    ...opts,
+  })
+
+  return obj[breakpoint ?? opts.fallback]
 }
