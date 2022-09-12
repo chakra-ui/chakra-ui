@@ -379,25 +379,17 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    * Function that clamps the input's value on blur
    */
   const validateAndClamp = useCallback(() => {
-    let next = counter.value as string | number
+    if (counter.value === "") return
 
-    if (next === "") return
+    const valueStartsWithE = /^[eE]/.test(counter.value.toString())
 
-    if (counter.valueAsNumber < min) {
-      next = min
+    if (valueStartsWithE) {
+      counter.setValue("")
+    } else if (counter.valueAsNumber < min) {
+      counter.cast(min)
+    } else if (counter.valueAsNumber > max) {
+      counter.cast(max)
     }
-
-    if (counter.valueAsNumber > max) {
-      next = max
-    }
-
-    /**
-     * `counter.cast` does 2 things:
-     *
-     * - sanitize the value by using parseFloat and some Regex
-     * - used to round value to computed precision or decimal points
-     */
-    counter.cast(next)
   }, [counter, max, min])
 
   const onInputBlur = useCallback(() => {
