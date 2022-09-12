@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [opened, synchronize, ready_for_review, edited, closed]
     branches:
-      - main
+      - v1
 
 jobs:
   build:

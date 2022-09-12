@@ -7,7 +7,7 @@ on:
       - "tooling/**"
       - "packages/**"
     branches:
-      - main
+      - v1
 
 jobs:
   release:
@@ -76,17 +76,17 @@ jobs:
         if: steps.changesets.outputs.published != 'true'
         run: |
           git checkout main
-          yarn changeset version --snapshot dev
-          yarn changeset publish --tag dev
+          yarn changeset version --snapshot v1-dev
+          yarn changeset publish --tag v1-dev
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Discord notification
-        if: steps.changesets.outputs.published == 'true'
-        run: yarn discord
-        env:
-          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+      # - name: Discord notification
+      #   if: steps.changesets.outputs.published == 'true'
+      #   run: yarn discord
+      #   env:
+      #     DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
 
       - name: Update changelog
         if: steps.changesets.outputs.published == 'true'
@@ -94,7 +94,7 @@ jobs:
           yarn changelog:write
           yarn changelog:commit
 
-      - name: Send a dispatch event to chakra-ui-docs
-        if: steps.changesets.outputs.published == 'true'
-        run: |
-          curl -X POST -u "segunadebayo:${{ secrets.SAGE_PAT }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/chakra-ui/chakra-ui-docs/dispatches --data '{"event_type": "build_application"}'
+      # - name: Send a dispatch event to chakra-ui-docs
+      #   if: steps.changesets.outputs.published == 'true'
+      #   run: |
+      #     curl -X POST -u "segunadebayo:${{ secrets.SAGE_PAT }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/chakra-ui/chakra-ui-docs/dispatches --data '{"event_type": "build_application"}'

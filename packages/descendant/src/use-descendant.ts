@@ -81,7 +81,7 @@ function useDescendant<T extends HTMLElement = HTMLElement, K = {}>(
 
 export function createDescendantContext<
   T extends HTMLElement = HTMLElement,
-  K = {},
+  K extends Record<string, any> = {},
 >() {
   type ContextProviderType = React.Provider<DescendantsManager<T, K>>
   const ContextProvider = cast<ContextProviderType>(DescendantsContextProvider)
