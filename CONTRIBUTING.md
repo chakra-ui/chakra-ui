@@ -55,8 +55,6 @@ end with `.stories.tsx`.
 
 **`pnpm release`**: publish changed packages.
 
-**`pnpm storybook`**: run storybook to explore components.
-
 ## Think you found a bug?
 
 Please conform to the issue template and provide a clear path to reproduction
