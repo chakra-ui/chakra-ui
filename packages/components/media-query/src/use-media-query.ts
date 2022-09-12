@@ -70,7 +70,7 @@ export function useMediaQuery(
     return queries.map((query, index) => ({
       media: query,
       matches:
-        getWindow()?.matchMedia?.(query).matches ??
+        getWindow()?.matchMedia?.(query)?.matches ??
         (ssr && !!fallbackValues[index]),
     }))
   }, hasChanged)
