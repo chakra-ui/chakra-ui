@@ -28,7 +28,7 @@ export interface IconButtonProps extends BaseButtonProps {
 }
 
 /**
- * Icon button renders an icon within in a button.
+ * Icon button renders an icon within a button.
  *
  * @see Docs https://chakra-ui.com/docs/components/icon-button
  */
