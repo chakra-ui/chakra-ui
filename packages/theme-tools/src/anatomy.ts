@@ -4,16 +4,19 @@ import { fromEntries } from "@chakra-ui/utils"
  * a consistent API for `className`, css selector and `theming`.
  */
 export class Anatomy<T extends string = string> {
-  private map: Record<T, Part> = {} as Record<T, Part>
-  private called = false
+  map: Record<T, Part> = {} as Record<T, Part>
+  called = false
+  name: string
 
-  constructor(private name: string) {}
+  constructor(name: string) {
+    this.name = name
+  }
 
   /**
    * Prevents user from calling `.parts` multiple times.
    * It should only be called once.
    */
-  private assert = () => {
+  assert = () => {
     if (!this.called) {
       this.called = true
       return
@@ -32,7 +35,7 @@ export class Anatomy<T extends string = string> {
     for (const part of values) {
       ;(this.map as any)[part] = this.toPart(part)
     }
-    return (this as unknown) as Omit<Anatomy<V>, "parts">
+    return this as unknown as Omit<Anatomy<V>, "parts">
   }
 
   /**
@@ -43,7 +46,7 @@ export class Anatomy<T extends string = string> {
       if (part in this.map) continue
       ;(this.map as any)[part] = this.toPart(part)
     }
-    return (this as unknown) as Omit<Anatomy<T | U>, "parts">
+    return this as unknown as Omit<Anatomy<T | U>, "parts">
   }
 
   /**
