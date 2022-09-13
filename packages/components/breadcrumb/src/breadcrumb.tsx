@@ -22,6 +22,7 @@ export interface BreadcrumbProps
  * It renders a `nav` element with `aria-label` set to `Breadcrumb`
  *
  * @see Docs https://chakra-ui.com/breadcrumb
+ * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
  */
 export const Breadcrumb = forwardRef<BreadcrumbProps, "nav">(
   function Breadcrumb(props, ref) {

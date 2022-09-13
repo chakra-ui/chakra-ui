@@ -95,6 +95,7 @@ export interface UseTabsProps {
  * so all child components can read from it.
  * There is no document link yet
  * @see Docs https://chakra-ui.com/docs/components/useTabs
+ * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
  */
 export function useTabs(props: UseTabsProps) {
   const {

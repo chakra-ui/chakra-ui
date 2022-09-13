@@ -211,6 +211,8 @@ export interface FormControlProps
  *
  * This is commonly used in form elements such as `input`,
  * `select`, `textarea`, etc.
+ *
+ * @see Docs https://chakra-ui.com/docs/components/form-control
  */
 export const FormControl = forwardRef<FormControlProps, "div">(
   function FormControl(props, ref) {

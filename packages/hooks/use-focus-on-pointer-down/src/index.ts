@@ -44,7 +44,7 @@ export function useFocusOnPointerDown(props: UseFocusOnMouseDownProps) {
       return el?.contains(target) || el === target
     })
 
-    if (doc().activeElement === target && isValidTarget) {
+    if (doc().activeElement !== target && isValidTarget) {
       event.preventDefault()
       target.focus()
     }

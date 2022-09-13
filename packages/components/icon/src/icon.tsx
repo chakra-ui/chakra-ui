@@ -29,6 +29,11 @@ export interface IconProps
   extends Omit<React.SVGAttributes<SVGElement>, keyof ChakraProps>,
     ChakraProps {}
 
+/**
+ * The Icon component renders as an svg element to help define your own custom components.
+ *
+ * @see Docs https://chakra-ui.com/docs/components/icon#using-the-icon-component
+ */
 export const Icon = forwardRef<IconProps, "svg">((props, ref) => {
   const {
     as: element,

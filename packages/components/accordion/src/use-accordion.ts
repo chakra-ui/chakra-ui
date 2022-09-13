@@ -41,6 +41,8 @@ export interface UseAccordionProps {
 /**
  * useAccordion hook provides all the state and focus management logic
  * for accordion items.
+ *
+ * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
  */
 export function useAccordion(props: UseAccordionProps) {
   const {

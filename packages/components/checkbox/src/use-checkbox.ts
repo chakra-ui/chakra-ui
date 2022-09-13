@@ -16,6 +16,7 @@ import { CheckboxState, UseCheckboxProps } from "./checkbox-types"
  * for a checkbox. It is consumed by the `Checkbox` component
  *
  * @see Docs https://chakra-ui.com/checkbox#hooks
+ * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
  */
 export function useCheckbox(props: UseCheckboxProps = {}) {
   const formControlProps = useFormControlProps(props)

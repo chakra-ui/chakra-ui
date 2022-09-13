@@ -49,7 +49,9 @@ export interface UseRadioGroupProps {
 }
 
 /**
- * React hook to manage a group of radio inputs
+ * `useRadioGroup` is a custom hook that provides all the state management logic for a group of radios.
+ *
+ * @see Docs https://chakra-ui.com/docs/hooks/use-radio-group
  */
 export function useRadioGroup(props: UseRadioGroupProps = {}) {
   const {
