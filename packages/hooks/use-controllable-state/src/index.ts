@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 import { useCallbackRef } from "@chakra-ui/react-use-callback-ref"
 
 /**
@@ -36,11 +36,10 @@ export function useControllableState<T>(props: UseControllableStateProps<T>) {
   const shouldUpdateProp = useCallbackRef(shouldUpdate)
 
   const [uncontrolledState, setUncontrolledState] = useState(defaultValue as T)
-
   const controlled = valueProp !== undefined
   const value = controlled ? valueProp : uncontrolledState
 
-  const setValue = useCallback(
+  const setValue = useCallbackRef(
     (next: React.SetStateAction<T>) => {
       const setter = next as (prevState?: T) => T
       const nextValue = typeof next === "function" ? setter(value) : next
