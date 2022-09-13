@@ -34,7 +34,7 @@ describe("useBreakpointValue", () => {
     } as const
 
     test("uses base value if smaller than sm", () => {
-      renderWithQuery(values, widths.base)
+      renderWithWidth(values, widths.base)
 
       Object.keys(values).forEach((key) => {
         if (key === "__base__") {
@@ -46,7 +46,7 @@ describe("useBreakpointValue", () => {
     })
 
     test("sm", () => {
-      renderWithQuery(values, widths.sm)
+      renderWithWidth(values, widths.sm)
 
       Object.keys(values).forEach((key) => {
         if (key === "__sm__") {
@@ -58,7 +58,7 @@ describe("useBreakpointValue", () => {
     })
 
     test("md", () => {
-      renderWithQuery(values, widths.md)
+      renderWithWidth(values, widths.md)
 
       Object.keys(values).forEach((key) => {
         if (key === "__md__") {
@@ -70,7 +70,7 @@ describe("useBreakpointValue", () => {
     })
 
     test("lg", () => {
-      renderWithQuery(values, widths.lg)
+      renderWithWidth(values, widths.lg)
 
       Object.keys(values).forEach((key) => {
         if (key === "__lg__") {
@@ -82,7 +82,7 @@ describe("useBreakpointValue", () => {
     })
 
     test("xl", () => {
-      renderWithQuery(values, widths.xl)
+      renderWithWidth(values, widths.xl)
 
       Object.keys(values).forEach((key) => {
         if (key === "__xl__") {
@@ -94,7 +94,7 @@ describe("useBreakpointValue", () => {
     })
 
     test("2xl", () => {
-      renderWithQuery(values, widths.xl)
+      renderWithWidth(values, widths.xl)
 
       Object.keys(values).forEach((key) => {
         if (key === "__2xl__") {
@@ -106,7 +106,7 @@ describe("useBreakpointValue", () => {
     })
 
     test("customBreakpoint", () => {
-      renderWithQuery(values, widths.customBreakpoint)
+      renderWithWidth(values, widths.customBreakpoint)
 
       Object.keys(values).forEach((key) => {
         if (key === "__customBreakpoint__") {
@@ -119,7 +119,7 @@ describe("useBreakpointValue", () => {
 
     test("base value is used if no breakpoint matches", () => {
       const values = { base: "base", md: "md" }
-      renderWithQuery(values, widths.sm)
+      renderWithWidth(values, widths.sm)
       expect(screen.getByText("base")).toBeInTheDocument()
     })
   })
@@ -136,12 +136,12 @@ describe("useBreakpointValue", () => {
     ]
 
     test("uses base value if smaller than sm", () => {
-      renderWithQuery(values, widths.base)
+      renderWithWidth(values, widths.base)
       expect(screen.getByText("baseValue")).toBeInTheDocument()
     })
 
     test("sm", () => {
-      renderWithQuery(values, widths.sm)
+      renderWithWidth(values, widths.sm)
 
       values.forEach((value) => {
         if (value === "value2") {
@@ -153,7 +153,7 @@ describe("useBreakpointValue", () => {
     })
 
     test("md", () => {
-      renderWithQuery(values, widths.md)
+      renderWithWidth(values, widths.md)
 
       values.forEach((value) => {
         if (value === "value3") {
@@ -165,7 +165,7 @@ describe("useBreakpointValue", () => {
     })
 
     test("lg", () => {
-      renderWithQuery(values, widths.lg)
+      renderWithWidth(values, widths.lg)
 
       values.forEach((value) => {
         if (value === "value4") {
@@ -177,7 +177,7 @@ describe("useBreakpointValue", () => {
     })
 
     test("xl", () => {
-      renderWithQuery(values, widths.xl)
+      renderWithWidth(values, widths.xl)
 
       values.forEach((value) => {
         if (value === "value5") {
@@ -189,7 +189,7 @@ describe("useBreakpointValue", () => {
     })
 
     test("2xl", () => {
-      renderWithQuery(values, widths["2xl"])
+      renderWithWidth(values, widths["2xl"])
 
       values.forEach((value) => {
         if (value === "anotherValue") {
@@ -201,7 +201,7 @@ describe("useBreakpointValue", () => {
     })
 
     test("customBreakpoint", () => {
-      renderWithQuery(values, widths.customBreakpoint)
+      renderWithWidth(values, widths.customBreakpoint)
 
       values.forEach((value) => {
         if (value === "customBreakpoint") {
@@ -213,12 +213,12 @@ describe("useBreakpointValue", () => {
     })
 
     test("uses base value if no breakpoint matches", () => {
-      renderWithQuery(["baseValue"], widths.sm)
+      renderWithWidth(["baseValue"], widths.sm)
       expect(screen.getByText("baseValue")).toBeInTheDocument()
     })
   })
 
-  function renderWithQuery(values: any, width: number) {
+  function renderWithWidth(values: any, width: number) {
     window.innerWidth = width
 
     return render(
