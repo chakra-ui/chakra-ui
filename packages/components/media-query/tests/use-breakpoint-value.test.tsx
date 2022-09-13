@@ -1,6 +1,7 @@
 import { ThemeProvider } from "@chakra-ui/system"
 import { render, screen } from "@chakra-ui/test-utils"
 import React from "react"
+import { act } from "react-dom/test-utils"
 import { useBreakpointValue } from "../src"
 import MatchMedia from "./matchmedia-mock-plus"
 import { theme, widths } from "./test-data"
@@ -237,3 +238,58 @@ const TestComponent = ({
   const value = useBreakpointValue(values, defaultBreakpoint)
   return <>{value}</>
 }
+
+describe("test with resize", () => {
+  beforeEach(() => {
+    Object.assign(window, {
+      innerWidth: 99,
+      innerHeight: 99,
+      outerWidth: 99,
+      outerHeight: 99,
+    })
+
+    window.resizeTo = function resizeTo(width: number, height) {
+      Object.assign(this, {
+        innerWidth: width,
+        innerHeight: height,
+        outerWidth: width,
+        outerHeight: height,
+      }).dispatchEvent(new this.Event("resize"))
+    }
+  })
+
+  test("only re-renders when moving between values", () => {
+    let numOfRenders = 0
+    const C = () => {
+      const value = useBreakpointValue({ base: "__base__", xl: "__xl__" }, "xl")
+      numOfRenders++
+      return <>{value}</>
+    }
+
+    const renderWithProvider = () =>
+      render(
+        <ThemeProvider theme={theme}>
+          <C />
+        </ThemeProvider>,
+      )
+
+    renderWithProvider()
+
+    expect(screen.getByText("__base__")).toBeInTheDocument()
+    // It seems like 3 is the number of renders that happen on initial render
+    // I'm guessing it's the ThemeProvider
+    expect(numOfRenders).toBe(3)
+
+    // 99 -> 399, which moves between base and md breakpoints, but since we
+    // only have values on base and xl breakpoints, it should not re-render
+    // until we get a new value
+    act(() => window.resizeTo(399, 200))
+    expect(screen.getByText("__base__")).toBeInTheDocument()
+    expect(numOfRenders).toBe(3)
+
+    // Move across xl breakpoint, so should then update value and re-render
+    act(() => window.resizeTo(600, 200))
+    expect(screen.getByText("__xl__")).toBeInTheDocument()
+    expect(numOfRenders).toBe(4)
+  })
+})
