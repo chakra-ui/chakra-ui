@@ -1,37 +1,9 @@
 import { useEnvironment } from "@chakra-ui/react-env"
-import { runIfFn } from "@chakra-ui/shared-utils"
-import {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useState,
-} from "react"
+import { useEffect, useState } from "react"
 
 export type UseMediaQueryOptions = {
   fallback?: boolean | boolean[]
   ssr?: boolean
-}
-
-/** Proxy of `useState` that only updates the state if it has changes */
-function useSmartState<S>(
-  initialState: S | (() => S),
-  /** Comparitor that should return `true` if `curr` has changes from `prev` */
-  hasChanged: (prev: S, curr: S) => boolean,
-): [S, Dispatch<SetStateAction<S>>] {
-  const [state, setState] = useState<S>(initialState)
-
-  const smartSetState = useCallback(
-    (state: SetStateAction<S>) =>
-      setState((prev) => {
-        const curr = runIfFn(state, prev)
-
-        return hasChanged(prev, curr) ? curr : prev
-      }),
-    [hasChanged],
-  )
-
-  return [state, smartSetState]
 }
 
 /**
@@ -55,34 +27,30 @@ export function useMediaQuery(
   let fallbackValues = Array.isArray(fallback) ? fallback : [fallback]
   fallbackValues = fallbackValues.filter((v) => v != null) as boolean[]
 
-  const hasChanged = useCallback(
-    (
-      a: { media: string; matches: boolean }[],
-      b: { media: string; matches: boolean }[],
-    ) =>
-      a.some(
-        (aVal, i) => aVal.media !== b[i].media || aVal.matches !== b[i].matches,
-      ),
-    [],
-  )
-
-  const [value, setValue] = useSmartState(() => {
+  const [value, setValue] = useState(() => {
     return queries.map((query, index) => ({
       media: query,
       matches:
         getWindow()?.matchMedia?.(query)?.matches ??
         (ssr && !!fallbackValues[index]),
     }))
-  }, hasChanged)
+  })
 
   useEffect(() => {
     const win = getWindow()
-    setValue(
-      queries.map((query) => ({
+    setValue((prev) => {
+      const current = queries.map((query) => ({
         media: query,
         matches: win.matchMedia(query).matches,
-      })),
-    )
+      }))
+
+      return prev.every(
+        (v, i) =>
+          v.matches === current[i].matches && v.media === current[i].media,
+      )
+        ? prev
+        : current
+    })
 
     const mql = queries.map((query) => win.matchMedia(query))
 
