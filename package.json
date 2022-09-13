@@ -10,7 +10,7 @@
   "scripts": {
     "prepare": "husky install",
     "clean:emotion-types": "rimraf node_modules/@emotion/core/types",
-    "postinstall": "pnpm clean:emotion-types",
+    "postinstall": "pnpm clean:emotion-types && pnpm build:fast",
     "build:tokens": "chakra-cli tokens packages/components/theme/src --out packages/components/styled-system/dist/theming.types.d.ts",
     "build": "turbo run build --filter=!./examples/* --filter=!*props-docs",
     "build:fast": "turbo run build:fast --filter=!./examples/* --filter=!*props-docs",
@@ -18,7 +18,6 @@
     "postbuild": "pnpm build:tokens",
     "dev": "turbo run dev --filter=!./examples/*",
     "typecheck": "tsc --noEmit",
-    "pretest": "pnpm build:fast",
     "test": "jest",
     "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc",
     "format:check": "prettier --check packages/**/**/src",
