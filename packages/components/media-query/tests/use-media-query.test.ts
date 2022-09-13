@@ -77,40 +77,4 @@ describe("with useMediaQuery", () => {
     expect(numOfRenders).toBe(4)
     expect(result.current).toEqual([true, false, false, false])
   })
-
-  test("should only trigger re-render when moving between breakpoints", () => {
-    let numOfRenders = 0
-    const { result } = renderHook(() => {
-      numOfRenders += 1
-      return useMediaQuery(
-        [
-          "(max-width: 410px)",
-          "(min-width: 411px) and (max-width: 615px)",
-          "(min-width: 616px) and (max-width: 1023px)",
-          "(min-width: 1024px)",
-        ],
-        { ssr: false },
-      )
-    })
-
-    expect(numOfRenders).toBe(1)
-    expect(result.current).toEqual([false, false, false, true])
-
-    act(() => window.resizeTo(1025, 768))
-    expect(numOfRenders).toBe(1)
-    expect(result.current).toEqual([false, false, false, true])
-
-    act(() => window.resizeTo(1026, 768))
-    expect(numOfRenders).toBe(1)
-    expect(result.current).toEqual([false, false, false, true])
-
-    // Change to the next breakpoint
-    act(() => window.resizeTo(1023, 768))
-    expect(numOfRenders).toBe(2)
-    expect(result.current).toEqual([false, false, true, false])
-
-    act(() => window.resizeTo(1022, 768))
-    expect(numOfRenders).toBe(2)
-    expect(result.current).toEqual([false, false, true, false])
-  })
 })
