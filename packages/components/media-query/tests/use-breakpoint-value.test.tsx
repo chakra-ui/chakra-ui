@@ -1,9 +1,9 @@
-import React from "react"
 import { ThemeProvider } from "@chakra-ui/system"
 import { render, screen } from "@chakra-ui/test-utils"
+import React from "react"
+import { useBreakpointValue } from "../src"
 import MatchMedia from "./matchmedia-mock-plus"
 import { theme, widths } from "./test-data"
-import { useBreakpointValue } from "../src"
 
 describe("useBreakpointValue", () => {
   let matchMedia: MatchMedia
@@ -13,16 +13,13 @@ describe("useBreakpointValue", () => {
     originalWidth = window.innerWidth
   })
 
-  afterAll(() => {
-    window.innerWidth = originalWidth
-  })
-
   beforeEach(() => {
     matchMedia = new MatchMedia()
   })
 
   afterEach(() => {
     matchMedia.destroy()
+    window.innerWidth = originalWidth
   })
 
   describe("with object", () => {
@@ -128,16 +125,6 @@ describe("useBreakpointValue", () => {
   })
 
   describe("with array", () => {
-    let matchMedia: MatchMedia
-
-    beforeAll(() => {
-      matchMedia = new MatchMedia()
-    })
-
-    afterEach(() => {
-      matchMedia.clear()
-    })
-
     const values = [
       "baseValue",
       "value2",
