@@ -12,12 +12,12 @@ export const breakpoints = {
 
 export const theme = { ...baseTheme, breakpoints }
 
-export const queries = {
-  base: "(min-width: 0px)",
-  sm: "(min-width: 100px)",
-  md: "(min-width: 200px)",
-  lg: "(min-width: 300px)",
-  xl: "(min-width: 400px)",
-  "2xl": "(min-width: 500px)",
-  customBreakpoint: "(min-width: 600px)",
+export const widths = {
+  base: 99,
+  sm: 199,
+  md: 299,
+  lg: 399,
+  xl: 499,
+  "2xl": 599,
+  customBreakpoint: 699,
 }
