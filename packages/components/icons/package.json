@@ -10,7 +10,6 @@
   "module": "dist/index.esm.js",
   "exports": {
     ".": {
-      "default": "./index.ts",
       "import": "./dist/index.esm.js",
       "require": "./dist/index.cjs.js"
     }
