@@ -841,7 +841,6 @@ importers:
       '@testing-library/react-hooks': 8.0.1
       '@types/react-frame-component': ^4.1.1
       clean-package: 2.2.0
-      jest-matchmedia-mock: ^1.1.0
       react: ^18.2.0
       react-frame-component: ^5.2.3
     dependencies:
@@ -854,7 +853,6 @@ importers:
       '@testing-library/react-hooks': 8.0.1_react@18.2.0
       '@types/react-frame-component': 4.1.3
       clean-package: 2.2.0
-      jest-matchmedia-mock: 1.1.0
       react: 18.2.0
       react-frame-component: 5.2.3_react@18.2.0
 
