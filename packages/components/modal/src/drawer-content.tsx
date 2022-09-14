@@ -1,11 +1,12 @@
 import { cx } from "@chakra-ui/shared-utils"
 import {
   chakra,
+  forwardRef,
   HTMLChakraProps,
   SystemStyleObject,
-  forwardRef,
 } from "@chakra-ui/system"
 import { Slide } from "@chakra-ui/transition"
+import type { HTMLMotionProps } from "framer-motion"
 
 import { useDrawerContext } from "./drawer"
 import { useModalContext, useModalStyles } from "./modal"
@@ -13,7 +14,9 @@ import { ModalFocusScope } from "./modal-focus"
 
 const MotionDiv = chakra(Slide)
 
-export interface DrawerContentProps extends HTMLChakraProps<"section"> {}
+export interface DrawerContentProps extends HTMLChakraProps<"section"> {
+  motionProps?: HTMLMotionProps<"section">
+}
 
 /**
  * ModalContent is used to group modal's content. It has all the
@@ -21,7 +24,7 @@ export interface DrawerContentProps extends HTMLChakraProps<"section"> {}
  */
 export const DrawerContent = forwardRef<DrawerContentProps, "section">(
   (props, ref) => {
-    const { className, children, ...rest } = props
+    const { className, children, motionProps, ...rest } = props
 
     const { getDialogProps, getDialogContainerProps, isOpen } =
       useModalContext()
@@ -62,6 +65,7 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
       >
         <ModalFocusScope>
           <MotionDiv
+            motionProps={motionProps}
             direction={placement}
             in={isOpen}
             className={_className}

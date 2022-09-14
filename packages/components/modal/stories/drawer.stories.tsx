@@ -4,7 +4,7 @@ import { Drawer, DrawerBody, DrawerOverlay, DrawerHeader } from "../src/drawer"
 import { DrawerContent } from "../src/drawer-content"
 
 export default {
-  title: "Components / Overlay / Modal / Drawer",
+  title: "Components / Overlay / Drawer",
 }
 
 export const DrawerExample = () => {
@@ -15,6 +15,35 @@ export const DrawerExample = () => {
       <Drawer isOpen={open} onClose={() => setOpen(false)}>
         <DrawerOverlay />
         <DrawerContent>
+          <div>This is the drawer content</div>
+          <button>This is a button</button>
+        </DrawerContent>
+      </Drawer>
+    </>
+  )
+}
+
+export const WithCustomMotion = () => {
+  const [open, setOpen] = React.useState(false)
+  return (
+    <>
+      <button onClick={() => setOpen(!open)}>Open</button>
+      <Drawer isOpen={open} onClose={() => setOpen(false)}>
+        <DrawerOverlay />
+        <DrawerContent
+          motionProps={{
+            variants: {
+              enter: {
+                x: "0%",
+                transition: { duration: 0.2 },
+              },
+              exit: {
+                x: "100%",
+                transition: { duration: 0.1 },
+              },
+            },
+          }}
+        >
           <div>This is the drawer content</div>
           <button>This is a button</button>
         </DrawerContent>

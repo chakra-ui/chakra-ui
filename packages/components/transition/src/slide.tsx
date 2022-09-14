@@ -61,7 +61,9 @@ export interface SlideOptions {
 
 export interface SlideProps
   extends WithTransitionConfig<HTMLMotionProps<"div">>,
-    SlideOptions {}
+    SlideOptions {
+  motionProps?: HTMLMotionProps<"div">
+}
 
 export const Slide = forwardRef<HTMLDivElement, SlideProps>(function Slide(
   props,
@@ -76,6 +78,7 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(function Slide(
     transition,
     transitionEnd,
     delay,
+    motionProps,
     ...rest
   } = props
 
@@ -104,6 +107,7 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(function Slide(
           custom={custom}
           variants={variants as TVariants}
           style={computedStyle}
+          {...motionProps}
         />
       )}
     </AnimatePresence>
