@@ -13,4 +13,9 @@ export type { SlideDirection, SlideProps, SlideOptions } from "./slide"
 export { SlideFade, slideFadeConfig } from "./slide-fade"
 export type { SlideFadeProps } from "./slide-fade"
 
-export { TransitionEasings as EASINGS } from "./transition-utils"
+export {
+  TRANSITION_EASINGS as EASINGS,
+  getSlideTransition,
+  withDelay,
+} from "./transition-utils"
+export type { TransitionProperties } from "./transition-utils"
